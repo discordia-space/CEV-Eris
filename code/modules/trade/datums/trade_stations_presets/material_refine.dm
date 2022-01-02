@@ -5,40 +5,43 @@
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
+	markdown = 0		// Needs to be zero because it can be abused. When a item of type ...stack/material/mat_name/full is split, the new item retains the /full subtype and can be sold at the sell price shown.
 	base_income = 0		// Needs ore to refine
 	wealth = 0
 	offer_limit = 30
-	secret_inv_threshold = 64000	// Has many offers
+	secret_inv_threshold = 48000	// Has many offers
 	assortiment = list(
 		"Refined Materials" = list(
+			// Commenting out single stacks of goods because it is possible someone will want to order a bunch at once. Having too many items on the same tile is problematic.
+			// If miners are bringing back a bunch of ore, some of it is probably going to be smelted anyway.
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(-4, 6)),
 			/obj/item/stack/material/cardboard/full = good_data("cardboard sheets (x120)", list(-4, 6)),
 			/obj/item/stack/material/steel/full = good_data("steel sheets (x120)", list(-3, 5)),
 			/obj/item/stack/material/plasteel/full = good_data("plasteel sheets (x120)", list(-3, 5)),
 			/obj/item/stack/material/wood/full = good_data("wood planks (x120)", list(-3, 5)),
 			/obj/item/stack/material/glass/full = good_data("glass sheets (x120)", list(-3, 5)),
-			/obj/item/stack/material/iron = good_data("iron ingot (x1)", list(0, 5)),
-			/obj/item/stack/material/silver = good_data("silver ingot (x1)", list(0, 5)),
-			/obj/item/stack/material/gold = good_data("gold ingot (x1)", list(0, 5)),
-			/obj/item/stack/material/diamond = good_data("diamond sheet (x1)", list(0, 5)),
-			/obj/item/stack/material/platinum = good_data("platinum sheet (x1)", list(0, 5)),
-			/obj/item/stack/material/osmium = good_data("osmium ingot (x1)", list(0, 5)),
-			/obj/item/stack/material/mhydrogen = good_data("metallic hydrogen sheet (x1)", list(0, 5)),
-			/obj/item/stack/material/tritium = good_data("tritium ingot (x1)", list(0, 5)),
-			/obj/item/stack/material/uranium = good_data("uranium sheet (x1)", list(0, 5)),
+//			/obj/item/stack/material/iron = good_data("iron ingot (x1)", list(0, 5)),
+//			/obj/item/stack/material/silver = good_data("silver ingot (x1)", list(0, 5)),
+//			/obj/item/stack/material/gold = good_data("gold ingot (x1)", list(0, 5)),
+//			/obj/item/stack/material/diamond = good_data("diamond sheet (x1)", list(0, 5)),
+//			/obj/item/stack/material/platinum = good_data("platinum sheet (x1)", list(0, 5)),
+//			/obj/item/stack/material/osmium = good_data("osmium ingot (x1)", list(0, 5)),
+//			/obj/item/stack/material/mhydrogen = good_data("metallic hydrogen sheet (x1)", list(0, 5)),
+//			/obj/item/stack/material/tritium = good_data("tritium ingot (x1)", list(0, 5)),
+//			/obj/item/stack/material/uranium = good_data("uranium sheet (x1)", list(0, 5)),
 		),
 	)
 	secret_inventory = list(
 		"Refined Material Stacks" = list(
-			/obj/item/stack/material/iron/full = good_data("iron ingots (x120)", list(1, 1)),
-			/obj/item/stack/material/silver/full = good_data("silver ingots (x120)", list(1, 1)),
-			/obj/item/stack/material/gold/full = good_data("gold ingots (x120)", list(1, 1)),
-			/obj/item/stack/material/diamond/full = good_data("diamond sheets (x120)", list(1, 1)),
-			/obj/item/stack/material/platinum/full = good_data("platinum sheets (x120)", list(1, 1)),
-			/obj/item/stack/material/osmium/full = good_data("osmium ingots (x120)", list(1, 1)),
-			/obj/item/stack/material/mhydrogen/full = good_data("metallic hydrogen sheets (x120)", list(1, 1)),
-			/obj/item/stack/material/tritium/full = good_data("tritium ingots (x120)", list(1, 1)),
-			/obj/item/stack/material/uranium/full = good_data("uranium sheets (x120)", list(1, 1)),
+			/obj/item/stack/material/iron/full = good_data("iron ingots (x120)", list(1, 2)),
+			/obj/item/stack/material/silver/full = good_data("silver ingots (x120)", list(1, 2)),
+			/obj/item/stack/material/gold/full = good_data("gold ingots (x120)", list(1, 2)),
+			/obj/item/stack/material/diamond/full = good_data("diamond sheets (x120)", list(1, 2)),
+			/obj/item/stack/material/platinum/full = good_data("platinum sheets (x120)", list(1, 2)),
+			/obj/item/stack/material/osmium/full = good_data("osmium ingots (x120)", list(1, 21)),
+			/obj/item/stack/material/mhydrogen/full = good_data("metallic hydrogen sheets (x120)", list(1, 2)),
+			/obj/item/stack/material/tritium/full = good_data("tritium ingots (x120)", list(1, 2)),
+			/obj/item/stack/material/uranium/full = good_data("uranium sheets (x120)", list(1, 2)),
 		)
 	)
 	offer_types = list(
