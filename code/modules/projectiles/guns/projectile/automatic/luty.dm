@@ -36,8 +36,10 @@
 /obj/item/gun/projectile/automatic/luty/on_update_icon()
     cut_overlays()
     icon_state = "[initial(icon_state)][safety ? "_safe" : ""]"
+
     if(ammo_magazine)
-        add_overlays("mag[ammo_magazine.ammo_color]")
+        var/obj/item/ammo_casing/AC = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
+        add_overlays("mag-[AC.shell_color]")
 
 /obj/item/gun/projectile/automatic/luty/Initialize()
 	. = ..()

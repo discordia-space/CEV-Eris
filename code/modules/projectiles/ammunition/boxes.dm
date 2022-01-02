@@ -4,7 +4,6 @@
 	desc = "Gun ammunition stored in a shiny new box. You can see caliber information on the label."
 	mag_type = SPEEDLOADER	//To prevent load in magazine filled guns
 	icon = 'icons/obj/ammo.dmi'
-	multiple_sprites = 1
 	reload_delay = 30
 	ammo_mag = "box"
 	matter = list(MATERIAL_CARDBOARD = 1)
@@ -47,6 +46,7 @@
 	max_ammo = 70
 	rarity_value = 10
 	spawn_tags = SPAWN_TAG_AMMO_COMMON
+	ammo_states = list(70)
 
 /obj/item/ammo_magazine/ammobox/pistol/practice
 	name = "ammunition packet (.35 Auto practice)"
@@ -79,6 +79,7 @@
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
 	max_ammo = 30
+	ammo_states = list(30)
 
 /obj/item/ammo_magazine/ammobox/magnum/practice
 	name = "ammunition packet (.40 Magnum practice)"
@@ -115,6 +116,7 @@
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 240
+	ammo_states = list(240)
 
 /obj/item/ammo_magazine/ammobox/srifle/rubber
 	name = "ammunition box (.20 Rifle rubber)"
@@ -128,6 +130,7 @@
 	caliber = CAL_SRIFLE
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 60
+	ammo_states = list(60)
 
 /obj/item/ammo_magazine/ammobox/srifle_small/practice
 	name = "ammunition packet (.20 Rifle practice)"
@@ -163,6 +166,7 @@
 	max_ammo = 240
 	spawn_tags = SPAWN_TAG_AMMO_IH
 	rarity_value = 5
+	ammo_states = list(240)
 
 /obj/item/ammo_magazine/ammobox/clrifle/rubber
 	name = "ammunition box (.25 Caseless Rifle rubber)"
@@ -177,6 +181,7 @@
 	caliber = CAL_CLRIFLE
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 60
+	ammo_states = list(60)
 
 /obj/item/ammo_magazine/ammobox/clrifle_small/practice
 	name = "ammunition packet (.25 Caseless Rifle practice)"
@@ -210,6 +215,7 @@
 	ammo_type = /obj/item/ammo_casing/lrifle
 	mag_type = SPEEDLOADER | MAGAZINE
 	max_ammo = 240
+	ammo_states = list(240)
 
 /obj/item/ammo_magazine/ammobox/lrifle/rubber
 	name = "ammunition box (.30 Rifle rubber)"
@@ -223,6 +229,7 @@
 	caliber = CAL_LRIFLE
 	ammo_type = /obj/item/ammo_casing/lrifle
 	max_ammo = 60
+	ammo_states = list(60)
 
 /obj/item/ammo_magazine/ammobox/lrifle_small/practice
 	name = "ammunition packet (.30 Rifle practice)"
@@ -256,6 +263,7 @@
 	caliber = CAL_ANTIM
 	ammo_type = /obj/item/ammo_casing/antim
 	max_ammo = 30
+	ammo_states = list(30)
 
 /obj/item/ammo_magazine/ammobox/antim/scrap
 	name = "ammunition box (old .60 Anti Material)"
@@ -276,6 +284,7 @@
 	max_ammo = 30
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN
+	ammo_states = list(30)
 
 /obj/item/ammo_magazine/ammobox/shotgun/scrap
 	name = "ammunition box (old slug shell)"

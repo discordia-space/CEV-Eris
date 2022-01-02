@@ -38,9 +38,14 @@
 /obj/item/gun/projectile/automatic/c20r/on_update_icon()
 	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+
 	if(ammo_magazine)
-		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		if(ammo_magazine.stored_ammo.len)
+			var/obj/item/ammo_casing/AC = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
+			add_overlays("mag[silenced ? "_s" : ""]-[AC.shell_color]")
+		else
+			add_overlays("slide[silenced ? "_s" : ""]")	
+	else
 		add_overlays("slide[silenced ? "_s" : ""]")
 
 /obj/item/gun/projectile/automatic/c20r/Initialize()

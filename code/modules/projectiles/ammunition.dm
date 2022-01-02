@@ -198,7 +198,14 @@
 	rarity_value = 10
 	bad_type = /obj/item/ammo_magazine
 
-	var/ammo_color = ""		//For use in modular sprites
+	var/modular_sprites = TRUE // If icons with colored stripes is present. False for some legacy sprites
+	var/list/ammo_states = list() // For which non-zero ammo counts we have separate icon states. From smallest to largest value
+	var/list/ammo_names = list(
+		"l" = "lethal",
+		"r" = "rubber",
+		"hv" = "high velocity",
+		"p" = "practice",
+		"s" = "scrap") // Name changes based on the first projectile's shell_color
 
 	var/list/stored_ammo = list()
 	var/mag_type = SPEEDLOADER //ammo_magazines can only be used with compatible guns. This is not a bitflag, the load_method var on guns is.
@@ -211,15 +218,8 @@
 	var/ammo_type = /obj/item/ammo_casing //ammo type that is initially loaded
 	var/initial_ammo
 
-	var/multiple_sprites = 0
-	//because BYOND doesn't support numbers as keys in associative lists
-	var/list/icon_keys = list()		//keys
-	var/list/ammo_states = list()	//values
-
 /obj/item/ammo_magazine/New()
 	..()
-	if(multiple_sprites)
-		initialize_magazine_icondata(src)
 
 	if(isnull(initial_ammo))
 		initial_ammo = max_ammo
@@ -407,41 +407,32 @@
 	update_icon()
 
 /obj/item/ammo_magazine/on_update_icon()
-	if(multiple_sprites)
-		//find the lowest key greater than or equal to stored_ammo.len
-		var/new_state = null
-		for(var/idx in 1 to icon_keys.len)
-			var/ammo_count = icon_keys[idx]
-			if (ammo_count >= stored_ammo.len)
-				new_state = ammo_states[idx]
+	// First inserted casing will define the look and the name of the magazine
+	// Ammo boxes keep their original color and name regardless of what ammo is inside
+	// No ammo inside - no colored stripe on the magazine
+	var/ammo_count = 0
+	if(stored_ammo.len && ammo_states)
+		// So ammo count is not zero. Let's find closest matching sprite
+		for(var/i = 1; i <= ammo_states.len; i++)
+			// E.g. if LMG mag have 5 ammo, then pick "pk_box-25" since it's closest non-empty state
+			if(stored_ammo.len <= ammo_states[i])
+				ammo_count = ammo_states[i]
 				break
-		icon_state = (new_state)? new_state : initial(icon_state)
+		var/obj/item/ammo_casing/AC = stored_ammo[stored_ammo.len]
+		if(istype(src, /obj/item/ammo_magazine/ammobox))
+			icon_state = "[initial(icon_state)]-[ammo_count]" // E.g. "clrifle_hv-60"
+		else if(AC && AC.shell_color && modular_sprites)
+			icon_state = "[initial(icon_state)]_[AC.shell_color]-[ammo_count]" // E.g. "ihclrifle_hv-30"
+			var/magazine_name = replacetext(initial(name), ")", " ")
+			var/ammo_name = ammo_names[AC.shell_color]
+			name = "[magazine_name][ammo_name])"
+		else
+			icon_state = "[initial(icon_state)]-[ammo_count]" // E.g. "ihclrifle-30"
+			name = initial(name)
+	else
+		icon_state = "[initial(icon_state)]-[ammo_count]" // E.g. "ihclrifle-0"
+		name = initial(name)
 
 /obj/item/ammo_magazine/examine(mob/user)
 	..()
 	to_chat(user, "There [(stored_ammo.len == 1)? "is" : "are"] [stored_ammo.len] round\s left!")
-
-//magazine icon state caching
-/var/global/list/magazine_icondata_keys = list()
-/var/global/list/magazine_icondata_states = list()
-
-/proc/initialize_magazine_icondata(var/obj/item/ammo_magazine/M)
-	var/typestr = "[M.type]"
-	if(!(typestr in magazine_icondata_keys) || !(typestr in magazine_icondata_states))
-		magazine_icondata_cache_add(M)
-
-	M.icon_keys = magazine_icondata_keys[typestr]
-	M.ammo_states = magazine_icondata_states[typestr]
-
-/proc/magazine_icondata_cache_add(var/obj/item/ammo_magazine/M)
-	var/list/icon_keys = list()
-	var/list/ammo_states = list()
-	var/list/states = icon_states(M.icon)
-	for(var/i = 0, i <= M.max_ammo, i++)
-		var/ammo_state = "[M.icon_state]-[i]"
-		if(ammo_state in states)
-			icon_keys += i
-			ammo_states += ammo_state
-
-	magazine_icondata_keys["[M.type]"] = icon_keys
-	magazine_icondata_states["[M.type]"] = ammo_states
