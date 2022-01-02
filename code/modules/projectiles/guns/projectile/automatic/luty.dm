@@ -46,10 +46,6 @@
 	else
 		add_overlays("slide[silenced ? "_s" : ""]")
 
-	if(ammo_magazine)
-		var/obj/item/ammo_casing/AC = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
-		add_overlays("mag-[AC.shell_color]")
-
 /obj/item/gun/projectile/automatic/luty/Initialize()
 	. = ..()
 	update_icon()
