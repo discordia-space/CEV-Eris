@@ -408,4 +408,3 @@
 	item_state = "rcdammo"
 	default_type = MATERIAL_COMPRESSED
 	price_tag = 30
-	
