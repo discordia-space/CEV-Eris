@@ -34,20 +34,20 @@
 	mappath += (prefix + suffix)
 	..()
 
-/datum/map_template/blacksite/small
-	name = "blacksite_small"
-	id = "blacksite_small"
-	suffix = "small_chunk.dmm"
+// /datum/map_template/blacksite/small
+// 	name = "blacksite_small"
+// 	id = "blacksite_small"
+// 	suffix = "small_chunk.dmm"
 
 /datum/map_template/blacksite/medium
 	name = "blacksite_medium"
 	id = "blacksite_medium"
 	suffix = "medium_chunk.dmm"
 
-/datum/map_template/blacksite/large
-	name = "blacksite_large"
-	id = "blacksite_large"
-	suffix = "large_chunk.dmm"
+// /datum/map_template/blacksite/large
+// 	name = "blacksite_large"
+// 	id = "blacksite_large"
+// 	suffix = "large_chunk.dmm"
 
 /////
 // Overmap effects
