@@ -1,6 +1,7 @@
 /datum/trade_station/station_zarya
 	name_pool = list(
-	"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'")
+		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'"
+	)
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
