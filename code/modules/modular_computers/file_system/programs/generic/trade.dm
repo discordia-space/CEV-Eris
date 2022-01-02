@@ -247,23 +247,25 @@
 			.["goods"] = null
 
 		.["offers"] = list()
-	//for(var/datum/trade_station/S in SStrade.discovered_stations)
 		for(var/offer_path in PRG.station.special_offers)
 			var/atom/movable/path = offer_path
 			var/list/offer_content = PRG.station.special_offers[offer_path]
 			var/list/offer = list(
-				"station" = PRG.station.name,\
-				"name" = offer_content["name"],\
-				"amount" = offer_content["amount"],\
-				"price" = offer_content["price"],\
-				"index" = SStrade.discovered_stations.Find(PRG.station),\
-				"path" = path
+				"station" = PRG.station.name,
+				"name" = offer_content["name"],
+				"amount" = offer_content["amount"],
+				"price" = offer_content["price"],
+				"index" = SStrade.discovered_stations.Find(PRG.station),
+				"path" = path,
 			)
 			if(PRG.sending)
 				offer["available"] = length(SStrade.assess_offer(PRG.sending, PRG.station, offer_path))
 			.["offers"] += list(offer)
+
 		if(!recursiveLen(.["offers"]))
 			.["offers"] = null
+
+		.["time"] = time2text( (PRG.station.update_time - (world.time - PRG.station.update_timer_start)) , "mm:ss")
 
 #undef GOODS_SCREEN
 #undef OFFER_SCREEN

@@ -108,7 +108,7 @@
 {{else}}
 	<div class='notice' id='SpecialOffer'>
 		{{if data.offers}}
-			<h3>Special offers</h3>
+			<h3>Special offers{{if data.time}} (time left: {{:data.time}}){{/if}}</h3>
 			<table class='item'>
 				<tr>
 					<th>Station
