@@ -66,7 +66,7 @@
 			{{for data.categories}}
 				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
 			{{empty}}
-				Some retard created trade station without categories, or it is bug, tell it to devs.
+				This trade station has nothing to sell.
 			{{/for}}
 			<br><br>
 			{{if data.current_category}}
@@ -77,6 +77,7 @@
 							<td>Price
 							<td>Available
 							<td>Cart
+							<td>Sell Price
 							<td>Sell
 						{{for data.goods}}
 							<tr>
@@ -87,6 +88,7 @@
 									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
 									{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
 									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
+								<td>{{:value.sell_price}}
 								<td>{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
 						{{/for}}
 					</table>
@@ -121,7 +123,7 @@
 						<td>{{:value.name}}
 						<td>{{:value.price}}
 						<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
-						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index}, value.available >= value.amount ? null : 'disabled')}}
+						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index, 'PRG_offer_fulfill_path' : value.path}, (value.available >= value.amount && value.amount > 0) ? null : 'disabled')}}
 					{{/if}}
 				{{/for}}
 			</table>
