@@ -1,6 +1,6 @@
 // Uncomment this define to check for possible lengthy processing of emp_act()s.
 // If emp_act() takes more than defined deciseconds (1/10 seconds) an admin message and log is created.
-// I do not recommend having this uncommented on main server, it probably causes a bit more lag, espicially with larger EMPs.
+// I do not recommend having this uncommented on main server, it probably causes a bit more lag, especially with larger EMPs.
 
 // #define EMPDEBUG 10
 

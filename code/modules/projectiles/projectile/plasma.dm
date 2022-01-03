@@ -14,10 +14,12 @@
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
 	armor_penetration = 0
+	damage_types = list(BURN = 27)
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_penetration = 50
+	damage_types = list(BURN = 55)
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
@@ -25,6 +27,29 @@
 	agony = 30
 	damage_types = list(HALLOSS = 30,BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
+
+/obj/item/projectile/plasma/ion
+	name = "ion-plasma bolt"
+	icon_state = "ion"
+	armor_penetration = 0
+	damage_types = list(BURN = 25)
+	var/heat_damage = 20
+
+/obj/item/projectile/plasma/ion/on_hit(atom/target)
+	empulse(target, 0, 1)
+	heatwave(target, 1, 1, damage_types[BURN])
+	..()
+
+/obj/item/projectile/plasma/ion/heavy
+	name = "heavy ion-plasma bolt"
+	armor_penetration = 50
+	damage_types = list(BURN = 30)
+	heat_damage = 40 // The AoE receives no penetration bonus
+
+/obj/item/projectile/plasma/ion/heavy/on_hit(atom/target)
+	empulse(target, 1, 2)
+	heatwave(target, 1, 2, damage_types[BURN])
+	..()
 
 /obj/item/projectile/plasma/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
