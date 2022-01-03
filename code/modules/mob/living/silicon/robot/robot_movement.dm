@@ -26,12 +26,14 @@
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility)) //And so is this silly check
 		tally-=1
 	tally /= speed_factor
+	if(weakened)
+		tally -= weakened / 8
 	return tally
 
 
 /mob/living/silicon/robot/SelfMove(turf/n, direct)
 	if (!is_component_functioning("actuator"))
-		return 0
+		return FALSE
 
 	var/datum/robot_component/actuator/A = get_component("actuator")
 	if (cell_use_power(A.active_usage))

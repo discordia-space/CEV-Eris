@@ -745,6 +745,7 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/robot_module/custodial/New(var/mob/living/silicon/robot/R)
+	R.AddTrait(CYBORG_TRAIT_CLEANING_WALK)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/gripper/service(src)

@@ -5,8 +5,6 @@
 	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
-	src.blinded = null
-
 	//Status updates, death etc.
 	clamp_values()
 	handle_regular_status_updates()
@@ -31,9 +29,9 @@
 
 /mob/living/silicon/robot/proc/clamp_values()
 
-//	SetStunned(min(stunned, 30))
+	SetStunned(min(stunned, 30))
 	SetParalysis(min(paralysis, 30))
-//	SetWeakened(min(weakened, 20))
+	SetWeakened(min(weakened, 20))
 	sleeping = 0
 	adjustBruteLoss(0)
 	adjustToxLoss(0)
@@ -270,8 +268,8 @@
 			weaponlock_time = 120
 
 /mob/living/silicon/robot/update_lying_buckled_and_verb_status()
-	if(paralysis || stunned || weakened || buckled || lockcharge || !is_component_functioning("actuator")) canmove = 0
-	else canmove = 1
+	if(paralysis || stunned || buckled || lockcharge || !is_component_functioning("actuator")) canmove = FALSE
+	else canmove = TRUE
 	return canmove
 
 /mob/living/silicon/robot/update_fire()

@@ -1,4 +1,8 @@
 #define CYBORG_POWER_USAGE_MULTIPLIER 1.5 // Multiplier for amount of power cyborgs use.
+#define CYBORG_TRAIT_FLASH_RESISTANT 0x2
+#define CYBORG_TRAIT_CLEANING_WALK 0x4
+#define CYBORG_TRAIT_DEFLECTIVE_ARMOR 0x8
+
 
 /mob/living/silicon/robot
 	name = "Cyborg"
@@ -11,6 +15,7 @@
 	mob_bump_flag = ROBOT
 	mob_swap_flags = ROBOT|MONKEY|SLIME|SIMPLE_ANIMAL
 	mob_push_flags = ~HEAVY //trundle trundle
+	var/robot_traits
 
 	var/lights_on = FALSE // Is our integrated light on?
 	var/used_power_this_tick = 0
@@ -98,6 +103,23 @@
 		/mob/living/silicon/robot/proc/robot_checklaws
 	)
 
+/mob/living/silicon/robot/proc/AddTrait(trait_type)
+	if(!(robot_traits & trait_type))
+		robot_traits | trait_type
+		return TRUE
+	return FALSE
+
+/mob/living/silicon/robot/proc/HasTrait(trait_type)
+	if(robot_traits & trait_type)
+		return TRUE
+	return FALSE
+
+/mob/living/silicon/robot/proc/RemoveTrait(trait_type)
+	if(robot_traits & trait_type)
+		robot_traits &= ~trait_type
+		return TRUE
+	return FALSE
+
 /mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
@@ -151,13 +173,13 @@
 
 	add_robot_verbs()
 
-	hud_list[HEALTH_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[STATUS_HUD]      = image('icons/mob/hud.dmi', src, "hudhealth100")
-	hud_list[LIFE_HUD]        = image('icons/mob/hud.dmi', src, "hudhealth100")
-	hud_list[ID_HUD]          = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[WANTED_HUD]      = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPCHEM_HUD]     = image('icons/mob/hud.dmi', src, "hudblank")
-	hud_list[IMPTRACK_HUD]    = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[HEALTH_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[STATUS_HUD] = image('icons/mob/hud.dmi', src, "hudhealth100")
+	hud_list[LIFE_HUD] = image('icons/mob/hud.dmi', src, "hudhealth100")
+	hud_list[ID_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[WANTED_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[IMPCHEM_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
+	hud_list[IMPTRACK_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 	hud_list[SPECIALROLE_HUD] = image('icons/mob/hud.dmi', src, "hudblank")
 
 	create_HUD()
@@ -478,6 +500,22 @@
 	return FALSE
 
 /mob/living/silicon/robot/bullet_act(var/obj/item/projectile/Proj)
+	if(robot_traits & CYBORG_TRAIT_DEFLECTIVE_ARMOR && istype(Proj, /obj/item/projectile/bullet))
+		var/chance = 90
+		if(ishuman(Proj.firer))
+			var/mob/living/carbon/human/firer = Proj.firer
+			chance -= firer.stats.getStat(STAT_VIG, FALSE) / 5
+		var/obj/item/projectile/bullet/B = Proj
+		var/chance = max(chance - B.armor_penetration), 0)
+		if(B.starting && prob(chance))
+			visible_message(SPAN_DANGER("\The [attack_text] ricochets off [user]\'s [name]!"))
+			var/multiplier = round(10 / get_dist(B.starting, src))
+			var/turf/sourceloc = get_turf_away_from_target_complex(src, B.starting, multiplier)
+			var/distance = get_dist(sourceloc, src)
+			var/new_x =  sourceloc.x + ( rand(0, distance) * prob(50) ? -1 : 1 )
+			var/new_y =  sourceloc.y + ( rand(0, distance) * prob(50) ? -1 : 1 )
+			B.redirect(new_x, new_y, get_turf(src), src)
+			return PROJECTILE_CONTINUE // complete projectile permutation
 	..(Proj)
 	if(prob(75) && Proj.get_structure_damage() > 0) spark_system.start()
 	return 2
@@ -536,7 +574,7 @@
 	switch(tool_type)
 
 		if(QUALITY_WELDING)
-			if (user.a_intent == I_HELP)		
+			if (user.a_intent == I_HELP)
 				if (src == user)
 					to_chat(user, SPAN_WARNING("You lack the reach to be able to repair yourself."))
 					return
@@ -556,7 +594,7 @@
 				return
 
 		if(QUALITY_PRYING)
-			if (user.a_intent == I_HELP)	
+			if (user.a_intent == I_HELP)
 				if(opened)
 					if(cell)
 						if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -616,13 +654,13 @@
 				return
 
 		if(QUALITY_WIRE_CUTTING)
-			if (user.a_intent == I_HELP)		
+			if (user.a_intent == I_HELP)
 				if (wiresexposed)
 					wires.Interact(user)
 				return
 
 		if(QUALITY_SCREW_DRIVING)
-			if (user.a_intent == I_HELP)	
+			if (user.a_intent == I_HELP)
 				if (opened && !cell)
 					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 						wiresexposed = !wiresexposed
@@ -927,7 +965,7 @@
 	. = ..()
 
 	if(module)
-		if(istype(module, /obj/item/robot_module/custodial))
+		if(HasTrait(CYBORG_TRAIT_CLEANING_WALK))
 			var/turf/tile = loc
 			if(isturf(tile))
 				tile.clean_blood()
