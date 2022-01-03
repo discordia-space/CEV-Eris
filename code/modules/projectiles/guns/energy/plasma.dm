@@ -87,6 +87,7 @@
 	desc = "\"Moebius\" brand energy pistol, for personal overprotection."
 	icon = 'icons/obj/guns/energy/brigador.dmi'
 	icon_state = "brigador"
+	can_dual = TRUE
 	charge_meter = FALSE
 	w_class = ITEM_SIZE_NORMAL
 	twohanded = FALSE
