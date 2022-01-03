@@ -19,7 +19,7 @@
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_penetration = 50
-	damage_types = list(BURN = 55)
+	damage_types = list(BURN = 42)
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"

@@ -14,7 +14,7 @@
 	fire_sound = 'sound/weapons/energy/burn.ogg'
 	suitable_cell = /obj/item/cell/medium
 	sel_mode = 1
-	charge_cost = 15 //Gives us 40 shots per high medium-sized cell
+	charge_cost = 15 //Gives us 40 shots per low-tier medium-sized cell
 	recoil_buildup = 3 //pulse weapons have a bit more recoil
 	one_hand_penalty = 10
 	twohanded = TRUE
