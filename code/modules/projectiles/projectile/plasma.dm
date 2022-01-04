@@ -75,19 +75,19 @@
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
 	armor_penetration = 50 // The AoE receives no penetration bonus
-	damage_types = list(BURN = 37)
+	damage_types = list(BURN = 42)
 
 	aoe_strong = 1
 	aoe_weak = 1
-	heat_damage = 40
+	heat_damage = 20
 	emp_strength = 0
 
 	fire_stacks = TRUE
 
 /obj/item/projectile/plasma/aoe/heat/strong
 	name = "high-temperature plasma blast"
-	armor_penetration = 50
-	damage_types = list(BURN = 37)
+	armor_penetration = 0
+	damage_types = list(BURN = 25)
 
 	aoe_strong = 1
 	aoe_weak = 2

@@ -49,11 +49,14 @@
 	icon = 'icons/obj/guns/energy/destroyer.dmi'
 	fire_sound = 'sound/weapons/energy/incinerate.ogg'
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10, MATERIAL_URANIUM = 5)
+	slot_flags = SLOT_BACK
 	fire_delay = 20
 	charge_cost = 200
+	wield_delay = 0.8 SECOND
+	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
-		list(mode_name="DISINTEGRATE", mode_desc="Removes heresy from sight", projectile_type=/obj/item/projectile/plasma/aoe/heat/strong, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=20, charge_cost=300, icon="destroy", projectile_color = "#ff1212", recoil_buildup=25),
+		list(mode_name="DISINTEGRATE", mode_desc="Removes heresy from sight", projectile_type=/obj/item/projectile/plasma/aoe/heat/strong, fire_sound='sound/weapons/energy/incinerate.ogg', fire_delay=15, charge_cost=200, icon="destroy", projectile_color = "#ff1212", recoil_buildup=25),
 		list(mode_name="CLEANSE", mode_desc="Cleanse the filth", mode_type = /datum/firemode/automatic, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/energy/vaporize.ogg', fire_delay=5, charge_cost=35, icon="burst", projectile_color = "#00AAFF", recoil_buildup=5),
 	)
 
