@@ -63,7 +63,7 @@
 	electronics_damage = max(0, electronics_damage - electronics)
 
 /datum/robot_component/proc/is_powered()
-	return (installed == 1) && (brute_damage + electronics_damage < max_damage) && (!idle_usage || powered)
+	return (installed == TRUE) && (brute_damage + electronics_damage < max_damage) && (!idle_usage || powered)
 
 /datum/robot_component/proc/update_power_state()
 	if(toggled == 0)

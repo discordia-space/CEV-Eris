@@ -91,13 +91,14 @@
 	if(health < HEALTH_THRESHOLD_DEAD && src.stat != 2) //die only once
 		death()
 
+
 	if (src.stat != 2) //Alive.
-		if (src.paralysis || src.stunned || src.weakened || !src.has_power) //Stunned etc.
+		if (src.weakened > 0)
+			AdjustWeakened(-1)
+		if (src.paralysis || src.stunned || !src.has_power) //Stunned etc.
 			src.stat = 1
 			if (src.stunned > 0)
 				AdjustStunned(-1)
-			if (src.weakened > 0)
-				AdjustWeakened(-1)
 			if (src.paralysis > 0)
 				AdjustParalysis(-1)
 				src.blinded = TRUE

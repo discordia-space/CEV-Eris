@@ -28,6 +28,7 @@
 	tally /= speed_factor
 	if(weakened)
 		tally -= weakened / 8
+		to_chat(src, "tally is [tally]")
 	return tally
 
 
