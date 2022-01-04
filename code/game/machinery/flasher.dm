@@ -94,12 +94,22 @@
 					FLICK("e_flash", O.HUDtech["flash"])
 				E.damage += rand(1, 5)
 		else
-			if(!O.blinded)
-				if (istype(O,/mob/living/silicon/ai))
-					return
-				if (O.HUDtech.Find("flash"))
-					FLICK("flash", O.HUDtech["flash"])
-		O.Weaken(flash_time)
+			if(isrobot(O))
+				var/mob/living/silicon/robot/robo = O
+				if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
+					continue
+				else
+					robo.Weaken(flash_time)
+					if(robo.HUDtech.Find("flash"))
+						FLICK("e_flash", robo.HUDtech["flash"])
+						continue
+			else
+				if(!O.blinded)
+					if (istype(O,/mob/living/silicon/ai))
+						return
+					if (O.HUDtech.Find("flash"))
+						FLICK("flash", O.HUDtech["flash"])
+			O.Weaken(flash_time)
 
 /obj/machinery/flasher/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))

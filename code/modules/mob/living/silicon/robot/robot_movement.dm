@@ -1,3 +1,7 @@
+/// For fellow coders , if you wish to control the conditions for a robot to move , you need to touch movement_handlers in init() proc
+/// I've spent 2 hours looking for them , but hopefully you don't have to go through my pain of going over and over undocumented code.
+
+
 /mob/living/silicon/robot/slip_chance(var/prob_slip)
 	if(module && module.no_slip)
 		return 0
@@ -27,8 +31,7 @@
 		tally-=1
 	tally /= speed_factor
 	if(weakened)
-		tally -= weakened / 8
-		to_chat(src, "tally is [tally]")
+		tally += weakened / 8
 	return tally
 
 
@@ -39,3 +42,4 @@
 	var/datum/robot_component/actuator/A = get_component("actuator")
 	if (cell_use_power(A.active_usage))
 		return ..()
+

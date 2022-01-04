@@ -90,9 +90,9 @@
 		if(robo.HasTrait(CYBORG_TRAIT_FLASH_RESISTANT))
 			flashfail = TRUE
 		else
-			M.Weaken(rand(5,10))
-			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+			robo.Weaken(rand(5,10))
+			if (robo.HUDtech.Find("flash"))
+				FLICK("e_flash", robo.HUDtech["flash"])
 	else
 		flashfail = TRUE
 
