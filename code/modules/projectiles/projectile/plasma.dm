@@ -7,7 +7,6 @@
 	check_armour = ARMOR_ENERGY
 	damage_types = list(BURN = 33)
 
-
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
 	impact_type = /obj/effect/projectile/plasma/impact
 
@@ -28,28 +27,74 @@
 	damage_types = list(HALLOSS = 30,BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
 
-/obj/item/projectile/plasma/ion
+/obj/item/projectile/plasma/aoe
+	name = "default plasma aoe"
+	icon_state = "ion"
+	armor_penetration = 0
+	damage_types = list(BURN = 0)
+
+	var/aoe_strong = 0
+	var/aoe_weak = 0 // Should be greater or equal to strong
+	var/heat_damage = 0 // FALSE or 0 to disable
+	var/emp_strength = 0 // Divides the effects by this amount, FALSE or 0 to disable
+
+	var/fire_stacks = FALSE
+
+/obj/item/projectile/plasma/aoe/on_hit(atom/target)
+	if(emp_strength)
+		empulse(target, aoe_strong, aoe_weak, strength=emp_strength)
+	if(heat_damage)
+		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks)
+	..()
+
+/obj/item/projectile/plasma/aoe/ion
 	name = "ion-plasma bolt"
 	icon_state = "ion"
 	armor_penetration = 0
 	damage_types = list(BURN = 25)
-	var/heat_damage = 20
 
-/obj/item/projectile/plasma/ion/on_hit(atom/target)
-	empulse(target, 0, 1)
-	heatwave(target, 1, 1, damage_types[BURN])
-	..()
+	aoe_strong = 1
+	aoe_weak = 1
+	heat_damage = 20
+	emp_strength = 2
 
-/obj/item/projectile/plasma/ion/heavy
-	name = "heavy ion-plasma bolt"
+	fire_stacks = FALSE
+
+/obj/item/projectile/plasma/aoe/ion/light
+	name = "light ion-plasma bolt"
+	armor_penetration = 0
+	damage_types = list(BURN = 20)
+
+	aoe_strong = 0
+	aoe_weak = 1
+	heat_damage = 0
+	emp_strength = 3
+
+	fire_stacks = FALSE
+
+/obj/item/projectile/plasma/aoe/heat
+	name = "high-temperature plasma blast"
+	armor_penetration = 50 // The AoE receives no penetration bonus
+	damage_types = list(BURN = 37)
+
+	aoe_strong = 1
+	aoe_weak = 1
+	heat_damage = 40
+	emp_strength = 0
+
+	fire_stacks = TRUE
+
+/obj/item/projectile/plasma/aoe/heat/strong
+	name = "high-temperature plasma blast"
 	armor_penetration = 50
-	damage_types = list(BURN = 30)
-	heat_damage = 40 // The AoE receives no penetration bonus
+	damage_types = list(BURN = 37)
 
-/obj/item/projectile/plasma/ion/heavy/on_hit(atom/target)
-	empulse(target, 1, 2)
-	heatwave(target, 1, 2, damage_types[BURN])
-	..()
+	aoe_strong = 1
+	aoe_weak = 2
+	heat_damage = 50
+	emp_strength = 0
+
+	fire_stacks = TRUE
 
 /obj/item/projectile/plasma/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
