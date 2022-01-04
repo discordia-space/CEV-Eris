@@ -37,7 +37,7 @@
 	var/obj/machinery/media/jukebox/A = holder
 	switch(wire)
 		if(WIRE_MAIN_POWER1)
-			holder.visible_message("<span class='notice'>The power light flickers.</span>")
+			holder.visible_message("<span class='notice'>The power light flick_lights.</span>")
 			A.shock(usr, 90)
 		if(WIRE_REVERSE)
 			holder.visible_message("<span class='notice'>The data light blinks ominously.</span>")

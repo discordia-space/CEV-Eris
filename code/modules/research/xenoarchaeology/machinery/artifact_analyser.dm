@@ -86,7 +86,7 @@
 		P.info += "<br>"
 		P.info += "\icon[scanned_object] [results]"
 		P.stamped = list(/obj/item/stamp)
-		P.set_overlays(list("paper_stamped"))
+		P.overlays = list("paper_stamped")
 		if(scanned_object)
 			P.artifact_type = scanned_object.type
 			if(istype(scanned_object, /obj/machinery/artifact))

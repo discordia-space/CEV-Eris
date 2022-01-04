@@ -50,5 +50,5 @@
 			A.forceMove(loc)
 			spawn(1)
 				A.forceMove(src)
-				FLICK("loader_take", src)
+				flick("loader_take", src)
 			break

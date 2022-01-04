@@ -24,7 +24,7 @@
 	initialize_directions = dir
 	..()
 
-/obj/machinery/atmospherics/portables_connector/on_update_icon()
+/obj/machinery/atmospherics/portables_connector/update_icon()
 	icon_state = "connector"
 
 /obj/machinery/atmospherics/portables_connector/update_underlays()

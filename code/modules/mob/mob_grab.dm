@@ -366,7 +366,7 @@
 	if(M == affecting)
 		if(ishuman(affecting))
 			var/hit_zone = assailant.targeted_organ
-			FLICK(hud.icon_state, hud)
+			flick(hud.icon_state, hud)
 			switch(assailant.a_intent)
 				if(I_HELP)
 					if(force_down)

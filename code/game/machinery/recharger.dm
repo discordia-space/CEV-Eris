@@ -142,7 +142,7 @@
 		charging = null
 		update_icon()
 
-/obj/machinery/recharger/on_update_icon()
+/obj/machinery/recharger/update_icon()
 	icon_state = initial(icon_state)
 
 	if(panel_open)

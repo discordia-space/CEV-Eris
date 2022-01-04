@@ -399,7 +399,7 @@
 
 //
 
-/obj/item/ammo_magazine/ammobox/lrifle/pk/on_update_icon()
+/obj/item/ammo_magazine/ammobox/lrifle/pk/update_icon()
 	if (!stored_ammo.len)
 		icon_state = "pk_box-0"
 		return
@@ -581,7 +581,7 @@
 	max_ammo = 5
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/ammo_magazine/slsrifle/on_update_icon()
+/obj/item/ammo_magazine/slsrifle/update_icon()
 	cut_overlays()
 	var/count = 0
 	for(var/obj/item/ammo_casing/AC in stored_ammo)
@@ -651,7 +651,7 @@
 	max_ammo = 8
 	ammo_color = "-hv"
 
-/obj/item/ammo_magazine/m12/on_update_icon()
+/obj/item/ammo_magazine/m12/update_icon()
 	cut_overlays()
 	if(stored_ammo.len)
 		var/obj/item/ammo_casing/AC = stored_ammo[1] //look at next casing.

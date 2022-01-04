@@ -27,7 +27,7 @@
 	rarity_value = 8
 	spawn_tags = SPAWN_TAG_KNIFE
 
-/obj/item/stack/throwing_knife/on_update_icon()
+/obj/item/stack/throwing_knife/update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 
 /obj/item/stack/throwing_knife/examine(mob/user)

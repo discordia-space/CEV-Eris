@@ -64,24 +64,24 @@
 		set_broken()
 	..()
 
-/obj/machinery/computer/on_update_icon()
-	cut_overlays()
+/obj/machinery/computer/update_icon()
+	overlays.Cut()
 	if(stat & NOPOWER)
 		set_light(0)
 		if(icon_keyboard)
-			add_overlays(image(icon,"[icon_keyboard]_off"))
+			overlays += image(icon,"[icon_keyboard]_off")
 		update_openspace()
 		return
 	else
 		set_light(light_range_on, light_power_on)
 
 	if(stat & BROKEN)
-		add_overlays(image(icon,"[icon_state]_broken"))
+		overlays += image(icon,"[icon_state]_broken")
 	else
-		add_overlays(image(icon,icon_screen))
+		overlays += image(icon,icon_screen)
 
 	if(icon_keyboard)
-		add_overlays(image(icon, icon_keyboard))
+		overlays += image(icon, icon_keyboard)
 	update_openspace()
 
 /obj/machinery/computer/power_change()

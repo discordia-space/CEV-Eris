@@ -24,11 +24,11 @@
 			origin_tech = list(TECH_COMBAT = 1)
 
 
-/obj/item/melee/toolbox_maul/on_update_icon()
+/obj/item/melee/toolbox_maul/update_icon()
 	..()
 	cut_overlays()
 	if(reinforced)
-		add_overlays("[icon_state]-duct_tape")
+		overlays += "[icon_state]-duct_tape"
 
 /obj/item/melee/toolbox_maul/proc/break_apart(var/mob/living/user)
 	qdel(src)
