@@ -44,14 +44,14 @@
 	if(emp_strength)
 		empulse(target, aoe_strong, aoe_weak, strength=emp_strength)
 	if(heat_damage)
-		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks)
+		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks, armor_penetration)
 	..()
 
 /obj/item/projectile/plasma/aoe/ion
 	name = "ion-plasma bolt"
 	icon_state = "ion"
 	armor_penetration = 0
-	damage_types = list(BURN = 25)
+	damage_types = list(BURN = 27)
 
 	aoe_strong = 1
 	aoe_weak = 1
@@ -67,15 +67,15 @@
 
 	aoe_strong = 0
 	aoe_weak = 1
-	heat_damage = 0
+	heat_damage = 20
 	emp_strength = 3
 
 	fire_stacks = FALSE
 
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
-	armor_penetration = 50 // The AoE receives no penetration bonus
-	damage_types = list(BURN = 42)
+	armor_penetration = 50
+	damage_types = list(BURN = 27)
 
 	aoe_strong = 1
 	aoe_weak = 1
@@ -86,12 +86,12 @@
 
 /obj/item/projectile/plasma/aoe/heat/strong
 	name = "high-temperature plasma blast"
-	armor_penetration = 0
-	damage_types = list(BURN = 25)
+	armor_penetration = 25
+	damage_types = list(BURN = 33)
 
 	aoe_strong = 1
 	aoe_weak = 2
-	heat_damage = 50
+	heat_damage = 30
 	emp_strength = 0
 
 	fire_stacks = TRUE
