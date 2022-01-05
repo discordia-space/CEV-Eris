@@ -12,7 +12,7 @@
 
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
-	armor_penetration = 0
+	armor_penetration = 15
 	damage_types = list(BURN = 27)
 
 /obj/item/projectile/plasma/heavy
