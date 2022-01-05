@@ -75,7 +75,7 @@
 /obj/item/projectile/plasma/aoe/heat
 	name = "high-temperature plasma blast"
 	armor_penetration = 50
-	damage_types = list(BURN = 27)
+	damage_types = list(BURN = 20)
 
 	aoe_strong = 1
 	aoe_weak = 1
