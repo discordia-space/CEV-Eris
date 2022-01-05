@@ -18,7 +18,6 @@ There are important things regarding this file:
 	penetrating = 1
 
 /obj/item/projectile/bullet/pistol/hv
-	damage_types = list(BRUTE = 32)
 	armor_penetration = 20
 	step_delay = 0.75
 
@@ -67,7 +66,6 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/srifle/hv
-	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
 	step_delay = 0.75
 
@@ -103,7 +101,6 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/clrifle/hv
-	damage_types = list(BRUTE = 32)
 	armor_penetration = 20
 	step_delay = 0.75
 	can_ricochet = TRUE
@@ -140,7 +137,6 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/lrifle/hv
-	damage_types = list(BRUTE = 30)
 	armor_penetration = 30
 	step_delay = 0.75
 
@@ -174,7 +170,6 @@ There are important things regarding this file:
 	can_ricochet = FALSE
 
 /obj/item/projectile/bullet/magnum/hv
-	damage_types = list(BRUTE = 39)
 	armor_penetration = 20
 	step_delay = 0.75
 
