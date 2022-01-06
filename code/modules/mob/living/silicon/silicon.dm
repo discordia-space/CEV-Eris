@@ -49,6 +49,10 @@
 		AH.unregister_alarm(src)
 	. = ..()
 
+/mob/living/silicon/lay_down()
+	resting = FALSE
+	update_lying_buckled_and_verb_status()
+
 /mob/living/silicon/proc/init_id()
 	if(idcard)
 		return
