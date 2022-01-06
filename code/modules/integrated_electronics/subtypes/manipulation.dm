@@ -56,7 +56,7 @@
 		if(length(installed_gun.firemodes))
 			var/datum/firemode/fm = installed_gun.firemodes[installed_gun.sel_mode]
 			set_pin_data(IC_OUTPUT, 2, fm.name)
-		set_pin_data(IC_OUTPUT, 1, weakref(installed_gun))
+		set_pin_data(IC_OUTPUT, 1, WEAKREF(installed_gun))
 		push_data()
 	else
 		..()
@@ -68,7 +68,7 @@
 		size = initial(size)
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_gun = null
-		set_pin_data(IC_OUTPUT, 1, weakref(null))
+		set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
 		push_data()
 	else
 		to_chat(user, SPAN("notice", "There's no weapon to remove from the mechanism."))
@@ -78,7 +78,7 @@
 		return
 	if(!isturf(assembly.loc) && !(assembly.can_fire_equipped))
 		return
-	set_pin_data(IC_OUTPUT, 1, weakref(installed_gun))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(installed_gun))
 	push_data()
 	if(assembly)
 		switch(ord)
@@ -125,7 +125,7 @@
 					activate_pin(2)
 					return
 				else
-					set_pin_data(IC_OUTPUT, 1, weakref(assembly.collw))
+					set_pin_data(IC_OUTPUT, 1, WEAKREF(assembly.collw))
 					push_data()
 					activate_pin(3)
 					return FALSE
@@ -203,13 +203,13 @@
 		attached_grenade = G
 		G.forceMove(src)
 		desc += " \An [attached_grenade] is attached to it!"
-		set_pin_data(IC_OUTPUT, 1, weakref(G))
+		set_pin_data(IC_OUTPUT, 1, WEAKREF(G))
 
 /obj/item/integrated_circuit/manipulation/grenade/proc/detach_grenade()
 	if(!attached_grenade)
 		return
 	attached_grenade.forceMove(get_turf(assembly))
-	set_pin_data(IC_OUTPUT, 1, weakref(null))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(null))
 	attached_grenade = null
 	desc = initial(desc)
 
@@ -318,7 +318,7 @@
 		seeds.seed = plant_controller.seeds[O.plantname]
 		seeds.seed_type = plant_controller.seeds[O.seed.name]
 		seeds.update_seed()
-		seed_output += weakref(seeds)
+		seed_output += WEAKREF(seeds)
 	var/atom/A = get_object()
 	A.investigate_log("extracted seeds from [O] with [src].", INVESTIGATE_CIRCUIT)
 	qdel(O)
@@ -399,8 +399,8 @@
 
 /obj/item/integrated_circuit/manipulation/grabber/proc/update_outputs()
 	if(contents.len)
-		set_pin_data(IC_OUTPUT, 1, weakref(contents[1]))
-		set_pin_data(IC_OUTPUT, 2, weakref(contents[contents.len]))
+		set_pin_data(IC_OUTPUT, 1, WEAKREF(contents[1]))
+		set_pin_data(IC_OUTPUT, 2, WEAKREF(contents[contents.len]))
 	else
 		set_pin_data(IC_OUTPUT, 1, null)
 		set_pin_data(IC_OUTPUT, 2, null)
