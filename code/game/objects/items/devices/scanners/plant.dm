@@ -25,7 +25,7 @@
 /obj/item/device/scanner/plant/scan(atom/A, mob/user)
 	scan_title = "[A] at [get_area(A)]"
 	scan_data = plant_scan_results(A)
-	FLICK("hydro2", src)
+	flick("hydro2", src)
 	show_results(user)
 
 /proc/plant_scan_results(obj/target)
@@ -46,7 +46,7 @@
 		if(BH.smoked)
 			dat += "The hive is smoked."
 		return jointext(dat, "<br>")
-	
+
 	else if(istype(target,/obj/item/reagent_containers/food/snacks/grown))
 
 		var/obj/item/reagent_containers/food/snacks/grown/G = target
@@ -195,5 +195,5 @@
 
 	if(grown_seed.get_trait(TRAIT_CONSUME_GASSES))
 		dat += "<br>It will remove gas from the environment."
-		
+
 	return JOINTEXT(dat)

@@ -32,7 +32,7 @@
 	update_name()
 
 
-/obj/item/reagent_containers/blood/on_update_icon()
+/obj/item/reagent_containers/blood/update_icon()
 	cut_overlays()
 
 	if(!reagents || !reagents.total_volume)
@@ -50,7 +50,7 @@
 	else
 		var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state]-blood[get_filling_state()]")
 		add_overlay(filling)
-		
+
 /obj/item/reagent_containers/blood/proc/update_name()
 	var/list/data = reagents.get_data("blood")
 	if(data)

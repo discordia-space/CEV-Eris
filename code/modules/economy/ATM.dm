@@ -68,7 +68,7 @@ log transactions
 		held_card = null
 	update_icon()
 
-/obj/machinery/atm/on_update_icon()
+/obj/machinery/atm/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "atm_off"
 		return
@@ -361,7 +361,7 @@ log transactions
 					if(!R.stamped)
 						R.stamped = new
 					R.stamped += /obj/item/stamp
-					R.add_overlays(stampoverlay)
+					R.overlays += stampoverlay
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)
@@ -400,7 +400,7 @@ log transactions
 					if(!R.stamped)
 						R.stamped = new
 					R.stamped += /obj/item/stamp
-					R.add_overlays(stampoverlay)
+					R.overlays += stampoverlay
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				playsound(loc, pick('sound/items/polaroid1.ogg','sound/items/polaroid2.ogg'), 50, 1)

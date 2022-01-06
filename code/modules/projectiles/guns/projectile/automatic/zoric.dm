@@ -27,13 +27,13 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/gun/projectile/automatic/zoric/on_update_icon()
+/obj/item/gun/projectile/automatic/zoric/update_icon()
 	..()
 	var/itemstring = ""
 	cut_overlays()
 
 	if(ammo_magazine)
-		add_overlays("mag[ammo_magazine.ammo_label_string]")
+		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_mag"
 	
 	set_item_state(itemstring)

@@ -17,14 +17,14 @@
 	. = ..()
 	update_icon()
 
-/obj/item/clipboard/on_update_icon()
+/obj/item/clipboard/update_icon()
 	cut_overlays()
 	if(toppaper)
-		add_overlays(toppaper.icon_state)
-		add_overlays(toppaper.overlays)
+		overlays += toppaper.icon_state
+		overlays += toppaper.overlays
 	if(haspen)
-		add_overlays("clipboard_pen")
-	add_overlays("clipboard_over")
+		overlays += "clipboard_pen"
+	overlays += "clipboard_over"
 	return
 
 /obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)

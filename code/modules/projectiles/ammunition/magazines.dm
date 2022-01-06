@@ -424,7 +424,7 @@
 	max_ammo = 5
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/ammo_magazine/slsrifle/on_update_icon()
+/obj/item/ammo_magazine/slsrifle/update_icon()
 	cut_overlays()
 	var/count = 0
 	for(var/obj/item/ammo_casing/AC in stored_ammo)
@@ -499,7 +499,7 @@
 		"scrap_r" = "scrap beanbag",
 		"scrap_s" = "scrap pellet")
 
-/obj/item/ammo_magazine/m12/on_update_icon()
+/obj/item/ammo_magazine/m12/update_icon()
 	..()
 	cut_overlays()
 

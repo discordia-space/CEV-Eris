@@ -11,8 +11,17 @@
 	category = "Priest"
 
 /datum/ritual/cruciform/priest/acolyte
+	name = "acolyte"
+	phrase = null
+	desc = ""
+	category = "Acolyte"
 
 /datum/ritual/targeted/cruciform/priest/acolyte
+	name = "acolyte targeted"
+	phrase = null
+	desc = ""
+	category = "Acolyte"
+
 
 /datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"

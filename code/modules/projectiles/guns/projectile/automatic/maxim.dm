@@ -36,7 +36,7 @@
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig
 
-/obj/item/gun/projectile/automatic/maxim/on_update_icon()
+/obj/item/gun/projectile/automatic/maxim/update_icon()
 	..()
 	var/itemstring = ""
 	cut_overlays()

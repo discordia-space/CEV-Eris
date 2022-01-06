@@ -17,6 +17,6 @@
 	return
 
 /obj/structure/mopbucket/on_reagent_change()
-	cut_overlays()
+	overlays.Cut()
 	if(reagents.total_volume >= 1)
-		associate_with_overlays("water_mopbucket")
+		overlays |= "water_mopbucket"

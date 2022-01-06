@@ -37,7 +37,7 @@ var/list/floor_decals = list()
 			floor_decals[cache_key] = I
 		if(!T.decals) T.decals = list()
 		T.decals |= floor_decals[cache_key]
-		T.associate_with_overlays(floor_decals[cache_key])
+		T.overlays |= floor_decals[cache_key]
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/floor_decal/reset

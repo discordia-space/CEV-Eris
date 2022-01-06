@@ -107,7 +107,7 @@
 			copyitem = I
 			I.loc = src
 			to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
-			FLICK(insert_anim, src)
+			flick(insert_anim, src)
 			updateUsrDialog()
 		else
 			to_chat(user, SPAN_NOTICE("There is already something in \the [src]."))
@@ -174,7 +174,7 @@
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-dots")
 		img.pixel_x = copy.offset_x[j]
 		img.pixel_y = copy.offset_y[j]
-		c.add_overlays(img)
+		c.overlays += img
 	c.updateinfolinks()
 	toner--
 	if(toner == 0)
