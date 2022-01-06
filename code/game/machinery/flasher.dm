@@ -72,7 +72,7 @@
 		return
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
-	FLICK("[base_state]_flash", src)
+	flick("[base_state]_flash", src)
 	src.last_flash = world.time
 	use_power(1500)
 
@@ -91,7 +91,7 @@
 				return
 			if(E.is_bruised() && prob(E.damage + 50))
 				if (O.HUDtech.Find("flash"))
-					FLICK("e_flash", O.HUDtech["flash"])
+					flick("e_flash", O.HUDtech["flash"])
 				E.damage += rand(1, 5)
 		else
 			if(isrobot(O))
@@ -110,6 +110,7 @@
 					if (O.HUDtech.Find("flash"))
 						FLICK("flash", O.HUDtech["flash"])
 			O.Weaken(flash_time)
+
 
 /obj/machinery/flasher/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -137,11 +138,11 @@
 
 		if (!src.anchored)
 			user.show_message(text(SPAN_WARNING("[src] can now be moved.")))
-			src.cut_overlays()
+			src.overlays.Cut()
 
 		else if (src.anchored)
 			user.show_message(text(SPAN_WARNING("[src] is now secured.")))
-			src.add_overlays("[base_state]-s")
+			src.overlays += "[base_state]-s"
 
 /obj/machinery/button/flasher
 	name = "flasher button"

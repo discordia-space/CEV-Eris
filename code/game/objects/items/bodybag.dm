@@ -40,7 +40,7 @@
 		if (t)
 			src.name = "body bag - "
 			src.name += t
-			src.add_overlays(image(src.icon, "bodybag_label"))
+			src.overlays += image(src.icon, "bodybag_label")
 		else
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
@@ -48,7 +48,7 @@
 	else if(istype(W, /obj/item/tool/wirecutters))
 		to_chat(user, "You cut the tag off the bodybag.")
 		src.name = "body bag"
-		src.cut_overlays()
+		src.overlays.Cut()
 		return
 
 /obj/structure/closet/body_bag/store_mobs(var/stored_units)
@@ -73,7 +73,7 @@
 			qdel(src)
 		return
 
-/obj/structure/closet/body_bag/on_update_icon()
+/obj/structure/closet/body_bag/update_icon()
     if(opened)
         icon_state = "bodybag_open"
     else

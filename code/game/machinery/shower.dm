@@ -29,7 +29,7 @@
 	for(var/obj/effect/shower/S in effect)
 		S.Process()
 
-/obj/machinery/cellshower/on_update_icon()
+/obj/machinery/cellshower/update_icon()
 	for(var/obj/effect/shower/S in effect)
 		S.update_icon()
 
@@ -91,14 +91,14 @@
 	master = null
 	return ..()
 
-/obj/effect/shower/on_update_icon()
-	cut_overlays()
+/obj/effect/shower/update_icon()
+	overlays.Cut()
 	if(mymist)
 		qdel(mymist)
 		mymist = null
 
 	if(master && master.on)
-		add_overlays(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
+		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
 		if(master.watertemp == "freezing")
 			return
 		if(!ismist)

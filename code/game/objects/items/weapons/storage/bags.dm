@@ -39,7 +39,7 @@
 	cant_hold = list(/obj/item/disk/nuclear)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 
-/obj/item/storage/bag/trash/on_update_icon()
+/obj/item/storage/bag/trash/update_icon()
 	if(contents.len == 0)
 		icon_state = "trashbag0"
 	else if(contents.len < 12)
@@ -55,7 +55,7 @@
 	max_storage_space = DEFAULT_BULKY_STORAGE * 2
 	spawn_tags = null
 
-/obj/item/storage/bag/trash/robot/on_update_icon()
+/obj/item/storage/bag/trash/robot/update_icon()
 	if(contents.len == 0)
 		icon_state = "trashbag0"
 	else if(contents.len < 24)
@@ -78,7 +78,7 @@
 	..()
 	bluespace_entropy(4, get_turf(src))
 
-/obj/item/storage/bag/trash/holding/on_update_icon()
+/obj/item/storage/bag/trash/holding/update_icon()
 	return
 
 // -----------------------------

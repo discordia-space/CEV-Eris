@@ -141,7 +141,7 @@
 
 /obj/machinery/shield_capacitor/power_change()
 	if(stat & BROKEN)
-		SetIconState("broke")
+		icon_state = "broke"
 	else
 		..()
 

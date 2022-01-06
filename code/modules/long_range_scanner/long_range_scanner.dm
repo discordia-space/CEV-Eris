@@ -53,38 +53,38 @@ var/list/ship_scanners = list()
 	var/tendrils_deployed = FALSE				// Whether the dummy capacitors are currently extended
 
 
-/obj/machinery/power/long_range_scanner/on_update_icon()
+/obj/machinery/power/long_range_scanner/update_icon()
 	cut_overlays()
 	if(running)
 		set_light(1, 1, "#82C2D8")
-		SetIconState("core_warmup")
+		icon_state = "core_warmup"
 		spawn(20)
 			set_light(2, 2, "#82C2D8")
-			SetIconState("core_active")
+			icon_state = "core_active"
 	else
 		set_light(1, 1, "#82C2D8")
-		SetIconState("core_shutdown")
+		icon_state = "core_shutdown"
 		spawn(20)
 			set_light(0)
-			SetIconState("core_inactive")
+			icon_state = "core_inactive"
 
 	for (var/obj/machinery/scanner_conduit/S in tendrils)
 		if (running)
 			S.dim_light()
-			S.SetIconState("warmup")
+			S.icon_state = "warmup"
 			S.update_icon()
 			spawn(20)
 				S.bright_light()
-				S.SetIconState("speen")
+				S.icon_state = "speen"
 				S.update_icon()
 
 		else
 			S.dim_light()
-			S.SetIconState("shutdown")
+			S.icon_state = "shutdown"
 			S.update_icon()
 			spawn(20)
 				S.no_light()
-				S.SetIconState("inactive")
+				S.icon_state = "inactive"
 				S.update_icon()
 
 

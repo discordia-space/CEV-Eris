@@ -26,7 +26,7 @@
 	var/list/needed_material_rocket = list(MATERIAL_PLASMA = 5, MATERIAL_PLASTIC = 5, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 10)
 
 	// A vis_contents hack for materials loading animation.
-	var/tmp/obj/effect/flicker_overlay/image_load
+	var/tmp/obj/effect/flick_light_overlay/image_load
 
 /obj/machinery/craftingstation/Initialize()
 	. = ..()

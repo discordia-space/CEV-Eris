@@ -1,6 +1,6 @@
 /obj/item/modular_computer/proc/power_failure(var/malfunction = 0)
 	if(enabled) // Shut down the computer
-		visible_message("<span class='danger'>\The [src]'s screen flickers briefly and then goes dark.</span>", range = 1)
+		visible_message("<span class='danger'>\The [src]'s screen flick_lights briefly and then goes dark.</span>", range = 1)
 		for(var/p in all_threads)
 			var/datum/computer_file/program/PRG = p
 			PRG.event_power_failure()

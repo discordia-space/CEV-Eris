@@ -44,13 +44,13 @@
 	. = ..()
 
 
-/obj/item/modular_computer/tablet/moebius/on_update_icon()
+/obj/item/modular_computer/tablet/moebius/update_icon()
 	..()
 	if(active_program && istype(active_program, /datum/computer_file/program/suit_sensors))
 		spawn(direction_overlay_blink_delay)
-			add_overlays(direction_overlay)
+			overlays += direction_overlay
 		spawn(z_level_overlay_blink_delay)
-			add_overlays(z_level_overlay)
+			overlays += z_level_overlay
 
 
 /obj/item/modular_computer/tablet/moebius/proc/pinpoint()
@@ -90,7 +90,7 @@
 		new_state = "z_up"
 	else
 		new_state = "z_same"
-	
+
 	if(z_level_overlay.icon_state != new_state)
 		z_level_overlay.icon_state = new_state
 		z_level_overlay_blink_delay = 4
