@@ -44,7 +44,7 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0, strength=1)
 			if(prob(50))
 				T.emp_act(effect)
 			else
-				T.emp_act(effect+1)
+				T.emp_act(effect + 1)
 		else if(distance <= light_range)
 			T.emp_act(effect+1)
 		#ifdef EMPDEBUG
