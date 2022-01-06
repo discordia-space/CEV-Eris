@@ -101,14 +101,14 @@
 				else
 					robo.Weaken(flash_time)
 					if(robo.HUDtech.Find("flash"))
-						FLICK("e_flash", robo.HUDtech["flash"])
+						flick("e_flash", robo.HUDtech["flash"])
 						continue
 			else
 				if(!O.blinded)
 					if (istype(O,/mob/living/silicon/ai))
 						return
 					if (O.HUDtech.Find("flash"))
-						FLICK("flash", O.HUDtech["flash"])
+						flick("flash", O.HUDtech["flash"])
 			O.Weaken(flash_time)
 
 
