@@ -56,7 +56,7 @@
 		R.offset_y += 0
 		R.ico += "paper_stamp-cent"
 		R.stamped += /obj/item/stamp
-		R.add_overlays(stampoverlay)
+		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 	//by default, connect to the station account
@@ -76,7 +76,7 @@
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/stamp
-	R.add_overlays(stampoverlay)
+	R.overlays += stampoverlay
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
 	R.loc = D

@@ -40,16 +40,16 @@
 	mouse_opacity = 0
 	ignoreExAct = TRUE
 
-/obj/effect/shield/on_update_icon()
+/obj/effect/shield/update_icon()
 	if(gen && gen.check_flag(MODEFLAG_PHOTONIC) && !disabled_for && !diffused_for)
 		set_opacity(1)
 	else
 		set_opacity(0)
 
 	if(gen && gen.check_flag(MODEFLAG_OVERCHARGE))
-		SetIconState("shield_overcharged")
+		icon_state = "shield_overcharged"
 	else
-		SetIconState("shield_normal")
+		icon_state = "shield_normal"
 
 /*
 This is a bad way to solve this "problem".

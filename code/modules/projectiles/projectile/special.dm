@@ -216,10 +216,10 @@
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_NONE)
 			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+				flick("e_flash", M.HUDtech["flash"])
 
 	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright light!"))
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
-	
+

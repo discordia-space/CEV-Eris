@@ -26,7 +26,7 @@
 /obj/item/organ/external/stump/is_stump()
 	return TRUE
 
-/obj/item/organ/external/stump/on_update_icon()
+/obj/item/organ/external/stump/update_icon()
 	return
 
 /obj/item/organ/external/stump/removed()

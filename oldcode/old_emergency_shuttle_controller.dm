@@ -207,7 +207,7 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle
 	pixel_y += rand(-2, 30)
 	var/starnum = pick("1", "1", "1", "2", "3", "4")
 
-	SetIconState("star"+starnum)
+	icon_state = "star"+starnum
 
 	speed = rand(2, 5)
 

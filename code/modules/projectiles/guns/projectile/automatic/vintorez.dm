@@ -26,7 +26,7 @@
 		FULL_AUTO_400
 		)
 
-/obj/item/gun/projectile/automatic/vintorez/on_update_icon()
+/obj/item/gun/projectile/automatic/vintorez/update_icon()
 	var/iconstring = initial(icon_state)
 	var/itemstring = initial(item_state)
 

@@ -52,7 +52,7 @@
 	return src
 
 
-// Flickers a pain message to the owner, if the body part can feel pain at all
+// flick_lights a pain message to the owner, if the body part can feel pain at all
 /obj/item/organ/proc/owner_custom_pain(message, flash_strength)
 	if(can_feel_pain())
 		owner.custom_pain(message, flash_strength)

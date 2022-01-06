@@ -71,7 +71,7 @@
 	if(randomdir)
 		dir = pick(GLOB.cardinal)
 
-	FLICK("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
+	flick("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
 
 	..()
 	spawn(duration)

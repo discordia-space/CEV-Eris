@@ -39,7 +39,7 @@
 			update_icon()
 			return FALSE
 
-/obj/item/clothing/gloves/stungloves/on_update_icon()
+/obj/item/clothing/gloves/stungloves/update_icon()
 	if(status)
 		icon_state = "powerglove_active"
 	else

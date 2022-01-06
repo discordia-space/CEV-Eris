@@ -33,7 +33,7 @@
 	. = ..()
 	gps = new /datum/gps_data/device(src, new_prefix=gps_prefix)
 	update_name()
-	add_overlays(image(icon, "working"))
+	overlays += image(icon, "working")
 
 /obj/item/device/gps/Destroy()
 	QDEL_NULL(gps)
@@ -47,14 +47,14 @@
 
 /obj/item/device/gps/emp_act(severity)
 	emped = TRUE
-	cut_overlays()
-	add_overlays(image(icon, "emp"))
+	overlays.Cut()
+	overlays += image(icon, "emp")
 	addtimer(CALLBACK(src, .proc/post_emp), 300)
 
 /obj/item/device/gps/proc/post_emp()
 	emped = FALSE
-	cut_overlays()
-	add_overlays(image(icon, "working"))
+	overlays.Cut()
+	overlays += image(icon, "working")
 
 /obj/item/device/gps/proc/can_show_gps(datum/gps_data/G)
 	return G.is_functioning() && G.holder != src && !(G.prefix in hide_prefixes)

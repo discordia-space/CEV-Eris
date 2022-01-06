@@ -44,7 +44,7 @@
 		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
 		user.drop_item()
 		I.loc = src
-		FLICK("[initial(icon_state)]-open",src)
+		flick("[initial(icon_state)]-open",src)
 		updateUsrDialog()
 	else if(I.get_tool_type(usr, list(QUALITY_BOLT_TURNING), src))
 		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -92,7 +92,7 @@
 		if(istype(P) && (P.loc == src) && src.Adjacent(usr))
 			usr.put_in_hands(P)
 			updateUsrDialog()
-			FLICK("[initial(icon_state)]-open",src)
+			flick("[initial(icon_state)]-open",src)
 
 // Empty proc for populate()
 /obj/structure/filingcabinet/proc/populate()

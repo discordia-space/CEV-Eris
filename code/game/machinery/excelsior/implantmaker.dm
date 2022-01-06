@@ -65,7 +65,7 @@
 		working = TRUE
 		start_time = world.time
 
-		FLICK(image(icon, "closing"), src)
+		flick(image(icon, "closing"), src)
 
 		update_icon()
 
@@ -73,19 +73,19 @@
 /obj/machinery/complant_maker/Process()
 	if(stat & NOPOWER)
 		if(working)
-			FLICK(image(icon, "opening"), src)
+			flick(image(icon, "opening"), src)
 		working = FALSE
 		update_icon()
 		return
 
 	if(working && world.time >= start_time + build_time)
 		new /obj/item/implantcase/excelsior(drop_location())
-		FLICK(image(icon, "opening"), src)
+		flick(image(icon, "opening"), src)
 		working = FALSE
 		update_icon()
 
 
-/obj/machinery/complant_maker/on_update_icon()
+/obj/machinery/complant_maker/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "off"
 	else
@@ -97,4 +97,4 @@
 	cut_overlays()
 
 	if(panel_open)
-		add_overlays(image(icon, "panel"))
+		overlays += image(icon, "panel")

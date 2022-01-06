@@ -23,7 +23,7 @@
 	rarity_value = 100
 	spawn_blacklisted = TRUE
 
-/obj/item/gun/projectile/gyropistol/on_update_icon()
+/obj/item/gun/projectile/gyropistol/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "gyropistolloaded"

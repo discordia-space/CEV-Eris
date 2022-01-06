@@ -43,12 +43,12 @@
 	else
 		..()
 
-/obj/item/pinpointer/on_update_icon()
+/obj/item/pinpointer/update_icon()
 	cut_overlays()
 
 	if (slot)
 		var/tooloverlay = "disknukeloaded"
-		add_overlays((tooloverlay))
+		overlays += (tooloverlay)
 
 
 /obj/item/pinpointer/proc/workdisk()

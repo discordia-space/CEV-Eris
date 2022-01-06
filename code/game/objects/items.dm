@@ -390,7 +390,7 @@
 	//apply the blood-splatter overlay if it isn't already in there
 	if(!blood_DNA.len)
 		blood_overlay.color = blood_color
-		add_overlays(blood_overlay)
+		overlays += blood_overlay
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))

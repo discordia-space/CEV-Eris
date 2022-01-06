@@ -417,7 +417,7 @@
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
 
-/obj/machinery/bodyscanner/on_update_icon()
+/obj/machinery/bodyscanner/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
 		set_light(0)
@@ -441,7 +441,7 @@
 			icon_state = "scanner_open"
 			set_light(0)
 
-/obj/machinery/body_scanconsole/on_update_icon()
+/obj/machinery/body_scanconsole/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
 		set_light(0)

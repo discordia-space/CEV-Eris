@@ -1001,11 +1001,11 @@
 
 	return ..()
 
-/obj/item/tool/on_update_icon()
+/obj/item/tool/update_icon()
 	cut_overlays()
 
 	if(switched_on && toggleable)
-		add_overlays("[icon_state]_on")
+		overlays += "[icon_state]_on"
 
 	if(use_power_cost)
 		var/ratio = 0
@@ -1013,7 +1013,7 @@
 		if(cell && cell.charge >= use_power_cost)
 			ratio = cell.charge / cell.maxcharge
 			ratio = max(round(ratio, 0.25) * 100, 25)
-			add_overlays("[icon_state]-[ratio]")
+			overlays += "[icon_state]-[ratio]"
 
 	if(use_fuel_cost)
 		var/ratio = 0
@@ -1021,7 +1021,7 @@
 		if(get_fuel() >= use_fuel_cost)
 			ratio = get_fuel() / max_fuel
 			ratio = max(round(ratio, 0.25) * 100, 25)
-			add_overlays("[icon_state]-[ratio]")
+			overlays += "[icon_state]-[ratio]"
 
 	if(ismob(loc))
 		var/tooloverlay
@@ -1030,7 +1030,7 @@
 				tooloverlay = "excavate"
 			if (DIG)
 				tooloverlay = "dig"
-		add_overlays((tooloverlay))
+		overlays += (tooloverlay)
 
 /***************************
 	Misc/utility procs

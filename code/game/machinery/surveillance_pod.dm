@@ -124,7 +124,7 @@
 		handle_occupant_UI(FALSE)
 
 
-/obj/machinery/surveillance_pod/on_update_icon()
+/obj/machinery/surveillance_pod/update_icon()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_1"
 	else
@@ -232,7 +232,7 @@
 
 	if(user.incapacitated())
 		return
-	
+
 	if(user != occupant)
 		if(isghost(user))
 			return
@@ -277,7 +277,7 @@
 
 		for(var/i = 1 to occupant.HUDneed.len)
 			occupant.client.screen.Remove(occupant.HUDneed[occupant.HUDneed[i]])
-		
+
 		for(var/i=1,i<=occupant.HUDneed.len,i++)
 			var/p = occupant.HUDneed[i]
 			if(p in HUDneed_element_to_keep)

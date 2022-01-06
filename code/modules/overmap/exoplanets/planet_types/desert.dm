@@ -51,7 +51,7 @@
 		return
 	var/v = noise2value(value)
 	if(v > 6)
-		T.SetIconState("desert[v-1]")
+		T.icon_state = "desert[v-1]"
 		if(prob(10))
 			new/obj/structure/quicksand(T)
 
@@ -65,13 +65,13 @@
 	footstep_type = /decl/footsteps/sand
 
 /turf/simulated/floor/exoplanet/desert/New()
-	SetIconState("desert[rand(0,4)]")
+	icon_state = "desert[rand(0,4)]"
 	..()
 
 /turf/simulated/floor/exoplanet/desert/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if((temperature > T0C + 1700 && prob(5)) || temperature > T0C + 3000)
 		SetName("molten silica")
-		SetIconState("sandglass")
+		icon_state = "sandglass"
 		diggable = 0
 
 /obj/structure/quicksand
@@ -86,7 +86,7 @@
 	var/busy
 
 /obj/structure/quicksand/New()
-	SetIconState("intact[rand(0,2)]")
+	icon_state = "intact[rand(0,2)]"
 	..()
 
 /obj/structure/quicksand/user_unbuckle_mob(mob/user)
@@ -132,16 +132,16 @@
 	..()
 	update_icon()
 
-/obj/structure/quicksand/on_update_icon()
+/obj/structure/quicksand/update_icon()
 	if(!exposed)
 		return
-	SetIconState("open")
+	icon_state = "open"
 	cut_overlays()
 	if(buckled_mob)
-		add_overlays(buckled_mob)
+		overlays += buckled_mob
 		var/image/I = image(icon,icon_state="overlay")
 		I.layer = WALL_OBJ_LAYER
-		add_overlays(I)
+		overlays += I
 
 /obj/structure/quicksand/proc/expose()
 	if(exposed)

@@ -46,7 +46,7 @@
 	update_icon()
 	operating = 0
 
-/obj/machinery/button/on_update_icon()
+/obj/machinery/button/update_icon()
 	if(active)
 		icon_state = "launcher1"
 	else if(stat & (NOPOWER))
@@ -58,14 +58,14 @@
 /obj/machinery/button/switch
 	icon_state = "light0"
 
-/obj/machinery/button/switch/on_update_icon()
+/obj/machinery/button/switch/update_icon()
 	icon_state = "light[active]"
 
 //alternate button with the same functionality, except has a door control sprite instead
 /obj/machinery/button/alternate
 	icon_state = "doorctrl0"
 
-/obj/machinery/button/alternate/on_update_icon()
+/obj/machinery/button/alternate/update_icon()
 	if(active)
 		icon_state = "doorctrl0"
 	else
@@ -90,14 +90,14 @@
 /obj/machinery/button/toggle/switch
 	icon_state = "light0"
 
-/obj/machinery/button/toggle/switch/on_update_icon()
+/obj/machinery/button/toggle/switch/update_icon()
 	icon_state = "light[active]"
 
 //alternate button with the same toggle functionality, except has a door control sprite instead
 /obj/machinery/button/toggle/alternate
 	icon_state = "doorctrl0"
 
-/obj/machinery/button/toggle/alternate/on_update_icon()
+/obj/machinery/button/toggle/alternate/update_icon()
 	if(active)
 		icon_state = "doorctrl0"
 	else
@@ -148,7 +148,7 @@
 				8 = shock
 				16 = door safties  */
 
-/obj/machinery/button/toggle/door/on_update_icon()
+/obj/machinery/button/toggle/door/update_icon()
 	if(active)
 		icon_state = "doorctrl0"
 	else

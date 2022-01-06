@@ -30,10 +30,10 @@
 	screen_on = anchored
 	update_icon()
 
-/obj/item/modular_computer/laptop/on_update_icon()
+/obj/item/modular_computer/laptop/update_icon()
 	..()
 
 	icon_state = initial(icon_state)
 	if(!anchored)
-		cut_overlays()
+		overlays.Cut()
 		icon_state += "-closed"

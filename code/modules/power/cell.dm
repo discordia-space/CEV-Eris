@@ -72,7 +72,7 @@
 
 	return use(cell_amt) / CELLRATE
 
-/obj/item/cell/on_update_icon()
+/obj/item/cell/update_icon()
 	var/charge_status
 	var/c = charge/maxcharge
 	if (c >=0.95)
@@ -91,7 +91,7 @@
 
 	cut_overlays()
 	if (charge_status != null)
-		add_overlays(image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]"))
+		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
 
 	last_charge_status = charge_status
 

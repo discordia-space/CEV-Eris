@@ -18,7 +18,7 @@
 		implant = new implant(src)
 		update_icon()
 
-/obj/item/implantcase/on_update_icon()
+/obj/item/implantcase/update_icon()
 	cut_overlays()
 	if(implant)
 		var/image/content = image('icons/obj/items.dmi', icon_state = implant.implant_overlay, pixel_x = 7, pixel_y = -6)

@@ -134,27 +134,27 @@ mob
 		underlays += image(icon='old_or_unused.dmi',icon_state="red", pixel_x = -32)
 
 		// Testing image overlays
-		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = -32))
-		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = 32))
-		add_overlays(image(icon='old_or_unused.dmi',icon_state="green", pixel_x = -32, pixel_y = -32))
+		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = -32)
+		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = 32, pixel_y = 32)
+		overlays += image(icon='old_or_unused.dmi',icon_state="green", pixel_x = -32, pixel_y = -32)
 
 		// Testing icon file overlays (defaults to mob's state)
-		add_overlays('_flat_demoIcons2.dmi')
+		overlays += '_flat_demoIcons2.dmi'
 
 		// Testing icon_state overlays (defaults to mob's icon)
-		add_overlays("white")
+		overlays += "white"
 
 		// Testing dynamic icon overlays
 		var/icon/I = icon('old_or_unused.dmi', icon_state="aqua")
 		I.Shift(NORTH, 16, 1)
-		add_overlays(I)
+		overlays+=I
 
 		// Testing dynamic image overlays
 		I=image(icon=I, pixel_x = -32, pixel_y = 32)
-		add_overlays(I)
+		overlays+=I
 
 		// Testing object types (and layers)
-		add_overlays(/obj/effect/overlayTest)
+		overlays+=/obj/effect/overlayTest
 
 		loc = locate (10, 10, 1)
 	verb
@@ -184,7 +184,7 @@ mob
 
 		Add_Overlay()
 			set name = "4. Add Overlay"
-			add_overlays(image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32)))
+			overlays += image(icon='old_or_unused.dmi',icon_state="yellow", pixel_x = rand(-64, 32), pixel_y = rand(-64, 32))
 
 		Stress_Test()
 			set name = "5. Stress Test"
@@ -757,7 +757,7 @@ proc
 		var/flatX2 = flat.Width()
 		var/flatY1 = 1
 		var/flatY2 = flat.Height()
-
+			
 		// Dimensions of overlay being added
 		var/addX1
 		var/addX2
@@ -848,8 +848,7 @@ proc
 			if(2)	I.pixel_x++
 			if(3)	I.pixel_y--
 			if(4)	I.pixel_y++
-		add_overlays(I)
-		//And finally add the overlay.
+		overlays += I//And finally add the overlay.
 
 /proc/getHologramIcon(icon/A, safety=1, var/hologram_opacity = 0.5, var/hologram_color)//If safety is on, a new icon is not created.
 	var/icon/flat_icon = safety ? A : new(A)//Has to be a new icon to not constantly change the same icon.
@@ -1040,45 +1039,3 @@ proc/get_average_color(var/icon, var/icon_state, var/image_dir)
 
 	GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"] = rgb(average_rgb[1],average_rgb[2],average_rgb[3])
 	return GLOB.average_icon_color["[icon]:[icon_state]:[image_dir]"]
-
-/proc/FLICK(state, datum/D)
-	if(istype(D))
-		return D.flicker(state)
-	else
-		CRASH("[D](\ref[D]) is not datum, aborting /proc/FLICK. Additional info: {[json_encode(args)]}")
-
-/datum/proc/flicker(iconOrState)
-	// To handle not only state changes in update icon if need
-	flick(iconOrState, src)
-
-/atom/proc/SetIcon(value)
-	icon = value
-
-/atom/proc/SetIconState(value)
-	icon_state = value
-
-
-// Overlays' hadlers
-	//!!! DO NOT USE RAW overlays' OPERATIONS IF YOU DON'T KNOW WHY YOU USE THEM RAW !!!
-//associate_with_overlays("temp4", "alive", "meter")
-	//overlays |=
-/atom/proc/associate_with_overlays()
-	overlays |= args
-//add_overlays("temp4", "alive", "meter")
-	//overlays.Add;overlays +=
-/atom/proc/add_overlays()
-	return overlays.Add(args)
-
-//remove_overlays("temp4", "alive", "meter")
-	//
-/atom/proc/remove_overlays()
-	return overlays.Remove(args)
-//set_overlays(list("temp4", "alive", "meter"))
-	//overlays =
-/atom/proc/set_overlays(list/value)
-	overlays = value
-
-// (placeholders for if/when TG overlays system is ported)
-/atom/proc/cut_overlays(Start=1, End=0)
-	return overlays.Cut(Start, End)
-

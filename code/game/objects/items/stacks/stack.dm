@@ -50,7 +50,7 @@
 		amount = round(amount, 1) //Just in case
 	update_icon()
 
-/obj/item/stack/on_update_icon()
+/obj/item/stack/update_icon()
 	if(novariants)
 		return ..()
 	if(amount <= (max_amount * (1/3)))

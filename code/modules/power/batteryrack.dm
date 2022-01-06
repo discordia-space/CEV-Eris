@@ -32,8 +32,8 @@
 	capacity = C * 40   //Basic cells are such crap. Hyper cells needed to get on normal SMES levels.
 
 
-/obj/machinery/power/smes/batteryrack/on_update_icon()
-	cut_overlays()
+/obj/machinery/power/smes/batteryrack/update_icon()
+	overlays.Cut()
 	if(stat & BROKEN)	return
 
 	if(!br_cache)
@@ -48,13 +48,13 @@
 		br_cache[7] = image('icons/obj/power.dmi', "gsmes_og4")
 
 	if (output_attempt)
-		add_overlays(br_cache[1])
+		overlays += br_cache[1]
 	if(inputting)
-		add_overlays(br_cache[2])
+		overlays += br_cache[2]
 
 	var/clevel = chargedisplay()
 	if(clevel>0)
-		add_overlays(br_cache[3+clevel])
+		overlays += br_cache[3+clevel]
 	return
 
 
@@ -107,20 +107,20 @@
 	var/overcharge_percent = 0
 
 
-/obj/machinery/power/smes/batteryrack/makeshift/on_update_icon()
-	cut_overlays()
+/obj/machinery/power/smes/batteryrack/makeshift/update_icon()
+	overlays.Cut()
 	if(stat & BROKEN)	return
 
 	if (output_attempt)
-		add_overlays(br_cache[1])
+		overlays += br_cache[1]
 	if(inputting)
-		add_overlays(br_cache[2])
+		overlays += br_cache[2]
 	if (overcharge_percent > 100)
-		add_overlays(br_cache[3])
+		overlays += br_cache[3]
 	else
 		var/clevel = chargedisplay()
 		if(clevel>0)
-			add_overlays(br_cache[3+clevel])
+			overlays += br_cache[3+clevel]
 	return
 
 //This mess of if-elses and magic numbers handles what happens if the engies don't pay attention and let it eat too much charge

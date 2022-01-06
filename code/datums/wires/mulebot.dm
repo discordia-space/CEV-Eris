@@ -27,7 +27,7 @@ var/const/WIRE_BEACON_RX = 256	// beacon ping recv
 /datum/wires/mulebot/UpdatePulsed(var/index)
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The charge light flickers."))
+			holder.visible_message(SPAN_NOTICE("\icon[holder] The charge light flick_lights."))
 		if(WIRE_AVOIDANCE)
 			holder.visible_message(SPAN_NOTICE("\icon[holder] The external warning lights flash briefly."))
 		if(WIRE_LOADCHECK)

@@ -46,7 +46,7 @@
 		electronics = null
 		ae.loc = src.loc
 	if(operating == -1)
-		ae.SetIconState("door_electronics_smoked")
+		ae.icon_state = "door_electronics_smoked"
 		operating = 0
 	src.density = FALSE
 	playsound(src, "shatter", 70, 1)
@@ -105,41 +105,41 @@
 		return 1
 
 /obj/machinery/door/window/open()
-	if (operating == 1) //doors can still open when emag-disabled
+	if (src.operating == 1) //doors can still open when emag-disabled
 		return 0
-	if(!operating) //in case of emag
-		operating = 1
-	FLICK(text("[]opening", base_state), src)
-	playsound(loc, 'sound/machines/windowdoor.ogg', 100, 1)
-	SetIconState(text("[]open", base_state))
+	if(!src.operating) //in case of emag
+		src.operating = 1
+	flick(text("[]opening", src.base_state), src)
+	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
+	src.icon_state = text("[]open", src.base_state)
 	sleep(10)
 
 	explosion_resistance = 0
-	density = FALSE
+	src.density = FALSE
 //	src.sd_SetOpacity(0)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
 	if(operating == 1) //emag again
-		operating = 0
+		src.operating = 0
 	return 1
 
 /obj/machinery/door/window/close()
-	if(operating)
+	if (src.operating)
 		return 0
-	operating = 1
-	FLICK(text("[]closing", base_state), src)
+	src.operating = 1
+	flick(text("[]closing", src.base_state), src)
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 100, 1)
-	SetIconState(base_state)
+	src.icon_state = src.base_state
 
-	density = TRUE
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
-//	if(visible)
+//	if(src.visible)
 //		SetOpacity(1)	//TODO: why is this here? Opaque windoors? ~Carn
 	update_nearby_tiles()
 
 	sleep(10)
 
-	operating = 0
+	src.operating = 0
 	return 1
 
 /obj/machinery/door/window/take_damage(var/damage)
@@ -174,7 +174,7 @@
 /obj/machinery/door/window/emag_act(var/remaining_charges, var/mob/user)
 	if (density && operable())
 		operating = -1
-		FLICK("[src.base_state]spark", src)
+		flick("[src.base_state]spark", src)
 		sleep(6)
 		open()
 		return 1
@@ -234,7 +234,7 @@
 				ae = electronics
 				electronics = null
 				ae.loc = src.loc
-			ae.SetIconState("door_electronics_smoked")
+			ae.icon_state = "door_electronics_smoked"
 
 			operating = 0
 			shatter(src)
@@ -265,7 +265,7 @@
 
 
 	if (density)
-		FLICK(text("[]deny", src.base_state), src)
+		flick(text("[]deny", src.base_state), src)
 	return FALSE
 
 

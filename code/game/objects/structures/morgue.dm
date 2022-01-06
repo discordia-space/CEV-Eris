@@ -32,7 +32,7 @@
 		connected = null
 	return ..()
 
-/obj/structure/morgue/on_update_icon()
+/obj/structure/morgue/update_icon()
 	if (open)
 		icon_state = "morgue0"
 	else
@@ -523,7 +523,7 @@
 	req_access = list(access_crematorium)
 	id = 1
 
-/obj/machinery/button/crematorium/on_update_icon()
+/obj/machinery/button/crematorium/update_icon()
 	return
 
 /obj/machinery/button/crematorium/attack_hand(mob/user as mob)

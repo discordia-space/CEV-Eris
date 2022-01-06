@@ -168,7 +168,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 	if(additionType == HUD_ICON_UNDERLAY)
 		underlays += _iconsBuffer["[additionType]_[additionName]"]
 	else if(additionType == HUD_ICON_OVERLAY)
-		add_overlays(_iconsBuffer["[additionType]_[additionName]"])
+		overlays += _iconsBuffer["[additionType]_[additionName]"]
 
 /HUD_element/proc/_assembleAndBufferIcon(var/additionType, var/additionName, var/list/data)
 	if(!data)
@@ -189,7 +189,7 @@ see external_procs.dm for usable procs and documentation on how to use them
 	return null
 
 /HUD_element/proc/_updateLayers()
-	cut_overlays()
+	overlays.Cut()
 	underlays.Cut()
 
 	if(!debugMode)

@@ -30,7 +30,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		T += S.rating
 	decon_mod = T * 0.1
 
-/obj/machinery/r_n_d/destructive_analyzer/on_update_icon()
+/obj/machinery/r_n_d/destructive_analyzer/update_icon()
 	if(panel_open)
 		icon_state = "d_analyzer_t"
 	else if(loaded_item)
@@ -92,7 +92,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			busy = TRUE
 			loaded_item = I
 			to_chat(user, SPAN_NOTICE("You add \the [I] to \the [src]."))
-			FLICK("d_analyzer_la", src)
+			flick("d_analyzer_la", src)
 			addtimer(CALLBACK(src, .proc/reset_busy), 1 SECONDS)
 			return TRUE
 	return
@@ -112,7 +112,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return
 
 	busy = TRUE
-	FLICK("d_analyzer_process", src)
+	flick("d_analyzer_process", src)
 	addtimer(CALLBACK(src, .proc/finish_deconstructing), 2.4 SECONDS)
 	return TRUE
 

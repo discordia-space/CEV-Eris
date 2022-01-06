@@ -33,11 +33,11 @@
     matter = list(MATERIAL_STEEL = 15, MATERIAL_WOOD = 10)
     gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/steel = 15)
 
-/obj/item/gun/projectile/automatic/luty/on_update_icon()
+/obj/item/gun/projectile/automatic/luty/update_icon()
     cut_overlays()
     icon_state = "[initial(icon_state)][safety ? "_safe" : ""]"
     if(ammo_magazine)
-        add_overlays("mag[ammo_magazine.ammo_color]")
+        overlays += "mag[ammo_magazine.ammo_color]"
 
 /obj/item/gun/projectile/automatic/luty/Initialize()
 	. = ..()

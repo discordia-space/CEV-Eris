@@ -437,7 +437,7 @@
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			FLICK("flash", HUDtech["flash"])
+			flick("flash", HUDtech["flash"])
 	switch (severity)
 		if (1)
 			adjustBruteLoss(500)

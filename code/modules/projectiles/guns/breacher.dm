@@ -27,15 +27,15 @@
 	. = ..()
 	update_icon()
 
-/obj/item/hatton/on_update_icon()
+/obj/item/hatton/update_icon()
 	cut_overlays()
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Hatton_Hammer_1"
-			add_overlays(icon(icon, "[magazine.charge]/3"))
+			overlays += icon(icon, "[magazine.charge]/3")
 		else
 			icon_state = "Hatton_Hammer_1_empty"
-			add_overlays(icon(icon, "1/3"))
+			overlays += icon(icon, "1/3")
 	else
 		icon_state="Hatton_Hammer_0"
 
@@ -161,7 +161,7 @@
 	. = ..()
 	update_icon()
 
-/obj/item/hatton_magazine/on_update_icon()
+/obj/item/hatton_magazine/update_icon()
 	if(charge)
 		icon_state = "Hatton_box1"
 	else
@@ -173,7 +173,7 @@
 	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
 	charge = 2
 
-/obj/item/hatton_magazine/moebius/on_update_icon()
+/obj/item/hatton_magazine/moebius/update_icon()
 	if(charge)
 		icon_state = "Moebius_box1"
 	else
@@ -212,15 +212,15 @@
 	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
 	spawn_blacklisted = TRUE
 
-/obj/item/hatton/moebius/on_update_icon()
+/obj/item/hatton/moebius/update_icon()
 	cut_overlays()
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Moebius_Hammer_1"
-			add_overlays(icon(icon, "[magazine.charge]/3"))
+			overlays += icon(icon, "[magazine.charge]/3")
 		else
 			icon_state = "Moebius_Hammer_1_empty"
-			add_overlays(icon(icon, "1/3"))
+			overlays += icon(icon, "1/3")
 	else
 		icon_state = "Moebius_Hammer_0"
 

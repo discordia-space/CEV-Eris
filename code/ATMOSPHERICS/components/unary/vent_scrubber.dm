@@ -95,7 +95,7 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/atmospherics/unary/vent_scrubber/on_update_icon(safety = 0)
+/obj/machinery/atmospherics/unary/vent_scrubber/update_icon(safety = 0)
 	if(!node1)
 		use_power = NO_POWER_USE
 

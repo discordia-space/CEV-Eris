@@ -60,7 +60,7 @@
 	if(mydrive && (src.loc == usr) && istype(over_object, /obj/screen/inventory/hand))
 		eject_usb()
 
-/obj/item/device/taperecorder/on_update_icon()
+/obj/item/device/taperecorder/update_icon()
 	if(!mydrive)
 		icon_state = "taperecorder_empty"
 	else if(recording)

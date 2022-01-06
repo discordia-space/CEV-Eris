@@ -214,7 +214,7 @@
 
 	find_control_computer()
 
-/obj/machinery/cryopod/on_update_icon()
+/obj/machinery/cryopod/update_icon()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_1"
 	else

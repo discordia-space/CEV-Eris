@@ -10,7 +10,7 @@
 	var/close_sound = 'sound/machines/airlock_close.ogg'
 	var/open_sound_unpowered = 'sound/machines/airlock_creaking.ogg'
 	var/obj/item/wedged_item
-	
+
 /obj/machinery/door/holy/preacher
 	name = "NeoTheology clergy door"
 	icon = 'icons/obj/doors/Door_holy_preacher.dmi'
@@ -111,7 +111,7 @@
 			else
 				do_animate("deny")
 		return
-	
+
 	do_animate("deny")
 	return
 
@@ -133,7 +133,7 @@
 	stat |= BROKEN
 	update_icon()
 
-/obj/machinery/door/holy/on_update_icon()
+/obj/machinery/door/holy/update_icon()
 	set_light(0)
 
 	if(overlays.len)
@@ -144,37 +144,37 @@
 
 	if(density)
 		if(locked)
-			SetIconState("door_locked")
+			icon_state = "door_locked"
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
-			SetIconState("door_closed")
+			icon_state = "door_closed"
 	else
-		SetIconState("door_open")
+		icon_state = "door_open"
 
 	if(wedged_item)
 		generate_wedge_overlay()
 
 	if(welded)
-		add_overlays(image(icon, "welded"))
+		overlays += image(icon, "welded")
 
 /obj/machinery/door/holy/do_animate(animation)
 	switch(animation)
 		if("opening")
 			if(overlays.len)
 				cut_overlays()
-			flicker("door_opening")
+			flick("door_opening", src)
 			update_icon()
 		if("closing")
 			if(overlays.len)
 				cut_overlays()
-			flicker("door_closing")
+			flick("door_closing", src)
 			update_icon()
 		if("spark")
 			if(density)
-				flicker("door_spark")
+				flick("door_spark", src)
 		if("deny")
 			if(density)
-				flicker("door_deny")
+				flick("door_deny", src)
 				playsound(loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
@@ -257,7 +257,7 @@
 /obj/machinery/door/holy/can_open(forced)
 	if(!density || locked || welded || operating)
 		return FALSE
-	
+
 	return TRUE
 
 /obj/machinery/door/holy/can_close(forced)
@@ -299,7 +299,7 @@
 					do_animate("opening")
 					operating = FALSE
 					return
-		
+
 	if(stat & BROKEN)
 		var/obj/item/tool/T = forced
 		if (istype(T) && T.item_flags & HONKING)

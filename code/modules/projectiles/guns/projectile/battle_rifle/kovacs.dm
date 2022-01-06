@@ -27,7 +27,7 @@
 	zoom_factor = 0.6
 	fire_delay = 6.5
 
-/obj/item/gun/projectile/kovacs/on_update_icon()
+/obj/item/gun/projectile/kovacs/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

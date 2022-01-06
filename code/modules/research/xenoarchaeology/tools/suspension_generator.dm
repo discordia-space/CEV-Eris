@@ -60,7 +60,7 @@
 	for(var/obj/item/I in T)
 		if(!suspension_field.contents.len)
 			suspension_field.icon_state = "energynet"
-			suspension_field.add_overlays("shield2")
+			suspension_field.overlays += "shield2"
 		I.forceMove(suspension_field)
 
 	for(var/mob/living/simple_animal/M in T)
@@ -246,7 +246,7 @@
 
 	if(collected)
 		suspension_field.icon_state = "energynet"
-		suspension_field.add_overlays("shield2")
+		suspension_field.overlays += "shield2"
 		src.visible_message(SPAN_NOTICE("[suspension_field] gently absconds [collected > 1 ? "something" : "several things"]."))
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))

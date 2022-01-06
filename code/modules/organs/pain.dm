@@ -3,7 +3,7 @@ mob/proc/flash_pain()
 
 /mob/living/flash_pain()
 	if(HUDtech.Find("pain"))
-		FLICK("pain", HUDtech["pain"])
+		flick("pain", HUDtech["pain"])
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""

@@ -18,7 +18,7 @@
 	var/mode = WIRE
 	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
 
-/obj/item/device/electronics/integrated/wirer/on_update_icon()
+/obj/item/device/electronics/integrated/wirer/update_icon()
 	icon_state = "wirer-[mode]"
 
 /obj/item/device/electronics/integrated/wirer/proc/wire(var/datum/integrated_io/io, mob/user)

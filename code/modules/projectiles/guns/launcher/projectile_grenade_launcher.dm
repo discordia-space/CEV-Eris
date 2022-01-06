@@ -74,9 +74,9 @@
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
-	add_overlays("grenademag_[ratio]")
+	overlays += "grenademag_[ratio]"
 
-/obj/item/gun/projectile/shotgun/pump/grenade/lenar/on_update_icon()
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar/update_icon()
 	cut_overlays()
 	update_charge()
 

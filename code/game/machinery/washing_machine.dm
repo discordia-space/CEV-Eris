@@ -131,7 +131,7 @@
 		usr.loc = src.loc
 
 
-/obj/machinery/washing_machine/on_update_icon()
+/obj/machinery/washing_machine/update_icon()
 	icon_state = "wm_[state][panel]"
 
 /obj/machinery/washing_machine/affect_grab(var/mob/user, var/mob/target)

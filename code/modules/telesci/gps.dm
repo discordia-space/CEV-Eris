@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(gps_by_type)
 	LAZYADD(GLOB.gps_by_type["[type]"], src)
 	gpstag = "[gps_prefix][LAZYLEN(GLOB.gps_by_type["[type]"])]"
 	name = "global positioning system ([gpstag])"
-	add_overlays(image(icon, "working"))
+	overlays += image(icon, "working")
 
 /obj/item/device/gps/Destroy()
 	GLOB.GPS_list -= src
@@ -32,14 +32,14 @@ GLOBAL_LIST_EMPTY(gps_by_type)
 
 /obj/item/device/gps/emp_act(severity)
 	emped = 1
-	cut_overlays()
-	add_overlays(image(icon, "emp"))
+	overlays.Cut()
+	overlays += image(icon, "emp")
 	addtimer(CALLBACK(src, .proc/post_emp), 300)
 
 /obj/item/device/gps/proc/post_emp()
 	emped = 0
-	cut_overlays()
-	add_overlays(image(icon, "working"))
+	overlays.Cut()
+	overlays += image(icon, "working")
 
 /obj/item/device/gps/attack_self(mob/user)
 

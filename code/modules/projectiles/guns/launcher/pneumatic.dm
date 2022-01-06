@@ -126,7 +126,7 @@
 		if(T) T.assume_air(removed)
 	..()
 
-/obj/item/gun/launcher/pneumatic/on_update_icon()
+/obj/item/gun/launcher/pneumatic/update_icon()
 	if(tank)
 		icon_state = "pneumatic-tank"
 		set_item_state("-tank")
@@ -146,7 +146,7 @@
 
 	var/buildstate = 0
 
-/obj/item/cannonframe/on_update_icon()
+/obj/item/cannonframe/update_icon()
 	icon_state = "pneumatic[buildstate]"
 
 /obj/item/cannonframe/examine(mob/user)

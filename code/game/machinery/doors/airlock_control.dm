@@ -170,14 +170,14 @@
 	var/alert = 0
 	var/previousPressure
 
-/obj/machinery/airlock_sensor/on_update_icon()
+/obj/machinery/airlock_sensor/update_icon()
 	if(on)
 		if(alert)
-			SetIconState("airlock_sensor_alert")
+			icon_state = "airlock_sensor_alert"
 		else
-			SetIconState("airlock_sensor_standby")
+			icon_state = "airlock_sensor_standby"
 	else
-		SetIconState("airlock_sensor_off")
+		icon_state = "airlock_sensor_off"
 
 /obj/machinery/airlock_sensor/attack_hand(mob/user)
 	var/datum/signal/signal = new
@@ -186,7 +186,7 @@
 	signal.data["command"] = command
 
 	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flicker("airlock_sensor_cycle")
+	flick("airlock_sensor_cycle", src)
 
 /obj/machinery/airlock_sensor/Process()
 	if(on)
@@ -310,9 +310,9 @@
 	var/on = TRUE
 
 
-/obj/machinery/access_button/on_update_icon()
+/obj/machinery/access_button/update_icon()
 	. = ..()
-	SetIconState("[base_of_state]_[on?"standby":"off"]")
+	icon_state = "[base_of_state]_[on?"standby":"off"]"
 
 /obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 	//Swiping ID on the access button
@@ -334,7 +334,7 @@
 		signal.data["command"] = command
 
 		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
-	flicker("access_button_cycle")
+	flick("access_button_cycle", src)
 
 
 /obj/machinery/access_button/proc/set_frequency(new_frequency)

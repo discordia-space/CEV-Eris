@@ -177,7 +177,7 @@
 	var/brightness_power = 2
 	var/brightness_color = COLOR_LIGHTING_DEFAULT_BRIGHT
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
-	var/flickering = 0
+	var/flick_lighting = 0
 	var/light_type = /obj/item/light/tube		// the type of light item
 	var/fitting = "tube"
 	var/switchcount = 0			// count of number of times switched on/off
@@ -257,7 +257,7 @@
 //		A.update_lights()
 	. = ..()
 
-/obj/machinery/light/on_update_icon()
+/obj/machinery/light/update_icon()
 
 	switch(status)		// set icon_states
 		if(LIGHT_OK)
@@ -493,9 +493,9 @@
 
 /obj/machinery/light/proc/flick_light(amount = rand(10, 20))
 	var/on_s = on // s stands for safety
-	if(flickering)
+	if(flick_lighting)
 		return
-	flickering = TRUE
+	flick_lighting = TRUE
 	spawn(0)
 		if(on && status == LIGHT_OK)
 			for(var/i in 1 to amount)
@@ -509,12 +509,12 @@
 				sleep(rand(5, 15))
 			on = (status == LIGHT_OK)
 			update(0)
-		flickering = FALSE
+		flick_lighting = FALSE
 
-// ai attack - make lights flicker, because why not
+// ai attack - make lights flick_light, because why not
 
 /obj/machinery/light/attack_ai(mob/user)
-	flick_light(1)
+	src.flick_light(1)
 	return
 
 // attack with hand - remove tube/bulb

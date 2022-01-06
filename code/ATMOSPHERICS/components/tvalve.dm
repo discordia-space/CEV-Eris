@@ -22,9 +22,9 @@
 	icon_state = "map_tvalve1"
 	state = 1
 
-/obj/machinery/atmospherics/tvalve/on_update_icon(animation)
+/obj/machinery/atmospherics/tvalve/update_icon(animation)
 	if(animation)
-		FLICK("tvalve[src.state][!src.state]", src)
+		flick("tvalve[src.state][!src.state]", src)
 	else
 		icon_state = "tvalve[state]"
 
@@ -294,7 +294,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/tvalve/digital/on_update_icon()
+/obj/machinery/atmospherics/tvalve/digital/update_icon()
 	..()
 	if(!powered())
 		icon_state = "tvalvenopower"
@@ -408,9 +408,9 @@
 	update_icon()
 	update_underlays()
 
-/obj/machinery/atmospherics/tvalve/mirrored/on_update_icon(animation)
+/obj/machinery/atmospherics/tvalve/mirrored/update_icon(animation)
 	if(animation)
-		FLICK("tvalvem[src.state][!src.state]", src)
+		flick("tvalvem[src.state][!src.state]", src)
 	else
 		icon_state = "tvalvem[state]"
 
@@ -433,7 +433,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/tvalve/mirrored/digital/on_update_icon()
+/obj/machinery/atmospherics/tvalve/mirrored/digital/update_icon()
 	..()
 	if(!powered())
 		icon_state = "tvalvemnopower"

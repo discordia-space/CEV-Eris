@@ -10,7 +10,7 @@
 	price_tag = 900
 	spawn_blacklisted = TRUE
 
-/obj/item/shield/buckler/energy/arm/on_update_icon()
+/obj/item/shield/buckler/energy/arm/update_icon()
    return
 
 /obj/item/organ_module/active/simple/armshield

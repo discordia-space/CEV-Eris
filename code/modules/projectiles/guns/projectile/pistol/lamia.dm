@@ -25,7 +25,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/gun/projectile/lamia/on_update_icon()
+/obj/item/gun/projectile/lamia/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "lamia-[round(ammo_magazine.stored_ammo.len,2)]"

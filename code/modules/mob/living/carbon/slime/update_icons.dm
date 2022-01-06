@@ -5,5 +5,5 @@
 		icon_state = "[colour] [is_adult ? "adult" : "baby"] slime[Victim ? "" : " eat"]"
 	overlays.len = 0
 	if (mood)
-		add_overlays(image('icons/mob/slimes.dmi', icon_state = "aslime-[mood]"))
+		overlays += image('icons/mob/slimes.dmi', icon_state = "aslime-[mood]")
 	..()

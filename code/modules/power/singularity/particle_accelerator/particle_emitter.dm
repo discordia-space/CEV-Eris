@@ -20,7 +20,7 @@
 	icon_state = "emitter_right"
 	reference = "emitter_right"
 
-/obj/structure/particle_accelerator/particle_emitter/on_update_icon()
+/obj/structure/particle_accelerator/particle_emitter/update_icon()
 	..()
 	return
 

@@ -27,7 +27,7 @@
 			var/confirm = alert(user, "This will destroy the item inside forever.  Are you sure?","Confirm Analyze","Yes","No")
 			if(confirm == "Yes") //This is pretty copypasta-y
 				to_chat(user, "You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.")
-				FLICK("portable_analyzer_scan", src)
+				flick("portable_analyzer_scan", src)
 				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 				for(var/T in loaded_item.origin_tech)
 					files.check_item_for_tech(loaded_item)
@@ -97,7 +97,7 @@
 		for(var/mob/M in viewers())
 			M.show_message(text(SPAN_NOTICE("[user] adds the [I] to the [src].")), 1)
 		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
-		FLICK("portable_analyzer_load", src)
+		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
 
 //This is used to unlock other borg covers.
@@ -169,7 +169,7 @@
 
 				I.forceMove(src)
 				carrying.Add(I)
-				add_overlays(image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer))
+				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
 			user.visible_message("\blue [user] load some items onto their service tray.")
@@ -195,7 +195,7 @@
 			dropspot = target.loc
 
 
-		set_overlays(null)
+		overlays = null
 
 		var droppedSomething = 0
 

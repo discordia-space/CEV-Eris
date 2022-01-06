@@ -12,7 +12,7 @@
 	..()
 	set_light(6)
 
-/obj/item/device/slimelight/on_update_icon()
+/obj/item/device/slimelight/update_icon()
 	return
 
 /obj/item/device/slimelight/attack_self(mob/user)

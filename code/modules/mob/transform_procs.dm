@@ -12,7 +12,7 @@
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
 	animation.master = src
-	FLICK("h2monkey", animation)
+	flick("h2monkey", animation)
 	sleep(48)
 	//animation = null
 

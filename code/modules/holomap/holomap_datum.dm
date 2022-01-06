@@ -23,7 +23,7 @@
 				else
 					deck_name.pixel_x = HOLOMAP_LEGEND_X(level) + 2*ERIS_HOLOMAP_CENTER_GUTTER
 					deck_name.pixel_y = HOLOMAP_PIXEL_OFFSET_Y(level)
-				station_map.overlays.Add(deck_name)
+				station_map.overlays += deck_name
 
 	if(isAI)
 		T = get_turf(user.client.eye)
@@ -33,15 +33,15 @@
 	legend.pixel_x = HOLOMAP_LEGEND_X(T.z)
 	legend.pixel_y = HOLOMAP_LEGEND_Y(T.z)
 
-	station_map.overlays |= (cursor)
-	station_map.overlays |= (legend)
+	station_map.overlays |= cursor
+	station_map.overlays |= legend
 
 /datum/station_holomap/proc/initialize_holomap_bogus()
 	station_map = image('icons/480x480.dmi', "stationmap")
 	legend = image('icons/effects/64x64.dmi', "notfound")
 	legend.pixel_x = 7 * WORLD_ICON_SIZE
 	legend.pixel_y = 7 * WORLD_ICON_SIZE
-	station_map.overlays |= (legend)
+	station_map.overlays |= legend
 
 // TODO - Strategic Holomap support
 // /datum/station_holomap/strategic/initialize_holomap(var/turf/T, var/isAI=null, var/mob/user=null)
@@ -50,4 +50,4 @@
 // 	legend = image('icons/effects/64x64.dmi', "strategic")
 // 	legend.pixel_x = 3*WORLD_ICON_SIZE
 // 	legend.pixel_y = 3*WORLD_ICON_SIZE
-// 	station_map.overlays |= (legend)
+// 	station_map.overlays |= legend

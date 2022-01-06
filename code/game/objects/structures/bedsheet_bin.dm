@@ -146,7 +146,7 @@ LINEN BINS
 		if(folded)
 			pickup(usr)
 
-/obj/item/bedsheet/on_update_icon()
+/obj/item/bedsheet/update_icon()
 	if (folded)
 		icon_state = "sheet-folded"
 	else if (rolled)
@@ -226,7 +226,7 @@ LINEN BINS
 	to_chat(user, "There are [amount] bed sheets in the bin.")
 
 
-/obj/structure/bedsheetbin/on_update_icon()
+/obj/structure/bedsheetbin/update_icon()
 	switch(amount)
 		if(0)				icon_state = "linenbin-empty"
 		if(1 to amount / 2)	icon_state = "linenbin-half"

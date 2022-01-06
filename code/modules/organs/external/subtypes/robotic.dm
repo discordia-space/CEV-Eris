@@ -13,7 +13,7 @@
 /obj/item/organ/external/robotic/get_cache_key()
 	return "Robotic[model]"
 
-/obj/item/organ/external/robotic/on_update_icon()
+/obj/item/organ/external/robotic/update_icon()
 	var/gender = "m"
 	if(owner)
 		gender = owner.gender == FEMALE ? "f" : "m"

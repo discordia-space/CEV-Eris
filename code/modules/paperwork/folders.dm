@@ -24,10 +24,10 @@
 	desc = "A cyan folder."
 	icon_state = "folder_cyan"
 
-/obj/item/folder/on_update_icon()
+/obj/item/folder/update_icon()
 	cut_overlays()
 	if(contents.len)
-		add_overlays("folder_paper")
+		overlays += "folder_paper"
 	return
 
 /obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)

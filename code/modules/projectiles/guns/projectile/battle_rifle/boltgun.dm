@@ -34,7 +34,7 @@
 	var/bolt_open = 0
 	var/item_suffix = ""
 
-/obj/item/gun/projectile/boltgun/on_update_icon()
+/obj/item/gun/projectile/boltgun/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

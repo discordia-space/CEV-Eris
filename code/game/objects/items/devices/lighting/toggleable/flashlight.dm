@@ -279,7 +279,7 @@
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
 			if(M.HUDtech.Find("flash"))
-				FLICK("flash", M.HUDtech["flash"])
+				flick("flash", M.HUDtech["flash"])
 	else
 		return ..()
 
@@ -315,7 +315,7 @@
 	light_spot_radius = 3
 	light_spot_power = 2.5
 
-/obj/item/device/lighting/toggleable/flashlight/seclite/on_update_icon()
+/obj/item/device/lighting/toggleable/flashlight/seclite/update_icon()
 	. = ..()
 
 	if(on)

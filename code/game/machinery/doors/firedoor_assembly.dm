@@ -1,4 +1,4 @@
-/obj/structure/firedoor_assembly
+obj/structure/firedoor_assembly
 	name = "\improper emergency shutter assembly"
 	desc = "It can save lives."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
@@ -8,10 +8,13 @@
 	density = TRUE
 	var/wired = 0
 
-/obj/structure/firedoor_assembly/on_update_icon()
-	SetIconState("door_[anchored?"anchored":"construction"]")
+obj/structure/firedoor_assembly/update_icon()
+	if(anchored)
+		icon_state = "door_anchored"
+	else
+		icon_state = "door_construction"
 
-/obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
+obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
 	if(!anchored)

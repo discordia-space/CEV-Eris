@@ -158,7 +158,7 @@
 		update_icon(user)
 	..()
 
-/obj/item/clothing/head/kitty/on_update_icon(var/mob/living/carbon/human/user)
+/obj/item/clothing/head/kitty/update_icon(var/mob/living/carbon/human/user)
 	if(!istype(user))
 		return
 	var/icon/ears = new/icon('icons/inventory/head/mob.dmi', "kitty")

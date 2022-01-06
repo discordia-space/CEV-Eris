@@ -18,7 +18,7 @@
 		animation.icon_state = "blank"
 		animation.icon = 'icons/mob/mob.dmi'
 		animation.master = src
-		FLICK(anim, animation)
+		flick(anim, animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 /mob/proc/check_delete(var/atom/movable/overlay/animation)
@@ -49,7 +49,7 @@
 		animation.icon_state = "blank"
 		animation.icon = iconfile
 		animation.master = src
-		FLICK(anim, animation)
+		flick(anim, animation)
 	addtimer(CALLBACK(src, .proc/check_delete, animation), 15)
 
 

@@ -223,7 +223,7 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 
 	var/obj/effect/decal/cleanable/blood/drip/drop = B
 	if(istype(drop) && drips && drips.len && !large)
-		drop.associate_with_overlays(drips)
+		drop.overlays |= drips
 		drop.drips |= drips
 
 	// If there's no data to copy, call it quits here.

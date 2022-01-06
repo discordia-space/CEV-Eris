@@ -189,11 +189,11 @@
 		update_icon()
 	SEND_SIGNAL(src, COMSIG_SHIP_STILL, x, y, is_still())
 
-/obj/effect/overmap/ship/on_update_icon()
+/obj/effect/overmap/ship/update_icon()
 	cut_overlays()
 	if(!is_still())
 		dir = get_heading()
-		add_overlays(image('icons/obj/overmap.dmi', "vector", "dir"=dir))
+		overlays += image('icons/obj/overmap.dmi', "vector", "dir"=dir)
 
 /obj/effect/overmap/ship/proc/burn()
 

@@ -75,7 +75,7 @@
 			beakers += B
 	update_icon()
 
-/obj/item/gun/projectile/dartgun/on_update_icon()
+/obj/item/gun/projectile/dartgun/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "dartgun-[round(ammo_magazine.stored_ammo.len,2)]"

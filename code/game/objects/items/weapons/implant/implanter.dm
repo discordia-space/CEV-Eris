@@ -28,7 +28,7 @@
 	update_icon()
 	return
 
-/obj/item/implanter/on_update_icon()
+/obj/item/implanter/update_icon()
 	cut_overlays()
 	if(implant)
 		var/image/content = image('icons/obj/items.dmi', icon_state = implant.implant_overlay)

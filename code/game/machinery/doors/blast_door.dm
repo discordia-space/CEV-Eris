@@ -59,11 +59,11 @@
 // Proc: update_icon()
 // Parameters: None
 // Description: Updates icon of this object. Uses icon state variables.
-/obj/machinery/door/blast/on_update_icon()
+/obj/machinery/door/blast/update_icon()
 	if(density)
-		SetIconState(icon_state_closed)
+		icon_state = icon_state_closed
 	else
-		SetIconState(icon_state_open)
+		icon_state = icon_state_open
 	return
 
 // Proc: force_open()
@@ -71,7 +71,7 @@
 // Description: Opens the door. No checks are done inside this proc.
 /obj/machinery/door/blast/proc/force_open()
 	src.operating = 1
-	FLICK(icon_state_opening, src)
+	flick(icon_state_opening, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdooropen.ogg', 65, 0)
 	src.density = FALSE
 	update_nearby_tiles()
@@ -87,7 +87,7 @@
 /obj/machinery/door/blast/proc/force_close()
 	src.operating = 1
 	src.layer = closed_layer
-	FLICK(icon_state_closing, src)
+	flick(icon_state_closing, src)
 	playsound(src.loc, 'sound/machines/Custom_blastdoorclose.ogg', 65, 0)
 	src.density = TRUE
 	update_nearby_tiles()

@@ -35,7 +35,7 @@
 
 	gun_tags = list(GUN_SILENCABLE)
 
-/obj/item/gun/projectile/automatic/wintermute/on_update_icon()
+/obj/item/gun/projectile/automatic/wintermute/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

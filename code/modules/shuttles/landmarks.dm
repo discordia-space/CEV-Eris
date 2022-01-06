@@ -144,9 +144,9 @@
 	T.hotspot_expose(1500, 5)
 	update_icon()
 
-/obj/item/device/spaceflare/on_update_icon()
+/obj/item/device/spaceflare/update_icon()
 	if(active)
-		SetIconState("bluflare_on")
+		icon_state = "bluflare_on"
 		set_light(l_range = 6, l_power = 3)
 
 

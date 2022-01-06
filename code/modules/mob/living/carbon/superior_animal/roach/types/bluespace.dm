@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/roach/bluespace
 	name = "Unbekannt Roach"
-	desc = "This shimmering insectoid-like creature greatly resembles a giant cockroach. It flickers in and out of reality, as if it didn't really belong here."
+	desc = "This shimmering insectoid-like creature greatly resembles a giant cockroach. It flick_lights in and out of reality, as if it didn't really belong here."
 	icon_state = "bluespaceroach"
 	maxHealth = 25
 	health = 25

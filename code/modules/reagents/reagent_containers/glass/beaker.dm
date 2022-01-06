@@ -20,7 +20,7 @@
 	..()
 	playsound(src,'sound/items/Glass_Fragment_drop.ogg',50,1)
 
-/obj/item/reagent_containers/glass/beaker/on_update_icon()
+/obj/item/reagent_containers/glass/beaker/update_icon()
 	cut_overlays()
 
 	if(reagents?.total_volume)
@@ -166,13 +166,13 @@
 	else
 		return ..()
 
-/obj/item/reagent_containers/glass/bucket/on_update_icon()
+/obj/item/reagent_containers/glass/bucket/update_icon()
 	cut_overlays()
 	if(reagents.total_volume >= 1)
-		add_overlays("water_bucket")
+		overlays += "water_bucket"
 	if(has_lid())
 		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
-		add_overlays(lid)
+		overlays += lid
 
 /obj/item/reagent_containers/glass/beaker/hivemind
 	preloaded_reagents = list("nanites" = 30, "uncap nanites" = 30)

@@ -32,7 +32,7 @@
 	var/item_suffix = ""
 	wield_delay = 0
 
-/obj/item/gun/projectile/heavysniper/on_update_icon()
+/obj/item/gun/projectile/heavysniper/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

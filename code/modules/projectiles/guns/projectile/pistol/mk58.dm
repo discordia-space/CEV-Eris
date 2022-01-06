@@ -17,7 +17,7 @@
 	penetration_multiplier = 1.3
 	recoil_buildup = 3
 
-/obj/item/gun/projectile/mk58/on_update_icon()
+/obj/item/gun/projectile/mk58/update_icon()
 	..()
 
 	if(!ammo_magazine)

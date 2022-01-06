@@ -240,11 +240,11 @@
 		/obj/item/storage/pill_bottle
 		)
 
-/obj/item/storage/pouch/tubular/on_update_icon()
+/obj/item/storage/pouch/tubular/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
 
 /obj/item/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -287,11 +287,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/storage/pouch/pistol_holster/on_update_icon()
+/obj/item/storage/pouch/pistol_holster/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
 
 /obj/item/storage/pouch/baton_holster
 	name = "baton sheath"
@@ -310,11 +310,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/storage/pouch/baton_holster/on_update_icon()
+/obj/item/storage/pouch/baton_holster/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
 
 /obj/item/storage/pouch/holding
 	name = "pouch of holding"

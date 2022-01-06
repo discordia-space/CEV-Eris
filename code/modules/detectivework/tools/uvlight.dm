@@ -43,7 +43,7 @@
 		stored_alpha.Cut()
 	if(reset_objects.len)
 		for(var/obj/item/I in reset_objects)
-			I.remove_overlays(I.blood_overlay)
+			I.overlays -= I.blood_overlay
 			if(I.fluorescent == 2) I.fluorescent = 1
 		reset_objects.Cut()
 
@@ -67,5 +67,5 @@
 					if(istype(A, /obj/item))
 						var/obj/item/O = A
 						if(O.was_bloodied && !(O.blood_overlay in O.overlays))
-							O.associate_with_overlays(O.blood_overlay)
+							O.overlays |= O.blood_overlay
 							reset_objects |= O

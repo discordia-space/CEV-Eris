@@ -44,7 +44,7 @@
 	open = !open
 	update_icon()
 
-/obj/structure/toilet/on_update_icon()
+/obj/structure/toilet/update_icon()
 	icon_state = "toilet[open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
@@ -194,14 +194,14 @@
 			user.visible_message(SPAN_NOTICE("\The [user] adjusts \the [src] with \the [I]."), SPAN_NOTICE("You adjust the shower with \the [I]."))
 			add_fingerprint(user)
 
-/obj/machinery/shower/on_update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
-	cut_overlays()					//once it's been on for a while, in addition to handling the water overlay.
+/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
+	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
 		qdel(mymist)
 		mymist = null
 
 	if(on)
-		add_overlays(image('icons/obj/watercloset.dmi', src, "water", ABOVE_MOB_LAYER, dir))
+		overlays += image('icons/obj/watercloset.dmi', src, "water", ABOVE_MOB_LAYER, dir)
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
@@ -435,7 +435,7 @@
 		var/obj/item/melee/baton/B = O
 		if(B.cell)
 			if(B.cell.charge > 0 && B.status == 1)
-				FLICK("baton_active", src)
+				flick("baton_active", src)
 				user.Stun(10)
 				user.stuttering = 10
 				user.Weaken(10)

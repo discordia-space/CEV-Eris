@@ -43,7 +43,7 @@
 	cell = new /obj/item/cell/large/high(src)
 	key = new(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = layer + 0.2) //over mobs
-	add_overlays(I)
+	overlays += I
 	turn_off()	//so engine verbs are correctly set
 
 /obj/vehicle/train/cargo/engine/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
@@ -79,7 +79,7 @@
 		return
 	..()
 
-/obj/vehicle/train/cargo/on_update_icon()
+/obj/vehicle/train/cargo/update_icon()
 	if(open)
 		icon_state = initial(icon_state) + "_open"
 	else
@@ -313,7 +313,7 @@
 		C.pixel_y += load_offset_y
 		C.layer = layer
 
-		add_overlays(C)
+		overlays += C
 
 		//we can set these back now since we have already cloned the icon into the overlay
 		C.pixel_x = initial(C.pixel_x)
@@ -326,7 +326,7 @@
 		load = dummy_load.actual_load
 		dummy_load.actual_load = null
 		qdel(dummy_load)
-		cut_overlays()
+		overlays.Cut()
 	..()
 
 //-------------------------------------------

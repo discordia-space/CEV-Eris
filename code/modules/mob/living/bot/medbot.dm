@@ -115,9 +115,9 @@
 	update_icons()
 
 /mob/living/bot/medbot/update_icons()
-	cut_overlays()
+	overlays.Cut()
 	if(skin)
-		add_overlays(image('icons/obj/aibots.dmi', "medskin_[skin]"))
+		overlays += image('icons/obj/aibots.dmi', "medskin_[skin]")
 	if(currently_healing)
 		icon_state = "medibots"
 	else
@@ -231,7 +231,7 @@
 			to_chat(user, SPAN_WARNING("You short out [src]'s reagent synthesis circuits."))
 		visible_message(SPAN_WARNING("[src] buzzes oddly!"))
 		playsound(loc, "robot_talk_light", 100, 0, 0)
-		FLICK("medibot_spark", src)
+		flick("medibot_spark", src)
 		patient = null
 		currently_healing = 0
 		emagged = 1
@@ -331,7 +331,7 @@
 	..()
 	spawn(5) // Terrible. TODO: fix
 		if(skin)
-			add_overlays(image('icons/obj/aibots.dmi', "kit_skin_[src.skin]"))
+			overlays += image('icons/obj/aibots.dmi', "kit_skin_[src.skin]")
 
 /obj/item/firstaid_arm_assembly/attackby(obj/item/W as obj, mob/user as mob)
 	..()
@@ -352,7 +352,7 @@
 					to_chat(user, SPAN_NOTICE("You add the health sensor to [src]."))
 					playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
 					name = "First aid/robot arm/health analyzer assembly"
-					add_overlays(image('icons/obj/aibots.dmi', "na_scanner"))
+					overlays += image('icons/obj/aibots.dmi', "na_scanner")
 
 			if(1)
 				if(is_proximity_sensor(W))

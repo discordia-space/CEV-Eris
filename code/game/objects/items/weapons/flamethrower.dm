@@ -48,12 +48,12 @@
 	return
 
 
-/obj/item/flamethrower/on_update_icon()
+/obj/item/flamethrower/update_icon()
 	cut_overlays()
 	if(ptank)
-		add_overlays("+ptank")
+		overlays += "+ptank"
 	if(lit)
-		add_overlays("+lit")
+		overlays += "+lit"
 	return
 
 /obj/item/flamethrower/afterattack(atom/target, mob/user, proximity)

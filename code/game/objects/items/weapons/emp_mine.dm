@@ -35,7 +35,7 @@
 	update_icon()
 
 
-/obj/item/emp_mine/on_update_icon()
+/obj/item/emp_mine/update_icon()
 	icon_state = "empmine[armed ? "1":"0"]"
 
 

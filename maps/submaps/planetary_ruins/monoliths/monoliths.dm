@@ -30,7 +30,7 @@
 
 /obj/structure/monolith/Initialize()
 	. = ..()
-	SetIconState("monolith")
+	icon_state = "monolith"
 	var/material/A = get_material_by_name(MATERIAL_VOXALLOY)
 	if(A)
 		color = A.icon_colour
@@ -39,7 +39,7 @@
 		if(istype(E))
 			desc += "\nThere are images on it: [E.get_engravings()]"
 
-/obj/structure/monolith/on_update_icon()
+/obj/structure/monolith/update_icon()
 	cut_overlays()
 	if(active)
 		var/image/I = image(icon,"[icon_state]_1")
@@ -47,7 +47,7 @@
 		I.color = get_random_colour(0, 150, 255)
 		I.layer = ABOVE_LIGHTING_LAYER
 		I.plane = ABOVE_LIGHTING_PLANE
-		add_overlays(I)
+		overlays += I
 		set_light(0.3, 0.1, 2, l_color = I.color)
 
 /obj/structure/monolith/attack_hand(mob/user)

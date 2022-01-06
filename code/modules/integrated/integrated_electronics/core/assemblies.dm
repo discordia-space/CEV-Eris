@@ -70,7 +70,7 @@
 			if(!draw_power(IC.power_draw_idle))
 				IC.power_fail()
 
-/obj/item/device/electronic_assembly/implant/on_update_icon()
+/obj/item/device/electronic_assembly/implant/update_icon()
 	..()
 	implant.icon_state = icon_state
 
@@ -156,7 +156,7 @@
 /obj/item/device/electronic_assembly/drone/can_move()
 	return TRUE
 
-/obj/item/device/electronic_assembly/on_update_icon()
+/obj/item/device/electronic_assembly/update_icon()
 	if(opened)
 		icon_state = initial(icon_state) + "-open"
 	else

@@ -39,15 +39,15 @@
 			spawn(rand(0, 15))
 				icon_state = "[icon_type]_off"
 
-/obj/machinery/slotmachine/on_update_icon()
-	cut_overlays()
+/obj/machinery/slotmachine/update_icon()
+	overlays.Cut()
 	//From left to right
 	var/offset = -6
 	var/image/img
 	for(var/slot in slots)
 		img = new/image(icon, "slot_[slots[slot]]")
 		img.pixel_x += offset
-		add_overlays(img)
+		overlays += img
 		offset += 6
 
 /obj/machinery/slotmachine/proc/check_streak()

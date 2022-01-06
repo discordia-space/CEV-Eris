@@ -54,7 +54,7 @@
 /obj/machinery/computer/station_alert/nano_container()
 	return alarm_monitor
 
-/obj/machinery/computer/station_alert/on_update_icon()
+/obj/machinery/computer/station_alert/update_icon()
 	icon_screen = initial(icon_screen)
 	if(!(stat & (BROKEN|NOPOWER)))
 		if(alarm_monitor)

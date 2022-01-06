@@ -49,7 +49,7 @@
 	if(!anchored)
 		return
 
-/obj/machinery/power/port_gen/on_update_icon()
+/obj/machinery/power/port_gen/update_icon()
 	if(!active)
 		icon_state = initial(icon_state)
 
@@ -413,7 +413,7 @@
 	onclose(user, "port_gen")
 */
 
-/obj/machinery/power/port_gen/pacman/on_update_icon()
+/obj/machinery/power/port_gen/pacman/update_icon()
 	if(active)
 		icon_state = "portgen1"
 	else

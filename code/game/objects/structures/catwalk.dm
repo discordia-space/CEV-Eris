@@ -53,7 +53,7 @@
 		if(!t.flooring.is_plating || istype(t.flooring, /decl/flooring/reinforced/plating/hull)) //Caution stripes go where elevation would change, eg, stepping down onto underplating 
 			return TRUE
 
-/obj/structure/catwalk/on_update_icon()
+/obj/structure/catwalk/update_icon()
 	var/connectdir = 0
 	for(var/direction in cardinal)
 		if(test_connect(get_step(src, direction)))

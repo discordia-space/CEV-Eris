@@ -20,7 +20,7 @@
 	idle_power_usage = 2
 	active_power_usage = 500
 
-/obj/machinery/mindswapper/on_update_icon()
+/obj/machinery/mindswapper/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (operating)

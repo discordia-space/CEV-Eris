@@ -24,7 +24,7 @@
 	if(default_part_replacement(I, user))
 		return
 
-/obj/machinery/excelsior_boombox/on_update_icon()
+/obj/machinery/excelsior_boombox/update_icon()
 	if(!active || (stat & (BROKEN|NOPOWER)))
 		icon_state = initial(icon_state)
 	else

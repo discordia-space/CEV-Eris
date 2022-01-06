@@ -30,7 +30,7 @@
 
 	//spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/gun/projectile/selfload/on_update_icon()
+/obj/item/gun/projectile/selfload/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

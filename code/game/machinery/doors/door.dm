@@ -405,8 +405,8 @@
 	return
 
 
-/obj/machinery/door/on_update_icon()
-	SetIconState("door[density]")
+/obj/machinery/door/update_icon()
+	icon_state = "door[density]"
 	update_openspace()
 
 
@@ -414,20 +414,20 @@
 	switch(animation)
 		if("opening")
 			if(p_open)
-				FLICK("o_doorc0", src)
+				flick("o_doorc0", src)
 			else
-				FLICK("doorc0", src)
+				flick("doorc0", src)
 		if("closing")
 			if(p_open)
-				FLICK("o_doorc1", src)
+				flick("o_doorc1", src)
 			else
-				FLICK("doorc1", src)
+				flick("doorc1", src)
 		if("spark")
 			if(density)
-				FLICK("door_spark", src)
+				flick("door_spark", src)
 		if("deny")
 			if(density && !(stat & (NOPOWER|BROKEN)))
-				FLICK("door_deny", src)
+				flick("door_deny", src)
 				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 0)
 	return
 
@@ -443,7 +443,7 @@
 		f6?.set_opacity(0)
 
 	do_animate("opening")
-	SetIconState("door0")
+	icon_state = "door0"
 	sleep(3)
 	src.density = FALSE
 	update_nearby_tiles()

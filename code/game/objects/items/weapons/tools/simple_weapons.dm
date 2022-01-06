@@ -203,14 +203,14 @@
 	embed_mult = initial(embed_mult)
 	playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
 
-/obj/item/tool/sword/katana/nano/on_update_icon()
+/obj/item/tool/sword/katana/nano/update_icon()
 	..()
 	if(cell)
-		add_overlays("[icon_state]_cell")
+		overlays += "[icon_state]_cell"
 	if(switched_on)
-		add_overlays("[icon_state]_power_on")
+		overlays += "[icon_state]_power_on"
 	else
-		add_overlays("[icon_state]_power_off")
+		overlays += "[icon_state]_power_off"
 
 //Flails
 /obj/item/tool/chainofcommand

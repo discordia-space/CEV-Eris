@@ -152,13 +152,13 @@ var/list/mob_hat_cache = list()
 
 	cut_overlays()
 	if(stat == CONSCIOUS && eyecolor)
-		add_overlays("eyes-drone[eyecolor]")
+		overlays += "eyes-drone[eyecolor]"
 
 	if(armguard)
-		add_overlays("model-[armguard]")
+		overlays += "model-[armguard]"
 
 	if(hat) // Let the drones wear hats.
-		associate_with_overlays(get_hat_icon(hat, hat_x_offset, hat_y_offset))
+		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return
@@ -229,7 +229,7 @@ var/list/mob_hat_cache = list()
 		to_chat(user, SPAN_DANGER("You attempt to subvert [src], but the sequencer has no effect."))
 		return
 
-	to_chat(user, SPAN_DANGER("You swipe the sequencer across [src]'s interface and watch its eyes flicker."))
+	to_chat(user, SPAN_DANGER("You swipe the sequencer across [src]'s interface and watch its eyes flick_light."))
 	to_chat(src, SPAN_DANGER("You feel a sudden burst of malware loaded into your execute-as-root buffer. Your tiny brain methodically parses, loads and executes the script."))
 
 	message_admins("[key_name_admin(user)] emagged drone [key_name_admin(src)].  Laws overridden.")

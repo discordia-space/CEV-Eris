@@ -44,7 +44,7 @@
 	. = ..()
 	if(overlaylist.len)
 		var/icon/temp = new /icon('icons/obj/items.dmi', overlaylist[rand(1,overlaylist.len)])
-		add_overlays(temp)
+		overlays += temp
 	create_reagents(max_water)
 	reagents.add_reagent("water", max_water)
 

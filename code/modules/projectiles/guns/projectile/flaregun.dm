@@ -21,19 +21,19 @@
 	no_internal_mag = TRUE
 	var/bolt_open = FALSE
 
-/obj/item/gun/projectile/flare_gun/on_update_icon()
+/obj/item/gun/projectile/flare_gun/update_icon()
 	..()
 
 	if(bolt_open)
 		if(loaded.len)
-			SetIconState("full_open")
+			icon_state = "full_open"
 		else
-			SetIconState("empty_open")
+			icon_state = "empty_open"
 	else
 		if(loaded.len)
-			SetIconState("full")
+			icon_state = "full"
 		else
-			SetIconState("empty")
+			icon_state = "empty"
 
 /obj/item/gun/projectile/flare_gun/attack_self(mob/user)
 	if(zoom)
@@ -97,16 +97,16 @@
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
 
-/obj/item/gun/projectile/flare_gun/shotgun/on_update_icon()
+/obj/item/gun/projectile/flare_gun/shotgun/update_icon()
 	..()
 
 	if(bolt_open)
 		if(loaded.len)
-			SetIconState("full_open_r")
+			icon_state = "full_open_r"
 		else
-			SetIconState("empty_open_r")
+			icon_state = "empty_open_r"
 	else
 		if(loaded.len)
-			SetIconState("full_r")
+			icon_state = "full_r"
 		else
-			SetIconState("empty_r")
+			icon_state = "empty_r"

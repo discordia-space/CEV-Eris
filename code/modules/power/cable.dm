@@ -594,7 +594,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		return ..()
 
 
-/obj/item/stack/cable_coil/on_update_icon()
+/obj/item/stack/cable_coil/update_icon()
 	if (!color)
 		color = pick(COLOR_RED, COLOR_BLUE, COLOR_LIME, COLOR_ORANGE, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
 	if(amount == 1)

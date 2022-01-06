@@ -44,7 +44,7 @@
 			use_power(500)
 			spawn( 0 )
 				O.throw_at(target, drive_range * power, power)
-	FLICK("mass_driver1", src)
+	flick("mass_driver1", src)
 	return
 
 /obj/machinery/mass_driver/emp_act(severity)

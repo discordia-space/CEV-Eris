@@ -42,9 +42,6 @@
 	var/list/atom_colours
 
 /atom/proc/update_icon()
-	return on_update_icon(arglist(args))
-
-/atom/proc/on_update_icon()
 	return
 
 /atom/New(loc, ...)
