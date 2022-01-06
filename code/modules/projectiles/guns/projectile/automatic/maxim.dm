@@ -42,11 +42,7 @@
 	cut_overlays()
 
 	if(ammo_magazine)
-		if(ammo_magazine.stored_ammo.len)
-			var/obj/item/ammo_casing/AC = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
-			add_overlays("mag-[AC.shell_color]")
-		else
-			add_overlays("mag")
+		add_overlays("mag[ammo_magazine.ammo_label_string]")
 		itemstring += "_full"
 
 	if(wielded)

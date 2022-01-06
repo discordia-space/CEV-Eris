@@ -199,6 +199,8 @@
 	bad_type = /obj/item/ammo_magazine
 
 	var/modular_sprites = TRUE // If icons with colored stripes is present. False for some legacy sprites
+	var/ammo_label // Label on the magazine. Must be a key from ammo_names or null. Received on item spawn and could be changed via hand labeler
+	var/ammo_label_string // "_[ammo_label]". Must be a string or null.
 	var/list/ammo_states = list() // For which non-zero ammo counts we have separate icon states. From smallest to largest value
 	var/list/ammo_names = list(
 		"l" = "lethal",
@@ -227,6 +229,7 @@
 	if(initial_ammo)
 		for(var/i in 1 to initial_ammo)
 			stored_ammo += new ammo_type(src)
+	get_label()
 	update_icon()
 
 /obj/item/ammo_magazine/attackby(obj/item/W as obj, mob/user as mob)
@@ -406,6 +409,29 @@
 		C.set_dir(pick(cardinal))
 	update_icon()
 
+/obj/item/ammo_magazine/proc/get_label(value)
+	ammo_label = null
+	if(!modular_sprites)
+		return
+
+	if(value)
+		ammo_label = value
+	else
+		if(stored_ammo.len)
+			var/obj/item/ammo_casing/AC = stored_ammo[stored_ammo.len]
+			if(AC && AC.shell_color)
+				ammo_label = AC.shell_color
+
+	if(ammo_label)
+		var/magazine_name = replacetext(initial(name), ")", " ")
+		var/ammo_name = ammo_names[ammo_label]
+		name = "[magazine_name][ammo_name])"
+		ammo_label_string = "_[ammo_label]"
+	else
+		name = initial(name)
+		ammo_label_string = null
+	return
+
 /obj/item/ammo_magazine/on_update_icon()
 	// First inserted casing will define the look and the name of the magazine
 	// Ammo boxes keep their original color and name regardless of what ammo is inside
@@ -418,20 +444,8 @@
 			if(stored_ammo.len <= ammo_states[i])
 				ammo_count = ammo_states[i]
 				break
-		var/obj/item/ammo_casing/AC = stored_ammo[stored_ammo.len]
-		if(istype(src, /obj/item/ammo_magazine/ammobox))
-			icon_state = "[initial(icon_state)]-[ammo_count]" // E.g. "clrifle_hv-60"
-		else if(AC && AC.shell_color && modular_sprites)
-			icon_state = "[initial(icon_state)]_[AC.shell_color]-[ammo_count]" // E.g. "ihclrifle_hv-30"
-			var/magazine_name = replacetext(initial(name), ")", " ")
-			var/ammo_name = ammo_names[AC.shell_color]
-			name = "[magazine_name][ammo_name])"
-		else
-			icon_state = "[initial(icon_state)]-[ammo_count]" // E.g. "ihclrifle-30"
-			name = initial(name)
-	else
-		icon_state = "[initial(icon_state)]-[ammo_count]" // E.g. "ihclrifle-0"
-		name = initial(name)
+
+	icon_state = "[initial(icon_state)][ammo_label_string]-[ammo_count]"
 
 /obj/item/ammo_magazine/examine(mob/user)
 	..()

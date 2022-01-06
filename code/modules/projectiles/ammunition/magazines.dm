@@ -423,7 +423,6 @@
 	ammo_type = /obj/item/ammo_casing/srifle
 	max_ammo = 5
 	w_class = ITEM_SIZE_TINY
-	// No ammo_states, this one have nicer sprite handling
 
 /obj/item/ammo_magazine/slsrifle/on_update_icon()
 	cut_overlays()
@@ -505,12 +504,8 @@
 	cut_overlays()
 
 	if(stored_ammo.len)
-		var/obj/item/ammo_casing/FS = stored_ammo[stored_ammo.len]
 		var/obj/item/ammo_casing/LS = stored_ammo[1]
-		icon_state = "[initial(icon_state)]_[FS.shell_color]" // First shell defines the drum marking and name
 		overlays += "m12_shell_[LS.shell_color]" // Last shell is sticking out
-	else
-		icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/m12/Initialize()
 	. = ..()

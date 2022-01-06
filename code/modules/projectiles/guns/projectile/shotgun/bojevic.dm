@@ -39,11 +39,7 @@
 		itemstring += "_doble"
 
 	if(ammo_magazine)
-		if(ammo_magazine.stored_ammo.len)
-			var/obj/item/ammo_casing/AC = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
-			add_overlays("m12-[AC.shell_color]")
-		else
-			add_overlays("m12")
+		add_overlays("m12[ammo_magazine.ammo_label_string]")
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
