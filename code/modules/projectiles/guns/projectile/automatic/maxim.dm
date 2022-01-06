@@ -42,7 +42,7 @@
 	cut_overlays()
 
 	if(ammo_magazine)
-		add_overlays("mag[ammo_magazine.ammo_label_string]")
+		iconstring += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_full"
 
 	if(wielded)
