@@ -21,14 +21,14 @@
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MATERIAL_GLASS = 3)
+	matter = list(MATERIAL_GLASS = 6)
 
 /obj/item/stock_parts/capacitor
 	name = "capacitor"
 	desc = "A basic capacitor used in the construction of a variety of devices."
 	icon_state = "capacitor"
 	origin_tech = list(TECH_POWER = 1)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 2)
 	rarity_value = 15
 
 /obj/item/stock_parts/scanning_module
@@ -36,28 +36,28 @@
 	desc = "A compact, high resolution scanning module used in the construction of certain devices."
 	icon_state = "scan_module"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4)
 
 /obj/item/stock_parts/manipulator
 	name = "micro-manipulator"
 	desc = "A tiny little manipulator used in the construction of certain devices."
 	icon_state = "micro_mani"
 	origin_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 
 /obj/item/stock_parts/micro_laser
 	name = "micro-laser"
 	desc = "A tiny laser used in certain devices."
 	icon_state = "micro_laser"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 6)
 
 /obj/item/stock_parts/matter_bin
 	name = "matter bin"
 	desc = "A container for hold compressed matter awaiting re-construction."
 	icon_state = "matter_bin"
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
 	rarity_value = 9
 
 //Rank 2
@@ -68,7 +68,7 @@
 	icon_state = "adv_capacitor"
 	origin_tech = list(TECH_POWER = 3)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 2, MATERIAL_GOLD = 2)
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/stock_parts/scanning_module/adv
@@ -77,7 +77,7 @@
 	icon_state = "adv_scan_module"
 	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_PLASMA = 2)
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/stock_parts/manipulator/nano
@@ -86,7 +86,7 @@
 	icon_state = "nano_mani"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4)
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/stock_parts/micro_laser/high
@@ -95,7 +95,7 @@
 	icon_state = "high_micro_laser"
 	origin_tech = list(TECH_MAGNET = 3)
 	rating = 2
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 6, MATERIAL_SILVER = 2)
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 /obj/item/stock_parts/matter_bin/adv
@@ -104,7 +104,7 @@
 	icon_state = "advanced_matter_bin"
 	origin_tech = list(TECH_MATERIAL = 3)
 	rating = 2
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_TIER_2
 
 //Rating 3
@@ -115,7 +115,7 @@
 	icon_state = "super_capacitor"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 2, MATERIAL_DIAMOND = 2)
 
 /obj/item/stock_parts/scanning_module/phasic
 	name = "phasic scanning module"
@@ -123,7 +123,7 @@
 	icon_state = "super_scan_module"
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 4, MATERIAL_PLASMAGLASS = 4, MATERIAL_PLASMA = 2)
 
 /obj/item/stock_parts/manipulator/pico
 	name = "pico-manipulator"
@@ -131,7 +131,7 @@
 	icon_state = "pico_mani"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_URANIUM = 2, MATERIAL_SILVER = 2)
 
 /obj/item/stock_parts/micro_laser/ultra
 	name = "ultra-high-power micro-laser"
@@ -139,7 +139,7 @@
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 3
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 4, MATERIAL_PLASMAGLASS = 6, MATERIAL_SILVER = 4, MATERIAL_PLASMA = 4)
 
 /obj/item/stock_parts/matter_bin/super
 	name = "super matter bin"
@@ -147,7 +147,7 @@
 	icon_state = "super_matter_bin"
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 3
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASMA = 4, MATERIAL_PLASTIC = 4)
 
 
 //excelsior stock parts (rating 4)
@@ -157,7 +157,7 @@
 	icon_state = "excel_capacitor"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 4
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_SILVER = 4, MATERIAL_GLASS = 4)
 	spawn_blacklisted = TRUE
 
 /obj/item/stock_parts/scanning_module/excelsior
@@ -166,7 +166,7 @@
 	icon_state = "excel_scan_module"
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 4
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASMA = 2, MATERIAL_GLASS = 4)
 	spawn_blacklisted = TRUE
 
 /obj/item/stock_parts/manipulator/excelsior
@@ -175,7 +175,7 @@
 	icon_state = "excel_mani"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 4
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 10, MATERIAL_GLASS = 8, MATERIAL_SILVER = 4)
 	spawn_blacklisted = TRUE
 
 /obj/item/stock_parts/micro_laser/excelsior
@@ -184,7 +184,7 @@
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 4
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 8, MATERIAL_GOLD = 4)
 	spawn_blacklisted = TRUE
 
 /obj/item/stock_parts/matter_bin/excelsior
@@ -193,7 +193,7 @@
 	icon_state = "excel_matter"
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 4
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 6, MATERIAL_WOOD = 4)
 	spawn_blacklisted = TRUE
 
 //one star stock parts (rating 5)
@@ -204,7 +204,7 @@
 	icon_state = "one_capacitor"
 	origin_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_PLATINUM = 4, MATERIAL_GLASS = 2, MATERIAL_DIAMOND = 4)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -214,7 +214,7 @@
 	icon_state = "one_scan_module"
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_GOLD = 4, MATERIAL_PLASTIC = 4, MATERIAL_PLASMAGLASS = 8, MATERIAL_URANIUM = 4)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -224,7 +224,7 @@
 	icon_state = "one_mani"
 	origin_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 6, MATERIAL_PLASTIC = 2, MATERIAL_TITANIUM = 6, MATERIAL_SILVER = 4)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -234,7 +234,7 @@
 	desc = "A tiny laser used in certain devices."
 	origin_tech = list(TECH_MAGNET = 5)
 	rating = 5
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 6, MATERIAL_PLASMAGLASS = 6, MATERIAL_SILVER = 4, MATERIAL_URANIUM = 4)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
@@ -244,7 +244,7 @@
 	icon_state = "one_matter"
 	origin_tech = list(TECH_MATERIAL = 5)
 	rating = 5
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_TITANIUM = 12, MATERIAL_PLASTIC = 6, MATERIAL_PLASMA = 2)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_STOCK_PARTS_OS
 
