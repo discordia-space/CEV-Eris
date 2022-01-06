@@ -29,7 +29,7 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0, strength=1)
 	for(var/mob/M in range(heavy_range, epicenter))
 		M << 'sound/effects/EMPulse.ogg'
 
-	var/effect = max(strength,0)
+	var/effect = max(strength, 0)
 
 	for(var/atom/T in range(light_range, epicenter))
 		#ifdef EMPDEBUG
