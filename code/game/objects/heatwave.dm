@@ -21,7 +21,7 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 			T.fire_act()
 		if(istype(T, /mob/living))
 			var/mob/living/L = T
-			L << 'sound/effects/gore/sear.ogg' // How do I replace this
+			playsound(L, 'sound/effects/gore/sear.ogg', 40, 1)
 
 			var/burn_damage = 0
 
