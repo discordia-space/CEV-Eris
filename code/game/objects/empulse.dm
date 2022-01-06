@@ -46,7 +46,7 @@ proc/empulse(turf/epicenter, heavy_range, light_range, log=0, strength=1)
 			else
 				T.emp_act(effect + 1)
 		else if(distance <= light_range)
-			T.emp_act(effect+1)
+			T.emp_act(effect + 1)
 		#ifdef EMPDEBUG
 		if((world.timeofday - time) >= EMPDEBUG)
 			log_and_message_admins("EMPDEBUG: [T.name] - [T.type] - took [world.timeofday - time]ds to process emp_act()!")
