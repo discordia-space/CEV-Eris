@@ -339,6 +339,11 @@
 	var/color = pick(icon_states)
 	icon_state = icon_states[color]
 
+/obj/item/clothing/head/space/void/science/emag_act(remaining_charges, mob/user, emag_source)
+	icon_state = "moebiushelmcaramel"
+	update_wear_icon()
+	usr.update_action_buttons()
+
 /obj/item/clothing/suit/space/void/science
 	name = "Moebius combat voidsuit"
 	icon_state = "moebiussuit"
