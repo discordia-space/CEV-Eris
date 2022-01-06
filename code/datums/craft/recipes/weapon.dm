@@ -315,12 +315,12 @@
 	steps = list(
 		list(/obj/item/cell/medium/high, 1),
 		list(QUALITY_SAWING, 10),
-		list(QUALITY_DRILLING, 10, "time" = 40),
+		list(QUALITY_DRILLING, 5, "time" = 40),
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, "time" = 30),
 		list(CRAFT_MATERIAL, 2, MATERIAL_PLASMA), //similary to the makeshift landmine, as explosive, frags come from the shell itself
 		list(QUALITY_WELDING, 10, "time" = 30),
-		list(QUALITY_DRILLING, 10, "time" = 40),
+		list(QUALITY_DRILLING, 5, "time" = 40),
 		list(/obj/item/device/assembly/igniter, 1),
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 30),
 		list(/obj/item/stack/cable_coil, 5),
