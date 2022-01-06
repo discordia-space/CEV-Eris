@@ -319,7 +319,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	return ..()
 
 
-/obj/item/device/pda/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/pda/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	ui_tick++
 	var/datum/nanoui/old_ui = SSnano.get_open_ui(user, src, "main")
 	var/auto_update = 1
@@ -522,7 +522,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(active_uplink_check(user))
 		return
 
-	ui_interact(user) //NanoUI requires this proc
+	nano_ui_interact(user) //NanoUI requires this proc
 	return
 
 /obj/item/device/pda/Topic(href, href_list)

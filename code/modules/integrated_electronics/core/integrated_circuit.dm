@@ -190,15 +190,15 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		displayed_name = input
 
 /obj/item/integrated_circuit/interact(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/item/integrated_circuit/ui_interact(mob/user)
+/obj/item/integrated_circuit/nano_ui_interact(mob/user)
 	. = ..()
 	if(!check_interactivity(user))
 		return
 
 	if(assembly)
-		assembly.ui_interact(user, src)
+		assembly.nano_ui_interact(user, src)
 		return
 
 	var/table_edge_width = "30%"

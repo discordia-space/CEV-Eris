@@ -90,9 +90,9 @@
 		to_chat(user, "NOTE: overmap generation is disabled in server configuration.")
 		to_chat(user, "To use overmap, make sure that \"config.txt\" file is present in the server config folder and \"USE_OVERMAP\" is uncommented.")
 
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/helm/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 
@@ -244,7 +244,7 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 
-/obj/machinery/computer/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/navigation/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	if(!linked)
 		return
 
@@ -300,7 +300,7 @@
 		user.reset_view(linked)
 		user.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
 
-	ui_interact(user)
+	nano_ui_interact(user)
 
 /obj/machinery/computer/navigation/Topic(href, href_list)
 	if(..())
