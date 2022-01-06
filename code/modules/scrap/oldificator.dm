@@ -62,6 +62,13 @@
 	else
 		. = ..()
 
+/obj/item/computer_hardware/hard_drive/make_young()
+	.=..()
+	stored_files = list()
+
+/obj/item/computer_hardware/hard_drive/portable/design/make_young()
+	.=..()
+	license = min(license, 0)
 
 /obj/proc/make_old(low_quality_oldification)	//low_quality_oldification changes names and colors to fit with "bad prints" instead of "very old items" asthetic
 	GET_COMPONENT(oldified, /datum/component/oldficator)
