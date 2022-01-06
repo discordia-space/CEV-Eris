@@ -31,7 +31,7 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 			if(distance <= heavy_range)
 				burn_damage = damage
 			else if(distance <= light_range)
-				burn_damage = damage*0.5
+				burn_damage = damage * 0.5
 
 			if(burn_damage && L.stat == CONSCIOUS)
 				to_chat(L, SPAN_WARNING("You feel your skin boiling!"))
