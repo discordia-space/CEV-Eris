@@ -9,13 +9,9 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 		log_game("Heatwave with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
 
 	if(heavy_range > 1)
-		var/obj/effect/overlay/heatwave = new(epicenter)
-		heatwave.icon = 'icons/effects/effects.dmi'
-		heatwave.icon_state = "sparks"
-		heatwave.name = "heatwave"
-		heatwave.anchored = TRUE
+		var/obj/effect/overlay/pulse/heatwave/HW = new(epicenter)
 		spawn(20)
-			qdel(heatwave)
+			qdel(HW)
 
 	if(heavy_range > light_range)
 		light_range = heavy_range
