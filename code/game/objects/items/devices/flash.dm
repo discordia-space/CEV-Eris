@@ -92,7 +92,7 @@
 		else
 			robo.Weaken(rand(5,10))
 			if (robo.HUDtech.Find("flash"))
-				FLICK("e_flash", robo.HUDtech["flash"])
+				flick("e_flash", robo.HUDtech["flash"])
 	else
 		flashfail = TRUE
 
