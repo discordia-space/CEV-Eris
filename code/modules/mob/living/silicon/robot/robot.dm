@@ -101,10 +101,10 @@
 	)
 
 /mob/living/silicon/robot/proc/AddTrait(trait_type)
-	if(!(robot_traits & trait_type))
-		robot_traits |= trait_type
-		return TRUE
-	return FALSE
+	if(robot_traits & trait_type)
+		return FALSE
+	robot_traits |= trait_type
+	return TRUE
 
 /mob/living/silicon/robot/proc/HasTrait(trait_type)
 	if(robot_traits & trait_type)
@@ -116,6 +116,20 @@
 		robot_traits &= ~trait_type
 		return TRUE
 	return FALSE
+
+/mob/living/silicon/robot/proc/AddTraitsFromParts()
+	for(var/datum/robot_component/comp in components)
+		if(comp.robot_trait)
+			AddTrait(comp.robot_trait)
+
+/mob/living/silicon/robot/proc/RemoveTraitsFromParts()
+	for(var/datum/robot_component/comp in components)
+		if(comp.robot_trait)
+			RemoveTrait(comp.robot_trait)
+
+/mob/living/silicon/robot/proc/UpdateTraitsFromParts()
+	RemoveTraitsFromParts()
+	AddTraitsFromParts()
 
 /mob/living/silicon/robot/New(loc,var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()

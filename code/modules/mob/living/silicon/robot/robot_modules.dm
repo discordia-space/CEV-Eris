@@ -48,6 +48,7 @@ var/global/list/robot_modules = list(
 	var/obj/item/borg/upgrade/jetpack
 	var/list/subsystems = list()
 	var/list/obj/item/borg/upgrade/supported_upgrades = list()
+	var/robot_traits = null
 
 	// Bookkeeping
 	var/list/original_languages = list()
@@ -74,6 +75,9 @@ var/global/list/robot_modules = list(
 		return
 
 	R.module = src
+
+	if(robot_traits)
+		R.AddTrait(robot_traits)
 
 	add_camera_networks(R)
 	add_languages(R)
@@ -120,6 +124,8 @@ var/global/list/robot_modules = list(
 	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
 /obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
+	if(robot_traits)
+		R.RemoveTrait(robot_traits)
 	remove_camera_networks(R)
 	remove_languages(R)
 	remove_subsystems(R)
@@ -674,6 +680,7 @@ var/global/list/robot_modules = list(
 	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
 	heavily armored, though lightly armed battle unit."
 
+	robot_traits = CYBORG_TRAIT_FLASH_RESISTANT
 	stat_modifiers = list(
 		STAT_ROB = 30,
 		STAT_TGH = 20
@@ -739,13 +746,14 @@ var/global/list/robot_modules = list(
 		STAT_ROB = 20
 	)
 
+	robot_traits = CYBORG_TRAIT_CLEANING_WALK
+
 	desc = "A vast machine designed for cleaning up trash and scrubbing floors. A fairly specialised task, \
 	but requiring a large capacity. The huge chassis consequentially grants it a degree of toughness, \
 	though it is slow and cheaply made"
 
 
 /obj/item/robot_module/custodial/New(var/mob/living/silicon/robot/R)
-	R.AddTrait(CYBORG_TRAIT_CLEANING_WALK)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	src.modules += new /obj/item/device/flash(src)
 	src.modules += new /obj/item/gripper/service(src)
