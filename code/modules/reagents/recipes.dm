@@ -673,7 +673,7 @@
 						continue
 
 				if (M.HUDtech.Find("flash"))
-					FLICK("e_flash", M.HUDtech["flash"])
+					flick("e_flash", M.HUDtech["flash"])
 				M.Weaken(15)
 
 			if(4 to 5)
@@ -682,7 +682,7 @@
 						continue
 
 				if (M.HUDtech.Find("flash"))
-					FLICK("e_flash", M.HUDtech["flash"])
+					flick("e_flash", M.HUDtech["flash"])
 				M.Stun(5)
 
 /datum/chemical_reaction/emp_pulse
@@ -1085,7 +1085,7 @@
 	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+				flick("e_flash", M.HUDtech["flash"])
 
 	for(var/i = 1, i <= 4 + rand(1,2), i++)
 		var/chosen = pick(borks)

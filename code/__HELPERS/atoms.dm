@@ -22,9 +22,9 @@
 	ASSERT(overlay)
 
 	if(istext(overlay))
-		add_overlays(image(icon,icon_state = overlay))
+		overlays.Add(image(icon,icon_state = overlay))
 	else
-		add_overlays(overlay)
+		overlays.Add(overlay)
 
 /atom/proc/in_maintenance()
 	var/area/A = get_area(src)

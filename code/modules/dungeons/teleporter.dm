@@ -8,7 +8,7 @@
 	var/charging = FALSE
 	var/charge = 0
 	var/charge_max = 50
-	var/flickering = 0
+	var/flick_lighting = 0
 	var/ticks_before_next_summon = 2
 	var/mobgenlist = list(
 		/mob/living/simple_animal/hostile/bear,
@@ -38,7 +38,7 @@
 		else
 			to_chat(user, "Nothing seems to happen.")
 	else if(charging)
-		if(flickering)
+		if(flick_lighting)
 			to_chat(user, "The portal looks too unstable to pass through!")
 		else
 			to_chat(user, "The teleporter needs time to charge.")
@@ -128,28 +128,28 @@
 	qdel(src)
 
 
-/obj/rogue/teleporter/on_update_icon()
-	cut_overlays()
+/obj/rogue/teleporter/update_icon()
+	overlays.Cut()
 
 	if(charging && charge < 10)
-		add_overlays(image(icon, icon_state = "charging_1"))
+		overlays.Add(image(icon, icon_state = "charging_1"))
 		return
 
 	if(charging & charge < 25)
-		add_overlays(image(icon, icon_state = "charging_2"))
+		overlays.Add(image(icon, icon_state = "charging_2"))
 		return
 
 	if(charging & charge < charge_max)
-		add_overlays(image(icon, icon_state = "charging_3"))
+		overlays.Add(image(icon, icon_state = "charging_3"))
 		return
 
 	if(charge >= charge_max)
-		add_overlays(image(icon, icon_state = "charged_portal"))
-		add_overlays(image(icon, icon_state = "beam"))
+		overlays.Add(image(icon, icon_state = "charged_portal"))
+		overlays.Add(image(icon, icon_state = "beam"))
 		return
 
 /obj/rogue/teleporter/proc/portal_burst()
-	add_overlays(image(icon, icon_state = "portal_on"))
+	overlays.Add(image(icon, icon_state = "portal_on"))
 	visible_message("A shimmering portal appears!")
 	sleep(100)
 	update_icon()
@@ -160,13 +160,13 @@
 				A.stasis = FALSE
 				A.activate_ai()
 
-	add_overlays(image(icon, icon_state = "portal_failing"))
-	visible_message("The portal starts flickering!")
-	flickering = 1
+	overlays.Add(image(icon, icon_state = "portal_failing"))
+	visible_message("The portal starts flick_lighting!")
+	flick_lighting = 1
 	sleep(100)
 	update_icon()
 
-	add_overlays(image(icon, icon_state = "portal_pop"))
+	overlays.Add(image(icon, icon_state = "portal_pop"))
 	visible_message("The portal bursts!")
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
@@ -186,14 +186,14 @@
 				return
 			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
 				if (O.HUDtech.Find("flash"))
-					FLICK("e_flash", O.HUDtech["flash"])
+					flick("e_flash", O.HUDtech["flash"])
 
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
 				if (O.HUDtech.Find("flash"))
-					FLICK("flash", O.HUDtech["flash"])
+					flick("flash", O.HUDtech["flash"])
 		O.Weaken(flash_time)
 
 		sleep(1)
@@ -236,7 +236,7 @@
 
 		for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
 			victims_to_teleport += R
-			
+
 		for(var/obj/structure/closet/C in range(8, src))//Clostes as well, for transport and storage
 			victims_to_teleport += C
 		for(var/atom/movable/M in victims_to_teleport)

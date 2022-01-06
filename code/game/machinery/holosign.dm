@@ -32,7 +32,7 @@
 	use_power = lit ? 2 : 1
 	update_icon()
 
-/obj/machinery/holosign/on_update_icon()
+/obj/machinery/holosign/update_icon()
 	if (!lit)
 		icon_state = "sign_off"
 	else

@@ -30,7 +30,7 @@
 		SEMI_AUTO_NODELAY
 		)
 
-/obj/item/gun/projectile/shotgun/bojevic/on_update_icon()
+/obj/item/gun/projectile/shotgun/bojevic/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -43,11 +43,11 @@
 		itemstring += "_doble"
 
 	if(ammo_magazine)
-		add_overlays("m12[ammo_magazine.ammo_color]")
+		overlays += "m12[ammo_magazine.ammo_color]"
 		itemstring += "_mag"
 
 	if(!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		add_overlays("slide")
+		overlays += "slide"
 
 	icon_state = iconstring
 	set_item_state(itemstring)

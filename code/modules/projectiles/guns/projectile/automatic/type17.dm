@@ -32,7 +32,7 @@
 
     gun_tags = list(GUN_SILENCABLE)
 
-/obj/item/gun/projectile/automatic/type_17/on_update_icon()
+/obj/item/gun/projectile/automatic/type_17/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

@@ -150,7 +150,7 @@
 		return FALSE
 
 	if(surge && !emagged)
-		FLICK("apc-spark", src)
+		flick("apc-spark", src)
 		emagged = TRUE
 		locked = FALSE
 		update_icon()
@@ -273,7 +273,7 @@
 
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
-/obj/machinery/power/apc/on_update_icon()
+/obj/machinery/power/apc/update_icon()
 	if (!status_overlays)
 		status_overlays = 1
 		status_overlays_lock = new
@@ -352,19 +352,19 @@
 
 	if(!(update_state & UPDATE_ALLGOOD))
 		if(overlays.len)
-			set_overlays(0)
+			overlays = 0
 			return
 
 	if(update > 1)
 		if(overlays.len)
 			overlays.len = 0
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
-			add_overlays(status_overlays_lock[locked+1])
-			add_overlays(status_overlays_charging[charging+1])
+			overlays += status_overlays_lock[locked+1]
+			overlays += status_overlays_charging[charging+1]
 			if(operating)
-				add_overlays(status_overlays_equipment[equipment+1])
-				add_overlays(status_overlays_lighting[lighting+1])
-				add_overlays(status_overlays_environ[environ+1])
+				overlays += status_overlays_equipment[equipment+1]
+				overlays += status_overlays_lighting[lighting+1]
+				overlays += status_overlays_environ[environ+1]
 
 
 /obj/machinery/power/apc/proc/check_updates()
@@ -709,7 +709,7 @@
 		else if(stat & (BROKEN|MAINT))
 			to_chat(user, "Nothing happens.")
 		else
-			FLICK("apc-spark", src)
+			flick("apc-spark", src)
 			if (do_after(user,6,src))
 				if(prob(50))
 					emagged = TRUE
@@ -1261,7 +1261,7 @@ obj/machinery/power/apc/proc/autoset(var/val, var/on)
 
 /obj/machinery/power/apc/proc/set_broken()
 	// Aesthetically much better!
-	visible_message(SPAN_NOTICE("[src]'s screen flickers with warnings briefly!"))
+	visible_message(SPAN_NOTICE("[src]'s screen flick_lights with warnings briefly!"))
 	spawn(rand(2,5))
 		visible_message(SPAN_NOTICE("[src]'s screen suddenly explodes in rain of sparks and small debris!"))
 		stat |= BROKEN

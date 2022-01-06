@@ -20,9 +20,9 @@
 	open = 1
 	icon_state = "map_valve1"
 
-/obj/machinery/atmospherics/valve/on_update_icon(animation)
+/obj/machinery/atmospherics/valve/update_icon(animation)
 	if(animation)
-		FLICK("valve[src.open][!src.open]", src)
+		flick("valve[src.open][!src.open]", src)
 	else
 		icon_state = "valve[open]"
 
@@ -253,7 +253,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/valve/digital/on_update_icon()
+/obj/machinery/atmospherics/valve/digital/update_icon()
 	..()
 	if(!powered())
 		icon_state = "valve[open]nopower"

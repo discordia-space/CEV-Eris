@@ -27,7 +27,7 @@
 
 	spawn_blacklisted = TRUE
 
-/obj/item/gun/projectile/type_47/on_update_icon()
+/obj/item/gun/projectile/type_47/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

@@ -79,7 +79,7 @@
 
 	spawn_tags = SPAWN_TAG_FS_ENERGY
 
-/obj/item/gun/energy/plasma/cassad/on_update_icon()
+/obj/item/gun/energy/plasma/cassad/update_icon()
 	..()
 	set_item_state(null, back = TRUE)
 
@@ -101,7 +101,7 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 8, MATERIAL_PLASMA = 2, MATERIAL_SILVER = 3, MATERIAL_URANIUM = 3)
 	init_firemodes = list()
 
-/obj/item/gun/energy/plasma/brigador/on_update_icon()
+/obj/item/gun/energy/plasma/brigador/update_icon()
 	cut_overlays()
 	..()
 	overlays.Cut()

@@ -21,7 +21,7 @@
 	recoil_buildup = 2
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/gun/projectile/giskard/on_update_icon()
+/obj/item/gun/projectile/giskard/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
