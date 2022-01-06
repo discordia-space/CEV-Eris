@@ -5,8 +5,8 @@ proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, pen
 		epicenter = get_turf(epicenter.loc)
 
 	if(log)
-		message_admins("Heatwave with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
-		log_game("Heatwave with size ([heavy_range], [light_range]) in area [epicenter.loc.name] ")
+		message_admins("Heatwave with size ([heavy_range], [light_range]) in area [epicenter.loc.name]")
+		log_game("Heatwave with size ([heavy_range], [light_range]) in area [epicenter.loc.name]")
 
 	if(heavy_range > 1)
 		var/obj/effect/overlay/pulse/heatwave/HW = new(epicenter)
