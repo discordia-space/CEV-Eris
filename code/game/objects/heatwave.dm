@@ -1,4 +1,4 @@
-proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, penetration, log=0)
+proc/heatwave(turf/epicenter, heavy_range, light_range, damage, fire_stacks, penetration, log=FALSE)
 	if(!epicenter) return
 
 	if(!istype(epicenter, /turf))
