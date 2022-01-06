@@ -38,7 +38,7 @@
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if (IU)
 			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
-			visible_message(SPAN_NOTICE("[toremove] detaches from [src]."))
+			visible_message(SPAN_NOTICE("\The [toremove] detaches from \the [src]."))
 			. = TRUE
 
 	refresh_upgrades()
@@ -53,7 +53,7 @@
 		var/datum/component/item_upgrade/IU = toremove.GetComponent(/datum/component/item_upgrade)
 		if (IU)
 			SEND_SIGNAL(toremove, COMSIG_REMOVE, src)
-			visible_message(SPAN_NOTICE("[toremove] detaches from [src]."))
+			visible_message(SPAN_NOTICE("\The [toremove] detaches from \the [src]."))
 			. = TRUE
 
 	refresh_upgrades()
