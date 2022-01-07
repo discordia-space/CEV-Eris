@@ -173,7 +173,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
 				BadBoy.flags |= SS_NO_FIRE
 		if(msg)
-			to_chat(GLOB.admins, span_boldannounce("[msg]"))
+			to_chat(admins, span_boldannounce("[msg]"))
 			log_world(msg)
 
 	if (istype(Master.subsystems))
@@ -291,8 +291,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		var/ss_runlevels = SS.runlevels
 		var/added_to_any = FALSE
-		for(var/I in 1 to GLOB.bitflags.len)
-			if(ss_runlevels & GLOB.bitflags[I])
+		for(var/I in 1 to bitflags.len)
+			if(ss_runlevels & bitflags[I])
 				while(runlevel_sorted_subsystems.len < I)
 					runlevel_sorted_subsystems += list(list())
 				runlevel_sorted_subsystems[I] += SS

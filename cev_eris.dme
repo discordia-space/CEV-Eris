@@ -74,6 +74,7 @@
 #include "code\__DEFINES\topic.dm"
 #include "code\__DEFINES\trade.dm"
 #include "code\__DEFINES\turfs.dm"
+#include "code\__DEFINES\typeids.dm"
 #include "code\__DEFINES\weapons.dm"
 #include "code\__DEFINES\ZAS.dm"
 #include "code\__DEFINES\spawner\_spawner.dm"
