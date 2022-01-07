@@ -1,0 +1,10 @@
+author: Pink-Chink
+delete-after: true
+changes:
+  - code_imp: added new functionality for trade stations, trade subsystem, and trade
+      program to allow multiple offers per station, secret inventories, a reputation-like
+      system for unlocking secret inventories, and stock replenishment
+  - rscadd: secret inventories and offers to the starting traders and Dionis
+  - rscadd: hypospray and full material sheet stack presets
+  - tweak: adjusted some station inventories for balance and to minimize overlap
+  - tweak: trade station grammar and style changes
