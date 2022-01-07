@@ -66,7 +66,9 @@ var/global/list/modifications_types = list(
 	if(department_specific.len)
 		if(H && H.mind)
 			var/department = H.mind.assigned_job.department
-			if(!department || !department_specific.Find(department))
+			if(!department)
+				return FALSE
+			else if(!department_specific.Find(department))
 				to_chat(usr, "This body-mod does not match your chosen department.")
 				return FALSE
 		else if(P)
