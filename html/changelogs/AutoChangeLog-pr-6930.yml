@@ -1,0 +1,5 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - rscadd: AoE EMP firemode on the cassad and purger
+  - balance: rebalanced plasma weapon firemodes and projectiles
