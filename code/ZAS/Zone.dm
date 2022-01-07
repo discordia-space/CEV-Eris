@@ -41,12 +41,12 @@ Class Procs:
 
 
 /zone/var/name
-/zone/var/invalid = 0
+/zone/var/invalid = FALSE
 /zone/var/list/contents = list()
 /zone/var/list/fire_tiles = list()
 /zone/var/list/fuel_objs = list()
 
-/zone/var/needs_update = 0
+/zone/var/needs_update = FALSE
 
 /zone/var/list/edges = list()
 
@@ -54,6 +54,7 @@ Class Procs:
 
 /zone/var/list/graphic_add = list()
 /zone/var/list/graphic_remove = list()
+
 
 /zone/New()
 	SSair.add_zone(src)
@@ -121,8 +122,9 @@ Class Procs:
 			SSair.mark_for_update(T)
 
 /zone/proc/c_invalidate()
-	invalid = 1
+	invalid = TRUE
 	SSair.remove_zone(src)
+	SEND_SIGNAL(src, COMSIG_ZAS_DELETE, TRUE)
 	#ifdef ZASDBG
 	for(var/turf/simulated/T in contents)
 		T.dbg(invalid_zone)
@@ -161,11 +163,13 @@ Class Procs:
 		if(E.sleeping)
 			E.recheck()
 
+	SEND_SIGNAL(src, COMSIG_ZAS_TICK, src)
+
 /zone/proc/dbg_data(mob/M)
 	to_chat(M, name)
 	for(var/g in air.gas)
 		to_chat(M, "[gas_data.name[g]]: [air.gas[g]]")
-	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]°K ([air.temperature - T0C]°C)")
+	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]ï¿½K ([air.temperature - T0C]ï¿½C)")
 	to_chat(M, "O2 per N2: [(air.gas["nitrogen"] ? air.gas["oxygen"]/air.gas["nitrogen"] : "N/A")] Moles: [air.total_moles]")
 	to_chat(M, "Simulated: [contents.len] ([air.group_multiplier])")
 	//M << "Unsimulated: [unsimulated_contents.len]"

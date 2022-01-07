@@ -304,9 +304,9 @@
 // if NOPOWER, display blank
 // if BROKEN, display blue screen of death icon AI uses
 // if timing=true, run update display function
-/obj/machinery/door_timer/on_update_icon()
+/obj/machinery/door_timer/update_icon()
 	if(stat & (NOPOWER))
-		SetIconState("frame")
+		icon_state = "frame"
 		return
 	if(stat & (BROKEN))
 		set_picture("ai_bsod")
@@ -326,8 +326,8 @@
 // Adds an icon in case the screen is broken/off, stolen from status_display.dm
 /obj/machinery/door_timer/proc/set_picture(var/state)
 	picture_state = state
-	cut_overlays()
-	add_overlays(image('icons/obj/status_display.dmi', icon_state=picture_state))
+	overlays.Cut()
+	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
 
 
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
@@ -351,7 +351,7 @@
 		var/image/ID = image('icons/obj/status_display.dmi', icon_state=char)
 		ID.pixel_x = -(d-1)*5 + px
 		ID.pixel_y = py
-		I.overlays.Add(ID)
+		I.overlays += ID
 	return I
 
 #undef FONT_SIZE

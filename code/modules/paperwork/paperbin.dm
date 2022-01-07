@@ -109,7 +109,7 @@ obj/item/paper_bin/MouseDrop(over_object)
 	return
 
 
-/obj/item/paper_bin/on_update_icon()
+/obj/item/paper_bin/update_icon()
 	if (amount < 1)
 		icon_state = "paper_bin0"
 	else

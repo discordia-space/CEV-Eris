@@ -28,7 +28,7 @@
 		update_icon()
 
 // Updates icon of this computer according to current status.
-/obj/machinery/computer/power_monitor/on_update_icon()
+/obj/machinery/computer/power_monitor/update_icon()
 	..()
 
 	if(stat & BROKEN)

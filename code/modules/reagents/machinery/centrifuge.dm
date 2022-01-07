@@ -35,7 +35,7 @@
 	QDEL_LIST(separationBeakers)
 	return ..()
 
-/obj/machinery/centrifuge/on_update_icon()
+/obj/machinery/centrifuge/update_icon()
 	if(stat & BROKEN)
 		icon_state = "[initial(icon_state)]_broken"
 		return

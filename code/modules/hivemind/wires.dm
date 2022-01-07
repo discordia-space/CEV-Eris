@@ -6,7 +6,7 @@
 	layer = 2
 	health = 		80
 	max_health = 	80 		//we are a little bit durable
-	spread_chance = 85
+	spread_chance = 95
 	var/list/killer_reagents = list("pacid", "sacid", "hclacid", "chlorine")
 	//internals
 	var/obj/machinery/hivemind_machine/node/master_node
@@ -31,7 +31,7 @@
 		master_node.add_wireweed(child)
 	spawn(1)
 		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
-		FLICK("spread_anim", child)
+		flick("spread_anim", child)
 		child.forceMove(target_turf)
 		for(var/obj/effect/plant/hivemind/neighbor in range(1, child))
 			neighbor.update_neighbors()
@@ -101,7 +101,7 @@
 
 
 /obj/effect/plant/hivemind/refresh_icon()
-	cut_overlays()
+	overlays.Cut()
 	var/image/I
 	var/turf/simulated/floor/F = loc
 	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)
@@ -109,7 +109,7 @@
 	else
 		for(var/i = 1 to 4)
 			I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
-			add_overlays(I)
+			overlays += I
 
 	//wallhug
 	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
@@ -130,7 +130,7 @@
 			if (T.y > y)
 				wall_hug_overlay.pixel_y += 32
 			wall_hug_overlay.layer = ABOVE_WINDOW_LAYER
-			add_overlays(wall_hug_overlay)
+			overlays += wall_hug_overlay
 
 
 
@@ -315,24 +315,25 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	var/weapon_type
-	if (W.has_quality(QUALITY_CUTTING))
-		weapon_type = QUALITY_CUTTING
-	else if (W.has_quality(QUALITY_WELDING))
-		weapon_type = QUALITY_WELDING
+	if(user.a_intent == I_HURT)
+		if (W.has_quality(QUALITY_CUTTING))
+			weapon_type = QUALITY_CUTTING
+		else if (W.has_quality(QUALITY_WELDING))
+			weapon_type = QUALITY_WELDING
 
-	if(weapon_type)
-		if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_MEC)) //Replaced STAT_ROB with STAT_MEC. you aren't ripping this out you are cutting it
-			user.visible_message(SPAN_DANGER("[user] cuts down [src]."), SPAN_DANGER("You cut down [src]."))
-			die_off()
+		if(weapon_type)
+			if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				user.visible_message(SPAN_DANGER("[user] cuts down [src]."), SPAN_DANGER("You cut down [src]."))
+				die_off()
+				return
 			return
-		return
-	else
-		if(W.sharp && W.force >= 10)
-			health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
-			user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
 		else
-			to_chat(user, SPAN_DANGER("You try to slice [src], but it's useless!"))
-	check_health()
+			if(W.sharp && W.force >= 10)
+				health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
+				user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
+			else
+				to_chat(user, SPAN_DANGER("You try to slice [src], but it's useless!"))
+		check_health()
 
 
 //fire is effective, but there need some time to melt the covering

@@ -228,7 +228,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/on_update_icon()
+/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/update_icon()
 	if(hud in src)
 		icon_state = "bulletproof_ironhammer"
 		set_light(0, 0)
@@ -318,7 +318,7 @@
 /obj/item/clothing/head/armor/faceshield/attack_self()
 	toggle()
 
-/obj/item/clothing/head/armor/faceshield/on_update_icon()
+/obj/item/clothing/head/armor/faceshield/update_icon()
 	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 //I wanted to name it set_up() but some how I thought that would be misleading
@@ -424,7 +424,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/riot_hud/on_update_icon()
+/obj/item/clothing/head/armor/riot_hud/update_icon()
 	if(hud in src)
 		icon_state = "light_riot"
 		set_light(0, 0)
@@ -575,6 +575,7 @@
 	up = TRUE
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
+	tint_down = TINT_LOW
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS
@@ -590,7 +591,7 @@
 /obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_scan()
 	if(scan_scheduled)
 		return
-	
+
 	if(!speaker_enabled)
 		return
 
@@ -615,7 +616,7 @@
 
 	if(!ishuman(loc))
 		return
-	
+
 	var/mob/living/carbon/human/user = loc
 
 	var/list/crewmembers = list()
@@ -627,7 +628,7 @@
 	if(crewmembers.len)
 		for(var/i = 1, i <= crewmembers.len, i++)
 			var/list/entry = crewmembers[i]
-			if(entry["alert"])
+			if(entry["alert"] && !entry["muted"])
 				if(entry["name"] in crewmembers_recently_reported)
 					continue
 				crewmembers_recently_reported += entry["name"]

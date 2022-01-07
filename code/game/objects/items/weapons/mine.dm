@@ -29,6 +29,10 @@
 	var/excelsior = FALSE
 	anchored = FALSE
 
+/obj/item/mine/Initialize()
+	. = ..()
+	update_icon()
+
 /obj/item/mine/excelsior
 	name = "Excelsior mine"
 	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a merciful brief end to others, unless they have a Pulse tool nearby."
@@ -80,11 +84,11 @@
 	if(src)
 		qdel(src)
 
-/obj/item/mine/on_update_icon()
+/obj/item/mine/update_icon()
 	cut_overlays()
 
 	if(armed)
-		add_overlays(image(icon,"mine_light"))
+		overlays += image(icon,"mine_light")
 
 /obj/item/mine/attack_self(mob/user)
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))

@@ -178,6 +178,10 @@
 	name= "Engineering supply pouch"
 	build_path = /obj/item/storage/pouch/engineering_supply
 
+/datum/design/bioprinter/engineering_material
+	name = "Engineering material pouch"
+	build_path = /obj/item/storage/pouch/engineering_material
+
 /datum/design/bioprinter/ammo
 	name= "Ammo pouch"
 	build_path = /obj/item/storage/pouch/ammo

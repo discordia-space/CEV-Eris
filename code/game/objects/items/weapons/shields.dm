@@ -108,7 +108,7 @@
 			return TRUE
 		else
 			return FALSE
-	
+
 
 	if(wielded && !(attack_dir && (attack_dir & bad_arc)))
 		return TRUE
@@ -160,10 +160,10 @@
 
 /obj/item/shield/buckler/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST)
-	
+
 	if(user.get_equipped_item(slot_back) == src)
 		return p_area
-	
+
 	if(user.get_equipped_item(slot_l_hand) == src)
 		p_area.Add(BP_L_ARM)
 	else if(user.get_equipped_item(slot_r_hand) == src)
@@ -224,10 +224,10 @@
 
 /obj/item/shield/riot/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_GROIN, BP_HEAD)
-	
+
 	if(user.get_equipped_item(slot_back) == src)
 		return p_area
-	
+
 	if(MOVING_QUICKLY(user))
 		if(user.get_equipped_item(slot_l_hand) == src)
 			p_area = list(BP_L_ARM)
@@ -235,7 +235,7 @@
 			p_area = list(BP_R_ARM)
 	else if(MOVING_DELIBERATELY(user) && wielded)
 		p_area = BP_ALL_LIMBS
-	
+
 	if(user.get_equipped_item(slot_l_hand) == src)
 		p_area.Add(BP_L_ARM)
 	else if(user.get_equipped_item(slot_r_hand) == src)
@@ -320,7 +320,7 @@
 
 /obj/item/shield/hardsuit/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_GROIN, BP_HEAD)
-	
+
 	if(user.get_equipped_item(slot_l_hand) == src)
 		p_area.Add(BP_L_ARM)
 	else if(user.get_equipped_item(slot_r_hand) == src)
@@ -410,7 +410,7 @@
 /obj/item/shield/riot/tray/get_protected_area(mob/user)
 	var/list/p_area = list(BP_CHEST, BP_HEAD, BP_L_ARM, BP_R_ARM, BP_GROIN)
 	if(MOVING_DELIBERATELY(user) && wielded)
-		p_area = BP_ALL_LIMBS	
+		p_area = BP_ALL_LIMBS
 	return p_area
 
 /obj/item/shield/riot/tray/get_partial_protected_area(mob/user)
@@ -428,6 +428,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
+	item_state = "eshield0"
 	flags = CONDUCT
 	force = 3
 	throwforce = 5
@@ -474,8 +475,9 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/buckler/energy/on_update_icon()
+/obj/item/shield/buckler/energy/update_icon()
 	icon_state = "eshield[active]"
+	item_state = "eshield[active]"
 	update_wear_icon()
 	if(active)
 		set_light(1.5, 1.5, COLOR_LIGHTING_BLUE_BRIGHT)

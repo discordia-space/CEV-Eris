@@ -1154,7 +1154,7 @@
 	bad_type = /obj/item/device/electronic_assembly/implant
 	spawn_frequency = 0
 
-/obj/item/device/electronic_assembly/implant/on_update_icon()
+/obj/item/device/electronic_assembly/implant/update_icon()
 	..()
 	implant.icon_state = icon_state
 	implant.overlays = overlays

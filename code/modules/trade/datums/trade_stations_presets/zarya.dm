@@ -21,6 +21,7 @@
 			/obj/item/clothing/head/welding,
 			/obj/item/storage/belt/utility,
 			/obj/item/storage/pouch/engineering_supply,
+			/obj/item/storage/pouch/engineering_material,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/briefcase/inflatable/empty,
 			/obj/item/inflatable/door,

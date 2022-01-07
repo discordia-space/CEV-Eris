@@ -66,7 +66,7 @@
 	name = "Noble"
 	desc = "You are a descendant of a long-lasting family, being part of a lineage of high status that can be traced back to the early civilization of your domain. \
 			What legacy will you build? \
-			Start with an heirloom weapon, higher chance to be on traitor contracts and removed sanity cap. Stay clear of filth and danger."
+			Start with an heirloom weapon, higher chance to be on contractor contracts and removed sanity cap. Stay clear of filth and danger."
 			
 	perks = list(PERK_NOBLE)
 

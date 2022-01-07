@@ -10,7 +10,7 @@
 	item_state = "spikethrower"
 	fire_sound_text = "a strange noise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
-	
+
 	var/last_regen = 0
 	var/spike_gen_time = 100
 	var/max_spikes = 3
@@ -35,7 +35,7 @@
 	..(user)
 	to_chat(user, "It has [spikes] spike\s remaining.")
 
-/obj/item/gun/launcher/spikethrower/on_update_icon()
+/obj/item/gun/launcher/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
 
 /obj/item/gun/launcher/spikethrower/special_check(user)

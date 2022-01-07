@@ -63,7 +63,7 @@
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 20
 	addiction_chance = 10
-	sanity_gain = 1.5
+	sanity_gain = 3 // Very hard to make
 
 /datum/reagent/drug/serotrotium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(7 * effect_multiplier))
@@ -202,9 +202,11 @@
 	taste_description = "pepper"
 	reagent_state = LIQUID
 	color = "#181818"
+	withdrawal_threshold = 0.01
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
 	nerve_system_accumulations = 10
+	max_dose = 10 // Nanako tier solution
 
 /datum/reagent/drug/nicotine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -216,6 +218,7 @@
 
 /datum/reagent/drug/nicotine/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
+	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "nicotine_w")
 
 /datum/reagent/drug/nicotine/overdose(mob/living/carbon/M, alien)
 	M.add_side_effect("Headache", 11)
@@ -260,6 +263,7 @@
 	overdose = REAGENTS_OVERDOSE/2
 	nerve_system_accumulations = 80
 	addiction_chance = 30
+	withdrawal_threshold = 30
 
 /datum/reagent/drug/sanguinum/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
