@@ -27,15 +27,16 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-	gun_tags = list(GUN_SILENCABLE)
-
 /obj/item/gun/projectile/automatic/zoric/update_icon()
+	..()
+	var/itemstring = ""
 	cut_overlays()
-	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+
 	if(ammo_magazine)
-		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		overlays += "slide[silenced ? "_s" : ""]"
+		overlays += "mag[ammo_magazine.ammo_label_string]"
+		itemstring += "_mag"
+	
+	set_item_state(itemstring)
 
 /obj/item/gun/projectile/automatic/zoric/Initialize()
 	. = ..()
