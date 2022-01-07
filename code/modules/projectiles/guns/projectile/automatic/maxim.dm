@@ -38,18 +38,14 @@
 
 /obj/item/gun/projectile/automatic/maxim/update_icon()
 	..()
-
-	var/iconstring = initial(icon_state)
 	var/itemstring = ""
+	cut_overlays()
 
-	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "-full[ammo_magazine.ammo_color]": ""]"
+	if(ammo_magazine)
+		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_full"
 
 	if(wielded)
 		itemstring += "_doble"
 
-	icon_state = iconstring
 	set_item_state(itemstring)
-
-

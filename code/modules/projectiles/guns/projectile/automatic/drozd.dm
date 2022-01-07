@@ -31,9 +31,10 @@
 /obj/item/gun/projectile/automatic/drozd/update_icon()
 	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+
 	if(ammo_magazine)
-		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]"
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
+		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_label_string]"
+	else
 		overlays += "slide[silenced ? "_s" : ""]"
 
 /obj/item/gun/projectile/automatic/drozd/Initialize()

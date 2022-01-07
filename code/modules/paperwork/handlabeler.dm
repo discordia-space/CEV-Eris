@@ -1,5 +1,6 @@
 /obj/item/hand_labeler
 	name = "hand labeler"
+	desc = "Device that could be used to label just about anything, including ammo magazines."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler0"
 	item_state = "flight"
@@ -14,10 +15,29 @@
 /obj/item/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity)
 		return
-	if(!mode)	//if it's off, give up.
-		return
+
 	if(A == loc)	// if placing the labeller into something (e.g. backpack)
 		return		// don't set a label
+
+	if(istype(A, /obj/item/ammo_magazine) && !istype(A, /obj/item/ammo_magazine/ammobox))
+		var/obj/item/ammo_magazine/M = A
+		// Flip ammo_names dictionary so player see, for example, "high velocity" instead of "hv" in input() popup
+		var/list/choices[0]
+		for(var/i in M.ammo_names)
+			choices[M.ammo_names[i]] = i
+
+		choices["automatic"] = "l"
+		var/choice = input(user, "Available color schemes", "Label configuration") in choices
+
+		if(!choice || choice == "automatic")
+			M.get_label()
+		else
+			M.get_label(choices[choice])
+		M.update_icon()
+		return
+
+	if(!mode)	//if it's off, give up.
+		return
 
 	if(!labels_left)
 		to_chat(user, SPAN_NOTICE("No labels left."))
