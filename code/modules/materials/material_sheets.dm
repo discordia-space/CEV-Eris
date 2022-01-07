@@ -103,6 +103,9 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 45
+	
+/obj/item/stack/material/iron/full
+	amount = 120
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
@@ -127,6 +130,9 @@
 	rand_max = 8
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
+	
+/obj/item/stack/material/diamond/full
+	amount = 120
 
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
@@ -140,6 +146,9 @@
 	rand_max = 15
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
+
+/obj/item/stack/material/uranium/full
+	amount = 120
 
 /obj/item/stack/material/plasma
 	name = "solid plasma"
@@ -182,6 +191,9 @@
 	rand_max = 15
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
+	
+/obj/item/stack/material/gold/full
+	amount = 120
 
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
@@ -195,6 +207,9 @@
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
+	
+/obj/item/stack/material/silver/full
+	amount = 120
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -210,6 +225,9 @@
 	//spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	//rarity_value = 45
 
+/obj/item/stack/material/platinum/full
+	amount = 120
+
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
 	name = "metallic hydrogen"
@@ -218,6 +236,9 @@
 	price_tag = 50
 	novariants = FALSE
 
+/obj/item/stack/material/mhydrogen/full
+	amount = 120
+
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
 	name = "tritium"
@@ -225,6 +246,9 @@
 	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
 	price_tag = 50
+	
+/obj/item/stack/material/tritium/full
+	amount = 120
 
 /obj/item/stack/material/osmium
 	name = "osmium"
@@ -232,6 +256,9 @@
 	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
 	price_tag = 50
+	
+/obj/item/stack/material/osmium/full
+	amount = 120
 
 /obj/item/stack/material/steel
 	name = MATERIAL_STEEL
