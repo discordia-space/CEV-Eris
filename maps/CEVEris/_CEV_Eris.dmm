@@ -47200,7 +47200,7 @@
 	name = "Toxins Lab";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/mixing)
 "ciF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
@@ -49352,11 +49352,11 @@
 /area/eris/rnd/lab)
 "coc" = (
 /obj/machinery/newscaster,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/eris/rnd/lab)
 "cog" = (
 /obj/structure/sign/department/toxin_res,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/eris/rnd/mixing)
 "coh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -49717,7 +49717,7 @@
 	name = "Research and Development";
 	req_access = list(5)
 	},
-/turf/simulated/floor/tiled/steel,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/rnd/lab)
 "cpe" = (
 /obj/machinery/door/firedoor,
@@ -50453,7 +50453,7 @@
 /area/eris/rnd/lab)
 "cqY" = (
 /obj/structure/sign/department/sci,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall,
 /area/eris/rnd/lab)
 "crb" = (
 /obj/effect/window_lwall_spawn/smartspawn,
@@ -51053,7 +51053,7 @@
 /area/eris/medical/patients_rooms)
 "csx" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics/garden)
 "csy" = (
 /turf/simulated/floor/tiled/white,
@@ -52258,7 +52258,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/crew_quarters/hydroponics/garden)
 "cwd" = (
 /obj/machinery/alarm{
@@ -102273,7 +102273,7 @@
 "jlF" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "jmK" = (
 /obj/machinery/door/firedoor,
@@ -102546,7 +102546,7 @@
 "keu" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy,
-/turf/simulated/floor/tiled/white/golden,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/chapelritualroom)
 "kfX" = (
 /obj/machinery/alarm{
@@ -102597,7 +102597,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "ksR" = (
 /obj/machinery/light{
@@ -103206,8 +103206,8 @@
 /turf/simulated/floor/tiled/dark/gray_platform,
 /area/eris/crew_quarters/janitor)
 "mUP" = (
-/turf/simulated/floor/tiled/steel,
-/area/eris/rnd/lab)
+/turf/simulated/wall,
+/area/eris/rnd/mixing)
 "mVq" = (
 /turf/simulated/floor/tiled/steel/techfloor_grid,
 /area/eris/maintenance/section2deck1port)
@@ -103988,7 +103988,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/golden,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/chapel)
 "pXs" = (
 /obj/machinery/door/firedoor,
@@ -104679,7 +104679,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy/preacher,
-/turf/simulated/floor/carpet/bcarpet,
+/turf/simulated/floor/tiled/dark/cargo,
 /area/eris/neotheology/office)
 "sAd" = (
 /obj/structure/cable/green{
@@ -106045,7 +106045,7 @@
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/door/holy/preacher,
-/turf/simulated/floor/tiled/white/golden,
+/turf/simulated/floor/tiled/white/cargo,
 /area/eris/neotheology/office)
 "xHE" = (
 /obj/structure/sign/faction/neotheology_cross/gold{
@@ -209546,8 +209546,8 @@ cjr
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 crb
 clF
 clF
@@ -209748,8 +209748,8 @@ cjr
 bjE
 cmB
 qOs
-mUP
-mUP
+crN
+crN
 qOs
 cmB
 fbK
@@ -209950,8 +209950,8 @@ clF
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 fPb
 clF
 clF
@@ -210152,8 +210152,8 @@ clF
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 bvu
 clF
 clF
@@ -210354,8 +210354,8 @@ clF
 clF
 clF
 crb
-mUP
-mUP
+crN
+crN
 bvu
 clF
 clF
@@ -210558,7 +210558,7 @@ chr
 cog
 ciE
 ciE
-cid
+mUP
 chr
 chr
 cto
@@ -282657,7 +282657,7 @@ abF
 abF
 abF
 abF
-abF
+aaa
 alb
 ezd
 dMv
@@ -282859,7 +282859,7 @@ abF
 abF
 abF
 abF
-abF
+aaa
 alb
 dMm
 enF
@@ -283265,8 +283265,8 @@ abF
 abF
 abF
 aaa
-aaa
-aaa
+abF
+abF
 alb
 dNZ
 dPK
