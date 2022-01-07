@@ -85,6 +85,9 @@
 		if(2)
 			if(prob(50))
 				qdel(src)
+		if(3)
+			if(prob(25))
+				qdel(src)
 
 
 /obj/machinery/shield/hitby(AM as mob|obj)

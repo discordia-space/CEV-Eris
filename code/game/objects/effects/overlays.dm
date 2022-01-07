@@ -26,6 +26,10 @@
 	spawn(lifetime)
 		qdel(src)
 
+/obj/effect/overlay/pulse/heatwave
+	icon_state = "sparks"
+	name = "heatwave sparks"
+
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
