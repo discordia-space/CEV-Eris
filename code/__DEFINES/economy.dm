@@ -7,8 +7,3 @@
 #define WAGE_LABOUR_HAZARD	750	//Hazard pay. For miners and IHOperatives
 #define WAGE_PROFESSIONAL	900	//The wage for educated professionals. Doctors, scientists, etc
 #define WAGE_COMMAND		1200	//Wage paid to command staff, generally regardless of department
-
-//Defines used for department and job funding sources
-#define FUNDING_NONE		0	//No funding
-#define FUNDING_INTERNAL	1	//Funded from another account on the ship. Usually the ship itself
-#define FUNDING_EXTERNAL	2	//Funded from an external source, like moebius corp. Money is technically created out of nothing
