@@ -205,7 +205,7 @@ SUBSYSTEM_DEF(garbage)
 
 				log_world("## TESTING: GC: -- \ref[D] | [type] was unable to be GC'd --")
 				#ifdef TESTING
-				for(var/c in GLOB.admins) //Using testing() here would fill the logs with ADMIN_VV garbage
+				for(var/c in admins) //Using testing() here would fill the logs with ADMIN_VV garbage
 					var/client/admin = c
 					if(!check_rights_for(admin, R_ADMIN))
 						continue
