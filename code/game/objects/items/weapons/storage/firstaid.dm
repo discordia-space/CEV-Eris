@@ -170,10 +170,10 @@
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	make_exact_fit()
 
-/obj/item/storage/firstaid/surgery/traitor
+/obj/item/storage/firstaid/surgery/contractor
 	spawn_blacklisted = TRUE
 
-/obj/item/storage/firstaid/surgery/traitor/populate_contents()
+/obj/item/storage/firstaid/surgery/contractor/populate_contents()
 	if (empty) return
 	new /obj/item/tool/bonesetter(src)
 	new /obj/item/tool/cautery(src)
@@ -207,7 +207,7 @@
 	new /obj/item/reagent_containers/syringe/large/antitoxin(src)
 	new /obj/item/reagent_containers/syringe/large/dexalin_plus(src)
 
-/obj/item/storage/firstaid/nt/on_update_icon()
+/obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
 		icon_state = "[initial(icon_state)]_empty"
 		item_state = "[initial(item_state)]_empty"

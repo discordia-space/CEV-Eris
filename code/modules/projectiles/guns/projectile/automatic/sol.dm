@@ -34,9 +34,9 @@
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
-	add_overlays("sol_[ratio]")
+	overlays += "sol_[ratio]"
 
-/obj/item/gun/projectile/automatic/sol/on_update_icon()
+/obj/item/gun/projectile/automatic/sol/update_icon()
 	..()
 
 	icon_state = initial(icon_state) + (ammo_magazine ? "-full" : "")

@@ -1153,7 +1153,7 @@
 	if(!P.stamped)
 		P.stamped = new
 	P.stamped += /obj/item/stamp
-	P.add_overlays(stampoverlay)
+	P.overlays += stampoverlay
 	P.stamps += "<HR><i>This paper has been stamped by the Central Command Quantum Relay.</i>"
 
 	if(fax.recievefax(P))
@@ -1236,20 +1236,20 @@
 	source.view_log_panel(M)
 
 
-/datum/admin_topic/traitor
-	keyword = "traitor"
+/datum/admin_topic/contractor
+	keyword = "contractor"
 	require_perms = list(R_MOD|R_ADMIN)
 
-/datum/admin_topic/traitor/Run(list/input)
+/datum/admin_topic/contractor/Run(list/input)
 	if(!GLOB.storyteller)
 		alert("The game hasn't started yet!")
 		return
 
-	var/mob/M = locate(input["traitor"])
+	var/mob/M = locate(input["contractor"])
 	if(!ismob(M))
 		to_chat(usr, "This can only be used on instances of type /mob.")
 		return
-	source.show_traitor_panel(M)
+	source.show_contractor_panel(M)
 
 
 /datum/admin_topic/create_object

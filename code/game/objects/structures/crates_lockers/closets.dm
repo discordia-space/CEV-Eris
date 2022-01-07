@@ -350,7 +350,7 @@
 
 	if(istype(I, /obj/item/gripper))
 		//Empty gripper attacks will call attack_AI
-		return 0
+		return FALSE
 
 	var/list/usable_qualities = list(QUALITY_WELDING)
 	if(opened)
@@ -358,21 +358,23 @@
 		usable_qualities += QUALITY_BOLT_TURNING
 	if(rigged)
 		usable_qualities += QUALITY_WIRE_CUTTING
+	if(secure && locked)
+		usable_qualities += QUALITY_PULSING
 
 	var/tool_type = I.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_WELDING)
 			if(!opened)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					welded = !src.welded
+					welded = !welded
 					update_icon()
-					src.visible_message(
+					visible_message(
 						SPAN_NOTICE("[src] has been disassembled by [user]."),
 						"You hear [tool_type]."
 					)
 			else
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					src.visible_message(
+					visible_message(
 						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
 						"You hear [tool_type]."
 					)
@@ -383,7 +385,7 @@
 		if(QUALITY_SAWING, QUALITY_BOLT_TURNING)
 			if(opened)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					src.visible_message(
+					visible_message(
 						SPAN_NOTICE("\The [src] has been [tool_type == QUALITY_BOLT_TURNING ? "taken" : "cut"] apart by [user] with \the [I]."),
 						"You hear [tool_type]."
 					)
@@ -397,6 +399,43 @@
 				new /obj/item/stack/cable_coil(drop_location(), 1)
 				playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 				rigged = FALSE
+				return
+		if(QUALITY_PULSING)
+			if(!(secure && locked))
+				return
+			user.visible_message(
+			SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
+			SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
+			)
+			if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
+				if(hack_stage < hack_require)
+					var/obj/item/tool/T = I
+					if(istype(T) && T.item_flags & SILENT)
+						playsound(loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
+					else if(istype(T) && T.item_flags & LOUD)
+						playsound(loc, 'sound/items/glitch.ogg', 500, 1, 10) //Loud tools can hack it LOUDLY
+					else
+						playsound(loc, 'sound/items/glitch.ogg', 70, 1, -1)
+
+					if(istype(T) && T.item_flags & HONKING)
+						playsound(loc, WORKSOUND_HONK, 70, 1, -2)
+
+				//Cognition can be used to speed up the proccess
+					if(prob (user.stats.getStat(STAT_COG)))
+						hack_stage = hack_require
+						to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
+					else
+						hack_stage++
+
+					to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
+				else if(hack_stage >= hack_require)
+					locked = FALSE
+					broken = TRUE
+					update_icon()
+					user.visible_message(
+					SPAN_WARNING("[user] [locked?"locks":"unlocks"] [name] with a multitool,"), \
+					SPAN_WARNING("You [locked? "locked" : "unlocked"] [name] with multitool")
+					)
 				return
 
 		if(ABORT_CHECK)
@@ -441,42 +480,6 @@
 	else if(istype(I, /obj/item/melee/energy/blade) && secure)
 		emag_act(INFINITY, user)
 		return
-	else if((QUALITY_PULSING in I.tool_qualities) && secure && locked)
-		user.visible_message(
-		SPAN_WARNING("[user] picks in wires of the [src.name] with a multitool"), \
-		SPAN_WARNING("[pick("Picking wires in [src.name] lock", "Hacking [src.name] security systems", "Pulsing in locker controller")].")
-		)
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PULSING, FAILCHANCE_HARD, required_stat = STAT_MEC))
-			if(hack_stage < hack_require)
-
-				var/obj/item/tool/T = I
-				if(istype(T) && T.item_flags & SILENT)
-					playsound(src.loc, 'sound/items/glitch.ogg', 3, 1, -5) //Silenced tools can hack it silently
-				else if(istype(T) && T.item_flags & LOUD)
-					playsound(src.loc, 'sound/items/glitch.ogg', 500, 1, 10) //Loud tools can hack it LOUDLY
-				else
-					playsound(src.loc, 'sound/items/glitch.ogg', 70, 1, -1)
-
-				if(istype(T) && T.item_flags & HONKING)
-					playsound(src.loc, WORKSOUND_HONK, 70, 1, -2)
-
-				//Cognition can be used to speed up the proccess
-				if(prob (user.stats.getStat(STAT_COG)))
-					hack_stage = hack_require
-					to_chat(user, SPAN_NOTICE("You discover an exploit in [src]'s security system and it shuts down! Now you just need to pulse the lock."))
-				else
-					hack_stage++
-
-				to_chat(user, SPAN_NOTICE("Multitool blinks <b>([hack_stage]/[hack_require])</b> on screen."))
-			else if(hack_stage >= hack_require)
-				locked = FALSE
-				broken = TRUE
-				src.update_icon()
-				user.visible_message(
-				SPAN_WARNING("[user] [locked?"locks":"unlocks"] [name] with a multitool,"), \
-				SPAN_WARNING("You [locked? "locked" : "unlocked"] [name] with multitool")
-				)
-				return
 	else
 		src.attack_hand(user)
 	return
@@ -578,8 +581,8 @@
 	else
 		to_chat(usr, SPAN_WARNING("This mob type can't use this verb."))
 
-/obj/structure/closet/on_update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
-	cut_overlays()
+/obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
+	overlays.Cut()
 	if(opened)
 		layer = BELOW_OBJ_LAYER
 		if(icon_door)

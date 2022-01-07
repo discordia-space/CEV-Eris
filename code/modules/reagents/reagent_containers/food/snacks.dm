@@ -250,11 +250,11 @@
 			)
 
 			src.bitecount++
-			U.cut_overlays()
+			U.overlays.Cut()
 			U.loaded = "[src]"
 			var/image/I = new(U.icon, "loadedfood")
 			I.color = src.filling_color
-			U.add_overlays(I)
+			U.overlays += I
 
 			reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
@@ -831,7 +831,7 @@
 
 /obj/item/reagent_containers/food/snacks/donkpocket
 	name = "donk-pocket"
-	desc = "The food of choice for the seasoned traitor."
+	desc = "The food of choice for the seasoned contractor."
 	icon_state = "donkpocket"
 	filling_color = "#DEDEAB"
 	center_of_mass = list("x"=16, "y"=10)
@@ -3087,8 +3087,8 @@
 	if(type_pizza)
 		pizza = new type_pizza(src)
 
-/obj/item/pizzabox/on_update_icon()
-	set_overlays(list())
+/obj/item/pizzabox/update_icon()
+	overlays = list()
 
 	// Set appropriate description
 	if(open && pizza )
@@ -3116,7 +3116,7 @@
 		if(pizza )
 			var/image/pizzaimg = image("food.dmi", icon_state = pizza.icon_state)
 			pizzaimg.pixel_y = -3
-			add_overlays(pizzaimg)
+			overlays += pizzaimg
 
 		return
 	else
@@ -3133,7 +3133,7 @@
 		if(doimgtag )
 			var/image/tagimg = image("food.dmi", icon_state = "pizzabox_tag")
 			tagimg.pixel_y = boxes.len * 3
-			add_overlays(tagimg)
+			overlays += tagimg
 
 	icon_state = "pizzabox[boxes.len+1]"
 

@@ -66,7 +66,7 @@ Thus, the two variables affect pump operation are set in New():
 	use_power = IDLE_POWER_USE
 
 
-/obj/machinery/atmospherics/binary/pump/on_update_icon()
+/obj/machinery/atmospherics/binary/pump/update_icon()
 	if(!powered())
 		icon_state = "off"
 	else

@@ -104,7 +104,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		toggle()
 	interact(user)
 
-// Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
+// Checks to see if the value meets the target. Like a frequency being a contractor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
 // current item's menu.
 /obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value)
@@ -306,7 +306,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		hidden_uplink.trigger(user)
 
 /obj/item/device/radio/headset/uplink
-	traitor_frequency = 1445
+	contractor_frequency = 1445
 
 /obj/item/device/radio/headset/uplink/New(loc, mind, crystal_amount = DEFAULT_TELECRYSTAL_AMOUNT)
 	..(loc)

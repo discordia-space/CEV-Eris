@@ -86,6 +86,53 @@
 
 	attack.handle_eye_attack(attacker, target)
 
+/obj/item/grab/proc/dropkick(mob/living/carbon/target, mob/living/carbon/human/attacker)
+	if(state < GRAB_AGGRESSIVE) //blue grab check
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		return
+	if(target.lying)
+		return
+	visible_message(SPAN_DANGER("[attacker] dropkicks [target], pushing \him onwards!"))
+	attacker.Weaken(2)
+	target.Weaken(6) //the target will fly over tables, railings, etc.
+	var/kick_dir = get_dir(attacker, target)
+	if(attacker.loc == target.loc) // if we are on the same tile(e.g. neck grab), turn the direction to still push them away
+		kick_dir = turn(kick_dir, 180)
+	target.throw_at(get_edge_target_turf(target, kick_dir), 3, 1)
+	//deal damage AFTER the kick
+	var/damage = attacker.stats.getStat(STAT_ROB) / 3
+	target.damage_through_armor(damage, BRUTE, BP_GROIN, ARMOR_MELEE)
+	//admin messaging
+	attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Dropkicked [target.name] ([target.ckey])</font>")
+	target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Dropkicked by [attacker.name] ([attacker.ckey])</font>")	
+	msg_admin_attack("[key_name(attacker)] has dropkicked [key_name(target)]")	
+	//kill the grab
+	attacker.drop_from_inventory(src)
+	loc = null
+	qdel(src)
+
+/obj/item/grab/proc/suplex(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
+	if(state < GRAB_NECK) //red grab check
+		to_chat(attacker, SPAN_WARNING("You require a better grab to do this."))
+		return
+	visible_message(SPAN_WARNING("[attacker] lifts [target] off the ground..." ))
+	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
+	if(do_after(attacker, 20, progress=0) && target)
+		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
+		var/damage = ((attacker.stats.getStat(STAT_ROB) / 2) + 15)
+		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
+		attacker.Weaken(2)
+		target.Stun(6)
+		playsound(loc, 'sound/weapons/pinground.ogg', 50, 1, -1)
+		//admin messaging
+		attacker.attack_log += text("\[[time_stamp()]\] <font color='red'>Suplexed [target.name] ([target.ckey])</font>")
+		target.attack_log += text("\[[time_stamp()]\] <font color='orange'>Suplexed by [attacker.name] ([attacker.ckey])</font>")	
+		msg_admin_attack("[key_name(attacker)] has suplexed [key_name(target)]")
+		//kill the grab
+		attacker.drop_from_inventory(src)
+		loc = null
+		qdel(src)
+
 /obj/item/grab/proc/headbutt(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))
 		return

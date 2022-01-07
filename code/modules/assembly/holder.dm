@@ -47,16 +47,16 @@
 	return TRUE
 
 
-/obj/item/device/assembly_holder/on_update_icon()
-	cut_overlays()
+/obj/item/device/assembly_holder/update_icon()
+	overlays.Cut()
 	if(left_assembly)
-		add_overlays("[left_assembly.icon_state]_left")
+		overlays += "[left_assembly.icon_state]_left"
 		for(var/O in left_assembly.attached_overlays)
-			add_overlays("[O]_l")
+			overlays += "[O]_l"
 	if(right_assembly)
-		src.add_overlays("[right_assembly.icon_state]_right")
+		src.overlays += "[right_assembly.icon_state]_right"
 		for(var/O in right_assembly.attached_overlays)
-			add_overlays("[O]_r")
+			overlays += "[O]_r"
 	if(master)
 		master.update_icon()
 

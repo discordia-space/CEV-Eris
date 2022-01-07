@@ -87,7 +87,7 @@
 	return ..()
 
 
-/obj/machinery/sorter/on_update_icon()
+/obj/machinery/sorter/update_icon()
 	..()
 	if(progress)
 		icon_state = "sorter-process"

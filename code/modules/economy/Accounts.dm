@@ -6,6 +6,13 @@
 	var/money = 0
 	var/list/transaction_log = list()
 	var/suspended = 0
+	var/employer // Linked department account's define. DEPARTMENT_COMMAND or some such
+	var/wage = 0 // How much money account should recieve on a payday
+	var/wage_original // Value passed from job datum on account creation
+	var/wage_manual = FALSE // If wage have been set manually. Prevents wage auto update on players joining/leaving deparment
+	var/debt = 0 // How much money employer owe us
+	var/department_id // Easy identification for department accounts
+	var/can_make_accounts // Individual guild members and their departments authorized to register new accounts
 	var/security_level = 0	//0 - auto-identify from worn ID, require only account number
 							//1 - require manual login / account number and pin
 							//2 - require card and manual login
@@ -75,13 +82,17 @@
 /datum/transaction/proc/Copy()
 	return new/datum/transaction(amount, target_name, purpose, source_terminal, date, time)
 
-/proc/create_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db)
+/proc/create_account(new_owner_name = "Default user", starting_funds = 0, obj/machinery/account_database/source_db, department, wage, aster_guild_member)
 
 	//create a new account
 	var/datum/money_account/M = new()
 	M.owner_name = new_owner_name
 	M.remote_access_pin = rand(1111, 9999)
 	M.money = starting_funds
+	M.employer = department
+	M.wage_original = wage
+	M.wage = wage
+	M.can_make_accounts = aster_guild_member
 
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new()
@@ -124,13 +135,22 @@
 		if(!R.stamped)
 			R.stamped = new
 		R.stamped += /obj/item/stamp
-		R.add_overlays(stampoverlay)
+		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account
 	M.transaction_log.Add(T)
 	all_money_accounts.Add(M)
+	personal_accounts.Add(M)
 
+	// Increase personnel budget of our department, if have one
+	if(department && wage)
+		var/datum/money_account/EA = department_accounts[department]
+		var/datum/department/D = GLOB.all_departments[department]
+		if(EA && D && (D.funding_type != FUNDING_NONE)) // Don't bother if department have no employer
+			D.budget_personnel += wage
+			if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
+				EA.wage = D.get_total_budget()
 	return M
 
 //Charges an account a certain amount of money which is functionally just removed from existence

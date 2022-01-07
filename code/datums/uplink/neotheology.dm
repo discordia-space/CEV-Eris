@@ -81,7 +81,7 @@ A small pool of thematically appropriate religious items that are generally chea
 
 /*
 	Guns: All taken from the NeoTheology Armory of the New Testament
-	All guns are 1 TC cheaper than the closest equivilant in normal traitor gear
+	All guns are 1 TC cheaper than the closest equivilant in normal contractor gear
 */
 /datum/uplink_item/item/neotheology/laser
 	item_cost = 10

@@ -162,6 +162,25 @@
 		/obj/item/gun/projectile/flare_gun
 		)
 
+/obj/item/storage/pouch/engineering_material
+	name = "engineering material pouch"
+	desc = "Can hold sheets, rods and cable coil."
+	icon_state = "engineering_material"
+	item_state = "engineering_material"
+	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	rarity_value = 33
+
+	storage_slots = 2
+	w_class = ITEM_SIZE_NORMAL
+	max_w_class = ITEM_SIZE_NORMAL
+
+	can_hold = list(
+		/obj/item/stack/material,
+		/obj/item/material,
+		/obj/item/stack/cable_coil,
+		/obj/item/stack/rods,
+		)
+
 /obj/item/storage/pouch/ammo
 	name = "ammo pouch"
 	desc = "Can hold ammo magazines and bullets, not the boxes though."
@@ -221,11 +240,11 @@
 		/obj/item/storage/pill_bottle
 		)
 
-/obj/item/storage/pouch/tubular/on_update_icon()
+/obj/item/storage/pouch/tubular/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
 
 /obj/item/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -268,11 +287,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/storage/pouch/pistol_holster/on_update_icon()
+/obj/item/storage/pouch/pistol_holster/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "pistol_layer"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "pistol_layer")
 
 /obj/item/storage/pouch/baton_holster
 	name = "baton sheath"
@@ -291,11 +310,11 @@
 
 	sliding_behavior = TRUE
 
-/obj/item/storage/pouch/baton_holster/on_update_icon()
+/obj/item/storage/pouch/baton_holster/update_icon()
 	..()
 	cut_overlays()
 	if(contents.len)
-		add_overlays(image('icons/inventory/pockets/icon.dmi', "baton_layer"))
+		overlays += image('icons/inventory/pockets/icon.dmi', "baton_layer")
 
 /obj/item/storage/pouch/holding
 	name = "pouch of holding"

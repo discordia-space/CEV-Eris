@@ -36,7 +36,7 @@
 		else
 			toggle_filter()
 
-/obj/machinery/sleeper/on_update_icon()
+/obj/machinery/sleeper/update_icon()
 	icon_state = "sleeper_[occupant ? "1" : "0"]"
 
 /obj/machinery/sleeper/attack_hand(var/mob/user)

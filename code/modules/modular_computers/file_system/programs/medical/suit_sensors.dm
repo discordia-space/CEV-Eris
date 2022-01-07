@@ -39,7 +39,7 @@
 
 /datum/nano_module/crew_monitor/proc/has_alerts()
 	for(var/z_level in GLOB.maps_data.station_levels)
-		if (crew_repository.has_health_alert(z_level))
+		if(crew_repository.has_health_alert(z_level))
 			return TRUE
 	return FALSE
 
@@ -62,6 +62,7 @@
 					if(!T.is_tracking)
 						T.pinpoint()
 		return TOPIC_HANDLED
+
 	if(href_list["search"])
 		var/new_search = sanitize(input("Enter the value for search for.") as null|text)
 		if(!new_search || new_search == "")
@@ -70,11 +71,30 @@
 		search = new_search
 		return TOPIC_HANDLED
 
+	if(href_list["mute"])
+		var/mob/living/carbon/human/H = locate(href_list["mute"]) in SSmobs.mob_list
+		if(H)
+			GLOB.ignore_health_alerts_from.Add(H.name)
+			// Run that so UI updates right after button is pressed, without 5 second delay
+			for(var/z_level in GLOB.maps_data.station_levels)
+				// Forced update, we don't want cached entry to be returned
+				crew_repository.health_data(z_level, TRUE)
+		return TOPIC_HANDLED
+
+	if(href_list["unmute"])
+		var/mob/living/carbon/human/H = locate(href_list["unmute"]) in SSmobs.mob_list
+		if(H)
+			GLOB.ignore_health_alerts_from.Remove(H.name)
+			for(var/z_level in GLOB.maps_data.station_levels)
+				crew_repository.health_data(z_level, TRUE)
+		return TOPIC_HANDLED
 
 /datum/nano_module/crew_monitor/nano_ui_data(mob/user)
 	var/list/data = host.initial_data()
 	var/datum/computer_file/program/host_program = host
-	data["can_track"] = (isAI(user) || (istype(host_program) && istype(host_program.computer, /obj/item/modular_computer/tablet/moebius)))
+	var/tracking_tablet_used = (istype(host_program) && istype(host_program.computer, /obj/item/modular_computer/tablet/moebius))
+	data["can_mute"] = tracking_tablet_used
+	data["can_track"] = (isAI(user) || tracking_tablet_used)
 	var/list/crewmembers = list()
 	for(var/z_level in GLOB.maps_data.station_levels)
 		crewmembers += crew_repository.health_data(z_level)

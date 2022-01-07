@@ -214,7 +214,7 @@
 
 	find_control_computer()
 
-/obj/machinery/cryopod/on_update_icon()
+/obj/machinery/cryopod/update_icon()
 	if(occupant)
 		icon_state = "[initial(icon_state)]_1"
 	else
@@ -515,6 +515,16 @@
 		if(ishuman(occupant) && applies_stasis)
 			var/mob/living/carbon/human/H = occupant
 			H.EnterStasis()
+			if(H.mind && H.mind.initial_account)
+				var/datum/money_account/A = H.mind.initial_account
+				if(A.employer && A.wage_original) // Dicrease personnel budget of our department, if have one
+					var/datum/money_account/EA = department_accounts[A.employer]
+					var/datum/department/D = GLOB.all_departments[A.employer]
+					if(EA && D && (D.funding_type != FUNDING_NONE)) // Don't bother if department have no employer
+						D.budget_personnel -= A.wage_original
+						if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
+							EA.wage = D.get_total_budget()
+
 		new_occupant.forceMove(src)
 
 		if (notifications)

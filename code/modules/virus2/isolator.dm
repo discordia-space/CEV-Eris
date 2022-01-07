@@ -15,7 +15,7 @@
 	var/datum/data/record/entry = null
 	var/obj/item/reagent_containers/syringe/sample = null
 
-/obj/machinery/disease2/isolator/on_update_icon()
+/obj/machinery/disease2/isolator/update_icon()
 	if (stat & (BROKEN|NOPOWER))
 		icon_state = "isolator"
 		return

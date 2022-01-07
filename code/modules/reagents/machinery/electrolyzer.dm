@@ -59,7 +59,7 @@
 	QDEL_NULL(separation_beaker)
 	return ..()
 
-/obj/machinery/electrolyzer/on_update_icon()
+/obj/machinery/electrolyzer/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "[initial(icon_state)]_off"
 		return

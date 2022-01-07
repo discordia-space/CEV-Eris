@@ -13,7 +13,7 @@
 	label_icon_state = "label_bottle"
 	lid_icon_state = "lid_bottle"
 
-/obj/item/reagent_containers/glass/bottle/on_update_icon()
+/obj/item/reagent_containers/glass/bottle/update_icon()
 	cut_overlays()
 
 	if(reagents?.total_volume)
