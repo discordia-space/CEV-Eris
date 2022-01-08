@@ -22,8 +22,8 @@ var/list/wireColours = list("red", "blue", "green", "darkred", "orange", "brown"
 
 	var/table_options = " align='center'"
 	var/row_options1 = " width='80px'"
-	var/row_options2 = " width='280px'"
-	var/window_x = 450
+	var/row_options2 = " width='260px'"
+	var/window_x = 370
 	var/window_y = 470
 
 	var/list/descriptions // Descriptions of wires (datum/wire_description) for use with examining.
