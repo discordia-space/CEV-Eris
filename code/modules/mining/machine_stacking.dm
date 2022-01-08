@@ -98,7 +98,7 @@
 		stack_storage[material_name] -= amount
 		var/stacktype = material_stack_type(material_name)
 		new stacktype (get_step(src, output_dir), amount)
-		FLICK("stacker_eject", src)
+		flick("stacker_eject", src)
 
 /obj/machinery/mineral/stacking_machine/Process()
 	if (src.output_dir && src.input_dir)
