@@ -89,7 +89,7 @@ var/list/ai_status_emotions = list(
 
 /obj/machinery/ai_status_display/proc/update()
 	if(mode==0) //Blank
-		cut_overlays()
+		overlays.Cut()
 		return
 
 	if(mode==1)	// AI emoticon
@@ -104,13 +104,13 @@ var/list/ai_status_emotions = list(
 /obj/machinery/ai_status_display/proc/set_picture(var/state)
 	picture_state = state
 	if(overlays.len)
-		cut_overlays()
-	add_overlays(image('icons/obj/status_display.dmi', icon_state=picture_state))
+		overlays.Cut()
+	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
 
 /obj/machinery/ai_status_display/power_change()
 	..()
 	if(stat & NOPOWER)
 		if(overlays.len)
-			cut_overlays()
+			overlays.Cut()
 	else
 		update()

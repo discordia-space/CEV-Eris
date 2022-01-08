@@ -1,4 +1,4 @@
 author: SirRichardFrancis
 delete-after: true
 changes:
-  - bugfix: robots being able to rest
+  - balance: projectiles pass trough stairs

@@ -92,7 +92,7 @@
 	paperamount--
 	return new /obj/item/shreddedp(get_turf(src))
 
-/obj/machinery/papershredder/on_update_icon()
+/obj/machinery/papershredder/update_icon()
 	icon_state = "papershredder[max(0,min(5,FLOOR(paperamount * 0.5, 1)))]"
 
 /obj/item/shreddedp/attackby(var/obj/item/W as obj, var/mob/user)

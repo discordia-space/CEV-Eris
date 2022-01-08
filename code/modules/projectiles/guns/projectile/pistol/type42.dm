@@ -23,7 +23,7 @@
 	spawn_blacklisted = TRUE //until loot rework
 
 
-/obj/item/gun/projectile/type_42/on_update_icon()
+/obj/item/gun/projectile/type_42/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

@@ -1,0 +1,6 @@
+author: Shadow-Quill
+delete-after: true
+changes:
+  - imageadd: Added an off-state for the ore smelter.
+  - tweak: Sheet stacker machine only does it's stacking animation when it releases
+      a stack of sheets.

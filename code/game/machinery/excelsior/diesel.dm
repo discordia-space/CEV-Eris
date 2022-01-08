@@ -12,14 +12,14 @@
 	reagent_flags = OPENCONTAINER
 	use_reagents_as_fuel = TRUE
 
-/obj/machinery/power/port_gen/pacman/diesel/on_update_icon()
-	cut_overlays()
+/obj/machinery/power/port_gen/pacman/diesel/update_icon()
+	overlays.Cut()
 	if(active)
-		add_overlays("on")
+		overlays += "on"
 		if(HasFuel())
-			add_overlays("rotor_working")
-			add_overlays("[max(round(reagents.total_volume / reagents.maximum_volume, 0.25) * 100, 25)]")
+			overlays += "rotor_working"
+			overlays += "[max(round(reagents.total_volume / reagents.maximum_volume, 0.25) * 100, 25)]"
 		else
-			add_overlays("0")
+			overlays += "0"
 	else
-		add_overlays("off")
+		overlays += "off"

@@ -28,7 +28,7 @@
 	gun_tags = list(GUN_GILDABLE)
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
-/obj/item/gun/projectile/avasarala/on_update_icon()
+/obj/item/gun/projectile/avasarala/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

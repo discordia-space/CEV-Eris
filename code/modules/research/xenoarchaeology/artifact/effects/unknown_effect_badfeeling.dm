@@ -14,7 +14,7 @@
 		"You have a terrible sense of foreboding.",\
 		"You've got a bad feeling about this.",\
 		"Your scalp prickles.",\
-		"The light seems to flicker.",\
+		"The light seems to flick_light.",\
 		"The shadows seem to lengthen.",\
 		"The walls are getting closer.",\
 		"Something is wrong")

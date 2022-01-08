@@ -15,7 +15,7 @@
 	return "[A.name] ([z], [x], [y])"
 
 /obj/machinery/trade_beacon/proc/activate()
-	FLICK("[icon_state]_active", src)
+	flick("[icon_state]_active", src)
 	do_sparks(5, 0, loc)
 	bluespace_entropy(2, get_turf(src))
 	playsound(loc, "sparks", 50, 1)

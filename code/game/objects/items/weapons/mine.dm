@@ -84,11 +84,11 @@
 	if(src)
 		qdel(src)
 
-/obj/item/mine/on_update_icon()
+/obj/item/mine/update_icon()
 	cut_overlays()
 
 	if(armed)
-		add_overlays(image(icon,"mine_light"))
+		overlays += image(icon,"mine_light")
 
 /obj/item/mine/attack_self(mob/user)
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))

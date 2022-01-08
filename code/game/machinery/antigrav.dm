@@ -109,8 +109,8 @@
 	ball.loc = src.loc
 	world << ball
 
-	FLICK("GraviMobile_starting", src)
-	FLICK("GraviMobile_starting_ball", ball)
+	flick("GraviMobile_starting", src)
+	flick("GraviMobile_starting_ball", ball)
 
 /obj/machinery/antigrav/proc/stop_anim()
 	if(ball)
@@ -123,10 +123,10 @@
 	ball.loc = src.loc
 	world << ball
 
-	FLICK("GraviMobile_stoping", src)
-	FLICK("GraviMobile_stoping_ball", ball)
+	flick("GraviMobile_stoping", src)
+	flick("GraviMobile_stoping_ball", ball)
 
-/obj/machinery/antigrav/on_update_icon()
+/obj/machinery/antigrav/update_icon()
 	if(!anchored)
 		icon_state = "GraviMobile"
 		return

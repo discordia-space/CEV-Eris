@@ -7,7 +7,7 @@
 	price_tag = 50
 	var/inflamed = 0 //Counter, not boolean
 
-/obj/item/organ/internal/appendix/on_update_icon()
+/obj/item/organ/internal/appendix/update_icon()
 	..()
 	if(inflamed)
 		icon_state = "appendixinflamed"

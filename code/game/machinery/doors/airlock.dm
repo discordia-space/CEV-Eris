@@ -657,7 +657,7 @@ There are 9 wires.
 	else
 		underlays += GLOB.wedge_icon_cache[cache_string]
 
-/obj/machinery/door/airlock/on_update_icon()
+/obj/machinery/door/airlock/update_icon()
 	set_light(0)
 	if(overlays.len)
 		cut_overlays()
@@ -665,27 +665,27 @@ There are 9 wires.
 		underlays.Cut()
 	if(density)
 		if(locked && lights && arePowerSystemsOn())
-			SetIconState("door_locked")
+			icon_state = "door_locked"
 			set_light(1.5, 0.5, COLOR_RED_LIGHT)
 		else
-			SetIconState("door_closed")
+			icon_state = "door_closed"
 		if(p_open || welded)
-			set_overlays(list())
+			overlays = list()
 			if(p_open)
-				add_overlays(image(icon, "panel_open"))
+				overlays += image(icon, "panel_open")
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					add_overlays(image(icon, "sparks_broken"))
+					overlays += image(icon, "sparks_broken")
 				else if (health < maxhealth * 3/4)
-					add_overlays(image(icon, "sparks_damaged"))
+					overlays += image(icon, "sparks_damaged")
 			if(welded)
-				add_overlays(image(icon, "welded"))
+				overlays += image(icon, "welded")
 		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
-			add_overlays(image(icon, "sparks_damaged"))
+			overlays += image(icon, "sparks_damaged")
 	else
-		SetIconState("door_open")
+		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			add_overlays(image(icon, "sparks_open"))
+			overlays += image(icon, "sparks_open")
 	if(wedged_item)
 		generate_wedge_overlay()
 
@@ -693,27 +693,29 @@ There are 9 wires.
 	switch(animation)
 		if("opening")
 			if(overlays.len)
-				cut_overlays()
+				overlays.Cut()
 			if(p_open)
-				flicker("o_door_opening")
+				flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
+				update_icon()
 			else
-				flicker("door_opening")
-			update_icon()
+				flick("door_opening", src)//[stat ? "_stat":]
+				update_icon()
 		if("closing")
 			if(overlays.len)
-				cut_overlays()
+				overlays.Cut()
 			if(p_open)
-				flicker("o_door_closing")
+				flick("o_door_closing", src)
+				update_icon()
 			else
-				flicker("door_closing")
-			update_icon()
+				flick("door_closing", src)
+				update_icon()
 		if("spark")
 			if(density)
-				flicker("door_spark")
+				flick("door_spark", src)
 		if("deny")
-			if(density && arePowerSystemsOn())
-				flicker("door_deny")
-				playsound(loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
+			if(density && src.arePowerSystemsOn())
+				flick("door_deny", src)
+				playsound(src.loc, 'sound/machines/Custom_deny.ogg', 50, 1, -2)
 	return
 
 /obj/machinery/door/airlock/attack_ai(mob/user as mob)

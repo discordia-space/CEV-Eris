@@ -96,11 +96,11 @@
 				if(chamber_closed)
 					glass.icon_state = ""
 					glass.density = FALSE
-					FLICK("glassdoor_open", glass)
+					flick("glassdoor_open", glass)
 				else
 					glass.icon_state = "platform_door"
 					glass.density = initial(glass.density)
-					FLICK("glassdoor_close", glass)
+					flick("glassdoor_close", glass)
 				playsound(glass.loc, 'sound/machines/windowdoor.ogg', 100, 1)
 	chamber_closed = !chamber_closed
 
@@ -110,12 +110,12 @@
 		return
 	if(chamber_solution)
 		solution.icon_state = ""
-		FLICK("solution_pump_out", solution)
+		flick("solution_pump_out", solution)
 		for(var/obj/machinery/multistructure/bioreactor_part/platform/platform in platforms)
 			platform.set_light(0)
 	else
 		solution.icon_state = initial(solution.icon_state)
-		FLICK("solution_pump_in", solution)
+		flick("solution_pump_in", solution)
 		for(var/obj/machinery/multistructure/bioreactor_part/platform/platform in platforms)
 			platform.set_light(1, 3, COLOR_LIGHTING_ORANGE_DARK)
 	chamber_solution = !chamber_solution
