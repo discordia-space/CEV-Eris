@@ -45,7 +45,7 @@
 	if(ishuman(src) && isitem(used_weapon))
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = used_weapon
-		if((is_carrion(H) || mutations.len) && (SANCTIFIED in I.aspects))
+		if((is_carrion(H) || active_mutations.len) && (SANCTIFIED in I.aspects))
 			sanctified_attack = TRUE
 	//Feedback
 	//In order to show both target and everyone around that armor is actually working, we are going to send message for both of them
@@ -199,8 +199,8 @@
 		return FALSE
 
 	//Hulk modifier
-	if(HULK in user.mutations)
-		effective_force *= 2
+//	if(HULK in user.mutations)
+//		effective_force *= 2
 
 	//Apply weapon damage
 	if (damage_through_armor(effective_force, I.damtype, hit_zone, ARMOR_MELEE, I.armor_penetration, used_weapon = I, sharp = is_sharp(I), edge = has_edge(I)))

@@ -120,7 +120,6 @@
 	badness = 2
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		mob.bodytemperature = max(mob.bodytemperature, 350)
-		scramble(0,mob,10)
 		mob.apply_damage(10, CLONE)
 
 /datum/disease2/effect/organs
@@ -201,13 +200,6 @@
 	maxm = 3
 	activate(var/mob/living/carbon/mob,var/multiplier)
 		shake_camera(mob,5*multiplier)
-
-/datum/disease2/effect/telepathic
-	name = "Telepathy Syndrome"
-	stage = 3
-	activate(var/mob/living/carbon/mob,var/multiplier)
-		mob.dna.SetSEState(REMOTETALKBLOCK,1)
-		domutcheck(mob, null, MUTCHK_FORCED)
 
 /datum/disease2/effect/mind
 	name = "Lazy Mind Syndrome"

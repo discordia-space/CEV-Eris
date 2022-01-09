@@ -236,9 +236,8 @@
 		if(!iscarbon(M))
 			to_chat(usr, "<font color=blue>You don't have any DNA, or your DNA is incompatible with this device.</font>")
 		else
-			var/datum/dna/dna = usr.dna
 			pai.master = M.real_name
-			pai.master_dna = dna.unique_enzymes
+			pai.master_dna = M.dna_trace
 			to_chat(pai, "<font color = red><h3>You have been bound to a new master.</h3></font>")
 	if(href_list["request"])
 		src.looking_for_personality = 1

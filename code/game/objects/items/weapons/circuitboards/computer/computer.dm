@@ -22,11 +22,6 @@
 	name = T_BOARD("medical records console")
 	build_path = /obj/machinery/computer/med_data
 
-/obj/item/electronics/circuitboard/scan_consolenew
-	name = T_BOARD("DNA machine")
-	build_path = /obj/machinery/computer/scan_consolenew
-	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
-
 /obj/item/electronics/circuitboard/communications
 	name = T_BOARD("command and communications console")
 	build_path = /obj/item/modular_computer/console/preset/command

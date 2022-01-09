@@ -178,10 +178,10 @@ default behaviour is:
 
 /mob/living/carbon/human/burn_skin(burn_amount)
 	//world << "DEBUG: burn_skin(), mutations=[mutations]"
-	if(mShock in mutations) //shockproof
-		return FALSE
-	if (COLD_RESISTANCE in mutations) //fireproof
-		return FALSE
+//	if(mShock in mutations) //shockproof
+//		return FALSE
+//	if (COLD_RESISTANCE in mutations) //fireproof
+//		return FALSE
 	var/divided_damage = (burn_amount)/(organs.len)
 	var/extradam = 0	//added to when organ is at max dam
 	for(var/obj/item/organ/external/affecting in organs)
@@ -837,8 +837,13 @@ default behaviour is:
 /mob/living/New()
 	..()
 
+	if(!real_name)
+		real_name = name
+		dna_trace = sha1(real_name)
+		fingers_trace = md5(real_name)
+
 	//Some mobs may need to create their stats datum farther up
-	if (!stats)
+	if(!stats)
 		stats = new /datum/stat_holder(src)
 
 	generate_static_overlay()

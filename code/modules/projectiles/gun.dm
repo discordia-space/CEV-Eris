@@ -221,9 +221,9 @@
 		return FALSE
 
 	var/mob/living/M = user
-	if(HULK in M.mutations)
-		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
-		return FALSE
+//	if(HULK in M.mutations)
+//		to_chat(user, SPAN_DANGER("Your fingers are much too large for the trigger guard!"))
+//		return FALSE
 	if(!restrict_safety)
 		if(safety)
 			to_chat(user, SPAN_DANGER("The gun's safety is on!"))
@@ -238,7 +238,7 @@
 		handle_click_empty(user)
 		return FALSE
 
-	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
+/*	if((CLUMSY in M.mutations) && prob(40)) //Clumsy handling
 		var/obj/P = consume_next_projectile()
 		if(P)
 			if(process_projectile(P, user, user, pick(BP_L_LEG, BP_R_LEG)))
@@ -251,6 +251,7 @@
 		else
 			handle_click_empty(user)
 		return FALSE
+*/
 	if(rigged)
 		var/obj/P = consume_next_projectile()
 		if(P)

@@ -24,9 +24,9 @@
 	return istype(species, /datum/species/monkey)
 
 proc/isdeaf(A)
-	if(isliving(A))
-		var/mob/living/M = A
-		return (M.sdisabilities & DEAF) || M.ear_deaf
+//	if(isliving(A))
+//		var/mob/living/M = A
+//		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
 
 /proc/hasorgans(A) // Fucking really??

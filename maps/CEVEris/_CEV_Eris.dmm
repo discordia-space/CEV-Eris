@@ -46205,7 +46205,7 @@
 	pixel_x = 3;
 	pixel_y = -3
 	},
-/obj/item/electronics/circuitboard/scan_consolenew,
+/obj/spawner/junkfood,
 /turf/simulated/floor/tiled/steel/gray_platform,
 /area/eris/storage/tech)
 "cge" = (
@@ -91522,7 +91522,7 @@
 /area/eris/medical/genetics)
 "ele" = (
 /obj/structure/table/standard,
-/obj/item/storage/box/disks,
+/obj/spawner/junkfood,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "elf" = (
@@ -91883,14 +91883,14 @@
 /turf/simulated/floor/tiled/white,
 /area/eris/rnd/xenobiology/xenoflora)
 "emh" = (
-/obj/machinery/dna_scannernew,
+/obj/spawner/junkfood,
 /obj/machinery/firealarm{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "emi" = (
-/obj/machinery/computer/scan_consolenew,
+/obj/spawner/junkfood,
 /obj/machinery/light_switch{
 	pixel_y = 28
 	},
@@ -91906,11 +91906,11 @@
 /turf/simulated/open,
 /area/eris/maintenance/section4deck1central)
 "emk" = (
-/obj/machinery/computer/scan_consolenew,
+/obj/spawner/junkfood,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "eml" = (
-/obj/machinery/dna_scannernew,
+/obj/spawner/junkfood,
 /turf/simulated/floor/tiled/white,
 /area/eris/medical/genetics)
 "emm" = (
@@ -199252,8 +199252,8 @@ aaa
 abF
 abF
 abF
-aaa
-aaa
+aad
+aad
 duu
 duz
 duB
@@ -294193,7 +294193,7 @@ eis
 ege
 ekw
 eld
-emk
+eml
 enj
 enl
 eoJ

@@ -13,8 +13,8 @@
 		return 0
 
 	//Hulk modifier
-	if(HULK in user.mutations)
-		effective_force *= 2
+//	if(HULK in user.mutations)
+//		effective_force *= 2
 
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)

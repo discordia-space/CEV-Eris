@@ -23,11 +23,11 @@
 	if(!user.IsAdvancedToolUser())
 		return
 
-	if ((CLUMSY in user.mutations) && prob(50))
+/*	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Uh ... how do those things work?!"))
 		place_handcuffs(user, user)
 		return
-
+*/
 	if(C.handcuffed)
 		to_chat(user,SPAN_WARNING("\The [C] is already handcuffed."))
 		return

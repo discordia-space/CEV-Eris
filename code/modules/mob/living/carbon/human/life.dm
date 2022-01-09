@@ -179,37 +179,16 @@
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
 				eye_blurry = max(eye_blurry-2, 0)
 
-	if (disabilities & EPILEPSY)
-		if ((prob(1) && paralysis < 1))
-			to_chat(src, "\red You have a seizure!")
-			for(var/mob/O in viewers(src, null))
-				if(O == src)
-					continue
-				O.show_message(text(SPAN_DANGER("[src] starts having a seizure!")), 1)
-			Paralyse(10)
-			make_jittery(1000)
-	if (disabilities & COUGHING)
-		if ((prob(5) && paralysis <= 1))
-			drop_item()
-			spawn( 0 )
-				emote("cough")
-				return
-	if (disabilities & TOURETTES)
-		speech_problem_flag = 1
-		if ((prob(10) && paralysis <= 1))
-			Stun(10)
-			spawn( 0 )
-				switch(rand(1, 3))
-					if(1)
-						emote("twitch")
-					if(2 to 3)
-						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
-				make_jittery(100)
-				return
-	if (disabilities & NERVOUS)
-		speech_problem_flag = 1
-		if (prob(10))
-			stuttering = max(10, stuttering)
+//	if (disabilities & COUGHING)
+//		if ((prob(5) && paralysis <= 1))
+//			drop_item()
+//			spawn( 0 )
+//				emote("cough")
+//				return
+//	if (disabilities & NERVOUS)
+//		speech_problem_flag = 1
+//		if (prob(10))
+//			stuttering = max(10, stuttering)
 
 	if(stat != DEAD)
 		var/rn = rand(0, 200)
@@ -239,28 +218,19 @@
 	if(in_stasis)
 		return
 
-	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
-			heal_organ_damage(0,1)
-
-	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			speech_problem_flag = 1
-			gene.OnMobLife(src)
+//	if(getFireLoss())
+//		if((COLD_RESISTANCE in mutations) || (prob(1)))
+//			heal_organ_damage(0,1)
 
 	radiation = CLAMP(radiation,0,100)
 
-	if (radiation)
+	if(radiation)
 		var/damage = 0
 		radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 		if(prob(25))
 			damage = 1
 
-		if (radiation > 50)
+		if(radiation > 50)
 			damage = 1
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
@@ -276,7 +246,7 @@
 					f_style = "Shaved"
 					update_hair()
 
-		if (radiation > 75)
+		if(radiation > 75)
 			radiation -= 1 * RADIATION_SPEED_COEFFICIENT
 			damage = 3
 			if(prob(5))
@@ -482,7 +452,7 @@
 	if(!species)
 		return
 	// Hot air hurts :( :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1)) // && !(COLD_RESISTANCE in mutations)
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
@@ -634,7 +604,7 @@
 		pressure_alert = 0
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		pressure_alert = -1
-	else
+/*	else
 		if( !(COLD_RESISTANCE in mutations))
 			take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
 			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
@@ -642,7 +612,7 @@
 			pressure_alert = -2
 		else
 			pressure_alert = -1
-
+*/
 	return
 
 /*
@@ -719,8 +689,8 @@
 	return get_thermal_protection(thermal_protection_flags)
 
 /mob/living/carbon/human/get_cold_protection(temperature)
-	if(COLD_RESISTANCE in mutations)
-		return 1 //Fully protected from the cold.
+//	if(COLD_RESISTANCE in mutations)
+//		return 1 //Fully protected from the cold.
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
@@ -863,9 +833,9 @@
 				embedded_flag = 0
 
 		//Ears
-		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-			ear_deaf = max(ear_deaf, 1)
-		else if(ear_deaf)			//deafness, heals slowly over time
+//		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
+//			ear_deaf = max(ear_deaf, 1)
+		if(ear_deaf)			//deafness, heals slowly over time
 			adjustEarDamage(0,-1)
 		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//resting your ears with earmuffs heals ear damage faster
 			adjustEarDamage(-0.15)
@@ -1154,9 +1124,9 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/obj/structure/multiz))
 			isRemoteObserve = TRUE
-		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
-			if(remoteview_target.stat == CONSCIOUS)
-				isRemoteObserve = TRUE
+//		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
+//			if(remoteview_target.stat == CONSCIOUS)
+//				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs)
 			remoteview_target = null
 			reset_view(null, FALSE)
@@ -1168,8 +1138,8 @@
 	..()
 	if(stat == DEAD)
 		return
-	if(XRAY in mutations)
-		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+//	if(XRAY in mutations)
+//		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 
 /mob/living/carbon/human/proc/EnterStasis()
 	in_stasis = TRUE

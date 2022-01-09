@@ -1,5 +1,5 @@
-/proc/gibs(atom/location, var/datum/dna/MobDNA, gibber_type = /obj/effect/gibspawner/generic, var/fleshcolor, var/bloodcolor)
-	new gibber_type(location,MobDNA,fleshcolor,bloodcolor)
+/proc/gibs(atom/location, mob/M, gibber_type = /obj/effect/gibspawner/generic, fleshcolor, bloodcolor)
+	new gibber_type(location, M, fleshcolor, bloodcolor)
 
 /obj/effect/gibspawner
 	var/sparks = 0 //whether sparks spread on Gib()
@@ -10,14 +10,14 @@
 	var/fleshcolor //Used for gibbed humans.
 	var/bloodcolor //Used for gibbed humans.
 
-	New(location, var/datum/dna/MobDNA, var/fleshcolor, var/bloodcolor)
+	New(location, mob/M, fleshcolor, bloodcolor)
 		..()
 
 		if(fleshcolor) src.fleshcolor = fleshcolor
 		if(bloodcolor) src.bloodcolor = bloodcolor
-		Gib(loc,MobDNA)
+		Gib(loc, M)
 
-	proc/Gib(atom/location, var/datum/dna/MobDNA = null)
+	proc/Gib(atom/location, mob/M = null)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
 			to_chat(world, SPAN_WARNING("Gib list length mismatch!"))
 			return
@@ -43,8 +43,8 @@
 					gib.update_icon()
 
 					gib.blood_DNA = list()
-					if(MobDNA)
-						gib.blood_DNA[MobDNA.unique_enzymes] = MobDNA.b_type
+					if(M)
+						gib.blood_DNA[M.dna_trace] = M.b_type
 					else if(istype(src, /obj/effect/gibspawner/human)) // Probably a monkey
 						gib.blood_DNA["Non-human DNA"] = "A+"
 					if(istype(location,/turf/))

@@ -339,7 +339,7 @@
 	reagent_state = SOLID
 	color = "#004000"
 	overdose = REAGENTS_OVERDOSE
-
+/*
 /datum/reagent/medicine/ryetalyn/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	var/needs_update = M.mutations.len > 0
 
@@ -351,7 +351,7 @@
 	if(needs_update && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.update_mutations()
-
+*/
 /datum/reagent/medicine/negative_ling
 	name = "Negative Paragenetic Marker"
 	id = "negativeling"

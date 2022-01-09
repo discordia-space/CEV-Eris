@@ -375,8 +375,6 @@ its easier to just keep the beam vertical.
 	if(isnull(M.key)) return
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if (!istype(H.dna, /datum/dna))
-			return FALSE
 		if (H.gloves)
 			if(src.fingerprintslast != H.key)
 				src.fingerprintshidden += text("\[[time_stamp()]\] (Wearing gloves). Real name: [], Key: []", H.real_name, H.key)
@@ -406,18 +404,15 @@ its easier to just keep the beam vertical.
 		add_fibers(M)
 
 		//He has no prints!
-		if (mFingerprints in M.mutations)
-			if(fingerprintslast != M.key)
-				fingerprintshidden += "(Has no fingerprints) Real name: [M.real_name], Key: [M.key]"
-				fingerprintslast = M.key
-			return FALSE		//Now, lets get to the dirty work.
+//		if (mFingerprints in M.mutations)
+//			if(fingerprintslast != M.key)
+//				fingerprintshidden += "(Has no fingerprints) Real name: [M.real_name], Key: [M.key]"
+//				fingerprintslast = M.key
+//			return FALSE		//Now, lets get to the dirty work.
 		//First, make sure their DNA makes sense.
 		var/mob/living/carbon/human/H = M
-		if (!istype(H.dna, /datum/dna) || !H.dna.uni_identity || (length(H.dna.uni_identity) != 32))
-			if(!istype(H.dna, /datum/dna))
-				H.dna = new /datum/dna(null)
-				H.dna.real_name = H.real_name
-		H.check_dna()
+		if(!H.fingers_trace)
+			H.fingers_trace = md5(H.real_name)
 
 		//Now, deal with gloves.
 		if (H.gloves && H.gloves != src)
@@ -530,10 +525,8 @@ its easier to just keep the beam vertical.
 	was_bloodied = TRUE
 	blood_color = "#A10808"
 	if(istype(M))
-		if (!istype(M.dna, /datum/dna))
-			M.dna = new /datum/dna(null)
-			M.dna.real_name = M.real_name
-		M.check_dna()
+		if(!M.fingers_trace)
+			M.fingers_trace = md5(M.real_name)
 		if (M.species)
 			blood_color = M.species.blood_color
 	. = TRUE

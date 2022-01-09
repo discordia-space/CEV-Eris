@@ -66,8 +66,8 @@
 			if (istype(M, /mob/observer))
 				messagemobs_neardead += M
 				continue
-			else if (istype(M, /mob/living) && !(type == 2 && (sdisabilities & DEAF || ear_deaf)))
-				messagemobs += M
+//			else if (istype(M, /mob/living) && !(type == 2 && (sdisabilities & DEAF || ear_deaf)))
+//				messagemobs += M
 		else if(src.client)
 			if  (M.stat == DEAD && (M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH))
 				messagemobs += M

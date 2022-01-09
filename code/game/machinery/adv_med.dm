@@ -411,10 +411,10 @@
 		if(!locate(species_organs[organ_name]) in occ["internal_organs"])
 			dat += text("<font color='red'>No [organ_name] detected.</font><BR>")
 
-	if(occ["sdisabilities"] & BLIND)
-		dat += text("<font color='red'>Cataracts detected.</font><BR>")
-	if(occ["sdisabilities"] & NEARSIGHTED)
-		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
+//	if(occ["sdisabilities"] & BLIND)
+//		dat += text("<font color='red'>Cataracts detected.</font><BR>")
+//	if(occ["sdisabilities"] & NEARSIGHTED)
+//		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
 
 /obj/machinery/bodyscanner/on_update_icon()

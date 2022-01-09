@@ -220,9 +220,9 @@ var/global/list/damage_icon_parts = list()
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
 
-	var/husk = (HUSK in src.mutations)
-	var/hulk = (HULK in src.mutations)
-	var/skeleton = (SKELETON in src.mutations)
+	var/husk = FALSE // (HUSK in src.mutations)
+	var/hulk = FALSE // (HULK in src.mutations)
+	var/skeleton = FALSE // (SKELETON in src.mutations)
 
 	//Create a new, blank icon for our mob to use.
 	if(stand_icon)
@@ -369,31 +369,17 @@ var/global/list/damage_icon_parts = list()
 	if(update_icons)   update_icons()
 
 /mob/living/carbon/human/update_mutations(var/update_icons=1)
-
+	return
+/*
 	var/image/standing = image("icon" = 'icons/effects/genetics.dmi')
 	var/add_image = 0
-	var/g = "m"
-	if(gender == FEMALE)	g = "f"
-	// DNA2 - Drawing underlays.
-	for(var/datum/dna/gene/gene in dna_genes)
-		if(!gene.block)
-			continue
-		if(gene.is_active(src))
-			var/underlay=gene.OnDrawUnderlays(src,g)
-			if(underlay)
-				standing.underlays += underlay
-				add_image = 1
-	for(var/mut in mutations)
-		switch(mut)
-			if(LASER)
-				standing.overlays.Add("lasereyes_s")
-				add_image = 1
 	if(add_image)
-		overlays_standing[MUTATIONS_LAYER]	= standing
+		overlays_standing[MUTATIONS_LAYER] = standing
 	else
-		overlays_standing[MUTATIONS_LAYER]	= null
-	if(update_icons)   update_icons()
-
+		overlays_standing[MUTATIONS_LAYER] = null
+	if(update_icons)
+		update_icons()
+*/
 /mob/proc/update_implants(var/update_icons = 1)
 	return
 

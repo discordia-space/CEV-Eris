@@ -307,15 +307,6 @@
 		var/mob/living/carbon/human/H = M
 		if(H.species.flags & NO_SCAN)
 			return
-	if(M.dna)
-		if(prob(effect_multiplier * 0.01)) // Approx. one mutation per 10 injected/20 ingested/30 touching units
-			randmuti(M)
-			if(prob(98))
-				randmutb(M)
-			else
-				randmutg(M)
-			domutcheck(M, null)
-			M.UpdateAppearance()
 	M.apply_effect(1 * effect_multiplier, IRRADIATE, 0)
 
 /datum/reagent/medicine/slimejelly

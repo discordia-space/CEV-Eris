@@ -56,8 +56,8 @@
 		return ..()
 	if(user.targeted_organ != BP_EYES && user.targeted_organ != BP_HEAD)
 		return ..()
-	if((CLUMSY in user.mutations) && prob(50))
-		M = user
+/*	if((CLUMSY in user.mutations) && prob(50))
+		M = user	*/
 	return eyestab(M,user)
 
 

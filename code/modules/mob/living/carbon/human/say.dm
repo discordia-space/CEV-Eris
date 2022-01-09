@@ -179,10 +179,10 @@
 	return verb
 
 /mob/living/carbon/human/handle_speech_problems(var/message, var/verb)
-	if(silent || (sdisabilities & MUTE))
-		message = ""
-		speech_problem_flag = 1
-	else if(istype(wear_mask, /obj/item/clothing/mask))
+//	if(silent || (sdisabilities & MUTE))
+//		message = ""
+//		speech_problem_flag = 1
+	if(istype(wear_mask, /obj/item/clothing/mask))
 		var/obj/item/clothing/mask/M = wear_mask
 		if(M.voicechange)
 			message = pick(M.say_messages)

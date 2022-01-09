@@ -454,11 +454,12 @@
 		playsound(user.loc, 'sound/weapons/blade1.ogg', 50, 1)
 
 /obj/item/shield/buckler/energy/attack_self(mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+/*	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You beat yourself in the head with [src]."))
 		user.take_organ_damage(5)
 	active = !active
-	if (active)
+*/
+	if(active)
 		force = WEAPON_FORCE_PAINFUL
 		update_icon()
 		w_class = ITEM_SIZE_BULKY

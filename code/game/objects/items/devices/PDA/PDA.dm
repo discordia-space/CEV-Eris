@@ -1209,15 +1209,12 @@ var/global/list/obj/item/device/pda/PDAs = list()
 						user.show_message(SPAN_NOTICE("    Limbs are OK."),1)
 
 			if(2)
-				if (!istype(C:dna, /datum/dna))
+				if(!C.fingers_trace)
 					to_chat(user, SPAN_NOTICE("No fingerprints found on [C]"))
 				else
-					var/datum/dna/value = C.dna
-					to_chat(user, text(SPAN_NOTICE("\The [C]'s Fingerprints: [md5(value.uni_identity)]")))
-				if ( !(C:blood_DNA) )
+					to_chat(user, text(SPAN_NOTICE("\The [C]'s Fingerprints: [C.fingers_trace]")))
+				if(!C:blood_DNA)
 					to_chat(user, SPAN_NOTICE("No blood found on [C]"))
-					if(C:blood_DNA)
-						qdel(C:blood_DNA)
 				else
 					to_chat(user, SPAN_NOTICE("Blood found on [C]. Analysing..."))
 					spawn(15)

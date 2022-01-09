@@ -91,8 +91,8 @@
 			else
 				if (istype(H))
 					damage += max(0, (H.stats.getStat(STAT_ROB) / 10))
-					if (HULK in H.mutations)
-						damage *= 2
+//					if (HULK in H.mutations)
+//						damage *= 2
 
 				playsound(loc, "punch", 25, 1, -1)
 				M.visible_message("\red [M] has punched \the [src]")

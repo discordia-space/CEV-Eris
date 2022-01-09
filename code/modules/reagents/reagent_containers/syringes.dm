@@ -66,12 +66,12 @@
 		to_chat(user, SPAN_WARNING("This syringe is broken!"))
 		return
 
-	if(user.a_intent == I_HURT && ismob(target))
+/*	if(user.a_intent == I_HURT && ismob(target))
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		syringestab(target, user)
 		return
-
+*/
 	switch(mode)
 		if(SYRINGE_DRAW)
 			if(!reagents.get_free_space())
@@ -89,13 +89,9 @@
 						return
 					var/amount = reagents.get_free_space()
 					var/mob/living/carbon/T = target
-					if(!T.dna)
-						to_chat(user, SPAN_WARNING("You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum)."))
-						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
-						to_chat(user, SPAN_WARNING("You are unable to locate any blood."))
-						return
-
+//					if(NOCLONE in T.mutations) //target done been et, no more blood in him
+//						to_chat(user, SPAN_WARNING("You are unable to locate any blood."))
+//						return
 					var/datum/reagent/B
 					if(ishuman(T))
 						var/mob/living/carbon/human/H = T

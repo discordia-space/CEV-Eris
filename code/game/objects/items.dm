@@ -394,9 +394,9 @@
 
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(blood_DNA[M.dna.unique_enzymes])
+		if(blood_DNA[M.dna_trace])
 			return 0 //already bloodied with this blood. Cannot add more.
-		blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		blood_DNA[M.dna_trace] = M.b_type
 	return 1 //we applied blood to the item
 
 var/global/list/items_blood_overlay_by_type = list()

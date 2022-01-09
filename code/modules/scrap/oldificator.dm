@@ -271,17 +271,6 @@
 	sender.drop_from_inventory(src)
 	QDEL_NULL(src)
 
-/obj/item/dnainjector/make_old(low_quality_oldification)
-	.=..()
-	if(.)
-		if(prob(75))
-			name = "DNA-Injector (unknown)"
-			desc = pick("1mm0r74l17y 53rum", "1ncr3d1bl3 73l3p47y hNlk", "5up3rhum4n m16h7")
-			value = 0xFFF
-		if(prob(75))
-			block = pick(MONKEYBLOCK, HALLUCINATIONBLOCK, DEAFBLOCK, BLINDBLOCK, NERVOUSBLOCK, TWITCHBLOCK, CLUMSYBLOCK, COUGHBLOCK, HEADACHEBLOCK, GLASSESBLOCK)
-
-
 /obj/item/clothing/glasses/hud/make_old(low_quality_oldification)
 	GET_COMPONENT(oldified, /datum/component/oldficator)
 	if(!oldified && prob(75) && !istype(src, /obj/item/clothing/glasses/hud/broken))

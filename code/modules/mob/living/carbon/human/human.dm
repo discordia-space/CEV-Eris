@@ -12,10 +12,6 @@
 
 /mob/living/carbon/human/New(var/new_loc, var/new_species)
 
-	if(!dna)
-		dna = new /datum/dna(null)
-		// Species name is handled by set_species()
-
 	if(!species)
 		if(new_species)
 			set_species(new_species,1)
@@ -44,10 +40,7 @@
 	GLOB.human_mob_list |= src
 	..()
 
-	if(dna)
-		dna.ready_dna(src)
-		dna.real_name = real_name
-		sync_organ_dna()
+	sync_organ_dna()
 	make_blood()
 
 	sanity = new(src)
@@ -276,7 +269,7 @@ var/list/rank_prefix = list(\
 //Returns "Unknown" if facially disfigured and real_name if not. Useful for setting name when polyacided or when updating a human's name variable
 /mob/living/carbon/human/get_face_name()
 	var/obj/item/organ/external/head = get_organ(BP_HEAD)
-	if(!head || head.disfigured || head.is_stump() || !real_name || (HUSK in mutations) )	//disfigured. use id-name if possible
+	if(!head || head.disfigured || head.is_stump() || !real_name) // || (HUSK in mutations) 	//disfigured. use id-name if possible
 		return "Unknown"
 	return real_name
 
@@ -639,11 +632,6 @@ var/list/rank_prefix = list(\
 
 	return 0
 
-
-/mob/living/carbon/human/proc/check_dna()
-	dna.check_integrity(src)
-	return
-
 /mob/living/carbon/human/get_species()
 	if(!species)
 		set_species()
@@ -701,9 +689,9 @@ var/list/rank_prefix = list(\
 		remoteview_target = null
 		return
 
-	if(!(mMorph in mutations))
-		src.verbs -= /mob/living/carbon/human/proc/morph
-		return
+//	if(!(mMorph in mutations))
+//		src.verbs -= /mob/living/carbon/human/proc/morph
+//		return
 
 	var/new_facial = input("Please select facial hair color.", "Character Generation",facial_color) as color
 	if(new_facial)
@@ -762,7 +750,6 @@ var/list/rank_prefix = list(\
 		else
 			gender = FEMALE
 	regenerate_icons()
-	check_dna()
 
 	visible_message("\blue \The [src] morphs and changes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] appearance!", "\blue You change your appearance!", "\red Oh, god!  What the hell was that?  It sounded like flesh getting squished and bone ground into a different shape!")
 
@@ -775,9 +762,9 @@ var/list/rank_prefix = list(\
 		remoteview_target = null
 		return
 
-	if(!(mRemotetalk in src.mutations))
-		src.verbs -= /mob/living/carbon/human/proc/remotesay
-		return
+//	if(!(mRemotetalk in src.mutations))
+//		src.verbs -= /mob/living/carbon/human/proc/remotesay
+//		return
 	var/list/creatures = list()
 	for(var/mob/living/carbon/h in world)
 		creatures += h
@@ -786,10 +773,10 @@ var/list/rank_prefix = list(\
 		return
 
 	var/say = sanitize(input("What do you wish to say"))
-	if(mRemotetalk in target.mutations)
-		target.show_message("\blue You hear [src.real_name]'s voice: [say]")
-	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
+//	if(mRemotetalk in target.mutations)
+//		target.show_message("\blue You hear [src.real_name]'s voice: [say]")
+//	else
+	target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
 	usr.show_message("\blue You project your mind into [target.real_name]: [say]")
 	log_say("[key_name(usr)] sent a telepathic message to [key_name(target)]: [say]")
 	for(var/mob/observer/ghost/G in world)
@@ -804,12 +791,12 @@ var/list/rank_prefix = list(\
 		reset_view(0)
 		return
 
-	if(!(mRemote in src.mutations))
+/*	if(!(mRemote in src.mutations))
 		remoteview_target = null
 		reset_view(0)
 		src.verbs -= /mob/living/carbon/human/proc/remoteobserve
 		return
-
+*/
 	if(client.eye != client.mob)
 		remoteview_target = null
 		reset_view(0)
@@ -918,19 +905,19 @@ var/list/rank_prefix = list(\
 		return 0
 	//if this blood isn't already in the list, add it
 	if(istype(M))
-		if(!blood_DNA[M.dna.unique_enzymes])
-			blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		if(!blood_DNA[M.dna_trace])
+			blood_DNA[M.dna_trace] = M.b_type
 	hand_blood_color = blood_color
 	src.update_inv_gloves()	//handles bloody hands overlays and updating
 	verbs += /mob/living/carbon/human/proc/bloody_doodle
 	return 1 //we applied blood to the item
 
 /mob/living/carbon/human/proc/get_full_print()
-	if(!dna ||!dna.uni_identity)
+	if(!fingers_trace)
 		return
 	if(chem_effects[CE_DYNAMICFINGERS])
 		return md5(chem_effects[CE_DYNAMICFINGERS])
-	return md5(dna.uni_identity)
+	return fingers_trace
 
 /mob/living/carbon/human/clean_blood(var/clean_feet)
 	.=..()
@@ -1064,15 +1051,6 @@ var/list/rank_prefix = list(\
 		to_chat(usr, SPAN_WARNING("You failed to check the pulse. Try again."))
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
-	if(!dna)
-		if(!new_species)
-			new_species = SPECIES_HUMAN
-	else
-		if(!new_species)
-			new_species = dna.species
-		else
-			dna.species = new_species
-
 	// No more invisible screaming wheelchairs because of set_species() typos.
 	if(!all_species[new_species])
 		new_species = SPECIES_HUMAN
@@ -1375,16 +1353,6 @@ var/list/rank_prefix = list(\
 			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
 	return ..()
 
-/mob/living/carbon/human/getDNA()
-	if(species.flags & NO_SCAN)
-		return null
-	..()
-
-/mob/living/carbon/human/setDNA()
-	if(species.flags & NO_SCAN)
-		return
-	..()
-
 /mob/living/carbon/human/has_brain()
 	if(organ_list_by_process(BP_BRAIN).len)
 		return TRUE
@@ -1611,10 +1579,10 @@ var/list/rank_prefix = list(\
 		src.show_message("My [org.name] is [status_text].",1)
 
 /mob/living/carbon/human/need_breathe()
-	if(!(mNobreath in mutations))
-		return TRUE
-	else
-		return FALSE
+//	if(!(mNobreath in mutations))
+//		return TRUE
+//	else
+	return FALSE
 
 /mob/living/carbon/human/proc/set_remoteview(var/atom/A)
 	remoteview_target = A

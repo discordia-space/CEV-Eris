@@ -222,7 +222,7 @@
 		if(istype(AM, /mob/living/carbon))
 			var/mob/living/carbon/C = AM
 			var/injection_status = C.can_inject(null, BP_CHEST)
-			if(istype(C, /mob/living/carbon/slime) || !C.dna || !injection_status)
+			if(istype(C, /mob/living/carbon/slime) || !C.b_type || !injection_status)
 				activate_pin(3)
 				return
 			C.visible_message(SPAN("danger", "[acting_object] takes a blood sample from [C]!"), \

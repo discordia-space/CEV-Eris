@@ -139,7 +139,7 @@ var/list/disciples = list()
 	if(!wearer || !activated)
 		return FALSE
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
-	if(wearer.dna.unique_enzymes == data.dna.unique_enzymes)
+	if(wearer.dna_trace == data.dna_trace)
 		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == data.ckey)
 				if(M.stat != DEAD)

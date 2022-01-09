@@ -156,11 +156,9 @@ var/const/NO_EMAG_ACT = -50
 	id_card.registered_name		= real_name
 	id_card.sex 				= capitalize(gender)
 	id_card.set_id_photo(src)
-
-	if(dna)
-		id_card.blood_type		= dna.b_type
-		id_card.dna_hash		= dna.unique_enzymes
-		id_card.fingerprint_hash= md5(dna.uni_identity)
+	id_card.blood_type		= b_type
+	id_card.dna_hash		= dna_trace
+	id_card.fingerprint_hash= fingers_trace
 	id_card.update_name()
 
 /mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)

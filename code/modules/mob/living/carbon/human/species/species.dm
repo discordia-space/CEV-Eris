@@ -358,8 +358,8 @@
 	if(config.welder_vision)
 		if(H.equipment_tint_total == TINT_HEAVY)
 			H.client.screen += global_hud.darkMask
-		else if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
-			H.client.screen += global_hud.vimpaired
+//		else if((!H.equipment_prescription && (H.disabilities & NEARSIGHTED)) || H.equipment_tint_total == TINT_MODERATE)
+//			H.client.screen += global_hud.vimpaired
 		else if(H.equipment_tint_total == TINT_LOW)
 			H.client.screen += global_hud.lightMask
 

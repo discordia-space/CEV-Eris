@@ -14,7 +14,7 @@
 	var/variance = 0 //How much the fuse time varies up or down. Punishes cooking with makeshift nades, proper ones should have 0
 
 /obj/item/grenade/proc/clown_check(var/mob/living/user)
-	if((CLUMSY in user.mutations) && prob(50))
+/*	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("Huh? How does this thing work?"))
 
 		activate(user)
@@ -22,7 +22,8 @@
 		spawn(5)
 			prime()
 		return 0
-	return 1
+*/
+	return TRUE
 
 /obj/item/grenade/examine(mob/user)
 	if(..(user, 0))

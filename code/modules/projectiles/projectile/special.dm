@@ -107,13 +107,6 @@
 				H.Weaken(5)
 				for (var/mob/V in viewers(src))
 					V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
-			if(prob(35))
-				if(prob(80))
-					randmutb(M)
-					domutcheck(M,null)
-				else
-					randmutg(M)
-					domutcheck(M,null)
 			else
 				M.adjustFireLoss(rand(5,15))
 				M.show_message("\red The radiation beam singes you!")

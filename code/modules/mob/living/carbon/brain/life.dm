@@ -2,8 +2,8 @@
 	return
 
 /mob/living/carbon/brain/handle_mutations_and_radiation()
-	if (radiation)
-		if (radiation > 100)
+	if(radiation)
+		if(radiation > 100)
 			radiation = 100
 			if(!container)//If it's not in an MMI
 				to_chat(src, "\red You feel weak.")
@@ -163,7 +163,7 @@
 	return 1
 
 /mob/living/carbon/brain/handle_regular_hud_updates()
-	if (stat == 2 || (XRAY in src.mutations))
+	if (stat == 2) // || (XRAY in src.mutations)
 		sight |= SEE_TURFS
 		sight |= SEE_MOBS
 		sight |= SEE_OBJS
@@ -196,7 +196,7 @@
 		else
 			healths.icon_state = "health7"*/
 
-		if (stat == 2 || (XRAY in src.mutations))
+		if (stat == 2) // || (XRAY in src.mutations)
 			sight |= SEE_TURFS
 			sight |= SEE_MOBS
 			sight |= SEE_OBJS

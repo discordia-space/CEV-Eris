@@ -181,14 +181,6 @@
 		..()
 		forceMove(associated_spider)
 
-/obj/item/organ/internal/carrion/core/proc/GetDNA(var/dna_owner)
-	var/datum/dna/chosen_dna
-	for(var/datum/dna/DNA in absorbed_dna)
-		if(dna_owner == DNA.real_name)
-			chosen_dna = DNA
-			break
-	return chosen_dna
-
 /obj/item/organ/internal/carrion/core/proc/carrion_transform()
 	set category = "Carrion"
 	set name = "Transform(5)"
@@ -196,37 +188,31 @@
 	if (owner.transforming)
 		return
 
-	var/list/names = list()
-
 	if (!owner)
 		return
 
-	for(var/datum/dna/DNA in absorbed_dna)
-		names += "[DNA.real_name]"
-
-	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
 	if(!absorbed_dna.len)
 		to_chat(owner, SPAN_WARNING("You have no DNA absorbed!"))
 		return
 
-	var/datum/dna/chosen_dna = GetDNA(S)
-	if(!chosen_dna)
+	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in absorbed_dna
+
+	if(!S)
 		return
 
 	if(!owner.check_ability(5))
 		return
 
-	if(HUSK in owner.mutations)
-		owner.mutations -= HUSK
-		if(istype(owner))
-			owner.update_body(0)
+//	if(HUSK in owner.mutations)
+//		owner.mutations -= HUSK
+//		if(istype(owner))
+//			owner.update_body(0)
 
 	owner.visible_message(SPAN_WARNING("[owner] transforms!"))
-	owner.dna = chosen_dna.Clone()
-	owner.real_name = chosen_dna.real_name
+	owner.real_name = S
+	owner.dna_trace = sha1(S)
+	owner.fingers_trace = md5(S)
 	owner.flavor_text = ""
-	owner.UpdateAppearance()
-	domutcheck(owner, null)
 
 	return 1
 

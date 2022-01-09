@@ -36,8 +36,8 @@
 				return 0
 			var/obj/item/organ/external/affecting = get_organ(ran_zone(H.targeted_organ))
 
-			if(HULK in H.mutations)
-				damage += 5
+//			if(HULK in H.mutations)
+//				damage += 5
 
 			playsound(loc, "punch", 25, 1, -1)
 
@@ -228,9 +228,9 @@
 			real_damage += attack.get_unarmed_damage(H)
 			real_damage *= damage_multiplier
 			stat_damage *= damage_multiplier
-			if(HULK in H.mutations)
-				real_damage *= 2 // Hulks do twice the damage
-				stat_damage *= 2
+//			if(HULK in H.mutations)
+//				real_damage *= 2 // Hulks do twice the damage
+//				stat_damage *= 2
 			real_damage = max(1, real_damage)
 
 			// Apply additional unarmed effects.

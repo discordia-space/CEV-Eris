@@ -10,7 +10,7 @@
 	update_lying_buckled_and_verb_status()
 	GLOB.dead_mob_list -= src
 
-	if(do_gibs) gibs(loc, dna)
+	if(do_gibs) gibs(loc, src)
 
 	var/atom/movable/overlay/animation = null
 	if (anim)

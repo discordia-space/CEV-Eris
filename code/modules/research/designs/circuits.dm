@@ -59,28 +59,10 @@
 	sort_string = "FACAA"
 	category = CAT_COMP
 
-/datum/design/research/circuit/scan_console
-	name = "DNA machine"
-	build_path = /obj/item/electronics/circuitboard/scan_consolenew
-	sort_string = "FAGAA"
-	category = CAT_MEDI
-
 /datum/design/research/circuit/sleeper
 	name = "Sleeper"
 	build_path = /obj/item/electronics/circuitboard/sleeper
 	sort_string = "FAGAB"
-	category = CAT_MEDI
-
-/datum/design/research/circuit/clonepod
-	name = "clone pod"
-	build_path = /obj/item/electronics/circuitboard/clonepod
-	sort_string = "FAGAE"
-	category = CAT_MEDI
-
-/datum/design/research/circuit/clonescanner
-	name = "cloning scanner"
-	build_path = /obj/item/electronics/circuitboard/clonescanner
-	sort_string = "FAGAG"
 	category = CAT_MEDI
 
 /datum/design/research/circuit/chemmaster

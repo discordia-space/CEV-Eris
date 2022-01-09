@@ -198,8 +198,8 @@
 		update_inv_legcuffed()
 
 /mob/living/carbon/proc/can_break_cuffs()
-	if(HULK in mutations)
-		return 1
+//	if(HULK in mutations)
+//		return 1
 	if(stats.getStat(STAT_ROB) >= STAT_LEVEL_GODLIKE)
 		return 1
 
@@ -218,8 +218,8 @@
 			SPAN_WARNING("You successfully break your [handcuffed.name].")
 			)
 
-		if(HULK in mutations)
-			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+//		if(HULK in mutations)
+//			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 
 		qdel(handcuffed)
@@ -241,8 +241,8 @@
 			SPAN_WARNING("You successfully break your legcuffs.")
 			)
 
-		if(HULK in mutations)
-			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+//		if(HULK in mutations)
+//			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", ";NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 
 		qdel(legcuffed)
 		legcuffed = null

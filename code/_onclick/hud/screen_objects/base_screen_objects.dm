@@ -1162,10 +1162,10 @@ obj/screen/fire/DEADelize()
 
 /obj/screen/drugoverlay/on_update_icon()
 	underlays.Cut()
-	if (parentmob.disabilities & NEARSIGHTED)
-		var/obj/item/clothing/glasses/G = parentmob.get_equipped_item(slot_glasses)
-		if(!G || !G.prescription)
-			underlays += global_hud.vimpaired
+//	if (parentmob.disabilities & NEARSIGHTED)
+//		var/obj/item/clothing/glasses/G = parentmob.get_equipped_item(slot_glasses)
+//		if(!G || !G.prescription)
+//			underlays += global_hud.vimpaired
 	if (parentmob.eye_blurry)
 		underlays += global_hud.blurry
 	if (parentmob.druggy)

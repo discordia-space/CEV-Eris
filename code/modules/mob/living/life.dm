@@ -160,12 +160,12 @@
 		eye_blurry = max(eye_blurry-1, 0)
 
 	//Ears
-	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
-		setEarDamage(-1, max(ear_deaf, 1))
-	else
-		// deafness heals slowly over time, unless ear_damage is over 100
-		if(ear_damage < 100)
-			adjustEarDamage(-0.05,-1)
+//	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
+//		setEarDamage(-1, max(ear_deaf, 1))
+//	else
+	// deafness heals slowly over time, unless ear_damage is over 100
+	if(ear_damage < 100)
+		adjustEarDamage(-0.05,-1)
 
 //this handles hud updates. Calls update_vision() and handle_hud_icons()
 /mob/living/proc/handle_regular_hud_updates()

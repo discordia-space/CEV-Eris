@@ -102,14 +102,14 @@
 			if("Appearance")
 				var/datum/card_state/choice = input(user, "Select the appearance for this card.", "Agent Card Appearance") as null|anything in id_card_states()
 				if(choice && CanUseTopic(user, state))
-					src.icon_state = choice.icon_state
-					src.item_state = choice.item_state
+					icon_state = choice.icon_state
+					item_state = choice.item_state
 					to_chat(usr, SPAN_NOTICE("Appearance changed to [choice]."))
 					. = 1
 			if("Assignment")
 				var/new_job = sanitize(input(user,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", assignment) as null|text)
 				if(!isnull(new_job) && CanUseTopic(user, state))
-					src.assignment = new_job
+					assignment = new_job
 					to_chat(user, SPAN_NOTICE("Occupation changed to '[new_job]'."))
 					update_name()
 					. = 1
@@ -117,30 +117,27 @@
 				var/default = blood_type
 				if(default == initial(blood_type) && ishuman(user))
 					var/mob/living/carbon/human/H = user
-					if(H.dna)
-						default = H.dna.b_type
+					default = H.b_type
 				var/new_blood_type = sanitize(input(user,"What blood type would you like to be written on this card?","Agent Card Blood Type",default) as null|text)
 				if(!isnull(new_blood_type) && CanUseTopic(user, state))
-					src.blood_type = new_blood_type
+					blood_type = new_blood_type
 					to_chat(user, SPAN_NOTICE("Blood type changed to '[new_blood_type]'."))
 					. = 1
 			if("DNA Hash")
 				var/default = dna_hash
 				if(default == initial(dna_hash) && ishuman(user))
 					var/mob/living/carbon/human/H = user
-					if(H.dna)
-						default = H.dna.unique_enzymes
+					default = H.dna_trace
 				var/new_dna_hash = sanitize(input(user,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default) as null|text)
 				if(!isnull(new_dna_hash) && CanUseTopic(user, state))
-					src.dna_hash = new_dna_hash
+					dna_hash = new_dna_hash
 					to_chat(user, SPAN_NOTICE("DNA hash changed to '[new_dna_hash]'."))
 					. = 1
 			if("Fingerprint Hash")
 				var/default = fingerprint_hash
 				if(default == initial(fingerprint_hash) && ishuman(user))
 					var/mob/living/carbon/human/H = user
-					if(H.dna)
-						default = md5(H.dna.uni_identity)
+					default = H.fingers_trace
 				var/new_fingerprint_hash = sanitize(input(user,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default) as null|text)
 				if(!isnull(new_fingerprint_hash) && CanUseTopic(user, state))
 					src.fingerprint_hash = new_fingerprint_hash

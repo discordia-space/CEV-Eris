@@ -55,7 +55,6 @@
 // #include "designs.dm"
 // #include "dynamic_ruleset_sanity.dm"
 // #include "emoting.dm"
-#include "extension_sanity.dm"
 // #include "food_edibility_check.dm"
 // #include "glasses_vision.dm" // disabled due to the ci itself being broken
 // #include "heretic_knowledge.dm"

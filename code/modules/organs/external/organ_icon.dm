@@ -26,18 +26,6 @@ var/global/list/limb_icon_cache = list()
 		skin_col = human.skin_color
 	hair_col = human.hair_color
 
-/obj/item/organ/external/proc/sync_colour_to_dna()
-	skin_tone = null
-	skin_col = null
-	hair_col = null
-	if(BP_IS_ROBOTIC(src))
-		return
-	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
-		skin_tone = dna.GetUIValue(DNA_UI_SKIN_TONE)
-	if(species.appearance_flags & HAS_SKIN_COLOR)
-		skin_col = rgb(dna.GetUIValue(DNA_UI_SKIN_R), dna.GetUIValue(DNA_UI_SKIN_G), dna.GetUIValue(DNA_UI_SKIN_B))
-	hair_col = rgb(dna.GetUIValue(DNA_UI_HAIR_R),dna.GetUIValue(DNA_UI_HAIR_G),dna.GetUIValue(DNA_UI_HAIR_B))
-
 /obj/item/organ/external/proc/get_cache_key()
 	var/part_key = ""
 
@@ -57,7 +45,7 @@ var/global/list/limb_icon_cache = list()
 	if(!appearance_test.colorize_organ)
 		part_key += "no_color"
 
-	part_key += "[dna.GetUIState(DNA_UI_GENDER)]"
+	part_key += "[owner && owner.gender == FEMALE]"
 	part_key += "[skin_tone]"
 	part_key += skin_col
 	part_key += model
@@ -115,16 +103,11 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/on_update_icon(regenerate = 0)
 	var/gender = "_m"
+	gender = owner.gender == FEMALE ? "_f" : "_m"
 
 	if(appearance_test.simple_setup)
-		gender = owner.gender == FEMALE ? "_f" : "_m"
 		icon_state = "[organ_tag][gender]"
 	else
-		if (dna && dna.GetUIState(DNA_UI_GENDER))
-			gender = "_f"
-		else if(owner && owner.gender == FEMALE)
-			gender = "_f"
-
 		icon_state = "[organ_tag][gender][is_stump()?"_s":""]"
 
 	if(!appearance_test.get_species_sprite)
@@ -132,7 +115,7 @@ var/global/list/limb_icon_cache = list()
 	else
 		if(src.force_icon)
 			icon = src.force_icon
-		else if(!dna)
+		else if(!dna_trace)
 			icon = 'icons/mob/human_races/r_human.dmi'
 		else if(BP_IS_ROBOTIC(src))
 			icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'

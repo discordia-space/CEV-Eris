@@ -62,6 +62,6 @@
 	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/storage/backpack/satchel/leather
 
 
-/decl/hierarchy/outfit/job/cargo/artist/clown/post_equip(var/mob/living/carbon/human/H)
-	..()
-	H.mutations.Add(CLUMSY)
+///decl/hierarchy/outfit/job/cargo/artist/clown/post_equip(var/mob/living/carbon/human/H)
+//	..()
+//	H.mutations.Add(CLUMSY)

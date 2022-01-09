@@ -72,8 +72,8 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 
 	// Security record
 	set_criminalStatus(GLOB.default_security_status)
-	set_dna(H ? H.dna.unique_enzymes : "")
-	set_fingerprint(H ? md5(H.dna.uni_identity) : "")
+	set_dna(H ? H.dna_trace : "")
+	set_fingerprint(H ? H.fingers_trace : "")
 	set_secRecord(H && H.sec_record && !jobban_isbanned(H, "Records") ? html_decode(H.sec_record) : "No record supplied")
 
 	// Employment record

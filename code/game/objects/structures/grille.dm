@@ -41,10 +41,10 @@
 	if(shock(user, 70))
 		return
 
-	if(HULK in user.mutations)
-		damage_dealt += 5
-	else
-		damage_dealt += 1
+//	if(HULK in user.mutations)
+//		damage_dealt += 5
+//	else
+//		damage_dealt += 1
 
 	attack_generic(user,damage_dealt,attack_message)
 

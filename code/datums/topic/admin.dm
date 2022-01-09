@@ -894,21 +894,6 @@
 
 	usr.client.cmd_admin_robotize(H)
 
-
-/datum/admin_topic/togmutate
-	keyword = "togmutate"
-	require_perms = list(R_FUN)
-
-/datum/admin_topic/togmutate/Run(list/input)
-	var/mob/living/carbon/human/H = locate(input["togmutate"])
-	if(!istype(H))
-		to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
-		return
-	var/block=text2num(input["block"])
-	usr.client.cmd_admin_toggle_block(H,block)
-	source.show_player_panel(H)
-
-
 /datum/admin_topic/adminplayeropts
 	keyword = "adminplayeropts"
 

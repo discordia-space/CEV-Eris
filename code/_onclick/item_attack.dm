@@ -129,7 +129,7 @@ avoid code duplication. This includes items that may sometimes act as a standard
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		power *= H.damage_multiplier
-	if(HULK in user.mutations)
-		power *= 2
+//	if(HULK in user.mutations)
+//		power *= 2
 	target.hit_with_weapon(src, user, power, hit_zone)
 	return
