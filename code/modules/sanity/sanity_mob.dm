@@ -199,6 +199,13 @@
 		INSIGHT_DESIRE_SMOKING,
 		INSIGHT_DESIRE_DRUGS,
 	)
+
+	for(var/i in owner.metabolism_effects.addiction_list)
+		if(istype(i, /datum/reagent/drug))
+			if(istype(i, /datum/reagent/drug/nicotine))
+				candidates.Remove(INSIGHT_DESIRE_SMOKING)
+				continue
+			candidates.Remove(INSIGHT_DESIRE_DRUGS)
 	for(var/i = 0; i < INSIGHT_DESIRE_COUNT; i++)
 		var/desire = pick_n_take(candidates)
 		var/list/potential_desires = list()
@@ -310,6 +317,10 @@
 	var/sanity_gain = E.sanity_gain_ingest
 	if(E.id == "ethanol")
 		sanity_gain /= 5
+	else if(istype(E, /datum/reagent/alcohol))
+		var/datum/reagent/alcohol/fine_drink = E
+		if (fine_drink.strength <= 20)
+			sanity_gain *= (5 - (fine_drink.strength / 5))
 	changeLevel(sanity_gain * multiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)

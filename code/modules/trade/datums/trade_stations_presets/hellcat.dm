@@ -1,9 +1,15 @@
 /datum/trade_station/fbv_hellcat
-	name_pool = list("FBV 'Hellcat'" = "They are sending message, \"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to depart with some extra supplies to get rid of while we're still here.\"")
+	name_pool = list(
+		"FBV 'Hellcat'" = "\"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we're here.\""
+	)
 	icon_states = "ihs_destroyer"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = 0.5
+	offer_limit = 20
+	base_income = 1600
+	wealth = 0
+	secret_inv_threshold = 32000
 	forced_overmap_zone = list(
 		list(15, 20),
 		list(20, 25)
@@ -56,6 +62,16 @@
 			/obj/item/clothing/head/armor/laserproof
 		),
 	)
-	
+	secret_inventory = list(
+		"Basic Gun Mods" = list(
+			/obj/item/gun_upgrade/barrel/forged,
+			/obj/item/gun_upgrade/mechanism/gravcharger,
+			/obj/item/tool_upgrade/productivity/ergonomic_grip,
+			/obj/item/tool_upgrade/refinement/laserguide,
+		)
+	)
 	offer_types = list(
+		/obj/item/part/gun = offer_data("gun part", 500, 0),					// base price: 300
+		/obj/item/part/armor = offer_data("armor part", 500, 0),				// base price: 300
+		/obj/item/ammo_magazine = offer_data("empty ammo magazine", 60, 0),		// base price: 60
 	)

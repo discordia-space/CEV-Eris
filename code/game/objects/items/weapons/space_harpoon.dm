@@ -114,11 +114,11 @@
 	transforming = TRUE
 	to_chat(user, SPAN_NOTICE("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
 	update_icon()
-	FLICK("harpoon-[mode]-change", src)
+	flick("harpoon-[mode]-change", src)
 	spawn(13)	//Average length of transforming animation
 		transforming = FALSE
 
-/obj/item/bluespace_harpoon/on_update_icon()
+/obj/item/bluespace_harpoon/update_icon()
 	icon_state = "harpoon-[mode]"
 
 /obj/item/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
@@ -163,7 +163,7 @@
 /obj/item/bluespace_harpoon/mounted/proc/get_external_cell()
 	return loc.get_cell()
 
-/obj/item/bluespace_harpoon/mounted/on_update_icon()
+/obj/item/bluespace_harpoon/mounted/update_icon()
 	icon_state = "harpoon-mounted-[mode]"
 
 /obj/item/bluespace_harpoon/mounted/blitz
@@ -172,5 +172,5 @@
 	icon_state = "harpoon-mounted-blitz-1"
 	spawn_tags = null
 
-/obj/item/bluespace_harpoon/mounted/blitz/on_update_icon()
+/obj/item/bluespace_harpoon/mounted/blitz/update_icon()
 	icon_state = "harpoon-mounted-blitz-[mode]"

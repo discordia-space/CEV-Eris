@@ -18,9 +18,9 @@
 	name = "\improper 4no raisins"
 	icon_state= "4no_raisins"
 
-/obj/item/trash/candy
-	name = "candy"
-	icon_state = "candy"
+/obj/item/trash/shokoloud
+	name = "Shokoloud chocolate bar"
+	icon_state = "shokoloud"
 
 /obj/item/trash/cheesie
 	name = "\improper Cheesie Honkers"
@@ -38,9 +38,9 @@
 	name = "Scaredy's Private Reserve Beef Jerky"
 	icon_state = "sosjerky"
 
-/obj/item/trash/syndi_cakes
-	name = "syndi cakes"
-	icon_state = "syndi_cakes"
+/obj/item/trash/wok
+	name = "Wok"
+	icon_state = "wok"
 
 /obj/item/trash/waffles
 	name = "waffles"
@@ -55,14 +55,6 @@
 	name = "snack bowl"
 	icon_state	= "snack_bowl"
 	matter = list(MATERIAL_GLASS = 1)
-
-/obj/item/trash/pistachios
-	name = "pistachios pack"
-	icon_state = "pistachios_pack"
-
-/obj/item/trash/semki
-	name = "semki pack"
-	icon_state = "semki_pack"
 
 /obj/item/trash/tray
 	name = "tray"

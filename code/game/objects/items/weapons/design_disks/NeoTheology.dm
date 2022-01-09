@@ -93,6 +93,7 @@
 		/datum/design/bioprinter/medical_supply,
 		/datum/design/bioprinter/engineering_tools,
 		/datum/design/bioprinter/engineering_supply,
+		/datum/design/bioprinter/engineering_material,
 		/datum/design/bioprinter/ammo,
 		/datum/design/bioprinter/tubular,
 		/datum/design/bioprinter/tubular/vial,
@@ -161,6 +162,7 @@
 		/datum/design/autolathe/nt/sword/nt_sword,
 		/datum/design/autolathe/nt/sword/nt_dagger,
 		/datum/design/bioprinter/storage/sheath,
+		/datum/design/autolathe/nt/shield/nt_buckler,
 		/datum/design/autolathe/nt/tool_upgrade/sanctifier
 	)
 

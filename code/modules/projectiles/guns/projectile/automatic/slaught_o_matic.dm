@@ -36,6 +36,7 @@
 		FULL_AUTO_300,
 		FULL_AUTO_800
 		)
+	wield_delay = 0
 
 /obj/item/gun/projectile/automatic/slaught_o_matic/Initialize()
 	. = ..()
@@ -46,7 +47,7 @@
 	choosen_color = pick(possible_colors)
 	update_icon()
 
-/obj/item/gun/projectile/automatic/slaught_o_matic/on_update_icon()
+/obj/item/gun/projectile/automatic/slaught_o_matic/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

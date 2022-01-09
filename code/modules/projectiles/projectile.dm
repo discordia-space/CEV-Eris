@@ -32,6 +32,7 @@
 	var/shot_from = "" // name of the object which shot us
 	var/atom/original = null // the target clicked (not necessarily where the projectile is headed). Should probably be renamed to 'target' or something.
 	var/turf/starting = null // the projectile's starting turf
+	var/turf/last_interact = null // the last turf where def_zone calculation took place
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
 
 	var/p_x = 16
@@ -40,6 +41,7 @@
 	var/nocap_structures = FALSE // wether or not this projectile can circumvent the damage cap you can do to walls and doors in one hit. Also increases the structure damage done to walls by 300%
 	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
 	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
+	var/ricochet_ability = 1 // multiplier for how much it can ricochet, modified by the bullet blender weapon mod
 
 	var/list/damage_types = list(BRUTE = 10) //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS -> int are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
@@ -114,6 +116,9 @@
 
 /obj/item/projectile/multiply_pierce_penetration(newmult)
 	penetrating = initial(penetrating) + newmult
+
+/obj/item/projectile/multiply_ricochet(newmult)
+	ricochet_ability = initial(ricochet_ability) + newmult
 
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
@@ -253,6 +258,19 @@
 	else
 		return 0
 
+/obj/item/projectile/proc/check_hit_zone(turf/target_turf, distance)
+	var/hit_zone = check_zone(def_zone)
+	if(hit_zone)
+		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later, it is more likely to hit the same part
+		if(def_zone)
+			var/spread = max(base_spreading - (spreading_step * distance), 0)
+			var/aim_hit_chance = max(0, projectile_accuracy)
+			
+			if(!prob(aim_hit_chance))
+				def_zone = ran_zone(def_zone,spread)
+			last_interact = target_turf
+		return TRUE
+	return FALSE
 
 //Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
 /obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
@@ -261,37 +279,29 @@
 
 	//roll to-hit
 	miss_modifier = 0
-	var/hit_zone = check_zone(def_zone)
 
 	var/result = PROJECTILE_FORCE_MISS
-	if(hit_zone)
-		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later (to be implemented), it is more likely to hit the same part
-		if(def_zone)
-			var/spread = max(base_spreading - (spreading_step * distance), 0)
-			var/aim_hit_chance = max(0, projectile_accuracy)
-			
-			if(!prob(aim_hit_chance))
-				def_zone = ran_zone(def_zone,spread)
 
-			if(iscarbon(target_mob))
-				var/mob/living/carbon/C = target_mob
-				var/obj/item/shield/S
-				for(S in get_both_hands(C))
-					if(S && S.block_bullet(C, src, def_zone))
-						on_hit(S,def_zone)
-						qdel(src)
-						return TRUE
-					break //Prevents shield dual-wielding
-				S = C.get_equipped_item(slot_back)
+	if(check_hit_zone(get_turf(target_mob), distance))
+		if(iscarbon(target_mob))
+			var/mob/living/carbon/C = target_mob
+			var/obj/item/shield/S
+			for(S in get_both_hands(C))
 				if(S && S.block_bullet(C, src, def_zone))
 					on_hit(S,def_zone)
 					qdel(src)
 					return TRUE
-			result = target_mob.bullet_act(src, def_zone)
-			
-			
-			if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
-				result = PROJECTILE_FORCE_MISS
+				break //Prevents shield dual-wielding
+	//		S = C.get_equipped_item(slot_back)
+	//		if(S && S.block_bullet(C, src, def_zone))
+	//			on_hit(S,def_zone)
+	//			qdel(src)
+	//			return TRUE
+
+		result = target_mob.bullet_act(src, def_zone)
+		var/aim_hit_chance = max(0, projectile_accuracy)
+		if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
+			result = PROJECTILE_FORCE_MISS
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
@@ -342,7 +352,7 @@
 	if(istype(src, /obj/item/projectile/beam/psychic) && istype(target_mob, /mob/living/carbon/human))
 		var/obj/item/projectile/beam/psychic/psy = src
 		var/mob/living/carbon/human/H = target_mob
-		if(psy.traitor && result && (H.sanity.level <= 0))
+		if(psy.contractor && result && (H.sanity.level <= 0))
 			psy.holder.reg_break(H)
 
 	return TRUE
@@ -358,11 +368,18 @@
 		return FALSE
 
 	var/passthrough = FALSE //if the projectile should continue flying
-	var/distance = get_dist(starting,loc)
+	var/distance = get_dist(last_interact,loc)
 
 	var/tempLoc = get_turf(A)
 
 	bumped = TRUE
+	if(istype(A, /obj/structure/multiz/stairs/active))
+		var/obj/structure/multiz/stairs/active/S = A
+		if(S.target)
+			forceMove(get_turf(S.target))
+			trajectory.loc_z = loc.z
+			bumped = FALSE
+			return FALSE
 	if(ismob(A))
 		var/mob/M = A
 		if(isliving(A))
@@ -467,6 +484,7 @@
 	// setup projectile state
 	starting = startloc
 	current = startloc
+	last_interact = startloc
 	yo = targloc.y - startloc.y + y_offset
 	xo = targloc.x - startloc.x + x_offset
 

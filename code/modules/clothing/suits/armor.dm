@@ -345,15 +345,15 @@
 	slowdown = 0.6
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	armor = list(
-		melee = 35,
-		bullet = 35,
-		energy = 35,
-		bomb = 25,
+		melee = 45, //massive slowdown justifies
+		bullet = 45,
+		energy = 40,
+		bomb = 30,
 		bio = 0,
 		rad = 0
 	)
 	equip_delay = 2 SECONDS
-	price_tag = 250
+	price_tag = 500
 	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/suit/armor/heavy/red
@@ -381,18 +381,28 @@
 	flags_inv = NONE
 	armor = list(
 		melee = 75,
-		bullet = 25,
+		bullet = 30,
 		energy = 25,
-		bomb = 25,
+		bomb = 20,
 		bio = 0,
 		rad = 0
 	)
-	price_tag = 500
 
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer
+/obj/item/clothing/suit/armor/heavy/ironhammer
+	name = "heavy operator armor"
+	desc = "A heavily armoured suit with extra padding to better protect against blunt trauma. Looks like it might impair movement."
 	icon_state = "riot_ironhammer"
 	item_state = "swat_suit"
 	flags_inv = HIDEJUMPSUIT
+	armor = list(
+		melee = 65,
+		bullet = 50, //comparable to RIG
+		energy = 40,
+		bomb = 35,
+		bio = 0,
+		rad = 0
+	)
+	price_tag = 800
 
 /*
  * Storage Types
@@ -548,3 +558,77 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/armor/paramedic
+	name = "Moebius paramedic armor"
+	desc = "Seven minutes or a refund."
+	icon_state = "trauma_team"
+	item_state = "trauma_team"
+	matter = list(
+		MATERIAL_PLASTEEL = 10,
+		MATERIAL_STEEL = 5,
+		MATERIAL_PLASTIC = 5,
+		MATERIAL_PLATINUM = 3,
+		MATERIAL_URANIUM = 4,
+		MATERIAL_SILVER = 2
+		)
+	armor = list(
+		melee = 30,
+		bullet = 30,
+		energy = 30,
+		bomb = 10,
+		bio = 100,
+		rad = 50
+	)
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	spawn_blacklisted = TRUE
+	style = STYLE_HIGH
+	action_button_name = "Toggle Acceleration"
+	var/speed_boost_ready = TRUE
+	var/speed_boost_active = FALSE
+	var/speed_boost_power = -0.5
+	var/speed_boost_length = 30 SECONDS
+	var/speed_boost_cooldown = 5 MINUTES
+	var/matching_helmet = /obj/item/clothing/head/armor/faceshield/paramedic
+
+
+/obj/item/clothing/suit/armor/paramedic/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
+
+	trigger_speed_boost(user)
+
+
+/obj/item/clothing/suit/armor/paramedic/proc/trigger_speed_boost(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	if(!speed_boost_ready)
+		if(user.head && istype(user.head, matching_helmet))
+			if(speed_boost_active)
+				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol active.'"))
+			else
+				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol failture. Insufficient capacitor charge.'"))
+		return
+
+	speed_boost_ready = FALSE
+	speed_boost_active = TRUE
+	slowdown = speed_boost_power
+
+	if(user.head && istype(user.head, matching_helmet))
+		to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol initiated.'"))
+
+	spawn(speed_boost_length)
+		if(QDELETED(src))
+			return
+		slowdown = initial(slowdown)
+		speed_boost_active = FALSE
+		if(user.head && istype(user.head, matching_helmet))
+			to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors discharged. Acceleration protocol aborted.'"))
+
+		spawn(speed_boost_cooldown)
+			if(QDELETED(src))
+				return
+			speed_boost_ready = TRUE
+			if(user.head && istype(user.head, matching_helmet))
+				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors have been recharged.'"))

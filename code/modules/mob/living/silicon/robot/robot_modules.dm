@@ -965,7 +965,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-//Syndicate borg is intended for summoning by traitors. Not currently implemented
+//Syndicate borg is intended for summoning by contractors. Not currently implemented
 /obj/item/robot_module/syndicate
 	name = "syndicate robot module"
 	hide_on_manifest = TRUE
@@ -995,7 +995,7 @@ var/global/list/robot_modules = list(
 	//Todo, replace these with suitable weapons from eris
 	//src.modules += new /obj/item/gun/energy/mountedsmg(src)
 	//src.modules += new /obj/item/gun/energy/net/mounted(src)
-	//src.modules += new /obj/item/gun/launcher/grenade/cyborg(src)
+	//src.modules += new /obj/item/gun/projectile/shotgun/pump/grenade/cyborg(src)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
 	//src.modules += new /obj/item/robot_emag(src)
 

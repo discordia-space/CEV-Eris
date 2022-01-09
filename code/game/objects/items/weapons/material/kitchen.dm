@@ -39,18 +39,19 @@
 			return ..()
 
 	if (reagents.total_volume > 0)
-		reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return
 			M.visible_message(SPAN_NOTICE("\The [user] eats some [loaded] from \the [src]."))
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		else
 			user.visible_message(SPAN_WARNING("\The [user] begins to feed \the [M]!"))
 			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
 				return
 			M.visible_message(SPAN_NOTICE("\The [user] feeds some [loaded] to \the [M] with \the [src]."))
+			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), 1)
-		cut_overlays()
+		overlays.Cut()
 		return
 	else
 		to_chat(user, SPAN_WARNING("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
@@ -58,15 +59,16 @@
 
 /obj/item/material/kitchen/utensil/fork
 	name = "fork"
-	desc = "It's a fork. Sure is pointy."
+	desc = "A fork. Sure is pointy."
 	icon_state = "fork"
+	hitsound = 'sound/weapons/melee/lightstab.ogg'
 
 /obj/item/material/kitchen/utensil/fork/plastic
 	default_material = MATERIAL_PLASTIC
 
 /obj/item/material/kitchen/utensil/spoon
 	name = "spoon"
-	desc = "It's a spoon. You can see your own upside-down face in it."
+	desc = "A spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"
 	attack_verb = list("attacked", "poked")
 	edge = FALSE
@@ -88,7 +90,7 @@
 
 /obj/item/material/kitchen/rollingpin
 	name = "rolling pin"
-	desc = "Used to knock out the Bartender."
+	desc = "Used to knock out the bartender."
 	icon_state = "rolling_pin"
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	default_material = "wood"

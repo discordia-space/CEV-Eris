@@ -20,7 +20,7 @@
 	update_icon()
 
 
-/obj/machinery/bluespacerelay/on_update_icon()
+/obj/machinery/bluespacerelay/update_icon()
 	if(on && (icon_state != initial(icon_state)))
 		icon_state = initial(icon_state)
 	else if(icon_state != "[initial(icon_state)]_off")

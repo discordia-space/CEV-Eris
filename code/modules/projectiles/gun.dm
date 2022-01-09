@@ -1,7 +1,7 @@
 //Parent gun type. Guns are weapons that can be aimed at mobs and act over a distance
 /obj/item/gun
 	name = "gun"
-	desc = "It's a gun. It's pretty terrible, though."
+	desc = "A gun. It's pretty terrible, though."
 	icon = 'icons/obj/guns/projectile.dmi'
 	icon_state = "giskard_old"
 	item_state = "gun"
@@ -31,6 +31,7 @@
 	var/damage_multiplier = 1 //Multiplies damage of projectiles fired from this gun
 	var/penetration_multiplier = 1 //Multiplies armor penetration of projectiles fired from this gun
 	var/pierce_multiplier = 0 //Additing wall penetration to projectiles fired from this gun
+	var/ricochet_multiplier = 1 //multiplier for how much projectiles fired from this gun can ricochet, modified by the bullet blender weapon mod
 	var/burst = 1
 	var/fire_delay = 6 	//delay after shooting before the gun can be used again
 	var/burst_delay = 2	//delay between shots, if firing in bursts
@@ -88,6 +89,21 @@
 	var/see_invisible_gun = -1
 	var/noricochet = FALSE // wether or not bullets fired from this gun can ricochet off of walls
 	var/inversed_carry = FALSE
+	var/wield_delay = 0 // Gun wielding delay , generally in seconds.
+	var/wield_delay_factor = 0 // A factor that characterizes weapon size , this makes it require more vig to insta-wield this weapon or less , values below 0 reduce the vig needed and above 1 increase it
+
+/obj/item/gun/wield(mob/user)
+	if(!wield_delay)
+		..()
+		return
+	var/calculated_delay = wield_delay
+	if(ishuman(user))
+		calculated_delay = wield_delay - (wield_delay * (user.stats.getStat(STAT_VIG) / (100 * (wield_delay_factor ? wield_delay_factor : 0.01)))) // wield delay - wield_delay * user vigilance / 100 * wield_factor
+	if (calculated_delay > 0 && do_after(user, calculated_delay, immobile = FALSE))
+		..()
+	else if (calculated_delay <= 0)
+		..()
+
 
 /obj/item/gun/attackby(obj/item/I, mob/living/user, params)
 	if(!istool(I) || user.a_intent != I_HURT)
@@ -176,7 +192,7 @@
 	if(onsuit && carry_state)
 		item_state_slots[slot_s_store_str]= "back"    + state
 
-/obj/item/gun/on_update_icon()
+/obj/item/gun/update_icon()
 	if(wielded_item_state)
 		if(icon_contained)//If it has it own icon file then we want to pull from that.
 			if(wielded)
@@ -327,6 +343,8 @@
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
 	for(var/i in 1 to burst)
+		if(user.resting)
+			break
 		var/obj/projectile = consume_next_projectile(user)
 		if(!projectile)
 			handle_click_empty(user)
@@ -337,6 +355,8 @@
 		projectile.multiply_projectile_penetration(penetration_multiplier + user.stats.getStat(STAT_VIG) * 0.02)
 
 		projectile.multiply_pierce_penetration(pierce_multiplier)
+
+		projectile.multiply_ricochet(ricochet_multiplier)
 
 		projectile.multiply_projectile_step_delay(proj_step_multiplier)
 
@@ -719,6 +739,7 @@
 	var/list/data = list()
 	data["damage_multiplier"] = damage_multiplier
 	data["pierce_multiplier"] = pierce_multiplier
+	data["ricochet_multiplier"] = ricochet_multiplier
 	data["penetration_multiplier"] = penetration_multiplier
 
 	data["fire_delay"] = fire_delay //time between shot, in ms
@@ -791,6 +812,7 @@
 	damage_multiplier = initial(damage_multiplier)
 	penetration_multiplier = initial(penetration_multiplier)
 	pierce_multiplier = initial(pierce_multiplier)
+	ricochet_multiplier = initial(ricochet_multiplier)
 	proj_step_multiplier = initial(proj_step_multiplier)
 	proj_agony_multiplier = initial(proj_agony_multiplier)
 	fire_delay = initial(fire_delay)

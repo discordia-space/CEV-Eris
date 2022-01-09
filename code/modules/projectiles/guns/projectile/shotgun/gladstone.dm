@@ -17,3 +17,4 @@
 
 	price_tag = 1800
 	spawn_tags = SPANW_TAG_FS_SHOTGUN
+

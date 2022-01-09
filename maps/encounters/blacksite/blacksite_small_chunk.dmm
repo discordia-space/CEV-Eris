@@ -306,7 +306,7 @@
 /area/outpost/blacksite/small)
 "rw" = (
 /obj/item/remains/human,
-/obj/item/tool/shiv,
+/obj/item/tool/knife/shiv,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
 /area/outpost/blacksite/small)
 "rx" = (

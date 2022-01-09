@@ -61,7 +61,7 @@
 /obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/reagent_containers/food/drinks/on_update_icon()
+/obj/item/reagent_containers/food/drinks/update_icon()
 	cut_overlays()
 	if(reagents && reagents.total_volume)
 		if(base_name)
@@ -82,20 +82,23 @@
 	set src in view(1)
 
 	if(isghost(usr))
-		to_chat(usr, "You ghost!")
+		to_chat(usr, "You can't do this as a ghost.")
 		return
 
 	if(is_drainable())
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!H.check_has_mouth())
-				to_chat(H, "Where do you intend to put \the [src]? You don't have a mouth!")
+				to_chat(H, SPAN_NOTICE("Where do you intend to put \the [src]? You don't have a mouth!"))
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				to_chat(H, SPAN_WARNING("\The [blocked] is in the way!"))
+				to_chat(H, SPAN_NOTICE("\The [blocked] is in the way."))
 				return
 
+		if(reagents.total_volume == 0)
+			to_chat(usr, SPAN_NOTICE("\The [src] is empty."))
+			return
 		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
 			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
 		if(!do_after(usr, reagents.total_volume))
@@ -152,9 +155,9 @@
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "Robust Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
-	icon_state = "cup"
+	icon_state = "coffee"
 	center_of_mass = list("x"=15, "y"=10)
-	base_icon = "cup"
+	base_icon = "coffee"
 	filling_states = "100"
 	preloaded_reagents = list("coffee" = 30)
 
@@ -171,7 +174,7 @@
 	name = "Dutch Hot Coco"
 	desc = "Made in Space South America."
 	icon_state = "hot_coco"
-	item_state = "coffee"
+	item_state = "hot_coco"
 	center_of_mass = list("x"=15, "y"=13)
 	preloaded_reagents = list("hot_coco" = 30)
 
@@ -180,11 +183,19 @@
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
+	reagent_flags = NONE //starts closed
 	base_icon = "cup"
 	filling_states = "100"
 	preloaded_reagents = list("dry_ramen" = 30)
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
+
+/obj/item/reagent_containers/food/drinks/dry_ramen/update_icon()
+	if(reagent_flags == OPENCONTAINER)
+		if(reagents && reagents.total_volume)
+			icon_state = "ramen_open"
+		else
+			icon_state = "ramenempty"
 
 /obj/item/reagent_containers/food/drinks/sillycup
 	name = "paper cup"
@@ -194,7 +205,7 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 
-/obj/item/reagent_containers/food/drinks/sillycup/on_update_icon()
+/obj/item/reagent_containers/food/drinks/sillycup/update_icon()
 	if(reagents && reagents.total_volume)
 		icon_state = "water_cup"
 	else
@@ -294,7 +305,7 @@
 	name = "mug"
 	desc = "A plain mug."
 	icon_state = "mug"
-	item_state = "coffee"
+	item_state = "cup_old"
 	volume = 30
 	center_of_mass = "x=15;y=13"
 	filling_states = "100"
@@ -369,12 +380,12 @@
 /obj/item/reagent_containers/food/drinks/tea
 	name = "cup of tea master item"
 	desc = "A tall plastic cup full of the concept and ideal of tea."
-	icon_state = "cup"
-	item_state = "coffee"
+	icon_state = "tea"
+	item_state = "tea"
 	center_of_mass = "x=16;y=14"
 	filling_states = "100"
-	base_name = "cup"
-	base_icon = "cup"
+	base_name = "tea"
+	base_icon = "tea"
 
 /obj/item/reagent_containers/food/drinks/tea/black
 	name = "cup of black tea"

@@ -1,6 +1,6 @@
 /obj/machinery/power/generator_type2
 	name = "thermoelectric generator"
-	desc = "It's a high efficiency thermoelectric generator."
+	desc = "A high-efficiency thermoelectric generator."
 	icon_state = "teg"
 	anchored = TRUE
 	density = TRUE
@@ -26,12 +26,12 @@
 /obj/machinery/power/generator_type2/proc/updateicon()
 
 	if(stat & (NOPOWER|BROKEN))
-		cut_overlays()
+		overlays.Cut()
 	else
-		cut_overlays()
+		overlays.Cut()
 
 		if(lastgenlev != 0)
-			add_overlays(image('icons/obj/power.dmi', "teg-op[lastgenlev]"))
+			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
 
 #define GENRATE 800		// generator output coefficient from Q
 

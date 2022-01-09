@@ -67,12 +67,14 @@
 	var/tmp/datum/wires/autolathe/wires
 
 	// A vis_contents hack for materials loading animation.
-	var/tmp/obj/effect/flicker_overlay/image_load
-	var/tmp/obj/effect/flicker_overlay/image_load_material
+	var/tmp/obj/effect/flick_light_overlay/image_load
+	var/tmp/obj/effect/flick_light_overlay/image_load_material
 
 	// If it prints high quality or bulky/deformed/debuffed items, or if it prints good items for one faction only.
 	var/low_quality_print = TRUE
 	var/list/high_quality_faction_list = list()
+	// If it prints items with positive traits
+	var/extra_quality_print = FALSE
 
 	//for nanoforge and/or artist bench
 	var/use_oddities = FALSE
@@ -677,13 +679,13 @@
 		return TRUE
 	return FALSE
 
-/obj/machinery/autolathe/on_update_icon()
-	cut_overlays()
+/obj/machinery/autolathe/update_icon()
+	overlays.Cut()
 
 	icon_state = initial(icon_state)
 
 	if(panel_open)
-		add_overlays(image(icon, "[icon_state]_panel"))
+		overlays.Add(image(icon, "[icon_state]_panel"))
 
 	if(icon_off())
 		return
@@ -696,21 +698,21 @@
 
 //Procs for handling print animation
 /obj/machinery/autolathe/proc/print_pre()
-	FLICK("[initial(icon_state)]_start", src)
+	flick("[initial(icon_state)]_start", src)
 
 /obj/machinery/autolathe/proc/print_post()
-	FLICK("[initial(icon_state)]_finish", src)
+	flick("[initial(icon_state)]_finish", src)
 	if(!current_file && !queue.len)
 		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
 		visible_message("\The [src] pings, indicating that queue is complete.")
 
 
 /obj/machinery/autolathe/proc/res_load(material/material)
-	FLICK("[initial(icon_state)]_load", image_load)
+	flick("[initial(icon_state)]_load", image_load)
 	if(material)
 		image_load_material.color = material.icon_colour
 		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
-		FLICK("[initial(icon_state)]_load_m", image_load_material)
+		flick("[initial(icon_state)]_load_m", image_load_material)
 
 
 /obj/machinery/autolathe/proc/check_materials(datum/design/design)
@@ -927,17 +929,17 @@
 
 
 /obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
-    consume_materials(design)
+	consume_materials(design)
 
-    if(disk && disk.GetComponent(/datum/component/oldficator))
-        design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
-    else
-        design.Fabricate(drop_location(), mat_efficiency, src, FALSE)
+	if(disk && disk.GetComponent(/datum/component/oldficator))
+		design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
+	else
+		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, extra_quality_print)
 
-    working = FALSE
-    current_file = null
-    print_post()
-    next_file()
+	working = FALSE
+	current_file = null
+	print_post()
+	next_file()
 
 
 /obj/machinery/autolathe/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/oddity/inserted_oddity
@@ -1007,22 +1009,22 @@
 	container = new /obj/item/reagent_containers/glass/beaker(src)
 
 
-// You (still) can't flicker overlays in BYOND, and this is a vis_contents hack to provide the same functionality.
+// You (still) can't flick_light overlays in BYOND, and this is a vis_contents hack to provide the same functionality.
 // Used for materials loading animation.
-/obj/effect/flicker_overlay
+/obj/effect/flick_light_overlay
 	name = ""
 	icon_state = ""
 	// Acts like a part of the object it's created for when in vis_contents
 	// Inherits everything but the icon_state
 	vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
 
-/obj/effect/flicker_overlay/New(atom/movable/loc)
+/obj/effect/flick_light_overlay/New(atom/movable/loc)
 	..()
-	// Just VIS_INHERIT_ICON isn't enough: flicker() needs an actual icon to be set
+	// Just VIS_INHERIT_ICON isn't enough: flick_light() needs an actual icon to be set
 	icon = loc.icon
 	loc.vis_contents += src
 
-/obj/effect/flicker_overlay/Destroy()
+/obj/effect/flick_light_overlay/Destroy()
 	if(istype(loc, /atom/movable))
 		var/atom/movable/A = loc
 		A.vis_contents -= src

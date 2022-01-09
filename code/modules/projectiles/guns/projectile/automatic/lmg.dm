@@ -21,11 +21,14 @@
 	reload_sound = 'sound/weapons/guns/interact/lmg_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/lmg_cock.ogg'
 	fire_sound = 'sound/weapons/guns/fire/lmg_fire.ogg'
-	recoil_buildup = 1.9
+	recoil_buildup = 1.3 // Very rare LMG , should be decent
+	damage_multiplier = 1.3
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
 	rarity_value = 80
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.9 // 90 vig for instant wield
 
 	init_firemodes = list(
 		FULL_AUTO_600,
@@ -64,7 +67,7 @@
 	.=..()
 	update_icon()
 
-/obj/item/gun/projectile/automatic/lmg/on_update_icon()
+/obj/item/gun/projectile/automatic/lmg/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state("-[cover_open ? "open" : null][ammo_magazine ?"mag":"nomag"]", hands = TRUE)
 	set_item_state("-[ammo_magazine ?"mag":"nomag"]", back = TRUE, onsuit = TRUE)
@@ -92,7 +95,7 @@
 	item_state = "pkclosedmag"
 	spawn_blacklisted = FALSE
 
-/obj/item/gun/projectile/automatic/lmg/pk/on_update_icon()
+/obj/item/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state(ammo_magazine ? null : "-empty")
 	update_wear_icon()

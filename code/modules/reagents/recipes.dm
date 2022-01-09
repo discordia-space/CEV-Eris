@@ -432,6 +432,11 @@
 	required_reagents = list("cryptobiolin" = 1, "inaprovaline" = 1)
 	result_amount = 2
 
+/datum/chemical_reaction/spaceacillin_mold
+	result = "spaceacillin"
+	required_reagents = list("mold" = 1, "sugar" = 1, "acetone" = 1)
+	result_amount = 6
+
 /datum/chemical_reaction/imidazoline
 	result = "imidazoline"
 	required_reagents = list("carbon" = 1, "hydrazine" = 1, "anti_toxin" = 1)
@@ -583,6 +588,42 @@
 	new /obj/item/stack/material/plasma(get_turf(holder.my_atom), created_volume)
 	return
 
+/datum/chemical_reaction/goldsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "gold" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/goldsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/gold(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/uraniumsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "uranium" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/uraniumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/uranium(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/silversolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "silver" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/silversolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/silver(get_turf(holder.my_atom), created_volume)
+	return
+
+/datum/chemical_reaction/platinumsolidification
+	result = null
+	required_reagents = list("iron" = 5, "frostoil" = 5, "platinum" = 20)
+	result_amount = 1
+
+/datum/chemical_reaction/platinumsolidification/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new /obj/item/stack/material/platinum(get_turf(holder.my_atom), created_volume)
+	return
+
 /datum/chemical_reaction/plastication
 	result = null
 	required_reagents = list("pacid" = 1, "plasticide" = 2)
@@ -632,7 +673,7 @@
 						continue
 
 				if (M.HUDtech.Find("flash"))
-					FLICK("e_flash", M.HUDtech["flash"])
+					flick("e_flash", M.HUDtech["flash"])
 				M.Weaken(15)
 
 			if(4 to 5)
@@ -641,7 +682,7 @@
 						continue
 
 				if (M.HUDtech.Find("flash"))
-					FLICK("e_flash", M.HUDtech["flash"])
+					flick("e_flash", M.HUDtech["flash"])
 				M.Stun(5)
 
 /datum/chemical_reaction/emp_pulse
@@ -651,8 +692,8 @@
 
 /datum/chemical_reaction/emp_pulse/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than traitor EMP grandes.
-	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than traitor EMP grenades.
+	// 100 created volume = 4 heavy range & 7 light range. A few tiles smaller than contractor EMP grandes.
+	// 200 created volume = 8 heavy range & 14 light range. 4 tiles larger than contractor EMP grenades.
 	empulse(location, round(created_volume / 24), round(created_volume / 14), 1)
 	holder.clear_reagents()
 	return
@@ -1044,7 +1085,7 @@
 	for(var/mob/living/carbon/human/M in viewers(get_turf(holder.my_atom), null))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+				flick("e_flash", M.HUDtech["flash"])
 
 	for(var/i = 1, i <= 4 + rand(1,2), i++)
 		var/chosen = pick(borks)
@@ -2106,4 +2147,14 @@
 /datum/chemical_reaction/rejuvenating_agent
 	result = "rejuvenating_agent"
 	required_reagents = list("cleaner" = 2, "pacid" = 1, "sulfur" = 1)
+	result_amount = 2
+
+/datum/chemical_reaction/roachbeer
+	result = "roachbeer"
+	required_reagents = list("water" = 2, "diplopterum" = 1, "fuel" = 1, "beer" = 1)
+	result_amount = 1
+
+/datum/chemical_reaction/kaiserbeer
+	result = "kaiserbeer"
+	required_reagents = list("fuhrerole" = 1, "kaiseraurum" = 1, "roachbeer" = 2)
 	result_amount = 2

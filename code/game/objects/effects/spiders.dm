@@ -79,6 +79,13 @@
 	desc = "They seem to pulse slightly with an inner life"
 	icon_state = "eggs"
 	var/amount_grown = 0
+	var/spiderlings_lower = 6
+	var/spiderlings_upper = 24
+
+/obj/effect/spider/eggcluster/minor
+	amount_grown = 20
+	spiderlings_lower = 4
+	spiderlings_upper = 8
 
 /obj/effect/spider/eggcluster/New(location, atom/parent)
 	pixel_x = rand(3,-3)
@@ -98,7 +105,7 @@
 /obj/effect/spider/eggcluster/Process()
 	amount_grown += rand(0,2)
 	if(amount_grown >= 100)
-		var/num = rand(6,24)
+		var/num = rand(spiderlings_lower,spiderlings_upper)
 		var/obj/item/organ/external/O
 		if(istype(loc, /obj/item/organ/external))
 			O = loc

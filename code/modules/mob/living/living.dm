@@ -618,10 +618,9 @@ default behaviour is:
 
 	var/state_changed = FALSE
 	if(resting && can_stand_up())
-		resting = FALSE
-		state_changed = TRUE
-
-
+		if(do_after(src, 0.5 SECONDS, null, 0, 1, INCAPACITATION_DEFAULT, immobile = 0))
+			resting = FALSE
+			state_changed = TRUE
 	else if (!resting)
 		if(ishuman(src))
 			var/obj/item/bedsheet/BS = locate(/obj/item/bedsheet) in get_turf(src)
@@ -773,16 +772,20 @@ default behaviour is:
 	var/mob/M = AM
 	if(ismob(AM))
 
+		if(M.mob_size >=  MOB_GIGANTIC)
+			to_chat(src, SPAN_WARNING("It won't budge!"))
+			return
+
 		if(!can_pull_mobs || !can_pull_size)
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
-			to_chat(src, "<span class='warning'>It won't budge!</span>")
+			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some

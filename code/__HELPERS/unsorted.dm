@@ -523,6 +523,21 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		looping_distance--
 	return current_turf
 
+// More complex proc that uses basic trigonometry to get a turf away from target . Accurate
+// it gets the difference between the center and target x and y axis. If they are - or + is handled without hardcode
+// The ratios are divided by their total (x + y ) and then multiplied by distance x / (x+y) * distance
+// this value is added ontop of the center coordinates , giving us our "away" turf.
+/proc/get_turf_away_from_target_complex(atom/center, atom/target, distance)
+	var/list/distance_reports = list(center.x - target.x, center.y - target.y)
+	var/distance_total = abs(distance_reports[1]) + abs(distance_reports[2])
+	if(distance_reports[1])
+		distance_reports[1] = round(distance_reports[1] / distance_total * distance)
+	if(distance_reports[2])
+		distance_reports[2] = round(distance_reports[2] / distance_total * distance)
+	distance_reports[1] = center.x + distance_reports[1]
+	distance_reports[2] = center.y + distance_reports[2]
+	return locate(distance_reports[1], distance_reports[2], center.z)
+
 // returns turf relative to A in given direction at set range
 // result is bounded to map size
 // note range is non-pythagorean
@@ -772,7 +787,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 					X.set_dir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-					X.set_overlays(old_overlays)
+					X.overlays = old_overlays
 					X.underlays = old_underlays
 					X.decals = old_decals
 					X.opacity = old_opacity
@@ -957,7 +972,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 					X.set_dir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-					X.set_overlays(old_overlays)
+					X.overlays = old_overlays
 					X.underlays = old_underlays
 
 					var/list/objs = new/list()

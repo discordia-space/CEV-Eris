@@ -25,15 +25,21 @@
 		/datum/design/autolathe/device/implanter,
 		/datum/design/autolathe/container/syringegun_ammo,
 		/datum/design/autolathe/container/syringe/large,
+		/datum/design/autolathe/container/hcase_med
 
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/surgery
 	disk_name = "Back Alley Organs"
 	icon_state = "moebius"
-	license = 5
+	license = 10
 	designs = list(
-		/datum/design/bioprinter/lungs
+		/datum/design/bioprinter/lungs,
+		/datum/design/bioprinter/heart,
+		/datum/design/bioprinter/liver,
+		/datum/design/bioprinter/nerves,
+		/datum/design/bioprinter/muscle,
+		/datum/design/bioprinter/blood_vessel
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/computer

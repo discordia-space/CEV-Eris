@@ -74,7 +74,7 @@ Medical - Requires "Medbay" access on ID card (ie. CMO, Doctor,..)
 
 Research - Requires "Research and Development" access on ID card (ie. RD, Roboticist, etc.)
 	Research Server Monitor - Allows monitoring of research levels on RnD servers. (read only)
-	Robotics Monitor Console - Allows monitoring of robots and exosuits. Lockdown/Self-Destruct options are unavailable [balance reasons for malf/traitor AIs]. Requires extra access: "Robotics"
+	Robotics Monitor Console - Allows monitoring of robots and exosuits. Lockdown/Self-Destruct options are unavailable [balance reasons for malf AIs]. Requires extra access: "Robotics"
 	NTNRC Administration Console - Allows administrative access to NTNRC. This includes bypassing any channel passwords and enabling "invisible" mode for spying on conversations. Requires extra access: "Research Director"
 	NTNet Administration Console - Allows remote configuration of NTNet Relay - CAUTION: If NTNet is turned off it won't be possible to turn it on again from the computer, as operation requires NTNet to work! Requires extra access: "Research Director"
 	NTNet Monitor - Allows monitoring of NTNet and it's various components, including simplified network logs and system status.

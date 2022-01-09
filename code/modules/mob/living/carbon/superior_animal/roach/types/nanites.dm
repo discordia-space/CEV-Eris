@@ -9,8 +9,8 @@
 	maxHealth = 35
 	health = 35
 
-	melee_damage_lower = 1
-	melee_damage_upper = 3 //He's a ranged roach
+	melee_damage_lower = 2
+	melee_damage_upper = 4 //He's a ranged roach
 
 	breath_required_type = NONE
 	breath_poison_type = NONE

@@ -17,7 +17,7 @@
 	icon_state = "bloodpack"
 	volume = 200
 	reagent_flags = OPENCONTAINER
-	filling_states = "-10;10;25;50;75;80;100"
+	filling_states = "25;50;75;100"
 	bad_type = /obj/item/reagent_containers/blood
 	var/blood_type
 
@@ -32,15 +32,24 @@
 	update_name()
 
 
-/obj/item/reagent_containers/blood/on_update_icon()
+/obj/item/reagent_containers/blood/update_icon()
 	cut_overlays()
 
 	if(!reagents || !reagents.total_volume)
 		return
 
-	var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state][get_filling_state()]")
-	filling.color = reagents.get_color()
-	add_overlay(filling)
+	var/has_blood
+	for(var/datum/reagent/current in reagents.reagent_list)
+		if(current.id == "blood")
+			has_blood = TRUE
+
+	if(!has_blood)
+		var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state][get_filling_state()]")
+		filling.color = reagents.get_color()
+		add_overlay(filling)
+	else
+		var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state]-blood[get_filling_state()]")
+		add_overlay(filling)
 
 /obj/item/reagent_containers/blood/proc/update_name()
 	var/list/data = reagents.get_data("blood")

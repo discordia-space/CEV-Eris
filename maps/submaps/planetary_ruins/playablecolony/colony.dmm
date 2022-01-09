@@ -6907,7 +6907,7 @@
 /obj/item/storage/box/snack/tastybread,
 /obj/item/storage/box/snack/noraisin,
 /obj/item/storage/box/snack/jerky,
-/obj/item/storage/box/snack/candy,
+/obj/item/storage/box/snack/shokoloud,
 /turf/simulated/floor/tiled/freezer,
 /area/map_template/colony/messhall)
 "Pu" = (

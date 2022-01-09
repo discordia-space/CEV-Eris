@@ -54,7 +54,7 @@
 	update_icon(user)
 	user.update_action_buttons()
 
-/obj/item/clothing/head/on_update_icon(mob/user)
+/obj/item/clothing/head/update_icon(mob/user)
 
 	cut_overlays()
 	var/mob/living/carbon/human/H
@@ -66,7 +66,7 @@
 		// Generate object icon.
 		if(!light_overlay_cache["[light_overlay]_icon"])
 			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
-		associate_with_overlays(light_overlay_cache["[light_overlay]_icon"])
+		overlays |= light_overlay_cache["[light_overlay]_icon"]
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
@@ -499,7 +499,7 @@ BLIND     // can't see anything
 			/obj/item/tool/knife/butterfly,
 			/obj/item/material/kitchen/utensil,
 			/obj/item/tool/knife/tacknife,
-			/obj/item/tool/shiv,
+			/obj/item/tool/knife/shiv,
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
@@ -526,10 +526,10 @@ BLIND     // can't see anything
 	else to_chat(usr, "You haven't got any accessories in your shoes")
 
 
-/obj/item/clothing/shoes/on_update_icon()
+/obj/item/clothing/shoes/update_icon()
 	cut_overlays()
 	if(holding)
-		add_overlays(image(icon, "[icon_state]_knife"))
+		overlays += image(icon, "[icon_state]_knife")
 	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)

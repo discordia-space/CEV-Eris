@@ -174,6 +174,11 @@ var/list/ai_verbs_default = list(
 	//Languages
 	add_language(LANGUAGE_ROBOT, 1)
 	add_language(LANGUAGE_COMMON, 1)
+	add_language(LANGUAGE_CYRILLIC, 1)
+	add_language(LANGUAGE_GERMAN, 1)
+	add_language(LANGUAGE_LATIN, 1)
+	add_language(LANGUAGE_NEOHONGO, 1)
+	add_language(LANGUAGE_SERBIAN, 1)
 
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
@@ -233,7 +238,7 @@ var/list/ai_verbs_default = list(
 
 	if (!check_special_role(ROLE_MALFUNCTION))
 		show_laws()
-		to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
+		to_chat(src, "<b>These laws may be changed by other players, or by you being the contractor.</b>")
 
 	job = "AI"
 	setup_icon()
@@ -622,7 +627,8 @@ var/list/ai_verbs_default = list(
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(istype(W, /obj/item/tool/wrench))
+	var/tool_type = W.get_tool_type(user, list(QUALITY_BOLT_TURNING), src)
+	if(tool_type == QUALITY_BOLT_TURNING)
 		if(anchored)
 			user.visible_message(SPAN_NOTICE("\The [user] starts to unbolt \the [src] from the plating..."))
 			if(!do_after(user,40, src))
@@ -747,7 +753,7 @@ var/list/ai_verbs_default = list(
 	set name = "Control Personal Drone"
 	set desc = "Take control of your own AI-bound maintenance drone."
 	set category = "Silicon Commands"
-	
+
 	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
 		to_chat(src, SPAN_WARNING("You lack power!"))
 	else
@@ -758,7 +764,7 @@ var/list/ai_verbs_default = list(
 	set name = "Destroy Personal Drone"
 	set desc = "Destroy your AI-bound maintenance drone."
 	set category = "Silicon Commands"
-	
+
 	if(aiRestorePowerRoutine)  // Cannot switch if lack of power
 		to_chat(src, SPAN_WARNING("You lack power!"))
 	else
@@ -766,8 +772,9 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/pull_to_core()
 	if (bound_drone?.mind)  // If drone exists and AI is inside it
-		ckey = bound_drone.ckey
+		bound_drone.mind.active = 0 // We want to transfer the key manually
 		bound_drone.mind.transfer_to(src) // Pull back mind to AI core
+		key = bound_drone.key // Manually transfer the key to log them in
 
 /mob/living/silicon/ai/proc/go_into_drone()
 	// Switch to drone or spawn a new one
@@ -778,9 +785,10 @@ var/list/ai_verbs_default = list(
 			var/remaining = (drone_cooldown_time - (world.time - time_destroyed)) / 10
 			to_chat(src, SPAN_WARNING("Security routines hardcoded into your core force you to wait [remaining] seconds before creating a new AI bound drone."))
 	else if(mind)
-		bound_drone.ckey = ckey
-		bound_drone.laws = laws // Resync laws in case they have been changed
+		mind.active = 0 // We want to transfer the key manually
 		mind.transfer_to(bound_drone) // Transfer mind to drone
+		bound_drone.laws = laws // Resync laws in case they have been changed
+		bound_drone.key = key // Manually transfer the key to log them in
 
 /mob/living/silicon/ai/proc/destroy_drone()
 	if(bound_drone)

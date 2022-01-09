@@ -70,7 +70,7 @@
 
 	announce_ghost_joinleave(player, 0, "They have taken control over a maintenance drone.")
 	visible_message("\The [src] churns and grinds as it lurches into motion, disgorging a shiny new drone after a few moments.")
-	FLICK("h_lathe_leave",src)
+	flick("h_lathe_leave",src)
 
 	time_last_drone = world.time
 	if(!aibound)
@@ -85,9 +85,10 @@
 		M.bound_drone = new_drone  // Save new drone in variable of AI
 		new_drone.real_name = M.name + " controlled drone"
 		new_drone.name = new_drone.real_name
-		new_drone.ckey = player.ckey
 		new_drone.laws = M.laws
+		M.mind.active = 0 // We want to transfer the key manually
 		M.mind.transfer_to(new_drone) // Transfer mind to drone
+		new_drone.key = player.key // Manually transfer the key to log them in
 		new_drone.master_fabricator = src
 
 	drone_progress = 0

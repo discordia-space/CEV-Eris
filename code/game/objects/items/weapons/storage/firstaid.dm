@@ -10,7 +10,7 @@
  */
 /obj/item/storage/firstaid
 	name = "first-aid kit"
-	desc = "It's an emergency medical kit for those serious boo-boos."
+	desc = "An emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
@@ -24,7 +24,7 @@
 
 /obj/item/storage/firstaid/fire
 	name = "fire first-aid kit"
-	desc = "It's an emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
+	desc = "An emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 	rarity_value = 15
@@ -170,10 +170,10 @@
 	new /obj/item/stack/medical/advanced/bruise_pack(src)
 	make_exact_fit()
 
-/obj/item/storage/firstaid/surgery/traitor
+/obj/item/storage/firstaid/surgery/contractor
 	spawn_blacklisted = TRUE
 
-/obj/item/storage/firstaid/surgery/traitor/populate_contents()
+/obj/item/storage/firstaid/surgery/contractor/populate_contents()
 	if (empty) return
 	new /obj/item/tool/bonesetter(src)
 	new /obj/item/tool/cautery(src)
@@ -207,7 +207,7 @@
 	new /obj/item/reagent_containers/syringe/large/antitoxin(src)
 	new /obj/item/reagent_containers/syringe/large/dexalin_plus(src)
 
-/obj/item/storage/firstaid/nt/on_update_icon()
+/obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
 		icon_state = "[initial(icon_state)]_empty"
 		item_state = "[initial(item_state)]_empty"
@@ -221,7 +221,7 @@
  */
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
-	desc = "It's an airtight container for storing medication."
+	desc = "An airtight container for storing medication."
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"

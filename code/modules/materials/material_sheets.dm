@@ -96,12 +96,16 @@
 	icon_state = "sheet-iron"
 	default_type = MATERIAL_IRON
 	price_tag = 2
+	novariants = FALSE
 
 /obj/item/stack/material/iron/random
 	rand_min = 3
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 45
+	
+/obj/item/stack/material/iron/full
+	amount = 120
 
 /obj/item/stack/material/sandstone
 	name = "sandstone brick"
@@ -119,18 +123,23 @@
 	icon_state = "sheet-diamond"
 	default_type = MATERIAL_DIAMOND
 	price_tag = 100
+	novariants = FALSE
 
 /obj/item/stack/material/diamond/random
 	rand_min = 1
 	rand_max = 8
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
+	
+/obj/item/stack/material/diamond/full
+	amount = 120
 
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
 	icon_state = "sheet-uranium"
 	default_type = MATERIAL_URANIUM
 	price_tag = 50
+	novariants = FALSE
 
 /obj/item/stack/material/uranium/random
 	rand_min = 2
@@ -138,11 +147,15 @@
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 90
 
+/obj/item/stack/material/uranium/full
+	amount = 120
+
 /obj/item/stack/material/plasma
 	name = "solid plasma"
 	icon_state = "sheet-plasma"
 	default_type = MATERIAL_PLASMA
 	price_tag = 30
+	novariants = FALSE
 
 /obj/item/stack/material/plasma/random
 	rand_min = 3
@@ -171,37 +184,49 @@
 	icon_state = "sheet-gold"
 	default_type = MATERIAL_GOLD
 	price_tag = 50
+	novariants = FALSE
 
 /obj/item/stack/material/gold/random
 	rand_min = 2
 	rand_max = 15
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
+	
+/obj/item/stack/material/gold/full
+	amount = 120
 
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
 	icon_state = "sheet-silver"
 	default_type = MATERIAL_SILVER
 	price_tag = 40
+	novariants = FALSE
 
 /obj/item/stack/material/silver/random
 	rand_min = 3
 	rand_max = 30
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	rarity_value = 45
+	
+/obj/item/stack/material/silver/full
+	amount = 120
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
 	name = "platinum"
-	icon_state = "sheet-adamantine"
+	icon_state = "sheet-platinum"
 	default_type = MATERIAL_PLATINUM
 	price_tag = 80
+	novariants = FALSE
 
 /obj/item/stack/material/platinum/random
 	rand_min = 1
 	rand_max = 10
 	//spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES_RARE
 	//rarity_value = 45
+
+/obj/item/stack/material/platinum/full
+	amount = 120
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -211,6 +236,9 @@
 	price_tag = 50
 	novariants = FALSE
 
+/obj/item/stack/material/mhydrogen/full
+	amount = 120
+
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
 	name = "tritium"
@@ -218,6 +246,9 @@
 	default_type = MATERIAL_TRITIUM
 	apply_colour = 1
 	price_tag = 50
+	
+/obj/item/stack/material/tritium/full
+	amount = 120
 
 /obj/item/stack/material/osmium
 	name = "osmium"
@@ -225,6 +256,9 @@
 	default_type = MATERIAL_OSMIUM
 	apply_colour = 1
 	price_tag = 50
+	
+/obj/item/stack/material/osmium/full
+	amount = 120
 
 /obj/item/stack/material/steel
 	name = MATERIAL_STEEL

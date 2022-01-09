@@ -140,6 +140,7 @@
 		return attack_self(user)
 	else if(adj)
 		setClickCooldown(arms_action_delay())
+		playsound(src.loc, arms.punch_sound, 45 + 25 * (arms.melee_damage / 50), -1)
 		if(arms)
 			return A.attack_generic(src, arms.melee_damage, "attacked")
 

@@ -219,8 +219,8 @@
 
 	armor = list(
 		melee = 35,
-		bullet = 40,
-		energy = 30,
+		bullet = 45,
+		energy = 35,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -235,8 +235,8 @@
 	item_state = "ihvoidsuit"
 	armor = list(
 		melee = 35,
-		bullet = 40,
-		energy = 30,
+		bullet = 45,
+		energy = 35,
 		bomb = 25,
 		bio = 100,
 		rad = 75
@@ -290,7 +290,7 @@
 
 //Science
 /obj/item/clothing/head/space/void/science
-	name = "Moebius combat Helmet"
+	name = "Moebius combat helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "moebiushelmb"
 	item_state = "moebiushelmb"
@@ -306,9 +306,9 @@
 	price_tag = 200
 	armor = list(
 		melee = 40,
-		bullet = 35,
-		energy = 45,
-		bomb = 30,
+		bullet = 40,
+		energy = 55,
+		bomb = 40,
 		bio = 100,
 		rad = 75
 	)
@@ -316,11 +316,33 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/head/space/void/science
-    var/list/icon_states = list("moebiushelmb","moebiushelmr", "moebiushelmp","moebiushelmg", "moebiushelmy", "moebiushelmw") //TODO: a manual selection anytime.
+	var/list/icon_states = list(
+		"Blue" = "moebiushelmb",
+		"Red" = "moebiushelmr",
+		"Purple" = "moebiushelmp",
+		"Green" = "moebiushelmg",
+		"Yellow" = "moebiushelmy",
+		"White" = "moebiushelmw")
+
+/obj/item/clothing/head/space/void/science/verb/recolor()
+	set name = "Change helmet color"
+	set category = "Object"
+	set src in usr
+
+	var/color = input(usr, "Available colors", "Visor configuration") in icon_states
+	icon_state = icon_states[color]
+	update_wear_icon()
+	usr.update_action_buttons()
 
 /obj/item/clothing/head/space/void/science/New()
-    ..()
-    icon_state = pick(icon_states)
+	..()
+	var/color = pick(icon_states)
+	icon_state = icon_states[color]
+
+/obj/item/clothing/head/space/void/science/emag_act(remaining_charges, mob/user, emag_source)
+	icon_state = "moebiushelmcaramel"
+	update_wear_icon()
+	usr.update_action_buttons()
 
 /obj/item/clothing/suit/space/void/science
 	name = "Moebius combat voidsuit"
@@ -335,9 +357,9 @@
 	)
 	armor = list(
 		melee = 40,
-		bullet = 35,
-		energy = 45,
-		bomb = 30,
+		bullet = 40,
+		energy = 55,
+		bomb = 40, //platinum price justifies bloated stats
 		bio = 100,
 		rad = 75
 	)
@@ -346,6 +368,26 @@
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
+
+/obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
+	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
+		var/obj/item/projectile/P = damage_source
+
+		var/reflectchance = 30 - round(damage/3)
+		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
+			reflectchance /= 1.5
+		if(P.starting && prob(reflectchance))
+			visible_message(SPAN_DANGER("\The [user]\'s [name] reflects [attack_text]!"))
+
+			// Find a turf near or on the original location to bounce to
+			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+			var/new_y = P.starting.y + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
+			var/turf/curloc = get_turf(user)
+
+			// redirect the projectile
+			P.redirect(new_x, new_y, curloc, user)
+
+			return PROJECTILE_CONTINUE // complete projectile permutation
 
 /obj/item/clothing/head/space/void/riggedvoidsuit
 	name = "makeshift armored Helmet"

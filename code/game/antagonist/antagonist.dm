@@ -12,7 +12,7 @@
 	var/flags = 0                           // Various runtime options.
 
 	var/list/restricted_jobs =	list()	// Jobs that technically cannot be this antagonist (like AI-carrion)
-	var/list/protected_jobs =	list()	// As above, but this jobs are rewstricted ideologically (like Security Officer-traitor)
+	var/list/protected_jobs =	list()	// As above, but this jobs are rewstricted ideologically (like Security Officer-contractor)
 	var/list/story_ineligible =	list()	// Denies the job from getting the antag status by story teller itself but allows become antag via different means.
 
 	// Strings.
@@ -20,8 +20,8 @@
 
 	// Role data.
 	var/id = null                      		// Unique type identifier.
-	var/role_text = "Antagonist"               // special_role text.
-	var/role_text_plural = "Antagonists"       // As above but plural.
+	var/role_text = "Contractor"               // special_role text.
+	var/role_text_plural = "Contractors"       // As above but plural.
 	var/selectable = TRUE
 
 	// Faction data.

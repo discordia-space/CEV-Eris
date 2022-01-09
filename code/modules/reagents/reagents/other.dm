@@ -198,6 +198,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	reagent_type = "Organic/Stimulator"
+	withdrawal_threshold = 30
 
 /datum/reagent/adrenaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.SetParalysis(0)
@@ -251,7 +252,7 @@
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
-			W.add_overlays(image('icons/effects/effects.dmi',icon_state = "#673910"))
+			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
 	return TRUE
 
@@ -447,45 +448,6 @@
 
 /datum/reagent/other/luminol/touch_mob(mob/living/L)
 	L.reveal_blood()
-
-
-/datum/reagent/other/aranecolmin
-	name = "Aranecolmin"
-	id = "aranecolmin"
-	description = "Weak antitoxin used by warrior spiders. Speeds up metabolism immensely."
-	taste_description = "sludge"
-	reagent_state = LIQUID
-	color = "#acc107"
-	overdose = REAGENTS_OVERDOSE
-	addiction_chance = 10
-	nerve_system_accumulations = 5
-
-/datum/reagent/other/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTITOX, 0.3)
-	if(M.bloodstr)
-		for(var/current in M.bloodstr.reagent_list)
-			var/datum/reagent/toxin/pararein/R = current
-			if(istype(R))
-				R.metabolism = initial(R.metabolism) * 3
-
-/datum/reagent/other/aranecolmin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_ANTITOX, 0.3)
-	if(M.bloodstr)
-		for(var/current in M.bloodstr.reagent_list)
-			var/datum/reagent/toxin/pararein/R = current
-			if(istype(R))
-				R.metabolism = initial(R.metabolism) * 3
-				break
-
-/datum/reagent/other/aranecolmin/on_mob_delete(mob/living/carbon/M)
-	..()
-	if(istype(M))
-		if(M.bloodstr)
-			for(var/current in M.bloodstr.reagent_list)
-				var/datum/reagent/toxin/pararein/R = current
-				if(istype(R))
-					R.metabolism = initial(R.metabolism)
-					break
 
 /datum/reagent/other/arectine
 	name = "Arectine"

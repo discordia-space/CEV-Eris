@@ -382,10 +382,14 @@
 				if(is_type_in_list(I,known_implants))
 					var/obj/item/implant/device = I
 					other_wounds += "[device.get_scanner_name()] implanted"
-				else
+				else if(istype(I, /obj/item/material/shard/shrapnel))
+					other_wounds += "Embedded shrapnel"
+				else if(istype(I, /obj/item/implant))
 					var/obj/item/implant/device = I
 					if(!device.scanner_hidden)
 						unknown_body = TRUE
+				else
+					unknown_body = TRUE
 			if(unknown_body)
 				other_wounds += "Unknown body present"
 		if (e.is_stump() || e.burn_dam || e.brute_dam || other_wounds.len)
@@ -413,7 +417,7 @@
 		dat += text("<font color='red'>Retinal misalignment detected.</font><BR>")
 	return dat
 
-/obj/machinery/bodyscanner/on_update_icon()
+/obj/machinery/bodyscanner/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_off"
 		set_light(0)
@@ -437,7 +441,7 @@
 			icon_state = "scanner_open"
 			set_light(0)
 
-/obj/machinery/body_scanconsole/on_update_icon()
+/obj/machinery/body_scanconsole/update_icon()
 	if(stat & (NOPOWER|BROKEN))
 		icon_state = "scanner_terminal_off"
 		set_light(0)

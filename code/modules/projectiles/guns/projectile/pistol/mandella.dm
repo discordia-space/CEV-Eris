@@ -10,7 +10,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	silenced = TRUE
-
+	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
 	price_tag = 1500
@@ -25,7 +25,7 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 
 
-/obj/item/gun/projectile/mandella/on_update_icon()
+/obj/item/gun/projectile/mandella/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

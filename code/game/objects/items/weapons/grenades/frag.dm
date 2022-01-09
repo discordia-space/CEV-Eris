@@ -2,8 +2,7 @@
 	name = "NT DFG \"Pomme\""
 	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
 	icon_state = "frag"
-	item_state = "frggrenade"
-	loadable = TRUE
+	item_state = "fraggrenade"
 
 	var/fragment_type = /obj/item/projectile/bullet/pellet/fragment/strong
 	var/num_fragments = 150  //total number of fragments produced by the grenade
@@ -40,7 +39,19 @@
 	name = "NT DFG \"Holy Thunder\""
 	desc = "A military-grade defensive fragmentation grenade, designed to be thrown from cover."
 	icon_state = "frag_nt"
-	item_state = "frggrenade_nt"
+	item_state = "fraggrenade_nt"
 	matter = list(MATERIAL_BIOMATTER = 75)
 	fragment_damage = 7
 	damage_step = 3
+
+/obj/item/grenade/frag/pipebomb
+	name = "improvised pipebomb"
+	desc = "A jury rigged medium cell filled with plasma. Throw at authorities."
+	icon_state = "frag_pipebomb"
+	item_state = "fraggrenade_pipebomb"
+	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2, MATERIAL_PLASMA = 2, MATERIAL_PLASTIC = 3, MATERIAL_SILVER = 2)
+	fragment_type = /obj/item/projectile/bullet/pellet/fragment
+	num_fragments = 100
+	fragment_damage = 3
+	damage_step = 4
+

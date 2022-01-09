@@ -16,6 +16,7 @@
 			/obj/item/storage/pouch/medical_supply,
 			/obj/item/storage/pouch/engineering_tools,
 			/obj/item/storage/pouch/engineering_supply,
+			/obj/item/storage/pouch/engineering_material,
 			/obj/item/storage/pouch/tubular,
 			/obj/item/storage/pouch/tubular/vial,
 			/obj/item/storage/pouch/ammo,
@@ -39,6 +40,6 @@
 			/obj/item/gun/projectile/mk58,
 			/obj/item/gun/projectile/mk58/wood,
 			/obj/item/gun/projectile/shotgun/pump/regulator,
-			/obj/item/gun/launcher/grenade
+			/obj/item/gun/projectile/shotgun/pump/grenade
 		),
 	)

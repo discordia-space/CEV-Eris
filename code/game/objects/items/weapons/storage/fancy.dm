@@ -23,7 +23,7 @@
 	var/icon_type = "donut"
 	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
 
-/obj/item/storage/fancy/on_update_icon(var/itemremoved = 0)
+/obj/item/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "[src.icon_type]box[total_contents]"
 	return
@@ -121,11 +121,11 @@
 	new /obj/item/pen/crayon/purple(src)
 	update_icon()
 
-/obj/item/storage/fancy/crayons/on_update_icon()
+/obj/item/storage/fancy/crayons/update_icon()
 	cut_overlays()
-	add_overlays(image('icons/obj/crayons.dmi',"crayonbox"))
+	overlays += image('icons/obj/crayons.dmi',"crayonbox")
 	for(var/obj/item/pen/crayon/crayon in contents)
-		add_overlays(image('icons/obj/crayons.dmi',crayon.colourName))
+		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/pen/crayon))
@@ -182,7 +182,7 @@
 		new item_obj(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
-/obj/item/storage/fancy/cigarettes/on_update_icon()
+/obj/item/storage/fancy/cigarettes/update_icon()
 	if(open)
 		icon_state = "[initial(icon_state)][contents.len]"
 	else
@@ -252,7 +252,7 @@
 	icon_type = "packet"
 	reagent_flags = REFILLABLE | NO_REACT
 
-/obj/item/storage/fancy/cigcartons/on_update_icon()
+/obj/item/storage/fancy/cigcartons/update_icon()
 	if(contents.len > 0)
 		icon_state = "[initial(icon_state)]1"
 	else
@@ -286,18 +286,83 @@
 
 /obj/item/storage/fancy/cigar
 	name = "cigar case"
-	desc = "A case for holding your cigars when you are not smoking them."
+	desc = "A case for holding your cigars when you are not smoking them. Fancy!"
 	icon_state = "cigarcase"
 	item_state = "cigarcase"
 	icon = 'icons/obj/cigarettes.dmi'
 	w_class = ITEM_SIZE_TINY
 	throwforce = WEAPON_FORCE_HARMLESS
 	slot_flags = SLOT_BELT
-	storage_slots = 7
+	storage_slots = 6
 	can_hold = list(/obj/item/clothing/mask/smokable/cigarette/cigar)
 	icon_type = "cigar"
 	reagent_flags = REFILLABLE | NO_REACT
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/cigar
+	var/open = FALSE
+
+/obj/item/storage/fancy/cigar/proc/can_interact(mob/user)
+	if((!ishuman(user) && (loc != user)) || user.stat || user.restrained())
+		return 1
+	if(istype(loc, /obj/item/storage))
+		return 2
+	return 0
+
+
+/obj/item/storage/fancy/cigar/verb/quick_open_close(mob/user)
+	set name = "Close cigar case"
+	set category = "Object"
+	set src in view(1)
+	if(!is_worn())
+		if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
+			return
+
+		open_close(user)
+	else
+		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
+
+/obj/item/storage/fancy/cigar/AltClick(mob/user)
+	if(!is_worn())
+		var/able = can_interact(user)
+
+		if(able == 1)
+			return
+
+		if(able == 2)
+			to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s in a container."))
+			return
+
+		open_close(user)
+	else
+		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
+
+/obj/item/storage/fancy/cigar/proc/open_close(mob/living/carbon/human/H, user)
+	close_all()
+	if(!is_worn())
+		if(!open)
+			to_chat(user, SPAN_NOTICE("You open \the [src]."))
+			w_class = ITEM_SIZE_SMALL
+			open = TRUE
+		else
+			to_chat(user, SPAN_NOTICE("You close \the [src]."))
+			w_class = ITEM_SIZE_TINY
+			open = FALSE
+		playsound(loc, 'sound/machines/click.ogg', 100, 1)
+		update_icon()
+	else
+		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
+
+obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
+	if(!open)
+		to_chat(user, SPAN_NOTICE("You try to access \the [src] but it\'s closed!"))
+		return
+	. = ..()
+
+/obj/item/storage/fancy/cigar/open(mob/user)
+	if(!open)
+		to_chat(user, SPAN_NOTICE("\The [src] is closed."))
+		return
+
+	. = ..()
 
 /obj/item/storage/fancy/cigar/populate_contents()
 	for(var/i in 1 to storage_slots)
@@ -305,8 +370,11 @@
 	create_reagents(15 * storage_slots)
 	update_icon()
 
-/obj/item/storage/fancy/cigar/on_update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
+/obj/item/storage/fancy/cigar/update_icon()
+	if(open)
+		icon_state = "[initial(icon_state)][contents.len]"
+	else
+		icon_state = "cigarcase"
 
 /obj/item/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
 		var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
@@ -347,16 +415,16 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vials/on_update_icon(var/itemremoved = 0)
+/obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "vialbox[total_contents]"
 	src.cut_overlays()
 	if (!broken)
-		add_overlays(image(icon, src, "led[locked]"))
+		overlays += image(icon, src, "led[locked]")
 		if(locked)
-			add_overlays(image(icon, src, "cover"))
+			overlays += image(icon, src, "cover")
 	else
-		add_overlays(image(icon, src, "ledb"))
+		overlays += image(icon, src, "ledb")
 	return
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)

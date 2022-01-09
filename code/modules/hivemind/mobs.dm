@@ -192,7 +192,7 @@
 	var/icon/infested = new /icon(icon, icon_state)
 	var/icon/covering_mask = new /icon('icons/mob/hivemind.dmi', "covering[rand(1, 3)]")
 	infested.Blend(covering_mask, ICON_MULTIPLY)
-	add_overlays(infested)
+	overlays += infested
 
 	setMaxHealth(victim.maxHealth * 2 + 10)
 	health = maxHealth
@@ -336,18 +336,16 @@
 
 /mob/living/simple_animal/hostile/hivemind/lobber
 	name = "Lobber"
-	desc = "It's a little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
+	desc = "A little cleaning robot. This one appears to have its cleaning solutions replaced with goo. It also appears to have its targeting protocols overridden..."
 	icon_state = "lobber"
-	attacktext = "spray painted" //this shouldn't appear anyways
+	attacktext = "slapped" //this shouldn't appear anyways
 	density = FALSE
 	health = 75
 	maxHealth = 75
-	melee_damage_lower = 0
-	melee_damage_upper = 0
 	speak_chance = 6
 	malfunction_chance = 10
 	ranged = TRUE
-	rapid = FALSE //Visual Studio screamed at me for trying to use FALSE/TRUE in procs below  -Wouju
+	rapid = FALSE //Visual Studio screamed at me for trying to use FALSE/TRUE in procs below
 	minimum_distance = 3 //having minimum_distance too high often resulted in the mob trying to melee
 	fire_verb = "lobs a ball of goo" //reminder that the attack message is "\red <b>[src]</b> [fire_verb] at [target]!"
 	projectiletype = /obj/item/projectile/goo/weak //what projectile it uses. Since ranged_cooldown is 2 short seconds, it's better to have a weaker projectile
@@ -650,9 +648,9 @@
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
-	health = 600
-	maxHealth = 600
-	resistance = RESISTANCE_ARMOURED 
+	health = 500
+	maxHealth = 500
+	resistance = RESISTANCE_ARMOURED
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	mob_size = MOB_LARGE
@@ -752,26 +750,26 @@
 
 //animations
 //updates every life tick
-/mob/living/simple_animal/hostile/hivemind/mechiver/on_update_icon()
+/mob/living/simple_animal/hostile/hivemind/mechiver/update_icon()
 	if(target_mob && !passenger && (get_dist(target_mob, src) <= 4) && !is_on_cooldown())
 		if(!hatch_closed)
 			return
-		cut_overlays()
+		overlays.Cut()
 		if(pilot)
-			FLICK("mechiver-opening", src)
+			flick("mechiver-opening", src)
 			icon_state = "mechiver-chief"
-			add_overlays("mechiver-hands")
+			overlays += "mechiver-hands"
 		else
-			FLICK("mechiver-opening_wires", src)
+			flick("mechiver-opening_wires", src)
 			icon_state = "mechiver-welcome"
-			add_overlays("mechiver-wires")
+			overlays += "mechiver-wires"
 		hatch_closed = FALSE
 	else
-		cut_overlays()
+		overlays.Cut()
 		hatch_closed = TRUE
 		icon_state = "mechiver-closed"
 		if(passenger)
-			add_overlays("mechiver-process")
+			overlays += "mechiver-process"
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/AttackingTarget()
@@ -788,9 +786,9 @@
 /mob/living/simple_animal/hostile/hivemind/mechiver/special_ability(mob/living/target)
 	if(!target_mob && hatch_closed) //when we picking up corpses
 		if(pilot)
-			FLICK("mechiver-opening", src)
+			flick("mechiver-opening", src)
 		else
-			FLICK("mechiver-opening_wires", src)
+			flick("mechiver-opening_wires", src)
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
@@ -803,9 +801,9 @@
 /mob/living/simple_animal/hostile/hivemind/mechiver/proc/release_passenger(var/safely = FALSE)
 	if(passenger)
 		if(pilot)
-			FLICK("mechiver-opening", src)
+			flick("mechiver-opening", src)
 		else
-			FLICK("mechiver-opening_wires", src)
+			flick("mechiver-opening_wires", src)
 
 		if(ishuman(passenger))
 			if(!safely) //that was stressful
@@ -863,6 +861,72 @@
 	gibs(loc, null, /obj/effect/gibspawner/robot)
 	if(pilot)
 		gibs(loc, null, /obj/effect/gibspawner/human)
+	qdel(src)
+
+
+
+////////////////////////Treader///////////////////
+//Ranged just like the lobber, (deals more damage but needs longer to recharge, but given that ranged_cooldown does nothing not implemented yet)
+//When damaged, "releases a cloud of nanites" that heal all allies in view
+//A bit tanky, but moves slow
+//Death releases a EMP pulse
+/////////////////////////////////////////////////
+/mob/living/simple_animal/hostile/hivemind/treader
+	name = "Treader"
+	desc = "A human head with a screen shoved in its mouth, connected to a large column with another screen displaying a human face."
+	icon_state = "treader"
+	attacktext = "slapped"
+	speak_chance = 2
+	health = 100
+	maxHealth = 100
+	resistance = RESISTANCE_AVERAGE
+	malfunction_chance = 10
+	move_to_delay = 10
+	rarity_value = 150
+	ranged = TRUE
+	minimum_distance = 3
+	fire_verb = "spits"
+	projectiletype = /obj/item/projectile/goo/weak
+	projectilesound = 'sound/effects/blobattack.ogg'
+	ranged_cooldown = 10 SECONDS
+	ability_cooldown = 20 SECONDS
+
+	speak = list(
+				"Hey, at least I got my head.",
+				"I can\'t... I can\'t feel my arms...",
+				"Oh god... my legs... where are my legs..."
+				)
+
+	target_speak = list(
+				"You there! Cut off my head!",
+				"So sorry! Can\'t exactly control my head anymore.",
+				"S-shoot the screen! God I hope it won\'t hurt."
+				)
+
+/mob/living/simple_animal/hostile/hivemind/treader/Initialize()
+	..()
+	set_light(2, 1, COLOR_BLUE_LIGHT)
+
+/mob/living/simple_animal/hostile/hivemind/treader/Life()
+	. = ..()
+
+	if(maxHealth > health && world.time > special_ability_cooldown)
+		special_ability()
+
+
+/mob/living/simple_animal/hostile/hivemind/treader/special_ability()
+	visible_emote("vomits out a burst of rejuvenating nanites!")
+
+	for(var/mob/living/simple_animal/hostile/hivemind/ally in view(src))
+		ally.heal_overall_damage(10, 0)
+
+	special_ability_cooldown = world.time + ability_cooldown
+
+
+/mob/living/simple_animal/hostile/hivemind/treader/death()
+	..()
+	gibs(loc, null, /obj/effect/gibspawner/robot)
+	empulse(get_turf(src), 1, 3)
 	qdel(src)
 
 

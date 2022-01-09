@@ -2,7 +2,7 @@
 /mob/living/simple_animal/corgi
 	name = "\improper corgi"
 	real_name = "corgi"
-	desc = "It's a corgi."
+	desc = "A corgi."
 	icon_state = "corgi"
 	item_state = "corgi"
 	speak_emote = list("barks", "woofs")
@@ -33,7 +33,7 @@
 	name = "Ian"
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
-	desc = "It's a corgi."
+	desc = "A corgi."
 	response_help  = "pets"
 	response_disarm = "bops"
 	response_harm   = "kicks"
@@ -76,7 +76,7 @@
 		..()
 
 /mob/living/simple_animal/corgi/regenerate_icons()
-	set_overlays(list())
+	overlays = list()
 
 	if(inventory_head)
 		var/head_icon_state = inventory_head.icon_state
@@ -85,7 +85,7 @@
 
 		var/icon/head_icon = image('icons/mob/corgi_head.dmi',head_icon_state)
 		if(head_icon)
-			add_overlays(head_icon)
+			overlays += head_icon
 
 	if(inventory_back)
 		var/back_icon_state = inventory_back.icon_state
@@ -94,14 +94,14 @@
 
 		var/icon/back_icon = image('icons/mob/corgi_back.dmi',back_icon_state)
 		if(back_icon)
-			add_overlays(back_icon)
+			overlays += back_icon
 	return
 
 
 /mob/living/simple_animal/corgi/puppy
 	name = "\improper corgi puppy"
 	real_name = "corgi"
-	desc = "It's a corgi puppy."
+	desc = "A corgi puppy."
 	icon_state = "puppy"
 
 //pupplies cannot wear anything.
@@ -117,7 +117,7 @@
 	name = "Lisa"
 	real_name = "Lisa"
 	gender = FEMALE
-	desc = "It's a corgi with a cute pink bow."
+	desc = "A corgi with a cute pink bow."
 	icon_state = "lisa"
 	response_help  = "pets"
 	response_disarm = "bops"

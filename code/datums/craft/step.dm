@@ -202,6 +202,7 @@
 			else if(req_amount > 1)
 				. = IN_PROGRESS
 
+			user.drop_from_inventory(I)
 			qdel(I)
 
 	if(target)

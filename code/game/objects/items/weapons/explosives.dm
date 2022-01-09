@@ -64,7 +64,7 @@
 			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
 			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.add_overlays(image_overlay)
+		target.overlays += image_overlay
 		to_chat(user, "Bomb has been planted. Timer is counting down from [timer].")
 		spawn(timer*10)
 			explode(get_turf(target))
@@ -91,7 +91,7 @@
 		qdel(G)
 
 	if(target)
-		target.remove_overlays(image_overlay)
+		target.overlays -= image_overlay
 	qdel(src)
 
 /obj/item/plastique/attack(mob/M, mob/user, def_zone)

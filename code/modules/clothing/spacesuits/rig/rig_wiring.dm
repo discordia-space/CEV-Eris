@@ -1,5 +1,4 @@
 /datum/wires/rig
-	random = 1
 	holder_type = /obj/item/rig
 	wire_count = 5
 
@@ -39,7 +38,7 @@
 			rig.visible_message("\The [rig] twitches as several suit locks [rig.security_check_enabled?"close":"open"].")
 		if(RIG_AI_OVERRIDE)
 			rig.ai_override_enabled = !rig.ai_override_enabled
-			rig.visible_message("A small red light on [rig] [rig.ai_override_enabled?"goes dead":"flickers on"].")
+			rig.visible_message("A small red light on [rig] [rig.ai_override_enabled?"goes dead":"flick_lights on"].")
 		if(RIG_SYSTEM_CONTROL)
 			rig.malfunctioning += 10
 			if(rig.malfunction_delay <= 0)

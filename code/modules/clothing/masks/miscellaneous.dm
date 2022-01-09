@@ -13,7 +13,7 @@
 
 /obj/item/clothing/mask/muzzle/tape
 	name = "length of tape"
-	desc = "It's a robust DIY muzzle!"
+	desc = "A robust DIY muzzle!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
@@ -247,6 +247,7 @@
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
 	var/mob/observer/eye/aiEye/eye
+	spawn_blacklisted = TRUE
 
 /obj/item/clothing/mask/ai/Initialize(mapload, ...)
 	. = ..()

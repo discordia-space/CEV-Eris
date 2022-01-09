@@ -13,6 +13,10 @@
 	random = TRUE
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 10
+	descriptions = list(
+		new /datum/wire_description(WIRE_MAIN_POWER1, "This wire seems to be carrying a heavy current."),
+		new /datum/wire_description(WIRE_POWER, "This wire seems to be carrying a heavy current."),
+	)
 
 /datum/wires/jukebox/CanUse(mob/user)
 	var/obj/machinery/media/jukebox/A = holder
@@ -33,7 +37,7 @@
 	var/obj/machinery/media/jukebox/A = holder
 	switch(wire)
 		if(WIRE_MAIN_POWER1)
-			holder.visible_message("<span class='notice'>The power light flickers.</span>")
+			holder.visible_message("<span class='notice'>The power light flick_lights.</span>")
 			A.shock(usr, 90)
 		if(WIRE_REVERSE)
 			holder.visible_message("<span class='notice'>The data light blinks ominously.</span>")

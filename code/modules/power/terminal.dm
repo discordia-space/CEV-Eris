@@ -6,7 +6,7 @@
 /obj/machinery/power/terminal
 	name = "terminal"
 	icon_state = "term"
-	desc = "It's an underfloor wiring terminal for power equipment."
+	desc = "An underfloor wiring terminal for power equipment."
 	level = BELOW_PLATING_LEVEL
 	layer = WIRE_TERMINAL_LAYER //a bit above wires
 	var/obj/machinery/power/master = null

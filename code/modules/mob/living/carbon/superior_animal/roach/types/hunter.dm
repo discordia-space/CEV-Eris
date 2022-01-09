@@ -8,8 +8,8 @@
 	health = 25
 	move_to_delay = 3.5
 
-	melee_damage_lower = 3
-	melee_damage_upper = 10
+	melee_damage_lower = 4
+	melee_damage_upper = 11
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/jager
 	meat_amount = 3

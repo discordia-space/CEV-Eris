@@ -119,7 +119,7 @@
 			close_spawn_windows()
 			var/turf/T = pick_spawn_location("Observer")
 			if(istype(T))
-				to_chat(src, SPAN_NOTICE("You are observer now."))
+				to_chat(src, SPAN_NOTICE("You are now observing."))
 				observer.forceMove(T)
 			else
 				to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
@@ -247,7 +247,7 @@
 	if(rank == "AI")
 
 		character = character.AIize(move=0) // AIize the character, but don't move them yet
-
+		SSticker.minds += character.mind
 			// IsJobAvailable for AI checks that there is an empty core available in this list
 		var/obj/structure/AIcore/deactivated/C = empty_playable_ai_cores[1]
 		empty_playable_ai_cores -= C

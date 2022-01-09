@@ -19,46 +19,64 @@ Used In File(s): code\modules\modular_computers\file_system\programs\medical\sui
 <table class='wideTable'><tbody>
 	{{for data.crewmembers}}
 		<tr class="candystripe">
-			<td>{{:value.name}} ({{:value.assignment}}): 
-			{{if value.isCriminal}}
-			<span class='average'> [Criminal]</span>
-			{{/if}}
-			</td>
+			<td>{{:value.name}}</td>
 			{{if value.sensor_type >= 2}}
 				{{if value.true_pulse == -1}}
-					<td><span class="white">Heart: </span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span></td>
+					<td><span class="white">Heart:</span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span></td>
 				{{else}}
-					<td><span class="white">Pulse</span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span> bpm</td>
+					<td><span class="white">Pulse:</span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span> bpm</td>
 				{{/if}}
 			{{else}}
 				{{if value.alert}}
-					<td><span class="bad">Medical issue detected</span></td>
+					<td><span class="bad"> Medical issue detected</span></td>
 				{{else}}
-					<td>No issues detected</td>
+					<td> No issues detected</td>
 				{{/if}}
 			{{/if}}
-
 			{{if value.sensor_type >= 2}}
-				<td><span class="white">BP</span> {{:value.pressure}} {{if value.oxygenation}}(<span class='{{:value.oxygenation_span}}'>{{:value.oxygenation}}</span> oxygenation){{/if}}</td>
+				<td><span class="white">Suffocation:</span><font color='#0080ff'> {{:value.suffocation}}</font></td>
+				<td><span class="white">Trauma:</span><font color='red'> {{:value.trauma}}</font></td>
 			{{else}}
-				<td></td>
+				<td><span class="white">Suffocation:</span> Not Available</td>
+				<td><span class="white">Trauma:</span> Not Available</td>
 			{{/if}}
-
-			{{if value.sensor_type >= 2}}
-				<td><span class="white">Temp</span> {{:value.bodytemp}} C</td>
-			{{else}}
-				<td></td>
-			{{/if}}
-
 			{{if value.sensor_type >= 3}}
-				<td><span class="white">Location</span> {{:value.area}} ({{:value.x}}, {{:value.y}}, {{:value.z}})</td>
-			{{else value.sensor_type == 2}}
-				<td><span class="white">Location</span> Not Available</td>
+				<td><span class="white">Area:</span> {{:value.area}}</td>
 			{{else}}
-				<td></td>
+				<td><span class="white">Area:</span> Not Available</td>
 			{{/if}}
-
-			{{if data.isAI}}
+			{{if data.can_mute}}
+				{{if value.muted}}
+					<td class='tracking'>{{:helper.link('Unmute', null, {'unmute' : value.ref})}}</td>
+				{{else}}
+					<td class='tracking'>{{:helper.link('Mute', null, {'mute' : value.ref})}}</td>
+				{{/if}}
+			{{/if}}
+		</tr>
+		<tr class="candystripe">
+			<td>({{:value.assignment}})
+			{{if value.isCriminal}}
+				<span class='average'>[Criminal]</span>
+			{{/if}}
+			</td>
+			{{if value.sensor_type >= 2}}
+				<td><span class="white">Temp:</span> {{:value.bodytemp}} C</td>
+			{{else}}
+				<td><span class="white">Temp:</span> Not Available</td>
+			{{/if}}
+			{{if value.sensor_type >= 2}}
+				<td><span class="white">Burns:</span><font color='#FFA500'> {{:value.burns}} </font></td>
+				<td><span class="white">Poisoning:</span><font color='green'> {{:value.poisoning}} </font></td>
+			{{else}}
+				<td><span class="white">Burns:</span> Not Available</td>
+				<td><span class="white">Poisoning:</span> Not Available</td>
+			{{/if}}
+			{{if value.sensor_type >= 3}}
+				<td><span class="white">Coordinates:</span> {{:value.x}}, {{:value.y}}, {{:value.z}}</td>
+			{{else}}
+				<td><span class="white">Coordinates:</span> Not Available</td>
+			{{/if}}
+			{{if data.can_track}}
 				{{if value.sensor_type >= 3}}
 					<td class='tracking'>{{:helper.link('Track', null, {'track' : value.ref})}}</td>
 				{{else}}

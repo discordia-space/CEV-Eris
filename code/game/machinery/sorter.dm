@@ -87,7 +87,7 @@
 	return ..()
 
 
-/obj/machinery/sorter/on_update_icon()
+/obj/machinery/sorter/update_icon()
 	..()
 	if(progress)
 		icon_state = "sorter-process"
@@ -328,6 +328,8 @@
 
 /obj/machinery/sorter/biomatter
 	name = "biomatter sorter"
+	accept_output_side = WEST
+	refuse_output_side = EAST
 
 /obj/machinery/sorter/biomatter/Initialize()
 	. = ..()

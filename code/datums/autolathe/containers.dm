@@ -59,3 +59,27 @@
 /datum/design/autolathe/container/freezer_medical
 	name = "organ freezer"
 	build_path = /obj/item/storage/freezer/medical
+
+/datum/design/autolathe/container/ammocan_ih
+	name = "IH Ammo Can"
+	build_path = /obj/item/storage/hcases/ammo/ih
+
+/datum/design/autolathe/container/ammocan_serb
+	name = "Serbian Ammo Can"
+	build_path = /obj/item/storage/hcases/ammo/serb
+
+/datum/design/autolathe/container/ammocan_excel
+	name = "Excel Ammo Can"
+	build_path = /obj/item/storage/hcases/ammo/excel
+
+/datum/design/autolathe/container/hcase_parts
+	name = "Parts Hardcase"
+	build_path = /obj/item/storage/hcases/parts
+
+/datum/design/autolathe/container/hcase_med
+	name = "Parts Hardcase"
+	build_path = /obj/item/storage/hcases/med
+
+/datum/design/autolathe/container/hcase_engi
+	name = "Parts Hardcase"
+	build_path = /obj/item/storage/hcases/engi

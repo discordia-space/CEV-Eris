@@ -144,7 +144,7 @@
 			var/accurate = 0
 			var/hit_zone = H.targeted_organ
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
-			var/obj/item/organ/external/current_hand = organs_by_name[hand ? BP_L_ARM : BP_R_ARM]
+			var/obj/item/organ/external/current_hand = H.organs_by_name[H.hand ? BP_L_ARM : BP_R_ARM]
 
 			if(current_hand)
 				limb_efficiency_multiplier = 1 * (current_hand.limb_efficiency / 100)
@@ -187,9 +187,6 @@
 
 					And after that, we subtract AGI stat from chance to hit different organ.
 					General miss chance also depends on AGI.
-
-					Note: We don't use get_zone_with_miss_chance() here since the chances
-						  were made for projectiles.
 					TODO: proc for melee combat miss chances depending on organ?
 				*/
 				if(prob(50 - H.stats.getStat(STAT_ROB)))
@@ -264,32 +261,43 @@
 					if(turfs.len)
 						var/turf/target = pick(turfs)
 						visible_message(SPAN_DANGER("[src]'s [W] goes off during the struggle!"))
-						return W.afterattack(target,src)
+						W.afterattack(target,src)
 
-			var/randn = rand(1, 100)
-			randn = max(1, randn - H.stats.getStat(STAT_ROB))
-
-			if(randn <= 50)
-				//See about breaking grips or pulls
-				if(break_all_grabs(M))
-					playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-					return
-
-				//Actually disarm them
-				for(var/obj/item/I in holding)
-					if(I && src.unEquip(I))
+			//Actually disarm them
+			var/rob_attacker = (50 / (1 + 150 / max(1, H.stats.getStat(STAT_ROB))) + 40) //soft capped amount of recoil that attacker deals
+			var/rob_target = max(0, min(400,stats.getStat(STAT_ROB))) //hard capped amount of recoil the target negates upon disarming
+			var/recoil_damage = (rob_attacker * (1 - (rob_target / 400))) //recoil itself
+			for(var/obj/item/I in holding)
+				external_recoil(recoil_damage)
+				if(recoil >= 60) //disarming
+					if(istype(I, /obj/item/grab)) //did M grab someone?
+						break_all_grabs(M) //See about breaking grips or pulls
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						return
+					if(I.wielded) //is the held item wielded?
+						if(!recoil >= 80) //if yes, we need more recoil to disarm
+							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+							visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
+							return
+					if(istype(I, /obj/item/twohanded/offhand)) //did someone dare to switch to offhand to not get disarmed?
+						unEquip(src.get_inactive_hand())
+						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
+						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+						return
+					else 
+						unEquip(I)
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>")
+			visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
 	return
 
-/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message)
+/mob/living/carbon/human/attack_generic(var/mob/user, var/damage, var/attack_message, var/wallbreaker = FALSE, var/is_sharp = FALSE, var/is_edge = FALSE)
 
 	if(!damage || !istype(user))
 		return
@@ -302,7 +310,7 @@
 
 	var/dam_zone = pick(organs_by_name)
 	var/obj/item/organ/external/affecting = get_organ(ran_zone(dam_zone))
-	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE)
+	var/dam = damage_through_armor(damage, BRUTE, affecting, ARMOR_MELEE, sharp=is_sharp, sharp=is_edge)
 	if(dam > 0)
 		affecting.add_autopsy_data("[attack_message] by \a [user]", dam)
 	updatehealth()
@@ -332,6 +340,7 @@
 	if(do_after(user, 100, progress = 0))
 		organ.dislocate(1)
 		src.visible_message("<span class='danger'>[src]'s [organ.joint] [pick("gives way","caves in","crumbles","collapses")]!</span>")
+		playsound(user, 'sound/weapons/jointORbonebreak.ogg', 50, 1)
 		return 1
 	return 0
 

@@ -297,11 +297,9 @@
 	/** breathing **/
 
 /mob/living/carbon/human/handle_chemical_smoke(var/datum/gas_mixture/environment)
-	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	if(wear_mask && (wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 		return
-	if(glasses && (glasses.item_flags & BLOCK_GAS_SMOKE_EFFECT))
-		return
-	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT))
+	if(head && (head.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 		return
 	..()
 
@@ -1136,7 +1134,7 @@
 
 /mob/living/carbon/human/handle_vision()
 	if(client)
-		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
+		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.lightMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 	if(machine)
 		var/viewflags = machine.check_eye(src)
 		if(viewflags < 0)

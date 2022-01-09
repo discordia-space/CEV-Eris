@@ -15,3 +15,4 @@
 	recoil_buildup = 10
 	one_hand_penalty = 15 //full sized shotgun level
 	saw_off = FALSE
+

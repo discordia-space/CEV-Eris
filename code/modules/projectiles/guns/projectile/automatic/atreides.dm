@@ -27,7 +27,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/gun/projectile/automatic/atreides/on_update_icon()
+/obj/item/gun/projectile/automatic/atreides/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -36,7 +36,7 @@
 	if(gilded)
 		iconstring += "_gold"
 		itemstring += "_gold"
-	
+
 	if (ammo_magazine)
 		iconstring += "_mag"
 		itemstring += "_mag"

@@ -157,7 +157,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	if(department == "Unknown")
 		return 0	//You can't send faxes to "Unknown"
 
-	FLICK("faxreceive", src)
+	flick("faxreceive", src)
 	playsound(loc, "sound/items/polaroid1.ogg", 50, 1)
 
 	// give the sprite some time to flick

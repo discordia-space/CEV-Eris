@@ -65,6 +65,13 @@
 	//No armor? Damage as usual
 	if(armor_effectiveness == 0)
 		apply_damage(effective_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(ishuman(src) && def_zone)
+			var/mob/living/carbon/human/H = src
+			var/obj/item/organ/external/o = H.get_organ(def_zone)
+			if (o && o.status & ORGAN_SPLINTED && effective_damage >= 20)
+				visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
+						SPAN_WARNING("Your splints break off after being hit!"))
+				o.status &= ~ORGAN_SPLINTED
 		if(sanctified_attack)
 			apply_damage(effective_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 	//Here we split damage in two parts, where armor value will determine how much damage will get through
@@ -78,11 +85,17 @@
 		//Actual part of the damage that passed through armor
 		var/actual_damage = round ( ( effective_damage * ( 100 - armor_effectiveness ) ) / 100 )
 		apply_damage(actual_damage, damagetype, def_zone, sharp, edge, used_weapon)
+		if(ishuman(src) && def_zone && actual_damage >= 20)
+			var/mob/living/carbon/human/H = src
+			var/obj/item/organ/external/o = H.get_organ(def_zone)
+			if (o && o.status & ORGAN_SPLINTED)
+				visible_message(SPAN_WARNING("The splints break off [src] after being hit!"),
+						SPAN_WARNING("Your splints break off after being hit!"))
+				o.status &= ~ORGAN_SPLINTED
 		if(sanctified_attack)
 			apply_damage(actual_damage / 2, BURN, def_zone, sharp, edge, used_weapon)
 		return actual_damage
 	return effective_damage
-
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
 /mob/living/proc/getarmor(var/def_zone, var/type)
@@ -200,8 +213,7 @@
 	if(istype(AM,/obj))
 		var/obj/O = AM
 		var/dtype = O.damtype
-		var/throw_damage = O.throwforce*(speed/THROWFORCE_SPEED_DIVISOR)
-
+		var/throw_damage = O.throwforce
 		var/miss_chance = 15
 		if (O.throw_source)
 			var/distance = get_dist(O.throw_source, loc)
@@ -305,13 +317,13 @@
 
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
-		on_fire = 1
+		on_fire = TRUE
 		set_light(light_range + 3, l_color = COLOR_RED)
 		update_fire()
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
-		on_fire = 0
+		on_fire = FALSE
 		fire_stacks = 0
 		set_light(max(0, light_range - 3))
 		update_fire()
@@ -353,11 +365,11 @@
 //Finds the effective temperature that the mob is burning at.
 /mob/living/proc/fire_burn_temperature()
 	if (fire_stacks <= 0)
-		return 0
+		return FALSE
 
 	//Scale quadratically so that single digit numbers of fire stacks don't burn ridiculously hot.
 	//lower limit of 700 K, same as matches and roughly the temperature of a cool flame.
-	return min(5200,max(2.25*round(FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE*(fire_stacks/FIRE_MAX_FIRESUIT_STACKS)**2), 700))
+	return FIRESTACKS_TEMP_CONV(fire_stacks)
 
 /mob/living/proc/reagent_permeability()
 	return 1

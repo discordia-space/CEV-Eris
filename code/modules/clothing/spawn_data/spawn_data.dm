@@ -428,7 +428,7 @@
 /obj/item/clothing/suit/armor/heavy/green
 	rarity_value = 30.2778
 
-/obj/item/clothing/suit/armor/heavy/riot/ironhammer
+/obj/item/clothing/suit/armor/heavy/ironhammer
 	rarity_value = 33.6111
 
 /obj/item/clothing/suit/armor/heavy/riot

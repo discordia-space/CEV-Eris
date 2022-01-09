@@ -23,6 +23,9 @@
 		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
 		for(var/i in damage_types)
 			damage_types[i] *= loss
+
+		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
 	return 0
 
@@ -68,7 +71,7 @@
 	name = "psychic laser"
 	icon_state = "psychic_heavylaser"
 	var/obj/item/gun/energy/psychic/holder
-	var/traitor = FALSE //Check if it's a traitor psychic beam
+	var/contractor = FALSE //Check if it's a contractor psychic beam
 	damage_types = list(PSY = 30)
 	armor_penetration = 100
 
@@ -78,15 +81,15 @@
 
 /obj/item/projectile/beam/psychic/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
 	holder = launcher
-	if(holder && holder.traitor)
-		traitor = holder.traitor
+	if(holder && holder.contractor)
+		contractor = holder.contractor
 	..()
 
 /obj/item/projectile/beam/psychic/heavylaser
 	name = "psychic heavy laser"
 	icon_state = "psychic_heavylaser"
 	damage_types = list(PSY = 40)
-	traitor = TRUE
+	contractor = TRUE
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer

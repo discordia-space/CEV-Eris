@@ -29,8 +29,8 @@
 		hard_crit_threshold += 20
 
 	. = 						\
-	1	* get_limb_damage() + 	\
-	1	* getOxyLoss() + 		\
+	0.9	* get_limb_damage() + 	\
+	0.6	* getOxyLoss() + 		\
 	0.5	* getToxLoss() + 		\
 	1.5	* getCloneLoss()
 

@@ -4,7 +4,7 @@
 	name = "glass case"
 	desc = "A case containing an implant."
 	icon = 'icons/obj/items.dmi'
-	icon_state = "implantcase-0"
+	icon_state = "implantcase"
 	item_state = "implantcase"
 	throw_speed = 1
 	throw_range = 5
@@ -18,12 +18,11 @@
 		implant = new implant(src)
 		update_icon()
 
-/obj/item/implantcase/on_update_icon()
+/obj/item/implantcase/update_icon()
+	cut_overlays()
 	if(implant)
-		src.icon_state = "implantcase-[implant.implant_color]"
-	else
-		src.icon_state = "implantcase-0"
-	..()
+		var/image/content = image('icons/obj/items.dmi', icon_state = implant.implant_overlay, pixel_x = 7, pixel_y = -6)
+		add_overlay(content)
 
 /obj/item/implantcase/attackby(obj/item/I as obj, mob/user as mob)
 	..()

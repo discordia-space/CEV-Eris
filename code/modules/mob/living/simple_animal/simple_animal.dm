@@ -328,7 +328,12 @@
 	..(icon_gib,1)
 
 /mob/living/simple_animal/bullet_act(var/obj/item/projectile/Proj)
-	if(!Proj || Proj.nodamage)
+	if(!Proj)
+		return
+
+	if(Proj.nodamage)
+		if(istype(Proj, /obj/item/projectile/ion))
+			Proj.on_hit(loc)
 		return
 
 	adjustBruteLoss(Proj.get_total_damage())
@@ -432,7 +437,7 @@
 /mob/living/simple_animal/ex_act(severity)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			FLICK("flash", HUDtech["flash"])
+			flick("flash", HUDtech["flash"])
 	switch (severity)
 		if (1)
 			adjustBruteLoss(500)

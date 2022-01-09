@@ -12,6 +12,7 @@
 /datum/uplink_item/item/implants/imp_compress
 	name = "Compressed Matter Implant"
 	item_cost = 4
+	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/imp_compress
 
 /datum/uplink_item/item/implants/imp_explosive

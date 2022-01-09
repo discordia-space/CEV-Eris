@@ -237,11 +237,11 @@
 	reagent_state = LIQUID
 	color = "#800080"
 	overdose = REAGENTS_OVERDOSE * 0.66
-	metabolism = 0.1
+	metabolism = 0.02
 	nerve_system_accumulations = 60
 
 /datum/reagent/medicine/oxycodone/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.add_chemical_effect(CE_PAINKILLER, 65)
+	M.add_chemical_effect(CE_PAINKILLER, 75)
 	M.druggy = max(M.druggy, 10)
 
 /datum/reagent/medicine/oxycodone/overdose(mob/living/carbon/M, alien)
@@ -383,10 +383,10 @@
 	M.drowsyness = 0
 	M.stuttering = 0
 	M.confused = 0
-	if(M.ingested)
-		for(var/datum/reagent/R in M.ingested.reagent_list)
+	if(M.bloodstr)
+		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/ethanol))
-				R.dose = max(R.dose - effect_multiplier, 0)
+				R.dose = max(R.dose + effect_multiplier * 4, 0) // Increases the metabolism rate of ethanol by 0.2 for each unit of ethylredoxrazine metabolised
 
 /datum/reagent/medicine/hyronalin
 	name = "Hyronalin"

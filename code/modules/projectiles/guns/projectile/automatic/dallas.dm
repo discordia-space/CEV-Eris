@@ -20,11 +20,13 @@
 	reload_sound = 'sound/weapons/guns/interact/m41_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/m41_cocked.ogg'
 	damage_multiplier = 1.35
-	penetration_multiplier = 1
+	penetration_multiplier = 1.2
 	recoil_buildup = 1.3
 	one_hand_penalty = 10 //heavy, but very advanced, so bullpup rifle level despite not being bullpup
 	rarity_value = 65
 	gun_parts = list(/obj/item/part/gun = 5 ,/obj/item/stack/material/plasteel = 6)
+	wield_delay = 1 SECOND
+	wield_delay_factor = 0.4 // 40 vig for insta wield
 
 	gun_tags = list(GUN_SILENCABLE)
 
@@ -33,7 +35,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
-/obj/item/gun/projectile/automatic/dallas/on_update_icon()
+/obj/item/gun/projectile/automatic/dallas/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]-full"

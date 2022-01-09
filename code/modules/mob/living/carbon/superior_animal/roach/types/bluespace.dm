@@ -1,12 +1,12 @@
 /mob/living/carbon/superior_animal/roach/bluespace
 	name = "Unbekannt Roach"
-	desc = "This shimmering insectoid-like creature greatly resembles a giant cockroach. It flickers in and out of reality, as if it didn't really belong here."
+	desc = "This shimmering insectoid-like creature greatly resembles a giant cockroach. It flick_lights in and out of reality, as if it didn't really belong here."
 	icon_state = "bluespaceroach"
 	maxHealth = 25
 	health = 25
 	meat_type = /obj/item/bluespace_crystal
-	melee_damage_lower = 3
-	melee_damage_upper = 10
+	melee_damage_lower = 4
+	melee_damage_upper = 11
 	sanity_damage = 1
 	spawn_blacklisted = TRUE
 	var/change_tele_to_mob = 25
@@ -18,7 +18,8 @@
 	do_sparks(3, 0, src.loc)
 
 /mob/living/carbon/superior_animal/roach/bluespace/handle_ai()
-	..()
+	if(!..())
+		return FALSE
 
 	var/turf/target
 	if((stance == HOSTILE_STANCE_ATTACK || stance == HOSTILE_STANCE_ATTACKING) && target_mob && !Adjacent(target_mob) && prob(change_tele_to_mob))

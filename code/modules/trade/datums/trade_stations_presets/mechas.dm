@@ -11,7 +11,7 @@
 			/mob/living/exosuit/premade/combat/slayer,
 		),
 		"Mech Armor" = list(
-			/obj/item/robot_parts/robot_component/armour/exosuit,
+			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
 			/obj/item/robot_parts/robot_component/armour/exosuit/radproof,
 			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
 			/obj/item/robot_parts/robot_component/armour/exosuit/combat,
