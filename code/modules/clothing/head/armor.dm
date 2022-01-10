@@ -101,7 +101,7 @@
 	..()
 
 /obj/item/clothing/head/armor/helmet/ironhammer/attackby(obj/item/I, mob/user)
-	if(istype(I, fitting_flashlight))
+	if(istype(I, fitting_flashlight) && !flashlight)
 		insert_item(I, user)
 		flashlight = I
 		if(flashlight.on)
