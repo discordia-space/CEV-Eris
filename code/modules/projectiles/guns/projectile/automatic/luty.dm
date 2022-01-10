@@ -8,15 +8,15 @@
 	item_state = "luty"
 
 
-    spawn_blacklisted = FALSE
-    spawn_tags = SPAWN_TAG_GUN_HANDMADE
-    w_class = ITEM_SIZE_NORMAL
-    can_dual = TRUE
-    caliber = CAL_PISTOL
-    slot_flags = SLOT_BELT|SLOT_HOLSTER
-    ammo_type = /obj/item/ammo_casing/pistol
-    load_method = MAGAZINE
-    mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	w_class = ITEM_SIZE_NORMAL
+	can_dual = TRUE
+	caliber = CAL_PISTOL
+	slot_flags = SLOT_BELT|SLOT_HOLSTER
+	ammo_type = /obj/item/ammo_casing/pistol
+	load_method = MAGAZINE
+	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL|MAG_WELL_SMG
 
 	init_firemodes = list(
 		FULL_AUTO_400,
