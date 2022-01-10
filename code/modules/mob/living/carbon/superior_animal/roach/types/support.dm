@@ -13,7 +13,14 @@
 	var/datum/reagents/gas_sac //Stores gas. Can't use the default reagents since that is now bloodstream
 
 	// Armor related variables
-	bio = 50
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 75,
+		rad = 50
+	)
 
 /mob/living/carbon/superior_animal/roach/support/New()
 	.=..()

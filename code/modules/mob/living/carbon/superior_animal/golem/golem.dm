@@ -8,6 +8,7 @@
 #define GOLEM_ARMOR_HIGH 50
 #define GOLEM_ARMOR_ULTRA 65
 
+#define GOLEM_DMG_FEEBLE 5
 #define GOLEM_DMG_LOW 15
 #define GOLEM_DMG_MED 25
 #define GOLEM_DMG_HIGH 40

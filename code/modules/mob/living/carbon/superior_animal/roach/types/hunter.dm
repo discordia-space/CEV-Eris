@@ -16,8 +16,13 @@
 	meat_amount = 3
 	rarity_value = 11.25
 
-	// Armor related variables
-	melee = 20 // Jager jacket
-	bullet = 10
-	energy = 10
+	// Armor related variables - jager jacket
+	armor = list(
+		melee = 20,
+		bullet = 10,
+		energy = 10,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
 	

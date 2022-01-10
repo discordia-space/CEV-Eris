@@ -47,13 +47,14 @@
 	var/busy_start_time // when it started eating/laying egg
 
 	// Armor related variables
-	melee = 0
-	bullet = 0
-	energy = 0
-	bomb = 0
-	bio = 25
-	rad = 50
-
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 0,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
 //When roaches die near a leader, the leader may call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()

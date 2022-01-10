@@ -27,11 +27,14 @@
 	var/max_swarms = 5
 
 	// Armor related variables
-	melee = 20
-	bullet = 20
-	energy = 40
-	bomb = 10
-	rad = 100
+	armor = list(
+		melee = 20,
+		bullet = 20,
+		energy = 40,
+		bomb = 10,
+		bio = 25,
+		rad = 100
+	)
 
 /mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
 	. = ..()

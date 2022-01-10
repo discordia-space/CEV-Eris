@@ -28,9 +28,14 @@
 	var/retreat_calls = 1 //Can call for retreat once too
 
 	// Armor related variables
-	melee = 40
-	bullet = 40
-	energy = 40
+	armor = list(
+		melee = 40,
+		bullet = 40,
+		energy = 40,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
 
 /mob/living/carbon/superior_animal/roach/fuhrer/bullet_act()
 	.=..()

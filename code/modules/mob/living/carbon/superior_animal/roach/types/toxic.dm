@@ -21,9 +21,14 @@
 	kept_distance = 3
 
 	// Armor related variables
-	bullet = 20
-	bio = 75
-	rad = 100
+	armor = list(
+		melee = 0,
+		bullet = 20,
+		energy = 0,
+		bomb = 0,
+		bio = 50,
+		rad = 100
+	)
 
 /mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
 	. = ..()

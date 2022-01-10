@@ -16,10 +16,14 @@
 	melee_damage_upper = 16
 
 	// Armor related variables
-	melee = 60
-	bullet = 80
-	energy = 40
-	bomb = 20
+	armor = list(
+		melee = 60,
+		bullet = 80,
+		energy = 40,
+		bomb = 20,
+		bio = 25,
+		rad = 50
+	)
 
 // Panzers won't slip over on water or soap.
 /mob/living/carbon/superior_animal/roach/tank/slip(var/slipped_on,stun_duration=8)
