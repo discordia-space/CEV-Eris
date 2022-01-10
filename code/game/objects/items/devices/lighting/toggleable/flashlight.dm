@@ -22,11 +22,18 @@
 	return ..()
 
 /obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(turf/old_loc)
-	if(istype(src.loc,/obj/item/storage) || istype(src.loc,/obj/structure/closet))
+	if(istype(src.loc, /obj/item/storage) || istype(src.loc, /obj/structure/closet))
 		return
-	if(istype(src.loc,/mob/living))
+	if(istype(src.loc, /mob/living))
 		var/mob/living/L = src.loc
 		set_dir(L.dir)
+	else if(istype(src.loc, /obj/item/clothing/head/armor/helmet))
+		var/obj/item/clothing/head/armor/helmet/H = src.loc
+		if(H.is_equipped())
+			var/mob/living/L = H.loc
+			set_dir(L.dir)
+		else
+			set_dir(H.dir)
 	else if(pulledby && old_loc)
 		var/x_diff = src.x - old_loc.x
 		var/y_diff = src.y - old_loc.y

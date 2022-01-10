@@ -75,6 +75,56 @@
 	desc = "Ironhammer Security gear. Protects the head from impacts."
 	icon_state = "helmet_ironhammer"
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
+	var/fitting_flashlight = /obj/item/device/lighting/toggleable/flashlight/seclite
+	var/obj/item/device/lighting/toggleable/flashlight/flashlight
+
+/obj/item/clothing/head/armor/helmet/ironhammer/MouseDrop(over_object)
+	..()
+	if(flashlight && istype(over_object, /obj/screen/inventory/hand))
+		eject_item(flashlight, usr)
+		flashlight = null
+		action_button_name = null
+		on = FALSE
+		update_icon()
+		usr.update_action_buttons()
+
+/obj/item/clothing/head/armor/helmet/ironhammer/AltClick(mob/user)
+	if(flashlight)
+		flashlight.attack_self(user)
+		if(flashlight.on)
+			on = TRUE
+			ping_flashlight()
+		else
+			on = FALSE
+		update_icon()
+		return
+	..()
+
+/obj/item/clothing/head/armor/helmet/ironhammer/attackby(obj/item/I, mob/user)
+	if(istype(I, fitting_flashlight))
+		insert_item(I, user)
+		flashlight = I
+		if(flashlight.on)
+			on = TRUE
+			ping_flashlight()
+		else
+			on = FALSE
+		update_icon()
+		usr.update_action_buttons()
+		return
+	..()
+
+/obj/item/clothing/head/armor/helmet/ironhammer/proc/ping_flashlight()
+	if(flashlight && on)
+		flashlight.spot_locked = FALSE
+		flashlight.calculate_dir()
+		sleep(2)
+		.()
+
+/obj/item/clothing/head/armor/helmet/ironhammer/Destroy()
+	. = ..()
+	if(flashlight)
+		qdel(flashlight)
 
 /obj/item/clothing/head/armor/helmet/technomancer
 	name = "insulated technomancer helmet"
