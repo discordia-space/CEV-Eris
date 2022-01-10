@@ -32,6 +32,14 @@
 		return TRUE
 	return FALSE
 
+/obj/item/computer_hardware/hard_drive/make_young()
+	.=..()
+	stored_files = list()
+
+/obj/item/computer_hardware/hard_drive/portable/design/make_young()
+	.=..()
+	license = min(license, 0)
+
 /obj/proc/make_old(low_quality_oldification)	//low_quality_oldification changes names and colors to fit with "bad prints" instead of "very old items" asthetic
 	GET_COMPONENT(oldified, /datum/component/oldficator)
 	if(oldified)
@@ -132,7 +140,7 @@
 		var/actual_volume = reagents.total_volume
 		for(var/datum/reagent/R in reagents.reagent_list)
 			reagents.remove_reagent(R.id,rand(0, R.volume),TRUE)
-		reagents.add_reagent("toxin", rand(0, actual_volume - reagents.total_volume))
+		reagents.add_reagent("mold", rand(0, actual_volume - reagents.total_volume))
 
 /obj/item/reagent_containers/food/snacks/make_old(low_quality_oldification)
 	.=..()

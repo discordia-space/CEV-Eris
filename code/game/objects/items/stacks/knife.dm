@@ -15,6 +15,7 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 	structure_damage_factor = STRUCTURE_DAMAGE_BLADE
+	matter = list(MATERIAL_PLASTEEL = 2)
 	amount = 1
 	max_amount = 3
 	w_class = ITEM_SIZE_SMALL
@@ -26,7 +27,7 @@
 	rarity_value = 8
 	spawn_tags = SPAWN_TAG_KNIFE
 
-/obj/item/stack/throwing_knife/on_update_icon()
+/obj/item/stack/throwing_knife/update_icon()
 	icon_state = "[initial(icon_state)][amount]"
 
 /obj/item/stack/throwing_knife/examine(mob/user)

@@ -37,7 +37,7 @@
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
 	wield_delay = 0 // pistols don't get delays. X Doubt
 
-/obj/item/gun/projectile/automatic/molly/on_update_icon()
+/obj/item/gun/projectile/automatic/molly/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

@@ -23,7 +23,7 @@
 	var/spawn_type = /obj/item/implant/core_implant/cruciform
 
 	// A vis_contents hack for materials loading animation.
-	var/tmp/obj/effect/flicker_overlay/image_load
+	var/tmp/obj/effect/flick_light_overlay/image_load
 
 /obj/machinery/neotheology/cruciformforge/Initialize()
 	. = ..()
@@ -130,16 +130,16 @@
 /obj/machinery/neotheology/cruciformforge/proc/flick_anim(var/animation)
 
 	if(animation == WORK)
-		FLICK("[initial(icon_state)]_start", src)
+		flick("[initial(icon_state)]_start", src)
 		icon_state = "[initial(icon_state)]_work"
 		update_icon()
 
 	if(animation == LOAD)
-		FLICK("[initial(icon_state)]_load", image_load)
+		flick("[initial(icon_state)]_load", image_load)
 		return
 
 	if(animation == DONE)
-		FLICK("[initial(icon_state)]_finish", src)
+		flick("[initial(icon_state)]_finish", src)
 		icon_state = "[initial(icon_state)]"
 		update_icon()
 

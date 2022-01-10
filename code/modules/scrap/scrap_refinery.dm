@@ -69,7 +69,7 @@
 		playsound(loc, "sparks", 75, 1, -1)
 		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
 
-/obj/machinery/recycler/on_update_icon()
+/obj/machinery/recycler/update_icon()
 	.=..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)

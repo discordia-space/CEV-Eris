@@ -787,7 +787,7 @@ proc/GaussRandRound(var/sigma, var/roundto)
 					X.set_dir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-					X.set_overlays(old_overlays)
+					X.overlays = old_overlays
 					X.underlays = old_underlays
 					X.decals = old_decals
 					X.opacity = old_opacity
@@ -972,7 +972,7 @@ GLOBAL_LIST_INIT(duplicate_forbidden_vars,list(
 					X.set_dir(old_dir1)
 					X.icon_state = old_icon_state1
 					X.icon = old_icon1 //Shuttle floors are in shuttle.dmi while the defaults are floors.dmi
-					X.set_overlays(old_overlays)
+					X.overlays = old_overlays
 					X.underlays = old_underlays
 
 					var/list/objs = new/list()

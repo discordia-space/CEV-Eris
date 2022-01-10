@@ -240,7 +240,7 @@
 		for(var/datum/playingcard/P in cards)
 			to_chat(user, "The [P.name].")
 
-/obj/item/hand/on_update_icon(var/direction = 0)
+/obj/item/hand/update_icon(var/direction = 0)
 
 	if(!cards.len)
 		qdel(src)
@@ -261,7 +261,7 @@
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
 		I.pixel_y += (-5+rand(10))
-		add_overlays(I)
+		overlays += I
 		return
 
 	var/offset = FLOOR(20/cards.len, 1)
@@ -293,7 +293,7 @@
 			else
 				I.pixel_x = -7+(offset*i)
 		I.transform = M
-		add_overlays(I)
+		overlays += I
 		i++
 
 /obj/item/hand/dropped(mob/user as mob)

@@ -37,7 +37,7 @@
 	if(++ticks % 10 == 0 && reagents.total_volume)
 		var/reagent_count = 0
 		for(var/datum/reagent/R in reagents.reagent_list)
-			if(istype(R, /datum/reagent/ethanol))
+			if(istype(R, /datum/reagent/alcohol))
 				reagent_count += R.volume
 				R.remove_self(R.volume)
 		if(reagent_count > 10)

@@ -61,7 +61,7 @@
 /obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
 
-/obj/item/reagent_containers/food/drinks/on_update_icon()
+/obj/item/reagent_containers/food/drinks/update_icon()
 	cut_overlays()
 	if(reagents && reagents.total_volume)
 		if(base_name)
@@ -82,20 +82,23 @@
 	set src in view(1)
 
 	if(isghost(usr))
-		to_chat(usr, "You ghost!")
+		to_chat(usr, "You can't do this as a ghost.")
 		return
 
 	if(is_drainable())
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!H.check_has_mouth())
-				to_chat(H, "Where do you intend to put \the [src]? You don't have a mouth!")
+				to_chat(H, SPAN_NOTICE("Where do you intend to put \the [src]? You don't have a mouth!"))
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				to_chat(H, SPAN_WARNING("\The [blocked] is in the way!"))
+				to_chat(H, SPAN_NOTICE("\The [blocked] is in the way."))
 				return
 
+		if(reagents.total_volume == 0)
+			to_chat(usr, SPAN_NOTICE("\The [src] is empty."))
+			return
 		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
 			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
 		if(!do_after(usr, reagents.total_volume))
@@ -187,8 +190,8 @@
 	spawn_tags = SPAWN_TAG_JUNKFOOD
 	rarity_value = 15
 
-/obj/item/reagent_containers/food/drinks/dry_ramen/on_update_icon()
-	if(reagent_flags == OPENCONTAINER)	
+/obj/item/reagent_containers/food/drinks/dry_ramen/update_icon()
+	if(reagent_flags == OPENCONTAINER)
 		if(reagents && reagents.total_volume)
 			icon_state = "ramen_open"
 		else
@@ -202,7 +205,7 @@
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 
-/obj/item/reagent_containers/food/drinks/sillycup/on_update_icon()
+/obj/item/reagent_containers/food/drinks/sillycup/update_icon()
 	if(reagents && reagents.total_volume)
 		icon_state = "water_cup"
 	else

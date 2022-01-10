@@ -64,7 +64,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("A no server error appears on the screen."))
 
-/obj/machinery/computer/message_monitor/on_update_icon()
+/obj/machinery/computer/message_monitor/update_icon()
 	if(emag || hacking)
 		icon_screen = hack_icon
 	else
@@ -124,7 +124,7 @@
 				for(var/n = ++i; n <= optioncount; n++)
 					dat += "<dd><font color='blue'>&#09;[n]. ---------------</font><br></dd>"
 			if((isAI(user) || isrobot(user)) && (user.mind.antagonist.len && user.mind.original == user))
-				//Malf/Traitor AIs can bruteforce into the system to gain the Key.
+				//Malf/Contractor AIs can bruteforce into the system to gain the Key.
 				dat += "<dd><A href='?src=\ref[src];hack=1'><i><font color='Red'>*&@#. Bruteforce Key</font></i></font></a><br></dd>"
 			else
 				dat += "<br>"

@@ -211,15 +211,7 @@ meteor_act
 	if(check_attack_throat(I, user))
 		return null
 
-	if(user == src) // Attacking yourself can't miss
-		return target_zone
-
-	var/hit_zone = get_zone_with_miss_chance(target_zone, src)
-
-	if(!hit_zone)
-		visible_message(SPAN_DANGER("\The [user] misses [src] with \the [I]!"))
-		return null
-
+	var/hit_zone = check_zone(target_zone)
 	if(check_shields(I.force, I, user, target_zone, "the [I.name]"))
 		return null
 
@@ -328,27 +320,15 @@ meteor_act
 			var/mob/living/L = O.thrower
 			zone = check_zone(L.targeted_organ)
 		else
-			zone = ran_zone(BP_CHEST, 75)	//Hits a random part of the body, geared towards the chest
-
-		//check if we hit
-		var/miss_chance = 15
-		if (O.throw_source)
-			var/distance = get_dist(O.throw_source, loc)
-			miss_chance = max(15*(distance-2), 0)
-		zone = get_zone_with_miss_chance(zone, src, miss_chance, ranged_attack=1)
-
-		if(zone && O.thrower != src)
+			zone = ran_zone(BP_CHEST, 75)//Hits a random part of the body, geared towards the chest
+		if(zone && O.thrower != src) //does the target have a shield?
 			var/shield_check = check_shields(throw_damage, O, thrower, zone, "[O]")
 			if(shield_check == PROJECTILE_FORCE_MISS)
 				zone = null
 			else if(shield_check)
 				return
 
-		if(!zone)
-			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
-			return
-
-		O.throwing = 0		//it hit, so stop moving
+		O.throwing = 0//it hit, so stop moving
 		/// Get hit with glass shards , your fibers are on them now, or with a rod idk.
 		O.add_fibers(src)
 

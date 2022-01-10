@@ -29,7 +29,6 @@
 	var/req_eng = -1
 	var/req_med = -1
 	var/req_sci = -1
-	//TO DO: make req_heads, req_sec, req_eng and so on actually do shit, similary how req_crew checks for total amount of players
 
 	var/req_stage = -1
 
@@ -78,10 +77,6 @@
 
 	if(processing && is_processing())
 		if (report) to_chat(report, SPAN_NOTICE("Failure: This event is already processing"))
-		return FALSE
-	
-	if(req_crew > GLOB.player_list.len)
-		if (report) to_chat(report, SPAN_NOTICE("Failure: Not enough players for event to spawn."))
 		return FALSE
 
 	//IF this is a wrapper for a random event, we'll check if that event can trigger

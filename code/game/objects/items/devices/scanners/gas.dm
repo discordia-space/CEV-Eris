@@ -16,7 +16,7 @@
 
 /obj/item/device/scanner/gas/scan(atom/A, mob/user)
 	var/air_contents = A.return_air()
-	FLICK("atmos2", src)
+	flick("atmos2", src)
 	if(!air_contents)
 		to_chat(user, SPAN_WARNING("Your [src] flashes a red light as it fails to analyze \the [A]."))
 		return

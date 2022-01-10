@@ -567,7 +567,9 @@
 		MATERIAL_PLASTEEL = 10,
 		MATERIAL_STEEL = 5,
 		MATERIAL_PLASTIC = 5,
-		MATERIAL_PLATINUM = 3
+		MATERIAL_PLATINUM = 3,
+		MATERIAL_URANIUM = 4,
+		MATERIAL_SILVER = 2
 		)
 	armor = list(
 		melee = 30,
@@ -580,4 +582,52 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
-	slowdown = -0.3
+	action_button_name = "Toggle Acceleration"
+	var/speed_boost_ready = TRUE
+	var/speed_boost_active = FALSE
+	var/speed_boost_power = -0.5
+	var/speed_boost_length = 30 SECONDS
+	var/speed_boost_cooldown = 5 MINUTES
+	var/matching_helmet = /obj/item/clothing/head/armor/faceshield/paramedic
+
+
+/obj/item/clothing/suit/armor/paramedic/ui_action_click(mob/living/user, action_name)
+	if(..())
+		return TRUE
+
+	trigger_speed_boost(user)
+
+
+/obj/item/clothing/suit/armor/paramedic/proc/trigger_speed_boost(mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+
+	if(!speed_boost_ready)
+		if(user.head && istype(user.head, matching_helmet))
+			if(speed_boost_active)
+				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol active.'"))
+			else
+				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol failture. Insufficient capacitor charge.'"))
+		return
+
+	speed_boost_ready = FALSE
+	speed_boost_active = TRUE
+	slowdown = speed_boost_power
+
+	if(user.head && istype(user.head, matching_helmet))
+		to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol initiated.'"))
+
+	spawn(speed_boost_length)
+		if(QDELETED(src))
+			return
+		slowdown = initial(slowdown)
+		speed_boost_active = FALSE
+		if(user.head && istype(user.head, matching_helmet))
+			to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors discharged. Acceleration protocol aborted.'"))
+
+		spawn(speed_boost_cooldown)
+			if(QDELETED(src))
+				return
+			speed_boost_ready = TRUE
+			if(user.head && istype(user.head, matching_helmet))
+				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors have been recharged.'"))

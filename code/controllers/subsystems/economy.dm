@@ -21,179 +21,80 @@ SUBSYSTEM_DEF(economy)
 		do_payday()
 
 
-/*
-	Payday is handled in three stages.
-
-1. Information gathering.
-	We loop through everyone in the crew, check if they're not suspended or somesuch
-	We make a note of all the people who are valid and active, along with how much they should be paid.
-	This information is applied to departments in the pending payments list
-	In addition each department also records its own fund request
-
-	Note that dead people will still be paid automatically. Its the responsibility of command staff to
-	manually suspend payment to the dead
-
-2. Requesting funds:
-	Each department will ask its appropriate source to send one lump sum, totalling the amount of all of its
-	wage+fund requirements. This payment will either be made in full or rejected, no partial payments
-	Requests from an external source will always succeed
-	Request from another ship account will succeed if nothing prevents it. EG, adequate funds, not suspended, etc.
-
-3. Payroll
-	If the department account now has enough to cover all the wage requests, then they will all be paid.
-	Again, no partial payments. Either everyone gets paid or nobody does
-
-*/
 /proc/do_payday()
-
-	gather_payroll_info()
-	request_payroll_funds()
-	pay_wages()
-
-
-//This is step 1, lets get the info
-/proc/gather_payroll_info()
-
-
-	//First gather the data for crew wages
-	//Each record covers a specific crewman
-	for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
-
-		/* TODO: Add in checks for suspension, dead, etc */
-
-
-
-
-		//Ok lets get their job to determine how much we'll pay them
-		var/datum/job/temp_job = SSjob.GetJob(R.get_job())
-		if(!istype(temp_job))
-			temp_job = SSjob.GetJob(ASSISTANT_TITLE)
-		if(!istype(temp_job))
-			continue
-
-		var/datum/department/department = GLOB.all_departments[temp_job.department]
-		if (!department)
-			continue
-
-		var/wage = temp_job.get_wage(R)
-		if (wage <= 0)
-			continue //This person will not be paid
-
-		//Alright we have their wage and their department, lets add it to the department's pending payments
-		LAZYAPLUS(department.pending_wages, R, wage)
-
-
-	//Lets request departmental funding next
-	for (var/d in GLOB.all_departments)
-		var/datum/department/department = GLOB.all_departments[d]
-		if (department.account_budget)
-			department.pending_budget_total += department.account_budget
-		department.sum_wages() //Poke this in here to cache the wage totals
-
-
-//Step 2: Requesting funds
-//Here we attempt to transfer money from funding sources to department accounts
-/proc/request_payroll_funds()
-	for (var/d in GLOB.all_departments)
-		var/datum/department/department = GLOB.all_departments[d]
-		if (department.funding_type == FUNDING_NONE)
-			continue //This department gets no funding
-
-		var/datum/money_account/source //Source account for internal funding
-
-		var/reason = "Payroll Funding"
-		var/terminal = "CEV Eris payroll system"
-
-		//Alright, how much money are we requesting
-		var/total_request = department.pending_wage_total + department.pending_budget_total
-
-		//Now lets figure out if we can get our request filled
-		var/can_pay = FALSE
-
-		//External funding always succeeds
-		if (department.funding_type == FUNDING_EXTERNAL)
-			can_pay = TRUE
-			terminal = "Hansa Galactic Link" //Magical wireless money transfer
-
-		//Internal funding, from another account on the ship
-		else if (department.funding_type == FUNDING_INTERNAL)
-			//First lets get the source account, its probably a department account
-			source = department_accounts[department.funding_source]
-			if (!source)
-				//No? Maybe its been set to a personal account number
-				source = get_account(department.funding_source)
-
-
-			if (source)
-				//Ok we have the account to draw from, next lets check if it has enough money
-				if (source.money >= total_request)
-					//It has enough, lets do this
-					can_pay = TRUE
-
-		if (can_pay)
-			var/paid = FALSE
-
-			//If its external, we use the deposit function to create money and put it in the department account
-			if (department.funding_type == FUNDING_EXTERNAL)
-				paid = deposit_to_account(department.account_number, department.funding_source, reason, terminal, total_request)
-
-			else if (department.funding_type == FUNDING_INTERNAL)
-				paid = transfer_funds(source.account_number, department.account_number, reason, terminal, total_request)
-
-			if (paid)
-				//The department has recieved its budget, so this is set zero now
-				department.pending_budget_total = 0
-		else
-			//TODO: Some failure condition here
-			//Email the account holder responsible
-			continue
-
-
-
-
-//Step 3: Actually paying the wages
-/proc/pay_wages()
 	var/total_paid = 0
-	for (var/d in GLOB.all_departments)
-		var/datum/department/department = GLOB.all_departments[d]
-		if (!department.pending_wage_total)
-			//No need to do anything if nobody's being paid here
+	var/paid_internal = 0
+	var/paid_external = 0
+
+	// Departments pay to departments first
+	for(var/i in department_accounts)
+		var/datum/money_account/A = department_accounts[i]
+		var/datum/department/D = GLOB.all_departments[A.department_id]
+		var/datum/department/ED = GLOB.all_departments[D.funding_source]
+
+		if(!A.employer)
 			continue
 
-		//Get our account
-		var/datum/money_account/account = department_accounts[department.id]
-		if (!account)
+		if(D && !A.wage_manual)
+			A.wage = D.get_total_budget()
+
+		var/amount_to_pay = A.debt + A.wage
+		if(amount_to_pay <= 0)
 			continue
 
-		//Check again that the department has enough. Because some departments, like guild, didnt request funds
-		if (account.money < department.pending_wage_total)
-			//TODO Here: Email the account owner warning them that wages can't be paid
-			//Ok we can't pay wages, this is bad. Lets tell the account owner
-			var/ownername = account.owner_name
-			if (ownername)
-				//Lets pull up the records for this person
-				var/datum/computer_file/report/crew_record/OR = get_crewmember_record(ownername)
-				if (OR)
-					payroll_failure_mail(OR, account, department.pending_wage_total)
+		if(!ED) // If no employer department found - payment is external
+			deposit_to_account(A, A.employer, "Payroll Funding", "Hansa payroll system", amount_to_pay)
+			paid_external += amount_to_pay
+			continue
+		else
+			var/datum/money_account/EA = get_account(ED.account_number)
+			if(amount_to_pay <= EA.money)
+				transfer_funds(EA, A, "Payroll Funding", "CEV Eris payroll system", amount_to_pay)
+				paid_internal += amount_to_pay
+				ED.total_debt -= A.debt
+				A.debt = 0
+			else
+				A.debt += A.wage
+				ED.total_debt += A.wage
+
+	// Departments pay to the crew
+	for(var/datum/money_account/A in personal_accounts)
+		if(!A.employer)
+			continue
+		
+		var/amount_to_pay = A.debt + A.wage
+		if(amount_to_pay <= 0)
 			continue
 
-		//Here we go, lets pay them!
-		for (var/datum/computer_file/report/crew_record/R in department.pending_wages)
-			var/paid = FALSE
-			//Get the crewman's account that we'll pay to
-			var/crew_account_num = R.get_account()
-			var/amount = department.pending_wages[R]
-			paid = transfer_funds(department.account_number, crew_account_num, "Payroll", "CEV Eris payroll system", amount)
-			if (paid)
-				total_paid += amount
-				var/sender = "[department.name] account"
-				if (department.funding_type == FUNDING_INTERNAL)
-					//If this wage was funded internally, make sure the recipient knows that
-					sender = "CEV Eris via [sender]"
+		var/datum/department/ED = GLOB.all_departments[A.employer]
+		var/datum/money_account/EA = department_accounts[ED.id]
+		var/datum/computer_file/report/crew_record/R = get_crewmember_record(A.owner_name)
 
-				payroll_mail_account_holder(R, sender, amount)
-		department.pending_wages = list() //All pending wages paid off
-	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
+		if(amount_to_pay <= EA.money)
+			transfer_funds(EA, A, "Payroll Funding", "CEV Eris payroll system", amount_to_pay)
+			paid_internal += amount_to_pay
+			ED.total_debt -= A.debt
+			A.debt = 0
+			if(R)
+				payroll_mail_account_holder(R, "[ED.name] account", amount_to_pay)
+		else
+			A.debt += A.wage
+			ED.total_debt += A.wage
+			// payroll_mail_where_is_my_money
+
+	// Mail commanding officers and politely ask "Where's the fucking money, shithead?"
+	for(var/i in GLOB.all_departments)
+		var/datum/department/D = GLOB.all_departments[i]
+		var/datum/money_account/A = department_accounts[D.id]
+		if(D.total_debt && A)
+			var/ownername = A.owner_name
+			if(ownername)
+				var/datum/computer_file/report/crew_record/R = get_crewmember_record(ownername)
+				if(R)
+					payroll_failure_mail(R, A, D.total_debt)
+
+	total_paid = paid_internal + paid_external
+	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits, including [paid_external] credits from external sources.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
 
 
 //Sent to a head of staff when their department account fails to pay out wages

@@ -40,7 +40,7 @@
 	spawn_blacklisted = TRUE
 
 
-//Voidsuit for traitors
+//Voidsuit for contractors
 /obj/item/clothing/head/space/void/merc
 	name = "blood-red voidsuit helmet"
 	desc = "An advanced helmet designed for work in special operations. This version is additionally reinforced against melee attacks."
@@ -59,7 +59,7 @@
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
 
-/obj/item/clothing/head/space/void/merc/on_update_icon()
+/obj/item/clothing/head/space/void/merc/update_icon()
 	..()
 	if(on)
 		icon_state = "syndiehelm_on"
