@@ -97,7 +97,7 @@ true, and the mob is not yet deleted, so we need to check that as well*/
 			playsound(loc, W.hitsound, 50, 1, -1)
 
 	G.last_action = world.time
-	FLICK(G.hud.icon_state, G.hud)
+	flick(G.hud.icon_state, G.hud)
 
 	user.attack_log += "\[[time_stamp()]\]<font color='red'> Knifed [name] ([ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"
 	src.attack_log += "\[[time_stamp()]\]<font color='orange'> Got knifed by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)]) (DAMTYE: [uppertext(W.damtype)])</font>"

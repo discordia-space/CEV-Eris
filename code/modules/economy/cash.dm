@@ -54,7 +54,7 @@
 	desc = "They are worth 0 credits."
 	worth = 0
 
-/obj/item/spacecash/bundle/on_update_icon()
+/obj/item/spacecash/bundle/update_icon()
 	cut_overlays()
 	var/sum = src.worth
 	var/num = 0
@@ -67,13 +67,13 @@
 			var/matrix/M = matrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			banknote.transform = M
-			src.add_overlays(banknote)
+			src.overlays += banknote
 	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		banknote.transform = M
-		src.add_overlays(banknote)
+		src.overlays += banknote
 	src.desc = "They are worth [worth] credits."
 	if(worth in denominations)
 		src.name = "[worth] credit"

@@ -476,7 +476,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/buckler/energy/on_update_icon()
+/obj/item/shield/buckler/energy/update_icon()
 	icon_state = "eshield[active]"
 	item_state = "eshield[active]"
 	update_wear_icon()

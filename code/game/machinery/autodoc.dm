@@ -141,7 +141,7 @@
 /obj/machinery/autodoc/Topic(href, href_list)
 	return autodoc_processor.Topic(href, href_list)
 
-/obj/machinery/autodoc/on_update_icon()
+/obj/machinery/autodoc/update_icon()
 	if(stat & (NOPOWER|BROKEN) || !occupant)
 		icon_state = "powered_off"
 	else

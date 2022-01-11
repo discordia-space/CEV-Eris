@@ -25,8 +25,8 @@
 		cell = null
 		update_icon()
 
-/obj/machinery/space_heater/on_update_icon()
-	cut_overlays()
+/obj/machinery/space_heater/update_icon()
+	overlays.Cut()
 	icon_state = "sheater[on]"
 	if(panel_open)
 		overlays  += "sheater-open"

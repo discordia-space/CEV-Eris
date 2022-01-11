@@ -57,7 +57,7 @@ obj/machinery/embedded_controller/radio/Destroy()
 	. = ..()
 	set_frequency(frequency)
 
-/obj/machinery/embedded_controller/radio/on_update_icon()
+/obj/machinery/embedded_controller/radio/update_icon()
 	if(on && program)
 		if(program.memory["processing"])
 			icon_state = "airlock_control_process"

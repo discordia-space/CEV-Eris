@@ -103,7 +103,7 @@
 /mob/living/carbon/human/ex_act(severity, epicenter)
 	if(!blinded)
 		if (HUDtech.Find("flash"))
-			FLICK("flash", HUDtech["flash"])
+			flick("flash", HUDtech["flash"])
 
 	var/b_loss = 0
 	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense

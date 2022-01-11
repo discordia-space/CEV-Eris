@@ -10,7 +10,7 @@
 	var/obj/item/implantcase/case = null
 
 
-/obj/item/implantpad/on_update_icon()
+/obj/item/implantpad/update_icon()
 	cut_overlays()
 	if(case)
 		icon_state = "implantpad-1"

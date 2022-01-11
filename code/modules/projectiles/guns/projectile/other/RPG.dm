@@ -28,7 +28,7 @@
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.8 // 80 vig
 
-/obj/item/gun/projectile/rpg/on_update_icon()
+/obj/item/gun/projectile/rpg/update_icon()
 	. = ..()
 	cut_overlays()
 
@@ -37,7 +37,7 @@
 	if (loaded.len)
 		iconstring += "_he"
 
-	add_overlays(iconstring)
+	overlays += iconstring
 
 	update_wear_icon()
 

@@ -1,5 +1,7 @@
 /datum/trade_station/suit_up
-	name_pool = list("ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!'. They're broadcasting a message. \"Suits, voidsuits and more for you, traveler!\"")
+	name_pool = list(
+		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!':\n\"Suits, voidsuits and more for you, traveler!\""
+	)
 	start_discovered = TRUE
 	spawn_always = TRUE
 	assortiment = list(

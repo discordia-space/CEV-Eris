@@ -135,7 +135,7 @@
 		if(!R.stamped)
 			R.stamped = new
 		R.stamped += /obj/item/stamp
-		R.add_overlays(stampoverlay)
+		R.overlays += stampoverlay
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account
@@ -147,7 +147,7 @@
 	if(department && wage)
 		var/datum/money_account/EA = department_accounts[department]
 		var/datum/department/D = GLOB.all_departments[department]
-		if(EA && D && (D.funding_type != FUNDING_NONE)) // Don't bother if department have no employer
+		if(EA && D) // Don't bother if department have no employer
 			D.budget_personnel += wage
 			if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
 				EA.wage = D.get_total_budget()

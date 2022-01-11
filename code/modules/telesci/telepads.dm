@@ -36,7 +36,7 @@
 			to_chat(user, SPAN_WARNING("You should open [src]'s maintenance panel first."))
 			return
 
-/obj/machinery/telepad/on_update_icon()
+/obj/machinery/telepad/update_icon()
 	switch(panel_open)
 		if(1)
 			icon_state = "pad-idle-o"

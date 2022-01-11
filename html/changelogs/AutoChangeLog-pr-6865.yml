@@ -1,6 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - rscadd: up-to-date taxquickly app, allows for account creation and salary management.
-  - rscadd: bugs
-  - refactor: reworked "payday"

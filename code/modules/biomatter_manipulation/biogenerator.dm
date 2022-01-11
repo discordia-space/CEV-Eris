@@ -99,15 +99,15 @@
 
 /datum/multistructure/biogenerator/proc/activate()
 	generator.core.icon_state 	= "core-working"
-	FLICK("core-starting", generator.core)
+	flick("core-starting", generator.core)
 	screen.icon_state 			= "screen-working"
-	FLICK("screen-starting", screen)
+	flick("screen-starting", screen)
 	working = TRUE
 
 
 /datum/multistructure/biogenerator/proc/deactivate()
 	generator.core.icon_state 		= initial(generator.core.icon_state)
-	FLICK("core-finishing", generator.core)
+	flick("core-finishing", generator.core)
 	screen.icon_state 	= initial(screen.icon_state)
 	working = FALSE
 	last_output_power = 0
@@ -206,17 +206,17 @@
 	var/pipes_dirtiness = 0
 
 
-/obj/machinery/multistructure/biogenerator_part/port/on_update_icon()
-	cut_overlays()
+/obj/machinery/multistructure/biogenerator_part/port/update_icon()
+	overlays.Cut()
 	if(panel_open)
-		add_overlays("port-opened")
+		overlays += "port-opened"
 		if(pipes_dirtiness)
 			if(pipes_dirtiness == 1)
-				add_overlays("port_dirty_low")
+				overlays += "port_dirty_low"
 			else if(pipes_dirtiness <= 3)
-				add_overlays("port_dirty_medium")
+				overlays += "port_dirty_medium"
 			else
-				add_overlays("port_dirty_full")
+				overlays += "port_dirty_full"
 
 
 /obj/machinery/multistructure/biogenerator_part/port/examine(mob/user)
@@ -333,7 +333,7 @@
 	return ..()
 
 
-/obj/machinery/atmospherics/binary/biogen_chamber/on_update_icon()
+/obj/machinery/atmospherics/binary/biogen_chamber/update_icon()
 	if(panel_open)
 		if(wires)
 			icon_state = "chambers-wires"
@@ -442,11 +442,11 @@
 	return ..()
 
 
-/obj/machinery/power/biogenerator_core/on_update_icon()
-	cut_overlays()
-	add_overlays("core-pipe")
+/obj/machinery/power/biogenerator_core/update_icon()
+	overlays.Cut()
+	overlays += "core-pipe"
 	if(!coil_frame)
-		add_overlays("core-coil")
+		overlays += "core-coil"
 
 
 /obj/machinery/power/biogenerator_core/examine(mob/user)

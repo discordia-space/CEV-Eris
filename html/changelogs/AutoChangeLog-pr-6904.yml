@@ -1,4 +1,0 @@
-author: greenteaguzzler
-delete-after: true
-changes:
-  - bugfix: Fixed infinite gulp down
