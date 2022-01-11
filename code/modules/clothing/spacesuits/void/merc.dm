@@ -59,7 +59,7 @@
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
 
-/obj/item/clothing/head/space/void/merc/on_update_icon()
+/obj/item/clothing/head/space/void/merc/update_icon()
 	..()
 	if(on)
 		icon_state = "syndiehelm_on"

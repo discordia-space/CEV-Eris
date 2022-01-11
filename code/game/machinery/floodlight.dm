@@ -26,8 +26,8 @@
 		cell = null
 		update_icon()
 
-/obj/machinery/floodlight/on_update_icon()
-	cut_overlays()
+/obj/machinery/floodlight/update_icon()
+	overlays.Cut()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 
 /obj/machinery/floodlight/Process()
@@ -38,7 +38,7 @@
 		turn_off(1)
 		return
 
-	// If the cell is almost empty rarely "flicker" the light. Aesthetic only.
+	// If the cell is almost empty rarely "flick_light" the light. Aesthetic only.
 	if((cell.percent() < 10) && prob(5))
 		set_light(brightness_on/2, brightness_on/4)
 		spawn(20)
@@ -120,7 +120,7 @@
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
 					if(open)
 						open = FALSE
-						set_overlays(null)
+						overlays = null
 						to_chat(user, SPAN_NOTICE("You crowbar the battery panel in place."))
 					else
 						if(unlocked)

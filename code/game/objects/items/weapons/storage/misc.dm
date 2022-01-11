@@ -29,11 +29,11 @@
 		new spawn_type(src)
 	update_icon()
 
-/obj/item/storage/box/donut/on_update_icon()
+/obj/item/storage/box/donut/update_icon()
 	cut_overlays()
 	var/i = 0
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
-		add_overlays(image('icons/obj/food.dmi', "[i][D.overlay_state]"))
+		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
 		i++
 
 /obj/item/storage/box/donut/empty
@@ -115,4 +115,4 @@
 	new /obj/item/clothing/under/rank/clown(src)
 	new /obj/item/stamp/clown(src)
 	new /obj/item/bananapeel(src)
-	
+

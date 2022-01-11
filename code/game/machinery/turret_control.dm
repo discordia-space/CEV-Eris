@@ -191,7 +191,7 @@
 	updateTurrets()
 	update_icon()
 
-/obj/machinery/turretid/on_update_icon()
+/obj/machinery/turretid/update_icon()
 	..()
 	if(stat & NOPOWER)
 		icon_state = "control_off"

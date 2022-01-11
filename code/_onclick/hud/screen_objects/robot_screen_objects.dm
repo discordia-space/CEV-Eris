@@ -55,7 +55,7 @@
 		src.icon = _icon
 	src.update_icon()
 
-/obj/screen/silicon/module/on_update_icon()
+/obj/screen/silicon/module/update_icon()
 	underlays.Cut()
 	var/mob/living/silicon/robot/R = parentmob
 	if(!R.module_active(module_num)) return
@@ -90,7 +90,7 @@
 /obj/screen/silicon/cell/Process()
 	update_icon()
 
-/obj/screen/silicon/cell/on_update_icon()
+/obj/screen/silicon/cell/update_icon()
 	var/mob/living/silicon/robot/R = parentmob
 	if (R.cell)
 		var/cellcharge = R.cell.charge/R.cell.maxcharge
@@ -112,7 +112,7 @@
 	update_icon()
 	return
 
-/obj/screen/health/cyborg/on_update_icon()
+/obj/screen/health/cyborg/update_icon()
 	if (parentmob.stat != 2)
 		if(isdrone(parentmob))
 			switch(parentmob.health)
@@ -164,7 +164,7 @@
 		update_icon()
 	return TRUE
 
-/obj/screen/silicon/module_select/on_update_icon()
+/obj/screen/silicon/module_select/update_icon()
 	var/mob/living/silicon/robot/R = parentmob
 	icon_state = lowertext(R.modtype)
 
@@ -198,12 +198,12 @@
 	update_icon()
 	return
 
-/obj/screen/silicon/glasses_overlay/on_update_icon()
-	cut_overlays()
+/obj/screen/silicon/glasses_overlay/update_icon()
+	overlays.Cut()
 	var/mob/living/silicon/robot/R = parentmob
 	for (var/obj/item/borg/sight/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
 		if(S.overlay)
-			associate_with_overlays(S.overlay)
+			overlays |= S.overlay
 
 
 /obj/screen/silicon/pull
@@ -218,7 +218,7 @@
 	usr.stop_pulling()
 	update_icon()
 
-/obj/screen/silicon/pull/on_update_icon()
+/obj/screen/silicon/pull/update_icon()
 	if (parentmob.pulling)
 		icon_state = "robotpull1"
 	else

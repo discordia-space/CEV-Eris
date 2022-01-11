@@ -23,7 +23,7 @@
 	var/icon_type = "donut"
 	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
 
-/obj/item/storage/fancy/on_update_icon(var/itemremoved = 0)
+/obj/item/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "[src.icon_type]box[total_contents]"
 	return
@@ -121,11 +121,11 @@
 	new /obj/item/pen/crayon/purple(src)
 	update_icon()
 
-/obj/item/storage/fancy/crayons/on_update_icon()
+/obj/item/storage/fancy/crayons/update_icon()
 	cut_overlays()
-	add_overlays(image('icons/obj/crayons.dmi',"crayonbox"))
+	overlays += image('icons/obj/crayons.dmi',"crayonbox")
 	for(var/obj/item/pen/crayon/crayon in contents)
-		add_overlays(image('icons/obj/crayons.dmi',crayon.colourName))
+		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/pen/crayon))
@@ -182,7 +182,7 @@
 		new item_obj(src)
 	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
-/obj/item/storage/fancy/cigarettes/on_update_icon()
+/obj/item/storage/fancy/cigarettes/update_icon()
 	if(open)
 		icon_state = "[initial(icon_state)][contents.len]"
 	else
@@ -252,7 +252,7 @@
 	icon_type = "packet"
 	reagent_flags = REFILLABLE | NO_REACT
 
-/obj/item/storage/fancy/cigcartons/on_update_icon()
+/obj/item/storage/fancy/cigcartons/update_icon()
 	if(contents.len > 0)
 		icon_state = "[initial(icon_state)]1"
 	else
@@ -370,7 +370,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	create_reagents(15 * storage_slots)
 	update_icon()
 
-/obj/item/storage/fancy/cigar/on_update_icon()
+/obj/item/storage/fancy/cigar/update_icon()
 	if(open)
 		icon_state = "[initial(icon_state)][contents.len]"
 	else
@@ -415,16 +415,16 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	. = ..()
 	update_icon()
 
-/obj/item/storage/lockbox/vials/on_update_icon(var/itemremoved = 0)
+/obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
 	src.icon_state = "vialbox[total_contents]"
 	src.cut_overlays()
 	if (!broken)
-		add_overlays(image(icon, src, "led[locked]"))
+		overlays += image(icon, src, "led[locked]")
 		if(locked)
-			add_overlays(image(icon, src, "cover"))
+			overlays += image(icon, src, "cover")
 	else
-		add_overlays(image(icon, src, "ledb"))
+		overlays += image(icon, src, "ledb")
 	return
 
 /obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)

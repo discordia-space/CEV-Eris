@@ -29,21 +29,21 @@
 	..()
 	to_chat(user, "\The [src]'s tank contains [amount] units of compressed filth.")
 
-/obj/item/holyvacuum/on_update_icon()
+/obj/item/holyvacuum/update_icon()
 	.=..()
 	cut_overlays()
 	if(amount == 0)
-		add_overlays("0")
+		overlays += "0"
 	else if(amount < 0.25*max_amount)
-		add_overlays("1")
+		overlays += "1"
 	else if(amount < 0.5*max_amount)
-		add_overlays("2")
+		overlays += "2"
 	else if(amount < 0.75*max_amount)
-		add_overlays("3")
+		overlays += "3"
 	else if(amount < max_amount)
-		add_overlays("4")
+		overlays += "4"
 	else if(amount == max_amount)
-		add_overlays("5")
+		overlays += "5"
 
 /obj/item/holyvacuum/proc/refill()
 	reagents.add_reagent("cleaner", 10)  // Need to have cleaner in it for /turf/proc/clean

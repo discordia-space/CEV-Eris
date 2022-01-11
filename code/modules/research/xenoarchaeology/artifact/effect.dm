@@ -58,7 +58,7 @@
 				A.icon_state = "ano[A.icon_num][activated]"
 			var/display_msg
 			if(activated)
-				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
+				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flick_lights slightly!","vibrates!","shimmers slightly for a moment!")
 			else
 				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
 			var/atom/toplevelholder = holder

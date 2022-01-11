@@ -35,7 +35,7 @@
 
 /mob/living/simple_animal/adultslime/New()
 	..()
-	add_overlays("aslime-:33")
+	overlays += "aslime-:33"
 
 
 /mob/living/simple_animal/slime/adult/death()
