@@ -36,6 +36,7 @@
 		SEMI_AUTO_NODELAY,
 		)
 
+
 /obj/item/part/gun/frame/c20r
 	name = "C20r frame"
 	desc = "A C20r SMG frame. The syndicate's bread and butter."
@@ -45,13 +46,16 @@
 	mechanism = /obj/item/part/gun/mechanism/smg
 	barrel = /obj/item/part/gun/barrel/pistol
 
-/obj/item/gun/projectile/automatic/c20r/on_update_icon()
+/obj/item/gun/projectile/automatic/c20r/update_icon()
 	cut_overlays()
 	icon_state = "[initial(icon_state)][silenced ? "_s" : ""]"
+
 	if(ammo_magazine)
-		add_overlays("mag[silenced ? "_s" : ""][ammo_magazine.ammo_color]")
-	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
-		add_overlays("slide[silenced ? "_s" : ""]")
+		overlays += "mag[silenced ? "_s" : ""][ammo_magazine.ammo_label_string]"
+		if(!ammo_magazine.stored_ammo.len)
+			overlays += "slide[silenced ? "_s" : ""]"
+	else
+		overlays += "slide[silenced ? "_s" : ""]"
 
 /obj/item/gun/projectile/automatic/c20r/Initialize()
 	. = ..()

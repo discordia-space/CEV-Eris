@@ -123,7 +123,7 @@
 		playsound(loc, 'sound/effects/bubbles.ogg', 50, 1)
 
 
-/obj/machinery/multistructure/bioreactor_part/platform/on_update_icon()
+/obj/machinery/multistructure/bioreactor_part/platform/update_icon()
 	var/corner_dir = 0		//used at sprite determination, direction point to center of whole bioreactor chamber
 	for(var/direction in cardinal)
 		if(locate(type) in get_step(src, direction))
@@ -206,8 +206,8 @@
 			to_chat(user, SPAN_NOTICE("This [src] is so clean, that you can see your reflection. Is that something green at your teeth?"))
 
 
-/obj/structure/window/reinforced/bioreactor/on_update_icon()
-	cut_overlays()
+/obj/structure/window/reinforced/bioreactor/update_icon()
+	overlays.Cut()
 	..()
 	if(contamination_level)
 		var/biomass_alpha = min((50*contamination_level), 255)
@@ -216,7 +216,7 @@
 		biomass.Turn(-40, 40)
 		biomass.Blend(rgb(0, 0, 0, biomass_alpha))
 		default.Blend(biomass, ICON_MULTIPLY)
-		add_overlays(default)
+		overlays += default
 
 
 /obj/structure/window/reinforced/bioreactor/proc/apply_dirt(var/amount)

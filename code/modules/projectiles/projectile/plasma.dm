@@ -7,17 +7,18 @@
 	check_armour = ARMOR_ENERGY
 	damage_types = list(BURN = 33)
 
-
 	muzzle_type = /obj/effect/projectile/plasma/muzzle
 	impact_type = /obj/effect/projectile/plasma/impact
 
 /obj/item/projectile/plasma/light
 	name = "light plasma bolt"
-	armor_penetration = 0
+	armor_penetration = 15
+	damage_types = list(BURN = 27)
 
 /obj/item/projectile/plasma/heavy
 	name = "heavy plasma bolt"
 	armor_penetration = 50
+	damage_types = list(BURN = 42)
 
 /obj/item/projectile/plasma/stun
 	name = "stun plasma bolt"
@@ -26,4 +27,86 @@
 	damage_types = list(HALLOSS = 30,BURN = 5)
 	impact_type = /obj/effect/projectile/stun/impact
 
+/obj/item/projectile/plasma/aoe
+	name = "default plasma aoe"
+	icon_state = "ion"
+	armor_penetration = 0
+	damage_types = list(BURN = 0)
 
+	var/aoe_strong = 0
+	var/aoe_weak = 0 // Should be greater or equal to strong
+	var/heat_damage = 0 // FALSE or 0 to disable
+	var/emp_strength = 0 // Divides the effects by this amount, FALSE or 0 to disable
+
+	var/fire_stacks = FALSE
+
+/obj/item/projectile/plasma/aoe/on_hit(atom/target)
+	if(emp_strength)
+		empulse(target, aoe_strong, aoe_weak, strength=emp_strength)
+	if(heat_damage)
+		heatwave(target, aoe_strong, aoe_weak, heat_damage, fire_stacks, armor_penetration)
+	..()
+
+/obj/item/projectile/plasma/aoe/ion
+	name = "ion-plasma bolt"
+	icon_state = "ion"
+	armor_penetration = 0
+	damage_types = list(BURN = 27)
+
+	aoe_strong = 1
+	aoe_weak = 1
+	heat_damage = 20
+	emp_strength = 2
+
+	fire_stacks = FALSE
+
+/obj/item/projectile/plasma/aoe/ion/light
+	name = "light ion-plasma bolt"
+	armor_penetration = 0
+	damage_types = list(BURN = 20)
+
+	aoe_strong = 0
+	aoe_weak = 1
+	heat_damage = 20
+	emp_strength = 3
+
+	fire_stacks = FALSE
+
+/obj/item/projectile/plasma/aoe/heat
+	name = "high-temperature plasma blast"
+	armor_penetration = 50
+	damage_types = list(BURN = 20)
+
+	aoe_strong = 1
+	aoe_weak = 1
+	heat_damage = 20
+	emp_strength = 0
+
+	fire_stacks = TRUE
+
+/obj/item/projectile/plasma/aoe/heat/strong
+	name = "high-temperature plasma blast"
+	armor_penetration = 25
+	damage_types = list(BURN = 33)
+
+	aoe_strong = 1
+	aoe_weak = 2
+	heat_damage = 30
+	emp_strength = 0
+
+	fire_stacks = TRUE
+
+/obj/item/projectile/plasma/check_penetrate(var/atom/A)
+	if(istype(A, /obj/item/shield))
+		var/obj/item/shield/S = A
+		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
+		for(var/i in damage_types)
+			damage_types[i] *= loss
+
+		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
+		return 1
+	else if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table) || istype(A, /obj/structure/low_wall))
+		return 0
+
+	return 1

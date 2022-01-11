@@ -26,7 +26,7 @@
 	gun_parts = list(/obj/item/part/gun/frame/mandella = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/pistol = 1, /obj/item/part/gun/barrel/clrifle = 1)
 
 
-/obj/item/gun/projectile/mandella/on_update_icon()
+/obj/item/gun/projectile/mandella/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

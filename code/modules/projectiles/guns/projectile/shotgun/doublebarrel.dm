@@ -37,7 +37,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 
 
-/obj/item/gun/projectile/shotgun/doublebarrel/on_update_icon()
+/obj/item/gun/projectile/shotgun/doublebarrel/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

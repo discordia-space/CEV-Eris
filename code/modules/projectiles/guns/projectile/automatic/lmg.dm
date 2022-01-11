@@ -67,7 +67,7 @@
 	.=..()
 	update_icon()
 
-/obj/item/gun/projectile/automatic/lmg/on_update_icon()
+/obj/item/gun/projectile/automatic/lmg/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state("-[cover_open ? "open" : null][ammo_magazine ?"mag":"nomag"]", hands = TRUE)
 	set_item_state("-[ammo_magazine ?"mag":"nomag"]", back = TRUE, onsuit = TRUE)
@@ -105,7 +105,7 @@
 	mechanism = /obj/item/part/gun/mechanism/machinegun
 	barrel = /obj/item/part/gun/barrel/lrifle
 
-/obj/item/gun/projectile/automatic/lmg/pk/on_update_icon()
+/obj/item/gun/projectile/automatic/lmg/pk/update_icon()
 	icon_state = "[icon_base][cover_open ? "open" : "closed"][ammo_magazine ? round(ammo_magazine.stored_ammo.len, 25) : "-empty"]"
 	set_item_state(ammo_magazine ? null : "-empty")
 	update_wear_icon()

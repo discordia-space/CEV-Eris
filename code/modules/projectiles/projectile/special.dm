@@ -38,6 +38,14 @@
 	set_light(0)
 	return TRUE
 
+/obj/item/projectile/bullet/rocket/scrap
+	damage_types = list(BRUTE = 30)
+
+/obj/item/projectile/bullet/rocket/scrap/on_hit(atom/target)
+	explosion(target, -1, -1, 0, 3)
+	set_light(0)
+	return TRUE
+
 /obj/item/projectile/temp
 	name = "freeze beam"
 	icon_state = "ice_2"
@@ -208,10 +216,10 @@
 	for (var/mob/living/carbon/M in viewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_NONE)
 			if (M.HUDtech.Find("flash"))
-				FLICK("e_flash", M.HUDtech["flash"])
+				flick("e_flash", M.HUDtech["flash"])
 
 	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright light!"))
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)
-	
+

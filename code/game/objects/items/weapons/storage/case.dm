@@ -37,7 +37,7 @@
 		close_all()
 		update_icon()
 
-/obj/item/storage/case/on_update_icon()
+/obj/item/storage/case/update_icon()
 	..()
 
 	icon_state = initial(icon_state)
@@ -63,9 +63,9 @@
 	new /obj/item/reagent_containers/food/snacks/donut/stat_buff/vig(src)
 	update_icon()
 
-/obj/item/storage/case/donut/on_update_icon()
+/obj/item/storage/case/donut/update_icon()
 	..()
 	if(opened)
 		cut_overlays()
 		for(var/obj/item/reagent_containers/food/snacks/donut/stat_buff/D in contents)
-			add_overlays(image('icons/obj/food.dmi', "[D.overlay_state]"))
+			overlays += image('icons/obj/food.dmi', "[D.overlay_state]")

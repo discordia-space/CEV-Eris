@@ -11,40 +11,23 @@
 	var/account_pin
 	var/account_initial_balance = 3500	//How much money this account starts off with
 
+	// Where the money for wages and budget comes from
+	var/funding_source
 
+	// Budget for misc department expenses, paid regardless of it being manned or not
+	var/budget_base = 500
 
-	//Account Funding
-	/*
-		Every payday, department accounts recieve money.
-		Part of this is their budget, it stays in the account and is to be used for department purchases
-		Most of it is wages, that are immediately paid onwards to individual crewmembers/
-	*/
-	var/account_budget = 2500	//How much money is paid into this account and kept, every payday
+	// Budget for crew salaries. Summed up initial wages of department's personnel
+	var/budget_personnel = 0
 
-	//Must be one of the FUNDING_XXX defines in __defines/economy.dm
-	var/funding_type = FUNDING_INTERNAL
+	// How much account failed to pay to employees. Used for emails
+	var/total_debt = 0
 
-	//Where the money for wages and budget actually comes from. With internal, this is a department account ID
-	//With external, this is the name of an organisation
-	var/funding_source = DEPARTMENT_COMMAND
-
-	//This is a key value list of datacore records and their total owed wage
-	//When payday comes, accounts in the department are added here, and removed once the balance is paid off
-	//They are not removed until they are paid, so multiple paydays could rollover and stack up if unpaid
-	var/list/pending_wages
-
-	// The total of the values in the above wage list. Just cached for convenience
-	var/pending_wage_total = 0
-
-	//Increased by account_budget every payday, reset to zero when paid, works like above
-	var/pending_budget_total = 0
-
-
-//Populates the pending wage total
-/datum/department/proc/sum_wages()
-	pending_wage_total = 0
-	for (var/a in pending_wages)
-		pending_wage_total += pending_wages[a]
+/datum/department/proc/get_total_budget()
+	if(funding_source)
+		return budget_base + budget_personnel
+	else
+		return FALSE
 
 
 /*************
@@ -62,7 +45,6 @@
 	to a much lower starting value
 	*/
 	account_initial_balance = 2000000
-	funding_type = FUNDING_NONE
 
 
 /*************
@@ -72,16 +54,17 @@
 /datum/department/ironhammer
 	name = "Ironhammer Mercenary Company"
 	id = DEPARTMENT_SECURITY
+	funding_source = DEPARTMENT_COMMAND
 
 /datum/department/technomancers
 	name = "Technomancer League"
 	id = DEPARTMENT_ENGINEERING
+	funding_source = DEPARTMENT_COMMAND
 
 /datum/department/civilian
-	name = "CEV Eris Civic"
+	name = "CEV Eris Civilian"
 	id = DEPARTMENT_CIVILIAN
-	account_budget = 2000
-	//Now for the club
+	funding_source = DEPARTMENT_COMMAND
 
 
 /******************
@@ -91,23 +74,16 @@
 /datum/department/moebius_medical
 	name = "Moebius Corp: Medical Division"
 	id = DEPARTMENT_MEDICAL
-	funding_type = FUNDING_EXTERNAL
 	funding_source = "Moebius Corp."
 
 /datum/department/moebius_research
 	name = "Moebius Corp: Research Division"
 	id = DEPARTMENT_SCIENCE
-	account_budget = 5000 //For buying materials and components and things of scientific value
-	funding_type = FUNDING_EXTERNAL
 	funding_source = "Moebius Corp."
 
 /datum/department/church
 	name = "Church of NeoTheology"
 	id = DEPARTMENT_CHURCH
-	account_budget = 4500 //each Neotheo has a wage of 900, this is enough to pay 5 paychecks before needing more cash
-	funding_type = FUNDING_NONE //The church on eris has no external funding. This further reinforces the theory that everyone on the CEV Eris is a reject of their factions
-	funding_source = "Church of NeoTheology"
-
 
 
 /******************
@@ -123,9 +99,7 @@
 		He recieves no funding, infact later he will pay guild fees out of his earnings
 	*/
 	account_initial_balance = 7500
-	funding_type = FUNDING_NONE
 
-/datum/department/offship //So we can pay the Club without giving them independant money
+/datum/department/offship // Money from serbomat and billomat come here
 	name = "Offship entities"
 	id = DEPARTMENT_OFFSHIP
-	account_budget = 0

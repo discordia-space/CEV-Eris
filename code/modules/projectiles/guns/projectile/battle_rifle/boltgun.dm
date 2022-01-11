@@ -46,7 +46,7 @@
 	mechanism = /obj/item/part/gun/mechanism/boltgun
 	barrel = /obj/item/part/gun/barrel/lrifle
 
-/obj/item/gun/projectile/boltgun/on_update_icon()
+/obj/item/gun/projectile/boltgun/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

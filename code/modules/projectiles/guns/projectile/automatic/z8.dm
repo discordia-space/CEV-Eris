@@ -64,7 +64,7 @@
 	else
 		..()
 
-/obj/item/gun/projectile/automatic/z8/on_update_icon()
+/obj/item/gun/projectile/automatic/z8/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)

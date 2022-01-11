@@ -198,6 +198,7 @@
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	reagent_type = "Organic/Stimulator"
+	withdrawal_threshold = 30
 
 /datum/reagent/adrenaline/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.SetParalysis(0)
@@ -251,7 +252,7 @@
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
-			W.add_overlays(image('icons/effects/effects.dmi',icon_state = "#673910"))
+			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
 			remove_self(5)
 	return TRUE
 

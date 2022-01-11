@@ -21,7 +21,7 @@
 		"med" = COLOR_LIGHTING_GREEN_BRIGHT,
 	)
 
-/obj/machinery/holoposter/on_update_icon()
+/obj/machinery/holoposter/update_icon()
 	if(stat & NOPOWER)
 		icon_state = "off"
 		set_light(0)

@@ -37,20 +37,18 @@
 	wield_delay_factor = 0.9 // 90 vig
 	gun_parts = list(/obj/item/part/gun/frame/maxim = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/machinegun = 1, /obj/item/part/gun/barrel/lrifle = 1)
 
-/obj/item/gun/projectile/automatic/maxim/on_update_icon()
+/obj/item/gun/projectile/automatic/maxim/update_icon()
 	..()
-
-	var/iconstring = initial(icon_state)
 	var/itemstring = ""
+	cut_overlays()
 
-	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "-full[ammo_magazine.ammo_color]": ""]"
+	if(ammo_magazine)
+		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_full"
 
 	if(wielded)
 		itemstring += "_doble"
 
-	icon_state = iconstring
 	set_item_state(itemstring)
 
 /obj/item/part/gun/frame/maxim

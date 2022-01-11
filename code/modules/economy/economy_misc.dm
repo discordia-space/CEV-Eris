@@ -61,9 +61,11 @@ var/global/current_date_string
 var/global/datum/money_account/vendor_account
 var/global/datum/money_account/station_account
 var/global/list/datum/money_account/department_accounts = list()
+var/global/list/datum/money_account/personal_accounts = list()
+var/global/list/datum/money_account/all_money_accounts = list()
 var/global/num_financial_terminals = 1
 var/global/next_account_number = 0
-var/global/list/all_money_accounts = list()
+
 var/global/list/transaction_devices = list()
 var/global/economy_init = 0
 
@@ -109,9 +111,14 @@ var/global/datum/computer_file/data/email_account/service/payroll/payroll_mailer
 	department_account.account_name = "[department.name] Account"
 	department_account.account_number = rand(111111, 999999)
 	department.account_number = department_account.account_number
-
 	department_account.remote_access_pin = rand(1111, 111111)
 	department.account_pin = department_account.remote_access_pin
+	department_account.employer = department.funding_source
+	department_account.wage = department.get_total_budget()
+
+	department_account.department_id = department.id
+	if(department.id in ASTER_DEPARTMENTS)
+		department_account.can_make_accounts = TRUE
 
 	//create an entry in the account transaction log for when it was created
 	var/datum/transaction/T = new(department.account_initial_balance, department_account.owner_name, "Account creation", "Asters Guild Terminal #277")

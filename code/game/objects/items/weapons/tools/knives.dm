@@ -307,7 +307,9 @@
 /obj/item/tool/knife/shiv
 	name = "shiv"
 	desc = "A pointy piece of glass, abraded to an edge and wrapped in tape for a handle. Could become a decent tool or weapon with right tool mods."
+	icon = 'icons/obj/tools.dmi'
 	icon_state = "impro_shiv"
+	item_state = "shiv"
 	worksound = WORKSOUND_HARD_SLASH
 	matter = list(MATERIAL_GLASS = 1)
 	sharp = TRUE

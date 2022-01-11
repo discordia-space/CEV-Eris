@@ -410,7 +410,7 @@
 	else
 		R.implant = "\ref[imp]"
 
-	if (!isnull(subject.mind)) //Save that mind so traitors can continue traitoring after cloning.
+	if (!isnull(subject.mind)) //Save that mind so contractors can continue contracting after cloning.
 		R.mind = "\ref[subject.mind]"
 
 	src.records += R
