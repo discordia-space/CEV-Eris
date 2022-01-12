@@ -46,7 +46,7 @@
 	morf_glass = FALSE
 
 
-/obj/item/reagent_containers/food/drinks/drinkingglass/on_update_icon()
+/obj/item/reagent_containers/food/drinks/drinkingglass/update_icon()
 	name = initial(name)
 	desc = initial(desc)
 	icon_state = initial(icon_state)

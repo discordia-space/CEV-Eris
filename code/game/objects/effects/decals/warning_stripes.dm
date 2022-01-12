@@ -6,5 +6,5 @@
 	var/turf/T=get_turf(src)
 	var/image/I=image(icon, icon_state = icon_state, dir = dir)
 	I.color=color
-	T.add_overlays(I)
+	T.overlays += I
 	return INITIALIZE_HINT_QDEL

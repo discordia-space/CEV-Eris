@@ -31,7 +31,7 @@
 		master_node.add_wireweed(child)
 	spawn(1)
 		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
-		FLICK("spread_anim", child)
+		flick("spread_anim", child)
 		child.forceMove(target_turf)
 		for(var/obj/effect/plant/hivemind/neighbor in range(1, child))
 			neighbor.update_neighbors()
@@ -101,7 +101,7 @@
 
 
 /obj/effect/plant/hivemind/refresh_icon()
-	cut_overlays()
+	overlays.Cut()
 	var/image/I
 	var/turf/simulated/floor/F = loc
 	if((locate(/obj/structure/burrow) in loc) && F.flooring.is_plating)
@@ -109,7 +109,7 @@
 	else
 		for(var/i = 1 to 4)
 			I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
-			add_overlays(I)
+			overlays += I
 
 	//wallhug
 	for(var/direction in cardinal + list(NORTHEAST, NORTHWEST)-SOUTH)
@@ -130,7 +130,7 @@
 			if (T.y > y)
 				wall_hug_overlay.pixel_y += 32
 			wall_hug_overlay.layer = ABOVE_WINDOW_LAYER
-			add_overlays(wall_hug_overlay)
+			overlays += wall_hug_overlay
 
 
 

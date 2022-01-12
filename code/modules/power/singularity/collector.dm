@@ -144,23 +144,23 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 
 /obj/machinery/power/rad_collector/proc/update_icons()
-	cut_overlays()
+	overlays.Cut()
 	if(P)
-		add_overlays("ptank")
+		overlays += "ptank"
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		add_overlays("on")
+		overlays += "on"
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()
 	active = !active
 	if(active)
 		icon_state = "ca_on"
-		FLICK("ca_active", src)
+		flick("ca_active", src)
 	else
 		icon_state = "ca"
-		FLICK("ca_deactive", src)
+		flick("ca_deactive", src)
 	update_icons()
 
 /obj/machinery/power/rad_collector/anchored

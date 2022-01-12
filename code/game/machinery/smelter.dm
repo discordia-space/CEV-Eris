@@ -51,7 +51,7 @@
 	return ..()
 
 
-/obj/machinery/smelter/on_update_icon()
+/obj/machinery/smelter/update_icon()
 	..()
 	if(progress)
 		icon_state = "smelter-process"

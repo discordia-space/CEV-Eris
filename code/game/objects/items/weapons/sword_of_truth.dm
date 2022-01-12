@@ -163,5 +163,5 @@
 		else
 			visible_message(SPAN_WARNING("[user] failed to remove [sword] from the [src]"))
 
-/obj/structure/nt_pedestal/on_update_icon()
+/obj/structure/nt_pedestal/update_icon()
 	icon_state = "nt_pedestal[sword?"1":"0"]"

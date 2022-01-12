@@ -6,9 +6,9 @@
 
 /turf/simulated/proc/update_graphic(list/graphic_add = list(), list/graphic_remove = list())
 	for(var/I in graphic_add)
-		add_overlays(I)
+		overlays += I
 	for(var/I in graphic_remove)
-		remove_overlays(I)
+		overlays -= I
 
 /turf/proc/update_air_properties()
 	var/block = c_airblock(src)

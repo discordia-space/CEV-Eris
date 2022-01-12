@@ -103,7 +103,7 @@
 	if(reagents.total_volume <= 0) //Prevents autoinjectors from being refilled.
 		reagent_flags &= ~REFILLABLE
 
-/obj/item/reagent_containers/hypospray/autoinjector/on_update_icon()
+/obj/item/reagent_containers/hypospray/autoinjector/update_icon()
 	cut_overlays()
 	if(reagents && reagents.total_volume > 0)
 		icon_state = initial(icon_state)

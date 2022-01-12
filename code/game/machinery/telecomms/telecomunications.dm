@@ -192,7 +192,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				if(src != T)
 					links |= T
 
-/obj/machinery/telecomms/on_update_icon()
+/obj/machinery/telecomms/update_icon()
 	if(on)
 		icon_state = initial(icon_state)
 	else

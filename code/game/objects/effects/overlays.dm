@@ -26,6 +26,10 @@
 	spawn(lifetime)
 		qdel(src)
 
+/obj/effect/overlay/pulse/heatwave
+	icon_state = "sparks"
+	name = "heatwave sparks"
+
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
 	icon = 'icons/misc/beach2.dmi'
@@ -71,7 +75,7 @@
 	if(randomdir)
 		dir = pick(GLOB.cardinal)
 
-	FLICK("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
+	flick("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
 
 	..()
 	spawn(duration)

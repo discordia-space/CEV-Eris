@@ -50,7 +50,7 @@
 		if(cash_stored)
 			spawn_money(cash_stored, loc, user)
 			cash_stored = 0
-			remove_overlays("register_cash")
+			overlays -= "register_cash"
 		else
 			open_cash_box()
 	else
@@ -187,7 +187,7 @@
 		if(cash_open)
 			to_chat(user, "You neatly sort the cash into the box.")
 			cash_stored += SC.worth
-			associate_with_overlays("register_cash")
+			overlays |= "register_cash"
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				H.drop_from_inventory(SC)
@@ -451,7 +451,7 @@
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
 	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
-	FLICK("register_approve", src)
+	flick("register_approve", src)
 	reset_memory()
 	updateDialog()
 
@@ -474,15 +474,15 @@
 
 	if(cash_open)
 		cash_open = 0
-		remove_overlays("register_approve")
-		remove_overlays("register_open")
-		remove_overlays("register_cash")
+		overlays -= "register_approve"
+		overlays -= "register_open"
+		overlays -= "register_cash"
 	else if(!cash_locked)
 		cash_open = 1
-		add_overlays("register_approve")
-		add_overlays("register_open")
+		overlays += "register_approve"
+		overlays += "register_open"
 		if(cash_stored)
-			add_overlays("register_cash")
+			overlays += "register_cash"
 	else
 		to_chat(usr, SPAN_WARNING("The cash box is locked."))
 

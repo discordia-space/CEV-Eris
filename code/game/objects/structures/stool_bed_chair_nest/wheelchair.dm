@@ -11,15 +11,15 @@
 
 	movement_handlers = list(/datum/movement_handler/delay = list(2), /datum/movement_handler/move_relay_self)
 
-/obj/structure/bed/chair/wheelchair/on_update_icon()
+/obj/structure/bed/chair/wheelchair/update_icon()
 	return
 
 /obj/structure/bed/chair/wheelchair/set_dir()
 	..()
-	cut_overlays()
+	overlays.Cut()
 	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", dir = src.dir)
 	O.layer = ABOVE_MOB_LAYER
-	add_overlays(O)
+	overlays += O
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 

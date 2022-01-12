@@ -46,7 +46,7 @@
 /datum/breakdown/proc/occur_animation()
 	var/image/img = image('icons/effects/insanity_statuses.dmi', holder.owner)
 	holder.owner << img
-	FLICK(icon_state, img)
+	flick(icon_state, img)
 
 /datum/breakdown/proc/occur()
 	occur_animation()
