@@ -30,6 +30,7 @@
 	for (var/i in 1 to 10)
 		new /obj/item/implant/core_implant/cruciform(src)
 	new /obj/item/tool/knife/neotritual(src)
+	new /obj/item/gun/energy/nt_svalinn(src)
 	new /obj/item/cell/small/neotheology/plasma(src)
 	new /obj/item/cell/small/neotheology/plasma(src)
 	new /obj/item/tool/sword/nt/longsword(src)

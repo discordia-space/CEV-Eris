@@ -115,6 +115,7 @@
 	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/soap/nanotrasen(src)
 	new /obj/item/storage/pouch/small_generic(src) // Because I feel like poor janitor gets it bad.
+	new /obj/item/gun/energy/nt_svalinn(src)
 	new /obj/item/cell/small/neotheology(src)
 	new /obj/item/cell/small/neotheology(src)
 	new /obj/item/tool/knife/dagger/nt(src)
@@ -142,6 +143,7 @@
 	new /obj/item/clothing/suit/storage/neotheosports(src)
 	new /obj/item/clothing/head/armor/acolyte(src)
 	new /obj/item/clothing/suit/armor/acolyte(src)
+	new /obj/item/gun/energy/nt_svalinn(src)
 	new /obj/item/cell/small/neotheology(src)
 	new /obj/item/cell/small/neotheology(src)
 	new /obj/item/storage/belt/sheath(src)

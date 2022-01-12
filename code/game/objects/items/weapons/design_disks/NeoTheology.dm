@@ -282,6 +282,16 @@
 		/datum/design/autolathe/cell/medium/high
 	)
 
+/obj/item/computer_hardware/hard_drive/portable/design/guns/nt_svalinn
+	disk_name = "NeoTheology Armory - NT LP \"Svalinn\""
+	icon_state = "neotheology"
+
+	license = 12
+	designs = list(
+		/datum/design/autolathe/gun/nt_svalinn = 3,
+		/datum/design/autolathe/cell/small/high,
+	)
+
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_protector
 	disk_name = "NeoTheology Armory - Protector Grenade Launcher"
 	icon_state = "neotheology"
