@@ -196,7 +196,7 @@
 //Lets the SOL be made into a fully automatic weapon, but increases recoil. Acquirable through Frozen Star Guns&Ammo Vendor
 /obj/item/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
-	desc = "A fully automatic receiver for the .25 \"Sol\"."
+	desc = "A fully automatic receiver for rifles"
 	icon_state = "Weintraub"
 	rarity_value = 30
 
