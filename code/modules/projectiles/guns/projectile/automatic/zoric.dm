@@ -16,7 +16,7 @@
 	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
-	damage_multiplier = 1	 // 34 lethal
+	damage_multiplier = 1.1	 // 34 lethal
 	penetration_multiplier = 0.5 // 7.5 lethal
 	recoil_buildup = 0.7
 	twohanded = FALSE
@@ -35,7 +35,7 @@
 	if(ammo_magazine)
 		overlays += "mag[ammo_magazine.ammo_label_string]"
 		itemstring += "_mag"
-	
+
 	set_item_state(itemstring)
 
 /obj/item/gun/projectile/automatic/zoric/Initialize()

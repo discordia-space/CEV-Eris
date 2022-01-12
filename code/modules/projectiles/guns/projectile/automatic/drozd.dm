@@ -15,7 +15,7 @@
 	magazine_type = /obj/item/ammo_magazine/msmg
 	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_STEEL = 4, MATERIAL_PLASTIC = 4)
 	price_tag = 2200
-	damage_multiplier = 0.8 	 //25,6 lethal, 28 HV //damage
+	damage_multiplier = 0.9 	 //25,6 lethal, 28 HV //damage
 	penetration_multiplier = 1.5 //22.5 lethal, 30 HV //AP
 	recoil_buildup = 1.2
 

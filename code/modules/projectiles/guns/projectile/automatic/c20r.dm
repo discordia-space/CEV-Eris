@@ -22,7 +22,7 @@
 	unload_sound = 'sound/weapons/guns/interact/sfrifle_magout.ogg'
 	reload_sound = 'sound/weapons/guns/interact/sfrifle_magin.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/sfrifle_cock.ogg'
-	damage_multiplier = 1
+	damage_multiplier = 1.1
 	penetration_multiplier = 1.5 //7.5 with regular lethal ammo, 15 with HV, seems legit
 	zoom_factor = 0.4
 	recoil_buildup = 1.2
@@ -57,5 +57,5 @@
 	icon = 'icons/obj/guns/projectile/c20m.dmi'
 	icon_state = "c20r"
 	item_state = "c20r"
-	damage_multiplier = 0.9	//Not quite as good as real syndi
+	damage_multiplier = 1	//Not quite as good as real syndi
 	penetration_multiplier = 1.2 //6 with lethal, 12 with HV

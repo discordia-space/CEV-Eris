@@ -22,8 +22,8 @@
 		)
 
 	can_dual = 1
-	damage_multiplier = 0.7
-	penetration_multiplier = 0.9
+	damage_multiplier = 0.8
+	penetration_multiplier = 0.5
 	recoil_buildup = 1
 	one_hand_penalty = 5 //SMG level.
 	spawn_blacklisted = TRUE
