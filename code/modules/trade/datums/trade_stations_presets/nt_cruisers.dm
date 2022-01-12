@@ -28,7 +28,6 @@
 		),
 		"Energy Weapons" = list(
 			/obj/item/gun/energy/taser,
-			/obj/item/gun/energy/nt_svalinn,
 			/obj/item/gun/energy/laser = custom_good_amount_range(list(1, 5)),
 			/obj/item/gun/energy/ionrifle = custom_good_amount_range(list(1, 4)),
 			/obj/item/gun/energy/plasma = custom_good_amount_range(list(-3, 2)),

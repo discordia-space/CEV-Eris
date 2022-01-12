@@ -225,11 +225,6 @@
 	name = "FS PDW E \"Martin\""
 	build_path = /obj/item/gun/energy/gun/martin
 
-/datum/design/autolathe/gun/nt_svalinn
-	name = "NT LP \"Svalinn\""
-	build_path = /obj/item/gun/energy/nt_svalinn
-	factions = list(FACTION_NEOTHEOLOGY)
-
 // Energy general
 
 /datum/design/autolathe/gun/energy_crossbow
