@@ -24,16 +24,14 @@
 	recoil_buildup = 1.5
 	one_hand_penalty = 15 //automatic rifle level
 	damage_multiplier = 1.15
+	gun_tags = list(GUN_SILENCABLE, GUN_FA_MODDABLE)
 
 	init_firemodes = list(
-		FULL_AUTO_400,
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
 		)
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
-
-	gun_tags = list(GUN_SILENCABLE)
 
 /obj/item/gun/projectile/automatic/wintermute/update_icon()
 	..()
