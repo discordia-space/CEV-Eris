@@ -10,8 +10,8 @@
 	spawn_cost = 1					// How many points this station takes up in the budget (spawn_always = TRUE means it won't use any budget)
 	start_discovered = FALSE		// Should the station start discovered? (players are able to trade with discovered stations)
 	commision = 200 				// Cost of trading more than one thing or cost for crate
-	markup = COMMON_GOODS			// Multiplier for the price of goods sold. See _trade_station.dm for standard markups.
-	markdown = 0.6					// Multiplier for the price of goods bought (does not affect special offers)
+	markup = COMMON_GOODS			// Multiplier for the price of goods sold by the station. See _trade_station.dm for standard markups.
+	markdown = 0.6					// Multiplier for the price of goods bought by the station (does not affect special offers)
 	base_income = 1600				// Stations can replenish some stock without player interaction. Adds to value so stations will unlock hidden inventory after some time.
 	wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
 	total_value_received = 0		// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached. Should always start at 0.

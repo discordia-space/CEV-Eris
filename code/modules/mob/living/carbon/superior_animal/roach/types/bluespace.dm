@@ -8,6 +8,7 @@
 	melee_damage_lower = 4
 	melee_damage_upper = 11
 	sanity_damage = 1
+	price_tag = 500
 	spawn_blacklisted = TRUE
 	var/change_tele_to_mob = 25
 	var/chance_tele_to_eat = 25
