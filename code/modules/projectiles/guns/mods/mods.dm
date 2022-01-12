@@ -207,7 +207,7 @@
 		GUN_UPGRADE_FULLAUTO = TRUE,
 		GUN_UPGRADE_RECOIL = 1.2
 	)
-	I.req_gun_tags = list(GUN_SOL)
+	I.req_gun_tags = list(GUN_FA_MODDABLE)
 	I.gun_loc_tag = GUN_MECHANISM
 
 //Causes your weapon to shoot you in the face, then explode. Acquired through uplink
