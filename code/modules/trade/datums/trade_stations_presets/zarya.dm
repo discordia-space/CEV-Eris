@@ -65,11 +65,11 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/tool_upgrade = offer_data("tool upgrade", 175, 0),						// base price: 200, sold at common
-		/obj/item/rig_module = offer_data("rig module", 400, 10),							// base price: 500, sold at common
-		/obj/item/rig/eva = offer_data("EVA suit control module", 600, 4),					// base price: 682 (incl. components), sold at common
-		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 600, 4),		// base price: 682 (incl. components), sold at common
-		/obj/item/rig/industrial = offer_data("industrial suit control module", 800, 4),	// base price: 882 (incl. components), sold at common
-		/obj/item/rig/hazmat = offer_data("AMI control module", 800, 4),					// base price: 882 (incl. components), sold at common
-		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1000, 4),		// base price: 1032 (incl. components), sold at common
+		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 0),				// base price: 200
+		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 1000, 3),
+		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 1000, 3),
+		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1000, 3),
+		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 1000, 3),
+		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 1000, 3),
+		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1),
 	)

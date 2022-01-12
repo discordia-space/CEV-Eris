@@ -2,7 +2,7 @@
 	icon_states = "serb_frigate"
 	spawn_cost = 2
 	spawn_probability = 10
-	markup = 3
+	markup = RARE_GOODS
 	name_pool = list(
 		"STF 'Kovac'" = "They are sending message, \"Come with money for very good stuff! You can pay with your life, even!\"",
 		"SV 'Zoric'" = "They are sending message, \"For the correct price, we can sell you something... even jobs!\""
