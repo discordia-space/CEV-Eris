@@ -17,7 +17,7 @@
 	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
 	price_tag = 2000
 	damage_multiplier = 1.1	 // 34 lethal
-	penetration_multiplier = 0.5 // 7.5 lethal
+	penetration_multiplier = 0.65 // 7.5 lethal
 	recoil_buildup = 0.7
 	twohanded = FALSE
 	one_hand_penalty = 5 //smg level
