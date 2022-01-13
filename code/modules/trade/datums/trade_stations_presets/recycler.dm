@@ -2,7 +2,7 @@
 	name_pool = list(
 		"JNK 'Garbaj'" = "Junk collector.",
 	)
-    start_discovered = FALSE
+	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = UNCOMMON_GOODS
 	base_income = 3200
@@ -51,8 +51,8 @@
 	)
 	// TODO: Better offers
 	offer_types = list(
-        /obj/item/reagent_containers/food/snacks/margheritaslice = offer_data("margherita pizza slice", 200, 8),
-        /obj/item/reagent_containers/food/snacks/meatpizzaslice = offer_data("meat pizza slice", 200, 8),
-        /obj/item/reagent_containers/food/snacks/mushroompizzaslice = offer_data("mushroom pizza slice", 200, 8),
-        /obj/item/reagent_containers/food/snacks/vegetablepizzaslice = offer_data("veggie pizza slice", 200, 8),
+		/obj/item/reagent_containers/food/snacks/margheritaslice = offer_data("margherita pizza slice", 200, 8),
+		/obj/item/reagent_containers/food/snacks/meatpizzaslice = offer_data("meat pizza slice", 200, 8),
+		/obj/item/reagent_containers/food/snacks/mushroompizzaslice = offer_data("mushroom pizza slice", 200, 8),
+		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice = offer_data("veggie pizza slice", 200, 8),
 	)

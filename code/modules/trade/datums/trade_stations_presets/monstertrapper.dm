@@ -15,7 +15,7 @@
 			/obj/item/roach_egg = custom_good_amount_range(list(5, 20)),
 			/obj/item/reagent_containers/food/snacks/roachcube/roachling = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/kampfer = custom_good_amount_range(list(1, 5)),
-		    /obj/item/reagent_containers/food/snacks/roachcube/jager = custom_good_amount_range(list(1, 5)),
+			/obj/item/reagent_containers/food/snacks/roachcube/jager = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/seuche = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/panzer = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/gestrahlte = custom_good_amount_range(list(1, 5)),
