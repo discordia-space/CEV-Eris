@@ -112,7 +112,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	/obj/item/wrapping_paper,
 	/obj/item/wrapping_paper,
 	/obj/item/wrapping_paper)
-	cost = 700
+	cost = 400
 	crate_name = "Arts and Crafts crate"
 	group = "Operations"
 
@@ -120,7 +120,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	name = "Export scanners"
 	contains = list(/obj/item/device/scanner/price,
 					/obj/item/device/scanner/price)
-	cost = 700
+	cost = 400
 	crate_name = "Export scanners crate"
 	group = "Operations"
 
@@ -421,14 +421,15 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/reagent_containers/food/drinks/bottle/patron,
 					/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
 					/obj/item/storage/fancy/cigarettes/dromedaryco,
-					/obj/item/lipstick/random,
+					/obj/item/pizzabox/margherita,
+					/obj/item/reagent_containers/food/snacks/sliceable/chocolatecake,
 					/obj/item/reagent_containers/food/drinks/bottle/small/ale,
 					/obj/item/reagent_containers/food/drinks/bottle/small/ale,
 					/obj/item/reagent_containers/food/drinks/bottle/small/beer,
 					/obj/item/reagent_containers/food/drinks/bottle/small/beer,
 					/obj/item/reagent_containers/food/drinks/bottle/small/beer,
 					/obj/item/reagent_containers/food/drinks/bottle/small/beer)
-	cost = 1200
+	cost = 1500
 	containertype = /obj/structure/closet/crate
 	crate_name = "Party equipment"
 	group = "Hospitality"
@@ -477,7 +478,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/oxygen
 	name = "Canister: \[O2\]"
 	contains = list(/obj/machinery/portable_atmospherics/canister/oxygen)
-	cost = 1500
+	cost = 1000
 	containertype = /obj/structure/largecrate
 	crate_name = "O2 crate"
 	group = "Engineering"
@@ -485,7 +486,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/nitrogen
 	name = "Canister: \[N2\]"
 	contains = list(/obj/machinery/portable_atmospherics/canister/nitrogen)
-	cost = 1500
+	cost = 1000
 	containertype = /obj/structure/largecrate
 	crate_name = "N2 crate"
 	group = "Engineering"
@@ -493,7 +494,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/air
 	name = "Canister \[Air\]"
 	contains = list(/obj/machinery/portable_atmospherics/canister/air)
-	cost = 1500
+	cost = 1000
 	containertype = /obj/structure/largecrate
 	crate_name = "Air crate"
 	group = "Engineering"
@@ -614,6 +615,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/storage/hazardvest,
 					/obj/item/clothing/head/welding,
 					/obj/item/clothing/head/welding,
+					/obj/item/clothing/gloves/insulated,
 					/obj/item/clothing/head/hardhat)
 	cost = 1000
 	containertype = /obj/structure/closet/crate
@@ -642,7 +644,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/item/tool/omnitool,
 					/obj/item/tool/omnitool)
 	name = "\"Munchkin 5000\" omnitool"
-	cost = 2500
+	cost = 1000
 	containertype = /obj/structure/closet/crate
 	crate_name = "omnitool crate"
 	group = "Engineering"
@@ -871,16 +873,8 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/medical
 	name = "Medical supply crate"
-	contains = list(/obj/item/stack/medical/bruise_pack,
-					/obj/item/stack/medical/bruise_pack,
-					/obj/item/stack/medical/bruise_pack,
-					/obj/item/stack/medical/bruise_pack,
-					/obj/item/stack/medical/bruise_pack,
-					/obj/item/stack/medical/ointment,
-					/obj/item/stack/medical/ointment,
-					/obj/item/stack/medical/ointment,
-					/obj/item/stack/medical/ointment,
-					/obj/item/stack/medical/ointment)
+	contains = list(/obj/item/storage/firstaid/regular,
+					/obj/item/storage/firstaid/regular)
 	cost = 1000
 	containertype = /obj/structure/closet/crate/medical
 	crate_name = "Medical supply crate"
@@ -947,7 +941,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/tool/retractor,
 					/obj/item/tool/bonesetter,
 					/obj/item/tool/saw/circular)
-	cost = 1200
+	cost = 1000
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Surgery crate"
 	access = access_moebius
@@ -961,7 +955,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/head/surgery/green,
 					/obj/item/storage/box/masks,
 					/obj/item/storage/box/gloves)
-	cost = 900
+	cost = 500
 	containertype = /obj/structure/closet/crate
 	crate_name = "Sterile equipment crate"
 	group = "Medical / Science"
@@ -983,7 +977,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/medical_stand
 	name = "Medical stand Crate"
-	cost = 700
+	cost = 300
 	contains = list(/obj/structure/medical_stand)
 	containertype = /obj/structure/closet/crate/medical
 	crate_name = "medical stand crate"
@@ -1009,7 +1003,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 
 /datum/supply_pack/floodlight
 	name = "Emergency Floodlight Crate"
-	cost = 1400
+	cost = 500
 	contains = list(/obj/machinery/floodlight,
 					/obj/machinery/floodlight)
 	containertype = /obj/structure/closet/crate/scicrate
@@ -1021,7 +1015,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(
 		/obj/item/reagent_containers/glass/beaker/vial/nanites
 	)
-	cost = 1500
+	cost = 1000
 	crate_name = "Raw Nanites Container"
 	group = "Medical / Science"
 	containertype = /obj/structure/closet/crate/medical
@@ -1159,7 +1153,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/seeds/random,
 					/obj/item/seeds/random,
 					/obj/item/seeds/kudzuseed)
-	cost = 1500
+	cost = 1000
 	containertype = /obj/structure/closet/crate/hydroponics
 	crate_name = "Exotic Seeds crate"
 	group = "Hydroponics"
@@ -1209,7 +1203,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/mining_drill
 	name = "Drill Crate"
 	contains = list(/obj/machinery/mining/drill)
-	cost = 3000
+	cost = 2000
 	containertype = /obj/structure/closet/crate/secure/large
 	crate_name = "Drill Crate"
 	group = "Mining"
@@ -1217,18 +1211,17 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/mining_brace
 	name = "Brace Crate"
 	contains = list(/obj/machinery/mining/brace)
-	cost = 1500
+	cost = 1000
 	containertype = /obj/structure/closet/crate/secure/large
 	crate_name = "Brace Crate"
 	group = "Mining"
 
 /datum/supply_pack/mining_supply
 	name = "Mining Supply Crate"
-	contains = list(
-					/obj/item/reagent_containers/spray/cleaner,
+	contains = list(/obj/item/reagent_containers/spray/cleaner,
 					/obj/item/device/lighting/toggleable/flashlight,
 					/obj/item/tool/pickaxe/jackhammer)
-	cost = 1000
+	cost = 5000
 	containertype = /obj/structure/closet/crate/secure/gear
 	crate_name = "Mining Supply Crate"
 	group = "Mining"
@@ -1339,7 +1332,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/industrial
 	name = "Industrial Hardsuit Control Module Crate"
 	contains = list(/obj/item/rig/industrial)
-	cost = 3000
+	cost = 2000
 	crate_name = "Industrial Hardsuit Control Module Crate"
 	group = "Resource Integration Gear"
 
@@ -1440,7 +1433,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/shoes/leather,
 					/obj/item/clothing/suit/wcoat)
 	name = "Formalwear closet"
-	cost = 1000
+	cost = 500
 	containertype = /obj/structure/closet
 	crate_name = "Formalwear for the best occasions."
 	group = "Miscellaneous"
@@ -1448,7 +1441,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 /datum/supply_pack/eftpos
 	contains = list(/obj/item/device/eftpos)
 	name = "EFTPOS scanner"
-	cost = 700
+	cost = 400
 	crate_name = "EFTPOS crate"
 	group = "Miscellaneous"
 
@@ -1528,7 +1521,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/pizzabox/meat,
 					/obj/item/pizzabox/vegetable)
 	name = "Surprise pack of five pizzas"
-	cost = 1500
+	cost = 2000
 	containertype = /obj/structure/closet/crate/freezer
 	crate_name = "Pizza crate"
 	group = "Hospitality"
@@ -1550,7 +1543,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/item/clothing/suit/chef,
 					/obj/item/clothing/under/kilt)
 	name = "Costumes crate"
-	cost = 1000
+	cost = 300
 	containertype = /obj/structure/closet/crate/secure
 	crate_name = "Actor Costumes"
 	access = access_theatre
@@ -1606,7 +1599,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/spawner/cloth/holster,
 					/obj/spawner/cloth/holster)
 	name = "Surplus Unform Holsters"
-	cost = 1000
+	cost = 8000
 	crate_name = "Surplus Uniform Holsters Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
@@ -1616,7 +1609,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/spawner/voidsuit,
 					/obj/spawner/voidsuit/damaged)
 	name = "Surplus Voidsuit"
-	cost = 1500
+	cost = 1000
 	crate_name = "Surplus Voidsuit Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
@@ -1626,7 +1619,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/spawner/rig,
 					/obj/spawner/rig/damaged)
 	name = "Surplus Rig Suit"
-	cost = 3000
+	cost = 2000
 	crate_name = "Surplus Rig Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
@@ -1636,7 +1629,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 	contains = list(/obj/spawner/rig_module,
 				/obj/spawner/rig_module)
 	name = "Surplus Rig Modules"
-	cost = 2000
+	cost = 1500
 	crate_name = "Surplus Rig Modules"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
