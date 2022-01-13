@@ -53,7 +53,7 @@
 	)
 	//Types of items bought by the station
 	offer_types = list(
-		/obj/item/mine = offer_data("landmine", 1200, 0),
-		/obj/item/beartrap = offer_data("mechanical trap", 600, 0),
+		/obj/item/mine/old = offer_data("old landmine", 1200, 0),
+		/obj/item/beartrap/makeshift = offer_data("makeshift mechanical trap", 600, 0),
 		/obj/item/device/assembly/mousetrap = offer_data("mousetrap", 200, 0)
 	)
