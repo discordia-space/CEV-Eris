@@ -1,24 +1,44 @@
 /mob/living/proc/handle_recoil(var/obj/item/gun/G)
 	deltimer(recoil_reduction_timer)
-	if(G.one_hand_penalty)//If the gun has a two handed penalty and is not weilded.
+	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not weilded.
 		if(!G.wielded)
-			recoil += G.one_hand_penalty //Then the one hand penalty wil lbe added to the recoil.
-	if(G.recoil_buildup)
-		recoil += G.recoil_buildup
-		update_recoil()
+			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
+	add_recoil(G.recoil_buildup)
 
-/mob/living/proc/external_recoil(var/recoil_amount) //used in human_attackhand.dm
+/mob/living/proc/external_recoil(var/recoil_buildup) // Used in human_attackhand.dm
 	deltimer(recoil_reduction_timer)
-	if(recoil_amount)
-		recoil += recoil_amount
+	add_recoil(recoil_buildup)
+
+mob/proc/movement_recoil() // Used in movement/mob.dm
+	return // Only the living have recoil
+
+/mob/living/handle_movement_recoil()
+	deltimer(recoil_reduction_timer)
+
+	var/tally = 5
+
+	if(wear_suit)
+		tally += wear_suit.stiffness
+	if(w_uniform)
+		tally += w_uniform.stiffness
+
+	add_recoil(recoil_buildup)
+	
+/mob/living/proc/add_recoil(var/recoil_buildup)
+	if(recoil_buildup)
+		recoil += recoil_buildup
 		update_recoil()
 
 /mob/living/proc/calc_recoil()
 
-	if(recoil >= 10)
-		recoil *= 0.9
-	else if(recoil < 10 && recoil > 1)
-		recoil -= 1
+	var/minimum = 0.5
+	var/scale = 0.8
+	var/limit = minimum / (1 - scale)
+
+	if(recoil >= limit)
+		recoil *= scale
+	else if(recoil < limit && recoil > minimum)
+		recoil -= minimum
 	else
 		recoil = 0
 
@@ -29,7 +49,7 @@
 //Called after setting recoil
 /mob/living/proc/update_recoil()
 	update_cursor()
-	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.3 SECONDS, TIMER_STOPPABLE)
+	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.1 SECONDS, TIMER_STOPPABLE) //0.1 means recoil begins decreasing the next tick
 
 /mob/living/proc/update_cursor()
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)

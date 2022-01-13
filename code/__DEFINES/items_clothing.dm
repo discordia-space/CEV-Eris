@@ -216,3 +216,12 @@
 #define STORY_CRIME	"Crime"
 #define STORY_MUTINY "Mutiny"
 #define STORY_MALFUNCTION "Malfunction"
+
+//Recoil for suits
+#define LIGHT_STIFFNESS 2
+#define MEDIUM_STIFFNESS 4
+#define HEAVY_STIFFNESS 6
+
+#define LIGHT_SLOWDOWN 0.05
+#define MEDIUM_SLOWDOWN 0.1
+#define HEAVY_SLOWDOWN 1

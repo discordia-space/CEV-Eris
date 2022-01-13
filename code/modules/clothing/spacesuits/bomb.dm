@@ -25,7 +25,6 @@
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	slowdown = 2
 	armor = list(
 		melee = 40,
 		bullet = 40,
@@ -39,6 +38,8 @@
 	siemens_coefficient = 0
 	equip_delay = 10 SECONDS
 	price_tag = 300
+	slowdown = HEAVY_SLOWDOWN
+	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/head/space/bomb/security
 	icon_state = "bombsuitsec"

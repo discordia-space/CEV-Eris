@@ -23,7 +23,6 @@
 	icon_state = "void"
 	item_state = "void"
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
-	slowdown = 0.3
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -40,6 +39,8 @@
 	can_breach = 1
 	spawn_tags = SPAWN_TAG_VOID_SUIT
 	accompanying_object = /obj/item/clothing/shoes/magboots
+	slowdown = MEDIUM_SLOWDOWN
+	stiffness = HEAVY_STIFFNESS // Very hard to aim in
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots // Deployable boots, if any.

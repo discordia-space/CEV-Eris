@@ -21,7 +21,6 @@
 	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
 	icon_state = "scaf"
 	item_state = "scaf"
-	slowdown = 0.5
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
 		melee = 60,
@@ -38,6 +37,8 @@
 	supporting_limbs = list()
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
+	slowdown = MEDIUM_SLOWDOWN * 2
+	stiffness = HEAVY_STIFFNESS
 
 
 //Voidsuit for contractors

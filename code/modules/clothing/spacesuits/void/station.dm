@@ -148,7 +148,6 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "miner_suit"
 	icon_state = "miner_suit"
-	slowdown = 0.35
 	armor = list(
 		melee = 50,
 		bullet = 35,
@@ -184,7 +183,6 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	icon_state = "rig-medical"
 	item_state = "rig-medical"
-	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/storage/firstaid,
 		/obj/item/device/scanner/health,
@@ -200,6 +198,7 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
+	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -347,7 +346,7 @@
 /obj/item/clothing/suit/space/void/science
 	name = "Moebius combat voidsuit"
 	icon_state = "moebiussuit"
-	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment. Features several advanced layers of armor."
+	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment without impairing mobility. Features several advanced layers of armor."
 	item_state = "moebiussuit"
 	matter = list(
 	MATERIAL_PLASTEEL = 15,
@@ -368,6 +367,7 @@
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
+	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -468,3 +468,5 @@
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/NTvoid
 	spawn_blacklisted = TRUE
+	slowdown = LIGHT_SLOWDOWN
+	stiffness = HEAVY_STIFFNESS

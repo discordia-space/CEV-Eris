@@ -33,6 +33,9 @@
 	var/brightness_on
 	var/on = FALSE
 
+	var/stiffness = 0 // Recoil caused by moving
+	var/obscuration = 0 // Similar to tint, but decreases firearm accuracy instead via giving minimum extra offset
+
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)
 		if(!isturf(user.loc))
