@@ -148,6 +148,6 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 500, 8),		// base price: 500
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8),			// base price: 1000
-		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 1800, 4)								// base price: 900
-		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8)								// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
+		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 1800, 4),								// base price: 900
+		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8),								// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
 	)
