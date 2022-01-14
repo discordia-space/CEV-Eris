@@ -1,0 +1,5 @@
+author: Shadow-Quill
+delete-after: true
+changes:
+  - rscadd: The ship's nuke now sets the alert level to Delta when armed, and back
+      to the original level when disarmed.
