@@ -58,5 +58,5 @@
 	shoes = /obj/item/clothing/shoes/jackboots
 	l_hand = /obj/item/storage/firstaid/adv
 	belt = /obj/item/storage/belt/medical/emt
-	backpack_contents = list(/obj/item/gun/projectile/selfload/moebius = 1, /obj/item/ammo_magazine/hpistol/rubber = 4, /obj/item/modular_computer/tablet/moebius/preset = 1)
+	backpack_contents = list(/obj/item/gun/projectile/selfload/moebius = 1, /obj/item/ammo_magazine/pistol/rubber = 1, /obj/item/modular_computer/tablet/moebius/preset = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL
