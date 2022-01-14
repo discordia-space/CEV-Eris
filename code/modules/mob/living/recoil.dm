@@ -3,7 +3,12 @@
 	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not weilded.
 		if(!G.wielded)
 			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
-	add_recoil(G.recoil_buildup)
+
+	debug_recoil = min(0.3, G.fire_delay)
+	if(G.fire_delay == 0)
+		debug_recoil = 0.3
+
+	add_recoil(G.recoil_buildup + debug_recoil) // DEBUG, remove the fire_delay after testing is over!
 
 /mob/living/proc/external_recoil(var/recoil_buildup) // Used in human_attackhand.dm
 	deltimer(recoil_reduction_timer)
@@ -35,7 +40,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 
 /mob/living/proc/calc_recoil()
 
-	var/minimum = 0.5
+	var/minimum = 1
 	var/scale = 0.9
 	var/limit = minimum / (1 - scale)
 
@@ -77,8 +82,6 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 		var/offset = calculate_offset(G.init_offset)
-		log_admin("[offset]")
-		log_admin("[G]")
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base
