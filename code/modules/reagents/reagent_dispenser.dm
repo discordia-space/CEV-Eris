@@ -271,7 +271,7 @@
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"
 	desc = "A beer keg"
-	icon_state = "beertankTEMP"
+	icon_state = "beer_keg"
 	amount_per_transfer_from_this = 10
 	volume = 1000
 	starting_reagent = "beer"
