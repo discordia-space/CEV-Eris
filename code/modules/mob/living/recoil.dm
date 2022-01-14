@@ -7,8 +7,10 @@
 	var/debug_recoil = min(0.3, G.fire_delay)
 	if(G.fire_delay == 0)
 		debug_recoil = 0.3
+	if(G.burst > 1)
+		debug_recoil = max(debug_recoil, G.burst_delay)
 
-	add_recoil(G.recoil_buildup + debug_recoil) // DEBUG, remove the fire_delay after testing is over!
+	add_recoil(G.recoil_buildup + debug_recoil) // DEBUG, remove the debug_recoil after testing is over!
 
 /mob/living/proc/external_recoil(var/recoil_buildup) // Used in human_attackhand.dm
 	deltimer(recoil_reduction_timer)
