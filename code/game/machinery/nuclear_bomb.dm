@@ -20,7 +20,7 @@ var/bomb_set
 	var/lastentered
 	use_power = NO_POWER_USE
 	unacidable = 1
-	var/previous_level = ""
+	var/previous_level = "" // For resetting alert level to where it was before the nuke was armed
 	var/datum/wires/nuclearbomb/wires = null
 
 	var/eris_ship_bomb = FALSE           // if TRUE (1 in map editor), then Heads will get parts of code for this bomb. Obviously used in map editor. Single mapped bomb supported.
@@ -283,6 +283,10 @@ var/bomb_set
 					timing = 1
 					log_and_message_admins("engaged a nuclear bomb")
 					bomb_set++ //There can still be issues with this resetting when there are multiple bombs. Not a big deal though for Nuke/N
+					if(eris_ship_bomb)
+						var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+						previous_level = security_state.current_security_level
+						security_state.set_security_level(security_state.severe_security_level)
 					update_icon()
 				else
 					secure_device()
@@ -320,6 +324,8 @@ var/bomb_set
 	bomb_set--
 	timing = 0
 	timeleft = CLAMP(timeleft, 120, 600)
+	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
+	security_state.set_security_level(previous_level)
 	update_icon()
 
 /obj/machinery/nuclearbomb/ex_act(severity)
