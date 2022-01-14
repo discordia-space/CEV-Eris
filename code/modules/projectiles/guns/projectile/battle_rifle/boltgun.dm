@@ -120,9 +120,10 @@
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Tosshin\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
-			Replica of an ancient bolt action known for its easy maintenance and low price."
-	icon_state = "arisaka_ih"
-	item_suffix  = "_arisaka_ih"
+			A replica of an ancient bolt action known for its easy maintenance and low price. \
+			This is mounted with a scope, for ranges longer than a maintenance tunnel."
+	icon_state = "arisaka_ih_scope"
+	item_suffix  = "_ih_scope"
 	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
@@ -131,9 +132,10 @@
 	recoil_buildup = 8
 	init_offset = 0 //no bayonet
 	max_shells = 6
+	zoom_factor = 0.8 //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
 	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
-	wielded_item_state = "_doble_arisaka_ih"
+	wielded_item_state = "_doble_ih_scope"
 	sharp = FALSE
 	spawn_blacklisted = TRUE
 	saw_off = FALSE
