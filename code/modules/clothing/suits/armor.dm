@@ -129,8 +129,8 @@
 		rad = 0
 	)
 	price_tag = 600
-	slowdown = 0
-	stiffness = MEDIUM_STIFFNESS
+	slowdown = MEDIUM_SLOWDOWN
+	stiffness = 0
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
 

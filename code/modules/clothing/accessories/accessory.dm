@@ -240,6 +240,7 @@
 		MATERIAL_PLASTEEL = 3,
 	)
 	slowdown = LIGHT_SLOWDOWN
+	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/accessory/armor/platecarrier
 	name = "platecarrier armor plates"
@@ -257,6 +258,7 @@
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 3,
 	)
+	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/accessory/armor/riot
 	name = "padded armor plates"
@@ -270,7 +272,7 @@
 		bio = 0,
 		rad = 0
 	)
-	slowdown = LIGHT_SLOWDOWN
+	slowdown = MEDIUM_SLOWDOWN
 	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/accessory/armor/laser

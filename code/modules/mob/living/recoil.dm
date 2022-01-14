@@ -15,15 +15,18 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 /mob/living/handle_movement_recoil()
 	deltimer(recoil_reduction_timer)
 
-	var/tally = 1
+	var/base_recoil = 1
 
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
+		var/suit_stiffness = 0
+		var/uniform_stiffness = 0
 		if(H.wear_suit)
-			tally += H.wear_suit.stiffness
+			suit_stiffness = H.wear_suit.stiffness
 		if(H.w_uniform)
-			tally += H.w_uniform.stiffness
-	add_recoil(tally)
+			uniform_stiffness = H.w_uniform.stiffness
+		base_recoil += suit_stiffness + suit_stiffness * uniform_stiffness // Wearing it under actual armor, or anything too thick is extremely uncomfortable.
+	add_recoil(base_recoil)
 	
 /mob/living/proc/add_recoil(var/recoil_buildup)
 	if(recoil_buildup)
