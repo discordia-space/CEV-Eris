@@ -4,7 +4,7 @@
 		if(!G.wielded)
 			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
 
-	debug_recoil = min(0.3, G.fire_delay)
+	var/debug_recoil = min(0.3, G.fire_delay)
 	if(G.fire_delay == 0)
 		debug_recoil = 0.3
 
