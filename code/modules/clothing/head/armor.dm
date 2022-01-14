@@ -62,6 +62,7 @@
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	obscuration = LIGHT_OBSCURATION
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -72,7 +73,7 @@
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
-	desc = "Ironhammer Security gear. Protects the head from impacts."
+	desc = "Ironhammer Security gear. Protects the head from impacts, and the lack of a visor ensures an unhindered aim."
 	icon_state = "helmet_ironhammer"
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
@@ -102,7 +103,7 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer_old
 	name = "reinforced technomancer helmet"
-	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight."
+	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight. The welder protection blurs aim slightly."
 	icon_state = "technohelmet_old"
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
@@ -118,6 +119,7 @@
 		rad = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
+	obscuration = MEDIUM_OBSCURATION
 	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
@@ -163,6 +165,8 @@
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
+	obscuration = LIGHT_OBSCURATION
+
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -286,7 +290,8 @@
 	var/list/armor_up = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
-	var/tint_down = TINT_MODERATE
+	var/tint_down = TINT_LOW
+	var/obscuration_down = MEDIUM_OBSCURATION
 	flags_inv = HIDEEARS
 	var/flags_inv_down = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
@@ -301,8 +306,8 @@
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
-	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 30, bullet = 20, energy = 20, bomb = 20, bio = 0, rad = 0)
+	armor_down = list(melee = 40, bullet = 35, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -328,12 +333,14 @@
 		armor = getArmor(arglist(armor_up))
 		flash_protection = initial(flash_protection)
 		tint = initial(tint)
+		obscuration = initial(obscuration)
 		flags_inv = initial(flags_inv)
 		body_parts_covered = initial(body_parts_covered)
 	else
 		armor = getArmor(arglist(armor_down))
 		flash_protection = flash_protection_down
 		tint = tint_down
+		obscuration = obscuration_down
 		flags_inv = flags_inv_down
 		body_parts_covered = body_parts_covered_down
 
@@ -364,7 +371,8 @@
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
 
-	tint = TINT_LOW
+	tint = TINT_NONE
+	obscuration = LIGHT_OBSCURATION
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
@@ -515,6 +523,7 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+	obscuration = MEDIUM_OBSCURATION // May God guide your aim
 
 /obj/item/clothing/head/armor/helmet/tanker
 	name = "black tanker helmet"
@@ -575,7 +584,8 @@
 	up = TRUE
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
-	tint_down = TINT_LOW
+	tint_down = TINT_NONE
+	obscuration_down = LIGHT_OBSCURATION
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS

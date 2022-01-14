@@ -9,20 +9,21 @@
 	deltimer(recoil_reduction_timer)
 	add_recoil(recoil_buildup)
 
-mob/proc/movement_recoil() // Used in movement/mob.dm
+mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 	return // Only the living have recoil
 
 /mob/living/handle_movement_recoil()
 	deltimer(recoil_reduction_timer)
 
-	var/tally = 5
+	var/tally = 1
 
-	if(wear_suit)
-		tally += wear_suit.stiffness
-	if(w_uniform)
-		tally += w_uniform.stiffness
-
-	add_recoil(recoil_buildup)
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.wear_suit)
+			tally += H.wear_suit.stiffness
+		if(H.w_uniform)
+			tally += H.w_uniform.stiffness
+	add_recoil(tally)
 	
 /mob/living/proc/add_recoil(var/recoil_buildup)
 	if(recoil_buildup)
@@ -32,7 +33,7 @@ mob/proc/movement_recoil() // Used in movement/mob.dm
 /mob/living/proc/calc_recoil()
 
 	var/minimum = 0.5
-	var/scale = 0.8
+	var/scale = 0.9
 	var/limit = minimum / (1 - scale)
 
 	if(recoil >= limit)
@@ -42,22 +43,39 @@ mob/proc/movement_recoil() // Used in movement/mob.dm
 	else
 		recoil = 0
 
-	if(recoil != 0) recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.1 SECONDS, TIMER_STOPPABLE)
-	else deltimer(recoil_reduction_timer)
-	update_cursor()
+	update_recoil()
+
+/mob/living/proc/calculate_offset(var/offset = 0)
+	if(recoil)
+		offset += recoil
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.head)
+			offset += H.head.obscuration
+	offset = round(offset)
+	offset = min(offset, MAX_ACCURACY_OFFSET)
+	return offset
 
 //Called after setting recoil
 /mob/living/proc/update_recoil()
-	update_cursor()
-	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.1 SECONDS, TIMER_STOPPABLE) //0.1 means recoil begins decreasing the next tick
+	var/obj/item/gun/G = get_active_hand()
+	if(istype(G) && G)
+		G.check_safety_cursor(src)
 
-/mob/living/proc/update_cursor()
+	if(recoil != 0)
+		recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.1 SECONDS, TIMER_STOPPABLE)
+	else
+		deltimer(recoil_reduction_timer)
+
+/mob/living/proc/update_cursor(var/obj/item/gun/G)
 	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
 		remove_cursor()
 		return
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
-		var/offset = min(round(recoil), MAX_ACCURACY_OFFSET)
+		var/offset = calculate_offset(G.init_offset)
+		log_admin("[offset]")
+		log_admin("[G]")
 		var/icon/base = find_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', offset)
 		ASSERT(isicon(base))
 		client.mouse_pointer_icon = base

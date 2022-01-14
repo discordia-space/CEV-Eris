@@ -51,6 +51,9 @@
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
 	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
 	var/slowdown_hold // How much holding an item slows you down.
+	var/stiffness = 0 // How much recoil is caused by moving
+	var/obscuration = 0 // How much firearm accuracy is decreased
+
 	var/datum/armor/armor // Ref to the armor datum
 	var/list/allowed = list() //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink // All items can have an uplink hidden inside, just remember to add the triggers.

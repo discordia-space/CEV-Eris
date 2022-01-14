@@ -218,10 +218,16 @@
 #define STORY_MALFUNCTION "Malfunction"
 
 //Recoil for suits
-#define LIGHT_STIFFNESS 2
-#define MEDIUM_STIFFNESS 4
-#define HEAVY_STIFFNESS 6
+#define LIGHT_STIFFNESS 1
+#define MEDIUM_STIFFNESS 1.5
+#define HEAVY_STIFFNESS 2
 
-#define LIGHT_SLOWDOWN 0.05
-#define MEDIUM_SLOWDOWN 0.1
+//Slowdown for suits
+#define LIGHT_SLOWDOWN 0.1
+#define MEDIUM_SLOWDOWN 0.2
 #define HEAVY_SLOWDOWN 1
+
+//Offset for helmets
+#define LIGHT_OBSCURATION 3
+#define MEDIUM_OBSCURATION 5
+#define HEAVY_OBSCURATION 8

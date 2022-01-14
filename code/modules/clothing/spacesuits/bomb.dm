@@ -3,7 +3,7 @@
  */
 /obj/item/clothing/head/space/bomb
 	name = "bomb helmet"
-	desc = "Use in case of bomb."
+	desc = "Use in case of bomb. The shielded visor makes aiming harder."
 	icon_state = "bombsuit"
 	armor = list(
 		melee = 40,
@@ -14,7 +14,8 @@
 		rad = 90
 	)
 	siemens_coefficient = 0
-	tint = TINT_HEAVY
+	tint = TINT_LOW
+	obscuration = HEAVY_OBSCURATION
 	price_tag = 100
 
 /obj/item/clothing/suit/space/bomb
