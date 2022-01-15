@@ -133,6 +133,7 @@
 	
 /obj/item/stack/material/diamond/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/uranium
 	name = MATERIAL_URANIUM
@@ -149,6 +150,7 @@
 
 /obj/item/stack/material/uranium/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/plasma
 	name = "solid plasma"
@@ -162,6 +164,10 @@
 	rand_max = 20
 	spawn_tags = SPAWN_TAG_MATERIAL_RESOURCES
 	rarity_value = 30
+
+/obj/item/stack/material/plasma/full
+	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/plastic
 	name = "plastic"
@@ -194,6 +200,7 @@
 	
 /obj/item/stack/material/gold/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/silver
 	name = MATERIAL_SILVER
@@ -210,6 +217,7 @@
 	
 /obj/item/stack/material/silver/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 //Valuable resource, cargo can sell it.
 /obj/item/stack/material/platinum
@@ -227,6 +235,7 @@
 
 /obj/item/stack/material/platinum/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 //Extremely valuable to Research.
 /obj/item/stack/material/mhydrogen
@@ -238,6 +247,7 @@
 
 /obj/item/stack/material/mhydrogen/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 //Fuel for MRSPACMAN generator.
 /obj/item/stack/material/tritium
@@ -249,6 +259,7 @@
 	
 /obj/item/stack/material/tritium/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/osmium
 	name = "osmium"
@@ -259,6 +270,7 @@
 	
 /obj/item/stack/material/osmium/full
 	amount = 120
+	spawn_blacklisted = TRUE
 
 /obj/item/stack/material/steel
 	name = MATERIAL_STEEL
