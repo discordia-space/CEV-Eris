@@ -23,7 +23,7 @@
 	silenced = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		FULL_AUTO_400
+		BURST_2_ROUND
 		)
 	gun_parts = list(/obj/item/part/gun/frame/vintorez = 1, /obj/item/part/gun/grip/excel = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 
