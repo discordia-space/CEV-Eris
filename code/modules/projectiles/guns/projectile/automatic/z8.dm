@@ -34,6 +34,7 @@
 	var/obj/item/gun/projectile/shotgun/pump/grenade/underslung/launcher
 
 	spawn_tags = SPAWN_TAG_FS_PROJECTILE
+	gun_parts = list(/obj/item/part/gun/frame/z8 = 1, /obj/item/part/gun/grip/black = 1, /obj/item/part/gun/mechanism/autorifle = 1, /obj/item/part/gun/barrel/srifle = 1)
 
 /obj/item/gun/projectile/automatic/z8/Initialize()
 	. = ..()
@@ -86,3 +87,12 @@
 		to_chat(user, "\The [launcher] has \a [launcher.chambered] loaded.")
 	else
 		to_chat(user, "\The [launcher] is empty.")
+
+/obj/item/part/gun/frame/z8
+	name = "Z8 Bulldog frame"
+	desc = "A Z8 Bulldog carbine frame. Old but gold."
+	icon_state = "frame_pug"
+	result = /obj/item/gun/projectile/automatic/z8
+	grip = /obj/item/part/gun/grip/black
+	mechanism = /obj/item/part/gun/mechanism/autorifle
+	barrel = /obj/item/part/gun/barrel/srifle
