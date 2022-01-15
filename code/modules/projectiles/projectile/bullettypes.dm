@@ -163,6 +163,7 @@ There are important things regarding this file:
 	armor_penetration = 15
 	can_ricochet = TRUE
 	penetrating = 1
+	style_damage = 40
 
 /obj/item/projectile/bullet/magnum/practice
 	name = "practice bullet"
@@ -197,6 +198,7 @@ There are important things regarding this file:
 	armor_penetration = 50
 	penetrating = 1
 	hitscan = TRUE //so the PTR isn't useless as a sniper weapon
+	style_damage = 70
 
 /obj/item/projectile/bullet/antim/emp
 	damage_types = list(BRUTE = 30)
@@ -249,6 +251,7 @@ There are important things regarding this file:
 	armor_penetration = 15
 	knockback = 1
 	step_delay = 1.1
+	style_damage = 25
 
 /obj/item/projectile/bullet/shotgun/scrap
 	damage_types = list(BRUTE = 48)
