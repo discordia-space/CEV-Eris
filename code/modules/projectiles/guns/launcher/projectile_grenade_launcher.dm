@@ -93,6 +93,8 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 500
 	max_shells = 0
+	spawn_blacklisted = FALSE//this may be a bad idea
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 
 /obj/item/gun/projectile/shotgun/pump/grenade/makeshift/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/ammo_casing/grenade)))

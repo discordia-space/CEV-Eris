@@ -10,7 +10,8 @@
 	price_tag = 250 //one of the cheapest revolvers here
 	damage_multiplier = 1.3
 	recoil_buildup = 7
-	spawn_blacklisted = TRUE
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 15)
 
 /obj/item/gun/projectile/revolver/handmade/attackby(obj/item/W, mob/user)
