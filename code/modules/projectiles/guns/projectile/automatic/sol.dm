@@ -47,9 +47,6 @@
 	cut_overlays()
 	update_charge()
 
-/obj/item/gun/projectile/automatic/sol/generate_guntags()
-	..()
-	gun_tags |= GUN_SOL
 
 /obj/item/part/gun/frame/sol
 	name = "Sol frame"
