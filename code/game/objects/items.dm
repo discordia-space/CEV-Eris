@@ -434,7 +434,6 @@ var/global/list/items_blood_overlay_by_type = list()
 
 	var/obj/item/I = get_active_hand()
 	if (istype(I, /obj/item/grab)) // a grab signifies that it's another mob that should be spun
-		visible_message("true")
 		var/obj/item/grab/inhand_grab = I
 		var/mob/living/grabbed = inhand_grab.throw_held()
 		if (a_intent == I_HELP && inhand_grab.affecting.a_intent == I_HELP) // this doesn't use grabbed to allow passive twirl
