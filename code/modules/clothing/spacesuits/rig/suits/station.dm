@@ -145,6 +145,7 @@ Advanced Voidsuit: Technomancer Exultant
 	spawn_blacklisted = TRUE//antag_item_targets
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = 0
+	obscuration = 0
 
 /obj/item/rig/ce/equipped
 	rarity_value = 40

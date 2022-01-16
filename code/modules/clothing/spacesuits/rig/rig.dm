@@ -41,6 +41,7 @@
 	unacidable = 1
 	slowdown = HEAVY_SLOWDOWN // Very slow, but gimbal makes aim steady
 	stiffness = LIGHT_STIFFNESS
+	obscuration = LIGHT_OBSCURATION
 
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
@@ -159,6 +160,7 @@
 	if(helm_type)
 		helmet = new helm_type(src)
 		verbs |= /obj/item/rig/proc/toggle_helmet
+		helmet.obscuration = obscuration
 	if(boot_type)
 		boots = new boot_type(src)
 		verbs |= /obj/item/rig/proc/toggle_boots
@@ -168,6 +170,7 @@
 		if(allowed)
 			chest.allowed |= allowed
 		chest.slowdown = offline_slowdown
+		chest.stiffness = stiffness
 		verbs |= /obj/item/rig/proc/toggle_chest
 
 	if(initial_modules && initial_modules.len)

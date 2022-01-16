@@ -15,6 +15,7 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
+	obscuration = MEDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/SCAF
 	name = "SCAF suit"
@@ -37,8 +38,8 @@
 	supporting_limbs = list()
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
-	slowdown = MEDIUM_SLOWDOWN * 2
-	stiffness = HEAVY_STIFFNESS
+	slowdown = MEDIUM_SLOWDOWN * 1.5
+	stiffness = MEDIUM_STIFFNESS
 
 
 //Voidsuit for contractors
@@ -59,6 +60,7 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_ihs"
+	obscuration = 0
 
 /obj/item/clothing/head/space/void/merc/update_icon()
 	..()
@@ -71,7 +73,7 @@
 /obj/item/clothing/suit/space/void/merc
 	icon_state = "syndievoidsuit"
 	name = "blood-red voidsuit"
-	desc = "An advanced suit that protects against injuries during special operations. This version is additionally reinforced against melee attacks."
+	desc = "An advanced suit that protects against injuries during special operations. Surprisingly flexible. This version is additionally reinforced against melee attacks."
 	item_state = "syndie_voidsuit"
 	armor = list(
 		melee = 50,
@@ -86,6 +88,7 @@
 	resilience = 0.08
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
+	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE

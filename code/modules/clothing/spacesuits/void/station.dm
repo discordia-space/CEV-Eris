@@ -208,7 +208,7 @@
 	//Security
 /obj/item/clothing/head/space/void/security
 	name = "ironhammer voidsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. Sacrifices sight for protection."
 	icon_state = "ihsvoidhelm"
 	item_state = "ihsvoidhelm"
 	item_state_slots = list(
@@ -226,6 +226,7 @@
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
+	obscuration = MEDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/security
 	name = "ironhammer voidsuit"
@@ -290,7 +291,7 @@
 //Science
 /obj/item/clothing/head/space/void/science
 	name = "Moebius combat helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. The high-tech sensor systems built into the visor allow a good amount of protection without impairing aim."
 	icon_state = "moebiushelmb"
 	item_state = "moebiushelmb"
 	item_state_slots = list(
@@ -313,6 +314,7 @@
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
+	obscuration = 0
 
 /obj/item/clothing/head/space/void/science
 	var/list/icon_states = list(
@@ -469,4 +471,3 @@
 	helmet = /obj/item/clothing/head/space/void/NTvoid
 	spawn_blacklisted = TRUE
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS
