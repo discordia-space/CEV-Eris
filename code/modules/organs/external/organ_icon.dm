@@ -74,6 +74,9 @@ var/global/list/limb_icon_cache = list()
 	if(!owner || !owner.species)
 		return
 
+	if(!species)
+		species = owner.species
+
 	if(owner.species.has_process[OP_EYES])
 		for(var/obj/item/organ/internal/eyes/eyes in owner.organ_list_by_process(OP_EYES))
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
@@ -110,12 +113,15 @@ var/global/list/limb_icon_cache = list()
 	else
 		icon_state = "[organ_tag][gender][is_stump()?"_s":""]"
 
+	if(!species && iscarbon(owner))
+		species = owner.species
+
 	if(!appearance_test.get_species_sprite)
 		icon = 'icons/mob/human_races/r_human.dmi'
 	else
 		if(src.force_icon)
 			icon = src.force_icon
-		else if(!dna_trace)
+		else if(!species)
 			icon = 'icons/mob/human_races/r_human.dmi'
 		else if(BP_IS_ROBOTIC(src))
 			icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'

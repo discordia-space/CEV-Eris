@@ -27,6 +27,7 @@
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
 	var/dna_trace
+	var/b_type
 	var/datum/species/species
 
 	// Damage vars.
@@ -56,9 +57,9 @@
 		max_damage = min_broken_damage * 2
 
 	if(istype(holder))
-		species = all_species[SPECIES_HUMAN]
+		species = holder.species
 		dna_trace = holder.dna_trace
-		species = all_species[holder.species]
+		b_type = holder.b_type
 
 		if(!blood_DNA)
 			blood_DNA = list()
@@ -84,6 +85,7 @@
 /obj/item/organ/proc/set_dna(mob/living/carbon/C)
 	if(istype(C))
 		dna_trace = C.dna_trace
+		b_type = C.b_type
 		if(!blood_DNA)
 			blood_DNA = list()
 		blood_DNA.Cut()
@@ -194,8 +196,7 @@
 	// Process unsuitable transplants. TODO: consider some kind of
 	// immunosuppressant that changes transplant data to make it match.
 	if(!rejecting)
-//		if(blood_incompatible(dna.b_type, owner.dna.b_type, species, owner.species))
-		if(dna_trace != owner.dna_trace)
+		if(blood_incompatible(b_type, owner.b_type, species, owner.species) && !owner.GetMutation(MUTATION_NO_REJECT))
 			rejecting = 1
 	else
 		rejecting++ //Rejection severity increases over time.

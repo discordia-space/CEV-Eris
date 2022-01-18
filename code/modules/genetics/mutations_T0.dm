@@ -5,6 +5,10 @@
 	tier_string = "Nero"
 	NSA_load = 5
 
-/datum/mutation/t0/
-	
+/datum/mutation/t0/blindness
+	name = ""
+	desc = ""
 
+/datum/mutation/t0/deafness
+	name = ""
+	desc = ""

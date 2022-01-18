@@ -42,6 +42,7 @@
 
 	sync_organ_dna()
 	make_blood()
+	generate_dna()
 
 	sanity = new(src)
 
@@ -1624,3 +1625,15 @@ var/list/rank_prefix = list(\
 				else
 					break
 	return 1
+
+/mob/living/carbon/human/proc/generate_dna()
+	if(!b_type)
+		b_type = pick(GLOB.blood_types)
+
+	while(dormant_mutations.len < STARTING_MUTATIONS)
+		dormant_mutations |= pick(
+			45;pick(subtypesof(/datum/mutation/t0)),
+			25;pick(subtypesof(/datum/mutation/t1)),
+			15;pick(subtypesof(/datum/mutation/t2)),
+			10;pick(subtypesof(/datum/mutation/t3)),
+			5;pick(subtypesof(/datum/mutation/t4)))

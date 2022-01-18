@@ -1,37 +1,29 @@
-#define DOMINO_MIN_VALUE			1
-#define DOMINO_MAX_VALUE			8
-
-
 /proc/get_domino_value()
-	return pick(DOMINO_MIN_VALUE to DOMINO_MAX_VALUE)
+	return pick(1, 2, 3, 4, 5, 6, 7, 8)
+
 
 /proc/get_random_hex()
 	var/hex = ""
-	while(hex.len < 6)
+	while(length(hex) < 6)
 		hex += pick(hexdigits)
 	return hex
 
-/*
-	name = "Primus sequence"
-	value = SPECIES_HUMAN // species // SPECIES_HUMAN, SPECIES_SLIME, SPECIES_MONKEY, SPECIES_GOLEM
-	name = "Sanguinis sequence"
-	name = "Genus sequence"
-	value =	MALE // gender // all_genders_define_list // list(MALE, FEMALE, PLURAL, NEUTER)
-	name = "Aspectus sequence"
-	value =	"John Doe" // real_name
-	var/b_type // GLOB.blood_types // list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
-	var/dna_trace
-	hair_color, facial_color, skin_color, eyes_color
-*/
+
+/datum/computer_file/binary/animalgene
+	filetype = "ADNA"
+	size = 5
+	var/gene_type
+	var/gene_value
+
 
 /datum/mutation
-	var/name = "Unknown sequence"
+	var/name = "Unknown mutation"
 	var/desc = "Unknown function"
 	var/hex = "FFFFFF"
 	var/tier_num = 0 // 0, 1, 2, 3, 4
 	var/tier_string = "Nero" // "Nero", "Vespasian", "Tacitus", "Hadrian", "Aurelien"
 	var/NSA_load = 1 // How much NSA holder get if mutation is active
-	var/
+	var/is_active = FALSE
 	var/domino_r = 1
 	var/domino_l = 1
 
@@ -42,7 +34,7 @@
 	domino_l = get_domino_value()
 
 
-/datum/mutation/proc/activate(mob/living/carbon/user)
+/datum/mutation/proc/imprint(mob/living/carbon/user)
 	if(!istype(user))
 		return
 
@@ -58,7 +50,7 @@
 	user.metabolism_effects.adjust_nsa(NSA_load, "Mutation_[hex]_[name]")
 
 
-/datum/mutation/proc/deactivate(mob/living/carbon/user)
+/datum/mutation/proc/cleanse(mob/living/carbon/user)
 	if(!istype(user))
 		return
 
@@ -66,14 +58,7 @@
 	user.dormant_mutations |= src
 	user.metabolism_effects.remove_nsa("Mutation_[hex]_[name]")
 
-
-/datum/computer_file/binary/animalgene
-	filetype = "ADNA"
-	size = 10
-
-	var/referenced_datum = /datum/mutation/
-
-
-
-
-
+/mob/proc/GetMutation(M)
+	if(M in active_mutations)
+		return TRUE
+	return FALSE
