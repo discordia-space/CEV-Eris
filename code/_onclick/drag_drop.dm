@@ -22,6 +22,8 @@
 /atom/proc/CanMouseDrop(atom/over, var/mob/user = usr, var/incapacitation_flags = INCAPACITATION_DEFAULT)
 	if(!user || !over)
 		return FALSE
+	if(isghost(user))
+		return FALSE
 	if(user.incapacitated(incapacitation_flags))
 		return FALSE
 	if(!src.Adjacent(user) || !over.Adjacent(user))
