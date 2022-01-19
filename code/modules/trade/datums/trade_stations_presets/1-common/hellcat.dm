@@ -3,17 +3,20 @@
 		"FBV 'Hellcat'" = "\"Greetings. This is the Hellcat. We're currently escorting the Caduceus and we will be departing the system shortly alongside them. We are willing to part with our spare supplies while we're here.\""
 	)
 	icon_states = "ihs_destroyer"
+	uid = "guns_basic"
+	forced_overmap_zone = list(
+		list(15, 20),
+		list(20, 25)
+	)
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS * 1.5
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 32000
-	forced_overmap_zone = list(
-		list(15, 20),
-		list(20, 25)
-	)
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("fs_guns", "fs_ammo")
 	assortiment = list(
 		"Enforce Equipment" = list(
 			/obj/item/handcuffs,
@@ -73,8 +76,4 @@
 	offer_types = list(
 		/obj/item/part/gun = offer_data("gun part", 500, 0),					// base price: 300
 		/obj/item/part/armor = offer_data("armor part", 500, 0),				// base price: 300
-//		/obj/item/gun/projectile/automatic/type_17 = offer_data("Type XVII", 19000, 1)	// base price: 3800, 5x mult for rarity
-//		/obj/item/gun/projectile/type_42 = offer_data("Type XLII", 9000, 1)				// base price: 1800, 5x mult for rarity
-//		/obj/item/gun/projectile/type_47 = offer_data("Type XLVII", 14000, 1)			// base price: 2800, 5x mult for rarity
-//		/obj/item/gun/projectile/type_69 = offer_data("Type LXIX", 12500, 1)			// base price: 2500, 5x mult for rarity
 	)

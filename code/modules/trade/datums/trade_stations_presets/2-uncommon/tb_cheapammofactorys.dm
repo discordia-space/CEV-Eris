@@ -1,10 +1,20 @@
 /datum/trade_station/tb_cheapammofactory
-	spawn_always = TRUE
-	markup = COMMON_GOODS / 2
 	name_pool = list(
 		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus'\nCheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it is illegal enough!",
 		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa'\nAll ammunition in existence is here! Buy all calibers, all types! We don't sell anything illegal and everything comes from us! Cheap as breathing!",
 	)
+	uid = "fs_ammo"
+	start_discovered = FALSE
+	spawn_always = TRUE
+	markup = COMMON_GOODS / 2
+	markdown = 0
+	offer_limit = 20
+	base_income = 0
+	wealth = 0
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("fs_experimental")
+	recommendations_needed = 1
 	assortiment = list(
 		".35 Caliber"  = list(
 			/obj/item/ammo_magazine/slpistol,

@@ -2,13 +2,16 @@
 	name_pool = list(
 		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'"
 	)
+	uid = "techno_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 16000
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("techno_adv")
 	assortiment = list(
 		"BO3DYX" = list(
 			/obj/item/tank/air,
@@ -50,13 +53,11 @@
 			/obj/machinery/power/generator,
 			/obj/machinery/atmospherics/binary/circulator,
 			/obj/item/solar_assembly,
-//			/obj/item/tracker_electronics, // broken for now? This is even used for something?
 			/obj/machinery/field_generator
 		),
 		"BCRKAR BCR4NHA" = list(
 			/obj/machinery/pipedispenser/orderable,
 			/obj/machinery/pipedispenser/disposal/orderable,
-//			/obj/machinery/pipelayer, // is this unused for some reason? its broken????
 			/obj/item/cell/large,
 			/obj/item/cell/large/high,
 			/obj/structure/reagent_dispensers/watertank,
@@ -69,7 +70,4 @@
 		/obj/item/tool/crowbar/onestar = offer_data("onestar crowbar", 1000, 3),
 		/obj/item/tool/pickaxe/onestar = offer_data("onestar pickaxe", 1000, 3),
 		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1000, 3),
-		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 1000, 3),
-		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 1000, 3),
-		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1),
 	)

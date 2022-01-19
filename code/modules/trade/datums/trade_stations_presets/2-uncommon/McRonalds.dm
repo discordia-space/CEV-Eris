@@ -2,13 +2,17 @@
 	name_pool = list(
 		"CTB 'Dionis'" = "Corporate Trade Beacon of food chain 'McRonalds'. You hope they still have Happy Meals with a toy."
 	)
+	uid = "mcronalds"
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = UNCOMMON_GOODS
 	offer_limit = 30
-	base_income = 3200
+	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 32000
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("trapper")
+	recommendations_needed = 1
 	assortiment = list(
 		"Burgers" = list(
 			/obj/item/reagent_containers/food/snacks/bigbiteburger = custom_good_name("Big RBurger"),

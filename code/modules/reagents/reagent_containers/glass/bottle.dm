@@ -37,6 +37,41 @@
 	icon_state = "bottle"
 	preloaded_reagents = list("inaprovaline" = 60)
 
+/obj/item/reagent_containers/glass/bottle/clonexadone
+	name = "clonexadone bottle"
+	desc = "A small bottle. Contains clonexadone."
+	icon_state = "bottle"
+	preloaded_reagents = list("clonexadone" = 60)
+	spawn_blacklisted = TRUE	// These were made for the trade program. Blacklisting until otherwise to prevent unintended consequences.
+
+/obj/item/reagent_containers/glass/bottle/imidazoline
+	name = "imidazoline bottle"
+	desc = "A small bottle. Contains imidazoline."
+	icon_state = "bottle"
+	preloaded_reagents = list("imidazoline" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/alkysine
+	name = "alkysine bottle"
+	desc = "A small bottle. Contains alkysine."
+	icon_state = "bottle"
+	preloaded_reagents = list("alkysine" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/bicaridine
+	name = "bicaridine bottle"
+	desc = "A small bottle. Contains bicaridine."
+	icon_state = "bottle"
+	preloaded_reagents = list("bicaridine" = 60)
+	spawn_blacklisted = TRUE
+
+/obj/item/reagent_containers/glass/bottle/kelotane
+	name = "kelotane bottle"
+	desc = "A small bottle. Contains kelotane."
+	icon_state = "bottle"
+	preloaded_reagents = list("kelotane" = 60)
+	spawn_blacklisted = TRUE
+
 /obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
 	desc = "A small bottle of toxins. Do not drink, it is poisonous."

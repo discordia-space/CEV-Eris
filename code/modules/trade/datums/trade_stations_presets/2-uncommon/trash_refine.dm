@@ -1,11 +1,17 @@
 /datum/trade_station/lancer
-	name_pool = list("IRS 'Lancer'" = "IRS Trash Railgun 'Lancer'. They're sending a message. \"Hoho, you want some Trash?\"")
+	name_pool = list(
+		"IRS 'Lancer'" = "IRS Trash Railgun 'Lancer'. They're sending a message. \"Hoho, you want some Trash?\""
+	)
+	uid = "trash"
 	start_discovered = FALSE
 	spawn_always = TRUE
 	offer_limit = 20
-	base_income = 1600
+	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 16000
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("oddities")
+	recommendations_needed = 1
 	assortiment = list(
 		"Trash" = list(
 			/obj/spawner/scrap/dense = custom_good_amount_range(list(15, 60))
@@ -31,5 +37,6 @@
 			/obj/structure/scrap_spawner/poor/large = custom_good_amount_range(list(2,5)),
 		)
 	)
-	// TODO: offers
-
+	offer_types = list(
+		// TODO: offers
+	)

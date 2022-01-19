@@ -2,12 +2,15 @@
 	name_pool = list(
 		"ATB 'Vermouth'" = "Aster's Trade Beacon 'Vermouth':\nBest Drinks! Best Beverages! Ingredients for your cooks! Anything that is needed for your private bars and more!"
 	)
+	uid = "commissary"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 16000
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("mcronalds")
 	assortiment = list(
 		"Basic Ingredients" = list(
 			/obj/item/reagent_containers/food/condiment/flour,

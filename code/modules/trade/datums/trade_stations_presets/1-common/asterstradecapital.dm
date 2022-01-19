@@ -6,12 +6,15 @@
 		list(24, 26),
 		list(30, 30)
 	)
+	uid = "asterstradecapital"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 16000
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("casino")
 	assortiment = list(
 		"Disk Designs" = list(
 			/obj/item/computer_hardware/hard_drive/portable/design/tools = good_data("Asters Basic Tool Pack", list(1, 10)),
@@ -20,7 +23,6 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10)),
-//			/obj/item/storage/deferred/disks = custom_good_amount_range(list(1, 5))
 		),
 		"Tools and Equipment" = list(
 			/obj/item/clothing/suit/storage/hazardvest,
@@ -148,6 +150,4 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 500, 8),		// base price: 500
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8),			// base price: 1000
-		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 1800, 4),								// base price: 900
-		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8),								// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
 	)

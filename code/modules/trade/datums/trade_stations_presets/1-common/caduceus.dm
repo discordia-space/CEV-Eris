@@ -7,13 +7,16 @@
 		list(20, 22),
 		list(20, 25)
 	)
+	uid = "moe_basic"
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 24000
+	secret_inv_threshold = 8000
+	recommendation_threshold = 12000
+	stations_recommended = list("moe_adv")
 	assortiment = list(
 		"First Aid" = list(
 			/obj/item/storage/firstaid/regular,

@@ -1,8 +1,18 @@
 /datum/trade_station/fs_factory
-	name_pool = list("FSTB 'Kaida'" = "Frozen Star Trade Beacon 'Kaida'. Maybe they have an extra batch of weapons?")
+	name_pool = list(
+		"FSTB 'Kaida'" = "Frozen Star Trade Beacon 'Kaida'. Maybe they have an extra batch of weapons?"
+	)
+	uid = "fs_guns"
 	start_discovered = FALSE
 	spawn_always = TRUE
 	markup = RARE_GOODS		// dept-specific stuff should be more expensive for guild
+	offer_limit = 20
+	base_income = 0
+	wealth = 0
+//	secret_inv_threshold = 8000
+	recommendation_threshold = 8000
+	stations_recommended = list("fs_experimental", "illegal1")
+	recommendations_needed = 1
 	assortiment = list(
 		"Ammunition" = list(
 			/obj/item/ammo_magazine/ammobox/magnum = custom_good_amount_range(list(1, 10)),
@@ -29,4 +39,5 @@
 		),
 	)
 	offer_types = list(
+		// frames
 	)
