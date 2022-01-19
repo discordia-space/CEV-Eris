@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(trade)
 				return TRUE
 
 			if(istype(item_path, /obj/item/reagent_containers/blood))			// Blood pack check (needed because contents are populated using something other than preloaded_reagents)
-				if(current_container.reagent_list[1].id == "blood" && current_container.reagent_list[1].volume >= 200)
+				if(current_container.reagents?.reagent_list[1]?.id == "blood" && current_container.reagents?.reagent_list[1]?.volume >= 200)
 					return TRUE
 
 			if(current_container.preloaded_reagents?.len < 1)		// If a new instance of the container does not start with reagents and the offer is not a reagent, pass
