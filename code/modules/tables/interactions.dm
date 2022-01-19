@@ -68,6 +68,9 @@
 //Drag and drop onto tables
 //This is mainly so that janiborg can put things on tables
 /obj/structure/table/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+	if(!CanMouseDrop(A, user))
+		return
+
 	if(ismob(A.loc))
 		if (user.unEquip(A, loc))
 			set_pixel_click_offset(A, params)
