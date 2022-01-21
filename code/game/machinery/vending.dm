@@ -25,6 +25,12 @@
 
 	var/obj/tmp = path
 
+	if(istype(tmp, /obj/item/ammo_magazine))
+		// On New() magazine gets a proper name assigned
+		var/obj/item/ammo_magazine/AM = new tmp
+		product_name = AM.name
+		qdel(AM) // Don't need it anymore
+
 	if(!product_name)
 		product_name = initial(tmp.name)
 		if(ispath(tmp, /obj/item/computer_hardware/hard_drive/portable))
