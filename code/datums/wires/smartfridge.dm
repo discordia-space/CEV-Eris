@@ -2,9 +2,9 @@
 	holder_type = /obj/machinery/smartfridge
 	wire_count = 3
 	descriptions = list(
-		new /datum/wire_description(SMARTFRIDGE_WIRE_ELECTRIFY, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(SMARTFRIDGE_WIRE_THROW, "This wire leads to the item dispensor force controls."),
-		new /datum/wire_description(SMARTFRIDGE_WIRE_IDSCAN, "This wire is connected to the ID scanning panel.")
+		new /datum/wire_description(SMARTFRIDGE_WIRE_ELECTRIFY, "Shock"),
+		new /datum/wire_description(SMARTFRIDGE_WIRE_THROW, "Failsafe"),
+		new /datum/wire_description(SMARTFRIDGE_WIRE_IDSCAN, "ID scanner")
 	)
 
 /datum/wires/smartfridge/secure
@@ -24,9 +24,9 @@ var/const/SMARTFRIDGE_WIRE_IDSCAN		= 4
 		return 1
 	return 0
 
-/datum/wires/smartfridge/GetInteractWindow()
+/datum/wires/smartfridge/GetInteractWindow(mob/living/user)
 	var/obj/machinery/smartfridge/S = holder
-	. += ..()
+	. += ..(user)
 	. += "<BR>The orange light is [S.seconds_electrified ? "off" : "on"].<BR>"
 	. += "The red light is [S.shoot_inventory ? "off" : "blinking"].<BR>"
 	. += "A [S.scan_id ? "purple" : "yellow"] light is on.<BR>"

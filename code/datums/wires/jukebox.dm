@@ -14,8 +14,8 @@
 	holder_type = /obj/machinery/media/jukebox
 	wire_count = 10
 	descriptions = list(
-		new /datum/wire_description(WIRE_MAIN_POWER1, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(WIRE_POWER, "This wire seems to be carrying a heavy current."),
+		new /datum/wire_description(WIRE_MAIN_POWER1, "Shock"),
+		new /datum/wire_description(WIRE_POWER, "Power"),
 	)
 
 /datum/wires/jukebox/CanUse(mob/user)
@@ -25,9 +25,9 @@
 	return FALSE
 
 // Show the status of lights as a hint to the current state
-/datum/wires/jukebox/GetInteractWindow()
+/datum/wires/jukebox/GetInteractWindow(mob/living/user)
 	var/obj/machinery/media/jukebox/A = holder
-	. = ..()
+	. = ..(user)
 	. += "<br>\n The power light is [A.stat & (BROKEN|NOPOWER) ? "off." : "on."]"
 	. += "<br>\n The parental guidance light is [A.hacked ? "off." : "on."]"
 	. += "<br>\n The data light is [IsIndexCut(WIRE_REVERSE) ? "hauntingly dark." : "glowing softly."]"

@@ -239,7 +239,7 @@
 			else
 				dat += "<A href='byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
 
-			dat += wires.GetInteractWindow()
+			dat += wires.GetInteractWindow(user)
 		else
 			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
 

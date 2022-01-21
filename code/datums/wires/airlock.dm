@@ -8,18 +8,18 @@
 	wire_count = 12
 	window_y = 570
 	descriptions = list(
-		new /datum/wire_description(AIRLOCK_WIRE_IDSCAN, "This wire is connected to the ID scanning panel."),
-		new /datum/wire_description(AIRLOCK_WIRE_MAIN_POWER1, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(AIRLOCK_WIRE_MAIN_POWER2, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(AIRLOCK_WIRE_DOOR_BOLTS, "This wire runs down to the very base of the airlock."),
-		new /datum/wire_description(AIRLOCK_WIRE_BACKUP_POWER1, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(AIRLOCK_WIRE_BACKUP_POWER2, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(AIRLOCK_WIRE_OPEN_DOOR, "This wire connects to the door motors."),
-		new /datum/wire_description(AIRLOCK_WIRE_AI_CONTROL, "This wire connects to automated control systems."),
-		new /datum/wire_description(AIRLOCK_WIRE_ELECTRIFY, "This wire seems to be carrying a heavy current."),
-		new /datum/wire_description(AIRLOCK_WIRE_SAFETY, "This wire connects to a safety override."),
-		new /datum/wire_description(AIRLOCK_WIRE_SPEED, "This wire appears to connect to the airlock's proximity detector modules."),
-		new /datum/wire_description(AIRLOCK_WIRE_LIGHT, "This wire powers the airlock's built-in lighting.")
+		new /datum/wire_description(AIRLOCK_WIRE_IDSCAN, "ID scanner"),
+		new /datum/wire_description(AIRLOCK_WIRE_MAIN_POWER1, "Main power"),
+		new /datum/wire_description(AIRLOCK_WIRE_MAIN_POWER2, "Auxiliary power"),
+		new /datum/wire_description(AIRLOCK_WIRE_DOOR_BOLTS, "Bolts"),
+		new /datum/wire_description(AIRLOCK_WIRE_BACKUP_POWER1, "Backup power"),
+		new /datum/wire_description(AIRLOCK_WIRE_BACKUP_POWER2, "Backup power"),
+		new /datum/wire_description(AIRLOCK_WIRE_OPEN_DOOR, "Motors"),
+		new /datum/wire_description(AIRLOCK_WIRE_AI_CONTROL, "Remote access"),
+		new /datum/wire_description(AIRLOCK_WIRE_ELECTRIFY, "Shock"),
+		new /datum/wire_description(AIRLOCK_WIRE_SAFETY, "Failsafe"),
+		new /datum/wire_description(AIRLOCK_WIRE_SPEED, "Proximity sensor"),
+		new /datum/wire_description(AIRLOCK_WIRE_LIGHT, "Bolt lights")
 	)
 
 var/const/AIRLOCK_WIRE_IDSCAN = 1
@@ -45,11 +45,11 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 		return 1
 	return 0
 
-/datum/wires/airlock/GetInteractWindow()
+/datum/wires/airlock/GetInteractWindow(mob/living/user)
 	var/obj/machinery/door/airlock/A = holder
 	var/haspower = A.arePowerSystemsOn() //If there's no power, then no lights will be on.
 
-	. += ..()
+	. += ..(user)
 	. += text("<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]",
 	(A.locked ? "The door bolts have fallen!" : "The door bolts look up."),
 	((A.lights && haspower) ? "The door bolt lights are on." : "The door bolt lights are off!"),
