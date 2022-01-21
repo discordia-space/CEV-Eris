@@ -176,6 +176,7 @@ var/list/despised = list()
 			H.sanity.negative_prob += 30
 			H.sanity.positive_prob = 0
 			H.sanity.level = 0
+			H.max_style = MIN_HUMAN_STYLE
 			for(var/stat in ALL_STATS)
 				H.stats.changeStat(stat, -10)
 			to_chat(H, SPAN_DANGER("The shadows seem to lengthen, the walls are closing in. The ship itself wants you dead."))

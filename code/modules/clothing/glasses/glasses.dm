@@ -3,6 +3,7 @@
 	icon = 'icons/inventory/eyes/icon.dmi'
 	spawn_tags = SPAWN_TAG_GLASSES
 	bad_type = /obj/item/clothing/glasses
+	style_coverage = COVERS_EYES
 	var/prescription = FALSE
 	var/toggleable = FALSE
 	var/off_state = "black_goggles"

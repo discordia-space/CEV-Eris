@@ -105,42 +105,66 @@
 		if (HUDtech.Find("flash"))
 			flick("flash", HUDtech["flash"])
 
-	var/shielded = 0
-	var/b_loss
-	var/f_loss
+	var/b_loss = 0
 	var/bomb_defense = getarmor(null, ARMOR_BOMB) + mob_bomb_defense
-	var/target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
+	var/target_turf // null means epicenter is same tile
+	if (epicenter != get_turf(src))
+		target_turf = get_turf_away_from_target_simple(src, epicenter, 8)
 	var/throw_distance = 8 - 2*severity
-	throw_at(target_turf, throw_distance, 5)
-	Weaken(severity) // If they don't get knocked out , weaken them for a bit.
+	var/not_slick = TRUE
+	if (target_turf) // this means explosions on the same tile will not fling you
+		throw_at(target_turf, throw_distance, 5)
+		not_slick = FALSE // only explosions that fling you can be survived with slickness
+	if (slickness < (9-(2*severity)) * 10)
+		Weaken(severity) // If they don't get knocked out , weaken them for a bit.
+		not_slick = TRUE // if you don't have enough slickness, you can't safely ride the boom
+	else
+		slickness -= (9-(2*severity)) * 10 // awesome feats aren't something you can do constantly.
 
 	switch (severity)
 		if (1)
-			b_loss += 500
-			if (!prob(bomb_defense))
-				gib()
-				return
-		if (2)
-			if (!shielded)
-				b_loss += 150
+			if (not_slick)
+				b_loss += 500
+				if (!prob(bomb_defense))
+					gib()
+					return
+			else
+				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
+				dodge_time = get_game_time()
+				confidence = FALSE
+				slickness = 0 // this most likely would otherwise gib src, so it empties slickness.
 
-			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(30,120)
+		if (2)
+			if (not_slick)
+				b_loss = 150
+				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+					adjustEarDamage(30,120)
+			else
+				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
+				dodge_time = get_game_time()
+				confidence = FALSE
 
 		if(3)
-			b_loss += 100
-			if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
-				adjustEarDamage(15,60)
+			if (not_slick)
+				b_loss += 100
+				if (!istype(l_ear, /obj/item/clothing/ears/earmuffs) && !istype(r_ear, /obj/item/clothing/ears/earmuffs))
+					adjustEarDamage(15,60)
+			else
+				visible_message(SPAN_WARNING("[src] rides the shockwave!"))
+				dodge_time = get_game_time()
+				confidence = FALSE
+
+
 
 
 	if (bomb_defense)
 		b_loss = max(b_loss - bomb_defense, 0)
-		f_loss = max(f_loss - bomb_defense, 0)
 
 	var/organ_hit = BP_CHEST //Chest is hit first
-	var/exp_damage
+	var/exp_damage = 0
 	while (b_loss > 0)
-		b_loss -= exp_damage = rand(0, b_loss)
+		b_loss -= exp_damage
+		exp_damage = rand(0, b_loss)
 		src.apply_damage(exp_damage, BRUTE, organ_hit)
 		organ_hit = pickweight(list(BP_HEAD = 0.2, BP_GROIN = 0.2, BP_R_ARM = 0.1, BP_L_ARM = 0.1, BP_R_LEG = 0.1, BP_L_LEG = 0.1))  //We determine some other body parts that should be hit
 
@@ -689,6 +713,9 @@ var/list/rank_prefix = list(\
 
 				adjustNutrition(-40)
 				adjustToxLoss(-3)
+				regen_slickness(-1)
+				dodge_time = get_game_time()
+				confidence = FALSE
 				spawn(350)	//wait 35 seconds before next volley
 					lastpuke = 0
 
@@ -1402,6 +1429,9 @@ var/list/rank_prefix = list(\
 	if((species.flags & NO_SLIP) || (shoes && (shoes.item_flags & NOSLIP)))
 		return 0
 	..(slipped_on,stun_duration)
+	regen_slickness(-1)
+	dodge_time = get_game_time()
+	confidence = FALSE
 
 /mob/living/carbon/human/trip(tripped_on, stun_duration)
 	if(buckled)

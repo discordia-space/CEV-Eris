@@ -23,13 +23,9 @@
 	new /obj/item/clothing/mask/smokable/cigarette/cigar/havana(src.loc)
 	new /obj/item/clothing/shoes/jackboots(src.loc)
 
-/obj/landmark/costume/nyangirl/New()
-	new /obj/item/clothing/under/schoolgirl(src.loc)
-	new /obj/item/clothing/head/kitty(src.loc)
 
 /obj/landmark/costume/maid/New()
-	var/CHOICE = pick( /obj/item/clothing/head/beret , /obj/item/clothing/head/rabbitears )
-	new CHOICE(src.loc)
+	new /obj/item/clothing/head/beret(src.loc)
 	new /obj/item/clothing/glasses/sunglasses/blindfold(src.loc)
 
 /obj/landmark/costume/butler/New()
@@ -58,11 +54,7 @@
 	new /obj/item/clothing/under/owl(src.loc)
 	new /obj/item/clothing/mask/gas/owl_mask(src.loc)
 
-/obj/landmark/costume/waiter/New()
-	new /obj/item/clothing/under/waiter(src.loc)
-	var/CHOICE= pick( /obj/item/clothing/head/kitty, /obj/item/clothing/head/rabbitears)
-	new CHOICE(src.loc)
-	new /obj/item/clothing/suit/apron(src.loc)
+
 
 /obj/landmark/costume/pirate/New()
 	new /obj/item/clothing/under/pirate(src.loc)

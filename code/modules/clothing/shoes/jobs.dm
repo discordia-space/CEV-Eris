@@ -7,6 +7,7 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN + 1
 	species_restricted = null
+	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"
@@ -65,6 +66,7 @@
 	siemens_coefficient = 0
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	can_hold_knife = TRUE
+	style = STYLE_NEG_HIGH
 
 /obj/item/clothing/shoes/artist_shoes
 	name = "Pointy Shoes"

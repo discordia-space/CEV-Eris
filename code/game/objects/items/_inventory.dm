@@ -84,15 +84,18 @@
 
 
 
-/obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
+/obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = FALSE)
+	if(!slot) return FALSE
+	if(!M) return FALSE
 
 	if(!canremove)
-		return 0
+		return FALSE
+	var/mob/living/carbon/human/attached_to = M
+	if (istype(attached_to) && attached_to.is_item_attached(src))
+		return FALSE
 	if(!M.slot_is_accessible(slot, src, disable_warning? null : M))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 
 /obj/item/proc/is_equipped()

@@ -32,7 +32,7 @@
 	recoil_reduction_timer = addtimer(CALLBACK(src, .proc/calc_recoil), 0.3 SECONDS, TIMER_STOPPABLE)
 
 /mob/living/proc/update_cursor()
-	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES)
+	if(get_preference_value(/datum/client_preference/gun_cursor) != GLOB.PREF_YES || !(istype(get_active_hand(), /obj/item/gun) || recoil > 0))
 		remove_cursor()
 		return
 	if(client)

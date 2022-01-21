@@ -2,6 +2,7 @@
 	name = "fancy uniform"
 	desc = "It looks like it was tailored for a monkey."
 	icon_state = "punpun"
+	style = STYLE_LOW
 
 	species_restricted = list("Monkey")
 

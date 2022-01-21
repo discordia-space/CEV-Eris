@@ -424,25 +424,52 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
-	for(var/obj/item/clothing/C in get_equipped_items())
-		style_factor += C.get_style()
+	var/suit_coverage = 0 // what a suit blocks from view
+	var/head_coverage = 0 // what a helmet or mask blocks from view
+	if (istype(wear_suit, /obj/item/clothing))
+		var/obj/item/clothing/suit/worn_suit = wear_suit // clothing has style_coverage.
+		suit_coverage = worn_suit.style_coverage
+		style_factor += worn_suit.get_style()
+	if (istype(head, /obj/item/clothing))
+		var/obj/item/clothing/suit/worn_hat = head
+		head_coverage = worn_hat.style_coverage
+		style_factor += worn_hat.get_style()
+	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
+		var/obj/item/clothing/mask/worn_mask = wear_mask
+		head_coverage |= worn_mask.style_coverage
+		style_factor += worn_mask.get_style()
+	if (!(head_coverage & COVERS_EARS))
+		if (l_ear && !istype(l_ear, /obj/item/clothing/ears/offear)) // so we don't count earmuffs twice
+			style_factor += l_ear.get_style()
+		if (r_ear && !istype(r_ear, /obj/item/clothing/ears/offear))
+			style_factor += r_ear.get_style()
+	if (glasses && !(head_coverage & COVERS_EYES))
+		style_factor += glasses.get_style()
+	if (gloves && !(suit_coverage & COVERS_FOREARMS))
+		style_factor += gloves.get_style()
+	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
+		style_factor += w_uniform.get_style()
+	if (shoes && !(suit_coverage & COVERS_FORELEGS))
+		style_factor += shoes.get_style()
+	if (back)
+		style_factor += back.get_style() // back and belt can't be covered
+	if (belt)
+		style_factor += belt.get_style()
+
 	if(restrained())
 		style_factor -= 1
 	if(feet_blood_DNA)
 		style_factor -= 1
 	if(blood_DNA)
 		style_factor -= 1
-	if(style_factor > MAX_HUMAN_STYLE)
-		style_factor = MAX_HUMAN_STYLE
-	else if(style_factor < MIN_HUMAN_STYLE)
-		style_factor = MIN_HUMAN_STYLE
+	style_factor = clamp(style_factor, MIN_HUMAN_STYLE, max_style) // if the ship wants you dead, you are NOT stylish.
 	return style_factor
 
 /mob/living/carbon/human/proc/get_style_factor()
 	var/style_factor = 1
-	var/actual_style = get_total_style()
-	if(actual_style >= 0)
-		style_factor += STYLE_MODIFIER * actual_style/MAX_HUMAN_STYLE
+	style = get_total_style()
+	if(style >= 0)
+		style_factor += STYLE_MODIFIER * style/MAX_HUMAN_STYLE
 	else
-		style_factor -= STYLE_MODIFIER * actual_style/MIN_HUMAN_STYLE
+		style_factor -= STYLE_MODIFIER * style/MIN_HUMAN_STYLE
 	return style_factor

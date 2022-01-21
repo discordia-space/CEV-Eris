@@ -106,6 +106,12 @@
 		if(user.a_intent == I_HURT)
 			if(prob(15))
 				target.Weaken(5)
+			if (ishuman(target))
+				var/mob/living/carbon/human/depleted = target
+				depleted.regen_slickness(-1)
+			if (ishuman(user))
+				var/mob/living/carbon/human/stylish = user
+				stylish.regen_slickness()
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			visible_message(SPAN_DANGER("[user] slams [target]'s face against \the [src]!"))
 			target.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been slammed by [user.name] ([user.ckey] against \the [src])</font>"
@@ -130,6 +136,14 @@
 			to_chat(user, SPAN_DANGER("You need a better grip to do that!"))
 			return
 	else
+		if (ishuman(target))
+			var/mob/living/carbon/human/depleted = target
+			depleted.regen_slickness(-1)
+			depleted.confidence = FALSE
+			depleted.dodge_time = get_game_time()
+		if (ishuman(user))
+			var/mob/living/carbon/human/stylish = user
+			stylish.regen_slickness()
 		target.forceMove(loc)
 		target.Weaken(5)
 		visible_message(SPAN_DANGER("[user] puts [target] on \the [src]."))

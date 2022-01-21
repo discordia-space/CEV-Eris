@@ -10,7 +10,7 @@
 	layer = MASSIVE_OBJ_LAYER
 	//light_range = 6
 	unacidable = 1 //Don't comment this out.
-	allow_spin = 0
+	allow_spin = FALSE
 	var/current_size = 1
 	var/allowed_size = 1
 	var/contained = 1 //Are we going to move around?

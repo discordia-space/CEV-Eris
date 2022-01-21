@@ -35,6 +35,7 @@
 	var/slowdown_time = 1
 	var/shield_integrity = 100
 	var/shield_difficulty = 60
+	style = STYLE_NEG_HIGH
 
 /obj/item/shield/examine(var/mob/user)
 	. = ..()

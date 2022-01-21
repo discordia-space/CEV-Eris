@@ -18,6 +18,7 @@
 		slot_r_hand_str = "caphat",
 		)
 	body_parts_covered = 0
+	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/caphat/cap
 	name = "captain's cap"
@@ -54,12 +55,14 @@
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/preacher
 	name = "preacher hat"
 	desc = "Useful for hiding disdainful eyes from the godless masses."
 	icon_state = "church_hat"
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_EYES|COVERS_HAIR
 
 //Mime
 /obj/item/clothing/head/beret
@@ -68,6 +71,7 @@
 	icon_state = "beret"
 	body_parts_covered = 0
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_HAIR
 
 //Security
 /obj/item/clothing/head/beret/sec/navy/officer
@@ -115,6 +119,8 @@
 	flags_inv = BLOCKHEADHAIR
 	bad_type = /obj/item/clothing/head/surgery
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_HAIR
+	style = STYLE_LOW
 
 /obj/item/clothing/head/surgery/purple
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is deep purple."
