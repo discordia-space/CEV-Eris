@@ -39,10 +39,3 @@
 	siemens_coefficient = 0
 	equip_delay = 10 SECONDS
 	price_tag = 300
-
-/obj/item/clothing/head/space/bomb/security
-	icon_state = "bombsuitsec"
-
-/obj/item/clothing/suit/space/bomb/security
-	icon_state = "bombsuitsec"
-	spawn_blacklisted = TRUE
