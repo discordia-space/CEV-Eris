@@ -37,9 +37,6 @@
 /obj/item/clothing/head/space/void
 	rarity_value = 43.0556
 
-/obj/item/clothing/head/space/bomb/security
-	rarity_value = 62.2222
-
 /obj/item/clothing/head/space/bomb
 	rarity_value = 62.2222
 

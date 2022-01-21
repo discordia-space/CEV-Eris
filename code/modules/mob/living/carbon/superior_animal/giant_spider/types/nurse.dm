@@ -23,7 +23,7 @@
 	var/fed = 0
 	var/egg_inject_chance = 4
 
-/mob/living/carbon/superior_animal/giant_spider/nurse/attemptAttackOnTarget()
+/mob/living/carbon/superior_animal/giant_spider/nurse/UnarmedAttack()
 	..()
 	if(ishuman(target_mob))
 		var/mob/living/carbon/human/H = target_mob
