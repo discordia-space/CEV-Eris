@@ -82,7 +82,6 @@
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
-	slowdown = 1
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -101,6 +100,8 @@
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_WHOLE_TORSO_AND_LIMBS
 	var/list/supporting_limbs //If not-null, automatically splints breaks. Checked when removing the suit.
+	slowdown = HEAVY_SLOWDOWN * 0.5
+	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/suit/space/equipped(mob/M)
 	check_limb_support()

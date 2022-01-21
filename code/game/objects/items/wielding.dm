@@ -4,7 +4,7 @@
 	var/wielded = FALSE //Whether or not it's wielded.
 	var/wieldsound = 'sound/weapons/thudswoosh.ogg' //Generic sound. Replace it with a special one if you have one.
 	var/unwieldsound //If you want it to make a sound when you unwield, put one here.
-	var/wielded_icon //The item state used when it's weilded. Guns are snowflakey and have their own shit for this. This is for non guns.
+	var/wielded_icon //The item state used when it's wielded. Guns are snowflakey and have their own shit for this. This is for non guns.
 	var/force_wielded_multiplier = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
 
 
