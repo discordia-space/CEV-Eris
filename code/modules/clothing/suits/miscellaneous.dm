@@ -416,16 +416,17 @@
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
 	armor = list(
-		melee = 40,
-		bullet = 35,
+		melee = 50,
+		bullet = 45,
 		energy = 25,
-		bomb = 10,
+		bomb = 15,
 		bio = 50,
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	siemens_coefficient = 0.7
 	spawn_blacklisted = TRUE
+	style = STYLE_NEG_LOW
 
 /obj/item/clothing/suit/storage/scavengerarmor/New()
 	..()
@@ -450,6 +451,7 @@
 	)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	price_tag = 1000
+	style = STYLE_HIGH
 
 /obj/item/clothing/suit/storage/triad/New()
 	..()
@@ -472,4 +474,5 @@
 		rad = 0
 	)
 	body_parts_covered = UPPER_TORSO|ARMS
+	style = STYLE_HIGH
 	price_tag = 400
