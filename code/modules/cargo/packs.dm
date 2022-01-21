@@ -1599,7 +1599,7 @@ var/list/all_supply_groups = list("Operations","Security","Hospitality","Enginee
 					/obj/spawner/cloth/holster,
 					/obj/spawner/cloth/holster)
 	name = "Surplus Unform Holsters"
-	cost = 8000
+	cost = 800
 	crate_name = "Surplus Uniform Holsters Crate"
 	containertype = /obj/structure/closet/crate
 	group = "Operations"
