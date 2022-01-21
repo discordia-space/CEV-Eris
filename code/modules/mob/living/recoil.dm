@@ -1,6 +1,6 @@
 /mob/living/proc/handle_recoil(var/obj/item/gun/G)
 	deltimer(recoil_reduction_timer)
-	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not weilded.
+	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not wielded.
 		if(!G.wielded)
 			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
 
