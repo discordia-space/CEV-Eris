@@ -142,8 +142,8 @@
 		),
 	)
 	offer_types = list(
-		/obj/item/mech_component/ = offer_data("mech component", 150, 10),															// base price: 150
-		/obj/item/mech_equipment/ = offer_data("mech equipment", 200, 10),															// base price: 200
+		/obj/item/mech_component = offer_data("mech component", 150, 10),															// base price: 150
+		/obj/item/mech_equipment = offer_data("mech equipment", 200, 10),															// base price: 200
 		/obj/item/robot_parts/robot_component/armour/exosuit/plain = offer_data("exosuit armor plating", 300, 8),					// base price: 300
 		/obj/item/robot_parts/robot_component/armour/exosuit/radproof = offer_data("rad-proof exosuit armor plating", 500, 8),		// base price: 500
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
