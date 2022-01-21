@@ -109,7 +109,7 @@
 			/mob/living/exosuit/premade/powerloader/flames_red,
 			/mob/living/exosuit/premade/light,
 			/mob/living/exosuit/premade/heavy,
-			/mob/living/exosuit/premade/combat/slayer,
+			/mob/living/exosuit/premade/combat/slayer
 		),
 		"Mech Armor" = list(
 			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
