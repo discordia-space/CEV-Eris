@@ -279,12 +279,18 @@
 							playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 							visible_message(SPAN_WARNING("[M] attempted to disarm [src]"))
 							return
+					if (ishuman(M))
+						var/mob/living/carbon/human/stylish = M
+						stylish.regen_slickness() // disarming your opponent looks slick
+					regen_slickness(-1) // being disarmed looks clumsy
+					dodge_time = get_game_time()
+					confidence = FALSE
 					if(istype(I, /obj/item/twohanded/offhand)) //did someone dare to switch to offhand to not get disarmed?
 						unEquip(src.get_inactive_hand())
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
-					else 
+					else
 						unEquip(I)
 						visible_message(SPAN_DANGER("[M] has disarmed [src]!"))
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -371,4 +377,4 @@
 		spawn(1)
 			qdel(rgrab)
 	return success
-	
+  

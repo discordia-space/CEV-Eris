@@ -12,6 +12,7 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+	style_coverage = COVERS_WHOLE_FACE
 	var/gas_filter_strength = 1			//For gas mask filters
 	var/list/filtered_gases = list("plasma", "sleeping_agent")
 	armor = list(
@@ -49,7 +50,7 @@
 	icon_state = "plaguedoctor"
 	item_state = "gas_mask"
 	body_parts_covered = HEAD|FACE|EYES
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/swat
 	name = "\improper SWAT mask"
@@ -124,7 +125,7 @@
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -138,7 +139,7 @@
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
-	style = STYLE_NONE
+	style = STYLE_LOW
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"

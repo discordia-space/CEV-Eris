@@ -16,6 +16,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
 	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_HAIR
 
 /*
  * Helmets
@@ -62,6 +63,7 @@
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -95,6 +97,7 @@
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
@@ -163,6 +166,7 @@
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -279,6 +283,7 @@
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
@@ -296,6 +301,7 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	bad_type = /obj/item/clothing/head/armor/faceshield
+	style_coverage = COVERS_HAIR|COVERS_EARS
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
@@ -330,12 +336,14 @@
 		tint = initial(tint)
 		flags_inv = initial(flags_inv)
 		body_parts_covered = initial(body_parts_covered)
+		style_coverage = initial(style_coverage)
 	else
 		armor = getArmor(arglist(armor_down))
 		flash_protection = flash_protection_down
 		tint = tint_down
 		flags_inv = flags_inv_down
 		body_parts_covered = body_parts_covered_down
+		style_coverage = COVERS_WHOLE_HEAD
 
 	update_icon()
 	update_wear_icon()	//update our mob overlays
@@ -381,6 +389,7 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -485,6 +494,7 @@
 		bio = 0,
 		rad = 0
 	)
+	style_coverage = COVERS_FACE|COVERS_HAIR
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
 	name = "\improper Type-34 Semi-Enclosed Headwear"
@@ -515,6 +525,7 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker
 	name = "black tanker helmet"
@@ -574,7 +585,6 @@
 		rad = 50)
 	up = TRUE
 	spawn_blacklisted = TRUE
-	style = STYLE_HIGH
 	tint_down = TINT_LOW
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
@@ -616,6 +626,7 @@
 
 	if(!ishuman(loc))
 		return
+
 
 	var/mob/living/carbon/human/user = loc
 

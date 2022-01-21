@@ -8,6 +8,8 @@
 	desc = "It's good to be emperor."
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
+	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/hairflower
 	name = "hair flower pin"
@@ -29,13 +31,14 @@
 	item_state = "tophat"
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
-
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/mailman
 	name = "station cap"
 	icon_state = "mailman"
 	desc = "<i>Choo-choo</i>!"
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
@@ -44,6 +47,7 @@
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/hasturhood
 	name = "hastur's hood"
@@ -51,6 +55,8 @@
 	icon_state = "hasturhood"
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
+	style = STYLE_HATHATHAT
+	style_coverage = COVERS_WHOLE_FACE
 
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
@@ -71,6 +77,7 @@
 	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
 	item_flags = COVER_PREVENT_MANIPULATION
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/bandana/green
 	name = "green bandana"
@@ -79,6 +86,7 @@
 	item_state = "greenbandana"
 	flags_inv = 0
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/cardborg
 	name = "cardborg helmet"
@@ -87,6 +95,7 @@
 	item_state = "cardborg_h"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
 	body_parts_covered = HEAD|FACE|EYES
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/justice
 	name = "justice hat"
@@ -94,6 +103,7 @@
 	icon_state = "justicered"
 	flags_inv = BLOCKHAIR
 	body_parts_covered = HEAD|EYES
+	style_coverage = COVERS_WHOLE_FACE
 
 /obj/item/clothing/head/justice/blue
 	icon_state = "justiceblue"
@@ -107,11 +117,6 @@
 /obj/item/clothing/head/justice/pink
 	icon_state = "justicepink"
 
-/obj/item/clothing/head/rabbitears
-	name = "rabbit ears"
-	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
-	icon_state = "bunny"
-	body_parts_covered = 0
 
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
@@ -128,18 +133,21 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/hgpiratecap
 	name = "pirate hat"
 	desc = "Yarr."
 	icon_state = "hgpiratecap"
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/bandana
 	name = "pirate bandana"
 	desc = "Yarr."
 	icon_state = "bandana"
 	flags_inv = BLOCKHEADHAIR
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
@@ -159,6 +167,7 @@
 	name = "beaver hat"
 	icon_state = "beaver_hat"
 	desc = "Soft felt makes this hat both comfortable and elegant."
+	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/boaterhat
 	name = "boater hat"
@@ -169,11 +178,13 @@
 	name = "fedora"
 	icon_state = "fedora"
 	desc = "A sharp, stylish hat."
+	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/feathertrilby
 	name = "feather trilby"
 	icon_state = "feather_trilby"
 	desc = "A sharp, stylish hat with a feather."
+	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/fez
 	name = "fez"
@@ -188,6 +199,7 @@
 	icon_state = "witch"
 	flags_inv = BLOCKHEADHAIR
 	siemens_coefficient = 2
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/chicken
 	name = "chicken suit head"
@@ -200,6 +212,7 @@
 	flags_inv = BLOCKHAIR
 	siemens_coefficient = 0.7
 	body_parts_covered = HEAD|FACE|EYES
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/bearpelt
 	name = "bear pelt hat"
@@ -207,6 +220,7 @@
 	icon_state = "bearpelt"
 	flags_inv = BLOCKHEADHAIR
 	siemens_coefficient = 0.7
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/xenos
 	name = "xenos helmet"
@@ -219,6 +233,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/philosopher_wig
 	name = "natural philosopher's wig"
@@ -231,12 +246,14 @@
 	flags_inv = BLOCKHEADHAIR
 	siemens_coefficient = 2 //why is it so conductive?!
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/bandana/orange //themij: Taryn Kifer
 	name = "orange bandana"
 	desc = "An orange piece of cloth, worn on the head."
 	icon_state = "orange_bandana"
 	body_parts_covered = 0
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/gladiator
 	name = "gladiator helmet"
@@ -246,6 +263,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EARS
 	siemens_coefficient = 1
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/beret/german
 	name = "Oberth Republic beret"
@@ -285,6 +303,7 @@
 		bio = 20,
 		rad = 25
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/skull
 	name = "white skull"
@@ -302,6 +321,7 @@
 		bio = 0,
 		rad = 0
 	)
+	style_coverage = COVERS_WHOLE_FACE
 
 /obj/item/clothing/head/skull/black
 	name = "black skull"
@@ -325,3 +345,5 @@
 		bio = 0,
 		rad = 0
 	)
+	style_coverage = COVERS_WHOLE_FACE
+	style = STYLE_HATHATHAT
