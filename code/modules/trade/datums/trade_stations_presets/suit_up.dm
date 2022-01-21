@@ -133,7 +133,7 @@
 			/obj/item/clothing/head/collectable/xenom,
 			/obj/item/clothing/head/collectable/petehat,
 			/obj/item/clothing/head/collectable/festive
-		),
+		)
 	)
 	secret_inventory = list(
 		"Voidsuits" = list(
@@ -168,7 +168,7 @@
 			/obj/item/rig_module/vision/nvg,
 			/obj/item/rig_module/vision/sechud,
 			/obj/item/rig_module/vision/medhud
-		),
+		)
 	)
 	offer_types = list(
 		/obj/item/rig_module = offer_data("rig module", 500, 0),							// base price: 500
@@ -177,5 +177,5 @@
 		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 4),	// base price: 882 (incl. components)
 		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 4),					// base price: 882 (incl. components)
 		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 4),		// base price: 1032 (incl. components)
-		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1),
+		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1)
 	)

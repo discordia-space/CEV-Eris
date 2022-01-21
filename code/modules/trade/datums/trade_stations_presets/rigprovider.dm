@@ -36,5 +36,5 @@
 			/obj/item/rig_module/vision/nvg,
 			/obj/item/rig_module/vision/sechud,
 			/obj/item/rig_module/vision/medhud
-		),
+		)
 	)

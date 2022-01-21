@@ -46,7 +46,7 @@
 			/obj/item/oddity/common/lighter = custom_good_amount_range(list(-1, 2)),
 			/obj/item/oddity/common/device = custom_good_amount_range(list(-1, 2)),
 			/obj/item/oddity/common/old_radio = custom_good_amount_range(list(-1, 2)),
-			/obj/item/oddity/common/paper_bundle = custom_good_amount_range(list(-1, 2)),
+			/obj/item/oddity/common/paper_bundle = custom_good_amount_range(list(-1, 2))
 		)
 	)
 	// TODO: Better offers
@@ -54,5 +54,5 @@
 		/obj/item/reagent_containers/food/snacks/margheritaslice = offer_data("margherita pizza slice", 200, 8),
 		/obj/item/reagent_containers/food/snacks/meatpizzaslice = offer_data("meat pizza slice", 200, 8),
 		/obj/item/reagent_containers/food/snacks/mushroompizzaslice = offer_data("mushroom pizza slice", 200, 8),
-		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice = offer_data("veggie pizza slice", 200, 8),
+		/obj/item/reagent_containers/food/snacks/vegetablepizzaslice = offer_data("veggie pizza slice", 200, 8)
 	)

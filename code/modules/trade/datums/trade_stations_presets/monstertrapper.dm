@@ -18,14 +18,14 @@
 			/obj/item/reagent_containers/food/snacks/roachcube/jager = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/seuche = custom_good_amount_range(list(1, 5)),
 			/obj/item/reagent_containers/food/snacks/roachcube/panzer = custom_good_amount_range(list(1, 5)),
-			/obj/item/reagent_containers/food/snacks/roachcube/gestrahlte = custom_good_amount_range(list(1, 5)),
+			/obj/item/reagent_containers/food/snacks/roachcube/gestrahlte = custom_good_amount_range(list(1, 5))
 		),
 		"Roach Toxins" = list(
 			/obj/item/reagent_containers/glass/bottle/blattedin = custom_good_amount_range(list(-1, 2)),
 			/obj/item/reagent_containers/glass/bottle/diplopterum = custom_good_amount_range(list(-1, 2)),
 			/obj/item/reagent_containers/glass/bottle/seligitillin = custom_good_amount_range(list(-1, 2)),
 			/obj/item/reagent_containers/glass/bottle/starkellin = custom_good_amount_range(list(-1, 2)),
-			/obj/item/reagent_containers/glass/bottle/gewaltine = custom_good_amount_range(list(-1, 2)),
+			/obj/item/reagent_containers/glass/bottle/gewaltine = custom_good_amount_range(list(-1, 2))
 		),
 		"Spider Toxins" = list(
 			/obj/item/reagent_containers/glass/bottle/pararein = custom_good_amount_range(list(-1, 2)),
@@ -33,7 +33,7 @@
 		),
 		"Carp Toxins" = list(
 			/obj/item/reagent_containers/glass/bottle/carpotoxin = custom_good_amount_range(list(-1, 2))
-		),
+		)
 	)
 	secret_inventory = list(
 		"High-End Roach Product" = list(

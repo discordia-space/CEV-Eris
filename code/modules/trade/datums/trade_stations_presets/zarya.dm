@@ -62,7 +62,7 @@
 			/obj/structure/reagent_dispensers/watertank,
 			/obj/structure/reagent_dispensers/fueltank,
 			/obj/machinery/floodlight
-		),
+		)
 	)
 	offer_types = list(
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 200, 0),				// base price: 200
@@ -71,5 +71,5 @@
 		/obj/item/tool/pickaxe/jackhammer/onestar = offer_data("onestar jackhammer", 1000, 3),
 		/obj/item/tool/screwdriver/combi_driver/onestar = offer_data("onestar combi driver", 1000, 3),
 		/obj/item/tool/weldingtool/onestar  = offer_data("onestar welding tool", 1000, 3),
-		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1),
+		/obj/item/tool_upgrade/augment/repair_nano = offer_data("repair nano", 5000, 1)
 	)

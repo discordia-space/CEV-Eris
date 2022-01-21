@@ -67,12 +67,12 @@
 			/obj/item/gun_upgrade/barrel/forged,
 			/obj/item/gun_upgrade/mechanism/gravcharger,
 			/obj/item/tool_upgrade/productivity/ergonomic_grip,
-			/obj/item/tool_upgrade/refinement/laserguide,
+			/obj/item/tool_upgrade/refinement/laserguide
 		)
 	)
 	offer_types = list(
 		/obj/item/part/gun = offer_data("gun part", 500, 0),					// base price: 300
-		/obj/item/part/armor = offer_data("armor part", 500, 0),				// base price: 300
+		/obj/item/part/armor = offer_data("armor part", 500, 0)					// base price: 300
 //		/obj/item/gun/projectile/automatic/type_17 = offer_data("Type XVII", 19000, 1)	// base price: 3800, 5x mult for rarity
 //		/obj/item/gun/projectile/type_42 = offer_data("Type XLII", 9000, 1)				// base price: 1800, 5x mult for rarity
 //		/obj/item/gun/projectile/type_47 = offer_data("Type XLVII", 14000, 1)			// base price: 2800, 5x mult for rarity

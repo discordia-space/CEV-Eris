@@ -17,7 +17,7 @@
 			/obj/item/stack/material/plasteel/full = good_data("plasteel sheets (x120)", list(1, 2)),
 			/obj/item/stack/material/wood/full = good_data("wood planks (x120)", list(2, 5)),
 			/obj/item/stack/material/glass/full = good_data("glass sheets (x120)", list(2, 5)),
-			/obj/item/stack/material/plasma/full = good_data("plasma sheets (x120)", list(1, 2)),
+			/obj/item/stack/material/plasma/full = good_data("plasma sheets (x120)", list(1, 2))
 		),
 	)
 	secret_inventory = list(
@@ -30,7 +30,7 @@
 			/obj/item/stack/material/osmium/full = good_data("osmium ingots (x120)", list(1, 21)),
 			/obj/item/stack/material/mhydrogen/full = good_data("metallic hydrogen sheets (x120)", list(1, 2)),
 			/obj/item/stack/material/tritium/full = good_data("tritium ingots (x120)", list(1, 2)),
-			/obj/item/stack/material/uranium/full = good_data("uranium sheets (x120)", list(1, 2)),
+			/obj/item/stack/material/uranium/full = good_data("uranium sheets (x120)", list(1, 2))
 		)
 	)
 	offer_types = list(
@@ -43,5 +43,5 @@
 		/obj/item/ore/osmium = offer_data("raw platinum", 160, 0),
 		/obj/item/ore/hydrogen = offer_data("raw hydrogen", 125, 0),
 		/obj/item/ore/uranium = offer_data("pitchblende", 225, 0),
-		/obj/item/ore/plasma = offer_data("plasma crystals", 80, 0),
+		/obj/item/ore/plasma = offer_data("plasma crystals", 80, 0)
 	)

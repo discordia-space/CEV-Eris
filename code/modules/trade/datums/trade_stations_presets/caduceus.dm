@@ -68,7 +68,7 @@
 			/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = custom_good_amount_range(list(5, 10)),
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalin = custom_good_amount_range(list(10, 20)),
 			/obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = custom_good_amount_range(list(10, 20)),
-			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = custom_good_amount_range(list(5, 10)),
+			/obj/item/reagent_containers/hypospray/autoinjector/tramadol = custom_good_amount_range(list(5, 10))
 		)
 	)
 	offer_types = list(
@@ -77,7 +77,7 @@
 		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 2000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 4000, 1),
 		/datum/reagent/nanites/uncapped/control_booster_utility = offer_data("Control Booster Utility bottle (60u)", 30000, 1),
-		/datum/reagent/nanites/uncapped/control_booster_combat = offer_data("Control Booster Combat bottle (60u)", 30000, 1),
+		/datum/reagent/nanites/uncapped/control_booster_combat = offer_data("Control Booster Combat bottle (60u)", 30000, 1)
 //		/datum/reagent/toxin/cyanide
 //		/datum/reagent/toxin/zombiepowder
 //		/datum/reagent/toxin/slimetoxin

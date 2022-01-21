@@ -19,7 +19,7 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/robustcells = good_data("Asters Robustcells", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/devices = good_data("Asters Devices and Instruments", list(1, 10)),
 			/obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo = good_data("Frozen Star Nonlethal Magazines Pack", list(1, 10)),
-			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10)),
+			/obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo = good_data("Frozen Star Lethal Magazines Pack", list(1, 10))
 //			/obj/item/storage/deferred/disks = custom_good_amount_range(list(1, 5))
 		),
 		"Tools and Equipment" = list(
@@ -100,7 +100,7 @@
 			/obj/item/reagent_containers/spray/cleaner,
 			/obj/item/reagent_containers/glass/rag,
 			/obj/item/organ_module/active/simple/armshield
-		),
+		)
 	)
 	secret_inventory = list(
 		"Exosuits" = list(
@@ -115,19 +115,19 @@
 			/obj/item/robot_parts/robot_component/armour/exosuit/plain,
 			/obj/item/robot_parts/robot_component/armour/exosuit/radproof,
 			/obj/item/robot_parts/robot_component/armour/exosuit/ablative,
-			/obj/item/robot_parts/robot_component/armour/exosuit/combat,
+			/obj/item/robot_parts/robot_component/armour/exosuit/combat
 		),
 		"Parts" = list(
 			/obj/item/mech_component/chassis,
 			/obj/item/mech_component/manipulators,
 			/obj/item/mech_component/sensors,
-			/obj/item/mech_component/propulsion,
+			/obj/item/mech_component/propulsion
 		),
 		"Soft" = list(
 			/obj/item/electronics/circuitboard/exosystem/engineering,
 			/obj/item/electronics/circuitboard/exosystem/utility,
 			/obj/item/electronics/circuitboard/exosystem/medical,
-			/obj/item/electronics/circuitboard/exosystem/weapons,
+			/obj/item/electronics/circuitboard/exosystem/weapons
 		),
 		"Equipment" = list(
 			/obj/item/mech_equipment/mounted_system/taser,
@@ -138,8 +138,8 @@
 			/obj/item/mech_equipment/light,
 			/obj/item/mech_equipment/drill,
 			/obj/item/mech_equipment/mounted_system/extinguisher,
-			/obj/item/mech_equipment/sleeper,
-		),
+			/obj/item/mech_equipment/sleeper
+		)
 	)
 	offer_types = list(
 		/obj/item/mech_component = offer_data("mech component", 150, 10),															// base price: 150
@@ -149,5 +149,5 @@
 		/obj/item/robot_parts/robot_component/armour/exosuit/ablative = offer_data("ablative exosuit armor plating", 550, 8),		// base price: 550
 		/obj/item/robot_parts/robot_component/armour/exosuit/combat = offer_data("combat exosuit armor plating", 1000, 8),			// base price: 1000
 		/obj/item/organ/external/robotic/one_star = offer_data("onestar external prosthetic", 1800, 4),								// base price: 900
-		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8),								// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
+		/obj/item/organ/external/robotic/serbian = offer_data("serbian external prosthetic", 600, 8)								// base price: 600; roundstart item, but you'd be giving up an arm and a leg for cash
 	)

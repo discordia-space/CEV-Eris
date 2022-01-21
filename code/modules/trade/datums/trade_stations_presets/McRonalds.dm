@@ -28,11 +28,11 @@
 			/obj/item/reagent_containers/food/snacks/sliceable/cheesecake = custom_good_amount_range(list(1, 3)),
 			/obj/item/reagent_containers/food/snacks/sliceable/orangecake = custom_good_amount_range(list(1, 3)),
 			/obj/item/reagent_containers/food/snacks/sliceable/limecake = custom_good_amount_range(list(1, 3)),
-			/obj/item/reagent_containers/food/snacks/sliceable/lemoncake = custom_good_amount_range(list(1, 3)),
+			/obj/item/reagent_containers/food/snacks/sliceable/lemoncake = custom_good_amount_range(list(1, 3))
 		),
 		"Misc" = list(
 			/obj/item/reagent_containers/food/snacks/fishandchips = custom_good_name("Fishps"),
-			/obj/item/storage/box/happy_meal,
+			/obj/item/storage/box/happy_meal
 		),
 	)
 	secret_inventory = list(
@@ -43,5 +43,5 @@
 	)
 	offer_types = list(
 		/obj/item/reagent_containers/food/snacks/meat/roachmeat = offer_data("roach meat", 300, 0),
-		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0),
+		/obj/item/reagent_containers/food/snacks/meat/spider = offer_data("spider meat", 300, 0)
 	)
