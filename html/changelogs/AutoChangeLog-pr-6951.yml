@@ -1,0 +1,9 @@
+author: Humonitarian
+delete-after: true
+changes:
+  - balance: All armor and clothing now provide less slowdown, but run and gunning
+      in heavy armor reduces accuracy
+  - balance: Recoil now decreases immediately after firing, the recoil of every weapon
+      adjusted accordingly
+  - balance: Thanks to reducing the dependence on TINT, much less guns will obscure
+      your vision
