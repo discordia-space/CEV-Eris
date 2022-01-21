@@ -13,13 +13,18 @@
 	turns_per_move = 5
 
 	// Damage related variables
-	melee_damage_lower = GOLEM_DMG_MED
+	melee_damage_lower = GOLEM_DMG_LOW
 	melee_damage_upper = GOLEM_DMG_MED
 
 	// Armor related variables
-	melee = GOLEM_ARMOR_MED
-	bullet = GOLEM_ARMOR_MED
-	energy = GOLEM_ARMOR_LOW
+	armor = list(
+		melee = GOLEM_ARMOR_MED,
+		bullet = GOLEM_ARMOR_MED,
+		energy = GOLEM_ARMOR_LOW,
+		bomb = 0,
+		bio = 0,
+		rad = 0
+	)
 
 	// Loot related variables
 	ore = /obj/item/ore/coal

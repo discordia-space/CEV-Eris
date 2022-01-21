@@ -8,6 +8,7 @@
 #define GOLEM_ARMOR_HIGH 50
 #define GOLEM_ARMOR_ULTRA 65
 
+#define GOLEM_DMG_FEEBLE 5
 #define GOLEM_DMG_LOW 15
 #define GOLEM_DMG_MED 25
 #define GOLEM_DMG_HIGH 40
@@ -56,14 +57,6 @@
 	min_bodytemperature = 0 //below this, burn damage is dealt
 	max_bodytemperature = 10000 //above this, burn damage is dealt
 
-	// Armor related variables
-	var/melee = 0
-	var/bullet = 0
-	var/energy = 0
-	var/bomb = 0
-	var/bio = 0
-	var/rad = 0
-
 	// Type of ore to spawn when the golem dies
 	var/ore
 
@@ -81,9 +74,6 @@
 /mob/living/carbon/superior_animal/golem/Destroy()
 	DD = null
 	..()
-
-/mob/living/carbon/superior_animal/golem/getarmor(def_zone, type)
-	return vars[type]
 
 /mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
 	..()
