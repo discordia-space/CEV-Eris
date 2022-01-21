@@ -146,7 +146,15 @@ meteor_act
 				var/weight = organ_rel_size[organ_name]
 				armorval += getarmor_organ(organ, type) * weight
 				total += weight
-	return (armorval/max(total, 1))
+	
+	armorval = armorval/max(total, 1)
+
+	if (armorval > 75) // reducing the risks from powergaming
+		switch (type)
+			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) armorval = (75+armorval/2)
+			else return armorval
+
+	return armorval
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
@@ -168,20 +176,23 @@ meteor_act
 	var/protection = 0
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
 	if(def_zone.armor)
-		if(def_zone.armor.getRating(type) > protection)
-			protection = def_zone.armor.getRating(type)
+		protection = 100 - (100 - def_zone.armor.getRating(type)) * (100 - protection) * 0.01 // Converts armor into multiplication form, stacks them, then converts them back
 
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(istype(C) && C.body_parts_covered & def_zone.body_part && C.armor)
-				if(C.armor.vars[type] > protection)
-					protection = C.armor.vars[type]
+				protection = 100 - (100 - C.armor.vars[type]) * (100 - protection) * 0.01 // Same as above
 
 	var/obj/item/shield/shield = has_shield()
 
 	if(shield)
 		protection += shield.armor[type]
+	
+	if (protection > 75) // reducing the risks from powergaming
+		switch (type)
+			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
+			else return protection
 
 	return protection
 
