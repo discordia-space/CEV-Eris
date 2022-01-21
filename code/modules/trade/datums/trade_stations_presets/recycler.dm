@@ -1,6 +1,6 @@
 /datum/trade_station/recycler
 	name_pool = list(
-		"JNK 'Garbaj'" = "Junk collector.",
+		"JNK \'Garbaj\'" = "Junk collector.",
 	)
 	start_discovered = FALSE
 	spawn_always = TRUE
