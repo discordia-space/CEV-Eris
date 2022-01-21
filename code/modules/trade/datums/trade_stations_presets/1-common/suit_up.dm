@@ -178,5 +178,4 @@
 		/obj/item/rig/industrial = offer_data("industrial suit control module", 950, 4),	// base price: 882 (incl. components)
 		/obj/item/rig/hazmat = offer_data("AMI control module", 950, 4),					// base price: 882 (incl. components)
 		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1100, 4),		// base price: 1032 (incl. components)
-		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1),
 	)

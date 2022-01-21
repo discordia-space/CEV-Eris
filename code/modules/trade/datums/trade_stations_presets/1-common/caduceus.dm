@@ -75,8 +75,6 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/internal/kidney = offer_data("kidney", 400, 8),					// base price: 400
-		/obj/item/organ/internal/liver = offer_data("liver", 900, 8),					// base price: 900
 		/datum/reagent/medicine/ossisine = offer_data("ossissine bottle (60u)", 2000, 1),
 		/datum/reagent/medicine/kyphotorin = offer_data("kyphotorin bottle (60u)", 4000, 1),
 		/datum/reagent/nanites/uncapped/control_booster_utility = offer_data("Control Booster Utility bottle (60u)", 30000, 1),

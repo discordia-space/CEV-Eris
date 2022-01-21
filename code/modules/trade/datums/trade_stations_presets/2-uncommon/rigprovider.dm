@@ -34,3 +34,7 @@
 			/obj/item/rig_module/cape
 		)
 	)
+	offer_types = list(
+		// TODO: offers
+		/obj/item/rig/merc = offer_data("crimson hardsuit control module", 4000, 1),
+	)

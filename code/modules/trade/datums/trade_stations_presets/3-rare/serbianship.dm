@@ -38,3 +38,6 @@
 			/obj/item/computer_hardware/hard_drive/portable/design/guns/sa_br = good_data("Kovacs design disk", list(1, 3))
 		)
 	)
+	offer_types = list(
+		
+	)

@@ -180,6 +180,11 @@
 	.["station_desc"] = PRG.station?.desc
 	.["station_index"] = SStrade.discovered_stations.Find(PRG.station)
 
+	.["station_favor"] = PRG.station?.favor
+	.["station_favor_needed"] = max(PRG.station?.secret_inv_threshold, PRG.station?.recommendation_threshold)
+
+	.["offer_time"] = time2text( (PRG.station?.update_time - (world.time - PRG.station?.update_timer_start)) , "mm:ss")
+
 	.["receiving_index"] =  SStrade.beacons_receiving.Find(PRG.receiving)
 	.["sending_index"] = SStrade.beacons_sending.Find(PRG.sending)
 
@@ -233,6 +238,7 @@
 					if(PRG.station && PRG.sending)
 						amount2sell = length(SStrade.assess_offer(PRG.sending, PRG.station, path))
 					var/pathname = initial(AM.name)
+					var/desc = initial(AM.desc)
 					var/list/good_packet = assort[path]
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname
@@ -251,7 +257,7 @@
 						"sell_price" = sell_price,
 						"isblacklisted" = isblacklisted,
 						"amount_available_around" = amount2sell,
-						"index" = index
+						"index" = index,
 					))
 		if(!recursiveLen(.["goods"]))
 			.["goods"] = null
@@ -274,8 +280,6 @@
 
 		if(!recursiveLen(.["offers"]))
 			.["offers"] = null
-
-		.["time"] = time2text( (PRG.station.update_time - (world.time - PRG.station.update_timer_start)) , "mm:ss")
 
 #undef GOODS_SCREEN
 #undef OFFER_SCREEN

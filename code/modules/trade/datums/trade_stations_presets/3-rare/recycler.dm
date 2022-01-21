@@ -64,7 +64,7 @@
 	)
 	// TODO: Better offers
 	offer_types = list(
-		/obj/item/trash/material/metal = offer_data("scrap metal", 250, 0),
-		/obj/item/trash/material/circuit = offer_data("burnt circuit", 250, 0),
-		/obj/item/trash/material/device = offer_data("broken device", 250, 0),
+		/obj/item/trash/material/metal = offer_data("scrap metal", 240, 0),
+		/obj/item/trash/material/circuit = offer_data("burnt circuit", 180, 0),
+		/obj/item/trash/material/device = offer_data("broken device", 410, 0),
 	)

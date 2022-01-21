@@ -82,3 +82,6 @@
 			/obj/item/ammo_magazine/ammobox/shotgun/incendiaryshells
 		),
 	)
+	offer_types = list(
+		// TODO: offers
+	)

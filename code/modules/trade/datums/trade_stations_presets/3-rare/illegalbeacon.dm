@@ -43,10 +43,9 @@
 			/obj/item/gun_upgrade/barrel/gauss,
 			/obj/item/gun_upgrade/mechanism/glass_widow,
 			/obj/item/gun_upgrade/scope/killer,
-			/obj/item/gun_upgrade/mechanism/reverse_loader,		// might be a bit too antag-y, but it's funny
-			/obj/item/gun_upgrade/trigger/boom,					// might be a bit too antag-y, but it's funny
 		)
 	)
 	offer_types = list(
-		
+		/obj/item/organ/internal/kidney = offer_data("kidney", 800, 8),					// base price: 400
+		/obj/item/organ/internal/liver = offer_data("liver", 1800, 8),					// base price: 900
 	)

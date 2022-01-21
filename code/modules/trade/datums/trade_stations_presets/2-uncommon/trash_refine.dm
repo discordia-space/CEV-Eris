@@ -39,4 +39,5 @@
 	)
 	offer_types = list(
 		// TODO: offers
+		// roach burgers?
 	)
