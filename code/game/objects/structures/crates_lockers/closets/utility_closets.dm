@@ -165,10 +165,10 @@
 	rarity_value = 50
 
 /obj/structure/closet/bombcloset/security/populate_contents()
-	new /obj/item/clothing/suit/space/bomb/security(src)
+	new /obj/item/clothing/suit/space/bomb(src)
 	new /obj/item/clothing/under/rank/security(src)
 	new /obj/item/clothing/shoes/color/brown(src)
-	new /obj/item/clothing/head/space/bomb/security(src)
+	new /obj/item/clothing/head/space/bomb(src)
 
 /obj/structure/closet/self_pacification
 	name = "\improper Anti-Depressive Self-Pacification Treatment Utility closet"
