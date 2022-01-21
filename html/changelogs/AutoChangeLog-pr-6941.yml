@@ -1,0 +1,6 @@
+author: TGCMbetcher
+delete-after: true
+changes:
+  - rscadd: One item to a list
+  - tweak: prices
+  - bugfix: infinite money loop
