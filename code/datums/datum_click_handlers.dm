@@ -76,7 +76,7 @@
 *****************************/
 /datum/click_handler/fullauto
 	var/atom/target = null
-	var/obj/item/gun/reciever // The thing we send firing signals to
+	var/obj/item/gun/reciever // The thing we send firing signals to, spelled reciever instead of receiver for some reason
 	var/time_since_last_init // Time since last start of full auto fire , used to prevent ANGRY smashing of M1 to fire faster.
 	//Todo: Make this work with callbacks
 
@@ -87,7 +87,8 @@
 /datum/click_handler/fullauto/proc/stop_firing()
 	target = null
 	if(reciever)
-		reciever.cursor_check()
+		if(isliving(reciever.loc))
+			reciever.check_safety_cursor(reciever.loc)
 
 /datum/click_handler/fullauto/proc/do_fire()
 	reciever.afterattack(target, owner.mob, FALSE)

@@ -174,7 +174,7 @@
 		wield_state = wielded_item_state
 	if(!(hands || back || onsuit))
 		hands = back = onsuit = TRUE
-	if(hands)//Ok this is a bit hacky. But basically if the gun is weilded, we want to use the wielded icon state over the other one.
+	if(hands)//Ok this is a bit hacky. But basically if the gun is wielded, we want to use the wielded icon state over the other one.
 		if(wield_state && wielded)//Because most of the time the "normal" icon state is held in one hand. This could be expanded to be less hacky in the future.
 			item_state_slots[slot_l_hand_str] = "lefthand"  + wield_state
 			item_state_slots[slot_r_hand_str] = "righthand" + wield_state
@@ -490,10 +490,7 @@
 
 	if(params)
 		P.set_clickpoint(params)
-	var/offset = init_offset
-	if(user.recoil)
-		offset += user.recoil
-	offset = min(offset, MAX_ACCURACY_OFFSET)
+	var/offset = user.calculate_offset(init_offset)
 	offset = rand(-offset, offset)
 
 	return !P.launch_from_gun(target, user, src, target_zone, angle_offset = offset)
@@ -555,10 +552,7 @@
 	var/view_size = round(world.view + zoom_factor)
 
 	zoom(zoom_offset, view_size)
-	if(safety)
-		user.remove_cursor()
-	else
-		user.update_cursor()
+	check_safety_cursor(user)
 	update_hud_actions()
 
 /obj/item/gun/examine(mob/user)
@@ -670,10 +664,13 @@
 	//Update firemode when safeties are toggled
 	update_firemode()
 	update_hud_actions()
+	check_safety_cursor(user)
+	
+/obj/item/gun/proc/check_safety_cursor(mob/living/user)
 	if(safety)
 		user.remove_cursor()
 	else
-		user.update_cursor()
+		user.update_cursor(src)
 
 /obj/item/gun/proc/toggle_carry_state(mob/living/user)
 	inversed_carry = !inversed_carry

@@ -217,13 +217,30 @@
 #define STORY_MUTINY "Mutiny"
 #define STORY_MALFUNCTION "Malfunction"
 
-#define STYLE_NEG_HIGH -2 // style amount defines
+//Recoil for suits
+#define LIGHT_STIFFNESS 1
+#define MEDIUM_STIFFNESS 1.5
+#define HEAVY_STIFFNESS 2
+
+//Slowdown for suits
+#define LIGHT_SLOWDOWN 0.1
+#define MEDIUM_SLOWDOWN 0.2
+#define HEAVY_SLOWDOWN 1
+
+//Offset for helmets
+#define LIGHT_OBSCURATION 3
+#define MEDIUM_OBSCURATION 5
+#define HEAVY_OBSCURATION 8
+
+//Style amount
+#define STYLE_NEG_HIGH -2
 #define STYLE_NEG_LOW -1
 #define STYLE_NONE 0
 #define STYLE_LOW 1
 #define STYLE_HIGH 2
 #define STYLE_HATHATHAT 3
-// style coverage defines
+
+//Style coverage
 #define COVERS_HAIR 1
 #define COVERS_EARS 2
 #define COVERS_EYES 4
@@ -235,7 +252,8 @@
 #define COVERS_UPPER_LEGS 256
 #define COVERS_FOREARMS 512
 #define COVERS_FORELEGS 1024
-// style coverage shortcuts to speed up this tedious task
+
+//Style coverage shortcuts
 #define COVERS_WHOLE_FACE COVERS_EYES|COVERS_MOUTH|COVERS_FACE
 #define COVERS_WHOLE_HEAD COVERS_HAIR|COVERS_EARS|COVERS_WHOLE_FACE
 #define COVERS_TORSO COVERS_CHEST|COVERS_GROIN
