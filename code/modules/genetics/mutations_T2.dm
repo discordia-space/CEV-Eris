@@ -10,4 +10,4 @@
 // Heal wounds with effectivenes of Tricordrazine
 /datum/mutation/t2/healing_factor
 	name = "Lesser healing factor"
-	desc = ""
+	desc = "123"

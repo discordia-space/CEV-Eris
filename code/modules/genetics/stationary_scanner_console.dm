@@ -1,8 +1,8 @@
 /obj/machinery/dna_console
 	name = "moebius dna console"
 	desc = "Lorem Ipsum"
-	icon = 'icons/obj/machines/excelsior/autodoc.dmi'
-	icon_state = "base"
+	icon = 'icons/obj/eris_genetics.dmi'
+	icon_state = "console_base"
 	density = TRUE
 	anchored = TRUE
 //	circuit = /obj/item/electronics/circuitboard/dna_console
@@ -10,9 +10,13 @@
 	idle_power_usage = 60
 	active_power_usage = 10000
 	req_access = list(access_research_equipment)
-	var/hacked = 0 // If this console has had its access requirements hacked or not.
+	var/color_key = "yellow"
+	var/error = FALSE
+	var/hacked = FALSE
 	var/obj/machinery/cryo_slab/linked
+	var/linked_direction
 	var/obj/item/computer_hardware/hard_drive/portable/usb
+	var/tmp/obj/effect/flicker_overlay/flicker_overlay
 
 
 /obj/machinery/dna_console/initalize_statverbs()
@@ -20,83 +24,161 @@
 		add_statverb(/datum/statverb/hack_console)
 
 
+/obj/machinery/dna_console/LateInitialize()
+	color_key = default_dna_machinery_style
+	establish_connection()
+	update_icon()
+	flicker_overlay = new(src)
+
+/obj/machinery/dna_console/New()
+	..()
+	color_key = default_dna_machinery_style
+	establish_connection()
+	update_icon()
+	flicker_overlay = new(src)
+
 /obj/machinery/dna_console/proc/establish_connection()
-	for(var/D in cardinal)
-		var/step = get_step(src, D)
-		linked = locate(/obj/machinery/cryo_slab) in step
+	if(linked)
+		return TRUE
+
+	linked = locate(/obj/machinery/cryo_slab) in get_step(src, WEST)
+	if(linked)
+		linked_direction = "left"
+		return TRUE
+
+	linked = locate(/obj/machinery/cryo_slab) in get_step(src, EAST)
+	if(linked)
+		linked_direction = "right"
+		return TRUE
+
+	return FALSE
 
 
-/obj/machinery/dna_console/proc/save_ue()
+//obj/machinery/dna_console/attackby(obj/item/I, mob/living/user)
+// Reaction to multitool here, for changing color_key
+
+
+//obj/machinery/dna_console/emag_act(remaining_charges, mob/user, emag_source)
+//	. = ..()
+//	hacked = TRUE
+
+
+/obj/machinery/dna_console/update_icon()
+	if(error)
+		return
+
+	..()
+	overlays.Cut()
+	var/screen_state = "console"
+	var/wires_state = "console_wires"
+
+	if(!(stat & (NOPOWER|BROKEN)) && use_power)
+		if(SSnano.open_uis["\ref[src]"])
+			screen_state += "_on"
+			spawn(1.5 SECONDS)
+			.() // If UI is open - run check every 1.5 seconds until it's closed
+		else
+			screen_state += "_idle"
+		screen_state += "_[color_key]"
+		overlays += screen_state
+
+	if(linked && linked_direction)
+		wires_state += "_[linked_direction]"
+		wires_state += "_[color_key]"
+		overlays += wires_state
+
+
+/obj/machinery/dna_console/proc/error_popup()
+	if(error)
+		return
+	error = TRUE
+	flick("console_error", flicker_overlay)
+	sleep(3 SECONDS)
+	error = FALSE
+
+
+/obj/machinery/dna_console/proc/save_pe()
 	if(!usb)
-		// to_chat(user, "nowhere to copy yo dumbass")
+		error_popup()
 		return
 
 	var/mob/living/carbon/human/H = linked.han_solo
 	if(!H || !istype(H))
 		return
 
-	var/datum/computer_file/binary/animalgene/F = new
-
 	// Race // SPECIES_HUMAN, SPECIES_SLIME, SPECIES_MONKEY, SPECIES_GOLEM
-	F.filename = "Primus sequence \"[H.species]\""
+	var/datum/computer_file/binary/animalgene/F = new
+	F.filename = "AN_GENE_SPECIES_[uppertext(H.species.name)]"
 	F.gene_type = "species"
 	F.gene_value = H.species
 	if(!usb.store_file(F))
-		// to_chat(user, "oopsie woopsie can't copy sry(((")
+		error_popup()
 		return
 
 	// Blood type // GLOB.blood_types = list("A-", "A+", "B-", "B+", "AB-", "AB+", "O-", "O+")
-	F.filename = "Sanguinis sequence \"[H.b_type]\""
+	F = new // Gotta do that each time or magic won't happen
+	var/blood_type = H.b_type
+	blood_type = replacetext(blood_type, "+", "_POSITIVE")
+	blood_type = replacetext(blood_type, "-", "_NEGATIVE")
+	F.filename = "AN_GENE_BLOOD_[blood_type]"
 	F.gene_type = "b_type"
 	F.gene_value = H.b_type
 	if(!usb.store_file(F))
-		// to_chat(user, "oopsie woopsie can't copy sry(((")
+		error_popup()
 		return
 
 	// Unique identity // Fingerprints is md5() of real_name, while dna trace is sha1() of it
-	F.filename = "Aspectus sequence \"[sha1(H.real_name)]\""
+	F = new
+	F.filename = "AN_GENE_APPEARANCE_[uppertext(sha1(H.real_name))]"
 	F.gene_type = "real_name"
 	F.gene_value = H.real_name
 	if(!usb.store_file(F))
-		// to_chat(user, "oopsie woopsie can't copy sry(((")
+		error_popup()
 		return
 /*
 	// Not sure if we need that one
-	F.filename = "Genus sequence \"[H.gender]\""
+	F = new
+	F.filename = "Genus sequence '[H.gender]'"
 	F.gene_type = "gender"
 	F.gene_value = H.gender
 	if(!usb.store_file(F))
-		// to_chat(user, "oopsie woopsie can't copy sry(((")
+		error_popup()
 		return
 */
 	// to_chat(user, "beep boop all copied")
 
 
-/obj/machinery/dna_console/proc/save_pe()
+/obj/machinery/dna_console/proc/save_ue()
 	if(!usb)
-		// to_chat(user, "nowhere to copy yo dumbass")
+		error_popup()
 		return
 
 	var/mob/living/carbon/human/H = linked.han_solo
 	if(!H || !istype(H))
 		return
 
-	var/datum/computer_file/binary/animalgene/F = new
 
-	for(var/datum/mutation/M in H.active_mutations)
-		F.filename = "Sequence \"[M.tier_string]_[M.hex]\""
+	for(var/i in H.dormant_mutations)
+		var/datum/computer_file/binary/animalgene/F = new
+		var/datum/mutation/M = i
+		if(!istype(M))
+			log_and_message_admins("PIZDETS NAHUI BLYAT! Mutation is not a type!")
+		var/mut_name = replacetext("[M.name]", " ", "_")
+		F.filename = "AN_GENE_MUT_[uppertext(mut_name)]"
 		F.gene_type = "mutation"
 		F.gene_value = M
 		if(!usb.store_file(F))
-			// to_chat(user, "oopsie woopsie can't copy sry(((")
+			error_popup()
 			return
 
-	for(var/datum/mutation/M in H.dormant_mutations)
-		F.filename = "Sequence \"[M.tier_string]_[M.hex]\""
+	for(var/i in H.active_mutations)
+		var/datum/computer_file/binary/animalgene/F = new
+		var/datum/mutation/M = i
+		F.filename = "AN_GENE_MUT_[uppertext(M.tier_string)]"//"AN_GENE_MUT_[uppertext(M.tier_string)]_[M.hex]"
 		F.gene_type = "mutation"
 		F.gene_value = M
 		if(!usb.store_file(F))
-			// to_chat(user, "oopsie woopsie can't copy sry(((")
+			error_popup()
 			return
 
 	// to_chat(user, "beep boop all copied")
@@ -107,6 +189,7 @@
 		establish_connection()
 
 	ui_interact(user)
+	update_icon()
 
 
 /obj/machinery/dna_console/attackby(obj/item/I, mob/living/user)
@@ -117,11 +200,26 @@
 		..()
 
 
-/obj/machinery/dna_console/MouseDrop(over_object)
-	..()
-	if(usb && istype(over_object, /obj/screen/inventory/hand))
-		eject_item(usb, usr)
-		usb = null
+/obj/machinery/dna_console/AltClick(mob/user)
+	try_eject_usb(user)
+
+
+/obj/machinery/dna_console/verb/eject_usb()
+	set name = "Eject Portable Storage"
+	set category = "Object"
+	set src in view(1)
+	try_eject_usb(usr)
+
+
+/obj/machinery/dna_console/proc/try_eject_usb(mob/user)
+	if(!usb)
+		return
+
+	if(user.incapacitated() || !Adjacent(user) || !isliving(user))
+		return
+
+	eject_item(usb, user)
+	usb = null
 
 
 /obj/machinery/dna_console/Topic(href, href_list)
@@ -143,6 +241,9 @@
 
 
 /obj/machinery/dna_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+	if(isghost(user))
+		return
+
 	var/list/data = list()
 	var/no_data = "\[REDACTED\]"
 
@@ -177,16 +278,3 @@
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
-
-
-	
-
-
-
-
-
-
-
-
-
-

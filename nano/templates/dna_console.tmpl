@@ -8,9 +8,10 @@
 	</tbody>
 {{else}}
 	<tbody>
-		<div align="center" style="margin-top: 15px;">
+		<div align="center">
 		<tr><td><span class="white">Test subject\'s biometric data:</span></td></tr>
 		</div>
+		<div align="left">
 		<tr><td><span class="white">Species:  </span> {{:data.species}}</td></tr>
 		<tr><td><span class="white">Blood type:  </span> {{:data.b_type}}</td></tr>
 		<tr><td><span class="white">Biological age:  </span> {{:data.age}}</td></tr>
@@ -18,10 +19,11 @@
 		<tr><td><span class="white">Fingerprint pattern:  </span> {{:data.fingers_trace}}</td></tr>
 		<tr><td><span class="white">Active mutations:  </span> {{:data.active_mutations}}</td></tr>
 		<tr><td><span class="white">Dormant mutations:  </span> {{:data.dormant_mutations}}</td></tr>
+		</div>
 		<br>
 		<hr>
-		<td>{{:helper.link('Save all data', null, {'save_all' : 1})}}</td>
-		<td>{{:helper.link('Save personal enzymes', null, {'save_pe' : 1})}}</td>
-		<td>{{:helper.link('Save mutations', null, {'save_ue' : 1})}}</td>
+		<tr><td>{{:helper.link('Save all data', null, {'save_all' : 1})}}</td></tr>
+		<tr><td>{{:helper.link('Save personal enzymes', null, {'save_pe' : 1})}}</td></tr>
+		<tr><td>{{:helper.link('Save mutations', null, {'save_ue' : 1})}}</td></tr>
 	</tbody>
 {{/if}}

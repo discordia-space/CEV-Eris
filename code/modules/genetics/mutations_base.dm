@@ -1,3 +1,16 @@
+GLOBAL_LIST_INIT(dna_machinery_styles, list(
+		"cyan",
+		"yellow",
+		"purple"))
+
+
+var/global/default_dna_machinery_style
+
+
+/hook/roundstart/proc/pick_dna_machinery_style()
+	default_dna_machinery_style = pick(GLOB.dna_machinery_styles)
+
+
 /proc/get_domino_value()
 	return pick(1, 2, 3, 4, 5, 6, 7, 8)
 
@@ -5,7 +18,7 @@
 /proc/get_random_hex()
 	var/hex = ""
 	while(length(hex) < 6)
-		hex += pick(hexdigits)
+		hex += num2text(pick(hexdigits))
 	return hex
 
 
@@ -17,8 +30,8 @@
 
 
 /datum/mutation
-	var/name = "Unknown mutation"
-	var/desc = "Unknown function"
+	var/name = "Unknown"
+	var/desc = "Unknown"
 	var/hex = "FFFFFF"
 	var/tier_num = 0 // 0, 1, 2, 3, 4
 	var/tier_string = "Nero" // "Nero", "Vespasian", "Tacitus", "Hadrian", "Aurelien"

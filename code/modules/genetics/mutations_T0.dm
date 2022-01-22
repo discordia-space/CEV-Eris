@@ -6,9 +6,9 @@
 	NSA_load = 5
 
 /datum/mutation/t0/blindness
-	name = ""
-	desc = ""
+	name = "Beep"
+	desc = "Beep"
 
 /datum/mutation/t0/deafness
-	name = ""
-	desc = ""
+	name = "Boop"
+	desc = "Boop"

@@ -15,11 +15,11 @@
 // Heal wounds with effectivenes of Bicaridine
 /datum/mutation/t3/healing_factor
 	name = "Greater healing factor"
-	desc = ""
+	desc = "123"
 
 /datum/mutation/t3/oborin
 	name = "Oborin Syndrome"
-	desc = ""
+	desc = "123"
 
 
 

@@ -1631,9 +1631,10 @@ var/list/rank_prefix = list(\
 		b_type = pick(GLOB.blood_types)
 
 	while(dormant_mutations.len < STARTING_MUTATIONS)
-		dormant_mutations |= pick(
+		var/datum/mutation/M = pick(
 			45;pick(subtypesof(/datum/mutation/t0)),
 			25;pick(subtypesof(/datum/mutation/t1)),
 			15;pick(subtypesof(/datum/mutation/t2)),
 			10;pick(subtypesof(/datum/mutation/t3)),
 			5;pick(subtypesof(/datum/mutation/t4)))
+		dormant_mutations |= new M

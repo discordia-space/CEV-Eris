@@ -1,8 +1,8 @@
 /obj/machinery/cryo_slab
 	name = "moebius dna machine"
 	desc = "Lorem Ipsum"
-	icon = 'icons/obj/machines/excelsior/autodoc.dmi'
-	icon_state = "base"
+	icon = 'icons/obj/eris_genetics.dmi'
+	icon_state = "cybercoffin_open"
 	density = TRUE
 	anchored = TRUE
 //	circuit = /obj/item/electronics/circuitboard/cryo_slab
@@ -107,4 +107,9 @@
 	add_fingerprint(user)
 	return
 
-
+/obj/machinery/cryo_slab/update_icon()
+	..()
+	if(han_solo)
+		icon_state = "cybercoffin_closed"
+	else
+		icon_state = "cybercoffin_open"
