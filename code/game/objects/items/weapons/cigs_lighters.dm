@@ -134,6 +134,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			if(ishuman(loc))
 				if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 					reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2) // Most of it is not inhaled... balance reasons.
+					C.regen_slickness() // smoking is cool, but don't try this at home
 			else // else just remove some of the reagents
 				reagents.remove_any(REM)
 

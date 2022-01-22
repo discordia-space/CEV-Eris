@@ -89,7 +89,7 @@
 /obj/item/clothing/head/soft/sec/corp
 	name = "corporate security cap"
 	initial_name = "corporate security cap"
-	desc = "It's field cap in corporate colors."
+	desc = "A field cap in corporate colors."
 	icon_state = "corpsoft"
 
 // S E R B I A //

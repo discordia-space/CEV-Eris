@@ -31,6 +31,9 @@
 		structure_shaken()
 
 	playsound(src,'sound/machines/Table_Fall.ogg',100,1)
+	if (ishuman(usr))
+		var/mob/living/carbon/human/stylish = usr
+		stylish.regen_slickness() // dramatic
 	return
 
 /obj/structure/table/proc/unflipping_check(var/direction)
@@ -69,6 +72,9 @@
 		to_chat(usr, SPAN_NOTICE("It won't budge."))
 		return
 	unflip()
+	if (ishuman(usr))
+		var/mob/living/carbon/human/depleted = usr
+		depleted.regen_slickness(-1)
 
 /obj/structure/table/proc/flip(var/direction)
 	if( !straight_table_check(turn(direction,90)) || !straight_table_check(turn(direction,-90)) )

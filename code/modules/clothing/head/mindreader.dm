@@ -14,6 +14,8 @@
 		bio = 0,
 		rad = 0
 	)
+	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_HAIR
 	spawn_blacklisted = TRUE
 	var/self_cooldown = 2 MINUTES
 	var/last_use = 0
