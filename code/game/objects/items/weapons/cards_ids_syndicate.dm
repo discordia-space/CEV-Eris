@@ -32,13 +32,13 @@
 	if(registered_user == user)
 		switch(alert("Would you like edit the ID, or show it?","Show or Edit?", "Edit","Show"))
 			if("Edit")
-				ui_interact(user)
+				nano_ui_interact(user)
 			if("Show")
 				..()
 	else
 		..()
 
-/obj/item/card/id/syndicate/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/card/id/syndicate/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/entries[0]
 	entries[++entries.len] = list("name" = "Age", 				"value" = age)
@@ -80,7 +80,7 @@
 		return STATUS_CLOSE
 	return ..()
 
-/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/topic_state/state)
+/obj/item/card/id/syndicate/Topic(href, href_list, var/datum/nano_topic_state/state)
 	if(..())
 		return 1
 

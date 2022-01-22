@@ -260,7 +260,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		var/icon/I = getFlatTypeIcon(design.build_path)
 		assets[filename] = I
 
-		design.ui_data["icon"] = filename
+		design.nano_ui_data["icon"] = filename
 	..()
 
 

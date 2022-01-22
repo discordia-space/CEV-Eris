@@ -1,9 +1,9 @@
-GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
+GLOBAL_DATUM_INIT(default_state, /datum/nano_topic_state/default, new)
 
-/datum/topic_state/default/href_list(var/mob/user)
+/datum/nano_topic_state/default/href_list(var/mob/user)
 	return list()
 
-/datum/topic_state/default/can_use_topic(var/src_object, var/mob/user)
+/datum/nano_topic_state/default/can_use_topic(var/src_object, var/mob/user)
 	return user.default_can_use_topic(src_object)
 
 /mob/proc/default_can_use_topic(var/src_object)

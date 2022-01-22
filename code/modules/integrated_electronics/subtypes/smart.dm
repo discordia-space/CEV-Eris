@@ -226,7 +226,7 @@
 			check_bot_self = TRUE
 
 			if(holdingassembly.opened)
-				holdingassembly.ui_interact(src)
+				holdingassembly.nano_ui_interact(src)
 			holdingassembly.attack_self(src)
 			check_bot_self = FALSE
 			return
@@ -350,7 +350,7 @@
 			check_bot_self = TRUE
 
 			if(holdingassembly.opened)
-				holdingassembly.ui_interact(src)
+				holdingassembly.nano_ui_interact(src)
 			holdingassembly.attack_self(src)
 			check_bot_self = FALSE
 			return
@@ -466,7 +466,7 @@
 			check_bot_self = TRUE
 
 			if(holdingassembly.opened)
-				holdingassembly.ui_interact(src)
+				holdingassembly.nano_ui_interact(src)
 			holdingassembly.attack_self(src)
 			check_bot_self = FALSE
 			return

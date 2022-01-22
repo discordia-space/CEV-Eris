@@ -40,7 +40,7 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
+/obj/Topic(href, href_list, var/datum/nano_topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
@@ -53,10 +53,10 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/proc/OnTopic(mob/user, href_list, datum/topic_state/state)
+/obj/proc/OnTopic(mob/user, href_list, datum/nano_topic_state/state)
 	return TOPIC_NOACTION
 
-/obj/CanUseTopic(mob/user, datum/topic_state/state)
+/obj/CanUseTopic(mob/user, datum/nano_topic_state/state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	return STATUS_CLOSE
@@ -149,7 +149,7 @@
 			in_use = 0
 
 /obj/attack_ghost(mob/user)
-	ui_interact(user)
+	nano_ui_interact(user)
 	..()
 
 /obj/proc/interact(mob/user)

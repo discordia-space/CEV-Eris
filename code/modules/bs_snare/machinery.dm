@@ -107,10 +107,10 @@
 
 /obj/machinery/computer/bssilk_control/attack_hand(mob/user)
 	if(connected_hub) connected_hub.sync_with_parts()
-	ui_interact(user)
+	nano_ui_interact(user)
 
-/obj/machinery/computer/bssilk_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/list/data = ui_data()
+/obj/machinery/computer/bssilk_control/nano_ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/list/data = nano_ui_data()
 
 	if(!connected_hub)
 		data["fail_connect"] = TRUE
