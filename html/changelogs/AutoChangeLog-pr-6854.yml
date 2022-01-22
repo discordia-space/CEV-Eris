@@ -1,6 +1,0 @@
-author: Kegdo
-delete-after: true
-changes:
-  - rscadd: handmade guns spawner
-  - balance: replace all gun spawners on Eris.dmm with handmade gun spawners
-  - tweak: unblacklisted handmade armor from spawning

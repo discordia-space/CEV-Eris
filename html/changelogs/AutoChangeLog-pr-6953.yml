@@ -1,4 +1,0 @@
-author: SirRichardFrancis
-delete-after: true
-changes:
-  - bugfix: ammo magazines having generic names when in vending machines
