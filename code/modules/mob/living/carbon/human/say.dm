@@ -130,7 +130,7 @@
 	else
 		if(mask_check && wear_mask)
 			var/obj/item/clothing/mask/mask = wear_mask
-			if(istype(mask) && (mask.muffle_voice) && (stats && !stats.getPerk(PERK_EAR_OF_QUICKSILVER)))
+			if(istype(mask) && mask.muffle_voice && stats && !stats.getPerk(PERK_EAR_OF_QUICKSILVER))
 				voice_sub = "Unknown"
 		for(var/obj/item/gear in list(wear_mask, wear_suit, head))
 			if(!gear)

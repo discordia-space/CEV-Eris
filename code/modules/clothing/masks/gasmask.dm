@@ -81,7 +81,6 @@
 	desc = "Wearing this makes you feel awesome - seeing someone else wearing this makes them look like a loser."
 	icon_state = "artist"
 	item_state = "artist_hat"
-	flags_inv = FALSE
 	spawn_frequency = 0
 	var/list/states = list("True Form" = "artist", "The clown" = "clown",
 	"The mime" = "mime", "The Feminist" = "sexyclown", "The Madman" = "joker",
@@ -100,7 +99,6 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without their wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	flags_inv = FALSE
 	style = STYLE_NONE
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
@@ -122,7 +120,6 @@
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
-	flags_inv = FALSE
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -130,7 +127,6 @@
 	icon_state = "mime"
 	item_state = "mime"
 	style = STYLE_LOW
-	flags_inv = FALSE
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -138,7 +134,6 @@
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
 	body_parts_covered = HEAD|FACE|EYES
-	flags_inv = FALSE
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
@@ -146,7 +141,6 @@
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	style = STYLE_LOW
-	flags_inv = FALSE
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -166,7 +160,6 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
-	flags_inv = FALSE
 
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"
