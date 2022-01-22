@@ -85,6 +85,7 @@
 	var/list/states = list("True Form" = "artist", "The clown" = "clown",
 	"The mime" = "mime", "The Feminist" = "sexyclown", "The Madman" = "joker",
 	"The Rainbow Color" = "rainbow", "The monkey" = "monkeymask", "The Owl" = "owl")
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/artist_hat/attack_self(mob/user)
 	var/choice = input(user, "To what form do you wish to Morph this mask?","Morph Mask") as null|anything in states
@@ -100,6 +101,7 @@
 	icon_state = "clown"
 	item_state = "clown_hat"
 	style = STYLE_NONE
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/clown_hat/attack_self(mob/user)
 	var/list/options = list()
@@ -120,6 +122,7 @@
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
@@ -127,6 +130,7 @@
 	icon_state = "mime"
 	item_state = "mime"
 	style = STYLE_LOW
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
@@ -134,6 +138,7 @@
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
 	body_parts_covered = HEAD|FACE|EYES
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
@@ -141,6 +146,7 @@
 	icon_state = "sexymime"
 	item_state = "sexymime"
 	style = STYLE_LOW
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/death_commando
 	name = "Death Commando Mask"
@@ -160,6 +166,7 @@
 	desc = "Twoooo!"
 	icon_state = "owl"
 	body_parts_covered = HEAD|FACE|EYES
+	muffle_voice = FALSE
 
 /obj/item/clothing/mask/gas/german
 	name = "Oberth Republic gas mask"
