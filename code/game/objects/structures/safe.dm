@@ -66,7 +66,7 @@ FLOOR SAFES
 	return num
 
 
-/obj/structure/safe/on_update_icon()
+/obj/structure/safe/update_icon()
 	if(open)
 		icon_state = "[initial(icon_state)]-open"
 	else

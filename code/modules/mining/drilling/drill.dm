@@ -191,7 +191,7 @@
 
 	update_icon()
 
-/obj/machinery/mining/drill/on_update_icon()
+/obj/machinery/mining/drill/update_icon()
 	if(need_player_check)
 		icon_state = "mining_drill_error"
 	else if(active)

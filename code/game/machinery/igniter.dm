@@ -23,7 +23,7 @@
 	if(_wifi_id)
 		wifi_receiver = new(_wifi_id, src)
 
-/obj/machinery/igniter/on_update_icon()
+/obj/machinery/igniter/update_icon()
 	..()
 	icon_state = "igniter[on]"
 
@@ -85,7 +85,7 @@
 	wifi_receiver = null
 	return ..()
 
-/obj/machinery/sparker/on_update_icon()
+/obj/machinery/sparker/update_icon()
 	..()
 	if(disable)
 		icon_state = "migniter-d"
@@ -124,7 +124,7 @@
 		return
 
 
-	FLICK("migniter-spark", src)
+	flick("migniter-spark", src)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(2, 1, src)
 	s.start()

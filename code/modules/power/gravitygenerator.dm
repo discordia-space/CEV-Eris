@@ -30,7 +30,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 	if(severity == 1) // Very sturdy.
 		set_broken()
 
-/obj/machinery/gravity_generator/on_update_icon()
+/obj/machinery/gravity_generator/update_icon()
 	..()
 
 /obj/machinery/gravity_generator/proc/get_status()
@@ -246,7 +246,7 @@ var/const/GRAV_NEEDS_WRENCH = 3
 		return "fix[min(broken_state, 3)]"
 	return on || charging_state != POWER_IDLE ? "on" : "off"
 
-/obj/machinery/gravity_generator/main/on_update_icon()
+/obj/machinery/gravity_generator/main/update_icon()
 	..()
 
 // Set the charging state based on power/breaker.

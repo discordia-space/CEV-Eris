@@ -36,7 +36,7 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
 
 
-/obj/item/gun/projectile/shotgun/doublebarrel/on_update_icon()
+/obj/item/gun/projectile/shotgun/doublebarrel/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -75,7 +75,11 @@
 	if(!bolt_open)
 		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
 		return
-	..()
+	. = ..()
+	if (. && ishuman(user)) // if it actually loaded and the user is human
+		var/mob/living/carbon/human/stylish = user
+		stylish.regen_slickness()
+
 
 /obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)
 	if(!bolt_open)

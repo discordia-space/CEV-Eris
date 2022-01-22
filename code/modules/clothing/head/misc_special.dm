@@ -35,8 +35,10 @@
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
 	flash_protection = FLASH_PROTECTION_MAJOR
-	tint = TINT_HEAVY
+	tint = TINT_MODERATE
+	obscuration = HEAVY_OBSCURATION
 	style = STYLE_NEG_LOW
+	style_coverage = COVERS_WHOLE_FACE
 	var/base_state
 
 /obj/item/clothing/head/welding/attack_self()
@@ -57,16 +59,20 @@
 			flags_inv |= (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			flash_protection = initial(flash_protection)
 			tint = initial(tint)
+			obscuration = initial(obscuration)
 			icon_state = base_state
 			to_chat(usr, "You flip the [src] down to protect your eyes.")
+			style_coverage = COVERS_WHOLE_FACE
 		else
 			src.up = !src.up
 			body_parts_covered &= ~(EYES|FACE)
 			flash_protection = FLASH_PROTECTION_NONE
 			tint = TINT_NONE
+			obscuration = 0
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[base_state]up"
 			to_chat(usr, "You push the [src] up out of your face.")
+			style_coverage = COVERS_HAIR
 		update_wear_icon()	//so our mob-overlays
 		usr.update_action_buttons()
 
@@ -81,6 +87,7 @@
 	item_state = "cake0"
 	var/onfire = 0
 	body_parts_covered = HEAD
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/cakehat/Process()
 	if(!onfire)
@@ -120,6 +127,7 @@
 	desc = "Perfect for winter in Siberia, da?"
 	icon_state = "ushankadown"
 	flags_inv = HIDEEARS
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/ushanka/attack_self(mob/user)
 	if(src.icon_state == "ushankadown")
@@ -141,31 +149,9 @@
 	brightness_on = 2
 	light_overlay = "helmet_light"
 	w_class = ITEM_SIZE_NORMAL
+	style_coverage = COVERS_WHOLE_HEAD
 
-/*
- * Kitty ears
- */
-/obj/item/clothing/head/kitty
-	name = "kitty ears"
-	desc = "A pair of kitty ears. Meow!"
-	icon_state = "kitty"
-	body_parts_covered = 0
-	siemens_coefficient = 1.5
-	item_icons = list()
 
-/obj/item/clothing/head/kitty/equipped(mob/user, slot)
-	if(slot == slot_head)
-		update_icon(user)
-	..()
-
-/obj/item/clothing/head/kitty/on_update_icon(var/mob/living/carbon/human/user)
-	if(!istype(user))
-		return
-	var/icon/ears = new/icon('icons/inventory/head/mob.dmi', "kitty")
-	ears.Blend(user.hair_color, ICON_ADD)
-
-	var/icon/earbit = new/icon('icons/inventory/head/mob.dmi', "kittyinner")
-	ears.Blend(earbit, ICON_OVERLAY)
 
 /obj/item/clothing/head/richard
 	name = "chicken mask"
@@ -173,3 +159,4 @@
 	icon_state = "richard"
 	body_parts_covered = HEAD|FACE
 	flags_inv = BLOCKHAIR
+	style_coverage = COVERS_WHOLE_HEAD

@@ -44,7 +44,7 @@
 		return 2
 	return 0
 
-/obj/item/gun/projectile/automatic/ak47/on_update_icon()
+/obj/item/gun/projectile/automatic/ak47/update_icon()
 	..()
 
 	var/iconstring = initial(icon_state)
@@ -228,7 +228,8 @@
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic
 	)
-
+	spawn_blacklisted = FALSE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	price_tag = 500
 
 /obj/item/gun/projectile/automatic/ak47/makeshift/attackby(obj/item/W, mob/user)

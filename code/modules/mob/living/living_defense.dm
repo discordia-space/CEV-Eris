@@ -351,6 +351,9 @@
 
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
+	if (ishuman(src))
+		var/mob/living/carbon/human/stylish = src
+		stylish.regen_slickness() // being on fire is cool, but don't try this at home
 
 /mob/living/fire_act()
 	adjust_fire_stacks(2)

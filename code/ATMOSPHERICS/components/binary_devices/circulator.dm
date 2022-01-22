@@ -73,20 +73,20 @@
 		recent_moles_transferred = 0
 		update_icon()
 
-/obj/machinery/atmospherics/binary/circulator/on_update_icon()
+/obj/machinery/atmospherics/binary/circulator/update_icon()
 	icon_state = anchored ? "circ-assembled" : "circ-unassembled"
-	cut_overlays()
+	overlays.Cut()
 	if (stat & (BROKEN|NOPOWER) || !anchored)
 		return
 	if (last_pressure_delta > 0 && recent_moles_transferred > 0)
 		if (temperature_overlay)
-			add_overlays(temperature_overlay)
+			overlays += temperature_overlay
 		if (last_pressure_delta > 5*ONE_ATMOSPHERE)
-			add_overlays("circ-run")
+			overlays += "circ-run"
 		else
-			add_overlays("circ-slow")
+			overlays += "circ-slow"
 	else
-		add_overlays("circ-off")
+		overlays += "circ-off"
 
 /obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)

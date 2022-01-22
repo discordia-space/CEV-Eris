@@ -76,7 +76,7 @@ SUBSYSTEM_DEF(mapping)
 	for (var/square in block(locate(1,1,GLOB.maps_data.overmap_z), locate(GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_z)))
 		// Switch to space turf with green grid overlay
 		var/turf/space/T = square
-		T.SetIconState("grid")
+		T.icon_state = "grid"
 		T.update_starlight()
 		turfs += T
 		CHECK_TICK

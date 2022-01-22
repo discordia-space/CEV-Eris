@@ -16,6 +16,7 @@
 	spawn_tags = SPAWN_TAG_CLOTHING_HEAD_HELMET
 	bad_type = /obj/item/clothing/head/armor
 	style = STYLE_NEG_HIGH
+	style_coverage = COVERS_HAIR
 
 /*
  * Helmets
@@ -62,6 +63,8 @@
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	obscuration = LIGHT_OBSCURATION
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
@@ -72,7 +75,7 @@
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
-	desc = "Ironhammer Security gear. Protects the head from impacts."
+	desc = "Ironhammer Security gear. Protects the head from impacts, and the lack of a visor ensures an unhindered aim."
 	icon_state = "helmet_ironhammer"
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
@@ -95,6 +98,7 @@
 	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/technomancer/New()
 	. = ..()
@@ -102,7 +106,7 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer_old
 	name = "reinforced technomancer helmet"
-	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight."
+	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight. The welder-proof visor hinders aim."
 	icon_state = "technohelmet_old"
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
@@ -118,6 +122,7 @@
 		rad = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
+	obscuration = MEDIUM_OBSCURATION
 	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
@@ -163,6 +168,8 @@
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
 		MATERIAL_GLASS = 3 //For the visor parts
 	)
+	obscuration = LIGHT_OBSCURATION
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
@@ -228,7 +235,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/on_update_icon()
+/obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/update_icon()
 	if(hud in src)
 		icon_state = "bulletproof_ironhammer"
 		set_light(0, 0)
@@ -279,6 +286,7 @@
 		MATERIAL_PLASTEEL = 1,
 		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
 	)
+	style_coverage = COVERS_WHOLE_HEAD
 
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
@@ -286,7 +294,8 @@
 	var/list/armor_up = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
-	var/tint_down = TINT_MODERATE
+	var/tint_down = TINT_LOW
+	var/obscuration_down = MEDIUM_OBSCURATION
 	flags_inv = HIDEEARS
 	var/flags_inv_down = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
@@ -296,13 +305,14 @@
 	action_button_name = "Flip Face Shield"
 	var/up = FALSE
 	bad_type = /obj/item/clothing/head/armor/faceshield
+	style_coverage = COVERS_HAIR|COVERS_EARS
 
 /obj/item/clothing/head/armor/faceshield/riot
 	name = "riot helmet"
 	desc = "A helmet specifically designed to protect against close range attacks."
 	icon_state = "riot"
-	armor_up = list(melee = 35, bullet = 25, energy = 25, bomb = 20, bio = 0, rad = 0)
-	armor_down = list(melee = 40, bullet = 40, energy = 30, bomb = 35, bio = 0, rad = 0)
+	armor_up = list(melee = 30, bullet = 20, energy = 20, bomb = 20, bio = 0, rad = 0)
+	armor_down = list(melee = 40, bullet = 35, energy = 30, bomb = 35, bio = 0, rad = 0)
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
@@ -318,7 +328,7 @@
 /obj/item/clothing/head/armor/faceshield/attack_self()
 	toggle()
 
-/obj/item/clothing/head/armor/faceshield/on_update_icon()
+/obj/item/clothing/head/armor/faceshield/update_icon()
 	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
 
 //I wanted to name it set_up() but some how I thought that would be misleading
@@ -328,14 +338,18 @@
 		armor = getArmor(arglist(armor_up))
 		flash_protection = initial(flash_protection)
 		tint = initial(tint)
+		obscuration = initial(obscuration)
 		flags_inv = initial(flags_inv)
 		body_parts_covered = initial(body_parts_covered)
+		style_coverage = initial(style_coverage)
 	else
 		armor = getArmor(arglist(armor_down))
 		flash_protection = flash_protection_down
 		tint = tint_down
+		obscuration = obscuration_down
 		flags_inv = flags_inv_down
 		body_parts_covered = body_parts_covered_down
+		style_coverage = COVERS_WHOLE_HEAD
 
 	update_icon()
 	update_wear_icon()	//update our mob overlays
@@ -364,7 +378,8 @@
 	desc = "Standard-issue Ironhammer helmet with a basic HUD and targeting system included."
 	icon_state = "light_riot"
 
-	tint = TINT_LOW
+	tint = TINT_NONE
+	obscuration = LIGHT_OBSCURATION
 
 	body_parts_covered = HEAD|FACE|EARS
 	armor = list(
@@ -381,6 +396,7 @@
 	action_button_name = "Toggle Security Hud"
 	var/obj/item/clothing/glasses/hud/security/hud
 	price_tag = 500
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/riot_hud/New()
 	..()
@@ -424,7 +440,7 @@
 		hud.forceMove(src)
 		update_icon()
 
-/obj/item/clothing/head/armor/riot_hud/on_update_icon()
+/obj/item/clothing/head/armor/riot_hud/update_icon()
 	if(hud in src)
 		icon_state = "light_riot"
 		set_light(0, 0)
@@ -485,6 +501,7 @@
 		bio = 0,
 		rad = 0
 	)
+	style_coverage = COVERS_FACE|COVERS_HAIR
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
 	name = "\improper Type-34 Semi-Enclosed Headwear"
@@ -515,6 +532,8 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
+	obscuration = MEDIUM_OBSCURATION // May God guide your aim
+	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker
 	name = "black tanker helmet"
@@ -575,7 +594,8 @@
 	up = TRUE
 	spawn_blacklisted = TRUE
 	style = STYLE_HIGH
-	tint_down = TINT_LOW
+	tint_down = TINT_NONE
+	obscuration_down = LIGHT_OBSCURATION
 	var/speaker_enabled = TRUE
 	var/scan_scheduled = FALSE
 	var/scan_interval = 15 SECONDS
@@ -591,7 +611,7 @@
 /obj/item/clothing/head/armor/faceshield/paramedic/proc/schedule_scan()
 	if(scan_scheduled)
 		return
-	
+
 	if(!speaker_enabled)
 		return
 
@@ -616,7 +636,8 @@
 
 	if(!ishuman(loc))
 		return
-	
+
+
 	var/mob/living/carbon/human/user = loc
 
 	var/list/crewmembers = list()

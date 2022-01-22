@@ -18,7 +18,7 @@
 /obj/structure/table/rack/update_desc()
 	return
 
-/obj/structure/table/rack/on_update_icon()
+/obj/structure/table/rack/update_icon()
 	return
 
 /obj/structure/table/rack/shelf

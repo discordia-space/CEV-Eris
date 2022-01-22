@@ -85,6 +85,9 @@
 		if(2)
 			if(prob(50))
 				qdel(src)
+		if(3)
+			if(prob(25))
+				qdel(src)
 
 
 /obj/machinery/shield/hitby(AM as mob|obj)
@@ -323,9 +326,9 @@
 		..()
 
 
-/obj/machinery/shieldgen/on_update_icon()
+/obj/machinery/shieldgen/update_icon()
 	if(active && !(stat & NOPOWER))
-		src.SetIconState(malfunction ? "shieldonbr":"shieldon")
+		src.icon_state = malfunction ? "shieldonbr":"shieldon"
 	else
-		src.SetIconState(malfunction ? "shieldoffbr":"shieldoff")
+		src.icon_state = malfunction ? "shieldoffbr":"shieldoff"
 	return
