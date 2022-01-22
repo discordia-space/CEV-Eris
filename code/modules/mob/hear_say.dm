@@ -14,7 +14,11 @@
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
 		var/mob/living/carbon/human/H = speaker
-		speaker_name = H.rank_prefix_name(H.GetVoice())
+		speaker_name = H.rank_prefix_name(H.GetVoice(TRUE))
+		if(ishuman(src))
+			var/mob/living/carbon/human/S = src
+			if(S.stats && S.stats.getPerk(PERK_EAR_OF_QUICKSILVER))
+				speaker_name = H.rank_prefix_name(H.GetVoice(FALSE))
 
 	if(speech_volume)
 		message = "<FONT size='[speech_volume]'>[message]</FONT>"

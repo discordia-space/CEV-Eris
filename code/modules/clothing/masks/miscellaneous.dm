@@ -216,6 +216,7 @@
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
 	body_parts_covered = HEAD|FACE|EYES
+	muffle_voice = TRUE
 
 /obj/item/clothing/mask/pig/New()
 	..()
@@ -230,6 +231,7 @@
 	body_parts_covered = HEAD|FACE|EYES
 	w_class = ITEM_SIZE_SMALL
 	siemens_coefficient = 0.9
+	muffle_voice = TRUE
 
 /obj/item/clothing/mask/horsehead/New()
 	..()
@@ -284,6 +286,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20
+	muffle_voice = TRUE
 
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
 	switch(slot)
