@@ -159,8 +159,7 @@
 	price_tag = 800
 	one_hand_penalty = 30 //don't you dare to one hand this
 	sharp = FALSE //no bayonet here
-	spawn_blacklisted = FALSE
-	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	spawn_blacklisted = TRUE
 	saw_off = FALSE
 
 /obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W, mob/user)

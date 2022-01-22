@@ -18,8 +18,7 @@
 	recoil_buildup = 20 //makin it a bit more than most shotguns
 	one_hand_penalty = 5 //compact shotgun level, so same as sawn off
 	price_tag = 250 //cheap as they get
-	spawn_blacklisted = FALSE
-	spawn_tags = SPAWN_TAG_GUN_HANDMADE
+	spawn_blacklisted = TRUE
 
 /obj/item/gun/projectile/shotgun/slidebarrel/load_ammo(obj/item/A, mob/user)
 	if(istype(A, /obj/item/ammo_casing))
