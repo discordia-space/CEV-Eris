@@ -299,7 +299,7 @@
 	item_flags = FLEXIBLEMATERIAL
 	w_class = ITEM_SIZE_SMALL
 	price_tag = 20
- 	style = STYLE_LOW
+	style = STYLE_LOW
 	muffle_voice = TRUE
  
 /obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
