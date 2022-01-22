@@ -31,5 +31,5 @@
 	icon_state = "emergency_suit"
 	item_state = "emergency_suit"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
+	slowdown = 2
 	accompanying_object = /obj/item/clothing/head/space/emergency
-	slowdown = HEAVY_SLOWDOWN

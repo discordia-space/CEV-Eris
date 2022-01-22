@@ -3,7 +3,7 @@
  */
 /obj/item/clothing/head/space/bomb
 	name = "bomb helmet"
-	desc = "Use in case of bomb. The shielded visor makes aiming harder."
+	desc = "Use in case of bomb."
 	icon_state = "bombsuit"
 	armor = list(
 		melee = 40,
@@ -14,8 +14,7 @@
 		rad = 90
 	)
 	siemens_coefficient = 0
-	tint = TINT_LOW
-	obscuration = HEAVY_OBSCURATION
+	tint = TINT_HEAVY
 	price_tag = 100
 
 /obj/item/clothing/suit/space/bomb
@@ -26,6 +25,7 @@
 	spawn_tags = SPAWN_TAG_HAZMATSUIT
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
+	slowdown = 2
 	armor = list(
 		melee = 40,
 		bullet = 40,
@@ -39,12 +39,3 @@
 	siemens_coefficient = 0
 	equip_delay = 10 SECONDS
 	price_tag = 300
-	slowdown = HEAVY_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS
-
-/obj/item/clothing/head/space/bomb/security
-	icon_state = "bombsuitsec"
-
-/obj/item/clothing/suit/space/bomb/security
-	icon_state = "bombsuitsec"
-	spawn_blacklisted = TRUE

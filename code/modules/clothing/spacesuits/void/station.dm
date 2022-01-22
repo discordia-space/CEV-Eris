@@ -148,6 +148,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "miner_suit"
 	icon_state = "miner_suit"
+	slowdown = 0.35
 	armor = list(
 		melee = 50,
 		bullet = 35,
@@ -183,6 +184,7 @@
 	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
 	icon_state = "rig-medical"
 	item_state = "rig-medical"
+	slowdown = 0.15
 	extra_allowed = list(
 		/obj/item/storage/firstaid,
 		/obj/item/device/scanner/health,
@@ -198,7 +200,6 @@
 		rad = 75
 	)
 	helmet = /obj/item/clothing/head/space/void/medical
-	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/space/void/medical/equipped
 	boots = /obj/item/clothing/shoes/magboots
@@ -208,7 +209,7 @@
 	//Security
 /obj/item/clothing/head/space/void/security
 	name = "ironhammer voidsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Sacrifices sight for protection."
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "ihsvoidhelm"
 	item_state = "ihsvoidhelm"
 	item_state_slots = list(
@@ -226,7 +227,6 @@
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
-	obscuration = MEDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/security
 	name = "ironhammer voidsuit"
@@ -291,7 +291,7 @@
 //Science
 /obj/item/clothing/head/space/void/science
 	name = "Moebius combat helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. The high-tech sensor systems built into the visor allow a good amount of protection without impairing aim."
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has an additional layer of armor."
 	icon_state = "moebiushelmb"
 	item_state = "moebiushelmb"
 	item_state_slots = list(
@@ -314,7 +314,6 @@
 	)
 	siemens_coefficient = 0.4
 	light_overlay = "helmet_light_dual"
-	obscuration = 0
 
 /obj/item/clothing/head/space/void/science
 	var/list/icon_states = list(
@@ -348,7 +347,7 @@
 /obj/item/clothing/suit/space/void/science
 	name = "Moebius combat voidsuit"
 	icon_state = "moebiussuit"
-	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment without impairing mobility. Features several advanced layers of armor."
+	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment. Features several advanced layers of armor."
 	item_state = "moebiussuit"
 	matter = list(
 	MATERIAL_PLASTEEL = 15,
@@ -369,7 +368,6 @@
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
-	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
@@ -470,4 +468,3 @@
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/NTvoid
 	spawn_blacklisted = TRUE
-	slowdown = LIGHT_SLOWDOWN

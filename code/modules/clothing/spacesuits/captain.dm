@@ -19,6 +19,7 @@
 	desc = "A bulky, heavy-duty piece of exclusive corporate armor. YOU are in charge!"
 	icon_state = "caparmor"
 	item_state = "capspacesuit"
+	slowdown = 0.3
 	armor = list(
 		melee = 50,
 		bullet = 40,
@@ -28,4 +29,3 @@
 		rad = 50
 	)
 	siemens_coefficient = 0.7
-	stiffness = MEDIUM_STIFFNESS

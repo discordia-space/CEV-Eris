@@ -201,10 +201,10 @@
 	w_class = ITEM_SIZE_NORMAL
 	isRemovable = FALSE
 	armor = list(
-		melee = 30,
-		bullet = 30,
-		energy = 30,
-		bomb = 5,
+		melee = 25,
+		bullet = 25,
+		energy = 25,
+		bomb = 0,
 		bio = 0,
 		rad = 0
 	)
@@ -212,16 +212,12 @@
 		MATERIAL_STEEL = 8,
 		MATERIAL_PLASTEEL = 1,
 	)
-	slowdown = 0
-	stiffness = LIGHT_STIFFNESS
 
 /obj/item/clothing/accessory/armor/on_attached()
 	..()
 	has_suit.armor = armor
 	has_suit.style -= 2
-	has_suit.slowdown = slowdown
-	has_suit.stiffness = stiffness
-	has_suit.body_parts_covered = UPPER_TORSO|LOWER_TORSO // Tears up the clothes
+	has_suit.slowdown += 0.05
 
 /obj/item/clothing/accessory/armor/bullet
 	name = "bulletproof armor plates"
@@ -229,7 +225,7 @@
 	icon_state = "armor_bullet"
 	armor = list(
 		melee = 20,
-		bullet = 45,
+		bullet = 40,
 		energy = 20,
 		bomb = 0,
 		bio = 0,
@@ -239,8 +235,6 @@
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 3,
 	)
-	slowdown = LIGHT_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/accessory/armor/platecarrier
 	name = "platecarrier armor plates"
@@ -258,7 +252,6 @@
 		MATERIAL_STEEL = 10,
 		MATERIAL_PLASTEEL = 3,
 	)
-	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/accessory/armor/riot
 	name = "padded armor plates"
@@ -266,14 +259,12 @@
 	icon_state = "armor_riot"
 	armor = list(
 		melee = 50,
-		bullet = 25,
-		energy = 25,
-		bomb = 15,
+		bullet = 20,
+		energy = 20,
+		bomb = 10,
 		bio = 0,
 		rad = 0
 	)
-	slowdown = MEDIUM_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/clothing/accessory/armor/laser
 	name = "ablative armor plates"
@@ -287,4 +278,3 @@
 		bio = 0,
 		rad = 0
 	)
-	slowdown = LIGHT_SLOWDOWN

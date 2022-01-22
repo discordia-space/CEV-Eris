@@ -3,17 +3,26 @@
 /obj/item/gun/equipped(mob/living/H)
 	. = ..()
 	if(is_held() && !safety)
-		H.update_cursor(src)
+		H.update_cursor()
 	else
 		H.remove_cursor()
 
+/obj/item/gun/proc/cursor_check()
+	if(ismob(loc))
+		var/mob/living/carbon/H = loc
+		var/obj/item/gun/thegun = H.get_active_hand()
+		if(istype(thegun) && thegun == src && !thegun.safety)
+			H.update_cursor()
+		else
+			H.remove_cursor()
+
 /obj/item/gun/swapped_from()
-	if(isliving(loc))
-		check_safety_cursor(loc)
+	if(ismob(loc))
+		cursor_check()
 
 /obj/item/gun/swapped_to()
-	if(isliving(loc))
-		check_safety_cursor(loc)
+	if(ismob(loc))
+		cursor_check()
 
 /obj/item/gun/afterattack(obj/target, mob/living/user, flag)
 	. = ..()
@@ -29,7 +38,10 @@
 	. = ..()
 
 /obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
-	check_safety_cursor(user)
+	if(safety)
+		user.remove_cursor()
+	else
+		user.update_cursor()
 	. = ..()
 
 /obj/item/gun/Destroy()

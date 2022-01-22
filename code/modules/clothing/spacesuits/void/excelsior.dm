@@ -68,7 +68,7 @@
 
 /obj/item/clothing/suit/space/void/excelsior
 	name = "Excelsior armor"
-	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges, while remaining surprisingly flexible."
+	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges."
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
 	slowdown = 0.2
@@ -91,5 +91,3 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/excelsior
 	spawn_blacklisted = TRUE
-	slowdown = MEDIUM_SLOWDOWN
-	stiffness = LIGHT_STIFFNESS

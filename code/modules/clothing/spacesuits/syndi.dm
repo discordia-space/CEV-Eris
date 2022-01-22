@@ -22,6 +22,7 @@
 	item_state = "space_suit_syndicate"
 	desc = "A clasic crimson spacesuit sporting clean lines and durable plating."
 	w_class = ITEM_SIZE_NORMAL
+	slowdown = 0.5
 	armor = list(
 		melee = 35,
 		bullet = 35,
@@ -35,8 +36,6 @@
 	supporting_limbs = list()
 	spawn_blacklisted = TRUE
 	accompanying_object = /obj/item/clothing/head/space/syndicate
-	slowdown = MEDIUM_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS
 
 ///////////////////////Black Market//////////////////////////////
 
@@ -52,4 +51,3 @@
 	item_state = "space_suit_syndicate_tan"
 	desc = "A knockoff tan spacesuit sporting clean lines and durable plating."
 	accompanying_object = /obj/item/clothing/head/space/syndicate/uplink
-
