@@ -118,9 +118,16 @@
 	pixel_x = RAND_DECIMAL(-randpixel, randpixel)
 	pixel_y = RAND_DECIMAL(-randpixel, randpixel)
 
-
 /mob/living/carbon/superior_animal/Initialize(var/mapload)
+	if(islist(armor))
+		armor = getArmor(arglist(armor))
+	else if(!armor)
+		armor = getArmor()
+	else if(!istype(armor, /datum/armor))
+		error("Invalid type [armor.type] found in .armor during /obj Initialize()")
+
 	.=..()
+	
 	if (mapload && can_burrow)
 		find_or_create_burrow(get_turf(src))
 		if (prob(extra_burrow_chance))
