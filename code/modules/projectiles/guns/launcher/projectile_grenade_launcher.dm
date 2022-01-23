@@ -74,9 +74,9 @@
 	if(ratio < 0.33 && ratio != 0)
 		ratio = 0.33
 	ratio = round(ratio, 0.33) * 100
-	add_overlays("grenademag_[ratio]")
+	overlays += "grenademag_[ratio]"
 
-/obj/item/gun/projectile/shotgun/pump/grenade/lenar/on_update_icon()
+/obj/item/gun/projectile/shotgun/pump/grenade/lenar/update_icon()
 	cut_overlays()
 	update_charge()
 
@@ -91,6 +91,8 @@
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
 	price_tag = 500
 	max_shells = 0
+	spawn_blacklisted = FALSE//this may be a bad idea
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 
 /obj/item/gun/projectile/shotgun/pump/grenade/makeshift/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/ammo_casing/grenade)))

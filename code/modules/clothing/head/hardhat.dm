@@ -17,6 +17,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	price_tag = 30
 	style = STYLE_NEG_LOW
+	style_coverage = COVERS_HAIR
 
 /obj/item/clothing/head/hardhat/visor
 	name = "visored hard hat"

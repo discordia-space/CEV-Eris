@@ -35,7 +35,7 @@ var/global/photo_count = 0
 	var/icon/tiny
 	var/photo_size = 3
 
-/obj/item/photo/on_update_icon()
+/obj/item/photo/update_icon()
 	.=..()
 	//When the photo updates, update its container too. This will often be an album or paper bundle
 	if (istype(loc, /obj))

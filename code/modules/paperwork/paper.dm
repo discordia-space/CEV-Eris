@@ -57,7 +57,7 @@
 	update_space(info)
 	updateinfolinks()
 
-/obj/item/paper/on_update_icon()
+/obj/item/paper/update_icon()
 	if (icon_state == "paper_talisman")
 		return
 	else if (info)
@@ -428,7 +428,7 @@
 		if(!stamped)
 			stamped = new
 		stamped += P.type
-		add_overlays(stampoverlay)
+		overlays += stampoverlay
 
 		to_chat(user, SPAN_NOTICE("You stamp the paper with your rubber stamp."))
 
@@ -444,7 +444,7 @@
 	icon_state = "paper_crumpled"
 	crumpled = TRUE
 
-/obj/item/paper/crumpled/on_update_icon()
+/obj/item/paper/crumpled/update_icon()
 	if (icon_state == "paper_crumpled_bloodied")
 		return
 	else if (info)
@@ -460,7 +460,7 @@
 	name = "sheet of odd paper"
 	icon_state = "paper_neo"
 
-/obj/item/paper/neopaper/on_update_icon()
+/obj/item/paper/neopaper/update_icon()
 	if(info)
 		icon_state = "paper_neo_words"
 	else
@@ -471,7 +471,7 @@
 	name = "odd paper scrap"
 	icon_state = "paper_neo_crumpled"
 
-/obj/item/paper/crumpled/neo/on_update_icon()
+/obj/item/paper/crumpled/neo/update_icon()
 	if (icon_state == "paper_neo_crumpled_bloodied")
 		return
 	else if (info)

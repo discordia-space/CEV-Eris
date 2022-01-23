@@ -5,6 +5,7 @@
 	item_state = "bgloves"
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
+	style = STYLE_NEG_HIGH // very powergame much unstylish
 	var/stunforce = 0
 	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not
@@ -39,7 +40,7 @@
 			update_icon()
 			return FALSE
 
-/obj/item/clothing/gloves/stungloves/on_update_icon()
+/obj/item/clothing/gloves/stungloves/update_icon()
 	if(status)
 		icon_state = "powerglove_active"
 	else

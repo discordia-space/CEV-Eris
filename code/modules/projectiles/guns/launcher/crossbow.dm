@@ -189,7 +189,7 @@
 	bolt.icon_state = "metal-rod-superheated"
 	cell.use(500)
 
-/obj/item/gun/launcher/crossbow/on_update_icon()
+/obj/item/gun/launcher/crossbow/update_icon()
 	if(tension > 1)
 		icon_state = "crossbow-drawn"
 	else if(bolt)
@@ -225,7 +225,7 @@
 		update_icon()
 	else
 		to_chat(user, "<span class='warning'>The \'Low Ammo\' light on the device blinks yellow.</span>")
-		FLICK("[icon_state]-empty", src)
+		flick("[icon_state]-empty", src)
 
 /obj/item/gun/launcher/crossbow/RCD/attack_self(mob/living/user)
 	if(tension)
@@ -259,17 +259,17 @@
 		update_icon()
 		return
 
-/obj/item/gun/launcher/crossbow/RCD/on_update_icon()
+/obj/item/gun/launcher/crossbow/RCD/update_icon()
 	cut_overlays()
 	if(bolt)
-		add_overlays("rxb-bolt")
+		overlays += "rxb-bolt"
 	var/ratio = 0
 	if(stored_matter < boltcost)
 		ratio = 0
 	else
 		ratio = stored_matter / max_stored_matter
 		ratio = max(round(ratio, 0.25) * 100, 25)
-	add_overlays("rxb-[ratio]")
+	overlays += "rxb-[ratio]"
 	if(tension > 1)
 		icon_state = "rxb-drawn"
 	else

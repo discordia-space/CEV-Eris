@@ -881,7 +881,7 @@
 	glass_name = "Brown Star"
 	glass_desc = "It's not what it sounds like..."
 
-/datum/reagent/drink/milkshake
+/datum/reagent/drink/milk/milkshake
 	name = "Milkshake"
 	description = "Sweet, cold beverage that is usually made from milk"
 	taste_description = "creamy vanilla"

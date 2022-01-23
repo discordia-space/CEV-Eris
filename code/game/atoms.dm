@@ -16,7 +16,7 @@
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/fluorescent // Shows up under a UV light.
-	var/allow_spin = TRUE
+	var/allow_spin = TRUE // prevents thrown atoms from spinning when disabled on thrown or target
 	var/used_now = FALSE //For tools system, check for it should forbid to work on atom for more than one user at time
 
 	///Chemistry.
@@ -42,9 +42,6 @@
 	var/list/atom_colours
 
 /atom/proc/update_icon()
-	return on_update_icon(arglist(args))
-
-/atom/proc/on_update_icon()
 	return
 
 /atom/New(loc, ...)

@@ -93,6 +93,7 @@
 
 	if(href_list["toggle_power"])
 		machine.active = !machine.active
+		machine.update_icon()
 
 	if(href_list["toggle_ores"])
 		show_all_ores = !show_all_ores
@@ -148,6 +149,9 @@
 		marker = locate(/obj/landmark/machinery/output) in range(1, loc)
 		if(marker)
 			output_dir = get_dir(src, marker)
+
+/obj/machinery/mineral/processing_unit/update_icon()
+	icon_state = "furnace[active ? "_on" : ""]"
 
 /obj/machinery/mineral/processing_unit/Process()
 
