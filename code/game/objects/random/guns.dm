@@ -3,6 +3,11 @@
 	icon_state = "gun-grey"
 	tags_to_spawn = list(SPAWN_GUN)
 
+/obj/spawner/gun/handmade
+	name = "random handmade gun"
+	icon_state = "gun-grey"
+	tags_to_spawn = list(SPAWN_GUN_HANDMADE)
+
 /obj/spawner/gun/cheap
 	name = "random cheap gun"
 	icon_state = "gun-grey"

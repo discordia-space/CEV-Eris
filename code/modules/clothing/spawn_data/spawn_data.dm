@@ -37,9 +37,6 @@
 /obj/item/clothing/head/space/void
 	rarity_value = 43.0556
 
-/obj/item/clothing/head/space/bomb/security
-	rarity_value = 62.2222
-
 /obj/item/clothing/head/space/bomb
 	rarity_value = 62.2222
 
@@ -166,8 +163,6 @@
 /obj/item/clothing/head/ushanka
 	rarity_value = 10
 
-/obj/item/clothing/head/kitty
-	rarity_value = 50
 
 /obj/item/clothing/head/bio_hood/general
 	rarity_value = 23.8889

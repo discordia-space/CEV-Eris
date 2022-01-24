@@ -9,9 +9,19 @@ meteor_act
 
 /mob/living/carbon/human/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
+	if (slickness && P.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+		visible_message(SPAN_WARNING("[src] dodges [P]!"))
+		slickness -= P.style_damage
+		dodge_time = get_game_time()
+		confidence = FALSE
+		return PROJECTILE_FORCE_MISS // src dodged.
+
 	def_zone = check_zone(def_zone)
 	if(!has_organ(def_zone))
 		return PROJECTILE_FORCE_MISS //if they don't have the organ in question then the projectile just passes by.
+
+	dodge_time = get_game_time() // stylish person got hit in a limb they had
+	confidence = FALSE // so they get the slickness regen delay
 
 	var/obj/item/organ/external/organ = get_organ(def_zone)
 
@@ -136,7 +146,15 @@ meteor_act
 				var/weight = organ_rel_size[organ_name]
 				armorval += getarmor_organ(organ, type) * weight
 				total += weight
-	return (armorval/max(total, 1))
+	
+	armorval = armorval/max(total, 1)
+
+	if (armorval > 75) // reducing the risks from powergaming
+		switch (type)
+			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) armorval = (75+armorval/2)
+			else return armorval
+
+	return armorval
 
 //this proc returns the Siemens coefficient of electrical resistivity for a particular external organ.
 /mob/living/carbon/human/proc/get_siemens_coefficient_organ(obj/item/organ/external/def_zone)
@@ -158,20 +176,23 @@ meteor_act
 	var/protection = 0
 	var/list/protective_gear = list(head, wear_mask, wear_suit, w_uniform, gloves, shoes)
 	if(def_zone.armor)
-		if(def_zone.armor.getRating(type) > protection)
-			protection = def_zone.armor.getRating(type)
+		protection = 100 - (100 - def_zone.armor.getRating(type)) * (100 - protection) * 0.01 // Converts armor into multiplication form, stacks them, then converts them back
 
 	for(var/gear in protective_gear)
 		if(gear && istype(gear ,/obj/item/clothing))
 			var/obj/item/clothing/C = gear
 			if(istype(C) && C.body_parts_covered & def_zone.body_part && C.armor)
-				if(C.armor.vars[type] > protection)
-					protection = C.armor.vars[type]
+				protection = 100 - (100 - C.armor.vars[type]) * (100 - protection) * 0.01 // Same as above
 
 	var/obj/item/shield/shield = has_shield()
 
 	if(shield)
 		protection += shield.armor[type]
+	
+	if (protection > 75) // reducing the risks from powergaming
+		switch (type)
+			if (ARMOR_MELEE,ARMOR_BULLET,ARMOR_ENERGY) protection = (75+protection/2)
+			else return protection
 
 	return protection
 
@@ -313,6 +334,14 @@ meteor_act
 					throw_mode_off()
 					return
 
+		if (slickness && O.style_damage <= slickness && !incapacitated(INCAPACITATION_UNMOVING))
+			visible_message(SPAN_WARNING("[src] dodges [O]!"))
+			slickness -= O.style_damage
+			dodge_time = get_game_time()
+			confidence = FALSE
+			return
+
+
 		var/dtype = O.damtype
 		var/throw_damage = O.throwforce
 		var/zone
@@ -328,7 +357,18 @@ meteor_act
 			else if(shield_check)
 				return
 
-		O.throwing = 0//it hit, so stop moving
+		if(!zone)
+			visible_message(SPAN_NOTICE("\The [O] misses [src] narrowly!"))
+			return
+
+		dodge_time = get_game_time() // stylish person got hit and wasn't saved by RNG
+		confidence = FALSE // so they get the slickness regen delay
+		if (ishuman(O.thrower))
+			var/mob/living/carbon/human/stylish = O.thrower
+			stylish.regen_slickness() // throwing something and hitting your target is slick
+
+
+		O.throwing = 0		//it hit, so stop moving
 		/// Get hit with glass shards , your fibers are on them now, or with a rod idk.
 		O.add_fibers(src)
 
@@ -366,6 +406,9 @@ meteor_act
 				var/embed_chance = (damage - embed_threshold)*I.embed_mult
 				if (embed_chance > 0 && prob(embed_chance))
 					affecting.embed(I)
+				if (ishuman(I.thrower))
+					var/mob/living/carbon/human/stylish = I.thrower
+					stylish.regen_slickness()
 
 		// Begin BS12 momentum-transfer code.
 		var/mass = 1.5
