@@ -223,9 +223,9 @@
 #define HEAVY_STIFFNESS 1.5
 
 //Slowdown for suits
-#define LIGHT_SLOWDOWN 0.1
-#define MEDIUM_SLOWDOWN 0.2
-#define HEAVY_SLOWDOWN 1
+#define LIGHT_SLOWDOWN 0.075
+#define MEDIUM_SLOWDOWN 0.15
+#define HEAVY_SLOWDOWN 0.75
 
 //Offset for helmets
 #define LIGHT_OBSCURATION 2
