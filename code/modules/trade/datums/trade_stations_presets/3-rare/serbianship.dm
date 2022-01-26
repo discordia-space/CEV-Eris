@@ -11,8 +11,8 @@
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 24000
-	recommendation_threshold = 12000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	assortiment = list(

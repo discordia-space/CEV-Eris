@@ -14,8 +14,8 @@
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 8000
-	recommendation_threshold = 12000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("fs_guns", "fs_ammo")
 	assortiment = list(
 		"Enforce Equipment" = list(

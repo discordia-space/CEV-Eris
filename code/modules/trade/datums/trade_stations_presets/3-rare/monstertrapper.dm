@@ -9,8 +9,8 @@
 	markdown = 0
 	base_income = 3200
 	wealth = -48000
-	secret_inv_threshold = 32000
-	recommendation_threshold = 24000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("illegal2")
 	recommendations_needed = 2
 	assortiment = list(

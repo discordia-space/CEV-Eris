@@ -8,8 +8,8 @@
 	markup = 10				// High markup, low base price to prevent export abuse
 	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 8000
-	recommendation_threshold = 12000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("illegal1", "serbian")
 	recommendations_needed = 1
 	assortiment = list(

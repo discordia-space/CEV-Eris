@@ -5,8 +5,8 @@
 	icon_states = "nt_cruiser"
 	uid = "nt_uncommon"
 	markup = RARE_GOODS		// dept-specific stuff should be more expensive for guild
-	secret_inv_threshold = 8000
-	recommendation_threshold = 12000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
     recommendations_needed = 1
 	assortiment = list(
 		"Cloth" = list(

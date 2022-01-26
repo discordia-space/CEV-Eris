@@ -9,7 +9,8 @@
 	offer_limit = 20
 	base_income = 0
 	wealth = 0
-	secret_inv_threshold = 32000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	recommendations_needed = 2
 	assortiment = list(
 		"Gunmods" = list(

@@ -9,8 +9,8 @@
 	offer_limit = 30
 	base_income = 0		// Needs ore to refine
 	wealth = 0
-	secret_inv_threshold = 16000
-	recommendation_threshold = 24000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("trash")
 	assortiment = list(
 		"Refined Materials" = list(

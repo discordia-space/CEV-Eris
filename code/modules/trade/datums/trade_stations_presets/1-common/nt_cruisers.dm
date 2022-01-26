@@ -7,8 +7,8 @@
 	markup = UNCOMMON_GOODS		// dept-specific stuff should be more expensive for guild
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 8000
-	recommendation_threshold = 12000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("nt_uncommon")
 	assortiment = list(
 		"Biomatter Products" = list(

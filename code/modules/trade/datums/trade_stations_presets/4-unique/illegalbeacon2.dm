@@ -9,7 +9,7 @@
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 8000
+	secret_inv_threshold = 6000
 	recommendations_needed = 3
 	assortiment = list(
         // add uplink gear

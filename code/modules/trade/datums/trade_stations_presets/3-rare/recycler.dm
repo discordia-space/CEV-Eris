@@ -8,8 +8,8 @@
 	markup = RARE_GOODS
 	base_income = 3200
 	wealth = -48000		// Starts in debt so we don't get too many oddities early on.
-	secret_inv_threshold = 16000
-	recommendation_threshold = 24000
+	secret_inv_threshold = 2000
+	recommendation_threshold = 4000
 	stations_recommended = list("anomalous_machines")
 	recommendations_needed = 2
 	assortiment = list(

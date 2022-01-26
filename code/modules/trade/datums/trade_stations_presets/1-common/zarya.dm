@@ -9,8 +9,8 @@
 	offer_limit = 20
 	base_income = 1600
 	wealth = 0
-	secret_inv_threshold = 8000
-	recommendation_threshold = 12000
+	secret_inv_threshold = 0
+	recommendation_threshold = 3000
 	stations_recommended = list("techno_adv")
 	assortiment = list(
 		"BO3DYX" = list(
