@@ -637,7 +637,7 @@ default behaviour is:
 			pass_flags -= PASSTABLE //jumpn't over them anymore!
 			src.allow_spin = TRUE
 			sleep(3)
-            src.client.mloop = 1
+			src.client.mloop = 1
 			while(livmomentum > 0 && src.client.true_dir)
 				src.Move(get_step(src.loc, dir),dir)
 				livmomentum = (livmomentum - speed)
