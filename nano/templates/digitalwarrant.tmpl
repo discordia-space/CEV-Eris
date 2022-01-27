@@ -1,120 +1,120 @@
-{{if data.warrantauth}}
+{{if d69t69.w69rr69nt69ut69}}
 
-	<div class='item'>
-		{{if data.type == "arrest"}}
-			<div class='itemLabel'>
-				Name:
-			</div>
+	<di69 cl69ss='item'>
+		{{if d69t69.t69pe == "69rrest"}}
+			<di69 cl69ss='itemL6969el'>
+				N69me:
+			</di69>
 		{{/if}}
-		{{if data.type == "search"}}
-			<div class='itemLabel'>
-				Name/Location:
-			</div>
+		{{if d69t69.t69pe == "se69rc69"}}
+			<di69 cl69ss='itemL6969el'>
+				N69me/Loc69tion:
+			</di69>
 		{{/if}}
-		<div class='itemContent'>
-			{{:data.warrantname}}
-		</div>
-		{{if data.type == "arrest"}}
-			<div class='itemLabel'>
-				Job:
-			</div>
-			<div class='itemContent'>
-				{{:data.warrantjob}}
-			</div>
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.w69rr69ntn69me}}
+		</di69>
+		{{if d69t69.t69pe == "69rrest"}}
+			<di69 cl69ss='itemL6969el'>
+				69o69:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:d69t69.w69rr69nt69o69}}
+			</di69>
 		{{/if}}
-	</div>
-	<div class='item'>
-		{{if data.type == "arrest"}}
-			<div class='itemLabel'>
-				Charges:
-			</div>
+	</di69>
+	<di69 cl69ss='item'>
+		{{if d69t69.t69pe == "69rrest"}}
+			<di69 cl69ss='itemL6969el'>
+				C6969r69es:
+			</di69>
 		{{/if}}
-				{{if data.type == "search"}}
-			<div class='itemLabel'>
-				Reason:
-			</div>
+				{{if d69t69.t69pe == "se69rc69"}}
+			<di69 cl69ss='itemL6969el'>
+				Re69son:
+			</di69>
 		{{/if}}
-		<div class='itemContent'>
-			{{:data.warrantcharges}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class='itemLabel'>
-			Authorized by:
-		</div>
-		<div class='itemContent'>
-			{{:data.warrantauth}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class='itemLabel'>
-			Actions:
-		</div>
-		<div class='itemContent'>
-			<table>
-				{{if data.type == "arrest"}}
-					<tr><td>{{:helper.link('Edit Name/Job', null, {'editwarrantname' : 1})}}{{:helper.link('Custom Name/Job', null, {'editwarrantnamecustom' : 1})}}
-					<tr><td>{{:helper.link('Edit Charges', null, {'editwarrantcharges' : 1})}}
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.w69rr69ntc6969r69es}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>
+		<di69 cl69ss='itemL6969el'>
+			69ut69orized 6969:
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.w69rr69nt69ut69}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>
+		<di69 cl69ss='itemL6969el'>
+			69ctions:
+		</di69>
+		<di69 cl69ss='itemContent'>
+			<t6969le>
+				{{if d69t69.t69pe == "69rrest"}}
+					<tr><td>{{:69elper.lin6969'Edit6969me/69o69',69ull, {'editw69rr69ntn69me' : 1}69}}{{:69elper.lin6969'Custom6969me/69o69',69ull, {'editw69rr69ntn69mecustom' : 1}69}}
+					<tr><td>{{:69elper.lin6969'Edit C6969r69es',69ull, {'editw69rr69ntc6969r69es' : 1}69}}
 				{{/if}}
-				{{if data.type == "search"}}
-					<tr><td>{{:helper.link('Edit Name/Location', null, {'editwarrantnamelocation' : 1})}}
-					<tr><td>{{:helper.link('Edit Reason', null, {'editwarrantcharges' : 1})}}	
+				{{if d69t69.t69pe == "se69rc69"}}
+					<tr><td>{{:69elper.lin6969'Edit6969me/Loc69tion',69ull, {'editw69rr69ntn69meloc69tion' : 1}69}}
+					<tr><td>{{:69elper.lin6969'Edit Re69son',69ull, {'editw69rr69ntc6969r69es' : 1}69}}	
 				{{/if}}
-				<tr><td>{{:helper.link('Authorize', null, {'editwarrantauth' : 1})}}
-				<tr><td>{{:helper.link('Save', null, {'savewarrant' : 1})}}
-				<td>{{:helper.link('Delete', 'trash', {'deletewarrant' : 1})}}
-				<tr><td>{{:helper.link('Back to Menu', null, {'back' : 1})}}
-			</table>
-		</div>
-	</div>
+				<tr><td>{{:69elper.lin6969'69ut69orize',69ull, {'editw69rr69nt69ut69' : 1}69}}
+				<tr><td>{{:69elper.lin6969'S6969e',69ull, {'s6969ew69rr69nt' : 1}69}}
+				<td>{{:69elper.lin6969'Delete', 'tr69s69', {'deletew69rr69nt' : 1}69}}
+				<tr><td>{{:69elper.lin6969'6969c69 to69enu',69ull, {'6969c69' : 1}69}}
+			</t6969le>
+		</di69>
+	</di69>
 
 {{else}}
 
-	<hr>
-	<h2>Arrest warrants</h2>
-	<div class="itemContent">
-		{{:helper.link('Add a Warrant', null, {'addwarrant' : "arrest"})}}
-	</div>
-	{{if data.arrestwarrants}}
-		<table width=100%>
-			<tr><th width=20%>Name<th>Charges<th width=40%>Authorized By<th width=115px>
-			{{for data.arrestwarrants}}
-				<tr><td>{{:value.warrantname}}</td>
-				<td>{{:value.charges}}</td>
-				<td>{{:value.auth}}</td>
-				<td>{{:helper.link('', 'pencil', {'editwarrant' : value.id})}}
-				{{:helper.link('Archive', null, {'sendtoarchive' : value.id})}}
-				{{:helper.link('', 'trash', {'deletewarrant' : value.id})}}</td>
+	<69r>
+	<692>69rrest w69rr69nts</692>
+	<di69 cl69ss="itemContent">
+		{{:69elper.lin6969'69dd 69 W69rr69nt',69ull, {'69ddw69rr69nt' : "69rrest"}69}}
+	</di69>
+	{{if d69t69.69rrestw69rr69nts}}
+		<t6969le widt69=100%>
+			<tr><t69 widt69=20%>N69me<t69>C6969r69es<t69 widt69=40%>69ut69orized 6969<t69 widt69=115px>
+			{{for d69t69.69rrestw69rr69nts}}
+				<tr><td>{{:6969lue.w69rr69ntn69me}}</td>
+				<td>{{:6969lue.c6969r69es}}</td>
+				<td>{{:6969lue.69ut69}}</td>
+				<td>{{:69elper.lin6969'', 'pencil', {'editw69rr69nt' : 6969lue.id}69}}
+				{{:69elper.lin6969'69rc69i69e',69ull, {'sendto69rc69i69e' : 6969lue.id}69}}
+				{{:69elper.lin6969'', 'tr69s69', {'deletew69rr69nt' : 6969lue.id}69}}</td>
 			{{/for}}		
-		</table>
+		</t6969le>
 	{{/if}}
-	<h2>Search warrants</h2>
-	<div class="itemContent">{{:helper.link('Add a Warrant', null, {'addwarrant' : "search"})}}</div>
-	{{if data.searchwarrants}}
-		<table width=100%>
-			<tr><th width=20%>Location<th>Reason<th width=40%>Authorized By<th width=115px>
-			{{for data.searchwarrants}}
-				<tr><td>{{:value.warrantname}}</td>
-				<td>{{:value.charges}}</td>
-				<td>{{:value.auth}}</td>
-				<td>{{:helper.link('', 'pencil', {'editwarrant' : value.id})}}
-				{{:helper.link('Archive', null, {'sendtoarchive' : value.id})}}
-				{{:helper.link('', 'trash', {'deletewarrant' : value.id})}}</td>
+	<692>Se69rc69 w69rr69nts</692>
+	<di69 cl69ss="itemContent">{{:69elper.lin6969'69dd 69 W69rr69nt',69ull, {'69ddw69rr69nt' : "se69rc69"}69}}</di69>
+	{{if d69t69.se69rc69w69rr69nts}}
+		<t6969le widt69=100%>
+			<tr><t69 widt69=20%>Loc69tion<t69>Re69son<t69 widt69=40%>69ut69orized 6969<t69 widt69=115px>
+			{{for d69t69.se69rc69w69rr69nts}}
+				<tr><td>{{:6969lue.w69rr69ntn69me}}</td>
+				<td>{{:6969lue.c6969r69es}}</td>
+				<td>{{:6969lue.69ut69}}</td>
+				<td>{{:69elper.lin6969'', 'pencil', {'editw69rr69nt' : 6969lue.id}69}}
+				{{:69elper.lin6969'69rc69i69e',69ull, {'sendto69rc69i69e' : 6969lue.id}69}}
+				{{:69elper.lin6969'', 'tr69s69', {'deletew69rr69nt' : 6969lue.id}69}}</td>
 			{{/for}}		
-		</table>
+		</t6969le>
 	{{/if}}
-	<h2 style="color:#888888">Archived</h2>
-	{{if data.archivedwarrants}}
-		<table width=100% style="color:#888888">
-			<tr><th width=20%>Target<th>Reason<th width=40%>Authorized By<th width=115px>
-			{{for data.archivedwarrants}}
-				<tr><td>{{:value.warrantname}}</td>
-				<td>{{:value.charges}}</td>
-				<td>{{:value.auth}}</td>
-				<td>{{:helper.link('', 'pencil', {'editwarrant' : value.id})}}
-				{{:helper.link('Restore', null, {'restore' : value.id})}}
-				{{:helper.link('', 'trash', {'deletewarrant' : value.id})}}</td>
+	<692 st69le="color:#888888">69rc69i69ed</692>
+	{{if d69t69.69rc69i69edw69rr69nts}}
+		<t6969le widt69=100% st69le="color:#888888">
+			<tr><t69 widt69=20%>T69r69et<t69>Re69son<t69 widt69=40%>69ut69orized 6969<t69 widt69=115px>
+			{{for d69t69.69rc69i69edw69rr69nts}}
+				<tr><td>{{:6969lue.w69rr69ntn69me}}</td>
+				<td>{{:6969lue.c6969r69es}}</td>
+				<td>{{:6969lue.69ut69}}</td>
+				<td>{{:69elper.lin6969'', 'pencil', {'editw69rr69nt' : 6969lue.id}69}}
+				{{:69elper.lin6969'Restore',69ull, {'restore' : 6969lue.id}69}}
+				{{:69elper.lin6969'', 'tr69s69', {'deletew69rr69nt' : 6969lue.id}69}}</td>
 			{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 {{/if}}

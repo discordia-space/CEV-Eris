@@ -3,17 +3,17 @@
 **	All the data for building stuff and tracking reliability. **
 ***************************************************************/
 /*
-For the materials datum, it assumes you need reagents unless specified otherwise. To designate a material that isn't a reagent,
-you use one of the material IDs below. These are NOT ids in the usual sense (they aren't defined in the object or part of a datum),
-they are simply references used as part of a "has materials?" type proc. They all start with a  to denote that they aren't reagents.
-The currently supporting non-reagent materials:
+For the69aterials datum, it assumes you69eed reagents unless specified otherwise. To designate a69aterial that isn't a reagent,
+you use one of the69aterial IDs below. These are69OT ids in the usual sense (they aren't defined in the object or part of a datum),
+they are simply references used as part of a "has69aterials?" type proc. They all start with a  to denote that they aren't reagents.
+The currently supporting69on-reagent69aterials:
 
-Don't add new keyword/IDs if they are made from an existing one (such as rods which are made from metal). Only add raw materials.
+Don't add69ew keyword/IDs if they are69ade from an existing one (such as rods which are69ade from69etal). Only add raw69aterials.
 
 Design Guidlines
-- When adding new designs, check rdreadme.dm to see what kind of things have already been made and where new stuff is needed.
-- A single sheet of anything is 1 unit of material. Materials besides metal/glass require help from other jobs (mining for
-other types of metals and chemistry for reagents).
+- When adding69ew designs, check rdreadme.dm to see what kind of things have already been69ade and where69ew stuff is69eeded.
+- A single sheet of anything is 1 unit of69aterial.69aterials besides69etal/glass re69uire help from other jobs (mining for
+other types of69etals and chemistry for reagents).
 
 */
 
@@ -22,16 +22,16 @@ other types of metals and chemistry for reagents).
 	starts_unlocked = FALSE
 
 /datum/design/research/item
-	category = "Misc" //We default to misc so that we are sorted
+	category = "Misc" //We default to69isc so that we are sorted
 	build_type = AUTOLATHE | PROTOLATHE
 
 /datum/design/research/item/mechfab
-	build_type = MECHFAB
+	build_type =69ECHFAB
 	category = "Misc"
 
 /datum/design/research/item/flash
 	name = "flash"
-	build_type = AUTOLATHE | MECHFAB
+	build_type = AUTOLATHE |69ECHFAB
 	build_path = /obj/item/device/flash
 	category = "Misc"
 
@@ -68,7 +68,7 @@ other types of metals and chemistry for reagents).
 	sort_string = "MACAA"
 
 /datum/design/research/item/medical/adv_mass_spectrometer
-	desc = "A device for analyzing chemicals in blood and their quantities."
+	desc = "A device for analyzing chemicals in blood and their 69uantities."
 	build_path = /obj/item/device/scanner/mass_spectrometer/adv
 	sort_string = "MACAB"
 
@@ -99,20 +99,20 @@ other types of metals and chemistry for reagents).
 	sort_string = "MADAB"
 
 /datum/design/research/item/medical/nanopaste
-	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
+	desc = "A tube of paste containing swarms of repair69anites.69ery effective in repairing robotic69achinery."
 	build_path = /obj/item/stack/nanopaste
 	sort_string = "MBAAA"
 	chemicals = list("nanites" = 5)
 
 /datum/design/research/item/scalpel_laser
-	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field."
+	desc = "A scalpel augmented with a directed laser, for69ore precise cutting without blood entering the field."
 	build_path = /obj/item/tool/scalpel/laser
 	category = "Medical"
 	sort_string = "MBBAA"
 
 /datum/design/research/item/makeshift_centrifuge
 	name = "Portable centrifuge"
-	desc = "A centrifuge with manual mechanism."
+	desc = "A centrifuge with69anual69echanism."
 	build_path = /obj/item/device/makeshift_centrifuge
 	category = "Medical"
 	sort_string = "MBBAA"
@@ -136,21 +136,21 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/posibrain
 	name = "Positronic brain"
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/device/mmi/digital/posibrain
 	category = "Medical"
 	sort_string = "VACAB"
 
 /datum/design/research/item/mmi
 	name = "Man-machine interface"
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/device/mmi
 	category = "Medical"
 	sort_string = "VACBA"
 
 /datum/design/research/item/mmi_radio
-	name = "Radio-enabled man-machine interface"
-	build_type = PROTOLATHE | MECHFAB
+	name = "Radio-enabled69an-machine interface"
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/device/mmi/radio_enabled
 	category = "Medical"
 	sort_string = "VACBB"
@@ -163,35 +163,35 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/bag_holding
 	name = "'Bag of Holding', an infinite capacity bag prototype"
-	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighing nothing. It's a shame the bag itself is pretty heavy."
+	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighing69othing. It's a shame the bag itself is pretty heavy."
 	build_path = /obj/item/storage/backpack/holding
 	category = "Telecoms | Bluespace"
 	sort_string = "VAEAA"
 
 /datum/design/research/item/belt_holding
 	name = "'Belt of Holding', an infinite capacity belt prototype"
-	desc = "Using localized pockets of bluespace this belt prototype offers incredible storage capacity with the contents weighing nothing."
+	desc = "Using localized pockets of bluespace this belt prototype offers incredible storage capacity with the contents weighing69othing."
 	build_path = /obj/item/storage/belt/holding
 	category = "Telecoms | Bluespace"
 	sort_string = "VAEAB"
 
 /datum/design/research/item/pouch_holding
 	name = "'Pouch of Holding', an infinite capacity pouch prototype"
-	desc = "Using localized pockets of bluespace this pouch prototype offers incredible storage capacity with the contents weighing nothing."
+	desc = "Using localized pockets of bluespace this pouch prototype offers incredible storage capacity with the contents weighing69othing."
 	build_path = /obj/item/storage/pouch/holding
 	category = "Telecoms | Bluespace"
 	sort_string = "VAEAC"
 
 /datum/design/research/item/trashbag_holding
 	name = "'Trashbag of Holding', an infinite capacity trashbag prototype"
-	desc = "Using localized pockets of bluespace this trashbag prototype offers incredible storage capacity with the contents weighing nothing."
+	desc = "Using localized pockets of bluespace this trashbag prototype offers incredible storage capacity with the contents weighing69othing."
 	build_path = /obj/item/storage/bag/trash/holding
 	category = "Telecoms | Bluespace"
 	sort_string = "VAEAD"
 
 /datum/design/research/item/oresatchel_holding
 	name = "'Ore satchel of Holding', an infinite capacity ore satchel prototype"
-	desc = "Using localized pockets of bluespace this ore satchel prototype offers incredible storage capacity with the contents weighing nothing."
+	desc = "Using localized pockets of bluespace this ore satchel prototype offers incredible storage capacity with the contents weighing69othing."
 	build_path = /obj/item/storage/bag/ore/holding
 	category = "Telecoms | Bluespace"
 	sort_string = "VAEAE"
@@ -205,14 +205,14 @@ other types of metals and chemistry for reagents).
 
 /datum/design/research/item/glowstick
 	name = "Undark Glowstick"
-	desc = "A refined cocktail of all the needed things to glow in the dark!"
+	desc = "A refined cocktail of all the69eeded things to glow in the dark!"
 	build_path = /obj/item/device/lighting/glowstick/undark //Yes 1920s were a wild time
 	sort_string = "VASAB"
 	chemicals = list("radium" = 5, "phosphorus" = 10)
-	materials = list(MATERIAL_GLASS = 2, MATERIAL_PLASTIC = 15)
+	materials = list(MATERIAL_GLASS = 2,69ATERIAL_PLASTIC = 15)
 
 /datum/design/research/item/science_voidsuit
-	name = "Moebius combat voidsuit"
+	name = "Moebius combat69oidsuit"
 	build_path = /obj/item/clothing/suit/space/void/science
 	sort_string = "VASAC"
  
@@ -226,12 +226,12 @@ other types of metals and chemistry for reagents).
 	build_path = /obj/item/clothing/head/armor/faceshield/paramedic
 	sort_string = "VASAE"
 
-//Why is there a science design to craft a cardboard box full of things? That is not how this works
+//Why is there a science design to craft a cardboard box full of things? That is69ot how this works
 /*
 /datum/design/research/item/chameleon
-	name = "Holographic equipment kit"
-	desc = "A kit of dangerous, high-tech equipment with changeable looks."
-	req_tech = list(TECH_COVERT = 2)
+	name = "Holographic e69uipment kit"
+	desc = "A kit of dangerous, high-tech e69uipment with changeable looks."
+	re69_tech = list(TECH_COVERT = 2)
 	build_path = /obj/item/storage/box/syndie_kit/chameleon
 	sort_string = "VASBA"
 */

@@ -1,94 +1,94 @@
-<div class="block" style ='position: relative;'>
-	<div class="item">
-		<div class="item">
-			{{:helper.link('', data.paused ? 'play' : 'pause', {'pause' : 1}, null, 'bigButton')}}
-			{{if data.current}}
-				{{:helper.link('', 'close', {'abort_print' : 1}, null, 'bigButton')}}
+<di69 cl69ss="69loc69" st69le ='69osition: rel69ti69e;'>
+	<di69 cl69ss="item">
+		<di69 cl69ss="item">
+			{{:69el69er.lin6969'', d69t69.6969used ? '69l6969' : '6969use', {'6969use' : 1},69ull, '69i6969utton'69}}
+			{{if d69t69.current}}
+				{{:69el69er.lin6969'', 'close', {'6969ort_69rint' : 1},69ull, '69i6969utton'69}}
 			{{/if}}
-		</div>
-		{{if data.current}}
-		<div class="item">
-			<div style ='position: absolute; top: 8px; right: 8px; max-height:48px; max-width:48px; height:48px; width:48px; margin-left:0px' class='statusDisplayItem'>
-				<img src= {{:data.current.icon}} height=48 width=48>
-			</div>
-			<div class="itemLabelWidest">Printing {{:data.current.name}}</div>
-			<div style="width: calc(100% - 4px)">
-			{{if data.error}}
-				<div class="bad">{{:data.error}}</div>
+		</di69>
+		{{if d69t69.current}}
+		<di69 cl69ss="item">
+			<di69 st69le ='69osition: 6969solute; to69: 869x; ri6969t: 869x;6969x-69ei6969t:4869x;6969x-widt69:4869x; 69ei6969t:4869x; widt69:4869x;6969r69in-left:069x' cl69ss='st69tusDis69l6969Item'>
+				<im69 src= {{:d69t69.current.icon}} 69ei6969t=48 widt69=48>
+			</di69>
+			<di69 cl69ss="itemL6969elWidest">69rintin69 {{:d69t69.current.n69me}}</di69>
+			<di69 st69le="widt69: c69lc69100% - 469x69">
+			{{if d69t69.error}}
+				<di69 cl69ss="6969d">{{:d69t69.error}}</di69>
 			{{else}}
-				{{:helper.displayBar(data.progress / data.current.time, 0, 1, 'good', Math.round((data.progress / data.current.time) * 100) + "%")}}
+				{{:69el69er.dis69l69696969r69d69t69.69ro69ress / d69t69.current.time, 0, 1, '69ood',6969t69.round6969d69t69.69ro69ress / d69t69.current.time69 * 10069 + "%"69}}
 			{{/if}}
-			</div>
-		</div>
-		<div class="statusDisplay">
-			{{if data.current.point_cost > 0}}
-				{{if !data.disk}}
-					<div class="{{:data.use_license ? "bad" : "itemLabelWidest"}}">
-						License point cost: {{:data.current.point_cost}}
-					</div>
+			</di69>
+		</di69>
+		<di69 cl69ss="st69tusDis69l6969">
+			{{if d69t69.current.69oint_cost > 0}}
+				{{if !d69t69.dis69}}
+					<di69 cl69ss="{{:d69t69.use_license ? "6969d" : "itemL6969elWidest"}}">
+						License 69oint cost: {{:d69t69.current.69oint_cost}}
+					</di69>
 				{{else}}
-					<div class="item {{:data.disk.license >= data.current.point_cost ? "itemLabelWidest" : "bad"}}">
-						License point cost: {{:data.current.point_cost}}
-					</div>
+					<di69 cl69ss="item {{:d69t69.dis69.license >= d69t69.current.69oint_cost ? "itemL6969elWidest" : "6969d"}}">
+						License 69oint cost: {{:d69t69.current.69oint_cost}}
+					</di69>
 				{{/if}}
 			{{/if}}
 
-			{{if data.current.materials}}
-			<div class="item">
-				<div class="itemLabelWidest">Materials</div>
-				{{for data.current.materials :material:material_i}}
-					{{material.amount = data.current.adjust_materials ? Math.round((material.req * data.mat_efficiency) * 100) / 100 : material.req;}}
-					<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
+			{{if d69t69.current.m69teri69ls}}
+			<di69 cl69ss="item">
+				<di69 cl69ss="itemL6969elWidest">M69teri69ls</di69>
+				{{for d69t69.current.m69teri69ls :m69teri69l:m69teri69l_i}}
+					{{m69teri69l.69mount = d69t69.current.69d69ust_m69teri69ls ?6969t69.round6969m69teri69l.re69 * d69t69.m69t_efficienc6969 * 10069 / 100 :6969teri69l.re69;}}
+					<di69 cl69ss="itemContentWidest">{{:m69teri69l.n69me}}: {{:m69teri69l.69mount}}</di69>
 				{{/for}}
-			</div>
+			</di69>
 			{{/if}}
-			{{if data.current.chemicals}}
-			<div class="item">
-				<div class="itemLabelWidest">Reagents</div>
-				{{for data.current.chemicals :chemical:chemical_i}}
-					<div class="itemContentWidest">{{:chemical.name}}: {{:Math.round(chemical.req * 100) / 100}}</div>
+			{{if d69t69.current.c69emic69ls}}
+			<di69 cl69ss="item">
+				<di69 cl69ss="itemL6969elWidest">Re6969ents</di69>
+				{{for d69t69.current.c69emic69ls :c69emic69l:c69emic69l_i}}
+					<di69 cl69ss="itemContentWidest">{{:c69emic69l.n69me}}: {{:M69t69.round69c69emic69l.re69 * 10069 / 100}}</di69>
 				{{/for}}
-			</div>
+			</di69>
 			{{/if}}
-			<div class="item">
-				<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:data.current.time}}</div>
-			</div>
+			<di69 cl69ss="item">
+				<di69 st69le="m69r69in-to69:869x" cl69ss="itemL6969elWidest"><69>69uild time:</69> {{:d69t69.current.time}}</di69>
+			</di69>
 
-		</div>
+		</di69>
 		{{else}}
-			<div class="itemLabelWidest"><div class="average">Idle</div></div>
+			<di69 cl69ss="itemL6969elWidest"><di69 cl69ss="6969er6969e">Idle</di69></di69>
 		{{/if}}	
-	</div>
-</div>
-{{if data.queue_max}}
-<div class="block" style ='position: relative;'>
-	<div class="item">
-		<div class="itemLabelWidest">Queue: {{:data.queue.length}}/{{:data.queue_max}} </div>
-		{{for data.queue}}
-			<div class="item">
-				<div class="itemContentWidest" style ='position: relative;'>
-					<div style ='position: absolute; top: 10px; right: 10px; max-height:24px; max-width:24px; height:24px; width:24px; margin-left:0px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
-					{{if value.error >= 2}}
-						<div class="bad">{{:value.name}}</div>
-					{{else value.error == 1}}
-						<div class="average">{{:value.name}}</div>
+	</di69>
+</di69>
+{{if d69t69.69ueue_m69x}}
+<di69 cl69ss="69loc69" st69le ='69osition: rel69ti69e;'>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969elWidest">69ueue: {{:d69t69.69ueue.len69t69}}/{{:d69t69.69ueue_m69x}} </di69>
+		{{for d69t69.69ueue}}
+			<di69 cl69ss="item">
+				<di69 cl69ss="itemContentWidest" st69le ='69osition: rel69ti69e;'>
+					<di69 st69le ='69osition: 6969solute; to69: 1069x; ri6969t: 1069x;6969x-69ei6969t:2469x;6969x-widt69:2469x; 69ei6969t:2469x; widt69:2469x;6969r69in-left:069x' cl69ss='st69tusDis69l6969Item'><im69 src= {{:6969lue.icon}} 69ei6969t=24 widt69=24></di69>
+					{{if 6969lue.error >= 2}}
+						<di69 cl69ss="6969d">{{:6969lue.n69me}}</di69>
+					{{else 6969lue.error == 1}}
+						<di69 cl69ss="6969er6969e">{{:6969lue.n69me}}</di69>
 					{{else}}
-						{{:value.name}}
+						{{:6969lue.n69me}}
 					{{/if}}				
-				</div>
-				<div class="itemLabelWidest">
-					{{:helper.link('', 'close', {'remove_from_queue' : value.ind}, null, 'statusValue')}}
-					{{if value.ind > 1}}
-						{{:helper.link('', 'triangle-1-n', {'move_up_queue' : value.ind}, null, 'statusValue')}}
+				</di69>
+				<di69 cl69ss="itemL6969elWidest">
+					{{:69el69er.lin6969'', 'close', {'remo69e_from_69ueue' : 6969lue.ind},69ull, 'st69tus6969lue'69}}
+					{{if 6969lue.ind > 1}}
+						{{:69el69er.lin6969'', 'tri69n69le-1-n', {'mo69e_u69_69ueue' : 6969lue.ind},69ull, 'st69tus6969lue'69}}
 					{{/if}}
-					{{if value.ind < data.queue_len}}
-						{{:helper.link('', 'triangle-1-s', {'move_down_queue' : value.ind}, null, 'statusValue')}}
+					{{if 6969lue.ind < d69t69.69ueue_len}}
+						{{:69el69er.lin6969'', 'tri69n69le-1-s', {'mo69e_down_69ueue' : 6969lue.ind},69ull, 'st69tus6969lue'69}}
 					{{/if}}
-				</div>
-			</div>
-		{{empty}}
-			<div class="itemContentWidest">Empty</div>
+				</di69>
+			</di69>
+		{{em69t69}}
+			<di69 cl69ss="itemContentWidest">Em69t69</di69>
 		{{/for}}
-	</div>
-</div>
+	</di69>
+</di69>
 {{/if}}

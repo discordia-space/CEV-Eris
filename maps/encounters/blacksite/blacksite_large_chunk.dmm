@@ -1,1812 +1,1812 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CON69ERTED B69 dmm2t69m.p69 THIS HEADER COMMENT PRE69ENTS RECON69ERSION, DO69OT REMO69E
 "ai" = (
-/obj/machinery/computer/arcade,
+/ob69/machiner69/computer/arcade,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "aA" = (
-/obj/item/storage/toolbox/mechanical,
-/obj/item/handcuffs,
-/obj/item/melee/baton,
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/item/stora69e/toolbox/mechanical,
+/ob69/item/handcuffs,
+/ob69/item/melee/baton,
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"aK" = (
-/obj/machinery/media/jukebox,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
+"a69" = (
+/ob69/machiner69/media/69u69ebox,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
 "aO" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "aS" = (
-/obj/machinery/electrolyzer,
-/obj/structure/table/onestar,
+/ob69/machiner69/electrol69zer,
+/ob69/structure/table/onestar,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "bt" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/stamp/chameleon,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/stamp/chameleon,
+/ob69/spawner/low69e69random/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "bu" = (
-/obj/structure/closet/secure_closet/freezer/meat,
-/obj/item/tool/knife/butch,
+/ob69/structure/closet/secure_closet/freezer/meat,
+/ob69/item/tool/69nife/butch,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "bw" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
 /turf/simulated/floor/dirt,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "bD" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dar69{
 	dir = 8
 	},
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/item/remains/human,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "bE" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/phone,
-/obj/structure/window/reinforced{
+/ob69/item/phone,
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "bH" = (
-/obj/structure/table/rack,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/large,
-/obj/spawner/powercell/small,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
-"bJ" = (
-/obj/item/remains/human,
+/ob69/structure/table/rac69,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/lar69e,
+/ob69/spawner/powercell/small,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
+"b69" = (
+/ob69/item/remains/human,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "bN" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/paper_bin,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"bV" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/item/paper_bin,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"b69" = (
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/machinery/light,
+/ob69/machiner69/li69ht,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "bX" = (
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder/portable,
+/ob69/structure/table/standard,
+/ob69/machiner69/rea69ent69rinder/portable,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"bY" = (
-/obj/structure/shuttle/engine/heater{
+/area/outpost/blac69site/lar69e69
+"b69" = (
+/ob69/structure/shuttle/en69ine/heater{
 	dir = 8
 	},
-/obj/structure/window/reinforced/crescent{
+/ob69/structure/window/reinforced/crescent{
 	dir = 1
 	},
-/obj/structure/window/reinforced/crescent{
+/ob69/structure/window/reinforced/crescent{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "ca" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/normal,
-/obj/machinery/light{
+/ob69/structure/table/rac69,
+/ob69/spawner/69un/normal,
+/ob69/machiner69/li69ht{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "ci" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/obj/structure/disposalpipe/segment{
+/ob69/effect/window_lwall_spawn/smartspawn/onestar,
+/ob69/structure/disposalpipe/se69ment{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/platin69/under,
+/area/outpost/blac69site/lar69e69
 "cr" = (
-/obj/machinery/door/airlock/centcom{
-	icon_state = "door_locked";
-	locked = 1
+/ob69/machiner69/door/airloc69/centcom{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "cA" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/onestar,
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "cW" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dar69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "da" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"dk" = (
-/obj/effect/floor_decal/industrial/warning/corner,
+/ob69/structure/bed/chair/comf69/blac69,
+/ob69/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"d69" = (
+/ob69/effect/floor_decal/industrial/warnin69/corner,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "dp" = (
-/obj/structure/table/onestar,
-/obj/spawner/soda,
-/obj/spawner/soda,
+/ob69/structure/table/onestar,
+/ob69/spawner/soda,
+/ob69/spawner/soda,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "ds" = (
-/obj/structure/table/bar_special,
-/obj/machinery/chemical_dispenser/soda,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
+/ob69/structure/table/bar_special,
+/ob69/machiner69/chemical_dispenser/soda,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
 "dA" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dar69{
 	dir = 1
 	},
-/obj/spawner/soda,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"dK" = (
-/obj/structure/closet/emcloset,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/soda,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"d69" = (
+/ob69/structure/closet/emcloset,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "dM" = (
 /turf/simulated/floor/reinforced,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "dS" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/de69ice/li69htin69/to6969leable/lamp,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "dT" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "dZ" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
 /turf/simulated/floor/reinforced,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "et" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/obj/spawner/soda/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/structure/bed/chair/custom/onestar/red,
+/ob69/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "eN" = (
-/obj/structure/table/onestar,
-/obj/item/paper_bin,
-/obj/item/pen,
+/ob69/structure/table/onestar,
+/ob69/item/paper_bin,
+/ob69/item/pen,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "eO" = (
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/outpost/blacksite/large)
-"eQ" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"e69" = (
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/pen,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "eS" = (
-/obj/machinery/slotmachine,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
-"fg" = (
-/obj/structure/railing/grey{
+/ob69/machiner69/slotmachine,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
+"f69" = (
+/ob69/structure/railin69/69re69{
 	dir = 4
 	},
-/obj/structure/railing/grey{
+/ob69/structure/railin69/69re69{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/platin69/under,
+/area/outpost/blac69site/lar69e69
 "fh" = (
-/obj/structure/table/bar_special,
-/obj/spawner/booze/low_chance,
+/ob69/structure/table/bar_special,
+/ob69/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "fn" = (
-/obj/machinery/computer/operating{
-	name = "Xenobiology Operating Computer"
+/ob69/machiner69/computer/operatin69{
+	name = "Xenobiolo6969 Operatin69 Computer"
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "fr" = (
-/obj/structure/table/rack,
-/obj/spawner/tank,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/spawner/tan69,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "fw" = (
-/obj/machinery/door/airlock/sandstone{
-	icon_state = "door_locked";
-	locked = 1;
-	name = "OneStar Airlock"
+/ob69/machiner69/door/airloc69/sandstone{
+	icon_state = "door_loc69ed";
+	loc69ed = 1;
+	name = "OneStar Airloc69"
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "fx" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/reinforced,
+/ob69/machiner69/rechar69er,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "fD" = (
 /turf/simulated/floor/dirt,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "fU" = (
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
-"fV" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/area/outpost/blac69site/lar69e69
+"f69" = (
+/ob69/machiner69/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/outpost/blacksite/large)
-"gb" = (
-/obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
-"gk" = (
-/obj/structure/table/bar_special,
-/obj/item/reagent_containers/food/drinks/shaker,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
-"gz" = (
-/obj/structure/table/onestar,
-/obj/item/folder/red,
-/obj/spawner/lowkeyrandom/low_chance,
+/area/outpost/blac69site/lar69e69
+"69b" = (
+/ob69/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/table/bar_special,
+/ob69/item/rea69ent_containers/food/drin69s/sha69er,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
+"69z" = (
+/ob69/structure/table/onestar,
+/ob69/item/folder/red,
+/ob69/spawner/low69e69random/low_chance,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"gB" = (
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"gC" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/area/outpost/blac69site/lar69e69
+"69B" = (
+/ob69/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69C" = (
+/ob69/structure/table/standard,
+/ob69/item/rea69ent_containers/food/snac69s/mint,
+/ob69/item/rea69ent_containers/food/condiment/saltsha69er{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/peppermill{
+/ob69/item/rea69ent_containers/food/condiment/peppermill{
 	pixel_x = 3
 	},
-/obj/spawner/booze/low_chance,
+/ob69/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"gE" = (
-/obj/spawner/mob/roomba,
+/area/outpost/blac69site/lar69e69
+"69E" = (
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/outpost/blacksite/large)
-"gV" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"gW" = (
-/obj/structure/toilet{
+/ob69/item/de69ice/li69htin69/to6969leable/lamp,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69W" = (
+/ob69/structure/toilet{
 	dir = 8
 	},
-/obj/spawner/medical_lowcost/low_chance,
+/ob69/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"gX" = (
-/obj/structure/closet/onestar/tier2/normal,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
+"69X" = (
+/ob69/structure/closet/onestar/tier2/normal,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "hi" = (
-/obj/structure/shuttle/engine/propulsion{
+/ob69/structure/shuttle/en69ine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_l"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "ho" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"hq" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"h69" = (
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"hy" = (
-/obj/machinery/light{
+/area/outpost/blac69site/lar69e69
+"h69" = (
+/ob69/machiner69/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "hF" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "hN" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/sink{
-	pixel_y = -13
+/ob69/structure/sin69{
+	pixel_69 = -13
 	},
-/obj/structure/mirror{
+/ob69/structure/mirror{
 	dir = 8;
-	pixel_y = -30
+	pixel_69 = -30
 	},
-/obj/spawner/medical_lowcost/low_chance,
+/ob69/spawner/medical_lowcost/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "hS" = (
-/obj/structure/table/rack/shelf,
-/obj/item/storage/box/gloves{
+/ob69/structure/table/rac69/shelf,
+/ob69/item/stora69e/box/69lo69es{
 	pixel_x = 3;
-	pixel_y = 4
+	pixel_69 = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "hX" = (
-/obj/structure/table/bar_special,
-/obj/spawner/booze/low_chance,
+/ob69/structure/table/bar_special,
+/ob69/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "if" = (
-/obj/structure/table/onestar,
-/obj/item/storage/lunchbox/rainbow,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/onestar,
+/ob69/item/stora69e/lunchbox/rainbow,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "ii" = (
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "ix" = (
-/obj/structure/closet/crate,
-/obj/item/storage/freezer,
-/obj/item/storage/freezer,
+/ob69/structure/closet/crate,
+/ob69/item/stora69e/freezer,
+/ob69/item/stora69e/freezer,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"iy" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/cloth/suit/low_chance,
+/area/outpost/blac69site/lar69e69
+"i69" = (
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/cloth/under/low_chance,
+/ob69/spawner/cloth/suit/low_chance,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"iY" = (
-/obj/item/remains/human,
+/area/outpost/blac69site/lar69e69
+"i69" = (
+/ob69/item/remains/human,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"je" = (
-/obj/structure/railing/grey{
+/area/outpost/blac69site/lar69e69
+"69e" = (
+/ob69/structure/railin69/69re69{
 	dir = 4
 	},
-/obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
-/area/outpost/blacksite/large)
-"jg" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/railin69/69re69,
+/turf/simulated/floor/platin69/under,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"jj" = (
-/obj/item/paper/blacksite/medium/note02{
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/item/paper/blac69site/medium/note02{
 	pixel_x = 6;
-	pixel_y = 7
+	pixel_69 = 7
 	},
-/obj/item/paper/blacksite/medium/note05{
+/ob69/item/paper/blac69site/medium/note05{
 	pixel_x = -5
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"jD" = (
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"jE" = (
-/obj/structure/sign/derelict3{
-	pixel_y = 32
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69D" = (
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69E" = (
+/ob69/structure/si69n/derelict3{
+	pixel_69 = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"jF" = (
-/obj/structure/table/rack,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"69F" = (
+/ob69/structure/table/rac69,
+/ob69/spawner/rations,
+/ob69/spawner/rations,
+/ob69/spawner/rations,
+/ob69/spawner/rations,
+/ob69/spawner/rations,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"jG" = (
-/obj/structure/table/onestar,
-/obj/item/deck/cards,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/table/onestar,
+/ob69/item/dec69/cards,
 /turf/simulated/floor/dirt,
-/area/outpost/blacksite/large)
-"jH" = (
+/area/outpost/blac69site/lar69e69
+"69H" = (
 /turf/simulated/wall/untinted/onestar,
-/area/outpost/blacksite/large)
-"jO" = (
-/obj/structure/morgue,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"jW" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"km" = (
-/obj/structure/table/bar_special,
-/obj/spawner/soda/low_chance,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
-"kz" = (
-/obj/item/modular_computer/console,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"kC" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"69O" = (
+/ob69/structure/mor69ue,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69W" = (
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69m" = (
+/ob69/structure/table/bar_special,
+/ob69/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
+"69z" = (
+/ob69/item/modular_computer/console,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69C" = (
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/stamp/denied,
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"kD" = (
-/obj/structure/toilet{
+/ob69/item/stamp/denied,
+/ob69/spawner/low69e69random/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69D" = (
+/ob69/structure/toilet{
 	dir = 8
 	},
-/obj/machinery/light{
+/ob69/machiner69/li69ht{
 	dir = 1
 	},
-/obj/spawner/credits/low_chance,
+/ob69/spawner/credits/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"kG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/external{
-	frequency = null;
-	icon_state = "door_locked";
-	id_tag = null;
-	locked = 1
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/machiner69/atmospherics/pipe/simple/hidden,
+/ob69/machiner69/door/airloc69/external{
+	fre69uenc69 =69ull;
+	icon_state = "door_loc69ed";
+	id_ta69 =69ull;
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"kJ" = (
-/obj/structure/reagent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/rea69ent_dispensers/water_cooler,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "lc" = (
-/obj/structure/sign/derelict1{
+/ob69/structure/si69n/derelict1{
 	pixel_x = 32
 	},
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "ld" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/light{
+/ob69/machiner69/li69ht{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "li" = (
-/obj/spawner/mob/roomba,
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "lB" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/ob69/machiner69/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "lC" = (
-/obj/structure/sign/derelict2{
+/ob69/structure/si69n/derelict2{
 	pixel_x = -32
 	},
-/obj/spawner/mob/roomba,
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "lM" = (
-/obj/spawner/mob/roomba,
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "lW" = (
-/obj/item/storage/box/donkpockets{
+/ob69/item/stora69e/box/don69poc69ets{
 	pixel_x = 3;
-	pixel_y = 3
+	pixel_69 = 3
 	},
-/obj/item/storage/box/donkpockets{
+/ob69/item/stora69e/box/don69poc69ets{
 	pixel_x = 3;
-	pixel_y = 3
+	pixel_69 = 3
 	},
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/box/donkpockets,
-/obj/structure/closet/crate,
-/obj/spawner/booze/low_chance,
+/ob69/item/stora69e/box/don69poc69ets,
+/ob69/item/stora69e/box/don69poc69ets,
+/ob69/structure/closet/crate,
+/ob69/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "mc" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/ob69/effect/floor_decal/industrial/warnin69/corner{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "ml" = (
-/obj/structure/closet/onestar/tier2/normal,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/closet/onestar/tier2/normal,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es,
+/area/outpost/blac69site/lar69e69
 "mr" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/machinery/door/window/westleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"mv" = (
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/machiner69/door/window/westleft,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"m69" = (
+/ob69/spawner/69un69food/rotten,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "mB" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/ob69/machiner69/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"mJ" = (
-/obj/machinery/light{
+/area/outpost/blac69site/lar69e69
+"m69" = (
+/ob69/machiner69/li69ht{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "mS" = (
-/obj/structure/table/onestar,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/onestar,
+/ob69/spawner/low69e69random,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "mX" = (
-/obj/machinery/vending/boozeomat,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
-"nk" = (
-/obj/structure/morgue{
+/ob69/machiner69/69endin69/boozeomat,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
+"n69" = (
+/ob69/structure/mor69ue{
 	dir = 8
 	},
-/obj/machinery/camera/network/security{
+/ob69/machiner69/camera/networ69/securit69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "nm" = (
-/obj/machinery/centrifuge,
-/obj/structure/table/onestar,
+/ob69/machiner69/centrifu69e,
+/ob69/structure/table/onestar,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "nz" = (
-/obj/structure/bed/chair/comfy/black,
-/obj/item/paper/blacksite/medium/note03{
+/ob69/structure/bed/chair/comf69/blac69,
+/ob69/item/paper/blac69site/medium/note03{
 	pixel_x = -5;
-	pixel_y = -5
+	pixel_69 = -5
 	},
-/obj/item/paper/blacksite/medium/note06{
+/ob69/item/paper/blac69site/medium/note06{
 	pixel_x = 2;
-	pixel_y = 2
+	pixel_69 = 2
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "nF" = (
-/obj/structure/shuttle/engine/heater{
+/ob69/structure/shuttle/en69ine/heater{
 	dir = 4
 	},
-/obj/structure/window/reinforced/crescent{
+/ob69/structure/window/reinforced/crescent{
 	dir = 1
 	},
-/obj/structure/window/reinforced/crescent{
+/ob69/structure/window/reinforced/crescent{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "nN" = (
-/obj/spawner/junk/low_chance,
+/ob69/spawner/69un69/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "ob" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/outpost/blac69site/lar69e69
 "oi" = (
-/obj/structure/bed,
-/obj/spawner/toy/plushie,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"oj" = (
-/obj/structure/table/woodentable,
-/obj/spawner/junkfood,
+/ob69/structure/bed,
+/ob69/spawner/to69/plushie,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"o69" = (
+/ob69/structure/table/woodentable,
+/ob69/spawner/69un69food,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"ok" = (
-/obj/structure/table/rack/shelf,
-/obj/item/storage/box/bodybags{
+/area/outpost/blac69site/lar69e69
+"o69" = (
+/ob69/structure/table/rac69/shelf,
+/ob69/item/stora69e/box/bod69ba69s{
 	pixel_x = 3;
-	pixel_y = 3
+	pixel_69 = 3
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "oF" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/outpost/blacksite/large)
-"oK" = (
-/obj/structure/table/bar_special,
-/obj/spawner/booze/low_chance,
-/obj/spawner/soda/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es,
+/area/outpost/blac69site/lar69e69
+"o69" = (
+/ob69/structure/table/bar_special,
+/ob69/spawner/booze/low_chance,
+/ob69/spawner/soda/low_chance,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "oX" = (
-/obj/machinery/light,
-/obj/item/modular_computer/console{
+/ob69/machiner69/li69ht,
+/ob69/item/modular_computer/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "pf" = (
-/obj/structure/sign/derelict2{
+/ob69/structure/si69n/derelict2{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"pk" = (
-/obj/structure/bed/chair/custom/bar_special{
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"p69" = (
+/ob69/structure/bed/chair/custom/bar_special{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
 "pp" = (
-/obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "pr" = (
-/obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp,
+/ob69/structure/table/woodentable,
+/ob69/item/de69ice/li69htin69/to6969leable/lamp,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "px" = (
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "pH" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "pI" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"pJ" = (
-/obj/structure/table/woodentable,
-/obj/spawner/toy/plushie,
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"p69" = (
+/ob69/structure/table/woodentable,
+/ob69/spawner/to69/plushie,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"pK" = (
-/obj/machinery/shower{
+/area/outpost/blac69site/lar69e69
+"p69" = (
+/ob69/machiner69/shower{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
-"qe" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/medical_lowcost/low_chance,
-/obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
-"qv" = (
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower{
+/area/outpost/blac69site/lar69e69
+"69e" = (
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/medical_lowcost/low_chance,
+/ob69/spawner/medical_lowcost,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/curtain/open/shower,
+/ob69/machiner69/shower{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
-"qw" = (
-/obj/machinery/vending/cigarette,
+/area/outpost/blac69site/lar69e69
+"69w" = (
+/ob69/machiner69/69endin69/ci69arette,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"qD" = (
-/obj/structure/bed/chair/custom/onestar{
+/area/outpost/blac69site/lar69e69
+"69D" = (
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/obj/item/remains/human,
+/ob69/item/remains/human,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"qP" = (
-/obj/structure/table/onestar,
-/obj/item/newspaper,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"qZ" = (
-/obj/machinery/vending/assist{
+/area/outpost/blac69site/lar69e69
+"69P" = (
+/ob69/structure/table/onestar,
+/ob69/item/newspaper,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"69Z" = (
+/ob69/machiner69/69endin69/assist{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "ro" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dar69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "rp" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/material/resources,
-/obj/spawner/material/resources,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/material/resources,
+/ob69/spawner/material/resources,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "rD" = (
-/obj/structure/table/onestar,
-/obj/spawner/medical,
+/ob69/structure/table/onestar,
+/ob69/spawner/medical,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "rH" = (
-/obj/structure/catwalk,
+/ob69/structure/catwal69,
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "rN" = (
-/obj/structure/dispenser,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"rQ" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/ob69/structure/dispenser,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"r69" = (
+/ob69/machiner69/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "rX" = (
-/obj/structure/closet/l3closet/scientist,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/closet/l3closet/scientist,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "sf" = (
-/obj/structure/sign/derelict3{
-	pixel_y = 32
+/ob69/structure/si69n/derelict3{
+	pixel_69 = 32
 	},
-/obj/machinery/light{
+/ob69/machiner69/li69ht{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "sl" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dar69{
 	dir = 1
 	},
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"sv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/external{
-	frequency = null;
-	icon_state = "door_locked";
-	id_tag = null;
-	locked = 1
+/ob69/spawner/low69e69random/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"s69" = (
+/ob69/machiner69/atmospherics/pipe/simple/hidden,
+/ob69/machiner69/door/airloc69/external{
+	fre69uenc69 =69ull;
+	icon_state = "door_loc69ed";
+	id_ta69 =69ull;
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "sx" = (
-/obj/structure/bed/padded,
-/obj/spawner/lowkeyrandom/low_chance,
-/obj/spawner/lowkeyrandom/low_chance,
+/ob69/structure/bed/padded,
+/ob69/spawner/low69e69random/low_chance,
+/ob69/spawner/low69e69random/low_chance,
 /turf/simulated/floor/reinforced,
-/area/outpost/blacksite/large)
-"sy" = (
-/obj/structure/table/rack,
-/obj/spawner/medical/low_chance,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
+"s69" = (
+/ob69/structure/table/rac69,
+/ob69/spawner/medical/low_chance,
+/ob69/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "sC" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
+/ob69/structure/c69berplant,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
 "tc" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/plating/under,
-/area/outpost/blacksite/large)
-"tg" = (
-/obj/spawner/toy/plushie,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/platin69/under,
+/area/outpost/blac69site/lar69e69
+"t69" = (
+/ob69/spawner/to69/plushie,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "ti" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
 /turf/simulated/floor/dirt,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "tp" = (
-/obj/structure/railing,
+/ob69/structure/railin69,
 /turf/template_noop,
-/area/template_noop)
-"tK" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/area/template_noop69
+"t69" = (
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "tM" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "tP" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es,
+/area/outpost/blac69site/lar69e69
 "us" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/paper_bin,
+/ob69/item/pen,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "uC" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 26
+/ob69/structure/sin69/69itchen{
+	pixel_69 = 26
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "uT" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"vd" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/machiner69/69endin69/coffee,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"69d" = (
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/machinery/door/window/eastleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"vC" = (
-/obj/item/modular_computer/console{
+/ob69/machiner69/door/window/eastleft,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69C" = (
+/ob69/item/modular_computer/console{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"vN" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/helmet/low_chance,
+/area/outpost/blac69site/lar69e69
+"69N" = (
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/cloth/under/low_chance,
+/ob69/spawner/cloth/suit/low_chance,
+/ob69/spawner/cloth/helmet/low_chance,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "wt" = (
-/obj/machinery/chem_heater,
-/obj/structure/table/onestar,
+/ob69/machiner69/chem_heater,
+/ob69/structure/table/onestar,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "wz" = (
-/obj/structure/table/onestar,
-/obj/item/board,
-/obj/spawner/toy/figure,
+/ob69/structure/table/onestar,
+/ob69/item/board,
+/ob69/spawner/to69/fi69ure,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "wA" = (
-/obj/machinery/vending/dinnerware,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
-"wY" = (
-/obj/effect/floor_decal/industrial/warning,
+/ob69/machiner69/69endin69/dinnerware,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
+"w69" = (
+/ob69/effect/floor_decal/industrial/warnin69,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "xe" = (
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
-"xq" = (
-/obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
+"x69" = (
+/ob69/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "xU" = (
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"yv" = (
-/obj/machinery/dna_scannernew,
+/ob69/spawner/low69e69random,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/machiner69/dna_scannernew,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
-"yD" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
-"yE" = (
-/obj/structure/closet,
-/obj/spawner/lowkeyrandom/low_chance,
+/area/outpost/blac69site/lar69e69
+"69D" = (
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
+"69E" = (
+/ob69/structure/closet,
+/ob69/spawner/low69e69random/low_chance,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"yN" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"69N" = (
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 6
 	},
-/obj/item/device/taperecorder,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/de69ice/taperecorder,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "zb" = (
-/obj/structure/disposalpipe/segment{
+/ob69/structure/disposalpipe/se69ment{
 	dir = 4
 	},
 /turf/simulated/floor/reinforced,
-/area/outpost/blacksite/large)
-"zJ" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
+"z69" = (
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/low69e69random,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "zL" = (
-/obj/machinery/door/airlock/sandstone{
-	icon_state = "door_locked";
-	locked = 1;
-	name = "OneStar Airlock"
+/ob69/machiner69/door/airloc69/sandstone{
+	icon_state = "door_loc69ed";
+	loc69ed = 1;
+	name = "OneStar Airloc69"
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "zM" = (
-/obj/structure/shuttle/engine/propulsion{
+/ob69/structure/shuttle/en69ine/propulsion{
 	dir = 4;
 	icon_state = "propulsion_l"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "Ah" = (
-/obj/item/modular_computer/console{
+/ob69/item/modular_computer/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"Av" = (
-/obj/machinery/door/window/brigdoor/northright{
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"A69" = (
+/ob69/machiner69/door/window/bri69door/northri69ht{
 	dir = 4;
-	req_access = null
+	re69_access =69ull
 	},
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"AV" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"A69" = (
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/machinery/door/window/eastright,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/machiner69/door/window/eastri69ht,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Bd" = (
-/obj/spawner/junk/low_chance,
+/ob69/spawner/69un69/low_chance,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"Bg" = (
-/obj/item/storage/box/syringes{
+/area/outpost/blac69site/lar69e69
+"B69" = (
+/ob69/item/stora69e/box/s69rin69es{
 	pixel_x = 3;
-	pixel_y = 3
+	pixel_69 = 3
 	},
-/obj/item/storage/box/beakers,
-/obj/structure/table/onestar,
+/ob69/item/stora69e/box/bea69ers,
+/ob69/structure/table/onestar,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "BB" = (
-/obj/structure/shuttle/engine/propulsion{
+/ob69/structure/shuttle/en69ine/propulsion{
 	dir = 1;
 	icon_state = "propulsion_l"
 	},
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "BS" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/cheap,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/spawner/69un/cheap,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "BX" = (
-/obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/machiner69/li69ht/floor,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "Ce" = (
-/obj/structure/disposalpipe/trunk{
+/ob69/structure/disposalpipe/trun69{
 	dir = 4
 	},
-/obj/structure/disposaloutlet{
+/ob69/structure/disposaloutlet{
 	dir = 1
 	},
 /turf/simulated/floor/reinforced,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Co" = (
-/obj/structure/noticeboard{
-	pixel_y = 32
+/ob69/structure/noticeboard{
+	pixel_69 = 32
 	},
-/obj/spawner/soda,
+/ob69/spawner/soda,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "CU" = (
-/obj/structure/urinal{
-	pixel_y = 32
+/ob69/structure/urinal{
+	pixel_69 = 32
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Da" = (
-/obj/machinery/chem_master/condimaster,
-/obj/machinery/light{
+/ob69/machiner69/chem_master/condimaster,
+/ob69/machiner69/li69ht{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Dl" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/structure/window/reinforced,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Dm" = (
-/obj/structure/table/bar_special,
-/obj/spawner/pizza/low_chance,
+/ob69/structure/table/bar_special,
+/ob69/spawner/pizza/low_chance,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Dp" = (
-/obj/structure/table/standard,
-/obj/item/tool/saw/circular,
+/ob69/structure/table/standard,
+/ob69/item/tool/saw/circular,
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Dz" = (
-/obj/structure/sign/faction/one_star{
-	pixel_y = 32
+/ob69/structure/si69n/faction/one_star{
+	pixel_69 = 32
 	},
-/obj/structure/bed/chair/custom/onestar,
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/bed/chair/custom/onestar,
+/ob69/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "DU" = (
-/obj/structure/table/onestar,
-/obj/spawner/material/resources/rare,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
+/ob69/structure/table/onestar,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Ea" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/modular_computer/laptop,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/modular_computer/laptop,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Eo" = (
-/obj/structure/morgue{
+/ob69/structure/mor69ue{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Er" = (
-/obj/item/paper/blacksite/medium/note01{
+/ob69/item/paper/blac69site/medium/note01{
 	pixel_x = -6;
-	pixel_y = 5
+	pixel_69 = 5
 	},
-/obj/item/paper/blacksite/medium/note04{
+/ob69/item/paper/blac69site/medium/note04{
 	pixel_x = 3;
-	pixel_y = -2
+	pixel_69 = -2
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Ex" = (
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/obj/structure/table/rack,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/spawner/boxes,
+/ob69/spawner/boxes,
+/ob69/structure/table/rac69,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "EI" = (
-/obj/structure/table/onestar,
-/obj/item/newspaper,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/onestar,
+/ob69/item/newspaper,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "ES" = (
-/obj/structure/table/standard,
-/obj/item/packageWrap,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
+/ob69/structure/table/standard,
+/ob69/item/pac69a69eWrap,
+/ob69/item/rea69ent_containers/food/condiment/enz69me{
+	la69er = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
+/ob69/item/rea69ent_containers/food/condiment/enz69me{
+	la69er = 5
 	},
-/obj/spawner/booze/low_chance,
+/ob69/spawner/booze/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "EU" = (
-/obj/structure/table/rack,
-/obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/spawner/medical_lowcost/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "EW" = (
-/obj/structure/table/onestar,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/structure/table/onestar,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Fe" = (
-/obj/structure/table/rack,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/spawner/medical,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Fm" = (
-/obj/structure/table/onestar,
-/obj/spawner/gun/shotgun,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/onestar,
+/ob69/spawner/69un/shot69un,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Fn" = (
-/turf/simulated/floor/plating/under,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/platin69/under,
+/area/outpost/blac69site/lar69e69
 "Fs" = (
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "FF" = (
-/obj/structure/table/rack,
-/obj/item/storage/belt/tactical/ironhammer,
-/obj/spawner/ammo,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"FJ" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/structure/table/rac69,
+/ob69/item/stora69e/belt/tactical/ironhammer,
+/ob69/spawner/ammo,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"F69" = (
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/machinery/door/window/westright,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"Gc" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"Gf" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/shoes/low_chance,
+/ob69/machiner69/door/window/westri69ht,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69c" = (
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69f" = (
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/cloth/under/low_chance,
+/ob69/spawner/cloth/suit/low_chance,
+/ob69/spawner/cloth/shoes/low_chance,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"Gj" = (
-/obj/machinery/chemical_dispenser,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/machiner69/chemical_dispenser,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
-"Gq" = (
-/obj/item/remains/human,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/item/remains/human,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
-"Gt" = (
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"69t" = (
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"Gx" = (
-/obj/machinery/vending,
+/ob69/structure/bed/chair/office/dar69,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69x" = (
+/ob69/machiner69/69endin69,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"GC" = (
-/obj/structure/sign/derelict1{
+/area/outpost/blac69site/lar69e69
+"69C" = (
+/ob69/structure/si69n/derelict1{
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"GL" = (
-/obj/machinery/recharge_station,
+/area/outpost/blac69site/lar69e69
+"69L" = (
+/ob69/machiner69/rechar69e_station,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"GY" = (
-/obj/structure/table/bar_special,
-/obj/spawner/junkfood/rotten/low_chance,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/table/bar_special,
+/ob69/spawner/69un69food/rotten/low_chance,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Ha" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/spawner/pac69/machine,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Hp" = (
-/obj/spawner/soda,
+/ob69/spawner/soda,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Hu" = (
-/obj/item/stool/custom/bar_special,
-/obj/spawner/junkfood/rotten/low_chance,
+/ob69/item/stool/custom/bar_special,
+/ob69/spawner/69un69food/rotten/low_chance,
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "HA" = (
-/obj/machinery/optable,
+/ob69/machiner69/optable,
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "HD" = (
-/obj/machinery/computer/scan_consolenew,
+/ob69/machiner69/computer/scan_consolenew,
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "HF" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"HK" = (
-/obj/item/stool/custom/bar_special,
+/area/outpost/blac69site/lar69e69
+"H69" = (
+/ob69/item/stool/custom/bar_special,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "HM" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/item/remains/human,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "If" = (
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "IA" = (
-/obj/spawner/lowkeyrandom/low_chance,
+/ob69/spawner/low69e69random/low_chance,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "IE" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"Jv" = (
-/obj/structure/shuttle/engine/heater{
+/ob69/effect/floor_decal/industrial/outline/69ellow,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/shuttle/en69ine/heater{
 	dir = 1
 	},
-/obj/structure/window/reinforced/crescent,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"JA" = (
-/obj/structure/sink{
+/ob69/structure/window/reinforced/crescent,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69A" = (
+/ob69/structure/sin69{
 	dir = 8;
 	pixel_x = -11
 	},
-/obj/structure/mirror{
+/ob69/structure/mirror{
 	dir = 8;
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"JD" = (
-/obj/structure/railing{
+/area/outpost/blac69site/lar69e69
+"69D" = (
+/ob69/structure/railin69{
 	dir = 1
 	},
 /turf/template_noop,
-/area/template_noop)
-"JI" = (
-/obj/structure/sign/faction/one_star{
-	pixel_y = 32
+/area/template_noop69
+"69I" = (
+/ob69/structure/si69n/faction/one_star{
+	pixel_69 = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"JM" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"69M" = (
+/ob69/machiner69/disposal,
+/ob69/structure/disposalpipe/trun69{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"JW" = (
+/area/outpost/blac69site/lar69e69
+"69W" = (
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
-"Kl" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"Ko" = (
-/obj/structure/table/rack,
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"Kz" = (
-/obj/machinery/light{
+/area/outpost/blac69site/lar69e69
+"69l" = (
+/ob69/structure/window/reinforced,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"69o" = (
+/ob69/structure/table/rac69,
+/ob69/spawner/boxes,
+/ob69/spawner/boxes,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69z" = (
+/ob69/machiner69/li69ht{
 	dir = 4
 	},
-/obj/spawner/junk/low_chance,
+/ob69/spawner/69un69/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"KI" = (
-/obj/machinery/light{
+/area/outpost/blac69site/lar69e69
+"69I" = (
+/ob69/machiner69/li69ht{
 	dir = 1
 	},
-/obj/item/soap,
+/ob69/item/soap,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"Lq" = (
-/obj/structure/sign/derelict2{
+/area/outpost/blac69site/lar69e69
+"L69" = (
+/ob69/structure/si69n/derelict2{
 	pixel_x = -32
 	},
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "Ls" = (
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "LI" = (
-/obj/structure/bed,
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/structure/bed,
+/ob69/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "LT" = (
-/obj/spawner/junk,
+/ob69/spawner/69un69,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Mz" = (
-/obj/structure/table/standard,
-/obj/item/storage/freezer/medical,
+/ob69/structure/table/standard,
+/ob69/item/stora69e/freezer/medical,
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "MC" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "MF" = (
-/obj/structure/table/rack,
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/item/stora69e/box/handcuffs,
+/ob69/item/stora69e/box/flashban69s,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "MX" = (
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "NN" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/reinforced,
+/ob69/item/paper_bin,
+/ob69/item/pen,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "NX" = (
-/obj/spawner/scrap/sparse,
-/obj/structure/sign/derelict3{
+/ob69/spawner/scrap/sparse,
+/ob69/structure/si69n/derelict3{
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"Og" = (
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"O69" = (
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/light{
+/ob69/machiner69/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Oh" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/electronics,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/spawner/pac69/rare/low_chance,
+/ob69/spawner/electronics,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "OA" = (
-/obj/structure/window/reinforced,
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/window/reinforced,
+/ob69/structure/bed/chair/office/dar69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "OC" = (
-/obj/machinery/shower{
+/ob69/machiner69/shower{
 	dir = 1
 	},
-/obj/structure/curtain/open/shower,
+/ob69/structure/curtain/open/shower,
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "OH" = (
-/obj/spawner/lowkeyrandom/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/spawner/low69eyrandom/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "PH" = (
 /turf/simulated/floor/tiled/steel/bar_dance,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "PL" = (
-/obj/structure/table/rack/shelf,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/lathe_disk,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
-"PQ" = (
-/obj/structure/table/standard,
-/obj/machinery/microwave{
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/pac69/rare/low_chance,
+/ob69/spawner/lathe_dis69,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
+"P69" = (
+/ob69/structure/table/standard,
+/ob69/machinery/microwa69e{
 	pixel_x = -3;
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "PT" = (
-/obj/structure/closet,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"Qi" = (
-/obj/structure/table/rack,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/large,
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
-"Qt" = (
-/obj/structure/bed/chair/comfy/beige{
+/ob69/structure/closet,
+/ob69/spawner/low69eyrandom,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"69i" = (
+/ob69/structure/table/rac69,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/lar69e,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
+"69t" = (
+/ob69/structure/bed/chair/comfy/bei69e{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"Qv" = (
-/obj/structure/bed/chair/comfy/beige{
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/structure/bed/chair/comfy/bei69e{
 	dir = 8
 	},
-/obj/machinery/light{
+/ob69/machinery/li69ht{
 	dir = 4
 	},
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
-"QC" = (
+/ob69/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
+"69C" = (
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"QJ" = (
-/obj/spawner/junk,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/spawner/69un69,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
-"QS" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/area/outpost/blac69site/lar69e69
+"69S" = (
+/ob69/machinery/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Ra" = (
-/obj/structure/table/onestar,
-/obj/item/reagent_containers/glass/beaker/large,
-/obj/item/reagent_containers/dropper{
+/ob69/structure/table/onestar,
+/ob69/item/rea69ent_containers/69lass/bea69er/lar69e,
+/ob69/item/rea69ent_containers/dropper{
 	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Ry" = (
-/obj/structure/sign/faction/one_star{
+/ob69/structure/si69n/faction/one_star{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "RF" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/ob69/machinery/atmospherics/unary/69ent_scrubber/on{
 	dir = 1
 	},
-/obj/machinery/camera/network/third_section{
+/ob69/machinery/camera/networ69/third_section{
 	dir = 1
 	},
-/obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/soymilk,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
+/ob69/structure/closet/secure_closet/freezer/69itchen,
+/ob69/item/stora69e/fancy/e6969_box,
+/ob69/item/stora69e/fancy/e6969_box,
+/ob69/item/rea69ent_containers/food/drin69s/soymil69,
+/ob69/item/rea69ent_containers/food/drin69s/soymil69,
+/ob69/item/rea69ent_containers/food/drin69s/soymil69,
+/ob69/item/rea69ent_containers/food/drin69s/mil69,
+/ob69/item/rea69ent_containers/food/drin69s/mil69,
+/ob69/item/rea69ent_containers/food/drin69s/mil69,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "RH" = (
-/obj/structure/bed/chair/custom/bar_special,
-/turf/simulated/floor/tiled/steel/bar_light,
-/area/outpost/blacksite/large)
+/ob69/structure/bed/chair/custom/bar_special,
+/turf/simulated/floor/tiled/steel/bar_li69ht,
+/area/outpost/blac69site/lar69e69
 "RX" = (
-/obj/structure/extinguisher_cabinet{
+/ob69/structure/extin69uisher_cabinet{
 	pixel_x = 27
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Sa" = (
-/obj/item/stool/custom/bar_special,
-/obj/spawner/junkfood/rotten/low_chance,
+/ob69/item/stool/custom/bar_special,
+/ob69/spawner/69un69food/rotten/low_chance,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Sf" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es,
+/area/outpost/blac69site/lar69e69
 "Sh" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/ob69/machinery/atmospherics/unary/69ent_pump/on{
 	dir = 1
 	},
-/obj/structure/closet/chefcloset,
-/obj/item/tool/knife,
-/obj/item/tool/knife,
+/ob69/structure/closet/chefcloset,
+/ob69/item/tool/69nife,
+/ob69/item/tool/69nife,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Sr" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/ob69/effect/floor_decal/industrial/warnin69/corner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "SB" = (
-/obj/item/soap,
+/ob69/item/soap,
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "SP" = (
-/obj/machinery/door/window/brigdoor/northleft{
+/ob69/machinery/door/window/bri69door/northleft{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "SX" = (
-/obj/spawner/junk/low_chance,
+/ob69/spawner/69un69/low_chance,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"Tq" = (
-/obj/structure/table/rack,
-/obj/spawner/gun_parts,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
+"T69" = (
+/ob69/structure/table/rac69,
+/ob69/spawner/69un_parts,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Tu" = (
-/obj/machinery/vending/cola,
+/ob69/machinery/69endin69/cola,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"Tv" = (
-/obj/machinery/light,
+/area/outpost/blac69site/lar69e69
+"T69" = (
+/ob69/machinery/li69ht,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Tz" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker{
+/ob69/structure/table/standard,
+/ob69/item/rea69ent_containers/69lass/bea69er{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/glass/beaker{
+/ob69/item/rea69ent_containers/69lass/bea69er{
 	pixel_x = 5
 	},
-/obj/machinery/light,
-/obj/item/material/kitchen/rollingpin,
+/ob69/machinery/li69ht,
+/ob69/item/material/69itchen/rollin69pin,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "TC" = (
-/obj/item/clothing/accessory/blue,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/item/clothin69/accessory/blue,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "TZ" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Ub" = (
-/obj/spawner/junk,
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69,
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "Ul" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/item/remains/human,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Ux" = (
-/obj/structure/railing/grey{
+/ob69/structure/railin69/69rey{
 	dir = 4
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/outpost/blac69site/lar69e69
 "Uz" = (
-/obj/machinery/door/window/southleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"UK" = (
-/obj/machinery/shower{
+/ob69/machinery/door/window/southleft,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"U69" = (
+/ob69/machinery/shower{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/outpost/blac69site/lar69e69
 "UZ" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"Vi" = (
-/obj/machinery/door/window/westright,
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/outpost/blacksite/large)
-"Vl" = (
-/obj/spawner/junkfood/rotten/low_chance,
+/area/outpost/blac69site/lar69e69
+"69i" = (
+/ob69/machinery/door/window/westri69ht,
+/ob69/item/remains/human,
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/outpost/blac69site/lar69e69
+"69l" = (
+/ob69/spawner/69un69food/rotten/low_chance,
 /turf/simulated/floor/dirt,
-/area/outpost/blacksite/large)
-"Vz" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"VC" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
-/obj/spawner/medical/low_chance,
+/area/outpost/blac69site/lar69e69
+"69z" = (
+/ob69/machinery/suit_stora69e_unit/standard_unit,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69C" = (
+/ob69/structure/bed/padded,
+/ob69/item/bedsheet,
+/ob69/spawner/medical/low_chance,
 /turf/simulated/floor/carpet,
-/area/outpost/blacksite/large)
-"VG" = (
-/obj/machinery/door/window/northleft,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"VT" = (
-/obj/structure/table/onestar,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
-"VV" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/machinery/door/window/northleft,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"69T" = (
+/ob69/structure/table/onestar,
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
+"6969" = (
+/ob69/effect/floor_decal/industrial/warnin69/corner{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"VW" = (
-/obj/structure/sign/derelict3{
+/area/outpost/blac69site/lar69e69
+"69W" = (
+/ob69/structure/si69n/derelict3{
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Wu" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "WF" = (
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69food/rotten,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "WH" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/structure/rea69ent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "WT" = (
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
+/ob69/spawner/pac69/tech_loot,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
 "Xa" = (
-/obj/structure/table/bar_special,
-/obj/spawner/pizza/low_chance,
+/ob69/structure/table/bar_special,
+/ob69/spawner/pizza/low_chance,
 /turf/simulated/floor/tiled/steel/bar_flat,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Xc" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/outpost/blacksite/large)
-"Xg" = (
-/obj/structure/toilet{
+/ob69/structure/bed/chair/custom/onestar/red,
+/ob69/spawner/booze/low_chance,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/outpost/blac69site/lar69e69
+"X69" = (
+/ob69/structure/toilet{
 	dir = 8
 	},
-/obj/machinery/light{
+/ob69/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/lowkeyrandom/low_chance,
+/ob69/spawner/low69eyrandom/low_chance,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Xm" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "Xr" = (
-/obj/structure/table/onestar,
-/obj/spawner/firstaid,
-/obj/spawner/gun/energy_cheap,
-/turf/simulated/floor/tiled/derelict/red_white_edges,
-/area/outpost/blacksite/large)
-"XQ" = (
-/obj/spawner/mob/roomba,
+/ob69/structure/table/onestar,
+/ob69/spawner/firstaid,
+/ob69/spawner/69un/ener69y_cheap,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es,
+/area/outpost/blac69site/lar69e69
+"X69" = (
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "Yd" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 4
 	},
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "Yp" = (
-/obj/structure/table/rack,
-/obj/spawner/tank,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/structure/table/rac69,
+/ob69/spawner/tan69,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "Yz" = (
-/obj/structure/sign/derelict1{
+/ob69/structure/si69n/derelict1{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "YM" = (
-/obj/spawner/mob/roomba,
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/tiled/cafe,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "YU" = (
-/obj/spawner/junk,
+/ob69/spawner/69un69,
 /turf/simulated/floor/dirt,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 "YZ" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/outpost/blacksite/large)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/outpost/blac69site/lar69e69
 "Zp" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/ob69/machinery/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/outpost/blacksite/large)
-"ZQ" = (
-/obj/structure/table/onestar,
-/obj/structure/window/reinforced{
+/area/outpost/blac69site/lar69e69
+"Z69" = (
+/ob69/structure/table/onestar,
+/ob69/structure/window/reinforced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 6
 	},
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/outpost/blacksite/large)
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/brown_perforated,
+/area/outpost/blac69site/lar69e69
 "ZS" = (
-/obj/structure/sign/faction/one_star,
+/ob69/structure/si69n/faction/one_star,
 /turf/simulated/wall/untinted/onestar,
-/area/outpost/blacksite/large)
+/area/outpost/blac69site/lar69e69
 
-(1,1,1) = {"
+(1,1,169 = {"
 Ls
 Ls
 Ls
@@ -1847,7 +1847,7 @@ tc
 eO
 tp
 rH
-JD
+69D
 eO
 tc
 eO
@@ -1855,7 +1855,7 @@ eO
 Ls
 Ls
 "}
-(2,1,1) = {"
+(2,1,169 = {"
 Ls
 Ls
 Ls
@@ -1864,38 +1864,38 @@ Ls
 eO
 eO
 eO
-GL
-JA
+69L
+69A
 nN
-JA
+69A
 nN
-JA
+69A
 rD
 eO
 Xm
 Xm
 eO
-Gx
+69x
 Tu
 bt
 ro
-Og
-VT
-jg
+O69
+69T
+6969
 OA
 EI
-VT
+69T
 if
 eO
 MF
-xq
-gX
+x69
+69X
 FF
 eO
 Fn
 eO
 eO
-sv
+s69
 eO
 eO
 Fn
@@ -1904,7 +1904,7 @@ eO
 hi
 Ls
 "}
-(3,1,1) = {"
+(3,1,169 = {"
 Ls
 Ls
 Ls
@@ -1916,10 +1916,10 @@ CU
 Fs
 Fs
 YM
-QJ
+6969
 Fs
 YM
-Tv
+T69
 eO
 YZ
 YZ
@@ -1928,48 +1928,48 @@ Co
 Hp
 bN
 HM
-Gt
-eQ
+69t
+e69
 bE
 Dl
-jW
+69W
 bD
 OH
 eO
 ca
 HM
-jW
+69W
 BS
 eO
 Ux
-je
+69e
 YZ
 YZ
 YZ
-fg
+f69
 Ux
 eO
 Ha
 bY
 eO
 "}
-(4,1,1) = {"
+(4,1,169 = {"
 Ls
 Ls
 Ls
 BB
-Jv
+6969
 WT
 eO
 CU
 Fs
-Kz
+69z
 Fs
 NX
 Fs
 nN
 Fs
-rQ
+r69
 YZ
 YZ
 Zp
@@ -1985,9 +1985,9 @@ If
 Ea
 cW
 eO
-Tq
-jW
-jW
+T69
+69W
+69W
 Fe
 eO
 Xm
@@ -1998,25 +1998,25 @@ Wu
 YZ
 YZ
 eO
-jW
+69W
 ho
 eO
 "}
-(5,1,1) = {"
+(5,1,169 = {"
 Ls
 Ls
 Ls
 BB
-Jv
+6969
 ii
 eO
-Vi
-qv
+69i
+6969
 eO
 fw
-jH
+69H
 fw
-jH
+69H
 fw
 eO
 Wu
@@ -2025,7 +2025,7 @@ eO
 sf
 px
 px
-XQ
+X69
 px
 px
 px
@@ -2048,44 +2048,44 @@ YZ
 BX
 eO
 ho
-jW
+69W
 eO
 "}
-(6,1,1) = {"
+(6,1,169 = {"
 Ls
 Ls
 Ls
 BB
-Jv
-gB
+6969
+69B
 eO
 SB
 OC
 eO
-Xg
-jH
-kD
-jH
-kD
+X69
+69H
+69D
+69H
+69D
 eO
 YZ
 YZ
 eO
-kJ
-hq
+6969
+h69
 Bd
-hq
-hq
+h69
+h69
 px
 px
-XQ
+X69
 px
 px
-bV
+b69
 eO
-Gc
-jW
-jW
+69c
+69W
+69W
 pI
 eO
 uT
@@ -2094,19 +2094,19 @@ YZ
 YZ
 Yz
 Xm
-dK
+d69
 eO
-jW
+69W
 EW
 eO
 "}
-(7,1,1) = {"
+(7,1,169 = {"
 Ls
 Ls
 Ls
 Ls
 eO
-QS
+69S
 eO
 eO
 eO
@@ -2120,56 +2120,56 @@ eO
 YZ
 YZ
 eO
-gV
+6969
 HM
-kC
+69C
 TC
-Gt
-ZQ
+69t
+Z69
 px
 px
 px
 us
 HM
 eO
-jW
+69W
 fx
-mv
+m69
 oX
 eO
-jH
-jH
+69H
+69H
 tc
 lB
-jH
-jH
-jH
+69H
+69H
+69H
 eO
 ho
 EW
 eO
 "}
-(8,1,1) = {"
+(8,1,169 = {"
 Ls
 Ls
 Ls
 eO
 eO
-QC
+69C
 SX
-oj
-VC
-pJ
-VC
+o69
+69C
+p69
+69C
 pr
-VC
-pJ
-VC
+69C
+p69
+69C
 eO
 Xm
 YZ
 eO
-kz
+69z
 sl
 cA
 ro
@@ -2177,16 +2177,16 @@ ld
 yN
 px
 px
-GC
-jg
+69C
+6969
 dA
 eO
-jW
+69W
 NN
 TZ
 Ah
 eO
-qP
+69P
 Yd
 YZ
 YZ
@@ -2194,28 +2194,28 @@ YZ
 WH
 uT
 eO
-jW
+69W
 EW
 eO
 "}
-(9,1,1) = {"
+(9,1,169 = {"
 Ls
 Ls
 Ls
 tc
-Qt
-QC
-QC
-QC
-QC
-QC
-QC
+69t
+69C
+69C
+69C
+69C
+69C
+69C
 SX
 li
-QC
-QC
+69C
+69C
 eO
-JI
+69I
 YZ
 eO
 eO
@@ -2230,9 +2230,9 @@ eO
 eO
 eO
 eO
-QS
+69S
 tc
-Av
+A69
 tc
 eO
 Dz
@@ -2242,27 +2242,27 @@ Wu
 YZ
 WF
 YZ
-QS
-gB
+69S
+69B
 Ha
 eO
 "}
-(10,1,1) = {"
+(10,1,169 = {"
 Ls
 Ls
 Ls
 tc
 wz
-QC
+69C
 li
-QC
+69C
 SX
-QC
-QC
-QC
-QC
-QC
-QC
+69C
+69C
+69C
+69C
+69C
+69C
 mB
 YZ
 YZ
@@ -2292,11 +2292,11 @@ YZ
 YZ
 YZ
 eO
-Ko
+69o
 eO
 eO
 "}
-(11,1,1) = {"
+(11,1,169 = {"
 Ls
 Ls
 eO
@@ -2304,12 +2304,12 @@ eO
 ai
 SX
 dp
-qZ
-qw
-Gf
-vN
-Gf
-vN
+69Z
+69w
+69f
+69N
+69f
+69N
 iy
 SX
 eO
@@ -2329,7 +2329,7 @@ YZ
 Xm
 YZ
 YZ
-Kl
+69l
 YZ
 YZ
 YZ
@@ -2338,14 +2338,14 @@ Wu
 YZ
 YZ
 YZ
-Qv
+6969
 Ub
 eO
 eO
 eO
 Ls
 "}
-(12,1,1) = {"
+(12,1,169 = {"
 Ls
 eO
 eO
@@ -2394,20 +2394,20 @@ eO
 Ls
 Ls
 "}
-(13,1,1) = {"
+(13,1,169 = {"
 BB
-Jv
+6969
 WT
-jH
+69H
 LI
-jW
-jH
+69W
+69H
 MX
 oi
-jH
-jW
+69H
+69W
 LI
-jH
+69H
 ob
 OC
 eO
@@ -2443,21 +2443,21 @@ Ls
 Ls
 Ls
 "}
-(14,1,1) = {"
+(14,1,169 = {"
 BB
-Jv
+6969
 ii
-jH
+69H
 hF
-AV
-jH
-vd
+A69
+69H
+69d
 hF
-jH
-vd
+69H
+69d
 hF
-jH
-KI
+69H
+69I
 hN
 eO
 YZ
@@ -2492,22 +2492,22 @@ Ls
 Ls
 Ls
 "}
-(15,1,1) = {"
+(15,1,169 = {"
 BB
-Jv
+6969
 pI
-jH
+69H
 LT
 px
 lC
 px
 px
 iY
-XQ
+X69
 px
 Zp
 Fs
-gW
+69W
 eO
 YZ
 Xm
@@ -2541,11 +2541,11 @@ Ls
 Ls
 Ls
 "}
-(16,1,1) = {"
+(16,1,169 = {"
 Ls
 eO
-gB
-jH
+69B
+69H
 LT
 iY
 px
@@ -2554,9 +2554,9 @@ px
 px
 px
 px
-jH
-jH
-jH
+69H
+69H
+69H
 eO
 YZ
 YZ
@@ -2590,20 +2590,20 @@ Ls
 Ls
 Ls
 "}
-(17,1,1) = {"
+(17,1,169 = {"
 Ls
 eO
-QS
+69S
 ZS
-jH
+69H
 tc
 tc
 tc
-jH
+69H
 ZS
 px
 px
-jH
+69H
 PT
 PT
 eO
@@ -2639,29 +2639,29 @@ Ls
 Ls
 Ls
 "}
-(18,1,1) = {"
+(18,1,169 = {"
 Ls
 tc
-jW
+69W
 pp
 mS
 pI
-jW
+69W
 Xc
 Ah
-jH
-VV
-dk
-jH
+69H
+6969
+d69
+69H
 pI
-jW
+69W
 eO
-JI
+69I
 YZ
 eO
 Xr
 tP
-jD
+69D
 Er
 Ah
 tc
@@ -2688,23 +2688,23 @@ Ls
 Ls
 Ls
 "}
-(19,1,1) = {"
+(19,1,169 = {"
 Ls
-jH
-mJ
+69H
+m69
 HM
-jW
-jW
-Gc
-jW
-jW
+69W
+69W
+69c
+69W
+69W
 Zp
 HF
 wY
 cr
-Gc
-jW
-QS
+69c
+69W
+69S
 YZ
 YZ
 zL
@@ -2737,30 +2737,30 @@ Ls
 Ls
 Ls
 "}
-(20,1,1) = {"
+(20,1,169 = {"
 Ls
 tc
-jW
+69W
 pp
 Fm
-jW
+69W
 pI
 et
 Ah
-jH
+69H
 mc
 Sr
-jH
-jW
-jW
+69H
+69W
+69W
 eO
-JI
+69I
 YZ
 eO
 oF
 tP
-jD
-jj
+69D
+6969
 Ah
 tc
 Ls
@@ -2786,20 +2786,20 @@ Ls
 Ls
 Ls
 "}
-(21,1,1) = {"
+(21,1,169 = {"
 Ls
 eO
-QS
+69S
 ZS
-jH
+69H
 tc
 tc
 tc
-jH
+69H
 ZS
 px
 px
-jH
+69H
 EU
 EU
 eO
@@ -2835,22 +2835,22 @@ Ls
 Ls
 Ls
 "}
-(22,1,1) = {"
+(22,1,169 = {"
 Ls
 eO
-gB
-jH
+69B
+69H
 LT
 px
 px
 px
 px
 px
-XQ
+X69
 px
-jH
-jH
-jH
+69H
+69H
+69H
 eO
 YZ
 YZ
@@ -2884,19 +2884,19 @@ Ls
 Ls
 Ls
 "}
-(23,1,1) = {"
+(23,1,169 = {"
 BB
-Jv
+6969
 WT
-jH
+69H
 LT
 iY
-VW
+69W
 px
 px
-dk
-hq
-VV
+d69
+h69
+6969
 fD
 YU
 bw
@@ -2933,22 +2933,22 @@ Ls
 Ls
 Ls
 "}
-(24,1,1) = {"
+(24,1,169 = {"
 BB
-Jv
+6969
 ii
-jH
+69H
 tM
 mr
-jH
-FJ
+69H
+F69
 tM
-jH
+69H
 ob
-jH
+69H
 fD
 fD
-jG
+6969
 eO
 YZ
 YZ
@@ -2982,20 +2982,20 @@ Ls
 Ls
 Ls
 "}
-(25,1,1) = {"
+(25,1,169 = {"
 BB
-Jv
+6969
 pI
-jH
+69H
 LI
-jW
-jH
-tg
+69W
+69H
+t69
 LI
-jH
-pK
-jH
-Vl
+69H
+p69
+69H
+69l
 fD
 ti
 eO
@@ -3031,7 +3031,7 @@ Ls
 Ls
 Ls
 "}
-(26,1,1) = {"
+(26,1,169 = {"
 Ls
 eO
 eO
@@ -3048,7 +3048,7 @@ eO
 eO
 eO
 eO
-jE
+69E
 YZ
 eO
 tc
@@ -3080,7 +3080,7 @@ eO
 Ls
 Ls
 "}
-(27,1,1) = {"
+(27,1,169 = {"
 Ls
 Ls
 eO
@@ -3089,7 +3089,7 @@ Dp
 Mz
 px
 wY
-VG
+6969
 Uz
 dZ
 dM
@@ -3117,7 +3117,7 @@ YZ
 Xm
 YZ
 YZ
-Lq
+L69
 YZ
 YZ
 YZ
@@ -3129,7 +3129,7 @@ eO
 eO
 Ls
 "}
-(28,1,1) = {"
+(28,1,169 = {"
 Ls
 Ls
 Ls
@@ -3173,19 +3173,19 @@ Ry
 YZ
 YZ
 YZ
-QS
-gB
+69S
+69B
 eO
 eO
 "}
-(29,1,1) = {"
+(29,1,169 = {"
 Ls
 Ls
 Ls
 tc
 fn
 fU
-XQ
+X69
 px
 DU
 tc
@@ -3210,8 +3210,8 @@ eO
 eO
 tc
 tc
-fV
-fV
+f69
+f69
 tc
 tc
 eO
@@ -3220,14 +3220,14 @@ tc
 eO
 eO
 eO
-QS
+69S
 eO
 eO
-jW
+69W
 EW
 eO
 "}
-(30,1,1) = {"
+(30,1,169 = {"
 Ls
 Ls
 Ls
@@ -3247,11 +3247,11 @@ eO
 YZ
 YZ
 eO
-jO
-jO
-jO
+69O
+69O
+69O
 eO
-qe
+69e
 Sf
 Sf
 Sf
@@ -3262,83 +3262,83 @@ Hu
 PH
 PH
 RH
-km
+69m
 eO
 bX
 Fs
 bu
 eO
-Vz
-Gc
+69z
+69c
 Yp
 eO
 ho
 EW
 eO
 "}
-(31,1,1) = {"
+(31,1,169 = {"
 Ls
 Ls
 Ls
 Ls
 eO
-QS
+69S
 eO
 px
 px
 Ra
-gz
-vC
-vC
+69z
+69C
+69C
 eN
-JM
+69M
 eO
 YZ
 Xm
 eO
 HM
-jW
+69W
 HM
 eO
-qe
+69e
 Sf
 bH
-tK
+t69
 aO
 eO
-aK
+a69
 PH
-gE
+69E
 PH
 xe
-pk
+p69
 eO
 ES
 Fs
-gC
+69C
 eO
-Vz
+69z
 ho
 rN
 eO
-jW
+69W
 EW
 eO
 "}
-(32,1,1) = {"
+(32,1,169 = {"
 Ls
 Ls
 Ls
 BB
-Jv
+6969
 pI
 eO
-yv
+y69
 px
 px
-XQ
+X69
 MC
-qD
+69D
 px
 IA
 eO
@@ -3347,11 +3347,11 @@ YZ
 eO
 px
 px
-ok
+o69
 eO
-qe
+69e
 Sf
-Qi
+69i
 Sf
 yD
 eO
@@ -3366,27 +3366,27 @@ Da
 Fs
 Tz
 eO
-Vz
-jW
+69z
+69W
 xU
 eO
 ho
 Ha
 eO
 "}
-(33,1,1) = {"
+(33,1,169 = {"
 Ls
 Ls
 Ls
 BB
-Jv
+6969
 ii
 eO
 HD
 pH
 px
 px
-GC
+69C
 px
 px
 px
@@ -3395,52 +3395,52 @@ YZ
 YZ
 Zp
 px
-XQ
+X69
 yE
 eO
-zJ
+z69
 Sf
 fr
 Sf
 rp
 eO
-HK
+H69
 Sa
-HK
-HK
+H69
+H69
 Sa
-JW
+69W
 eO
-PQ
-bJ
-jF
+P69
+b69
+69F
 eO
 eO
-kG
+6969
 tc
 eO
 ho
 Ex
 eO
 "}
-(34,1,1) = {"
+(34,1,169 = {"
 Ls
 Ls
 Ls
 BB
-Jv
+6969
 WT
 eO
 aS
 px
 px
 px
-jH
-jH
-jH
-jH
+69H
+69H
+69H
+69H
 eO
-JI
+69I
 YZ
 eO
 px
@@ -3448,31 +3448,31 @@ px
 hS
 eO
 PL
-tK
+t69
 sy
 Sf
 yD
 eO
 Xa
 hX
-GY
-oK
-GY
-JW
+69Y
+o69
+69Y
+69W
 eO
 uC
 YM
 RF
 eO
 dT
-jW
-jD
+69W
+69D
 eO
-jW
-jW
+69W
+69W
 eO
 "}
-(35,1,1) = {"
+(35,1,169 = {"
 Ls
 Ls
 Ls
@@ -3482,46 +3482,46 @@ eO
 eO
 nm
 UZ
-XQ
+X69
 px
 Zp
-jD
-jD
-jD
+69D
+69D
+69D
 zL
 YZ
 YZ
 eO
-jW
+69W
 HM
-jW
+69W
 eO
-gb
+69b
 Sf
 Oh
 Sf
-gb
+69b
 eO
-JW
-JW
-Gq
-JW
+69W
+69W
+6969
+69W
 lM
-JW
+69W
 Zp
 Fs
 Fs
 Sh
 eO
-jD
-jW
+69D
+69W
 dT
 eO
 Ha
 nF
 eO
 "}
-(36,1,1) = {"
+(36,1,169 = {"
 Ls
 Ls
 Ls
@@ -3530,11 +3530,11 @@ Ls
 eO
 eO
 eO
-Gj
-Bg
+6969
+B69
 wt
-jH
-UK
+69H
+U69
 rX
 rX
 eO
@@ -3543,18 +3543,18 @@ Xm
 eO
 Eo
 Eo
-nk
+n69
 eO
-gb
+69b
 Sf
 Sf
 Sf
-gb
+69b
 eO
 mX
 wA
 ds
-gk
+6969
 Dm
 fh
 eO
@@ -3563,14 +3563,14 @@ Fs
 ix
 eO
 tc
-kG
+6969
 eO
 eO
 eO
 zM
 Ls
 "}
-(37,1,1) = {"
+(37,1,169 = {"
 Ls
 Ls
 Ls
@@ -3613,7 +3613,7 @@ eO
 eO
 tp
 rH
-JD
+69D
 eO
 eO
 Ls

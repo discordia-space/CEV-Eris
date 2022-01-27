@@ -8,7 +8,7 @@
 	desc = "A singular rocket engine, used in assisted ballistics."
 	icon_state = "rocket_engine"
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_POWER = 4)
-	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_PLASTEEL = 3,69ATERIAL_GOLD = 1)
 
 /obj/item/part
 	icon ='icons/obj/crafts.dmi'
@@ -23,7 +23,7 @@
 	desc = "Spare part of armor."
 	icon_state = "armor_part"
 	spawn_tags = SPAWN_TAG_PART_ARMOR
-	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_WOOD = 5, MATERIAL_CARDBOARD = 5, MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_PLASTIC = 5,69ATERIAL_WOOD = 5,69ATERIAL_CARDBOARD = 5,69ATERIAL_STEEL = 5)
 
 /obj/item/part/armor/artwork
 	desc = "This is an artistically-made armor part."
@@ -50,7 +50,7 @@
 
 /obj/item/part/gun/Initialize()
 	. = ..()
-	icon_state = "gun_part_[rand(1,6)]"
+	icon_state = "gun_part_69rand(1,6)69"
 
 /obj/item/part/gun/artwork
 	desc = "This is an artistically-made gun part."
@@ -87,7 +87,7 @@
 
 /obj/item/craft_frame/guns
 	name = "gun assembly"
-	desc = "Add some weapon parts to complete this, use your knowledge of mechanics and create a gun."
+	desc = "Add some weapon parts to complete this, use your knowledge of69echanics and create a gun."
 	matter = list(MATERIAL_PLASTEEL = 5)
 	suitable_part = /obj/item/part/gun
 	spawn_frequency = 0
@@ -97,20 +97,20 @@
 	. = ..()
 	if(.)
 		if(req_parts > 0)
-			to_chat(user, SPAN_NOTICE("Requires [req_parts] gun parts to be complete."))
+			to_chat(user, SPAN_NOTICE("Requires 69req_parts69 gun parts to be complete."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] is complete."))
+			to_chat(user, SPAN_NOTICE("69src69 is complete."))
 
-/obj/item/craft_frame/attackby(obj/item/I, mob/living/user, params)
+/obj/item/craft_frame/attackby(obj/item/I,69ob/living/user, params)
 	if(istype(I, suitable_part))
 		if(complete)
-			to_chat(user, SPAN_WARNING("[src] is complete"))
+			to_chat(user, SPAN_WARNING("69src69 is complete"))
 			return
 		else if(insert_item(I, user))
 			req_parts--
 			if(req_parts <= 0)
 				complete()
-				to_chat(user, SPAN_NOTICE("You have completed [src]."))
+				to_chat(user, SPAN_NOTICE("You have completed 69src69."))
 			return
 	return ..()
 
@@ -132,7 +132,7 @@
 /obj/item/craft_frame/attack_self(mob/user)
 	. = ..()
 	if(!complete)
-		to_chat(user, SPAN_WARNING("[src] is not yet complete."))
+		to_chat(user, SPAN_WARNING("69src69 is not yet complete."))
 	else
 		view_only = round(total_items * (1 - user.stats.getMult(req_sat, 100))/2) +1 // 1 choice per 10 stat + 1
 		if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
@@ -144,14 +144,14 @@
 	var/list/data = list()
 
 	var/list/listed_products = list()
-	for(var/key = 1 to view_only)
-		var/obj/item/I = items[key]
+	for(var/key = 1 to69iew_only)
+		var/obj/item/I = items69key69
 
 		listed_products.Add(list(list(
 			"key" = key,
 			"name" = strip_improper(I.name))))
 
-	data["paths"] = listed_products
+	data69"paths"69 = listed_products
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -163,18 +163,18 @@
 	if(usr.stat || usr.restrained())
 		return
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
-		if((href_list["select"]))
-			var/key = text2num(href_list["select"])
-			var/obj/item/I = items[key]
+		if((href_list69"select"69))
+			var/key = text2num(href_list69"select"69)
+			var/obj/item/I = items69key69
 			make_obj(I, usr)
 	SSnano.update_uis(src)
 
-/obj/item/craft_frame/proc/make_obj(obj/O, mob/user)
+/obj/item/craft_frame/proc/make_obj(obj/O,69ob/user)
 	var/turf/T = get_turf(src)
 	O.forceMove(T)
 	user.put_in_hands(O)
 	if(istype(O, /obj/item/gun/projectile))
-		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path[O.type]
+		var/list/aditional_objects = SSspawn_data.all_accompanying_obj_by_path69O.type69
 		var/atom/movable/aditional_obj
 		if(islist(aditional_objects) && aditional_objects.len)
 			for(var/thing in aditional_objects)
@@ -183,7 +183,7 @@
 					continue
 				aditional_obj = new thing (T)
 		user.put_in_hands(aditional_obj)
-	to_chat(user, SPAN_NOTICE("You have used [src] to craft a [O.name]."))
+	to_chat(user, SPAN_NOTICE("You have used 69src69 to craft a 69O.name69."))
 	spawn(1)
 		if(!QDELETED(src))
 			qdel(src)

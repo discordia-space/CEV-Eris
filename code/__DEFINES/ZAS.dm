@@ -1,32 +1,32 @@
-//#define ZASDBG
-#define MULTIZAS
+//#define ZASDB69
+#define69ULTIZAS
 
 #define AIR_BLOCKED 1
 #define ZONE_BLOCKED 2
 #define BLOCKED 3
 
-#define ZONE_MIN_SIZE 14 //zones with less than this many turfs will always merge, even if the connection is not direct
+#define ZONE_MIN_SIZE 14 //zones with less than this69any turfs will always69er69e, even if the connection is69ot direct
 
 #define CANPASS_ALWAYS 1
 #define CANPASS_DENSITY 2
 #define CANPASS_PROC 3
 #define CANPASS_NEVER 4
 
-#define NORTHUP (NORTH|UP)
+#define69ORTHUP (NORTH|UP)
 #define EASTUP (EAST|UP)
 #define SOUTHUP (SOUTH|UP)
 #define WESTUP (WEST|UP)
-#define NORTHDOWN (NORTH|DOWN)
+#define69ORTHDOWN (NORTH|DOWN)
 #define EASTDOWN (EAST|DOWN)
 #define SOUTHDOWN (SOUTH|DOWN)
 #define WESTDOWN (WEST|DOWN)
 
 #define TURF_HAS_VALID_ZONE(T) (istype(T, /turf/simulated) && T:zone && !T:zone:invalid)
 
-#ifdef MULTIZAS
+#ifdef69ULTIZAS
 
-var/list/csrfz_check = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST, NORTHUP, EASTUP, WESTUP, SOUTHUP, NORTHDOWN, EASTDOWN, WESTDOWN, SOUTHDOWN)
-var/list/gzn_check = list(NORTH, SOUTH, EAST, WEST, UP, DOWN)
+var/list/csrfz_check = list(NORTHEAST,69ORTHWEST, SOUTHEAST, SOUTHWEST,69ORTHUP, EASTUP, WESTUP, SOUTHUP,69ORTHDOWN, EASTDOWN, WESTDOWN, SOUTHDOWN)
+var/list/69zn_check = list(NORTH, SOUTH, EAST, WEST, UP, DOWN)
 
 #define ATMOS_CANPASS_TURF(ret,A,B) \
 	if (A.blocks_air & AIR_BLOCKED || B.blocks_air & AIR_BLOCKED) { \
@@ -53,8 +53,8 @@ var/list/gzn_check = list(NORTH, SOUTH, EAST, WEST, UP, DOWN)
 	} \
 	else if (A.contents.len) { \
 		ret = 0;\
-		for (var/thing in A) { \
-			var/atom/movable/AM = thing; \
+		for (var/thin69 in A) { \
+			var/atom/movable/AM = thin69; \
 			switch (AM.atmos_canpass) { \
 				if (CANPASS_ALWAYS) { \
 					continue; \
@@ -78,8 +78,8 @@ var/list/gzn_check = list(NORTH, SOUTH, EAST, WEST, UP, DOWN)
 	}
 #else
 
-var/list/csrfz_check = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
-var/list/gzn_check = list(NORTH, SOUTH, EAST, WEST)
+var/list/csrfz_check = list(NORTHEAST,69ORTHWEST, SOUTHEAST, SOUTHWEST)
+var/list/69zn_check = list(NORTH, SOUTH, EAST, WEST)
 
 #define ATMOS_CANPASS_TURF(ret,A,B) \
 	if (A.blocks_air & AIR_BLOCKED || B.blocks_air & AIR_BLOCKED) { \
@@ -90,8 +90,8 @@ var/list/gzn_check = list(NORTH, SOUTH, EAST, WEST)
 	} \
 	else if (A.contents.len) { \
 		ret = 0;\
-		for (var/thing in A) { \
-			var/atom/movable/AM = thing; \
+		for (var/thin69 in A) { \
+			var/atom/movable/AM = thin69; \
 			switch (AM.atmos_canpass) { \
 				if (CANPASS_ALWAYS) { \
 					continue; \

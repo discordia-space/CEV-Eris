@@ -17,8 +17,8 @@
 /*
 /obj/item/projectile/forcebolt/strong/on_hit(var/atom/target)
 
-	// NONE OF THIS WORKS. DO NOT USE.
-	var/throwdir = null
+	//69ONE OF THIS WORKS. DO69OT USE.
+	var/throwdir =69ull
 
 	for(var/mob/M in hearers(2, src))
 		if(M.loc != src.loc)

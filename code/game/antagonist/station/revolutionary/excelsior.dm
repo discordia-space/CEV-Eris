@@ -19,10 +19,10 @@
 		STAT_VIG = 15
 	)
 
-/datum/antagonist/excelsior/equip()
+/datum/antagonist/excelsior/e69uip()
 	.=..()
 
-	// Makes sures to exclude the leader implant when used with implanter
+	//69akes sures to exclude the leader implant when used with implanter
 	for(var/obj/O in owner.current)
 		if(istype(O, /obj/item/implant/excelsior))
 			return
@@ -33,9 +33,9 @@
 	var/mob/living/L = owner.current
 
 	for(var/name in stat_modifiers)
-		L.stats.changeStat(name, stat_modifiers[name])
+		L.stats.changeStat(name, stat_modifiers69name69)
 
-/datum/antagonist/excelsior/create_antagonist(datum/mind/target, datum/faction/new_faction, doequip = TRUE, announce = TRUE, update = TRUE, check = TRUE)
+/datum/antagonist/excelsior/create_antagonist(datum/mind/target, datum/faction/new_faction, doe69uip = TRUE, announce = TRUE, update = TRUE, check = TRUE)
 	. = ..()
 	BITSET(owner.current.hud_updateflag, EXCELSIOR_HUD)
 

@@ -1,95 +1,95 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/railing{
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/o6969/structure/railin69{
 	dir = 4;
-	tag = "icon-railing0 (EAST)"
+	ta69 = "icon-railin690 69EAST69"
 	},
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/structure/catwalk,
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"c" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"d" = (
-/obj/structure/railing{
+/o6969/structure/lattice,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/structure/catwal69,
+/o6969/spawner/69un69,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"c" = 69
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"d" = 69
+/o6969/structure/railin69{
 	dir = 8;
-	tag = "icon-railing0 (WEST)"
+	ta69 = "icon-railin690 69WEST69"
 	},
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"e" = (
-/obj/spawner/traps,
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"f" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"g" = (
-/turf/simulated/wall/r_wall,
-/area/template_noop)
-"h" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/o6969/spawner/69un6969ood/rotten,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"e" = 69
+/o6969/spawner/traps,
+/tur69/simulated/69loor/tiled/techmaint/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/69irder,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/tur69/simulated/wall/r_wall,
+/area/template_noop69
+"h" = 69
+/o6969/machiner69/door/69iredoor,
+/o6969/machiner69/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"k" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"l" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"J" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"S" = (
-/turf/template_noop,
-/area/template_noop)
+/tur69/simulated/69loor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/scrap/dense,
+/tur69/simulated/69loor/tiled/techmaint/airless,
+/area/template_noop69
+"l" = 69
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/lattice,
+/tur69/template_noop,
+/area/template_noop69
+"S" = 69
+/tur69/template_noop,
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
-f
-J
-J
+69
+69
+69
 l
 "}
-(2,1,1) = {"
-b
-g
-g
-g
-f
+692,1,169 = {"
+69
+69
+69
+69
+69
 "}
-(3,1,1) = {"
+693,1,169 = {"
 c
 h
 e
-g
-J
+69
+69
 "}
-(4,1,1) = {"
+694,1,169 = {"
 d
-g
-k
-g
+69
+69
+69
 S
 "}
-(5,1,1) = {"
-J
-g
-g
-g
+695,1,169 = {"
+69
+69
+69
+69
 S
 "}

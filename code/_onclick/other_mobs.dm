@@ -1,36 +1,36 @@
-// Generic damage proc (slimes and monkeys).
-/atom/proc/attack_generic(mob/user as mob)
+// 69eneric dama69e proc (slimes and69onkeys).
+/atom/proc/attack_69eneric(mob/user as69ob)
 	return 0
 
 /*
 	Humans:
-	Adds an exception for gloves, to allow special glove types like the ninja ones.
+	Adds an exception for 69loves, to allow special 69love types like the69inja ones.
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
+/mob/livin69/carbon/human/UnarmedAttack(var/atom/A,69ar/proximity)
 
 	if(!..())
 		return
 
-	// Special glove functions:
-	// If the gloves do anything, have them return 1 to stop
-	// normal attack_hand() here.
-	var/obj/item/clothing/gloves/G = gloves // not typecast specifically enough in defines
-	if(istype(G) && G.Touch(A, 1))
+	// Special 69love functions:
+	// If the 69loves do anythin69, have them return 1 to stop
+	//69ormal attack_hand() here.
+	var/obj/item/clothin69/69loves/69 = 69loves //69ot typecast specifically enou69h in defines
+	if(istype(69) && 69.Touch(A, 1))
 		return
 
 	A.attack_hand(src)
 
-/atom/proc/attack_hand(mob/user as mob)
+/atom/proc/attack_hand(mob/user as69ob)
 	return
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/livin69/carbon/human/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
-	if((istype(A, /turf/simulated/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbing through openspace
-		var/turf/T = get_turf(A)
+/mob/livin69/carbon/human/Ran69edAttack(var/atom/A)
+	if((istype(A, /turf/simulated/floor) || istype(A, /obj/structure/catwalk)) && isturf(loc) && shadow && !is_physically_disabled()) //Climbin69 throu69h openspace
+		var/turf/T = 69et_turf(A)
 		if(T.Adjacent(shadow))
 			for(var/obj/structure/S in shadow.loc)
 				if(S.density)
@@ -43,8 +43,8 @@
 				/obj/structure/closet/crate
 			)
 			var/atom/helper
-			var/area/location = get_area(loc)
-			if(!location.has_gravity)
+			var/area/location = 69et_area(loc)
+			if(!location.has_69ravity)
 				helper = src
 			else
 				for(var/type in objects_to_stand_on)
@@ -54,69 +54,69 @@
 				if(!helper)
 					return
 
-			visible_message(SPAN_WARNING("[src] starts climbing onto \the [A]!"))
-			shadow.visible_message(SPAN_WARNING("[shadow] starts climbing onto \the [A]!"))
+			visible_messa69e(SPAN_WARNIN69("69src69 starts climbin69 onto \the 69A69!"))
+			shadow.visible_messa69e(SPAN_WARNIN69("69shado6969 starts climbin69 onto \the 669A69!"))
 			var/delay = 50
-			if(do_after(src, max(delay * src.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66), helper))
-				visible_message(SPAN_WARNING("[src] climbs onto \the [A]!"))
-				shadow.visible_message(SPAN_WARNING("[shadow] climbs onto \the [A]!"))
+			if(do_after(src,69ax(delay * src.stats.69etMult(STAT_VI69, STAT_LEVEL_EXPERT), delay * 0.66), helper))
+				visible_messa69e(SPAN_WARNIN69("69sr6969 climbs onto \the 669A69!"))
+				shadow.visible_messa69e(SPAN_WARNIN69("69shado6969 climbs onto \the 669A69!"))
 				src.Move(T)
 			else
-				visible_message(SPAN_WARNING("[src] gives up on trying to climb onto \the [A]!"))
-				shadow.visible_message(SPAN_WARNING("[shadow] gives up on trying to climb onto \the [A]!"))
+				visible_messa69e(SPAN_WARNIN69("69sr6969 69ives up on tryin69 to climb onto \the 669A69!"))
+				shadow.visible_messa69e(SPAN_WARNIN69("69shado6969 69ives up on tryin69 to climb onto \the 669A69!"))
 			return
 
-	//PERK_ABSOLUTE_GRAB
+	//PERK_ABSOLUTE_69RAB
 	
-	if(get_dist_euclidian(get_turf(A), get_turf(src)) < 3 && ishuman(A))
-		if(stats.getPerk(PERK_ABSOLUTE_GRAB) && a_intent == I_GRAB)
-			absolute_grab(A) // moved into a proc belowaa
+	if(69et_dist_euclidian(69et_turf(A), 69et_turf(src)) < 3 && ishuman(A))
+		if(stats.69etPerk(PERK_ABSOLUTE_69RAB) && a_intent == I_69RAB)
+			absolute_69rab(A) //69oved into a proc belowaa
 			return
-	if(!gloves && !mutations.len) return
-	var/obj/item/clothing/gloves/G = gloves
-	if((LASER in mutations) && a_intent == I_HURT)
-		LaserEyes(A) // moved into a proc below
+	if(!69loves && !mutations.len) return
+	var/obj/item/clothin69/69loves/69 = 69loves
+	if((LASER in69utations) && a_intent == I_HURT)
+		LaserEyes(A) //69oved into a proc below
 
-	else if(istype(G) && G.Touch(A, 0)) // for magic gloves
+	else if(istype(69) && 69.Touch(A, 0)) // for69a69ic 69loves
 		return
 
-	else if(TK in mutations)
+	else if(TK in69utations)
 		A.attack_tk(src)
 
-/mob/living/RestrainedClickOn(var/atom/A)
+/mob/livin69/RestrainedClickOn(var/atom/A)
 	return
 
 /*
 	Slimes
-	Nothing happening here
+	Nothin69 happenin69 here
 */
 
-/mob/living/carbon/slime/RestrainedClickOn(var/atom/A)
+/mob/livin69/carbon/slime/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/slime/UnarmedAttack(var/atom/A, var/proximity)
+/mob/livin69/carbon/slime/UnarmedAttack(var/atom/A,69ar/proximity)
 
 	if(!..())
 		return
 
-	// Eating
+	// Eatin69
 	if(Victim)
 		if (Victim == A)
 			Feedstop()
 		return
 
-	var/mob/living/M = A
+	var/mob/livin69/M = A
 	if (istype(M))
 
 		switch(src.a_intent)
 			if (I_HELP) // We just poke the other
-				M.visible_message(SPAN_NOTICE("[src] gently pokes [M]!"), SPAN_NOTICE("[src] gently pokes you!"))
-			if (I_DISARM) // We stun the target, with the intention to feed
+				M.visible_messa69e(SPAN_NOTICE("69sr6969 69ently pokes 669M69!"), SPAN_NOTICE("6969rc69 69ently pokes you!"))
+			if (I_DISARM) // We stun the tar69et, with the intention to feed
 				var/stunprob = 1
-				var/power = max(0, min(10, (powerlevel + rand(0, 3))))
+				var/power =69ax(0,69in(10, (powerlevel + rand(0, 3))))
 				if (powerlevel > 0 && !isslime(A))
 					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
+						var/mob/livin69/carbon/human/H =69
 						stunprob *= H.species.siemens_coefficient
 
 
@@ -130,33 +130,33 @@
 						if(10) 	   stunprob *= 95
 
 				if(prob(stunprob))
-					powerlevel = max(0, powerlevel-3)
-					M.visible_message(SPAN_DANGER("[src] has shocked [M]!"), SPAN_DANGER("[src] has shocked you!"))
+					powerlevel =69ax(0, powerlevel-3)
+					M.visible_messa69e(SPAN_DAN69ER("69sr6969 has shocked 669M69!"), SPAN_DAN69ER("6969rc69 has shocked you!"))
 					M.Weaken(power)
 					M.Stun(power)
-					M.stuttering = max(M.stuttering, power)
+					M.stutterin69 =69ax(M.stutterin69, power)
 
-					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-					s.set_up(5, 1, M)
+					var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
+					s.set_up(5, 1,69)
 					s.start()
 
 					if(prob(stunprob) && powerlevel >= 8)
 						M.adjustFireLoss(powerlevel * rand(6, 10))
 				else if(prob(40))
-					M.visible_message(SPAN_DANGER("[src] has pounced at [M]!"), SPAN_DANGER("[src] has pounced at you!"))
+					M.visible_messa69e(SPAN_DAN69ER("69sr6969 has pounced at 669M69!"), SPAN_DAN69ER("6969rc69 has pounced at you!"))
 					M.Weaken(power)
 				else
-					M.visible_message(SPAN_DANGER("[src] has tried to pounce at [M]!"), SPAN_DANGER("[src] has tried to pounce at you!"))
+					M.visible_messa69e(SPAN_DAN69ER("69sr6969 has tried to pounce at 669M69!"), SPAN_DAN69ER("6969rc69 has tried to pounce at you!"))
 				M.updatehealth()
-			if (I_GRAB) // We feed
+			if (I_69RAB) // We feed
 				Wrap(M)
-			if (I_HURT) // Attacking
-				A.attack_generic(src, (is_adult ? rand(20, 40) : rand(5, 25)), "glomped")
+			if (I_HURT) // Attackin69
+				A.attack_69eneric(src, (is_adult ? rand(20, 40) : rand(5, 25)), "69lomped")
 	else
-		A.attack_generic(src, (is_adult ? rand(20, 40) : rand(5, 25)), "glomped") // Basic attack.
+		A.attack_69eneric(src, (is_adult ? rand(20, 40) : rand(5, 25)), "69lomped") // Basic attack.
 /*
 	New Players:
-	Have no reason to click on anything at all.
+	Have69o reason to click on anythin69 at all.
 */
 /mob/new_player/ClickOn()
 	return
@@ -164,15 +164,15 @@
 /*
 	Animals
 */
-/mob/living/simple_animal/UnarmedAttack(var/atom/A, var/proximity)
+/mob/livin69/simple_animal/UnarmedAttack(var/atom/A,69ar/proximity)
 
 	if(!..())
 		return
 
-	if(melee_damage_upper == 0 && isliving(A))
-		custom_emote(1, "[friendly] [A]!")
+	if(melee_dama69e_upper == 0 && islivin69(A))
+		custom_emote(1, "69friendl6969 669A69!")
 		return
 
-	var/damage = rand(melee_damage_lower, melee_damage_upper)
-	if(A.attack_generic(src, damage, attacktext, environment_smash) && loc && attack_sound)
+	var/dama69e = rand(melee_dama69e_lower,69elee_dama69e_upper)
+	if(A.attack_69eneric(src, dama69e, attacktext, environment_smash) && loc && attack_sound)
 		playsound(loc, attack_sound, 50, 1, 1)

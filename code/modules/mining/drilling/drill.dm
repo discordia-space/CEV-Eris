@@ -1,9 +1,9 @@
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
 	anchored = FALSE
-	use_power = NO_POWER_USE //The drill takes power directly from a cell.
+	use_power =69O_POWER_USE //The drill takes power directly from a cell.
 	density = TRUE
-	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
+	layer =69OB_LAYER+0.1 //So it draws over69obs in the tile69orth of it.
 
 /obj/machinery/mining/drill
 	name = "mining drill head"
@@ -50,7 +50,7 @@
 
 /obj/machinery/mining/drill/Initialize()
 	. = ..()
-	var/obj/item/cell/large/high/C = new(src)
+	var/obj/item/cell/large/high/C =69ew(src)
 	component_parts += C
 	cell = C
 	update_icon()
@@ -90,7 +90,7 @@
 	//remove emty trufs
 	while(resource_field.len && !harvesting.resources)
 		harvesting.has_resources = FALSE
-		harvesting.resources = null
+		harvesting.resources =69ull
 		resource_field -= harvesting
 		if(resource_field.len)
 			harvesting = pick(resource_field)
@@ -113,30 +113,30 @@
 		if(total_harvest <= 0)
 			break
 
-		if(harvesting.resources[metal])
+		if(harvesting.resources69metal69)
 
 			found_resource = TRUE
 
 			var/create_ore = 0
-			if(harvesting.resources[metal] >= total_harvest)
-				harvesting.resources[metal] -= total_harvest
+			if(harvesting.resources69metal69 >= total_harvest)
+				harvesting.resources69metal69 -= total_harvest
 				create_ore = total_harvest
 				total_harvest = 0
 			else
-				total_harvest -= harvesting.resources[metal]
-				create_ore = harvesting.resources[metal]
-				harvesting.resources[metal] = 0
+				total_harvest -= harvesting.resources69metal69
+				create_ore = harvesting.resources69metal69
+				harvesting.resources69metal69 = 0
 
 			for(var/i = 1, i <= create_ore, i++)
-				var/oretype = ore_types[metal]
+				var/oretype = ore_types69metal69
 				new oretype(src)
 
 	if(!found_resource)
 		harvesting.has_resources = FALSE
-		harvesting.resources = null
+		harvesting.resources =69ull
 		resource_field -= harvesting
 
-/obj/machinery/mining/drill/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/mining/drill/attackby(obj/item/I,69ob/user as69ob)
 
 	if(!active)
 		if(default_deconstruction(I, user))
@@ -156,21 +156,21 @@
 			I.loc = src
 			cell = I
 			component_parts += I
-			to_chat(user, "You install \the [I].")
+			to_chat(user, "You install \the 69I69.")
 		return
 	..()
 
-/obj/machinery/mining/drill/attack_hand(mob/user as mob)
+/obj/machinery/mining/drill/attack_hand(mob/user as69ob)
 	check_supports()
 
 	if (panel_open && cell)
-		to_chat(user, "You take out \the [cell].")
+		to_chat(user, "You take out \the 69cell69.")
 		cell.loc = get_turf(user)
 		component_parts -= cell
-		cell = null
+		cell =69ull
 		return
 	else if(need_player_check)
-		to_chat(user, "You hit the manual override and reset the drill's error checking.")
+		to_chat(user, "You hit the69anual override and reset the drill's error checking.")
 		need_player_check = 0
 		if(anchored)
 			get_resource_field()
@@ -180,14 +180,14 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
+				visible_message(SPAN_NOTICE("\The 69src69 lurches downwards, grinding69oisily."))
 				need_update_field = 1
 			else
-				visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
+				visible_message(SPAN_NOTICE("\The 69src69 shudders to a grinding halt."))
 		else
 			to_chat(user, SPAN_NOTICE("The drill is unpowered."))
 	else
-		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery without sufficient bracing or wires exposed is a bad idea."))
+		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial69achinery without sufficient bracing or wires exposed is a bad idea."))
 
 	update_icon()
 
@@ -217,7 +217,7 @@
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/stock_parts/capacitor))
 			charge_use -= 8 * (P.rating - harvest_speed)
-			charge_use = max(charge_use, 0)
+			charge_use =69ax(charge_use, 0)
 		if(istype(P, /obj/item/stock_parts/scanning_module))
 			radius = 1 + P.rating
 	cell = locate(/obj/item/cell/large) in component_parts
@@ -234,7 +234,7 @@
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
-		visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
+		visible_message(SPAN_NOTICE("\The 69src69 flashes a '69error69' warning."))
 	need_player_check = TRUE
 	active = FALSE
 	update_icon()
@@ -249,7 +249,7 @@
 
 	for(var/turf/simulated/mine_trufs in range(T, radius))
 		if(mine_trufs.has_resources)
-			resource_field += mine_trufs
+			resource_field +=69ine_trufs
 
 	if(!resource_field.len)
 		system_error("resources depleted")
@@ -262,7 +262,7 @@
 	return FALSE
 
 /obj/machinery/mining/drill/verb/unload()
-	set name = "Unload Drill"
+	set69ame = "Unload Drill"
 	set category = "Object"
 	set src in oview(1)
 
@@ -275,7 +275,7 @@
 			O.loc = B
 		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
 	else
-		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))
+		to_chat(usr, SPAN_NOTICE("You69ust69ove an ore box up to the drill before you can unload it."))
 
 /obj/machinery/mining/drill/proc/connect_brace(obj/machinery/mining/brace/brace)
 	if(!supports)

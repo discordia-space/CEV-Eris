@@ -1,6 +1,6 @@
 /obj/machinery/mech_recharger
 	name = "mech recharger"
-	desc = "A mech recharger, built into the floor."
+	desc = "A69ech recharger, built into the floor."
 	icon = 'icons/mechs/mech_bay.dmi'
 	icon_state = "recharge_floor"
 	anchored = TRUE
@@ -11,18 +11,18 @@
 	idle_power_usage = 4
 	circuit = /obj/item/electronics/circuitboard/mech_recharger
 
-	var/mob/living/exosuit/charging = null
+	var/mob/living/exosuit/charging =69ull
 
 	var/max_power_usage = 40000	//40 kW. This is the highest power the charger can draw and use,
-	//though it may draw less when charging weak cells due to their charging rate limits
-	active_power_usage = 40000//The actual power the charger uses right now. This is recalculated based on the cell when it's inserted
+	//though it69ay draw less when charging weak cells due to their charging rate limits
+	active_power_usage = 40000//The actual power the charger uses right69ow. This is recalculated based on the cell when it's inserted
 	var/efficiency = 0.90
 
 	var/repair = 0
 
 /obj/machinery/mech_recharger/Crossed(var/mob/living/exosuit/M)
 	. = ..()
-	if(istype(M) && charging != M)
+	if(istype(M) && charging !=69)
 		start_charging(M)
 
 /obj/machinery/mech_recharger/Uncrossed(var/mob/living/exosuit/M)
@@ -43,20 +43,20 @@
 			repair += P.rating * 2
 
 	max_power_usage = initial(max_power_usage) * cap_rating
-	efficiency = min(initial(efficiency) + (0.03 * (cap_rating - 1)), 0.99)
+	efficiency =69in(initial(efficiency) + (0.03 * (cap_rating - 1)), 0.99)
 
 /obj/machinery/mech_recharger/Process()
 	..()
 	if(!charging)
 		return
-	if(charging.loc != loc) // Could be qdel or teleport or something
+	if(charging.loc != loc) // Could be 69del or teleport or something
 		stop_charging()
 		return
 	var/done = TRUE
 
 	var/obj/item/cell/cell = charging.get_cell()
 	if(cell && !cell.fully_charged())
-		active_power_usage = min(max_power_usage, (cell.maxcharge*cell.max_chargerate)/CELLRATE)
+		active_power_usage =69in(max_power_usage, (cell.maxcharge*cell.max_chargerate)/CELLRATE)
 
 		cell.give(active_power_usage*CELLRATE*efficiency)
 		update_use_power(ACTIVE_POWER_USE)
@@ -69,7 +69,7 @@
 		update_use_power(IDLE_POWER_USE)
 
 	if(repair && charging.health < initial(charging.health))
-		charging.health = min(charging.health + repair, initial(charging.health))
+		charging.health =69in(charging.health + repair, initial(charging.health))
 		if(charging.health == initial(charging.health))
 			charging.occupant_message(SPAN_NOTICE("Fully repaired."))
 
@@ -79,7 +79,7 @@
 		stop_charging()
 	return
 
-/obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/mech_recharger/attackby(var/obj/item/I,69ar/mob/user)
 	. = ..()
 	if(default_deconstruction(I, user))
 		return
@@ -89,16 +89,16 @@
 
 /obj/machinery/mech_recharger/proc/start_charging(var/mob/living/exosuit/M)
 	if(stat & (NOPOWER | BROKEN))
-		M.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
+		M.occupant_message(SPAN_WARNING("Power port69ot responding. Terminating."))
 		return
 
 	if(M.get_cell())
 		M.occupant_message(SPAN_NOTICE("Now charging..."))
-		charging = M
+		charging =69
 
 /obj/machinery/mech_recharger/proc/stop_charging()
 	if(!charging)
 		return
 
-	charging = null
+	charging =69ull
 	update_use_power(IDLE_POWER_USE)

@@ -6,7 +6,7 @@
 /turf/simulated/floor/holofloor
 	thermal_conductivity = 0
 
-/turf/simulated/floor/holofloor/attackby(obj/item/W as obj, mob/user as mob)
+/turf/simulated/floor/holofloor/attackby(obj/item/W as obj,69ob/user as69ob)
 	return
 	// HOLOFLOOR DOES NOT GIVE A FUCK
 
@@ -60,7 +60,7 @@
 	icon_state = "reinforced"
 
 /turf/simulated/floor/holofloor/space/New()
-	icon_state = "[((x + y) ^ ~(x * y) + z) % 25]"
+	icon_state = "69((x + y) ^ ~(x * y) + z) % 2569"
 
 /turf/simulated/floor/holofloor/beach
 	desc = "Uncomfortably gritty for a hologram."
@@ -90,7 +90,7 @@
 /turf/simulated/floor/holofloor/desert/New()
 	..()
 	if(prob(10))
-		overlays += "asteroid[rand(0,9)]"
+		overlays += "asteroid69rand(0,9)69"
 
 /obj/structure/holostool
 	name = "stool"
@@ -108,7 +108,7 @@
 /obj/structure/window/reinforced/holowindow/Destroy()
 	. = ..()
 
-/obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/window/reinforced/holowindow/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(!istype(W) || W.flags & NOBLUDGEON)
 		return
 
@@ -133,7 +133,7 @@
 /obj/structure/window/reinforced/holowindow/shatter(var/display_message = 1)
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
-		visible_message("[src] fades away as it shatters!")
+		visible_message("69src69 fades away as it shatters!")
 	qdel(src)
 	return
 
@@ -143,7 +143,7 @@
 /obj/machinery/door/window/holowindoor/Destroy()
 	. = ..()
 
-/obj/machinery/door/window/holowindoor/attackby(obj/item/I as obj, mob/user as mob)
+/obj/machinery/door/window/holowindoor/attackby(obj/item/I as obj,69ob/user as69ob)
 
 	if (src.operating == 1)
 		return
@@ -151,7 +151,7 @@
 	if(src.density && istype(I, /obj/item) && !istype(I, /obj/item/card))
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-		visible_message("\red <B>[src] was hit by [I].</B>")
+		visible_message("\red <B>69src69 was hit by 69I69.</B>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return
@@ -167,7 +167,7 @@
 			close()
 
 	else if (src.density)
-		flick(text("[]deny", src.base_state), src)
+		flick(text("6969deny", src.base_state), src)
 
 	return
 
@@ -175,13 +175,13 @@
 	src.density = FALSE
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
-		visible_message("[src] fades away as it shatters!")
+		visible_message("69src69 fades away as it shatters!")
 	qdel(src)
 
 /obj/structure/bed/chair/holochair/Destroy()
 	. = ..()
 
-/obj/structure/bed/chair/holochair/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/holochair/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/tool/wrench))
 		to_chat(user, (SPAN_NOTICE("It's a holochair, you can't dismantle it!")))
 	return
@@ -209,9 +209,9 @@
 /obj/item/holo/esword/red
 	item_color = "red"
 
-/obj/item/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/holo/esword/handle_shield(mob/user,69ar/damage, atom/damage_source = null,69ob/attacker = null,69ar/def_zone = null,69ar/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
-		user.visible_message(SPAN_DANGER("\The [user] parries [attack_text] with \the [src]!"))
+		user.visible_message(SPAN_DANGER("\The 69user69 parries 69attack_text69 with \the 69src69!"))
 
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, user.loc)
@@ -225,20 +225,20 @@
 	if(!item_color)
 		item_color = pick("red","blue","green","purple")
 
-/obj/item/holo/esword/attack_self(mob/living/user as mob)
+/obj/item/holo/esword/attack_self(mob/living/user as69ob)
 	active = !active
 	if (active)
 		force = 30
-		icon_state = "sword[item_color]"
+		icon_state = "sword69item_color69"
 		w_class = ITEM_SIZE_BULKY
 		playsound(user, 'sound/weapons/saberon.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("[src] is now active."))
+		to_chat(user, SPAN_NOTICE("69src69 is now active."))
 	else
 		force = 3
 		icon_state = "sword0"
 		w_class = ITEM_SIZE_SMALL
 		playsound(user, 'sound/weapons/saberoff.ogg', 50, 1)
-		to_chat(user, SPAN_NOTICE("[src] can now be concealed."))
+		to_chat(user, SPAN_NOTICE("69src69 can now be concealed."))
 
 	update_wear_icon()
 
@@ -263,31 +263,31 @@
 	density = TRUE
 	throwpass = 1
 
-/obj/structure/holohoop/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/holohoop/affect_grab(var/mob/living/user,69ar/mob/living/target,69ar/state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_WARNING("You need a better grip to do that!"))
 		return FALSE
 	target.forceMove(src.loc)
 	target.Weaken(5)
-	visible_message(SPAN_WARNING("[user] dunks [target] into the [src]!"))
+	visible_message(SPAN_WARNING("69user69 dunks 69target69 into the 69src69!"))
 	return TRUE
 
-/obj/structure/holohoop/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/holohoop/attackby(obj/item/W as obj,69ob/user as69ob)
 	if (istype(W, /obj/item) && get_dist(src,user)<2)
 		user.drop_item(src.loc)
-		visible_message(SPAN_NOTICE("[user] dunks [W] into the [src]!"), 3)
+		visible_message(SPAN_NOTICE("69user69 dunks 69W69 into the 69src69!"), 3)
 		return
 
 /obj/structure/holohoop/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if (istype(mover,/obj/item) && mover.throwing)
-		var/obj/item/I = mover
+	if (istype(mover,/obj/item) &&69over.throwing)
+		var/obj/item/I =69over
 		if(istype(I, /obj/item/projectile))
 			return
 		if(prob(50))
 			I.forceMove(src.loc)
-			visible_message(SPAN_NOTICE("Swish! \the [I] lands in \the [src]."))
+			visible_message(SPAN_NOTICE("Swish! \the 69I69 lands in \the 69src69."))
 		else
-			visible_message(SPAN_WARNING("\The [I] bounces off of \the [src]'s rim!"))
+			visible_message(SPAN_WARNING("\The 69I69 bounces off of \the 69src69's rim!"))
 		return 0
 	else
 		return ..(mover, target, height, air_group)
@@ -308,7 +308,7 @@
 	active_power_usage = 6
 	power_channel = STATIC_ENVIRON
 
-/obj/machinery/readybutton/attack_ai(mob/user as mob)
+/obj/machinery/readybutton/attack_ai(mob/user as69ob)
 	to_chat(user, "The ship AI is not to interact with these devices!")
 	return
 
@@ -316,10 +316,10 @@
 	..()
 
 
-/obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/readybutton/attackby(obj/item/W as obj,69ob/user as69ob)
 	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
-/obj/machinery/readybutton/attack_hand(mob/user as mob)
+/obj/machinery/readybutton/attack_hand(mob/user as69ob)
 
 	if(user.stat || stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
@@ -403,5 +403,5 @@
 	derez()
 
 /mob/living/simple_animal/hostile/carp/holodeck/proc/derez()
-	visible_message(SPAN_NOTICE("\The [src] fades away!"))
+	visible_message(SPAN_NOTICE("\The 69src69 fades away!"))
 	qdel(src)

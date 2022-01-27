@@ -1,6 +1,6 @@
 /* Windoor (window door) assembly -Nodrak
  * Step 1: Create a windoor out of rglass
- * Step 2: Add r-glass to the assembly to make a secure windoor (Optional)
+ * Step 2: Add r-glass to the assembly to69ake a secure windoor (Optional)
  * Step 3: Rotate or Flip the assembly to face and open the way you want
  * Step 4: Wrench the assembly in place
  * Step 5: Add cables to the assembly
@@ -44,10 +44,10 @@ obj/structure/windoor_assembly/Destroy()
 	. = ..()
 
 /obj/structure/windoor_assembly/update_icon()
-	icon_state = "[facing]_[secure]windoor_assembly[state]"
+	icon_state = "69facing69_69secure69windoor_assembly69state69"
 
 /obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) &&69over.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		if(air_group) return 0
@@ -55,8 +55,8 @@ obj/structure/windoor_assembly/Destroy()
 	else
 		return 1
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+/obj/structure/windoor_assembly/CheckExit(atom/movable/mover as69ob|obj, turf/target as turf)
+	if(istype(mover) &&69over.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(loc, target) == dir)
 		return !density
@@ -64,25 +64,25 @@ obj/structure/windoor_assembly/Destroy()
 		return 1
 
 
-/obj/structure/windoor_assembly/attackby(obj/item/I, mob/user)
-	//I really should have spread this out across more states but thin little windoors are hard to sprite.
+/obj/structure/windoor_assembly/attackby(obj/item/I,69ob/user)
+	//I really should have spread this out across69ore states but thin little windoors are hard to sprite.
 
-	var/list/usable_qualities = list()
+	var/list/usable_69ualities = list()
 	if((state == 0 && !anchored) || (state == 0 && anchored))
-		usable_qualities.Add(QUALITY_BOLT_TURNING)
+		usable_69ualities.Add(69UALITY_BOLT_TURNING)
 	if(state == 0 && !anchored)
-		usable_qualities.Add(QUALITY_WELDING)
+		usable_69ualities.Add(69UALITY_WELDING)
 	if(state == 1 && electronics)
-		usable_qualities.Add(QUALITY_PRYING, QUALITY_SCREW_DRIVING)
+		usable_69ualities.Add(69UALITY_PRYING, 69UALITY_SCREW_DRIVING)
 	if(state == 1 && !electronics)
-		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+		usable_69ualities.Add(69UALITY_WIRE_CUTTING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.get_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
 
-		if(QUALITY_BOLT_TURNING)
+		if(69UALITY_BOLT_TURNING)
 			if(state == 0 && !anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You've secured the windoor assembly!"))
 					src.anchored = TRUE
 					if(src.secure)
@@ -91,7 +91,7 @@ obj/structure/windoor_assembly/Destroy()
 						src.name = "Anchored Windoor Assembly"
 					return
 			if(state == 0 && anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You've unsecured the windoor assembly!"))
 					anchored = FALSE
 					if(src.secure)
@@ -101,22 +101,22 @@ obj/structure/windoor_assembly/Destroy()
 					return
 			return
 
-		if(QUALITY_WELDING)
+		if(69UALITY_WELDING)
 			if(state == 0 && !anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You dissasembled the windoor assembly!"))
 					new /obj/item/stack/material/glass/reinforced(get_turf(src), 5)
 					if(secure)
 						new /obj/item/stack/rods(get_turf(src), 4)
-					qdel(src)
+					69del(src)
 					return
 			return
 
-		if(QUALITY_PRYING)
+		if(69UALITY_PRYING)
 			if(state == 1 && electronics)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 					usr << browse(null, "window=windoor_access")
-					density = TRUE //Shouldn't matter but just incase
+					density = TRUE //Shouldn't69atter but just incase
 					to_chat(user, SPAN_NOTICE("You finish the windoor!"))
 
 					if(secure)
@@ -131,10 +131,10 @@ obj/structure/windoor_assembly/Destroy()
 						windoor.density = FALSE
 
 						if(src.electronics.one_access)
-							windoor.req_access = null
-							windoor.req_one_access = src.electronics.conf_access
+							windoor.re69_access = null
+							windoor.re69_one_access = src.electronics.conf_access
 						else
-							windoor.req_access = src.electronics.conf_access
+							windoor.re69_access = src.electronics.conf_access
 						windoor.electronics = src.electronics
 						src.electronics.loc = windoor
 					else
@@ -149,20 +149,20 @@ obj/structure/windoor_assembly/Destroy()
 						windoor.density = FALSE
 
 						if(src.electronics.one_access)
-							windoor.req_access = null
-							windoor.req_one_access = src.electronics.conf_access
+							windoor.re69_access = null
+							windoor.re69_one_access = src.electronics.conf_access
 						else
-							windoor.req_access = src.electronics.conf_access
+							windoor.re69_access = src.electronics.conf_access
 						windoor.electronics = src.electronics
 						src.electronics.loc = windoor
 
-					qdel(src)
+					69del(src)
 					return
 			return
 
-		if(QUALITY_WIRE_CUTTING)
+		if(69UALITY_WIRE_CUTTING)
 			if(state == 1 && !electronics)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You remove the windoor wires.!"))
 					new/obj/item/stack/cable_coil(get_turf(user), 1)
 					src.state = 0
@@ -173,9 +173,9 @@ obj/structure/windoor_assembly/Destroy()
 					return
 			return
 
-		if(QUALITY_SCREW_DRIVING)
+		if(69UALITY_SCREW_DRIVING)
 			if(state == 1 && electronics)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You've removed the airlock electronics!"))
 					if(src.secure)
 						src.name = "Secure Wired Windoor Assembly"
@@ -192,11 +192,11 @@ obj/structure/windoor_assembly/Destroy()
 
 	switch(state)
 		if(0)
-			//Adding rods makes the assembly a secure windoor assembly. Step 2 (optional) complete.
+			//Adding rods69akes the assembly a secure windoor assembly. Step 2 (optional) complete.
 			if(istype(I, /obj/item/stack/rods) && !secure)
 				var/obj/item/stack/rods/R = I
 				if(R.get_amount() < 4)
-					to_chat(user, SPAN_WARNING("You need more rods to do this."))
+					to_chat(user, SPAN_WARNING("You need69ore rods to do this."))
 					return
 				to_chat(user, SPAN_NOTICE("You start to reinforce the windoor with rods."))
 
@@ -211,7 +211,7 @@ obj/structure/windoor_assembly/Destroy()
 
 			//Adding cable to the assembly. Step 5 complete.
 			else if(istype(I, /obj/item/stack/cable_coil) && anchored)
-				user.visible_message("[user] wires the windoor assembly.", "You start to wire the windoor assembly.")
+				user.visible_message("69user69 wires the windoor assembly.", "You start to wire the windoor assembly.")
 
 				var/obj/item/stack/cable_coil/CC = I
 				if(do_after(user, 40,src))
@@ -230,7 +230,7 @@ obj/structure/windoor_assembly/Destroy()
 			//Adding airlock electronics for access. Step 6 complete.
 			if(istype(I, /obj/item/electronics/airlock) && I:icon_state != "door_electronics_smoked")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 100, 1)
-				user.visible_message("[user] installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
+				user.visible_message("69user69 installs the electronics into the airlock assembly.", "You start to install electronics into the airlock assembly.")
 
 				if(do_after(user, 40,src))
 					if(!src) return

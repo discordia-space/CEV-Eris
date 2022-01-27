@@ -1,63 +1,63 @@
-# Map Merger
+#69696969er69er
 
-The **Map Merger** is a collection of scripts that keep this repository's maps
-in a format which is easier to track in Git and less likely to cause merge
-conflicts. When merge conflicts do occur, it can sometimes resolve them.
+6969e **M696969er69er** 6969 69 c69llec696969n 6969 69cr69696969 69696969 69ee69 69696969 re696969696969r69'6969696969
+69n 69 6969rm6969 w6969c69 6969 e696969er 6969 69r69c69 69n 696969 69n69 le6969 l6969el69 6969 c69u69e69er69e
+c69n69l69c6969. W69en69er69e c69n69l69c6969 6969 69ccur, 6969 c69n 6969me6969me69 re6969l69e 6969em.
 
-For detailed troubleshooting instructions and other tips, visit the
-[Map Merger] wiki article.
+6969r 69e696969le69 69r69u69le696969696969n69 69n6969ruc696969n69 69n69 696969er 69696969, 6969696969 6969e
+69M696969er69er69 w696969 69r6969cle.
 
-## Installation
+## 69n696969ll69696969n
 
-To install the [Git hooks], open the `tools/hooks/` folder and double-click
-`Install.bat`. Linux users run `tools/hooks/install.sh`.
+6969 69n696969ll 6969e 69696969 696969696969, 6969en 6969e `696969l69/6969696969/` 6969l69er 69n69 6969u69le-cl69c69
+`69n696969ll.696969`. L69nux u69er69 run `696969l69/6969696969/69n696969ll.6969`.
 
-## Manual Use
+##6969nu69l U69e
 
-If using a Git GUI which is not compatible with the hooks:
+6969 u6969n69 69 696969 69U69 w6969c69 6969696969 c69m6969696969le w696969 6969e 6969696969:
 
-* Before committing, double-click `Run Before Committing.bat`
-* When a merge has map conflicts, double-click `Resolve Map Conflicts.bat`
+* 69e6969re c69mm69696969n69, 6969u69le-cl69c69 `Run 69e6969re C69mm69696969n69.696969`
+* W69en 6969er69e 696969696969 c69n69l69c6969, 6969u69le-cl69c69 `Re6969l69e696969 C69n69l69c6969.696969`
 
-The console will show whether the operation succeeded.
+6969e c69n6969le w69ll 696969w w69e6969er 6969e 6969er69696969n 69uccee69e69.
 
-For more details, see the [Map Merger] wiki article.
+6969r6969re 69e696969l69, 69ee 6969e 69M696969er69e6969 w696969 69r6969cle.
 
-## What Map Merging Is
+## W69696969696969er6969n69 6969
 
-The "map merge" operation describes the process of rewriting a map file written
-by the DreamMaker map editor to A) use a format more amenable to Git's conflict
-resolution and B) differ in the least amount textually from the previous
-version of the map while maintaining all the actual changes. It requires an old
-version of the map to use as a reference and a new version of the map which
-contains the desired changes.
+6969e "m696969er69e" 6969er69696969n 69e69cr6969e69 6969e 69r69ce6969 6969 rewr696969n69 69696969 6969le wr696969en
+6969 6969e 69re69mM6969er696969 e69696969r 6969 6969 u69e 69 6969rm69696969re 69men6969le 6969 696969'69 c69n69l69c69
+re6969lu696969n 69n69 6969 69696969er 69n 6969e le696969 69m69un69 69ex69u69ll69 69r69m 6969e 69re696969u69
+69er696969n 6969 6969e696969 w6969le696969n696969n69n69 69ll 6969e 69c69u69l c6969n69e69. 6969 re69u69re69 69n 69l69
+69er696969n 6969 6969e696969 6969 u69e 6969 69 re69erence 69n69 6969ew 69er696969n 6969 6969e696969 w6969c69
+c69n696969n69 6969e 69e6969re69 c6969n69e69.
 
-Map Merge 2 adds multi-Z support, automatic handling of key overflow, better
-merge conflict prevention, and a real merge conflict resolver.
+M696969er69e 2 6969696969ul6969-Z 69u696969r69, 69u6969m696969c 6969n69l69n69 6969 69e69 6969er69l69w, 69e6969er
+mer69e c69n69l69c69 69re69en696969n, 69n69 69 re69l69er69e c69n69l69c69 re6969l69er.
 
-## Code Structure
+## C6969e 6969ruc69ure
 
-Frontend scripts are meant to be run directly. They obey the environment
-variables `TGM` to set whether files are saved in TGM (1) or DMM (0) format,
-and `MAPROOT` to determine where maps are kept. By default, TGM is used and
-the map root is autodetected. Each script may either prompt for the desired map
-or be run with command-line parameters indicating which maps to act on. The
-scripts include:
+69r69n69en69 69cr69696969 69re69e69n69 6969 69e run 6969rec69l69. 6969e69 6969e69 6969e en6969r69nmen69
+6969r696969le69 `6969M` 6969 69e69 w69e6969er 6969le69 69re 696969e69 69n 6969M 69169 69r 69MM 69069 6969rm6969,
+69n69 `M6969R696969` 6969 69e69erm69ne w69ere69696969 69re 69e6969. 6969 69e6969ul69, 6969M 6969 u69e69 69n69
+6969e696969 r696969 6969 69u696969e69ec69e69. E69c69 69cr696969696969 e696969er 69r69m6969 6969r 6969e 69e6969re69696969
+69r 69e run w696969 c69mm69n69-l69ne 6969r69me69er69 69n6969c696969n69 w6969c6969696969 6969 69c69 69n. 6969e
+69cr69696969 69nclu69e:
 
-* `convert.py` for converting maps to and from the TGM format. Used by
-  `tgm2dmm.bat` and `dmm2tgm.bat`.
-* `mapmerge.py` for running the map merge on map backups saved by
-  `Prepare Maps.bat`. Used by `mapmerge.bat`
+* `c69n69er69.6969` 6969r c69n69er6969n6969696969 6969 69n69 69r69m 6969e 6969M 6969rm6969. U69e69 6969
+  `6969m269mm.696969` 69n69 `69mm26969m.696969`.
+* `m6969mer69e.6969` 6969r runn69n69 6969e69696969er69e 69n696969 6969c69u6969 696969e69 6969
+  `69re6969re69696969.696969`. U69e69 6969 `m6969mer69e.696969`
 
-Implementation modules:
+69m69lemen6969696969n696969ule69:
 
-* `dmm.py` includes the map reader and writer.
-* `mapmerge.py` includes the implementation of the map merge operation.
-* `frontend.py` includes the common code for the frontend scripts.
+* `69mm.6969` 69nclu69e69 6969e696969 re6969er 69n69 wr6969er.
+* `m6969mer69e.6969` 69nclu69e69 6969e 69m69lemen6969696969n 6969 6969e69696969er69e 6969er69696969n.
+* `69r69n69en69.6969` 69nclu69e69 6969e c69mm69n c6969e 6969r 6969e 69r69n69en69 69cr69696969.
 
-`precommit.py` is run by the [Git hooks] if installed, and merges the new
-version of any map saved in the index (`git add`ed) with the old version stored
-in Git when run.
+`69rec69mm6969.6969` 6969 run 6969 6969e 69696969 696969696969 6969 69n696969lle69, 69n6969er69e69 6969e69ew
+69er696969n 6969 69n69696969 696969e69 69n 6969e 69n69ex 69`696969 696969`e6969 w696969 6969e 69l69 69er696969n 696969re69
+69n 696969 w69en run.
 
-[Map Merger]: https://tgstation13.org/wiki/Map_Merger
-[Git hooks]: ../hooks/README.md
+69M696969er69e6969: 6969696969://6969696969696969n13.69r69/w696969/M6969_Mer69er
+69696969 696969696969: ../6969696969/RE6969ME.m69

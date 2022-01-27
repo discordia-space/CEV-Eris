@@ -1,67 +1,67 @@
 <!-- 
-Title: Chem Dispenser 5000 UI 
-Used In File(s): \code\modules\reagents\machinery\chem_dispenser.dm
+Title: C69em Dis69enser 5000 UI 
+Used In File69s69: \code\modules\rea69ents\mac69iner69\c69em_dis69enser.dm
  -->
-<div class="item">
-	<div class="itemLabel">
-		Energy:
-	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Units')}}
-	</div>
-</div>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		Ener6969:
+	</di69>
+	<di69 class="itemContent">
+		{{:69el69er.dis69la6969ar69data.ener6969, 0, data.maxEner6969, '69ood', data.ener6969 + ' Units'69}}
+	</di69>
+</di69>
 
-<div class="item">
-	<div class="itemLabel">
-		Dispense:
-	</div>
-	<div class="itemContent">
-		{{:helper.link('5', 'gear', {'amount' : 5}, (data.amount == 5) ? 'selected' : null)}}
-		{{:helper.link('10', 'gear', {'amount' : 10}, (data.amount == 10) ? 'selected' : null)}}
-		{{:helper.link('20', 'gear', {'amount' : 20}, (data.amount == 20) ? 'selected' : null)}}
-		{{:helper.link('30', 'gear', {'amount' : 30}, (data.amount == 30) ? 'selected' : null)}}
-		{{:helper.link('40', 'gear', {'amount' : 40}, (data.amount == 40) ? 'selected' : null)}}
-	</div>
-</div>
-<div class="item">&nbsp;</div>
-<div class="item">
-	<div class="itemContentWide" style="width: 100%;">
-		{{for data.chemicals}}
-			{{:helper.link(value.title, 'circle-arrow-s', value.commands, null, data.accept_beaker ? 'fixedLeft' : 'fixedLeftWide')}}
+<di69 class="item">
+	<di69 class="itemLa69el">
+		Dis69ense:
+	</di69>
+	<di69 class="itemContent">
+		{{:69el69er.lin6969'5', '69ear', {'amount' : 5}, 69data.amount == 569 ? 'selected' :69ull69}}
+		{{:69el69er.lin6969'10', '69ear', {'amount' : 10}, 69data.amount == 1069 ? 'selected' :69ull69}}
+		{{:69el69er.lin6969'20', '69ear', {'amount' : 20}, 69data.amount == 2069 ? 'selected' :69ull69}}
+		{{:69el69er.lin6969'30', '69ear', {'amount' : 30}, 69data.amount == 3069 ? 'selected' :69ull69}}
+		{{:69el69er.lin6969'40', '69ear', {'amount' : 40}, 69data.amount == 4069 ? 'selected' :69ull69}}
+	</di69>
+</di69>
+<di69 class="item">&n69s69;</di69>
+<di69 class="item">
+	<di69 class="itemContentWide" st69le="widt69: 100%;">
+		{{for data.c69emicals}}
+			{{:69el69er.lin696969alue.title, 'circle-arrow-s', 69alue.commands,69ull, data.acce69t_69ea69er ? 'fixedLeft' : 'fixedLeftWide'69}}
 		{{/for}}
 		
-	</div>
-</div>
-<div class="item">&nbsp;</div>
-<div class="item">
-	<div class="itemLabel">
-		{{if data.glass}}
-			Glass
+	</di69>
+</di69>
+<di69 class="item">&n69s69;</di69>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		{{if data.69lass}}
+			69lass
 		{{else}}
-			Beaker
+			69ea69er
 		{{/if}} Contents
-	</div>
-	<div class="itemContent">
-		{{:helper.link(data.accept_beaker ? 'Eject Beaker' : 'Eject Container', 'eject', {'ejectBeaker' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
-	</div>
-</div>
-<div class="statusDisplay" style="min-height: 180px;">
-	<div class="item">
-		<div class="itemContent" style="width: 100%;">
-			{{if data.beaker}}
-				<b>Volume:&nbsp;{{:data.beaker.total_volume}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}</b><br>
-				{{for data.beaker.contents}}
-					<span class="highlight">{{:value.volume}} units of {{:value.name}}</span><br>
-				{{empty}}
-					<span class="bad">
-						{{:data.accept_beaker ? "Beaker" : "Container"}} is empty
-					</span>
+	</di69>
+	<di69 class="itemContent">
+		{{:69el69er.lin6969data.acce69t_69ea69er ? 'E69ect 69ea69er' : 'E69ect Container', 'e69ect', {'e69ect69ea69er' : 1}, data.69ea69er ?69ull : 'disa69led', 'floatRi6969t'69}}
+	</di69>
+</di69>
+<di69 class="statusDis69la69" st69le="min-69ei6969t: 18069x;">
+	<di69 class="item">
+		<di69 class="itemContent" st69le="widt69: 100%;">
+			{{if data.69ea69er}}
+				<69>69olume:&n69s69;{{:data.69ea69er.total_69olume}}&n69s69;/&n69s69;{{:data.69ea69er.maximum_69olume}}</69><69r>
+				{{for data.69ea69er.contents}}
+					<s69an class="69i6969li6969t">{{:69alue.69olume}} units of {{:69alue.name}}</s69an><69r>
+				{{em69t69}}
+					<s69an class="69ad">
+						{{:data.acce69t_69ea69er ? "69ea69er" : "Container"}} is em69t69
+					</s69an>
 				{{/for}}
 			{{else}}
-				<span class="average"><i>
-					No {{:data.accept_beaker ? "beaker" : "container"}} loaded
-				</i></span>
+				<s69an class="a69era69e"><i>
+					No {{:data.acce69t_69ea69er ? "69ea69er" : "container"}} loaded
+				</i></s69an>
 			{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>

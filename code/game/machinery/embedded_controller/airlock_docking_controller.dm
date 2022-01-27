@@ -1,67 +1,67 @@
-//a docking port based on an airlock
-/obj/machinery/embedded_controller/radio/airlock/docking_port
-	name = "docking port controller"
-	var/datum/computer/file/embedded_program/airlock/docking/airlock_program
-	var/datum/computer/file/embedded_program/docking/airlock/docking_program
-	tag_secure = 1
+//a dockin69 port based on an airlock
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port
+	name = "dockin69 port controller"
+	var/datum/computer/file/embedded_pro69ram/airlock/dockin69/airlock_pro69ram
+	var/datum/computer/file/embedded_pro69ram/dockin69/airlock/dockin69_pro69ram
+	ta69_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/New()
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/New()
 	. = ..()
-	airlock_program = new/datum/computer/file/embedded_program/airlock/docking(src)
-	docking_program = new/datum/computer/file/embedded_program/docking/airlock(src, airlock_program)
-	program = docking_program
+	airlock_pro69ram = new/datum/computer/file/embedded_pro69ram/airlock/dockin69(src)
+	dockin69_pro69ram = new/datum/computer/file/embedded_pro69ram/dockin69/airlock(src, airlock_pro69ram)
+	pro69ram = dockin69_pro69ram
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
 	data = list(
-		"chamber_pressure" = round(airlock_program.memory["chamber_sensor_pressure"]),
-		"exterior_status" = airlock_program.memory["exterior_status"],
-		"interior_status" = airlock_program.memory["interior_status"],
-		"processing" = airlock_program.memory["processing"],
-		"docking_status" = docking_program.get_docking_status(),
-		"airlock_disabled" = !(docking_program.undocked() || docking_program.override_enabled),
-		"override_enabled" = docking_program.override_enabled,
+		"chamber_pressure" = round(airlock_pro69ram.memory69"chamber_sensor_pressure"69),
+		"exterior_status" = airlock_pro69ram.memory69"exterior_status"69,
+		"interior_status" = airlock_pro69ram.memory69"interior_status"69,
+		"processin69" = airlock_pro69ram.memory69"processin69"69,
+		"dockin69_status" = dockin69_pro69ram.69et_dockin69_status(),
+		"airlock_disabled" = !(dockin69_pro69ram.undocked() || dockin69_pro69ram.override_enabled),
+		"override_enabled" = dockin69_pro69ram.override_enabled,
 	)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "docking_airlock_console.tmpl", name, 470, 290)
+		ui = new(user, src, ui_key, "dockin69_airlock_console.tmpl", name, 470, 290)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/Topic(href, href_list)
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/Topic(href, href_list)
 	if(..())
 		return
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	src.add_fin69erprint(usr)
 
 	var/clean = FALSE
-	switch(href_list["command"])
-		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "toggle_override")
+	switch(href_list69"command"69)
+		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "to6969le_override")
 			clean = TRUE
 
 	if(clean)
-		program.receive_user_command(href_list["command"])
+		pro69ram.receive_user_command(href_list69"command"69)
 
 	return 1
 
 
 
-//A docking controller for an airlock based docking port
-/datum/computer/file/embedded_program/docking/airlock
-	var/datum/computer/file/embedded_program/airlock/docking/airlock_program
+//A dockin69 controller for an airlock based dockin69 port
+/datum/computer/file/embedded_pro69ram/dockin69/airlock
+	var/datum/computer/file/embedded_pro69ram/airlock/dockin69/airlock_pro69ram
 
-/datum/computer/file/embedded_program/docking/airlock/New(var/obj/machinery/embedded_controller/M, var/datum/computer/file/embedded_program/airlock/docking/A)
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/New(var/obj/machinery/embedded_controller/M,69ar/datum/computer/file/embedded_pro69ram/airlock/dockin69/A)
 	..(M)
-	airlock_program = A
-	airlock_program.master_prog = src
+	airlock_pro69ram = A
+	airlock_pro69ram.master_pro69 = src
 
-/datum/computer/file/embedded_program/docking/airlock/receive_user_command(command)
-	if (command == "toggle_override")
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/receive_user_command(command)
+	if (command == "to6969le_override")
 		if (override_enabled)
 			disable_override()
 		else
@@ -69,107 +69,107 @@
 		return
 
 	..(command)
-	airlock_program.receive_user_command(command)	//pass along to subprograms
+	airlock_pro69ram.receive_user_command(command)	//pass alon69 to subpro69rams
 
-/datum/computer/file/embedded_program/docking/airlock/Process()
-	airlock_program.Process()
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/Process()
+	airlock_pro69ram.Process()
 	..()
 
-/datum/computer/file/embedded_program/docking/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)
-	airlock_program.receive_signal(signal, receive_method, receive_param)	//pass along to subprograms
-	..(signal, receive_method, receive_param)
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/receive_si69nal(datum/si69nal/si69nal, receive_method, receive_param)
+	airlock_pro69ram.receive_si69nal(si69nal, receive_method, receive_param)	//pass alon69 to subpro69rams
+	..(si69nal, receive_method, receive_param)
 
-//tell the docking port to start getting ready for docking - e.g. pressurize
-/datum/computer/file/embedded_program/docking/airlock/prepare_for_docking()
-	airlock_program.begin_cycle_in()
+//tell the dockin69 port to start 69ettin69 ready for dockin69 - e.69. pressurize
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/prepare_for_dockin69()
+	airlock_pro69ram.be69in_cycle_in()
 
-//are we ready for docking?
-/datum/computer/file/embedded_program/docking/airlock/ready_for_docking()
-	//Unsimulated turfs have no atmos simulation so don't bother trying to cycle anything
+//are we ready for dockin69?
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/ready_for_dockin69()
+	//Unsimulated turfs have no atmos simulation so don't bother tryin69 to cycle anythin69
 	//just short circuit this and be always ready
 	if (istype(master.loc, /turf/unsimulated))
 		return TRUE
 
-	return airlock_program.done_cycling()
+	return airlock_pro69ram.done_cyclin69()
 
 //we are docked, open the doors or whatever.
-/datum/computer/file/embedded_program/docking/airlock/finish_docking()
-	airlock_program.enable_mech_regulators()
-	airlock_program.open_doors()
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/finish_dockin69()
+	airlock_pro69ram.enable_mech_re69ulators()
+	airlock_pro69ram.open_doors()
 
-//tell the docking port to start getting ready for undocking - e.g. close those doors.
-/datum/computer/file/embedded_program/docking/airlock/prepare_for_undocking()
-	airlock_program.stop_cycling()
-	airlock_program.close_doors()
-	airlock_program.disable_mech_regulators()
+//tell the dockin69 port to start 69ettin69 ready for undockin69 - e.69. close those doors.
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/prepare_for_undockin69()
+	airlock_pro69ram.stop_cyclin69()
+	airlock_pro69ram.close_doors()
+	airlock_pro69ram.disable_mech_re69ulators()
 
-//are we ready for undocking?
-/datum/computer/file/embedded_program/docking/airlock/ready_for_undocking()
-	var/ext_closed = airlock_program.check_exterior_door_secured()
-	var/int_closed = airlock_program.check_interior_door_secured()
+//are we ready for undockin69?
+/datum/computer/file/embedded_pro69ram/dockin69/airlock/ready_for_undockin69()
+	var/ext_closed = airlock_pro69ram.check_exterior_door_secured()
+	var/int_closed = airlock_pro69ram.check_interior_door_secured()
 	return (ext_closed || int_closed)
 
-//An airlock controller to be used by the airlock-based docking port controller.
-//Same as a regular airlock controller but allows disabling of the regular airlock functions when docking
-/datum/computer/file/embedded_program/airlock/docking
-	var/datum/computer/file/embedded_program/docking/airlock/master_prog
+//An airlock controller to be used by the airlock-based dockin69 port controller.
+//Same as a re69ular airlock controller but allows disablin69 of the re69ular airlock functions when dockin69
+/datum/computer/file/embedded_pro69ram/airlock/dockin69
+	var/datum/computer/file/embedded_pro69ram/dockin69/airlock/master_pro69
 
-/datum/computer/file/embedded_program/airlock/docking/receive_user_command(command)
-	if (master_prog.undocked() || master_prog.override_enabled)	//only allow the port to be used as an airlock if nothing is docked here or the override is enabled
+/datum/computer/file/embedded_pro69ram/airlock/dockin69/receive_user_command(command)
+	if (master_pro69.undocked() ||69aster_pro69.override_enabled)	//only allow the port to be used as an airlock if nothin69 is docked here or the override is enabled
 		..(command)
 
-/datum/computer/file/embedded_program/airlock/docking/proc/enable_mech_regulators()
-	enable_mech_regulation()
+/datum/computer/file/embedded_pro69ram/airlock/dockin69/proc/enable_mech_re69ulators()
+	enable_mech_re69ulation()
 
-/datum/computer/file/embedded_program/airlock/docking/proc/disable_mech_regulators()
-	disable_mech_regulation()
+/datum/computer/file/embedded_pro69ram/airlock/dockin69/proc/disable_mech_re69ulators()
+	disable_mech_re69ulation()
 
-/datum/computer/file/embedded_program/airlock/docking/proc/open_doors()
-	toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "open")
-	toggleDoor(memory["exterior_status"], tag_exterior_door, memory["secure"], "open")
+/datum/computer/file/embedded_pro69ram/airlock/dockin69/proc/open_doors()
+	to6969leDoor(memory69"interior_status"69, ta69_interior_door,69emory69"secure"69, "open")
+	to6969leDoor(memory69"exterior_status"69, ta69_exterior_door,69emory69"secure"69, "open")
 
-/datum/computer/file/embedded_program/airlock/docking/cycleDoors(var/target)
-	if (master_prog.undocked() || master_prog.override_enabled)	//only allow the port to be used as an airlock if nothing is docked here or the override is enabled
-		..(target)
+/datum/computer/file/embedded_pro69ram/airlock/dockin69/cycleDoors(var/tar69et)
+	if (master_pro69.undocked() ||69aster_pro69.override_enabled)	//only allow the port to be used as an airlock if nothin69 is docked here or the override is enabled
+		..(tar69et)
 
-/*** DEBUG VERBS ***
+/*** DEBU6969ERBS ***
 
-/datum/computer/file/embedded_program/docking/proc/print_state()
-	to_chat(world, "id_tag: [id_tag]")
-	to_chat(world, "dock_state: [dock_state]")
-	to_chat(world, "control_mode: [control_mode]")
-	to_chat(world, "tag_target: [tag_target]")
-	to_chat(world, "response_sent: [response_sent]")
+/datum/computer/file/embedded_pro69ram/dockin69/proc/print_state()
+	to_chat(world, "id_ta69: 69id_ta6969")
+	to_chat(world, "dock_state: 69dock_state69")
+	to_chat(world, "control_mode: 69control_mode69")
+	to_chat(world, "ta69_tar69et: 69ta69_tar69et69")
+	to_chat(world, "response_sent: 69response_sent69")
 
-/datum/computer/file/embedded_program/docking/post_signal(datum/signal/signal, comm_line)
-	to_chat(world, "Program [id_tag] sent a message!")
+/datum/computer/file/embedded_pro69ram/dockin69/post_si69nal(datum/si69nal/si69nal, comm_line)
+	to_chat(world, "Pro69ram 69id_ta6969 sent a69essa69e!")
 	print_state()
-	to_chat(world, "[id_tag] sent command \"[signal.data["command"]]\" to \"[signal.data["recipient"]]\"")
-	..(signal)
+	to_chat(world, "69id_ta6969 sent command \"69si69nal.data69"command"6969\" to \"69si69nal.data69"recipient"6969\"")
+	..(si69nal)
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/view_state()
-	set category = "Debug"
-	set src in view(1)
-	src.program:print_state()
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/verb/view_state()
+	set cate69ory = "Debu69"
+	set src in69iew(1)
+	src.pro69ram:print_state()
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/spoof_signal(var/command as text, var/sender as text)
-	set category = "Debug"
-	set src in view(1)
-	var/datum/signal/signal = new
-	signal.data["tag"] = sender
-	signal.data["command"] = command
-	signal.data["recipient"] = id_tag
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/verb/spoof_si69nal(var/command as text,69ar/sender as text)
+	set cate69ory = "Debu69"
+	set src in69iew(1)
+	var/datum/si69nal/si69nal = new
+	si69nal.data69"ta69"69 = sender
+	si69nal.data69"command"69 = command
+	si69nal.data69"recipient"69 = id_ta69
 
-	src.program:receive_signal(signal)
+	src.pro69ram:receive_si69nal(si69nal)
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/debug_init_dock(var/target as text)
-	set category = "Debug"
-	set src in view(1)
-	src.program:initiate_docking(target)
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/verb/debu69_init_dock(var/tar69et as text)
+	set cate69ory = "Debu69"
+	set src in69iew(1)
+	src.pro69ram:initiate_dockin69(tar69et)
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port/verb/debug_init_undock()
-	set category = "Debug"
-	set src in view(1)
-	src.program:initiate_undocking()
+/obj/machinery/embedded_controller/radio/airlock/dockin69_port/verb/debu69_init_undock()
+	set cate69ory = "Debu69"
+	set src in69iew(1)
+	src.pro69ram:initiate_undockin69()
 
 */

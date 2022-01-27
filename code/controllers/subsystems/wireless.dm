@@ -2,7 +2,7 @@
 /*
 	Wireless controller
 
-	Used for connecting devices to each other (i.e. machinery, doors, emitters, etc.)
+	Used for connecting devices to each other (i.e.69achinery, doors, emitters, etc.)
 	Unlike the radio controller, the wireless controller does not pass communications between devices. Once the devices
 	have been connected they call each others procs directly, they do not use the wireless controller to communicate.
 
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(wireless)
 	pending_connections += C
 
 /datum/controller/subsystem/wireless/stat_entry()
-	..("RL:[receiver_list.len]|PC:[pending_connections.len]|RC:[retry_connections.len]|FC:[failed_connections.len]")
+	..("RL:69receiver_list.len69|PC:69pending_connections.len69|RC:69retry_connections.len69|FC:69failed_connections.len69")
 
 /datum/controller/subsystem/wireless/Recover()
 	if (istype(SSwireless.receiver_list))
@@ -54,7 +54,7 @@ SUBSYSTEM_DEF(wireless)
 
 /datum/controller/subsystem/wireless/proc/process_queue(list/process_connections, list/unsuccesful_connections)
 	while(process_connections.len)
-		var/datum/connection_request/C = process_connections[process_connections.len]
+		var/datum/connection_request/C = process_connections69process_connections.len69
 		process_connections.len--
 		var/target_found = FALSE
 		for(var/datum/wifi/receiver/R in receiver_list)

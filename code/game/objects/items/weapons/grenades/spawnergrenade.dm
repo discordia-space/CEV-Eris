@@ -1,24 +1,24 @@
 /obj/item/grenade/spawnergrenade
-	desc = "It is set to detonate in 5 seconds. It will unleash unleash an unspecified anomaly into the vicinity."
+	desc = "It is set to detonate in 5 seconds. It will unleash unleash an unspecified anomaly into the69icinity."
 	name = "delivery grenade"
 	icon = 'icons/obj/grenade.dmi'
 	icon_state = "delivery"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 3, TECH_MAGNET = 4)
 	var/banglet = 0
-	var/spawner_type = null // must be an object path
+	var/spawner_type = null //69ust be an object path
 	var/deliveryamt = 1 // amount of type to deliver
 
-/obj/item/grenade/spawnergrenade/prime()	// Prime now just handles the two loops that query for people in lockers and people who can see it.
+/obj/item/grenade/spawnergrenade/prime()	// Prime now just handles the two loops that 69uery for people in lockers and people who can see it.
 
 	if(spawner_type && deliveryamt)
-		// Make a quick flash
+		//69ake a 69uick flash
 		var/turf/T = get_turf(src)
 		playsound(T, 'sound/effects/phasein.ogg', 100, 1)
-		for(var/mob/living/carbon/human/M in viewers(T, null))
+		for(var/mob/living/carbon/human/M in69iewers(T, null))
 			if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 				if (M.HUDtech.Find("flash"))
-					flick("e_flash", M.HUDtech["flash"])
+					flick("e_flash",69.HUDtech69"flash"69)
 
 		for(var/i=1, i<=deliveryamt, i++)
 			var/atom/movable/x = new spawner_type
@@ -29,7 +29,7 @@
 
 			// Spawn some hostile syndicate critters
 
-	qdel(src)
+	69del(src)
 	return
 
 /obj/item/grenade/spawnergrenade/manhacks

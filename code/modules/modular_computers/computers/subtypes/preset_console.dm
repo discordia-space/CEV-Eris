@@ -3,11 +3,11 @@
 
 /obj/item/modular_computer/console/preset/install_default_hardware()
 	..()
-	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
-	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
-	hard_drive = new/obj/item/computer_hardware/hard_drive/advanced(src)
-	network_card = new/obj/item/computer_hardware/network_card/wired(src)
-	scanner = new /obj/item/computer_hardware/scanner/paper(src)
+	processor_unit =69ew/obj/item/computer_hardware/processor_unit(src)
+	tesla_link =69ew/obj/item/computer_hardware/tesla_link(src)
+	hard_drive =69ew/obj/item/computer_hardware/hard_drive/advanced(src)
+	network_card =69ew/obj/item/computer_hardware/network_card/wired(src)
+	scanner =69ew /obj/item/computer_hardware/scanner/paper(src)
 
 // Engineering
 /obj/item/modular_computer/console/preset/engineering/install_default_programs()
@@ -20,12 +20,12 @@
 	hard_drive.store_file(new/datum/computer_file/program/rcon_console())
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor())
 
-// Engineering alarm monitor
+// Engineering alarm69onitor
 /obj/item/modular_computer/console/preset/engineering/alarms/install_default_programs()
 	..()
 	set_autorun("alarmmonitor")
 
-// Engineering supermatter monitor
+// Engineering supermatter69onitor
 /obj/item/modular_computer/console/preset/engineering/supermatter/install_default_programs()
 	..()
 	hard_drive.store_file(new/datum/computer_file/program/supermatter_monitor())
@@ -42,7 +42,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/shield_control())
 	set_autorun("shieldcontrol")
 
-// Engineering power monitor
+// Engineering power69onitor
 /obj/item/modular_computer/console/preset/engineering/power/install_default_programs()
 	..()
 	set_autorun("powermonitor")
@@ -52,10 +52,10 @@
 	..()
 	set_autorun("atmoscontrol")
 
-// Medical
+//69edical
 /obj/item/modular_computer/console/preset/medical/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/medical/install_default_programs()
 	..()
@@ -65,12 +65,12 @@
 	hard_drive.store_file(new/datum/computer_file/program/records())
 	hard_drive.store_file(new/datum/computer_file/program/suit_sensors())
 
-// Medical records
+//69edical records
 /obj/item/modular_computer/console/preset/medical/records/install_default_programs()
 	..()
 	set_autorun("crewrecords")
 
-// Medical crew monitor
+//69edical crew69onitor
 /obj/item/modular_computer/console/preset/medical/monitor/install_default_programs()
 	..()
 	set_autorun("sensormonitor")
@@ -78,7 +78,7 @@
 // Research
 /obj/item/modular_computer/console/preset/research/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/research/install_default_programs()
 	..()
@@ -93,7 +93,7 @@
 /*
 /obj/item/modular_computer/console/preset/research/silicon/install_default_hardware()
 	..()
-	ai_slot = new/obj/item/computer_hardware/ai_slot(src)
+	ai_slot =69ew/obj/item/computer_hardware/ai_slot(src)
 
 /obj/item/modular_computer/console/preset/research/silicon/install_default_programs()
 	..()
@@ -109,8 +109,8 @@
 // Command
 /obj/item/modular_computer/console/preset/command/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
-	card_slot = new/obj/item/computer_hardware/card_slot(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
+	card_slot =69ew/obj/item/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/console/preset/command/install_default_programs()
 	..()
@@ -132,7 +132,7 @@
 // Security
 /obj/item/modular_computer/console/preset/security/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/security/install_default_programs()
 	..()
@@ -170,7 +170,7 @@
 // Civilian Offices
 /obj/item/modular_computer/console/preset/civilian/professional/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/civilian/professional/install_default_programs()
 	..()
@@ -186,7 +186,7 @@
 // Trade Console
 /obj/item/modular_computer/console/preset/trade/install_default_hardware()
 	..()
-	card_slot = new/obj/item/computer_hardware/card_slot(src)
+	card_slot =69ew/obj/item/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/console/preset/trade/install_default_programs()
 	..()
@@ -197,7 +197,7 @@
 /*
 /obj/item/modular_computer/console/preset/dock/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/dock/install_default_programs()
 	..()
@@ -210,7 +210,7 @@
 // Crew-facing supply ordering computer
 /obj/item/modular_computer/console/preset/supply/install_default_hardware()
 	..()
-	printer = new/obj/item/computer_hardware/printer(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
 
 /obj/item/modular_computer/console/preset/supply/install_default_programs()
 	..()
@@ -220,9 +220,9 @@
 // ERT
 /obj/item/modular_computer/console/preset/ert/install_default_hardware()
 	..()
-	ai_slot = new/obj/item/computer_hardware/ai_slot(src)
-	printer = new/obj/item/computer_hardware/printer(src)
-	card_slot = new/obj/item/computer_hardware/card_slot(src)
+	ai_slot =69ew/obj/item/computer_hardware/ai_slot(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
+	card_slot =69ew/obj/item/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/console/preset/ert/install_default_programs()
 	..()
@@ -234,15 +234,15 @@
 	hard_drive.store_file(new/datum/computer_file/program/records())
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
 
-// Mercenary
+//69ercenary
 /obj/item/modular_computer/console/preset/mercenary/
 	computer_emagged = TRUE
 
 /obj/item/modular_computer/console/preset/mercenary/install_default_hardware()
 	..()
-	ai_slot = new/obj/item/computer_hardware/ai_slot(src)
-	printer = new/obj/item/computer_hardware/printer(src)
-	card_slot = new/obj/item/computer_hardware/card_slot(src)
+	ai_slot =69ew/obj/item/computer_hardware/ai_slot(src)
+	printer =69ew/obj/item/computer_hardware/printer(src)
+	card_slot =69ew/obj/item/computer_hardware/card_slot(src)
 
 /obj/item/modular_computer/console/preset/mercenary/install_default_programs()
 	..()
@@ -250,7 +250,7 @@
 	hard_drive.store_file(new/datum/computer_file/program/alarm_monitor())
 	//hard_drive.store_file(new/datum/computer_file/program/aidiag())
 
-// Merchant
+//69erchant
 /obj/item/modular_computer/console/preset/merchant/install_default_programs()
 	..()
 	//hard_drive.store_file(new/datum/computer_file/program/merchant())

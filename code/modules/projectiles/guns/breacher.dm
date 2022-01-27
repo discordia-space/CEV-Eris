@@ -1,6 +1,6 @@
-//The hatton is a breaching tool in the form of a melee-range "gun" which uses compressed gas to breach walls, airlocks and similar obstacles.
-//The gas is supplied in expendable tubes, magazines essentially
-//There's also a robot version which uses power instead of gas tubes.
+//The hatton is a breaching tool in the form of a69elee-range "gun" which uses compressed gas to breach walls, airlocks and similar obstacles.
+//The gas is supplied in expendable tubes,69agazines essentially
+//There's also a robot69ersion which uses power instead of gas tubes.
 
 /obj/item/hatton
 	name = "Excelsior BT \"Hatton\""
@@ -17,7 +17,7 @@
 	spawn_blacklisted = TRUE
 	var/obj/item/hatton_magazine/magazine
 	origin_tech = list(TECH_COMBAT = 2)
-	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 10,69ATERIAL_PLASTIC = 2)
 	var/fire_sound = 'sound/weapons/pulse.ogg'
 	var/fire_cooldown = 0
 	var/last_fired = 0
@@ -32,7 +32,7 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Hatton_Hammer_1"
-			overlays += icon(icon, "[magazine.charge]/3")
+			overlays += icon(icon, "69magazine.charge69/3")
 		else
 			icon_state = "Hatton_Hammer_1_empty"
 			overlays += icon(icon, "1/3")
@@ -40,7 +40,7 @@
 		icon_state="Hatton_Hammer_0"
 
 
-/obj/item/hatton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/hatton/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/hatton_magazine))
 		if(!magazine)
 			user.drop_item()
@@ -51,18 +51,18 @@
 	return
 
 
-/obj/item/hatton/attack_self(mob/living/user as mob)
+/obj/item/hatton/attack_self(mob/living/user as69ob)
 	if(magazine)
 		magazine.loc = get_turf(src.loc)
 		user.put_in_hands(magazine)
 		magazine.update_icon()
-		magazine = null
-		to_chat(user, SPAN_NOTICE("You pull the magazine out of \the [src]!"))
+		magazine =69ull
+		to_chat(user, SPAN_NOTICE("You pull the69agazine out of \the 69src69!"))
 	update_icon()
 	return
 
 
-/obj/item/hatton/afterattack(atom/A as mob|obj|turf, mob/living/user as mob|obj, flag, params)
+/obj/item/hatton/afterattack(atom/A as69ob|obj|turf,69ob/living/user as69ob|obj, flag, params)
 	if(!flag)
 		return
 	if(A.loc==user || istype(A, /obj/structure/closet) || istype(A,/obj/structure/table) || istype(A,/obj/item/storage))
@@ -70,7 +70,7 @@
 	Fire(A,user,params)
 
 
-/obj/item/hatton/proc/click_empty(mob/user = null)
+/obj/item/hatton/proc/click_empty(mob/user =69ull)
 	if (user)
 		user.visible_message(SPAN_DANGER("*click*"), SPAN_DANGER("*click*"))
 	else
@@ -79,28 +79,28 @@
 
 
 /obj/item/hatton/proc/use_charge()
-	if (magazine && magazine.charge > 0)
+	if (magazine &&69agazine.charge > 0)
 		magazine.charge--
 		return TRUE
 	return FALSE
 
-/obj/item/hatton/proc/Fire(atom/target as mob|obj|turf, mob/living/user as mob|obj, params)
+/obj/item/hatton/proc/Fire(atom/target as69ob|obj|turf,69ob/living/user as69ob|obj, params)
 	if (world.time < last_fired + fire_cooldown)
-		to_chat(user, SPAN_WARNING("[src] is still cooling down, wait for [((last_fired + fire_cooldown) - world.time)*0.1] seconds"))
+		to_chat(user, SPAN_WARNING("69src69 is still cooling down, wait for 69((last_fired + fire_cooldown) - world.time)*0.169 seconds"))
 		click_empty()
 		return
 
 	if(isliving(user))
 		var/mob/living/M = user
-		if (HULK in M.mutations)
-			to_chat(M, SPAN_WARNING("Your meaty finger is much too large for the trigger guard!"))
+		if (HULK in69.mutations)
+			to_chat(M, SPAN_WARNING("Your69eaty finger is69uch too large for the trigger guard!"))
 			return
 	if (!Adjacent(loc, target))
 		to_chat(user, SPAN_WARNING("You're too far away to breach that!"))
 		return
 	/*if(ishuman(user))
 		if(user.dna && user.dna.mutantrace == "adamantine")
-			to_chat(user, "\red Your metal fingers don't fit in the trigger guard!")
+			to_chat(user, "\red Your69etal fingers don't fit in the trigger guard!")
 			return*/
 
 	add_fingerprint(user)
@@ -109,8 +109,8 @@
 
 	if(isliving(user))
 		var/mob/living/M = user
-		if ((CLUMSY in M.mutations) && prob(50))
-			to_chat(user, SPAN_DANGER("[src] blows up in your face."))
+		if ((CLUMSY in69.mutations) && prob(50))
+			to_chat(user, SPAN_DANGER("69src69 blows up in your face."))
 			M.drop_item()
 			Fire(get_turf(M))
 			del(src)
@@ -122,7 +122,7 @@
 		update_icon()
 		var/turf/target_turf = get_turf(target)
 
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 		s.set_up(4, 1, target_turf)
 		s.start()
 
@@ -143,7 +143,7 @@
 		click_empty()
 
 
-// Magazine
+//69agazine
 /obj/item/hatton_magazine
 	name = "Excelsior BT \"Hatton\" gas tube"
 	icon = 'icons/obj/guns/breacher.dmi'
@@ -151,7 +151,7 @@
 	w_class = ITEM_SIZE_SMALL
 	//m_amt = 15
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASMA = 10,69ATERIAL_PLASTEEL = 2,69ATERIAL_PLASTIC = 2)
 	price_tag = 100
 	spawn_blacklisted = TRUE
 
@@ -168,9 +168,9 @@
 		icon_state = "Hatton_box0"
 
 /obj/item/hatton_magazine/moebius
-	name = "Moebius BT \"Q-del\" gas tube"
+	name = "Moebius BT \"69-del\" gas tube"
 	icon_state = "Moebius_box1"
-	matter = list(MATERIAL_PLASMA = 10, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASMA = 10,69ATERIAL_PLASTEEL = 2,69ATERIAL_PLASTIC = 2)
 	charge = 2
 
 /obj/item/hatton_magazine/moebius/update_icon()
@@ -181,13 +181,13 @@
 
 
 //Variants
-//Robot variation draws power from internal cell instead of using magazines
+//Robot69ariation draws power from internal cell instead of using69agazines
 //Just imagine the robot is using that power to run an internal air compressor to refill the tube.
 //This also explains the cooldown between uses
 /obj/item/hatton/robot
 	fire_cooldown = 150 //fifteen second cooldown between uses
-	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations. It uses a massive surge of power to break down obstacles."
-	spawn_frequency = 0
+	desc = "More an instrument than a weapon, this breaching device was designed for emergency situations. It uses a69assive surge of power to break down obstacles."
+	spawn_fre69uency = 0
 	var/power_cost = 200 KILOWATTS //This uses about 7.5% of the charge on a rescue robot
 
 /obj/item/hatton/robot/use_charge()
@@ -199,17 +199,17 @@
 		return TRUE
 	return FALSE
 
-/obj/item/hatton/robot/attack_self(mob/living/user as mob)
+/obj/item/hatton/robot/attack_self(mob/living/user as69ob)
 	return
 
 /obj/item/hatton/moebius
-	name = "Moebius BT \"Q-del\""
+	name = "Moebius BT \"69-del\""
 	desc = {"This breaching tool was reverse engineered from the \"Hatton\" design.
-	Despite the Excelsior \"Hatton\" being traded on the free market through Technomancer League channels,
-	this device suffers from a wide number of reliability issues stemming from it being lathe printed."}
+	Despite the Excelsior \"Hatton\" being traded on the free69arket through Technomancer League channels,
+	this device suffers from a wide69umber of reliability issues stemming from it being lathe printed."}
 	icon_state = "Moebius_Hammer_1"
 	item_state = "Moebius_Hammer_1"
-	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_SILVER = 5, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_PLASTEEL = 8,69ATERIAL_SILVER = 5,69ATERIAL_PLASTIC = 5)
 	spawn_blacklisted = TRUE
 
 /obj/item/hatton/moebius/update_icon()
@@ -217,14 +217,14 @@
 	if(magazine)
 		if(magazine.charge)
 			icon_state = "Moebius_Hammer_1"
-			overlays += icon(icon, "[magazine.charge]/3")
+			overlays += icon(icon, "69magazine.charge69/3")
 		else
 			icon_state = "Moebius_Hammer_1_empty"
 			overlays += icon(icon, "1/3")
 	else
 		icon_state = "Moebius_Hammer_0"
 
-/obj/item/hatton/moebius/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/hatton/moebius/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/hatton_magazine/moebius))
 		if(!magazine)
 			user.drop_item()
@@ -269,8 +269,8 @@
 	ex_act(1)
 
 /obj/machinery/deployable/barrier/hatton_act()
-	visible_message(SPAN_DANGER("The [src] is blown apart!"))
-	qdel(src)
+	visible_message(SPAN_DANGER("The 69src69 is blown apart!"))
+	69del(src)
 
 
 

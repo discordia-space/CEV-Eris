@@ -1,12 +1,12 @@
 /obj/landmark
 	name = "landmark"
 	icon = 'icons/misc/landmarks.dmi'
-	alpha = 64 //Or else they cover half of the map
+	alpha = 64 //Or else they cover half of the69ap
 	anchored = TRUE
 	unacidable = TRUE
 	simulated = FALSE
 	invisibility = 101
-	layer = MID_LANDMARK_LAYER
+	layer =69ID_LANDMARK_LAYER
 	var/delete_me = FALSE
 
 /obj/landmark/New()
@@ -19,7 +19,7 @@
 /obj/landmark/Initialize(mapload)
 	. = ..()
 	if(delete_me)
-		return INITIALIZE_HINT_QDEL
+		return INITIALIZE_HINT_69DEL
 
 /obj/landmark/Destroy()
 	GLOB.landmarks_list -= src

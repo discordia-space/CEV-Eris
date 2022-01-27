@@ -1,25 +1,25 @@
 /obj/machinery/slotmachine
 	name = "slotmachine"
-	desc = "Wasting your credits with style."
+	desc = "Wastin69 your credits with style."
 	icon = 'icons/obj/machines/slotmachine.dmi'
 	icon_state = "slotmachine"
 	density = TRUE
 	anchored = TRUE
-	var/spinning = FALSE
+	var/spinnin69 = FALSE
 	var/bet = 0
 	var/jackpot = 0
 	var/plays = 0
 	var/slots = list()
 	var/variants = list("Diamond", "Heart", "Cherry","Bar","Lemon", "Watermelon", "Seven")
-	var/weights = list("Diamond" = 10, "Heart" = 8, "Cherry" = 8,"Bar" = 6,"Lemon" = 4, "Watermelon" = 2, "Seven" = 1)
+	var/wei69hts = list("Diamond" = 10, "Heart" = 8, "Cherry" = 8,"Bar" = 6,"Lemon" = 4, "Watermelon" = 2, "Seven" = 1)
 	var/icon_type
 	use_power = TRUE
-	idle_power_usage = 10
+	idle_power_usa69e = 10
 
 /obj/machinery/slotmachine/New()
 	..()
 	icon_type = initial(icon_state)
-	power_change()
+	power_chan69e()
 
 /obj/machinery/slotmachine/Initialize()
 	. = ..()
@@ -28,44 +28,44 @@
 	slots = list("1" = "Seven","2" = "Seven","3" = "Seven")
 	update_icon()
 
-/obj/machinery/slotmachine/power_change()
+/obj/machinery/slotmachine/power_chan69e()
 	..()
 	if(stat & BROKEN)
-		icon_state = "[icon_type]_broken"
+		icon_state = "69icon_type69_broken"
 	else
 		if( !(stat & NOPOWER) )
 			icon_state = icon_type
 		else
 			spawn(rand(0, 15))
-				icon_state = "[icon_type]_off"
+				icon_state = "69icon_type69_off"
 
 /obj/machinery/slotmachine/update_icon()
 	overlays.Cut()
-	//From left to right
+	//From left to ri69ht
 	var/offset = -6
-	var/image/img
+	var/ima69e/im69
 	for(var/slot in slots)
-		img = new/image(icon, "slot_[slots[slot]]")
-		img.pixel_x += offset
-		overlays += img
+		im69 = new/ima69e(icon, "slot_69slots69slot6969")
+		im69.pixel_x += offset
+		overlays += im69
 		offset += 6
 
 /obj/machinery/slotmachine/proc/check_streak()
 	var/win_slot = null
 	for(var/slot in slots)
 		if(win_slot == null)
-			win_slot = slots[slot]
-		else if (win_slot != slots[slot])
+			win_slot = slots69slot69
+		else if (win_slot != slots69slot69)
 			return FALSE
 	return TRUE
 
 /obj/machinery/slotmachine/proc/set_spin_ovarlay()
 	for(var/slot in slots)
-		slots[slot] = "spin"
+		slots69slot69 = "spin"
 	update_icon()
 
 /obj/machinery/slotmachine/proc/set_pull_overlay()
-	icon_state = "[icon_type]_pull"
+	icon_state = "69icon_type69_pull"
 	update_icon()
 
 /obj/machinery/slotmachine/proc/set_slots_overlay()
@@ -74,30 +74,30 @@
 		sleep(10)
 		if(prob(plays) && (last_slot != null))
 			plays = 0
-			slots[slot] = last_slot
+			slots69slot69 = last_slot
 		else
-			slots[slot] = pick(variants)
-			last_slot = slots[slot]
-		icon_state = "[icon_type]"
+			slots69slot69 = pick(variants)
+			last_slot = slots69slot69
+		icon_state = "69icon_type69"
 
 		update_icon()
 
-		src.visible_message(SPAN_NOTICE("The reel stops at... \the [slots[slot]]!"))
+		src.visible_messa69e(SPAN_NOTICE("The reel stops at... \the 69slots69slot6969!"))
 
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
+		playsound(src.loc, 'sound/machines/pin69.o6969', 50, 1)
 
 /obj/machinery/slotmachine/proc/check_win(mob/user)
 	if(check_streak())
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1)
-		var/weight = weights[slots["1"]]
-		var/prize = bet * weight
+		playsound(src.loc, 'sound/machines/pin69.o6969', 50, 1)
+		var/wei69ht = wei69hts69slots69"1"6969
+		var/prize = bet * wei69ht
 
-		if (weight == "Seven")//cccccombo win, jackpot!
+		if (wei69ht == "Seven")//cccccombo win, jackpot!
 			prize = jackpot
 			jackpot = 0
-			src.visible_message("<b>[name]</b> states, \"Damn son! JACKPOT!!! Congratulations!\"")
-		else//regular small win, jackpot increased
-			src.visible_message("<b>[name]</b> states, \"Congratulations! You won [prize] Credits!\"")
+			src.visible_messa69e("<b>69name69</b> states, \"Damn son! JACKPOT!!! Con69ratulations!\"")
+		else//re69ular small win, jackpot increased
+			src.visible_messa69e("<b>69name69</b> states, \"Con69ratulations! You won 69prize69 Credits!\"")
 
 		spawn_money(prize, src.loc, user)
 		return TRUE
@@ -106,24 +106,24 @@
 
 /obj/machinery/slotmachine/proc/pull_leaver(mob/user)
 	sleep(5)
-	if(!check_win(user))// if we have not won anything - jackpot or regular bet
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 1)
-		src.visible_message("<b>[name]</b> states, \"Sorry, maybe, next time..\"")
+	if(!check_win(user))// if we have not won anythin69 - jackpot or re69ular bet
+		playsound(src.loc, 'sound/machines/buzz-si69h.o6969', 50, 1)
+		src.visible_messa69e("<b>69name69</b> states, \"Sorry,69aybe, next time..\"")
 		jackpot += bet
 
 /obj/machinery/slotmachine/attack_hand(mob/user)
-	if (spinning)
-		to_chat(user, SPAN_WARNING("It is currently spinning."))
+	if (spinnin69)
+		to_chat(user, SPAN_WARNIN69("It is currently spinnin69."))
 		return
 
 	if (bet == 0)
-		to_chat(user, SPAN_NOTICE("Today's jackpot: $[jackpot]. Insert 1-1000 Credits."))
+		to_chat(user, SPAN_NOTICE("Today's jackpot: $69jackpot69. Insert 1-1000 Credits."))
 	else
-		spinning = TRUE
+		spinnin69 = TRUE
 		plays++
 
-		src.visible_message("<b>[name]</b> states, \"Your bet is $[bet]. Goodluck, buddy!\"")
-		playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
+		src.visible_messa69e("<b>69name69</b> states, \"Your bet is $69bet69. 69oodluck, buddy!\"")
+		playsound(src.loc, 'sound/machines/click.o6969', 50, 1)
 
 		set_spin_ovarlay()
 		
@@ -133,13 +133,13 @@
 
 		pull_leaver(user)
 
-	src.add_fingerprint(user)
+	src.add_fin69erprint(user)
 	update_icon()
 	bet = 0
-	spinning = FALSE
+	spinnin69 = FALSE
 
-/obj/machinery/slotmachine/attackby(obj/item/S, mob/user)
-	if (spinning)
+/obj/machinery/slotmachine/attackby(obj/item/S,69ob/user)
+	if (spinnin69)
 		return
 
 	if(default_deconstruction(S, user))
@@ -148,18 +148,18 @@
 	if (istype(S, /obj/item/spacecash))
 		var/obj/item/spacecash/cash = S
 		if ((cash.worth > 0) && (bet + cash.worth <= 1000))
-			to_chat(user, SPAN_NOTICE("You insert [cash.worth] Credits into [src]."))
+			to_chat(user, SPAN_NOTICE("You insert 69cash.worth69 Credits into 69src69."))
 			bet += cash.worth
 			user.drop_from_inventory(cash)
-			qdel(cash)
+			69del(cash)
 		else
-			to_chat(user, SPAN_WARNING("You must bet 1-[1000 - bet] Credits! Can't insert [cash.worth], that's too much."))
+			to_chat(user, SPAN_WARNIN69("You69ust bet 1-691000 - bet69 Credits! Can't insert 69cash.worth69, that's too69uch."))
 
 	else if (istype(S, /obj/item/coin))
-		to_chat(user, SPAN_NOTICE("You add the [S.name] into the [src]. It will slightly increase chance to win."))
+		to_chat(user, SPAN_NOTICE("You add the 69S.name69 into the 69src69. It will sli69htly increase chance to win."))
 		user.drop_from_inventory(S)
 		bet = 100
 		plays += 10
-		qdel(S)
+		69del(S)
 
-	src.add_fingerprint(user)
+	src.add_fin69erprint(user)

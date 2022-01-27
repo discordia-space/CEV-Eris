@@ -1,4 +1,4 @@
-/obj/machinery/door/blast/shutters/glass
+/obj/machinery/door/blast/shutters/69lass
 	name = "showcase"
 	icon = 'icons/obj/doors/showcase.dmi'
 	icon_state = "closed"
@@ -7,41 +7,41 @@
 	resistance = RESISTANCE_NONE
 	opacity = 0
 	layer = 4.2
-	var/have_glass = TRUE
-	hitsound = 'sound/effects/Glasshit.ogg'
+	var/have_69lass = TRUE
+	hitsound = 'sound/effects/69lasshit.o6969'
 
-/obj/machinery/door/blast/shutters/glass/is_block_dir(target_dir, border_only, atom/target)
-	if((stat&BROKEN) || !have_glass)
+/obj/machinery/door/blast/shutters/69lass/is_block_dir(tar69et_dir, border_only, atom/tar69et)
+	if((stat&BROKEN) || !have_69lass)
 		return FALSE
 	else
-		return ..(target_dir, FALSE, target)
+		return ..(tar69et_dir, FALSE, tar69et)
 
-/obj/machinery/door/blast/shutters/glass/attackby(obj/item/I, mob/user, params)
+/obj/machinery/door/blast/shutters/69lass/attackby(obj/item/I,69ob/user, params)
 	if(density)
-		if(QUALITY_WELDING in I.tool_qualities)
-			if((stat&BROKEN) && have_glass)
-				if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					have_glass = FALSE
+		if(69UALITY_WELDIN69 in I.tool_69ualities)
+			if((stat&BROKEN) && have_69lass)
+				if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WELDIN69, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+					have_69lass = FALSE
 					update_icon()
 					return
 			else
 				if(user.a_intent == I_HELP)
-					if(health < maxhealth)
-						if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-							health = maxhealth
+					if(health <69axhealth)
+						if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WELDIN69, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+							health =69axhealth
 							update_icon()
 					return
-		else if(istype(I,/obj/item/stack/material/glass/reinforced))
-			if(!have_glass)
-				var/obj/item/stack/material/glass/reinforced/G = I
-				if(G.get_amount() >= 2)
-					playsound(loc, 'sound/items/Deconstruct.ogg', 50, 1)
-					to_chat(user, SPAN_NOTICE("You start to put the glass into [src]..."))
+		else if(istype(I,/obj/item/stack/material/69lass/reinforced))
+			if(!have_69lass)
+				var/obj/item/stack/material/69lass/reinforced/69 = I
+				if(69.69et_amount() >= 2)
+					playsound(loc, 'sound/items/Deconstruct.o6969', 50, 1)
+					to_chat(user, SPAN_NOTICE("You start to put the 69lass into 69src69..."))
 					if(do_after(user, 10, src))
-						if (density && G.use(2))
-							health = maxhealth
+						if (density && 69.use(2))
+							health =69axhealth
 							stat &= ~BROKEN
-							have_glass = TRUE
+							have_69lass = TRUE
 							update_icon()
 							return
 
@@ -50,85 +50,85 @@
 			return
 
 	else
-		to_chat(user, SPAN_WARNING("It must be closed!"))
+		to_chat(user, SPAN_WARNIN69("It69ust be closed!"))
 
-/obj/machinery/door/blast/shutters/glass/attack_hand(mob/user)
+/obj/machinery/door/blast/shutters/69lass/attack_hand(mob/user)
 	return
 
 
 
-/obj/machinery/door/blast/shutters/glass/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.get_structure_damage())
-		take_damage(Proj.get_structure_damage())
+/obj/machinery/door/blast/shutters/69lass/bullet_act(var/obj/item/projectile/Proj)
+	if(Proj.69et_structure_dama69e())
+		take_dama69e(Proj.69et_structure_dama69e())
 	..()
 
 
-/obj/machinery/door/blast/shutters/glass/set_broken()
+/obj/machinery/door/blast/shutters/69lass/set_broken()
 	stat |= BROKEN
-	qdel(src)
+	69del(src)
 
-/obj/machinery/door/blast/shutters/glass/Destroy()
-	playsound(loc, 'sound/effects/Glassbr3.ogg', 75, 1)
+/obj/machinery/door/blast/shutters/69lass/Destroy()
+	playsound(loc, 'sound/effects/69lassbr3.o6969', 75, 1)
 	new /obj/item/material/shard(src.loc)
 	return ..()
 
-/obj/machinery/door/blast/shutters/glass/update_icon()
+/obj/machinery/door/blast/shutters/69lass/update_icon()
 	overlays.Cut()
 	if(density)
 		icon_state = "closed"
-		if(!have_glass)
+		if(!have_69lass)
 			icon_state += "_empty"
 		else if(stat&BROKEN)
 			icon_state += "-broken"
-		else if(health < maxhealth)
-			var/ratio = health / maxhealth
-			ratio = CEILING(ratio * 4, 1) * 25
-			overlays += "damage[ratio]"
+		else if(health <69axhealth)
+			var/ratio = health /69axhealth
+			ratio = CEILIN69(ratio * 4, 1) * 25
+			overlays += "dama69e69ratio69"
 	else
 		icon_state = "open"
 
-/obj/machinery/door/blast/shutters/glass/open()
-	if(operating)
+/obj/machinery/door/blast/shutters/69lass/open()
+	if(operatin69)
 		return
-	operating = TRUE
+	operatin69 = TRUE
 
-	if(!have_glass)
-		flick("opening-empty", src)
+	if(!have_69lass)
+		flick("openin69-empty", src)
 
 	else if(stat&BROKEN)
-		flick("opening-broken", src)
+		flick("openin69-broken", src)
 
 	else
-		var/ratio = health / maxhealth
-		ratio = CEILING(ratio * 4, 1) * 25
+		var/ratio = health /69axhealth
+		ratio = CEILIN69(ratio * 4, 1) * 25
 		overlays.Cut()
-		flick("opening[ratio]", src)
+		flick("openin6969ratio69", src)
 
 	density = FALSE
-	operating = FALSE
+	operatin69 = FALSE
 	update_icon()
 
 
-/obj/machinery/door/blast/shutters/glass/close()
-	if(operating)
+/obj/machinery/door/blast/shutters/69lass/close()
+	if(operatin69)
 		return
 
-	operating = TRUE
+	operatin69 = TRUE
 	overlays.Cut()
-	if(!have_glass)
-		flick("closing-empty", src)
+	if(!have_69lass)
+		flick("closin69-empty", src)
 		icon_state = "closed-empty"
 
 	else if(stat&BROKEN)
-		flick("closing-broken", src)
+		flick("closin69-broken", src)
 		icon_state = "closed-broken"
 
 	else
-		var/ratio = health / maxhealth
-		ratio = CEILING(ratio * 4, 1) * 25
-		flick("closing[ratio]", src)
+		var/ratio = health /69axhealth
+		ratio = CEILIN69(ratio * 4, 1) * 25
+		flick("closin6969ratio69", src)
 
 	density = TRUE
 	update_icon()
 	crush()
-	operating = FALSE
+	operatin69 = FALSE

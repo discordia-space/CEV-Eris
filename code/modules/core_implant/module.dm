@@ -33,7 +33,7 @@
 
 /datum/core_module/activatable/New(var/datum/core_module/M)
 	if(istype(M))
-		module = M
+		module =69
 
 /datum/core_module/activatable/proc/activate()
 	if(implant && istype(module) && !(module in implant.modules))

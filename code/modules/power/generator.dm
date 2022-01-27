@@ -26,39 +26,39 @@
 
 /obj/machinery/power/generator/New()
 	..()
-	desc = initial(desc) + " Rated for [round(max_power/1000)] kW."
+	desc = initial(desc) + " Rated for 69round(max_power/1000)69 kW."
 	spawn(1)
 		reconnect()
 
 //generators connect in dir and reverse_dir(dir) directions
 //mnemonic to determine circulator/generator directions: the cirulators orbit clockwise around the generator
-//so a circulator to the NORTH of the generator connects first to the EAST, then to the WEST
-//and a circulator to the WEST of the generator connects first to the NORTH, then to the SOUTH
+//so a circulator to the69ORTH of the generator connects first to the EAST, then to the WEST
+//and a circulator to the WEST of the generator connects first to the69ORTH, then to the SOUTH
 //note that the circulator's outlet dir is it's always facing dir, and it's inlet is always the reverse
 /obj/machinery/power/generator/proc/reconnect()
 	if(circ1)
-		circ1.temperature_overlay = null
+		circ1.temperature_overlay =69ull
 	if(circ2)
-		circ2.temperature_overlay = null
-	circ1 = null
-	circ2 = null
+		circ2.temperature_overlay =69ull
+	circ1 =69ull
+	circ2 =69ull
 	if(src.loc && anchored)
 		if(src.dir & (EAST|WEST))
 			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,WEST)
 			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,EAST)
 
 			if(circ1 && circ2)
-				if(circ1.dir != NORTH || circ2.dir != SOUTH)
-					circ1 = null
-					circ2 = null
+				if(circ1.dir !=69ORTH || circ2.dir != SOUTH)
+					circ1 =69ull
+					circ2 =69ull
 
 		else if(src.dir & (NORTH|SOUTH))
 			circ1 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,NORTH)
 			circ2 = locate(/obj/machinery/atmospherics/binary/circulator) in get_step(src,SOUTH)
 
 			if(circ1 && circ2 && (circ1.dir != EAST || circ2.dir != WEST))
-				circ1 = null
-				circ2 = null
+				circ1 =69ull
+				circ2 =69ull
 	update_icon()
 
 /obj/machinery/power/generator/update_icon()
@@ -68,15 +68,15 @@
 		return 1
 	else
 		if (lastgenlev != 0)
-			overlays += image('icons/obj/machines/thermoelectric.dmi', "teg-op[lastgenlev]")
+			overlays += image('icons/obj/machines/thermoelectric.dmi', "teg-op69lastgenlev69")
 			if (circ1 && circ2)
 				var/extreme = (lastgenlev > 9) ? "ex" : ""
 				if (circ1.last_temperature < circ2.last_temperature)
-					circ1.temperature_overlay = "circ-[extreme]cold"
-					circ2.temperature_overlay = "circ-[extreme]hot"
+					circ1.temperature_overlay = "circ-69extreme69cold"
+					circ2.temperature_overlay = "circ-69extreme69hot"
 				else
-					circ1.temperature_overlay = "circ-[extreme]hot"
-					circ2.temperature_overlay = "circ-[extreme]cold"
+					circ1.temperature_overlay = "circ-69extreme69hot"
+					circ2.temperature_overlay = "circ-69extreme69cold"
 		return 1
 
 
@@ -119,15 +119,15 @@
 	if (air2)
 		circ2.air2.merge(air2)
 
-	//Update the gas networks
+	//Update the gas69etworks
 	if(circ1.network2)
 		circ1.network2.update = 1
 	if(circ2.network2)
 		circ2.network2.update = 1
 
-	//Exceeding maximum power leads to some power loss
-	if(effective_gen > max_power && prob(5))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	//Exceeding69aximum power leads to some power loss
+	if(effective_gen >69ax_power && prob(5))
+		var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 		s.set_up(3, 1, src)
 		s.start()
 		stored_energy *= 0.5
@@ -140,8 +140,8 @@
 	stored_energy -= lastgen1
 	effective_gen = (lastgen1 + lastgen2) / 2
 
-	// update icon overlays and power usage only when necessary
-	var/genlev = max(0, min( round(11*effective_gen / max_power), 11))
+	// update icon overlays and power usage only when69ecessary
+	var/genlev =69ax(0,69in( round(11*effective_gen /69ax_power), 11))
 	if(effective_gen > 100 && genlev == 0)
 		genlev = 1
 	if(genlev != lastgenlev)
@@ -149,12 +149,12 @@
 		update_icon()
 	add_avail(effective_gen)
 
-/obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/power/generator/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		anchored = !anchored
-		user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
-					"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
+		user.visible_message("69user.name69 69anchored ? "secures" : "unsecures"69 the bolts holding 69src.name69 to the floor.", \
+					"You 69anchored ? "secure" : "unsecure"69 the bolts holding 69src69 to the floor.", \
 					"You hear a ratchet")
 		use_power = anchored
 		if(anchored) // Powernet connection stuff.
@@ -168,59 +168,59 @@
 /obj/machinery/power/generator/attack_hand(mob/user)
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER) || !anchored) return
-	if(!circ1 || !circ2) //Just incase the middle part of the TEG was not wrenched last.
+	if(!circ1 || !circ2) //Just incase the69iddle part of the TEG was69ot wrenched last.
 		reconnect()
 	ui_interact(user)
 
-/obj/machinery/power/generator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/power/generator/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
 	// this is the data which will be sent to the ui
 	var/vertical = 0
-	if (dir == NORTH || dir == SOUTH)
+	if (dir ==69ORTH || dir == SOUTH)
 		vertical = 1
 
-	var/data[0]
-	data["totalOutput"] = effective_gen/1000
-	data["maxTotalOutput"] = max_power/1000
-	data["thermalOutput"] = last_thermal_gen/1000
-	data["circConnected"] = 0
+	var/data69069
+	data69"totalOutput"69 = effective_gen/1000
+	data69"maxTotalOutput"69 =69ax_power/1000
+	data69"thermalOutput"69 = last_thermal_gen/1000
+	data69"circConnected"69 = 0
 
 	if(circ1)
 		//The one on the left (or top)
-		data["primaryDir"] = vertical ? "top" : "left"
-		data["primaryOutput"] = last_circ1_gen/1000
-		data["primaryFlowCapacity"] = circ1.volume_capacity_used*100
-		data["primaryInletPressure"] = circ1.air1.return_pressure()
-		data["primaryInletTemperature"] = circ1.air1.temperature
-		data["primaryOutletPressure"] = circ1.air2.return_pressure()
-		data["primaryOutletTemperature"] = circ1.air2.temperature
+		data69"primaryDir"69 =69ertical ? "top" : "left"
+		data69"primaryOutput"69 = last_circ1_gen/1000
+		data69"primaryFlowCapacity"69 = circ1.volume_capacity_used*100
+		data69"primaryInletPressure"69 = circ1.air1.return_pressure()
+		data69"primaryInletTemperature"69 = circ1.air1.temperature
+		data69"primaryOutletPressure"69 = circ1.air2.return_pressure()
+		data69"primaryOutletTemperature"69 = circ1.air2.temperature
 
 	if(circ2)
 		//Now for the one on the right (or bottom)
-		data["secondaryDir"] = vertical ? "bottom" : "right"
-		data["secondaryOutput"] = last_circ2_gen/1000
-		data["secondaryFlowCapacity"] = circ2.volume_capacity_used*100
-		data["secondaryInletPressure"] = circ2.air1.return_pressure()
-		data["secondaryInletTemperature"] = circ2.air1.temperature
-		data["secondaryOutletPressure"] = circ2.air2.return_pressure()
-		data["secondaryOutletTemperature"] = circ2.air2.temperature
+		data69"secondaryDir"69 =69ertical ? "bottom" : "right"
+		data69"secondaryOutput"69 = last_circ2_gen/1000
+		data69"secondaryFlowCapacity"69 = circ2.volume_capacity_used*100
+		data69"secondaryInletPressure"69 = circ2.air1.return_pressure()
+		data69"secondaryInletTemperature"69 = circ2.air1.temperature
+		data69"secondaryOutletPressure"69 = circ2.air2.return_pressure()
+		data69"secondaryOutletTemperature"69 = circ2.air2.temperature
 
 	if(circ1 && circ2)
-		data["circConnected"] = 1
+		data69"circConnected"69 = 1
 	else
-		data["circConnected"] = 0
+		data69"circConnected"69 = 0
 
 
-	// update the ui if it exists, returns null if no ui is passed/found
+	// update the ui if it exists, returns69ull if69o ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		// the ui does not exist, so we'll create a new() one
+		// the ui does69ot exist, so we'll create a69ew() one
         // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "generator.tmpl", "Thermoelectric Generator", 450, 550)
+		ui =69ew(user, src, ui_key, "generator.tmpl", "Thermoelectric Generator", 450, 550)
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
-		// open the new ui window
+		// open the69ew ui window
 		ui.open()
-		// auto update every Master Controller tick
+		// auto update every69aster Controller tick
 		ui.set_auto_update(1)
 
 /obj/machinery/power/generator/power_change()
@@ -230,8 +230,8 @@
 
 /obj/machinery/power/generator/verb/rotate_clock()
 	set category = "Object"
-	set name = "Rotate Generator (Clockwise)"
-	set src in view(1)
+	set69ame = "Rotate Generator (Clockwise)"
+	set src in69iew(1)
 
 	if (usr.stat || usr.restrained()  || anchored)
 		return
@@ -240,8 +240,8 @@
 
 /obj/machinery/power/generator/verb/rotate_anticlock()
 	set category = "Object"
-	set name = "Rotate Generator (Counterclockwise)"
-	set src in view(1)
+	set69ame = "Rotate Generator (Counterclockwise)"
+	set src in69iew(1)
 
 	if (usr.stat || usr.restrained()  || anchored)
 		return

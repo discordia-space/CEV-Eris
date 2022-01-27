@@ -39,7 +39,7 @@
 
 		for(var/obj/machinery/power/apc/apc in GLOB.apc_list)
 			if(is_valid_apc(apc))
-				// Greatly reduce the chance for APCs in maintenance areas to be selected
+				// Greatly reduce the chance for APCs in69aintenance areas to be selected
 				var/area/A = get_area(apc)
 				if(!istype(A,/area/eris/maintenance) || prob(25))
 					apcs += apc
@@ -56,7 +56,7 @@
 			return
 
 		for(var/epicentre in epicentreList)
-			log_and_message_admins("Electrical overload triggered at [jumplink(epicentre)],")
+			log_and_message_admins("Electrical overload triggered at 69jumplink(epicentre)69,")
 			for(var/obj/machinery/power/apc/apc in range(epicentre,lightsoutRange))
 				if (prob(75))
 					apc.overload_lighting()

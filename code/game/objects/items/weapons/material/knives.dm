@@ -1,6 +1,6 @@
 /obj/item/material/butterfly
 	name = "butterfly knife"
-	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	desc = "A basic69etal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
@@ -16,11 +16,11 @@
 		edge = TRUE
 		sharp = TRUE
 		..() //Updates force.
-		throwforce = max(3,force-3)
+		throwforce =69ax(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = ITEM_SIZE_NORMAL
-		tool_qualities = list(QUALITY_CUTTING = 20, QUALITY_WIRE_CUTTING = 10, QUALITY_SCREW_DRIVING = 5)
+		tool_69ualities = list(69UALITY_CUTTING = 20, 69UALITY_WIRE_CUTTING = 10, 69UALITY_SCREW_DRIVING = 5)
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = WEAPON_FORCE_WEAK
@@ -29,21 +29,21 @@
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
-		tool_qualities = list()
+		tool_69ualities = list()
 		attack_verb = initial(attack_verb)
 
 /obj/item/material/butterfly/switchblade
 	name = "switchblade"
-	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
+	desc = "A classic switchblade with gold engraving. Just holding it69akes you feel like a gangster."
 	icon_state = "switchblade"
 	unbreakable = 1
 
 /obj/item/material/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
-		to_chat(user, SPAN_NOTICE("You flip out \the [src]."))
+		to_chat(user, SPAN_NOTICE("You flip out \the 69src69."))
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 	else
-		to_chat(user, SPAN_NOTICE("\The [src] can now be concealed."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 can now be concealed."))
 	update_force()
 	add_fingerprint(user)

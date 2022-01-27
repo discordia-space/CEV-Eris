@@ -7,7 +7,7 @@
 	turns_per_move = 2
 	move_to_delay = 2
 	speed = 0
-	mob_size = MOB_LARGE
+	mob_size =69OB_LARGE
 
 	pixel_x = -16
 

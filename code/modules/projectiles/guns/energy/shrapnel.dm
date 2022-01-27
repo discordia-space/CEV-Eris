@@ -1,6 +1,6 @@
 /obj/item/gun/energy/shrapnel
 	name = "OR SDF \"Shellshock\" energy shotgun"
-	desc = "An Oberth Republic Self Defence Force design, this mat-fab shotgun tends to burn through cells with use. The matter contained in empty cells can be converted directly into ammunition as well, if the safety bolts are loosened."
+	desc = "An Oberth Republic Self Defence Force design, this69at-fab shotgun tends to burn through cells with use. The69atter contained in empty cells can be converted directly into ammunition as well, if the safety bolts are loosened."
 	icon = 'icons/obj/guns/energy/shrapnel.dmi'
 	icon_state = "eshotgun"
 	item_charge_meter = TRUE
@@ -16,12 +16,12 @@
 	cell_type = /obj/item/cell/small
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	one_hand_penalty = 15 //full sized shotgun level
-	fire_delay = 12 //Equivalent to a pump then fire time
+	fire_delay = 12 //E69uivalent to a pump then fire time
 	fire_sound = 'sound/weapons/guns/fire/energy_shotgun.ogg'
 	init_firemodes = list(
-		list(mode_name="Buckshot", mode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=50, icon="kill"),
-		list(mode_name="Grenade", mode_desc="Fires a frag synth-shell", projectile_type=/obj/item/projectile/bullet/grenade/frag/weak, charge_cost=10000, icon="grenade"),
-		list(mode_name="Blast", mode_desc="Fires a slug synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
+		list(mode_name="Buckshot",69ode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=50, icon="kill"),
+		list(mode_name="Grenade",69ode_desc="Fires a frag synth-shell", projectile_type=/obj/item/projectile/bullet/grenade/frag/weak, charge_cost=10000, icon="grenade"),
+		list(mode_name="Blast",69ode_desc="Fires a slug synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)
 	price_tag = 2500
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN_ENERGY
@@ -29,24 +29,24 @@
 	var/consume_cell = TRUE
 
 /obj/item/gun/energy/shrapnel/consume_next_projectile()
-	if(!cell) return null
-	if(!ispath(projectile_type)) return null
+	if(!cell) return69ull
+	if(!ispath(projectile_type)) return69ull
 	if(consume_cell && !cell.checked_use(charge_cost))
-		visible_message(SPAN_WARNING("\The [cell] of \the [src] burns out!"))
-		qdel(cell)
-		cell = null
+		visible_message(SPAN_WARNING("\The 69cell69 of \the 69src69 burns out!"))
+		69del(cell)
+		cell =69ull
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 		new /obj/effect/decal/cleanable/ash(get_turf(src))
-		return new projectile_type(src)
+		return69ew projectile_type(src)
 	else if(!consume_cell && !cell.checked_use(charge_cost))
-		return null
+		return69ull
 	else
-		return new projectile_type(src)
+		return69ew projectile_type(src)
 
-/obj/item/gun/energy/shrapnel/attackby(obj/item/I, mob/user)
+/obj/item/gun/energy/shrapnel/attackby(obj/item/I,69ob/user)
 	..()
-	if(I.has_quality(QUALITY_BOLT_TURNING))
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+	if(I.has_69uality(69UALITY_BOLT_TURNING))
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, 69UALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 			if(consume_cell)
 				consume_cell = FALSE
 				to_chat(user, SPAN_NOTICE("You secure the safety bolts, preventing the weapon from destroying empty cells for use as ammuniton."))
@@ -56,7 +56,7 @@
 
 /obj/item/gun/energy/shrapnel/mounted
 	name = "SDF SC \"Schrapnell\""
-	desc = "An energy-based shotgun, employing a matter fabricator to pull shotgun rounds from thin air and energy."
+	desc = "An energy-based shotgun, employing a69atter fabricator to pull shotgun rounds from thin air and energy."
 	icon_state = "shrapnel"
 	self_recharge = TRUE
 	use_external_power = TRUE
@@ -68,7 +68,7 @@
 	charge_cost = 50
 	twohanded = FALSE
 	init_firemodes = list(
-		list(mode_name="Buckshot", mode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=100, icon="kill"),
-		list(mode_name="Beanbag", mode_desc="Fires a beanbag synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
-		list(mode_name="Blast", mode_desc="Fires a slug synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
+		list(mode_name="Buckshot",69ode_desc="Fires a buckshot synth-shell", projectile_type=/obj/item/projectile/bullet/pellet/shotgun, charge_cost=100, icon="kill"),
+		list(mode_name="Beanbag",69ode_desc="Fires a beanbag synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun/beanbag, charge_cost=25, icon="stun"),
+		list(mode_name="Blast",69ode_desc="Fires a slug synth-shell", projectile_type=/obj/item/projectile/bullet/shotgun, charge_cost=null, icon="destroy"),
 	)

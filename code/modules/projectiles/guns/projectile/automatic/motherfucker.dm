@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/automatic/motherfucker
-	name = "HM Motherfucker .35 \"Punch Hole\""
+	name = "HM69otherfucker .35 \"Punch Hole\""
 	desc = "A 6 barrel, pump action carbine. Shakes like the devil, but will turn anything in a 90º radius in front of you in swiss cheese."
 	icon = 'icons/obj/guns/projectile/motherfucker.dmi'
 	icon_state = "motherfucker"
@@ -13,8 +13,8 @@
 	handle_casings = EJECT_CASINGS
 	max_shells = 54
 	penetration_multiplier = 1.3 // and good AP
-	proj_step_multiplier = 0.8 // faster than non-shotgun bullets, slower than non-shotgun bullets with an accelerator
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 15)
+	proj_step_multiplier = 0.8 // faster than69on-shotgun bullets, slower than69on-shotgun bullets with an accelerator
+	matter = list(MATERIAL_STEEL = 20,69ATERIAL_WOOD = 15)
 	price_tag = 300
 	recoil_buildup = 30
 	one_hand_penalty = 60 //double the LMG.
@@ -22,7 +22,7 @@
 	burst = 6
 	init_offset = 7 //awful accuracy
 	init_firemodes = list(
-		list(mode_name="6-round bursts", burst=6, fire_delay=null, move_delay=7, icon="burst"),
+		list(mode_name="6-round bursts", burst=6, fire_delay=null,69ove_delay=7, icon="burst"),
 		)
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	var/recentpumpmsg = 0
@@ -36,7 +36,7 @@
 
 /obj/item/gun/projectile/automatic/motherfucker/special_check(mob/user)
 	if(!pumped)
-		to_chat(user, SPAN_WARNING("You can't fire [src] without pumping it "))
+		to_chat(user, SPAN_WARNING("You can't fire 69src69 without pumping it "))
 		return FALSE
 	return ..()
 

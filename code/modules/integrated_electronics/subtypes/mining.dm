@@ -1,7 +1,7 @@
 /obj/item/integrated_circuit/mining/ore_analyzer
 	name = "ore analyzer"
 	desc = "Analyzes a rock for its ore type."
-	extended_desc = "Takes a reference for an object and checks if it is a rock first. If that is the case, it outputs the mineral \
+	extended_desc = "Takes a reference for an object and checks if it is a rock first. If that is the case, it outputs the69ineral \
 	inside the rock."
 	category_text = "Mining"
 	ext_cooldown = 1
@@ -37,8 +37,8 @@
 	mineral = rock.mineral
 
 	if(mineral)
-		set_pin_data(IC_OUTPUT, 1, mineral.display_name)
-		set_pin_data(IC_OUTPUT, 2, mineral.result_amount)
+		set_pin_data(IC_OUTPUT, 1,69ineral.display_name)
+		set_pin_data(IC_OUTPUT, 2,69ineral.result_amount)
 		push_data()
 
 		activate_pin(2)
@@ -47,8 +47,8 @@
 
 /obj/item/integrated_circuit/mining/mining_satchel
 	name = "mining satchel"
-	desc = "A mining satchel that can collect ores from tile"
-	extended_desc = "Takes a turf ref to take ores from it or accept mining box to give collected ores to it."
+	desc = "A69ining satchel that can collect ores from tile"
+	extended_desc = "Takes a turf ref to take ores from it or accept69ining box to give collected ores to it."
 	category_text = "Mining"
 	ext_cooldown = 1
 	complexity = 20
@@ -100,9 +100,9 @@
 
 /obj/item/integrated_circuit/mining/mining_drill
 	name = "mining drill"
-	desc = "A mining drill that can drill through rocks."
-	extended_desc = "A mining drill that activates on sensing a mineable rock. It takes some time to get the job done and \
-	has to not be moved during that time."
+	desc = "A69ining drill that can drill through rocks."
+	extended_desc = "A69ining drill that activates on sensing a69ineable rock. It takes some time to get the job done and \
+	has to not be69oved during that time."
 	category_text = "Mining"
 	ext_cooldown = 1
 	complexity = 20
@@ -155,7 +155,7 @@
 
 /obj/item/integrated_circuit/mining/mining_drill/proc/drill()
 	busy = FALSE
-	// The assembly was moved, hence stopping the mining OR the rock was mined before
+	// The assembly was69oved, hence stopping the69ining OR the rock was69ined before
 	if(usedx != assembly.loc.x || usedy != assembly.loc.y || !(mineral || boulder))
 		activate_pin(3)
 		return FALSE

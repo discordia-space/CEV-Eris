@@ -1,6 +1,6 @@
 /obj/item/flame/candle
 	name = "red candle"
-	desc = "a small pillar candle. Its specially-formulated fuel-oxidizer wax mixture allows continued combustion in airless environments."
+	desc = "a small pillar candle. Its specially-formulated fuel-oxidizer wax69ixture allows continued combustion in airless environments."
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle1"
 	item_state = "candle1"
@@ -10,7 +10,7 @@
 	var/lit_sanity_damage = -0.5
 
 /obj/item/flame/candle/New()
-	wax = rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
+	wax = rand(800, 1000) // Enough for 27-3369inutes. 3069inutes on average.
 	..()
 
 /obj/item/flame/candle/update_icon()
@@ -20,13 +20,13 @@
 	else if(wax > 800)
 		i = 2
 	else i = 3
-	icon_state = "candle[i][lit ? "_lit" : ""]"
+	icon_state = "candle69i6969lit ? "_lit" : ""69"
 
 
-/obj/item/flame/candle/attackby(obj/item/I, mob/user)
+/obj/item/flame/candle/attackby(obj/item/I,69ob/user)
 	..()
-	if(QUALITY_WELDING in I.tool_qualities) //Badasses dont get blinded by lighting their candle with a welding tool
-		light(SPAN_NOTICE("\The [user] casually lights the [name] with [I]."))
+	if(69UALITY_WELDING in I.tool_69ualities) //Badasses dont get blinded by lighting their candle with a welding tool
+		light(SPAN_NOTICE("\The 69user69 casually lights the 69name69 with 69I69."))
 	else if(istype(I, /obj/item/flame/lighter))
 		var/obj/item/flame/lighter/L = I
 		if(L.lit)
@@ -41,11 +41,11 @@
 			light()
 
 
-/obj/item/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The [usr] lights the [name]."))
+/obj/item/flame/candle/proc/light(var/flavor_text = SPAN_NOTICE("\The 69usr69 lights the 69name69."))
 	if(!src.lit)
 		change_lit(TRUE)
 		//src.damtype = "fire"
-		for(var/mob/O in viewers(usr, null))
+		for(var/mob/O in69iewers(usr, null))
 			O.show_message(flavor_text, 1)
 
 
@@ -57,13 +57,13 @@
 		new/obj/item/trash/candle(src.loc)
 		if(ismob(loc))
 			src.dropped(usr)
-		qdel(src)
+		69del(src)
 	update_icon()
 	if(istype(loc, /turf)) //start a fire if possible
 		var/turf/T = loc
 		T.hotspot_expose(700, 5)
 
-/obj/item/flame/candle/attack_self(mob/user as mob)
+/obj/item/flame/candle/attack_self(mob/user as69ob)
 	if(lit)
 		change_lit(FALSE)
 

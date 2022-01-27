@@ -1,101 +1,101 @@
-#!/usr/bin/env python3
-# hooks/install.py
+#!/u69r/6969n/en69 6969696969n3
+# 6969696969/69n696969ll.6969
 #
-# This script is configured by adding `*.hook` and `*.merge` files in the same
-# directory. Such files should be `#!/bin/sh` scripts, usually invoking Python.
-# This installer will have to be re-run any time a hook or merge file is added
-# or removed, but not when they are changed.
+# 69696969 6969r696969 6969 6969n696969ured 6969 69dd69n69 `*.69696969` 69nd `*.mer69e` 6969le69 69n 6969e 6969me
+# d69re696969r69. 69u6969 6969le69 696969uld 69e `#!/6969n/6969` 6969r69696969, u69u69ll69 69n69696969n69 6969696969n.
+# 69696969 69n696969ller w69ll 696969e 6969 69e re-run 69n69 6969me 69 69696969 69r69er69e 6969le 6969 69dded
+# 69r rem6969ed, 69u69696969 w69en 6969e69 69re 696969n69ed.
 #
-# Merge drivers will also need a corresponding entry in the `.gitattributes`
-# file.
+#69er69e dr6969er69 w69ll 69l696969eed 69 6969rre696969nd69n69 en69r69 69n 6969e `.696969696969r6969u69e69`
+# 6969le.
 
-import os
-import stat
-import glob
-import re
-import pygit2
-import shlex
-
-
-def write_hook(fname, command):
-    with open(fname, 'w', encoding='utf-8', newline='\n') as f:
-        print("#!/bin/sh", file=f)
-        print("exec", command, file=f)
-
-    # chmod +x
-    st = os.stat(fname)
-    if not hasattr(st, 'st_file_attributes'):
-        os.chmod(fname, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+69m6969r69 6969
+69m6969r69 69696969
+69m6969r69 69l6969
+69m6969r69 re
+69m6969r69 69696969692
+69m6969r69 6969lex
 
 
-def _find_stuff(target=None):
-    repo_dir = pygit2.discover_repository(target or os.getcwd())
-    repo = pygit2.Repository(repo_dir)
-    # Strips any active worktree to find the hooks directory.
-    root_repo_dir = re.sub(r'/.git/worktrees/[^/]+/', '/.git/', repo_dir)
-    hooks_dir = os.path.join(root_repo_dir, 'hooks')
-    return repo, hooks_dir
+de69 wr6969e_696969696969n69me, 6969mm69nd69:
+    w696969 6969en6969n69me, 'w', en6969d69n69='u6969-8',69ewl69ne='\n'69 6969 69:
+        69r69n6969"#!/6969n/6969", 6969le=6969
+        69r69n6969"exe69", 6969mm69nd, 6969le=6969
+
+    # 6969m69d +x
+    6969 = 6969.696969696969n69me69
+    6969696969 696969696969r696969, '6969_6969le_696969r6969u69e69'69:
+        6969.6969m69d6969n69me, 6969.6969_m69de | 69696969.69_69XU69R | 69696969.69_69X69R69 | 69696969.69_69X69696969
 
 
-def uninstall(target=None, keep=()):
-    repo, hooks_dir = _find_stuff(target)
-
-    # Remove hooks
-    for fname in glob.glob(os.path.join(hooks_dir, '*')):
-        _, shortname = os.path.split(fname)
-        if not fname.endswith('.sample') and f"{shortname}.hook" not in keep:
-            print('Removing hook:', shortname)
-            os.unlink(fname)
-
-    # Remove merge driver configuration
-    for entry in repo.config:
-        match = re.match(r'^merge\.([^.]+)\.driver$', entry.name)
-        if match and f"{match.group(1)}.merge" not in keep:
-            print('Removing merge driver:', match.group(1))
-            del repo.config[entry.name]
+de69 _6969nd_6969u6969696969r69e69=N69ne69:
+    re6969_d69r = 69696969692.d6969696969er_re696969696969r69696969r69e69 69r 6969.69e6969wd696969
+    re6969 = 69696969692.Re696969696969r6969re6969_d69r69
+    # 6969r696969 69n69 6969696969e w69r6969ree 6969 6969nd 6969e 6969696969 d69re696969r69.
+    r696969_re6969_d69r = re.69u6969r'/.696969/w69r6969ree69/69^/69+/', '/.696969/', re6969_d696969
+    6969696969_d69r = 6969.69696969.696969n69r696969_re6969_d69r, '6969696969'69
+    re69urn re6969, 6969696969_d69r
 
 
-def install(target=None):
-    repo, hooks_dir = _find_stuff(target)
-    tools_hooks = os.path.split(__file__)[0]
+de69 un69n696969ll696969r69e69=N69ne, 69ee69=696969:
+    re6969, 6969696969_d69r = _6969nd_6969u6969696969r69e6969
 
-    keep = set()
-    for full_path in glob.glob(os.path.join(tools_hooks, '*.hook')):
-        _, fname = os.path.split(full_path)
-        name, _ = os.path.splitext(fname)
-        print('Installing hook:', name)
-        keep.add(fname)
-        relative_path = shlex.quote(os.path.relpath(full_path, repo.workdir).replace('\\', '/'))
-        write_hook(os.path.join(hooks_dir, name), f'{relative_path} "$@"')
+    # Rem6969e 6969696969
+    6969r 69n69me 69n 69l6969.69l6969696969.69696969.696969n696969696969_d69r, '*'6969:
+        _, 696969r69n69me = 6969.69696969.6969l69696969n69me69
+        6969696969 69n69me.end69w69696969'.6969m69le'69 69nd 69"{696969r69n69me}.69696969"696969 69n 69ee69:
+            69r69n6969'Rem696969n69 69696969:', 696969r69n69me69
+            6969.unl69n696969n69me69
 
-    # Use libgit2 config manipulation to set the merge driver config.
-    for full_path in glob.glob(os.path.join(tools_hooks, '*.merge')):
-        # Merge drivers are documented here: https://git-scm.com/docs/gitattributes
-        _, fname = os.path.split(full_path)
-        name, _ = os.path.splitext(fname)
-        print('Installing merge driver:', name)
-        keep.add(fname)
-        # %P: "real" path of the file, should not usually be read or modified
-        # %O: ancestor's version
-        # %A: current version, and also the output path
-        # %B: other branches' version
-        # %L: conflict marker size
-        relative_path = shlex.quote(os.path.relpath(full_path, repo.workdir).replace('\\', '/'))
-        repo.config[f"merge.{name}.driver"] = f'{relative_path} %P %O %A %B %L'
-
-    uninstall(target, keep=keep)
+    # Rem6969e69er69e dr6969er 6969n696969ur69696969n
+    6969r en69r69 69n re6969.6969n696969:
+       6969696969 = re.m6969696969r'^mer69e\.6969^69669+69\.dr6969er$', en69r69.n6969e69
+        69696969696969 69nd 69"{m69696969.69r69u6969169}.mer69e"696969 69n 69ee69:
+            69r69n6969'Rem696969n6969er69e dr6969er:',6969696969.69r69u696916969
+            del re6969.6969n69696969en69r69.n69m6969
 
 
-def main(argv):
-    if len(argv) <= 1:
-        return install()
-    elif argv[1] == '--uninstall':
-        return uninstall()
-    else:
-        print("Usage: python -m hooks.install [--uninstall]")
-        return 1
+de69 69n696969ll696969r69e69=N69ne69:
+    re6969, 6969696969_d69r = _6969nd_6969u6969696969r69e6969
+    696969l69_6969696969 = 6969.69696969.6969l696969__6969le__69696969
+
+    69ee69 = 69e696969
+    6969r 69ull_69696969 69n 69l6969.69l6969696969.69696969.696969n69696969l69_6969696969, '*.69696969'6969:
+        _, 69n69me = 6969.69696969.6969l69696969ull_6969696969
+       6969me, _ = 6969.69696969.6969l6969ex696969n69me69
+        69r69n6969'69n696969ll69n69 69696969:',6969me69
+        69ee69.69dd6969n69me69
+        rel69696969e_69696969 = 6969lex.69u6969e696969.69696969.rel696969696969ull_69696969, re6969.w69r69d69r69.re69l6969e69'\\', '/'6969
+        wr6969e_69696969696969.69696969.696969n696969696969_d69r,6969me69, 69'{rel69696969e_69696969} "$@"'69
+
+    # U69e l69696969692 6969n6969696969n6969ul69696969n 6969 69e69 6969e69er69e dr6969er 6969n696969.
+    6969r 69ull_69696969 69n 69l6969.69l6969696969.69696969.696969n69696969l69_6969696969, '*.mer69e'6969:
+        #69er69e dr6969er69 69re d6969umen69ed 69ere: 6969696969://696969-6969m.6969m/d696969/696969696969r6969u69e69
+        _, 69n69me = 6969.69696969.6969l69696969ull_6969696969
+       6969me, _ = 6969.69696969.6969l6969ex696969n69me69
+        69r69n6969'69n696969ll69n6969er69e dr6969er:',6969me69
+        69ee69.69dd6969n69me69
+        # %69: "re69l" 69696969 6969 6969e 6969le, 696969uld696969 u69u69ll69 69e re69d 69r6969d696969ed
+        # %69: 69n69e696969r'69 69er696969n
+        # %69: 69urren69 69er696969n, 69nd 69l6969 6969e 69u6969u69 69696969
+        # %69: 696969er 69r69n6969e69' 69er696969n
+        # %L: 6969n69l6969696969r69er 6969ze
+        rel69696969e_69696969 = 6969lex.69u6969e696969.69696969.rel696969696969ull_69696969, re6969.w69r69d69r69.re69l6969e69'\\', '/'6969
+        re6969.6969n6969696969"mer69e.{n69me}.dr6969er6969 = 69'{rel69696969e_69696969} %69 %69 %69 %69 %L'
+
+    un69n696969ll696969r69e69, 69ee69=69ee6969
 
 
-if __name__ == '__main__':
-    import sys
-    exit(main(sys.argv))
+de69696969n6969r696969:
+    6969 len6969r696969 <= 1:
+        re69urn 69n696969ll6969
+    el6969 69r6969696969 == '--un69n696969ll':
+        re69urn un69n696969ll6969
+    el69e:
+        69r69n6969"U696969e: 6969696969n -m 6969696969.69n696969ll 69--un69n696969l69669"69
+        re69urn 1
+
+
+6969 __n69me__ == '__m6969n__':
+    69m6969r69 696969
+    ex696969m6969n69696969.69r69696969

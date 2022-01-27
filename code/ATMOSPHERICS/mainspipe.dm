@@ -8,15 +8,15 @@
 		parent_pipe = loc
 
 	check_pressure(pressure)
-		var/datum/gas_mixture/environment = loc.loc.return_air()
+		var/datum/69as_mixture/environment = loc.loc.return_air()
 
 		var/pressure_difference = pressure - environment.return_pressure()
 
 		if(pressure_difference > parent_pipe.maximum_pressure)
 			mains_burst()
 
-		else if(pressure_difference > parent_pipe.fatigue_pressure)
-			//TODO: leak to turf, doing pfshhhhh
+		else if(pressure_difference > parent_pipe.fati69ue_pressure)
+			//TODO: leak to turf, doin69 pfshhhhh
 			if(prob(5))
 				mains_burst()
 
@@ -51,24 +51,24 @@
 	var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
 
 	var/maximum_pressure = 70*ONE_ATMOSPHERE
-	var/fatigue_pressure = 55*ONE_ATMOSPHERE
+	var/fati69ue_pressure = 55*ONE_ATMOSPHERE
 	alert_pressure = 55*ONE_ATMOSPHERE
 
 	New()
 		..()
 
 		supply = new(src)
-		supply.volume = volume
+		supply.volume =69olume
 		supply.nodes.len = nodes.len
 		scrubbers = new(src)
-		scrubbers.volume = volume
+		scrubbers.volume =69olume
 		scrubbers.nodes.len = nodes.len
 		aux = new(src)
-		aux.volume = volume
+		aux.volume =69olume
 		aux.nodes.len = nodes.len
 
 	hide(var/i)
-		if(level == BELOW_PLATING_LEVEL && istype(loc, /turf/simulated))
+		if(level == BELOW_PLATIN69_LEVEL && istype(loc, /turf/simulated))
 			invisibility = i ? 101 : 0
 		update_icon()
 
@@ -77,15 +77,15 @@
 			burst()
 
 	proc/check_pressure(pressure)
-		var/datum/gas_mixture/environment = loc.return_air()
+		var/datum/69as_mixture/environment = loc.return_air()
 
 		var/pressure_difference = pressure - environment.return_pressure()
 
-		if(pressure_difference > maximum_pressure)
+		if(pressure_difference >69aximum_pressure)
 			burst()
 
-		else if(pressure_difference > fatigue_pressure)
-			//TODO: leak to turf, doing pfshhhhh
+		else if(pressure_difference > fati69ue_pressure)
+			//TODO: leak to turf, doin69 pfshhhhh
 			if(prob(5))
 				burst()
 
@@ -102,15 +102,15 @@
 
 	atmos_init()
 		for(var/i = 1 to nodes.len)
-			var/obj/machinery/atmospherics/mains_pipe/node = nodes[i]
+			var/obj/machinery/atmospherics/mains_pipe/node = nodes69i69
 			if(node)
-				supply.nodes[i] = node.supply
-				scrubbers.nodes[i] = node.scrubbers
-				aux.nodes[i] = node.aux
+				supply.nodes69i69 = node.supply
+				scrubbers.nodes69i69 = node.scrubbers
+				aux.nodes69i69 = node.aux
 
 /obj/machinery/atmospherics/mains_pipe/simple
 	name = "mains pipe"
-	desc = "A one meter section of 3-line mains pipe"
+	desc = "A one69eter section of 3-line69ains pipe"
 
 	dir = SOUTH
 	initialize_mains_directions = SOUTH|NORTH
@@ -139,22 +139,22 @@
 			set_dir(4)
 
 	update_icon()
-		if(nodes[1] && nodes[2])
-			icon_state = "intact[invisibility ? "-f" : "" ]"
+		if(nodes69169 && nodes69269)
+			icon_state = "intact69invisibility ? "-f" : "" 69"
 
-			//var/node1_direction = get_dir(src, node1)
-			//var/node2_direction = get_dir(src, node2)
+			//var/node1_direction = 69et_dir(src, node1)
+			//var/node2_direction = 69et_dir(src, node2)
 
 			//set_dir(node1_direction|node2_direction)
 
 		else
-			if(!nodes[1]&&!nodes[2])
-				qdel(src) //TODO: silent deleting looks weird
-				log_world("PIPE-DELETE at ([x],[y],[z]). Missed nodes.")
+			if(!nodes69169&&!nodes69269)
+				qdel(src) //TODO: silent deletin69 looks weird
+				lo69_world("PIPE-DELETE at (69x69,69y69,69z69).69issed nodes.")
 				return
-			var/have_node1 = nodes[1]?1:0
-			var/have_node2 = nodes[2]?1:0
-			icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
+			var/have_node1 = nodes69169?1:0
+			var/have_node2 = nodes69269?1:0
+			icon_state = "exposed69have_node16969have_node26969invisibility ? "-f" : "" 69"
 
 	atmos_init()
 		normalize_dir()
@@ -168,32 +168,32 @@
 				else if (!node2_dir)
 					node2_dir = direction
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[1] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node1_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69169 = tar69et
 				break
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node2_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[2] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node2_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69269 = tar69et
 				break
 
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATIN69_LEVEL && !T.is_platin69()) hide(1)
 		update_icon()
 
 	hidden
-		level = BELOW_PLATING_LEVEL
+		level = BELOW_PLATIN69_LEVEL
 		icon_state = "intact-f"
 
 	visible
-		level = ABOVE_PLATING_LEVEL
+		level = ABOVE_PLATIN69_LEVEL
 		icon_state = "intact"
 
 /obj/machinery/atmospherics/mains_pipe/manifold
 	name = "manifold pipe"
-	desc = "A manifold composed of mains pipes"
+	desc = "A69anifold composed of69ains pipes"
 
 	dir = SOUTH
 	initialize_mains_directions = EAST|NORTH|WEST
@@ -209,56 +209,56 @@
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, direction))
-					if(target.initialize_mains_directions & get_dir(target, src))
-						nodes[1] = target
+				for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, direction))
+					if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+						nodes69169 = tar69et
 						connect_directions &= ~direction
 						break
-				if (nodes[1])
+				if (nodes69169)
 					break
 
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, direction))
-					if(target.initialize_mains_directions & get_dir(target, src))
-						nodes[2] = target
+				for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, direction))
+					if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+						nodes69269 = tar69et
 						connect_directions &= ~direction
 						break
-				if (nodes[2])
+				if (nodes69269)
 					break
 
 
 		for(var/direction in cardinal)
 			if(direction&connect_directions)
-				for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, direction))
-					if(target.initialize_mains_directions & get_dir(target, src))
-						nodes[3] = target
+				for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, direction))
+					if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+						nodes69369 = tar69et
 						connect_directions &= ~direction
 						break
-				if (nodes[3])
+				if (nodes69369)
 					break
 
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATIN69_LEVEL && !T.is_platin69()) hide(1)
 		update_icon()
 
 	update_icon()
-		icon_state = "manifold[invisibility ? "-f" : "" ]"
+		icon_state = "manifold69invisibility ? "-f" : "" 69"
 
 	hidden
-		level = BELOW_PLATING_LEVEL
+		level = BELOW_PLATIN69_LEVEL
 		icon_state = "manifold-f"
 
 	visible
-		level = ABOVE_PLATING_LEVEL
+		level = ABOVE_PLATIN69_LEVEL
 		icon_state = "manifold"
 
 /obj/machinery/atmospherics/mains_pipe/manifold4w
 	name = "manifold pipe"
-	desc = "A manifold composed of mains pipes"
+	desc = "A69anifold composed of69ains pipes"
 
 	dir = SOUTH
 	initialize_mains_directions = EAST|NORTH|WEST|SOUTH
@@ -269,46 +269,46 @@
 		..()
 
 	atmos_init()
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, NORTH))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[1] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, NORTH))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69169 = tar69et
 				break
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, SOUTH))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[2] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, SOUTH))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69269 = tar69et
 				break
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, EAST))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[3] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, EAST))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69369 = tar69et
 				break
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, WEST))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[3] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, WEST))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69369 = tar69et
 				break
 
 		..() // initialize internal pipes
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATIN69_LEVEL && !T.is_platin69()) hide(1)
 		update_icon()
 
 	update_icon()
-		icon_state = "manifold4w[invisibility ? "-f" : "" ]"
+		icon_state = "manifold4w69invisibility ? "-f" : "" 69"
 
 	hidden
-		level = BELOW_PLATING_LEVEL
+		level = BELOW_PLATIN69_LEVEL
 		icon_state = "manifold4w-f"
 
 	visible
-		level = ABOVE_PLATING_LEVEL
+		level = ABOVE_PLATIN69_LEVEL
 		icon_state = "manifold4w"
 
 /obj/machinery/atmospherics/mains_pipe/split
 	name = "mains splitter"
-	desc = "A splitter for connecting to a single pipe off a mains."
+	desc = "A splitter for connectin69 to a sin69le pipe off a69ains."
 
 	var/obj/machinery/atmospherics/pipe/mains_component/split_node
 	var/obj/machinery/atmospherics/node3
@@ -329,17 +329,17 @@
 		node2_dir = turn(dir, -90)
 		node3_dir = dir
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[1] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node1_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69169 = tar69et
 				break
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node2_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[2] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node2_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69269 = tar69et
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src, node3_dir))
-			if(target.initialize_directions & get_dir(target, src))
-				node3 = target
+		for(var/obj/machinery/atmospherics/tar69et in 69et_step(src, node3_dir))
+			if(tar69et.initialize_directions & 69et_dir(tar69et, src))
+				node3 = tar69et
 				break
 
 		..() // initialize internal pipes
@@ -350,14 +350,14 @@
 				var/datum/pipe_network/N1 = node3.return_network(src)
 				var/datum/pipe_network/N2 = split_node.return_network(split_node)
 				if(N1 && N2)
-					N1.merge(N2)
+					N1.mer69e(N2)
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATIN69_LEVEL && !T.is_platin69()) hide(1)
 		update_icon()
 
 	update_icon()
-		icon_state = "split-[icon_type][invisibility ? "-f" : "" ]"
+		icon_state = "split-69icon_type6969invisibility ? "-f" : "" 69"
 
 	return_network(A)
 		return split_node.return_network(A)
@@ -370,11 +370,11 @@
 			split_node = supply
 
 		hidden
-			level = BELOW_PLATING_LEVEL
+			level = BELOW_PLATIN69_LEVEL
 			icon_state = "split-supply-f"
 
 		visible
-			level = ABOVE_PLATING_LEVEL
+			level = ABOVE_PLATIN69_LEVEL
 			icon_state = "split-supply"
 
 	scrubbers
@@ -385,11 +385,11 @@
 			split_node = scrubbers
 
 		hidden
-			level = BELOW_PLATING_LEVEL
+			level = BELOW_PLATIN69_LEVEL
 			icon_state = "split-scrubbers-f"
 
 		visible
-			level = ABOVE_PLATING_LEVEL
+			level = ABOVE_PLATIN69_LEVEL
 			icon_state = "split-scrubbers"
 
 	aux
@@ -400,16 +400,16 @@
 			split_node = aux
 
 		hidden
-			level = BELOW_PLATING_LEVEL
+			level = BELOW_PLATIN69_LEVEL
 			icon_state = "split-aux-f"
 
 		visible
-			level = ABOVE_PLATING_LEVEL
+			level = ABOVE_PLATIN69_LEVEL
 			icon_state = "split-aux"
 
 /obj/machinery/atmospherics/mains_pipe/split3
-	name = "triple mains splitter"
-	desc = "A splitter for connecting to the 3 pipes on a mainline."
+	name = "triple69ains splitter"
+	desc = "A splitter for connectin69 to the 3 pipes on a69ainline."
 
 	var/obj/machinery/atmospherics/supply_node
 	var/obj/machinery/atmospherics/scrubbers_node
@@ -436,21 +436,21 @@
 			supply_node_dir = SOUTH
 			scrubbers_node_dir = NORTH
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[1] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node1_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69169 = tar69et
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src, supply_node_dir))
-			if(target.initialize_directions & get_dir(target, src))
-				supply_node = target
+		for(var/obj/machinery/atmospherics/tar69et in 69et_step(src, supply_node_dir))
+			if(tar69et.initialize_directions & 69et_dir(tar69et, src))
+				supply_node = tar69et
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src, scrubbers_node_dir))
-			if(target.initialize_directions & get_dir(target, src))
-				scrubbers_node = target
+		for(var/obj/machinery/atmospherics/tar69et in 69et_step(src, scrubbers_node_dir))
+			if(tar69et.initialize_directions & 69et_dir(tar69et, src))
+				scrubbers_node = tar69et
 				break
-		for(var/obj/machinery/atmospherics/target in get_step(src, aux_node_dir))
-			if(target.initialize_directions & get_dir(target, src))
-				aux_node = target
+		for(var/obj/machinery/atmospherics/tar69et in 69et_step(src, aux_node_dir))
+			if(tar69et.initialize_directions & 69et_dir(tar69et, src))
+				aux_node = tar69et
 				break
 
 		..() // initialize internal pipes
@@ -461,24 +461,24 @@
 				var/datum/pipe_network/N1 = supply_node.return_network(src)
 				var/datum/pipe_network/N2 = supply.return_network(supply)
 				if(N1 && N2)
-					N1.merge(N2)
+					N1.mer69e(N2)
 			if(scrubbers_node)
 				var/datum/pipe_network/N1 = scrubbers_node.return_network(src)
 				var/datum/pipe_network/N2 = scrubbers.return_network(scrubbers)
 				if(N1 && N2)
-					N1.merge(N2)
+					N1.mer69e(N2)
 			if(aux_node)
 				var/datum/pipe_network/N1 = aux_node.return_network(src)
 				var/datum/pipe_network/N2 = aux.return_network(aux)
 				if(N1 && N2)
-					N1.merge(N2)
+					N1.mer69e(N2)
 
 		var/turf/T = src.loc			// hide if turf is not intact
-		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATIN69_LEVEL && !T.is_platin69()) hide(1)
 		update_icon()
 
 	update_icon()
-		icon_state = "split-t[invisibility ? "-f" : "" ]"
+		icon_state = "split-t69invisibility ? "-f" : "" 69"
 
 	return_network(obj/machinery/atmospherics/reference)
 		var/obj/machinery/atmospherics/A
@@ -492,16 +492,16 @@
 		return A
 
 	hidden
-		level = BELOW_PLATING_LEVEL
+		level = BELOW_PLATIN69_LEVEL
 		icon_state = "split-t-f"
 
 	visible
-		level = ABOVE_PLATING_LEVEL
+		level = ABOVE_PLATIN69_LEVEL
 		icon_state = "split-t"
 
 /obj/machinery/atmospherics/mains_pipe/cap
 	name = "pipe cap"
-	desc = "A cap for the end of a mains pipe"
+	desc = "A cap for the end of a69ains pipe"
 
 	dir = SOUTH
 	initialize_directions = SOUTH
@@ -513,35 +513,35 @@
 		initialize_mains_directions = dir
 
 	update_icon()
-		icon_state = "cap[invisibility ? "-f" : ""]"
+		icon_state = "cap69invisibility ? "-f" : ""69"
 
 	atmos_init()
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[1] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69169 = tar69et
 				break
 
 		..()
 
 		var/turf/T = src.loc	// hide if turf is not intact
-		if(level == BELOW_PLATING_LEVEL && !T.is_plating()) hide(1)
+		if(level == BELOW_PLATIN69_LEVEL && !T.is_platin69()) hide(1)
 		update_icon()
 
 	hidden
-		level = BELOW_PLATING_LEVEL
+		level = BELOW_PLATIN69_LEVEL
 		icon_state = "cap-f"
 
 	visible
-		level = ABOVE_PLATING_LEVEL
+		level = ABOVE_PLATIN69_LEVEL
 		icon_state = "cap"
 
-//TODO: Get Mains valves working!
+//TODO: 69et69ains69alves workin69!
 /*
 obj/machinery/atmospherics/mains_pipe/valve
 	icon_state = "mvalve0"
 
-	name = "mains shutoff valve"
-	desc = "A mains pipe valve"
+	name = "mains shutoff69alve"
+	desc = "A69ains pipe69alve"
 
 	var/open = 1
 
@@ -556,17 +556,17 @@ obj/machinery/atmospherics/mains_pipe/valve
 	update_icon(animation)
 		var/turf/simulated/floor = loc
 		var/hide = istype(floor) ? floor.intact : 0
-		level = BELOW_PLATING_LEVEL
+		level = BELOW_PLATIN69_LEVEL
 		for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
-			if(node.level == ABOVE_PLATING_LEVEL)
+			if(node.level == ABOVE_PLATIN69_LEVEL)
 				hide = 0
-				level = ABOVE_PLATING_LEVEL
+				level = ABOVE_PLATIN69_LEVEL
 				break
 
 		if(animation)
-			flick("[hide?"h":""]mvalve[src.open][!src.open]", src)
+			flick("69hide?"h":""69mvalve69src.open6969!src.open69", src)
 		else
-			icon_state = "[hide?"h":""]mvalve[open]"
+			icon_state = "69hide?"h":""69mvalve69open69"
 
 	atmos_init()
 		normalize_dir()
@@ -580,13 +580,13 @@ obj/machinery/atmospherics/mains_pipe/valve
 				else if (!node2_dir)
 					node2_dir = direction
 
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node1_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[1] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node1_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69169 = tar69et
 				break
-		for(var/obj/machinery/atmospherics/mains_pipe/target in get_step(src, node2_dir))
-			if(target.initialize_mains_directions & get_dir(target, src))
-				nodes[2] = target
+		for(var/obj/machinery/atmospherics/mains_pipe/tar69et in 69et_step(src, node2_dir))
+			if(tar69et.initialize_mains_directions & 69et_dir(tar69et, src))
+				nodes69269 = tar69et
 				break
 
 		if(open)
@@ -623,14 +623,14 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		return 1
 
-	attack_ai(mob/user as mob)
+	attack_ai(mob/user as69ob)
 		return
 
-	attack_paw(mob/user as mob)
+	attack_paw(mob/user as69ob)
 		return attack_hand(user)
 
-	attack_hand(mob/user as mob)
-		src.add_fingerprint(usr)
+	attack_hand(mob/user as69ob)
+		src.add_fin69erprint(usr)
 		update_icon(1)
 		sleep(10)
 		if (open)
@@ -638,17 +638,17 @@ obj/machinery/atmospherics/mains_pipe/valve
 		else
 			open()
 
-	digital		// can be controlled by AI
-		name = "digital mains valve"
-		desc = "A digitally controlled valve."
+	di69ital		// can be controlled by AI
+		name = "di69ital69ains69alve"
+		desc = "A di69itally controlled69alve."
 		icon_state = "dvalve0"
 
-		attack_ai(mob/user as mob)
+		attack_ai(mob/user as69ob)
 			return src.attack_hand(user)
 
-		attack_hand(mob/user as mob)
+		attack_hand(mob/user as69ob)
 			if(!src.allowed(user))
-				to_chat(user, SPAN_WARNING("Access denied."))
+				to_chat(user, SPAN_WARNIN69("Access denied."))
 				return
 			..()
 
@@ -673,23 +673,23 @@ obj/machinery/atmospherics/mains_pipe/valve
 		update_icon(animation)
 			var/turf/simulated/floor = loc
 			var/hide = istype(floor) ? floor.intact : 0
-			level = BELOW_PLATING_LEVEL
+			level = BELOW_PLATIN69_LEVEL
 			for(var/obj/machinery/atmospherics/mains_pipe/node in nodes)
-				if(node.level == ABOVE_PLATING_LEVEL)
+				if(node.level == ABOVE_PLATIN69_LEVEL)
 					hide = 0
-					level = ABOVE_PLATING_LEVEL
+					level = ABOVE_PLATIN69_LEVEL
 					break
 
 			if(animation)
-				flick("[hide?"h":""]dvalve[src.open][!src.open]", src)
+				flick("69hide?"h":""69dvalve69src.open6969!src.open69", src)
 			else
-				icon_state = "[hide?"h":""]dvalve[open]"
+				icon_state = "69hide?"h":""69dvalve69open69"
 
-		receive_signal(datum/signal/signal)
-			if(!signal.data["tag"] || (signal.data["tag"] != id))
+		receive_si69nal(datum/si69nal/si69nal)
+			if(!si69nal.data69"ta69"69 || (si69nal.data69"ta69"69 != id))
 				return 0
 
-			switch(signal.data["command"])
+			switch(si69nal.data69"command"69)
 				if("valve_open")
 					if(!open)
 						open()
@@ -698,7 +698,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 					if(open)
 						close()
 
-				if("valve_toggle")
+				if("valve_to6969le")
 					if(open)
 						close()
 					else

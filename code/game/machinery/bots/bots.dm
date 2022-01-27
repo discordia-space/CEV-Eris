@@ -2,7 +2,7 @@
 
 /obj/machinery/bot
 	icon = 'icons/obj/aibots.dmi'
-	layer = MOB_LAYER
+	layer =69OB_LAYER
 	light_range = 3
 	use_power = NO_POWER_USE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
@@ -13,7 +13,7 @@
 	var/brute_dam_coeff = 1
 	var/open = 0//Maint panel
 	var/locked = 1
-	//var/emagged = 0 //Urist: Moving that var to the general /bot tree as it's used by most bots
+	//var/emagged = 0 //Urist:69oving that69ar to the general /bot tree as it's used by69ost bots
 
 /obj/machinery/bot/proc/turn_on()
 	if(stat)	return 0
@@ -26,49 +26,49 @@
 	set_light(0)
 
 /obj/machinery/bot/proc/explode()
-	qdel(src)
+	69del(src)
 
 /obj/machinery/bot/proc/healthcheck()
 	if (src.health <= 0)
 		src.explode()
 
-/obj/machinery/bot/emag_act(var/remaining_charges, var/user)
+/obj/machinery/bot/emag_act(var/remaining_charges,69ar/user)
 	if(locked && !emagged)
 		locked = 0
 		emagged = 1
-		to_chat(user, SPAN_WARNING("You short out [src]'s maintenance hatch lock."))
-		log_and_message_admins("emagged [src]'s maintenance hatch lock")
+		to_chat(user, SPAN_WARNING("You short out 69src69's69aintenance hatch lock."))
+		log_and_message_admins("emagged 69src69's69aintenance hatch lock")
 		return 1
 
 	if(!locked && open && emagged == 1)
 		emagged = 2
-		log_and_message_admins("emagged [src]'s inner circuits")
+		log_and_message_admins("emagged 69src69's inner circuits")
 		return 1
 
 /obj/machinery/bot/examine(mob/user)
 	..(user)
-	if (src.health < maxhealth)
-		if (src.health > maxhealth/3)
-			to_chat(user, SPAN_WARNING("[src]'s parts look loose."))
+	if (src.health <69axhealth)
+		if (src.health >69axhealth/3)
+			to_chat(user, SPAN_WARNING("69src69's parts look loose."))
 		else
-			to_chat(user, SPAN_DANGER("[src]'s parts look very loose!"))
+			to_chat(user, SPAN_DANGER("69src69's parts look69ery loose!"))
 	return
 
-/obj/machinery/bot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/bot/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/tool/screwdriver))
 		if(!locked)
 			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [src.open ? "opened" : "closed"].</span>")
+			to_chat(user, "<span class='notice'>Maintenance panel is now 69src.open ? "opened" : "closed"69.</span>")
 	else if(istype(W, /obj/item/tool/weldingtool))
-		if(health < maxhealth)
+		if(health <69axhealth)
 			if(open)
-				health = min(maxhealth, health+10)
-				user.visible_message(SPAN_WARNING("[user] repairs [src]!"),SPAN_NOTICE("You repair [src]!"))
+				health =69in(maxhealth, health+10)
+				user.visible_message(SPAN_WARNING("69user69 repairs 69src69!"),SPAN_NOTICE("You repair 69src69!"))
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			else
-				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
+				to_chat(user, SPAN_NOTICE("Unable to repair with the69aintenance panel closed."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
+			to_chat(user, SPAN_NOTICE("69src69 does not need a repair."))
 	else
 		if(hasvar(W,"force") && hasvar(W,"damtype"))
 			switch(W.damtype)
@@ -120,7 +120,7 @@
 			turn_on()
 
 
-/obj/machinery/bot/attack_ai(mob/user as mob)
+/obj/machinery/bot/attack_ai(mob/user as69ob)
 	src.attack_hand(user)
 
 /obj/machinery/bot/attack_hand(var/mob/living/carbon/human/user)
@@ -130,7 +130,7 @@
 
 	if(user.species.can_shred(user))
 		src.health -= rand(15,30)*brute_dam_coeff
-		src.visible_message(SPAN_DANGER("[user] has slashed [src]!"))
+		src.visible_message(SPAN_DANGER("69user69 has slashed 69src69!"))
 		playsound(src.loc, 'sound/weapons/slice.ogg', 25, 1, -1)
 		if(prob(10))
 			new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -144,7 +144,7 @@
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
 /turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
-	var/L[] = new()
+	var/L6969 = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
 
@@ -157,7 +157,7 @@
 
 
 // Returns true if a link between A and B is blocked
-// Movement through doors allowed if ID has access
+//69ovement through doors allowed if ID has access
 /proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
 
 	if(A == null || B == null) return 1

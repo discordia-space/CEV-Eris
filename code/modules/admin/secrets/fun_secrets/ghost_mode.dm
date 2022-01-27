@@ -1,5 +1,5 @@
 /datum/admin_secret_item/fun_secret/ghost_mode
-	name = "Ghost Mode"
+	name = "Ghost69ode"
 	var/list/affected_mobs
 
 /datum/admin_secret_item/fun_secret/ghost_mode/New()
@@ -14,7 +14,7 @@
 	var/list/affected_areas = list()
 	for(var/mob/M in GLOB.living_mob_list)
 		if(M.stat == CONSCIOUS && !(M in affected_mobs))
-			affected_mobs |= M
+			affected_mobs |=69
 			switch(rand(1,4))
 				if(1)
 					M.show_message(text(SPAN_NOTICE("You shudder as if cold...")), 1)
@@ -23,7 +23,7 @@
 				if(3)
 					M.show_message(text(SPAN_NOTICE("Your eyes twitch, you feel like something you can't see is here...")), 1)
 				if(4)
-					M.show_message(text(SPAN_NOTICE("You notice something moving out of the corner of your eye, but nothing is there...")), 1)
+					M.show_message(text(SPAN_NOTICE("You notice something69oving out of the corner of your eye, but nothing is there...")), 1)
 
 			for(var/obj/W in orange(5,M))
 				if(prob(25) && !W.anchored)

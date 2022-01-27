@@ -1,5 +1,5 @@
-// How many fields a sheet of paper may hold.
-#define MAX_FIELDS 50
+// How69any fields a sheet of paper69ay hold.
+#define69AX_FIELDS 50
 
 /*
  * Paper
@@ -8,7 +8,7 @@
 
 /obj/item/paper
 	name = "sheet of paper"
-	gender = NEUTER
+	gender =69EUTER
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "paper"
 	item_state = "paper"
@@ -26,21 +26,21 @@
 
 
 	var/info		//What's actually written on the paper.
-	var/info_links	//A different version of the paper which includes html links at fields and EOF
+	var/info_links	//A different69ersion of the paper which includes html links at fields and EOF
 	var/stamps		//The (text for the) stamps on the paper.
 	var/fields		//Amount of user created fields
-	var/free_space = MAX_PAPER_MESSAGE_LEN
+	var/free_space =69AX_PAPER_MESSAGE_LEN
 	var/list/stamped
-	var/list/ico[0]      //Icons and
-	var/list/offset_x[0] //offsets stored for later
-	var/list/offset_y[0] //usage by the photocopier
+	var/list/ico69069      //Icons and
+	var/list/offset_x69069 //offsets stored for later
+	var/list/offset_y69069 //usage by the photocopier
 	var/rigged = 0
 	var/spam_flag = 0
 	var/crumpled = FALSE
 
 	var/const/deffont = "Verdana"
-	var/const/signfont = "Times New Roman"
-	var/const/crayonfont = "Comic Sans MS"
+	var/const/signfont = "Times69ew Roman"
+	var/const/crayonfont = "Comic Sans69S"
 
 /obj/item/paper/New(loc, text,title)
 	..(loc)
@@ -72,7 +72,7 @@
 /obj/item/paper/examine(mob/user)
 	. = ..()
 	if(name != "sheet of paper")
-		to_chat(user, "It's titled '[name]'.")
+		to_chat(user, "It's titled '69name69'.")
 	if(in_range(user, src) || isghost(user))
 		show_content(usr)
 	else
@@ -83,11 +83,11 @@
 	if(!forceshow && istype(user,/mob/living/silicon/ai))
 		var/mob/living/silicon/ai/AI = user
 		can_read = get_dist(src, AI.camera) < 2
-	user << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[can_read ? info : stars(info)][stamps]</BODY></HTML>", "window=[name]")
-	onclose(user, "[name]")
+	user << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>69name69</TITLE></HEAD><BODY bgcolor='69color69'>69can_read ? info : stars(info)6969stamps69</BODY></HTML>", "window=69name69")
+	onclose(user, "69name69")
 
 /obj/item/paper/verb/rename()
-	set name = "Rename paper"
+	set69ame = "Rename paper"
 	set category = "Object"
 	set src in usr
 	playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)
@@ -95,22 +95,22 @@
 	if((CLUMSY in usr.mutations) && prob(50))
 		to_chat(usr, SPAN_WARNING("You cut yourself on the paper."))
 		return
-	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text, MAX_NAME_LEN)
+	var/n_name = sanitizeSafe(input(usr, "What would you like to label the paper?", "Paper Labelling",69ull)  as text,69AX_NAME_LEN)
 
 	// We check loc one level up, so we can rename in clipboards and such. See also: /obj/item/photo/rename()
-	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == 0 && n_name)
-		name = n_name
+	if((loc == usr || loc.loc && loc.loc == usr) && usr.stat == 0 &&69_name)
+		name =69_name
 		add_fingerprint(usr)
 
-/obj/item/paper/attack_self(mob/living/user as mob)
+/obj/item/paper/attack_self(mob/living/user as69ob)
 	if (user.a_intent == I_HURT)
 		if (crumpled)
-			user.show_message(SPAN_WARNING("\The [src] is already crumpled."))
+			user.show_message(SPAN_WARNING("\The 69src69 is already crumpled."))
 			return
 		//crumple dat paper
 		info = stars(info,85)
-		user.visible_message("\The [user] crumples \the [src] into a ball!")
-		icon_state = "[icon_state]_crumpled"
+		user.visible_message("\The 69user69 crumples \the 69src69 into a ball!")
+		icon_state = "69icon_state69_crumpled"
 		playsound(loc, 'sound/effects/paper_crumpling.ogg', 40, 1)
 		crumpled = TRUE
 		return
@@ -125,33 +125,33 @@
 /obj/item/paper/attack_ai(var/mob/living/silicon/ai/user)
 	show_content(user)
 
-/obj/item/paper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/paper/attack(mob/living/carbon/M as69ob,69ob/living/carbon/user as69ob)
 	if(user.targeted_organ == BP_EYES)
-		user.visible_message(SPAN_NOTICE("You show the paper to [M]. "), \
-			SPAN_NOTICE(" [user] holds up a paper and shows it to [M]. "))
+		user.visible_message(SPAN_NOTICE("You show the paper to 69M69. "), \
+			SPAN_NOTICE(" 69user69 holds up a paper and shows it to 69M69. "))
 		M.examinate(src)
 
 	else if(user.targeted_organ == BP_MOUTH) // lipstick wiping
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H =69
 			if(H == user)
-				to_chat(user, SPAN_NOTICE("You wipe off the lipstick with [src]."))
-				H.lip_style = null
+				to_chat(user, SPAN_NOTICE("You wipe off the lipstick with 69src69."))
+				H.lip_style =69ull
 				H.update_body()
 			else
-				user.visible_message(SPAN_WARNING("[user] begins to wipe [H]'s lipstick off with \the [src]."), \
-								 	 SPAN_NOTICE("You begin to wipe off [H]'s lipstick."))
-				if(do_after(user, 10, H) && do_after(H, 10, needhand = 0))	//user needs to keep their active hand, H does not.
-					user.visible_message(SPAN_NOTICE("[user] wipes [H]'s lipstick off with \the [src]."), \
-										 SPAN_NOTICE("You wipe off [H]'s lipstick."))
-					H.lip_style = null
+				user.visible_message(SPAN_WARNING("69user69 begins to wipe 69H69's lipstick off with \the 69src69."), \
+								 	 SPAN_NOTICE("You begin to wipe off 69H69's lipstick."))
+				if(do_after(user, 10, H) && do_after(H, 10,69eedhand = 0))	//user69eeds to keep their active hand, H does69ot.
+					user.visible_message(SPAN_NOTICE("69user69 wipes 69H69's lipstick off with \the 69src69."), \
+										 SPAN_NOTICE("You wipe off 69H69's lipstick."))
+					H.lip_style =69ull
 					H.update_body()
 
-/obj/item/paper/proc/addtofield(var/id, var/text, var/links = 0)
+/obj/item/paper/proc/addtofield(var/id,69ar/text,69ar/links = 0)
 	var/locid = 0
 	var/laststart = 1
 	var/textindex = 1
-	while(locid < MAX_FIELDS)
+	while(locid <69AX_FIELDS)
 		var/istart = 0
 		if(links)
 			istart = findtext(info_links, "<span class=\"paper_field\">", laststart)
@@ -159,7 +159,7 @@
 			istart = findtext(info, "<span class=\"paper_field\">", laststart)
 
 		if(istart == 0)
-			return // No field found with matching id
+			return //69o field found with69atching id
 
 		laststart = istart + 1
 		locid++
@@ -187,56 +187,56 @@
 	info_links = info
 	var/i = 0
 	for(i = 1, i<=fields, i++)
-		addtofield(i, "<font face=\"[deffont]\"><A href='?src=\ref[src];write=[i]'>write</A></font>", 1)
-	info_links = info_links + "<font face=\"[deffont]\"><A href='?src=\ref[src];write=end'>write</A></font>"
+		addtofield(i, "<font face=\"69deffont69\"><A href='?src=\ref69src69;write=69i69'>write</A></font>", 1)
+	info_links = info_links + "<font face=\"69deffont69\"><A href='?src=\ref69src69;write=end'>write</A></font>"
 
 
 /obj/item/paper/proc/clearpaper()
-	info = null
-	stamps = null
-	free_space = MAX_PAPER_MESSAGE_LEN
+	info =69ull
+	stamps =69ull
+	free_space =69AX_PAPER_MESSAGE_LEN
 	stamped = list()
 	cut_overlays()
 	updateinfolinks()
 	update_icon()
 
-/obj/item/paper/proc/get_signature(var/obj/item/pen/P, mob/user as mob)
+/obj/item/paper/proc/get_signature(var/obj/item/pen/P,69ob/user as69ob)
 	if (P && istype(P, /obj/item/pen))
 		return P.get_signature(user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
 
-/obj/item/paper/proc/parsepencode(t, obj/item/pen/P, mob/user, iscrayon)
+/obj/item/paper/proc/parsepencode(t, obj/item/pen/P,69ob/user, iscrayon)
 	if (length(t) == 0)
 		return ""
 
-	if (findtext(t, "\[sign\]"))
-		t = replacetext(t, "\[sign\]", "<font face=\"[signfont]\"><i>[get_signature(P, user)]</i></font>")
+	if (findtext(t, "\69sign\69"))
+		t = replacetext(t, "\69sign\69", "<font face=\"69signfont69\"><i>69get_signature(P, user)69</i></font>")
 
-	if (iscrayon) // If it is a crayon, and he still tries to use these, make them empty!
-		t = replacetext(t, "\[*\]", "")
-		t = replacetext(t, "\[hr\]", "")
-		t = replacetext(t, "\[small\]", "")
-		t = replacetext(t, "\[/small\]", "")
-		t = replacetext(t, "\[list\]", "")
-		t = replacetext(t, "\[/list\]", "")
-		t = replacetext(t, "\[table\]", "")
-		t = replacetext(t, "\[/table\]", "")
-		t = replacetext(t, "\[grid\]", "")
-		t = replacetext(t, "\[/grid\]", "")
-		t = replacetext(t, "\[row\]", "")
-		t = replacetext(t, "\[cell\]", "")
-		t = replacetext(t, "\[logo\]", "")
+	if (iscrayon) // If it is a crayon, and he still tries to use these,69ake them empty!
+		t = replacetext(t, "\69*\69", "")
+		t = replacetext(t, "\69hr\69", "")
+		t = replacetext(t, "\69small\69", "")
+		t = replacetext(t, "\69/small\69", "")
+		t = replacetext(t, "\69list\69", "")
+		t = replacetext(t, "\69/list\69", "")
+		t = replacetext(t, "\69table\69", "")
+		t = replacetext(t, "\69/table\69", "")
+		t = replacetext(t, "\69grid\69", "")
+		t = replacetext(t, "\69/grid\69", "")
+		t = replacetext(t, "\69row\69", "")
+		t = replacetext(t, "\69cell\69", "")
+		t = replacetext(t, "\69logo\69", "")
 
 	if (iscrayon)
-		t = "<font face=\"[crayonfont]\" color=[P ? P.colour : "black"]><b>[t]</b></font>"
+		t = "<font face=\"69crayonfont69\" color=69P ? P.colour : "black"69><b>69t69</b></font>"
 	else
-		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
+		t = "<font face=\"69deffont69\" color=69P ? P.colour : "black"69>69t69</font>"
 
 	t = pencode2html(t)
 
 	//Count the fields
 	var/laststart = 1
-	while(fields < MAX_FIELDS)
+	while(fields <69AX_FIELDS)
 		var/i = findtext(t, "<span class=\"paper_field\">", laststart)	//</span>
 		if(i == 0)
 			break
@@ -245,20 +245,20 @@
 
 	return t
 
-/obj/item/paper/proc/burnpaper(obj/item/flame/P, mob/user)
+/obj/item/paper/proc/burnpaper(obj/item/flame/P,69ob/user)
 	var/class = "warning"
 
 	if(P.lit && !user.restrained())
 		if(istype(P, /obj/item/flame/lighter/zippo))
 			class = "rose"
 
-		user.visible_message("<span class='[class]'>[user] holds \the [P] up to \the [src], it looks like \he's trying to burn it!</span>", \
-		"<span class='[class]'>You hold \the [P] up to \the [src], burning it slowly.</span>")
+		user.visible_message("<span class='69class69'>69user69 holds \the 69P69 up to \the 69src69, it looks like \he's trying to burn it!</span>", \
+		"<span class='69class69'>You hold \the 69P69 up to \the 69src69, burning it slowly.</span>")
 
 		spawn(20)
 			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.lit)
-				user.visible_message("<span class='[class]'>[user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
-				"<span class='[class]'>You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
+				user.visible_message("<span class='69class69'>69user69 burns right through \the 69src69, turning it to ash. It flutters through the air before settling on the floor in a heap.</span>", \
+				"<span class='69class69'>You burn right through \the 69src69, turning it to ash. It flutters through the air before settling on the floor in a heap.</span>")
 
 				if(user.get_inactive_hand() == src)
 					user.drop_from_inventory(src)
@@ -267,7 +267,7 @@
 				qdel(src)
 
 			else
-				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
+				to_chat(user, "\red You69ust hold \the 69P69 steady to burn \the 69src69.")
 
 
 /obj/item/paper/Topic(href, href_list)
@@ -275,19 +275,19 @@
 	if(!usr || (usr.stat || usr.restrained()))
 		return
 
-	if(href_list["write"])
+	if(href_list69"write"69)
 		if(!config.paper_input)
-			to_chat(usr, SPAN_WARNING("No matter how hard you try to write on \the [src], nothing shows up! (Paper input disabled in config.)"))
+			to_chat(usr, SPAN_WARNING("No69atter how hard you try to write on \the 69src69,69othing shows up! (Paper input disabled in config.)"))
 			return
 
-		var/id = href_list["write"]
-		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "[name]", null),8192) as message
+		var/id = href_list69"write"69
+		//var/t = strip_html_simple(input(usr, "What text do you wish to add to " + (id=="end" ? "the end of the paper" : "field "+id) + "?", "69name69",69ull),8192) as69essage
 
 		if(free_space <= 0)
-			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
+			to_chat(usr, "<span class='info'>There isn't enough space left on \the 69src69 to write anything.</span>")
 			return
 
-		var/t =  sanitize(input("Enter what you want to write:", "Write", null, null) as message, free_space, extra = 0)
+		var/t =  sanitize(input("Enter what you want to write:", "Write",69ull,69ull) as69essage, free_space, extra = 0)
 
 		if(!t)
 			return
@@ -301,7 +301,7 @@
 			iscrayon = 1
 
 
-		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
+		// if paper is69ot in usr, then it69ust be69ear them, or in a clipboard or folder, which69ust be in or69ear usr
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
 			return
 
@@ -312,8 +312,8 @@
 		t = parsepencode(t, i, usr, iscrayon) // Encode everything from pencode to html
 
 
-		if(fields > MAX_FIELDS)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
-			to_chat(usr, SPAN_WARNING("Too many fields. Sorry, you can't do this."))
+		if(fields >69AX_FIELDS)//large amount of fields creates a heavy load on the server, see updateinfolinks() and addtofield()
+			to_chat(usr, SPAN_WARNING("Too69any fields. Sorry, you can't do this."))
 			fields = last_fields_value
 			return
 
@@ -325,14 +325,14 @@
 		playsound(src,'sound/effects/PEN_Ball_Point_Pen_Circling_01_mono.ogg',40,1)
 		update_space(t)
 
-		usr << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]") // Update the window
+		usr << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>69name69</TITLE></HEAD><BODY bgcolor='69color69'>69info_links6969stamps69</BODY></HTML>", "window=69name69") // Update the window
 
 		update_icon()
 
 
 
 
-/obj/item/paper/attackby(obj/item/P as obj, mob/user as mob)
+/obj/item/paper/attackby(obj/item/P as obj,69ob/user as69ob)
 	..()
 
 	if(P.has_quality(QUALITY_ADHESIVE))
@@ -345,9 +345,9 @@
 				to_chat(user, SPAN_NOTICE("Take off the carbon copy first."))
 				add_fingerprint(user)
 				return
-		var/obj/item/paper_bundle/B = new(src.loc)
+		var/obj/item/paper_bundle/B =69ew(src.loc)
 		if (name != "paper")
-			B.name = name
+			B.name =69ame
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
 		if (user)
@@ -379,7 +379,7 @@
 					src.loc = get_turf(h_user)
 					if(h_user.client)	h_user.client.screen -= src
 					h_user.put_in_hands(B)
-			to_chat(user, SPAN_NOTICE("You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name]."))
+			to_chat(user, SPAN_NOTICE("You clip the 69P.name69 to 69(src.name == "paper") ? "the paper" : src.name69."))
 		src.loc = B
 		P.loc = B
 
@@ -390,21 +390,21 @@
 
 	else if(istype(P, /obj/item/pen))
 		if(crumpled)
-			to_chat(usr, SPAN_WARNING("\The [src] is too crumpled to write on."))
+			to_chat(usr, SPAN_WARNING("\The 69src69 is too crumpled to write on."))
 			return
 
 		var/obj/item/pen/robopen/RP = P
 		if ( istype(RP) && RP.mode == 2 )
 			RP.RenamePaper(user,src)
 		else
-			user << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>[name]</TITLE></HEAD><BODY bgcolor='[color]'>[info_links][stamps]</BODY></HTML>", "window=[name]")
+			user << browse("<HTML><meta charset=\"utf-8\"><HEAD><TITLE>69name69</TITLE></HEAD><BODY bgcolor='69color69'>69info_links6969stamps69</BODY></HTML>", "window=69name69")
 		return
 
 	else if(istype(P, /obj/item/stamp))
 		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
 			return
 		playsound(src,'sound/effects/Stamp.ogg',40,1)
-		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
+		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the 69P.name69.</i>"
 
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		var/x
@@ -421,12 +421,12 @@
 		stampoverlay.pixel_y = y
 
 		if(!ico)
-			ico = new
-		ico += "paper_[P.icon_state]"
-		stampoverlay.icon_state = "paper_[P.icon_state]"
+			ico =69ew
+		ico += "paper_69P.icon_state69"
+		stampoverlay.icon_state = "paper_69P.icon_state69"
 
 		if(!stamped)
-			stamped = new
+			stamped =69ew
 		stamped += P.type
 		overlays += stampoverlay
 
@@ -484,4 +484,4 @@
 	icon_state = "paper_neo_crumpled_bloodied" //todo fix sprite
 	spawn_blacklisted = TRUE
 
-#undef MAX_FIELDS
+#undef69AX_FIELDS

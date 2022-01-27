@@ -6,7 +6,7 @@
 	w_class = ITEM_SIZE_SMALL
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	price_tag = 50
 
@@ -33,12 +33,12 @@
 /obj/item/device/uv_light/proc/clear_last_scan()
 	if(scanned.len)
 		for(var/atom/O in scanned)
-			O.invisibility = scanned[O]
+			O.invisibility = scanned69O69
 			if(O.fluorescent == 2) O.fluorescent = 1
 		scanned.Cut()
 	if(stored_alpha.len)
 		for(var/atom/O in stored_alpha)
-			O.alpha = stored_alpha[O]
+			O.alpha = stored_alpha69O69
 			if(O.fluorescent == 2) O.fluorescent = 1
 		stored_alpha.Cut()
 	if(reset_objects.len)
@@ -60,9 +60,9 @@
 				if(A.fluorescent == 1)
 					A.fluorescent = 2 //To prevent light crosstalk.
 					if(A.invisibility)
-						scanned[A] = A.invisibility
+						scanned69A69 = A.invisibility
 						A.invisibility = 0
-						stored_alpha[A] = A.alpha
+						stored_alpha69A69 = A.alpha
 						A.alpha = use_alpha
 					if(istype(A, /obj/item))
 						var/obj/item/O = A

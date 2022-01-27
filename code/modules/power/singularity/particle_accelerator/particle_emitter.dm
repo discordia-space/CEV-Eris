@@ -2,7 +2,7 @@
 
 /obj/structure/particle_accelerator/particle_emitter
 	name = "EM Containment Grid"
-	desc_holder = "This launches the Alpha particles. It's probably not safe to stand near this end."
+	desc_holder = "This launches the Alpha particles. It's probably69ot safe to stand69ear this end."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
 	icon_state = "none"
 	var/fire_delay = 50
@@ -34,15 +34,15 @@
 /obj/structure/particle_accelerator/particle_emitter/proc/emit_particle(var/strength = 0)
 	if((src.last_shot + src.fire_delay) <= world.time)
 		src.last_shot = world.time
-		var/obj/effect/accelerated_particle/A = null
+		var/obj/effect/accelerated_particle/A =69ull
 		var/turf/T = get_step(src,dir)
 		switch(strength)
 			if(0)
-				A = new/obj/effect/accelerated_particle/weak(T, dir)
+				A =69ew/obj/effect/accelerated_particle/weak(T, dir)
 			if(1)
-				A = new/obj/effect/accelerated_particle(T, dir)
+				A =69ew/obj/effect/accelerated_particle(T, dir)
 			if(2)
-				A = new/obj/effect/accelerated_particle/strong(T, dir)
+				A =69ew/obj/effect/accelerated_particle/strong(T, dir)
 		if(A)
 			A.set_dir(src.dir)
 			return 1

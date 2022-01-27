@@ -2,7 +2,7 @@
 	filename = "audioplyr"
 	filedesc = "Audio Player"
 	nanomodule_path = /datum/nano_module/program/audio
-	extended_desc = "This program may be used to play audio files. Features vocal transcription."
+	extended_desc = "This program69ay be used to play audio files. Features69ocal transcription."
 	size = 3
 	available_on_ntnet = TRUE
 	requires_ntnet = FALSE
@@ -32,10 +32,10 @@
 		if(selected_audio.storedinfo.len < i)
 			break
 		var/turf/T = get_turf(computer)
-		var/playedmessage = selected_audio.storedinfo[i]
-		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
+		var/playedmessage = selected_audio.storedinfo69i69
+		if (findtextEx(playedmessage,"*",1,2)) //remove69arker for action sounds
 			playedmessage = copytext(playedmessage,2)
-		T.audible_message("<font color=Maroon><B>Audio Player</B>: [playedmessage]</font>")
+		T.audible_message("<font color=Maroon><B>Audio Player</B>: 69playedmessage69</font>")
 		if(selected_audio.storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
@@ -43,11 +43,11 @@
 			T.audible_message("<font color=Maroon><B>Audio Player</B>: End of recording.</font>")
 			playing = FALSE
 		else
-			playsleepseconds = selected_audio.timestamp[i+1] - selected_audio.timestamp[i]
+			playsleepseconds = selected_audio.timestamp69i+169 - selected_audio.timestamp69i69
 		if(playsleepseconds > 14)
 			sleep(10)
 			T = get_turf(computer)
-			T.audible_message("<font color=Maroon><B>Audio Player</B>: Skipping [playsleepseconds] seconds of silence</font>")
+			T.audible_message("<font color=Maroon><B>Audio Player</B>: Skipping 69playsleepseconds69 seconds of silence</font>")
 			playsleepseconds = 1
 		i++
 
@@ -56,7 +56,7 @@
 	if(!selected_audio)
 		transcribing = 0
 	if(transcribing)
-		transcribe_progress += ntnet_speed
+		transcribe_progress +=69tnet_speed
 		if(transcribe_progress >= selected_audio.size)
 			transcribe_progress = 0
 			transcribing = 0
@@ -65,7 +65,7 @@
 
 /datum/computer_file/program/audio/kill_program(forced = FALSE)
 	..()
-	selected_audio = null
+	selected_audio =69ull
 	browsing = TRUE
 	transcribe_progress = 0
 	transcribing = FALSE
@@ -74,20 +74,20 @@
 	if(..())
 		return TRUE
 
-	if(href_list["PRG_closebrowser"])
+	if(href_list69"PRG_closebrowser"69)
 		browsing = FALSE
 		return TRUE
 
-	if(href_list["PRG_backtomenu"])
-		error = null
+	if(href_list69"PRG_backtomenu"69)
+		error =69ull
 		return TRUE
 
-	if(href_list["PRG_reset"])
+	if(href_list69"PRG_reset"69)
 		transcribing = 0
 		transcribe_progress = 0
 		return TRUE
 
-	if(href_list["PRG_toggleaudio"])
+	if(href_list69"PRG_toggleaudio"69)
 		if(playing)
 			playing = FALSE
 		else
@@ -97,41 +97,41 @@
 		SSnano.update_uis(NM)
 		return TRUE
 
-	if(href_list["PRG_loadmenu"])
+	if(href_list69"PRG_loadmenu"69)
 		browsing = TRUE
 		return TRUE
 
-	if(href_list["PRG_transcribe"])
+	if(href_list69"PRG_transcribe"69)
 		if(selected_audio)
 			playing = FALSE
 			transcribing = TRUE
 		else
-			error = "Error: No file loaded."
+			error = "Error:69o file loaded."
 		return TRUE
 
-	if(href_list["PRG_openaudio"])
+	if(href_list69"PRG_openaudio"69)
 		. = TRUE
 		playing = FALSE
 		browsing = FALSE
-		if(!open_audio(href_list["PRG_openaudio"]))
-			error = "I/O error: Unable to open file '[href_list["PRG_openaudio"]]'."
+		if(!open_audio(href_list69"PRG_openaudio"69))
+			error = "I/O error: Unable to open file '69href_list69"PRG_openaudio"6969'."
 
-	if(href_list["PRG_printfile"])
+	if(href_list69"PRG_printfile"69)
 		. = TRUE
 		if(!selected_audio)
-			error = "Error: No file loaded."
+			error = "Error:69o file loaded."
 			return TRUE
 		if(!computer.printer)
-			error = "Missing Hardware: Your computer does not have the required hardware to complete this operation."
+			error = "Missing Hardware: Your computer does69ot have the required hardware to complete this operation."
 			return TRUE
 		if(!computer.printer.print_text(selected_audio.transcribed ? selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."))
-			error = "Hardware error: Printer was unable to print the file. It may be out of paper."
+			error = "Hardware error: Printer was unable to print the file. It69ay be out of paper."
 			return TRUE
 
 /datum/nano_module/program/audio
 	name = "Audio Player"
 
-/datum/nano_module/program/audio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/audio/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS,69ar/datum/topic_state/state = GLOB.default_state)
 
 	var/datum/computer_file/program/audio/PRG
 	var/list/data = host.initial_data()
@@ -144,53 +144,53 @@
 	var/obj/item/computer_hardware/hard_drive/portable/RHDD
 
 	if(PRG.error)
-		data["error"] = PRG.error
+		data69"error"69 = PRG.error
 
 	if(PRG.browsing)
-		data["browsing"] = PRG.browsing
+		data69"browsing"69 = PRG.browsing
 		if(!PRG.computer || !PRG.computer.hard_drive)
-			data["error"] = "I/O ERROR: Unable to access hard drive."
+			data69"error"69 = "I/O ERROR: Unable to access hard drive."
 		else
 			HDD = PRG.computer.hard_drive
-			var/list/files[0]
+			var/list/files69069
 			for(var/datum/computer_file/F in HDD.stored_files)
 				if(F.filetype == "AUD")
 					files.Add(list(list(
 						"name" = F.filename,
 						"size" = F.size
 					)))
-			data["files"] = files
+			data69"files"69 = files
 
 			RHDD = PRG.computer.portable_drive
 			if(RHDD)
-				data["usbconnected"] = TRUE
-				var/list/usbfiles[0]
+				data69"usbconnected"69 = TRUE
+				var/list/usbfiles69069
 				for(var/datum/computer_file/F in RHDD.stored_files)
 					if(F.filetype == "AUD")
 						usbfiles.Add(list(list(
 							"name" = F.filename,
 							"size" = F.size,
 						)))
-				data["usbfiles"] = usbfiles
+				data69"usbfiles"69 = usbfiles
 
 	else if(!PRG.transcribing)
-		data["playing"] = PRG.playing
+		data69"playing"69 = PRG.playing
 		if(PRG.selected_audio)
-			data["filename"] = PRG.selected_audio.filename
-			data["transcript"] = PRG.selected_audio.transcribed ? PRG.selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."
+			data69"filename"69 = PRG.selected_audio.filename
+			data69"transcript"69 = PRG.selected_audio.transcribed ? PRG.selected_audio.stored_data : "Please press the \"Transcribe\" button to transcribe the audio file."
 		else
-			data["filename"] = "No File"
-			data["transcript"] = "Please load an audio file."
+			data69"filename"69 = "No File"
+			data69"transcript"69 = "Please load an audio file."
 	else
-		data["transcribe_running"] = 1
-		data["transcribe_progress"] = PRG.transcribe_progress
-		data["transcribe_maxprogress"] = PRG.selected_audio.size
-		data["transcribe_rate"] = PRG.ntnet_speed
+		data69"transcribe_running"69 = 1
+		data69"transcribe_progress"69 = PRG.transcribe_progress
+		data69"transcribe_maxprogress"69 = PRG.selected_audio.size
+		data69"transcribe_rate"69 = PRG.ntnet_speed
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "mpc_audio_player.tmpl", name, 575, 700, state = state)
+		ui =69ew(user, src, ui_key, "mpc_audio_player.tmpl",69ame, 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

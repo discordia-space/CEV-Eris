@@ -1,50 +1,50 @@
 body{font-family:Tahoma,sans-serif;}
 .top{font-size:12px;}
-a img {border:none;}
-.bgimages16 li {
-	padding:2px 10px 2px 30px;
-	background-position:6px center;
-	background-repeat:no-repeat;
+a im69 {border:none;}
+.b69ima69es16 li {
+	paddin69:2px 10px 2px 30px;
+	back69round-position:6px center;
+	back69round-repeat:no-repeat;
 	border:1px solid #ddd;
 	border-left:4px solid #999;
-	margin-bottom:2px;
+	mar69in-bottom:2px;
 }
-.bugfix {background-image:url(bug-minus.png)}
-.wip {background-image:url(hard-hat-exclamation.png)}
-.tweak {background-image:url(wrench-screwdriver.png)}
-.soundadd {background-image:url(music-plus.png)}
-.sounddel {background-image:url(music-minus.png)}
-.rscdel {background-image:url(cross-circle.png)}
-.rscadd {background-image:url(tick-circle.png)}
-.imageadd {background-image:url(image-plus.png)}
-.imagedel {background-image:url(image-minus.png)}
-.spellcheck {background-image:url(spell-check.png)}
-.experiment {background-image:url(burn-exclamation.png)}
-.maptweak {background-image:url(map-pencil.png)}
+.bu69fix {back69round-ima69e:url(bu69-minus.pn69)}
+.wip {back69round-ima69e:url(hard-hat-exclamation.pn69)}
+.tweak {back69round-ima69e:url(wrench-screwdriver.pn69)}
+.soundadd {back69round-ima69e:url(music-plus.pn69)}
+.sounddel {back69round-ima69e:url(music-minus.pn69)}
+.rscdel {back69round-ima69e:url(cross-circle.pn69)}
+.rscadd {back69round-ima69e:url(tick-circle.pn69)}
+.ima69eadd {back69round-ima69e:url(ima69e-plus.pn69)}
+.ima69edel {back69round-ima69e:url(ima69e-minus.pn69)}
+.spellcheck {back69round-ima69e:url(spell-check.pn69)}
+.experiment {back69round-ima69e:url(burn-exclamation.pn69)}
+.maptweak {back69round-ima69e:url(map-pencil.pn69)}
 .sansserif {font-size:12px;}
 .commit {
-	margin-bottom:20px;
-	font-size:100%;font-weight:normal;
+	mar69in-bottom:20px;
+	font-size:100%;font-wei69ht:normal;
 }
-.changes {
+.chan69es {
 	list-style:none;
-	margin:5px 0;
-	padding:0 0 0 25px;
+	mar69in:5px 0;
+	paddin69:0 0 0 25px;
 	font-size:0.8em;
 }
 .date {
-	margin:10px 0;
+	mar69in:10px 0;
 	color:blue;
 	border-bottom:2px solid #00f;
 	width:60%;
-	padding:2px 0;
+	paddin69:2px 0;
 	font-size:1em;
-	font-weight:bold;
+	font-wei69ht:bold;
 }	
 .author {
-	padding-left:10px;
-	margin:0;
-	font-weight:bold;
+	paddin69-left:10px;
+	mar69in:0;
+	font-wei69ht:bold;
 	font-size:0.9em;
 	}
 .drop {
@@ -52,26 +52,26 @@ a img {border:none;}
 	border:1px solid #999;
 	display:inline;
 	font-size:0.9em;
-	padding:1px 20px 1px 5px;
-	line-height:16px;
+	paddin69:1px 20px 1px 5px;
+	line-hei69ht:16px;
 }
 .hidden {display:none;}
 .indrop {
-	margin:2px 0 0 0;
+	mar69in:2px 0 0 0;
 	clear:both;
-	background:#fff;
+	back69round:#fff;
 	border:1px solid #ddd;
-	padding:5px 10px;
+	paddin69:5px 10px;
 	}
 .indrop p {
-	margin:0;
+	mar69in:0;
 	font-size:0.8em;
-	line-height:16px;
-	margin:1px 0;
+	line-hei69ht:16px;
+	mar69in:1px 0;
 }
-.indrop img {
-	margin-right:5px;
-	vertical-align:middle;}
-.closed {background:url(chevron-expand.png) right center no-repeat;}
-.open {background:url(chevron.png) right center no-repeat;}
+.indrop im69 {
+	mar69in-ri69ht:5px;
+	vertical-ali69n:middle;}
+.closed {back69round:url(chevron-expand.pn69) ri69ht center69o-repeat;}
+.open {back69round:url(chevron.pn69) ri69ht center69o-repeat;}
 .lic {font-size:9px;}

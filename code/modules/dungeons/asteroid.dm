@@ -1,6 +1,6 @@
 //////////////////////////////
 // An asteroid object, could be spawned in, or not
-// May or may not include phat lewt
+//69ay or69ay not include phat lewt
 //////////////////////////////
 /turf/simulated/mineral/random/rogue
 	var/floor_under	= /turf/simulated/floor/asteroid
@@ -33,9 +33,9 @@
 	var/obj/effect/landmark/asteroid_spawn/mylandmark	//The landmark I'm spawned at, if any.
 
 
-	//Asteroid map
-	//The map struct is:
-	// map list()
+	//Asteroid69ap
+	//The69ap struct is:
+	//69ap list()
 	//  0 = list()
 	//  1 = list() //These are x coordinates
 	//  2 = list()
@@ -48,8 +48,8 @@
 	var/list/map
 
 
-//Builds an empty map
-/datum/rogue/asteroid/New(var/core, var/tw, var/tu)
+//Builds an empty69ap
+/datum/rogue/asteroid/New(var/core,69ar/tw,69ar/tu)
 
 	if(core)
 		coresize = core
@@ -64,7 +64,7 @@
 
 
 /////////////////////////////
-// Predefined asteroid maps
+// Predefined asteroid69aps
 /////////////////////////////
 /datum/rogue/asteroid/predef
 	width = 3 //Small 1-tile room by default.
@@ -76,7 +76,7 @@
 	if(!x || !y || !thing)
 		return
 
-	var/list/work = map[x][y]
+	var/list/work =69ap69x6969y69
 	work.Add(thing)
 
 //Abandoned 1-tile hollow cargo box (pressurized).
@@ -139,7 +139,7 @@
 		spot_add(4,3,/obj/spawner/contraband) //Right loot
 
 		if(prob(30))
-			spot_add(3,3,/mob/living/simple_animal/hostile/alien) //And maybe a friend.
+			spot_add(3,3,/mob/living/simple_animal/hostile/alien) //And69aybe a friend.
 
 
 /datum/rogue/asteroid/predef/teleporter
@@ -199,29 +199,29 @@
 			break
 		else
 			sleep(250)
-	for(var/obj/asteroid_spawner/SP in myarea.asteroid_spawns)
+	for(var/obj/asteroid_spawner/SP in69yarea.asteroid_spawns)
 		if(prob(85))
 			rockspawns += SP
-	for(var/obj/rogue_mobspawner/MS in myarea.mob_spawns)
+	for(var/obj/rogue_mobspawner/MS in69yarea.mob_spawns)
 		if(prob(50))
-			mobspawns += MS
+			mobspawns +=69S
 	for(var/obj/asteroid_spawner/SP in rockspawns)
 		var/datum/rogue/asteroid/AS = generate_asteroid()
 		place_asteroid(AS,SP)
 		if(delay)
 			sleep(delay)
-	for(var/obj/rogue_mobspawner/MS in mobspawns)
+	for(var/obj/rogue_mobspawner/MS in69obspawns)
 		if(!istype(get_turf(MS),/turf/space))
-			mobspawns -= MS
-			for(var/obj/rogue_mobspawner/NS in myarea.mob_spawns)
-				if(NS in mobspawns)
+			mobspawns -=69S
+			for(var/obj/rogue_mobspawner/NS in69yarea.mob_spawns)
+				if(NS in69obspawns)
 					continue
 				if(istype(get_turf(NS),/turf/space))
 					MS = NS
 					break
 		if(MS)
 			var/mobchoice = pick(mobgenlist)
-			var/mob/living/newmob = new mobchoice(get_turf(MS))
+			var/mob/living/newmob = new69obchoice(get_turf(MS))
 			newmob.faction = "asteroid_belt" //so they won't just kill each other
 	var/teleporter = pick(myarea.teleporter_spawns)
 	generate_teleporter(teleporter)
@@ -231,7 +231,7 @@
 	var/TPBUILD = new TPPREFAB(null)
 	place_asteroid(TPBUILD, TP)
 
-/obj/asteroid_generator/proc/generate_asteroid(var/core_min = 2, var/core_max = 5)
+/obj/asteroid_generator/proc/generate_asteroid(var/core_min = 2,69ar/core_max = 5)
 	if(prob(15))
 		var/prefab = pick(prefabs)
 		var/prefabinst = new prefab(null)
@@ -246,7 +246,7 @@
 
 	var/max_armlen = A.coresize - 1 //Can tweak to change appearance.
 
-	//Add the arms to the asteroid's map
+	//Add the arms to the asteroid's69ap
 	//Vertical arms
 	for(var/x = A.coresize+1, x <= A.coresize*2, x++) //Start at leftmost side of core, work towards higher X.
 		var/B_arm = rand(0,max_armlen)
@@ -286,10 +286,10 @@
 
 
 	for(var/Ix=1, Ix <= A.map.len, Ix++)
-		var/list/curr_x = A.map[Ix]
+		var/list/curr_x = A.map69Ix69
 
 		for(var/Iy=1, Iy <= curr_x.len, Iy++)
-			var/list/curr_y = curr_x[Iy]
+			var/list/curr_y = curr_x69Iy69
 
 			var/world_x = BLx+Ix
 			var/world_y = BLy+Iy

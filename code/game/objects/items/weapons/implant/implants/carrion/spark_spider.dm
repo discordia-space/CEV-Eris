@@ -1,6 +1,6 @@
 /obj/item/implant/carrion_spider/spark
 	name = "spark spider"
-	desc = "The match is struck"
+	desc = "The69atch is struck"
 	icon_state = "spiderling_spark"
 	spider_price = 5
 

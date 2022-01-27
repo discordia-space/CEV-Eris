@@ -37,4 +37,4 @@ datum/preferences/proc/update_preview_icon(var/naked = FALSE)
 	preview_north.Scale(preview_north.Width() * 2, preview_north.Height() * 2)
 	preview_south.Scale(preview_south.Width() * 2, preview_south.Height() * 2)
 	preview_icon.Scale(preview_icon.Width() * 2, preview_icon.Height() * 2) 
-	return mannequin.icon
+	return69annequin.icon

@@ -13,7 +13,7 @@
 	attack_self(mob/user)
 		var/obj/structure/closet/body_bag/R = new /obj/structure/closet/body_bag(user.loc)
 		R.add_fingerprint(user)
-		qdel(src)
+		69del(src)
 
 
 /obj/structure/closet/body_bag
@@ -29,14 +29,14 @@
 	var/contains_body = 0
 	layer = LOW_OBJ_LAYER+0.01
 
-/obj/structure/closet/body_bag/attackby(W as obj, mob/user)
+/obj/structure/closet/body_bag/attackby(W as obj,69ob/user)
 	if (istype(W, /obj/item/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
+		var/t = input(user, "What would you like the label to be?", text("6969", src.name), null)  as text
 		if (user.get_active_hand() != W)
 			return
 		if (!in_range(src, user) && src.loc != user)
 			return
-		t = sanitizeSafe(t, MAX_NAME_LEN)
+		t = sanitizeSafe(t,69AX_NAME_LEN)
 		if (t)
 			src.name = "body bag - "
 			src.name += t
@@ -67,10 +67,10 @@
 		if(!ishuman(usr))	return
 		if(opened)	return 0
 		if(contents.len)	return 0
-		visible_message("[usr] folds up the [src.name]")
+		visible_message("69usr69 folds up the 69src.name69")
 		new item_path(get_turf(src))
 		spawn(0)
-			qdel(src)
+			69del(src)
 		return
 
 /obj/structure/closet/body_bag/update_icon()
@@ -91,7 +91,7 @@
 /obj/item/bodybag/expanded/attack_self(mob/user)
 	var/obj/structure/closet/body_bag/expanded/R = new /obj/structure/closet/body_bag/expanded(user.loc)
 	R.add_fingerprint(user)
-	qdel(src)
+	69del(src)
 
 /obj/structure/closet/body_bag/expanded
 	name = "expanded body bag"
@@ -111,12 +111,12 @@
 /obj/item/bodybag/cryobag/attack_self(mob/user)
 	var/obj/structure/closet/body_bag/cryobag/R = new /obj/structure/closet/body_bag/cryobag(user.loc)
 	R.add_fingerprint(user)
-	qdel(src)
+	69del(src)
 
 /obj/structure/closet/body_bag/cryobag
 	name = "stasis bag"
 	desc = "A non-reusable plastic bag designed to prevent additional damage to an occupant. Especially useful if short on time or in \
-	a hostile enviroment. This one features a much more advanced design that preserves its occupant in cryostasis."
+	a hostile enviroment. This one features a69uch69ore advanced design that preserves its occupant in cryostasis."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_misc = 0
@@ -130,7 +130,7 @@
 	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
-	qdel(tank)
+	69del(tank)
 	tank = null
 	return ..()
 
@@ -142,7 +142,7 @@
 		O.icon = src.icon
 		O.icon_state = "bodybag_used"
 		O.desc = "A used bodybag. It's nothing but trash now."
-		qdel(src)
+		69del(src)
 
 /obj/structure/closet/body_bag/cryobag/Entered(atom/movable/AM)
 	if(ishuman(AM))
@@ -157,20 +157,20 @@
 		H.ExitStasis()
 	..()
 
-/obj/structure/closet/body_bag/cryobag/return_air() //Used to make stasis bags protect from vacuum.
+/obj/structure/closet/body_bag/cryobag/return_air() //Used to69ake stasis bags protect from69acuum.
 	if(tank)
 		return tank.air_contents
 	..()
 
 /obj/structure/closet/body_bag/cryobag/examine(mob/user)
 	..()
-	if(Adjacent(user)) //The bag's rather thick and opaque from a distance.
-		to_chat(user, "<span class='info'>You peer into \the [src].</span>")
+	if(Adjacent(user)) //The bag's rather thick and opa69ue from a distance.
+		to_chat(user, "<span class='info'>You peer into \the 69src69.</span>")
 		for(var/mob/living/L in contents)
 			L.examine(user)
 
-/obj/structure/closet/body_bag/cryobag/attackby(obj/item/W, mob/user)
+/obj/structure/closet/body_bag/cryobag/attackby(obj/item/W,69ob/user)
 	if(opened)
 		..()
-	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
+	else //Allows the bag to respond to a health analyzer by analyzing the69ob inside without needing to open it.
 		..()

@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/megafauna/hivemind_tyrant
 	name = "Hivemind Tyrant"
-	desc = "Hivemind's will, manifested in flesh and metal."
+	desc = "Hivemind's will,69anifested in flesh and69etal."
 
 	faction = "hive"
-	mob_size = MOB_GIGANTIC
+	mob_size =69OB_GIGANTIC
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "hivemind_tyrant"
 	icon_living = "hivemind_tyrant"
@@ -12,11 +12,11 @@
 	ranged = TRUE
 
 	health = 1850
-	maxHealth = 1850 //Only way for it to show up right now is via adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
+	maxHealth = 1850 //Only way for it to show up right69ow is69ia adminbus OR Champion call (which gives it 150hp). For comparison Kaiser has 2000hp
 	break_stuff_probability = 95
 
 	melee_damage_lower = 30
-	melee_damage_upper = 35 //similar damage to the mechiver
+	melee_damage_upper = 35 //similar damage to the69echiver
 	megafauna_min_cooldown = 50
 	megafauna_max_cooldown = 80
 
@@ -51,7 +51,7 @@
 	ranged_cooldown = world.time + 120
 	walk(src, 0)
 	telegraph()
-	spawn(rand(megafauna_min_cooldown, megafauna_max_cooldown))
+	spawn(rand(megafauna_min_cooldown,69egafauna_max_cooldown))
 		if(prob(50))
 			random_shots()
 			move_to_delay = initial(move_to_delay)

@@ -1,321 +1,321 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"b" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+//MAP CONVERTED B69 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"b" = 69
+/ob69/structure/catwal69,
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"c" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"c" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"d" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"d" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/spawner/junk/low_chance,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/ob69/spawner/69un69/low_chance,
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"e" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"e" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"f" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"f" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"g" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"h" = (
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"i" = (
-/obj/structure/railing,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"j" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/ob69/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"h" = 69
+/ob69/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"i" = 69
+/ob69/structure/railin69,
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"k" = (
-/obj/structure/catwalk,
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"l" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/ob69/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"l" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"m" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"m" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"n" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"n" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
-/area/deepmaint)
-"o" = (
-/obj/structure/table/standard,
+/area/deepmaint69
+"o" = 69
+/ob69/structure/table/standard,
 /turf/simulated/floor/tiled/techmaint_perforated,
-/area/deepmaint)
-"p" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/area/deepmaint69
+"p" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"q" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"r" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"r" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/spawner/junk/low_chance,
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"s" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/pack/rare/low_chance,
+/ob69/spawner/69un69/low_chance,
+/ob69/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"s" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/rare/low_chance,
+/ob69/spawner/pac69/rare/low_chance,
 /turf/simulated/floor/tiled/techmaint_perforated,
-/area/deepmaint)
-"t" = (
-/obj/structure/bed/chair{
+/area/deepmaint69
+"t" = 69
+/ob69/structure/bed/chair{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint_perforated,
-/area/deepmaint)
-"u" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/area/deepmaint69
+"u" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/spawner/junk/low_chance,
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"v" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/ob69/spawner/69un69/low_chance,
+/ob69/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"v" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"w" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"w" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/structure/railing,
-/obj/spawner/junk/low_chance,
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/ob69/structure/railin69,
+/ob69/spawner/69un69/low_chance,
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"x" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"y" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"z" = (
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"x" = 69
+/ob69/spawner/pac69/machine,
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"69" = 69
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"z" = 69
 /turf/simulated/floor/tiled/techmaint_perforated,
-/area/deepmaint)
-"A" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/area/deepmaint69
+"A" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/structure/railing,
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/ob69/structure/railin69,
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"B" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"B" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"C" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"C" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"D" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"D" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"E" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/ob69/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"E" = 69
+/ob69/structure/railin69,
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"F" = (
-/obj/structure/railing,
-/obj/spawner/junk/low_chance,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"F" = 69
+/ob69/structure/railin69,
+/ob69/spawner/69un69/low_chance,
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"G" = (
-/obj/structure/railing,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/railin69,
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"H" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"H" = 69
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"I" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/ob69/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"I" = 69
+/ob69/structure/railin69,
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/ob69/machiner69/atmospherics/pipe/simple/visible/69ellow{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 b
 a
@@ -328,20 +328,20 @@ a
 b
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
-g
+69
 a
 l
-q
+69
 w
 a
 B
 E
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 d
 h
@@ -354,20 +354,20 @@ C
 F
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 e
 i
-k
+69
 a
 a
-y
+69
 a
 D
-G
+69
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 e
 h
@@ -380,7 +380,7 @@ C
 H
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 e
 i
@@ -393,7 +393,7 @@ C
 F
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 e
 h
@@ -403,23 +403,23 @@ s
 z
 a
 C
-G
+69
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 e
 i
-k
+69
 a
 a
-y
+69
 a
 C
 F
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 d
 h
@@ -429,13 +429,13 @@ u
 x
 a
 D
-G
+69
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 f
-j
+69
 a
 p
 v
@@ -445,7 +445,7 @@ m
 I
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 b
 a

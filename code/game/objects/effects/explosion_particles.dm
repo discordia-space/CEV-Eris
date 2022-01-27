@@ -9,7 +9,7 @@
 /obj/effect/expl_particles/New()
 	..()
 	spawn (15)
-		qdel(src)
+		69del(src)
 	return
 
 /datum/effect/system/expl_particles
@@ -45,7 +45,7 @@
 /obj/effect/explosion/New()
 	..()
 	spawn (10)
-		qdel(src)
+		69del(src)
 	return
 
 /datum/effect/system/explosion

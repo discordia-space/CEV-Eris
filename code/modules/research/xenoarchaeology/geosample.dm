@@ -28,7 +28,7 @@
 
 /obj/item/rocksliver/Initialize(mapload)
 	. = ..()
-	icon_state = "sliver[rand(1,3)]"
+	icon_state = "sliver69rand(1,3)69"
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 
@@ -40,19 +40,19 @@
 	var/age_thousand = 0
 	var/age_million = 0
 	var/age_billion = 0
-	var/artifact_id = ""					//id of a nearby artifact, if there is one
+	var/artifact_id = ""					//id of a69earby artifact, if there is one
 	var/artifact_distance = -1				//proportional to distance
-	var/source_mineral = "chlorine"			//machines will pop up a warning telling players that the sample may be confused
+	var/source_mineral = "chlorine"			//machines will pop up a warning telling players that the sample69ay be confused
 	//
 	//var/source_mineral
-	//all potential finds are initialised to null, so nullcheck before you access them
+	//all potential finds are initialised to69ull, so69ullcheck before you access them
 	var/list/find_presence = list()
 
 /datum/geosample/New(var/turf/simulated/mineral/container)
 
 	UpdateTurf(container)
 
-//this should only need to be called once
+//this should only69eed to be called once
 /datum/geosample/proc/UpdateTurf(var/turf/simulated/mineral/container)
 	set background = 1
 	if(!container || !istype(container))
@@ -63,38 +63,38 @@
 	if(container.mineral)
 		if(islist(container.mineral.xarch_ages))
 			var/list/ages = container.mineral.xarch_ages
-			if(ages["thousand"])
-				age_thousand = rand(1,ages["thousand"])
-			if(ages["million"])
-				age_million = rand(1,ages["million"])
-			if(ages["billion"])
-				if(ages["billion_lower"])
-					age_billion = rand(ages["billion_lower"],ages["billion"])
+			if(ages69"thousand"69)
+				age_thousand = rand(1,ages69"thousand"69)
+			if(ages69"million"69)
+				age_million = rand(1,ages69"million"69)
+			if(ages69"billion"69)
+				if(ages69"billion_lower"69)
+					age_billion = rand(ages69"billion_lower"69,ages69"billion"69)
 				else
-					age_billion = rand(1,ages["billion"])
+					age_billion = rand(1,ages69"billion"69)
 		if(container.mineral.xarch_source_mineral)
 			source_mineral = container.mineral.xarch_source_mineral
 
 	if(prob(75))
-		find_presence["phosphorus"] = rand(1,500) / 100
+		find_presence69"phosphorus"69 = rand(1,500) / 100
 	if(prob(25))
-		find_presence["mercury"] = rand(1,500) / 100
-	find_presence["chlorine"] = rand(500,2500) / 100
+		find_presence69"mercury"69 = rand(1,500) / 100
+	find_presence69"chlorine"69 = rand(500,2500) / 100
 
 	//loop over finds, grab any relevant stuff
 	for(var/datum/find/F in container.finds)
 		var/responsive_reagent = get_responsive_reagent(F.find_type)
-		find_presence[responsive_reagent] = F.dissonance_spread
+		find_presence69responsive_reagent69 = F.dissonance_spread
 
-	//loop over again to reset values to percentages
+	//loop over again to reset69alues to percentages
 	var/total_presence = 0
 	for(var/carrier in find_presence)
-		total_presence += find_presence[carrier]
+		total_presence += find_presence69carrier69
 	for(var/carrier in find_presence)
-		find_presence[carrier] = find_presence[carrier] / total_presence
+		find_presence69carrier69 = find_presence69carrier69 / total_presence
 
 	/*for(var/entry in find_presence)
-		total_spread += find_presence[entry]*/
+		total_spread += find_presence69entry69*/
 
 //have this separate from UpdateTurf() so that we dont have a billion turfs being updated (redundantly) every time an artifact spawns
 /datum/geosample/proc/UpdateNearbyArtifactInfo(var/turf/simulated/mineral/container)

@@ -4,14 +4,14 @@
 	incompatible = list(/datum/relation/enemy)
 
 /datum/relation/friend/get_desc_string()
-	return "[holder] and [other.holder] seem to be on good terms."
+	return "69holder69 and 69other.holder69 seem to be on good terms."
 
 /datum/relation/kid_friend
 	name = "Childhood Friend"
 	desc = "You have known them since you were both young."
 
 /datum/relation/kid_friend/get_desc_string()
-	return "[holder] and [other.holder] knew each other when they were both young."
+	return "69holder69 and 69other.holder69 knew each other when they were both young."
 
 /datum/relation/kid_friend/get_candidates()
 	var/list/creche = ..()
@@ -33,15 +33,15 @@
 	incompatible = list(/datum/relation/friend)
 
 /datum/relation/enemy/get_desc_string()
-	return "[holder] and [other.holder] do not get along well."
+	return "69holder69 and 69other.holder69 do not get along well."
 
 /datum/relation/had_crossed
 	name = "Crossed"
-	desc = "You have slighted them in the past, and they most likely hold a grudge against you."
+	desc = "You have slighted them in the past, and they69ost likely hold a grudge against you."
 	can_connect_to = list(/datum/relation/was_crossed)
 
 /datum/relation/had_crossed/get_desc_string()
-	return "Something has happened between [holder] and [other.holder] in the past, and [other.holder] is upset about it."
+	return "Something has happened between 69holder69 and 69other.holder69 in the past, and 69other.holder69 is upset about it."
 
 /datum/relation/was_crossed
 	name = "Was Crossed"
@@ -49,14 +49,14 @@
 	can_connect_to = list(/datum/relation/had_crossed)
 
 /datum/relation/was_crossed/get_desc_string()
-	return "Something has happened between [holder] and [other.holder] in the past, and [holder] is upset about it."
+	return "Something has happened between 69holder69 and 69other.holder69 in the past, and 69holder69 is upset about it."
 
 /datum/relation/rival
 	name = "Rival"
 	desc = "You are engaged in a constant struggle to show who's number one."
 
 /datum/relation/rival/get_desc_string()
-	return "[holder] and [other.holder] are fiercely competitive towards one another."
+	return "69holder69 and 69other.holder69 are fiercely competitive towards one another."
 
 /datum/relation/rival/get_candidates()
 	var/list/rest = ..()
@@ -80,4 +80,4 @@
 	desc = "You used to be romantically involved, but not anymore."
 
 /datum/relation/ex/get_desc_string()
-	return "[holder] and [other.holder] used to be an item, but not anymore."
+	return "69holder69 and 69other.holder69 used to be an item, but not anymore."

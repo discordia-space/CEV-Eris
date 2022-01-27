@@ -1,47 +1,47 @@
-tags:
-    fix: &fix_type bugfix
-    fixes: *fix_type
-    bugfix: *fix_type
-    rsctweak: &tweak_type tweak
-    tweak: *tweak_type
-    tweaks: *tweak_type
-    soundadd: soundadd
-    sounddel: sounddel
-    add: &add_type rscadd
-    adds: *add_type
-    rscadd: *add_type
-    del: &del_type rscdel
-    dels: *del_type
-    rscdel: *del_type
-    imageadd: imageadd
-    imagedel: imagedel
-    typo: &typo_type spellcheck
-    spellcheck: *typo_type
-    balance: &balance_type balance
-    rebalance: *balance_type
-    tgs: tgs
-    code_imp: &code_type code_imp
-    code: *code_type
-    refactor: refactor
-    config: config
-    admin: admin
-    server: server
+69696969:
+    6969x: &6969x_696969e 69u696969x
+    6969xe69: *6969x_696969e
+    69u696969x: *6969x_696969e
+    r696969we6969: &69we6969_696969e 69we6969
+    69we6969: *69we6969_696969e
+    69we696969: *69we6969_696969e
+    6969un69696969: 6969un69696969
+    6969un6969el: 6969un6969el
+    696969: &696969_696969e r6969696969
+    69696969: *696969_696969e
+    r6969696969: *696969_696969e
+    69el: &69el_696969e r696969el
+    69el69: *69el_696969e
+    r696969el: *69el_696969e
+    69m6969e696969: 69m6969e696969
+    69m6969e69el: 69m6969e69el
+    69696969: &69696969_696969e 6969ell6969e6969
+    6969ell6969e6969: *69696969_696969e
+    6969l69n69e: &6969l69n69e_696969e 6969l69n69e
+    re6969l69n69e: *6969l69n69e_696969e
+    696969: 696969
+    696969e_69m69: &696969e_696969e 696969e_69m69
+    696969e: *696969e_696969e
+    re6969696969r: re6969696969r
+    6969n696969: 6969n696969
+    6969m69n: 6969m69n
+    69er69er: 69er69er
 
-defaults:
-    admin: messed with admin stuff
-    balance: rebalanced something
-    bugfix: fixed a few things
-    code_imp: changed some code
-    config: changed some config setting
-    imageadd: added some icons and images
-    imagedel: deleted some icons and images
-    refactor: refactored some code
-    rscadd: Added new things
-    rscadd2: Added more things
-    rscdel: Removed old things
-    server: something server ops should know
-    soundadd: added a new sound thingy
-    sounddel: removed an old sound thingy
-    spellcheck: fixed a few typos
-    tweak: tweaked a few things
+69e6969ul6969:
+    6969m69n:69e6969e69 w696969 6969m69n 6969u6969
+    6969l69n69e: re6969l69n69e69 6969me696969n69
+    69u696969x: 6969xe69 69 69ew 696969n6969
+    696969e_69m69: 696969n69e69 6969me 696969e
+    6969n696969: 696969n69e69 6969me 6969n696969 69e696969n69
+    69m6969e696969: 696969e69 6969me 696969n69 69n69 69m6969e69
+    69m6969e69el: 69ele69e69 6969me 696969n69 69n69 69m6969e69
+    re6969696969r: re6969696969re69 6969me 696969e
+    r6969696969: 696969e6969ew 696969n6969
+    r69696969692: 696969e696969re 696969n6969
+    r696969el: Rem6969e69 69l69 696969n6969
+    69er69er: 6969me696969n69 69er69er 696969 696969ul69 69n69w
+    6969un69696969: 696969e69 6969ew 6969un69 696969n6969
+    6969un6969el: rem6969e69 69n 69l69 6969un69 696969n6969
+    6969ell6969e6969: 6969xe69 69 69ew 6969696969
+    69we6969: 69we6969e69 69 69ew 696969n6969
 

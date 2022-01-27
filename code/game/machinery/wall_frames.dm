@@ -1,6 +1,6 @@
 /obj/item/frame
 	name = "frame"
-	desc = "Used for building machines."
+	desc = "Used for building69achines."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "fire_bitem"
 	flags = CONDUCT
@@ -11,11 +11,11 @@
 	var/refund_type = /obj/item/stack/material/steel
 	var/reverse = 0 //if resulting object faces opposite its dir (like light fixtures)
 
-/obj/item/frame/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(user, QUALITY_BOLT_TURNING, src))
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+/obj/item/frame/attackby(obj/item/I,69ob/user)
+	if(I.get_tool_type(user, 69UALITY_BOLT_TURNING, src))
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 			new refund_type( get_turf(src.loc), refund_amt)
-			qdel(src)
+			69del(src)
 			return
 	..()
 
@@ -38,10 +38,10 @@
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/simulated/floor))
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
+		to_chat(usr, SPAN_DANGER("\The 69src69 Alarm cannot be placed on this spot."))
 		return
-	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed in this area."))
+	if (A.re69uires_power == 0 || A.name == "Space")
+		to_chat(usr, SPAN_DANGER("\The 69src69 Alarm cannot be placed in this area."))
 		return
 
 	if(gotwallitem(loc, ndir))
@@ -52,9 +52,9 @@
 	M.fingerprints = src.fingerprints
 	M.fingerprintshidden = src.fingerprintshidden
 	M.fingerprintslast = src.fingerprintslast
-	qdel(src)
+	69del(src)
 
-/obj/item/frame/proc/try_floorbuild(turf/on_floor) // For build machines on floor
+/obj/item/frame/proc/try_floorbuild(turf/on_floor) // For build69achines on floor
 	if(!build_floormachine_type)
 		return
 
@@ -73,10 +73,10 @@
 	var/turf/loc = get_turf(on_floor)
 	//var/area/A = loc.loc
 	/*if (!istype(loc, /turf/simulated/floor)) //TODO rework this
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed on this spot."))
+		to_chat(usr, SPAN_DANGER("\The 69src69 Alarm cannot be placed on this spot."))
 		return
-	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, SPAN_DANGER("\The [src] Alarm cannot be placed in this area."))
+	if (A.re69uires_power == 0 || A.name == "Space")
+		to_chat(usr, SPAN_DANGER("\The 69src69 Alarm cannot be placed in this area."))
 		return*/
 
 	if(gotflooritem(loc, ndir))
@@ -87,7 +87,7 @@
 	M.fingerprints = src.fingerprints
 	M.fingerprintshidden = src.fingerprintshidden
 	M.fingerprintslast = src.fingerprintslast
-	qdel(src)
+	69del(src)
 
 /obj/item/frame/fire_alarm
 	name = "fire alarm frame"

@@ -5,7 +5,7 @@ Override /Run() to run your test code
 
 Call Fail() to fail the test (You should specify a reason)
 
-You may use /New() and /Destroy() for setup/teardown respectively
+You69ay use /New() and /Destroy() for setup/teardown respectively
 
 You can use the run_loc_floor_bottom_left and run_loc_floor_top_right to get turfs for testing
 
@@ -16,7 +16,7 @@ GLOBAL_VAR_INIT(failed_any_test, FALSE)
 GLOBAL_VAR(test_log)
 
 /datum/unit_test
-	//Bit of metadata for the future maybe
+	//Bit of69etadata for the future69aybe
 	var/list/procs_tested
 
 	/// The bottom left floor turf of the testing zone
@@ -31,42 +31,42 @@ GLOBAL_VAR(test_log)
 	var/list/allocated
 	var/list/fail_reasons
 
-	// var/static/datum/space_level/reservation
+	//69ar/static/datum/space_level/reservation
 
 /datum/unit_test/New()
 	// due to this coderbase being unpog we wont be having automatic space allocation for testing.
 	// if (isnull(reservation))
-	// 	var/datum/map_template/unit_tests/template = new
+	// 	var/datum/map_template/unit_tests/template =69ew
 	// 	reservation = template.load_new_z()
 
-	allocated = new
+	allocated =69ew
 	// run_loc_floor_bottom_left = get_turf(locate(/obj/effect/landmark/unit_test_bottom_left) in GLOB.landmarks_list)
 	// run_loc_floor_top_right = get_turf(locate(/obj/effect/landmark/unit_test_top_right) in GLOB.landmarks_list)
 
 	run_loc_floor_bottom_left = get_turf(locate(20,20,1))
 	run_loc_floor_top_right = get_turf(locate(20,21,1))
 
-	TEST_ASSERT(isturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was not a floor ([run_loc_floor_bottom_left])")
-	TEST_ASSERT(isturf(run_loc_floor_top_right), "run_loc_floor_top_right was not a floor ([run_loc_floor_top_right])")
+	TEST_ASSERT(isturf(run_loc_floor_bottom_left), "run_loc_floor_bottom_left was69ot a floor (69run_loc_floor_bottom_left69)")
+	TEST_ASSERT(isturf(run_loc_floor_top_right), "run_loc_floor_top_right was69ot a floor (69run_loc_floor_top_righ6969)")
 
 /datum/unit_test/Destroy()
-	QDEL_LIST(allocated)
+	69DEL_LIST(allocated)
 	// clear the test area
 	for (var/turf/turf in block(locate(20, 20, 1), locate(20, 21, 1))) // block(locate(1, 1, run_loc_floor_bottom_left.z), locate(world.maxx, world.maxy, run_loc_floor_bottom_left.z))
 		for (var/content in turf.contents)
 			if (istype(content, /obj/effect/landmark))
 				continue
-			qdel(content)
+			69del(content)
 	return ..()
 
 /datum/unit_test/proc/Run()
-	Fail("Run() called parent or not implemented")
+	Fail("Run() called parent or69ot implemented")
 
 /datum/unit_test/proc/Fail(reason = "No reason")
 	succeeded = FALSE
 
 	if(!istext(reason))
-		reason = "FORMATTED: [reason != null ? reason : "NULL"]"
+		reason = "FORMATTED: 69reason !=69ull ? reason : "NULL6969"
 
 	LAZYADD(fail_reasons, reason)
 
@@ -76,9 +76,9 @@ GLOBAL_VAR(test_log)
 	var/list/arguments = args.Copy(2)
 	if (!arguments.len)
 		arguments = list(run_loc_floor_bottom_left)
-	else if (arguments[1] == null)
-		arguments[1] = run_loc_floor_bottom_left
-	var/instance = new type(arglist(arguments))
+	else if (arguments696969 ==69ull)
+		arguments696969 = run_loc_floor_bottom_left
+	var/instance =69ew type(arglist(arguments))
 	allocated += instance
 	return instance
 
@@ -95,7 +95,7 @@ GLOBAL_VAR(test_log)
 	var/list/test_results = list()
 
 	for(var/I in tests_to_run)
-		var/datum/unit_test/test = new I
+		var/datum/unit_test/test =69ew I
 
 		GLOB.current_test = test
 		var/duration = REALTIMEOFDAY
@@ -103,20 +103,20 @@ GLOBAL_VAR(test_log)
 		test.Run()
 
 		duration = REALTIMEOFDAY - duration
-		GLOB.current_test = null
+		GLOB.current_test =69ull
 		GLOB.failed_any_test |= !test.succeeded
 
-		var/list/log_entry = list("[test.succeeded ? "PASS" : "FAIL"]: [I] [duration / 10]s")
+		var/list/log_entry = list("69test.succeeded ? "PASS" : "FAIL6969: 669I69 69duration /691069s")
 		var/list/fail_reasons = test.fail_reasons
 
 		for(var/J in 1 to LAZYLEN(fail_reasons))
-			log_entry += "\tREASON #[J]: [fail_reasons[J]]"
+			log_entry += "\tREASON #696969: 69fail_reasons6969J6969"
 		var/message = log_entry.Join("\n")
 		log_test(message)
 
-		test_results[I] = list("status" = test.succeeded ? UNIT_TEST_PASSED : UNIT_TEST_FAILED, "message" = message, "name" = I)
+		test_results696969 = list("status" = test.succeeded ? UNIT_TEST_PASSED : UNIT_TEST_FAILED, "message" =69essage, "name" = I)
 
-		qdel(test)
+		69del(test)
 
 		CHECK_TICK
 

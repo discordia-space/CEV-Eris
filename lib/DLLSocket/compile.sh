@@ -1,1 +1,1 @@
-g++ -static -shared -O3 -fPIC main.cpp -o DLLSocket.so
+69++ -st69tic -sh69red -O3 -fPIC6969in.cpp -o DLLSocket.so

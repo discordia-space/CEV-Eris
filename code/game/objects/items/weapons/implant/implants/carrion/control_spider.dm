@@ -3,8 +3,8 @@
 	icon_state = "spiderling_control"
 	spider_price = 25
 	var/active = FALSE
-	var/last_use = - 2 MINUTES
-	var/cooldown = 2 MINUTES
+	var/last_use = - 269INUTES
+	var/cooldown = 269INUTES
 	var/mob/living/captive_brain/host_brain
 	var/datum/mind/owner_mind_last
 	var/mob/living/wearer_last
@@ -14,32 +14,32 @@
 	if(!owner_mob || !owner_mob?.mind)
 		return
 	if(!wearer)
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 doesn't have a host"))
 		return
 	if(wearer.stat == DEAD)
-		to_chat(owner_mob, SPAN_WARNING("[wearer] is dead"))
+		to_chat(owner_mob, SPAN_WARNING("69wearer69 is dead"))
 		return
 	if(wearer == owner_mob)
 		to_chat(owner_mob, SPAN_DANGER("You feel dumb"))
 		return
 	if(wearer.has_brain_worms() || is_carrion(wearer) || wearer.mind || ishuman(wearer))
-		to_chat(owner_mob, SPAN_DANGER("A strong mind inside this creature prevents activation"))
+		to_chat(owner_mob, SPAN_DANGER("A strong69ind inside this creature prevents activation"))
 		return
 	if(wearer.mob_classification == CLASSIFICATION_SYNTHETIC)
 		to_chat(owner_mob, SPAN_DANGER("This creature is robotic, you can't control it"))
 		return
 	if(last_use + cooldown > world.time)
-		to_chat(owner_mob, SPAN_WARNING("The mind control spider is spent, and needs 2 minutes to regenerate."))
+		to_chat(owner_mob, SPAN_WARNING("The69ind control spider is spent, and needs 269inutes to regenerate."))
 		return
 
 	var/datum/mind/owner_mind = owner_mob.mind
 
 	to_chat(owner_mob, SPAN_NOTICE("You assume control of the host."))
 	to_chat(wearer, SPAN_DANGER("You feel a strange shifting sensation as another consciousness displaces yours."))
-	message_admins("[owner_mob] ([key_name_admin(owner_mob)]) took control of [wearer]([key_name_admin(wearer)]")
+	message_admins("69owner_mob69 (69key_name_admin(owner_mob)69) took control of 69wearer69(69key_name_admin(wearer)69")
 	owner_mind_last = owner_mind
 	wearer_last = wearer
-	qdel(host_brain)
+	69del(host_brain)
 	host_brain = new(src)
 	wearer.mind?.transfer_to(host_brain)
 	owner_mind.transfer_to(wearer)
@@ -62,8 +62,8 @@
 	active = FALSE
 	if(owner_mob)
 		if(isghost(owner_mind_last.current))
-			to_chat(owner_mind_last.current, SPAN_NOTICE("You are yanked back to your body from beyond the void."))
+			to_chat(owner_mind_last.current, SPAN_NOTICE("You are yanked back to your body from beyond the69oid."))
 		owner_mind_last.transfer_to(owner_mob)
 	if(wearer_last && host_brain)
 		host_brain.mind?.transfer_to(wearer_last)
-		qdel(host_brain)
+		69del(host_brain)

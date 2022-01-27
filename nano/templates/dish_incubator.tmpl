@@ -1,123 +1,123 @@
-<div class="item">
-  <div class="itemContent">
-    {{:helper.link('Close', 'gear', {'close' : '1'}, null, 'fixedLeft')}}
-  </div>
-</div>
+<di69 cl69ss="item">
+  <di69 cl69ss="itemContent">
+    {{:69elper.lin6969'Close', '69e69r', {'close' : '1'},69ull, 'fixedLeft'69}}
+  </di69>
+</di69>
 
-<div class="item">
-  <h2>Environmental Conditions</h2>
-</div>
-<div class="item">
-  <div class="itemLabel">
+<di69 cl69ss="item">
+  <692>En69ironment69l Conditions</692>
+</di69>
+<di69 cl69ss="item">
+  <di69 cl69ss="itemL6969el">
     Power:
-  </div>
-  <div class="itemContent">
-    {{:helper.link('On', 'power', { 'power' : 1 }, !data.dish_inserted ? 'disabled' : data.on ? 'selected' : null)}}{{:helper.link('Off', 'close', { 'power' : 1 }, data.on ? null : 'selected')}}
-  </div>
-</div>
-<div class='item'>
-  {{:helper.link('Add Radiation', 'radiation', {'rad' : 1})}}
-  {{:helper.link('Flush System', 'trash', {'flush' : 1}, data.system_in_use ? null : 'disabled')}}
-</div>
+  </di69>
+  <di69 cl69ss="itemContent">
+    {{:69elper.lin6969'On', 'power', { 'power' : 1 }, !d69t69.dis69_inserted ? 'dis6969led' : d69t69.on ? 'selected' :69ull69}}{{:69elper.lin6969'Off', 'close', { 'power' : 1 }, d69t69.on ?69ull : 'selected'69}}
+  </di69>
+</di69>
+<di69 cl69ss='item'>
+  {{:69elper.lin6969'69dd R69di69tion', 'r69di69tion', {'r69d' : 1}69}}
+  {{:69elper.lin6969'Flus69 S69stem', 'tr69s69', {'flus69' : 1}, d69t69.s69stem_in_use ?69ull : 'dis6969led'69}}
+</di69>
 
-<div class="statusDisplay" style="height: 100px; overflow: auto;">
-  <div class='item'>
-    <div class="itemLabel">
-      <span class='good'>Virus Food:</span>
-    </div>
-    <div class="itemContent">
-      {{:helper.displayBar(data.food_supply, 0, 100, 'good', data.food_supply)}}
-    </div>
-  </div>
-  <div class='item'>
-    <div class="itemLabel">
-      <span class='good'>Radiation Level:</span>
-    </div>
-    <div class="itemContent">
-      {{:helper.displayBar(data.radiation, 0, 100, (data.radiation >= 50) ? 'bad' : (data.growth >= 25) ? 'average' : 'good')}}
-      <br/>
-      {{:helper.formatNumber(data.radiation * 10000)}} <acronym title='In microSieverts'>&micro;Sv</acronym>
-    </div>
-  </div>
-  <div class='item'>
-    <div class="itemLabel">
-      <span class='good'>Toxicity:</span>
-    </div>
-    <div class="itemContent">
-      {{:helper.displayBar(data.toxins, 0, 100, (data.toxins >= 50) ? 'bad' : (data.toxins >= 25) ? 'average' : 'good', data.toxins + '%')}}
-    </div>
-  </div>
-</div>
+<di69 cl69ss="st69tusDispl6969" st69le="69ei6969t: 100px; o69erflow: 69uto;">
+  <di69 cl69ss='item'>
+    <di69 cl69ss="itemL6969el">
+      <sp69n cl69ss='69ood'>69irus Food:</sp69n>
+    </di69>
+    <di69 cl69ss="itemContent">
+      {{:69elper.displ69696969r69d69t69.food_suppl69, 0, 100, '69ood', d69t69.food_suppl6969}}
+    </di69>
+  </di69>
+  <di69 cl69ss='item'>
+    <di69 cl69ss="itemL6969el">
+      <sp69n cl69ss='69ood'>R69di69tion Le69el:</sp69n>
+    </di69>
+    <di69 cl69ss="itemContent">
+      {{:69elper.displ69696969r69d69t69.r69di69tion, 0, 100, 69d69t69.r69di69tion >= 5069 ? '6969d' : 69d69t69.69rowt69 >= 2569 ? '6969er6969e' : '69ood'69}}
+      <69r/>
+      {{:69elper.form69tNum69er69d69t69.r69di69tion * 1000069}} <69cron69m title='In69icroSie69erts'>&micro;S69</69cron69m>
+    </di69>
+  </di69>
+  <di69 cl69ss='item'>
+    <di69 cl69ss="itemL6969el">
+      <sp69n cl69ss='69ood'>Toxicit69:</sp69n>
+    </di69>
+    <di69 cl69ss="itemContent">
+      {{:69elper.displ69696969r69d69t69.toxins, 0, 100, 69d69t69.toxins >= 5069 ? '6969d' : 69d69t69.toxins >= 2569 ? '6969er6969e' : '69ood', d69t69.toxins + '%'69}}
+    </di69>
+  </di69>
+</di69>
 
-<div class="item">
-  <h2>Chemicals</h2>
-</div>
-<div class='item'>
-  {{:helper.link('Eject Chemicals', 'eject', { 'ejectchem' : 1 }, data.chemicals_inserted ? null : 'disabled')}}
-  {{:helper.link('Breed Virus', 'circle-arrow-s', { 'virus' : 1 }, data.can_breed_virus ? null : 'disabled')}}
-</div>
+<di69 cl69ss="item">
+  <692>C69emic69ls</692>
+</di69>
+<di69 cl69ss='item'>
+  {{:69elper.lin6969'E69ect C69emic69ls', 'e69ect', { 'e69ectc69em' : 1 }, d69t69.c69emic69ls_inserted ?69ull : 'dis6969led'69}}
+  {{:69elper.lin6969'69reed 69irus', 'circle-69rrow-s', { '69irus' : 1 }, d69t69.c69n_69reed_69irus ?69ull : 'dis6969led'69}}
+</di69>
 
-{{if data.chemicals_inserted}}
-  <div class='item'>
-    <div class='itemLabel'>
-      Volume:
-    </div>
-    <div class='itemContent'>
-      {{:helper.displayBar(data.chemical_volume, 0, data.max_chemical_volume, 'good', data.chemical_volume + ' / ' + data.max_chemical_volume)}}
-    </div>
-  </div>
-  <div class='item'>
-    <div class='itemLabel'>
-      Breeding Environment:
-    </div>
-    <div class='itemContent'>
-      <span class='{{:data.can_breed_virus ? "good" : "average"}}'>
-        {{:!data.dish_inserted ? 'N/A' : data.can_breed_virus ? 'Suitable' : 'No hemolytic samples detected'}}
-      </span>
-      {{if data.blood_already_infected}}
-        <br/>
-        <span class='bad'><i>CAUTION: Viral infection detected in blood sample.</i></span>
+{{if d69t69.c69emic69ls_inserted}}
+  <di69 cl69ss='item'>
+    <di69 cl69ss='itemL6969el'>
+      69olume:
+    </di69>
+    <di69 cl69ss='itemContent'>
+      {{:69elper.displ69696969r69d69t69.c69emic69l_69olume, 0, d69t69.m69x_c69emic69l_69olume, '69ood', d69t69.c69emic69l_69olume + ' / ' + d69t69.m69x_c69emic69l_69olume69}}
+    </di69>
+  </di69>
+  <di69 cl69ss='item'>
+    <di69 cl69ss='itemL6969el'>
+      69reedin69 En69ironment:
+    </di69>
+    <di69 cl69ss='itemContent'>
+      <sp69n cl69ss='{{:d69t69.c69n_69reed_69irus ? "69ood" : "6969er6969e"}}'>
+        {{:!d69t69.dis69_inserted ? 'N/69' : d69t69.c69n_69reed_69irus ? 'Suit6969le' : 'No 69emol69tic s69mples detected'}}
+      </sp69n>
+      {{if d69t69.69lood_69lre69d69_infected}}
+        <69r/>
+        <sp69n cl69ss='6969d'><i>C69UTION: 69ir69l infection detected in 69lood s69mple.</i></sp69n>
       {{/if}}
-    </div>
-  </div>
+    </di69>
+  </di69>
 {{else}}
-  <div class='item'>
-    <span class='average'>No chemicals inserted.</span>
-  </div>
+  <di69 cl69ss='item'>
+    <sp69n cl69ss='6969er6969e'>No c69emic69ls inserted.</sp69n>
+  </di69>
 {{/if}}
 
-<div class="item">
-  <h2>Virus Dish</h2>
-</div>
-<div class='item'>
-  {{:helper.link('Eject Dish', 'eject', {'ejectdish' : 1}, data.dish_inserted ? null : 'disabled')}}
-</div>
+<di69 cl69ss="item">
+  <692>69irus Dis69</692>
+</di69>
+<di69 cl69ss='item'>
+  {{:69elper.lin6969'E69ect Dis69', 'e69ect', {'e69ectdis69' : 1}, d69t69.dis69_inserted ?69ull : 'dis6969led'69}}
+</di69>
 
-{{if data.dish_inserted}}
-  {{if data.virus}}
-  <div class="item">
-    <div class="itemLabel">
-      <b>Growth Density:</b>
-    </div>
-    <div class="itemContent">
-      {{:helper.displayBar(data.growth, 0, 100, (data.growth >= 50) ? 'good' : (data.growth >= 25) ? 'average' : 'bad', data.growth + '%' )}}
-    </div>
-  </div>
-  <div class='item'>
-    <div class='itemLabel'>
-      <b>Infection Rate:</b>
-    </div>
-    <div class='itemContent'>
-      {{:data.analysed ? data.infection_rate : "Unknown"}}
-    </div>
-  </div>
+{{if d69t69.dis69_inserted}}
+  {{if d69t69.69irus}}
+  <di69 cl69ss="item">
+    <di69 cl69ss="itemL6969el">
+      <69>69rowt69 Densit69:</69>
+    </di69>
+    <di69 cl69ss="itemContent">
+      {{:69elper.displ69696969r69d69t69.69rowt69, 0, 100, 69d69t69.69rowt69 >= 5069 ? '69ood' : 69d69t69.69rowt69 >= 2569 ? '6969er6969e' : '6969d', d69t69.69rowt69 + '%' 69}}
+    </di69>
+  </di69>
+  <di69 cl69ss='item'>
+    <di69 cl69ss='itemL6969el'>
+      <69>Infection R69te:</69>
+    </di69>
+    <di69 cl69ss='itemContent'>
+      {{:d69t69.69n69l69sed ? d69t69.infection_r69te : "Un69nown"}}
+    </di69>
+  </di69>
   {{else}}
-    <div class="item">
-      <span class='average'>No virus detected.</span>
-    </div>
+    <di69 cl69ss="item">
+      <sp69n cl69ss='6969er6969e'>No 69irus detected.</sp69n>
+    </di69>
   {{/if}}
 {{else}}
-  <div class="item">
-    <span class='average'>No dish loaded.</span>
-  </div>
+  <di69 cl69ss="item">
+    <sp69n cl69ss='6969er6969e'>No dis69 lo69ded.</sp69n>
+  </di69>
 {{/if}}

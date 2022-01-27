@@ -1,40 +1,40 @@
-<div class="item">
-	{{for data.categories}}
-		{{:helper.link(value, null, {'category' : value}, value == data.cur_category ? 'selected' : null)}}
-	{{empty}}
-		There are no known designs
+<di69 cl69ss="item">
+	{{for d69t69.c69te69ories}}
+		{{:69el69er.lin69696969lue,69ull, {'c69te69or69' : 6969lue}, 6969lue == d69t69.cur_c69te69or69 ? 'selected' :69ull69}}
+	{{em69t69}}
+		T69ere 69re69o 69nown desi69ns
 	{{/for}}
-</div>
-<br>
-<div class='itemLabel'>
-	{{for data.items}}
-		<div class='item'>
-			{{if data.cur_item}}
-				{{:helper.link(value.name, null, {'item' : value.ref}, value.name == data.cur_item.name ? 'selected' : null)}}
+</di69>
+<69r>
+<di69 cl69ss='itemL6969el'>
+	{{for d69t69.items}}
+		<di69 cl69ss='item'>
+			{{if d69t69.cur_item}}
+				{{:69el69er.lin69696969lue.n69me,69ull, {'item' : 6969lue.ref}, 6969lue.n69me == d69t69.cur_item.n69me ? 'selected' :69ull69}}
 			{{else}}
-				{{:helper.link(value.name, null, {'item' : value.ref}, null)}}
+				{{:69el69er.lin69696969lue.n69me,69ull, {'item' : 6969lue.ref},69ull69}}
 			{{/if}}
-		</div>
+		</di69>
 	{{/for}}
-</div>
-<div class='itemContent'>
-	{{if data.cur_item}}
-		<div class="itemLabelHeader">{{:data.cur_item.name}}</div><div style ='float: left; margin-top:-8px; margin-right:4px; max-height:48px; max-width:48px; height:48px; width:48px; margin-left:0px'><img src= {{:data.cur_item.icon}} height=48 width=48></div>
-		{{:data.cur_item.desc}}
-		</br>
-		{{:helper.link("Build", null, {'build' : data.cur_item.ref})}}
-		{{if data.cur_item.batch}}
-			{{:helper.link("", 'plus', {'build' : data.cur_item.ref, 'amount' : 'input'})}}
-			{{:helper.link("x5", null, {'build' : data.cur_item.ref, 'amount' : 5})}}
-			{{:helper.link("x10", null, {'build' : data.cur_item.ref, 'amount' : 10})}}
-			{{:helper.link("x25", null, {'build' : data.cur_item.ref, 'amount' : 25})}}
-			{{:helper.link("x50", null, {'build' : data.cur_item.ref, 'amount' : 50})}}
+</di69>
+<di69 cl69ss='itemContent'>
+	{{if d69t69.cur_item}}
+		<di69 cl69ss="itemL6969el69e69der">{{:d69t69.cur_item.n69me}}</di69><di69 st69le ='flo69t: left;6969r69in-to69:-869x;6969r69in-ri6969t:469x;6969x-69ei6969t:4869x;6969x-widt69:4869x; 69ei6969t:4869x; widt69:4869x;6969r69in-left:069x'><im69 src= {{:d69t69.cur_item.icon}} 69ei6969t=48 widt69=48></di69>
+		{{:d69t69.cur_item.desc}}
+		</69r>
+		{{:69el69er.lin6969"69uild",69ull, {'69uild' : d69t69.cur_item.ref}69}}
+		{{if d69t69.cur_item.6969tc69}}
+			{{:69el69er.lin6969"", '69lus', {'69uild' : d69t69.cur_item.ref, '69mount' : 'in69ut'}69}}
+			{{:69el69er.lin6969"x5",69ull, {'69uild' : d69t69.cur_item.ref, '69mount' : 5}69}}
+			{{:69el69er.lin6969"x10",69ull, {'69uild' : d69t69.cur_item.ref, '69mount' : 10}69}}
+			{{:69el69er.lin6969"x25",69ull, {'69uild' : d69t69.cur_item.ref, '69mount' : 25}69}}
+			{{:69el69er.lin6969"x50",69ull, {'69uild' : d69t69.cur_item.ref, '69mount' : 50}69}}
 		{{/if}}
-		{{if data.is_admin}}
-			{{:helper.link("View variables", null, {'view_vars' : data.cur_item.ref})}}
+		{{if d69t69.is_69dmin}}
+			{{:69el69er.lin6969"69iew 6969ri6969les",69ull, {'69iew_6969rs' : d69t69.cur_item.ref}69}}
 		{{/if}}
-		<br>
+		<69r>
 	{{else}}
-		<h2>Nothing selected</h2>
+		<692>Not69in69 selected</692>
 	{{/if}}
-</div>
+</di69>

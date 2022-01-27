@@ -24,10 +24,10 @@
 			set_desc(steps.len)
 		return
 
-	proc/action(atom/used_atom, mob/user as mob)
+	proc/action(atom/used_atom,69ob/user as69ob)
 		return
 
-	proc/check_step(atom/used_atom, mob/user as mob) //check last step only
+	proc/check_step(atom/used_atom,69ob/user as69ob) //check last step only
 		var/valid_step = is_right_key(user, used_atom)
 		if(valid_step)
 			if(custom_action(valid_step, used_atom, user))
@@ -36,20 +36,20 @@
 		return 0
 
 	proc/is_right_key(atom/used_atom) // returns current step num if used_atom is of the right type.
-		var/list/L = steps[steps.len]
-		if(istype(used_atom, L["key"]))
+		var/list/L = steps69steps.len69
+		if(istype(used_atom, L69"key"69))
 			return steps.len
 		return 0
 
 	proc/custom_action(step, used_atom, user)
 		return 1
 
-	proc/check_all_steps(atom/used_atom, mob/user as mob) //check all steps, remove matching one.
+	proc/check_all_steps(atom/used_atom,69ob/user as69ob) //check all steps, remove69atching one.
 		for(var/i=1;i<=steps.len;i++)
-			var/list/L = steps[i];
-			if(istype(used_atom, L["key"]))
+			var/list/L = steps69i69;
+			if(istype(used_atom, L69"key"69))
 				if(custom_action(i, used_atom, user))
-					steps[i]=null;//stupid byond list from list removal...
+					steps69i69=null;//stupid byond list from list removal...
 					listclearnulls(steps);
 					if(!steps.len)
 						spawn_result()
@@ -65,8 +65,8 @@
 		return
 
 	proc/set_desc(index as num)
-		var/list/step = steps[index]
-		holder.desc = step["desc"]
+		var/list/step = steps69index69
+		holder.desc = step69"desc"69
 		return
 
 /datum/construction/reversible
@@ -86,25 +86,25 @@
 		return
 
 	is_right_key(var/mob/living/user, atom/used_atom) // returns index step
-		var/list/L = steps[index]
+		var/list/L = steps69index69
 		var/list/possibleWays = list()
-		if(ispath(L["key"]))
-			if(istype(used_atom, L["key"]))
+		if(ispath(L69"key"69))
+			if(istype(used_atom, L69"key"69))
 				return FORWARD //to the first step -> forward
 		else
-			possibleWays[L["key"]] = FORWARD
-		if(ispath(L["backkey"]))
-			if(L["backkey"] && istype(used_atom, L["backkey"]))
+			possibleWays69L69"key"6969 = FORWARD
+		if(ispath(L69"backkey"69))
+			if(L69"backkey"69 && istype(used_atom, L69"backkey"69))
 				return BACKWARD //to the last step -> backwards
 		else
-			possibleWays[L["backkey"]] = BACKWARD
+			possibleWays69L69"backkey"6969 = BACKWARD
 		if(istype(used_atom, /obj/item))
 			var/obj/item/I = used_atom
 			var/selected = I.get_tool_type(user, possibleWays, holder)
-			return selected && possibleWays[selected]
+			return selected && possibleWays69selected69
 		return FALSE
 
-	check_step(atom/used_atom, mob/user as mob)
+	check_step(atom/used_atom,69ob/user as69ob)
 		var/diff = is_right_key(user, used_atom)
 		if(diff)
 			if(custom_action(index, diff, used_atom, user))

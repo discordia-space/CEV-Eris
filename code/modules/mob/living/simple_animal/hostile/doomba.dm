@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/roomba
 	name = "One Star RMB-A unit"
-	desc = "A small round drone, usually tasked with carrying out menial tasks. This one seems pretty harmless"
+	desc = "A small round drone, usually tasked with carrying out69enial tasks. This one seems pretty harmless"
 	icon = 'icons/mob/battle_roomba.dmi'
 	icon_state = "roomba"
 	faction = "onestar"
@@ -31,9 +31,9 @@
 
 /mob/living/simple_animal/hostile/roomba/death()
 	..()
-	visible_message("<b>[src]</b> blows apart!")
+	visible_message("<b>69src69</b> blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
@@ -42,7 +42,7 @@
 
 /mob/living/simple_animal/hostile/roomba/slayer
 	name = "One Star RMB-A unit"
-	desc = "A small round drone, usually tasked with carrying out menial tasks. This one seems to have a knife taped to it..?"
+	desc = "A small round drone, usually tasked with carrying out69enial tasks. This one seems to have a knife taped to it..?"
 	icon_state = "roomba_knife"
 	health = 35
 	maxHealth = 35
@@ -54,7 +54,7 @@
 
 /mob/living/simple_animal/hostile/roomba/boomba
 	name = "One Star RMB-A unit"
-	desc = "A small round drone, usually tasked with carrying out menial tasks. Is that a fucking anti-personel mine?!"
+	desc = "A small round drone, usually tasked with carrying out69enial tasks. Is that a fucking anti-personel69ine?!"
 	icon_state = "boomba"
 	health = 15
 	maxHealth = 15
@@ -66,13 +66,13 @@
 /mob/living/simple_animal/hostile/roomba/boomba/AttackTarget()
 	. = ..()
 	if(.) // If we succeeded in hitting.
-		src.visible_message(SPAN_DANGER("\The [src] makes an odd warbling noise, fizzles, and explodes!"))
+		src.visible_message(SPAN_DANGER("\The 69src6969akes an odd warbling69oise, fizzles, and explodes!"))
 		explosion(get_turf(loc), -1, -1, 2, 3)
 		death()
 
 /mob/living/simple_animal/hostile/roomba/gun_ba
 	name = "One Star RMB-A unit"
-	desc = "A small round drone, usually tasked with carrying out menial tasks. And this one has a gun."
+	desc = "A small round drone, usually tasked with carrying out69enial tasks. And this one has a gun."
 	icon_state = "roomba_lmg"
 	health = 30
 	maxHealth = 30

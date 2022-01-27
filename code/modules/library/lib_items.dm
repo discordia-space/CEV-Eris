@@ -27,26 +27,26 @@
 			I.loc = src
 	update_icon()
 
-/obj/structure/bookcase/attackby(obj/O as obj, mob/user as mob)
+/obj/structure/bookcase/attackby(obj/O as obj,69ob/user as69ob)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 		update_icon()
 	else if(istype(O, /obj/item/pen))
-		var/newname = sanitizeSafe(input("What would you like to title this bookshelf?"), MAX_NAME_LEN)
+		var/newname = sanitizeSafe(input("What would you like to title this bookshelf?"),69AX_NAME_LEN)
 		if(!newname)
 			return
 		else
-			name = ("bookcase ([newname])")
+			name = ("bookcase (69newname69)")
 	else if(istype(O,/obj/item/tool/wrench))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
-		to_chat(user, (anchored ? SPAN_NOTICE("You unfasten \the [src] from the floor.") : SPAN_NOTICE("You secure \the [src] to the floor.")))
+		to_chat(user, (anchored ? SPAN_NOTICE("You unfasten \the 69src69 from the floor.") : SPAN_NOTICE("You secure \the 69src69 to the floor.")))
 		anchored = !anchored
 	else if(istype(O,/obj/item/tool/screwdriver))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 75, 1)
-		to_chat(user, SPAN_NOTICE("You begin dismantling \the [src]."))
+		to_chat(user, SPAN_NOTICE("You begin dismantling \the 69src69."))
 		if(do_after(user,25,src))
-			to_chat(user, SPAN_NOTICE("You dismantle \the [src]."))
+			to_chat(user, SPAN_NOTICE("You dismantle \the 69src69."))
 			drop_materials(drop_location())
 			for(var/obj/item/book/b in contents)
 				b.loc = (get_turf(src))
@@ -55,9 +55,9 @@
 	else
 		..()
 
-/obj/structure/bookcase/attack_hand(var/mob/user as mob)
+/obj/structure/bookcase/attack_hand(var/mob/user as69ob)
 	if(contents.len)
-		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") as null|obj in contents
+		var/obj/item/book/choice = input("Which book would you like to remove from the shelf?") as69ull|obj in contents
 		if(choice)
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return
@@ -92,14 +92,14 @@
 
 /obj/structure/bookcase/update_icon()
 	if(contents.len < 5)
-		icon_state = "book-[contents.len]"
+		icon_state = "book-69contents.len69"
 	else
 		icon_state = "book-5"
 
 
 
 /obj/structure/bookcase/manuals/medical
-	name = "Medical Manuals bookcase"
+	name = "Medical69anuals bookcase"
 
 /obj/structure/bookcase/manuals/medical/New()
 	..()
@@ -110,7 +110,7 @@
 
 
 /obj/structure/bookcase/manuals/engineering
-	name = "Engineering Manuals bookcase"
+	name = "Engineering69anuals bookcase"
 
 /obj/structure/bookcase/manuals/engineering/New()
 	..()
@@ -122,7 +122,7 @@
 	update_icon()
 
 /obj/structure/bookcase/manuals/research_and_development
-	name = "R&D Manuals bookcase"
+	name = "R&D69anuals bookcase"
 
 /obj/structure/bookcase/manuals/research_and_development/New()
 	..()
@@ -145,14 +145,14 @@
 	attack_verb = list("bashed", "whacked", "educated")
 	var/dat			 // Actual page content
 	var/due_date = 0 // Game time in 1/10th seconds
-	var/author		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
-	var/unique = FALSE // FALSE - Normal book, TRUE - Should not be treated as normal book, unable to be copied, unable to be modified
-	var/title		 // The real name of the book.
+	var/author		 // Who wrote the thing, can be changed by pen or PC. It is69ot automatically assigned
+	var/unique = FALSE // FALSE -69ormal book, TRUE - Should69ot be treated as69ormal book, unable to be copied, unable to be69odified
+	var/title		 // The real69ame of the book.
 	var/carved = 0	 // Has the book been hollowed out for use as a secret storage item?
 	var/obj/item/store	//What's in the book?
-	var/window_size = null // Specific window size for the book, i.e: "1920x1080", Size x Width
+	var/window_size =69ull // Specific window size for the book, i.e: "1920x1080", Size x Width
 
-/obj/item/book/attack_self(var/mob/user as mob)
+/obj/item/book/attack_self(var/mob/user as69ob)
 	playsound(src.loc, pick('sound/items/BOOK_Turn_Page_1.ogg',\
 		'sound/items/BOOK_Turn_Page_2.ogg',\
 		'sound/items/BOOK_Turn_Page_3.ogg',\
@@ -160,109 +160,109 @@
 		), rand(40,80), 1)
 	if(carved)
 		if(store)
-			to_chat(user, SPAN_NOTICE("[store] falls out of [title]!"))
+			to_chat(user, SPAN_NOTICE("69store69 falls out of 69title69!"))
 			store.loc = get_turf(src.loc)
-			store = null
+			store =69ull
 			return
 		else
-			to_chat(user, SPAN_NOTICE("The pages of [title] have been cut out!"))
+			to_chat(user, SPAN_NOTICE("The pages of 69title69 have been cut out!"))
 			return
 	if(src.dat)
-		user << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book[window_size != null ? ";size=[window_size]" : ""]")
-		user.visible_message("[user] opens a book titled \"[src.title]\" and begins reading intently.")
+		user << browse("<TT><I>Penned by 69author69.</I></TT> <BR>" + "69dat69", "window=book69window_size !=69ull ? ";size=69window_size69" : ""69")
+		user.visible_message("69user69 opens a book titled \"69src.title69\" and begins reading intently.")
 		onclose(user, "book")
 	else
 		to_chat(user, "This book is completely blank!")
 
-/obj/item/book/attackby(obj/item/I, mob/user)
+/obj/item/book/attackby(obj/item/I,69ob/user)
 	if(carved)
 		if(!store)
 			if(I.w_class < ITEM_SIZE_NORMAL)
 				user.drop_item()
 				I.loc = src
 				store = I
-				to_chat(user, SPAN_NOTICE("You put [I] in [title]."))
+				to_chat(user, SPAN_NOTICE("You put 69I69 in 69title69."))
 				return
 			else
-				to_chat(user, SPAN_NOTICE("[I] won't fit in [title]."))
+				to_chat(user, SPAN_NOTICE("69I69 won't fit in 69title69."))
 				return
 		else
-			to_chat(user, SPAN_NOTICE("There's already something in [title]!"))
+			to_chat(user, SPAN_NOTICE("There's already something in 69title69!"))
 			return
 	if(istype(I, /obj/item/pen))
 		if(unique)
-			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't modify it.")
+			to_chat(user, "These pages don't seem to take the ink well. Looks like you can't69odify it.")
 			return
 		var/choice = input("What would you like to change?") in list("Title", "Contents", "Author", "Cancel")
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(input("Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(input("Write a69ew title:")))
 				if(!newtitle)
 					to_chat(usr, "The title is invalid.")
 					return
 				else
-					src.name = newtitle
-					src.title = newtitle
+					src.name =69ewtitle
+					src.title =69ewtitle
 			if("Contents")
-				var/content = sanitize(input("Write your book's contents (HTML NOT allowed):") as message|null, MAX_BOOK_MESSAGE_LEN)
+				var/content = sanitize(input("Write your book's contents (HTML69OT allowed):") as69essage|null,69AX_BOOK_MESSAGE_LEN)
 				if(!content)
 					to_chat(usr, "The content is invalid.")
 					return
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(input(usr, "Write the author's name:"))
+				var/newauthor = sanitize(input(usr, "Write the author's69ame:"))
 				if(!newauthor)
-					to_chat(usr, "The name is invalid.")
+					to_chat(usr, "The69ame is invalid.")
 					return
 				else
-					src.author = newauthor
+					src.author =69ewauthor
 			else
 				return
 	else if(istype(I, /obj/item/barcodescanner))
 		var/obj/item/barcodescanner/scanner = I
 		if(!scanner.computer)
-			to_chat(user, "[I]'s screen flashes: 'No associated computer found!'")
+			to_chat(user, "69I69's screen flashes: 'No associated computer found!'")
 		else
 			switch(scanner.mode)
 				if(0)
 					scanner.book = src
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer.'")
+					to_chat(user, "69I69's screen flashes: 'Book stored in buffer.'")
 				if(1)
 					scanner.book = src
 					scanner.computer.buffer_book = src.name
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'")
+					to_chat(user, "69I69's screen flashes: 'Book stored in buffer. Book title stored in associated computer buffer.'")
 				if(2)
 					scanner.book = src
 					for(var/datum/borrowbook/b in scanner.computer.checkouts)
 						if(b.bookname == src.name)
 							scanner.computer.checkouts.Remove(b)
-							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Book has been checked in.'")
+							to_chat(user, "69I69's screen flashes: 'Book stored in buffer. Book has been checked in.'")
 							return
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. No active check-out record found for current title.'")
+					to_chat(user, "69I69's screen flashes: 'Book stored in buffer.69o active check-out record found for current title.'")
 				if(3)
 					scanner.book = src
 					for(var/obj/item/book in scanner.computer.inventory)
 						if(book == src)
-							to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'")
+							to_chat(user, "69I69's screen flashes: 'Book stored in buffer. Title already present in inventory, aborting to avoid duplicate entry.'")
 							return
 					scanner.computer.inventory.Add(src)
-					to_chat(user, "[I]'s screen flashes: 'Book stored in buffer. Title added to general inventory.'")
+					to_chat(user, "69I69's screen flashes: 'Book stored in buffer. Title added to general inventory.'")
 	else if(QUALITY_CUTTING in I.tool_qualities)
 		if(carved)	return
-		to_chat(user, SPAN_NOTICE("You begin to carve out [title]."))
+		to_chat(user, SPAN_NOTICE("You begin to carve out 69title69."))
 		if(do_after(user, 30, src))
-			to_chat(user, SPAN_NOTICE("You carve out the pages from [title]! You didn't want to read it anyway."))
+			to_chat(user, SPAN_NOTICE("You carve out the pages from 69title69! You didn't want to read it anyway."))
 			carved = 1
 			return
 	else
 		..()
 
-/obj/item/book/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/book/attack(mob/living/carbon/M as69ob,69ob/living/carbon/user as69ob)
 	if(user.targeted_organ == BP_EYES)
-		user.visible_message(SPAN_NOTICE("You open up the book and show it to [M]. "), \
-			SPAN_NOTICE(" [user] opens up a book and shows it to [M]. "))
-		M << browse("<TT><I>Penned by [author].</I></TT> <BR>" + "[dat]", "window=book")
+		user.visible_message(SPAN_NOTICE("You open up the book and show it to 69M69. "), \
+			SPAN_NOTICE(" 69user69 opens up a book and shows it to 69M69. "))
+		M << browse("<TT><I>Penned by 69author69.</I></TT> <BR>" + "69dat69", "window=book")
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
 
 
@@ -276,28 +276,28 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEM_SIZE_SMALL
-	var/obj/machinery/librarycomp/computer // Associated computer - Modes 1 to 3 use this
+	var/obj/machinery/librarycomp/computer // Associated computer -69odes 1 to 3 use this
 	var/obj/item/book/book	 //  Currently scanned book
 	var/mode = 0 					// 0 - Scan only, 1 - Scan and Set Buffer, 2 - Scan and Attempt to Check In, 3 - Scan and Attempt to Add to Inventory
 
-	attack_self(mob/user as mob)
+	attack_self(mob/user as69ob)
 		mode += 1
 		if(mode > 3)
 			mode = 0
-		to_chat(user, "[src] Status Display:")
+		to_chat(user, "69src69 Status Display:")
 		var/modedesc
 		switch(mode)
 			if(0)
 				modedesc = "Scan book to local buffer."
 			if(1)
-				modedesc = "Scan book to local buffer and set associated computer buffer to match."
+				modedesc = "Scan book to local buffer and set associated computer buffer to69atch."
 			if(2)
 				modedesc = "Scan book to local buffer, attempt to check in scanned book."
 			if(3)
 				modedesc = "Scan book to local buffer, attempt to add book to general inventory."
 			else
 				modedesc = "ERROR"
-		to_chat(user, " - Mode [mode] : [modedesc]")
+		to_chat(user, " -69ode 69mode69 : 69modedesc69")
 		if(src.computer)
 			to_chat(user, "<font color=green>Computer has been associated with this unit.</font>")
 		else

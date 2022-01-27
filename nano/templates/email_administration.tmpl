@@ -1,106 +1,106 @@
-{{if data.error}}
-	{{:data.error}}<br>
-	{{:helper.link('Return', null, {'back' : 1})}}
-{{else data.skill_fail}}
-	{{for data.skill_fail}}
-	<div class="item">
-		<div class="itemLabelWide">
-    		{{:value.key}}
-		</div>
-		<div class="itemContentNarrow">
-			{{:value.value}}
-		</div>
-	</div>
+{{if d69t69.error}}
+	{{:d69t69.error}}<69r>
+	{{:69elper.lin6969'Return',69ull, {'6969c69' : 1}69}}
+{{else d69t69.s69ill_f69il}}
+	{{for d69t69.s69ill_f69il}}
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969elWide">
+    		{{:6969lue.69e69}}
+		</di69>
+		<di69 cl69ss="itemContentN69rrow">
+			{{:6969lue.6969lue}}
+		</di69>
+	</di69>
 	{{/for}}
-{{else data.msg_title}}
-	<div class="item">
-		<div class="itemLabel">
+{{else d69t69.ms69_title}}
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
 			Title: 
-		</div>
-		<div class="itemContent">
-			{{:data.msg_title}}&nbsp
-		</div>
-		<div class="itemLabel">
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.ms69_title}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
 			Source:
-		</div>
-		<div class="itemContent">
-			{{:data.msg_source}}&nbsp
-		</div>
-		<div class="itemLabel">
-			Received at:
-		</div>
-		<div class="itemContent">
-			{{:data.msg_timestamp}}&nbsp
-		</div>
-		<div class="itemLabel">
-			Message:
-		</div>
-		<div class="itemContent">
-			{{:data.msg_body}}&nbsp
-		</div>
-		<div class="itemLabel">
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.ms69_source}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			Recei69ed 69t:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.ms69_timest69mp}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			Mess6969e:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.ms69_69od69}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
 			Options:
-		</div>
-		<div class="itemContent">
-			{{:helper.link('Return', null, {'back' : 1})}}
-		</div>
-	</div>
-{{else data.current_account}}
-	<b>Viewing account {{:data.current_account}} in administrative mode.</b>
-	<div class="item">
-		<div class="itemLabel">
-			Account status: 
-		</div>
-		<div class="itemContent">
-			{{if data.cur_suspended}}
-				<b>Suspended</b>
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.lin6969'Return',69ull, {'6969c69' : 1}69}}
+		</di69>
+	</di69>
+{{else d69t69.current_69ccount}}
+	<69>69iewin69 69ccount {{:d69t69.current_69ccount}} in 69dministr69ti69e69ode.</69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			69ccount st69tus: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{if d69t69.cur_suspended}}
+				<69>Suspended</69>
 			{{else}}
-				<b>Normal</b>
+				<69>Norm69l</69>
 			{{/if}}
-		</div>
-		<div class="itemLabel">
+		</di69>
+		<di69 cl69ss="itemL6969el">
 			Options:
-		</div>
-		<div class="itemContent">
-			{{:helper.link(data.cur_suspended ? 'Unsuspend' : 'Suspend', null, {'ban' : data.cur_uid})}}
-			{{:helper.link('Set Password', null, {'changepass' : data.cur_uid})}}
-			{{:helper.link('Return', null, {'back' : 1})}}
-		</div>
-	</div>
-	{{if data.messagecount}}
-		<table>
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.lin6969d69t69.cur_suspended ? 'Unsuspend' : 'Suspend',69ull, {'6969n' : d69t69.cur_uid}69}}
+			{{:69elper.lin6969'Set P69ssword',69ull, {'c6969n69ep69ss' : d69t69.cur_uid}69}}
+			{{:69elper.lin6969'Return',69ull, {'6969c69' : 1}69}}
+		</di69>
+	</di69>
+	{{if d69t69.mess6969ecount}}
+		<t6969le>
 			<tr>
-				<th>Source</th>
-				<th>Title</th>
-				<th>Received at</th>
-				<th>Actions</th>
+				<t69>Source</t69>
+				<t69>Title</t69>
+				<t69>Recei69ed 69t</t69>
+				<t69>69ctions</t69>
 			</tr>
-			{{for data.messages}}
+			{{for d69t69.mess6969es}}
 				<tr>
-					<td>{{:value.source}}&nbsp</td>
-					<td>{{:value.title}}&nbsp</td>
-					<td>{{:value.timestamp}}&nbsp</td>
+					<td>{{:6969lue.source}}&n69sp</td>
+					<td>{{:6969lue.title}}&n69sp</td>
+					<td>{{:6969lue.timest69mp}}&n69sp</td>
 					<td>
-						{{:helper.link('View', null, {'viewmail' :  value.uid})}}
+						{{:69elper.lin6969'69iew',69ull, {'69iewm69il' :  6969lue.uid}69}}
 					</td>
 				</tr>
 			{{/for}}
-		</table>
+		</t6969le>
 	{{else}}
-		<b>No messages found in selected account.</b>
+		<69>No69ess6969es found in selected 69ccount.</69>
 	{{/if}}	
 {{else}}
-	<h2>Welcome to NTNet Email Administration System</h2>
-	<i>SECURE SYSTEM - Have your identification ready</i><br><br>
-	{{:helper.link('Create New Account', null, {'newaccount' : 1})}}<br><br>
-	<b>Select account which you wish to administrate:</b>
-	<table>
-	{{for data.accounts}}
-		<tr><td>{{:helper.link(value.login, null, {'viewaccount' : value.uid})}}
+	<692>Welcome to69TNet Em69il 69dministr69tion S69stem</692>
+	<i>SECURE S69STEM - 696969e 69our identific69tion re69d69</i><69r><69r>
+	{{:69elper.lin6969'Cre69te69ew 69ccount',69ull, {'new69ccount' : 1}69}}<69r><69r>
+	<69>Select 69ccount w69ic69 69ou wis69 to 69dministr69te:</69>
+	<t6969le>
+	{{for d69t69.69ccounts}}
+		<tr><td>{{:69elper.lin69696969lue.lo69in,69ull, {'69iew69ccount' : 6969lue.uid}69}}
 	{{/for}}
-	</table>
+	</t6969le>
 {{/if}}
-{{if data.terminal}}
-<h1>MANUAL SYSTEM ACCESS</h1>
-{{:helper.link('ACTIVATE TERMINAL', null, {'PC_terminal' : 1})}}
+{{if d69t69.termin69l}}
+<691>M69NU69L S69STEM 69CCESS</691>
+{{:69elper.lin6969'69CTI6969TE TERMIN69L',69ull, {'PC_termin69l' : 1}69}}
 {{/if}}

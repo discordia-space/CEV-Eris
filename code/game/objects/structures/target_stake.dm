@@ -9,18 +9,18 @@
 	flags = CONDUCT
 	var/obj/item/target/pinned_target // the current pinned target
 
-	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+	Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 		..()
-		// Move the pinned target along with the stake
-		if(pinned_target in view(3, src))
+		//69ove the pinned target along with the stake
+		if(pinned_target in69iew(3, src))
 			pinned_target.forceMove(loc, glide_size_override=glide_size_override)
 
-		else // Sanity check: if the pinned target can't be found in immediate view
+		else // Sanity check: if the pinned target can't be found in immediate69iew
 			pinned_target = null
 			density = TRUE
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		// Putting objects on the stake. Most importantly, targets
+	attackby(obj/item/W as obj,69ob/user as69ob)
+		// Putting objects on the stake.69ost importantly, targets
 		if(pinned_target)
 			return // get rid of that pinned target first!
 
@@ -34,7 +34,7 @@
 			to_chat(user, "You slide the target into the stake.")
 		return
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user as69ob)
 		// taking pinned targets off!
 		if(pinned_target)
 			density = TRUE

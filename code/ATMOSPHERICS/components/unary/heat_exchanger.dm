@@ -8,7 +8,7 @@
 	name = "Heat Exchanger"
 	desc = "Exchanges heat between two input gases. Setup for fast heat transfer"
 
-	var/obj/machinery/atmospherics/unary/heat_exchanger/partner = null
+	var/obj/machinery/atmospherics/unary/heat_exchanger/partner =69ull
 	var/update_cycle
 
 	update_icon()
@@ -53,8 +53,8 @@
 			var/combined_energy = partner.air_contents.temperature*other_air_heat_capacity + air_heat_capacity*air_contents.temperature
 
 			var/new_temperature = combined_energy/combined_heat_capacity
-			air_contents.temperature = new_temperature
-			partner.air_contents.temperature = new_temperature
+			air_contents.temperature =69ew_temperature
+			partner.air_contents.temperature =69ew_temperature
 
 		if(network)
 			if(abs(old_temperature-air_contents.temperature) > 1)
@@ -66,22 +66,22 @@
 
 		return 1
 
-	attackby(var/obj/item/tool/tool, var/mob/user)
+	attackby(var/obj/item/tool/tool,69ar/mob/user)
 		var/datum/gas_mixture/int_air = return_air()
 		var/datum/gas_mixture/env_air = loc.return_air()
 		if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-			to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
+			to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, it is too exerted due to internal pressure."))
 			add_fingerprint(user)
 			return 1
 		var/turf/T = src.loc
 		if (level==1 && isturf(T) && !T.is_plating())
-			to_chat(user, SPAN_WARNING("You must remove the plating first."))
+			to_chat(user, SPAN_WARNING("You69ust remove the plating first."))
 			return 1
 		if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			SPAN_NOTICE("\The 69user69 unfastens \the 69src69."), \
+			SPAN_NOTICE("You have unfastened \the 69src69."), \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc,69ake_from=src)
 		qdel(src)

@@ -1,7 +1,7 @@
-//NASA Voidsuit
+//NASA69oidsuit
 /obj/item/clothing/head/space/void
 	name = "void helmet"
-	desc = "A high-tech dark red space suit helmet. Used for AI satellite maintenance."
+	desc = "A high-tech dark red space suit helmet. Used for AI satellite69aintenance."
 	icon_state = "void"
 
 	heat_protection = HEAD
@@ -23,7 +23,7 @@
 	name = "voidsuit"
 	icon_state = "void"
 	item_state = "void"
-	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
+	desc = "A high-tech dark red space suit. Used for AI satellite69aintenance."
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -40,8 +40,8 @@
 	can_breach = 1
 	spawn_tags = SPAWN_TAG_VOID_SUIT
 	accompanying_object = /obj/item/clothing/shoes/magboots
-	slowdown = MEDIUM_SLOWDOWN
-	stiffness = HEAVY_STIFFNESS // Very hard to aim in
+	slowdown =69EDIUM_SLOWDOWN
+	stiffness = HEAVY_STIFFNESS //69ery hard to aim in
 
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots // Deployable boots, if any.
@@ -61,10 +61,10 @@
 	..(user)
 	var/list/part_list = new
 	for(var/obj/item/I in list(helmet,boots,tank))
-		part_list += "\a [I]"
-	to_chat(user, "\The [src] has [english_list(part_list)] installed.")
+		part_list += "\a 69I69"
+	to_chat(user, "\The 69src69 has 69english_list(part_list)69 installed.")
 	if(tank && in_range(src,user))
-		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads [max(round(tank.air_contents.return_pressure()),0)] kPa remaining in \the [tank]."))
+		to_chat(user, SPAN_NOTICE("The wrist-mounted pressure gauge reads 69max(round(tank.air_contents.return_pressure()),0)69 kPa remaining in \the 69tank69."))
 
 /obj/item/clothing/suit/space/void/ui_action_click(mob/living/user, action_name)
 	if(..())
@@ -98,7 +98,7 @@
 	if(is_held())
 		retract()
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H =69
 
 	if(!istype(H)) return
 
@@ -114,9 +114,9 @@
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
-			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
+			to_chat(M, "Alarmingly, the69alve on your suit's installed tank fails to engage.")
 		else if(H.equip_to_slot_if_possible(tank, slot_s_store))
-			to_chat(M, "The valve on your suit's installed tank safely engages.")
+			to_chat(M, "The69alve on your suit's installed tank safely engages.")
 			tank.canremove = 0
 
 
@@ -178,7 +178,7 @@
 		playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	else
 		if(H.head)
-			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the [H.head]."))
+			to_chat(H, SPAN_DANGER("You cannot deploy your helmet while wearing \the 69H.head69."))
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.canremove = 0
@@ -188,9 +188,9 @@
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
 
-	set name = "Eject Voidsuit Tank"
+	set name = "Eject69oidsuit Tank"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!isliving(usr))
 		return
@@ -213,15 +213,15 @@
 		return
 
 	H.visible_message(
-	"<span class='info'>[H] presses the emergency release, ejecting \the [tank] from the suit.</span>",
-	"<span class='info'>You press the emergency release, ejecting \the [tank] from the suit.</span>",
+	"<span class='info'>69H69 presses the emergency release, ejecting \the 69tank69 from the suit.</span>",
+	"<span class='info'>You press the emergency release, ejecting \the 69tank69 from the suit.</span>",
 	"<span class='info'>You hear a click and a hiss</span>"
 	)
 	tank.canremove = 1
 	H.drop_from_inventory(tank)
 	src.tank = null
 
-/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clothing/suit/space/void/attackby(obj/item/W as obj,69ob/user as69ob)
 
 	if(!isliving(user))
 		return
@@ -230,7 +230,7 @@
 		return ..()
 
 	if(is_worn())
-		to_chat(user, SPAN_WARNING("You cannot modify \the [src] while it is being worn."))
+		to_chat(user, SPAN_WARNING("You cannot69odify \the 69src69 while it is being worn."))
 		return
 
 	if(istype(W,/obj/item/tool/screwdriver))
@@ -239,21 +239,21 @@
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead
-				to_chat(user, "You pop \the [tank] out of \the [src]'s storage compartment.")
+				to_chat(user, "You pop \the 69tank69 out of \the 69src69's storage compartment.")
 				tank.forceMove(get_turf(src))
 				src.tank = null
 			else if(choice == boots)
-				to_chat(user, "You detatch \the [boots] from \the [src]'s boot mounts.")
+				to_chat(user, "You detatch \the 69boots69 from \the 69src69's boot69ounts.")
 				boots.forceMove(get_turf(src))
 				src.boots = null
 		else
-			to_chat(user, "\The [src] does not have anything installed.")
+			to_chat(user, "\The 69src69 does not have anything installed.")
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)
-			to_chat(user, "\The [src] already has magboots installed.")
+			to_chat(user, "\The 69src69 already has69agboots installed.")
 		else
-			to_chat(user, "You attach \the [W] to \the [src]'s boot mounts.")
+			to_chat(user, "You attach \the 69W69 to \the 69src69's boot69ounts.")
 			user.drop_item()
 			W.forceMove(src)
 			boots = W
@@ -261,11 +261,11 @@
 		return
 	if(istype(W,/obj/item/tank))
 		if(tank)
-			to_chat(user, "\The [src] already has an airtank installed.")
+			to_chat(user, "\The 69src69 already has an airtank installed.")
 		else if(istype(W,/obj/item/tank/plasma))
-			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
+			to_chat(user, "\The 69W69 cannot be inserted into \the 69src69's storage compartment.")
 		else
-			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
+			to_chat(user, "You insert \the 69W69 into \the 69src69's storage compartment.")
 			user.drop_item()
 			W.forceMove(src)
 			tank = W

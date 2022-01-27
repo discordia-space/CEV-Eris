@@ -42,8 +42,8 @@
 
 /mob/living/simple_animal/hostile/stranger/death()
 	. = ..()
-	var/obj/item/gun/energy/plasma/stranger/S = new (src.loc)
-	S.cell = new S.suitable_cell(S)
+	var/obj/item/gun/energy/plasma/stranger/S =69ew (src.loc)
+	S.cell =69ew S.suitable_cell(S)
 	if(empy_cell)
 		S.cell.use(S.cell.charge)
 	else
@@ -51,7 +51,7 @@
 	S.update_icon()
 	new /obj/effect/decal/cleanable/ash (src.loc)
 	var/atom/movable/overlay/animation
-	animation = new(loc)
+	animation =69ew(loc)
 	animation.icon_state = "blank"
 	animation.icon =  'icons/mob/mob.dmi'
 	animation.master = src
@@ -73,7 +73,7 @@
 		return FALSE
 	. = ..()
 
-/mob/living/simple_animal/hostile/stranger/attackby(obj/item/W, mob/user, params)
+/mob/living/simple_animal/hostile/stranger/attackby(obj/item/W,69ob/user, params)
 	if(prob(prob_tele))
 		var/source = src
 		if(target_mob)
@@ -121,7 +121,7 @@
 	desc = "A plasma gun from unknown origin"
 	icon = 'icons/obj/guns/energy/lancer.dmi'
 	icon_state = "lancer"
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 8, MATERIAL_SILVER = 7, MATERIAL_URANIUM = 8, MATERIAL_GOLD = 4)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_WOOD = 8,69ATERIAL_SILVER = 7,69ATERIAL_URANIUM = 8,69ATERIAL_GOLD = 4)
 	price_tag = 5000
 	charge_cost = 5
 	fire_delay = 5
@@ -133,30 +133,30 @@
 	spawn_blacklisted = TRUE
 
 	init_firemodes = list(
-		list(mode_name="uo4E6SBeGe", mode_desc="c25F2OeGUi", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=5, move_delay=null, charge_cost=3, icon="stun", projectile_color = "#0000FF"),
-		list(mode_name="0sXYAJGCv4", mode_desc="yQI241FKDh", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=10, move_delay=null, charge_cost=6, icon="kill", projectile_color = "#FF0000"),
-		list(mode_name="XhddhrdJkJ", mode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15, move_delay=null, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
-		list(mode_name="bP6hfnj3Js", mode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5, move_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF", recoil_buildup=3)
+		list(mode_name="uo4E6SBeGe",69ode_desc="c25F2OeGUi", burst=1, projectile_type=/obj/item/projectile/plasma/light, fire_sound='sound/weapons/Taser.ogg', fire_delay=5,69ove_delay=null, charge_cost=3, icon="stun", projectile_color = "#0000FF"),
+		list(mode_name="0sXYAJGCv4",69ode_desc="yQI241FKDh", burst=1, projectile_type=/obj/item/projectile/plasma, fire_sound='sound/weapons/Laser.ogg', fire_delay=10,69ove_delay=null, charge_cost=6, icon="kill", projectile_color = "#FF0000"),
+		list(mode_name="XhddhrdJkJ",69ode_desc="uDsfMdPQkm", burst=1, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=15,69ove_delay=null, charge_cost=9, icon="destroy", projectile_color = "#FFFFFF"),
+		list(mode_name="bP6hfnj3Js",69ode_desc="AhG8GjobYa", burst=3, projectile_type=/obj/item/projectile/plasma/heavy, fire_sound='sound/weapons/pulse.ogg', fire_delay=5,69ove_delay=4, charge_cost=11, icon="vaporize", projectile_color = "#FFFFFF", recoil_buildup=3)
 	)
 
 /obj/item/gun/energy/plasma/stranger/update_icon(ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 
-		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		//make sure that rounding down will69ot give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
 			ratio = 100
 		else if(!cell)
 			ratio = "empty"
 
 		if(modifystate)
-			icon_state = "[modifystate]-[ratio]"
+			icon_state = "69modifystate69-69ratio69"
 		else
-			icon_state = "[initial(icon_state)]-[ratio]"
+			icon_state = "69initial(icon_state)69-69ratio69"
 
 		if(item_charge_meter)
-			set_item_state("-[item_modifystate][ratio]")
+			set_item_state("-69item_modifystate6969ratio69")
 	if(!item_charge_meter && item_modifystate)
-		set_item_state("-[item_modifystate]")
+		set_item_state("-69item_modifystate69")
 	if(!ignore_inhands)
 		update_wear_icon()

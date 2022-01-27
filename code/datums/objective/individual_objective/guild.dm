@@ -13,7 +13,7 @@
 /datum/individual_objective/repossession/assign()
 	..()
 	target = pick_faction_item(mind_holder)
-	desc = "Sold \the [target] item of other faction via cargo."
+	desc = "Sold \the 69target69 item of other faction69ia cargo."
 	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
 
 /datum/individual_objective/repossession/task_completed(atom/movable/AM)
@@ -26,14 +26,14 @@
 	..()
 
 /datum/individual_objective/museum
-	name = "It Belongs in a Museum"
-	desc = "Ensure that 3-4 oddities were sold via cargo."
+	name = "It Belongs in a69useum"
+	desc = "Ensure that 3-4 oddities were sold69ia cargo."
 	req_department = list(DEPARTMENT_GUILD)
 
 /datum/individual_objective/museum/assign()
 	..()
 	units_requested = rand(3,4)
-	desc = "Ensure that [units_requested] oddities were sold via cargo."
+	desc = "Ensure that 69units_requested69 oddities were sold69ia cargo."
 	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
 
 /datum/individual_objective/museum/task_completed(atom/movable/AM)
@@ -82,7 +82,7 @@
 	..()
 	target = pick_candidates()
 	target = new target()
-	desc = "A friend of yours on the other side on trade teleporter is waiting for a [target]. Ensure it will be sold via cargo."
+	desc = "A friend of yours on the other side on trade teleporter is waiting for a 69target69. Ensure it will be sold69ia cargo."
 	RegisterSignal(SSsupply.shuttle, COMSIG_SHUTTLE_SUPPLY, .proc/task_completed)
 
 /datum/individual_objective/order/task_completed(atom/movable/AM)
@@ -107,7 +107,7 @@
 	var/list/valied_areas = list()
 	for(var/area/A in ship_areas)
 		var/current_price = 0
-		if(A in valied_areas)
+		if(A in69alied_areas)
 			continue
 		if (istype(A, /area/shuttle))
 			continue
@@ -119,7 +119,7 @@
 			continue
 		valied_areas += A
 	target = pick(valied_areas)
-	desc = "Ensure that [target] does not have cumulative price of items inside it that is higher than [price_target][CREDITS]."
+	desc = "Ensure that 69target69 does not have cumulative price of items inside it that is higher than 69price_target6969CREDITS69."
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/stripping/task_completed()
@@ -151,7 +151,7 @@
 		if(H.mind && H.mind.initial_account)
 			valids_targets += H.mind.initial_account
 	valids_targets -= L.mind.initial_account
-	return valids_targets.len
+	return69alids_targets.len
 
 /datum/individual_objective/transfer/assign()
 	..()
@@ -162,7 +162,7 @@
 	valids_targets -= owner.initial_account
 	target = pick(valids_targets)
 	units_requested = rand(2000, 5000)
-	desc = "Some of your relative asked you to procure and provide this account number: \"[target.account_number]\" with sum of [units_requested][CREDITS]. \
+	desc = "Some of your relative asked you to procure and provide this account number: \"69target.account_number69\" with sum of 69units_requested6969CREDITS69. \
 			You dont know exactly why, but this is important."
 	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
 

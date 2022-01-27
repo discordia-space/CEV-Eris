@@ -9,6 +9,6 @@
 	if(src.connected)
 		connected.Pulse(src)
 	else
-		to_chat(owner_mob, SPAN_WARNING("[src] is not attached to a pulseable wire"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 is not attached to a pulseable wire"))
 
 		

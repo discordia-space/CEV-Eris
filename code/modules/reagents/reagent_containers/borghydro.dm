@@ -1,13 +1,13 @@
 /obj/item/reagent_containers/borghypo
 	name = "cyborg hypospray"
-	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty medical equipment."
+	desc = "An advanced chemical synthesizer and injection system, designed for heavy-duty69edical e69uipment."
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "hypo"
 	icon_state = "borghypo"
 	amount_per_transfer_from_this = 5
 	volume = 30
-	possible_transfer_amounts = null
-	spawn_frequency = 0
+	possible_transfer_amounts =69ull
+	spawn_fre69uency = 0
 	var/mode = 1
 	var/charge_cost = 50
 	var/charge_tick = 0
@@ -27,8 +27,8 @@
 	..()
 
 	for(var/T in reagent_ids)
-		reagent_volumes[T] = volume
-		var/datum/reagent/R = GLOB.chemical_reagents_list[T]
+		reagent_volumes69T69 =69olume
+		var/datum/reagent/R = GLOB.chemical_reagents_list69T69
 		reagent_names += R.name
 
 	START_PROCESSING(SSobj, src)
@@ -37,7 +37,7 @@
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/reagent_containers/borghypo/Process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
+/obj/item/reagent_containers/borghypo/Process() //Every 69recharge_time69 seconds, recharge some reagents for the cyborg+
 	if(++charge_tick < recharge_time)
 		return FALSE
 	charge_tick = 0
@@ -46,61 +46,61 @@
 		var/mob/living/silicon/robot/R = loc
 		if(R && R.cell)
 			for(var/T in reagent_ids)
-				if(reagent_volumes[T] < volume)
+				if(reagent_volumes69T69 <69olume)
 					R.cell.use(charge_cost)
-					reagent_volumes[T] = min(reagent_volumes[T] + 5, volume)
+					reagent_volumes69T69 =69in(reagent_volumes69T69 + 5,69olume)
 	return TRUE
 
-/obj/item/reagent_containers/borghypo/attack(var/mob/living/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/attack(var/mob/living/M,69ar/mob/user)
 	if(!istype(M))
 		return
 
-	if(!reagent_volumes[reagent_ids[mode]])
+	if(!reagent_volumes69reagent_ids69mode6969)
 		to_chat(user, SPAN_WARNING("The injector is empty."))
 		return
 
 	if (M.can_inject(user, 1))
-		to_chat(user, SPAN_NOTICE("You inject [M] with the injector."))
+		to_chat(user, SPAN_NOTICE("You inject 69M69 with the injector."))
 		to_chat(M, SPAN_NOTICE("You feel a tiny prick!"))
 
 		if(M.reagents)
-			var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
-			M.reagents.add_reagent(reagent_ids[mode], t)
-			reagent_volumes[reagent_ids[mode]] -= t
-			admin_inject_log(user, M, src, reagent_ids[mode], t)
-			to_chat(user, SPAN_NOTICE("[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining."))
+			var/t =69in(amount_per_transfer_from_this, reagent_volumes69reagent_ids69mode6969)
+			M.reagents.add_reagent(reagent_ids69mode69, t)
+			reagent_volumes69reagent_ids69mode6969 -= t
+			admin_inject_log(user,69, src, reagent_ids69mode69, t)
+			to_chat(user, SPAN_NOTICE("69t69 units injected. 69reagent_volumes69reagent_ids69mode696969 units remaining."))
 	return
 
-/obj/item/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
+/obj/item/reagent_containers/borghypo/attack_self(mob/user as69ob) //Change the69ode
 	var/t = ""
 	for(var/i = 1 to reagent_ids.len)
 		if(t)
 			t += ", "
 		if(mode == i)
-			t += "<b>[reagent_names[i]]</b>"
+			t += "<b>69reagent_names69i6969</b>"
 		else
-			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
-	t = "Available reagents: [t]."
+			t += "<a href='?src=\ref69src69;reagent=69reagent_ids69i6969'>69reagent_names69i6969</a>"
+	t = "Available reagents: 69t69."
 	to_chat(user, t)
 
 	return
 
-/obj/item/reagent_containers/borghypo/Topic(var/href, var/list/href_list)
-	if(href_list["reagent"])
-		var/t = reagent_ids.Find(href_list["reagent"])
+/obj/item/reagent_containers/borghypo/Topic(var/href,69ar/list/href_list)
+	if(href_list69"reagent"69)
+		var/t = reagent_ids.Find(href_list69"reagent"69)
 		if(t)
 			playsound(loc, 'sound/effects/pop.ogg', 50, 0)
 			mode = t
-			var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
-			to_chat(usr, SPAN_NOTICE("Synthesizer is now producing '[R.name]'."))
+			var/datum/reagent/R = GLOB.chemical_reagents_list69reagent_ids69mode6969
+			to_chat(usr, SPAN_NOTICE("Synthesizer is69ow producing '69R.name69'."))
 
 /obj/item/reagent_containers/borghypo/examine(mob/user)
 	if(!..(user, 2))
 		return
 
-	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
+	var/datum/reagent/R = GLOB.chemical_reagents_list69reagent_ids69mode6969
 
-	to_chat(user, SPAN_NOTICE("It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left."))
+	to_chat(user, SPAN_NOTICE("It is currently producing 69R.name69 and has 69reagent_volumes69reagent_ids69mode696969 out of 69volume69 units left."))
 
 /obj/item/reagent_containers/borghypo/service
 	name = "cyborg drink synthesizer"
@@ -111,28 +111,28 @@
 	recharge_time = 3
 	volume = 60
 	possible_transfer_amounts = list(5, 10, 20, 30)
-	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "greentea", "icetea", "icegreentea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
+	reagent_ids = list("beer", "kahlua", "whiskey", "wine", "vodka", "gin", "rum", "te69uilla", "vermouth", "cognac", "ale", "mead", "water", "sugar", "ice", "tea", "greentea", "icetea", "icegreentea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic", "sodawater", "lemon_lime", "orangejuice", "limejuice", "watermelonjuice")
 
-/obj/item/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
+/obj/item/reagent_containers/borghypo/service/attack(var/mob/M,69ar/mob/user)
 	return
 
-/obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/borghypo/service/afterattack(var/obj/target,69ar/mob/user,69ar/proximity)
 	if(!proximity)
 		return
 
 	if(!target.is_refillable())
 		return
 
-	if(!reagent_volumes[reagent_ids[mode]])
-		to_chat(user, SPAN_NOTICE("[src] is out of this reagent, give it some time to refill."))
+	if(!reagent_volumes69reagent_ids69mode6969)
+		to_chat(user, SPAN_NOTICE("69src69 is out of this reagent, give it some time to refill."))
 		return
 
 	if(!target.reagents.get_free_space())
-		to_chat(user, SPAN_NOTICE("[target] is full."))
+		to_chat(user, SPAN_NOTICE("69target69 is full."))
 		return
 
-	var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
-	target.reagents.add_reagent(reagent_ids[mode], t)
-	reagent_volumes[reagent_ids[mode]] -= t
-	to_chat(user, SPAN_NOTICE("You transfer [t] units of the solution to [target]."))
+	var/t =69in(amount_per_transfer_from_this, reagent_volumes69reagent_ids69mode6969)
+	target.reagents.add_reagent(reagent_ids69mode69, t)
+	reagent_volumes69reagent_ids69mode6969 -= t
+	to_chat(user, SPAN_NOTICE("You transfer 69t69 units of the solution to 69target69."))
 	return

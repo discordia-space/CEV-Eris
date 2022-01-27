@@ -63,7 +63,7 @@
 
 			if(src.active)
 				R.part1.secured = 1
-				R.part1.icon_state = text("motion[]", 1)
+				R.part1.icon_state = text("motion6969", 1)
 				R.c_state(1, src)
 
 		// timer
@@ -102,12 +102,12 @@
 			p4.air_contents.temperature = btemp + T0C
 			p2.secured = 1
 
-	qdel(src)
+	69del(src)
 */
 
 /client/proc/spawn_tanktransferbomb()
 	set category = "Debug"
-	set desc = "Spawn a tank transfer valve bomb"
+	set desc = "Spawn a tank transfer69alve bomb"
 	set name = "Instant TTV"
 
 	if(!check_rights(R_DEBUG))
@@ -133,7 +133,7 @@
 
 	var/assembly_type = /obj/item/device/assembly/signaler
 
-	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
+	//Note that the69aximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.4469ol.
 	var/plasma_amt = 10.96
 	var/oxygen_amt = 16.44
 	var/carbon_amt = 0
@@ -143,8 +143,8 @@
 	assembly_type = /obj/item/device/assembly/timer
 
 /obj/effect/spawner/newbomb/timer/syndicate
-	name = "TTV bomb - merc"
-	//High yield bombs. Yes, it is possible to make these with toxins
+	name = "TTV bomb -69erc"
+	//High yield bombs. Yes, it is possible to69ake these with toxins
 	plasma_amt = 15.66
 	oxygen_amt = 24.66
 
@@ -168,16 +168,16 @@
 	V.tank_one = PT
 	V.tank_two = OT
 
-	PT.master = V
-	OT.master = V
+	PT.master =69
+	OT.master =69
 
 	PT.air_contents.temperature = PLASMA_FLASHPOINT
-	PT.air_contents.gas["plasma"] = plasma_amt
-	PT.air_contents.gas["carbon_dioxide"] = carbon_amt
+	PT.air_contents.gas69"plasma"69 = plasma_amt
+	PT.air_contents.gas69"carbon_dioxide"69 = carbon_amt
 	PT.air_contents.update_values()
 
 	OT.air_contents.temperature = PLASMA_FLASHPOINT
-	OT.air_contents.gas["oxygen"] = oxygen_amt
+	OT.air_contents.gas69"oxygen"69 = oxygen_amt
 	OT.air_contents.update_values()
 
 	var/obj/item/device/assembly/S = new assembly_type(V)
@@ -185,9 +185,9 @@
 
 	V.attached_device = S
 
-	S.holder = V
+	S.holder =69
 	S.toggle_secure()
 
 	V.update_icon()
 
-	return INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_69DEL

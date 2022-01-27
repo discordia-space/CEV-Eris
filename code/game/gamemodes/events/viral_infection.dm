@@ -1,7 +1,7 @@
 /*
-	Some of the vendors on the ship will go a bit nuts, firing their contents, shouting abuse, and
+	Some of the69endors on the ship will go a bit nuts, firing their contents, shouting abuse, and
 	allowing contraband.
-	It will affect a limited quantity of vendors, but affected ones will last forever until fixed
+	It will affect a limited 69uantity of69endors, but affected ones will last forever until fixed
 */
 /datum/storyevent/viral_infection
 	id = "viral_infection"
@@ -15,7 +15,7 @@
 //////////////////////////////////////////////////////////
 
 
-/var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
+/var/global/list/event_viruses = list() // so that event69iruses are kept around for admin logs, rather than being GCed
 
 datum/event/viral_infection
 	var/list/viruses = list()
@@ -24,12 +24,12 @@ datum/event/viral_infection/setup()
 	announceWhen = rand(0, 3000)
 	endWhen = announceWhen + 1
 
-	//generate 1-3 viruses. This way there's an upper limit on how many individual diseases need to be cured if many people are initially infected
+	//generate 1-369iruses. This way there's an upper limit on how69any individual diseases need to be cured if69any people are initially infected
 	var/num_diseases = rand(1,3)
 	for (var/i=0, i < num_diseases, i++)
 		var/datum/disease2/disease/D = new /datum/disease2/disease
 
-		var/strength = 1 //whether the disease is of the greater or lesser variety
+		var/strength = 1 //whether the disease is of the greater or lesser69ariety
 		if (severity == EVENT_LEVEL_MAJOR && prob(75))
 			strength = 2
 		D.makerandom(strength)
@@ -45,7 +45,7 @@ datum/event/viral_infection/announce()
 		level = "five"
 
 	if (severity == EVENT_LEVEL_MAJOR || prob(60))
-		command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
+		command_announcement.Announce("Confirmed outbreak of level 69level69 biohazard aboard 69station_name()69. All personnel69ust contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
 
 datum/event/viral_infection/start()
 	if(!viruses.len) return
@@ -64,9 +64,9 @@ datum/event/viral_infection/start()
 	var/actual_severity = rand(2, 6)
 	while(actual_severity > 0 && candidates.len)
 		var/datum/disease2/disease/D = pick(viruses)
-		infect_mob(candidates[1], D.getcopy())
-		used_candidates += candidates[1]
-		candidates.Remove(candidates[1])
+		infect_mob(candidates69169, D.getcopy())
+		used_candidates += candidates69169
+		candidates.Remove(candidates69169)
 		actual_severity--
 		used_viruses |= D
 
@@ -74,7 +74,7 @@ datum/event/viral_infection/start()
 	var/list/used_viruses_links = list()
 	var/list/used_viruses_text = list()
 	for(var/datum/disease2/disease/D in used_viruses)
-		used_viruses_links += "<a href='?src=\ref[D];info=1'>[D.name()]</a>"
+		used_viruses_links += "<a href='?src=\ref69D69;info=1'>69D.name()69</a>"
 		used_viruses_text += D.name()
 
 	var/list/used_candidates_links = list()
@@ -83,5 +83,5 @@ datum/event/viral_infection/start()
 		used_candidates_links += key_name_admin(M)
 		used_candidates_text += key_name(M)
 
-	log_admin("Virus event affecting [english_list(used_candidates_text)] started; Viruses: [english_list(used_viruses_text)]")
-	message_admins("Virus event affecting [english_list(used_candidates_links)] started; Viruses: [english_list(used_viruses_links)]")
+	log_admin("Virus event affecting 69english_list(used_candidates_text)69 started;69iruses: 69english_list(used_viruses_text)69")
+	message_admins("Virus event affecting 69english_list(used_candidates_links)69 started;69iruses: 69english_list(used_viruses_links)69")

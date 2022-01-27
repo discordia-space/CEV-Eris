@@ -2,11 +2,11 @@
 	The blob is a horrible acidic slime creature that eats through airlocks and expands infinitely.
 	The rate of expansion slows down as it grows, so it is ultimately soft-capped
 
-	Its attacks deal light burn damage, but spam many hits. They deal a lot of damage by splashing acid
-	onto victims, allowing acidproof gear to provide some good protection
+	Its attacks deal light burn damage, but spam69any hits. They deal a lot of damage by splashing acid
+	onto69ictims, allowing acidproof gear to provide some good protection
 
-	Blobs are very vulnerable to fire and lasers. Flamethrower is the recommended weapon, and
-	In an emergency, a plasma canister and a lighter will bring a quick end to a blob
+	Blobs are69ery69ulnerable to fire and lasers. Flamethrower is the recommended weapon, and
+	In an emergency, a plasma canister and a lighter will bring a 69uick end to a blob
 */
 
 /datum/storyevent/blob
@@ -31,11 +31,11 @@
 	var/area/A = random_ship_area(filter_players = TRUE, filter_critical = TRUE)
 	var/turf/T = A.random_space()
 	if(!T)
-		log_and_message_admins("Blob failed to find a viable turf.")
+		log_and_message_admins("Blob failed to find a69iable turf.")
 		kill()
 		return
 
-	log_and_message_admins("Blob spawned at \the [get_area(T)]", location = T)
+	log_and_message_admins("Blob spawned at \the 69get_area(T)69", location = T)
 	Blob = new /obj/effect/blob/core(T)
 	for(var/i = 1; i < rand(3, 4), i++)
 		Blob.Process()
@@ -53,7 +53,7 @@
 
 /*
 	Code for how the blob functions
-	Nanako fixed this mess in October 2018
+	Nanako fixed this69ess in October 2018
 */
 /obj/effect/blob
 	name = "blob"
@@ -90,11 +90,11 @@
 	var/coredist = 1
 	var/dist_time_scaling = 1.5
 
-/obj/effect/blob/New(loc, var/obj/effect/blob/_parent)
+/obj/effect/blob/New(loc,69ar/obj/effect/blob/_parent)
 	if (_parent)
 		parent = _parent
 		core = parent.core
-		coredist = max(1,get_dist(src, core))
+		coredist =69ax(1,get_dist(src, core))
 
 		//Accounting for zlevel distance
 		if (src.z != core.z)
@@ -107,11 +107,11 @@
 
 	//Random rotation for blobs, as well as larger sizing for some
 	var/rot = pick(list(0, 90, 180, -90))
-	var/matrix/M = matrix()
+	var/matrix/M =69atrix()
 	M.Turn(rot)
 	M.Scale(icon_scale)
-	transform = M
-	name += "[rand(0,999)]"
+	transform =69
+	name += "69rand(0,999)69"
 	return ..(loc)
 
 /obj/effect/blob/Destroy()
@@ -124,7 +124,7 @@
 	if (istype(mover, /obj/item/projectile))
 		return FALSE
 
-	//But mobs can walk over the nondense ones.
+	//But69obs can walk over the nondense ones.
 	return ..()
 
 /obj/effect/blob/proc/update_neighbors()
@@ -142,7 +142,7 @@
 			blob_neighbors.Add(B)
 		else
 			//But we add the origin to our neighbors if there isnt a blob
-			//Blob spawning code will handle making a new blob transition the zlevel
+			//Blob spawning code will handle69aking a new blob transition the zlevel
 			non_blob_neighbors.Add(T)
 
 
@@ -152,7 +152,7 @@
 **************************************************/
 /obj/effect/blob/Process()
 
-	//Shouldn't happen, but maybe a process tick was still queued up when we stopped
+	//Shouldn't happen, but69aybe a process tick was still 69ueued up when we stopped
 	if (!active)
 		return PROCESS_KILL
 
@@ -161,18 +161,18 @@
 
 
 	if (world.time >= next_expansion)
-		//Update our neighbors. This may cause us to stop processing
+		//Update our neighbors. This69ay cause us to stop processing
 		update_neighbors()
 
 
 
-		//Okay if we're still active then we maybe have some expanding to do
-		if (health >= maxHealth && non_blob_neighbors.len)
+		//Okay if we're still active then we69aybe have some expanding to do
+		if (health >=69axHealth && non_blob_neighbors.len)
 			//We will attempt to expand into only one of the possible nearby tiles
 			expand(pick(non_blob_neighbors))
 
 
-		//Maybe there are mobs in our tile we still need to melt
+		//Maybe there are69obs in our tile we still need to69elt
 		if (!attack_mobs())
 			//If not, try to go to sleep
 			set_idle()
@@ -184,8 +184,8 @@
 		set_expand_time()
 
 /obj/effect/blob/proc/regen()
-	if (!(QDELETED(core)))
-		health = min(health + health_regen, maxHealth)
+	if (!(69DELETED(core)))
+		health =69in(health + health_regen,69axHealth)
 	else
 		core = null
 		//When the core is gone, the blob starts dying
@@ -195,20 +195,20 @@
 
 /*
 	The blob is allowed to grow forever, there is no upper limit to its size
-	However, the farther away each segment is from the core, the longer it must rest between expansions
+	However, the farther away each segment is from the core, the longer it69ust rest between expansions
 */
 /obj/effect/blob/proc/set_expand_time()
-	if (!(QDELETED(core)))
+	if (!(69DELETED(core)))
 		next_expansion = world.time + ((1 SECONDS) * (dist_time_scaling ** coredist))
 	else
-		//If the core is gone, no more expansion
+		//If the core is gone, no69ore expansion
 		next_expansion = INFINITY
 
 
 
 
 /*
-	TO minimise performance costs at massive sizes, blobs will go to sleep once they're no longer at the
+	TO69inimise performance costs at69assive sizes, blobs will go to sleep once they're no longer at the
 	edge or relevant.
 	If a blob finds itself surrounded on all sides by other blobs, and it is at full health, it has nothing to do
 */
@@ -216,9 +216,9 @@
 	if (!active)
 		return
 
-	if (blob_neighbors.len == 4) //We must have a full list of blobneighbors
-		if (health >= maxHealth) //We must be at full health
-			if (!(QDELETED(core)))//We must have a living core
+	if (blob_neighbors.len == 4) //We69ust have a full list of blobneighbors
+		if (health >=69axHealth) //We69ust be at full health
+			if (!(69DELETED(core)))//We69ust have a living core
 				if (!attackable_mobs_in_turf())
 					STOP_PROCESSING(SSobj, src)
 					active = FALSE
@@ -235,7 +235,7 @@
 	return FALSE
 
 /*
-	Wake up the blob and make it start processing again.
+	Wake up the blob and69ake it start processing again.
 	This will happen when any neighboring blob is killed
 */
 /obj/effect/blob/proc/set_awake()
@@ -250,7 +250,7 @@
 /obj/effect/blob/proc/wake_neighbors()
 	update_neighbors()
 
-	//Spawn it off so this part will trigger after we're qdeleted
+	//Spawn it off so this part will trigger after we're 69deleted
 	spawn()
 		for (var/obj/effect/blob/B in blob_neighbors)
 			B.set_awake()
@@ -270,7 +270,7 @@
 	take_damage(rand(20, 60) / fire_resist)
 
 /obj/effect/blob/update_icon()
-	var/healthpercent = health / maxHealth
+	var/healthpercent = health /69axHealth
 	if(healthpercent > 0.5)
 		icon_state = "blob"
 	else
@@ -288,7 +288,7 @@
 			playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		if(health < 0)
 			playsound(loc, 'sound/effects/splat.ogg', 50, 1)
-			qdel(src)
+			69del(src)
 		else
 			update_icon()
 			wake_neighbors()
@@ -303,7 +303,7 @@
 	EXPANDING!
 **********************************/
 //Changes by Nanako, 14th october 2018
-//Blob now deals vastly reduced damage to walls and windows, but vastly increased damage to doors
+//Blob now deals69astly reduced damage to walls and windows, but69astly increased damage to doors
 /obj/effect/blob/proc/expand(var/turf/T)
 	if(istype(T, /turf/unsimulated/) || istype(T, /turf/space) || (istype(T, /turf/simulated/mineral) && T.density))
 		return
@@ -322,16 +322,16 @@
 		return
 	var/obj/structure/grille/GR = locate() in T
 	if(GR)
-		qdel(GR)
+		69del(GR)
 		return
 	for(var/obj/machinery/door/D in T)
 		if(D.density)
 			D.take_damage(100)
-			//Blob eats through doors VERY quickly
+			//Blob eats through doors69ERY 69uickly
 			return
 	var/obj/structure/foamedmetal/F = locate() in T
 	if(F)
-		qdel(F)
+		69del(F)
 		return
 	var/obj/structure/inflatable/I = locate() in T
 	if(I)
@@ -347,11 +347,11 @@
 		B.ex_act(2)
 		return
 
-	T.Enter(src) //This should make them travel down stairs
+	T.Enter(src) //This should69ake them travel down stairs
 
-	// Above things, we destroy completely and thus can use locate. Mobs are different.
+	// Above things, we destroy completely and thus can use locate.69obs are different.
 	for(var/mob/living/L in T)
-		attack_mobs(T)//We don't destroy mobs, we'll just grow under their feet and attack them in the process
+		attack_mobs(T)//We don't destroy69obs, we'll just grow under their feet and attack them in the process
 		break
 
 	//We'll occasionally spawn shield tiles instead of normal blobs
@@ -361,39 +361,39 @@
 	else
 		child = new expandType(loc, src)
 
-	//Spawn the child blob and move it into the new tile
+	//Spawn the child blob and69ove it into the new tile
 	spawn(1)
 		child.handle_move(loc, T)
 
 
-//This silly special case override is needed to make blobs work with portals.
-//Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
+//This silly special case override is needed to69ake blobs work with portals.
+//Code is copied from /atoms_movable.dm, but a spawn call is removed,69aking it completely synchronous
 /obj/effect/blob/Bump(var/atom/A, yes)
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
 
 
-//Once created, the new blob moves to its destination turf
-/obj/effect/blob/proc/handle_move(var/turf/origin, var/turf/destination)
+//Once created, the new blob69oves to its destination turf
+/obj/effect/blob/proc/handle_move(var/turf/origin,69ar/turf/destination)
 	//First of all lets ensure we still exist.
-	//We may have been deleted by another blob doing postmove cleanup
-	if (QDELETED(src))
+	//We69ay have been deleted by another blob doing postmove cleanup
+	if (69DELETED(src))
 		return
 
-	//And lets make sure we haven't already moved
+	//And lets69ake sure we haven't already69oved
 	if (loc != origin)
 		return
 
 	//We un-anchor ourselves, so that we're exposed to effects like gravity and teleporting
 	anchored = FALSE
 
-	//Now we will attempt a normal movement, obeying all the normal rules
+	//Now we will attempt a normal69ovement, obeying all the normal rules
 	//This allows us to bump into portals and get teleported
 	Move(destination)
 
-	/*Now we check if we went anywhere. We don't care about the return value of move, we do our own check
-	In the case of a portal, or falling through an openspace, or moving along stairs, Move may return false
+	/*Now we check if we went anywhere. We don't care about the return69alue of69ove, we do our own check
+	In the case of a portal, or falling through an openspace, or69oving along stairs,69ove69ay return false
 	but we've still gone somewhere. We will only consider it a failure if we're still where we started
 	*/
 	if (loc == origin)
@@ -406,7 +406,7 @@
 	if (loc == origin)
 		//Welp, we give up.
 		//This shouldn't be possible, but if it somehow happens then this blob is toast
-		qdel(src)
+		69del(src)
 		return
 
 	//Ok we got somewhere, hooray
@@ -420,20 +420,20 @@
 /obj/effect/blob/proc/handle_postmove()
 	for (var/obj/effect/blob/Bl in loc)
 		if (Bl != src)
-			qdel(Bl) //Lets make sure we don't get doubleblobs
+			69del(Bl) //Lets69ake sure we don't get doubleblobs
 
 /*******************
 	BLOB ATTACKING
 ********************/
-//Blobs will do horrible things to any mobs they share a tile with
-//Returns true if any mob was damaged, false if not
+//Blobs will do horrible things to any69obs they share a tile with
+//Returns true if any69ob was damaged, false if not
 /obj/effect/blob/proc/attack_mobs(var/turf/T)
 	if (!T)
 		T = loc
 	for (var/mob/living/L in T)
 		if(L.stat == DEAD)
 			continue
-		L.visible_message(SPAN_DANGER("The blob attacks \the [L]!"), SPAN_DANGER("The blob attacks you!"))
+		L.visible_message(SPAN_DANGER("The blob attacks \the 69L69!"), SPAN_DANGER("The blob attacks you!"))
 		playsound(loc, 'sound/effects/attackblob.ogg', 50, 1)
 		L.take_organ_damage(burn = RAND_DECIMAL(0.4, 2.3))
 
@@ -443,7 +443,7 @@
 			var/datum/reagents/R = new /datum/reagents(4, null)
 			R.add_reagent("sacid", RAND_DECIMAL(0.8,4))
 			R.trans_to(L, R.total_volume)
-			qdel(R)
+			69del(R)
 
 		return TRUE
 
@@ -471,20 +471,20 @@
 	var/taken_damage //The amount of damage the blob will recieve
 	for(var/i in Proj.damage_types)
 		if(i == BRUTE)
-			absorbed_damage = min(health * brute_resist, Proj.damage_types[i])
-			taken_damage = (Proj.damage_types[i] / brute_resist)
-			Proj.damage_types[i] -= absorbed_damage
+			absorbed_damage =69in(health * brute_resist, Proj.damage_types69i69)
+			taken_damage = (Proj.damage_types69i69 / brute_resist)
+			Proj.damage_types69i69 -= absorbed_damage
 		if(i == BURN)
-			absorbed_damage = min(health * fire_resist, Proj.damage_types[i])
-			taken_damage= (Proj.damage_types[i]  / fire_resist)
-			Proj.damage_types[i] -= absorbed_damage
+			absorbed_damage =69in(health * fire_resist, Proj.damage_types69i69)
+			taken_damage= (Proj.damage_types69i69  / fire_resist)
+			Proj.damage_types69i69 -= absorbed_damage
 	take_damage(taken_damage)
 	if (Proj.get_total_damage() <= 0)
 		return 0
 	else
 		return PROJECTILE_CONTINUE
 
-/obj/effect/blob/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/blob/attackby(var/obj/item/W,69ar/mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(W.force && !(W.flags & NOBLUDGEON))
 		user.do_attack_animation(src, TRUE)
@@ -549,7 +549,7 @@
 	icon_scale = 1.2
 
 /obj/effect/blob/shield/update_icon()
-	var/healthpercent = health / maxHealth
+	var/healthpercent = health /69axHealth
 	if(healthpercent > 0.6)
 		icon_state = "blob_idle"
 	else if(healthpercent > 0.3)

@@ -1,6 +1,6 @@
 /obj/item/gun/energy/ionrifle
 	name = "NT IR \"Halicon\""
-	desc = "The NT IR Halicon is a man-portable anti-armor weapon designed to disable mechanical threats, produced by NeoTheology. Not the best of its type, but gets the job done."
+	desc = "The69T IR Halicon is a69an-portable anti-armor weapon designed to disable69echanical threats, produced by69eoTheology.69ot the best of its type, but gets the job done."
 	icon = 'icons/obj/guns/energy/iongun.dmi'
 	icon_state = "ionrifle"
 	item_state = "ionrifle"
@@ -12,7 +12,7 @@
 	flags = CONDUCT
 	slot_flags = SLOT_BACK
 	charge_cost = 200
-	matter = list(MATERIAL_PLASTEEL = 24, MATERIAL_WOOD = 8, MATERIAL_SILVER = 10)
+	matter = list(MATERIAL_PLASTEEL = 24,69ATERIAL_WOOD = 8,69ATERIAL_SILVER = 10)
 	price_tag = 3000
 	projectile_type = /obj/item/projectile/ion
 	one_hand_penalty = 5

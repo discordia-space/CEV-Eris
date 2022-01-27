@@ -1,5 +1,5 @@
 /*
-	Research subsystem. Manages the static part of R&D, aka designs, technology nodes and such.
+	Research subsystem.69anages the static part of R&D, aka designs, technology nodes and such.
 	Does NOT handle tech trees since they're supposed to be instantiated per console, to track user's progress.
 	It holds instantiated designs, instantiated technologies (nodes) and tech tree types.
 	It sets research datums' designs and creates a new tree for each datum.
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(research)
 		design.file = design_file
 
 	for(var/T in subtypesof(/datum/tech))
-		all_tech_trees[T] = list()
+		all_tech_trees69T69 = list()
 
 	for(var/T in subtypesof(/datum/technology))
 		var/datum/technology/tech = new T
@@ -49,9 +49,9 @@ SUBSYSTEM_DEF(research)
 			statting_technologies += tech
 
 		if(tech.tech_type in all_tech_trees)
-			all_tech_trees[tech.tech_type] += tech
+			all_tech_trees69tech.tech_type69 += tech
 		else
-			WARNING("Unknown tech_type '[tech.tech_type]' in technology '[tech.name]'")
+			WARNING("Unknown tech_type '69tech.tech_type69' in technology '69tech.name69'")
 
 	generate_integrated_circuit_designs()
 
@@ -68,12 +68,12 @@ SUBSYSTEM_DEF(research)
 
 /datum/controller/subsystem/research/proc/generate_integrated_circuit_designs()
 	for(var/circ_path in SScircuit.cached_components)
-		var/obj/item/integrated_circuit/IC = SScircuit.cached_components[circ_path]
+		var/obj/item/integrated_circuit/IC = SScircuit.cached_components69circ_path69
 		if(!(IC.spawn_flags & IC_SPAWN_RESEARCH))
 			continue
 		var/datum/design/design = new /datum/design/research/circuit(src)
-		design.name = "Custom circuitry \[[IC.category_text]\] ([IC.name])"
-		design.id = "ic-[lowertext(IC.name)]"
+		design.name = "Custom circuitry \6969IC.category_text69\69 (69IC.name69)"
+		design.id = "ic-69lowertext(IC.name)69"
 		design.build_path = IC.type
 
 		design.AssembleDesignInfo()
@@ -96,8 +96,8 @@ SUBSYSTEM_DEF(research)
 		return
 	for(var/i in all_tech_trees)
 		var/datum/tech/T = new i
-		T.max_level = all_tech_trees[i].len
-		R.researched_tech[T] = list()
+		T.max_level = all_tech_trees69i69.len
+		R.researched_tech69T69 = list()
 
 	for(var/tech in statting_technologies)
 		R.UnlockTechology(tech, initial = TRUE)
@@ -111,4 +111,4 @@ SUBSYSTEM_DEF(research)
 		if(design.id == id)
 			return design
 
-	error("Incorrect design ID or path: [id]")
+	error("Incorrect design ID or path: 69id69")

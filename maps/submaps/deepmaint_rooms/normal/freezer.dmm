@@ -1,125 +1,125 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"b" = (
-/obj/item/remains/xeno,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"c" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"69" = 69
+/o6969/item/remains/xeno,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"c" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"d" = (
-/obj/structure/kitchenspike,
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"e" = (
-/obj/machinery/gibber,
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"f" = (
-/obj/item/remains/human,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"g" = (
-/obj/item/remains/mouse,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"h" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"i" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"j" = (
-/obj/item/remains/human,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"k" = (
-/obj/machinery/door/airlock{
-	name = "Kitchen Freezer";
-	req_access = list(28)
+/area/deepmaint69
+"d" = 69
+/o6969/structure/69itchenspi69e,
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"e" = 69
+/o6969/machinery/69i6969er,
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"f" = 69
+/o6969/item/remains/human,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/item/remains/mouse,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/69ray_platform,
+/area/deepmaint69
+"h" = 69
+/o6969/spawner/69un69,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/69ray_platform,
+/area/deepmaint69
+"i" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/69ray_platform,
+/area/deepmaint69
+"69" = 69
+/o6969/item/remains/human,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/69ray_platform,
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/door/airloc69{
+	name = "69itchen Freezer";
+	re69_access = list692869
 	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"l" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"m" = (
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"n" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"o" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"p" = (
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"q" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"r" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"s" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"t" = (
-/obj/structure/table/standard,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"u" = (
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"l" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"m" = 69
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"n" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"o" = 69
+/o6969/item/remains/human,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"p" = 69
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"69" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"r" = 69
+/o6969/spawner/69un69,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"s" = 69
+/o6969/structure/ta69le/standard,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"t" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"u" = 69
 /turf/simulated/floor/tiled/white/panels,
-/area/deepmaint)
-"v" = (
-/obj/spawner/junk,
+/area/deepmaint69
+"v" = 69
+/o6969/spawner/69un69,
 /turf/simulated/floor/tiled/white/panels,
-/area/deepmaint)
-"w" = (
-/obj/item/remains/mouse,
+/area/deepmaint69
+"w" = 69
+/o6969/item/remains/mouse,
 /turf/simulated/floor/tiled/white/panels,
-/area/deepmaint)
-"x" = (
-/obj/item/remains/mouse,
-/obj/spawner/junk,
-/obj/machinery/light/small{
+/area/deepmaint69
+"x" = 69
+/o6969/item/remains/mouse,
+/o6969/spawner/69un69,
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"y" = (
-/obj/spawner/junk,
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/white/69ray_platform,
+/area/deepmaint69
+"y" = 69
+/o6969/spawner/69un69,
+/o6969/machinery/li69ht/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"z" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/white/69ray_platform,
+/area/deepmaint69
+"z" = 69
+/o6969/machinery/li69ht/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -130,9 +130,9 @@ a
 a
 r
 a
-q
+69
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
 c
@@ -143,9 +143,9 @@ c
 l
 c
 u
-q
+69
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 c
 d
@@ -158,20 +158,20 @@ s
 v
 r
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 c
 e
-b
+69
 h
-j
-k
+69
+69
 n
 t
 w
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 c
 d
@@ -184,7 +184,7 @@ s
 v
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 c
 c
@@ -195,9 +195,9 @@ c
 z
 c
 u
-q
+69
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 c
 d
@@ -208,35 +208,35 @@ c
 n
 s
 u
-q
+69
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 c
 e
 f
-g
+69
 i
-k
+69
 m
 s
 v
-q
+69
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 c
 d
 d
 y
-g
+69
 c
 n
 s
 w
-q
+69
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 c
 c
@@ -249,7 +249,7 @@ c
 v
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 a
 a
@@ -257,8 +257,8 @@ a
 a
 a
 a
-q
+69
 a
-q
+69
 a
 "}

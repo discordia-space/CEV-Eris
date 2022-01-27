@@ -12,7 +12,7 @@
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	..()
-	grain = new()
+	grain =69ew()
 
 /mob/living/carbon/human/show_HUD()
 	..()
@@ -29,7 +29,7 @@
 		PERK_HOLY_LIGHT,               // Aura
 	)
 
-	var/state = "[rand(1, 9)] "
+	var/state = "69rand(1, 9)69 "
 	for(var/perk in S.perks ? light_grain_perks : list())
 		if(S.getPerk(perk))
 			switch(new_level)

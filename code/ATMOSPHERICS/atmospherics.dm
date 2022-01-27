@@ -18,7 +18,7 @@ Pipelines + Other Objects -> Pipe network
 	active_power_usage = 0
 	power_channel = STATIC_ENVIRON
 	var/nodealert = 0
-	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
+	var/power_rating //the69aximum amount of power the69achine can use to do work, affects how powerful the69achine is, in Watts
 
 	plane = FLOOR_PLANE
 	layer = GAS_PIPE_HIDDEN_LAYER //under wires
@@ -53,12 +53,12 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/atmos_init()
 	return
 
-/obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
+/obj/machinery/atmospherics/attackby(atom/A,69ob/user as69ob)
 	if(istype(A, /obj/item/device/pipe_painter))
 		return
 	..()
 
-/obj/machinery/atmospherics/proc/add_underlay(var/turf/T, var/obj/machinery/atmospherics/node, var/direction, var/icon_connect_type)
+/obj/machinery/atmospherics/proc/add_underlay(var/turf/T,69ar/obj/machinery/atmospherics/node,69ar/direction,69ar/icon_connect_type)
 	if(node)
 		if(T && !T.is_plating() && node.level == BELOW_PLATING_LEVEL && istype(node, /obj/machinery/atmospherics/pipe))
 			//underlays += icon_manager.get_atmos_icon("underlay_down", direction, color_cache_name(node))
@@ -107,7 +107,7 @@ obj/machinery/atmospherics/proc/check_connect_types(obj/machinery/atmospherics/a
 	build_network()
 
 /obj/machinery/atmospherics/proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	// Check to see if should be added to network. Add self if so and adjust variables appropriately.
+	// Check to see if should be added to network. Add self if so and adjust69ariables appropriately.
 	// Note don't forget to have neighbors look as well!
 
 	return null

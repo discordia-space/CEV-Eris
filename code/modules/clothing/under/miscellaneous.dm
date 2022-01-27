@@ -13,21 +13,21 @@
 
 /obj/item/clothing/under/waiter
 	name = "waiter's outfit"
-	desc = "A very smart uniform with a special pocket for tip."
+	desc = "A69ery smart uniform with a special pocket for tip."
 	icon_state = "waiter"
 	item_state = "waiter"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/waiter/skirt
 	name = "waiter's skirtsuit"
-	desc = "A very smart uniform with a special pocket for tip and a skirt for female waiters."
+	desc = "A69ery smart uniform with a special pocket for tip and a skirt for female waiters."
 	icon_state = "waiter_skirt"
 	item_state = "waiter_skirt"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/sexyclown
 	name = "sexy-clown suit"
-	desc = "It makes you look HONKable!"
+	desc = "It69akes you look HONKable!"
 	icon_state = "sexyclown"
 	item_state = "clown"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -55,7 +55,7 @@
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
-	desc = "A black suit and red tie. Very formal."
+	desc = "A black suit and red tie.69ery formal."
 	icon_state = "black_suit"
 	item_state = "bl_suit"
 	style = STYLE_LOW
@@ -71,7 +71,7 @@
 
 /obj/item/clothing/under/blackskirt
 	name = "black skirt"
-	desc = "A black skirt, very fancy!"
+	desc = "A black skirt,69ery fancy!"
 	icon_state = "blackskirt"
 	item_state = "bl_suit"
 
@@ -80,7 +80,7 @@
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
-	desc = "It's just like one of my Japanese animes!"
+	desc = "It's just like one of69y Japanese animes!"
 	icon_state = "schoolgirl"
 	item_state = "b_suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -101,7 +101,7 @@
 
 /obj/item/clothing/under/soviet
 	name = "soviet uniform"
-	desc = "For the Motherland!"
+	desc = "For the69otherland!"
 	icon_state = "soviet"
 	item_state = "gy_suit"
 
@@ -124,7 +124,7 @@
 
 /obj/item/clothing/under/bride_white
 	name = "silky wedding dress"
-	desc = "A white wedding gown made from the finest silk."
+	desc = "A white wedding gown69ade from the finest silk."
 	icon_state = "bride_white"
 	item_state = "nursesuit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
@@ -149,7 +149,7 @@
 
 /obj/item/clothing/under/serviceoveralls
 	name = "workman outfit"
-	desc = "The very image of a working man. Not that you're probably doing work."
+	desc = "The69ery image of a working69an. Not that you're probably doing work."
 	icon_state = "mechanic"
 	item_state = "lb_suit"
 
@@ -170,14 +170,14 @@
 
 /obj/item/clothing/under/dress/blue
 	name = "blue summerdress"
-	desc = "a blue dress worn by mostly those of east asian descendance"
+	desc = "a blue dress worn by69ostly those of east asian descendance"
 	icon_state = "summerdress2"
 	item_state = "summerdress2"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/dress/red
 	name = "red summerdress"
-	desc = "A red dress worn mostly by those of east asian descendance."
+	desc = "A red dress worn69ostly by those of east asian descendance."
 	icon_state = "summerdress3"
 	item_state = "summerdress3"
 	style = STYLE_LOW
@@ -227,19 +227,19 @@ obj/item/clothing/under/neon/red
 
 obj/item/clothing/under/jersey
 	name = "revealing jersey"
-	desc = "For showing your devotion to god, or the opposite for that matter"
+	desc = "For showing your devotion to god, or the opposite for that69atter"
 	icon_state = "jersey"
 	item_state = "jersey"
 
 obj/item/clothing/under/cyber
 	name = "augmented jumpsuit"
-	desc = "I wanted a jumpsuit. It gave me THIS."
+	desc = "I wanted a jumpsuit. It gave69e THIS."
 	icon_state = "cyber"
 	item_state = "cyber"
 
 obj/item/clothing/under/netrunner
 	name = "cybersuit"
-	desc = "Jumpsuit favored by surveillance officers and VR gamers alike. Ugly as sin. Luckily, in cyberspace no one can see your realspace clothing."
+	desc = "Jumpsuit favored by surveillance officers and69R gamers alike. Ugly as sin. Luckily, in cyberspace no one can see your realspace clothing."
 	icon_state = "jensen"
 	item_state = "jensen"
 	style = STYLE_NEG_HIGH
@@ -271,15 +271,15 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/tuxedo
 	name = "tuxedo"
-	desc = "A very stylish black tuxedo with a necktie. Must have for all crime-boys."
+	desc = "A69ery stylish black tuxedo with a necktie.69ust have for all crime-boys."
 	icon_state = "tuxedo"
 	style = STYLE_HIGH
 	price_tag = 300
 
-//stylish vendor clothes
+//stylish69endor clothes
 /obj/item/clothing/under/white
 	name = "ivory white outfit"
-	desc = "White suit, white pants and a white tie. Very stylish."
+	desc = "White suit, white pants and a white tie.69ery stylish."
 	icon_state = "suit_white"
 	item_state = "suit_white"
 	style = STYLE_HIGH
@@ -287,7 +287,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/red
 	name = "blood red outfit"
-	desc = "Red suit, red pants and a red tie. Very stylish."
+	desc = "Red suit, red pants and a red tie.69ery stylish."
 	icon_state = "suit_red"
 	item_state = "suit_red"
 	style = STYLE_HIGH
@@ -303,7 +303,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/grey
 	name = "ash grey outfit"
-	desc = "Grey suit, grey pants and a grey tie. Very stylish."
+	desc = "Grey suit, grey pants and a grey tie.69ery stylish."
 	icon_state = "suit_grey"
 	item_state = "suit_grey"
 	style = STYLE_HIGH
@@ -311,7 +311,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/black
 	name = "charcoal black outfit"
-	desc = "Black suit, black pants and a black tie. Very stylish."
+	desc = "Black suit, black pants and a black tie.69ery stylish."
 	icon_state = "suit_black"
 	item_state = "suit_black"
 	style = STYLE_HIGH
@@ -344,7 +344,7 @@ obj/item/clothing/under/genericr
 
 /obj/item/clothing/under/johnny
 	name = "rockerboy outfit"//Cyberpunk 2077, Johnny Silverhand's outfit
-	desc = "A padded vest with brown leather pants. Never stop fightin'"
+	desc = "A padded69est with brown leather pants. Never stop fightin'"
 	icon_state = "johnny"
 	item_state = "johnny"
 	style = STYLE_HIGH
@@ -385,7 +385,7 @@ obj/item/clothing/under/genericr
 
 
 
-//Adminbus versions with extremly high armor, should never spawn in game
+//Adminbus69ersions with extremly high armor, should never spawn in game
 /obj/item/clothing/under/tuxedo/adminspawn
 	spawn_blacklisted = TRUE
 	armor = list(

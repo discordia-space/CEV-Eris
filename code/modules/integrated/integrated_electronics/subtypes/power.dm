@@ -3,16 +3,16 @@
 
 /obj/item/integrated_circuit/power/transmitter
 	name = "power transmission circuit"
-	desc = "This can wirelessly transmit electricity from an assembly's battery towards a nearby machine."
+	desc = "This can wirelessly transmit electricity from an assembly's battery towards a nearby69achine."
 	icon_state = "power_transmitter"
-	extended_desc = "This circuit transmits 5 kJ of electricity every time the activator pin is pulsed. The input pin must be \
-	a reference to a machine to send electricity to.  This can be a battery, or anything containing a battery.  The machine can exist \
+	extended_desc = "This circuit transmits 5 kJ of electricity every time the activator pin is pulsed. The input pin69ust be \
+	a reference to a69achine to send electricity to.  This can be a battery, or anything containing a battery.  The69achine can exist \
 	inside the assembly, or adjacent to it.  The power is sourced from the assembly's power cell.  If the target is outside of the assembly, \
 	some power is lost due to ineffiency."
 	w_class = ITEM_SIZE_SMALL
 	complexity = 16
 	inputs = list("\<REF\> target")
-	outputs = list("\<NUM\> target cell charge", "\<NUM\> target cell max charge", "\<NUM\> target cell percentage")
+	outputs = list("\<NUM\> target cell charge", "\<NUM\> target cell69ax charge", "\<NUM\> target cell percentage")
 	activators = list("\<PULSE IN\> transmit")
 	spawn_flags = IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_POWER = 4, TECH_MAGNET = 3)
@@ -21,9 +21,9 @@
 
 /obj/item/integrated_circuit/power/transmitter/large
 	name = "large power transmission circuit"
-	desc = "This can wirelessly transmit a lot of electricity from an assembly's battery towards a nearby machine.  Warning:  Do not operate in flammable enviroments."
-	extended_desc = "This circuit transmits 20 kJ of electricity every time the activator pin is pulsed. The input pin must be \
-	a reference to a machine to send electricity to.  This can be a battery, or anything containing a battery.  The machine can exist \
+	desc = "This can wirelessly transmit a lot of electricity from an assembly's battery towards a nearby69achine.  Warning:  Do not operate in flammable enviroments."
+	extended_desc = "This circuit transmits 20 kJ of electricity every time the activator pin is pulsed. The input pin69ust be \
+	a reference to a69achine to send electricity to.  This can be a battery, or anything containing a battery.  The69achine can exist \
 	inside the assembly, or adjacent to it.  The power is sourced from the assembly's power cell.  If the target is outside of the assembly, \
 	some power is lost due to ineffiency."
 	w_class = ITEM_SIZE_BULKY
@@ -44,7 +44,7 @@
 		var/obj/item/cell/cell
 		if(istype(AM, /obj/item/cell)) // Is this already a cell?
 			cell = AM
-		else // If not, maybe there's a cell inside it?
+		else // If not,69aybe there's a cell inside it?
 			for(var/obj/item/cell/C in AM.contents)
 				if(C) // Find one cell to charge.
 					cell = C
@@ -76,5 +76,5 @@
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
-			visible_message(SPAN_WARNING("\The [assembly] makes some sparks!"))
+			visible_message(SPAN_WARNING("\The 69assembly6969akes some sparks!"))
 			qdel(sparks)

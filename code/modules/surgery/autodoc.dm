@@ -21,10 +21,10 @@
 
 /datum/autodoc_patchnote
 	var/surgery_operations = 0
-	var/obj/item/organ/organ = null
+	var/obj/item/organ/organ =69ull
 
 /datum/autodoc_patchnote/proc/Copy(var/blank = TRUE)
-	var/datum/autodoc_patchnote/copy = new()
+	var/datum/autodoc_patchnote/copy =69ew()
 	copy.organ = organ
 	if(!blank)
 		copy.surgery_operations = surgery_operations
@@ -41,14 +41,14 @@
 	var/processing_speed = 30 SECONDS
 	var/current_step = 1
 	var/start_op_time
-	var/mob/living/carbon/human/patient = null
+	var/mob/living/carbon/human/patient =69ull
 	var/list/possible_operations = list(AUTODOC_DAMAGE, AUTODOC_EMBED_OBJECT, AUTODOC_FRACTURE, AUTODOC_OPEN_WOUNDS, AUTODOC_TOXIN, AUTODOC_DIALYSIS, AUTODOC_BLOOD)
 
 /datum/autodoc/New(obj/new_holder)
 	. = ..()
-	holder = new_holder
+	holder =69ew_holder
 
-/datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human = null)
+/datum/autodoc/proc/set_patient(var/mob/living/carbon/human/human =69ull)
 	patient = human
 
 /datum/autodoc/proc/scan_user()
@@ -56,10 +56,10 @@
 		to_chat(usr, SPAN_WARNING("Autodoc already in use"))
 		return FALSE
 
-	scanned_patchnotes = new()
-	picked_patchnotes = new()
+	scanned_patchnotes =69ew()
+	picked_patchnotes =69ew()
 
-	var/datum/autodoc_patchnote/toxnote = new()
+	var/datum/autodoc_patchnote/toxnote =69ew()
 	if(patient.getToxLoss())
 		toxnote.surgery_operations |= AUTODOC_TOXIN
 	if(patient.reagents.reagent_list.len)
@@ -73,14 +73,14 @@
 	if(AUTODOC_DAMAGE in possible_operations)
 		for(var/obj/item/organ/internal/internal in patient.internal_organs)
 			if(internal.damage)
-				var/datum/autodoc_patchnote/patchnote = new()
+				var/datum/autodoc_patchnote/patchnote =69ew()
 				patchnote.organ = internal
 				patchnote.surgery_operations |= AUTODOC_DAMAGE
 				scanned_patchnotes.Add(patchnote)
 				picked_patchnotes.Add(patchnote.Copy())
 
 	for(var/obj/item/organ/external/external in patient.bad_external_organs)
-		var/datum/autodoc_patchnote/patchnote = new()
+		var/datum/autodoc_patchnote/patchnote =69ew()
 		patchnote.organ = external
 		if(AUTODOC_DAMAGE in possible_operations)
 			if(external.brute_dam || external.burn_dam)
@@ -133,13 +133,13 @@
 
 		else if (patchnote.surgery_operations & AUTODOC_BLOOD)
 			to_chat(patient, SPAN_NOTICE("Administering blood IV to patient."))
-			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list[1]
+			var/datum/reagent/organic/blood/blood = patient.vessel.reagent_list69169
 			blood.volume += damage_heal_amount
 			if(blood.volume >= patient.vessel.total_volume)
 				patchnote.surgery_operations &= ~AUTODOC_BLOOD
 
 	else if(patchnote.surgery_operations & AUTODOC_DAMAGE)
-		to_chat(patient, SPAN_NOTICE("Treating damage on the patients [external]."))
+		to_chat(patient, SPAN_NOTICE("Treating damage on the patients 69externa6969."))
 		if(istype(patchnote.organ, /obj/item/organ/internal))
 			var/obj/item/organ/internal/internal = patchnote.organ
 			internal.damage -= damage_heal_amount
@@ -151,14 +151,14 @@
 		if(!external.brute_dam && !external.burn_dam) patchnote.surgery_operations &= ~AUTODOC_DAMAGE
 
 	else if(patchnote.surgery_operations & AUTODOC_EMBED_OBJECT)
-		to_chat(patient, SPAN_NOTICE("Removing embedded objects from the patients [external]."))
+		to_chat(patient, SPAN_NOTICE("Removing embedded objects from the patients 69externa6969."))
 		for(var/obj/item/material/shard/shrapnel/shrapnel in external.implants)
 			external.implants -= shrapnel
 			shrapnel.loc = get_turf(patient)
 		patchnote.surgery_operations &= ~AUTODOC_EMBED_OBJECT
 
 	else if(patchnote.surgery_operations & AUTODOC_OPEN_WOUNDS)
-		to_chat(patient, SPAN_NOTICE("Closing wounds on the patients [external]."))
+		to_chat(patient, SPAN_NOTICE("Closing wounds on the patients 69externa6969."))
 		for(var/datum/wound/wound in external.wounds)
 			if(!wound.internal)
 				wound.bandaged = 1
@@ -169,16 +169,16 @@
 		patchnote.surgery_operations &= ~AUTODOC_OPEN_WOUNDS
 
 	else if(patchnote.surgery_operations & AUTODOC_FRACTURE)
-		to_chat(patient, SPAN_NOTICE("Mending fractures in the patients [external]."))
+		to_chat(patient, SPAN_NOTICE("Mending fractures in the patients 69externa6969."))
 		external.mend_fracture()
 		patchnote.surgery_operations &= ~AUTODOC_FRACTURE
 
 	else if(patchnote.surgery_operations & AUTODOC_IB)
-		to_chat(patient, SPAN_NOTICE("Treating internal bleeding in the patients [external]."))
+		to_chat(patient, SPAN_NOTICE("Treating internal bleeding in the patients 69externa6969."))
 		for(var/datum/wound/wound in external.wounds)
 			if(wound.internal)
 				external.wounds -= wound
-				qdel(wound)
+				69del(wound)
 				external.update_damages()
 		patchnote.surgery_operations &= ~AUTODOC_IB
 	return !patchnote.surgery_operations
@@ -192,13 +192,13 @@
 	if(world.time > (start_op_time + processing_speed))
 		start_op_time = world.time
 		patient.updatehealth()
-		if(process_note(picked_patchnotes[current_step]))
+		if(process_note(picked_patchnotes69current_ste6969))
 			current_step++
 
 /datum/autodoc/proc/fail()
 	current_step++
 
-/datum/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 2, var/datum/topic_state/state)
+/datum/autodoc/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open = 2,69ar/datum/topic_state/state)
 	if(!patient)
 		if(ui)
 			ui.close()
@@ -206,7 +206,7 @@
 	var/list/data = form_data()
 	ui = SSnano.try_update_ui(user, holder, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, holder, ui_key, template_name, "Autodoc", 600, 480, state=state)
+		ui =69ew(user, holder, ui_key, template_name, "Autodoc", 600, 480, state=state)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(TRUE)
@@ -215,72 +215,72 @@
 /datum/autodoc/proc/form_data()
 	var/list/data = list()
 
-	data["active"] = active
-	data["progress"] = (world.time - start_op_time) / processing_speed
-	data["over_brute"] = patient.getBruteLoss()
-	data["over_burn"] = patient.getFireLoss()
-	data["over_oxy"] = patient.getOxyLoss()
-	data["over_tox"] = patient.getToxLoss()
-	data["blood_amount"] = patient.vessel.get_reagent_amount("blood") / patient.species.blood_volume * 100
+	data69"active6969 = active
+	data69"progress6969 = (world.time - start_op_time) / processing_speed
+	data69"over_brute6969 = patient.getBruteLoss()
+	data69"over_burn6969 = patient.getFireLoss()
+	data69"over_oxy6969 = patient.getOxyLoss()
+	data69"over_tox6969 = patient.getToxLoss()
+	data69"blood_amount6969 = patient.vessel.get_reagent_amount("blood") / patient.species.blood_volume * 100
 
 	var/list/organs = list()
 
 	var/i = 0
 	if(!scanned_patchnotes.len)
-		data["antitox"] = FALSE
-		data["antitox_picked"] = FALSE
+		data69"antitox6969 = FALSE
+		data69"antitox_picked6969 = FALSE
 
-		data["dialysis"] = FALSE
-		data["dialysis_picked"] = FALSE
+		data69"dialysis6969 = FALSE
+		data69"dialysis_picked6969 = FALSE
 
-		data["blood"] = FALSE
-		data["blood_picked"] = FALSE
+		data69"blood6969 = FALSE
+		data69"blood_picked6969 = FALSE
 	else
 		for(var/datum/autodoc_patchnote/note in scanned_patchnotes)
 			i++
 			var/list/organ = list()
-			organ["id"] = i
+			organ69"id6969 = i
 			if(!note.organ)
-				data["antitox"] = note.surgery_operations & AUTODOC_TOXIN
-				data["antitox_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_TOXIN
+				data69"antitox6969 =69ote.surgery_operations & AUTODOC_TOXIN
+				data69"antitox_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_TOXIN
 
-				data["dialysis"] = note.surgery_operations & AUTODOC_DIALYSIS
-				data["dialysis_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DIALYSIS
+				data69"dialysis6969 =69ote.surgery_operations & AUTODOC_DIALYSIS
+				data69"dialysis_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_DIALYSIS
 
-				data["blood"] = note.surgery_operations & AUTODOC_BLOOD
-				data["blood_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_BLOOD
+				data69"blood6969 =69ote.surgery_operations & AUTODOC_BLOOD
+				data69"blood_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_BLOOD
 				continue
 
 			if(istype(note.organ, /obj/item/organ/internal))
-				var/obj/item/organ/internal/internal = note.organ
-				organ["name"] = internal.name
-				organ["internal"] = TRUE
-				organ["inner_damage"] = internal.damage
+				var/obj/item/organ/internal/internal =69ote.organ
+				organ69"name6969 = internal.name
+				organ69"internal6969 = TRUE
+				organ69"inner_damage6969 = internal.damage
 
-				organ["damage"] = note.surgery_operations & AUTODOC_DAMAGE
-				organ["damage_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DAMAGE
+				organ69"damage6969 =69ote.surgery_operations & AUTODOC_DAMAGE
+				organ69"damage_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_DAMAGE
 			else
-				var/obj/item/organ/external/external = note.organ
-				organ["name"] = external.name
-				organ["brute_damage"] = external.brute_dam
-				organ["burn_damage"] = external.burn_dam
+				var/obj/item/organ/external/external =69ote.organ
+				organ69"name6969 = external.name
+				organ69"brute_damage6969 = external.brute_dam
+				organ69"burn_damage6969 = external.burn_dam
 
-				organ["fracture"] = note.surgery_operations & AUTODOC_FRACTURE
-				organ["fracture_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_FRACTURE
+				organ69"fracture6969 =69ote.surgery_operations & AUTODOC_FRACTURE
+				organ69"fracture_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_FRACTURE
 
-				organ["shrapnel"] = note.surgery_operations & AUTODOC_EMBED_OBJECT
-				organ["shrapnel_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_EMBED_OBJECT
+				organ69"shrapnel6969 =69ote.surgery_operations & AUTODOC_EMBED_OBJECT
+				organ69"shrapnel_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_EMBED_OBJECT
 
-				organ["damage"] = note.surgery_operations & AUTODOC_DAMAGE
-				organ["damage_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_DAMAGE
+				organ69"damage6969 =69ote.surgery_operations & AUTODOC_DAMAGE
+				organ69"damage_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_DAMAGE
 
-				organ["wound"] = note.surgery_operations & AUTODOC_OPEN_WOUNDS
-				organ["wound_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_OPEN_WOUNDS
+				organ69"wound6969 =69ote.surgery_operations & AUTODOC_OPEN_WOUNDS
+				organ69"wound_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_OPEN_WOUNDS
 
-				organ["ib"] = note.surgery_operations & AUTODOC_IB
-				organ["ib_picked"] = picked_patchnotes[i].surgery_operations & AUTODOC_IB
+				organ69"ib6969 =69ote.surgery_operations & AUTODOC_IB
+				organ69"ib_picked6969 = picked_patchnotes669i69.surgery_operations & AUTODOC_IB
 			organs+= list(organ)
-	data["organs"] = organs
+	data69"organs6969 = organs
 	return data
 
 /datum/autodoc/proc/stop()
@@ -306,19 +306,19 @@
 
 /datum/autodoc/Topic(href, href_list)
 	if(..()) return TRUE
-	if(href_list["scan"])
+	if(href_list69"scan6969)
 		scan_user(patient)
-	if(href_list["picked"])
+	if(href_list69"picked6969)
 		start()
-	if(href_list["full"])
+	if(href_list69"full6969)
 		picked_patchnotes = scanned_patchnotes.Copy()
 		start()
-	if(href_list["stop"])
+	if(href_list69"stop6969)
 		stop()
-	if(href_list["toggle"])
+	if(href_list69"toggle6969)
 		var/op = 0
-		var/id = text2num(href_list["id"])
-		switch(href_list["toggle"])
+		var/id = text2num(href_list69"id6969)
+		switch(href_list69"toggle6969)
 			if("damage")
 				op = AUTODOC_DAMAGE
 			if("wound")
@@ -335,10 +335,10 @@
 				op = AUTODOC_TOXIN
 			if("blood")
 				op = AUTODOC_BLOOD
-		if(picked_patchnotes[id].surgery_operations & op)
-			picked_patchnotes[id].surgery_operations &= ~op
+		if(picked_patchnotes69i6969.surgery_operations & op)
+			picked_patchnotes69i6969.surgery_operations &= ~op
 		else
-			picked_patchnotes[id].surgery_operations |= op
+			picked_patchnotes69i6969.surgery_operations |= op
 	return TRUE
 
 
@@ -354,27 +354,27 @@
 
 /datum/autodoc/capitalist_autodoc/New()
 	. = ..()
-	linked_account = department_accounts[DEPARTMENT_MEDICAL]
+	linked_account = department_accounts69DEPARTMENT_MEDICA6969
 	template_name = "autodoc_capitalism.tmpl"
 
 /datum/autodoc/capitalist_autodoc/form_data()
 	var/list/data = ..()
 
-	data["patient_name"] = patient_account ? patient_account.owner_name : 0
-	data["patient_money"] = patient_account ? patient_account.money : null
+	data69"patient_name6969 = patient_account ? patient_account.owner_name : 0
+	data69"patient_money6969 = patient_account ? patient_account.money :69ull
 
-	data["total_cost"] = total_cost
-	data["custom_cost"] = custom_cost
-	data["scan_cost"] = AUTODOC_SCAN_COST
+	data69"total_cost6969 = total_cost
+	data69"custom_cost6969 = custom_cost
+	data69"scan_cost6969 = AUTODOC_SCAN_COST
 
-	data["damage_cost"] = AUTODOC_DAMAGE_COST
-	data["wound_cost"] = AUTODOC_OPEN_WOUNDS_COST
-	data["ib_cost"] = AUTODOC_IB_COST
-	data["fracture_cost"] = AUTODOC_FRACTURE_COST
-	data["shrapnel_cost"] = AUTODOC_EMBED_OBJECT_COST
-	data["toxin_cost"] = AUTODOC_TOXIN_COST
-	data["dialysis_cost"] = AUTODOC_DIALYSIS_COST
-	data["blood_cost"] = AUTODOC_BLOOD_COST
+	data69"damage_cost6969 = AUTODOC_DAMAGE_COST
+	data69"wound_cost6969 = AUTODOC_OPEN_WOUNDS_COST
+	data69"ib_cost6969 = AUTODOC_IB_COST
+	data69"fracture_cost6969 = AUTODOC_FRACTURE_COST
+	data69"shrapnel_cost6969 = AUTODOC_EMBED_OBJECT_COST
+	data69"toxin_cost6969 = AUTODOC_TOXIN_COST
+	data69"dialysis_cost6969 = AUTODOC_DIALYSIS_COST
+	data69"blood_cost6969 = AUTODOC_BLOOD_COST
 
 	return data
 
@@ -383,15 +383,15 @@
 		to_chat(patient, "Autodoc is out of service. Error code: #0x09")
 		return FALSE
 	if(!patient_account || !patient_account.is_valid())
-		to_chat(patient, SPAN_WARNING("Proper banking account is needed."))
+		to_chat(patient, SPAN_WARNING("Proper banking account is69eeded."))
 		return
 	if(amount > patient_account.money)
 		to_chat(patient, SPAN_WARNING("Insufficient funds."))
 		return
 	var/datum/transaction/T
-	T = new(-amount, linked_account.owner_name, "Autodoc surgery", "Autodoc")
+	T =69ew(-amount, linked_account.owner_name, "Autodoc surgery", "Autodoc")
 	T.apply_to(patient_account)
-	T = new(amount, patient_account.owner_name, "Autodoc surgery", "Autodoc")
+	T =69ew(amount, patient_account.owner_name, "Autodoc surgery", "Autodoc")
 	T.apply_to(linked_account)
 	return TRUE
 
@@ -402,7 +402,7 @@
 
 /datum/autodoc/capitalist_autodoc/proc/recalc_costs(var/list/notes)
 	var/cost = 0
-	for(var/datum/autodoc_patchnote/patchnote in notes)
+	for(var/datum/autodoc_patchnote/patchnote in69otes)
 		if(patchnote.surgery_operations & AUTODOC_TOXIN)
 			cost += AUTODOC_TOXIN_COST
 		if(patchnote.surgery_operations & AUTODOC_DIALYSIS)
@@ -423,14 +423,14 @@
 
 /datum/autodoc/capitalist_autodoc/proc/login()
 	if(!patient)
-		patient_account = null
+		patient_account =69ull
 		return
 	var/obj/item/card/id/id_card = patient.GetIdCard()
 	if(id_card)
 		patient_account = get_account(id_card.associated_account_number)
 		if(patient_account.security_level)
 			var/attempt_pin = ""
-			attempt_pin = input("Enter pin code", "Autodoc payement") as num
+			attempt_pin = input("Enter pin code", "Autodoc payement") as69um
 			patient_account = attempt_account_access(id_card.associated_account_number, attempt_pin, 2)
 
 /datum/autodoc/capitalist_autodoc/start()
@@ -444,14 +444,14 @@
 	. = ..()
 
 /datum/autodoc/capitalist_autodoc/Topic(href, href_list)
-	if(href_list["full"])
+	if(href_list69"full6969)
 		processing_cost = total_cost
-	if(href_list["picked"])
+	if(href_list69"picked6969)
 		processing_cost = custom_cost
 	. = ..()
-	if(href_list["toggle"])
+	if(href_list69"toggle6969)
 		custom_cost = recalc_costs(picked_patchnotes)
-	if(href_list["login"])
+	if(href_list69"login6969)
 		login()
 		. = TRUE
 

@@ -9,7 +9,7 @@
 /obj/effect/step_trigger/proc/Trigger(var/atom/movable/A)
 	return 0
 
-/obj/effect/step_trigger/Crossed(H as mob|obj)
+/obj/effect/step_trigger/Crossed(H as69ob|obj)
 	..()
 	if(!H)
 		return
@@ -26,9 +26,9 @@
 /obj/effect/step_trigger/thrower
 	var/direction = SOUTH // the direction of throw
 	var/tiles = 3	// if 0: forever until atom hits a stopper
-	var/immobilize = 1 // if nonzero: prevents mobs from moving while they're being flung
-	var/speed = 1	// delay of movement
-	var/facedir = 0 // if 1: atom faces the direction of movement
+	var/immobilize = 1 // if nonzero: prevents69obs from69oving while they're being flung
+	var/speed = 1	// delay of69ovement
+	var/facedir = 0 // if 1: atom faces the direction of69ovement
 	var/nostop = 0 // if 1: will only be stopped by teleporters
 	var/list/affecting = list()
 
@@ -117,13 +117,13 @@
 				A.y = rand(teleport_y, teleport_y_offset)
 				A.z = rand(teleport_z, teleport_z_offset)
 
-/* Step trigger to display message if *TRIGGERED* */
+/* Step trigger to display69essage if *TRIGGERED* */
 /obj/effect/step_trigger/message
-	var/message	//the message to give to the mob
+	var/message	//the69essage to give to the69ob
 	var/once = 1
 
-/obj/effect/step_trigger/message/Trigger(mob/M as mob)
+/obj/effect/step_trigger/message/Trigger(mob/M as69ob)
 	if(M.client)
-		to_chat(M, "<span class='info'>[message]</span>")
+		to_chat(M, "<span class='info'>69message69</span>")
 		if(once)
-			qdel(src)
+			69del(src)

@@ -1,13 +1,13 @@
-//Takes: Area type as text string or as typepath OR an instance of the area.
+//Takes: Area type as text strin69 or as typepath OR an instance of the area.
 //Returns: A list of all turfs in areas of that type in the world.
-/proc/get_area_turfs(var/areatype, var/list/predicates)
-	if(!areatype) return null
+/proc/69et_area_turfs(var/areatype,69ar/list/predicates)
+	if(!areatype) return69ull
 	if(istext(areatype)) areatype = text2path(areatype)
 	if(isarea(areatype))
 		var/area/areatemp = areatype
 		areatype = areatemp.type
 
-	var/list/turfs = new/list()
+	var/list/turfs =69ew/list()
 	for(var/areapath in typesof(areatype))
 		var/area/A = locate(areapath)
 		for(var/turf/T in A.contents)
@@ -15,24 +15,24 @@
 				turfs += T
 	return turfs
 
-//Returns everything in an area based on type, searching recursively
-/proc/get_area_contents(var/areatype)
-	var/list/turf/LT = get_area_turfs(areatype)
+//Returns everythin69 in an area based on type, searchin69 recursively
+/proc/69et_area_contents(var/areatype)
+	var/list/turf/LT = 69et_area_turfs(areatype)
 	var/list/contents = list()
 	for (var/turf/T in LT)
-		contents |= T.get_recursive_contents()
+		contents |= T.69et_recursive_contents()
 
 	return contents
 
 
-/proc/pick_area_turf(var/areatype, var/list/predicates)
-	var/list/turfs = get_area_turfs(areatype, predicates)
+/proc/pick_area_turf(var/areatype,69ar/list/predicates)
+	var/list/turfs = 69et_area_turfs(areatype, predicates)
 	if(turfs && turfs.len)
 		return pick(turfs)
 
-/proc/is_matching_vessel(var/atom/A, var/atom/B)
-	var/area/area1 = get_area(A)
-	var/area/area2 = get_area(B)
+/proc/is_matchin69_vessel(var/atom/A,69ar/atom/B)
+	var/area/area1 = 69et_area(A)
+	var/area/area2 = 69et_area(B)
 	if (!area1 || !area2)
 		return FALSE
 
@@ -40,18 +40,18 @@
 		return TRUE
 	return FALSE
 
-/atom/proc/get_vessel()
-	var/area/A = get_area(src)
+/atom/proc/69et_vessel()
+	var/area/A = 69et_area(src)
 	return A.vessel
 
 
 //A useful proc for events.
-//This returns a random area of the station which is meaningful. Ie, a room somewhere
-//If filter_players is true, it will only pick an area that has no human players in it
-	//This is useful for spawning, you dont want people to see things pop into existence
-//If filter_maintenance is true, maintenance areas won't be chosen
-	//Since eris maintenance is a labyrinth and people dont hang around there, this defaults true
-/proc/random_ship_area(var/filter_players = FALSE, var/filter_maintenance = TRUE, var/filter_critical = FALSE, need_apc = FALSE)
+//This returns a random area of the station which is69eanin69ful. Ie, a room somewhere
+//If filter_players is true, it will only pick an area that has69o human players in it
+	//This is useful for spawnin69, you dont want people to see thin69s pop into existence
+//If filter_maintenance is true,69aintenance areas won't be chosen
+	//Since eris69aintenance is a labyrinth and people dont han69 around there, this defaults true
+/proc/random_ship_area(var/filter_players = FALSE,69ar/filter_maintenance = TRUE,69ar/filter_critical = FALSE,69eed_apc = FALSE)
 	var/list/possible = list()
 	for(var/Y in ship_areas)
 		var/area/A = Y
@@ -61,11 +61,11 @@
 		if (filter_maintenance && A.is_maintenance)
 			continue
 
-		if (filter_critical && (A.flags & AREA_FLAG_CRITICAL))
+		if (filter_critical && (A.fla69s & AREA_FLA69_CRITICAL))
 			continue
 
-		//Although hostile mobs instadying to turrets is fun
-		//If there's no AI they'll just be hit with stunbeams all day and spam the attack logs.
+		//Althou69h hostile69obs instadyin69 to turrets is fun
+		//If there's69o AI they'll just be hit with stunbeams all day and spam the attack lo69s.
 		if (istype(A, /area/turret_protected))
 			continue
 
@@ -74,10 +74,10 @@
 
 		if(filter_players)
 			var/should_continue = FALSE
-			for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
+			for(var/mob/livin69/carbon/human/H in 69LOB.human_mob_list)
 				if(!H.client)
 					continue
-				if(A == get_area(H))
+				if(A == 69et_area(H))
 					should_continue = TRUE
 					break
 
@@ -95,16 +95,16 @@
 			turfs += F
 	if (turfs.len)
 		return pick(turfs)
-	else return null
+	else return69ull
 
 
 /area/proc/random_hideable_turf()
 	var/list/turfs = list()
 	for(var/turf/simulated/floor/F in src.contents)
 		if(turf_clear(F))
-			if (F.flooring && (F.flooring.flags & TURF_HIDES_THINGS))
+			if (F.floorin69 && (F.floorin69.fla69s & TURF_HIDES_THIN69S))
 				turfs += F
 	if (turfs.len)
 		return pick(turfs)
-	else return null
+	else return69ull
 

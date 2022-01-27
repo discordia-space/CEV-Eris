@@ -11,14 +11,14 @@
 		block=NOBREATHBLOCK
 
 /datum/dna/gene/basic/remoteview
-	name="Remote Viewing"
-	activation_messages=list("Your mind expands.")
+	name="Remote69iewing"
+	activation_messages=list("Your69ind expands.")
 	mutation=mRemote
 
 	New()
 		block=REMOTEVIEWBLOCK
 
-	activate(var/mob/M, var/connected, var/flags)
+	activate(var/mob/M,69ar/connected,69ar/flags)
 		..(M,connected,flags)
 		M.verbs += /mob/living/carbon/human/proc/remoteobserve
 
@@ -32,7 +32,7 @@
 
 /datum/dna/gene/basic/increaserun
 	name="Super Speed"
-	activation_messages=list("Your leg muscles pulsate.")
+	activation_messages=list("Your leg69uscles pulsate.")
 	mutation=mRun
 
 	New()
@@ -40,13 +40,13 @@
 
 /datum/dna/gene/basic/remotetalk
 	name="Telepathy"
-	activation_messages=list("You expand your mind outwards.")
+	activation_messages=list("You expand your69ind outwards.")
 	mutation=mRemotetalk
 
 	New()
 		block=REMOTETALKBLOCK
 
-	activate(var/mob/M, var/connected, var/flags)
+	activate(var/mob/M,69ar/connected,69ar/flags)
 		..(M,connected,flags)
 		M.verbs += /mob/living/carbon/human/proc/remotesay
 
@@ -72,17 +72,17 @@
 		block=COLDBLOCK
 
 	can_activate(var/mob/M,var/flags)
-		if(flags & MUTCHK_FORCED)
-			return !(/datum/dna/gene/basic/cold_resist in M.active_genes)
+		if(flags &69UTCHK_FORCED)
+			return !(/datum/dna/gene/basic/cold_resist in69.active_genes)
 		// Probability check
 		var/_prob = 15
-		if(COLD_RESISTANCE in M.mutations)
+		if(COLD_RESISTANCE in69.mutations)
 			_prob=5
 		if(probinj(_prob,(flags&MUTCHK_FORCED)))
 			return 1
 
 	OnDrawUnderlays(var/mob/M,var/g,var/fat)
-		return "cold[fat]_s"
+		return "cold69fat69_s"
 */
 
 /datum/dna/gene/basic/cold_resist
@@ -94,12 +94,12 @@
 		block=FIREBLOCK
 
 	can_activate(var/mob/M,var/flags)
-		if(flags & MUTCHK_FORCED)
+		if(flags &69UTCHK_FORCED)
 			return 1
-		//	return !(/datum/dna/gene/basic/heat_resist in M.active_genes)
+		//	return !(/datum/dna/gene/basic/heat_resist in69.active_genes)
 		// Probability check
 		var/_prob=30
-		//if(mHeatres in M.mutations)
+		//if(mHeatres in69.mutations)
 		//	_prob=5
 		if(probinj(_prob,(flags&MUTCHK_FORCED)))
 			return 1
@@ -133,21 +133,21 @@
 
 	can_activate(var/mob/M,var/flags)
 		// Can't be big and small.
-		if(HULK in M.mutations)
+		if(HULK in69.mutations)
 			return 0
 		return ..(M,flags)
 
-	activate(var/mob/M, var/connected, var/flags)
+	activate(var/mob/M,69ar/connected,69ar/flags)
 		..(M,connected,flags)
 		M.pass_flags |= 1
 
-	deactivate(var/mob/M, var/connected, var/flags)
+	deactivate(var/mob/M,69ar/connected,69ar/flags)
 		..(M,connected,flags)
-		M.pass_flags &= ~1 //This may cause issues down the track, but offhand I can't think of any other way for humans to get passtable short of varediting so it should be fine. ~Z
+		M.pass_flags &= ~1 //This69ay cause issues down the track, but offhand I can't think of any other way for humans to get passtable short of69arediting so it should be fine. ~Z
 
 /datum/dna/gene/basic/hulk
 	name="Hulk"
-	activation_messages=list("Your muscles hurt.")
+	activation_messages=list("Your69uscles hurt.")
 	mutation=HULK
 
 	New()
@@ -155,24 +155,24 @@
 
 	can_activate(var/mob/M,var/flags)
 		// Can't be big and small.
-		if(mSmallsize in M.mutations)
+		if(mSmallsize in69.mutations)
 			return 0
 		return ..(M,flags)
 
 	OnDrawUnderlays(var/mob/M,var/g)
-		return "hulk_[g]_s"
+		return "hulk_69g69_s"
 
 	OnMobLife(var/mob/living/carbon/human/M)
 		if(!istype(M)) return
 		if(M.health <= 25)
 			M.mutations.Remove(HULK)
-			M.update_mutations()		//update our mutation overlays
-			to_chat(M, SPAN_WARNING("You suddenly feel very weak."))
+			M.update_mutations()		//update our69utation overlays
+			to_chat(M, SPAN_WARNING("You suddenly feel69ery weak."))
 			M.Weaken(3)
 			M.emote("collapse")
 
 /datum/dna/gene/basic/xray
-	name="X-Ray Vision"
+	name="X-Ray69ision"
 	activation_messages=list("The walls suddenly disappear.")
 	mutation=XRAY
 

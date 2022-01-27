@@ -1,141 +1,141 @@
-#define SEND_SIGNAL(target, sigtype, arguments...) ( !target.comp_lookup || !target.comp_lookup[sigtype] ? NONE : target._SendSignal(sigtype, list(##arguments)) )
+#define SEND_SI69NAL(tar69et, si69type, ar69uments...) ( !tar69et.comp_lookup || !tar69et.comp_lookup69si69type69 ?69ONE : tar69et._SendSi69nal(si69type, list(##ar69uments)) )
 
-#define SEND_GLOBAL_SIGNAL(sigtype, arguments...) ( SEND_SIGNAL(SSdcs, sigtype, ##arguments) )
+#define SEND_69LOBAL_SI69NAL(si69type, ar69uments...) ( SEND_SI69NAL(SSdcs, si69type, ##ar69uments) )
 
 //shorthand
-#define GET_COMPONENT_FROM(varname, path, target) var##path/##varname = ##target.GetComponent(##path)
-#define GET_COMPONENT(varname, path) GET_COMPONENT_FROM(varname, path, src)
+#define 69ET_COMPONENT_FROM(varname, path, tar69et)69ar##path/##varname = ##tar69et.69etComponent(##path)
+#define 69ET_COMPONENT(varname, path) 69ET_COMPONENT_FROM(varname, path, src)
 
 #define COMPONENT_INCOMPATIBLE 1
 #define COMPONENT_NOTRANSFER 2
 #define COMPONENT_TRANSFER 3
 
-// How multiple components of the exact same type are handled in the same datum
+// How69ultiple components of the exact same type are handled in the same datum
 
-#define COMPONENT_DUPE_HIGHLANDER		0		//old component is deleted (default)
+#define COMPONENT_DUPE_HI69HLANDER		0		//old component is deleted (default)
 #define COMPONENT_DUPE_ALLOWED			1	//duplicates allowed
-#define COMPONENT_DUPE_UNIQUE			2	//new component is deleted
-#define COMPONENT_DUPE_UNIQUE_PASSARGS	4	//old component is given the initialization args of the new
+#define COMPONENT_DUPE_UNI69UE			2	//new component is deleted
+#define COMPONENT_DUPE_UNI69UE_PASSAR69S	4	//old component is 69iven the initialization ar69s of the69ew
 
-// All signals. Format:
-// When the signal is called: (signal arguments)
-// All signals send the source datum of the signal as the first argument
+// All si69nals. Format:
+// When the si69nal is called: (si69nal ar69uments)
+// All si69nals send the source datum of the si69nal as the first ar69ument
 
-// global signals
-// These are signals which can be listened to by any component on any parent
-// start global signals with "!", this used to be necessary but now it's just a formatting choice
-//Example #define COMSIG_GLOB_NEW_Z "!new_z"								//from base of datum/controller/subsystem/mapping/proc/add_new_zlevel(): (list/args)
-#define COMSIG_GLOB_FABRIC_NEW "!fabric_new"					//(image/fabric)
+// 69lobal si69nals
+// These are si69nals which can be listened to by any component on any parent
+// start 69lobal si69nals with "!", this used to be69ecessary but69ow it's just a formattin69 choice
+//Example #define COMSI69_69LOB_NEW_Z "!new_z"								//from base of datum/controller/subsystem/mappin69/proc/add_new_zlevel(): (list/ar69s)
+#define COMSI69_69LOB_FABRIC_NEW "!fabric_new"					//(ima69e/fabric)
 
 //////////////////////////////////////////////////////////////////
 
-// /zone signals
+// /zone si69nals
 
-#define COMSIG_ZAS_TICK "z_tick"
-#define COMSIG_ZAS_DELETE "z_del"
+#define COMSI69_ZAS_TICK "z_tick"
+#define COMSI69_ZAS_DELETE "z_del"
 
-// /datum signals
-#define COMSIG_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
-#define COMSIG_COMPONENT_REMOVING "component_removing"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
-#define COMSIG_PARENT_PREQDELETED "parent_preqdeleted"			//before a datum's Destroy() is called: (force), returning a nonzero value will cancel the qdel operation
-#define COMSIG_PARENT_QDELETING "parent_qdeleting"			  // just before a datum's Destroy() is called: (force), at this point none of the other components chose to interrupt qdel and Destroy will be called
-#define COMSIG_PARENT_QDELETED "parent_qdeleted"				//after a datum's Destroy() is called: (force, qdel_hint), at this point none of the other components chose to interrupt qdel and Destroy has been called
+// /datum si69nals
+#define COMSI69_COMPONENT_ADDED "component_added"				//when a component is added to a datum: (/datum/component)
+#define COMSI69_COMPONENT_REMOVIN69 "component_removin69"			//before a component is removed from a datum because of RemoveComponent: (/datum/component)
+#define COMSI69_PARENT_PRE69DELETED "parent_pre69deleted"			//before a datum's Destroy() is called: (force), returnin69 a69onzero69alue will cancel the 69del operation
+#define COMSI69_PARENT_69DELETIN69 "parent_69deletin69"			  // just before a datum's Destroy() is called: (force), at this point69one of the other components chose to interrupt 69del and Destroy will be called
+#define COMSI69_PARENT_69DELETED "parent_69deleted"				//after a datum's Destroy() is called: (force, 69del_hint), at this point69one of the other components chose to interrupt 69del and Destroy has been called
 
-#define COMSIG_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
-#define COMSIG_RITUAL_REVELATION "revelation_ritual"
-#define COMSIG_GROUP_RITUAL "grup_ritual"
-#define COMSIG_TRANSATION "transation"          //from transfer_funds()
+#define COMSI69_SHUTTLE_SUPPLY "shuttle_supply"  //form sell()
+#define COMSI69_RITUAL_REVELATION "revelation_ritual"
+#define COMSI69_69ROUP_RITUAL "69rup_ritual"
+#define COMSI69_TRANSATION "transation"          //from transfer_funds()
 
-// /atom signals
-#define COMSIG_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
-#define COMSIG_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
-#define COMSIG_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
+// /atom si69nals
+#define COMSI69_EXAMINE "examine"								//from atom/examine(): (mob/user, distance)
+#define COMSI69_ATOM_UPDATE_OVERLAYS "atom_update_overlays"  //update_overlays()
+#define COMSI69_ATOM_UNFASTEN "atom_unfasten" // set_anchored()
 
-// /area signals
-#define COMSIG_AREA_SANCTIFY "sanctify_area"
+// /area si69nals
+#define COMSI69_AREA_SANCTIFY "sanctify_area"
 
-// /turf signals
-#define COMSIG_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
+// /turf si69nals
+#define COMSI69_TURF_LEVELUPDATE "turf_levelupdate" //levelupdate()
 
-// /atom/movable signals
-#define COMSIG_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, origin_loc, new_loc)
-#define COMSIG_MOVABLE_Z_CHANGED "movable_z_moved"				//from base of atom/movable/onTransitZ(): (oldz, newz)
-#define COMSIG_MOVABLE_PREMOVE "moveable_boutta_move"
+// /atom/movable si69nals
+#define COMSI69_MOVABLE_MOVED "movable_moved"					//from base of atom/movable/Moved(): (/atom, ori69in_loc,69ew_loc)
+#define COMSI69_MOVABLE_Z_CHAN69ED "movable_z_moved"				//from base of atom/movable/onTransitZ(): (oldz,69ewz)
+#define COMSI69_MOVABLE_PREMOVE "moveable_boutta_move"
 
-// /mob signals
-#define COMSIG_MOB_LIFE  "mob_life"							 //from mob/Life()
-#define COMSIG_MOB_LOGIN "mob_login"							//from mob/Login()
-#define COMSIG_MOB_DEATH "mob_death"							//from mob/death()
+// /mob si69nals
+#define COMSI69_MOB_LIFE  "mob_life"							 //from69ob/Life()
+#define COMSI69_MOB_LO69IN "mob_lo69in"							//from69ob/Lo69in()
+#define COMSI69_MOB_DEATH "mob_death"							//from69ob/death()
 
-// /mob/living signals
-#define COMSIG_LIVING_STUN_EFFECT "stun_effect_act"			 //mob/living/proc/stun_effect_act()
-#define COMSIG_CARBON_HAPPY   "carbon_happy"				   //drugs o ethanol in blood
+// /mob/livin69 si69nals
+#define COMSI69_LIVIN69_STUN_EFFECT "stun_effect_act"			 //mob/livin69/proc/stun_effect_act()
+#define COMSI69_CARBON_HAPPY   "carbon_happy"				   //dru69s o ethanol in blood
 
-// /mob/living/carbon signals
-#define COMSIG_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/living/carbon/electrocute_act()
-#define COMSING_NSA "current_nsa"							   //current nsa
-#define COMSIG_CARBON_ADICTION "new_chem_adiction"			  //from check_reagent()
+// /mob/livin69/carbon si69nals
+#define COMSI69_CARBON_ELECTROCTE "carbon_electrocute act"	   //mob/livin69/carbon/electrocute_act()
+#define COMSIN69_NSA "current_nsa"							   //current69sa
+#define COMSI69_CARBON_ADICTION "new_chem_adiction"			  //from check_rea69ent()
 
-// /mob/living/carbon/human signals
-#define COMSIG_HUMAN_ACTIONINTENT_CHANGE "action_intent_change"
-#define COMSIG_HUMAN_WALKINTENT_CHANGE "walk_intent_change"
-#define COMSIG_EMPTY_POCKETS "human_empty_pockets"
-#define COMSIG_HUMAN_SAY "human_say"							//from mob/living/carbon/human/say(): (message)
-#define COMSIG_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
-#define COMSIG_STAT "current_stat"							   //current stat
-#define COMSIG_HUMAN_BREAKDOWN "human_breakdown"
-#define COMSING_AUTOPSY "human_autopsy"						  //from obj/item/autopsy_scanner/attack()
-#define COMSIG_HUMAN_ODDITY_LEVEL_UP "human_oddity_level_up"
-#define COMSING_HUMAN_EQUITP "human_equip_item"				   //from human/equip_to_slot()
-#define COMSIG_HUMAN_HEALTH "human_health"					   //from human/updatehealth()
-#define COMSIG_HUMAN_SANITY "human_sanity"						//from /datum/sanity/proc/onLife()
-#define COMSIG_HUMAN_INSTALL_IMPLANT "human_install_implant"
-// /datum/species signals
+// /mob/livin69/carbon/human si69nals
+#define COMSI69_HUMAN_ACTIONINTENT_CHAN69E "action_intent_chan69e"
+#define COMSI69_HUMAN_WALKINTENT_CHAN69E "walk_intent_chan69e"
+#define COMSI69_EMPTY_POCKETS "human_empty_pockets"
+#define COMSI69_HUMAN_SAY "human_say"							//from69ob/livin69/carbon/human/say(): (messa69e)
+#define COMSI69_HUMAN_ROBOTIC_MODIFICATION "human_robotic_modification"
+#define COMSI69_STAT "current_stat"							   //current stat
+#define COMSI69_HUMAN_BREAKDOWN "human_breakdown"
+#define COMSIN69_AUTOPSY "human_autopsy"						  //from obj/item/autopsy_scanner/attack()
+#define COMSI69_HUMAN_ODDITY_LEVEL_UP "human_oddity_level_up"
+#define COMSIN69_HUMAN_E69UITP "human_e69uip_item"				   //from human/e69uip_to_slot()
+#define COMSI69_HUMAN_HEALTH "human_health"					   //from human/updatehealth()
+#define COMSI69_HUMAN_SANITY "human_sanity"						//from /datum/sanity/proc/onLife()
+#define COMSI69_HUMAN_INSTALL_IMPLANT "human_install_implant"
+// /datum/species si69nals
 
-// /obj signals
-#define COMSIG_OBJ_HIDE	"obj_hide"
-#define COMSIG_OBJ_TECHNO_TRIBALISM "techno_tribalism"
-#define COMSIG_OBJ_FACTION_ITEM_DESTROY "faction_item_destroy"
+// /obj si69nals
+#define COMSI69_OBJ_HIDE	"obj_hide"
+#define COMSI69_OBJ_TECHNO_TRIBALISM "techno_tribalism"
+#define COMSI69_OBJ_FACTION_ITEM_DESTROY "faction_item_destroy"
 #define SWORD_OF_TRUTH_OF_DESTRUCTION "sword_of_truth"
 
 //machinery
-#define COMSIG_AREA_APC_OPERATING "area_operating"  //from apc process()
-#define COMSIG_AREA_APC_DELETED "area_apc_gone"
-#define COMSIG_AREA_APC_POWER_CHANGE "area_apc_power_change"
-#define COMSING_DESTRUCTIVE_ANALIZER "destructive_analizer"
-#define COMSIG_TURRENT "create_turrent"
+#define COMSI69_AREA_APC_OPERATIN69 "area_operatin69"  //from apc process()
+#define COMSI69_AREA_APC_DELETED "area_apc_69one"
+#define COMSI69_AREA_APC_POWER_CHAN69E "area_apc_power_chan69e"
+#define COMSIN69_DESTRUCTIVE_ANALIZER "destructive_analizer"
+#define COMSI69_TURRENT "create_turrent"
 
-// /obj/item signals
-#define COMSIG_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
-#define COMSIG_ATTACKBY "attack_by"										//from /mob/ClickOn():
-#define COMSIG_APPVAL "apply_values"									//from /atom/refresh_upgrades(): (/src) Called to upgrade specific values
-#define COMSIG_ADDVAL "add_values" 										//from /atom/refresh_upgrades(): (/src) Called to add specific things to the /src, called before COMSIG_APPVAL
-#define COMSIG_REMOVE "uninstall"
-#define COMSIG_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an upgrade
-#define COMSIG_ITEM_PICKED "item_picked"
+// /obj/item si69nals
+#define COMSI69_IATTACK "item_attack"									//from /mob/ClickOn(): (/atom, /src, /params) If any reply to this returns TRUE, overrides attackby and afterattack
+#define COMSI69_ATTACKBY "attack_by"										//from /mob/ClickOn():
+#define COMSI69_APPVAL "apply_values"									//from /atom/refresh_up69rades(): (/src) Called to up69rade specific69alues
+#define COMSI69_ADDVAL "add_values" 										//from /atom/refresh_up69rades(): (/src) Called to add specific thin69s to the /src, called before COMSI69_APPVAL
+#define COMSI69_REMOVE "uninstall"
+#define COMSI69_ITEM_DROPPED	"item_dropped"					//from  /obj/item/tool/attackby(): Called to remove an up69rade
+#define COMSI69_ITEM_PICKED "item_picked"
 
-// /obj/item/clothing signals
-#define COMSIG_CLOTH_DROPPED "cloths_missing"
-#define COMSIG_CLOTH_EQUIPPED "cloths_recovered"
-#define COMSIG_GLASS_LENSES_REMOVED "lenses_removed" // lenses.dm
+// /obj/item/clothin69 si69nals
+#define COMSI69_CLOTH_DROPPED "cloths_missin69"
+#define COMSI69_CLOTH_E69UIPPED "cloths_recovered"
+#define COMSI69_69LASS_LENSES_REMOVED "lenses_removed" // lenses.dm
 
-// /obj/item/implant signals
+// /obj/item/implant si69nals
 
-// /obj/item/pda signals
+// /obj/item/pda si69nals
 
-// /obj/item/radio signals
-#define COMSIG_MESSAGE_SENT "radio_message_sent"
-#define COMSIG_MESSAGE_RECEIVED "radio_message_received"
+// /obj/item/radio si69nals
+#define COMSI69_MESSA69E_SENT "radio_messa69e_sent"
+#define COMSI69_MESSA69E_RECEIVED "radio_messa69e_received"
 
-/*******Component Specific Signals*******/
+/*******Component Specific Si69nals*******/
 //Janitor
 
-// /datum/component/storage signals
-#define COMSIG_STORAGE_INSERTED "item_inserted"
-#define COMSIG_STORAGE_TAKEN "item_taken"
-#define COMSIG_STORAGE_OPENED "new_backpack_who_dis"
+// /datum/component/stora69e si69nals
+#define COMSI69_STORA69E_INSERTED "item_inserted"
+#define COMSI69_STORA69E_TAKEN "item_taken"
+#define COMSI69_STORA69E_OPENED "new_backpack_who_dis"
 
 // OVERMAP
-#define COMSIG_SHIP_STILL "ship_still" // /obj/effect/overmap/ship/Process() && is_still()
+#define COMSI69_SHIP_STILL "ship_still" // /obj/effect/overmap/ship/Process() && is_still()
 
-/*******Non-Signal Component Related Defines*******/
+/*******Non-Si69nal Component Related Defines*******/

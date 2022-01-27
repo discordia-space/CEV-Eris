@@ -1,15 +1,15 @@
-/obj/machinery/computer/shuttle_control
+/o69j/machinery/computer/shuttle_control
 	name = "shuttle control console"
-	icon = 'icons/obj/computer.dmi'
-	icon_keyboard = "atmos_key"
+	icon = 'icons/o69j/computer.dmi'
+	icon_key69oard = "atmos_key"
 	icon_screen = "shuttle"
 	circuit = null
 
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
-	var/hacked = 0   // Has been emagged, no access restrictions.
+	var/hacked = 0   // Has 69een emagged, no access restrictions.
 
 
-/obj/machinery/computer/shuttle_control/attack_hand(user as mob)
+/o69j/machinery/computer/shuttle_control/attack_hand(user as mo69)
 	if(..(user))
 		return
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
@@ -19,7 +19,7 @@
 
 	ui_interact(user)
 
-/obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/o69j/machinery/computer/shuttle_control/ui_interact(mo69/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
 	var/data[0]
 	var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_tag]
 	if (!istype(shuttle))
@@ -35,11 +35,11 @@
 	switch (shuttle.process_state)
 		if(IDLE_STATE)
 			if (shuttle.in_use)
-				shuttle_status = "Busy."
+				shuttle_status = "69usy."
 			else if (!shuttle.location)
-				shuttle_status = "Standing-by at station."
+				shuttle_status = "Standing-69y at station."
 			else
-				shuttle_status = "Standing-by at offsite location."
+				shuttle_status = "Standing-69y at offsite location."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
 			shuttle_status = "Shuttle has recieved command and will depart shortly."
 		if(WAIT_ARRIVE)
@@ -52,7 +52,7 @@
 		"shuttle_state" = shuttle_state,
 		"has_docking" = shuttle.docking_controller? 1 : 0,
 		"docking_status" = shuttle.docking_controller? shuttle.docking_controller.get_docking_status() : null,
-		"docking_override" = shuttle.docking_controller? shuttle.docking_controller.override_enabled : null,
+		"docking_override" = shuttle.docking_controller? shuttle.docking_controller.override_ena69led : null,
 		"can_launch" = shuttle.can_launch(),
 		"can_cancel" = shuttle.can_cancel(),
 		"can_force" = shuttle.can_force(),
@@ -66,7 +66,7 @@
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/shuttle_control/Topic(href, href_list)
+/o69j/machinery/computer/shuttle_control/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -84,19 +84,19 @@
 	else if(href_list["cancel"])
 		shuttle.cancel_launch(src)
 
-/obj/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mob/user)
+/o69j/machinery/computer/shuttle_control/emag_act(var/remaining_charges, var/mo69/user)
 	if (!hacked)
 		req_access = list()
 		req_one_access = list()
 		hacked = 1
-		user << "You short out the console's ID checking system. It's now available to everyone!"
+		user << "You short out the console's ID checking system. It's now availa69le to everyone!"
 		return 1
 
-/obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
-	visible_message("\The [Proj] ricochets off \the [src]!")
+/o69j/machinery/computer/shuttle_control/69ullet_act(var/o69j/item/projectile/Proj)
+	visi69le_message("\The [Proj] ricochets off \the [src]!")
 
-/obj/machinery/computer/shuttle_control/ex_act()
+/o69j/machinery/computer/shuttle_control/ex_act()
 	return
 
-/obj/machinery/computer/shuttle_control/emp_act()
+/o69j/machinery/computer/shuttle_control/emp_act()
 	return

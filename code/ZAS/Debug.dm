@@ -1,20 +1,20 @@
-var/image/assigned = image('icons/Testing/Zone.dmi', icon_state = "assigned")
-var/image/created = image('icons/Testing/Zone.dmi', icon_state = "created")
-var/image/merged = image('icons/Testing/Zone.dmi', icon_state = "merged")
-var/image/invalid_zone = image('icons/Testing/Zone.dmi', icon_state = "invalid")
-var/image/air_blocked = image('icons/Testing/Zone.dmi', icon_state = "block")
-var/image/zone_blocked = image('icons/Testing/Zone.dmi', icon_state = "zoneblock")
-var/image/blocked = image('icons/Testing/Zone.dmi', icon_state = "fullblock")
-var/image/mark = image('icons/Testing/Zone.dmi', icon_state = "mark")
+var/ima69e/assi69ned = ima69e('icons/Testin69/Zone.dmi', icon_state = "assi69ned")
+var/ima69e/created = ima69e('icons/Testin69/Zone.dmi', icon_state = "created")
+var/ima69e/mer69ed = ima69e('icons/Testin69/Zone.dmi', icon_state = "mer69ed")
+var/ima69e/invalid_zone = ima69e('icons/Testin69/Zone.dmi', icon_state = "invalid")
+var/ima69e/air_blocked = ima69e('icons/Testin69/Zone.dmi', icon_state = "block")
+var/ima69e/zone_blocked = ima69e('icons/Testin69/Zone.dmi', icon_state = "zoneblock")
+var/ima69e/blocked = ima69e('icons/Testin69/Zone.dmi', icon_state = "fullblock")
+var/ima69e/mark = ima69e('icons/Testin69/Zone.dmi', icon_state = "mark")
 
-/connection_edge/var/dbg_out = 0
+/connection_ed69e/var/db69_out = 0
 
-/turf/var/tmp/dbg_img
-/turf/proc/dbg(image/img, d = 0)
-	if(d > 0) img.dir = d
-	overlays -= dbg_img
-	overlays += img
-	dbg_img = img
+/turf/var/tmp/db69_im69
+/turf/proc/db69(ima69e/im69, d = 0)
+	if(d > 0) im69.dir = d
+	overlays -= db69_im69
+	overlays += im69
+	db69_im69 = im69
 
-proc/soft_assert(thing,fail)
-	if(!thing) message_admins(fail)
+proc/soft_assert(thin69,fail)
+	if(!thin69)69essa69e_admins(fail)

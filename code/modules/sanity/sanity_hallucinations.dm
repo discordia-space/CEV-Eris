@@ -9,15 +9,15 @@
 	. = ..()
 
 /datum/hallucination/sanity_mirage/proc/generate_mirage()
-	var/icon/T = new('icons/obj/sanity_hallucinations.dmi')
+	var/icon/T =69ew('icons/obj/sanity_hallucinations.dmi')
 	return image(T, pick(T.IconStates()), layer = LOW_ITEM_LAYER)
 
 /datum/hallucination/sanity_mirage/start()
 	var/list/possible_points = list()
-	for(var/turf/simulated/floor/F in view(holder, world.view+1))
+	for(var/turf/simulated/floor/F in69iew(holder, world.view+1))
 		possible_points += F
 	if(possible_points.len)
-		for(var/i = 1 to number)
+		for(var/i = 1 to69umber)
 			var/image/thing = generate_mirage()
 			things += thing
 			thing.loc = pick(possible_points)

@@ -9,7 +9,7 @@
 /decl/backpack_outfit/nothing
 	name = "Nothing"
 
-/decl/backpack_outfit/nothing/spawn_backpack(var/location, var/metadata, var/desired_type)
+/decl/backpack_outfit/nothing/spawn_backpack(var/location,69ar/metadata,69ar/desired_type)
 	return
 
 /decl/backpack_outfit/backpack
@@ -52,19 +52,19 @@
 	if(flags & BACKPACK_HAS_SUBTYPE_SELECTION)
 		tweaks += new/datum/backpack_tweak/selection/subtypes(path)
 
-/decl/backpack_outfit/proc/spawn_backpack(var/location, var/metadata, var/desired_type)
-	metadata = metadata || list()
+/decl/backpack_outfit/proc/spawn_backpack(var/location,69ar/metadata,69ar/desired_type)
+	metadata =69etadata || list()
 	desired_type = desired_type || path
 	for(var/t in tweaks)
 		var/datum/backpack_tweak/bt = t
-		var/tweak_metadata = metadata["[bt]"] || bt.get_default_metadata()
+		var/tweak_metadata =69etadata69"69bt69"69 || bt.get_default_metadata()
 		desired_type = bt.get_backpack_type(desired_type, tweak_metadata)
 
 	. = new desired_type(location)
 
 	for(var/t in tweaks)
 		var/datum/backpack_tweak/bt = t
-		var/tweak_metadata = metadata["[bt]"]
+		var/tweak_metadata =69etadata69"69bt69"69
 		bt.tweak_backpack(., tweak_metadata)
 
 /******************
@@ -76,7 +76,7 @@
 /datum/backpack_tweak/proc/get_default_metadata()
 	return
 
-/datum/backpack_tweak/proc/get_metadata(var/user, var/metadata, var/title = CHARACTER_PREFERENCE_INPUT_TITLE)
+/datum/backpack_tweak/proc/get_metadata(var/user,69ar/metadata,69ar/title = CHARACTER_PREFERENCE_INPUT_TITLE)
 	return
 
 /datum/backpack_tweak/proc/validate_metadata(var/metadata)
@@ -85,7 +85,7 @@
 /datum/backpack_tweak/proc/get_backpack_type(var/given_backpack_type)
 	return given_backpack_type
 
-/datum/backpack_tweak/proc/tweak_backpack(var/obj/item/storage/backpack/backpack, var/metadata)
+/datum/backpack_tweak/proc/tweak_backpack(var/obj/item/storage/backpack/backpack,69ar/metadata)
 	return
 
 
@@ -99,39 +99,39 @@
 	if(!selections.len)
 		CRASH("No selections offered")
 	if(RETURN_GIVEN_BACKPACK in selections)
-		CRASH("May not use the keyword '[RETURN_GIVEN_BACKPACK]'")
+		CRASH("May not use the keyword '69RETURN_GIVEN_BACKPACK69'")
 	if(RETURN_RANDOM_BACKPACK in selections)
-		CRASH("May not use the keyword '[RETURN_RANDOM_BACKPACK]'")
+		CRASH("May not use the keyword '69RETURN_RANDOM_BACKPACK69'")
 	var/list/duplicate_keys = duplicates(selections)
 	if(duplicate_keys.len)
-		CRASH("Duplicate names found: [english_list(duplicate_keys)]")
+		CRASH("Duplicate names found: 69english_list(duplicate_keys)69")
 	var/list/duplicate_values = duplicates(list_values(selections))
 	if(duplicate_values.len)
-		CRASH("Duplicate types found: [english_list(duplicate_values)]")
+		CRASH("Duplicate types found: 69english_list(duplicate_values)69")
 	for(var/selection_key in selections)
 		if(!istext(selection_key))
-			CRASH("Expected a valid selection key, was [log_info_line(selection_key)]")
-		var/selection_type = selections[selection_key]
+			CRASH("Expected a69alid selection key, was 69log_info_line(selection_key)69")
+		var/selection_type = selections69selection_key69
 		if(!ispath(selection_type, /obj/item/storage/backpack))
-			CRASH("Expected a valid selection value, was [log_info_line(selection_type)]")
+			CRASH("Expected a69alid selection69alue, was 69log_info_line(selection_type)69")
 
 	src.selections = selections
 	selections += RETURN_GIVEN_BACKPACK
 	selections += RETURN_RANDOM_BACKPACK
 
 /datum/backpack_tweak/selection/get_ui_content(var/metadata)
-	return "Type: [metadata]"
+	return "Type: 69metadata69"
 
 /datum/backpack_tweak/selection/get_default_metadata()
 	return RETURN_GIVEN_BACKPACK
 
 /datum/backpack_tweak/selection/validate_metadata(var/metadata)
-	return (metadata in selections) ? metadata : ..()
+	return (metadata in selections) ?69etadata : ..()
 
-/datum/backpack_tweak/selection/get_metadata(var/user, var/metadata, var/title = CHARACTER_PREFERENCE_INPUT_TITLE)
-	return input(user, "Choose a type.", title, metadata) as null|anything in selections
+/datum/backpack_tweak/selection/get_metadata(var/user,69ar/metadata,69ar/title = CHARACTER_PREFERENCE_INPUT_TITLE)
+	return input(user, "Choose a type.", title,69etadata) as null|anything in selections
 
-/datum/backpack_tweak/selection/get_backpack_type(var/given_backpack_type, var/metadata)
+/datum/backpack_tweak/selection/get_backpack_type(var/given_backpack_type,69ar/metadata)
 	switch(metadata)
 		if(RETURN_GIVEN_BACKPACK)
 			return given_backpack_type
@@ -139,7 +139,7 @@
 			var/random_choice = pick(selections - RETURN_RANDOM_BACKPACK)
 			return get_backpack_type(given_backpack_type, random_choice)
 		else
-			return selections[metadata]
+			return selections69metadata69
 
 /datum/backpack_tweak/selection/types/New(var/selection_type)
 	..(atomtype2nameassoclist(selection_type))
@@ -160,9 +160,9 @@
 	var/decl/backpack_outfit/backpack
 	var/metadata
 
-/datum/backpack_setup/New(var/backpack, var/metadata)
+/datum/backpack_setup/New(var/backpack,69ar/metadata)
 	src.backpack = backpack
-	src.metadata = metadata
+	src.metadata =69etadata
 
 /**********
 * Helpers *
@@ -170,7 +170,7 @@
 /proc/get_default_outfit_backpack()
 	var backpacks = decls_repository.get_decls_of_subtype(/decl/backpack_outfit)
 	for(var/backpack in backpacks)
-		var/decl/backpack_outfit/bo = backpacks[backpack]
+		var/decl/backpack_outfit/bo = backpacks69backpack69
 		if(bo.is_default)
 			return bo
 

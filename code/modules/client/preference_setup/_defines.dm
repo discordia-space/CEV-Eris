@@ -9,8 +9,8 @@ if(!decls_by_name) \
 	var/decls_by_type = decls_repository.get_decls_of_subtype(decl_prototype);\
 	for(var/decl_type in decls_by_type) \
 	{\
-		var##decl_prototype/decl_instance = decls_by_type[decl_type];\
+		var##decl_prototype/decl_instance = decls_by_type69decl_type69;\
 		ADD_SORTED(decls_by_name, decl_instance.name, /proc/cmp_text_asc);\
-		decls_by_name[decl_instance.name] = decl_instance;\
+		decls_by_name69decl_instance.name69 = decl_instance;\
 	}\
 }

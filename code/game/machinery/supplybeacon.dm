@@ -12,17 +12,17 @@
 	deploy_path = /obj/machinery/power/supply_beacon/supermatter
 
 /obj/item/supply_beacon/attack_self(var/mob/user)
-	user.visible_message(SPAN_NOTICE("\The [user] begins setting up \the [src]."))
+	user.visible_message(SPAN_NOTICE("\The 69user69 begins setting up \the 69src69."))
 	if(!do_after(user, deploy_time, src))
 		return
 	var/obj/S = new deploy_path(get_turf(user))
-	user.visible_message(SPAN_NOTICE("\The [user] deploys \the [S]."))
-	user.unEquip(src)
-	qdel(src)
+	user.visible_message(SPAN_NOTICE("\The 69user69 deploys \the 69S69."))
+	user.unE69uip(src)
+	69del(src)
 
 /obj/machinery/power/supply_beacon
 	name = "supply beacon"
-	desc = "A bulky moonshot supply beacon. Someone has been messing with the wiring."
+	desc = "A bulky69oonshot supply beacon. Someone has been69essing with the wiring."
 	icon = 'icons/obj/supplybeacon.dmi'
 	icon_state = "beacon"
 
@@ -44,22 +44,22 @@
 	name = "supermatter supply beacon"
 	drop_type = "supermatter"
 
-/obj/machinery/power/supply_beacon/attackby(var/obj/item/tool/W, var/mob/user)
+/obj/machinery/power/supply_beacon/attackby(var/obj/item/tool/W,69ar/mob/user)
 	if(!use_power)
 		if(!anchored && !connect_to_network())
-			to_chat(usr, SPAN_WARNING("This device must be placed over an exposed cable."))
+			to_chat(usr, SPAN_WARNING("This device69ust be placed over an exposed cable."))
 			return
-		if(!W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
+		if(!W.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_BOLT_TURNING, FAILCHANCE_ZERO, re69uired_stat = STAT_MEC))
 			return ..()
 		anchored = !anchored
-		user.visible_message(SPAN_NOTICE("\The [user] [anchored ? "secures" : "unsecures"] \the [src]."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 69anchored ? "secures" : "unsecures"69 \the 69src69."))
 	return
 
 /obj/machinery/power/supply_beacon/attack_hand(var/mob/user)
 
 	if(expended)
 		use_power = NO_POWER_USE
-		to_chat(user, SPAN_WARNING("\The [src] has used up its charge."))
+		to_chat(user, SPAN_WARNING("\The 69src69 has used up its charge."))
 		return
 
 	if(anchored)
@@ -83,7 +83,7 @@
 	use_power = IDLE_POWER_USE
 	if(user) to_chat(user, SPAN_NOTICE("You activate the beacon. The supply drop will be dispatched soon."))
 
-/obj/machinery/power/supply_beacon/proc/deactivate(var/mob/user, var/permanent)
+/obj/machinery/power/supply_beacon/proc/deactivate(var/mob/user,69ar/permanent)
 	if(permanent)
 		expended = 1
 		icon_state = "beacon_depleted"
@@ -114,6 +114,6 @@
 		var/drop_x = src.x-2
 		var/drop_y = src.y-2
 		var/drop_z = src.z
-		command_announcement.Announce("Nyx Rapid Fabrication priority supply request #[rand(1000,9999)]-[rand(100,999)] recieved. Shipment dispatched via ballistic supply pod for immediate delivery. Have a nice day.", "Thank You For Your Patronage")
+		command_announcement.Announce("Nyx Rapid Fabrication priority supply re69uest #69rand(1000,9999)69-69rand(100,999)69 recieved. Shipment dispatched69ia ballistic supply pod for immediate delivery. Have a nice day.", "Thank You For Your Patronage")
 		spawn(rand(100,300))
 			new /datum/random_map/droppod/supply(null, drop_x, drop_y, drop_z, supplied_drop = drop_type) // Splat.

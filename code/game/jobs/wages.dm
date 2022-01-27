@@ -5,7 +5,7 @@
 	return round(wage * RAND_DECIMAL(1.5, 3.5))
 
 
-//How much is this user getting paid?
+//How69uch is this user getting paid?
 //The passed in record indicates which user. This can be read to gather information about them.
 //In future this can be expanded to give bonuses or penalize wages based on work performance
 //Don't check for wage-blocking statuses like dead/suspended here, thats done before this is called

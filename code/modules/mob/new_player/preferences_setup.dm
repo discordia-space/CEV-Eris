@@ -1,10 +1,10 @@
-//#define ASSIGN_LIST_TO_COLORS(L, R, G, B) if(L) { R = L[1]; G = L[2]; B = L[3]; }
+//#define ASSIGN_LIST_TO_COLORS(L, R, G, B) if(L) { R = L69169; G = L69269; B = L69369; }
 
 /datum/preferences
-	//The mob should have a gender you want before running this proc. Will run fine without H
+	//The69ob should have a gender you want before running this proc. Will run fine without H
 	proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
-		var/datum/species/current_species = all_species[species]
-		if(!current_species) current_species = all_species[SPECIES_HUMAN]
+		var/datum/species/current_species = all_species69species69
+		if(!current_species) current_species = all_species69SPECIES_HUMAN69
 		gender = pick(current_species.genders)
 		h_style = random_hair_style(gender, species)
 		f_style = random_facial_hair_style(gender, species)
@@ -37,7 +37,7 @@
 			all_underwear.Cut()
 			for(var/datum/category_group/underwear/WRC in GLOB.underwear.categories)
 				var/datum/category_item/underwear/WRI = pick(WRC.items)
-				all_underwear[WRC.name] = WRI.name
+				all_underwear69WRC.name69 = WRI.name
 
 		backpack = decls_repository.get_decl(pick(subtypesof(/decl/backpack_outfit)))
 		age = rand(current_species.min_age, current_species.max_age)
@@ -91,9 +91,9 @@
 			green = rand (0, 255)
 			blue = rand (0, 255)
 
-	red = max(min(red + rand (-25, 25), 255), 0)
-	green = max(min(green + rand (-25, 25), 255), 0)
-	blue = max(min(blue + rand (-25, 25), 255), 0)
+	red =69ax(min(red + rand (-25, 25), 255), 0)
+	green =69ax(min(green + rand (-25, 25), 255), 0)
+	blue =69ax(min(blue + rand (-25, 25), 255), 0)
 
 	switch(target)
 		if("hair")
@@ -141,9 +141,9 @@
 			green = rand (0, 150)
 			blue = rand (0, 150)
 
-	red = max(min(red + rand (-25, 25), 255), 0)
-	green = max(min(green + rand (-25, 25), 255), 0)
-	blue = max(min(blue + rand (-25, 25), 255), 0)
+	red =69ax(min(red + rand (-25, 25), 255), 0)
+	green =69ax(min(green + rand (-25, 25), 255), 0)
+	blue =69ax(min(blue + rand (-25, 25), 255), 0)
 
 	eyes_color = rgb(red, green, blue)
 
@@ -187,20 +187,20 @@
 			green = rand (0, 150)
 			blue = rand (0, 150)
 
-	red = max(min(red + rand (-25, 25), 255), 0)
-	green = max(min(green + rand (-25, 25), 255), 0)
-	blue = max(min(blue + rand (-25, 25), 255), 0)
+	red =69ax(min(red + rand (-25, 25), 255), 0)
+	green =69ax(min(green + rand (-25, 25), 255), 0)
+	blue =69ax(min(blue + rand (-25, 25), 255), 0)
 
 	skin_color = rgb(red, green, blue)
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin, naked = FALSE)
+/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin,69aked = FALSE)
 	var/update_icon = FALSE
 	copy_to(mannequin, TRUE)
 
 	if(!naked)
 		var/datum/job/previewJob
 		if(equip_preview_mob && SSjob)
-			// Determine what job is marked as 'High' priority, and dress them up as such.
+			// Determine what job is69arked as 'High' priority, and dress them up as such.
 			if(ASSISTANT_TITLE in job_low)
 				previewJob = SSjob.GetJob(ASSISTANT_TITLE)
 			else
@@ -213,14 +213,14 @@
 
 		if((equip_preview_mob & EQUIP_PREVIEW_JOB) && previewJob)
 			mannequin.job = previewJob.title
-			previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
+			previewJob.equip_preview(mannequin, player_alt_titles69previewJob.title69)
 			update_icon = TRUE
 
 		if((equip_preview_mob & EQUIP_PREVIEW_LOADOUT) && !(previewJob && (equip_preview_mob & EQUIP_PREVIEW_JOB) && (previewJob.type == /datum/job/ai || previewJob.type == /datum/job/cyborg)))
 			// Equip custom gear loadout, replacing any job items
 			var/list/loadout_taken_slots = list()
 			for(var/thing in Gear())
-				var/datum/gear/G = gear_datums[thing]
+				var/datum/gear/G = gear_datums69thing69
 				if(G)
 					var/permitted = 0
 					if(G.allowed_roles && G.allowed_roles.len)
@@ -231,13 +231,13 @@
 					else
 						permitted = 1
 
-					if(G.whitelisted && (G.whitelisted != mannequin.species.name))
+					if(G.whitelisted && (G.whitelisted !=69annequin.species.name))
 						permitted = 0
 
 					if(!permitted)
 						continue
 
-					if(G.slot && G.slot != slot_accessory_buffer && !(G.slot in loadout_taken_slots) && G.spawn_on_mob(mannequin, gear_list[gear_slot][G.display_name]))
+					if(G.slot && G.slot != slot_accessory_buffer && !(G.slot in loadout_taken_slots) && G.spawn_on_mob(mannequin, gear_list69gear_slot6969G.display_name69))
 						loadout_taken_slots.Add(G.slot)
 						update_icon = TRUE
 
@@ -252,8 +252,8 @@
 	preview_icon = icon('icons/effects/128x48.dmi', bgstate)
 	preview_icon.Scale(48+32, 16+32)
 
-	mannequin.dir = NORTH
-	var/icon/stamp = getFlatIcon(mannequin, NORTH, always_use_defdir = 1)
+	mannequin.dir =69ORTH
+	var/icon/stamp = getFlatIcon(mannequin,69ORTH, always_use_defdir = 1)
 	preview_icon.Blend(stamp, ICON_OVERLAY, 25, 17)
 
 	mannequin.dir = WEST

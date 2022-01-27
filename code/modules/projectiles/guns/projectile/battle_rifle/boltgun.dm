@@ -14,7 +14,7 @@
 	fire_delay = 8
 	damage_multiplier = 1.4
 	penetration_multiplier = 1.5
-	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the massive multipliers and slow firerate
+	recoil_buildup = 7 // increased from the AK's/Takeshi's buildup of 1.7/1.8 because of the69assive69ultipliers and slow firerate
 	init_offset = 2 //bayonet's effect on aim, reduced from 4
 	handle_casings = HOLD_CASINGS
 	load_method = SINGLE_CASING|SPEEDLOADER
@@ -22,7 +22,7 @@
 	magazine_type = /obj/item/ammo_magazine/lrifle
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_STEEL = 20,69ATERIAL_PLASTIC = 10)
 	price_tag = 900
 	one_hand_penalty = 20 //full sized rifle with bayonet is hard to keep on target
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut") // Considering attached bayonet
@@ -41,7 +41,7 @@
 	var/itemstring = ""
 
 	if (item_suffix)
-		itemstring += "[item_suffix]"
+		itemstring += "69item_suffix69"
 
 	if (bolt_open)
 		iconstring += "_open"
@@ -68,13 +68,13 @@
 	if(bolt_open)
 		if(contents.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting 69chambered69!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
-				chambered = null
+				chambered =69ull
 			else
-				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				var/obj/item/ammo_casing/B = loaded69loaded.len69
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting 69B69!"))
 				B.forceMove(get_turf(src))
 				loaded -= B
 		else
@@ -88,16 +88,16 @@
 
 /obj/item/gun/projectile/boltgun/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the bolt is open!"))
+		to_chat(user, SPAN_WARNING("You can't fire 69src69 while the bolt is open!"))
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/boltgun/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/boltgun/load_ammo(var/obj/item/A,69ob/user)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/boltgun/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/boltgun/unload_ammo(mob/user,69ar/allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
@@ -106,12 +106,12 @@
 	name = "SA BR .30 \"Novakovic\""
 	desc = "Weapon for hunting, or endless trench warfare. \
 			If you’re on a budget, it’s a darn good rifle for just about everything. \
-			This copy, in fact, is a reverse-engineered poor-quality copy of a more perfect copy of an ancient rifle"
+			This copy, in fact, is a reverse-engineered poor-69uality copy of a69ore perfect copy of an ancient rifle"
 	icon_state = "boltgun_wood"
 	item_suffix  = "_wood"
 	force = 23
-	recoil_buildup = 7.6 // however, since it's not the excel mosin, it's not as good at recoil control, but it doesn't matter since >bolt
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	recoil_buildup = 7.6 // however, since it's69ot the excel69osin, it's69ot as good at recoil control, but it doesn't69atter since >bolt
+	matter = list(MATERIAL_STEEL = 20,69ATERIAL_WOOD = 10)
 	wielded_item_state = "_doble_wood"
 	spawn_blacklisted = FALSE
 	gun_parts = list(/obj/item/stack/material/steel = 16)
@@ -120,11 +120,11 @@
 /obj/item/gun/projectile/boltgun/fs
 	name = "FS BR .20 \"Tosshin\""
 	desc = "Weapon for hunting, or endless coastal warfare. \
-			A replica of an ancient bolt action known for its easy maintenance and low price. \
-			This is mounted with a scope, for ranges longer than a maintenance tunnel."
+			A replica of an ancient bolt action known for its easy69aintenance and low price. \
+			This is69ounted with a scope, for ranges longer than a69aintenance tunnel."
 	icon_state = "arisaka_ih_scope"
 	item_suffix  = "_ih_scope"
-	force = WEAPON_FORCE_DANGEROUS // weaker than novakovic, but with a bayonet installed it will be slightly stronger
+	force = WEAPON_FORCE_DANGEROUS // weaker than69ovakovic, but with a bayonet installed it will be slightly stronger
 	armor_penetration = ARMOR_PEN_GRAZING
 	caliber = CAL_SRIFLE
 	damage_multiplier = 1.6
@@ -134,7 +134,7 @@
 	max_shells = 6
 	zoom_factor = 0.8 //vintorez level
 	magazine_type = /obj/item/ammo_magazine/srifle
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASTIC = 15)
+	matter = list(MATERIAL_STEEL = 25,69ATERIAL_PLASTIC = 15)
 	wielded_item_state = "_doble_ih_scope"
 	sharp = FALSE
 	spawn_blacklisted = TRUE
@@ -143,10 +143,10 @@
 
 /obj/item/gun/projectile/boltgun/handmade
 	name = "handmade bolt action rifle"
-	desc = "A handmade bolt action rifle, made from junk and some spare parts."
+	desc = "A handmade bolt action rifle,69ade from junk and some spare parts."
 	icon_state = "boltgun_hand"
 	item_suffix = "_hand"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_STEEL = 10,69ATERIAL_PLASTIC = 5)
 	wielded_item_state = "_doble_hand"
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
@@ -163,19 +163,19 @@
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	saw_off = FALSE
 
-/obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(loaded.len == 0 && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+/obj/item/gun/projectile/boltgun/handmade/attackby(obj/item/W,69ob/user)
+	if(69UALITY_SCREW_DRIVING in W.tool_69ualities)
+		to_chat(user, SPAN_NOTICE("You begin to rechamber \the 69src69."))
+		if(loaded.len == 0 && W.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 			if(caliber == CAL_LRIFLE)
 				caliber = CAL_SRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .20 Caliber."))
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the 69src69 to .20 Caliber."))
 			else if(caliber == CAL_SRIFLE)
 				caliber = CAL_CLRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the 69src69 to .25 Caseless."))
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_LRIFLE
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .30 Caliber."))
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the 69src69 to .30 Caliber."))
 		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a loaded firearm!"))
 			return
@@ -191,16 +191,16 @@
 	icon_state = "obrez"
 	item_state = "obrez"
 	w_class = ITEM_SIZE_NORMAL
-	force = WEAPON_FORCE_WEAK // no bayonet
+	force = WEAPON_FORCE_WEAK //69o bayonet
 	armor_penetration = 0
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
-	penetration_multiplier = 1.1 // short barrel means maximum velocity isn't reached
+	penetration_multiplier = 1.1 // short barrel69eans69aximum69elocity isn't reached
 	proj_step_multiplier = 1.2
 	recoil_buildup = 15
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_STEEL = 10,69ATERIAL_PLASTIC = 5)
 	price_tag = 600
 	attack_verb = list("struck","hit","bashed")
-	one_hand_penalty = 10 // not a full rifle, but not easy either
+	one_hand_penalty = 10 //69ot a full rifle, but69ot easy either
 	can_dual = TRUE
 	sharp = FALSE
 	spawn_blacklisted = TRUE
@@ -213,4 +213,4 @@
 	item_suffix  = "_wood"
 	recoil_buildup = 18
 	wielded_item_state = "_doble_wood"
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_WOOD = 5)
+	matter = list(MATERIAL_STEEL = 10,69ATERIAL_WOOD = 5)

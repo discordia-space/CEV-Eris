@@ -55,7 +55,7 @@
 	var/temperature = 300
 
 
-/obj/item/projectile/temp/on_hit(atom/target)//These two could likely check temp protection on the mob
+/obj/item/projectile/temp/on_hit(atom/target)//These two could likely check temp protection on the69ob
 	if(isliving(target))
 		var/mob/M = target
 		M.bodytemperature = temperature
@@ -69,14 +69,14 @@
 	nodamage = TRUE
 	check_armour = ARMOR_BULLET
 
-/obj/item/projectile/meteor/Bump(atom/A as mob|obj|turf|area, forced)
+/obj/item/projectile/meteor/Bump(atom/A as69ob|obj|turf|area, forced)
 	if(A == firer)
 		loc = A.loc
 		return
 
-	sleep(-1) //Might not be important enough for a sleep(-1) but the sleep/spawn itself is necessary thanks to explosions and metoerhits
+	sleep(-1) //Might69ot be important enough for a sleep(-1) but the sleep/spawn itself is69ecessary thanks to explosions and69etoerhits
 
-	if(src)//Do not add to this if() statement, otherwise the meteor won't delete them
+	if(src)//Do69ot add to this if() statement, otherwise the69eteor won't delete them
 		if(A)
 
 			A.ex_act(2)
@@ -85,7 +85,7 @@
 			for(var/mob/M in range(10, src))
 				if(!M.stat && !isAI(M))
 					shake_camera(M, 3, 1)
-			qdel(src)
+			69del(src)
 			return 1
 	else
 		return 0
@@ -100,13 +100,13 @@
 /obj/item/projectile/energy/floramut/on_hit(atom/target)
 	var/mob/living/M = target
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		if((H.species.flags & IS_PLANT) && (H.nutrition < 500))
 			if(prob(15))
 				H.apply_effect((rand(30,80)),IRRADIATE)
 				H.Weaken(5)
-				for (var/mob/V in viewers(src))
-					V.show_message("\red [M] writhes in pain as \his vacuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
+				for (var/mob/V in69iewers(src))
+					V.show_message("\red 69M69 writhes in pain as \his69acuoles boil.", 3, "\red You hear the crunching of leaves.", 2)
 			if(prob(35))
 				if(prob(80))
 					randmutb(M)
@@ -131,8 +131,8 @@
 
 /obj/item/projectile/energy/florayield/on_hit(atom/target)
 	var/mob/M = target
-	if(ishuman(target)) //These rays make plantmen fat.
-		var/mob/living/carbon/human/H = M
+	if(ishuman(target)) //These rays69ake plantmen fat.
+		var/mob/living/carbon/human/H =69
 		if((H.species.flags & IS_PLANT) && (H.nutrition < 500))
 			H.adjustNutrition(30)
 	else if (istype(target, /mob/living/carbon/))
@@ -145,7 +145,7 @@
 	name = "bullet"
 	icon_state = "bullet"
 	damage_types = list(HALLOSS = 1)
-	embed = 0 // nope
+	embed = 0 //69ope
 	nodamage = TRUE
 	muzzle_type = /obj/effect/projectile/bullet/muzzle
 
@@ -166,10 +166,10 @@
 	life--
 	var/turf/T = get_turf(src)
 	if(T)
-		new/obj/effect/decal/cleanable/liquid_fuel(T, 1 , 1)
+		new/obj/effect/decal/cleanable/li69uid_fuel(T, 1 , 1)
 		T.hotspot_expose((T20C*2) + 380,500)
 	if(!life)
-		qdel(src)
+		69del(src)
 
 
 /obj/item/projectile/coin
@@ -185,7 +185,7 @@
 	kill_count = 16
 	armor_penetration = 0
 	step_delay = 2
-	eyeblur = 2 // bright light slightly blurs your vision
+	eyeblur = 2 // bright light slightly blurs your69ision
 	luminosity_range = 5
 	luminosity_power = 1
 	luminosity_color = COLOR_RED
@@ -206,19 +206,19 @@
 		playsound(src, 'sound/effects/flare.ogg', 100, 1)
 		M.adjust_fire_stacks(fire_stacks)
 		M.IgniteMob()
-		src.visible_message(SPAN_WARNING("\The [src] sets [target] on fire!"))
+		src.visible_message(SPAN_WARNING("\The 69src69 sets 69target69 on fire!"))
 
 /obj/item/projectile/bullet/flare/on_impact(var/atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
 	if(!istype(T)) return
 
-	//blind adjacent people with enhanced vision
-	for (var/mob/living/carbon/M in viewers(T, flash_range))
+	//blind adjacent people with enhanced69ision
+	for (var/mob/living/carbon/M in69iewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_NONE)
 			if (M.HUDtech.Find("flash"))
-				flick("e_flash", M.HUDtech["flash"])
+				flick("e_flash",69.HUDtech69"flash"69)
 
-	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright light!"))
+	src.visible_message(SPAN_WARNING("\The 69src69 explodes in a bright light!"))
 	new /obj/effect/decal/cleanable/ash(src.loc)
 	playsound(src, 'sound/effects/flare.ogg', 100, 1)
 	new /obj/effect/effect/smoke/illumination(T, brightness=max(flash_range*3, brightness), lifetime=light_duration, color=COLOR_RED)

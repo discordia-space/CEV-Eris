@@ -2,18 +2,18 @@
 #define EVAC_OPT_CANCEL_ABANDON_SHIP "cancel_abandon_ship"
 
 // Apparently, emergency_evacuation --> "abandon ship" and !emergency_evacuation --> "bluespace jump"
-// That stuff should be moved to the evacuation option datums but someone can do that later
+// That stuff should be69oved to the evacuation option datums but someone can do that later
 
 /datum/evacuation_controller/starship
 	name = "escape pod controller"
 
-	evac_prep_delay    = 5 MINUTES
-	evac_launch_delay  = 3 MINUTES
-	evac_transit_delay = 2 MINUTES
+	evac_prep_delay    = 569INUTES
+	evac_launch_delay  = 369INUTES
+	evac_transit_delay = 269INUTES
 
-	transfer_prep_additional_delay     = 15 MINUTES
-	autotransfer_prep_additional_delay = 5 MINUTES
-	emergency_prep_additional_delay    = 0 MINUTES
+	transfer_prep_additional_delay     = 1569INUTES
+	autotransfer_prep_additional_delay = 569INUTES
+	emergency_prep_additional_delay    = 069INUTES
 
 	evacuation_options = list(
 		EVAC_OPT_ABANDON_SHIP = new /datum/evacuation_option/abandon_ship(),
@@ -39,9 +39,9 @@
 				pod.move_time = (evac_transit_delay/10)
 				pod.launch(src)
 
-		priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.emergency_shuttle_leaving_dock, "%dock_name%", "69dock_name69"),  "%ETA%", "69round(get_eta()/60,1)6969inute\s"))
 	else
-		priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.shuttle_leaving_dock, "%dock_name%", "[dock_name]"),  "%ETA%", "[round(get_eta()/60,1)] minute\s"))
+		priority_announcement.Announce(replacetext(replacetext(GLOB.maps_data.shuttle_leaving_dock, "%dock_name%", "69dock_name69"),  "%ETA%", "69round(get_eta()/60,1)6969inute\s"))
 
 /datum/evacuation_controller/starship/finish_evacuation()
 	..()
@@ -52,10 +52,10 @@
 	if (is_on_cooldown())
 		return list()
 	if (is_idle())
-		return list(evacuation_options[EVAC_OPT_ABANDON_SHIP])
+		return list(evacuation_options69EVAC_OPT_ABANDON_SHIP69)
 	if (is_evacuating())
 		if (emergency_evacuation)
-			return list(evacuation_options[EVAC_OPT_CANCEL_ABANDON_SHIP])
+			return list(evacuation_options69EVAC_OPT_CANCEL_ABANDON_SHIP69)
 
 /datum/evacuation_option/abandon_ship
 	option_text = "Abandon spacecraft"
@@ -77,10 +77,10 @@
 		to_chat(user, "Escape procedures already in progress.")
 		return
 	if (isdrone(user))
-		to_chat(user, "ACCES DENIED. CPU Quota does not meet basic consideration requirements to call evacuation.")
+		to_chat(user, "ACCES DENIED. CPU Quota does not69eet basic consideration requirements to call evacuation.")
 		return
 	if (evacuation_controller.call_evacuation(user, 1))
-		log_and_message_admins("[user? key_name(user) : "Autotransfer"] has initiated abandonment of the spacecraft.")
+		log_and_message_admins("69user? key_name(user) : "Autotransfer"69 has initiated abandonment of the spacecraft.")
 
 /datum/evacuation_option/cancel_abandon_ship
 	option_text = "Cancel abandonment"
@@ -91,7 +91,7 @@
 
 /datum/evacuation_option/cancel_abandon_ship/execute(mob/user)
 	if (evacuation_controller && evacuation_controller.cancel_evacuation())
-		log_and_message_admins("[key_name(user)] has cancelled abandonment of the spacecraft.")
+		log_and_message_admins("69key_name(user)69 has cancelled abandonment of the spacecraft.")
 
 /obj/screen/fullscreen/bluespace_overlay
 	icon = 'icons/effects/effects.dmi'

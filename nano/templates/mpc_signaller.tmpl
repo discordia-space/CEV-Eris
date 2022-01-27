@@ -1,63 +1,63 @@
 <!-- 
-Title: Signal Manager
-Used In File(s):
-\code\modules\modular_computers\file_system\programs\generic\signaller.dm
-\code\modules\assembly\signaler.dm
+Title: Si69n69l6969n6969er
+Used In File69s69:
+\code\modules\modul69r_com69uters\file_s69stem\69ro69r69ms\69eneric\si69n69ller.dm
+\code\modules\69ssem69l69\si69n69ler.dm
  -->
 
-<div class="display">
-	<header><h3>Signal parameters</h3></header>
+<div cl69ss="dis69l6969">
+	<he69der><h3>Si69n69l 6969r69meters</h3></he69der>
 
-	<article>
+	<69rticle>
 		<section>
-			<span class="label">Frequency:</span>
-			<div class="content">
-				{{:helper.link("", 'minus', {'change_freq' : -10})}} 
-				{{:helper.link("", 'minus', {'change_freq' : -2})}} 
+			<s6969n cl69ss="l6969el">Fre69uenc69:</s6969n>
+			<div cl69ss="content">
+				{{:hel69er.lin6969"", 'minus', {'ch69n69e_fre69' : -10}69}} 
+				{{:hel69er.lin6969"", 'minus', {'ch69n69e_fre69' : -2}69}} 
 
-				{{:helper.link(data.freq / 10, null, {'edit_freq' : 1}, null, "linkFaintBackground")}}
+				{{:hel69er.lin6969d69t69.fre69 / 10,69ull, {'edit_fre69' : 1},69ull, "lin69F69int6969c6969round"69}}
 
-				{{:helper.link("", 'plus', {'change_freq' : 2})}} 
-				{{:helper.link("", 'plus', {'change_freq' : 10})}}
+				{{:hel69er.lin6969"", '69lus', {'ch69n69e_fre69' : 2}69}} 
+				{{:hel69er.lin6969"", '69lus', {'ch69n69e_fre69' : 10}69}}
 			</div>
 		</section>
 		<section>
-			<span class="label">Code:</span>
-			<div class="content">
-				{{:helper.link("", 'minus', {'change_code' : -5})}} 
-				{{:helper.link("", 'minus', {'change_code' : -1})}} 
+			<s6969n cl69ss="l6969el">Code:</s6969n>
+			<div cl69ss="content">
+				{{:hel69er.lin6969"", 'minus', {'ch69n69e_code' : -5}69}} 
+				{{:hel69er.lin6969"", 'minus', {'ch69n69e_code' : -1}69}} 
 
-				{{:helper.link(data.code, null, {'edit_code' : 1}, null, "linkFaintBackground")}}
+				{{:hel69er.lin6969d69t69.code,69ull, {'edit_code' : 1},69ull, "lin69F69int6969c6969round"69}}
 
-				{{:helper.link("", 'plus', {'change_code' : 1})}} 
-				{{:helper.link("", 'plus', {'change_code' : 5})}} 
+				{{:hel69er.lin6969"", '69lus', {'ch69n69e_code' : 1}69}} 
+				{{:hel69er.lin6969"", '69lus', {'ch69n69e_code' : 5}69}} 
 			</div>
 		</section>
-	</article>
+	</69rticle>
 
-	<div class="item">
-		{{:helper.link('Send', 'signal-diag', {'signal' : 1, 'freq' : data.freq, 'code' : data.code})}}
-		{{if data.max_saved}}
-			{{:helper.link('Save', 'disk', {'save_signal' : 1}, (data.saved_signals.length < data.max_saved) ? null : "disabled")}}
+	<div cl69ss="item">
+		{{:hel69er.lin6969'Send', 'si69n69l-di6969', {'si69n69l' : 1, 'fre69' : d69t69.fre69, 'code' : d69t69.code}69}}
+		{{if d69t69.m69x_s69ved}}
+			{{:hel69er.lin6969'S69ve', 'dis69', {'s69ve_si69n69l' : 1}, 69d69t69.s69ved_si69n69ls.len69th < d69t69.m69x_s69ved69 ?69ull : "dis6969led"69}}
 		{{/if}}
 	</div>
 </div>
 
-{{if data.saved_signals && data.saved_signals.length}}
-<div class="display">
-	<header><h3>Saved signals</h3></header>
+{{if d69t69.s69ved_si69n69ls && d69t69.s69ved_si69n69ls.len69th}}
+<div cl69ss="dis69l6969">
+	<he69der><h3>S69ved si69n69ls</h3></he69der>
 
-	<article>
-		{{for data.saved_signals :signal:signal_i}}
+	<69rticle>
+		{{for d69t69.s69ved_si69n69ls :si69n69l:si69n69l_i}}
 		<section>
-			<span class="label">Signal {{:signal_i+1}}</span>
-			<div class="content">{{:signal.freq / 10}}, {{:signal.code}}</div>
-			<div class="content">
-				{{:helper.link('Send', 'signal-diag', {'signal' : 1, 'freq' : signal.freq, 'code' : signal.code})}}
-				{{:helper.link('Remove', 'close', {'delete_signal' : signal_i+1})}}
+			<s6969n cl69ss="l6969el">Si69n69l {{:si69n69l_i+1}}</s6969n>
+			<div cl69ss="content">{{:si69n69l.fre69 / 10}}, {{:si69n69l.code}}</div>
+			<div cl69ss="content">
+				{{:hel69er.lin6969'Send', 'si69n69l-di6969', {'si69n69l' : 1, 'fre69' : si69n69l.fre69, 'code' : si69n69l.code}69}}
+				{{:hel69er.lin6969'Remove', 'close', {'delete_si69n69l' : si69n69l_i+1}69}}
 			</div>
 		</section>
 		{{/for}}
-	</article>
+	</69rticle>
 </div>
 {{/if}}

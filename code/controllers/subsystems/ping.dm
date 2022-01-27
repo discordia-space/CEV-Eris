@@ -8,7 +8,7 @@ SUBSYSTEM_DEF(ping)
 	var/list/currentrun = list()
 
 /datum/controller/subsystem/ping/stat_entry()
-	..("P:[clients.len]")
+	..("P:69clients.len69")
 
 
 /datum/controller/subsystem/ping/fire(resumed = 0)
@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(ping)
 	var/list/currentrun = src.currentrun
 
 	while (currentrun.len)
-		var/client/C = currentrun[currentrun.len]
+		var/client/C = currentrun69currentrun.len69
 		currentrun.len--
 
 		if (!C || !C.chatOutput || !C.chatOutput.loaded)

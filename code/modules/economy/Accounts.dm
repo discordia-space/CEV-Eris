@@ -7,15 +7,15 @@
 	var/list/transaction_log = list()
 	var/suspended = 0
 	var/employer // Linked department account's define. DEPARTMENT_COMMAND or some such
-	var/wage = 0 // How much money account should recieve on a payday
-	var/wage_original // Value passed from job datum on account creation
-	var/wage_manual = FALSE // If wage have been set manually. Prevents wage auto update on players joining/leaving deparment
-	var/debt = 0 // How much money employer owe us
+	var/wage = 0 // How69uch69oney account should recieve on a payday
+	var/wage_original //69alue passed from job datum on account creation
+	var/wage_manual = FALSE // If wage have been set69anually. Prevents wage auto update on players joining/leaving deparment
+	var/debt = 0 // How69uch69oney employer owe us
 	var/department_id // Easy identification for department accounts
-	var/can_make_accounts // Individual guild members and their departments authorized to register new accounts
-	var/security_level = 0	//0 - auto-identify from worn ID, require only account number
-							//1 - require manual login / account number and pin
-							//2 - require card and manual login
+	var/can_make_accounts // Individual guild69embers and their departments authorized to register new accounts
+	var/security_level = 0	//0 - auto-identify from worn ID, re69uire only account number
+							//1 - re69uire69anual login / account number and pin
+							//2 - re69uire card and69anual login
 
 //One-stop safety checks for accounts
 /datum/money_account/proc/is_valid()
@@ -51,7 +51,7 @@
 
 	if(istype(_source_terminal, /atom))
 		var/atom/terminal_atom = _source_terminal
-		source_terminal = "[terminal_atom.name] at [get_area(terminal_atom)]"
+		source_terminal = "69terminal_atom.name69 at 69get_area(terminal_atom)69"
 
 	if(_date)
 		date = _date
@@ -74,7 +74,7 @@
 	account.transaction_log.Add(src.Copy())
 	return TRUE
 
-/datum/transaction/proc/set_amount(var/amount, var/update_time = TRUE)
+/datum/transaction/proc/set_amount(var/amount,69ar/update_time = TRUE)
 	src.amount = amount
 	if(update_time)
 		src.time = stationtime2text()
@@ -101,9 +101,9 @@
 	T.amount = starting_funds
 	if(!source_db)
 		//set a random date, time and location some time over the past few decades
-		T.date = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], 25[rand(10,56)]"
-		T.time = "[rand(0,24)]:[rand(11,59)]"
-		T.source_terminal = "Asters Guild Banking Terminal #[rand(111,1111)]"
+		T.date = "69num2text(rand(1,31))69 69pick("January","February","March","April","May","June","July","August","September","October","November","December")69, 2569rand(10,56)69"
+		T.time = "69rand(0,24)69:69rand(11,59)69"
+		T.source_terminal = "Asters Guild Banking Terminal #69rand(111,1111)69"
 
 		M.account_number = rand(11111, 99999)
 	else
@@ -119,15 +119,15 @@
 
 		var/obj/item/paper/R = new /obj/item/paper(P)
 		P.wrapped = R
-		R.name = "Account information: [M.owner_name]"
+		R.name = "Account information: 69M.owner_name69"
 		R.info = "<b>Account details (confidential)</b><br><hr><br>"
-		R.info += "<i>Account holder:</i> [M.owner_name]<br>"
-		R.info += "<i>Account number:</i> [M.account_number]<br>"
-		R.info += "<i>Account pin:</i> [M.remote_access_pin]<br>"
-		R.info += "<i>Starting balance:</i> [M.money][CREDS]<br>"
-		R.info += "<i>Date and time:</i> [stationtime2text()], [current_date_string]<br><br>"
-		R.info += "<i>Creation terminal ID:</i> [source_db.machine_id]<br>"
-		R.info += "<i>Authorised official overseeing creation:</i> [source_db.held_card.registered_name]<br>"
+		R.info += "<i>Account holder:</i> 69M.owner_name69<br>"
+		R.info += "<i>Account number:</i> 69M.account_number69<br>"
+		R.info += "<i>Account pin:</i> 69M.remote_access_pin69<br>"
+		R.info += "<i>Starting balance:</i> 69M.money6969CREDS69<br>"
+		R.info += "<i>Date and time:</i> 69stationtime2text()69, 69current_date_string69<br><br>"
+		R.info += "<i>Creation terminal ID:</i> 69source_db.machine_id69<br>"
+		R.info += "<i>Authorised official overseeing creation:</i> 69source_db.held_card.registered_name69<br>"
 
 		//stamp the paper
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
@@ -145,15 +145,15 @@
 
 	// Increase personnel budget of our department, if have one
 	if(department && wage)
-		var/datum/money_account/EA = department_accounts[department]
-		var/datum/department/D = GLOB.all_departments[department]
+		var/datum/money_account/EA = department_accounts69department69
+		var/datum/department/D = GLOB.all_departments69department69
 		if(EA && D) // Don't bother if department have no employer
 			D.budget_personnel += wage
-			if(!EA.wage_manual) // Update department account's wage if it's not in manual mode
+			if(!EA.wage_manual) // Update department account's wage if it's not in69anual69ode
 				EA.wage = D.get_total_budget()
-	return M
+	return69
 
-//Charges an account a certain amount of money which is functionally just removed from existence
+//Charges an account a certain amount of69oney which is functionally just removed from existence
 /proc/charge_to_account(attempt_account_number, target_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
@@ -163,7 +163,7 @@
 
 	return FALSE
 
-//Creates money from nothing and deposits it in an account
+//Creates69oney from nothing and deposits it in an account
 /proc/deposit_to_account(attempt_account_number, source_name, purpose, terminal_id, amount)
 	var/datum/money_account/D = get_account(attempt_account_number)
 	if (D)
@@ -183,20 +183,20 @@
 	if (!source.is_valid() || !target.is_valid())
 		return FALSE
 
-	//We've got both accounts and confirmed they are valid
+	//We've got both accounts and confirmed they are69alid
 
-	//The transaction to take the money
+	//The transaction to take the69oney
 	var/datum/transaction/T1 = new(amount*-1, target.get_name(), purpose, terminal_id)
 	if (T1.apply_to(source))
 
-		//The transaction to give the money
+		//The transaction to give the69oney
 		var/datum/transaction/T2 = new(amount, source.get_name(), purpose, terminal_id)
 		SEND_SIGNAL(source, COMSIG_TRANSATION, source, target, amount)
 		return T2.apply_to(target)
 
 	return FALSE
 
-//this returns the first account datum that matches the supplied accnum/pin combination, it returns null if the combination did not match any account
+//this returns the first account datum that69atches the supplied accnum/pin combination, it returns null if the combination did not69atch any account
 /proc/attempt_account_access(account_number, attempt_pin_number, security_level_passed = 0, force_security = FALSE)
 	var/datum/money_account/D = get_account(account_number)
 

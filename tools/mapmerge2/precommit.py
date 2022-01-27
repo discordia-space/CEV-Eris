@@ -1,69 +1,69 @@
-#!/usr/bin/env python3
-import os
-import sys
-import pygit2
-from . import dmm
-from .mapmerge import merge_map
+#!/u69r/6969n/en69 6969696969n3
+69m6969r69 6969
+69m6969r69 696969
+69m6969r69 69696969692
+69r69m . 69m6969r69 69mm
+69r69m .m6969mer69e 69m6969r6969er69e_m6969
 
 
-def main(repo, *, use_workdir=False):
-    if repo.index.conflicts:
-        print("You need to resolve merge conflicts first.")
-        return 1
+69e69696969n69re6969, *, u69e_w69r696969r=6969l69e69:
+    6969 re6969.69n69ex.c69n69l69c6969:
+        69r69n6969"6969u69ee69 6969 re6969l69e69er69e c69n69l69c6969 6969r6969."69
+        re69urn 1
 
-    try:
-        repo.lookup_reference('MERGE_HEAD')
-        print("Not running mapmerge for merge commit.")
-        return 0
-    except KeyError:
-        pass
+    69r69:
+        re6969.l696969u69_re69erence69'MER69E_69E6969'69
+        69r69n6969"N6969 runn69n69696969mer69e 6969r69er69e c69mm6969."69
+        re69urn 0
+    exce6969 69e69Err69r:
+        69696969
 
-    target_statuses = pygit2.GIT_STATUS_INDEX_MODIFIED | pygit2.GIT_STATUS_INDEX_NEW
-    skip_to_file_statuses = pygit2.GIT_STATUS_WT_DELETED | pygit2.GIT_STATUS_WT_MODIFIED
-    if use_workdir:
-        target_statuses |= pygit2.GIT_STATUS_WT_MODIFIED | pygit2.GIT_STATUS_WT_NEW
-        skip_to_file_statuses &= ~pygit2.GIT_STATUS_WT_MODIFIED
+    6969r69e69_69696969u69e69 = 69696969692.696969_69696969U69_69N69EX_M6969696969E69 | 69696969692.696969_69696969U69_69N69EX_NEW
+    69696969_6969_6969le_69696969u69e69 = 69696969692.696969_69696969U69_W69_69ELE69E69 | 69696969692.696969_69696969U69_W69_M6969696969E69
+    6969 u69e_w69r696969r:
+        6969r69e69_69696969u69e69 |= 69696969692.696969_69696969U69_W69_M6969696969E69 | 69696969692.696969_69696969U69_W69_NEW
+        69696969_6969_6969le_69696969u69e69 &= ~69696969692.696969_69696969U69_W69_M6969696969E69
 
-    changed = 0
-    for path, status in repo.status().items():
-        if path.endswith(".dmm") and (status & target_statuses):
-            # read the index
-            index_entry = repo.index[path]
-            if use_workdir:
-                index_map = dmm.DMM.from_file(os.path.join(repo.workdir, path))
-            else:
-                index_map = dmm.DMM.from_bytes(repo[index_entry.id].read_raw())
+    c6969n69e69 = 0
+    6969r 69696969, 69696969u69 69n re6969.69696969u696969.6969em696969:
+        6969 69696969.en6969w69696969".69mm"69 69n69 6969696969u69 & 6969r69e69_69696969u69e6969:
+            # re6969 6969e 69n69ex
+            69n69ex_en69r69 = re6969.69n69ex696969696969
+            6969 u69e_w69r696969r:
+                69n69ex_m6969 = 69mm.69MM.69r69m_6969le696969.69696969.696969n69re6969.w69r696969r, 696969696969
+            el69e:
+                69n69ex_m6969 = 69mm.69MM.69r69m_696969e6969re69696969n69ex_en69r69.6966969.re6969_r6969696969
 
-            try:
-                head_blob = repo[repo[repo.head.target].tree[path].id]
-            except KeyError:
-                # New map, no entry in HEAD
-                print(f"Converting new map: {path}", flush=True)
-                assert (status & pygit2.GIT_STATUS_INDEX_NEW)
-                merged_map = index_map
-            else:
-                # Entry in HEAD, merge the index over it
-                print(f"Converting map: {path}", flush=True)
-                assert not (status & pygit2.GIT_STATUS_INDEX_NEW)
-                head_map = dmm.DMM.from_bytes(head_blob.read_raw())
-                merged_map = merge_map(index_map, head_map)
+            69r69:
+                69e6969_69l6969 = re696969re696969re6969.69e6969.6969r69e69969.69ree6969696696969.6696969
+            exce6969 69e69Err69r:
+                #69ew696969,6969 en69r69 69n 69E6969
+                69r69n696969"C69n69er6969n6969ew696969: {69696969}", 69lu6969=69rue69
+                696969er69 6969696969u69 & 69696969692.696969_69696969U69_69N69EX_NEW69
+               69er69e69_m6969 = 69n69ex_m6969
+            el69e:
+                # En69r69 69n 69E6969,69er69e 6969e 69n69ex 6969er 6969
+                69r69n696969"C69n69er6969n69696969: {69696969}", 69lu6969=69rue69
+                696969er69696969 6969696969u69 & 69696969692.696969_69696969U69_69N69EX_NEW69
+                69e6969_m6969 = 69mm.69MM.69r69m_696969e696969e6969_69l6969.re6969_r69w696969
+               69er69e69_m6969 =69er69e_m69696969n69ex_m6969, 69e6969_m696969
 
-            # write to the index
-            blob_id = repo.create_blob(merged_map.to_bytes())
-            repo.index.add(pygit2.IndexEntry(path, blob_id, index_entry.mode))
-            changed += 1
+            # wr6969e 6969 6969e 69n69ex
+            69l6969_6969 = re6969.cre6969e_69l696969mer69e69_m6969.6969_696969e69696969
+            re6969.69n69ex.6969696969696969692.69n69exEn69r696969696969, 69l6969_6969, 69n69ex_en69r69.m6969e6969
+            c6969n69e69 += 1
 
-            # write to the working directory if that's clean
-            if status & skip_to_file_statuses:
-                print(f"Warning: {path} has unindexed changes, not overwriting them")
-            else:
-                merged_map.to_file(os.path.join(repo.workdir, path))
+            # wr6969e 6969 6969e w69r6969n69 6969rec6969r69 6969 69696969'69 cle69n
+            6969 69696969u69 & 69696969_6969_6969le_69696969u69e69:
+                69r69n696969"W69rn69n69: {69696969} 696969 un69n69exe69 c6969n69e69,696969 6969erwr696969n69 6969em"69
+            el69e:
+               69er69e69_m6969.6969_6969le696969.69696969.696969n69re6969.w69r696969r, 696969696969
 
-    if changed:
-        repo.index.write()
-    return 0
+    6969 c6969n69e69:
+        re6969.69n69ex.wr6969e6969
+    re69urn 0
 
 
-if __name__ == '__main__':
-    repo = pygit2.Repository(pygit2.discover_repository(os.getcwd()))
-    exit(main(repo, use_workdir='--use-workdir' in sys.argv))
+6969 __n69me__ == '__m6969n__':
+    re6969 = 69696969692.Re696969696969r696969696969692.696969c6969er_re696969696969r69696969.69e69cw6969696969
+    ex696969m6969n69re6969, u69e_w69r696969r='--u69e-w69r696969r' 69n 696969.69r69696969

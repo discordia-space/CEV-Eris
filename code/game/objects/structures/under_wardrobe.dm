@@ -1,4 +1,4 @@
-#define WARDROBE_BLIND_MESSAGE(fool) "\The [src] flashes a light at \the [fool] as it states a message."
+#define WARDROBE_BLIND_MESSAGE(fool) "\The 69src69 flashes a light at \the 69fool69 as it states a69essage."
 
 /obj/structure/undies_wardrobe
 	name = "underwear wardrobe"
@@ -10,17 +10,17 @@
 
 	var/static/list/amount_of_underwear_by_id_card
 
-/obj/structure/undies_wardrobe/attackby(var/obj/item/underwear/underwear, var/mob/user)
+/obj/structure/undies_wardrobe/attackby(var/obj/item/underwear/underwear,69ar/mob/user)
 	if(istype(underwear))
-		if(!user.unEquip(underwear))
+		if(!user.unE69uip(underwear))
 			return
-		qdel(underwear)
-		user.visible_message("<span class='notice'>\The [user] inserts \their [underwear.name] into \the [src].</span>", "<span class='notice'>You insert your [underwear.name] into \the [src].</span>")
+		69del(underwear)
+		user.visible_message("<span class='notice'>\The 69user69 inserts \their 69underwear.name69 into \the 69src69.</span>", "<span class='notice'>You insert your 69underwear.name69 into \the 69src69.</span>")
 
 		var/id = user.GetIdCard()
 		var/message
 		if(id)
-			message = "ID card detected. Your underwear quota for this shift as been increased, if applicable."
+			message = "ID card detected. Your underwear 69uota for this shift as been increased, if applicable."
 		else
 			message = "No ID card detected. Thank you for your contribution."
 
@@ -51,10 +51,10 @@
 
 	var/dat = list()
 	dat += "<b>Underwear</b><br><hr>"
-	dat += "You may claim [id ? length(GLOB.underwear.categories) - LAZYACCESS(amount_of_underwear_by_id_card, id) : 0] more article\s this shift.<br><br>"
+	dat += "You69ay claim 69id ? length(GLOB.underwear.categories) - LAZYACCESS(amount_of_underwear_by_id_card, id) : 06969ore article\s this shift.<br><br>"
 	dat += "<b>Available Categories</b><br><hr>"
 	for(var/datum/category_group/underwear/UWC in GLOB.underwear.categories)
-		dat += "[UWC.name] <a href='?src=\ref[src];select_underwear=[UWC.name]'>(Select)</a><br>"
+		dat += "69UWC.name69 <a href='?src=\ref69src69;select_underwear=69UWC.name69'>(Select)</a><br>"
 	dat = jointext(dat,null)
 	show_browser(H, dat, "window=wardrobe;size=400x250")
 
@@ -74,8 +74,8 @@
 		return TRUE
 
 	var/mob/living/carbon/human/H = usr
-	if(href_list["select_underwear"])
-		var/datum/category_group/underwear/UWC = GLOB.underwear.categories_by_name[href_list["select_underwear"]]
+	if(href_list69"select_underwear"69)
+		var/datum/category_group/underwear/UWC = GLOB.underwear.categories_by_name69href_list69"select_underwear"6969
 		if(!UWC)
 			return
 		var/datum/category_item/underwear/UWI = input("Select your desired underwear:", "Choose underwear") as null|anything in exclude_none(UWC.items)
@@ -88,23 +88,23 @@
 			var/metadata = gt.get_metadata(H, title = "Adjust underwear")
 			if(!metadata)
 				return
-			metadata_list["[gt]"] = metadata
+			metadata_list69"69gt69"69 =69etadata
 
 		if(!CanInteract(H, state))
 			return
 
 		var/id = H.GetIdCard()
 		if(!id)
-			audible_message("No ID card detected. Unable to acquire your underwear quota for this shift.", WARDROBE_BLIND_MESSAGE(H))
+			audible_message("No ID card detected. Unable to ac69uire your underwear 69uota for this shift.", WARDROBE_BLIND_MESSAGE(H))
 			return
 
-		var/current_quota = LAZYACCESS(amount_of_underwear_by_id_card, id)
-		if(current_quota >= length(GLOB.underwear.categories))
-			audible_message("You have already used up your underwear quota for this shift. Please return previously acquired items to increase it.", WARDROBE_BLIND_MESSAGE(H))
+		var/current_69uota = LAZYACCESS(amount_of_underwear_by_id_card, id)
+		if(current_69uota >= length(GLOB.underwear.categories))
+			audible_message("You have already used up your underwear 69uota for this shift. Please return previously ac69uired items to increase it.", WARDROBE_BLIND_MESSAGE(H))
 			return
-		LAZYSET(amount_of_underwear_by_id_card, id, ++current_quota)
+		LAZYSET(amount_of_underwear_by_id_card, id, ++current_69uota)
 
-		var/obj/UW = UWI.create_underwear(loc, metadata_list, 'icons/inventory/underwear/mob.dmi')
+		var/obj/UW = UWI.create_underwear(loc,69etadata_list, 'icons/inventory/underwear/mob.dmi')
 		UW.forceMove(loc)
 		H.put_in_hands(UW)
 

@@ -10,17 +10,17 @@
 	if(!matter)
 		matter = list()
 
-	for(var/list/L in matter_chances)
-		if(prob(L[2]))
-			matter |= L[1]
-			matter[L[1]] += max(0, L[3] + rand(-2,2))
+	for(var/list/L in69atter_chances)
+		if(prob(L69269))
+			matter |= L69169
+			matter69L6916969 +=69ax(0, L69369 + rand(-2,2))
 
 
 
 
 /obj/item/trash/material/metal
-	name = "scrap metal"
-	desc = "A piece of metal that can be recycled in an autolathe."
+	name = "scrap69etal"
+	desc = "A piece of69etal that can be recycled in an autolathe."
 	icon_state = "metal0"
 	rarity_value = 3
 	matter_chances = list(
@@ -34,7 +34,7 @@
 
 /obj/item/trash/material/metal/Initialize()
 	. = ..()
-	icon_state = "metal[rand(4)]"
+	icon_state = "metal69rand(4)69"
 
 
 /obj/item/trash/material/circuit
@@ -54,7 +54,7 @@
 
 /obj/item/trash/material/circuit/Initialize()
 	. = ..()
-	icon_state = "circuit[rand(3)]"
+	icon_state = "circuit69rand(3)69"
 
 
 /obj/item/trash/material/device
@@ -74,4 +74,4 @@
 
 /obj/item/trash/material/device/Initialize()
 	. = ..()
-	icon_state = "device[rand(3)]"
+	icon_state = "device69rand(3)69"

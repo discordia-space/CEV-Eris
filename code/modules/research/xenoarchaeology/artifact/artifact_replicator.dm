@@ -1,6 +1,6 @@
 
 /obj/machinery/replicator
-	name = "alien machine"
+	name = "alien69achine"
 	desc = "It's some kind of pod with strange wires and gadgets all over it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "borgcharger0(old)"
@@ -66,41 +66,41 @@
 	/obj/item/grenade/chem_grenade/metalfoam\
 	)
 
-	var/quantity = rand(5,15)
-	for(var/i=0, i<quantity, i++)
-		var/button_desc = "a [pick("yellow","purple","green","blue","red","orange","white")], "
-		button_desc += "[pick("round","square","diamond","heart","dog","human")] shaped "
-		button_desc += "[pick("toggle","switch","lever","button","pad","hole")]"
+	var/69uantity = rand(5,15)
+	for(var/i=0, i<69uantity, i++)
+		var/button_desc = "a 69pick("yellow","purple","green","blue","red","orange","white")69, "
+		button_desc += "69pick("round","s69uare","diamond","heart","dog","human")69 shaped "
+		button_desc += "69pick("toggle","switch","lever","button","pad","hole")69"
 		var/type = pick(viables)
 		viables.Remove(type)
-		construction[button_desc] = type
+		construction69button_desc69 = type
 
-	fail_message = "\blue \icon[src] a [pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")] \
-		[pick("horn","beep","bing","bleep","blat","honk","hrumph","ding")] sounds and a \
-		[pick("yellow","purple","green","blue","red","orange","white")] \
-		[pick("light","dial","meter","window","protrusion","knob","antenna","swirly thing")] \
-		[pick("swirls","flashes","whirrs","goes schwing","blinks","flick_lights","strobes","lights up")] on the \
-		[pick("front","side","top","bottom","rear","inside")] of [src]. A [pick("slot","funnel","chute","tube")] opens up in the \
-		[pick("front","side","top","bottom","rear","inside")]."
+	fail_message = "\blue \icon69src69 a 69pick("loud","soft","sinister","eery","triumphant","depressing","cheerful","angry")69 \
+		69pick("horn","beep","bing","bleep","blat","honk","hrumph","ding")69 sounds and a \
+		69pick("yellow","purple","green","blue","red","orange","white")69 \
+		69pick("light","dial","meter","window","protrusion","knob","antenna","swirly thing")69 \
+		69pick("swirls","flashes","whirrs","goes schwing","blinks","flick_lights","strobes","lights up")69 on the \
+		69pick("front","side","top","bottom","rear","inside")69 of 69src69. A 69pick("slot","funnel","chute","tube")69 opens up in the \
+		69pick("front","side","top","bottom","rear","inside")69."
 
 /obj/machinery/replicator/Process()
 	if(spawning_types.len && powered())
 		spawn_progress_time += world.time - last_process_time
-		if(spawn_progress_time > max_spawn_time)
-			src.visible_message("\blue \icon[src] [src] pings!")
+		if(spawn_progress_time >69ax_spawn_time)
+			src.visible_message("\blue \icon69src69 69src69 pings!")
 
 			var/obj/source_material = pop(stored_materials)
 			var/spawn_type = pop(spawning_types)
-			var/obj/spawned_obj = new spawn_type(src.loc)
+			var/obj/spawned_obj =69ew spawn_type(src.loc)
 			if(source_material)
-				if(length(source_material.name) < MAX_MESSAGE_LEN)
-					spawned_obj.name = "[source_material] " +  spawned_obj.name
-				if(length(source_material.desc) < MAX_MESSAGE_LEN * 2)
+				if(length(source_material.name) <69AX_MESSAGE_LEN)
+					spawned_obj.name = "69source_material69 " +  spawned_obj.name
+				if(length(source_material.desc) <69AX_MESSAGE_LEN * 2)
 					if(spawned_obj.desc)
-						spawned_obj.desc += " It is made of [source_material]."
+						spawned_obj.desc += " It is69ade of 69source_material69."
 					else
-						spawned_obj.desc = "It is made of [source_material]."
-				qdel(source_material)
+						spawned_obj.desc = "It is69ade of 69source_material69."
+				69del(source_material)
 
 			spawn_progress_time = 0
 			max_spawn_time = rand(30,100)
@@ -110,39 +110,39 @@
 				icon_state = "borgcharger0(old)"
 
 		else if(prob(5))
-			src.visible_message("\blue \icon[src] [src] [pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")].")
+			src.visible_message("\blue \icon69src69 69src69 69pick("clicks","whizzes","whirrs","whooshes","clanks","clongs","clonks","bangs")69.")
 
 	last_process_time = world.time
 
-/obj/machinery/replicator/attack_hand(mob/user as mob)
+/obj/machinery/replicator/attack_hand(mob/user as69ob)
 	interact(user)
 
 /obj/machinery/replicator/interact(mob/user)
-	var/dat = "The control panel displays an incomprehensible selection of controls, many with unusual markings or text around them.<br>"
+	var/dat = "The control panel displays an incomprehensible selection of controls,69any with unusual69arkings or text around them.<br>"
 	dat += "<br>"
 	for(var/index=1, index<=construction.len, index++)
-		dat += "<A href='?src=\ref[src];activate=[index]'>\[[construction[index]]\]</a><br>"
+		dat += "<A href='?src=\ref69src69;activate=69index69'>\6969construction69index6969\69</a><br>"
 
 	user << browse(dat, "window=alien_replicator")
 
-/obj/machinery/replicator/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/machinery/replicator/attackby(obj/item/W as obj,69ob/living/user as69ob)
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("\blue [user] inserts [W] into [src].")
+	src.visible_message("\blue 69user69 inserts 69W69 into 69src69.")
 
 /obj/machinery/replicator/Topic(href, href_list)
 
-	if(href_list["activate"])
-		var/index = text2num(href_list["activate"])
+	if(href_list69"activate"69)
+		var/index = text2num(href_list69"activate"69)
 		if(index > 0 && index <= construction.len)
 			if(stored_materials.len > spawning_types.len)
 				if(spawning_types.len)
-					src.visible_message("\blue \icon[src] a [pick("light","dial","display","meter","pad")] on [src]'s front [pick("blinks","flashes")] [pick("red","yellow","blue","orange","purple","green","white")].")
+					src.visible_message("\blue \icon69src69 a 69pick("light","dial","display","meter","pad")69 on 69src69's front 69pick("blinks","flashes")69 69pick("red","yellow","blue","orange","purple","green","white")69.")
 				else
-					src.visible_message("\blue \icon[src] [src]'s front compartment slides shut.")
+					src.visible_message("\blue \icon69src69 69src69's front compartment slides shut.")
 
-				spawning_types.Add(construction[construction[index]])
+				spawning_types.Add(construction69construction69index6969)
 				spawn_progress_time = 0
 				use_power = ACTIVE_POWER_USE
 				icon_state = "borgcharger1(old)"

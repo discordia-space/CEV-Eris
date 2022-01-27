@@ -18,14 +18,14 @@
 				msg += "It is flick_lighting gently with a little electrical activity.\n"
 
 			if(4 to 5)
-				msg += "It is glowing gently with moderate levels of electrical activity.\n"
+				msg += "It is glowing gently with69oderate levels of electrical activity.\n"
 
 			if(6 to 9)
 				msg += "<span class='warning'>It is glowing brightly with high levels of electrical activity.</span>\n"
 
 			if(10)
-				msg += "<span class='warning'><B>It is radiating with massive levels of electrical activity!</B></span>\n"
+				msg += "<span class='warning'><B>It is radiating with69assive levels of electrical activity!</B></span>\n"
 
 	msg += "*---------*"
-	to_chat(user, msg)
+	to_chat(user,69sg)
 	return

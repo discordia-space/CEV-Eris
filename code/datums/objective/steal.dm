@@ -2,32 +2,32 @@
 	var/obj/item/steal_target
 	var/target_name
 
-	var/global/possible_items[] = list(
+	var/global/possible_items6969 = list(
 		"the captain's antique laser gun" = /obj/item/gun/energy/captain,
 		"a hand teleporter" = /obj/item/hand_tele,
 		"an RCD" = /obj/item/rcd,
 		"a jetpack" = /obj/item/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
-		"the Technomancer Exultant's advanced voidsuit control module" = /obj/item/rig/ce,
+		"the Technomancer Exultant's advanced69oidsuit control69odule" = /obj/item/rig/ce,
 		"the ship blueprints" = /obj/item/blueprints,
-		"28 moles of plasma (full tank)" = /obj/item/tank,
+		"2869oles of plasma (full tank)" = /obj/item/tank,
 		"a sample of slime extract" = /obj/item/slime_extract,
-		"a piece of corgi meat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
-		"a Moebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
+		"a piece of corgi69eat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
+		"a69oebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
 		"a exultant's jumpsuit" = /obj/item/clothing/under/rank/exultant,
-		"a Moebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
+		"a69oebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
 		"a Ironhammer commander's jumpsuit" = /obj/item/clothing/under/rank/ih_commander,
 		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/pinpointer,
-		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof,
-		"an Ironhammer hardsuit control module" = /obj/item/rig/combat/ironhammer,
+		"an ablative armor69est" = /obj/item/clothing/suit/armor/laserproof,
+		"an Ironhammer hardsuit control69odule" = /obj/item/rig/combat/ironhammer,
 		"a Bluespace Biosyphon" = /obj/item/biosyphon,
 		"a S REV .35 Auto \"Sky Driver\"" = /obj/item/gun/projectile/revolver/sky_driver,
 		"Von-Krabin Stimulator" = /obj/item/device/von_krabin,
 		"Molitor-Riedel Enricher" = /obj/item/reagent_containers/enricher,
-		"an Ancient Maneki Neko" = /obj/item/maneki_neko,
+		"an Ancient69aneki Neko" = /obj/item/maneki_neko,
 		"a Techno-Tribalism Enforcer" = /obj/item/device/techno_tribalism,
 		"an Random wave radio" = /obj/item/device/radio/random_radio,
 		"the Sword of Truth" = /obj/item/tool/sword/nt_sword,
@@ -36,7 +36,7 @@
 		"the Laurelin bonsai" = /obj/item/reagent_containers/bonsai
 	)
 
-	var/global/possible_items_special[] = list(
+	var/global/possible_items_special6969 = list(
 		"mindflayer" = /obj/item/gun/energy/psychic/mindflayer,
 		"advanced energy gun" = /obj/item/gun/energy/nuclear,
 		"diamond drill" = /obj/item/tool/pickaxe/diamonddrill,
@@ -50,9 +50,9 @@
 
 /datum/objective/steal/set_target(var/item_name)
 	target_name = item_name
-	steal_target = possible_items[target_name]
+	steal_target = possible_items69target_name69
 	if(!steal_target)
-		steal_target = possible_items_special[target_name]
+		steal_target = possible_items_special69target_name69
 	update_explanation()
 	return steal_target
 
@@ -79,13 +79,13 @@
 		return FALSE
 	var/list/all_items = get_owner_inventory()
 	switch(target_name)
-		if("28 moles of plasma (full tank)", "10 diamonds", "50 gold bars", "25 refined uranium bars")
+		if("2869oles of plasma (full tank)", "10 diamonds", "50 gold bars", "25 refined uranium bars")
 			var/target_amount = text2num(target_name)//Non-numbers are ignored.
 			var/found_amount = 0//Always starts as zero.
 
 			for(var/obj/item/I in all_items) //Check for plasma tanks
 				if(istype(I, steal_target))
-					found_amount += (target_name == "28 moles of plasma (full tank)" ? (I:air_contents:gas["plasma"]) : (I:amount))
+					found_amount += (target_name == "2869oles of plasma (full tank)" ? (I:air_contents:gas69"plasma"69) : (I:amount))
 			return found_amount >= target_amount
 
 		if("50 coins (in bag)")
@@ -103,7 +103,7 @@
 			for(var/obj/item/device/aicard/C in all_items) //Check for ai card
 				for(var/mob/living/silicon/ai/M in C)
 					//See if any AI's are alive inside that card.
-					if(isAI(M) && M.stat != DEAD)
+					if(isAI(M) &&69.stat != DEAD)
 						return TRUE
 
 			for(var/mob/living/silicon/ai/ai in world)
@@ -121,15 +121,15 @@
 	return FALSE
 
 /datum/objective/steal/get_panel_entry()
-	return "Steal <a href='?src=\ref[src];switch_item=1'>[target_name]</a>."
+	return "Steal <a href='?src=\ref69src69;switch_item=1'>69target_name69</a>."
 
 /datum/objective/steal/update_explanation()
-	explanation_text = "Steal [target_name]."
+	explanation_text = "Steal 69target_name69."
 
 /datum/objective/steal/Topic(href, href_list)
 	if(..())
 		return TRUE
-	if(href_list["switch_item"])
+	if(href_list69"switch_item"69)
 		select_target(usr)
 		antag.antagonist_panel()
 

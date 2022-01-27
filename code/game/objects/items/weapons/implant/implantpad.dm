@@ -1,6 +1,6 @@
 /obj/item/implantpad
 	name = "implant pad"
-	desc = "Used to modify implants."
+	desc = "Used to69odify implants."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "implantpad-0"
 	item_state = "electronic"
@@ -33,7 +33,7 @@
 	return
 
 
-/obj/item/implantpad/attackby(obj/item/implantcase/C, mob/living/user)
+/obj/item/implantpad/attackby(obj/item/implantcase/C,69ob/living/user)
 	..()
 	if(istype(C, /obj/item/implantcase))
 		if(!case)
@@ -46,7 +46,7 @@
 
 /obj/item/implantpad/attack_self(mob/living/user)
 	user.set_machine(src)
-	var/dat = "<B>Implant Mini-Computer:</B><HR>"
+	var/dat = "<B>Implant69ini-Computer:</B><HR>"
 	if(case)
 		if(case.implant)
 			dat += case.implant.get_data()
@@ -68,7 +68,7 @@
 		if (ismob(loc))
 			attack_self(src.loc)
 		else
-			for(var/mob/M in viewers(1, src))
+			for(var/mob/M in69iewers(1, src))
 				if (M.client)
 					src.attack_self(M)
 		src.add_fingerprint(usr)

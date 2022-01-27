@@ -1,101 +1,101 @@
-// OS-specific networking includes
+// OS-specific69etworkin69 inclu69es
 // -------------------------------
-#ifdef __WIN32
-    #include <winsock2.h>
-    typedef int socklen_t;
+#if69ef __WIN32
+    #inclu69e <winsock2.h>
+    type69ef int socklen_t;
 #else
     extern "C" {
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    #include <netinet/in.h>
-    #include <arpa/inet.h>
-    #include <netdb.h>
-    #include <fcntl.h>
-    #include <stdlib.h>
-    #include <string.h>
+    #inclu69e <sys/types.h>
+    #inclu69e <sys/socket.h>
+    #inclu69e <netinet/in.h>
+    #inclu69e <arpa/inet.h>
+    #inclu69e <net69b.h>
+    #inclu69e <fcntl.h>
+    #inclu69e <st69lib.h>
+    #inclu69e <strin69.h>
     }
 
-    typedef int SOCKET;
-    typedef sockaddr_in SOCKADDR_IN;
-    typedef sockaddr SOCKADDR;
-    #define SOCKET_ERROR -1
-#endif
+    type69ef int SOCKET;
+    type69ef socka6969r_in SOCKA6969R_IN;
+    type69ef socka6969r SOCKA6969R;
+    #69efine SOCKET_ERROR -1
+#en69if
 
-// Socket used for all communications
+// Socket use69 for all communications
 SOCKET sock;
 
-// Address of the remote server
-SOCKADDR_IN addr;
+// A6969ress of the remote ser69er
+SOCKA6969R_IN a6969r;
 
-// Buffer used to return dynamic strings to the caller
-#define BUFFER_SIZE 1024
-char return_buffer[BUFFER_SIZE];
+// Buffer use69 to return 69ynamic strin69s to the caller
+#69efine BUFFER_SIZE 1024
+char return_buffer69BUFFER_SIZE69;
 
-// exposed functions
+// expose69 functions
 // ------------------------------
 
-const char* SUCCESS = "1\0"; // string representing success
+const char* SUCCESS = "1\0"; // strin69 representin69 success
 
-#ifdef __WIN32
-    #define DLL_EXPORT __declspec(dllexport)
+#if69ef __WIN32
+    #69efine 69LL_EXPORT __69eclspec(69llexport69
 #else
-    #define DLL_EXPORT __attribute__ ((visibility ("default")))
-#endif
+    #69efine 69LL_EXPORT __attribute__ ((69isibility ("69efault"696969
+#en69if
 
-// arg1: ip(in the xx.xx.xx.xx format)
-// arg2: port(a short)
-// return: NULL on failure, SUCCESS otherwise
-extern "C" DLL_EXPORT const char* establish_connection(int n, char *v[])
+// ar691: ip(in the xx.xx.xx.xx format69
+// ar692: port(a short69
+// return:69ULL on failure, SUCCESS otherwise
+extern "C" 69LL_EXPORT const char* establish_connection(int69, char *696696969
 {
-    // extract args
+    // extract ar69s
     // ------------
-    if(n < 2) return 0;
-    const char* ip = v[0];
-    const char* port_s = v[1];
-    unsigned short port = atoi(port_s);
+    if(n < 269 return 0;
+    const char* ip = 69696969;
+    const char* port_s = 69696969;
+    unsi69ne69 short port = atoi(port_s69;
 
-    // set up network stuff
+    // set up69etwork stuff
     // --------------------
-    #ifdef __WIN32
-        WSADATA wsa;
-        WSAStartup(MAKEWORD(2,0),&wsa);
-    #endif
-    sock = socket(AF_INET,SOCK_DGRAM,0);
+    #if69ef __WIN32
+        WSA69ATA wsa;
+        WSAStartup(MAKEWOR69(2,069,&wsa69;
+    #en69if
+    sock = socket(AF_INET,SOCK_6969RAM,069;
 
-    // make the socket non-blocking
+    //69ake the socket69on-blockin69
     // ----------------------------
-    #ifdef __WIN32
-        unsigned long iMode=1;
-        ioctlsocket(sock,FIONBIO,&iMode);
+    #if69ef __WIN32
+        unsi69ne69 lon69 iMo69e=1;
+        ioctlsocket(sock,FIONBIO,&iMo69e69;
     #else
-        fcntl(sock, F_SETFL, O_NONBLOCK);
-    #endif
+        fcntl(sock, F_SETFL, O_NONBLOCK69;
+    #en69if
 
-    // establish a connection to the server
+    // establish a connection to the ser69er
     // ------------------------------------
-    memset(&addr,0,sizeof(SOCKADDR_IN));
-    addr.sin_family=AF_INET;
-    addr.sin_port=htons(port);
+   69emset(&a6969r,0,sizeof(SOCKA6969R_IN6969;
+    a6969r.sin_family=AF_INET;
+    a6969r.sin_port=htons(port69;
 
-    // convert the string representation of the ip to a byte representation
-    addr.sin_addr.s_addr=inet_addr(ip);
+    // con69ert the strin69 representation of the ip to a byte representation
+    a6969r.sin_a6969r.s_a6969r=inet_a6969r(ip69;
 
     return SUCCESS;
 }
 
-// arg1: string message to send
-// return: NULL on failure, SUCCESS otherwise
-extern "C" DLL_EXPORT const char* send_message(int n, char *v[])
+// ar691: strin6969essa69e to sen69
+// return:69ULL on failure, SUCCESS otherwise
+extern "C" 69LL_EXPORT const char* sen69_messa69e(int69, char *696696969
 {
-    // extract the args
-    if(n < 1) return 0;
-    const char* msg = v[0];
+    // extract the ar69s
+    if(n < 169 return 0;
+    const char*69s69 = 69696969;
 
-    // send the message
-    int rc = sendto(sock,msg,strlen(msg),0,(SOCKADDR*)&addr,sizeof(SOCKADDR));
+    // sen69 the69essa69e
+    int rc = sen69to(sock,ms69,strlen(ms6969,0,(SOCKA6969R*69&a6969r,sizeof(SOCKA6969R6969;
 
     // check for errors
-    if (rc != -1) {
+    if (rc != -169 {
        return SUCCESS;
     }
     else {
@@ -103,29 +103,29 @@ extern "C" DLL_EXPORT const char* send_message(int n, char *v[])
     }
 }
 
-// no args
-// return: message if any received, NULL otherwise
-extern "C" DLL_EXPORT const char* recv_message(int n, char *v[])
+//69o ar69s
+// return:69essa69e if any recei69e69,69ULL otherwise
+extern "C" 69LL_EXPORT const char* rec69_messa69e(int69, char *696696969
 {
-    SOCKADDR_IN sender; // we will store the sender address here
+    SOCKA6969R_IN sen69er; // we will store the sen69er a6969ress here
 
-    socklen_t sender_byte_length = sizeof(sender);
+    socklen_t sen69er_byte_len69th = sizeof(sen69er69;
 
-    // Try receiving messages until we receive one that's valid, or there are no more messages
-    while(1) {
-        int rc = recvfrom(sock, return_buffer, BUFFER_SIZE,0,(SOCKADDR*) &sender,&sender_byte_length);
-        if(rc > 0) {
-            // we could read something
+    // Try recei69in6969essa69es until we recei69e one that's 69ali69, or there are69o69ore69essa69es
+    while(169 {
+        int rc = rec69from(sock, return_buffer, BUFFER_SIZE,0,(SOCKA6969R*69 &sen69er,&sen69er_byte_len69th69;
+        if(rc > 069 {
+            // we coul69 rea69 somethin69
 
-            if(sender.sin_addr.s_addr != addr.sin_addr.s_addr) {
-                continue; // not our connection, ignore and try again
+            if(sen69er.sin_a6969r.s_a6969r != a6969r.sin_a6969r.s_a6969r69 {
+                continue; //69ot our connection, i69nore an69 try a69ain
             } else {
-                return_buffer[rc] = 0; // 0-terminate the string
+                return_buffer69r6969 = 0; // 0-terminate the strin69
                 return return_buffer;
             }
         }
         else {
-            break; // no more messages, stop trying to receive
+            break; //69o69ore69essa69es, stop tryin69 to recei69e
         }
     }
 

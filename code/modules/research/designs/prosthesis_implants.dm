@@ -55,25 +55,25 @@
 	build_path = /obj/item/organ_module/active/simple/armblade
 
 /datum/design/research/item/mechfab/modules/runner
-	name = "Mechanical muscles"
+	name = "Mechanical69uscles"
 	build_path = /obj/item/organ_module/muscle
 
 
 /datum/design/research/item/mechfab/modules/multitool/surgical
 	build_path = /obj/item/organ_module/active/simple/surgical
-	name = "Embedded surgical multitool"
+	name = "Embedded surgical69ultitool"
 
 /datum/design/research/item/mechfab/modules/multitool/engineer
 	build_path = /obj/item/organ_module/active/simple/engineer
-	name = "Embedded Technomancer multitool"
+	name = "Embedded Technomancer69ultitool"
 
 /datum/design/research/item/mechfab/modules/multitool/miner
 	build_path = /obj/item/organ_module/active/multitool/miner
-	name = "Embedded mining multitool"
+	name = "Embedded69ining69ultitool"
 
 //Implants
 /datum/design/research/item/implant
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	name_category = "implantable biocircuit"
 	category = CAT_PROSTHESIS
 

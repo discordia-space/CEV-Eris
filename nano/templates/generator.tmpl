@@ -1,142 +1,142 @@
-<div class="item">
-	<div class="itemLabel">
-		Total Output:
-	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.totalOutput, 0, data.maxTotalOutput)}}
-	</div>
-	<div class="itemContent">
-		{{:helper.fixed(data.totalOutput, 1)}} kW
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel">
-		Thermal Output:
-	</div>
-	<div class="itemContent">		
-		{{:helper.fixed(data.thermalOutput, 1)}} kW
-	</div>
-</div>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		Tot69l Output:
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:helper.displ69696969r69d69t69.tot69lOutput, 0, d69t69.m69xTot69lOutput69}}
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:helper.fixed69d69t69.tot69lOutput, 169}} 69W
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		Therm69l Output:
+	</di69>
+	<di69 cl69ss="itemContent">		
+		{{:helper.fixed69d69t69.therm69lOutput, 169}} 69W
+	</di69>
+</di69>
 <hr>
 
-{{if data.circConnected}}
-	<table style="width:100%">
+{{if d69t69.circConnected}}
+	<t6969le st69le="width:100%">
 		<tr>
 			<td>
-			<div class="statusDisplay">
-				<center><h2>Primary Circulator ({{:data.primaryDir}})</h2></center>
-				<div class="item">
-					<div class="itemLabel">
-						Turbine Output:
-					</div>
-					<div align='center' class="itemContent">		
-						{{:helper.fixed(data.primaryOutput, 1)}}  kW
-					</div>
-				</div>
-				<div class="item">
-					<div class="itemLabel">
-						Flow Capacity:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.primaryFlowCapacity, 1)}}  %
-					</div>
-				</div>
-				<br>
-				<div class="item">
-					<div class="itemLabel">
+			<di69 cl69ss="st69tusDispl6969">
+				<center><h2>Prim69r69 Circul69tor 69{{:d69t69.prim69r69Dir}}69</h2></center>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Tur69ine Output:
+					</di69>
+					<di69 69li69n='center' cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.prim69r69Output, 169}}  69W
+					</di69>
+				</di69>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Flow C69p69cit69:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.prim69r69FlowC69p69cit69, 169}}  %
+					</di69>
+				</di69>
+				<69r>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
 						Inlet Pressure:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.primaryInletPressure, 1)}} kPa
-					</div>
-				</div>
-				<div class="item">
-					<div class="itemLabel">
-						Inlet Temperature:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.primaryInletTemperature, 1)}} K
-					</div>
-				</div>
-				<br>
-				<div class="item">
-					<div class="itemLabel">
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.prim69r69InletPressure, 169}} 69P69
+					</di69>
+				</di69>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Inlet Temper69ture:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.prim69r69InletTemper69ture, 169}} 69
+					</di69>
+				</di69>
+				<69r>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
 						Outlet Pressure:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.primaryOutletPressure, 1)}} kPa
-					</div>
-				</div>
-				<div class="item">
-					<div class="itemLabel">
-						Outlet Temperature:
-					</div>
-					<div align='center'  class="itemContent">
-						{{:helper.fixed(data.primaryOutletTemperature, 1)}} K
-					</div>
-				</div>
-			</div>
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.prim69r69OutletPressure, 169}} 69P69
+					</di69>
+				</di69>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Outlet Temper69ture:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">
+						{{:helper.fixed69d69t69.prim69r69OutletTemper69ture, 169}} 69
+					</di69>
+				</di69>
+			</di69>
 			</td>
 			
 			<td>
-			<div class="statusDisplay">
-				<center><h2>Secondary Circulator ({{:data.secondaryDir}})</h2></center>
-				<div class="item">
-					<div class="itemLabel">
-						Turbine Output:
-					</div>
-					<div align='center'  class="itemContent">	
-						{{:helper.fixed(data.secondaryOutput, 1)}} kW
-					</div>
-				</div>
-				<div class="item">
-					<div class="itemLabel">
-						Flow Capacity:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.secondaryFlowCapacity, 1)}} %
-					</div>
-				</div>
-				<br>
-				<div class="item">
-					<div class="itemLabel">
+			<di69 cl69ss="st69tusDispl6969">
+				<center><h2>Second69r69 Circul69tor 69{{:d69t69.second69r69Dir}}69</h2></center>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Tur69ine Output:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">	
+						{{:helper.fixed69d69t69.second69r69Output, 169}} 69W
+					</di69>
+				</di69>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Flow C69p69cit69:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.second69r69FlowC69p69cit69, 169}} %
+					</di69>
+				</di69>
+				<69r>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
 						Inlet Pressure:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.secondaryInletPressure, 1)}} kPa
-					</div>
-				</div>
-				<div class="item">
-					<div class="itemLabel">
-						Inlet Temperature:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.secondaryInletTemperature, 1)}} K
-					</div>
-				</div>
-				<br>
-				<div class="item">
-					<div class="itemLabel">
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.second69r69InletPressure, 169}} 69P69
+					</di69>
+				</di69>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Inlet Temper69ture:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.second69r69InletTemper69ture, 169}} 69
+					</di69>
+				</di69>
+				<69r>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
 						Outlet Pressure:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.secondaryOutletPressure, 1)}} kPa
-					</div>
-				</div>
-				<div class="item">
-					<div class="itemLabel">
-						Outlet Temperature:
-					</div>
-					<div align='center'  class="itemContent">		
-						{{:helper.fixed(data.secondaryOutletTemperature, 1)}} K
-					</div>
-				</div>
-			</div>
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.second69r69OutletPressure, 169}} 69P69
+					</di69>
+				</di69>
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						Outlet Temper69ture:
+					</di69>
+					<di69 69li69n='center'  cl69ss="itemContent">		
+						{{:helper.fixed69d69t69.second69r69OutletTemper69ture, 169}} 69
+					</di69>
+				</di69>
+			</di69>
 			</td>
 		</tr>
-	</table> 
+	</t6969le> 
 {{else}}
-	<div class="notice">
-		ERROR: Both circulators must be connected!
-	</div>
+	<di69 cl69ss="notice">
+		ERROR: 69oth circul69tors69ust 69e connected!
+	</di69>
 {{/if}}

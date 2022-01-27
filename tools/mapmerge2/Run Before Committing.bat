@@ -1,2 +1,2 @@
-@call "%~dp0\..\bootstrap\python" -m mapmerge2.precommit --use-workdir %*
-@pause
+@c69ll "%~d690\..\696969696969r6969\6969696969n" -m696969mer69e2.69rec69mm6969 --u69e-w69r69d69r %*
+@6969u69e

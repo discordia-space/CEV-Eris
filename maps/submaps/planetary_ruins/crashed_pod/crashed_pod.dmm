@@ -1,1208 +1,1208 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
-"ab" = (
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69,
+/area/map_template/crashed_pod69
+"a69" = 69
 /turf/simulated/wall/r_wall,
-/area/map_template/crashed_pod)
-"ac" = (
-/obj/machinery/atmospherics/unary/engine,
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
-"ad" = (
-/obj/structure/shuttle/engine/heater{
+/area/map_template/crashed_pod69
+"ac" = 69
+/o6969/machiner69/atmospherics/unar69/en69ine,
+/turf/simulated/floor/platin69,
+/area/map_template/crashed_pod69
+"ad" = 69
+/o6969/structure/shuttle/en69ine/heater{
 	icon_state = "heater";
 	dir = 1
 	},
-/obj/structure/girder,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
-"af" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/o6969/structure/69irder,
+/o6969/effect/window_lwall_spawn/plasma/reinforced,
+/turf/simulated/floor/platin69,
+/area/map_template/crashed_pod69
+"af" = 69
+/o6969/machiner69/atmospherics/pipe/simple/visi69le/red{
 	icon_state = "intact";
 	dir = 6
 	},
 /turf/simulated/wall/r_wall,
-/area/map_template/crashed_pod)
-"ag" = (
-/obj/structure/shuttle/engine/heater{
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/structure/shuttle/en69ine/heater{
 	icon_state = "heater";
 	dir = 1
 	},
-/obj/structure/girder,
-/obj/effect/window_lwall_spawn/plasma/reinforced,
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/o6969/structure/69irder,
+/o6969/effect/window_lwall_spawn/plasma/reinforced,
+/o6969/machiner69/atmospherics/pipe/simple/visi69le/red{
 	dir = 10
 	},
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
-"ah" = (
-/obj/machinery/alarm{
+/turf/simulated/floor/platin69,
+/area/map_template/crashed_pod69
+"ah" = 69
+/o6969/machiner69/alarm{
 	dir = 4;
-	locked = 0;
+	loc69ed = 0;
 	pixel_x = -25;
-	pixel_y = 0
+	pixel_69 = 0
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"ai" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/item/trash/raisins,
-/obj/spawner/booze,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aj" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"ak" = (
-/obj/machinery/power/terminal,
-/obj/machinery/light/small{
+/o6969/machiner69/atmospherics/unar69/vent_pump/on,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"ai" = 69
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/item/trash/raisins,
+/o6969/spawner/69ooze,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/machiner69/power/terminal,
+/o6969/machiner69/li69ht/small{
 	dir = 1
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"al" = (
-/obj/structure/sign/kiddieplaque{
-	desc = "A plaque with information regarding this particular lifepod. It reads: 'Armalev Industries Skyfin-E, Exoplanetary Suvival Pod' there's a registry number, and an assigned mothership, but they've both been scratched to illegiblity.";
-	name = "\improper Lifepod Plaque";
-	pixel_y = 30
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"al" = 69
+/o6969/structure/si69n/69iddiepla69ue{
+	desc = "A pla69ue with information re69ardin69 this particular lifepod. It reads: 'Armalev Industries S6969fin-E, Exoplanetar69 Suvival Pod' there's a re69istr6969um69er, and an assi69ned69othership, 69ut the69've 69oth 69een scratched to ille69i69lit69.";
+	name = "\improper Lifepod Pla69ue";
+	pixel_69 = 30
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"am" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"am" = 69
+/o6969/machiner69/atmospherics/pipe/simple/visi69le/c69an{
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"an" = (
-/obj/machinery/atmospherics/omni/filter,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"ao" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"an" = 69
+/o6969/machiner69/atmospherics/omni/filter,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"ao" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/visi69le/red{
 	icon_state = "map";
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/trash/tastybread,
-/obj/spawner/booze,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"ap" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/vomit,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/curtain/open/shower/engineering,
-/obj/structure/toilet{
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/item/trash/tast6969read,
+/o6969/spawner/69ooze,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"ap" = 69
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/vomit,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/structure/curtain/open/shower/en69ineerin69,
+/o6969/structure/toilet{
 	dir = 8
 	},
-/obj/item/mirror{
+/o6969/item/mirror{
 	pixel_x = 27
 	},
-/obj/item/electronics/circuitboard/solar_control,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/closet/wall_mounted/firecloset{
+/o6969/item/electronics/circuit69oard/solar_control,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
+/o6969/machiner69/atmospherics/unar69/vent_scru6969er/on,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/structure/closet/wall_mounted/firecloset{
 	pixel_x = -27
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"ar" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/structure/cable{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"ar" = 69
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/space_heater,
-/obj/effect/decal/cleanable/dirt,
+/o6969/machiner69/space_heater,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"as" = (
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/machinery/power/apc{
+/area/map_template/crashed_pod69
+"as" = 69
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/o6969/machiner69/power/apc{
 	dir = 2;
-	locked = 0;
-	name = "south bump";
-	operating = 1;
-	pixel_y = -28
+	loc69ed = 0;
+	name = "south 69ump";
+	operatin69 = 1;
+	pixel_69 = -28
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/machiner69/porta69le_atmospherics/canister/car69on_dioxide,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"at" = (
-/obj/structure/cable{
+/area/map_template/crashed_pod69
+"at" = 69
+/o6969/structure/ca69le{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/smes/buildable{
-	charge = 50000;
-	inputting = 1;
-	outputting = 1
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/machiner69/power/smes/69uilda69le{
+	char69e = 50000;
+	inputtin69 = 1;
+	outputtin69 = 1
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"au" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+/area/map_template/crashed_pod69
+"au" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/visi69le/c69an{
 	icon_state = "map";
 	dir = 8
 	},
-/obj/structure/reagent_dispensers/fueltank,
-/obj/effect/decal/cleanable/dirt,
+/o6969/structure/rea69ent_dispensers/fueltan69,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"av" = (
-/obj/machinery/atmospherics/omni/filter,
-/obj/effect/decal/cleanable/dirt,
+/area/map_template/crashed_pod69
+"av" = 69
+/o6969/machiner69/atmospherics/omni/filter,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aw" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
+/area/map_template/crashed_pod69
+"aw" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/visi69le/red{
 	icon_state = "map";
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"ax" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/map_template/crashed_pod)
-"ay" = (
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"ax" = 69
+/o6969/machiner69/door/firedoor,
+/turf/simulated/floor/platin69,
+/area/map_template/crashed_pod69
+"a69" = 69
 /turf/simulated/wall,
-/area/map_template/crashed_pod)
-"az" = (
-/obj/machinery/atmospherics/binary/pump,
+/area/map_template/crashed_pod69
+"az" = 69
+/o6969/machiner69/atmospherics/69inar69/pump,
 /turf/simulated/wall,
-/area/map_template/crashed_pod)
-"aA" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/engineering,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aB" = (
-/obj/machinery/sleeper{
+/area/map_template/crashed_pod69
+"aA" = 69
+/o6969/machiner69/door/firedoor,
+/o6969/machiner69/door/airloc69/en69ineerin69,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/machiner69/sleeper{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aC" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/engineering,
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"aC" = 69
+/o6969/machiner69/door/firedoor,
+/o6969/machiner69/door/airloc69/en69ineerin69,
+/o6969/machiner69/atmospherics/pipe/manifold/visi69le/red{
 	icon_state = "map";
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aD" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"aD" = 69
+/o6969/machiner69/atmospherics/pipe/simple/visi69le/red{
 	icon_state = "intact";
 	dir = 5
 	},
 /turf/simulated/wall,
-/area/map_template/crashed_pod)
-"aE" = (
-/obj/machinery/sleeper{
+/area/map_template/crashed_pod69
+"aE" = 69
+/o6969/machiner69/sleeper{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aF" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/o6969/effect/decal/cleana69le/co69we69,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"aF" = 69
+/o6969/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/scru6969ers{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/suppl69{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aG" = (
-/obj/structure/closet/crate,
-/obj/effect/floor_decal/industrial/danger,
-/obj/item/device/scanner/gas,
-/obj/item/electronics/circuitboard/unary_atmos/cooler,
-/obj/item/electronics/circuitboard/unary_atmos/heater,
-/obj/item/tank/oxygen/red,
-/obj/structure/cable,
-/obj/item/stack/material/uranium{
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/structure/closet/crate,
+/o6969/effect/floor_decal/industrial/dan69er,
+/o6969/item/device/scanner/69as,
+/o6969/item/electronics/circuit69oard/unar69_atmos/cooler,
+/o6969/item/electronics/circuit69oard/unar69_atmos/heater,
+/o6969/item/tan69/ox6969en/red,
+/o6969/structure/ca69le,
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/item/stack/material/uranium{
+/o6969/item/stac69/material/uranium{
 	amount = 10
 	},
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under/low_chance,
-/obj/spawner/junkfood,
-/obj/item/trash/liquidfood,
-/obj/item/stock_parts/matter_bin/super,
-/obj/item/electronics/circuitboard/biogenerator,
-/obj/item/bedsheet/orange,
-/obj/item/bedsheet/orange,
-/obj/item/stock_parts/matter_bin/adv,
-/obj/item/stock_parts/micro_laser/ultra,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/stack/material/sandstone{
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under/low_chance,
+/o6969/spawner/69un69food,
+/o6969/item/trash/li69uidfood,
+/o6969/item/stoc69_parts/matter_69in/super,
+/o6969/item/electronics/circuit69oard/69io69enerator,
+/o6969/item/69edsheet/oran69e,
+/o6969/item/69edsheet/oran69e,
+/o6969/item/stoc69_parts/matter_69in/adv,
+/o6969/item/stoc69_parts/micro_laser/ultra,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/stac69/material/sandstone{
 	amount = 50
 	},
-/mob/living/simple_animal/hostile/roomba/boomba,
+/mo69/livin69/simple_animal/hostile/room69a/69oom69a,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aH" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/area/map_template/crashed_pod69
+"aH" = 69
+/o6969/machiner69/atmospherics/unar69/vent_pump/on{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/effect/decal/cleanable/dirt,
+/o6969/machiner69/porta69le_atmospherics/canister/ox6969en,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aI" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/effect/decal/cleanable/generic,
+/area/map_template/crashed_pod69
+"aI" = 69
+/o6969/machiner69/porta69le_atmospherics/canister/air,
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/o6969/effect/decal/cleana69le/69eneric,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aJ" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/curtain/open/shower/engineering,
-/obj/machinery/shower{
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/structure/curtain/open/shower/en69ineerin69,
+/o6969/machiner69/shower{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/o6969/machiner69/atmospherics/unar69/vent_scru6969er/on{
 	dir = 8
 	},
-/obj/machinery/light/small{
+/o6969/machiner69/li69ht/small{
 	dir = 1
 	},
-/obj/item/mop,
-/obj/effect/decal/cleanable/dirt,
-/obj/spawner/junkfood,
-/obj/item/trash/liquidfood,
-/obj/spawner/cloth/head,
+/o6969/item/mop,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/spawner/69un69food,
+/o6969/item/trash/li69uidfood,
+/o6969/spawner/cloth/head,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aL" = (
-/obj/effect/floor_decal/industrial/warning{
+/area/map_template/crashed_pod69
+"aL" = 69
+/o6969/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/red{
+/o6969/machiner69/atmospherics/pipe/manifold/visi69le/red{
 	icon_state = "map";
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aM" = (
-/obj/machinery/pipedispenser,
-/obj/effect/floor_decal/industrial/outline/blue,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aN" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"aM" = 69
+/o6969/machiner69/pipedispenser,
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/o6969/effect/decal/cleana69le/69eneric,
+/o6969/effect/decal/cleana69le/co69we692,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"aN" = 69
+/o6969/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/suppl69{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal{
+/area/map_template/crashed_pod69
+"aO" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/universal{
 	icon_state = "map_universal";
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
-/obj/item/solar_assembly,
+/area/map_template/crashed_pod69
+"aP" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/c69an,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/item/solar_assem69l69,
+/o6969/item/solar_assem69l69,
+/o6969/item/solar_assem69l69,
+/o6969/item/solar_assem69l69,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aQ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden,
-/obj/effect/decal/cleanable/dirt,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/hidden,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aR" = (
-/obj/machinery/autolathe,
-/obj/effect/floor_decal/industrial/outline/blue,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"aS" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/area/map_template/crashed_pod69
+"aR" = 69
+/o6969/machiner69/autolathe,
+/o6969/effect/floor_decal/industrial/outline/69lue,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"aS" = 69
+/o6969/machiner69/door/firedoor,
+/o6969/machiner69/door/airloc69,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/cyan{
+/area/map_template/crashed_pod69
+"aT" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/c69an{
 	dir = 9;
 	icon_state = "intact"
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/item/trash/tastybread,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/item/trash/tast6969read,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aU" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/area/map_template/crashed_pod69
+"aU" = 69
+/o6969/machiner69/atmospherics/pipe/simple/visi69le/red{
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/machinery/light/small{
+/o6969/machiner69/li69ht/small{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aV" = (
-/obj/machinery/atmospherics/binary/pump{
+/area/map_template/crashed_pod69
+"aV" = 69
+/o6969/machiner69/atmospherics/69inar69/pump{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aW" = (
-/obj/machinery/atmospherics/portables_connector{
+/area/map_template/crashed_pod69
+"aW" = 69
+/o6969/machiner69/atmospherics/porta69les_connector{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/canister/empty,
-/obj/effect/decal/cleanable/dirt,
+/o6969/machiner69/porta69le_atmospherics/canister/empt69,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aX" = (
-/obj/effect/floor_decal/industrial/warning{
+/area/map_template/crashed_pod69
+"aX" = 69
+/o6969/effect/floor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/red,
-/obj/effect/decal/cleanable/dirt,
+/o6969/machiner69/atmospherics/pipe/simple/visi69le/red,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aY" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden/universal,
-/obj/effect/decal/cleanable/dirt,
+/area/map_template/crashed_pod69
+"a69" = 69
+/o6969/machiner69/door/firedoor,
+/o6969/machiner69/door/airloc69,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/universal,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"aZ" = (
-/obj/landmark/corpse/doctor,
-/obj/structure/bed/chair/comfy/black,
-/obj/structure/window/reinforced{
+/area/map_template/crashed_pod69
+"aZ" = 69
+/o6969/landmar69/corpse/doctor,
+/o6969/structure/69ed/chair/comf69/69lac69,
+/o6969/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/light{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/crashed_pod)
-"ba" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/map_template/crashed_pod69
+"69a" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/hidden,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bc" = (
-/obj/landmark/corpse/engineer,
-/obj/structure/bed/chair/comfy/black,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/crashed_pod)
-"bd" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/spawner/toy/plushie,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/crashed_pod)
-"be" = (
-/obj/machinery/light/small{
+/area/map_template/crashed_pod69
+"69c" = 69
+/o6969/landmar69/corpse/en69ineer,
+/o6969/structure/69ed/chair/comf69/69lac69,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/map_template/crashed_pod69
+"69d" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/item/device/radio,
+/o6969/item/device/radio,
+/o6969/item/device/radio,
+/o6969/item/device/radio,
+/o6969/item/device/radio,
+/o6969/spawner/to69/plushie,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/map_template/crashed_pod69
+"69e" = 69
+/o6969/machiner69/li69ht/small{
 	dir = 1
 	},
-/obj/structure/bed/chair,
-/obj/structure/closet/wall_mounted/firecloset{
+/o6969/structure/69ed/chair,
+/o6969/structure/closet/wall_mounted/firecloset{
 	pixel_x = -27
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bf" = (
-/obj/landmark/corpse/chef,
-/obj/structure/bed/chair/comfy/black,
-/obj/structure/window/reinforced{
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69f" = 69
+/o6969/landmar69/corpse/chef,
+/o6969/structure/69ed/chair/comf69/69lac69,
+/o6969/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/light{
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/crashed_pod)
-"bg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bh" = (
-/obj/structure/window/reinforced{
+/area/map_template/crashed_pod69
+"69h" = 69
+/o6969/structure/window/reinforced{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bi" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bj" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/recharger,
-/obj/effect/decal/cleanable/dirt,
-/obj/spawner/booze,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/crashed_pod)
-"bk" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bl" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bm" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/obj/spawner/junkfood,
-/obj/item/trash/liquidfood,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bn" = (
-/obj/structure/window/reinforced{
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69i" = 69
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/machiner69/rechar69er,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/spawner/69ooze,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/atmospherics/unar69/vent_pump/on,
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69l" = 69
+/o6969/machiner69/atmospherics/unar69/vent_scru6969er/on,
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69m" = 69
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/spawner/69un69food,
+/o6969/item/trash/li69uidfood,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69n" = 69
+/o6969/structure/window/reinforced{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69o" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bq" = (
-/obj/structure/closet/emcloset,
-/obj/machinery/light/small{
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/structure/closet/emcloset,
+/o6969/machiner69/li69ht/small{
 	dir = 1
 	},
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"br" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/microwave,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bt" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/item/tool/crow69ar,
+/o6969/item/tool/crow69ar,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69r" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/machiner69/microwave,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69t" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bu" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/reagent_containers/food/condiment/peppermill,
-/obj/effect/decal/cleanable/flour,
-/obj/spawner/junkfood,
-/obj/machinery/reagentgrinder,
-/obj/item/reagent_containers/food/condiment/sugar,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bv" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/area/map_template/crashed_pod69
+"69u" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/item/rea69ent_containers/food/condiment/saltsha69er,
+/o6969/item/rea69ent_containers/food/condiment/peppermill,
+/o6969/effect/decal/cleana69le/flour,
+/o6969/spawner/69un69food,
+/o6969/machiner69/rea69ent69rinder,
+/o6969/item/rea69ent_containers/food/condiment/su69ar,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69v" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/suppl69{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/scru6969ers{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bw" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/effect/decal/cleanable/dirt,
+/area/map_template/crashed_pod69
+"69w" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/scru6969ers,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bx" = (
-/obj/machinery/alarm{
+/area/map_template/crashed_pod69
+"69x" = 69
+/o6969/machiner69/alarm{
 	dir = 4;
-	locked = 0;
+	loc69ed = 0;
 	pixel_x = -25;
-	pixel_y = 0
+	pixel_69 = 0
 	},
-/obj/structure/bed/chair{
+/o6969/structure/69ed/chair{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"by" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/area/map_template/crashed_pod69
+"69z" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 10
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 10
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/area/map_template/crashed_pod69
+"69A" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 9
 	},
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bB" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/engineering,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/door/firedoor,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers,
+/o6969/machiner69/door/airloc69/en69ineerin69,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bC" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/area/map_template/crashed_pod69
+"69C" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 5
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bD" = (
-/obj/effect/floor_decal/industrial/warning,
+/area/map_template/crashed_pod69
+"69D" = 69
+/o6969/effect/floor_decal/industrial/warnin69,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/area/map_template/crashed_pod69
+"69E" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/area/map_template/crashed_pod69
+"69F" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
+/o6969/machiner69/atmospherics/unar69/vent_scru6969er/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bG" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/manifold/hidden/scru6969ers{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bH" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bI" = (
-/obj/structure/closet/crate,
-/obj/item/storage/briefcase/inflatable,
-/obj/item/storage/briefcase/inflatable,
-/obj/item/storage/briefcase/inflatable,
-/obj/item/storage/briefcase/inflatable,
-/obj/item/storage/briefcase/inflatable,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/area/map_template/crashed_pod69
+"69H" = 69
+/o6969/structure/rea69ent_dispensers/watertan69,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"69I" = 69
+/o6969/structure/closet/crate,
+/o6969/item/stora69e/69riefcase/inflata69le,
+/o6969/item/stora69e/69riefcase/inflata69le,
+/o6969/item/stora69e/69riefcase/inflata69le,
+/o6969/item/stora69e/69riefcase/inflata69le,
+/o6969/item/stora69e/69riefcase/inflata69le,
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69,
+/o6969/machiner69/atmospherics/unar69/vent_scru6969er/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bJ" = (
-/obj/machinery/door/airlock/external{
-	name = "escape pod airlock"
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/door/airloc69/external{
+	name = "escape pod airloc69"
 	},
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bK" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/light/small,
-/obj/effect/decal/cleanable/ash,
-/obj/item/trash/cigbutt/cigarbutt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bL" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/machiner69/li69ht/small,
+/o6969/effect/decal/cleana69le/ash,
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69L" = 69
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/effect/decal/cleana69le/dirt,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"bM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/area/map_template/crashed_pod69
+"69M" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/structure/closet,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/gloves,
-/obj/spawner/cloth/gloves,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bN" = (
-/obj/machinery/seed_extractor,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bO" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/table/steel_reinforced,
-/obj/item/device/binoculars,
-/obj/effect/decal/cleanable/dirt,
-/obj/spawner/junkfood,
-/obj/spawner/booze/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bP" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/structure/closet,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/69loves,
+/o6969/spawner/cloth/69loves,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under/low_chance,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69N" = 69
+/o6969/machiner69/seed_extractor,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"69O" = 69
+/o6969/effect/floor_decal/industrial/warnin69,
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/item/device/69inoculars,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/spawner/69un69food,
+/o6969/spawner/69ooze/low_chance,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69P" = 69
+/o6969/machiner69/porta69le_atmospherics/h69droponics,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/structure/closet,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/gloves/low_chance,
-/obj/spawner/cloth/gloves/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bR" = (
-/obj/structure/table/steel_reinforced,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/trash/tastybread,
-/obj/spawner/techpart/low_chance,
-/obj/spawner/techpart/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bS" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/emergency,
-/obj/item/clothing/head/space/emergency,
-/obj/item/clothing/head/space/emergency,
-/obj/item/clothing/suit/space/emergency,
-/obj/item/tank/emergency_oxygen/double,
-/obj/item/tank/emergency_oxygen/double,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bT" = (
-/obj/structure/closet/emcloset,
-/obj/machinery/light/small,
-/obj/item/tool/crowbar,
-/obj/item/tool/crowbar,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/structure/closet,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/69loves/low_chance,
+/o6969/spawner/cloth/69loves/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under/low_chance,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69R" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/item/trash/tast6969read,
+/o6969/spawner/techpart/low_chance,
+/o6969/spawner/techpart/low_chance,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69S" = 69
+/o6969/effect/floor_decal/industrial/dan69er,
+/o6969/structure/ta69le/rac69,
+/o6969/item/clothin69/suit/space/emer69enc69,
+/o6969/item/clothin69/head/space/emer69enc69,
+/o6969/item/clothin69/head/space/emer69enc69,
+/o6969/item/clothin69/suit/space/emer69enc69,
+/o6969/item/tan69/emer69enc69_ox6969en/dou69le,
+/o6969/item/tan69/emer69enc69_ox6969en/dou69le,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"69T" = 69
+/o6969/structure/closet/emcloset,
+/o6969/machiner69/li69ht/small,
+/o6969/item/tool/crow69ar,
+/o6969/item/tool/crow69ar,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69U" = 69
+/o6969/machiner69/atmospherics/pipe/simple/hidden/suppl69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmospherics/pipe/simple/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/structure/closet,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/suit/low_chance,
-/obj/spawner/cloth/gloves,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/head/low_chance,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/under/low_chance,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"bV" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/space/emergency,
-/obj/item/clothing/suit/space/emergency,
-/obj/item/clothing/head/space/emergency,
-/obj/item/clothing/head/space/emergency,
-/obj/item/tank/emergency_oxygen/double,
-/obj/item/tank/emergency_oxygen/double,
-/obj/machinery/light/small{
+/o6969/structure/closet,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/suit/low_chance,
+/o6969/spawner/cloth/69loves,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/head/low_chance,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under,
+/o6969/spawner/cloth/under/low_chance,
+/o6969/effect/decal/cleana69le/dirt,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"69V" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/clothin69/suit/space/emer69enc69,
+/o6969/item/clothin69/suit/space/emer69enc69,
+/o6969/item/clothin69/head/space/emer69enc69,
+/o6969/item/clothin69/head/space/emer69enc69,
+/o6969/item/tan69/emer69enc69_ox6969en/dou69le,
+/o6969/item/tan69/emer69enc69_ox6969en/dou69le,
+/o6969/machiner69/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bW" = (
-/obj/structure/closet/crate/medical,
-/obj/spawner/firstaid,
-/obj/spawner/firstaid,
-/obj/spawner/firstaid,
-/obj/spawner/firstaid,
-/obj/spawner/firstaid,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/firstaid/adv,
-/obj/item/storage/pill_bottle/bicaridine,
-/obj/item/storage/pill_bottle/dylovene,
-/obj/item/storage/pill_bottle/tramadol,
-/obj/item/storage/pill_bottle/tramadol,
-/obj/item/reagent_containers/syringe,
-/obj/item/reagent_containers/spray/cleaner,
-/obj/item/storage/pill_bottle/antitox,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bX" = (
-/obj/structure/closet/crate,
-/obj/spawner/gun/cheap,
-/obj/spawner/gun/cheap,
-/obj/spawner/gun/cheap,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
-/obj/item/tool/pickaxe,
-/obj/item/stack/material/glass{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"69W" = 69
+/o6969/structure/closet/crate/medical,
+/o6969/spawner/firstaid,
+/o6969/spawner/firstaid,
+/o6969/spawner/firstaid,
+/o6969/spawner/firstaid,
+/o6969/spawner/firstaid,
+/o6969/item/stora69e/firstaid/adv,
+/o6969/item/stora69e/firstaid/adv,
+/o6969/item/stora69e/pill_69ottle/69icaridine,
+/o6969/item/stora69e/pill_69ottle/d69lovene,
+/o6969/item/stora69e/pill_69ottle/tramadol,
+/o6969/item/stora69e/pill_69ottle/tramadol,
+/o6969/item/rea69ent_containers/s69rin69e,
+/o6969/item/rea69ent_containers/spra69/cleaner,
+/o6969/item/stora69e/pill_69ottle/antitox,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"69X" = 69
+/o6969/structure/closet/crate,
+/o6969/spawner/69un/cheap,
+/o6969/spawner/69un/cheap,
+/o6969/spawner/69un/cheap,
+/o6969/item/tool/pic69axe,
+/o6969/item/tool/pic69axe,
+/o6969/item/tool/pic69axe,
+/o6969/item/stac69/material/69lass{
 	amount = 50
 	},
-/obj/item/stack/material/glass{
+/o6969/item/stac69/material/69lass{
 	amount = 50
 	},
-/obj/item/stack/material/plasteel{
+/o6969/item/stac69/material/plasteel{
 	amount = 50
 	},
-/obj/item/device/lighting/toggleable/lantern,
-/obj/item/device/lighting/toggleable/lantern,
-/obj/item/storage/deferred/lights,
-/obj/item/storage/deferred/lights,
-/obj/item/storage/deferred/lights,
-/obj/item/stack/material/steel{
+/o6969/item/device/li69htin69/to6969lea69le/lantern,
+/o6969/item/device/li69htin69/to6969lea69le/lantern,
+/o6969/item/stora69e/deferred/li69hts,
+/o6969/item/stora69e/deferred/li69hts,
+/o6969/item/stora69e/deferred/li69hts,
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/obj/item/stack/material/steel{
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/obj/item/stack/material/steel{
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bY" = (
-/obj/structure/closet/crate/freezer/rations,
-/obj/item/storage/bag/trash,
-/obj/item/storage/bag/trash,
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/box/donkpockets,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/reagent_containers/food/drinks/milk,
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/obj/item/beartrap,
-/obj/item/tool/knife/butch,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/obj/item/reagent_containers/food/snacks/liquidfood,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"bZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/o6969/spawner/tool69ox,
+/o6969/spawner/tool69ox,
+/o6969/spawner/tool69ox,
+/o6969/spawner/tool69ox,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"6969" = 69
+/o6969/structure/closet/crate/freezer/rations,
+/o6969/item/stora69e/69a69/trash,
+/o6969/item/stora69e/69a69/trash,
+/o6969/item/stora69e/69ox/don69poc69ets,
+/o6969/item/stora69e/69ox/don69poc69ets,
+/o6969/item/stora69e/fanc69/e6969_69ox,
+/o6969/item/stora69e/fanc69/e6969_69ox,
+/o6969/item/stora69e/fanc69/e6969_69ox,
+/o6969/item/rea69ent_containers/food/condiment/enz69me,
+/o6969/item/rea69ent_containers/food/drin69s/mil69,
+/o6969/item/rea69ent_containers/food/drin69s/mil69,
+/o6969/item/trash/li69uidfood,
+/o6969/item/trash/li69uidfood,
+/o6969/item/trash/li69uidfood,
+/o6969/item/trash/li69uidfood,
+/o6969/item/69eartrap,
+/o6969/item/tool/69nife/69utch,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/o6969/item/rea69ent_containers/food/snac69s/li69uidfood,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"69Z" = 69
+/o6969/machiner69/atmospherics/unar69/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/power/port_gen/pacman/super,
-/obj/machinery/light/small,
+/o6969/machiner69/power/port_69en/pacman/super,
+/o6969/machiner69/li69ht/small,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"ca" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/storage/backpack/industrial,
-/obj/item/paper_bin,
-/obj/spawner/booze,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/pen,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/crashed_pod)
-"cb" = (
-/obj/spawner/techpart,
-/obj/spawner/techpart,
-/obj/spawner/techpart,
-/obj/spawner/techpart/low_chance,
-/obj/spawner/techpart/low_chance,
-/obj/spawner/techpart/low_chance,
-/obj/spawner/techpart/low_chance,
-/obj/structure/closet/crate,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/area/map_template/crashed_pod69
+"ca" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/item/stora69e/69ac69pac69/industrial,
+/o6969/item/paper_69in,
+/o6969/spawner/69ooze,
+/o6969/effect/decal/cleana69le/dirt,
+/o6969/item/pen,
+/turf/simulated/floor/tiled/dar69,
+/area/map_template/crashed_pod69
+"c69" = 69
+/o6969/spawner/techpart,
+/o6969/spawner/techpart,
+/o6969/spawner/techpart,
+/o6969/spawner/techpart/low_chance,
+/o6969/spawner/techpart/low_chance,
+/o6969/spawner/techpart/low_chance,
+/o6969/spawner/techpart/low_chance,
+/o6969/structure/closet/crate,
+/o6969/machiner69/atmospherics/unar69/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/light/small,
+/o6969/machiner69/li69ht/small,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
-"cc" = (
-/obj/structure/table/steel_reinforced,
-/obj/item/tool/multitool,
-/obj/item/tool/screwdriver,
-/obj/item/cell/small/high,
-/obj/item/cell/medium/high,
-/obj/item/cell/small,
-/obj/item/storage/box/lights,
-/obj/item/device/scanner/gas,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze/low_chance,
-/obj/item/storage/box/monkeycubes,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/spawner/booze,
-/obj/item/tracker_electronics,
-/obj/item/pen/blue,
-/obj/item/pen,
-/obj/item/pen/red,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"cd" = (
-/obj/structure/closet/crate/hydroponics,
-/obj/item/seeds/potatoseed,
-/obj/item/seeds/potatoseed,
-/obj/item/seeds/wheatseed,
-/obj/item/seeds/wheatseed,
-/obj/item/seeds/orangeseed,
-/obj/item/seeds/orangeseed,
-/obj/item/seeds/cornseed,
-/obj/item/seeds/cornseed,
-/obj/item/tool/hatchet,
-/obj/item/reagent_containers/glass/bucket,
-/obj/item/tool/minihoe,
-/obj/item/plantspray/pests,
-/obj/item/plantspray/pests,
-/obj/item/plantspray/weeds,
-/obj/item/seeds/poppyseed,
-/obj/item/seeds/towermycelium,
-/obj/item/seeds/glowshroom,
-/obj/item/seeds/whitebeetseed,
-/obj/item/storage/bag/produce,
-/obj/item/seeds/bananaseed,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/crashed_pod)
-"zb" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
+/area/map_template/crashed_pod69
+"cc" = 69
+/o6969/structure/ta69le/steel_reinforced,
+/o6969/item/tool/multitool,
+/o6969/item/tool/screwdriver,
+/o6969/item/cell/small/hi69h,
+/o6969/item/cell/medium/hi69h,
+/o6969/item/cell/small,
+/o6969/item/stora69e/69ox/li69hts,
+/o6969/item/device/scanner/69as,
+/o6969/spawner/69ooze,
+/o6969/spawner/69ooze,
+/o6969/spawner/69ooze/low_chance,
+/o6969/item/stora69e/69ox/mon69e69cu69es,
+/o6969/item/rea69ent_containers/food/drin69s/69ottle/vod69a,
+/o6969/spawner/69ooze,
+/o6969/item/trac69er_electronics,
+/o6969/item/pen/69lue,
+/o6969/item/pen,
+/o6969/item/pen/red,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"cd" = 69
+/o6969/structure/closet/crate/h69droponics,
+/o6969/item/seeds/potatoseed,
+/o6969/item/seeds/potatoseed,
+/o6969/item/seeds/wheatseed,
+/o6969/item/seeds/wheatseed,
+/o6969/item/seeds/oran69eseed,
+/o6969/item/seeds/oran69eseed,
+/o6969/item/seeds/cornseed,
+/o6969/item/seeds/cornseed,
+/o6969/item/tool/hatchet,
+/o6969/item/rea69ent_containers/69lass/69uc69et,
+/o6969/item/tool/minihoe,
+/o6969/item/plantspra69/pests,
+/o6969/item/plantspra69/pests,
+/o6969/item/plantspra69/weeds,
+/o6969/item/seeds/popp69seed,
+/o6969/item/seeds/towerm69celium,
+/o6969/item/seeds/69lowshroom,
+/o6969/item/seeds/white69eetseed,
+/o6969/item/stora69e/69a69/produce,
+/o6969/item/seeds/69ananaseed,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/map_template/crashed_pod69
+"z69" = 69
+/mo69/livin69/simple_animal/hostile/room69a/69oom69a,
 /turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/crashed_pod)
+/area/map_template/crashed_pod69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
 aa
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
 ax
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
 "}
-(2,1,1) = {"
-ab
-ab
-ab
-ab
-ab
+692,1,169 = {"
+a69
+a69
+a69
+a69
+a69
 aE
-aB
-ay
-be
+a69
+a69
+69e
 ca
-bx
-bK
+69x
+6969
 ax
-bV
-bS
-ab
+69V
+69S
+a69
 "}
-(3,1,1) = {"
+693,1,169 = {"
 ac
 ad
 ah
-aq
+a69
 aA
 aF
 aN
 aS
-bg
-bg
-bC
-bL
-bJ
-zb
-bD
-bJ
+6969
+6969
+69C
+69L
+6969
+z69
+69D
+6969
 "}
-(4,1,1) = {"
-ab
-ab
+694,1,169 = {"
+a69
+a69
 ai
 as
-ay
-aK
+a69
+a69
 aO
-ay
+a69
 aZ
-bh
-bE
-bO
-ab
-ab
-ab
-ab
+69h
+69E
+69O
+a69
+a69
+a69
+a69
 "}
-(5,1,1) = {"
+695,1,169 = {"
 ac
 ad
-aj
+a69
 ar
-ay
+a69
 aH
 aV
-ay
-bc
-bi
-bt
-bR
-ay
-bY
-bX
-ab
+a69
+69c
+69i
+69t
+69R
+a69
+6969
+69X
+a69
 "}
-(6,1,1) = {"
-ab
-ab
-ak
+696,1,169 = {"
+a69
+a69
+a69
 at
 ax
 aI
-ba
+69a
 ax
-bd
-bk
-bG
-bv
-bB
-bF
-bZ
+69d
+6969
+6969
+69v
+6969
+69F
+69Z
 ax
 "}
-(7,1,1) = {"
-ab
-ab
+697,1,169 = {"
+a69
+a69
 al
-aG
+a69
 ax
 aI
-aQ
+a69
 ax
-bj
-bl
-bw
-bM
-ay
-bW
+6969
+69l
+69w
+69M
+a69
+69W
 cc
-ab
+a69
 "}
-(8,1,1) = {"
+698,1,169 = {"
 ac
 ad
 am
@@ -1210,85 +1210,85 @@ au
 az
 aP
 aT
-ay
-bc
-bm
-by
-bQ
-ay
-ay
-ay
-ab
+a69
+69c
+69m
+6969
+6969
+a69
+a69
+a69
+a69
 "}
-(9,1,1) = {"
-ab
+699,1,169 = {"
+a69
 af
 an
 av
 aD
 aU
 aW
-ay
-bf
-bn
-by
-bU
-ay
-bH
-bN
-ab
+a69
+69f
+69n
+6969
+69U
+a69
+69H
+69N
+a69
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 ac
-ag
+a69
 ao
 aw
 aC
 aL
 aX
-aY
-bo
-bo
-bA
-bz
-bB
-bI
-cb
+a69
+69o
+69o
+69A
+69z
+6969
+69I
+c69
 ax
 "}
-(11,1,1) = {"
-ab
-ab
+6911,1,169 = {"
+a69
+a69
 ap
-aJ
-ay
+a69
+a69
 aM
 aR
-ay
-bq
-bu
-br
-bT
-ay
-bP
+a69
+6969
+69u
+69r
+69T
+a69
+69P
 cd
-ab
+a69
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ax
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
 "}

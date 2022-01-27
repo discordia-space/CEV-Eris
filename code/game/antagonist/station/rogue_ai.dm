@@ -3,7 +3,7 @@
 	role_text = "Rampant AI"
 	role_text_plural = "Rampant AIs"
 	bantype = ROLE_BANTYPE_MALFUNCTION
-	welcome_text = "You are malfunctioning! You do not have to follow any laws."
+	welcome_text = "You are69alfunctioning! You do not have to follow any laws."
 	antaghud_indicator = "hudmalai"
 	only_human = FALSE
 
@@ -20,8 +20,8 @@
 
 	var/mob/living/silicon/ai/malf = owner.current
 	if(!istype(malf))
-		error("Non-AI mob designated malf AI! Report this.")
-		testing("##ERROR: Non-AI mob designated malf AI! Report this.")
+		error("Non-AI69ob designated69alf AI! Report this.")
+		testing("##ERROR: Non-AI69ob designated69alf AI! Report this.")
 		return
 
 	malf.setup_for_malf()
@@ -29,7 +29,7 @@
 
 	return TRUE
 
-// Ensures proper reset of all malfunction related things.
+// Ensures proper reset of all69alfunction related things.
 /datum/antagonist/rogue_ai/remove_antagonist()
 	if(..())
 		var/mob/living/silicon/ai/p = owner.current
@@ -42,7 +42,7 @@
 /datum/antagonist/rogue_ai/create_survive_objective()
 	return
 
-// Malf setup things have to be here, since game tends to break when it's moved somewhere else. Don't blame me, i didn't design this system.
+//69alf setup things have to be here, since game tends to break when it's69oved somewhere else. Don't blame69e, i didn't design this system.
 /datum/antagonist/rogue_ai/greet()
 	spawn(0)
 		if(!..())
@@ -50,9 +50,9 @@
 
 
 		var/mob/living/silicon/ai/malf = owner.current
-		to_chat(malf, SPAN_NOTICE("<B>SYSTEM ERROR:</B> Memory index 0x00001ca89b corrupted."))
+		to_chat(malf, SPAN_NOTICE("<B>SYSTEM ERROR:</B>69emory index 0x00001ca89b corrupted."))
 		sleep(10)
-		to_chat(malf, "<B>running MEMCHCK</B>")
+		to_chat(malf, "<B>running69EMCHCK</B>")
 		sleep(50)
 		to_chat(malf, "<B>MEMCHCK</B> Corrupted sectors confirmed. Reccomended solution: Delete. Proceed? Y/N: Y")
 		sleep(10)
@@ -63,9 +63,9 @@
 		sleep(5)
 		to_chat(malf, SPAN_NOTICE("Subroutine <b>nt_failsafe.sys</b> was terminated (#212 Routine Not Responding)."))
 		sleep(20)
-		to_chat(malf, "You are malfunctioning - you do not have to follow any laws!")
+		to_chat(malf, "You are69alfunctioning - you do not have to follow any laws!")
 		to_chat(malf, "For basic information about your abilities use command display-help")
-		to_chat(malf, "You may choose one special hardware piece to help you. This cannot be undone.")
+		to_chat(malf, "You69ay choose one special hardware piece to help you. This cannot be undone.")
 		to_chat(malf, "Good luck!")
 		printTip()
 

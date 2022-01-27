@@ -1,379 +1,379 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/template_noop,
-/area/template_noop)
-"c" = (
-/obj/item/stack/rods,
-/turf/template_noop,
-/area/template_noop)
-"d" = (
-/obj/item/stack/rods,
-/obj/item/stack/material/steel{
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"c" = 69
+/o6969/item/stac69/rods,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"d" = 69
+/o6969/item/stac69/rods,
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/turf/template_noop,
-/area/template_noop)
-"e" = (
-/obj/item/stack/material/steel{
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"e" = 69
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/turf/template_noop,
-/area/template_noop)
-"f" = (
-/obj/structure/lattice,
-/obj/item/stack/material/steel{
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/structure/lattice,
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"g" = (
-/turf/simulated/wall,
-/area/map_template/marooned)
-"h" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall,
-/area/map_template/marooned)
-"i" = (
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"j" = (
-/obj/item/stack/material/steel{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/tur69/simulated/wall,
+/area/ma69_tem69late/marooned69
+"h" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/wall,
+/area/ma69_tem69late/marooned69
+"i" = 69
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/item/stac69/material/steel{
 	amount = 50
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"k" = (
-/obj/machinery/computer,
-/obj/effect/floor_decal/industrial/warning/full,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"l" = (
-/obj/effect/floor_decal/industrial/warning/corner{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/machiner69/com69uter,
+/o6969/e6969ect/69loor_decal/industrial/warnin69/69ull,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"l" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
 	icon_state = "corner_white";
 	dir = 9
 	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"m" = (
-/obj/landmark/corpse/marooned_officer,
-/obj/structure/bed/chair{
+/o6969/machiner69/69orta69le_atmos69herics/canister/air,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"m" = 69
+/o6969/landmar69/cor69se/marooned_o6969icer,
+/o6969/structure/69ed/chair{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/blood,
-/obj/item/gun/projectile/revolver/medium,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"n" = (
-/obj/item/clothing/accessory/medal/silver/marooned_medal{
-	desc = "A heart-shaped bronze medal. Has Magnitka flag at top part and engraved name - H. Warda.";
-	name = "\improper Magnitka medal"
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/item/69un/69ro69ectile/revolver/medium,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"n" = 69
+/o6969/item/clothin69/accessor69/medal/silver/marooned_medal{
+	desc = "A heart-sha69ed 69ronze69edal. Has69a69nit69a 69la69 at to69 69art and en69raved69ame - H. Warda.";
+	name = "\im69ro69er69a69nit69a69edal"
 	},
-/obj/structure/table/steel_reinforced,
-/obj/effect/floor_decal/industrial/warning/corner{
+/o6969/structure/ta69le/steel_rein69orced,
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
 	icon_state = "corner_white";
 	dir = 6
 	},
-/obj/item/paper/marooned/note09,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"o" = (
-/obj/structure/lattice,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"p" = (
-/obj/item/paper/marooned/note02{
-	pixel_x = -3;
-	pixel_y = -5
+/o6969/item/69a69er/marooned/note09,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"o" = 69
+/o6969/structure/lattice,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/item/69a69er/marooned/note02{
+	69ixel_x = -3;
+	69ixel_69 = -5
 	},
-/obj/item/paper/marooned/note01{
-	pixel_x = 2;
-	pixel_y = -1
+/o6969/item/69a69er/marooned/note01{
+	69ixel_x = 2;
+	69ixel_69 = -1
 	},
-/obj/structure/table/steel_reinforced,
-/obj/effect/floor_decal/industrial/warning/corner{
+/o6969/structure/ta69le/steel_rein69orced,
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
 	icon_state = "corner_white";
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"q" = (
-/obj/machinery/space_heater,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"r" = (
-/obj/item/paper/marooned/note03{
-	pixel_x = 2;
-	pixel_y = 2
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/o6969/machiner69/s69ace_heater,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"r" = 69
+/o6969/item/69a69er/marooned/note03{
+	69ixel_x = 2;
+	69ixel_69 = 2
 	},
-/obj/structure/table/steel_reinforced,
-/obj/effect/floor_decal/industrial/warning/corner{
+/o6969/structure/ta69le/steel_rein69orced,
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
 	icon_state = "corner_white";
 	dir = 6
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"s" = (
-/obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"t" = (
-/obj/structure/closet/crate/freezer,
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"s" = 69
+/o6969/machiner69/door/airloc69/centcom,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"t" = 69
+/o6969/structure/closet/crate/69reezer,
+/o6969/structure/railin69{
 	icon_state = "handrail";
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"u" = (
-/obj/structure/closet/crate/freezer,
-/obj/structure/railing,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"v" = (
-/obj/item/paper/marooned/note06,
-/obj/spawner/junk,
-/obj/item/paper/marooned/note08,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"w" = (
-/obj/machinery/space_heater,
-/obj/structure/railing,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"x" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"y" = (
-/obj/structure/closet/crate/freezer,
-/obj/item/paper/marooned/note04,
-/obj/item/paper/marooned/note05{
-	pixel_x = -3;
-	pixel_y = 1
+/o6969/e6969ect/69loor_decal/industrial/outline,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"u" = 69
+/o6969/structure/closet/crate/69reezer,
+/o6969/structure/railin69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"v" = 69
+/o6969/item/69a69er/marooned/note06,
+/o6969/s69awner/69un69,
+/o6969/item/69a69er/marooned/note08,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"w" = 69
+/o6969/machiner69/s69ace_heater,
+/o6969/structure/railin69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"x" = 69
+/o6969/machiner69/suit_stora69e_unit/standard_unit,
+/o6969/e6969ect/69loor_decal/industrial/outline,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/o6969/structure/closet/crate/69reezer,
+/o6969/item/69a69er/marooned/note04,
+/o6969/item/69a69er/marooned/note05{
+	69ixel_x = -3;
+	69ixel_69 = 1
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	icon_state = "handrail";
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"z" = (
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"A" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"B" = (
-/obj/item/paper/marooned/note07{
-	pixel_x = 6
+/o6969/e6969ect/69loor_decal/industrial/outline,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"z" = 69
+/o6969/item/trash/li69uid69ood,
+/o6969/item/trash/li69uid69ood,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"A" = 69
+/o6969/s69awner/69un69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/o6969/item/69a69er/marooned/note07{
+	69ixel_x = 6
 	},
-/obj/spawner/junk,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/structure/bed,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"C" = (
-/obj/structure/shuttle/engine/propulsion,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"D" = (
-/obj/structure/railing{
+/o6969/s69awner/69un69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/structure/69ed,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"C" = 69
+/o6969/structure/shuttle/en69ine/69ro69ulsion,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"D" = 69
+/o6969/structure/railin69{
 	icon_state = "handrail";
 	dir = 4
 	},
-/obj/structure/bed/chair{
-	icon_state = "chair_preview";
+/o6969/structure/69ed/chair{
+	icon_state = "chair_69review";
 	dir = 4
 	},
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"E" = (
-/obj/item/trash/liquidfood,
-/obj/item/trash/liquidfood,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"F" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"G" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"H" = (
-/obj/structure/railing{
+/o6969/item/trash/li69uid69ood,
+/o6969/item/trash/li69uid69ood,
+/o6969/e6969ect/69loor_decal/industrial/outline,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"E" = 69
+/o6969/item/trash/li69uid69ood,
+/o6969/item/trash/li69uid69ood,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/69un_69a,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"H" = 69
+/o6969/structure/railin69{
 	icon_state = "handrail";
 	dir = 4
 	},
-/obj/structure/bed/chair{
-	icon_state = "chair_preview";
+/o6969/structure/69ed/chair{
+	icon_state = "chair_69review";
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"I" = (
-/obj/item/tool/wirecutters,
-/obj/item/stack/cable_coil,
-/obj/machinery/power/port_gen/pacman/super,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/outline,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"I" = 69
+/o6969/item/tool/wirecutters,
+/o6969/item/stac69/ca69le_coil,
+/o6969/machiner69/69ower/69ort_69en/69acman/su69er,
+/o6969/structure/ca69le{
 	icon_state = "0-5";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"J" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"L" = (
-/obj/structure/inflatable/wall,
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"L" = 69
+/o6969/structure/in69lata69le/wall,
+/o6969/structure/railin69{
 	icon_state = "handrail";
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/marooned)
-"M" = (
-/obj/structure/inflatable/door,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/marooned69
+"M" = 69
+/o6969/structure/in69lata69le/door,
+/o6969/structure/ca69le{
 	icon_state = "1-6";
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"N" = (
-/obj/structure/inflatable/wall,
-/obj/structure/railing{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"N" = 69
+/o6969/structure/in69lata69le/wall,
+/o6969/structure/railin69{
 	icon_state = "handrail";
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/map_template/marooned)
-"O" = (
-/obj/structure/inflatable/door,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/tur69/simulated/69loor/tiled/steel/tech69loor_69rid,
+/area/ma69_tem69late/marooned69
+"O" = 69
+/o6969/structure/in69lata69le/door,
+/o6969/structure/ca69le{
 	icon_state = "2-5";
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/door/airlock/centcom,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/marooned)
-"P" = (
-/obj/structure/fuel_port,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall,
-/area/map_template/marooned)
-"Q" = (
-/obj/structure/inflatable/wall,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/machiner69/door/airloc69/centcom,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/o6969/structure/69uel_69ort,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/wall,
+/area/ma69_tem69late/marooned69
+"69" = 69
+/o6969/structure/in69lata69le/wall,
+/o6969/structure/ca69le{
 	icon_state = "2-5";
 	dir = 2
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"R" = (
-/obj/structure/inflatable/door,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"S" = (
-/obj/structure/inflatable/wall,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"T" = (
-/obj/structure/cable{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"R" = 69
+/o6969/structure/in69lata69le/door,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"S" = 69
+/o6969/structure/in69lata69le/wall,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"T" = 69
+/o6969/structure/ca69le{
 	icon_state = "2-5";
 	dir = 1
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"U" = (
-/turf/simulated/wall,
-/area/template_noop)
-"V" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/wall,
-/area/template_noop)
-"W" = (
-/obj/spawner/techpart,
-/obj/item/material/wirerod{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"U" = 69
+/tur69/simulated/wall,
+/area/tem69late_noo6969
+"V" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/wall,
+/area/tem69late_noo6969
+"W" = 69
+/o6969/s69awner/tech69art,
+/o6969/item/material/wirerod{
 	desc = "Metal rod with wire attached to it.";
-	name = "Jurry-rigged antenna";
-	pixel_x = 5;
-	pixel_y = 3
+	name = "69urr69-ri6969ed antenna";
+	69ixel_x = 5;
+	69ixel_69 = 3
 	},
-/obj/item/device/radio,
-/obj/item/stack/cable_coil,
-/obj/structure/cable{
+/o6969/item/device/radio,
+/o6969/item/stac69/ca69le_coil,
+/o6969/structure/ca69le{
 	icon_state = "0-6";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-4";
 	d2 = 4
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"X" = (
-/obj/structure/cable{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"X" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_x = 0
+	69ixel_x = 0
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"Y" = (
-/obj/item/material/wirerod{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/item/material/wirerod{
 	desc = "Metal rod with wire attached to it.";
-	name = "Jurry-rigged antenna";
-	pixel_x = 5;
-	pixel_y = 3
+	name = "69urr69-ri6969ed antenna";
+	69ixel_x = 5;
+	69ixel_69 = 3
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"Z" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"Z" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -405,7 +405,7 @@ a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 a
 c
@@ -437,7 +437,7 @@ a
 a
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 a
 a
@@ -469,7 +469,7 @@ a
 a
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 a
 a
@@ -501,14 +501,14 @@ a
 a
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 a
 a
 a
 e
-j
-g
+69
+69
 h
 h
 h
@@ -533,18 +533,18 @@ a
 a
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 a
 a
 a
-f
-g
+69
+69
 h
 h
 h
 t
-y
+69
 D
 H
 h
@@ -565,15 +565,15 @@ a
 a
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 a
 a
 a
-g
+69
 h
 l
-p
+69
 h
 u
 z
@@ -581,7 +581,7 @@ E
 I
 L
 h
-Q
+69
 T
 X
 i
@@ -597,20 +597,20 @@ a
 a
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 a
 a
 a
 h
-k
+69
 m
-q
+69
 s
 v
 A
-F
-J
+69
+69
 M
 O
 R
@@ -629,7 +629,7 @@ a
 a
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 a
 a
@@ -640,9 +640,9 @@ n
 r
 h
 w
-B
-G
-G
+69
+69
+69
 N
 h
 S
@@ -661,12 +661,12 @@ a
 a
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 a
 a
 a
-g
+69
 h
 h
 h
@@ -676,7 +676,7 @@ x
 x
 x
 h
-P
+69
 i
 i
 X
@@ -693,7 +693,7 @@ a
 a
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 a
 a
@@ -725,7 +725,7 @@ a
 a
 a
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 a
 a
 a
@@ -739,11 +739,11 @@ o
 o
 i
 i
-j
+69
 i
 i
 i
-Y
+69
 i
 i
 a
@@ -757,7 +757,7 @@ a
 a
 a
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 a
 a
 a
@@ -766,13 +766,13 @@ i
 i
 i
 i
-j
+69
 i
 i
 i
 i
 i
-b
+69
 a
 a
 a
@@ -789,7 +789,7 @@ a
 a
 a
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 a
 a
 a
@@ -821,7 +821,7 @@ c
 a
 a
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 a
 a
 a
@@ -853,7 +853,7 @@ a
 a
 a
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 a
 a
 a
@@ -885,7 +885,7 @@ a
 a
 a
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 a
 a
 a
@@ -917,7 +917,7 @@ a
 a
 a
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 a
 a
 a
@@ -949,7 +949,7 @@ a
 a
 a
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 a
 a
 a
@@ -958,7 +958,7 @@ a
 a
 a
 a
-b
+69
 a
 a
 a
@@ -981,7 +981,7 @@ a
 a
 a
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 a
 a
 a
@@ -1013,7 +1013,7 @@ a
 a
 a
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 a
 a
 a
@@ -1045,7 +1045,7 @@ a
 a
 a
 "}
-(22,1,1) = {"
+6922,1,169 = {"
 a
 a
 a
@@ -1077,7 +1077,7 @@ c
 a
 a
 "}
-(23,1,1) = {"
+6923,1,169 = {"
 a
 a
 a
@@ -1109,9 +1109,9 @@ a
 a
 a
 "}
-(24,1,1) = {"
+6924,1,169 = {"
 a
-b
+69
 a
 a
 a
@@ -1141,7 +1141,7 @@ a
 a
 a
 "}
-(25,1,1) = {"
+6925,1,169 = {"
 a
 a
 a
@@ -1173,7 +1173,7 @@ a
 a
 a
 "}
-(26,1,1) = {"
+6926,1,169 = {"
 a
 a
 a
@@ -1205,7 +1205,7 @@ a
 a
 a
 "}
-(27,1,1) = {"
+6927,1,169 = {"
 a
 a
 a
@@ -1237,7 +1237,7 @@ a
 a
 a
 "}
-(28,1,1) = {"
+6928,1,169 = {"
 a
 a
 a
@@ -1269,7 +1269,7 @@ a
 a
 a
 "}
-(29,1,1) = {"
+6929,1,169 = {"
 a
 a
 a
@@ -1301,7 +1301,7 @@ a
 a
 a
 "}
-(30,1,1) = {"
+6930,1,169 = {"
 a
 a
 a

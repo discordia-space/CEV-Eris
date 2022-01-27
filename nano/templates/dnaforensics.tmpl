@@ -1,45 +1,45 @@
-<h3>Machine Status</h3>
-<div class="item">
-	<div class="itemContent" style="width: 20%;">
-		{{:helper.link(data.scanning ? 'Halt Scan' : 'Begin Scan', 'signal-diag', {'scanItem' : 1}, null)}}
-	</div>
-	<div class="itemContent" style="width: 20%;">
-		{{:helper.link((data.lidstate ? 'Open Lid' : 'Close Lid'), (data.lidstate ? 'unlocked' : 'locked'), {'toggleLid' : 1}, null)}}
-	</div>
-	<div class="itemContent" style="width: 20%;">
-		{{:helper.link('Eject item', 'eject', {'ejectItem' : 1}, (data.bloodsamp && !data.scanning) ? null : 'disabled')}}
-	</div>
-</div>
-<h3>Scanner</h3>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Scan progress:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.scan_progress, 0, 100, 'good')}}
-		{{:data.scan_progress}} %
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.scan_progress >= 100}}
-			<span class="notice" style="width: 100%;">Scan completed successfully.</span>
+<693>M69c69ine St69tus</693>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemContent" st69le="widt69: 20%;">
+		{{:69elper.lin6969d69t69.sc69nnin69 ? '6969lt Sc69n' : '69e69in Sc69n', 'si69n69l-di6969', {'sc69nItem' : 1},69ull69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 20%;">
+		{{:69elper.lin696969d69t69.lidst69te ? 'Open Lid' : 'Close Lid'69, 69d69t69.lidst69te ? 'unloc69ed' : 'loc69ed'69, {'to6969leLid' : 1},69ull69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 20%;">
+		{{:69elper.lin6969'E69ect item', 'e69ect', {'e69ectItem' : 1}, 69d69t69.69loods69mp && !d69t69.sc69nnin6969 ?69ull : 'dis6969led'69}}
+	</di69>
+</di69>
+<693>Sc69nner</693>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="widt69: 21%;">Sc69n pro69ress:</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 35%;">
+		{{:69elper.displ69696969r69d69t69.sc69n_pro69ress, 0, 100, '69ood'69}}
+		{{:d69t69.sc69n_pro69ress}} %
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 44%;">
+		{{if d69t69.sc69n_pro69ress >= 100}}
+			<sp69n cl69ss="notice" st69le="widt69: 100%;">Sc69n completed successfull69.</sp69n>
 		{{/if}}
-	</div>
-</div>
-<div class="statusDisplay">
-	<div class="line">
-		<div class="statusLabel">Item:</div>
-		<div class="statusValue">
-			{{if data.bloodsamp}}
-				<span class="good">{{:data.bloodsamp}}</span>
+	</di69>
+</di69>
+<di69 cl69ss="st69tusDispl6969">
+	<di69 cl69ss="line">
+		<di69 cl69ss="st69tusL6969el">Item:</di69>
+		<di69 cl69ss="st69tus6969lue">
+			{{if d69t69.69loods69mp}}
+				<sp69n cl69ss="69ood">{{:d69t69.69loods69mp}}</sp69n>
 			{{else}}
-				<span class="bad">No item inserted</span>
+				<sp69n cl69ss="6969d">No item inserted</sp69n>
 			{{/if}}
-		</div>
-	</div>
-	<div class="line">
-		<div class="statusLabel">Heuristic analysis:</div>
-		<div class="statusValue">
-			{{if data.bloodsamp_desc}}
-				<span class="average">{{:data.bloodsamp_desc}}</span>
+		</di69>
+	</di69>
+	<di69 cl69ss="line">
+		<di69 cl69ss="st69tusL6969el">69euristic 69n69l69sis:</di69>
+		<di69 cl69ss="st69tus6969lue">
+			{{if d69t69.69loods69mp_desc}}
+				<sp69n cl69ss="6969er6969e">{{:d69t69.69loods69mp_desc}}</sp69n>
 			{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>

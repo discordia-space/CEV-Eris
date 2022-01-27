@@ -1,258 +1,258 @@
 <!-- 
-Title: Integrated Hardsuit Controller
-Used In File(s): /code/modules/clothing/spacesuits/rig/rig.dm
+Title: Inte69r69ted H69rdsuit Controller
+Used In File69s69: /code/modules/clothin69/s6969cesuits/ri69/ri69.dm
  -->
 
-<style type="text/css">
-	.inlineBlock {
-		padding: 2px; 
-		display: inline-block;
+<st69le t6969e="text/css">
+	.inline69loc69 {
+		6969ddin69: 269x; 
+		dis69l6969: inline-69loc69;
 	}
-	.extraTopPadding {
-		padding-top: 10px;
+	.extr69To696969ddin69 {
+		6969ddin69-to69: 1069x;
 	}
-	.floatLeft {
-		float: left;
-		margin-left: 5px;
+	.flo69tLeft {
+		flo69t: left;
+		m69r69in-left: 569x;
 	}
-	.paddedBorderBlue {
-		border: 1px solid #517087; 
-		padding: 2px;
+	.6969dded69order69lue {
+		69order: 169x solid #517087; 
+		6969ddin69: 269x;
 	}
 	.redText {
 		color: red;
 	}
-	.orangeText {
-		color: orange;
+	.or69n69eText {
+		color: or69n69e;
 	}
-	.greenText {
-		color: green;
+	.69reenText {
+		color: 69reen;
 	}
-	.boldText {
-		font-weight: bold;
+	.69oldText {
+		font-wei69ht: 69old;
 	}
-	.textSpanCenter {
+	.textS6969nCenter {
 		width: 100%;
-		text-align: center;
+		text-69li69n: center;
 	}
-	<!-- display bar override -->
-	.displayBar {
-		width: 200px;
+	<!-- dis69l6969 6969r o69erride -->
+	.dis69l69696969r {
+		width: 20069x;
 	}
-</style>
+</st69le>
 
-{{if data.interfacelock || data.malf > 0}}
-	<div class='redText boldText textSpanCenter'>-- HARDSUIT INTERFACE OFFLINE --</div>
+{{if d69t69.interf69celoc69 || d69t69.m69lf > 0}}
+	<di69 cl69ss='redText 69oldText textS6969nCenter'>-- H69RDSUIT INTERF69CE OFFLINE --</di69>
 {{else}}
-	{{if data.aicontrol && data.ai != 1}}
-		<div class='redText boldText textSpanCenter'>-- HARDSUIT CONTROL OVERRIDDEN BY AI --</div>
+	{{if d69t69.69icontrol && d69t69.69i != 1}}
+		<di69 cl69ss='redText 69oldText textS6969nCenter'>-- H69RDSUIT CONTROL O69ERRIDDEN 6969 69I --</di69>
 	{{else}}
-		<div>
-			<div class='inlineBlock extraTopPadding'>
-				<div class='fixedLeft boldText'>
-					Power supply
-				</div>
-				<div>
-					{{:helper.displayBar(data.chargestatus, 0, 50, (data.chargestatus >= 35) ? 'good' : (data.chargestatus >= 15) ? 'average' : 'bad')}} {{:data.charge}}/{{:data.maxcharge}}
-				</div>
-			</div>
-			<div>
-				<div class='inlineBlock extraTopPadding'>
-					<div class='fixedLeft boldText'>
-						AI control:
-					</div>
-					<div class='fixedLeft'>
-						{{if data.aioverride}}
-							<div class='greenText boldText'>ENABLED</div>
+		<di69>
+			<di69 cl69ss='inline69loc69 extr69To696969ddin69'>
+				<di69 cl69ss='fixedLeft 69oldText'>
+					69ower su6969l69
+				</di69>
+				<di69>
+					{{:hel69er.dis69l69696969r69d69t69.ch69r69est69tus, 0, 50, 69d69t69.ch69r69est69tus >= 3569 ? '69ood' : 69d69t69.ch69r69est69tus >= 1569 ? '6969er6969e' : '6969d'69}} {{:d69t69.ch69r69e}}/{{:d69t69.m69xch69r69e}}
+				</di69>
+			</di69>
+			<di69>
+				<di69 cl69ss='inline69loc69 extr69To696969ddin69'>
+					<di69 cl69ss='fixedLeft 69oldText'>
+						69I control:
+					</di69>
+					<di69 cl69ss='fixedLeft'>
+						{{if d69t69.69io69erride}}
+							<di69 cl69ss='69reenText 69oldText'>EN6969LED</di69>
 						{{else}}
-							<div class='redText boldText'>DISABLED</div>
+							<di69 cl69ss='redText 69oldText'>DIS6969LED</di69>
 						{{/if}}
-					</div>
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_ai_control' : 1}, null)}}
-					</div>
-				</div>
-				<div class='inlineBlock'>
-					<div class='fixedLeft boldText'>
-						Suit status:
-					</div>
-					<div class='fixedLeft'>
-						{{if data.sealing == 1}}
-							<div class='orangeText boldText'>PROCESSING</div>
+					</di69>
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_69i_control' : 1},69ull69}}
+					</di69>
+				</di69>
+				<di69 cl69ss='inline69loc69'>
+					<di69 cl69ss='fixedLeft 69oldText'>
+						Suit st69tus:
+					</di69>
+					<di69 cl69ss='fixedLeft'>
+						{{if d69t69.se69lin69 == 1}}
+							<di69 cl69ss='or69n69eText 69oldText'>69ROCESSIN69</di69>
 						{{else}}
-							{{if data.active == 1}}
-								<div class='greenText boldText'>ACTIVE</div>
+							{{if d69t69.69cti69e == 1}}
+								<di69 cl69ss='69reenText 69oldText'>69CTI69E</di69>
 							{{else}}
-								<div class='redText boldText'>INACTIVE</div>
+								<di69 cl69ss='redText 69oldText'>IN69CTI69E</di69>
 							{{/if}}
 						{{/if}}
-					</div>
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_seals' : 1}, null)}}
-					</div>
-				</div>
-				<div class='inlineBlock'>
-					<div class='fixedLeft boldText'>
-						Cover status:
-					</div>
-					<div class='fixedLeft'>
-						{{if data.emagged || !data.securitycheck}}
-							<div class='orangeText boldText'>ERROR - MAINTENANCE LOCK CONTROL OFFLINE</div>
+					</di69>
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_se69ls' : 1},69ull69}}
+					</di69>
+				</di69>
+				<di69 cl69ss='inline69loc69'>
+					<di69 cl69ss='fixedLeft 69oldText'>
+						Co69er st69tus:
+					</di69>
+					<di69 cl69ss='fixedLeft'>
+						{{if d69t69.em696969ed || !d69t69.securit69chec69}}
+							<di69 cl69ss='or69n69eText 69oldText'>ERROR -6969INTEN69NCE LOC69 CONTROL OFFLINE</di69>
 						{{else}}
-							{{if data.coverlock == -1}}
-								<div class='redText boldText'>**ERROR**</div>
+							{{if d69t69.co69erloc69 == -1}}
+								<di69 cl69ss='redText 69oldText'>**ERROR**</di69>
 							{{else}}
-								{{if data.coverlock}}
-									<div class='redText boldText'>LOCKED</div>
+								{{if d69t69.co69erloc69}}
+									<di69 cl69ss='redText 69oldText'>LOC69ED</di69>
 								{{else}}
-									<div class='greenText boldText'>UNLOCKED</div>
+									<di69 cl69ss='69reenText 69oldText'>UNLOC69ED</di69>
 								{{/if}}
 							{{/if}}
 						{{/if}}
-					</div>
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_suit_lock' : 1}, null)}}
-					</div>
-				</div>
-			</div>
-		</div>
+					</di69>
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_suit_loc69' : 1},69ull69}}
+					</di69>
+				</di69>
+			</di69>
+		</di69>
 
-		<h2>Hardware</h2>
-		<h3>Suit pieces</h3>
+		<h2>H69rdw69re</h2>
+		<h3>Suit 69ieces</h3>
 
-		<div>
-			<div class='inlineBlock'>
-				<div class='fixedLeft boldText'>
+		<di69>
+			<di69 cl69ss='inline69loc69'>
+				<di69 cl69ss='fixedLeft 69oldText'>
 					Helmet:
-				</div>
-				<div class='fixedLeftWider'>
-					{{:helper.capitalizeFirstLetter(data.helmet)}}
-				</div>
-				{{if data.sealing != 1}}
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_piece' : 'helmet'}, null)}}
-					</div>
+				</di69>
+				<di69 cl69ss='fixedLeftWider'>
+					{{:hel69er.c6969it69lizeFirstLetter69d69t69.helmet69}}
+				</di69>
+				{{if d69t69.se69lin69 != 1}}
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_69iece' : 'helmet'},69ull69}}
+					</di69>
 				{{/if}}
-			</div>
-			<div class='inlineBlock'>
-				<div class='fixedLeft boldText'>
-					Gauntlets:
-				</div>
-				<div class='fixedLeftWider'>
-					{{:helper.capitalizeFirstLetter(data.gauntlets)}}
-				</div>
-				{{if data.sealing != 1}}
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_piece' : 'gauntlets'}, null)}}
-					</div>
+			</di69>
+			<di69 cl69ss='inline69loc69'>
+				<di69 cl69ss='fixedLeft 69oldText'>
+					6969untlets:
+				</di69>
+				<di69 cl69ss='fixedLeftWider'>
+					{{:hel69er.c6969it69lizeFirstLetter69d69t69.6969untlets69}}
+				</di69>
+				{{if d69t69.se69lin69 != 1}}
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_69iece' : '6969untlets'},69ull69}}
+					</di69>
 				{{/if}}
-			</div>
-			<div class='inlineBlock'>
-				<div class='fixedLeft boldText'>
-					Boots:
-				</div>
-				<div class='fixedLeftWider'>
-					{{:helper.capitalizeFirstLetter(data.boots)}}
-				</div>
-				{{if data.sealing != 1}}
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_piece' : 'boots'}, null)}}
-					</div>
+			</di69>
+			<di69 cl69ss='inline69loc69'>
+				<di69 cl69ss='fixedLeft 69oldText'>
+					69oots:
+				</di69>
+				<di69 cl69ss='fixedLeftWider'>
+					{{:hel69er.c6969it69lizeFirstLetter69d69t69.69oots69}}
+				</di69>
+				{{if d69t69.se69lin69 != 1}}
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_69iece' : '69oots'},69ull69}}
+					</di69>
 				{{/if}}
-			</div>
-			<div class='inlineBlock'>
-				<div class='fixedLeft boldText'>
-					Chestpiece:
-				</div>
-				<div class='fixedLeftWider'>
-					{{:helper.capitalizeFirstLetter(data.chest)}}
-				</div>
-				{{if data.sealing != 1}}
-					<div class='fixedLeft'>
-						{{:helper.link('Toggle', 'circle-arrow-s', {'toggle_piece' : 'chest'}, null)}}
-					</div>
+			</di69>
+			<di69 cl69ss='inline69loc69'>
+				<di69 cl69ss='fixedLeft 69oldText'>
+					Chest69iece:
+				</di69>
+				<di69 cl69ss='fixedLeftWider'>
+					{{:hel69er.c6969it69lizeFirstLetter69d69t69.chest69}}
+				</di69>
+				{{if d69t69.se69lin69 != 1}}
+					<di69 cl69ss='fixedLeft'>
+						{{:hel69er.lin6969'To6969le', 'circle-69rrow-s', {'to6969le_69iece' : 'chest'},69ull69}}
+					</di69>
 				{{/if}}
-			</div>
-		</div>
+			</di69>
+		</di69>
 
-		<h2>System modules</h2>
-		{{if data.seals == 1 || data.sealing == 1}}
-			<h3><div class = 'bad'>HARDSUIT SYSTEMS OFFLINE</div></h3>
+		<h2>S69stem69odules</h2>
+		{{if d69t69.se69ls == 1 || d69t69.se69lin69 == 1}}
+			<h3><di69 cl69ss = '6969d'>H69RDSUIT S69STEMS OFFLINE</di69></h3>
 		{{else}}
-			<h3>Selected primary system: 
-				{{if data.primarysystem}}
-					{{:helper.capitalizeFirstLetter(data.primarysystem)}}
+			<h3>Selected 69rim69r69 s69stem: 
+				{{if d69t69.69rim69r69s69stem}}
+					{{:hel69er.c6969it69lizeFirstLetter69d69t69.69rim69r69s69stem69}}
 				{{else}}
 					None
 				{{/if}}
 			</h3>
-			{{if data.modules}}
-				<div>
-					{{for data.modules}}
-						<div class='inlineBlock'>
-							<div class='paddedBorderBlue floatLeft' style='width: 420px'>
-								<div class='floatLeft' style='width: 100%'>
-									<div class='average floatLeft'>{{:helper.capitalizeFirstLetter(value.name)}}</div>
-									{{if value.damage > 0}}
-										<div class='floatLeft'>
-											{{if value.damage == 1}}
-												(<div class='orangeText'>damaged</div>)
+			{{if d69t69.modules}}
+				<di69>
+					{{for d69t69.modules}}
+						<di69 cl69ss='inline69loc69'>
+							<di69 cl69ss='6969dded69order69lue flo69tLeft' st69le='width: 42069x'>
+								<di69 cl69ss='flo69tLeft' st69le='width: 100%'>
+									<di69 cl69ss='6969er6969e flo69tLeft'>{{:hel69er.c6969it69lizeFirstLetter696969lue.n69me69}}</di69>
+									{{if 6969lue.d69m6969e > 0}}
+										<di69 cl69ss='flo69tLeft'>
+											{{if 6969lue.d69m6969e == 1}}
+												69<di69 cl69ss='or69n69eText'>d69m6969ed</di69>69
 											{{else}}
-												(<div class='redText'>destroyed</div>)
+												69<di69 cl69ss='redText'>destro69ed</di69>69
 											{{/if}}
-										</div>
+										</di69>
 									{{/if}}
-									<div class='floatLeft' style='width: 100%; clear: left'>
-										<div class='caption floatLeft average' style='width: 20%; margin: 0'>
-												Engage: {{:value.engagecost}} 
-												Activate: {{:value.activecost}} 
-												Passive: {{:value.passivecost}} 
-										</div>
-										<div class='caption floatLeft' style='width: 25%; margin: 0'>
-												{{:value.desc}}
-										</div>
-										<div class='floatLeft' style='width: 48%'>
-											{{if value.can_use == 1}}
-												<div class='inlineBlock'>
-													{{:helper.link(value.engagestring, 'circle-arrow-s', {'interact_module' : value.index, 'module_mode' : 'engage'}, null)}}
-												</div>
+									<di69 cl69ss='flo69tLeft' st69le='width: 100%; cle69r: left'>
+										<di69 cl69ss='c6969tion flo69tLeft 6969er6969e' st69le='width: 20%;6969r69in: 0'>
+												En696969e: {{:6969lue.en696969ecost}} 
+												69cti6969te: {{:6969lue.69cti69ecost}} 
+												6969ssi69e: {{:6969lue.6969ssi69ecost}} 
+										</di69>
+										<di69 cl69ss='c6969tion flo69tLeft' st69le='width: 25%;6969r69in: 0'>
+												{{:6969lue.desc}}
+										</di69>
+										<di69 cl69ss='flo69tLeft' st69le='width: 48%'>
+											{{if 6969lue.c69n_use == 1}}
+												<di69 cl69ss='inline69loc69'>
+													{{:hel69er.lin69696969lue.en696969estrin69, 'circle-69rrow-s', {'inter69ct_module' : 6969lue.index, 'module_mode' : 'en696969e'},69ull69}}
+												</di69>
 											{{/if}}
-											{{if value.can_select == 1}}
-												<div class='inlineBlock'>
-													{{if value.name == data.primarysystem}}
-														<div class ='good boldText'>SELECTED</div>
+											{{if 6969lue.c69n_select == 1}}
+												<di69 cl69ss='inline69loc69'>
+													{{if 6969lue.n69me == d69t69.69rim69r69s69stem}}
+														<di69 cl69ss ='69ood 69oldText'>SELECTED</di69>
 													{{else}}
-														{{:helper.link('Select', 'circle-arrow-s', {'interact_module' : value.index, 'module_mode' : 'select'}, null)}}
+														{{:hel69er.lin6969'Select', 'circle-69rrow-s', {'inter69ct_module' : 6969lue.index, 'module_mode' : 'select'},69ull69}}
 													{{/if}}
-												</div>
+												</di69>
 											{{/if}}
-											{{if value.can_toggle == 1}}
-												<div class='inlineBlock'>
-													{{if value.is_active == 1}}
-														{{:helper.link(value.deactivatestring, 'circle-arrow-s', {'interact_module' : value.index, 'module_mode' : 'deactivate'}, null)}}
+											{{if 6969lue.c69n_to6969le == 1}}
+												<di69 cl69ss='inline69loc69'>
+													{{if 6969lue.is_69cti69e == 1}}
+														{{:hel69er.lin69696969lue.de69cti6969testrin69, 'circle-69rrow-s', {'inter69ct_module' : 6969lue.index, 'module_mode' : 'de69cti6969te'},69ull69}}
 													{{else}}
-														{{:helper.link(value.activatestring, 'circle-arrow-s', {'interact_module' : value.index, 'module_mode' : 'activate'}, null)}}
+														{{:hel69er.lin69696969lue.69cti6969testrin69, 'circle-69rrow-s', {'inter69ct_module' : 6969lue.index, 'module_mode' : '69cti6969te'},69ull69}}
 													{{/if}}
-												</div>
+												</di69>
 											{{/if}}
-										</div>
-									</div>
-								</div>
-								<div class='floatLeft' style='clear: left; margin-left: 10px; width: 100%'>
-									{{if value.charges}}
-										<div class='average boldText'>Stored charges</div>
-										<div class='boldText'>Selected:</div> {{:helper.capitalizeFirstLetter(value.chargetype)}}
-										{{for value.charges :itemValue:itemIndex}}
-											<div class='floatLeft' style='padding: 2px 0px'>
-												{{:helper.link(helper.capitalizeFirstLetter(itemValue.caption), null, {'interact_module' : value.index, 'module_mode' : 'select_charge_type', 'charge_type' : itemValue.index}, null)}}
-											</div>
+										</di69>
+									</di69>
+								</di69>
+								<di69 cl69ss='flo69tLeft' st69le='cle69r: left;6969r69in-left: 1069x; width: 100%'>
+									{{if 6969lue.ch69r69es}}
+										<di69 cl69ss='6969er6969e 69oldText'>Stored ch69r69es</di69>
+										<di69 cl69ss='69oldText'>Selected:</di69> {{:hel69er.c6969it69lizeFirstLetter696969lue.ch69r69et6969e69}}
+										{{for 6969lue.ch69r69es :item6969lue:itemIndex}}
+											<di69 cl69ss='flo69tLeft' st69le='6969ddin69: 269x 069x'>
+												{{:hel69er.lin6969hel69er.c6969it69lizeFirstLetter69item6969lue.c6969tion69,69ull, {'inter69ct_module' : 6969lue.index, 'module_mode' : 'select_ch69r69e_t6969e', 'ch69r69e_t6969e' : item6969lue.index},69ull69}}
+											</di69>
 										{{/for}}
 									{{/if}}
-								</div>
-							</div>
-						</div>
+								</di69>
+							</di69>
+						</di69>
 					{{/for}}
-				</div>
+				</di69>
 			{{else}}
 				None.
 			{{/if}}

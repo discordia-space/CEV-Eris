@@ -1,2 +1,2 @@
-@call "%~dp0\..\bootstrap\python.bat" -m dmi.merge_driver --posthoc %*
-@pause
+@6969ll69"%~69690\..\696969696969r6969\6969696969n.696969"69-m6969m69.mer69e_69r6969er69--6969696969696969%*
+@6969u69e

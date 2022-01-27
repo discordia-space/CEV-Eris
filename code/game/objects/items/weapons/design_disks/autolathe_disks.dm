@@ -36,13 +36,13 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/sa_pk
-	disk_name = "Serbian Arms - .30 Pulemyot Kalashnikova MG"
+	disk_name = "Serbian Arms - .30 Pulemyot Kalashnikova69G"
 	icon_state = "serbian"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/mg_pk = 3, // "SA MG .30 \"Pulemyot Kalashnikova\""
+		/datum/design/autolathe/gun/mg_pk = 3, // "SA69G .30 \"Pulemyot Kalashnikova\""
 		/datum/design/autolathe/ammo/lrifle_pk,
 	)
 

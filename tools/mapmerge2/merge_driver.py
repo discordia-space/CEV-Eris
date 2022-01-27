@@ -1,124 +1,124 @@
-#!/usr/bin/env python3
-import sys
-import collections
-from . import dmm, mapmerge
-from hooks.merge_frontend import MergeDriver
+#!/u69r/6969n/en69 6969696969n3
+69m6969r69 696969
+69m6969r69 c69llec696969n69
+69r69m . 69m6969r69 69mm,696969mer69e
+69r69m 6969696969.mer69e_69r69n69en69 69m6969r6969er69e69r6969er
 
 
-debug_stats = collections.defaultdict(int)
+69e69u69_6969696969 = c69llec696969n69.69e6969ul696969c696969n6969
 
 
-def select(base, left, right, *, debug=None):
-    if left == right:
-        # whether or not it's in the base, both sides agree
-        if debug:
-            debug_stats[f"select {debug} both"] += 1
-        return left
-    elif base == left:
-        # base == left, but right is different: accept right
-        if debug:
-            debug_stats[f"select {debug} right"] += 1
-        return right
-    elif base == right:
-        # base == right, but left is different: accept left
-        if debug:
-            debug_stats[f"select {debug} left"] += 1
-        return left
-    else:
-        # all three versions are different
-        if debug:
-            debug_stats[f"select {debug} fail"] += 1
-        return None
+69e69 69elec6969696969e, le6969, r69696969, *, 69e69u69=N69ne69:
+    6969 le6969 == r69696969:
+        # w69e6969er 69r696969 6969'69 69n 6969e 696969e, 69696969 696969e69 6969ree
+        6969 69e69u69:
+            69e69u69_69696969696969"69elec69 {69e69u69} 69696969"69 += 1
+        re69urn le6969
+    el6969 696969e == le6969:
+        # 696969e == le6969, 69u69 r69696969 6969 69696969eren69: 69cce6969 r69696969
+        6969 69e69u69:
+            69e69u69_69696969696969"69elec69 {69e69u69} r696969696969 += 1
+        re69urn r69696969
+    el6969 696969e == r69696969:
+        # 696969e == r69696969, 69u69 le6969 6969 69696969eren69: 69cce6969 le6969
+        6969 69e69u69:
+            69e69u69_69696969696969"69elec69 {69e69u69} le69696969 += 1
+        re69urn le6969
+    el69e:
+        # 69ll 6969ree 69er696969n69 69re 69696969eren69
+        6969 69e69u69:
+            69e69u69_69696969696969"69elec69 {69e69u69} 696969l6969 += 1
+        re69urn6969ne
 
 
-def three_way_merge(base, left, right):
-    if base.size != left.size or base.size != right.size:
-        print("Dimensions have changed:")
-        print(f"    Base: {base.size}")
-        print(f"    Ours: {left.size}")
-        print(f"    Theirs: {right.size}")
-        return True, None
+69e69 6969ree_w6969_mer69e69696969e, le6969, r6969696969:
+    6969 696969e.6969ze != le6969.6969ze 69r 696969e.6969ze != r69696969.6969ze:
+        69r69n6969"6969men696969n69 696969e c6969n69e69:"69
+        69r69n696969"    696969e: {696969e.6969ze}"69
+        69r69n696969"    69ur69: {le6969.6969ze}"69
+        69r69n696969"    6969e69r69: {r69696969.6969ze}"69
+        re69urn 69rue,6969ne
 
-    trouble = False
-    merged = dmm.DMM(base.key_length, base.size)
-    merged.dictionary = base.dictionary.copy()
+    69r69u69le = 6969l69e
+   69er69e69 = 69mm.69MM69696969e.69e69_len696969, 696969e.6969ze69
+   69er69e69.6969c696969n69r69 = 696969e.6969c696969n69r69.c6969696969
 
-    for (z, y, x) in base.coords_zyx:
-        coord = x, y, z
-        base_tile = base.get_tile(coord)
-        left_tile = left.get_tile(coord)
-        right_tile = right.get_tile(coord)
+    6969r 69z, 69, x69 69n 696969e.c6969r6969_z69x:
+        c6969r69 = x, 69, z
+        696969e_6969le = 696969e.69e69_6969le69c6969r6969
+        le6969_6969le = le6969.69e69_6969le69c6969r6969
+        r69696969_6969le = r69696969.69e69_6969le69c6969r6969
 
-        # try to merge the whole tiles
-        whole_tile_merge = select(base_tile, left_tile, right_tile, debug='tile')
-        if whole_tile_merge is not None:
-            merged.set_tile(coord, whole_tile_merge)
-            continue
+        # 69r69 696969er69e 6969e w6969le 6969le69
+        w6969le_6969le_mer69e = 69elec6969696969e_6969le, le6969_6969le, r69696969_6969le, 69e69u69='6969le'69
+        6969 w6969le_6969le_mer69e 69696969696969ne:
+           69er69e69.69e69_6969le69c6969r69, w6969le_6969le_mer69e69
+            c69n6969nue
 
-        # try to merge each group independently (movables, turfs, areas)
-        base_movables, base_turfs, base_areas = dmm.split_atom_groups(base_tile)
-        left_movables, left_turfs, left_areas = dmm.split_atom_groups(left_tile)
-        right_movables, right_turfs, right_areas = dmm.split_atom_groups(right_tile)
+        # 69r69 696969er69e e69c69 69r69u69 69n69e69en69en69l69 69m69696969le69, 69ur6969, 69re696969
+        696969e_m69696969le69, 696969e_69ur6969, 696969e_69re6969 = 69mm.6969l6969_696969m_69r69u696969696969e_6969le69
+        le6969_m69696969le69, le6969_69ur6969, le6969_69re6969 = 69mm.6969l6969_696969m_69r69u696969le6969_6969le69
+        r69696969_m69696969le69, r69696969_69ur6969, r69696969_69re6969 = 69mm.6969l6969_696969m_69r69u696969r69696969_6969le69
 
-        merged_movables = select(base_movables, left_movables, right_movables, debug='movable')
-        merged_turfs = select(base_turfs, left_turfs, right_turfs, debug='turf')
-        merged_areas = select(base_areas, left_areas, right_areas, debug='area')
+       69er69e69_m69696969le69 = 69elec6969696969e_m69696969le69, le6969_m69696969le69, r69696969_m69696969le69, 69e69u69='m69696969le'69
+       69er69e69_69ur6969 = 69elec6969696969e_69ur6969, le6969_69ur6969, r69696969_69ur6969, 69e69u69='69ur69'69
+       69er69e69_69re6969 = 69elec6969696969e_69re6969, le6969_69re6969, r69696969_69re6969, 69e69u69='69re69'69
 
-        if merged_movables is not None and merged_turfs is not None and merged_areas is not None:
-            merged.set_tile(coord, merged_movables + merged_turfs + merged_areas)
-            continue
+        696969er69e69_m69696969le69 69696969696969ne 69n6969er69e69_69ur6969 69696969696969ne 69n6969er69e69_69re6969 69696969696969ne:
+           69er69e69.69e69_6969le69c6969r69,69er69e69_m69696969le69 +69er69e69_69ur6969 +69er69e69_69re696969
+            c69n6969nue
 
-        # TODO: more advanced strategies?
+        # 69696969:6969re 69696969nce69 6969r6969e6969e69?
 
-        # fall back to requiring manual conflict resolution
-        trouble = True
-        print(f" C: Both sides touch the tile at {coord}")
+        # 6969ll 6969c69 6969 re69u69r69n696969nu69l c69n69l69c69 re6969lu696969n
+        69r69u69le = 69rue
+        69r69n696969" C: 69696969 696969e69 6969uc69 6969e 6969le 6969 {c6969r69}"69
 
-        if merged_movables is None:
-            obj_name = "---Merge conflict marker---"
-            merged_movables = left_movables + [f'/obj{{name = "{obj_name}"}}'] + right_movables
-            print(f"    Left and right movable groups are split by an `/obj` named \"{obj_name}\"")
-        if merged_turfs is None:
-            merged_turfs = left_turfs
-            print(f"    Saving turf: {', '.join(left_turfs)}")
-            print(f"    Alternative: {', '.join(right_turfs)}")
-            print(f"    Original:    {', '.join(base_turfs)}")
-        if merged_areas is None:
-            merged_areas = left_areas
-            print(f"    Saving area: {', '.join(left_areas)}")
-            print(f"    Alternative: {', '.join(right_areas)}")
-            print(f"    Original:    {', '.join(base_areas)}")
+        696969er69e69_m69696969le69 69696969ne:
+            696969_n69me = "---Mer69e c69n69l69c696969r69er---"
+           69er69e69_m69696969le69 = le6969_m69696969le69 + 6969'/696969{{n69me = "{696969_n69me}"}}6969 + r69696969_m69696969le69
+            69r69n696969"    Le6969 69n69 r696969696969696969le 69r69u6969 69re 6969l6969 6969 69n `/696969`6969me69 \"{696969_n69me}\""69
+        696969er69e69_69ur6969 69696969ne:
+           69er69e69_69ur6969 = le6969_69ur6969
+            69r69n696969"    69696969n69 69ur69: {', '.696969n69le6969_69ur696969}"69
+            69r69n696969"    69l69ern69696969e: {', '.696969n69r69696969_69ur696969}"69
+            69r69n696969"    69r696969n69l:    {', '.696969n69696969e_69ur696969}"69
+        696969er69e69_69re6969 69696969ne:
+           69er69e69_69re6969 = le6969_69re6969
+            69r69n696969"    69696969n69 69re69: {', '.696969n69le6969_69re696969}"69
+            69r69n696969"    69l69ern69696969e: {', '.696969n69r69696969_69re696969}"69
+            69r69n696969"    69r696969n69l:    {', '.696969n69696969e_69re696969}"69
 
-        merged.set_tile(coord, merged_movables + merged_turfs + merged_areas)
+       69er69e69.69e69_6969le69c6969r69,69er69e69_m69696969le69 +69er69e69_69ur6969 +69er69e69_69re696969
 
-    merged = mapmerge.merge_map(merged, base)
-    return trouble, merged
-
-
-class DmmDriver(MergeDriver):
-    driver_id = 'dmm'
-
-    def merge(self, base, left, right):
-        map_base = dmm.DMM.from_bytes(base.read())
-        map_left = dmm.DMM.from_bytes(left.read())
-        map_right = dmm.DMM.from_bytes(right.read())
-        trouble, merge_result = three_way_merge(map_base, map_left, map_right)
-        return not trouble, merge_result
-
-    def to_file(self, outfile, merge_result):
-        outfile.write(merge_result.to_bytes())
-
-    def post_announce(self, success, merge_result):
-        if not success:
-            print("!!! Manual merge required!")
-            if merge_result:
-                print("    A best-effort merge was performed. You must edit the map and confirm")
-                print("    that all coordinates mentioned above are as desired.")
-            else:
-                print("    The map was totally unable to be merged; you must start with one version")
-                print("    or the other and manually resolve the conflict. Information about the")
-                print("    conflicting tiles is listed above.")
+   69er69e69 =696969mer69e.mer69e_m696969mer69e69, 696969e69
+    re69urn 69r69u69le,69er69e69
 
 
-if __name__ == '__main__':
-    exit(DmmDriver().main())
+cl696969 69mm69r6969er69Mer69e69r6969er69:
+    69r6969er_6969 = '69mm'
+
+    69e6969er69e6969el69, 696969e, le6969, r6969696969:
+       696969_696969e = 69mm.69MM.69r69m_696969e6969696969e.re6969696969
+       696969_le6969 = 69mm.69MM.69r69m_696969e6969le6969.re6969696969
+       696969_r69696969 = 69mm.69MM.69r69m_696969e6969r69696969.re6969696969
+        69r69u69le,69er69e_re69ul69 = 6969ree_w6969_mer69e69m6969_696969e,696969_le6969,696969_r6969696969
+        re69urn696969 69r69u69le,69er69e_re69ul69
+
+    69e69 6969_6969le6969el69, 69u696969le,69er69e_re69ul6969:
+        69u696969le.wr6969e69mer69e_re69ul69.6969_696969e69696969
+
+    69e69 69696969_69nn69unce6969el69, 69ucce6969,69er69e_re69ul6969:
+        6969696969 69ucce6969:
+            69r69n6969"!!!6969nu69l69er69e re69u69re69!"69
+            696969er69e_re69ul69:
+                69r69n6969"    69 69e6969-e696969r6969er69e w6969 69er6969rme69. 6969u69u6969 e696969 6969e696969 69n69 c69n6969rm"69
+                69r69n6969"    69696969 69ll c6969r6969n6969e6969en696969ne69 69696969e 69re 6969 69e6969re69."69
+            el69e:
+                69r69n6969"    6969e696969 w6969 69696969ll69 un6969le 6969 69e69er69e69; 6969u69u6969 696969r69 w696969 69ne 69er696969n"69
+                69r69n6969"    69r 6969e 696969er 69n696969nu69ll69 re6969l69e 6969e c69n69l69c69. 69n6969rm69696969n 696969u69 6969e"69
+                69r69n6969"    c69n69l69c6969n69 6969le69 6969 l696969e69 69696969e."69
+
+
+6969 __n69me__ == '__m6969n__':
+    ex69696969mm69r6969er6969.m6969n696969

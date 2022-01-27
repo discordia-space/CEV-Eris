@@ -17,7 +17,7 @@
 
 /datum/controller/subsystem/spawn_data/proc/generate_data()
 	var/list/paths = list()
-	//spawn vars
+	//spawn69ars
 	//var/rarity
 	//var/frequency
 	//var/blacklisted
@@ -26,12 +26,12 @@
 	var/list/accompanying_objs = list()
 	var/generate_files = config.generate_loot_data
 	var/file_dir = "strings/loot_data"
-	var/source_dir = file("[file_dir]/")
-	var/loot_data = file("[file_dir]/all_spawn_data.txt")
-	var/loot_data_paths = file("[file_dir]/all_spawn_paths.txt")
-	var/hard_blacklist_data = file("[file_dir]/hard_blacklist.txt")
-	var/blacklist_paths_data = file("[file_dir]/blacklist.txt")
-	var/file_dir_tags = "[file_dir]/tags/"
+	var/source_dir = file("69file_dir69/")
+	var/loot_data = file("69file_dir69/all_spawn_data.txt")
+	var/loot_data_paths = file("69file_dir69/all_spawn_paths.txt")
+	var/hard_blacklist_data = file("69file_dir69/hard_blacklist.txt")
+	var/blacklist_paths_data = file("69file_dir69/blacklist.txt")
+	var/file_dir_tags = "69file_dir69/tags/"
 	if(generate_files)
 		fdel(source_dir)
 		loot_data  << "paths    spawn_tags    blacklisted    spawn_value    spawn_price    prob_accompanying_obj    all_accompanying_obj"
@@ -48,19 +48,19 @@
 		var/atom/movable/A = path
 		if(path == initial(A.bad_type))
 			if(generate_files)
-				hard_blacklist_data  << "[path]"
+				hard_blacklist_data  << "69path69"
 			continue
 
 		spawn_tags = params2list(initial(A.spawn_tags))
 		if(!spawn_tags.len)
 			if(generate_files)
-				hard_blacklist_data  << "[path]"
+				hard_blacklist_data  << "69path69"
 			continue
 
 		//frequency = initial(A.spawn_frequency)
 		if(initial(A.spawn_frequency) <= 0)
 			if(generate_files)
-				hard_blacklist_data  << "[path]"
+				hard_blacklist_data  << "69path69"
 			continue
 
 		/* //this works but is unnecessary for now.
@@ -77,20 +77,20 @@
 						break
 		if(!icon_check)
 			if(generate_files)
-				hard_blacklist_data  << "[path]"
+				hard_blacklist_data  << "69path69"
 			continue
 		*/ //this works but is unnecessary for now.
 
 		//frequency
 		//frequency = initial(A.spawn_frequency)
-		//all_spawn_by_frequency["[frequency]"] += list(path)
-		//all_spawn_frequency_by_path[path] = frequency
+		//all_spawn_by_frequency69"69frequency69"69 += list(path)
+		//all_spawn_frequency_by_path69path69 = frequency
 
 		//rarity//
 		//rarity = initial(A.rarity_value)
 		//ASSERT(initial(A.rarity_value) >= 1)
-		//all_spawn_by_rarity["[rarity]"] += list(path)
-		//all_spawn_rarity_by_path[path] = rarity
+		//all_spawn_by_rarity69"69rarity69"69 += list(path)
+		//all_spawn_rarity_by_path69path69 = rarity
 
 		//aditional_objs
 		accompanying_objs = initial(A.accompanying_object)
@@ -107,51 +107,51 @@
 			for(var/obj_path in accompanying_objs)
 				if(!ispath(obj_path))
 					continue
-				all_accompanying_obj_by_path[path] += list(obj_path)
+				all_accompanying_obj_by_path69path69 += list(obj_path)
 		if(ispath(path, /obj/item/gun/energy))
 			var/obj/item/gun/energy/E = A
 			if(!initial(E.use_external_power) && !initial(E.self_recharge))
-				all_accompanying_obj_by_path[path] += list(initial(E.suitable_cell))
+				all_accompanying_obj_by_path69path69 += list(initial(E.suitable_cell))
 		else if(ispath(path, /obj/item/gun/projectile))
 			var/obj/item/gun/projectile/P = A
-			if(initial(P.magazine_type) && ((initial(P.load_method) & MAGAZINE) || (initial(P.load_method) & SPEEDLOADER)))
-				all_accompanying_obj_by_path[path] += list(initial(P.magazine_type))
+			if(initial(P.magazine_type) && ((initial(P.load_method) &69AGAZINE) || (initial(P.load_method) & SPEEDLOADER)))
+				all_accompanying_obj_by_path69path69 += list(initial(P.magazine_type))
 			else if(initial(P.ammo_type) && (initial(P.max_shells)) && (initial(P.load_method) & SINGLE_CASING))
-				for(var/i in 1 to min(initial(P.max_shells),10))//max 10 ammo
-					all_accompanying_obj_by_path[path] += list(initial(P.ammo_type))
+				for(var/i in 1 to69in(initial(P.max_shells),10))//max 10 ammo
+					all_accompanying_obj_by_path69path69 += list(initial(P.ammo_type))
 		//price//
 		var/price = get_spawn_price(path)
 
 		//spawn_value//
 		var/spawn_value = get_spawn_value(path)
-		//all_spawn_value_by_path[path] = spawn_value
+		//all_spawn_value_by_path69path69 = spawn_value
 
 		//tags//
 		/*
 		if(generate_files && ispath(path, /obj/item/gun))
 			var/tag_data_i
 			if(price > GUN_CHEAP_PRICE)
-				tag_data_i = file("[file_dir_tags]gun_expensive.txt")
+				tag_data_i = file("69file_dir_tags69gun_expensive.txt")
 			else
-				tag_data_i = file("[file_dir_tags]gun_cheap.txt")
-			tag_data_i  << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    accompanying_objs=[all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
+				tag_data_i = file("69file_dir_tags69gun_cheap.txt")
+			tag_data_i  << "69path69    blacklisted=69initial(A.spawn_blacklisted)69    spawn_value=69spawn_value69   spawn_price=69price69   prob_accompanying_obj=69initial(A.prob_aditional_object)69    accompanying_objs=69all_accompanying_obj_by_path69path69 ? english_list(all_accompanying_obj_by_path69path69, "nothing", ",") : "nothing"69"
 		*/
 		for(var/tag in spawn_tags)
-			all_spawn_by_tag[tag] += list(path)
+			all_spawn_by_tag69tag69 += list(path)
 			if(ispath(path, /obj/item) && tag != SPAWN_OBJ &&!initial(A.density) && ISINRANGE(price, 1, CHEAP_ITEM_PRICE) && !lowkeyrandom_tags.Find(tag))
 				lowkeyrandom_tags += list(tag)
 			if(generate_files)
-				var/tag_data_i = file("[file_dir_tags][tag].txt")
-				tag_data_i << "[path]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    accompanying_objs=[all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
+				var/tag_data_i = file("69file_dir_tags6969tag69.txt")
+				tag_data_i << "69path69    blacklisted=69initial(A.spawn_blacklisted)69    spawn_value=69spawn_value69   spawn_price=69price69   prob_accompanying_obj=69initial(A.prob_aditional_object)69    accompanying_objs=69all_accompanying_obj_by_path69path69 ? english_list(all_accompanying_obj_by_path69path69, "nothing", ",") : "nothing"69"
 		if(generate_files)
-			loot_data << "[path]    [initial(A.spawn_tags)]    blacklisted=[initial(A.spawn_blacklisted)]    spawn_value=[spawn_value]   spawn_price=[price]   prob_accompanying_obj=[initial(A.prob_aditional_object)]    accompanying_objs=[all_accompanying_obj_by_path[path] ? english_list(all_accompanying_obj_by_path[path], "nothing", ",") : "nothing"]"
-			loot_data_paths << "[path]"
+			loot_data << "69path69    69initial(A.spawn_tags)69    blacklisted=69initial(A.spawn_blacklisted)69    spawn_value=69spawn_value69   spawn_price=69price69   prob_accompanying_obj=69initial(A.prob_aditional_object)69    accompanying_objs=69all_accompanying_obj_by_path69path69 ? english_list(all_accompanying_obj_by_path69path69, "nothing", ",") : "nothing"69"
+			loot_data_paths << "69path69"
 			if(initial(A.spawn_blacklisted))
-				blacklist_paths_data << "[path]"
+				blacklist_paths_data << "69path69"
 
 /*get_spawn_value()
-this proc calculates the spawn value of the objects based on factors such as
-their frequency, their rarity value, their price and
+this proc calculates the spawn69alue of the objects based on factors such as
+their frequency, their rarity69alue, their price and
 the data returned by the get_special_rarity_value() proc
 */
 /datum/controller/subsystem/spawn_data/proc/get_spawn_value(npath)
@@ -163,10 +163,10 @@ the data returned by the get_special_rarity_value() proc
 	return 10 * initial(A.spawn_frequency)/(get_special_rarity_value(npath) + log(10,max(get_spawn_price(A),2)))
 
 /*get_special_rarity_value()
-increases the rarity value of items
+increases the rarity69alue of items
 depending on certain determining factors,
-for example, the rarity value of power cells increases with their max_charge,
-the value of stock parts increases with the rating.
+for example, the rarity69alue of power cells increases with their69ax_charge,
+the69alue of stock parts increases with the rating.
 */
 /datum/controller/subsystem/spawn_data/proc/get_special_rarity_value(npath)
 	var/atom/movable/A = npath
@@ -193,8 +193,8 @@ the value of stock parts increases with the rating.
 /datum/controller/subsystem/spawn_data/proc/get_spawn_price(path, with_accompaying_obj = TRUE)
 	var/atom/movable/A = path
 	. = initial(A.price_tag)
-	if(with_accompaying_obj && all_accompanying_obj_by_path[path])
-		for(var/a_obj in all_accompanying_obj_by_path[path])
+	if(with_accompaying_obj && all_accompanying_obj_by_path69path69)
+		for(var/a_obj in all_accompanying_obj_by_path69path69)
 			. += get_spawn_price(a_obj, FALSE)
 	if(ispath(path, /obj/item))
 		if(ispath(path, /obj/item/stock_parts))//see /obj/item/stock_parts/get_item_cost(export)
@@ -271,7 +271,7 @@ the value of stock parts increases with the rating.
 /datum/controller/subsystem/spawn_data/proc/spawn_by_tag(list/tags)
 	var/list/things = list()
 	for(var/tag in tags)
-		things |= all_spawn_by_tag["[tag]"]
+		things |= all_spawn_by_tag69"69tag69"69
 	return things
 
 /datum/controller/subsystem/spawn_data/proc/spawns_lower_price(list/paths, price)
@@ -308,14 +308,14 @@ the value of stock parts increases with the rating.
 		var/low = INFINITY
 		for(var/path in paths)
 			var/sapwn_value = get_spawn_value(path)
-			if((sapwn_value < low) && !(sapwn_value in valid_spawn_value))
+			if((sapwn_value < low) && !(sapwn_value in69alid_spawn_value))
 				low = sapwn_value
 		valid_spawn_value += low
-	for(var/value in valid_spawn_value)
-		if(value > max_value)
-			max_value = value
+	for(var/value in69alid_spawn_value)
+		if(value >69ax_value)
+			max_value =69alue
 	for(var/path in paths)
-		if(get_spawn_value(path) <= max_value)
+		if(get_spawn_value(path) <=69ax_value)
 			things += path
 	return things
 
@@ -326,11 +326,11 @@ the value of stock parts increases with the rating.
 	var/list/values = list()
 	for(var/path in paths)
 		var/spawn_value = get_spawn_value(path)
-		if(!(spawn_value in values) && spawn_value > 0)
+		if(!(spawn_value in69alues) && spawn_value > 0)
 			values += spawn_value
 			if(invert_value)
 				spawn_value = 1/spawn_value
-			things[path] = spawn_value
+			things69path69 = spawn_value
 	var/spawn_value = pickweight(things, 0)
 	spawn_value = get_spawn_value(spawn_value)
 	things = list()
@@ -400,7 +400,7 @@ the value of stock parts increases with the rating.
 			break
 		for(var/actual_path in copy_paths)
 			var/actual_value = get_spawn_value(actual_path)
-			if((!invert_value && actual_value > max_value) || (invert_value && (actual_value < max_value)))
+			if((!invert_value && actual_value >69ax_value) || (invert_value && (actual_value <69ax_value)))
 				max_value = actual_value
 				selected_path = actual_path
 		copy_paths -= selected_path
@@ -421,18 +421,18 @@ the value of stock parts increases with the rating.
 			break
 		for(var/actual_path in copy_paths)
 			var/actual_value = get_spawn_price(actual_path)
-			if((!invert_value && actual_value < max_value) || (invert_value && (actual_value > max_value)))
+			if((!invert_value && actual_value <69ax_value) || (invert_value && (actual_value >69ax_value)))
 				max_value = actual_value
 				selected_path = actual_path
 		copy_paths -= selected_path
 		things += selected_path
 	return things
 
-/* this proc generates a rarity value depending on the armor.
+/* this proc generates a rarity69alue depending on the armor.
 /obj/item/clothing/proc/generate_loot_data()
 	var/file_dir = "strings/cloth_data"
-	var/loot_data = file("[file_dir]/cloth_data.txt")
-	var/pure_data = file("[file_dir]/pure_data.txt")
+	var/loot_data = file("69file_dir69/cloth_data.txt")
+	var/pure_data = file("69file_dir69/pure_data.txt")
 
 	fdel(loot_data)
 	fdel(pure_data)
@@ -444,23 +444,23 @@ the value of stock parts increases with the rating.
 		var/total_armor = 0
 		var/real_total_armor = 0
 		for(var/armor_type in armor_list)
-			var/val = armor_list[armor_type]
-			real_total_armor += val
+			var/val = armor_list69armor_type69
+			real_total_armor +=69al
 			if(armor_type == ARMOR_BOMB || armor_type == ARMOR_BIO || armor_type == ARMOR_RAD)
 				val /= 1.5
-			total_armor += val
+			total_armor +=69al
 		if(total_armor)
 			total_armor /= armor_list.len
 			total_armor += 5
-		loot_data << "[C.type]"
-		loot_data << "[C.rarity_value+total_armor]"
-		loot_data << "    rarity_value = [initial(C.rarity_value)]"
-		loot_data << "[real_total_armor]"
+		loot_data << "69C.type69"
+		loot_data << "69C.rarity_value+total_armor69"
+		loot_data << "    rarity_value = 69initial(C.rarity_value)69"
+		loot_data << "69real_total_armor69"
 		loot_data  << ""
 
-		pure_data  << "[C.type]"
-		pure_data  << "    rarity_value = [5 + total_armor]"
+		pure_data  << "69C.type69"
+		pure_data  << "    rarity_value = 695 + total_armor69"
 		pure_data  << ""
-		pure_data << "[real_total_armor]"
+		pure_data << "69real_total_armor69"
 		qdel(C)
 */

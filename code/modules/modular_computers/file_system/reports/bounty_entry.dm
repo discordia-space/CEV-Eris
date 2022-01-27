@@ -31,30 +31,30 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 			var/obj/item/card/id/held_card = user.GetIdCard()
 			var/datum/money_account/authenticated_account
 			if(held_card == owner_id_card)
-				if("Yes" == input(usr, "Use your ID card ?", "Credits will be instantly debited from your account.<br>Would you like to use your ID associated account for that?", list("Yes", "No")) as null|anything in list("Yes", "No"))
+				if("Yes" == input(usr, "Use your ID card ?", "Credits will be instantly debited from your account.<br>Would you like to use your ID associated account for that?", list("Yes", "No")) as69ull|anything in list("Yes", "No"))
 					authenticated_account = get_account(held_card.associated_account_number)
 			if(!authenticated_account || held_card != owner_id_card)
-				var/tried_account_num = input("Enter account number", "") as num
-				var/tried_pin = input("Enter PIN number", "") as num
+				var/tried_account_num = input("Enter account69umber", "") as69um
+				var/tried_pin = input("Enter PIN69umber", "") as69um
 				if(!tried_account_num || !tried_pin)
-					to_chat(user, "<span class='warning'>You must enter a valid bank account + PIN to create a bounty!</span>")
+					to_chat(user, "<span class='warning'>You69ust enter a69alid bank account + PIN to create a bounty!</span>")
 					return
 				authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1, TRUE)
 			if(authenticated_account)
 				//TODO FEE that captain can set
 				/*var/fee = (reward*fee_multiplier) //Service charge. Craptain can configure, defaults to 5%
 				var/charge = (reward + fee)*/
-				var/datum/transaction/T = new(-field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Placed", "Bounty board system")
+				var/datum/transaction/T =69ew(-field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Placed", "Bounty board system")
 				if(T.apply_to(authenticated_account))
-					to_chat(user, "<span class='warning'>Bounty created. You will have to manually confirm completion by chosing right contractor from the list of all signed up people!</span>")
+					to_chat(user, "<span class='warning'>Bounty created. You will have to69anually confirm completion by chosing right contractor from the list of all signed up people!</span>")
 				else
 					to_chat(user, "<span class='warning'>You don't have enough funds to do that!</span>")
 					return
 			else
-				to_chat(user, "<span class='warning'>You must enter a valid bank account + PIN to create a bounty!</span>")
+				to_chat(user, "<span class='warning'>You69ust enter a69alid bank account + PIN to create a bounty!</span>")
 				return
 			GLOB.all_bounty_entries += src
-			log_game("Bounty: [field_from_name("Title").get_value()] created by [user]")
+			log_game("Bounty: 69field_from_name("Title").get_value()69 created by 69user69")
 			for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
 				if(ishuman(H))
 					if (H == user)
@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 					if(C)
 						var/datum/computer_file/program/P = C.getProgramByType(/datum/computer_file/program/bounty_board_app)
 						if(P)
-							C.visible_message("\The [C] buzz softly and states \"New bounty avaliable on online bounty board\".", 1)
+							C.visible_message("\The 69C69 buzz softly and states \"New bounty avaliable on online bounty board\".", 1)
 							playsound(C, 'sound/machines/buzz-two.ogg', 50, 1)
 			return TRUE
 		else
@@ -78,13 +78,13 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 			return
 		var/datum/money_account/authenticated_account = get_account(claimedby_id_card.associated_account_number)
 		if(authenticated_account)
-			var/datum/transaction/T = new(field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Claimed", "Bounty board system")
+			var/datum/transaction/T =69ew(field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Claimed", "Bounty board system")
 			T.apply_to(authenticated_account)
 	else
 		if(owner_id_card)
 			var/datum/money_account/authenticated_account = get_account(owner_id_card.associated_account_number)
 			if(authenticated_account)
-				var/datum/transaction/T = new(field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Claimed", "Bounty board system")
+				var/datum/transaction/T =69ew(field_from_name("Reward").get_value(), authenticated_account.owner_name, "Bounty Claimed", "Bounty board system")
 				T.apply_to(authenticated_account)
 		destroy = TRUE
 	for(var/mob/living/carbon/human/H in GLOB.human_mob_list)
@@ -95,15 +95,15 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 				if(P)
 					if (H == contractor)
 						playsound(src, 'sound/machines/buzz-two.ogg', 50, 1)
-						C.visible_message("\The [C] buzz softly and states \"Bounty reward was transfered to your account\".")
+						C.visible_message("\The 69C69 buzz softly and states \"Bounty reward was transfered to your account\".")
 					else
 						var/datum/report_field/array/signed_people/SP = field_from_name("People who signed for job")
 						if(H in SP.get_raw())
 							if(istype(contractor))
-								C.visible_message("\The [C] buzz loudly and states \"Bounty reward that you signed for was claimed by someone else\".", 1)
+								C.visible_message("\The 69C69 buzz loudly and states \"Bounty reward that you signed for was claimed by someone else\".", 1)
 								playsound(C, 'sound/machines/buzz-two.ogg', 50, 1)
 							else
-								C.visible_message("\The [C] buzz loudly and states \"Bounty reward that you signed for was removed\".", 1)
+								C.visible_message("\The 69C69 buzz loudly and states \"Bounty reward that you signed for was removed\".", 1)
 								playsound(C, 'sound/machines/buzz-two.ogg', 50, 1)
 	if(destroy)
 		qdel(src)
@@ -120,5 +120,5 @@ GLOBAL_LIST_EMPTY(all_bounty_entries)
 	for(var/i = 2, i<=value_list.len, i++)
 		if(i > 2)
 			dat += "<br>"
-		dat += "[value_list[i]]"
+		dat += "69value_list69i6969"
 	return dat

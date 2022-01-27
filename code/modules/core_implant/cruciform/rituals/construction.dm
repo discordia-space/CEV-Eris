@@ -10,44 +10,44 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		if(blueprint_type == /datum/nt_blueprint/machinery)
 			continue
 		var/datum/nt_blueprint/pb = new blueprint_type()
-		list[pb.name] = pb
+		list69pb.name69 = pb
 	return list
 
 /datum/ritual/cruciform/priest/acolyte/blueprint_check
 	name = "Divine Guidance"
-	phrase = "Dirige me in veritate tua, et doce me, quia tu es Deus salvator meus, et te sustinui tota die."
-	desc = "Building needs mainly faith but resources as well. Find out what it takes."
+	phrase = "Dirige69e in69eritate tua, et doce69e, quia tu es Deus salvator69eus, et te sustinui tota die."
+	desc = "Building needs69ainly faith but resources as well. Find out what it takes."
 	power = 5
 
 /datum/ritual/cruciform/priest/acolyte/blueprint_check/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
 	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
-	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
+	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints69construction_key69
 	var/list/listed_components = list()
 	for(var/requirement in blueprint.materials)
 		var/atom/placeholder = requirement
 		if(!ispath(placeholder))
 			continue
-		listed_components += list("[blueprint.materials[placeholder]] [initial(placeholder.name)]")
-	to_chat(user, SPAN_NOTICE("[blueprint.name] requires: [english_list(listed_components)]."))
+		listed_components += list("69blueprint.materials69placeholder6969 69initial(placeholder.name)69")
+	to_chat(user, SPAN_NOTICE("69blueprint.name69 requires: 69english_list(listed_components)69."))
 
 /datum/ritual/cruciform/priest/acolyte/construction
 	name = "Manifestation"
-	phrase = "Omnia autem quae arguuntur a lumine manifestantur omne enim quod manifestatur lumen est."
-	desc = "Build and expand. Shape your faith in something more sensible."
+	phrase = "Omnia autem quae arguuntur a lumine69anifestantur omne enim quod69anifestatur lumen est."
+	desc = "Build and expand. Shape your faith in something69ore sensible."
 	power = 40
 
 /datum/ritual/cruciform/priest/acolyte/construction/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
 	var/construction_key = input("Select construction", "") as null|anything in GLOB.nt_blueprints
-	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints[construction_key]
+	var/datum/nt_blueprint/blueprint = GLOB.nt_blueprints69construction_key69
 	var/turf/target_turf = get_step(user,user.dir)
 	if(!blueprint)
 		fail("You decided not to test your faith.",user,C,targets)
 		return
 	if(!items_check(user, target_turf, blueprint))
-		fail("Something is missing.",user,C,targets)
+		fail("Something is69issing.",user,C,targets)
 		return
 
-	user.visible_message(SPAN_NOTICE("You see as [user] passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on [blueprint.name] image"))
+	user.visible_message(SPAN_NOTICE("You see as 69user69 passes his hands over something."),SPAN_NOTICE("You see your faith take physical form as you concentrate on 69blueprint.name69 image"))
 
 	var/obj/effect/overlay/nt_construction/effect = new(target_turf, blueprint.build_time)
 
@@ -65,12 +65,12 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		var/t = locate(item_type) in target_turf.contents
 		if(istype(t, /obj/item/stack))
 			var/obj/item/stack/S = t
-			S.use(blueprint.materials[item_type])
+			S.use(blueprint.materials69item_type69)
 		else
 			qdel(t)
 
 	effect.success()
-	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as [user] finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine manifestation finishes."))
+	user.visible_message(SPAN_NOTICE("You hear a soft humming sound as 69user69 finishes his ritual."),SPAN_NOTICE("You take a deep breath as the divine69anifestation finishes."))
 	var/build_path = blueprint.build_path
 	new build_path(target_turf)
 
@@ -84,7 +84,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 		if(!located_raw)
 			return FALSE
 
-		var/required_amount = blueprint.materials[item_type]
+		var/required_amount = blueprint.materials69item_type69
         // I hope it is fast enough
         // could have initialized it in glob
 		if(item_type in typesof(/obj/item/stack/))
@@ -93,7 +93,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 				return FALSE
 	return TRUE
 /datum/nt_blueprint/
-	var/name = "Report me"
+	var/name = "Report69e"
 	var/build_path
 	var/list/materials
 	var/build_time = 3 SECONDS
@@ -217,7 +217,7 @@ GLOBAL_LIST_INIT(nt_blueprints, init_nt_blueprints())
 	build_time = 8 SECONDS
 
 /datum/nt_blueprint/machinery/bioreactor_metrics
-	name = "Biomatter Reactor: Metrics"
+	name = "Biomatter Reactor:69etrics"
 	build_path = /obj/machinery/multistructure/biogenerator_part/console
 	materials = list(
 		/obj/item/stack/material/steel = 2,

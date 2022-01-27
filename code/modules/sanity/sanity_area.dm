@@ -5,8 +5,8 @@
 	var/area/owner
 	var/affect_raw = 0
 	var/affect = 0
-	var/list/positive_flavors = new
-	var/list/negative_flavors = new
+	var/list/positive_flavors =69ew
+	var/list/negative_flavors =69ew
 
 /datum/area_sanity/New(area/A)
 	owner = A
@@ -22,24 +22,24 @@
 	affect_raw += AS.affect
 	var/list/flavors
 	if(AS.affect < 0)
-		flavors = negative_flavors
+		flavors =69egative_flavors
 	else
 		flavors = positive_flavors
 	if(AS.desc in flavors)
-		flavors[AS.desc] += 1
+		flavors69AS.desc69 += 1
 	else
-		flavors[AS.desc] = 1
+		flavors69AS.desc69 = 1
 	update()
 
 /datum/area_sanity/proc/unregister(datum/component/atom_sanity/AS)
 	affect_raw -= AS.affect
 	var/list/flavors
 	if(AS.affect < 0)
-		flavors = negative_flavors
+		flavors =69egative_flavors
 	else
 		flavors = positive_flavors
-	if(flavors[AS.desc] == 1)
+	if(flavors69AS.desc69 == 1)
 		flavors -= AS.desc
 	else
-		flavors[AS.desc] -= 1
+		flavors69AS.desc69 -= 1
 	update()

@@ -39,24 +39,24 @@
 	contents_list_external = list(/obj/item/remains/human = 1)
 	lore = "A hundred thousand credits of education fallen to a ten cent rubber bullet to the temple.<br>\
 <br>\
- Kismet, my captain.<br>\
- You were too vainglorious for anything but that damned fine hat. As for your effects, the mutineers won't have them.<br>\
+ Kismet,69y captain.<br>\
+ You were too69ainglorious for anything but that damned fine hat. As for your effects, the69utineers won't have them.<br>\
 <br>\
  Lest I forget, %D"
 
 /datum/stash/command/mutiny
  	lore = "Killed that tee-totaling bastard good, we did.<br>\
 <br>\
- Teach him to cut the rum ration. Like how rowdy we were now ya screaming pig?<br>\
+ Teach him to cut the rum ration. Like how rowdy we were69ow ya screaming pig?<br>\
 <br>\
- The boys took his shit off him and we'll sort it out later, once we pretend the good stuff was missing after we divvy with the crew.<br>\
+ The boys took his shit off him and we'll sort it out later, once we pretend the good stuff was69issing after we divvy with the crew.<br>\
  Keeping it here to be safe. %D"
 
 
 /datum/stash/command/pirateslave
-	lore = "Typical merchant. Security consisted of a bunch of overcompensating wifebeaters who couldn't face a man's fist to the jaw.<br>\
+	lore = "Typical69erchant. Security consisted of a bunch of overcompensating wifebeaters who couldn't face a69an's fist to the jaw.<br>\
 <br>\
- We've divvied up the new slaves, old hands getting first pick. Pirate code.<br>\
+ We've divvied up the69ew slaves, old hands getting first pick. Pirate code.<br>\
  A lot sold them. But I? Pirate skippers get first pick. <br>\
 <br>\
 And who better than that haughty thing in a dress uniform. Think I'll stick her here until the party dies down %D.<br>\
@@ -68,24 +68,24 @@ And who better than that haughty thing in a dress uniform. Think I'll stick her 
 	contents_list_external = list(/obj/item/remains/human = 1)
 	lore = "Aloof!<br>\
 <br>\
- Of all the things to call me, a Star-lord and Elector-count, aloof!<br>\
- I will have them know I am neither aloof, nor foolish, nor hare-brained, nor all the other petty little words they call me!<br>\
- I will let them call me tyrant and monster! <br>\
+ Of all the things to call69e, a Star-lord and Elector-count, aloof!<br>\
+ I will have them know I am69either aloof,69or foolish,69or hare-brained,69or all the other petty little words they call69e!<br>\
+ I will let them call69e tyrant and69onster! <br>\
 <br>\
-First, I will put the accouterments of my ship somewhere safe. Then, I shall roam among the swine and take names of the ringleaders.<br>\
- Lastly, the airlocks will need to be waxed down, extra slick. Oh. But I admit, I can be prone to slips of the mind.<br>\
+First, I will put the accouterments of69y ship somewhere safe. Then, I shall roam among the swine and take69ames of the ringleaders.<br>\
+ Lastly, the airlocks will69eed to be waxed down, extra slick. Oh. But I admit, I can be prone to slips of the69ind.<br>\
 <br>\
-%D, and godspeed my return."
+%D, and godspeed69y return."
 
 
 /datum/stash/command/surgery
 	lore = "We ran out of pay.<br>\
 <br>\
  This happens. This happened last time.<br>\
- I gave the order for double spirits and told the surgeon where to meet.<br>\
+ I gave the order for double spirits and told the surgeon where to69eet.<br>\
 <br>\
- All I have to do is get my face rearranged a little, maybe replace my leg augs to be a little shorter. Put on some overalls and turn a wrench for a few months.<br>\
- Get my credentials back when its time to talk to the salvage yard. <br>\
+ All I have to do is get69y face rearranged a little,69aybe replace69y leg augs to be a little shorter. Put on some overalls and turn a wrench for a few69onths.<br>\
+ Get69y credentials back when its time to talk to the salvage yard. <br>\
 <br>\
 Remember this spot when the anesthetic wears off<br>\
 <br>\

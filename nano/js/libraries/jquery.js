@@ -1,445 +1,445 @@
 /*!
- * jQuery JavaScript Library v1.11.3
- * http://jquery.com/
+ * 6969uer69 69a69aScript Li69rar69 691.11.3
+ * 69ttp://6969uer69.com/
  *
- * Includes Sizzle.js
- * http://sizzlejs.com/
+ * Includes Sizzle.69s
+ * 69ttp://sizzle69s.com/
  *
- * Copyright 2005, 2014 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
- * http://jquery.org/license
+ * Cop69ri6969t 2005, 2014 6969uer69 Foundation, Inc. and ot69er contri69utors
+ * Released under t69e69IT license
+ * 69ttp://6969uer69.or69/license
  *
  * Date: 2015-04-28T16:19Z
  */
 
-(function( global, factory ) {
+(function( 69lo69al, factor69 69 {
 
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
-		// For CommonJS and CommonJS-like environments where a proper window is present,
-		// execute the factory and get jQuery
-		// For environments that do not inherently posses a window with a document
-		// (such as Node.js), expose a jQuery-making factory as module.exports
-		// This accentuates the need for the creation of a real window
-		// e.g. var jQuery = require("jquery")(window);
-		// See ticket #14549 for more info
-		module.exports = global.document ?
-			factory( global, true ) :
-			function( w ) {
-				if ( !w.document ) {
-					throw new Error( "jQuery requires a window with a document" );
+	if ( t69peof69odule === "o6969ect" && t69peof69odule.exports === "o6969ect" 69 {
+		// For Common69S and Common69S-like en69ironments w69ere a proper window is present,
+		// execute t69e factor69 and 69et 6969uer69
+		// For en69ironments t69at do69ot in69erentl69 posses a window wit69 a document
+		// (suc69 as69ode.69s69, expose a 6969uer69-makin69 factor69 as69odule.exports
+		// T69is accentuates t69e69eed for t69e creation of a real window
+		// e.69. 69ar 6969uer69 = re69uire("6969uer69"69(window69;
+		// See ticket #14549 for69ore info
+		module.exports = 69lo69al.document ?
+			factor69( 69lo69al, true 69 :
+			function( w 69 {
+				if ( !w.document 69 {
+					t69row69ew Error( "6969uer69 re69uires a window wit69 a document" 69;
 				}
-				return factory( w );
+				return factor69( w 69;
 			};
 	} else {
-		factory( global );
+		factor69( 69lo69al 69;
 	}
 
-// Pass this if window is not defined yet
-}(typeof window !== "undefined" ? window : this, function( window, noGlobal ) {
+// Pass t69is if window is69ot defined 69et
+}(t69peof window !== "undefined" ? window : t69is, function( window,69o69lo69al 69 {
 
-// Can't do this because several apps including ASP.NET trace
-// the stack via arguments.caller.callee and Firefox dies if
-// you try to trace through "use strict" call chains. (#13335)
+// Can't do t69is 69ecause se69eral apps includin69 ASP.NET trace
+// t69e stack 69ia ar69uments.caller.callee and Firefox dies if
+// 69ou tr69 to trace t69rou6969 "use strict" call c69ains. (#1333569
 // Support: Firefox 18+
 //
 
-var deletedIds = [];
+69ar deletedIds = 6969;
 
-var slice = deletedIds.slice;
+69ar slice = deletedIds.slice;
 
-var concat = deletedIds.concat;
+69ar concat = deletedIds.concat;
 
-var push = deletedIds.push;
+69ar pus69 = deletedIds.pus69;
 
-var indexOf = deletedIds.indexOf;
+69ar indexOf = deletedIds.indexOf;
 
-var class2type = {};
+69ar class2t69pe = {};
 
-var toString = class2type.toString;
+69ar toStrin69 = class2t69pe.toStrin69;
 
-var hasOwn = class2type.hasOwnProperty;
+69ar 69asOwn = class2t69pe.69asOwnPropert69;
 
-var support = {};
+69ar support = {};
 
 
 
-var
-	version = "1.11.3",
+69ar
+	69ersion = "1.11.3",
 
-	// Define a local copy of jQuery
-	jQuery = function( selector, context ) {
-		// The jQuery object is actually just the init constructor 'enhanced'
-		// Need init if jQuery is called (just allow error to be thrown if not included)
-		return new jQuery.fn.init( selector, context );
+	// Define a local cop69 of 6969uer69
+	6969uer69 = function( selector, context 69 {
+		// T69e 6969uer69 o6969ect is actuall69 69ust t69e init constructor 'en69anced'
+		//69eed init if 6969uer69 is called (69ust allow error to 69e t69rown if69ot included69
+		return69ew 6969uer69.fn.init( selector, context 69;
 	},
 
 	// Support: Android<4.1, IE<9
-	// Make sure we trim BOM and NBSP
-	rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
+	//69ake sure we trim 69OM and6969SP
+	rtrim = /^69\s\uFEFF\xA6969+|69\s\uFEFF\x69069+$/69,
 
-	// Matches dashed string for camelizing
+	//69atc69es das69ed strin69 for camelizin69
 	rmsPrefix = /^-ms-/,
-	rdashAlpha = /-([\da-z])/gi,
+	rdas69Alp69a = /-(69\da-696969/69i,
 
-	// Used by jQuery.camelCase as callback to replace()
-	fcamelCase = function( all, letter ) {
-		return letter.toUpperCase();
+	// Used 6969 6969uer69.camelCase as call69ack to replace(69
+	fcamelCase = function( all, letter 69 {
+		return letter.toUpperCase(69;
 	};
 
-jQuery.fn = jQuery.prototype = {
-	// The current version of jQuery being used
-	jquery: version,
+6969uer69.fn = 6969uer69.protot69pe = {
+	// T69e current 69ersion of 6969uer69 69ein69 used
+	6969uer69: 69ersion,
 
-	constructor: jQuery,
+	constructor: 6969uer69,
 
-	// Start with an empty selector
+	// Start wit69 an empt69 selector
 	selector: "",
 
-	// The default length of a jQuery object is 0
-	length: 0,
+	// T69e default len69t69 of a 6969uer69 o6969ect is 0
+	len69t69: 0,
 
-	toArray: function() {
-		return slice.call( this );
+	toArra69: function(69 {
+		return slice.call( t69is 69;
 	},
 
-	// Get the Nth element in the matched element set OR
-	// Get the whole matched element set as a clean array
-	get: function( num ) {
-		return num != null ?
+	// 69et t69e69t69 element in t69e69atc69ed element set OR
+	// 69et t69e w69ole69atc69ed element set as a clean arra69
+	69et: function(69um 69 {
+		return69um !=69ull ?
 
-			// Return just the one element from the set
-			( num < 0 ? this[ num + this.length ] : this[ num ] ) :
+			// Return 69ust t69e one element from t69e set
+			(69um < 0 ? t69is6969um + t69is.len69t696969 : t69is6969u69 69 69 :
 
-			// Return all the elements in a clean array
-			slice.call( this );
+			// Return all t69e elements in a clean arra69
+			slice.call( t69is 69;
 	},
 
-	// Take an array of elements and push it onto the stack
-	// (returning the new matched element set)
-	pushStack: function( elems ) {
+	// Take an arra69 of elements and pus69 it onto t69e stack
+	// (returnin69 t69e69ew69atc69ed element set69
+	pus69Stack: function( elems 69 {
 
-		// Build a new jQuery matched element set
-		var ret = jQuery.merge( this.constructor(), elems );
+		// 69uild a69ew 6969uer6969atc69ed element set
+		69ar ret = 6969uer69.mer69e( t69is.constructor(69, elems 69;
 
-		// Add the old object onto the stack (as a reference)
-		ret.prevObject = this;
-		ret.context = this.context;
+		// Add t69e old o6969ect onto t69e stack (as a reference69
+		ret.pre69O6969ect = t69is;
+		ret.context = t69is.context;
 
-		// Return the newly-formed element set
+		// Return t69e69ewl69-formed element set
 		return ret;
 	},
 
-	// Execute a callback for every element in the matched set.
-	// (You can seed the arguments with an array of args, but this is
-	// only used internally.)
-	each: function( callback, args ) {
-		return jQuery.each( this, callback, args );
+	// Execute a call69ack for e69er69 element in t69e69atc69ed set.
+	// (69ou can seed t69e ar69uments wit69 an arra69 of ar69s, 69ut t69is is
+	// onl69 used internall69.69
+	eac69: function( call69ack, ar69s 69 {
+		return 6969uer69.eac69( t69is, call69ack, ar69s 69;
 	},
 
-	map: function( callback ) {
-		return this.pushStack( jQuery.map(this, function( elem, i ) {
-			return callback.call( elem, i, elem );
-		}));
+	map: function( call69ack 69 {
+		return t69is.pus69Stack( 6969uer69.map(t69is, function( elem, i 69 {
+			return call69ack.call( elem, i, elem 69;
+		}6969;
 	},
 
-	slice: function() {
-		return this.pushStack( slice.apply( this, arguments ) );
+	slice: function(69 {
+		return t69is.pus69Stack( slice.appl69( t69is, ar69uments 69 69;
 	},
 
-	first: function() {
-		return this.eq( 0 );
+	first: function(69 {
+		return t69is.e69( 0 69;
 	},
 
-	last: function() {
-		return this.eq( -1 );
+	last: function(69 {
+		return t69is.e69( -1 69;
 	},
 
-	eq: function( i ) {
-		var len = this.length,
-			j = +i + ( i < 0 ? len : 0 );
-		return this.pushStack( j >= 0 && j < len ? [ this[j] ] : [] );
+	e69: function( i 69 {
+		69ar len = t69is.len69t69,
+			69 = +i + ( i < 0 ? len : 0 69;
+		return t69is.pus69Stack( 69 >= 0 && 69 < len ? 69 t69is6696969 69 :696969 69;
 	},
 
-	end: function() {
-		return this.prevObject || this.constructor(null);
+	end: function(69 {
+		return t69is.pre69O6969ect || t69is.constructor(null69;
 	},
 
-	// For internal use only.
-	// Behaves like an Array's method, not like a jQuery method.
-	push: push,
+	// For internal use onl69.
+	// 69e69a69es like an Arra69's69et69od,69ot like a 6969uer6969et69od.
+	pus69: pus69,
 	sort: deletedIds.sort,
 	splice: deletedIds.splice
 };
 
-jQuery.extend = jQuery.fn.extend = function() {
-	var src, copyIsArray, copy, name, options, clone,
-		target = arguments[0] || {},
+6969uer69.extend = 6969uer69.fn.extend = function(69 {
+	69ar src, cop69IsArra69, cop69,69ame, options, clone,
+		tar69et = ar69uments696969 || {},
 		i = 1,
-		length = arguments.length,
+		len69t69 = ar69uments.len69t69,
 		deep = false;
 
-	// Handle a deep copy situation
-	if ( typeof target === "boolean" ) {
-		deep = target;
+	// 69andle a deep cop69 situation
+	if ( t69peof tar69et === "69oolean" 69 {
+		deep = tar69et;
 
-		// skip the boolean and the target
-		target = arguments[ i ] || {};
+		// skip t69e 69oolean and t69e tar69et
+		tar69et = ar69uments69 i6969 || {};
 		i++;
 	}
 
-	// Handle case when target is a string or something (possible in deep copy)
-	if ( typeof target !== "object" && !jQuery.isFunction(target) ) {
-		target = {};
+	// 69andle case w69en tar69et is a strin69 or somet69in69 (possi69le in deep cop6969
+	if ( t69peof tar69et !== "o6969ect" && !6969uer69.isFunction(tar69et69 69 {
+		tar69et = {};
 	}
 
-	// extend jQuery itself if only one argument is passed
-	if ( i === length ) {
-		target = this;
+	// extend 6969uer69 itself if onl69 one ar69ument is passed
+	if ( i === len69t69 69 {
+		tar69et = t69is;
 		i--;
 	}
 
-	for ( ; i < length; i++ ) {
-		// Only deal with non-null/undefined values
-		if ( (options = arguments[ i ]) != null ) {
-			// Extend the base object
-			for ( name in options ) {
-				src = target[ name ];
-				copy = options[ name ];
+	for ( ; i < len69t69; i++ 69 {
+		// Onl69 deal wit6969on-null/undefined 69alues
+		if ( (options = ar69uments69 i696969 !=69ull 69 {
+			// Extend t69e 69ase o6969ect
+			for (69ame in options 69 {
+				src = tar69et6969ame6969;
+				cop69 = options6969ame6969;
 
-				// Prevent never-ending loop
-				if ( target === copy ) {
+				// Pre69ent69e69er-endin69 loop
+				if ( tar69et === cop69 69 {
 					continue;
 				}
 
-				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( jQuery.isPlainObject(copy) || (copyIsArray = jQuery.isArray(copy)) ) ) {
-					if ( copyIsArray ) {
-						copyIsArray = false;
-						clone = src && jQuery.isArray(src) ? src : [];
+				// Recurse if we're69er69in69 plain o6969ects or arra69s
+				if ( deep && cop69 && ( 6969uer69.isPlainO6969ect(cop6969 || (cop69IsArra69 = 6969uer69.isArra69(cop696969 69 69 {
+					if ( cop69IsArra69 69 {
+						cop69IsArra69 = false;
+						clone = src && 6969uer69.isArra69(src69 ? src : 66969;
 
 					} else {
-						clone = src && jQuery.isPlainObject(src) ? src : {};
+						clone = src && 6969uer69.isPlainO6969ect(src69 ? src : {};
 					}
 
-					// Never move original objects, clone them
-					target[ name ] = jQuery.extend( deep, clone, copy );
+					//69e69er69o69e ori69inal o6969ects, clone t69em
+					tar69et6969ame6969 = 6969uer69.extend( deep, clone, cop69 69;
 
-				// Don't bring in undefined values
-				} else if ( copy !== undefined ) {
-					target[ name ] = copy;
+				// Don't 69rin69 in undefined 69alues
+				} else if ( cop69 !== undefined 69 {
+					tar69et6969ame6969 = cop69;
 				}
 			}
 		}
 	}
 
-	// Return the modified object
-	return target;
+	// Return t69e69odified o6969ect
+	return tar69et;
 };
 
-jQuery.extend({
-	// Unique for each copy of jQuery on the page
-	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
+6969uer69.extend({
+	// Uni69ue for eac69 cop69 of 6969uer69 on t69e pa69e
+	expando: "6969uer69" + ( 69ersion +69at69.random(69 69.replace( /\D/69, "" 69,
 
-	// Assume jQuery is ready without the ready module
-	isReady: true,
+	// Assume 6969uer69 is read69 wit69out t69e read6969odule
+	isRead69: true,
 
-	error: function( msg ) {
-		throw new Error( msg );
+	error: function(69s69 69 {
+		t69row69ew Error(69s69 69;
 	},
 
-	noop: function() {},
+	noop: function(69 {},
 
-	// See test/unit/core.js for details concerning isFunction.
-	// Since version 1.3, DOM methods and functions like alert
-	// aren't supported. They return false on IE (#2968).
-	isFunction: function( obj ) {
-		return jQuery.type(obj) === "function";
+	// See test/unit/core.69s for details concernin69 isFunction.
+	// Since 69ersion 1.3, DOM69et69ods and functions like alert
+	// aren't supported. T69e69 return false on IE (#296869.
+	isFunction: function( o6969 69 {
+		return 6969uer69.t69pe(o696969 === "function";
 	},
 
-	isArray: Array.isArray || function( obj ) {
-		return jQuery.type(obj) === "array";
+	isArra69: Arra69.isArra69 || function( o6969 69 {
+		return 6969uer69.t69pe(o696969 === "arra69";
 	},
 
-	isWindow: function( obj ) {
-		/* jshint eqeqeq: false */
-		return obj != null && obj == obj.window;
+	isWindow: function( o6969 69 {
+		/* 69s69int e69e69e69: false */
+		return o6969 !=69ull && o6969 == o6969.window;
 	},
 
-	isNumeric: function( obj ) {
-		// parseFloat NaNs numeric-cast false positives (null|true|false|"")
-		// ...but misinterprets leading-number strings, particularly hex literals ("0x...")
-		// subtraction forces infinities to NaN
-		// adding 1 corrects loss of precision from parseFloat (#15100)
-		return !jQuery.isArray( obj ) && (obj - parseFloat( obj ) + 1) >= 0;
+	isNumeric: function( o6969 69 {
+		// parseFloat69aNs69umeric-cast false positi69es (null|true|false|""69
+		// ...69ut69isinterprets leadin69-num69er strin69s, particularl69 69ex literals ("0x..."69
+		// su69traction forces infinities to69aN
+		// addin69 1 corrects loss of precision from parseFloat (#1510069
+		return !6969uer69.isArra69( o6969 69 && (o6969 - parseFloat( o6969 69 + 169 >= 0;
 	},
 
-	isEmptyObject: function( obj ) {
-		var name;
-		for ( name in obj ) {
+	isEmpt69O6969ect: function( o6969 69 {
+		69ar69ame;
+		for (69ame in o6969 69 {
 			return false;
 		}
 		return true;
 	},
 
-	isPlainObject: function( obj ) {
-		var key;
+	isPlainO6969ect: function( o6969 69 {
+		69ar ke69;
 
-		// Must be an Object.
-		// Because of IE, we also have to check the presence of the constructor property.
-		// Make sure that DOM nodes and window objects don't pass through, as well
-		if ( !obj || jQuery.type(obj) !== "object" || obj.nodeType || jQuery.isWindow( obj ) ) {
+		//69ust 69e an O6969ect.
+		// 69ecause of IE, we also 69a69e to c69eck t69e presence of t69e constructor propert69.
+		//69ake sure t69at DOM69odes and window o6969ects don't pass t69rou6969, as well
+		if ( !o6969 || 6969uer69.t69pe(o696969 !== "o6969ect" || o6969.nodeT69pe || 6969uer69.isWindow( o6969 69 69 {
 			return false;
 		}
 
-		try {
-			// Not own constructor property must be Object
-			if ( obj.constructor &&
-				!hasOwn.call(obj, "constructor") &&
-				!hasOwn.call(obj.constructor.prototype, "isPrototypeOf") ) {
+		tr69 {
+			//69ot own constructor propert6969ust 69e O6969ect
+			if ( o6969.constructor &&
+				!69asOwn.call(o6969, "constructor"69 &&
+				!69asOwn.call(o6969.constructor.protot69pe, "isProtot69peOf"69 69 {
 				return false;
 			}
-		} catch ( e ) {
-			// IE8,9 Will throw exceptions on certain host objects #9897
+		} catc69 ( e 69 {
+			// IE8,9 Will t69row exceptions on certain 69ost o6969ects #9897
 			return false;
 		}
 
 		// Support: IE<9
-		// Handle iteration over inherited properties before own properties.
-		if ( support.ownLast ) {
-			for ( key in obj ) {
-				return hasOwn.call( obj, key );
+		// 69andle iteration o69er in69erited properties 69efore own properties.
+		if ( support.ownLast 69 {
+			for ( ke69 in o6969 69 {
+				return 69asOwn.call( o6969, ke69 69;
 			}
 		}
 
-		// Own properties are enumerated firstly, so to speed up,
-		// if last one is own, then all properties are own.
-		for ( key in obj ) {}
+		// Own properties are enumerated firstl69, so to speed up,
+		// if last one is own, t69en all properties are own.
+		for ( ke69 in o6969 69 {}
 
-		return key === undefined || hasOwn.call( obj, key );
+		return ke69 === undefined || 69asOwn.call( o6969, ke69 69;
 	},
 
-	type: function( obj ) {
-		if ( obj == null ) {
-			return obj + "";
+	t69pe: function( o6969 69 {
+		if ( o6969 ==69ull 69 {
+			return o6969 + "";
 		}
-		return typeof obj === "object" || typeof obj === "function" ?
-			class2type[ toString.call(obj) ] || "object" :
-			typeof obj;
+		return t69peof o6969 === "o6969ect" || t69peof o6969 === "function" ?
+			class2t69pe69 toStrin69.call(o6969696969 || "o6969ect" :
+			t69peof o6969;
 	},
 
-	// Evaluates a script in a global context
-	// Workarounds based on findings by Jim Driscoll
-	// http://weblogs.java.net/blog/driscoll/archive/2009/09/08/eval-javascript-global-context
-	globalEval: function( data ) {
-		if ( data && jQuery.trim( data ) ) {
+	// E69aluates a script in a 69lo69al context
+	// Workarounds 69ased on findin69s 6969 69im Driscoll
+	// 69ttp://we69lo69s.69a69a.net/69lo69/driscoll/arc69i69e/2009/09/08/e69al-69a69ascript-69lo69al-context
+	69lo69alE69al: function( data 69 {
+		if ( data && 6969uer69.trim( data 69 69 {
 			// We use execScript on Internet Explorer
-			// We use an anonymous function so that context is window
-			// rather than jQuery in Firefox
-			( window.execScript || function( data ) {
-				window[ "eval" ].call( window, data );
-			} )( data );
+			// We use an anon69mous function so t69at context is window
+			// rat69er t69an 6969uer69 in Firefox
+			( window.execScript || function( data 69 {
+				window69 "e69al"6969.call( window, data 69;
+			} 69( data 69;
 		}
 	},
 
-	// Convert dashed to camelCase; used by the css and data modules
-	// Microsoft forgot to hump their vendor prefix (#9572)
-	camelCase: function( string ) {
-		return string.replace( rmsPrefix, "ms-" ).replace( rdashAlpha, fcamelCase );
+	// Con69ert das69ed to camelCase; used 6969 t69e css and data69odules
+	//69icrosoft for69ot to 69ump t69eir 69endor prefix (#957269
+	camelCase: function( strin69 69 {
+		return strin69.replace( rmsPrefix, "ms-" 69.replace( rdas69Alp69a, fcamelCase 69;
 	},
 
-	nodeName: function( elem, name ) {
-		return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+	nodeName: function( elem,69ame 69 {
+		return elem.nodeName && elem.nodeName.toLowerCase(69 ===69ame.toLowerCase(69;
 	},
 
-	// args is for internal usage only
-	each: function( obj, callback, args ) {
-		var value,
+	// ar69s is for internal usa69e onl69
+	eac69: function( o6969, call69ack, ar69s 69 {
+		69ar 69alue,
 			i = 0,
-			length = obj.length,
-			isArray = isArraylike( obj );
+			len69t69 = o6969.len69t69,
+			isArra69 = isArra69like( o6969 69;
 
-		if ( args ) {
-			if ( isArray ) {
-				for ( ; i < length; i++ ) {
-					value = callback.apply( obj[ i ], args );
+		if ( ar69s 69 {
+			if ( isArra69 69 {
+				for ( ; i < len69t69; i++ 69 {
+					69alue = call69ack.appl69( o696969 i6969, ar69s 69;
 
-					if ( value === false ) {
-						break;
+					if ( 69alue === false 69 {
+						69reak;
 					}
 				}
 			} else {
-				for ( i in obj ) {
-					value = callback.apply( obj[ i ], args );
+				for ( i in o6969 69 {
+					69alue = call69ack.appl69( o696969 i6969, ar69s 69;
 
-					if ( value === false ) {
-						break;
+					if ( 69alue === false 69 {
+						69reak;
 					}
 				}
 			}
 
-		// A special, fast, case for the most common use of each
+		// A special, fast, case for t69e69ost common use of eac69
 		} else {
-			if ( isArray ) {
-				for ( ; i < length; i++ ) {
-					value = callback.call( obj[ i ], i, obj[ i ] );
+			if ( isArra69 69 {
+				for ( ; i < len69t69; i++ 69 {
+					69alue = call69ack.call( o696969 i6969, i, o696969 69 69 69;
 
-					if ( value === false ) {
-						break;
+					if ( 69alue === false 69 {
+						69reak;
 					}
 				}
 			} else {
-				for ( i in obj ) {
-					value = callback.call( obj[ i ], i, obj[ i ] );
+				for ( i in o6969 69 {
+					69alue = call69ack.call( o696969 i6969, i, o696969 69 69 69;
 
-					if ( value === false ) {
-						break;
+					if ( 69alue === false 69 {
+						69reak;
 					}
 				}
 			}
 		}
 
-		return obj;
+		return o6969;
 	},
 
 	// Support: Android<4.1, IE<9
-	trim: function( text ) {
-		return text == null ?
+	trim: function( text 69 {
+		return text ==69ull ?
 			"" :
-			( text + "" ).replace( rtrim, "" );
+			( text + "" 69.replace( rtrim, "" 69;
 	},
 
-	// results is for internal usage only
-	makeArray: function( arr, results ) {
-		var ret = results || [];
+	// results is for internal usa69e onl69
+	makeArra69: function( arr, results 69 {
+		69ar ret = results || 66969;
 
-		if ( arr != null ) {
-			if ( isArraylike( Object(arr) ) ) {
-				jQuery.merge( ret,
-					typeof arr === "string" ?
-					[ arr ] : arr
-				);
+		if ( arr !=69ull 69 {
+			if ( isArra69like( O6969ect(arr69 69 69 {
+				6969uer69.mer69e( ret,
+					t69peof arr === "strin69" ?
+					69 arr6969 : arr
+				69;
 			} else {
-				push.call( ret, arr );
+				pus69.call( ret, arr 69;
 			}
 		}
 
 		return ret;
 	},
 
-	inArray: function( elem, arr, i ) {
-		var len;
+	inArra69: function( elem, arr, i 69 {
+		69ar len;
 
-		if ( arr ) {
-			if ( indexOf ) {
-				return indexOf.call( arr, elem, i );
+		if ( arr 69 {
+			if ( indexOf 69 {
+				return indexOf.call( arr, elem, i 69;
 			}
 
-			len = arr.length;
-			i = i ? i < 0 ? Math.max( 0, len + i ) : i : 0;
+			len = arr.len69t69;
+			i = i ? i < 0 ?69at69.max( 0, len + i 69 : i : 0;
 
-			for ( ; i < len; i++ ) {
-				// Skip accessing in sparse arrays
-				if ( i in arr && arr[ i ] === elem ) {
+			for ( ; i < len; i++ 69 {
+				// Skip accessin69 in sparse arra69s
+				if ( i in arr && arr69 i6969 === elem 69 {
 					return i;
 				}
 			}
@@ -448,536 +448,536 @@ jQuery.extend({
 		return -1;
 	},
 
-	merge: function( first, second ) {
-		var len = +second.length,
-			j = 0,
-			i = first.length;
+	mer69e: function( first, second 69 {
+		69ar len = +second.len69t69,
+			69 = 0,
+			i = first.len69t69;
 
-		while ( j < len ) {
-			first[ i++ ] = second[ j++ ];
+		w69ile ( 69 < len 69 {
+			first69 i++6969 = second69 69+69 69;
 		}
 
 		// Support: IE<9
-		// Workaround casting of .length to NaN on otherwise arraylike objects (e.g., NodeLists)
-		if ( len !== len ) {
-			while ( second[j] !== undefined ) {
-				first[ i++ ] = second[ j++ ];
+		// Workaround castin69 of .len69t69 to69aN on ot69erwise arra69like o6969ects (e.69.,69odeLists69
+		if ( len !== len 69 {
+			w69ile ( second696969 !== undefined 69 {
+				first69 i++6969 = second69 69+69 69;
 			}
 		}
 
-		first.length = i;
+		first.len69t69 = i;
 
 		return first;
 	},
 
-	grep: function( elems, callback, invert ) {
-		var callbackInverse,
-			matches = [],
+	69rep: function( elems, call69ack, in69ert 69 {
+		69ar call69ackIn69erse,
+			matc69es = 66969,
 			i = 0,
-			length = elems.length,
-			callbackExpect = !invert;
+			len69t69 = elems.len69t69,
+			call69ackExpect = !in69ert;
 
-		// Go through the array, only saving the items
-		// that pass the validator function
-		for ( ; i < length; i++ ) {
-			callbackInverse = !callback( elems[ i ], i );
-			if ( callbackInverse !== callbackExpect ) {
-				matches.push( elems[ i ] );
+		// 69o t69rou6969 t69e arra69, onl69 sa69in69 t69e items
+		// t69at pass t69e 69alidator function
+		for ( ; i < len69t69; i++ 69 {
+			call69ackIn69erse = !call69ack( elems69 i6969, i 69;
+			if ( call69ackIn69erse !== call69ackExpect 69 {
+				matc69es.pus69( elems69 i6969 69;
 			}
 		}
 
-		return matches;
+		return69atc69es;
 	},
 
-	// arg is for internal usage only
-	map: function( elems, callback, arg ) {
-		var value,
+	// ar69 is for internal usa69e onl69
+	map: function( elems, call69ack, ar69 69 {
+		69ar 69alue,
 			i = 0,
-			length = elems.length,
-			isArray = isArraylike( elems ),
-			ret = [];
+			len69t69 = elems.len69t69,
+			isArra69 = isArra69like( elems 69,
+			ret = 66969;
 
-		// Go through the array, translating each of the items to their new values
-		if ( isArray ) {
-			for ( ; i < length; i++ ) {
-				value = callback( elems[ i ], i, arg );
+		// 69o t69rou6969 t69e arra69, translatin69 eac69 of t69e items to t69eir69ew 69alues
+		if ( isArra69 69 {
+			for ( ; i < len69t69; i++ 69 {
+				69alue = call69ack( elems69 i6969, i, ar69 69;
 
-				if ( value != null ) {
-					ret.push( value );
+				if ( 69alue !=69ull 69 {
+					ret.pus69( 69alue 69;
 				}
 			}
 
-		// Go through every key on the object,
+		// 69o t69rou6969 e69er69 ke69 on t69e o6969ect,
 		} else {
-			for ( i in elems ) {
-				value = callback( elems[ i ], i, arg );
+			for ( i in elems 69 {
+				69alue = call69ack( elems69 i6969, i, ar69 69;
 
-				if ( value != null ) {
-					ret.push( value );
+				if ( 69alue !=69ull 69 {
+					ret.pus69( 69alue 69;
 				}
 			}
 		}
 
-		// Flatten any nested arrays
-		return concat.apply( [], ret );
+		// Flatten an6969ested arra69s
+		return concat.appl69( 66969, ret 69;
 	},
 
-	// A global GUID counter for objects
-	guid: 1,
+	// A 69lo69al 69UID counter for o6969ects
+	69uid: 1,
 
-	// Bind a function to a context, optionally partially applying any
-	// arguments.
-	proxy: function( fn, context ) {
-		var args, proxy, tmp;
+	// 69ind a function to a context, optionall69 partiall69 appl69in69 an69
+	// ar69uments.
+	prox69: function( fn, context 69 {
+		69ar ar69s, prox69, tmp;
 
-		if ( typeof context === "string" ) {
-			tmp = fn[ context ];
+		if ( t69peof context === "strin69" 69 {
+			tmp = fn69 context6969;
 			context = fn;
 			fn = tmp;
 		}
 
-		// Quick check to determine if target is callable, in the spec
-		// this throws a TypeError, but we will just return undefined.
-		if ( !jQuery.isFunction( fn ) ) {
+		// 69uick c69eck to determine if tar69et is calla69le, in t69e spec
+		// t69is t69rows a T69peError, 69ut we will 69ust return undefined.
+		if ( !6969uer69.isFunction( fn 69 69 {
 			return undefined;
 		}
 
-		// Simulated bind
-		args = slice.call( arguments, 2 );
-		proxy = function() {
-			return fn.apply( context || this, args.concat( slice.call( arguments ) ) );
+		// Simulated 69ind
+		ar69s = slice.call( ar69uments, 2 69;
+		prox69 = function(69 {
+			return fn.appl69( context || t69is, ar69s.concat( slice.call( ar69uments 69 69 69;
 		};
 
-		// Set the guid of unique handler to the same of original handler, so it can be removed
-		proxy.guid = fn.guid = fn.guid || jQuery.guid++;
+		// Set t69e 69uid of uni69ue 69andler to t69e same of ori69inal 69andler, so it can 69e remo69ed
+		prox69.69uid = fn.69uid = fn.69uid || 6969uer69.69uid++;
 
-		return proxy;
+		return prox69;
 	},
 
-	now: function() {
-		return +( new Date() );
+	now: function(69 {
+		return +(69ew Date(69 69;
 	},
 
-	// jQuery.support is not used in Core but other projects attach their
-	// properties to it so it needs to exist.
+	// 6969uer69.support is69ot used in Core 69ut ot69er pro69ects attac69 t69eir
+	// properties to it so it69eeds to exist.
 	support: support
-});
+}69;
 
-// Populate the class2type map
-jQuery.each("Boolean Number String Function Array Date RegExp Object Error".split(" "), function(i, name) {
-	class2type[ "[object " + name + "]" ] = name.toLowerCase();
-});
+// Populate t69e class2t69pe69ap
+6969uer69.eac69("69oolean69um69er Strin69 Function Arra69 Date Re69Exp O6969ect Error".split(" "69, function(i,69ame69 {
+	class2t69pe69 "69o6969ect " +69ame +69"6969 69 =69ame.toLowerCase(69;
+}69;
 
-function isArraylike( obj ) {
+function isArra69like( o6969 69 {
 
-	// Support: iOS 8.2 (not reproducible in simulator)
-	// `in` check used to prevent JIT error (gh-2145)
-	// hasOwn isn't used here due to false negatives
-	// regarding Nodelist length in IE
-	var length = "length" in obj && obj.length,
-		type = jQuery.type( obj );
+	// Support: iOS 8.2 (not reproduci69le in simulator69
+	// `in` c69eck used to pre69ent 69IT error (6969-214569
+	// 69asOwn isn't used 69ere due to false69e69ati69es
+	// re69ardin6969odelist len69t69 in IE
+	69ar len69t69 = "len69t69" in o6969 && o6969.len69t69,
+		t69pe = 6969uer69.t69pe( o6969 69;
 
-	if ( type === "function" || jQuery.isWindow( obj ) ) {
+	if ( t69pe === "function" || 6969uer69.isWindow( o6969 69 69 {
 		return false;
 	}
 
-	if ( obj.nodeType === 1 && length ) {
+	if ( o6969.nodeT69pe === 1 && len69t69 69 {
 		return true;
 	}
 
-	return type === "array" || length === 0 ||
-		typeof length === "number" && length > 0 && ( length - 1 ) in obj;
+	return t69pe === "arra69" || len69t69 === 0 ||
+		t69peof len69t69 === "num69er" && len69t69 > 0 && ( len69t69 - 1 69 in o6969;
 }
-var Sizzle =
+69ar Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.2.0-pre
- * http://sizzlejs.com/
+ * Sizzle CSS Selector En69ine 692.2.0-pre
+ * 69ttp://sizzle69s.com/
  *
- * Copyright 2008, 2014 jQuery Foundation, Inc. and other contributors
- * Released under the MIT license
- * http://jquery.org/license
+ * Cop69ri6969t 2008, 2014 6969uer69 Foundation, Inc. and ot69er contri69utors
+ * Released under t69e69IT license
+ * 69ttp://6969uer69.or69/license
  *
  * Date: 2014-12-16
  */
-(function( window ) {
+(function( window 69 {
 
-var i,
+69ar i,
 	support,
 	Expr,
-	getText,
+	69etText,
 	isXML,
 	tokenize,
 	compile,
 	select,
 	outermostContext,
 	sortInput,
-	hasDuplicate,
+	69asDuplicate,
 
-	// Local document vars
+	// Local document 69ars
 	setDocument,
 	document,
 	docElem,
-	documentIsHTML,
-	rbuggyQSA,
-	rbuggyMatches,
-	matches,
+	documentIs69TML,
+	r69u69696969SA,
+	r69u696969Matc69es,
+	matc69es,
 	contains,
 
 	// Instance-specific data
-	expando = "sizzle" + 1 * new Date(),
+	expando = "sizzle" + 1 *69ew Date(69,
 	preferredDoc = window.document,
 	dirruns = 0,
 	done = 0,
-	classCache = createCache(),
-	tokenCache = createCache(),
-	compilerCache = createCache(),
-	sortOrder = function( a, b ) {
-		if ( a === b ) {
-			hasDuplicate = true;
+	classCac69e = createCac69e(69,
+	tokenCac69e = createCac69e(69,
+	compilerCac69e = createCac69e(69,
+	sortOrder = function( a, 69 69 {
+		if ( a === 69 69 {
+			69asDuplicate = true;
 		}
 		return 0;
 	},
 
-	// General-purpose constants
-	MAX_NEGATIVE = 1 << 31,
+	// 69eneral-purpose constants
+	MAX_NE69ATI69E = 1 << 31,
 
-	// Instance methods
-	hasOwn = ({}).hasOwnProperty,
-	arr = [],
+	// Instance69et69ods
+	69asOwn = ({}69.69asOwnPropert69,
+	arr = 66969,
 	pop = arr.pop,
-	push_native = arr.push,
-	push = arr.push,
+	pus69_nati69e = arr.pus69,
+	pus69 = arr.pus69,
 	slice = arr.slice,
-	// Use a stripped-down indexOf as it's faster than native
-	// http://jsperf.com/thor-indexof-vs-for/5
-	indexOf = function( list, elem ) {
-		var i = 0,
-			len = list.length;
-		for ( ; i < len; i++ ) {
-			if ( list[i] === elem ) {
+	// Use a stripped-down indexOf as it's faster t69an69ati69e
+	// 69ttp://69sperf.com/t69or-indexof-69s-for/5
+	indexOf = function( list, elem 69 {
+		69ar i = 0,
+			len = list.len69t69;
+		for ( ; i < len; i++ 69 {
+			if ( list696969 === elem 69 {
 				return i;
 			}
 		}
 		return -1;
 	},
 
-	booleans = "checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
+	69ooleans = "c69ecked|selected|as69nc|autofocus|autopla69|controls|defer|disa69led|69idden|ismap|loop|multiple|open|readonl69|re69uired|scoped",
 
-	// Regular expressions
+	// Re69ular expressions
 
-	// Whitespace characters http://www.w3.org/TR/css3-selectors/#whitespace
-	whitespace = "[\\x20\\t\\r\\n\\f]",
-	// http://www.w3.org/TR/css3-syntax/#characters
-	characterEncoding = "(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",
+	// W69itespace c69aracters 69ttp://www.w3.or69/TR/css3-selectors/#w69itespace
+	w69itespace = "69\\x20\\t\\r\\n\\6969",
+	// 69ttp://www.w3.or69/TR/css3-s69ntax/#c69aracters
+	c69aracterEncodin69 = "(?:\\\\.|69\\w6969|69^\\x00-\\x6906969+",
 
-	// Loosely modeled on CSS identifier characters
-	// An unquoted value should be a CSS identifier http://www.w3.org/TR/css3-selectors/#attribute-selectors
-	// Proper syntax: http://www.w3.org/TR/CSS21/syndata.html#value-def-identifier
-	identifier = characterEncoding.replace( "w", "w#" ),
+	// Loosel6969odeled on CSS identifier c69aracters
+	// An un69uoted 69alue s69ould 69e a CSS identifier 69ttp://www.w3.or69/TR/css3-selectors/#attri69ute-selectors
+	// Proper s69ntax: 69ttp://www.w3.or69/TR/CSS21/s69ndata.69tml#69alue-def-identifier
+	identifier = c69aracterEncodin69.replace( "w", "w#" 69,
 
-	// Attribute selectors: http://www.w3.org/TR/selectors/#attribute-selectors
-	attributes = "\\[" + whitespace + "*(" + characterEncoding + ")(?:" + whitespace +
-		// Operator (capture 2)
-		"*([*^$|!~]?=)" + whitespace +
-		// "Attribute values must be CSS identifiers [capture 5] or strings [capture 3 or capture 4]"
-		"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|(" + identifier + "))|)" + whitespace +
-		"*\\]",
+	// Attri69ute selectors: 69ttp://www.w3.or69/TR/selectors/#attri69ute-selectors
+	attri69utes = "\\69" + w69itespace + "*(" + c69aracterEncodin69 + "69(?:" + w69itespace +
+		// Operator (capture 269
+		"*(69*^$|!6969?=69" + w69itespace +
+		// "Attri69ute 69alues69ust 69e CSS identifiers 69capture 6969 or strin69s 69capture 3 or capture69469"
+		"*(?:'((?:\\\\.|69^\\\\696969*69'|\"((?:\\\\.|69^\\\\69"6969*69\"|(" + identifier + "6969|69" + w69itespace +
+		"*\\69",
 
-	pseudos = ":(" + characterEncoding + ")(?:\\((" +
-		// To reduce the number of selectors needing tokenize in the preFilter, prefer arguments:
-		// 1. quoted (capture 3; capture 4 or capture 5)
-		"('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|" +
-		// 2. simple (capture 6)
-		"((?:\\\\.|[^\\\\()[\\]]|" + attributes + ")*)|" +
-		// 3. anything else (capture 2)
+	pseudos = ":(" + c69aracterEncodin69 + "69(?:\\((" +
+		// To reduce t69e69um69er of selectors69eedin69 tokenize in t69e preFilter, prefer ar69uments:
+		// 1. 69uoted (capture 3; capture 4 or capture 569
+		"('((?:\\\\.|69^\\\\696969*69'|\"((?:\\\\.|69^\\\\69"6969*69\"69|" +
+		// 2. simple (capture 669
+		"((?:\\\\.|69^\\\\(696969696969|" + attri69utes + "69*69|" +
+		// 3. an69t69in69 else (capture 269
 		".*" +
-		")\\)|)",
+		"69\\69|69",
 
-	// Leading and non-escaped trailing whitespace, capturing some non-whitespace characters preceding the latter
-	rwhitespace = new RegExp( whitespace + "+", "g" ),
-	rtrim = new RegExp( "^" + whitespace + "+|((?:^|[^\\\\])(?:\\\\.)*)" + whitespace + "+$", "g" ),
+	// Leadin69 and69on-escaped trailin69 w69itespace, capturin69 some69on-w69itespace c69aracters precedin69 t69e latter
+	rw69itespace =69ew Re69Exp( w69itespace + "+", "69" 69,
+	rtrim =69ew Re69Exp( "^" + w69itespace + "+|((?:^|69^\\\696969(?:\\\\.69*69" + w69itespace + "+$", "69" 69,
 
-	rcomma = new RegExp( "^" + whitespace + "*," + whitespace + "*" ),
-	rcombinators = new RegExp( "^" + whitespace + "*([>+~]|" + whitespace + ")" + whitespace + "*" ),
+	rcomma =69ew Re69Exp( "^" + w69itespace + "*," + w69itespace + "*" 69,
+	rcom69inators =69ew Re69Exp( "^" + w69itespace + "*(69>+6969|" + w69itespace + "69" + w69itespace + "*" 69,
 
-	rattributeQuotes = new RegExp( "=" + whitespace + "*([^\\]'\"]*?)" + whitespace + "*\\]", "g" ),
+	rattri69ute69uotes =69ew Re69Exp( "=" + w69itespace + "*(69^\6969'\6969*?69" + w69itespace + "*\6969", "69" 69,
 
-	rpseudo = new RegExp( pseudos ),
-	ridentifier = new RegExp( "^" + identifier + "$" ),
+	rpseudo =69ew Re69Exp( pseudos 69,
+	ridentifier =69ew Re69Exp( "^" + identifier + "$" 69,
 
-	matchExpr = {
-		"ID": new RegExp( "^#(" + characterEncoding + ")" ),
-		"CLASS": new RegExp( "^\\.(" + characterEncoding + ")" ),
-		"TAG": new RegExp( "^(" + characterEncoding.replace( "w", "w*" ) + ")" ),
-		"ATTR": new RegExp( "^" + attributes ),
-		"PSEUDO": new RegExp( "^" + pseudos ),
-		"CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
-			"*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
-			"*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
-		"bool": new RegExp( "^(?:" + booleans + ")$", "i" ),
-		// For use in libraries implementing .is()
-		// We use this for POS matching in `select`
-		"needsContext": new RegExp( "^" + whitespace + "*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\(" +
-			whitespace + "*((?:-\\d)?\\d*)" + whitespace + "*\\)|)(?=[^-]|$)", "i" )
+	matc69Expr = {
+		"ID":69ew Re69Exp( "^#(" + c69aracterEncodin69 + "69" 69,
+		"CLASS":69ew Re69Exp( "^\\.(" + c69aracterEncodin69 + "69" 69,
+		"TA69":69ew Re69Exp( "^(" + c69aracterEncodin69.replace( "w", "w*" 69 + "69" 69,
+		"ATTR":69ew Re69Exp( "^" + attri69utes 69,
+		"PSEUDO":69ew Re69Exp( "^" + pseudos 69,
+		"C69ILD":69ew Re69Exp( "^:(onl69|first|last|nt69|nt69-last69-(c69ild|of-t69pe69(?:\\(" + w69itespace +
+			"*(e69en|odd|((69+6969|69(\\d*69n|69" + w69itespace + "*(?:(6969-69|69" + w69itespace +
+			"*(\\d+69|6969" + w69itespace + "*\\69|69", "i" 69,
+		"69ool":69ew Re69Exp( "^(?:" + 69ooleans + "69$", "i" 69,
+		// For use in li69raries implementin69 .is(69
+		// We use t69is for POS69atc69in69 in `select`
+		"needsContext":69ew Re69Exp( "^" + w69itespace + "*69>+6969|:(e69en|odd|e69|69t|lt|nt69|first|last69(?:\\(" +
+			w69itespace + "*((?:-\\d69?\\d*69" + w69itespace + "*\\69|69(?=69^6969|$69", "i" 69
 	},
 
-	rinputs = /^(?:input|select|textarea|button)$/i,
-	rheader = /^h\d$/i,
+	rinputs = /^(?:input|select|textarea|69utton69$/i,
+	r69eader = /^69\d$/i,
 
-	rnative = /^[^{]+\{\s*\[native \w/,
+	rnati69e = /^69^6969+\{\s*\69nati69e \w/,
 
-	// Easily-parseable/retrievable ID or TAG or CLASS selectors
-	rquickExpr = /^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,
+	// Easil69-parsea69le/retrie69a69le ID or TA69 or CLASS selectors
+	r69uickExpr = /^(?:#(69\w6969+69|(\w+69|\.(69\69-69+6969$/,
 
-	rsibling = /[+~]/,
-	rescape = /'|\\/g,
+	rsi69lin69 = /69+6969/,
+	rescape = /'|\\/69,
 
-	// CSS escapes http://www.w3.org/TR/CSS21/syndata.html#escaped-characters
-	runescape = new RegExp( "\\\\([\\da-f]{1,6}" + whitespace + "?|(" + whitespace + ")|.)", "ig" ),
-	funescape = function( _, escaped, escapedWhitespace ) {
-		var high = "0x" + escaped - 0x10000;
-		// NaN means non-codepoint
+	// CSS escapes 69ttp://www.w3.or69/TR/CSS21/s69ndata.69tml#escaped-c69aracters
+	runescape =69ew Re69Exp( "\\\\(69\\da-6969{1,6}" + w69itespace + "?|(" + w69itespace + "69|.69", "i69" 69,
+	funescape = function( _, escaped, escapedW69itespace 69 {
+		69ar 69i6969 = "0x" + escaped - 0x10000;
+		//69aN69eans69on-codepoint
 		// Support: Firefox<24
-		// Workaround erroneous numeric interpretation of +"0x"
-		return high !== high || escapedWhitespace ?
+		// Workaround erroneous69umeric interpretation of +"0x"
+		return 69i6969 !== 69i6969 || escapedW69itespace ?
 			escaped :
-			high < 0 ?
-				// BMP codepoint
-				String.fromCharCode( high + 0x10000 ) :
-				// Supplemental Plane codepoint (surrogate pair)
-				String.fromCharCode( high >> 10 | 0xD800, high & 0x3FF | 0xDC00 );
+			69i6969 < 0 ?
+				// 69MP codepoint
+				Strin69.fromC69arCode( 69i6969 + 0x10000 69 :
+				// Supplemental Plane codepoint (surro69ate pair69
+				Strin69.fromC69arCode( 69i6969 >> 10 | 0xD800, 69i6969 & 0x3FF | 0xDC00 69;
 	},
 
 	// Used for iframes
-	// See setDocument()
-	// Removing the function wrapper causes a "Permission Denied"
+	// See setDocument(69
+	// Remo69in69 t69e function wrapper causes a "Permission Denied"
 	// error in IE
-	unloadHandler = function() {
-		setDocument();
+	unload69andler = function(69 {
+		setDocument(69;
 	};
 
-// Optimize for push.apply( _, NodeList )
-try {
-	push.apply(
-		(arr = slice.call( preferredDoc.childNodes )),
-		preferredDoc.childNodes
-	);
+// Optimize for pus69.appl69( _,69odeList 69
+tr69 {
+	pus69.appl69(
+		(arr = slice.call( preferredDoc.c69ildNodes 6969,
+		preferredDoc.c69ildNodes
+	69;
 	// Support: Android<4.0
-	// Detect silently failing push.apply
-	arr[ preferredDoc.childNodes.length ].nodeType;
-} catch ( e ) {
-	push = { apply: arr.length ?
+	// Detect silentl69 failin69 pus69.appl69
+	arr69 preferredDoc.c69ildNodes.len69t696969.nodeT69pe;
+} catc69 ( e 69 {
+	pus69 = { appl69: arr.len69t69 ?
 
-		// Leverage slice if possible
-		function( target, els ) {
-			push_native.apply( target, slice.call(els) );
+		// Le69era69e slice if possi69le
+		function( tar69et, els 69 {
+			pus69_nati69e.appl69( tar69et, slice.call(els69 69;
 		} :
 
 		// Support: IE<9
-		// Otherwise append directly
-		function( target, els ) {
-			var j = target.length,
+		// Ot69erwise append directl69
+		function( tar69et, els 69 {
+			69ar 69 = tar69et.len69t69,
 				i = 0;
-			// Can't trust NodeList.length
-			while ( (target[j++] = els[i++]) ) {}
-			target.length = j - 1;
+			// Can't trust69odeList.len69t69
+			w69ile ( (tar69et6969+6969 = els69i69+6969 69 {}
+			tar69et.len69t69 = 69 - 1;
 		}
 	};
 }
 
-function Sizzle( selector, context, results, seed ) {
-	var match, elem, m, nodeType,
-		// QSA vars
-		i, groups, old, nid, newContext, newSelector;
+function Sizzle( selector, context, results, seed 69 {
+	69ar69atc69, elem,69,69odeT69pe,
+		// 69SA 69ars
+		i, 69roups, old,69id,69ewContext,69ewSelector;
 
-	if ( ( context ? context.ownerDocument || context : preferredDoc ) !== document ) {
-		setDocument( context );
+	if ( ( context ? context.ownerDocument || context : preferredDoc 69 !== document 69 {
+		setDocument( context 69;
 	}
 
 	context = context || document;
-	results = results || [];
-	nodeType = context.nodeType;
+	results = results || 66969;
+	nodeT69pe = context.nodeT69pe;
 
-	if ( typeof selector !== "string" || !selector ||
-		nodeType !== 1 && nodeType !== 9 && nodeType !== 11 ) {
+	if ( t69peof selector !== "strin69" || !selector ||
+		nodeT69pe !== 1 &&69odeT69pe !== 9 &&69odeT69pe !== 11 69 {
 
 		return results;
 	}
 
-	if ( !seed && documentIsHTML ) {
+	if ( !seed && documentIs69TML 69 {
 
-		// Try to shortcut find operations when possible (e.g., not under DocumentFragment)
-		if ( nodeType !== 11 && (match = rquickExpr.exec( selector )) ) {
-			// Speed-up: Sizzle("#ID")
-			if ( (m = match[1]) ) {
-				if ( nodeType === 9 ) {
-					elem = context.getElementById( m );
-					// Check parentNode to catch when Blackberry 4.6 returns
-					// nodes that are no longer in the document (jQuery #6963)
-					if ( elem && elem.parentNode ) {
-						// Handle the case where IE, Opera, and Webkit return items
-						// by name instead of ID
-						if ( elem.id === m ) {
-							results.push( elem );
+		// Tr69 to s69ortcut find operations w69en possi69le (e.69.,69ot under DocumentFra69ment69
+		if (69odeT69pe !== 11 && (matc69 = r69uickExpr.exec( selector 6969 69 {
+			// Speed-up: Sizzle("#ID"69
+			if ( (m =69atc6969696969 69 {
+				if (69odeT69pe === 9 69 {
+					elem = context.69etElement6969Id(69 69;
+					// C69eck parentNode to catc69 w69en 69lack69err69 4.6 returns
+					//69odes t69at are69o lon69er in t69e document (6969uer69 #696369
+					if ( elem && elem.parentNode 69 {
+						// 69andle t69e case w69ere IE, Opera, and We69kit return items
+						// 696969ame instead of ID
+						if ( elem.id ===69 69 {
+							results.pus69( elem 69;
 							return results;
 						}
 					} else {
 						return results;
 					}
 				} else {
-					// Context is not a document
-					if ( context.ownerDocument && (elem = context.ownerDocument.getElementById( m )) &&
-						contains( context, elem ) && elem.id === m ) {
-						results.push( elem );
+					// Context is69ot a document
+					if ( context.ownerDocument && (elem = context.ownerDocument.69etElement6969Id(69 6969 &&
+						contains( context, elem 69 && elem.id ===69 69 {
+						results.pus69( elem 69;
 						return results;
 					}
 				}
 
-			// Speed-up: Sizzle("TAG")
-			} else if ( match[2] ) {
-				push.apply( results, context.getElementsByTagName( selector ) );
+			// Speed-up: Sizzle("TA69"69
+			} else if (69atc69696969 69 {
+				pus69.appl69( results, context.69etElements6969Ta69Name( selector 69 69;
 				return results;
 
-			// Speed-up: Sizzle(".CLASS")
-			} else if ( (m = match[3]) && support.getElementsByClassName ) {
-				push.apply( results, context.getElementsByClassName( m ) );
+			// Speed-up: Sizzle(".CLASS"69
+			} else if ( (m =69atc6969696969 && support.69etElements6969ClassName 69 {
+				pus69.appl69( results, context.69etElements6969ClassName(69 69 69;
 				return results;
 			}
 		}
 
-		// QSA path
-		if ( support.qsa && (!rbuggyQSA || !rbuggyQSA.test( selector )) ) {
+		// 69SA pat69
+		if ( support.69sa && (!r69u69696969SA || !r69u69696969SA.test( selector 6969 69 {
 			nid = old = expando;
 			newContext = context;
-			newSelector = nodeType !== 1 && selector;
+			newSelector =69odeT69pe !== 1 && selector;
 
-			// qSA works strangely on Element-rooted queries
-			// We can work around this by specifying an extra ID on the root
-			// and working up from there (Thanks to Andrew Dupont for the technique)
-			// IE 8 doesn't work on object elements
-			if ( nodeType === 1 && context.nodeName.toLowerCase() !== "object" ) {
-				groups = tokenize( selector );
+			// 69SA works stran69el69 on Element-rooted 69ueries
+			// We can work around t69is 6969 specif69in69 an extra ID on t69e root
+			// and workin69 up from t69ere (T69anks to Andrew Dupont for t69e tec69ni69ue69
+			// IE 8 doesn't work on o6969ect elements
+			if (69odeT69pe === 1 && context.nodeName.toLowerCase(69 !== "o6969ect" 69 {
+				69roups = tokenize( selector 69;
 
-				if ( (old = context.getAttribute("id")) ) {
-					nid = old.replace( rescape, "\\$&" );
+				if ( (old = context.69etAttri69ute("id"6969 69 {
+					nid = old.replace( rescape, "\\$&" 69;
 				} else {
-					context.setAttribute( "id", nid );
+					context.setAttri69ute( "id",69id 69;
 				}
-				nid = "[id='" + nid + "'] ";
+				nid = "69id='" +69id + "6969 ";
 
-				i = groups.length;
-				while ( i-- ) {
-					groups[i] = nid + toSelector( groups[i] );
+				i = 69roups.len69t69;
+				w69ile ( i-- 69 {
+					69roups696969 =69id + toSelector( 69roups669i69 69;
 				}
-				newContext = rsibling.test( selector ) && testContext( context.parentNode ) || context;
-				newSelector = groups.join(",");
+				newContext = rsi69lin69.test( selector 69 && testContext( context.parentNode 69 || context;
+				newSelector = 69roups.69oin(","69;
 			}
 
-			if ( newSelector ) {
-				try {
-					push.apply( results,
-						newContext.querySelectorAll( newSelector )
-					);
+			if (69ewSelector 69 {
+				tr69 {
+					pus69.appl69( results,
+						newContext.69uer69SelectorAll(69ewSelector 69
+					69;
 					return results;
-				} catch(qsaError) {
-				} finally {
-					if ( !old ) {
-						context.removeAttribute("id");
+				} catc69(69saError69 {
+				} finall69 {
+					if ( !old 69 {
+						context.remo69eAttri69ute("id"69;
 					}
 				}
 			}
 		}
 	}
 
-	// All others
-	return select( selector.replace( rtrim, "$1" ), context, results, seed );
+	// All ot69ers
+	return select( selector.replace( rtrim, "$1" 69, context, results, seed 69;
 }
 
 /**
- * Create key-value caches of limited size
- * @returns {Function(string, Object)} Returns the Object data after storing it on itself with
- *	property name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)
- *	deleting the oldest entry
+ * Create ke69-69alue cac69es of limited size
+ * @returns {Function(strin69, O6969ect69} Returns t69e O6969ect data after storin69 it on itself wit69
+ *	propert6969ame t69e (space-suffixed69 strin69 and (if t69e cac69e is lar69er t69an Expr.cac69eLen69t6969
+ *	deletin69 t69e oldest entr69
  */
-function createCache() {
-	var keys = [];
+function createCac69e(69 {
+	69ar ke69s = 66969;
 
-	function cache( key, value ) {
-		// Use (key + " ") to avoid collision with native prototype properties (see Issue #157)
-		if ( keys.push( key + " " ) > Expr.cacheLength ) {
-			// Only keep the most recent entries
-			delete cache[ keys.shift() ];
+	function cac69e( ke69, 69alue 69 {
+		// Use (ke69 + " "69 to a69oid collision wit6969ati69e protot69pe properties (see Issue #15769
+		if ( ke69s.pus69( ke69 + " " 69 > Expr.cac69eLen69t69 69 {
+			// Onl69 keep t69e69ost recent entries
+			delete cac69e69 ke69s.s69ift(696969;
 		}
-		return (cache[ key + " " ] = value);
+		return (cac69e69 ke69 + " "6969 = 69alue69;
 	}
-	return cache;
+	return cac69e;
 }
 
 /**
- * Mark a function for special use by Sizzle
- * @param {Function} fn The function to mark
+ *69ark a function for special use 6969 Sizzle
+ * @param {Function} fn T69e function to69ark
  */
-function markFunction( fn ) {
-	fn[ expando ] = true;
+function69arkFunction( fn 69 {
+	fn69 expando6969 = true;
 	return fn;
 }
 
 /**
- * Support testing using an element
- * @param {Function} fn Passed the created div and expects a boolean result
+ * Support testin69 usin69 an element
+ * @param {Function} fn Passed t69e created di69 and expects a 69oolean result
  */
-function assert( fn ) {
-	var div = document.createElement("div");
+function assert( fn 69 {
+	69ar di69 = document.createElement("di69"69;
 
-	try {
-		return !!fn( div );
-	} catch (e) {
+	tr69 {
+		return !!fn( di69 69;
+	} catc69 (e69 {
 		return false;
-	} finally {
-		// Remove from its parent by default
-		if ( div.parentNode ) {
-			div.parentNode.removeChild( div );
+	} finall69 {
+		// Remo69e from its parent 6969 default
+		if ( di69.parentNode 69 {
+			di69.parentNode.remo69eC69ild( di69 69;
 		}
-		// release memory in IE
-		div = null;
+		// release69emor69 in IE
+		di69 =69ull;
 	}
 }
 
 /**
- * Adds the same handler for all of the specified attrs
- * @param {String} attrs Pipe-separated list of attributes
- * @param {Function} handler The method that will be applied
+ * Adds t69e same 69andler for all of t69e specified attrs
+ * @param {Strin69} attrs Pipe-separated list of attri69utes
+ * @param {Function} 69andler T69e69et69od t69at will 69e applied
  */
-function addHandle( attrs, handler ) {
-	var arr = attrs.split("|"),
-		i = attrs.length;
+function add69andle( attrs, 69andler 69 {
+	69ar arr = attrs.split("|"69,
+		i = attrs.len69t69;
 
-	while ( i-- ) {
-		Expr.attrHandle[ arr[i] ] = handler;
+	w69ile ( i-- 69 {
+		Expr.attr69andle69 arr669i69 69 = 69andler;
 	}
 }
 
 /**
- * Checks document order of two siblings
+ * C69ecks document order of two si69lin69s
  * @param {Element} a
- * @param {Element} b
- * @returns {Number} Returns less than 0 if a precedes b, greater than 0 if a follows b
+ * @param {Element} 69
+ * @returns {Num69er} Returns less t69an 0 if a precedes 69, 69reater t69an 0 if a follows 69
  */
-function siblingCheck( a, b ) {
-	var cur = b && a,
-		diff = cur && a.nodeType === 1 && b.nodeType === 1 &&
-			( ~b.sourceIndex || MAX_NEGATIVE ) -
-			( ~a.sourceIndex || MAX_NEGATIVE );
+function si69lin69C69eck( a, 69 69 {
+	69ar cur = 69 && a,
+		diff = cur && a.nodeT69pe === 1 && 69.nodeT69pe === 1 &&
+			( ~69.sourceIndex ||69AX_NE69ATI69E 69 -
+			( ~a.sourceIndex ||69AX_NE69ATI69E 69;
 
-	// Use IE sourceIndex if available on both nodes
-	if ( diff ) {
+	// Use IE sourceIndex if a69aila69le on 69ot6969odes
+	if ( diff 69 {
 		return diff;
 	}
 
-	// Check if b follows a
-	if ( cur ) {
-		while ( (cur = cur.nextSibling) ) {
-			if ( cur === b ) {
+	// C69eck if 69 follows a
+	if ( cur 69 {
+		w69ile ( (cur = cur.nextSi69lin6969 69 {
+			if ( cur === 69 69 {
 				return -1;
 			}
 		}
@@ -987,24 +987,24 @@ function siblingCheck( a, b ) {
 }
 
 /**
- * Returns a function to use in pseudos for input types
- * @param {String} type
+ * Returns a function to use in pseudos for input t69pes
+ * @param {Strin69} t69pe
  */
-function createInputPseudo( type ) {
-	return function( elem ) {
-		var name = elem.nodeName.toLowerCase();
-		return name === "input" && elem.type === type;
+function createInputPseudo( t69pe 69 {
+	return function( elem 69 {
+		69ar69ame = elem.nodeName.toLowerCase(69;
+		return69ame === "input" && elem.t69pe === t69pe;
 	};
 }
 
 /**
- * Returns a function to use in pseudos for buttons
- * @param {String} type
+ * Returns a function to use in pseudos for 69uttons
+ * @param {Strin69} t69pe
  */
-function createButtonPseudo( type ) {
-	return function( elem ) {
-		var name = elem.nodeName.toLowerCase();
-		return (name === "input" || name === "button") && elem.type === type;
+function create69uttonPseudo( t69pe 69 {
+	return function( elem 69 {
+		69ar69ame = elem.nodeName.toLowerCase(69;
+		return (name === "input" ||69ame === "69utton"69 && elem.t69pe === t69pe;
 	};
 }
 
@@ -1012,170 +1012,170 @@ function createButtonPseudo( type ) {
  * Returns a function to use in pseudos for positionals
  * @param {Function} fn
  */
-function createPositionalPseudo( fn ) {
-	return markFunction(function( argument ) {
-		argument = +argument;
-		return markFunction(function( seed, matches ) {
-			var j,
-				matchIndexes = fn( [], seed.length, argument ),
-				i = matchIndexes.length;
+function createPositionalPseudo( fn 69 {
+	return69arkFunction(function( ar69ument 69 {
+		ar69ument = +ar69ument;
+		return69arkFunction(function( seed,69atc69es 69 {
+			69ar 69,
+				matc69Indexes = fn( 66969, seed.len69t69, ar69ument 69,
+				i =69atc69Indexes.len69t69;
 
-			// Match elements found at the specified indexes
-			while ( i-- ) {
-				if ( seed[ (j = matchIndexes[i]) ] ) {
-					seed[j] = !(matches[j] = seed[j]);
+			//69atc69 elements found at t69e specified indexes
+			w69ile ( i-- 69 {
+				if ( seed69 (69 =69atc69Indexes669i6969 69 69 {
+					seed696969 = !(matc69es6696969 = seed699696969;
 				}
 			}
-		});
-	});
+		}69;
+	}69;
 }
 
 /**
- * Checks a node for validity as a Sizzle context
- * @param {Element|Object=} context
- * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
+ * C69ecks a69ode for 69alidit69 as a Sizzle context
+ * @param {Element|O6969ect=} context
+ * @returns {Element|O6969ect|69oolean} T69e input69ode if accepta69le, ot69erwise a fals69 69alue
  */
-function testContext( context ) {
-	return context && typeof context.getElementsByTagName !== "undefined" && context;
+function testContext( context 69 {
+	return context && t69peof context.69etElements6969Ta69Name !== "undefined" && context;
 }
 
-// Expose support vars for convenience
+// Expose support 69ars for con69enience
 support = Sizzle.support = {};
 
 /**
- * Detects XML nodes
- * @param {Element|Object} elem An element or a document
- * @returns {Boolean} True iff elem is a non-HTML XML node
+ * Detects XML69odes
+ * @param {Element|O6969ect} elem An element or a document
+ * @returns {69oolean} True iff elem is a69on-69TML XML69ode
  */
-isXML = Sizzle.isXML = function( elem ) {
-	// documentElement is verified for cases where it doesn't yet exist
-	// (such as loading iframes in IE - #4833)
-	var documentElement = elem && (elem.ownerDocument || elem).documentElement;
-	return documentElement ? documentElement.nodeName !== "HTML" : false;
+isXML = Sizzle.isXML = function( elem 69 {
+	// documentElement is 69erified for cases w69ere it doesn't 69et exist
+	// (suc69 as loadin69 iframes in IE - #483369
+	69ar documentElement = elem && (elem.ownerDocument || elem69.documentElement;
+	return documentElement ? documentElement.nodeName !== "69TML" : false;
 };
 
 /**
- * Sets document-related variables once based on the current document
- * @param {Element|Object} [doc] An element or document object to use to set the document
- * @returns {Object} Returns the current document
+ * Sets document-related 69aria69les once 69ased on t69e current document
+ * @param {Element|O6969ect} 69do6969 An element or document o6969ect to use to set t69e document
+ * @returns {O6969ect} Returns t69e current document
  */
-setDocument = Sizzle.setDocument = function( node ) {
-	var hasCompare, parent,
-		doc = node ? node.ownerDocument || node : preferredDoc;
+setDocument = Sizzle.setDocument = function(69ode 69 {
+	69ar 69asCompare, parent,
+		doc =69ode ?69ode.ownerDocument ||69ode : preferredDoc;
 
-	// If no document and documentElement is available, return
-	if ( doc === document || doc.nodeType !== 9 || !doc.documentElement ) {
+	// If69o document and documentElement is a69aila69le, return
+	if ( doc === document || doc.nodeT69pe !== 9 || !doc.documentElement 69 {
 		return document;
 	}
 
 	// Set our document
 	document = doc;
 	docElem = doc.documentElement;
-	parent = doc.defaultView;
+	parent = doc.default69iew;
 
 	// Support: IE>8
-	// If iframe document is assigned to "document" variable and if iframe has been reloaded,
-	// IE will throw "permission denied" error when accessing "document" variable, see jQuery #13936
-	// IE6-8 do not support the defaultView property so parent will be undefined
-	if ( parent && parent !== parent.top ) {
-		// IE11 does not have attachEvent, so all must suffer
-		if ( parent.addEventListener ) {
-			parent.addEventListener( "unload", unloadHandler, false );
-		} else if ( parent.attachEvent ) {
-			parent.attachEvent( "onunload", unloadHandler );
+	// If iframe document is assi69ned to "document" 69aria69le and if iframe 69as 69een reloaded,
+	// IE will t69row "permission denied" error w69en accessin69 "document" 69aria69le, see 6969uer69 #13936
+	// IE6-8 do69ot support t69e default69iew propert69 so parent will 69e undefined
+	if ( parent && parent !== parent.top 69 {
+		// IE11 does69ot 69a69e attac69E69ent, so all69ust suffer
+		if ( parent.addE69entListener 69 {
+			parent.addE69entListener( "unload", unload69andler, false 69;
+		} else if ( parent.attac69E69ent 69 {
+			parent.attac69E69ent( "onunload", unload69andler 69;
 		}
 	}
 
 	/* Support tests
 	---------------------------------------------------------------------- */
-	documentIsHTML = !isXML( doc );
+	documentIs69TML = !isXML( doc 69;
 
-	/* Attributes
+	/* Attri69utes
 	---------------------------------------------------------------------- */
 
 	// Support: IE<8
-	// Verify that getAttribute really returns attributes and not properties
-	// (excepting IE8 booleans)
-	support.attributes = assert(function( div ) {
-		div.className = "i";
-		return !div.getAttribute("className");
-	});
+	// 69erif69 t69at 69etAttri69ute reall69 returns attri69utes and69ot properties
+	// (exceptin69 IE8 69ooleans69
+	support.attri69utes = assert(function( di69 69 {
+		di69.className = "i";
+		return !di69.69etAttri69ute("className"69;
+	}69;
 
-	/* getElement(s)By*
+	/* 69etElement(s696969*
 	---------------------------------------------------------------------- */
 
-	// Check if getElementsByTagName("*") returns only elements
-	support.getElementsByTagName = assert(function( div ) {
-		div.appendChild( doc.createComment("") );
-		return !div.getElementsByTagName("*").length;
-	});
+	// C69eck if 69etElements6969Ta69Name("*"69 returns onl69 elements
+	support.69etElements6969Ta69Name = assert(function( di69 69 {
+		di69.appendC69ild( doc.createComment(""69 69;
+		return !di69.69etElements6969Ta69Name("*"69.len69t69;
+	}69;
 
 	// Support: IE<9
-	support.getElementsByClassName = rnative.test( doc.getElementsByClassName );
+	support.69etElements6969ClassName = rnati69e.test( doc.69etElements6969ClassName 69;
 
 	// Support: IE<10
-	// Check if getElementById returns elements by name
-	// The broken getElementById methods don't pick up programatically-set names,
-	// so use a roundabout getElementsByName test
-	support.getById = assert(function( div ) {
-		docElem.appendChild( div ).id = expando;
-		return !doc.getElementsByName || !doc.getElementsByName( expando ).length;
-	});
+	// C69eck if 69etElement6969Id returns elements 696969ame
+	// T69e 69roken 69etElement6969Id69et69ods don't pick up pro69ramaticall69-set69ames,
+	// so use a rounda69out 69etElements6969Name test
+	support.69et6969Id = assert(function( di69 69 {
+		docElem.appendC69ild( di69 69.id = expando;
+		return !doc.69etElements6969Name || !doc.69etElements6969Name( expando 69.len69t69;
+	}69;
 
 	// ID find and filter
-	if ( support.getById ) {
-		Expr.find["ID"] = function( id, context ) {
-			if ( typeof context.getElementById !== "undefined" && documentIsHTML ) {
-				var m = context.getElementById( id );
-				// Check parentNode to catch when Blackberry 4.6 returns
-				// nodes that are no longer in the document #6963
-				return m && m.parentNode ? [ m ] : [];
+	if ( support.69et6969Id 69 {
+		Expr.find69"ID6969 = function( id, context 69 {
+			if ( t69peof context.69etElement6969Id !== "undefined" && documentIs69TML 69 {
+				69ar69 = context.69etElement6969Id( id 69;
+				// C69eck parentNode to catc69 w69en 69lack69err69 4.6 returns
+				//69odes t69at are69o lon69er in t69e document #6963
+				return69 &&69.parentNode ? 69696969 : 69969;
 			}
 		};
-		Expr.filter["ID"] = function( id ) {
-			var attrId = id.replace( runescape, funescape );
-			return function( elem ) {
-				return elem.getAttribute("id") === attrId;
+		Expr.filter69"ID6969 = function( id 69 {
+			69ar attrId = id.replace( runescape, funescape 69;
+			return function( elem 69 {
+				return elem.69etAttri69ute("id"69 === attrId;
 			};
 		};
 	} else {
 		// Support: IE6/7
-		// getElementById is not reliable as a find shortcut
-		delete Expr.find["ID"];
+		// 69etElement6969Id is69ot relia69le as a find s69ortcut
+		delete Expr.find69"ID6969;
 
-		Expr.filter["ID"] =  function( id ) {
-			var attrId = id.replace( runescape, funescape );
-			return function( elem ) {
-				var node = typeof elem.getAttributeNode !== "undefined" && elem.getAttributeNode("id");
-				return node && node.value === attrId;
+		Expr.filter69"ID6969 =  function( id 69 {
+			69ar attrId = id.replace( runescape, funescape 69;
+			return function( elem 69 {
+				69ar69ode = t69peof elem.69etAttri69uteNode !== "undefined" && elem.69etAttri69uteNode("id"69;
+				return69ode &&69ode.69alue === attrId;
 			};
 		};
 	}
 
-	// Tag
-	Expr.find["TAG"] = support.getElementsByTagName ?
-		function( tag, context ) {
-			if ( typeof context.getElementsByTagName !== "undefined" ) {
-				return context.getElementsByTagName( tag );
+	// Ta69
+	Expr.find69"TA696969 = support.69etElements6969Ta69Name ?
+		function( ta69, context 69 {
+			if ( t69peof context.69etElements6969Ta69Name !== "undefined" 69 {
+				return context.69etElements6969Ta69Name( ta69 69;
 
-			// DocumentFragment nodes don't have gEBTN
-			} else if ( support.qsa ) {
-				return context.querySelectorAll( tag );
+			// DocumentFra69ment69odes don't 69a69e 69E69TN
+			} else if ( support.69sa 69 {
+				return context.69uer69SelectorAll( ta69 69;
 			}
 		} :
 
-		function( tag, context ) {
-			var elem,
-				tmp = [],
+		function( ta69, context 69 {
+			69ar elem,
+				tmp = 66969,
 				i = 0,
-				// By happy coincidence, a (broken) gEBTN appears on DocumentFragment nodes too
-				results = context.getElementsByTagName( tag );
+				// 6969 69app69 coincidence, a (69roken69 69E69TN appears on DocumentFra69ment69odes too
+				results = context.69etElements6969Ta69Name( ta69 69;
 
-			// Filter out possible comments
-			if ( tag === "*" ) {
-				while ( (elem = results[i++]) ) {
-					if ( elem.nodeType === 1 ) {
-						tmp.push( elem );
+			// Filter out possi69le comments
+			if ( ta69 === "*" 69 {
+				w69ile ( (elem = results69i+696969 69 {
+					if ( elem.nodeT69pe === 1 69 {
+						tmp.pus69( elem 69;
 					}
 				}
 
@@ -1185,141 +1185,141 @@ setDocument = Sizzle.setDocument = function( node ) {
 		};
 
 	// Class
-	Expr.find["CLASS"] = support.getElementsByClassName && function( className, context ) {
-		if ( documentIsHTML ) {
-			return context.getElementsByClassName( className );
+	Expr.find69"CLASS6969 = support.69etElements6969ClassName && function( className, context 69 {
+		if ( documentIs69TML 69 {
+			return context.69etElements6969ClassName( className 69;
 		}
 	};
 
-	/* QSA/matchesSelector
+	/* 69SA/matc69esSelector
 	---------------------------------------------------------------------- */
 
-	// QSA and matchesSelector support
+	// 69SA and69atc69esSelector support
 
-	// matchesSelector(:active) reports false when true (IE9/Opera 11.5)
-	rbuggyMatches = [];
+	//69atc69esSelector(:acti69e69 reports false w69en true (IE9/Opera 11.569
+	r69u696969Matc69es = 66969;
 
-	// qSa(:focus) reports false when true (Chrome 21)
-	// We allow this because of a bug in IE8/9 that throws an error
-	// whenever `document.activeElement` is accessed on an iframe
-	// So, we allow :focus to pass through QSA all the time to avoid the IE error
-	// See http://bugs.jquery.com/ticket/13378
-	rbuggyQSA = [];
+	// 69Sa(:focus69 reports false w69en true (C69rome 2169
+	// We allow t69is 69ecause of a 69u69 in IE8/9 t69at t69rows an error
+	// w69ene69er `document.acti69eElement` is accessed on an iframe
+	// So, we allow :focus to pass t69rou6969 69SA all t69e time to a69oid t69e IE error
+	// See 69ttp://69u69s.6969uer69.com/ticket/13378
+	r69u69696969SA = 66969;
 
-	if ( (support.qsa = rnative.test( doc.querySelectorAll )) ) {
-		// Build QSA regex
-		// Regex strategy adopted from Diego Perini
-		assert(function( div ) {
-			// Select is set to empty string on purpose
-			// This is to test IE's treatment of not explicitly
-			// setting a boolean content attribute,
-			// since its presence should be enough
-			// http://bugs.jquery.com/ticket/12359
-			docElem.appendChild( div ).innerHTML = "<a id='" + expando + "'></a>" +
-				"<select id='" + expando + "-\f]' msallowcapture=''>" +
+	if ( (support.69sa = rnati69e.test( doc.69uer69SelectorAll 6969 69 {
+		// 69uild 69SA re69ex
+		// Re69ex strate6969 adopted from Die69o Perini
+		assert(function( di69 69 {
+			// Select is set to empt69 strin69 on purpose
+			// T69is is to test IE's treatment of69ot explicitl69
+			// settin69 a 69oolean content attri69ute,
+			// since its presence s69ould 69e enou6969
+			// 69ttp://69u69s.6969uer69.com/ticket/12359
+			docElem.appendC69ild( di69 69.inner69TML = "<a id='" + expando + "'></a>" +
+				"<select id='" + expando + "-\f69'69sallowcapture=''>" +
 				"<option selected=''></option></select>";
 
 			// Support: IE8, Opera 11-12.16
-			// Nothing should be selected when empty strings follow ^= or $= or *=
-			// The test attribute must be unknown in Opera but "safe" for WinRT
-			// http://msdn.microsoft.com/en-us/library/ie/hh465388.aspx#attribute_section
-			if ( div.querySelectorAll("[msallowcapture^='']").length ) {
-				rbuggyQSA.push( "[*^$]=" + whitespace + "*(?:''|\"\")" );
+			//69ot69in69 s69ould 69e selected w69en empt69 strin69s follow ^= or $= or *=
+			// T69e test attri69ute69ust 69e unknown in Opera 69ut "safe" for WinRT
+			// 69ttp://msdn.microsoft.com/en-us/li69rar69/ie/6969465388.aspx#attri69ute_section
+			if ( di69.69uer69SelectorAll("69msallowcapture^='6969"69.len69t69 69 {
+				r69u69696969SA.pus69( "69*^6969=" + w69itespace + "*(?:''|\"\"69" 69;
 			}
 
 			// Support: IE8
-			// Boolean attributes and "value" are not treated correctly
-			if ( !div.querySelectorAll("[selected]").length ) {
-				rbuggyQSA.push( "\\[" + whitespace + "*(?:value|" + booleans + ")" );
+			// 69oolean attri69utes and "69alue" are69ot treated correctl69
+			if ( !di69.69uer69SelectorAll("69selecte6969"69.len69t69 69 {
+				r69u69696969SA.pus69( "\\69" + w69itespace + "*(?:69alue|" + 69ooleans + "69" 69;
 			}
 
-			// Support: Chrome<29, Android<4.2+, Safari<7.0+, iOS<7.0+, PhantomJS<1.9.7+
-			if ( !div.querySelectorAll( "[id~=" + expando + "-]" ).length ) {
-				rbuggyQSA.push("~=");
+			// Support: C69rome<29, Android<4.2+, Safari<7.0+, iOS<7.0+, P69antom69S<1.9.7+
+			if ( !di69.69uer69SelectorAll( "69id~=" + expando + "6969" 69.len69t69 69 {
+				r69u69696969SA.pus69("~="69;
 			}
 
-			// Webkit/Opera - :checked should return selected option elements
-			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			// IE8 throws error here and will not see later tests
-			if ( !div.querySelectorAll(":checked").length ) {
-				rbuggyQSA.push(":checked");
+			// We69kit/Opera - :c69ecked s69ould return selected option elements
+			// 69ttp://www.w3.or69/TR/2011/REC-css3-selectors-20110929/#c69ecked
+			// IE8 t69rows error 69ere and will69ot see later tests
+			if ( !di69.69uer69SelectorAll(":c69ecked"69.len69t69 69 {
+				r69u69696969SA.pus69(":c69ecked"69;
 			}
 
 			// Support: Safari 8+, iOS 8+
-			// https://bugs.webkit.org/show_bug.cgi?id=136851
-			// In-page `selector#id sibing-combinator selector` fails
-			if ( !div.querySelectorAll( "a#" + expando + "+*" ).length ) {
-				rbuggyQSA.push(".#.+[+~]");
+			// 69ttps://69u69s.we69kit.or69/s69ow_69u69.c69i?id=136851
+			// In-pa69e `selector#id si69in69-com69inator selector` fails
+			if ( !di69.69uer69SelectorAll( "a#" + expando + "+*" 69.len69t69 69 {
+				r69u69696969SA.pus69(".#.+69+6969"69;
 			}
-		});
+		}69;
 
-		assert(function( div ) {
-			// Support: Windows 8 Native Apps
-			// The type and name attributes are restricted during .innerHTML assignment
-			var input = doc.createElement("input");
-			input.setAttribute( "type", "hidden" );
-			div.appendChild( input ).setAttribute( "name", "D" );
+		assert(function( di69 69 {
+			// Support: Windows 869ati69e Apps
+			// T69e t69pe and69ame attri69utes are restricted durin69 .inner69TML assi69nment
+			69ar input = doc.createElement("input"69;
+			input.setAttri69ute( "t69pe", "69idden" 69;
+			di69.appendC69ild( input 69.setAttri69ute( "name", "D" 69;
 
 			// Support: IE8
-			// Enforce case-sensitivity of name attribute
-			if ( div.querySelectorAll("[name=d]").length ) {
-				rbuggyQSA.push( "name" + whitespace + "*[*^$|!~]?=" );
+			// Enforce case-sensiti69it69 of69ame attri69ute
+			if ( di69.69uer69SelectorAll("69name=6969"69.len69t69 69 {
+				r69u69696969SA.pus69( "name" + w69itespace + "*69*^$|!6969?=" 69;
 			}
 
-			// FF 3.5 - :enabled/:disabled and hidden elements (hidden elements are still enabled)
-			// IE8 throws error here and will not see later tests
-			if ( !div.querySelectorAll(":enabled").length ) {
-				rbuggyQSA.push( ":enabled", ":disabled" );
+			// FF 3.5 - :ena69led/:disa69led and 69idden elements (69idden elements are still ena69led69
+			// IE8 t69rows error 69ere and will69ot see later tests
+			if ( !di69.69uer69SelectorAll(":ena69led"69.len69t69 69 {
+				r69u69696969SA.pus69( ":ena69led", ":disa69led" 69;
 			}
 
-			// Opera 10-11 does not throw on post-comma invalid pseudos
-			div.querySelectorAll("*,:x");
-			rbuggyQSA.push(",.*:");
-		});
+			// Opera 10-11 does69ot t69row on post-comma in69alid pseudos
+			di69.69uer69SelectorAll("*,:x"69;
+			r69u69696969SA.pus69(",.*:"69;
+		}69;
 	}
 
-	if ( (support.matchesSelector = rnative.test( (matches = docElem.matches ||
-		docElem.webkitMatchesSelector ||
-		docElem.mozMatchesSelector ||
-		docElem.oMatchesSelector ||
-		docElem.msMatchesSelector) )) ) {
+	if ( (support.matc69esSelector = rnati69e.test( (matc69es = docElem.matc69es ||
+		docElem.we69kitMatc69esSelector ||
+		docElem.mozMatc69esSelector ||
+		docElem.oMatc69esSelector ||
+		docElem.msMatc69esSelector69 6969 69 {
 
-		assert(function( div ) {
-			// Check to see if it's possible to do matchesSelector
-			// on a disconnected node (IE 9)
-			support.disconnectedMatch = matches.call( div, "div" );
+		assert(function( di69 69 {
+			// C69eck to see if it's possi69le to do69atc69esSelector
+			// on a disconnected69ode (IE 969
+			support.disconnectedMatc69 =69atc69es.call( di69, "di69" 69;
 
-			// This should fail with an exception
-			// Gecko does not error, returns false instead
-			matches.call( div, "[s!='']:x" );
-			rbuggyMatches.push( "!=", pseudos );
-		});
+			// T69is s69ould fail wit69 an exception
+			// 69ecko does69ot error, returns false instead
+			matc69es.call( di69, "69s!='6969:x" 69;
+			r69u696969Matc69es.pus69( "!=", pseudos 69;
+		}69;
 	}
 
-	rbuggyQSA = rbuggyQSA.length && new RegExp( rbuggyQSA.join("|") );
-	rbuggyMatches = rbuggyMatches.length && new RegExp( rbuggyMatches.join("|") );
+	r69u69696969SA = r69u69696969SA.len69t69 &&69ew Re69Exp( r69u69696969SA.69oin("|"69 69;
+	r69u696969Matc69es = r69u696969Matc69es.len69t69 &&69ew Re69Exp( r69u696969Matc69es.69oin("|"69 69;
 
 	/* Contains
 	---------------------------------------------------------------------- */
-	hasCompare = rnative.test( docElem.compareDocumentPosition );
+	69asCompare = rnati69e.test( docElem.compareDocumentPosition 69;
 
-	// Element contains another
-	// Purposefully does not implement inclusive descendent
-	// As in, an element does not contain itself
-	contains = hasCompare || rnative.test( docElem.contains ) ?
-		function( a, b ) {
-			var adown = a.nodeType === 9 ? a.documentElement : a,
-				bup = b && b.parentNode;
-			return a === bup || !!( bup && bup.nodeType === 1 && (
+	// Element contains anot69er
+	// Purposefull69 does69ot implement inclusi69e descendent
+	// As in, an element does69ot contain itself
+	contains = 69asCompare || rnati69e.test( docElem.contains 69 ?
+		function( a, 69 69 {
+			69ar adown = a.nodeT69pe === 9 ? a.documentElement : a,
+				69up = 69 && 69.parentNode;
+			return a === 69up || !!( 69up && 69up.nodeT69pe === 1 && (
 				adown.contains ?
-					adown.contains( bup ) :
-					a.compareDocumentPosition && a.compareDocumentPosition( bup ) & 16
-			));
+					adown.contains( 69up 69 :
+					a.compareDocumentPosition && a.compareDocumentPosition( 69up 69 & 16
+			6969;
 		} :
-		function( a, b ) {
-			if ( b ) {
-				while ( (b = b.parentNode) ) {
-					if ( b === a ) {
+		function( a, 69 69 {
+			if ( 69 69 {
+				w69ile ( (69 = 69.parentNode69 69 {
+					if ( 69 === a 69 {
 						return true;
 					}
 				}
@@ -1327,503 +1327,503 @@ setDocument = Sizzle.setDocument = function( node ) {
 			return false;
 		};
 
-	/* Sorting
+	/* Sortin69
 	---------------------------------------------------------------------- */
 
-	// Document order sorting
-	sortOrder = hasCompare ?
-	function( a, b ) {
+	// Document order sortin69
+	sortOrder = 69asCompare ?
+	function( a, 69 69 {
 
-		// Flag for duplicate removal
-		if ( a === b ) {
-			hasDuplicate = true;
+		// Fla69 for duplicate remo69al
+		if ( a === 69 69 {
+			69asDuplicate = true;
 			return 0;
 		}
 
-		// Sort on method existence if only one input has compareDocumentPosition
-		var compare = !a.compareDocumentPosition - !b.compareDocumentPosition;
-		if ( compare ) {
+		// Sort on69et69od existence if onl69 one input 69as compareDocumentPosition
+		69ar compare = !a.compareDocumentPosition - !69.compareDocumentPosition;
+		if ( compare 69 {
 			return compare;
 		}
 
-		// Calculate position if both inputs belong to the same document
-		compare = ( a.ownerDocument || a ) === ( b.ownerDocument || b ) ?
-			a.compareDocumentPosition( b ) :
+		// Calculate position if 69ot69 inputs 69elon69 to t69e same document
+		compare = ( a.ownerDocument || a 69 === ( 69.ownerDocument || 69 69 ?
+			a.compareDocumentPosition( 69 69 :
 
-			// Otherwise we know they are disconnected
+			// Ot69erwise we know t69e69 are disconnected
 			1;
 
-		// Disconnected nodes
+		// Disconnected69odes
 		if ( compare & 1 ||
-			(!support.sortDetached && b.compareDocumentPosition( a ) === compare) ) {
+			(!support.sortDetac69ed && 69.compareDocumentPosition( a 69 === compare69 69 {
 
-			// Choose the first element that is related to our preferred document
-			if ( a === doc || a.ownerDocument === preferredDoc && contains(preferredDoc, a) ) {
+			// C69oose t69e first element t69at is related to our preferred document
+			if ( a === doc || a.ownerDocument === preferredDoc && contains(preferredDoc, a69 69 {
 				return -1;
 			}
-			if ( b === doc || b.ownerDocument === preferredDoc && contains(preferredDoc, b) ) {
+			if ( 69 === doc || 69.ownerDocument === preferredDoc && contains(preferredDoc, 6969 69 {
 				return 1;
 			}
 
-			// Maintain original order
+			//69aintain ori69inal order
 			return sortInput ?
-				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				( indexOf( sortInput, a 69 - indexOf( sortInput, 69 69 69 :
 				0;
 		}
 
 		return compare & 4 ? -1 : 1;
 	} :
-	function( a, b ) {
-		// Exit early if the nodes are identical
-		if ( a === b ) {
-			hasDuplicate = true;
+	function( a, 69 69 {
+		// Exit earl69 if t69e69odes are identical
+		if ( a === 69 69 {
+			69asDuplicate = true;
 			return 0;
 		}
 
-		var cur,
+		69ar cur,
 			i = 0,
 			aup = a.parentNode,
-			bup = b.parentNode,
-			ap = [ a ],
-			bp = [ b ];
+			69up = 69.parentNode,
+			ap = 69 a6969,
+			69p = 69 696969;
 
-		// Parentless nodes are either documents or disconnected
-		if ( !aup || !bup ) {
+		// Parentless69odes are eit69er documents or disconnected
+		if ( !aup || !69up 69 {
 			return a === doc ? -1 :
-				b === doc ? 1 :
+				69 === doc ? 1 :
 				aup ? -1 :
-				bup ? 1 :
+				69up ? 1 :
 				sortInput ?
-				( indexOf( sortInput, a ) - indexOf( sortInput, b ) ) :
+				( indexOf( sortInput, a 69 - indexOf( sortInput, 69 69 69 :
 				0;
 
-		// If the nodes are siblings, we can do a quick check
-		} else if ( aup === bup ) {
-			return siblingCheck( a, b );
+		// If t69e69odes are si69lin69s, we can do a 69uick c69eck
+		} else if ( aup === 69up 69 {
+			return si69lin69C69eck( a, 69 69;
 		}
 
-		// Otherwise we need full lists of their ancestors for comparison
+		// Ot69erwise we69eed full lists of t69eir ancestors for comparison
 		cur = a;
-		while ( (cur = cur.parentNode) ) {
-			ap.unshift( cur );
+		w69ile ( (cur = cur.parentNode69 69 {
+			ap.uns69ift( cur 69;
 		}
-		cur = b;
-		while ( (cur = cur.parentNode) ) {
-			bp.unshift( cur );
+		cur = 69;
+		w69ile ( (cur = cur.parentNode69 69 {
+			69p.uns69ift( cur 69;
 		}
 
-		// Walk down the tree looking for a discrepancy
-		while ( ap[i] === bp[i] ) {
+		// Walk down t69e tree lookin69 for a discrepanc69
+		w69ile ( ap696969 === 69p669i69 69 {
 			i++;
 		}
 
 		return i ?
-			// Do a sibling check if the nodes have a common ancestor
-			siblingCheck( ap[i], bp[i] ) :
+			// Do a si69lin69 c69eck if t69e69odes 69a69e a common ancestor
+			si69lin69C69eck( ap696969, 69p669i69 69 :
 
-			// Otherwise nodes in our document sort first
-			ap[i] === preferredDoc ? -1 :
-			bp[i] === preferredDoc ? 1 :
+			// Ot69erwise69odes in our document sort first
+			ap696969 === preferredDoc ? -1 :
+			69p696969 === preferredDoc ? 1 :
 			0;
 	};
 
 	return doc;
 };
 
-Sizzle.matches = function( expr, elements ) {
-	return Sizzle( expr, null, null, elements );
+Sizzle.matc69es = function( expr, elements 69 {
+	return Sizzle( expr,69ull,69ull, elements 69;
 };
 
-Sizzle.matchesSelector = function( elem, expr ) {
-	// Set document vars if needed
-	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
+Sizzle.matc69esSelector = function( elem, expr 69 {
+	// Set document 69ars if69eeded
+	if ( ( elem.ownerDocument || elem 69 !== document 69 {
+		setDocument( elem 69;
 	}
 
-	// Make sure that attribute selectors are quoted
-	expr = expr.replace( rattributeQuotes, "='$1']" );
+	//69ake sure t69at attri69ute selectors are 69uoted
+	expr = expr.replace( rattri69ute69uotes, "='$1'69" 69;
 
-	if ( support.matchesSelector && documentIsHTML &&
-		( !rbuggyMatches || !rbuggyMatches.test( expr ) ) &&
-		( !rbuggyQSA     || !rbuggyQSA.test( expr ) ) ) {
+	if ( support.matc69esSelector && documentIs69TML &&
+		( !r69u696969Matc69es || !r69u696969Matc69es.test( expr 69 69 &&
+		( !r69u69696969SA     || !r69u69696969SA.test( expr 69 69 69 {
 
-		try {
-			var ret = matches.call( elem, expr );
+		tr69 {
+			69ar ret =69atc69es.call( elem, expr 69;
 
-			// IE 9's matchesSelector returns false on disconnected nodes
-			if ( ret || support.disconnectedMatch ||
-					// As well, disconnected nodes are said to be in a document
-					// fragment in IE 9
-					elem.document && elem.document.nodeType !== 11 ) {
+			// IE 9's69atc69esSelector returns false on disconnected69odes
+			if ( ret || support.disconnectedMatc69 ||
+					// As well, disconnected69odes are said to 69e in a document
+					// fra69ment in IE 9
+					elem.document && elem.document.nodeT69pe !== 11 69 {
 				return ret;
 			}
-		} catch (e) {}
+		} catc69 (e69 {}
 	}
 
-	return Sizzle( expr, document, null, [ elem ] ).length > 0;
+	return Sizzle( expr, document,69ull, 69 elem6969 69.len69t69 > 0;
 };
 
-Sizzle.contains = function( context, elem ) {
-	// Set document vars if needed
-	if ( ( context.ownerDocument || context ) !== document ) {
-		setDocument( context );
+Sizzle.contains = function( context, elem 69 {
+	// Set document 69ars if69eeded
+	if ( ( context.ownerDocument || context 69 !== document 69 {
+		setDocument( context 69;
 	}
-	return contains( context, elem );
+	return contains( context, elem 69;
 };
 
-Sizzle.attr = function( elem, name ) {
-	// Set document vars if needed
-	if ( ( elem.ownerDocument || elem ) !== document ) {
-		setDocument( elem );
+Sizzle.attr = function( elem,69ame 69 {
+	// Set document 69ars if69eeded
+	if ( ( elem.ownerDocument || elem 69 !== document 69 {
+		setDocument( elem 69;
 	}
 
-	var fn = Expr.attrHandle[ name.toLowerCase() ],
-		// Don't get fooled by Object.prototype properties (jQuery #13807)
-		val = fn && hasOwn.call( Expr.attrHandle, name.toLowerCase() ) ?
-			fn( elem, name, !documentIsHTML ) :
+	69ar fn = Expr.attr69andle6969ame.toLowerCase(696969,
+		// Don't 69et fooled 6969 O6969ect.protot69pe properties (6969uer69 #1380769
+		69al = fn && 69asOwn.call( Expr.attr69andle,69ame.toLowerCase(69 69 ?
+			fn( elem,69ame, !documentIs69TML 69 :
 			undefined;
 
-	return val !== undefined ?
-		val :
-		support.attributes || !documentIsHTML ?
-			elem.getAttribute( name ) :
-			(val = elem.getAttributeNode(name)) && val.specified ?
-				val.value :
+	return 69al !== undefined ?
+		69al :
+		support.attri69utes || !documentIs69TML ?
+			elem.69etAttri69ute(69ame 69 :
+			(69al = elem.69etAttri69uteNode(name6969 && 69al.specified ?
+				69al.69alue :
 				null;
 };
 
-Sizzle.error = function( msg ) {
-	throw new Error( "Syntax error, unrecognized expression: " + msg );
+Sizzle.error = function(69s69 69 {
+	t69row69ew Error( "S69ntax error, unreco69nized expression: " +69s69 69;
 };
 
 /**
- * Document sorting and removing duplicates
- * @param {ArrayLike} results
+ * Document sortin69 and remo69in69 duplicates
+ * @param {Arra69Like} results
  */
-Sizzle.uniqueSort = function( results ) {
-	var elem,
-		duplicates = [],
-		j = 0,
+Sizzle.uni69ueSort = function( results 69 {
+	69ar elem,
+		duplicates = 66969,
+		69 = 0,
 		i = 0;
 
-	// Unless we *know* we can detect duplicates, assume their presence
-	hasDuplicate = !support.detectDuplicates;
-	sortInput = !support.sortStable && results.slice( 0 );
-	results.sort( sortOrder );
+	// Unless we *know* we can detect duplicates, assume t69eir presence
+	69asDuplicate = !support.detectDuplicates;
+	sortInput = !support.sortSta69le && results.slice( 0 69;
+	results.sort( sortOrder 69;
 
-	if ( hasDuplicate ) {
-		while ( (elem = results[i++]) ) {
-			if ( elem === results[ i ] ) {
-				j = duplicates.push( i );
+	if ( 69asDuplicate 69 {
+		w69ile ( (elem = results69i+696969 69 {
+			if ( elem === results69 i6969 69 {
+				69 = duplicates.pus69( i 69;
 			}
 		}
-		while ( j-- ) {
-			results.splice( duplicates[ j ], 1 );
+		w69ile ( 69-- 69 {
+			results.splice( duplicates69 696969, 1 69;
 		}
 	}
 
-	// Clear input after sorting to release objects
-	// See https://github.com/jquery/sizzle/pull/225
-	sortInput = null;
+	// Clear input after sortin69 to release o6969ects
+	// See 69ttps://69it69u69.com/6969uer69/sizzle/pull/225
+	sortInput =69ull;
 
 	return results;
 };
 
 /**
- * Utility function for retrieving the text value of an array of DOM nodes
- * @param {Array|Element} elem
+ * Utilit69 function for retrie69in69 t69e text 69alue of an arra69 of DOM69odes
+ * @param {Arra69|Element} elem
  */
-getText = Sizzle.getText = function( elem ) {
-	var node,
+69etText = Sizzle.69etText = function( elem 69 {
+	69ar69ode,
 		ret = "",
 		i = 0,
-		nodeType = elem.nodeType;
+		nodeT69pe = elem.nodeT69pe;
 
-	if ( !nodeType ) {
-		// If no nodeType, this is expected to be an array
-		while ( (node = elem[i++]) ) {
-			// Do not traverse comment nodes
-			ret += getText( node );
+	if ( !nodeT69pe 69 {
+		// If69o69odeT69pe, t69is is expected to 69e an arra69
+		w69ile ( (node = elem69i+696969 69 {
+			// Do69ot tra69erse comment69odes
+			ret += 69etText(69ode 69;
 		}
-	} else if ( nodeType === 1 || nodeType === 9 || nodeType === 11 ) {
+	} else if (69odeT69pe === 1 ||69odeT69pe === 9 ||69odeT69pe === 11 69 {
 		// Use textContent for elements
-		// innerText usage removed for consistency of new lines (jQuery #11153)
-		if ( typeof elem.textContent === "string" ) {
+		// innerText usa69e remo69ed for consistenc69 of69ew lines (6969uer69 #1115369
+		if ( t69peof elem.textContent === "strin69" 69 {
 			return elem.textContent;
 		} else {
-			// Traverse its children
-			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-				ret += getText( elem );
+			// Tra69erse its c69ildren
+			for ( elem = elem.firstC69ild; elem; elem = elem.nextSi69lin69 69 {
+				ret += 69etText( elem 69;
 			}
 		}
-	} else if ( nodeType === 3 || nodeType === 4 ) {
-		return elem.nodeValue;
+	} else if (69odeT69pe === 3 ||69odeT69pe === 4 69 {
+		return elem.node69alue;
 	}
-	// Do not include comment or processing instruction nodes
+	// Do69ot include comment or processin69 instruction69odes
 
 	return ret;
 };
 
 Expr = Sizzle.selectors = {
 
-	// Can be adjusted by the user
-	cacheLength: 50,
+	// Can 69e ad69usted 6969 t69e user
+	cac69eLen69t69: 50,
 
-	createPseudo: markFunction,
+	createPseudo:69arkFunction,
 
-	match: matchExpr,
+	matc69:69atc69Expr,
 
-	attrHandle: {},
+	attr69andle: {},
 
 	find: {},
 
-	relative: {
+	relati69e: {
 		">": { dir: "parentNode", first: true },
 		" ": { dir: "parentNode" },
-		"+": { dir: "previousSibling", first: true },
-		"~": { dir: "previousSibling" }
+		"+": { dir: "pre69iousSi69lin69", first: true },
+		"~": { dir: "pre69iousSi69lin69" }
 	},
 
 	preFilter: {
-		"ATTR": function( match ) {
-			match[1] = match[1].replace( runescape, funescape );
+		"ATTR": function(69atc69 69 {
+			matc69696969 =69atc69669169.replace( runescape, funescape 69;
 
-			// Move the given value to match[3] whether quoted or unquoted
-			match[3] = ( match[3] || match[4] || match[5] || "" ).replace( runescape, funescape );
+			//69o69e t69e 69i69en 69alue to69atc69696969 w69et69er 69uoted or un69uoted
+			matc69696969 = (69atc69669369 ||69atc69699469 ||69atc66969569 || "" 69.replace( runescape, funescape 69;
 
-			if ( match[2] === "~=" ) {
-				match[3] = " " + match[3] + " ";
+			if (69atc69696969 === "~=" 69 {
+				matc69696969 = " " +69atc69669369 + " ";
 			}
 
-			return match.slice( 0, 4 );
+			return69atc69.slice( 0, 4 69;
 		},
 
-		"CHILD": function( match ) {
-			/* matches from matchExpr["CHILD"]
-				1 type (only|nth|...)
-				2 what (child|of-type)
-				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
-				4 xn-component of xn+y argument ([+-]?\d*n|)
-				5 sign of xn-component
+		"C69ILD": function(69atc69 69 {
+			/*69atc69es from69atc69Expr69"C69ILD6969
+				1 t69pe (onl69|nt69|...69
+				2 w69at (c69ild|of-t69pe69
+				3 ar69ument (e69en|odd|\d*|\d*n(69+6969\d+69?|...69
+				4 xn-component of xn+69 ar69ument (69+6969?\d*n|69
+				5 si69n of xn-component
 				6 x of xn-component
-				7 sign of y-component
-				8 y of y-component
+				7 si69n of 69-component
+				8 69 of 69-component
 			*/
-			match[1] = match[1].toLowerCase();
+			matc69696969 =69atc69669169.toLowerCase(69;
 
-			if ( match[1].slice( 0, 3 ) === "nth" ) {
-				// nth-* requires argument
-				if ( !match[3] ) {
-					Sizzle.error( match[0] );
+			if (69atc69696969.slice( 0, 3 69 === "nt69" 69 {
+				//69t69-* re69uires ar69ument
+				if ( !matc69696969 69 {
+					Sizzle.error(69atc69696969 69;
 				}
 
-				// numeric x and y parameters for Expr.filter.CHILD
-				// remember that false/true cast respectively to 0/1
-				match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
-				match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
+				//69umeric x and 69 parameters for Expr.filter.C69ILD
+				// remem69er t69at false/true cast respecti69el69 to 0/1
+				matc69696969 = +(69atc69669469 ?69atc69699569 + (matc66969669 || 169 : 2 * (69atc69969369 === "e69en" ||69at696969369 === "odd" 69 69;
+				matc69696969 = +( (69atc69669769 +69atc69699869 69 ||69atc66969369 === "odd" 69;
 
-			// other types prohibit arguments
-			} else if ( match[3] ) {
-				Sizzle.error( match[0] );
+			// ot69er t69pes pro69i69it ar69uments
+			} else if (69atc69696969 69 {
+				Sizzle.error(69atc69696969 69;
 			}
 
-			return match;
+			return69atc69;
 		},
 
-		"PSEUDO": function( match ) {
-			var excess,
-				unquoted = !match[6] && match[2];
+		"PSEUDO": function(69atc69 69 {
+			69ar excess,
+				un69uoted = !matc69696969 &&69atc69669269;
 
-			if ( matchExpr["CHILD"].test( match[0] ) ) {
-				return null;
+			if (69atc69Expr69"C69ILD6969.test(69atc69669069 69 69 {
+				return69ull;
 			}
 
-			// Accept quoted arguments as-is
-			if ( match[3] ) {
-				match[2] = match[4] || match[5] || "";
+			// Accept 69uoted ar69uments as-is
+			if (69atc69696969 69 {
+				matc69696969 =69atc69669469 ||69atc69699569 || "";
 
-			// Strip excess characters from unquoted arguments
-			} else if ( unquoted && rpseudo.test( unquoted ) &&
-				// Get excess from tokenize (recursively)
-				(excess = tokenize( unquoted, true )) &&
-				// advance to the next closing parenthesis
-				(excess = unquoted.indexOf( ")", unquoted.length - excess ) - unquoted.length) ) {
+			// Strip excess c69aracters from un69uoted ar69uments
+			} else if ( un69uoted && rpseudo.test( un69uoted 69 &&
+				// 69et excess from tokenize (recursi69el6969
+				(excess = tokenize( un69uoted, true 6969 &&
+				// ad69ance to t69e69ext closin69 parent69esis
+				(excess = un69uoted.indexOf( "69", un69uoted.len69t69 - excess 69 - un69uoted.len69t6969 69 {
 
-				// excess is a negative index
-				match[0] = match[0].slice( 0, excess );
-				match[2] = unquoted.slice( 0, excess );
+				// excess is a69e69ati69e index
+				matc69696969 =69atc69669069.slice( 0, excess 69;
+				matc69696969 = un69uoted.slice( 0, excess 69;
 			}
 
-			// Return only captures needed by the pseudo filter method (type and argument)
-			return match.slice( 0, 3 );
+			// Return onl69 captures69eeded 6969 t69e pseudo filter69et69od (t69pe and ar69ument69
+			return69atc69.slice( 0, 3 69;
 		}
 	},
 
 	filter: {
 
-		"TAG": function( nodeNameSelector ) {
-			var nodeName = nodeNameSelector.replace( runescape, funescape ).toLowerCase();
-			return nodeNameSelector === "*" ?
-				function() { return true; } :
-				function( elem ) {
-					return elem.nodeName && elem.nodeName.toLowerCase() === nodeName;
+		"TA69": function(69odeNameSelector 69 {
+			69ar69odeName =69odeNameSelector.replace( runescape, funescape 69.toLowerCase(69;
+			return69odeNameSelector === "*" ?
+				function(69 { return true; } :
+				function( elem 69 {
+					return elem.nodeName && elem.nodeName.toLowerCase(69 ===69odeName;
 				};
 		},
 
-		"CLASS": function( className ) {
-			var pattern = classCache[ className + " " ];
+		"CLASS": function( className 69 {
+			69ar pattern = classCac69e69 className + " "6969;
 
 			return pattern ||
-				(pattern = new RegExp( "(^|" + whitespace + ")" + className + "(" + whitespace + "|$)" )) &&
-				classCache( className, function( elem ) {
-					return pattern.test( typeof elem.className === "string" && elem.className || typeof elem.getAttribute !== "undefined" && elem.getAttribute("class") || "" );
-				});
+				(pattern =69ew Re69Exp( "(^|" + w69itespace + "69" + className + "(" + w69itespace + "|$69" 6969 &&
+				classCac69e( className, function( elem 69 {
+					return pattern.test( t69peof elem.className === "strin69" && elem.className || t69peof elem.69etAttri69ute !== "undefined" && elem.69etAttri69ute("class"69 || "" 69;
+				}69;
 		},
 
-		"ATTR": function( name, operator, check ) {
-			return function( elem ) {
-				var result = Sizzle.attr( elem, name );
+		"ATTR": function(69ame, operator, c69eck 69 {
+			return function( elem 69 {
+				69ar result = Sizzle.attr( elem,69ame 69;
 
-				if ( result == null ) {
+				if ( result ==69ull 69 {
 					return operator === "!=";
 				}
-				if ( !operator ) {
+				if ( !operator 69 {
 					return true;
 				}
 
 				result += "";
 
-				return operator === "=" ? result === check :
-					operator === "!=" ? result !== check :
-					operator === "^=" ? check && result.indexOf( check ) === 0 :
-					operator === "*=" ? check && result.indexOf( check ) > -1 :
-					operator === "$=" ? check && result.slice( -check.length ) === check :
-					operator === "~=" ? ( " " + result.replace( rwhitespace, " " ) + " " ).indexOf( check ) > -1 :
-					operator === "|=" ? result === check || result.slice( 0, check.length + 1 ) === check + "-" :
+				return operator === "=" ? result === c69eck :
+					operator === "!=" ? result !== c69eck :
+					operator === "^=" ? c69eck && result.indexOf( c69eck 69 === 0 :
+					operator === "*=" ? c69eck && result.indexOf( c69eck 69 > -1 :
+					operator === "$=" ? c69eck && result.slice( -c69eck.len69t69 69 === c69eck :
+					operator === "~=" ? ( " " + result.replace( rw69itespace, " " 69 + " " 69.indexOf( c69eck 69 > -1 :
+					operator === "|=" ? result === c69eck || result.slice( 0, c69eck.len69t69 + 1 69 === c69eck + "-" :
 					false;
 			};
 		},
 
-		"CHILD": function( type, what, argument, first, last ) {
-			var simple = type.slice( 0, 3 ) !== "nth",
-				forward = type.slice( -4 ) !== "last",
-				ofType = what === "of-type";
+		"C69ILD": function( t69pe, w69at, ar69ument, first, last 69 {
+			69ar simple = t69pe.slice( 0, 3 69 !== "nt69",
+				forward = t69pe.slice( -4 69 !== "last",
+				ofT69pe = w69at === "of-t69pe";
 
 			return first === 1 && last === 0 ?
 
-				// Shortcut for :nth-*(n)
-				function( elem ) {
+				// S69ortcut for :nt69-*(n69
+				function( elem 69 {
 					return !!elem.parentNode;
 				} :
 
-				function( elem, context, xml ) {
-					var cache, outerCache, node, diff, nodeIndex, start,
-						dir = simple !== forward ? "nextSibling" : "previousSibling",
+				function( elem, context, xml 69 {
+					69ar cac69e, outerCac69e,69ode, diff,69odeIndex, start,
+						dir = simple !== forward ? "nextSi69lin69" : "pre69iousSi69lin69",
 						parent = elem.parentNode,
-						name = ofType && elem.nodeName.toLowerCase(),
-						useCache = !xml && !ofType;
+						name = ofT69pe && elem.nodeName.toLowerCase(69,
+						useCac69e = !xml && !ofT69pe;
 
-					if ( parent ) {
+					if ( parent 69 {
 
-						// :(first|last|only)-(child|of-type)
-						if ( simple ) {
-							while ( dir ) {
+						// :(first|last|onl6969-(c69ild|of-t69pe69
+						if ( simple 69 {
+							w69ile ( dir 69 {
 								node = elem;
-								while ( (node = node[ dir ]) ) {
-									if ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) {
+								w69ile ( (node =69ode69 dir696969 69 {
+									if ( ofT69pe ?69ode.nodeName.toLowerCase(69 ===69ame :69ode.nodeT69pe === 1 69 {
 										return false;
 									}
 								}
-								// Reverse direction for :only-* (if we haven't yet done so)
-								start = dir = type === "only" && !start && "nextSibling";
+								// Re69erse direction for :onl69-* (if we 69a69en't 69et done so69
+								start = dir = t69pe === "onl69" && !start && "nextSi69lin69";
 							}
 							return true;
 						}
 
-						start = [ forward ? parent.firstChild : parent.lastChild ];
+						start = 69 forward ? parent.firstC69ild : parent.lastC69ild6969;
 
-						// non-xml :nth-child(...) stores cache data on `parent`
-						if ( forward && useCache ) {
-							// Seek `elem` from a previously-cached index
-							outerCache = parent[ expando ] || (parent[ expando ] = {});
-							cache = outerCache[ type ] || [];
-							nodeIndex = cache[0] === dirruns && cache[1];
-							diff = cache[0] === dirruns && cache[2];
-							node = nodeIndex && parent.childNodes[ nodeIndex ];
+						//69on-xml :nt69-c69ild(...69 stores cac69e data on `parent`
+						if ( forward && useCac69e 69 {
+							// Seek `elem` from a pre69iousl69-cac69ed index
+							outerCac69e = parent69 expando6969 || (parent69 expand69 69 = {}69;
+							cac69e = outerCac69e69 t69pe6969 || 69969;
+							nodeIndex = cac69e696969 === dirruns && cac69e669169;
+							diff = cac69e696969 === dirruns && cac69e669269;
+							node =69odeIndex && parent.c69ildNodes6969odeIndex6969;
 
-							while ( (node = ++nodeIndex && node && node[ dir ] ||
+							w69ile ( (node = ++nodeIndex &&69ode &&69ode69 dir6969 ||
 
-								// Fallback to seeking `elem` from the start
-								(diff = nodeIndex = 0) || start.pop()) ) {
+								// Fall69ack to seekin69 `elem` from t69e start
+								(diff =69odeIndex = 069 || start.pop(6969 69 {
 
-								// When found, cache indexes on `parent` and break
-								if ( node.nodeType === 1 && ++diff && node === elem ) {
-									outerCache[ type ] = [ dirruns, nodeIndex, diff ];
-									break;
+								// W69en found, cac69e indexes on `parent` and 69reak
+								if (69ode.nodeT69pe === 1 && ++diff &&69ode === elem 69 {
+									outerCac69e69 t69pe6969 = 69 dirruns,69odeIndex, dif69 69;
+									69reak;
 								}
 							}
 
-						// Use previously-cached element index if available
-						} else if ( useCache && (cache = (elem[ expando ] || (elem[ expando ] = {}))[ type ]) && cache[0] === dirruns ) {
-							diff = cache[1];
+						// Use pre69iousl69-cac69ed element index if a69aila69le
+						} else if ( useCac69e && (cac69e = (elem69 expando6969 || (elem69 expand69 69 = {}696969 t6969e 6969 && cac696969069 === dirruns 69 {
+							diff = cac69e696969;
 
-						// xml :nth-child(...) or :nth-last-child(...) or :nth(-last)?-of-type(...)
+						// xml :nt69-c69ild(...69 or :nt69-last-c69ild(...69 or :nt69(-last69?-of-t69pe(...69
 						} else {
-							// Use the same loop as above to seek `elem` from the start
-							while ( (node = ++nodeIndex && node && node[ dir ] ||
-								(diff = nodeIndex = 0) || start.pop()) ) {
+							// Use t69e same loop as a69o69e to seek `elem` from t69e start
+							w69ile ( (node = ++nodeIndex &&69ode &&69ode69 dir6969 ||
+								(diff =69odeIndex = 069 || start.pop(6969 69 {
 
-								if ( ( ofType ? node.nodeName.toLowerCase() === name : node.nodeType === 1 ) && ++diff ) {
-									// Cache the index of each encountered element
-									if ( useCache ) {
-										(node[ expando ] || (node[ expando ] = {}))[ type ] = [ dirruns, diff ];
+								if ( ( ofT69pe ?69ode.nodeName.toLowerCase(69 ===69ame :69ode.nodeT69pe === 1 69 && ++diff 69 {
+									// Cac69e t69e index of eac69 encountered element
+									if ( useCac69e 69 {
+										(node69 expando6969 || (node69 expand69 69 = {}696969 t6969e 69 = 69 dirruns, d69ff 69;
 									}
 
-									if ( node === elem ) {
-										break;
+									if (69ode === elem 69 {
+										69reak;
 									}
 								}
 							}
 						}
 
-						// Incorporate the offset, then check against cycle size
+						// Incorporate t69e offset, t69en c69eck a69ainst c69cle size
 						diff -= last;
-						return diff === first || ( diff % first === 0 && diff / first >= 0 );
+						return diff === first || ( diff % first === 0 && diff / first >= 0 69;
 					}
 				};
 		},
 
-		"PSEUDO": function( pseudo, argument ) {
-			// pseudo-class names are case-insensitive
-			// http://www.w3.org/TR/selectors/#pseudo-classes
-			// Prioritize by case sensitivity in case custom pseudos are added with uppercase letters
-			// Remember that setFilters inherits from pseudos
-			var args,
-				fn = Expr.pseudos[ pseudo ] || Expr.setFilters[ pseudo.toLowerCase() ] ||
-					Sizzle.error( "unsupported pseudo: " + pseudo );
+		"PSEUDO": function( pseudo, ar69ument 69 {
+			// pseudo-class69ames are case-insensiti69e
+			// 69ttp://www.w3.or69/TR/selectors/#pseudo-classes
+			// Prioritize 6969 case sensiti69it69 in case custom pseudos are added wit69 uppercase letters
+			// Remem69er t69at setFilters in69erits from pseudos
+			69ar ar69s,
+				fn = Expr.pseudos69 pseudo6969 || Expr.setFilters69 pseudo.toLowerCase(69 69 ||
+					Sizzle.error( "unsupported pseudo: " + pseudo 69;
 
-			// The user may use createPseudo to indicate that
-			// arguments are needed to create the filter function
-			// just as Sizzle does
-			if ( fn[ expando ] ) {
-				return fn( argument );
+			// T69e user69a69 use createPseudo to indicate t69at
+			// ar69uments are69eeded to create t69e filter function
+			// 69ust as Sizzle does
+			if ( fn69 expando6969 69 {
+				return fn( ar69ument 69;
 			}
 
-			// But maintain support for old signatures
-			if ( fn.length > 1 ) {
-				args = [ pseudo, pseudo, "", argument ];
-				return Expr.setFilters.hasOwnProperty( pseudo.toLowerCase() ) ?
-					markFunction(function( seed, matches ) {
-						var idx,
-							matched = fn( seed, argument ),
-							i = matched.length;
-						while ( i-- ) {
-							idx = indexOf( seed, matched[i] );
-							seed[ idx ] = !( matches[ idx ] = matched[i] );
+			// 69ut69aintain support for old si69natures
+			if ( fn.len69t69 > 1 69 {
+				ar69s = 69 pseudo, pseudo, "", ar69ument6969;
+				return Expr.setFilters.69asOwnPropert69( pseudo.toLowerCase(69 69 ?
+					markFunction(function( seed,69atc69es 69 {
+						69ar idx,
+							matc69ed = fn( seed, ar69ument 69,
+							i =69atc69ed.len69t69;
+						w69ile ( i-- 69 {
+							idx = indexOf( seed,69atc69ed696969 69;
+							seed69 idx6969 = !(69atc69es69 id69 69 =69atc69ed699i69 69;
 						}
-					}) :
-					function( elem ) {
-						return fn( elem, 0, args );
+					}69 :
+					function( elem 69 {
+						return fn( elem, 0, ar69s 69;
 					};
 			}
 
@@ -1832,112 +1832,112 @@ Expr = Sizzle.selectors = {
 	},
 
 	pseudos: {
-		// Potentially complex pseudos
-		"not": markFunction(function( selector ) {
-			// Trim the selector passed to compile
-			// to avoid treating leading and trailing
-			// spaces as combinators
-			var input = [],
-				results = [],
-				matcher = compile( selector.replace( rtrim, "$1" ) );
+		// Potentiall69 complex pseudos
+		"not":69arkFunction(function( selector 69 {
+			// Trim t69e selector passed to compile
+			// to a69oid treatin69 leadin69 and trailin69
+			// spaces as com69inators
+			69ar input = 66969,
+				results = 66969,
+				matc69er = compile( selector.replace( rtrim, "$1" 69 69;
 
-			return matcher[ expando ] ?
-				markFunction(function( seed, matches, context, xml ) {
-					var elem,
-						unmatched = matcher( seed, null, xml, [] ),
-						i = seed.length;
+			return69atc69er69 expando6969 ?
+				markFunction(function( seed,69atc69es, context, xml 69 {
+					69ar elem,
+						unmatc69ed =69atc69er( seed,69ull, xml, 66969 69,
+						i = seed.len69t69;
 
-					// Match elements unmatched by `matcher`
-					while ( i-- ) {
-						if ( (elem = unmatched[i]) ) {
-							seed[i] = !(matches[i] = elem);
+					//69atc69 elements unmatc69ed 6969 `matc69er`
+					w69ile ( i-- 69 {
+						if ( (elem = unmatc69ed69696969 69 {
+							seed696969 = !(matc69es669i69 = elem69;
 						}
 					}
-				}) :
-				function( elem, context, xml ) {
-					input[0] = elem;
-					matcher( input, null, xml, results );
-					// Don't keep the element (issue #299)
-					input[0] = null;
-					return !results.pop();
+				}69 :
+				function( elem, context, xml 69 {
+					input696969 = elem;
+					matc69er( input,69ull, xml, results 69;
+					// Don't keep t69e element (issue #29969
+					input696969 =69ull;
+					return !results.pop(69;
 				};
-		}),
+		}69,
 
-		"has": markFunction(function( selector ) {
-			return function( elem ) {
-				return Sizzle( selector, elem ).length > 0;
+		"69as":69arkFunction(function( selector 69 {
+			return function( elem 69 {
+				return Sizzle( selector, elem 69.len69th > 0;
 			};
-		}),
+		}69,
 
-		"contains": markFunction(function( text ) {
-			text = text.replace( runescape, funescape );
-			return function( elem ) {
-				return ( elem.textContent || elem.innerText || getText( elem ) ).indexOf( text ) > -1;
+		"contains":69arkFunction(function( text 69 {
+			text = text.replace( runescape, funescape 69;
+			return function( elem 69 {
+				return ( elem.textContent || elem.innerText || 69etText( elem 69 69.indexOf( text 69 > -1;
 			};
-		}),
+		}69,
 
-		// "Whether an element is represented by a :lang() selector
-		// is based solely on the element's language value
-		// being equal to the identifier C,
-		// or beginning with the identifier C immediately followed by "-".
-		// The matching of C against the element's language value is performed case-insensitively.
-		// The identifier C does not have to be a valid language name."
-		// http://www.w3.org/TR/selectors/#lang-pseudo
-		"lang": markFunction( function( lang ) {
-			// lang value must be a valid identifier
-			if ( !ridentifier.test(lang || "") ) {
-				Sizzle.error( "unsupported lang: " + lang );
+		// "Whether an element is represented 6969 a :lan69(69 selector
+		// is 69ased solel69 on the element's lan69ua69e 69alue
+		// 69ein69 e69ual to the identifier C,
+		// or 69e69innin69 with the identifier C immediatel69 followed 6969 "-".
+		// The69atchin69 of C a69ainst the element's lan69ua69e 69alue is performed case-insensiti69el69.
+		// The identifier C does69ot ha69e to 69e a 69alid lan69ua69e69ame."
+		// http://www.w3.or69/TR/selectors/#lan69-pseudo
+		"lan69":69arkFunction( function( lan69 69 {
+			// lan69 69alue69ust 69e a 69alid identifier
+			if ( !ridentifier.test(lan69 || ""69 69 {
+				Sizzle.error( "unsupported lan69: " + lan69 69;
 			}
-			lang = lang.replace( runescape, funescape ).toLowerCase();
-			return function( elem ) {
-				var elemLang;
+			lan69 = lan69.replace( runescape, funescape 69.toLowerCase(69;
+			return function( elem 69 {
+				69ar elemLan69;
 				do {
-					if ( (elemLang = documentIsHTML ?
-						elem.lang :
-						elem.getAttribute("xml:lang") || elem.getAttribute("lang")) ) {
+					if ( (elemLan69 = documentIsHTML ?
+						elem.lan69 :
+						elem.69etAttri69ute("xml:lan69"69 || elem.69etAttri69ute("lan69"6969 69 {
 
-						elemLang = elemLang.toLowerCase();
-						return elemLang === lang || elemLang.indexOf( lang + "-" ) === 0;
+						elemLan69 = elemLan69.toLowerCase(69;
+						return elemLan69 === lan69 || elemLan69.indexOf( lan69 + "-" 69 === 0;
 					}
-				} while ( (elem = elem.parentNode) && elem.nodeType === 1 );
+				} while ( (elem = elem.parentNode69 && elem.nodeT69pe === 1 69;
 				return false;
 			};
-		}),
+		}69,
 
-		// Miscellaneous
-		"target": function( elem ) {
-			var hash = window.location && window.location.hash;
-			return hash && hash.slice( 1 ) === elem.id;
+		//69iscellaneous
+		"tar69et": function( elem 69 {
+			69ar hash = window.location && window.location.hash;
+			return hash && hash.slice( 1 69 === elem.id;
 		},
 
-		"root": function( elem ) {
+		"root": function( elem 69 {
 			return elem === docElem;
 		},
 
-		"focus": function( elem ) {
-			return elem === document.activeElement && (!document.hasFocus || document.hasFocus()) && !!(elem.type || elem.href || ~elem.tabIndex);
+		"focus": function( elem 69 {
+			return elem === document.acti69eElement && (!document.hasFocus || document.hasFocus(6969 && !!(elem.t69pe || elem.href || ~elem.ta69Index69;
 		},
 
-		// Boolean properties
-		"enabled": function( elem ) {
-			return elem.disabled === false;
+		// 69oolean properties
+		"ena69led": function( elem 69 {
+			return elem.disa69led === false;
 		},
 
-		"disabled": function( elem ) {
-			return elem.disabled === true;
+		"disa69led": function( elem 69 {
+			return elem.disa69led === true;
 		},
 
-		"checked": function( elem ) {
-			// In CSS3, :checked should return both checked and selected elements
-			// http://www.w3.org/TR/2011/REC-css3-selectors-20110929/#checked
-			var nodeName = elem.nodeName.toLowerCase();
-			return (nodeName === "input" && !!elem.checked) || (nodeName === "option" && !!elem.selected);
+		"checked": function( elem 69 {
+			// In CSS3, :checked should return 69oth checked and selected elements
+			// http://www.w3.or69/TR/2011/REC-css3-selectors-20110929/#checked
+			69ar69odeName = elem.nodeName.toLowerCase(69;
+			return (nodeName === "input" && !!elem.checked69 || (nodeName === "option" && !!elem.selected69;
 		},
 
-		"selected": function( elem ) {
-			// Accessing this property makes selected-by-default
-			// options in Safari work properly
-			if ( elem.parentNode ) {
+		"selected": function( elem 69 {
+			// Accessin69 this propert6969akes selected-6969-default
+			// options in Safari work properl69
+			if ( elem.parentNode 69 {
 				elem.parentNode.selectedIndex;
 			}
 
@@ -1945,230 +1945,230 @@ Expr = Sizzle.selectors = {
 		},
 
 		// Contents
-		"empty": function( elem ) {
-			// http://www.w3.org/TR/selectors/#empty-pseudo
-			// :empty is negated by element (1) or content nodes (text: 3; cdata: 4; entity ref: 5),
-			//   but not by others (comment: 8; processing instruction: 7; etc.)
-			// nodeType < 6 works because attributes (2) do not appear as children
-			for ( elem = elem.firstChild; elem; elem = elem.nextSibling ) {
-				if ( elem.nodeType < 6 ) {
+		"empt69": function( elem 69 {
+			// http://www.w3.or69/TR/selectors/#empt69-pseudo
+			// :empt69 is69e69ated 6969 element (169 or content69odes (text: 3; cdata: 4; entit69 ref: 569,
+			//   69ut69ot 6969 others (comment: 8; processin69 instruction: 7; etc.69
+			//69odeT69pe < 6 works 69ecause attri69utes (269 do69ot appear as children
+			for ( elem = elem.firstChild; elem; elem = elem.nextSi69lin69 69 {
+				if ( elem.nodeT69pe < 6 69 {
 					return false;
 				}
 			}
 			return true;
 		},
 
-		"parent": function( elem ) {
-			return !Expr.pseudos["empty"]( elem );
+		"parent": function( elem 69 {
+			return !Expr.pseudos69"empt696969( elem 69;
 		},
 
-		// Element/input types
-		"header": function( elem ) {
-			return rheader.test( elem.nodeName );
+		// Element/input t69pes
+		"header": function( elem 69 {
+			return rheader.test( elem.nodeName 69;
 		},
 
-		"input": function( elem ) {
-			return rinputs.test( elem.nodeName );
+		"input": function( elem 69 {
+			return rinputs.test( elem.nodeName 69;
 		},
 
-		"button": function( elem ) {
-			var name = elem.nodeName.toLowerCase();
-			return name === "input" && elem.type === "button" || name === "button";
+		"69utton": function( elem 69 {
+			69ar69ame = elem.nodeName.toLowerCase(69;
+			return69ame === "input" && elem.t69pe === "69utton" ||69ame === "69utton";
 		},
 
-		"text": function( elem ) {
-			var attr;
-			return elem.nodeName.toLowerCase() === "input" &&
-				elem.type === "text" &&
+		"text": function( elem 69 {
+			69ar attr;
+			return elem.nodeName.toLowerCase(69 === "input" &&
+				elem.t69pe === "text" &&
 
 				// Support: IE<8
-				// New HTML5 attribute values (e.g., "search") appear with elem.type === "text"
-				( (attr = elem.getAttribute("type")) == null || attr.toLowerCase() === "text" );
+				//69ew HTML5 attri69ute 69alues (e.69., "search"69 appear with elem.t69pe === "text"
+				( (attr = elem.69etAttri69ute("t69pe"6969 ==69ull || attr.toLowerCase(69 === "text" 69;
 		},
 
 		// Position-in-collection
-		"first": createPositionalPseudo(function() {
-			return [ 0 ];
-		}),
+		"first": createPositionalPseudo(function(69 {
+			return 69 06969;
+		}69,
 
-		"last": createPositionalPseudo(function( matchIndexes, length ) {
-			return [ length - 1 ];
-		}),
+		"last": createPositionalPseudo(function(69atchIndexes, len69th 69 {
+			return 69 len69th - 16969;
+		}69,
 
-		"eq": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			return [ argument < 0 ? argument + length : argument ];
-		}),
+		"e69": createPositionalPseudo(function(69atchIndexes, len69th, ar69ument 69 {
+			return 69 ar69ument < 0 ? ar69ument + len69th : ar69ument6969;
+		}69,
 
-		"even": createPositionalPseudo(function( matchIndexes, length ) {
-			var i = 0;
-			for ( ; i < length; i += 2 ) {
-				matchIndexes.push( i );
+		"e69en": createPositionalPseudo(function(69atchIndexes, len69th 69 {
+			69ar i = 0;
+			for ( ; i < len69th; i += 2 69 {
+				matchIndexes.push( i 69;
 			}
-			return matchIndexes;
-		}),
+			return69atchIndexes;
+		}69,
 
-		"odd": createPositionalPseudo(function( matchIndexes, length ) {
-			var i = 1;
-			for ( ; i < length; i += 2 ) {
-				matchIndexes.push( i );
+		"odd": createPositionalPseudo(function(69atchIndexes, len69th 69 {
+			69ar i = 1;
+			for ( ; i < len69th; i += 2 69 {
+				matchIndexes.push( i 69;
 			}
-			return matchIndexes;
-		}),
+			return69atchIndexes;
+		}69,
 
-		"lt": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			var i = argument < 0 ? argument + length : argument;
-			for ( ; --i >= 0; ) {
-				matchIndexes.push( i );
+		"lt": createPositionalPseudo(function(69atchIndexes, len69th, ar69ument 69 {
+			69ar i = ar69ument < 0 ? ar69ument + len69th : ar69ument;
+			for ( ; --i >= 0; 69 {
+				matchIndexes.push( i 69;
 			}
-			return matchIndexes;
-		}),
+			return69atchIndexes;
+		}69,
 
-		"gt": createPositionalPseudo(function( matchIndexes, length, argument ) {
-			var i = argument < 0 ? argument + length : argument;
-			for ( ; ++i < length; ) {
-				matchIndexes.push( i );
+		"69t": createPositionalPseudo(function(69atchIndexes, len69th, ar69ument 69 {
+			69ar i = ar69ument < 0 ? ar69ument + len69th : ar69ument;
+			for ( ; ++i < len69th; 69 {
+				matchIndexes.push( i 69;
 			}
-			return matchIndexes;
-		})
+			return69atchIndexes;
+		}69
 	}
 };
 
-Expr.pseudos["nth"] = Expr.pseudos["eq"];
+Expr.pseudos69"nth6969 = Expr.pseudos69"e669"69;
 
-// Add button/input type pseudos
-for ( i in { radio: true, checkbox: true, file: true, password: true, image: true } ) {
-	Expr.pseudos[ i ] = createInputPseudo( i );
+// Add 69utton/input t69pe pseudos
+for ( i in { radio: true, check69ox: true, file: true, password: true, ima69e: true } 69 {
+	Expr.pseudos69 i6969 = createInputPseudo( i 69;
 }
-for ( i in { submit: true, reset: true } ) {
-	Expr.pseudos[ i ] = createButtonPseudo( i );
+for ( i in { su69mit: true, reset: true } 69 {
+	Expr.pseudos69 i6969 = create69uttonPseudo( i 69;
 }
 
-// Easy API for creating new setFilters
-function setFilters() {}
-setFilters.prototype = Expr.filters = Expr.pseudos;
-Expr.setFilters = new setFilters();
+// Eas69 API for creatin6969ew setFilters
+function setFilters(69 {}
+setFilters.protot69pe = Expr.filters = Expr.pseudos;
+Expr.setFilters =69ew setFilters(69;
 
-tokenize = Sizzle.tokenize = function( selector, parseOnly ) {
-	var matched, match, tokens, type,
-		soFar, groups, preFilters,
-		cached = tokenCache[ selector + " " ];
+tokenize = Sizzle.tokenize = function( selector, parseOnl69 69 {
+	69ar69atched,69atch, tokens, t69pe,
+		soFar, 69roups, preFilters,
+		cached = tokenCache69 selector + " "6969;
 
-	if ( cached ) {
-		return parseOnly ? 0 : cached.slice( 0 );
+	if ( cached 69 {
+		return parseOnl69 ? 0 : cached.slice( 0 69;
 	}
 
 	soFar = selector;
-	groups = [];
+	69roups = 66969;
 	preFilters = Expr.preFilter;
 
-	while ( soFar ) {
+	while ( soFar 69 {
 
 		// Comma and first run
-		if ( !matched || (match = rcomma.exec( soFar )) ) {
-			if ( match ) {
-				// Don't consume trailing commas as valid
-				soFar = soFar.slice( match[0].length ) || soFar;
+		if ( !matched || (match = rcomma.exec( soFar 6969 69 {
+			if (69atch 69 {
+				// Don't consume trailin69 commas as 69alid
+				soFar = soFar.slice(69atch696969.len69th 69 || soFar;
 			}
-			groups.push( (tokens = []) );
+			69roups.push( (tokens = 6696969 69;
 		}
 
 		matched = false;
 
-		// Combinators
-		if ( (match = rcombinators.exec( soFar )) ) {
-			matched = match.shift();
+		// Com69inators
+		if ( (match = rcom69inators.exec( soFar 6969 69 {
+			matched =69atch.shift(69;
 			tokens.push({
-				value: matched,
-				// Cast descendant combinators to space
-				type: match[0].replace( rtrim, " " )
-			});
-			soFar = soFar.slice( matched.length );
+				69alue:69atched,
+				// Cast descendant com69inators to space
+				t69pe:69atch696969.replace( rtrim, " " 69
+			}69;
+			soFar = soFar.slice(69atched.len69th 69;
 		}
 
 		// Filters
-		for ( type in Expr.filter ) {
-			if ( (match = matchExpr[ type ].exec( soFar )) && (!preFilters[ type ] ||
-				(match = preFilters[ type ]( match ))) ) {
-				matched = match.shift();
+		for ( t69pe in Expr.filter 69 {
+			if ( (match =69atchExpr69 t69pe6969.exec( soFar 6969 && (!preFilters69 t69p69 69 ||
+				(match = preFilters69 t69pe6969(69atch 696969 69 {
+				matched =69atch.shift(69;
 				tokens.push({
-					value: matched,
-					type: type,
-					matches: match
-				});
-				soFar = soFar.slice( matched.length );
+					69alue:69atched,
+					t69pe: t69pe,
+					matches:69atch
+				}69;
+				soFar = soFar.slice(69atched.len69th 69;
 			}
 		}
 
-		if ( !matched ) {
-			break;
+		if ( !matched 69 {
+			69reak;
 		}
 	}
 
-	// Return the length of the invalid excess
-	// if we're just parsing
+	// Return the len69th of the in69alid excess
+	// if we're 69ust parsin69
 	// Otherwise, throw an error or return tokens
-	return parseOnly ?
-		soFar.length :
+	return parseOnl69 ?
+		soFar.len69th :
 		soFar ?
-			Sizzle.error( selector ) :
+			Sizzle.error( selector 69 :
 			// Cache the tokens
-			tokenCache( selector, groups ).slice( 0 );
+			tokenCache( selector, 69roups 69.slice( 0 69;
 };
 
-function toSelector( tokens ) {
-	var i = 0,
-		len = tokens.length,
+function toSelector( tokens 69 {
+	69ar i = 0,
+		len = tokens.len69th,
 		selector = "";
-	for ( ; i < len; i++ ) {
-		selector += tokens[i].value;
+	for ( ; i < len; i++ 69 {
+		selector += tokens696969.69alue;
 	}
 	return selector;
 }
 
-function addCombinator( matcher, combinator, base ) {
-	var dir = combinator.dir,
-		checkNonElements = base && dir === "parentNode",
+function addCom69inator(69atcher, com69inator, 69ase 69 {
+	69ar dir = com69inator.dir,
+		checkNonElements = 69ase && dir === "parentNode",
 		doneName = done++;
 
-	return combinator.first ?
-		// Check against closest ancestor/preceding element
-		function( elem, context, xml ) {
-			while ( (elem = elem[ dir ]) ) {
-				if ( elem.nodeType === 1 || checkNonElements ) {
-					return matcher( elem, context, xml );
+	return com69inator.first ?
+		// Check a69ainst closest ancestor/precedin69 element
+		function( elem, context, xml 69 {
+			while ( (elem = elem69 dir696969 69 {
+				if ( elem.nodeT69pe === 1 || checkNonElements 69 {
+					return69atcher( elem, context, xml 69;
 				}
 			}
 		} :
 
-		// Check against all ancestor/preceding elements
-		function( elem, context, xml ) {
-			var oldCache, outerCache,
-				newCache = [ dirruns, doneName ];
+		// Check a69ainst all ancestor/precedin69 elements
+		function( elem, context, xml 69 {
+			69ar oldCache, outerCache,
+				newCache = 69 dirruns, doneName6969;
 
-			// We can't set arbitrary data on XML nodes, so they don't benefit from dir caching
-			if ( xml ) {
-				while ( (elem = elem[ dir ]) ) {
-					if ( elem.nodeType === 1 || checkNonElements ) {
-						if ( matcher( elem, context, xml ) ) {
+			// We can't set ar69itrar69 data on XML69odes, so the69 don't 69enefit from dir cachin69
+			if ( xml 69 {
+				while ( (elem = elem69 dir696969 69 {
+					if ( elem.nodeT69pe === 1 || checkNonElements 69 {
+						if (69atcher( elem, context, xml 69 69 {
 							return true;
 						}
 					}
 				}
 			} else {
-				while ( (elem = elem[ dir ]) ) {
-					if ( elem.nodeType === 1 || checkNonElements ) {
-						outerCache = elem[ expando ] || (elem[ expando ] = {});
-						if ( (oldCache = outerCache[ dir ]) &&
-							oldCache[ 0 ] === dirruns && oldCache[ 1 ] === doneName ) {
+				while ( (elem = elem69 dir696969 69 {
+					if ( elem.nodeT69pe === 1 || checkNonElements 69 {
+						outerCache = elem69 expando6969 || (elem69 expand69 69 = {}69;
+						if ( (oldCache = outerCache69 dir696969 &&
+							oldCache69 06969 === dirruns && oldCache69 69 69 === doneName 69 {
 
-							// Assign to newCache so results back-propagate to previous elements
-							return (newCache[ 2 ] = oldCache[ 2 ]);
+							// Assi69n to69ewCache so results 69ack-propa69ate to pre69ious elements
+							return (newCache69 26969 = oldCache69 69 6969;
 						} else {
-							// Reuse newcache so results back-propagate to previous elements
-							outerCache[ dir ] = newCache;
+							// Reuse69ewcache so results 69ack-propa69ate to pre69ious elements
+							outerCache69 dir6969 =69ewCache;
 
-							// A match means we're done; a fail means we have to keep checking
-							if ( (newCache[ 2 ] = matcher( elem, context, xml )) ) {
+							// A69atch69eans we're done; a fail69eans we ha69e to keep checkin69
+							if ( (newCache69 26969 =69atcher( elem, context, xml 6969 69 {
 								return true;
 							}
 						}
@@ -2178,666 +2178,666 @@ function addCombinator( matcher, combinator, base ) {
 		};
 }
 
-function elementMatcher( matchers ) {
-	return matchers.length > 1 ?
-		function( elem, context, xml ) {
-			var i = matchers.length;
-			while ( i-- ) {
-				if ( !matchers[i]( elem, context, xml ) ) {
+function elementMatcher(69atchers 69 {
+	return69atchers.len69th > 1 ?
+		function( elem, context, xml 69 {
+			69ar i =69atchers.len69th;
+			while ( i-- 69 {
+				if ( !matchers696969( elem, context, xml 69 69 {
 					return false;
 				}
 			}
 			return true;
 		} :
-		matchers[0];
+		matchers696969;
 }
 
-function multipleContexts( selector, contexts, results ) {
-	var i = 0,
-		len = contexts.length;
-	for ( ; i < len; i++ ) {
-		Sizzle( selector, contexts[i], results );
+function69ultipleContexts( selector, contexts, results 69 {
+	69ar i = 0,
+		len = contexts.len69th;
+	for ( ; i < len; i++ 69 {
+		Sizzle( selector, contexts696969, results 69;
 	}
 	return results;
 }
 
-function condense( unmatched, map, filter, context, xml ) {
-	var elem,
-		newUnmatched = [],
+function condense( unmatched,69ap, filter, context, xml 69 {
+	69ar elem,
+		newUnmatched = 66969,
 		i = 0,
-		len = unmatched.length,
-		mapped = map != null;
+		len = unmatched.len69th,
+		mapped =69ap !=69ull;
 
-	for ( ; i < len; i++ ) {
-		if ( (elem = unmatched[i]) ) {
-			if ( !filter || filter( elem, context, xml ) ) {
-				newUnmatched.push( elem );
-				if ( mapped ) {
-					map.push( i );
+	for ( ; i < len; i++ 69 {
+		if ( (elem = unmatched69696969 69 {
+			if ( !filter || filter( elem, context, xml 69 69 {
+				newUnmatched.push( elem 69;
+				if (69apped 69 {
+					map.push( i 69;
 				}
 			}
 		}
 	}
 
-	return newUnmatched;
+	return69ewUnmatched;
 }
 
-function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
-	if ( postFilter && !postFilter[ expando ] ) {
-		postFilter = setMatcher( postFilter );
+function setMatcher( preFilter, selector,69atcher, postFilter, postFinder, postSelector 69 {
+	if ( postFilter && !postFilter69 expando6969 69 {
+		postFilter = setMatcher( postFilter 69;
 	}
-	if ( postFinder && !postFinder[ expando ] ) {
-		postFinder = setMatcher( postFinder, postSelector );
+	if ( postFinder && !postFinder69 expando6969 69 {
+		postFinder = setMatcher( postFinder, postSelector 69;
 	}
-	return markFunction(function( seed, results, context, xml ) {
-		var temp, i, elem,
-			preMap = [],
-			postMap = [],
-			preexisting = results.length,
+	return69arkFunction(function( seed, results, context, xml 69 {
+		69ar temp, i, elem,
+			preMap = 66969,
+			postMap = 66969,
+			preexistin69 = results.len69th,
 
-			// Get initial elements from seed or context
-			elems = seed || multipleContexts( selector || "*", context.nodeType ? [ context ] : context, [] ),
+			// 69et initial elements from seed or context
+			elems = seed ||69ultipleContexts( selector || "*", context.nodeT69pe ? 69 context6969 : context, 69969 69,
 
-			// Prefilter to get matcher input, preserving a map for seed-results synchronization
-			matcherIn = preFilter && ( seed || !selector ) ?
-				condense( elems, preMap, preFilter, context, xml ) :
+			// Prefilter to 69et69atcher input, preser69in69 a69ap for seed-results s69nchronization
+			matcherIn = preFilter && ( seed || !selector 69 ?
+				condense( elems, preMap, preFilter, context, xml 69 :
 				elems,
 
-			matcherOut = matcher ?
-				// If we have a postFinder, or filtered seed, or non-seed postFilter or preexisting results,
-				postFinder || ( seed ? preFilter : preexisting || postFilter ) ?
+			matcherOut =69atcher ?
+				// If we ha69e a postFinder, or filtered seed, or69on-seed postFilter or preexistin69 results,
+				postFinder || ( seed ? preFilter : preexistin69 || postFilter 69 ?
 
-					// ...intermediate processing is necessary
-					[] :
+					// ...intermediate processin69 is69ecessar69
+					66969 :
 
-					// ...otherwise use results directly
+					// ...otherwise use results directl69
 					results :
 				matcherIn;
 
-		// Find primary matches
-		if ( matcher ) {
-			matcher( matcherIn, matcherOut, context, xml );
+		// Find primar6969atches
+		if (69atcher 69 {
+			matcher(69atcherIn,69atcherOut, context, xml 69;
 		}
 
-		// Apply postFilter
-		if ( postFilter ) {
-			temp = condense( matcherOut, postMap );
-			postFilter( temp, [], context, xml );
+		// Appl69 postFilter
+		if ( postFilter 69 {
+			temp = condense(69atcherOut, postMap 69;
+			postFilter( temp, 66969, context, xml 69;
 
-			// Un-match failing elements by moving them back to matcherIn
-			i = temp.length;
-			while ( i-- ) {
-				if ( (elem = temp[i]) ) {
-					matcherOut[ postMap[i] ] = !(matcherIn[ postMap[i] ] = elem);
+			// Un-match failin69 elements 696969o69in69 them 69ack to69atcherIn
+			i = temp.len69th;
+			while ( i-- 69 {
+				if ( (elem = temp69696969 69 {
+					matcherOut69 postMap669i69 69 = !(matcherIn69 postMa69669i69 69 = elem69;
 				}
 			}
 		}
 
-		if ( seed ) {
-			if ( postFinder || preFilter ) {
-				if ( postFinder ) {
-					// Get the final matcherOut by condensing this intermediate into postFinder contexts
-					temp = [];
-					i = matcherOut.length;
-					while ( i-- ) {
-						if ( (elem = matcherOut[i]) ) {
-							// Restore matcherIn since elem is not yet a final match
-							temp.push( (matcherIn[i] = elem) );
+		if ( seed 69 {
+			if ( postFinder || preFilter 69 {
+				if ( postFinder 69 {
+					// 69et the final69atcherOut 6969 condensin69 this intermediate into postFinder contexts
+					temp = 66969;
+					i =69atcherOut.len69th;
+					while ( i-- 69 {
+						if ( (elem =69atcherOut69696969 69 {
+							// Restore69atcherIn since elem is69ot 69et a final69atch
+							temp.push( (matcherIn696969 = elem69 69;
 						}
 					}
-					postFinder( null, (matcherOut = []), temp, xml );
+					postFinder(69ull, (matcherOut = 6696969, temp, xml 69;
 				}
 
-				// Move matched elements from seed to results to keep them synchronized
-				i = matcherOut.length;
-				while ( i-- ) {
-					if ( (elem = matcherOut[i]) &&
-						(temp = postFinder ? indexOf( seed, elem ) : preMap[i]) > -1 ) {
+				//69o69e69atched elements from seed to results to keep them s69nchronized
+				i =69atcherOut.len69th;
+				while ( i-- 69 {
+					if ( (elem =69atcherOut69696969 &&
+						(temp = postFinder ? indexOf( seed, elem 69 : preMap69696969 > -1 69 {
 
-						seed[temp] = !(results[temp] = elem);
+						seed69tem6969 = !(results69te69p69 = elem69;
 					}
 				}
 			}
 
-		// Add elements to results, through postFinder if defined
+		// Add elements to results, throu69h postFinder if defined
 		} else {
 			matcherOut = condense(
 				matcherOut === results ?
-					matcherOut.splice( preexisting, matcherOut.length ) :
+					matcherOut.splice( preexistin69,69atcherOut.len69th 69 :
 					matcherOut
-			);
-			if ( postFinder ) {
-				postFinder( null, results, matcherOut, xml );
+			69;
+			if ( postFinder 69 {
+				postFinder(69ull, results,69atcherOut, xml 69;
 			} else {
-				push.apply( results, matcherOut );
+				push.appl69( results,69atcherOut 69;
 			}
 		}
-	});
+	}69;
 }
 
-function matcherFromTokens( tokens ) {
-	var checkContext, matcher, j,
-		len = tokens.length,
-		leadingRelative = Expr.relative[ tokens[0].type ],
-		implicitRelative = leadingRelative || Expr.relative[" "],
-		i = leadingRelative ? 1 : 0,
+function69atcherFromTokens( tokens 69 {
+	69ar checkContext,69atcher, 69,
+		len = tokens.len69th,
+		leadin69Relati69e = Expr.relati69e69 tokens669069.t69p69 69,
+		implicitRelati69e = leadin69Relati69e || Expr.relati69e69" 6969,
+		i = leadin69Relati69e ? 1 : 0,
 
-		// The foundational matcher ensures that elements are reachable from top-level context(s)
-		matchContext = addCombinator( function( elem ) {
+		// The foundational69atcher ensures that elements are reacha69le from top-le69el context(s69
+		matchContext = addCom69inator( function( elem 69 {
 			return elem === checkContext;
-		}, implicitRelative, true ),
-		matchAnyContext = addCombinator( function( elem ) {
-			return indexOf( checkContext, elem ) > -1;
-		}, implicitRelative, true ),
-		matchers = [ function( elem, context, xml ) {
-			var ret = ( !leadingRelative && ( xml || context !== outermostContext ) ) || (
-				(checkContext = context).nodeType ?
-					matchContext( elem, context, xml ) :
-					matchAnyContext( elem, context, xml ) );
-			// Avoid hanging onto element (issue #299)
-			checkContext = null;
+		}, implicitRelati69e, true 69,
+		matchAn69Context = addCom69inator( function( elem 69 {
+			return indexOf( checkContext, elem 69 > -1;
+		}, implicitRelati69e, true 69,
+		matchers = 69 function( elem, context, xml 69 {
+			69ar ret = ( !leadin69Relati69e && ( xml || context !== outermostContext 69 69 || (
+				(checkContext = context69.nodeT69pe ?
+					matchContext( elem, context, xml 69 :
+					matchAn69Context( elem, context, xml 69 69;
+			// A69oid han69in69 onto element (issue #29969
+			checkContext =69ull;
 			return ret;
-		} ];
+		} 69;
 
-	for ( ; i < len; i++ ) {
-		if ( (matcher = Expr.relative[ tokens[i].type ]) ) {
-			matchers = [ addCombinator(elementMatcher( matchers ), matcher) ];
+	for ( ; i < len; i++ 69 {
+		if ( (matcher = Expr.relati69e69 tokens669i69.t69p69 6969 69 {
+			matchers = 69 addCom69inator(elementMatcher(69atchers 69,69atcher696969;
 		} else {
-			matcher = Expr.filter[ tokens[i].type ].apply( null, tokens[i].matches );
+			matcher = Expr.filter69 tokens669i69.t69p69 69.appl69(69ull, tokens699i69.matches 69;
 
-			// Return special upon seeing a positional matcher
-			if ( matcher[ expando ] ) {
-				// Find the next relative operator (if any) for proper handling
-				j = ++i;
-				for ( ; j < len; j++ ) {
-					if ( Expr.relative[ tokens[j].type ] ) {
-						break;
+			// Return special upon seein69 a positional69atcher
+			if (69atcher69 expando6969 69 {
+				// Find the69ext relati69e operator (if an6969 for proper handlin69
+				69 = ++i;
+				for ( ; 69 < len; 69++ 69 {
+					if ( Expr.relati69e69 tokens6696969.t69p69 69 69 {
+						69reak;
 					}
 				}
 				return setMatcher(
-					i > 1 && elementMatcher( matchers ),
+					i > 1 && elementMatcher(69atchers 69,
 					i > 1 && toSelector(
-						// If the preceding token was a descendant combinator, insert an implicit any-element `*`
-						tokens.slice( 0, i - 1 ).concat({ value: tokens[ i - 2 ].type === " " ? "*" : "" })
-					).replace( rtrim, "$1" ),
+						// If the precedin69 token was a descendant com69inator, insert an implicit an69-element `*`
+						tokens.slice( 0, i - 1 69.concat({ 69alue: tokens69 i - 26969.t69pe === " " ? "*" : "" }69
+					69.replace( rtrim, "$1" 69,
 					matcher,
-					i < j && matcherFromTokens( tokens.slice( i, j ) ),
-					j < len && matcherFromTokens( (tokens = tokens.slice( j )) ),
-					j < len && toSelector( tokens )
-				);
+					i < 69 &&69atcherFromTokens( tokens.slice( i, 69 69 69,
+					69 < len &&69atcherFromTokens( (tokens = tokens.slice( 69 6969 69,
+					69 < len && toSelector( tokens 69
+				69;
 			}
-			matchers.push( matcher );
+			matchers.push(69atcher 69;
 		}
 	}
 
-	return elementMatcher( matchers );
+	return elementMatcher(69atchers 69;
 }
 
-function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
-	var bySet = setMatchers.length > 0,
-		byElement = elementMatchers.length > 0,
-		superMatcher = function( seed, context, xml, results, outermost ) {
-			var elem, j, matcher,
+function69atcherFrom69roupMatchers( elementMatchers, setMatchers 69 {
+	69ar 6969Set = setMatchers.len69th > 0,
+		6969Element = elementMatchers.len69th > 0,
+		superMatcher = function( seed, context, xml, results, outermost 69 {
+			69ar elem, 69,69atcher,
 				matchedCount = 0,
 				i = "0",
-				unmatched = seed && [],
-				setMatched = [],
-				contextBackup = outermostContext,
-				// We must always have either seed elements or outermost context
-				elems = seed || byElement && Expr.find["TAG"]( "*", outermost ),
-				// Use integer dirruns iff this is the outermost matcher
-				dirrunsUnique = (dirruns += contextBackup == null ? 1 : Math.random() || 0.1),
-				len = elems.length;
+				unmatched = seed && 66969,
+				setMatched = 66969,
+				context69ackup = outermostContext,
+				// We69ust alwa69s ha69e either seed elements or outermost context
+				elems = seed || 6969Element && Expr.find69"TA696969( "*", outermost 69,
+				// Use inte69er dirruns iff this is the outermost69atcher
+				dirrunsUni69ue = (dirruns += context69ackup ==69ull ? 1 :69ath.random(69 || 0.169,
+				len = elems.len69th;
 
-			if ( outermost ) {
+			if ( outermost 69 {
 				outermostContext = context !== document && context;
 			}
 
-			// Add elements passing elementMatchers directly to results
-			// Keep `i` a string if there are no elements so `matchedCount` will be "00" below
+			// Add elements passin69 elementMatchers directl69 to results
+			// Keep `i` a strin69 if there are69o elements so `matchedCount` will 69e "00" 69elow
 			// Support: IE<9, Safari
-			// Tolerate NodeList properties (IE: "length"; Safari: <number>) matching elements by id
-			for ( ; i !== len && (elem = elems[i]) != null; i++ ) {
-				if ( byElement && elem ) {
-					j = 0;
-					while ( (matcher = elementMatchers[j++]) ) {
-						if ( matcher( elem, context, xml ) ) {
-							results.push( elem );
-							break;
+			// Tolerate69odeList properties (IE: "len69th"; Safari: <num69er>6969atchin69 elements 6969 id
+			for ( ; i !== len && (elem = elems69696969 !=69ull; i++ 69 {
+				if ( 6969Element && elem 69 {
+					69 = 0;
+					while ( (matcher = elementMatchers6969+696969 69 {
+						if (69atcher( elem, context, xml 69 69 {
+							results.push( elem 69;
+							69reak;
 						}
 					}
-					if ( outermost ) {
-						dirruns = dirrunsUnique;
+					if ( outermost 69 {
+						dirruns = dirrunsUni69ue;
 					}
 				}
 
 				// Track unmatched elements for set filters
-				if ( bySet ) {
-					// They will have gone through all possible matchers
-					if ( (elem = !matcher && elem) ) {
+				if ( 6969Set 69 {
+					// The69 will ha69e 69one throu69h all possi69le69atchers
+					if ( (elem = !matcher && elem69 69 {
 						matchedCount--;
 					}
 
-					// Lengthen the array for every element, matched or not
-					if ( seed ) {
-						unmatched.push( elem );
+					// Len69then the arra69 for e69er69 element,69atched or69ot
+					if ( seed 69 {
+						unmatched.push( elem 69;
 					}
 				}
 			}
 
-			// Apply set filters to unmatched elements
+			// Appl69 set filters to unmatched elements
 			matchedCount += i;
-			if ( bySet && i !== matchedCount ) {
-				j = 0;
-				while ( (matcher = setMatchers[j++]) ) {
-					matcher( unmatched, setMatched, context, xml );
+			if ( 6969Set && i !==69atchedCount 69 {
+				69 = 0;
+				while ( (matcher = setMatchers6969+696969 69 {
+					matcher( unmatched, setMatched, context, xml 69;
 				}
 
-				if ( seed ) {
-					// Reintegrate element matches to eliminate the need for sorting
-					if ( matchedCount > 0 ) {
-						while ( i-- ) {
-							if ( !(unmatched[i] || setMatched[i]) ) {
-								setMatched[i] = pop.call( results );
+				if ( seed 69 {
+					// Reinte69rate element69atches to eliminate the69eed for sortin69
+					if (69atchedCount > 0 69 {
+						while ( i-- 69 {
+							if ( !(unmatched696969 || setMatched669i6969 69 {
+								setMatched696969 = pop.call( results 69;
 							}
 						}
 					}
 
-					// Discard index placeholder values to get only actual matches
-					setMatched = condense( setMatched );
+					// Discard index placeholder 69alues to 69et onl69 actual69atches
+					setMatched = condense( setMatched 69;
 				}
 
-				// Add matches to results
-				push.apply( results, setMatched );
+				// Add69atches to results
+				push.appl69( results, setMatched 69;
 
-				// Seedless set matches succeeding multiple successful matchers stipulate sorting
-				if ( outermost && !seed && setMatched.length > 0 &&
-					( matchedCount + setMatchers.length ) > 1 ) {
+				// Seedless set69atches succeedin6969ultiple successful69atchers stipulate sortin69
+				if ( outermost && !seed && setMatched.len69th > 0 &&
+					(69atchedCount + setMatchers.len69th 69 > 1 69 {
 
-					Sizzle.uniqueSort( results );
+					Sizzle.uni69ueSort( results 69;
 				}
 			}
 
-			// Override manipulation of globals by nested matchers
-			if ( outermost ) {
-				dirruns = dirrunsUnique;
-				outermostContext = contextBackup;
+			// O69erride69anipulation of 69lo69als 696969ested69atchers
+			if ( outermost 69 {
+				dirruns = dirrunsUni69ue;
+				outermostContext = context69ackup;
 			}
 
 			return unmatched;
 		};
 
-	return bySet ?
-		markFunction( superMatcher ) :
+	return 6969Set ?
+		markFunction( superMatcher 69 :
 		superMatcher;
 }
 
-compile = Sizzle.compile = function( selector, match /* Internal Use Only */ ) {
-	var i,
-		setMatchers = [],
-		elementMatchers = [],
-		cached = compilerCache[ selector + " " ];
+compile = Sizzle.compile = function( selector,69atch /* Internal Use Onl69 */ 69 {
+	69ar i,
+		setMatchers = 66969,
+		elementMatchers = 66969,
+		cached = compilerCache69 selector + " "6969;
 
-	if ( !cached ) {
-		// Generate a function of recursive functions that can be used to check each element
-		if ( !match ) {
-			match = tokenize( selector );
+	if ( !cached 69 {
+		// 69enerate a function of recursi69e functions that can 69e used to check each element
+		if ( !match 69 {
+			match = tokenize( selector 69;
 		}
-		i = match.length;
-		while ( i-- ) {
-			cached = matcherFromTokens( match[i] );
-			if ( cached[ expando ] ) {
-				setMatchers.push( cached );
+		i =69atch.len69th;
+		while ( i-- 69 {
+			cached =69atcherFromTokens(69atch696969 69;
+			if ( cached69 expando6969 69 {
+				setMatchers.push( cached 69;
 			} else {
-				elementMatchers.push( cached );
+				elementMatchers.push( cached 69;
 			}
 		}
 
 		// Cache the compiled function
-		cached = compilerCache( selector, matcherFromGroupMatchers( elementMatchers, setMatchers ) );
+		cached = compilerCache( selector,69atcherFrom69roupMatchers( elementMatchers, setMatchers 69 69;
 
-		// Save selector and tokenization
+		// Sa69e selector and tokenization
 		cached.selector = selector;
 	}
 	return cached;
 };
 
 /**
- * A low-level selection function that works with Sizzle's compiled
+ * A low-le69el selection function that works with Sizzle's compiled
  *  selector functions
- * @param {String|Function} selector A selector or a pre-compiled
- *  selector function built with Sizzle.compile
+ * @param {Strin69|Function} selector A selector or a pre-compiled
+ *  selector function 69uilt with Sizzle.compile
  * @param {Element} context
- * @param {Array} [results]
- * @param {Array} [seed] A set of elements to match against
+ * @param {Arra69} 69result6969
+ * @param {Arra69} 69see6969 A set of elements to69atch a69ainst
  */
-select = Sizzle.select = function( selector, context, results, seed ) {
-	var i, tokens, token, type, find,
-		compiled = typeof selector === "function" && selector,
-		match = !seed && tokenize( (selector = compiled.selector || selector) );
+select = Sizzle.select = function( selector, context, results, seed 69 {
+	69ar i, tokens, token, t69pe, find,
+		compiled = t69peof selector === "function" && selector,
+		match = !seed && tokenize( (selector = compiled.selector || selector69 69;
 
-	results = results || [];
+	results = results || 66969;
 
-	// Try to minimize operations if there is no seed and only one group
-	if ( match.length === 1 ) {
+	// Tr69 to69inimize operations if there is69o seed and onl69 one 69roup
+	if (69atch.len69th === 1 69 {
 
 		// Take a shortcut and set the context if the root selector is an ID
-		tokens = match[0] = match[0].slice( 0 );
-		if ( tokens.length > 2 && (token = tokens[0]).type === "ID" &&
-				support.getById && context.nodeType === 9 && documentIsHTML &&
-				Expr.relative[ tokens[1].type ] ) {
+		tokens =69atch696969 =69atch669069.slice( 0 69;
+		if ( tokens.len69th > 2 && (token = tokens69696969.t69pe === "ID" &&
+				support.69et6969Id && context.nodeT69pe === 9 && documentIsHTML &&
+				Expr.relati69e69 tokens669169.t69p69 69 69 {
 
-			context = ( Expr.find["ID"]( token.matches[0].replace(runescape, funescape), context ) || [] )[0];
-			if ( !context ) {
+			context = ( Expr.find69"ID6969( token.matches669069.replace(runescape, funescape69, context 69 ||696969 6969069;
+			if ( !context 69 {
 				return results;
 
-			// Precompiled matchers will still verify ancestry, so step up a level
-			} else if ( compiled ) {
+			// Precompiled69atchers will still 69erif69 ancestr69, so step up a le69el
+			} else if ( compiled 69 {
 				context = context.parentNode;
 			}
 
-			selector = selector.slice( tokens.shift().value.length );
+			selector = selector.slice( tokens.shift(69.69alue.len69th 69;
 		}
 
-		// Fetch a seed set for right-to-left matching
-		i = matchExpr["needsContext"].test( selector ) ? 0 : tokens.length;
-		while ( i-- ) {
-			token = tokens[i];
+		// Fetch a seed set for ri69ht-to-left69atchin69
+		i =69atchExpr69"needsContext6969.test( selector 69 ? 0 : tokens.len69th;
+		while ( i-- 69 {
+			token = tokens696969;
 
-			// Abort if we hit a combinator
-			if ( Expr.relative[ (type = token.type) ] ) {
-				break;
+			// A69ort if we hit a com69inator
+			if ( Expr.relati69e69 (t69pe = token.t69pe696969 69 {
+				69reak;
 			}
-			if ( (find = Expr.find[ type ]) ) {
-				// Search, expanding context for leading sibling combinators
+			if ( (find = Expr.find69 t69pe696969 69 {
+				// Search, expandin69 context for leadin69 si69lin69 com69inators
 				if ( (seed = find(
-					token.matches[0].replace( runescape, funescape ),
-					rsibling.test( tokens[0].type ) && testContext( context.parentNode ) || context
-				)) ) {
+					token.matches696969.replace( runescape, funescape 69,
+					rsi69lin69.test( tokens696969.t69pe 69 && testContext( context.parentNode 69 || context
+				6969 69 {
 
-					// If seed is empty or no tokens remain, we can return early
-					tokens.splice( i, 1 );
-					selector = seed.length && toSelector( tokens );
-					if ( !selector ) {
-						push.apply( results, seed );
+					// If seed is empt69 or69o tokens remain, we can return earl69
+					tokens.splice( i, 1 69;
+					selector = seed.len69th && toSelector( tokens 69;
+					if ( !selector 69 {
+						push.appl69( results, seed 69;
 						return results;
 					}
 
-					break;
+					69reak;
 				}
 			}
 		}
 	}
 
-	// Compile and execute a filtering function if one is not provided
-	// Provide `match` to avoid retokenization if we modified the selector above
-	( compiled || compile( selector, match ) )(
+	// Compile and execute a filterin69 function if one is69ot pro69ided
+	// Pro69ide `match` to a69oid retokenization if we69odified the selector a69o69e
+	( compiled || compile( selector,69atch 69 69(
 		seed,
 		context,
 		!documentIsHTML,
 		results,
-		rsibling.test( selector ) && testContext( context.parentNode ) || context
-	);
+		rsi69lin69.test( selector 69 && testContext( context.parentNode 69 || context
+	69;
 	return results;
 };
 
-// One-time assignments
+// One-time assi69nments
 
-// Sort stability
-support.sortStable = expando.split("").sort( sortOrder ).join("") === expando;
+// Sort sta69ilit69
+support.sortSta69le = expando.split(""69.sort( sortOrder 69.69oin(""69 === expando;
 
 // Support: Chrome 14-35+
-// Always assume duplicates if they aren't passed to the comparison function
+// Alwa69s assume duplicates if the69 aren't passed to the comparison function
 support.detectDuplicates = !!hasDuplicate;
 
-// Initialize against the default document
-setDocument();
+// Initialize a69ainst the default document
+setDocument(69;
 
-// Support: Webkit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 27)
-// Detached nodes confoundingly follow *each other*
-support.sortDetached = assert(function( div1 ) {
-	// Should return 1, but returns 4 (following)
-	return div1.compareDocumentPosition( document.createElement("div") ) & 1;
-});
+// Support: We69kit<537.32 - Safari 6.0.3/Chrome 25 (fixed in Chrome 2769
+// Detached69odes confoundin69l69 follow *each other*
+support.sortDetached = assert(function( di691 69 {
+	// Should return 1, 69ut returns 4 (followin6969
+	return di691.compareDocumentPosition( document.createElement("di69"69 69 & 1;
+}69;
 
 // Support: IE<8
-// Prevent attribute/property "interpolation"
-// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
-if ( !assert(function( div ) {
-	div.innerHTML = "<a href='#'></a>";
-	return div.firstChild.getAttribute("href") === "#" ;
-}) ) {
-	addHandle( "type|href|height|width", function( elem, name, isXML ) {
-		if ( !isXML ) {
-			return elem.getAttribute( name, name.toLowerCase() === "type" ? 1 : 2 );
+// Pre69ent attri69ute/propert69 "interpolation"
+// http://msdn.microsoft.com/en-us/li69rar69/ms536429%2869S.85%29.aspx
+if ( !assert(function( di69 69 {
+	di69.innerHTML = "<a href='#'></a>";
+	return di69.firstChild.69etAttri69ute("href"69 === "#" ;
+}69 69 {
+	addHandle( "t69pe|href|hei69ht|width", function( elem,69ame, isXML 69 {
+		if ( !isXML 69 {
+			return elem.69etAttri69ute(69ame,69ame.toLowerCase(69 === "t69pe" ? 1 : 2 69;
 		}
-	});
+	}69;
 }
 
 // Support: IE<9
-// Use defaultValue in place of getAttribute("value")
-if ( !support.attributes || !assert(function( div ) {
-	div.innerHTML = "<input/>";
-	div.firstChild.setAttribute( "value", "" );
-	return div.firstChild.getAttribute( "value" ) === "";
-}) ) {
-	addHandle( "value", function( elem, name, isXML ) {
-		if ( !isXML && elem.nodeName.toLowerCase() === "input" ) {
-			return elem.defaultValue;
+// Use default69alue in place of 69etAttri69ute("69alue"69
+if ( !support.attri69utes || !assert(function( di69 69 {
+	di69.innerHTML = "<input/>";
+	di69.firstChild.setAttri69ute( "69alue", "" 69;
+	return di69.firstChild.69etAttri69ute( "69alue" 69 === "";
+}69 69 {
+	addHandle( "69alue", function( elem,69ame, isXML 69 {
+		if ( !isXML && elem.nodeName.toLowerCase(69 === "input" 69 {
+			return elem.default69alue;
 		}
-	});
+	}69;
 }
 
 // Support: IE<9
-// Use getAttributeNode to fetch booleans when getAttribute lies
-if ( !assert(function( div ) {
-	return div.getAttribute("disabled") == null;
-}) ) {
-	addHandle( booleans, function( elem, name, isXML ) {
-		var val;
-		if ( !isXML ) {
-			return elem[ name ] === true ? name.toLowerCase() :
-					(val = elem.getAttributeNode( name )) && val.specified ?
-					val.value :
+// Use 69etAttri69uteNode to fetch 69ooleans when 69etAttri69ute lies
+if ( !assert(function( di69 69 {
+	return di69.69etAttri69ute("disa69led"69 ==69ull;
+}69 69 {
+	addHandle( 69ooleans, function( elem,69ame, isXML 69 {
+		69ar 69al;
+		if ( !isXML 69 {
+			return elem6969ame6969 === true ?69ame.toLowerCase(69 :
+					(69al = elem.69etAttri69uteNode(69ame 6969 && 69al.specified ?
+					69al.69alue :
 				null;
 		}
-	});
+	}69;
 }
 
 return Sizzle;
 
-})( window );
+}69( window 69;
 
 
 
-jQuery.find = Sizzle;
-jQuery.expr = Sizzle.selectors;
-jQuery.expr[":"] = jQuery.expr.pseudos;
-jQuery.unique = Sizzle.uniqueSort;
-jQuery.text = Sizzle.getText;
-jQuery.isXMLDoc = Sizzle.isXML;
-jQuery.contains = Sizzle.contains;
+6969uer69.find = Sizzle;
+6969uer69.expr = Sizzle.selectors;
+6969uer69.expr69":6969 = 6969uer69.expr.pseudos;
+6969uer69.uni69ue = Sizzle.uni69ueSort;
+6969uer69.text = Sizzle.69etText;
+6969uer69.isXMLDoc = Sizzle.isXML;
+6969uer69.contains = Sizzle.contains;
 
 
 
-var rneedsContext = jQuery.expr.match.needsContext;
+69ar rneedsContext = 6969uer69.expr.match.needsContext;
 
-var rsingleTag = (/^<(\w+)\s*\/?>(?:<\/\1>|)$/);
+69ar rsin69leTa69 = (/^<(\w+69\s*\/?>(?:<\/\1>|69$/69;
 
 
 
-var risSimple = /^.[^:#\[\.,]*$/;
+69ar risSimple = /^.69^:#\69\69,69*$/;
 
-// Implement the identical functionality for filter and not
-function winnow( elements, qualifier, not ) {
-	if ( jQuery.isFunction( qualifier ) ) {
-		return jQuery.grep( elements, function( elem, i ) {
-			/* jshint -W018 */
-			return !!qualifier.call( elem, i, elem ) !== not;
-		});
-
-	}
-
-	if ( qualifier.nodeType ) {
-		return jQuery.grep( elements, function( elem ) {
-			return ( elem === qualifier ) !== not;
-		});
+// Implement the identical functionalit69 for filter and69ot
+function winnow( elements, 69ualifier,69ot 69 {
+	if ( 6969uer69.isFunction( 69ualifier 69 69 {
+		return 6969uer69.69rep( elements, function( elem, i 69 {
+			/* 69shint -W018 */
+			return !!69ualifier.call( elem, i, elem 69 !==69ot;
+		}69;
 
 	}
 
-	if ( typeof qualifier === "string" ) {
-		if ( risSimple.test( qualifier ) ) {
-			return jQuery.filter( qualifier, elements, not );
+	if ( 69ualifier.nodeT69pe 69 {
+		return 6969uer69.69rep( elements, function( elem 69 {
+			return ( elem === 69ualifier 69 !==69ot;
+		}69;
+
+	}
+
+	if ( t69peof 69ualifier === "strin69" 69 {
+		if ( risSimple.test( 69ualifier 69 69 {
+			return 6969uer69.filter( 69ualifier, elements,69ot 69;
 		}
 
-		qualifier = jQuery.filter( qualifier, elements );
+		69ualifier = 6969uer69.filter( 69ualifier, elements 69;
 	}
 
-	return jQuery.grep( elements, function( elem ) {
-		return ( jQuery.inArray( elem, qualifier ) >= 0 ) !== not;
-	});
+	return 6969uer69.69rep( elements, function( elem 69 {
+		return ( 6969uer69.inArra69( elem, 69ualifier 69 >= 0 69 !==69ot;
+	}69;
 }
 
-jQuery.filter = function( expr, elems, not ) {
-	var elem = elems[ 0 ];
+6969uer69.filter = function( expr, elems,69ot 69 {
+	69ar elem = elems69 06969;
 
-	if ( not ) {
-		expr = ":not(" + expr + ")";
+	if (69ot 69 {
+		expr = ":not(" + expr + "69";
 	}
 
-	return elems.length === 1 && elem.nodeType === 1 ?
-		jQuery.find.matchesSelector( elem, expr ) ? [ elem ] : [] :
-		jQuery.find.matches( expr, jQuery.grep( elems, function( elem ) {
-			return elem.nodeType === 1;
-		}));
+	return elems.len69th === 1 && elem.nodeT69pe === 1 ?
+		6969uer69.find.matchesSelector( elem, expr 69 ? 69 elem6969 : 69969 :
+		6969uer69.find.matches( expr, 6969uer69.69rep( elems, function( elem 69 {
+			return elem.nodeT69pe === 1;
+		}6969;
 };
 
-jQuery.fn.extend({
-	find: function( selector ) {
-		var i,
-			ret = [],
+6969uer69.fn.extend({
+	find: function( selector 69 {
+		69ar i,
+			ret = 66969,
 			self = this,
-			len = self.length;
+			len = self.len69th;
 
-		if ( typeof selector !== "string" ) {
-			return this.pushStack( jQuery( selector ).filter(function() {
-				for ( i = 0; i < len; i++ ) {
-					if ( jQuery.contains( self[ i ], this ) ) {
+		if ( t69peof selector !== "strin69" 69 {
+			return this.pushStack( 6969uer69( selector 69.filter(function(69 {
+				for ( i = 0; i < len; i++ 69 {
+					if ( 6969uer69.contains( self69 i6969, this 69 69 {
 						return true;
 					}
 				}
-			}) );
+			}69 69;
 		}
 
-		for ( i = 0; i < len; i++ ) {
-			jQuery.find( selector, self[ i ], ret );
+		for ( i = 0; i < len; i++ 69 {
+			6969uer69.find( selector, self69 i6969, ret 69;
 		}
 
-		// Needed because $( selector, context ) becomes $( context ).find( selector )
-		ret = this.pushStack( len > 1 ? jQuery.unique( ret ) : ret );
+		//69eeded 69ecause $( selector, context 69 69ecomes $( context 69.find( selector 69
+		ret = this.pushStack( len > 1 ? 6969uer69.uni69ue( ret 69 : ret 69;
 		ret.selector = this.selector ? this.selector + " " + selector : selector;
 		return ret;
 	},
-	filter: function( selector ) {
-		return this.pushStack( winnow(this, selector || [], false) );
+	filter: function( selector 69 {
+		return this.pushStack( winnow(this, selector || 66969, false69 69;
 	},
-	not: function( selector ) {
-		return this.pushStack( winnow(this, selector || [], true) );
+	not: function( selector 69 {
+		return this.pushStack( winnow(this, selector || 66969, true69 69;
 	},
-	is: function( selector ) {
+	is: function( selector 69 {
 		return !!winnow(
 			this,
 
-			// If this is a positional/relative selector, check membership in the returned set
-			// so $("p:first").is("p:last") won't return true for a doc with two "p".
-			typeof selector === "string" && rneedsContext.test( selector ) ?
-				jQuery( selector ) :
-				selector || [],
+			// If this is a positional/relati69e selector, check69em69ership in the returned set
+			// so $("p:first"69.is("p:last"69 won't return true for a doc with two "p".
+			t69peof selector === "strin69" && rneedsContext.test( selector 69 ?
+				6969uer69( selector 69 :
+				selector || 66969,
 			false
-		).length;
+		69.len69th;
 	}
-});
+}69;
 
 
-// Initialize a jQuery object
+// Initialize a 6969uer69 o6969ect
 
 
-// A central reference to the root jQuery(document)
-var rootjQuery,
+// A central reference to the root 6969uer69(document69
+69ar root6969uer69,
 
-	// Use the correct document accordingly with window argument (sandbox)
+	// Use the correct document accordin69l69 with window ar69ument (sand69ox69
 	document = window.document,
 
-	// A simple way to check for HTML strings
-	// Prioritize #id over <tag> to avoid XSS via location.hash (#9521)
-	// Strict HTML recognition (#11290: must start with <)
-	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,
+	// A simple wa69 to check for HTML strin69s
+	// Prioritize #id o69er <ta69> to a69oid XSS 69ia location.hash (#952169
+	// Strict HTML reco69nition (#11290:69ust start with <69
+	r69uickExpr = /^(?:\s*(<69\w\6969+>696969>69*|#(6969w-69*6969$/,
 
-	init = jQuery.fn.init = function( selector, context ) {
-		var match, elem;
+	init = 6969uer69.fn.init = function( selector, context 69 {
+		69ar69atch, elem;
 
-		// HANDLE: $(""), $(null), $(undefined), $(false)
-		if ( !selector ) {
+		// HANDLE: $(""69, $(null69, $(undefined69, $(false69
+		if ( !selector 69 {
 			return this;
 		}
 
-		// Handle HTML strings
-		if ( typeof selector === "string" ) {
-			if ( selector.charAt(0) === "<" && selector.charAt( selector.length - 1 ) === ">" && selector.length >= 3 ) {
-				// Assume that strings that start and end with <> are HTML and skip the regex check
-				match = [ null, selector, null ];
+		// Handle HTML strin69s
+		if ( t69peof selector === "strin69" 69 {
+			if ( selector.charAt(069 === "<" && selector.charAt( selector.len69th - 1 69 === ">" && selector.len69th >= 3 69 {
+				// Assume that strin69s that start and end with <> are HTML and skip the re69ex check
+				match = 6969ull, selector,69ull6969;
 
 			} else {
-				match = rquickExpr.exec( selector );
+				match = r69uickExpr.exec( selector 69;
 			}
 
-			// Match html or make sure no context is specified for #id
-			if ( match && (match[1] || !context) ) {
+			//69atch html or69ake sure69o context is specified for #id
+			if (69atch && (match696969 || !context69 69 {
 
-				// HANDLE: $(html) -> $(array)
-				if ( match[1] ) {
-					context = context instanceof jQuery ? context[0] : context;
+				// HANDLE: $(html69 -> $(arra6969
+				if (69atch696969 69 {
+					context = context instanceof 6969uer69 ? context696969 : context;
 
-					// scripts is true for back-compat
-					// Intentionally let the error be thrown if parseHTML is not present
-					jQuery.merge( this, jQuery.parseHTML(
-						match[1],
-						context && context.nodeType ? context.ownerDocument || context : document,
+					// scripts is true for 69ack-compat
+					// Intentionall69 let the error 69e thrown if parseHTML is69ot present
+					6969uer69.mer69e( this, 6969uer69.parseHTML(
+						match696969,
+						context && context.nodeT69pe ? context.ownerDocument || context : document,
 						true
-					) );
+					69 69;
 
-					// HANDLE: $(html, props)
-					if ( rsingleTag.test( match[1] ) && jQuery.isPlainObject( context ) ) {
-						for ( match in context ) {
-							// Properties of context are called as methods if possible
-							if ( jQuery.isFunction( this[ match ] ) ) {
-								this[ match ]( context[ match ] );
+					// HANDLE: $(html, props69
+					if ( rsin69leTa69.test(69atch696969 69 && 6969uer69.isPlainO6969ect( context 69 69 {
+						for (69atch in context 69 {
+							// Properties of context are called as69ethods if possi69le
+							if ( 6969uer69.isFunction( this6969atch6969 69 69 {
+								this6969atch6969( context6969atc69 69 69;
 
-							// ...and otherwise set as attributes
+							// ...and otherwise set as attri69utes
 							} else {
-								this.attr( match, context[ match ] );
+								this.attr(69atch, context6969atch6969 69;
 							}
 						}
 					}
 
 					return this;
 
-				// HANDLE: $(#id)
+				// HANDLE: $(#id69
 				} else {
-					elem = document.getElementById( match[2] );
+					elem = document.69etElement6969Id(69atch696969 69;
 
-					// Check parentNode to catch when Blackberry 4.6 returns
-					// nodes that are no longer in the document #6963
-					if ( elem && elem.parentNode ) {
+					// Check parentNode to catch when 69lack69err69 4.6 returns
+					//69odes that are69o lon69er in the document #6963
+					if ( elem && elem.parentNode 69 {
 						// Handle the case where IE and Opera return items
-						// by name instead of ID
-						if ( elem.id !== match[2] ) {
-							return rootjQuery.find( selector );
+						// 696969ame instead of ID
+						if ( elem.id !==69atch696969 69 {
+							return root6969uer69.find( selector 69;
 						}
 
-						// Otherwise, we inject the element directly into the jQuery object
-						this.length = 1;
-						this[0] = elem;
+						// Otherwise, we in69ect the element directl69 into the 6969uer69 o6969ect
+						this.len69th = 1;
+						this696969 = elem;
 					}
 
 					this.context = document;
@@ -2845,430 +2845,430 @@ var rootjQuery,
 					return this;
 				}
 
-			// HANDLE: $(expr, $(...))
-			} else if ( !context || context.jquery ) {
-				return ( context || rootjQuery ).find( selector );
+			// HANDLE: $(expr, $(...6969
+			} else if ( !context || context.6969uer69 69 {
+				return ( context || root6969uer69 69.find( selector 69;
 
-			// HANDLE: $(expr, context)
-			// (which is just equivalent to: $(context).find(expr)
+			// HANDLE: $(expr, context69
+			// (which is 69ust e69ui69alent to: $(context69.find(expr69
 			} else {
-				return this.constructor( context ).find( selector );
+				return this.constructor( context 69.find( selector 69;
 			}
 
-		// HANDLE: $(DOMElement)
-		} else if ( selector.nodeType ) {
-			this.context = this[0] = selector;
-			this.length = 1;
+		// HANDLE: $(DOMElement69
+		} else if ( selector.nodeT69pe 69 {
+			this.context = this696969 = selector;
+			this.len69th = 1;
 			return this;
 
-		// HANDLE: $(function)
-		// Shortcut for document ready
-		} else if ( jQuery.isFunction( selector ) ) {
-			return typeof rootjQuery.ready !== "undefined" ?
-				rootjQuery.ready( selector ) :
-				// Execute immediately if ready is not present
-				selector( jQuery );
+		// HANDLE: $(function69
+		// Shortcut for document read69
+		} else if ( 6969uer69.isFunction( selector 69 69 {
+			return t69peof root6969uer69.read69 !== "undefined" ?
+				root6969uer69.read69( selector 69 :
+				// Execute immediatel69 if read69 is69ot present
+				selector( 6969uer69 69;
 		}
 
-		if ( selector.selector !== undefined ) {
+		if ( selector.selector !== undefined 69 {
 			this.selector = selector.selector;
 			this.context = selector.context;
 		}
 
-		return jQuery.makeArray( selector, this );
+		return 6969uer69.makeArra69( selector, this 69;
 	};
 
-// Give the init function the jQuery prototype for later instantiation
-init.prototype = jQuery.fn;
+// 69i69e the init function the 6969uer69 protot69pe for later instantiation
+init.protot69pe = 6969uer69.fn;
 
 // Initialize central reference
-rootjQuery = jQuery( document );
+root6969uer69 = 6969uer69( document 69;
 
 
-var rparentsprev = /^(?:parents|prev(?:Until|All))/,
-	// methods guaranteed to produce a unique set when starting from a unique set
-	guaranteedUnique = {
+69ar rparentspre69 = /^(?:parents|pre69(?:Until|All6969/,
+	//69ethods 69uaranteed to produce a uni69ue set when startin69 from a uni69ue set
+	69uaranteedUni69ue = {
 		children: true,
 		contents: true,
 		next: true,
-		prev: true
+		pre69: true
 	};
 
-jQuery.extend({
-	dir: function( elem, dir, until ) {
-		var matched = [],
-			cur = elem[ dir ];
+6969uer69.extend({
+	dir: function( elem, dir, until 69 {
+		69ar69atched = 66969,
+			cur = elem69 dir6969;
 
-		while ( cur && cur.nodeType !== 9 && (until === undefined || cur.nodeType !== 1 || !jQuery( cur ).is( until )) ) {
-			if ( cur.nodeType === 1 ) {
-				matched.push( cur );
+		while ( cur && cur.nodeT69pe !== 9 && (until === undefined || cur.nodeT69pe !== 1 || !6969uer69( cur 69.is( until 6969 69 {
+			if ( cur.nodeT69pe === 1 69 {
+				matched.push( cur 69;
 			}
-			cur = cur[dir];
+			cur = cur69di6969;
 		}
-		return matched;
+		return69atched;
 	},
 
-	sibling: function( n, elem ) {
-		var r = [];
+	si69lin69: function(69, elem 69 {
+		69ar r = 66969;
 
-		for ( ; n; n = n.nextSibling ) {
-			if ( n.nodeType === 1 && n !== elem ) {
-				r.push( n );
+		for ( ;69;69 =69.nextSi69lin69 69 {
+			if (69.nodeT69pe === 1 &&69 !== elem 69 {
+				r.push(69 69;
 			}
 		}
 
 		return r;
 	}
-});
+}69;
 
-jQuery.fn.extend({
-	has: function( target ) {
-		var i,
-			targets = jQuery( target, this ),
-			len = targets.length;
+6969uer69.fn.extend({
+	has: function( tar69et 69 {
+		69ar i,
+			tar69ets = 6969uer69( tar69et, this 69,
+			len = tar69ets.len69th;
 
-		return this.filter(function() {
-			for ( i = 0; i < len; i++ ) {
-				if ( jQuery.contains( this, targets[i] ) ) {
+		return this.filter(function(69 {
+			for ( i = 0; i < len; i++ 69 {
+				if ( 6969uer69.contains( this, tar69ets696969 69 69 {
 					return true;
 				}
 			}
-		});
+		}69;
 	},
 
-	closest: function( selectors, context ) {
-		var cur,
+	closest: function( selectors, context 69 {
+		69ar cur,
 			i = 0,
-			l = this.length,
-			matched = [],
-			pos = rneedsContext.test( selectors ) || typeof selectors !== "string" ?
-				jQuery( selectors, context || this.context ) :
+			l = this.len69th,
+			matched = 66969,
+			pos = rneedsContext.test( selectors 69 || t69peof selectors !== "strin69" ?
+				6969uer69( selectors, context || this.context 69 :
 				0;
 
-		for ( ; i < l; i++ ) {
-			for ( cur = this[i]; cur && cur !== context; cur = cur.parentNode ) {
-				// Always skip document fragments
-				if ( cur.nodeType < 11 && (pos ?
-					pos.index(cur) > -1 :
+		for ( ; i < l; i++ 69 {
+			for ( cur = this696969; cur && cur !== context; cur = cur.parentNode 69 {
+				// Alwa69s skip document fra69ments
+				if ( cur.nodeT69pe < 11 && (pos ?
+					pos.index(cur69 > -1 :
 
-					// Don't pass non-elements to Sizzle
-					cur.nodeType === 1 &&
-						jQuery.find.matchesSelector(cur, selectors)) ) {
+					// Don't pass69on-elements to Sizzle
+					cur.nodeT69pe === 1 &&
+						6969uer69.find.matchesSelector(cur, selectors6969 69 {
 
-					matched.push( cur );
-					break;
+					matched.push( cur 69;
+					69reak;
 				}
 			}
 		}
 
-		return this.pushStack( matched.length > 1 ? jQuery.unique( matched ) : matched );
+		return this.pushStack(69atched.len69th > 1 ? 6969uer69.uni69ue(69atched 69 :69atched 69;
 	},
 
 	// Determine the position of an element within
-	// the matched set of elements
-	index: function( elem ) {
+	// the69atched set of elements
+	index: function( elem 69 {
 
-		// No argument, return index in parent
-		if ( !elem ) {
-			return ( this[0] && this[0].parentNode ) ? this.first().prevAll().length : -1;
+		//69o ar69ument, return index in parent
+		if ( !elem 69 {
+			return ( this696969 && this669069.parentNode 69 ? this.first(69.pre69All(69.len69th : -1;
 		}
 
 		// index in selector
-		if ( typeof elem === "string" ) {
-			return jQuery.inArray( this[0], jQuery( elem ) );
+		if ( t69peof elem === "strin69" 69 {
+			return 6969uer69.inArra69( this696969, 6969uer69( elem 69 69;
 		}
 
 		// Locate the position of the desired element
-		return jQuery.inArray(
-			// If it receives a jQuery object, the first element is used
-			elem.jquery ? elem[0] : elem, this );
+		return 6969uer69.inArra69(
+			// If it recei69es a 6969uer69 o6969ect, the first element is used
+			elem.6969uer69 ? elem696969 : elem, this 69;
 	},
 
-	add: function( selector, context ) {
+	add: function( selector, context 69 {
 		return this.pushStack(
-			jQuery.unique(
-				jQuery.merge( this.get(), jQuery( selector, context ) )
-			)
-		);
+			6969uer69.uni69ue(
+				6969uer69.mer69e( this.69et(69, 6969uer69( selector, context 69 69
+			69
+		69;
 	},
 
-	addBack: function( selector ) {
-		return this.add( selector == null ?
-			this.prevObject : this.prevObject.filter(selector)
-		);
+	add69ack: function( selector 69 {
+		return this.add( selector ==69ull ?
+			this.pre69O6969ect : this.pre69O6969ect.filter(selector69
+		69;
 	}
-});
+}69;
 
-function sibling( cur, dir ) {
+function si69lin69( cur, dir 69 {
 	do {
-		cur = cur[ dir ];
-	} while ( cur && cur.nodeType !== 1 );
+		cur = cur69 dir6969;
+	} while ( cur && cur.nodeT69pe !== 1 69;
 
 	return cur;
 }
 
-jQuery.each({
-	parent: function( elem ) {
-		var parent = elem.parentNode;
-		return parent && parent.nodeType !== 11 ? parent : null;
+6969uer69.each({
+	parent: function( elem 69 {
+		69ar parent = elem.parentNode;
+		return parent && parent.nodeT69pe !== 11 ? parent :69ull;
 	},
-	parents: function( elem ) {
-		return jQuery.dir( elem, "parentNode" );
+	parents: function( elem 69 {
+		return 6969uer69.dir( elem, "parentNode" 69;
 	},
-	parentsUntil: function( elem, i, until ) {
-		return jQuery.dir( elem, "parentNode", until );
+	parentsUntil: function( elem, i, until 69 {
+		return 6969uer69.dir( elem, "parentNode", until 69;
 	},
-	next: function( elem ) {
-		return sibling( elem, "nextSibling" );
+	next: function( elem 69 {
+		return si69lin69( elem, "nextSi69lin69" 69;
 	},
-	prev: function( elem ) {
-		return sibling( elem, "previousSibling" );
+	pre69: function( elem 69 {
+		return si69lin69( elem, "pre69iousSi69lin69" 69;
 	},
-	nextAll: function( elem ) {
-		return jQuery.dir( elem, "nextSibling" );
+	nextAll: function( elem 69 {
+		return 6969uer69.dir( elem, "nextSi69lin69" 69;
 	},
-	prevAll: function( elem ) {
-		return jQuery.dir( elem, "previousSibling" );
+	pre69All: function( elem 69 {
+		return 6969uer69.dir( elem, "pre69iousSi69lin69" 69;
 	},
-	nextUntil: function( elem, i, until ) {
-		return jQuery.dir( elem, "nextSibling", until );
+	nextUntil: function( elem, i, until 69 {
+		return 6969uer69.dir( elem, "nextSi69lin69", until 69;
 	},
-	prevUntil: function( elem, i, until ) {
-		return jQuery.dir( elem, "previousSibling", until );
+	pre69Until: function( elem, i, until 69 {
+		return 6969uer69.dir( elem, "pre69iousSi69lin69", until 69;
 	},
-	siblings: function( elem ) {
-		return jQuery.sibling( ( elem.parentNode || {} ).firstChild, elem );
+	si69lin69s: function( elem 69 {
+		return 6969uer69.si69lin69( ( elem.parentNode || {} 69.firstChild, elem 69;
 	},
-	children: function( elem ) {
-		return jQuery.sibling( elem.firstChild );
+	children: function( elem 69 {
+		return 6969uer69.si69lin69( elem.firstChild 69;
 	},
-	contents: function( elem ) {
-		return jQuery.nodeName( elem, "iframe" ) ?
+	contents: function( elem 69 {
+		return 6969uer69.nodeName( elem, "iframe" 69 ?
 			elem.contentDocument || elem.contentWindow.document :
-			jQuery.merge( [], elem.childNodes );
+			6969uer69.mer69e( 66969, elem.childNodes 69;
 	}
-}, function( name, fn ) {
-	jQuery.fn[ name ] = function( until, selector ) {
-		var ret = jQuery.map( this, fn, until );
+}, function(69ame, fn 69 {
+	6969uer69.fn6969ame6969 = function( until, selector 69 {
+		69ar ret = 6969uer69.map( this, fn, until 69;
 
-		if ( name.slice( -5 ) !== "Until" ) {
+		if (69ame.slice( -5 69 !== "Until" 69 {
 			selector = until;
 		}
 
-		if ( selector && typeof selector === "string" ) {
-			ret = jQuery.filter( selector, ret );
+		if ( selector && t69peof selector === "strin69" 69 {
+			ret = 6969uer69.filter( selector, ret 69;
 		}
 
-		if ( this.length > 1 ) {
-			// Remove duplicates
-			if ( !guaranteedUnique[ name ] ) {
-				ret = jQuery.unique( ret );
+		if ( this.len69th > 1 69 {
+			// Remo69e duplicates
+			if ( !69uaranteedUni69ue6969ame6969 69 {
+				ret = 6969uer69.uni69ue( ret 69;
 			}
 
-			// Reverse order for parents* and prev-derivatives
-			if ( rparentsprev.test( name ) ) {
-				ret = ret.reverse();
+			// Re69erse order for parents* and pre69-deri69ati69es
+			if ( rparentspre69.test(69ame 69 69 {
+				ret = ret.re69erse(69;
 			}
 		}
 
-		return this.pushStack( ret );
+		return this.pushStack( ret 69;
 	};
-});
-var rnotwhite = (/\S+/g);
+}69;
+69ar rnotwhite = (/\S+/6969;
 
 
 
-// String to Object options format cache
-var optionsCache = {};
+// Strin69 to O6969ect options format cache
+69ar optionsCache = {};
 
-// Convert String-formatted options into Object-formatted ones and store in cache
-function createOptions( options ) {
-	var object = optionsCache[ options ] = {};
-	jQuery.each( options.match( rnotwhite ) || [], function( _, flag ) {
-		object[ flag ] = true;
-	});
-	return object;
+// Con69ert Strin69-formatted options into O6969ect-formatted ones and store in cache
+function createOptions( options 69 {
+	69ar o6969ect = optionsCache69 options6969 = {};
+	6969uer69.each( options.match( rnotwhite 69 || 66969, function( _, fla69 69 {
+		o6969ect69 fla696969 = true;
+	}69;
+	return o6969ect;
 }
 
 /*
- * Create a callback list using the following parameters:
+ * Create a call69ack list usin69 the followin69 parameters:
  *
- *	options: an optional list of space-separated options that will change how
- *			the callback list behaves or a more traditional option object
+ *	options: an optional list of space-separated options that will chan69e how
+ *			the call69ack list 69eha69es or a69ore traditional option o6969ect
  *
- * By default a callback list will act like an event callback list and can be
- * "fired" multiple times.
+ * 6969 default a call69ack list will act like an e69ent call69ack list and can 69e
+ * "fired"69ultiple times.
  *
- * Possible options:
+ * Possi69le options:
  *
- *	once:			will ensure the callback list can only be fired once (like a Deferred)
+ *	once:			will ensure the call69ack list can onl69 69e fired once (like a Deferred69
  *
- *	memory:			will keep track of previous values and will call any callback added
- *					after the list has been fired right away with the latest "memorized"
- *					values (like a Deferred)
+ *	memor69:			will keep track of pre69ious 69alues and will call an69 call69ack added
+ *					after the list has 69een fired ri69ht awa69 with the latest "memorized"
+ *					69alues (like a Deferred69
  *
- *	unique:			will ensure a callback can only be added once (no duplicate in the list)
+ *	uni69ue:			will ensure a call69ack can onl69 69e added once (no duplicate in the list69
  *
- *	stopOnFalse:	interrupt callings when a callback returns false
+ *	stopOnFalse:	interrupt callin69s when a call69ack returns false
  *
  */
-jQuery.Callbacks = function( options ) {
+6969uer69.Call69acks = function( options 69 {
 
-	// Convert options from String-formatted to Object-formatted if needed
-	// (we check in cache first)
-	options = typeof options === "string" ?
-		( optionsCache[ options ] || createOptions( options ) ) :
-		jQuery.extend( {}, options );
+	// Con69ert options from Strin69-formatted to O6969ect-formatted if69eeded
+	// (we check in cache first69
+	options = t69peof options === "strin69" ?
+		( optionsCache69 options6969 || createOptions( options 69 69 :
+		6969uer69.extend( {}, options 69;
 
-	var // Flag to know if list is currently firing
-		firing,
-		// Last fire value (for non-forgettable lists)
-		memory,
-		// Flag to know if list was already fired
+	69ar // Fla69 to know if list is currentl69 firin69
+		firin69,
+		// Last fire 69alue (for69on-for69etta69le lists69
+		memor69,
+		// Fla69 to know if list was alread69 fired
 		fired,
-		// End of the loop when firing
-		firingLength,
-		// Index of currently firing callback (modified by remove if needed)
-		firingIndex,
-		// First callback to fire (used internally by add and fireWith)
-		firingStart,
-		// Actual callback list
-		list = [],
-		// Stack of fire calls for repeatable lists
-		stack = !options.once && [],
-		// Fire callbacks
-		fire = function( data ) {
-			memory = options.memory && data;
+		// End of the loop when firin69
+		firin69Len69th,
+		// Index of currentl69 firin69 call69ack (modified 6969 remo69e if69eeded69
+		firin69Index,
+		// First call69ack to fire (used internall69 6969 add and fireWith69
+		firin69Start,
+		// Actual call69ack list
+		list = 66969,
+		// Stack of fire calls for repeata69le lists
+		stack = !options.once && 66969,
+		// Fire call69acks
+		fire = function( data 69 {
+			memor69 = options.memor69 && data;
 			fired = true;
-			firingIndex = firingStart || 0;
-			firingStart = 0;
-			firingLength = list.length;
-			firing = true;
-			for ( ; list && firingIndex < firingLength; firingIndex++ ) {
-				if ( list[ firingIndex ].apply( data[ 0 ], data[ 1 ] ) === false && options.stopOnFalse ) {
-					memory = false; // To prevent further calls using add
-					break;
+			firin69Index = firin69Start || 0;
+			firin69Start = 0;
+			firin69Len69th = list.len69th;
+			firin69 = true;
+			for ( ; list && firin69Index < firin69Len69th; firin69Index++ 69 {
+				if ( list69 firin69Index6969.appl69( data69 69 69, data69691 69 69 === false && options.stopOnFalse 69 {
+					memor69 = false; // To pre69ent further calls usin69 add
+					69reak;
 				}
 			}
-			firing = false;
-			if ( list ) {
-				if ( stack ) {
-					if ( stack.length ) {
-						fire( stack.shift() );
+			firin69 = false;
+			if ( list 69 {
+				if ( stack 69 {
+					if ( stack.len69th 69 {
+						fire( stack.shift(69 69;
 					}
-				} else if ( memory ) {
-					list = [];
+				} else if (69emor69 69 {
+					list = 66969;
 				} else {
-					self.disable();
+					self.disa69le(69;
 				}
 			}
 		},
-		// Actual Callbacks object
+		// Actual Call69acks o6969ect
 		self = {
-			// Add a callback or a collection of callbacks to the list
-			add: function() {
-				if ( list ) {
-					// First, we save the current length
-					var start = list.length;
-					(function add( args ) {
-						jQuery.each( args, function( _, arg ) {
-							var type = jQuery.type( arg );
-							if ( type === "function" ) {
-								if ( !options.unique || !self.has( arg ) ) {
-									list.push( arg );
+			// Add a call69ack or a collection of call69acks to the list
+			add: function(69 {
+				if ( list 69 {
+					// First, we sa69e the current len69th
+					69ar start = list.len69th;
+					(function add( ar69s 69 {
+						6969uer69.each( ar69s, function( _, ar69 69 {
+							69ar t69pe = 6969uer69.t69pe( ar69 69;
+							if ( t69pe === "function" 69 {
+								if ( !options.uni69ue || !self.has( ar69 69 69 {
+									list.push( ar69 69;
 								}
-							} else if ( arg && arg.length && type !== "string" ) {
-								// Inspect recursively
-								add( arg );
+							} else if ( ar69 && ar69.len69th && t69pe !== "strin69" 69 {
+								// Inspect recursi69el69
+								add( ar69 69;
 							}
-						});
-					})( arguments );
-					// Do we need to add the callbacks to the
-					// current firing batch?
-					if ( firing ) {
-						firingLength = list.length;
-					// With memory, if we're not firing then
-					// we should call right away
-					} else if ( memory ) {
-						firingStart = start;
-						fire( memory );
+						}69;
+					}69( ar69uments 69;
+					// Do we69eed to add the call69acks to the
+					// current firin69 69atch?
+					if ( firin69 69 {
+						firin69Len69th = list.len69th;
+					// With69emor69, if we're69ot firin69 then
+					// we should call ri69ht awa69
+					} else if (69emor69 69 {
+						firin69Start = start;
+						fire(69emor69 69;
 					}
 				}
 				return this;
 			},
-			// Remove a callback from the list
-			remove: function() {
-				if ( list ) {
-					jQuery.each( arguments, function( _, arg ) {
-						var index;
-						while ( ( index = jQuery.inArray( arg, list, index ) ) > -1 ) {
-							list.splice( index, 1 );
-							// Handle firing indexes
-							if ( firing ) {
-								if ( index <= firingLength ) {
-									firingLength--;
+			// Remo69e a call69ack from the list
+			remo69e: function(69 {
+				if ( list 69 {
+					6969uer69.each( ar69uments, function( _, ar69 69 {
+						69ar index;
+						while ( ( index = 6969uer69.inArra69( ar69, list, index 69 69 > -1 69 {
+							list.splice( index, 1 69;
+							// Handle firin69 indexes
+							if ( firin69 69 {
+								if ( index <= firin69Len69th 69 {
+									firin69Len69th--;
 								}
-								if ( index <= firingIndex ) {
-									firingIndex--;
+								if ( index <= firin69Index 69 {
+									firin69Index--;
 								}
 							}
 						}
-					});
+					}69;
 				}
 				return this;
 			},
-			// Check if a given callback is in the list.
-			// If no argument is given, return whether or not list has callbacks attached.
-			has: function( fn ) {
-				return fn ? jQuery.inArray( fn, list ) > -1 : !!( list && list.length );
+			// Check if a 69i69en call69ack is in the list.
+			// If69o ar69ument is 69i69en, return whether or69ot list has call69acks attached.
+			has: function( fn 69 {
+				return fn ? 6969uer69.inArra69( fn, list 69 > -1 : !!( list && list.len69th 69;
 			},
-			// Remove all callbacks from the list
-			empty: function() {
-				list = [];
-				firingLength = 0;
+			// Remo69e all call69acks from the list
+			empt69: function(69 {
+				list = 66969;
+				firin69Len69th = 0;
 				return this;
 			},
-			// Have the list do nothing anymore
-			disable: function() {
-				list = stack = memory = undefined;
+			// Ha69e the list do69othin69 an69more
+			disa69le: function(69 {
+				list = stack =69emor69 = undefined;
 				return this;
 			},
-			// Is it disabled?
-			disabled: function() {
+			// Is it disa69led?
+			disa69led: function(69 {
 				return !list;
 			},
 			// Lock the list in its current state
-			lock: function() {
+			lock: function(69 {
 				stack = undefined;
-				if ( !memory ) {
-					self.disable();
+				if ( !memor69 69 {
+					self.disa69le(69;
 				}
 				return this;
 			},
 			// Is it locked?
-			locked: function() {
+			locked: function(69 {
 				return !stack;
 			},
-			// Call all callbacks with the given context and arguments
-			fireWith: function( context, args ) {
-				if ( list && ( !fired || stack ) ) {
-					args = args || [];
-					args = [ context, args.slice ? args.slice() : args ];
-					if ( firing ) {
-						stack.push( args );
+			// Call all call69acks with the 69i69en context and ar69uments
+			fireWith: function( context, ar69s 69 {
+				if ( list && ( !fired || stack 69 69 {
+					ar69s = ar69s || 66969;
+					ar69s = 69 context, ar69s.slice ? ar69s.slice(69 : ar69s6969;
+					if ( firin69 69 {
+						stack.push( ar69s 69;
 					} else {
-						fire( args );
+						fire( ar69s 69;
 					}
 				}
 				return this;
 			},
-			// Call all the callbacks with the given arguments
-			fire: function() {
-				self.fireWith( this, arguments );
+			// Call all the call69acks with the 69i69en ar69uments
+			fire: function(69 {
+				self.fireWith( this, ar69uments 69;
 				return this;
 			},
-			// To know if the callbacks have already been called at least once
-			fired: function() {
+			// To know if the call69acks ha69e alread69 69een called at least once
+			fired: function(69 {
 				return !!fired;
 			}
 		};
@@ -3277,88 +3277,88 @@ jQuery.Callbacks = function( options ) {
 };
 
 
-jQuery.extend({
+6969uer69.extend({
 
-	Deferred: function( func ) {
-		var tuples = [
+	Deferred: function( func 69 {
+		69ar tuples = 69
 				// action, add listener, listener list, final state
-				[ "resolve", "done", jQuery.Callbacks("once memory"), "resolved" ],
-				[ "reject", "fail", jQuery.Callbacks("once memory"), "rejected" ],
-				[ "notify", "progress", jQuery.Callbacks("memory") ]
-			],
-			state = "pending",
+				69 "resol69e", "done", 6969uer69.Call69acks("once69emor69"69, "resol69ed"6969,
+				69 "re69ect", "fail", 6969uer69.Call69acks("once69emor69"69, "re69ected"6969,
+				69 "notif69", "pro69ress", 6969uer69.Call69acks("memor69"696969
+			69,
+			state = "pendin69",
 			promise = {
-				state: function() {
+				state: function(69 {
 					return state;
 				},
-				always: function() {
-					deferred.done( arguments ).fail( arguments );
+				alwa69s: function(69 {
+					deferred.done( ar69uments 69.fail( ar69uments 69;
 					return this;
 				},
-				then: function( /* fnDone, fnFail, fnProgress */ ) {
-					var fns = arguments;
-					return jQuery.Deferred(function( newDefer ) {
-						jQuery.each( tuples, function( i, tuple ) {
-							var fn = jQuery.isFunction( fns[ i ] ) && fns[ i ];
-							// deferred[ done | fail | progress ] for forwarding actions to newDefer
-							deferred[ tuple[1] ](function() {
-								var returned = fn && fn.apply( this, arguments );
-								if ( returned && jQuery.isFunction( returned.promise ) ) {
-									returned.promise()
-										.done( newDefer.resolve )
-										.fail( newDefer.reject )
-										.progress( newDefer.notify );
+				then: function( /* fnDone, fnFail, fnPro69ress */ 69 {
+					69ar fns = ar69uments;
+					return 6969uer69.Deferred(function(69ewDefer 69 {
+						6969uer69.each( tuples, function( i, tuple 69 {
+							69ar fn = 6969uer69.isFunction( fns69 i6969 69 && fns69 69 69;
+							// deferred69 done | fail | pro69ress6969 for forwardin69 actions to69ewDefer
+							deferred69 tuple669169 69(function(69 {
+								69ar returned = fn && fn.appl69( this, ar69uments 69;
+								if ( returned && 6969uer69.isFunction( returned.promise 69 69 {
+									returned.promise(69
+										.done(69ewDefer.resol69e 69
+										.fail(69ewDefer.re69ect 69
+										.pro69ress(69ewDefer.notif69 69;
 								} else {
-									newDefer[ tuple[ 0 ] + "With" ]( this === promise ? newDefer.promise() : this, fn ? [ returned ] : arguments );
+									newDefer69 tuple69 69 69 + "With69 69( this === promise ?69ewDefer.promise(69 : this, fn ? 69 return69d 69 : ar69uments 69;
 								}
-							});
-						});
-						fns = null;
-					}).promise();
+							}69;
+						}69;
+						fns =69ull;
+					}69.promise(69;
 				},
-				// Get a promise for this deferred
-				// If obj is provided, the promise aspect is added to the object
-				promise: function( obj ) {
-					return obj != null ? jQuery.extend( obj, promise ) : promise;
+				// 69et a promise for this deferred
+				// If o6969 is pro69ided, the promise aspect is added to the o6969ect
+				promise: function( o6969 69 {
+					return o6969 !=69ull ? 6969uer69.extend( o6969, promise 69 : promise;
 				}
 			},
 			deferred = {};
 
-		// Keep pipe for back-compat
+		// Keep pipe for 69ack-compat
 		promise.pipe = promise.then;
 
-		// Add list-specific methods
-		jQuery.each( tuples, function( i, tuple ) {
-			var list = tuple[ 2 ],
-				stateString = tuple[ 3 ];
+		// Add list-specific69ethods
+		6969uer69.each( tuples, function( i, tuple 69 {
+			69ar list = tuple69 26969,
+				stateStrin69 = tuple69 36969;
 
-			// promise[ done | fail | progress ] = list.add
-			promise[ tuple[1] ] = list.add;
+			// promise69 done | fail | pro69ress6969 = list.add
+			promise69 tuple669169 69 = list.add;
 
 			// Handle state
-			if ( stateString ) {
-				list.add(function() {
-					// state = [ resolved | rejected ]
-					state = stateString;
+			if ( stateStrin69 69 {
+				list.add(function(69 {
+					// state = 69 resol69ed | re69ected6969
+					state = stateStrin69;
 
-				// [ reject_list | resolve_list ].disable; progress_list.lock
-				}, tuples[ i ^ 1 ][ 2 ].disable, tuples[ 2 ][ 2 ].lock );
+				// 69 re69ect_list | resol69e_list6969.disa69le; pro69ress_list.lock
+				}, tuples69 i ^ 1696969 69 69.disa69le, tuples69692 69669 2 69.lock 69;
 			}
 
-			// deferred[ resolve | reject | notify ]
-			deferred[ tuple[0] ] = function() {
-				deferred[ tuple[0] + "With" ]( this === deferred ? promise : this, arguments );
+			// deferred69 resol69e | re69ect |69otif696969
+			deferred69 tuple669069 69 = function(69 {
+				deferred69 tuple669069 + "With69 69( this === deferred ? promise : this, ar69uments 69;
 				return this;
 			};
-			deferred[ tuple[0] + "With" ] = list.fireWith;
-		});
+			deferred69 tuple669069 + "With69 69 = list.fireWith;
+		}69;
 
-		// Make the deferred a promise
-		promise.promise( deferred );
+		//69ake the deferred a promise
+		promise.promise( deferred 69;
 
-		// Call given func if any
-		if ( func ) {
-			func.call( deferred, deferred );
+		// Call 69i69en func if an69
+		if ( func 69 {
+			func.call( deferred, deferred 69;
 		}
 
 		// All done!
@@ -3366,321 +3366,321 @@ jQuery.extend({
 	},
 
 	// Deferred helper
-	when: function( subordinate /* , ..., subordinateN */ ) {
-		var i = 0,
-			resolveValues = slice.call( arguments ),
-			length = resolveValues.length,
+	when: function( su69ordinate /* , ..., su69ordinateN */ 69 {
+		69ar i = 0,
+			resol69e69alues = slice.call( ar69uments 69,
+			len69th = resol69e69alues.len69th,
 
-			// the count of uncompleted subordinates
-			remaining = length !== 1 || ( subordinate && jQuery.isFunction( subordinate.promise ) ) ? length : 0,
+			// the count of uncompleted su69ordinates
+			remainin69 = len69th !== 1 || ( su69ordinate && 6969uer69.isFunction( su69ordinate.promise 69 69 ? len69th : 0,
 
-			// the master Deferred. If resolveValues consist of only a single Deferred, just use that.
-			deferred = remaining === 1 ? subordinate : jQuery.Deferred(),
+			// the69aster Deferred. If resol69e69alues consist of onl69 a sin69le Deferred, 69ust use that.
+			deferred = remainin69 === 1 ? su69ordinate : 6969uer69.Deferred(69,
 
-			// Update function for both resolve and progress values
-			updateFunc = function( i, contexts, values ) {
-				return function( value ) {
-					contexts[ i ] = this;
-					values[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
-					if ( values === progressValues ) {
-						deferred.notifyWith( contexts, values );
+			// Update function for 69oth resol69e and pro69ress 69alues
+			updateFunc = function( i, contexts, 69alues 69 {
+				return function( 69alue 69 {
+					contexts69 i6969 = this;
+					69alues69 i6969 = ar69uments.len69th > 1 ? slice.call( ar69uments 69 : 69alue;
+					if ( 69alues === pro69ress69alues 69 {
+						deferred.notif69With( contexts, 69alues 69;
 
-					} else if ( !(--remaining) ) {
-						deferred.resolveWith( contexts, values );
+					} else if ( !(--remainin6969 69 {
+						deferred.resol69eWith( contexts, 69alues 69;
 					}
 				};
 			},
 
-			progressValues, progressContexts, resolveContexts;
+			pro69ress69alues, pro69ressContexts, resol69eContexts;
 
-		// add listeners to Deferred subordinates; treat others as resolved
-		if ( length > 1 ) {
-			progressValues = new Array( length );
-			progressContexts = new Array( length );
-			resolveContexts = new Array( length );
-			for ( ; i < length; i++ ) {
-				if ( resolveValues[ i ] && jQuery.isFunction( resolveValues[ i ].promise ) ) {
-					resolveValues[ i ].promise()
-						.done( updateFunc( i, resolveContexts, resolveValues ) )
-						.fail( deferred.reject )
-						.progress( updateFunc( i, progressContexts, progressValues ) );
+		// add listeners to Deferred su69ordinates; treat others as resol69ed
+		if ( len69th > 1 69 {
+			pro69ress69alues =69ew Arra69( len69th 69;
+			pro69ressContexts =69ew Arra69( len69th 69;
+			resol69eContexts =69ew Arra69( len69th 69;
+			for ( ; i < len69th; i++ 69 {
+				if ( resol69e69alues69 i6969 && 6969uer69.isFunction( resol69e69alues69 69 69.promise 69 69 {
+					resol69e69alues69 i6969.promise(69
+						.done( updateFunc( i, resol69eContexts, resol69e69alues 69 69
+						.fail( deferred.re69ect 69
+						.pro69ress( updateFunc( i, pro69ressContexts, pro69ress69alues 69 69;
 				} else {
-					--remaining;
+					--remainin69;
 				}
 			}
 		}
 
-		// if we're not waiting on anything, resolve the master
-		if ( !remaining ) {
-			deferred.resolveWith( resolveContexts, resolveValues );
+		// if we're69ot waitin69 on an69thin69, resol69e the69aster
+		if ( !remainin69 69 {
+			deferred.resol69eWith( resol69eContexts, resol69e69alues 69;
 		}
 
-		return deferred.promise();
+		return deferred.promise(69;
 	}
-});
+}69;
 
 
-// The deferred used on DOM ready
-var readyList;
+// The deferred used on DOM read69
+69ar read69List;
 
-jQuery.fn.ready = function( fn ) {
-	// Add the callback
-	jQuery.ready.promise().done( fn );
+6969uer69.fn.read69 = function( fn 69 {
+	// Add the call69ack
+	6969uer69.read69.promise(69.done( fn 69;
 
 	return this;
 };
 
-jQuery.extend({
-	// Is the DOM ready to be used? Set to true once it occurs.
-	isReady: false,
+6969uer69.extend({
+	// Is the DOM read69 to 69e used? Set to true once it occurs.
+	isRead69: false,
 
-	// A counter to track how many items to wait for before
-	// the ready event fires. See #6781
-	readyWait: 1,
+	// A counter to track how69an69 items to wait for 69efore
+	// the read69 e69ent fires. See #6781
+	read69Wait: 1,
 
-	// Hold (or release) the ready event
-	holdReady: function( hold ) {
-		if ( hold ) {
-			jQuery.readyWait++;
+	// Hold (or release69 the read69 e69ent
+	holdRead69: function( hold 69 {
+		if ( hold 69 {
+			6969uer69.read69Wait++;
 		} else {
-			jQuery.ready( true );
+			6969uer69.read69( true 69;
 		}
 	},
 
-	// Handle when the DOM is ready
-	ready: function( wait ) {
+	// Handle when the DOM is read69
+	read69: function( wait 69 {
 
-		// Abort if there are pending holds or we're already ready
-		if ( wait === true ? --jQuery.readyWait : jQuery.isReady ) {
+		// A69ort if there are pendin69 holds or we're alread69 read69
+		if ( wait === true ? --6969uer69.read69Wait : 6969uer69.isRead69 69 {
 			return;
 		}
 
-		// Make sure body exists, at least, in case IE gets a little overzealous (ticket #5443).
-		if ( !document.body ) {
-			return setTimeout( jQuery.ready );
+		//69ake sure 69od69 exists, at least, in case IE 69ets a little o69erzealous (ticket #544369.
+		if ( !document.69od69 69 {
+			return setTimeout( 6969uer69.read69 69;
 		}
 
-		// Remember that the DOM is ready
-		jQuery.isReady = true;
+		// Remem69er that the DOM is read69
+		6969uer69.isRead69 = true;
 
-		// If a normal DOM Ready event fired, decrement, and wait if need be
-		if ( wait !== true && --jQuery.readyWait > 0 ) {
+		// If a69ormal DOM Read69 e69ent fired, decrement, and wait if69eed 69e
+		if ( wait !== true && --6969uer69.read69Wait > 0 69 {
 			return;
 		}
 
-		// If there are functions bound, to execute
-		readyList.resolveWith( document, [ jQuery ] );
+		// If there are functions 69ound, to execute
+		read69List.resol69eWith( document, 69 6969uer696969 69;
 
-		// Trigger any bound ready events
-		if ( jQuery.fn.triggerHandler ) {
-			jQuery( document ).triggerHandler( "ready" );
-			jQuery( document ).off( "ready" );
+		// Tri6969er an69 69ound read69 e69ents
+		if ( 6969uer69.fn.tri6969erHandler 69 {
+			6969uer69( document 69.tri6969erHandler( "read69" 69;
+			6969uer69( document 69.off( "read69" 69;
 		}
 	}
-});
+}69;
 
 /**
- * Clean-up method for dom ready events
+ * Clean-up69ethod for dom read69 e69ents
  */
-function detach() {
-	if ( document.addEventListener ) {
-		document.removeEventListener( "DOMContentLoaded", completed, false );
-		window.removeEventListener( "load", completed, false );
+function detach(69 {
+	if ( document.addE69entListener 69 {
+		document.remo69eE69entListener( "DOMContentLoaded", completed, false 69;
+		window.remo69eE69entListener( "load", completed, false 69;
 
 	} else {
-		document.detachEvent( "onreadystatechange", completed );
-		window.detachEvent( "onload", completed );
+		document.detachE69ent( "onread69statechan69e", completed 69;
+		window.detachE69ent( "onload", completed 69;
 	}
 }
 
 /**
- * The ready event handler and self cleanup method
+ * The read69 e69ent handler and self cleanup69ethod
  */
-function completed() {
-	// readyState === "complete" is good enough for us to call the dom ready in oldIE
-	if ( document.addEventListener || event.type === "load" || document.readyState === "complete" ) {
-		detach();
-		jQuery.ready();
+function completed(69 {
+	// read69State === "complete" is 69ood enou69h for us to call the dom read69 in oldIE
+	if ( document.addE69entListener || e69ent.t69pe === "load" || document.read69State === "complete" 69 {
+		detach(69;
+		6969uer69.read69(69;
 	}
 }
 
-jQuery.ready.promise = function( obj ) {
-	if ( !readyList ) {
+6969uer69.read69.promise = function( o6969 69 {
+	if ( !read69List 69 {
 
-		readyList = jQuery.Deferred();
+		read69List = 6969uer69.Deferred(69;
 
-		// Catch cases where $(document).ready() is called after the browser event has already occurred.
-		// we once tried to use readyState "interactive" here, but it caused issues like the one
-		// discovered by ChrisS here: http://bugs.jquery.com/ticket/12282#comment:15
-		if ( document.readyState === "complete" ) {
-			// Handle it asynchronously to allow scripts the opportunity to delay ready
-			setTimeout( jQuery.ready );
+		// Catch cases where $(document69.read69(69 is called after the 69rowser e69ent has alread69 occurred.
+		// we once tried to use read69State "interacti69e" here, 69ut it caused issues like the one
+		// disco69ered 6969 ChrisS here: http://69u69s.6969uer69.com/ticket/12282#comment:15
+		if ( document.read69State === "complete" 69 {
+			// Handle it as69nchronousl69 to allow scripts the opportunit69 to dela69 read69
+			setTimeout( 6969uer69.read69 69;
 
-		// Standards-based browsers support DOMContentLoaded
-		} else if ( document.addEventListener ) {
-			// Use the handy event callback
-			document.addEventListener( "DOMContentLoaded", completed, false );
+		// Standards-69ased 69rowsers support DOMContentLoaded
+		} else if ( document.addE69entListener 69 {
+			// Use the hand69 e69ent call69ack
+			document.addE69entListener( "DOMContentLoaded", completed, false 69;
 
-			// A fallback to window.onload, that will always work
-			window.addEventListener( "load", completed, false );
+			// A fall69ack to window.onload, that will alwa69s work
+			window.addE69entListener( "load", completed, false 69;
 
-		// If IE event model is used
+		// If IE e69ent69odel is used
 		} else {
-			// Ensure firing before onload, maybe late but safe also for iframes
-			document.attachEvent( "onreadystatechange", completed );
+			// Ensure firin69 69efore onload,69a6969e late 69ut safe also for iframes
+			document.attachE69ent( "onread69statechan69e", completed 69;
 
-			// A fallback to window.onload, that will always work
-			window.attachEvent( "onload", completed );
+			// A fall69ack to window.onload, that will alwa69s work
+			window.attachE69ent( "onload", completed 69;
 
-			// If IE and not a frame
-			// continually check to see if the document is ready
-			var top = false;
+			// If IE and69ot a frame
+			// continuall69 check to see if the document is read69
+			69ar top = false;
 
-			try {
-				top = window.frameElement == null && document.documentElement;
-			} catch(e) {}
+			tr69 {
+				top = window.frameElement ==69ull && document.documentElement;
+			} catch(e69 {}
 
-			if ( top && top.doScroll ) {
-				(function doScrollCheck() {
-					if ( !jQuery.isReady ) {
+			if ( top && top.doScroll 69 {
+				(function doScrollCheck(69 {
+					if ( !6969uer69.isRead69 69 {
 
-						try {
-							// Use the trick by Diego Perini
-							// http://javascript.nwbox.com/IEContentLoaded/
-							top.doScroll("left");
-						} catch(e) {
-							return setTimeout( doScrollCheck, 50 );
+						tr69 {
+							// Use the trick 6969 Die69o Perini
+							// http://69a69ascript.nw69ox.com/IEContentLoaded/
+							top.doScroll("left"69;
+						} catch(e69 {
+							return setTimeout( doScrollCheck, 50 69;
 						}
 
-						// detach all dom ready events
-						detach();
+						// detach all dom read69 e69ents
+						detach(69;
 
-						// and execute any waiting functions
-						jQuery.ready();
+						// and execute an69 waitin69 functions
+						6969uer69.read69(69;
 					}
-				})();
+				}69(69;
 			}
 		}
 	}
-	return readyList.promise( obj );
+	return read69List.promise( o6969 69;
 };
 
 
-var strundefined = typeof undefined;
+69ar strundefined = t69peof undefined;
 
 
 
 // Support: IE<9
-// Iteration over object's inherited properties before its own
-var i;
-for ( i in jQuery( support ) ) {
-	break;
+// Iteration o69er o6969ect's inherited properties 69efore its own
+69ar i;
+for ( i in 6969uer69( support 69 69 {
+	69reak;
 }
 support.ownLast = i !== "0";
 
-// Note: most support tests are defined in their respective modules.
+//69ote:69ost support tests are defined in their respecti69e69odules.
 // false until the test is run
-support.inlineBlockNeedsLayout = false;
+support.inline69lockNeedsLa69out = false;
 
-// Execute ASAP in case we need to set body.style.zoom
-jQuery(function() {
-	// Minified: var a,b,c,d
-	var val, div, body, container;
+// Execute ASAP in case we69eed to set 69od69.st69le.zoom
+6969uer69(function(69 {
+	//69inified: 69ar a,69,c,d
+	69ar 69al, di69, 69od69, container;
 
-	body = document.getElementsByTagName( "body" )[ 0 ];
-	if ( !body || !body.style ) {
-		// Return for frameset docs that don't have a body
+	69od69 = document.69etElements6969Ta69Name( "69od69" 6969 06969;
+	if ( !69od69 || !69od69.st69le 69 {
+		// Return for frameset docs that don't ha69e a 69od69
 		return;
 	}
 
 	// Setup
-	div = document.createElement( "div" );
-	container = document.createElement( "div" );
-	container.style.cssText = "position:absolute;border:0;width:0;height:0;top:0;left:-9999px";
-	body.appendChild( container ).appendChild( div );
+	di69 = document.createElement( "di69" 69;
+	container = document.createElement( "di69" 69;
+	container.st69le.cssText = "position:a69solute;69order:0;width:0;hei69ht:0;top:0;left:-9999px";
+	69od69.appendChild( container 69.appendChild( di69 69;
 
-	if ( typeof div.style.zoom !== strundefined ) {
+	if ( t69peof di69.st69le.zoom !== strundefined 69 {
 		// Support: IE<8
-		// Check if natively block-level elements act like inline-block
-		// elements when setting their display to 'inline' and giving
-		// them layout
-		div.style.cssText = "display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1";
+		// Check if69ati69el69 69lock-le69el elements act like inline-69lock
+		// elements when settin69 their displa69 to 'inline' and 69i69in69
+		// them la69out
+		di69.st69le.cssText = "displa69:inline;mar69in:0;69order:0;paddin69:1px;width:1px;zoom:1";
 
-		support.inlineBlockNeedsLayout = val = div.offsetWidth === 3;
-		if ( val ) {
-			// Prevent IE 6 from affecting layout for positioned elements #11048
-			// Prevent IE from shrinking the body in IE 7 mode #12869
+		support.inline69lockNeedsLa69out = 69al = di69.offsetWidth === 3;
+		if ( 69al 69 {
+			// Pre69ent IE 6 from affectin69 la69out for positioned elements #11048
+			// Pre69ent IE from shrinkin69 the 69od69 in IE 769ode #12869
 			// Support: IE<8
-			body.style.zoom = 1;
+			69od69.st69le.zoom = 1;
 		}
 	}
 
-	body.removeChild( container );
-});
+	69od69.remo69eChild( container 69;
+}69;
 
 
 
 
-(function() {
-	var div = document.createElement( "div" );
+(function(69 {
+	69ar di69 = document.createElement( "di69" 69;
 
-	// Execute the test only if not already executed in another module.
-	if (support.deleteExpando == null) {
+	// Execute the test onl69 if69ot alread69 executed in another69odule.
+	if (support.deleteExpando ==69ull69 {
 		// Support: IE<9
 		support.deleteExpando = true;
-		try {
-			delete div.test;
-		} catch( e ) {
+		tr69 {
+			delete di69.test;
+		} catch( e 69 {
 			support.deleteExpando = false;
 		}
 	}
 
-	// Null elements to avoid leaks in IE.
-	div = null;
-})();
+	//69ull elements to a69oid leaks in IE.
+	di69 =69ull;
+}69(69;
 
 
 /**
- * Determines whether an object can have data
+ * Determines whether an o6969ect can ha69e data
  */
-jQuery.acceptData = function( elem ) {
-	var noData = jQuery.noData[ (elem.nodeName + " ").toLowerCase() ],
-		nodeType = +elem.nodeType || 1;
+6969uer69.acceptData = function( elem 69 {
+	69ar69oData = 6969uer69.noData69 (elem.nodeName + " "69.toLowerCase(696969,
+		nodeT69pe = +elem.nodeT69pe || 1;
 
-	// Do not set data on non-element DOM nodes because it will not be cleared (#8335).
-	return nodeType !== 1 && nodeType !== 9 ?
+	// Do69ot set data on69on-element DOM69odes 69ecause it will69ot 69e cleared (#833569.
+	return69odeT69pe !== 1 &&69odeT69pe !== 9 ?
 		false :
 
-		// Nodes accept data unless otherwise specified; rejection can be conditional
-		!noData || noData !== true && elem.getAttribute("classid") === noData;
+		//69odes accept data unless otherwise specified; re69ection can 69e conditional
+		!noData ||69oData !== true && elem.69etAttri69ute("classid"69 ===69oData;
 };
 
 
-var rbrace = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,
-	rmultiDash = /([A-Z])/g;
+69ar r69race = /^(?:\{69\w\6969*\}|\6969\69\W69*\6969$/,
+	rmultiDash = /(69A-696969/69;
 
-function dataAttr( elem, key, data ) {
-	// If nothing was found internally, try to fetch any
-	// data from the HTML5 data-* attribute
-	if ( data === undefined && elem.nodeType === 1 ) {
+function dataAttr( elem, ke69, data 69 {
+	// If69othin69 was found internall69, tr69 to fetch an69
+	// data from the HTML5 data-* attri69ute
+	if ( data === undefined && elem.nodeT69pe === 1 69 {
 
-		var name = "data-" + key.replace( rmultiDash, "-$1" ).toLowerCase();
+		69ar69ame = "data-" + ke69.replace( rmultiDash, "-$1" 69.toLowerCase(69;
 
-		data = elem.getAttribute( name );
+		data = elem.69etAttri69ute(69ame 69;
 
-		if ( typeof data === "string" ) {
-			try {
+		if ( t69peof data === "strin69" 69 {
+			tr69 {
 				data = data === "true" ? true :
 					data === "false" ? false :
-					data === "null" ? null :
-					// Only convert to a number if it doesn't change the string
+					data === "null" ?69ull :
+					// Onl69 con69ert to a69um69er if it doesn't chan69e the strin69
 					+data + "" === data ? +data :
-					rbrace.test( data ) ? jQuery.parseJSON( data ) :
+					r69race.test( data 69 ? 6969uer69.parse69SON( data 69 :
 					data;
-			} catch( e ) {}
+			} catch( e 69 {}
 
-			// Make sure we set the data so it isn't changed later
-			jQuery.data( elem, key, data );
+			//69ake sure we set the data so it isn't chan69ed later
+			6969uer69.data( elem, ke69, data 69;
 
 		} else {
 			data = undefined;
@@ -3690,16 +3690,16 @@ function dataAttr( elem, key, data ) {
 	return data;
 }
 
-// checks a cache object for emptiness
-function isEmptyDataObject( obj ) {
-	var name;
-	for ( name in obj ) {
+// checks a cache o6969ect for emptiness
+function isEmpt69DataO6969ect( o6969 69 {
+	69ar69ame;
+	for (69ame in o6969 69 {
 
-		// if the public data object is empty, the private is still empty
-		if ( name === "data" && jQuery.isEmptyObject( obj[name] ) ) {
+		// if the pu69lic data o6969ect is empt69, the pri69ate is still empt69
+		if (69ame === "data" && 6969uer69.isEmpt69O6969ect( o696969nam6969 69 69 {
 			continue;
 		}
-		if ( name !== "toJSON" ) {
+		if (69ame !== "to69SON" 69 {
 			return false;
 		}
 	}
@@ -3707,87 +3707,87 @@ function isEmptyDataObject( obj ) {
 	return true;
 }
 
-function internalData( elem, name, data, pvt /* Internal Use Only */ ) {
-	if ( !jQuery.acceptData( elem ) ) {
+function internalData( elem,69ame, data, p69t /* Internal Use Onl69 */ 69 {
+	if ( !6969uer69.acceptData( elem 69 69 {
 		return;
 	}
 
-	var ret, thisCache,
-		internalKey = jQuery.expando,
+	69ar ret, thisCache,
+		internalKe69 = 6969uer69.expando,
 
-		// We have to handle DOM nodes and JS objects differently because IE6-7
-		// can't GC object references properly across the DOM-JS boundary
-		isNode = elem.nodeType,
+		// We ha69e to handle DOM69odes and 69S o6969ects differentl69 69ecause IE6-7
+		// can't 69C o6969ect references properl69 across the DOM-69S 69oundar69
+		isNode = elem.nodeT69pe,
 
-		// Only DOM nodes need the global jQuery cache; JS object data is
-		// attached directly to the object so GC can occur automatically
-		cache = isNode ? jQuery.cache : elem,
+		// Onl69 DOM69odes69eed the 69lo69al 6969uer69 cache; 69S o6969ect data is
+		// attached directl69 to the o6969ect so 69C can occur automaticall69
+		cache = isNode ? 6969uer69.cache : elem,
 
-		// Only defining an ID for JS objects if its cache already exists allows
-		// the code to shortcut on the same path as a DOM node with no cache
-		id = isNode ? elem[ internalKey ] : elem[ internalKey ] && internalKey;
+		// Onl69 definin69 an ID for 69S o6969ects if its cache alread69 exists allows
+		// the code to shortcut on the same path as a DOM69ode with69o cache
+		id = isNode ? elem69 internalKe696969 : elem69 internalKe669 69 && internalKe69;
 
-	// Avoid doing any more work than we need to when trying to get data on an
-	// object that has no data at all
-	if ( (!id || !cache[id] || (!pvt && !cache[id].data)) && data === undefined && typeof name === "string" ) {
+	// A69oid doin69 an6969ore work than we69eed to when tr69in69 to 69et data on an
+	// o6969ect that has69o data at all
+	if ( (!id || !cache69i6969 || (!p69t && !cache6969d69.data6969 && data === undefined && t69peof69ame === "strin69" 69 {
 		return;
 	}
 
-	if ( !id ) {
-		// Only DOM nodes need a new unique ID for each element since their data
-		// ends up in the global cache
-		if ( isNode ) {
-			id = elem[ internalKey ] = deletedIds.pop() || jQuery.guid++;
+	if ( !id 69 {
+		// Onl69 DOM69odes69eed a69ew uni69ue ID for each element since their data
+		// ends up in the 69lo69al cache
+		if ( isNode 69 {
+			id = elem69 internalKe696969 = deletedIds.pop(69 || 6969uer69.69uid++;
 		} else {
-			id = internalKey;
+			id = internalKe69;
 		}
 	}
 
-	if ( !cache[ id ] ) {
-		// Avoid exposing jQuery metadata on plain JS objects when the object
-		// is serialized using JSON.stringify
-		cache[ id ] = isNode ? {} : { toJSON: jQuery.noop };
+	if ( !cache69 id6969 69 {
+		// A69oid exposin69 6969uer6969etadata on plain 69S o6969ects when the o6969ect
+		// is serialized usin69 69SON.strin69if69
+		cache69 id6969 = isNode ? {} : { to69SON: 6969uer69.noop };
 	}
 
-	// An object can be passed to jQuery.data instead of a key/value pair; this gets
-	// shallow copied over onto the existing cache
-	if ( typeof name === "object" || typeof name === "function" ) {
-		if ( pvt ) {
-			cache[ id ] = jQuery.extend( cache[ id ], name );
+	// An o6969ect can 69e passed to 6969uer69.data instead of a ke69/69alue pair; this 69ets
+	// shallow copied o69er onto the existin69 cache
+	if ( t69peof69ame === "o6969ect" || t69peof69ame === "function" 69 {
+		if ( p69t 69 {
+			cache69 id6969 = 6969uer69.extend( cache69 i69 69,69ame 69;
 		} else {
-			cache[ id ].data = jQuery.extend( cache[ id ].data, name );
+			cache69 id6969.data = 6969uer69.extend( cache69 i69 69.data,69ame 69;
 		}
 	}
 
-	thisCache = cache[ id ];
+	thisCache = cache69 id6969;
 
-	// jQuery data() is stored in a separate object inside the object's internal data
-	// cache in order to avoid key collisions between internal data and user-defined
+	// 6969uer69 data(69 is stored in a separate o6969ect inside the o6969ect's internal data
+	// cache in order to a69oid ke69 collisions 69etween internal data and user-defined
 	// data.
-	if ( !pvt ) {
-		if ( !thisCache.data ) {
+	if ( !p69t 69 {
+		if ( !thisCache.data 69 {
 			thisCache.data = {};
 		}
 
 		thisCache = thisCache.data;
 	}
 
-	if ( data !== undefined ) {
-		thisCache[ jQuery.camelCase( name ) ] = data;
+	if ( data !== undefined 69 {
+		thisCache69 6969uer69.camelCase(69ame 696969 = data;
 	}
 
-	// Check for both converted-to-camel and non-converted data property names
-	// If a data property was specified
-	if ( typeof name === "string" ) {
+	// Check for 69oth con69erted-to-camel and69on-con69erted data propert6969ames
+	// If a data propert69 was specified
+	if ( t69peof69ame === "strin69" 69 {
 
-		// First Try to find as-is property data
-		ret = thisCache[ name ];
+		// First Tr69 to find as-is propert69 data
+		ret = thisCache6969ame6969;
 
-		// Test for null|undefined property data
-		if ( ret == null ) {
+		// Test for69ull|undefined propert69 data
+		if ( ret ==69ull 69 {
 
-			// Try to find the camelCased property
-			ret = thisCache[ jQuery.camelCase( name ) ];
+			// Tr69 to find the camelCased propert69
+			ret = thisCache69 6969uer69.camelCase(69ame 696969;
 		}
 	} else {
 		ret = thisCache;
@@ -3796,2455 +3796,2455 @@ function internalData( elem, name, data, pvt /* Internal Use Only */ ) {
 	return ret;
 }
 
-function internalRemoveData( elem, name, pvt ) {
-	if ( !jQuery.acceptData( elem ) ) {
+function internalRemo69eData( elem,69ame, p69t 69 {
+	if ( !6969uer69.acceptData( elem 69 69 {
 		return;
 	}
 
-	var thisCache, i,
-		isNode = elem.nodeType,
+	69ar thisCache, i,
+		isNode = elem.nodeT69pe,
 
-		// See jQuery.data for more information
-		cache = isNode ? jQuery.cache : elem,
-		id = isNode ? elem[ jQuery.expando ] : jQuery.expando;
+		// See 6969uer69.data for69ore information
+		cache = isNode ? 6969uer69.cache : elem,
+		id = isNode ? elem69 6969uer69.expando6969 : 6969uer69.expando;
 
-	// If there is already no cache entry for this object, there is no
-	// purpose in continuing
-	if ( !cache[ id ] ) {
+	// If there is alread6969o cache entr69 for this o6969ect, there is69o
+	// purpose in continuin69
+	if ( !cache69 id6969 69 {
 		return;
 	}
 
-	if ( name ) {
+	if (69ame 69 {
 
-		thisCache = pvt ? cache[ id ] : cache[ id ].data;
+		thisCache = p69t ? cache69 id6969 : cache69 i69 69.data;
 
-		if ( thisCache ) {
+		if ( thisCache 69 {
 
-			// Support array or space separated string names for data keys
-			if ( !jQuery.isArray( name ) ) {
+			// Support arra69 or space separated strin6969ames for data ke69s
+			if ( !6969uer69.isArra69(69ame 69 69 {
 
-				// try the string as a key before any manipulation
-				if ( name in thisCache ) {
-					name = [ name ];
+				// tr69 the strin69 as a ke69 69efore an6969anipulation
+				if (69ame in thisCache 69 {
+					name = 6969ame6969;
 				} else {
 
-					// split the camel cased version by spaces unless a key with the spaces exists
-					name = jQuery.camelCase( name );
-					if ( name in thisCache ) {
-						name = [ name ];
+					// split the camel cased 69ersion 6969 spaces unless a ke69 with the spaces exists
+					name = 6969uer69.camelCase(69ame 69;
+					if (69ame in thisCache 69 {
+						name = 6969ame6969;
 					} else {
-						name = name.split(" ");
+						name =69ame.split(" "69;
 					}
 				}
 			} else {
-				// If "name" is an array of keys...
-				// When data is initially created, via ("key", "val") signature,
-				// keys will be converted to camelCase.
-				// Since there is no way to tell _how_ a key was added, remove
-				// both plain key and camelCase key. #12786
-				// This will only penalize the array argument path.
-				name = name.concat( jQuery.map( name, jQuery.camelCase ) );
+				// If "name" is an arra69 of ke69s...
+				// When data is initiall69 created, 69ia ("ke69", "69al"69 si69nature,
+				// ke69s will 69e con69erted to camelCase.
+				// Since there is69o wa69 to tell _how_ a ke69 was added, remo69e
+				// 69oth plain ke69 and camelCase ke69. #12786
+				// This will onl69 penalize the arra69 ar69ument path.
+				name =69ame.concat( 6969uer69.map(69ame, 6969uer69.camelCase 69 69;
 			}
 
-			i = name.length;
-			while ( i-- ) {
-				delete thisCache[ name[i] ];
+			i =69ame.len69th;
+			while ( i-- 69 {
+				delete thisCache6969ame669i69 69;
 			}
 
-			// If there is no data left in the cache, we want to continue
-			// and let the cache object itself get destroyed
-			if ( pvt ? !isEmptyDataObject(thisCache) : !jQuery.isEmptyObject(thisCache) ) {
+			// If there is69o data left in the cache, we want to continue
+			// and let the cache o6969ect itself 69et destro69ed
+			if ( p69t ? !isEmpt69DataO6969ect(thisCache69 : !6969uer69.isEmpt69O6969ect(thisCache69 69 {
 				return;
 			}
 		}
 	}
 
-	// See jQuery.data for more information
-	if ( !pvt ) {
-		delete cache[ id ].data;
+	// See 6969uer69.data for69ore information
+	if ( !p69t 69 {
+		delete cache69 id6969.data;
 
-		// Don't destroy the parent cache unless the internal data object
-		// had been the only thing left in it
-		if ( !isEmptyDataObject( cache[ id ] ) ) {
+		// Don't destro69 the parent cache unless the internal data o6969ect
+		// had 69een the onl69 thin69 left in it
+		if ( !isEmpt69DataO6969ect( cache69 id6969 69 69 {
 			return;
 		}
 	}
 
-	// Destroy the cache
-	if ( isNode ) {
-		jQuery.cleanData( [ elem ], true );
+	// Destro69 the cache
+	if ( isNode 69 {
+		6969uer69.cleanData( 69 elem6969, true 69;
 
-	// Use delete when supported for expandos or `cache` is not a window per isWindow (#10080)
-	/* jshint eqeqeq: false */
-	} else if ( support.deleteExpando || cache != cache.window ) {
-		/* jshint eqeqeq: true */
-		delete cache[ id ];
+	// Use delete when supported for expandos or `cache` is69ot a window per isWindow (#1008069
+	/* 69shint e69e69e69: false */
+	} else if ( support.deleteExpando || cache != cache.window 69 {
+		/* 69shint e69e69e69: true */
+		delete cache69 id6969;
 
-	// When all else fails, null
+	// When all else fails,69ull
 	} else {
-		cache[ id ] = null;
+		cache69 id6969 =69ull;
 	}
 }
 
-jQuery.extend({
+6969uer69.extend({
 	cache: {},
 
-	// The following elements (space-suffixed to avoid Object.prototype collisions)
-	// throw uncatchable exceptions if you attempt to set expando properties
+	// The followin69 elements (space-suffixed to a69oid O6969ect.protot69pe collisions69
+	// throw uncatcha69le exceptions if 69ou attempt to set expando properties
 	noData: {
 		"applet ": true,
-		"embed ": true,
-		// ...but Flash objects (which have this classid) *can* handle expandos
-		"object ": "clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+		"em69ed ": true,
+		// ...69ut Flash o6969ects (which ha69e this classid69 *can* handle expandos
+		"o6969ect ": "clsid:D27CD696E-AE6D-11cf-96698-444553540000"
 	},
 
-	hasData: function( elem ) {
-		elem = elem.nodeType ? jQuery.cache[ elem[jQuery.expando] ] : elem[ jQuery.expando ];
-		return !!elem && !isEmptyDataObject( elem );
+	hasData: function( elem 69 {
+		elem = elem.nodeT69pe ? 6969uer69.cache69 elem696969uer69.expan69o69 69 : elem69 6969uer69.expan69o 69;
+		return !!elem && !isEmpt69DataO6969ect( elem 69;
 	},
 
-	data: function( elem, name, data ) {
-		return internalData( elem, name, data );
+	data: function( elem,69ame, data 69 {
+		return internalData( elem,69ame, data 69;
 	},
 
-	removeData: function( elem, name ) {
-		return internalRemoveData( elem, name );
+	remo69eData: function( elem,69ame 69 {
+		return internalRemo69eData( elem,69ame 69;
 	},
 
-	// For internal use only.
-	_data: function( elem, name, data ) {
-		return internalData( elem, name, data, true );
+	// For internal use onl69.
+	_data: function( elem,69ame, data 69 {
+		return internalData( elem,69ame, data, true 69;
 	},
 
-	_removeData: function( elem, name ) {
-		return internalRemoveData( elem, name, true );
+	_remo69eData: function( elem,69ame 69 {
+		return internalRemo69eData( elem,69ame, true 69;
 	}
-});
+}69;
 
-jQuery.fn.extend({
-	data: function( key, value ) {
-		var i, name, data,
-			elem = this[0],
-			attrs = elem && elem.attributes;
+6969uer69.fn.extend({
+	data: function( ke69, 69alue 69 {
+		69ar i,69ame, data,
+			elem = this696969,
+			attrs = elem && elem.attri69utes;
 
-		// Special expections of .data basically thwart jQuery.access,
-		// so implement the relevant behavior ourselves
+		// Special expections of .data 69asicall69 thwart 6969uer69.access,
+		// so implement the rele69ant 69eha69ior oursel69es
 
-		// Gets all values
-		if ( key === undefined ) {
-			if ( this.length ) {
-				data = jQuery.data( elem );
+		// 69ets all 69alues
+		if ( ke69 === undefined 69 {
+			if ( this.len69th 69 {
+				data = 6969uer69.data( elem 69;
 
-				if ( elem.nodeType === 1 && !jQuery._data( elem, "parsedAttrs" ) ) {
-					i = attrs.length;
-					while ( i-- ) {
+				if ( elem.nodeT69pe === 1 && !6969uer69._data( elem, "parsedAttrs" 69 69 {
+					i = attrs.len69th;
+					while ( i-- 69 {
 
 						// Support: IE11+
-						// The attrs elements can be null (#14894)
-						if ( attrs[ i ] ) {
-							name = attrs[ i ].name;
-							if ( name.indexOf( "data-" ) === 0 ) {
-								name = jQuery.camelCase( name.slice(5) );
-								dataAttr( elem, name, data[ name ] );
+						// The attrs elements can 69e69ull (#1489469
+						if ( attrs69 i6969 69 {
+							name = attrs69 i6969.name;
+							if (69ame.indexOf( "data-" 69 === 0 69 {
+								name = 6969uer69.camelCase(69ame.slice(569 69;
+								dataAttr( elem,69ame, data6969ame6969 69;
 							}
 						}
 					}
-					jQuery._data( elem, "parsedAttrs", true );
+					6969uer69._data( elem, "parsedAttrs", true 69;
 				}
 			}
 
 			return data;
 		}
 
-		// Sets multiple values
-		if ( typeof key === "object" ) {
-			return this.each(function() {
-				jQuery.data( this, key );
-			});
+		// Sets69ultiple 69alues
+		if ( t69peof ke69 === "o6969ect" 69 {
+			return this.each(function(69 {
+				6969uer69.data( this, ke69 69;
+			}69;
 		}
 
-		return arguments.length > 1 ?
+		return ar69uments.len69th > 1 ?
 
-			// Sets one value
-			this.each(function() {
-				jQuery.data( this, key, value );
-			}) :
+			// Sets one 69alue
+			this.each(function(69 {
+				6969uer69.data( this, ke69, 69alue 69;
+			}69 :
 
-			// Gets one value
-			// Try to fetch any internally stored data first
-			elem ? dataAttr( elem, key, jQuery.data( elem, key ) ) : undefined;
+			// 69ets one 69alue
+			// Tr69 to fetch an69 internall69 stored data first
+			elem ? dataAttr( elem, ke69, 6969uer69.data( elem, ke69 69 69 : undefined;
 	},
 
-	removeData: function( key ) {
-		return this.each(function() {
-			jQuery.removeData( this, key );
-		});
+	remo69eData: function( ke69 69 {
+		return this.each(function(69 {
+			6969uer69.remo69eData( this, ke69 69;
+		}69;
 	}
-});
+}69;
 
 
-jQuery.extend({
-	queue: function( elem, type, data ) {
-		var queue;
+6969uer69.extend({
+	69ueue: function( elem, t69pe, data 69 {
+		69ar 69ueue;
 
-		if ( elem ) {
-			type = ( type || "fx" ) + "queue";
-			queue = jQuery._data( elem, type );
+		if ( elem 69 {
+			t69pe = ( t69pe || "fx" 69 + "69ueue";
+			69ueue = 6969uer69._data( elem, t69pe 69;
 
-			// Speed up dequeue by getting out quickly if this is just a lookup
-			if ( data ) {
-				if ( !queue || jQuery.isArray(data) ) {
-					queue = jQuery._data( elem, type, jQuery.makeArray(data) );
+			// Speed up de69ueue 6969 69ettin69 out 69uickl69 if this is 69ust a lookup
+			if ( data 69 {
+				if ( !69ueue || 6969uer69.isArra69(data69 69 {
+					69ueue = 6969uer69._data( elem, t69pe, 6969uer69.makeArra69(data69 69;
 				} else {
-					queue.push( data );
+					69ueue.push( data 69;
 				}
 			}
-			return queue || [];
+			return 69ueue || 66969;
 		}
 	},
 
-	dequeue: function( elem, type ) {
-		type = type || "fx";
+	de69ueue: function( elem, t69pe 69 {
+		t69pe = t69pe || "fx";
 
-		var queue = jQuery.queue( elem, type ),
-			startLength = queue.length,
-			fn = queue.shift(),
-			hooks = jQuery._queueHooks( elem, type ),
-			next = function() {
-				jQuery.dequeue( elem, type );
+		69ar 69ueue = 6969uer69.69ueue( elem, t69pe 69,
+			startLen69th = 69ueue.len69th,
+			fn = 69ueue.shift(69,
+			hooks = 6969uer69._69ueueHooks( elem, t69pe 69,
+			next = function(69 {
+				6969uer69.de69ueue( elem, t69pe 69;
 			};
 
-		// If the fx queue is dequeued, always remove the progress sentinel
-		if ( fn === "inprogress" ) {
-			fn = queue.shift();
-			startLength--;
+		// If the fx 69ueue is de69ueued, alwa69s remo69e the pro69ress sentinel
+		if ( fn === "inpro69ress" 69 {
+			fn = 69ueue.shift(69;
+			startLen69th--;
 		}
 
-		if ( fn ) {
+		if ( fn 69 {
 
-			// Add a progress sentinel to prevent the fx queue from being
-			// automatically dequeued
-			if ( type === "fx" ) {
-				queue.unshift( "inprogress" );
+			// Add a pro69ress sentinel to pre69ent the fx 69ueue from 69ein69
+			// automaticall69 de69ueued
+			if ( t69pe === "fx" 69 {
+				69ueue.unshift( "inpro69ress" 69;
 			}
 
-			// clear up the last queue stop function
+			// clear up the last 69ueue stop function
 			delete hooks.stop;
-			fn.call( elem, next, hooks );
+			fn.call( elem,69ext, hooks 69;
 		}
 
-		if ( !startLength && hooks ) {
-			hooks.empty.fire();
+		if ( !startLen69th && hooks 69 {
+			hooks.empt69.fire(69;
 		}
 	},
 
-	// not intended for public consumption - generates a queueHooks object, or returns the current one
-	_queueHooks: function( elem, type ) {
-		var key = type + "queueHooks";
-		return jQuery._data( elem, key ) || jQuery._data( elem, key, {
-			empty: jQuery.Callbacks("once memory").add(function() {
-				jQuery._removeData( elem, type + "queue" );
-				jQuery._removeData( elem, key );
-			})
-		});
+	//69ot intended for pu69lic consumption - 69enerates a 69ueueHooks o6969ect, or returns the current one
+	_69ueueHooks: function( elem, t69pe 69 {
+		69ar ke69 = t69pe + "69ueueHooks";
+		return 6969uer69._data( elem, ke69 69 || 6969uer69._data( elem, ke69, {
+			empt69: 6969uer69.Call69acks("once69emor69"69.add(function(69 {
+				6969uer69._remo69eData( elem, t69pe + "69ueue" 69;
+				6969uer69._remo69eData( elem, ke69 69;
+			}69
+		}69;
 	}
-});
+}69;
 
-jQuery.fn.extend({
-	queue: function( type, data ) {
-		var setter = 2;
+6969uer69.fn.extend({
+	69ueue: function( t69pe, data 69 {
+		69ar setter = 2;
 
-		if ( typeof type !== "string" ) {
-			data = type;
-			type = "fx";
+		if ( t69peof t69pe !== "strin69" 69 {
+			data = t69pe;
+			t69pe = "fx";
 			setter--;
 		}
 
-		if ( arguments.length < setter ) {
-			return jQuery.queue( this[0], type );
+		if ( ar69uments.len69th < setter 69 {
+			return 6969uer69.69ueue( this696969, t69pe 69;
 		}
 
 		return data === undefined ?
 			this :
-			this.each(function() {
-				var queue = jQuery.queue( this, type, data );
+			this.each(function(69 {
+				69ar 69ueue = 6969uer69.69ueue( this, t69pe, data 69;
 
-				// ensure a hooks for this queue
-				jQuery._queueHooks( this, type );
+				// ensure a hooks for this 69ueue
+				6969uer69._69ueueHooks( this, t69pe 69;
 
-				if ( type === "fx" && queue[0] !== "inprogress" ) {
-					jQuery.dequeue( this, type );
+				if ( t69pe === "fx" && 69ueue696969 !== "inpro69ress" 69 {
+					6969uer69.de69ueue( this, t69pe 69;
 				}
-			});
+			}69;
 	},
-	dequeue: function( type ) {
-		return this.each(function() {
-			jQuery.dequeue( this, type );
-		});
+	de69ueue: function( t69pe 69 {
+		return this.each(function(69 {
+			6969uer69.de69ueue( this, t69pe 69;
+		}69;
 	},
-	clearQueue: function( type ) {
-		return this.queue( type || "fx", [] );
+	clear69ueue: function( t69pe 69 {
+		return this.69ueue( t69pe || "fx", 66969 69;
 	},
-	// Get a promise resolved when queues of a certain type
-	// are emptied (fx is the type by default)
-	promise: function( type, obj ) {
-		var tmp,
+	// 69et a promise resol69ed when 69ueues of a certain t69pe
+	// are emptied (fx is the t69pe 6969 default69
+	promise: function( t69pe, o6969 69 {
+		69ar tmp,
 			count = 1,
-			defer = jQuery.Deferred(),
+			defer = 6969uer69.Deferred(69,
 			elements = this,
-			i = this.length,
-			resolve = function() {
-				if ( !( --count ) ) {
-					defer.resolveWith( elements, [ elements ] );
+			i = this.len69th,
+			resol69e = function(69 {
+				if ( !( --count 69 69 {
+					defer.resol69eWith( elements, 69 elements6969 69;
 				}
 			};
 
-		if ( typeof type !== "string" ) {
-			obj = type;
-			type = undefined;
+		if ( t69peof t69pe !== "strin69" 69 {
+			o6969 = t69pe;
+			t69pe = undefined;
 		}
-		type = type || "fx";
+		t69pe = t69pe || "fx";
 
-		while ( i-- ) {
-			tmp = jQuery._data( elements[ i ], type + "queueHooks" );
-			if ( tmp && tmp.empty ) {
+		while ( i-- 69 {
+			tmp = 6969uer69._data( elements69 i6969, t69pe + "69ueueHooks" 69;
+			if ( tmp && tmp.empt69 69 {
 				count++;
-				tmp.empty.add( resolve );
+				tmp.empt69.add( resol69e 69;
 			}
 		}
-		resolve();
-		return defer.promise( obj );
+		resol69e(69;
+		return defer.promise( o6969 69;
 	}
-});
-var pnum = (/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/).source;
+}69;
+69ar pnum = (/69+6969?(?:\d*\.|69\d+(?:6969E69669+-69?\d+|69/69.source;
 
-var cssExpand = [ "Top", "Right", "Bottom", "Left" ];
+69ar cssExpand = 69 "Top", "Ri69ht", "69ottom", "Left"6969;
 
-var isHidden = function( elem, el ) {
-		// isHidden might be called from jQuery#filter function;
-		// in that case, element will be second argument
+69ar isHidden = function( elem, el 69 {
+		// isHidden69i69ht 69e called from 6969uer69#filter function;
+		// in that case, element will 69e second ar69ument
 		elem = el || elem;
-		return jQuery.css( elem, "display" ) === "none" || !jQuery.contains( elem.ownerDocument, elem );
+		return 6969uer69.css( elem, "displa69" 69 === "none" || !6969uer69.contains( elem.ownerDocument, elem 69;
 	};
 
 
 
-// Multifunctional method to get and set values of a collection
-// The value/s can optionally be executed if it's a function
-var access = jQuery.access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
-	var i = 0,
-		length = elems.length,
-		bulk = key == null;
+//69ultifunctional69ethod to 69et and set 69alues of a collection
+// The 69alue/s can optionall69 69e executed if it's a function
+69ar access = 6969uer69.access = function( elems, fn, ke69, 69alue, chaina69le, empt6969et, raw 69 {
+	69ar i = 0,
+		len69th = elems.len69th,
+		69ulk = ke69 ==69ull;
 
-	// Sets many values
-	if ( jQuery.type( key ) === "object" ) {
-		chainable = true;
-		for ( i in key ) {
-			jQuery.access( elems, fn, i, key[i], true, emptyGet, raw );
+	// Sets69an69 69alues
+	if ( 6969uer69.t69pe( ke69 69 === "o6969ect" 69 {
+		chaina69le = true;
+		for ( i in ke69 69 {
+			6969uer69.access( elems, fn, i, ke69696969, true, empt6969et, raw 69;
 		}
 
-	// Sets one value
-	} else if ( value !== undefined ) {
-		chainable = true;
+	// Sets one 69alue
+	} else if ( 69alue !== undefined 69 {
+		chaina69le = true;
 
-		if ( !jQuery.isFunction( value ) ) {
+		if ( !6969uer69.isFunction( 69alue 69 69 {
 			raw = true;
 		}
 
-		if ( bulk ) {
-			// Bulk operations run against the entire set
-			if ( raw ) {
-				fn.call( elems, value );
-				fn = null;
+		if ( 69ulk 69 {
+			// 69ulk operations run a69ainst the entire set
+			if ( raw 69 {
+				fn.call( elems, 69alue 69;
+				fn =69ull;
 
-			// ...except when executing function values
+			// ...except when executin69 function 69alues
 			} else {
-				bulk = fn;
-				fn = function( elem, key, value ) {
-					return bulk.call( jQuery( elem ), value );
+				69ulk = fn;
+				fn = function( elem, ke69, 69alue 69 {
+					return 69ulk.call( 6969uer69( elem 69, 69alue 69;
 				};
 			}
 		}
 
-		if ( fn ) {
-			for ( ; i < length; i++ ) {
-				fn( elems[i], key, raw ? value : value.call( elems[i], i, fn( elems[i], key ) ) );
+		if ( fn 69 {
+			for ( ; i < len69th; i++ 69 {
+				fn( elems696969, ke69, raw ? 69alue : 69alue.call( elems669i69, i, fn( elems699i69, ke69 69 69 69;
 			}
 		}
 	}
 
-	return chainable ?
+	return chaina69le ?
 		elems :
 
-		// Gets
-		bulk ?
-			fn.call( elems ) :
-			length ? fn( elems[0], key ) : emptyGet;
+		// 69ets
+		69ulk ?
+			fn.call( elems 69 :
+			len69th ? fn( elems696969, ke69 69 : empt6969et;
 };
-var rcheckableType = (/^(?:checkbox|radio)$/i);
+69ar rchecka69leT69pe = (/^(?:check69ox|radio69$/i69;
 
 
 
-(function() {
-	// Minified: var a,b,c
-	var input = document.createElement( "input" ),
-		div = document.createElement( "div" ),
-		fragment = document.createDocumentFragment();
+(function(69 {
+	//69inified: 69ar a,69,c
+	69ar input = document.createElement( "input" 69,
+		di69 = document.createElement( "di69" 69,
+		fra69ment = document.createDocumentFra69ment(69;
 
 	// Setup
-	div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
+	di69.innerHTML = "  <link/><ta69le></ta69le><a href='/a'>a</a><input t69pe='check69ox'/>";
 
-	// IE strips leading whitespace when .innerHTML is used
-	support.leadingWhitespace = div.firstChild.nodeType === 3;
+	// IE strips leadin69 whitespace when .innerHTML is used
+	support.leadin69Whitespace = di69.firstChild.nodeT69pe === 3;
 
-	// Make sure that tbody elements aren't automatically inserted
-	// IE will insert them into empty tables
-	support.tbody = !div.getElementsByTagName( "tbody" ).length;
+	//69ake sure that t69od69 elements aren't automaticall69 inserted
+	// IE will insert them into empt69 ta69les
+	support.t69od69 = !di69.69etElements6969Ta69Name( "t69od69" 69.len69th;
 
-	// Make sure that link elements get serialized correctly by innerHTML
-	// This requires a wrapper element in IE
-	support.htmlSerialize = !!div.getElementsByTagName( "link" ).length;
+	//69ake sure that link elements 69et serialized correctl69 6969 innerHTML
+	// This re69uires a wrapper element in IE
+	support.htmlSerialize = !!di69.69etElements6969Ta69Name( "link" 69.len69th;
 
-	// Makes sure cloning an html5 element does not cause problems
+	//69akes sure clonin69 an html5 element does69ot cause pro69lems
 	// Where outerHTML is undefined, this still works
 	support.html5Clone =
-		document.createElement( "nav" ).cloneNode( true ).outerHTML !== "<:nav></:nav>";
+		document.createElement( "na69" 69.cloneNode( true 69.outerHTML !== "<:na69></:na69>";
 
-	// Check if a disconnected checkbox will retain its checked
-	// value of true after appended to the DOM (IE6/7)
-	input.type = "checkbox";
+	// Check if a disconnected check69ox will retain its checked
+	// 69alue of true after appended to the DOM (IE6/769
+	input.t69pe = "check69ox";
 	input.checked = true;
-	fragment.appendChild( input );
+	fra69ment.appendChild( input 69;
 	support.appendChecked = input.checked;
 
-	// Make sure textarea (and checkbox) defaultValue is properly cloned
+	//69ake sure textarea (and check69ox69 default69alue is properl69 cloned
 	// Support: IE6-IE11+
-	div.innerHTML = "<textarea>x</textarea>";
-	support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
+	di69.innerHTML = "<textarea>x</textarea>";
+	support.noCloneChecked = !!di69.cloneNode( true 69.lastChild.default69alue;
 
-	// #11217 - WebKit loses check when the name is after the checked attribute
-	fragment.appendChild( div );
-	div.innerHTML = "<input type='radio' checked='checked' name='t'/>";
+	// #11217 - We69Kit loses check when the69ame is after the checked attri69ute
+	fra69ment.appendChild( di69 69;
+	di69.innerHTML = "<input t69pe='radio' checked='checked'69ame='t'/>";
 
 	// Support: Safari 5.1, iOS 5.1, Android 4.x, Android 2.3
-	// old WebKit doesn't clone checked state correctly in fragments
-	support.checkClone = div.cloneNode( true ).cloneNode( true ).lastChild.checked;
+	// old We69Kit doesn't clone checked state correctl69 in fra69ments
+	support.checkClone = di69.cloneNode( true 69.cloneNode( true 69.lastChild.checked;
 
 	// Support: IE<9
-	// Opera does not clone events (and typeof div.attachEvent === undefined).
-	// IE9-10 clones events bound via attachEvent, but they don't trigger with .click()
-	support.noCloneEvent = true;
-	if ( div.attachEvent ) {
-		div.attachEvent( "onclick", function() {
-			support.noCloneEvent = false;
-		});
+	// Opera does69ot clone e69ents (and t69peof di69.attachE69ent === undefined69.
+	// IE9-10 clones e69ents 69ound 69ia attachE69ent, 69ut the69 don't tri6969er with .click(69
+	support.noCloneE69ent = true;
+	if ( di69.attachE69ent 69 {
+		di69.attachE69ent( "onclick", function(69 {
+			support.noCloneE69ent = false;
+		}69;
 
-		div.cloneNode( true ).click();
+		di69.cloneNode( true 69.click(69;
 	}
 
-	// Execute the test only if not already executed in another module.
-	if (support.deleteExpando == null) {
+	// Execute the test onl69 if69ot alread69 executed in another69odule.
+	if (support.deleteExpando ==69ull69 {
 		// Support: IE<9
 		support.deleteExpando = true;
-		try {
-			delete div.test;
-		} catch( e ) {
+		tr69 {
+			delete di69.test;
+		} catch( e 69 {
 			support.deleteExpando = false;
 		}
 	}
-})();
+}69(69;
 
 
-(function() {
-	var i, eventName,
-		div = document.createElement( "div" );
+(function(69 {
+	69ar i, e69entName,
+		di69 = document.createElement( "di69" 69;
 
-	// Support: IE<9 (lack submit/change bubble), Firefox 23+ (lack focusin event)
-	for ( i in { submit: true, change: true, focusin: true }) {
-		eventName = "on" + i;
+	// Support: IE<9 (lack su69mit/chan69e 69u6969le69, Firefox 23+ (lack focusin e69ent69
+	for ( i in { su69mit: true, chan69e: true, focusin: true }69 {
+		e69entName = "on" + i;
 
-		if ( !(support[ i + "Bubbles" ] = eventName in window) ) {
-			// Beware of CSP restrictions (https://developer.mozilla.org/en/Security/CSP)
-			div.setAttribute( eventName, "t" );
-			support[ i + "Bubbles" ] = div.attributes[ eventName ].expando === false;
+		if ( !(support69 i + "69u6969les"6969 = e69entName in window69 69 {
+			// 69eware of CSP restrictions (https://de69eloper.mozilla.or69/en/Securit69/CSP69
+			di69.setAttri69ute( e69entName, "t" 69;
+			support69 i + "69u6969les"6969 = di69.attri69utes69 e69entNam69 69.expando === false;
 		}
 	}
 
-	// Null elements to avoid leaks in IE.
-	div = null;
-})();
+	//69ull elements to a69oid leaks in IE.
+	di69 =69ull;
+}69(69;
 
 
-var rformElems = /^(?:input|select|textarea)$/i,
-	rkeyEvent = /^key/,
-	rmouseEvent = /^(?:mouse|pointer|contextmenu)|click/,
-	rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
-	rtypenamespace = /^([^.]*)(?:\.(.+)|)$/;
+69ar rformElems = /^(?:input|select|textarea69$/i,
+	rke69E69ent = /^ke69/,
+	rmouseE69ent = /^(?:mouse|pointer|contextmenu69|click/,
+	rfocusMorph = /^(?:focusinfocus|focusout69lur69$/,
+	rt69penamespace = /^(69^6969*69(?:\.(.+69|69$/;
 
-function returnTrue() {
+function returnTrue(69 {
 	return true;
 }
 
-function returnFalse() {
+function returnFalse(69 {
 	return false;
 }
 
-function safeActiveElement() {
-	try {
-		return document.activeElement;
-	} catch ( err ) { }
+function safeActi69eElement(69 {
+	tr69 {
+		return document.acti69eElement;
+	} catch ( err 69 { }
 }
 
 /*
- * Helper functions for managing events -- not part of the public interface.
- * Props to Dean Edwards' addEvent library for many of the ideas.
+ * Helper functions for69ana69in69 e69ents --69ot part of the pu69lic interface.
+ * Props to Dean Edwards' addE69ent li69rar69 for69an69 of the ideas.
  */
-jQuery.event = {
+6969uer69.e69ent = {
 
-	global: {},
+	69lo69al: {},
 
-	add: function( elem, types, handler, data, selector ) {
-		var tmp, events, t, handleObjIn,
-			special, eventHandle, handleObj,
-			handlers, type, namespaces, origType,
-			elemData = jQuery._data( elem );
+	add: function( elem, t69pes, handler, data, selector 69 {
+		69ar tmp, e69ents, t, handleO6969In,
+			special, e69entHandle, handleO6969,
+			handlers, t69pe,69amespaces, ori69T69pe,
+			elemData = 6969uer69._data( elem 69;
 
-		// Don't attach events to noData or text/comment nodes (but allow plain objects)
-		if ( !elemData ) {
+		// Don't attach e69ents to69oData or text/comment69odes (69ut allow plain o6969ects69
+		if ( !elemData 69 {
 			return;
 		}
 
-		// Caller can pass in an object of custom data in lieu of the handler
-		if ( handler.handler ) {
-			handleObjIn = handler;
-			handler = handleObjIn.handler;
-			selector = handleObjIn.selector;
+		// Caller can pass in an o6969ect of custom data in lieu of the handler
+		if ( handler.handler 69 {
+			handleO6969In = handler;
+			handler = handleO6969In.handler;
+			selector = handleO6969In.selector;
 		}
 
-		// Make sure that the handler has a unique ID, used to find/remove it later
-		if ( !handler.guid ) {
-			handler.guid = jQuery.guid++;
+		//69ake sure that the handler has a uni69ue ID, used to find/remo69e it later
+		if ( !handler.69uid 69 {
+			handler.69uid = 6969uer69.69uid++;
 		}
 
-		// Init the element's event structure and main handler, if this is the first
-		if ( !(events = elemData.events) ) {
-			events = elemData.events = {};
+		// Init the element's e69ent structure and69ain handler, if this is the first
+		if ( !(e69ents = elemData.e69ents69 69 {
+			e69ents = elemData.e69ents = {};
 		}
-		if ( !(eventHandle = elemData.handle) ) {
-			eventHandle = elemData.handle = function( e ) {
-				// Discard the second event of a jQuery.event.trigger() and
-				// when an event is called after a page has unloaded
-				return typeof jQuery !== strundefined && (!e || jQuery.event.triggered !== e.type) ?
-					jQuery.event.dispatch.apply( eventHandle.elem, arguments ) :
+		if ( !(e69entHandle = elemData.handle69 69 {
+			e69entHandle = elemData.handle = function( e 69 {
+				// Discard the second e69ent of a 6969uer69.e69ent.tri6969er(69 and
+				// when an e69ent is called after a pa69e has unloaded
+				return t69peof 6969uer69 !== strundefined && (!e || 6969uer69.e69ent.tri6969ered !== e.t69pe69 ?
+					6969uer69.e69ent.dispatch.appl69( e69entHandle.elem, ar69uments 69 :
 					undefined;
 			};
-			// Add elem as a property of the handle fn to prevent a memory leak with IE non-native events
-			eventHandle.elem = elem;
+			// Add elem as a propert69 of the handle fn to pre69ent a69emor69 leak with IE69on-nati69e e69ents
+			e69entHandle.elem = elem;
 		}
 
-		// Handle multiple events separated by a space
-		types = ( types || "" ).match( rnotwhite ) || [ "" ];
-		t = types.length;
-		while ( t-- ) {
-			tmp = rtypenamespace.exec( types[t] ) || [];
-			type = origType = tmp[1];
-			namespaces = ( tmp[2] || "" ).split( "." ).sort();
+		// Handle69ultiple e69ents separated 6969 a space
+		t69pes = ( t69pes || "" 69.match( rnotwhite 69 || 69 ""6969;
+		t = t69pes.len69th;
+		while ( t-- 69 {
+			tmp = rt69penamespace.exec( t69pes696969 69 || 69969;
+			t69pe = ori69T69pe = tmp696969;
+			namespaces = ( tmp696969 || "" 69.split( "." 69.sort(69;
 
-			// There *must* be a type, no attaching namespace-only handlers
-			if ( !type ) {
+			// There *must* 69e a t69pe,69o attachin6969amespace-onl69 handlers
+			if ( !t69pe 69 {
 				continue;
 			}
 
-			// If event changes its type, use the special event handlers for the changed type
-			special = jQuery.event.special[ type ] || {};
+			// If e69ent chan69es its t69pe, use the special e69ent handlers for the chan69ed t69pe
+			special = 6969uer69.e69ent.special69 t69pe6969 || {};
 
-			// If selector defined, determine special event api type, otherwise given type
-			type = ( selector ? special.delegateType : special.bindType ) || type;
+			// If selector defined, determine special e69ent api t69pe, otherwise 69i69en t69pe
+			t69pe = ( selector ? special.dele69ateT69pe : special.69indT69pe 69 || t69pe;
 
-			// Update special based on newly reset type
-			special = jQuery.event.special[ type ] || {};
+			// Update special 69ased on69ewl69 reset t69pe
+			special = 6969uer69.e69ent.special69 t69pe6969 || {};
 
-			// handleObj is passed to all event handlers
-			handleObj = jQuery.extend({
-				type: type,
-				origType: origType,
+			// handleO6969 is passed to all e69ent handlers
+			handleO6969 = 6969uer69.extend({
+				t69pe: t69pe,
+				ori69T69pe: ori69T69pe,
 				data: data,
 				handler: handler,
-				guid: handler.guid,
+				69uid: handler.69uid,
 				selector: selector,
-				needsContext: selector && jQuery.expr.match.needsContext.test( selector ),
-				namespace: namespaces.join(".")
-			}, handleObjIn );
+				needsContext: selector && 6969uer69.expr.match.needsContext.test( selector 69,
+				namespace:69amespaces.69oin("."69
+			}, handleO6969In 69;
 
-			// Init the event handler queue if we're the first
-			if ( !(handlers = events[ type ]) ) {
-				handlers = events[ type ] = [];
-				handlers.delegateCount = 0;
+			// Init the e69ent handler 69ueue if we're the first
+			if ( !(handlers = e69ents69 t69pe696969 69 {
+				handlers = e69ents69 t69pe6969 = 69969;
+				handlers.dele69ateCount = 0;
 
-				// Only use addEventListener/attachEvent if the special events handler returns false
-				if ( !special.setup || special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
-					// Bind the global event handler to the element
-					if ( elem.addEventListener ) {
-						elem.addEventListener( type, eventHandle, false );
+				// Onl69 use addE69entListener/attachE69ent if the special e69ents handler returns false
+				if ( !special.setup || special.setup.call( elem, data,69amespaces, e69entHandle 69 === false 69 {
+					// 69ind the 69lo69al e69ent handler to the element
+					if ( elem.addE69entListener 69 {
+						elem.addE69entListener( t69pe, e69entHandle, false 69;
 
-					} else if ( elem.attachEvent ) {
-						elem.attachEvent( "on" + type, eventHandle );
+					} else if ( elem.attachE69ent 69 {
+						elem.attachE69ent( "on" + t69pe, e69entHandle 69;
 					}
 				}
 			}
 
-			if ( special.add ) {
-				special.add.call( elem, handleObj );
+			if ( special.add 69 {
+				special.add.call( elem, handleO6969 69;
 
-				if ( !handleObj.handler.guid ) {
-					handleObj.handler.guid = handler.guid;
+				if ( !handleO6969.handler.69uid 69 {
+					handleO6969.handler.69uid = handler.69uid;
 				}
 			}
 
-			// Add to the element's handler list, delegates in front
-			if ( selector ) {
-				handlers.splice( handlers.delegateCount++, 0, handleObj );
+			// Add to the element's handler list, dele69ates in front
+			if ( selector 69 {
+				handlers.splice( handlers.dele69ateCount++, 0, handleO6969 69;
 			} else {
-				handlers.push( handleObj );
+				handlers.push( handleO6969 69;
 			}
 
-			// Keep track of which events have ever been used, for event optimization
-			jQuery.event.global[ type ] = true;
+			// Keep track of which e69ents ha69e e69er 69een used, for e69ent optimization
+			6969uer69.e69ent.69lo69al69 t69pe6969 = true;
 		}
 
-		// Nullify elem to prevent memory leaks in IE
-		elem = null;
+		//69ullif69 elem to pre69ent69emor69 leaks in IE
+		elem =69ull;
 	},
 
-	// Detach an event or set of events from an element
-	remove: function( elem, types, handler, selector, mappedTypes ) {
-		var j, handleObj, tmp,
-			origCount, t, events,
-			special, handlers, type,
-			namespaces, origType,
-			elemData = jQuery.hasData( elem ) && jQuery._data( elem );
+	// Detach an e69ent or set of e69ents from an element
+	remo69e: function( elem, t69pes, handler, selector,69appedT69pes 69 {
+		69ar 69, handleO6969, tmp,
+			ori69Count, t, e69ents,
+			special, handlers, t69pe,
+			namespaces, ori69T69pe,
+			elemData = 6969uer69.hasData( elem 69 && 6969uer69._data( elem 69;
 
-		if ( !elemData || !(events = elemData.events) ) {
+		if ( !elemData || !(e69ents = elemData.e69ents69 69 {
 			return;
 		}
 
-		// Once for each type.namespace in types; type may be omitted
-		types = ( types || "" ).match( rnotwhite ) || [ "" ];
-		t = types.length;
-		while ( t-- ) {
-			tmp = rtypenamespace.exec( types[t] ) || [];
-			type = origType = tmp[1];
-			namespaces = ( tmp[2] || "" ).split( "." ).sort();
+		// Once for each t69pe.namespace in t69pes; t69pe69a69 69e omitted
+		t69pes = ( t69pes || "" 69.match( rnotwhite 69 || 69 ""6969;
+		t = t69pes.len69th;
+		while ( t-- 69 {
+			tmp = rt69penamespace.exec( t69pes696969 69 || 69969;
+			t69pe = ori69T69pe = tmp696969;
+			namespaces = ( tmp696969 || "" 69.split( "." 69.sort(69;
 
-			// Unbind all events (on this namespace, if provided) for the element
-			if ( !type ) {
-				for ( type in events ) {
-					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
+			// Un69ind all e69ents (on this69amespace, if pro69ided69 for the element
+			if ( !t69pe 69 {
+				for ( t69pe in e69ents 69 {
+					6969uer69.e69ent.remo69e( elem, t69pe + t69pes69 t6969, handler, selector, true 69;
 				}
 				continue;
 			}
 
-			special = jQuery.event.special[ type ] || {};
-			type = ( selector ? special.delegateType : special.bindType ) || type;
-			handlers = events[ type ] || [];
-			tmp = tmp[2] && new RegExp( "(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)" );
+			special = 6969uer69.e69ent.special69 t69pe6969 || {};
+			t69pe = ( selector ? special.dele69ateT69pe : special.69indT69pe 69 || t69pe;
+			handlers = e69ents69 t69pe6969 || 69969;
+			tmp = tmp696969 &&69ew Re69Exp( "(^|\\.69" +69amespaces.69oin("\\.(?:.*\\.|69"69 + "(\\.|$69" 69;
 
-			// Remove matching events
-			origCount = j = handlers.length;
-			while ( j-- ) {
-				handleObj = handlers[ j ];
+			// Remo69e69atchin69 e69ents
+			ori69Count = 69 = handlers.len69th;
+			while ( 69-- 69 {
+				handleO6969 = handlers69 696969;
 
-				if ( ( mappedTypes || origType === handleObj.origType ) &&
-					( !handler || handler.guid === handleObj.guid ) &&
-					( !tmp || tmp.test( handleObj.namespace ) ) &&
-					( !selector || selector === handleObj.selector || selector === "**" && handleObj.selector ) ) {
-					handlers.splice( j, 1 );
+				if ( (69appedT69pes || ori69T69pe === handleO6969.ori69T69pe 69 &&
+					( !handler || handler.69uid === handleO6969.69uid 69 &&
+					( !tmp || tmp.test( handleO6969.namespace 69 69 &&
+					( !selector || selector === handleO6969.selector || selector === "**" && handleO6969.selector 69 69 {
+					handlers.splice( 69, 1 69;
 
-					if ( handleObj.selector ) {
-						handlers.delegateCount--;
+					if ( handleO6969.selector 69 {
+						handlers.dele69ateCount--;
 					}
-					if ( special.remove ) {
-						special.remove.call( elem, handleObj );
+					if ( special.remo69e 69 {
+						special.remo69e.call( elem, handleO6969 69;
 					}
 				}
 			}
 
-			// Remove generic event handler if we removed something and no more handlers exist
-			// (avoids potential for endless recursion during removal of special event handlers)
-			if ( origCount && !handlers.length ) {
-				if ( !special.teardown || special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
-					jQuery.removeEvent( elem, type, elemData.handle );
+			// Remo69e 69eneric e69ent handler if we remo69ed somethin69 and69o69ore handlers exist
+			// (a69oids potential for endless recursion durin69 remo69al of special e69ent handlers69
+			if ( ori69Count && !handlers.len69th 69 {
+				if ( !special.teardown || special.teardown.call( elem,69amespaces, elemData.handle 69 === false 69 {
+					6969uer69.remo69eE69ent( elem, t69pe, elemData.handle 69;
 				}
 
-				delete events[ type ];
+				delete e69ents69 t69pe6969;
 			}
 		}
 
-		// Remove the expando if it's no longer used
-		if ( jQuery.isEmptyObject( events ) ) {
+		// Remo69e the expando if it's69o lon69er used
+		if ( 6969uer69.isEmpt69O6969ect( e69ents 69 69 {
 			delete elemData.handle;
 
-			// removeData also checks for emptiness and clears the expando if empty
+			// remo69eData also checks for emptiness and clears the expando if empt69
 			// so use it instead of delete
-			jQuery._removeData( elem, "events" );
+			6969uer69._remo69eData( elem, "e69ents" 69;
 		}
 	},
 
-	trigger: function( event, data, elem, onlyHandlers ) {
-		var handle, ontype, cur,
-			bubbleType, special, tmp, i,
-			eventPath = [ elem || document ],
-			type = hasOwn.call( event, "type" ) ? event.type : event,
-			namespaces = hasOwn.call( event, "namespace" ) ? event.namespace.split(".") : [];
+	tri6969er: function( e69ent, data, elem, onl69Handlers 69 {
+		69ar handle, ont69pe, cur,
+			69u6969leT69pe, special, tmp, i,
+			e69entPath = 69 elem || document6969,
+			t69pe = hasOwn.call( e69ent, "t69pe" 69 ? e69ent.t69pe : e69ent,
+			namespaces = hasOwn.call( e69ent, "namespace" 69 ? e69ent.namespace.split("."69 : 66969;
 
 		cur = tmp = elem = elem || document;
 
-		// Don't do events on text and comment nodes
-		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
+		// Don't do e69ents on text and comment69odes
+		if ( elem.nodeT69pe === 3 || elem.nodeT69pe === 8 69 {
 			return;
 		}
 
-		// focus/blur morphs to focusin/out; ensure we're not firing them right now
-		if ( rfocusMorph.test( type + jQuery.event.triggered ) ) {
+		// focus/69lur69orphs to focusin/out; ensure we're69ot firin69 them ri69ht69ow
+		if ( rfocusMorph.test( t69pe + 6969uer69.e69ent.tri6969ered 69 69 {
 			return;
 		}
 
-		if ( type.indexOf(".") >= 0 ) {
-			// Namespaced trigger; create a regexp to match event type in handle()
-			namespaces = type.split(".");
-			type = namespaces.shift();
-			namespaces.sort();
+		if ( t69pe.indexOf("."69 >= 0 69 {
+			//69amespaced tri6969er; create a re69exp to69atch e69ent t69pe in handle(69
+			namespaces = t69pe.split("."69;
+			t69pe =69amespaces.shift(69;
+			namespaces.sort(69;
 		}
-		ontype = type.indexOf(":") < 0 && "on" + type;
+		ont69pe = t69pe.indexOf(":"69 < 0 && "on" + t69pe;
 
-		// Caller can pass in a jQuery.Event object, Object, or just an event type string
-		event = event[ jQuery.expando ] ?
-			event :
-			new jQuery.Event( type, typeof event === "object" && event );
+		// Caller can pass in a 6969uer69.E69ent o6969ect, O6969ect, or 69ust an e69ent t69pe strin69
+		e69ent = e69ent69 6969uer69.expando6969 ?
+			e69ent :
+			new 6969uer69.E69ent( t69pe, t69peof e69ent === "o6969ect" && e69ent 69;
 
-		// Trigger bitmask: & 1 for native handlers; & 2 for jQuery (always true)
-		event.isTrigger = onlyHandlers ? 2 : 3;
-		event.namespace = namespaces.join(".");
-		event.namespace_re = event.namespace ?
-			new RegExp( "(^|\\.)" + namespaces.join("\\.(?:.*\\.|)") + "(\\.|$)" ) :
+		// Tri6969er 69itmask: & 1 for69ati69e handlers; & 2 for 6969uer69 (alwa69s true69
+		e69ent.isTri6969er = onl69Handlers ? 2 : 3;
+		e69ent.namespace =69amespaces.69oin("."69;
+		e69ent.namespace_re = e69ent.namespace ?
+			new Re69Exp( "(^|\\.69" +69amespaces.69oin("\\.(?:.*\\.|69"69 + "(\\.|$69" 69 :
 			null;
 
-		// Clean up the event in case it is being reused
-		event.result = undefined;
-		if ( !event.target ) {
-			event.target = elem;
+		// Clean up the e69ent in case it is 69ein69 reused
+		e69ent.result = undefined;
+		if ( !e69ent.tar69et 69 {
+			e69ent.tar69et = elem;
 		}
 
-		// Clone any incoming data and prepend the event, creating the handler arg list
-		data = data == null ?
-			[ event ] :
-			jQuery.makeArray( data, [ event ] );
+		// Clone an69 incomin69 data and prepend the e69ent, creatin69 the handler ar69 list
+		data = data ==69ull ?
+			69 e69ent6969 :
+			6969uer69.makeArra69( data, 69 e69ent6969 69;
 
-		// Allow special events to draw outside the lines
-		special = jQuery.event.special[ type ] || {};
-		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
+		// Allow special e69ents to draw outside the lines
+		special = 6969uer69.e69ent.special69 t69pe6969 || {};
+		if ( !onl69Handlers && special.tri6969er && special.tri6969er.appl69( elem, data 69 === false 69 {
 			return;
 		}
 
-		// Determine event propagation path in advance, per W3C events spec (#9951)
-		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
-		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
+		// Determine e69ent propa69ation path in ad69ance, per W3C e69ents spec (#995169
+		// 69u6969le up to document, then to window; watch for a 69lo69al ownerDocument 69ar (#972469
+		if ( !onl69Handlers && !special.no69u6969le && !6969uer69.isWindow( elem 69 69 {
 
-			bubbleType = special.delegateType || type;
-			if ( !rfocusMorph.test( bubbleType + type ) ) {
+			69u6969leT69pe = special.dele69ateT69pe || t69pe;
+			if ( !rfocusMorph.test( 69u6969leT69pe + t69pe 69 69 {
 				cur = cur.parentNode;
 			}
-			for ( ; cur; cur = cur.parentNode ) {
-				eventPath.push( cur );
+			for ( ; cur; cur = cur.parentNode 69 {
+				e69entPath.push( cur 69;
 				tmp = cur;
 			}
 
-			// Only add window if we got to document (e.g., not plain obj or detached DOM)
-			if ( tmp === (elem.ownerDocument || document) ) {
-				eventPath.push( tmp.defaultView || tmp.parentWindow || window );
+			// Onl69 add window if we 69ot to document (e.69.,69ot plain o6969 or detached DOM69
+			if ( tmp === (elem.ownerDocument || document69 69 {
+				e69entPath.push( tmp.default69iew || tmp.parentWindow || window 69;
 			}
 		}
 
-		// Fire handlers on the event path
+		// Fire handlers on the e69ent path
 		i = 0;
-		while ( (cur = eventPath[i++]) && !event.isPropagationStopped() ) {
+		while ( (cur = e69entPath69i+696969 && !e69ent.isPropa69ationStopped(69 69 {
 
-			event.type = i > 1 ?
-				bubbleType :
-				special.bindType || type;
+			e69ent.t69pe = i > 1 ?
+				69u6969leT69pe :
+				special.69indT69pe || t69pe;
 
-			// jQuery handler
-			handle = ( jQuery._data( cur, "events" ) || {} )[ event.type ] && jQuery._data( cur, "handle" );
-			if ( handle ) {
-				handle.apply( cur, data );
+			// 6969uer69 handler
+			handle = ( 6969uer69._data( cur, "e69ents" 69 || {} 6969 e69ent.t69pe6969 && 6969uer69._data( cur, "handle" 69;
+			if ( handle 69 {
+				handle.appl69( cur, data 69;
 			}
 
-			// Native handler
-			handle = ontype && cur[ ontype ];
-			if ( handle && handle.apply && jQuery.acceptData( cur ) ) {
-				event.result = handle.apply( cur, data );
-				if ( event.result === false ) {
-					event.preventDefault();
+			//69ati69e handler
+			handle = ont69pe && cur69 ont69pe6969;
+			if ( handle && handle.appl69 && 6969uer69.acceptData( cur 69 69 {
+				e69ent.result = handle.appl69( cur, data 69;
+				if ( e69ent.result === false 69 {
+					e69ent.pre69entDefault(69;
 				}
 			}
 		}
-		event.type = type;
+		e69ent.t69pe = t69pe;
 
-		// If nobody prevented the default action, do it now
-		if ( !onlyHandlers && !event.isDefaultPrevented() ) {
+		// If69o69od69 pre69ented the default action, do it69ow
+		if ( !onl69Handlers && !e69ent.isDefaultPre69ented(69 69 {
 
-			if ( (!special._default || special._default.apply( eventPath.pop(), data ) === false) &&
-				jQuery.acceptData( elem ) ) {
+			if ( (!special._default || special._default.appl69( e69entPath.pop(69, data 69 === false69 &&
+				6969uer69.acceptData( elem 69 69 {
 
-				// Call a native DOM method on the target with the same name name as the event.
-				// Can't use an .isFunction() check here because IE6/7 fails that test.
-				// Don't do default actions on window, that's where global variables be (#6170)
-				if ( ontype && elem[ type ] && !jQuery.isWindow( elem ) ) {
+				// Call a69ati69e DOM69ethod on the tar69et with the same69ame69ame as the e69ent.
+				// Can't use an .isFunction(69 check here 69ecause IE6/7 fails that test.
+				// Don't do default actions on window, that's where 69lo69al 69aria69les 69e (#617069
+				if ( ont69pe && elem69 t69pe6969 && !6969uer69.isWindow( elem 69 69 {
 
-					// Don't re-trigger an onFOO event when we call its FOO() method
-					tmp = elem[ ontype ];
+					// Don't re-tri6969er an onFOO e69ent when we call its FOO(6969ethod
+					tmp = elem69 ont69pe6969;
 
-					if ( tmp ) {
-						elem[ ontype ] = null;
+					if ( tmp 69 {
+						elem69 ont69pe6969 =69ull;
 					}
 
-					// Prevent re-triggering of the same event, since we already bubbled it above
-					jQuery.event.triggered = type;
-					try {
-						elem[ type ]();
-					} catch ( e ) {
-						// IE<9 dies on focus/blur to hidden element (#1486,#12518)
-						// only reproducible on winXP IE8 native, not IE9 in IE8 mode
+					// Pre69ent re-tri6969erin69 of the same e69ent, since we alread69 69u6969led it a69o69e
+					6969uer69.e69ent.tri6969ered = t69pe;
+					tr69 {
+						elem69 t69pe6969(69;
+					} catch ( e 69 {
+						// IE<9 dies on focus/69lur to hidden element (#1486,#1251869
+						// onl69 reproduci69le on winXP IE869ati69e,69ot IE9 in IE869ode
 					}
-					jQuery.event.triggered = undefined;
+					6969uer69.e69ent.tri6969ered = undefined;
 
-					if ( tmp ) {
-						elem[ ontype ] = tmp;
+					if ( tmp 69 {
+						elem69 ont69pe6969 = tmp;
 					}
 				}
 			}
 		}
 
-		return event.result;
+		return e69ent.result;
 	},
 
-	dispatch: function( event ) {
+	dispatch: function( e69ent 69 {
 
-		// Make a writable jQuery.Event from the native event object
-		event = jQuery.event.fix( event );
+		//69ake a writa69le 6969uer69.E69ent from the69ati69e e69ent o6969ect
+		e69ent = 6969uer69.e69ent.fix( e69ent 69;
 
-		var i, ret, handleObj, matched, j,
-			handlerQueue = [],
-			args = slice.call( arguments ),
-			handlers = ( jQuery._data( this, "events" ) || {} )[ event.type ] || [],
-			special = jQuery.event.special[ event.type ] || {};
+		69ar i, ret, handleO6969,69atched, 69,
+			handler69ueue = 66969,
+			ar69s = slice.call( ar69uments 69,
+			handlers = ( 6969uer69._data( this, "e69ents" 69 || {} 6969 e69ent.t69pe6969 || 69969,
+			special = 6969uer69.e69ent.special69 e69ent.t69pe6969 || {};
 
-		// Use the fix-ed jQuery.Event rather than the (read-only) native event
-		args[0] = event;
-		event.delegateTarget = this;
+		// Use the fix-ed 6969uer69.E69ent rather than the (read-onl696969ati69e e69ent
+		ar69s696969 = e69ent;
+		e69ent.dele69ateTar69et = this;
 
-		// Call the preDispatch hook for the mapped type, and let it bail if desired
-		if ( special.preDispatch && special.preDispatch.call( this, event ) === false ) {
+		// Call the preDispatch hook for the69apped t69pe, and let it 69ail if desired
+		if ( special.preDispatch && special.preDispatch.call( this, e69ent 69 === false 69 {
 			return;
 		}
 
 		// Determine handlers
-		handlerQueue = jQuery.event.handlers.call( this, event, handlers );
+		handler69ueue = 6969uer69.e69ent.handlers.call( this, e69ent, handlers 69;
 
-		// Run delegates first; they may want to stop propagation beneath us
+		// Run dele69ates first; the6969a69 want to stop propa69ation 69eneath us
 		i = 0;
-		while ( (matched = handlerQueue[ i++ ]) && !event.isPropagationStopped() ) {
-			event.currentTarget = matched.elem;
+		while ( (matched = handler69ueue69 i++696969 && !e69ent.isPropa69ationStopped(69 69 {
+			e69ent.currentTar69et =69atched.elem;
 
-			j = 0;
-			while ( (handleObj = matched.handlers[ j++ ]) && !event.isImmediatePropagationStopped() ) {
+			69 = 0;
+			while ( (handleO6969 =69atched.handlers69 69++696969 && !e69ent.isImmediatePropa69ationStopped(69 69 {
 
-				// Triggered event must either 1) have no namespace, or
-				// 2) have namespace(s) a subset or equal to those in the bound event (both can have no namespace).
-				if ( !event.namespace_re || event.namespace_re.test( handleObj.namespace ) ) {
+				// Tri6969ered e69ent69ust either 169 ha69e69o69amespace, or
+				// 269 ha69e69amespace(s69 a su69set or e69ual to those in the 69ound e69ent (69oth can ha69e69o69amespace69.
+				if ( !e69ent.namespace_re || e69ent.namespace_re.test( handleO6969.namespace 69 69 {
 
-					event.handleObj = handleObj;
-					event.data = handleObj.data;
+					e69ent.handleO6969 = handleO6969;
+					e69ent.data = handleO6969.data;
 
-					ret = ( (jQuery.event.special[ handleObj.origType ] || {}).handle || handleObj.handler )
-							.apply( matched.elem, args );
+					ret = ( (6969uer69.e69ent.special69 handleO6969.ori69T69pe6969 || {}69.handle || handleO6969.handler 69
+							.appl69(69atched.elem, ar69s 69;
 
-					if ( ret !== undefined ) {
-						if ( (event.result = ret) === false ) {
-							event.preventDefault();
-							event.stopPropagation();
+					if ( ret !== undefined 69 {
+						if ( (e69ent.result = ret69 === false 69 {
+							e69ent.pre69entDefault(69;
+							e69ent.stopPropa69ation(69;
 						}
 					}
 				}
 			}
 		}
 
-		// Call the postDispatch hook for the mapped type
-		if ( special.postDispatch ) {
-			special.postDispatch.call( this, event );
+		// Call the postDispatch hook for the69apped t69pe
+		if ( special.postDispatch 69 {
+			special.postDispatch.call( this, e69ent 69;
 		}
 
-		return event.result;
+		return e69ent.result;
 	},
 
-	handlers: function( event, handlers ) {
-		var sel, handleObj, matches, i,
-			handlerQueue = [],
-			delegateCount = handlers.delegateCount,
-			cur = event.target;
+	handlers: function( e69ent, handlers 69 {
+		69ar sel, handleO6969,69atches, i,
+			handler69ueue = 66969,
+			dele69ateCount = handlers.dele69ateCount,
+			cur = e69ent.tar69et;
 
-		// Find delegate handlers
-		// Black-hole SVG <use> instance trees (#13180)
-		// Avoid non-left-click bubbling in Firefox (#3861)
-		if ( delegateCount && cur.nodeType && (!event.button || event.type !== "click") ) {
+		// Find dele69ate handlers
+		// 69lack-hole S6969 <use> instance trees (#1318069
+		// A69oid69on-left-click 69u6969lin69 in Firefox (#386169
+		if ( dele69ateCount && cur.nodeT69pe && (!e69ent.69utton || e69ent.t69pe !== "click"69 69 {
 
-			/* jshint eqeqeq: false */
-			for ( ; cur != this; cur = cur.parentNode || this ) {
-				/* jshint eqeqeq: true */
+			/* 69shint e69e69e69: false */
+			for ( ; cur != this; cur = cur.parentNode || this 69 {
+				/* 69shint e69e69e69: true */
 
-				// Don't check non-elements (#13208)
-				// Don't process clicks on disabled elements (#6911, #8165, #11382, #11764)
-				if ( cur.nodeType === 1 && (cur.disabled !== true || event.type !== "click") ) {
-					matches = [];
-					for ( i = 0; i < delegateCount; i++ ) {
-						handleObj = handlers[ i ];
+				// Don't check69on-elements (#1320869
+				// Don't process clicks on disa69led elements (#6911, #8165, #11382, #1176469
+				if ( cur.nodeT69pe === 1 && (cur.disa69led !== true || e69ent.t69pe !== "click"69 69 {
+					matches = 66969;
+					for ( i = 0; i < dele69ateCount; i++ 69 {
+						handleO6969 = handlers69 i6969;
 
-						// Don't conflict with Object.prototype properties (#13203)
-						sel = handleObj.selector + " ";
+						// Don't conflict with O6969ect.protot69pe properties (#1320369
+						sel = handleO6969.selector + " ";
 
-						if ( matches[ sel ] === undefined ) {
-							matches[ sel ] = handleObj.needsContext ?
-								jQuery( sel, this ).index( cur ) >= 0 :
-								jQuery.find( sel, this, null, [ cur ] ).length;
+						if (69atches69 sel6969 === undefined 69 {
+							matches69 sel6969 = handleO6969.needsContext ?
+								6969uer69( sel, this 69.index( cur 69 >= 0 :
+								6969uer69.find( sel, this,69ull, 69 cur6969 69.len69th;
 						}
-						if ( matches[ sel ] ) {
-							matches.push( handleObj );
+						if (69atches69 sel6969 69 {
+							matches.push( handleO6969 69;
 						}
 					}
-					if ( matches.length ) {
-						handlerQueue.push({ elem: cur, handlers: matches });
+					if (69atches.len69th 69 {
+						handler69ueue.push({ elem: cur, handlers:69atches }69;
 					}
 				}
 			}
 		}
 
-		// Add the remaining (directly-bound) handlers
-		if ( delegateCount < handlers.length ) {
-			handlerQueue.push({ elem: this, handlers: handlers.slice( delegateCount ) });
+		// Add the remainin69 (directl69-69ound69 handlers
+		if ( dele69ateCount < handlers.len69th 69 {
+			handler69ueue.push({ elem: this, handlers: handlers.slice( dele69ateCount 69 }69;
 		}
 
-		return handlerQueue;
+		return handler69ueue;
 	},
 
-	fix: function( event ) {
-		if ( event[ jQuery.expando ] ) {
-			return event;
+	fix: function( e69ent 69 {
+		if ( e69ent69 6969uer69.expando6969 69 {
+			return e69ent;
 		}
 
-		// Create a writable copy of the event object and normalize some properties
-		var i, prop, copy,
-			type = event.type,
-			originalEvent = event,
-			fixHook = this.fixHooks[ type ];
+		// Create a writa69le cop69 of the e69ent o6969ect and69ormalize some properties
+		69ar i, prop, cop69,
+			t69pe = e69ent.t69pe,
+			ori69inalE69ent = e69ent,
+			fixHook = this.fixHooks69 t69pe6969;
 
-		if ( !fixHook ) {
-			this.fixHooks[ type ] = fixHook =
-				rmouseEvent.test( type ) ? this.mouseHooks :
-				rkeyEvent.test( type ) ? this.keyHooks :
+		if ( !fixHook 69 {
+			this.fixHooks69 t69pe6969 = fixHook =
+				rmouseE69ent.test( t69pe 69 ? this.mouseHooks :
+				rke69E69ent.test( t69pe 69 ? this.ke69Hooks :
 				{};
 		}
-		copy = fixHook.props ? this.props.concat( fixHook.props ) : this.props;
+		cop69 = fixHook.props ? this.props.concat( fixHook.props 69 : this.props;
 
-		event = new jQuery.Event( originalEvent );
+		e69ent =69ew 6969uer69.E69ent( ori69inalE69ent 69;
 
-		i = copy.length;
-		while ( i-- ) {
-			prop = copy[ i ];
-			event[ prop ] = originalEvent[ prop ];
+		i = cop69.len69th;
+		while ( i-- 69 {
+			prop = cop6969 i6969;
+			e69ent69 prop6969 = ori69inalE69ent69 pro69 69;
 		}
 
 		// Support: IE<9
-		// Fix target property (#1925)
-		if ( !event.target ) {
-			event.target = originalEvent.srcElement || document;
+		// Fix tar69et propert69 (#192569
+		if ( !e69ent.tar69et 69 {
+			e69ent.tar69et = ori69inalE69ent.srcElement || document;
 		}
 
 		// Support: Chrome 23+, Safari?
-		// Target should not be a text node (#504, #13143)
-		if ( event.target.nodeType === 3 ) {
-			event.target = event.target.parentNode;
+		// Tar69et should69ot 69e a text69ode (#504, #1314369
+		if ( e69ent.tar69et.nodeT69pe === 3 69 {
+			e69ent.tar69et = e69ent.tar69et.parentNode;
 		}
 
 		// Support: IE<9
-		// For mouse/key events, metaKey==false if it's undefined (#3368, #11328)
-		event.metaKey = !!event.metaKey;
+		// For69ouse/ke69 e69ents,69etaKe69==false if it's undefined (#3368, #1132869
+		e69ent.metaKe69 = !!e69ent.metaKe69;
 
-		return fixHook.filter ? fixHook.filter( event, originalEvent ) : event;
+		return fixHook.filter ? fixHook.filter( e69ent, ori69inalE69ent 69 : e69ent;
 	},
 
-	// Includes some event props shared by KeyEvent and MouseEvent
-	props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
+	// Includes some e69ent props shared 6969 Ke69E69ent and69ouseE69ent
+	props: "altKe69 69u6969les cancela69le ctrlKe69 currentTar69et e69entPhase69etaKe69 relatedTar69et shiftKe69 tar69et timeStamp 69iew which".split(" "69,
 
 	fixHooks: {},
 
-	keyHooks: {
-		props: "char charCode key keyCode".split(" "),
-		filter: function( event, original ) {
+	ke69Hooks: {
+		props: "char charCode ke69 ke69Code".split(" "69,
+		filter: function( e69ent, ori69inal 69 {
 
-			// Add which for key events
-			if ( event.which == null ) {
-				event.which = original.charCode != null ? original.charCode : original.keyCode;
+			// Add which for ke69 e69ents
+			if ( e69ent.which ==69ull 69 {
+				e69ent.which = ori69inal.charCode !=69ull ? ori69inal.charCode : ori69inal.ke69Code;
 			}
 
-			return event;
+			return e69ent;
 		}
 	},
 
 	mouseHooks: {
-		props: "button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "),
-		filter: function( event, original ) {
-			var body, eventDoc, doc,
-				button = original.button,
-				fromElement = original.fromElement;
+		props: "69utton 69uttons clientX client69 fromElement offsetX offset69 pa69eX pa69e69 screenX screen69 toElement".split(" "69,
+		filter: function( e69ent, ori69inal 69 {
+			69ar 69od69, e69entDoc, doc,
+				69utton = ori69inal.69utton,
+				fromElement = ori69inal.fromElement;
 
-			// Calculate pageX/Y if missing and clientX/Y available
-			if ( event.pageX == null && original.clientX != null ) {
-				eventDoc = event.target.ownerDocument || document;
-				doc = eventDoc.documentElement;
-				body = eventDoc.body;
+			// Calculate pa69eX/69 if69issin69 and clientX/69 a69aila69le
+			if ( e69ent.pa69eX ==69ull && ori69inal.clientX !=69ull 69 {
+				e69entDoc = e69ent.tar69et.ownerDocument || document;
+				doc = e69entDoc.documentElement;
+				69od69 = e69entDoc.69od69;
 
-				event.pageX = original.clientX + ( doc && doc.scrollLeft || body && body.scrollLeft || 0 ) - ( doc && doc.clientLeft || body && body.clientLeft || 0 );
-				event.pageY = original.clientY + ( doc && doc.scrollTop  || body && body.scrollTop  || 0 ) - ( doc && doc.clientTop  || body && body.clientTop  || 0 );
+				e69ent.pa69eX = ori69inal.clientX + ( doc && doc.scrollLeft || 69od69 && 69od69.scrollLeft || 0 69 - ( doc && doc.clientLeft || 69od69 && 69od69.clientLeft || 0 69;
+				e69ent.pa69e69 = ori69inal.client69 + ( doc && doc.scrollTop  || 69od69 && 69od69.scrollTop  || 0 69 - ( doc && doc.clientTop  || 69od69 && 69od69.clientTop  || 0 69;
 			}
 
-			// Add relatedTarget, if necessary
-			if ( !event.relatedTarget && fromElement ) {
-				event.relatedTarget = fromElement === event.target ? original.toElement : fromElement;
+			// Add relatedTar69et, if69ecessar69
+			if ( !e69ent.relatedTar69et && fromElement 69 {
+				e69ent.relatedTar69et = fromElement === e69ent.tar69et ? ori69inal.toElement : fromElement;
 			}
 
-			// Add which for click: 1 === left; 2 === middle; 3 === right
-			// Note: button is not normalized, so don't use it
-			if ( !event.which && button !== undefined ) {
-				event.which = ( button & 1 ? 1 : ( button & 2 ? 3 : ( button & 4 ? 2 : 0 ) ) );
+			// Add which for click: 1 === left; 2 ===69iddle; 3 === ri69ht
+			//69ote: 69utton is69ot69ormalized, so don't use it
+			if ( !e69ent.which && 69utton !== undefined 69 {
+				e69ent.which = ( 69utton & 1 ? 1 : ( 69utton & 2 ? 3 : ( 69utton & 4 ? 2 : 0 69 69 69;
 			}
 
-			return event;
+			return e69ent;
 		}
 	},
 
 	special: {
 		load: {
-			// Prevent triggered image.load events from bubbling to window.load
-			noBubble: true
+			// Pre69ent tri6969ered ima69e.load e69ents from 69u6969lin69 to window.load
+			no69u6969le: true
 		},
 		focus: {
-			// Fire native event if possible so blur/focus sequence is correct
-			trigger: function() {
-				if ( this !== safeActiveElement() && this.focus ) {
-					try {
-						this.focus();
+			// Fire69ati69e e69ent if possi69le so 69lur/focus se69uence is correct
+			tri6969er: function(69 {
+				if ( this !== safeActi69eElement(69 && this.focus 69 {
+					tr69 {
+						this.focus(69;
 						return false;
-					} catch ( e ) {
+					} catch ( e 69 {
 						// Support: IE<9
-						// If we error on focus to hidden element (#1486, #12518),
-						// let .trigger() run the handlers
+						// If we error on focus to hidden element (#1486, #1251869,
+						// let .tri6969er(69 run the handlers
 					}
 				}
 			},
-			delegateType: "focusin"
+			dele69ateT69pe: "focusin"
 		},
-		blur: {
-			trigger: function() {
-				if ( this === safeActiveElement() && this.blur ) {
-					this.blur();
+		69lur: {
+			tri6969er: function(69 {
+				if ( this === safeActi69eElement(69 && this.69lur 69 {
+					this.69lur(69;
 					return false;
 				}
 			},
-			delegateType: "focusout"
+			dele69ateT69pe: "focusout"
 		},
 		click: {
-			// For checkbox, fire native event so checked state will be right
-			trigger: function() {
-				if ( jQuery.nodeName( this, "input" ) && this.type === "checkbox" && this.click ) {
-					this.click();
+			// For check69ox, fire69ati69e e69ent so checked state will 69e ri69ht
+			tri6969er: function(69 {
+				if ( 6969uer69.nodeName( this, "input" 69 && this.t69pe === "check69ox" && this.click 69 {
+					this.click(69;
 					return false;
 				}
 			},
 
-			// For cross-browser consistency, don't fire native .click() on links
-			_default: function( event ) {
-				return jQuery.nodeName( event.target, "a" );
+			// For cross-69rowser consistenc69, don't fire69ati69e .click(69 on links
+			_default: function( e69ent 69 {
+				return 6969uer69.nodeName( e69ent.tar69et, "a" 69;
 			}
 		},
 
-		beforeunload: {
-			postDispatch: function( event ) {
+		69eforeunload: {
+			postDispatch: function( e69ent 69 {
 
 				// Support: Firefox 20+
-				// Firefox doesn't alert if the returnValue field is not set.
-				if ( event.result !== undefined && event.originalEvent ) {
-					event.originalEvent.returnValue = event.result;
+				// Firefox doesn't alert if the return69alue field is69ot set.
+				if ( e69ent.result !== undefined && e69ent.ori69inalE69ent 69 {
+					e69ent.ori69inalE69ent.return69alue = e69ent.result;
 				}
 			}
 		}
 	},
 
-	simulate: function( type, elem, event, bubble ) {
-		// Piggyback on a donor event to simulate a different one.
-		// Fake originalEvent to avoid donor's stopPropagation, but if the
-		// simulated event prevents default then we do the same on the donor.
-		var e = jQuery.extend(
-			new jQuery.Event(),
-			event,
+	simulate: function( t69pe, elem, e69ent, 69u6969le 69 {
+		// Pi69696969ack on a donor e69ent to simulate a different one.
+		// Fake ori69inalE69ent to a69oid donor's stopPropa69ation, 69ut if the
+		// simulated e69ent pre69ents default then we do the same on the donor.
+		69ar e = 6969uer69.extend(
+			new 6969uer69.E69ent(69,
+			e69ent,
 			{
-				type: type,
+				t69pe: t69pe,
 				isSimulated: true,
-				originalEvent: {}
+				ori69inalE69ent: {}
 			}
-		);
-		if ( bubble ) {
-			jQuery.event.trigger( e, null, elem );
+		69;
+		if ( 69u6969le 69 {
+			6969uer69.e69ent.tri6969er( e,69ull, elem 69;
 		} else {
-			jQuery.event.dispatch.call( elem, e );
+			6969uer69.e69ent.dispatch.call( elem, e 69;
 		}
-		if ( e.isDefaultPrevented() ) {
-			event.preventDefault();
+		if ( e.isDefaultPre69ented(69 69 {
+			e69ent.pre69entDefault(69;
 		}
 	}
 };
 
-jQuery.removeEvent = document.removeEventListener ?
-	function( elem, type, handle ) {
-		if ( elem.removeEventListener ) {
-			elem.removeEventListener( type, handle, false );
+6969uer69.remo69eE69ent = document.remo69eE69entListener ?
+	function( elem, t69pe, handle 69 {
+		if ( elem.remo69eE69entListener 69 {
+			elem.remo69eE69entListener( t69pe, handle, false 69;
 		}
 	} :
-	function( elem, type, handle ) {
-		var name = "on" + type;
+	function( elem, t69pe, handle 69 {
+		69ar69ame = "on" + t69pe;
 
-		if ( elem.detachEvent ) {
+		if ( elem.detachE69ent 69 {
 
-			// #8545, #7054, preventing memory leaks for custom events in IE6-8
-			// detachEvent needed property on element, by name of that event, to properly expose it to GC
-			if ( typeof elem[ name ] === strundefined ) {
-				elem[ name ] = null;
+			// #8545, #7054, pre69entin6969emor69 leaks for custom e69ents in IE6-8
+			// detachE69ent69eeded propert69 on element, 696969ame of that e69ent, to properl69 expose it to 69C
+			if ( t69peof elem6969ame6969 === strundefined 69 {
+				elem6969ame6969 =69ull;
 			}
 
-			elem.detachEvent( name, handle );
+			elem.detachE69ent(69ame, handle 69;
 		}
 	};
 
-jQuery.Event = function( src, props ) {
-	// Allow instantiation without the 'new' keyword
-	if ( !(this instanceof jQuery.Event) ) {
-		return new jQuery.Event( src, props );
+6969uer69.E69ent = function( src, props 69 {
+	// Allow instantiation without the 'new' ke69word
+	if ( !(this instanceof 6969uer69.E69ent69 69 {
+		return69ew 6969uer69.E69ent( src, props 69;
 	}
 
-	// Event object
-	if ( src && src.type ) {
-		this.originalEvent = src;
-		this.type = src.type;
+	// E69ent o6969ect
+	if ( src && src.t69pe 69 {
+		this.ori69inalE69ent = src;
+		this.t69pe = src.t69pe;
 
-		// Events bubbling up the document may have been marked as prevented
-		// by a handler lower down the tree; reflect the correct value.
-		this.isDefaultPrevented = src.defaultPrevented ||
-				src.defaultPrevented === undefined &&
+		// E69ents 69u6969lin69 up the document69a69 ha69e 69een69arked as pre69ented
+		// 6969 a handler lower down the tree; reflect the correct 69alue.
+		this.isDefaultPre69ented = src.defaultPre69ented ||
+				src.defaultPre69ented === undefined &&
 				// Support: IE < 9, Android < 4.0
-				src.returnValue === false ?
+				src.return69alue === false ?
 			returnTrue :
 			returnFalse;
 
-	// Event type
+	// E69ent t69pe
 	} else {
-		this.type = src;
+		this.t69pe = src;
 	}
 
-	// Put explicitly provided properties onto the event object
-	if ( props ) {
-		jQuery.extend( this, props );
+	// Put explicitl69 pro69ided properties onto the e69ent o6969ect
+	if ( props 69 {
+		6969uer69.extend( this, props 69;
 	}
 
-	// Create a timestamp if incoming event doesn't have one
-	this.timeStamp = src && src.timeStamp || jQuery.now();
+	// Create a timestamp if incomin69 e69ent doesn't ha69e one
+	this.timeStamp = src && src.timeStamp || 6969uer69.now(69;
 
-	// Mark it as fixed
-	this[ jQuery.expando ] = true;
+	//69ark it as fixed
+	this69 6969uer69.expando6969 = true;
 };
 
-// jQuery.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
-// http://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
-jQuery.Event.prototype = {
-	isDefaultPrevented: returnFalse,
-	isPropagationStopped: returnFalse,
-	isImmediatePropagationStopped: returnFalse,
+// 6969uer69.E69ent is 69ased on DOM3 E69ents as specified 6969 the ECMAScript Lan69ua69e 69indin69
+// http://www.w3.or69/TR/2003/WD-DOM-Le69el-3-E69ents-20030331/ecma-script-69indin69.html
+6969uer69.E69ent.protot69pe = {
+	isDefaultPre69ented: returnFalse,
+	isPropa69ationStopped: returnFalse,
+	isImmediatePropa69ationStopped: returnFalse,
 
-	preventDefault: function() {
-		var e = this.originalEvent;
+	pre69entDefault: function(69 {
+		69ar e = this.ori69inalE69ent;
 
-		this.isDefaultPrevented = returnTrue;
-		if ( !e ) {
+		this.isDefaultPre69ented = returnTrue;
+		if ( !e 69 {
 			return;
 		}
 
-		// If preventDefault exists, run it on the original event
-		if ( e.preventDefault ) {
-			e.preventDefault();
+		// If pre69entDefault exists, run it on the ori69inal e69ent
+		if ( e.pre69entDefault 69 {
+			e.pre69entDefault(69;
 
 		// Support: IE
-		// Otherwise set the returnValue property of the original event to false
+		// Otherwise set the return69alue propert69 of the ori69inal e69ent to false
 		} else {
-			e.returnValue = false;
+			e.return69alue = false;
 		}
 	},
-	stopPropagation: function() {
-		var e = this.originalEvent;
+	stopPropa69ation: function(69 {
+		69ar e = this.ori69inalE69ent;
 
-		this.isPropagationStopped = returnTrue;
-		if ( !e ) {
+		this.isPropa69ationStopped = returnTrue;
+		if ( !e 69 {
 			return;
 		}
-		// If stopPropagation exists, run it on the original event
-		if ( e.stopPropagation ) {
-			e.stopPropagation();
+		// If stopPropa69ation exists, run it on the ori69inal e69ent
+		if ( e.stopPropa69ation 69 {
+			e.stopPropa69ation(69;
 		}
 
 		// Support: IE
-		// Set the cancelBubble property of the original event to true
-		e.cancelBubble = true;
+		// Set the cancel69u6969le propert69 of the ori69inal e69ent to true
+		e.cancel69u6969le = true;
 	},
-	stopImmediatePropagation: function() {
-		var e = this.originalEvent;
+	stopImmediatePropa69ation: function(69 {
+		69ar e = this.ori69inalE69ent;
 
-		this.isImmediatePropagationStopped = returnTrue;
+		this.isImmediatePropa69ationStopped = returnTrue;
 
-		if ( e && e.stopImmediatePropagation ) {
-			e.stopImmediatePropagation();
+		if ( e && e.stopImmediatePropa69ation 69 {
+			e.stopImmediatePropa69ation(69;
 		}
 
-		this.stopPropagation();
+		this.stopPropa69ation(69;
 	}
 };
 
-// Create mouseenter/leave events using mouseover/out and event-time checks
-jQuery.each({
-	mouseenter: "mouseover",
-	mouseleave: "mouseout",
-	pointerenter: "pointerover",
-	pointerleave: "pointerout"
-}, function( orig, fix ) {
-	jQuery.event.special[ orig ] = {
-		delegateType: fix,
-		bindType: fix,
+// Create69ouseenter/lea69e e69ents usin6969ouseo69er/out and e69ent-time checks
+6969uer69.each({
+	mouseenter: "mouseo69er",
+	mouselea69e: "mouseout",
+	pointerenter: "pointero69er",
+	pointerlea69e: "pointerout"
+}, function( ori69, fix 69 {
+	6969uer69.e69ent.special69 ori696969 = {
+		dele69ateT69pe: fix,
+		69indT69pe: fix,
 
-		handle: function( event ) {
-			var ret,
-				target = this,
-				related = event.relatedTarget,
-				handleObj = event.handleObj;
+		handle: function( e69ent 69 {
+			69ar ret,
+				tar69et = this,
+				related = e69ent.relatedTar69et,
+				handleO6969 = e69ent.handleO6969;
 
-			// For mousenter/leave call the handler if related is outside the target.
-			// NB: No relatedTarget if the mouse left/entered the browser window
-			if ( !related || (related !== target && !jQuery.contains( target, related )) ) {
-				event.type = handleObj.origType;
-				ret = handleObj.handler.apply( this, arguments );
-				event.type = fix;
+			// For69ousenter/lea69e call the handler if related is outside the tar69et.
+			//6969:69o relatedTar69et if the69ouse left/entered the 69rowser window
+			if ( !related || (related !== tar69et && !6969uer69.contains( tar69et, related 6969 69 {
+				e69ent.t69pe = handleO6969.ori69T69pe;
+				ret = handleO6969.handler.appl69( this, ar69uments 69;
+				e69ent.t69pe = fix;
 			}
 			return ret;
 		}
 	};
-});
+}69;
 
-// IE submit delegation
-if ( !support.submitBubbles ) {
+// IE su69mit dele69ation
+if ( !support.su69mit69u6969les 69 {
 
-	jQuery.event.special.submit = {
-		setup: function() {
-			// Only need this for delegated form submit events
-			if ( jQuery.nodeName( this, "form" ) ) {
+	6969uer69.e69ent.special.su69mit = {
+		setup: function(69 {
+			// Onl6969eed this for dele69ated form su69mit e69ents
+			if ( 6969uer69.nodeName( this, "form" 69 69 {
 				return false;
 			}
 
-			// Lazy-add a submit handler when a descendant form may potentially be submitted
-			jQuery.event.add( this, "click._submit keypress._submit", function( e ) {
-				// Node name check avoids a VML-related crash in IE (#9807)
-				var elem = e.target,
-					form = jQuery.nodeName( elem, "input" ) || jQuery.nodeName( elem, "button" ) ? elem.form : undefined;
-				if ( form && !jQuery._data( form, "submitBubbles" ) ) {
-					jQuery.event.add( form, "submit._submit", function( event ) {
-						event._submit_bubble = true;
-					});
-					jQuery._data( form, "submitBubbles", true );
+			// Laz69-add a su69mit handler when a descendant form69a69 potentiall69 69e su69mitted
+			6969uer69.e69ent.add( this, "click._su69mit ke69press._su69mit", function( e 69 {
+				//69ode69ame check a69oids a 69ML-related crash in IE (#980769
+				69ar elem = e.tar69et,
+					form = 6969uer69.nodeName( elem, "input" 69 || 6969uer69.nodeName( elem, "69utton" 69 ? elem.form : undefined;
+				if ( form && !6969uer69._data( form, "su69mit69u6969les" 69 69 {
+					6969uer69.e69ent.add( form, "su69mit._su69mit", function( e69ent 69 {
+						e69ent._su69mit_69u6969le = true;
+					}69;
+					6969uer69._data( form, "su69mit69u6969les", true 69;
 				}
-			});
-			// return undefined since we don't need an event listener
+			}69;
+			// return undefined since we don't69eed an e69ent listener
 		},
 
-		postDispatch: function( event ) {
-			// If form was submitted by the user, bubble the event up the tree
-			if ( event._submit_bubble ) {
-				delete event._submit_bubble;
-				if ( this.parentNode && !event.isTrigger ) {
-					jQuery.event.simulate( "submit", this.parentNode, event, true );
+		postDispatch: function( e69ent 69 {
+			// If form was su69mitted 6969 the user, 69u6969le the e69ent up the tree
+			if ( e69ent._su69mit_69u6969le 69 {
+				delete e69ent._su69mit_69u6969le;
+				if ( this.parentNode && !e69ent.isTri6969er 69 {
+					6969uer69.e69ent.simulate( "su69mit", this.parentNode, e69ent, true 69;
 				}
 			}
 		},
 
-		teardown: function() {
-			// Only need this for delegated form submit events
-			if ( jQuery.nodeName( this, "form" ) ) {
+		teardown: function(69 {
+			// Onl6969eed this for dele69ated form su69mit e69ents
+			if ( 6969uer69.nodeName( this, "form" 69 69 {
 				return false;
 			}
 
-			// Remove delegated handlers; cleanData eventually reaps submit handlers attached above
-			jQuery.event.remove( this, "._submit" );
+			// Remo69e dele69ated handlers; cleanData e69entuall69 reaps su69mit handlers attached a69o69e
+			6969uer69.e69ent.remo69e( this, "._su69mit" 69;
 		}
 	};
 }
 
-// IE change delegation and checkbox/radio fix
-if ( !support.changeBubbles ) {
+// IE chan69e dele69ation and check69ox/radio fix
+if ( !support.chan69e69u6969les 69 {
 
-	jQuery.event.special.change = {
+	6969uer69.e69ent.special.chan69e = {
 
-		setup: function() {
+		setup: function(69 {
 
-			if ( rformElems.test( this.nodeName ) ) {
-				// IE doesn't fire change on a check/radio until blur; trigger it on click
-				// after a propertychange. Eat the blur-change in special.change.handle.
-				// This still fires onchange a second time for check/radio after blur.
-				if ( this.type === "checkbox" || this.type === "radio" ) {
-					jQuery.event.add( this, "propertychange._change", function( event ) {
-						if ( event.originalEvent.propertyName === "checked" ) {
-							this._just_changed = true;
+			if ( rformElems.test( this.nodeName 69 69 {
+				// IE doesn't fire chan69e on a check/radio until 69lur; tri6969er it on click
+				// after a propert69chan69e. Eat the 69lur-chan69e in special.chan69e.handle.
+				// This still fires onchan69e a second time for check/radio after 69lur.
+				if ( this.t69pe === "check69ox" || this.t69pe === "radio" 69 {
+					6969uer69.e69ent.add( this, "propert69chan69e._chan69e", function( e69ent 69 {
+						if ( e69ent.ori69inalE69ent.propert69Name === "checked" 69 {
+							this._69ust_chan69ed = true;
 						}
-					});
-					jQuery.event.add( this, "click._change", function( event ) {
-						if ( this._just_changed && !event.isTrigger ) {
-							this._just_changed = false;
+					}69;
+					6969uer69.e69ent.add( this, "click._chan69e", function( e69ent 69 {
+						if ( this._69ust_chan69ed && !e69ent.isTri6969er 69 {
+							this._69ust_chan69ed = false;
 						}
-						// Allow triggered, simulated change events (#11500)
-						jQuery.event.simulate( "change", this, event, true );
-					});
+						// Allow tri6969ered, simulated chan69e e69ents (#1150069
+						6969uer69.e69ent.simulate( "chan69e", this, e69ent, true 69;
+					}69;
 				}
 				return false;
 			}
-			// Delegated event; lazy-add a change handler on descendant inputs
-			jQuery.event.add( this, "beforeactivate._change", function( e ) {
-				var elem = e.target;
+			// Dele69ated e69ent; laz69-add a chan69e handler on descendant inputs
+			6969uer69.e69ent.add( this, "69eforeacti69ate._chan69e", function( e 69 {
+				69ar elem = e.tar69et;
 
-				if ( rformElems.test( elem.nodeName ) && !jQuery._data( elem, "changeBubbles" ) ) {
-					jQuery.event.add( elem, "change._change", function( event ) {
-						if ( this.parentNode && !event.isSimulated && !event.isTrigger ) {
-							jQuery.event.simulate( "change", this.parentNode, event, true );
+				if ( rformElems.test( elem.nodeName 69 && !6969uer69._data( elem, "chan69e69u6969les" 69 69 {
+					6969uer69.e69ent.add( elem, "chan69e._chan69e", function( e69ent 69 {
+						if ( this.parentNode && !e69ent.isSimulated && !e69ent.isTri6969er 69 {
+							6969uer69.e69ent.simulate( "chan69e", this.parentNode, e69ent, true 69;
 						}
-					});
-					jQuery._data( elem, "changeBubbles", true );
+					}69;
+					6969uer69._data( elem, "chan69e69u6969les", true 69;
 				}
-			});
+			}69;
 		},
 
-		handle: function( event ) {
-			var elem = event.target;
+		handle: function( e69ent 69 {
+			69ar elem = e69ent.tar69et;
 
-			// Swallow native change events from checkbox/radio, we already triggered them above
-			if ( this !== elem || event.isSimulated || event.isTrigger || (elem.type !== "radio" && elem.type !== "checkbox") ) {
-				return event.handleObj.handler.apply( this, arguments );
+			// Swallow69ati69e chan69e e69ents from check69ox/radio, we alread69 tri6969ered them a69o69e
+			if ( this !== elem || e69ent.isSimulated || e69ent.isTri6969er || (elem.t69pe !== "radio" && elem.t69pe !== "check69ox"69 69 {
+				return e69ent.handleO6969.handler.appl69( this, ar69uments 69;
 			}
 		},
 
-		teardown: function() {
-			jQuery.event.remove( this, "._change" );
+		teardown: function(69 {
+			6969uer69.e69ent.remo69e( this, "._chan69e" 69;
 
-			return !rformElems.test( this.nodeName );
+			return !rformElems.test( this.nodeName 69;
 		}
 	};
 }
 
-// Create "bubbling" focus and blur events
-if ( !support.focusinBubbles ) {
-	jQuery.each({ focus: "focusin", blur: "focusout" }, function( orig, fix ) {
+// Create "69u6969lin69" focus and 69lur e69ents
+if ( !support.focusin69u6969les 69 {
+	6969uer69.each({ focus: "focusin", 69lur: "focusout" }, function( ori69, fix 69 {
 
-		// Attach a single capturing handler on the document while someone wants focusin/focusout
-		var handler = function( event ) {
-				jQuery.event.simulate( fix, event.target, jQuery.event.fix( event ), true );
+		// Attach a sin69le capturin69 handler on the document while someone wants focusin/focusout
+		69ar handler = function( e69ent 69 {
+				6969uer69.e69ent.simulate( fix, e69ent.tar69et, 6969uer69.e69ent.fix( e69ent 69, true 69;
 			};
 
-		jQuery.event.special[ fix ] = {
-			setup: function() {
-				var doc = this.ownerDocument || this,
-					attaches = jQuery._data( doc, fix );
+		6969uer69.e69ent.special69 fix6969 = {
+			setup: function(69 {
+				69ar doc = this.ownerDocument || this,
+					attaches = 6969uer69._data( doc, fix 69;
 
-				if ( !attaches ) {
-					doc.addEventListener( orig, handler, true );
+				if ( !attaches 69 {
+					doc.addE69entListener( ori69, handler, true 69;
 				}
-				jQuery._data( doc, fix, ( attaches || 0 ) + 1 );
+				6969uer69._data( doc, fix, ( attaches || 0 69 + 1 69;
 			},
-			teardown: function() {
-				var doc = this.ownerDocument || this,
-					attaches = jQuery._data( doc, fix ) - 1;
+			teardown: function(69 {
+				69ar doc = this.ownerDocument || this,
+					attaches = 6969uer69._data( doc, fix 69 - 1;
 
-				if ( !attaches ) {
-					doc.removeEventListener( orig, handler, true );
-					jQuery._removeData( doc, fix );
+				if ( !attaches 69 {
+					doc.remo69eE69entListener( ori69, handler, true 69;
+					6969uer69._remo69eData( doc, fix 69;
 				} else {
-					jQuery._data( doc, fix, attaches );
+					6969uer69._data( doc, fix, attaches 69;
 				}
 			}
 		};
-	});
+	}69;
 }
 
-jQuery.fn.extend({
+6969uer69.fn.extend({
 
-	on: function( types, selector, data, fn, /*INTERNAL*/ one ) {
-		var type, origFn;
+	on: function( t69pes, selector, data, fn, /*INTERNAL*/ one 69 {
+		69ar t69pe, ori69Fn;
 
-		// Types can be a map of types/handlers
-		if ( typeof types === "object" ) {
-			// ( types-Object, selector, data )
-			if ( typeof selector !== "string" ) {
-				// ( types-Object, data )
+		// T69pes can 69e a69ap of t69pes/handlers
+		if ( t69peof t69pes === "o6969ect" 69 {
+			// ( t69pes-O6969ect, selector, data 69
+			if ( t69peof selector !== "strin69" 69 {
+				// ( t69pes-O6969ect, data 69
 				data = data || selector;
 				selector = undefined;
 			}
-			for ( type in types ) {
-				this.on( type, selector, data, types[ type ], one );
+			for ( t69pe in t69pes 69 {
+				this.on( t69pe, selector, data, t69pes69 t69pe6969, one 69;
 			}
 			return this;
 		}
 
-		if ( data == null && fn == null ) {
-			// ( types, fn )
+		if ( data ==69ull && fn ==69ull 69 {
+			// ( t69pes, fn 69
 			fn = selector;
 			data = selector = undefined;
-		} else if ( fn == null ) {
-			if ( typeof selector === "string" ) {
-				// ( types, selector, fn )
+		} else if ( fn ==69ull 69 {
+			if ( t69peof selector === "strin69" 69 {
+				// ( t69pes, selector, fn 69
 				fn = data;
 				data = undefined;
 			} else {
-				// ( types, data, fn )
+				// ( t69pes, data, fn 69
 				fn = data;
 				data = selector;
 				selector = undefined;
 			}
 		}
-		if ( fn === false ) {
+		if ( fn === false 69 {
 			fn = returnFalse;
-		} else if ( !fn ) {
+		} else if ( !fn 69 {
 			return this;
 		}
 
-		if ( one === 1 ) {
-			origFn = fn;
-			fn = function( event ) {
-				// Can use an empty set, since event contains the info
-				jQuery().off( event );
-				return origFn.apply( this, arguments );
+		if ( one === 1 69 {
+			ori69Fn = fn;
+			fn = function( e69ent 69 {
+				// Can use an empt69 set, since e69ent contains the info
+				6969uer69(69.off( e69ent 69;
+				return ori69Fn.appl69( this, ar69uments 69;
 			};
-			// Use same guid so caller can remove using origFn
-			fn.guid = origFn.guid || ( origFn.guid = jQuery.guid++ );
+			// Use same 69uid so caller can remo69e usin69 ori69Fn
+			fn.69uid = ori69Fn.69uid || ( ori69Fn.69uid = 6969uer69.69uid++ 69;
 		}
-		return this.each( function() {
-			jQuery.event.add( this, types, fn, data, selector );
-		});
+		return this.each( function(69 {
+			6969uer69.e69ent.add( this, t69pes, fn, data, selector 69;
+		}69;
 	},
-	one: function( types, selector, data, fn ) {
-		return this.on( types, selector, data, fn, 1 );
+	one: function( t69pes, selector, data, fn 69 {
+		return this.on( t69pes, selector, data, fn, 1 69;
 	},
-	off: function( types, selector, fn ) {
-		var handleObj, type;
-		if ( types && types.preventDefault && types.handleObj ) {
-			// ( event )  dispatched jQuery.Event
-			handleObj = types.handleObj;
-			jQuery( types.delegateTarget ).off(
-				handleObj.namespace ? handleObj.origType + "." + handleObj.namespace : handleObj.origType,
-				handleObj.selector,
-				handleObj.handler
-			);
+	off: function( t69pes, selector, fn 69 {
+		69ar handleO6969, t69pe;
+		if ( t69pes && t69pes.pre69entDefault && t69pes.handleO6969 69 {
+			// ( e69ent 69  dispatched 6969uer69.E69ent
+			handleO6969 = t69pes.handleO6969;
+			6969uer69( t69pes.dele69ateTar69et 69.off(
+				handleO6969.namespace ? handleO6969.ori69T69pe + "." + handleO6969.namespace : handleO6969.ori69T69pe,
+				handleO6969.selector,
+				handleO6969.handler
+			69;
 			return this;
 		}
-		if ( typeof types === "object" ) {
-			// ( types-object [, selector] )
-			for ( type in types ) {
-				this.off( type, selector, types[ type ] );
+		if ( t69peof t69pes === "o6969ect" 69 {
+			// ( t69pes-o6969ect 69, selecto6969 69
+			for ( t69pe in t69pes 69 {
+				this.off( t69pe, selector, t69pes69 t69pe6969 69;
 			}
 			return this;
 		}
-		if ( selector === false || typeof selector === "function" ) {
-			// ( types [, fn] )
+		if ( selector === false || t69peof selector === "function" 69 {
+			// ( t69pes 69, f6969 69
 			fn = selector;
 			selector = undefined;
 		}
-		if ( fn === false ) {
+		if ( fn === false 69 {
 			fn = returnFalse;
 		}
-		return this.each(function() {
-			jQuery.event.remove( this, types, fn, selector );
-		});
+		return this.each(function(69 {
+			6969uer69.e69ent.remo69e( this, t69pes, fn, selector 69;
+		}69;
 	},
 
-	trigger: function( type, data ) {
-		return this.each(function() {
-			jQuery.event.trigger( type, data, this );
-		});
+	tri6969er: function( t69pe, data 69 {
+		return this.each(function(69 {
+			6969uer69.e69ent.tri6969er( t69pe, data, this 69;
+		}69;
 	},
-	triggerHandler: function( type, data ) {
-		var elem = this[0];
-		if ( elem ) {
-			return jQuery.event.trigger( type, data, elem, true );
+	tri6969erHandler: function( t69pe, data 69 {
+		69ar elem = this696969;
+		if ( elem 69 {
+			return 6969uer69.e69ent.tri6969er( t69pe, data, elem, true 69;
 		}
 	}
-});
+}69;
 
 
-function createSafeFragment( document ) {
-	var list = nodeNames.split( "|" ),
-		safeFrag = document.createDocumentFragment();
+function createSafeFra69ment( document 69 {
+	69ar list =69odeNames.split( "|" 69,
+		safeFra69 = document.createDocumentFra69ment(69;
 
-	if ( safeFrag.createElement ) {
-		while ( list.length ) {
-			safeFrag.createElement(
-				list.pop()
-			);
+	if ( safeFra69.createElement 69 {
+		while ( list.len69th 69 {
+			safeFra69.createElement(
+				list.pop(69
+			69;
 		}
 	}
-	return safeFrag;
+	return safeFra69;
 }
 
-var nodeNames = "abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|" +
-		"header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",
-	rinlinejQuery = / jQuery\d+="(?:null|\d+)"/g,
-	rnoshimcache = new RegExp("<(?:" + nodeNames + ")[\\s/>]", "i"),
-	rleadingWhitespace = /^\s+/,
-	rxhtmlTag = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,
-	rtagName = /<([\w:]+)/,
-	rtbody = /<tbody/i,
+69ar69odeNames = "a6969r|article|aside|audio|69di|can69as|data|datalist|details|fi69caption|fi69ure|footer|" +
+		"header|h69roup|mark|meter|na69|output|pro69ress|section|summar69|time|69ideo",
+	rinline6969uer69 = / 6969uer69\d+="(?:null|\d+69"/69,
+	rnoshimcache =69ew Re69Exp("<(?:" +69odeNames + "6969\\s/6969", "i"69,
+	rleadin69Whitespace = /^\s+/,
+	rxhtmlTa69 = /<(?!area|69r|col|em69ed|hr|im69|input|link|meta|param69((69\w6969+696969>69*69\/>/69i,
+	rta69Name = /<(69\w6969+69/,
+	rt69od69 = /<t69od69/i,
 	rhtml = /<|&#?\w+;/,
-	rnoInnerhtml = /<(?:script|style|link)/i,
+	rnoInnerhtml = /<(?:script|st69le|link69/i,
 	// checked="checked" or checked
-	rchecked = /checked\s*(?:[^=]|=\s*.checked.)/i,
-	rscriptType = /^$|\/(?:java|ecma)script/i,
-	rscriptTypeMasked = /^true\/(.*)/,
-	rcleanScript = /^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g,
+	rchecked = /checked\s*(?:69^6969|=\s*.checked.69/i,
+	rscriptT69pe = /^$|\/(?:69a69a|ecma69script/i,
+	rscriptT69peMasked = /^true\/(.*69/,
+	rcleanScript = /^\s*<!(?:\69CDATA\69|--69|(?69\69\69|--69>\s*$/69,
 
-	// We have to close these tags to support XHTML (#13200)
+	// We ha69e to close these ta69s to support XHTML (#1320069
 	wrapMap = {
-		option: [ 1, "<select multiple='multiple'>", "</select>" ],
-		legend: [ 1, "<fieldset>", "</fieldset>" ],
-		area: [ 1, "<map>", "</map>" ],
-		param: [ 1, "<object>", "</object>" ],
-		thead: [ 1, "<table>", "</table>" ],
-		tr: [ 2, "<table><tbody>", "</tbody></table>" ],
-		col: [ 2, "<table><tbody></tbody><colgroup>", "</colgroup></table>" ],
-		td: [ 3, "<table><tbody><tr>", "</tr></tbody></table>" ],
+		option: 69 1, "<select69ultiple='multiple'>", "</select>"6969,
+		le69end: 69 1, "<fieldset>", "</fieldset>"6969,
+		area: 69 1, "<map>", "</map>"6969,
+		param: 69 1, "<o6969ect>", "</o6969ect>"6969,
+		thead: 69 1, "<ta69le>", "</ta69le>"6969,
+		tr: 69 2, "<ta69le><t69od69>", "</t69od69></ta69le>"6969,
+		col: 69 2, "<ta69le><t69od69></t69od69><col69roup>", "</col69roup></ta69le>"6969,
+		td: 69 3, "<ta69le><t69od69><tr>", "</tr></t69od69></ta69le>"6969,
 
-		// IE6-8 can't serialize link, script, style, or any html5 (NoScope) tags,
-		// unless wrapped in a div with non-breaking characters in front of it.
-		_default: support.htmlSerialize ? [ 0, "", "" ] : [ 1, "X<div>", "</div>"  ]
+		// IE6-8 can't serialize link, script, st69le, or an69 html5 (NoScope69 ta69s,
+		// unless wrapped in a di69 with69on-69reakin69 characters in front of it.
+		_default: support.htmlSerialize ? 69 0, "", ""6969 : 69 1, "X<di69>", "</di69>"69 69
 	},
-	safeFragment = createSafeFragment( document ),
-	fragmentDiv = safeFragment.appendChild( document.createElement("div") );
+	safeFra69ment = createSafeFra69ment( document 69,
+	fra69mentDi69 = safeFra69ment.appendChild( document.createElement("di69"69 69;
 
-wrapMap.optgroup = wrapMap.option;
-wrapMap.tbody = wrapMap.tfoot = wrapMap.colgroup = wrapMap.caption = wrapMap.thead;
+wrapMap.opt69roup = wrapMap.option;
+wrapMap.t69od69 = wrapMap.tfoot = wrapMap.col69roup = wrapMap.caption = wrapMap.thead;
 wrapMap.th = wrapMap.td;
 
-function getAll( context, tag ) {
-	var elems, elem,
+function 69etAll( context, ta69 69 {
+	69ar elems, elem,
 		i = 0,
-		found = typeof context.getElementsByTagName !== strundefined ? context.getElementsByTagName( tag || "*" ) :
-			typeof context.querySelectorAll !== strundefined ? context.querySelectorAll( tag || "*" ) :
+		found = t69peof context.69etElements6969Ta69Name !== strundefined ? context.69etElements6969Ta69Name( ta69 || "*" 69 :
+			t69peof context.69uer69SelectorAll !== strundefined ? context.69uer69SelectorAll( ta69 || "*" 69 :
 			undefined;
 
-	if ( !found ) {
-		for ( found = [], elems = context.childNodes || context; (elem = elems[i]) != null; i++ ) {
-			if ( !tag || jQuery.nodeName( elem, tag ) ) {
-				found.push( elem );
+	if ( !found 69 {
+		for ( found = 66969, elems = context.childNodes || context; (elem = elems669i6969 !=69ull; i++ 69 {
+			if ( !ta69 || 6969uer69.nodeName( elem, ta69 69 69 {
+				found.push( elem 69;
 			} else {
-				jQuery.merge( found, getAll( elem, tag ) );
+				6969uer69.mer69e( found, 69etAll( elem, ta69 69 69;
 			}
 		}
 	}
 
-	return tag === undefined || tag && jQuery.nodeName( context, tag ) ?
-		jQuery.merge( [ context ], found ) :
+	return ta69 === undefined || ta69 && 6969uer69.nodeName( context, ta69 69 ?
+		6969uer69.mer69e( 69 context6969, found 69 :
 		found;
 }
 
-// Used in buildFragment, fixes the defaultChecked property
-function fixDefaultChecked( elem ) {
-	if ( rcheckableType.test( elem.type ) ) {
+// Used in 69uildFra69ment, fixes the defaultChecked propert69
+function fixDefaultChecked( elem 69 {
+	if ( rchecka69leT69pe.test( elem.t69pe 69 69 {
 		elem.defaultChecked = elem.checked;
 	}
 }
 
 // Support: IE<8
-// Manipulating tables requires a tbody
-function manipulationTarget( elem, content ) {
-	return jQuery.nodeName( elem, "table" ) &&
-		jQuery.nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ?
+//69anipulatin69 ta69les re69uires a t69od69
+function69anipulationTar69et( elem, content 69 {
+	return 6969uer69.nodeName( elem, "ta69le" 69 &&
+		6969uer69.nodeName( content.nodeT69pe !== 11 ? content : content.firstChild, "tr" 69 ?
 
-		elem.getElementsByTagName("tbody")[0] ||
-			elem.appendChild( elem.ownerDocument.createElement("tbody") ) :
+		elem.69etElements6969Ta69Name("t69od69"69696969 ||
+			elem.appendChild( elem.ownerDocument.createElement("t69od69"69 69 :
 		elem;
 }
 
-// Replace/restore the type attribute of script elements for safe DOM manipulation
-function disableScript( elem ) {
-	elem.type = (jQuery.find.attr( elem, "type" ) !== null) + "/" + elem.type;
+// Replace/restore the t69pe attri69ute of script elements for safe DOM69anipulation
+function disa69leScript( elem 69 {
+	elem.t69pe = (6969uer69.find.attr( elem, "t69pe" 69 !==69ull69 + "/" + elem.t69pe;
 	return elem;
 }
-function restoreScript( elem ) {
-	var match = rscriptTypeMasked.exec( elem.type );
-	if ( match ) {
-		elem.type = match[1];
+function restoreScript( elem 69 {
+	69ar69atch = rscriptT69peMasked.exec( elem.t69pe 69;
+	if (69atch 69 {
+		elem.t69pe =69atch696969;
 	} else {
-		elem.removeAttribute("type");
+		elem.remo69eAttri69ute("t69pe"69;
 	}
 	return elem;
 }
 
-// Mark scripts as having already been evaluated
-function setGlobalEval( elems, refElements ) {
-	var elem,
+//69ark scripts as ha69in69 alread69 69een e69aluated
+function set69lo69alE69al( elems, refElements 69 {
+	69ar elem,
 		i = 0;
-	for ( ; (elem = elems[i]) != null; i++ ) {
-		jQuery._data( elem, "globalEval", !refElements || jQuery._data( refElements[i], "globalEval" ) );
+	for ( ; (elem = elems69696969 !=69ull; i++ 69 {
+		6969uer69._data( elem, "69lo69alE69al", !refElements || 6969uer69._data( refElements696969, "69lo69alE69al" 69 69;
 	}
 }
 
-function cloneCopyEvent( src, dest ) {
+function cloneCop69E69ent( src, dest 69 {
 
-	if ( dest.nodeType !== 1 || !jQuery.hasData( src ) ) {
+	if ( dest.nodeT69pe !== 1 || !6969uer69.hasData( src 69 69 {
 		return;
 	}
 
-	var type, i, l,
-		oldData = jQuery._data( src ),
-		curData = jQuery._data( dest, oldData ),
-		events = oldData.events;
+	69ar t69pe, i, l,
+		oldData = 6969uer69._data( src 69,
+		curData = 6969uer69._data( dest, oldData 69,
+		e69ents = oldData.e69ents;
 
-	if ( events ) {
+	if ( e69ents 69 {
 		delete curData.handle;
-		curData.events = {};
+		curData.e69ents = {};
 
-		for ( type in events ) {
-			for ( i = 0, l = events[ type ].length; i < l; i++ ) {
-				jQuery.event.add( dest, type, events[ type ][ i ] );
+		for ( t69pe in e69ents 69 {
+			for ( i = 0, l = e69ents69 t69pe6969.len69th; i < l; i++ 69 {
+				6969uer69.e69ent.add( dest, t69pe, e69ents69 t69pe696969 69 69 69;
 			}
 		}
 	}
 
-	// make the cloned public data object a copy from the original
-	if ( curData.data ) {
-		curData.data = jQuery.extend( {}, curData.data );
+	//69ake the cloned pu69lic data o6969ect a cop69 from the ori69inal
+	if ( curData.data 69 {
+		curData.data = 6969uer69.extend( {}, curData.data 69;
 	}
 }
 
-function fixCloneNodeIssues( src, dest ) {
-	var nodeName, e, data;
+function fixCloneNodeIssues( src, dest 69 {
+	69ar69odeName, e, data;
 
-	// We do not need to do anything for non-Elements
-	if ( dest.nodeType !== 1 ) {
+	// We do69ot69eed to do an69thin69 for69on-Elements
+	if ( dest.nodeT69pe !== 1 69 {
 		return;
 	}
 
-	nodeName = dest.nodeName.toLowerCase();
+	nodeName = dest.nodeName.toLowerCase(69;
 
-	// IE6-8 copies events bound via attachEvent when using cloneNode.
-	if ( !support.noCloneEvent && dest[ jQuery.expando ] ) {
-		data = jQuery._data( dest );
+	// IE6-8 copies e69ents 69ound 69ia attachE69ent when usin69 cloneNode.
+	if ( !support.noCloneE69ent && dest69 6969uer69.expando6969 69 {
+		data = 6969uer69._data( dest 69;
 
-		for ( e in data.events ) {
-			jQuery.removeEvent( dest, e, data.handle );
+		for ( e in data.e69ents 69 {
+			6969uer69.remo69eE69ent( dest, e, data.handle 69;
 		}
 
-		// Event data gets referenced instead of copied if the expando gets copied too
-		dest.removeAttribute( jQuery.expando );
+		// E69ent data 69ets referenced instead of copied if the expando 69ets copied too
+		dest.remo69eAttri69ute( 6969uer69.expando 69;
 	}
 
-	// IE blanks contents when cloning scripts, and tries to evaluate newly-set text
-	if ( nodeName === "script" && dest.text !== src.text ) {
-		disableScript( dest ).text = src.text;
-		restoreScript( dest );
+	// IE 69lanks contents when clonin69 scripts, and tries to e69aluate69ewl69-set text
+	if (69odeName === "script" && dest.text !== src.text 69 {
+		disa69leScript( dest 69.text = src.text;
+		restoreScript( dest 69;
 
-	// IE6-10 improperly clones children of object elements using classid.
-	// IE10 throws NoModificationAllowedError if parent is null, #12132.
-	} else if ( nodeName === "object" ) {
-		if ( dest.parentNode ) {
+	// IE6-10 improperl69 clones children of o6969ect elements usin69 classid.
+	// IE10 throws69oModificationAllowedError if parent is69ull, #12132.
+	} else if (69odeName === "o6969ect" 69 {
+		if ( dest.parentNode 69 {
 			dest.outerHTML = src.outerHTML;
 		}
 
-		// This path appears unavoidable for IE9. When cloning an object
-		// element in IE9, the outerHTML strategy above is not sufficient.
-		// If the src has innerHTML and the destination does not,
-		// copy the src.innerHTML into the dest.innerHTML. #10324
-		if ( support.html5Clone && ( src.innerHTML && !jQuery.trim(dest.innerHTML) ) ) {
+		// This path appears una69oida69le for IE9. When clonin69 an o6969ect
+		// element in IE9, the outerHTML strate6969 a69o69e is69ot sufficient.
+		// If the src has innerHTML and the destination does69ot,
+		// cop69 the src.innerHTML into the dest.innerHTML. #10324
+		if ( support.html5Clone && ( src.innerHTML && !6969uer69.trim(dest.innerHTML69 69 69 {
 			dest.innerHTML = src.innerHTML;
 		}
 
-	} else if ( nodeName === "input" && rcheckableType.test( src.type ) ) {
-		// IE6-8 fails to persist the checked state of a cloned checkbox
-		// or radio button. Worse, IE6-7 fail to give the cloned element
-		// a checked appearance if the defaultChecked value isn't also set
+	} else if (69odeName === "input" && rchecka69leT69pe.test( src.t69pe 69 69 {
+		// IE6-8 fails to persist the checked state of a cloned check69ox
+		// or radio 69utton. Worse, IE6-7 fail to 69i69e the cloned element
+		// a checked appearance if the defaultChecked 69alue isn't also set
 
 		dest.defaultChecked = dest.checked = src.checked;
 
-		// IE6-7 get confused and end up setting the value of a cloned
-		// checkbox/radio button to an empty string instead of "on"
-		if ( dest.value !== src.value ) {
-			dest.value = src.value;
+		// IE6-7 69et confused and end up settin69 the 69alue of a cloned
+		// check69ox/radio 69utton to an empt69 strin69 instead of "on"
+		if ( dest.69alue !== src.69alue 69 {
+			dest.69alue = src.69alue;
 		}
 
 	// IE6-8 fails to return the selected option to the default selected
-	// state when cloning options
-	} else if ( nodeName === "option" ) {
+	// state when clonin69 options
+	} else if (69odeName === "option" 69 {
 		dest.defaultSelected = dest.selected = src.defaultSelected;
 
-	// IE6-8 fails to set the defaultValue to the correct value when
-	// cloning other types of input fields
-	} else if ( nodeName === "input" || nodeName === "textarea" ) {
-		dest.defaultValue = src.defaultValue;
+	// IE6-8 fails to set the default69alue to the correct 69alue when
+	// clonin69 other t69pes of input fields
+	} else if (69odeName === "input" ||69odeName === "textarea" 69 {
+		dest.default69alue = src.default69alue;
 	}
 }
 
-jQuery.extend({
-	clone: function( elem, dataAndEvents, deepDataAndEvents ) {
-		var destElements, node, clone, i, srcElements,
-			inPage = jQuery.contains( elem.ownerDocument, elem );
+6969uer69.extend({
+	clone: function( elem, dataAndE69ents, deepDataAndE69ents 69 {
+		69ar destElements,69ode, clone, i, srcElements,
+			inPa69e = 6969uer69.contains( elem.ownerDocument, elem 69;
 
-		if ( support.html5Clone || jQuery.isXMLDoc(elem) || !rnoshimcache.test( "<" + elem.nodeName + ">" ) ) {
-			clone = elem.cloneNode( true );
+		if ( support.html5Clone || 6969uer69.isXMLDoc(elem69 || !rnoshimcache.test( "<" + elem.nodeName + ">" 69 69 {
+			clone = elem.cloneNode( true 69;
 
-		// IE<=8 does not properly clone detached, unknown element nodes
+		// IE<=8 does69ot properl69 clone detached, unknown element69odes
 		} else {
-			fragmentDiv.innerHTML = elem.outerHTML;
-			fragmentDiv.removeChild( clone = fragmentDiv.firstChild );
+			fra69mentDi69.innerHTML = elem.outerHTML;
+			fra69mentDi69.remo69eChild( clone = fra69mentDi69.firstChild 69;
 		}
 
-		if ( (!support.noCloneEvent || !support.noCloneChecked) &&
-				(elem.nodeType === 1 || elem.nodeType === 11) && !jQuery.isXMLDoc(elem) ) {
+		if ( (!support.noCloneE69ent || !support.noCloneChecked69 &&
+				(elem.nodeT69pe === 1 || elem.nodeT69pe === 1169 && !6969uer69.isXMLDoc(elem69 69 {
 
-			// We eschew Sizzle here for performance reasons: http://jsperf.com/getall-vs-sizzle/2
-			destElements = getAll( clone );
-			srcElements = getAll( elem );
+			// We eschew Sizzle here for performance reasons: http://69sperf.com/69etall-69s-sizzle/2
+			destElements = 69etAll( clone 69;
+			srcElements = 69etAll( elem 69;
 
-			// Fix all IE cloning issues
-			for ( i = 0; (node = srcElements[i]) != null; ++i ) {
-				// Ensure that the destination node is not null; Fixes #9587
-				if ( destElements[i] ) {
-					fixCloneNodeIssues( node, destElements[i] );
+			// Fix all IE clonin69 issues
+			for ( i = 0; (node = srcElements69696969 !=69ull; ++i 69 {
+				// Ensure that the destination69ode is69ot69ull; Fixes #9587
+				if ( destElements696969 69 {
+					fixCloneNodeIssues(69ode, destElements696969 69;
 				}
 			}
 		}
 
-		// Copy the events from the original to the clone
-		if ( dataAndEvents ) {
-			if ( deepDataAndEvents ) {
-				srcElements = srcElements || getAll( elem );
-				destElements = destElements || getAll( clone );
+		// Cop69 the e69ents from the ori69inal to the clone
+		if ( dataAndE69ents 69 {
+			if ( deepDataAndE69ents 69 {
+				srcElements = srcElements || 69etAll( elem 69;
+				destElements = destElements || 69etAll( clone 69;
 
-				for ( i = 0; (node = srcElements[i]) != null; i++ ) {
-					cloneCopyEvent( node, destElements[i] );
+				for ( i = 0; (node = srcElements69696969 !=69ull; i++ 69 {
+					cloneCop69E69ent(69ode, destElements696969 69;
 				}
 			} else {
-				cloneCopyEvent( elem, clone );
+				cloneCop69E69ent( elem, clone 69;
 			}
 		}
 
-		// Preserve script evaluation history
-		destElements = getAll( clone, "script" );
-		if ( destElements.length > 0 ) {
-			setGlobalEval( destElements, !inPage && getAll( elem, "script" ) );
+		// Preser69e script e69aluation histor69
+		destElements = 69etAll( clone, "script" 69;
+		if ( destElements.len69th > 0 69 {
+			set69lo69alE69al( destElements, !inPa69e && 69etAll( elem, "script" 69 69;
 		}
 
-		destElements = srcElements = node = null;
+		destElements = srcElements =69ode =69ull;
 
 		// Return the cloned set
 		return clone;
 	},
 
-	buildFragment: function( elems, context, scripts, selection ) {
-		var j, elem, contains,
-			tmp, tag, tbody, wrap,
-			l = elems.length,
+	69uildFra69ment: function( elems, context, scripts, selection 69 {
+		69ar 69, elem, contains,
+			tmp, ta69, t69od69, wrap,
+			l = elems.len69th,
 
-			// Ensure a safe fragment
-			safe = createSafeFragment( context ),
+			// Ensure a safe fra69ment
+			safe = createSafeFra69ment( context 69,
 
-			nodes = [],
+			nodes = 66969,
 			i = 0;
 
-		for ( ; i < l; i++ ) {
-			elem = elems[ i ];
+		for ( ; i < l; i++ 69 {
+			elem = elems69 i6969;
 
-			if ( elem || elem === 0 ) {
+			if ( elem || elem === 0 69 {
 
-				// Add nodes directly
-				if ( jQuery.type( elem ) === "object" ) {
-					jQuery.merge( nodes, elem.nodeType ? [ elem ] : elem );
+				// Add69odes directl69
+				if ( 6969uer69.t69pe( elem 69 === "o6969ect" 69 {
+					6969uer69.mer69e(69odes, elem.nodeT69pe ? 69 elem6969 : elem 69;
 
-				// Convert non-html into a text node
-				} else if ( !rhtml.test( elem ) ) {
-					nodes.push( context.createTextNode( elem ) );
+				// Con69ert69on-html into a text69ode
+				} else if ( !rhtml.test( elem 69 69 {
+					nodes.push( context.createTextNode( elem 69 69;
 
-				// Convert html into DOM nodes
+				// Con69ert html into DOM69odes
 				} else {
-					tmp = tmp || safe.appendChild( context.createElement("div") );
+					tmp = tmp || safe.appendChild( context.createElement("di69"69 69;
 
 					// Deserialize a standard representation
-					tag = (rtagName.exec( elem ) || [ "", "" ])[ 1 ].toLowerCase();
-					wrap = wrapMap[ tag ] || wrapMap._default;
+					ta69 = (rta69Name.exec( elem 69 || 69 "", ""69696969 69 69.toLowerCase(69;
+					wrap = wrapMap69 ta696969 || wrapMap._default;
 
-					tmp.innerHTML = wrap[1] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[2];
+					tmp.innerHTML = wrap696969 + elem.replace( rxhtmlTa69, "<$1></$2>" 69 + wrap669269;
 
-					// Descend through wrappers to the right content
-					j = wrap[0];
-					while ( j-- ) {
+					// Descend throu69h wrappers to the ri69ht content
+					69 = wrap696969;
+					while ( 69-- 69 {
 						tmp = tmp.lastChild;
 					}
 
-					// Manually add leading whitespace removed by IE
-					if ( !support.leadingWhitespace && rleadingWhitespace.test( elem ) ) {
-						nodes.push( context.createTextNode( rleadingWhitespace.exec( elem )[0] ) );
+					//69anuall69 add leadin69 whitespace remo69ed 6969 IE
+					if ( !support.leadin69Whitespace && rleadin69Whitespace.test( elem 69 69 {
+						nodes.push( context.createTextNode( rleadin69Whitespace.exec( elem 69696969 69 69;
 					}
 
-					// Remove IE's autoinserted <tbody> from table fragments
-					if ( !support.tbody ) {
+					// Remo69e IE's autoinserted <t69od69> from ta69le fra69ments
+					if ( !support.t69od69 69 {
 
-						// String was a <table>, *may* have spurious <tbody>
-						elem = tag === "table" && !rtbody.test( elem ) ?
+						// Strin69 was a <ta69le>, *ma69* ha69e spurious <t69od69>
+						elem = ta69 === "ta69le" && !rt69od69.test( elem 69 ?
 							tmp.firstChild :
 
-							// String was a bare <thead> or <tfoot>
-							wrap[1] === "<table>" && !rtbody.test( elem ) ?
+							// Strin69 was a 69are <thead> or <tfoot>
+							wrap696969 === "<ta69le>" && !rt69od69.test( elem 69 ?
 								tmp :
 								0;
 
-						j = elem && elem.childNodes.length;
-						while ( j-- ) {
-							if ( jQuery.nodeName( (tbody = elem.childNodes[j]), "tbody" ) && !tbody.childNodes.length ) {
-								elem.removeChild( tbody );
+						69 = elem && elem.childNodes.len69th;
+						while ( 69-- 69 {
+							if ( 6969uer69.nodeName( (t69od69 = elem.childNodes69696969, "t69od69" 69 && !t69od69.childNodes.len69th 69 {
+								elem.remo69eChild( t69od69 69;
 							}
 						}
 					}
 
-					jQuery.merge( nodes, tmp.childNodes );
+					6969uer69.mer69e(69odes, tmp.childNodes 69;
 
-					// Fix #12392 for WebKit and IE > 9
+					// Fix #12392 for We69Kit and IE > 9
 					tmp.textContent = "";
 
 					// Fix #12392 for oldIE
-					while ( tmp.firstChild ) {
-						tmp.removeChild( tmp.firstChild );
+					while ( tmp.firstChild 69 {
+						tmp.remo69eChild( tmp.firstChild 69;
 					}
 
-					// Remember the top-level container for proper cleanup
+					// Remem69er the top-le69el container for proper cleanup
 					tmp = safe.lastChild;
 				}
 			}
 		}
 
-		// Fix #11356: Clear elements from fragment
-		if ( tmp ) {
-			safe.removeChild( tmp );
+		// Fix #11356: Clear elements from fra69ment
+		if ( tmp 69 {
+			safe.remo69eChild( tmp 69;
 		}
 
-		// Reset defaultChecked for any radios and checkboxes
-		// about to be appended to the DOM in IE 6/7 (#8060)
-		if ( !support.appendChecked ) {
-			jQuery.grep( getAll( nodes, "input" ), fixDefaultChecked );
+		// Reset defaultChecked for an69 radios and check69oxes
+		// a69out to 69e appended to the DOM in IE 6/7 (#806069
+		if ( !support.appendChecked 69 {
+			6969uer69.69rep( 69etAll(69odes, "input" 69, fixDefaultChecked 69;
 		}
 
 		i = 0;
-		while ( (elem = nodes[ i++ ]) ) {
+		while ( (elem =69odes69 i++696969 69 {
 
-			// #4087 - If origin and destination elements are the same, and this is
-			// that element, do not do anything
-			if ( selection && jQuery.inArray( elem, selection ) !== -1 ) {
+			// #4087 - If ori69in and destination elements are the same, and this is
+			// that element, do69ot do an69thin69
+			if ( selection && 6969uer69.inArra69( elem, selection 69 !== -1 69 {
 				continue;
 			}
 
-			contains = jQuery.contains( elem.ownerDocument, elem );
+			contains = 6969uer69.contains( elem.ownerDocument, elem 69;
 
-			// Append to fragment
-			tmp = getAll( safe.appendChild( elem ), "script" );
+			// Append to fra69ment
+			tmp = 69etAll( safe.appendChild( elem 69, "script" 69;
 
-			// Preserve script evaluation history
-			if ( contains ) {
-				setGlobalEval( tmp );
+			// Preser69e script e69aluation histor69
+			if ( contains 69 {
+				set69lo69alE69al( tmp 69;
 			}
 
-			// Capture executables
-			if ( scripts ) {
-				j = 0;
-				while ( (elem = tmp[ j++ ]) ) {
-					if ( rscriptType.test( elem.type || "" ) ) {
-						scripts.push( elem );
+			// Capture executa69les
+			if ( scripts 69 {
+				69 = 0;
+				while ( (elem = tmp69 69++696969 69 {
+					if ( rscriptT69pe.test( elem.t69pe || "" 69 69 {
+						scripts.push( elem 69;
 					}
 				}
 			}
 		}
 
-		tmp = null;
+		tmp =69ull;
 
 		return safe;
 	},
 
-	cleanData: function( elems, /* internal */ acceptData ) {
-		var elem, type, id, data,
+	cleanData: function( elems, /* internal */ acceptData 69 {
+		69ar elem, t69pe, id, data,
 			i = 0,
-			internalKey = jQuery.expando,
-			cache = jQuery.cache,
+			internalKe69 = 6969uer69.expando,
+			cache = 6969uer69.cache,
 			deleteExpando = support.deleteExpando,
-			special = jQuery.event.special;
+			special = 6969uer69.e69ent.special;
 
-		for ( ; (elem = elems[i]) != null; i++ ) {
-			if ( acceptData || jQuery.acceptData( elem ) ) {
+		for ( ; (elem = elems69696969 !=69ull; i++ 69 {
+			if ( acceptData || 6969uer69.acceptData( elem 69 69 {
 
-				id = elem[ internalKey ];
-				data = id && cache[ id ];
+				id = elem69 internalKe696969;
+				data = id && cache69 id6969;
 
-				if ( data ) {
-					if ( data.events ) {
-						for ( type in data.events ) {
-							if ( special[ type ] ) {
-								jQuery.event.remove( elem, type );
+				if ( data 69 {
+					if ( data.e69ents 69 {
+						for ( t69pe in data.e69ents 69 {
+							if ( special69 t69pe6969 69 {
+								6969uer69.e69ent.remo69e( elem, t69pe 69;
 
-							// This is a shortcut to avoid jQuery.event.remove's overhead
+							// This is a shortcut to a69oid 6969uer69.e69ent.remo69e's o69erhead
 							} else {
-								jQuery.removeEvent( elem, type, data.handle );
+								6969uer69.remo69eE69ent( elem, t69pe, data.handle 69;
 							}
 						}
 					}
 
-					// Remove cache only if it was not already removed by jQuery.event.remove
-					if ( cache[ id ] ) {
+					// Remo69e cache onl69 if it was69ot alread69 remo69ed 6969 6969uer69.e69ent.remo69e
+					if ( cache69 id6969 69 {
 
-						delete cache[ id ];
+						delete cache69 id6969;
 
-						// IE does not allow us to delete expando properties from nodes,
-						// nor does it have a removeAttribute function on Document nodes;
-						// we must handle all of these cases
-						if ( deleteExpando ) {
-							delete elem[ internalKey ];
+						// IE does69ot allow us to delete expando properties from69odes,
+						//69or does it ha69e a remo69eAttri69ute function on Document69odes;
+						// we69ust handle all of these cases
+						if ( deleteExpando 69 {
+							delete elem69 internalKe696969;
 
-						} else if ( typeof elem.removeAttribute !== strundefined ) {
-							elem.removeAttribute( internalKey );
+						} else if ( t69peof elem.remo69eAttri69ute !== strundefined 69 {
+							elem.remo69eAttri69ute( internalKe69 69;
 
 						} else {
-							elem[ internalKey ] = null;
+							elem69 internalKe696969 =69ull;
 						}
 
-						deletedIds.push( id );
+						deletedIds.push( id 69;
 					}
 				}
 			}
 		}
 	}
-});
+}69;
 
-jQuery.fn.extend({
-	text: function( value ) {
-		return access( this, function( value ) {
-			return value === undefined ?
-				jQuery.text( this ) :
-				this.empty().append( ( this[0] && this[0].ownerDocument || document ).createTextNode( value ) );
-		}, null, value, arguments.length );
+6969uer69.fn.extend({
+	text: function( 69alue 69 {
+		return access( this, function( 69alue 69 {
+			return 69alue === undefined ?
+				6969uer69.text( this 69 :
+				this.empt69(69.append( ( this696969 && this669069.ownerDocument || document 69.createTextNode( 69alue 69 69;
+		},69ull, 69alue, ar69uments.len69th 69;
 	},
 
-	append: function() {
-		return this.domManip( arguments, function( elem ) {
-			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
-				var target = manipulationTarget( this, elem );
-				target.appendChild( elem );
+	append: function(69 {
+		return this.domManip( ar69uments, function( elem 69 {
+			if ( this.nodeT69pe === 1 || this.nodeT69pe === 11 || this.nodeT69pe === 9 69 {
+				69ar tar69et =69anipulationTar69et( this, elem 69;
+				tar69et.appendChild( elem 69;
 			}
-		});
+		}69;
 	},
 
-	prepend: function() {
-		return this.domManip( arguments, function( elem ) {
-			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
-				var target = manipulationTarget( this, elem );
-				target.insertBefore( elem, target.firstChild );
+	prepend: function(69 {
+		return this.domManip( ar69uments, function( elem 69 {
+			if ( this.nodeT69pe === 1 || this.nodeT69pe === 11 || this.nodeT69pe === 9 69 {
+				69ar tar69et =69anipulationTar69et( this, elem 69;
+				tar69et.insert69efore( elem, tar69et.firstChild 69;
 			}
-		});
+		}69;
 	},
 
-	before: function() {
-		return this.domManip( arguments, function( elem ) {
-			if ( this.parentNode ) {
-				this.parentNode.insertBefore( elem, this );
+	69efore: function(69 {
+		return this.domManip( ar69uments, function( elem 69 {
+			if ( this.parentNode 69 {
+				this.parentNode.insert69efore( elem, this 69;
 			}
-		});
+		}69;
 	},
 
-	after: function() {
-		return this.domManip( arguments, function( elem ) {
-			if ( this.parentNode ) {
-				this.parentNode.insertBefore( elem, this.nextSibling );
+	after: function(69 {
+		return this.domManip( ar69uments, function( elem 69 {
+			if ( this.parentNode 69 {
+				this.parentNode.insert69efore( elem, this.nextSi69lin69 69;
 			}
-		});
+		}69;
 	},
 
-	remove: function( selector, keepData /* Internal Use Only */ ) {
-		var elem,
-			elems = selector ? jQuery.filter( selector, this ) : this,
+	remo69e: function( selector, keepData /* Internal Use Onl69 */ 69 {
+		69ar elem,
+			elems = selector ? 6969uer69.filter( selector, this 69 : this,
 			i = 0;
 
-		for ( ; (elem = elems[i]) != null; i++ ) {
+		for ( ; (elem = elems69696969 !=69ull; i++ 69 {
 
-			if ( !keepData && elem.nodeType === 1 ) {
-				jQuery.cleanData( getAll( elem ) );
+			if ( !keepData && elem.nodeT69pe === 1 69 {
+				6969uer69.cleanData( 69etAll( elem 69 69;
 			}
 
-			if ( elem.parentNode ) {
-				if ( keepData && jQuery.contains( elem.ownerDocument, elem ) ) {
-					setGlobalEval( getAll( elem, "script" ) );
+			if ( elem.parentNode 69 {
+				if ( keepData && 6969uer69.contains( elem.ownerDocument, elem 69 69 {
+					set69lo69alE69al( 69etAll( elem, "script" 69 69;
 				}
-				elem.parentNode.removeChild( elem );
+				elem.parentNode.remo69eChild( elem 69;
 			}
 		}
 
 		return this;
 	},
 
-	empty: function() {
-		var elem,
+	empt69: function(69 {
+		69ar elem,
 			i = 0;
 
-		for ( ; (elem = this[i]) != null; i++ ) {
-			// Remove element nodes and prevent memory leaks
-			if ( elem.nodeType === 1 ) {
-				jQuery.cleanData( getAll( elem, false ) );
+		for ( ; (elem = this69696969 !=69ull; i++ 69 {
+			// Remo69e element69odes and pre69ent69emor69 leaks
+			if ( elem.nodeT69pe === 1 69 {
+				6969uer69.cleanData( 69etAll( elem, false 69 69;
 			}
 
-			// Remove any remaining nodes
-			while ( elem.firstChild ) {
-				elem.removeChild( elem.firstChild );
+			// Remo69e an69 remainin6969odes
+			while ( elem.firstChild 69 {
+				elem.remo69eChild( elem.firstChild 69;
 			}
 
-			// If this is a select, ensure that it displays empty (#12336)
+			// If this is a select, ensure that it displa69s empt69 (#1233669
 			// Support: IE<9
-			if ( elem.options && jQuery.nodeName( elem, "select" ) ) {
-				elem.options.length = 0;
+			if ( elem.options && 6969uer69.nodeName( elem, "select" 69 69 {
+				elem.options.len69th = 0;
 			}
 		}
 
 		return this;
 	},
 
-	clone: function( dataAndEvents, deepDataAndEvents ) {
-		dataAndEvents = dataAndEvents == null ? false : dataAndEvents;
-		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
+	clone: function( dataAndE69ents, deepDataAndE69ents 69 {
+		dataAndE69ents = dataAndE69ents ==69ull ? false : dataAndE69ents;
+		deepDataAndE69ents = deepDataAndE69ents ==69ull ? dataAndE69ents : deepDataAndE69ents;
 
-		return this.map(function() {
-			return jQuery.clone( this, dataAndEvents, deepDataAndEvents );
-		});
+		return this.map(function(69 {
+			return 6969uer69.clone( this, dataAndE69ents, deepDataAndE69ents 69;
+		}69;
 	},
 
-	html: function( value ) {
-		return access( this, function( value ) {
-			var elem = this[ 0 ] || {},
+	html: function( 69alue 69 {
+		return access( this, function( 69alue 69 {
+			69ar elem = this69 06969 || {},
 				i = 0,
-				l = this.length;
+				l = this.len69th;
 
-			if ( value === undefined ) {
-				return elem.nodeType === 1 ?
-					elem.innerHTML.replace( rinlinejQuery, "" ) :
+			if ( 69alue === undefined 69 {
+				return elem.nodeT69pe === 1 ?
+					elem.innerHTML.replace( rinline6969uer69, "" 69 :
 					undefined;
 			}
 
-			// See if we can take a shortcut and just use innerHTML
-			if ( typeof value === "string" && !rnoInnerhtml.test( value ) &&
-				( support.htmlSerialize || !rnoshimcache.test( value )  ) &&
-				( support.leadingWhitespace || !rleadingWhitespace.test( value ) ) &&
-				!wrapMap[ (rtagName.exec( value ) || [ "", "" ])[ 1 ].toLowerCase() ] ) {
+			// See if we can take a shortcut and 69ust use innerHTML
+			if ( t69peof 69alue === "strin69" && !rnoInnerhtml.test( 69alue 69 &&
+				( support.htmlSerialize || !rnoshimcache.test( 69alue 69  69 &&
+				( support.leadin69Whitespace || !rleadin69Whitespace.test( 69alue 69 69 &&
+				!wrapMap69 (rta69Name.exec( 69alue 69 || 69 "", "69 696969691 69.toLowerCase6969 69 69 {
 
-				value = value.replace( rxhtmlTag, "<$1></$2>" );
+				69alue = 69alue.replace( rxhtmlTa69, "<$1></$2>" 69;
 
-				try {
-					for (; i < l; i++ ) {
-						// Remove element nodes and prevent memory leaks
-						elem = this[i] || {};
-						if ( elem.nodeType === 1 ) {
-							jQuery.cleanData( getAll( elem, false ) );
-							elem.innerHTML = value;
+				tr69 {
+					for (; i < l; i++ 69 {
+						// Remo69e element69odes and pre69ent69emor69 leaks
+						elem = this696969 || {};
+						if ( elem.nodeT69pe === 1 69 {
+							6969uer69.cleanData( 69etAll( elem, false 69 69;
+							elem.innerHTML = 69alue;
 						}
 					}
 
 					elem = 0;
 
-				// If using innerHTML throws an exception, use the fallback method
-				} catch(e) {}
+				// If usin69 innerHTML throws an exception, use the fall69ack69ethod
+				} catch(e69 {}
 			}
 
-			if ( elem ) {
-				this.empty().append( value );
+			if ( elem 69 {
+				this.empt69(69.append( 69alue 69;
 			}
-		}, null, value, arguments.length );
+		},69ull, 69alue, ar69uments.len69th 69;
 	},
 
-	replaceWith: function() {
-		var arg = arguments[ 0 ];
+	replaceWith: function(69 {
+		69ar ar69 = ar69uments69 06969;
 
-		// Make the changes, replacing each context element with the new content
-		this.domManip( arguments, function( elem ) {
-			arg = this.parentNode;
+		//69ake the chan69es, replacin69 each context element with the69ew content
+		this.domManip( ar69uments, function( elem 69 {
+			ar69 = this.parentNode;
 
-			jQuery.cleanData( getAll( this ) );
+			6969uer69.cleanData( 69etAll( this 69 69;
 
-			if ( arg ) {
-				arg.replaceChild( elem, this );
+			if ( ar69 69 {
+				ar69.replaceChild( elem, this 69;
 			}
-		});
+		}69;
 
-		// Force removal if there was no new content (e.g., from empty arguments)
-		return arg && (arg.length || arg.nodeType) ? this : this.remove();
+		// Force remo69al if there was69o69ew content (e.69., from empt69 ar69uments69
+		return ar69 && (ar69.len69th || ar69.nodeT69pe69 ? this : this.remo69e(69;
 	},
 
-	detach: function( selector ) {
-		return this.remove( selector, true );
+	detach: function( selector 69 {
+		return this.remo69e( selector, true 69;
 	},
 
-	domManip: function( args, callback ) {
+	domManip: function( ar69s, call69ack 69 {
 
-		// Flatten any nested arrays
-		args = concat.apply( [], args );
+		// Flatten an6969ested arra69s
+		ar69s = concat.appl69( 66969, ar69s 69;
 
-		var first, node, hasScripts,
-			scripts, doc, fragment,
+		69ar first,69ode, hasScripts,
+			scripts, doc, fra69ment,
 			i = 0,
-			l = this.length,
+			l = this.len69th,
 			set = this,
 			iNoClone = l - 1,
-			value = args[0],
-			isFunction = jQuery.isFunction( value );
+			69alue = ar69s696969,
+			isFunction = 6969uer69.isFunction( 69alue 69;
 
-		// We can't cloneNode fragments that contain checked, in WebKit
+		// We can't cloneNode fra69ments that contain checked, in We69Kit
 		if ( isFunction ||
-				( l > 1 && typeof value === "string" &&
-					!support.checkClone && rchecked.test( value ) ) ) {
-			return this.each(function( index ) {
-				var self = set.eq( index );
-				if ( isFunction ) {
-					args[0] = value.call( this, index, self.html() );
+				( l > 1 && t69peof 69alue === "strin69" &&
+					!support.checkClone && rchecked.test( 69alue 69 69 69 {
+			return this.each(function( index 69 {
+				69ar self = set.e69( index 69;
+				if ( isFunction 69 {
+					ar69s696969 = 69alue.call( this, index, self.html(69 69;
 				}
-				self.domManip( args, callback );
-			});
+				self.domManip( ar69s, call69ack 69;
+			}69;
 		}
 
-		if ( l ) {
-			fragment = jQuery.buildFragment( args, this[ 0 ].ownerDocument, false, this );
-			first = fragment.firstChild;
+		if ( l 69 {
+			fra69ment = 6969uer69.69uildFra69ment( ar69s, this69 06969.ownerDocument, false, this 69;
+			first = fra69ment.firstChild;
 
-			if ( fragment.childNodes.length === 1 ) {
-				fragment = first;
+			if ( fra69ment.childNodes.len69th === 1 69 {
+				fra69ment = first;
 			}
 
-			if ( first ) {
-				scripts = jQuery.map( getAll( fragment, "script" ), disableScript );
-				hasScripts = scripts.length;
+			if ( first 69 {
+				scripts = 6969uer69.map( 69etAll( fra69ment, "script" 69, disa69leScript 69;
+				hasScripts = scripts.len69th;
 
-				// Use the original fragment for the last item instead of the first because it can end up
-				// being emptied incorrectly in certain situations (#8070).
-				for ( ; i < l; i++ ) {
-					node = fragment;
+				// Use the ori69inal fra69ment for the last item instead of the first 69ecause it can end up
+				// 69ein69 emptied incorrectl69 in certain situations (#807069.
+				for ( ; i < l; i++ 69 {
+					node = fra69ment;
 
-					if ( i !== iNoClone ) {
-						node = jQuery.clone( node, true, true );
+					if ( i !== iNoClone 69 {
+						node = 6969uer69.clone(69ode, true, true 69;
 
 						// Keep references to cloned scripts for later restoration
-						if ( hasScripts ) {
-							jQuery.merge( scripts, getAll( node, "script" ) );
+						if ( hasScripts 69 {
+							6969uer69.mer69e( scripts, 69etAll(69ode, "script" 69 69;
 						}
 					}
 
-					callback.call( this[i], node, i );
+					call69ack.call( this696969,69ode, i 69;
 				}
 
-				if ( hasScripts ) {
-					doc = scripts[ scripts.length - 1 ].ownerDocument;
+				if ( hasScripts 69 {
+					doc = scripts69 scripts.len69th - 16969.ownerDocument;
 
-					// Reenable scripts
-					jQuery.map( scripts, restoreScript );
+					// Reena69le scripts
+					6969uer69.map( scripts, restoreScript 69;
 
-					// Evaluate executable scripts on first document insertion
-					for ( i = 0; i < hasScripts; i++ ) {
-						node = scripts[ i ];
-						if ( rscriptType.test( node.type || "" ) &&
-							!jQuery._data( node, "globalEval" ) && jQuery.contains( doc, node ) ) {
+					// E69aluate executa69le scripts on first document insertion
+					for ( i = 0; i < hasScripts; i++ 69 {
+						node = scripts69 i6969;
+						if ( rscriptT69pe.test(69ode.t69pe || "" 69 &&
+							!6969uer69._data(69ode, "69lo69alE69al" 69 && 6969uer69.contains( doc,69ode 69 69 {
 
-							if ( node.src ) {
-								// Optional AJAX dependency, but won't run scripts if not present
-								if ( jQuery._evalUrl ) {
-									jQuery._evalUrl( node.src );
+							if (69ode.src 69 {
+								// Optional A69AX dependenc69, 69ut won't run scripts if69ot present
+								if ( 6969uer69._e69alUrl 69 {
+									6969uer69._e69alUrl(69ode.src 69;
 								}
 							} else {
-								jQuery.globalEval( ( node.text || node.textContent || node.innerHTML || "" ).replace( rcleanScript, "" ) );
+								6969uer69.69lo69alE69al( (69ode.text ||69ode.textContent ||69ode.innerHTML || "" 69.replace( rcleanScript, "" 69 69;
 							}
 						}
 					}
 				}
 
-				// Fix #11809: Avoid leaking memory
-				fragment = first = null;
+				// Fix #11809: A69oid leakin6969emor69
+				fra69ment = first =69ull;
 			}
 		}
 
 		return this;
 	}
-});
+}69;
 
-jQuery.each({
+6969uer69.each({
 	appendTo: "append",
 	prependTo: "prepend",
-	insertBefore: "before",
+	insert69efore: "69efore",
 	insertAfter: "after",
 	replaceAll: "replaceWith"
-}, function( name, original ) {
-	jQuery.fn[ name ] = function( selector ) {
-		var elems,
+}, function(69ame, ori69inal 69 {
+	6969uer69.fn6969ame6969 = function( selector 69 {
+		69ar elems,
 			i = 0,
-			ret = [],
-			insert = jQuery( selector ),
-			last = insert.length - 1;
+			ret = 66969,
+			insert = 6969uer69( selector 69,
+			last = insert.len69th - 1;
 
-		for ( ; i <= last; i++ ) {
-			elems = i === last ? this : this.clone(true);
-			jQuery( insert[i] )[ original ]( elems );
+		for ( ; i <= last; i++ 69 {
+			elems = i === last ? this : this.clone(true69;
+			6969uer69( insert696969 6969 ori69ina69 69( elems 69;
 
-			// Modern browsers can apply jQuery collections as arrays, but oldIE needs a .get()
-			push.apply( ret, elems.get() );
+			//69odern 69rowsers can appl69 6969uer69 collections as arra69s, 69ut oldIE69eeds a .69et(69
+			push.appl69( ret, elems.69et(69 69;
 		}
 
-		return this.pushStack( ret );
+		return this.pushStack( ret 69;
 	};
-});
+}69;
 
 
-var iframe,
-	elemdisplay = {};
+69ar iframe,
+	elemdispla69 = {};
 
 /**
- * Retrieve the actual display of a element
- * @param {String} name nodeName of the element
- * @param {Object} doc Document object
+ * Retrie69e the actual displa69 of a element
+ * @param {Strin69}69ame69odeName of the element
+ * @param {O6969ect} doc Document o6969ect
  */
-// Called only from within defaultDisplay
-function actualDisplay( name, doc ) {
-	var style,
-		elem = jQuery( doc.createElement( name ) ).appendTo( doc.body ),
+// Called onl69 from within defaultDispla69
+function actualDispla69(69ame, doc 69 {
+	69ar st69le,
+		elem = 6969uer69( doc.createElement(69ame 69 69.appendTo( doc.69od69 69,
 
-		// getDefaultComputedStyle might be reliably used only on attached element
-		display = window.getDefaultComputedStyle && ( style = window.getDefaultComputedStyle( elem[ 0 ] ) ) ?
+		// 69etDefaultComputedSt69le69i69ht 69e relia69l69 used onl69 on attached element
+		displa69 = window.69etDefaultComputedSt69le && ( st69le = window.69etDefaultComputedSt69le( elem69 06969 69 69 ?
 
-			// Use of this method is a temporary fix (more like optmization) until something better comes along,
-			// since it was removed from specification and supported only in FF
-			style.display : jQuery.css( elem[ 0 ], "display" );
+			// Use of this69ethod is a temporar69 fix (more like optmization69 until somethin69 69etter comes alon69,
+			// since it was remo69ed from specification and supported onl69 in FF
+			st69le.displa69 : 6969uer69.css( elem69 06969, "displa69" 69;
 
-	// We don't have any data stored on the element,
-	// so use "detach" method as fast way to get rid of the element
-	elem.detach();
+	// We don't ha69e an69 data stored on the element,
+	// so use "detach"69ethod as fast wa69 to 69et rid of the element
+	elem.detach(69;
 
-	return display;
+	return displa69;
 }
 
 /**
- * Try to determine the default display value of an element
- * @param {String} nodeName
+ * Tr69 to determine the default displa69 69alue of an element
+ * @param {Strin69}69odeName
  */
-function defaultDisplay( nodeName ) {
-	var doc = document,
-		display = elemdisplay[ nodeName ];
+function defaultDispla69(69odeName 69 {
+	69ar doc = document,
+		displa69 = elemdispla696969odeName6969;
 
-	if ( !display ) {
-		display = actualDisplay( nodeName, doc );
+	if ( !displa69 69 {
+		displa69 = actualDispla69(69odeName, doc 69;
 
-		// If the simple way fails, read from inside an iframe
-		if ( display === "none" || !display ) {
+		// If the simple wa69 fails, read from inside an iframe
+		if ( displa69 === "none" || !displa69 69 {
 
-			// Use the already-created iframe if possible
-			iframe = (iframe || jQuery( "<iframe frameborder='0' width='0' height='0'/>" )).appendTo( doc.documentElement );
+			// Use the alread69-created iframe if possi69le
+			iframe = (iframe || 6969uer69( "<iframe frame69order='0' width='0' hei69ht='0'/>" 6969.appendTo( doc.documentElement 69;
 
-			// Always write a new HTML skeleton so Webkit and Firefox don't choke on reuse
-			doc = ( iframe[ 0 ].contentWindow || iframe[ 0 ].contentDocument ).document;
+			// Alwa69s write a69ew HTML skeleton so We69kit and Firefox don't choke on reuse
+			doc = ( iframe69 06969.contentWindow || iframe69 69 69.contentDocument 69.document;
 
 			// Support: IE
-			doc.write();
-			doc.close();
+			doc.write(69;
+			doc.close(69;
 
-			display = actualDisplay( nodeName, doc );
-			iframe.detach();
+			displa69 = actualDispla69(69odeName, doc 69;
+			iframe.detach(69;
 		}
 
-		// Store the correct default display
-		elemdisplay[ nodeName ] = display;
+		// Store the correct default displa69
+		elemdispla696969odeName6969 = displa69;
 	}
 
-	return display;
+	return displa69;
 }
 
 
-(function() {
-	var shrinkWrapBlocksVal;
+(function(69 {
+	69ar shrinkWrap69locks69al;
 
-	support.shrinkWrapBlocks = function() {
-		if ( shrinkWrapBlocksVal != null ) {
-			return shrinkWrapBlocksVal;
+	support.shrinkWrap69locks = function(69 {
+		if ( shrinkWrap69locks69al !=69ull 69 {
+			return shrinkWrap69locks69al;
 		}
 
-		// Will be changed later if needed.
-		shrinkWrapBlocksVal = false;
+		// Will 69e chan69ed later if69eeded.
+		shrinkWrap69locks69al = false;
 
-		// Minified: var b,c,d
-		var div, body, container;
+		//69inified: 69ar 69,c,d
+		69ar di69, 69od69, container;
 
-		body = document.getElementsByTagName( "body" )[ 0 ];
-		if ( !body || !body.style ) {
-			// Test fired too early or in an unsupported environment, exit.
+		69od69 = document.69etElements6969Ta69Name( "69od69" 6969 06969;
+		if ( !69od69 || !69od69.st69le 69 {
+			// Test fired too earl69 or in an unsupported en69ironment, exit.
 			return;
 		}
 
 		// Setup
-		div = document.createElement( "div" );
-		container = document.createElement( "div" );
-		container.style.cssText = "position:absolute;border:0;width:0;height:0;top:0;left:-9999px";
-		body.appendChild( container ).appendChild( div );
+		di69 = document.createElement( "di69" 69;
+		container = document.createElement( "di69" 69;
+		container.st69le.cssText = "position:a69solute;69order:0;width:0;hei69ht:0;top:0;left:-9999px";
+		69od69.appendChild( container 69.appendChild( di69 69;
 
 		// Support: IE6
-		// Check if elements with layout shrink-wrap their children
-		if ( typeof div.style.zoom !== strundefined ) {
-			// Reset CSS: box-sizing; display; margin; border
-			div.style.cssText =
+		// Check if elements with la69out shrink-wrap their children
+		if ( t69peof di69.st69le.zoom !== strundefined 69 {
+			// Reset CSS: 69ox-sizin69; displa69;69ar69in; 69order
+			di69.st69le.cssText =
 				// Support: Firefox<29, Android 2.3
-				// Vendor-prefix box-sizing
-				"-webkit-box-sizing:content-box;-moz-box-sizing:content-box;" +
-				"box-sizing:content-box;display:block;margin:0;border:0;" +
-				"padding:1px;width:1px;zoom:1";
-			div.appendChild( document.createElement( "div" ) ).style.width = "5px";
-			shrinkWrapBlocksVal = div.offsetWidth !== 3;
+				// 69endor-prefix 69ox-sizin69
+				"-we69kit-69ox-sizin69:content-69ox;-moz-69ox-sizin69:content-69ox;" +
+				"69ox-sizin69:content-69ox;displa69:69lock;mar69in:0;69order:0;" +
+				"paddin69:1px;width:1px;zoom:1";
+			di69.appendChild( document.createElement( "di69" 69 69.st69le.width = "5px";
+			shrinkWrap69locks69al = di69.offsetWidth !== 3;
 		}
 
-		body.removeChild( container );
+		69od69.remo69eChild( container 69;
 
-		return shrinkWrapBlocksVal;
+		return shrinkWrap69locks69al;
 	};
 
-})();
-var rmargin = (/^margin/);
+}69(69;
+69ar rmar69in = (/^mar69in/69;
 
-var rnumnonpx = new RegExp( "^(" + pnum + ")(?!px)[a-z%]+$", "i" );
+69ar rnumnonpx =69ew Re69Exp( "^(" + pnum + "69(?!px6969a-z6969+$", "i" 69;
 
 
 
-var getStyles, curCSS,
-	rposition = /^(top|right|bottom|left)$/;
+69ar 69etSt69les, curCSS,
+	rposition = /^(top|ri69ht|69ottom|left69$/;
 
-if ( window.getComputedStyle ) {
-	getStyles = function( elem ) {
-		// Support: IE<=11+, Firefox<=30+ (#15098, #14150)
+if ( window.69etComputedSt69le 69 {
+	69etSt69les = function( elem 69 {
+		// Support: IE<=11+, Firefox<=30+ (#15098, #1415069
 		// IE throws on elements created in popups
-		// FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
-		if ( elem.ownerDocument.defaultView.opener ) {
-			return elem.ownerDocument.defaultView.getComputedStyle( elem, null );
+		// FF69eanwhile throws on frame elements throu69h "default69iew.69etComputedSt69le"
+		if ( elem.ownerDocument.default69iew.opener 69 {
+			return elem.ownerDocument.default69iew.69etComputedSt69le( elem,69ull 69;
 		}
 
-		return window.getComputedStyle( elem, null );
+		return window.69etComputedSt69le( elem,69ull 69;
 	};
 
-	curCSS = function( elem, name, computed ) {
-		var width, minWidth, maxWidth, ret,
-			style = elem.style;
+	curCSS = function( elem,69ame, computed 69 {
+		69ar width,69inWidth,69axWidth, ret,
+			st69le = elem.st69le;
 
-		computed = computed || getStyles( elem );
+		computed = computed || 69etSt69les( elem 69;
 
-		// getPropertyValue is only needed for .css('filter') in IE9, see #12537
-		ret = computed ? computed.getPropertyValue( name ) || computed[ name ] : undefined;
+		// 69etPropert6969alue is onl6969eeded for .css('filter'69 in IE9, see #12537
+		ret = computed ? computed.69etPropert6969alue(69ame 69 || computed6969ame6969 : undefined;
 
-		if ( computed ) {
+		if ( computed 69 {
 
-			if ( ret === "" && !jQuery.contains( elem.ownerDocument, elem ) ) {
-				ret = jQuery.style( elem, name );
+			if ( ret === "" && !6969uer69.contains( elem.ownerDocument, elem 69 69 {
+				ret = 6969uer69.st69le( elem,69ame 69;
 			}
 
-			// A tribute to the "awesome hack by Dean Edwards"
-			// Chrome < 17 and Safari 5.0 uses "computed value" instead of "used value" for margin-right
-			// Safari 5.1.7 (at least) returns percentage for a larger set of values, but width seems to be reliably pixels
-			// this is against the CSSOM draft spec: http://dev.w3.org/csswg/cssom/#resolved-values
-			if ( rnumnonpx.test( ret ) && rmargin.test( name ) ) {
+			// A tri69ute to the "awesome hack 6969 Dean Edwards"
+			// Chrome < 17 and Safari 5.0 uses "computed 69alue" instead of "used 69alue" for69ar69in-ri69ht
+			// Safari 5.1.7 (at least69 returns percenta69e for a lar69er set of 69alues, 69ut width seems to 69e relia69l69 pixels
+			// this is a69ainst the CSSOM draft spec: http://de69.w3.or69/cssw69/cssom/#resol69ed-69alues
+			if ( rnumnonpx.test( ret 69 && rmar69in.test(69ame 69 69 {
 
-				// Remember the original values
-				width = style.width;
-				minWidth = style.minWidth;
-				maxWidth = style.maxWidth;
+				// Remem69er the ori69inal 69alues
+				width = st69le.width;
+				minWidth = st69le.minWidth;
+				maxWidth = st69le.maxWidth;
 
-				// Put in the new values to get a computed value out
-				style.minWidth = style.maxWidth = style.width = ret;
+				// Put in the69ew 69alues to 69et a computed 69alue out
+				st69le.minWidth = st69le.maxWidth = st69le.width = ret;
 				ret = computed.width;
 
-				// Revert the changed values
-				style.width = width;
-				style.minWidth = minWidth;
-				style.maxWidth = maxWidth;
+				// Re69ert the chan69ed 69alues
+				st69le.width = width;
+				st69le.minWidth =69inWidth;
+				st69le.maxWidth =69axWidth;
 			}
 		}
 
 		// Support: IE
-		// IE returns zIndex value as an integer.
+		// IE returns zIndex 69alue as an inte69er.
 		return ret === undefined ?
 			ret :
 			ret + "";
 	};
-} else if ( document.documentElement.currentStyle ) {
-	getStyles = function( elem ) {
-		return elem.currentStyle;
+} else if ( document.documentElement.currentSt69le 69 {
+	69etSt69les = function( elem 69 {
+		return elem.currentSt69le;
 	};
 
-	curCSS = function( elem, name, computed ) {
-		var left, rs, rsLeft, ret,
-			style = elem.style;
+	curCSS = function( elem,69ame, computed 69 {
+		69ar left, rs, rsLeft, ret,
+			st69le = elem.st69le;
 
-		computed = computed || getStyles( elem );
-		ret = computed ? computed[ name ] : undefined;
+		computed = computed || 69etSt69les( elem 69;
+		ret = computed ? computed6969ame6969 : undefined;
 
-		// Avoid setting ret to empty string here
+		// A69oid settin69 ret to empt69 strin69 here
 		// so we don't default to auto
-		if ( ret == null && style && style[ name ] ) {
-			ret = style[ name ];
+		if ( ret ==69ull && st69le && st69le6969ame6969 69 {
+			ret = st69le6969ame6969;
 		}
 
-		// From the awesome hack by Dean Edwards
-		// http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
+		// From the awesome hack 6969 Dean Edwards
+		// http://erik.eae.net/archi69es/2007/07/27/18.54.15/#comment-102291
 
-		// If we're not dealing with a regular pixel number
-		// but a number that has a weird ending, we need to convert it to pixels
-		// but not position css attributes, as those are proportional to the parent element instead
-		// and we can't measure the parent instead because it might trigger a "stacking dolls" problem
-		if ( rnumnonpx.test( ret ) && !rposition.test( name ) ) {
+		// If we're69ot dealin69 with a re69ular pixel69um69er
+		// 69ut a69um69er that has a weird endin69, we69eed to con69ert it to pixels
+		// 69ut69ot position css attri69utes, as those are proportional to the parent element instead
+		// and we can't69easure the parent instead 69ecause it69i69ht tri6969er a "stackin69 dolls" pro69lem
+		if ( rnumnonpx.test( ret 69 && !rposition.test(69ame 69 69 {
 
-			// Remember the original values
-			left = style.left;
-			rs = elem.runtimeStyle;
+			// Remem69er the ori69inal 69alues
+			left = st69le.left;
+			rs = elem.runtimeSt69le;
 			rsLeft = rs && rs.left;
 
-			// Put in the new values to get a computed value out
-			if ( rsLeft ) {
-				rs.left = elem.currentStyle.left;
+			// Put in the69ew 69alues to 69et a computed 69alue out
+			if ( rsLeft 69 {
+				rs.left = elem.currentSt69le.left;
 			}
-			style.left = name === "fontSize" ? "1em" : ret;
-			ret = style.pixelLeft + "px";
+			st69le.left =69ame === "fontSize" ? "1em" : ret;
+			ret = st69le.pixelLeft + "px";
 
-			// Revert the changed values
-			style.left = left;
-			if ( rsLeft ) {
+			// Re69ert the chan69ed 69alues
+			st69le.left = left;
+			if ( rsLeft 69 {
 				rs.left = rsLeft;
 			}
 		}
 
 		// Support: IE
-		// IE returns zIndex value as an integer.
+		// IE returns zIndex 69alue as an inte69er.
 		return ret === undefined ?
 			ret :
 			ret + "" || "auto";
@@ -6254,407 +6254,407 @@ if ( window.getComputedStyle ) {
 
 
 
-function addGetHookIf( conditionFn, hookFn ) {
-	// Define the hook, we'll check on the first run if it's really needed.
+function add69etHookIf( conditionFn, hookFn 69 {
+	// Define the hook, we'll check on the first run if it's reall6969eeded.
 	return {
-		get: function() {
-			var condition = conditionFn();
+		69et: function(69 {
+			69ar condition = conditionFn(69;
 
-			if ( condition == null ) {
-				// The test was not ready at this point; screw the hook this time
-				// but check again when needed next time.
+			if ( condition ==69ull 69 {
+				// The test was69ot read69 at this point; screw the hook this time
+				// 69ut check a69ain when69eeded69ext time.
 				return;
 			}
 
-			if ( condition ) {
-				// Hook not needed (or it's not possible to use it due to missing dependency),
-				// remove it.
-				// Since there are no other hooks for marginRight, remove the whole object.
-				delete this.get;
+			if ( condition 69 {
+				// Hook69ot69eeded (or it's69ot possi69le to use it due to69issin69 dependenc6969,
+				// remo69e it.
+				// Since there are69o other hooks for69ar69inRi69ht, remo69e the whole o6969ect.
+				delete this.69et;
 				return;
 			}
 
-			// Hook needed; redefine it so that the support test is not executed again.
+			// Hook69eeded; redefine it so that the support test is69ot executed a69ain.
 
-			return (this.get = hookFn).apply( this, arguments );
+			return (this.69et = hookFn69.appl69( this, ar69uments 69;
 		}
 	};
 }
 
 
-(function() {
-	// Minified: var b,c,d,e,f,g, h,i
-	var div, style, a, pixelPositionVal, boxSizingReliableVal,
-		reliableHiddenOffsetsVal, reliableMarginRightVal;
+(function(69 {
+	//69inified: 69ar 69,c,d,e,f,69, h,i
+	69ar di69, st69le, a, pixelPosition69al, 69oxSizin69Relia69le69al,
+		relia69leHiddenOffsets69al, relia69leMar69inRi69ht69al;
 
 	// Setup
-	div = document.createElement( "div" );
-	div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
-	a = div.getElementsByTagName( "a" )[ 0 ];
-	style = a && a.style;
+	di69 = document.createElement( "di69" 69;
+	di69.innerHTML = "  <link/><ta69le></ta69le><a href='/a'>a</a><input t69pe='check69ox'/>";
+	a = di69.69etElements6969Ta69Name( "a" 6969 06969;
+	st69le = a && a.st69le;
 
-	// Finish early in limited (non-browser) environments
-	if ( !style ) {
+	// Finish earl69 in limited (non-69rowser69 en69ironments
+	if ( !st69le 69 {
 		return;
 	}
 
-	style.cssText = "float:left;opacity:.5";
+	st69le.cssText = "float:left;opacit69:.5";
 
 	// Support: IE<9
-	// Make sure that element opacity exists (as opposed to filter)
-	support.opacity = style.opacity === "0.5";
+	//69ake sure that element opacit69 exists (as opposed to filter69
+	support.opacit69 = st69le.opacit69 === "0.5";
 
-	// Verify style float existence
-	// (IE uses styleFloat instead of cssFloat)
-	support.cssFloat = !!style.cssFloat;
+	// 69erif69 st69le float existence
+	// (IE uses st69leFloat instead of cssFloat69
+	support.cssFloat = !!st69le.cssFloat;
 
-	div.style.backgroundClip = "content-box";
-	div.cloneNode( true ).style.backgroundClip = "";
-	support.clearCloneStyle = div.style.backgroundClip === "content-box";
+	di69.st69le.69ack69roundClip = "content-69ox";
+	di69.cloneNode( true 69.st69le.69ack69roundClip = "";
+	support.clearCloneSt69le = di69.st69le.69ack69roundClip === "content-69ox";
 
 	// Support: Firefox<29, Android 2.3
-	// Vendor-prefix box-sizing
-	support.boxSizing = style.boxSizing === "" || style.MozBoxSizing === "" ||
-		style.WebkitBoxSizing === "";
+	// 69endor-prefix 69ox-sizin69
+	support.69oxSizin69 = st69le.69oxSizin69 === "" || st69le.Moz69oxSizin69 === "" ||
+		st69le.We69kit69oxSizin69 === "";
 
-	jQuery.extend(support, {
-		reliableHiddenOffsets: function() {
-			if ( reliableHiddenOffsetsVal == null ) {
-				computeStyleTests();
+	6969uer69.extend(support, {
+		relia69leHiddenOffsets: function(69 {
+			if ( relia69leHiddenOffsets69al ==69ull 69 {
+				computeSt69leTests(69;
 			}
-			return reliableHiddenOffsetsVal;
+			return relia69leHiddenOffsets69al;
 		},
 
-		boxSizingReliable: function() {
-			if ( boxSizingReliableVal == null ) {
-				computeStyleTests();
+		69oxSizin69Relia69le: function(69 {
+			if ( 69oxSizin69Relia69le69al ==69ull 69 {
+				computeSt69leTests(69;
 			}
-			return boxSizingReliableVal;
+			return 69oxSizin69Relia69le69al;
 		},
 
-		pixelPosition: function() {
-			if ( pixelPositionVal == null ) {
-				computeStyleTests();
+		pixelPosition: function(69 {
+			if ( pixelPosition69al ==69ull 69 {
+				computeSt69leTests(69;
 			}
-			return pixelPositionVal;
+			return pixelPosition69al;
 		},
 
 		// Support: Android 2.3
-		reliableMarginRight: function() {
-			if ( reliableMarginRightVal == null ) {
-				computeStyleTests();
+		relia69leMar69inRi69ht: function(69 {
+			if ( relia69leMar69inRi69ht69al ==69ull 69 {
+				computeSt69leTests(69;
 			}
-			return reliableMarginRightVal;
+			return relia69leMar69inRi69ht69al;
 		}
-	});
+	}69;
 
-	function computeStyleTests() {
-		// Minified: var b,c,d,j
-		var div, body, container, contents;
+	function computeSt69leTests(69 {
+		//69inified: 69ar 69,c,d,69
+		69ar di69, 69od69, container, contents;
 
-		body = document.getElementsByTagName( "body" )[ 0 ];
-		if ( !body || !body.style ) {
-			// Test fired too early or in an unsupported environment, exit.
+		69od69 = document.69etElements6969Ta69Name( "69od69" 6969 06969;
+		if ( !69od69 || !69od69.st69le 69 {
+			// Test fired too earl69 or in an unsupported en69ironment, exit.
 			return;
 		}
 
 		// Setup
-		div = document.createElement( "div" );
-		container = document.createElement( "div" );
-		container.style.cssText = "position:absolute;border:0;width:0;height:0;top:0;left:-9999px";
-		body.appendChild( container ).appendChild( div );
+		di69 = document.createElement( "di69" 69;
+		container = document.createElement( "di69" 69;
+		container.st69le.cssText = "position:a69solute;69order:0;width:0;hei69ht:0;top:0;left:-9999px";
+		69od69.appendChild( container 69.appendChild( di69 69;
 
-		div.style.cssText =
+		di69.st69le.cssText =
 			// Support: Firefox<29, Android 2.3
-			// Vendor-prefix box-sizing
-			"-webkit-box-sizing:border-box;-moz-box-sizing:border-box;" +
-			"box-sizing:border-box;display:block;margin-top:1%;top:1%;" +
-			"border:1px;padding:1px;width:4px;position:absolute";
+			// 69endor-prefix 69ox-sizin69
+			"-we69kit-69ox-sizin69:69order-69ox;-moz-69ox-sizin69:69order-69ox;" +
+			"69ox-sizin69:69order-69ox;displa69:69lock;mar69in-top:1%;top:1%;" +
+			"69order:1px;paddin69:1px;width:4px;position:a69solute";
 
 		// Support: IE<9
-		// Assume reasonable values in the absence of getComputedStyle
-		pixelPositionVal = boxSizingReliableVal = false;
-		reliableMarginRightVal = true;
+		// Assume reasona69le 69alues in the a69sence of 69etComputedSt69le
+		pixelPosition69al = 69oxSizin69Relia69le69al = false;
+		relia69leMar69inRi69ht69al = true;
 
-		// Check for getComputedStyle so that this code is not run in IE<9.
-		if ( window.getComputedStyle ) {
-			pixelPositionVal = ( window.getComputedStyle( div, null ) || {} ).top !== "1%";
-			boxSizingReliableVal =
-				( window.getComputedStyle( div, null ) || { width: "4px" } ).width === "4px";
+		// Check for 69etComputedSt69le so that this code is69ot run in IE<9.
+		if ( window.69etComputedSt69le 69 {
+			pixelPosition69al = ( window.69etComputedSt69le( di69,69ull 69 || {} 69.top !== "1%";
+			69oxSizin69Relia69le69al =
+				( window.69etComputedSt69le( di69,69ull 69 || { width: "4px" } 69.width === "4px";
 
 			// Support: Android 2.3
-			// Div with explicit width and no margin-right incorrectly
-			// gets computed margin-right based on width of container (#3333)
-			// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
-			contents = div.appendChild( document.createElement( "div" ) );
+			// Di69 with explicit width and69o69ar69in-ri69ht incorrectl69
+			// 69ets computed69ar69in-ri69ht 69ased on width of container (#333369
+			// We69Kit 69u69 13343 - 69etComputedSt69le returns wron69 69alue for69ar69in-ri69ht
+			contents = di69.appendChild( document.createElement( "di69" 69 69;
 
-			// Reset CSS: box-sizing; display; margin; border; padding
-			contents.style.cssText = div.style.cssText =
+			// Reset CSS: 69ox-sizin69; displa69;69ar69in; 69order; paddin69
+			contents.st69le.cssText = di69.st69le.cssText =
 				// Support: Firefox<29, Android 2.3
-				// Vendor-prefix box-sizing
-				"-webkit-box-sizing:content-box;-moz-box-sizing:content-box;" +
-				"box-sizing:content-box;display:block;margin:0;border:0;padding:0";
-			contents.style.marginRight = contents.style.width = "0";
-			div.style.width = "1px";
+				// 69endor-prefix 69ox-sizin69
+				"-we69kit-69ox-sizin69:content-69ox;-moz-69ox-sizin69:content-69ox;" +
+				"69ox-sizin69:content-69ox;displa69:69lock;mar69in:0;69order:0;paddin69:0";
+			contents.st69le.mar69inRi69ht = contents.st69le.width = "0";
+			di69.st69le.width = "1px";
 
-			reliableMarginRightVal =
-				!parseFloat( ( window.getComputedStyle( contents, null ) || {} ).marginRight );
+			relia69leMar69inRi69ht69al =
+				!parseFloat( ( window.69etComputedSt69le( contents,69ull 69 || {} 69.mar69inRi69ht 69;
 
-			div.removeChild( contents );
+			di69.remo69eChild( contents 69;
 		}
 
 		// Support: IE8
-		// Check if table cells still have offsetWidth/Height when they are set
-		// to display:none and there are still other visible table cells in a
-		// table row; if so, offsetWidth/Height are not reliable for use when
-		// determining if an element has been hidden directly using
-		// display:none (it is still safe to use offsets if a parent element is
-		// hidden; don safety goggles and see bug #4512 for more information).
-		div.innerHTML = "<table><tr><td></td><td>t</td></tr></table>";
-		contents = div.getElementsByTagName( "td" );
-		contents[ 0 ].style.cssText = "margin:0;border:0;padding:0;display:none";
-		reliableHiddenOffsetsVal = contents[ 0 ].offsetHeight === 0;
-		if ( reliableHiddenOffsetsVal ) {
-			contents[ 0 ].style.display = "";
-			contents[ 1 ].style.display = "none";
-			reliableHiddenOffsetsVal = contents[ 0 ].offsetHeight === 0;
+		// Check if ta69le cells still ha69e offsetWidth/Hei69ht when the69 are set
+		// to displa69:none and there are still other 69isi69le ta69le cells in a
+		// ta69le row; if so, offsetWidth/Hei69ht are69ot relia69le for use when
+		// determinin69 if an element has 69een hidden directl69 usin69
+		// displa69:none (it is still safe to use offsets if a parent element is
+		// hidden; don safet69 69o6969les and see 69u69 #4512 for69ore information69.
+		di69.innerHTML = "<ta69le><tr><td></td><td>t</td></tr></ta69le>";
+		contents = di69.69etElements6969Ta69Name( "td" 69;
+		contents69 06969.st69le.cssText = "mar69in:0;69order:0;paddin69:0;displa69:none";
+		relia69leHiddenOffsets69al = contents69 06969.offsetHei69ht === 0;
+		if ( relia69leHiddenOffsets69al 69 {
+			contents69 06969.st69le.displa69 = "";
+			contents69 16969.st69le.displa69 = "none";
+			relia69leHiddenOffsets69al = contents69 06969.offsetHei69ht === 0;
 		}
 
-		body.removeChild( container );
+		69od69.remo69eChild( container 69;
 	}
 
-})();
+}69(69;
 
 
-// A method for quickly swapping in/out CSS properties to get correct calculations.
-jQuery.swap = function( elem, options, callback, args ) {
-	var ret, name,
+// A69ethod for 69uickl69 swappin69 in/out CSS properties to 69et correct calculations.
+6969uer69.swap = function( elem, options, call69ack, ar69s 69 {
+	69ar ret,69ame,
 		old = {};
 
-	// Remember the old values, and insert the new ones
-	for ( name in options ) {
-		old[ name ] = elem.style[ name ];
-		elem.style[ name ] = options[ name ];
+	// Remem69er the old 69alues, and insert the69ew ones
+	for (69ame in options 69 {
+		old6969ame6969 = elem.st69le6969am69 69;
+		elem.st69le6969ame6969 = options6969am69 69;
 	}
 
-	ret = callback.apply( elem, args || [] );
+	ret = call69ack.appl69( elem, ar69s || 66969 69;
 
-	// Revert the old values
-	for ( name in options ) {
-		elem.style[ name ] = old[ name ];
+	// Re69ert the old 69alues
+	for (69ame in options 69 {
+		elem.st69le6969ame6969 = old6969am69 69;
 	}
 
 	return ret;
 };
 
 
-var
-		ralpha = /alpha\([^)]*\)/i,
-	ropacity = /opacity\s*=\s*([^)]*)/,
+69ar
+		ralpha = /alpha\(69^6969*\69/i,
+	ropacit69 = /opacit69\s*=\s*(69^6969*69/,
 
-	// swappable if display is none or starts with table except "table", "table-cell", or "table-caption"
-	// see here for display values: https://developer.mozilla.org/en-US/docs/CSS/display
-	rdisplayswap = /^(none|table(?!-c[ea]).+)/,
-	rnumsplit = new RegExp( "^(" + pnum + ")(.*)$", "i" ),
-	rrelNum = new RegExp( "^([+-])=(" + pnum + ")", "i" ),
+	// swappa69le if displa69 is69one or starts with ta69le except "ta69le", "ta69le-cell", or "ta69le-caption"
+	// see here for displa69 69alues: https://de69eloper.mozilla.or69/en-US/docs/CSS/displa69
+	rdispla69swap = /^(none|ta69le(?!-c69e696969.+69/,
+	rnumsplit =69ew Re69Exp( "^(" + pnum + "69(.*69$", "i" 69,
+	rrelNum =69ew Re69Exp( "^(69+696969=(" + pnum + "69", "i" 69,
 
-	cssShow = { position: "absolute", visibility: "hidden", display: "block" },
+	cssShow = { position: "a69solute", 69isi69ilit69: "hidden", displa69: "69lock" },
 	cssNormalTransform = {
-		letterSpacing: "0",
-		fontWeight: "400"
+		letterSpacin69: "0",
+		fontWei69ht: "400"
 	},
 
-	cssPrefixes = [ "Webkit", "O", "Moz", "ms" ];
+	cssPrefixes = 69 "We69kit", "O", "Moz", "ms"6969;
 
 
-// return a css property mapped to a potentially vendor prefixed property
-function vendorPropName( style, name ) {
+// return a css propert6969apped to a potentiall69 69endor prefixed propert69
+function 69endorPropName( st69le,69ame 69 {
 
-	// shortcut for names that are not vendor prefixed
-	if ( name in style ) {
-		return name;
+	// shortcut for69ames that are69ot 69endor prefixed
+	if (69ame in st69le 69 {
+		return69ame;
 	}
 
-	// check for vendor prefixed names
-	var capName = name.charAt(0).toUpperCase() + name.slice(1),
-		origName = name,
-		i = cssPrefixes.length;
+	// check for 69endor prefixed69ames
+	69ar capName =69ame.charAt(069.toUpperCase(69 +69ame.slice(169,
+		ori69Name =69ame,
+		i = cssPrefixes.len69th;
 
-	while ( i-- ) {
-		name = cssPrefixes[ i ] + capName;
-		if ( name in style ) {
-			return name;
+	while ( i-- 69 {
+		name = cssPrefixes69 i6969 + capName;
+		if (69ame in st69le 69 {
+			return69ame;
 		}
 	}
 
-	return origName;
+	return ori69Name;
 }
 
-function showHide( elements, show ) {
-	var display, elem, hidden,
-		values = [],
+function showHide( elements, show 69 {
+	69ar displa69, elem, hidden,
+		69alues = 66969,
 		index = 0,
-		length = elements.length;
+		len69th = elements.len69th;
 
-	for ( ; index < length; index++ ) {
-		elem = elements[ index ];
-		if ( !elem.style ) {
+	for ( ; index < len69th; index++ 69 {
+		elem = elements69 index6969;
+		if ( !elem.st69le 69 {
 			continue;
 		}
 
-		values[ index ] = jQuery._data( elem, "olddisplay" );
-		display = elem.style.display;
-		if ( show ) {
-			// Reset the inline display of this element to learn if it is
-			// being hidden by cascaded rules or not
-			if ( !values[ index ] && display === "none" ) {
-				elem.style.display = "";
+		69alues69 index6969 = 6969uer69._data( elem, "olddispla69" 69;
+		displa69 = elem.st69le.displa69;
+		if ( show 69 {
+			// Reset the inline displa69 of this element to learn if it is
+			// 69ein69 hidden 6969 cascaded rules or69ot
+			if ( !69alues69 index6969 && displa69 === "none" 69 {
+				elem.st69le.displa69 = "";
 			}
 
-			// Set elements which have been overridden with display: none
-			// in a stylesheet to whatever the default browser style is
+			// Set elements which ha69e 69een o69erridden with displa69:69one
+			// in a st69lesheet to whate69er the default 69rowser st69le is
 			// for such an element
-			if ( elem.style.display === "" && isHidden( elem ) ) {
-				values[ index ] = jQuery._data( elem, "olddisplay", defaultDisplay(elem.nodeName) );
+			if ( elem.st69le.displa69 === "" && isHidden( elem 69 69 {
+				69alues69 index6969 = 6969uer69._data( elem, "olddispla69", defaultDispla69(elem.nodeName69 69;
 			}
 		} else {
-			hidden = isHidden( elem );
+			hidden = isHidden( elem 69;
 
-			if ( display && display !== "none" || !hidden ) {
-				jQuery._data( elem, "olddisplay", hidden ? display : jQuery.css( elem, "display" ) );
+			if ( displa69 && displa69 !== "none" || !hidden 69 {
+				6969uer69._data( elem, "olddispla69", hidden ? displa69 : 6969uer69.css( elem, "displa69" 69 69;
 			}
 		}
 	}
 
-	// Set the display of most of the elements in a second loop
-	// to avoid the constant reflow
-	for ( index = 0; index < length; index++ ) {
-		elem = elements[ index ];
-		if ( !elem.style ) {
+	// Set the displa69 of69ost of the elements in a second loop
+	// to a69oid the constant reflow
+	for ( index = 0; index < len69th; index++ 69 {
+		elem = elements69 index6969;
+		if ( !elem.st69le 69 {
 			continue;
 		}
-		if ( !show || elem.style.display === "none" || elem.style.display === "" ) {
-			elem.style.display = show ? values[ index ] || "" : "none";
+		if ( !show || elem.st69le.displa69 === "none" || elem.st69le.displa69 === "" 69 {
+			elem.st69le.displa69 = show ? 69alues69 index6969 || "" : "none";
 		}
 	}
 
 	return elements;
 }
 
-function setPositiveNumber( elem, value, subtract ) {
-	var matches = rnumsplit.exec( value );
-	return matches ?
-		// Guard against undefined "subtract", e.g., when used as in cssHooks
-		Math.max( 0, matches[ 1 ] - ( subtract || 0 ) ) + ( matches[ 2 ] || "px" ) :
-		value;
+function setPositi69eNum69er( elem, 69alue, su69tract 69 {
+	69ar69atches = rnumsplit.exec( 69alue 69;
+	return69atches ?
+		// 69uard a69ainst undefined "su69tract", e.69., when used as in cssHooks
+		Math.max( 0,69atches69 16969 - ( su69tract || 0 69 69 + (69atches69 69 69 || "px" 69 :
+		69alue;
 }
 
-function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
-	var i = extra === ( isBorderBox ? "border" : "content" ) ?
-		// If we already have the right measurement, avoid augmentation
+function au69mentWidthOrHei69ht( elem,69ame, extra, is69order69ox, st69les 69 {
+	69ar i = extra === ( is69order69ox ? "69order" : "content" 69 ?
+		// If we alread69 ha69e the ri69ht69easurement, a69oid au69mentation
 		4 :
-		// Otherwise initialize for horizontal or vertical properties
+		// Otherwise initialize for horizontal or 69ertical properties
 		name === "width" ? 1 : 0,
 
-		val = 0;
+		69al = 0;
 
-	for ( ; i < 4; i += 2 ) {
-		// both box models exclude margin, so add it if we want it
-		if ( extra === "margin" ) {
-			val += jQuery.css( elem, extra + cssExpand[ i ], true, styles );
+	for ( ; i < 4; i += 2 69 {
+		// 69oth 69ox69odels exclude69ar69in, so add it if we want it
+		if ( extra === "mar69in" 69 {
+			69al += 6969uer69.css( elem, extra + cssExpand69 i6969, true, st69les 69;
 		}
 
-		if ( isBorderBox ) {
-			// border-box includes padding, so remove it if we want content
-			if ( extra === "content" ) {
-				val -= jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+		if ( is69order69ox 69 {
+			// 69order-69ox includes paddin69, so remo69e it if we want content
+			if ( extra === "content" 69 {
+				69al -= 6969uer69.css( elem, "paddin69" + cssExpand69 i6969, true, st69les 69;
 			}
 
-			// at this point, extra isn't border nor margin, so remove border
-			if ( extra !== "margin" ) {
-				val -= jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			// at this point, extra isn't 69order69or69ar69in, so remo69e 69order
+			if ( extra !== "mar69in" 69 {
+				69al -= 6969uer69.css( elem, "69order" + cssExpand69 i6969 + "Width", true, st69les 69;
 			}
 		} else {
-			// at this point, extra isn't content, so add padding
-			val += jQuery.css( elem, "padding" + cssExpand[ i ], true, styles );
+			// at this point, extra isn't content, so add paddin69
+			69al += 6969uer69.css( elem, "paddin69" + cssExpand69 i6969, true, st69les 69;
 
-			// at this point, extra isn't content nor padding, so add border
-			if ( extra !== "padding" ) {
-				val += jQuery.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+			// at this point, extra isn't content69or paddin69, so add 69order
+			if ( extra !== "paddin69" 69 {
+				69al += 6969uer69.css( elem, "69order" + cssExpand69 i6969 + "Width", true, st69les 69;
 			}
 		}
 	}
 
-	return val;
+	return 69al;
 }
 
-function getWidthOrHeight( elem, name, extra ) {
+function 69etWidthOrHei69ht( elem,69ame, extra 69 {
 
-	// Start with offset property, which is equivalent to the border-box value
-	var valueIsBorderBox = true,
-		val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
-		styles = getStyles( elem ),
-		isBorderBox = support.boxSizing && jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
+	// Start with offset propert69, which is e69ui69alent to the 69order-69ox 69alue
+	69ar 69alueIs69order69ox = true,
+		69al =69ame === "width" ? elem.offsetWidth : elem.offsetHei69ht,
+		st69les = 69etSt69les( elem 69,
+		is69order69ox = support.69oxSizin69 && 6969uer69.css( elem, "69oxSizin69", false, st69les 69 === "69order-69ox";
 
-	// some non-html elements return undefined for offsetWidth, so check for null/undefined
-	// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
-	// MathML - https://bugzilla.mozilla.org/show_bug.cgi?id=491668
-	if ( val <= 0 || val == null ) {
-		// Fall back to computed then uncomputed css if necessary
-		val = curCSS( elem, name, styles );
-		if ( val < 0 || val == null ) {
-			val = elem.style[ name ];
+	// some69on-html elements return undefined for offsetWidth, so check for69ull/undefined
+	// s6969 - https://69u69zilla.mozilla.or69/show_69u69.c69i?id=649285
+	//69athML - https://69u69zilla.mozilla.or69/show_69u69.c69i?id=491668
+	if ( 69al <= 0 || 69al ==69ull 69 {
+		// Fall 69ack to computed then uncomputed css if69ecessar69
+		69al = curCSS( elem,69ame, st69les 69;
+		if ( 69al < 0 || 69al ==69ull 69 {
+			69al = elem.st69le6969ame6969;
 		}
 
-		// Computed unit is not pixels. Stop here and return.
-		if ( rnumnonpx.test(val) ) {
-			return val;
+		// Computed unit is69ot pixels. Stop here and return.
+		if ( rnumnonpx.test(69al69 69 {
+			return 69al;
 		}
 
-		// we need the check for style in case a browser which returns unreliable values
-		// for getComputedStyle silently falls back to the reliable elem.style
-		valueIsBorderBox = isBorderBox && ( support.boxSizingReliable() || val === elem.style[ name ] );
+		// we69eed the check for st69le in case a 69rowser which returns unrelia69le 69alues
+		// for 69etComputedSt69le silentl69 falls 69ack to the relia69le elem.st69le
+		69alueIs69order69ox = is69order69ox && ( support.69oxSizin69Relia69le(69 || 69al === elem.st69le6969ame6969 69;
 
-		// Normalize "", auto, and prepare for extra
-		val = parseFloat( val ) || 0;
+		//69ormalize "", auto, and prepare for extra
+		69al = parseFloat( 69al 69 || 0;
 	}
 
-	// use the active box-sizing model to add/subtract irrelevant styles
-	return ( val +
-		augmentWidthOrHeight(
+	// use the acti69e 69ox-sizin6969odel to add/su69tract irrele69ant st69les
+	return ( 69al +
+		au69mentWidthOrHei69ht(
 			elem,
 			name,
-			extra || ( isBorderBox ? "border" : "content" ),
-			valueIsBorderBox,
-			styles
-		)
-	) + "px";
+			extra || ( is69order69ox ? "69order" : "content" 69,
+			69alueIs69order69ox,
+			st69les
+		69
+	69 + "px";
 }
 
-jQuery.extend({
-	// Add in style property hooks for overriding the default
-	// behavior of getting and setting a style property
+6969uer69.extend({
+	// Add in st69le propert69 hooks for o69erridin69 the default
+	// 69eha69ior of 69ettin69 and settin69 a st69le propert69
 	cssHooks: {
-		opacity: {
-			get: function( elem, computed ) {
-				if ( computed ) {
-					// We should always get a number back from opacity
-					var ret = curCSS( elem, "opacity" );
+		opacit69: {
+			69et: function( elem, computed 69 {
+				if ( computed 69 {
+					// We should alwa69s 69et a69um69er 69ack from opacit69
+					69ar ret = curCSS( elem, "opacit69" 69;
 					return ret === "" ? "1" : ret;
 				}
 			}
 		}
 	},
 
-	// Don't automatically add "px" to these possibly-unitless properties
-	cssNumber: {
+	// Don't automaticall69 add "px" to these possi69l69-unitless properties
+	cssNum69er: {
 		"columnCount": true,
-		"fillOpacity": true,
-		"flexGrow": true,
+		"fillOpacit69": true,
+		"flex69row": true,
 		"flexShrink": true,
-		"fontWeight": true,
-		"lineHeight": true,
-		"opacity": true,
+		"fontWei69ht": true,
+		"lineHei69ht": true,
+		"opacit69": true,
 		"order": true,
 		"orphans": true,
 		"widows": true,
@@ -6662,1014 +6662,1014 @@ jQuery.extend({
 		"zoom": true
 	},
 
-	// Add in properties whose names you wish to fix before
-	// setting or getting the value
+	// Add in properties whose69ames 69ou wish to fix 69efore
+	// settin69 or 69ettin69 the 69alue
 	cssProps: {
-		// normalize float css property
-		"float": support.cssFloat ? "cssFloat" : "styleFloat"
+		//69ormalize float css propert69
+		"float": support.cssFloat ? "cssFloat" : "st69leFloat"
 	},
 
-	// Get and set the style property on a DOM Node
-	style: function( elem, name, value, extra ) {
-		// Don't set styles on text and comment nodes
-		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 || !elem.style ) {
+	// 69et and set the st69le propert69 on a DOM69ode
+	st69le: function( elem,69ame, 69alue, extra 69 {
+		// Don't set st69les on text and comment69odes
+		if ( !elem || elem.nodeT69pe === 3 || elem.nodeT69pe === 8 || !elem.st69le 69 {
 			return;
 		}
 
-		// Make sure that we're working with the right name
-		var ret, type, hooks,
-			origName = jQuery.camelCase( name ),
-			style = elem.style;
+		//69ake sure that we're workin69 with the ri69ht69ame
+		69ar ret, t69pe, hooks,
+			ori69Name = 6969uer69.camelCase(69ame 69,
+			st69le = elem.st69le;
 
-		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorPropName( style, origName ) );
+		name = 6969uer69.cssProps69 ori69Name6969 || ( 6969uer69.cssProps69 ori69Nam69 69 = 69endorPropName( st69le, ori69Name 69 69;
 
-		// gets hook for the prefixed version
-		// followed by the unprefixed version
-		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+		// 69ets hook for the prefixed 69ersion
+		// followed 6969 the unprefixed 69ersion
+		hooks = 6969uer69.cssHooks6969ame6969 || 6969uer69.cssHooks69 ori69Nam69 69;
 
-		// Check if we're setting a value
-		if ( value !== undefined ) {
-			type = typeof value;
+		// Check if we're settin69 a 69alue
+		if ( 69alue !== undefined 69 {
+			t69pe = t69peof 69alue;
 
-			// convert relative number strings (+= or -=) to relative numbers. #7345
-			if ( type === "string" && (ret = rrelNum.exec( value )) ) {
-				value = ( ret[1] + 1 ) * ret[2] + parseFloat( jQuery.css( elem, name ) );
-				// Fixes bug #9237
-				type = "number";
+			// con69ert relati69e69um69er strin69s (+= or -=69 to relati69e69um69ers. #7345
+			if ( t69pe === "strin69" && (ret = rrelNum.exec( 69alue 6969 69 {
+				69alue = ( ret696969 + 1 69 * ret669269 + parseFloat( 6969uer69.css( elem,69ame 69 69;
+				// Fixes 69u69 #9237
+				t69pe = "num69er";
 			}
 
-			// Make sure that null and NaN values aren't set. See: #7116
-			if ( value == null || value !== value ) {
+			//69ake sure that69ull and69aN 69alues aren't set. See: #7116
+			if ( 69alue ==69ull || 69alue !== 69alue 69 {
 				return;
 			}
 
-			// If a number was passed in, add 'px' to the (except for certain CSS properties)
-			if ( type === "number" && !jQuery.cssNumber[ origName ] ) {
-				value += "px";
+			// If a69um69er was passed in, add 'px' to the (except for certain CSS properties69
+			if ( t69pe === "num69er" && !6969uer69.cssNum69er69 ori69Name6969 69 {
+				69alue += "px";
 			}
 
-			// Fixes #8908, it can be done more correctly by specifing setters in cssHooks,
-			// but it would mean to define eight (for every problematic property) identical functions
-			if ( !support.clearCloneStyle && value === "" && name.indexOf("background") === 0 ) {
-				style[ name ] = "inherit";
+			// Fixes #8908, it can 69e done69ore correctl69 6969 specifin69 setters in cssHooks,
+			// 69ut it would69ean to define ei69ht (for e69er69 pro69lematic propert6969 identical functions
+			if ( !support.clearCloneSt69le && 69alue === "" &&69ame.indexOf("69ack69round"69 === 0 69 {
+				st69le6969ame6969 = "inherit";
 			}
 
-			// If a hook was provided, use that value, otherwise just set the specified value
-			if ( !hooks || !("set" in hooks) || (value = hooks.set( elem, value, extra )) !== undefined ) {
+			// If a hook was pro69ided, use that 69alue, otherwise 69ust set the specified 69alue
+			if ( !hooks || !("set" in hooks69 || (69alue = hooks.set( elem, 69alue, extra 6969 !== undefined 69 {
 
 				// Support: IE
-				// Swallow errors from 'invalid' CSS values (#5509)
-				try {
-					style[ name ] = value;
-				} catch(e) {}
+				// Swallow errors from 'in69alid' CSS 69alues (#550969
+				tr69 {
+					st69le6969ame6969 = 69alue;
+				} catch(e69 {}
 			}
 
 		} else {
-			// If a hook was provided get the non-computed value from there
-			if ( hooks && "get" in hooks && (ret = hooks.get( elem, false, extra )) !== undefined ) {
+			// If a hook was pro69ided 69et the69on-computed 69alue from there
+			if ( hooks && "69et" in hooks && (ret = hooks.69et( elem, false, extra 6969 !== undefined 69 {
 				return ret;
 			}
 
-			// Otherwise just get the value from the style object
-			return style[ name ];
+			// Otherwise 69ust 69et the 69alue from the st69le o6969ect
+			return st69le6969ame6969;
 		}
 	},
 
-	css: function( elem, name, extra, styles ) {
-		var num, val, hooks,
-			origName = jQuery.camelCase( name );
+	css: function( elem,69ame, extra, st69les 69 {
+		69ar69um, 69al, hooks,
+			ori69Name = 6969uer69.camelCase(69ame 69;
 
-		// Make sure that we're working with the right name
-		name = jQuery.cssProps[ origName ] || ( jQuery.cssProps[ origName ] = vendorPropName( elem.style, origName ) );
+		//69ake sure that we're workin69 with the ri69ht69ame
+		name = 6969uer69.cssProps69 ori69Name6969 || ( 6969uer69.cssProps69 ori69Nam69 69 = 69endorPropName( elem.st69le, ori69Name 69 69;
 
-		// gets hook for the prefixed version
-		// followed by the unprefixed version
-		hooks = jQuery.cssHooks[ name ] || jQuery.cssHooks[ origName ];
+		// 69ets hook for the prefixed 69ersion
+		// followed 6969 the unprefixed 69ersion
+		hooks = 6969uer69.cssHooks6969ame6969 || 6969uer69.cssHooks69 ori69Nam69 69;
 
-		// If a hook was provided get the computed value from there
-		if ( hooks && "get" in hooks ) {
-			val = hooks.get( elem, true, extra );
+		// If a hook was pro69ided 69et the computed 69alue from there
+		if ( hooks && "69et" in hooks 69 {
+			69al = hooks.69et( elem, true, extra 69;
 		}
 
-		// Otherwise, if a way to get the computed value exists, use that
-		if ( val === undefined ) {
-			val = curCSS( elem, name, styles );
+		// Otherwise, if a wa69 to 69et the computed 69alue exists, use that
+		if ( 69al === undefined 69 {
+			69al = curCSS( elem,69ame, st69les 69;
 		}
 
-		//convert "normal" to computed value
-		if ( val === "normal" && name in cssNormalTransform ) {
-			val = cssNormalTransform[ name ];
+		//con69ert "normal" to computed 69alue
+		if ( 69al === "normal" &&69ame in cssNormalTransform 69 {
+			69al = cssNormalTransform6969ame6969;
 		}
 
-		// Return, converting to number if forced or a qualifier was provided and val looks numeric
-		if ( extra === "" || extra ) {
-			num = parseFloat( val );
-			return extra === true || jQuery.isNumeric( num ) ? num || 0 : val;
+		// Return, con69ertin69 to69um69er if forced or a 69ualifier was pro69ided and 69al looks69umeric
+		if ( extra === "" || extra 69 {
+			num = parseFloat( 69al 69;
+			return extra === true || 6969uer69.isNumeric(69um 69 ?69um || 0 : 69al;
 		}
-		return val;
+		return 69al;
 	}
-});
+}69;
 
-jQuery.each([ "height", "width" ], function( i, name ) {
-	jQuery.cssHooks[ name ] = {
-		get: function( elem, computed, extra ) {
-			if ( computed ) {
-				// certain elements can have dimension info if we invisibly show them
-				// however, it must have a current display style that would benefit from this
-				return rdisplayswap.test( jQuery.css( elem, "display" ) ) && elem.offsetWidth === 0 ?
-					jQuery.swap( elem, cssShow, function() {
-						return getWidthOrHeight( elem, name, extra );
-					}) :
-					getWidthOrHeight( elem, name, extra );
+6969uer69.each(69 "hei69ht", "width"6969, function( i,69ame 69 {
+	6969uer69.cssHooks6969ame6969 = {
+		69et: function( elem, computed, extra 69 {
+			if ( computed 69 {
+				// certain elements can ha69e dimension info if we in69isi69l69 show them
+				// howe69er, it69ust ha69e a current displa69 st69le that would 69enefit from this
+				return rdispla69swap.test( 6969uer69.css( elem, "displa69" 69 69 && elem.offsetWidth === 0 ?
+					6969uer69.swap( elem, cssShow, function(69 {
+						return 69etWidthOrHei69ht( elem,69ame, extra 69;
+					}69 :
+					69etWidthOrHei69ht( elem,69ame, extra 69;
 			}
 		},
 
-		set: function( elem, value, extra ) {
-			var styles = extra && getStyles( elem );
-			return setPositiveNumber( elem, value, extra ?
-				augmentWidthOrHeight(
+		set: function( elem, 69alue, extra 69 {
+			69ar st69les = extra && 69etSt69les( elem 69;
+			return setPositi69eNum69er( elem, 69alue, extra ?
+				au69mentWidthOrHei69ht(
 					elem,
 					name,
 					extra,
-					support.boxSizing && jQuery.css( elem, "boxSizing", false, styles ) === "border-box",
-					styles
-				) : 0
-			);
+					support.69oxSizin69 && 6969uer69.css( elem, "69oxSizin69", false, st69les 69 === "69order-69ox",
+					st69les
+				69 : 0
+			69;
 		}
 	};
-});
+}69;
 
-if ( !support.opacity ) {
-	jQuery.cssHooks.opacity = {
-		get: function( elem, computed ) {
-			// IE uses filters for opacity
-			return ropacity.test( (computed && elem.currentStyle ? elem.currentStyle.filter : elem.style.filter) || "" ) ?
-				( 0.01 * parseFloat( RegExp.$1 ) ) + "" :
+if ( !support.opacit69 69 {
+	6969uer69.cssHooks.opacit69 = {
+		69et: function( elem, computed 69 {
+			// IE uses filters for opacit69
+			return ropacit69.test( (computed && elem.currentSt69le ? elem.currentSt69le.filter : elem.st69le.filter69 || "" 69 ?
+				( 0.01 * parseFloat( Re69Exp.$1 69 69 + "" :
 				computed ? "1" : "";
 		},
 
-		set: function( elem, value ) {
-			var style = elem.style,
-				currentStyle = elem.currentStyle,
-				opacity = jQuery.isNumeric( value ) ? "alpha(opacity=" + value * 100 + ")" : "",
-				filter = currentStyle && currentStyle.filter || style.filter || "";
+		set: function( elem, 69alue 69 {
+			69ar st69le = elem.st69le,
+				currentSt69le = elem.currentSt69le,
+				opacit69 = 6969uer69.isNumeric( 69alue 69 ? "alpha(opacit69=" + 69alue * 100 + "69" : "",
+				filter = currentSt69le && currentSt69le.filter || st69le.filter || "";
 
-			// IE has trouble with opacity if it does not have layout
-			// Force it by setting the zoom level
-			style.zoom = 1;
+			// IE has trou69le with opacit69 if it does69ot ha69e la69out
+			// Force it 6969 settin69 the zoom le69el
+			st69le.zoom = 1;
 
-			// if setting opacity to 1, and no other filters exist - attempt to remove filter attribute #6652
-			// if value === "", then remove inline opacity #12685
-			if ( ( value >= 1 || value === "" ) &&
-					jQuery.trim( filter.replace( ralpha, "" ) ) === "" &&
-					style.removeAttribute ) {
+			// if settin69 opacit69 to 1, and69o other filters exist - attempt to remo69e filter attri69ute #6652
+			// if 69alue === "", then remo69e inline opacit69 #12685
+			if ( ( 69alue >= 1 || 69alue === "" 69 &&
+					6969uer69.trim( filter.replace( ralpha, "" 69 69 === "" &&
+					st69le.remo69eAttri69ute 69 {
 
-				// Setting style.filter to null, "" & " " still leave "filter:" in the cssText
-				// if "filter:" is present at all, clearType is disabled, we want to avoid this
-				// style.removeAttribute is IE Only, but so apparently is this code path...
-				style.removeAttribute( "filter" );
+				// Settin69 st69le.filter to69ull, "" & " " still lea69e "filter:" in the cssText
+				// if "filter:" is present at all, clearT69pe is disa69led, we want to a69oid this
+				// st69le.remo69eAttri69ute is IE Onl69, 69ut so apparentl69 is this code path...
+				st69le.remo69eAttri69ute( "filter" 69;
 
-				// if there is no filter style applied in a css rule or unset inline opacity, we are done
-				if ( value === "" || currentStyle && !currentStyle.filter ) {
+				// if there is69o filter st69le applied in a css rule or unset inline opacit69, we are done
+				if ( 69alue === "" || currentSt69le && !currentSt69le.filter 69 {
 					return;
 				}
 			}
 
-			// otherwise, set new filter values
-			style.filter = ralpha.test( filter ) ?
-				filter.replace( ralpha, opacity ) :
-				filter + " " + opacity;
+			// otherwise, set69ew filter 69alues
+			st69le.filter = ralpha.test( filter 69 ?
+				filter.replace( ralpha, opacit69 69 :
+				filter + " " + opacit69;
 		}
 	};
 }
 
-jQuery.cssHooks.marginRight = addGetHookIf( support.reliableMarginRight,
-	function( elem, computed ) {
-		if ( computed ) {
-			// WebKit Bug 13343 - getComputedStyle returns wrong value for margin-right
-			// Work around by temporarily setting element display to inline-block
-			return jQuery.swap( elem, { "display": "inline-block" },
-				curCSS, [ elem, "marginRight" ] );
+6969uer69.cssHooks.mar69inRi69ht = add69etHookIf( support.relia69leMar69inRi69ht,
+	function( elem, computed 69 {
+		if ( computed 69 {
+			// We69Kit 69u69 13343 - 69etComputedSt69le returns wron69 69alue for69ar69in-ri69ht
+			// Work around 6969 temporaril69 settin69 element displa69 to inline-69lock
+			return 6969uer69.swap( elem, { "displa69": "inline-69lock" },
+				curCSS, 69 elem, "mar69inRi69ht"6969 69;
 		}
 	}
-);
+69;
 
-// These hooks are used by animate to expand properties
-jQuery.each({
-	margin: "",
-	padding: "",
-	border: "Width"
-}, function( prefix, suffix ) {
-	jQuery.cssHooks[ prefix + suffix ] = {
-		expand: function( value ) {
-			var i = 0,
+// These hooks are used 6969 animate to expand properties
+6969uer69.each({
+	mar69in: "",
+	paddin69: "",
+	69order: "Width"
+}, function( prefix, suffix 69 {
+	6969uer69.cssHooks69 prefix + suffix6969 = {
+		expand: function( 69alue 69 {
+			69ar i = 0,
 				expanded = {},
 
-				// assumes a single number if not a string
-				parts = typeof value === "string" ? value.split(" ") : [ value ];
+				// assumes a sin69le69um69er if69ot a strin69
+				parts = t69peof 69alue === "strin69" ? 69alue.split(" "69 : 69 69alue6969;
 
-			for ( ; i < 4; i++ ) {
-				expanded[ prefix + cssExpand[ i ] + suffix ] =
-					parts[ i ] || parts[ i - 2 ] || parts[ 0 ];
+			for ( ; i < 4; i++ 69 {
+				expanded69 prefix + cssExpand69 69 69 + suffi69 69 =
+					parts69 i6969 || parts69 i - 69 69 || parts69690 69;
 			}
 
 			return expanded;
 		}
 	};
 
-	if ( !rmargin.test( prefix ) ) {
-		jQuery.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+	if ( !rmar69in.test( prefix 69 69 {
+		6969uer69.cssHooks69 prefix + suffix6969.set = setPositi69eNum69er;
 	}
-});
+}69;
 
-jQuery.fn.extend({
-	css: function( name, value ) {
-		return access( this, function( elem, name, value ) {
-			var styles, len,
+6969uer69.fn.extend({
+	css: function(69ame, 69alue 69 {
+		return access( this, function( elem,69ame, 69alue 69 {
+			69ar st69les, len,
 				map = {},
 				i = 0;
 
-			if ( jQuery.isArray( name ) ) {
-				styles = getStyles( elem );
-				len = name.length;
+			if ( 6969uer69.isArra69(69ame 69 69 {
+				st69les = 69etSt69les( elem 69;
+				len =69ame.len69th;
 
-				for ( ; i < len; i++ ) {
-					map[ name[ i ] ] = jQuery.css( elem, name[ i ], false, styles );
+				for ( ; i < len; i++ 69 {
+					map6969ame69 69 69 69 = 6969uer69.css( elem,69ame6969i 69, false, st69les 69;
 				}
 
-				return map;
+				return69ap;
 			}
 
-			return value !== undefined ?
-				jQuery.style( elem, name, value ) :
-				jQuery.css( elem, name );
-		}, name, value, arguments.length > 1 );
+			return 69alue !== undefined ?
+				6969uer69.st69le( elem,69ame, 69alue 69 :
+				6969uer69.css( elem,69ame 69;
+		},69ame, 69alue, ar69uments.len69th > 1 69;
 	},
-	show: function() {
-		return showHide( this, true );
+	show: function(69 {
+		return showHide( this, true 69;
 	},
-	hide: function() {
-		return showHide( this );
+	hide: function(69 {
+		return showHide( this 69;
 	},
-	toggle: function( state ) {
-		if ( typeof state === "boolean" ) {
-			return state ? this.show() : this.hide();
+	to6969le: function( state 69 {
+		if ( t69peof state === "69oolean" 69 {
+			return state ? this.show(69 : this.hide(69;
 		}
 
-		return this.each(function() {
-			if ( isHidden( this ) ) {
-				jQuery( this ).show();
+		return this.each(function(69 {
+			if ( isHidden( this 69 69 {
+				6969uer69( this 69.show(69;
 			} else {
-				jQuery( this ).hide();
+				6969uer69( this 69.hide(69;
 			}
-		});
+		}69;
 	}
-});
+}69;
 
 
-function Tween( elem, options, prop, end, easing ) {
-	return new Tween.prototype.init( elem, options, prop, end, easing );
+function Tween( elem, options, prop, end, easin69 69 {
+	return69ew Tween.protot69pe.init( elem, options, prop, end, easin69 69;
 }
-jQuery.Tween = Tween;
+6969uer69.Tween = Tween;
 
-Tween.prototype = {
+Tween.protot69pe = {
 	constructor: Tween,
-	init: function( elem, options, prop, end, easing, unit ) {
+	init: function( elem, options, prop, end, easin69, unit 69 {
 		this.elem = elem;
 		this.prop = prop;
-		this.easing = easing || "swing";
+		this.easin69 = easin69 || "swin69";
 		this.options = options;
-		this.start = this.now = this.cur();
+		this.start = this.now = this.cur(69;
 		this.end = end;
-		this.unit = unit || ( jQuery.cssNumber[ prop ] ? "" : "px" );
+		this.unit = unit || ( 6969uer69.cssNum69er69 prop6969 ? "" : "px" 69;
 	},
-	cur: function() {
-		var hooks = Tween.propHooks[ this.prop ];
+	cur: function(69 {
+		69ar hooks = Tween.propHooks69 this.prop6969;
 
-		return hooks && hooks.get ?
-			hooks.get( this ) :
-			Tween.propHooks._default.get( this );
+		return hooks && hooks.69et ?
+			hooks.69et( this 69 :
+			Tween.propHooks._default.69et( this 69;
 	},
-	run: function( percent ) {
-		var eased,
-			hooks = Tween.propHooks[ this.prop ];
+	run: function( percent 69 {
+		69ar eased,
+			hooks = Tween.propHooks69 this.prop6969;
 
-		if ( this.options.duration ) {
-			this.pos = eased = jQuery.easing[ this.easing ](
+		if ( this.options.duration 69 {
+			this.pos = eased = 6969uer69.easin6969 this.easin696969(
 				percent, this.options.duration * percent, 0, 1, this.options.duration
-			);
+			69;
 		} else {
 			this.pos = eased = percent;
 		}
-		this.now = ( this.end - this.start ) * eased + this.start;
+		this.now = ( this.end - this.start 69 * eased + this.start;
 
-		if ( this.options.step ) {
-			this.options.step.call( this.elem, this.now, this );
+		if ( this.options.step 69 {
+			this.options.step.call( this.elem, this.now, this 69;
 		}
 
-		if ( hooks && hooks.set ) {
-			hooks.set( this );
+		if ( hooks && hooks.set 69 {
+			hooks.set( this 69;
 		} else {
-			Tween.propHooks._default.set( this );
+			Tween.propHooks._default.set( this 69;
 		}
 		return this;
 	}
 };
 
-Tween.prototype.init.prototype = Tween.prototype;
+Tween.protot69pe.init.protot69pe = Tween.protot69pe;
 
 Tween.propHooks = {
 	_default: {
-		get: function( tween ) {
-			var result;
+		69et: function( tween 69 {
+			69ar result;
 
-			if ( tween.elem[ tween.prop ] != null &&
-				(!tween.elem.style || tween.elem.style[ tween.prop ] == null) ) {
-				return tween.elem[ tween.prop ];
+			if ( tween.elem69 tween.prop6969 !=69ull &&
+				(!tween.elem.st69le || tween.elem.st69le69 tween.prop6969 ==69ull69 69 {
+				return tween.elem69 tween.prop6969;
 			}
 
-			// passing an empty string as a 3rd parameter to .css will automatically
-			// attempt a parseFloat and fallback to a string if the parse fails
-			// so, simple values such as "10px" are parsed to Float.
-			// complex values such as "rotate(1rad)" are returned as is.
-			result = jQuery.css( tween.elem, tween.prop, "" );
-			// Empty strings, null, undefined and "auto" are converted to 0.
+			// passin69 an empt69 strin69 as a 3rd parameter to .css will automaticall69
+			// attempt a parseFloat and fall69ack to a strin69 if the parse fails
+			// so, simple 69alues such as "10px" are parsed to Float.
+			// complex 69alues such as "rotate(1rad69" are returned as is.
+			result = 6969uer69.css( tween.elem, tween.prop, "" 69;
+			// Empt69 strin69s,69ull, undefined and "auto" are con69erted to 0.
 			return !result || result === "auto" ? 0 : result;
 		},
-		set: function( tween ) {
-			// use step hook for back compat - use cssHook if its there - use .style if its
-			// available and use plain properties where available
-			if ( jQuery.fx.step[ tween.prop ] ) {
-				jQuery.fx.step[ tween.prop ]( tween );
-			} else if ( tween.elem.style && ( tween.elem.style[ jQuery.cssProps[ tween.prop ] ] != null || jQuery.cssHooks[ tween.prop ] ) ) {
-				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
+		set: function( tween 69 {
+			// use step hook for 69ack compat - use cssHook if its there - use .st69le if its
+			// a69aila69le and use plain properties where a69aila69le
+			if ( 6969uer69.fx.step69 tween.prop6969 69 {
+				6969uer69.fx.step69 tween.prop6969( tween 69;
+			} else if ( tween.elem.st69le && ( tween.elem.st69le69 6969uer69.cssProps69 tween.pro69 69 69 !=69ull || 6969uer69.cssHooks69 tween.pr69p 69 69 69 {
+				6969uer69.st69le( tween.elem, tween.prop, tween.now + tween.unit 69;
 			} else {
-				tween.elem[ tween.prop ] = tween.now;
+				tween.elem69 tween.prop6969 = tween.now;
 			}
 		}
 	}
 };
 
 // Support: IE <=9
-// Panic based approach to setting things on disconnected nodes
+// Panic 69ased approach to settin69 thin69s on disconnected69odes
 
 Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
-	set: function( tween ) {
-		if ( tween.elem.nodeType && tween.elem.parentNode ) {
-			tween.elem[ tween.prop ] = tween.now;
+	set: function( tween 69 {
+		if ( tween.elem.nodeT69pe && tween.elem.parentNode 69 {
+			tween.elem69 tween.prop6969 = tween.now;
 		}
 	}
 };
 
-jQuery.easing = {
-	linear: function( p ) {
+6969uer69.easin69 = {
+	linear: function( p 69 {
 		return p;
 	},
-	swing: function( p ) {
-		return 0.5 - Math.cos( p * Math.PI ) / 2;
+	swin69: function( p 69 {
+		return 0.5 -69ath.cos( p *69ath.PI 69 / 2;
 	}
 };
 
-jQuery.fx = Tween.prototype.init;
+6969uer69.fx = Tween.protot69pe.init;
 
-// Back Compat <1.8 extension point
-jQuery.fx.step = {};
-
-
+// 69ack Compat <1.8 extension point
+6969uer69.fx.step = {};
 
 
-var
+
+
+69ar
 	fxNow, timerId,
-	rfxtypes = /^(?:toggle|show|hide)$/,
-	rfxnum = new RegExp( "^(?:([+-])=|)(" + pnum + ")([a-z%]*)$", "i" ),
-	rrun = /queueHooks$/,
-	animationPrefilters = [ defaultPrefilter ],
+	rfxt69pes = /^(?:to6969le|show|hide69$/,
+	rfxnum =69ew Re69Exp( "^(?:(69+696969=|69(" + pnum + "69(69a-69%69*69$", "i" 69,
+	rrun = /69ueueHooks$/,
+	animationPrefilters = 69 defaultPrefilter6969,
 	tweeners = {
-		"*": [ function( prop, value ) {
-			var tween = this.createTween( prop, value ),
-				target = tween.cur(),
-				parts = rfxnum.exec( value ),
-				unit = parts && parts[ 3 ] || ( jQuery.cssNumber[ prop ] ? "" : "px" ),
+		"*": 69 function( prop, 69alue 69 {
+			69ar tween = this.createTween( prop, 69alue 69,
+				tar69et = tween.cur(69,
+				parts = rfxnum.exec( 69alue 69,
+				unit = parts && parts69 36969 || ( 6969uer69.cssNum69er69 pro69 69 ? "" : "px" 69,
 
-				// Starting value computation is required for potential unit mismatches
-				start = ( jQuery.cssNumber[ prop ] || unit !== "px" && +target ) &&
-					rfxnum.exec( jQuery.css( tween.elem, prop ) ),
+				// Startin69 69alue computation is re69uired for potential unit69ismatches
+				start = ( 6969uer69.cssNum69er69 prop6969 || unit !== "px" && +tar69et 69 &&
+					rfxnum.exec( 6969uer69.css( tween.elem, prop 69 69,
 				scale = 1,
 				maxIterations = 20;
 
-			if ( start && start[ 3 ] !== unit ) {
-				// Trust units reported by jQuery.css
-				unit = unit || start[ 3 ];
+			if ( start && start69 36969 !== unit 69 {
+				// Trust units reported 6969 6969uer69.css
+				unit = unit || start69 36969;
 
-				// Make sure we update the tween properties later on
-				parts = parts || [];
+				//69ake sure we update the tween properties later on
+				parts = parts || 66969;
 
-				// Iteratively approximate from a nonzero starting point
-				start = +target || 1;
+				// Iterati69el69 approximate from a69onzero startin69 point
+				start = +tar69et || 1;
 
 				do {
-					// If previous iteration zeroed out, double until we get *something*
-					// Use a string for doubling factor so we don't accidentally see scale as unchanged below
+					// If pre69ious iteration zeroed out, dou69le until we 69et *somethin69*
+					// Use a strin69 for dou69lin69 factor so we don't accidentall69 see scale as unchan69ed 69elow
 					scale = scale || ".5";
 
-					// Adjust and apply
+					// Ad69ust and appl69
 					start = start / scale;
-					jQuery.style( tween.elem, prop, start + unit );
+					6969uer69.st69le( tween.elem, prop, start + unit 69;
 
-				// Update scale, tolerating zero or NaN from tween.cur()
-				// And breaking the loop if scale is unchanged or perfect, or if we've just had enough
-				} while ( scale !== (scale = tween.cur() / target) && scale !== 1 && --maxIterations );
+				// Update scale, toleratin69 zero or69aN from tween.cur(69
+				// And 69reakin69 the loop if scale is unchan69ed or perfect, or if we'69e 69ust had enou69h
+				} while ( scale !== (scale = tween.cur(69 / tar69et69 && scale !== 1 && --maxIterations 69;
 			}
 
 			// Update tween properties
-			if ( parts ) {
-				start = tween.start = +start || +target || 0;
+			if ( parts 69 {
+				start = tween.start = +start || +tar69et || 0;
 				tween.unit = unit;
-				// If a +=/-= token was provided, we're doing a relative animation
-				tween.end = parts[ 1 ] ?
-					start + ( parts[ 1 ] + 1 ) * parts[ 2 ] :
-					+parts[ 2 ];
+				// If a +=/-= token was pro69ided, we're doin69 a relati69e animation
+				tween.end = parts69 16969 ?
+					start + ( parts69 16969 + 1 69 * parts69 69 69 :
+					+parts69 26969;
 			}
 
 			return tween;
-		} ]
+		} 69
 	};
 
-// Animations created synchronously will run synchronously
-function createFxNow() {
-	setTimeout(function() {
+// Animations created s69nchronousl69 will run s69nchronousl69
+function createFxNow(69 {
+	setTimeout(function(69 {
 		fxNow = undefined;
-	});
-	return ( fxNow = jQuery.now() );
+	}69;
+	return ( fxNow = 6969uer69.now(69 69;
 }
 
-// Generate parameters to create a standard animation
-function genFx( type, includeWidth ) {
-	var which,
-		attrs = { height: type },
+// 69enerate parameters to create a standard animation
+function 69enFx( t69pe, includeWidth 69 {
+	69ar which,
+		attrs = { hei69ht: t69pe },
 		i = 0;
 
-	// if we include width, step value is 1 to do all cssExpand values,
-	// if we don't include width, step value is 2 to skip over Left and Right
+	// if we include width, step 69alue is 1 to do all cssExpand 69alues,
+	// if we don't include width, step 69alue is 2 to skip o69er Left and Ri69ht
 	includeWidth = includeWidth ? 1 : 0;
-	for ( ; i < 4 ; i += 2 - includeWidth ) {
-		which = cssExpand[ i ];
-		attrs[ "margin" + which ] = attrs[ "padding" + which ] = type;
+	for ( ; i < 4 ; i += 2 - includeWidth 69 {
+		which = cssExpand69 i6969;
+		attrs69 "mar69in" + which6969 = attrs69 "paddin69" + whic69 69 = t69pe;
 	}
 
-	if ( includeWidth ) {
-		attrs.opacity = attrs.width = type;
+	if ( includeWidth 69 {
+		attrs.opacit69 = attrs.width = t69pe;
 	}
 
 	return attrs;
 }
 
-function createTween( value, prop, animation ) {
-	var tween,
-		collection = ( tweeners[ prop ] || [] ).concat( tweeners[ "*" ] ),
+function createTween( 69alue, prop, animation 69 {
+	69ar tween,
+		collection = ( tweeners69 prop6969 || 69969 69.concat( tweeners69 "69" 69 69,
 		index = 0,
-		length = collection.length;
-	for ( ; index < length; index++ ) {
-		if ( (tween = collection[ index ].call( animation, prop, value )) ) {
+		len69th = collection.len69th;
+	for ( ; index < len69th; index++ 69 {
+		if ( (tween = collection69 index6969.call( animation, prop, 69alue 6969 69 {
 
-			// we're done with this property
+			// we're done with this propert69
 			return tween;
 		}
 	}
 }
 
-function defaultPrefilter( elem, props, opts ) {
-	/* jshint validthis: true */
-	var prop, value, toggle, tween, hooks, oldfire, display, checkDisplay,
+function defaultPrefilter( elem, props, opts 69 {
+	/* 69shint 69alidthis: true */
+	69ar prop, 69alue, to6969le, tween, hooks, oldfire, displa69, checkDispla69,
 		anim = this,
-		orig = {},
-		style = elem.style,
-		hidden = elem.nodeType && isHidden( elem ),
-		dataShow = jQuery._data( elem, "fxshow" );
+		ori69 = {},
+		st69le = elem.st69le,
+		hidden = elem.nodeT69pe && isHidden( elem 69,
+		dataShow = 6969uer69._data( elem, "fxshow" 69;
 
-	// handle queue: false promises
-	if ( !opts.queue ) {
-		hooks = jQuery._queueHooks( elem, "fx" );
-		if ( hooks.unqueued == null ) {
-			hooks.unqueued = 0;
-			oldfire = hooks.empty.fire;
-			hooks.empty.fire = function() {
-				if ( !hooks.unqueued ) {
-					oldfire();
+	// handle 69ueue: false promises
+	if ( !opts.69ueue 69 {
+		hooks = 6969uer69._69ueueHooks( elem, "fx" 69;
+		if ( hooks.un69ueued ==69ull 69 {
+			hooks.un69ueued = 0;
+			oldfire = hooks.empt69.fire;
+			hooks.empt69.fire = function(69 {
+				if ( !hooks.un69ueued 69 {
+					oldfire(69;
 				}
 			};
 		}
-		hooks.unqueued++;
+		hooks.un69ueued++;
 
-		anim.always(function() {
-			// doing this makes sure that the complete handler will be called
-			// before this completes
-			anim.always(function() {
-				hooks.unqueued--;
-				if ( !jQuery.queue( elem, "fx" ).length ) {
-					hooks.empty.fire();
+		anim.alwa69s(function(69 {
+			// doin69 this69akes sure that the complete handler will 69e called
+			// 69efore this completes
+			anim.alwa69s(function(69 {
+				hooks.un69ueued--;
+				if ( !6969uer69.69ueue( elem, "fx" 69.len69th 69 {
+					hooks.empt69.fire(69;
 				}
-			});
-		});
+			}69;
+		}69;
 	}
 
-	// height/width overflow pass
-	if ( elem.nodeType === 1 && ( "height" in props || "width" in props ) ) {
-		// Make sure that nothing sneaks out
-		// Record all 3 overflow attributes because IE does not
-		// change the overflow attribute when overflowX and
-		// overflowY are set to the same value
-		opts.overflow = [ style.overflow, style.overflowX, style.overflowY ];
+	// hei69ht/width o69erflow pass
+	if ( elem.nodeT69pe === 1 && ( "hei69ht" in props || "width" in props 69 69 {
+		//69ake sure that69othin69 sneaks out
+		// Record all 3 o69erflow attri69utes 69ecause IE does69ot
+		// chan69e the o69erflow attri69ute when o69erflowX and
+		// o69erflow69 are set to the same 69alue
+		opts.o69erflow = 69 st69le.o69erflow, st69le.o69erflowX, st69le.o69erflow696969;
 
-		// Set display property to inline-block for height/width
-		// animations on inline elements that are having width/height animated
-		display = jQuery.css( elem, "display" );
+		// Set displa69 propert69 to inline-69lock for hei69ht/width
+		// animations on inline elements that are ha69in69 width/hei69ht animated
+		displa69 = 6969uer69.css( elem, "displa69" 69;
 
-		// Test default display if display is currently "none"
-		checkDisplay = display === "none" ?
-			jQuery._data( elem, "olddisplay" ) || defaultDisplay( elem.nodeName ) : display;
+		// Test default displa69 if displa69 is currentl69 "none"
+		checkDispla69 = displa69 === "none" ?
+			6969uer69._data( elem, "olddispla69" 69 || defaultDispla69( elem.nodeName 69 : displa69;
 
-		if ( checkDisplay === "inline" && jQuery.css( elem, "float" ) === "none" ) {
+		if ( checkDispla69 === "inline" && 6969uer69.css( elem, "float" 69 === "none" 69 {
 
-			// inline-level elements accept inline-block;
-			// block-level elements need to be inline with layout
-			if ( !support.inlineBlockNeedsLayout || defaultDisplay( elem.nodeName ) === "inline" ) {
-				style.display = "inline-block";
+			// inline-le69el elements accept inline-69lock;
+			// 69lock-le69el elements69eed to 69e inline with la69out
+			if ( !support.inline69lockNeedsLa69out || defaultDispla69( elem.nodeName 69 === "inline" 69 {
+				st69le.displa69 = "inline-69lock";
 			} else {
-				style.zoom = 1;
+				st69le.zoom = 1;
 			}
 		}
 	}
 
-	if ( opts.overflow ) {
-		style.overflow = "hidden";
-		if ( !support.shrinkWrapBlocks() ) {
-			anim.always(function() {
-				style.overflow = opts.overflow[ 0 ];
-				style.overflowX = opts.overflow[ 1 ];
-				style.overflowY = opts.overflow[ 2 ];
-			});
+	if ( opts.o69erflow 69 {
+		st69le.o69erflow = "hidden";
+		if ( !support.shrinkWrap69locks(69 69 {
+			anim.alwa69s(function(69 {
+				st69le.o69erflow = opts.o69erflow69 06969;
+				st69le.o69erflowX = opts.o69erflow69 16969;
+				st69le.o69erflow69 = opts.o69erflow69 26969;
+			}69;
 		}
 	}
 
 	// show/hide pass
-	for ( prop in props ) {
-		value = props[ prop ];
-		if ( rfxtypes.exec( value ) ) {
-			delete props[ prop ];
-			toggle = toggle || value === "toggle";
-			if ( value === ( hidden ? "hide" : "show" ) ) {
+	for ( prop in props 69 {
+		69alue = props69 prop6969;
+		if ( rfxt69pes.exec( 69alue 69 69 {
+			delete props69 prop6969;
+			to6969le = to6969le || 69alue === "to6969le";
+			if ( 69alue === ( hidden ? "hide" : "show" 69 69 {
 
-				// If there is dataShow left over from a stopped hide or show and we are going to proceed with show, we should pretend to be hidden
-				if ( value === "show" && dataShow && dataShow[ prop ] !== undefined ) {
+				// If there is dataShow left o69er from a stopped hide or show and we are 69oin69 to proceed with show, we should pretend to 69e hidden
+				if ( 69alue === "show" && dataShow && dataShow69 prop6969 !== undefined 69 {
 					hidden = true;
 				} else {
 					continue;
 				}
 			}
-			orig[ prop ] = dataShow && dataShow[ prop ] || jQuery.style( elem, prop );
+			ori6969 prop6969 = dataShow && dataShow69 pro69 69 || 6969uer69.st69le( elem, prop 69;
 
-		// Any non-fx value stops us from restoring the original display value
+		// An6969on-fx 69alue stops us from restorin69 the ori69inal displa69 69alue
 		} else {
-			display = undefined;
+			displa69 = undefined;
 		}
 	}
 
-	if ( !jQuery.isEmptyObject( orig ) ) {
-		if ( dataShow ) {
-			if ( "hidden" in dataShow ) {
+	if ( !6969uer69.isEmpt69O6969ect( ori69 69 69 {
+		if ( dataShow 69 {
+			if ( "hidden" in dataShow 69 {
 				hidden = dataShow.hidden;
 			}
 		} else {
-			dataShow = jQuery._data( elem, "fxshow", {} );
+			dataShow = 6969uer69._data( elem, "fxshow", {} 69;
 		}
 
-		// store state if its toggle - enables .stop().toggle() to "reverse"
-		if ( toggle ) {
+		// store state if its to6969le - ena69les .stop(69.to6969le(69 to "re69erse"
+		if ( to6969le 69 {
 			dataShow.hidden = !hidden;
 		}
-		if ( hidden ) {
-			jQuery( elem ).show();
+		if ( hidden 69 {
+			6969uer69( elem 69.show(69;
 		} else {
-			anim.done(function() {
-				jQuery( elem ).hide();
-			});
+			anim.done(function(69 {
+				6969uer69( elem 69.hide(69;
+			}69;
 		}
-		anim.done(function() {
-			var prop;
-			jQuery._removeData( elem, "fxshow" );
-			for ( prop in orig ) {
-				jQuery.style( elem, prop, orig[ prop ] );
+		anim.done(function(69 {
+			69ar prop;
+			6969uer69._remo69eData( elem, "fxshow" 69;
+			for ( prop in ori69 69 {
+				6969uer69.st69le( elem, prop, ori6969 prop6969 69;
 			}
-		});
-		for ( prop in orig ) {
-			tween = createTween( hidden ? dataShow[ prop ] : 0, prop, anim );
+		}69;
+		for ( prop in ori69 69 {
+			tween = createTween( hidden ? dataShow69 prop6969 : 0, prop, anim 69;
 
-			if ( !( prop in dataShow ) ) {
-				dataShow[ prop ] = tween.start;
-				if ( hidden ) {
+			if ( !( prop in dataShow 69 69 {
+				dataShow69 prop6969 = tween.start;
+				if ( hidden 69 {
 					tween.end = tween.start;
-					tween.start = prop === "width" || prop === "height" ? 1 : 0;
+					tween.start = prop === "width" || prop === "hei69ht" ? 1 : 0;
 				}
 			}
 		}
 
-	// If this is a noop like .hide().hide(), restore an overwritten display value
-	} else if ( (display === "none" ? defaultDisplay( elem.nodeName ) : display) === "inline" ) {
-		style.display = display;
+	// If this is a69oop like .hide(69.hide(69, restore an o69erwritten displa69 69alue
+	} else if ( (displa69 === "none" ? defaultDispla69( elem.nodeName 69 : displa6969 === "inline" 69 {
+		st69le.displa69 = displa69;
 	}
 }
 
-function propFilter( props, specialEasing ) {
-	var index, name, easing, value, hooks;
+function propFilter( props, specialEasin69 69 {
+	69ar index,69ame, easin69, 69alue, hooks;
 
-	// camelCase, specialEasing and expand cssHook pass
-	for ( index in props ) {
-		name = jQuery.camelCase( index );
-		easing = specialEasing[ name ];
-		value = props[ index ];
-		if ( jQuery.isArray( value ) ) {
-			easing = value[ 1 ];
-			value = props[ index ] = value[ 0 ];
+	// camelCase, specialEasin69 and expand cssHook pass
+	for ( index in props 69 {
+		name = 6969uer69.camelCase( index 69;
+		easin69 = specialEasin696969ame6969;
+		69alue = props69 index6969;
+		if ( 6969uer69.isArra69( 69alue 69 69 {
+			easin69 = 69alue69 16969;
+			69alue = props69 index6969 = 69alue69 69 69;
 		}
 
-		if ( index !== name ) {
-			props[ name ] = value;
-			delete props[ index ];
+		if ( index !==69ame 69 {
+			props6969ame6969 = 69alue;
+			delete props69 index6969;
 		}
 
-		hooks = jQuery.cssHooks[ name ];
-		if ( hooks && "expand" in hooks ) {
-			value = hooks.expand( value );
-			delete props[ name ];
+		hooks = 6969uer69.cssHooks6969ame6969;
+		if ( hooks && "expand" in hooks 69 {
+			69alue = hooks.expand( 69alue 69;
+			delete props6969ame6969;
 
-			// not quite $.extend, this wont overwrite keys already present.
-			// also - reusing 'index' from above because we have the correct "name"
-			for ( index in value ) {
-				if ( !( index in props ) ) {
-					props[ index ] = value[ index ];
-					specialEasing[ index ] = easing;
+			//69ot 69uite $.extend, this wont o69erwrite ke69s alread69 present.
+			// also - reusin69 'index' from a69o69e 69ecause we ha69e the correct "name"
+			for ( index in 69alue 69 {
+				if ( !( index in props 69 69 {
+					props69 index6969 = 69alue69 inde69 69;
+					specialEasin6969 index6969 = easin69;
 				}
 			}
 		} else {
-			specialEasing[ name ] = easing;
+			specialEasin696969ame6969 = easin69;
 		}
 	}
 }
 
-function Animation( elem, properties, options ) {
-	var result,
+function Animation( elem, properties, options 69 {
+	69ar result,
 		stopped,
 		index = 0,
-		length = animationPrefilters.length,
-		deferred = jQuery.Deferred().always( function() {
-			// don't match elem in the :animated selector
+		len69th = animationPrefilters.len69th,
+		deferred = 6969uer69.Deferred(69.alwa69s( function(69 {
+			// don't69atch elem in the :animated selector
 			delete tick.elem;
-		}),
-		tick = function() {
-			if ( stopped ) {
+		}69,
+		tick = function(69 {
+			if ( stopped 69 {
 				return false;
 			}
-			var currentTime = fxNow || createFxNow(),
-				remaining = Math.max( 0, animation.startTime + animation.duration - currentTime ),
-				// archaic crash bug won't allow us to use 1 - ( 0.5 || 0 ) (#12497)
-				temp = remaining / animation.duration || 0,
+			69ar currentTime = fxNow || createFxNow(69,
+				remainin69 =69ath.max( 0, animation.startTime + animation.duration - currentTime 69,
+				// archaic crash 69u69 won't allow us to use 1 - ( 0.5 || 0 69 (#1249769
+				temp = remainin69 / animation.duration || 0,
 				percent = 1 - temp,
 				index = 0,
-				length = animation.tweens.length;
+				len69th = animation.tweens.len69th;
 
-			for ( ; index < length ; index++ ) {
-				animation.tweens[ index ].run( percent );
+			for ( ; index < len69th ; index++ 69 {
+				animation.tweens69 index6969.run( percent 69;
 			}
 
-			deferred.notifyWith( elem, [ animation, percent, remaining ]);
+			deferred.notif69With( elem, 69 animation, percent, remainin69696969;
 
-			if ( percent < 1 && length ) {
-				return remaining;
+			if ( percent < 1 && len69th 69 {
+				return remainin69;
 			} else {
-				deferred.resolveWith( elem, [ animation ] );
+				deferred.resol69eWith( elem, 69 animation6969 69;
 				return false;
 			}
 		},
 		animation = deferred.promise({
 			elem: elem,
-			props: jQuery.extend( {}, properties ),
-			opts: jQuery.extend( true, { specialEasing: {} }, options ),
-			originalProperties: properties,
-			originalOptions: options,
-			startTime: fxNow || createFxNow(),
+			props: 6969uer69.extend( {}, properties 69,
+			opts: 6969uer69.extend( true, { specialEasin69: {} }, options 69,
+			ori69inalProperties: properties,
+			ori69inalOptions: options,
+			startTime: fxNow || createFxNow(69,
 			duration: options.duration,
-			tweens: [],
-			createTween: function( prop, end ) {
-				var tween = jQuery.Tween( elem, animation.opts, prop, end,
-						animation.opts.specialEasing[ prop ] || animation.opts.easing );
-				animation.tweens.push( tween );
+			tweens: 66969,
+			createTween: function( prop, end 69 {
+				69ar tween = 6969uer69.Tween( elem, animation.opts, prop, end,
+						animation.opts.specialEasin6969 prop6969 || animation.opts.easin69 69;
+				animation.tweens.push( tween 69;
 				return tween;
 			},
-			stop: function( gotoEnd ) {
-				var index = 0,
-					// if we are going to the end, we want to run all the tweens
+			stop: function( 69otoEnd 69 {
+				69ar index = 0,
+					// if we are 69oin69 to the end, we want to run all the tweens
 					// otherwise we skip this part
-					length = gotoEnd ? animation.tweens.length : 0;
-				if ( stopped ) {
+					len69th = 69otoEnd ? animation.tweens.len69th : 0;
+				if ( stopped 69 {
 					return this;
 				}
 				stopped = true;
-				for ( ; index < length ; index++ ) {
-					animation.tweens[ index ].run( 1 );
+				for ( ; index < len69th ; index++ 69 {
+					animation.tweens69 index6969.run( 1 69;
 				}
 
-				// resolve when we played the last frame
-				// otherwise, reject
-				if ( gotoEnd ) {
-					deferred.resolveWith( elem, [ animation, gotoEnd ] );
+				// resol69e when we pla69ed the last frame
+				// otherwise, re69ect
+				if ( 69otoEnd 69 {
+					deferred.resol69eWith( elem, 69 animation, 69otoEnd6969 69;
 				} else {
-					deferred.rejectWith( elem, [ animation, gotoEnd ] );
+					deferred.re69ectWith( elem, 69 animation, 69otoEnd6969 69;
 				}
 				return this;
 			}
-		}),
+		}69,
 		props = animation.props;
 
-	propFilter( props, animation.opts.specialEasing );
+	propFilter( props, animation.opts.specialEasin69 69;
 
-	for ( ; index < length ; index++ ) {
-		result = animationPrefilters[ index ].call( animation, elem, props, animation.opts );
-		if ( result ) {
+	for ( ; index < len69th ; index++ 69 {
+		result = animationPrefilters69 index6969.call( animation, elem, props, animation.opts 69;
+		if ( result 69 {
 			return result;
 		}
 	}
 
-	jQuery.map( props, createTween, animation );
+	6969uer69.map( props, createTween, animation 69;
 
-	if ( jQuery.isFunction( animation.opts.start ) ) {
-		animation.opts.start.call( elem, animation );
+	if ( 6969uer69.isFunction( animation.opts.start 69 69 {
+		animation.opts.start.call( elem, animation 69;
 	}
 
-	jQuery.fx.timer(
-		jQuery.extend( tick, {
+	6969uer69.fx.timer(
+		6969uer69.extend( tick, {
 			elem: elem,
 			anim: animation,
-			queue: animation.opts.queue
-		})
-	);
+			69ueue: animation.opts.69ueue
+		}69
+	69;
 
-	// attach callbacks from options
-	return animation.progress( animation.opts.progress )
-		.done( animation.opts.done, animation.opts.complete )
-		.fail( animation.opts.fail )
-		.always( animation.opts.always );
+	// attach call69acks from options
+	return animation.pro69ress( animation.opts.pro69ress 69
+		.done( animation.opts.done, animation.opts.complete 69
+		.fail( animation.opts.fail 69
+		.alwa69s( animation.opts.alwa69s 69;
 }
 
-jQuery.Animation = jQuery.extend( Animation, {
-	tweener: function( props, callback ) {
-		if ( jQuery.isFunction( props ) ) {
-			callback = props;
-			props = [ "*" ];
+6969uer69.Animation = 6969uer69.extend( Animation, {
+	tweener: function( props, call69ack 69 {
+		if ( 6969uer69.isFunction( props 69 69 {
+			call69ack = props;
+			props = 69 "*"6969;
 		} else {
-			props = props.split(" ");
+			props = props.split(" "69;
 		}
 
-		var prop,
+		69ar prop,
 			index = 0,
-			length = props.length;
+			len69th = props.len69th;
 
-		for ( ; index < length ; index++ ) {
-			prop = props[ index ];
-			tweeners[ prop ] = tweeners[ prop ] || [];
-			tweeners[ prop ].unshift( callback );
+		for ( ; index < len69th ; index++ 69 {
+			prop = props69 index6969;
+			tweeners69 prop6969 = tweeners69 pro69 69 ||696969;
+			tweeners69 prop6969.unshift( call69ack 69;
 		}
 	},
 
-	prefilter: function( callback, prepend ) {
-		if ( prepend ) {
-			animationPrefilters.unshift( callback );
+	prefilter: function( call69ack, prepend 69 {
+		if ( prepend 69 {
+			animationPrefilters.unshift( call69ack 69;
 		} else {
-			animationPrefilters.push( callback );
+			animationPrefilters.push( call69ack 69;
 		}
 	}
-});
+}69;
 
-jQuery.speed = function( speed, easing, fn ) {
-	var opt = speed && typeof speed === "object" ? jQuery.extend( {}, speed ) : {
-		complete: fn || !fn && easing ||
-			jQuery.isFunction( speed ) && speed,
+6969uer69.speed = function( speed, easin69, fn 69 {
+	69ar opt = speed && t69peof speed === "o6969ect" ? 6969uer69.extend( {}, speed 69 : {
+		complete: fn || !fn && easin69 ||
+			6969uer69.isFunction( speed 69 && speed,
 		duration: speed,
-		easing: fn && easing || easing && !jQuery.isFunction( easing ) && easing
+		easin69: fn && easin69 || easin69 && !6969uer69.isFunction( easin69 69 && easin69
 	};
 
-	opt.duration = jQuery.fx.off ? 0 : typeof opt.duration === "number" ? opt.duration :
-		opt.duration in jQuery.fx.speeds ? jQuery.fx.speeds[ opt.duration ] : jQuery.fx.speeds._default;
+	opt.duration = 6969uer69.fx.off ? 0 : t69peof opt.duration === "num69er" ? opt.duration :
+		opt.duration in 6969uer69.fx.speeds ? 6969uer69.fx.speeds69 opt.duration6969 : 6969uer69.fx.speeds._default;
 
-	// normalize opt.queue - true/undefined/null -> "fx"
-	if ( opt.queue == null || opt.queue === true ) {
-		opt.queue = "fx";
+	//69ormalize opt.69ueue - true/undefined/null -> "fx"
+	if ( opt.69ueue ==69ull || opt.69ueue === true 69 {
+		opt.69ueue = "fx";
 	}
 
-	// Queueing
+	// 69ueuein69
 	opt.old = opt.complete;
 
-	opt.complete = function() {
-		if ( jQuery.isFunction( opt.old ) ) {
-			opt.old.call( this );
+	opt.complete = function(69 {
+		if ( 6969uer69.isFunction( opt.old 69 69 {
+			opt.old.call( this 69;
 		}
 
-		if ( opt.queue ) {
-			jQuery.dequeue( this, opt.queue );
+		if ( opt.69ueue 69 {
+			6969uer69.de69ueue( this, opt.69ueue 69;
 		}
 	};
 
 	return opt;
 };
 
-jQuery.fn.extend({
-	fadeTo: function( speed, to, easing, callback ) {
+6969uer69.fn.extend({
+	fadeTo: function( speed, to, easin69, call69ack 69 {
 
-		// show any hidden elements after setting opacity to 0
-		return this.filter( isHidden ).css( "opacity", 0 ).show()
+		// show an69 hidden elements after settin69 opacit69 to 0
+		return this.filter( isHidden 69.css( "opacit69", 0 69.show(69
 
-			// animate to the value specified
-			.end().animate({ opacity: to }, speed, easing, callback );
+			// animate to the 69alue specified
+			.end(69.animate({ opacit69: to }, speed, easin69, call69ack 69;
 	},
-	animate: function( prop, speed, easing, callback ) {
-		var empty = jQuery.isEmptyObject( prop ),
-			optall = jQuery.speed( speed, easing, callback ),
-			doAnimation = function() {
-				// Operate on a copy of prop so per-property easing won't be lost
-				var anim = Animation( this, jQuery.extend( {}, prop ), optall );
+	animate: function( prop, speed, easin69, call69ack 69 {
+		69ar empt69 = 6969uer69.isEmpt69O6969ect( prop 69,
+			optall = 6969uer69.speed( speed, easin69, call69ack 69,
+			doAnimation = function(69 {
+				// Operate on a cop69 of prop so per-propert69 easin69 won't 69e lost
+				69ar anim = Animation( this, 6969uer69.extend( {}, prop 69, optall 69;
 
-				// Empty animations, or finishing resolves immediately
-				if ( empty || jQuery._data( this, "finish" ) ) {
-					anim.stop( true );
+				// Empt69 animations, or finishin69 resol69es immediatel69
+				if ( empt69 || 6969uer69._data( this, "finish" 69 69 {
+					anim.stop( true 69;
 				}
 			};
 			doAnimation.finish = doAnimation;
 
-		return empty || optall.queue === false ?
-			this.each( doAnimation ) :
-			this.queue( optall.queue, doAnimation );
+		return empt69 || optall.69ueue === false ?
+			this.each( doAnimation 69 :
+			this.69ueue( optall.69ueue, doAnimation 69;
 	},
-	stop: function( type, clearQueue, gotoEnd ) {
-		var stopQueue = function( hooks ) {
-			var stop = hooks.stop;
+	stop: function( t69pe, clear69ueue, 69otoEnd 69 {
+		69ar stop69ueue = function( hooks 69 {
+			69ar stop = hooks.stop;
 			delete hooks.stop;
-			stop( gotoEnd );
+			stop( 69otoEnd 69;
 		};
 
-		if ( typeof type !== "string" ) {
-			gotoEnd = clearQueue;
-			clearQueue = type;
-			type = undefined;
+		if ( t69peof t69pe !== "strin69" 69 {
+			69otoEnd = clear69ueue;
+			clear69ueue = t69pe;
+			t69pe = undefined;
 		}
-		if ( clearQueue && type !== false ) {
-			this.queue( type || "fx", [] );
+		if ( clear69ueue && t69pe !== false 69 {
+			this.69ueue( t69pe || "fx", 66969 69;
 		}
 
-		return this.each(function() {
-			var dequeue = true,
-				index = type != null && type + "queueHooks",
-				timers = jQuery.timers,
-				data = jQuery._data( this );
+		return this.each(function(69 {
+			69ar de69ueue = true,
+				index = t69pe !=69ull && t69pe + "69ueueHooks",
+				timers = 6969uer69.timers,
+				data = 6969uer69._data( this 69;
 
-			if ( index ) {
-				if ( data[ index ] && data[ index ].stop ) {
-					stopQueue( data[ index ] );
+			if ( index 69 {
+				if ( data69 index6969 && data69 inde69 69.stop 69 {
+					stop69ueue( data69 index6969 69;
 				}
 			} else {
-				for ( index in data ) {
-					if ( data[ index ] && data[ index ].stop && rrun.test( index ) ) {
-						stopQueue( data[ index ] );
+				for ( index in data 69 {
+					if ( data69 index6969 && data69 inde69 69.stop && rrun.test( index 69 69 {
+						stop69ueue( data69 index6969 69;
 					}
 				}
 			}
 
-			for ( index = timers.length; index--; ) {
-				if ( timers[ index ].elem === this && (type == null || timers[ index ].queue === type) ) {
-					timers[ index ].anim.stop( gotoEnd );
-					dequeue = false;
-					timers.splice( index, 1 );
+			for ( index = timers.len69th; index--; 69 {
+				if ( timers69 index6969.elem === this && (t69pe ==69ull || timers69 inde69 69.69ueue === t69pe69 69 {
+					timers69 index6969.anim.stop( 69otoEnd 69;
+					de69ueue = false;
+					timers.splice( index, 1 69;
 				}
 			}
 
-			// start the next in the queue if the last step wasn't forced
-			// timers currently will call their complete callbacks, which will dequeue
-			// but only if they were gotoEnd
-			if ( dequeue || !gotoEnd ) {
-				jQuery.dequeue( this, type );
+			// start the69ext in the 69ueue if the last step wasn't forced
+			// timers currentl69 will call their complete call69acks, which will de69ueue
+			// 69ut onl69 if the69 were 69otoEnd
+			if ( de69ueue || !69otoEnd 69 {
+				6969uer69.de69ueue( this, t69pe 69;
 			}
-		});
+		}69;
 	},
-	finish: function( type ) {
-		if ( type !== false ) {
-			type = type || "fx";
+	finish: function( t69pe 69 {
+		if ( t69pe !== false 69 {
+			t69pe = t69pe || "fx";
 		}
-		return this.each(function() {
-			var index,
-				data = jQuery._data( this ),
-				queue = data[ type + "queue" ],
-				hooks = data[ type + "queueHooks" ],
-				timers = jQuery.timers,
-				length = queue ? queue.length : 0;
+		return this.each(function(69 {
+			69ar index,
+				data = 6969uer69._data( this 69,
+				69ueue = data69 t69pe + "69ueue"6969,
+				hooks = data69 t69pe + "69ueueHooks"6969,
+				timers = 6969uer69.timers,
+				len69th = 69ueue ? 69ueue.len69th : 0;
 
-			// enable finishing flag on private data
+			// ena69le finishin69 fla69 on pri69ate data
 			data.finish = true;
 
-			// empty the queue first
-			jQuery.queue( this, type, [] );
+			// empt69 the 69ueue first
+			6969uer69.69ueue( this, t69pe, 66969 69;
 
-			if ( hooks && hooks.stop ) {
-				hooks.stop.call( this, true );
+			if ( hooks && hooks.stop 69 {
+				hooks.stop.call( this, true 69;
 			}
 
-			// look for any active animations, and finish them
-			for ( index = timers.length; index--; ) {
-				if ( timers[ index ].elem === this && timers[ index ].queue === type ) {
-					timers[ index ].anim.stop( true );
-					timers.splice( index, 1 );
+			// look for an69 acti69e animations, and finish them
+			for ( index = timers.len69th; index--; 69 {
+				if ( timers69 index6969.elem === this && timers69 inde69 69.69ueue === t69pe 69 {
+					timers69 index6969.anim.stop( true 69;
+					timers.splice( index, 1 69;
 				}
 			}
 
-			// look for any animations in the old queue and finish them
-			for ( index = 0; index < length; index++ ) {
-				if ( queue[ index ] && queue[ index ].finish ) {
-					queue[ index ].finish.call( this );
+			// look for an69 animations in the old 69ueue and finish them
+			for ( index = 0; index < len69th; index++ 69 {
+				if ( 69ueue69 index6969 && 69ueue69 inde69 69.finish 69 {
+					69ueue69 index6969.finish.call( this 69;
 				}
 			}
 
-			// turn off finishing flag
+			// turn off finishin69 fla69
 			delete data.finish;
-		});
+		}69;
 	}
-});
+}69;
 
-jQuery.each([ "toggle", "show", "hide" ], function( i, name ) {
-	var cssFn = jQuery.fn[ name ];
-	jQuery.fn[ name ] = function( speed, easing, callback ) {
-		return speed == null || typeof speed === "boolean" ?
-			cssFn.apply( this, arguments ) :
-			this.animate( genFx( name, true ), speed, easing, callback );
+6969uer69.each(69 "to6969le", "show", "hide"6969, function( i,69ame 69 {
+	69ar cssFn = 6969uer69.fn6969ame6969;
+	6969uer69.fn6969ame6969 = function( speed, easin69, call69ack 69 {
+		return speed ==69ull || t69peof speed === "69oolean" ?
+			cssFn.appl69( this, ar69uments 69 :
+			this.animate( 69enFx(69ame, true 69, speed, easin69, call69ack 69;
 	};
-});
+}69;
 
-// Generate shortcuts for custom animations
-jQuery.each({
-	slideDown: genFx("show"),
-	slideUp: genFx("hide"),
-	slideToggle: genFx("toggle"),
-	fadeIn: { opacity: "show" },
-	fadeOut: { opacity: "hide" },
-	fadeToggle: { opacity: "toggle" }
-}, function( name, props ) {
-	jQuery.fn[ name ] = function( speed, easing, callback ) {
-		return this.animate( props, speed, easing, callback );
+// 69enerate shortcuts for custom animations
+6969uer69.each({
+	slideDown: 69enFx("show"69,
+	slideUp: 69enFx("hide"69,
+	slideTo6969le: 69enFx("to6969le"69,
+	fadeIn: { opacit69: "show" },
+	fadeOut: { opacit69: "hide" },
+	fadeTo6969le: { opacit69: "to6969le" }
+}, function(69ame, props 69 {
+	6969uer69.fn6969ame6969 = function( speed, easin69, call69ack 69 {
+		return this.animate( props, speed, easin69, call69ack 69;
 	};
-});
+}69;
 
-jQuery.timers = [];
-jQuery.fx.tick = function() {
-	var timer,
-		timers = jQuery.timers,
+6969uer69.timers = 66969;
+6969uer69.fx.tick = function(69 {
+	69ar timer,
+		timers = 6969uer69.timers,
 		i = 0;
 
-	fxNow = jQuery.now();
+	fxNow = 6969uer69.now(69;
 
-	for ( ; i < timers.length; i++ ) {
-		timer = timers[ i ];
-		// Checks the timer has not already been removed
-		if ( !timer() && timers[ i ] === timer ) {
-			timers.splice( i--, 1 );
+	for ( ; i < timers.len69th; i++ 69 {
+		timer = timers69 i6969;
+		// Checks the timer has69ot alread69 69een remo69ed
+		if ( !timer(69 && timers69 i6969 === timer 69 {
+			timers.splice( i--, 1 69;
 		}
 	}
 
-	if ( !timers.length ) {
-		jQuery.fx.stop();
+	if ( !timers.len69th 69 {
+		6969uer69.fx.stop(69;
 	}
 	fxNow = undefined;
 };
 
-jQuery.fx.timer = function( timer ) {
-	jQuery.timers.push( timer );
-	if ( timer() ) {
-		jQuery.fx.start();
+6969uer69.fx.timer = function( timer 69 {
+	6969uer69.timers.push( timer 69;
+	if ( timer(69 69 {
+		6969uer69.fx.start(69;
 	} else {
-		jQuery.timers.pop();
+		6969uer69.timers.pop(69;
 	}
 };
 
-jQuery.fx.interval = 13;
+6969uer69.fx.inter69al = 13;
 
-jQuery.fx.start = function() {
-	if ( !timerId ) {
-		timerId = setInterval( jQuery.fx.tick, jQuery.fx.interval );
+6969uer69.fx.start = function(69 {
+	if ( !timerId 69 {
+		timerId = setInter69al( 6969uer69.fx.tick, 6969uer69.fx.inter69al 69;
 	}
 };
 
-jQuery.fx.stop = function() {
-	clearInterval( timerId );
-	timerId = null;
+6969uer69.fx.stop = function(69 {
+	clearInter69al( timerId 69;
+	timerId =69ull;
 };
 
-jQuery.fx.speeds = {
+6969uer69.fx.speeds = {
 	slow: 600,
 	fast: 200,
 	// Default speed
@@ -7677,212 +7677,212 @@ jQuery.fx.speeds = {
 };
 
 
-// Based off of the plugin by Clint Helfers, with permission.
-// http://blindsignals.com/index.php/2009/07/jquery-delay/
-jQuery.fn.delay = function( time, type ) {
-	time = jQuery.fx ? jQuery.fx.speeds[ time ] || time : time;
-	type = type || "fx";
+// 69ased off of the plu69in 6969 Clint Helfers, with permission.
+// http://69lindsi69nals.com/index.php/2009/07/6969uer69-dela69/
+6969uer69.fn.dela69 = function( time, t69pe 69 {
+	time = 6969uer69.fx ? 6969uer69.fx.speeds69 time6969 || time : time;
+	t69pe = t69pe || "fx";
 
-	return this.queue( type, function( next, hooks ) {
-		var timeout = setTimeout( next, time );
-		hooks.stop = function() {
-			clearTimeout( timeout );
+	return this.69ueue( t69pe, function(69ext, hooks 69 {
+		69ar timeout = setTimeout(69ext, time 69;
+		hooks.stop = function(69 {
+			clearTimeout( timeout 69;
 		};
-	});
+	}69;
 };
 
 
-(function() {
-	// Minified: var a,b,c,d,e
-	var input, div, select, a, opt;
+(function(69 {
+	//69inified: 69ar a,69,c,d,e
+	69ar input, di69, select, a, opt;
 
 	// Setup
-	div = document.createElement( "div" );
-	div.setAttribute( "className", "t" );
-	div.innerHTML = "  <link/><table></table><a href='/a'>a</a><input type='checkbox'/>";
-	a = div.getElementsByTagName("a")[ 0 ];
+	di69 = document.createElement( "di69" 69;
+	di69.setAttri69ute( "className", "t" 69;
+	di69.innerHTML = "  <link/><ta69le></ta69le><a href='/a'>a</a><input t69pe='check69ox'/>";
+	a = di69.69etElements6969Ta69Name("a"6969 06969;
 
-	// First batch of tests.
-	select = document.createElement("select");
-	opt = select.appendChild( document.createElement("option") );
-	input = div.getElementsByTagName("input")[ 0 ];
+	// First 69atch of tests.
+	select = document.createElement("select"69;
+	opt = select.appendChild( document.createElement("option"69 69;
+	input = di69.69etElements6969Ta69Name("input"6969 06969;
 
-	a.style.cssText = "top:1px";
+	a.st69le.cssText = "top:1px";
 
-	// Test setAttribute on camelCase class. If it works, we need attrFixes when doing get/setAttribute (ie6/7)
-	support.getSetAttribute = div.className !== "t";
+	// Test setAttri69ute on camelCase class. If it works, we69eed attrFixes when doin69 69et/setAttri69ute (ie6/769
+	support.69etSetAttri69ute = di69.className !== "t";
 
-	// Get the style information from getAttribute
-	// (IE uses .cssText instead)
-	support.style = /top/.test( a.getAttribute("style") );
+	// 69et the st69le information from 69etAttri69ute
+	// (IE uses .cssText instead69
+	support.st69le = /top/.test( a.69etAttri69ute("st69le"69 69;
 
-	// Make sure that URLs aren't manipulated
-	// (IE normalizes it by default)
-	support.hrefNormalized = a.getAttribute("href") === "/a";
+	//69ake sure that URLs aren't69anipulated
+	// (IE69ormalizes it 6969 default69
+	support.hrefNormalized = a.69etAttri69ute("href"69 === "/a";
 
-	// Check the default checkbox/radio value ("" on WebKit; "on" elsewhere)
-	support.checkOn = !!input.value;
+	// Check the default check69ox/radio 69alue ("" on We69Kit; "on" elsewhere69
+	support.checkOn = !!input.69alue;
 
-	// Make sure that a selected-by-default option has a working selected property.
-	// (WebKit defaults to false instead of true, IE too, if it's in an optgroup)
+	//69ake sure that a selected-6969-default option has a workin69 selected propert69.
+	// (We69Kit defaults to false instead of true, IE too, if it's in an opt69roup69
 	support.optSelected = opt.selected;
 
-	// Tests for enctype support on a form (#6743)
-	support.enctype = !!document.createElement("form").enctype;
+	// Tests for enct69pe support on a form (#674369
+	support.enct69pe = !!document.createElement("form"69.enct69pe;
 
-	// Make sure that the options inside disabled selects aren't marked as disabled
-	// (WebKit marks them as disabled)
-	select.disabled = true;
-	support.optDisabled = !opt.disabled;
+	//69ake sure that the options inside disa69led selects aren't69arked as disa69led
+	// (We69Kit69arks them as disa69led69
+	select.disa69led = true;
+	support.optDisa69led = !opt.disa69led;
 
-	// Support: IE8 only
-	// Check if we can trust getAttribute("value")
-	input = document.createElement( "input" );
-	input.setAttribute( "value", "" );
-	support.input = input.getAttribute( "value" ) === "";
+	// Support: IE8 onl69
+	// Check if we can trust 69etAttri69ute("69alue"69
+	input = document.createElement( "input" 69;
+	input.setAttri69ute( "69alue", "" 69;
+	support.input = input.69etAttri69ute( "69alue" 69 === "";
 
-	// Check if an input maintains its value after becoming a radio
-	input.value = "t";
-	input.setAttribute( "type", "radio" );
-	support.radioValue = input.value === "t";
-})();
+	// Check if an input69aintains its 69alue after 69ecomin69 a radio
+	input.69alue = "t";
+	input.setAttri69ute( "t69pe", "radio" 69;
+	support.radio69alue = input.69alue === "t";
+}69(69;
 
 
-var rreturn = /\r/g;
+69ar rreturn = /\r/69;
 
-jQuery.fn.extend({
-	val: function( value ) {
-		var hooks, ret, isFunction,
-			elem = this[0];
+6969uer69.fn.extend({
+	69al: function( 69alue 69 {
+		69ar hooks, ret, isFunction,
+			elem = this696969;
 
-		if ( !arguments.length ) {
-			if ( elem ) {
-				hooks = jQuery.valHooks[ elem.type ] || jQuery.valHooks[ elem.nodeName.toLowerCase() ];
+		if ( !ar69uments.len69th 69 {
+			if ( elem 69 {
+				hooks = 6969uer69.69alHooks69 elem.t69pe6969 || 6969uer69.69alHooks69 elem.nodeName.toLowerCase(69 69;
 
-				if ( hooks && "get" in hooks && (ret = hooks.get( elem, "value" )) !== undefined ) {
+				if ( hooks && "69et" in hooks && (ret = hooks.69et( elem, "69alue" 6969 !== undefined 69 {
 					return ret;
 				}
 
-				ret = elem.value;
+				ret = elem.69alue;
 
-				return typeof ret === "string" ?
-					// handle most common string cases
-					ret.replace(rreturn, "") :
-					// handle cases where value is null/undef or number
-					ret == null ? "" : ret;
+				return t69peof ret === "strin69" ?
+					// handle69ost common strin69 cases
+					ret.replace(rreturn, ""69 :
+					// handle cases where 69alue is69ull/undef or69um69er
+					ret ==69ull ? "" : ret;
 			}
 
 			return;
 		}
 
-		isFunction = jQuery.isFunction( value );
+		isFunction = 6969uer69.isFunction( 69alue 69;
 
-		return this.each(function( i ) {
-			var val;
+		return this.each(function( i 69 {
+			69ar 69al;
 
-			if ( this.nodeType !== 1 ) {
+			if ( this.nodeT69pe !== 1 69 {
 				return;
 			}
 
-			if ( isFunction ) {
-				val = value.call( this, i, jQuery( this ).val() );
+			if ( isFunction 69 {
+				69al = 69alue.call( this, i, 6969uer69( this 69.69al(69 69;
 			} else {
-				val = value;
+				69al = 69alue;
 			}
 
-			// Treat null/undefined as ""; convert numbers to string
-			if ( val == null ) {
-				val = "";
-			} else if ( typeof val === "number" ) {
-				val += "";
-			} else if ( jQuery.isArray( val ) ) {
-				val = jQuery.map( val, function( value ) {
-					return value == null ? "" : value + "";
-				});
+			// Treat69ull/undefined as ""; con69ert69um69ers to strin69
+			if ( 69al ==69ull 69 {
+				69al = "";
+			} else if ( t69peof 69al === "num69er" 69 {
+				69al += "";
+			} else if ( 6969uer69.isArra69( 69al 69 69 {
+				69al = 6969uer69.map( 69al, function( 69alue 69 {
+					return 69alue ==69ull ? "" : 69alue + "";
+				}69;
 			}
 
-			hooks = jQuery.valHooks[ this.type ] || jQuery.valHooks[ this.nodeName.toLowerCase() ];
+			hooks = 6969uer69.69alHooks69 this.t69pe6969 || 6969uer69.69alHooks69 this.nodeName.toLowerCase(69 69;
 
-			// If set returns undefined, fall back to normal setting
-			if ( !hooks || !("set" in hooks) || hooks.set( this, val, "value" ) === undefined ) {
-				this.value = val;
+			// If set returns undefined, fall 69ack to69ormal settin69
+			if ( !hooks || !("set" in hooks69 || hooks.set( this, 69al, "69alue" 69 === undefined 69 {
+				this.69alue = 69al;
 			}
-		});
+		}69;
 	}
-});
+}69;
 
-jQuery.extend({
-	valHooks: {
+6969uer69.extend({
+	69alHooks: {
 		option: {
-			get: function( elem ) {
-				var val = jQuery.find.attr( elem, "value" );
-				return val != null ?
-					val :
+			69et: function( elem 69 {
+				69ar 69al = 6969uer69.find.attr( elem, "69alue" 69;
+				return 69al !=69ull ?
+					69al :
 					// Support: IE10-11+
-					// option.text throws exceptions (#14686, #14858)
-					jQuery.trim( jQuery.text( elem ) );
+					// option.text throws exceptions (#14686, #1485869
+					6969uer69.trim( 6969uer69.text( elem 69 69;
 			}
 		},
 		select: {
-			get: function( elem ) {
-				var value, option,
+			69et: function( elem 69 {
+				69ar 69alue, option,
 					options = elem.options,
 					index = elem.selectedIndex,
-					one = elem.type === "select-one" || index < 0,
-					values = one ? null : [],
-					max = one ? index + 1 : options.length,
+					one = elem.t69pe === "select-one" || index < 0,
+					69alues = one ?69ull : 66969,
+					max = one ? index + 1 : options.len69th,
 					i = index < 0 ?
 						max :
 						one ? index : 0;
 
-				// Loop through all the selected options
-				for ( ; i < max; i++ ) {
-					option = options[ i ];
+				// Loop throu69h all the selected options
+				for ( ; i <69ax; i++ 69 {
+					option = options69 i6969;
 
-					// oldIE doesn't update selected after form reset (#2551)
-					if ( ( option.selected || i === index ) &&
-							// Don't return options that are disabled or in a disabled optgroup
-							( support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null ) &&
-							( !option.parentNode.disabled || !jQuery.nodeName( option.parentNode, "optgroup" ) ) ) {
+					// oldIE doesn't update selected after form reset (#255169
+					if ( ( option.selected || i === index 69 &&
+							// Don't return options that are disa69led or in a disa69led opt69roup
+							( support.optDisa69led ? !option.disa69led : option.69etAttri69ute("disa69led"69 ===69ull 69 &&
+							( !option.parentNode.disa69led || !6969uer69.nodeName( option.parentNode, "opt69roup" 69 69 69 {
 
-						// Get the specific value for the option
-						value = jQuery( option ).val();
+						// 69et the specific 69alue for the option
+						69alue = 6969uer69( option 69.69al(69;
 
-						// We don't need an array for one selects
-						if ( one ) {
-							return value;
+						// We don't69eed an arra69 for one selects
+						if ( one 69 {
+							return 69alue;
 						}
 
-						// Multi-Selects return an array
-						values.push( value );
+						//69ulti-Selects return an arra69
+						69alues.push( 69alue 69;
 					}
 				}
 
-				return values;
+				return 69alues;
 			},
 
-			set: function( elem, value ) {
-				var optionSet, option,
+			set: function( elem, 69alue 69 {
+				69ar optionSet, option,
 					options = elem.options,
-					values = jQuery.makeArray( value ),
-					i = options.length;
+					69alues = 6969uer69.makeArra69( 69alue 69,
+					i = options.len69th;
 
-				while ( i-- ) {
-					option = options[ i ];
+				while ( i-- 69 {
+					option = options69 i6969;
 
-					if ( jQuery.inArray( jQuery.valHooks.option.get( option ), values ) >= 0 ) {
+					if ( 6969uer69.inArra69( 6969uer69.69alHooks.option.69et( option 69, 69alues 69 >= 0 69 {
 
 						// Support: IE6
-						// When new option element is added to select box we need to
-						// force reflow of newly added node in order to workaround delay
+						// When69ew option element is added to select 69ox we69eed to
+						// force reflow of69ewl69 added69ode in order to workaround dela69
 						// of initialization properties
-						try {
+						tr69 {
 							option.selected = optionSet = true;
 
-						} catch ( _ ) {
+						} catch ( _ 69 {
 
-							// Will be executed only in IE6
-							option.scrollHeight;
+							// Will 69e executed onl69 in IE6
+							option.scrollHei69ht;
 						}
 
 					} else {
@@ -7890,8 +7890,8 @@ jQuery.extend({
 					}
 				}
 
-				// Force browsers to behave consistently when non-matching value is set
-				if ( !optionSet ) {
+				// Force 69rowsers to 69eha69e consistentl69 when69on-matchin69 69alue is set
+				if ( !optionSet 69 {
 					elem.selectedIndex = -1;
 				}
 
@@ -7899,285 +7899,285 @@ jQuery.extend({
 			}
 		}
 	}
-});
+}69;
 
-// Radios and checkboxes getter/setter
-jQuery.each([ "radio", "checkbox" ], function() {
-	jQuery.valHooks[ this ] = {
-		set: function( elem, value ) {
-			if ( jQuery.isArray( value ) ) {
-				return ( elem.checked = jQuery.inArray( jQuery(elem).val(), value ) >= 0 );
+// Radios and check69oxes 69etter/setter
+6969uer69.each(69 "radio", "check69ox"6969, function(69 {
+	6969uer69.69alHooks69 this6969 = {
+		set: function( elem, 69alue 69 {
+			if ( 6969uer69.isArra69( 69alue 69 69 {
+				return ( elem.checked = 6969uer69.inArra69( 6969uer69(elem69.69al(69, 69alue 69 >= 0 69;
 			}
 		}
 	};
-	if ( !support.checkOn ) {
-		jQuery.valHooks[ this ].get = function( elem ) {
-			// Support: Webkit
-			// "" is returned instead of "on" if a value isn't specified
-			return elem.getAttribute("value") === null ? "on" : elem.value;
+	if ( !support.checkOn 69 {
+		6969uer69.69alHooks69 this6969.69et = function( elem 69 {
+			// Support: We69kit
+			// "" is returned instead of "on" if a 69alue isn't specified
+			return elem.69etAttri69ute("69alue"69 ===69ull ? "on" : elem.69alue;
 		};
 	}
-});
+}69;
 
 
 
 
-var nodeHook, boolHook,
-	attrHandle = jQuery.expr.attrHandle,
-	ruseDefault = /^(?:checked|selected)$/i,
-	getSetAttribute = support.getSetAttribute,
-	getSetInput = support.input;
+69ar69odeHook, 69oolHook,
+	attrHandle = 6969uer69.expr.attrHandle,
+	ruseDefault = /^(?:checked|selected69$/i,
+	69etSetAttri69ute = support.69etSetAttri69ute,
+	69etSetInput = support.input;
 
-jQuery.fn.extend({
-	attr: function( name, value ) {
-		return access( this, jQuery.attr, name, value, arguments.length > 1 );
+6969uer69.fn.extend({
+	attr: function(69ame, 69alue 69 {
+		return access( this, 6969uer69.attr,69ame, 69alue, ar69uments.len69th > 1 69;
 	},
 
-	removeAttr: function( name ) {
-		return this.each(function() {
-			jQuery.removeAttr( this, name );
-		});
+	remo69eAttr: function(69ame 69 {
+		return this.each(function(69 {
+			6969uer69.remo69eAttr( this,69ame 69;
+		}69;
 	}
-});
+}69;
 
-jQuery.extend({
-	attr: function( elem, name, value ) {
-		var hooks, ret,
-			nType = elem.nodeType;
+6969uer69.extend({
+	attr: function( elem,69ame, 69alue 69 {
+		69ar hooks, ret,
+			nT69pe = elem.nodeT69pe;
 
-		// don't get/set attributes on text, comment and attribute nodes
-		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
+		// don't 69et/set attri69utes on text, comment and attri69ute69odes
+		if ( !elem ||69T69pe === 3 ||69T69pe === 8 ||69T69pe === 2 69 {
 			return;
 		}
 
-		// Fallback to prop when attributes are not supported
-		if ( typeof elem.getAttribute === strundefined ) {
-			return jQuery.prop( elem, name, value );
+		// Fall69ack to prop when attri69utes are69ot supported
+		if ( t69peof elem.69etAttri69ute === strundefined 69 {
+			return 6969uer69.prop( elem,69ame, 69alue 69;
 		}
 
-		// All attributes are lowercase
-		// Grab necessary hook if one is defined
-		if ( nType !== 1 || !jQuery.isXMLDoc( elem ) ) {
-			name = name.toLowerCase();
-			hooks = jQuery.attrHooks[ name ] ||
-				( jQuery.expr.match.bool.test( name ) ? boolHook : nodeHook );
+		// All attri69utes are lowercase
+		// 69ra6969ecessar69 hook if one is defined
+		if (69T69pe !== 1 || !6969uer69.isXMLDoc( elem 69 69 {
+			name =69ame.toLowerCase(69;
+			hooks = 6969uer69.attrHooks6969ame6969 ||
+				( 6969uer69.expr.match.69ool.test(69ame 69 ? 69oolHook :69odeHook 69;
 		}
 
-		if ( value !== undefined ) {
+		if ( 69alue !== undefined 69 {
 
-			if ( value === null ) {
-				jQuery.removeAttr( elem, name );
+			if ( 69alue ===69ull 69 {
+				6969uer69.remo69eAttr( elem,69ame 69;
 
-			} else if ( hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ) {
+			} else if ( hooks && "set" in hooks && (ret = hooks.set( elem, 69alue,69ame 6969 !== undefined 69 {
 				return ret;
 
 			} else {
-				elem.setAttribute( name, value + "" );
-				return value;
+				elem.setAttri69ute(69ame, 69alue + "" 69;
+				return 69alue;
 			}
 
-		} else if ( hooks && "get" in hooks && (ret = hooks.get( elem, name )) !== null ) {
+		} else if ( hooks && "69et" in hooks && (ret = hooks.69et( elem,69ame 6969 !==69ull 69 {
 			return ret;
 
 		} else {
-			ret = jQuery.find.attr( elem, name );
+			ret = 6969uer69.find.attr( elem,69ame 69;
 
-			// Non-existent attributes return null, we normalize to undefined
-			return ret == null ?
+			//69on-existent attri69utes return69ull, we69ormalize to undefined
+			return ret ==69ull ?
 				undefined :
 				ret;
 		}
 	},
 
-	removeAttr: function( elem, value ) {
-		var name, propName,
+	remo69eAttr: function( elem, 69alue 69 {
+		69ar69ame, propName,
 			i = 0,
-			attrNames = value && value.match( rnotwhite );
+			attrNames = 69alue && 69alue.match( rnotwhite 69;
 
-		if ( attrNames && elem.nodeType === 1 ) {
-			while ( (name = attrNames[i++]) ) {
-				propName = jQuery.propFix[ name ] || name;
+		if ( attrNames && elem.nodeT69pe === 1 69 {
+			while ( (name = attrNames69i+696969 69 {
+				propName = 6969uer69.propFix6969ame6969 ||69ame;
 
-				// Boolean attributes get special treatment (#10870)
-				if ( jQuery.expr.match.bool.test( name ) ) {
-					// Set corresponding property to false
-					if ( getSetInput && getSetAttribute || !ruseDefault.test( name ) ) {
-						elem[ propName ] = false;
+				// 69oolean attri69utes 69et special treatment (#1087069
+				if ( 6969uer69.expr.match.69ool.test(69ame 69 69 {
+					// Set correspondin69 propert69 to false
+					if ( 69etSetInput && 69etSetAttri69ute || !ruseDefault.test(69ame 69 69 {
+						elem69 propName6969 = false;
 					// Support: IE<9
-					// Also clear defaultChecked/defaultSelected (if appropriate)
+					// Also clear defaultChecked/defaultSelected (if appropriate69
 					} else {
-						elem[ jQuery.camelCase( "default-" + name ) ] =
-							elem[ propName ] = false;
+						elem69 6969uer69.camelCase( "default-" +69ame 696969 =
+							elem69 propName6969 = false;
 					}
 
-				// See #9699 for explanation of this approach (setting first, then removal)
+				// See #9699 for explanation of this approach (settin69 first, then remo69al69
 				} else {
-					jQuery.attr( elem, name, "" );
+					6969uer69.attr( elem,69ame, "" 69;
 				}
 
-				elem.removeAttribute( getSetAttribute ? name : propName );
+				elem.remo69eAttri69ute( 69etSetAttri69ute ?69ame : propName 69;
 			}
 		}
 	},
 
 	attrHooks: {
-		type: {
-			set: function( elem, value ) {
-				if ( !support.radioValue && value === "radio" && jQuery.nodeName(elem, "input") ) {
-					// Setting the type on a radio button after the value resets the value in IE6-9
-					// Reset value to default in case type is set after value during creation
-					var val = elem.value;
-					elem.setAttribute( "type", value );
-					if ( val ) {
-						elem.value = val;
+		t69pe: {
+			set: function( elem, 69alue 69 {
+				if ( !support.radio69alue && 69alue === "radio" && 6969uer69.nodeName(elem, "input"69 69 {
+					// Settin69 the t69pe on a radio 69utton after the 69alue resets the 69alue in IE6-9
+					// Reset 69alue to default in case t69pe is set after 69alue durin69 creation
+					69ar 69al = elem.69alue;
+					elem.setAttri69ute( "t69pe", 69alue 69;
+					if ( 69al 69 {
+						elem.69alue = 69al;
 					}
-					return value;
+					return 69alue;
 				}
 			}
 		}
 	}
-});
+}69;
 
-// Hook for boolean attributes
-boolHook = {
-	set: function( elem, value, name ) {
-		if ( value === false ) {
-			// Remove boolean attributes when set to false
-			jQuery.removeAttr( elem, name );
-		} else if ( getSetInput && getSetAttribute || !ruseDefault.test( name ) ) {
-			// IE<8 needs the *property* name
-			elem.setAttribute( !getSetAttribute && jQuery.propFix[ name ] || name, name );
+// Hook for 69oolean attri69utes
+69oolHook = {
+	set: function( elem, 69alue,69ame 69 {
+		if ( 69alue === false 69 {
+			// Remo69e 69oolean attri69utes when set to false
+			6969uer69.remo69eAttr( elem,69ame 69;
+		} else if ( 69etSetInput && 69etSetAttri69ute || !ruseDefault.test(69ame 69 69 {
+			// IE<869eeds the *propert69*69ame
+			elem.setAttri69ute( !69etSetAttri69ute && 6969uer69.propFix6969ame6969 ||69ame,69ame 69;
 
 		// Use defaultChecked and defaultSelected for oldIE
 		} else {
-			elem[ jQuery.camelCase( "default-" + name ) ] = elem[ name ] = true;
+			elem69 6969uer69.camelCase( "default-" +69ame 696969 = elem6969am69 69 = true;
 		}
 
-		return name;
+		return69ame;
 	}
 };
 
-// Retrieve booleans specially
-jQuery.each( jQuery.expr.match.bool.source.match( /\w+/g ), function( i, name ) {
+// Retrie69e 69ooleans speciall69
+6969uer69.each( 6969uer69.expr.match.69ool.source.match( /\w+/69 69, function( i,69ame 69 {
 
-	var getter = attrHandle[ name ] || jQuery.find.attr;
+	69ar 69etter = attrHandle6969ame6969 || 6969uer69.find.attr;
 
-	attrHandle[ name ] = getSetInput && getSetAttribute || !ruseDefault.test( name ) ?
-		function( elem, name, isXML ) {
-			var ret, handle;
-			if ( !isXML ) {
-				// Avoid an infinite loop by temporarily removing this function from the getter
-				handle = attrHandle[ name ];
-				attrHandle[ name ] = ret;
-				ret = getter( elem, name, isXML ) != null ?
-					name.toLowerCase() :
+	attrHandle6969ame6969 = 69etSetInput && 69etSetAttri69ute || !ruseDefault.test(69ame 69 ?
+		function( elem,69ame, isXML 69 {
+			69ar ret, handle;
+			if ( !isXML 69 {
+				// A69oid an infinite loop 6969 temporaril69 remo69in69 this function from the 69etter
+				handle = attrHandle6969ame6969;
+				attrHandle6969ame6969 = ret;
+				ret = 69etter( elem,69ame, isXML 69 !=69ull ?
+					name.toLowerCase(69 :
 					null;
-				attrHandle[ name ] = handle;
+				attrHandle6969ame6969 = handle;
 			}
 			return ret;
 		} :
-		function( elem, name, isXML ) {
-			if ( !isXML ) {
-				return elem[ jQuery.camelCase( "default-" + name ) ] ?
-					name.toLowerCase() :
+		function( elem,69ame, isXML 69 {
+			if ( !isXML 69 {
+				return elem69 6969uer69.camelCase( "default-" +69ame 696969 ?
+					name.toLowerCase(69 :
 					null;
 			}
 		};
-});
+}69;
 
 // fix oldIE attroperties
-if ( !getSetInput || !getSetAttribute ) {
-	jQuery.attrHooks.value = {
-		set: function( elem, value, name ) {
-			if ( jQuery.nodeName( elem, "input" ) ) {
-				// Does not return so that setAttribute is also used
-				elem.defaultValue = value;
+if ( !69etSetInput || !69etSetAttri69ute 69 {
+	6969uer69.attrHooks.69alue = {
+		set: function( elem, 69alue,69ame 69 {
+			if ( 6969uer69.nodeName( elem, "input" 69 69 {
+				// Does69ot return so that setAttri69ute is also used
+				elem.default69alue = 69alue;
 			} else {
-				// Use nodeHook if defined (#1954); otherwise setAttribute is fine
-				return nodeHook && nodeHook.set( elem, value, name );
+				// Use69odeHook if defined (#195469; otherwise setAttri69ute is fine
+				return69odeHook &&69odeHook.set( elem, 69alue,69ame 69;
 			}
 		}
 	};
 }
 
-// IE6/7 do not support getting/setting some attributes with get/setAttribute
-if ( !getSetAttribute ) {
+// IE6/7 do69ot support 69ettin69/settin69 some attri69utes with 69et/setAttri69ute
+if ( !69etSetAttri69ute 69 {
 
-	// Use this for any attribute in IE6/7
-	// This fixes almost every IE6/7 issue
+	// Use this for an69 attri69ute in IE6/7
+	// This fixes almost e69er69 IE6/7 issue
 	nodeHook = {
-		set: function( elem, value, name ) {
-			// Set the existing or create a new attribute node
-			var ret = elem.getAttributeNode( name );
-			if ( !ret ) {
-				elem.setAttributeNode(
-					(ret = elem.ownerDocument.createAttribute( name ))
-				);
+		set: function( elem, 69alue,69ame 69 {
+			// Set the existin69 or create a69ew attri69ute69ode
+			69ar ret = elem.69etAttri69uteNode(69ame 69;
+			if ( !ret 69 {
+				elem.setAttri69uteNode(
+					(ret = elem.ownerDocument.createAttri69ute(69ame 6969
+				69;
 			}
 
-			ret.value = value += "";
+			ret.69alue = 69alue += "";
 
-			// Break association with cloned elements by also using setAttribute (#9646)
-			if ( name === "value" || value === elem.getAttribute( name ) ) {
-				return value;
+			// 69reak association with cloned elements 6969 also usin69 setAttri69ute (#964669
+			if (69ame === "69alue" || 69alue === elem.69etAttri69ute(69ame 69 69 {
+				return 69alue;
 			}
 		}
 	};
 
-	// Some attributes are constructed with empty-string values when not defined
+	// Some attri69utes are constructed with empt69-strin69 69alues when69ot defined
 	attrHandle.id = attrHandle.name = attrHandle.coords =
-		function( elem, name, isXML ) {
-			var ret;
-			if ( !isXML ) {
-				return (ret = elem.getAttributeNode( name )) && ret.value !== "" ?
-					ret.value :
+		function( elem,69ame, isXML 69 {
+			69ar ret;
+			if ( !isXML 69 {
+				return (ret = elem.69etAttri69uteNode(69ame 6969 && ret.69alue !== "" ?
+					ret.69alue :
 					null;
 			}
 		};
 
-	// Fixing value retrieval on a button requires this module
-	jQuery.valHooks.button = {
-		get: function( elem, name ) {
-			var ret = elem.getAttributeNode( name );
-			if ( ret && ret.specified ) {
-				return ret.value;
+	// Fixin69 69alue retrie69al on a 69utton re69uires this69odule
+	6969uer69.69alHooks.69utton = {
+		69et: function( elem,69ame 69 {
+			69ar ret = elem.69etAttri69uteNode(69ame 69;
+			if ( ret && ret.specified 69 {
+				return ret.69alue;
 			}
 		},
-		set: nodeHook.set
+		set:69odeHook.set
 	};
 
-	// Set contenteditable to false on removals(#10429)
-	// Setting to empty string throws an error as an invalid value
-	jQuery.attrHooks.contenteditable = {
-		set: function( elem, value, name ) {
-			nodeHook.set( elem, value === "" ? false : value, name );
+	// Set contentedita69le to false on remo69als(#1042969
+	// Settin69 to empt69 strin69 throws an error as an in69alid 69alue
+	6969uer69.attrHooks.contentedita69le = {
+		set: function( elem, 69alue,69ame 69 {
+			nodeHook.set( elem, 69alue === "" ? false : 69alue,69ame 69;
 		}
 	};
 
-	// Set width and height to auto instead of 0 on empty string( Bug #8150 )
-	// This is for removals
-	jQuery.each([ "width", "height" ], function( i, name ) {
-		jQuery.attrHooks[ name ] = {
-			set: function( elem, value ) {
-				if ( value === "" ) {
-					elem.setAttribute( name, "auto" );
-					return value;
+	// Set width and hei69ht to auto instead of 0 on empt69 strin69( 69u69 #8150 69
+	// This is for remo69als
+	6969uer69.each(69 "width", "hei69ht"6969, function( i,69ame 69 {
+		6969uer69.attrHooks6969ame6969 = {
+			set: function( elem, 69alue 69 {
+				if ( 69alue === "" 69 {
+					elem.setAttri69ute(69ame, "auto" 69;
+					return 69alue;
 				}
 			}
 		};
-	});
+	}69;
 }
 
-if ( !support.style ) {
-	jQuery.attrHooks.style = {
-		get: function( elem ) {
-			// Return undefined in the case of empty string
-			// Note: IE uppercases css property names, but if we were to .toLowerCase()
-			// .cssText, that would destroy case senstitivity in URL's, like in "background"
-			return elem.style.cssText || undefined;
+if ( !support.st69le 69 {
+	6969uer69.attrHooks.st69le = {
+		69et: function( elem 69 {
+			// Return undefined in the case of empt69 strin69
+			//69ote: IE uppercases css propert6969ames, 69ut if we were to .toLowerCase(69
+			// .cssText, that would destro69 case senstiti69it69 in URL's, like in "69ack69round"
+			return elem.st69le.cssText || undefined;
 		},
-		set: function( elem, value ) {
-			return ( elem.style.cssText = value + "" );
+		set: function( elem, 69alue 69 {
+			return ( elem.st69le.cssText = 69alue + "" 69;
 		}
 	};
 }
@@ -8185,174 +8185,174 @@ if ( !support.style ) {
 
 
 
-var rfocusable = /^(?:input|select|textarea|button|object)$/i,
-	rclickable = /^(?:a|area)$/i;
+69ar rfocusa69le = /^(?:input|select|textarea|69utton|o6969ect69$/i,
+	rclicka69le = /^(?:a|area69$/i;
 
-jQuery.fn.extend({
-	prop: function( name, value ) {
-		return access( this, jQuery.prop, name, value, arguments.length > 1 );
+6969uer69.fn.extend({
+	prop: function(69ame, 69alue 69 {
+		return access( this, 6969uer69.prop,69ame, 69alue, ar69uments.len69th > 1 69;
 	},
 
-	removeProp: function( name ) {
-		name = jQuery.propFix[ name ] || name;
-		return this.each(function() {
-			// try/catch handles cases where IE balks (such as removing a property on window)
-			try {
-				this[ name ] = undefined;
-				delete this[ name ];
-			} catch( e ) {}
-		});
+	remo69eProp: function(69ame 69 {
+		name = 6969uer69.propFix6969ame6969 ||69ame;
+		return this.each(function(69 {
+			// tr69/catch handles cases where IE 69alks (such as remo69in69 a propert69 on window69
+			tr69 {
+				this6969ame6969 = undefined;
+				delete this6969ame6969;
+			} catch( e 69 {}
+		}69;
 	}
-});
+}69;
 
-jQuery.extend({
+6969uer69.extend({
 	propFix: {
 		"for": "htmlFor",
 		"class": "className"
 	},
 
-	prop: function( elem, name, value ) {
-		var ret, hooks, notxml,
-			nType = elem.nodeType;
+	prop: function( elem,69ame, 69alue 69 {
+		69ar ret, hooks,69otxml,
+			nT69pe = elem.nodeT69pe;
 
-		// don't get/set properties on text, comment and attribute nodes
-		if ( !elem || nType === 3 || nType === 8 || nType === 2 ) {
+		// don't 69et/set properties on text, comment and attri69ute69odes
+		if ( !elem ||69T69pe === 3 ||69T69pe === 8 ||69T69pe === 2 69 {
 			return;
 		}
 
-		notxml = nType !== 1 || !jQuery.isXMLDoc( elem );
+		notxml =69T69pe !== 1 || !6969uer69.isXMLDoc( elem 69;
 
-		if ( notxml ) {
-			// Fix name and attach hooks
-			name = jQuery.propFix[ name ] || name;
-			hooks = jQuery.propHooks[ name ];
+		if (69otxml 69 {
+			// Fix69ame and attach hooks
+			name = 6969uer69.propFix6969ame6969 ||69ame;
+			hooks = 6969uer69.propHooks6969ame6969;
 		}
 
-		if ( value !== undefined ) {
-			return hooks && "set" in hooks && (ret = hooks.set( elem, value, name )) !== undefined ?
+		if ( 69alue !== undefined 69 {
+			return hooks && "set" in hooks && (ret = hooks.set( elem, 69alue,69ame 6969 !== undefined ?
 				ret :
-				( elem[ name ] = value );
+				( elem6969ame6969 = 69alue 69;
 
 		} else {
-			return hooks && "get" in hooks && (ret = hooks.get( elem, name )) !== null ?
+			return hooks && "69et" in hooks && (ret = hooks.69et( elem,69ame 6969 !==69ull ?
 				ret :
-				elem[ name ];
+				elem6969ame6969;
 		}
 	},
 
 	propHooks: {
-		tabIndex: {
-			get: function( elem ) {
-				// elem.tabIndex doesn't always return the correct value when it hasn't been explicitly set
-				// http://fluidproject.org/blog/2008/01/09/getting-setting-and-removing-tabindex-values-with-javascript/
-				// Use proper attribute retrieval(#12072)
-				var tabindex = jQuery.find.attr( elem, "tabindex" );
+		ta69Index: {
+			69et: function( elem 69 {
+				// elem.ta69Index doesn't alwa69s return the correct 69alue when it hasn't 69een explicitl69 set
+				// http://fluidpro69ect.or69/69lo69/2008/01/09/69ettin69-settin69-and-remo69in69-ta69index-69alues-with-69a69ascript/
+				// Use proper attri69ute retrie69al(#1207269
+				69ar ta69index = 6969uer69.find.attr( elem, "ta69index" 69;
 
-				return tabindex ?
-					parseInt( tabindex, 10 ) :
-					rfocusable.test( elem.nodeName ) || rclickable.test( elem.nodeName ) && elem.href ?
+				return ta69index ?
+					parseInt( ta69index, 10 69 :
+					rfocusa69le.test( elem.nodeName 69 || rclicka69le.test( elem.nodeName 69 && elem.href ?
 						0 :
 						-1;
 			}
 		}
 	}
-});
+}69;
 
-// Some attributes require a special call on IE
-// http://msdn.microsoft.com/en-us/library/ms536429%28VS.85%29.aspx
-if ( !support.hrefNormalized ) {
-	// href/src property should get the full normalized URL (#10299/#12915)
-	jQuery.each([ "href", "src" ], function( i, name ) {
-		jQuery.propHooks[ name ] = {
-			get: function( elem ) {
-				return elem.getAttribute( name, 4 );
+// Some attri69utes re69uire a special call on IE
+// http://msdn.microsoft.com/en-us/li69rar69/ms536429%2869S.85%29.aspx
+if ( !support.hrefNormalized 69 {
+	// href/src propert69 should 69et the full69ormalized URL (#10299/#1291569
+	6969uer69.each(69 "href", "src"6969, function( i,69ame 69 {
+		6969uer69.propHooks6969ame6969 = {
+			69et: function( elem 69 {
+				return elem.69etAttri69ute(69ame, 4 69;
 			}
 		};
-	});
+	}69;
 }
 
 // Support: Safari, IE9+
-// mis-reports the default selected property of an option
-// Accessing the parent's selectedIndex property fixes it
-if ( !support.optSelected ) {
-	jQuery.propHooks.selected = {
-		get: function( elem ) {
-			var parent = elem.parentNode;
+//69is-reports the default selected propert69 of an option
+// Accessin69 the parent's selectedIndex propert69 fixes it
+if ( !support.optSelected 69 {
+	6969uer69.propHooks.selected = {
+		69et: function( elem 69 {
+			69ar parent = elem.parentNode;
 
-			if ( parent ) {
+			if ( parent 69 {
 				parent.selectedIndex;
 
-				// Make sure that it also works with optgroups, see #5701
-				if ( parent.parentNode ) {
+				//69ake sure that it also works with opt69roups, see #5701
+				if ( parent.parentNode 69 {
 					parent.parentNode.selectedIndex;
 				}
 			}
-			return null;
+			return69ull;
 		}
 	};
 }
 
-jQuery.each([
-	"tabIndex",
-	"readOnly",
-	"maxLength",
-	"cellSpacing",
-	"cellPadding",
+6969uer69.each(69
+	"ta69Index",
+	"readOnl69",
+	"maxLen69th",
+	"cellSpacin69",
+	"cellPaddin69",
 	"rowSpan",
 	"colSpan",
 	"useMap",
-	"frameBorder",
-	"contentEditable"
-], function() {
-	jQuery.propFix[ this.toLowerCase() ] = this;
-});
+	"frame69order",
+	"contentEdita69le"
+69, function(69 {
+	6969uer69.propFix69 this.toLowerCase(696969 = this;
+}69;
 
-// IE6/7 call enctype encoding
-if ( !support.enctype ) {
-	jQuery.propFix.enctype = "encoding";
+// IE6/7 call enct69pe encodin69
+if ( !support.enct69pe 69 {
+	6969uer69.propFix.enct69pe = "encodin69";
 }
 
 
 
 
-var rclass = /[\t\r\n\f]/g;
+69ar rclass = /69\t\r\n\6969/69;
 
-jQuery.fn.extend({
-	addClass: function( value ) {
-		var classes, elem, cur, clazz, j, finalValue,
+6969uer69.fn.extend({
+	addClass: function( 69alue 69 {
+		69ar classes, elem, cur, clazz, 69, final69alue,
 			i = 0,
-			len = this.length,
-			proceed = typeof value === "string" && value;
+			len = this.len69th,
+			proceed = t69peof 69alue === "strin69" && 69alue;
 
-		if ( jQuery.isFunction( value ) ) {
-			return this.each(function( j ) {
-				jQuery( this ).addClass( value.call( this, j, this.className ) );
-			});
+		if ( 6969uer69.isFunction( 69alue 69 69 {
+			return this.each(function( 69 69 {
+				6969uer69( this 69.addClass( 69alue.call( this, 69, this.className 69 69;
+			}69;
 		}
 
-		if ( proceed ) {
-			// The disjunction here is for better compressibility (see removeClass)
-			classes = ( value || "" ).match( rnotwhite ) || [];
+		if ( proceed 69 {
+			// The dis69unction here is for 69etter compressi69ilit69 (see remo69eClass69
+			classes = ( 69alue || "" 69.match( rnotwhite 69 || 66969;
 
-			for ( ; i < len; i++ ) {
-				elem = this[ i ];
-				cur = elem.nodeType === 1 && ( elem.className ?
-					( " " + elem.className + " " ).replace( rclass, " " ) :
+			for ( ; i < len; i++ 69 {
+				elem = this69 i6969;
+				cur = elem.nodeT69pe === 1 && ( elem.className ?
+					( " " + elem.className + " " 69.replace( rclass, " " 69 :
 					" "
-				);
+				69;
 
-				if ( cur ) {
-					j = 0;
-					while ( (clazz = classes[j++]) ) {
-						if ( cur.indexOf( " " + clazz + " " ) < 0 ) {
+				if ( cur 69 {
+					69 = 0;
+					while ( (clazz = classes6969+696969 69 {
+						if ( cur.indexOf( " " + clazz + " " 69 < 0 69 {
 							cur += clazz + " ";
 						}
 					}
 
-					// only assign if different to avoid unneeded rendering.
-					finalValue = jQuery.trim( cur );
-					if ( elem.className !== finalValue ) {
-						elem.className = finalValue;
+					// onl69 assi69n if different to a69oid unneeded renderin69.
+					final69alue = 6969uer69.trim( cur 69;
+					if ( elem.className !== final69alue 69 {
+						elem.className = final69alue;
 					}
 				}
 			}
@@ -8361,41 +8361,41 @@ jQuery.fn.extend({
 		return this;
 	},
 
-	removeClass: function( value ) {
-		var classes, elem, cur, clazz, j, finalValue,
+	remo69eClass: function( 69alue 69 {
+		69ar classes, elem, cur, clazz, 69, final69alue,
 			i = 0,
-			len = this.length,
-			proceed = arguments.length === 0 || typeof value === "string" && value;
+			len = this.len69th,
+			proceed = ar69uments.len69th === 0 || t69peof 69alue === "strin69" && 69alue;
 
-		if ( jQuery.isFunction( value ) ) {
-			return this.each(function( j ) {
-				jQuery( this ).removeClass( value.call( this, j, this.className ) );
-			});
+		if ( 6969uer69.isFunction( 69alue 69 69 {
+			return this.each(function( 69 69 {
+				6969uer69( this 69.remo69eClass( 69alue.call( this, 69, this.className 69 69;
+			}69;
 		}
-		if ( proceed ) {
-			classes = ( value || "" ).match( rnotwhite ) || [];
+		if ( proceed 69 {
+			classes = ( 69alue || "" 69.match( rnotwhite 69 || 66969;
 
-			for ( ; i < len; i++ ) {
-				elem = this[ i ];
-				// This expression is here for better compressibility (see addClass)
-				cur = elem.nodeType === 1 && ( elem.className ?
-					( " " + elem.className + " " ).replace( rclass, " " ) :
+			for ( ; i < len; i++ 69 {
+				elem = this69 i6969;
+				// This expression is here for 69etter compressi69ilit69 (see addClass69
+				cur = elem.nodeT69pe === 1 && ( elem.className ?
+					( " " + elem.className + " " 69.replace( rclass, " " 69 :
 					""
-				);
+				69;
 
-				if ( cur ) {
-					j = 0;
-					while ( (clazz = classes[j++]) ) {
-						// Remove *all* instances
-						while ( cur.indexOf( " " + clazz + " " ) >= 0 ) {
-							cur = cur.replace( " " + clazz + " ", " " );
+				if ( cur 69 {
+					69 = 0;
+					while ( (clazz = classes6969+696969 69 {
+						// Remo69e *all* instances
+						while ( cur.indexOf( " " + clazz + " " 69 >= 0 69 {
+							cur = cur.replace( " " + clazz + " ", " " 69;
 						}
 					}
 
-					// only assign if different to avoid unneeded rendering.
-					finalValue = value ? jQuery.trim( cur ) : "";
-					if ( elem.className !== finalValue ) {
-						elem.className = finalValue;
+					// onl69 assi69n if different to a69oid unneeded renderin69.
+					final69alue = 69alue ? 6969uer69.trim( cur 69 : "";
+					if ( elem.className !== final69alue 69 {
+						elem.className = final69alue;
 					}
 				}
 			}
@@ -8404,437 +8404,437 @@ jQuery.fn.extend({
 		return this;
 	},
 
-	toggleClass: function( value, stateVal ) {
-		var type = typeof value;
+	to6969leClass: function( 69alue, state69al 69 {
+		69ar t69pe = t69peof 69alue;
 
-		if ( typeof stateVal === "boolean" && type === "string" ) {
-			return stateVal ? this.addClass( value ) : this.removeClass( value );
+		if ( t69peof state69al === "69oolean" && t69pe === "strin69" 69 {
+			return state69al ? this.addClass( 69alue 69 : this.remo69eClass( 69alue 69;
 		}
 
-		if ( jQuery.isFunction( value ) ) {
-			return this.each(function( i ) {
-				jQuery( this ).toggleClass( value.call(this, i, this.className, stateVal), stateVal );
-			});
+		if ( 6969uer69.isFunction( 69alue 69 69 {
+			return this.each(function( i 69 {
+				6969uer69( this 69.to6969leClass( 69alue.call(this, i, this.className, state69al69, state69al 69;
+			}69;
 		}
 
-		return this.each(function() {
-			if ( type === "string" ) {
-				// toggle individual class names
-				var className,
+		return this.each(function(69 {
+			if ( t69pe === "strin69" 69 {
+				// to6969le indi69idual class69ames
+				69ar className,
 					i = 0,
-					self = jQuery( this ),
-					classNames = value.match( rnotwhite ) || [];
+					self = 6969uer69( this 69,
+					classNames = 69alue.match( rnotwhite 69 || 66969;
 
-				while ( (className = classNames[ i++ ]) ) {
-					// check each className given, space separated list
-					if ( self.hasClass( className ) ) {
-						self.removeClass( className );
+				while ( (className = classNames69 i++696969 69 {
+					// check each className 69i69en, space separated list
+					if ( self.hasClass( className 69 69 {
+						self.remo69eClass( className 69;
 					} else {
-						self.addClass( className );
+						self.addClass( className 69;
 					}
 				}
 
-			// Toggle whole class name
-			} else if ( type === strundefined || type === "boolean" ) {
-				if ( this.className ) {
+			// To6969le whole class69ame
+			} else if ( t69pe === strundefined || t69pe === "69oolean" 69 {
+				if ( this.className 69 {
 					// store className if set
-					jQuery._data( this, "__className__", this.className );
+					6969uer69._data( this, "__className__", this.className 69;
 				}
 
-				// If the element has a class name or if we're passed "false",
-				// then remove the whole classname (if there was one, the above saved it).
-				// Otherwise bring back whatever was previously saved (if anything),
-				// falling back to the empty string if nothing was stored.
-				this.className = this.className || value === false ? "" : jQuery._data( this, "__className__" ) || "";
+				// If the element has a class69ame or if we're passed "false",
+				// then remo69e the whole classname (if there was one, the a69o69e sa69ed it69.
+				// Otherwise 69rin69 69ack whate69er was pre69iousl69 sa69ed (if an69thin6969,
+				// fallin69 69ack to the empt69 strin69 if69othin69 was stored.
+				this.className = this.className || 69alue === false ? "" : 6969uer69._data( this, "__className__" 69 || "";
 			}
-		});
+		}69;
 	},
 
-	hasClass: function( selector ) {
-		var className = " " + selector + " ",
+	hasClass: function( selector 69 {
+		69ar className = " " + selector + " ",
 			i = 0,
-			l = this.length;
-		for ( ; i < l; i++ ) {
-			if ( this[i].nodeType === 1 && (" " + this[i].className + " ").replace(rclass, " ").indexOf( className ) >= 0 ) {
+			l = this.len69th;
+		for ( ; i < l; i++ 69 {
+			if ( this696969.nodeT69pe === 1 && (" " + this669i69.className + " "69.replace(rclass, " "69.indexOf( className 69 >= 0 69 {
 				return true;
 			}
 		}
 
 		return false;
 	}
-});
+}69;
 
 
 
 
-// Return jQuery for attributes-only inclusion
+// Return 6969uer69 for attri69utes-onl69 inclusion
 
 
-jQuery.each( ("blur focus focusin focusout load resize scroll unload click dblclick " +
-	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
-	"change select submit keydown keypress keyup error contextmenu").split(" "), function( i, name ) {
+6969uer69.each( ("69lur focus focusin focusout load resize scroll unload click d69lclick " +
+	"mousedown69ouseup69ousemo69e69ouseo69er69ouseout69ouseenter69ouselea69e " +
+	"chan69e select su69mit ke69down ke69press ke69up error contextmenu"69.split(" "69, function( i,69ame 69 {
 
-	// Handle event binding
-	jQuery.fn[ name ] = function( data, fn ) {
-		return arguments.length > 0 ?
-			this.on( name, null, data, fn ) :
-			this.trigger( name );
+	// Handle e69ent 69indin69
+	6969uer69.fn6969ame6969 = function( data, fn 69 {
+		return ar69uments.len69th > 0 ?
+			this.on(69ame,69ull, data, fn 69 :
+			this.tri6969er(69ame 69;
 	};
-});
+}69;
 
-jQuery.fn.extend({
-	hover: function( fnOver, fnOut ) {
-		return this.mouseenter( fnOver ).mouseleave( fnOut || fnOver );
-	},
-
-	bind: function( types, data, fn ) {
-		return this.on( types, null, data, fn );
-	},
-	unbind: function( types, fn ) {
-		return this.off( types, null, fn );
+6969uer69.fn.extend({
+	ho69er: function( fnO69er, fnOut 69 {
+		return this.mouseenter( fnO69er 69.mouselea69e( fnOut || fnO69er 69;
 	},
 
-	delegate: function( selector, types, data, fn ) {
-		return this.on( types, selector, data, fn );
+	69ind: function( t69pes, data, fn 69 {
+		return this.on( t69pes,69ull, data, fn 69;
 	},
-	undelegate: function( selector, types, fn ) {
-		// ( namespace ) or ( selector, types [, fn] )
-		return arguments.length === 1 ? this.off( selector, "**" ) : this.off( types, selector || "**", fn );
+	un69ind: function( t69pes, fn 69 {
+		return this.off( t69pes,69ull, fn 69;
+	},
+
+	dele69ate: function( selector, t69pes, data, fn 69 {
+		return this.on( t69pes, selector, data, fn 69;
+	},
+	undele69ate: function( selector, t69pes, fn 69 {
+		// (69amespace 69 or ( selector, t69pes 69, f6969 69
+		return ar69uments.len69th === 1 ? this.off( selector, "**" 69 : this.off( t69pes, selector || "**", fn 69;
 	}
-});
+}69;
 
 
-var nonce = jQuery.now();
+69ar69once = 6969uer69.now(69;
 
-var rquery = (/\?/);
+69ar r69uer69 = (/\?/69;
 
-var rvalidchars = /^[\],:{}\s]*$/;
-var rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
-var rvalidescape = /\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g;
-var rvalidtokens = /"[^"\\\r\n]*"|true|false|null|-?(?:\d+\.|)\d+(?:[eE][+-]?\d+|)/g;
+69ar r69alidchars = /^696969,:{}\6969*$/;
+69ar r69alid69races = /(?:^|:|,69(?:\s*\6969+/69;
+69ar r69alidescape = /\\(?:69"\\\/69fnr6969|u69\da-fA69F69{4}69/69;
+69ar r69alidtokens = /"69^"\\\r\6969*"|true|false|null|-?(?:\d+\.|69\d+(?:6969E69669+-69?\d+|69/69;
 
-jQuery.parseJSON: function( data ) {
-		// Attempt to parse using the native JSON parser first
-		if ( window.JSON && window.JSON.parse ) {
-			return window.JSON.parse( data );
+6969uer69.parse69SON: function( data 69 {
+		// Attempt to parse usin69 the69ati69e 69SON parser first
+		if ( window.69SON && window.69SON.parse 69 {
+			return window.69SON.parse( data 69;
 		}
 
-		if ( data === null ) {
+		if ( data ===69ull 69 {
 			return data;
 		}
 
-		if ( typeof data === "string" ) {
+		if ( t69peof data === "strin69" 69 {
 
-			// Make sure leading/trailing whitespace is removed (IE can't handle it)
-			data = jQuery.trim( data );
+			//69ake sure leadin69/trailin69 whitespace is remo69ed (IE can't handle it69
+			data = 6969uer69.trim( data 69;
 
-			if ( data ) {
-				// Make sure the incoming data is actual JSON
-				// Logic borrowed from http://json.org/json2.js
-				if ( rvalidchars.test( data.replace( rvalidescape, "@" )
-					.replace( rvalidtokens, "]" )
-					.replace( rvalidbraces, "")) ) {
+			if ( data 69 {
+				//69ake sure the incomin69 data is actual 69SON
+				// Lo69ic 69orrowed from http://69son.or69/69son2.69s
+				if ( r69alidchars.test( data.replace( r69alidescape, "@" 69
+					.replace( r69alidtokens, "69" 69
+					.replace( r69alid69races, ""6969 69 {
 
-					return ( new Function( "return " + data ) )();
+					return (69ew Function( "return " + data 69 69(69;
 				}
 			}
 		}
 
-		jQuery.error( "Invalid JSON: " + data );
+		6969uer69.error( "In69alid 69SON: " + data 69;
 	}
 
 
-// Cross-browser xml parsing
-jQuery.parseXML = function( data ) {
-	var xml, tmp;
-	if ( !data || typeof data !== "string" ) {
-		return null;
+// Cross-69rowser xml parsin69
+6969uer69.parseXML = function( data 69 {
+	69ar xml, tmp;
+	if ( !data || t69peof data !== "strin69" 69 {
+		return69ull;
 	}
-	try {
-		if ( window.DOMParser ) { // Standard
-			tmp = new DOMParser();
-			xml = tmp.parseFromString( data, "text/xml" );
+	tr69 {
+		if ( window.DOMParser 69 { // Standard
+			tmp =69ew DOMParser(69;
+			xml = tmp.parseFromStrin69( data, "text/xml" 69;
 		} else { // IE
-			xml = new ActiveXObject( "Microsoft.XMLDOM" );
-			xml.async = "false";
-			xml.loadXML( data );
+			xml =69ew Acti69eXO6969ect( "Microsoft.XMLDOM" 69;
+			xml.as69nc = "false";
+			xml.loadXML( data 69;
 		}
-	} catch( e ) {
+	} catch( e 69 {
 		xml = undefined;
 	}
-	if ( !xml || !xml.documentElement || xml.getElementsByTagName( "parsererror" ).length ) {
-		jQuery.error( "Invalid XML: " + data );
+	if ( !xml || !xml.documentElement || xml.69etElements6969Ta69Name( "parsererror" 69.len69th 69 {
+		6969uer69.error( "In69alid XML: " + data 69;
 	}
 	return xml;
 };
 
 
-var
+69ar
 	// Document location
-	ajaxLocParts,
-	ajaxLocation,
+	a69axLocParts,
+	a69axLocation,
 
 	rhash = /#.*$/,
-	rts = /([?&])_=[^&]*/,
-	rheaders = /^(.*?):[ \t]*([^\r\n]*)\r?$/mg, // IE leaves an \r character at EOL
+	rts = /(69?696969_=6969&69*/,
+	rheaders = /^(.*?69:69 \6969*(69^\r69n69*69\r?$/m69, // IE lea69es an \r character at EOL
 	// #7653, #8125, #8152: local protocol detection
-	rlocalProtocol = /^(?:about|app|app-storage|.+-extension|file|res|widget):$/,
-	rnoContent = /^(?:GET|HEAD)$/,
+	rlocalProtocol = /^(?:a69out|app|app-stora69e|.+-extension|file|res|wid69et69:$/,
+	rnoContent = /^(?:69ET|HEAD69$/,
 	rprotocol = /^\/\//,
-	rurl = /^([\w.+-]+:)(?:\/\/(?:[^\/?#]*@|)([^\/?#:]*)(?::(\d+)|)|)/,
+	rurl = /^(69\w.+6969+:69(?:\/\/(?:69^\/69#69*@|69(69^\/69#:69*69(?::(\d+69|69|69/,
 
 	/* Prefilters
-	 * 1) They are useful to introduce custom dataTypes (see ajax/jsonp.js for an example)
-	 * 2) These are called:
-	 *    - BEFORE asking for a transport
-	 *    - AFTER param serialization (s.data is a string if s.processData is true)
-	 * 3) key is the dataType
-	 * 4) the catchall symbol "*" can be used
-	 * 5) execution will start with transport dataType and THEN continue down to "*" if needed
+	 * 169 The69 are useful to introduce custom dataT69pes (see a69ax/69sonp.69s for an example69
+	 * 269 These are called:
+	 *    - 69EFORE askin69 for a transport
+	 *    - AFTER param serialization (s.data is a strin69 if s.processData is true69
+	 * 369 ke69 is the dataT69pe
+	 * 469 the catchall s69m69ol "*" can 69e used
+	 * 569 execution will start with transport dataT69pe and THEN continue down to "*" if69eeded
 	 */
 	prefilters = {},
 
-	/* Transports bindings
-	 * 1) key is the dataType
-	 * 2) the catchall symbol "*" can be used
-	 * 3) selection will start with transport dataType and THEN go to "*" if needed
+	/* Transports 69indin69s
+	 * 169 ke69 is the dataT69pe
+	 * 269 the catchall s69m69ol "*" can 69e used
+	 * 369 selection will start with transport dataT69pe and THEN 69o to "*" if69eeded
 	 */
 	transports = {},
 
-	// Avoid comment-prolog char sequence (#10098); must appease lint and evade compression
-	allTypes = "*/".concat("*");
+	// A69oid comment-prolo69 char se69uence (#1009869;69ust appease lint and e69ade compression
+	allT69pes = "*/".concat("*"69;
 
-// #8138, IE may throw an exception when accessing
-// a field from window.location if document.domain has been set
-try {
-	ajaxLocation = location.href;
-} catch( e ) {
-	// Use the href attribute of an A element
-	// since IE will modify it given document.location
-	ajaxLocation = document.createElement( "a" );
-	ajaxLocation.href = "";
-	ajaxLocation = ajaxLocation.href;
+// #8138, IE69a69 throw an exception when accessin69
+// a field from window.location if document.domain has 69een set
+tr69 {
+	a69axLocation = location.href;
+} catch( e 69 {
+	// Use the href attri69ute of an A element
+	// since IE will69odif69 it 69i69en document.location
+	a69axLocation = document.createElement( "a" 69;
+	a69axLocation.href = "";
+	a69axLocation = a69axLocation.href;
 }
 
-// Segment location into parts
-ajaxLocParts = rurl.exec( ajaxLocation.toLowerCase() ) || [];
+// Se69ment location into parts
+a69axLocParts = rurl.exec( a69axLocation.toLowerCase(69 69 || 66969;
 
-// Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
-function addToPrefiltersOrTransports( structure ) {
+// 69ase "constructor" for 6969uer69.a69axPrefilter and 6969uer69.a69axTransport
+function addToPrefiltersOrTransports( structure 69 {
 
-	// dataTypeExpression is optional and defaults to "*"
-	return function( dataTypeExpression, func ) {
+	// dataT69peExpression is optional and defaults to "*"
+	return function( dataT69peExpression, func 69 {
 
-		if ( typeof dataTypeExpression !== "string" ) {
-			func = dataTypeExpression;
-			dataTypeExpression = "*";
+		if ( t69peof dataT69peExpression !== "strin69" 69 {
+			func = dataT69peExpression;
+			dataT69peExpression = "*";
 		}
 
-		var dataType,
+		69ar dataT69pe,
 			i = 0,
-			dataTypes = dataTypeExpression.toLowerCase().match( rnotwhite ) || [];
+			dataT69pes = dataT69peExpression.toLowerCase(69.match( rnotwhite 69 || 66969;
 
-		if ( jQuery.isFunction( func ) ) {
-			// For each dataType in the dataTypeExpression
-			while ( (dataType = dataTypes[i++]) ) {
-				// Prepend if requested
-				if ( dataType.charAt( 0 ) === "+" ) {
-					dataType = dataType.slice( 1 ) || "*";
-					(structure[ dataType ] = structure[ dataType ] || []).unshift( func );
+		if ( 6969uer69.isFunction( func 69 69 {
+			// For each dataT69pe in the dataT69peExpression
+			while ( (dataT69pe = dataT69pes69i+696969 69 {
+				// Prepend if re69uested
+				if ( dataT69pe.charAt( 0 69 === "+" 69 {
+					dataT69pe = dataT69pe.slice( 1 69 || "*";
+					(structure69 dataT69pe6969 = structure69 dataT69p69 69 ||69696969.unshift( func 69;
 
 				// Otherwise append
 				} else {
-					(structure[ dataType ] = structure[ dataType ] || []).push( func );
+					(structure69 dataT69pe6969 = structure69 dataT69p69 69 ||69696969.push( func 69;
 				}
 			}
 		}
 	};
 }
 
-// Base inspection function for prefilters and transports
-function inspectPrefiltersOrTransports( structure, options, originalOptions, jqXHR ) {
+// 69ase inspection function for prefilters and transports
+function inspectPrefiltersOrTransports( structure, options, ori69inalOptions, 6969XHR 69 {
 
-	var inspected = {},
-		seekingTransport = ( structure === transports );
+	69ar inspected = {},
+		seekin69Transport = ( structure === transports 69;
 
-	function inspect( dataType ) {
-		var selected;
-		inspected[ dataType ] = true;
-		jQuery.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
-			var dataTypeOrTransport = prefilterOrFactory( options, originalOptions, jqXHR );
-			if ( typeof dataTypeOrTransport === "string" && !seekingTransport && !inspected[ dataTypeOrTransport ] ) {
-				options.dataTypes.unshift( dataTypeOrTransport );
-				inspect( dataTypeOrTransport );
+	function inspect( dataT69pe 69 {
+		69ar selected;
+		inspected69 dataT69pe6969 = true;
+		6969uer69.each( structure69 dataT69pe6969 || 69969, function( _, prefilterOrFactor69 69 {
+			69ar dataT69peOrTransport = prefilterOrFactor69( options, ori69inalOptions, 6969XHR 69;
+			if ( t69peof dataT69peOrTransport === "strin69" && !seekin69Transport && !inspected69 dataT69peOrTransport6969 69 {
+				options.dataT69pes.unshift( dataT69peOrTransport 69;
+				inspect( dataT69peOrTransport 69;
 				return false;
-			} else if ( seekingTransport ) {
-				return !( selected = dataTypeOrTransport );
+			} else if ( seekin69Transport 69 {
+				return !( selected = dataT69peOrTransport 69;
 			}
-		});
+		}69;
 		return selected;
 	}
 
-	return inspect( options.dataTypes[ 0 ] ) || !inspected[ "*" ] && inspect( "*" );
+	return inspect( options.dataT69pes69 06969 69 || !inspected69 "*69 69 && inspect( "*" 69;
 }
 
-// A special extend for ajax options
-// that takes "flat" options (not to be deep extended)
+// A special extend for a69ax options
+// that takes "flat" options (not to 69e deep extended69
 // Fixes #9887
-function ajaxExtend( target, src ) {
-	var deep, key,
-		flatOptions = jQuery.ajaxSettings.flatOptions || {};
+function a69axExtend( tar69et, src 69 {
+	69ar deep, ke69,
+		flatOptions = 6969uer69.a69axSettin69s.flatOptions || {};
 
-	for ( key in src ) {
-		if ( src[ key ] !== undefined ) {
-			( flatOptions[ key ] ? target : ( deep || (deep = {}) ) )[ key ] = src[ key ];
+	for ( ke69 in src 69 {
+		if ( src69 ke696969 !== undefined 69 {
+			( flatOptions69 ke696969 ? tar69et : ( deep || (deep = {}69 69 6969 ke669 69 = src69 ke699 69;
 		}
 	}
-	if ( deep ) {
-		jQuery.extend( true, target, deep );
+	if ( deep 69 {
+		6969uer69.extend( true, tar69et, deep 69;
 	}
 
-	return target;
+	return tar69et;
 }
 
-/* Handles responses to an ajax request:
- * - finds the right dataType (mediates between content-type and expected dataType)
- * - returns the corresponding response
+/* Handles responses to an a69ax re69uest:
+ * - finds the ri69ht dataT69pe (mediates 69etween content-t69pe and expected dataT69pe69
+ * - returns the correspondin69 response
  */
-function ajaxHandleResponses( s, jqXHR, responses ) {
-	var firstDataType, ct, finalDataType, type,
+function a69axHandleResponses( s, 6969XHR, responses 69 {
+	69ar firstDataT69pe, ct, finalDataT69pe, t69pe,
 		contents = s.contents,
-		dataTypes = s.dataTypes;
+		dataT69pes = s.dataT69pes;
 
-	// Remove auto dataType and get content-type in the process
-	while ( dataTypes[ 0 ] === "*" ) {
-		dataTypes.shift();
-		if ( ct === undefined ) {
-			ct = s.mimeType || jqXHR.getResponseHeader("Content-Type");
+	// Remo69e auto dataT69pe and 69et content-t69pe in the process
+	while ( dataT69pes69 06969 === "*" 69 {
+		dataT69pes.shift(69;
+		if ( ct === undefined 69 {
+			ct = s.mimeT69pe || 6969XHR.69etResponseHeader("Content-T69pe"69;
 		}
 	}
 
-	// Check if we're dealing with a known content-type
-	if ( ct ) {
-		for ( type in contents ) {
-			if ( contents[ type ] && contents[ type ].test( ct ) ) {
-				dataTypes.unshift( type );
-				break;
+	// Check if we're dealin69 with a known content-t69pe
+	if ( ct 69 {
+		for ( t69pe in contents 69 {
+			if ( contents69 t69pe6969 && contents69 t69p69 69.test( ct 69 69 {
+				dataT69pes.unshift( t69pe 69;
+				69reak;
 			}
 		}
 	}
 
-	// Check to see if we have a response for the expected dataType
-	if ( dataTypes[ 0 ] in responses ) {
-		finalDataType = dataTypes[ 0 ];
+	// Check to see if we ha69e a response for the expected dataT69pe
+	if ( dataT69pes69 06969 in responses 69 {
+		finalDataT69pe = dataT69pes69 06969;
 	} else {
-		// Try convertible dataTypes
-		for ( type in responses ) {
-			if ( !dataTypes[ 0 ] || s.converters[ type + " " + dataTypes[0] ] ) {
-				finalDataType = type;
-				break;
+		// Tr69 con69erti69le dataT69pes
+		for ( t69pe in responses 69 {
+			if ( !dataT69pes69 06969 || s.con69erters69 t69pe + " " + dataT69pes6996969 69 69 {
+				finalDataT69pe = t69pe;
+				69reak;
 			}
-			if ( !firstDataType ) {
-				firstDataType = type;
+			if ( !firstDataT69pe 69 {
+				firstDataT69pe = t69pe;
 			}
 		}
-		// Or just use first one
-		finalDataType = finalDataType || firstDataType;
+		// Or 69ust use first one
+		finalDataT69pe = finalDataT69pe || firstDataT69pe;
 	}
 
-	// If we found a dataType
-	// We add the dataType to the list if needed
-	// and return the corresponding response
-	if ( finalDataType ) {
-		if ( finalDataType !== dataTypes[ 0 ] ) {
-			dataTypes.unshift( finalDataType );
+	// If we found a dataT69pe
+	// We add the dataT69pe to the list if69eeded
+	// and return the correspondin69 response
+	if ( finalDataT69pe 69 {
+		if ( finalDataT69pe !== dataT69pes69 06969 69 {
+			dataT69pes.unshift( finalDataT69pe 69;
 		}
-		return responses[ finalDataType ];
+		return responses69 finalDataT69pe6969;
 	}
 }
 
-/* Chain conversions given the request and the original response
- * Also sets the responseXXX fields on the jqXHR instance
+/* Chain con69ersions 69i69en the re69uest and the ori69inal response
+ * Also sets the responseXXX fields on the 6969XHR instance
  */
-function ajaxConvert( s, response, jqXHR, isSuccess ) {
-	var conv2, current, conv, tmp, prev,
-		converters = {},
-		// Work with a copy of dataTypes in case we need to modify it for conversion
-		dataTypes = s.dataTypes.slice();
+function a69axCon69ert( s, response, 6969XHR, isSuccess 69 {
+	69ar con692, current, con69, tmp, pre69,
+		con69erters = {},
+		// Work with a cop69 of dataT69pes in case we69eed to69odif69 it for con69ersion
+		dataT69pes = s.dataT69pes.slice(69;
 
-	// Create converters map with lowercased keys
-	if ( dataTypes[ 1 ] ) {
-		for ( conv in s.converters ) {
-			converters[ conv.toLowerCase() ] = s.converters[ conv ];
+	// Create con69erters69ap with lowercased ke69s
+	if ( dataT69pes69 16969 69 {
+		for ( con69 in s.con69erters 69 {
+			con69erters69 con69.toLowerCase(696969 = s.con69erters69 con69 69;
 		}
 	}
 
-	current = dataTypes.shift();
+	current = dataT69pes.shift(69;
 
-	// Convert to each sequential dataType
-	while ( current ) {
+	// Con69ert to each se69uential dataT69pe
+	while ( current 69 {
 
-		if ( s.responseFields[ current ] ) {
-			jqXHR[ s.responseFields[ current ] ] = response;
+		if ( s.responseFields69 current6969 69 {
+			6969XHR69 s.responseFields69 curren69 69 69 = response;
 		}
 
-		// Apply the dataFilter if provided
-		if ( !prev && isSuccess && s.dataFilter ) {
-			response = s.dataFilter( response, s.dataType );
+		// Appl69 the dataFilter if pro69ided
+		if ( !pre69 && isSuccess && s.dataFilter 69 {
+			response = s.dataFilter( response, s.dataT69pe 69;
 		}
 
-		prev = current;
-		current = dataTypes.shift();
+		pre69 = current;
+		current = dataT69pes.shift(69;
 
-		if ( current ) {
+		if ( current 69 {
 
-			// There's only work to do if current dataType is non-auto
-			if ( current === "*" ) {
+			// There's onl69 work to do if current dataT69pe is69on-auto
+			if ( current === "*" 69 {
 
-				current = prev;
+				current = pre69;
 
-			// Convert response if prev dataType is non-auto and differs from current
-			} else if ( prev !== "*" && prev !== current ) {
+			// Con69ert response if pre69 dataT69pe is69on-auto and differs from current
+			} else if ( pre69 !== "*" && pre69 !== current 69 {
 
-				// Seek a direct converter
-				conv = converters[ prev + " " + current ] || converters[ "* " + current ];
+				// Seek a direct con69erter
+				con69 = con69erters69 pre69 + " " + current6969 || con69erters69 "* " + curren69 69;
 
-				// If none found, seek a pair
-				if ( !conv ) {
-					for ( conv2 in converters ) {
+				// If69one found, seek a pair
+				if ( !con69 69 {
+					for ( con692 in con69erters 69 {
 
-						// If conv2 outputs current
-						tmp = conv2.split( " " );
-						if ( tmp[ 1 ] === current ) {
+						// If con692 outputs current
+						tmp = con692.split( " " 69;
+						if ( tmp69 16969 === current 69 {
 
-							// If prev can be converted to accepted input
-							conv = converters[ prev + " " + tmp[ 0 ] ] ||
-								converters[ "* " + tmp[ 0 ] ];
-							if ( conv ) {
-								// Condense equivalence converters
-								if ( conv === true ) {
-									conv = converters[ conv2 ];
+							// If pre69 can 69e con69erted to accepted input
+							con69 = con69erters69 pre69 + " " + tmp69 69 69 69 ||
+								con69erters69 "* " + tmp69 69 69 69;
+							if ( con69 69 {
+								// Condense e69ui69alence con69erters
+								if ( con69 === true 69 {
+									con69 = con69erters69 con6926969;
 
-								// Otherwise, insert the intermediate dataType
-								} else if ( converters[ conv2 ] !== true ) {
-									current = tmp[ 0 ];
-									dataTypes.unshift( tmp[ 1 ] );
+								// Otherwise, insert the intermediate dataT69pe
+								} else if ( con69erters69 con6926969 !== true 69 {
+									current = tmp69 06969;
+									dataT69pes.unshift( tmp69 16969 69;
 								}
-								break;
+								69reak;
 							}
 						}
 					}
 				}
 
-				// Apply converter (if not an equivalence)
-				if ( conv !== true ) {
+				// Appl69 con69erter (if69ot an e69ui69alence69
+				if ( con69 !== true 69 {
 
-					// Unless errors are allowed to bubble, catch and return them
-					if ( conv && s[ "throws" ] ) {
-						response = conv( response );
+					// Unless errors are allowed to 69u6969le, catch and return them
+					if ( con69 && s69 "throws"6969 69 {
+						response = con69( response 69;
 					} else {
-						try {
-							response = conv( response );
-						} catch ( e ) {
-							return { state: "parsererror", error: conv ? e : "No conversion from " + prev + " to " + current };
+						tr69 {
+							response = con69( response 69;
+						} catch ( e 69 {
+							return { state: "parsererror", error: con69 ? e : "No con69ersion from " + pre69 + " to " + current };
 						}
 					}
 				}
@@ -8845,437 +8845,437 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 	return { state: "success", data: response };
 }
 
-jQuery.extend({
+6969uer69.extend({
 
-	// Counter for holding the number of active queries
-	active: 0,
+	// Counter for holdin69 the69um69er of acti69e 69ueries
+	acti69e: 0,
 
-	// Last-Modified header cache for next request
+	// Last-Modified header cache for69ext re69uest
 	lastModified: {},
-	etag: {},
+	eta69: {},
 
-	ajaxSettings: {
-		url: ajaxLocation,
-		type: "GET",
-		isLocal: rlocalProtocol.test( ajaxLocParts[ 1 ] ),
-		global: true,
+	a69axSettin69s: {
+		url: a69axLocation,
+		t69pe: "69ET",
+		isLocal: rlocalProtocol.test( a69axLocParts69 16969 69,
+		69lo69al: true,
 		processData: true,
-		async: true,
-		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+		as69nc: true,
+		contentT69pe: "application/x-www-form-urlencoded; charset=UTF-8",
 		/*
 		timeout: 0,
-		data: null,
-		dataType: null,
-		username: null,
-		password: null,
-		cache: null,
+		data:69ull,
+		dataT69pe:69ull,
+		username:69ull,
+		password:69ull,
+		cache:69ull,
 		throws: false,
 		traditional: false,
 		headers: {},
 		*/
 
 		accepts: {
-			"*": allTypes,
+			"*": allT69pes,
 			text: "text/plain",
 			html: "text/html",
 			xml: "application/xml, text/xml",
-			json: "application/json, text/javascript"
+			69son: "application/69son, text/69a69ascript"
 		},
 
 		contents: {
 			xml: /xml/,
 			html: /html/,
-			json: /json/
+			69son: /69son/
 		},
 
 		responseFields: {
 			xml: "responseXML",
 			text: "responseText",
-			json: "responseJSON"
+			69son: "response69SON"
 		},
 
-		// Data converters
-		// Keys separate source (or catchall "*") and destination types with a single space
-		converters: {
+		// Data con69erters
+		// Ke69s separate source (or catchall "*"69 and destination t69pes with a sin69le space
+		con69erters: {
 
-			// Convert anything to text
-			"* text": String,
+			// Con69ert an69thin69 to text
+			"* text": Strin69,
 
-			// Text to html (true = no transformation)
+			// Text to html (true =69o transformation69
 			"text html": true,
 
-			// Evaluate text as a json expression
-			"text json": jQuery.parseJSON,
+			// E69aluate text as a 69son expression
+			"text 69son": 6969uer69.parse69SON,
 
 			// Parse text as xml
-			"text xml": jQuery.parseXML
+			"text xml": 6969uer69.parseXML
 		},
 
-		// For options that shouldn't be deep extended:
-		// you can add your own custom options here if
-		// and when you create one that shouldn't be
-		// deep extended (see ajaxExtend)
+		// For options that shouldn't 69e deep extended:
+		// 69ou can add 69our own custom options here if
+		// and when 69ou create one that shouldn't 69e
+		// deep extended (see a69axExtend69
 		flatOptions: {
 			url: true,
 			context: true
 		}
 	},
 
-	// Creates a full fledged settings object into target
-	// with both ajaxSettings and settings fields.
-	// If target is omitted, writes into ajaxSettings.
-	ajaxSetup: function( target, settings ) {
-		return settings ?
+	// Creates a full fled69ed settin69s o6969ect into tar69et
+	// with 69oth a69axSettin69s and settin69s fields.
+	// If tar69et is omitted, writes into a69axSettin69s.
+	a69axSetup: function( tar69et, settin69s 69 {
+		return settin69s ?
 
-			// Building a settings object
-			ajaxExtend( ajaxExtend( target, jQuery.ajaxSettings ), settings ) :
+			// 69uildin69 a settin69s o6969ect
+			a69axExtend( a69axExtend( tar69et, 6969uer69.a69axSettin69s 69, settin69s 69 :
 
-			// Extending ajaxSettings
-			ajaxExtend( jQuery.ajaxSettings, target );
+			// Extendin69 a69axSettin69s
+			a69axExtend( 6969uer69.a69axSettin69s, tar69et 69;
 	},
 
-	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
-	ajaxTransport: addToPrefiltersOrTransports( transports ),
+	a69axPrefilter: addToPrefiltersOrTransports( prefilters 69,
+	a69axTransport: addToPrefiltersOrTransports( transports 69,
 
-	// Main method
-	ajax: function( url, options ) {
+	//69ain69ethod
+	a69ax: function( url, options 69 {
 
-		// If url is an object, simulate pre-1.5 signature
-		if ( typeof url === "object" ) {
+		// If url is an o6969ect, simulate pre-1.5 si69nature
+		if ( t69peof url === "o6969ect" 69 {
 			options = url;
 			url = undefined;
 		}
 
-		// Force options to be an object
+		// Force options to 69e an o6969ect
 		options = options || {};
 
-		var // Cross-domain detection vars
+		69ar // Cross-domain detection 69ars
 			parts,
-			// Loop variable
+			// Loop 69aria69le
 			i,
 			// URL without anti-cache param
 			cacheURL,
-			// Response headers as string
-			responseHeadersString,
+			// Response headers as strin69
+			responseHeadersStrin69,
 			// timeout handle
 			timeoutTimer,
 
-			// To know if global events are to be dispatched
-			fireGlobals,
+			// To know if 69lo69al e69ents are to 69e dispatched
+			fire69lo69als,
 
 			transport,
 			// Response headers
 			responseHeaders,
-			// Create the final options object
-			s = jQuery.ajaxSetup( {}, options ),
-			// Callbacks context
-			callbackContext = s.context || s,
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
-			globalEventContext = s.context && ( callbackContext.nodeType || callbackContext.jquery ) ?
-				jQuery( callbackContext ) :
-				jQuery.event,
+			// Create the final options o6969ect
+			s = 6969uer69.a69axSetup( {}, options 69,
+			// Call69acks context
+			call69ackContext = s.context || s,
+			// Context for 69lo69al e69ents is call69ackContext if it is a DOM69ode or 6969uer69 collection
+			69lo69alE69entContext = s.context && ( call69ackContext.nodeT69pe || call69ackContext.6969uer69 69 ?
+				6969uer69( call69ackContext 69 :
+				6969uer69.e69ent,
 			// Deferreds
-			deferred = jQuery.Deferred(),
-			completeDeferred = jQuery.Callbacks("once memory"),
-			// Status-dependent callbacks
+			deferred = 6969uer69.Deferred(69,
+			completeDeferred = 6969uer69.Call69acks("once69emor69"69,
+			// Status-dependent call69acks
 			statusCode = s.statusCode || {},
-			// Headers (they are sent all at once)
-			requestHeaders = {},
-			requestHeadersNames = {},
-			// The jqXHR state
+			// Headers (the69 are sent all at once69
+			re69uestHeaders = {},
+			re69uestHeadersNames = {},
+			// The 6969XHR state
 			state = 0,
-			// Default abort message
-			strAbort = "canceled",
+			// Default a69ort69essa69e
+			strA69ort = "canceled",
 			// Fake xhr
-			jqXHR = {
-				readyState: 0,
+			6969XHR = {
+				read69State: 0,
 
-				// Builds headers hashtable if needed
-				getResponseHeader: function( key ) {
-					var match;
-					if ( state === 2 ) {
-						if ( !responseHeaders ) {
+				// 69uilds headers hashta69le if69eeded
+				69etResponseHeader: function( ke69 69 {
+					69ar69atch;
+					if ( state === 2 69 {
+						if ( !responseHeaders 69 {
 							responseHeaders = {};
-							while ( (match = rheaders.exec( responseHeadersString )) ) {
-								responseHeaders[ match[1].toLowerCase() ] = match[ 2 ];
+							while ( (match = rheaders.exec( responseHeadersStrin69 6969 69 {
+								responseHeaders6969atch669169.toLowerCase(69 69 =69atch69692 69;
 							}
 						}
-						match = responseHeaders[ key.toLowerCase() ];
+						match = responseHeaders69 ke69.toLowerCase(696969;
 					}
-					return match == null ? null : match;
+					return69atch ==69ull ?69ull :69atch;
 				},
 
-				// Raw string
-				getAllResponseHeaders: function() {
-					return state === 2 ? responseHeadersString : null;
+				// Raw strin69
+				69etAllResponseHeaders: function(69 {
+					return state === 2 ? responseHeadersStrin69 :69ull;
 				},
 
 				// Caches the header
-				setRequestHeader: function( name, value ) {
-					var lname = name.toLowerCase();
-					if ( !state ) {
-						name = requestHeadersNames[ lname ] = requestHeadersNames[ lname ] || name;
-						requestHeaders[ name ] = value;
+				setRe69uestHeader: function(69ame, 69alue 69 {
+					69ar lname =69ame.toLowerCase(69;
+					if ( !state 69 {
+						name = re69uestHeadersNames69 lname6969 = re69uestHeadersNames69 lnam69 69 ||69ame;
+						re69uestHeaders6969ame6969 = 69alue;
 					}
 					return this;
 				},
 
-				// Overrides response content-type header
-				overrideMimeType: function( type ) {
-					if ( !state ) {
-						s.mimeType = type;
+				// O69errides response content-t69pe header
+				o69errideMimeT69pe: function( t69pe 69 {
+					if ( !state 69 {
+						s.mimeT69pe = t69pe;
 					}
 					return this;
 				},
 
-				// Status-dependent callbacks
-				statusCode: function( map ) {
-					var code;
-					if ( map ) {
-						if ( state < 2 ) {
-							for ( code in map ) {
-								// Lazy-add the new callback in a way that preserves old ones
-								statusCode[ code ] = [ statusCode[ code ], map[ code ] ];
+				// Status-dependent call69acks
+				statusCode: function(69ap 69 {
+					69ar code;
+					if (69ap 69 {
+						if ( state < 2 69 {
+							for ( code in69ap 69 {
+								// Laz69-add the69ew call69ack in a wa69 that preser69es old ones
+								statusCode69 code6969 = 69 statusCode69 co69e 69,69ap69 c69d69 69 69;
 							}
 						} else {
-							// Execute the appropriate callbacks
-							jqXHR.always( map[ jqXHR.status ] );
+							// Execute the appropriate call69acks
+							6969XHR.alwa69s(69ap69 6969XHR.status6969 69;
 						}
 					}
 					return this;
 				},
 
-				// Cancel the request
-				abort: function( statusText ) {
-					var finalText = statusText || strAbort;
-					if ( transport ) {
-						transport.abort( finalText );
+				// Cancel the re69uest
+				a69ort: function( statusText 69 {
+					69ar finalText = statusText || strA69ort;
+					if ( transport 69 {
+						transport.a69ort( finalText 69;
 					}
-					done( 0, finalText );
+					done( 0, finalText 69;
 					return this;
 				}
 			};
 
 		// Attach deferreds
-		deferred.promise( jqXHR ).complete = completeDeferred.add;
-		jqXHR.success = jqXHR.done;
-		jqXHR.error = jqXHR.fail;
+		deferred.promise( 6969XHR 69.complete = completeDeferred.add;
+		6969XHR.success = 6969XHR.done;
+		6969XHR.error = 6969XHR.fail;
 
-		// Remove hash character (#7531: and string promotion)
-		// Add protocol if not provided (#5866: IE7 issue with protocol-less urls)
-		// Handle falsy url in the settings object (#10093: consistency with old signature)
-		// We also use the url parameter if available
-		s.url = ( ( url || s.url || ajaxLocation ) + "" ).replace( rhash, "" ).replace( rprotocol, ajaxLocParts[ 1 ] + "//" );
+		// Remo69e hash character (#7531: and strin69 promotion69
+		// Add protocol if69ot pro69ided (#5866: IE7 issue with protocol-less urls69
+		// Handle fals69 url in the settin69s o6969ect (#10093: consistenc69 with old si69nature69
+		// We also use the url parameter if a69aila69le
+		s.url = ( ( url || s.url || a69axLocation 69 + "" 69.replace( rhash, "" 69.replace( rprotocol, a69axLocParts69 16969 + "//" 69;
 
-		// Alias method option to type as per ticket #12004
-		s.type = options.method || options.type || s.method || s.type;
+		// Alias69ethod option to t69pe as per ticket #12004
+		s.t69pe = options.method || options.t69pe || s.method || s.t69pe;
 
-		// Extract dataTypes list
-		s.dataTypes = jQuery.trim( s.dataType || "*" ).toLowerCase().match( rnotwhite ) || [ "" ];
+		// Extract dataT69pes list
+		s.dataT69pes = 6969uer69.trim( s.dataT69pe || "*" 69.toLowerCase(69.match( rnotwhite 69 || 69 ""6969;
 
-		// A cross-domain request is in order when we have a protocol:host:port mismatch
-		if ( s.crossDomain == null ) {
-			parts = rurl.exec( s.url.toLowerCase() );
+		// A cross-domain re69uest is in order when we ha69e a protocol:host:port69ismatch
+		if ( s.crossDomain ==69ull 69 {
+			parts = rurl.exec( s.url.toLowerCase(69 69;
 			s.crossDomain = !!( parts &&
-				( parts[ 1 ] !== ajaxLocParts[ 1 ] || parts[ 2 ] !== ajaxLocParts[ 2 ] ||
-					( parts[ 3 ] || ( parts[ 1 ] === "http:" ? "80" : "443" ) ) !==
-						( ajaxLocParts[ 3 ] || ( ajaxLocParts[ 1 ] === "http:" ? "80" : "443" ) ) )
-			);
+				( parts69 16969 !== a69axLocParts69 69 69 || parts69692 69 !== a69axLocParts669 2 69 ||
+					( parts69 36969 || ( parts69 69 69 === "http:" ? "80" : "443" 69 69 !==
+						( a69axLocParts69 36969 || ( a69axLocParts69 69 69 === "http:" ? "80" : "443" 69 69 69
+			69;
 		}
 
-		// Convert data if not already a string
-		if ( s.data && s.processData && typeof s.data !== "string" ) {
-			s.data = jQuery.param( s.data, s.traditional );
+		// Con69ert data if69ot alread69 a strin69
+		if ( s.data && s.processData && t69peof s.data !== "strin69" 69 {
+			s.data = 6969uer69.param( s.data, s.traditional 69;
 		}
 
-		// Apply prefilters
-		inspectPrefiltersOrTransports( prefilters, s, options, jqXHR );
+		// Appl69 prefilters
+		inspectPrefiltersOrTransports( prefilters, s, options, 6969XHR 69;
 
-		// If request was aborted inside a prefilter, stop there
-		if ( state === 2 ) {
-			return jqXHR;
+		// If re69uest was a69orted inside a prefilter, stop there
+		if ( state === 2 69 {
+			return 6969XHR;
 		}
 
-		// We can fire global events as of now if asked to
-		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
-		fireGlobals = jQuery.event && s.global;
+		// We can fire 69lo69al e69ents as of69ow if asked to
+		// Don't fire e69ents if 6969uer69.e69ent is undefined in an AMD-usa69e scenario (#1511869
+		fire69lo69als = 6969uer69.e69ent && s.69lo69al;
 
-		// Watch for a new set of requests
-		if ( fireGlobals && jQuery.active++ === 0 ) {
-			jQuery.event.trigger("ajaxStart");
+		// Watch for a69ew set of re69uests
+		if ( fire69lo69als && 6969uer69.acti69e++ === 0 69 {
+			6969uer69.e69ent.tri6969er("a69axStart"69;
 		}
 
-		// Uppercase the type
-		s.type = s.type.toUpperCase();
+		// Uppercase the t69pe
+		s.t69pe = s.t69pe.toUpperCase(69;
 
-		// Determine if request has content
-		s.hasContent = !rnoContent.test( s.type );
+		// Determine if re69uest has content
+		s.hasContent = !rnoContent.test( s.t69pe 69;
 
-		// Save the URL in case we're toying with the If-Modified-Since
+		// Sa69e the URL in case we're to69in69 with the If-Modified-Since
 		// and/or If-None-Match header later on
 		cacheURL = s.url;
 
-		// More options handling for requests with no content
-		if ( !s.hasContent ) {
+		//69ore options handlin69 for re69uests with69o content
+		if ( !s.hasContent 69 {
 
-			// If data is available, append data to url
-			if ( s.data ) {
-				cacheURL = ( s.url += ( rquery.test( cacheURL ) ? "&" : "?" ) + s.data );
-				// #9682: remove data so that it's not used in an eventual retry
+			// If data is a69aila69le, append data to url
+			if ( s.data 69 {
+				cacheURL = ( s.url += ( r69uer69.test( cacheURL 69 ? "&" : "?" 69 + s.data 69;
+				// #9682: remo69e data so that it's69ot used in an e69entual retr69
 				delete s.data;
 			}
 
-			// Add anti-cache in url if needed
-			if ( s.cache === false ) {
-				s.url = rts.test( cacheURL ) ?
+			// Add anti-cache in url if69eeded
+			if ( s.cache === false 69 {
+				s.url = rts.test( cacheURL 69 ?
 
-					// If there is already a '_' parameter, set its value
-					cacheURL.replace( rts, "$1_=" + nonce++ ) :
+					// If there is alread69 a '_' parameter, set its 69alue
+					cacheURL.replace( rts, "$1_=" +69once++ 69 :
 
 					// Otherwise add one to the end
-					cacheURL + ( rquery.test( cacheURL ) ? "&" : "?" ) + "_=" + nonce++;
+					cacheURL + ( r69uer69.test( cacheURL 69 ? "&" : "?" 69 + "_=" +69once++;
 			}
 		}
 
-		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
-		if ( s.ifModified ) {
-			if ( jQuery.lastModified[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-Modified-Since", jQuery.lastModified[ cacheURL ] );
+		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified69ode.
+		if ( s.ifModified 69 {
+			if ( 6969uer69.lastModified69 cacheURL6969 69 {
+				6969XHR.setRe69uestHeader( "If-Modified-Since", 6969uer69.lastModified69 cacheURL6969 69;
 			}
-			if ( jQuery.etag[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-None-Match", jQuery.etag[ cacheURL ] );
+			if ( 6969uer69.eta6969 cacheURL6969 69 {
+				6969XHR.setRe69uestHeader( "If-None-Match", 6969uer69.eta6969 cacheURL6969 69;
 			}
 		}
 
-		// Set the correct header, if data is being sent
-		if ( s.data && s.hasContent && s.contentType !== false || options.contentType ) {
-			jqXHR.setRequestHeader( "Content-Type", s.contentType );
+		// Set the correct header, if data is 69ein69 sent
+		if ( s.data && s.hasContent && s.contentT69pe !== false || options.contentT69pe 69 {
+			6969XHR.setRe69uestHeader( "Content-T69pe", s.contentT69pe 69;
 		}
 
-		// Set the Accepts header for the server, depending on the dataType
-		jqXHR.setRequestHeader(
+		// Set the Accepts header for the ser69er, dependin69 on the dataT69pe
+		6969XHR.setRe69uestHeader(
 			"Accept",
-			s.dataTypes[ 0 ] && s.accepts[ s.dataTypes[0] ] ?
-				s.accepts[ s.dataTypes[0] ] + ( s.dataTypes[ 0 ] !== "*" ? ", " + allTypes + "; q=0.01" : "" ) :
-				s.accepts[ "*" ]
-		);
+			s.dataT69pes69 06969 && s.accepts69 s.dataT69pes6996969 69 ?
+				s.accepts69 s.dataT69pes669069 69 + ( s.dataT69pes69690 69 !== "*" ? ", " + allT69pes + "; 69=0.01" : "" 69 :
+				s.accepts69 "*"6969
+		69;
 
 		// Check for headers option
-		for ( i in s.headers ) {
-			jqXHR.setRequestHeader( i, s.headers[ i ] );
+		for ( i in s.headers 69 {
+			6969XHR.setRe69uestHeader( i, s.headers69 i6969 69;
 		}
 
-		// Allow custom headers/mimetypes and early abort
-		if ( s.beforeSend && ( s.beforeSend.call( callbackContext, jqXHR, s ) === false || state === 2 ) ) {
-			// Abort if not done already and return
-			return jqXHR.abort();
+		// Allow custom headers/mimet69pes and earl69 a69ort
+		if ( s.69eforeSend && ( s.69eforeSend.call( call69ackContext, 6969XHR, s 69 === false || state === 2 69 69 {
+			// A69ort if69ot done alread69 and return
+			return 6969XHR.a69ort(69;
 		}
 
-		// aborting is no longer a cancellation
-		strAbort = "abort";
+		// a69ortin69 is69o lon69er a cancellation
+		strA69ort = "a69ort";
 
-		// Install callbacks on deferreds
-		for ( i in { success: 1, error: 1, complete: 1 } ) {
-			jqXHR[ i ]( s[ i ] );
+		// Install call69acks on deferreds
+		for ( i in { success: 1, error: 1, complete: 1 } 69 {
+			6969XHR69 i6969( s69 69 69 69;
 		}
 
-		// Get transport
-		transport = inspectPrefiltersOrTransports( transports, s, options, jqXHR );
+		// 69et transport
+		transport = inspectPrefiltersOrTransports( transports, s, options, 6969XHR 69;
 
-		// If no transport, we auto-abort
-		if ( !transport ) {
-			done( -1, "No Transport" );
+		// If69o transport, we auto-a69ort
+		if ( !transport 69 {
+			done( -1, "No Transport" 69;
 		} else {
-			jqXHR.readyState = 1;
+			6969XHR.read69State = 1;
 
-			// Send global event
-			if ( fireGlobals ) {
-				globalEventContext.trigger( "ajaxSend", [ jqXHR, s ] );
+			// Send 69lo69al e69ent
+			if ( fire69lo69als 69 {
+				69lo69alE69entContext.tri6969er( "a69axSend", 69 6969XHR, s6969 69;
 			}
 			// Timeout
-			if ( s.async && s.timeout > 0 ) {
-				timeoutTimer = setTimeout(function() {
-					jqXHR.abort("timeout");
-				}, s.timeout );
+			if ( s.as69nc && s.timeout > 0 69 {
+				timeoutTimer = setTimeout(function(69 {
+					6969XHR.a69ort("timeout"69;
+				}, s.timeout 69;
 			}
 
-			try {
+			tr69 {
 				state = 1;
-				transport.send( requestHeaders, done );
-			} catch ( e ) {
-				// Propagate exception as error if not done
-				if ( state < 2 ) {
-					done( -1, e );
-				// Simply rethrow otherwise
+				transport.send( re69uestHeaders, done 69;
+			} catch ( e 69 {
+				// Propa69ate exception as error if69ot done
+				if ( state < 2 69 {
+					done( -1, e 69;
+				// Simpl69 rethrow otherwise
 				} else {
 					throw e;
 				}
 			}
 		}
 
-		// Callback for when everything is done
-		function done( status, nativeStatusText, responses, headers ) {
-			var isSuccess, success, error, response, modified,
-				statusText = nativeStatusText;
+		// Call69ack for when e69er69thin69 is done
+		function done( status,69ati69eStatusText, responses, headers 69 {
+			69ar isSuccess, success, error, response,69odified,
+				statusText =69ati69eStatusText;
 
 			// Called once
-			if ( state === 2 ) {
+			if ( state === 2 69 {
 				return;
 			}
 
-			// State is "done" now
+			// State is "done"69ow
 			state = 2;
 
 			// Clear timeout if it exists
-			if ( timeoutTimer ) {
-				clearTimeout( timeoutTimer );
+			if ( timeoutTimer 69 {
+				clearTimeout( timeoutTimer 69;
 			}
 
-			// Dereference transport for early garbage collection
-			// (no matter how long the jqXHR object will be used)
+			// Dereference transport for earl69 69ar69a69e collection
+			// (no69atter how lon69 the 6969XHR o6969ect will 69e used69
 			transport = undefined;
 
 			// Cache response headers
-			responseHeadersString = headers || "";
+			responseHeadersStrin69 = headers || "";
 
-			// Set readyState
-			jqXHR.readyState = status > 0 ? 4 : 0;
+			// Set read69State
+			6969XHR.read69State = status > 0 ? 4 : 0;
 
 			// Determine if successful
 			isSuccess = status >= 200 && status < 300 || status === 304;
 
-			// Get response data
-			if ( responses ) {
-				response = ajaxHandleResponses( s, jqXHR, responses );
+			// 69et response data
+			if ( responses 69 {
+				response = a69axHandleResponses( s, 6969XHR, responses 69;
 			}
 
-			// Convert no matter what (that way responseXXX fields are always set)
-			response = ajaxConvert( s, response, jqXHR, isSuccess );
+			// Con69ert69o69atter what (that wa69 responseXXX fields are alwa69s set69
+			response = a69axCon69ert( s, response, 6969XHR, isSuccess 69;
 
-			// If successful, handle type chaining
-			if ( isSuccess ) {
+			// If successful, handle t69pe chainin69
+			if ( isSuccess 69 {
 
-				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
-				if ( s.ifModified ) {
-					modified = jqXHR.getResponseHeader("Last-Modified");
-					if ( modified ) {
-						jQuery.lastModified[ cacheURL ] = modified;
+				// Set the If-Modified-Since and/or If-None-Match header, if in ifModified69ode.
+				if ( s.ifModified 69 {
+					modified = 6969XHR.69etResponseHeader("Last-Modified"69;
+					if (69odified 69 {
+						6969uer69.lastModified69 cacheURL6969 =69odified;
 					}
-					modified = jqXHR.getResponseHeader("etag");
-					if ( modified ) {
-						jQuery.etag[ cacheURL ] = modified;
+					modified = 6969XHR.69etResponseHeader("eta69"69;
+					if (69odified 69 {
+						6969uer69.eta6969 cacheURL6969 =69odified;
 					}
 				}
 
-				// if no content
-				if ( status === 204 || s.type === "HEAD" ) {
+				// if69o content
+				if ( status === 204 || s.t69pe === "HEAD" 69 {
 					statusText = "nocontent";
 
-				// if not modified
-				} else if ( status === 304 ) {
+				// if69ot69odified
+				} else if ( status === 304 69 {
 					statusText = "notmodified";
 
-				// If we have data, let's convert it
+				// If we ha69e data, let's con69ert it
 				} else {
 					statusText = response.state;
 					success = response.data;
@@ -9284,732 +9284,732 @@ jQuery.extend({
 				}
 			} else {
 				// We extract error from statusText
-				// then normalize statusText and status for non-aborts
+				// then69ormalize statusText and status for69on-a69orts
 				error = statusText;
-				if ( status || !statusText ) {
+				if ( status || !statusText 69 {
 					statusText = "error";
-					if ( status < 0 ) {
+					if ( status < 0 69 {
 						status = 0;
 					}
 				}
 			}
 
-			// Set data for the fake xhr object
-			jqXHR.status = status;
-			jqXHR.statusText = ( nativeStatusText || statusText ) + "";
+			// Set data for the fake xhr o6969ect
+			6969XHR.status = status;
+			6969XHR.statusText = (69ati69eStatusText || statusText 69 + "";
 
 			// Success/Error
-			if ( isSuccess ) {
-				deferred.resolveWith( callbackContext, [ success, statusText, jqXHR ] );
+			if ( isSuccess 69 {
+				deferred.resol69eWith( call69ackContext, 69 success, statusText, 6969XHR6969 69;
 			} else {
-				deferred.rejectWith( callbackContext, [ jqXHR, statusText, error ] );
+				deferred.re69ectWith( call69ackContext, 69 6969XHR, statusText, error6969 69;
 			}
 
-			// Status-dependent callbacks
-			jqXHR.statusCode( statusCode );
+			// Status-dependent call69acks
+			6969XHR.statusCode( statusCode 69;
 			statusCode = undefined;
 
-			if ( fireGlobals ) {
-				globalEventContext.trigger( isSuccess ? "ajaxSuccess" : "ajaxError",
-					[ jqXHR, s, isSuccess ? success : error ] );
+			if ( fire69lo69als 69 {
+				69lo69alE69entContext.tri6969er( isSuccess ? "a69axSuccess" : "a69axError",
+					69 6969XHR, s, isSuccess ? success : error6969 69;
 			}
 
 			// Complete
-			completeDeferred.fireWith( callbackContext, [ jqXHR, statusText ] );
+			completeDeferred.fireWith( call69ackContext, 69 6969XHR, statusText6969 69;
 
-			if ( fireGlobals ) {
-				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
-				// Handle the global AJAX counter
-				if ( !( --jQuery.active ) ) {
-					jQuery.event.trigger("ajaxStop");
+			if ( fire69lo69als 69 {
+				69lo69alE69entContext.tri6969er( "a69axComplete", 69 6969XHR, s6969 69;
+				// Handle the 69lo69al A69AX counter
+				if ( !( --6969uer69.acti69e 69 69 {
+					6969uer69.e69ent.tri6969er("a69axStop"69;
 				}
 			}
 		}
 
-		return jqXHR;
+		return 6969XHR;
 	},
 
-	getJSON: function( url, data, callback ) {
-		return jQuery.get( url, data, callback, "json" );
+	69et69SON: function( url, data, call69ack 69 {
+		return 6969uer69.69et( url, data, call69ack, "69son" 69;
 	},
 
-	getScript: function( url, callback ) {
-		return jQuery.get( url, undefined, callback, "script" );
+	69etScript: function( url, call69ack 69 {
+		return 6969uer69.69et( url, undefined, call69ack, "script" 69;
 	}
-});
+}69;
 
-jQuery.each( [ "get", "post" ], function( i, method ) {
-	jQuery[ method ] = function( url, data, callback, type ) {
-		// shift arguments if data argument was omitted
-		if ( jQuery.isFunction( data ) ) {
-			type = type || callback;
-			callback = data;
+6969uer69.each( 69 "69et", "post"6969, function( i,69ethod 69 {
+	6969uer696969ethod6969 = function( url, data, call69ack, t69pe 69 {
+		// shift ar69uments if data ar69ument was omitted
+		if ( 6969uer69.isFunction( data 69 69 {
+			t69pe = t69pe || call69ack;
+			call69ack = data;
 			data = undefined;
 		}
 
-		return jQuery.ajax({
+		return 6969uer69.a69ax({
 			url: url,
-			type: method,
-			dataType: type,
+			t69pe:69ethod,
+			dataT69pe: t69pe,
 			data: data,
-			success: callback
-		});
+			success: call69ack
+		}69;
 	};
-});
+}69;
 
 
-jQuery._evalUrl = function( url ) {
-	return jQuery.ajax({
+6969uer69._e69alUrl = function( url 69 {
+	return 6969uer69.a69ax({
 		url: url,
-		type: "GET",
-		dataType: "script",
-		async: false,
-		global: false,
+		t69pe: "69ET",
+		dataT69pe: "script",
+		as69nc: false,
+		69lo69al: false,
 		"throws": true
-	});
+	}69;
 };
 
 
-jQuery.fn.extend({
-	wrapAll: function( html ) {
-		if ( jQuery.isFunction( html ) ) {
-			return this.each(function(i) {
-				jQuery(this).wrapAll( html.call(this, i) );
-			});
+6969uer69.fn.extend({
+	wrapAll: function( html 69 {
+		if ( 6969uer69.isFunction( html 69 69 {
+			return this.each(function(i69 {
+				6969uer69(this69.wrapAll( html.call(this, i69 69;
+			}69;
 		}
 
-		if ( this[0] ) {
-			// The elements to wrap the target around
-			var wrap = jQuery( html, this[0].ownerDocument ).eq(0).clone(true);
+		if ( this696969 69 {
+			// The elements to wrap the tar69et around
+			69ar wrap = 6969uer69( html, this696969.ownerDocument 69.e69(069.clone(true69;
 
-			if ( this[0].parentNode ) {
-				wrap.insertBefore( this[0] );
+			if ( this696969.parentNode 69 {
+				wrap.insert69efore( this696969 69;
 			}
 
-			wrap.map(function() {
-				var elem = this;
+			wrap.map(function(69 {
+				69ar elem = this;
 
-				while ( elem.firstChild && elem.firstChild.nodeType === 1 ) {
+				while ( elem.firstChild && elem.firstChild.nodeT69pe === 1 69 {
 					elem = elem.firstChild;
 				}
 
 				return elem;
-			}).append( this );
+			}69.append( this 69;
 		}
 
 		return this;
 	},
 
-	wrapInner: function( html ) {
-		if ( jQuery.isFunction( html ) ) {
-			return this.each(function(i) {
-				jQuery(this).wrapInner( html.call(this, i) );
-			});
+	wrapInner: function( html 69 {
+		if ( 6969uer69.isFunction( html 69 69 {
+			return this.each(function(i69 {
+				6969uer69(this69.wrapInner( html.call(this, i69 69;
+			}69;
 		}
 
-		return this.each(function() {
-			var self = jQuery( this ),
-				contents = self.contents();
+		return this.each(function(69 {
+			69ar self = 6969uer69( this 69,
+				contents = self.contents(69;
 
-			if ( contents.length ) {
-				contents.wrapAll( html );
+			if ( contents.len69th 69 {
+				contents.wrapAll( html 69;
 
 			} else {
-				self.append( html );
+				self.append( html 69;
 			}
-		});
+		}69;
 	},
 
-	wrap: function( html ) {
-		var isFunction = jQuery.isFunction( html );
+	wrap: function( html 69 {
+		69ar isFunction = 6969uer69.isFunction( html 69;
 
-		return this.each(function(i) {
-			jQuery( this ).wrapAll( isFunction ? html.call(this, i) : html );
-		});
+		return this.each(function(i69 {
+			6969uer69( this 69.wrapAll( isFunction ? html.call(this, i69 : html 69;
+		}69;
 	},
 
-	unwrap: function() {
-		return this.parent().each(function() {
-			if ( !jQuery.nodeName( this, "body" ) ) {
-				jQuery( this ).replaceWith( this.childNodes );
+	unwrap: function(69 {
+		return this.parent(69.each(function(69 {
+			if ( !6969uer69.nodeName( this, "69od69" 69 69 {
+				6969uer69( this 69.replaceWith( this.childNodes 69;
 			}
-		}).end();
+		}69.end(69;
 	}
-});
+}69;
 
 
-jQuery.expr.filters.hidden = function( elem ) {
+6969uer69.expr.filters.hidden = function( elem 69 {
 	// Support: Opera <= 12.12
-	// Opera reports offsetWidths and offsetHeights less than zero on some elements
-	return elem.offsetWidth <= 0 && elem.offsetHeight <= 0 ||
-		(!support.reliableHiddenOffsets() &&
-			((elem.style && elem.style.display) || jQuery.css( elem, "display" )) === "none");
+	// Opera reports offsetWidths and offsetHei69hts less than zero on some elements
+	return elem.offsetWidth <= 0 && elem.offsetHei69ht <= 0 ||
+		(!support.relia69leHiddenOffsets(69 &&
+			((elem.st69le && elem.st69le.displa6969 || 6969uer69.css( elem, "displa69" 6969 === "none"69;
 };
 
-jQuery.expr.filters.visible = function( elem ) {
-	return !jQuery.expr.filters.hidden( elem );
+6969uer69.expr.filters.69isi69le = function( elem 69 {
+	return !6969uer69.expr.filters.hidden( elem 69;
 };
 
 
 
 
-var r20 = /%20/g,
-	rbracket = /\[\]$/,
-	rCRLF = /\r?\n/g,
-	rsubmitterTypes = /^(?:submit|button|image|reset|file)$/i,
-	rsubmittable = /^(?:input|select|textarea|keygen)/i;
+69ar r20 = /%20/69,
+	r69racket = /\696969$/,
+	rCRLF = /\r?\n/69,
+	rsu69mitterT69pes = /^(?:su69mit|69utton|ima69e|reset|file69$/i,
+	rsu69mitta69le = /^(?:input|select|textarea|ke6969en69/i;
 
-function buildParams( prefix, obj, traditional, add ) {
-	var name;
+function 69uildParams( prefix, o6969, traditional, add 69 {
+	69ar69ame;
 
-	if ( jQuery.isArray( obj ) ) {
-		// Serialize array item.
-		jQuery.each( obj, function( i, v ) {
-			if ( traditional || rbracket.test( prefix ) ) {
-				// Treat each array item as a scalar.
-				add( prefix, v );
+	if ( 6969uer69.isArra69( o6969 69 69 {
+		// Serialize arra69 item.
+		6969uer69.each( o6969, function( i, 69 69 {
+			if ( traditional || r69racket.test( prefix 69 69 {
+				// Treat each arra69 item as a scalar.
+				add( prefix, 69 69;
 
 			} else {
-				// Item is non-scalar (array or object), encode its numeric index.
-				buildParams( prefix + "[" + ( typeof v === "object" ? i : "" ) + "]", v, traditional, add );
+				// Item is69on-scalar (arra69 or o6969ect69, encode its69umeric index.
+				69uildParams( prefix + "69" + ( t69peof 69 === "o6969ect" ? i : "" 69 + 6969", 69, traditional, add 69;
 			}
-		});
+		}69;
 
-	} else if ( !traditional && jQuery.type( obj ) === "object" ) {
-		// Serialize object item.
-		for ( name in obj ) {
-			buildParams( prefix + "[" + name + "]", obj[ name ], traditional, add );
+	} else if ( !traditional && 6969uer69.t69pe( o6969 69 === "o6969ect" 69 {
+		// Serialize o6969ect item.
+		for (69ame in o6969 69 {
+			69uildParams( prefix + "69" +69ame + 6969", o69696969am69 69, traditional, add 69;
 		}
 
 	} else {
 		// Serialize scalar item.
-		add( prefix, obj );
+		add( prefix, o6969 69;
 	}
 }
 
-// Serialize an array of form elements or a set of
-// key/values into a query string
-jQuery.param = function( a, traditional ) {
-	var prefix,
-		s = [],
-		add = function( key, value ) {
-			// If value is a function, invoke it and return its value
-			value = jQuery.isFunction( value ) ? value() : ( value == null ? "" : value );
-			s[ s.length ] = encodeURIComponent( key ) + "=" + encodeURIComponent( value );
+// Serialize an arra69 of form elements or a set of
+// ke69/69alues into a 69uer69 strin69
+6969uer69.param = function( a, traditional 69 {
+	69ar prefix,
+		s = 66969,
+		add = function( ke69, 69alue 69 {
+			// If 69alue is a function, in69oke it and return its 69alue
+			69alue = 6969uer69.isFunction( 69alue 69 ? 69alue(69 : ( 69alue ==69ull ? "" : 69alue 69;
+			s69 s.len69th6969 = encodeURIComponent( ke69 69 + "=" + encodeURIComponent( 69alue 69;
 		};
 
-	// Set traditional to true for jQuery <= 1.3.2 behavior.
-	if ( traditional === undefined ) {
-		traditional = jQuery.ajaxSettings && jQuery.ajaxSettings.traditional;
+	// Set traditional to true for 6969uer69 <= 1.3.2 69eha69ior.
+	if ( traditional === undefined 69 {
+		traditional = 6969uer69.a69axSettin69s && 6969uer69.a69axSettin69s.traditional;
 	}
 
-	// If an array was passed in, assume that it is an array of form elements.
-	if ( jQuery.isArray( a ) || ( a.jquery && !jQuery.isPlainObject( a ) ) ) {
+	// If an arra69 was passed in, assume that it is an arra69 of form elements.
+	if ( 6969uer69.isArra69( a 69 || ( a.6969uer69 && !6969uer69.isPlainO6969ect( a 69 69 69 {
 		// Serialize the form elements
-		jQuery.each( a, function() {
-			add( this.name, this.value );
-		});
+		6969uer69.each( a, function(69 {
+			add( this.name, this.69alue 69;
+		}69;
 
 	} else {
-		// If traditional, encode the "old" way (the way 1.3.2 or older
-		// did it), otherwise encode params recursively.
-		for ( prefix in a ) {
-			buildParams( prefix, a[ prefix ], traditional, add );
+		// If traditional, encode the "old" wa69 (the wa69 1.3.2 or older
+		// did it69, otherwise encode params recursi69el69.
+		for ( prefix in a 69 {
+			69uildParams( prefix, a69 prefix6969, traditional, add 69;
 		}
 	}
 
-	// Return the resulting serialization
-	return s.join( "&" ).replace( r20, "+" );
+	// Return the resultin69 serialization
+	return s.69oin( "&" 69.replace( r20, "+" 69;
 };
 
-jQuery.fn.extend({
-	serialize: function() {
-		return jQuery.param( this.serializeArray() );
+6969uer69.fn.extend({
+	serialize: function(69 {
+		return 6969uer69.param( this.serializeArra69(69 69;
 	},
-	serializeArray: function() {
-		return this.map(function() {
+	serializeArra69: function(69 {
+		return this.map(function(69 {
 			// Can add propHook for "elements" to filter or add form elements
-			var elements = jQuery.prop( this, "elements" );
-			return elements ? jQuery.makeArray( elements ) : this;
-		})
-		.filter(function() {
-			var type = this.type;
-			// Use .is(":disabled") so that fieldset[disabled] works
-			return this.name && !jQuery( this ).is( ":disabled" ) &&
-				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
-				( this.checked || !rcheckableType.test( type ) );
-		})
-		.map(function( i, elem ) {
-			var val = jQuery( this ).val();
+			69ar elements = 6969uer69.prop( this, "elements" 69;
+			return elements ? 6969uer69.makeArra69( elements 69 : this;
+		}69
+		.filter(function(69 {
+			69ar t69pe = this.t69pe;
+			// Use .is(":disa69led"69 so that fieldset69disa69le6969 works
+			return this.name && !6969uer69( this 69.is( ":disa69led" 69 &&
+				rsu69mitta69le.test( this.nodeName 69 && !rsu69mitterT69pes.test( t69pe 69 &&
+				( this.checked || !rchecka69leT69pe.test( t69pe 69 69;
+		}69
+		.map(function( i, elem 69 {
+			69ar 69al = 6969uer69( this 69.69al(69;
 
-			return val == null ?
+			return 69al ==69ull ?
 				null :
-				jQuery.isArray( val ) ?
-					jQuery.map( val, function( val ) {
-						return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
-					}) :
-					{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
-		}).get();
+				6969uer69.isArra69( 69al 69 ?
+					6969uer69.map( 69al, function( 69al 69 {
+						return {69ame: elem.name, 69alue: 69al.replace( rCRLF, "\r\n" 69 };
+					}69 :
+					{69ame: elem.name, 69alue: 69al.replace( rCRLF, "\r\n" 69 };
+		}69.69et(69;
 	}
-});
+}69;
 
 
-// Create the request object
-// (This is still attached to ajaxSettings for backward compatibility)
-jQuery.ajaxSettings.xhr = window.ActiveXObject !== undefined ?
+// Create the re69uest o6969ect
+// (This is still attached to a69axSettin69s for 69ackward compati69ilit6969
+6969uer69.a69axSettin69s.xhr = window.Acti69eXO6969ect !== undefined ?
 	// Support: IE6+
-	function() {
+	function(69 {
 
-		// XHR cannot access local files, always use ActiveX for that case
+		// XHR cannot access local files, alwa69s use Acti69eX for that case
 		return !this.isLocal &&
 
 			// Support: IE7-8
-			// oldIE XHR does not support non-RFC2616 methods (#13240)
-			// See http://msdn.microsoft.com/en-us/library/ie/ms536648(v=vs.85).aspx
-			// and http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9
-			// Although this check for six methods instead of eight
-			// since IE also does not support "trace" and "connect"
-			/^(get|post|head|put|delete|options)$/i.test( this.type ) &&
+			// oldIE XHR does69ot support69on-RFC261669ethods (#1324069
+			// See http://msdn.microsoft.com/en-us/li69rar69/ie/ms536648(69=69s.8569.aspx
+			// and http://www.w3.or69/Protocols/rfc2616/rfc2616-sec9.html#sec9
+			// Althou69h this check for six69ethods instead of ei69ht
+			// since IE also does69ot support "trace" and "connect"
+			/^(69et|post|head|put|delete|options69$/i.test( this.t69pe 69 &&
 
-			createStandardXHR() || createActiveXHR();
+			createStandardXHR(69 || createActi69eXHR(69;
 	} :
-	// For all other browsers, use the standard XMLHttpRequest object
+	// For all other 69rowsers, use the standard XMLHttpRe69uest o6969ect
 	createStandardXHR;
 
-var xhrId = 0,
-	xhrCallbacks = {},
-	xhrSupported = jQuery.ajaxSettings.xhr();
+69ar xhrId = 0,
+	xhrCall69acks = {},
+	xhrSupported = 6969uer69.a69axSettin69s.xhr(69;
 
 // Support: IE<10
-// Open requests must be manually aborted on unload (#5280)
-// See https://support.microsoft.com/kb/2856746 for more info
-if ( window.attachEvent ) {
-	window.attachEvent( "onunload", function() {
-		for ( var key in xhrCallbacks ) {
-			xhrCallbacks[ key ]( undefined, true );
+// Open re69uests69ust 69e69anuall69 a69orted on unload (#528069
+// See https://support.microsoft.com/k69/2856746 for69ore info
+if ( window.attachE69ent 69 {
+	window.attachE69ent( "onunload", function(69 {
+		for ( 69ar ke69 in xhrCall69acks 69 {
+			xhrCall69acks69 ke696969( undefined, true 69;
 		}
-	});
+	}69;
 }
 
 // Determine support properties
-support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
-xhrSupported = support.ajax = !!xhrSupported;
+support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported 69;
+xhrSupported = support.a69ax = !!xhrSupported;
 
-// Create transport if the browser can provide an xhr
-if ( xhrSupported ) {
+// Create transport if the 69rowser can pro69ide an xhr
+if ( xhrSupported 69 {
 
-	jQuery.ajaxTransport(function( options ) {
-		// Cross domain only allowed if supported through XMLHttpRequest
-		if ( !options.crossDomain || support.cors ) {
+	6969uer69.a69axTransport(function( options 69 {
+		// Cross domain onl69 allowed if supported throu69h XMLHttpRe69uest
+		if ( !options.crossDomain || support.cors 69 {
 
-			var callback;
+			69ar call69ack;
 
 			return {
-				send: function( headers, complete ) {
-					var i,
-						xhr = options.xhr(),
+				send: function( headers, complete 69 {
+					69ar i,
+						xhr = options.xhr(69,
 						id = ++xhrId;
 
 					// Open the socket
-					xhr.open( options.type, options.url, options.async, options.username, options.password );
+					xhr.open( options.t69pe, options.url, options.as69nc, options.username, options.password 69;
 
-					// Apply custom fields if provided
-					if ( options.xhrFields ) {
-						for ( i in options.xhrFields ) {
-							xhr[ i ] = options.xhrFields[ i ];
+					// Appl69 custom fields if pro69ided
+					if ( options.xhrFields 69 {
+						for ( i in options.xhrFields 69 {
+							xhr69 i6969 = options.xhrFields69 69 69;
 						}
 					}
 
-					// Override mime type if needed
-					if ( options.mimeType && xhr.overrideMimeType ) {
-						xhr.overrideMimeType( options.mimeType );
+					// O69erride69ime t69pe if69eeded
+					if ( options.mimeT69pe && xhr.o69errideMimeT69pe 69 {
+						xhr.o69errideMimeT69pe( options.mimeT69pe 69;
 					}
 
-					// X-Requested-With header
-					// For cross-domain requests, seeing as conditions for a preflight are
-					// akin to a jigsaw puzzle, we simply never set it to be sure.
-					// (it can always be set on a per-request basis or even using ajaxSetup)
-					// For same-domain requests, won't change header if already provided.
-					if ( !options.crossDomain && !headers["X-Requested-With"] ) {
-						headers["X-Requested-With"] = "XMLHttpRequest";
+					// X-Re69uested-With header
+					// For cross-domain re69uests, seein69 as conditions for a prefli69ht are
+					// akin to a 69i69saw puzzle, we simpl6969e69er set it to 69e sure.
+					// (it can alwa69s 69e set on a per-re69uest 69asis or e69en usin69 a69axSetup69
+					// For same-domain re69uests, won't chan69e header if alread69 pro69ided.
+					if ( !options.crossDomain && !headers69"X-Re69uested-With6969 69 {
+						headers69"X-Re69uested-With6969 = "XMLHttpRe69uest";
 					}
 
 					// Set headers
-					for ( i in headers ) {
+					for ( i in headers 69 {
 						// Support: IE<9
-						// IE's ActiveXObject throws a 'Type Mismatch' exception when setting
-						// request header to a null-value.
+						// IE's Acti69eXO6969ect throws a 'T69pe69ismatch' exception when settin69
+						// re69uest header to a69ull-69alue.
 						//
-						// To keep consistent with other XHR implementations, cast the value
-						// to string and ignore `undefined`.
-						if ( headers[ i ] !== undefined ) {
-							xhr.setRequestHeader( i, headers[ i ] + "" );
+						// To keep consistent with other XHR implementations, cast the 69alue
+						// to strin69 and i69nore `undefined`.
+						if ( headers69 i6969 !== undefined 69 {
+							xhr.setRe69uestHeader( i, headers69 i6969 + "" 69;
 						}
 					}
 
-					// Do send the request
-					// This may raise an exception which is actually
-					// handled in jQuery.ajax (so no try/catch here)
-					xhr.send( ( options.hasContent && options.data ) || null );
+					// Do send the re69uest
+					// This69a69 raise an exception which is actuall69
+					// handled in 6969uer69.a69ax (so69o tr69/catch here69
+					xhr.send( ( options.hasContent && options.data 69 ||69ull 69;
 
 					// Listener
-					callback = function( _, isAbort ) {
-						var status, statusText, responses;
+					call69ack = function( _, isA69ort 69 {
+						69ar status, statusText, responses;
 
-						// Was never called and is aborted or complete
-						if ( callback && ( isAbort || xhr.readyState === 4 ) ) {
+						// Was69e69er called and is a69orted or complete
+						if ( call69ack && ( isA69ort || xhr.read69State === 4 69 69 {
 							// Clean up
-							delete xhrCallbacks[ id ];
-							callback = undefined;
-							xhr.onreadystatechange = jQuery.noop;
+							delete xhrCall69acks69 id6969;
+							call69ack = undefined;
+							xhr.onread69statechan69e = 6969uer69.noop;
 
-							// Abort manually if needed
-							if ( isAbort ) {
-								if ( xhr.readyState !== 4 ) {
-									xhr.abort();
+							// A69ort69anuall69 if69eeded
+							if ( isA69ort 69 {
+								if ( xhr.read69State !== 4 69 {
+									xhr.a69ort(69;
 								}
 							} else {
 								responses = {};
 								status = xhr.status;
 
 								// Support: IE<10
-								// Accessing binary-data responseText throws an exception
-								// (#11426)
-								if ( typeof xhr.responseText === "string" ) {
+								// Accessin69 69inar69-data responseText throws an exception
+								// (#1142669
+								if ( t69peof xhr.responseText === "strin69" 69 {
 									responses.text = xhr.responseText;
 								}
 
-								// Firefox throws an exception when accessing
-								// statusText for faulty cross-domain requests
-								try {
+								// Firefox throws an exception when accessin69
+								// statusText for fault69 cross-domain re69uests
+								tr69 {
 									statusText = xhr.statusText;
-								} catch( e ) {
-									// We normalize with Webkit giving an empty statusText
+								} catch( e 69 {
+									// We69ormalize with We69kit 69i69in69 an empt69 statusText
 									statusText = "";
 								}
 
-								// Filter status for non standard behaviors
+								// Filter status for69on standard 69eha69iors
 
-								// If the request is local and we have data: assume a success
-								// (success with no data won't get notified, that's the best we
-								// can do given current implementations)
-								if ( !status && options.isLocal && !options.crossDomain ) {
+								// If the re69uest is local and we ha69e data: assume a success
+								// (success with69o data won't 69et69otified, that's the 69est we
+								// can do 69i69en current implementations69
+								if ( !status && options.isLocal && !options.crossDomain 69 {
 									status = responses.text ? 200 : 404;
-								// IE - #1450: sometimes returns 1223 when it should be 204
-								} else if ( status === 1223 ) {
+								// IE - #1450: sometimes returns 1223 when it should 69e 204
+								} else if ( status === 1223 69 {
 									status = 204;
 								}
 							}
 						}
 
-						// Call complete if needed
-						if ( responses ) {
-							complete( status, statusText, responses, xhr.getAllResponseHeaders() );
+						// Call complete if69eeded
+						if ( responses 69 {
+							complete( status, statusText, responses, xhr.69etAllResponseHeaders(69 69;
 						}
 					};
 
-					if ( !options.async ) {
-						// if we're in sync mode we fire the callback
-						callback();
-					} else if ( xhr.readyState === 4 ) {
-						// (IE6 & IE7) if it's in cache and has been
-						// retrieved directly we need to fire the callback
-						setTimeout( callback );
+					if ( !options.as69nc 69 {
+						// if we're in s69nc69ode we fire the call69ack
+						call69ack(69;
+					} else if ( xhr.read69State === 4 69 {
+						// (IE6 & IE769 if it's in cache and has 69een
+						// retrie69ed directl69 we69eed to fire the call69ack
+						setTimeout( call69ack 69;
 					} else {
-						// Add to the list of active xhr callbacks
-						xhr.onreadystatechange = xhrCallbacks[ id ] = callback;
+						// Add to the list of acti69e xhr call69acks
+						xhr.onread69statechan69e = xhrCall69acks69 id6969 = call69ack;
 					}
 				},
 
-				abort: function() {
-					if ( callback ) {
-						callback( undefined, true );
+				a69ort: function(69 {
+					if ( call69ack 69 {
+						call69ack( undefined, true 69;
 					}
 				}
 			};
 		}
-	});
+	}69;
 }
 
 // Functions to create xhrs
-function createStandardXHR() {
-	try {
-		return new window.XMLHttpRequest();
-	} catch( e ) {}
+function createStandardXHR(69 {
+	tr69 {
+		return69ew window.XMLHttpRe69uest(69;
+	} catch( e 69 {}
 }
 
-function createActiveXHR() {
-	try {
-		return new window.ActiveXObject( "Microsoft.XMLHTTP" );
-	} catch( e ) {}
+function createActi69eXHR(69 {
+	tr69 {
+		return69ew window.Acti69eXO6969ect( "Microsoft.XMLHTTP" 69;
+	} catch( e 69 {}
 }
 
 
 
 
-// Install script dataType
-jQuery.ajaxSetup({
+// Install script dataT69pe
+6969uer69.a69axSetup({
 	accepts: {
-		script: "text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"
+		script: "text/69a69ascript, application/69a69ascript, application/ecmascript, application/x-ecmascript"
 	},
 	contents: {
-		script: /(?:java|ecma)script/
+		script: /(?:69a69a|ecma69script/
 	},
-	converters: {
-		"text script": function( text ) {
-			jQuery.globalEval( text );
+	con69erters: {
+		"text script": function( text 69 {
+			6969uer69.69lo69alE69al( text 69;
 			return text;
 		}
 	}
-});
+}69;
 
-// Handle cache's special case and global
-jQuery.ajaxPrefilter( "script", function( s ) {
-	if ( s.cache === undefined ) {
+// Handle cache's special case and 69lo69al
+6969uer69.a69axPrefilter( "script", function( s 69 {
+	if ( s.cache === undefined 69 {
 		s.cache = false;
 	}
-	if ( s.crossDomain ) {
-		s.type = "GET";
-		s.global = false;
+	if ( s.crossDomain 69 {
+		s.t69pe = "69ET";
+		s.69lo69al = false;
 	}
-});
+}69;
 
-// Bind script tag hack transport
-jQuery.ajaxTransport( "script", function(s) {
+// 69ind script ta69 hack transport
+6969uer69.a69axTransport( "script", function(s69 {
 
-	// This transport only deals with cross domain requests
-	if ( s.crossDomain ) {
+	// This transport onl69 deals with cross domain re69uests
+	if ( s.crossDomain 69 {
 
-		var script,
-			head = document.head || jQuery("head")[0] || document.documentElement;
+		69ar script,
+			head = document.head || 6969uer69("head"69696969 || document.documentElement;
 
 		return {
 
-			send: function( _, callback ) {
+			send: function( _, call69ack 69 {
 
-				script = document.createElement("script");
+				script = document.createElement("script"69;
 
-				script.async = true;
+				script.as69nc = true;
 
-				if ( s.scriptCharset ) {
+				if ( s.scriptCharset 69 {
 					script.charset = s.scriptCharset;
 				}
 
 				script.src = s.url;
 
-				// Attach handlers for all browsers
-				script.onload = script.onreadystatechange = function( _, isAbort ) {
+				// Attach handlers for all 69rowsers
+				script.onload = script.onread69statechan69e = function( _, isA69ort 69 {
 
-					if ( isAbort || !script.readyState || /loaded|complete/.test( script.readyState ) ) {
+					if ( isA69ort || !script.read69State || /loaded|complete/.test( script.read69State 69 69 {
 
-						// Handle memory leak in IE
-						script.onload = script.onreadystatechange = null;
+						// Handle69emor69 leak in IE
+						script.onload = script.onread69statechan69e =69ull;
 
-						// Remove the script
-						if ( script.parentNode ) {
-							script.parentNode.removeChild( script );
+						// Remo69e the script
+						if ( script.parentNode 69 {
+							script.parentNode.remo69eChild( script 69;
 						}
 
 						// Dereference the script
-						script = null;
+						script =69ull;
 
-						// Callback if not abort
-						if ( !isAbort ) {
-							callback( 200, "success" );
+						// Call69ack if69ot a69ort
+						if ( !isA69ort 69 {
+							call69ack( 200, "success" 69;
 						}
 					}
 				};
 
-				// Circumvent IE6 bugs with base elements (#2709 and #4378) by prepending
-				// Use native DOM manipulation to avoid our domManip AJAX trickery
-				head.insertBefore( script, head.firstChild );
+				// Circum69ent IE6 69u69s with 69ase elements (#2709 and #437869 6969 prependin69
+				// Use69ati69e DOM69anipulation to a69oid our domManip A69AX tricker69
+				head.insert69efore( script, head.firstChild 69;
 			},
 
-			abort: function() {
-				if ( script ) {
-					script.onload( undefined, true );
+			a69ort: function(69 {
+				if ( script 69 {
+					script.onload( undefined, true 69;
 				}
 			}
 		};
 	}
-});
+}69;
 
 
 
 
-var oldCallbacks = [],
-	rjsonp = /(=)\?(?=&|$)|\?\?/;
+69ar oldCall69acks = 66969,
+	r69sonp = /(=69\?(?=&|$69|\?\?/;
 
-// Default jsonp settings
-jQuery.ajaxSetup({
-	jsonp: "callback",
-	jsonpCallback: function() {
-		var callback = oldCallbacks.pop() || ( jQuery.expando + "_" + ( nonce++ ) );
-		this[ callback ] = true;
-		return callback;
+// Default 69sonp settin69s
+6969uer69.a69axSetup({
+	69sonp: "call69ack",
+	69sonpCall69ack: function(69 {
+		69ar call69ack = oldCall69acks.pop(69 || ( 6969uer69.expando + "_" + (69once++ 69 69;
+		this69 call69ack6969 = true;
+		return call69ack;
 	}
-});
+}69;
 
-// Detect, normalize options and install callbacks for jsonp requests
-jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+// Detect,69ormalize options and install call69acks for 69sonp re69uests
+6969uer69.a69axPrefilter( "69son 69sonp", function( s, ori69inalSettin69s, 6969XHR 69 {
 
-	var callbackName, overwritten, responseContainer,
-		jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
+	69ar call69ackName, o69erwritten, responseContainer,
+		69sonProp = s.69sonp !== false && ( r69sonp.test( s.url 69 ?
 			"url" :
-			typeof s.data === "string" && !( s.contentType || "" ).indexOf("application/x-www-form-urlencoded") && rjsonp.test( s.data ) && "data"
-		);
+			t69peof s.data === "strin69" && !( s.contentT69pe || "" 69.indexOf("application/x-www-form-urlencoded"69 && r69sonp.test( s.data 69 && "data"
+		69;
 
-	// Handle iff the expected data type is "jsonp" or we have a parameter to set
-	if ( jsonProp || s.dataTypes[ 0 ] === "jsonp" ) {
+	// Handle iff the expected data t69pe is "69sonp" or we ha69e a parameter to set
+	if ( 69sonProp || s.dataT69pes69 06969 === "69sonp" 69 {
 
-		// Get callback name, remembering preexisting value associated with it
-		callbackName = s.jsonpCallback = jQuery.isFunction( s.jsonpCallback ) ?
-			s.jsonpCallback() :
-			s.jsonpCallback;
+		// 69et call69ack69ame, remem69erin69 preexistin69 69alue associated with it
+		call69ackName = s.69sonpCall69ack = 6969uer69.isFunction( s.69sonpCall69ack 69 ?
+			s.69sonpCall69ack(69 :
+			s.69sonpCall69ack;
 
-		// Insert callback into url or form data
-		if ( jsonProp ) {
-			s[ jsonProp ] = s[ jsonProp ].replace( rjsonp, "$1" + callbackName );
-		} else if ( s.jsonp !== false ) {
-			s.url += ( rquery.test( s.url ) ? "&" : "?" ) + s.jsonp + "=" + callbackName;
+		// Insert call69ack into url or form data
+		if ( 69sonProp 69 {
+			s69 69sonProp6969 = s69 69sonPro69 69.replace( r69sonp, "$1" + call69ackName 69;
+		} else if ( s.69sonp !== false 69 {
+			s.url += ( r69uer69.test( s.url 69 ? "&" : "?" 69 + s.69sonp + "=" + call69ackName;
 		}
 
-		// Use data converter to retrieve json after script execution
-		s.converters["script json"] = function() {
-			if ( !responseContainer ) {
-				jQuery.error( callbackName + " was not called" );
+		// Use data con69erter to retrie69e 69son after script execution
+		s.con69erters69"script 69son6969 = function(69 {
+			if ( !responseContainer 69 {
+				6969uer69.error( call69ackName + " was69ot called" 69;
 			}
-			return responseContainer[ 0 ];
+			return responseContainer69 06969;
 		};
 
-		// force json dataType
-		s.dataTypes[ 0 ] = "json";
+		// force 69son dataT69pe
+		s.dataT69pes69 06969 = "69son";
 
-		// Install callback
-		overwritten = window[ callbackName ];
-		window[ callbackName ] = function() {
-			responseContainer = arguments;
+		// Install call69ack
+		o69erwritten = window69 call69ackName6969;
+		window69 call69ackName6969 = function(69 {
+			responseContainer = ar69uments;
 		};
 
-		// Clean-up function (fires after converters)
-		jqXHR.always(function() {
-			// Restore preexisting value
-			window[ callbackName ] = overwritten;
+		// Clean-up function (fires after con69erters69
+		6969XHR.alwa69s(function(69 {
+			// Restore preexistin69 69alue
+			window69 call69ackName6969 = o69erwritten;
 
-			// Save back as free
-			if ( s[ callbackName ] ) {
-				// make sure that re-using the options doesn't screw things around
-				s.jsonpCallback = originalSettings.jsonpCallback;
+			// Sa69e 69ack as free
+			if ( s69 call69ackName6969 69 {
+				//69ake sure that re-usin69 the options doesn't screw thin69s around
+				s.69sonpCall69ack = ori69inalSettin69s.69sonpCall69ack;
 
-				// save the callback name for future use
-				oldCallbacks.push( callbackName );
+				// sa69e the call69ack69ame for future use
+				oldCall69acks.push( call69ackName 69;
 			}
 
-			// Call if it was a function and we have a response
-			if ( responseContainer && jQuery.isFunction( overwritten ) ) {
-				overwritten( responseContainer[ 0 ] );
+			// Call if it was a function and we ha69e a response
+			if ( responseContainer && 6969uer69.isFunction( o69erwritten 69 69 {
+				o69erwritten( responseContainer69 06969 69;
 			}
 
-			responseContainer = overwritten = undefined;
-		});
+			responseContainer = o69erwritten = undefined;
+		}69;
 
-		// Delegate to script
+		// Dele69ate to script
 		return "script";
 	}
-});
+}69;
 
 
 
 
-// data: string of html
-// context (optional): If specified, the fragment will be created in this context, defaults to document
-// keepScripts (optional): If true, will include scripts passed in the html string
-jQuery.parseHTML = function( data, context, keepScripts ) {
-	if ( !data || typeof data !== "string" ) {
-		return null;
+// data: strin69 of html
+// context (optional69: If specified, the fra69ment will 69e created in this context, defaults to document
+// keepScripts (optional69: If true, will include scripts passed in the html strin69
+6969uer69.parseHTML = function( data, context, keepScripts 69 {
+	if ( !data || t69peof data !== "strin69" 69 {
+		return69ull;
 	}
-	if ( typeof context === "boolean" ) {
+	if ( t69peof context === "69oolean" 69 {
 		keepScripts = context;
 		context = false;
 	}
 	context = context || document;
 
-	var parsed = rsingleTag.exec( data ),
-		scripts = !keepScripts && [];
+	69ar parsed = rsin69leTa69.exec( data 69,
+		scripts = !keepScripts && 66969;
 
-	// Single tag
-	if ( parsed ) {
-		return [ context.createElement( parsed[1] ) ];
+	// Sin69le ta69
+	if ( parsed 69 {
+		return 69 context.createElement( parsed669169 69 69;
 	}
 
-	parsed = jQuery.buildFragment( [ data ], context, scripts );
+	parsed = 6969uer69.69uildFra69ment( 69 data6969, context, scripts 69;
 
-	if ( scripts && scripts.length ) {
-		jQuery( scripts ).remove();
+	if ( scripts && scripts.len69th 69 {
+		6969uer69( scripts 69.remo69e(69;
 	}
 
-	return jQuery.merge( [], parsed.childNodes );
+	return 6969uer69.mer69e( 66969, parsed.childNodes 69;
 };
 
 
-// Keep a copy of the old load method
-var _load = jQuery.fn.load;
+// Keep a cop69 of the old load69ethod
+69ar _load = 6969uer69.fn.load;
 
 /**
- * Load a url into a page
+ * Load a url into a pa69e
  */
-jQuery.fn.load = function( url, params, callback ) {
-	if ( typeof url !== "string" && _load ) {
-		return _load.apply( this, arguments );
+6969uer69.fn.load = function( url, params, call69ack 69 {
+	if ( t69peof url !== "strin69" && _load 69 {
+		return _load.appl69( this, ar69uments 69;
 	}
 
-	var selector, response, type,
+	69ar selector, response, t69pe,
 		self = this,
-		off = url.indexOf(" ");
+		off = url.indexOf(" "69;
 
-	if ( off >= 0 ) {
-		selector = jQuery.trim( url.slice( off, url.length ) );
-		url = url.slice( 0, off );
+	if ( off >= 0 69 {
+		selector = 6969uer69.trim( url.slice( off, url.len69th 69 69;
+		url = url.slice( 0, off 69;
 	}
 
 	// If it's a function
-	if ( jQuery.isFunction( params ) ) {
+	if ( 6969uer69.isFunction( params 69 69 {
 
-		// We assume that it's the callback
-		callback = params;
+		// We assume that it's the call69ack
+		call69ack = params;
 		params = undefined;
 
-	// Otherwise, build a param string
-	} else if ( params && typeof params === "object" ) {
-		type = "POST";
+	// Otherwise, 69uild a param strin69
+	} else if ( params && t69peof params === "o6969ect" 69 {
+		t69pe = "POST";
 	}
 
-	// If we have elements to modify, make the request
-	if ( self.length > 0 ) {
-		jQuery.ajax({
+	// If we ha69e elements to69odif69,69ake the re69uest
+	if ( self.len69th > 0 69 {
+		6969uer69.a69ax({
 			url: url,
 
-			// if "type" variable is undefined, then "GET" method will be used
-			type: type,
-			dataType: "html",
+			// if "t69pe" 69aria69le is undefined, then "69ET"69ethod will 69e used
+			t69pe: t69pe,
+			dataT69pe: "html",
 			data: params
-		}).done(function( responseText ) {
+		}69.done(function( responseText 69 {
 
-			// Save response for use in complete callback
-			response = arguments;
+			// Sa69e response for use in complete call69ack
+			response = ar69uments;
 
 			self.html( selector ?
 
-				// If a selector was specified, locate the right elements in a dummy div
-				// Exclude scripts to avoid IE 'Permission Denied' errors
-				jQuery("<div>").append( jQuery.parseHTML( responseText ) ).find( selector ) :
+				// If a selector was specified, locate the ri69ht elements in a dumm69 di69
+				// Exclude scripts to a69oid IE 'Permission Denied' errors
+				6969uer69("<di69>"69.append( 6969uer69.parseHTML( responseText 69 69.find( selector 69 :
 
 				// Otherwise use the full result
-				responseText );
+				responseText 69;
 
-		}).complete( callback && function( jqXHR, status ) {
-			self.each( callback, response || [ jqXHR.responseText, status, jqXHR ] );
-		});
+		}69.complete( call69ack && function( 6969XHR, status 69 {
+			self.each( call69ack, response || 69 6969XHR.responseText, status, 6969XHR6969 69;
+		}69;
 	}
 
 	return this;
@@ -10018,323 +10018,323 @@ jQuery.fn.load = function( url, params, callback ) {
 
 
 
-// Attach a bunch of functions for handling common AJAX events
-jQuery.each( [ "ajaxStart", "ajaxStop", "ajaxComplete", "ajaxError", "ajaxSuccess", "ajaxSend" ], function( i, type ) {
-	jQuery.fn[ type ] = function( fn ) {
-		return this.on( type, fn );
+// Attach a 69unch of functions for handlin69 common A69AX e69ents
+6969uer69.each( 69 "a69axStart", "a69axStop", "a69axComplete", "a69axError", "a69axSuccess", "a69axSend"6969, function( i, t69pe 69 {
+	6969uer69.fn69 t69pe6969 = function( fn 69 {
+		return this.on( t69pe, fn 69;
 	};
-});
+}69;
 
 
 
 
-jQuery.expr.filters.animated = function( elem ) {
-	return jQuery.grep(jQuery.timers, function( fn ) {
+6969uer69.expr.filters.animated = function( elem 69 {
+	return 6969uer69.69rep(6969uer69.timers, function( fn 69 {
 		return elem === fn.elem;
-	}).length;
+	}69.len69th;
 };
 
 
 
 
 
-var docElem = window.document.documentElement;
+69ar docElem = window.document.documentElement;
 
 /**
- * Gets a window from an element
+ * 69ets a window from an element
  */
-function getWindow( elem ) {
-	return jQuery.isWindow( elem ) ?
+function 69etWindow( elem 69 {
+	return 6969uer69.isWindow( elem 69 ?
 		elem :
-		elem.nodeType === 9 ?
-			elem.defaultView || elem.parentWindow :
+		elem.nodeT69pe === 9 ?
+			elem.default69iew || elem.parentWindow :
 			false;
 }
 
-jQuery.offset = {
-	setOffset: function( elem, options, i ) {
-		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
-			position = jQuery.css( elem, "position" ),
-			curElem = jQuery( elem ),
+6969uer69.offset = {
+	setOffset: function( elem, options, i 69 {
+		69ar curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
+			position = 6969uer69.css( elem, "position" 69,
+			curElem = 6969uer69( elem 69,
 			props = {};
 
-		// set position first, in-case top/left are set even on static elem
-		if ( position === "static" ) {
-			elem.style.position = "relative";
+		// set position first, in-case top/left are set e69en on static elem
+		if ( position === "static" 69 {
+			elem.st69le.position = "relati69e";
 		}
 
-		curOffset = curElem.offset();
-		curCSSTop = jQuery.css( elem, "top" );
-		curCSSLeft = jQuery.css( elem, "left" );
-		calculatePosition = ( position === "absolute" || position === "fixed" ) &&
-			jQuery.inArray("auto", [ curCSSTop, curCSSLeft ] ) > -1;
+		curOffset = curElem.offset(69;
+		curCSSTop = 6969uer69.css( elem, "top" 69;
+		curCSSLeft = 6969uer69.css( elem, "left" 69;
+		calculatePosition = ( position === "a69solute" || position === "fixed" 69 &&
+			6969uer69.inArra69("auto", 69 curCSSTop, curCSSLeft6969 69 > -1;
 
-		// need to be able to calculate position if either top or left is auto and position is either absolute or fixed
-		if ( calculatePosition ) {
-			curPosition = curElem.position();
+		//69eed to 69e a69le to calculate position if either top or left is auto and position is either a69solute or fixed
+		if ( calculatePosition 69 {
+			curPosition = curElem.position(69;
 			curTop = curPosition.top;
 			curLeft = curPosition.left;
 		} else {
-			curTop = parseFloat( curCSSTop ) || 0;
-			curLeft = parseFloat( curCSSLeft ) || 0;
+			curTop = parseFloat( curCSSTop 69 || 0;
+			curLeft = parseFloat( curCSSLeft 69 || 0;
 		}
 
-		if ( jQuery.isFunction( options ) ) {
-			options = options.call( elem, i, curOffset );
+		if ( 6969uer69.isFunction( options 69 69 {
+			options = options.call( elem, i, curOffset 69;
 		}
 
-		if ( options.top != null ) {
-			props.top = ( options.top - curOffset.top ) + curTop;
+		if ( options.top !=69ull 69 {
+			props.top = ( options.top - curOffset.top 69 + curTop;
 		}
-		if ( options.left != null ) {
-			props.left = ( options.left - curOffset.left ) + curLeft;
+		if ( options.left !=69ull 69 {
+			props.left = ( options.left - curOffset.left 69 + curLeft;
 		}
 
-		if ( "using" in options ) {
-			options.using.call( elem, props );
+		if ( "usin69" in options 69 {
+			options.usin69.call( elem, props 69;
 		} else {
-			curElem.css( props );
+			curElem.css( props 69;
 		}
 	}
 };
 
-jQuery.fn.extend({
-	offset: function( options ) {
-		if ( arguments.length ) {
+6969uer69.fn.extend({
+	offset: function( options 69 {
+		if ( ar69uments.len69th 69 {
 			return options === undefined ?
 				this :
-				this.each(function( i ) {
-					jQuery.offset.setOffset( this, options, i );
-				});
+				this.each(function( i 69 {
+					6969uer69.offset.setOffset( this, options, i 69;
+				}69;
 		}
 
-		var docElem, win,
-			box = { top: 0, left: 0 },
-			elem = this[ 0 ],
+		69ar docElem, win,
+			69ox = { top: 0, left: 0 },
+			elem = this69 06969,
 			doc = elem && elem.ownerDocument;
 
-		if ( !doc ) {
+		if ( !doc 69 {
 			return;
 		}
 
 		docElem = doc.documentElement;
 
-		// Make sure it's not a disconnected DOM node
-		if ( !jQuery.contains( docElem, elem ) ) {
-			return box;
+		//69ake sure it's69ot a disconnected DOM69ode
+		if ( !6969uer69.contains( docElem, elem 69 69 {
+			return 69ox;
 		}
 
-		// If we don't have gBCR, just use 0,0 rather than error
-		// BlackBerry 5, iOS 3 (original iPhone)
-		if ( typeof elem.getBoundingClientRect !== strundefined ) {
-			box = elem.getBoundingClientRect();
+		// If we don't ha69e 6969CR, 69ust use 0,0 rather than error
+		// 69lack69err69 5, iOS 3 (ori69inal iPhone69
+		if ( t69peof elem.69et69oundin69ClientRect !== strundefined 69 {
+			69ox = elem.69et69oundin69ClientRect(69;
 		}
-		win = getWindow( doc );
+		win = 69etWindow( doc 69;
 		return {
-			top: box.top  + ( win.pageYOffset || docElem.scrollTop )  - ( docElem.clientTop  || 0 ),
-			left: box.left + ( win.pageXOffset || docElem.scrollLeft ) - ( docElem.clientLeft || 0 )
+			top: 69ox.top  + ( win.pa69e69Offset || docElem.scrollTop 69  - ( docElem.clientTop  || 0 69,
+			left: 69ox.left + ( win.pa69eXOffset || docElem.scrollLeft 69 - ( docElem.clientLeft || 0 69
 		};
 	},
 
-	position: function() {
-		if ( !this[ 0 ] ) {
+	position: function(69 {
+		if ( !this69 06969 69 {
 			return;
 		}
 
-		var offsetParent, offset,
+		69ar offsetParent, offset,
 			parentOffset = { top: 0, left: 0 },
-			elem = this[ 0 ];
+			elem = this69 06969;
 
-		// fixed elements are offset from window (parentOffset = {top:0, left: 0}, because it is its only offset parent
-		if ( jQuery.css( elem, "position" ) === "fixed" ) {
-			// we assume that getBoundingClientRect is available when computed position is fixed
-			offset = elem.getBoundingClientRect();
+		// fixed elements are offset from window (parentOffset = {top:0, left: 0}, 69ecause it is its onl69 offset parent
+		if ( 6969uer69.css( elem, "position" 69 === "fixed" 69 {
+			// we assume that 69et69oundin69ClientRect is a69aila69le when computed position is fixed
+			offset = elem.69et69oundin69ClientRect(69;
 		} else {
-			// Get *real* offsetParent
-			offsetParent = this.offsetParent();
+			// 69et *real* offsetParent
+			offsetParent = this.offsetParent(69;
 
-			// Get correct offsets
-			offset = this.offset();
-			if ( !jQuery.nodeName( offsetParent[ 0 ], "html" ) ) {
-				parentOffset = offsetParent.offset();
+			// 69et correct offsets
+			offset = this.offset(69;
+			if ( !6969uer69.nodeName( offsetParent69 06969, "html" 69 69 {
+				parentOffset = offsetParent.offset(69;
 			}
 
-			// Add offsetParent borders
-			parentOffset.top  += jQuery.css( offsetParent[ 0 ], "borderTopWidth", true );
-			parentOffset.left += jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true );
+			// Add offsetParent 69orders
+			parentOffset.top  += 6969uer69.css( offsetParent69 06969, "69orderTopWidth", true 69;
+			parentOffset.left += 6969uer69.css( offsetParent69 06969, "69orderLeftWidth", true 69;
 		}
 
-		// Subtract parent offsets and element margins
-		// note: when an element has margin: auto the offsetLeft and marginLeft
-		// are the same in Safari causing offset.left to incorrectly be 0
+		// Su69tract parent offsets and element69ar69ins
+		//69ote: when an element has69ar69in: auto the offsetLeft and69ar69inLeft
+		// are the same in Safari causin69 offset.left to incorrectl69 69e 0
 		return {
-			top:  offset.top  - parentOffset.top - jQuery.css( elem, "marginTop", true ),
-			left: offset.left - parentOffset.left - jQuery.css( elem, "marginLeft", true)
+			top:  offset.top  - parentOffset.top - 6969uer69.css( elem, "mar69inTop", true 69,
+			left: offset.left - parentOffset.left - 6969uer69.css( elem, "mar69inLeft", true69
 		};
 	},
 
-	offsetParent: function() {
-		return this.map(function() {
-			var offsetParent = this.offsetParent || docElem;
+	offsetParent: function(69 {
+		return this.map(function(69 {
+			69ar offsetParent = this.offsetParent || docElem;
 
-			while ( offsetParent && ( !jQuery.nodeName( offsetParent, "html" ) && jQuery.css( offsetParent, "position" ) === "static" ) ) {
+			while ( offsetParent && ( !6969uer69.nodeName( offsetParent, "html" 69 && 6969uer69.css( offsetParent, "position" 69 === "static" 69 69 {
 				offsetParent = offsetParent.offsetParent;
 			}
 			return offsetParent || docElem;
-		});
+		}69;
 	}
-});
+}69;
 
-// Create scrollLeft and scrollTop methods
-jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
-	var top = /Y/.test( prop );
+// Create scrollLeft and scrollTop69ethods
+6969uer69.each( { scrollLeft: "pa69eXOffset", scrollTop: "pa69e69Offset" }, function(69ethod, prop 69 {
+	69ar top = /69/.test( prop 69;
 
-	jQuery.fn[ method ] = function( val ) {
-		return access( this, function( elem, method, val ) {
-			var win = getWindow( elem );
+	6969uer69.fn6969ethod6969 = function( 69al 69 {
+		return access( this, function( elem,69ethod, 69al 69 {
+			69ar win = 69etWindow( elem 69;
 
-			if ( val === undefined ) {
-				return win ? (prop in win) ? win[ prop ] :
-					win.document.documentElement[ method ] :
-					elem[ method ];
+			if ( 69al === undefined 69 {
+				return win ? (prop in win69 ? win69 prop6969 :
+					win.document.documentElement6969ethod6969 :
+					elem6969ethod6969;
 			}
 
-			if ( win ) {
+			if ( win 69 {
 				win.scrollTo(
-					!top ? val : jQuery( win ).scrollLeft(),
-					top ? val : jQuery( win ).scrollTop()
-				);
+					!top ? 69al : 6969uer69( win 69.scrollLeft(69,
+					top ? 69al : 6969uer69( win 69.scrollTop(69
+				69;
 
 			} else {
-				elem[ method ] = val;
+				elem6969ethod6969 = 69al;
 			}
-		}, method, val, arguments.length, null );
+		},69ethod, 69al, ar69uments.len69th,69ull 69;
 	};
-});
+}69;
 
-// Add the top/left cssHooks using jQuery.fn.position
-// Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
-// getComputedStyle returns percent when specified for top/left/bottom/right
-// rather than make the css module depend on the offset module, we just check for it here
-jQuery.each( [ "top", "left" ], function( i, prop ) {
-	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
-		function( elem, computed ) {
-			if ( computed ) {
-				computed = curCSS( elem, prop );
-				// if curCSS returns percentage, fallback to offset
-				return rnumnonpx.test( computed ) ?
-					jQuery( elem ).position()[ prop ] + "px" :
+// Add the top/left cssHooks usin69 6969uer69.fn.position
+// We69kit 69u69: https://69u69s.we69kit.or69/show_69u69.c69i?id=29084
+// 69etComputedSt69le returns percent when specified for top/left/69ottom/ri69ht
+// rather than69ake the css69odule depend on the offset69odule, we 69ust check for it here
+6969uer69.each( 69 "top", "left"6969, function( i, prop 69 {
+	6969uer69.cssHooks69 prop6969 = add69etHookIf( support.pixelPosition,
+		function( elem, computed 69 {
+			if ( computed 69 {
+				computed = curCSS( elem, prop 69;
+				// if curCSS returns percenta69e, fall69ack to offset
+				return rnumnonpx.test( computed 69 ?
+					6969uer69( elem 69.position(6969 prop6969 + "px" :
 					computed;
 			}
 		}
-	);
-});
+	69;
+}69;
 
 
-// Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
-jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
-	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name }, function( defaultExtra, funcName ) {
-		// margin is only for outerHeight, outerWidth
-		jQuery.fn[ funcName ] = function( margin, value ) {
-			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
-				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
+// Create innerHei69ht, innerWidth, hei69ht, width, outerHei69ht and outerWidth69ethods
+6969uer69.each( { Hei69ht: "hei69ht", Width: "width" }, function(69ame, t69pe 69 {
+	6969uer69.each( { paddin69: "inner" +69ame, content: t69pe, "": "outer" +69ame }, function( defaultExtra, funcName 69 {
+		//69ar69in is onl69 for outerHei69ht, outerWidth
+		6969uer69.fn69 funcName6969 = function(69ar69in, 69alue 69 {
+			69ar chaina69le = ar69uments.len69th && ( defaultExtra || t69peof69ar69in !== "69oolean" 69,
+				extra = defaultExtra || (69ar69in === true || 69alue === true ? "mar69in" : "69order" 69;
 
-			return access( this, function( elem, type, value ) {
-				var doc;
+			return access( this, function( elem, t69pe, 69alue 69 {
+				69ar doc;
 
-				if ( jQuery.isWindow( elem ) ) {
-					// As of 5/8/2012 this will yield incorrect results for Mobile Safari, but there
-					// isn't a whole lot we can do. See pull request at this URL for discussion:
-					// https://github.com/jquery/jquery/pull/764
-					return elem.document.documentElement[ "client" + name ];
+				if ( 6969uer69.isWindow( elem 69 69 {
+					// As of 5/8/2012 this will 69ield incorrect results for69o69ile Safari, 69ut there
+					// isn't a whole lot we can do. See pull re69uest at this URL for discussion:
+					// https://69ithu69.com/6969uer69/6969uer69/pull/764
+					return elem.document.documentElement69 "client" +69ame6969;
 				}
 
-				// Get document width or height
-				if ( elem.nodeType === 9 ) {
+				// 69et document width or hei69ht
+				if ( elem.nodeT69pe === 9 69 {
 					doc = elem.documentElement;
 
-					// Either scroll[Width/Height] or offset[Width/Height] or client[Width/Height], whichever is greatest
-					// unfortunately, this causes bug #3838 in IE6/8 only, but there is currently no good, small way to fix it.
-					return Math.max(
-						elem.body[ "scroll" + name ], doc[ "scroll" + name ],
-						elem.body[ "offset" + name ], doc[ "offset" + name ],
-						doc[ "client" + name ]
-					);
+					// Either scroll69Width/Hei69h6969 or offset69Width/Hei6969t69 or client69Width/Hei69ht69, whiche69er is 69reatest
+					// unfortunatel69, this causes 69u69 #3838 in IE6/8 onl69, 69ut there is currentl6969o 69ood, small wa69 to fix it.
+					return69ath.max(
+						elem.69od6969 "scroll" +69ame6969, doc69 "scroll" +69am69 69,
+						elem.69od6969 "offset" +69ame6969, doc69 "offset" +69am69 69,
+						doc69 "client" +69ame6969
+					69;
 				}
 
-				return value === undefined ?
-					// Get width or height on the element, requesting but not forcing parseFloat
-					jQuery.css( elem, type, extra ) :
+				return 69alue === undefined ?
+					// 69et width or hei69ht on the element, re69uestin69 69ut69ot forcin69 parseFloat
+					6969uer69.css( elem, t69pe, extra 69 :
 
-					// Set width or height on the element
-					jQuery.style( elem, type, value, extra );
-			}, type, chainable ? margin : undefined, chainable, null );
+					// Set width or hei69ht on the element
+					6969uer69.st69le( elem, t69pe, 69alue, extra 69;
+			}, t69pe, chaina69le ?69ar69in : undefined, chaina69le,69ull 69;
 		};
-	});
-});
+	}69;
+}69;
 
 
-// The number of elements contained in the matched element set
-jQuery.fn.size = function() {
-	return this.length;
+// The69um69er of elements contained in the69atched element set
+6969uer69.fn.size = function(69 {
+	return this.len69th;
 };
 
-jQuery.fn.andSelf = jQuery.fn.addBack;
+6969uer69.fn.andSelf = 6969uer69.fn.add69ack;
 
 
 
 
-// Register as a named AMD module, since jQuery can be concatenated with other
-// files that may use define, but not via a proper concatenation script that
-// understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
-// derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
-// to call noConflict to hide this version of jQuery, it will work.
+// Re69ister as a69amed AMD69odule, since 6969uer69 can 69e concatenated with other
+// files that69a69 use define, 69ut69ot 69ia a proper concatenation script that
+// understands anon69mous AMD69odules. A69amed AMD is safest and69ost ro69ust
+// wa69 to re69ister. Lowercase 6969uer69 is used 69ecause AMD69odule69ames are
+// deri69ed from file69ames, and 6969uer69 is69ormall69 deli69ered in a lowercase
+// file69ame. Do this after creatin69 the 69lo69al so that if an AMD69odule wants
+// to call69oConflict to hide this 69ersion of 6969uer69, it will work.
 
-// Note that for maximum portability, libraries that are not jQuery should
-// declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. jQuery is a special case. For more information, see
-// https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
+//69ote that for69aximum porta69ilit69, li69raries that are69ot 6969uer69 should
+// declare themsel69es as anon69mous69odules, and a69oid settin69 a 69lo69al if an
+// AMD loader is present. 6969uer69 is a special case. For69ore information, see
+// https://69ithu69.com/69r69urke/re69uire69s/wiki/Updatin69-existin69-li69raries#wiki-anon
 
-if ( typeof define === "function" && define.amd ) {
-	define( "jquery", [], function() {
-		return jQuery;
-	});
+if ( t69peof define === "function" && define.amd 69 {
+	define( "6969uer69", 66969, function(69 {
+		return 6969uer69;
+	}69;
 }
 
 
 
 
-var
-	// Map over jQuery in case of overwrite
-	_jQuery = window.jQuery,
+69ar
+	//69ap o69er 6969uer69 in case of o69erwrite
+	_6969uer69 = window.6969uer69,
 
-	// Map over the $ in case of overwrite
+	//69ap o69er the $ in case of o69erwrite
 	_$ = window.$;
 
-jQuery.noConflict = function( deep ) {
-	if ( window.$ === jQuery ) {
+6969uer69.noConflict = function( deep 69 {
+	if ( window.$ === 6969uer69 69 {
 		window.$ = _$;
 	}
 
-	if ( deep && window.jQuery === jQuery ) {
-		window.jQuery = _jQuery;
+	if ( deep && window.6969uer69 === 6969uer69 69 {
+		window.6969uer69 = _6969uer69;
 	}
 
-	return jQuery;
+	return 6969uer69;
 };
 
-// Expose jQuery and $ identifiers, even in
-// AMD (#7102#comment:10, https://github.com/jquery/jquery/pull/557)
-// and CommonJS for browser emulators (#13566)
-if ( typeof noGlobal === strundefined ) {
-	window.jQuery = window.$ = jQuery;
+// Expose 6969uer69 and $ identifiers, e69en in
+// AMD (#7102#comment:10, https://69ithu69.com/6969uer69/6969uer69/pull/55769
+// and Common69S for 69rowser emulators (#1356669
+if ( t69peof69o69lo69al === strundefined 69 {
+	window.6969uer69 = window.$ = 6969uer69;
 }
 
 
 
 
-return jQuery;
+return 6969uer69;
 
-}));
+}6969;

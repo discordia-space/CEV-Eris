@@ -17,11 +17,11 @@
 /datum/computer_file/program/proc/event_power_failure()
 	kill_program(forced=TRUE)
 
-// Called when the network connectivity fails. Computer does necessary checks and only calls this when requires_ntnet_feature and similar variables are not met.
+// Called when the69etwork connectivity fails. Computer does69ecessary checks and only calls this when requires_ntnet_feature and similar69ariables are69ot69et.
 /datum/computer_file/program/proc/event_network_failure()
 	kill_program(forced=TRUE)
 	if(program_state == PROGRAM_STATE_BACKGROUND)
-		computer.visible_message("<span class='warning'>\The [computer]'s screen displays an error: \"Network connectivity lost - process [filename].[filetype] (PID [rand(100,999)]) terminated.\"</span>", range = 1)
+		computer.visible_message("<span class='warning'>\The 69computer69's screen displays an error: \"Network connectivity lost - process 69filename69.69filetype69 (PID 69rand(100,999)69) terminated.\"</span>", range = 1)
 	else
-		computer.visible_message("<span class='warning'>\The [computer]'s screen briefly freezes and then shows: \"FATAL NETWORK ERROR - NTNet connection lost. Please try again later. If problem persists, please contact your system administrator.\"</span>", range = 1)
+		computer.visible_message("<span class='warning'>\The 69computer69's screen briefly freezes and then shows: \"FATAL69ETWORK ERROR -69TNet connection lost. Please try again later. If problem persists, please contact your system administrator.\"</span>", range = 1)
 		computer.update_icon()

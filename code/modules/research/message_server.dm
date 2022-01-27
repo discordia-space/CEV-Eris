@@ -1,12 +1,12 @@
-#define MESSAGE_SERVER_SPAM_REJECT 1
-#define MESSAGE_SERVER_DEFAULT_SPAM_LIMIT 10
+#define69ESSAGE_SERVER_SPAM_REJECT 1
+#define69ESSAGE_SERVER_DEFAULT_SPAM_LIMIT 10
 
 var/global/list/obj/machinery/message_server/message_servers = list()
 
 /datum/data_pda_msg
 	var/recipient = "Unspecified" //name of the person
 	var/sender = "Unspecified" //name of the sender
-	var/message = "Blank" //transferred message
+	var/message = "Blank" //transferred69essage
 
 /datum/data_pda_msg/New(var/param_rec = "",var/param_sender = "",var/param_message = "")
 
@@ -20,7 +20,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 /datum/data_rc_msg
 	var/rec_dpt = "Unspecified" //name of the person
 	var/send_dpt = "Unspecified" //name of the sender
-	var/message = "Blank" //transferred message
+	var/message = "Blank" //transferred69essage
 	var/stamp = "Unstamped"
 	var/id_auth = "Unauthenticated"
 	var/priority = "Normal"
@@ -64,14 +64,14 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 	//Spam filtering stuff
 	var/list/spamfilter = list("You have won", "your prize", "male enhancement", "shitcurity", \
-			"are happy to inform you", "account number", "enter your PIN")
+			"are happy to inform you", "account69umber", "enter your PIN")
 			//Messages having theese tokens will be rejected by server. Case sensitive
-	var/spamfilter_limit = MESSAGE_SERVER_DEFAULT_SPAM_LIMIT	//Maximal amount of tokens
+	var/spamfilter_limit =69ESSAGE_SERVER_DEFAULT_SPAM_LIMIT	//Maximal amount of tokens
 
 /obj/machinery/message_server/New()
 	message_servers += src
 	decryptkey = GenerateKey()
-	send_pda_message("System Administrator", "system", "This is an automated message. The messaging system is functioning correctly.")
+	send_pda_message("System Administrator", "system", "This is an automated69essage. The69essaging system is functioning correctly.")
 	..()
 	return
 
@@ -81,12 +81,12 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	return ..()
 
 /obj/machinery/message_server/proc/GenerateKey()
-	//Feel free to move to Helpers.
+	//Feel free to69ove to Helpers.
 	var/newKey
 	newKey += pick("the", "if", "of", "as", "in", "a", "you", "from", "to", "an", "too", "little", "snow", "dead", "drunk", "rosebud", "duck", "al", "le")
 	newKey += pick("diamond", "beer", "mushroom", "assistant", "clown", "captain", "twinkie", "security", "nuke", "small", "big", "escape", "yellow", "gloves", "monkey", "engine", "nuclear", "ai")
 	newKey += pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-	return newKey
+	return69ewKey
 
 /obj/machinery/message_server/Process()
 	//if(decryptkey == "password")
@@ -101,55 +101,55 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	var/result
 	for (var/token in spamfilter)
 		if (findtextEx(message,token))
-			message = "<font color=\"red\">[message]</font>"	//Rejected messages will be indicated by red color.
-			result = token										//Token caused rejection (if there are multiple, last will be chosen>.
-	pda_msgs += new/datum/data_pda_msg(recipient,sender,message)
+			message = "<font color=\"red\">69message69</font>"	//Rejected69essages will be indicated by red color.
+			result = token										//Token caused rejection (if there are69ultiple, last will be chosen>.
+	pda_msgs +=69ew/datum/data_pda_msg(recipient,sender,message)
 	return result
 
-/obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "", var/id_auth = "", var/priority = 1)
-	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
-	var/authmsg = "[message]<br>"
+/obj/machinery/message_server/proc/send_rc_message(var/recipient = "",var/sender = "",var/message = "",var/stamp = "",69ar/id_auth = "",69ar/priority = 1)
+	rc_msgs +=69ew/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
+	var/authmsg = "69message69<br>"
 	if (id_auth)
-		authmsg += "[id_auth]<br>"
+		authmsg += "69id_auth69<br>"
 	if (stamp)
-		authmsg += "[stamp]<br>"
-	for (var/obj/machinery/requests_console/Console in allConsoles)
+		authmsg += "69stamp69<br>"
+	for (var/obj/machinery/re69uests_console/Console in allConsoles)
 		if (ckey(Console.department) == ckey(recipient))
 			if(Console.inoperable())
-				Console.message_log += "<B>Message lost due to console failure.</B><BR>Please contact [station_name()] system adminsitrator or AI for technical assistance.<BR>"
+				Console.message_log += "<B>Message lost due to console failure.</B><BR>Please contact 69station_name()69 system adminsitrator or AI for technical assistance.<BR>"
 				continue
 			if(Console.newmessagepriority < priority)
 				Console.newmessagepriority = priority
-				Console.icon_state = "req_comp[priority]"
+				Console.icon_state = "re69_comp69priority69"
 			switch(priority)
 				if(2)
 					if(!Console.silent)
 						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("\icon[Console] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
-					Console.message_log += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></FONT></B><BR>[authmsg]"
+						Console.audible_message(text("\icon69Console69 *The Re69uests Console beeps: 'PRIORITY Alert in 69sender69'"),,5)
+					Console.message_log += "<B><FONT color='red'>High Priority69essage from <A href='?src=\ref69Console69;write=69sender69'>69sender69</A></FONT></B><BR>69authmsg69"
 				else
 					if(!Console.silent)
 						playsound(Console.loc, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("\icon[Console] *The Requests Console beeps: 'Message from [sender]'"),,4)
-					Console.message_log += "<B>Message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
+						Console.audible_message(text("\icon69Console69 *The Re69uests Console beeps: 'Message from 69sender69'"),,4)
+					Console.message_log += "<B>Message from <A href='?src=\ref69Console69;write=69sender69'>69sender69</A></B><BR>69authmsg69"
 			Console.set_light(2)
 
 
-/obj/machinery/message_server/attack_hand(user as mob)
-//	user << "\blue There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."
-	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]")
+/obj/machinery/message_server/attack_hand(user as69ob)
+//	user << "\blue There seem to be some parts69issing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."
+	to_chat(user, "You toggle PDA69essage passing from 69active ? "On" : "Off"69 to 69active ? "Off" : "On"69")
 	active = !active
 	update_icon()
 
 	return
 
-/obj/machinery/message_server/attackby(obj/item/O as obj, mob/living/user as mob)
-	if (active && !(stat & (BROKEN|NOPOWER)) && (spamfilter_limit < MESSAGE_SERVER_DEFAULT_SPAM_LIMIT*2) && \
+/obj/machinery/message_server/attackby(obj/item/O as obj,69ob/living/user as69ob)
+	if (active && !(stat & (BROKEN|NOPOWER)) && (spamfilter_limit <69ESSAGE_SERVER_DEFAULT_SPAM_LIMIT*2) && \
 		istype(O,/obj/item/electronics/circuitboard/message_monitor))
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.drop_item()
-		qdel(O)
-		to_chat(user, "You install additional memory and processors into message server. Its filtering capabilities been enhanced.")
+		69del(O)
+		to_chat(user, "You install additional69emory and processors into69essage server. Its filtering capabilities been enhanced.")
 	else
 		..(O, user)
 
@@ -177,7 +177,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	active_power_usage = 100
-	var/list/messages = list()		//Stores messages of non-standard frequencies
+	var/list/messages = list()		//Stores69essages of69on-standard fre69uencies
 
 
 	var/list/msg_common = list()
@@ -186,7 +186,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 	var/list/msg_medical = list()
 	var/list/msg_engineering = list()
 	var/list/msg_security = list()
-	var/list/msg_deathsquad = list()
+	var/list/msg_deaths69uad = list()
 	var/list/msg_syndicate = list()
 	var/list/msg_cargo = list()
 	var/list/msg_service = list()
@@ -198,34 +198,34 @@ var/obj/machinery/blackbox_recorder/blackbox
 /obj/machinery/blackbox_recorder/Initialize(mapload, d)
 	. = ..()
 	if(blackbox && istype(blackbox,/obj/machinery/blackbox_recorder))
-		return INITIALIZE_HINT_QDEL
+		return INITIALIZE_HINT_69DEL
 	blackbox = src
 
 /obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1,1,2)
 	if(T)
-		blackbox = null
-		var/obj/machinery/blackbox_recorder/BR = new/obj/machinery/blackbox_recorder(T)
-		BR.msg_common = msg_common
-		BR.msg_science = msg_science
-		BR.msg_command = msg_command
-		BR.msg_medical = msg_medical
-		BR.msg_engineering = msg_engineering
-		BR.msg_security = msg_security
-		BR.msg_deathsquad = msg_deathsquad
-		BR.msg_syndicate = msg_syndicate
-		BR.msg_cargo = msg_cargo
-		BR.msg_service = msg_service
-		BR.msg_nt = msg_nt
+		blackbox =69ull
+		var/obj/machinery/blackbox_recorder/BR =69ew/obj/machinery/blackbox_recorder(T)
+		BR.msg_common =69sg_common
+		BR.msg_science =69sg_science
+		BR.msg_command =69sg_command
+		BR.msg_medical =69sg_medical
+		BR.msg_engineering =69sg_engineering
+		BR.msg_security =69sg_security
+		BR.msg_deaths69uad =69sg_deaths69uad
+		BR.msg_syndicate =69sg_syndicate
+		BR.msg_cargo =69sg_cargo
+		BR.msg_service =69sg_service
+		BR.msg_nt =69sg_nt
 
-		BR.messages = messages
+		BR.messages =69essages
 
 		if(blackbox != BR)
 			blackbox = BR
 	. = ..()
 
-// Sanitize inputs to avoid SQL injection attacks
-proc/sql_sanitize_text(var/text)
+// Sanitize inputs to avoid S69L injection attacks
+proc/s69l_sanitize_text(var/text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")

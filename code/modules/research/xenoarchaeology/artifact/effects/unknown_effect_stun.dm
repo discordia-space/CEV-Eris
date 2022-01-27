@@ -22,13 +22,13 @@
 		for (var/mob/living/carbon/C in range(src.effectrange,T))
 			var/susceptibility = GetAnomalySusceptibility(C)
 			if(prob(10 * susceptibility))
-				to_chat(C, "\red Your body goes numb for a moment.")
+				to_chat(C, "\red Your body goes69umb for a69oment.")
 				C.Weaken(2)
 				C.stuttering += 2
 				if(prob(10))
 					C.Stun(1)
 			else if(prob(10))
-				to_chat(C, "\red You feel numb.")
+				to_chat(C, "\red You feel69umb.")
 
 /datum/artifact_effect/stun/DoEffectPulse()
 	if(holder)

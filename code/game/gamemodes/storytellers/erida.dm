@@ -6,7 +6,7 @@
 
 	var/deck_size = 0
 
-	var/calculate_deck = TRUE	//If FALSE, erida won't calculate deck_size, keeping value
+	var/calculate_deck = TRUE	//If FALSE, erida won't calculate deck_size, keeping69alue
 
 	var/mad = FALSE
 
@@ -24,11 +24,11 @@
 		deck_size += heads*4
 		deck_size += sec*3
 		deck_size += eng*2
-		deck_size += med+sci
+		deck_size +=69ed+sci
 		return
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && (M.mind && !M.mind.antagonist.len) && M.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
+		if(M.client && (M.mind && !M.mind.antagonist.len) &&69.stat != DEAD && (ishuman(M) || isrobot(M) || isAI(M)))
 			var/datum/job/job = SSjob.GetJob(M.mind.assigned_role)
 			if(job)
 				if(job.head_position)
@@ -73,30 +73,30 @@
 			sorted.Add(S)
 
 
-	story_debug("Stage=[event_spawn_stage]; Deck size=[deck_size]; mad=[mad]; variants available=[sorted.len]")
+	story_debug("Stage=69event_spawn_stage69; Deck size=69deck_size69;69ad=69mad69;69ariants available=69sorted.len69")
 	var/currdeck = 0
 	var/list/spawned = list()
 	while(currdeck < deck_size)
 		var/datum/storyevent/S = pick_storyevent(sorted)
 		if(!S)
-			story_debug("Storyteller is out of storyevents. [spawned.len] events spawned")
+			story_debug("Storyteller is out of storyevents. 69spawned.len69 events spawned")
 			break
 
 		if(S.cost + currdeck > deck_size)
 			sorted.Remove(S)
 
 		if(debug_mode)
-			story_debug("Debug-spawning [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
+			story_debug("Debug-spawning 69S.id69 with weight 69S.weight_cache69; Currdeck: 69currdeck69(69currdeck+S.cost69)/69deck_size69")
 
 		if(S.create())
-			story_debug("Spawned [S.id] with weight [S.weight_cache]; Currdeck: [currdeck]([currdeck+S.cost])/[deck_size]")
+			story_debug("Spawned 69S.id69 with weight 69S.weight_cache69; Currdeck: 69currdeck69(69currdeck+S.cost69)/69deck_size69")
 			currdeck += S.cost
 			spawned.Add(S.id)
 			if(!S.multispawn)
 				sorted.Remove(S)
 		else
 			if(debug_mode)
-				story_debug("[S.id] fake-created")
+				story_debug("69S.id69 fake-created")
 				currdeck += S.cost
 				spawned.Add(S.id)
 				S.spawn_times++
@@ -115,33 +115,33 @@
 		mad--
 
 	if(!currdeck)
-		set_timer(rand(1,3) MINUTES)
+		set_timer(rand(1,3)69INUTES)
 	else
 		if(mad)
-			set_timer(rand(7,10) MINUTES)
+			set_timer(rand(7,10)69INUTES)
 
 		else
-			set_timer(rand(20,35) MINUTES)
+			set_timer(rand(20,35)69INUTES)
 
 	return TRUE
 
 
 /datum/storyteller/erida/storyteller_panel_extra()
 	var/data = ""
-	var/ehref = "<a href='?src=\ref[src]:edit_deck=1'>\[SET\]</a>"
-	data += "<br>Deck size: <b>[deck_size]</b>[calculate_deck?"":" [ehref]"] <b><a href='?src=\ref[src];toggle_deck=1'>[calculate_deck?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
-	data +=	"<br>Mad mode: [mad?"[mad] stages":"no"] <b><a href='?src=\ref[src];edit_mad=1'>\[SET\]</a></b>"
+	var/ehref = "<a href='?src=\ref69src69:edit_deck=1'>\69SET\69</a>"
+	data += "<br>Deck size: <b>69deck_size69</b>69calculate_deck?"":" 69ehref69"69 <b><a href='?src=\ref69src69;toggle_deck=1'>69calculate_deck?"\69AUTO\69":"\69MANUAL\69"69</a></b>"
+	data +=	"<br>Mad69ode: 69mad?"69mad69 stages":"no"69 <b><a href='?src=\ref69src69;edit_mad=1'>\69SET\69</a></b>"
 
 	return data
 
 /datum/storyteller/erida/topic_extra(href, href_list)
-	if(href_list["edit_deck"])
+	if(href_list69"edit_deck"69)
 		deck_size = input("Enter new deck size.","Deck edit",deck_size) as num
 
-	if(href_list["toggle_deck"])
+	if(href_list69"toggle_deck"69)
 		calculate_deck = !calculate_deck
 
-	if(href_list["edit_mad"])
-		mad = input("Enter new mad length (0 to disable)","Mad mode",mad) as num
+	if(href_list69"edit_mad"69)
+		mad = input("Enter new69ad length (0 to disable)","Mad69ode",mad) as num
 		if(mad < 0)
 			mad = 0

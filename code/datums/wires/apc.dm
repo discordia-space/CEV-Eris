@@ -16,7 +16,7 @@
 /datum/wires/apc/GetInteractWindow(mob/living/user)
 	var/obj/machinery/power/apc/A = holder
 	. += ..(user)
-	. += text("<br>\n[(A.locked ? "The APC is locked." : "The APC is unlocked.")]<br>\n[(A.shorted ? "The APCs power has been shorted." : "The APC is working properly!")]<br>\n[(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
+	. += text("<br>\n69(A.locked ? "The APC is locked." : "The APC is unlocked.")69<br>\n69(A.shorted ? "The APCs power has been shorted." : "The APC is working properly!")69<br>\n69(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")69")
 
 
 /datum/wires/apc/CanUse(var/mob/living/L)
@@ -54,7 +54,7 @@
 					if(A && !IsIndexCut(APC_WIRE_AI_CONTROL))
 						A.aidisabled = 0
 
-/datum/wires/apc/UpdateCut(var/index, var/mended)
+/datum/wires/apc/UpdateCut(var/index,69ar/mended)
 	var/obj/machinery/power/apc/A = holder
 
 	switch(index)

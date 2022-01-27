@@ -3,14 +3,14 @@
 /mob/living/carbon/human/proc/pick_individual_objective()
 	var/list/valid_objectives = list()
 	for(var/npath in GLOB.individual_objectives)
-		var/datum/individual_objective/IO = GLOB.individual_objectives[npath]
+		var/datum/individual_objective/IO = GLOB.individual_objectives69npath69
 		if(!IO.can_assign(src))
 			continue
 		var/multiplier = 10
 		if(!IO.limited_antag && (IO.req_department.len || IO.req_cruciform))
 			multiplier *= 2 //priorize faction objectives
-		valid_objectives[npath] = multiplier/IO.rarity
-	for(var/datum/individual_objective/objective in mind.individual_objectives)
+		valid_objectives69npath69 =69ultiplier/IO.rarity
+	for(var/datum/individual_objective/objective in69ind.individual_objectives)
 		valid_objectives -= objective.type
 	if(!valid_objectives.len) return
 	var/new_individual_objective = pickweight(valid_objectives)
@@ -51,7 +51,7 @@
 	owner = new_owner
 	mind_holder = new_owner.current
 	owner.individual_objectives += src
-	to_chat(owner,  SPAN_NOTICE("You have obtained a new personal objective: [name]"))
+	to_chat(owner,  SPAN_NOTICE("You have obtained a new personal objective: 69name69"))
 
 /datum/individual_objective/proc/completed(fail=FALSE)
 	SHOULD_CALL_PARENT(TRUE)
@@ -62,21 +62,21 @@
 	H.sanity.give_insight(insight_reward)
 	H.sanity.give_insight_rest(insight_reward/2)
 	update_faction_score()
-	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: [name]"))
+	to_chat(owner,  SPAN_NOTICE("You have completed the personal objective: 69name69"))
 
 /datum/individual_objective/proc/get_description()
 	var/n_desc = desc
 	if(units_requested > 1 && !completed)
 		var/units_desc = units_completed
 		if(based_time)
-			units_desc = "[round(unit2time(units_desc))] minutes"
-		n_desc += " (<span style='color:green'>[units_desc]</span>)"
+			units_desc = "69round(unit2time(units_desc))6969inutes"
+		n_desc += " (<span style='color:green'>69units_desc69</span>)"
 	if(completed)
-		n_desc += " [completed_desc]"
+		n_desc += " 69completed_desc69"
 	return n_desc
 
 /datum/individual_objective/proc/unit2time(unit)
-	var/time = unit/(1 MINUTES)
+	var/time = unit/(169INUTES)
 	return time
 
 
@@ -93,11 +93,11 @@
 /datum/individual_objective/proc/pick_faction_item(mob/living/carbon/human/H, ignore_departmen=FALSE, strict_type=/obj/item)
 	var/list/valid_targets = list()
 	for(var/obj/item/faction_item in GLOB.all_faction_items)
-		if(faction_item in valid_targets)
+		if(faction_item in69alid_targets)
 			continue
-		if(!ignore_departmen && H.mind.assigned_job && (H.mind.assigned_job.department in GLOB.all_faction_items[faction_item]))
+		if(!ignore_departmen && H.mind.assigned_job && (H.mind.assigned_job.department in GLOB.all_faction_items69faction_item69))
 			continue
-		if(!ignore_departmen && GLOB.all_faction_items[faction_item] == GLOB.department_church && is_neotheology_disciple(H))
+		if(!ignore_departmen && GLOB.all_faction_items69faction_item69 == GLOB.department_church && is_neotheology_disciple(H))
 			continue
 		if(!locate(faction_item.type))
 			continue

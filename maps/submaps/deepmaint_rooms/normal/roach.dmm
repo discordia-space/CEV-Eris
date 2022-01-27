@@ -1,159 +1,159 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
 /turf/simulated/floor/tiled/techmaint_panels,
-/area/deepmaint)
-"b" = (
+/area/deepmaint69
+"69" = 69
 /turf/simulated/floor/tiled/techmaint_perforated,
-/area/deepmaint)
-"c" = (
+/area/deepmaint69
+"c" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"d" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"e" = (
-/obj/spawner/scrap,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"f" = (
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"g" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"h" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"i" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"j" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"k" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"l" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/area/deepmaint69
+"d" = 69
+/o6969/spawner/mo69/69iome_spawner_mo69/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"e" = 69
+/o6969/spawner/scrap,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"f" = 69
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/o6969/spawner/pac69/machine,
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"h" = 69
+/o6969/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"i" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"69" = 69
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pac69/rare,
+/o6969/spawner/pac69/rare,
+/o6969/spawner/pac69/rare,
+/o6969/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"l" = 69
+/o6969/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"m" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"n" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"m" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pac69/69un_loot,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"n" = 69
+/o6969/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"o" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"o" = 69
+/o6969/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"p" = (
-/obj/structure/railing,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"q" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/o6969/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"p" = 69
+/o6969/structure/railin69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"r" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"r" = 69
+/o6969/structure/railin69,
+/o6969/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"s" = (
-/obj/landmark/loot_biomes/mob/roach{
-	range = 6
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"s" = 69
+/o6969/landmar69/loot_69iomes/mo69/roach{
+	ran69e = 6
 	},
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"t" = (
-/obj/spawner/mob/roaches/cluster,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"u" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"t" = 69
+/o6969/spawner/mo69/roaches/cluster,
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"u" = 69
+/o6969/spawner/mo69/69iome_spawner_mo69/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels,
-/area/deepmaint)
-"v" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/machinery/light/small{
+/area/deepmaint69
+"v" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/machinery/li69ht/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"w" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/white/69rown_perforated,
+/area/deepmaint69
+"w" = 69
+/o6969/machinery/li69ht/small{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint_panels,
-/area/deepmaint)
-"x" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
+/area/deepmaint69
+"x" = 69
+/o6969/spawner/mo69/69iome_spawner_mo69/low_chance,
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
 
-(1,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
+691,1,169 = {"
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
 "}
-(2,1,1) = {"
-b
+692,1,169 = {"
+69
 c
 c
 c
@@ -162,11 +162,11 @@ c
 l
 o
 u
-j
-b
+69
+69
 "}
-(3,1,1) = {"
-b
+693,1,169 = {"
+69
 c
 d
 f
@@ -175,11 +175,11 @@ f
 f
 p
 a
-j
-b
+69
+69
 "}
-(4,1,1) = {"
-b
+694,1,169 = {"
+69
 c
 e
 e
@@ -188,11 +188,11 @@ h
 h
 c
 w
-j
-b
+69
+69
 "}
-(5,1,1) = {"
-b
+695,1,169 = {"
+69
 c
 c
 c
@@ -201,37 +201,37 @@ v
 i
 h
 a
-j
-b
+69
+69
 "}
-(6,1,1) = {"
-b
+696,1,169 = {"
+69
 a
 f
 c
-g
+69
 s
-j
-q
+69
+69
 t
 x
-b
+69
 "}
-(7,1,1) = {"
-b
+697,1,169 = {"
+69
 c
 c
 c
 c
-k
+69
 m
 h
 a
-j
-b
+69
+69
 "}
-(8,1,1) = {"
-b
+698,1,169 = {"
+69
 c
 e
 e
@@ -240,11 +240,11 @@ h
 h
 c
 a
-j
-b
+69
+69
 "}
-(9,1,1) = {"
-b
+699,1,169 = {"
+69
 c
 d
 f
@@ -253,11 +253,11 @@ f
 f
 p
 a
-j
-b
+69
+69
 "}
-(10,1,1) = {"
-b
+6910,1,169 = {"
+69
 c
 c
 c
@@ -266,19 +266,19 @@ c
 n
 r
 u
-j
-b
+69
+69
 "}
-(11,1,1) = {"
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
-b
+6911,1,169 = {"
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
+69
 "}

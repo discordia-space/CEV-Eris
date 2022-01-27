@@ -1,322 +1,322 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"ab" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"ac" = (
-/obj/spawner/junk,
+//MAP CONVERTED BY dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"ab" = 69
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"ac" = 69
+/ob69/spawner/69un69,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"ad" = (
-/obj/spawner/material/ore,
+/area/deepmaint69
+"ad" = 69
+/ob69/spawner/material/ore,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"ae" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
+/area/deepmaint69
+"ae" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"af" = (
+/area/deepmaint69
+"af" = 69
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"ag" = (
-/obj/spawner/junk,
-/obj/spawner/material/ore,
+/area/deepmaint69
+"a69" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/material/ore,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"ah" = (
+/area/deepmaint69
+"ah" = 69
 /turf/simulated/mineral,
-/area/deepmaint)
-"ai" = (
-/obj/spawner/material/ore,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"aj" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"ak" = (
+/area/deepmaint69
+"ai" = 69
+/ob69/spawner/material/ore,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"a69" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"a69" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"al" = (
-/obj/spawner/junk,
-/obj/spawner/material/ore,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"am" = (
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"an" = (
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ao" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/gun_loot,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ap" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/gun_loot,
+/area/deepmaint69
+"al" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/material/ore,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"am" = 69
+/ob69/spawner/pac69/69un_loot,
+/ob69/spawner/pac69/69un_loot,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"an" = 69
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ao" = 69
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/69un_loot,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ap" = 69
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/69un_loot,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"aq" = (
-/obj/structure/ore_box,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/ore_box,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"ar" = (
-/obj/machinery/door/blast/shutters{
+/area/deepmaint69
+"ar" = 69
+/ob69/machinery/door/blast/shutters{
 	dir = 2;
 	id = "maint_hatch_maint_asteroid";
 	layer = 3.3;
 	name = "Maintenance Hatch"
 	},
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"at" = (
-/obj/spawner/material/ore,
-/obj/spawner/material/ore,
+/ob69/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"at" = 69
+/ob69/spawner/material/ore,
+/ob69/spawner/material/ore,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"au" = (
-/obj/machinery/mining/drill,
+/area/deepmaint69
+"au" = 69
+/ob69/machinery/minin69/drill,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"av" = (
-/obj/machinery/mining/brace,
+/area/deepmaint69
+"av" = 69
+/ob69/machinery/minin69/brace,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"aw" = (
-/obj/machinery/button/remote/blast_door{
+/area/deepmaint69
+"aw" = 69
+/ob69/machinery/button/remote/blast_door{
 	id = "maint_hatch_maint_asteroid";
 	name = "Maintenance Hatch Control";
 	pixel_x = 0;
 	pixel_y = 24;
-	req_access = null
+	re69_access =69ull
 	},
-/obj/machinery/mining/brace,
+/ob69/machinery/minin69/brace,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"ax" = (
-/obj/machinery/mining/brace,
-/obj/machinery/light{
+/area/deepmaint69
+"ax" = 69
+/ob69/machinery/minin69/brace,
+/ob69/machinery/li69ht{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"ay" = (
-/obj/machinery/floodlight,
+/area/deepmaint69
+"ay" = 69
+/ob69/machinery/floodli69ht,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"az" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
+/area/deepmaint69
+"az" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"aA" = (
+/area/deepmaint69
+"aA" = 69
 /turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"aB" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
+/area/deepmaint69
+"aB" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"aC" = (
-/obj/spawner/structures/common,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aD" = (
+/area/deepmaint69
+"aC" = 69
+/ob69/spawner/structures/common,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aD" = 69
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"aE" = (
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"aF" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aG" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
+/area/deepmaint69
+"aE" = 69
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"aF" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"a69" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"aH" = (
-/obj/machinery/door/airlock/multi_tile/glass{
+/area/deepmaint69
+"aH" = 69
+/ob69/machinery/door/airloc69/multi_tile/69lass{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"aI" = (
-/obj/spawner/junk,
-/obj/spawner/material/ore,
-/obj/spawner/material/ore,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"aJ" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/machinery/light{
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"aI" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/material/ore,
+/ob69/spawner/material/ore,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aK" = (
-/obj/machinery/light{
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"a69" = 69
+/ob69/machinery/li69ht{
 	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"aL" = (
-/obj/machinery/light{
+/area/deepmaint69
+"aL" = 69
+/ob69/machinery/li69ht{
 	dir = 8
 	},
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"aM" = (
-/obj/structure/table/standard,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aN" = (
-/obj/structure/table/standard,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aO" = (
-/obj/structure/table/standard,
-/obj/spawner/material/resources,
-/obj/spawner/material/resources,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aP" = (
-/obj/structure/reagent_dispensers/watertank/huge,
+/area/deepmaint69
+"aM" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aN" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aO" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/material/resources,
+/ob69/spawner/material/resources,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aP" = 69
+/ob69/structure/rea69ent_dispensers/watertan69/hu69e,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"aQ" = (
-/obj/structure/table/woodentable,
-/obj/item/seeds/ambrosiavulgarisseed,
-/obj/item/seeds/ambrosiavulgarisseed,
-/obj/item/seeds/ambrosiavulgarisseed,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/table/woodentable,
+/ob69/item/seeds/ambrosiavul69arisseed,
+/ob69/item/seeds/ambrosiavul69arisseed,
+/ob69/item/seeds/ambrosiavul69arisseed,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"aR" = (
-/obj/spawner/material/ore,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aS" = (
-/obj/machinery/door/airlock/multi_tile/glass,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"aT" = (
-/obj/machinery/portable_atmospherics/hydroponics,
+/area/deepmaint69
+"aR" = 69
+/ob69/spawner/material/ore,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aS" = 69
+/ob69/machinery/door/airloc69/multi_tile/69lass,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"aT" = 69
+/ob69/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"aU" = (
-/obj/spawner/junk,
-/obj/spawner/material/ore,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aV" = (
-/obj/structure/closet/cabinet,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth/low_chance,
+/area/deepmaint69
+"aU" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/material/ore,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aV" = 69
+/ob69/structure/closet/cabinet,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth/low_chance,
 /turf/simulated/floor/carpet,
-/area/deepmaint)
-"aW" = (
-/obj/structure/closet/cabinet,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare/low_chance,
+/area/deepmaint69
+"aW" = 69
+/ob69/structure/closet/cabinet,
+/ob69/spawner/pac69/rare,
+/ob69/spawner/pac69/rare,
+/ob69/spawner/pac69/rare/low_chance,
 /turf/simulated/floor/carpet,
-/area/deepmaint)
-"aX" = (
-/obj/structure/table/woodentable,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot/low_chance,
+/area/deepmaint69
+"aX" = 69
+/ob69/structure/table/woodentable,
+/ob69/spawner/pac69/69un_loot,
+/ob69/spawner/pac69/69un_loot/low_chance,
 /turf/simulated/floor/carpet,
-/area/deepmaint)
-"aY" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"aZ" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"ba" = (
+/area/deepmaint69
+"aY" = 69
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"aZ" = 69
+/ob69/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"ba" = 69
 /turf/simulated/floor/carpet,
-/area/deepmaint)
-"bb" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"bc" = (
-/obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/area/deepmaint69
+"bb" = 69
+/ob69/machinery/door/airloc69,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"bc" = 69
+/ob69/structure/table/woodentable,
+/ob69/item/device/li69htin69/to6969leable/lamp/69reen,
 /turf/simulated/floor/carpet,
-/area/deepmaint)
-"be" = (
-/obj/machinery/light{
+/area/deepmaint69
+"be" = 69
+/ob69/machinery/li69ht{
 	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
-/area/deepmaint)
-"bf" = (
-/obj/machinery/light{
+/area/deepmaint69
+"bf" = 69
+/ob69/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"bg" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bh" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"bi" = (
-/turf/simulated/floor/tiled/techmaint_cargo,
-/area/deepmaint)
-"bj" = (
-/obj/landmark/loot_biomes/mob/roach{
-	range = 10
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"b69" = 69
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bh" = 69
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"bi" = 69
+/turf/simulated/floor/tiled/techmaint_car69o,
+/area/deepmaint69
+"b69" = 69
+/ob69/landmar69/loot_biomes/mob/roach{
+	ran69e = 10
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"dq" = (
-/obj/item/tool/pickaxe,
+/area/deepmaint69
+"d69" = 69
+/ob69/item/tool/pic69axe,
 /turf/simulated/floor/asteroid,
-/area/deepmaint)
-"ni" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet,
+/area/deepmaint69
+"ni" = 69
+/ob69/structure/bed/padded,
+/ob69/item/bedsheet,
 /turf/simulated/floor/carpet,
-/area/deepmaint)
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 ab
@@ -339,7 +339,7 @@ aa
 ab
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 aa
 ab
 ab
@@ -362,7 +362,7 @@ ab
 al
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 ab
 ab
 ac
@@ -373,7 +373,7 @@ ah
 ac
 ac
 az
-ag
+a69
 ah
 ah
 ah
@@ -385,9 +385,9 @@ ah
 af
 ab
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
-ag
+a69
 ah
 ah
 ah
@@ -408,7 +408,7 @@ ah
 ah
 ab
 "}
-(5,1,1) = {"
+695,1,169 = {"
 ac
 ah
 ah
@@ -431,58 +431,58 @@ ah
 ah
 ai
 "}
-(6,1,1) = {"
+696,1,169 = {"
 ac
 ah
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ah
 ah
 an
 ab
 "}
-(7,1,1) = {"
+697,1,169 = {"
 ac
 ah
-ak
+a69
 am
-ak
+a69
 au
 aA
 aB
 aC
 aF
-aJ
+a69
 aM
-ak
+a69
 aV
 ba
 bc
-ak
+a69
 ah
 ah
 aU
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 ad
 ah
-ak
+a69
 an
-ak
+a69
 au
 aA
 aA
@@ -490,20 +490,20 @@ aD
 aD
 aD
 aN
-ak
+a69
 aW
 ba
 ni
-ak
+a69
 ah
 ah
 an
 ab
 "}
-(9,1,1) = {"
+699,1,169 = {"
 ac
 ah
-ak
+a69
 an
 ar
 av
@@ -513,22 +513,22 @@ aD
 aD
 aD
 aO
-ak
+a69
 aX
 ba
 be
-ak
+a69
 ah
 ah
 aR
 aa
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 ae
 ah
-ak
+a69
 ao
-ak
+a69
 aw
 aA
 aA
@@ -536,29 +536,29 @@ aD
 aD
 aD
 aO
-ak
-ak
+a69
+a69
 bb
-ak
-ak
+a69
+a69
 ah
 af
 bh
 bi
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 af
 ah
-ak
-ak
-ak
+a69
+a69
+a69
 ax
 aA
 aA
 aD
-aG
+a69
 aD
-bj
+b69
 aS
 aY
 aY
@@ -569,18 +569,18 @@ af
 bi
 bi
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 ad
 ah
 ah
 ap
-ak
+a69
 av
 aA
 aB
 aD
 aD
-aK
+a69
 aD
 aE
 aY
@@ -592,41 +592,41 @@ ac
 bi
 bi
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 aa
 ac
 ah
 af
-ak
-ak
-ak
-ak
+a69
+a69
+a69
+a69
 aD
 aD
-ak
-ak
-ak
+a69
+a69
+a69
 aZ
 aZ
 aZ
-ak
+a69
 ah
 af
 bi
 bh
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 ab
-ag
+a69
 ah
 af
 af
 af
 af
-ak
+a69
 aE
 aH
-ak
+a69
 aP
 aT
 aT
@@ -638,7 +638,7 @@ ah
 an
 aa
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 aa
 ac
 ah
@@ -661,11 +661,11 @@ ah
 ab
 ab
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 aa
 ai
 ad
-aq
+a69
 ah
 ah
 ah
@@ -684,7 +684,7 @@ ah
 ab
 ai
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 aa
 ab
 ad
@@ -696,7 +696,7 @@ ah
 ah
 af
 af
-aQ
+a69
 aT
 aT
 aT
@@ -707,19 +707,19 @@ ah
 ab
 ab
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 ab
 ab
 ad
 ad
-dq
+d69
 az
 ay
 ah
 ah
 af
 af
-aQ
+a69
 ah
 ah
 ah
@@ -727,10 +727,10 @@ ah
 ah
 ah
 ah
-bg
+b69
 ai
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 aa
 aa
 ad
@@ -753,15 +753,15 @@ an
 aa
 aa
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 ab
-aj
+a69
 ab
 ad
 af
-dq
+d69
 ad
-aq
+a69
 ah
 ah
 ah
@@ -769,14 +769,14 @@ ah
 ah
 ah
 an
-bg
+b69
 aR
-bg
+b69
 aI
 ab
 aa
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 aa
 aa
 aa

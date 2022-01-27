@@ -1,4 +1,4 @@
-/obj/item/rig/attackby(obj/item/I, mob/user)
+/obj/item/rig/attackby(obj/item/I,69ob/user)
 
 	if(!isliving(user))
 		return
@@ -22,7 +22,7 @@
 
 		if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
 			locked = 0
-			to_chat(user, SPAN_DANGER("\The [src] doesn't seem to have a locking mechanism."))
+			to_chat(user, SPAN_DANGER("\The 69src69 doesn't seem to have a locking69echanism."))
 			return
 
 		if(security_check_enabled && !src.allowed(user))
@@ -30,7 +30,7 @@
 			return
 
 		locked = !locked
-		to_chat(user, "You [locked ? "lock" : "unlock"] \the [src] access panel.")
+		to_chat(user, "You 69locked ? "lock" : "unlock"69 \the 69src69 access panel.")
 		return
 
 	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_WELDING,QUALITY_WIRE_CUTTING, QUALITY_PULSING, QUALITY_CUTTING, QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
@@ -45,9 +45,9 @@
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					var/list/current_mounts = list()
 					if(cell) current_mounts   += "cell"
-					if(installed_modules && installed_modules.len) current_mounts += "system module"
+					if(installed_modules && installed_modules.len) current_mounts += "system69odule"
 
-					var/to_remove = input("Which would you like to modify?") as null|anything in current_mounts
+					var/to_remove = input("Which would you like to69odify?") as null|anything in current_mounts
 					if(!to_remove)
 						return
 
@@ -55,34 +55,34 @@
 					switch(to_remove)
 						if("cell")
 							if(cell)
-								to_chat(user, "You detatch \the [cell] from \the [src]'s battery mount.")
+								to_chat(user, "You detatch \the 69cell69 from \the 69src69's battery69ount.")
 								for(var/obj/item/rig_module/module in installed_modules)
 									module.deactivate()
 								user.put_in_hands(cell)
 								cell = null
 							else
-								to_chat(user, "There is nothing loaded in that mount.")
+								to_chat(user, "There is nothing loaded in that69ount.")
 
-						if("system module")
+						if("system69odule")
 							var/list/possible_removals = list()
 							for(var/obj/item/rig_module/module in installed_modules)
 								if(module.permanent)
 									continue
-								possible_removals[module.name] = module
+								possible_removals69module.name69 =69odule
 
 							if(!possible_removals.len)
-								to_chat(user, "There are no installed modules to remove.")
+								to_chat(user, "There are no installed69odules to remove.")
 								return
 
-							var/removal_choice = input("Which module would you like to remove?") as null|anything in possible_removals
+							var/removal_choice = input("Which69odule would you like to remove?") as null|anything in possible_removals
 							if(!removal_choice)
 								return
 
-							if (can_uninstall(possible_removals[removal_choice], user, TRUE))
-								uninstall(possible_removals[removal_choice], user)
+							if (can_uninstall(possible_removals69removal_choice69, user, TRUE))
+								uninstall(possible_removals69removal_choice69, user)
 							return TRUE
 			else
-				to_chat(user, "\The [src] access panel is closed.")
+				to_chat(user, "\The 69src69 access panel is closed.")
 				return
 
 		if(QUALITY_WIRE_CUTTING)
@@ -90,7 +90,7 @@
 				wires.Interact(user)
 				return
 			else
-				to_chat(user, "\The [src] access panel is closed.")
+				to_chat(user, "\The 69src69 access panel is closed.")
 				return
 
 		if(QUALITY_PULSING)
@@ -98,7 +98,7 @@
 				wires.Interact(user)
 				return
 			else
-				to_chat(user, "\The [src] access panel is closed.")
+				to_chat(user, "\The 69src69 access panel is closed.")
 				return
 
 		if(QUALITY_CUTTING)
@@ -106,17 +106,17 @@
 				wires.Interact(user)
 				return
 			else
-				to_chat(user, "\The [src] access panel is closed.")
+				to_chat(user, "\The 69src69 access panel is closed.")
 				return
 
 		if(QUALITY_PRYING)
 			if(locked != 1)
 				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					open = !open
-					to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] the access panel."))
+					to_chat(user, SPAN_NOTICE("You 69open ? "open" : "close"69 the access panel."))
 					return
 			else
-				to_chat(user, SPAN_DANGER("\The [src] access panel is locked."))
+				to_chat(user, SPAN_DANGER("\The 69src69 access panel is locked."))
 				return
 
 		if(QUALITY_BOLT_TURNING)
@@ -131,16 +131,16 @@
 
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 					user.put_in_hands(air_supply)
-					to_chat(user, "You detach and remove \the [air_supply].")
+					to_chat(user, "You detach and remove \the 69air_supply69.")
 					air_supply = null
 					return
 			else
-				to_chat(user, "\The [src] access panel is closed.")
+				to_chat(user, "\The 69src69 access panel is closed.")
 				return
 
 		if(QUALITY_WELDING)
 			//Cutting through the cover lock. This allows access to the wires inside so you can disable access requirements
-			//Ridiculously difficult to do, hijacking a rig will take a long time if you don't have good mechanical training
+			//Ridiculously difficult to do, hijacking a rig will take a long time if you don't have good69echanical training
 			if(locked == 1)
 				to_chat(user, SPAN_NOTICE("You start cutting through the access panel's cover lock. This is a delicate task."))
 				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_VERY_HARD, required_stat = STAT_MEC))
@@ -149,7 +149,7 @@
 					playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 				return
 			else
-				to_chat(user, "\The [src] access panel is not locked, there's no need to cut it.")
+				to_chat(user, "\The 69src69 access panel is not locked, there's no need to cut it.")
 				//No return here, incase they're trying to repair
 
 		if(ABORT_CHECK)
@@ -163,17 +163,17 @@
 		// Air tank.
 		if(istype(I,/obj/item/tank)) //Todo, some kind of check for suits without integrated air supplies.
 			if(air_supply)
-				to_chat(user, "\The [src] already has a tank installed.")
+				to_chat(user, "\The 69src69 already has a tank installed.")
 				return
 
 			if(!user.unEquip(I))
 				return
 			air_supply = I
 			I.forceMove(src)
-			to_chat(user, "You slot [I] into [src] and tighten the connecting valve.")
+			to_chat(user, "You slot 69I69 into 69src69 and tighten the connecting69alve.")
 			return
 
-		// Check if this is a hardsuit upgrade or a modification.
+		// Check if this is a hardsuit upgrade or a69odification.
 		else if(istype(I,/obj/item/rig_module))
 			if (can_install(I, user, TRUE))
 				install(I, user)
@@ -181,7 +181,7 @@
 		else if(!cell && istype(I,/obj/item/cell/large))
 			if(!user.unEquip(I))
 				return
-			to_chat(user, "You jack \the [I] into \the [src]'s battery mount.")
+			to_chat(user, "You jack \the 69I69 into \the 69src69's battery69ount.")
 			I.forceMove(src)
 			src.cell = I
 			return
@@ -189,7 +189,7 @@
 		return
 
 	// If we've gotten this far, all we have left to do before we pass off to root procs
-	// is check if any of the loaded modules want to use the item we've been given.
+	// is check if any of the loaded69odules want to use the item we've been given.
 	for(var/obj/item/rig_module/module in installed_modules)
 		if(module.accepts_item(I,user)) //Item is handled in this proc
 			return
@@ -201,7 +201,7 @@
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
 
-	//If the rig has a storage module, we can attempt to access it
+	//If the rig has a storage69odule, we can attempt to access it
 	if (storage && (is_worn() || is_held()))
 		//This will return false if we're done, or true to tell us to keep going and call parent attackhand
 		if (!storage.handle_attack_hand(user))
@@ -212,7 +212,7 @@
 //For those pesky items which incur effects on the rigsuit, an altclick will force them to go in if possible
 /obj/item/rig/AltClick(var/mob/user)
 	if (storage && user.get_active_hand())
-		if (user == loc || Adjacent(user)) //Rig must be on or near you
+		if (user == loc || Adjacent(user)) //Rig69ust be on or near you
 			storage.accepts_item(user.get_active_hand())
 			return
 	.=..()
@@ -223,7 +223,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/rig/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/rig/emag_act(var/remaining_charges,69ar/mob/user)
 	if(!subverted)
 		req_access.Cut()
 		req_one_access.Cut()

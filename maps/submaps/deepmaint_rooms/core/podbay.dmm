@@ -1,730 +1,730 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/simulated/floor/tiled/dark,
-/area/deepmaint)
-"ab" = (
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"ac" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"ad" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"ae" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"af" = (
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/deepmaint)
-"ag" = (
+//MAP CONVERTED BY dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/turf/simulated/floor/tiled/dar69,
+/area/deepmaint69
+"ab" = 69
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"ac" = 69
+/ob69/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"ad" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"ae" = 69
+/ob69/machinery/li69ht/small,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"af" = 69
+/turf/simulated/floor/tiled/dar69/69ray_platform,
+/area/deepmaint69
+"a69" = 69
 /turf/simulated/wall/r_wall,
-/area/deepmaint)
-"ah" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/deepmaint)
-"ai" = (
-/obj/machinery/light/small{
+/area/deepmaint69
+"ah" = 69
+/ob69/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/dar69/69ray_platform,
+/area/deepmaint69
+"ai" = 69
+/ob69/machinery/li69ht/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/dark,
-/area/deepmaint)
-"aj" = (
+/turf/simulated/floor/tiled/dar69,
+/area/deepmaint69
+"a69" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"ak" = (
+/area/deepmaint69
+"a69" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall19";
+	ta69 = "icon-escpodwall19";
 	icon_state = "escpodwall19"
 	},
-/area/deepmaint)
-"al" = (
+/area/deepmaint69
+"al" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall20";
+	ta69 = "icon-escpodwall20";
 	icon_state = "escpodwall20"
 	},
-/area/deepmaint)
-"am" = (
+/area/deepmaint69
+"am" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall21";
+	ta69 = "icon-escpodwall21";
 	icon_state = "escpodwall21"
 	},
-/area/deepmaint)
-"an" = (
+/area/deepmaint69
+"an" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall22";
+	ta69 = "icon-escpodwall22";
 	icon_state = "escpodwall22"
 	},
-/area/deepmaint)
-"ao" = (
+/area/deepmaint69
+"ao" = 69
 /turf/simulated/shuttle/wall/escpod{
 	icon_state = "escpodwall23";
 	opacity = 0;
-	tag = "icon-escpodwall23"
+	ta69 = "icon-escpodwall23"
 	},
-/area/deepmaint)
-"ap" = (
+/area/deepmaint69
+"ap" = 69
 /turf/simulated/shuttle/wall/escpod{
 	icon_state = "escpodwall24";
 	opacity = 0;
-	tag = "icon-escpodwall24"
+	ta69 = "icon-escpodwall24"
 	},
-/area/deepmaint)
-"aq" = (
+/area/deepmaint69
+"a69" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall25";
+	ta69 = "icon-escpodwall25";
 	icon_state = "escpodwall25"
 	},
-/area/deepmaint)
-"ar" = (
+/area/deepmaint69
+"ar" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall26";
+	ta69 = "icon-escpodwall26";
 	icon_state = "escpodwall26"
 	},
-/area/deepmaint)
-"as" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall27";
+/area/deepmaint69
+"as" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall27";
 	icon_state = "escpodwall27"
 	},
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"at" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall28";
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"at" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall28";
 	icon_state = "escpodwall28"
 	},
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"au" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"av" = (
-/obj/machinery/door/blast/regular,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/deepmaint)
-"aw" = (
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"au" = 69
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"av" = 69
+/ob69/machinery/door/blast/re69ular,
+/turf/simulated/floor/tiled/dar69/69ray_platform,
+/area/deepmaint69
+"aw" = 69
 /turf/simulated/mineral,
-/area/deepmaint)
-"ax" = (
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"ay" = (
+/area/deepmaint69
+"ax" = 69
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"ay" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall16";
+	ta69 = "icon-escpodwall16";
 	icon_state = "escpodwall16"
 	},
-/area/deepmaint)
-"az" = (
-/obj/structure/bed/chair/shuttle,
+/area/deepmaint69
+"az" = 69
+/ob69/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aA" = (
-/obj/spawner/junk,
+/area/deepmaint69
+"aA" = 69
+/ob69/spawner/69un69,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aB" = (
-/obj/structure/bed/chair/shuttle,
-/obj/machinery/light{
+/area/deepmaint69
+"aB" = 69
+/ob69/structure/bed/chair/shuttle,
+/ob69/machinery/li69ht{
 	dir = 1
 	},
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aC" = (
-/obj/structure/bed/chair/shuttle,
-/obj/spawner/junk,
+/area/deepmaint69
+"aC" = 69
+/ob69/structure/bed/chair/shuttle,
+/ob69/spawner/69un69,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aD" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
+/area/deepmaint69
+"aD" = 69
+/ob69/structure/table/rac69,
+/ob69/spawner/pac69/69un_loot,
+/ob69/spawner/pac69/69un_loot,
+/ob69/spawner/pac69/69un_loot,
+/ob69/spawner/pac69/69un_loot,
+/ob69/spawner/pac69/69un_loot/low_chance,
+/ob69/spawner/pac69/69un_loot/low_chance,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aE" = (
+/area/deepmaint69
+"aE" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall29";
+	ta69 = "icon-escpodwall29";
 	icon_state = "escpodwall29"
 	},
-/area/deepmaint)
-"aF" = (
+/area/deepmaint69
+"aF" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall17";
+	ta69 = "icon-escpodwall17";
 	icon_state = "escpodwall17"
 	},
-/area/deepmaint)
-"aG" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall18";
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall18";
 	icon_state = "escpodwall18"
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"aH" = (
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"aI" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aJ" = (
-/obj/structure/girder,
-/obj/structure/barricade,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"aH" = 69
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"aI" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/69irder,
+/ob69/structure/barricade,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"aK" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
+/area/deepmaint69
+"a69" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"aL" = (
-/obj/spawner/junk,
+/area/deepmaint69
+"aL" = 69
+/ob69/spawner/69un69,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"aM" = (
+/area/deepmaint69
+"aM" = 69
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"aN" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/gun/normal,
-/obj/structure/closet/wall_mounted/emcloset{
+/area/deepmaint69
+"aN" = 69
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/69un/normal,
+/ob69/structure/closet/wall_mounted/emcloset{
 	pixel_y = 32
 	},
-/obj/structure/closet/wall_mounted/emcloset{
+/ob69/structure/closet/wall_mounted/emcloset{
 	dir = 1;
 	pixel_y = -32
 	},
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aO" = (
+/area/deepmaint69
+"aO" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall14";
+	ta69 = "icon-escpodwall14";
 	icon_state = "escpodwall14"
 	},
-/area/deepmaint)
-"aP" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall15";
+/area/deepmaint69
+"aP" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall15";
 	icon_state = "escpodwall15"
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"aQ" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aR" = (
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"a69" = 69
+/ob69/spawner/scrap/sparse,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aR" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall11";
+	ta69 = "icon-escpodwall11";
 	icon_state = "escpodwall11"
 	},
-/area/deepmaint)
-"aS" = (
-/obj/item/device/radio/intercom{
+/area/deepmaint69
+"aS" = 69
+/ob69/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+/ob69/structure/bed/chair/shuttle{
+	ta69 = "icon-shuttle_chair 69NORTH69";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aT" = (
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+/area/deepmaint69
+"aT" = 69
+/ob69/structure/bed/chair/shuttle{
+	ta69 = "icon-shuttle_chair 69NORTH69";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/spawner/junk,
+/ob69/spawner/69un69,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aU" = (
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+/area/deepmaint69
+"aU" = 69
+/ob69/structure/bed/chair/shuttle{
+	ta69 = "icon-shuttle_chair 69NORTH69";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/machinery/light,
-/obj/spawner/junk,
+/ob69/machinery/li69ht,
+/ob69/spawner/69un69,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aV" = (
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+/area/deepmaint69
+"aV" = 69
+/ob69/structure/bed/chair/shuttle{
+	ta69 = "icon-shuttle_chair 69NORTH69";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aW" = (
-/obj/structure/table/rack,
+/area/deepmaint69
+"aW" = 69
+/ob69/structure/table/rac69,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aX" = (
-/obj/structure/table/rack,
-/obj/spawner/firstaid,
-/obj/spawner/firstaid,
+/area/deepmaint69
+"aX" = 69
+/ob69/structure/table/rac69,
+/ob69/spawner/firstaid,
+/ob69/spawner/firstaid,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"aY" = (
+/area/deepmaint69
+"aY" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall12";
+	ta69 = "icon-escpodwall12";
 	icon_state = "escpodwall12"
 	},
-/area/deepmaint)
-"aZ" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall13";
+/area/deepmaint69
+"aZ" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall13";
 	icon_state = "escpodwall13"
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"ba" = (
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"ba" = 69
 /turf/simulated/shuttle/wall/escpod,
-/area/deepmaint)
-"bb" = (
+/area/deepmaint69
+"bb" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall2";
+	ta69 = "icon-escpodwall2";
 	icon_state = "escpodwall2"
 	},
-/area/deepmaint)
-"bc" = (
+/area/deepmaint69
+"bc" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall3";
+	ta69 = "icon-escpodwall3";
 	icon_state = "escpodwall3"
 	},
-/area/deepmaint)
-"bd" = (
+/area/deepmaint69
+"bd" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall4";
+	ta69 = "icon-escpodwall4";
 	icon_state = "escpodwall4"
 	},
-/area/deepmaint)
-"be" = (
+/area/deepmaint69
+"be" = 69
 /turf/simulated/shuttle/wall/escpod{
 	icon_state = "escpodwall5";
 	opacity = 0;
-	tag = "icon-escpodwall5"
+	ta69 = "icon-escpodwall5"
 	},
-/area/deepmaint)
-"bf" = (
+/area/deepmaint69
+"bf" = 69
 /turf/simulated/shuttle/wall/escpod{
 	icon_state = "escpodwall6";
 	opacity = 0;
-	tag = "icon-escpodwall6"
+	ta69 = "icon-escpodwall6"
 	},
-/area/deepmaint)
-"bg" = (
+/area/deepmaint69
+"b69" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall7";
+	ta69 = "icon-escpodwall7";
 	icon_state = "escpodwall7"
 	},
-/area/deepmaint)
-"bh" = (
+/area/deepmaint69
+"bh" = 69
 /turf/simulated/shuttle/wall/escpod{
-	tag = "icon-escpodwall8";
+	ta69 = "icon-escpodwall8";
 	icon_state = "escpodwall8"
 	},
-/area/deepmaint)
-"bi" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall9";
+/area/deepmaint69
+"bi" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall9";
 	icon_state = "escpodwall9"
 	},
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"bj" = (
-/obj/structure/shuttle_part/escpod{
-	tag = "icon-escpodwall10";
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"b69" = 69
+/ob69/structure/shuttle_part/escpod{
+	ta69 = "icon-escpodwall10";
 	icon_state = "escpodwall10"
 	},
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"bk" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/deepmaint)
-"bl" = (
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bn" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bo" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bp" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"b69" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
+/turf/simulated/floor/tiled/dar69/69ray_platform,
+/area/deepmaint69
+"bl" = 69
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bn" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bo" = 69
+/ob69/structure/rea69ent_dispensers/fueltan69,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bp" = 69
+/ob69/machinery/li69ht/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/deepmaint)
-"bq" = (
-/obj/structure/computerframe{
-	tag = "icon-0 (WEST)";
+/turf/simulated/floor/tiled/dar69/69ray_platform,
+/area/deepmaint69
+"b69" = 69
+/ob69/structure/computerframe{
+	ta69 = "icon-0 69WEST69";
 	icon_state = "0";
 	dir = 8;
 	anchored = 1
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"br" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"bs" = (
-/obj/machinery/chemical_dispenser/industrial,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bt" = (
-/obj/machinery/autolathe/loaded,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bu" = (
-/obj/structure/table/standard,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bv" = (
-/obj/structure/table/standard,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bw" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"by" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"br" = 69
+/ob69/machinery/door/firedoor,
+/ob69/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"bs" = 69
+/ob69/machinery/chemical_dispenser/industrial,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bt" = 69
+/ob69/machinery/autolathe/loaded,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bu" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bv" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bw" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"by" = 69
+/ob69/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"bz" = (
-/obj/structure/bed/chair{
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"bz" = 69
+/ob69/structure/bed/chair{
 	dir = 4
 	},
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"bA" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"bB" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"bC" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/gun_loot,
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"bA" = 69
+/ob69/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"bB" = 69
+/ob69/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"bC" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/69un_loot,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bD" = (
-/obj/structure/bed/chair/shuttle,
-/obj/effect/decal/cleanable/blood,
+/area/deepmaint69
+"bD" = 69
+/ob69/structure/bed/chair/shuttle,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bE" = (
-/obj/structure/bed/chair/shuttle,
-/obj/machinery/light{
+/area/deepmaint69
+"bE" = 69
+/ob69/structure/bed/chair/shuttle,
+/ob69/machinery/li69ht{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bF" = (
-/obj/structure/bed/chair/shuttle,
-/obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/gun_loot,
+/area/deepmaint69
+"bF" = 69
+/ob69/structure/bed/chair/shuttle,
+/ob69/effect/decal/cleanable/blood,
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/69un_loot,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bG" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/oil,
+/area/deepmaint69
+"b69" = 69
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/effect/decal/cleanable/blood/oil,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bH" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/gun_loot,
+/area/deepmaint69
+"bH" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/69un_loot,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bI" = (
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"bJ" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
+/area/deepmaint69
+"bI" = 69
+/ob69/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"b69" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"bK" = (
-/obj/effect/decal/cleanable/blood,
+/area/deepmaint69
+"b69" = 69
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"bL" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
+/area/deepmaint69
+"bL" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"bM" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/gun_loot,
+/area/deepmaint69
+"bM" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/69un_loot,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"bN" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
+/area/deepmaint69
+"bN" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"bO" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood,
+/area/deepmaint69
+"bO" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	tag = "icon-cargofloor7";
-	icon_state = "cargofloor7"
+	ta69 = "icon-car69ofloor7";
+	icon_state = "car69ofloor7"
 	},
-/area/deepmaint)
-"bP" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/gun_loot,
-/obj/structure/closet/wall_mounted/emcloset{
+/area/deepmaint69
+"bP" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/69un_loot,
+/ob69/structure/closet/wall_mounted/emcloset{
 	pixel_y = 32
 	},
-/obj/structure/closet/wall_mounted/emcloset{
+/ob69/structure/closet/wall_mounted/emcloset{
 	dir = 1;
 	pixel_y = -32
 	},
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bQ" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/gun_loot,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"bR" = (
-/obj/item/device/radio/intercom{
+/area/deepmaint69
+"b69" = 69
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/69un_loot,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"bR" = 69
+/ob69/item/device/radio/intercom{
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+/ob69/structure/bed/chair/shuttle{
+	ta69 = "icon-shuttle_chair 69NORTH69";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bS" = (
-/obj/effect/decal/cleanable/blood,
+/area/deepmaint69
+"bS" = 69
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bT" = (
-/obj/structure/bed/chair/shuttle{
-	tag = "icon-shuttle_chair (NORTH)";
+/area/deepmaint69
+"bT" = 69
+/ob69/structure/bed/chair/shuttle{
+	ta69 = "icon-shuttle_chair 69NORTH69";
 	icon_state = "shuttle_chair";
 	dir = 1
 	},
-/obj/machinery/light,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood,
+/ob69/machinery/li69ht,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bU" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
+/area/deepmaint69
+"bU" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bV" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood,
+/area/deepmaint69
+"bV" = 69
+/ob69/effect/decal/cleanable/blood,
+/ob69/effect/decal/cleanable/blood/drip,
+/ob69/effect/decal/cleanable/blood,
 /turf/simulated/shuttle/floor{
-	icon_state = "cargofloor1"
+	icon_state = "car69ofloor1"
 	},
-/area/deepmaint)
-"bW" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"bY" = (
-/obj/machinery/light/small{
+/area/deepmaint69
+"bW" = 69
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"bY" = 69
+/ob69/machinery/li69ht/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"bZ" = (
-/obj/machinery/door/blast/regular,
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"ca" = (
-/obj/structure/reagent_dispensers/fueltank,
-/obj/landmark/loot_biomes/mob/roach{
-	range = 10
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"bZ" = 69
+/ob69/machinery/door/blast/re69ular,
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"ca" = 69
+/ob69/structure/rea69ent_dispensers/fueltan69,
+/ob69/landmar69/loot_biomes/mob/roach{
+	ran69e = 10
 	},
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"tD" = (
-/obj/structure/table/standard,
-/obj/item/storage/toolbox/mechanical{
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"tD" = 69
+/ob69/structure/table/standard,
+/ob69/item/stora69e/toolbox/mechanical{
 	pixel_x = -2;
 	pixel_y = -1
 	},
-/obj/item/clothing/head/welding,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"zl" = (
-/obj/item/stool,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"Oi" = (
-/obj/item/stool,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
+/ob69/item/clothin69/head/weldin69,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"zl" = 69
+/ob69/item/stool,
+/turf/simulated/floor/tiled/dar69/69ray_perforated,
+/area/deepmaint69
+"Oi" = 69
+/ob69/item/stool,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
@@ -747,30 +747,30 @@ aa
 aa
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 aa
 ab
 ab
-aj
+a69
 ax
 ax
 ax
-aj
+a69
 ab
 ab
 ab
 ab
 ab
-aj
+a69
 ax
 ax
 ax
-aj
+a69
 ab
 ab
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 aa
 ab
 af
@@ -780,26 +780,26 @@ ax
 ax
 af
 af
-bk
+b69
 af
 af
 af
 ah
 bB
 bI
-bQ
+b69
 af
 af
 ab
 aa
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
 ab
-ag
-ak
+a69
+a69
 ay
-aJ
+a69
 aR
 ba
 af
@@ -807,22 +807,22 @@ bl
 bl
 bl
 af
-ak
+a69
 ay
-bJ
+b69
 aR
 ba
-ag
+a69
 bW
 aa
 "}
-(5,1,1) = {"
+695,1,169 = {"
 aa
 ab
-ag
+a69
 al
 az
-aK
+a69
 aS
 bb
 ah
@@ -832,20 +832,20 @@ bl
 af
 al
 bC
-bK
+b69
 bR
 bb
-ag
+a69
 Oi
 aa
 "}
-(6,1,1) = {"
+696,1,169 = {"
 aa
 ab
 af
 am
 aA
-aK
+a69
 aT
 bc
 af
@@ -862,7 +862,7 @@ af
 ab
 aa
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
 ab
 af
@@ -885,13 +885,13 @@ af
 ab
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 aa
 ab
 af
 ao
 aC
-aK
+a69
 aV
 be
 af
@@ -908,7 +908,7 @@ af
 ab
 aa
 "}
-(9,1,1) = {"
+699,1,169 = {"
 aa
 ab
 af
@@ -923,7 +923,7 @@ bw
 zl
 af
 ap
-bG
+b69
 bO
 bV
 bf
@@ -931,30 +931,30 @@ af
 ab
 aa
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 aa
 ab
 af
-aq
+a69
 aD
 aM
 aX
-bg
+b69
 af
 bn
 bw
 bn
 af
-aq
+a69
 bH
-bJ
+b69
 bH
-bg
+b69
 af
 ab
 aa
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 aa
 ab
 af
@@ -977,7 +977,7 @@ af
 ab
 aa
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 aa
 ab
 ah
@@ -1000,30 +1000,30 @@ af
 ab
 aa
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 aa
 ac
 ah
 at
-aG
+a69
 aP
 aZ
-bj
+b69
 ah
 ah
 af
 af
 ah
 at
-aG
+a69
 aP
 aZ
-bj
+b69
 ah
 ab
 aa
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 aa
 ab
 ab
@@ -1046,122 +1046,122 @@ ab
 ab
 aa
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 aa
 ad
-ag
+a69
 bZ
 av
 av
 av
 bZ
-ag
-aj
+a69
+a69
 by
-aj
-ag
+a69
+a69
 bZ
 av
 av
 av
 bZ
-ag
+a69
 ab
 aa
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 aa
 ab
-ag
+a69
 aw
 aI
-aQ
-aQ
+a69
+a69
 aI
-ag
+a69
 bp
 af
 af
-ag
+a69
 aI
-aQ
-aQ
-aQ
+a69
+a69
+a69
 aI
-ag
+a69
 ad
 aa
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 aa
 ab
-ag
+a69
 aw
 aw
-aQ
-aQ
+a69
+a69
 aw
-ag
+a69
 bl
 bz
 bl
-ag
+a69
 aw
 aw
-aQ
-aQ
+a69
+a69
 aw
-ag
+a69
 ab
 aa
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 aa
 ab
-ag
+a69
 aw
 aw
 aw
-aQ
-aQ
-ag
-bq
-bq
-bq
-ag
+a69
+a69
+a69
+b69
+b69
+b69
+a69
 aw
 aw
-aQ
+a69
 aw
 aw
-ag
+a69
 ab
 aa
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 aa
 ae
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 br
 bA
 br
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 bY
 aa
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 aa
 ab
 ab
@@ -1184,7 +1184,7 @@ ab
 ab
 aa
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 aa
 aa
 aa

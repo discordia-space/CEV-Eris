@@ -11,8 +11,8 @@
 
 /obj/item/rig/verb/toggle_vision()
 
-	set name = "Toggle Visor"
-	set desc = "Turns your rig visor off or on."
+	set name = "Toggle69isor"
+	set desc = "Turns your rig69isor off or on."
 	set category = "Hardsuit"
 	set src = usr.contents
 
@@ -31,7 +31,7 @@
 		return
 
 	if(!visor)
-		to_chat(usr, SPAN_WARNING("The hardsuit does not have a configurable visor."))
+		to_chat(usr, SPAN_WARNING("The hardsuit does not have a configurable69isor."))
 		return
 
 	if(!visor.active)
@@ -136,8 +136,8 @@
 
 /obj/item/rig/verb/switch_vision_mode()
 
-	set name = "Switch Vision Mode"
-	set desc = "Switches between available vision modes."
+	set name = "Switch69ision69ode"
+	set desc = "Switches between available69ision69odes."
 	set category = "Hardsuit"
 	set src = usr.contents
 
@@ -152,22 +152,22 @@
 		return
 
 	if(!visor)
-		to_chat(usr, SPAN_WARNING("The hardsuit does not have a configurable visor."))
+		to_chat(usr, SPAN_WARNING("The hardsuit does not have a configurable69isor."))
 		return
 
 	if(!visor.active)
 		visor.activate()
 
 	if(!visor.active)
-		to_chat(usr, SPAN_WARNING("The visor is suffering a hardware fault and cannot be configured."))
+		to_chat(usr, SPAN_WARNING("The69isor is suffering a hardware fault and cannot be configured."))
 		return
 
 	visor.engage()
 
 /obj/item/rig/verb/alter_voice()
 
-	set name = "Configure Voice Synthesiser"
-	set desc = "Toggles or configures your voice synthesizer."
+	set name = "Configure69oice Synthesiser"
+	set desc = "Toggles or configures your69oice synthesizer."
 	set category = "Hardsuit"
 	set src = usr.contents
 
@@ -190,8 +190,8 @@
 
 /obj/item/rig/verb/select_module()
 
-	set name = "Select Module"
-	set desc = "Selects a module as your primary system."
+	set name = "Select69odule"
+	set desc = "Selects a69odule as your primary system."
 	set category = "Hardsuit"
 	set src = usr.contents
 
@@ -212,22 +212,22 @@
 	var/list/selectable = list()
 	for(var/obj/item/rig_module/module in installed_modules)
 		if(module.selectable)
-			selectable |= module
+			selectable |=69odule
 
-	var/obj/item/rig_module/module = input("Which module do you wish to select?") as null|anything in selectable
+	var/obj/item/rig_module/module = input("Which69odule do you wish to select?") as null|anything in selectable
 
 	if(!istype(module))
 		selected_module = null
 		to_chat(usr, "<font color='blue'><b>Primary system is now: deselected.</b></font>")
 		return
 
-	selected_module = module
-	to_chat(usr, "<font color='blue'><b>Primary system is now: [selected_module.interface_name].</b></font>")
+	selected_module =69odule
+	to_chat(usr, "<font color='blue'><b>Primary system is now: 69selected_module.interface_name69.</b></font>")
 
 /obj/item/rig/verb/toggle_module()
 
-	set name = "Toggle Module"
-	set desc = "Toggle a system module."
+	set name = "Toggle69odule"
+	set desc = "Toggle a system69odule."
 	set category = "Hardsuit"
 	set src = usr.contents
 
@@ -248,24 +248,24 @@
 	var/list/selectable = list()
 	for(var/obj/item/rig_module/module in installed_modules)
 		if(module.toggleable)
-			selectable |= module
+			selectable |=69odule
 
-	var/obj/item/rig_module/module = input("Which module do you wish to toggle?") as null|anything in selectable
+	var/obj/item/rig_module/module = input("Which69odule do you wish to toggle?") as null|anything in selectable
 
 	if(!istype(module))
 		return
 
 	if(module.active)
-		to_chat(usr, "<font color='blue'><b>You attempt to deactivate \the [module.interface_name].</b></font>")
+		to_chat(usr, "<font color='blue'><b>You attempt to deactivate \the 69module.interface_name69.</b></font>")
 		module.deactivate()
 	else
-		to_chat(usr, "<font color='blue'><b>You attempt to activate \the [module.interface_name].</b></font>")
+		to_chat(usr, "<font color='blue'><b>You attempt to activate \the 69module.interface_name69.</b></font>")
 		module.activate()
 
 /obj/item/rig/verb/engage_module()
 
-	set name = "Engage Module"
-	set desc = "Engages a system module."
+	set name = "Engage69odule"
+	set desc = "Engages a system69odule."
 	set category = "Hardsuit"
 	set src = usr.contents
 
@@ -286,12 +286,12 @@
 	var/list/selectable = list()
 	for(var/obj/item/rig_module/module in installed_modules)
 		if(module.usable)
-			selectable |= module
+			selectable |=69odule
 
-	var/obj/item/rig_module/module = input("Which module do you wish to engage?") as null|anything in selectable
+	var/obj/item/rig_module/module = input("Which69odule do you wish to engage?") as null|anything in selectable
 
 	if(!istype(module))
 		return
 
-	to_chat(usr, "<font color='blue'><b>You attempt to engage the [module.interface_name].</b></font>")
+	to_chat(usr, "<font color='blue'><b>You attempt to engage the 69module.interface_name69.</b></font>")
 	module.engage()

@@ -1,14 +1,14 @@
 
-NanoStateDefaultClass.inheritsFrom(NanoStateClass);
-var NanoStateDefault = new NanoStateDefaultClass();
+N69noSt69teDef69ult69l69ss.in69eritsFrom(N69noSt69te69l69ss69;
+6969r6969noSt69teDef69ult =69ew6969noSt69teDef69ult69l69ss(69;
 
-function NanoStateDefaultClass() {
+fun69tion6969noSt69teDef69ult69l69ss(69 {
 
-    this.key = 'default';
+    t69is.69e69 = 'def69ult';
 
-    //this.parent.constructor.call(this);
+    //t69is.6969rent.69onstru69tor.6969ll(t69is69;
 
-    this.key = this.key.toLowerCase();
+    t69is.69e69 = t69is.69e69.toLower6969se(69;
 
-    NanoStateManager.addState(this);
+   6969noSt69teM69n6969er.69ddSt69te(t69is69;
 }

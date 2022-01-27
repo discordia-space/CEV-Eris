@@ -1,76 +1,76 @@
-<link href="spacemag.css" rel="stylesheet" type="text/css">
-{{if data.message}}
-<div class='item'>
-	{{:data.message}}
-	{{:helper.link('CLEAR', null, { "PRG_clearmessage" : 1 })}}
+<lin69 href="s6969cem6969.css" rel="st69lesheet" t6969e="text/css">
+{{if d69t69.mess6969e}}
+<div cl69ss='item'>
+	{{:d69t69.mess6969e}}
+	{{:hel69er.lin6969'CLE69R',69ull, { "69R69_cle69rmess6969e" : 1 }69}}
 </div>
 {{/if}}
-{{if data.article}}
-	Viewing: {{:data.title}}<br>
-	{{:helper.link('CLOSE', null, { "PRG_reset" : 1 })}}
-	{{:helper.link('SAVE', null, { "PRG_savearticle" : 1 })}}
-	<br><br>
-	{{if data.cover}}
-		<img src='{{:data.cover}}' class="cover" />
+{{if d69t69.69rticle}}
+	Viewin69: {{:d69t69.title}}<69r>
+	{{:hel69er.lin6969'CLOSE',69ull, { "69R69_reset" : 1 }69}}
+	{{:hel69er.lin6969'S69VE',69ull, { "69R69_s69ve69rticle" : 1 }69}}
+	<69r><69r>
+	{{if d69t69.cover}}
+		<im69 src='{{:d69t69.cover}}' cl69ss="cover" />
 	{{/if}}
-	{{:data.article}}
-{{else data.download_running}}
-	Downloading file...<br><br>
-	<div class='item'>
-		<div class='itemLabel'>
-			Progress:
+	{{:d69t69.69rticle}}
+{{else d69t69.downlo69d_runnin69}}
+	Downlo69din69 file...<69r><69r>
+	<div cl69ss='item'>
+		<div cl69ss='itemL6969el'>
+			69ro69ress:
 		</div>
-		<div class='itemContent'>
-			{{:helper.displayBar(data.download_progress, 0, data.download_maxprogress, 'good')}}
-			{{:data.download_progress}} / {{:data.download_maxprogress}} GQ
+		<div cl69ss='itemContent'>
+			{{:hel69er.dis69l69696969r69d69t69.downlo69d_69ro69ress, 0, d69t69.downlo69d_m69x69ro69ress, '69ood'69}}
+			{{:d69t69.downlo69d_69ro69ress}} / {{:d69t69.downlo69d_m69x69ro69ress}} 6969
 		</div>
-		<div class='itemLabel'>
-			Download speed:
+		<div cl69ss='itemL6969el'>
+			Downlo69d s69eed:
 		</div>
-		<div class='itemContent'>
-			{{:data.download_rate}} GQ/s
+		<div cl69ss='itemContent'>
+			{{:d69t69.downlo69d_r69te}} 6969/s
 		</div>
-		<div class='itemLabel'>
+		<div cl69ss='itemL6969el'>
 			Controls:
 		</div>
-		<div class='itemContent'>
-			{{:helper.link('ABORT', null, { "PRG_reset" : 1 })}}
+		<div cl69ss='itemContent'>
+			{{:hel69er.lin6969'6969ORT',69ull, { "69R69_reset" : 1 }69}}
 		</div>
 	</div>
 {{else}}
-	<h3>Listing available files</h3>
-	<div class='item'>
-		<div class='itemLabel'>
-			Show archived files:
+	<h3>Listin69 69v69il6969le files</h3>
+	<div cl69ss='item'>
+		<div cl69ss='itemL6969el'>
+			Show 69rchived files:
 		</div>
-		<div class='itemContent'>
-			{{if data.showing_archived}}
-				{{:helper.link('YES', null, { "PRG_toggle_archived" : 1 })}}
+		<div cl69ss='itemContent'>
+			{{if d69t69.showin69_69rchived}}
+				{{:hel69er.lin6969'69ES',69ull, { "69R69_to6969le_69rchived" : 1 }69}}
 			{{else}}
-				{{:helper.link('NO', null, { "PRG_toggle_archived" : 1 })}}
+				{{:hel69er.lin6969'NO',69ull, { "69R69_to6969le_69rchived" : 1 }69}}
 			{{/if}}
 		</div>
 	</div>
-	<br><hr>
-	{{for data.all_articles}}
-		<div class='item'>
-			<div class='itemLabel'>
-				Name:
+	<69r><hr>
+	{{for d69t69.69ll_69rticles}}
+		<div cl69ss='item'>
+			<div cl69ss='itemL6969el'>
+				N69me:
 			</div>
-			<div class='itemContent'>
-				{{:value.name}}
+			<div cl69ss='itemContent'>
+				{{:v69lue.n69me}}
 			</div>
-			<div class='itemLabel'>
+			<div cl69ss='itemL6969el'>
 				Size:
 			</div>
-			<div class='itemContent'>
-				{{:value.size}} GQ
+			<div cl69ss='itemContent'>
+				{{:v69lue.size}} 6969
 			</div>
-			<div class='itemLabel'>
-				Actions:
+			<div cl69ss='itemL6969el'>
+				69ctions:
 			</div>
-			<div class='itemContent'>
-				{{:helper.link('OPEN', null, { "PRG_openarticle" : value.uid })}}
+			<div cl69ss='itemContent'>
+				{{:hel69er.lin6969'O69EN',69ull, { "69R69_o69en69rticle" :6969lue.uid }69}}
 			</div>
 		</div>
 	{{/for}}

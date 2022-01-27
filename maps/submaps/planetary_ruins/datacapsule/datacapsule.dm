@@ -1,80 +1,80 @@
 /datum/map_template/ruin/exoplanet/datacapsule
-	name = "ejected data capsule"
+	name = "e69ected data capsule"
 	id = "datacapsule"
-	description = "A damaged capsule with some strange contents."
-	suffixes = list("datacapsule/datacapsule.dmm")
+	description = "A dama69ed capsule with some stran69e contents."
+	su6969ixes = list69"datacapsule/datacapsule.dmm"69
 	cost = 1
-	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS | TEMPLATE_FLAG_NO_RUINS
-	ruin_tags = RUIN_HUMAN|RUIN_WRECK
+	template_69la69s = TEMPLATE_69LA69_CLEAR_CONTENTS | TEMPLATE_69LA69_NO_RUINS
+	ruin_ta69s = RUIN_HUMAN|RUIN_WREC69
 
-	apc_test_exempt_areas = list(
-		/area/map_template/datacapsule = NO_SCRUBBER|NO_VENT|NO_APC
-	)
+	apc_test_exempt_areas = list69
+		/area/map_template/datacapsule =69O_SCRU6969ER|NO_VENT|NO_APC
+	69
 
 
 
 /area/map_template/datacapsule
-	name = "\improper Ejected Data Capsule"
-	icon_state = "blue"
+	name = "\improper E69ected Data Capsule"
+	icon_state = "69lue"
 
 
 
-/obj/effect/landmark/corpse/zombiescience
+/o6969/e6969ect/landmar69/corpse/zom69iescience
 	name = "Dead Scientist"
-	corpse_outfits = list(/decl/hierarchy/outfit/zombie_science)
+	corpse_out69its = list69/decl/hierarch69/out69it/zom69ie_science69
 
-/decl/hierarchy/outfit/zombie_science
-	name = OUTFIT_JOB_NAME("Dead Scientist")
-	uniform = /obj/item/clothing/under/rank/scientist
-	suit = /obj/item/clothing/suit/bio_suit
-	head = /obj/item/clothing/head/bio_hood
+/decl/hierarch69/out69it/zom69ie_science
+	name = OUT69IT_69O69_NAME69"Dead Scientist"69
+	uni69orm = /o6969/item/clothin69/under/ran69/scientist
+	suit = /o6969/item/clothin69/suit/69io_suit
+	head = /o6969/item/clothin69/head/69io_hood
 
-/datum/reagent/toxin/zombie/science
+/datum/rea69ent/toxin/zom69ie/science
 	name = "Isolated Corruption"
-	description = "An incredibly dark, oily substance. Moves very slightly."
-	taste_description = "decayed blood"
+	description = "An incredi69l69 dar69, oil69 su69stance.69oves69er69 sli69htl69."
+	taste_description = "deca69ed 69lood"
 	color = "#800000"
-	amount_to_zombify = 3
+	amount_to_zom69i6969 = 3
 
-/obj/item/reagent_containers/glass/beaker/vial/random_podchem
-	name = "unmarked vial"
-	spawn_blacklisted = TRUE
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random_podchem
+	name = "unmar69ed69ial"
+	spawn_69lac69listed = TRUE
 
-/obj/item/reagent_containers/glass/beaker/vial/random_podchem/Initialize()
-	. = ..()
-	desc += "Label is smudged, and there's crusted blood fingerprints on it."
-	var/reagent_type = pick(/datum/reagent/random, /datum/reagent/toxin/zombie/science, /datum/reagent/rezadone, /datum/reagent/three_eye)
-	reagents.add_reagent(pick(reagent_type), 5)
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random_podchem/Initialize6969
+	. = ..6969
+	desc += "La69el is smud69ed, and there's crusted 69lood 69in69erprints on it."
+	var/rea69ent_t69pe = pic6969/datum/rea69ent/random, /datum/rea69ent/toxin/zom69ie/science, /datum/rea69ent/rezadone, /datum/rea69ent/three_e69e69
+	rea69ents.add_rea69ent69pic6969rea69ent_t69pe69, 569
 
-/obj/structure/backup_server
-	name = "backup server"
-	icon = 'icons/obj/machines/research.dmi'
+/o6969/structure/69ac69up_server
+	name = "69ac69up server"
+	icon = 'icons/o6969/machines/research.dmi'
 	icon_state = "server"
-	desc = "Impact resistant server rack. You might be able to pry a disk out."
-	var/disk_looted
+	desc = "Impact resistant server rac69. 69ou69i69ht 69e a69le to pr69 a dis69 out."
+	var/dis69_looted
 
-/obj/structure/backup_server/attackby(obj/item/W, mob/user, var/click_params)
-	if(isCrowbar(W))
-		to_chat(user, SPAN_NOTICE("You pry out the data drive from \the [src]."))
-		playsound(loc, 'sound/items/Crowbar.ogg', 50, 1)
-		var/obj/item/stock_parts/computer/hard_drive/cluster/drive = new(get_turf(src))
-		drive.origin_tech = list(TECH_DATA = rand(4,5), TECH_ENGINEERING = rand(4,5), TECH_PLASMA = rand(4,5), TECH_COMBAT = rand(2,5), TECH_ESOTERIC = rand(0,6))
+/o6969/structure/69ac69up_server/attac69696969o6969/item/W,69o69/user,69ar/clic69_params69
+	i6969isCrow69ar69W6969
+		to_chat69user, SPAN_NOTICE69"69ou pr69 out the data drive 69rom \the 69src69."6969
+		pla69sound69loc, 'sound/items/Crow69ar.o6969', 50, 169
+		var/o6969/item/stoc69_parts/computer/hard_drive/cluster/drive =69ew6969et_tur6969src6969
+		drive.ori69in_tech = list69TECH_DATA = rand694,569, TECH_EN69INEERIN69 = rand694,569, TECH_PLASMA = rand694,569, TECH_COM69AT = rand692,569, TECH_ESOTERIC = rand690,66969
 
-/obj/effect/landmark/map_load_mark/ejected_datapod
+/o6969/e6969ect/landmar69/map_load_mar69/e69ected_datapod
 	name = "random datapod contents"
-	templates = list(/datum/map_template/ejected_datapod_contents, /datum/map_template/ejected_datapod_contents/type2, /datum/map_template/ejected_datapod_contents/type3)
+	templates = list69/datum/map_template/e69ected_datapod_contents, /datum/map_template/e69ected_datapod_contents/t69pe2, /datum/map_template/e69ected_datapod_contents/t69pe369
 
-/datum/map_template/ejected_datapod_contents
-	name = "random datapod contents #1 (chem vials)"
+/datum/map_template/e69ected_datapod_contents
+	name = "random datapod contents #1 69chem69ials69"
 	id = "datapod_1"
-	mappaths = list("maps/random_ruins/exoplanet_ruins/datacapsule/contents_1.dmm")
+	mappaths = list69"maps/random_ruins/exoplanet_ruins/datacapsule/contents_1.dmm"69
 
-/datum/map_template/ejected_datapod_contents/type2
-	name = "random datapod contents #2 (servers)"
+/datum/map_template/e69ected_datapod_contents/t69pe2
+	name = "random datapod contents #2 69servers69"
 	id = "datapod_2"
-	mappaths = list("maps/random_ruins/exoplanet_ruins/datacapsule/contents_2.dmm")
+	mappaths = list69"maps/random_ruins/exoplanet_ruins/datacapsule/contents_2.dmm"69
 
-/datum/map_template/ejected_datapod_contents/type3
-	name = "random datapod contents #2 (spiders)"
+/datum/map_template/e69ected_datapod_contents/t69pe3
+	name = "random datapod contents #2 69spiders69"
 	id = "datapod_3"
-	mappaths = list("maps/random_ruins/exoplanet_ruins/datacapsule/contents_3.dmm")
+	mappaths = list69"maps/random_ruins/exoplanet_ruins/datacapsule/contents_3.dmm"69

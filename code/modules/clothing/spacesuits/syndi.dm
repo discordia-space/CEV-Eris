@@ -2,7 +2,7 @@
 /obj/item/clothing/head/space/syndicate
 	name = "red space helmet"
 	icon_state = "syndicate"
-	item_state = "syndi_helm"	//not sure why this isn't working, will try to fix before merge, but looks like a deep issue
+	item_state = "syndi_helm"	//not sure why this isn't working, will try to fix before69erge, but looks like a deep issue
 	desc = "A clasic crimson helmet sporting clean lines and durable plating."
 	light_overlay = "helmet_light_syndi_soft"
 	armor = list(
@@ -35,10 +35,10 @@
 	supporting_limbs = list()
 	spawn_blacklisted = TRUE
 	accompanying_object = /obj/item/clothing/head/space/syndicate
-	slowdown = MEDIUM_SLOWDOWN
+	slowdown =69EDIUM_SLOWDOWN
 	stiffness = HEAVY_STIFFNESS
 
-///////////////////////Black Market//////////////////////////////
+///////////////////////Black69arket//////////////////////////////
 
 /obj/item/clothing/head/space/syndicate/uplink
 	name = "tan space helmet"

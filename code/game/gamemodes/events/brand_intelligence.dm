@@ -1,7 +1,7 @@
 /*
-	Some of the vendors on the ship will go a bit nuts, firing their contents, shouting abuse, and
+	Some of the69endors on the ship will go a bit nuts, firing their contents, shouting abuse, and
 	allowing contraband.
-	It will affect a limited quantity of vendors, but affected ones will last forever until fixed
+	It will affect a limited 69uantity of69endors, but affected ones will last forever until fixed
 */
 /datum/storyevent/brand_intelligence
 	id = "crazy_vendors"
@@ -16,7 +16,7 @@
 
 /datum/event/brand_intelligence
 	announceWhen	= 21
-	endWhen			= 1000	//Ends when all vending machines are subverted anyway.
+	endWhen			= 1000	//Ends when all69ending69achines are subverted anyway.
 
 	var/max_infections = 6
 	var/list/obj/machinery/vending/vendingMachines = list()
@@ -25,7 +25,7 @@
 
 
 /datum/event/brand_intelligence/announce()
-	command_announcement.Announce("Rampant brand intelligence has been detected aboard [station_name()], please stand-by.", "Machine Learning Alert")
+	command_announcement.Announce("Rampant brand intelligence has been detected aboard 69station_name()69, please stand-by.", "Machine Learning Alert")
 
 
 /datum/event/brand_intelligence/start()
@@ -44,11 +44,11 @@
 	originMachine.shoot_inventory = 1
 	originMachine.categories = 7 //This unlocks coin/contraband content
 	infectedVendingMachines.Add(originMachine)
-	log_and_message_admins("Brand Intelligence started on [jumplink(originMachine)],")
+	log_and_message_admins("Brand Intelligence started on 69jumplink(originMachine)69,")
 
 
 /datum/event/brand_intelligence/tick()
-	if(!vendingMachines.len || !originMachine || originMachine.shut_up || infectedVendingMachines.len >= max_infections)	//if every machine is infected, or if the original vending machine is missing or has it's voice switch flipped
+	if(!vendingMachines.len || !originMachine || originMachine.shut_up || infectedVendingMachines.len >=69ax_infections)	//if every69achine is infected, or if the original69ending69achine is69issing or has it's69oice switch flipped
 		end()
 		kill()
 		return
@@ -61,11 +61,11 @@
 		infectedMachine.shoot_inventory = 1
 		infectedMachine.categories = 7 //This unlocks coin/contraband content
 		if(ISMULTIPLE(activeFor, 12))
-			originMachine.speak(pick("Try our aggressive new marketing strategies!", \
+			originMachine.speak(pick("Try our aggressive new69arketing strategies!", \
 									 "You should buy products to feed your lifestyle obsession!", \
 									 "Consume!", \
-									 "Your money can buy happiness!", \
-									 "Engage direct marketing!", \
+									 "Your69oney can buy happiness!", \
+									 "Engage direct69arketing!", \
 									 "Advertising is legalized lying! But don't let that put you off our great deals!", \
-									 "You don't want to buy anything? Yeah, well I didn't want to buy your mom either.",
+									 "You don't want to buy anything? Yeah, well I didn't want to buy your69om either.",
 									 "Come and buy our products ~nya"))

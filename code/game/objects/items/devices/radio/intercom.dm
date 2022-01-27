@@ -1,28 +1,28 @@
 /obj/item/device/radio/intercom
-	name = "ship intercom (General)"
-	desc = "Talk through this."
+	name = "ship intercom (69eneral)"
+	desc = "Talk throu69h this."
 	icon_state = "intercom"
 	anchored = TRUE
-	spawn_tags = null
-	slot_flags = null
+	spawn_ta69s = null
+	slot_fla69s = null
 	w_class = ITEM_SIZE_BULKY
-	canhear_range = 2
-	flags = CONDUCT | NOBLOODY
+	canhear_ran69e = 2
+	fla69s = CONDUCT | NOBLOODY
 	var/number = 0
 	var/area/linked_area
 
 /obj/item/device/radio/intercom/custom
 	name = "ship intercom (Custom)"
-	broadcasting = 0
-	listening = 0
+	broadcastin69 = 0
+	listenin69 = 0
 
 /obj/item/device/radio/intercom/interrogation
 	name = "ship intercom (Interrogation)"
-	frequency  = 1449
+	fre69uency  = 1449
 
 /obj/item/device/radio/intercom/private
 	name = "ship intercom (Private)"
-	frequency = AI_FREQ
+	fre69uency = AI_FRE69
 
 /obj/item/device/radio/intercom/department
 	canhear_range = 5
@@ -31,11 +31,11 @@
 
 /obj/item/device/radio/intercom/department/medbay
 	name = "ship intercom (Medbay)"
-	frequency = MED_I_FREQ
+	fre69uency =69ED_I_FRE69
 
 /obj/item/device/radio/intercom/department/security
 	name = "ship intercom (Security)"
-	frequency = SEC_I_FREQ
+	fre69uency = SEC_I_FRE69
 
 /obj/item/device/radio/intercom/New()
 	..()
@@ -48,33 +48,33 @@
 /obj/item/device/radio/intercom/department/security/New()
 	..()
 	internal_channels = list(
-		num2text(PUB_FREQ) = list(),
-		num2text(SEC_I_FREQ) = list(access_security)
+		num2text(PUB_FRE69) = list(),
+		num2text(SEC_I_FRE69) = list(access_security)
 	)
 
 
 /obj/item/device/radio/intercom/syndicate
 	name = "illicit intercom"
 	desc = "Talk through this. Evilly"
-	frequency = SYND_FREQ
+	fre69uency = SYND_FRE69
 	subspace_transmission = 1
 	syndie = 1
 
 /obj/item/device/radio/intercom/syndicate/New()
 	..()
-	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
+	internal_channels69num2text(SYND_FRE69)69 = list(access_syndicate)
 
-/obj/item/device/radio/intercom/attack_ai(mob/user as mob)
+/obj/item/device/radio/intercom/attack_ai(mob/user as69ob)
 	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
-/obj/item/device/radio/intercom/attack_hand(mob/user as mob)
+/obj/item/device/radio/intercom/attack_hand(mob/user as69ob)
 	src.add_fingerprint(user)
 	spawn (0)
 		attack_self(user)
 
-/obj/item/device/radio/intercom/receive_range(freq, level)
+/obj/item/device/radio/intercom/receive_range(fre69, level)
 	if (!on)
 		return -1
 	if(!(0 in level))
@@ -83,14 +83,14 @@
 			return -1
 	if (!src.listening)
 		return -1
-	if(freq in ANTAG_FREQS)
+	if(fre69 in ANTAG_FRE69S)
 		if(!(src.syndie))
-			return -1//Prevents broadcast of messages over devices lacking the encryption
+			return -1//Prevents broadcast of69essages over devices lacking the encryption
 
 	return canhear_range
 
 /obj/item/device/radio/intercom/proc/change_status()
-	on = linked_area.powered(STATIC_EQUIP)
+	on = linked_area.powered(STATIC_E69UIP)
 	icon_state = on ? "intercom" : "intercom-p"
 
 /obj/item/device/radio/intercom/proc/loop_area_check()
@@ -114,21 +114,21 @@
 	broadcasting = 1
 
 /obj/item/device/radio/intercom/locked
-    var/locked_frequency
+   69ar/locked_fre69uency
 
-/obj/item/device/radio/intercom/locked/set_frequency(var/frequency)
-	if(frequency == locked_frequency)
-		..(locked_frequency)
+/obj/item/device/radio/intercom/locked/set_fre69uency(var/fre69uency)
+	if(fre69uency == locked_fre69uency)
+		..(locked_fre69uency)
 
 /obj/item/device/radio/intercom/locked/list_channels()
 	return ""
 
 /obj/item/device/radio/intercom/locked/ai_private
 	name = "\improper AI intercom"
-	frequency = AI_FREQ
+	fre69uency = AI_FRE69
 	broadcasting = 1
 	listening = 1
 
 /obj/item/device/radio/intercom/locked/confessional
 	name = "confessional intercom"
-	frequency = 1480
+	fre69uency = 1480

@@ -1,5 +1,5 @@
 /datum/admin_secret_item/fun_secret/turn_humans_into_monkeys
-	name = "Turn All Humans Into Monkeys"
+	name = "Turn All Humans Into69onkeys"
 
 /datum/admin_secret_item/fun_secret/turn_humans_into_monkeys/execute(var/mob/user)
 	. = ..()

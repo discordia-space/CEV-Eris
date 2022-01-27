@@ -1,4 +1,4 @@
-//basic spider mob, these generally guard nests
+//basic spider69ob, these generally guard69ests
 /mob/living/carbon/superior_animal/giant_spider
 	name = "Senshi Spider"
 	desc = "An overgrown tarantula. It's fangs are coated in a discolored fluid, and it's chitin seems incredibly thick."
@@ -6,7 +6,7 @@
 	icon_living = "guard"
 	pass_flags = PASSTABLE
 
-	mob_size = MOB_MEDIUM
+	mob_size =69OB_MEDIUM
 
 	maxHealth = 120
 	health = 120
@@ -39,7 +39,7 @@
 	pass_flags = PASSTABLE
 	faction = "spiders"
 
-/mob/living/carbon/superior_animal/giant_spider/New(var/location, var/atom/parent)
+/mob/living/carbon/superior_animal/giant_spider/New(var/location,69ar/atom/parent)
 	get_light_and_color(parent)
 	..()
 

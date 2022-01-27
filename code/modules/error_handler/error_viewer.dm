@@ -1,4 +1,4 @@
-// Error viewing datums, responsible for storing error info, notifying admins
+// Error69iewing datums, responsible for storing error info, notifying admins
 // when errors occur, and showing them to admins on demand.
 
 // There are 3 different types used here:
@@ -20,13 +20,13 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 // - ErrorEntry datums exist for each logged error, and keep track of all
 //   relevant info about that error.
 
-// Common vars and procs are kept at the ErrorViewer level
+// Common69ars and procs are kept at the ErrorViewer level
 /datum/ErrorViewer/
 	var/name = ""
 
-/datum/ErrorViewer/proc/browseTo(var/user, var/html)
+/datum/ErrorViewer/proc/browseTo(var/user,69ar/html)
 	if(user)
-		var/datum/browser/popup = new(user, "error_viewer", "Runtime Viewer", 700, 500)
+		var/datum/browser/popup = new(user, "error_viewer", "Runtime69iewer", 700, 500)
 		popup.add_head_content({"<style>
 			.runtime{
 				background-color: #171717;
@@ -47,61 +47,61 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 		popup.set_content(html)
 		popup.open(0)
 
-/datum/ErrorViewer/proc/buildHeader(var/datum/ErrorViewer/back_to, var/linear, var/refreshable)
+/datum/ErrorViewer/proc/buildHeader(var/datum/ErrorViewer/back_to,69ar/linear,69ar/refreshable)
 	// Common starter HTML for showTo
 	var/html = ""
 
 	if(istype(back_to))
-		html += "[back_to.makeLink("<<<", null, linear)] "
+		html += "69back_to.makeLink("<<<", null, linear)69 "
 	if(refreshable)
-		html += "[makeLink("Refresh", null, linear)]"
+		html += "69makeLink("Refresh", null, linear)69"
 	if(html)
 		html += "<br><br>"
 	return html
 
-/datum/ErrorViewer/proc/showTo(var/user, var/datum/ErrorViewer/back_to, var/linear)
+/datum/ErrorViewer/proc/showTo(var/user,69ar/datum/ErrorViewer/back_to,69ar/linear)
 	// Specific to each child type
 	return
 
-/datum/ErrorViewer/proc/makeLink(var/linktext, var/datum/ErrorViewer/back_to, var/linear)
+/datum/ErrorViewer/proc/makeLink(var/linktext,69ar/datum/ErrorViewer/back_to,69ar/linear)
 	var/back_to_param = ""
 	if(!linktext)
 		linktext = name
 	if(istype(back_to))
-		back_to_param = ";viewruntime_backto=\ref[back_to]"
+		back_to_param = ";viewruntime_backto=\ref69back_to69"
 	if(linear)
 		back_to_param += ";viewruntime_linear=1"
-	return "<A HREF='?_src_=holder;viewruntime=\ref[src][back_to_param]'>[html_encode(linktext)]</A>"
+	return "<A HREF='?_src_=holder;viewruntime=\ref69src6969back_to_param69'>69html_encode(linktext)69</A>"
 
 /datum/ErrorViewer/ErrorCache
 	var/list/errors = list()
 	var/list/error_sources = list()
 	var/list/errors_silenced = list()
 
-/datum/ErrorViewer/ErrorCache/showTo(var/user, var/datum/ErrorViewer/back_to, var/linear)
+/datum/ErrorViewer/ErrorCache/showTo(var/user,69ar/datum/ErrorViewer/back_to,69ar/linear)
 	var/html = buildHeader(null, linear, refreshable=1)
-	html += "[total_runtimes] runtimes, [total_runtimes_skipped] skipped<br><br>"
+	html += "69total_runtimes69 runtimes, 69total_runtimes_skipped69 skipped<br><br>"
 	if(!linear)
-		html += "organized | [makeLink("linear", null, 1)]<hr>"
+		html += "organized | 69makeLink("linear", null, 1)69<hr>"
 		var/datum/ErrorViewer/ErrorSource/error_source
 		for(var/erroruid in error_sources)
-			error_source = error_sources[erroruid]
-			html += "<p class='runtime_list'>[error_source.makeLink(null, src)]<br></p>"
+			error_source = error_sources69erroruid69
+			html += "<p class='runtime_list'>69error_source.makeLink(null, src)69<br></p>"
 	else
-		html += "[makeLink("organized", null)] | linear<hr>"
+		html += "69makeLink("organized", null)69 | linear<hr>"
 		for(var/datum/ErrorViewer/ErrorEntry/error_entry in errors)
-			html += "<p class='runtime_list'>[error_entry.makeLink(null, src, 1)]<br></p>"
+			html += "<p class='runtime_list'>69error_entry.makeLink(null, src, 1)69<br></p>"
 	browseTo(user, html)
 
-/datum/ErrorViewer/ErrorCache/proc/logError(var/exception/e, var/list/desclines, var/skipCount, var/datum/e_src)
+/datum/ErrorViewer/ErrorCache/proc/logError(var/exception/e,69ar/list/desclines,69ar/skipCount,69ar/datum/e_src)
 	if(!istype(e))
 		return // Abnormal exception, don't even bother
 
-	var/erroruid = "[e.file][e.line]"
-	var/datum/ErrorViewer/ErrorSource/error_source = error_sources[erroruid]
+	var/erroruid = "69e.file6969e.line69"
+	var/datum/ErrorViewer/ErrorSource/error_source = error_sources69erroruid69
 	if(!error_source)
 		error_source = new(e)
-		error_sources[erroruid] = error_source
+		error_sources69erroruid69 = error_source
 
 	var/datum/ErrorViewer/ErrorEntry/error_entry = new(e, desclines, skipCount, e_src)
 	error_entry.error_source = error_source
@@ -110,11 +110,11 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	if(skipCount)
 		return // Skip notifying admins about skipped errors
 
-	// Show the error to admins with debug messages turned on, but only if one
+	// Show the error to admins with debug69essages turned on, but only if one
 	//  from the same source hasn't been shown too recently
 	if(error_source.next_message_at <= world.time)
-		var/const/viewtext = "\[view]" // Nesting these in other brackets went poorly
-		log_debug("Runtime in [e.file],[e.line]: [html_encode(e.name)] [error_entry.makeLink(viewtext)]")
+		var/const/viewtext = "\69view69" // Nesting these in other brackets went poorly
+		log_debug("Runtime in 69e.file69,69e.line69: 69html_encode(e.name)69 69error_entry.makeLink(viewtext)69")
 		error_source.next_message_at = world.time + ERROR_MSG_DELAY
 
 /datum/ErrorViewer/ErrorSource
@@ -123,16 +123,16 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 
 /datum/ErrorViewer/ErrorSource/New(var/exception/e)
 	if(!istype(e))
-		name = "\[[time_stamp()]] Uncaught exceptions"
+		name = "\6969time_stamp()6969 Uncaught exceptions"
 		return
-	name = "\[[time_stamp()]] Runtime in [e.file],[e.line]: [e]"
+	name = "\6969time_stamp()6969 Runtime in 69e.file69,69e.line69: 69e69"
 
-/datum/ErrorViewer/ErrorSource/showTo(var/user, var/datum/ErrorViewer/back_to, var/linear)
+/datum/ErrorViewer/ErrorSource/showTo(var/user,69ar/datum/ErrorViewer/back_to,69ar/linear)
 	if(!istype(back_to))
 		back_to = error_cache
 	var/html = buildHeader(back_to, refreshable=1)
 	for(var/datum/ErrorViewer/ErrorEntry/error_entry in errors)
-		html += "<p class='runtime_list'>[error_entry.makeLink(null, src)]<br></p>"
+		html += "<p class='runtime_list'>69error_entry.makeLink(null, src)69<br></p>"
 	browseTo(user, html)
 
 /datum/ErrorViewer/ErrorEntry
@@ -146,51 +146,51 @@ var/global/datum/ErrorViewer/ErrorCache/error_cache = null
 	var/turf/usrLoc
 	var/isSkipCount
 
-/datum/ErrorViewer/ErrorEntry/New(var/exception/e, var/list/desclines, var/skipCount, var/datum/e_src)
+/datum/ErrorViewer/ErrorEntry/New(var/exception/e,69ar/list/desclines,69ar/skipCount,69ar/datum/e_src)
 	if(!istype(e))
-		name = "\[[time_stamp()]] Uncaught exception: [e]"
+		name = "\6969time_stamp()6969 Uncaught exception: 69e69"
 		return
 	if(skipCount)
-		name = "\[[time_stamp()]] Skipped [skipCount] runtimes in [e.file],[e.line]."
+		name = "\6969time_stamp()6969 Skipped 69skipCount69 runtimes in 69e.file69,69e.line69."
 		isSkipCount = TRUE
 		return
-	name = "\[[time_stamp()]] Runtime in [e.file],[e.line]: [e]"
+	name = "\6969time_stamp()6969 Runtime in 69e.file69,69e.line69: 69e69"
 	exc = e
 	if(istype(desclines))
 		for(var/line in desclines)
 			// There's probably a better way to do this than non-breaking spaces...
 			desc += "&nbsp;&nbsp;" + html_encode(line) + "<br>"
 	if(istype(e_src))
-		srcRef = "\ref[e_src]"
+		srcRef = "\ref69e_src69"
 		srcType = e_src.type
 		srcLoc = get_turf(e_src)
 	if(usr)
-		usrRef = "\ref[usr]"
+		usrRef = "\ref69usr69"
 		usrLoc = get_turf(usr)
 
-/datum/ErrorViewer/ErrorEntry/showTo(var/user, var/datum/ErrorViewer/back_to, var/linear)
+/datum/ErrorViewer/ErrorEntry/showTo(var/user,69ar/datum/ErrorViewer/back_to,69ar/linear)
 	if(!istype(back_to))
 		back_to = error_source
 	var/html = buildHeader(back_to, linear)
-	html += "<div class='runtime'>[html_encode(name)]<br>[desc]</div>"
+	html += "<div class='runtime'>69html_encode(name)69<br>69desc69</div>"
 	if(srcRef)
-		html += "<br>src: <a href='?_src_=vars;Vars=[srcRef]'>VV</a>"
+		html += "<br>src: <a href='?_src_=vars;Vars=69srcRef69'>VV</a>"
 		if(ispath(srcType, /mob))
-			html += " <a href='?_src_=holder;adminplayeropts=[srcRef]'>PP</a>"
-			html += " <a href='?_src_=holder;adminplayerobservefollow=[srcRef]'>Follow</a>"
+			html += " <a href='?_src_=holder;adminplayeropts=69srcRef69'>PP</a>"
+			html += " <a href='?_src_=holder;adminplayerobservefollow=69srcRef69'>Follow</a>"
 		if(istype(srcLoc))
-			html += "<br>src.loc: <a href='?_src_=vars;Vars=\ref[srcLoc]'>VV</a>"
-			html += " <a href='?_src_=holder;adminplayerobservecoodjump=1;X=[srcLoc.x];Y=[srcLoc.y];Z=[srcLoc.z]'>JMP</a>"
+			html += "<br>src.loc: <a href='?_src_=vars;Vars=\ref69srcLoc69'>VV</a>"
+			html += " <a href='?_src_=holder;adminplayerobservecoodjump=1;X=69srcLoc.x69;Y=69srcLoc.y69;Z=69srcLoc.z69'>JMP</a>"
 	if(usrRef)
-		html += "<br>usr: <a href='?_src_=vars;Vars=[usrRef]'>VV</a>"
-		html += " <a href='?_src_=holder;adminplayeropts=[usrRef]'>PP</a>"
-		html += " <a href='?_src_=holder;adminplayerobservefollow=[usrRef]'>Follow</a>"
+		html += "<br>usr: <a href='?_src_=vars;Vars=69usrRef69'>VV</a>"
+		html += " <a href='?_src_=holder;adminplayeropts=69usrRef69'>PP</a>"
+		html += " <a href='?_src_=holder;adminplayerobservefollow=69usrRef69'>Follow</a>"
 		if(istype(usrLoc))
-			html += "<br>usr.loc: <a href='?_src_=vars;Vars=\ref[usrLoc]'>VV</a>"
-			html += " <a href='?_src_=holder;adminplayerobservecoodjump=1;X=[usrLoc.x];Y=[usrLoc.y];Z=[usrLoc.z]'>JMP</a>"
+			html += "<br>usr.loc: <a href='?_src_=vars;Vars=\ref69usrLoc69'>VV</a>"
+			html += " <a href='?_src_=holder;adminplayerobservecoodjump=1;X=69usrLoc.x69;Y=69usrLoc.y69;Z=69usrLoc.z69'>JMP</a>"
 	browseTo(user, html)
 
-/datum/ErrorViewer/ErrorEntry/makeLink(var/linktext, var/datum/ErrorViewer/back_to, var/linear)
+/datum/ErrorViewer/ErrorEntry/makeLink(var/linktext,69ar/datum/ErrorViewer/back_to,69ar/linear)
 	if(isSkipCount)
 		return html_encode(name)
 	return ..()

@@ -6,7 +6,7 @@
 
 /obj/item/clothing/accessory/badge
 	name = "Inspector's badge"
-	desc = "A Ironhammer Security badge, made from gold and set on false leather."
+	desc = "A Ironhammer Security badge,69ade from gold and set on false leather."
 	icon_state = "badge"
 	item_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_ACCESSORY_BUFFER
@@ -22,9 +22,9 @@
 
 /obj/item/clothing/accessory/badge/proc/set_name(var/new_name)
 	stored_name = new_name
-	name = "[initial(name)] ([stored_name])"
+	name = "69initial(name)69 (69stored_name69)"
 
-/obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/badge/attack_self(mob/user as69ob)
 
 	if(!stored_name)
 		to_chat(user, "You polish your badge fondly, shining up the surface.")
@@ -33,18 +33,18 @@
 
 	if(isliving(user))
 		if(stored_name)
-			user.visible_message(SPAN_NOTICE("[user] displays their [src.name].\nIt reads: [stored_name], [badge_string]."),SPAN_NOTICE("You display your [src.name].\nIt reads: [stored_name], [badge_string]."))
+			user.visible_message(SPAN_NOTICE("69user69 displays their 69src.name69.\nIt reads: 69stored_name69, 69badge_string69."),SPAN_NOTICE("You display your 69src.name69.\nIt reads: 69stored_name69, 69badge_string69."))
 		else
-			user.visible_message(SPAN_NOTICE("[user] displays their [src.name].\nIt reads: [badge_string]."),SPAN_NOTICE("You display your [src.name]. It reads: [badge_string]."))
+			user.visible_message(SPAN_NOTICE("69user69 displays their 69src.name69.\nIt reads: 69badge_string69."),SPAN_NOTICE("You display your 69src.name69. It reads: 69badge_string69."))
 
-/obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M,69ob/living/user)
 	if(isliving(user))
-		user.visible_message(SPAN_DANGER("[user] invades [M]'s personal space, thrusting [src] into their face insistently."),SPAN_DANGER("You invade [M]'s personal space, thrusting [src] into their face insistently."))
+		user.visible_message(SPAN_DANGER("69user69 invades 69M69's personal space, thrusting 69src69 into their face insistently."),SPAN_DANGER("You invade 69M69's personal space, thrusting 69src69 into their face insistently."))
 
 //.Holobadges.
 /obj/item/clothing/accessory/badge/holo
 	name = "holobadge"
-	desc = "This glowing blue badge marks the holder as a member of Ironhammer Security."
+	desc = "This glowing blue badge69arks the holder as a69ember of Ironhammer Security."
 	icon_state = "holobadge"
 	item_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
@@ -53,22 +53,22 @@
 	icon_state = "holobadge-cord"
 	slot_flags = SLOT_MASK | SLOT_ACCESSORY_BUFFER
 
-/obj/item/clothing/accessory/badge/holo/attack_self(mob/user as mob)
+/obj/item/clothing/accessory/badge/holo/attack_self(mob/user as69ob)
 	if(!stored_name)
 		to_chat(user, "Waving around a holobadge before swiping an ID would be pretty pointless.")
 		return
 	return ..()
 
-/obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/clothing/accessory/badge/holo/emag_act(var/remaining_charges,69ar/mob/user)
 	if (emagged)
-		to_chat(user, SPAN_DANGER("\The [src] is already cracked."))
+		to_chat(user, SPAN_DANGER("\The 69src69 is already cracked."))
 		return
 	else
 		emagged = 1
 		to_chat(user, SPAN_DANGER("You crack the holobadge security checks."))
 		return 1
 
-/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/clothing/accessory/badge/holo/attackby(var/obj/item/O as obj,69ar/mob/user as69ob)
 	var/obj/item/card/id/id_card = O.GetIdCard()
 	if(!id_card)
 		return
@@ -77,7 +77,7 @@
 		to_chat(user, "You imprint your ID details onto the badge.")
 		set_name(user.real_name)
 	else
-		to_chat(user, "[src] rejects your insufficient access rights.")
+		to_chat(user, "69src69 rejects your insufficient access rights.")
 	return
 
 /obj/item/storage/box/holobadge
@@ -111,7 +111,7 @@
 
 /obj/item/clothing/accessory/badge/marshal
 	name = "Marshal's badge"
-	desc = "A leather-backed gold badge displaying the crest of the Ironhammer Marshals."
+	desc = "A leather-backed gold badge displaying the crest of the Ironhammer69arshals."
 	icon_state = "marshalbadge"
-	badge_string = "Ironhammer Marshal Bureau"
+	badge_string = "Ironhammer69arshal Bureau"
 	spawn_blacklisted = TRUE

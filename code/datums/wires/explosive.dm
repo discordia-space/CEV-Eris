@@ -11,7 +11,7 @@ var/const/WIRE_EXPLODE = 1
 		if(WIRE_EXPLODE)
 			explode()
 
-/datum/wires/explosive/UpdateCut(var/index, var/mended)
+/datum/wires/explosive/UpdateCut(var/index,69ar/mended)
 	switch(index)
 		if(WIRE_EXPLODE)
 			if(!mended)

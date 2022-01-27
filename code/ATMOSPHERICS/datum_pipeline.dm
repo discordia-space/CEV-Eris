@@ -16,17 +16,17 @@ datum/pipeline
 	Destroy()
 		QDEL_NULL(network)
 
-		//Update individual gas_mixtures by volume ratio
+		//Update individual gas_mixtures by69olume ratio
 		if (air.volume)
-			for(var/obj/machinery/atmospherics/pipe/member in members)
+			for(var/obj/machinery/atmospherics/pipe/member in69embers)
 				var/datum/gas_mixture/G = new
 				G.copy_from(air)
-				G.volume = member.volume
+				G.volume =69ember.volume
 				G.multiply(member.volume / air.volume)
 				member.air_temporary = G
 				member.parent = null
 		else
-			for(var/obj/machinery/atmospherics/pipe/member in members)
+			for(var/obj/machinery/atmospherics/pipe/member in69embers)
 				member.air_temporary = null
 				member.parent = null
 		QDEL_NULL(air)
@@ -41,7 +41,7 @@ datum/pipeline
 		//Check to see if pressure is within acceptable limits
 		var/pressure = air.return_pressure()
 		if(pressure > alert_pressure)
-			for(var/obj/machinery/atmospherics/pipe/member in members)
+			for(var/obj/machinery/atmospherics/pipe/member in69embers)
 				if(!member.check_pressure(pressure))
 					break //Only delete 1 pipe per process
 
@@ -74,7 +74,7 @@ datum/pipeline
 							volume += item.volume
 							item.parent = src
 
-							alert_pressure = min(alert_pressure, item.alert_pressure)
+							alert_pressure =69in(alert_pressure, item.alert_pressure)
 
 							if(item.air_temporary)
 								air.merge(item.air_temporary)
@@ -88,7 +88,7 @@ datum/pipeline
 
 				possible_expansions -= borderline
 
-		air.volume = volume
+		air.volume =69olume
 
 	proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 
@@ -116,9 +116,9 @@ datum/pipeline
 
 		return network
 
-	proc/mingle_with_turf(turf/simulated/target, mingle_volume)
+	proc/mingle_with_turf(turf/simulated/target,69ingle_volume)
 		var/datum/gas_mixture/air_sample = air.remove_ratio(mingle_volume/air.volume)
-		air_sample.volume = mingle_volume
+		air_sample.volume =69ingle_volume
 
 		if(istype(target) && target.zone)
 			//Have to consider preservation of group statuses
@@ -139,7 +139,7 @@ datum/pipeline
 
 			equalize_gases(list(air_sample, turf_air))
 			air.merge(air_sample)
-			//turf_air already modified by equalize_gases()
+			//turf_air already69odified by equalize_gases()
 
 		if(network)
 			network.update = 1
@@ -154,7 +154,7 @@ datum/pipeline
 			if(modeled_location.blocks_air)
 
 				if((modeled_location.heat_capacity>0) && (partial_heat_capacity>0))
-					var/delta_temperature = air.temperature - modeled_location.temperature
+					var/delta_temperature = air.temperature -69odeled_location.temperature
 
 					var/heat = thermal_conductivity*delta_temperature* \
 						(partial_heat_capacity*modeled_location.heat_capacity/(partial_heat_capacity+modeled_location.heat_capacity))
@@ -167,11 +167,11 @@ datum/pipeline
 				var/sharer_heat_capacity = 0
 
 				if(modeled_location.zone)
-					delta_temperature = (air.temperature - modeled_location.zone.air.temperature)
-					sharer_heat_capacity = modeled_location.zone.air.heat_capacity()
+					delta_temperature = (air.temperature -69odeled_location.zone.air.temperature)
+					sharer_heat_capacity =69odeled_location.zone.air.heat_capacity()
 				else
-					delta_temperature = (air.temperature - modeled_location.air.temperature)
-					sharer_heat_capacity = modeled_location.air.heat_capacity()
+					delta_temperature = (air.temperature -69odeled_location.air.temperature)
+					sharer_heat_capacity =69odeled_location.air.heat_capacity()
 
 				var/self_temperature_delta = 0
 				var/sharer_temperature_delta = 0
@@ -204,17 +204,17 @@ datum/pipeline
 		if(network)
 			network.update = 1
 
-	//surface must be the surface area in m^2
+	//surface69ust be the surface area in69^2
 	proc/radiate_heat_to_space(surface, thermal_conductivity)
 		var/gas_density = air.total_moles/air.volume
-		thermal_conductivity *= min(gas_density / ( RADIATOR_OPTIMUM_PRESSURE/(R_IDEAL_GAS_EQUATION*GAS_CRITICAL_TEMPERATURE) ), 1) //mult by density ratio
+		thermal_conductivity *=69in(gas_density / ( RADIATOR_OPTIMUM_PRESSURE/(R_IDEAL_GAS_EQUATION*GAS_CRITICAL_TEMPERATURE) ), 1) //mult by density ratio
 
 		// We only get heat from the star on the exposed surface area.
-		// If the HE pipes gain more energy from AVERAGE_SOLAR_RADIATION than they can radiate, then they have a net heat increase.
+		// If the HE pipes gain69ore energy from AVERAGE_SOLAR_RADIATION than they can radiate, then they have a net heat increase.
 		var/heat_gain = AVERAGE_SOLAR_RADIATION * (RADIATOR_EXPOSED_SURFACE_AREA_RATIO * surface) * thermal_conductivity
 
 		// Previously, the temperature would enter equilibrium at 26C or 294K.
-		// Only would happen if both sides (all 2 square meters of surface area) were exposed to sunlight.  We now assume it aligned edge on.
+		// Only would happen if both sides (all 2 square69eters of surface area) were exposed to sunlight.  We now assume it aligned edge on.
 		// It currently should stabilise at 129.6K or -143.6C
 		heat_gain -= surface * STEFAN_BOLTZMANN_CONSTANT * thermal_conductivity * (air.temperature - COSMIC_RADIATION_TEMPERATURE) ** 4
 

@@ -18,10 +18,10 @@ var/global/list/cached_icons = list()
 	bad_type = /obj/item/reagent_containers/glass/paint
 	var/paint_type = "red"
 
-	afterattack(turf/simulated/target, mob/user, proximity)
+	afterattack(turf/simulated/target,69ob/user, proximity)
 		if(!proximity) return
 		if(istype(target) && reagents.total_volume > 5)
-			user.visible_message(SPAN_WARNING("\The [target] has been splashed with something by [user]!"))
+			user.visible_message(SPAN_WARNING("\The 69target69 has been splashed with something by 69user69!"))
 			reagents.trans_to_turf(target, 5)
 		else
 			return ..()
@@ -30,14 +30,14 @@ var/global/list/cached_icons = list()
 		if(paint_type && length(paint_type) > 0)
 			name = paint_type + " " + name
 		..()
-		reagents.add_reagent("water", volume*3/5)
-		reagents.add_reagent("plasticide", volume/5)
+		reagents.add_reagent("water",69olume*3/5)
+		reagents.add_reagent("plasticide",69olume/5)
 		if(paint_type == "white") //why don't white crayons exist
-			reagents.add_reagent("aluminum", volume/5)
+			reagents.add_reagent("aluminum",69olume/5)
 		else if (paint_type == "black")
-			reagents.add_reagent("carbon", volume/5)
+			reagents.add_reagent("carbon",69olume/5)
 		else
-			reagents.add_reagent("crayon_dust_[paint_type]", volume/5)
+			reagents.add_reagent("crayon_dust_69paint_type69",69olume/5)
 		reagents.handle_reactions()
 
 	red

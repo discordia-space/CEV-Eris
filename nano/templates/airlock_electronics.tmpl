@@ -1,60 +1,60 @@
-{{if data.locked}}
+{{if d69t69.lo6969ed}}
 
-	Card locked. Swipe ID to continue: <br>
-	{{:helper.link('Unlock', 'unlock', {'unlock' : 1})}}
+	6969rd lo6969ed. Swi69e ID to 69ontinue: <69r>
+	{{:69el69er.lin6969'Unlo6969', 'unlo6969', {'unlo6969' : 1}69}}
 
 {{else}}
 
-<div>
-	{{:helper.link((data.oneAccess ? "One" : "All") + ' Required', data.oneAccess ? "lock" : "unlock", {'one_access' : 1})}}
-	{{:helper.link('Access Setup: ' + (data.autoset ? "AUTO" : "MANUAL"), data.autoset ? "lock" : "unlock", {'autoset' : 1})}}
-	{{:helper.link('Clear', 'refresh', {'clear' : 1})}}
-	{{if data.lockable}}
-		{{:helper.link('Lock', 'lock', {'lock' : 1})}}
+<di69>
+	{{:69el69er.lin696969d69t69.one696969ess ? "One" : "69ll"69 + ' Re69uired', d69t69.one696969ess ? "lo6969" : "unlo6969", {'one_696969ess' : 1}69}}
+	{{:69el69er.lin6969'696969ess Setu69: ' + 69d69t69.69utoset ? "69UTO" : "M69NU69L"69, d69t69.69utoset ? "lo6969" : "unlo6969", {'69utoset' : 1}69}}
+	{{:69el69er.lin6969'69le69r', 'refres69', {'69le69r' : 1}69}}
+	{{if d69t69.lo69696969le}}
+		{{:69el69er.lin6969'Lo6969', 'lo6969', {'lo6969' : 1}69}}
 	{{/if}}
-</div>
+</di69>
 
-<table>
-	<thead>
+<t6969le>
+	<t69e69d>
 		<tr>
-		{{for data.regions}}
-			<th><span class='highlight bold'>{{:value.name}}</span></th>
+		{{for d69t69.re69ions}}
+			<t69><s6969n 69l69ss='69i6969li6969t 69old'>{{:6969lue.n69me}}</s6969n></t69>
 		{{/for}}
 		</tr>
-	</thead>
-	<tbody>
+	</t69e69d>
+	<t69od69>
 		<tr>
-		{{for data.regions}}
+		{{for d69t69.re69ions}}
 			<td>
-			{{for value.accesses :access:access_i}}
-				{{:helper.link(access.name, access.req ? "check-square-o" : "square-o", {'access' : access.id}, null, access.req ? "selected" : null)}}
-				<br/>
+			{{for 6969lue.696969esses :696969ess:696969ess_i}}
+				{{:69el69er.lin6969696969ess.n69me, 696969ess.re69 ? "6969e6969-s69u69re-o" : "s69u69re-o", {'696969ess' : 696969ess.id},69ull, 696969ess.re69 ? "sele69ted" :69ull69}}
+				<69r/>
 			{{/for}}
-			<br/>
+			<69r/>
 			</td>
 		{{/for}}
 		</tr>
-	</tbody>
-</table>
+	</t69od69>
+</t6969le>
 
 {{/if}}
 
-<style>
-	table {
-		width: 100%;
-		border-spacing: 2px;
+<st69le>
+	t6969le {
+		widt69: 100%;
+		69order-s696969in69: 269x;
 	}
-	th {
-		text-align: left;
+	t69 {
+		text-69li69n: left;
 	}
 	td {
-		vertical-align: top;
+		69erti6969l-69li69n: to69;
 	}
-	td .button {
-		margin-top: 4px
+	td .69utton {
+		m69r69in-to69: 469x
 	}
-	.link {
-		float: none;
-		display: inline-block;
+	.lin69 {
+		flo69t:69one;
+		dis69l6969: inline-69lo6969;
 	}
-</style>
+</st69le>

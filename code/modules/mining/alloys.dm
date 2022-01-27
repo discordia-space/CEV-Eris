@@ -1,4 +1,4 @@
-//Alloys that contain subsets of each other's ingredients must be ordered in the desired sequence
+//Alloys that contain subsets of each other's ingredients69ust be ordered in the desired sequence
 //eg. steel comes after plasteel because plasteel's ingredients contain the ingredients for steel and
 //it would be impossible to produce.
 
@@ -19,7 +19,7 @@
 	product = /obj/item/stack/material/plasteel
 
 /datum/alloy/steel
-	metaltag = MATERIAL_STEEL
+	metaltag =69ATERIAL_STEEL
 	requires = list(
 		"carbon" = 1,
 		"hematite" = 1
@@ -27,7 +27,7 @@
 	product = /obj/item/stack/material/steel
 
 /datum/alloy/borosilicate
-	metaltag = MATERIAL_PLASMAGLASS
+	metaltag =69ATERIAL_PLASMAGLASS
 	requires = list(
 		"plasma" = 1,
 		"sand" = 2

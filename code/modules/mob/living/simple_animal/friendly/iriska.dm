@@ -14,11 +14,11 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	response_help = "pets"
 	response_disarm = "rubs"
-	response_harm = "makes terrible mistake by kicking"
+	response_harm = "makes terrible69istake by kicking"
 	min_oxy = 16
 	minbodytemp = 223
 	maxbodytemp = 323
-	mob_size = MOB_HUGE
+	mob_size =69OB_HUGE
 	harm_intent_damage = 20
 	melee_damage_lower = 10
 	melee_damage_upper = 30
@@ -28,12 +28,12 @@
 	bite_factor = 0.8
 	stomach_size_mult = 10
 
-	autoseek_food = FALSE // Original code for seeking food doesn't fit, Iriska will use slightly modified version
+	autoseek_food = FALSE // Original code for seeking food doesn't fit, Iriska will use slightly69odified69ersion
 	beg_for_food = FALSE
 	max_scan_interval = 10
 	eat_from_hand = FALSE
 
-var/atom/snack = null
+var/atom/snack =69ull
 
 var/list/tolerated = list()
 var/list/despised = list()
@@ -57,10 +57,10 @@ var/list/despised = list()
 	if(turns_since_scan >= scan_interval)
 		turns_since_scan = 0
 		if(snack && (!(isturf(snack.loc) || (foodtarget && !can_eat()) )))
-			snack = null
+			snack =69ull
 			foodtarget = 0
 		if(!snack || !(snack.loc in oview(src, 1)))
-			snack = null
+			snack =69ull
 			foodtarget = 0
 			if (can_eat())
 				for(var/obj/item/reagent_containers/food/snacks/S in oview(src,1))
@@ -71,7 +71,7 @@ var/list/despised = list()
 							break
 
 		if(snack)
-			scan_interval = min_scan_interval
+			scan_interval =69in_scan_interval
 
 			if (snack.loc.x < src.x)
 				set_dir(WEST)
@@ -90,26 +90,26 @@ var/list/despised = list()
 				if(!(mob in despised))
 					tolerate(mob)
 	else
-		scan_interval = max(min_scan_interval, min(scan_interval+1, max_scan_interval))
+		scan_interval =69ax(min_scan_interval,69in(scan_interval+1,69ax_scan_interval))
 
 /mob/living/simple_animal/iriska/proc/react_to_mob()
 	for(var/mob/living/M in oview(src, 1))
 		if (M.stat != DEAD)
 
 			if(iscorgi(M))
-				if(prob(5)) visible_emote("pointedly ignores [M].")
+				if(prob(5))69isible_emote("pointedly ignores 69M69.")
 
 			else if(iscat(M))
 				var/verb = pick("meows", "mews", "mrowls")
-				if(prob(5)) visible_emote("[verb] at [M].")
+				if(prob(5))69isible_emote("69verb69 at 69M69.")
 
 			else if(ishuman(M))
 				if(M.real_name in tolerated)
 					if(prob(2)) say("Meoow!")
 
 				else if ((M.job == "Captain") && !(M.real_name in despised)) // Recognize captain
-					tolerated |= M.real_name
-					visible_emote("looks at [M] with a hint of respect.")
+					tolerated |=69.real_name
+					visible_emote("looks at 69M69 with a hint of respect.")
 
 				else
 					assert_dominance(M)
@@ -131,22 +131,22 @@ var/list/despised = list()
 		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return B
 
-/mob/living/simple_animal/iriska/proc/despise(mob/living/carbon/human/M as mob)
-	despised |= M.real_name
+/mob/living/simple_animal/iriska/proc/despise(mob/living/carbon/human/M as69ob)
+	despised |=69.real_name
 	if(M.real_name in tolerated)
-		tolerated -= M.real_name
+		tolerated -=69.real_name
 
-/mob/living/simple_animal/iriska/proc/tolerate(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/iriska/proc/tolerate(mob/living/carbon/human/M as69ob)
 	if(!(M.real_name in tolerated) && prob(30))
-		visible_emote("looks at [M] approvingly.")
-		tolerated += M.real_name
+		visible_emote("looks at 69M69 approvingly.")
+		tolerated +=69.real_name
 
-/mob/living/simple_animal/iriska/attackby(var/obj/item/O, var/mob/user)
+/mob/living/simple_animal/iriska/attackby(var/obj/item/O,69ar/mob/user)
 	. = ..()
 	if(O.force)
 		despise(user)
 
-/mob/living/simple_animal/iriska/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/iriska/attack_hand(mob/living/carbon/human/M as69ob)
 	. = ..()
 	if(M.a_intent == I_HURT)
 		despise(M)
@@ -165,7 +165,7 @@ var/list/despised = list()
 	destroy_lifes()
 	.=..()
 
-	snack = null
+	snack =69ull
 	return ..(gibbed,deathmessage)
 
 /mob/living/simple_animal/iriska/proc/destroy_lifes()
@@ -176,7 +176,7 @@ var/list/despised = list()
 			H.sanity.negative_prob += 30
 			H.sanity.positive_prob = 0
 			H.sanity.level = 0
-			H.max_style = MIN_HUMAN_STYLE
+			H.max_style =69IN_HUMAN_STYLE
 			for(var/stat in ALL_STATS)
 				H.stats.changeStat(stat, -10)
 			to_chat(H, SPAN_DANGER("The shadows seem to lengthen, the walls are closing in. The ship itself wants you dead."))

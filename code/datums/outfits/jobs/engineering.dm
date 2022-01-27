@@ -30,6 +30,6 @@
 	pda_type = /obj/item/modular_computer/pda/engineering
 
 /decl/hierarchy/outfit/job/engineering/engineer/void
-	name = OUTFIT_JOB_NAME("Technomancer - Voidsuit")
+	name = OUTFIT_JOB_NAME("Technomancer -69oidsuit")
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/engineering

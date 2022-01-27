@@ -61,7 +61,7 @@ SUBSYSTEM_DEF(trade)
 	for(var/path in subtypesof(/datum/trade_station))
 		var/datum/trade_station/s = new path()
 		if(!s.spawn_always && s.spawn_probability)
-			.[s] = s.spawn_probability
+			.69s69 = s.spawn_probability
 		else
 			qdel(s)
 
@@ -119,14 +119,14 @@ SUBSYSTEM_DEF(trade)
 		if(istype(A))
 			path = A.type
 		else
-			crash_with("Unacceptable get_new_cost() by path ([path]) and type ([A?.type]).")
+			crash_with("Unacceptable get_new_cost() by path (69path69) and type (69A?.type69).")
 			return 0
 
-	if(!GLOB.price_cache[path])
+	if(!GLOB.price_cache69path69)
 		var/atom/movable/AM = new path
-		GLOB.price_cache[path] = get_cost(AM)
+		GLOB.price_cache69path69 = get_cost(AM)
 		qdel(AM)
-	return GLOB.price_cache[path]
+	return GLOB.price_cache69path69
 
 /datum/controller/subsystem/trade/proc/get_export_cost(atom/movable/target)
 	. = round(get_cost(target) * 0.6)
@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(trade)
 	var/markup = 1
 	if(istype(station))
 		markup += station.markup
-	. *= markup
+	. *=69arkup
 
 /datum/controller/subsystem/trade/proc/assess_offer(obj/machinery/trade_beacon/sending/beacon, datum/trade_station/station, atom/movable/offer_path)
 	if(QDELETED(beacon) || !station)
@@ -155,9 +155,9 @@ SUBSYSTEM_DEF(trade)
 /datum/controller/subsystem/trade/proc/fulfill_offer(obj/machinery/trade_beacon/sending/beacon, datum/money_account/account, datum/trade_station/station, atom/movable/offer_path)
 	var/list/exported = assess_offer(beacon, station, offer_path)
 
-	var/list/offer_content = station.special_offers[offer_path]
-	var/offer_amount = text2num(offer_content["amount"])
-	var/offer_price = text2num(offer_content["price"])
+	var/list/offer_content = station.special_offers69offer_path69
+	var/offer_amount = text2num(offer_content69"amount"69)
+	var/offer_price = text2num(offer_content69"price"69)
 	if(!exported || length(exported) < offer_amount)
 		return
 
@@ -174,26 +174,26 @@ SUBSYSTEM_DEF(trade)
 		T.apply_to(A)
 		station.add_to_wealth(offer_price)
 		// clear offer, wait until next tick to generate a new one
-		offer_content["amount"] = 0
-		offer_content["price"] = 0
-		station.special_offers[offer_path] = offer_content
+		offer_content69"amount"69 = 0
+		offer_content69"price"69 = 0
+		station.special_offers69offer_path69 = offer_content
 		//station.generate_offer()
 
 /datum/controller/subsystem/trade/proc/collect_counts_from(list/shopList)
 	. = 0
 	for(var/categoryName in shopList)
-		var/category = shopList[categoryName]
+		var/category = shopList69categoryName69
 		if(length(category))
 			for(var/path in category)
-				. += category[path]
+				. += category69path69
 
 /datum/controller/subsystem/trade/proc/collect_price_for_list(list/shopList, datum/trade_station/tradeStation = null)
 	. = 0
 	for(var/categoryName in shopList)
-		var/category = shopList[categoryName]
+		var/category = shopList69categoryName69
 		if(length(category))
 			for(var/path in category)
-				. += get_import_cost(path, tradeStation) * category[path]
+				. += get_import_cost(path, tradeStation) * category69path69
 
 /datum/controller/subsystem/trade/proc/buy(obj/machinery/trade_beacon/receiving/senderBeacon, datum/money_account/account, list/shopList, datum/trade_station/station)
 	if(QDELETED(senderBeacon) || !istype(senderBeacon) || !account || !recursiveLen(shopList) || !istype(station))
@@ -209,16 +209,16 @@ SUBSYSTEM_DEF(trade)
 		return
 
 	for(var/categoryName in shopList)
-		var/list/shoplist_category = shopList[categoryName]
-		var/list/assortiment_category = station.assortiment[categoryName]
+		var/list/shoplist_category = shopList69categoryName69
+		var/list/assortiment_category = station.assortiment69categoryName69
 		if(length(shoplist_category) && length(assortiment_category))
 			for(var/pathOfGood in shoplist_category)
-				var/count_of_good = shoplist_category[pathOfGood] //in shoplist
+				var/count_of_good = shoplist_category69pathOfGood69 //in shoplist
 				var/index_of_good = assortiment_category.Find(pathOfGood) //in assortiment
 				for(var/i in 1 to count_of_good)
 					istype(C) ? new pathOfGood(C) : senderBeacon.drop(pathOfGood)
 				if(isnum(index_of_good))
-					station.set_good_amount(categoryName, index_of_good, max(0, station.get_good_amount(categoryName, index_of_good) - count_of_good))
+					station.set_good_amount(categoryName, index_of_good,69ax(0, station.get_good_amount(categoryName, index_of_good) - count_of_good))
 	station.add_to_wealth(price_for_all)	// can only buy from one station at a time
 	charge_to_account(account.account_number, account.get_name(), "Purchase", station.name, price_for_all)
 

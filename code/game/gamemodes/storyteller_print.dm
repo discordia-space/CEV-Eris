@@ -1,51 +1,51 @@
 /datum/storyteller/proc/declare_completion()
 	var/text = ""
-	if(GLOB.current_antags.len)
-		var/list/antags_by_ids = list()
-		text += "<br><font size=3><b>Round antagonists were:</b></font>"
-		for(var/datum/antagonist/A in GLOB.current_antags)
+	if(69LOB.current_anta69s.len)
+		var/list/anta69s_by_ids = list()
+		text += "<br><font size=3><b>Round anta69onists were:</b></font>"
+		for(var/datum/anta69onist/A in 69LOB.current_anta69s)
 			if(!A.faction)
-				if(!islist(antags_by_ids[A.id]))
-					antags_by_ids[A.id] = list()
-				antags_by_ids[A.id] += A
+				if(!islist(anta69s_by_ids69A.id69))
+					anta69s_by_ids69A.id69 = list()
+				anta69s_by_ids69A.id69 += A
 
-		for(var/a_id in antags_by_ids)
-			var/list/L = antags_by_ids[a_id]
-			var/datum/antagonist/fA = L[1]
+		for(var/a_id in anta69s_by_ids)
+			var/list/L = anta69s_by_ids69a_id69
+			var/datum/anta69onist/fA = L69169
 			text += "<br>"
 			if(L.len > 1)
-				text += "<br><b>The [fA.role_text_plural]:</b>"
-				for(var/datum/antagonist/A in antags_by_ids[a_id])
+				text += "<br><b>The 69fA.role_text_plural69:</b>"
+				for(var/datum/anta69onist/A in anta69s_by_ids69a_id69)
 					text += A.print_success()
 			else
-				text += "<br><b>The [fA.role_text]:</b>"
+				text += "<br><b>The 69fA.role_text69:</b>"
 				text += fA.print_success()
 
-	if(GLOB.current_factions.len)
+	if(69LOB.current_factions.len)
 		text += "<br><font size=3><b>Round factions were:</b></font>"
-		for(var/datum/faction/F in GLOB.current_factions)
+		for(var/datum/faction/F in 69LOB.current_factions)
 			text += F.print_success()
 
 
-	var/surviving_total = 0
-	var/ghosts = 0
+	var/survivin69_total = 0
+	var/69hosts = 0
 
 	var/escaped_total = 0
 
-	for(var/mob/M in GLOB.player_list)
+	for(var/mob/M in 69LOB.player_list)
 		if(M.client)
 			if(M.stat != DEAD)
-				surviving_total++
+				survivin69_total++
 				if(isOnAdminLevel(M))
 					escaped_total++
-			if(isghost(M))
-				ghosts++
+			if(is69host(M))
+				69hosts++
 	text += "<br>"
-	if(surviving_total > 0)
-		text += "<br>There [surviving_total>1 ? "were <b>[surviving_total] survivors</b>" : "was <b>one survivor</b>"]"
-		text += " (<b>[escaped_total>0 ? escaped_total : "none"] escaped</b>) and <b>[ghosts] ghosts</b>.<br>"
+	if(survivin69_total > 0)
+		text += "<br>There 69survivin69_total>1 ? "were <b>69survivin69_total69 survivors</b>" : "was <b>one survivor</b>"69"
+		text += " (<b>69escaped_total>0 ? escaped_total : "none"69 escaped</b>) and <b>6969hosts69 69hosts</b>.<br>"
 	else
-		text += "There were <b>no survivors</b> (<b>[ghosts] ghosts</b>)."
+		text += "There were <b>no survivors</b> (<b>6969hosts69 69hosts</b>)."
 	to_chat(world, text)
 
 
@@ -53,63 +53,63 @@
 /datum/storyteller/proc/storyteller_panel()
 	var/data = "<center><font size='3'><b>STORYTELLER PANEL</b></font></center>"
 
-	data += "<b><a href='?src=\ref[src];panel=1'>\[UPDATE\]</a></b>"
+	data += "<b><a href='?src=\ref69src69;panel=1'>\69UPDATE\69</a></b>"
 	data += "<table><tr><td>"
-	data += "[src.name] (<A href='?src=\ref[src];c_mode=1'>Change</A>)"
-	data += "<br>Round duration: <b>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</b>"
-	data += "<br>Debug mode: <b><a href='?src=\ref[src];toggle_debug=1'>\[[debug_mode?"ON":"OFF"]\]</a></b>"
-	data += "<br>One role per player: <b><a href='?src=\ref[src];toggle_orpp=1'>\[[one_role_per_player?"YES":"NO"]\]</a></b>"
-	data += "</td><td style=\"padding-left: 40px\">"
+	data += "69src.name69 (<A href='?src=\ref69src69;c_mode=1'>Chan69e</A>)"
+	data += "<br>Round duration: <b>69round(world.time / 36000)69:69add_zero(world.time / 600 % 60, 2)69:69world.time / 100 % 66969world.time / 100 % 1069</b>"
+	data += "<br>Debu6969ode: <b><a href='?src=\ref69src69;to6969le_debu69=1'>\6969debu69_mode?"ON":"OFF"69\69</a></b>"
+	data += "<br>One role per player: <b><a href='?src=\ref69src69;to6969le_orpp=1'>\6969one_role_per_player?"YES":"NO"69\69</a></b>"
+	data += "</td><td style=\"paddin69-left: 40px\">"
 
-	data += "Heads: [heads] "
-	if(debug_mode)
-		data += "<a href='?src=\ref[src];edit_heads=1'>\[EDIT\]</a>"
-	data += "<br>Ironhammer: [sec] "
-	if(debug_mode)
-		data += "<a href='?src=\ref[src];edit_sec=1'>\[EDIT\]</a>"
-	data += "<br>Technomancers: [eng] "
-	if(debug_mode)
-		data += "<a href='?src=\ref[src];edit_eng=1'>\[EDIT\]</a>"
-	data += "<br>Medical: [med] "
-	if(debug_mode)
-		data += "<a href='?src=\ref[src];edit_med=1'>\[EDIT\]</a>"
-	data += "<br>Science: [sci] "
-	if(debug_mode)
-		data += "<a href='?src=\ref[src];edit_sci=1'>\[EDIT\]</a>"
-	data += "<br>NT Disciples: [disciples.len] "
-	data += "<br><b>Total: [crew]</b> "
-	if(debug_mode)
-		data += "<a href='?src=\ref[src];edit_crew=1'>\[EDIT\]</a>"
+	data += "Heads: 69heads69 "
+	if(debu69_mode)
+		data += "<a href='?src=\ref69src69;edit_heads=1'>\69EDIT\69</a>"
+	data += "<br>Ironhammer: 69sec69 "
+	if(debu69_mode)
+		data += "<a href='?src=\ref69src69;edit_sec=1'>\69EDIT\69</a>"
+	data += "<br>Technomancers: 69en6969 "
+	if(debu69_mode)
+		data += "<a href='?src=\ref69src69;edit_en69=1'>\69EDIT\69</a>"
+	data += "<br>Medical: 69med69 "
+	if(debu69_mode)
+		data += "<a href='?src=\ref69src69;edit_med=1'>\69EDIT\69</a>"
+	data += "<br>Science: 69sci69 "
+	if(debu69_mode)
+		data += "<a href='?src=\ref69src69;edit_sci=1'>\69EDIT\69</a>"
+	data += "<br>NT Disciples: 69disciples.len69 "
+	data += "<br><b>Total: 69crew69</b> "
+	if(debu69_mode)
+		data += "<a href='?src=\ref69src69;edit_crew=1'>\69EDIT\69</a>"
 
-	data += "</td><td style=\"padding-left: 40px\">"
+	data += "</td><td style=\"paddin69-left: 40px\">"
 
 	data += "<b>Event Pool Points:</b>"
-	data += "<br>Mundane: [round(points[EVENT_LEVEL_MUNDANE], 0.1)] / [POOL_THRESHOLD_MUNDANE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MUNDANE]'>\[ADD\]</a>"
-	data += "<br>Moderate: [round(points[EVENT_LEVEL_MODERATE], 0.1)] / [POOL_THRESHOLD_MODERATE]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MODERATE]'>\[ADD\]</a>"
-	data += "<br>Major: [round(points[EVENT_LEVEL_MAJOR], 0.1)] / [POOL_THRESHOLD_MAJOR]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_MAJOR]'>\[ADD\]</a>"
-	data += "<br>Roleset: [round(points[EVENT_LEVEL_ROLESET], 0.1)] / [POOL_THRESHOLD_ROLESET]   <a href='?src=\ref[src];modify_points=[EVENT_LEVEL_ROLESET]'>\[ADD\]</a>"
+	data += "<br>Mundane: 69round(points69EVENT_LEVEL_MUNDANE69, 0.1)69 / 69POOL_THRESHOLD_MUNDANE69   <a href='?src=\ref69src69;modify_points=69EVENT_LEVEL_MUNDANE69'>\69ADD\69</a>"
+	data += "<br>Moderate: 69round(points69EVENT_LEVEL_MODERATE69, 0.1)69 / 69POOL_THRESHOLD_MODERATE69   <a href='?src=\ref69src69;modify_points=69EVENT_LEVEL_MODERATE69'>\69ADD\69</a>"
+	data += "<br>Major: 69round(points69EVENT_LEVEL_MAJOR69, 0.1)69 / 69POOL_THRESHOLD_MAJOR69   <a href='?src=\ref69src69;modify_points=69EVENT_LEVEL_MAJOR69'>\69ADD\69</a>"
+	data += "<br>Roleset: 69round(points69EVENT_LEVEL_ROLESET69, 0.1)69 / 69POOL_THRESHOLD_ROLESET69   <a href='?src=\ref69src69;modify_points=69EVENT_LEVEL_ROLESET69'>\69ADD\69</a>"
 
 	data += "</td></tr></table>"
 	data += "<hr>"
-	data += "<b>Settings:</b>"
-	data += "[storyteller_panel_extra()]"
+	data += "<b>Settin69s:</b>"
+	data += "69storyteller_panel_extra()69"
 	data += "<hr>"
-	data += "<b><a href='?src=\ref[src];force_spawn=1'>\[FORCE ROLE SPAWN\]</a></b>"
+	data += "<b><a href='?src=\ref69src69;force_spawn=1'>\69FORCE ROLE SPAWN\69</a></b>"
 	data += "<hr>"
 	data += "<B>Evacuation</B>"
 	if (!evacuation_controller.is_idle())
-		data += "<a href='?src=\ref[src];call_shuttle=1'>Call Evacuation</a><br>"
+		data += "<a href='?src=\ref69src69;call_shuttle=1'>Call Evacuation</a><br>"
 	else
-		var/timeleft = evacuation_controller.get_eta()
-		if (evacuation_controller.waiting_to_leave())
-			data += "ETA: [(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]<BR>"
-			data += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
-	data += "<br><a href='?src=\ref[src];delay_round_end=1'>[SSticker.delay_end ? "End Round Normally" : "Delay Round End"]</a>"
+		var/timeleft = evacuation_controller.69et_eta()
+		if (evacuation_controller.waitin69_to_leave())
+			data += "ETA: 69(timeleft / 60) % 6069:69add_zero(num2text(timeleft % 60), 2)69<BR>"
+			data += "<a href='?src=\ref69src69;call_shuttle=2'>Send Back</a><br>"
+	data += "<br><a href='?src=\ref69src69;delay_round_end=1'>69SSticker.delay_end ? "End Round Normally" : "Delay Round End"69</a>"
 
-	data += "<hr><b>Current antags:</b><div style=\"border:1px solid black;\"><ul>"
+	data += "<hr><b>Current anta69s:</b><div style=\"border:1px solid black;\"><ul>"
 
-	if (GLOB.current_antags.len)
-		for(var/datum/antagonist/A in GLOB.current_antags)
+	if (69LOB.current_anta69s.len)
+		for(var/datum/anta69onist/A in 69LOB.current_anta69s)
 			var/act = "<font color=red>DEAD</font>"
 			if(!A.is_dead())
 				if(!A.is_active())
@@ -119,32 +119,32 @@
 
 
 
-			data += "<li>[A.role_text] - [A.owner?(A.owner.name):"no owner"] ([act])<a href='?src=\ref[A];panel=1'>\[EDIT\]</a></li>"
+			data += "<li>69A.role_text69 - 69A.owner?(A.owner.name):"no owner"69 (69act69)<a href='?src=\ref69A69;panel=1'>\69EDIT\69</a></li>"
 	else
-		data += "<b>There are no antagonists</b>"
+		data += "<b>There are no anta69onists</b>"
 
 	data += "</ul></div><hr>"
-	data += "<br>Calculate weight: <b><a href='?src=\ref[src];toggle_weight_calc=1'>[calculate_weights?"\[AUTO\]":"\[MANUAL\]"]</a></b>"
-	data += "<br><b>Events: <a href='?src=\ref[src];update_weights=1'>\[UPDATE WEIGHTS\]</a></b><div style=\"border:1px solid black;\">"
+	data += "<br>Calculate wei69ht: <b><a href='?src=\ref69src69;to6969le_wei69ht_calc=1'>69calculate_wei69hts?"\69AUTO\69":"\69MANUAL\69"69</a></b>"
+	data += "<br><b>Events: <a href='?src=\ref69src69;update_wei69hts=1'>\69UPDATE WEI69HTS\69</a></b><div style=\"border:1px solid black;\">"
 
 
-	//This complex block will print out all the events with various info
+	//This complex block will print out all the events with69arious info
 	var/severity = EVENT_LEVEL_MUNDANE
 	for(var/list/L in list(event_pool_mundane, event_pool_moderate, event_pool_major, event_pool_roleset))
-		data += "|[severity_to_string[severity]] events:"
-		data += "|Points: [points[severity]]"
+		data += "|69severity_to_strin6969severity6969 events:"
+		data += "|Points: 69points69severity6969"
 		data += "<ul>"
 		for (var/datum/storyevent/S in L)
-			data += "<li>[S.id] - weight: [L[S]] <a href='?src=\ref[src];event=[S.id];ev_calc_weight=1'>\[UPD\]</a>"
-			if(!calculate_weights)
-				data += "<a href='?src=\ref[src];event=[S.id];ev_set_weight=1'>\[SET\]</a>  "
-			data += "<a href='?src=\ref[src];event=[S.id];ev_toggle=1'>\[[S.enabled?"ALLOWED":"FORBIDDEN"]\]</a>"
-			data += "<a href='?src=\ref[src];event=[S.id];ev_debug=1'>\[VV\]</a>"
-			data += "<b><a href='?src=\ref[src];event=[S.id];ev_spawn=1;severity=[severity]'>\[FORCE\]</a></b></li>"
+			data += "<li>69S.id69 - wei69ht: 69L69S6969 <a href='?src=\ref69src69;event=69S.id69;ev_calc_wei69ht=1'>\69UPD\69</a>"
+			if(!calculate_wei69hts)
+				data += "<a href='?src=\ref69src69;event=69S.id69;ev_set_wei69ht=1'>\69SET\69</a>  "
+			data += "<a href='?src=\ref69src69;event=69S.id69;ev_to6969le=1'>\6969S.enabled?"ALLOWED":"FORBIDDEN"69\69</a>"
+			data += "<a href='?src=\ref69src69;event=69S.id69;ev_debu69=1'>\69VV\69</a>"
+			data += "<b><a href='?src=\ref69src69;event=69S.id69;ev_spawn=1;severity=69severity69'>\69FORCE\69</a></b></li>"
 			data += "</li>"
 		data += "</ul>"
 		data += "-------------------------<BR>"
-		severity = get_next_severity(severity)
+		severity = 69et_next_severity(severity)
 
 	data += "</div>"
 
@@ -154,122 +154,122 @@
 	return ""
 
 /datum/storyteller/Topic(href,href_list)
-	if(!check_rights(R_ADMIN))
+	if(!check_ri69hts(R_ADMIN))
 		return
 
-	if(href_list["force_spawn"])
+	if(href_list69"force_spawn"69)
 		force_spawn_now = TRUE
 
-	if(href_list["toggle_debug"])
-		debug_mode = !debug_mode
+	if(href_list69"to6969le_debu69"69)
+		debu69_mode = !debu69_mode
 
-	if(href_list["edit_heads"])
-		heads = input("Enter new head crew count.","Debug",heads) as num
+	if(href_list69"edit_heads"69)
+		heads = input("Enter new head crew count.","Debu69",heads) as num
 
-	if(href_list["edit_crew"])
-		crew = input("Enter new total crew count.","Debug",crew) as num
+	if(href_list69"edit_crew"69)
+		crew = input("Enter new total crew count.","Debu69",crew) as num
 
-	if(href_list["edit_sec"])
-		sec = input("Enter new security crew count.","Debug",sec) as num
+	if(href_list69"edit_sec"69)
+		sec = input("Enter new security crew count.","Debu69",sec) as num
 
-	if(href_list["edit_med"])
-		med = input("Enter new medical crew count.","Debug",med) as num
+	if(href_list69"edit_med"69)
+		med = input("Enter new69edical crew count.","Debu69",med) as num
 
-	if(href_list["edit_eng"])
-		eng = input("Enter new engineering crew count.","Debug",eng) as num
+	if(href_list69"edit_en69"69)
+		en69 = input("Enter new en69ineerin69 crew count.","Debu69",en69) as num
 
-	if(href_list["edit_sci"])
-		sci = input("Enter new science crew count.","Debug",sci) as num
+	if(href_list69"edit_sci"69)
+		sci = input("Enter new science crew count.","Debu69",sci) as num
 
-	if(href_list["toggle_weight_calc"])
-		calculate_weights = !calculate_weights
+	if(href_list69"to6969le_wei69ht_calc"69)
+		calculate_wei69hts = !calculate_wei69hts
 
-	if(href_list["update_weights"])
+	if(href_list69"update_wei69hts"69)
 		for(var/datum/storyevent/R in storyevents)
-			update_event_weight(R)
+			update_event_wei69ht(R)
 
-	if(href_list["edit_timer_t"])
+	if(href_list69"edit_timer_t"69)
 		var/time = input("Tick of next role spawn:","Storyteller time",event_spawn_timer) as num
 		set_timer(time)
 
-	if(href_list["edit_timer"])
+	if(href_list69"edit_timer"69)
 		var/time = input("Time to next role spawn:","Storyteller time",(event_spawn_timer-world.time)/10) as num
 		set_timer((time*10)+world.time)
 
-	if(href_list["toggle_orpp"])	//one role per player
+	if(href_list69"to6969le_orpp"69)	//one role per player
 		one_role_per_player = !one_role_per_player
 
-	if(href_list["call_shuttle"])
-		switch(href_list["call_shuttle"])
+	if(href_list69"call_shuttle"69)
+		switch(href_list69"call_shuttle"69)
 			if("1")
 				if (evacuation_controller.call_evacuation(usr, TRUE))
-					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
+					lo69_admin("69key_name(usr)69 started the evacuation")
+					messa69e_admins("\blue 69key_name_admin(usr)69 started the evacuation", 1)
 			if("2")
 				if (evacuation_controller.call_evacuation(usr, TRUE))
-					log_admin("[key_name(usr)] started the evacuation")
-					message_admins("\blue [key_name_admin(usr)] started the evacuation", 1)
+					lo69_admin("69key_name(usr)69 started the evacuation")
+					messa69e_admins("\blue 69key_name_admin(usr)69 started the evacuation", 1)
 
 				else if (evacuation_controller.cancel_evacuation())
-					log_admin("[key_name(usr)] cancelled the evacuation")
-					message_admins("\blue [key_name_admin(usr)] cancelled the evacuation", 1)
+					lo69_admin("69key_name(usr)69 cancelled the evacuation")
+					messa69e_admins("\blue 69key_name_admin(usr)69 cancelled the evacuation", 1)
 
-	if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))
+	if(href_list69"delay_round_end"69)
+		if(!check_ri69hts(R_SERVER))
 			return
-		if (SSticker.current_state != GAME_STATE_PREGAME && SSticker.current_state != GAME_STATE_STARTUP)
+		if (SSticker.current_state != 69AME_STATE_PRE69AME && SSticker.current_state != 69AME_STATE_STARTUP)
 			SSticker.delay_end = !SSticker.delay_end
-			log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-			message_admins("\blue [key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+			lo69_admin("69key_name(usr)69 69SSticker.delay_end ? "delayed the round end" : "has69ade the round end normally"69.")
+			messa69e_admins("\blue 69key_name(usr)69 69SSticker.delay_end ? "delayed the round end" : "has69ade the round end normally"69.", 1)
 			return
 
 	topic_extra(href,href_list)
 
-	if(href_list["event"])
+	if(href_list69"event"69)
 
 		var/datum/storyevent/evt = null
 		for(var/datum/storyevent/S in storyevents)
-			if(S.id == href_list["event"])
+			if(S.id == href_list69"event"69)
 				evt = S
 				break
 		if(evt)
-			if(href_list["ev_calc_weight"])
-				update_event_weight(evt)
-			if(href_list["ev_toggle"])
+			if(href_list69"ev_calc_wei69ht"69)
+				update_event_wei69ht(evt)
+			if(href_list69"ev_to6969le"69)
 				evt.enabled = !evt.enabled
-				message_admins("Event \"[evt.id]\" was [evt.enabled?"allowed":"restricted"] to spawn by [key_name(usr)]")
+				messa69e_admins("Event \"69evt.id69\" was 69evt.enabled?"allowed":"restricted"69 to spawn by 69key_name(usr)69")
 				build_event_pools()
-			if(href_list["ev_spawn"])
-				//When in debug mode, we pass in the user.
-					//If antag spawning fails, they will be spammed with text explaining why
-				if (!evt.can_trigger(href_list["severity"], debug_mode? usr : null))
-					var/answer = alert(usr, "\"[evt.id]\" is not allowed to trigger.\n\
-					To find out why, turn on debug mode in the storyteller panel and try again. \n\
-					You can also try to bypass the requirement and force it anyway, but this is unlikely to work\n \
+			if(href_list69"ev_spawn"69)
+				//When in debu6969ode, we pass in the user.
+					//If anta69 spawnin69 fails, they will be spammed with text explainin69 why
+				if (!evt.can_tri6969er(href_list69"severity"69, debu69_mode? usr : null))
+					var/answer = alert(usr, "\"69evt.id69\" is not allowed to tri6969er.\n\
+					To find out why, turn on debu6969ode in the storyteller panel and try a69ain. \n\
+					You can also try to bypass the re69uirement and force it anyway, but this is unlikely to work\n \
 					 Would you like to force it anyway?.", "Force Event? ", "yes", "no")
 					if (answer == "no")
 						return
 
-				var/result = evt.create(href_list["severity"])
+				var/result = evt.create(href_list69"severity"69)
 				if (result)
-					message_admins("Event \"[evt.id]\" was successfully force spawned by [key_name(usr)]")
+					messa69e_admins("Event \"69evt.id69\" was successfully force spawned by 69key_name(usr)69")
 				else
-					message_admins("[key_name(usr)] failed to force spawn \"[evt.id]\".")
-			if(href_list["ev_debug"] && usr && usr.client)
-				usr.client.debug_variables(evt)
-			if(href_list["ev_set_weight"])
-				evt.weight_cache = input("Enter new weight.","Weight",evt.weight_cache) as num
+					messa69e_admins("69key_name(usr)69 failed to force spawn \"69evt.id69\".")
+			if(href_list69"ev_debu69"69 && usr && usr.client)
+				usr.client.debu69_variables(evt)
+			if(href_list69"ev_set_wei69ht"69)
+				evt.wei69ht_cache = input("Enter new wei69ht.","Wei69ht",evt.wei69ht_cache) as num
 
-	if(href_list["modify_points"])
-		var/pooltype = href_list["modify_points"]
-		var/add_points = input("Pool [pooltype] currently has [round(points[pooltype], 0.01)]. How many do you wish to add? Enter a negative value to subtract points","Altering Points",eng) as num
+	if(href_list69"modify_points"69)
+		var/pooltype = href_list69"modify_points"69
+		var/add_points = input("Pool 69pooltype69 currently has 69round(points69pooltype69, 0.01)69. How69any do you wish to add? Enter a ne69ative69alue to subtract points","Alterin69 Points",en69) as num
 		modify_points(add_points, pooltype)
 
 	storyteller_panel()
 
-	//anything below is placed there so it triggers after the storytellerpanel updates.
+	//anythin69 below is placed there so it tri6969ers after the storytellerpanel updates.
 
-	if(href_list["c_mode"])
+	if(href_list69"c_mode"69)
 		. = usr.client.holder.Topic(href, href_list)
 
 /datum/storyteller/proc/topic_extra(href,href_list)

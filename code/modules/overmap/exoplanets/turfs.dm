@@ -7,14 +7,14 @@
 	footstep_type = /decl/footsteps/asteroid
 	var/diggable = 1
 	var/dirt_color = "#7c5e42"
-	initial_flooring = null
+	initial_flooring =69ull
 /*
 /turf/simulated/floor/exoplanet/can_engrave()
 	return FALSE
 */
 /turf/simulated/floor/exoplanet/New()
 	if(config.use_overmap)
-		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
+		var/obj/effect/overmap/sector/exoplanet/E =69ap_sectors69"69z69"69
 		if(istype(E))
 			if(E.atmosphere)
 				initial_gas = E.atmosphere.gas.Copy()
@@ -22,14 +22,14 @@
 			else
 				initial_gas = list()
 				temperature = T0C
-			//Must be done here, as light data is not fully carried over by ChangeTurf (but overlays are).
+			//Must be done here, as light data is69ot fully carried over by ChangeTurf (but overlays are).
 			if(E.planetary_area && istype(loc, world.area))
 				ChangeArea(src, E.planetary_area)
 	..()
 
-/turf/simulated/floor/exoplanet/attackby(obj/item/C, mob/user)
+/turf/simulated/floor/exoplanet/attackby(obj/item/C,69ob/user)
 	/*if(diggable && istype(C,/obj/item/shovel))
-		visible_message("<span class='notice'>\The [user] starts digging \the [src]</span>")
+		visible_message("<span class='notice'>\The 69user69 starts digging \the 69src69</span>")
 		if(do_after(user, 50))
 			to_chat(user,"<span class='notice'>You dig a deep pit.</span>")
 			new /obj/structure/pit(src)
@@ -63,11 +63,11 @@
 	footstep_type = /decl/footsteps/water
 	var/reagent_type = /datum/reagent/water
 
-/turf/simulated/floor/exoplanet/water/shallow/attackby(obj/item/O, var/mob/living/user)
+/turf/simulated/floor/exoplanet/water/shallow/attackby(obj/item/O,69ar/mob/living/user)
 	var/obj/item/reagent_containers/RG = O
 	if (reagent_type && istype(RG) && RG.is_open_container() && RG.reagents)
-		RG.reagents.add_reagent(reagent_type, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("<span class='notice'>[user] fills \the [RG] from \the [src].</span>","<span class='notice'>You fill \the [RG] from \the [src].</span>")
+		RG.reagents.add_reagent(reagent_type,69in(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		user.visible_message("<span class='notice'>69user69 fills \the 69RG69 from \the 69src69.</span>","<span class='notice'>You fill \the 69RG69 from \the 69src69.</span>")
 	else
 		return ..()
 /*
@@ -85,7 +85,7 @@
 	for(var/direction in GLOB.cardinal)
 		var/turf/turf_to_check = get_step(src,direction)
 		if(!istype(turf_to_check, type))
-			var/image/rock_side = image(icon, "edge[pick(0,1,2)]", dir = turn(direction, 180))
+			var/image/rock_side = image(icon, "edge69pick(0,1,2)69", dir = turn(direction, 180))
 			rock_side.plating_decal_layerise()
 			switch(direction)
 				if(NORTH)
@@ -109,15 +109,15 @@
 	density = TRUE
 	blocks_air = TRUE
 	dynamic_lighting = FALSE
-	icon = null
-	icon_state = null
+	icon =69ull
+	icon_state =69ull
 
 /turf/simulated/planet_edge/proc/MineralSpread()
 	return
 
 /turf/simulated/planet_edge/Initialize()
 	. = ..()
-	var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
+	var/obj/effect/overmap/sector/exoplanet/E =69ap_sectors69"69z69"69
 	if(!istype(E))
 		return
 	var/nx = x
@@ -132,19 +132,19 @@
 	else if (y >= (E.maxy - TRANSITIONEDGE))
 		ny = y - (E.maxy - 2*TRANSITIONEDGE) + 1
 
-	var/turf/NT = locate(nx, ny, z)
+	var/turf/NT = locate(nx,69y, z)
 	if(NT)
 		vis_contents = list(NT)
 
-	//Need to put a mouse-opaque overlay there to prevent people turning/shooting towards ACTUAL location of vis_content things
-	var/obj/effect/overlay/O = new(src)
+	//Need to put a69ouse-opaque overlay there to prevent people turning/shooting towards ACTUAL location of69is_content things
+	var/obj/effect/overlay/O =69ew(src)
 	O.mouse_opacity = 2
 	O.name = "distant terrain"
-	O.desc = "You need to come over there to take a better look."
+	O.desc = "You69eed to come over there to take a better look."
 
 /turf/simulated/planet_edge/Bumped(atom/movable/A)
 	. = ..()
-	var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
+	var/obj/effect/overmap/sector/exoplanet/E =69ap_sectors69"69z69"69
 	if(!istype(E))
 		return
 	if(E.planetary_area && istype(loc, world.area))
@@ -160,7 +160,7 @@
 	else if (y >= (E.maxy - TRANSITIONEDGE))
 		new_y = TRANSITIONEDGE + 1
 
-	var/turf/T = locate(new_x, new_y, A.z)
+	var/turf/T = locate(new_x,69ew_y, A.z)
 	if(T && !T.density)
 		A.forceMove(T)
 		if(isliving(A))
@@ -171,7 +171,7 @@
 
 
 // Straight copy from space.
-/turf/simulated/floor/exoplanet/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/floor/exoplanet/attackby(obj/item/C as obj,69ob/user as69ob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -186,8 +186,8 @@
 	if (istype(C, /obj/item/stack/material))
 		var/obj/item/stack/material/M = C
 
-		var/material/mat = M.get_material()
-		if (!mat.name == MATERIAL_STEEL)
+		var/material/mat =69.get_material()
+		if (!mat.name ==69ATERIAL_STEEL)
 
 			return
 
@@ -206,7 +206,7 @@
 				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+			to_chat(user, SPAN_WARNING("The plating is going to69eed some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C

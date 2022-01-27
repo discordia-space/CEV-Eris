@@ -1,15 +1,15 @@
 /obj/machinery/keycard_auth
 	name = "Keycard Authentication Device"
-	desc = "This device is used to trigger ship functions, which require more than one ID card to authenticate."
+	desc = "This device is used to trigger ship functions, which re69uire69ore than one ID card to authenticate."
 	icon = 'icons/obj/monitors.dmi'
 	icon_state = "auth_off"
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 	interact_offline = TRUE
-	req_access = list(access_keycard_auth)
-	var/static/const/countdown = 3 MINUTES
-	var/static/const/cooldown = 10 MINUTES
+	re69_access = list(access_keycard_auth)
+	var/static/const/countdown = 369INUTES
+	var/static/const/cooldown = 1069INUTES
 	var/static/list/ongoing_countdowns = list()
 	var/static/list/initiator_card = list()
 	var/static/next_countdown
@@ -17,9 +17,9 @@
 		redalert = "red alert",
 		pods = "spacecraft abandonment"
 	)
-	var/static/datum/announcement/priority/kcad_announcement = new(do_log = 1, new_sound = sound('sound/misc/notice1.ogg'), do_newscast = 1)
+	var/static/datum/announcement/priority/kcad_announcement =69ew(do_log = 1,69ew_sound = sound('sound/misc/notice1.ogg'), do_newscast = 1)
 
-/obj/machinery/keycard_auth/attack_ai(mob/user as mob)
+/obj/machinery/keycard_auth/attack_ai(mob/user as69ob)
 	return
 
 /obj/machinery/keycard_auth/inoperable(var/additional_flags = 0)
@@ -33,19 +33,19 @@
 	user.set_machine(src)
 	ui_interact(user)
 
-/obj/machinery/keycard_auth/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/keycard_auth/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
+	var/data69069
 	var/decl/security_state/security_state = decls_repository.get_decl(GLOB.maps_data.security_state)
 
-	data["seclevel"] = security_state.current_security_level.name
-	data["emergencymaint"] = maint_all_access
-	data["events"] = ongoing_countdowns
-	data["oncooldown"] = next_countdown > world.time
-	data["maint_all_access"] = maint_all_access
+	data69"seclevel"69 = security_state.current_security_level.name
+	data69"emergencymaint"69 =69aint_all_access
+	data69"events"69 = ongoing_countdowns
+	data69"oncooldown"69 =69ext_countdown > world.time
+	data69"maint_all_access"69 =69aint_all_access
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "keycard authentication.tmpl", "Keycard Authentication Device", 440, 300)
+		ui =69ew(user, src, ui_key, "keycard authentication.tmpl", "Keycard Authentication Device", 440, 300)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -57,36 +57,36 @@
 	if(!allowed(usr))
 		return TRUE
 
-	if(href_list["start"])
+	if(href_list69"start"69)
 		if(next_countdown > world.time)
 			return TRUE
-		var/event = href_list["start"]
-		if(ongoing_countdowns[event])
+		var/event = href_list69"start"69
+		if(ongoing_countdowns69event69)
 			return
-		kcad_announcement.Announce("[usr] has initiated [event_names[event]] countdown.")
-		ongoing_countdowns[event] = addtimer(CALLBACK(src, .proc/countdown_finished, event), countdown, TIMER_UNIQUE | TIMER_STOPPABLE)
+		kcad_announcement.Announce("69usr69 has initiated 69event_names69event6969 countdown.")
+		ongoing_countdowns69event69 = addtimer(CALLBACK(src, .proc/countdown_finished, event), countdown, TIMER_UNI69UE | TIMER_STOPPABLE)
 		next_countdown = world.time + cooldown
 		var/obj/item/card/id/id = usr.GetIdCard()
-		initiator_card[event] = id
-	if(href_list["cancel"])
-		var/event = href_list["cancel"]
-		if(!ongoing_countdowns[event])
+		initiator_card69event69 = id
+	if(href_list69"cancel"69)
+		var/event = href_list69"cancel"69
+		if(!ongoing_countdowns69event69)
 			return
-		kcad_announcement.Announce("[usr] has cancelled [event_names[event]] countdown.")
-		deltimer(ongoing_countdowns[event])
+		kcad_announcement.Announce("69usr69 has cancelled 69event_names69event6969 countdown.")
+		deltimer(ongoing_countdowns69event69)
 		ongoing_countdowns -= event
 		initiator_card -= event
-	if(href_list["proceed"])
-		var/event = href_list["proceed"]
-		if(!ongoing_countdowns[event])
+	if(href_list69"proceed"69)
+		var/event = href_list69"proceed"69
+		if(!ongoing_countdowns69event69)
 			return
 		var/obj/item/card/id/id = usr.GetIdCard()
-		if(initiator_card[event] == id)
+		if(initiator_card69event69 == id)
 			return
-		kcad_announcement.Announce("[usr] has proceeded [event_names[event]] countdown.")
+		kcad_announcement.Announce("69usr69 has proceeded 69event_names69event6969 countdown.")
 		countdown_finished(event)
-	if(href_list["emergencymaint"])
-		var/event = href_list["emergencymaint"]
+	if(href_list69"emergencymaint"69)
+		var/event = href_list69"emergencymaint"69
 		switch(event)
 			if("grant")
 				make_maint_all_access()
@@ -103,7 +103,7 @@
 		if("pods")
 			evacuation_controller.call_evacuation(null, TRUE)
 	if(event)
-		deltimer(ongoing_countdowns[event])
+		deltimer(ongoing_countdowns69event69)
 		ongoing_countdowns -= event
 		initiator_card -= event
 
@@ -112,12 +112,12 @@ var/global/maint_all_access = 0
 /proc/make_maint_all_access()
 	maint_all_access = 1
 	to_chat(world, "<font size=4 color='red'>Attention!</font>")
-	to_chat(world, "<font color='red'>The maintenance access requirement has been revoked on all airlocks.</font>")
+	to_chat(world, "<font color='red'>The69aintenance access re69uirement has been revoked on all airlocks.</font>")
 
 /proc/revoke_maint_all_access()
 	maint_all_access = 0
 	to_chat(world, "<font size=4 color='red'>Attention!</font>")
-	to_chat(world, "<font color='red'>The maintenance access requirement has been readded on all maintenance airlocks.</font>")
+	to_chat(world, "<font color='red'>The69aintenance access re69uirement has been readded on all69aintenance airlocks.</font>")
 
 /obj/machinery/door/airlock/allowed(mob/M)
 	if(maint_all_access && src.check_access_list(list(access_maint_tunnels)))

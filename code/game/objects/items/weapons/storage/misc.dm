@@ -18,7 +18,7 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "donutbox"
 	name = "donut box"
-	max_storage_space = 12 //The amount of starting donuts multiplied by the donut item size to keep only exact space requirement met.
+	max_storage_space = 12 //The amount of starting donuts69ultiplied by the donut item size to keep only exact space re69uirement69et.
 	can_hold = list(/obj/item/reagent_containers/food/snacks/donut)
 	foldable = /obj/item/stack/material/cardboard
 	initial_amount = 6
@@ -33,7 +33,7 @@
 	cut_overlays()
 	var/i = 0
 	for(var/obj/item/reagent_containers/food/snacks/donut/D in contents)
-		overlays += image('icons/obj/food.dmi', "[i][D.overlay_state]")
+		overlays += image('icons/obj/food.dmi', "69i6969D.overlay_state69")
 		i++
 
 /obj/item/storage/box/donut/empty
@@ -47,10 +47,10 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "erp_closed"
 	name = "emergency ration pack"
-	desc = "Silvery plastic package, with the letters \"ERP\" pasted onto the front. Seems air tight, and vacuumed sealed. \
+	desc = "Silvery plastic package, with the letters \"ERP\" pasted onto the front. Seems air tight, and69acuumed sealed. \
 	The packaging holds usage information within the fineprint: \
-	\"Instructions: Remove contents from packaging, open both mre container and ration can, use them in-hand to activate thermal heater. \
-	Thermal insulation will keep them warm for over four hours. Nutrient paste and morale bar contains medicinal additives for field performace, DO NOT OVERCONSUME.\""
+	\"Instructions: Remove contents from packaging, open both69re container and ration can, use them in-hand to activate thermal heater. \
+	Thermal insulation will keep them warm for over four hours. Nutrient paste and69orale bar contains69edicinal additives for field performace, DO NOT OVERCONSUME.\""
 	can_hold = list(
 		/obj/item/reagent_containers/food/snacks,
 		/obj/item/storage/fancy/mre_cracker,
@@ -60,7 +60,7 @@
 
 /obj/item/storage/ration_pack/open(mob/user)
 	if (!open)
-		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
+		to_chat(user, SPAN_NOTICE("You tear \the 69src69 open."))
 		icon_state = "erp_open"
 		open = TRUE
 	..()
@@ -77,11 +77,11 @@
 	icon = 'icons/obj/food.dmi'
 	icon_state = "ihr_closed"
 	name = "ironhammer ration pack"
-	desc = "Silvery plastic package, with the letters \"IHR\" pasted onto the front. Seems air tight, and vacuumed sealed. \
+	desc = "Silvery plastic package, with the letters \"IHR\" pasted onto the front. Seems air tight, and69acuumed sealed. \
 	The packaging holds usage information within the fineprint: \
 	\"Instructions: Remove contents from packaging, open ration can, use them in-hand to activate thermal heater. \
 	Thermal insulation will keep them warm for over four hours. Crayons for taste. \
-	Nutrient paste and morale bar medicinal additives for field performace, DO NOT OVERCONSUME.\""
+	Nutrient paste and69orale bar69edicinal additives for field performace, DO NOT OVERCONSUME.\""
 	can_hold = list(
 		/obj/item/reagent_containers/food/snacks,
 		/obj/item/storage/fancy/mre_cracker,
@@ -91,7 +91,7 @@
 
 /obj/item/storage/ration_pack/ihr/open(mob/user)
 	if (!open)
-		to_chat(user, SPAN_NOTICE("You tear \the [src] open."))
+		to_chat(user, SPAN_NOTICE("You tear \the 69src69 open."))
 		icon_state = "ihr_open"
 		open = TRUE
 	..()

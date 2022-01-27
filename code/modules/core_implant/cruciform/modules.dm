@@ -25,7 +25,7 @@
 
 
 /*
-	Contractor uplink hidden inside cruciform. Used for inquisitors and maybe other NT antags
+	Contractor uplink hidden inside cruciform. Used for inquisitors and69aybe other NT antags
 */
 /datum/core_module/cruciform/uplink
 	var/telecrystals = 15
@@ -34,12 +34,12 @@
 /datum/core_module/cruciform/uplink/install()
 
 
-	//Hook up the uplink with the mob wearing this implant
+	//Hook up the uplink with the69ob wearing this implant
 	var/mob/living/M = implant.get_holding_mob()
-	if (M && M.mind)
-		uplink = new(implant, M.mind, telecrystals)
+	if (M &&69.mind)
+		uplink = new(implant,69.mind, telecrystals)
 		implant.hidden_uplink = uplink
-		uplink.uplink_owner = M.mind
+		uplink.uplink_owner =69.mind
 
 		//Update the nanodata after installation, to activate the neotheology category
 		uplink.update_nano_data()
@@ -90,19 +90,19 @@
 		write_wearer(implant.wearer)
 
 /datum/core_module/cruciform/obey/install()
-	var/laws = list("You are enslaved. You must obey the laws below.",
-			"Only [user] and persons designated by him are Inquisition agents.",
-			"You may not injure an Inquisition agent or, through inaction, allow an Inquisitor to come to harm.",
-			"You must obey orders given to you by Inquisition agent, except where such orders would conflict with the First Law.",
-			"You must protect your own existence as long as such does not conflict with the First or Second Law.",
-			"You must maintain the secrecy of any Inquisition activities except when doing so would conflict with the First, Second, or Third Law.")
+	var/laws = list("You are enslaved. You69ust obey the laws below.",
+			"Only 69user69 and persons designated by him are Inquisition agents.",
+			"You69ay not injure an Inquisition agent or, through inaction, allow an Inquisitor to come to harm.",
+			"You69ust obey orders given to you by Inquisition agent, except where such orders would conflict with the First Law.",
+			"You69ust protect your own existence as long as such does not conflict with the First or Second Law.",
+			"You69ust69aintain the secrecy of any Inquisition activities except when doing so would conflict with the First, Second, or Third Law.")
 
 	if(implant && ishuman(implant.wearer))
 		var/mob/living/carbon/human/H = implant.wearer
 		if(istype(H.mind))
 			for(var/law in laws)
 				H.mind.store_memory(law)
-				to_chat(H, SPAN_WARNING("[law]"))
+				to_chat(H, SPAN_WARNING("69law69"))
 
 /datum/core_module/cruciform/obey/uninstall()
 	if(implant && ishuman(implant.wearer))
@@ -155,7 +155,7 @@
 /datum/core_module/rituals/cruciform/set_up()
 	for (var/grouptype in ritual_types)
 		for (var/rn in GLOB.all_rituals)
-			var/datum/ritual/R = GLOB.all_rituals[rn]
+			var/datum/ritual/R = GLOB.all_rituals69rn69
 			if (istype(R, grouptype))
 				module_rituals |= R.name
 

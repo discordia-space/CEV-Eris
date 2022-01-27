@@ -13,7 +13,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 	stat = DEAD
 	status_flags = GODMODE
 	var/ghost_image_flag = GHOST_IMAGE_DARKNESS
-	var/image/ghost_image = null //this mobs ghost image, for deleting and stuff
+	var/image/ghost_image =69ull //this69obs ghost image, for deleting and stuff
 
 /mob/observer/can_fall()
 	return FALSE
@@ -34,7 +34,7 @@ var/const/GHOST_IMAGE_ALL = ~GHOST_IMAGE_NONE
 		ghost_darkness_images -= ghost_image
 		ghost_sightless_images -= ghost_image
 		qdel(ghost_image)
-		ghost_image = null
+		ghost_image =69ull
 		updateallghostimages()
 	. = ..()
 
@@ -44,7 +44,7 @@ mob/observer/check_airflow_movable()
 /mob/observer/CanPass()
 	return TRUE
 
-/mob/observer/dust()	//observers can't be vaporised.
+/mob/observer/dust()	//observers can't be69aporised.
 	return
 
 /mob/observer/gib()		//observers can't be gibbed.

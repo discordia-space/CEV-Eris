@@ -19,7 +19,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 	var/list/processing_events = list()
 	var/last_tick = 0
 	var/next_tick = 0
-	var/tick_interval = 60 SECONDS //Ticks once per minute.
+	var/tick_interval = 60 SECONDS //Ticks once per69inute.
 
 	var/crew = 0
 	var/heads = 0
@@ -31,7 +31,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 	var/event_spawn_timer = 0
 	var/event_spawn_stage = 0
 
-	//Set values here for starting points
+	//Set69alues here for starting points
 	var/list/points = list(
 	EVENT_LEVEL_MUNDANE = 0, //Mundane
 	EVENT_LEVEL_MODERATE = 0, //Moderate
@@ -46,7 +46,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 	var/list/event_pool_roleset = list()
 
 	//Configuration:
-	//Things you can set to make a new storyteller
+	//Things you can set to69ake a new storyteller
 	var/gain_mult_mundane = 1
 	var/gain_mult_moderate = 1
 	var/gain_mult_major = 1
@@ -55,17 +55,17 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 	var/list/tag_weight_mults = list()
 	var/list/tag_cost_mults = list()
 
-	var/variance = 0.15 //15% How much point gains are allowed to vary up or down per tick. This helps to keep event triggering times unpredictable
-	var/repetition_multiplier = 1.85 //Weights of events are multiplied by this value after they happen, to reduce the chance of multiple instances in short time
+	var/variance = 0.15 //15% How69uch point gains are allowed to69ary up or down per tick. This helps to keep event triggering times unpredictable
+	var/repetition_multiplier = 1.85 //Weights of events are69ultiplied by this69alue after they happen, to reduce the chance of69ultiple instances in short time
 
-	var/event_schedule_delay = 5 MINUTES
+	var/event_schedule_delay = 569INUTES
 	//Once selected, events are not fired immediately, but are scheduled for some random time in the near future
-	//This mostly helps to prevent them syncing up and announcements overlapping each other
-	//The maximum time between scheduling and firing an event
+	//This69ostly helps to prevent them syncing up and announcements overlapping each other
+	//The69aximum time between scheduling and firing an event
 	//Time is random between 1 decisecond to this
 
 	var/votable = TRUE
-	//whether or not the players can vote for it. If this is set to false, it can only be activated by being forced by admins.
+	//whether or not the players can69ote for it. If this is set to false, it can only be activated by being forced by admins.
 
 
 
@@ -93,20 +93,20 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 	if(announce)
 		if(!engineer && !command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer and technomancer are required to start round.</font></b>")
+			to_chat(world, "<b><font color='69tcol69'>A command officer and technomancer are re69uired to start round.</font></b>")
 		else if(!engineer)
-			to_chat(world, "<b><font color='[tcol]'>Technomancer is required to start round.</font></b>")
+			to_chat(world, "<b><font color='69tcol69'>Technomancer is re69uired to start round.</font></b>")
 		else if(!command)
-			to_chat(world, "<b><font color='[tcol]'>A command officer is required to start round.</font></b>")
+			to_chat(world, "<b><font color='69tcol69'>A command officer is re69uired to start round.</font></b>")
 
 	if(GLOB.player_list.len <= 10)
-		to_chat(world, "<i>But there's less than 10 players, so this requirement will be ignored.</i>")
+		to_chat(world, "<i>But there's less than 10 players, so this re69uirement will be ignored.</i>")
 		return TRUE
 
 	return FALSE
 
 /datum/storyteller/proc/announce()
-	to_chat(world, "<b><font size=3>Storyteller is [name].</font> <br>[welcome]</b>")
+	to_chat(world, "<b><font size=3>Storyteller is 69name69.</font> <br>69welcome69</b>")
 
 /datum/storyteller/proc/set_up()
 	build_event_pools()
@@ -129,7 +129,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 		/*
 			Handle points calls a large stack that increments all the point totals, and then attempts to
-			trigger as many events as our totals can afford to
+			trigger as69any events as our totals can afford to
 		*/
 		handle_points()
 
@@ -200,50 +200,50 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 /proc/storyteller_button()
 	if(GLOB.storyteller)
-		return "<a href='?src=\ref[GLOB.storyteller];panel=1'>\[STORY\]</a>"
+		return "<a href='?src=\ref69GLOB.storyteller69;panel=1'>\69STORY\69</a>"
 	else
-		return "<s>\[STORY\]</s>"
+		return "<s>\69STORY\69</s>"
 
 
 /*******************
 *  Points Handling
 ********************/
 
-/datum/storyteller/proc/modify_points(var/delta, var/type = EVENT_LEVEL_ROLESET)
+/datum/storyteller/proc/modify_points(var/delta,69ar/type = EVENT_LEVEL_ROLESET)
 	if (!delta || !isnum(delta))
 		return
 	//Adds delta points to the specified pool.
 	//If type is 0, adds points to all pools
 	//Pass a negative delta to subtract points
 	if (type)
-		points[type] += delta
+		points69type69 += delta
 	else
 		for (var/a in points)
-			points[a] += delta
+			points69a69 += delta
 
 /datum/storyteller/proc/handle_points()
-	points[EVENT_LEVEL_MUNDANE] += 1 * (gain_mult_mundane) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_MODERATE] += 1 * (gain_mult_moderate) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_MAJOR] += 1 * (gain_mult_major) * (RAND_DECIMAL(1-variance, 1+variance))
-	points[EVENT_LEVEL_ROLESET] += 1 * (gain_mult_roleset) * (RAND_DECIMAL(1-variance, 1+variance))
+	points69EVENT_LEVEL_MUNDANE69 += 1 * (gain_mult_mundane) * (RAND_DECIMAL(1-variance, 1+variance))
+	points69EVENT_LEVEL_MODERATE69 += 1 * (gain_mult_moderate) * (RAND_DECIMAL(1-variance, 1+variance))
+	points69EVENT_LEVEL_MAJOR69 += 1 * (gain_mult_major) * (RAND_DECIMAL(1-variance, 1+variance))
+	points69EVENT_LEVEL_ROLESET69 += 1 * (gain_mult_roleset) * (RAND_DECIMAL(1-variance, 1+variance))
 	check_thresholds()
 
 /datum/storyteller/proc/check_thresholds()
-	while (points[EVENT_LEVEL_MUNDANE] >= POOL_THRESHOLD_MUNDANE)
+	while (points69EVENT_LEVEL_MUNDANE69 >= POOL_THRESHOLD_MUNDANE)
 		if (!handle_event(EVENT_LEVEL_MUNDANE))
-			//This returns false if no viable events
+			//This returns false if no69iable events
 			break
 
-	while (points[EVENT_LEVEL_MODERATE] >= POOL_THRESHOLD_MODERATE)
+	while (points69EVENT_LEVEL_MODERATE69 >= POOL_THRESHOLD_MODERATE)
 		if (!handle_event(EVENT_LEVEL_MODERATE))
 			break
 
-	while (points[EVENT_LEVEL_MAJOR] >= POOL_THRESHOLD_MAJOR)
+	while (points69EVENT_LEVEL_MAJOR69 >= POOL_THRESHOLD_MAJOR)
 		if (!handle_event(EVENT_LEVEL_MAJOR))
 			break
 
 	//No loop for roleset events to prevent possible wierdness like the same player being picked twice
-	if(points[EVENT_LEVEL_ROLESET] >= POOL_THRESHOLD_ROLESET)
+	if(points69EVENT_LEVEL_ROLESET69 >= POOL_THRESHOLD_ROLESET)
 		handle_event(EVENT_LEVEL_ROLESET)
 
 
@@ -257,7 +257,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 //First we figure out which pool we're going to take an event from
 /datum/storyteller/proc/handle_event(var/event_type)
 	//This is a buffer which will hold a copy of the list we choose.
-	//We will be modifying it and don't want those modifications to go back to the source
+	//We will be69odifying it and don't want those69odifications to go back to the source
 	var/list/temp_pool
 	switch(event_type)
 		if (EVENT_LEVEL_MUNDANE)
@@ -293,7 +293,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 	//If it is allowed to run, we'll deduct its cost from our appropriate point score, and schedule it for triggering
 	var/cost = calculate_event_cost(choice, event_type)
-	points[event_type] -= cost
+	points69event_type69 -= cost
 	schedule_event(choice, event_type)
 
 	return TRUE
@@ -304,7 +304,7 @@ GLOBAL_DATUM(storyteller, /datum/storyteller)
 
 /*Sets up an event to be fired in the near future. This keeps things unpredictable
 The actual fire event proc is located in storyteller_meta*/
-/datum/storyteller/proc/schedule_event(var/datum/storyevent/C, var/event_type)
+/datum/storyteller/proc/schedule_event(var/datum/storyevent/C,69ar/event_type)
 	var/delay
 	if (event_type == EVENT_LEVEL_ROLESET)
 		delay = 1 //Basically no delay on these to reduce bugginess
@@ -334,19 +334,19 @@ The actual fire event proc is located in storyteller_meta*/
 		else
 			new_weight = calculate_event_weight(a)
 			//Reduce the weight based on number of ocurrences.
-			//This is mostly for the sake of midround handovers
+			//This is69ostly for the sake of69idround handovers
 			if (a.ocurrences >= 1)
 				new_weight *= repetition_multiplier ** a.ocurrences
 
 		//We setup the event pools as an associative list in preparation for a pickweight call
 		if (EVENT_LEVEL_MUNDANE in a.event_pools)
-			event_pool_mundane[a] = new_weight
+			event_pool_mundane69a69 = new_weight
 		if (EVENT_LEVEL_MODERATE in a.event_pools)
-			event_pool_moderate[a] = new_weight
+			event_pool_moderate69a69 = new_weight
 		if (EVENT_LEVEL_MAJOR in a.event_pools)
-			event_pool_major[a] = new_weight
+			event_pool_major69a69 = new_weight
 		if (EVENT_LEVEL_ROLESET in a.event_pools)
-			event_pool_roleset[a] = new_weight
+			event_pool_roleset69a69 = new_weight
 
 
 /datum/storyteller/proc/update_event_weights()
@@ -361,5 +361,5 @@ The actual fire event proc is located in storyteller_meta*/
 		if (a.ocurrences >= 1)
 			new_weight *= repetition_multiplier ** a.ocurrences
 
-		pool[a] = new_weight
+		pool69a69 = new_weight
 	return pool

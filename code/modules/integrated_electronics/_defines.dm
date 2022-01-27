@@ -5,6 +5,6 @@
 #define IC_FLAG_CAN_FIRE 2
 #define ASSEMBLY_BEEP_VOLUME 5
 
-//Sets the max string size that can be put in for circuit cloning
-#define MAX_SIZE_CIRCUIT		15000
+//Sets the69ax string size that can be put in for circuit cloning
+#define69AX_SIZE_CIRCUIT		15000
 #define IC_MAX_NAME_LEN 35

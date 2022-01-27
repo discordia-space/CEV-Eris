@@ -7,7 +7,7 @@
 	name = "None"
 	always_last = TRUE
 	underwear_type = null
-	underwear_gender = MALE
+	underwear_gender =69ALE
 
 /datum/category_item/underwear/top/bra
 	name = "bra, white"

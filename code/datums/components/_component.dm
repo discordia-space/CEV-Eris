@@ -3,7 +3,7 @@
 	var/dupe_type
 	var/datum/parent
 	//only set to true if you are able to properly transfer this component
-	//At a minimum RegisterWithParent and UnregisterFromParent should be used
+	//At a69inimum RegisterWithParent and UnregisterFromParent should be used
 	//Make sure you also implement PostTransfer for any post transfer handling
 	var/can_transfer = FALSE
 
@@ -12,7 +12,7 @@
 	var/list/arguments = args.Copy(2)
 	if(Initialize(arglist(arguments)) == COMPONENT_INCOMPATIBLE)
 		qdel(src, TRUE, TRUE)
-		CRASH("Incompatible [type] assigned to a [P.type]! args: [json_encode(arguments)]")
+		CRASH("Incompatible 69type69 assigned to a 69P.type69! args: 69json_encode(arguments)69")
 
 	_JoinParent(P)
 
@@ -26,32 +26,32 @@
 	//set up the typecache
 	var/our_type = type
 	for(var/I in _GetInverseTypeList(our_type))
-		var/test = dc[I]
+		var/test = dc69I69
 		if(test)	//already another component of this type here
 			var/list/components_of_type
 			if(!length(test))
 				components_of_type = list(test)
-				dc[I] = components_of_type
+				dc69I69 = components_of_type
 			else
 				components_of_type = test
-			if(I == our_type)	//exact match, take priority
+			if(I == our_type)	//exact69atch, take priority
 				var/inserted = FALSE
 				for(var/J in 1 to components_of_type.len)
-					var/datum/component/C = components_of_type[J]
-					if(C.type != our_type) //but not over other exact matches
+					var/datum/component/C = components_of_type69J69
+					if(C.type != our_type) //but not over other exact69atches
 						components_of_type.Insert(J, I)
 						inserted = TRUE
 						break
 				if(!inserted)
 					components_of_type += src
-			else	//indirect match, back of the line with ya
+			else	//indirect69atch, back of the line with ya
 				components_of_type += src
 		else	//only component of this type, no list
-			dc[I] = src
+			dc69I69 = src
 
 	RegisterWithParent()
 
-// If you want/expect to be moving the component around between parents, use this to register on the parent for signals
+// If you want/expect to be69oving the component around between parents, use this to register on the parent for signals
 /datum/component/proc/RegisterWithParent()
 	return
 
@@ -70,13 +70,13 @@
 	var/datum/P = parent
 	var/list/dc = P.datum_components
 	for(var/I in _GetInverseTypeList())
-		var/list/components_of_type = dc[I]
+		var/list/components_of_type = dc69I69
 		if(length(components_of_type))	//
 			var/list/subtracted = components_of_type - src
 			if(subtracted.len == 1)	//only 1 guy left
-				dc[I] = subtracted[1]	//make him special
+				dc69I69 = subtracted69169	//make him special
 			else
-				dc[I] = subtracted
+				dc69I69 = subtracted
 		else	//just us
 			dc -= I
 	if(!dc.len)
@@ -100,8 +100,8 @@
 	var/list/procs = signal_procs
 	if(!procs)
 		signal_procs = procs = list()
-	if(!procs[target])
-		procs[target] = list()
+	if(!procs69target69)
+		procs69target69 = list()
 	var/list/lookup = target.comp_lookup
 	if(!lookup)
 		target.comp_lookup = lookup = list()
@@ -111,36 +111,36 @@
 
 	var/list/sig_types = islist(sig_type_or_types) ? sig_type_or_types : list(sig_type_or_types)
 	for(var/sig_type in sig_types)
-		if(!override && procs[target][sig_type])
-			crash_with("[sig_type] overridden. Use override = TRUE to suppress this warning")
+		if(!override && procs69target6969sig_type69)
+			crash_with("69sig_type69 overridden. Use override = TRUE to suppress this warning")
 
-		procs[target][sig_type] = proc_or_callback
+		procs69target6969sig_type69 = proc_or_callback
 
-		if(!lookup[sig_type]) // Nothing has registered here yet
-			lookup[sig_type] = src
-		else if(lookup[sig_type] == src) // We already registered here
+		if(!lookup69sig_type69) // Nothing has registered here yet
+			lookup69sig_type69 = src
+		else if(lookup69sig_type69 == src) // We already registered here
 			continue
-		else if(!length(lookup[sig_type])) // One other thing registered here
-			lookup[sig_type] = list(lookup[sig_type]=TRUE)
-			lookup[sig_type][src] = TRUE
-		else // Many other things have registered here
-			lookup[sig_type][src] = TRUE
+		else if(!length(lookup69sig_type69)) // One other thing registered here
+			lookup69sig_type69 = list(lookup69sig_type69=TRUE)
+			lookup69sig_type6969src69 = TRUE
+		else //69any other things have registered here
+			lookup69sig_type6969src69 = TRUE
 
 	signal_enabled = TRUE
 
 /datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
 	var/list/lookup = target.comp_lookup
-	if(!signal_procs || !signal_procs[target] || !lookup)
+	if(!signal_procs || !signal_procs69target69 || !lookup)
 		return
 	if(!islist(sig_type_or_types))
 		sig_type_or_types = list(sig_type_or_types)
 	for(var/sig in sig_type_or_types)
-		switch(length(lookup[sig]))
+		switch(length(lookup69sig69))
 			if(2)
-				lookup[sig] = (lookup[sig]-src)[1]
+				lookup69sig69 = (lookup69sig69-src)69169
 			if(1)
-				crash_with("[target] ([target.type]) somehow has single length list inside comp_lookup")
-				if(src in lookup[sig])
+				crash_with("69target69 (69target.type69) somehow has single length list inside comp_lookup")
+				if(src in lookup69sig69)
 					lookup -= sig
 					if(!length(lookup))
 						target.comp_lookup = null
@@ -151,10 +151,10 @@
 					target.comp_lookup = null
 					break
 			else
-				lookup[sig] -= src
+				lookup69sig69 -= src
 
-	signal_procs[target] -= sig_type_or_types
-	if(!signal_procs[target].len)
+	signal_procs69target69 -= sig_type_or_types
+	if(!signal_procs69target69.len)
 		signal_procs -= target
 
 /datum/component/proc/InheritComponent(datum/component/C, i_am_original)
@@ -164,49 +164,49 @@
 	return
 
 /datum/component/proc/PostTransfer()
-	return COMPONENT_NOTRANSFER //Do not support transfer by default as you must properly support it
+	return COMPONENT_NOTRANSFER //Do not support transfer by default as you69ust properly support it
 
 /datum/component/proc/_GetInverseTypeList(our_type = type)
 	//we can do this one simple trick
 	var/current_type = parent_type
 	. = list(our_type, current_type)
-	//and since most components are root level + 1, this won't even have to run
+	//and since69ost components are root level + 1, this won't even have to run
 	while (current_type != /datum/component)
 		current_type = type2parent(current_type)
 		. += current_type
 
 /datum/proc/_SendSignal(sigtype, list/arguments)
-	var/target = comp_lookup[sigtype]
+	var/target = comp_lookup69sigtype69
 	if(!length(target))
 		var/datum/C = target
 		if(!C.signal_enabled)
 			return NONE
-		var/datum/callback/CB = C.signal_procs[src][sigtype]
+		var/datum/callback/CB = C.signal_procs69src6969sigtype69
 		return CB.InvokeAsync(arglist(arguments))
 	. = NONE
 	for(var/I in target)
 		var/datum/C = I
 		if(!C.signal_enabled)
 			continue
-		var/datum/callback/CB = C.signal_procs[src][sigtype]
+		var/datum/callback/CB = C.signal_procs69src6969sigtype69
 		. |= CB.InvokeAsync(arglist(arguments))
 
 /datum/proc/GetComponent(c_type)
 	var/list/dc = datum_components
 	if(!dc)
 		return null
-	. = dc[c_type]
+	. = dc69c_type69
 	if(length(.))
-		return .[1]
+		return .69169
 
 /datum/proc/GetExactComponent(c_type)
 	var/list/dc = datum_components
 	if(!dc)
 		return null
-	var/datum/component/C = dc[c_type]
+	var/datum/component/C = dc69c_type69
 	if(C)
 		if(length(C))
-			C = C[1]
+			C = C69169
 		if(C.type == c_type)
 			return C
 	return null
@@ -215,7 +215,7 @@
 	var/list/dc = datum_components
 	if(!dc)
 		return null
-	. = dc[c_type]
+	. = dc69c_type69
 	if(!length(.))
 		return list(.)
 
@@ -229,12 +229,12 @@
 
 	if(ispath(nt))
 		if(nt == /datum/component)
-			CRASH("[nt] attempted instantiation!")
+			CRASH("69nt69 attempted instantiation!")
 	else
 		new_comp = nt
 		nt = new_comp.type
 
-	args[1] = src
+	args69169 = src
 
 	if(dm != COMPONENT_DUPE_ALLOWED)
 		if(!dt)
@@ -262,7 +262,7 @@
 					else
 						old_comp.InheritComponent(new_comp, TRUE)
 		else if(!new_comp)
-			new_comp = new nt(arglist(args)) // There's a valid dupe mode but there's no old component, act like normal
+			new_comp = new nt(arglist(args)) // There's a69alid dupe69ode but there's no old component, act like normal
 	else if(!new_comp)
 		new_comp = new nt(arglist(args)) // Dupes are allowed, act like normal
 
@@ -296,7 +296,7 @@
 		if(COMPONENT_NOTRANSFER)
 			var/c_type = target.type
 			qdel(target)
-			CRASH("Incompatible [c_type] transfer attempt to a [type]!")
+			CRASH("Incompatible 69c_type69 transfer attempt to a 69type69!")
 
 	if(target == AddComponent(target))
 		target._JoinParent()
@@ -305,7 +305,7 @@
 	var/list/dc = datum_components
 	if(!dc)
 		return
-	var/comps = dc[/datum/component]
+	var/comps = dc69/datum/component69
 	if(islist(comps))
 		for(var/datum/component/I in comps)
 			if(I.can_transfer)

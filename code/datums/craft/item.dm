@@ -9,7 +9,7 @@
 /obj/item/craft/New(loc, new_recipe)
 	..(loc)
 	recipe = new_recipe
-	src.name = "crafting [recipe.name]"
+	src.name = "crafting 69recipe.name69"
 	src.icon_state = recipe.icon_state
 	update()
 
@@ -17,7 +17,7 @@
 /obj/item/craft/proc/update()
 	desc = recipe.get_description(step-1, src)
 
-/obj/item/craft/proc/continue_crafting(obj/item/I, mob/living/user)
+/obj/item/craft/proc/continue_crafting(obj/item/I,69ob/living/user)
 	if(user && istype(loc, /turf))
 		user.face_atom(src) //Look at what you're doing please
 
@@ -30,8 +30,8 @@
 
 	return FALSE
 
-/obj/item/craft/attackby(obj/item/I, mob/living/user)
+/obj/item/craft/attackby(obj/item/I,69ob/living/user)
 	return continue_crafting(I, user)
 
-/obj/item/craft/MouseDrop_T(atom/A, mob/user, src_location, over_location, src_control, over_control, params)
+/obj/item/craft/MouseDrop_T(atom/A,69ob/user, src_location, over_location, src_control, over_control, params)
 	return continue_crafting(A, user)

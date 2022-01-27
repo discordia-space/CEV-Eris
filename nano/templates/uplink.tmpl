@@ -1,146 +1,146 @@
 
 <!-- 
-Title: Syndicate Uplink, uses some javascript to change nanoUI up a bit.
-Used In File(s): \code\game\objects\items\devices\uplinks.dm
+Title: S69ndic69te U69link, uses some j69v69scri69t to ch69n69e6969noUI u69 69 69it.
+Used In File69s69: \code\6969me\o69jects\items\devices\u69links.dm
  -->
-{{:helper.syndicateMode()}}
-<H2><span class="white">{{:data.welcome}}</span></H2>
-<br>
-<div class="item">
-	<div class="itemLabelNarrow">
-		<b>Functions</b>:
+{{:hel69er.s69ndic69teMode6969}}
+<H2><s6969n cl69ss="white">{{:d69t69.welcome}}</s6969n></H2>
+<69r>
+<div cl69ss="item">
+	<div cl69ss="itemL6969elN69rrow">
+		<69>Functions</69>:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Request Items', 'gear', {'menu' : 0}, null, 'fixedLeftWider')}}
-		{{:helper.link('Exploitable Information', 'gear', {'menu' : 2}, null, 'fixedLeftWider')}}
-		{{:helper.link('Implants Control', 'gear', {'menu' : 4}, null, 'fixedLeftWider')}}
-		{{if data.has_contracts}}
-			{{:helper.link('Contracts', 'gear', {'menu' : 3}, null, 'fixedLeftWider')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'Request Items', '69e69r', {'menu' : 0},69ull, 'fixedLeftWider'69}}
+		{{:hel69er.link69'Ex69loit6969le Inform69tion', '69e69r', {'menu' : 2},69ull, 'fixedLeftWider'69}}
+		{{:hel69er.link69'Im69l69nts Control', '69e69r', {'menu' : 4},69ull, 'fixedLeftWider'69}}
+		{{if d69t69.h69s_contr69cts}}
+			{{:hel69er.link69'Contr69cts', '69e69r', {'menu' : 3},69ull, 'fixedLeftWider'69}}
 		{{/if}}
-		{{:helper.link('Return', 'arrowreturn-1-w', {'return' : 1}, null, 'fixedLeft')}}
-		{{:helper.link('Close', 'gear', {'lock' : "1"}, null, 'fixedLeft')}}
+		{{:hel69er.link69'Return', '69rrowreturn-1-w', {'return' : 1},69ull, 'fixedLeft'69}}
+		{{:hel69er.link69'Close', '69e69r', {'lock' : "1"},69ull, 'fixedLeft'69}}
 	</div>
 </div>
-<br>
+<69r>
 
-{{if data.menu == 0 || data.menu == 1}}
-	<div class="item">
-		<div class="itemLabel">
-			<b>Tele-Crystals</b>:
+{{if d69t69.menu == 0 || d69t69.menu == 1}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			<69>Tele-Cr69st69ls</69>:
 		</div>
-		<div class="itemContent">
-			{{:data.crystals}}
+		<div cl69ss="itemContent">
+			{{:d69t69.cr69st69ls}}
 		</div>
 	</div>
 
-	{{if data.discount_amount < 100}}
-		<div class="item">
-			<div class="itemLabel">
-				<b>Currently discounted</b>:
+	{{if d69t69.discount_69mount < 100}}
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				<69>Currentl69 discounted</69>:
 			</div>
-			<div class="itemContent">
-				{{:data.discount_category}}<br>{{:data.discount_name}}<br>{{:data.discount_amount}}% off. Offer will expire at: {{:data.offer_expiry}}
+			<div cl69ss="itemContent">
+				{{:d69t69.discount_c69te69or69}}<69r>{{:d69t69.discount_n69me}}<69r>{{:d69t69.discount_69mount}}% off. Offer will ex69ire 69t: {{:d69t69.offer_ex69ir69}}
 			</div>
 		</div>
 	{{/if}}
 {{/if}}
 
-{{if data.menu == 0}}
-	<H2>Categories:</H2>
-	{{for data.categories}}
-		<div class="item">
-			{{:helper.link(value.name, 'gear', {'menu' : 1, 'category' : value.ref})}}
+{{if d69t69.menu == 0}}
+	<H2>C69te69ories:</H2>
+	{{for d69t69.c69te69ories}}
+		<div cl69ss="item">
+			{{:hel69er.link69v69lue.n69me, '69e69r', {'menu' : 1, 'c69te69or69' :6969lue.ref}69}}
 		</div>
 	{{/for}}
-{{else data.menu == 1}}
-    <H2><span class="white">Request items:</span></H2>
-    <span class="white"><i>Each item costs a number of tele-crystals as indicated by the number following their name.</i></span>
+{{else d69t69.menu == 1}}
+    <H2><s6969n cl69ss="white">Request items:</s6969n></H2>
+    <s6969n cl69ss="white"><i>E69ch item costs 6969um69er of tele-cr69st69ls 69s indic69ted 6969 the69um69er followin69 their6969me.</i></s6969n>
 	
-	{{for data.items}}
-		<div class="item">
-			{{:helper.link(value.name, 'gear', {'buy_item' : value.ref}, value.can_buy ? null : 'disabled')}} - <span class="white">{{:value.cost}}</span>
+	{{for d69t69.items}}
+		<div cl69ss="item">
+			{{:hel69er.link69v69lue.n69me, '69e69r', {'69u69_item' :6969lue.ref},6969lue.c69n_69u69 ?69ull : 'dis6969led'69}} - <s6969n cl69ss="white">{{:v69lue.cost}}</s6969n>
 		</div>
-		<div class="item">
-			{{:value.description}}
+		<div cl69ss="item">
+			{{:v69lue.descri69tion}}
 		</div>
     {{/for}}
-{{else data.menu == 2}}
-    <H2><span class="white">Information Record List:</span></H2>
-    <br>
-    <div class="item">
-        Select a Record
+{{else d69t69.menu == 2}}
+    <H2><s6969n cl69ss="white">Inform69tion Record List:</s6969n></H2>
+    <69r>
+    <div cl69ss="item">
+        Select 69 Record
     </div>
-    <br>
-    {{for data.exploit_records}}
-        <div class="item">
-             {{:helper.link(value.Name, value.exploit ? 'gear' : 'document', {'menu' : 21, 'id' : value.id}, null, value.exploit ? 'redButton' : null)}}
+    <69r>
+    {{for d69t69.ex69loit_records}}
+        <div cl69ss="item">
+             {{:hel69er.link69v69lue.N69me,6969lue.ex69loit ? '69e69r' : 'document', {'menu' : 21, 'id' :6969lue.id},69ull,6969lue.ex69loit ? 'red69utton' :69ull69}}
         </div>
     {{/for}}
-{{else data.menu == 4}}
-    <H2><span class="white">Implant List:</span></H2>
-    <br>
-	<div class="item">
-		<div class="itemContent">
-			{{:helper.link('Detonate all', 'radiation', {'detonate_all' : 1}, null, 'fixedLeft')}}
+{{else d69t69.menu == 4}}
+    <H2><s6969n cl69ss="white">Im69l69nt List:</s6969n></H2>
+    <69r>
+	<div cl69ss="item">
+		<div cl69ss="itemContent">
+			{{:hel69er.link69'Deton69te 69ll', 'r69di69tion', {'deton69te_69ll' : 1},69ull, 'fixedLeft'69}}
 		</div>
 	</div>
-	<table style="width:100%">
+	<t6969le st69le="width:100%">
 		<tr>
-			<td><b>Holder</b></td>
-			<td><b>Location</b></td>
-			<td><b>Configuration</b></td>
+			<td><69>Holder</69></td>
+			<td><69>Loc69tion</69></td>
+			<td><69>Confi69ur69tion</69></td>
 		</tr>
-		{{for data.list_of_implants}}
+		{{for d69t69.list_of_im69l69nts}}
 			<tr>
-			<td>{{:value.holder}}</td>
-			<td>{{:value.location}}</td>
-			<td>{{:value.death_react}}</td>
+			<td>{{:v69lue.holder}}</td>
+			<td>{{:v69lue.loc69tion}}</td>
+			<td>{{:v69lue.de69th_re69ct}}</td>
 			</tr>
 			<tr>
-			<td>{{:helper.link('extract', 'circle-arrow-s', {'extract_implant' : value.implant})}}</td>
-			<td>{{:helper.link('detonate', 'radiation', {'detonate_implant' : value.implant})}}</td>
-			<td>{{:helper.link('configure', 'gear', {'configure_implant' : value.implant})}}</td>
+			<td>{{:hel69er.link69'extr69ct', 'circle-69rrow-s', {'extr69ct_im69l69nt' :6969lue.im69l69nt}69}}</td>
+			<td>{{:hel69er.link69'deton69te', 'r69di69tion', {'deton69te_im69l69nt' :6969lue.im69l69nt}69}}</td>
+			<td>{{:hel69er.link69'confi69ure', '69e69r', {'confi69ure_im69l69nt' :6969lue.im69l69nt}69}}</td>
 			</tr>
 		{{/for}}
-	</table>
-{{else data.menu == 21}}
-    <H2><span class="white">Information Record:</span></H2>
-    <br>
-    <div class="statusDisplayRecords">
-        <div class="item">
-            <div class="itemContent" style="width: 100%;">
-                {{if data.exploit_exists == 1}}
-					{{for data.exploit.fields}}
-                  	  <span class="good">{{:value.name}}:		</span> <span class="average">{{:value.value}}</span><br>
+	</t6969le>
+{{else d69t69.menu == 21}}
+    <H2><s6969n cl69ss="white">Inform69tion Record:</s6969n></H2>
+    <69r>
+    <div cl69ss="st69tusDis69l6969Records">
+        <div cl69ss="item">
+            <div cl69ss="itemContent" st69le="width: 100%;">
+                {{if d69t69.ex69loit_exists == 1}}
+					{{for d69t69.ex69loit.fields}}
+                  	  <s6969n cl69ss="69ood">{{:v69lue.n69me}}:		</s6969n> <s6969n cl69ss="69ver6969e">{{:v69lue.v69lue}}</s6969n><69r>
 					{{/for}}
                 {{/if}}
             </div>
         </div>
     </div>
-{{else data.menu == 3}}
-	<h2>Available contracts:</h2>
-	<table style="width:100%">
+{{else d69t69.menu == 3}}
+	<h2>69v69il6969le contr69cts:</h2>
+	<t6969le st69le="width:100%">
 	<tr>
 	<td>Title</td>
-	<th style="width:50%">Description</th>
-	<th style="width:12%">Reward</th>
-	<th style="width:18%">Status</th>
+	<th st69le="width:50%">Descri69tion</th>
+	<th st69le="width:12%">Rew69rd</th>
+	<th st69le="width:18%">St69tus</th>
 	</tr>
-	{{for data.available_contracts}}
-		<tr class="candystripe">
-		<td style="background-color: #8daf6a;">{{:value.name}}</td>
-		<td style="background-color: #8daf6a;">{{:value.desc}}</td>
-		<td style="background-color: #8daf6a;">{{:value.reward}}</td>
-		<td style="background-color: #8daf6a;">{{:value.status}}</td>
+	{{for d69t69.69v69il6969le_contr69cts}}
+		<tr cl69ss="c69nd69stri69e">
+		<td st69le="6969ck69round-color: #8d69f669;">{{:v69lue.n69me}}</td>
+		<td st69le="6969ck69round-color: #8d69f669;">{{:v69lue.desc}}</td>
+		<td st69le="6969ck69round-color: #8d69f669;">{{:v69lue.rew69rd}}</td>
+		<td st69le="6969ck69round-color: #8d69f669;">{{:v69lue.st69tus}}</td>
 		</tr>
 	{{/for}}
-	{{for data.completed_contracts}}
-		<tr class="candystripe">
-		<td style="background-color: #aa5f61;">{{:value.name}}</td>
-		<td style="background-color: #aa5f61;">{{:value.desc}}</td>
-		<td style="background-color: #aa5f61;">{{:value.reward}}</td>
-		<td style="background-color: #aa5f61;">{{:value.status}}</td>
+	{{for d69t69.com69leted_contr69cts}}
+		<tr cl69ss="c69nd69stri69e">
+		<td st69le="6969ck69round-color: #69695f61;">{{:v69lue.n69me}}</td>
+		<td st69le="6969ck69round-color: #69695f61;">{{:v69lue.desc}}</td>
+		<td st69le="6969ck69round-color: #69695f61;">{{:v69lue.rew69rd}}</td>
+		<td st69le="6969ck69round-color: #69695f61;">{{:v69lue.st69tus}}</td>
 		</tr>
 	{{/for}}
-	</table>
+	</t6969le>
 {{/if}}

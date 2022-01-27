@@ -50,17 +50,17 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 	var/haspower = A.arePowerSystemsOn() //If there's no power, then no lights will be on.
 
 	. += ..(user)
-	. += text("<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]<br>\n[]",
+	. += text("<br>\n6969<br>\n6969<br>\n6969<br>\n6969<br>\n6969<br>\n6969<br>\n6969<br>\n6969",
 	(A.locked ? "The door bolts have fallen!" : "The door bolts look up."),
 	((A.lights && haspower) ? "The door bolt lights are on." : "The door bolt lights are off!"),
 	((haspower) ? "The test light is on." : "The test light is off!"),
 	((A.backup_power_lost_until) ? "The backup power light is off!" : "The backup power light is on."),
 	((A.aiControlDisabled==0 && !A.emagged && haspower)? "The 'AI control allowed' light is on." : "The 'AI control allowed' light is off."),
 	((A.safe==0 && haspower)? "The 'Check Wiring' light is on." : "The 'Check Wiring' light is off."),
-	((A.normalspeed==0 && haspower)? "The 'Check Timing Mechanism' light is on." : "The 'Check Timing Mechanism' light is off."),
+	((A.normalspeed==0 && haspower)? "The 'Check Timing69echanism' light is on." : "The 'Check Timing69echanism' light is off."),
 	((A.aiDisabledIdScanner==0 && haspower)? "The IDScan light is on." : "The IDScan light is off."))
 
-/datum/wires/airlock/UpdateCut(var/index, var/mended)
+/datum/wires/airlock/UpdateCut(var/index,69ar/mended)
 
 	var/obj/machinery/door/airlock/A = holder
 	switch(index)
@@ -69,7 +69,7 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
 
 			if(!mended)
-				//Cutting either one disables the main door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door may be crowbarred open, but bolts-raising will not work. Cutting these wires may electocute the user.
+				//Cutting either one disables the69ain door power, but unless backup power is also cut, the backup power re-powers the door in 10 seconds. While unpowered, the door69ay be crowbarred open, but bolts-raising will not work. Cutting these wires69ay electocute the user.
 				A.loseMainPower()
 				A.shock(usr, 50)
 			else
@@ -79,7 +79,7 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 		if(AIRLOCK_WIRE_BACKUP_POWER1, AIRLOCK_WIRE_BACKUP_POWER2)
 
 			if(!mended)
-				//Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but may electocute the user.
+				//Cutting either one disables the backup door power (allowing it to be crowbarred open, but disabling bolts-raising), but69ay electocute the user.
 				A.loseBackupPower()
 				A.shock(usr, 50)
 			else
@@ -89,14 +89,14 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 		if(AIRLOCK_WIRE_DOOR_BOLTS)
 
 			if(!mended)
-				//Cutting this wire also drops the door bolts, and mending it does not raise them. (This is what happens now, except there are a lot more wires going to door bolts at present)
+				//Cutting this wire also drops the door bolts, and69ending it does not raise them. (This is what happens now, except there are a lot69ore wires going to door bolts at present)
 				A.lock(1)
 				A.update_icon()
 
 		if(AIRLOCK_WIRE_AI_CONTROL)
 
 			if(!mended)
-				//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a minute). If both main and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
+				//one wire for AI control. Cutting this prevents the AI from controlling the door unless it has hacked the door through the power connection (which takes about a69inute). If both69ain and backup power are cut, as well as this wire, then the AI cannot operate or hack the door at all.
 				//aiControlDisabled: If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 				if(A.aiControlDisabled == 0)
 					A.aiControlDisabled = 1
@@ -117,16 +117,16 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 			return // Don't update the dialog.
 
 		if (AIRLOCK_WIRE_SAFETY)
-			A.safe = mended
+			A.safe =69ended
 
 		if(AIRLOCK_WIRE_SPEED)
-			A.autoclose = mended
+			A.autoclose =69ended
 			if(mended)
 				if(!A.density)
 					A.close()
 
 		if(AIRLOCK_WIRE_LIGHT)
-			A.lights = mended
+			A.lights =69ended
 			A.update_icon()
 
 
@@ -139,7 +139,7 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 			if(A.arePowerSystemsOn() && A.density)
 				A.do_animate("deny")
 		if(AIRLOCK_WIRE_MAIN_POWER1, AIRLOCK_WIRE_MAIN_POWER2)
-			//Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 1 minute if not (or until backup power comes back on, whichever is shorter).
+			//Sending a pulse through either one causes a breaker to trip, disabling the door for 10 seconds if backup power is connected, or 169inute if not (or until backup power comes back on, whichever is shorter).
 			A.loseMainPower()
 		if(AIRLOCK_WIRE_DOOR_BOLTS)
 			//one wire for door bolts. Sending a pulse through this drops door bolts if they're not down (whether power's on or not),
@@ -150,7 +150,7 @@ var/const/AIRLOCK_WIRE_LIGHT = 2048
 				A.unlock()
 
 		if(AIRLOCK_WIRE_BACKUP_POWER1, AIRLOCK_WIRE_BACKUP_POWER2)
-			//two wires for backup power. Sending a pulse through either one causes a breaker to trip, but this does not disable it unless main power is down too (in which case it is disabled for 1 minute or however long it takes main power to come back, whichever is shorter).
+			//two wires for backup power. Sending a pulse through either one causes a breaker to trip, but this does not disable it unless69ain power is down too (in which case it is disabled for 169inute or however long it takes69ain power to come back, whichever is shorter).
 			A.loseBackupPower()
 		if(AIRLOCK_WIRE_AI_CONTROL)
 			if(A.aiControlDisabled == 0)

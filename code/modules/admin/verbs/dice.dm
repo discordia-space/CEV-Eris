@@ -5,7 +5,7 @@ ADMIN_VERB_ADD(/client/proc/roll_dices, R_FUN, FALSE)
 	if(!check_rights(R_FUN))
 		return
 
-	var/sum = input("How many times should we throw?") as num
+	var/sum = input("How69any times should we throw?") as num
 	var/side = input("Select the number of sides.") as num
 	if(!side)
 		side = 6
@@ -20,6 +20,6 @@ ADMIN_VERB_ADD(/client/proc/roll_dices, R_FUN, FALSE)
 	var/result = roll(dice)
 
 	if(alert("Do you want to inform the world about the result?",,"Yes", "No") == "Yes")
-		to_chat(world, "<h2 style=\"color:#A50400\">Gods rolled [dice], result is [result]</h2>")
+		to_chat(world, "<h2 style=\"color:#A50400\">Gods rolled 69dice69, result is 69result69</h2>")
 
-	message_admins("[key_name_admin(src)] rolled dice [dice], result is [result]", 1)
+	message_admins("69key_name_admin(src)69 rolled dice 69dice69, result is 69result69", 1)

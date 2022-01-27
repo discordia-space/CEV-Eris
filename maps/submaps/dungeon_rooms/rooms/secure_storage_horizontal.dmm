@@ -1,119 +1,119 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"b" = (
-/obj/crawler/crawler_wallbreaker,
+/area/crawler69
+"69" = 69
+/o69j/crawler/crawler_wall69rea69er,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"c" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"d" = (
-/obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/crawler)
-"e" = (
-/obj/structure/railing/grey,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"f" = (
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"g" = (
-/obj/machinery/door/blast/shutters,
-/turf/simulated/floor/tiled/dark/brown_perforated,
-/area/crawler)
-"h" = (
-/obj/crawler/crawler_wallbreaker/vertical,
+/area/crawler69
+"c" = 69
+/o69j/structure/69rille,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"d" = 69
+/o69j/structure/closet/onestar/tier3,
+/turf/simulated/floor/tiled/dar69/69rown_perforated,
+/area/crawler69
+"e" = 69
+/o69j/structure/railin69/69rey,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"f" = 69
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"69" = 69
+/o69j/machinery/door/69last/shutters,
+/turf/simulated/floor/tiled/dar69/69rown_perforated,
+/area/crawler69
+"h" = 69
+/o69j/crawler/crawler_wall69rea69er/vertical,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"i" = (
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
+/area/crawler69
+"i" = 69
+/o69j/structure/railin69/69rey,
+/o69j/structure/railin69/69rey{
 	dir = 4
 	},
-/obj/machinery/light/floor,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"j" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"k" = (
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"j" = 69
+/o69j/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"69" = 69
+/o69j/structure/railin69/69rey,
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"l" = (
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"l" = 69
+/o69j/structure/railin69/69rey,
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/obj/machinery/light/floor,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"m" = (
-/obj/structure/railing/grey{
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"m" = 69
+/o69j/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/structure/railing/grey{
+/o69j/structure/railin69/69rey{
 	dir = 4
 	},
-/obj/machinery/light/floor,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"n" = (
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"n" = 69
+/o69j/structure/railin69/69rey,
+/o69j/structure/railin69/69rey{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"o" = (
-/obj/structure/railing/grey{
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"o" = 69
+/o69j/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/structure/railing/grey{
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/obj/machinery/light/floor,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"p" = (
-/obj/structure/railing/grey{
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"p" = 69
+/o69j/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/structure/railing/grey{
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"q" = (
-/obj/structure/catwalk,
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"s" = (
-/obj/structure/railing/grey{
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"q" = 69
+/o69j/structure/catwal69,
+/o69j/spawner/mo69/room69a,
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"s" = 69
+/o69j/structure/railin69/69rey{
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/crawler)
-"t" = (
-/obj/structure/railing/grey{
+/turf/simulated/floor/platin69/under,
+/area/crawler69
+"t" = 69
+/o69j/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/structure/railing/grey{
+/o69j/structure/railin69/69rey{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/crawler)
+/turf/simulated/floor/platin69/under,
+/area/crawler69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -124,7 +124,7 @@ h
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
 e
@@ -135,18 +135,18 @@ s
 c
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 c
 f
-k
+69
 q
 p
 f
 c
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 a
 a
@@ -157,19 +157,19 @@ a
 a
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 d
-g
+69
 j
 j
 j
-g
+69
 d
-b
+69
 "}
-(6,1,1) = {"
-b
+696,1,169 = {"
+69
 a
 a
 l
@@ -177,10 +177,10 @@ j
 o
 a
 a
-b
+69
 "}
-(7,1,1) = {"
-b
+697,1,169 = {"
+69
 c
 f
 e
@@ -188,10 +188,10 @@ j
 s
 f
 c
-b
+69
 "}
-(8,1,1) = {"
-b
+698,1,169 = {"
+69
 a
 a
 i
@@ -199,20 +199,20 @@ q
 m
 a
 a
-b
+69
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 d
-g
+69
 j
 j
 j
-g
+69
 d
-b
+69
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 a
 a
@@ -223,7 +223,7 @@ a
 a
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 c
 f
@@ -234,7 +234,7 @@ f
 c
 a
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 a
 c
 e
@@ -245,7 +245,7 @@ s
 c
 a
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 a
 a
 h

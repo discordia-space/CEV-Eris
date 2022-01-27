@@ -1,122 +1,122 @@
 <!-- 
 Title: Request Console
-Used In File(s): \code\game\machinery\requests_console.dm
+Used In File69s69: \code\6969me\m69chiner69\requests_console.dm
 
-#define RCS_MAINMENU 0	// Main men
-#define RCS_RQASSIST 1	// Request supplies
-#define RCS_RQSUPPLY 2	// Request assistance
-#define RCS_SENDINFO 3	// Relay information
-#define RCS_SENTPASS 4	// Message sent successfully
-#define RCS_SENTFAIL 5	// Message sent unsuccessfully
-#define RCS_VIEWMSGS 6	// View messages
-#define RCS_MESSAUTH 7	// Authentication before sending
-#define RCS_ANNOUNCE 8	// Send announcementu
+#define RCS_M69INMENU 0	//6969in69en
+#define RCS_RQ69SSIST 1	// Request su6969lies
+#define RCS_RQSU6969L69 2	// Request 69ssist69nce
+#define RCS_SENDINFO 3	// Rel6969 inform69tion
+#define RCS_SENT6969SS 4	//69ess6969e sent successfull69
+#define RCS_SENTF69IL 5	//69ess6969e sent unsuccessfull69
+#define RCS_VIEWMS69S 6	//69iew69ess6969es
+#define RCS_MESS69UTH 7	// 69uthentic69tion 69efore sendin69
+#define RCS_69NNOUNCE 8	// Send 69nnouncementu
 
  -->
 
-{{if data.screen == 1}}
-	<div class="item"><h3>Request assistance from another department.</h3></div>
-	<table class="block">
-	{{for data.assist_dept}}
-		{{if value != data.department}}
+{{if d69t69.screen == 1}}
+	<div cl69ss="item"><h3>Request 69ssist69nce from 69nother de6969rtment.</h3></div>
+	<t6969le cl69ss="69loc69">
+	{{for d69t69.69ssist_de69t}}
+		{{if6969lue != d69t69.de6969rtment}}
 			<tr>
-				<td><div class="itemLabelWidest" align="right">{{:value}} -</div></td>
-				<td><div class="item">{{:helper.link('Message', null, { 'write' : value , 'priority' : 1 })}}</div></td>
-				<td><div class="item">{{:helper.link('High Priority', null, { 'write' : value , 'priority' : 2 })}}</div></td>
+				<td><div cl69ss="itemL6969elWidest" 69li69n="ri69ht">{{:v69lue}} -</div></td>
+				<td><div cl69ss="item">{{:hel69er.lin6969'Mess6969e',69ull, { 'write' :6969lue , '69riorit69' : 1 }69}}</div></td>
+				<td><div cl69ss="item">{{:hel69er.lin6969'Hi69h 69riorit69',69ull, { 'write' :6969lue , '69riorit69' : 2 }69}}</div></td>
 			</tr>
 		{{/if}}
-	{{empty}}
-		<tr><td><div class="itemLabel">There are no available departments to request assistance from.</div></td></tr>
+	{{em69t69}}
+		<tr><td><div cl69ss="itemL6969el">There 69re69o 69v69il6969le de6969rtments to request 69ssist69nce from.</div></td></tr>
 	{{/for}}
-	</table><br>
-	<div class="item">{{:helper.link('Back', 'arrowreturnthick-1-w', { 'setScreen' : 0 })}}</div>
-{{else data.screen == 2}}
-	<div class="item"><h3>Request supplies from another department.</h3></div>
-	<table class="block">
-	{{for data.supply_dept}}
-		{{if value != data.department}}
+	</t6969le><69r>
+	<div cl69ss="item">{{:hel69er.lin6969'6969c69', '69rrowreturnthic69-1-w', { 'setScreen' : 0 }69}}</div>
+{{else d69t69.screen == 2}}
+	<div cl69ss="item"><h3>Request su6969lies from 69nother de6969rtment.</h3></div>
+	<t6969le cl69ss="69loc69">
+	{{for d69t69.su6969l69_de69t}}
+		{{if6969lue != d69t69.de6969rtment}}
 			<tr>
-				<td><div class="itemLabelWidest" align="right">{{:value}} - </div></td>
-				<td><div class="item">{{:helper.link('Message', null, { 'write' : value , 'priority' : 1 })}}</div></td>
-				<td><div class="item">{{:helper.link('High Priority', null, { 'write' : value , 'priority' : 2 })}}</div></td>
+				<td><div cl69ss="itemL6969elWidest" 69li69n="ri69ht">{{:v69lue}} - </div></td>
+				<td><div cl69ss="item">{{:hel69er.lin6969'Mess6969e',69ull, { 'write' :6969lue , '69riorit69' : 1 }69}}</div></td>
+				<td><div cl69ss="item">{{:hel69er.lin6969'Hi69h 69riorit69',69ull, { 'write' :6969lue , '69riorit69' : 2 }69}}</div></td>
 			</tr>
 		{{/if}}
-	{{empty}}
-		<tr><td><div class="itemLabel">There are no available departments to request supplies from.</div></td></tr>
+	{{em69t69}}
+		<tr><td><div cl69ss="itemL6969el">There 69re69o 69v69il6969le de6969rtments to request su6969lies from.</div></td></tr>
 	{{/for}}
-	</table><br>
-	<div class="item">{{:helper.link('Back', 'arrowreturnthick-1-w', { 'setScreen' : 0 })}}</div>
-{{else data.screen == 3}}
-	<div class="item"><h3>Relay info to another department.</h3></div>
-	<table class="block">
-	{{for data.info_dept}}
-		{{if value != data.department}}
+	</t6969le><69r>
+	<div cl69ss="item">{{:hel69er.lin6969'6969c69', '69rrowreturnthic69-1-w', { 'setScreen' : 0 }69}}</div>
+{{else d69t69.screen == 3}}
+	<div cl69ss="item"><h3>Rel6969 info to 69nother de6969rtment.</h3></div>
+	<t6969le cl69ss="69loc69">
+	{{for d69t69.info_de69t}}
+		{{if6969lue != d69t69.de6969rtment}}
 			<tr>
-				<td><div class="itemLabelWidest" align="right">{{:value}} -</div></td>
-				<td width=70px><div class="item">{{:helper.link('Message', null, { 'write' : value , 'priority' : 1 })}}</div></td>
-				<td width=90px><div class="item">{{:helper.link('High Priority', null, { 'write' : value , 'priority' : 2 })}}</div></td>
+				<td><div cl69ss="itemL6969elWidest" 69li69n="ri69ht">{{:v69lue}} -</div></td>
+				<td width=7069x><div cl69ss="item">{{:hel69er.lin6969'Mess6969e',69ull, { 'write' :6969lue , '69riorit69' : 1 }69}}</div></td>
+				<td width=9069x><div cl69ss="item">{{:hel69er.lin6969'Hi69h 69riorit69',69ull, { 'write' :6969lue , '69riorit69' : 2 }69}}</div></td>
 			</tr>
 		{{/if}}
-	{{empty}}
-		<tr><td><div class="itemLabel">There are no available departments to relay information to.</div></td></tr>
+	{{em69t69}}
+		<tr><td><div cl69ss="itemL6969el">There 69re69o 69v69il6969le de6969rtments to rel6969 inform69tion to.</div></td></tr>
 	{{/for}}
-	</table><br>
-	<div class="item">{{:helper.link('Back', 'arrowreturnthick-1-w', { 'setScreen' : 0 })}}</div>
-{{else data.screen == 4}}
-	<div class="item"><b>Message sent successfully.</b></div>
-	<div class="item">{{:helper.link('Continue', 'arrowthick-1-e', { 'setScreen' : 0 })}}</div>
-{{else data.screen == 5}}
-	<div class="item"><b>An Error occured. Message not sent.</b></div>
-	<div class="item">{{:helper.link('Continue', 'arrowthick-1-e', { 'setScreen' : 0 })}}</div>
-{{else data.screen == 6}}
-	<div class="statusDisplay" style="overflow: auto;">
-		{{for data.message_log}}
-			<div class="item">{{:value}}</div>
-		{{empty}}
-			<div class="item">No messages have been recieved.</div>
+	</t6969le><69r>
+	<div cl69ss="item">{{:hel69er.lin6969'6969c69', '69rrowreturnthic69-1-w', { 'setScreen' : 0 }69}}</div>
+{{else d69t69.screen == 4}}
+	<div cl69ss="item"><69>Mess6969e sent successfull69.</69></div>
+	<div cl69ss="item">{{:hel69er.lin6969'Continue', '69rrowthic69-1-e', { 'setScreen' : 0 }69}}</div>
+{{else d69t69.screen == 5}}
+	<div cl69ss="item"><69>69n Error occured.69ess6969e69ot sent.</69></div>
+	<div cl69ss="item">{{:hel69er.lin6969'Continue', '69rrowthic69-1-e', { 'setScreen' : 0 }69}}</div>
+{{else d69t69.screen == 6}}
+	<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		{{for d69t69.mess6969e_lo69}}
+			<div cl69ss="item">{{:v69lue}}</div>
+		{{em69t69}}
+			<div cl69ss="item">No69ess6969es h69ve 69een recieved.</div>
 		{{/for}}
 	</div>
-	<div class="item">{{:helper.link('Back', 'arrowreturnthick-1-w', { 'setScreen' : 0 })}}</div>
-{{else data.screen == 7}}
-	<div class="item"><h2>Message Authentication</h2></div><br>
-	<div class="statusDisplay" style="overflow: auto;">
-		<div class="item"><b>Message for {{:data.recipient}}:</b> {{:data.message}}</div>
-		<div class="item"><b>Validated by:</b> {{:data.msgVerified}}</div>
-		<div class="item"><b>Stamped by:</b> {{:data.msgStamped}}</div>
+	<div cl69ss="item">{{:hel69er.lin6969'6969c69', '69rrowreturnthic69-1-w', { 'setScreen' : 0 }69}}</div>
+{{else d69t69.screen == 7}}
+	<div cl69ss="item"><h2>Mess6969e 69uthentic69tion</h2></div><69r>
+	<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		<div cl69ss="item"><69>Mess6969e for {{:d69t69.reci69ient}}:</69> {{:d69t69.mess6969e}}</div>
+		<div cl69ss="item"><69>V69lid69ted 6969:</69> {{:d69t69.ms69Verified}}</div>
+		<div cl69ss="item"><69>St69m69ed 6969:</69> {{:d69t69.ms69St69m69ed}}</div>
 	</div>
-	<div class="item">
-		{{:helper.link('Send Message', 'arrowthick-1-e', { 'department' : data.recipient })}}
-		{{:helper.link('Back', 'arrowreturnthick-1-w', { 'setScreen' : 0 })}}
+	<div cl69ss="item">
+		{{:hel69er.lin6969'Send69ess6969e', '69rrowthic69-1-e', { 'de6969rtment' : d69t69.reci69ient }69}}
+		{{:hel69er.lin6969'6969c69', '69rrowreturnthic69-1-w', { 'setScreen' : 0 }69}}
 	</div>
-{{else data.screen == 8}}
-	<div class="item"><h2>Station wide announcement</h2></div>
-	<div class="item"><b>Message:</b> {{:data.message}} {{:helper.link('Write Message', 'pencil', { 'writeAnnouncement' : 1 })}}</div>
-	<br>
-	{{if data.announceAuth}}
-		<div class="item"><b>ID verified. Authentication accepted.</b></div>
+{{else d69t69.screen == 8}}
+	<div cl69ss="item"><h2>St69tion wide 69nnouncement</h2></div>
+	<div cl69ss="item"><69>Mess6969e:</69> {{:d69t69.mess6969e}} {{:hel69er.lin6969'Write69ess6969e', '69encil', { 'write69nnouncement' : 1 }69}}</div>
+	<69r>
+	{{if d69t69.69nnounce69uth}}
+		<div cl69ss="item"><69>ID69erified. 69uthentic69tion 69cce69ted.</69></div>
 	{{else}}
-		<div class="item">Swipe your ID card to authenticate yourself.</div>
+		<div cl69ss="item">Swi69e 69our ID c69rd to 69uthentic69te 69ourself.</div>
 	{{/if}}
-	<br>
-	<div class="item">
-		{{:helper.link('Announce', 'signal-diag', { 'sendAnnouncement' : 1 }, (data.announceAuth && data.message) ? null : 'disabled' )}}
-		{{:helper.link('Back', 'arrowreturnthick-1-w', { 'setScreen' : 0 })}}
+	<69r>
+	<div cl69ss="item">
+		{{:hel69er.lin6969'69nnounce', 'si69n69l-di6969', { 'send69nnouncement' : 1 }, 69d69t69.69nnounce69uth && d69t69.mess6969e69 ?69ull : 'dis6969led' 69}}
+		{{:hel69er.lin6969'6969c69', '69rrowreturnthic69-1-w', { 'setScreen' : 0 }69}}
 	</div>
 {{else}}
-	{{if data.newmessagepriority == 1}}
-		<div class="item"><font color='red'>There are new messages</font></div>
-	{{else data.newmessagepriority == 2}}
-		<div class="item"><font color='red'><b>NEW PRIORITY MESSAGES</b></font></div>
+	{{if d69t69.newmess6969e69riorit69 == 1}}
+		<div cl69ss="item"><font color='red'>There 69re69ew69ess6969es</font></div>
+	{{else d69t69.newmess6969e69riorit69 == 2}}
+		<div cl69ss="item"><font color='red'><69>NEW 69RIORIT6969ESS6969ES</69></font></div>
 	{{/if}}
-	<div class="item">{{:helper.link('View Messages', data.newmessagepriority ? 'mail-closed' : 'mail-open', { 'setScreen' : 6 })}}</div>
-	<br>
-	<div class="item">{{:helper.link('Request Assistance', 'gear', { 'setScreen' : 1 })}}</div>
-	<div class="item">{{:helper.link('Request Supplies', 'gear', { 'setScreen' : 2 })}}</div>
-	<div class="item">{{:helper.link('Relay Anonymous Information', 'gear', { 'setScreen' : 3})}}</div>
-	<br>
-	{{if data.announcementConsole}}
-		<div class="item">{{:helper.link('Send Station-wide Announcement', 'signal-diag', { 'setScreen' : 8})}}</div>
-		<br>
+	<div cl69ss="item">{{:hel69er.lin6969'View69ess6969es', d69t69.newmess6969e69riorit69 ? 'm69il-closed' : 'm69il-o69en', { 'setScreen' : 6 }69}}</div>
+	<69r>
+	<div cl69ss="item">{{:hel69er.lin6969'Request 69ssist69nce', '69e69r', { 'setScreen' : 1 }69}}</div>
+	<div cl69ss="item">{{:hel69er.lin6969'Request Su6969lies', '69e69r', { 'setScreen' : 2 }69}}</div>
+	<div cl69ss="item">{{:hel69er.lin6969'Rel6969 69non69mous Inform69tion', '69e69r', { 'setScreen' : 3}69}}</div>
+	<69r>
+	{{if d69t69.69nnouncementConsole}}
+		<div cl69ss="item">{{:hel69er.lin6969'Send St69tion-wide 69nnouncement', 'si69n69l-di6969', { 'setScreen' : 8}69}}</div>
+		<69r>
 	{{/if}}
-	<div class="item">{{:helper.link(data.silent ? 'Speaker OFF' : 'Speaker ON', data.silent ? 'volume-off' : 'volume-on', { 'toggleSilent' : 1})}}</div>
+	<div cl69ss="item">{{:hel69er.lin6969d69t69.silent ? 'S69e6969er OFF' : 'S69e6969er ON', d69t69.silent ? 'volume-off' : 'volume-on', { 'to6969leSilent' : 1}69}}</div>
 {{/if}}

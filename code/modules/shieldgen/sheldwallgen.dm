@@ -6,9 +6,9 @@
 		icon_state = "Shield_Gen"
 		anchored = FALSE
 		density = TRUE
-		req_access = list(access_engine_equip)
+		re69_access = list(access_engine_e69uip)
 		circuit = /obj/item/electronics/circuitboard/shieldwallgen
-		var/shield_type = /obj/machinery/shieldwall //Overridden by excelsior variant
+		var/shield_type = /obj/machinery/shieldwall //Overridden by excelsior69ariant
 		var/active = 0
 		var/power = 0
 		var/state = 0
@@ -24,35 +24,35 @@
 		var/storedpower = 0
 		flags = CONDUCT
 		//There have to be at least two posts, so these are effectively doubled
-		var/power_draw = 30000 //30 kW. How much power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of more power draw.
+		var/power_draw = 30000 //30 kW. How69uch power is drawn from powernet. Increase this to allow the generator to sustain longer shields, at the cost of69ore power draw.
 		var/max_stored_power = 50000 //50 kW
-		use_power = NO_POWER_USE	//Draws directly from power net. Does not use APC power.
+		use_power =69O_POWER_USE	//Draws directly from power69et. Does69ot use APC power.
 		var/max_field_dist = 8
 		var/stunmode = FALSE
 		var/stun_chance = 1
 
-/obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
+/obj/machinery/shieldwallgen/attack_hand(mob/user as69ob)
 	if(state != 1)
-		to_chat(user, "\red \The [src] needs to be firmly secured to the floor first.")
+		to_chat(user, "\red \The 69src6969eeds to be firmly secured to the floor first.")
 		return 1
 	if(src.locked && !issilicon(user))
 		to_chat(user, "\red The controls are locked!")
 		return 1
 	if(power != 1)
-		to_chat(user, "\red \The [src] needs to be powered by wire underneath.")
+		to_chat(user, "\red \The 69src6969eeds to be powered by wire underneath.")
 		return 1
 
 	if(src.active >= 1)
 		src.active = 0
 
-		user.visible_message("[user] turned \the [src] off.", \
-			"You turn off \the [src].", \
+		user.visible_message("69user69 turned \the 69src69 off.", \
+			"You turn off \the 69src69.", \
 			"You hear heavy droning fade out.")
 		for(var/dir in list(1,2,4,8)) src.cleanup(dir)
 	else
 		src.active = 1
-		user.visible_message("[user] turned \the [src] on.", \
-			"You turn on \the [src].", \
+		user.visible_message("69user69 turned \the 69src69 on.", \
+			"You turn on \the 69src69.", \
 			"You hear heavy droning.")
 	src.add_fingerprint(user)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
@@ -73,11 +73,11 @@
 		power = 0
 		return 0
 
-	var/shieldload = between(500, max_stored_power - storedpower, power_draw)	//what we try to draw
+	var/shieldload = between(500,69ax_stored_power - storedpower, power_draw)	//what we try to draw
 	shieldload = PN.draw_power(shieldload) //what we actually get
 	storedpower += shieldload
 
-	//If we're still in the red, then there must not be enough available power to cover our load.
+	//If we're still in the red, then there69ust69ot be enough available power to cover our load.
 	if(storedpower <= 0)
 		power = 0
 		return 0
@@ -102,8 +102,8 @@
 	if(power)
 		storedpower -= 2500 //the generator post itself uses some power
 
-	if(storedpower >= max_stored_power)
-		storedpower = max_stored_power
+	if(storedpower >=69ax_stored_power)
+		storedpower =69ax_stored_power
 	if(storedpower <= 0)
 		storedpower = 0
 
@@ -122,7 +122,7 @@
 
 
 		if(!power)
-			visible_message("\red The [src.name] shuts down due to lack of power!", \
+			visible_message("\red The 69src.name69 shuts down due to lack of power!", \
 				"You hear heavy droning fade out")
 			active = FALSE
 			for(var/fdir in cardinal)
@@ -133,7 +133,7 @@
 /obj/machinery/shieldwallgen/proc/stun()
 	for(var/mob/M in range(src,max_field_dist))
 		if(can_stun(M) && prob(stun_chance))
-			var/obj/item/projectile/beam/stun/P = new(src.loc)
+			var/obj/item/projectile/beam/stun/P =69ew(src.loc)
 			P.shot_from = src
 			P.launch(M)
 
@@ -147,12 +147,12 @@
 
 	var/field_found = 0
 	var/turf/T = src.loc
-	var/obj/machinery/shieldwallgen/G = null
-	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to [max_field_dist] tiles away for another generator
+	var/obj/machinery/shieldwallgen/G =69ull
+	for(var/dist = 1, dist <=69ax_field_dist, dist += 1) // checks out to 69max_field_dist69 tiles away for another generator
 		T = get_step(T, f_dir)
 
 		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
-		if(F && (F.dir == f_dir || F.dir == reverse_dir[f_dir]))
+		if(F && (F.dir == f_dir || F.dir == reverse_dir69f_dir69))
 			field_found++
 
 		G = (locate(/obj/machinery/shieldwallgen) in T)
@@ -160,7 +160,7 @@
 		if(G && G.active && !G.stunmode)
 			break
 		else
-			G = null
+			G =69ull
 
 	if(isnull(G))
 		return
@@ -174,7 +174,7 @@
 	T = src.loc
 	for(var/dist = 1, dist <= get_dist(src, G)-1, dist += 1) // creates each field tile
 		T = get_step(T, f_dir)
-		var/obj/machinery/shieldwall/CF = new shield_type(src, G) //(ref to this gen, ref to connected gen)
+		var/obj/machinery/shieldwall/CF =69ew shield_type(src, G) //(ref to this gen, ref to connected gen)
 		CF.loc = T
 		CF.set_dir(f_dir)
 
@@ -183,19 +183,19 @@
 
 	var/turf/T = src.loc
 
-	for(var/dist = 1, dist <= max_field_dist, dist += 1) // checks out to 8 tiles away for fields
+	for(var/dist = 1, dist <=69ax_field_dist, dist += 1) // checks out to 8 tiles away for fields
 		T = get_step(T, c_dir)
 
 		var/obj/machinery/shieldwall/F = locate(/obj/machinery/shieldwall) in T
-		if(F && (F.dir == c_dir || F.dir == reverse_dir[c_dir]))
-			qdel(F)
+		if(F && (F.dir == c_dir || F.dir == reverse_dir69c_dir69))
+			69del(F)
 
 		var/obj/machinery/shieldwallgen/G = (locate(/obj/machinery/shieldwallgen) in T)
 		if(G && G.active && !G.stunmode)
 			break
 
 
-/obj/machinery/shieldwallgen/attackby(obj/item/I, mob/user)
+/obj/machinery/shieldwallgen/attackby(obj/item/I,69ob/user)
 
 	if(default_deconstruction(I, user))
 		return
@@ -204,8 +204,8 @@
 		return
 
 
-	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+	if(69UALITY_BOLT_TURNING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_BOLT_TURNING, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 			if(active)
 				to_chat(user, "Turn off the field generator first.")
 				return
@@ -227,13 +227,13 @@
 	if(istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		if (src.allowed(user))
 			src.locked = !src.locked
-			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
+			to_chat(user, "Controls are69ow 69src.locked ? "locked." : "unlocked."69")
 		else
 			to_chat(user, "\red Access denied.")
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [I.name] by [user.name]!")
+		visible_message("\red The 69src.name69 has been hit with \the 69I.name69 by 69user.name69!")
 
 
 /obj/machinery/shieldwallgen/emag_act()
@@ -273,10 +273,10 @@
 		var/mob/U
 		var/obj/machinery/shieldwallgen/gen_primary
 		var/obj/machinery/shieldwallgen/gen_secondary
-		var/power_usage = 2500	//how much power it takes to sustain the shield
-		var/generate_power_usage = 7500	//how much power it takes to start up the shield
+		var/power_usage = 2500	//how69uch power it takes to sustain the shield
+		var/generate_power_usage = 7500	//how69uch power it takes to start up the shield
 
-/obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A, var/obj/machinery/shieldwallgen/B)
+/obj/machinery/shieldwall/New(var/obj/machinery/shieldwallgen/A,69ar/obj/machinery/shieldwallgen/B)
 	..()
 	update_nearby_tiles()
 	src.gen_primary = A
@@ -288,24 +288,24 @@
 		else
 			B.storedpower -= generate_power_usage
 	else
-		qdel(src) //need at least two generator posts
+		69del(src) //need at least two generator posts
 
 /obj/machinery/shieldwall/Destroy()
 	update_nearby_tiles()
 	. = ..()
 
-/obj/machinery/shieldwall/attack_hand(mob/user as mob)
+/obj/machinery/shieldwall/attack_hand(mob/user as69ob)
 	return
 
 
 /obj/machinery/shieldwall/Process()
 	if(needs_power)
 		if(isnull(gen_primary)||isnull(gen_secondary))
-			qdel(src)
+			69del(src)
 			return
 
 		if(!(gen_primary.active) || !(gen_secondary.active) || (gen_primary.stunmode) || (gen_secondary.stunmode))
-			qdel(src)
+			69del(src)
 			return
 
 		if(prob(50))
@@ -356,7 +356,7 @@
 /obj/machinery/shieldwall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) &&69over.checkpass(PASSGLASS))
 		return prob(20)
 	else
 		if (istype(mover, /obj/item/projectile))

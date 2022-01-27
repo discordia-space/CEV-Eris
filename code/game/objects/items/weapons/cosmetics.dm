@@ -30,18 +30,18 @@
 /obj/item/lipstick/random/Initialize(mapload)
 	. = ..()
 	colour = pick("red","purple","jade","black")
-	name = "[colour] lipstick"
+	name = "69colour69 lipstick"
 
 
 /obj/item/lipstick/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>You twist \the [src] [open ? "closed" : "open"].</span>")
+	to_chat(user, "<span class='notice'>You twist \the 69src69 69open ? "closed" : "open"69.</span>")
 	open = !open
 	if(open)
-		icon_state = "[initial(icon_state)]_[colour]"
+		icon_state = "69initial(icon_state)69_69colour69"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/lipstick/attack(mob/M as mob, mob/user as mob)
+/obj/item/lipstick/attack(mob/M as69ob,69ob/user as69ob)
 	if(!open)
 		return
 
@@ -49,21 +49,21 @@
 		return
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		if(H.lip_style)	//if they already have lipstick on
 			to_chat(user, SPAN_NOTICE("You need to wipe off the old lipstick first!"))
 			return
 		if(H == user)
-			user.visible_message(SPAN_NOTICE("[user] does their lips with \the [src]."), \
-								 SPAN_NOTICE("You take a moment to apply \the [src]. Perfect!"))
+			user.visible_message(SPAN_NOTICE("69user69 does their lips with \the 69src69."), \
+								 SPAN_NOTICE("You take a69oment to apply \the 69src69. Perfect!"))
 			H.lip_style = colour
 			H.update_body()
 		else
-			user.visible_message(SPAN_WARNING("[user] begins to do [H]'s lips with \the [src]."), \
-								 SPAN_NOTICE("You begin to apply \the [src]."))
+			user.visible_message(SPAN_WARNING("69user69 begins to do 69H69's lips with \the 69src69."), \
+								 SPAN_NOTICE("You begin to apply \the 69src69."))
 			if(do_mob(user, H, 30))	//user needs to keep their active hand, H does not.
-				user.visible_message(SPAN_NOTICE("[user] does [H]'s lips with \the [src]."), \
-									 SPAN_NOTICE("You apply \the [src]."))
+				user.visible_message(SPAN_NOTICE("69user69 does 69H69's lips with \the 69src69."), \
+									 SPAN_NOTICE("You apply \the 69src69."))
 				H.lip_style = colour
 				H.update_body()
 	else
@@ -74,7 +74,7 @@
 
 /obj/item/haircomb //sparklysheep's comb
 	name = "purple comb"
-	desc = "A pristine purple comb made from flexible plastic."
+	desc = "A pristine purple comb69ade from flexible plastic."
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	icon = 'icons/obj/items.dmi'
@@ -84,4 +84,4 @@
 	rarity_value = 12.5
 
 /obj/item/haircomb/attack_self(mob/user)
-	user.visible_message("<span class='notice'>[user] uses [src] to comb their hair with incredible style and sophistication. What a [user.gender == FEMALE ? "lady" : "guy"].</span>")
+	user.visible_message("<span class='notice'>69user69 uses 69src69 to comb their hair with incredible style and sophistication. What a 69user.gender == FEMALE ? "lady" : "guy"69.</span>")

@@ -4,7 +4,7 @@
 /datum/perk/oddity/fast_walker
 	name = "Fast Walker"
 	desc = "Slow and steady wins the race. Prove them wrong. \
-			You move slightly faster."
+			You69ove slightly faster."
 	icon_state = "fast" // https://game-icons.net/1x1/delapouite/fast-forward-button.html
 
 /datum/perk/oddity/ear_of_quicksilver
@@ -22,7 +22,7 @@
 /datum/perk/oddity/terrible_fate
 	name = "Terrible Fate"
 	desc = "You realize the painful truth of death. You don't want to die and despise death - dying is a unmistakable horror to you. \
-			Anyone who is around you at the moment of your death must roll a Vigilance sanity check. If they fail, their sanity will instantly be dropped to 0."
+			Anyone who is around you at the69oment of your death69ust roll a69igilance sanity check. If they fail, their sanity will instantly be dropped to 0."
 	icon_state = "murder" // https://game-icons.net/1x1/delapouite/chalk-outline-murder.html
 
 /datum/perk/oddity/unfinished_delivery
@@ -33,7 +33,7 @@
 
 /datum/perk/oddity/lungs_of_iron
 	name = "Lungs of Iron"
-	desc = "Your lungs have improved volume. You could easily win a diving contest. \
+	desc = "Your lungs have improved69olume. You could easily win a diving contest. \
 			You take only half breathing damage."
 	icon_state = "lungs" // https://game-icons.net/1x1/lorc/one-eyed.html
 
@@ -78,7 +78,7 @@
 
 /datum/perk/oddity/charming_personality
 	name = "Charming Personality"
-	desc = "A little wink and a confident smile goes far in this place. People are more comfortable with your company. \
+	desc = "A little wink and a confident smile goes far in this place. People are69ore comfortable with your company. \
 			They will recover sanity around you."
 	icon_state = "flowers" // https://game-icons.net/1x1/lorc/flowers.html
 
@@ -110,8 +110,8 @@
 
 /datum/perk/oddity/chaingun_smoker
 	name = "Chaingun Smoker"
-	desc = "The cigarette is your way of life. It makes you feel less sick and tougher when you chomp down on cigars. \
-			You heal a slight amount by smoking and recover sanity more quickly."
+	desc = "The cigarette is your way of life. It69akes you feel less sick and tougher when you chomp down on cigars. \
+			You heal a slight amount by smoking and recover sanity69ore quickly."
 	icon_state = "cigarette" // https://game-icons.net
 
 /datum/perk/oddity/nightcrawler
@@ -126,9 +126,9 @@
 	icon_state = "robber_hand" // https://game-icons.net/1x1/darkzaitzev/robber-hand.html
 
 /datum/perk/oddity/quiet_as_mouse
-	name = "Quiet as a Mouse"
+	name = "Quiet as a69ouse"
 	desc = "Being deadly, easy. Silent? Even easier now. \
-			You are 50% more quiet."
+			You are 50%69ore quiet."
 	icon_state = "footsteps" // https://game-icons.net
 
 /datum/perk/oddity/quiet_as_mouse/assign(mob/living/carbon/human/H)
@@ -149,14 +149,14 @@
 
 /datum/perk/oddity/junkborn
 	name = "Junkborn"
-	desc = "One man's trash is a another man's comeup. \
+	desc = "One69an's trash is a another69an's comeup. \
 			You have a higher chance of finding a rare item in trash piles."
 	icon_state = "treasure" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete
 	name = "Ass of Concrete"
-	desc = "Years of training your body made you a hulk of a person. No more pushing around. \
-			Nobody can move past you, even on help intent. You wont slip in gravity."
+	desc = "Years of training your body69ade you a hulk of a person. No69ore pushing around. \
+			Nobody can69ove past you, even on help intent. You wont slip in gravity."
 	icon_state = "muscular" // https://game-icons.net
 
 /datum/perk/oddity/ass_of_concrete/assign(mob/living/carbon/human/H)
@@ -171,10 +171,10 @@
 
 /datum/perk/oddity/toxic_revenger
 	name = "Toxic Revenger"
-	desc = "A heart of gold does not matter when blood is toxic. Those who breathe your air, share your fate. \
+	desc = "A heart of gold does not69atter when blood is toxic. Those who breathe your air, share your fate. \
 			People around you receive toxin damage."
 	icon_state = "Hazmat" // https://game-icons.net
-	var/cooldown = 1 MINUTES
+	var/cooldown = 169INUTES
 	var/initial_time
 
 /datum/perk/oddity/toxic_revenger/assign(mob/living/carbon/human/H)
@@ -189,7 +189,7 @@
 	if(world.time < initial_time + cooldown)
 		return
 	initial_time = world.time
-	for(var/mob/living/L in viewers(holder, 5))
+	for(var/mob/living/L in69iewers(holder, 5))
 		if(!L)
 			continue
 		if(ishuman(L))
@@ -198,7 +198,7 @@
 				continue
 		L.reagents?.add_reagent("toxin", 5)
 		L.emote("cough")
-		to_chat(L, SPAN_WARNING("[holder] emits a strange smell."))
+		to_chat(L, SPAN_WARNING("69holder69 emits a strange smell."))
 
 /datum/perk/oddity/absolute_grab
 	name = "Absolute Grab"
@@ -208,18 +208,18 @@
 
 /datum/perk/oddity/sure_step
 	name = "Sure Step"
-	desc = " You are more likely to avoid traps."
+	desc = " You are69ore likely to avoid traps."
 	icon_state = "mantrap"
 
 /datum/perk/oddity/market_prof
 	name = "Market Professional"
-	desc = "Just by looking at the item you can know how much it cost."
+	desc = "Just by looking at the item you can know how69uch it cost."
 	icon_state = "market_prof"
 
 /datum/perk/oddity/gunsmith
 	name = "Gunsmith"
 	desc = "You are skilled in gun production. \
-			You produce twice as much ammo from ammo kits, and have more options to pick from when assembling a gun."
+			You produce twice as69uch ammo from ammo kits, and have69ore options to pick from when assembling a gun."
 	icon_state = "ammo_box" //https://game-icons.net/1x1/sbed/ammo-box.html
 
 ///////////////////////////////////////
@@ -234,7 +234,7 @@
 	desc = "You have been touched by the divine. You now provide a weak healing aura, healing both brute and burn damage to any NeoThelogists nearby as well as yourself."
 	icon_state = "aura"  //https://game-icons.net/1x1/lorc/aura.html
 	var/healing_power = 0.1
-	var/cooldown = 1 SECONDS // Just to make sure that perk don't go berserk.
+	var/cooldown = 1 SECONDS // Just to69ake sure that perk don't go berserk.
 	var/initial_time
 
 /datum/perk/nt_oddity/holy_light/assign(mob/living/carbon/human/H)
@@ -249,7 +249,7 @@
 	if(world.time < initial_time + cooldown)
 		return
 	initial_time = world.time
-	for(var/mob/living/L in viewers(holder, 7))
+	for(var/mob/living/L in69iewers(holder, 7))
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			if(H.stat == DEAD || !(H.get_core_implant(/obj/item/implant/core_implant/cruciform)))
@@ -288,20 +288,20 @@
 
 /datum/perk/big_shot
 	name = "BIG SHOT"
-	desc = "YOU\'RE THE BEST \[SALESMAN 2321\] AND IT SHOWS! YOU\'RE NOT IN THIS FOR \[THE FREE SPACEBUX\], YOU\'RE HERE FOR FOR \[THE FREEDOM\]"
+	desc = "YOU\'RE THE BEST \69SALESMAN 2321\69 AND IT SHOWS! YOU\'RE NOT IN THIS FOR \69THE FREE SPACEBUX\69, YOU\'RE HERE FOR FOR \69THE FREEDOM\69"
 	icon_state = "market_prof"
 
 	var/enough_kromer = TRUE
 
 	var/obj/item/clothing/mask/gas/big_shot/my_mask
 
-	gain_text = "You feel the KROMERS flowing through you. You feel \[very marketable\]."
-	lose_text = "You snap out of a bizarre commerce-themed trance. You feel much less financially stable. That was weird."
+	gain_text = "You feel the KROMERS flowing through you. You feel \69very69arketable\69."
+	lose_text = "You snap out of a bizarre commerce-themed trance. You feel69uch less financially stable. That was weird."
 
 	var/static/list/list_of_great_deals = list(
-		"Hochi Mama",
+		"Hochi69ama",
 		"Great Deal",
-		"HOT \[hyperlink blocked\] IN YOUR SECTOR",
+		"HOT \69hyperlink blocked\69 IN YOUR SECTOR",
 		"hyperlink blocked",
 		"?!$@!",
 		"help",
@@ -327,7 +327,7 @@
 		"BIG",
 		"BIG! BIG BIG!",
 		"TELEKRYSTALS CHEAP",
-		"[pick(1, 5, 8, 1997)] KROMER CHEAP!",
+		"69pick(1, 5, 8, 1997)69 KROMER CHEAP!",
 		"Burning acid",
 		"A Ride around the Colony on Our Specil Kestrel",
 		"Breathe",
@@ -336,12 +336,12 @@
 		"BUY",
 		"The Low Low Price Of",
 		"Frozen Chicken",
-		"Free Pizza Voucher",
-		"It Burns! Ow! Stop! Help Me! It Burns!",
+		"Free Pizza69oucher",
+		"It Burns! Ow! Stop! Help69e! It Burns!",
 		"Clown Around Town",
 		"Artist Around Ship",
 		"Communion",
-		"TOO MANY EXCESS VACATION DAYS?? TAKE A GOD DAMN VACATION STRAIGHT TO HELL!",
+		"TOO69ANY EXCESS69ACATION DAYS?? TAKE A GOD DAMN69ACATION STRAIGHT TO HELL!",
 		"Easels",
 		"Children eat free",
 		"Five small payments of 599.45!",
@@ -355,15 +355,15 @@
 		"worm",
 		"funky",
 		"thrifty shopper",
-		"I'm young and I'm lonely, see my photos",
+		"I'm young and I'm lonely, see69y photos",
 		"hyperlink expunged",
-		"Pass My Savings Onto You!",
+		"Pass69y Savings Onto You!",
 		"Do you consent to the terms and agreements?",
 		"consent to the terms and agreements",
 		"we use cookies",
 		"Request Accepted",
 		"Stranger",
-		"That's not very Big Shot of you",
+		"That's not69ery Big Shot of you",
 		"VALUES",
 		"free ink and toner",
 		"Oxycodone without prescription!",
@@ -372,11 +372,11 @@
 		"maps of deepmaint download for free",
 		"proceed",
 		"PROCEED",
-		"one weird tip discovered by a mom",
+		"one weird tip discovered by a69om",
 		"she looks half her age!",
 		"whoa nelly",
-		"it;s yours my friend",
-		"as long as you have enough [pick("Kromer", "Credits", "Rubies", "Rupees", "dosh")]",
+		"it;s yours69y friend",
+		"as long as you have enough 69pick("Kromer", "Credits", "Rubies", "Rupees", "dosh")69",
 		"Total Jackass stunts",
 		"Becomed",
 		"$!$!",
@@ -386,15 +386,15 @@
 		"The Big One",
 		"THERE'S NOTHING TO FEAR EXCEPT",
 		"ENL4RGE Yourself",
-		"DVDs of ANY movie at Half-pr1ce",
+		"DVDs of ANY69ovie at Half-pr1ce",
 		"3 WAYS TO EVADE BANS",
 		"use this simple trick to evade chat filter",
-		"TELL ME MORE",
+		"TELL69E69ORE",
 		"Hyperlink Blocked",
 		"Small business owner",
-		"you should kill your \[HYPERLINK BLOCKED\]",
-		"here's why  \[HYPERLINK BLOCKED\] never love you",
-		"THERE'S NOTHING WRONG WITH HAVING A NICE \[Splurge\] EVERY ONCE IN A WHILE",
+		"you should kill your \69HYPERLINK BLOCKED\69",
+		"here's why  \69HYPERLINK BLOCKED\69 never love you",
+		"THERE'S NOTHING WRONG WITH HAVING A NICE \69Splurge\69 EVERY ONCE IN A WHILE",
 		"Healthy Breakfast Options",
 		"which space ranger are you",
 		"take this quirky quiz",
@@ -449,8 +449,8 @@
 	if(!..())
 		return
 	var/datum/money_account/KROMER = holder.mind.initial_account
-	if(holder.get_equipped_item(slot_wear_mask) != my_mask)
-		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT VERY BIG SHOT OF YOU", station_name(), 1997))
+	if(holder.get_equipped_item(slot_wear_mask) !=69y_mask)
+		if(!charge_to_account(KROMER.account_number, KROMER.get_name(), "THIS WAS NOT69ERY BIG SHOT OF YOU", station_name(), 1997))
 			holder.adjustCloneLoss(rand(19, 97))
 			to_chat(src, SPAN_DANGER("You feel like you didn't have enough KROMERS."))
 		holder.stats.removePerk(type)
@@ -458,7 +458,7 @@
 	if(world.time < initial_time + cooldown)
 		return
 	initial_time = world.time
-	desc = "YOU\'RE THE BEST \[SALESMAN 2321\] AND IT SHOWS! YOU\'RE NOT IN THIS FOR \[THE FREE SPACEBUX\], YOU\'RE HERE FOR FOR \[[pick(list_of_great_deals)]\]"
+	desc = "YOU\'RE THE BEST \69SALESMAN 2321\69 AND IT SHOWS! YOU\'RE NOT IN THIS FOR \69THE FREE SPACEBUX\69, YOU\'RE HERE FOR FOR \6969pick(list_of_great_deals)69\69"
 	my_mask.style = rand(-2, 2)//EXCLUSIVE OFFICIAL SPAMTON
 	var/KROMER_GOOD = TRUE
 	if(KROMER)
@@ -495,15 +495,15 @@
 		//Repeat the first letter to create a stutter.
 		if(prob(80))
 			if(length(word) > 3)
-				word = "\[[pick(list_of_great_deals)]\]"
+				word = "\6969pick(list_of_great_deals)69\69"
 			else
-				word = "\[[pick(list_of_great_deals)]\] [word]"
+				word = "\6969pick(list_of_great_deals)69\69 69word69"
 		else
 			if(prob(75))
-				word = "[word] \[[pick(list_of_great_deals)]\]"
+				word = "69word69 \6969pick(list_of_great_deals)69\69"
 			else
-				word = "  [word]  "
+				word = "  69word69  "
 
-		split_phrase[index] = word
+		split_phrase69index69 = word
 
 	return sanitize(jointext(split_phrase," "))

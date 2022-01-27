@@ -12,23 +12,23 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 //THIS IS THE INIT ORDER
 //Master -> SSPreInit -> GLOB -> world -> config -> SSInit -> Failsafe
-//GOT IT MEMORIZED?
+//GOT IT69EMORIZED?
 
 /datum/controller/master
 	name = "Master"
 
-	// Are we processing (higher values increase the processing delay by n ticks)
+	// Are we processing (higher69alues increase the processing delay by n ticks)
 	var/processing = TRUE
-	// How many times have we ran
+	// How69any times have we ran
 	var/iteration = 0
 
-	// world.time of last fire, for tracking lag outside of the mc
+	// world.time of last fire, for tracking lag outside of the69c
 	var/last_run
 
 	// List of subsystems to process().
 	var/list/subsystems
 
-	// Vars for keeping track of tick drift.
+	//69ars for keeping track of tick drift.
 	var/init_timeofday
 	var/init_time
 	var/tickdrift = 0
@@ -46,7 +46,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/datum/controller/subsystem/queue_tail //End of queue linked list (used for appending to the list)
 	var/queue_priority_count = 0 //Running total so that we don't have to loop thru the queue each run to split up the tick
 	var/queue_priority_count_bg = 0 //Same, but for background subsystems
-	var/map_loading = FALSE	//Are we loading in a new map?
+	var/map_loading = FALSE	//Are we loading in a new69ap?
 
 	var/list/total_run_times
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
@@ -99,17 +99,17 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	sortTim(subsystems, /proc/cmp_subsystem_init)
 	reverseRange(subsystems)
 	for(var/datum/controller/subsystem/ss in subsystems)
-		log_world("Shutting down [ss.name] subsystem...")
+		log_world("Shutting down 69ss.name69 subsystem...")
 		ss.Shutdown()
 	log_world("Shutdown complete")
 
-// Returns 1 if we created a new mc, 0 if we couldn't due to a recent restart,
+// Returns 1 if we created a new69c, 0 if we couldn't due to a recent restart,
 //	-1 if we encountered a runtime trying to recreate it
 /proc/Recreate_MC()
 	. = -1 //so if we runtime, things know we failed
-	if (world.time < Master.restart_timeout)
+	if (world.time <69aster.restart_timeout)
 		return 0
-	if (world.time < Master.restart_clear)
+	if (world.time <69aster.restart_clear)
 		Master.restart_count *= 0.5
 
 	var/delay = 50 * ++Master.restart_count
@@ -124,45 +124,45 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 
 /datum/controller/master/Recover()
-	var/msg = "## DEBUG: [time2text(world.timeofday)] MC restarted. Reports:\n"
-	for (var/varname in Master.vars)
+	var/msg = "## DEBUG: 69time2text(world.timeofday)6969C restarted. Reports:\n"
+	for (var/varname in69aster.vars)
 		switch (varname)
 			if("name", "tag", "bestF", "type", "parent_type", "vars", "statclick") // Built-in junk.
 				continue
 			else
-				var/varval = Master.vars[varname]
-				if (istype(varval, /datum)) // Check if it has a type var.
-					var/datum/D = varval
-					msg += "\t [varname] = [D]([D.type])\n"
+				var/varval =69aster.vars69varname69
+				if (istype(varval, /datum)) // Check if it has a type69ar.
+					var/datum/D =69arval
+					msg += "\t 69varname69 = 69D69(69D.type69)\n"
 				else
-					msg += "\t [varname] = [varval]\n"
-	to_chat(world, msg)
+					msg += "\t 69varname69 = 69varval69\n"
+	to_chat(world,69sg)
 
-	var/datum/controller/subsystem/BadBoy = Master.last_type_processed
+	var/datum/controller/subsystem/BadBoy =69aster.last_type_processed
 	var/FireHim = FALSE
 	if(istype(BadBoy))
 		msg = null
 		LAZYINITLIST(BadBoy.failure_strikes)
-		switch(++BadBoy.failure_strikes[BadBoy.type])
+		switch(++BadBoy.failure_strikes69BadBoy.type69)
 			if(2)
-				msg = "The [BadBoy.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
+				msg = "The 69BadBoy.name69 subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
 				FireHim = TRUE
 			if(3)
-				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
+				msg = "The 69BadBoy.name69 subsystem seems to be destabilizing the69C and will be offlined."
 				BadBoy.flags |= SS_NO_FIRE
 		if(msg)
-			to_chat(admins, "<span class='boldannounce'>[msg]</span>")
-			to_chat(world, msg)
+			to_chat(admins, "<span class='boldannounce'>69msg69</span>")
+			to_chat(world,69sg)
 
 	if (istype(Master.subsystems))
 		if(FireHim)
 			Master.subsystems += new BadBoy.type	//NEW_SS_GLOBAL will remove the old one
-		subsystems = Master.subsystems
-		current_runlevel = Master.current_runlevel
-		total_run_times = Master.total_run_times
+		subsystems =69aster.subsystems
+		current_runlevel =69aster.current_runlevel
+		total_run_times =69aster.total_run_times
 		StartProcessing(10)
 	else
-		to_chat(world, "<span class='boldannounce'>The Master Controller is having some issues, we will need to re-initialize EVERYTHING</span>")
+		to_chat(world, "<span class='boldannounce'>The69aster Controller is having some issues, we will need to re-initialize EVERYTHING</span>")
 		Initialize(20, TRUE)
 
 
@@ -193,8 +193,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10
 
-	var/msg = "Initializations complete within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	var/msg = "Initializations complete within 69time69 second69time == 1 ? "" : "s"69!"
+	to_chat(world, "<span class='boldannounce'>69msg69</span>")
 	log_world(msg)
 
 	if (!current_runlevel)
@@ -202,7 +202,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
-	//Todo make this a config
+	//Todo69ake this a config
 	world.change_fps(config.fps)
 
 	var/initialized_tod = REALTIMEOFDAY
@@ -216,13 +216,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(isnull(old_runlevel))
 		old_runlevel = "NULL"
 
-	report_progress("MC: Runlevel changed from [old_runlevel] to [new_runlevel]")
-	testing("MC: Runlevel changed from [old_runlevel] to [new_runlevel]")
+	report_progress("MC: Runlevel changed from 69old_runlevel69 to 69new_runlevel69")
+	testing("MC: Runlevel changed from 69old_runlevel69 to 69new_runlevel69")
 	current_runlevel = log(2, new_runlevel) + 1
 	if(current_runlevel < 1)
-		CRASH("Attempted to set invalid runlevel: [new_runlevel]")
+		CRASH("Attempted to set invalid runlevel: 69new_runlevel69")
 
-// Starts the mc, and sticks around to restart it if the loop ever ends.
+// Starts the69c, and sticks around to restart it if the loop ever ends.
 /datum/controller/master/proc/StartProcessing(delay)
 	set waitfor = 0
 	if(delay)
@@ -231,23 +231,23 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/rtn = Loop()
 	if (rtn > 0 || processing < 0)
 		return //this was suppose to happen.
-	//loop ended, restart the mc
+	//loop ended, restart the69c
 	log_game("MC crashed or runtimed, restarting")
 	message_admins("MC crashed or runtimed, restarting")
 	var/rtn2 = Recreate_MC()
 	if (rtn2 <= 0)
-		log_game("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
-		message_admins("Failed to recreate MC (Error code: [rtn2]), it's up to the failsafe now")
-		send2coders(message = "Failed to recreate Master Controller (Error code: [rtn2]), it's up to the failsafe now", admiralty = 1)
+		log_game("Failed to recreate69C (Error code: 69rtn269), it's up to the failsafe now")
+		message_admins("Failed to recreate69C (Error code: 69rtn269), it's up to the failsafe now")
+		send2coders(message = "Failed to recreate69aster Controller (Error code: 69rtn269), it's up to the failsafe now", admiralty = 1)
 		Failsafe.defcon = 2
 
-// Main loop.
+//69ain loop.
 /datum/controller/master/proc/Loop()
 	. = -1
-	//Prep the loop (most of this is because we want MC restarts to reset as much state as we can, and because
-	//	local vars rock
+	//Prep the loop (most of this is because we want69C restarts to reset as69uch state as we can, and because
+	//	local69ars rock
 
-	//all this shit is here so that flag edits can be refreshed by restarting the MC. (and for speed)
+	//all this shit is here so that flag edits can be refreshed by restarting the69C. (and for speed)
 	var/list/tickersubsystems = list()
 	var/list/runlevel_sorted_subsystems = list(list())	//ensure we always have at least one runlevel
 	var/timer = world.time
@@ -268,25 +268,25 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		var/ss_runlevels = SS.runlevels
 		var/added_to_any = FALSE
 		for(var/I in 1 to bitflags.len)
-			if(ss_runlevels & bitflags[I])
+			if(ss_runlevels & bitflags69I69)
 				while(runlevel_sorted_subsystems.len < I)
 					runlevel_sorted_subsystems += list(list())
-				runlevel_sorted_subsystems[I] += SS
+				runlevel_sorted_subsystems69I69 += SS
 				added_to_any = TRUE
 		if(!added_to_any)
-			WARNING("[SS.name] subsystem is not SS_NO_FIRE but also does not have any runlevels set!")
+			WARNING("69SS.name69 subsystem is not SS_NO_FIRE but also does not have any runlevels set!")
 
 	queue_head = null
 	queue_tail = null
 	//these sort by lower priorities first to reduce the number of loops needed to add subsequent SS's to the queue
-	//(higher subsystems will be sooner in the queue, adding them later in the loop means we don't have to loop thru them next queue add)
+	//(higher subsystems will be sooner in the queue, adding them later in the loop69eans we don't have to loop thru them next queue add)
 	sortTim(tickersubsystems, /proc/cmp_subsystem_priority)
 	for(var/I in runlevel_sorted_subsystems)
 		sortTim(runlevel_sorted_subsystems, /proc/cmp_subsystem_priority)
 		I += tickersubsystems
 
 	var/cached_runlevel = current_runlevel
-	var/list/current_runlevel_subsystems = runlevel_sorted_subsystems[cached_runlevel]
+	var/list/current_runlevel_subsystems = runlevel_sorted_subsystems69cached_runlevel69
 
 	init_timeofday = REALTIMEOFDAY
 	init_time = world.time
@@ -297,21 +297,21 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/list/subsystems_to_check
 	//the actual loop.
 	while (1)
-		tickdrift = max(0, MC_AVERAGE_FAST(tickdrift, (((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag)))
+		tickdrift =69ax(0,69C_AVERAGE_FAST(tickdrift, (((REALTIMEOFDAY - init_timeofday) - (world.time - init_time)) / world.tick_lag)))
 		if (processing <= 0)
 			current_ticklimit = TICK_LIMIT_RUNNING
 			sleep(10)
 			continue
 
-		//if there are mutiple sleeping procs running before us hogging the cpu, we have to run later
-		//	because sleeps are processed in the order received, so longer sleeps are more likely to run first
+		//if there are69utiple sleeping procs running before us hogging the cpu, we have to run later
+		//	because sleeps are processed in the order received, so longer sleeps are69ore likely to run first
 		if (TICK_USAGE > TICK_LIMIT_MC)
 			sleep_delta += 2
 			current_ticklimit = TICK_LIMIT_RUNNING * 0.5
 			sleep(world.tick_lag * (processing + sleep_delta))
 			continue
 
-		sleep_delta = MC_AVERAGE_FAST(sleep_delta, 0)
+		sleep_delta =69C_AVERAGE_FAST(sleep_delta, 0)
 		if (last_run + (world.tick_lag * processing) > world.time)
 			sleep_delta += 1
 		if (TICK_USAGE > (TICK_LIMIT_MC*0.5))
@@ -327,7 +327,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			if(cached_runlevel != checking_runlevel)
 				//resechedule subsystems
 				cached_runlevel = checking_runlevel
-				current_runlevel_subsystems = runlevel_sorted_subsystems[cached_runlevel]
+				current_runlevel_subsystems = runlevel_sorted_subsystems69cached_runlevel69
 				var/stagger = world.time
 				for(var/I in current_runlevel_subsystems)
 					var/datum/controller/subsystem/SS = I
@@ -367,8 +367,8 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 		iteration++
 		last_run = world.time
-		src.sleep_delta = MC_AVERAGE_FAST(src.sleep_delta, sleep_delta)
-		current_ticklimit = TICK_LIMIT_RUNNING - (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the mc.
+		src.sleep_delta =69C_AVERAGE_FAST(src.sleep_delta, sleep_delta)
+		current_ticklimit = TICK_LIMIT_RUNNING - (TICK_LIMIT_RUNNING * 0.25) //reserve the tail 1/4 of the next tick for the69c.
 		sleep(world.tick_lag * (processing + sleep_delta))
 
 
@@ -376,9 +376,9 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 // This is what decides if something should run.
 /datum/controller/master/proc/CheckQueue(list/subsystemstocheck)
-	. = 0 //so the mc knows if we runtimed
+	. = 0 //so the69c knows if we runtimed
 
-	//we create our variables outside of the loops to save on overhead
+	//we create our69ariables outside of the loops to save on overhead
 	var/datum/controller/subsystem/SS
 	var/SS_flags
 
@@ -415,7 +415,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/tick_remaining
 	var/ran = TRUE //this is right
 	var/ran_non_ticker = FALSE
-	var/bg_calc //have we swtiched current_tick_budget to background mode yet?
+	var/bg_calc //have we swtiched current_tick_budget to background69ode yet?
 	var/tick_usage
 
 	//keep running while we have stuff to run and we haven't gone over a tick
@@ -436,7 +436,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			queue_node_flags = queue_node.flags
 			queue_node_priority = queue_node.queued_priority
 
-			//super special case, subsystems where we can't make them pause mid way through
+			//super special case, subsystems where we can't69ake them pause69id way through
 			//if we can't run them this tick (without going over a tick)
 			//we bump up their priority and attempt to run them next tick
 			//(unless we haven't even ran anything this tick, since its unlikely they will ever be able run
@@ -462,7 +462,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			else
 				tick_precentage = tick_remaining
 
-			tick_precentage = max(tick_precentage*0.5, tick_precentage-queue_node.tick_overrun)
+			tick_precentage =69ax(tick_precentage*0.5, tick_precentage-queue_node.tick_overrun)
 
 			current_ticklimit = round(TICK_USAGE + tick_precentage)
 
@@ -477,7 +477,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			tick_usage = TICK_USAGE
 			var/state = queue_node.ignite(queue_node_paused)
-//			world << "Iginite() on [queue_node.name]"
+//			world << "Iginite() on 69queue_node.name69"
 			tick_usage = TICK_USAGE - tick_usage
 
 			if (state == SS_RUNNING)
@@ -487,7 +487,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 			if (tick_usage < 0)
 				tick_usage = 0
-			queue_node.tick_overrun = max(0, MC_AVG_FAST_UP_SLOW_DOWN(queue_node.tick_overrun, tick_usage-tick_precentage))
+			queue_node.tick_overrun =69ax(0,69C_AVG_FAST_UP_SLOW_DOWN(queue_node.tick_overrun, tick_usage-tick_precentage))
 			queue_node.state = state
 
 			if (state == SS_PAUSED)
@@ -496,13 +496,13 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 				queue_node = queue_node.queue_next
 				continue
 
-			queue_node.ticks = MC_AVERAGE(queue_node.ticks, queue_node.paused_ticks)
+			queue_node.ticks =69C_AVERAGE(queue_node.ticks, queue_node.paused_ticks)
 			tick_usage += queue_node.paused_tick_usage
 
-			queue_node.tick_usage = MC_AVERAGE_FAST(queue_node.tick_usage, tick_usage)
-			total_run_times[queue_node.name] += ((tick_usage / 100) * world.tick_lag) / 10
+			queue_node.tick_usage =69C_AVERAGE_FAST(queue_node.tick_usage, tick_usage)
+			total_run_times69queue_node.name69 += ((tick_usage / 100) * world.tick_lag) / 10
 
-			queue_node.cost = MC_AVERAGE_FAST(queue_node.cost, TICK_DELTA_TO_MS(tick_usage))
+			queue_node.cost =69C_AVERAGE_FAST(queue_node.cost, TICK_DELTA_TO_MS(tick_usage))
 			queue_node.paused_ticks = 0
 			queue_node.paused_tick_usage = 0
 
@@ -533,12 +533,12 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	. = 1
 
 //resets the queue, and all subsystems, while filtering out the subsystem lists
-//	called if any mc's queue procs runtime or exit improperly.
+//	called if any69c's queue procs runtime or exit improperly.
 /datum/controller/master/proc/SoftReset(list/ticker_SS, list/runlevel_SS)
 	. = 0
-	to_chat(world, "MC: SoftReset called, resetting MC queue state.")
+	to_chat(world, "MC: SoftReset called, resetting69C queue state.")
 	if (!istype(subsystems) || !istype(ticker_SS) || !istype(runlevel_SS))
-		to_chat(world, "MC: SoftReset: Bad list contents: '[subsystems]' '[ticker_SS]' '[runlevel_SS]'")
+		to_chat(world, "MC: SoftReset: Bad list contents: '69subsystems69' '69ticker_SS69' '69runlevel_SS69'")
 		return
 	var/subsystemstocheck = subsystems + ticker_SS
 	for(var/I in runlevel_SS)
@@ -547,27 +547,27 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	for (var/thing in subsystemstocheck)
 		var/datum/controller/subsystem/SS = thing
 		if (!SS || !istype(SS))
-			//list(SS) is so if a list makes it in the subsystem list, we remove the list, not the contents
+			//list(SS) is so if a list69akes it in the subsystem list, we remove the list, not the contents
 			subsystems -= list(SS)
 			ticker_SS -= list(SS)
 			for(var/I in runlevel_SS)
 				I -= list(SS)
-			to_chat(world, "MC: SoftReset: Found bad entry in subsystem list, '[SS]'")
+			to_chat(world, "MC: SoftReset: Found bad entry in subsystem list, '69SS69'")
 			continue
 		if (SS.queue_next && !istype(SS.queue_next))
-			to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_next = '[SS.queue_next]'")
+			to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_next = '69SS.queue_next69'")
 		SS.queue_next = null
 		if (SS.queue_prev && !istype(SS.queue_prev))
-			to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_prev = '[SS.queue_prev]'")
+			to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_prev = '69SS.queue_prev69'")
 		SS.queue_prev = null
 		SS.queued_priority = 0
 		SS.queued_time = 0
 		SS.state = SS_IDLE
 	if (queue_head && !istype(queue_head))
-		to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_head = '[queue_head]'")
+		to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_head = '69queue_head69'")
 	queue_head = null
 	if (queue_tail && !istype(queue_tail))
-		to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_tail = '[queue_tail]'")
+		to_chat(world, "MC: SoftReset: Found bad data in subsystem queue, queue_tail = '69queue_tail69'")
 	queue_tail = null
 	queue_priority_count = 0
 	queue_priority_count_bg = 0
@@ -580,11 +580,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat("Byond:", "(FPS:[world.fps]) (TickCount:[world.time/world.tick_lag]) (TickDrift:[round(Master.tickdrift,1)]([round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)]%))")
-	stat("Master Controller:", statclick.update("(TickRate:[Master.processing]) (Iteration:[Master.iteration])"))
+	stat("Byond:", "(FPS:69world.fps69) (TickCount:69world.time/world.tick_lag69) (TickDrift:69round(Master.tickdrift,1)69(69round((Master.tickdrift/(world.time/world.tick_lag))*100,0.1)69%))")
+	stat("Master Controller:", statclick.update("(TickRate:69Master.processing69) (Iteration:69Master.iteration69)"))
 
 /datum/controller/master/StartLoadingMap()
-	//disallow more than one map to load at once, multithreading it will just cause race conditions
+	//disallow69ore than one69ap to load at once,69ultithreading it will just cause race conditions
 	while(map_loading)
 		stoplag()
 	for(var/S in subsystems)
@@ -599,4 +599,4 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 		SS.StopLoadingMap()
 
 /proc/report_progress(progress_message)
-	admin_notice("<span class='boldannounce'>[progress_message]</span>", R_DEBUG)
+	admin_notice("<span class='boldannounce'>69progress_message69</span>", R_DEBUG)

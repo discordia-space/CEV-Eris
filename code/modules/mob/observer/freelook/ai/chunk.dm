@@ -1,6 +1,6 @@
 // CAMERA CHUNK
 //
-// A 16x16 grid of the map with a list of turfs that can be seen, are visible and are dimmed.
+// A 16x16 grid of the69ap with a list of turfs that can be seen, are69isible and are dimmed.
 // Allows the Eye to stream these chunks and know what it can and cannot see.
 
 /datum/chunk/camera
@@ -22,13 +22,13 @@
 			cameras -= c
 
 		for(var/turf/t in c.can_see())
-			visible[t] = t
+			visible69t69 = t
 
 	for(var/mob/living/silicon/ai/AI in GLOB.living_mob_list)
 		for(var/turf/t in AI.seen_camera_turfs())
-			visible[t] = t
+			visible69t69 = t
 
-// Create a new camera chunk, since the chunks are made as they are needed.
+// Create a69ew camera chunk, since the chunks are69ade as they are69eeded.
 
 /datum/chunk/camera/New(loc, x, y, z)
 	for(var/obj/machinery/camera/c in range(16, locate(x + 8, y + 8, z)))

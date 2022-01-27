@@ -28,16 +28,16 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
-	//holder_type = /obj/item/holder/borer //Theres no inhand sprites for holding borers, it turns you into a pink square
+	//holder_type = /obj/item/holder/borer //Theres69o inhand sprites for holding borers, it turns you into a pink square
 	var/borer_level = 0                           // Level of borer.
 	var/borer_exp = 0                             // Borer experience.
 	var/last_request
 	var/used_dominate
-	var/max_chemicals = 50					// Max chemicals produce without a host
-	var/max_chemicals_inhost = 250          // Max chemicals produce within a host
-	var/chemicals = 50                      // Chemicals used for reproduction and spitting neurotoxin.
+	var/max_chemicals = 50					//69ax chemicals produce without a host
+	var/max_chemicals_inhost = 250          //69ax chemicals produce within a host
+	var/chemicals = 50                      // Chemicals used for reproduction and spitting69eurotoxin.
 	var/mob/living/carbon/human/host        // Human host for the brain worm.
-	var/truename                            // Name used for brainworm-speak.
+	var/truename                            //69ame used for brainworm-speak.
 	var/mob/living/captive_brain/host_brain // Used for swapping control of the body back and forth.
 	var/controlling = FALSE					// Used in human death check.
 	var/docile = 0                          // Sugar can stop borers from acting.
@@ -52,7 +52,7 @@
 		/mob/living/simple_animal/borer/proc/infest
 		)
 
-	// Abilities borer can use when inside the host, but not in control
+	// Abilities borer can use when inside the host, but69ot in control
 	var/list/abilities_in_host = list(
 		/mob/living/simple_animal/borer/proc/secrete_chemicals,
 		/mob/living/simple_animal/borer/proc/assume_control,
@@ -63,7 +63,7 @@
 	)
 
 	// Abilities borer can use when controlling the host
-	// (keep in mind that those have to be abilities of /mob/living/carbon, not /mob/living/simple_animal/borer)
+	// (keep in69ind that those have to be abilities of /mob/living/carbon,69ot /mob/living/simple_animal/borer)
 	var/list/abilities_in_control = list(
 		/mob/living/carbon/proc/release_control,
 		/mob/living/carbon/proc/talk_host,
@@ -83,7 +83,7 @@
 
 /mob/living/simple_animal/borer/Login()
 	..()
-	if(!roundstart && mind && !mind.antagonist.len)
+	if(!roundstart &&69ind && !mind.antagonist.len)
 		var/datum/antagonist/A = create_antag_instance(ROLE_BORER_REPRODUCED)
 		A.create_antagonist(mind,update = FALSE)
 
@@ -93,14 +93,14 @@
 	add_language(LANGUAGE_CORTICAL)
 	update_abilities()
 
-	truename = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
+	truename = "69pick("Primary","Secondary","Tertiary","Quaternary")69 69rand(1000,9999)69"
 
 	if(!roundstart) request_player()
 
 /mob/living/simple_animal/borer/proc/ghost_enter(mob/user)
 	if(stat || key)
 		return FALSE
-	var/confirmation = alert("Would you like to occupy \the [src]?", "", "Yes", "No")
+	var/confirmation = alert("Would you like to occupy \the 69src69?", "", "Yes", "No")
 	if(confirmation == "No" || QDELETED(src))
 		return TRUE
 	if(key)
@@ -145,14 +145,14 @@
 		host.verbs += abilities_in_control
 	Stat()
 
-// If borer is controlling a host directly, send messages to host instead of borer
+// If borer is controlling a host directly, send69essages to host instead of borer
 /mob/living/simple_animal/borer/proc/get_borer_control()
 	return (host && controlling) ? host : src
 
 /mob/living/simple_animal/borer/Life()
 	..()
 
-	if((chemicals < max_chemicals) && !invisibility)
+	if((chemicals <69ax_chemicals) && !invisibility)
 		chemicals++
 
 	if(invisibility)
@@ -164,7 +164,7 @@
 
 	if(host && !stat && !(host.stat == 2))
 		// Regenerate if within a host
-		if(health < maxHealth)
+		if(health <69axHealth)
 			adjustBruteLoss(-1)
 
 		if(host.reagents.has_reagent("sugar"))
@@ -176,7 +176,7 @@
 				to_chat(get_borer_control(), SPAN_DANGER("You shake off your lethargy as the sugar leaves your host's blood."))
 				docile = FALSE
 
-		if(chemicals < max_chemicals_inhost)
+		if(chemicals <69ax_chemicals_inhost)
 			chemicals += level + 1
 
 		if(controlling)
@@ -189,9 +189,9 @@
 				host.adjustBrainLoss(0.1)
 
 			if(prob(host.brainloss/20))
-				host.say("*[pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))]")
+				host.say("*69pick(list("blink","blink_r","choke","aflap","drool","twitch","twitch_s","gasp"))69")
 
-	for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
+	for(var/mob/living/L in69iew(7)) //Sucks to put this here, but otherwise69obs will ignore them
 		L.try_activate_ai()
 
 /mob/living/simple_animal/borer/Stat()
@@ -205,7 +205,7 @@
 
 	if (client?.statpanel == "Status")
 		stat("Evolution Level", borer_level)
-		stat("Chemicals", host ? "[chemicals] / [max_chemicals_inhost]" : "[chemicals] / [max_chemicals]")
+		stat("Chemicals", host ? "69chemicals69 / 69max_chemicals_inhost69" : "69chemicals69 / 69max_chemicals69")
 		if(host)
 			stat("Host health", host.stat == DEAD ? "Deceased" : host.health)
 			stat("Host brain damage", host.getBrainLoss())
@@ -226,14 +226,14 @@
 
 	if(host_brain)
 
-		// these are here so bans and multikey warnings are not triggered on the wrong people when ckey is changed.
-		// computer_id and IP are not updated magically on their own in offline mobs -walter0o
+		// these are here so bans and69ultikey warnings are69ot triggered on the wrong people when ckey is changed.
+		// computer_id and IP are69ot updated69agically on their own in offline69obs -walter0o
 
 		// host -> self
 		var/h2s_id = host.computer_id
 		var/h2s_ip= host.lastKnownIP
-		host.computer_id = null
-		host.lastKnownIP = null
+		host.computer_id =69ull
+		host.lastKnownIP =69ull
 
 		src.ckey = host.ckey
 
@@ -246,8 +246,8 @@
 		// brain -> host
 		var/b2h_id = host_brain.computer_id
 		var/b2h_ip= host_brain.lastKnownIP
-		host_brain.computer_id = null
-		host_brain.lastKnownIP = null
+		host_brain.computer_id =69ull
+		host_brain.lastKnownIP =69ull
 
 		host.ckey = host_brain.ckey
 
@@ -268,23 +268,23 @@
 	src.loc = get_turf(host)
 
 	reset_view(null)
-	machine = null
+	machine =69ull
 
 	host.reset_view(null)
-	host.machine = null
+	host.machine =69ull
 
 	var/mob/living/H = host
 	H.status_flags &= ~PASSEMOTES
-	host = null
+	host =69ull
 	update_abilities()
 
 //Procs for grabbing players.
 /mob/living/simple_animal/borer/proc/request_player()
 	var/datum/ghosttrap/G = get_ghost_trap("cortical borer")
-	G.request_player(src, "A cortical borer needs a player.", ANIMAL)
+	G.request_player(src, "A cortical borer69eeds a player.", ANIMAL)
 
 /mob/living/simple_animal/borer/proc/borer_add_exp(var/num)
-	borer_exp += num
+	borer_exp +=69um
 	update_borer_level()
 
 /mob/living/simple_animal/borer/proc/update_borer_level()
@@ -302,14 +302,14 @@
 		var/abilities_SL = list(/mob/living/simple_animal/borer/proc/biograde)
 		var/abilities_IC = list(/mob/living/carbon/human/proc/commune)
 
-		level_up(level, added_reagents, null, abilities_SL, abilities_IC)
+		level_up(level, added_reagents,69ull, abilities_SL, abilities_IC)
 
 	if((borer_exp >= BORER_EXP_LEVEL_3) && (borer_level < 3))
 		var/level = 3
 		var/added_reagents = list("meralyne", "dermaline", "dexalinp", "oxycodone", "ryetalyn")
 		var/abilities_SL = list(/mob/living/simple_animal/borer/proc/invisible)
 
-		level_up(level, added_reagents, null, abilities_SL)
+		level_up(level, added_reagents,69ull, abilities_SL)
 
 	if((borer_exp >= BORER_EXP_LEVEL_4) && (borer_level < 4))
 		var/level = 4
@@ -337,9 +337,9 @@
 
 	update_abilities()
 
-	to_chat(get_borer_control(), SPAN_NOTICE("Congratulations! You've reached Evolution Level [level], new synthesis reagents and new abilities are now available."))
+	to_chat(get_borer_control(), SPAN_NOTICE("Congratulations! You've reached Evolution Level 69level69,69ew synthesis reagents and69ew abilities are69ow available."))
 	max_chemicals += (borer_level * 10)
-	max_chemicals_inhost = max_chemicals * 5
+	max_chemicals_inhost =69ax_chemicals * 5
 
 /mob/living/simple_animal/borer/cannot_use_vents()
 	return

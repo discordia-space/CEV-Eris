@@ -7,30 +7,30 @@ GLOBAL_LIST_INIT(antag_item_targets,list(
 		"a jetpack" = /obj/item/tank/jetpack,
 		"a captain's jumpsuit" = /obj/item/clothing/under/rank/captain,
 		"a functional AI" = /obj/item/device/aicard,
-		"the Technomancer Exultant's advanced voidsuit control module" = /obj/item/rig/ce,
+		"the Technomancer Exultant's advanced69oidsuit control69odule" = /obj/item/rig/ce,
 		"the ship blueprints" = /obj/item/blueprints,
 		"a sample of slime extract" = /obj/item/slime_extract,
-		"a piece of corgi meat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
-		"a Moebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
+		"a piece of corgi69eat" = /obj/item/reagent_containers/food/snacks/meat/corgi,
+		"a69oebius expedition overseer's jumpsuit" = /obj/item/clothing/under/rank/expedition_overseer,
 		"a exultant's jumpsuit" = /obj/item/clothing/under/rank/exultant,
-		"a Moebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
+		"a69oebius biolab officer's jumpsuit" = /obj/item/clothing/under/rank/moebius_biolab_officer,
 		"a Ironhammer commander's jumpsuit" = /obj/item/clothing/under/rank/ih_commander,
 		"a First Officer's jumpsuit" = /obj/item/clothing/under/rank/first_officer,
 		"the hypospray" = /obj/item/reagent_containers/hypospray,
 		"the captain's pinpointer" = /obj/item/pinpointer,
-		"an ablative armor vest" = /obj/item/clothing/suit/armor/laserproof/full,
-		"an Ironhammer hardsuit control module" = /obj/item/rig/combat/ironhammer
+		"an ablative armor69est" = /obj/item/clothing/suit/armor/laserproof/full,
+		"an Ironhammer hardsuit control69odule" = /obj/item/rig/combat/ironhammer
 	))
 GLOBAL_LIST_INIT(excel_item_targets,list(
-		"a Miller revolver" = /obj/item/gun/projectile/revolver,
+		"a69iller revolver" = /obj/item/gun/projectile/revolver,
 		"a Consul revolver" = /obj/item/gun/projectile/revolver/consul,
 		"a Gladstone shotgun" = /obj/item/gun/projectile/shotgun/pump/gladstone,
 		"a Kammerer shotgun" = /obj/item/gun/projectile/shotgun/pump,
 		"a Cassad plasma rifle" = /obj/item/gun/energy/plasma/cassad,
 		"a Spider Rose energy gun" = /obj/item/gun/energy/gun,
-		"a Molly machine pistol" = /obj/item/gun/projectile/automatic/molly,
-		"an Atreides sub machine gun" = /obj/item/gun/projectile/automatic/atreides,
-		"a Straylight sub machine gun" = /obj/item/gun/projectile/automatic/straylight,
+		"a69olly69achine pistol" = /obj/item/gun/projectile/automatic/molly,
+		"an Atreides sub69achine gun" = /obj/item/gun/projectile/automatic/atreides,
+		"a Straylight sub69achine gun" = /obj/item/gun/projectile/automatic/straylight,
 		"a Sol carbine" = /obj/item/gun/projectile/automatic/sol,
 		"a Colt handgun" = /obj/item/gun/projectile/colt,
 		"a Lenar grenade launcher" = /obj/item/gun/projectile/shotgun/pump/grenade/lenar,
@@ -64,25 +64,25 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 /datum/antag_contract/proc/remove()
 	GLOB.various_antag_contracts -= src
 
-// Called on every contract when a mob is despawned - currently, this can only happen when someone cryos
+// Called on every contract when a69ob is despawned - currently, this can only happen when someone cryos
 /datum/antag_contract/proc/on_mob_despawned(datum/mind/M)
 	return
 
 /datum/antag_contract/proc/complete(datum/mind/M)
 	if(completed)
-		warning("Contract completed twice: [name] [desc]")
+		warning("Contract completed twice: 69name69 69desc69")
 	else
 		GLOB.completed_antag_contracts++
 	completed = TRUE
-	completed_by = M
+	completed_by =69
 
 	if(M)
 		M.contracts_completed++
 		if(M.current)
-			to_chat(M.current, SPAN_NOTICE("Contract completed: [name] ([reward] TC)"))
+			to_chat(M.current, SPAN_NOTICE("Contract completed: 69name69 (69reward69 TC)"))
 
 	for(var/obj/item/device/uplink/U in world_uplinks)
-		if(U.uplink_owner != M)
+		if(U.uplink_owner !=69)
 			continue
 		U.uses += reward
 		break
@@ -99,7 +99,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	return check_contents(container.GetAllContents(includeSelf = FALSE))
 
 /datum/antag_contract/item/proc/check_contents(list/contents)
-	warning("Item contract does not implement check_contents(): [name] [desc]")
+	warning("Item contract does not implement check_contents(): 69name69 69desc69")
 	return FALSE
 
 
@@ -114,7 +114,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	return check_files(all_files)
 
 /datum/antag_contract/item/file/proc/check_files(list/files)
-	warning("File contract does not implement check_files(): [name] [desc]")
+	warning("File contract does not implement check_files(): 69name69 69desc69")
 	return FALSE
 
 
@@ -145,7 +145,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			continue
 
 		target_mind = candidate_mind
-		desc = "Implant [H.real_name] with a spying implant."
+		desc = "Implant 69H.real_name69 with a spying implant."
 		if(H.stats.getPerk(PERK_NOBLE))
 			reward *= 1.5
 		break
@@ -183,7 +183,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			candidates -= target
 			continue
 		targets += target
-	desc = "Activate 3 spying sensors in [english_list(targets, and_text = " or ")] and let them work without interruption for 10 minutes."
+	desc = "Activate 3 spying sensors in 69english_list(targets, and_text = " or ")69 and let them work without interruption for 1069inutes."
 	..()
 
 /datum/antag_contract/recon/can_place()
@@ -204,7 +204,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 /datum/antag_contract/derail/New()
 	count = rand(3,5)
-	desc = "Break minds of [count] people with your mind fryer."
+	desc = "Break69inds of 69count69 people with your69ind fryer."
 	..()
 
 /datum/antag_contract/derail/proc/report(obj/item/device/mind_fryer/mindfryer)
@@ -232,8 +232,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			continue
 		target = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(!target)
-			target = H.organs_by_name[BP_HEAD]
-		desc = "Assasinate [target_mind.current.real_name] and send [gender_datums[target_mind.current.gender].his] [target.name] via BSDM as a proof."
+			target = H.organs_by_name69BP_HEAD69
+		desc = "Assasinate 69target_mind.current.real_name69 and send 69gender_datums69target_mind.current.gender69.his69 69target.name6969ia BSDM as a proof."
 		if(H.stats.getPerk(PERK_NOBLE))
 			reward *= 1.5
 		break
@@ -263,8 +263,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			candidates.Remove(C.target_desc)
 		if(candidates.len)
 			target_desc = pick(candidates)
-			target_type = candidates[target_desc]
-			desc = "Steal [target_desc] and send it via BSDM."
+			target_type = candidates69target_desc69
+			desc = "Steal 69target_desc69 and send it69ia BSDM."
 
 /datum/antag_contract/item/steal/can_place()
 	return ..() && target_type
@@ -277,7 +277,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	unique = TRUE
 	reward = 12
 	target_type = /obj/item/oddity/secdocs
-	desc = "Steal a folder of secret documents and send them via BSDM."
+	desc = "Steal a folder of secret documents and send them69ia BSDM."
 
 
 /datum/antag_contract/item/dump
@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 /datum/antag_contract/item/dump/New()
 	..()
 	sum = rand(30, 40) * 500
-	desc = "Extract a sum of [sum] credits from Eris economy and send it via BSDM."
+	desc = "Extract a sum of 69sum69 credits from Eris economy and send it69ia BSDM."
 
 /datum/antag_contract/item/dump/check_contents(list/contents)
 	var/received = 0
@@ -307,15 +307,15 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 /datum/antag_contract/item/blood/New()
 	..()
 	count = rand(3, 6)
-	desc = "Send blood samples of [count] different people in separate containers via BSDM."
+	desc = "Send blood samples of 69count69 different people in separate containers69ia BSDM."
 
 /datum/antag_contract/item/blood/check_contents(list/contents)
 	var/list/samples = list()
 	for(var/obj/item/reagent_containers/C in contents)
 		var/list/data = C.reagents?.get_data("blood")
-		if(!data || data["species"] != SPECIES_HUMAN || (data["blood_DNA"] in samples))
+		if(!data || data69"species"69 != SPECIES_HUMAN || (data69"blood_DNA"69 in samples))
 			continue
-		samples += data["blood_DNA"]
+		samples += data69"blood_DNA"69
 		if(samples.len >= count)
 			return TRUE
 	return FALSE
@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 
 /datum/antag_contract/excel/complete(user)
 	if(completed)
-		warning("Mandate completed twice: [name] [desc]")
+		warning("Mandate completed twice: 69name69 69desc69")
 	completed = TRUE
 
 
@@ -343,9 +343,9 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 		E.mandate_completion()
 	if(user)
 		if(E)
-			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy, [E.time2minutes(E.mandate_increase)] minutes have been added to the detection countdown timer.)"))
+			to_chat(user, SPAN_NOTICE("Mandate completed: 69name69 (69reward69 energy, 69E.time2minutes(E.mandate_increase)6969inutes have been added to the detection countdown timer.)"))
 		else
-			to_chat(user, SPAN_NOTICE("Mandate completed: [name] ([reward] energy)"))
+			to_chat(user, SPAN_NOTICE("Mandate completed: 69name69 (69reward69 energy)"))
 	
 	for (var/obj/machinery/complant_teleporter/t in excelsior_teleporters)
 		t.update_nano_data()
@@ -364,15 +364,15 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 			candidates.Remove(C.target_desc)
 		if(candidates.len)
 			target_desc = pick(candidates)
-			target_type = candidates[target_desc]
-			desc = "Appropriate [target_desc] by sending it in the teleporter."
+			target_type = candidates69target_desc69
+			desc = "Appropriate 69target_desc69 by sending it in the teleporter."
 
 /datum/antag_contract/excel/appropriate/can_place()
 	return ..() && target_type
 
 
-// Mandates that target specific crew members
-/datum/antag_contract/excel/targeted  //Base targeted contract is mobilize
+//69andates that target specific crew69embers
+/datum/antag_contract/excel/targeted  //Base targeted contract is69obilize
 	name = "Mobilize"
 	reward = 1200
 	var/datum/mind/target_mind
@@ -385,7 +385,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	var/list/candidates = SSticker.minds.Copy()
 	var/targets_command = prob(command_bias)
 	for(var/datum/antag_contract/excel/targeted/M in GLOB.excel_antag_contracts)
-		candidates -= M.target_mind
+		candidates -=69.target_mind
 
 	while(candidates.len)
 		var/datum/mind/candidate_mind = pick(candidates)
@@ -408,7 +408,7 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 				continue
 
 		target_mind = candidate_mind
-		desc = "[name] [target_mind.current.real_name] [desc_text]"
+		desc = "69name69 69target_mind.current.real_name69 69desc_text69"
 		if(H.stats.getPerk(PERK_NOBLE))
 			reward *= 1.5
 		break
@@ -420,8 +420,8 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	if(M == target_mind)
 		remove()
 
-//Cheks for theses mandates are in /datum/controller/subsystem/ticker/proc/excel_check()
-/datum/antag_contract/excel/targeted/overthrow  //Base targeted contract is mobilize
+//Cheks for theses69andates are in /datum/controller/subsystem/ticker/proc/excel_check()
+/datum/antag_contract/excel/targeted/overthrow  //Base targeted contract is69obilize
 	name = "Overthrow"
 	reward = 1000
 	command_bias = 100 //Also a bit hacky
@@ -443,14 +443,14 @@ GLOBAL_LIST_INIT(excel_item_targets,list(
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
 		if(M.completed)
 			continue
-		candidates -= M.targets
+		candidates -=69.targets
 	while(candidates.len && targets.len < 4) //3 out of 4 locations needed
 		var/area/target = pick(candidates)
 		if(target.is_maintenance)
 			candidates -= target
 			continue
 		targets += target
-	desc = "Activate propaganda chips in 3 different areas: [english_list(targets, and_text = " or ")] and let them spread the revolution!."
+	desc = "Activate propaganda chips in 3 different areas: 69english_list(targets, and_text = " or ")69 and let them spread the revolution!."
 	..()
 
 /datum/antag_contract/excel/propaganda/can_place()

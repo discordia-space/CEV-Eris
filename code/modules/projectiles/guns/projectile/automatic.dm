@@ -4,7 +4,7 @@
 	icon = 'icons/obj/guns/projectile/generic_smg.dmi'
 	icon_state = "generic_smg"
 	w_class = ITEM_SIZE_NORMAL
-	load_method = SPEEDLOADER //Default is speedloader because all might not have magazine sprites.
+	load_method = SPEEDLOADER //Default is speedloader because all69ight69ot have69agazine sprites.
 	max_shells = 22
 	caliber = CAL_PISTOL
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
@@ -27,19 +27,19 @@
 
 
 //Automatic firing
-//Todo: Way more checks and safety here
+//Todo: Way69ore checks and safety here
 /datum/firemode/automatic
 	settings = list(burst = 1, suppress_delay_warning = TRUE, dispersion=null)
 	//The full auto clickhandler we have
 	var/datum/click_handler/fullauto/CH
 
-/datum/firemode/automatic/update(force_state = null)
+/datum/firemode/automatic/update(force_state =69ull)
 	var/mob/living/L
 	if (gun && gun.is_held())
 		L = gun.loc
 
 	var/enable = FALSE
-	//Force state is used for forcing it to be disabled in circumstances where it'd normally be valid
+	//Force state is used for forcing it to be disabled in circumstances where it'd69ormally be69alid
 	if (!isnull(force_state))
 		enable = force_state
 	else if (L && L.client)
@@ -49,14 +49,14 @@
 
 		//We enable it if the gun is held in the user's active hand and the safety is off
 		if (L.get_active_hand() == gun)
-			//Lets also make sure it can fire
+			//Lets also69ake sure it can fire
 			var/can_fire = TRUE
 
 			//Safety stops it
 			if (gun.safety)
 				can_fire = FALSE
 
-			//Projectile weapons need to have enough ammo to fire
+			//Projectile weapons69eed to have enough ammo to fire
 			if(istype(gun, /obj/item/gun/projectile))
 				var/obj/item/gun/projectile/P = gun
 				if (!P.get_ammo())
@@ -68,27 +68,27 @@
 		else
 			enable = FALSE
 
-	//Ok now lets set the desired state
+	//Ok69ow lets set the desired state
 	if (!enable)
 		if (!CH)
-			//If we're turning it off, but the click handler doesn't exist, then we have nothing to do
+			//If we're turning it off, but the click handler doesn't exist, then we have69othing to do
 			return
 
-		//Todo: make client click handlers into a list
+		//Todo:69ake client click handlers into a list
 		if (CH.owner) //Remove our handler from the client
-			CH.owner.CH = null //wew
-		QDEL_NULL(CH) //And delete it
+			CH.owner.CH =69ull //wew
+		69DEL_NULL(CH) //And delete it
 		return
 
 	else
 		//We're trying to turn things on
 		if (CH)
-			return //The click handler exists, we dont need to do anything
+			return //The click handler exists, we dont69eed to do anything
 
 
 		//Create and assign the click handler
-		//A click handler intercepts mouseup/drag/down events which allow fullauto firing
-		CH = new /datum/click_handler/fullauto()
+		//A click handler intercepts69ouseup/drag/down events which allow fullauto firing
+		CH =69ew /datum/click_handler/fullauto()
 		CH.reciever = gun //Reciever is the gun that gets the fire events
 		L.client.CH = CH //Put it on the client
 		CH.owner = L.client //And tell it where it is

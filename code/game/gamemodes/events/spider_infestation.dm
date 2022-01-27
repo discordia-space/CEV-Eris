@@ -1,9 +1,9 @@
 /*
 	The spider infestation event is distinct from the normal infestation, in that spiders are spawned
 	in a distributed state, possibly anywhere on the ship. Anyone can potentially find a spiderling in
-	their workplace, and it might grow up and attack at any time.
+	their workplace, and it69ight grow up and attack at any time.
 
-	This is much scarier than the normal infestation which spawns mobs in closed rooms. Here, they come to
+	This is69uch scarier than the normal infestation which spawns69obs in closed rooms. Here, they come to
 	you.
 */
 /datum/storyevent/spider_infestation
@@ -31,7 +31,7 @@
 
 
 /datum/event/spider_infestation/announce()
-	command_announcement.Announce("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
+	command_announcement.Announce("Unidentified lifesigns detected coming aboard 69station_name()69. Secure any exterior access, including ducting and69entilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
 
 /datum/event/spider_infestation/start()
@@ -41,8 +41,8 @@
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 
-	while((spawncount >= 1) && vents.len)
+	while((spawncount >= 1) &&69ents.len)
 		var/obj/vent = pick(vents)
 		new /obj/effect/spider/spiderling(vent.loc)
-		vents -= vent
+		vents -=69ent
 		spawncount--

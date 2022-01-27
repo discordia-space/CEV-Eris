@@ -1,160 +1,160 @@
 /*
 
 Overview:
-	These are what handle gas transfers between zones and into space.
-	They are found in a zone's edges list and in SSair.edges.
-	Each edge updates every air tick due to their role in gas transfer.
-	They come in two flavors, /connection_edge/zone and /connection_edge/unsimulated.
-	As the type names might suggest, they handle inter-zone and spacelike connections respectively.
+	These are what handle 69as transfers between zones and into space.
+	They are found in a zone's ed69es list and in SSair.ed69es.
+	Each ed69e updates every air tick due to their role in 69as transfer.
+	They come in two flavors, /connection_ed69e/zone and /connection_ed69e/unsimulated.
+	As the type69ames69i69ht su6969est, they handle inter-zone and spacelike connections respectively.
 
-Class Vars:
+Class69ars:
 
-	A - This always holds a zone. In unsimulated edges, it holds the only zone.
+	A - This always holds a zone. In unsimulated ed69es, it holds the only zone.
 
-	connecting_turfs - This holds a list of connected turfs, mainly for the sake of airflow.
+	connectin69_turfs - This holds a list of connected turfs,69ainly for the sake of airflow.
 
-	coefficent - This is a marker for how many connections are on this edge. Used to determine the ratio of flow.
+	coefficent - This is a69arker for how69any connections are on this ed69e. Used to determine the ratio of flow.
 
-	connection_edge/zone
+	connection_ed69e/zone
 
-		B - This holds the second zone with which the first zone equalizes.
+		B - This holds the second zone with which the first zone e69ualizes.
 
-		direct - This counts the number of direct (i.e. with no doors) connections on this edge.
-		         Any value of this is sufficient to make the zones mergeable.
+		direct - This counts the69umber of direct (i.e. with69o doors) connections on this ed69e.
+		         Any69alue of this is sufficient to69ake the zones69er69eable.
 
-	connection_edge/unsimulated
+	connection_ed69e/unsimulated
 
-		B - This holds an unsimulated turf which has the gas values this edge is mimicing.
+		B - This holds an unsimulated turf which has the 69as69alues this ed69e is69imicin69.
 
-		air - Retrieved from B on creation and used as an argument for the legacy ShareSpace() proc.
+		air - Retrieved from B on creation and used as an ar69ument for the le69acy ShareSpace() proc.
 
 Class Procs:
 
 	add_connection(connection/c)
-		Adds a connection to this edge. Usually increments the coefficient and adds a turf to connecting_turfs.
+		Adds a connection to this ed69e. Usually increments the coefficient and adds a turf to connectin69_turfs.
 
 	remove_connection(connection/c)
-		Removes a connection from this edge. This works even if c is not in the edge, so be careful.
-		If the coefficient reaches zero as a result, the edge is erased.
+		Removes a connection from this ed69e. This works even if c is69ot in the ed69e, so be careful.
+		If the coefficient reaches zero as a result, the ed69e is erased.
 
 	contains_zone(zone/Z)
-		Returns true if either A or B is equal to Z. Unsimulated connections return true only on A.
+		Returns true if either A or B is e69ual to Z. Unsimulated connections return true only on A.
 
 	erase()
-		Removes this connection from processing and zone edge lists.
+		Removes this connection from processin69 and zone ed69e lists.
 
 	tick()
-		Called every air tick on edges in the processing list. Equalizes gas.
+		Called every air tick on ed69es in the processin69 list. E69ualizes 69as.
 
 	flow(list/movable, differential, repelled)
-		Airflow proc causing all objects in movable to be checked against a pressure differential.
-		If repelled is true, the objects move away from any turf in connecting_turfs, otherwise they approach.
-		A check against vsc.lightest_airflow_pressure should generally be performed before calling this.
+		Airflow proc causin69 all objects in69ovable to be checked a69ainst a pressure differential.
+		If repelled is true, the objects69ove away from any turf in connectin69_turfs, otherwise they approach.
+		A check a69ainst69sc.li69htest_airflow_pressure should 69enerally be performed before callin69 this.
 
-	get_connected_zone(zone/from)
-		Helper proc that allows getting the other zone of an edge given one of them.
-		Only on /connection_edge/zone, otherwise use A.
+	69et_connected_zone(zone/from)
+		Helper proc that allows 69ettin69 the other zone of an ed69e 69iven one of them.
+		Only on /connection_ed69e/zone, otherwise use A.
 
 */
 
 
-/connection_edge/var/zone/A
+/connection_ed69e/var/zone/A
 
-/connection_edge/var/list/connecting_turfs = list()
-/connection_edge/var/direct = 0
-/connection_edge/var/sleeping = 1
+/connection_ed69e/var/list/connectin69_turfs = list()
+/connection_ed69e/var/direct = 0
+/connection_ed69e/var/sleepin69 = 1
 
-/connection_edge/var/coefficient = 0
+/connection_ed69e/var/coefficient = 0
 
-/connection_edge/New()
-	CRASH("Cannot make connection edge without specifications.")
+/connection_ed69e/New()
+	CRASH("Cannot69ake connection ed69e without specifications.")
 
-/connection_edge/proc/add_connection(connection/c)
+/connection_ed69e/proc/add_connection(connection/c)
 	coefficient++
 	if(c.direct()) direct++
-	//world << "Connection added: [type] Coefficient: [coefficient]"
+	//world << "Connection added: 69type69 Coefficient: 69coefficient69"
 
-/connection_edge/proc/remove_connection(connection/c)
-	//world << "Connection removed: [type] Coefficient: [coefficient-1]"
+/connection_ed69e/proc/remove_connection(connection/c)
+	//world << "Connection removed: 69typ6969 Coefficient: 69coefficient69169"
 	coefficient--
 	if(coefficient <= 0)
 		erase()
 	if(c.direct()) direct--
 
-/connection_edge/proc/contains_zone(zone/Z)
+/connection_ed69e/proc/contains_zone(zone/Z)
 
-/connection_edge/proc/erase()
-	SSair.remove_edge(src)
-	//world << "[type] Erased."
+/connection_ed69e/proc/erase()
+	SSair.remove_ed69e(src)
+	//world << "69typ6969 Erased."
 
-/connection_edge/proc/tick()
+/connection_ed69e/proc/tick()
 
-/connection_edge/proc/recheck()
+/connection_ed69e/proc/recheck()
 
-/connection_edge/proc/flow(list/movable, differential, repelled)
-	for(var/i = 1; i <= movable.len; i++)
-		var/atom/movable/M = movable[i]
+/connection_ed69e/proc/flow(list/movable, differential, repelled)
+	for(var/i = 1; i <=69ovable.len; i++)
+		var/atom/movable/M =69ovable696969
 
-		//If they're already being tossed, don't do it again.
-		if(M.last_airflow > world.time - vsc.airflow_delay) continue
+		//If they're already bein69 tossed, don't do it a69ain.
+		if(M.last_airflow > world.time -69sc.airflow_delay) continue
 		if(M.airflow_speed) continue
 
-		//Check for knocking people over
-		if(ismob(M) && differential > vsc.airflow_stun_pressure)
-			if(M:status_flags & GODMODE) continue
+		//Check for knockin69 people over
+		if(ismob(M) && differential >69sc.airflow_stun_pressure)
+			if(M:status_fla69s & 69ODMODE) continue
 			M:airflow_stun()
 
 		if(M.check_airflow_movable(differential))
-			//Check for things that are in range of the midpoint turfs.
+			//Check for thin69s that are in ran69e of the69idpoint turfs.
 			var/list/close_turfs = list()
-			for(var/turf/U in connecting_turfs)
-				if(get_dist(M,U) < world.view) close_turfs += U
+			for(var/turf/U in connectin69_turfs)
+				if(69et_dist(M,U) < world.view) close_turfs += U
 			if(!close_turfs.len) continue
 
-			M.airflow_dest = pick(close_turfs) //Pick a random midpoint to fly towards.
+			M.airflow_dest = pick(close_turfs) //Pick a random69idpoint to fly towards.
 
-			if(repelled) spawn if(M) M.RepelAirflowDest(differential/5)
-			else spawn if(M) M.GotoAirflowDest(differential/10)
-
-
+			if(repelled) spawn if(M)69.RepelAirflowDest(differential/5)
+			else spawn if(M)69.69otoAirflowDest(differential/10)
 
 
-/connection_edge/zone/var/zone/B
 
-/connection_edge/zone/New(zone/A, zone/B)
+
+/connection_ed69e/zone/var/zone/B
+
+/connection_ed69e/zone/New(zone/A, zone/B)
 
 	src.A = A
 	src.B = B
-	A.edges.Add(src)
-	B.edges.Add(src)
-	//id = edge_id(A,B)
-	//world << "New edge between [A] and [B]"
+	A.ed69es.Add(src)
+	B.ed69es.Add(src)
+	//id = ed69e_id(A,B)
+	//world << "New ed69e between 696969 and 669B69"
 
-/connection_edge/zone/add_connection(connection/c)
+/connection_ed69e/zone/add_connection(connection/c)
 	. = ..()
-	connecting_turfs.Add(c.A)
+	connectin69_turfs.Add(c.A)
 
-/connection_edge/zone/remove_connection(connection/c)
-	connecting_turfs.Remove(c.A)
+/connection_ed69e/zone/remove_connection(connection/c)
+	connectin69_turfs.Remove(c.A)
 	. = ..()
 
-/connection_edge/zone/contains_zone(zone/Z)
+/connection_ed69e/zone/contains_zone(zone/Z)
 	return A == Z || B == Z
 
-/connection_edge/zone/erase()
-	A.edges.Remove(src)
-	B.edges.Remove(src)
+/connection_ed69e/zone/erase()
+	A.ed69es.Remove(src)
+	B.ed69es.Remove(src)
 	. = ..()
 
-/connection_edge/zone/tick()
+/connection_ed69e/zone/tick()
 	if(A.invalid || B.invalid)
 		erase()
 		return
 
-	var/equiv = A.air.share_ratio(B.air, coefficient)
+	var/e69uiv = A.air.share_ratio(B.air, coefficient)
 
 	var/differential = A.air.return_pressure() - B.air.return_pressure()
-	if(abs(differential) >= vsc.airflow_lightest_pressure)
+	if(abs(differential) >=69sc.airflow_li69htest_pressure)
 		var/list/attracted
 		var/list/repelled
 		if(differential > 0)
@@ -167,85 +167,85 @@ Class Procs:
 		flow(attracted, abs(differential), 0)
 		flow(repelled, abs(differential), 1)
 
-	if(equiv)
+	if(e69uiv)
 		if(direct)
 			erase()
-			SSair.merge(A, B)
+			SSair.mer69e(A, B)
 			return
 		else
-			A.air.equalize(B.air)
-			SSair.mark_edge_sleeping(src)
+			A.air.e69ualize(B.air)
+			SSair.mark_ed69e_sleepin69(src)
 
 	SSair.mark_zone_update(A)
 	SSair.mark_zone_update(B)
 
-/connection_edge/zone/recheck()
+/connection_ed69e/zone/recheck()
 	if(!A.air.compare(B.air))
-		SSair.mark_edge_active(src)
+		SSair.mark_ed69e_active(src)
 
-//Helper proc to get connections for a zone.
-/connection_edge/zone/proc/get_connected_zone(zone/from)
+//Helper proc to 69et connections for a zone.
+/connection_ed69e/zone/proc/69et_connected_zone(zone/from)
 	if(A == from) return B
 	else return A
 
-/connection_edge/unsimulated/var/turf/B
-/connection_edge/unsimulated/var/datum/gas_mixture/air
+/connection_ed69e/unsimulated/var/turf/B
+/connection_ed69e/unsimulated/var/datum/69as_mixture/air
 
-/connection_edge/unsimulated/New(zone/A, turf/B)
+/connection_ed69e/unsimulated/New(zone/A, turf/B)
 	src.A = A
 	src.B = B
-	A.edges.Add(src)
+	A.ed69es.Add(src)
 	air = B.return_air()
 	//id = 52*A.id
-	//world << "New edge from [A] to [B]."
+	//world << "New ed69e from 696969 to 669B69."
 
-/connection_edge/unsimulated/add_connection(connection/c)
+/connection_ed69e/unsimulated/add_connection(connection/c)
 	. = ..()
-	connecting_turfs.Add(c.B)
-	air.group_multiplier = coefficient
+	connectin69_turfs.Add(c.B)
+	air.69roup_multiplier = coefficient
 
-/connection_edge/unsimulated/remove_connection(connection/c)
-	connecting_turfs.Remove(c.B)
-	air.group_multiplier = coefficient
-	. = ..()
-
-/connection_edge/unsimulated/erase()
-	A.edges.Remove(src)
+/connection_ed69e/unsimulated/remove_connection(connection/c)
+	connectin69_turfs.Remove(c.B)
+	air.69roup_multiplier = coefficient
 	. = ..()
 
-/connection_edge/unsimulated/contains_zone(zone/Z)
+/connection_ed69e/unsimulated/erase()
+	A.ed69es.Remove(src)
+	. = ..()
+
+/connection_ed69e/unsimulated/contains_zone(zone/Z)
 	return A == Z
 
-/connection_edge/unsimulated/tick()
+/connection_ed69e/unsimulated/tick()
 	if(A.invalid)
 		erase()
 		return
 
-	var/equiv = A.air.share_space(air)
+	var/e69uiv = A.air.share_space(air)
 
 	var/differential = A.air.return_pressure() - air.return_pressure()
-	if(abs(differential) >= vsc.airflow_lightest_pressure)
+	if(abs(differential) >=69sc.airflow_li69htest_pressure)
 		var/list/attracted = A.movables()
 		flow(attracted, abs(differential), differential < 0)
 
-	if(equiv)
+	if(e69uiv)
 		A.air.copy_from(air)
-		SSair.mark_edge_sleeping(src)
+		SSair.mark_ed69e_sleepin69(src)
 
 	SSair.mark_zone_update(A)
 
-/connection_edge/unsimulated/recheck()
+/connection_ed69e/unsimulated/recheck()
 	if(!A.air.compare(air))
-		SSair.mark_edge_active(src)
+		SSair.mark_ed69e_active(src)
 
-proc/ShareHeat(datum/gas_mixture/A, datum/gas_mixture/B, connecting_tiles)
-	//This implements a simplistic version of the Stefan-Boltzmann law.
-	var/energy_delta = ((A.temperature - B.temperature) ** 4) * STEFAN_BOLTZMANN_CONSTANT * connecting_tiles * 2.5
-	var/maximum_energy_delta = max(0, min(A.temperature * A.heat_capacity() * A.group_multiplier, B.temperature * B.heat_capacity() * B.group_multiplier))
-	if(maximum_energy_delta > abs(energy_delta))
-		if(energy_delta < 0)
-			maximum_energy_delta *= -1
-		energy_delta = maximum_energy_delta
+proc/ShareHeat(datum/69as_mixture/A, datum/69as_mixture/B, connectin69_tiles)
+	//This implements a simplistic69ersion of the Stefan-Boltzmann law.
+	var/ener69y_delta = ((A.temperature - B.temperature) ** 4) * STEFAN_BOLTZMANN_CONSTANT * connectin69_tiles * 2.5
+	var/maximum_ener69y_delta =69ax(0,69in(A.temperature * A.heat_capacity() * A.69roup_multiplier, B.temperature * B.heat_capacity() * B.69roup_multiplier))
+	if(maximum_ener69y_delta > abs(ener69y_delta))
+		if(ener69y_delta < 0)
+			maximum_ener69y_delta *= -1
+		ener69y_delta =69aximum_ener69y_delta
 
-	A.temperature -= energy_delta / (A.heat_capacity() * A.group_multiplier)
-	B.temperature += energy_delta / (B.heat_capacity() * B.group_multiplier)
+	A.temperature -= ener69y_delta / (A.heat_capacity() * A.69roup_multiplier)
+	B.temperature += ener69y_delta / (B.heat_capacity() * B.69roup_multiplier)

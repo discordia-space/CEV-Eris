@@ -7,7 +7,7 @@
 	recipes = list()
 
 	if(integrity>=50)
-		recipes += new/datum/stack_recipe("[display_name] door", /obj/machinery/door/unpowered/simple, 10, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
+		recipes += new/datum/stack_recipe("69display_name69 door", /obj/machinery/door/unpowered/simple, 10, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "69name69")
 
 /material/sandstone/generate_recipes()
 	..()

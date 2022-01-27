@@ -1,142 +1,142 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"b" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/tiled/steel/69rown_perforated,
+/area/deepmaint69
+"69" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"c" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/area/deepmaint69
+"c" = 69
+/o6969/machinery/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"d" = (
-/obj/machinery/door/airlock{
+/turf/simulated/floor/tiled/steel/69rown_perforated,
+/area/deepmaint69
+"d" = 69
+/o6969/machinery/door/airloc69{
 	name = "Unisex Restrooms"
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"e" = (
-/obj/machinery/light{
+/area/deepmaint69
+"e" = 69
+/o6969/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"f" = (
-/obj/machinery/recharge_station,
-/obj/machinery/light{
+/turf/simulated/floor/tiled/steel/69rown_perforated,
+/area/deepmaint69
+"f" = 69
+/o6969/machinery/rechar69e_station,
+/o6969/machinery/li69ht{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"g" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"h" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"h" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69{
 	name = "Unisex Restrooms"
 	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"i" = (
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"i" = 69
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"j" = (
-/obj/machinery/light{
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/pack/rare/low_chance,
+/o6969/spawner/pac69/rare/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"k" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
-/area/deepmaint)
-"l" = (
+/area/deepmaint69
+"l" = 69
 /turf/simulated/floor/tiled/steel/panels,
-/area/deepmaint)
-"m" = (
-/obj/structure/toilet{
+/area/deepmaint69
+"m" = 69
+/o6969/structure/toilet{
 	dir = 4
 	},
-/obj/machinery/light{
+/o6969/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/pack/rare/low_chance,
+/o6969/spawner/pac69/rare/low_chance,
+/o6969/spawner/pac69/rare/low_chance,
+/o6969/spawner/pac69/rare/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"n" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
+/area/deepmaint69
+"n" = 69
+/o6969/spawner/mo69/69iome_spawner_mo69/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"o" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
+/area/deepmaint69
+"o" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/pac69/69un_loot,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/o6969/spawner/pac69/69un_loot/low_chance,
 /turf/simulated/floor/tiled/steel/panels,
-/area/deepmaint)
-"p" = (
-/obj/structure/toilet{
+/area/deepmaint69
+"p" = 69
+/o6969/structure/toilet{
 	dir = 4
 	},
-/obj/machinery/light{
+/o6969/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/oddities/low_chance,
-/obj/spawner/pack/rare/low_chance,
+/o6969/spawner/oddities/low_chance,
+/o6969/spawner/pac69/rare/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"q" = (
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"r" = (
-/obj/structure/sink{
+/area/deepmaint69
+"69" = 69
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"r" = 69
+/o6969/structure/sin69{
 	dir = 4;
-	icon_state = "sink";
+	icon_state = "sin69";
 	pixel_x = 11;
 	pixel_y = 0
 	},
-/obj/structure/mirror{
+/o6969/structure/mirror{
 	dir = 8;
 	pixel_x = 28;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"s" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"t" = (
-/obj/landmark/loot_biomes/mob/roach/room{
-	range = 6
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"s" = 69
+/o6969/spawner/mo69/69iome_spawner_mo69/low_chance,
+/turf/simulated/floor/tiled/steel/69rown_perforated,
+/area/deepmaint69
+"t" = 69
+/o6969/landmar69/loot_69iomes/mo69/roach/room{
+	ran69e = 6
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"u" = (
-/obj/machinery/light,
+/area/deepmaint69
+"u" = 69
+/o6969/machinery/li69ht,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"v" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
+/area/deepmaint69
+"v" = 69
+/o6969/spawner/mo69/69iome_spawner_mo69/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 c
 a
@@ -149,46 +149,46 @@ a
 c
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
-b
-b
-b
-b
-b
-b
-b
-b
-b
+69
+69
+69
+69
+69
+69
+69
+69
+69
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
-b
+69
 f
-b
+69
 m
-b
+69
 p
-b
+69
 p
-b
+69
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
-b
+69
 h
-b
+69
 h
-b
+69
 h
-b
+69
 h
-b
+69
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 d
 i
@@ -201,72 +201,72 @@ i
 d
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
-b
-j
+69
+69
 i
 n
 t
 i
 i
 u
-b
+69
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
-b
-b
-b
-b
-b
-q
+69
+69
+69
+69
+69
+69
 v
-q
-b
+69
+69
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
-b
-k
+69
+69
 l
 o
-b
-q
-q
-q
-b
+69
+69
+69
+69
+69
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
-b
-k
+69
+69
 l
-k
-b
+69
+69
 r
 r
 r
-b
+69
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
-b
-b
-g
-b
-b
-b
-b
-b
-b
+69
+69
+69
+69
+69
+69
+69
+69
+69
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 e
 a

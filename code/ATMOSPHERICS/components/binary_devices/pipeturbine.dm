@@ -8,8 +8,8 @@
 
 	var/efficiency = 0.4
 	var/kin_energy = 0
-	var/datum/gas_mixture/air_in = new
-	var/datum/gas_mixture/air_out = new
+	var/datum/gas_mixture/air_in =69ew
+	var/datum/gas_mixture/air_out =69ew
 	var/volume_ratio = 0.2
 	var/kin_loss = 0.001
 
@@ -29,12 +29,12 @@
 			if(SOUTH)
 				initialize_directions = EAST|WEST
 			if(EAST)
-				initialize_directions = NORTH|SOUTH
+				initialize_directions =69ORTH|SOUTH
 			if(WEST)
-				initialize_directions = NORTH|SOUTH
+				initialize_directions =69ORTH|SOUTH
 
 	Destroy()
-		loc = null
+		loc =69ull
 
 		if(node1)
 			node1.disconnect(src)
@@ -43,8 +43,8 @@
 			node2.disconnect(src)
 			qdel(network2)
 
-		node1 = null
-		node2 = null
+		node1 =69ull
+		node2 =69ull
 
 		. = ..()
 
@@ -52,12 +52,12 @@
 		..()
 		if(anchored && !(stat&BROKEN))
 			kin_energy *= 1 - kin_loss
-			dP = max(air_in.return_pressure() - air_out.return_pressure(), 0)
+			dP =69ax(air_in.return_pressure() - air_out.return_pressure(), 0)
 			if(dP > 10)
-				kin_energy += 1/ADIABATIC_EXPONENT * dP * air_in.volume * (1 - volume_ratio**ADIABATIC_EXPONENT) * efficiency
-				air_in.temperature *= volume_ratio**ADIABATIC_EXPONENT
+				kin_energy += 1/ADIABATIC_EXPONENT * dP * air_in.volume * (1 -69olume_ratio**ADIABATIC_EXPONENT) * efficiency
+				air_in.temperature *=69olume_ratio**ADIABATIC_EXPONENT
 
-				var/datum/gas_mixture/air_all = new
+				var/datum/gas_mixture/air_all =69ew
 				air_all.volume = air_in.volume + air_out.volume
 				air_all.merge(air_in.remove_ratio(1))
 				air_all.merge(air_out.remove_ratio(1))
@@ -83,17 +83,17 @@
 		if (kin_energy > 1000000)
 			overlays += image('icons/obj/pipeturbine.dmi', "hi-turb")
 
-	attackby(obj/item/tool/W as obj, mob/user as mob)
+	attackby(obj/item/tool/W as obj,69ob/user as69ob)
 		if(!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
 		anchored = !anchored
-		to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
+		to_chat(user, SPAN_NOTICE("You 69anchored ? "secure" : "unsecure"69 the bolts holding \the 69src69 to the floor."))
 
 		if(anchored)
 			if(dir & (NORTH|SOUTH))
 				initialize_directions = EAST|WEST
 			else if(dir & (EAST|WEST))
-				initialize_directions = NORTH|SOUTH
+				initialize_directions =69ORTH|SOUTH
 				atmos_init()
 			build_network()
 			if (node1)
@@ -109,13 +109,13 @@
 			if(node2)
 				node2.disconnect(src)
 				qdel(network2)
-				node1 = null
-			node2 = null
+				node1 =69ull
+			node2 =69ull
 
 	verb/rotate_clockwise()
 		set category = "Object"
-		set name = "Rotate Circulator (Clockwise)"
-		set src in view(1)
+		set69ame = "Rotate Circulator (Clockwise)"
+		set src in69iew(1)
 
 		if (usr.stat || usr.restrained() || anchored)
 			return
@@ -125,53 +125,53 @@
 
 	verb/rotate_anticlockwise()
 		set category = "Object"
-		set name = "Rotate Circulator (Counterclockwise)"
-		set src in view(1)
+		set69ame = "Rotate Circulator (Counterclockwise)"
+		set src in69iew(1)
 
 		if (usr.stat || usr.restrained() || anchored)
 			return
 
 		src.set_dir(turn(src.dir, 90))
 
-//Goddamn copypaste from binary base class because atmospherics machinery API is not damn flexible
+//Goddamn copypaste from binary base class because atmospherics69achinery API is69ot damn flexible
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-		if(reference == node1)
-			network1 = new_network
+		if(reference ==69ode1)
+			network1 =69ew_network
 
-		else if(reference == node2)
-			network2 = new_network
+		else if(reference ==69ode2)
+			network2 =69ew_network
 
 		if(new_network.normal_members.Find(src))
 			return 0
 
 		new_network.normal_members += src
 
-		return null
+		return69ull
 
 	atmos_init()
-		if(node1 && node2) return
+		if(node1 &&69ode2) return
 
 		var/node2_connect = turn(dir, -90)
 		var/node1_connect = turn(dir, 90)
 
-		for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+		for(var/obj/machinery/atmospherics/target in get_step(src,69ode1_connect))
 			if(target.initialize_directions & get_dir(target, src))
 				node1 = target
 				break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+		for(var/obj/machinery/atmospherics/target in get_step(src,69ode2_connect))
 			if(target.initialize_directions & get_dir(target, src))
 				node2 = target
 				break
 
 	build_network()
-		if(!network1 && node1)
-			network1 = new /datum/pipe_network()
+		if(!network1 &&69ode1)
+			network1 =69ew /datum/pipe_network()
 			network1.normal_members += src
 			network1.build_network(node1, src)
 
-		if(!network2 && node2)
-			network2 = new /datum/pipe_network()
+		if(!network2 &&69ode2)
+			network2 =69ew /datum/pipe_network()
 			network2.normal_members += src
 			network2.build_network(node2, src)
 
@@ -180,18 +180,18 @@
 		build_network()
 
 		if(reference==node1)
-			return network1
+			return69etwork1
 
 		if(reference==node2)
-			return network2
+			return69etwork2
 
-		return null
+		return69ull
 
 	reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 		if(network1 == old_network)
-			network1 = new_network
+			network1 =69ew_network
 		if(network2 == old_network)
-			network2 = new_network
+			network2 =69ew_network
 
 		return 1
 
@@ -208,13 +208,13 @@
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
 			qdel(network1)
-			node1 = null
+			node1 =69ull
 
 		else if(reference==node2)
 			qdel(network2)
-			node2 = null
+			node2 =69ull
 
-		return null
+		return69ull
 
 
 /obj/machinery/power/turbinemotor
@@ -225,7 +225,7 @@
 	anchored = FALSE
 	density = TRUE
 
-	var/kin_to_el_ratio = 0.1	//How much kinetic energy will be taken from turbine and converted into electricity
+	var/kin_to_el_ratio = 0.1	//How69uch kinetic energy will be taken from turbine and converted into electricity
 	var/obj/machinery/atmospherics/pipeturbine/turbine
 
 	New()
@@ -234,11 +234,11 @@
 			updateConnection()
 
 	proc/updateConnection()
-		turbine = null
+		turbine =69ull
 		if(src.loc && anchored)
 			turbine = locate(/obj/machinery/atmospherics/pipeturbine) in get_step(src, dir)
 			if (turbine.stat & (BROKEN) || !turbine.anchored || turn(turbine.dir, 180) != dir)
-				turbine = null
+				turbine =69ull
 
 	Process()
 		updateConnection()
@@ -250,18 +250,18 @@
 		add_avail(power_generated)
 
 
-	attackby(obj/item/tool/W as obj, mob/user as mob)
+	attackby(obj/item/tool/W as obj,69ob/user as69ob)
 		if (!W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC))
 			return ..()
 		anchored = !anchored
-		turbine = null
-		to_chat(user, SPAN_NOTICE("You [anchored ? "secure" : "unsecure"] the bolts holding \the [src] to the floor."))
+		turbine =69ull
+		to_chat(user, SPAN_NOTICE("You 69anchored ? "secure" : "unsecure"69 the bolts holding \the 69src69 to the floor."))
 		updateConnection()
 
 	verb/rotate_clock()
 		set category = "Object"
-		set name = "Rotate Motor Clockwise"
-		set src in view(1)
+		set69ame = "Rotate69otor Clockwise"
+		set src in69iew(1)
 
 		if (usr.stat || usr.restrained()  || anchored)
 			return
@@ -270,8 +270,8 @@
 
 	verb/rotate_anticlock()
 		set category = "Object"
-		set name = "Rotate Motor Counterclockwise"
-		set src in view(1)
+		set69ame = "Rotate69otor Counterclockwise"
+		set src in69iew(1)
 
 		if (usr.stat || usr.restrained()  || anchored)
 			return

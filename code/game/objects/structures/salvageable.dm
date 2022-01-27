@@ -1,33 +1,33 @@
 /obj/structure/salvageable
-	name = "broken macninery"
-	desc = "It is broken beyond repair. You may be able to salvage something from this."
+	name = "broken69acninery"
+	desc = "It is broken beyond repair. You69ay be able to salvage something from this."
 	icon = 'icons/obj/salvageable.dmi'
 	density = TRUE
 	anchored = TRUE
 	bad_type = /obj/structure/salvageable
-	spawn_frequency = 13
+	spawn_fre69uency = 13
 	spawn_tags = SPAWN_TAG_SALVAGEABLE
 	var/salvageable_parts = list()
 
 /obj/structure/salvageable/proc/dismantle()
 	new /obj/machinery/constructable_frame/machine_frame (src.loc)
 	for(var/path in salvageable_parts)
-		if(prob(salvageable_parts[path]))
+		if(prob(salvageable_parts69path69))
 			new path (loc)
 	return
 
-/obj/structure/salvageable/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_PRYING), src))
-		to_chat(user, SPAN_NOTICE("You start salvage anything useful from \the [src]."))
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+/obj/structure/salvageable/attackby(obj/item/I,69ob/user)
+	if(I.get_tool_type(usr, list(69UALITY_PRYING), src))
+		to_chat(user, SPAN_NOTICE("You start salvage anything useful from \the 69src69."))
+		if(I.use_tool(user, src, WORKTIME_LONG, 69UALITY_PRYING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 			dismantle()
-			qdel(src)
+			69del(src)
 			return
 
 //Types themself, use them, but not the parent object
 
 /obj/structure/salvageable/machine
-	name = "broken machine"
+	name = "broken69achine"
 	icon_state = "machine"
 	salvageable_parts = list(
 		/obj/item/stock_parts/console_screen = 80,
@@ -57,7 +57,7 @@
 
 /obj/structure/salvageable/machine/Initialize()
 	. = ..()
-	icon_state = "machine[rand(0,6)]"
+	icon_state = "machine69rand(0,6)69"
 
 /obj/structure/salvageable/computer
 	name = "broken computer"
@@ -84,7 +84,7 @@
 
 /obj/structure/salvageable/computer/Initialize()
 	. = ..()
-	icon_state = "computer[rand(0,7)]"
+	icon_state = "computer69rand(0,7)69"
 
 /obj/structure/salvageable/autolathe
 	name = "broken autolathe"
@@ -150,7 +150,7 @@
 
 obj/structure/salvageable/implant_container/Initialize()
 	. = ..()
-	icon_state = "implant_container[rand(0,1)]"
+	icon_state = "implant_container69rand(0,1)69"
 
 /obj/structure/salvageable/data
 	name = "broken data storage"
@@ -179,7 +179,7 @@ obj/structure/salvageable/implant_container/Initialize()
 
 obj/structure/salvageable/data/Initialize()
 	. = ..()
-	icon_state = "data[rand(0,1)]"
+	icon_state = "data69rand(0,1)69"
 
 /obj/structure/salvageable/server
 	name = "broken server"
@@ -210,7 +210,7 @@ obj/structure/salvageable/data/Initialize()
 
 obj/structure/salvageable/server/Initialize()
 	. = ..()
-	icon_state = "server[rand(0,1)]"
+	icon_state = "server69rand(0,1)69"
 
 /obj/structure/salvageable/personal
 	name = "personal terminal"
@@ -240,7 +240,7 @@ obj/structure/salvageable/server/Initialize()
 
 obj/structure/salvageable/personal/Initialize()
 	. = ..()
-	icon_state = "personal[rand(0,12)]"
+	icon_state = "personal69rand(0,12)69"
 	new /obj/structure/table/reinforced (loc)
 
 /obj/structure/salvageable/bliss
@@ -262,15 +262,15 @@ obj/structure/salvageable/personal/Initialize()
 
 obj/structure/salvageable/bliss/Initialize()
 	. = ..()
-	icon_state = "bliss[rand(0,1)]"
+	icon_state = "bliss69rand(0,1)69"
 
-/obj/structure/salvageable/bliss/attackby(obj/item/I, mob/user)
-	if(I.get_tool_type(usr, list(QUALITY_PRYING), src))
-		to_chat(user, SPAN_NOTICE("You start salvage anything useful from \the [src]."))
-		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_PRYING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+/obj/structure/salvageable/bliss/attackby(obj/item/I,69ob/user)
+	if(I.get_tool_type(usr, list(69UALITY_PRYING), src))
+		to_chat(user, SPAN_NOTICE("You start salvage anything useful from \the 69src69."))
+		if(I.use_tool(user, src, WORKTIME_LONG, 69UALITY_PRYING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 			playsound(user, 'sound/machines/shutdown.ogg', 60, 1)
 			dismantle()
-			qdel(src)
+			69del(src)
 			return
 
 //////////////////
@@ -283,7 +283,7 @@ obj/structure/salvageable/bliss/Initialize()
 	bad_type = /obj/structure/salvageable/os
 
 /obj/structure/salvageable/os/machine
-	name = "broken machine"
+	name = "broken69achine"
 	icon_state = "os-machine"
 	salvageable_parts = list(
 		/obj/item/stock_parts/console_screen = 80,

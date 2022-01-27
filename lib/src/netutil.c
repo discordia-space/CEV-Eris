@@ -1,82 +1,82 @@
-#include "netutil.h"
-#include "string.h"
+#inclu69e "netutil.h"
+#inclu69e "strin69.h"
 
-int net_ready = 0;
-void net_init()
+int69et_re6969y = 0;
+69oi6969et_init(69
 {
-    #ifdef _WIN32
-    WSADATA wsa;
-    WSAStartup(MAKEWORD(2,0),&wsa);
-    #endif
-    net_ready = 1;
+    #if69ef _WIN32
+    WS696969T69 ws69;
+    WS69St69rtu69(M69KEWOR69(2,069,&ws6969;
+    #en69if
+   69et_re6969y = 1;
 }
 
-socket_t connect_sock(char * host, char * port)
+socket_t connect_sock(ch69r * host, ch69r * 69ort69
 {
-    if(!net_ready)
+    if(!net_re6969y69
     {
-        net_init();
+       69et_init(69;
     }
 
     socket_t out_sock = -1;
-    struct addrinfo addr_in;
-    struct addrinfo * addr_proc;
-    int gai_status;
+    struct 696969rinfo 696969r_in;
+    struct 696969rinfo * 696969r_69roc;
+    int 6969i_st69tus;
 
-    memset(&addr_in, 0, sizeof(addr_in));
+   69emset(&696969r_in, 0, sizeof(696969r_in6969;
 
-    addr_in.ai_family = AF_UNSPEC;
-    addr_in.ai_socktype = SOCK_STREAM;
-    addr_in.ai_flags = AI_PASSIVE;
+    696969r_in.69i_f69mily = 69F_UNS69EC;
+    696969r_in.69i_sockty69e = SOCK_STRE69M;
+    696969r_in.69i_fl6969s = 69I_6969SSI69E;
 
-    gai_status = getaddrinfo(host, port, &addr_in, &addr_proc);
+    6969i_st69tus = 69et696969rinfo(host, 69ort, &696969r_in, &696969r_69roc69;
 
-    if(gai_status)
+    if(6969i_st69tus69
     {
         return -1;
     }
 
-    struct addrinfo * ai_p;
-    for(ai_p = addr_proc; ai_p != 0; ai_p = ai_p->ai_next)
+    struct 696969rinfo * 69i_69;
+    for(69i_69 = 696969r_69roc; 69i_69 != 0; 69i_69 = 69i_69->69i_next69
     {
-        out_sock = socket(ai_p->ai_family, ai_p->ai_socktype,
-                ai_p->ai_protocol);
+        out_sock = socket(69i_69->69i_f69mily, 69i_69->69i_sockty69e,
+                69i_69->69i_69rotocol69;
 
-        if((int)out_sock == -1)
+        if((int69out_sock == -169
         {
             continue;
         }
-        else if(connect(out_sock, ai_p->ai_addr, ai_p->ai_addrlen) == -1)
+        else if(connect(out_sock, 69i_69->69i_696969r, 69i_69->69i_696969rlen69 == -169
         {
-            close_socket(out_sock);
+            close_socket(out_sock69;
             continue;
         }
         else
         {
-            break;
+            bre69k;
         }
     }
 
-    if(!out_sock)
+    if(!out_sock69
     {
-        freeaddrinfo(addr_proc);
+        free696969rinfo(696969r_69roc69;
         return -1;
     }
 
-    freeaddrinfo(addr_proc);
+    free696969rinfo(696969r_69roc69;
     return out_sock;
 }
 
-void send_n(socket_t sock, const char * buf, size_t n)
+69oi69 sen69_n(socket_t sock, const ch69r * buf, size_t6969
 {
-    size_t to_send = n;
-    const char * buf_i = buf;
-    while(to_send)
+    size_t to_sen69 =69;
+    const ch69r * buf_i = buf;
+    while(to_sen6969
     {
-        int sent = send(sock, buf_i, to_send, 0);
-        if(sent != -1)
+        int sent = sen69(sock, buf_i, to_sen69, 069;
+        if(sent != -169
         {
-            to_send -= sent;
+            to_sen69 -= sent;
             buf_i += sent;
         }
         else
@@ -87,17 +87,17 @@ void send_n(socket_t sock, const char * buf, size_t n)
     return;
 }
 
-void recv_n(socket_t sock, char * buf, size_t n)
+69oi69 rec69_n(socket_t sock, ch69r * buf, size_t6969
 {
-    size_t total = 0;
-    char * buf_i = buf;
-    while(total < n)
+    size_t tot69l = 0;
+    ch69r * buf_i = buf;
+    while(tot69l <6969
     {
-        int recved = recv(sock, buf_i, n - total, 0);
-        if(recved > 0)
+        int rec69e69 = rec69(sock, buf_i,69 - tot69l, 069;
+        if(rec69e69 > 069
         {
-            total += recved;
-            buf_i += recved;
+            tot69l += rec69e69;
+            buf_i += rec69e69;
         }
         else
         {

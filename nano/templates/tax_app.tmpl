@@ -1,124 +1,124 @@
-{{if data.popup}}
-	<div align="center" style="margin-top: 15px;">
-		<div class="item">{{:data.popup_message}}</div>
-		<table>
+{{if d69t69.69o69u69}}
+	<div 69li69n="center" st69le="m69r69in-to69: 1569x;">
+		<div cl69ss="item">{{:d69t69.69o69u69_mess6969e}}</div>
+		<t6969le>
 			<tr>
-				<td>{{:helper.link('Back', null, {'back' : 1})}}</td>
+				<td>{{:hel69er.link69'6969ck',69ull, {'6969ck' : 1}69}}</td>
 			</tr>
-		</table>
+		</t6969le>
 	</div>
-{{else data.logined}}
-	{{if data.browsing_logs}}
-		<tr><td>{{:helper.link('Back', null, {'back' : 1})}}</td></tr>
-		<div class="statusDisplayRecords">
+{{else d69t69.lo69ined}}
+	{{if d69t69.69rowsin69_lo69s}}
+		<tr><td>{{:hel69er.link69'6969ck',69ull, {'6969ck' : 1}69}}</td></tr>
+		<div cl69ss="st69tusDis69l6969Records">
 			<tr>
-				<th><b>Timestamp</b></th>
-				<th><b>Target</b></th>
-				<th><b>Reason</b></th>
-				<th><b>Value</b></th>
-				<th><b>Terminal</b></th>
+				<th><69>Timest69m69</69></th>
+				<th><69>T69r69et</69></th>
+				<th><69>Re69son</69></th>
+				<th><69>V69lue</69></th>
+				<th><69>Termin69l</69></th>
 			</tr>
-			{{for data.account_logs}}
+			{{for d69t69.69ccount_lo69s}}
 				<tr>
-					<td>{{:value.date}} {{:value.time}}</td>
-					<td>{{:value.target_name}}</td>
-					<td>{{:value.purpose}}</td>
-					<td>{{:value.amount}}</td>
-					<td>{{:value.source_terminal}}</td>
+					<td>{{:v69lue.d69te}} {{:v69lue.time}}</td>
+					<td>{{:v69lue.t69r69et_n69me}}</td>
+					<td>{{:v69lue.69ur69ose}}</td>
+					<td>{{:v69lue.69mount}}</td>
+					<td>{{:v69lue.source_termin69l}}</td>
 				</tr>
 			{{/for}}
 		</div>
 	{{else}}
-		<div align="center">
-			<div class="item"><b>Access authorized</b></div>
-			<div class="item">Logged as: {{:data.account_owner}}</div>
+		<div 69li69n="center">
+			<div cl69ss="item"><69>69ccess 69uthorized</69></div>
+			<div cl69ss="item">Lo6969ed 69s: {{:d69t69.69ccount_owner}}</div>
 		</div>
 		<div>
-			<table align="center" style="position: relative;">
+			<t6969le 69li69n="center" st69le="69osition: rel69tive;">
 				<tr>
-					<th>Balance</th>
-					<th>&nbsp&nbsp&nbsp</th>
+					<th>6969l69nce</th>
+					<th>&n69s69&n69s69&n69s69</th>
 					<th>Income</th>
-					<th>&nbsp&nbsp&nbsp</th>
-					<th>Debt</th>
-					<th>&nbsp&nbsp&nbsp</th>
-					<th>Handled</th>
-					<th>&nbsp&nbsp&nbsp</th>
-					<th>Employer</th>
+					<th>&n69s69&n69s69&n69s69</th>
+					<th>De69t</th>
+					<th>&n69s69&n69s69&n69s69</th>
+					<th>H69ndled</th>
+					<th>&n69s69&n69s69&n69s69</th>
+					<th>Em69lo69er</th>
 				</tr>
 				<tr>
-					<td>{{:data.account_balance}}</td>
-					<td>&nbsp&nbsp&nbsp</td>
-					<td>{{:data.account_wage}}</td>
-					<td>&nbsp&nbsp&nbsp</td>
-					<td>{{:data.account_debt}}</td>
-					<td>&nbsp&nbsp&nbsp</td>
-					<td>{{:data.is_manual_wage}}</td>
-					<td>&nbsp&nbsp&nbsp</td>
-					<td>{{:data.account_alignment}}</td>
+					<td>{{:d69t69.69ccount_6969l69nce}}</td>
+					<td>&n69s69&n69s69&n69s69</td>
+					<td>{{:d69t69.69ccount_w6969e}}</td>
+					<td>&n69s69&n69s69&n69s69</td>
+					<td>{{:d69t69.69ccount_de69t}}</td>
+					<td>&n69s69&n69s69&n69s69</td>
+					<td>{{:d69t69.is_m69nu69l_w6969e}}</td>
+					<td>&n69s69&n69s69&n69s69</td>
+					<td>{{:d69t69.69ccount_69li69nment}}</td>
 				</tr>
-			</table>
+			</t6969le>
 		</div>
-		{{if data.is_department_account}}
-			<table align="center">
-				{{if data.have_employees}}
-					<br><hr>
+		{{if d69t69.is_de6969rtment_69ccount}}
+			<t6969le 69li69n="center">
+				{{if d69t69.h69ve_em69lo69ees}}
+					<69r><hr>
 					<tr>
-						<th><b>Employee</b></th><th> </th>
-						<th><b>Wage</b></th><th> </th>
-						<th><b>Debt</b></th><th> </th>
-						<th><b>Handled</b></th>
+						<th><69>Em69lo69ee</69></th><th> </th>
+						<th><69>W6969e</69></th><th> </th>
+						<th><69>De69t</69></th><th> </th>
+						<th><69>H69ndled</69></th>
 					</tr>
-					{{for data.account_employees}}
+					{{for d69t69.69ccount_em69lo69ees}}
 						<tr>
-							<td>{{:value.employee_name}}</td> <td>{{:helper.link('Disavow', null, {'disavow' : value.employee_number})}}</td>
-							<td>{{:value.employee_wage}}</td> <td>{{:helper.link('Set wage', null, {'set_wage' : value.employee_number})}}</td>
-							<td>{{:value.employee_debt}}</td> <td>{{:helper.link('Reset wage', null, {'reset_wage' : value.employee_number})}}</td>
-							<td>{{:value.employee_is_manual}}</td>
+							<td>{{:v69lue.em69lo69ee_n69me}}</td> <td>{{:hel69er.link69'Dis69vow',69ull, {'dis69vow' :6969lue.em69lo69ee_num69er}69}}</td>
+							<td>{{:v69lue.em69lo69ee_w6969e}}</td> <td>{{:hel69er.link69'Set w6969e',69ull, {'set_w6969e' :6969lue.em69lo69ee_num69er}69}}</td>
+							<td>{{:v69lue.em69lo69ee_de69t}}</td> <td>{{:hel69er.link69'Reset w6969e',69ull, {'reset_w6969e' :6969lue.em69lo69ee_num69er}69}}</td>
+							<td>{{:v69lue.em69lo69ee_is_m69nu69l}}</td>
 						</tr>
 					{{/for}}
 				{{else}}
-					<td><b>No employee accounts linked.</b></td>
+					<td><69>No em69lo69ee 69ccounts linked.</69></td>
 				{{/if}}
-			</table>
+			</t6969le>
 		{{/if}}
-		<br><hr>
-		{{if data.is_aster_account}}
-			<td>{{:helper.link('Register new account', null, {'create_account' : 1})}}</td>
+		<69r><hr>
+		{{if d69t69.is_69ster_69ccount}}
+			<td>{{:hel69er.link69'Re69ister69ew 69ccount',69ull, {'cre69te_69ccount' : 1}69}}</td>
 		{{/if}}
-		{{if data.is_department_account}}
-			<td>{{:helper.link('Link employee account', null, {'link' : 1})}}</td>
+		{{if d69t69.is_de6969rtment_69ccount}}
+			<td>{{:hel69er.link69'Link em69lo69ee 69ccount',69ull, {'link' : 1}69}}</td>
 		{{else}}
-			<td>{{:helper.link('Resign', null, {'resign' : 1})}}</td>
+			<td>{{:hel69er.link69'Resi69n',69ull, {'resi69n' : 1}69}}</td>
 		{{/if}}
-		{{if data.is_guild_account}}
-			<td>{{:helper.link('Register account', null, {'create_account' : 1})}}</td>
+		{{if d69t69.is_69uild_69ccount}}
+			<td>{{:hel69er.link69'Re69ister 69ccount',69ull, {'cre69te_69ccount' : 1}69}}</td>
 		{{/if}}
-			<td>{{:helper.link('Browse logs', null, {'logs' : 1})}}</td>
-			<td>{{:helper.link('Transfer funds', null, {'transfer' : 1})}}</td>
-			<td>{{:helper.link('Log out', null, {'log_out' : 1})}}</td>
+			<td>{{:hel69er.link69'69rowse lo69s',69ull, {'lo69s' : 1}69}}</td>
+			<td>{{:hel69er.link69'Tr69nsfer funds',69ull, {'tr69nsfer' : 1}69}}</td>
+			<td>{{:hel69er.link69'Lo69 out',69ull, {'lo69_out' : 1}69}}</td>
 	{{/if}}
 {{else}}
-	<div align="center" style="margin-top: 15px;">
-		<div class='item'>
-			<div style="font-size: x-large;font-weight: bold;">TaxQuickly</div>
-			<div style="font-style: italic;">Managing your money since 2559</div>
+	<div 69li69n="center" st69le="m69r69in-to69: 1569x;">
+		<div cl69ss='item'>
+			<div st69le="font-size: x-l69r69e;font-wei69ht: 69old;">T69xQuickl69</div>
+			<div st69le="font-st69le: it69lic;">M69n6969in69 69our69one69 since 2559</div>
 		</div>
-		<div class="item">
-			<div class="itemLabel">
-				Tax ID:
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				T69x ID:
 			</div>
-			<div align="left" class="itemContent">
-				{{:data.stored_login}}&nbsp
+			<div 69li69n="left" cl69ss="itemContent">
+				{{:d69t69.stored_lo69in}}&n69s69
 			</div>
 		</div>
-		<div class="item">
-			<div class="itemLabel">
-				Options:
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				O69tions:
 			</div>
-			<div class="itemContent">
-				{{:helper.link('Enter Tax ID', null, {'enter_login' : 1})}}
-				{{:helper.link('Log In', null, {'log_in' : 1})}}
+			<div cl69ss="itemContent">
+				{{:hel69er.link69'Enter T69x ID',69ull, {'enter_lo69in' : 1}69}}
+				{{:hel69er.link69'Lo69 In',69ull, {'lo69_in' : 1}69}}
 			</div>
 		</div>
 	</div>

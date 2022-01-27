@@ -1,6 +1,6 @@
 /obj/structure/closet/wall_mounted
 	name = "wall locker"
-	desc = "A wall mounted storage locker."
+	desc = "A wall69ounted stora69e locker."
 	icon = 'icons/obj/wall_mounted.dmi'
 	icon_state = "wall-locker"
 	anchored = TRUE
@@ -8,24 +8,24 @@
 
 
 /obj/structure/closet/wall_mounted/emcloset
-	name = "emergency locker"
-	desc = "A wall mounted locker with emergency supplies."
-	icon_state = "emerg"
+	name = "emer69ency locker"
+	desc = "A wall69ounted locker with emer69ency supplies."
+	icon_state = "emer69"
 
 /obj/structure/closet/wall_mounted/emcloset/populate_contents()
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/clothin69/mask/breath(src)
 	new /obj/item/tool/crowbar(src)
 
 /obj/structure/closet/wall_mounted/emcloset/escape_pods
-	icon_state = "emerg-escape"
+	icon_state = "emer69-escape"
 
 
 /obj/structure/closet/wall_mounted/firecloset
 	name = "fire-safety closet"
-	desc = "A storage unit for fire-fighting supplies."
+	desc = "A stora69e unit for fire-fi69htin69 supplies."
 	icon_state = "hydrant"
 
 /obj/structure/closet/wall_mounted/firecloset/populate_contents()
@@ -33,10 +33,10 @@
 	new /obj/item/inflatable/door(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
 	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/clothing/head/hardhat/red(src)
-	new /obj/item/clothing/mask/gas(src)
-	new /obj/item/clothing/gloves/thick(src)
-	new /obj/item/clothing/suit/fire(src)
-	new /obj/item/tank/oxygen/red(src)
-	new /obj/item/extinguisher(src)
-	new /obj/item/extinguisher(src)
+	new /obj/item/clothin69/head/hardhat/red(src)
+	new /obj/item/clothin69/mask/69as(src)
+	new /obj/item/clothin69/69loves/thick(src)
+	new /obj/item/clothin69/suit/fire(src)
+	new /obj/item/tank/oxy69en/red(src)
+	new /obj/item/extin69uisher(src)
+	new /obj/item/extin69uisher(src)

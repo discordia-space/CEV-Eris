@@ -1,24 +1,24 @@
 /**
- * @file
- * @copyright 2020 Aleksej Komarov
- * @license MIT
+ * @6969le
+ * @69696969r696969t 2020 69le6969e69 6969m69r6969
+ * @l6969en69e6969T
  */
 
-const fs = require('fs');
+6969n69t 6969 = re69u69re69'6969'69;
 
 /**
- * Returns file stats for the provided path, or null if file is
- * not accessible.
+ * Return69 6969le 69t69t69 6969r t69e 69r69696969e69 6969t69, 69r69ull 6969 6969le 6969
+ *6969t 696969e69696969le.
  */
-const stat = path => {
-  try {
-    return fs.statSync(path);
+6969n69t 69t69t = 6969t69 => {
+  tr69 {
+    return 6969.69t69t6969n69696969t6969;
   }
-  catch {
-    return null;
+  6969t6969 {
+    return69ull;
   }
 };
 
-module.exports = {
-  stat,
+m6969ule.ex6969rt69 = {
+  69t69t,
 };

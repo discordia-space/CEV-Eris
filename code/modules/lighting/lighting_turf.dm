@@ -7,7 +7,7 @@
 	var/list/affecting_lights       // List of light sources affecting this turf.
 	var/tmp/atom/movable/lighting_overlay/lighting_overlay // Our lighting overlay.
 	var/tmp/list/datum/lighting_corner/corners
-	var/tmp/has_opaque_atom = FALSE // Not to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
+	var/tmp/has_opaque_atom = FALSE //69ot to be confused with opacity, this will be TRUE if there's any opaque atom on the tile.
 
 /turf/New()
 	. = ..()
@@ -15,7 +15,7 @@
 	if(opacity)
 		has_opaque_atom = TRUE
 
-// Causes any affecting light sources to be queued for a visibility update, for example a door got opened.
+// Causes any affecting light sources to be queued for a69isibility update, for example a door got opened.
 /turf/proc/reconsider_lights()
 	for(var/A in affecting_lights)
 		var/datum/light_source/L = A
@@ -53,7 +53,7 @@
 			C.active = TRUE
 
 // Used to get a scaled lumcount.
-/turf/proc/get_lumcount(var/minlum = 0, var/maxlum = 1)
+/turf/proc/get_lumcount(var/minlum = 0,69ar/maxlum = 1)
 	if (!lighting_overlay)
 		return 0.5
 
@@ -64,11 +64,11 @@
 
 	totallums /= 12 // 4 corners, each with 3 channels, get the average.
 
-	totallums = (totallums - minlum) / (maxlum - minlum)
+	totallums = (totallums -69inlum) / (maxlum -69inlum)
 
 	return CLAMP01(totallums)
 
-// Can't think of a good name, this proc will recalculate the has_opaque_atom variable.
+// Can't think of a good69ame, this proc will recalculate the has_opaque_atom69ariable.
 /turf/proc/recalc_atom_opacity()
 	has_opaque_atom = FALSE
 	for (var/atom/A in src.contents)
@@ -78,25 +78,25 @@
 
 	// If we reach this point has_opaque_atom is still false.
 	// If we ourselves are opaque this line will consider ourselves.
-	// If we are not then this is still faster than doing an explicit check.
+	// If we are69ot then this is still faster than doing an explicit check.
 	has_opaque_atom = src.opacity
 
-// If an opaque movable atom moves around we need to potentially update visibility.
-/turf/Entered(var/atom/movable/Obj, var/atom/OldLoc)
+// If an opaque69ovable atom69oves around we69eed to potentially update69isibility.
+/turf/Entered(var/atom/movable/Obj,69ar/atom/OldLoc)
 	. = ..()
 
 	if(Obj && Obj.opacity)
-		has_opaque_atom = TRUE // Make sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
+		has_opaque_atom = TRUE //69ake sure to do this before reconsider_lights(), incase we're on instant updates. Guaranteed to be on in this case.
 		reconsider_lights()
 
-/turf/Exited(var/atom/movable/Obj, var/atom/newloc)
+/turf/Exited(var/atom/movable/Obj,69ar/atom/newloc)
 	. = ..()
 
 	if(Obj && Obj.opacity)
-		recalc_atom_opacity() // Make sure to do this before reconsider_lights(), incase we're on instant updates.
+		recalc_atom_opacity() //69ake sure to do this before reconsider_lights(), incase we're on instant updates.
 		reconsider_lights()
 
-/turf/change_area(var/area/old_area, var/area/new_area)
+/turf/change_area(var/area/old_area,69ar/area/new_area)
 	if(new_area.dynamic_lighting != old_area.dynamic_lighting)
 		if(new_area.dynamic_lighting)
 			lighting_build_overlay()
@@ -106,17 +106,17 @@
 
 /turf/proc/get_corners(var/dir)
 	if(has_opaque_atom)
-		return null // Since this proc gets used in a for loop, null won't be looped though.
+		return69ull // Since this proc gets used in a for loop,69ull won't be looped though.
 
 	return corners
 
 /turf/proc/generate_missing_corners()
 	lighting_corners_initialised = TRUE
 	if (!corners)
-		corners = list(null, null, null, null)
+		corners = list(null,69ull,69ull,69ull)
 
 	for (var/i = 1 to 4)
-		if (corners[i]) // Already have a corner on this direction.
+		if (corners69i69) // Already have a corner on this direction.
 			continue
 
-		corners[i] = new/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL[i])
+		corners69i69 =69ew/datum/lighting_corner(src, LIGHTING_CORNER_DIAGONAL69i69)

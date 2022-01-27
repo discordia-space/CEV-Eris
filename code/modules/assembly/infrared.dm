@@ -2,7 +2,7 @@
 
 /obj/item/device/assembly/infra
 	name = "infrared emitter"
-	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
+	desc = "Emits a69isible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
 	origin_tech = list(TECH_MAGNET = 2)
 	matter = list(MATERIAL_PLASTIC = 1)
@@ -75,7 +75,7 @@
 	..()
 
 
-/obj/item/device/assembly/infra/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/device/assembly/infra/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	var/t = dir
 	. = ..()
 	set_dir(t)
@@ -92,22 +92,22 @@
 	if((!secured)||(!on)||(cooldown > 0))	return 0
 	pulse(0)
 	if(!holder)
-		visible_message("\icon[src] *beep* *beep*")
+		visible_message("\icon69src69 *beep* *beep*")
 	cooldown = 2
 	spawn(10)
 		process_cooldown()
 	return
 
 
-/obj/item/device/assembly/infra/interact(mob/user as mob)//TODO: change this this to the wire control panel
+/obj/item/device/assembly/infra/interact(mob/user as69ob)//TODO: change this this to the wire control panel
 	if(!secured)
 		return
 	user.set_machine(src)
 	var/dat = {"<tt><b>Infrared Laser</b><br>
-		<b>Status</b>: <a href='?src=\ref[src];state=[!on]'>[on ? "On" : "Off"]</a><br>
-		<b>Visibility</b>: <a href='?src=\ref[src];visible=[!visible]'>[visible ? "Visible" : "Invisible"]</a><br></tt>
-		<br><br><a href='?src=\ref[src];refresh=1'>Refresh</a>
-		<br><br><a href='?src=\ref[src];close=1'>Close</a>
+		<b>Status</b>: <a href='?src=\ref69src69;state=69!on69'>69on ? "On" : "Off"69</a><br>
+		<b>Visibility</b>: <a href='?src=\ref69src69;visible=69!visible69'>69visible ? "Visible" : "Invisible"69</a><br></tt>
+		<br><br><a href='?src=\ref69src69;refresh=1'>Refresh</a>
+		<br><br><a href='?src=\ref69src69;close=1'>Close</a>
 	"}
 	user << browse(dat, "window=infra")
 	onclose(user, "infra")
@@ -120,17 +120,17 @@
 		onclose(usr, "infra")
 		return
 
-	if(href_list["state"])
+	if(href_list69"state"69)
 		on = !(on)
 		update_icon()
 
-	if(href_list["visible"])
+	if(href_list69"visible"69)
 		visible = !(visible)
 		spawn(0)
 			if(first)
 				first.vis_spread(visible)
 
-	if(href_list["close"])
+	if(href_list69"close"69)
 		usr << browse(null, "window=infra")
 		return
 
@@ -170,7 +170,7 @@
 	qdel(src)
 
 /obj/effect/beam/i_beam/proc/vis_spread(v)
-	visible = v
+	visible =69
 	spawn(0)
 		if(next)
 			next.vis_spread(v)
@@ -194,7 +194,7 @@
 
 
 	var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(loc)
-	I.master = master
+	I.master =69aster
 	I.density = TRUE
 	I.set_dir(dir)
 	step(I, I.dir)
@@ -222,7 +222,7 @@
 /obj/effect/beam/i_beam/Bumped()
 	hit()
 
-/obj/effect/beam/i_beam/Crossed(atom/movable/AM as mob|obj)
+/obj/effect/beam/i_beam/Crossed(atom/movable/AM as69ob|obj)
 	if(istype(AM, /obj/effect/beam))
 		return
 	spawn(0)

@@ -1,5 +1,5 @@
 /obj/item/tank/onestar_regenerator
-	name = "OS Type - 13 \"Tiantipenquan\""
+	name = "OS Type - 13 \"Tiantipen69uan\""
 	desc = "This oxygen regenerator can provide seemingly endless supply for one human to breathe."
 	icon_state = "onestar_regenerator"
 	gauge_icon = null
@@ -29,7 +29,7 @@
 			ensure_breath()
 			air_contents.merge(M)
 
-	return M
+	return69
 
 /obj/item/tank/onestar_regenerator/update_gauge()
 	return

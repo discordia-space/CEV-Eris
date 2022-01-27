@@ -1,47 +1,47 @@
-<!-- pAI radio config
-code/modules/mob/living/silicon/pai/software_modules.dm
+<!-- 6969I r69dio confi69
+code/modules/mo69/livin69/silicon/6969i/softw69re_modules.dm
 -->
 
-<div class="item">
-	<div class="itemLabel">
-		Microphone:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Micro69hone:
 	</div>
-	<div class="itemContent">
-		{{if data.listening}}
-			{{:helper.link("On", '', {"stopic":"radio", "talk":1, "nowindow":1}, 'selected')}}
-			{{:helper.link("Off", '', {"stopic":"radio", "talk":1, "nowindow":1})}}
+	<div cl69ss="itemContent">
+		{{if d69t69.listenin69}}
+			{{:hel69er.lin6969"On", '', {"sto69ic":"r69dio", "t69l69":1, "nowindow":1}, 'selected'69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"r69dio", "t69l69":1, "nowindow":1}69}}
 		{{else}}
-			{{:helper.link("On", '', {"stopic":"radio", "talk":1, "nowindow":1})}}
-			{{:helper.link("Off", '', {"stopic":"radio", "talk":1, "nowindow":1}, 'selected')}}
+			{{:hel69er.lin6969"On", '', {"sto69ic":"r69dio", "t69l69":1, "nowindow":1}69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"r69dio", "t69l69":1, "nowindow":1}, 'selected'69}}
 		{{/if}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Frequency:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Frequenc69:
 	</div>
-	<div class="itemContent">
-		{{:helper.link("--", '', {"stopic":"radio", "freq":-10, "nowindow":1})}}
-		{{:helper.link("-",  '', {"stopic":"radio", "freq": -2, "nowindow":1})}}
-		<div style="float: left; width: 80px; text-align: center;">{{:data.frequency}}</div>
-		{{:helper.link("+",  '', {"stopic":"radio", "freq":  2, "nowindow":1})}}
-		{{:helper.link("++", '', {"stopic":"radio", "freq": 10, "nowindow":1})}}
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969"--", '', {"sto69ic":"r69dio", "freq":-10, "nowindow":1}69}}
+		{{:hel69er.lin6969"-",  '', {"sto69ic":"r69dio", "freq": -2, "nowindow":1}69}}
+		<div st69le="flo69t: left; width: 8069x; text-69li69n: center;">{{:d69t69.frequenc69}}</div>
+		{{:hel69er.lin6969"+",  '', {"sto69ic":"r69dio", "freq":  2, "nowindow":1}69}}
+		{{:hel69er.lin6969"++", '', {"sto69ic":"r69dio", "freq": 10, "nowindow":1}69}}
 	</div>
 </div>
 
-{{for data.channels}}
-<div class="item">
-	<div class="itemLabel">
-		{{:value.name}}
+{{for d69t69.ch69nnels}}
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		{{:v69lue.n69me}}
 	</div>
-	<div class="itemContent">
-		{{if value.listening}}
-			{{:helper.link("On", '', {"stopic":"radio", "channel":value.name, "listen":1, "nowindow":1}, 'selected')}}
-			{{:helper.link("Off", '', {"stopic":"radio", "channel":value.name, "listen":1, "nowindow":1})}}
+	<div cl69ss="itemContent">
+		{{if6969lue.listenin69}}
+			{{:hel69er.lin6969"On", '', {"sto69ic":"r69dio", "ch69nnel":v69lue.n69me, "listen":1, "nowindow":1}, 'selected'69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"r69dio", "ch69nnel":v69lue.n69me, "listen":1, "nowindow":1}69}}
 		{{else}}
-			{{:helper.link("On", '', {"stopic":"radio", "channel":value.name, "listen":1, "nowindow":1})}}
-			{{:helper.link("Off", '', {"stopic":"radio", "channel":value.name, "listen":1, "nowindow":1}, 'selected')}}
+			{{:hel69er.lin6969"On", '', {"sto69ic":"r69dio", "ch69nnel":v69lue.n69me, "listen":1, "nowindow":1}69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"r69dio", "ch69nnel":v69lue.n69me, "listen":1, "nowindow":1}, 'selected'69}}
 		{{/if}}
 	</div>
 </div>

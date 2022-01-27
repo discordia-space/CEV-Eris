@@ -1,6 +1,6 @@
 /datum/trade_station/mechas
-	name_pool = list("TCS 'Shipyard'" = "Technomansers Construction Station 'Shipyard'. Seems that they construct and selling exosuits. Sensors showing that they have docked vessel, maybe they completed and sold last batch.\
-		\"Hey, dudes, it seems you want some mechas? We just send last batch of mechs, but we have some extra suits, parts and circuits.\"")
+	name_pool = list("TCS 'Shipyard'" = "Technomansers Construction Station 'Shipyard'. Seems that they construct and selling exosuits. Sensors showing that they have docked69essel,69aybe they completed and sold last batch.\
+		\"Hey, dudes, it seems you want some69echas? We just send last batch of69echs, but we have some extra suits, parts and circuits.\"")
 	assortiment = list(
 		"Exosuits" = list(
 			/mob/living/exosuit/premade/powerloader/firefighter,
@@ -28,15 +28,15 @@
 			/obj/item/electronics/circuitboard/exosystem/medical,
 			/obj/item/electronics/circuitboard/exosystem/weapons,
 		),
-		"Equipment" = list(
-			/obj/item/mech_equipment/mounted_system/taser,
-			/obj/item/mech_equipment/mounted_system/taser/ion,
-			/obj/item/mech_equipment/mounted_system/taser/plasma,
-			/obj/item/mech_equipment/mounted_system/rcd,
-			/obj/item/mech_equipment/clamp,
-			/obj/item/mech_equipment/light,
-			/obj/item/mech_equipment/drill,
-			/obj/item/mech_equipment/mounted_system/extinguisher,
-			/obj/item/mech_equipment/sleeper,
+		"E69uipment" = list(
+			/obj/item/mech_e69uipment/mounted_system/taser,
+			/obj/item/mech_e69uipment/mounted_system/taser/ion,
+			/obj/item/mech_e69uipment/mounted_system/taser/plasma,
+			/obj/item/mech_e69uipment/mounted_system/rcd,
+			/obj/item/mech_e69uipment/clamp,
+			/obj/item/mech_e69uipment/light,
+			/obj/item/mech_e69uipment/drill,
+			/obj/item/mech_e69uipment/mounted_system/extinguisher,
+			/obj/item/mech_e69uipment/sleeper,
 		),
 	)

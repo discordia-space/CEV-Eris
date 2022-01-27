@@ -3,11 +3,11 @@
 	var/list/matter
 	var/list/matter_reagents
 	var/w_class // Size of the object.
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
+	var/unacidable = 0 //universal "unacidabliness"69ar, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
 	var/sharp = FALSE		// whether this object cuts
-	var/edge = FALSE		// whether this object is more likely to dismember
+	var/edge = FALSE		// whether this object is69ore likely to dismember
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
@@ -27,12 +27,12 @@
 	if(get_dist(user, src) <= 2)
 		if (corporation)
 			if (corporation in global.GLOB.global_corporations)
-				var/datum/corporation/C = GLOB.global_corporations[corporation]
-				to_chat(user, "<font color='[C.textcolor]'>You think this [src.name] create a \
-				<IMG CLASS=icon SRC=\ref[C.icon] ICONSTATE='[C.icon_state]'>\
-				[C.name]. [C.about]</font>")
+				var/datum/corporation/C = GLOB.global_corporations69corporation69
+				to_chat(user, "<font color='69C.textcolor69'>You think this 69src.name69 create a \
+				<IMG CLASS=icon SRC=\ref69C.icon69 ICONSTATE='69C.icon_state69'>\
+				69C.name69. 69C.about69</font>")
 			else
-				to_chat(user, "You think this [src.name] create a [corporation].")
+				to_chat(user, "You think this 69src.name69 create a 69corporation69.")
 	return distance == -1 || (get_dist(src, user) <= distance)
 
 
@@ -40,12 +40,12 @@
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/Topic(href, href_list, var/datum/topic_state/state = GLOB.default_state)
+/obj/Topic(href, href_list,69ar/datum/topic_state/state = GLOB.default_state)
 	if(..())
 		return 1
 
-	// In the far future no checks are made in an overriding Topic() beyond if(..()) return
-	// Instead any such checks are made in CanUseTopic()
+	// In the far future no checks are69ade in an overriding Topic() beyond if(..()) return
+	// Instead any such checks are69ade in CanUseTopic()
 	if(CanUseTopic(usr, state, href_list) == STATUS_INTERACTIVE)
 		CouldUseTopic(usr)
 		return OnTopic(usr, href_list, state)
@@ -86,7 +86,7 @@
 /obj/proc/CouldNotUseTopic(mob/user)
 	// Nada
 
-/obj/item/proc/is_used_on(obj/O, mob/user)
+/obj/item/proc/is_used_on(obj/O,69ob/user)
 
 /obj/Process()
 	STOP_PROCESSING(SSobj, src)
@@ -113,14 +113,14 @@
 /obj/proc/updateUsrDialog()
 	if(in_use)
 		var/is_in_use = 0
-		var/list/nearby = viewers(1, src)
+		var/list/nearby =69iewers(1, src)
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if ((M.client &&69.machine == src))
 				is_in_use = 1
 				src.attack_hand(M)
 		if (isAI(usr) || isrobot(usr))
 			if (!(usr in nearby))
-				if (usr.client && usr.machine==src) // && M.machine == src is omitted because if we triggered this by using the dialog, it doesn't matter if our machine changed in between triggering it and this - the dialog is probably still supposed to refresh.
+				if (usr.client && usr.machine==src) // &&69.machine == src is omitted because if we triggered this by using the dialog, it doesn't69atter if our69achine changed in between triggering it and this - the dialog is probably still supposed to refresh.
 					is_in_use = 1
 					src.attack_ai(usr)
 
@@ -135,12 +135,12 @@
 		in_use = is_in_use
 
 /obj/proc/updateDialog()
-	// Check that people are actually using the machine. If not, don't update anymore.
+	// Check that people are actually using the69achine. If not, don't update anymore.
 	if(in_use)
-		var/list/nearby = viewers(1, src)
+		var/list/nearby =69iewers(1, src)
 		var/is_in_use = 0
 		for(var/mob/M in nearby)
-			if ((M.client && M.machine == src))
+			if ((M.client &&69.machine == src))
 				is_in_use = 1
 				src.interact(M)
 		var/ai_in_use = AutoUpdateAI(src)
@@ -167,7 +167,7 @@
 
 /obj/item/proc/updateSelfDialog()
 	var/mob/M = src.loc
-	if(istype(M) && M.client && M.machine == src)
+	if(istype(M) &&69.client &&69.machine == src)
 		src.attack_self(M)
 
 /obj/proc/hide(hide)
@@ -177,13 +177,13 @@
 /obj/proc/hides_under_flooring()
 	return level == BELOW_PLATING_LEVEL
 
-/obj/proc/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
+/obj/proc/hear_talk(mob/M as69ob, text,69erb, datum/language/speaking, speech_volume)
 	if(talking_atom)
-		talking_atom.catchMessage(text, M)
+		talking_atom.catchMessage(text,69)
 /*
 	var/mob/mo = locate(/mob) in src
 	if(mo)
-		var/rendered = "<span class='game say'><span class='name'>[M.name]: </span> <span class='message'>[text]</span></span>"
+		var/rendered = "<span class='game say'><span class='name'>69M.name69: </span> <span class='message'>69text69</span></span>"
 		mo.show_message(rendered, 2)
 		*/
 	return
@@ -191,7 +191,7 @@
 /obj/proc/see_emote(mob/M, text, emote_type)
 	return
 
-/obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/obj/proc/show_message(msg, type, alt, alt_type)//Message, type of69essage (1 or 2), alternative69essage, alt69essage type (1 or 2)
 	return
 
 /obj/proc/add_hearing()
@@ -200,46 +200,46 @@
 /obj/proc/remove_hearing()
 	GLOB.hearing_objects.Remove(src)
 
-/obj/proc/eject_item(obj/item/I, mob/living/user)
+/obj/proc/eject_item(obj/item/I,69ob/living/user)
 	if(!I || !user.IsAdvancedToolUser())
 		return FALSE
 	user.put_in_hands(I)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magin.ogg', 75, 1)
 	user.visible_message(
-		"[user] removes [I] from [src].",
-		SPAN_NOTICE("You remove [I] from [src].")
+		"69user69 removes 69I69 from 69src69.",
+		SPAN_NOTICE("You remove 69I69 from 69src69.")
 	)
 	return TRUE
 
-/obj/proc/insert_item(obj/item/I, mob/living/user)
-	if(!I || !user.unEquip(I))
+/obj/proc/insert_item(obj/item/I,69ob/living/user)
+	if(!I || !user.unE69uip(I))
 		return FALSE
 	I.forceMove(src)
 	playsound(src.loc, 'sound/weapons/guns/interact/pistol_magout.ogg', 75, 1)
-	to_chat(user, SPAN_NOTICE("You insert [I] into [src]."))
+	to_chat(user, SPAN_NOTICE("You insert 69I69 into 69src69."))
 	return TRUE
 
 
-//Returns the list of matter in this object
+//Returns the list of69atter in this object
 //You can override it to customise exactly what is returned.
 /obj/proc/get_matter()
-	return matter ? matter : list()
+	return69atter ?69atter : list()
 
-//Drops the materials in matter list on into target location
+//Drops the69aterials in69atter list on into target location
 //Use for deconstrction
-// Dropper is whoever is handling these materials if any , causes them to leave fingerprints on the sheets.
-/obj/proc/drop_materials(target_loc, mob/living/dropper)
+// Dropper is whoever is handling these69aterials if any , causes them to leave fingerprints on the sheets.
+/obj/proc/drop_materials(target_loc,69ob/living/dropper)
 	var/list/materials = get_matter()
 
-	for(var/mat_name in materials)
+	for(var/mat_name in69aterials)
 		var/material/material = get_material_by_name(mat_name)
 		if(!material)
 			continue
 
-		material.place_material(target_loc, materials[mat_name], dropper)
+		material.place_material(target_loc,69aterials69mat_name69, dropper)
 
 //To be called from things that spill objects on the floor.
-//Makes an object move around randomly for a couple of tiles
+//Makes an object69ove around randomly for a couple of tiles
 /obj/proc/tumble(var/dist = 2)
 	set waitfor = FALSE
 	if (dist >= 1)
@@ -250,7 +250,7 @@
 				sleep(rand(2,4))
 
 
-//Intended for gun projectiles, but defined at this level for various things that aren't of projectile type
+//Intended for gun projectiles, but defined at this level for69arious things that aren't of projectile type
 /obj/proc/multiply_projectile_damage(newmult)
 	throwforce = initial(throwforce) * newmult
 

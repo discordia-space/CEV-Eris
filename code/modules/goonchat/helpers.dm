@@ -3,25 +3,25 @@ GLOBAL_VAR_INIT(TAB, "&nbsp;&nbsp;&nbsp;&nbsp;")
 GLOBAL_DATUM_INIT(is_http_protocol, /regex, regex("^https?://"))
 
 GLOBAL_LIST_INIT(symbols_unicode_keys, list(
-	"‚" = "&#x201A;",
-	"„" = "&#x201E;",
-	"…" = "&#x2026;",
-	"†" = "&#x2020;",
-	"‡" = "&#x2021;",
-	"‰" = "&#x2030;",
-	"‹" = "&#x2039;",
-	"‘" = "&#x2018;",
-	"’" = "&#x2019;",
-	"“" = "&#x201C;",
-	"”" = "&#x201D;",
-	"•" = "&#x2022;",
-	"–" = "&#x2013;",
-	"—" = "&#x2014;",
-	"™" = "&#x2122;"
+	"ï¿½" = "&#x201A;",
+	"ï¿½" = "&#x201E;",
+	"ï¿½" = "&#x2026;",
+	"ï¿½" = "&#x2020;",
+	"ï¿½" = "&#x2021;",
+	"ï¿½" = "&#x2030;",
+	"ï¿½" = "&#x2039;",
+	"ï¿½" = "&#x2018;",
+	"ï¿½" = "&#x2019;",
+	"ï¿½" = "&#x201C;",
+	"ï¿½" = "&#x201D;",
+	"ï¿½" = "&#x2022;",
+	"ï¿½" = "&#x2013;",
+	"ï¿½" = "&#x2014;",
+	"ï¿½" = "&#x2122;"
 ))
 /proc/symbols_to_unicode(text)
 	for(var/key in GLOB.symbols_unicode_keys)
-		text = replacetext(text, key, GLOB.symbols_unicode_keys[key])
+		text = replacetext(text, key, GLOB.symbols_unicode_keys69key69)
 	return text
 
 /proc/color_macro_to_html(text)
@@ -37,12 +37,12 @@ GLOBAL_LIST_INIT(symbols_unicode_keys, list(
 /proc/icon2base64(icon/icon, iconKey = "misc")
 	if (!isicon(icon))
 		return FALSE
-	WRITE_FILE(GLOB.iconCache[iconKey], icon)
+	WRITE_FILE(GLOB.iconCache69iconKey69, icon)
 	var/iconData = GLOB.iconCache.ExportText(iconKey)
 	var/list/partial = splittext(iconData, "{")
-	return replacetext(copytext(partial[2], 3, -5), "\n", "")
+	return replacetext(copytext(partial69269, 3, -5), "\n", "")
 
-/proc/icon2html(thing, target, icon_state, dir, frame = 1, moving = FALSE, realsize = FALSE)
+/proc/icon2html(thing, target, icon_state, dir, frame = 1,69oving = FALSE, realsize = FALSE)
 	if (!thing)
 		return
 
@@ -62,11 +62,11 @@ GLOBAL_LIST_INIT(symbols_unicode_keys, list(
 			return
 	if (!isicon(I))
 		if (isfile(thing)) //special snowflake
-			var/name = "[generate_asset_name(thing)].png"
+			var/name = "69generate_asset_name(thing)69.png"
 			register_asset(name, thing)
 			for (var/thing2 in targets)
 				send_asset(thing2, key, FALSE)
-			return "<img class='icon icon-misc' src=\"[url_encode(name)]\">"
+			return "<img class='icon icon-misc' src=\"69url_encode(name)69\">"
 		var/atom/A = thing
 		if (isnull(dir))
 			dir = A.dir
@@ -84,18 +84,18 @@ GLOBAL_LIST_INIT(symbols_unicode_keys, list(
 		if (isnull(icon_state))
 			icon_state = ""
 
-	I = icon(I, icon_state, dir, frame, moving)
+	I = icon(I, icon_state, dir, frame,69oving)
 
-	key = "[generate_asset_name(I)].png"
+	key = "69generate_asset_name(I)69.png"
 	register_asset(key, I)
 	for (var/thing2 in targets)
 		send_asset(thing2, key, FALSE)
 
 	if(realsize)
-		return "<img class='icon icon-[icon_state]' style='width:[I.Width()]px;height:[I.Height()]px;min-height:[I.Height()]px' src=\"[url_encode(key)]\">"
+		return "<img class='icon icon-69icon_state69' style='width:69I.Width()69px;height:69I.Height()69px;min-height:69I.Height()69px' src=\"69url_encode(key)69\">"
 
 
-	return "<img class='icon icon-[icon_state]' src=\"[url_encode(key)]\">"
+	return "<img class='icon icon-69icon_state69' src=\"69url_encode(key)69\">"
 
 /proc/icon2base64html(thing)
 	if (!thing)
@@ -106,31 +106,31 @@ GLOBAL_LIST_INIT(symbols_unicode_keys, list(
 		var/icon_base64 = icon2base64(I)
 
 		if (I.Height() > world.icon_size || I.Width() > world.icon_size)
-			var/icon_md5 = md5(icon_base64)
-			icon_base64 = bicon_cache[icon_md5]
-			if (!icon_base64) // Doesn't exist yet, make it.
-				bicon_cache[icon_md5] = icon_base64 = icon2base64(I)
+			var/icon_md5 =69d5(icon_base64)
+			icon_base64 = bicon_cache69icon_md569
+			if (!icon_base64) // Doesn't exist yet,69ake it.
+				bicon_cache69icon_md569 = icon_base64 = icon2base64(I)
 
 
-		return "<img class='icon icon-misc' src='data:image/png;base64,[icon_base64]'>"
+		return "<img class='icon icon-misc' src='data:image/png;base64,69icon_base6469'>"
 
 	// Either an atom or somebody fucked up and is gonna get a runtime, which I'm fine with.
 	var/atom/A = thing
-	var/key = "[istype(A.icon, /icon) ? "\ref[A.icon]" : A.icon]:[A.icon_state]"
+	var/key = "69istype(A.icon, /icon) ? "\ref69A.icon69" : A.icon69:69A.icon_state69"
 
 
-	if (!bicon_cache[key]) // Doesn't exist, make it.
+	if (!bicon_cache69key69) // Doesn't exist,69ake it.
 		var/icon/I = icon(A.icon, A.icon_state, SOUTH, 1)
 		if (ishuman(thing)) // Shitty workaround for a BYOND issue.
 			var/icon/temp = I
 			I = icon()
 			I.Insert(temp, dir = SOUTH)
 
-		bicon_cache[key] = icon2base64(I, key)
+		bicon_cache69key69 = icon2base64(I, key)
 
-	return "<img class='icon icon-[A.icon_state]' src='data:image/png;base64,[bicon_cache[key]]'>"
+	return "<img class='icon icon-69A.icon_state69' src='data:image/png;base64,69bicon_cache69key6969'>"
 
-//Costlier version of icon2html() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme moderation, ESPECIALLY on mobs.
+//Costlier69ersion of icon2html() that uses getFlatIcon() to account for overlays, underlays, etc. Use with extreme69oderation, ESPECIALLY on69obs.
 /proc/costly_icon2html(thing, target)
 	if (!thing)
 		return

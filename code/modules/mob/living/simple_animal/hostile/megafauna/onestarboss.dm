@@ -3,7 +3,7 @@
 	desc = "Love and concrete."
 
 	faction = "onestar"
-	mob_size = MOB_GIGANTIC
+	mob_size =69OB_GIGANTIC
 	icon = 'icons/mob/64x64.dmi'
 	icon_state = "onestar_boss_unpowered"
 	icon_living = "onestar_boss_unpowered"
@@ -23,7 +23,7 @@
 
 	mob_classification = CLASSIFICATION_SYNTHETIC
 
-	wander = FALSE //No more sleepwalking
+	wander = FALSE //No69ore sleepwalking
 
 	projectiletype = /obj/item/projectile/bullet/srifle/nomuzzle
 
@@ -64,21 +64,21 @@
 	if(istype(target_mob, /mob/living/exosuit))
 		var/mob/living/exosuit/M = target_mob
 		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
+		return69
 	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 		return B
 
 /mob/living/simple_animal/hostile/megafauna/one_star/proc/shoot_rocket(turf/marker, set_angle)
-	if(!isnum(set_angle) && (!marker || marker == loc))
+	if(!isnum(set_angle) && (!marker ||69arker == loc))
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new /obj/item/projectile/bullet/rocket(startloc)
+	var/obj/item/projectile/P =69ew /obj/item/projectile/bullet/rocket(startloc)
 	P.firer = src
 	if(target)
 		P.original = target
-	P.launch( get_step(marker, pick(SOUTH, NORTH, WEST, EAST, SOUTHEAST, SOUTHWEST, NORTHEAST, NORTHWEST)) )
+	P.launch( get_step(marker, pick(SOUTH,69ORTH, WEST, EAST, SOUTHEAST, SOUTHWEST,69ORTHEAST,69ORTHWEST)) )
 
 
 /mob/living/simple_animal/hostile/megafauna/one_star/OpenFire()

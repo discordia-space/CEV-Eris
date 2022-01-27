@@ -2,7 +2,7 @@
 
 // CHUNK
 //
-// A 16x16 grid of the map with a list of turfs that can be seen, are visible and are dimmed.
+// A 16x16 grid of the69ap with a list of turfs that can be seen, are69isible and are dimmed.
 // Allows the Eye to stream these chunks and know what it can and cannot see.
 
 /datum/obfuscation
@@ -22,7 +22,7 @@
 	var/x = 0
 	var/y = 0
 	var/z = 0
-	var/datum/obfuscation/obfuscation = new()
+	var/datum/obfuscation/obfuscation =69ew()
 
 // Add an eye to the chunk, then update if changed.
 
@@ -52,18 +52,18 @@
 // Called when a chunk has changed. I.E: A wall was deleted.
 
 /datum/chunk/proc/visibilityChanged(turf/loc)
-	if(!visibleTurfs[loc])
+	if(!visibleTurfs69loc69)
 		return
 	hasChanged()
 
-// Updates the chunk, makes sure that it doesn't update too much. If the chunk isn't being watched it will
-// instead be flagged to update the next time an AI Eye moves near it.
+// Updates the chunk,69akes sure that it doesn't update too69uch. If the chunk isn't being watched it will
+// instead be flagged to update the69ext time an AI Eye69oves69ear it.
 
 /datum/chunk/proc/hasChanged(var/update_now = 0)
 	if(visible || update_now)
 		if(!updating)
 			updating = 1
-			spawn(UPDATE_BUFFER) // Batch large changes, such as many doors opening or closing at once
+			spawn(UPDATE_BUFFER) // Batch large changes, such as69any doors opening or closing at once
 				update()
 				updating = 0
 	else
@@ -75,49 +75,49 @@
 
 	set background = 1
 
-	var/list/newVisibleTurfs = new()
+	var/list/newVisibleTurfs =69ew()
 	acquireVisibleTurfs(newVisibleTurfs)
 
 	// Removes turf that isn't in turfs.
 	newVisibleTurfs &= turfs
 
-	var/list/visAdded = newVisibleTurfs - visibleTurfs
-	var/list/visRemoved = visibleTurfs - newVisibleTurfs
+	var/list/visAdded =69ewVisibleTurfs -69isibleTurfs
+	var/list/visRemoved =69isibleTurfs -69ewVisibleTurfs
 
-	visibleTurfs = newVisibleTurfs
-	obscuredTurfs = turfs - newVisibleTurfs
+	visibleTurfs =69ewVisibleTurfs
+	obscuredTurfs = turfs -69ewVisibleTurfs
 
-	for(var/turf in visAdded)
+	for(var/turf in69isAdded)
 		var/turf/t = turf
-		if(t.obfuscations[obfuscation.type])
-			obscured -= t.obfuscations[obfuscation.type]
+		if(t.obfuscations69obfuscation.type69)
+			obscured -= t.obfuscations69obfuscation.type69
 			for(var/eye in seenby)
 				var/mob/observer/eye/m = eye
 				if(!m || !m.owner)
 					continue
 				if(m.owner.client)
-					m.owner.client.images -= t.obfuscations[obfuscation.type]
+					m.owner.client.images -= t.obfuscations69obfuscation.type69
 
-	for(var/turf in visRemoved)
+	for(var/turf in69isRemoved)
 		var/turf/t = turf
-		if(obscuredTurfs[t])
-			if(!t.obfuscations[obfuscation.type])
+		if(obscuredTurfs69t69)
+			if(!t.obfuscations69obfuscation.type69)
 				var/image/I = image(obfuscation.icon, t, obfuscation.icon_state, BYOND_LIGHTING_LAYER+0.1)
 				I.plane = t.get_relative_plane(BYOND_LIGHTING_PLANE)
-				t.obfuscations[obfuscation.type] = I
+				t.obfuscations69obfuscation.type69 = I
 
-			obscured += t.obfuscations[obfuscation.type]
+			obscured += t.obfuscations69obfuscation.type69
 			for(var/eye in seenby)
 				var/mob/observer/eye/m = eye
 				if(!m || !m.owner)
-					seenby -= m
+					seenby -=69
 					continue
 				if(m.owner.client)
-					m.owner.client.images += t.obfuscations[obfuscation.type]
+					m.owner.client.images += t.obfuscations69obfuscation.type69
 
 /datum/chunk/proc/acquireVisibleTurfs(var/list/visible)
 
-// Create a new camera chunk, since the chunks are made as they are needed.
+// Create a69ew camera chunk, since the chunks are69ade as they are69eeded.
 
 /datum/chunk/New(loc, x, y, z)
 
@@ -131,24 +131,24 @@
 
 	for(var/turf/t in range(10, locate(x + 8, y + 8, z)))
 		if(t.x >= x && t.y >= y && t.x < x + 16 && t.y < y + 16)
-			turfs[t] = t
+			turfs69t69 = t
 
 	acquireVisibleTurfs(visibleTurfs)
 
 	// Removes turf that isn't in turfs.
 	visibleTurfs &= turfs
 
-	obscuredTurfs = turfs - visibleTurfs
+	obscuredTurfs = turfs -69isibleTurfs
 
 	for(var/turf in obscuredTurfs)
 		var/turf/t = turf
-		if(!t.obfuscations[obfuscation.type])
+		if(!t.obfuscations69obfuscation.type69)
 			var/image/I = image(obfuscation.icon, t, obfuscation.icon_state, BYOND_LIGHTING_LAYER+0.1)
 			I.plane = t.get_relative_plane(BYOND_LIGHTING_PLANE)
-			t.obfuscations[obfuscation.type] = I
-		obscured += t.obfuscations[obfuscation.type]
+			t.obfuscations69obfuscation.type69 = I
+		obscured += t.obfuscations69obfuscation.type69
 
-/proc/seen_turfs_in_range(var/source, var/range)
+/proc/seen_turfs_in_range(var/source,69ar/range)
 	var/turf/pos = get_turf(source)
 	return hear(range, pos)
 

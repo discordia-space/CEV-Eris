@@ -25,7 +25,7 @@
 	var/const/WIRE_PULSE = 2				//Allows Pulse(0) to act on the holder
 	var/const/WIRE_PULSE_SPECIAL = 4		//Allows Pulse(0) to act on the holders special assembly
 	var/const/WIRE_RADIO_RECEIVE = 8		//Allows Pulsed(1) to call Activate()
-	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio message
+	var/const/WIRE_RADIO_PULSE = 16		//Allows Pulse(1) to send a radio69essage
 
 
 /obj/item/device/assembly/proc/activate()
@@ -67,13 +67,13 @@
 	return secured
 
 
-/obj/item/device/assembly/proc/attach_assembly(obj/item/device/assembly/A, mob/user)
+/obj/item/device/assembly/proc/attach_assembly(obj/item/device/assembly/A,69ob/user)
 	holder = new/obj/item/device/assembly_holder(get_turf(src))
 	if(holder.attach(A, src, user))
-		to_chat(user, SPAN_NOTICE("You attach \the [A] to \the [src]!"))
+		to_chat(user, SPAN_NOTICE("You attach \the 69A69 to \the 69src69!"))
 
 
-/obj/item/device/assembly/attackby(obj/item/I, mob/user)
+/obj/item/device/assembly/attackby(obj/item/I,69ob/user)
 	if(is_assembly(I))
 		var/obj/item/device/assembly/A = I
 		if((!A.secured) && (!secured))
@@ -82,9 +82,9 @@
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			if(toggle_secure())
-				to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+				to_chat(user, SPAN_NOTICE("\The 69src69 is ready!"))
 			else
-				to_chat(user, SPAN_NOTICE("\The [src] can now be attached!"))
+				to_chat(user, SPAN_NOTICE("\The 69src69 can now be attached!"))
 			return
 	..()
 
@@ -97,9 +97,9 @@
 	..(user)
 	if(in_range(src, user) || loc == user)
 		if(secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			to_chat(user, SPAN_NOTICE("\The 69src69 is ready!"))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			to_chat(user, SPAN_NOTICE("\The 69src69 can be attached!"))
 
 /obj/item/device/assembly/attack_self(mob/user)
 	if(!user)
@@ -110,7 +110,7 @@
 
 
 /obj/item/device/assembly/interact(mob/user)
-	return //HTML MENU FOR WIRES GOES HERE
+	return //HTML69ENU FOR WIRES GOES HERE
 
 /obj/item/device/assembly/proc/holder_movement()
 	return

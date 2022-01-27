@@ -1,6 +1,6 @@
 /datum/trade_station/station_zarya
 	name_pool = list(
-		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a more general shop, you should contact our main station: FTS 'Solnishko'"
+		"FTB 'Zarya'" = "Free Trade Beacon 'Zarya':\n\"Privet, this is the trade beacon 'Zarya'. We sell electronics, construction, and anything related to engineering! If you are looking for a69ore general shop, you should contact our69ain station: FTS 'Solnishko'"
 	)
 	start_discovered = TRUE
 	spawn_always = TRUE
@@ -50,7 +50,7 @@
 			/obj/machinery/power/generator,
 			/obj/machinery/atmospherics/binary/circulator,
 			/obj/item/solar_assembly,
-//			/obj/item/tracker_electronics, // broken for now? This is even used for something?
+//			/obj/item/tracker_electronics, // broken for69ow? This is even used for something?
 			/obj/machinery/field_generator
 		),
 		"BCRKAR BCR4NHA" = list(
@@ -66,10 +66,10 @@
 	)
 	offer_types = list(
 		/obj/item/tool_upgrade = offer_data("tool upgrade", 175, 0),						// base price: 200, sold at common
-		/obj/item/rig_module = offer_data("rig module", 400, 10),							// base price: 500, sold at common
-		/obj/item/rig/eva = offer_data("EVA suit control module", 600, 4),					// base price: 682 (incl. components), sold at common
-		/obj/item/rig/hazard = offer_data("hazard hardsuit control module", 600, 4),		// base price: 682 (incl. components), sold at common
-		/obj/item/rig/industrial = offer_data("industrial suit control module", 800, 4),	// base price: 882 (incl. components), sold at common
-		/obj/item/rig/hazmat = offer_data("AMI control module", 800, 4),					// base price: 882 (incl. components), sold at common
-		/obj/item/rig/combat = offer_data("combat hardsuit control module", 1000, 4),		// base price: 1032 (incl. components), sold at common
+		/obj/item/rig_module = offer_data("rig69odule", 400, 10),							// base price: 500, sold at common
+		/obj/item/rig/eva = offer_data("EVA suit control69odule", 600, 4),					// base price: 682 (incl. components), sold at common
+		/obj/item/rig/hazard = offer_data("hazard hardsuit control69odule", 600, 4),		// base price: 682 (incl. components), sold at common
+		/obj/item/rig/industrial = offer_data("industrial suit control69odule", 800, 4),	// base price: 882 (incl. components), sold at common
+		/obj/item/rig/hazmat = offer_data("AMI control69odule", 800, 4),					// base price: 882 (incl. components), sold at common
+		/obj/item/rig/combat = offer_data("combat hardsuit control69odule", 1000, 4),		// base price: 1032 (incl. components), sold at common
 	)

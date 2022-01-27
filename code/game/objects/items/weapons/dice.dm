@@ -11,7 +11,7 @@
 
 /obj/item/dice/Initialize(mapload)
 	. = ..()
-	icon_state = "[name][rand(1,sides)]"
+	icon_state = "69name6969rand(1,sides)69"
 
 /obj/item/dice/d2
 	name = "d2"
@@ -61,19 +61,19 @@ Tryed to code it without duplication, but it doesn't worked.
 Another builds like baystation12 also have a duplication.
 */
 
-/obj/item/dice/attack_self(mob/user as mob)
+/obj/item/dice/attack_self(mob/user as69ob)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if (result == 1 && sides == 20)
 		comment = "Ouch, bad luck."
 	else if (result == 20 && sides == 20)
 		comment = "Nat 20!"
-	icon_state = "[name][result]"
-	user.visible_message(SPAN_NOTICE("[user] has thrown [src]. It lands on [result]. [comment]"), \
-						 SPAN_NOTICE("You throw [src]. It lands on a [result]. [comment]"), \
-						 SPAN_NOTICE("You hear [src] landing on a [result]. [comment]"))
+	icon_state = "69name6969result69"
+	user.visible_message(SPAN_NOTICE("69user69 has thrown 69src69. It lands on 69result69. 69comment69"), \
+						 SPAN_NOTICE("You throw 69src69. It lands on a 69result69. 69comment69"), \
+						 SPAN_NOTICE("You hear 69src69 landing on a 69result69. 69comment69"))
 
-/obj/item/dice/throw_impact(atom/hit_atom, var/speed)
+/obj/item/dice/throw_impact(atom/hit_atom,69ar/speed)
 	..()
 	var/result = rand(1,sides)
 	var/comment = ""
@@ -81,5 +81,5 @@ Another builds like baystation12 also have a duplication.
 		comment = "Ouch, bad luck."
 	else if (result == 20 && sides == 20)
 		comment = "Nat 20!"
-	icon_state = "[name][result]"
-	src.visible_message(SPAN_NOTICE("\The [src] lands on [result]. [comment]"))
+	icon_state = "69name6969result69"
+	src.visible_message(SPAN_NOTICE("\The 69src69 lands on 69result69. 69comment69"))

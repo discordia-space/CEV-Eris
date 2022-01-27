@@ -1,35 +1,35 @@
-//include unit test files in this module in this ifdef
+//include unit test files in this69odule in this ifdef
 //Keep this sorted alphabetically
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
 
 /// Asserts that a condition is true
-/// If the condition is not true, fails the test
-#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: [reason || "No reason"]") }
+/// If the condition is69ot true, fails the test
+#define TEST_ASSERT(assertion, reason) if (!(assertion)) { return Fail("Assertion failed: 69reason || "No reason"69") }
 
-/// Asserts that the two parameters passed are equal, fails otherwise
-/// Optionally allows an additional message in the case of a failure
-#define TEST_ASSERT_EQUAL(a, b, message) do { \
+/// Asserts that the two parameters passed are e69ual, fails otherwise
+/// Optionally allows an additional69essage in the case of a failure
+#define TEST_ASSERT_E69UAL(a, b,69essage) do { \
 	var/lhs = ##a; \
 	var/rhs = ##b; \
 	if (lhs != rhs) { \
-		return Fail("Expected [isnull(lhs) ? "null" : lhs] to be equal to [isnull(rhs) ? "null" : rhs].[message ? " [message]" : ""]"); \
+		return Fail("Expected 69isnull(lhs) ? "null" : lh6969 to be e69ual to 69isnull(rhs) ? "null" : r69s69.69message ? " 69mes69age69" 69 ""69"); \
 	} \
 } while (FALSE)
 
-/// Asserts that the two parameters passed are not equal, fails otherwise
-/// Optionally allows an additional message in the case of a failure
-#define TEST_ASSERT_NOTEQUAL(a, b, message) do { \
+/// Asserts that the two parameters passed are69ot e69ual, fails otherwise
+/// Optionally allows an additional69essage in the case of a failure
+#define TEST_ASSERT_NOTE69UAL(a, b,69essage) do { \
 	var/lhs = ##a; \
 	var/rhs = ##b; \
 	if (lhs == rhs) { \
-		return Fail("Expected [isnull(lhs) ? "null" : lhs] to not be equal to [isnull(rhs) ? "null" : rhs].[message ? " [message]" : ""]"); \
+		return Fail("Expected 69isnull(lhs) ? "null" : lh6969 to69ot be e69ual to 69isnull(rhs) ? "null" : r69s69.69message ? " 69mes69age69" 69 ""69"); \
 	} \
 } while (FALSE)
 
 /// *Only* run the test provided within the parentheses
-/// This is useful for debugging when you want to reduce noise, but should never be pushed
-/// Intended to be used in the manner of `TEST_FOCUS(/datum/unit_test/math)`
+/// This is useful for debugging when you want to reduce69oise, but should69ever be pushed
+/// Intended to be used in the69anner of `TEST_FOCUS(/datum/unit_test/math)`
 #define TEST_FOCUS(test_path) ##test_path { focus = TRUE; }
 
 /// Constants indicating unit test completion status
@@ -82,7 +82,7 @@
 // #include "reagent_mod_procs.dm"
 // #include "reagent_recipe_collisions.dm"
 // #include "resist.dm"
-#include "uniqueness.dm"
+#include "uni69ueness.dm"
 // #include "say.dm"
 // #include "security_officer_distribution.dm"
 // #include "serving_tray.dm"
@@ -101,12 +101,12 @@
 #include "unit_test.dm"
 // #include "wizard.dm"
 
-#ifdef REFERENCE_TRACKING //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please mr linter
+#ifdef REFERENCE_TRACKING //Don't try and parse this file if ref tracking isn't turned on. IE: don't parse ref tracking please69r linter
 // #include "find_reference_sanity.dm"
 #endif
 
 #undef TEST_ASSERT
-#undef TEST_ASSERT_EQUAL
-#undef TEST_ASSERT_NOTEQUAL
+#undef TEST_ASSERT_E69UAL
+#undef TEST_ASSERT_NOTE69UAL
 #undef TEST_FOCUS
 #endif

@@ -1,9 +1,9 @@
 //Bioreactor console
-//In fact, this is not a console. Just metrics screen
+//In fact, this is not a console. Just69etrics screen
 
 
 /obj/machinery/multistructure/bioreactor_part/console
-	name = "bioreactor metrics"
+	name = "bioreactor69etrics"
 	icon_state = "screen"
 	layer = ABOVE_MOB_LAYER + 0.1
 	idle_power_usage = 350
@@ -13,7 +13,7 @@
 	set_light(1, 2, COLOR_LIGHTING_BLUE_MACHINERY)
 
 
-/obj/machinery/multistructure/bioreactor_part/console/attack_hand(mob/user as mob)
+/obj/machinery/multistructure/bioreactor_part/console/attack_hand(mob/user as69ob)
 	if(MS)
 		ui_interact(user)
 
@@ -23,35 +23,35 @@
 	if(MS_bioreactor.is_operational())
 		if(MS_bioreactor.chamber_solution)
 			//operational
-			data["status"] = 1
+			data69"status"69 = 1
 		else
 			//solution required
-			data["status"] = 2
+			data69"status"69 = 2
 	else
 		if(MS_bioreactor.chamber_breached)
 			//breach
-			data["status"] = 3
+			data69"status"69 = 3
 		else if(!MS_bioreactor.chamber_closed)
 			//chamber opened
-			data["status"] = 4
+			data69"status"69 = 4
 		else if(MS_bioreactor.biotank_platform.pipes_opened)
 			//tank at to-port position
-			data["status"] = 5
+			data69"status"69 = 5
 		else if(!MS_bioreactor.biotank_platform.pipes_cleanness)
 			//pipes issue
-			data["status"] = 6
+			data69"status"69 = 6
 		else
 			//non operational
-			data["status"] = 0
+			data69"status"69 = 0
 
-	data["biotank_occupancy"] = MS_bioreactor.biotank_platform.biotank.reagents.total_volume || 0
-	data["biotank_max_capacity"] = MS_bioreactor.biotank_platform.biotank.max_capacity
-	data["biotank_status"] = MS_bioreactor.biotank_platform.pipes_opened
-	data["pipes_condition"] = MS_bioreactor.biotank_platform.pipes_cleanness
+	data69"biotank_occupancy"69 =69S_bioreactor.biotank_platform.biotank.reagents.total_volume || 0
+	data69"biotank_max_capacity"69 =69S_bioreactor.biotank_platform.biotank.max_capacity
+	data69"biotank_status"69 =69S_bioreactor.biotank_platform.pipes_opened
+	data69"pipes_condition"69 =69S_bioreactor.biotank_platform.pipes_cleanness
 	if(MS_bioreactor.biotank_platform.biotank.canister)
-		data["canister"] = MS_bioreactor.biotank_platform.biotank.canister.name
+		data69"canister"69 =69S_bioreactor.biotank_platform.biotank.canister.name
 	else
-		data["canister"] = null
+		data69"canister"69 = null
 
 	return data
 

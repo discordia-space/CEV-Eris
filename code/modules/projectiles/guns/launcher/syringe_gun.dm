@@ -4,7 +4,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "syringe-cartridge"
 	var/icon_flight = "syringe-cartridge-flight" //so it doesn't look so weird when shot
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_GLASS = 1)
 	flags = CONDUCT
 	slot_flags = SLOT_BELT | SLOT_EARS
 	throwforce = WEAPON_FORCE_WEAK
@@ -18,10 +18,10 @@
 		underlays += image(syringe.icon, src, syringe.icon_state)
 		underlays += syringe.filling
 
-/obj/item/syringe_cartridge/attackby(obj/item/I, mob/user)
+/obj/item/syringe_cartridge/attackby(obj/item/I,69ob/user)
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		syringe = I
-		to_chat(user, SPAN_NOTICE("You carefully insert [syringe] into [src]."))
+		to_chat(user, SPAN_NOTICE("You carefully insert 69syringe69 into 69src69."))
 		user.remove_from_mob(syringe)
 		syringe.loc = src
 		sharp = TRUE
@@ -30,9 +30,9 @@
 
 /obj/item/syringe_cartridge/attack_self(mob/user)
 	if(syringe)
-		to_chat(user, SPAN_NOTICE("You remove [syringe] from [src]."))
+		to_chat(user, SPAN_NOTICE("You remove 69syringe69 from 69src69."))
 		user.put_in_hands(syringe)
-		syringe = null
+		syringe =69ull
 		sharp = initial(sharp)
 		name = initial(name)
 		update_icon()
@@ -42,20 +42,20 @@
 	icon_state = icon_flight
 	underlays.Cut()
 
-/obj/item/syringe_cartridge/throw_impact(atom/hit_atom, var/speed)
+/obj/item/syringe_cartridge/throw_impact(atom/hit_atom,69ar/speed)
 	..() //handles embedding for us. Should have a decent chance if thrown fast enough
 	if(syringe)
 		//check speed to see if we hit hard enough to trigger the rapid injection
-		//incidentally, this means syringe_cartridges can be used with the pneumatic launcher
+		//incidentally, this69eans syringe_cartridges can be used with the pneumatic launcher
 		if(speed >= 10 && isliving(hit_atom))
 			var/mob/living/L = hit_atom
 			//unfortuately we don't know where the dart will actually hit, since that's done by the parent.
 			if(L.can_inject() && syringe.reagents)
 				var/reagent_log = syringe.reagents.log_list()
 				syringe.reagents.trans_to_mob(L, 15, CHEM_BLOOD)
-				admin_inject_log(thrower, L, src, reagent_log, 15, violent=1)
+				admin_inject_log(thrower, L, src, reagent_log, 15,69iolent=1)
 
-		syringe.break_syringe(iscarbon(hit_atom)? hit_atom : null)
+		syringe.break_syringe(iscarbon(hit_atom)? hit_atom :69ull)
 		syringe.update_icon()
 
 	icon_state = initial(icon_state) //reset icon state
@@ -69,12 +69,12 @@
 	item_state = "syringegun"
 	w_class = ITEM_SIZE_NORMAL
 	force = 7
-	matter = list(MATERIAL_PLASTIC = 8, MATERIAL_GLASS = 2)
+	matter = list(MATERIAL_PLASTIC = 8,69ATERIAL_GLASS = 2)
 	gun_parts = list(/obj/item/stack/material/plastic = 5)
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
 	fire_sound = 'sound/weapons/empty.ogg'
-	fire_sound_text = "a metallic thunk"
+	fire_sound_text = "a69etallic thunk"
 	recoil_buildup = 0
 	release_force = 10
 	throw_distance = 10
@@ -89,55 +89,55 @@
 /obj/item/gun/launcher/syringe/consume_next_projectile()
 	if(next)
 		next.prime()
-		return next
-	return null
+		return69ext
+	return69ull
 
 /obj/item/gun/launcher/syringe/handle_post_fire()
 	..()
-	darts -= next
-	next = null
+	darts -=69ext
+	next =69ull
 
-/obj/item/gun/launcher/syringe/attack_self(mob/living/user as mob)
+/obj/item/gun/launcher/syringe/attack_self(mob/living/user as69ob)
 	if(next)
-		user.visible_message("[user] unlatches and carefully relaxes the bolt on [src].", SPAN_WARNING("You unlatch and carefully relax the bolt on [src], unloading the spring."))
-		next = null
+		user.visible_message("69user69 unlatches and carefully relaxes the bolt on 69src69.", SPAN_WARNING("You unlatch and carefully relax the bolt on 69src69, unloading the spring."))
+		next =69ull
 	else if(darts.len)
 		playsound(src.loc, 'sound/weapons/flipblade.ogg', 50, 1)
-		user.visible_message("[user] draws back the bolt on [src], clicking it into place.", SPAN_WARNING("You draw back the bolt on the [src], loading the spring!"))
-		next = darts[1]
+		user.visible_message("69user69 draws back the bolt on 69src69, clicking it into place.", SPAN_WARNING("You draw back the bolt on the 69src69, loading the spring!"))
+		next = darts69169
 	add_fingerprint(user)
 
-/obj/item/gun/launcher/syringe/attack_hand(mob/living/user as mob)
+/obj/item/gun/launcher/syringe/attack_hand(mob/living/user as69ob)
 	if(user.get_inactive_hand() == src)
 		if(!darts.len)
-			to_chat(user, SPAN_WARNING("[src] is empty."))
+			to_chat(user, SPAN_WARNING("69src69 is empty."))
 			return
 		if(next)
-			to_chat(user, SPAN_WARNING("[src]'s cover is locked shut."))
+			to_chat(user, SPAN_WARNING("69src69's cover is locked shut."))
 			return
-		var/obj/item/syringe_cartridge/C = darts[1]
+		var/obj/item/syringe_cartridge/C = darts69169
 		darts -= C
 		user.put_in_hands(C)
-		user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
+		user.visible_message("69user69 removes \a 69C69 from 69src69.", SPAN_NOTICE("You remove \a 69C69 from 69src69."))
 	else
 		..()
 
-/obj/item/gun/launcher/syringe/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/launcher/syringe/attackby(var/obj/item/A as obj,69ob/user as69ob)
 	if(istype(A, /obj/item/syringe_cartridge))
 		var/obj/item/syringe_cartridge/C = A
-		if(darts.len >= max_darts)
-			to_chat(user, SPAN_WARNING("[src] is full!"))
+		if(darts.len >=69ax_darts)
+			to_chat(user, SPAN_WARNING("69src69 is full!"))
 			return
 		user.remove_from_mob(C)
 		C.loc = src
 		darts += C //add to the end
-		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
+		user.visible_message("69user69 inserts \a 69C69 into 69src69.", SPAN_NOTICE("You insert \a 69C69 into 69src69."))
 	else
 		..()
 
 /obj/item/gun/launcher/syringe/rapid
 	name = "syringe gun revolver"
-	desc = "A modification of the syringe gun design, using a rotating cylinder to store up to five syringes. The spring still needs to be drawn between shots."
+	desc = "A69odification of the syringe gun design, using a rotating cylinder to store up to five syringes. The spring still69eeds to be drawn between shots."
 	icon = 'icons/obj/guns/launcher/rapidsyringegun.dmi'
 	icon_state = "rapidsyringegun"
 	item_state = "rapidsyringegun"

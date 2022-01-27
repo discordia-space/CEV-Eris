@@ -1,2978 +1,2978 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growX)
-"ac" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/structure/catwalk,
-/obj/item/seeds/random,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growX)
-"ad" = (
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growX)
-"ae" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growX)
-"af" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/structure/catwalk,
-/obj/item/seeds/random,
-/obj/machinery/light{
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"a69" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"ac" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/structure/catwal69,
+/o6969/item/seeds/random,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"ad" = 69
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"ae" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"a69" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/structure/catwal69,
+/o6969/item/seeds/random,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growX)
-"ag" = (
-/mob/living/bot/farmbot{
-	faction = "farmbots"
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"a69" = 69
+/mo69/livin69/69ot/69arm69ot{
+	69action = "69arm69ots"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growX)
-"ah" = (
-/obj/machinery/portable_atmospherics/powered/scrubber,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growX)
-"ai" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"ah" = 69
+/o6969/machiner69/69orta69le_atmos69herics/69owered/scru6969er,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"ai" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 2;
-	layer = 2.4;
+	la69er = 2.4;
 	level = 2
 	},
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growX)
-"ak" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growX)
-"al" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"am" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/structure/catwalk,
-/obj/item/seeds/random,
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"a69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"al" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"am" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/structure/catwal69,
+/o6969/item/seeds/random,
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growX)
-"an" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/structure/catwalk,
-/obj/item/seeds/random,
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"an" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/structure/catwal69,
+/o6969/item/seeds/random,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growX)
-"ao" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"ao" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"ap" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"aq" = (
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"ar" = (
-/obj/machinery/alarm{
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"a69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"a69" = 69
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"ar" = 69
+/o6969/machiner69/alarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 8;
-	pixel_x = -38;
-	pixel_y = 0
+	69ixel_x = -38;
+	69ixel_69 = 0
 	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growX)
-"as" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/power/apc{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"as" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/machiner69/69ower/a69c{
 	dir = 4;
-	name = "east bump";
-	pixel_x = 24
+	name = "east 69um69";
+	69ixel_x = 24
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growX)
-"at" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growD)
-"au" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"av" = (
-/mob/living/bot/farmbot{
-	faction = "farmbots"
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"at" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"au" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"av" = 69
+/mo69/livin69/69ot/69arm69ot{
+	69action = "69arm69ots"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"aw" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/goatzone)
-"ax" = (
-/obj/structure/lattice,
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/goatzone)
-"ay" = (
-/obj/structure/sign/biohazard,
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growX)
-"az" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/glass_medical,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growX)
-"aA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"aw" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"ax" = 69
+/o6969/structure/lattice,
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"a69" = 69
+/o6969/structure/si69n/69iohazard,
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"az" = 69
+/o6969/e6969ect/69loor_decal/industrial/hatch/69ellow,
+/o6969/machiner69/door/airloc69/69lass_medical,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"aA" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/glass_medical,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growX)
-"aB" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/e6969ect/69loor_decal/industrial/hatch/69ellow,
+/o6969/machiner69/door/airloc69/69lass_medical,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowX69
+"a69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/ambrosiavulgarisseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"aC" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/ambrosiavulgarisseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"aD" = (
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"aE" = (
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"aF" = (
-/obj/machinery/firealarm{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/am69rosiavul69arisseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"aC" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/am69rosiavul69arisseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"aD" = 69
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"aE" = 69
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"a69" = 69
+/o6969/machiner69/69irealarm{
 	dir = 8;
-	pixel_x = -38;
-	pixel_y = 0
+	69ixel_x = -38;
+	69ixel_69 = 0
 	},
-/obj/spawner/cloth/masks,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"aG" = (
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"aH" = (
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/hydrobase/station/goatzone)
-"aI" = (
-/obj/structure/disposaloutlet,
-/obj/structure/disposalpipe/trunk{
+/o6969/s69awner/cloth/mas69s,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"a69" = 69
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"aH" = 69
+/tur69/simulated/69loor/tiled/dar69/tech69loor,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"aI" = 69
+/o6969/structure/dis69osaloutlet,
+/o6969/structure/dis69osal69i69e/trun69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"aJ" = (
-/obj/structure/disposalpipe/segment{
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"a69" = 69
+/o6969/structure/dis69osal69i69e/se69ment{
 	dir = 2;
-	icon_state = "pipe-c"
+	icon_state = "69i69e-c"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/goatzone)
-"aK" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growF)
-"aL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"a69" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"aL" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 6
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
+	icon_state = "warnin69corner";
 	dir = 4
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"aM" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"aM" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"aN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"aN" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 9;
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"aO" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/ambrosiadeusseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"aP" = (
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"aQ" = (
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"aR" = (
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"aT" = (
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"aU" = (
-/obj/machinery/alarm{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"aO" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/am69rosiadeusseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"a69" = 69
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"a69" = 69
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"aR" = 69
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"aT" = 69
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"aU" = 69
+/o6969/machiner69/alarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/mob/living/simple_animal/hostile/retaliate/goat/hydro,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"aV" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/mo69/livin69/sim69le_animal/hostile/retaliate/69oat/h69dro,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"aV" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 2;
-	layer = 2.4;
+	la69er = 2.4;
 	level = 2
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/map_template/hydrobase/station/goatzone)
-"aW" = (
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/structure/catwalk,
-/obj/item/seeds/whitebeetseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/goatzone)
-"aX" = (
-/obj/structure/disposalpipe/segment{
+/tur69/simulated/69loor/tiled/dar69/tech69loor,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"aW" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/structure/catwal69,
+/o6969/item/seeds/white69eetseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"aX" = 69
+/o6969/structure/dis69osal69i69e/se69ment{
 	dir = 1;
-	icon_state = "pipe-c"
+	icon_state = "69i69e-c"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/goatzone)
-"aY" = (
-/obj/structure/disposalpipe/trunk{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"a69" = 69
+/o6969/structure/dis69osal69i69e/trun69{
 	dir = 8
 	},
-/obj/machinery/disposal/deliveryChute{
-	desc = "A chute that's absolutely covered in beet and beet products.";
-	name = "beet-stained chute"
+/o6969/machiner69/dis69osal/deliver69Chute{
+	desc = "A chute that's a69solutel69 covered in 69eet and 69eet 69roducts.";
+	name = "69eet-stained chute"
 	},
-/obj/structure/sign/signnew/danger{
-	name = "\improper FEEDING CHUTE";
-	pixel_x = 0;
-	pixel_y = 32
+/o6969/structure/si69n/si69nnew/dan69er{
+	name = "\im69ro69er 69EEDIN69 CHUTE";
+	69ixel_x = 0;
+	69ixel_69 = 32
 	},
-/obj/effect/floor_decal/industrial/warning{
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growF)
-"aZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"aZ" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"ba" = (
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bb" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69a" = 69
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/ambrosiadeusseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"bc" = (
-/obj/machinery/power/apc{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/am69rosiadeusseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"69c" = 69
+/o6969/machiner69/69ower/a69c{
 	dir = 2;
-	name = "south bump";
-	pixel_y = -24
+	name = "south 69um69";
+	69ixel_69 = -24
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"bd" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"69d" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/mob/living/simple_animal/hostile/retaliate/goat/hydro,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"be" = (
-/obj/structure/cable/yellow{
+/mo69/livin69/sim69le_animal/hostile/retaliate/69oat/h69dro,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"69e" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
-"bf" = (
-/obj/effect/floor_decal/industrial/warning/cee,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/growF)
-"bg" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69/cee,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bh" = (
-/obj/structure/lattice,
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/wheatseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"bi" = (
-/mob/living/bot/farmbot{
-	faction = "farmbots"
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69h" = 69
+/o6969/structure/lattice,
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/wheatseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69i" = 69
+/mo69/livin69/69ot/69arm69ot{
+	69action = "69arm69ots"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bj" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"6969" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bk" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"6969" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/obj/machinery/light,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/li69ht,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69l" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"bm" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69m" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/door/blast/regular{
+/o6969/machiner69/door/69iredoor,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/machiner69/door/69last/re69ular{
 	dir = 4;
-	id = "goatzone";
+	id = "69oatzone";
 	name = "Containment Zone"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/goatzone)
-"bn" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
+"69n" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69o" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bp" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/pumpkinseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"bq" = (
-/obj/structure/lattice,
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growF)
-"br" = (
-/obj/machinery/alarm{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69um6969inseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/lattice,
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69r" = 69
+/o6969/machiner69/alarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	69ixel_x = 24
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 4;
-	pixel_x = 39;
-	pixel_y = 4
+	69ixel_x = 39;
+	69ixel_69 = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bs" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"69s" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bt" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69t" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"bu" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growA)
-"bv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69u" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69v" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"bw" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69w" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bx" = (
-/obj/machinery/light{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69x" = 69
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"by" = (
-/obj/effect/floor_decal/industrial/warning{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/structure/sign/signnew/danger{
-	name = "\improper DO NOT ENTER - FOR AI USE ONLY";
-	pixel_y = 32
+/o6969/structure/si69n/si69nnew/dan69er{
+	name = "\im69ro69er DO69OT ENTER - 69OR AI USE ONL69";
+	69ixel_69 = 32
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bz" = (
-/obj/effect/floor_decal/industrial/warning{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69z" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bB" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/light{
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bC" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69C" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bD" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bE" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69D" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69E" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/whitebeetseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"bF" = (
-/obj/machinery/mech_recharger,
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/white69eetseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/machiner69/mech_rechar69er,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bG" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"bH" = (
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bI" = (
-/obj/structure/cable/yellow{
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69H" = 69
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69I" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bJ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 2;
-	layer = 2.4;
+	la69er = 2.4;
 	level = 2
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bK" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/whitebeetseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"bL" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/white69eetseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69L" = 69
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bM" = (
-/obj/item/trash/cigbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bN" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"69M" = 69
+/o6969/item/trash/ci6969utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"69N" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bO" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"69O" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bP" = (
-/obj/machinery/door/airlock/glass_medical,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"6969" = 69
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"bQ" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"6969" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"bR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69R" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bS" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69S" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"bU" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69T" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69U" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"bV" = (
-/obj/machinery/door/airlock/glass_medical,
-/obj/machinery/door/firedoor,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69V" = 69
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/machiner69/door/69iredoor,
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bW" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69W" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bX" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69X" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bY" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"bZ" = (
-/obj/machinery/mech_recharger,
-/mob/living/bot/farmbot{
-	faction = "farmbots"
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69Z" = 69
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/69ot/69arm69ot{
+	69action = "69arm69ots"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"ca" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"cb" = (
-/obj/structure/catwalk,
-/obj/machinery/light,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/ambrosiadeusseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growD)
-"cc" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/apc{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"ca" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/am69rosiadeusseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"cc" = 69
+/o6969/structure/ca69le/69ellow,
+/o6969/machiner69/69ower/a69c{
 	dir = 4;
-	icon_state = "apc0";
-	pixel_x = 25
+	icon_state = "a69c0";
+	69ixel_x = 25
 	},
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growD)
-"cd" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowD69
+"cd" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"ce" = (
-/obj/machinery/alarm{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"ce" = 69
+/o6969/machiner69/alarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 8;
-	pixel_x = -38;
-	pixel_y = 0
+	69ixel_x = -38;
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cf" = (
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 5
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"ch" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"ch" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"ci" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"ci" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 1
 	},
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cj" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"ck" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 9;
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cl" = (
-/obj/machinery/seed_extractor,
-/obj/machinery/seed_storage/random,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cm" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growC)
-"cn" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cl" = 69
+/o6969/machiner69/seed_extractor,
+/o6969/machiner69/seed_stora69e/random,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cm" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cn" = 69
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"co" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"cp" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"co" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"c69" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"cs" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"cs" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cu" = (
-/obj/machinery/seed_extractor,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cv" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cw" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/lemonseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cx" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/glowberryseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cy" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/goldappleseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cz" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cu" = 69
+/o6969/machiner69/seed_extractor,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cv" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cw" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/lemonseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cx" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69low69err69seed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"c69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69olda6969leseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cz" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/orangeseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cA" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/eggplantseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cB" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/cornseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cC" = (
-/obj/machinery/alarm{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/oran69eseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cA" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/e696969lantseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"c69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/cornseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cC" = 69
+/o6969/machiner69/alarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	69ixel_x = 24
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 4;
-	pixel_x = 39;
-	pixel_y = 4
+	69ixel_x = 39;
+	69ixel_69 = 4
 	},
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cD" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cD" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"cE" = (
-/obj/machinery/portable_atmospherics/canister/air{
-	start_pressure = 740.5
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"cE" = 69
+/o6969/machiner69/69orta69le_atmos69herics/canister/air{
+	start_69ressure = 740.5
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 1
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"cF" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	icon_state = "map";
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/visi69le/c69an{
+	icon_state = "ma69";
 	dir = 1
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"cH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal{
-	icon_state = "map_universal";
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cH" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/universal{
+	icon_state = "ma69_universal";
 	dir = 4
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 1
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/obj/machinery/autolathe,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"cI" = (
-/obj/structure/cable/yellow{
+/o6969/structure/catwal69,
+/o6969/machiner69/autolathe,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cI" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cK" = (
-/obj/machinery/biogenerator,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"cL" = (
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"cM" = (
-/obj/machinery/power/solar{
-	id = "hydrosolar"
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"c69" = 69
+/o6969/machiner69/69io69enerator,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"cL" = 69
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"cM" = 69
+/o6969/machiner69/69ower/solar{
+	id = "h69drosolar"
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	icon_state = "0-2";
 	dir = 4;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"cN" = (
-/obj/structure/cable{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"cN" = 69
+/o6969/structure/ca69le{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"cO" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/chiliseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cP" = (
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"cQ" = (
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"cR" = (
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"cS" = (
-/obj/machinery/power/apc{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"cO" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/chiliseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"c69" = 69
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"c69" = 69
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cR" = 69
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cS" = 69
+/o6969/machiner69/69ower/a69c{
 	dir = 4;
-	icon_state = "apc0";
-	pixel_x = 25
+	icon_state = "a69c0";
+	69ixel_x = 25
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"cT" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"cT" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/catwalk,
-/obj/machinery/light{
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"cU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"cU" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"cV" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"cV" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 1
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"cW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"cW" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"cY" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"c69" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"cZ" = (
-/obj/machinery/portable_atmospherics/canister/air{
-	start_pressure = 740.5
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"cZ" = 69
+/o6969/machiner69/69orta69le_atmos69herics/canister/air{
+	start_69ressure = 740.5
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"da" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"da" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 9
 	},
-/obj/machinery/light,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"db" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"dc" = (
-/obj/machinery/power/apc{
-	pixel_y = -25
+/o6969/machiner69/li69ht,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"d69" = 69
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"dc" = 69
+/o6969/machiner69/69ower/a69c{
+	69ixel_69 = -25
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"dd" = (
-/obj/structure/cable/yellow{
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"dd" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"de" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"df" = (
-/obj/machinery/vending/hydronutrients,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"dg" = (
-/turf/template_noop,
-/area/map_template/hydrobase/solars)
-"dh" = (
-/obj/structure/cable{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"de" = 69
+/o6969/machiner69/li69ht,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"d69" = 69
+/o6969/machiner69/vendin69/h69dronutrients,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"d69" = 69
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/h69dro69ase/solars69
+"dh" = 69
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"di" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"di" = 69
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/grassseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dj" = (
-/mob/living/bot/farmbot{
-	faction = "farmbots"
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69rassseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/mo69/livin69/69ot/69arm69ot{
+	69action = "69arm69ots"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"dk" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/bluespacetomatoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dl" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tomatoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dm" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/bluetomatoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dn" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/grapeseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"do" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/bananaseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dp" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69lues69acetomatoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"dl" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/tomatoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"dm" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69luetomatoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"dn" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69ra69eseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"do" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69ananaseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"dq" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"dr" = (
-/obj/machinery/door/airlock/glass_medical,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"dr" = 69
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"ds" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"ds" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dt" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"dt" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"du" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"du" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dv" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"dv" = 69
+/o6969/structure/ca69le/69ellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 8
 	},
-/mob/living/silicon/decoy{
+/mo69/livin69/silicon/deco69{
 	icon_state = "ai-crash";
 	name = "inactive AI"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dw" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"dw" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dx" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"dx" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/glass_medical,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"d69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"dz" = (
-/obj/structure/cable{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"dz" = 69
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growF)
-"dA" = (
-/obj/structure/cable{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"dA" = 69
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growF)
-"dB" = (
-/obj/structure/cable{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"d69" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growF)
-"dC" = (
-/obj/structure/cable{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"dC" = 69
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growF)
-"dD" = (
-/obj/structure/cable{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"dD" = 69
+/o6969/structure/ca69le{
 	icon_state = "2-8"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"dE" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/orangeseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dF" = (
-/obj/item/trash/cigbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growC)
-"dG" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"dE" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/oran69eseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/o6969/item/trash/ci6969utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"dH" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/mob/living/bot/cleanbot{
-	faction = "farmbots";
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"dH" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69,
+/mo69/livin69/69ot/clean69ot{
+	69action = "69arm69ots";
 	name = "Steward Stewart"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"dI" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"dJ" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/processing)
-"dK" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"d69" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"d69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/obj/machinery/reagentgrinder,
-/obj/structure/table/glass,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"dL" = (
-/obj/structure/catwalk,
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_x = 0;
-	pixel_y = 32
+/o6969/machiner69/rea69ent69rinder,
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dL" = 69
+/o6969/structure/catwal69,
+/o6969/structure/closet/wall_mounted/emcloset{
+	69ixel_x = 0;
+	69ixel_69 = 32
 	},
-/obj/structure/table/glass,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"dN" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dN" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/obj/machinery/smartfridge/drying_rack,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"dO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/o6969/machiner69/smart69rid69e/dr69in69_rac69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dO" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"dP" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"d69" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/structure/sign/nosmoking_1{
-	pixel_x = 0;
-	pixel_y = 32
+/o6969/structure/si69n/nosmo69in69_1{
+	69ixel_x = 0;
+	69ixel_69 = 32
 	},
-/obj/structure/bed/chair/office/light{
-	icon_state = "officechair_white_preview";
+/o6969/structure/69ed/chair/o6969ice/li69ht{
+	icon_state = "o6969icechair_white_69review";
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"dR" = (
-/obj/machinery/power/solar_control/autostart{
-	id = "hydrosolar";
-	track = 2
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dR" = 69
+/o6969/machiner69/69ower/solar_control/autostart{
+	id = "h69drosolar";
+	trac69 = 2
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/obj/structure/cable,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"dS" = (
-/obj/machinery/power/terminal{
+/o6969/structure/ca69le,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dS" = 69
+/o6969/machiner69/69ower/terminal{
 	dir = 4
 	},
-/obj/structure/cable,
-/obj/structure/catwalk,
-/obj/machinery/light{
+/o6969/structure/ca69le,
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"dT" = (
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dT" = 69
+/o6969/machiner69/69ower/smes/69uilda69le,
+/o6969/structure/ca69le/69ellow{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"dU" = (
-/obj/structure/cable{
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dU" = 69
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/processing)
-"dV" = (
-/obj/structure/cable{
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"dV" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/template_noop,
-/area/map_template/hydrobase/solars)
-"dW" = (
-/obj/structure/cable{
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/h69dro69ase/solars69
+"dW" = 69
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 8;
-	desc = "A flexible superconducting cable for heavy-duty power transfer. It's been labeled 'chaos reigns'.";
+	desc = "A 69lexi69le su69erconductin69 ca69le 69or heav69-dut69 69ower trans69er. It's 69een la69eled 'chaos rei69ns'.";
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"dX" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/potatoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"dY" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/peanutseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"ea" = (
-/obj/structure/catwalk,
-/obj/machinery/light,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/riceseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"eb" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/sugarcaneseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"ec" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/soyaseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"ed" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/poisonberryseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"ee" = (
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growC)
-"eg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"ei" = (
-/obj/structure/bed/chair/office/light{
-	icon_state = "officechair_white_preview";
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"dX" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69otatoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"d69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69eanutseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"ea" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/riceseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"e69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/su69arcaneseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"ec" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/so69aseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"ed" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/69oison69err69seed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"ee" = 69
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowC69
+"e69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"ei" = 69
+/o6969/structure/69ed/chair/o6969ice/li69ht{
+	icon_state = "o6969icechair_white_69review";
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"ej" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"ek" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"el" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"em" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"el" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"em" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"en" = (
-/obj/machinery/chem_master,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eo" = (
-/obj/structure/closet/toolcloset,
-/obj/structure/window/reinforced/plasma{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"en" = 69
+/o6969/machiner69/chem_master,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eo" = 69
+/o6969/structure/closet/toolcloset,
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/obj/structure/window/reinforced/plasma,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"ep" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"eq" = (
-/obj/machinery/power/apc{
+/o6969/structure/window/rein69orced/69lasma,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/machiner69/69ower/a69c{
 	dir = 4;
-	name = "east bump";
-	pixel_x = 24
+	name = "east 69um69";
+	69ixel_x = 24
 	},
-/obj/structure/cable/yellow,
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/window/reinforced/plasma,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"er" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/solarlock)
-"es" = (
-/obj/effect/floor_decal/industrial/warning/corner,
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"et" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"eu" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
+/o6969/structure/window/rein69orced/69lasma,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"er" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/solarloc6969
+"es" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner,
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"et" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"eu" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
+	icon_state = "warnin69corner";
 	dir = 8
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"ev" = (
-/obj/machinery/alarm{
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"ev" = 69
+/o6969/machiner69/alarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 8;
-	pixel_x = -38;
-	pixel_y = 0
+	69ixel_x = -38;
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"ew" = (
-/obj/machinery/door/airlock/glass_medical,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"ew" = 69
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/processing)
-"ex" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"ex" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"ey" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 9
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"ez" = (
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eA" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"ez" = 69
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eA" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal{
-	icon_state = "map_universal";
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/universal{
+	icon_state = "ma69_universal";
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eC" = (
-/obj/machinery/atmospherics/binary/pump/on{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eC" = 69
+/o6969/machiner69/atmos69herics/69inar69/69um69/on{
 	dir = 4;
-	target_pressure = 200
+	tar69et_69ressure = 200
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eD" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	icon_state = "map";
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eD" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden{
+	icon_state = "ma69";
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 4
 	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1392;
-	master_tag = "solars_airlock";
-	name = "interior access button";
-	pixel_x = 24;
-	pixel_y = -24
+/o6969/machiner69/access_69utton{
+	command = "c69cle_interior";
+	69re69uenc69 = 1392;
+	master_ta69 = "solars_airloc69";
+	name = "interior access 69utton";
+	69ixel_x = 24;
+	69ixel_69 = -24
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eE" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden{
 	dir = 4;
 	icon_state = "intact"
 	},
-/obj/machinery/door/airlock/external{
-	frequency = 1392;
-	icon_state = "door_locked";
-	id_tag = "solars_inner";
-	locked = 1;
+/o6969/machiner69/door/airloc69/external{
+	69re69uenc69 = 1392;
+	icon_state = "door_loc69ed";
+	id_ta69 = "solars_inner";
+	loc69ed = 1;
 	name = "EVA Internal Access"
 	},
-/obj/structure/catwalk,
-/obj/structure/cable/yellow{
+/o6969/structure/catwal69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/solarlock)
-"eF" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/solarloc6969
+"e69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden{
 	dir = 4;
 	icon_state = "intact"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 8
 	},
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1392;
-	id_tag = "solars_airlock";
-	name = "EVA Airlock Console";
-	pixel_y = -24;
-	tag_airpump = "solars_pump";
-	tag_chamber_sensor = "solars_sensor";
-	tag_exterior_door = "solars_outer";
-	tag_interior_door = "solars_inner"
+/o6969/machiner69/em69edded_controller/radio/airloc69/airloc69_controller{
+	69re69uenc69 = 1392;
+	id_ta69 = "solars_airloc69";
+	name = "EVA Airloc69 Console";
+	69ixel_69 = -24;
+	ta69_air69um69 = "solars_69um69";
+	ta69_cham69er_sensor = "solars_sensor";
+	ta69_exterior_door = "solars_outer";
+	ta69_interior_door = "solars_inner"
 	},
-/obj/machinery/power/apc{
+/o6969/machiner69/69ower/a69c{
 	dir = 1;
-	icon_state = "apc0";
-	pixel_x = 0;
-	pixel_y = 25
+	icon_state = "a69c0";
+	69ixel_x = 0;
+	69ixel_69 = 25
 	},
-/obj/structure/catwalk,
-/obj/machinery/light/small{
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht/small{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/solarlock)
-"eG" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/solarloc6969
+"e69" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 4
 	},
-/obj/machinery/airlock_sensor{
-	frequency = 1392;
-	id_tag = "solars_sensor";
-	pixel_x = 0;
-	pixel_y = 25
+/o6969/machiner69/airloc69_sensor{
+	69re69uenc69 = 1392;
+	id_ta69 = "solars_sensor";
+	69ixel_x = 0;
+	69ixel_69 = 25
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/hi69h_volume{
 	dir = 8;
-	frequency = 1392;
-	id_tag = "solars_pump"
+	69re69uenc69 = 1392;
+	id_ta69 = "solars_69um69"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/solarlock)
-"eH" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1392;
-	icon_state = "door_locked";
-	id_tag = "solars_outer";
-	locked = 1;
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/solarloc6969
+"eH" = 69
+/o6969/machiner69/door/airloc69/external{
+	69re69uenc69 = 1392;
+	icon_state = "door_loc69ed";
+	id_ta69 = "solars_outer";
+	loc69ed = 1;
 	name = "EVA External Access"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/solarlock)
-"eI" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/solarloc6969
+"eI" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 8
 	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1392;
-	master_tag = "solars_airlock";
-	name = "exterior access button";
-	pixel_x = -24;
-	pixel_y = 24
+/o6969/machiner69/access_69utton{
+	command = "c69cle_exterior";
+	69re69uenc69 = 1392;
+	master_ta69 = "solars_airloc69";
+	name = "exterior access 69utton";
+	69ixel_x = -24;
+	69ixel_69 = 24
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-2";
 	dir = 4;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"eJ" = (
-/obj/structure/cable{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"e69" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"eK" = (
-/obj/structure/cable{
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"e69" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 4
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"eL" = (
-/obj/machinery/power/tracker{
-	id = "hydrosolar"
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"eL" = 69
+/o6969/machiner69/69ower/trac69er{
+	id = "h69drosolar"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-1";
 	dir = 4
 	},
-/turf/simulated/floor/exoplanet/concrete,
-/area/template_noop)
-"eM" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/exo69lanet/concrete,
+/area/tem69late_noo6969
+"eM" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 8
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"eN" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/growB)
-"eO" = (
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"eP" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/amanitamycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"eQ" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"eN" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"eO" = 69
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"e69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/amanitam69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"e69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/amanitamycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"eR" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/amanitam69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"eR" = 69
+/o6969/structure/ca69le/69ellow{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc{
+/o6969/machiner69/69ower/a69c{
 	dir = 4;
-	icon_state = "apc0";
-	pixel_x = 25
+	icon_state = "a69c0";
+	69ixel_x = 25
 	},
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"eS" = (
-/obj/machinery/power/apc{
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"eS" = 69
+/o6969/machiner69/69ower/a69c{
 	dir = 8;
-	icon_state = "apc0";
-	pixel_x = -25
+	icon_state = "a69c0";
+	69ixel_x = -25
 	},
-/obj/structure/cable/yellow,
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"eT" = (
-/obj/structure/catwalk,
-/obj/machinery/alarm{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"eT" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/alarm{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/obj/machinery/light{
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 8;
-	pixel_x = -38;
-	pixel_y = 0
+	69ixel_x = -38;
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"eU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eX" = (
-/obj/structure/closet/l3closet/general,
-/obj/structure/window/reinforced/plasma{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eU" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"eX" = 69
+/o6969/structure/closet/l3closet/69eneral,
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"eY" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"e69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"fb" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"6969" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"fc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable/yellow{
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"69c" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/catwalk,
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/catwal69,
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 1
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"fd" = (
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/solarlock)
-"fe" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"69d" = 69
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/solarloc6969
+"69e" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
+	icon_state = "warnin69corner";
 	dir = 4
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"ff" = (
-/obj/effect/floor_decal/industrial/warning{
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 1
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"fg" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69/corner{
+	icon_state = "warnin69corner";
 	dir = 1
 	},
-/turf/simulated/floor/alium/airless,
-/area/template_noop)
-"fh" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/alium/airless,
+/area/tem69late_noo6969
+"69h" = 69
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fi" = (
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fj" = (
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fk" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69i" = 69
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fl" = (
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69l" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fm" = (
-/obj/machinery/door/airlock/glass_medical,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69m" = 69
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fn" = (
-/obj/structure/cable/yellow{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69n" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growA)
-"fo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69o" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 9
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"fp" = (
-/obj/structure/catwalk,
-/obj/machinery/button/remote/blast_door{
-	id = "shipping";
-	pixel_x = -25
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69utton/remote/69last_door{
+	id = "shi6969in69";
+	69ixel_x = -25
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"fq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/universal,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"fs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/universal,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"69s" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"fu" = (
-/obj/structure/dispenser/oxygen,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"fv" = (
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/obj/machinery/atmospherics/portables_connector{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"69u" = 69
+/o6969/structure/dis69enser/ox6969en,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"69v" = 69
+/o6969/machiner69/69orta69le_atmos69herics/canister/air/airloc69,
+/o6969/machiner69/atmos69herics/69orta69les_connector{
 	dir = 1
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"fw" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fx" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/reishimycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fy" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/angelmycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fz" = (
-/obj/machinery/alarm{
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"69w" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69x" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/reishim69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/an69elm69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69z" = 69
+/o6969/machiner69/alarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	69ixel_x = 24
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 4;
-	pixel_x = 39;
-	pixel_y = 4
+	69ixel_x = 39;
+	69ixel_69 = 4
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fA" = (
-/obj/machinery/light,
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"fB" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/shipaccess)
-"fC" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/map_template/hydrobase/station/shipaccess)
-"fD" = (
-/obj/machinery/atmospherics/binary/pump/on,
-/obj/machinery/door/blast/regular{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69A" = 69
+/o6969/machiner69/li69ht,
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"6969" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69C" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69D" = 69
+/o6969/machiner69/atmos69herics/69inar69/69um69/on,
+/o6969/machiner69/door/69last/re69ular{
 	dir = 4;
-	id = "shipping"
+	id = "shi6969in69"
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/shipaccess)
-"fE" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/shower)
-"fF" = (
-/obj/machinery/door/airlock/glass_medical,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69E" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"fG" = (
-/obj/machinery/power/solar{
-	id = "hydrosolar"
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/o6969/machiner69/69ower/solar{
+	id = "h69drosolar"
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	icon_state = "0-2";
 	dir = 4;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"fH" = (
-/obj/structure/cable{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"69H" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"fI" = (
-/obj/structure/cable{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"69I" = 69
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"fJ" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fK" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"fM" = (
-/obj/machinery/power/apc{
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69M" = 69
+/o6969/machiner69/69ower/a69c{
 	dir = 8;
-	name = "west bump";
-	pixel_x = -24
+	name = "west 69um69";
+	69ixel_x = -24
 	},
-/obj/structure/catwalk,
-/obj/structure/cable/yellow{
+/o6969/structure/catwal69,
+/o6969/structure/ca69le/69ellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/shipaccess)
-"fN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69N" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden,
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/shipaccess)
-"fO" = (
-/obj/structure/catwalk,
-/obj/machinery/button/remote/blast_door{
-	id = "shipping";
-	pixel_x = 25
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69O" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69utton/remote/69last_door{
+	id = "shi6969in69";
+	69ixel_x = 25
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/shipaccess)
-"fP" = (
-/obj/machinery/washing_machine,
-/obj/machinery/power/apc{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"6969" = 69
+/o6969/machiner69/washin69_machine,
+/o6969/machiner69/69ower/a69c{
 	dir = 1;
-	icon_state = "apc0";
-	pixel_x = 0;
-	pixel_y = 25
+	icon_state = "a69c0";
+	69ixel_x = 0;
+	69ixel_69 = 25
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"fQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"fS" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/towermycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"fT" = (
-/mob/living/bot/farmbot{
-	faction = "farmbots"
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69S" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/towerm69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69T" = 69
+/mo69/livin69/69ot/69arm69ot{
+	69action = "69arm69ots"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fU" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69U" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"fV" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69V" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 1
 	},
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"fW" = (
-/obj/machinery/light/small{
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"69W" = 69
+/o6969/machiner69/li69ht/small{
 	dir = 8
 	},
-/obj/structure/catwalk,
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1391;
-	master_tag = "hydrodock_airlock";
-	name = "interior access button";
-	pixel_x = -24;
-	pixel_y = 0;
-	req_access = newlist()
+/o6969/structure/catwal69,
+/o6969/machiner69/access_69utton{
+	command = "c69cle_interior";
+	69re69uenc69 = 1391;
+	master_ta69 = "h69drodoc69_airloc69";
+	name = "interior access 69utton";
+	69ixel_x = -24;
+	69ixel_69 = 0;
+	re69_access =69ewlist6969
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/shipaccess)
-"fX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable/yellow{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69X" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/shipaccess)
-"fY" = (
-/obj/machinery/alarm{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"6969" = 69
+/o6969/machiner69/alarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	69ixel_x = 24
 	},
-/obj/machinery/light/small{
+/o6969/machiner69/li69ht/small{
 	dir = 4
 	},
-/obj/structure/catwalk,
-/obj/machinery/firealarm{
+/o6969/structure/catwal69,
+/o6969/machiner69/69irealarm{
 	dir = 4;
-	pixel_x = 39;
-	pixel_y = 4
+	69ixel_x = 39;
+	69ixel_69 = 4
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/shipaccess)
-"fZ" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69Z" = 69
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"ga" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69a" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gb" = (
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gc" = (
-/obj/structure/catwalk,
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69c" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht{
 	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	icon_state = "tu69e1";
+	69ixel_69 = 0
 	},
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/towermycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"gd" = (
-/obj/item/trash/cigbutt,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"ge" = (
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/obj/machinery/atmospherics/portables_connector{
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/towerm69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69d" = 69
+/o6969/item/trash/ci6969utt,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69e" = 69
+/o6969/machiner69/69orta69le_atmos69herics/canister/air/airloc69,
+/o6969/machiner69/atmos69herics/69orta69les_connector{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/shipaccess)
-"gf" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden{
 	dir = 4;
-	icon_state = "map"
+	icon_state = "ma69"
 	},
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/cable/yellow{
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/shipaccess)
-"gg" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/shipaccess)
-"gh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/shi69access69
+"69h" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_medical,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/door/airloc69/69lass_medical,
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69i" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 9
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gj" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gk" = (
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower{
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/o6969/structure/curtain/o69en/shower,
+/o6969/machiner69/shower{
 	icon_state = "shower";
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gl" = (
-/obj/structure/lattice,
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/shower)
-"gm" = (
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/chantermycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"gn" = (
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/dockport)
-"go" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/external{
-	frequency = 1391;
-	icon_state = "door_locked";
-	id_tag = "hydrodock_inner";
-	locked = 1;
-	name = "Shipping Internal Access"
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69l" = 69
+/o6969/structure/lattice,
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69m" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/chanterm69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69n" = 69
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69o" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden,
+/o6969/machiner69/door/airloc69/external{
+	69re69uenc69 = 1391;
+	icon_state = "door_loc69ed";
+	id_ta69 = "h69drodoc69_inner";
+	loc69ed = 1;
+	name = "Shi6969in69 Internal Access"
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/dockport)
-"gp" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/map_template/hydrobase/station/dockport)
-"gq" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"6969" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"6969" = 69
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gr" = (
-/obj/machinery/alarm{
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69r" = 69
+/o6969/machiner69/alarm{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	69ixel_x = 24
 	},
-/obj/machinery/firealarm{
+/o6969/machiner69/69irealarm{
 	dir = 4;
-	pixel_x = 39;
-	pixel_y = 4
+	69ixel_x = 39;
+	69ixel_69 = 4
 	},
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gs" = (
-/obj/structure/catwalk,
-/obj/machinery/light,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/chantermycelium,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growB)
-"gt" = (
-/obj/machinery/mech_recharger,
-/mob/living/simple_animal/hostile/retaliate/malf_hydro_drone,
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growB)
-"gu" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69s" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/li69ht,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/chanterm69celium,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69t" = 69
+/o6969/machiner69/mech_rechar69er,
+/mo69/livin69/sim69le_animal/hostile/retaliate/mal69_h69dro_drone,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"69u" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 1
 	},
-/obj/machinery/airlock_sensor{
-	frequency = 1391;
-	id_tag = "hydrodock_sensor";
-	pixel_x = 0;
-	pixel_y = 25
+/o6969/machiner69/airloc69_sensor{
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_sensor";
+	69ixel_x = 0;
+	69ixel_69 = 25
 	},
-/obj/machinery/power/apc{
+/o6969/machiner69/69ower/a69c{
 	dir = 8;
-	name = "west bump";
-	pixel_x = -24
+	name = "west 69um69";
+	69ixel_x = -24
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/dockport)
-"gv" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69v" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 1
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden{
 	dir = 8;
-	icon_state = "map"
+	icon_state = "ma69"
 	},
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/dockport)
-"gw" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69w" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/hi69h_volume{
 	dir = 8;
-	frequency = 1391;
-	id_tag = "hydrodock_pump"
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_69um69"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/dockport)
-"gx" = (
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/shoes,
-/obj/structure/closet,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gy" = (
-/obj/spawner/cloth/masks,
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/head,
-/obj/spawner/cloth/shoes,
-/obj/structure/closet,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gz" = (
-/obj/spawner/cloth/under,
-/obj/spawner/cloth/head,
-/obj/spawner/cloth/shoes,
-/obj/structure/closet,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"gA" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69x" = 69
+/o6969/s69awner/cloth/under,
+/o6969/s69awner/cloth/shoes,
+/o6969/structure/closet,
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"6969" = 69
+/o6969/s69awner/cloth/mas69s,
+/o6969/s69awner/cloth/under,
+/o6969/s69awner/cloth/head,
+/o6969/s69awner/cloth/shoes,
+/o6969/structure/closet,
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69z" = 69
+/o6969/s69awner/cloth/under,
+/o6969/s69awner/cloth/head,
+/o6969/s69awner/cloth/shoes,
+/o6969/structure/closet,
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69A" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/hi69h_volume{
 	dir = 4;
-	frequency = 1391;
-	id_tag = "hydrodock_pump"
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_69um69"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/dockport)
-"gB" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/dockport)
-"gC" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old4w/hidden,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69C" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/hi69h_volume{
 	dir = 8;
-	frequency = 1391;
-	id_tag = "hydrodock_pump"
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_69um69"
 	},
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1391;
-	id_tag = "hydrodock_airlock";
-	name = "Shipping Airlock Console";
-	pixel_x = 24;
-	pixel_y = 0;
-	req_access = newlist();
-	tag_airpump = "hydrodock_pump";
-	tag_chamber_sensor = "hydrodock_sensor";
-	tag_exterior_door = "hydrodock_outer";
-	tag_interior_door = "hydrodock_inner"
+/o6969/machiner69/em69edded_controller/radio/airloc69/airloc69_controller{
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_airloc69";
+	name = "Shi6969in69 Airloc69 Console";
+	69ixel_x = 24;
+	69ixel_69 = 0;
+	re69_access =69ewlist6969;
+	ta69_air69um69 = "h69drodoc69_69um69";
+	ta69_cham69er_sensor = "h69drodoc69_sensor";
+	ta69_exterior_door = "h69drodoc69_outer";
+	ta69_interior_door = "h69drodoc69_inner"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/dockport)
-"gD" = (
-/obj/machinery/power/solar{
-	id = "hydrosolar"
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69D" = 69
+/o6969/machiner69/69ower/solar{
+	id = "h69drosolar"
 	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"gE" = (
-/obj/structure/cable{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"69E" = 69
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/alium/airless,
-/area/map_template/hydrobase/solars)
-"gF" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/light/small{
+/tur69/simulated/69loor/alium/airless,
+/area/ma69_tem69late/h69dro69ase/solars69
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/machiner69/li69ht/small{
 	dir = 8
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/hi69h_volume{
 	dir = 4;
-	frequency = 1391;
-	id_tag = "hydrodock_pump"
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_69um69"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/dockport)
-"gG" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/atmospherics/pipe/manifold/hidden,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/dockport)
-"gH" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/light/small{
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69H" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/machiner69/li69ht/small{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/hi69h_volume{
 	dir = 8;
-	frequency = 1391;
-	id_tag = "hydrodock_pump"
+	69re69uenc69 = 1391;
+	id_ta69 = "h69drodoc69_69um69"
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/dockport)
-"gI" = (
-/obj/machinery/light,
-/obj/structure/catwalk,
-/obj/machinery/portable_atmospherics/hydroponics,
-/obj/item/seeds/tobaccoseed,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growA)
-"gJ" = (
-/obj/structure/sign/nosmoking_1,
-/turf/simulated/wall/alium,
-/area/map_template/hydrobase/station/dockport)
-"gK" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1391;
-	icon_state = "door_locked";
-	id_tag = "hydrodock_outer";
-	locked = 1;
-	name = "Shipping Access"
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69I" = 69
+/o6969/machiner69/li69ht,
+/o6969/structure/catwal69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics,
+/o6969/item/seeds/to69accoseed,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rowA69
+"6969" = 69
+/o6969/structure/si69n/nosmo69in69_1,
+/tur69/simulated/wall/alium,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"6969" = 69
+/o6969/machiner69/door/airloc69/external{
+	69re69uenc69 = 1391;
+	icon_state = "door_loc69ed";
+	id_ta69 = "h69drodoc69_outer";
+	loc69ed = 1;
+	name = "Shi6969in69 Access"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/dockport)
-"gL" = (
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1391;
-	master_tag = "hydrodock_airlock";
-	name = "exterior access button";
-	pixel_x = 24;
-	pixel_y = 24;
-	req_access = newlist()
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/doc6969ort69
+"69L" = 69
+/o6969/machiner69/access_69utton{
+	command = "c69cle_exterior";
+	69re69uenc69 = 1391;
+	master_ta69 = "h69drodoc69_airloc69";
+	name = "exterior access 69utton";
+	69ixel_x = 24;
+	69ixel_69 = 24;
+	re69_access =69ewlist6969
 	},
-/turf/template_noop,
-/area/template_noop)
-"hT" = (
-/obj/structure/closet/secure_closet/personal/hydroponics,
-/obj/item/tool/hatchet,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"nA" = (
-/obj/structure/table/glass,
-/obj/item/seeds/random,
-/obj/item/seeds/random,
-/obj/item/seeds/random,
-/obj/item/gun/energy/floragun,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"oM" = (
-/obj/structure/curtain/open/shower,
-/obj/machinery/shower{
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"hT" = 69
+/o6969/structure/closet/secure_closet/69ersonal/h69dro69onics,
+/o6969/item/tool/hatchet,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"nA" = 69
+/o6969/structure/ta69le/69lass,
+/o6969/item/seeds/random,
+/o6969/item/seeds/random,
+/o6969/item/seeds/random,
+/o6969/item/69un/ener6969/69lora69un,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"oM" = 69
+/o6969/structure/curtain/o69en/shower,
+/o6969/machiner69/shower{
 	icon_state = "shower";
 	dir = 8
 	},
-/obj/item/bikehorn/rubberducky,
-/turf/simulated/floor/tiled/white/brown_platform,
-/area/map_template/hydrobase/station/shower)
-"pm" = (
-/obj/item/tool/knife/butch,
-/obj/structure/table/glass,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"qB" = (
-/obj/machinery/light,
-/obj/structure/window/reinforced/plasma{
+/o6969/item/69i69ehorn/ru6969erduc6969,
+/tur69/simulated/69loor/tiled/white/69rown_69lat69orm,
+/area/ma69_tem69late/h69dro69ase/station/shower69
+"69m" = 69
+/o6969/item/tool/69ni69e/69utch,
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"6969" = 69
+/o6969/machiner69/li69ht,
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/obj/structure/table/rack,
-/obj/item/storage/box/emps{
+/o6969/structure/ta69le/rac69,
+/o6969/item/stora69e/69ox/em69s{
 	initial_amount = 3
 	},
-/obj/item/ammo_casing/shotgun/pellet/prespawned,
-/obj/item/gun/projectile/shotgun/doublebarrel,
-/obj/structure/window/reinforced/plasma{
+/o6969/item/ammo_casin69/shot69un/69ellet/69res69awned,
+/o6969/item/69un/69ro69ectile/shot69un/dou69le69arrel,
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 4
 	},
-/obj/item/grenade/chem_grenade/antiweed,
-/obj/item/grenade/chem_grenade/incendiary,
-/obj/item/weedkiller/D24,
-/obj/item/material/shard/plasma,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/processing)
-"sK" = (
-/obj/structure/closet/secure_closet/personal/hydroponics,
-/obj/item/tool/shovel,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/growF)
-"sU" = (
-/obj/structure/catwalk,
-/obj/item/material/kitchen/utensil/spoon,
-/obj/structure/table/glass,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"ta" = (
-/obj/structure/cable/yellow{
+/o6969/item/69renade/chem_69renade/antiweed,
+/o6969/item/69renade/chem_69renade/incendiar69,
+/o6969/item/weed69iller/D24,
+/o6969/item/material/shard/69lasma,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"s69" = 69
+/o6969/structure/closet/secure_closet/69ersonal/h69dro69onics,
+/o6969/item/tool/shovel,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"sU" = 69
+/o6969/structure/catwal69,
+/o6969/item/material/69itchen/utensil/s69oon,
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"ta" = 69
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/structure/catwalk,
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/catwal69,
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 8
 	},
-/obj/item/material/shard/plasma,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"wu" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/item/material/shard/69lasma,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"wu" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/machinery/button/remote/blast_door{
-	id = "goatzone";
+/o6969/machiner69/69utton/remote/69last_door{
+	id = "69oatzone";
 	name = "containment zone control";
-	pixel_x = 0;
-	pixel_y = 25
+	69ixel_x = 0;
+	69ixel_69 = 25
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/hydrobase/station/growF)
-"Af" = (
-/obj/structure/catwalk,
-/obj/item/tool/knife/switchblade,
-/obj/spawner/credits/c1000,
-/obj/spawner/credits/c500,
-/obj/structure/closet/crate/secure/weapon{
-	desc = "A heavy-duty crate with a suite of firearms safety instructions plastered on the side. The ID scanner is unlike anything you've seen before.";
-	name = "weapons crate";
-	req_access = list("ACCESS_SYNDICATE")
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"A69" = 69
+/o6969/structure/catwal69,
+/o6969/item/tool/69ni69e/switch69lade,
+/o6969/s69awner/credits/c1000,
+/o6969/s69awner/credits/c500,
+/o6969/structure/closet/crate/secure/wea69on{
+	desc = "A heav69-dut69 crate with a suite o69 69irearms sa69et69 instructions 69lastered on the side. The ID scanner is unli69e an69thin69 69ou've seen 69e69ore.";
+	name = "wea69ons crate";
+	re69_access = list69"ACCESS_S69NDICATE"69
 	},
-/obj/spawner/ammo/shotgun,
-/obj/item/tool/knife/tacknife,
-/obj/spawner/credits/c100,
-/obj/spawner/credits/c100,
-/obj/spawner/credits/c500,
-/obj/spawner/gun/cheap,
-/obj/item/stack/material/diamond{
+/o6969/s69awner/ammo/shot69un,
+/o6969/item/tool/69ni69e/tac69ni69e,
+/o6969/s69awner/credits/c100,
+/o6969/s69awner/credits/c100,
+/o6969/s69awner/credits/c500,
+/o6969/s69awner/69un/chea69,
+/o6969/item/stac69/material/diamond{
 	amount = 10
 	},
-/obj/item/stack/material/gold{
+/o6969/item/stac69/material/69old{
 	amount = 10
 	},
-/obj/item/stack/material/gold{
+/o6969/item/stac69/material/69old{
 	amount = 10
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"Dd" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"Dd" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 1
 	},
-/obj/structure/cable/yellow{
+/o6969/structure/ca69le/69ellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/shreddedp,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"DN" = (
-/obj/machinery/atmospherics/binary/pump{
+/o6969/item/shredded69,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"DN" = 69
+/o6969/machiner69/atmos69herics/69inar69/69um69{
 	dir = 4
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/rein69orced/69lasma{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/obj/spawner/toolbox,
-/obj/structure/table/rack,
-/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/growF)
-"Ij" = (
-/obj/structure/catwalk,
-/obj/structure/closet/crate,
-/obj/item/reagent_containers/pill/happy,
-/obj/item/reagent_containers/pill/happy,
-/obj/item/reagent_containers/pill/happy,
-/obj/item/reagent_containers/pill/happy,
-/obj/item/reagent_containers/pill/methylphenidate,
-/obj/item/reagent_containers/pill/methylphenidate,
-/obj/item/reagent_containers/pill/methylphenidate,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/spawner/booze,
-/obj/item/reagent_containers/pill/zoom,
-/obj/item/reagent_containers/pill/zoom,
-/obj/item/reagent_containers/pill/zoom,
-/obj/item/toy/crossbow{
-	desc = "A minature crossbow that fires some sort of dart from an internal magazine.";
-	name = "mini-crossbow"
+/o6969/structure/catwal69,
+/o6969/s69awner/tool69ox,
+/o6969/structure/ta69le/rac69,
+/o6969/item/69un/69ro69ectile/shot69un/dou69le69arrel/sawn,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69row6969
+"I69" = 69
+/o6969/structure/catwal69,
+/o6969/structure/closet/crate,
+/o6969/item/rea69ent_containers/69ill/ha696969,
+/o6969/item/rea69ent_containers/69ill/ha696969,
+/o6969/item/rea69ent_containers/69ill/ha696969,
+/o6969/item/rea69ent_containers/69ill/ha696969,
+/o6969/item/rea69ent_containers/69ill/meth69l69henidate,
+/o6969/item/rea69ent_containers/69ill/meth69l69henidate,
+/o6969/item/rea69ent_containers/69ill/meth69l69henidate,
+/o6969/s69awner/69ooze,
+/o6969/s69awner/69ooze,
+/o6969/s69awner/69ooze,
+/o6969/item/rea69ent_containers/69ill/zoom,
+/o6969/item/rea69ent_containers/69ill/zoom,
+/o6969/item/rea69ent_containers/69ill/zoom,
+/o6969/item/to69/cross69ow{
+	desc = "A69inature cross69ow that 69ires some sort o69 dart 69rom an internal69a69azine.";
+	name = "mini-cross69ow"
 	},
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"IH" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/pillbottles,
-/obj/item/storage/box/pillbottles,
-/obj/item/reagent_containers/glass/beaker/vial/random,
-/obj/item/reagent_containers/glass/beaker/vial/random,
-/obj/item/reagent_containers/glass/beaker/vial/random,
-/obj/item/reagent_containers/glass/beaker/vial/random,
-/turf/simulated/floor/tiled,
-/area/map_template/hydrobase/station/processing)
-"Np" = (
-/obj/structure/catwalk,
-/obj/item/material/kitchen/rollingpin,
-/obj/item/tool/knife/butch,
-/obj/structure/table/glass,
-/turf/simulated/floor/alium,
-/area/map_template/hydrobase/station/processing)
-"NL" = (
-/mob/living/simple_animal/hostile/retaliate/goat/hydro,
-/turf/simulated/floor/tiled/dark,
-/area/map_template/hydrobase/station/goatzone)
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"IH" = 69
+/o6969/structure/ta69le/69lass,
+/o6969/item/stora69e/69ox/69ill69ottles,
+/o6969/item/stora69e/69ox/69ill69ottles,
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random,
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random,
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random,
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random,
+/tur69/simulated/69loor/tiled,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"N69" = 69
+/o6969/structure/catwal69,
+/o6969/item/material/69itchen/rollin6969in,
+/o6969/item/tool/69ni69e/69utch,
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/alium,
+/area/ma69_tem69late/h69dro69ase/station/69rocessin6969
+"NL" = 69
+/mo69/livin69/sim69le_animal/hostile/retaliate/69oat/h69dro,
+/tur69/simulated/69loor/tiled/dar69,
+/area/ma69_tem69late/h69dro69ase/station/69oatzone69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
@@ -3013,7 +3013,7 @@ aa
 aa
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 aa
 aa
 aa
@@ -3054,7 +3054,7 @@ aa
 aa
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 aa
 aa
 aa
@@ -3095,7 +3095,7 @@ aa
 aa
 aa
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
 aa
 aa
@@ -3118,15 +3118,15 @@ at
 cm
 cv
 cO
-cP
+c69
 dE
 cv
 cm
 eN
 eN
-fw
-fw
-fw
+69w
+69w
+69w
 eN
 eN
 aa
@@ -3136,7 +3136,7 @@ aa
 aa
 aa
 "}
-(5,1,1) = {"
+695,1,169 = {"
 aa
 aa
 aa
@@ -3150,25 +3150,25 @@ aa
 aa
 at
 at
-bb
+6969
 aO
 aO
 aO
-bL
+69L
 aD
 cm
 cw
-cP
-dj
-cP
+c69
+d69
+c69
 dX
 cm
 eO
-fh
-fx
-fJ
-fS
-gc
+69h
+69x
+6969
+69S
+69c
 eN
 eN
 aa
@@ -3177,7 +3177,7 @@ aa
 aa
 aa
 "}
-(6,1,1) = {"
+696,1,169 = {"
 aa
 aa
 aa
@@ -3191,26 +3191,26 @@ aa
 at
 at
 aO
-aP
-aQ
-aQ
-aQ
-aQ
+a69
+a69
+a69
+a69
+a69
 aO
 cm
 cx
-cQ
-dk
+c69
+d69
 cR
-dY
+d69
 cm
-eP
-fi
-fi
-fi
-fi
-fj
-gm
+e69
+69i
+69i
+69i
+69i
+6969
+69m
 eN
 eN
 aa
@@ -3218,7 +3218,7 @@ aa
 aa
 aa
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
 aa
 aa
@@ -3230,36 +3230,36 @@ aa
 aa
 aa
 at
-aB
-aP
-aP
-aQ
+a69
+a69
+a69
+a69
 aC
 aO
-bM
+69M
 aC
 cm
-cy
+c69
 cR
 dl
 cR
 dX
 cm
-eP
-fi
-fx
-fx
-fi
-fj
-fj
-gs
+e69
+69i
+69x
+69x
+69i
+6969
+6969
+69s
 eN
 aa
 aa
 aa
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 aa
 aa
 aa
@@ -3272,13 +3272,13 @@ aa
 aa
 au
 aC
-aQ
+a69
 aC
-bi
-aQ
-aP
-aQ
-cb
+69i
+a69
+a69
+a69
+c69
 cm
 cz
 cR
@@ -3286,21 +3286,21 @@ dm
 cR
 ea
 cm
-eQ
-fi
-fj
-fi
-fT
-fx
-fi
-fj
-fw
+e69
+69i
+6969
+69i
+69T
+69x
+69i
+6969
+69w
 aa
 aa
 aa
 aa
 "}
-(9,1,1) = {"
+699,1,169 = {"
 aa
 aa
 aa
@@ -3313,35 +3313,35 @@ aa
 aa
 au
 aC
-aQ
+a69
 aC
-aQ
+a69
 aC
 aO
-aP
+a69
 aO
 cm
 cA
 cR
 dn
 cR
-eb
+e69
 cm
-eP
-fj
-fy
-fy
-fi
-fx
-fi
-gm
-fw
+e69
+6969
+6969
+6969
+69i
+69x
+69i
+69m
+69w
 aa
 aa
 aa
 aa
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 aa
 aa
 aa
@@ -3354,35 +3354,35 @@ aa
 aa
 au
 aC
-aQ
+a69
 aC
-aQ
-aQ
-aP
-aQ
+a69
+a69
+a69
+a69
 aO
 cm
-cB
+c69
 cR
 do
 cR
 ec
 cm
-eP
-fi
-fj
-fi
-fi
-fx
-fi
-gm
-fw
+e69
+69i
+6969
+69i
+69i
+69x
+69i
+69m
+69w
 aa
 aa
 aa
 aa
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 aa
 aa
 aa
@@ -3394,36 +3394,36 @@ aa
 aa
 aa
 at
-aB
-aP
+a69
+a69
 aC
-aP
+a69
 aC
 aO
-bN
+69N
 aC
 cm
-cB
+c69
 cR
-dp
+d69
 cR
 ed
 cm
-eP
-fk
-fy
-fy
-fj
-fx
-fj
-gs
+e69
+6969
+6969
+6969
+6969
+69x
+6969
+69s
 eN
 aa
 aa
 aa
 aa
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 aa
 aa
 aa
@@ -3437,34 +3437,34 @@ aa
 at
 aD
 aR
-aQ
-bj
-br
-aP
-bO
+a69
+6969
+69r
+a69
+69O
 cc
 cm
 cC
 cS
-dq
-dF
+d69
+d69
 ee
 cm
 eR
-fl
-fz
-fi
-fU
-gd
-fi
-gt
+69l
+69z
+69i
+69U
+69d
+69i
+69t
 eN
 aa
 aa
 aa
 aa
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 aa
 aa
 aa
@@ -3482,7 +3482,7 @@ at
 at
 at
 at
-bP
+6969
 at
 cm
 cm
@@ -3492,7 +3492,7 @@ cm
 cm
 cm
 eN
-fm
+69m
 eN
 eN
 eN
@@ -3505,7 +3505,7 @@ aa
 aa
 aa
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 aa
 aa
 aa
@@ -3517,13 +3517,13 @@ aa
 aa
 al
 al
-ap
-ap
-ap
-ap
-bs
-aq
-bQ
+a69
+a69
+a69
+a69
+69s
+a69
+6969
 cd
 cn
 cD
@@ -3533,20 +3533,20 @@ cT
 cD
 ev
 eS
-fn
-aq
-fK
-ap
-ap
-ap
-ap
+69n
+a69
+6969
+a69
+a69
+a69
+a69
 al
 al
 aa
 aa
 aa
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 aa
 aa
 aa
@@ -3557,14 +3557,14 @@ aa
 aa
 al
 al
-ap
-aq
+a69
+a69
 aE
 aE
 aE
 aE
-aq
-bR
+a69
+69R
 aE
 aE
 aE
@@ -3574,20 +3574,20 @@ cU
 aE
 aE
 aT
-bR
-aq
+69R
+a69
 aE
 aE
 aE
 aT
-aq
-ap
+a69
+a69
 al
 al
 aa
 aa
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 aa
 aa
 aa
@@ -3597,38 +3597,38 @@ aa
 aa
 al
 al
-ap
-aq
+a69
+a69
 aE
 aE
 aE
 aE
-bt
+69t
 aE
-bS
-bG
-bG
-bG
+69S
+6969
+6969
+6969
 cU
 du
-dG
-bG
-bG
-bG
-fo
+d69
+6969
+6969
+6969
+69o
 aE
-bt
-aE
-aE
+69t
 aE
 aE
-aq
-ap
+aE
+aE
+a69
+a69
 al
 al
 aa
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 aa
 aa
 aa
@@ -3638,38 +3638,38 @@ aa
 aa
 al
 ao
-aq
+a69
 av
 aE
-ap
-ap
-bk
-bu
-bF
-ap
-ap
-ap
-ap
+a69
+a69
+6969
+69u
+6969
+a69
+a69
+a69
+a69
 cV
 dv
 dH
-ap
-ap
-ap
-ap
-fA
-bu
-fV
-ap
-ap
+a69
+a69
+a69
+a69
+69A
+69u
+69V
+a69
+a69
 aE
 av
-aq
-gI
+a69
+69I
 al
 aa
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 aa
 aa
 aa
@@ -3679,38 +3679,38 @@ aa
 aa
 al
 al
-ap
-aq
+a69
+a69
 aE
 aE
 aE
-bl
-bv
-bG
-bT
-bG
+69l
+69v
+6969
+69T
+6969
 co
-bG
+6969
 cW
 dw
-bl
-bG
-bG
-bG
-bT
-bG
-bv
+69l
+6969
+6969
+6969
+69T
+6969
+69v
 cW
 aE
 aE
 aE
-aq
-ap
+a69
+a69
 al
 al
 aa
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 aa
 aa
 aa
@@ -3721,14 +3721,14 @@ aa
 aa
 al
 al
-ap
-aq
+a69
+a69
 aT
 aE
 aE
 aE
-aq
-aq
+a69
+a69
 aE
 aE
 aE
@@ -3738,20 +3738,20 @@ aE
 aE
 aE
 aE
-aq
-aq
+a69
+a69
 aE
 aE
 aE
 aE
-aq
-ap
+a69
+a69
 al
 al
 aa
 aa
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 aa
 aa
 aa
@@ -3763,36 +3763,36 @@ aa
 aa
 al
 al
-ap
-ap
-ap
-ap
-bw
-aq
-bU
+a69
+a69
+a69
+a69
+69w
+a69
+69U
 cd
-cp
+c69
 cD
-cY
+c69
 dx
 dI
-eg
+e69
 cU
 aE
 aE
-aq
-bw
-ap
-ap
-ap
-ap
+a69
+69w
+a69
+a69
+a69
+a69
 al
 al
 aa
 aa
 aa
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 aa
 aa
 aa
@@ -3808,32 +3808,32 @@ aw
 aw
 aw
 aw
-aK
-aK
-bV
-aK
-aK
-aK
-aK
-aK
-dJ
-dJ
+a69
+a69
+69V
+a69
+a69
+a69
+a69
+a69
+d69
+d69
 ew
-dJ
-dJ
-fB
-fB
-fB
-fB
-gn
-gn
-gn
-gn
-gJ
+d69
+d69
+6969
+6969
+6969
+6969
+69n
+69n
+69n
+69n
+6969
 aa
 aa
 "}
-(22,1,1) = {"
+6922,1,169 = {"
 aa
 aa
 aa
@@ -3845,36 +3845,36 @@ aa
 aa
 aa
 aw
-aF
+a69
 aU
-bc
+69c
 aw
-bx
-ba
-bW
+69x
+69a
+69W
 ce
 hT
 cE
 cZ
-aK
-dK
-Np
+a69
+d69
+N69
 ex
 eT
-fp
-fC
-fM
-fW
-ge
-gn
-gu
-gA
-gF
-gp
+6969
+69C
+69M
+69W
+69e
+69n
+69u
+69A
+6969
+6969
 aa
 aa
 "}
-(23,1,1) = {"
+6923,1,169 = {"
 aa
 aa
 aa
@@ -3886,36 +3886,36 @@ aa
 aa
 aa
 aw
-aG
+a69
 aH
-bd
+69d
 aw
-by
-bH
-bW
-cf
-sK
-cF
+6969
+69H
+69W
+c69
+s69
+c69
 da
-aK
+a69
 dL
 ei
-ek
+e69
 eU
-fq
-fD
-fN
-fX
-gf
-go
-gv
-gB
-gG
-gK
-gL
+6969
+69D
+69N
+69X
+6969
+69o
+69v
+6969
+6969
+6969
+69L
 aa
 "}
-(24,1,1) = {"
+6924,1,169 = {"
 aa
 aa
 aa
@@ -3929,159 +3929,159 @@ aa
 aw
 NL
 aV
-be
-bm
-bz
-bD
-bX
-cg
+69e
+69m
+69z
+69D
+69X
+c69
 hT
 DN
-db
-aK
+d69
+a69
 sU
-ej
+e69
 ex
 ez
-ep
-fC
-fO
-fY
-gg
-gp
-gw
-gC
-gH
-gn
+e69
+69C
+69O
+6969
+6969
+6969
+69w
+69C
+69H
+69n
 aa
 aa
 "}
-(25,1,1) = {"
+6925,1,169 = {"
 aa
 aa
 aa
-ab
+a69
 ae
 ae
 ae
-ab
+a69
 aa
 aa
 ax
 aI
-aG
+a69
 aW
 aw
 wu
-ba
-bW
+69a
+69W
 ch
 hT
 cH
 dc
-aK
+a69
 dN
-ek
-ey
-Ij
-Af
-fE
-fE
-fE
-gh
-gn
-gn
-gn
-gn
-gn
+e69
+e69
+I69
+A69
+69E
+69E
+69E
+69h
+69n
+69n
+69n
+69n
+69n
 aa
 aa
 "}
-(26,1,1) = {"
+6926,1,169 = {"
 aa
 aa
-ab
-ab
-af
+a69
+a69
+a69
 ah
 ac
-ab
-ab
+a69
+a69
 aa
 ax
-aJ
+a69
 aX
 aw
 aw
-bB
-bI
-bY
+6969
+69I
+6969
 ci
 cs
 cI
 dd
-dy
+d69
 dO
 el
 ez
 eX
 eX
-fE
-fP
-fZ
-gi
-gq
-gx
-fE
+69E
+6969
+69Z
+69i
+6969
+69x
+69E
 aa
 aa
 aa
 aa
 "}
-(27,1,1) = {"
+6927,1,169 = {"
 aa
-ab
-ab
+a69
+a69
 ac
 ad
 ad
 ad
 am
-ab
-ab
-ab
-aK
-aY
-bf
-bn
-bC
-bJ
-bD
-cj
-pm
+a69
+a69
+a69
+a69
+a69
+6969
+69n
+69C
+6969
+69D
+c69
+69m
 nA
-cf
-aK
-dP
+c69
+a69
+d69
 em
 eA
-eY
-fs
-fF
-fQ
-ga
-gj
-gb
-gy
-fE
+e69
+69s
+6969
+6969
+69a
+6969
+6969
+6969
+69E
 aa
 aa
 aa
 aa
 "}
-(28,1,1) = {"
-ab
-ab
+6928,1,169 = {"
+a69
+a69
 ac
 ad
 ad
@@ -4089,39 +4089,39 @@ ad
 ad
 ad
 ac
-ab
-ay
+a69
+a69
 aL
 aZ
-bg
-bo
-bD
-bD
-bD
-ck
-cf
-cf
+6969
+69o
+69D
+69D
+69D
+c69
+c69
+c69
 de
-aK
+a69
 IH
 en
-ek
+e69
 Dd
 ez
-fE
+69E
 oM
-gb
-gk
-gr
-gz
-fE
+6969
+6969
+69r
+69z
+69E
 aa
 aa
 aa
 aa
 "}
-(29,1,1) = {"
-ab
+6929,1,169 = {"
+a69
 ac
 ad
 ad
@@ -4133,78 +4133,78 @@ ad
 ar
 az
 aM
-ba
-bh
-bp
-bE
-bK
-bZ
+69a
+69h
+6969
+69E
+6969
+69Z
 cl
 cu
-cK
-df
+c69
+d69
 dz
 dR
 eo
-eB
+e69
 ta
-qB
-fE
-fE
-fE
-gl
-fE
-fE
-fE
+6969
+69E
+69E
+69E
+69l
+69E
+69E
+69E
 aa
 aa
 aa
 aa
 "}
-(30,1,1) = {"
-ab
+6930,1,169 = {"
+a69
 ac
 ad
 ad
-ag
+a69
 ai
-ak
-ak
-ak
+a69
+a69
+a69
 as
 aA
 aN
-aK
-aK
-bq
-bq
-aK
+a69
+a69
+6969
+6969
+a69
 ca
-aK
-aK
-aK
-aK
+a69
+a69
+a69
+a69
 dA
 dS
-ep
+e69
 eC
-fb
-fu
-dJ
-dg
+6969
+69u
+d69
+d69
 cL
-dg
+d69
 cL
-dg
+d69
 cL
 aa
 aa
 aa
 aa
 "}
-(31,1,1) = {"
-ab
-ab
+6931,1,169 = {"
+a69
+a69
 ac
 ad
 ad
@@ -4212,10 +4212,10 @@ ad
 ad
 ad
 ac
-ab
-ab
-aK
-aK
+a69
+a69
+a69
+a69
 aa
 aa
 aa
@@ -4223,37 +4223,37 @@ aa
 aa
 aa
 aa
-aK
-aK
-dB
+a69
+a69
+d69
 dT
-eq
+e69
 eD
-fc
-fv
-dJ
-dg
+69c
+69v
+d69
+d69
 cM
-dg
+d69
 cM
-dg
+d69
 cM
 aa
 aa
 aa
 aa
 "}
-(32,1,1) = {"
+6932,1,169 = {"
 aa
-ab
-ab
+a69
+a69
 ac
 ad
 ad
 ad
 an
-ab
-ab
+a69
+a69
 aa
 aa
 aa
@@ -4265,35 +4265,35 @@ aa
 aa
 aa
 cL
-aK
+a69
 dC
 dU
 er
 eE
 er
-dJ
-dJ
-dg
-fH
-dg
-fH
-dg
-fH
+d69
+d69
+d69
+69H
+d69
+69H
+d69
+69H
 aa
 aa
 aa
 aa
 "}
-(33,1,1) = {"
+6933,1,169 = {"
 aa
 aa
-ab
-ab
-af
+a69
+a69
+a69
 ah
 ac
-ab
-ab
+a69
+a69
 aa
 aa
 aa
@@ -4306,34 +4306,34 @@ aa
 aa
 aa
 cM
-dg
+d69
 cM
 dV
 er
-eF
+e69
 er
-dg
-fG
-dg
-fG
-dg
-fG
-dg
-gD
+d69
+6969
+d69
+6969
+d69
+6969
+d69
+69D
 aa
 aa
 aa
 aa
 "}
-(34,1,1) = {"
+6934,1,169 = {"
 aa
 aa
 aa
-ab
+a69
 ae
 ae
 ae
-ab
+a69
 aa
 aa
 aa
@@ -4347,26 +4347,26 @@ aa
 aa
 aa
 cL
-dg
+d69
 cL
 dV
 er
-eG
-fd
-dg
-fH
-dg
-fH
-dg
-fH
-dg
-fH
+e69
+69d
+d69
+69H
+d69
+69H
+d69
+69H
+d69
+69H
 aa
 aa
 aa
 aa
 "}
-(35,1,1) = {"
+6935,1,169 = {"
 aa
 aa
 aa
@@ -4388,26 +4388,26 @@ aa
 aa
 aa
 cM
-dg
+d69
 cM
 dV
 er
 eH
 er
-dg
-fG
-dg
-fG
-dg
-fG
-dg
-gD
+d69
+6969
+d69
+6969
+d69
+6969
+d69
+69D
 aa
 aa
 aa
 aa
 "}
-(36,1,1) = {"
+6936,1,169 = {"
 aa
 aa
 aa
@@ -4436,19 +4436,19 @@ dh
 eI
 dh
 dh
-fI
+69I
 dh
-fI
+69I
 dh
-fI
+69I
 dh
-gE
+69E
 aa
 aa
 aa
 aa
 "}
-(37,1,1) = {"
+6937,1,169 = {"
 aa
 aa
 aa
@@ -4474,7 +4474,7 @@ aa
 aa
 aa
 aa
-eJ
+e69
 aa
 aa
 aa
@@ -4489,7 +4489,7 @@ aa
 aa
 aa
 "}
-(38,1,1) = {"
+6938,1,169 = {"
 aa
 aa
 aa
@@ -4515,8 +4515,8 @@ aa
 aa
 aa
 es
-eK
-fe
+e69
+69e
 aa
 aa
 aa
@@ -4530,7 +4530,7 @@ aa
 aa
 aa
 "}
-(39,1,1) = {"
+6939,1,169 = {"
 aa
 aa
 aa
@@ -4557,7 +4557,7 @@ aa
 aa
 et
 eL
-ff
+6969
 aa
 aa
 aa
@@ -4571,7 +4571,7 @@ aa
 aa
 aa
 "}
-(40,1,1) = {"
+6940,1,169 = {"
 aa
 aa
 aa
@@ -4598,7 +4598,7 @@ aa
 aa
 eu
 eM
-fg
+6969
 aa
 aa
 aa

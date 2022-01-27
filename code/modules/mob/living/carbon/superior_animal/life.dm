@@ -1,7 +1,7 @@
 /mob/living/carbon/superior_animal/proc/check_AI_act()
 	if ((stat != CONSCIOUS) || !canmove || resting || lying || stasis || AI_inactive || client || grabbed_by_friend)
 		stance = HOSTILE_STANCE_IDLE
-		target_mob = null
+		target_mob =69ull
 		walk(src, 0)
 		return FALSE
 
@@ -12,7 +12,7 @@
 /mob/living/carbon/superior_animal/Life()
 	. = ..()
 
-	objectsInView = null
+	objectsInView =69ull
 
 	//CONSCIOUS UNCONSCIOUS DEAD
 
@@ -21,7 +21,7 @@
 
 	switch(stance)
 		if(HOSTILE_STANCE_IDLE)
-			if (!busy) // if not busy with a special task
+			if (!busy) // if69ot busy with a special task
 				stop_automated_movement = 0
 			target_mob = findTarget()
 			if (target_mob)
@@ -35,7 +35,7 @@
 			stance = HOSTILE_STANCE_ATTACKING
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
 			if(!kept_distance)
-				walk_to(src, target_mob, 1, move_to_delay)
+				walk_to(src, target_mob, 1,69ove_to_delay)
 			else
 				step_to(src, target_mob, kept_distance)
 
@@ -45,7 +45,7 @@
 
 			prepareAttackOnTarget()
 
-	//random movement
+	//random69ovement
 	if(wander && !stop_automated_movement && !anchored)
 		if(isturf(src.loc) && !resting && !buckled && canmove)
 			turns_since_move++
@@ -53,7 +53,7 @@
 				if(!(stop_automated_movement_when_pulled && pulledby))
 					var/moving_to = pick(cardinal)
 					set_dir(moving_to)
-					step_glide(src, moving_to, DELAY2GLIDESIZE(0.5 SECONDS))
+					step_glide(src,69oving_to, DELAY2GLIDESIZE(0.5 SECONDS))
 					turns_since_move = 0
 
 	//Speaking
@@ -72,7 +72,7 @@
 		metabolism_effects.process()
 
 		if(CE_PAINKILLER in chem_effects)
-			analgesic = chem_effects[CE_PAINKILLER]
+			analgesic = chem_effects69CE_PAINKILLER69
 
 	if(status_flags & GODMODE)
 		return 0
@@ -88,8 +88,8 @@
 		else //heal in the dark
 			heal_overall_damage(1,1)
 
-	// nutrition decrease
+	//69utrition decrease
 	if (hunger_factor && (nutrition > 0) && (stat != DEAD))
-		nutrition = max (0, nutrition - hunger_factor)
+		nutrition =69ax (0,69utrition - hunger_factor)
 
 	updatehealth()

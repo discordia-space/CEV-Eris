@@ -1,21 +1,21 @@
 /obj/machinery/portable_atmospherics/hydroponics/Process()
 
 	// Handle nearby smoke if any.
-	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
+	for(var/obj/effect/effect/smoke/chem/smoke in69iew(1, src))
 		if(smoke.reagents.total_volume)
 			smoke.reagents.trans_to_obj(src, 5, copy = 1)
 
 	//Do this even if we're not ready for a plant cycle.
 	process_reagents()
 
-	// Update values every cycle rather than every process() tick.
+	// Update69alues every cycle rather than every process() tick.
 	if(force_update)
 		force_update = 0
 	else if(world.time < (lastcycle + cycledelay))
 		return
 	lastcycle = world.time
 
-	// Mutation level drops each main tick.
+	//69utation level drops each69ain tick.
 	mutation_level -= rand(2,4)
 
 	// Weeds like water and nutrients, there's a chance the weed population will increase.
@@ -38,25 +38,25 @@
 	// Advance plant age.
 	if(prob(30*seed.get_trait(TRAIT_BOOSTED_GROWTH))) age += 1 * HYDRO_SPEED_MULTIPLIER
 
-	//Highly mutable plants have a chance of mutating every tick.
+	//Highly69utable plants have a chance of69utating every tick.
 	if(seed.get_trait(TRAIT_IMMUTABLE) == -1)
 		var/mut_prob = rand(1,100)
-		if(mut_prob <= 5) mutate(mut_prob == 1 ? 2 : 1)
+		if(mut_prob <= 5)69utate(mut_prob == 1 ? 2 : 1)
 
-	// Other plants also mutate if enough mutagenic compounds have been added.
+	// Other plants also69utate if enough69utagenic compounds have been added.
 	if(!seed.get_trait(TRAIT_IMMUTABLE))
 		if(prob(min(mutation_level,100)))
 			mutate((rand(100) < 15) ? 2 : 1)
 			mutation_level = 0
 
-	// Maintain tray nutrient and water levels.
+	//69aintain tray nutrient and water levels.
 	if(seed.get_trait(TRAIT_REQUIRES_NUTRIENTS) && seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) > 0 && nutrilevel > 0 && prob(25))
-		nutrilevel -= max(0,seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) * HYDRO_SPEED_MULTIPLIER)
+		nutrilevel -=69ax(0,seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) * HYDRO_SPEED_MULTIPLIER)
 	if(seed.get_trait(TRAIT_REQUIRES_WATER) && seed.get_trait(TRAIT_WATER_CONSUMPTION) > 0 && waterlevel > 0 && prob(25))
 		// the 2 bassicly device consumption half. Its way to fast right now
-		waterlevel -= max(0,seed.get_trait(TRAIT_WATER_CONSUMPTION) * HYDRO_SPEED_MULTIPLIER / 2)
+		waterlevel -=69ax(0,seed.get_trait(TRAIT_WATER_CONSUMPTION) * HYDRO_SPEED_MULTIPLIER / 2)
 
-	// Make sure the plant is not starving or thirsty. Adequate
+	//69ake sure the plant is not starving or thirsty. Adequate
 	// water and nutrients will cause a plant to become healthier.
 	var/healthmod = rand(1,3) * HYDRO_SPEED_MULTIPLIER
 	if(seed.get_trait(TRAIT_REQUIRES_NUTRIENTS) && prob(35))
@@ -81,14 +81,14 @@
 	else
 		health -= seed.handle_environment(T,environment)
 
-	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
+	// If we're attached to a pipenet, then we should let the pipenet know we69ight have69odified some gasses
 	if (closed_system && connected_port)
 		update_connected_network()
 
 	// Toxin levels beyond the plant's tolerance cause damage, but
 	// toxins are sucked up each tick and slowly reduce over time.
 	if(toxins > 0)
-		var/toxin_uptake = max(1,round(toxins/10))
+		var/toxin_uptake =69ax(1,round(toxins/10))
 		if(toxins > seed.get_trait(TRAIT_TOXINS_TOLERANCE))
 			health -= toxin_uptake
 		toxins -= toxin_uptake
@@ -121,7 +121,7 @@
 		harvest = 1
 		lastproduce = age
 
-	// If we're a vine which is not in a closed tray and is at least half mature, and there's no vine currently on our turf: make one (maybe)
+	// If we're a69ine which is not in a closed tray and is at least half69ature, and there's no69ine currently on our turf:69ake one (maybe)
 	if(!closed_system && \
 	 seed.get_trait(TRAIT_SPREAD) == 2 && \
 	 2 * age >= seed.get_trait(TRAIT_MATURATION) && \

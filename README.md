@@ -1,9 +1,9 @@
-![](https://cdn.discordapp.com/attachments/265411250341543936/269612274765791242/eris_128.png)
-# Endless Horizon: CEV-Eris [![Build Status](https://travis-ci.org/discordia-space/CEV-Eris.svg?branch=master)](https://travis-ci.org/Endless-Horizon/CEV-Eris)
-[![discord](https://discordapp.com/api/guilds/255035529085583360/widget.png)](https://discord.gg/QfEg7K7)
+!69696969tt6969://69dn.di696969rd696969.6969m/69tt696969ment69/265411250341543936/269612274765791242/eri69_128.69n6969
+#69Endle6969696969riz69n:6969E69-Eri696969!6969uild6969t69t6969696969tt6969://tr6969i69-69i.69r69/di696969rdi69-69696969e/69E69-Eri69.696969?69r69n6969=m6969t696969696969tt6969://tr6969i69-69i.69r69/Endle6969-6969riz69n/69E69-69ri6969
+69!69di69696969d696969tt6969://di696969rd696969.6969m/6969i/69uild69/255035529085583360/wid69et.69n696969696969tt6969://di696969rd.6969/6969E669769769
 
-Корабль, который должен умирать.
+Корабль,69который69должен69умирать.
 
-## CONTRIBUTING
+##696969NTRI69UTIN69
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md)
+69le6969e6969ee69696969NTRI69UTIN69.m6969696969NTRI69UTIN69.69d69

@@ -7,8 +7,8 @@
  */
 
 /obj/item/rig_module/stealth_field
-	name = "active camouflage module"
-	desc = "A robust hardsuit-integrated stealth module."
+	name = "active camouflage69odule"
+	desc = "A robust hardsuit-integrated stealth69odule."
 	icon_state = "cloak"
 
 	toggleable = 1
@@ -42,7 +42,7 @@
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
 
-	H.visible_message("[H.name] vanishes into thin air!",1)
+	H.visible_message("69H.name6969anishes into thin air!",1)
 
 /obj/item/rig_module/stealth_field/deactivate()
 
@@ -51,21 +51,21 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, SPAN_DANGER("You are now visible."))
+	to_chat(H, SPAN_DANGER("You are now69isible."))
 	H.invisibility = 0
 
 	anim(get_turf(H), H,'icons/mob/mob.dmi',,"uncloak",,H.dir)
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
 
 	for(var/mob/O in oviewers(H))
-		O.show_message("[H.name] appears from thin air!",1)
+		O.show_message("69H.name69 appears from thin air!",1)
 	playsound(get_turf(H), 'sound/effects/stealthoff.ogg', 75, 1)
 
 
 /obj/item/rig_module/teleporter
 
-	name = "teleportation module"
-	desc = "A complex, sleek-looking, hardsuit-integrated teleportation module."
+	name = "teleportation69odule"
+	desc = "A complex, sleek-looking, hardsuit-integrated teleportation69odule."
 	icon_state = "teleporter"
 	use_power_cost = 40
 	redundant = 1
@@ -142,7 +142,7 @@
 
 /obj/item/rig_module/fabricator/energy_net
 	name = "net projector"
-	desc = "Some kind of complex energy projector with a hardsuit mount."
+	desc = "Some kind of complex energy projector with a hardsuit69ount."
 	icon_state = "enet"
 
 	interface_name = "energy net launcher"
@@ -163,8 +163,8 @@
 	return 0
 
 /obj/item/rig_module/self_destruct
-	name = "self-destruct module"
-	desc = "Oh my God, Captain. A bomb."
+	name = "self-destruct69odule"
+	desc = "Oh69y God, Captain. A bomb."
 	icon_state = "deadman"
 	usable = 1
 	active = 1
@@ -172,8 +172,8 @@
 
 	engage_string = "Detonate"
 
-	interface_name = "dead man's switch"
-	interface_desc = "An integrated self-destruct module. When the wearer dies, so does the surrounding area. Do not press this button."
+	interface_name = "dead69an's switch"
+	interface_desc = "An integrated self-destruct69odule. When the wearer dies, so does the surrounding area. Do not press this button."
 	rarity_value = 20
 	var/list/explosion_values = list(1,2,4,5)
 
@@ -199,7 +199,7 @@
 /obj/item/rig_module/self_destruct/engage(var/skip_check)
 	if(!skip_check && usr && alert(usr, "Are you sure you want to push that button?", "Self-destruct", "No", "Yes") == "No")
 		return
-	explosion(get_turf(src), explosion_values[1], explosion_values[2], explosion_values[3], explosion_values[4])
+	explosion(get_turf(src), explosion_values69169, explosion_values69269, explosion_values69369, explosion_values69469)
 	if(holder && holder.wearer)
 		holder.wearer.drop_from_inventory(src)
 		qdel(holder)

@@ -1,5 +1,5 @@
 /music_track/marhaba
-	artist = "Ian Alex Mac"
+	artist = "Ian Alex69ac"
 	title = "Marhaba"
 	album = "Cues"
 	song = 'sound/music/marhaba.ogg'

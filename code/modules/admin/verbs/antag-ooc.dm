@@ -14,7 +14,7 @@ ADMIN_VERB_ADD(/client/proc/aooc, R_ADMIN, FALSE)
 		display_name = holder.fakekey
 
 	for(var/mob/M in SSmobs.mob_list)
-		if((M.mind && M.mind.antagonist.len && M.client) || check_rights(R_ADMIN, 0, M))
-			to_chat(M, "<font color='#960018'><span class='ooc'>" + create_text_tag("aooc", "Antag-OOC:", M.client) + " <EM>[display_name]:</EM> <span class='message linkify'>[msg]</span></span></font>")
+		if((M.mind &&69.mind.antagonist.len &&69.client) || check_rights(R_ADMIN, 0,69))
+			to_chat(M, "<font color='#960018'><span class='ooc'>" + create_text_tag("aooc", "Antag-OOC:",69.client) + " <EM>69display_name69:</EM> <span class='message linkify'>69msg69</span></span></font>")
 
-	log_ooc("(ANTAG) [key] : [msg]")
+	log_ooc("(ANTAG) 69key69 : 69msg69")

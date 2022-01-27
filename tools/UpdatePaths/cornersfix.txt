@@ -1,30 +1,30 @@
-/obj/effect/turf_decal/stripes/corner {dir=1} : /obj/item/bear_armor {@OLD;dir=8}
-/obj/effect/turf_decal/stripes/corner {dir=2} : /obj/effect/turf_decal/stripes/corner {@OLD;dir=@SKIP}
-/obj/effect/turf_decal/stripes/corner {dir=4} : /obj/effect/turf_decal/stripes/corner {@OLD;dir=1}
-/obj/effect/turf_decal/stripes/corner {dir=8} : /obj/effect/turf_decal/stripes/corner {@OLD;dir=4}
-/obj/item/bear_armor {dir=8} : /obj/effect/turf_decal/stripes/corner {@OLD}
-/obj/effect/turf_decal/stripes/red/corner {dir=1} : /obj/item/bear_armor {@OLD;dir=8}
-/obj/effect/turf_decal/stripes/red/corner {dir=2} : /obj/effect/turf_decal/stripes/red/corner {@OLD;dir=@SKIP}
-/obj/effect/turf_decal/stripes/red/corner {dir=4} : /obj/effect/turf_decal/stripes/red/corner {@OLD;dir=1}
-/obj/effect/turf_decal/stripes/red/corner {dir=8} : /obj/effect/turf_decal/stripes/red/corner {@OLD;dir=4}
-/obj/item/bear_armor {dir=8} : /obj/effect/turf_decal/stripes/red/corner {@OLD}
-/obj/effect/turf_decal/stripes/white/corner {dir=1} : /obj/item/bear_armor {@OLD;dir=8}
-/obj/effect/turf_decal/stripes/white/corner {dir=2} : /obj/effect/turf_decal/stripes/white/corner {@OLD;dir=@SKIP}
-/obj/effect/turf_decal/stripes/white/corner {dir=4} : /obj/effect/turf_decal/stripes/white/corner {@OLD;dir=1}
-/obj/effect/turf_decal/stripes/white/corner {dir=8} : /obj/effect/turf_decal/stripes/white/corner {@OLD;dir=4}
-/obj/item/bear_armor {dir=8} : /obj/effect/turf_decal/stripes/white/corner {@OLD}
-/obj/effect/turf_decal/box/corners {dir=1} : /obj/item/bear_armor {@OLD;dir=8}
-/obj/effect/turf_decal/box/corners {dir=2} : /obj/effect/turf_decal/box/corners {@OLD;dir=@SKIP}
-/obj/effect/turf_decal/box/corners {dir=4} : /obj/effect/turf_decal/box/corners {@OLD;dir=1}
-/obj/effect/turf_decal/box/corners {dir=8} : /obj/effect/turf_decal/box/corners {@OLD;dir=4}
-/obj/item/bear_armor {dir=8} : /obj/effect/turf_decal/box/corners {@OLD}
-/obj/effect/turf_decal/box/red/corners {dir=1} : /obj/item/bear_armor {@OLD;dir=8}
-/obj/effect/turf_decal/box/red/corners {dir=2} : /obj/effect/turf_decal/box/red/corners {@OLD;dir=@SKIP}
-/obj/effect/turf_decal/box/red/corners {dir=4} : /obj/effect/turf_decal/box/red/corners {@OLD;dir=1}
-/obj/effect/turf_decal/box/red/corners {dir=8} : /obj/effect/turf_decal/box/red/corners {@OLD;dir=4}
-/obj/item/bear_armor {dir=8} : /obj/effect/turf_decal/box/red/corners {@OLD}
-/obj/effect/turf_decal/box/white/corners {dir=1} : /obj/item/bear_armor {@OLD;dir=8}
-/obj/effect/turf_decal/box/white/corners {dir=2} : /obj/effect/turf_decal/box/white/corners {@OLD;dir=@SKIP}
-/obj/effect/turf_decal/box/white/corners {dir=4} : /obj/effect/turf_decal/box/white/corners {@OLD;dir=1}
-/obj/effect/turf_decal/box/white/corners {dir=8} : /obj/effect/turf_decal/box/white/corners {@OLD;dir=4}
-/obj/item/bear_armor {dir=8} : /obj/effect/turf_decal/box/white/corners {@OLD}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{6969r=1}69:69/696969/6969em/69e69r_69rm69r69{@69L69;6969r=8}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{6969r=2}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{@69L69;6969r=@69696969}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{6969r=4}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{@69L69;6969r=1}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{@69L69;6969r=4}
+/696969/6969em/69e69r_69rm69r69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/6969rner69{@69L69}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{6969r=1}69:69/696969/6969em/69e69r_69rm69r69{@69L69;6969r=8}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{6969r=2}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{@69L69;6969r=@69696969}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{6969r=4}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{@69L69;6969r=1}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{@69L69;6969r=4}
+/696969/6969em/69e69r_69rm69r69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/re69/6969rner69{@69L69}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{6969r=1}69:69/696969/6969em/69e69r_69rm69r69{@69L69;6969r=8}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{6969r=2}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{@69L69;6969r=@69696969}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{6969r=4}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{@69L69;6969r=1}
+/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{@69L69;6969r=4}
+/696969/6969em/69e69r_69rm69r69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969r6969e69/w696969e/6969rner69{@69L69}
+/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{6969r=1}69:69/696969/6969em/69e69r_69rm69r69{@69L69;6969r=8}
+/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{6969r=2}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{@69L69;6969r=@69696969}
+/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{6969r=4}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{@69L69;6969r=1}
+/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{@69L69;6969r=4}
+/696969/6969em/69e69r_69rm69r69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/6969rner6969{@69L69}
+/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{6969r=1}69:69/696969/6969em/69e69r_69rm69r69{@69L69;6969r=8}
+/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{6969r=2}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{@69L69;6969r=@69696969}
+/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{6969r=4}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{@69L69;6969r=1}
+/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{@69L69;6969r=4}
+/696969/6969em/69e69r_69rm69r69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/re69/6969rner6969{@69L69}
+/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{6969r=1}69:69/696969/6969em/69e69r_69rm69r69{@69L69;6969r=8}
+/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{6969r=2}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{@69L69;6969r=@69696969}
+/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{6969r=4}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{@69L69;6969r=1}
+/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{@69L69;6969r=4}
+/696969/6969em/69e69r_69rm69r69{6969r=8}69:69/696969/e6969e6969/69ur69_69e6969l/6969x/w696969e/6969rner6969{@69L69}

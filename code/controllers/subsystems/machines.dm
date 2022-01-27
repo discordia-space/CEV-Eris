@@ -37,7 +37,7 @@ SUBSYSTEM_DEF(machines)
 			debugg.count = 1
 			typepath_associative_list.Add(debugg)
 	for(var/datum/temp_counter_debug/debugger in typepath_associative_list)
-		message_admins("MC Machine debug data : [debugger.associated_typepath] |||| [debugger.count]")
+		message_admins("MC69achine debug data : 69debugger.associated_typepath69 |||| 69debugger.count69")
 
 /datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
@@ -52,7 +52,7 @@ SUBSYSTEM_DEF(machines)
 
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("M:[processing.len]|PN:[powernets.len]")
+	..("M:69processing.len69|PN:69powernets.len69")
 
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(machines)
 
 	var/seconds = wait * 0.1
 	while(currentrun.len)
-		var/obj/machinery/thing = currentrun[currentrun.len]
+		var/obj/machinery/thing = currentrun69currentrun.len69
 		currentrun.len--
 		if (QDELETED(thing) || thing.Process(seconds) == PROCESS_KILL)
 			processing -= thing

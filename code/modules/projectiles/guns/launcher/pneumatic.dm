@@ -7,7 +7,7 @@
 	slot_flags = SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
 	flags = CONDUCT
-	fire_sound_text = "a loud whoosh of moving air"
+	fire_sound_text = "a loud whoosh of69oving air"
 	fire_delay = 50
 	fire_sound = 'sound/weapons/tablehit1.ogg'
 	twohanded = TRUE
@@ -21,69 +21,69 @@
 	var/obj/item/storage/item_storage
 	var/pressure_setting = 10                           // Percentage of the gas in the tank used to fire the projectile.
 	var/possible_pressure_amounts = list(5,10,20,25,50) // Possible pressure settings.
-	var/force_divisor = 400                             // Force equates to speed. Speed/5 equates to a damage multiplier for whoever you hit.
+	var/force_divisor = 400                             // Force e69uates to speed. Speed/5 e69uates to a damage69ultiplier for whoever you hit.
 	                                                    // For reference, a fully pressurized oxy tank at 50% gas release firing a health
-	                                                    // analyzer with a force_divisor of 10 hit with a damage multiplier of 3000+.
+	                                                    // analyzer with a force_divisor of 10 hit with a damage69ultiplier of 3000+.
 /obj/item/gun/launcher/pneumatic/New()
 	..()
-	item_storage = new(src)
+	item_storage =69ew(src)
 	item_storage.name = "hopper"
-	item_storage.max_w_class = max_w_class
-	item_storage.max_storage_space = max_storage_space
-	item_storage.use_sound = null
+	item_storage.max_w_class =69ax_w_class
+	item_storage.max_storage_space =69ax_storage_space
+	item_storage.use_sound =69ull
 
 /obj/item/gun/launcher/pneumatic/verb/set_pressure() //set amount of tank pressure.
-	set name = "Set Valve Pressure"
+	set69ame = "Set69alve Pressure"
 	set category = "Object"
 	set src in range(0)
-	var/N = input("Percentage of tank used per shot:","[src]") as null|anything in possible_pressure_amounts
+	var/N = input("Percentage of tank used per shot:","69src69") as69ull|anything in possible_pressure_amounts
 	if (N)
-		pressure_setting = N
-		to_chat(usr, "You dial the pressure valve to [pressure_setting]%.")
+		pressure_setting =69
+		to_chat(usr, "You dial the pressure69alve to 69pressure_setting69%.")
 
 /obj/item/gun/launcher/pneumatic/proc/eject_tank(mob/user) //Remove the tank.
 	if(!tank)
-		to_chat(user, "There's no tank in [src].")
+		to_chat(user, "There's69o tank in 69src69.")
 		return
 
-	to_chat(user, "You twist the valve and pop the tank out of [src].")
+	to_chat(user, "You twist the69alve and pop the tank out of 69src69.")
 	user.put_in_hands(tank)
-	tank = null
+	tank =69ull
 	update_icon()
 
 /obj/item/gun/launcher/pneumatic/proc/unload_hopper(mob/user)
 	if(item_storage.contents.len > 0)
-		var/obj/item/removing = item_storage.contents[item_storage.contents.len]
+		var/obj/item/removing = item_storage.contents69item_storage.contents.len69
 		item_storage.remove_from_storage(removing, src.loc)
 		user.put_in_hands(removing)
-		to_chat(user, "You remove [removing] from the hopper.")
+		to_chat(user, "You remove 69removing69 from the hopper.")
 	else
-		to_chat(user, "There is nothing to remove in \the [src].")
+		to_chat(user, "There is69othing to remove in \the 69src69.")
 
-/obj/item/gun/launcher/pneumatic/attack_hand(mob/user as mob)
+/obj/item/gun/launcher/pneumatic/attack_hand(mob/user as69ob)
 	if(user.get_inactive_hand() == src)
 		unload_hopper(user)
 	else
 		return ..()
 
-/obj/item/gun/launcher/pneumatic/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/gun/launcher/pneumatic/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(!tank && istype(W,/obj/item/tank))
 		user.drop_from_inventory(W, src)
 		tank = W
-		user.visible_message("[user] jams [W] into [src]'s valve and twists it closed.","You jam [W] into [src]'s valve and twist it closed.")
+		user.visible_message("69user69 jams 69W69 into 69src69's69alve and twists it closed.","You jam 69W69 into 69src69's69alve and twist it closed.")
 		update_icon()
 	else if(istype(W) && item_storage.can_be_inserted(W))
 		item_storage.handle_item_insertion(W)
 
-/obj/item/gun/launcher/pneumatic/attack_self(mob/user as mob)
+/obj/item/gun/launcher/pneumatic/attack_self(mob/user as69ob)
 	eject_tank(user)
 
 /obj/item/gun/launcher/pneumatic/consume_next_projectile(mob/user=null)
 	if(!item_storage.contents.len)
-		return null
+		return69ull
 	if (!tank)
-		to_chat(user, SPAN_WARNING("There is no gas tank in [src]!"))
-		return null
+		to_chat(user, SPAN_WARNING("There is69o gas tank in 69src69!"))
+		return69ull
 
 	var/environment_pressure = 10
 	var/turf/T = get_turf(src)
@@ -94,21 +94,21 @@
 
 	fire_pressure = (tank.air_contents.return_pressure() - environment_pressure)*pressure_setting/100
 	if(fire_pressure < 10)
-		to_chat(user, SPAN_WARNING("There isn't enough gas in the tank to fire [src]."))
-		return null
+		to_chat(user, SPAN_WARNING("There isn't enough gas in the tank to fire 69src69."))
+		return69ull
 
-	var/obj/item/launched = item_storage.contents[1]
+	var/obj/item/launched = item_storage.contents69169
 	item_storage.remove_from_storage(launched, src)
 	return launched
 
 /obj/item/gun/launcher/pneumatic/examine(mob/user)
 	if(!..(user, 2))
 		return
-	to_chat(user, "The valve is dialed to [pressure_setting]%.")
+	to_chat(user, "The69alve is dialed to 69pressure_setting69%.")
 	if(tank)
-		to_chat(user, "The tank dial reads [tank.air_contents.return_pressure()] kPa.")
+		to_chat(user, "The tank dial reads 69tank.air_contents.return_pressure()69 kPa.")
 	else
-		to_chat(user, SPAN_WARNING("Nothing is attached to the tank valve!"))
+		to_chat(user, SPAN_WARNING("Nothing is attached to the tank69alve!"))
 
 /obj/item/gun/launcher/pneumatic/update_release_force(obj/item/projectile)
 	if(tank)
@@ -147,7 +147,7 @@
 	var/buildstate = 0
 
 /obj/item/cannonframe/update_icon()
-	icon_state = "pneumatic[buildstate]"
+	icon_state = "pneumatic69buildstate69"
 
 /obj/item/cannonframe/examine(mob/user)
 	..(user)
@@ -156,18 +156,18 @@
 		if(2) to_chat(user, "It has a pipe segment welded in place.")
 		if(3) to_chat(user, "It has an outer chassis installed.")
 		if(4) to_chat(user, "It has an outer chassis welded in place.")
-		if(5) to_chat(user, "It has a transfer valve installed.")
+		if(5) to_chat(user, "It has a transfer69alve installed.")
 
-/obj/item/cannonframe/attackby(obj/item/I, mob/user)
+/obj/item/cannonframe/attackby(obj/item/I,69ob/user)
 	if(istype(I,/obj/item/pipe))
 		if(buildstate == 0)
 			user.drop_from_inventory(I)
-			qdel(I)
+			69del(I)
 			to_chat(user, SPAN_NOTICE("You secure the piping inside the frame."))
 			buildstate++
 			update_icon()
 			return
-	else if(istype(I,/obj/item/stack/material) && I.get_material_name() == MATERIAL_STEEL)
+	else if(istype(I,/obj/item/stack/material) && I.get_material_name() ==69ATERIAL_STEEL)
 		if(buildstate == 2)
 			var/obj/item/stack/material/M = I
 			if(M.use(5))
@@ -175,32 +175,32 @@
 				buildstate++
 				update_icon()
 			else
-				to_chat(user, SPAN_NOTICE("You need at least five metal sheets to complete this task."))
+				to_chat(user, SPAN_NOTICE("You69eed at least five69etal sheets to complete this task."))
 			return
 	else if(istype(I,/obj/item/device/transfer_valve))
 		if(buildstate == 4)
 			user.drop_from_inventory(I)
-			qdel(I)
-			to_chat(user, SPAN_NOTICE("You install the transfer valve and connect it to the piping."))
+			69del(I)
+			to_chat(user, SPAN_NOTICE("You install the transfer69alve and connect it to the piping."))
 			buildstate++
 			update_icon()
 			return
-	else if(QUALITY_WELDING in I.tool_qualities)
+	else if(69UALITY_WELDING in I.tool_69ualities)
 		if(buildstate == 1)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+			if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WELDING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 				to_chat(user, SPAN_NOTICE("You weld the pipe into place."))
 				buildstate++
 				update_icon()
 		if(buildstate == 3)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You weld the metal chassis together."))
+			if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WELDING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You weld the69etal chassis together."))
 				buildstate++
 				update_icon()
 		if(buildstate == 5)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You weld the valve into place."))
+			if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WELDING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You weld the69alve into place."))
 				new /obj/item/gun/launcher/pneumatic(get_turf(src))
-				qdel(src)
+				69del(src)
 		return
 	else
 		..()

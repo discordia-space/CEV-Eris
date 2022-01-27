@@ -1,14 +1,14 @@
-var/const/MOVEMENT_HANDLED = 0x0001 // If no further movement handling should occur after this
+var/const/MOVEMENT_HANDLED = 0x0001 // If no further69ovement handling should occur after this
 var/const/MOVEMENT_REMOVE  = 0x0002
 
 var/const/MOVEMENT_PROCEED = 0x0004
 var/const/MOVEMENT_STOP    = 0x0008
 
 #define INIT_MOVEMENT_HANDLERS \
-if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
+if(LAZYLEN(movement_handlers) && ispath(movement_handlers69169)) { \
 	var/new_handlers = list(); \
-	for(var/path in movement_handlers){ \
-		var/arguments = movement_handlers[path];   \
+	for(var/path in69ovement_handlers){ \
+		var/arguments =69ovement_handlers69path69;   \
 		arguments = arguments ? (list(src) | (arguments)) : list(src); \
 		new_handlers += new path(arglist(arguments)); \
 	} \
@@ -24,16 +24,16 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 /atom/movable/proc/HasMovementHandler(var/handler_path)
 	if(!LAZYLEN(movement_handlers))
 		return FALSE
-	if(ispath(movement_handlers[1]))
-		return (handler_path in movement_handlers)
+	if(ispath(movement_handlers69169))
+		return (handler_path in69ovement_handlers)
 	else
-		for(var/mh in movement_handlers)
-			var/datum/MH = mh
+		for(var/mh in69ovement_handlers)
+			var/datum/MH =69h
 			if(MH.type == handler_path)
 				return TRUE
 	return FALSE
 
-/atom/movable/proc/AddMovementHandler(var/handler_path, var/handler_path_to_add_before)
+/atom/movable/proc/AddMovementHandler(var/handler_path,69ar/handler_path_to_add_before)
 	INIT_MOVEMENT_HANDLERS
 
 	. = new handler_path(src)
@@ -41,7 +41,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 	// If a handler_path_to_add_before was given, attempt to find it and insert our handler just before it
 	if(handler_path_to_add_before && LAZYLEN(movement_handlers))
 		var/index = 0
-		for(var/handler in movement_handlers)
+		for(var/handler in69ovement_handlers)
 			index++
 			var/datum/H = handler
 			if(H.type == handler_path_to_add_before)
@@ -55,12 +55,12 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 	INIT_MOVEMENT_HANDLERS
 
 	if(ispath(handler_path))
-		for(var/handler in movement_handlers)
+		for(var/handler in69ovement_handlers)
 			var/datum/H = handler
 			if(H.type == handler_path)
 				REMOVE_AND_QDEL(H)
 				break
-	else if (handler_path in movement_handlers)
+	else if (handler_path in69ovement_handlers)
 		REMOVE_AND_QDEL(handler_path)
 
 /atom/movable/proc/ReplaceMovementHandler(var/handler_path)
@@ -70,41 +70,41 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 /atom/movable/proc/GetMovementHandler(var/handler_path)
 	INIT_MOVEMENT_HANDLERS
 
-	for(var/handler in movement_handlers)
+	for(var/handler in69ovement_handlers)
 		var/datum/H = handler
 		if(H.type == handler_path)
 			return H
 
-// If is_external is explicitly set then use that, otherwise if the mover isn't the host assume it's external
+// If is_external is explicitly set then use that, otherwise if the69over isn't the host assume it's external
 #define SET_MOVER(X) X = X || src
 #define SET_IS_EXTERNAL(X) is_external = isnull(is_external) ? (mover != src) : is_external
 
-/atom/movable/proc/DoMove(var/direction, var/mob/mover, var/is_external)
+/atom/movable/proc/DoMove(var/direction,69ar/mob/mover,69ar/is_external)
 	INIT_MOVEMENT_HANDLERS
 	SET_MOVER(mover)
 	SET_IS_EXTERNAL(mover)
-	for(var/mh in movement_handlers)
-		var/datum/movement_handler/movement_handler = mh
-		if(movement_handler.MayMove(mover, is_external) & MOVEMENT_STOP)
-			return MOVEMENT_HANDLED
+	for(var/mh in69ovement_handlers)
+		var/datum/movement_handler/movement_handler =69h
+		if(movement_handler.MayMove(mover, is_external) &69OVEMENT_STOP)
+			return69OVEMENT_HANDLED
 
-		. = movement_handler.DoMove(direction, mover, is_external)
-		if(. & MOVEMENT_REMOVE)
+		. =69ovement_handler.DoMove(direction,69over, is_external)
+		if(. &69OVEMENT_REMOVE)
 			REMOVE_AND_QDEL(movement_handler)
-		if(. & MOVEMENT_HANDLED)
+		if(. &69OVEMENT_HANDLED)
 			return
 
-// is_external means that something else (not inside us) is asking if we may move
-// This for example includes mobs bumping into each other
-/atom/movable/proc/MayMove(var/mob/mover, var/is_external)
+// is_external69eans that something else (not inside us) is asking if we69ay69ove
+// This for example includes69obs bumping into each other
+/atom/movable/proc/MayMove(var/mob/mover,69ar/is_external)
 	INIT_MOVEMENT_HANDLERS
 	SET_MOVER(mover)
 	SET_IS_EXTERNAL(mover)
 
-	for(var/mh in movement_handlers)
-		var/datum/movement_handler/movement_handler = mh
-		var/may_move = movement_handler.MayMove(mover, is_external)
-		if(may_move & MOVEMENT_STOP)
+	for(var/mh in69ovement_handlers)
+		var/datum/movement_handler/movement_handler =69h
+		var/may_move =69ovement_handler.MayMove(mover, is_external)
+		if(may_move &69OVEMENT_STOP)
 			return FALSE
 		if((may_move & (MOVEMENT_PROCEED|MOVEMENT_HANDLED)) == (MOVEMENT_PROCEED|MOVEMENT_HANDLED))
 			return TRUE
@@ -117,7 +117,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 
 // Base
 /atom/movable/Destroy()
-	if(LAZYLEN(movement_handlers) && !ispath(movement_handlers[1]))
+	if(LAZYLEN(movement_handlers) && !ispath(movement_handlers69169))
 		QDEL_NULL_LIST(movement_handlers)
 	. = ..()
 
@@ -127,19 +127,19 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 
 /datum/movement_handler/New(var/atom/movable/host)
 	if(!istype(host, expected_host_type))
-		CRASH("Invalid host type. Expected [expected_host_type], was [host ? host.type : "*null*"]")
+		CRASH("Invalid host type. Expected 69expected_host_type69, was 69host ? host.type : "*null*"69")
 	src.host = host
 
 /datum/movement_handler/Destroy()
 	host = null
 	. = ..()
 
-/datum/movement_handler/proc/DoMove(var/direction, var/mob/mover, var/is_external)
+/datum/movement_handler/proc/DoMove(var/direction,69ar/mob/mover,69ar/is_external)
 	return
 
-// Asks the handlers if the mob may move, ignoring destination, if attempting a DoMove()
-/datum/movement_handler/proc/MayMove(var/mob/mover, var/is_external)
-	return MOVEMENT_PROCEED
+// Asks the handlers if the69ob69ay69ove, ignoring destination, if attempting a DoMove()
+/datum/movement_handler/proc/MayMove(var/mob/mover,69ar/is_external)
+	return69OVEMENT_PROCEED
 
 /*******
 * /mob *

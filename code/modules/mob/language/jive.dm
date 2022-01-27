@@ -1,15 +1,15 @@
 /datum/language/jive
 	name = LANGUAGE_JIVE
-	desc = "A mostly nonverbal language made of hand gestures, popular among criminals, punks and mercenaries. Often used to conduct illicit trade away from prying ears."
+	desc = "A69ostly69onverbal language69ade of hand gestures, popular among criminals, punks and69ercenaries. Often used to conduct illicit trade away from prying ears."
 	signlang_verb = list("gestures", "signs", "signals", "motions")
 	colour = "jive"
 	key = "s"
-	flags = SIGNLANG | NO_STUTTER | NONVERBAL
+	flags = SIGNLANG |69O_STUTTER |69ONVERBAL
 	shorthand = "JI"
 
-//To maintain an air of informality, jive does not force capitalization
-/datum/language/jive/format_message(message, verb)
-	return "[verb], <span class='message'><span class='[colour]'>\"[message]\"</span></span>"
+//To69aintain an air of informality, jive does69ot force capitalization
+/datum/language/jive/format_message(message,69erb)
+	return "69verb69, <span class='message'><span class='69colour69'>\"69message69\"</span></span>"
 
-/datum/language/jive/format_message_plain(message, verb)
-	return "[verb], \"[message]\""
+/datum/language/jive/format_message_plain(message,69erb)
+	return "69verb69, \"69message69\""

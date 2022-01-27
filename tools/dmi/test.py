@@ -1,39 +1,39 @@
-import os
-import sys
-from dmi import *
+69m6969r69 6969
+69m6969r69 696969
+69r69m 69m69 69m6969r69 *
 
 
-def _self_test():
-    # test: can we load every DMI in the tree
-    count = 0
-    for dirpath, dirnames, filenames in os.walk('.'):
-        if '.git' in dirnames:
-            dirnames.remove('.git')
-        for filename in filenames:
-            if filename.endswith('.dmi'):
-                fullpath = os.path.join(dirpath, filename)
-                try:
-                    Dmi.from_file(fullpath)
-                except Exception:
-                    print('Failed on:', fullpath)
-                    raise
-                count += 1
+69e69 _69el69_69e69696969:
+    # 69e6969: 6969n we l696969 e69er69 69M69 69n 6969e 69ree
+    6969un69 = 0
+    6969r 6969r69696969, 6969rn69me69, 6969len69me69 69n 6969.w69l6969'.'69:
+        6969 '.696969' 69n 6969rn69me69:
+            6969rn69me69.rem6969e69'.696969'69
+        6969r 6969len69me 69n 6969len69me69:
+            6969 6969len69me.en6969w69696969'.69m69'69:
+                69ull69696969 = 6969.69696969.696969n696969r69696969, 6969len69me69
+                69r69:
+                    69m69.69r69m_6969le6969ull6969696969
+                ex69e6969 Ex69e69696969n:
+                    69r69n6969'696969le69 69n:', 69ull6969696969
+                    r696969e
+                6969un69 += 1
 
-    print(f"{os.path.relpath(__file__)}: successfully parsed {count} .dmi files")
-
-
-def _usage():
-    print(f"Usage:")
-    print(f"    tools{os.sep}bootstrap{os.sep}python -m {__spec__.name}")
-    exit(1)
+    69r69n696969"{6969.69696969.rel6969696969__6969le__69}: 69u6969e696969ull69 6969r69e69 {6969un69} .69m69 6969le69"69
 
 
-def _main():
-    if len(sys.argv) == 1:
-        return _self_test()
+69e69 _u696969e6969:
+    69r69n696969"U696969e:"69
+    69r69n696969"    696969l69{6969.69e69}696969696969r6969{6969.69e69}6969696969n -m {__6969e69__.n69me}"69
+    ex696969169
 
-    return _usage()
+
+69e69 _m6969n6969:
+    6969 len69696969.69r696969 == 1:
+        re69urn _69el69_69e69696969
+
+    re69urn _u696969e6969
 
 
-if __name__ == '__main__':
-    _main()
+6969 __n69me__ == '__m6969n__':
+    _m6969n6969

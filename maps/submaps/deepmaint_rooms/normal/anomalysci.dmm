@@ -1,97 +1,97 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/deepmaint)
-"b" = (
+//MAP CONVERTED B69 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/deepmaint69
+"b" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"c" = (
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"d" = (
-/obj/machinery/artifact_analyser,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"e" = (
-/obj/machinery/artifact_scanpad,
-/turf/simulated/floor/tiled/dark/danger,
-/area/deepmaint)
-"f" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark/brown_platform,
-/area/deepmaint)
-"g" = (
-/turf/simulated/floor/tiled/dark/danger,
-/area/deepmaint)
-"h" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"i" = (
-/obj/machinery/power/emitter/anchored{
-	tag = "icon-emitter (NORTH)";
+/area/deepmaint69
+"c" = 69
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"d" = 69
+/ob69/machiner69/artifact_anal69ser,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"e" = 69
+/ob69/machiner69/artifact_scanpad,
+/turf/simulated/floor/tiled/dar69/dan69er,
+/area/deepmaint69
+"f" = 69
+/ob69/machiner69/li69ht/small,
+/turf/simulated/floor/tiled/dar69/brown_platform,
+/area/deepmaint69
+"69" = 69
+/turf/simulated/floor/tiled/dar69/dan69er,
+/area/deepmaint69
+"h" = 69
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"i" = 69
+/ob69/machiner69/power/emitter/anchored{
+	ta69 = "icon-emitter 69NORTH69";
 	icon_state = "emitter";
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/danger,
-/area/deepmaint)
-"j" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/dark/panels,
-/area/deepmaint)
-"k" = (
-/turf/simulated/floor/tiled/dark/gray_platform,
-/area/deepmaint)
-"l" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"m" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"o" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/rare,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"p" = (
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"q" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
-"r" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/dar69/dan69er,
+/area/deepmaint69
+"69" = 69
+/ob69/spawner/mob/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/deepmaint69
+"69" = 69
+/turf/simulated/floor/tiled/dar69/69ra69_platform,
+/area/deepmaint69
+"l" = 69
+/ob69/spawner/pac69/machine,
+/turf/simulated/floor/tiled/dar69/69ra69_perforated,
+/area/deepmaint69
+"m" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/dar69/69ra69_perforated,
+/area/deepmaint69
+"o" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/rare,
+/turf/simulated/floor/tiled/dar69/69ra69_perforated,
+/area/deepmaint69
+"p" = 69
+/turf/simulated/floor/tiled/dar69/69ra69_perforated,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/rare/low_chance,
+/ob69/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/dar69/69ra69_perforated,
+/area/deepmaint69
+"r" = 69
+/ob69/machiner69/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"s" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"s" = 69
+/ob69/machiner69/li69ht/small{
 	dir = 4;
-	pixel_y = 0
+	pixel_69 = 0
 	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"t" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"t" = 69
+/ob69/machiner69/li69ht/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"H" = (
-/obj/item/stool,
-/turf/simulated/floor/tiled/dark/gray_perforated,
-/area/deepmaint)
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"H" = 69
+/ob69/item/stool,
+/turf/simulated/floor/tiled/dar69/69ra69_perforated,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -104,7 +104,7 @@ a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 b
 b
@@ -117,7 +117,7 @@ H
 p
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 b
 d
@@ -130,20 +130,20 @@ H
 H
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 b
 e
-g
-g
-g
+69
+69
+69
 i
 m
 o
-q
+69
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 f
 b
 b
@@ -152,24 +152,24 @@ b
 t
 h
 h
-k
-k
+69
+69
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 c
 c
 c
-j
+69
 h
 h
 h
-k
-k
+69
+69
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 b
 b
@@ -178,24 +178,24 @@ b
 h
 h
 h
-k
-k
+69
+69
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 b
 e
-g
-g
-g
+69
+69
+69
 i
 m
 o
-q
+69
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 b
 d
@@ -208,7 +208,7 @@ H
 H
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 b
 b
@@ -221,7 +221,7 @@ H
 p
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 a
 a

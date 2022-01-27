@@ -1,31 +1,31 @@
-{{if data.detonating}}
-	<div class="notice" style="color: #000000;">
-		<h2 style="color: #000000;">CRYSTAL DELAMINATING</h2>
-		<h3 style="color: #000000;">Evacuate area immediately</h3>
-		<div class="clearBoth"></div>
+{{if d69t69.deton69tin69}}
+	<div cl69ss="notice" st69le="color: #000000;">
+		<h2 st69le="color: #000000;">CR69ST69L DEL69MIN69TIN69</h2>
+		<h3 st69le="color: #000000;">Ev69cu69te 69re69 immedi69tel69</h3>
+		<div cl69ss="cle69r69oth"></div>
 	</div>
 {{else}}
-	<h3>Crystal Integrity</h3>
-	{{:helper.displayBar(data.integrity_percentage, 0, 100, (data.integrity_percentage >= 90) ? 'good' : (data.integrity_percentage >= 25) ? 'average' : 'bad')}}
-	<b>{{:data.integrity_percentage}} %</b>
+	<h3>Cr69st69l Inte69rit69</h3>
+	{{:hel69er.dis69l69696969r69d69t69.inte69rit69_69ercent6969e, 0, 100, 69d69t69.inte69rit69_69ercent6969e >= 9069 ? '69ood' : 69d69t69.inte69rit69_69ercent6969e >= 2569 ? '69ver6969e' : '6969d'69}}
+	<69>{{:d69t69.inte69rit69_69ercent6969e}} %</69>
 	<h3>Environment</h3>
-	<span class="itemLabel">
-		Temperature:
-	</span>
-	<span class="itemContent">
-		{{:helper.displayBar(data.ambient_temp, 0, 10000, (data.ambient_temp >= 5000) ? 'bad' : (data.ambient_temp >= 4000) ? 'average' : 'good')}}
-		{{:data.ambient_temp}} K
-	</span>
-	<span class="itemLabel">
-		Pressure:
-	</span>
-	<span class="itemContent">
-		{{:data.ambient_pressure}} kPa
-	</span>
-	<span class="itemLabel">
-		Relative EER:
-	</span>
-	<span class="itemContent">
-		{{:data.energy}}
-	</span>
+	<s6969n cl69ss="itemL6969el">
+		Tem69er69ture:
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.69m69ient_tem69, 0, 10000, 69d69t69.69m69ient_tem69 >= 500069 ? '6969d' : 69d69t69.69m69ient_tem69 >= 400069 ? '69ver6969e' : '69ood'69}}
+		{{:d69t69.69m69ient_tem69}} K
+	</s6969n>
+	<s6969n cl69ss="itemL6969el">
+		69ressure:
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{:d69t69.69m69ient_69ressure}} k6969
+	</s6969n>
+	<s6969n cl69ss="itemL6969el">
+		Rel69tive EER:
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{:d69t69.ener6969}}
+	</s6969n>
 {{/if}}

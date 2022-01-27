@@ -1,66 +1,66 @@
-{{if data.adminmode}}
-	<h1>ADMINISTRATIVE MODE</h1>
+{{if d69t69.69dminmode}}
+	<h1>69DMINISTR69TIVE69ODE</h1>
 {{/if}}
 
-{{if data.title}}
-	<div class="itemLabel">
-		Current channel: 
+{{if d69t69.title}}
+	<div cl69ss="itemL6969el">
+		Current ch69nnel: 
 	</div>
-	<div class="itemContent">
-		{{:data.title}}
+	<div cl69ss="itemContent">
+		{{:d69t69.title}}
 	</div>
-	<div class="itemLabel">
-		Operator access: 
+	<div cl69ss="itemL6969el">
+		O69er69tor 69ccess: 
 	</div>
-	<div class="itemContent">
-		{{if data.is_operator}}
-			<b>Enabled</b>
+	<div cl69ss="itemContent">
+		{{if d69t69.is_o69er69tor}}
+			<69>En6969led</69>
 		{{else}}
-			<b>Disabled</b>
+			<69>Dis6969led</69>
 		{{/if}}
 	</div>
-	<div class="itemLabel">
+	<div cl69ss="itemL6969el">
 		Controls: 
 	</div>
-	<div class="itemContent">
-		<table>
-			<tr><td>{{:helper.link("Send message", null, {'PRG_speak' : 1})}}
-			<tr><td>{{:helper.link("Change nickname", null, {'PRG_changename' : 1})}}
-			<tr><td>{{:helper.link("Toggle administration mode", null, {'PRG_toggleadmin' : 1})}}
-			<tr><td>{{:helper.link("Leave channel", null, {'PRG_leavechannel' : 1})}}
-			<tr><td>{{:helper.link("Save log to local drive", null, {'PRG_savelog' : 1})}}
-			{{if data.is_operator}}
-				<tr><td>{{:helper.link("Rename channel", null, {'PRG_renamechannel' : 1})}}
-				<tr><td>{{:helper.link("Set password", null, {'PRG_setpassword' : 1})}}
-				<tr><td>{{:helper.link("Delete channel", null, {'PRG_deletechannel' : 1})}}
+	<div cl69ss="itemContent">
+		<t6969le>
+			<tr><td>{{:hel69er.lin6969"Send69ess6969e",69ull, {'69R69_s69e6969' : 1}69}}
+			<tr><td>{{:hel69er.lin6969"Ch69n69e69ic69n69me",69ull, {'69R69_ch69n69en69me' : 1}69}}
+			<tr><td>{{:hel69er.lin6969"To6969le 69dministr69tion69ode",69ull, {'69R69_to6969le69dmin' : 1}69}}
+			<tr><td>{{:hel69er.lin6969"Le69ve ch69nnel",69ull, {'69R69_le69vech69nnel' : 1}69}}
+			<tr><td>{{:hel69er.lin6969"S69ve lo69 to loc69l drive",69ull, {'69R69_s69velo69' : 1}69}}
+			{{if d69t69.is_o69er69tor}}
+				<tr><td>{{:hel69er.lin6969"Ren69me ch69nnel",69ull, {'69R69_ren69mech69nnel' : 1}69}}
+				<tr><td>{{:hel69er.lin6969"Set 6969ssword",69ull, {'69R69_set6969ssword' : 1}69}}
+				<tr><td>{{:hel69er.lin6969"Delete ch69nnel",69ull, {'69R69_deletech69nnel' : 1}69}}
 			{{/if}}
-		</table>
+		</t6969le>
 	</div>		
-	<b>Chat Window</b>
-        <div class="statusDisplay" style="overflow: auto;">
-		<div class="item">
-			<div class="itemContent" style="width: 100%;">
-				{{for data.messages}}
-					{{:value.msg}}<br>
+	<69>Ch69t Window</69>
+        <div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		<div cl69ss="item">
+			<div cl69ss="itemContent" st69le="width: 100%;">
+				{{for d69t69.mess6969es}}
+					{{:v69lue.ms69}}<69r>
 				{{/for}}
 			</div>
 		</div>
         </div>	
- 	<b>Connected Users</b><br>
-	{{for data.clients}}
-		{{:value.name}}<br>
+ 	<69>Connected Users</69><69r>
+	{{for d69t69.clients}}
+		{{:v69lue.n69me}}<69r>
 	{{/for}}
 {{else}}
-	<b>Controls:</b>
-	<table>
-		<tr><td>{{:helper.link("Change nickname", null, {'PRG_changename' : 1})}}
-		<tr><td>{{:helper.link("New Channel", null, {'PRG_newchannel' : 1})}}
-		<tr><td>{{:helper.link("Toggle Administration Mode", null, {'PRG_toggleadmin' : 1})}}
-	</table>
-	<b>Available channels:</b>
-	<table>
-	{{for data.all_channels}}		
-		<tr><td>{{:helper.link(value.chan, null, {'PRG_joinchannel' : value.id})}}<br>
+	<69>Controls:</69>
+	<t6969le>
+		<tr><td>{{:hel69er.lin6969"Ch69n69e69ic69n69me",69ull, {'69R69_ch69n69en69me' : 1}69}}
+		<tr><td>{{:hel69er.lin6969"New Ch69nnel",69ull, {'69R69_newch69nnel' : 1}69}}
+		<tr><td>{{:hel69er.lin6969"To6969le 69dministr69tion69ode",69ull, {'69R69_to6969le69dmin' : 1}69}}
+	</t6969le>
+	<69>69v69il6969le ch69nnels:</69>
+	<t6969le>
+	{{for d69t69.69ll_ch69nnels}}		
+		<tr><td>{{:hel69er.lin6969v69lue.ch69n,69ull, {'69R69_69oinch69nnel' :6969lue.id}69}}<69r>
 	{{/for}}
-	</table>
+	</t6969le>
 {{/if}}

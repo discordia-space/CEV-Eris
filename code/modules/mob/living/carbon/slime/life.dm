@@ -30,7 +30,7 @@
 		loc_temp = heat_turf.temperature
 	else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 		var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
-		loc_temp = M.air_contents.temperature
+		loc_temp =69.air_contents.temperature
 	else
 		loc_temp = environment.temperature
 
@@ -39,7 +39,7 @@
 	else // a hot place
 		bodytemperature += adjust_body_temperature(bodytemperature, loc_temp, 1)
 
-	//Account for massive pressure differences
+	//Account for69assive pressure differences
 
 	if(bodytemperature < (T0C + 5)) // start calculating temperature damage etc
 
@@ -47,8 +47,8 @@
 			if(bodytemperature <= die_temperature)
 				adjustToxLoss(200)
 			else
-				// could be more fancy, but doesn't worth the complexity: when the slimes goes into a cold area
-				// the damage is mostly determined by how fast its body cools
+				// could be69ore fancy, but doesn't worth the complexity: when the slimes goes into a cold area
+				// the damage is69ostly determined by how fast its body cools
 				adjustToxLoss(30)
 
 	updatehealth()
@@ -58,7 +58,7 @@
 /mob/living/carbon/slime/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current
 	var/difference = abs(current-loc_temp)	//get difference
-	var/increments// = difference/10			//find how many increments apart they are
+	var/increments// = difference/10			//find how69any increments apart they are
 	if(difference > 50)
 		increments = difference/5
 	else
@@ -66,9 +66,9 @@
 	var/change = increments*boost	// Get the amount to change by (x per increment)
 	var/temp_change
 	if(current < loc_temp)
-		temperature = min(loc_temp, temperature+change)
+		temperature =69in(loc_temp, temperature+change)
 	else if(current > loc_temp)
-		temperature = max(loc_temp, temperature-change)
+		temperature =69ax(loc_temp, temperature-change)
 	temp_change = (temperature - current)
 	return temp_change
 
@@ -82,7 +82,7 @@
 	metabolism_effects.process()
 
 	if(CE_PAINKILLER in chem_effects)
-		analgesic = chem_effects[CE_PAINKILLER]
+		analgesic = chem_effects69CE_PAINKILLER69
 
 	src.updatehealth()
 
@@ -90,9 +90,9 @@
 
 /mob/living/carbon/slime/handle_regular_status_updates()
 
-	src.blinded = null
+	src.blinded =69ull
 
-	health = maxHealth - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
+	health =69axHealth - (getOxyLoss() + getToxLoss() + getFireLoss() + getBruteLoss() + getCloneLoss())
 
 	if(health < 0 && stat != DEAD)
 		death()
@@ -171,7 +171,7 @@
 		amount_grown++
 
 /mob/living/carbon/slime/proc/handle_targets()
-	if(attacked > 50) attacked = 50 // Let's not get into absurdly long periods of rage
+	if(attacked > 50) attacked = 50 // Let's69ot get into absurdly long periods of rage
 
 	if(attacked > 0)
 		attacked--
@@ -192,35 +192,35 @@
 		--target_patience
 		if (target_patience <= 0 || SStun || Discipline || attacked) // Tired of chasing or something draws out attention
 			target_patience = 0
-			Target = null
+			Target =69ull
 
 	var/hungry = 0 // determines if the slime is hungry
 
 	if (nutrition < get_starve_nutrition())
 		hungry = 2
-	else if (nutrition < get_grow_nutrition() && prob(25) || nutrition < get_hunger_nutrition())
+	else if (nutrition < get_grow_nutrition() && prob(25) ||69utrition < get_hunger_nutrition())
 		hungry = 1
 
 	if(hungry == 2 && !client) // if a slime is starving, it starts losing its friends
 		if(Friends.len > 0 && prob(1))
 			var/mob/nofriend = pick(Friends)
-			if(nofriend && Friends[nofriend])
-				Friends[nofriend] -= 1
-				if (Friends[nofriend] <= 0)
-					Friends[nofriend] = null
-					Friends -= nofriend
-					Friends -= null
+			if(nofriend && Friends69nofriend69)
+				Friends69nofriend69 -= 1
+				if (Friends69nofriend69 <= 0)
+					Friends69nofriend69 =69ull
+					Friends -=69ofriend
+					Friends -=69ull
 
 	if(!Target)
-		if(will_hunt(hungry) || attacked || rabid) // Only add to the list if we need to
+		if(will_hunt(hungry) || attacked || rabid) // Only add to the list if we69eed to
 			var/list/targets = list()
 
-			for(var/mob/living/L in view(7,src))
+			for(var/mob/living/L in69iew(7,src))
 
-				if(isslime(L) || L.stat == DEAD) // Ignore other slimes and dead mobs
+				if(isslime(L) || L.stat == DEAD) // Ignore other slimes and dead69obs
 					continue
 
-				if(L in Friends) // No eating friends!
+				if(L in Friends) //69o eating friends!
 					continue
 
 				if(issilicon(L) && (rabid || attacked)) // They can't eat silicons, but they can glomp them in defence
@@ -233,7 +233,7 @@
 
 				if(!L.canmove) // Only one slime can latch on at a time.
 					var/notarget = 0
-					for(var/mob/living/carbon/slime/M in view(1,L))
+					for(var/mob/living/carbon/slime/M in69iew(1,L))
 						if(M.Victim == L)
 							notarget = 1
 					if(notarget)
@@ -243,7 +243,7 @@
 
 			if(targets.len > 0)
 				if(attacked || rabid || hungry == 2)
-					Target = targets[1] // I am attacked and am fighting back or so hungry I don't even care
+					Target = targets69169 // I am attacked and am fighting back or so hungry I don't even care
 				else
 					for(var/mob/living/carbon/C in targets)
 						if(ishuman(C) && !Discipline && prob(5))
@@ -259,28 +259,28 @@
 			if (is_adult)
 				target_patience += 3
 
-	if(!Target) // If we have no target, we are wandering or following orders
+	if(!Target) // If we have69o target, we are wandering or following orders
 		if (Leader)
 			if (holding_still)
-				holding_still = max(holding_still - 1, 0)
+				holding_still =69ax(holding_still - 1, 0)
 			else if(canmove && isturf(loc))
 				step_to(src, Leader)
 
 		else if(hungry)
 			if (holding_still)
-				holding_still = max(holding_still - 1 - hungry, 0)
+				holding_still =69ax(holding_still - 1 - hungry, 0)
 			else if(canmove && isturf(loc) && prob(50))
 				step(src, pick(cardinal))
 
 		else
 			if (holding_still)
-				holding_still = max(holding_still - 1, 0)
+				holding_still =69ax(holding_still - 1, 0)
 			else if(canmove && isturf(loc) && prob(33))
 				step(src, pick(cardinal))
 
-/mob/living/carbon/slime/proc/handle_AI()  // the master AI process
+/mob/living/carbon/slime/proc/handle_AI()  // the69aster AI process
 
-	if(stat == DEAD || client || Victim) return // If we're dead or have a client, we don't need AI, if we're feeding, we continue feeding
+	if(stat == DEAD || client ||69ictim) return // If we're dead or have a client, we don't69eed AI, if we're feeding, we continue feeding
 	AIproc = 1
 
 	if(amount_grown >= 10 && !Target)
@@ -293,13 +293,13 @@
 
 	if(Target) // We're chasing the target
 		if(Target.stat == DEAD)
-			Target = null
+			Target =69ull
 			AIproc = 0
 			return
 
-		for(var/mob/living/carbon/slime/M in view(1, Target))
+		for(var/mob/living/carbon/slime/M in69iew(1, Target))
 			if(M.Victim == Target)
-				Target = null
+				Target =69ull
 				AIproc = 0
 				return
 
@@ -328,17 +328,17 @@
 					a_intent = I_GRAB
 					UnarmedAttack(Target)
 
-		else if(Target in view(7, src))
+		else if(Target in69iew(7, src))
 			step_to(src, Target)
 
 		else
-			Target = null
+			Target =69ull
 			AIproc = 0
 			return
 
 	else
 		var/mob/living/carbon/slime/frenemy
-		for (var/mob/living/carbon/slime/S in view(1, src))
+		for (var/mob/living/carbon/slime/S in69iew(1, src))
 			if (S != src)
 				frenemy = S
 		if (frenemy && prob(1))
@@ -348,8 +348,8 @@
 				a_intent = I_HURT
 			UnarmedAttack(frenemy)
 
-	var/sleeptime = movement_delay()
-	if(sleeptime <= 5) sleeptime = 5 // Maximum one action per half a second
+	var/sleeptime =69ovement_delay()
+	if(sleeptime <= 5) sleeptime = 5 //69aximum one action per half a second
 	spawn (sleeptime)
 		handle_AI()
 	return
@@ -361,7 +361,7 @@
 	if (rabid || attacked)
 		newmood = "angry"
 		a_intent = I_HURT
-	else if (Target) newmood = "mischevous"
+	else if (Target)69ewmood = "mischevous"
 
 	if (!newmood)
 		if (Discipline && prob(25))
@@ -369,77 +369,77 @@
 		else if (prob(1))
 			newmood = pick("sad", ":3", "pout")
 
-	if ((mood == "sad" || mood == ":3" || mood == "pout") && !newmood)
-		if (prob(75)) newmood = mood
+	if ((mood == "sad" ||69ood == ":3" ||69ood == "pout") && !newmood)
+		if (prob(75))69ewmood =69ood
 
-	if (newmood != mood) // This is so we don't redraw them every time
-		mood = newmood
+	if (newmood !=69ood) // This is so we don't redraw them every time
+		mood =69ewmood
 		regenerate_icons()
 
 	//Speech understanding starts here
 	var/to_say
 	if (speech_buffer.len > 0)
-		var/who = speech_buffer[1] // Who said it?
-		var/phrase = speech_buffer[2] // What did they say?
-		if ((findtext(phrase, num2text(number)) || findtext(phrase, "slimes"))) // Talking to us
+		var/who = speech_buffer69169 // Who said it?
+		var/phrase = speech_buffer69269 // What did they say?
+		if ((findtext(phrase,69um2text(number)) || findtext(phrase, "slimes"))) // Talking to us
 			if (findtext(phrase, "hello") || findtext(phrase, "hi"))
 				to_say = pick("Hello...", "Hi...")
 			else if (findtext(phrase, "follow"))
 				if (Leader)
 					if (Leader == who) // Already following him
 						to_say = pick("Yes...", "Lead...", "Following...")
-					else if (Friends[who] > Friends[Leader]) // VIVA
+					else if (Friends69who69 > Friends69Leader69) //69IVA
 						Leader = who
-						to_say = "Yes... I follow [who]..."
+						to_say = "Yes... I follow 69who69..."
 					else
-						to_say = "No... I follow [Leader]..."
+						to_say = "No... I follow 69Leader69..."
 				else
-					if (Friends[who] > 2)
+					if (Friends69who69 > 2)
 						Leader = who
 						to_say = "I follow..."
-					else // Not friendly enough
+					else //69ot friendly enough
 						to_say = pick("No...", "I won't follow...")
 			else if (findtext(phrase, "stop"))
 				if (Victim) // We are asked to stop feeding
-					if (Friends[who] > 4)
-						Victim = null
-						Target = null
-						if (Friends[who] < 7)
-							--Friends[who]
+					if (Friends69who69 > 4)
+						Victim =69ull
+						Target =69ull
+						if (Friends69who69 < 7)
+							--Friends69who69
 							to_say = "Grrr..." // I'm angry but I do it
 						else
 							to_say = "Fine..."
 				else if (Target) // We are asked to stop chasing
-					if (Friends[who] > 3)
-						Target = null
-						if (Friends[who] < 6)
-							--Friends[who]
+					if (Friends69who69 > 3)
+						Target =69ull
+						if (Friends69who69 < 6)
+							--Friends69who69
 							to_say = "Grrr..." // I'm angry but I do it
 						else
 							to_say = "Fine..."
 				else if (Leader) // We are asked to stop following
 					if (Leader == who)
 						to_say = "Yes... I'll stay..."
-						Leader = null
+						Leader =69ull
 					else
-						if (Friends[who] > Friends[Leader])
-							Leader = null
+						if (Friends69who69 > Friends69Leader69)
+							Leader =69ull
 							to_say = "Yes... I'll stop..."
 						else
 							to_say = "No... I'll keep following..."
 			else if (findtext(phrase, "stay"))
 				if (Leader)
 					if (Leader == who)
-						holding_still = Friends[who] * 10
+						holding_still = Friends69who69 * 10
 						to_say = "Yes... Staying..."
-					else if (Friends[who] > Friends[Leader])
-						holding_still = (Friends[who] - Friends[Leader]) * 10
+					else if (Friends69who69 > Friends69Leader69)
+						holding_still = (Friends69who69 - Friends69Leader69) * 10
 						to_say = "Yes... Staying..."
 					else
 						to_say = "No... I'll keep following..."
 				else
-					if (Friends[who] > 2)
-						holding_still = Friends[who] * 10
+					if (Friends69who69 > 2)
+						holding_still = Friends69who69 * 10
 						to_say = "Yes... Staying..."
 					else
 						to_say = "No... I won't stay..."
@@ -452,22 +452,22 @@
 		emote(pick("bounce","sway","light","vibrate","jiggle"))
 	else
 		var/t = 10
-		var/slimes_near = -1 // Don't count myself
+		var/slimes_near = -1 // Don't count69yself
 		var/dead_slimes = 0
 		var/friends_near = list()
-		for (var/mob/living/carbon/M in view(7,src))
+		for (var/mob/living/carbon/M in69iew(7,src))
 			if (isslime(M))
 				++slimes_near
 				if (M.stat == DEAD)
 					++dead_slimes
 			if (M in Friends)
 				t += 20
-				friends_near += M
+				friends_near +=69
 		if (nutrition < get_hunger_nutrition()) t += 10
 		if (nutrition < get_starve_nutrition()) t += 10
 		if (prob(2) && prob(t))
 			var/phrases = list()
-			if (Target) phrases += "[Target]... looks tasty..."
+			if (Target) phrases += "69Target69... looks tasty..."
 			if (nutrition < get_starve_nutrition())
 				phrases += "So... hungry..."
 				phrases += "Very... hungry..."
@@ -509,9 +509,9 @@
 			if (!slimes_near)
 				phrases += "Lonely..."
 			for (var/M in friends_near)
-				phrases += "[M]... friend..."
+				phrases += "69M69... friend..."
 				if (nutrition < get_hunger_nutrition())
-					phrases += "[M]... feed me..."
+					phrases += "69M69... feed69e..."
 			say (pick(phrases))
 
 /mob/living/carbon/slime/proc/get_max_nutrition() // Can't go above it

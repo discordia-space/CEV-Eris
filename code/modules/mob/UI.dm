@@ -22,7 +22,7 @@ GLOBAL_LIST_EMPTY(ui_styles)
 /client/proc/create_UI(var/mob_type)
 	used in:
 		/datum/mind/proc/transfer_to(mob/living/new_character)
-		/datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob, var/mob/living/tomob)
+		/datum/admins/proc/cmd_ghost_drag(var/mob/observer/ghost/frommob,69ar/mob/living/tomob)
 		/mob/Login()
 
 /client/proc/destroy_UI()
@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(ui_styles)
 	radio button
 	language button
 	notes button
-	pop up vote button
+	pop up69ote button
 	unbuckle UI
 
 
@@ -88,9 +88,9 @@ TODO: LATER
 	// #####	ADDING HIGHLIGTING FOR BUTTONS    #####
 	for(var/HUD_element/button/E in _elements)
 		var/list/iconData = E.getIconAdditionData(HUD_ICON_UNDERLAY, HUD_UNDERLAY_BACKGROUND)
-		iconData["color"] = _observer.prefs.UI_style_color
-		iconData["alpha"] = 80
-		iconData["is_plain"] = TRUE
+		iconData69"color"69 = _observer.prefs.UI_style_color
+		iconData69"alpha"69 = 80
+		iconData69"is_plain"69 = TRUE
 		
 		E.setHoveredInteraction(TRUE, iconData)
 		E.setClickedInteraction(TRUE, iconData, 2)
@@ -101,7 +101,7 @@ TODO: LATER
 	for(var/HUD_element/element in _elements)
 		if(element.getIdentifier() == id)
 			return element
-	error("No element found with id \"[id]\".")
+	error("No element found with id \"69id69\".")
 
 /datum/interface/proc/hide(var/id)
 	if (!id)
@@ -112,11 +112,11 @@ TODO: LATER
 		if(E)
 			E.hide()
 		else
-			error("No element with id \"[id]\" found.")
+			error("No element with id \"69id69\" found.")
 
 /datum/interface/proc/show(var/id)
 	if(!_observer)
-		error("Interface has no observer.")
+		error("Interface has69o observer.")
 		return FALSE
 	if (!id)
 		for(var/HUD_element/element in _elements)
@@ -126,7 +126,7 @@ TODO: LATER
 		if(E)
 			E.show()
 		else
-			error("No element with id \"[id]\" found.")
+			error("No element with id \"69id69\" found.")
 	return TRUE
 
 /datum/interface/proc/update()
@@ -144,7 +144,7 @@ TODO: LATER
 			_elements.Remove(E)
 			_elements.Insert(1,E)
 	else
-		error("moveOnTop(): No element with id \"[id]\" found.")
+		error("moveOnTop():69o element with id \"69id69\" found.")
 
 /datum/interface/proc/moveToBottom(var/id)
 	var/HUD_element/E = getElementByID(id)
@@ -158,32 +158,32 @@ TODO: LATER
 			_elements.Remove(E)
 			_elements.Add(E)
 	else
-		error("moveToBottom(): No element with id \"[id]\" found.")
+		error("moveToBottom():69o element with id \"69id69\" found.")
 
-//	UI_style is a datum that initialized at roundstart and stored in global var for easy access
+//	UI_style is a datum that initialized at roundstart and stored in global69ar for easy access
 //	Contains data that used by /datum/interface to build interface
 //
-//	To properly align UI to the screen YOU HAVE TO align planes or elements to either main screen or already aligned planes or elements to main screen
-//	STRONGLY KEEP THAT IN MIND otherwise UI will fucked up when client.view var is changed
+//	To properly align UI to the screen YOU HAVE TO align planes or elements to either69ain screen or already aligned planes or elements to69ain screen
+//	STRONGLY KEEP THAT IN69IND otherwise UI will fucked up when client.view69ar is changed
 
-/datum/interface/proc/newUIElement(var/name, var/ui_type, var/iconData, var/x = 0, var/y = 0, var/list/icon_overlays, var/list/icon_underlays, var/data)
+/datum/interface/proc/newUIElement(var/name,69ar/ui_type,69ar/iconData,69ar/x = 0,69ar/y = 0,69ar/list/icon_overlays,69ar/list/icon_underlays,69ar/data)
 	if(!name || !ui_type)
-		error("interface element will not be created, incorrect data for either name or type")
+		error("interface element will69ot be created, incorrect data for either69ame or type")
 		return FALSE
 	if(name && !istext(name))
-		error("name var is not a string.")
+		error("name69ar is69ot a string.")
 		return FALSE
 	if(ui_type && !ispath(ui_type))
-		error("type var is not a path.")
+		error("type69ar is69ot a path.")
 		return FALSE
 
-	var/HUD_element/element = new ui_type(name)
+	var/HUD_element/element =69ew ui_type(name)
 	element.setName(name)
 	if(iconData)
 		if(istype(iconData, /list))
 			var/list/D = iconData
 			if(is_associative(D))
-				element.setIconFromDMI(D["icon"],D["icon_state"],D["dir"])
+				element.setIconFromDMI(D69"icon"69,D69"icon_state"69,D69"dir"69)
 			else
 				error("(not associative) IconData have to be associative list containing icon info for loading from DMI or path to resource file.")
 		else if(istext(iconData))
@@ -206,7 +206,7 @@ TODO: LATER
 
 /datum/interface/proc/addUIElement(var/HUD_element/element)
 	if(!element)
-		error("Passed null element")
+		error("Passed69ull element")
 		return
 	_elements += element
 
@@ -214,23 +214,23 @@ TODO: LATER
 /datum/interface/proc/validate()
 	var/failed = FALSE
 	if(!mobtype)
-		error("UI style has no assigned mob type.")
+		error("UI style has69o assigned69ob type.")
 		failed = TRUE
 	if(!styleName)
-		error("UI style has no name.")
+		error("UI style has69o69ame.")
 		failed = TRUE
 	if(!_elements || !_elements.len)
-		error("UI style has no elements.")
+		error("UI style has69o elements.")
 		failed = TRUE
 	for(var/HUD_element/E in _elements)
 		if(E.getParent())
 			continue
 		else
 			if(E.getAlignmentHorizontal() == HUD_NO_ALIGNMENT && E.getAlignmentVertical() == HUD_NO_ALIGNMENT)
-				error("YOU DONE GOOFED, i told you that elements without parent should have aligment to screen. Look /datum/UI_style/ docs and /HUD_element/proc/setAlignment(var/horizontal, var/vertical).")
+				error("YOU DONE GOOFED, i told you that elements without parent should have aligment to screen. Look /datum/UI_style/ docs and /HUD_element/proc/setAlignment(var/horizontal,69ar/vertical).")
 				failed = TRUE
 	if(failed)
-		error("UI style \"[styleName]\" for mob \"[mobtype]\" is created incorrectly, see errors above.")
+		error("UI style \"69styleName69\" for69ob \"69mobtype69\" is created incorrectly, see errors above.")
 		return FALSE
 	return TRUE
 
@@ -241,7 +241,7 @@ TODO: LATER
 /hook/startup/proc/generateUIStyles()
 	for(var/UI_type in typesof(/datum/interface) - /datum/interface)
 		var/datum/interface/UI = UI_type
-		if(!GLOB.ui_styles[initial(UI.mobtype)])
-			GLOB.ui_styles[initial(UI.mobtype)] = list()
-		GLOB.ui_styles[initial(UI.mobtype)] += UI_type
+		if(!GLOB.ui_styles69initial(UI.mobtype)69)
+			GLOB.ui_styles69initial(UI.mobtype)69 = list()
+		GLOB.ui_styles69initial(UI.mobtype)69 += UI_type
 	return TRUE

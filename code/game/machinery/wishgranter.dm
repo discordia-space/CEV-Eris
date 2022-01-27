@@ -11,7 +11,7 @@
 	var/charges = 1
 	var/insisting = 0
 
-/obj/machinery/wish_granter/attack_hand(var/mob/user as mob)
+/obj/machinery/wish_granter/attack_hand(var/mob/user as69ob)
 	usr.set_machine(src)
 
 	if(charges <= 0)
@@ -19,19 +19,19 @@
 		return
 
 	else if(!ishuman(user))
-		user << "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any man's."
+		user << "You feel a dark stirring inside of the Wish Granter, something you want nothing of. Your instincts are better than any69an's."
 		return
 
 	else if(is_special_character(user) > LIMITED_ANTAG)
-		user << "Even to a heart as dark as yours, you know nothing good will come of this.  Something instinctual makes you pull away."
+		user << "Even to a heart as dark as yours, you know nothing good will come of this.  Something instinctual69akes you pull away."
 
 	else if (!insisting)
-		user << "Your first touch makes the Wish Granter stir, listening to you.  Are you really sure you want to do this?"
+		user << "Your first touch69akes the Wish Granter stir, listening to you.  Are you really sure you want to do this?"
 		insisting++
 
 	else
-		user << "You speak.  [pick("I want the ship to disappear","Humanity is corrupt, mankind must be destroyed","I want to be rich", "I want to rule the world","I want immortality.")].  The Wish Granter answers."
-		user << "Your head pounds for a moment, before your vision clears.  You are the avatar of the Wish Granter, and your power is LIMITLESS!  And it's all yours.  You need to make sure no one can take it from you.  No one can know, first."
+		user << "You speak.  69pick("I want the ship to disappear","Humanity is corrupt,69ankind69ust be destroyed","I want to be rich", "I want to rule the world","I want immortality.")69.  The Wish Granter answers."
+		user << "Your head pounds for a69oment, before your69ision clears.  You are the avatar of the Wish Granter, and your power is LIMITLESS!  And it's all yours.  You need to69ake sure no one can take it from you.  No one can know, first."
 
 		charges--
 		insisting = 0
@@ -63,6 +63,6 @@
 		new /datum/objective/silence (user)
 
 		show_objectives(user.mind)
-		user << "You have a very bad feeling about this."
+		user << "You have a69ery bad feeling about this."
 
 	return

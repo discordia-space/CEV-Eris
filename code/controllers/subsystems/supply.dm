@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(supply)
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
 	var/list/supply_packs = list()
-	//shuttle movement
+	//shuttle69ovement
 	var/movetime = 300
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 
@@ -24,13 +24,13 @@ SUBSYSTEM_DEF(supply)
 
 	for(var/typepath in subtypesof(/datum/supply_pack))
 		var/datum/supply_pack/P = new typepath()
-		supply_packs[P.name] = P
+		supply_packs69P.name69 = P
 
 	return ..()
 
 
 /datum/controller/subsystem/supply/stat_entry()
-	..("Credits: [get_account_credits(department_accounts[DEPARTMENT_GUILD])]")
+	..("Credits: 69get_account_credits(department_accounts69DEPARTMENT_GUILD69)69")
 
 //To stop things being sent to centcom which should not be sent to centcom. Recursively checks for these types.
 /datum/controller/subsystem/supply/proc/forbidden_atoms_check(atom/A)
@@ -44,7 +44,7 @@ SUBSYSTEM_DEF(supply)
 		return TRUE
 
 	for(var/i in 1 to A.contents.len)
-		var/atom/B = A.contents[i]
+		var/atom/B = A.contents69i69
 		if(.(B))
 			return TRUE
 
@@ -67,17 +67,17 @@ SUBSYSTEM_DEF(supply)
 		if(!export_text)
 			continue
 
-		msg += "[export_text]<br>"
+		msg += "69export_text69<br>"
 		points += E.total_cost
 
-	msg += "<br>Total exports value: [points] credits.<br>"
+	msg += "<br>Total exports69alue: 69points69 credits.<br>"
 	exports.Cut()
 
-	var/datum/money_account/GA = department_accounts[DEPARTMENT_GUILD]
+	var/datum/money_account/GA = department_accounts69DEPARTMENT_GUILD69
 	var/datum/transaction/T = new(points, "Asters Guild", "Exports", "Asters Automated Trading System")
 	T.apply_to(GA)
 
-	centcom_message = msg
+	centcom_message =69sg
 
 
 //Buyin
@@ -106,35 +106,35 @@ SUBSYSTEM_DEF(supply)
 			break
 
 		var/i = rand(1,clear_turfs.len)
-		var/turf/pickedloc = clear_turfs[i]
+		var/turf/pickedloc = clear_turfs69i69
 		clear_turfs.Cut(i,i+1)
 
 		var/datum/supply_order/SO = S
 		var/datum/supply_pack/SP = SO.object
 		var/obj/A = new SP.containertype(pickedloc)
-		A.name = "[SP.name][SO.reason ? " ([SO.reason])":"" ]"
+		A.name = "69SP.name6969SO.reason ? " (69SO.reason69)":"" 69"
 
-		//supply manifest generation begin
+		//supply69anifest generation begin
 
 		var/obj/item/paper/manifest/slip
 		if(!SP.contraband)
 			slip = new /obj/item/paper/manifest(A)
 			slip.is_copy = 0
-			slip.info = "<h3>Shipping Manifest</h3><hr><br>"
-			slip.info +="Order #[SO.id]<br>"
-			slip.info +="Destination: [station_name]<br>"
-			slip.info +="[shoppinglist.len] PACKAGES IN THIS SHIPMENT<br>"
+			slip.info = "<h3>Shipping69anifest</h3><hr><br>"
+			slip.info +="Order #69SO.id69<br>"
+			slip.info +="Destination: 69station_name69<br>"
+			slip.info +="69shoppinglist.len69 PACKAGES IN THIS SHIPMENT<br>"
 			slip.info +="CONTENTS:<br><ul>"
 
-		//spawn the stuff, finish generating the manifest while you're at it
+		//spawn the stuff, finish generating the69anifest while you're at it
 		if(SP.access)
 			if(isnum(SP.access))
 				A.req_access = list(SP.access)
 			else if(islist(SP.access))
-				var/list/L = SP.access // access var is a plain var, we need a list
+				var/list/L = SP.access // access69ar is a plain69ar, we need a list
 				A.req_access = L.Copy()
 			else
-				to_chat(world, "<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
+				to_chat(world, "<span class='danger'>Supply pack with invalid access restriction 69SP.access69 encountered!</span>")
 
 		var/list/contains
 		if(istype(SP,/datum/supply_pack/randomised))
@@ -163,11 +163,11 @@ SUBSYSTEM_DEF(supply)
 				I.surplus_tag = TRUE
 			/* So you can't really just buy crates, then instantly resell them for a potential profit depending on if the crate hasn't had its cost scaled properly.
 			*  Yes, there are limits, I could itterate over every content of the item too and set its surplus_tag to TRUE
-			*  But that doesn't work with stackables when you can just make a new stack, and gets comp-expensive and not worth it just to spite people getting extra numbers
+			*  But that doesn't work with stackables when you can just69ake a new stack, and gets comp-expensive and not worth it just to spite people getting extra numbers
 			*/
 
 			if(SP.amount && B2:amount) B2:amount = SP.amount
-			if(slip) slip.info += "<li>[B2.name]</li>" //add the item to the manifest
+			if(slip) slip.info += "<li>69B2.name69</li>" //add the item to the69anifest
 
 		//manifest finalisation
 		if(slip)
@@ -180,8 +180,8 @@ SUBSYSTEM_DEF(supply)
 
 //Deducts credits from the guild account to pay for external purchases
 /proc/pay_for_order(datum/supply_order/order, terminal)
-	var/datum/money_account/GA = department_accounts[DEPARTMENT_GUILD]
+	var/datum/money_account/GA = department_accounts69DEPARTMENT_GUILD69
 	if (!GA)
 		return FALSE
 
-	return charge_to_account(GA.account_number, order.orderer, "Order of [order.object.name]", terminal, order.object.cost)
+	return charge_to_account(GA.account_number, order.orderer, "Order of 69order.object.name69", terminal, order.object.cost)

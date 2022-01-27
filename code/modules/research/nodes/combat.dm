@@ -7,24 +7,24 @@
 	y = 0.5
 	icon = "stunbaton"
 
-	required_technologies = list()
-	required_tech_levels = list()
+	re69uired_technologies = list()
+	re69uired_tech_levels = list()
 	cost = 0
 
 	unlocks_designs = list(/datum/design/research/item/hud/security)
 
 // TO ADD: synth flashes?
 /datum/technology/basic_nonlethal
-	name = "Basic Non-Lethal"
-	desc = "Basic Non-Lethal"
+	name = "Basic69on-Lethal"
+	desc = "Basic69on-Lethal"
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.3
 	y = 0.5
 	icon = "flash"
 
-	required_technologies = list(/datum/technology/basic_combat)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_combat)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(/datum/design/research/item/flash)
@@ -38,9 +38,9 @@
 	y = 0.5
 	icon = "recharger"
 
-	required_technologies = list(
+	re69uired_technologies = list(
 								/datum/technology/basic_nonlethal)
-	required_tech_levels = list()
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(
@@ -48,7 +48,7 @@
 							)
 
 /datum/technology/advanced_nonlethal
-	name = "Advanced Non-Lethal"
+	name = "Advanced69on-Lethal"
 	desc = "Electrical-shock weapon and ammo."
 	tech_type = RESEARCH_COMBAT
 
@@ -56,8 +56,8 @@
 	y = 0.3
 	icon = "stunrevolver"
 
-	required_technologies = list(/datum/technology/weapon_recharging)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/weapon_recharging)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/stunrevolver,
@@ -73,8 +73,8 @@
 	y = 0.6
 	icon = "seccomputer"
 
-	required_technologies = list(/datum/technology/basic_combat)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_combat)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(/datum/design/research/circuit/secdata, /datum/design/research/circuit/prisonmanage)*/
@@ -88,8 +88,8 @@
 	y = 0.5
 	icon = "clarissa"
 
-	required_technologies = list(/datum/technology/weapon_recharging)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/weapon_recharging)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(
@@ -106,8 +106,8 @@
 	y = 0.3
 	icon = "tempgun"
 
-	required_technologies = list(/datum/technology/basic_lethal)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_lethal)
+	re69uired_tech_levels = list()
 	cost = 3000
 
 	unlocks_designs = list(/datum/design/research/item/weapon/temp_gun)
@@ -121,8 +121,8 @@
 	y = 0.3
 	icon = "teslagun"
 
-	required_technologies = list(/datum/technology/exotic_weaponry)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/exotic_weaponry)
+	re69uired_tech_levels = list()
 	cost = 5000
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/decloner,
@@ -132,15 +132,15 @@
 
 /datum/technology/exotic_gunmods
 	name = "Experimental Gunmods"
-	desc = "Experimental gunmods that can grant a wide variety of effects. Use at your own risks."
+	desc = "Experimental gunmods that can grant a wide69ariety of effects. Use at your own risks."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
 	y = 0.4
 	icon = "toxincoater"
 
-	required_technologies = list(/datum/technology/adv_exotic_weaponry)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_exotic_weaponry)
+	re69uired_tech_levels = list()
 	cost = 4000
 
 	unlocks_designs = list(
@@ -160,8 +160,8 @@
 	y = 0.6
 	icon = "ammobox"
 
-	required_technologies = list(/datum/technology/basic_lethal)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_lethal)
+	re69uired_tech_levels = list()
 	cost = 5000
 
 	unlocks_designs = list(
@@ -172,15 +172,15 @@
 
 /datum/technology/adv_lethal
 	name = "Advanced Lethal Weapons"
-	desc = "Advanced machinegun system"
+	desc = "Advanced69achinegun system"
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.7
 	y = 0.7
 	icon = "submachinegun"
 
-	required_technologies = list(/datum/technology/basic_lethal)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_lethal)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -198,37 +198,37 @@
 	y = 0.5
 	icon = "gun"
 
-	required_technologies = list(/datum/technology/adv_lethal, /datum/technology/adv_exotic_weaponry)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_lethal, /datum/technology/adv_exotic_weaponry)
+	re69uired_tech_levels = list()
 	cost = 5000
 
 	unlocks_designs = list(/datum/design/research/item/weapon/mindflayer,  /datum/design/research/item/weapon/nuclear, /datum/design/research/item/weapon/lasercannon)
 
 /datum/technology/basic_armor
 	name = "Armor Solutions"
-	desc = "Standard issue armor of moebius paramedic teams."
+	desc = "Standard issue armor of69oebius paramedic teams."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
 	y = 0.5
 	icon = "traumateam"
 
-	required_technologies = list(/datum/technology/laser_weaponry)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/laser_weaponry)
+	re69uired_tech_levels = list()
 	cost = 2500
 	unlocks_designs = list(/datum/design/research/item/paramedic_armor, /datum/design/research/item/paramedic_helmet)
 
 /datum/technology/advanced_armor
 	name = "Advanced Armor Solutions"
-	desc = "Advanced voidsuit with combined ballistic and ablative plating."
+	desc = "Advanced69oidsuit with combined ballistic and ablative plating."
 	tech_type = RESEARCH_COMBAT
 
 	x = 0.8
 	y = 0.6
 	icon = "moebiushelm"
 
-	required_technologies = list(/datum/technology/basic_armor)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_armor)
+	re69uired_tech_levels = list()
 	cost = 2500
 	unlocks_designs = list(/datum/design/research/item/science_voidsuit)
 

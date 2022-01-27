@@ -10,25 +10,25 @@
 	..()
 
 	var/datum/playingcard/P
-	for(var/name in list("Fool","Magician","High Priestess","Empress","Emperor","Hierophant","Lovers","Chariot","Strength","Hermit","Wheel of Fortune","Justice","Hanged Man","Death","Temperance","Devil","Tower","Star","Moon","Sun","Judgement","World"))
+	for(var/name in list("Fool","Magician","High Priestess","Empress","Emperor","Hierophant","Lovers","Chariot","Strength","Hermit","Wheel of Fortune","Justice","Hanged69an","Death","Temperance","Devil","Tower","Star","Moon","Sun","Judgement","World"))
 		P = new()
-		P.name = "[name]"
+		P.name = "69name69"
 		P.card_icon = "tarot_major"
 		P.back_icon = "card_back_tarot"
-		P.desc = "Some sort of major tarot card."
+		P.desc = "Some sort of69ajor tarot card."
 		cards += P
 	for(var/suit in list("wands","pentacles","cups","swords"))
 
 
-		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten","page","knight","queen","king"))
+		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten","page","knight","69ueen","king"))
 			P = new()
-			P.name = "[number] of [suit]"
-			P.card_icon = "tarot_[suit]"
+			P.name = "69number69 of 69suit69"
+			P.card_icon = "tarot_69suit69"
 			P.back_icon = "card_back_tarot"
 			P.desc = "A Rider-Waite tarot card."
 			cards += P
 
-/obj/item/deck/tarot/attack_self(var/mob/user as mob)
+/obj/item/deck/tarot/attack_self(var/mob/user as69ob)
 	var/list/newcards = list()
 	while(cards.len)
 		var/datum/playingcard/P = pick(cards)
@@ -38,4 +38,4 @@
 		newcards += P
 		cards -= P
 	cards = newcards
-	user.visible_message("\The [user] shuffles [src].")
+	user.visible_message("\The 69user69 shuffles 69src69.")

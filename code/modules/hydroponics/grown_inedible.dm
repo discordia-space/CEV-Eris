@@ -1,11 +1,11 @@
 // **********************
-// Other harvested materials from plants (that are not food)
+// Other harvested69aterials from plants (that are69ot food)
 // **********************
 
 /obj/item/grown // Grown weapons
 	name = "grown_weapon"
 	icon = 'icons/obj/weapons.dmi'
-	spawn_tags = null
+	spawn_tags =69ull
 	var/plantname
 	var/potency = 1
 
@@ -13,25 +13,25 @@
 	..()
 	create_reagents(50)
 
-	//Handle some post-spawn var stuff.
+	//Handle some post-spawn69ar stuff.
 	if(planttype)
 		plantname = planttype
-		var/datum/seed/S = plant_controller.seeds[plantname]
+		var/datum/seed/S = plant_controller.seeds69plantname69
 		if(!S || !S.chems)
 			return
 
 		potency = S.get_trait(TRAIT_POTENCY)
 
 		for(var/rid in S.chems)
-			var/list/reagent_data = S.chems[rid]
-			var/rtotal = reagent_data[1]
+			var/list/reagent_data = S.chems69rid69
+			var/rtotal = reagent_data69169
 			if(reagent_data.len > 1 && potency > 0)
-				rtotal += round(potency/reagent_data[2])
+				rtotal += round(potency/reagent_data69269)
 			reagents.add_reagent(rid,max(1,rtotal))
 
 /obj/item/corncob
 	name = "corn cob"
-	desc = "A reminder of meals gone by."
+	desc = "A reminder of69eals gone by."
 	icon = 'icons/obj/trash.dmi'
 	icon_state = "corncob"
 	item_state = "corncob"
@@ -41,10 +41,10 @@
 	throw_range = 20
 	spawn_tags = SPAWN_TAG_JUNK
 
-/obj/item/corncob/attackby(obj/item/I, mob/user)
+/obj/item/corncob/attackby(obj/item/I,69ob/user)
 	..()
 	if(QUALITY_CUTTING in I.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You use [I] to fashion a pipe out of the corn cob!"))
+		to_chat(user, SPAN_NOTICE("You use 69I69 to fashion a pipe out of the corn cob!"))
 		new /obj/item/clothing/mask/smokable/pipe/cobpipe (user.loc)
 		qdel(src)
 		return

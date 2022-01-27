@@ -1,7 +1,7 @@
 
 /obj/item/storage/belt/archaeology
 	name = "excavation gear-belt"
-	desc = "Can hold various excavation gear."
+	desc = "Can hold69arious excavation gear."
 	icon_state = "gearbelt"
 	item_state = "utility"
 	can_hold = list(

@@ -8,24 +8,24 @@ var/list/admin_datums = list()
 
 	var/weakref/marked_datum_weak
 
-	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
+	var/admincaster_screen = 0	//See newscaster.dm under69achinery for a full description
 	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
 	var/admincaster_signature	//What you'll sign the newsfeeds as
 
 /datum/admins/proc/marked_datum()
 	if(marked_datum_weak)
-		return marked_datum_weak.resolve()
+		return69arked_datum_weak.resolve()
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
-	admincaster_signature = "[company_name] Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admincaster_signature = "69company_name69 Officer #69rand(0,9)6969rand(0,9)6969rand(0,9)69"
 	rank = initial_rank
 	rights = initial_rights
-	admin_datums[ckey] = src
+	admin_datums69ckey69 = src
 
 /datum/admins/proc/associate(client/C)
 	if(istype(C))
@@ -52,19 +52,19 @@ var/list/admin_datums = list()
 /*
 checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
 if rights_required == 0, then it simply checks if they are an admin.
-if it doesn't return 1 and show_msg=1 it will prints a message explaining why the check has failed
+if it doesn't return 1 and show_msg=1 it will prints a69essage explaining why the check has failed
 generally it would be used like so:
 
 proc/admin_proc()
 	if(!check_rights(R_ADMIN)) return
 	to_chat(world, "you have enough rights!")
 
-NOTE: It checks usr by default. Supply the "Ñ" argument if you wish to check for a specific client/mob.
+NOTE: It checks usr by default. Supply the "ï¿½" argument if you wish to check for a specific client/mob.
 */
 /proc/check_rights(rights_required, show_msg=1, client/C = usr)
 	if(ismob(C))
 		var/mob/M = C
-		C = M.client
+		C =69.client
 	if(!C)
 		return FALSE
 	if(!(istype(C, /client))) // If we still didn't find a client, something is wrong.
@@ -79,7 +79,7 @@ NOTE: It checks usr by default. Supply the "Ñ" argument if you wish to check for
 			return TRUE
 		else
 			if(show_msg)
-				C << "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>"
+				C << "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:69rights2text(rights_required," ")69.</span>"
 			return FALSE
 	else
 		return TRUE
@@ -92,8 +92,8 @@ NOTE: It checks usr by default. Supply the "Ñ" argument if you wish to check for
 				return 1
 			if(usr.client.holder.rights != other.holder.rights)
 				if( (usr.client.holder.rights & other.holder.rights) == other.holder.rights )
-					return 1	//we have all the rights they have and more
-		to_chat(usr, "<font color='red'>Error: Cannot proceed. They have more or equal rights to us.</font>")
+					return 1	//we have all the rights they have and69ore
+		to_chat(usr, "<font color='red'>Error: Cannot proceed. They have69ore or equal rights to us.</font>")
 	return 0
 
 

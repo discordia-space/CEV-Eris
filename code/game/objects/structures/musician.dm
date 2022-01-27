@@ -6,7 +6,7 @@
 	var/tempo = 5
 
 /obj/structure/device/piano
-	name = "space minimoog"
+	name = "space69inimoog"
 	icon = 'icons/obj/musician.dmi'
 	icon_state = "minimoog"
 	anchored = TRUE
@@ -22,18 +22,18 @@
 
 /obj/structure/device/piano/New()
 	if(prob(50))
-		name = "space minimoog"
-		desc = "This is a minimoog, like a space piano, but more spacey!"
+		name = "space69inimoog"
+		desc = "This is a69inimoog, like a space piano, but69ore spacey!"
 		icon_state = "minimoog"
 	else
 		name = "space piano"
-		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
+		desc = "This is a space piano, like a regular piano, but always in tune! Even if the69usician isn't."
 		icon_state = "piano"
 
 /obj/structure/device/piano/proc/playnote(var/note as text)
 	var/soundfile
-	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
-	Tried doing it dynamically at first but its more trouble than its worth. Would have saved many lines tho.*/
+	/*BYOND loads resource files at compile time if they are ''. This69eans you can't really69anipulate them dynamically.
+	Tried doing it dynamically at first but its69ore trouble than its worth. Would have saved69any lines tho.*/
 	switch(note)
 		if("Cn1")	soundfile = 'sound/piano/Cn1.ogg'
 		if("C#1")	soundfile = 'sound/piano/C#1.ogg'
@@ -213,17 +213,17 @@
 
 /obj/structure/device/piano/proc/playsong()
 	do
-		var/cur_oct[7]
-		var/cur_acc[7]
+		var/cur_oct69769
+		var/cur_acc69769
 		for(var/i = 1 to 7)
-			cur_oct[i] = "3"
-			cur_acc[i] = "n"
+			cur_oct69i69 = "3"
+			cur_acc69i69 = "n"
 
 		for(var/line in song.lines)
 			//world << line
 			for(var/beat in splittext(lowertext(line), ","))
 				var/list/notes = splittext(beat, "/")
-				for(var/note in splittext(notes[1], "-"))
+				for(var/note in splittext(notes69169, "-"))
 					if(!playing || !anchored)//If the piano is playing, or is loose
 						playing = 0
 						return
@@ -234,18 +234,18 @@
 						continue
 					var/notelen = length(note)
 					var/ni = ""
-					for(var/i = length(note[1]) + 1, i <= notelen, i += length(ni))
-						ni = note[i]
+					for(var/i = length(note69169) + 1, i <= notelen, i += length(ni))
+						ni = note69i69
 						if(!text2num(ni))
 							if(ni == "#" || ni == "b" || ni == "n")
-								cur_acc[cur_note] = ni
+								cur_acc69cur_note69 = ni
 							else if(ni == "s")
-								cur_acc[cur_note] = "#" // so shift is never required
+								cur_acc69cur_note69 = "#" // so shift is never re69uired
 						else
-							cur_oct[cur_note] = ni
-					playnote(uppertext(copytext(note,1,2)) + cur_acc[cur_note] + cur_oct[cur_note])
-				if(notes.len >= 2 && text2num(notes[2]))
-					sleep(song.tempo / text2num(notes[2]))
+							cur_oct69cur_note69 = ni
+					playnote(uppertext(copytext(note,1,2)) + cur_acc69cur_note69 + cur_oct69cur_note69)
+				if(notes.len >= 2 && text2num(notes69269))
+					sleep(song.tempo / text2num(notes69269))
 				else
 					sleep(song.tempo)
 		if(repeat > 0)
@@ -263,46 +263,46 @@
 
 	if(song)
 		if(song.lines.len > 0 && !(playing))
-			dat += "<A href='?src=\ref[src];play=1'>Play Song</A><BR><BR>"
-			dat += "<A href='?src=\ref[src];repeat=1'>Repeat Song: [repeat] times.</A><BR><BR>"
+			dat += "<A href='?src=\ref69src69;play=1'>Play Song</A><BR><BR>"
+			dat += "<A href='?src=\ref69src69;repeat=1'>Repeat Song: 69repeat69 times.</A><BR><BR>"
 		if(playing)
-			dat += "<A href='?src=\ref[src];stop=1'>Stop Playing</A><BR>"
-			dat += "Repeats left: [repeat].<BR><BR>"
+			dat += "<A href='?src=\ref69src69;stop=1'>Stop Playing</A><BR>"
+			dat += "Repeats left: 69repeat69.<BR><BR>"
 	if(!edit)
-		dat += "<A href='?src=\ref[src];edit=2'>Show Editor</A><BR><BR>"
+		dat += "<A href='?src=\ref69src69;edit=2'>Show Editor</A><BR><BR>"
 	else
-		dat += "<A href='?src=\ref[src];edit=1'>Hide Editor</A><BR>"
-		dat += "<A href='?src=\ref[src];newsong=1'>Start a New Song</A><BR>"
-		dat += "<A href='?src=\ref[src];import=1'>Import a Song</A><BR><BR>"
+		dat += "<A href='?src=\ref69src69;edit=1'>Hide Editor</A><BR>"
+		dat += "<A href='?src=\ref69src69;newsong=1'>Start a New Song</A><BR>"
+		dat += "<A href='?src=\ref69src69;import=1'>Import a Song</A><BR><BR>"
 		if(song)
 			var/calctempo = (10/song.tempo)*60
-			dat += "Tempo : <A href='?src=\ref[src];tempo=10'>-</A><A href='?src=\ref[src];tempo=1'>-</A> [calctempo] BPM <A href='?src=\ref[src];tempo=-1'>+</A><A href='?src=\ref[src];tempo=-10'>+</A><BR><BR>"
+			dat += "Tempo : <A href='?src=\ref69src69;tempo=10'>-</A><A href='?src=\ref69src69;tempo=1'>-</A> 69calctempo69 BPM <A href='?src=\ref69src69;tempo=-1'>+</A><A href='?src=\ref69src69;tempo=-10'>+</A><BR><BR>"
 			var/linecount = 0
 			for(var/line in song.lines)
 				linecount += 1
-				dat += "Line [linecount]: [line] <A href='?src=\ref[src];deleteline=[linecount]'>Delete Line</A> <A href='?src=\ref[src];modifyline=[linecount]'>Modify Line</A><BR>"
-			dat += "<A href='?src=\ref[src];newline=1'>Add Line</A><BR><BR>"
+				dat += "Line 69linecount69: 69line69 <A href='?src=\ref69src69;deleteline=69linecount69'>Delete Line</A> <A href='?src=\ref69src69;modifyline=69linecount69'>Modify Line</A><BR>"
+			dat += "<A href='?src=\ref69src69;newline=1'>Add Line</A><BR><BR>"
 		if(help)
-			dat += "<A href='?src=\ref[src];help=1'>Hide Help</A><BR>"
+			dat += "<A href='?src=\ref69src69;help=1'>Hide Help</A><BR>"
 			dat += {"
 					Lines are a series of chords, separated by commas (,), each with notes seperated by hyphens (-).<br>
 					Every note in a chord will play together, with chord timed by the tempo.<br>
 					<br>
 					Notes are played by the names of the note, and optionally, the accidental, and/or the octave number.<br>
 					By default, every note is natural and in octave 3. Defining otherwise is remembered for each note.<br>
-					Example: <i>C,D,E,F,G,A,B</i> will play a C major scale.<br>
+					Example: <i>C,D,E,F,G,A,B</i> will play a C69ajor scale.<br>
 					After a note has an accidental placed, it will be remembered: <i>C,C4,C,C3</i> is <i>C3,C4,C4,C3</i><br>
 					Chords can be played simply by seperating each note with a hyphon: <i>A-C#,Cn-E,E-G#,Gn-B</i><br>
-					A pause may be denoted by an empty chord: <i>C,E,,C,G</i><br>
-					To make a chord be a different time, end it with /x, where the chord length will be length<br>
+					A pause69ay be denoted by an empty chord: <i>C,E,,C,G</i><br>
+					To69ake a chord be a different time, end it with /x, where the chord length will be length<br>
 					defined by tempo / x: <i>C,G/2,E/4</i><br>
 					Combined, an example is: <i>E-E4/4,/2,G#/8,B/8,E3-E4/4</i>
 					<br>
-					Lines may be up to 50 characters.<br>
-					A song may only contain up to 200 lines.<br>
+					Lines69ay be up to 50 characters.<br>
+					A song69ay only contain up to 200 lines.<br>
 					"}
 		else
-			dat += "<A href='?src=\ref[src];help=2'>Show Help</A><BR>"
+			dat += "<A href='?src=\ref69src69;help=2'>Show Help</A><BR>"
 	dat += "</BODY></HTML>"
 	user << browse(dat, "window=piano;size=700x300")
 	onclose(user, "piano")
@@ -314,29 +314,29 @@
 		onclose(usr, "piano")
 		return
 
-	if(href_list["newsong"])
+	if(href_list69"newsong"69)
 		song = new()
 	else if(song)
-		if(href_list["repeat"]) //Changing this from a toggle to a number of repeats to avoid infinite loops.
+		if(href_list69"repeat"69) //Changing this from a toggle to a number of repeats to avoid infinite loops.
 			if(playing) return //So that people cant keep adding to repeat. If the do it intentionally, it could result in the server crashing.
-			var/tempnum = input("How many times do you want to repeat this piece? (max:10)") as num|null
+			var/tempnum = input("How69any times do you want to repeat this piece? (max:10)") as num|null
 			if(tempnum > 10)
 				tempnum = 10
 			if(tempnum < 0)
 				tempnum = 0
 			repeat = round(tempnum)
 
-		else if(href_list["tempo"])
-			song.tempo += round(text2num(href_list["tempo"]))
+		else if(href_list69"tempo"69)
+			song.tempo += round(text2num(href_list69"tempo"69))
 			if(song.tempo < 1)
 				song.tempo = 1
 
-		else if(href_list["play"])
+		else if(href_list69"play"69)
 			if(song)
 				playing = 1
 				spawn() playsong()
 
-		else if(href_list["newline"])
+		else if(href_list69"newline"69)
 			var/newline = html_encode(input("Enter your line: ", "Piano") as text|null)
 			if(!newline)
 				return
@@ -346,41 +346,41 @@
 				newline = copytext(newline, 1, 50)
 			song.lines.Add(newline)
 
-		else if(href_list["deleteline"])
-			var/num = round(text2num(href_list["deleteline"]))
+		else if(href_list69"deleteline"69)
+			var/num = round(text2num(href_list69"deleteline"69))
 			if(num > song.lines.len || num < 1)
 				return
 			song.lines.Cut(num, num+1)
 
-		else if(href_list["modifyline"])
-			var/num = round(text2num(href_list["modifyline"]),1)
-			var/content = html_encode(input("Enter your line: ", "Piano", song.lines[num]) as text|null)
+		else if(href_list69"modifyline"69)
+			var/num = round(text2num(href_list69"modifyline"69),1)
+			var/content = html_encode(input("Enter your line: ", "Piano", song.lines69num69) as text|null)
 			if(!content)
 				return
 			if(length(content) > 50)
 				content = copytext(content, 1, 50)
 			if(num > song.lines.len || num < 1)
 				return
-			song.lines[num] = content
+			song.lines69num69 = content
 
-		else if(href_list["stop"])
+		else if(href_list69"stop"69)
 			playing = 0
 
-		else if(href_list["help"])
-			help = text2num(href_list["help"]) - 1
+		else if(href_list69"help"69)
+			help = text2num(href_list69"help"69) - 1
 
-		else if(href_list["edit"])
-			edit = text2num(href_list["edit"]) - 1
+		else if(href_list69"edit"69)
+			edit = text2num(href_list69"edit"69) - 1
 
-		else if(href_list["import"])
+		else if(href_list69"import"69)
 			var/t = ""
 			do
-				t = html_encode(input(usr, "Please paste the entire song, formatted:", text("[]", src.name), t)  as message)
+				t = html_encode(input(usr, "Please paste the entire song, formatted:", text("6969", src.name), t)  as69essage)
 				if (!in_range(src, usr))
 					return
 
 				if(length(t) >= 12000)
-					var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
+					var/cont = input(usr, "Your69essage is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
 					if(cont == "no")
 						break
 			while(length(t) > 12000)
@@ -389,16 +389,16 @@
 			spawn()
 				var/list/lines = splittext(t, "\n")
 				var/tempo = 5
-				if(copytext(lines[1],1,6) == "BPM: ")
-					tempo = 600 / text2num(copytext(lines[1],6))
+				if(copytext(lines69169,1,6) == "BPM: ")
+					tempo = 600 / text2num(copytext(lines69169,6))
 					lines.Cut(1,2)
 				if(lines.len > 200)
-					to_chat(usr, SPAN_WARNING("Too many lines!"))
+					to_chat(usr, SPAN_WARNING("Too69any lines!"))
 					lines.Cut(201)
 				var/linenum = 1
 				for(var/l in lines)
 					if(length(l) > 50)
-						to_chat(usr, SPAN_WARNING("Line [linenum] too long!"))
+						to_chat(usr, SPAN_WARNING("Line 69linenum69 too long!"))
 						lines.Remove(l)
 					else
 						linenum++
@@ -411,12 +411,12 @@
 	updateUsrDialog()
 	return
 
-/obj/structure/device/piano/attackby(var/obj/item/tool/tool, mob/user)
-	if (tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+/obj/structure/device/piano/attackby(var/obj/item/tool/tool,69ob/user)
+	if (tool.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 		anchored = !anchored
 		user.visible_message( \
-			"[user] [anchored ? "tightens" : "loosens"] \the [src]'s casters.", \
-			SPAN_NOTICE("You have [anchored ? "tightened" : "loosened"] \the [src]."), \
+			"69user69 69anchored ? "tightens" : "loosens"69 \the 69src69's casters.", \
+			SPAN_NOTICE("You have 69anchored ? "tightened" : "loosened"69 \the 69src69."), \
 			"You hear ratchet.")
 	else
 		..()

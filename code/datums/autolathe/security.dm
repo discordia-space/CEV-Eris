@@ -1,43 +1,43 @@
-/datum/design/autolathe/sec/secflashlight
-	name = "security flashlight"
-	build_path = /obj/item/device/lighting/toggleable/flashlight/seclite
+/datum/desi69n/autolathe/sec/secflashli69ht
+	name = "security flashli69ht"
+	build_path = /obj/item/device/li69htin69/to6969leable/flashli69ht/seclite
 
-/datum/design/autolathe/sec/handcuffs
+/datum/desi69n/autolathe/sec/handcuffs
 	name = "handcuffs"
 	build_path = /obj/item/handcuffs
 
-/datum/design/autolathe/sec/zipties
+/datum/desi69n/autolathe/sec/zipties
 	name = "zip ties"
 	build_path = /obj/item/handcuffs/zipties
 
-/datum/design/autolathe/sec/electropack
+/datum/desi69n/autolathe/sec/electropack
 	name = "electropack"
 	build_path = /obj/item/device/radio/electropack
 
-/datum/design/autolathe/sec/binoculars
+/datum/desi69n/autolathe/sec/binoculars
 	name = "binoculars"
 	build_path = /obj/item/device/binoculars
 
-/datum/design/autolathe/sec/shield_riot
+/datum/desi69n/autolathe/sec/shield_riot
 	name = "riot shield"
 	build_path = /obj/item/shield/riot
 
-/datum/design/autolathe/sec/beartrap
+/datum/desi69n/autolathe/sec/beartrap
 	name = "beartrap"
 	build_path = /obj/item/beartrap
 
-/datum/design/autolathe/sec/silencer
+/datum/desi69n/autolathe/sec/silencer
 	name = "silencer"
-	build_path = /obj/item/gun_upgrade/muzzle/silencer
+	build_path = /obj/item/69un_up69rade/muzzle/silencer
 
-/datum/design/autolathe/sec/hailer
+/datum/desi69n/autolathe/sec/hailer
 	name = "hailer"
 	build_path = /obj/item/device/hailer
 
-/datum/design/autolathe/sec/watchman
+/datum/desi69n/autolathe/sec/watchman
 	name = "Frozen Star \"Watchman\" scope"
-	build_path = /obj/item/gun_upgrade/scope/watchman
+	build_path = /obj/item/69un_up69rade/scope/watchman
 
-/datum/design/autolathe/sec/gold
-	name = "\"Scaramanga\" gold paint"
-	build_path = /obj/item/gun_upgrade/cosmetic/gold
+/datum/desi69n/autolathe/sec/69old
+	name = "\"Scaraman69a\" 69old paint"
+	build_path = /obj/item/69un_up69rade/cosmetic/69old

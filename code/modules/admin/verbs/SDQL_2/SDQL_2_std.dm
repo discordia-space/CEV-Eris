@@ -3,14 +3,14 @@
 /proc/_abs(A)
 	return abs(A)
 
-/proc/_animate(var/atom/A, var/variables, var/time = 10, var/loop = 1, var/easing = LINEAR_EASING)
+/proc/_animate(var/atom/A,69ar/variables,69ar/time = 10,69ar/loop = 1,69ar/easing = LINEAR_EASING)
 	var/atom/movable/I = new
 	I.appearance = A.appearance
 
 	// The appearance churn is real.
-	// WILL perform like shit until we get 511 and we get mutable appearances.
-	for (var/variable in variables)
-		I.vars[variable] = variables[variable]
+	// WILL perform like shit until we get 511 and we get69utable appearances.
+	for (var/variable in69ariables)
+		I.vars69variable69 =69ariables69variable69
 
 	animate(A, appearance = I.appearance, time, loop, easing)
 
@@ -78,16 +78,16 @@
 	return lowertext(T)
 
 /proc/_matrix(a, b, c, d, e, f)
-	return matrix(a, b, c, d, e, f)
+	return69atrix(a, b, c, d, e, f)
 
 /proc/_max(...)
-	return max(arglist(args))
+	return69ax(arglist(args))
 
 /proc/_md5(T)
-	return md5(T)
+	return69d5(T)
 
 /proc/_min(...)
-	return min(arglist(args))
+	return69in(arglist(args))
 
 /proc/_new(type, arguments)
 	return new type (arglist(arguments))
@@ -101,11 +101,11 @@
 /proc/_orange(Dist, Center = usr)
 	return orange(Dist, Center)
 
-/proc/_output(thing, msg, control)
+/proc/_output(thing,69sg, control)
 	thing << output(msg, control)
 
-/proc/_chat_output(thing, msg)
-    to_chat(thing, msg)
+/proc/_chat_output(thing,69sg)
+    to_chat(thing,69sg)
 
 /proc/_oview(Dist, Center = usr)
 	return oview(Dist, Center)
@@ -168,19 +168,19 @@
 
 	L += args.Copy(2)
 
-/proc/_list_copy(var/list/L, var/Start = 1, var/End = 0)
+/proc/_list_copy(var/list/L,69ar/Start = 1,69ar/End = 0)
 	return L.Copy(Start, End)
 
-/proc/_list_cut(var/list/L, var/Start = 1, var/End = 0)
+/proc/_list_cut(var/list/L,69ar/Start = 1,69ar/End = 0)
 	L.Cut(Start, End)
 
-/proc/_list_find(var/list/L, var/Elem, var/Start = 1, var/End = 0)
+/proc/_list_find(var/list/L,69ar/Elem,69ar/Start = 1,69ar/End = 0)
 	return L.Find(Elem, Start, End)
 
-/proc/_list_insert(var/list/L, var/Index, var/Item)
+/proc/_list_insert(var/list/L,69ar/Index,69ar/Item)
 	return L.Insert(Index, Item)
 
-/proc/_list_join(var/list/L, var/Glue, var/Start = 0, var/End = 1)
+/proc/_list_join(var/list/L,69ar/Glue,69ar/Start = 0,69ar/End = 1)
 	return L.Join(Glue, Start, End)
 
 /proc/_list_remove(var/list/L, ...)
@@ -189,5 +189,5 @@
 
 	L -= args.Copy(2)
 
-/proc/_list_swap(var/list/L, var/Index1, var/Index2)
+/proc/_list_swap(var/list/L,69ar/Index1,69ar/Index2)
 	L.Swap(Index1, Index2)

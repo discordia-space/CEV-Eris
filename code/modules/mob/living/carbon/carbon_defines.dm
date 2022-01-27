@@ -1,15 +1,15 @@
 /mob/living/carbon
-	gender = MALE
-	var/datum/species/species //Contains icon generation and language information, set during New().
+	gender =69ALE
+	var/datum/species/species //Contains icon generation and language information, set during69ew().
 	var/list/stomach_contents = list()
 	var/list/datum/disease2/disease/virus2 = list()
 	var/list/antibodies = list()
 
-	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
-	var/analgesic = 0 // when this is set, the mob isn't affected by shock or pain
+	var/life_tick = 0      // The amount of life ticks that have processed on this69ob.
+	var/analgesic = 0 // when this is set, the69ob isn't affected by shock or pain
 					  // life should decrease this by 1 every tick
-	// total amount of wounds on mob, used to spread out healing and the like over all wounds
-	var/obj/item/handcuffed //Whether or not the mob is handcuffed
+	// total amount of wounds on69ob, used to spread out healing and the like over all wounds
+	var/obj/item/handcuffed //Whether or69ot the69ob is handcuffed
 	var/obj/item/legcuffed  //Same as handcuffs but for legs. Bear traps use this.
 	//Active emote/pose
 	var/pose
@@ -35,5 +35,5 @@
 
 
 	bad_type = /mob/living/carbon
-	//TODO: move to brain
+	//TODO:69ove to brain
 

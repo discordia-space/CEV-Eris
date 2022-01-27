@@ -12,11 +12,11 @@
 /obj/item/gun_upgrade/muzzle
 	bad_type = /obj/item/gun_upgrade/muzzle
 
-//Silences the weapon, reduces damage multiplier slightly, Legacy port.
+//Silences the weapon, reduces damage69ultiplier slightly, Legacy port.
 /obj/item/gun_upgrade/muzzle/silencer
 	name = "silencer"
-	desc = "a threaded silencer that can be attached to the muzzle of certain guns. Vastly reduces noise, but impedes muzzle velocity."
-	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
+	desc = "a threaded silencer that can be attached to the69uzzle of certain guns.69astly reduces69oise, but impedes69uzzle69elocity."
+	matter = list(MATERIAL_PLASTEEL = 3,69ATERIAL_PLASTIC = 1)
 	icon_state = "silencer"
 	rarity_value = 20
 
@@ -31,9 +31,9 @@
 		GUN_UPGRADE_RECOIL = 0.9
 		)
 	I.gun_loc_tag = GUN_MUZZLE
-	I.req_gun_tags = list(GUN_SILENCABLE)
+	I.re69_gun_tags = list(GUN_SILENCABLE)
 
-//Decreases fire delay. Acquired through loot spawns
+//Decreases fire delay. Ac69uired through loot spawns
 /obj/item/gun_upgrade/barrel/forged
 	name = "forged barrel"
 	desc = "Despite advancements in 3D printing, a properly forged plasteel barrel can still outperform anything that comes from an autolathe."
@@ -47,7 +47,7 @@
 		GUN_UPGRADE_FIRE_DELAY_MULT = 0.8
 		)
 	I.gun_loc_tag = GUN_BARREL
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.re69_gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/gun_upgrade/barrel/blender
 	name = "OR \"Bullet Blender\" barrel"
@@ -66,14 +66,14 @@
 		GUN_UPGRADE_RECOIL = 1.4
 		)
 	I.gun_loc_tag = GUN_BARREL
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.re69_gun_tags = list(GUN_PROJECTILE)
 
-//For energy weapons, increases the damage output, but also the charge cost. Acquired through loot spawns or Eye of the Protector.
+//For energy weapons, increases the damage output, but also the charge cost. Ac69uired through loot spawns or Eye of the Protector.
 /obj/item/gun_upgrade/barrel/excruciator
 	name = "NeoTheology \"EXCRUCIATOR\" giga lens"
 	desc = "It's time for us to shine."
 	icon_state = "Excruciator"
-	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_PLASTEEL = 1, MATERIAL_GOLD = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_BIOMATTER = 3,69ATERIAL_PLASTEEL = 1,69ATERIAL_GOLD = 1,69ATERIAL_GLASS = 1)
 	rarity_value = 50
 
 /obj/item/gun_upgrade/barrel/excruciator/New()
@@ -84,15 +84,15 @@
 		GUN_UPGRADE_CHARGECOST = 2
 		)
 	I.gun_loc_tag = GUN_BARREL
-	I.req_gun_tags = list(GUN_ENERGY)
+	I.re69_gun_tags = list(GUN_ENERGY)
 
 /obj/item/gun_upgrade/trigger
 	bad_type = /obj/item/gun_upgrade/trigger
 
-//Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay. Acquired through loot spawns
+//Disables the ability to toggle the safety, toggles the safety permanently off, decreases fire delay. Ac69uired through loot spawns
 /obj/item/gun_upgrade/trigger/dangerzone
 	name = "Frozen Star \"Danger Zone\" Trigger"
-	desc = "When you need that extra edge."
+	desc = "When you69eed that extra edge."
 	icon_state = "Danger_Zone"
 	rarity_value = 15
 
@@ -106,10 +106,10 @@
 		)
 	I.gun_loc_tag = GUN_TRIGGER
 
-//Disables the ability to toggle the safety, toggles the safety permanently on, takes 2 minutes to remove (yikes). Acquired through loot spawns
+//Disables the ability to toggle the safety, toggles the safety permanently on, takes 269inutes to remove (yikes). Ac69uired through loot spawns
 /obj/item/gun_upgrade/trigger/cop_block
 	name = "Frozen Star \"Cop Block\" Trigger"
-	desc = "A simpler way of making a weapon display-only"
+	desc = "A simpler way of69aking a weapon display-only"
 	icon_state = "Cop_Block"
 	rarity_value = 15
 
@@ -125,7 +125,7 @@
 
 /obj/item/gun_upgrade/trigger/dnalock
 	name = "Frozen Star \"DNA lock\" Trigger"
-	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	desc = "There are69any guns, but that one will be yours. Prevents others from using weapon with this trigger."
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -142,7 +142,7 @@
 
 /obj/item/gun_upgrade/trigger/dnalock
 	name = "Frozen Star \"DNA lock\" Trigger"
-	desc = "There are many guns, but that one will be yours. Prevents others from using weapon with this trigger."
+	desc = "There are69any guns, but that one will be yours. Prevents others from using weapon with this trigger."
 	icon_state = "DNA_lock"
 	rarity_value = 15
 
@@ -160,10 +160,10 @@
 /obj/item/gun_upgrade/mechanism
 	bad_type = /obj/item/gun_upgrade/mechanism
 
-//Adds +3 to the internal magazine of a weapon. Acquired through loot spawns.
+//Adds +3 to the internal69agazine of a weapon. Ac69uired through loot spawns.
 /obj/item/gun_upgrade/mechanism/overshooter
-	name = "Frozen Star \"Overshooter\" internal magazine kit"
-	desc = "A method of overloading a weapon's internal magazine, fitting more ammunition within the weapon."
+	name = "Frozen Star \"Overshooter\" internal69agazine kit"
+	desc = "A69ethod of overloading a weapon's internal69agazine, fitting69ore ammunition within the weapon."
 	icon_state = "Overshooter"
 	rarity_value = 20
 
@@ -173,13 +173,13 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_MAGUP = 3
 		)
-	I.req_gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
+	I.re69_gun_tags = list(GUN_PROJECTILE, GUN_INTERNAL_MAG)
 	I.gun_loc_tag = GUN_MECHANISM
 
-//Adds radiation damage to .35 rounds. Acquired through telecrystal uplink
+//Adds radiation damage to .35 rounds. Ac69uired through telecrystal uplink
 /obj/item/gun_upgrade/mechanism/glass_widow
 	name = "Syndicate \"Glass Widow\" infuser"
-	desc = "An old technology from the Corporate Wars, used to make formerly useless civilian-grade weaponry into something much more lethal."
+	desc = "An old technology from the Corporate Wars, used to69ake formerly useless civilian-grade weaponry into something69uch69ore lethal."
 	icon_state = "Glass_Widow"
 	rarity_value = 50
 	spawn_blacklisted = TRUE
@@ -190,10 +190,10 @@
 	I.weapon_upgrades = list(
 		GUN_UPGRADE_DAMAGE_RADIATION = 100
 	)
-	I.req_gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
+	I.re69_gun_tags = list(GUN_PROJECTILE, GUN_CALIBRE_35)
 	I.gun_loc_tag = GUN_MECHANISM
 
-//Lets the SOL be made into a fully automatic weapon, but increases recoil. Acquirable through Frozen Star Guns&Ammo Vendor
+//Lets the SOL be69ade into a fully automatic weapon, but increases recoil. Ac69uirable through Frozen Star Guns&Ammo69endor
 /obj/item/gun_upgrade/mechanism/weintraub
 	name = "Frozen Star \"Weintraub\" full auto kit"
 	desc = "A fully automatic receiver for the .25 \"Sol\"."
@@ -207,10 +207,10 @@
 		GUN_UPGRADE_FULLAUTO = TRUE,
 		GUN_UPGRADE_RECOIL = 1.2
 	)
-	I.req_gun_tags = list(GUN_SOL)
+	I.re69_gun_tags = list(GUN_SOL)
 	I.gun_loc_tag = GUN_MECHANISM
 
-//Causes your weapon to shoot you in the face, then explode. Acquired through uplink
+//Causes your weapon to shoot you in the face, then explode. Ac69uired through uplink
 /obj/item/gun_upgrade/mechanism/reverse_loader
 	name = "Syndicate reverse loader"
 	desc = "Makes bullets loaded into the weapon fire backwards, into its user."
@@ -224,7 +224,7 @@
 		GUN_UPGRADE_RIGGED = TRUE
 	)
 	I.removal_time *= 5
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.re69_gun_tags = list(GUN_PROJECTILE)
 	I.gun_loc_tag = GUN_MECHANISM
 
 /obj/item/gun_upgrade/underbarrel
@@ -232,7 +232,7 @@
 
 /obj/item/storage/box/gun_upgrades
 	name = "Big box of gun fun"
-	desc = "If seen, please report to your nearest \[REDACTED\]"
+	desc = "If seen, please report to your69earest \69REDACTED\69"
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/box/gun_upgrades/populate_contents()
@@ -259,7 +259,7 @@
 		)
 	I.removal_time *= 10
 	I.gun_loc_tag = GUN_TRIGGER
-	I.req_gun_tags = list(GUN_ENERGY)
+	I.re69_gun_tags = list(GUN_ENERGY)
 
 /obj/item/gun_upgrade/scope
 	bad_type = /obj/item/gun_upgrade/scope
@@ -277,7 +277,7 @@
 		GUN_UPGRADE_ZOOM = 1.2
 		)
 	I.gun_loc_tag = GUN_SCOPE
-	I.req_gun_tags = list(GUN_SCOPE)
+	I.re69_gun_tags = list(GUN_SCOPE)
 
 /obj/item/gun_upgrade/scope/killer
 	name = "Syndicate \"Contract Killer\" scope"
@@ -293,12 +293,12 @@
 		GUN_UPGRADE_ZOOM = 2
 		)
 	I.gun_loc_tag = GUN_SCOPE
-	I.req_gun_tags = list(GUN_SCOPE)
+	I.re69_gun_tags = list(GUN_SCOPE)
 
 
 /obj/item/gun_upgrade/mechanism/gravcharger
 	name = "makeshift bullet time generator"
-	desc = "When attached to a gun, this device bends time and space to create a localized microgravity field around each bullet, with peculiar results"
+	desc = "When attached to a gun, this device bends time and space to create a localized69icrogravity field around each bullet, with peculiar results"
 	icon_state = "gravbarrel"
 	rarity_value = 20
 
@@ -310,7 +310,7 @@
 		GUN_UPGRADE_FIRE_DELAY_MULT = 0.5
 		)
 	I.gun_loc_tag = GUN_MECHANISM
-	I.req_gun_tags = list(GUN_PROJECTILE)
+	I.re69_gun_tags = list(GUN_PROJECTILE)
 
 /obj/item/gun_upgrade/cosmetic
 	bad_type = /obj/item/gun_upgrade/cosmetic
@@ -330,13 +330,13 @@
 		GUN_UPGRADE_GILDED = TRUE
 		)
 	I.gun_loc_tag = GUN_COSMETIC
-	I.req_gun_tags = list(GUN_GILDABLE)
+	I.re69_gun_tags = list(GUN_GILDABLE)
 
-//Trash mods, for putting on old guns
+//Trash69ods, for putting on old guns
 
 /obj/item/gun_upgrade/trigger/faulty
 	name = "Faulty Trigger"
-	desc = "Weirdly sticky, and none of your fingers seem to fit to it comfortably. This causes more recoil and increases delay between shots as you try to compensate for it."
+	desc = "Weirdly sticky, and69one of your fingers seem to fit to it comfortably. This causes69ore recoil and increases delay between shots as you try to compensate for it."
 	icon_state = "Cop_Block"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -354,7 +354,7 @@
 
 /obj/item/gun_upgrade/barrel/faulty
 	name = "Warped Barrel"
-	desc = "Extreme heat has warped this barrel off-target. This decreases the impact force of bullets fired through it and makes it more difficult to correctly aim the weapon it's attached to."
+	desc = "Extreme heat has warped this barrel off-target. This decreases the impact force of bullets fired through it and69akes it69ore difficult to correctly aim the weapon it's attached to."
 	icon_state = "Forged_barrel"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -372,8 +372,8 @@
 	I.removable = FALSE
 
 /obj/item/gun_upgrade/muzzle/faulty
-	name = "Failed Makeshift Silencer"
-	desc = "Inspired by cheesy action movies, somebody has left trash on the end of this weapon. This causes the attached weapon to suffer from weaker armor penetration."
+	name = "Failed69akeshift Silencer"
+	desc = "Inspired by cheesy action69ovies, somebody has left trash on the end of this weapon. This causes the attached weapon to suffer from weaker armor penetration."
 	icon_state = "silencer"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -391,8 +391,8 @@
 	I.removable = FALSE
 
 /obj/item/gun_upgrade/mechanism/faulty
-	name = "Unknown Clockwork Mechanism"
-	desc = "It's really not clear what this modification actually does. It appears to effect the attached weapon's recoil, but if it actually helps or hinders the weapon is unclear."
+	name = "Unknown Clockwork69echanism"
+	desc = "It's really69ot clear what this69odification actually does. It appears to effect the attached weapon's recoil, but if it actually helps or hinders the weapon is unclear."
 	icon_state = "Weintraub"
 	spawn_blacklisted = TRUE
 	price_tag = 0
@@ -427,7 +427,7 @@
 
 /obj/item/gun_upgrade/trigger/better
 	name = "Refined trigger"
-	desc = "This trigger seems to be made of durable alloys and cut to the precision of milimeters."
+	desc = "This trigger seems to be69ade of durable alloys and cut to the precision of69ilimeters."
 	spawn_blacklisted = TRUE
 	price_tag = 100
 
@@ -442,7 +442,7 @@
 
 /obj/item/gun_upgrade/barrel/better
 	name = "High-temperature forged barrel"
-	desc = "A barrel forged in high temperature, making the metal more resistant."
+	desc = "A barrel forged in high temperature,69aking the69etal69ore resistant."
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
@@ -456,8 +456,8 @@
 	I.gun_loc_tag = GUN_BARREL
 
 /obj/item/gun_upgrade/muzzle/better
-	name = "Resonance muzzle"
-	desc = "A high tech muzzle, made to resonate at the same frequency as the sound that comes from the gun."
+	name = "Resonance69uzzle"
+	desc = "A high tech69uzzle,69ade to resonate at the same fre69uency as the sound that comes from the gun."
 	spawn_blacklisted = TRUE
 	price_tag = 150
 
@@ -472,8 +472,8 @@
 	I.gun_loc_tag = GUN_MUZZLE
 
 /obj/item/gun_upgrade/mechanism/better
-	name = "Hydraulic mechanism"
-	desc = "A high tech mechanism that uses hydraulic pumps to keep recoil at a minimum."
+	name = "Hydraulic69echanism"
+	desc = "A high tech69echanism that uses hydraulic pumps to keep recoil at a69inimum."
 	spawn_blacklisted = TRUE
 	price_tag = 300
 

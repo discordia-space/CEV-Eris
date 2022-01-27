@@ -29,9 +29,9 @@
 	name = "Amazon"
 	icon_state = "amazon"
 
-/datum/sprite_accessory/hair/angelique
-	name = "Angelique"
-	icon_state = "angelique"
+/datum/sprite_accessory/hair/angeli69ue
+	name = "Angeli69ue"
+	icon_state = "angeli69ue"
 
 /datum/sprite_accessory/hair/asymmetrical
 	name = "Asymmetrical Bob"
@@ -188,7 +188,7 @@
 /datum/sprite_accessory/hair/devillock
 	name = "Devil Lock"
 	icon_state = "devilock"
-	gender = MALE
+	gender =69ALE
 
 /datum/sprite_accessory/hair/doublebun
 	name = "Double-Bun"
@@ -223,7 +223,7 @@
 	icon_state = "flowhair"
 
 /datum/sprite_accessory/hair/familyman
-	name = "Family Man"
+	name = "Family69an"
 	icon_state = "familyman"
 
 /datum/sprite_accessory/hair/father
@@ -522,16 +522,16 @@
 	name = "Protagonist"
 	icon_state = "protagonist"
 
-/datum/sprite_accessory/hair/quiff
-	name = "Quiff"
-	icon_state = "quiff"
+/datum/sprite_accessory/hair/69uiff
+	name = "69uiff"
+	icon_state = "69uiff"
 
 /datum/sprite_accessory/hair/ramona
 	name = "Ramona"
 	icon_state = "ramona"
 
 /datum/sprite_accessory/hair/reversemohawk
-	name = "Reverse Mohawk"
+	name = "Reverse69ohawk"
 	icon_state = "reversemohawk"
 
 /datum/sprite_accessory/hair/ronin
@@ -563,7 +563,7 @@
 	icon_state = "sharp_ponytail"
 
 /datum/sprite_accessory/hair/shavedmohawk
-	name = "Shaved Mohawk"
+	name = "Shaved69ohawk"
 	icon_state = "shavedmohawk"
 
 /datum/sprite_accessory/hair/shavedpart

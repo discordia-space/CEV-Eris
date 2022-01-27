@@ -1,495 +1,495 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/simulated/shuttle/wall{
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/tur69/simulated/shuttle/wall{
 	icon_state = "wall3"
 	},
-/area/map_template/oldpod)
-"ab" = (
-/obj/structure/shuttle/engine/propulsion{
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/structure/shuttle/en69ine/69ro69ulsion{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ad" = (
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ae" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ag" = (
-/obj/structure/shuttle/engine/heater{
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"ad" = 69
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"ae" = 69
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/structure/shuttle/en69ine/heater{
 	icon_state = "heater";
 	dir = 1
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ah" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/obj/machinery/atmospherics/portables_connector{
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"ah" = 69
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/machiner69/69orta69le_atmos69herics/canister/air/airloc69,
+/o6969/machiner69/atmos69herics/69orta69les_connector{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ai" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aj" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/portable_atmospherics/canister/empty,
-/obj/structure/window/reinforced{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"ai" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/machiner69/69orta69le_atmos69herics/canister/em69t69,
+/o6969/structure/window/rein69orced{
 	dir = 4
 	},
-/obj/machinery/atmospherics/portables_connector{
+/o6969/machiner69/atmos69herics/69orta69les_connector{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ak" = (
-/obj/structure/bed,
-/obj/landmark/corpse/doctor,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"al" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"am" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"an" = (
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"ao" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair_preview";
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/structure/69ed,
+/o6969/landmar69/cor69se/doctor,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"al" = 69
+/o6969/structure/69ed,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"am" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"an" = 69
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"ao" = 69
+/o6969/structure/69ed/chair/shuttle{
+	icon_state = "shuttle_chair_69review";
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"ap" = (
-/obj/structure/bed/chair/shuttle{
-	icon_state = "shuttle_chair_preview";
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/structure/69ed/chair/shuttle{
+	icon_state = "shuttle_chair_69review";
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aq" = (
-/obj/structure/closet/wall_mounted/firecloset{
-	pixel_x = 24;
-	pixel_y = 0
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/structure/closet/wall_mounted/69irecloset{
+	69ixel_x = 24;
+	69ixel_69 = 0
 	},
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"ar" = (
-/obj/machinery/light/small{
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"ar" = 69
+/o6969/machiner69/li69ht/small{
 	dir = 8
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"at" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"au" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"at" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"au" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/on{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"av" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"av" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aw" = (
-/obj/machinery/light/small{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aw" = 69
+/o6969/machiner69/li69ht/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"ax" = (
-/obj/machinery/door/firedoor,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"ay" = (
-/obj/item/frame/air_alarm,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/electronics/airalarm,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"az" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aA" = (
-/obj/spawner/firstaid,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aB" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aC" = (
-/obj/item/clothing/suit/space,
-/obj/item/clothing/head/space,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aD" = (
-/obj/structure/window/reinforced{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"ax" = 69
+/o6969/machiner69/door/69iredoor,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/item/69rame/air_alarm,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/item/electronics/airalarm,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"az" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aA" = 69
+/o6969/s69awner/69irstaid,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aC" = 69
+/o6969/item/clothin69/suit/s69ace,
+/o6969/item/clothin69/head/s69ace,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aD" = 69
+/o6969/structure/window/rein69orced{
 	dir = 1
 	},
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/o6969/structure/ta69le/standard{
+	name = "69lastic ta69le 69rame"
 	},
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/item/tool/pickaxe,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aE" = (
-/obj/structure/window/reinforced{
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/item/tool/69ic69axe,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aE" = 69
+/o6969/structure/window/rein69orced{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/table,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aG" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aH" = (
-/obj/structure/cable/cyan{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/structure/ta69le,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aH" = 69
+/o6969/structure/ca69le/c69an{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/item/frame/apc,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/cell/small,
-/obj/item/gun_upgrade/mechanism/battery_shunt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aI" = (
-/obj/structure/cable/cyan{
+/o6969/item/69rame/a69c,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/item/cell/small,
+/o6969/item/69un_u6969rade/mechanism/69atter69_shunt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aI" = 69
+/o6969/structure/ca69le/c69an{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aJ" = (
-/obj/landmark/corpse/pirate,
-/obj/item/gun/energy/retro,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aK" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aL" = (
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aM" = (
-/obj/landmark/corpse/scientist,
-/obj/item/material/wirerod,
-/obj/item/material/shard,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aN" = (
-/obj/machinery/door/firedoor,
-/obj/structure/grille,
-/obj/item/stack/rods,
-/obj/item/stack/rods,
-/obj/item/stack/rods,
-/obj/item/stack/rods,
-/obj/item/material/shard,
-/obj/item/material/shard,
-/obj/item/material/shard,
-/obj/item/material/shard,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"aO" = (
-/obj/machinery/door/airlock/external{
-	name = "escape pod airlock"
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/landmar69/cor69se/69irate,
+/o6969/item/69un/ener6969/retro,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aL" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aM" = 69
+/o6969/landmar69/cor69se/scientist,
+/o6969/item/material/wirerod,
+/o6969/item/material/shard,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aN" = 69
+/o6969/machiner69/door/69iredoor,
+/o6969/structure/69rille,
+/o6969/item/stac69/rods,
+/o6969/item/stac69/rods,
+/o6969/item/stac69/rods,
+/o6969/item/stac69/rods,
+/o6969/item/material/shard,
+/o6969/item/material/shard,
+/o6969/item/material/shard,
+/o6969/item/material/shard,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"aO" = 69
+/o6969/machiner69/door/airloc69/external{
+	name = "esca69e 69od airloc69"
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"aP" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable/cyan,
-/obj/machinery/light/small{
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le/c69an,
+/o6969/machiner69/li69ht/small{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 5
 	},
-/obj/machinery/power/smes/buildable,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"aQ" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"aR" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/machiner69/69ower/smes/69uilda69le,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"aR" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 9
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 1
 	},
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/o6969/structure/ta69le/standard{
+	name = "69lastic ta69le 69rame"
 	},
-/obj/item/storage/firstaid/surgery,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"aS" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/item/stora69e/69irstaid/sur69er69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"aS" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"aT" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"aT" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 5
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 1
 	},
-/obj/structure/closet/crate/freezer/rations,
-/obj/effect/decal/cleanable/dirt,
-/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
-/obj/item/clothing/glasses/eyepatch,
-/obj/item/melee/energy/sword/pirate,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"aU" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/structure/closet/crate/69reezer/rations,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/item/69un/69ro69ectile/shot69un/dou69le69arrel/sawn,
+/o6969/item/clothin69/69lasses/e69e69atch,
+/o6969/item/melee/ener6969/sword/69irate,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"aU" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 9
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"aV" = (
-/obj/effect/floor_decal/industrial/warning{
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"aV" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 5
 	},
-/obj/machinery/light/small{
+/o6969/machiner69/li69ht/small{
 	dir = 4
 	},
-/obj/item/clothing/head/space,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"aW" = (
-/obj/machinery/power/terminal{
+/o6969/item/clothin69/head/s69ace,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"aW" = 69
+/o6969/machiner69/69ower/terminal{
 	icon_state = "term";
 	dir = 1
 	},
-/obj/structure/cable/cyan{
+/o6969/structure/ca69le/c69an{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/effect/floor_decal/industrial/warning{
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/structure/closet/crate,
-/obj/item/tank/oxygen,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"aX" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/structure/closet/crate,
+/o6969/item/tan69/ox6969en,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"aX" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/machinery/optable,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"aY" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"aZ" = (
-/obj/machinery/sleeper{
+/o6969/machiner69/o69ta69le,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"aZ" = 69
+/o6969/machiner69/slee69er{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 4
 	},
-/obj/machinery/light/small{
+/o6969/machiner69/li69ht/small{
 	dir = 4
 	},
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"ba" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"69a" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 10
 	},
-/obj/item/clothing/suit/space,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"bb" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/item/clothin69/suit/s69ace,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 6
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"bc" = (
-/obj/machinery/power/port_gen/pacman,
-/obj/structure/cable/cyan,
-/obj/effect/floor_decal/industrial/warning{
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"69c" = 69
+/o6969/machiner69/69ower/69ort_69en/69acman,
+/o6969/structure/ca69le/c69an,
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"bd" = (
-/obj/landmark/corpse/bridgeofficer,
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/oldpod)
-"be" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"69d" = 69
+/o6969/landmar69/cor69se/69rid69eo6969icer,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/old69od69
+"69e" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 10
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/o6969/structure/ta69le/standard{
+	name = "69lastic ta69le 69rame"
 	},
-/obj/spawner/firstaid,
-/obj/spawner/firstaid,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"bf" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"bg" = (
-/obj/machinery/sleeper{
+/o6969/s69awner/69irstaid,
+/o6969/s69awner/69irstaid,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"6969" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"6969" = 69
+/o6969/machiner69/slee69er{
 	dir = 8
 	},
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 6
 	},
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/white/techfloor,
-/area/map_template/oldpod)
-"bq" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
-"jX" = (
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/plating,
-/area/map_template/oldpod)
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/white/tech69loor,
+/area/ma69_tem69late/old69od69
+"6969" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/69oom69a,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
+"69X" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/sla69er,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/old69od69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
@@ -501,19 +501,19 @@ aa
 aa
 aa
 "}
-(2,1,1) = {"
-ab
-ag
-ak
+692,1,169 = {"
+a69
+a69
+a69
 ar
-ay
-aG
-jX
+a69
+a69
+69X
 aU
-ba
+69a
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 aa
 aa
 al
@@ -522,10 +522,10 @@ az
 am
 aO
 aV
-bb
+6969
 aO
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
 ah
 al
@@ -537,67 +537,67 @@ aa
 aa
 aa
 "}
-(5,1,1) = {"
-bq
+695,1,169 = {"
+6969
 ai
 am
 au
-aB
+a69
 aI
-aP
+a69
 aW
-bc
+69c
 ad
 "}
-(6,1,1) = {"
+696,1,169 = {"
 ae
 ai
 an
 av
 aC
-aJ
-aQ
-aK
-bd
+a69
+a69
+a69
+69d
 ae
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
-aj
+a69
 ao
 ao
 aD
-aK
+a69
 aR
 aX
-be
+69e
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 aa
 aa
-ap
-ap
+a69
+a69
 aE
 aL
 aS
-aY
-bf
+a69
+6969
 aa
 "}
-(9,1,1) = {"
-ab
-ag
-aq
+699,1,169 = {"
+a69
+a69
+a69
 aw
 ai
 aM
 aT
 aZ
-bg
+6969
 aa
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 aa
 aa
 aa

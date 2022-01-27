@@ -3,10 +3,10 @@ IMPORTANT
 
 There are important things regarding this file:
 
- * Rubbers are non sharp, embed capable objects, with non existing armor penetration. Their agony damage is generally lower then actuall one
- * The caliber ammont was lowered for a reason, don't add more bloat. If you need different values, use gun vars.
+ * Rubbers are69on sharp, embed capable objects, with69on existing armor penetration. Their agony damage is generally lower then actuall one
+ * The caliber ammont was lowered for a reason, don't add69ore bloat. If you69eed different69alues, use gun69ars.
  * HV exist as antag option for better ammo.
- * Step delays - default value is 1. Lower value makes bullet go faster, higher value makes bullet go slower.
+ * Step delays - default69alue is 1. Lower69alue69akes bullet go faster, higher69alue69akes bullet go slower.
 
 */
 //Low-caliber pistols and SMGs .35
@@ -55,7 +55,7 @@ There are important things regarding this file:
 	can_ricochet = TRUE
 
 /obj/item/projectile/bullet/srifle/nomuzzle
-	muzzle_type = null
+	muzzle_type =69ull
 
 /obj/item/projectile/bullet/srifle/practice
 	name = "practice bullet"
@@ -292,7 +292,7 @@ There are important things regarding this file:
 		M.IgniteMob()
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
-//Overall less damage than slugs in exchange for more damage at very close range and more embedding
+//Overall less damage than slugs in exchange for69ore damage at69ery close range and69ore embedding
 /obj/item/projectile/bullet/pellet/shotgun
 	name = "shrapnel"
 	icon_state = "birdshot-1"
@@ -304,7 +304,7 @@ There are important things regarding this file:
 
 /obj/item/projectile/bullet/pellet/shotgun/Initialize()
 	. = ..()
-	icon_state = "birdshot-[rand(1,4)]"
+	icon_state = "birdshot-69rand(1,4)69"
 
 /obj/item/projectile/bullet/pellet/shotgun/scrap
 	damage_types = list(BRUTE = 9)

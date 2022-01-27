@@ -1,7 +1,7 @@
 
 /obj/machinery/artifact_analyser
 	name = "Anomaly Analyser"
-	desc = "Studies the emissions of anomalous materials to discover their uses."
+	desc = "Studies the emissions of anomalous69aterials to discover their uses."
 	icon = 'icons/obj/virology.dmi'
 	icon_state = "isolator"
 	anchored = TRUE
@@ -9,7 +9,7 @@
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj
-	var/obj/machinery/artifact_scanpad/owned_scanner = null
+	var/obj/machinery/artifact_scanpad/owned_scanner =69ull
 	var/scan_completion_time = 0
 	var/scan_duration = 120
 	var/obj/scanned_object
@@ -20,7 +20,7 @@
 	reconnect_scanner()
 
 /obj/machinery/artifact_analyser/proc/reconnect_scanner()
-	//connect to a nearby scanner pad
+	//connect to a69earby scanner pad
 	owned_scanner = locate(/obj/machinery/artifact_scanpad) in get_step(src, dir)
 	if(!owned_scanner)
 		owned_scanner = locate(/obj/machinery/artifact_scanpad) in orange(1, src)
@@ -35,7 +35,7 @@
 		user.unset_machine(src)
 		return
 
-	var/dat = "<B>Anomalous material analyser</B><BR>"
+	var/dat = "<B>Anomalous69aterial analyser</B><BR>"
 	dat += "<HR>"
 	if(!owned_scanner)
 		owned_scanner = locate() in orange(1, src)
@@ -44,14 +44,14 @@
 		dat += "<b><font color=red>Unable to locate analysis pad.</font></b><br>"
 	else if(scan_in_progress)
 		dat += "Please wait. Analysis in progress.<br>"
-		dat += "<a href='?src=\ref[src];halt_scan=1'>Halt scanning.</a><br>"
+		dat += "<a href='?src=\ref69src69;halt_scan=1'>Halt scanning.</a><br>"
 	else
 		dat += "Scanner is ready.<br>"
-		dat += "<a href='?src=\ref[src];begin_scan=1'>Begin scanning.</a><br>"
+		dat += "<a href='?src=\ref69src69;begin_scan=1'>Begin scanning.</a><br>"
 
 	dat += "<br>"
 	dat += "<hr>"
-	dat += "<a href='?src=\ref[src]'>Refresh</a> <a href='?src=\ref[src];close=1'>Close</a>"
+	dat += "<a href='?src=\ref69src69'>Refresh</a> <a href='?src=\ref69src69;close=1'>Close</a>"
 	user << browse(dat, "window=artanalyser;size=450x500")
 	user.set_machine(src)
 	onclose(user, "artanalyser")
@@ -75,16 +75,16 @@
 		if(!owned_scanner)
 			results = "Error communicating with scanner."
 		else if(!scanned_object || scanned_object.loc != owned_scanner.loc)
-			results = "Unable to locate scanned object. Ensure it was not moved in the process."
+			results = "Unable to locate scanned object. Ensure it was69ot69oved in the process."
 		else
 			results = get_scan_info(scanned_object)
 
-		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
-		var/obj/item/paper/artifact_info/P = new(src.loc)
-		P.name = "[src] report #[++report_num]"
-		P.info = "<b>[src] analysis report #[report_num]</b><br>"
+		src.visible_message("<b>69name69</b> states, \"Scanning complete.\"")
+		var/obj/item/paper/artifact_info/P =69ew(src.loc)
+		P.name = "69src69 report #69++report_num69"
+		P.info = "<b>69src69 analysis report #69report_num69</b><br>"
 		P.info += "<br>"
-		P.info += "\icon[scanned_object] [results]"
+		P.info += "\icon69scanned_object69 69results69"
 		P.stamped = list(/obj/item/stamp)
 		P.overlays = list("paper_stamped")
 		if(scanned_object)
@@ -93,14 +93,14 @@
 				var/obj/machinery/artifact/A = scanned_object
 				A.anchored = FALSE
 				A.being_used = 0
-				scanned_object = null
+				scanned_object =69ull
 				if(A.my_effect)
 					P.artifact_first_effect = A.my_effect.effect_type
 				if(A.secondary_effect)
 					P.artifact_second_effect = A.secondary_effect.effect_type
 
 /obj/machinery/artifact_analyser/Topic(href, href_list)
-	if(href_list["begin_scan"])
+	if(href_list69"begin_scan"69)
 		if(!owned_scanner)
 			reconnect_scanner()
 		if(owned_scanner)
@@ -119,20 +119,20 @@
 						A.being_used = 1
 
 				if(artifact_in_use)
-					src.visible_message("<b>[name]</b> states, \"Cannot harvest. Too much interference.\"")
+					src.visible_message("<b>69name69</b> states, \"Cannot harvest. Too69uch interference.\"")
 				else
 					scanned_object = O
 					scan_in_progress = 1
 					scan_completion_time = world.time + scan_duration
-					src.visible_message("<b>[name]</b> states, \"Scanning begun.\"")
+					src.visible_message("<b>69name69</b> states, \"Scanning begun.\"")
 				break
 			if(!scanned_object)
-				src.visible_message("<b>[name]</b> states, \"Unable to isolate scan target.\"")
-	if(href_list["halt_scan"])
+				src.visible_message("<b>69name69</b> states, \"Unable to isolate scan target.\"")
+	if(href_list69"halt_scan"69)
 		scan_in_progress = 0
-		src.visible_message("<b>[name]</b> states, \"Scanning halted.\"")
+		src.visible_message("<b>69name69</b> states, \"Scanning halted.\"")
 
-	if(href_list["close"])
+	if(href_list69"close"69)
 		usr.unset_machine(src)
 		usr << browse(null, "window=artanalyser")
 
@@ -144,23 +144,23 @@
 /obj/machinery/artifact_analyser/proc/get_scan_info(var/obj/scanned_obj)
 	switch(scanned_obj.type)
 		if(/obj/machinery/auto_cloner)
-			return "Automated cloning pod - appears to rely on organic nanomachines with a self perpetuating \
-			ecosystem involving self cannibalism and a symbiotic relationship with the contained liquid.<br><br>\
-			Structure is composed of a carbo-titanium alloy with interlaced reinforcing energy fields, and the contained liquid \
+			return "Automated cloning pod - appears to rely on organic69anomachines with a self perpetuating \
+			ecosystem involving self cannibalism and a symbiotic relationship with the contained li69uid.<br><br>\
+			Structure is composed of a carbo-titanium alloy with interlaced reinforcing energy fields, and the contained li69uid \
 			resembles proto-plasmic residue supportive of single cellular developmental conditions."
 		if(/obj/machinery/power/supermatter)
-			return "Super dense plasma clump - Appears to have been shaped or hewn, structure is composed of matter 2000% denser than ordinary carbon matter residue.\
+			return "Super dense plasma clump - Appears to have been shaped or hewn, structure is composed of69atter 2000% denser than ordinary carbon69atter residue.\
 			Potential application as unrefined plasma source."
 		if(/obj/machinery/power/supermatter)
-			return "Super dense plasma clump - Appears to have been shaped or hewn, structure is composed of matter 2000% denser than ordinary carbon matter residue.\
+			return "Super dense plasma clump - Appears to have been shaped or hewn, structure is composed of69atter 2000% denser than ordinary carbon69atter residue.\
 			Potential application as unrefined plasma source."
 		if(/obj/machinery/giga_drill)
-			return "Automated mining drill - structure composed of titanium-carbide alloy, with tip and drill lines edged in an alloy of diamond and plasma."
+			return "Automated69ining drill - structure composed of titanium-carbide alloy, with tip and drill lines edged in an alloy of diamond and plasma."
 		if(/obj/machinery/replicator)
-			return "Automated construction unit - Item appears to be able to synthesize synthetic items, some with simple internal circuitry. Method unknown, \
+			return "Automated construction unit - Item appears to be able to synthesize synthetic items, some with simple internal circuitry.69ethod unknown, \
 			phasing suggested?"
 		if(/obj/structure/crystal)
-			return "Crystal formation - Pseudo organic crystalline matrix, unlikely to have formed naturally. No known technology exists to synthesize this exact composition."
+			return "Crystal formation - Pseudo organic crystalline69atrix, unlikely to have formed69aturally.69o known technology exists to synthesize this exact composition."
 		if(/obj/machinery/artifact)
 			//the fun one
 			var/obj/machinery/artifact/A = scanned_obj
@@ -177,7 +177,7 @@
 					if(3)
 						out += "electromagnetic energy"
 					if(4)
-						out += "high frequency particles"
+						out += "high fre69uency particles"
 					if(5)
 						out += "organically reactive exotic particles"
 					if(6)
@@ -209,7 +209,7 @@
 			//secondary:
 			if(A.secondary_effect && A.secondary_effect.activated)
 				//sciencey words go!
-				out += "<br><br>Warning, internal scans indicate ongoing [pick("subluminous","subcutaneous","superstructural")] activity operating \
+				out += "<br><br>Warning, internal scans indicate ongoing 69pick("subluminous","subcutaneous","superstructural")69 activity operating \
 				independantly from primary systems. Auxiliary activity involves "
 
 				//what kind of effect the artifact has
@@ -221,7 +221,7 @@
 					if(3)
 						out += "electromagnetic energy"
 					if(4)
-						out += "high frequency particles"
+						out += "high fre69uency particles"
 					if(5)
 						out += "organically reactive exotic particles"
 					if(6)
@@ -254,4 +254,4 @@
 			return out
 		else
 			//it was an ordinary item
-			return "[scanned_obj.name] - Mundane application, composed of carbo-ferritic alloy composite."
+			return "69scanned_obj.name69 -69undane application, composed of carbo-ferritic alloy composite."

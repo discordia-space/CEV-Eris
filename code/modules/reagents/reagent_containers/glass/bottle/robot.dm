@@ -4,7 +4,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,50,100)
 	volume = 60
-	spawn_tags = null
+	spawn_tags =69ull
 	var/reagent = ""
 
 

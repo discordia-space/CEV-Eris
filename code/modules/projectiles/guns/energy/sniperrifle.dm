@@ -1,6 +1,6 @@
 /obj/item/gun/energy/sniperrifle
-	name = "NT MER \"Valkyrie\""
-	desc = "\"Valkyrie\" is an older design of Nanotrasen, \"Lightfall\" was based on it. A designated marksman rifle capable of shooting powerful ionized beams, this is a weapon for killing from a distance."
+	name = "NT69ER \"Valkyrie\""
+	desc = "\"Valkyrie\" is an older design of69anotrasen, \"Lightfall\" was based on it. A designated69arksman rifle capable of shooting powerful ionized beams, this is a weapon for killing from a distance."
 	icon = 'icons/obj/guns/energy/sniper.dmi'
 	icon_state = "sniper"
 	item_state = "sniper"
@@ -13,7 +13,7 @@
 	fire_delay = 35
 	force = 10
 	w_class = ITEM_SIZE_BULKY
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 8, MATERIAL_SILVER = 9, MATERIAL_URANIUM = 6)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLASTIC = 8,69ATERIAL_SILVER = 9,69ATERIAL_URANIUM = 6)
 	price_tag = 5000
 	cell_type = /obj/item/cell/medium
 	zoom_factor = 2

@@ -1,18 +1,18 @@
 /** Club's special Bonsai tree, so they can operate somewhat without a garden.
 
 	Every 10 seconds, checks if it has 10+ units of any alcohol.
-		If it does, removes said alcohol, and spawns a random base fruit or vegetable.
+		If it does, removes said alcohol, and spawns a random base fruit or69egetable.
 		Ratio, 10 alcohol: 1 produce.
 **/
 
 /obj/item/reagent_containers/bonsai
 	name = "Laurelin bonsai"
-	desc = "A small tree, gifted to the club by a previous patron. It subsists off of numerous alcohols, and produces fruits and vegetables in return."
+	desc = "A small tree, gifted to the club by a previous patron. It subsists off of69umerous alcohols, and produces fruits and69egetables in return."
 
 	icon = 'icons/obj/plants.dmi'
 	icon_state = "plant-21" //Placeholder until we can get a proper sprite for them.
 
-	volume = 100 //Average bottle volume
+	volume = 100 //Average bottle69olume
 	reagent_flags = OPENCONTAINER
 
 	price_tag = 4000
@@ -23,12 +23,12 @@
 
 /obj/item/reagent_containers/bonsai/New()
 	..()
-	GLOB.all_faction_items[src] = GLOB.department_civilian
+	GLOB.all_faction_items69src69 = GLOB.department_civilian
 	START_PROCESSING(SSobj, src)
 
 /obj/item/reagent_containers/bonsai/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+	for(var/mob/living/carbon/human/H in69iewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	..()
@@ -43,7 +43,7 @@
 		if(reagent_count > 10)
 			var/amount_to_spawn = round(reagent_count/10)
 			for(var/i = 0 to amount_to_spawn)
-				var/datum/seed/S = plant_controller.seeds[pick(
+				var/datum/seed/S = plant_controller.seeds69pick(
 					"tomato",
 					"carrot",
 					"corn",
@@ -52,5 +52,5 @@
 					"mushrooms",
 					"wheat",
 					"potato",
-					"rice")]
+					"rice")69
 				S.harvest(get_turf(src),0,0,1)

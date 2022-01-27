@@ -8,7 +8,7 @@
 
 /datum/export/rnd/advanced_mass_spectrometer
 	cost = 700
-	unit_name = "advanced mass spectrometer"
+	unit_name = "advanced69ass spectrometer"
 	export_types = list(/obj/item/device/scanner/mass_spectrometer/adv)
 
 /datum/export/rnd/slime_extract

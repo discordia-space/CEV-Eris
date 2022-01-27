@@ -56,20 +56,20 @@
 	attacktext = "slashed"
 	status_flags = 0
 
-/mob/living/simple_animal/hostile/syndicate/melee/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/hostile/syndicate/melee/attackby(var/obj/item/O as obj,69ar/mob/user as69ob)
 	if(O.force)
 		if(prob(80))
 			var/damage = O.force
 			if (O.damtype == HALLOSS)
 				damage = 0
 			health -= damage
-			visible_message("\red \b [src] has been attacked with the [O] by [user]. ")
+			visible_message("\red \b 69src69 has been attacked with the 69O69 by 69user69. ")
 		else
-			visible_message("\red \b [src] blocks the [O] with its shield! ")
+			visible_message("\red \b 69src69 blocks the 69O69 with its shield! ")
 		//user.do_attack_animation(src)
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
-		visible_message("\red [user] gently taps [src] with the [O]. ")
+		to_chat(usr, "\red This weapon is ineffective, it does69o damage.")
+		visible_message("\red 69user69 gently taps 69src69 with the 69O69. ")
 
 
 /mob/living/simple_animal/hostile/syndicate/melee/bullet_act(var/obj/item/projectile/Proj)
@@ -77,7 +77,7 @@
 	if(prob(65))
 		..()
 	else
-		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
+		visible_message("\red <B>69src69 blocks 69Proj69 with its shield!</B>")
 	return 0
 
 
@@ -131,7 +131,7 @@
 
 /mob/living/simple_animal/hostile/viscerator
 	name = "viscerator"
-	desc = "A small, twin-bladed machine capable of inflicting very deadly lacerations."
+	desc = "A small, twin-bladed69achine capable of inflicting69ery deadly lacerations."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "viscerator_attack"
 	pass_flags = PASSTABLE

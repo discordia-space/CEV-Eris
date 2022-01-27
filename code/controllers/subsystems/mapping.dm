@@ -10,14 +10,14 @@ SUBSYSTEM_DEF(mapping)
 
 /datum/controller/subsystem/mapping/Initialize(start_timeofday)
 	if(config.generate_asteroid)
-		// These values determine the specific area that the map is applied to.
-		// Because we do not use Bay's default map, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
+		// These69alues determine the specific area that the69ap is applied to.
+		// Because we do not use Bay's default69ap, we check the config file to see if custom parameters are needed, so we need to avoid hardcoding.
 		if(GLOB.maps_data.asteroid_levels)
 			for(var/z_level in GLOB.maps_data.asteroid_levels)
 				if(!isnum(z_level))
 					// If it's still not a number, we probably got fed some nonsense string.
 					admin_notice("<span class='danger'>Error: ASTEROID_Z_LEVELS config wasn't given a number.</span>")
-				// Now for the actual map generating.  This occurs for every z-level defined in the config.
+				// Now for the actual69ap generating.  This occurs for every z-level defined in the config.
 				new /datum/random_map/automata/cave_system(null, 1, 1, z_level, 300, 300)
 				// Let's add ore too.
 				new /datum/random_map/noise/ore(null, 1, 1, z_level, 64, 64)
@@ -28,11 +28,11 @@ SUBSYSTEM_DEF(mapping)
 		if(!GLOB.maps_data.overmap_z)
 			build_overmap()
 		else
-			testing("Overmap already exist in GLOB.maps_data for [GLOB.maps_data.overmap_z].")
+			testing("Overmap already exist in GLOB.maps_data for 69GLOB.maps_data.overmap_z69.")
 	else
 		testing("Overmap generation disabled in config.")
 
-//	world.max_z_changed() // This is to set up the player z-level list, maxz hasn't actually changed (probably)
+//	world.max_z_changed() // This is to set up the player z-level list,69axz hasn't actually changed (probably)
 	maploader = new()
 	load_map_templates()
 
@@ -47,7 +47,7 @@ SUBSYSTEM_DEF(mapping)
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			teleportlocs += AR.name
-			teleportlocs[AR.name] = AR
+			teleportlocs69AR.name69 = AR
 
 	teleportlocs = sortAssoc(teleportlocs)
 
@@ -58,11 +58,11 @@ SUBSYSTEM_DEF(mapping)
 		if(ghostteleportlocs.Find(AR.name)) continue
 		if(istype(AR, /area/turret_protected/aisat) || istype(AR, /area/derelict) || istype(AR, /area/shuttle/specops/centcom))
 			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
+			ghostteleportlocs69AR.name69 = AR
 		var/turf/picked = pick_area_turf(AR.type, list(/proc/is_station_turf))
 		if (picked)
 			ghostteleportlocs += AR.name
-			ghostteleportlocs[AR.name] = AR
+			ghostteleportlocs69AR.name69 = AR
 
 	ghostteleportlocs = sortAssoc(ghostteleportlocs)
 
@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(mapping)
 			testing("Creating overmap events...")
 			var/t1 = world.tick_usage
 			overmap_event_handler.create_events(GLOB.maps_data.overmap_z, GLOB.maps_data.overmap_size, GLOB.maps_data.overmap_event_areas)
-			testing("Overmap events created in [(world.tick_usage-t1)*0.01*world.tick_lag] seconds")
+			testing("Overmap events created in 69(world.tick_usage-t1)*0.01*world.tick_lag69 seconds")
 		else
 			testing("Overmap failed to create events.")
 			return FALSE
@@ -111,8 +111,8 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/T in subtypesof(/datum/map_template))
 		var/datum/map_template/template = T
-		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
+		if(!(initial(template.mappath))) // If it's69issing the actual path its probably a base type or being used for inheritence.
 			continue
 		template = new T()
-		map_templates[template.name] = template
+		map_templates69template.name69 = template
 	return TRUE

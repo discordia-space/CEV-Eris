@@ -14,44 +14,44 @@
 	icon_state = "bullet"
 	density = TRUE
 	unacidable = TRUE
-	anchored = TRUE //There's a reason this is here, Mport. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
+	anchored = TRUE //There's a reason this is here,69port. God fucking damn it -Agouri. Find&Fix by Pete. The reason this is here is to stop the curving of emitter shots.
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	spawn_blacklisted = TRUE
-	spawn_frequency = 0
-	spawn_tags = null
+	spawn_fre69uency = 0
+	spawn_tags =69ull
 	style_damage = 13 // stylish people can dodge lots of projectiles
-	var/bumped = FALSE		//Prevents it from hitting more than one guy at once
+	var/bumped = FALSE		//Prevents it from hitting69ore than one guy at once
 	var/hitsound_wall = "ricochet"
-	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it makes when it hits a mob. It's a list so you can put multiple hit sounds there.
+	var/list/mob_hit_sound = list('sound/effects/gore/bullethit2.ogg', 'sound/effects/gore/bullethit3.ogg') //Sound it69akes when it hits a69ob. It's a list so you can put69ultiple hit sounds there.
 	var/def_zone = ""	//Aiming at
-	var/mob/firer = null//Who shot it
-	var/silenced = FALSE	//Attack message
-	var/yo = null
-	var/xo = null
-	var/current = null
-	var/shot_from = "" // name of the object which shot us
-	var/atom/original = null // the target clicked (not necessarily where the projectile is headed). Should probably be renamed to 'target' or something.
-	var/turf/starting = null // the projectile's starting turf
-	var/turf/last_interact = null // the last turf where def_zone calculation took place
+	var/mob/firer =69ull//Who shot it
+	var/silenced = FALSE	//Attack69essage
+	var/yo =69ull
+	var/xo =69ull
+	var/current =69ull
+	var/shot_from = "" //69ame of the object which shot us
+	var/atom/original =69ull // the target clicked (not69ecessarily where the projectile is headed). Should probably be renamed to 'target' or something.
+	var/turf/starting =69ull // the projectile's starting turf
+	var/turf/last_interact =69ull // the last turf where def_zone calculation took place
 	var/list/permutated = list() // we've passed through these atoms, don't try to hit them again
 
 	var/p_x = 16
 	var/p_y = 16 // the pixel location of the tile that the player clicked. Default is the center
 
-	var/nocap_structures = FALSE // wether or not this projectile can circumvent the damage cap you can do to walls and doors in one hit. Also increases the structure damage done to walls by 300%
+	var/nocap_structures = FALSE // wether or69ot this projectile can circumvent the damage cap you can do to walls and doors in one hit. Also increases the structure damage done to walls by 300%
 	var/can_ricochet = FALSE // defines if projectile can or cannot ricochet.
-	var/ricochet_id = 0 // if the projectile ricochets, it gets its unique id in order to process iteractions with adjacent walls correctly.
-	var/ricochet_ability = 1 // multiplier for how much it can ricochet, modified by the bullet blender weapon mod
+	var/ricochet_id = 0 // if the projectile ricochets, it gets its uni69ue id in order to process iteractions with adjacent walls correctly.
+	var/ricochet_ability = 1 //69ultiplier for how69uch it can ricochet,69odified by the bullet blender weapon69od
 
 	var/list/damage_types = list(BRUTE = 10) //BRUTE, BURN, TOX, OXY, CLONE, HALLOSS -> int are the only things that should be in here
 	var/nodamage = FALSE //Determines if the projectile will skip any damage inflictions
-	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to mobs it hits, and other damage will be ignored
+	var/taser_effect = FALSE //If set then the projectile will apply it's agony damage using stun_effect_act() to69obs it hits, and other damage will be ignored
 	var/check_armour = ARMOR_BULLET //Defines what armor to use when it hits things. Full list could be found at defines\damage_organs.dm
 	var/projectile_type = /obj/item/projectile
 	var/penetrating = 0 //If greater than zero, the projectile will pass through dense objects as specified by on_penetrate()
 	var/kill_count = 50 //This will de-increment every process(). When 0, it will delete the projectile.
-	var/base_spreading = 90 // higher value means better chance to hit here. derp.
+	var/base_spreading = 90 // higher69alue69eans better chance to hit here. derp.
 	var/spreading_step = 15
 	var/projectile_accuracy = 1
 
@@ -64,13 +64,13 @@
 	var/eyeblur = 0
 	var/drowsy = 0
 	var/agony = 0
-	var/embed = 0 // whether or not the projectile can embed itself in the mob
+	var/embed = 0 // whether or69ot the projectile can embed itself in the69ob
 	var/knockback = 0
 
 	var/hitscan = FALSE		// whether the projectile should be hitscan
 
-	var/step_delay = 0.8	// the delay between iterations if not a hitscan projectile
-							// This thing right here goes to sleep(). We should not send non decimal things to sleep(),
+	var/step_delay = 0.8	// the delay between iterations if69ot a hitscan projectile
+							// This thing right here goes to sleep(). We should69ot send69on decimal things to sleep(),
 							// but it was doing it for a while, it works, and this whole shit should be rewriten or ported from another codebase.
 
 	// effect types to be used
@@ -84,23 +84,23 @@
 	var/obj/effect/attached_effect
 	var/proj_sound
 
-	var/proj_color //If defined, is used to change the muzzle, tracer, and impact icon colors through Blend()
+	var/proj_color //If defined, is used to change the69uzzle, tracer, and impact icon colors through Blend()
 
 	var/datum/plot_vector/trajectory	// used to plot the path of the projectile
 	var/datum/vector_loc/location		// current location of the projectile in pixel space
-	var/matrix/effect_transform			// matrix to rotate and scale projectile effects - putting it here so it doesn't
-										//  have to be recreated multiple times
+	var/matrix/effect_transform			//69atrix to rotate and scale projectile effects - putting it here so it doesn't
+										//  have to be recreated69ultiple times
 
 
 /obj/item/projectile/is_hot()
-	if (damage_types[BURN])
-		return damage_types[BURN] * heat
+	if (damage_types69BURN69)
+		return damage_types69BURN69 * heat
 
 /obj/item/projectile/proc/get_total_damage()
 	var/val = 0
 	for(var/i in damage_types)
-		val += damage_types[i]
-	return val
+		val += damage_types69i69
+	return69al
 
 /obj/item/projectile/proc/is_halloss()
 	for(var/i in damage_types)
@@ -110,42 +110,42 @@
 
 /obj/item/projectile/multiply_projectile_damage(newmult)
 	for(var/i in damage_types)
-		damage_types[i] *= newmult
+		damage_types69i69 *=69ewmult
 
 /obj/item/projectile/multiply_projectile_penetration(newmult)
-	armor_penetration = initial(armor_penetration) * newmult
+	armor_penetration = initial(armor_penetration) *69ewmult
 
 /obj/item/projectile/multiply_pierce_penetration(newmult)
-	penetrating = initial(penetrating) + newmult
+	penetrating = initial(penetrating) +69ewmult
 
 /obj/item/projectile/multiply_ricochet(newmult)
-	ricochet_ability = initial(ricochet_ability) + newmult
+	ricochet_ability = initial(ricochet_ability) +69ewmult
 
 /obj/item/projectile/multiply_projectile_step_delay(newmult)
 	if(!hitscan)
-		step_delay = initial(step_delay) * newmult
+		step_delay = initial(step_delay) *69ewmult
 
 /obj/item/projectile/multiply_projectile_agony(newmult)
-	agony = initial(agony) * newmult
+	agony = initial(agony) *69ewmult
 
 /obj/item/projectile/proc/multiply_projectile_accuracy(newmult)
-	projectile_accuracy = initial(projectile_accuracy) * newmult
+	projectile_accuracy = initial(projectile_accuracy) *69ewmult
 
 /obj/item/projectile/proc/adjust_damages(var/list/newdamages)
 	if(!newdamages.len)
 		return
-	for(var/damage_type in newdamages)
+	for(var/damage_type in69ewdamages)
 		if(damage_type == IRRADIATE)
-			irradiate += newdamages[IRRADIATE]
+			irradiate +=69ewdamages69IRRADIATE69
 			continue
-		damage_types[damage_type] += newdamages[damage_type]
+		damage_types69damage_type69 +=69ewdamages69damage_type69
 
 /obj/item/projectile/proc/adjust_ricochet(noricochet)
 	if(noricochet)
 		can_ricochet = FALSE
 		return
 
-/obj/item/projectile/proc/on_hit(atom/target, def_zone = null)
+/obj/item/projectile/proc/on_hit(atom/target, def_zone =69ull)
 	if(!isliving(target))	return 0
 	if(isanimal(target))	return 0
 	var/mob/living/L = target
@@ -157,36 +157,36 @@
     impact_effect(effect_transform)
     if(luminosity_ttl && attached_effect)
         spawn(luminosity_ttl)
-        qdel(attached_effect)
+        69del(attached_effect)
 
     if(!ismob(A))
         playsound(src, hitsound_wall, 50, 1, -2)
     return
 
-//Checks if the projectile is eligible for embedding. Not that it necessarily will.
+//Checks if the projectile is eligible for embedding.69ot that it69ecessarily will.
 /obj/item/projectile/proc/can_embed()
-	//embed must be enabled and damage type must be brute
-	if(!embed || damage_types[BRUTE] <= 0)
+	//embed69ust be enabled and damage type69ust be brute
+	if(!embed || damage_types69BRUTE69 <= 0)
 		return FALSE
 	return TRUE
 
 /obj/item/projectile/proc/get_structure_damage()
-	return damage_types[BRUTE] + damage_types[BURN]
+	return damage_types69BRUTE69 + damage_types69BURN69
 
-//return 1 if the projectile should be allowed to pass through after all, 0 if not.
+//return 1 if the projectile should be allowed to pass through after all, 0 if69ot.
 /obj/item/projectile/proc/check_penetrate(atom/A)
 	return TRUE
 
-/obj/item/projectile/proc/check_fire(atom/target as mob, mob/living/user as mob)  //Checks if you can hit them or not.
+/obj/item/projectile/proc/check_fire(atom/target as69ob,69ob/living/user as69ob)  //Checks if you can hit them or69ot.
 	check_trajectory(target, user, pass_flags, flags)
 
-//sets the click point of the projectile using mouse input params
+//sets the click point of the projectile using69ouse input params
 /obj/item/projectile/proc/set_clickpoint(params)
 	var/list/mouse_control = params2list(params)
-	if(mouse_control["icon-x"])
-		p_x = text2num(mouse_control["icon-x"])
-	if(mouse_control["icon-y"])
-		p_y = text2num(mouse_control["icon-y"])
+	if(mouse_control69"icon-x"69)
+		p_x = text2num(mouse_control69"icon-x"69)
+	if(mouse_control69"icon-y"69)
+		p_y = text2num(mouse_control69"icon-y"69)
 
 //called to launch a projectile
 /obj/item/projectile/proc/launch(atom/target, target_zone, x_offset=0, y_offset=0, angle_offset=0, proj_sound)
@@ -198,7 +198,7 @@
 	if(targloc == curloc) //Shooting something in the same turf
 		target.bullet_act(src, target_zone)
 		on_impact(target)
-		qdel(src)
+		69del(src)
 		return FALSE
 
 	if(proj_sound)
@@ -214,10 +214,10 @@
 	return FALSE
 
 //called to launch a projectile from a gun
-/obj/item/projectile/proc/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
+/obj/item/projectile/proc/launch_from_gun(atom/target,69ob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
 	if(user == target) //Shooting yourself
 		user.bullet_act(src, target_zone)
-		qdel(src)
+		69del(src)
 		return FALSE
 
 	loc = get_turf(user)
@@ -236,14 +236,14 @@
 	return launch(target, target_zone, x_offset, y_offset, angle_offset)
 
 //Used to change the direction of the projectile in flight.
-/obj/item/projectile/proc/redirect(new_x, new_y, atom/starting_loc, mob/new_firer)
-	var/turf/new_target = locate(new_x, new_y, src.z)
+/obj/item/projectile/proc/redirect(new_x,69ew_y, atom/starting_loc,69ob/new_firer)
+	var/turf/new_target = locate(new_x,69ew_y, src.z)
 
-	original = new_target
+	original =69ew_target
 	if(new_firer)
 		firer = src
 
-	setup_trajectory(starting_loc, new_target)
+	setup_trajectory(starting_loc,69ew_target)
 
 /obj/item/projectile/proc/istargetloc(mob/living/target_mob)
 	if(target_mob && original)
@@ -262,10 +262,10 @@
 /obj/item/projectile/proc/check_hit_zone(turf/target_turf, distance)
 	var/hit_zone = check_zone(def_zone)
 	if(hit_zone)
-		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later, it is more likely to hit the same part
+		def_zone = hit_zone //set def_zone, so if the projectile ends up hitting someone else later, it is69ore likely to hit the same part
 		if(def_zone)
-			var/spread = max(base_spreading - (spreading_step * distance), 0)
-			var/aim_hit_chance = max(0, projectile_accuracy)
+			var/spread =69ax(base_spreading - (spreading_step * distance), 0)
+			var/aim_hit_chance =69ax(0, projectile_accuracy)
 
 			if(!prob(aim_hit_chance))
 				def_zone = ran_zone(def_zone,spread)
@@ -273,8 +273,8 @@
 		return TRUE
 	return FALSE
 
-//Called when the projectile intercepts a mob. Returns 1 if the projectile hit the mob, 0 if it missed and should keep flying.
-/obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
+//Called when the projectile intercepts a69ob. Returns 1 if the projectile hit the69ob, 0 if it69issed and should keep flying.
+/obj/item/projectile/proc/attack_mob(mob/living/target_mob, distance,69iss_modifier=0)
 	if(!istype(target_mob))
 		return
 
@@ -290,30 +290,30 @@
 			for(S in get_both_hands(C))
 				if(S && S.block_bullet(C, src, def_zone))
 					on_hit(S,def_zone)
-					qdel(src)
+					69del(src)
 					return TRUE
 				break //Prevents shield dual-wielding
-	//		S = C.get_equipped_item(slot_back)
+	//		S = C.get_e69uipped_item(slot_back)
 	//		if(S && S.block_bullet(C, src, def_zone))
 	//			on_hit(S,def_zone)
-	//			qdel(src)
+	//			69del(src)
 	//			return TRUE
 
 		result = target_mob.bullet_act(src, def_zone)
-		var/aim_hit_chance = max(0, projectile_accuracy)
-		if(prob(base_miss_chance[def_zone] * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to not get hit, if the shooter has 50 vig the chance to miss will be reduced by 50% to 22.5%
+		var/aim_hit_chance =69ax(0, projectile_accuracy)
+		if(prob(base_miss_chance69def_zone69 * ((100 - (aim_hit_chance * 2)) / 100)))	//For example: the head has a base 45% chance to69ot get hit, if the shooter has 5069ig the chance to69iss will be reduced by 50% to 22.5%
 			result = PROJECTILE_FORCE_MISS
 
 	if(result == PROJECTILE_FORCE_MISS)
 		if(!silenced)
-			visible_message(SPAN_NOTICE("\The [src] misses [target_mob] narrowly!"))
+			visible_message(SPAN_NOTICE("\The 69src6969isses 69target_mob6969arrowly!"))
 		return FALSE
 
-	//hit messages
+	//hit69essages
 	if(silenced)
-		to_chat(target_mob, SPAN_DANGER("You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
+		to_chat(target_mob, SPAN_DANGER("You've been hit in the 69parse_zone(def_zone)69 by \the 69src69!"))
 	else
-		visible_message(SPAN_DANGER("\The [target_mob] is hit by \the [src] in the [parse_zone(def_zone)]!"))//X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
+		visible_message(SPAN_DANGER("\The 69target_mob69 is hit by \the 69src69 in the 69parse_zone(def_zone)69!"))//X has fired Y is69ow given by the guns so you cant tell who shot you if you could69ot see the shooter
 
 	playsound(target_mob, pick(mob_hit_sound), 40, 1)
 
@@ -321,14 +321,14 @@
 	if(!no_attack_log)
 		if(ismob(firer))
 
-			var/attacker_message = "shot with \a [src.type]"
-			var/victim_message = "shot with \a [src.type]"
-			var/admin_message = "shot (\a [src.type])"
+			var/attacker_message = "shot with \a 69src.type69"
+			var/victim_message = "shot with \a 69src.type69"
+			var/admin_message = "shot (\a 69src.type69)"
 
-			admin_attack_log(firer, target_mob, attacker_message, victim_message, admin_message)
+			admin_attack_log(firer, target_mob, attacker_message,69ictim_message, admin_message)
 		else
-			target_mob.attack_log += "\[[time_stamp()]\] <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[target_mob]/[target_mob.ckey]</b> with <b>\a [src]</b>"
-			msg_admin_attack("UNKNOWN shot [target_mob] ([target_mob.ckey]) with \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target_mob.x];Y=[target_mob.y];Z=[target_mob.z]'>JMP</a>)")
+			target_mob.attack_log += "\6969time_stamp()69\69 <b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>69target_mob69/69target_mob.ckey69</b> with <b>\a 69src69</b>"
+			msg_admin_attack("UNKNOWN shot 69target_mob69 (69target_mob.ckey69) with \a 69src69 (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69target_mob.x69;Y=69target_mob.y69;Z=69target_mob.z69'>JMP</a>)")
 
 	//sometimes bullet_act() will want the projectile to continue flying
 	if (result == PROJECTILE_CONTINUE)
@@ -337,7 +337,7 @@
 	if(target_mob.mob_classification & CLASSIFICATION_ORGANIC)
 		var/turf/target_loca = get_turf(target_mob)
 		var/mob/living/L = target_mob
-		if(damage_types[BRUTE] > 10)
+		if(damage_types69BRUTE69 > 10)
 			var/splatter_dir = dir
 			if(starting)
 				splatter_dir = get_dir(starting, target_loca)
@@ -358,7 +358,7 @@
 
 	return TRUE
 
-/obj/item/projectile/Bump(atom/A as mob|obj|turf|area, forced = FALSE)
+/obj/item/projectile/Bump(atom/A as69ob|obj|turf|area, forced = FALSE)
 	if(A == src)
 		return FALSE
 	if(A == firer)
@@ -384,12 +384,12 @@
 	if(ismob(A))
 		var/mob/M = A
 		if(isliving(A))
-			//if they have a neck grab on someone, that person gets hit instead
-			var/obj/item/grab/G = locate() in M
+			//if they have a69eck grab on someone, that person gets hit instead
+			var/obj/item/grab/G = locate() in69
 			if(G && G.state >= GRAB_NECK)
-				visible_message(SPAN_DANGER("\The [M] uses [G.affecting] as a shield!"))
+				visible_message(SPAN_DANGER("\The 69M69 uses 69G.affecting69 as a shield!"))
 				if(Bump(G.affecting, TRUE))
-					return //If Bump() returns 0 (keep going) then we continue on to attack M.
+					return //If Bump() returns 0 (keep going) then we continue on to attack69.
 			passthrough = !attack_mob(M, distance)
 		else
 			passthrough = FALSE //so ghosts don't stop bullets
@@ -401,7 +401,7 @@
 			for(var/mob/living/M in A)
 				attack_mob(M, distance)
 
-	//penetrating projectiles can pass through things that otherwise would not let them
+	//penetrating projectiles can pass through things that otherwise would69ot let them
 	if(!passthrough && penetrating > 0)
 		if(check_penetrate(A))
 			passthrough = TRUE
@@ -411,13 +411,13 @@
 	if(passthrough)
 		//move ourselves onto A so we can continue on our way
 		if (!tempLoc)
-			qdel(src)
+			69del(src)
 			return TRUE
 
 		loc = tempLoc
 		if (A)
 			permutated.Add(A)
-		bumped = FALSE //reset bumped variable!
+		bumped = FALSE //reset bumped69ariable!
 		return FALSE
 
 	//stop flying
@@ -427,7 +427,7 @@
 	invisibility = 101
 
 
-	qdel(src)
+	69del(src)
 	return TRUE
 
 /obj/item/projectile/ex_act()
@@ -442,19 +442,19 @@
 	spawn while(src && src.loc)
 		if(kill_count-- < 1)
 			on_impact(src.loc) //for any final impact behaviours
-			qdel(src)
+			69del(src)
 			return
 		if((!( current ) || loc == current))
-			current = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z)
+			current = locate(min(max(x + xo, 1), world.maxx),69in(max(y + yo, 1), world.maxy), z)
 		if((x == 1 || x == world.maxx || y == 1 || y == world.maxy))
-			qdel(src)
+			69del(src)
 			return
 
 		trajectory.increment()	// increment the current location
 		location = trajectory.return_location(location)		// update the locally stored location data
 
 		if(!location)
-			qdel(src)	// if it's left the world... kill it
+			69del(src)	// if it's left the world... kill it
 			return
 
 		before_move()
@@ -476,7 +476,7 @@
 			luminosity_effect()
 
 		if(!hitscan)
-			sleep(step_delay)	//add delay between movement iterations if it's not a hitscan weapon
+			sleep(step_delay)	//add delay between69ovement iterations if it's69ot a hitscan weapon
 
 /obj/item/projectile/proc/before_move()
 	return FALSE
@@ -490,15 +490,15 @@
 	xo = targloc.x - startloc.x + x_offset
 
 	// plot the initial trajectory
-	trajectory = new()
+	trajectory =69ew()
 	trajectory.setup(starting, original, pixel_x, pixel_y, angle_offset)
 
-	// generate this now since all visual effects the projectile makes can use it
-	effect_transform = new()
+	// generate this69ow since all69isual effects the projectile69akes can use it
+	effect_transform =69ew()
 	effect_transform.Scale(trajectory.return_hypotenuse(), 1)
 	effect_transform.Turn(-trajectory.return_angle())		//no idea why this has to be inverted, but it works
 
-	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 90 needs to be added, but it works
+	transform = turn(transform, -(trajectory.return_angle() + 90)) //no idea why 9069eeds to be added, but it works
 
 /obj/item/projectile/proc/muzzle_effect(var/matrix/T)
 	//This can happen when firing inside a wall, safety check
@@ -509,11 +509,11 @@
 		return
 
 	if(ispath(muzzle_type))
-		var/obj/effect/projectile/M = new muzzle_type(get_turf(src))
+		var/obj/effect/projectile/M =69ew69uzzle_type(get_turf(src))
 
 		if(istype(M))
 			if(proj_color)
-				var/icon/I = new(M.icon, M.icon_state)
+				var/icon/I =69ew(M.icon,69.icon_state)
 				I.Blend(proj_color)
 				M.icon = I
 			M.set_transform(T)
@@ -528,18 +528,18 @@
 		return
 
 	if(ispath(tracer_type))
-		var/obj/effect/projectile/P = new tracer_type(location.loc)
+		var/obj/effect/projectile/P =69ew tracer_type(location.loc)
 
 		if(istype(P))
 			if(proj_color)
-				var/icon/I = new(P.icon, P.icon_state)
+				var/icon/I =69ew(P.icon, P.icon_state)
 				I.Blend(proj_color)
 				P.icon = I
 			P.set_transform(M)
 			P.pixel_x = location.pixel_x
 			P.pixel_y = location.pixel_y
 			if(!hitscan)
-				P.activate(step_delay)	//if not a hitscan projectile, remove after a single delay
+				P.activate(step_delay)	//if69ot a hitscan projectile, remove after a single delay
 			else
 				P.activate()
 
@@ -551,7 +551,7 @@
         attached_effect.Move(src.loc)
 
     else if(luminosity_range && luminosity_power && luminosity_color)
-        attached_effect = new /obj/effect/effect/light(src.loc, luminosity_range, luminosity_power, luminosity_color)
+        attached_effect =69ew /obj/effect/effect/light(src.loc, luminosity_range, luminosity_power, luminosity_color)
 
 /obj/item/projectile/proc/impact_effect(var/matrix/M)
 	//This can happen when firing inside a wall, safety check
@@ -559,11 +559,11 @@
 		return
 
 	if(ispath(impact_type))
-		var/obj/effect/projectile/P = new impact_type(location.loc)
+		var/obj/effect/projectile/P =69ew impact_type(location.loc)
 
 		if(istype(P))
 			if(proj_color)
-				var/icon/I = new(P.icon, P.icon_state)
+				var/icon/I =69ew(P.icon, P.icon_state)
 				I.Blend(proj_color)
 				P.icon = I
 			P.set_transform(M)
@@ -573,12 +573,12 @@
 
 //"Tracing" projectile
 /obj/item/projectile/test //Used to see if you can hit them.
-	invisibility = 101 //Nope!  Can't see me!
-	yo = null
-	xo = null
-	var/result = 0 //To pass the message back to the gun.
+	invisibility = 101 //Nope!  Can't see69e!
+	yo =69ull
+	xo =69ull
+	var/result = 0 //To pass the69essage back to the gun.
 
-/obj/item/projectile/test/Bump(atom/A as mob|obj|turf|area, forced)
+/obj/item/projectile/test/Bump(atom/A as69ob|obj|turf|area, forced)
 	if(A == firer)
 		loc = A.loc
 		return //cannot shoot yourself
@@ -607,7 +607,7 @@
 		if(result)
 			return (result - 1)
 		if((!( targloc ) || loc == targloc))
-			targloc = locate(min(max(x + xo, 1), world.maxx), min(max(y + yo, 1), world.maxy), z) //Finding the target turf at map edge
+			targloc = locate(min(max(x + xo, 1), world.maxx),69in(max(y + yo, 1), world.maxy), z) //Finding the target turf at69ap edge
 
 		trajectory.increment()	// increment the current location
 		location = trajectory.return_location(location)		// update the locally stored location data
@@ -622,12 +622,12 @@
 			if(istype(M))
 				return 1
 
-//Helper proc to check if you can hit them or not.
-/proc/check_trajectory(atom/target as mob|obj, atom/firer as mob|obj, var/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
+//Helper proc to check if you can hit them or69ot.
+/proc/check_trajectory(atom/target as69ob|obj, atom/firer as69ob|obj,69ar/pass_flags=PASSTABLE|PASSGLASS|PASSGRILLE, flags=null)
 	if(!istype(target) || !istype(firer))
 		return 0
 
-	var/obj/item/projectile/test/trace = new /obj/item/projectile/test(get_turf(firer)) //Making the test....
+	var/obj/item/projectile/test/trace =69ew /obj/item/projectile/test(get_turf(firer)) //Making the test....
 
 	//Set the flags and pass flags to that of the real projectile...
 	if(!isnull(flags))
@@ -635,11 +635,11 @@
 	trace.pass_flags = pass_flags
 
 	var/output = trace.launch(target) //Test it!
-	qdel(trace) //No need for it anymore
+	69del(trace) //No69eed for it anymore
 	return output //Send it back to the gun!
 
-/proc/get_proj_icon_by_color(var/obj/item/projectile/P, var/color)
-	var/icon/I = new(P.icon, P.icon_state)
+/proc/get_proj_icon_by_color(var/obj/item/projectile/P,69ar/color)
+	var/icon/I =69ew(P.icon, P.icon_state)
 	I.Blend(color)
 	return I
 

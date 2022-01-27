@@ -7,29 +7,29 @@
 	spawn_tags = SPAWN_TAG_ORGAN
 
 	// Strings.
-	var/surgery_name					// A special name that replaces item name in surgery messages
+	var/surgery_name					// A special69ame that replaces item69ame in surgery69essages
 	var/organ_tag = "organ"				// Unique identifier.
 	var/parent_organ_base = BP_CHEST	// Base organ holding this object.
 	var/dead_icon
 
 	// Status tracking.
-	var/status = NONE					// Various status flags
-	var/vital = FALSE					// Lose a vital limb, die immediately.
+	var/status =69ONE					//69arious status flags
+	var/vital = FALSE					// Lose a69ital limb, die immediately.
 	var/damage = 0						// Current damage to the organ
 
-	// Type of modification, (If you ever need to apply several types make this a bit flag)
-	var/nature = MODIFICATION_ORGANIC
+	// Type of69odification, (If you ever69eed to apply several types69ake this a bit flag)
+	var/nature =69ODIFICATION_ORGANIC
 
 	// Reference data.
-	var/mob/living/carbon/human/owner	// Current mob owning the organ.
+	var/mob/living/carbon/human/owner	// Current69ob owning the organ.
 	var/obj/item/organ/external/parent	// A limb the organ is currently attached to or installed in.
-	var/list/transplant_data			// Transplant match data.
+	var/list/transplant_data			// Transplant69atch data.
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
 	var/datum/dna/dna
 	var/datum/species/species
 
-	// Damage vars.
+	// Damage69ars.
 	var/min_bruised_damage = 10			// Damage before considered bruised
 	var/min_broken_damage = 30			// Damage before becoming broken
 	var/max_damage						// Damage cap
@@ -42,7 +42,7 @@
 		removed()
 
 	QDEL_NULL(dna)
-	species = null
+	species =69ull
 	STOP_PROCESSING(SSobj, src)
 
 	return ..()
@@ -54,19 +54,19 @@
 	..(holder)
 	create_reagents(5)
 	if(!max_damage)
-		max_damage = min_broken_damage * 2
+		max_damage =69in_broken_damage * 2
 
 	if(istype(holder))
-		species = all_species[SPECIES_HUMAN]
+		species = all_species69SPECIES_HUMAN69
 		if(holder.dna)
 			dna = holder.dna.Clone()
-			species = all_species[dna.species]
+			species = all_species69dna.species69
 
 			if(!blood_DNA)
 				blood_DNA = list()
-			blood_DNA[dna.unique_enzymes] = dna.b_type
+			blood_DNA69dna.unique_enzymes69 = dna.b_type
 		else
-			log_debug("[src] at [loc] spawned without a proper DNA.")
+			log_debug("69src69 at 69loc69 spawned without a proper DNA.")
 
 		if(parent_organ_base)
 			replaced(holder.get_organ(parent_organ_base))
@@ -75,11 +75,11 @@
 
 // Surgery hooks
 /obj/item/organ/attack_self(mob/living/user)
-	if(do_surgery(user, null))
+	if(do_surgery(user,69ull))
 		return
 	return ..()
 
-/obj/item/organ/attackby(obj/item/I, mob/living/user)
+/obj/item/organ/attackby(obj/item/I,69ob/living/user)
 	if(do_surgery(user, I))
 		return
 	return ..()
@@ -87,32 +87,32 @@
 
 /obj/item/organ/proc/set_dna(var/datum/dna/new_dna)
 	if(new_dna)
-		dna = new_dna.Clone()
+		dna =69ew_dna.Clone()
 		if(!blood_DNA)
 			blood_DNA = list()
 		blood_DNA.Cut()
-		blood_DNA[dna.unique_enzymes] = dna.b_type
-		species = all_species[new_dna.species]
+		blood_DNA69dna.unique_enzymes69 = dna.b_type
+		species = all_species69new_dna.species69
 
 /obj/item/organ/proc/die()
 	if(BP_IS_ROBOTIC(src))
 		return
-	damage = max_damage
+	damage =69ax_damage
 	status |= ORGAN_DEAD
 	STOP_PROCESSING(SSobj, src)
 	death_time = world.time
 	if(dead_icon)
 		icon_state = dead_icon
-	if(owner && vital && owner.stat != DEAD)
+	if(owner &&69ital && owner.stat != DEAD)
 		owner.death()
 
 /obj/item/organ/get_item_cost()
-	if((status & ORGAN_DEAD) || species != all_species[SPECIES_HUMAN]) //No dead or monkey organs!
+	if((status & ORGAN_DEAD) || species != all_species69SPECIES_HUMAN69) //No dead or69onkey organs!
 		return 0
 	return ..()
 
 
-// Checks if the organ is in a freezer, an MMI or a stasis bag - it will not be processed then
+// Checks if the organ is in a freezer, an69MI or a stasis bag - it will69ot be processed then
 /obj/item/organ/proc/is_in_stasis()
 	if(istype(loc, /obj/item/device/mmi) || istype(loc, /mob/living/simple_animal/spider_core))
 		return TRUE
@@ -126,12 +126,12 @@
 /obj/item/organ/Process()
 
 	if(loc != owner)
-		owner = null
+		owner =69ull
 
-	//dead already, no need for more processing
+	//dead already,69o69eed for69ore processing
 	if(status & ORGAN_DEAD)
 		return
-	// Don't process if we're in a freezer, an MMI or a stasis bag.or a freezer or something I dunno
+	// Don't process if we're in a freezer, an69MI or a stasis bag.or a freezer or something I dunno
 	if(is_in_stasis())
 		return
 
@@ -147,22 +147,22 @@
 				reagents.remove_reagent("blood",0.1)
 				blood_splatter(src,B,1)
 		if(config.organs_decay) damage += rand(1,3)
-		if(damage >= max_damage)
-			damage = max_damage
+		if(damage >=69ax_damage)
+			damage =69ax_damage
 		germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_TWO)
 			germ_level += rand(2,6)
 		if(germ_level >= INFECTION_LEVEL_THREE)
 			die()
 
-	else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from moving and doing their bad stuffs
+	else if(owner && owner.bodytemperature >= 170)	//cryo stops germs from69oving and doing their bad stuffs
 		//** Handle antibiotics and curing infections
 		handle_antibiotics()
 		handle_rejection()
 		handle_germ_effects()
 
-	//check if we've hit max_damage
-	if(damage >= max_damage)
+	//check if we've hit69ax_damage
+	if(damage >=69ax_damage)
 		die()
 
 /obj/item/organ/examine(mob/user)
@@ -178,12 +178,12 @@
 		germ_level--
 
 	if (germ_level >= INFECTION_LEVEL_ONE/2)
-		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 15 minutes
+		//aiming for germ level to go from ambient to INFECTION_LEVEL_TWO in an average of 1569inutes
 		if(antibiotics < 5 && prob(round(germ_level/6)))
 			germ_level++
 
 	if(germ_level >= INFECTION_LEVEL_ONE)
-		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
+		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)*69in(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
 
 	if (germ_level >= INFECTION_LEVEL_TWO)
@@ -196,7 +196,7 @@
 
 /obj/item/organ/proc/handle_rejection()
 	// Process unsuitable transplants. TODO: consider some kind of
-	// immunosuppressant that changes transplant data to make it match.
+	// immunosuppressant that changes transplant data to69ake it69atch.
 	if(dna)
 		if(!rejecting)
 			if(blood_incompatible(dna.b_type, owner.dna.b_type, species, owner.species))
@@ -225,10 +225,10 @@
 	return damage > 0
 
 /obj/item/organ/proc/is_bruised()
-	return damage >= min_bruised_damage
+	return damage >=69in_bruised_damage
 
 /obj/item/organ/proc/is_broken()
-	return (damage >= min_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN))
+	return (damage >=69in_broken_damage || (status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN))
 
 //Germs
 /obj/item/organ/proc/handle_antibiotics()
@@ -242,35 +242,35 @@
 	if (germ_level < INFECTION_LEVEL_ONE)
 		germ_level = 0	//cure instantly
 	else if (germ_level < INFECTION_LEVEL_TWO)
-		germ_level -= 6	//at germ_level == 500, this should cure the infection in a minute
+		germ_level -= 6	//at germ_level == 500, this should cure the infection in a69inute
 	else
-		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 5 minutes
+		germ_level -= 2 //at germ_level == 1000, this will cure the infection in 569inutes
 
 //Adds autopsy data for used_weapon.
-/obj/item/organ/proc/add_autopsy_data(var/used_weapon, var/damage)
-	var/datum/autopsy_data/W = autopsy_data[used_weapon]
+/obj/item/organ/proc/add_autopsy_data(var/used_weapon,69ar/damage)
+	var/datum/autopsy_data/W = autopsy_data69used_weapon69
 	if(!W)
-		W = new()
+		W =69ew()
 		W.weapon = used_weapon
-		autopsy_data[used_weapon] = W
+		autopsy_data69used_weapon69 = W
 
 	W.hits += 1
 	W.damage += damage
 	W.time_inflicted = world.time
 
-//Note: external organs have their own version of this proc
-/obj/item/organ/proc/take_damage(amount, var/silent=0)
+//Note: external organs have their own69ersion of this proc
+/obj/item/organ/proc/take_damage(amount,69ar/silent=0)
 	if(BP_IS_ROBOTIC(src))
-		src.damage = between(0, src.damage + (amount * 0.8), max_damage)
+		src.damage = between(0, src.damage + (amount * 0.8),69ax_damage)
 	else
-		src.damage = between(0, src.damage + amount, max_damage)
+		src.damage = between(0, src.damage + amount,69ax_damage)
 
-		//only show this if the organ is not robotic
+		//only show this if the organ is69ot robotic
 		if(owner && parent && amount > 0 && !silent)
-			owner.custom_pain("Something inside your [parent.name] hurts a lot.", 1)
+			owner.custom_pain("Something inside your 69parent.name69 hurts a lot.", 1)
 
 /obj/item/organ/proc/bruise()
-	damage = max(damage, min_bruised_damage)
+	damage =69ax(damage,69in_bruised_damage)
 
 /obj/item/organ/emp_act(severity)
 	if(!BP_IS_ROBOTIC(src))
@@ -294,7 +294,7 @@
 	else if(istype(loc, /obj/item/organ/external))
 		return loc
 
-	return null
+	return69ull
 
 
 /obj/item/organ/proc/removed(mob/living/user)
@@ -306,7 +306,7 @@
 	else
 		forceMove(get_turf(src))
 
-	parent = null
+	parent =69ull
 
 	if(owner)
 		removed_mob(user)
@@ -314,16 +314,16 @@
 
 /obj/item/organ/proc/removed_mob(mob/living/user)
 	var/datum/reagent/organic/blood/organ_blood = locate(/datum/reagent/organic/blood) in reagents?.reagent_list
-	if(!organ_blood || !organ_blood.data["blood_DNA"])
+	if(!organ_blood || !organ_blood.data69"blood_DNA"69)
 		owner.vessel.trans_to(src, 5, 1, 1)
 
 	if(vital && !(owner.status_flags & REBUILDING_ORGANS) && owner.stat != DEAD)
 		if(user)
-			admin_attack_log(user, owner, "Removed a vital organ ([src])", "Had a a vital organ ([src]) removed.", "removed a vital organ ([src]) from")
+			admin_attack_log(user, owner, "Removed a69ital organ (69src69)", "Had a a69ital organ (69src69) removed.", "removed a69ital organ (69src69) from")
 		owner.death()
 
-	owner = null
-	rejecting = null
+	owner =69ull
+	rejecting =69ull
 
 	if(parent)
 		forceMove(parent)
@@ -348,13 +348,13 @@
 	var/datum/reagent/organic/blood/transplant_blood = locate(/datum/reagent/organic/blood) in reagents?.reagent_list
 	transplant_data = list()
 	if(!transplant_blood)
-		transplant_data["species"] =    owner.species.name
-		transplant_data["blood_type"] = owner.dna.b_type
-		transplant_data["blood_DNA"] =  owner.dna.unique_enzymes
+		transplant_data69"species"69 =    owner.species.name
+		transplant_data69"blood_type"69 = owner.dna.b_type
+		transplant_data69"blood_DNA"69 =  owner.dna.unique_enzymes
 	else
-		transplant_data["species"] =    transplant_blood.data["species"]
-		transplant_data["blood_type"] = transplant_blood.data["blood_type"]
-		transplant_data["blood_DNA"] =  transplant_blood.data["blood_DNA"]
+		transplant_data69"species"69 =    transplant_blood.data69"species"69
+		transplant_data69"blood_type"69 = transplant_blood.data69"blood_type"69
+		transplant_data69"blood_DNA"69 =  transplant_blood.data69"blood_DNA"69
 
 /obj/item/organ/proc/heal_damage(amount)
 	return
@@ -372,7 +372,7 @@
 	if(status & ORGAN_DEAD)
 		return FALSE
 
-	if(species && (species.flags & NO_PAIN))
+	if(species && (species.flags &69O_PAIN))
 		return FALSE
 
 	if(owner.stat >= UNCONSCIOUS)

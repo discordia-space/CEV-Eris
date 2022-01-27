@@ -1,4 +1,4 @@
-//The storage module allows a rig to be used as a sort of backpack, by using an internal storage compartment
+//The storage69odule allows a rig to be used as a sort of backpack, by using an internal storage compartment
 /obj/item/rig_module/storage
 	name = "internal storage compartment"
 	desc = "A storage container designed to be installed in a RIG suit. Allows a few items to be stored inside"
@@ -11,20 +11,20 @@
 	icon_state = "module"
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
-	//These vars will be passed onto the storage
+	//These69ars will be passed onto the storage
 	var/list/can_hold = list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/cant_hold = list(/obj/item/rig) //List of objects which this item can't store (in effect only if can_hold isn't set)
 	var/max_w_class = ITEM_SIZE_BULKY //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space = DEFAULT_HUGE_STORAGE * 0.7 //This is a entire satchel of storage 
 	var/storage_slots = null //The number of storage slots in this container.
 
-//Create the internal storage and pass on various parameters
+//Create the internal storage and pass on69arious parameters
 /obj/item/rig_module/storage/New()
 	container = new /obj/item/storage/internal(src)
 	container.can_hold = can_hold
 	container.cant_hold = cant_hold
-	container.max_w_class = max_w_class
-	container.max_storage_space = max_storage_space
+	container.max_w_class =69ax_w_class
+	container.max_storage_space =69ax_storage_space
 	container.storage_slots = storage_slots
 	container.master_item = src //If its installed immediately after creation this will get set to the rig in install proc
 	.=..()
@@ -32,21 +32,21 @@
 	Installation
 *****************************/
 //Installing stuff
-/obj/item/rig_module/storage/can_install(var/obj/item/rig/rig, var/mob/user, var/feedback = FALSE)
-	if (rig.storage) //If it already has a storage mod installed, then no adding another one
+/obj/item/rig_module/storage/can_install(var/obj/item/rig/rig,69ar/mob/user,69ar/feedback = FALSE)
+	if (rig.storage) //If it already has a storage69od installed, then no adding another one
 		if (user && feedback)
-			to_chat(user, SPAN_DANGER("The [rig] already has a storage module installed, you can't fit another one."))
+			to_chat(user, SPAN_DANGER("The 69rig69 already has a storage69odule installed, you can't fit another one."))
 		return FALSE
 	.=..()
 
 /obj/item/rig_module/storage/installed()
 	.=..()
-	holder.storage = src //Set ourselves as the storage mod
+	holder.storage = src //Set ourselves as the storage69od
 	container.master_item = holder //When its inside a rig, that rig is the thing we use for location checks
 
-/obj/item/rig_module/storage/uninstalled(var/obj/item/rig/former, var/mob/living/user)
+/obj/item/rig_module/storage/uninstalled(var/obj/item/rig/former,69ar/mob/living/user)
 	.=..()
-	former.storage = null //Unset the storage mod
+	former.storage = null //Unset the storage69od
 	container.master_item = src //When its outside a rig, use ourselves for location checks
 
 
@@ -62,18 +62,18 @@
 	return FALSE
 
 //This will return false if we're done, or true to tell us to keep going and call parent attackhand
-/obj/item/rig_module/storage/proc/handle_attack_hand(mob/user as mob)
+/obj/item/rig_module/storage/proc/handle_attack_hand(mob/user as69ob)
 	return container.handle_attack_hand(user)
 
-/obj/item/rig_module/storage/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/rig_module/storage/proc/handle_mousedrop(var/mob/user,69ar/atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 
 /*****************************
 	External handling
 *****************************/
-//The module can be used as a storage container even when not inside a rig
-/obj/item/rig_module/storage/attackby(obj/item/W as obj, mob/user as mob)
+//The69odule can be used as a storage container even when not inside a rig
+/obj/item/rig_module/storage/attackby(obj/item/W as obj,69ob/user as69ob)
 	.=..()
 	if (!.)
 		return accepts_item(W)
@@ -85,7 +85,7 @@
 	return ..()
 
 
-/obj/item/rig_module/storage/attack_hand(mob/user as mob)
+/obj/item/rig_module/storage/attack_hand(mob/user as69ob)
 	if (loc == user)
 		container.open(user)
 	else

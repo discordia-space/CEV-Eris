@@ -1,7 +1,7 @@
 /proc/issmall(A)
 	if(A && isliving(A))
 		var/mob/living/L = A
-		return L.mob_size <= MOB_SMALL
+		return L.mob_size <=69OB_SMALL
 	return 0
 
 /mob/living/proc/isSynthetic()
@@ -26,7 +26,7 @@
 proc/isdeaf(A)
 	if(isliving(A))
 		var/mob/living/M = A
-		return (M.sdisabilities & DEAF) || M.ear_deaf
+		return (M.sdisabilities & DEAF) ||69.ear_deaf
 	return 0
 
 /proc/hasorgans(A) // Fucking really??
@@ -39,7 +39,7 @@ proc/isdeaf(A)
 			return 1
 	return 0
 
-/proc/hassensorlevel(A, var/level)
+/proc/hassensorlevel(A,69ar/level)
 	var/mob/living/carbon/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
@@ -65,9 +65,9 @@ proc/isdeaf(A)
 	Miss Chance
 */
 
-//TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
+//TODO: Integrate defence zones and targeting body parts with the actual organ system,69ove these into organ definitions.
 
-//The base miss chance for the different defence zones
+//The base69iss chance for the different defence zones
 var/list/global/base_miss_chance = list(
 	BP_HEAD = 45,
 	BP_CHEST = 10,
@@ -78,8 +78,8 @@ var/list/global/base_miss_chance = list(
 	BP_R_ARM = 20
 	)
 
-//Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
-//Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
+//Used to weight organs when an organ is hit randomly (i.e.69ot a directed, aimed attack).
+//Also used to weight the protection69alue that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
 	BP_HEAD = 20,
 	BP_CHEST = 70,
@@ -99,8 +99,8 @@ var/list/global/organ_rel_size = list(
 			zone = BP_HEAD
 	return zone
 
-// Returns zone with a certain probability. If the probability fails, or no zone is specified, then a random body part is chosen.
-// Do not use this if someone is intentionally trying to hit a specific body part.
+// Returns zone with a certain probability. If the probability fails, or69o zone is specified, then a random body part is chosen.
+// Do69ot use this if someone is intentionally trying to hit a specific body part.
 /proc/ran_zone(zone, probability)
 	if (zone)
 		zone = check_zone(zone)
@@ -110,24 +110,24 @@ var/list/global/organ_rel_size = list(
 	var/ran_zone = zone
 	while (ran_zone == zone)
 		ran_zone = pick (
-			organ_rel_size[BP_HEAD]; BP_HEAD,
-			organ_rel_size[BP_CHEST]; BP_CHEST,
-			organ_rel_size[BP_GROIN]; BP_GROIN,
-			organ_rel_size[BP_L_ARM]; BP_L_ARM,
-			organ_rel_size[BP_R_ARM]; BP_R_ARM,
-			organ_rel_size[BP_L_LEG ]; BP_L_LEG ,
-			organ_rel_size[BP_R_LEG]; BP_R_LEG,
+			organ_rel_size69BP_HEAD69; BP_HEAD,
+			organ_rel_size69BP_CHEST69; BP_CHEST,
+			organ_rel_size69BP_GROIN69; BP_GROIN,
+			organ_rel_size69BP_L_ARM69; BP_L_ARM,
+			organ_rel_size69BP_R_ARM69; BP_R_ARM,
+			organ_rel_size69BP_L_LEG 69; BP_L_LEG ,
+			organ_rel_size69BP_R_LEG69; BP_R_LEG,
 		)
 
 	return ran_zone
 
-//Replaces some of the characters with *, used in whispers. pr = probability of no star.
+//Replaces some of the characters with *, used in whispers. pr = probability of69o star.
 //Will try to preserve HTML formatting. re_encode controls whether the returned text is HTML encoded outside tags.
 /proc/stars(n, pr = 25, re_encode = 1)
 	if (pr < 0)
-		return null
+		return69ull
 	else if (pr >= 100)
-		return n
+		return69
 
 	var/intag = 0
 	var/block = list()
@@ -141,7 +141,7 @@ var/list/global/organ_rel_size = list(
 		block += char
 		if(intag && (char == ">"))
 			intag = 0
-			. += block //We don't mess up html tags with stars
+			. += block //We don't69ess up html tags with stars
 			block = list()
 	. += (intag ? block : stars_no_html(JOINTEXT(block), pr, re_encode))
 	. = JOINTEXT(.)
@@ -175,13 +175,13 @@ var/list/global/organ_rel_size = list(
 			if(lowertext(newletter)=="a")	newletter="ah"
 			if(lowertext(newletter)=="c")	newletter="k"
 		switch(rand(1,15))
-			if(1,3,5,8)	newletter="[lowertext(newletter)]"
-			if(2,4,6,15)	newletter="[uppertext(newletter)]"
+			if(1,3,5,8)	newletter="69lowertext(newletter)69"
+			if(2,4,6,15)	newletter="69uppertext(newletter)69"
 			if(7)	newletter+="'"
-			//if(9,10)	newletter="<b>[newletter]</b>"
-			//if(11,12)	newletter="<big>[newletter]</big>"
-			//if(13)	newletter="<small>[newletter]</small>"
-		newphrase+="[newletter]";counter-=1
+			//if(9,10)	newletter="<b>69newletter69</b>"
+			//if(11,12)	newletter="<big>69newletter69</big>"
+			//if(13)	newletter="<small>69newletter69</small>"
+		newphrase+="69newletter69";counter-=1
 	return html_encode(newphrase)
 
 /proc/stutter(n)
@@ -189,24 +189,24 @@ var/list/global/organ_rel_size = list(
 	n = length(n)//length of the entire word
 	var/list/t = list()
 	var/p = 1//1 is the start of any word
-	while(p <= n)//while P, which starts at 1 is less or equal to N which is the length.
+	while(p <=69)//while P, which starts at 1 is less or equal to69 which is the length.
 		var/n_letter = copytext_char(te, p, p + 1)//copies text from a certain distance. In this case, only one letter at a time.
 		if (prob(80) && (lowertext(n_letter) in LIST_OF_CONSONANT))
 			if (prob(10))
-				n_letter = text("[n_letter]-[n_letter]-[n_letter]-[n_letter]")//replaces the current letter with this instead.
+				n_letter = text("69n_letter69-69n_letter69-69n_letter69-69n_letter69")//replaces the current letter with this instead.
 			else
 				if (prob(20))
-					n_letter = text("[n_letter]-[n_letter]-[n_letter]")
+					n_letter = text("69n_letter69-69n_letter69-69n_letter69")
 				else
 					if (prob(5))
-						n_letter = null
+						n_letter =69ull
 					else
-						n_letter = text("[n_letter]-[n_letter]")
-		t += n_letter //since the above is ran through for each letter, the text just adds up back to the original word.
-		p++//for each letter p is increased to find where the next letter will be.
-	return sanitize(jointext(t, null))
+						n_letter = text("69n_letter69-69n_letter69")
+		t +=69_letter //since the above is ran through for each letter, the text just adds up back to the original word.
+		p++//for each letter p is increased to find where the69ext letter will be.
+	return sanitize(jointext(t,69ull))
 
-/proc/Gibberish(t, p)//t is the inputted message, and any value higher than 70 for p will cause letters to be replaced instead of added
+/proc/Gibberish(t, p)//t is the inputted69essage, and any69alue higher than 70 for p will cause letters to be replaced instead of added
 	/* Turn text into complete gibberish! */
 	var/returntext = ""
 	for(var/i = 1, i <= length(t), i++)
@@ -226,29 +226,29 @@ var/list/global/organ_rel_size = list(
 
 /proc/ninjaspeak(n)
 /*
-The difference with stutter is that this proc can stutter more than 1 letter
-The issue here is that anything that does not have a space is treated as one word (in many instances). For instance, "LOOKING," is a word, including the comma.
-It's fairly easy to fix if dealing with single letters but not so much with compounds of letters./N
+The difference with stutter is that this proc can stutter69ore than 1 letter
+The issue here is that anything that does69ot have a space is treated as one word (in69any instances). For instance, "LOOKING," is a word, including the comma.
+It's fairly easy to fix if dealing with single letters but69ot so69uch with compounds of letters./N
 */
 	var/te = html_decode(n)
 	var/t = ""
 	n = length(n)
 	var/p = 1
-	while(p <= n)
+	while(p <=69)
 		var/n_letter
 		var/n_mod = rand(1,4)
 		if(p+n_mod>n+1)
-			n_letter = copytext_char(te, p, n+1)
+			n_letter = copytext_char(te, p,69+1)
 		else
 			n_letter = copytext_char(te, p, p+n_mod)
 		if (prob(50))
 			if (prob(30))
-				n_letter = text("[n_letter]-[n_letter]-[n_letter]")
+				n_letter = text("69n_letter69-69n_letter69-69n_letter69")
 			else
-				n_letter = text("[n_letter]-[n_letter]")
+				n_letter = text("69n_letter69-69n_letter69")
 		else
-			n_letter = text("[n_letter]")
-		t = text("[t][n_letter]")
+			n_letter = text("69n_letter69")
+		t = text("69t6969n_letter69")
 		p=p+n_mod
 	return sanitize(t)
 
@@ -258,7 +258,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 /proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list)
-		if (M.real_name == text("[msg]"))
+		if (M.real_name == text("69msg69"))
 			return 1
 	return 0
 
@@ -272,7 +272,7 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 	return 0
 
-//converts intent-strings into numbers and back
+//converts intent-strings into69umbers and back
 var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 /proc/intent_numeric(argument)
 	if(istext(argument))
@@ -288,9 +288,9 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			if(2)			return I_GRAB
 			else			return I_HURT
 
-//change a mob's act-intent. Input the intent as a string such as "help" or use "right"/"left
+//change a69ob's act-intent. Input the intent as a string such as "help" or use "right"/"left
 /mob/verb/a_intent_change(input as text)
-	set name = "a-intent"
+	set69ame = "a-intent"
 	set hidden = 1
 
 	if(ishuman(src) || isbrain(src) || isslime(src))
@@ -302,7 +302,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			if("left")
 				a_intent = intent_numeric((intent_numeric(a_intent)+3) % 4)
 //		if(hud_used && hud_used.action_intent)
-//			hud_used.action_intent.icon_state = "intent_[a_intent]"
+//			hud_used.action_intent.icon_state = "intent_69a_intent69"
 
 	else if(isrobot(src))
 		switch(input)
@@ -318,7 +318,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 			else
 				hud_used.action_intent.icon_state = I_HELP*/
 	if (HUDneed.Find("intent"))
-		var/obj/screen/intent/I = HUDneed["intent"]
+		var/obj/screen/intent/I = HUDneed69"intent"69
 		I.update_icon()
 
 
@@ -329,108 +329,108 @@ proc/is_blind(A)
 			return 1
 	return 0
 
-/proc/broadcast_security_hud_message(var/message, var/broadcast_source)
+/proc/broadcast_security_hud_message(var/message,69ar/broadcast_source)
 	broadcast_hud_message(message, broadcast_source, sec_hud_users, /obj/item/clothing/glasses/hud/security)
 
-/proc/broadcast_medical_hud_message(var/message, var/broadcast_source)
-	broadcast_hud_message(message, broadcast_source, med_hud_users, /obj/item/clothing/glasses/hud/health)
+/proc/broadcast_medical_hud_message(var/message,69ar/broadcast_source)
+	broadcast_hud_message(message, broadcast_source,69ed_hud_users, /obj/item/clothing/glasses/hud/health)
 
-/proc/broadcast_hud_message(var/message, var/broadcast_source, var/list/targets, var/icon)
+/proc/broadcast_hud_message(var/message,69ar/broadcast_source,69ar/list/targets,69ar/icon)
 	var/turf/sourceturf = get_turf(broadcast_source)
 	for(var/mob/M in targets)
 		var/turf/targetturf = get_turf(M)
 		if((targetturf.z == sourceturf.z))
-			M.show_message("<span class='info'>\icon[icon] [message]</span>", 1)
+			M.show_message("<span class='info'>\icon69icon69 69message69</span>", 1)
 
 /proc/mobs_in_area(var/area/A)
-	var/list/mobs = new
+	var/list/mobs =69ew
 	for(var/mob/living/M in SSmobs.mob_list)
 		if(get_area(M) == A)
-			mobs += M
-	return mobs
+			mobs +=69
+	return69obs
 
 //Direct dead say used both by emote and say
-//It is somewhat messy. I don't know what to do.
-//I know you can't see the change, but I rewrote the name code. It is significantly less messy now
-/proc/say_dead_direct(var/message, var/mob/subject = null)
+//It is somewhat69essy. I don't know what to do.
+//I know you can't see the change, but I rewrote the69ame code. It is significantly less69essy69ow
+/proc/say_dead_direct(var/message,69ar/mob/subject =69ull)
 	var/name
 	var/keyname
 	if(subject && subject.client)
 		var/client/C = subject.client
 		keyname = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
-		if(C.mob) //Most of the time this is the dead/observer mob; we can totally use him if there is no better name
+		if(C.mob) //Most of the time this is the dead/observer69ob; we can totally use him if there is69o better69ame
 			var/mindname
 			var/realname = C.mob.real_name
 			if(C.mob.mind)
 				mindname = C.mob.mind.name
 				if(C.mob.mind.original && C.mob.mind.original.real_name)
 					realname = C.mob.mind.original.real_name
-			if(mindname && mindname != realname)
-				name = "[realname] died as [mindname]"
+			if(mindname &&69indname != realname)
+				name = "69realname69 died as 69mindname69"
 			else
 				name = realname
 
 	for(var/mob/M in GLOB.player_list)
-		if(M.client && (isghost(M) || (M.client.holder && !is_mentor(M.client))) && M.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_SHOW)
+		if(M.client && (isghost(M) || (M.client.holder && !is_mentor(M.client))) &&69.get_preference_value(/datum/client_preference/show_dsay) == GLOB.PREF_SHOW)
 			var/follow
 			var/lname
 			if(subject)
-				if(subject != M)
-					follow = "([ghost_follow_link(subject, M)]) "
-				if(M.stat != DEAD && M.client.holder)
-					follow = "([admin_jump_link(subject, M.client.holder)]) "
+				if(subject !=69)
+					follow = "(69ghost_follow_link(subject,69)69) "
+				if(M.stat != DEAD &&69.client.holder)
+					follow = "(69admin_jump_link(subject,69.client.holder)69) "
 				var/mob/observer/ghost/DM
 				if(isghost(subject))
 					DM = subject
 				if(M.client.holder) 							// What admins see
-					lname = "[keyname][(DM && DM.anonsay) ? "*" : (DM ? "" : "^")] ([name])"
+					lname = "69keyname6969(DM && DM.anonsay) ? "*" : (DM ? "" : "^")69 (69name69)"
 				else
 					if(DM && DM.anonsay)						// If the person is actually observer they have the option to be anonymous
-						lname = "Ghost of [name]"
-					else if(DM)									// Non-anons
-						lname = "[keyname] ([name])"
+						lname = "Ghost of 69name69"
+					else if(DM)									//69on-anons
+						lname = "69keyname69 (69name69)"
 					else										// Everyone else (dead people who didn't ghost yet, etc.)
-						lname = name
-				lname = "<span class='name'>[lname]</span> "
-			to_chat(M, "<span class='deadsay'>" + create_text_tag("dead", "DEAD:", M.client) + " [lname][follow][message]</span>")
+						lname =69ame
+				lname = "<span class='name'>69lname69</span> "
+			to_chat(M, "<span class='deadsay'>" + create_text_tag("dead", "DEAD:",69.client) + " 69lname6969follow6969message69</span>")
 
-//Announces that a ghost has joined/left, mainly for use with wizards
-/proc/announce_ghost_joinleave(O, var/joined_ghosts = 1, var/message = "")
+//Announces that a ghost has joined/left,69ainly for use with wizards
+/proc/announce_ghost_joinleave(O,69ar/joined_ghosts = 1,69ar/message = "")
 	var/client/C
 	//Accept any type, sort what we want here
 	if(ismob(O))
 		var/mob/M = O
 		if(M.client)
-			C = M.client
+			C =69.client
 	else if(istype(O, /client))
 		C = O
 	else if(istype(O, /datum/mind))
 		var/datum/mind/M = O
-		if(M.current && M.current.client)
-			C = M.current.client
-		else if(M.original && M.original.client)
-			C = M.original.client
+		if(M.current &&69.current.client)
+			C =69.current.client
+		else if(M.original &&69.original.client)
+			C =69.original.client
 
 	if(C)
 		var/name
 		if(C.mob)
 			var/mob/M = C.mob
-			if(M.mind && M.mind.name)
-				name = M.mind.name
-			if(M.real_name && M.real_name != name)
+			if(M.mind &&69.mind.name)
+				name =69.mind.name
+			if(M.real_name &&69.real_name !=69ame)
 				if(name)
-					name += " ([M.real_name])"
+					name += " (69M.real_name69)"
 				else
-					name = M.real_name
+					name =69.real_name
 		if(!name)
 			name = (C.holder && C.holder.fakekey) ? C.holder.fakekey : C.key
 		if(joined_ghosts)
-			say_dead_direct("The ghost of <span class='name'>[name]</span> now [pick("skulks","lurks","prowls","creeps","stalks")] among the dead. [message]")
+			say_dead_direct("The ghost of <span class='name'>69name69</span>69ow 69pick("skulks","lurks","prowls","creeps","stalks")69 among the dead. 69message69")
 		else
-			say_dead_direct("<span class='name'>[name]</span> no longer [pick("skulks","lurks","prowls","creeps","stalks")] in the realm of the dead. [message]")
+			say_dead_direct("<span class='name'>69name69</span>69o longer 69pick("skulks","lurks","prowls","creeps","stalks")69 in the realm of the dead. 69message69")
 
 /mob/proc/switch_to_camera(var/obj/machinery/camera/C)
-	if (!C.can_use() || stat || (get_dist(C, src) > 1 || machine != src || blinded || !canmove))
+	if (!C.can_use() || stat || (get_dist(C, src) > 1 ||69achine != src || blinded || !canmove))
 		return 0
 	check_eye(src)
 	return 1
@@ -442,9 +442,9 @@ proc/is_blind(A)
 	eyeobj.setLoc(C)
 	return 1
 
-// Returns true if the mob has a client which has been active in the last given X minutes.
+// Returns true if the69ob has a client which has been active in the last given X69inutes.
 /mob/proc/is_client_active(var/active = 1)
-	return client && client.inactivity < active MINUTES
+	return client && client.inactivity < active69INUTES
 
 /mob/proc/can_eat()
 	return 1
@@ -453,19 +453,19 @@ proc/is_blind(A)
 	return 1
 
 #define SAFE_PERP -50
-/mob/living/proc/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/proc/assess_perp(var/obj/access_obj,69ar/check_access,69ar/auth_weapons,69ar/check_records,69ar/check_arrest)
 	if(stat == DEAD)
 		return SAFE_PERP
 
 	return 0
 
-/mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/assess_perp(var/obj/access_obj,69ar/check_access,69ar/auth_weapons,69ar/check_records,69ar/check_arrest)
 	if(handcuffed)
 		return SAFE_PERP
 
 	return ..()
 
-/mob/living/carbon/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/carbon/human/assess_perp(var/obj/access_obj,69ar/check_access,69ar/auth_weapons,69ar/check_records,69ar/check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -495,7 +495,7 @@ proc/is_blind(A)
 			threatcount += 2
 
 	if(check_records || check_arrest)
-		var/perpname = name
+		var/perpname =69ame
 		if(id)
 			perpname = id.registered_name
 
@@ -503,12 +503,12 @@ proc/is_blind(A)
 		if(check_records && !R)
 			threatcount += 4
 
-		if(check_arrest && R && (R.fields["criminal"] == "*Arrest*"))
+		if(check_arrest && R && (R.fields69"criminal"69 == "*Arrest*"))
 			threatcount += 4
 
 	return threatcount
 
-/mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+/mob/living/simple_animal/hostile/assess_perp(var/obj/access_obj,69ar/check_access,69ar/auth_weapons,69ar/check_records,69ar/check_arrest)
 	var/threatcount = ..()
 	if(. == SAFE_PERP)
 		return SAFE_PERP
@@ -539,7 +539,7 @@ proc/is_blind(A)
 	return ..(aiMulti)
 
 
-//This proc returns true if the mob has no health problems. EG, no damaged organs, alive, not poisoned, etc
+//This proc returns true if the69ob has69o health problems. EG,69o damaged organs, alive,69ot poisoned, etc
 //It is used by cryopods to allow people to quickly respawn during peaceful times
 /mob/proc/in_perfect_health()
 	return
@@ -567,22 +567,22 @@ proc/is_blind(A)
 /mob/proc/get_sex()
 	return gender
 
-//Tries to find the mob's email.
+//Tries to find the69ob's email.
 /proc/find_email(real_name)
 	for(var/mob/mob in GLOB.living_mob_list)
 		if(mob.real_name == real_name)
 			if(!mob.mind)
 				return
-			return mob.mind.initial_email_login["login"]
+			return69ob.mind.initial_email_login69"login"69
 
 /proc/get_both_hands(mob/living/carbon/M)
 	if(!istype(M))
 		return
-	var/list/hands = list(M.l_hand, M.r_hand)
+	var/list/hands = list(M.l_hand,69.r_hand)
 	return hands
 
 /mob/proc/drop_embedded()
-	//Embedded list is defined at mob level so we can have this here too
+	//Embedded list is defined at69ob level so we can have this here too
 	for(var/obj/A in embedded)
 		if (A.loc == src)
 			A.forceMove(loc)
@@ -606,28 +606,28 @@ proc/is_blind(A)
 		prob_evade += base_prob_evade/1.5
 	return prob_evade
 
-/mob/proc/mob_playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
+/mob/proc/mob_playsound(atom/source, soundin,69ol as69um,69ary, extrarange as69um, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet, use_pressure = TRUE)
 	if(isliving(src))
 		var/mob/living/L = src
 		vol *= L.noise_coeff + weight_coeff()
 		extrarange *= L.noise_coeff + weight_coeff()
-	playsound(source, soundin, vol, vary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)
+	playsound(source, soundin,69ol,69ary, extrarange, falloff, is_global, frequency, is_ambiance,  ignore_walls, zrange, override_env, envdry, envwet, use_pressure)
 
 /mob/proc/weight_coeff()
 	. = 0
 	var/max_w_class = get_max_w_class()
 	if(max_w_class > ITEM_SIZE_TINY)
-		return max_w_class/(ITEM_SIZE_TITANIC)
+		return69ax_w_class/(ITEM_SIZE_TITANIC)
 
 /mob/proc/get_accumulated_vision_handlers()
-	var/result[2]
+	var/result69269
 	var/asight = 0
 	var/ainvis = 0
 	for(var/atom/vision_handler in additional_vision_handlers)
 		//Grab their flags
-		asight |= vision_handler.additional_sight_flags()
-		ainvis = max(ainvis, vision_handler.additional_see_invisible())
-	result[1] = asight
-	result[2] = ainvis
+		asight |=69ision_handler.additional_sight_flags()
+		ainvis =69ax(ainvis,69ision_handler.additional_see_invisible())
+	result69169 = asight
+	result69269 = ainvis
 
 	return result

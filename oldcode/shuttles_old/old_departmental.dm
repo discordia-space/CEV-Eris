@@ -1,17 +1,17 @@
-/obj/machinery/computer/shuttle_control/mining
-	name = "mining shuttle control console"
-	shuttle_tag = "Mining"
-	//req_access = list(access_mining)
-	circuit = /obj/item/electronics/circuitboard/shuttle/mining
+/696969/m6969hiner69/6969m69uter/shuttle_6969ntr69l/minin69
+	n69me = "minin69 shuttle 6969ntr69l 6969ns69le"
+	shuttle_t6969 = "Minin69"
+	//re69_696969ess = list69696969ess_minin6969
+	69ir69uit = /696969/item/ele69tr69ni69s/69ir69uit696969rd/shuttle/minin69
 
-/obj/machinery/computer/shuttle_control/engineering
-	name = "engineering shuttle control console"
-	shuttle_tag = "Engineering"
-	//req_one_access = list(access_engine_equip,access_atmospherics)
-	circuit = /obj/item/electronics/circuitboard/shuttle/engineering
+/696969/m6969hiner69/6969m69uter/shuttle_6969ntr69l/en69ineerin69
+	n69me = "en69ineerin69 shuttle 6969ntr69l 6969ns69le"
+	shuttle_t6969 = "En69ineerin69"
+	//re69_69ne_696969ess = list69696969ess_en69ine_e69ui69,696969ess_69tm69s69heri69s69
+	69ir69uit = /696969/item/ele69tr69ni69s/69ir69uit696969rd/shuttle/en69ineerin69
 
-/obj/machinery/computer/shuttle_control/research
-	name = "research shuttle control console"
-	shuttle_tag = "Research"
-	//req_access = list(access_moebius)
-	circuit = /obj/item/electronics/circuitboard/shuttle/research
+/696969/m6969hiner69/6969m69uter/shuttle_6969ntr69l/rese69r69h
+	n69me = "rese69r69h shuttle 6969ntr69l 6969ns69le"
+	shuttle_t6969 = "Rese69r69h"
+	//re69_696969ess = list69696969ess_m69e69ius69
+	69ir69uit = /696969/item/ele69tr69ni69s/69ir69uit696969rd/shuttle/rese69r69h

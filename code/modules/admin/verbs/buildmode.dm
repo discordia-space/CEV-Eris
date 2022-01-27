@@ -1,16 +1,16 @@
-/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
-	set name = "Toggle Build Mode"
-	set category = "Special Verbs"
+/proc/togglebuildmode(mob/M as69ob in GLOB.player_list)
+	set name = "Toggle Build69ode"
+	set category = "Special69erbs"
 	if(M.client)
 		if(M.client.buildmode)
-			log_admin("[key_name(usr)] has left build mode.")
+			log_admin("69key_name(usr)69 has left build69ode.")
 			M.client.buildmode = 0
 			M.client.show_popup_menus = 1
 			for(var/obj/effect/bmode/buildholder/H)
-				if(H.cl == M.client)
+				if(H.cl ==69.client)
 					qdel(H)
 		else
-			log_admin("[key_name(usr)] has entered build mode.")
+			log_admin("69key_name(usr)69 has entered build69ode.")
 			M.client.buildmode = 1
 			M.client.show_popup_menus = 0
 
@@ -32,7 +32,7 @@
 			M.client.screen += B
 			M.client.screen += C
 			M.client.screen += D
-			H.cl = M.client
+			H.cl =69.client
 
 /obj/effect/bmode//Cleaning up the tree a bit
 	density = TRUE
@@ -50,7 +50,7 @@
 	return
 
 /obj/effect/bmode/Destroy()
-	if(master && master.cl)
+	if(master &&69aster.cl)
 		master.cl.screen -= src
 	master = null
 	return ..()
@@ -80,35 +80,35 @@
 		switch(master.cl.buildmode)
 			if(1)
 				to_chat(usr, "\blue ***********************************************************")
-				to_chat(usr, "\blue Left Mouse Button        = Construct / Upgrade")
-				to_chat(usr, "\blue Right Mouse Button       = Deconstruct / Delete / Downgrade")
-				to_chat(usr, "\blue Left Mouse Button + ctrl = R-Window")
-				to_chat(usr, "\blue Left Mouse Button + alt  = Airlock")
+				to_chat(usr, "\blue Left69ouse Button        = Construct / Upgrade")
+				to_chat(usr, "\blue Right69ouse Button       = Deconstruct / Delete / Downgrade")
+				to_chat(usr, "\blue Left69ouse Button + ctrl = R-Window")
+				to_chat(usr, "\blue Left69ouse Button + alt  = Airlock")
 				to_chat(usr, "")
 				to_chat(usr, "\blue Use the button in the upper left corner to")
 				to_chat(usr, "\blue change the direction of built objects.")
 				to_chat(usr, "\blue ***********************************************************")
 			if(2)
 				to_chat(usr, "\blue ***********************************************************")
-				to_chat(usr, "\blue Right Mouse Button on buildmode button = Set object type")
-				to_chat(usr, "\blue Middle Mouse Button on buildmode button= On/Off object type saying")
-				to_chat(usr, "\blue Middle Mouse Button on turf/obj        = Capture object type")
-				to_chat(usr, "\blue Left Mouse Button on turf/obj          = Place objects")
-				to_chat(usr, "\blue Right Mouse Button                     = Delete objects")
+				to_chat(usr, "\blue Right69ouse Button on buildmode button = Set object type")
+				to_chat(usr, "\blue69iddle69ouse Button on buildmode button= On/Off object type saying")
+				to_chat(usr, "\blue69iddle69ouse Button on turf/obj        = Capture object type")
+				to_chat(usr, "\blue Left69ouse Button on turf/obj          = Place objects")
+				to_chat(usr, "\blue Right69ouse Button                     = Delete objects")
 				to_chat(usr, "")
 				to_chat(usr, "\blue Use the button in the upper left corner to")
 				to_chat(usr, "\blue change the direction of built objects.")
 				to_chat(usr, "\blue ***********************************************************")
 			if(3)
 				to_chat(usr, "\blue ***********************************************************")
-				to_chat(usr, "\blue Right Mouse Button on buildmode button = Select var(type) & value")
-				to_chat(usr, "\blue Left Mouse Button on turf/obj/mob      = Set var(type) & value")
-				to_chat(usr, "\blue Right Mouse Button on turf/obj/mob     = Reset var's value")
+				to_chat(usr, "\blue Right69ouse Button on buildmode button = Select69ar(type) &69alue")
+				to_chat(usr, "\blue Left69ouse Button on turf/obj/mob      = Set69ar(type) &69alue")
+				to_chat(usr, "\blue Right69ouse Button on turf/obj/mob     = Reset69ar's69alue")
 				to_chat(usr, "\blue ***********************************************************")
 			if(4)
 				to_chat(usr, "\blue ***********************************************************")
-				to_chat(usr, "\blue Left Mouse Button on turf/obj/mob      = Select")
-				to_chat(usr, "\blue Right Mouse Button on turf/obj/mob     = Throw")
+				to_chat(usr, "\blue Left69ouse Button on turf/obj/mob      = Select")
+				to_chat(usr, "\blue Right69ouse Button on turf/obj/mob     = Throw")
 				to_chat(usr, "\blue ***********************************************************")
 		return 1
 
@@ -190,25 +190,25 @@
 				if(3)
 					var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
 
-					master.buildmode.varholder = input(usr,"Enter variable name:" ,"Name", "name")
+					master.buildmode.varholder = input(usr,"Enter69ariable name:" ,"Name", "name")
 					if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))
 						return 1
-					var/thetype = input(usr,"Select variable type:" ,"Type") in list("text","number","mob-reference","obj-reference","turf-reference")
+					var/thetype = input(usr,"Select69ariable type:" ,"Type") in list("text","number","mob-reference","obj-reference","turf-reference")
 					if(!thetype) return 1
 					switch(thetype)
 						if("text")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", "value") as text
+							master.buildmode.valueholder = input(usr,"Enter69ariable69alue:" ,"Value", "value") as text
 						if("number")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", 123) as num
+							master.buildmode.valueholder = input(usr,"Enter69ariable69alue:" ,"Value", 123) as num
 						if("mob-reference")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in SSmobs.mob_list
+							master.buildmode.valueholder = input(usr,"Enter69ariable69alue:" ,"Value") as69ob in SSmobs.mob_list
 						if("obj-reference")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in world
+							master.buildmode.valueholder = input(usr,"Enter69ariable69alue:" ,"Value") as obj in world
 						if("turf-reference")
-							master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
+							master.buildmode.valueholder = input(usr,"Enter69ariable69alue:" ,"Value") as turf in world
     	return 1
 
-/proc/build_click(var/mob/user, buildmode, params, var/obj/object)
+/proc/build_click(var/mob/user, buildmode, params,69ar/obj/object)
 	var/obj/effect/bmode/buildholder/holder
 	for(var/obj/effect/bmode/buildholder/H)
 		if(H.cl == user.client)
@@ -282,23 +282,23 @@
 			else if(pa.Find("right"))
 				if(isobj(object)) qdel(object)
 			if(pa.Find("middle"))
-				holder.buildmode.objholder = text2path("[object.type]")
-				if(holder.buildmode.objsay)	to_chat(usr, "[object.type]")
+				holder.buildmode.objholder = text2path("69object.type69")
+				if(holder.buildmode.objsay)	to_chat(usr, "69object.type69")
 
 
 		if(3)
 			if(pa.Find("left")) //I cant believe this shit actually compiles.
 				if(object.vars.Find(holder.buildmode.varholder))
-					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
-					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
+					log_admin("69key_name(usr)6969odified 69object.name69's 69holder.buildmode.varholder69 to 69holder.buildmode.valueholder69")
+					object.vars69holder.buildmode.varholder69 = holder.buildmode.valueholder
 				else
-					to_chat(usr, "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'")
+					to_chat(usr, "\red 69initial(object.name)69 does not have a69ar called '69holder.buildmode.varholder69'")
 			if(pa.Find("right"))
 				if(object.vars.Find(holder.buildmode.varholder))
-					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
-					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
+					log_admin("69key_name(usr)6969odified 69object.name69's 69holder.buildmode.varholder69 to 69holder.buildmode.valueholder69")
+					object.vars69holder.buildmode.varholder69 = initial(object.vars69holder.buildmode.varholder69)
 				else
-					to_chat(usr, "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'")
+					to_chat(usr, "\red 69initial(object.name)69 does not have a69ar called '69holder.buildmode.varholder69'")
 
 		if(4)
 			if(pa.Find("left"))
@@ -307,4 +307,4 @@
 			if(pa.Find("right"))
 				if(holder.throw_atom)
 					holder.throw_atom.throw_at(object, 10, 1)
-					log_admin("[key_name(usr)] threw [holder.throw_atom] at [object]")
+					log_admin("69key_name(usr)69 threw 69holder.throw_atom69 at 69object69")

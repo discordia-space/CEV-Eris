@@ -2,10 +2,10 @@
 //**Cham Jumpsuit**
 //*****************
 
-/obj/item/proc/disguise(newtype, mob/user)
+/obj/item/proc/disguise(newtype,69ob/user)
 	if(!user || user.incapacitated())
 		return
-	//this is necessary, unfortunately, as initial() does not play well with list vars
+	//this is necessary, unfortunately, as initial() does not play well with list69ars
 	var/obj/item/copy = new newtype(null) //so that it is GCed once we exit
 
 	desc = copy.desc
@@ -21,7 +21,7 @@
 	update_wear_icon()
 
 	return copy //for inheritance
-obj/item/clothing/disguise(newtype, mob/user)
+obj/item/clothing/disguise(newtype,69ob/user)
 	. = ..()
 	var/obj/item/clothing/copy = .
 	if (istype(copy))
@@ -36,10 +36,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 		if(initial(O.icon) && initial(O.icon_state))
 			var/name = initial(O.name)
 			if(name in .)
-				name += " ([initial(O.icon_state)])"
+				name += " (69initial(O.icon_state)69)"
 			if(name in .)
-				name += " \[[i++]\]"
-			.[name] = typepath
+				name += " \6969i++69\69"
+			.69name69 = typepath
 
 /obj/item/clothing/under/chameleon
 //starts off as black
@@ -62,7 +62,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	name = "psychedelic"
 	desc = "Groovy!"
 	icon_state = "psyche"
-	item_state_slots[slot_w_uniform_str] = "psyche"
+	item_state_slots69slot_w_uniform_str69 = "psyche"
 	update_icon()
 	update_wear_icon()
 
@@ -71,10 +71,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //*****************
 //**Chameleon Hat**
@@ -108,10 +108,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //******************
 //**Chameleon Suit**
@@ -121,7 +121,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	name = "armor"
 	icon_state = "armor"
 	item_state = "armor"
-	desc = "It appears to be a vest of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
+	desc = "It appears to be a69est of standard armor, except this is embedded with a hidden holographic cloaker, allowing it to change it's appearance, but offering no protection.. It seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	var/global/list/clothing_choices
@@ -134,7 +134,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 
 /obj/item/clothing/suit/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "armor"
-	desc = "An armored vest that protects against some damage."
+	desc = "An armored69est that protects against some damage."
 	icon_state = "armor"
 	update_icon()
 	update_wear_icon()
@@ -144,10 +144,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //*******************
 //**Chameleon Shoes**
@@ -181,10 +181,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //**********************
 //**Chameleon Backpack**
@@ -219,10 +219,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //********************
 //**Chameleon Gloves**
@@ -255,20 +255,20 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //******************
-//**Chameleon Mask**
+//**Chameleon69ask**
 //******************
 
 /obj/item/clothing/mask/chameleon
-	name = "gas mask"
+	name = "gas69ask"
 	icon_state = "gas_alt"
 	item_state = "gas_alt"
-	desc = "It looks like a plain gask mask, but on closer inspection, it seems to have a small dial inside."
+	desc = "It looks like a plain gask69ask, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_MASK_CONTRABAND
@@ -282,31 +282,31 @@ obj/item/clothing/disguise(newtype, mob/user)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/mask, list(src.type))
 
 /obj/item/clothing/mask/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
-	name = "gas mask"
-	desc = "A gas mask."
+	name = "gas69ask"
+	desc = "A gas69ask."
 	icon_state = "gas_alt"
 	update_icon()
 	update_wear_icon()
 
 /obj/item/clothing/mask/chameleon/verb/change(picked in clothing_choices)
-	set name = "Change Mask Appearance"
+	set name = "Change69ask Appearance"
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //*********************
 //**Chameleon Glasses**
 //*********************
 
 /obj/item/clothing/glasses/chameleon
-	name = "Optical Meson Scanner"
+	name = "Optical69eson Scanner"
 	icon_state = "meson"
 	item_state = "glasses"
-	desc = "It looks like a plain set of mesons, but on closer inspection, it seems to have a small dial inside."
+	desc = "It looks like a plain set of69esons, but on closer inspection, it seems to have a small dial inside."
 	origin_tech = list(TECH_COVERT = 3)
 	spawn_blacklisted = TRUE
 	spawn_tags = SPAWN_TAG_GLASSES_CHAMALEON
@@ -318,8 +318,8 @@ obj/item/clothing/disguise(newtype, mob/user)
 		clothing_choices = generate_chameleon_choices(/obj/item/clothing/glasses, list(src.type))
 
 /obj/item/clothing/glasses/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
-	name = "Optical Meson Scanner"
-	desc = "A set of mesons."
+	name = "Optical69eson Scanner"
+	desc = "A set of69esons."
 	icon_state = "meson"
 	update_icon()
 	update_wear_icon()
@@ -329,16 +329,16 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)
 
 //*****************
 //**Chameleon Gun**
 //*****************
 /obj/item/gun/energy/chameleon
-	name = "FS HG .40 Magnum \"Avasarala\""
+	name = "FS HG .4069agnum \"Avasarala\""
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon = 'icons/obj/guns/projectile/avasarala.dmi'
 	icon_state = "avasarala"
@@ -364,7 +364,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 		gun_choices = list()
 		for(var/gun_type in typesof(/obj/item/gun/) - src.type)
 			var/obj/item/gun/G = gun_type
-			src.gun_choices[initial(G.name)] = gun_type
+			src.gun_choices69initial(G.name)69 = gun_type
 
 /obj/item/gun/energy/chameleon/consume_next_projectile()
 	var/obj/item/projectile/P = ..()
@@ -381,7 +381,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	return P
 
 /obj/item/gun/energy/chameleon/emp_act(severity)
-	name = "FS HG .40 Magnum \"Avasarala\""
+	name = "FS HG .4069agnum \"Avasarala\""
 	desc = "A hologram projector in the shape of a gun. There is a dial on the side to change the gun's disguise."
 	icon_state = "avasarala"
 	update_icon()
@@ -397,7 +397,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	var/obj/item/gun/energy/E = copy
 	if(istype(E))
 		copy_projectile = E.projectile_type
-		//charge_meter = E.charge_meter //does not work very well with icon_state changes, ATM
+		//charge_meter = E.charge_meter //does not work69ery well with icon_state changes, ATM
 	else
 		copy_projectile = null
 		//charge_meter = 0
@@ -407,10 +407,10 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(gun_choices[picked]))
+	if(!ispath(gun_choices69picked69))
 		return
 
-	disguise(gun_choices[picked], usr)
+	disguise(gun_choices69picked69, usr)
 
 //*****************
 //**Chameleon Headset**
@@ -418,7 +418,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 
 /obj/item/device/radio/headset/chameleon
 	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys. There is a dial on the side to change the headset's disguise."
+	desc = "An updated,69odular intercom that fits over the head. Takes encryption keys. There is a dial on the side to change the headset's disguise."
 	icon_state = "headset"
 	item_state = "headset"
 	origin_tech = list(TECH_COVERT = 1)
@@ -433,7 +433,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 
 /obj/item/device/radio/headset/chameleon/emp_act(severity)
 	name = "radio headset"
-	desc = "An updated, modular intercom that fits over the head. Takes encryption keys"
+	desc = "An updated,69odular intercom that fits over the head. Takes encryption keys"
 	icon_state = "headset"
 	update_icon()
 	update_wear_icon()
@@ -443,7 +443,7 @@ obj/item/clothing/disguise(newtype, mob/user)
 	set category = "Chameleon Items"
 	set src in usr
 
-	if(!ispath(clothing_choices[picked]))
+	if(!ispath(clothing_choices69picked69))
 		return
 
-	disguise(clothing_choices[picked], usr)
+	disguise(clothing_choices69picked69, usr)

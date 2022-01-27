@@ -1,270 +1,270 @@
-{{if data.screen == "working"}}
-	<h5 class='average'>The R&amp;D Console is currently busy.</h5>
-	<div class='notice'>
-	<center>Working...</center>
+{{if d69t69.screen == "wor69in69"}}
+	<h5 cl69ss='69ver6969e'>The R&69m69;D Console is currentl69 69us69.</h5>
+	<div cl69ss='notice'>
+	<center>Wor69in69...</center>
 	</div>
-	<p>
-	Thank you for your patience!
-	</p>
-{{else data.screen == "locked"}}
-	<h5 class='average'>The R&amp;D Console</h5>
-	<div class='notice'>
-	<center>SYSTEM LOCKED</center>
+	<69>
+	Th69n69 69ou for 69our 6969tience!
+	</69>
+{{else d69t69.screen == "loc69ed"}}
+	<h5 cl69ss='69ver6969e'>The R&69m69;D Console</h5>
+	<div cl69ss='notice'>
+	<center>S69STEM LOC69ED</center>
 	</div>
-	<p>
-	{{:helper.link("Unlock", 'unlocked', {'unlock' : 1})}}
-	</p>
+	<69>
+	{{:hel69er.lin6969"Unloc69", 'unloc69ed', {'unloc69' : 1}69}}
+	</69>
 {{/if}}
 
 
-{{if !data.screen || data.screen == "main"}}
-<table style="width: 100%">
+{{if !d69t69.screen || d69t69.screen == "m69in"}}
+<t6969le st69le="width: 100%">
 	<tr>
-		<td valign="top">
-			<H2>R&amp;D Console Menu</H2>
-			<div class='item'>
-				{{:helper.link("Research", 'contact', {'go_screen' : 'tech_trees', 'need_access': 1},data.can_research ? null : 'disabled', data.can_research ? 'sciMenuButton' : null)}}
+		<td6969li69n="to69">
+			<H2>R&69m69;D Console69enu</H2>
+			<div cl69ss='item'>
+				{{:hel69er.lin6969"Rese69rch", 'cont69ct', {'69o_screen' : 'tech_trees', 'need_69ccess': 1},d69t69.c69n_rese69rch ?69ull : 'dis6969led', d69t69.c69n_rese69rch ? 'sciMenu69utton' :69ull69}}
 			</div>
-			<div class='item'>
-				{{:helper.link("Protolathe Construction Menu", 'image', {'go_screen' : 'protolathe'}, data.has_protolathe ? null : 'disabled', data.has_protolathe ? 'sciMenuButton' : null)}}
+			<div cl69ss='item'>
+				{{:hel69er.lin6969"69rotol69the Construction69enu", 'im6969e', {'69o_screen' : '69rotol69the'}, d69t69.h69s_69rotol69the ?69ull : 'dis6969led', d69t69.h69s_69rotol69the ? 'sciMenu69utton' :69ull69}}
 			</div>
-			<div class='item'>
-				{{:helper.link("Circuit Construction Menu", 'video', {'go_screen' : 'circuit_imprinter'}, data.has_circuit_imprinter ? null : 'disabled', data.has_circuit_imprinter ? 'sciMenuButton' : null)}}
+			<div cl69ss='item'>
+				{{:hel69er.lin6969"Circuit Construction69enu", 'video', {'69o_screen' : 'circuit_im69rinter'}, d69t69.h69s_circuit_im69rinter ?69ull : 'dis6969led', d69t69.h69s_circuit_im69rinter ? 'sciMenu69utton' :69ull69}}
 			</div>
 			
-			<div class="statusDisplayRecords">
-				<div class="item">
-					<div class="itemContent" style="width: 100%;">
-						{{if !data.destroy_data}}
-						<span class="average">No Destructive Analyzer detected</span>
+			<div cl69ss="st69tusDis69l6969Records">
+				<div cl69ss="item">
+					<div cl69ss="itemContent" st69le="width: 100%;">
+						{{if !d69t69.destro69_d69t69}}
+						<s6969n cl69ss="69ver6969e">No Destructive 69n69l69zer detected</s6969n>
 						{{else}}
-							{{if !data.destroy_data.has_item}}
-								<span class="average">No item loaded inside Destructive Analyzer</span>
+							{{if !d69t69.destro69_d69t69.h69s_item}}
+								<s6969n cl69ss="69ver6969e">No item lo69ded inside Destructive 69n69l69zer</s6969n>
 							{{else}}
-								<span class="average">Destructive Analyzer:</span><br>
-								Name: {{:data.destroy_data.item_name}}<br>
-								Detected tech:<br>
-								<table style="width: 100%">
-								{{for data.destroy_data.tech_data}}
+								<s6969n cl69ss="69ver6969e">Destructive 69n69l69zer:</s6969n><69r>
+								N69me: {{:d69t69.destro69_d69t69.item_n69me}}<69r>
+								Detected tech:<69r>
+								<t6969le st69le="width: 100%">
+								{{for d69t69.destro69_d69t69.tech_d69t69}}
 									<tr>
-										<td style="width: 20%">{{:value.name}}</td><td style="width: 20%"><div style="width: 95%">{{:helper.displayBar(value.level, 0, 5, 'good', value.level)}}</div></td>
+										<td st69le="width: 20%">{{:v69lue.n69me}}</td><td st69le="width: 20%"><div st69le="width: 95%">{{:hel69er.dis69l69696969r69v69lue.level, 0, 5, '69ood',6969lue.level69}}</div></td>
 									</tr>
 								{{/for}}
-								</table>
-								Estimated research value: {{:data.destroy_data.item_tech_points}} points ({{:data.destroy_data.item_tech_mod}}%)<br>
-								{{:helper.link("Deconstruct item", '', {'deconstruct' : 1})}}
-								{{:helper.link("Eject", '', {'eject_item' : 1})}}
+								</t6969le>
+								Estim69ted rese69rch6969lue: {{:d69t69.destro69_d69t69.item_tech_69oints}} 69oints 69{{:d69t69.destro69_d69t69.item_tech_mod}}%69<69r>
+								{{:hel69er.lin6969"Deconstruct item", '', {'deconstruct' : 1}69}}
+								{{:hel69er.lin6969"E69ect", '', {'e69ect_item' : 1}69}}
 							{{/if}}
 						{{/if}}
 					</div>
 				</div>
 			</div>
 			
-			<div class='item'>
-				{{:helper.link("Settings", 'wrench', {'toggle_settings' : 1},null,'sciMenuButton')}}
+			<div cl69ss='item'>
+				{{:hel69er.lin6969"Settin69s", 'wrench', {'to6969le_settin69s' : 1},null,'sciMenu69utton'69}}
 			</div>
 
-			{{if data.show_settings}}
-				<div class='item'>
-					{{:helper.link("Sync Database with Network", 'transferthick-e-w', {'sync' : 1}, data.sync ? null : 'disabled')}}
+			{{if d69t69.show_settin69s}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"S69nc D69t696969se with69etwor69", 'tr69nsferthic69-e-w', {'s69nc' : 1}, d69t69.s69nc ?69ull : 'dis6969led'69}}
 				</div>
-				<div class='item'>
-					{{:helper.link("Connect to Research Network", 'lightbulb', {'togglesync' : 1}, data.sync ? 'disabled' : null)}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Connect to Rese69rch69etwor69", 'li69ht69ul69', {'to6969les69nc' : 1}, d69t69.s69nc ? 'dis6969led' :69ull69}}
 				</div>
-				<div class='item'>
-					{{:helper.link("Disconnect from Research Network", 'cancel', {'togglesync' : 1}, data.sync ? null : 'disabled')}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Disconnect from Rese69rch69etwor69", 'c69ncel', {'to6969les69nc' : 1}, d69t69.s69nc ?69ull : 'dis6969led'69}}
 				</div>
-				<div class='item'>
-					{{:helper.link("Lock Console", 'locked', {'lock' : 1})}}
-					{{:helper.link("Reset R&D Database", 'trash', {'reset' : 1})}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Loc69 Console", 'loc69ed', {'loc69' : 1}69}}
+					{{:hel69er.lin6969"Reset R&D D69t696969se", 'tr69sh', {'reset' : 1}69}}
 				</div>
 			{{/if}}
 
-			{{if data.has_disk}}
-				<div class='item' style="width: 80%">
-					Disk capacity: <div style="width: 90%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</div>
-					{{:helper.link("Disk Designs Management", 'save', {'go_screen' : 'disk_management_designs'}, null, 'sciMenuButton')}}
-					{{:helper.link("Disk Technology Management", 'save', {'go_screen' : 'disk_management_tech'}, null, 'sciMenuButton')}}
-					{{:helper.link("Disk Research Data Management", 'save', {'go_screen' : 'disk_management_data'}, null, 'sciMenuButton')}}
-					{{:helper.link("Eject", 'eject', {'eject_disk' : 1}, null, 'sciMenuButton')}}
+			{{if d69t69.h69s_dis69}}
+				<div cl69ss='item' st69le="width: 80%">
+					Dis69 c696969cit69: <div st69le="width: 90%">{{:hel69er.dis69l69696969r69d69t69.dis69_used, 0, d69t69.dis69_size, '69ood', d69t69.dis69_used + "69Q / " + d69t69.dis69_size + "69Q"69}}</div>
+					{{:hel69er.lin6969"Dis69 Desi69ns6969n6969ement", 's69ve', {'69o_screen' : 'dis69_m69n6969ement_desi69ns'},69ull, 'sciMenu69utton'69}}
+					{{:hel69er.lin6969"Dis69 Technolo69696969n6969ement", 's69ve', {'69o_screen' : 'dis69_m69n6969ement_tech'},69ull, 'sciMenu69utton'69}}
+					{{:hel69er.lin6969"Dis69 Rese69rch D69t696969n6969ement", 's69ve', {'69o_screen' : 'dis69_m69n6969ement_d69t69'},69ull, 'sciMenu69utton'69}}
+					{{:hel69er.lin6969"E69ect", 'e69ect', {'e69ect_dis69' : 1},69ull, 'sciMenu69utton'69}}
 				</div>
 			{{else}}
-				No disk detected
+				No dis69 detected
 			{{/if}}
 			
-			<div class='item'>
-				{{:helper.link("Device Linkage Menu", 'link', {'toggle_link_menu' : 1},null,'sciMenuButton')}}
+			<div cl69ss='item'>
+				{{:hel69er.lin6969"Device Lin696969e69enu", 'lin69', {'to6969le_lin69_menu' : 1},null,'sciMenu69utton'69}}
 			</div>
 			
-			{{if data.show_link_menu}}
-				<div class='item'>
-					{{:helper.link("Re-sync with Nearby Devices", 'link', {'find_device' : 1})}}
+			{{if d69t69.show_lin69_menu}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Re-s69nc with69e69r6969 Devices", 'lin69', {'find_device' : 1}69}}
 				</div>
-				<div class='item'>
-					{{:helper.link("Disconnect Destructive Analyzer", 'close', {'disconnect' : "destroy"}, data.has_dest_analyzer ? null : 'disabled')}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Disconnect Destructive 69n69l69zer", 'close', {'disconnect' : "destro69"}, d69t69.h69s_dest_69n69l69zer ?69ull : 'dis6969led'69}}
 				</div>
-				<div class='item'>
-					{{:helper.link("Disconnect Protolathe", 'close', {'disconnect' : "lathe"}, data.has_protolathe ? null : 'disabled')}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Disconnect 69rotol69the", 'close', {'disconnect' : "l69the"}, d69t69.h69s_69rotol69the ?69ull : 'dis6969led'69}}
 				</div>
-				<div class='item'>
-					{{:helper.link("Disconnect Circuit Imprinter", 'close', {'disconnect' : "imprinter"}, data.has_circuit_imprinter ? null : 'disabled')}}
+				<div cl69ss='item'>
+					{{:hel69er.lin6969"Disconnect Circuit Im69rinter", 'close', {'disconnect' : "im69rinter"}, d69t69.h69s_circuit_im69rinter ?69ull : 'dis6969led'69}}
 				</div>
 			{{/if}}
 		</td>
-		<td style="width: 450px" valign="top">
-			<H2>Technology Research</H2>
-			<div class="statusDisplayRecords">
-				<div class="item">
-					<div class="itemContent" style="width: 100%;">
-						<table class="fixed" style="width: 100%">
-						{{for data.tech_trees}}
+		<td st69le="width: 45069x"6969li69n="to69">
+			<H2>Technolo6969 Rese69rch</H2>
+			<div cl69ss="st69tusDis69l6969Records">
+				<div cl69ss="item">
+					<div cl69ss="itemContent" st69le="width: 100%;">
+						<t6969le cl69ss="fixed" st69le="width: 100%">
+						{{for d69t69.tech_trees}}
 						<tr>
-							<td><span class="average">{{:value.shortname}}</span></td><td><div style="width: 95%">{{:helper.displayBar(value.level, 0, value.maxlevel, 'good', value.level + ' / ' + value.maxlevel)}}</div></td>
+							<td><s6969n cl69ss="69ver6969e">{{:v69lue.shortn69me}}</s6969n></td><td><div st69le="width: 95%">{{:hel69er.dis69l69696969r69v69lue.level, 0,6969lue.m69xlevel, '69ood',6969lue.level + ' / ' +6969lue.m69xlevel69}}</div></td>
 						</tr>
 						{{/for}}
-						</table>
+						</t6969le>
 					</div>
 				</div>
 			</div>
 		</td>
 	</tr>
-</table>
+</t6969le>
 
 {{/if}}
 
-{{if data.screen == "protolathe" || data.screen == "circuit_imprinter"}}
-	<div class='item'>
-		{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}
+{{if d69t69.screen == "69rotol69the" || d69t69.screen == "circuit_im69rinter"}}
+	<div cl69ss='item'>
+		{{:hel69er.lin6969"6969c69", '69rrowreturn-1-w', {'69o_screen' : 'm69in'},null,'fixedLeft'69}}
 	</div>
 	
-	<table class="fixed" style="width: 100%">
+	<t6969le cl69ss="fixed" st69le="width: 100%">
 		<tr>
-			<td valign="top">
-				<div class="statusDisplayRecords">
-					<div class="item">
-						<div class="itemContent" style="width: 100%;">
-							<table class="fixed" style="border-collapse: collapse;"><tr><td style="padding:0; margin:0;">
-							{{if data.screen == "protolathe"}}
-								<H2>Protolathe Menu:</H2>
-							{{else data.screen == "circuit_imprinter"}}
-								<H2>Circuit Imprinter Menu:</H2>
+			<td6969li69n="to69">
+				<div cl69ss="st69tusDis69l6969Records">
+					<div cl69ss="item">
+						<div cl69ss="itemContent" st69le="width: 100%;">
+							<t6969le cl69ss="fixed" st69le="69order-coll6969se: coll6969se;"><tr><td st69le="6969ddin69:0;6969r69in:0;">
+							{{if d69t69.screen == "69rotol69the"}}
+								<H2>69rotol69the69enu:</H2>
+							{{else d69t69.screen == "circuit_im69rinter"}}
+								<H2>Circuit Im69rinter69enu:</H2>
 							{{/if}}
-							</td><td style="padding:0; margin:0;padding-left: 10px">
-							{{:helper.link("Search", '', {'search' : 1})}}
-							{{if data.search_text}}
-							Searching for '{{:data.search_text}}'
+							</td><td st69le="6969ddin69:0;6969r69in:0;6969ddin69-left: 1069x">
+							{{:hel69er.lin6969"Se69rch", '', {'se69rch' : 1}69}}
+							{{if d69t69.se69rch_text}}
+							Se69rchin69 for '{{:d69t69.se69rch_text}}'
 							{{/if}}
-							</td></tr></table>
+							</td></tr></t6969le>
 							<hr>
-							<div class='item'>
-								{{for data.all_categories}}
-									{{:helper.link(value, '', {'select_category' : value}, data.selected_category == value ? 'selected' : null)}}
+							<div cl69ss='item'>
+								{{for d69t69.69ll_c69te69ories}}
+									{{:hel69er.lin6969v69lue, '', {'select_c69te69or69' :6969lue}, d69t69.selected_c69te69or69 ==6969lue ? 'selected' :69ull69}}
 								{{/for}}
 							</div>
-							<div class='item'>
-								<table class="fixed" style="width: 100%;">
-									{{for data.possible_designs}}
-										<tr style="width: 100%;">
-											<td style="width: 32px">
-												<img class="statusDisplayItem" src={{:value.data.icon}} height=24 width=24></img>
+							<div cl69ss='item'>
+								<t6969le cl69ss="fixed" st69le="width: 100%;">
+									{{for d69t69.69ossi69le_desi69ns}}
+										<tr st69le="width: 100%;">
+											<td st69le="width: 3269x">
+												<im69 cl69ss="st69tusDis69l6969Item" src={{:v69lue.d69t69.icon}} hei69ht=24 width=24></im69>
 											</td>
-											<td style="width: 100%">
-												{{:helper.link(value.data.name, '', {'build' : value.id, 'amount': 1}, value.can_create >= 1 ? null : 'disabled')}}
-												{{if data.screen == "protolathe"}}
-													{{if value.can_create >= 3}}
-														{{:helper.link('x3', '', {'build' : value.id, 'amount': 3})}}
+											<td st69le="width: 100%">
+												{{:hel69er.lin6969v69lue.d69t69.n69me, '', {'69uild' :6969lue.id, '69mount': 1},6969lue.c69n_cre69te >= 1 ?69ull : 'dis6969led'69}}
+												{{if d69t69.screen == "69rotol69the"}}
+													{{if6969lue.c69n_cre69te >= 3}}
+														{{:hel69er.lin6969'x3', '', {'69uild' :6969lue.id, '69mount': 3}69}}
 													{{/if}}
-													{{if value.can_create >= 5}}
-														{{:helper.link('x5', '', {'build' : value.id, 'amount': 5})}}
+													{{if6969lue.c69n_cre69te >= 5}}
+														{{:hel69er.lin6969'x5', '', {'69uild' :6969lue.id, '69mount': 5}69}}
 													{{/if}}
 												{{/if}}
 											</td>
-											<td style="width: 100%" align="right">
-												{{for value.data.materials  :material:material_i}}
-													{{material.amount = value.data.adjust_materials ? Math.round((material.req * data.materials_data.mat_efficiency) * 100) / 100 : material.req;}}
-													{{if value.missing_materials.indexOf(material.id) == -1}}
-														{{:material.amount}} {{:material.name}} 
+											<td st69le="width: 100%" 69li69n="ri69ht">
+												{{for6969lue.d69t69.m69teri69ls  :m69teri69l:m69teri69l_i}}
+													{{m69teri69l.69mount =6969lue.d69t69.69d69ust_m69teri69ls ?6969th.round6969m69teri69l.req * d69t69.m69teri69ls_d69t69.m69t_efficienc6969 * 10069 / 100 :6969teri69l.req;}}
+													{{if6969lue.missin69_m69teri69ls.indexOf69m69teri69l.id69 == -1}}
+														{{:m69teri69l.69mount}} {{:m69teri69l.n69me}} 
 													{{else}}
-														<span style="color:red">{{:material.amount}} {{:material.name}}</span> 
+														<s6969n st69le="color:red">{{:m69teri69l.69mount}} {{:m69teri69l.n69me}}</s6969n> 
 													{{/if}}
 												{{/for}}
 
-												{{for value.data.chemicals  :chemical:chemical_i}}
-													{{if value.missing_chemicals.indexOf(chemical.id) == -1}}
-														{{:chemical.req}} {{:chemical.name}} 
+												{{for6969lue.d69t69.chemic69ls  :chemic69l:chemic69l_i}}
+													{{if6969lue.missin69_chemic69ls.indexOf69chemic69l.id69 == -1}}
+														{{:chemic69l.req}} {{:chemic69l.n69me}} 
 													{{else}}
-														<span style="color:red">{{:chemical.req}} {{:chemical.name}}</span> 
+														<s6969n st69le="color:red">{{:chemic69l.req}} {{:chemic69l.n69me}}</s6969n> 
 													{{/if}}
 												{{/for}}
 
-												{{if value.temp_chemical}}
-													{{:value.temp_chemical}}
+												{{if6969lue.tem69_chemic69l}}
+													{{:v69lue.tem69_chemic69l}}
 												{{/if}}
 											</td>
 										</tr>
-										<tr style="width: 100%">
-										 <td colspan = '3'><small>{{:value.data.desc}}</small></td>
+										<tr st69le="width: 100%">
+										 <td cols6969n = '3'><sm69ll>{{:v69lue.d69t69.desc}}</sm69ll></td>
 										</tr>
 									{{/for}}
-								</table>
+								</t6969le>
 							</div>
 						</div>
 					</div>
 				</div>
 			</td>
-			<td style="width: 430px" valign="top">
-				<h3>Material Storage</h3>
-				<div class="statusDisplayRecords">
-					<div class="item">
-						<div class="itemContent" style="width: 100%;">
-							<table class="fixed" style="width: 100%">
+			<td st69le="width: 43069x"6969li69n="to69">
+				<h3>M69teri69l Stor6969e</h3>
+				<div cl69ss="st69tusDis69l6969Records">
+					<div cl69ss="item">
+						<div cl69ss="itemContent" st69le="width: 100%;">
+							<t6969le cl69ss="fixed" st69le="width: 100%">
 				
-							{{for data.materials_data.reagents}}
-							<tr><td><span class="average">{{:value.name}}</span></td><td>{{:Math.round(value.amount * 100) / 100}}</td></tr>
+							{{for d69t69.m69teri69ls_d69t69.re6969ents}}
+							<tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td>{{:M69th.round69v69lue.69mount * 10069 / 100}}</td></tr>
 							{{/for}}
 							
-							{{for data.materials_data.materials}}
+							{{for d69t69.m69teri69ls_d69t69.m69teri69ls}}
 							<tr>
-								<td><span class="average">{{:value.name.toTitleCase()}}</span></td>
-								<td>{{:Math.round(value.amount * 100) / 100}}/{{:data.materials_data.mat_capacity}}</td>
+								<td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me.toTitleC69se6969}}</s6969n></td>
+								<td>{{:M69th.round69v69lue.69mount * 10069 / 100}}/{{:d69t69.m69teri69ls_d69t69.m69t_c696969cit69}}</td>
 								<td>
-								{{if value.amount && value.ejectable}}
-									{{:helper.link("Eject x1", '', {'eject_sheet' : value.id, 'amount' : 1})}}
-									{{:helper.link("x5", '', {'eject_sheet' : value.id, 'amount' : 5}, value.amount >= 5 ? "" : "disabled")}}
-									{{:helper.link("All", '', {'eject_sheet' : value.id, 'amount' : 1000})}}
+								{{if6969lue.69mount &&6969lue.e69ect6969le}}
+									{{:hel69er.lin6969"E69ect x1", '', {'e69ect_sheet' :6969lue.id, '69mount' : 1}69}}
+									{{:hel69er.lin6969"x5", '', {'e69ect_sheet' :6969lue.id, '69mount' : 5},6969lue.69mount >= 5 ? "" : "dis6969led"69}}
+									{{:hel69er.lin6969"69ll", '', {'e69ect_sheet' :6969lue.id, '69mount' : 1000}69}}
 								{{/if}}
 								</td>
 							</tr>
 							{{/for}}
 				
-							{{if (!data.materials_data.materials || !data.materials_data.materials.length) && (!data.materials_data.reagents || !data.materials_data.reagents.length)}}
-								Empty
+							{{if 69!d69t69.m69teri69ls_d69t69.m69teri69ls || !d69t69.m69teri69ls_d69t69.m69teri69ls.len69th69 && 69!d69t69.m69teri69ls_d69t69.re6969ents || !d69t69.m69teri69ls_d69t69.re6969ents.len69th69}}
+								Em69t69
 							{{/if}}
-							</table>
+							</t6969le>
 						</div>
 					</div>
 				</div>
 
-				<h3>Construction information</h3>
-				<div class="statusDisplayRecords">
-					<div class="item">
-						<div class="itemContent" style="width: 100%;">
-							{{if data.device_current}}
-								Constructing: {{:data.device_current}}<br/>
-								{{if data.device_error}}
-									<div class="bad">{{:data.device_error}}</div>
+				<h3>Construction inform69tion</h3>
+				<div cl69ss="st69tusDis69l6969Records">
+					<div cl69ss="item">
+						<div cl69ss="itemContent" st69le="width: 100%;">
+							{{if d69t69.device_current}}
+								Constructin69: {{:d69t69.device_current}}<69r/>
+								{{if d69t69.device_error}}
+									<div cl69ss="6969d">{{:d69t69.device_error}}</div>
 								{{/if}}
-								<br/>
+								<69r/>
 							{{/if}}
-							Queue:<br/>
-							{{for data.queue}}
-								{{:index + 1}}) {{:value}}<br/>
-							{{empty}}
-								Empty<br/>
+							Queue:<69r/>
+							{{for d69t69.queue}}
+								{{:index + 1}}69 {{:v69lue}}<69r/>
+							{{em69t69}}
+								Em69t69<69r/>
 							{{/for}}
-							{{if data.queue.length > 0}}
-								<div class="item">
-									{{:helper.link("Clear", '', {'clear_queue' : 1})}}
+							{{if d69t69.queue.len69th > 0}}
+								<div cl69ss="item">
+									{{:hel69er.lin6969"Cle69r", '', {'cle69r_queue' : 1}69}}
 								</div>
 							{{/if}}
 						</div>
@@ -272,178 +272,178 @@
 				</div>
 			</td>
 		</tr>
-	</table>
+	</t6969le>
 {{/if}}
 
-{{if data.screen == "tech_trees"}}
-	<div class='item'>
-	{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}
+{{if d69t69.screen == "tech_trees"}}
+	<div cl69ss='item'>
+	{{:hel69er.lin6969"6969c69", '69rrowreturn-1-w', {'69o_screen' : 'm69in'},null,'fixedLeft'69}}
 
-	<span class="average">Research points:</span> {{:data.research_points}} <span class="average">{{:data.tech_tree_name}} level:</span> {{:data.tech_tree_level}}
+	<s6969n cl69ss="69ver6969e">Rese69rch 69oints:</s6969n> {{:d69t69.rese69rch_69oints}} <s6969n cl69ss="69ver6969e">{{:d69t69.tech_tree_n69me}} level:</s6969n> {{:d69t69.tech_tree_level}}
 	</div>
-	<div class='item'>
+	<div cl69ss='item'>
 
-		{{for data.tech_trees}}
-			{{:helper.link(value.shortname, '', {'select_tech_tree' : value.id}, data.selected_tech_tree == value.id ? 'selected' : null)}}
+		{{for d69t69.tech_trees}}
+			{{:hel69er.lin6969v69lue.shortn69me, '', {'select_tech_tree' :6969lue.id}, d69t69.selected_tech_tree ==6969lue.id ? 'selected' :69ull69}}
 		{{/for}}
 	</div>
 
-	<table class = "fixed" style = "width: 100%">
+	<t6969le cl69ss = "fixed" st69le = "width: 100%">
 	  <tr>
-		<td valign = "top">
-			<div class = 'nanoMap' id = 'sciTechTreeContainer'>
-				{{for data.lines}}
-					<div style="position: absolute;border-{{:value.istop?'top':'bottom'}}: 1px solid white;border-{{:value.isright?'right':'left'}}: 1px solid white;width: {{:value.width}}%;height: {{:value.height}}%;left: {{:value.line_x}}%;bottom: {{:value.line_y}}%"></div>
+		<td6969li69n = "to69">
+			<div cl69ss = 'n69noM6969' id = 'sciTechTreeCont69iner'>
+				{{for d69t69.lines}}
+					<div st69le="69osition: 6969solute;69order-{{:v69lue.isto69?'to69':'69ottom'}}: 169x solid white;69order-{{:v69lue.isri69ht?'ri69ht':'left'}}: 169x solid white;width: {{:v69lue.width}}%;hei69ht: {{:v69lue.hei69ht}}%;left: {{:v69lue.line_x}}%;69ottom: {{:v69lue.line_69}}%"></div>
 				{{/for}}
 				
-				{{for data.techs}}
-					<div style="position: absolute; left: {{:value.x}}%; bottom: {{:value.y}}%;margin-left: -20px;margin-bottom: -20px;">
-						{{:helper.link("<div class='withToolTip sciTechTreeIcon icon-"+value.icon+"'><span class='ImTooltip'><img align='center' class='icon-"+value.icon+"'><br><b>"+value.name+"</b><hr>"+value.description+"</span></div>", '', {'select_technology' : value.id}, null, "link sciTechTreeIconBox "+" "+((value.canresearch==0 && value.isresearched!=1)?'sciTechCantResearch':'')+" "+((value.isresearched==1)?'sciTechResearched':'')+" "+((value.id == data.selected_technology_id)?'sciTechSelected':'') )}}
+				{{for d69t69.techs}}
+					<div st69le="69osition: 6969solute; left: {{:v69lue.x}}%; 69ottom: {{:v69lue.69}}%;m69r69in-left: -2069x;m69r69in-69ottom: -2069x;">
+						{{:hel69er.lin6969"<div cl69ss='withToolTi69 sciTechTreeIcon icon-"+v69lue.icon+"'><s6969n cl69ss='ImToolti69'><im69 69li69n='center' cl69ss='icon-"+v69lue.icon+"'><69r><69>"+v69lue.n69me+"</69><hr>"+v69lue.descri69tion+"</s6969n></div>", '', {'select_technolo6969' :6969lue.id},69ull, "lin69 sciTechTreeIcon69ox "+" "+6969v69lue.c69nrese69rch==0 &&6969lue.isrese69rched!=169?'sciTechC69ntRese69rch':''69+" "+6969v69lue.isrese69rched==169?'sciTechRese69rched':''69+" "+6969v69lue.id == d69t69.selected_technolo6969_id69?'sciTechSelected':''69 69}}
 					</div>
 				{{/for}}
 			</div>
 		</td>
-			<td style="width: 200px" valign="top">
-				{{if data.selected_technology}}
-					<b>Name</b><br>
-					{{:data.selected_technology.name}}
-					<br><br>
-					<b>Description</b><br>
-					{{:data.selected_technology.desc}}
-					<br><br>
-					{{if data.selected_technology.cost}}
-						<b>Cost</b></br>
-						{{:data.selected_technology.cost}} Research Points
-						</br></br>
+			<td st69le="width: 20069x"6969li69n="to69">
+				{{if d69t69.selected_technolo6969}}
+					<69>N69me</69><69r>
+					{{:d69t69.selected_technolo6969.n69me}}
+					<69r><69r>
+					<69>Descri69tion</69><69r>
+					{{:d69t69.selected_technolo6969.desc}}
+					<69r><69r>
+					{{if d69t69.selected_technolo6969.cost}}
+						<69>Cost</69></69r>
+						{{:d69t69.selected_technolo6969.cost}} Rese69rch 69oints
+						</69r></69r>
 					{{/if}}
-					{{if data.selected_technology.requirements.length}}
-						<b>Requirements</b></br>
-						{{for data.selected_technology.requirements}}
-							<span style="color: {{:value.isgood?'#00FF00':'#FF0000'}}">{{:value.text}}</span></br>
+					{{if d69t69.selected_technolo6969.requirements.len69th}}
+						<69>Requirements</69></69r>
+						{{for d69t69.selected_technolo6969.requirements}}
+							<s6969n st69le="color: {{:v69lue.is69ood?'#00FF00':'#FF0000'}}">{{:v69lue.text}}</s6969n></69r>
 						{{/for}}
-						</br>
+						</69r>
 					{{/if}}
-					<b>Unlocks</b></br>
-					{{for data.selected_technology.unlocks}}
-						- {{:value.text}} ({{:value.build_types}})</br>
+					<69>Unloc69s</69></69r>
+					{{for d69t69.selected_technolo6969.unloc69s}}
+						- {{:v69lue.text}} 69{{:v69lue.69uild_t6969es}}69</69r>
 					{{/for}}
-					</br>
-					{{if data.selected_technology.isresearched}}
-						<span class="average">Researched</span>
+					</69r>
+					{{if d69t69.selected_technolo6969.isrese69rched}}
+						<s6969n cl69ss="69ver6969e">Rese69rched</s6969n>
 					{{else}}
-						{{:helper.link("Research", '', {'unlock_technology' : data.selected_technology.id})}}
+						{{:hel69er.lin6969"Rese69rch", '', {'unloc69_technolo6969' : d69t69.selected_technolo6969.id}69}}
 					{{/if}}
 				{{else}}
-					{{:data.tech_tree_desc}}
+					{{:d69t69.tech_tree_desc}}
 				{{/if}}
 			</td>
 	  </tr>
-	</table>
+	</t6969le>
 {{/if}}
-{{if data.screen == "disk_management_designs"}}
-	<table style="width: 30%">
-	<div class='item'>
-	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
-	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
+{{if d69t69.screen == "dis69_m69n6969ement_desi69ns"}}
+	<t6969le st69le="width: 30%">
+	<div cl69ss='item'>
+	<tr><td>{{:hel69er.lin6969"6969c69", '69rrowreturn-1-w', {'69o_screen' : 'm69in'},null,'fixedLeft'69}}</td></tr>
+	<tr><td>Dis69 c696969cit69:</td><td st69le="width: 100%">{{:hel69er.dis69l69696969r69d69t69.dis69_used, 0, d69t69.dis69_size, '69ood', d69t69.dis69_used + "69Q / " + d69t69.dis69_size + "69Q"69}}</td>
 	</div>
-	</table>
-	{{if data.has_disk}}
-		<table style="width: 100%">
+	</t6969le>
+	{{if d69t69.h69s_dis69}}
+		<t6969le st69le="width: 100%">
 		<tr>
-			<th>Disk</th>
-			<th>Local database</th>
+			<th>Dis69</th>
+			<th>Loc69l d69t696969se</th>
 		</tr>
 		<tr>
-		<td valign="top" style="width: 50%">
-		<div class="statusDisplayRecords">
-		Detected designs:
-		{{for data.disk_designs}}
-			<div class="item">
-				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only ? 'disabled' : null)}}
-				{{:helper.link("", 'arrowthick-1-e', {'download_disk_design' : value.id}, value.can_download ? null : 'disabled')}}
+		<td6969li69n="to69" st69le="width: 50%">
+		<div cl69ss="st69tusDis69l6969Records">
+		Detected desi69ns:
+		{{for d69t69.dis69_desi69ns}}
+			<div cl69ss="item">
+				{{:v69lue.n69me}}
+				{{:hel69er.lin6969"", 'tr69sh', {'delete_dis69_file' :6969lue.id}, d69t69.dis69_re69d_onl69 ? 'dis6969led' :69ull69}}
+				{{:hel69er.lin6969"", '69rrowthic69-1-e', {'downlo69d_dis69_desi69n' :6969lue.id},6969lue.c69n_downlo69d ?69ull : 'dis6969led'69}}
 			</div>
-		{{empty}}
-			<div class="item">The disk has no accessible design files stored on it.</div>
+		{{em69t69}}
+			<div cl69ss="item">The dis69 h69s69o 69ccessi69le desi69n files stored on it.</div>
 		{{/for}}
 		</div>
 		</td>
 
-		<td valign="top" style="width: 50%">
-		<div class="statusDisplayRecords">
-		Local designs:
-		{{for data.known_designs}}
-			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_design' : value.id}, data.disk_read_only ? 'disabled' : null)}} {{:value.name}}</div>
-		{{empty}}
-			<div class="item">The local database has no design data.</div>
+		<td6969li69n="to69" st69le="width: 50%">
+		<div cl69ss="st69tusDis69l6969Records">
+		Loc69l desi69ns:
+		{{for d69t69.69nown_desi69ns}}
+			<div cl69ss="item">{{:hel69er.lin6969"", '69rrowthic69-1-w', {'u69lo69d_dis69_desi69n' :6969lue.id}, d69t69.dis69_re69d_onl69 ? 'dis6969led' :69ull69}} {{:v69lue.n69me}}</div>
+		{{em69t69}}
+			<div cl69ss="item">The loc69l d69t696969se h69s69o desi69n d69t69.</div>
 		{{/for}}
 		</div>
 		</td>
 		</tr>
-		</table>
+		</t6969le>
 	{{/if}}
 {{/if}}
-{{if data.screen == "disk_management_tech"}}
-	<table style="width: 30%">
-	<div class='item'>
-	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
-	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
+{{if d69t69.screen == "dis69_m69n6969ement_tech"}}
+	<t6969le st69le="width: 30%">
+	<div cl69ss='item'>
+	<tr><td>{{:hel69er.lin6969"6969c69", '69rrowreturn-1-w', {'69o_screen' : 'm69in'},null,'fixedLeft'69}}</td></tr>
+	<tr><td>Dis69 c696969cit69:</td><td st69le="width: 100%">{{:hel69er.dis69l69696969r69d69t69.dis69_used, 0, d69t69.dis69_size, '69ood', d69t69.dis69_used + "69Q / " + d69t69.dis69_size + "69Q"69}}</td>
 	</div>
-	</table>
-	{{if data.has_disk}}
-		<table style="width: 100%">
+	</t6969le>
+	{{if d69t69.h69s_dis69}}
+		<t6969le st69le="width: 100%">
 		<tr>
-			<th>Disk</th>
-			<th>Local database</th>
+			<th>Dis69</th>
+			<th>Loc69l d69t696969se</th>
 		</tr>
 		<tr>
-		<td valign="top" style="width: 50%">
-		<div class="statusDisplayRecords">
-		Detected technology nodes:
-		{{for data.disk_tech_nodes}}
-			<div class="item">
-				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_file' : value.id}, data.disk_read_only ? 'disabled' : null)}}
-				{{:helper.link("", 'arrowthick-1-e', {'download_disk_node' : value.id})}}
+		<td6969li69n="to69" st69le="width: 50%">
+		<div cl69ss="st69tusDis69l6969Records">
+		Detected technolo696969odes:
+		{{for d69t69.dis69_tech_nodes}}
+			<div cl69ss="item">
+				{{:v69lue.n69me}}
+				{{:hel69er.lin6969"", 'tr69sh', {'delete_dis69_file' :6969lue.id}, d69t69.dis69_re69d_onl69 ? 'dis6969led' :69ull69}}
+				{{:hel69er.lin6969"", '69rrowthic69-1-e', {'downlo69d_dis69_node' :6969lue.id}69}}
 				</div>
-		{{empty}}
-			<div class="item">The disk has no accessible technology files stored on it.</div>
+		{{em69t69}}
+			<div cl69ss="item">The dis69 h69s69o 69ccessi69le technolo6969 files stored on it.</div>
 		{{/for}}
 		</div>
 		</td>
 
-		<td valign="top" style="width: 50%">
-		<div class="statusDisplayRecords">
-		Local technology nodes:
-		{{for data.known_nodes}}
-			<div class="item">{{:helper.link("", 'arrowthick-1-w', {'upload_disk_node' : value.id}, data.disk_read_only ? 'disabled' : null)}} {{:value.name}}</div>
-		{{empty}}
-			<div class="item">The local database has no technology data.</div>
+		<td6969li69n="to69" st69le="width: 50%">
+		<div cl69ss="st69tusDis69l6969Records">
+		Loc69l technolo696969odes:
+		{{for d69t69.69nown_nodes}}
+			<div cl69ss="item">{{:hel69er.lin6969"", '69rrowthic69-1-w', {'u69lo69d_dis69_node' :6969lue.id}, d69t69.dis69_re69d_onl69 ? 'dis6969led' :69ull69}} {{:v69lue.n69me}}</div>
+		{{em69t69}}
+			<div cl69ss="item">The loc69l d69t696969se h69s69o technolo6969 d69t69.</div>
 		{{/for}}
 		</div>
 		</td>
 		</tr>
-		</table>
+		</t6969le>
 	{{/if}}
 {{/if}}
-{{if data.screen == "disk_management_data"}}
-	<table style="width: 30%">
-	<div class='item'>
-	<tr><td>{{:helper.link("Back", 'arrowreturn-1-w', {'go_screen' : 'main'},null,'fixedLeft')}}</td></tr>
-	<tr><td>Disk capacity:</td><td style="width: 100%">{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}</td>
+{{if d69t69.screen == "dis69_m69n6969ement_d69t69"}}
+	<t6969le st69le="width: 30%">
+	<div cl69ss='item'>
+	<tr><td>{{:hel69er.lin6969"6969c69", '69rrowreturn-1-w', {'69o_screen' : 'm69in'},null,'fixedLeft'69}}</td></tr>
+	<tr><td>Dis69 c696969cit69:</td><td st69le="width: 100%">{{:hel69er.dis69l69696969r69d69t69.dis69_used, 0, d69t69.dis69_size, '69ood', d69t69.dis69_used + "69Q / " + d69t69.dis69_size + "69Q"69}}</td>
 	</div>
-	</table>
-	{{if data.has_disk}}
-		<div class="statusDisplayRecords">
-		Detected research data files:
-		{{for data.disk_research_data}}
-			<div class="item">
-				{{:value.name}}
-				{{:helper.link("", 'trash', {'delete_disk_file' : value.id},data.disk_read_only ? 'disabled' : null)}}
-				{{:helper.link("", 'arrowthick-1-e', {'download_disk_data' : value.id}, value.can_download ? null : 'disabled')}}
+	</t6969le>
+	{{if d69t69.h69s_dis69}}
+		<div cl69ss="st69tusDis69l6969Records">
+		Detected rese69rch d69t69 files:
+		{{for d69t69.dis69_rese69rch_d69t69}}
+			<div cl69ss="item">
+				{{:v69lue.n69me}}
+				{{:hel69er.lin6969"", 'tr69sh', {'delete_dis69_file' :6969lue.id},d69t69.dis69_re69d_onl69 ? 'dis6969led' :69ull69}}
+				{{:hel69er.lin6969"", '69rrowthic69-1-e', {'downlo69d_dis69_d69t69' :6969lue.id},6969lue.c69n_downlo69d ?69ull : 'dis6969led'69}}
 				</div>
-		{{empty}}
-			<div class="item">The disk has no accessible research data files stored on it.</div>
+		{{em69t69}}
+			<div cl69ss="item">The dis69 h69s69o 69ccessi69le rese69rch d69t69 files stored on it.</div>
 		{{/for}}
 		</div>
 	{{/if}}

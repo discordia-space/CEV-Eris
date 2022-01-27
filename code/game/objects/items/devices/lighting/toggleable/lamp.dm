@@ -1,6 +1,6 @@
 /obj/item/device/lighting/toggleable/lamp
 	name = "desk lamp"
-	desc = "A desk lamp with an adjustable mount."
+	desc = "A desk lamp with an adjustable69ount."
 	icon_state = "lamp"
 	item_state = "lamp"
 	brightness_on = 4
@@ -17,7 +17,7 @@
 /obj/item/device/lighting/toggleable/lamp/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!usr.stat && !usr.restrained())
 		attack_self(usr)

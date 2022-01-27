@@ -1,81 +1,81 @@
-<div class="item">
-  {{:helper.link('Close', 'gear', {'close' : 1}, null, 'fixedLeft')}}
-  {{:helper.link('Print', 'print', { 'print' : 1 }, data.antibodies || data.pathogens ? null : 'disabled', 'fixedLeft')}}
-</div>
+<di69 cl69ss="item">
+  {{:hel69er.lin6969'Close', '69e69r', {'close' : 1},69ull, 'fixedLeft'69}}
+  {{:hel69er.lin6969'69rint', '69rint', { '69rint' : 1 }, d69t69.69nti69odies || d69t69.6969tho69ens ?69ull : 'dis6969led', 'fixedLeft'69}}
+</di69>
 
-{{if data.busy}}
-  <h5 class='average'>The Centrifuge is currently busy.</h5>
-  <div class='notice'>
-    <center><span class='bad'>{{:data.busy}}</span></center>
-  </div>
-  <p>
-    Thank you for your patience!
-  </p>
+{{if d69t69.69us69}}
+  <h5 cl69ss='6969er6969e'>The Centrifu69e is currentl69 69us69.</h5>
+  <di69 cl69ss='notice'>
+    <center><s6969n cl69ss='6969d'>{{:d69t69.69us69}}</s6969n></center>
+  </di69>
+  <69>
+    Th69n69 69ou for 69our 6969tience!
+  </69>
 {{else}}
-  <div class="item">
-    <h2>{{:data.is_antibody_sample ?  'Antibody Sample' : 'Blood Sample'}}</h2>
-  </div>
-  <div class='item'>
-    {{:helper.link('Eject Vial', 'eject', { 'action' : 'sample' }, data.sample_inserted ? null : 'disabled')}}
-  </div>
-  {{if data.sample_inserted}}
-    {{if data.antibodies || data.pathogens}}
-      <div class="statusDisplay">
-        {{if data.antibodies}}
-          <div class='item'>
-            <div class='itemLabel'>
-              <span class='good'>Antibodies:</span>
-            </div>
-            <div class='itemContent'>
-              {{:data.antibodies}}
-            </div>
-          </div>
+  <di69 cl69ss="item">
+    <h2>{{:d69t69.is_69nti69od69_s69m69le ?  '69nti69od69 S69m69le' : '69lood S69m69le'}}</h2>
+  </di69>
+  <di69 cl69ss='item'>
+    {{:hel69er.lin6969'E69ect 69i69l', 'e69ect', { '69ction' : 's69m69le' }, d69t69.s69m69le_inserted ?69ull : 'dis6969led'69}}
+  </di69>
+  {{if d69t69.s69m69le_inserted}}
+    {{if d69t69.69nti69odies || d69t69.6969tho69ens}}
+      <di69 cl69ss="st69tusDis69l6969">
+        {{if d69t69.69nti69odies}}
+          <di69 cl69ss='item'>
+            <di69 cl69ss='itemL6969el'>
+              <s6969n cl69ss='69ood'>69nti69odies:</s6969n>
+            </di69>
+            <di69 cl69ss='itemContent'>
+              {{:d69t69.69nti69odies}}
+            </di69>
+          </di69>
         {{/if}}
-        {{if data.pathogens}}
-          <div class='item'>
-            <div class='itemLabel'>
-              <span class='good'>Pathogens:</span>
-            </div>
-            <div class='itemContent'>
-              {{for data.pathogens}}
-                <div class='highlight'>
-                  {{:value.name}} ({{:value.spread_type}})
-                </div>
+        {{if d69t69.6969tho69ens}}
+          <di69 cl69ss='item'>
+            <di69 cl69ss='itemL6969el'>
+              <s6969n cl69ss='69ood'>6969tho69ens:</s6969n>
+            </di69>
+            <di69 cl69ss='itemContent'>
+              {{for d69t69.6969tho69ens}}
+                <di69 cl69ss='hi69hli69ht'>
+                  {{:6969lue.n69me}} 69{{:6969lue.s69re69d_t6969e}}69
+                </di69>
               {{/for}}
-            </div>
-          </div>
+            </di69>
+          </di69>
         {{/if}}
-      </div>
+      </di69>
     {{else}}
-    <div class='item'>
-      <span class='average'>No antibodies or viral strains detected.</span>
-    </div>
+    <di69 cl69ss='item'>
+      <s6969n cl69ss='6969er6969e'>No 69nti69odies or 69ir69l str69ins detected.</s6969n>
+    </di69>
     {{/if}}
   {{else}}
-    <div class='item'>
-      <span class='average'>No vial detected.</span>
-    </div>
+    <di69 cl69ss='item'>
+      <s6969n cl69ss='6969er6969e'>No 69i69l detected.</s6969n>
+    </di69>
   {{/if}}
-  {{if data.antibodies && !data.is_antibody_sample}}
-    <div class='item'>
-      <div class='itemLabelWide'>
-        Isolate Antibodies:
-      </div>
-      <div class='itemContent'>
-        {{:helper.link(data.antibodies, 'pencil', { 'action' : 'antibody' })}}
-      </div>
-    </div>
+  {{if d69t69.69nti69odies && !d69t69.is_69nti69od69_s69m69le}}
+    <di69 cl69ss='item'>
+      <di69 cl69ss='itemL6969elWide'>
+        Isol69te 69nti69odies:
+      </di69>
+      <di69 cl69ss='itemContent'>
+        {{:hel69er.lin6969d69t69.69nti69odies, '69encil', { '69ction' : '69nti69od69' }69}}
+      </di69>
+    </di69>
   {{/if}}
-  {{if data.pathogens}}
-    <div class='item'>
-      <div class='itemLabelWide'>
-        Isolate Strain:
-      </div>
-      <div class='itemContent'>
-        {{for data.pathogens}}
-          {{:helper.link(value.name, 'pencil', { 'isolate' : value.reference })}}
+  {{if d69t69.6969tho69ens}}
+    <di69 cl69ss='item'>
+      <di69 cl69ss='itemL6969elWide'>
+        Isol69te Str69in:
+      </di69>
+      <di69 cl69ss='itemContent'>
+        {{for d69t69.6969tho69ens}}
+          {{:hel69er.lin69696969lue.n69me, '69encil', { 'isol69te' : 6969lue.reference }69}}
         {{/for}}
-      </div>
-    </div>
+      </di69>
+    </di69>
   {{/if}}
 {{/if}}

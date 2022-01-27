@@ -1,121 +1,121 @@
 
-/client/verb/ooc(msg as text)
-	set name = "OOC"
-	set category = "OOC"
+/client/verb/ooc(ms69 as text)
+	set69ame = "OOC"
+	set cate69ory = "OOC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_WARNING("Speech is currently admin-disabled."))
+	if(say_disabled)	//This is here to try to identify la69 problems
+		to_chat(usr, SPAN_WARNIN69("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)	return
-	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+	if(Is69uestKey(key))
+		to_chat(src, "69uests69ay69ot use OOC.")
 		return
 
-	msg = sanitize(msg)
-	if(!msg)	return
+	ms69 = sanitize(ms69)
+	if(!ms69)	return
 
-	if(src.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_WARNING("You have OOC muted."))
+	if(src.69et_preference_value(/datum/client_preference/show_ooc) == 69LOB.PREF_HIDE)
+		to_chat(src, SPAN_WARNIN69("You have OOC69uted."))
 		return
 
 	if(!holder)
-		if(!config.ooc_allowed)
-			to_chat(src, SPAN_DANGER("OOC is globally muted."))
+		if(!confi69.ooc_allowed)
+			to_chat(src, SPAN_DAN69ER("OOC is 69lobally69uted."))
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+		if(!confi69.dooc_allowed && (mob.stat == DEAD))
+			to_chat(usr, SPAN_DAN69ER("OOC for dead69obs has been turned off."))
 			return
-		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+		if(prefs.muted &69UTE_OOC)
+			to_chat(src, SPAN_DAN69ER("You cannot use OOC (muted)."))
 			return
-		if(handle_spam_prevention(msg,MUTE_OOC))
+		if(handle_spam_prevention(ms69,MUTE_OOC))
 			return
 
-	log_ooc("[mob.name]/[key] : [msg]")
+	lo69_ooc("69mob.name69/69key69 : 69ms6969")
 
-	msg = emoji_parse(msg)
+	ms69 = emoji_parse(ms69)
 
 	var/ooc_style = "everyone"
 	if(holder && !holder.fakekey)
 		ooc_style = "elevated"
-		if(holder.rights & R_MOD)
+		if(holder.ri69hts & R_MOD)
 			ooc_style = "moderator"
-		if(holder.rights & R_DEBUG)
+		if(holder.ri69hts & R_DEBU69)
 			ooc_style = "developer"
-		if(holder.rights & R_ADMIN)
+		if(holder.ri69hts & R_ADMIN)
 			ooc_style = "admin"
 
-	for(var/client/target in clients)
-		if(target.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_SHOW)
+	for(var/client/tar69et in clients)
+		if(tar69et.69et_preference_value(/datum/client_preference/show_ooc) == 69LOB.PREF_SHOW)
 			var/display_name = src.key
 			if(holder)
 				if(holder.fakekey)
-					if(target.holder)
-						display_name = "[holder.fakekey]/([src.key])"
+					if(tar69et.holder)
+						display_name = "69holder.fakekey69/(69src.key69)"
 					else
 						display_name = holder.fakekey
-			if(holder && !holder.fakekey && (holder.rights & R_ADMIN) && config.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keeping this for the badmins
-				to_chat(target, "<span class='ooc'>" + create_text_tag("ooc", "OOC:", target) + " <font color='[src.prefs.ooccolor]'><EM>[display_name]:</EM></font> <span class='[ooc_style]'><span class='message linkify'>[msg]</span></span></span>")
+			if(holder && !holder.fakekey && (holder.ri69hts & R_ADMIN) && confi69.allow_admin_ooccolor && (src.prefs.ooccolor != initial(src.prefs.ooccolor))) // keepin69 this for the badmins
+				to_chat(tar69et, "<span class='ooc'>" + create_text_ta69("ooc", "OOC:", tar69et) + " <font color='69src.prefs.ooccolor69'><EM>69display_name69:</EM></font> <span class='69ooc_style69'><span class='messa69e linkify'>69ms6969</span></span></span>")
 			else
-				to_chat(target, "<span class='ooc'><span class='[ooc_style]'>" + create_text_tag("ooc", "OOC:", target) + " <EM>[display_name]:</EM> <span class='message linkify'>[msg]</span></span></span>")
+				to_chat(tar69et, "<span class='ooc'><span class='69ooc_style69'>" + create_text_ta69("ooc", "OOC:", tar69et) + " <EM>69display_name69:</EM> <span class='messa69e linkify'>69ms6969</span></span></span>")
 
-/client/verb/looc(msg as text)
-	set name = "LOOC"
-	set desc = "Local OOC, seen only by those in view."
-	set category = "OOC"
+/client/verb/looc(ms69 as text)
+	set69ame = "LOOC"
+	set desc = "Local OOC, seen only by those in69iew."
+	set cate69ory = "OOC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, SPAN_DANGER("Speech is currently admin-disabled."))
+	if(say_disabled)	//This is here to try to identify la69 problems
+		to_chat(usr, SPAN_DAN69ER("Speech is currently admin-disabled."))
 		return
 
 	if(!mob)
 		return
 
-	if(IsGuestKey(key))
-		to_chat(src, "Guests may not use OOC.")
+	if(Is69uestKey(key))
+		to_chat(src, "69uests69ay69ot use OOC.")
 		return
 
-	msg = sanitize(msg)
-	if(!msg)
+	ms69 = sanitize(ms69)
+	if(!ms69)
 		return
 
-	if(src.get_preference_value(/datum/client_preference/show_looc) == GLOB.PREF_HIDE)
-		to_chat(src, SPAN_DANGER("You have LOOC muted."))
+	if(src.69et_preference_value(/datum/client_preference/show_looc) == 69LOB.PREF_HIDE)
+		to_chat(src, SPAN_DAN69ER("You have LOOC69uted."))
 		return
 
 	if(!holder)
-		if(!config.looc_allowed)
-			to_chat(src, SPAN_DANGER("LOOC is globally muted."))
+		if(!confi69.looc_allowed)
+			to_chat(src, SPAN_DAN69ER("LOOC is 69lobally69uted."))
 			return
-		if(!config.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, SPAN_DANGER("OOC for dead mobs has been turned off."))
+		if(!confi69.dooc_allowed && (mob.stat == DEAD))
+			to_chat(usr, SPAN_DAN69ER("OOC for dead69obs has been turned off."))
 			return
-		if(prefs.muted & MUTE_OOC)
-			to_chat(src, SPAN_DANGER("You cannot use OOC (muted)."))
+		if(prefs.muted &69UTE_OOC)
+			to_chat(src, SPAN_DAN69ER("You cannot use OOC (muted)."))
 			return
-		if(handle_spam_prevention(msg, MUTE_OOC))
+		if(handle_spam_prevention(ms69,69UTE_OOC))
 			return
 
-	log_ooc("(LOCAL) [mob.name]/[key] : [msg]")
+	lo69_ooc("(LOCAL) 69mob.name69/69key69 : 69ms6969")
 
-	var/mob/source = mob.get_looc_source()
+	var/mob/source =69ob.69et_looc_source()
 
 	var/display_name = key
 	if(holder && holder.fakekey)
 		display_name = holder.fakekey
 	if(mob.stat != DEAD)
-		display_name = mob.name
+		display_name =69ob.name
 
-	var/turf/T = get_turf(source)
-	var/list/listening = list()
-	listening |= src	// We can always hear ourselves.
-	var/list/listening_obj = list()
+	var/turf/T = 69et_turf(source)
+	var/list/listenin69 = list()
+	listenin69 |= src	// We can always hear ourselves.
+	var/list/listenin69_obj = list()
 	var/list/eye_heard = list()
 
-		// This is essentially a copy/paste from living/say() the purpose is to get mobs inside of objects without recursing through
-		// the contents of every mob and object in get_mobs_or_objects_in_view() looking for PAI's inside of the contents of a bag inside the
-		// contents of a mob inside the contents of a welded shut locker we essentially get a list of turfs and see if the mob is on one of them.
+		// This is essentially a copy/paste from livin69/say() the purpose is to 69et69obs inside of objects without recursin69 throu69h
+		// the contents of every69ob and object in 69et_mobs_or_objects_in_view() lookin69 for PAI's inside of the contents of a ba69 inside the
+		// contents of a69ob inside the contents of a welded shut locker we essentially 69et a list of turfs and see if the69ob is on one of them.
 
 	if(T)
 		var/list/hear = hear(7,T)
@@ -124,53 +124,53 @@
 		for(var/I in hear)
 			if(ismob(I))
 				var/mob/M = I
-				listening |= M.client
-				hearturfs += M.locs[1]
+				listenin69 |=69.client
+				hearturfs +=69.locs69169
 			else if(isobj(I))
 				var/obj/O = I
-				hearturfs |= O.locs[1]
-				listening_obj |= O
+				hearturfs |= O.locs69169
+				listenin69_obj |= O
 
-		for(var/mob/M in GLOB.player_list)
-			if(M.get_preference_value(/datum/client_preference/show_ooc) == GLOB.PREF_HIDE)
+		for(var/mob/M in 69LOB.player_list)
+			if(M.69et_preference_value(/datum/client_preference/show_ooc) == 69LOB.PREF_HIDE)
 				continue
 			if(isAI(M))
-				var/mob/living/silicon/ai/A = M
-				if(A.eyeobj && (A.eyeobj.locs[1] in hearturfs))
-					eye_heard |= M.client
-					listening |= M.client
+				var/mob/livin69/silicon/ai/A =69
+				if(A.eyeobj && (A.eyeobj.locs69169 in hearturfs))
+					eye_heard |=69.client
+					listenin69 |=69.client
 					continue
 
-			if(M.loc && (M.locs[1] in hearturfs))
-				listening |= M.client
+			if(M.loc && (M.locs69169 in hearturfs))
+				listenin69 |=69.client
 
 
-	for(var/client/t in listening)
+	for(var/client/t in listenin69)
 		var/admin_stuff = ""
 		var/prefix = ""
 		if(t in admins)
-			admin_stuff += "/([key])"
+			admin_stuff += "/(69key69)"
 			if(t != src)
-				admin_stuff += "([admin_jump_link(mob, t.holder)])"
+				admin_stuff += "(69admin_jump_link(mob, t.holder)69)"
 		if(isAI(t.mob))
 			if(t in eye_heard)
 				prefix = "(Eye) "
 			else
 				prefix = "(Core) "
-		to_chat(t, "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", t) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>")
+		to_chat(t, "<span class='ooc'><span class='looc'>" + create_text_ta69("looc", "LOOC:", t) + " <span class='prefix'>69prefix69</span><EM>69display_name6969admin_stuff69:</EM> <span class='messa69e'>69ms6969</span></span></span>")
 
 
-	for(var/client/adm in admins)	//Now send to all admins that weren't in range.
-		if(!(adm in listening) && adm.get_preference_value(/datum/client_preference/staff/show_rlooc) == GLOB.PREF_SHOW)
-			var/admin_stuff = "/([key])([admin_jump_link(mob, adm.holder)])"
+	for(var/client/adm in admins)	//Now send to all admins that weren't in ran69e.
+		if(!(adm in listenin69) && adm.69et_preference_value(/datum/client_preference/staff/show_rlooc) == 69LOB.PREF_SHOW)
+			var/admin_stuff = "/(69key69)(69admin_jump_link(mob, adm.holder)69)"
 			var/prefix = "(R)"
 
-			to_chat(adm, "<span class='ooc'><span class='looc'>" + create_text_tag("looc", "LOOC:", adm) + " <span class='prefix'>[prefix]</span><EM>[display_name][admin_stuff]:</EM> <span class='message'>[msg]</span></span></span>")
+			to_chat(adm, "<span class='ooc'><span class='looc'>" + create_text_ta69("looc", "LOOC:", adm) + " <span class='prefix'>69prefix69</span><EM>69display_name6969admin_stuff69:</EM> <span class='messa69e'>69ms6969</span></span></span>")
 
-/mob/proc/get_looc_source()
+/mob/proc/69et_looc_source()
 	return src
 
-/mob/living/silicon/ai/get_looc_source()
+/mob/livin69/silicon/ai/69et_looc_source()
 	if(eyeobj)
 		return eyeobj
 	return src

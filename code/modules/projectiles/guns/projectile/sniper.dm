@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/heavysniper
 	name = "SA AMR .60 \"Hristov\""
-	desc = "A portable anti-armour rifle, fitted with a night-vision scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and non-reinforced walls with ease, but suffers from overpenetration at close range. Fires armor piercing .60 shells. Can be upgraded using thermal glasses."
+	desc = "A portable anti-armour rifle, fitted with a69ight-vision scope, it was originally designed for use against armoured exosuits. It is capable of punching through windows and69on-reinforced walls with ease, but suffers from overpenetration at close range. Fires armor piercing .60 shells. Can be upgraded using thermal glasses."
 	icon = 'icons/obj/guns/projectile/heavysniper.dmi'
 	icon_state = "heavysniper"
 	item_state = "heavysniper"
@@ -17,7 +17,7 @@
 	ammo_type = /obj/item/ammo_casing/antim
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	reload_sound = 'sound/weapons/guns/interact/rifle_load.ogg'
-	matter = list(MATERIAL_PLASTEEL = 40, MATERIAL_PLASTIC = 20)
+	matter = list(MATERIAL_PLASTEEL = 40,69ATERIAL_PLASTIC = 20)
 	price_tag = 5000
 	one_hand_penalty = 10
 	zoom_factor = 2
@@ -39,7 +39,7 @@
 	var/itemstring = ""
 
 	if (item_suffix)
-		itemstring += "[item_suffix]"
+		itemstring += "69item_suffix69"
 
 	if (bolt_open)
 		iconstring += "_open"
@@ -65,13 +65,13 @@
 	if(bolt_open)
 		if(contents.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [chambered]!"))
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting 69chambered69!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
-				chambered = null
+				chambered =69ull
 			else
-				var/obj/item/ammo_casing/B = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting [B]!"))
+				var/obj/item/ammo_casing/B = loaded69loaded.len69
+				to_chat(user, SPAN_NOTICE("You work the bolt open, ejecting 69B69!"))
 				B.forceMove(get_turf(src))
 				loaded -= B
 		else
@@ -85,16 +85,16 @@
 
 /obj/item/gun/projectile/heavysniper/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the bolt is open!"))
+		to_chat(user, SPAN_WARNING("You can't fire 69src69 while the bolt is open!"))
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/heavysniper/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/heavysniper/load_ammo(var/obj/item/A,69ob/user)
 	if(!bolt_open)
 		return
 	..()
 
-/obj/item/gun/projectile/heavysniper/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/heavysniper/unload_ammo(mob/user,69ar/allow_dump=1)
 	if(!bolt_open)
 		return
 	..()
@@ -116,17 +116,17 @@
 
 /obj/item/weaponparts/heavysniper/stock
 	name = "sniper stock"
-	desc = "This is a sniper stock. You need to attach the reciever."
+	desc = "This is a sniper stock. You69eed to attach the reciever."
 	icon_state = "sniper_stock"
 
 /obj/item/weaponparts/heavysniper/reciever
 	name = "sniper reciever"
-	desc = "This is a sniper reciever. You need to attach it to the stock."
+	desc = "This is a sniper reciever. You69eed to attach it to the stock."
 	icon_state = "sniper_reciever"
 
 /obj/item/weaponparts/heavysniper/stockreciever
 	name = "sniper stock with reciever"
-	desc = "This is a sniper stock with reciever. Now attach the barrel."
+	desc = "This is a sniper stock with reciever.69ow attach the barrel."
 	icon_state = "sniper_stockreciever"
 
 /obj/item/weaponparts/heavysniper/barrel
@@ -134,32 +134,32 @@
 	desc = "This is a barrel from a sniper rifle."
 	icon_state = "sniper_barrel"
 
-/obj/item/weaponparts/heavysniper/stock/attackby(obj/item/W, mob/user,)
+/obj/item/weaponparts/heavysniper/stock/attackby(obj/item/W,69ob/user,)
 	if(istype(W,/obj/item/weaponparts/heavysniper/reciever))
 		to_chat(user, "You attach the reciever to the stock")
-		var/obj/item/weaponparts/heavysniper/stockreciever/HS = new (get_turf(src))
+		var/obj/item/weaponparts/heavysniper/stockreciever/HS =69ew (get_turf(src))
 		if(loc == user)
-			equip_slot = user.get_inventory_slot(src)
-			if(equip_slot in list(slot_r_hand, slot_l_hand))
+			e69uip_slot = user.get_inventory_slot(src)
+			if(e69uip_slot in list(slot_r_hand, slot_l_hand))
 				user.drop_from_inventory(src)
-				user.equip_to_slot_if_possible(HS, equip_slot)
-		qdel(W)
-		qdel(src)
+				user.e69uip_to_slot_if_possible(HS, e69uip_slot)
+		69del(W)
+		69del(src)
 
 
-/obj/item/weaponparts/heavysniper/stockreciever/attackby(obj/item/W, mob/user)
+/obj/item/weaponparts/heavysniper/stockreciever/attackby(obj/item/W,69ob/user)
 	if(istype(W,/obj/item/weaponparts/heavysniper/barrel))
 		to_chat(user, "You attach the barrel to the stock")
-		var/obj/item/gun/projectile/heavysniper/HS = new (get_turf(src))
+		var/obj/item/gun/projectile/heavysniper/HS =69ew (get_turf(src))
 		if(loc == user)
-			equip_slot = user.get_inventory_slot(src)
-			if(equip_slot in list(slot_r_hand, slot_l_hand))
+			e69uip_slot = user.get_inventory_slot(src)
+			if(e69uip_slot in list(slot_r_hand, slot_l_hand))
 				user.drop_from_inventory(src)
-				user.equip_to_slot_if_possible(HS, equip_slot)
-		qdel(W)
-		qdel(src)
+				user.e69uip_to_slot_if_possible(HS, e69uip_slot)
+		69del(W)
+		69del(src)
 
-/obj/item/gun/projectile/heavysniper/zoom(tileoffset, viewsize)
+/obj/item/gun/projectile/heavysniper/zoom(tileoffset,69iewsize)
 	..()
 	if(zoom)
 		damage_multiplier += extra_damage_mult_scoped

@@ -42,7 +42,7 @@
 				qdel(src)
 		else
 			qdel(src)
-	else if(dir == NORTH && y == high_edge)
+	else if(dir ==69ORTH && y == high_edge)
 		del_event()
 		if(istype(src, /obj/effect/overmap_event/movable/comet))
 			invisibility = 101
@@ -53,12 +53,12 @@
 		else
 			qdel(src)
 	else
-		return //we're not flying off anywhere
+		return //we're69ot flying off anywhere
 
 /obj/effect/overmap_event/movable
 	var/movable = 0
 	var/temporary = 0
-	var/moving_vector = NORTH
+	var/moving_vector =69ORTH
 	var/start_x
 	var/start_y
 	var/list/map_z = list()
@@ -86,14 +86,14 @@
 
 /obj/effect/overmap_event/movable/Initialize()
 	. = ..()
-	moving_vector = NORTH
+	moving_vector =69ORTH
 	start_x = pick(2, GLOB.maps_data.overmap_size - 1)
 	start_y = pick(2, GLOB.maps_data.overmap_size - 1)
 
 	if(start_x == 2 && start_y == 2)
 		start_x = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
 		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
-		moving_vector = pick(NORTH, EAST, NORTHEAST)
+		moving_vector = pick(NORTH, EAST,69ORTHEAST)
 
 	if(start_x == 2 && start_y == GLOB.maps_data.overmap_size - 1)
 		start_x = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
@@ -104,7 +104,7 @@
 
 	if(start_x == GLOB.maps_data.overmap_size - 1 && start_y == 2)
 		start_y = rand(2, GLOB.maps_data.overmap_size - rand(5,10))
-		moving_vector = pick(NORTH, WEST, NORTHWEST)
+		moving_vector = pick(NORTH, WEST,69ORTHWEST)
 
 	if(!config.use_overmap)
 		return
@@ -113,18 +113,18 @@
 	start_y = start_y || rand(OVERMAP_EDGE, GLOB.maps_data.overmap_size - OVERMAP_EDGE)
 
 	map_z = GetConnectedZlevels(z)
-	for(var/zlevel in map_z)
-		map_sectors["[zlevel]"] = src
+	for(var/zlevel in69ap_z)
+		map_sectors69"69zlevel69"69 = src
 
 
-	OE = new eventtype(null, difficulty)
+	OE =69ew eventtype(null, difficulty)
 
 	forceMove(locate(start_x, start_y, GLOB.maps_data.overmap_z))
 
 	for(var/obj/effect/overmap/ship/victim in src.loc)
 		OE:enter(victim)
 
-	GLOB.maps_data.player_levels |= map_z
+	GLOB.maps_data.player_levels |=69ap_z
 
 	START_PROCESSING(SSobj, src)
 
@@ -142,13 +142,13 @@
 /obj/effect/overmap_event/movable/comet/Initialize()
 	. = ..()
 
-	icon_stages[1] = pick(list("asteroid0", "asteroid1", "asteroid2", "asteroid3"))
+	icon_stages69169 = pick(list("asteroid0", "asteroid1", "asteroid2", "asteroid3"))
 
 /obj/effect/overmap_event/movable/comet/Move()
 	if(type == /obj/effect/overmap_event/movable/comet)
-		var/obj/effect/overmap_event/movable/comet/cometmedium/CT = new /obj/effect/overmap_event/movable/comet/cometmedium()
+		var/obj/effect/overmap_event/movable/comet/cometmedium/CT =69ew /obj/effect/overmap_event/movable/comet/cometmedium()
 
-		CT.moving_vector = moving_vector
+		CT.moving_vector =69oving_vector
 		CT.Move(src.loc)
 	..()
 
@@ -163,24 +163,24 @@
 /obj/effect/overmap_event/movable/comet/cometmedium/Initialize()
 	. = ..()
 
-	icon_stages[1] = pick(list("meteors0", "meteors1", "meteors2", "meteors3"))
+	icon_stages69169 = pick(list("meteors0", "meteors1", "meteors2", "meteors3"))
 
 	if(!config.use_overmap)
 		return
 	walk(src,turn(moving_vector, pick(45,-45,90,-90)),rand(100,160),0)
 
 	spawn(350)
-		var/obj/effect/overmap_event/movable/comet/comettail/CT = new /obj/effect/overmap_event/movable/comet/comettail()
+		var/obj/effect/overmap_event/movable/comet/comettail/CT =69ew /obj/effect/overmap_event/movable/comet/comettail()
 		CT.Move(src.loc)
-		CT.moving_vector = moving_vector
+		CT.moving_vector =69oving_vector
 
-		var/obj/effect/overmap_event/movable/comet/comettail/CT2 = new /obj/effect/overmap_event/movable/comet/comettail()
+		var/obj/effect/overmap_event/movable/comet/comettail/CT2 =69ew /obj/effect/overmap_event/movable/comet/comettail()
 		CT2.Move( locate(get_step(src, turn(moving_vector, 90)) ))
-		CT2.moving_vector = moving_vector
+		CT2.moving_vector =69oving_vector
 
-		var/obj/effect/overmap_event/movable/comet/comettail/CT3 = new /obj/effect/overmap_event/movable/comet/comettail()
+		var/obj/effect/overmap_event/movable/comet/comettail/CT3 =69ew /obj/effect/overmap_event/movable/comet/comettail()
 		CT3.Move( locate(get_step(src, turn(moving_vector, -90)) ))
-		CT3.moving_vector = moving_vector
+		CT3.moving_vector =69oving_vector
 
 		del_event()
 		qdel(src)
@@ -196,7 +196,7 @@
 /obj/effect/overmap_event/movable/comet/comettail/Initialize()
 	. = ..()
 
-	icon_stages[1] = pick(list("dust0", "dust1", "dust2", "dust3"))
+	icon_stages69169 = pick(list("dust0", "dust1", "dust2", "dust3"))
 
 	if(!config.use_overmap)
 		return

@@ -18,7 +18,7 @@
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	structure_damage_factor = STRUCTURE_DAMAGE_HEAVY
 	var/spray_particles = 3
-	var/spray_amount = 9	//units of liquid per particle
+	var/spray_amount = 9	//units of li69uid per particle
 	var/max_water = 300
 	var/last_use = 1
 	var/safety = 1
@@ -28,10 +28,10 @@
 
 /obj/item/extinguisher/mini
 	name = "fire extinguisher"
-	desc = "A light and compact fibreglass-framed model fire extinguisher."
+	desc = "A light and compact fibreglass-framed69odel fire extinguisher."
 	icon_state = "miniFE0"
 	item_state = "miniFE"
-	hitsound = null	//it is much lighter, after all.
+	hitsound = null	//it is69uch lighter, after all.
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 	force = WEAPON_FORCE_NORMAL
@@ -43,20 +43,20 @@
 /obj/item/extinguisher/Initialize()
 	. = ..()
 	if(overlaylist.len)
-		var/icon/temp = new /icon('icons/obj/items.dmi', overlaylist[rand(1,overlaylist.len)])
+		var/icon/temp = new /icon('icons/obj/items.dmi', overlaylist69rand(1,overlaylist.len)69)
 		overlays += temp
 	create_reagents(max_water)
-	reagents.add_reagent("water", max_water)
+	reagents.add_reagent("water",69ax_water)
 
 
-/obj/item/extinguisher/attack_self(mob/user as mob)
+/obj/item/extinguisher/attack_self(mob/user as69ob)
 	safety = !safety
-	src.icon_state = "[sprite_name][!safety]"
-	src.desc = "The safety is [safety ? "on" : "off"]."
-	to_chat(user, "The safety is [safety ? "on" : "off"].")
+	src.icon_state = "69sprite_name6969!safety69"
+	src.desc = "The safety is 69safety ? "on" : "off"69."
+	to_chat(user, "The safety is 69safety ? "on" : "off"69.")
 	return
 
-/obj/item/extinguisher/proc/propel_object(var/obj/O, mob/user, movementdirection)
+/obj/item/extinguisher/proc/propel_object(var/obj/O,69ob/user,69ovementdirection)
 	if(O.anchored) return
 
 	var/obj/structure/bed/chair/C
@@ -66,27 +66,27 @@
 	var/list/move_speed = list(1, 1, 1, 2, 2, 3)
 	for(var/i in 1 to 6)
 		if(C) C.propelled = (6-i)
-		O.Move(get_step(user,movementdirection), movementdirection)
-		sleep(move_speed[i])
+		O.Move(get_step(user,movementdirection),69ovementdirection)
+		sleep(move_speed69i69)
 
-	//additional movement
+	//additional69ovement
 	for(var/i in 1 to 3)
-		O.Move(get_step(user,movementdirection), movementdirection)
+		O.Move(get_step(user,movementdirection),69ovementdirection)
 		sleep(3)
 
-/obj/item/extinguisher/afterattack(var/atom/target, var/mob/user, var/flag)
+/obj/item/extinguisher/afterattack(var/atom/target,69ar/mob/user,69ar/flag)
 	//TODO; Add support for reagents in water.
 
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && flag)
 		var/obj/o = target
 		var/amount = o.reagents.trans_to_obj(src, 50)
-		to_chat(user, SPAN_NOTICE("You fill [src] with [amount] units of the contents of [target]."))
+		to_chat(user, SPAN_NOTICE("You fill 69src69 with 69amount69 units of the contents of 69target69."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
 
 	if (!safety)
 		if (src.reagents.total_volume < 1)
-			to_chat(usr, SPAN_NOTICE("\The [src] is empty."))
+			to_chat(usr, SPAN_NOTICE("\The 69src69 is empty."))
 			return
 
 		if (world.time < src.last_use + 20)
@@ -115,7 +115,7 @@
 				var/obj/effect/effect/water/W = new(get_turf(src))
 				var/turf/my_target
 				if(a <= the_targets.len)
-					my_target = the_targets[a]
+					my_target = the_targets69a69
 				else
 					my_target = pick(the_targets)
 				W.create_reagents(spray_amount)

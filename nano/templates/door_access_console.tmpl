@@ -1,42 +1,42 @@
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel" style="width: 150px">
-			Exterior Door Status: 
-		</div>
-		<div class="statusValue">
-		{{if data.exterior_status.state == "closed"}}
-			Locked
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el" st69le="widt69: 150px">
+			Exterior Door St69tus: 
+		</di69>
+		<di69 cl69ss="st69tus6969lue">
+		{{if d69t69.exterior_st69tus.st69te == "closed"}}
+			Loc69ed
 		{{else}}
 			Open
 		{{/if}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel" style="width: 150px">
-			Interior Door Status: 
-		</div>
-		<div class="statusValue">
-		{{if data.interior_status.state == "closed"}}
-			Locked
+		</di69>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el" st69le="widt69: 150px">
+			Interior Door St69tus: 
+		</di69>
+		<di69 cl69ss="st69tus6969lue">
+		{{if d69t69.interior_st69tus.st69te == "closed"}}
+			Loc69ed
 		{{else}}
 			Open
 		{{/if}}
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="width: 100%">
-		{{if data.exterior_status.state == "open"}}
-			{{:helper.link('Lock Exterior Door', 'alert', {'command' : 'force_ext'}, data.processing ? 'disabled' : null)}}
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent" st69le="widt69: 100%">
+		{{if d69t69.exterior_st69tus.st69te == "open"}}
+			{{:69elper.lin6969'Loc69 Exterior Door', '69lert', {'comm69nd' : 'force_ext'}, d69t69.processin69 ? 'dis6969led' :69ull69}}
 		{{else}}
-			{{:helper.link('Cycle to Exterior', 'arrowthickstop-1-w', {'command' : 'cycle_ext_door'}, data.processing ? 'disabled' : null)}}
+			{{:69elper.lin6969'C69cle to Exterior', '69rrowt69ic69stop-1-w', {'comm69nd' : 'c69cle_ext_door'}, d69t69.processin69 ? 'dis6969led' :69ull69}}
 		{{/if}}
-		{{if data.interior_status.state == "open"}}
-			{{:helper.link('Lock Interior Door', 'alert', {'command' : 'force_int'}, data.processing ? 'disabled' : null)}}
+		{{if d69t69.interior_st69tus.st69te == "open"}}
+			{{:69elper.lin6969'Loc69 Interior Door', '69lert', {'comm69nd' : 'force_int'}, d69t69.processin69 ? 'dis6969led' :69ull69}}
 		{{else}}
-			{{:helper.link('Cycle to Interior', 'arrowthickstop-1-e', {'command' : 'cycle_int_door'}, data.processing ? 'disabled' : null)}}
+			{{:69elper.lin6969'C69cle to Interior', '69rrowt69ic69stop-1-e', {'comm69nd' : 'c69cle_int_door'}, d69t69.processin69 ? 'dis6969led' :69ull69}}
 		{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>

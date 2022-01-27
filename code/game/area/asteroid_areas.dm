@@ -1,4 +1,4 @@
-// GENERIC MINING AREAS
+// GENERIC69INING AREAS
 
 /area/mine
 	icon_state = "mining"
@@ -19,11 +19,11 @@
 
 // Small outposts
 /area/outpost/mining_north
-	name = "North Mining Outpost"
+	name = "North69ining Outpost"
 	icon_state = "outpost_mine_north"
 
 /area/outpost/mining_west
-	name = "West Mining Outpost"
+	name = "West69ining Outpost"
 	icon_state = "outpost_mine_west"
 
 /area/outpost/abandoned
@@ -47,7 +47,7 @@
 /area/outpost/blacksite/large
 	name = "Large Abandoned Blacksite"
 
-// Main mining outpost
+//69ain69ining outpost
 /area/outpost/mining_main
 	icon_state = "outpost_mine_main"
 
@@ -55,10 +55,10 @@
 	name = "Mining Outpost Dormitory"
 
 /area/outpost/mining_main/medbay
-	name = "Mining Outpost Medical"
+	name = "Mining Outpost69edical"
 
 /area/outpost/mining_main/maintenance
-	name = "Mining Outpost Maintenance"
+	name = "Mining Outpost69aintenance"
 
 /area/outpost/mining_main/west_hall
 	name = "Mining Outpost West Hallway"
@@ -94,7 +94,7 @@
 	name = "Engineering Outpost Storage"
 
 /area/outpost/engineering/meeting
-	name = "Engineering Outpost Meeting Room"
+	name = "Engineering Outpost69eeting Room"
 
 
 
@@ -118,10 +118,10 @@
 	name = "Research Outpost Chemistry"
 
 /area/outpost/research/medical
-	name = "Research Outpost Medical"
+	name = "Research Outpost69edical"
 
 /area/outpost/research/power
-	name = "Research Outpost Maintenance"
+	name = "Research Outpost69aintenance"
 
 /area/outpost/research/isolation_a
 	name = "Research Outpost Isolation A"
@@ -133,7 +133,7 @@
 	name = "Research Outpost Isolation C"
 
 /area/outpost/research/isolation_monitoring
-	name = "Research Outpost Isolation Monitoring"
+	name = "Research Outpost Isolation69onitoring"
 
 /area/outpost/research/lab
 	name = "Research Outpost Laboratory"
@@ -161,7 +161,7 @@
 	name = "Prison Hulk Cells"
 
 /area/outpost/prisonhulk/food
-	name = "Prison Hulk Mess"
+	name = "Prison Hulk69ess"
 
 /area/outpost/prisonhulk/security
 	name = "Prison Hulk Brig"

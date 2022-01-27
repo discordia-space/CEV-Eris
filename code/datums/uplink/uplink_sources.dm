@@ -11,20 +11,20 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 	var/name
 	var/desc
 
-/decl/uplink_source/proc/setup_uplink_source(var/mob/M, var/amount)
+/decl/uplink_source/proc/setup_uplink_source(var/mob/M,69ar/amount)
 	return SETUP_FAILED
 
 /decl/uplink_source/pda
 	name = "PDA"
 	desc = NO_GUARANTEE_NO_EXTRA_COST_DESC("a PDA")
 
-/decl/uplink_source/pda/setup_uplink_source(var/mob/M, var/amount)
+/decl/uplink_source/pda/setup_uplink_source(var/mob/M,69ar/amount)
 	var/obj/item/modular_computer/pda/P = find_in_mob(M, /obj/item/modular_computer/pda)
 	if(!P || !P.hard_drive)
 		return SETUP_FAILED
 
-	var/pda_pass = "[rand(100,999)] [pick(GLOB.greek_letters)]"
-	var/obj/item/device/uplink/hidden/T = new(P, M.mind, amount)
+	var/pda_pass = "69rand(100,999)69 69pick(GLOB.greek_letters)69"
+	var/obj/item/device/uplink/hidden/T = new(P,69.mind, amount)
 	P.hidden_uplink = T
 	T.trigger_code = pda_pass
 	var/datum/computer_file/program/uplink/program = new(pda_pass)
@@ -33,14 +33,14 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 	if(!P.hard_drive.try_store_file(program))
 		return SETUP_FAILED	//Not enough space or other issues.
 	P.hard_drive.store_file(program)
-	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your [P.name]. Simply enter the code \"[pda_pass]\" in your new program to unlock its hidden features.</span>")
-	M.mind.store_memory("<B>Uplink passcode:</B> [pda_pass] ([P.name]).")
+	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your 69P.name69. Simply enter the code \"69pda_pass69\" in your new program to unlock its hidden features.</span>")
+	M.mind.store_memory("<B>Uplink passcode:</B> 69pda_pass69 (69P.name69).")
 
 /decl/uplink_source/radio
 	name = "Radio"
 	desc = NO_GUARANTEE_NO_EXTRA_COST_DESC("a radio")
 
-/decl/uplink_source/radio/setup_uplink_source(var/mob/M, var/amount)
+/decl/uplink_source/radio/setup_uplink_source(var/mob/M,69ar/amount)
 	var/obj/item/device/radio/R = find_in_mob(M, /obj/item/device/radio)
 	if(!R)
 		return SETUP_FAILED
@@ -54,22 +54,22 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 		if ((freq % 2) == 0)
 			freq += 1
 
-	freq = freqlist[rand(1, freqlist.len)]
-	var/obj/item/device/uplink/hidden/T = new(R, M.mind, amount)
+	freq = freqlist69rand(1, freqlist.len)69
+	var/obj/item/device/uplink/hidden/T = new(R,69.mind, amount)
 	R.hidden_uplink = T
 	T.trigger_code = freq
-	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your [R.name]. Simply dial the frequency [format_frequency(freq)] to unlock its hidden features.</span>")
-	M.mind.store_memory("<B>Radio Freq:</B> [format_frequency(freq)] ([R.name]).")
+	to_chat(M, "<span class='notice'>A portable object teleportation relay has been installed in your 69R.name69. Simply dial the frequency 69format_frequency(freq)69 to unlock its hidden features.</span>")
+	M.mind.store_memory("<B>Radio Freq:</B> 69format_frequency(freq)69 (69R.name69).")
 
 /decl/uplink_source/implant
 	name = "Implant"
 	desc = "Teleports an uplink implant into your head. Costs at least half the initial TC amount."
 
-/decl/uplink_source/implant/setup_uplink_source(var/mob/living/carbon/human/H, var/amount)
+/decl/uplink_source/implant/setup_uplink_source(var/mob/living/carbon/human/H,69ar/amount)
 	if(!istype(H))
 		return SETUP_FAILED
 
-	var/obj/item/organ/external/head = H.organs_by_name[BP_HEAD]
+	var/obj/item/organ/external/head = H.organs_by_name69BP_HEAD69
 	if(!head)
 		return SETUP_FAILED
 
@@ -85,35 +85,35 @@ GLOBAL_LIST_INIT(default_uplink_source_priority, list(
 	name = "Uplink Unit"
 	desc = "Teleports an uplink unit to your location. Grants 20% of the initial TC amount as a bonus."
 
-/decl/uplink_source/unit/setup_uplink_source(var/mob/M, var/amount)
-	var/obj/item/device/radio/uplink/U = new(M, M.mind, round(amount * 1.2))
-	put_on_mob(M, U, "\A [U]")
+/decl/uplink_source/unit/setup_uplink_source(var/mob/M,69ar/amount)
+	var/obj/item/device/radio/uplink/U = new(M,69.mind, round(amount * 1.2))
+	put_on_mob(M, U, "\A 69U69")
 
-/decl/uplink_source/proc/find_in_mob(var/mob/M, var/type)
-	for(var/item in M.get_equipped_items(TRUE))
+/decl/uplink_source/proc/find_in_mob(var/mob/M,69ar/type)
+	for(var/item in69.get_equipped_items(TRUE))
 		if(!istype(item, type))
 			continue
 		var/obj/item/I = item
 		if(!I.hidden_uplink)
 			return I
 
-/decl/uplink_source/proc/put_on_mob(var/mob/M, var/atom/movable/AM, var/text)
-	var/obj/O = M.equip_to_storage(AM)
+/decl/uplink_source/proc/put_on_mob(var/mob/M,69ar/atom/movable/AM,69ar/text)
+	var/obj/O =69.equip_to_storage(AM)
 	if(O)
-		to_chat(M, "<span class='notice'>[text] can be found in your [O.name].</span>")
+		to_chat(M, "<span class='notice'>69text69 can be found in your 69O.name69.</span>")
 	else if(M.put_in_hands(AM))
-		to_chat(M, "<span class='notice'>[text] appear in your hands.</span>")
+		to_chat(M, "<span class='notice'>69text69 appear in your hands.</span>")
 	else
 		AM.forceMove(M.loc)
-		to_chat(M, "<span class='notice'>[text] appear at your location.</span>")
+		to_chat(M, "<span class='notice'>69text69 appear at your location.</span>")
 
-/proc/setup_uplink_source(var/mob/M, var/amount = DEFAULT_TELECRYSTAL_AMOUNT)
+/proc/setup_uplink_source(var/mob/M,69ar/amount = DEFAULT_TELECRYSTAL_AMOUNT)
 	if(!istype(M) || !M.mind)
 		return FALSE
 
 	var/list/priority_order
-	if(M.client && M.client.prefs)
-		priority_order = M.client.prefs.uplink_sources
+	if(M.client &&69.client.prefs)
+		priority_order =69.client.prefs.uplink_sources
 
 	if(!priority_order || !priority_order.len)
 		priority_order = list()

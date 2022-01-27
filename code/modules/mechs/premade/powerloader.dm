@@ -1,10 +1,10 @@
 //Cheap parts are as basic as you can get. Designed for utility use and cheap production.
 /mob/living/exosuit/premade/powerloader
 	name = "S.E.U. \"Ripley\"" //Space Excavation Unit
-	desc = "A cheap utility exosuit. An old Nanotrasen design, now used just about everywhere due to post-Fall data leaks."
+	desc = "A cheap utility exosuit. An old69anotrasen design,69ow used just about everywhere due to post-Fall data leaks."
 
 	rarity_value = 15
-	material = MATERIAL_STEEL
+	material =69ATERIAL_STEEL
 	exosuit_color = "#ffbc37"
 	arms = /obj/item/mech_component/manipulators/cheap
 	legs = /obj/item/mech_component/propulsion/cheap
@@ -15,9 +15,9 @@
 		/obj/item/electronics/circuitboard/exosystem/engineering
 	)
 	installed_systems = list(
-		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
-		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/clamp,
-		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+		HARDPOINT_LEFT_HAND = /obj/item/mech_e69uipment/drill,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_e69uipment/clamp,
+		HARDPOINT_HEAD = /obj/item/mech_e69uipment/light,
 	)
 
 
@@ -27,12 +27,12 @@
 	melee_damage = 15
 	max_damage = 70
 	power_use = 30
-	desc = "Industrial lifter arms that allow you to crudely manipulate things from the safety of your cockpit."
+	desc = "Industrial lifter arms that allow you to crudely69anipulate things from the safety of your cockpit."
 
 /obj/item/mech_component/propulsion/cheap
 	name = "lifter exosuit legs"
 	exosuit_desc_string = "reinforced lifter legs"
-	desc = "Wide and stable, but not particularly fast."
+	desc = "Wide and stable, but69ot particularly fast."
 	max_damage = 70
 	move_delay = 3 // Slow and chunky
 	turn_delay = 3
@@ -42,7 +42,7 @@
 	name = "simple exosuit sensors"
 	gender = PLURAL
 	exosuit_desc_string = "simple sensors"
-	desc = "A primitive set of sensors designed to provide basic visual information to the pilot."
+	desc = "A primitive set of sensors designed to provide basic69isual information to the pilot."
 	max_damage = 100
 	power_use = 0
 
@@ -54,21 +54,21 @@
 	desc = "An industrial roll cage. Absolutely useless in hazardous environments, as it isn't even sealed."
 	max_damage = 100
 	power_use = 0
-	climb_time = 20 //easier to hop in and close up than a full cockpit, but not specialized for it
+	climb_time = 20 //easier to hop in and close up than a full cockpit, but69ot specialized for it
 
 /obj/item/mech_component/chassis/powerloader/Initialize()
 	pilot_positions = list(
 		list(
-			"[NORTH]" = list("x" = 8,  "y" = 8),
-			"[SOUTH]" = list("x" = 8,  "y" = 8),
-			"[EAST]"  = list("x" = 8,  "y" = 8),
-			"[WEST]"  = list("x" = 8,  "y" = 8)
+			"69NORTH69" = list("x" = 8,  "y" = 8),
+			"69SOUTH69" = list("x" = 8,  "y" = 8),
+			"69EAST69"  = list("x" = 8,  "y" = 8),
+			"69WEST69"  = list("x" = 8,  "y" = 8)
 		),
 		list(
-			"[NORTH]" = list("x" = 8,  "y" = 16),
-			"[SOUTH]" = list("x" = 8,  "y" = 16),
-			"[EAST]"  = list("x" = 0,  "y" = 16),
-			"[WEST]"  = list("x" = 16, "y" = 16)
+			"69NORTH69" = list("x" = 8,  "y" = 16),
+			"69SOUTH69" = list("x" = 8,  "y" = 16),
+			"69EAST69"  = list("x" = 0,  "y" = 16),
+			"69WEST69"  = list("x" = 16, "y" = 16)
 		)
 	)
 	. = ..()
@@ -88,12 +88,12 @@
 	desc = "A refitted industrial exosuit designed to fight fires. The chassis has been replaced to protect the pilot, and the armor is reinforced with plasteel for fireproofing."
 
 	rarity_value = 20
-	material = MATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
+	material =69ATERIAL_PLASTEEL // Reinforced with plasteel to fireproof the chassis
 	body = /obj/item/mech_component/chassis/heavy
 	exosuit_color = "#819a73"
 	installed_systems = list(
-		HARDPOINT_LEFT_HAND = /obj/item/mech_equipment/drill,
-		HARDPOINT_RIGHT_HAND = /obj/item/mech_equipment/mounted_system/extinguisher,
-		HARDPOINT_HEAD = /obj/item/mech_equipment/light,
+		HARDPOINT_LEFT_HAND = /obj/item/mech_e69uipment/drill,
+		HARDPOINT_RIGHT_HAND = /obj/item/mech_e69uipment/mounted_system/extinguisher,
+		HARDPOINT_HEAD = /obj/item/mech_e69uipment/light,
 	)
 

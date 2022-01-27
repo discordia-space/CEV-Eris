@@ -5,9 +5,9 @@
 	name = "pill"
 	desc = "A pill."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = null
+	icon_state =69ull
 	item_state = "pill"
-	possible_transfer_amounts = null
+	possible_transfer_amounts =69ull
 	w_class = ITEM_SIZE_TINY
 	slot_flags = SLOT_EARS
 	volume = 60
@@ -17,41 +17,41 @@
 /obj/item/reagent_containers/pill/Initialize()
 	. = ..()
 	if(!icon_state)
-		icon_state = "pill[rand(1, 20)]"
+		icon_state = "pill69rand(1, 20)69"
 
 
-/obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob, def_zone)
-	standard_feed_mob(user, M)
+/obj/item/reagent_containers/pill/attack(mob/M as69ob,69ob/user as69ob, def_zone)
+	standard_feed_mob(user,69)
 
 /obj/item/reagent_containers/pill/self_feed_message(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You swallow \the [src]."))
+	to_chat(user, SPAN_NOTICE("You swallow \the 69src69."))
 
-/obj/item/reagent_containers/pill/other_feed_message_start(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] attempts to force [target] to swallow \the [src].</span>")
+/obj/item/reagent_containers/pill/other_feed_message_start(var/mob/user,69ar/mob/target)
+	user.visible_message("<span class='warning'>69user69 attempts to force 69target69 to swallow \the 69src69.</span>")
 
-/obj/item/reagent_containers/pill/other_feed_message_finish(var/mob/user, var/mob/target)
-	user.visible_message("<span class='warning'>[user] forces [target] to swallow \the [src].</span>")
+/obj/item/reagent_containers/pill/other_feed_message_finish(var/mob/user,69ar/mob/target)
+	user.visible_message("<span class='warning'>69user69 forces 69target69 to swallow \the 69src69.</span>")
 
-/obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/pill/afterattack(obj/target,69ob/user, proximity)
 	if(!proximity) return
 
 	..()
 
 	if(target.is_refillable())
 		if(!target.reagents.total_volume)
-			to_chat(user, SPAN_NOTICE("[target] is empty. Can't dissolve \the [src]."))
+			to_chat(user, SPAN_NOTICE("69target69 is empty. Can't dissolve \the 69src69."))
 			return
-		to_chat(user, SPAN_NOTICE("You dissolve \the [src] in [target]."))
+		to_chat(user, SPAN_NOTICE("You dissolve \the 69src69 in 69target69."))
 
-		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [reagents.log_list()]</font>")
-		msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [reagents.log_list()] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		user.attack_log += text("\6969time_stamp()69\69 <font color='red'>Spiked \a 69target69 with a pill. Reagents: 69reagents.log_list()69</font>")
+		msg_admin_attack("69user.name69 (69user.ckey69) spiked \a 69target69 with a pill. Reagents: 69reagents.log_list()69 (INTENT: 69uppertext(user.a_intent)69) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69user.x69;Y=69user.y69;Z=69user.z69'>JMP</a>)")
 
 		reagents.trans_to(target, reagents.total_volume)
-		for(var/mob/O in viewers(2, user))
+		for(var/mob/O in69iewers(2, user))
 			if(!user.stats.getPerk(PERK_FAST_FINGERS))
-				O.show_message(SPAN_WARNING("[user] puts something in \the [target]."), 1)
+				O.show_message(SPAN_WARNING("69user69 puts something in \the 69target69."), 1)
 
-		qdel(src)
+		69del(src)
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,7 +61,7 @@
 //Pills
 /obj/item/reagent_containers/pill/antitox
 	name = "Anti-toxins pill"
-	desc = "Neutralizes many common toxins."
+	desc = "Neutralizes69any common toxins."
 	icon_state = "pill17"
 	preloaded_reagents = list("anti_toxin" = 25)
 
@@ -82,7 +82,7 @@
 
 /obj/item/reagent_containers/pill/adminordrazine
 	name = "Adminordrazine pill"
-	desc = "It's magic. We don't have to explain it."
+	desc = "It's69agic. We don't have to explain it."
 	icon_state = "pill16"
 	preloaded_reagents = list("adminordrazine" = 50)
 
@@ -206,13 +206,13 @@
 
 /obj/item/reagent_containers/pill/prosurgeon
 	name = "ProSurgeon pill"
-	desc = "Contains a stimulating drug that is used to reduce tremor to minimum."
+	desc = "Contains a stimulating drug that is used to reduce tremor to69inimum."
 	icon_state = "pill3"
 	preloaded_reagents = list("prosurgeon" = 10)
 
 /obj/item/reagent_containers/pill/meralyne
 	name = "Meralyne pill"
-	desc = "Contains a powerful medicine that is used to treat severe physical trauma."
+	desc = "Contains a powerful69edicine that is used to treat severe physical trauma."
 	icon_state = "pill3"
 	preloaded_reagents = list("meralyne" = 10)
 
@@ -262,4 +262,4 @@
 					list("toxin" = 40, "cyanide" = 10) = 0.5))
 
 	for(var/reagent in random_reagent)
-		reagents.add_reagent(reagent, random_reagent[reagent])
+		reagents.add_reagent(reagent, random_reagent69reagent69)

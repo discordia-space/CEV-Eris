@@ -1,6 +1,6 @@
 /*
 	Cameras in a radius will break. This provides plausible deniability to contractors and saboteurs, as
-	as well as possibly raising a false alarm and the AI mobilising ironhammer to investigate nothing.
+	as well as possibly raising a false alarm and the AI69obilising ironhammer to investigate nothing.
 
 	Mainly it hurts the AI, and provides work for engineers
 */
@@ -14,12 +14,12 @@
 
 /////////.//////////////////////////////////////
 /datum/event/camera_damage/start()
-	var/obj/machinery/camera/C = acquire_random_camera()
+	var/obj/machinery/camera/C = ac69uire_random_camera()
 	if(!C)
 		return
 
 	var/severity_range = 15
-	log_and_message_admins("Camera damage event triggered at [jumplink(C)],")
+	log_and_message_admins("Camera damage event triggered at 69jumplink(C)69,")
 	for(var/obj/machinery/camera/cam in range(severity_range,C))
 		if(is_valid_camera(cam))
 			if(prob(2))
@@ -29,7 +29,7 @@
 				if(prob(5))
 					cam.wires.UpdateCut(CAMERA_WIRE_ALARM, 0)
 
-/datum/event/camera_damage/proc/acquire_random_camera(var/remaining_attempts = 5)
+/datum/event/camera_damage/proc/ac69uire_random_camera(var/remaining_attempts = 5)
 	if(!cameranet.cameras.len)
 		return
 	if(!remaining_attempts)
@@ -38,7 +38,7 @@
 	var/obj/machinery/camera/C = pick(cameranet.cameras)
 	if(is_valid_camera(C))
 		return C
-	return acquire_random_camera(remaining_attempts-1)
+	return ac69uire_random_camera(remaining_attempts-1)
 
 /datum/event/camera_damage/proc/is_valid_camera(var/obj/machinery/camera/C)
 	// Only return a functional camera, not installed in a silicon, and that exists somewhere players have access

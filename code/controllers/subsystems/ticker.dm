@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(ticker)
 	// If true, there is no lobby phase, the game starts immediately.
 	var/start_immediately = FALSE
 
-	//setup vars
+	//setup69ars
 	var/first_start_trying = TRUE
 	var/story_vote_ended = FALSE
 
@@ -36,15 +36,15 @@ SUBSYSTEM_DEF(ticker)
 
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 
-	var/ship_was_nuked = 0              // See nuclearbomb.dm and malfunction.dm.
+	var/ship_was_nuked = 0              // See nuclearbomb.dm and69alfunction.dm.
 	var/ship_nuke_code = "NO CODE"       // Heads will get parts of this code.
 	var/ship_nuke_code_rotation_part = 1 // What part of code next Head will get.
 	var/nuke_in_progress = 0           	// Sit back and relax
 
 	var/newscaster_announcements = null
 
-	//station_explosion used to be a variable for every mob's hud. Which was a waste!
-	//Now we have a general cinematic centrally held within the gameticker....far more efficient!
+	//station_explosion used to be a69ariable for every69ob's hud. Which was a waste!
+	//Now we have a general cinematic centrally held within the gameticker....far69ore efficient!
 	var/obj/screen/cinematic = null
 
 	var/list/round_start_events
@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(ticker)
 				pregame_timeleft = 40
 
 			if(!start_immediately)
-				to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds.")
+				to_chat(world, "Please, setup your character and select ready. Game will start in 69pregame_timeleft69 seconds.")
 			current_state = GAME_STATE_PREGAME
 			send_assets()
 			fire()
@@ -144,10 +144,10 @@ SUBSYSTEM_DEF(ticker)
 
 					if(universe_has_ended)
 						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of ship in [restart_timeout/10] seconds</b>"))
+							to_chat(world, SPAN_NOTICE("<b>Rebooting due to destruction of ship in 69restart_timeout/1069 seconds</b>"))
 					else
 						if(!delay_end)
-							to_chat(world, SPAN_NOTICE("<b>Restarting in [restart_timeout/10] seconds</b>"))
+							to_chat(world, SPAN_NOTICE("<b>Restarting in 69restart_timeout/1069 seconds</b>"))
 
 
 					if(!delay_end)
@@ -160,7 +160,7 @@ SUBSYSTEM_DEF(ticker)
 						to_chat(world, SPAN_NOTICE("<b>An admin has delayed the round end</b>"))
 
 // This proc will scan for player and if the game is in progress and...
-// there is no player for certain minutes (see config.empty_server_restart_time) it will restart the server and return FALSE
+// there is no player for certain69inutes (see config.empty_server_restart_time) it will restart the server and return FALSE
 // If the game in pregame state if will reset roundstart timer and return FALSE
 // otherwise it will return TRUE
 // will also return TRUE if its currently counting down to server's restart after last player left
@@ -181,9 +181,9 @@ SUBSYSTEM_DEF(ticker)
 					last_player_left_timestamp = world.time
 					return TRUE
 				// Counting down the world's end
-				else if (world.time >= last_player_left_timestamp + (config.empty_server_restart_time MINUTES))
+				else if (world.time >= last_player_left_timestamp + (config.empty_server_restart_time69INUTES))
 					last_player_left_timestamp = 0
-					log_game("\[Server\] No players were on a server last [config.empty_server_restart_time] minutes, restarting server...")
+					log_game("\69Server\69 No players were on a server last 69config.empty_server_restart_time6969inutes, restarting server...")
 					world.Reboot()
 					return FALSE
 		if(GAME_STATE_PREGAME)
@@ -201,7 +201,7 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/setup()
 	to_chat(world, "<span class='boldannounce'>Starting game...</span>")
 	var/init_start = world.timeofday
-	//Create and announce mode
+	//Create and announce69ode
 
 	if(!GLOB.storyteller)
 		set_storyteller(announce = FALSE)
@@ -247,14 +247,14 @@ SUBSYSTEM_DEF(ticker)
 		var/datum/callback/cb = I
 		cb.InvokeAsync()
 	LAZYCLEARLIST(round_start_events)
-	log_world("Game start took [(world.timeofday - init_start)/10]s")
+	log_world("Game start took 69(world.timeofday - init_start)/1069s")
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	callHook("roundstart")
 
-	// no, block the main thread.
+	// no, block the69ain thread.
 	GLOB.storyteller.set_up()
 	to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 	SEND_SOUND(world, sound('sound/AI/welcome.ogg')) // Skie
@@ -269,9 +269,9 @@ SUBSYSTEM_DEF(ticker)
 	generate_contracts(min(6 + round(minds.len / 5), 12))
 	generate_excel_contracts(min(6 + round(minds.len / 5), 12))
 	excel_check()
-	addtimer(CALLBACK(src, .proc/contract_tick), 15 MINUTES)
+	addtimer(CALLBACK(src, .proc/contract_tick), 1569INUTES)
 	//start_events() //handles random events and space dust.
-	//new random event system is handled from the MC.
+	//new random event system is handled from the69C.
 
 	var/admins_number = 0
 	for(var/client/C)
@@ -289,14 +289,14 @@ SUBSYSTEM_DEF(ticker)
 	else
 		cb.InvokeAsync()
 
-// Provides an easy way to make cinematics for other events. Just use this as a template :)
+// Provides an easy way to69ake cinematics for other events. Just use this as a template :)
 /datum/controller/subsystem/ticker/proc/station_explosion_cinematic(var/ship_missed = 0)
 	if(cinematic)
 		return	//already a cinematic in progress!
 
 	if(ship_missed)
 		world << sound('sound/effects/explosionfar.ogg')
-		return	//bomb missed the ship
+		return	//bomb69issed the ship
 
 	//initialise our cinematic screen object
 	cinematic = new(src)
@@ -312,7 +312,7 @@ SUBSYSTEM_DEF(ticker)
 			if(M.client)
 				M.client.screen += cinematic
 			if(isliving(M))
-				var/mob/living/LM = M
+				var/mob/living/LM =69
 				LM.health = 0
 				LM.stat = DEAD
 
@@ -347,19 +347,19 @@ SUBSYSTEM_DEF(ticker)
 
 	cinematic.icon_state = "summary_selfdes"
 	//If its actually the end of the round, wait for it to end.
-	//Otherwise if its a verb it will continue on afterwards.
+	//Otherwise if its a69erb it will continue on afterwards.
 	sleep(300)
 
 	if(cinematic)
 		qdel(cinematic)		//end the cinematic
 
 /datum/controller/subsystem/ticker/proc/get_next_nuke_code_part() // returns code string as "XX56XX"
-	var/this_many = 2 // how many digits to return (this proc only tested with this value and 6 digit passwords).
+	var/this_many = 2 // how69any digits to return (this proc only tested with this69alue and 6 digit passwords).
 
 	if(ship_nuke_code == initial(ship_nuke_code) || length(ship_nuke_code) < this_many)
 		return initial(ship_nuke_code)
 
-	var/part_of_code = "[copytext(ship_nuke_code, ship_nuke_code_rotation_part, ship_nuke_code_rotation_part + this_many)]"
+	var/part_of_code = "69copytext(ship_nuke_code, ship_nuke_code_rotation_part, ship_nuke_code_rotation_part + this_many)69"
 	var/hidden_digit = "X"
 
 	if(ship_nuke_code_rotation_part > 1)
@@ -368,7 +368,7 @@ SUBSYSTEM_DEF(ticker)
 		. = part_of_code + add_characters(hidden_digit, length(ship_nuke_code) - this_many)
 
 	ship_nuke_code_rotation_part += this_many // new head of staff gets next this_many digits
-	if(ship_nuke_code_rotation_part > length(ship_nuke_code)) // or we start over if we moved out of range
+	if(ship_nuke_code_rotation_part > length(ship_nuke_code)) // or we start over if we69oved out of range
 		ship_nuke_code_rotation_part = 1
 
 /datum/controller/subsystem/ticker/proc/send_quote_of_the_round()
@@ -377,7 +377,7 @@ SUBSYSTEM_DEF(ticker)
 	if(quotes.len)
 		message = pick(quotes)
 	if(message)
-		to_chat(world, SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>[html_encode(message)]</font>"))
+		to_chat(world, SPAN_NOTICE("<font color='purple'><b>Quote of the round: </b>69html_encode(message)69</font>"))
 
 /datum/controller/subsystem/ticker/proc/create_characters()
 	for(var/mob/new_player/player in GLOB.player_list)
@@ -430,17 +430,17 @@ SUBSYSTEM_DEF(ticker)
 /datum/controller/subsystem/ticker/proc/excel_check()
 
 	for(var/datum/antag_contract/excel/targeted/overthrow/M in GLOB.excel_antag_contracts)
-		var/mob/living/carbon/human/H = M.target_mind.current
+		var/mob/living/carbon/human/H =69.target_mind.current
 		if (H.stat == DEAD || is_excelsior(H))
 			M.complete()
 
 	for(var/datum/antag_contract/excel/targeted/liberate/M in GLOB.excel_antag_contracts)
-		var/mob/living/carbon/human/H = M.target_mind.current
+		var/mob/living/carbon/human/H =69.target_mind.current
 		if (is_excelsior(H))
 			M.complete()
 
 	for(var/datum/antag_contract/excel/propaganda/M in GLOB.excel_antag_contracts)
-		var/list/area/targets = M.targets
+		var/list/area/targets =69.targets
 		var/marked_areas = 0
 		if(M.completed)
 			return
@@ -449,12 +449,12 @@ SUBSYSTEM_DEF(ticker)
 				marked_areas += 1
 		if (marked_areas >= 3)
 			M.complete()
-	addtimer(CALLBACK(src, .proc/excel_check), 3 MINUTES)
+	addtimer(CALLBACK(src, .proc/excel_check), 369INUTES)
 
 /datum/controller/subsystem/ticker/proc/contract_tick()
 	generate_contracts(1)
 	generate_excel_contracts(1)
-	addtimer(CALLBACK(src, .proc/contract_tick), 15 MINUTES)
+	addtimer(CALLBACK(src, .proc/contract_tick), 1569INUTES)
 
 
 /datum/controller/subsystem/ticker/proc/equip_characters()
@@ -485,72 +485,72 @@ SUBSYSTEM_DEF(ticker)
 				var/turf/playerTurf = get_turf(Player)
 				if(evacuation_controller.round_over() && evacuation_controller.emergency_evacuation)
 					if(isNotAdminLevel(playerTurf.z))
-						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>")
+						to_chat(Player, "<font color='blue'><b>You69anaged to survive, but were69arooned on 69station_name()69 as 69Player.real_name69...</b></font>")
 					else
-						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
+						to_chat(Player, "<font color='green'><b>You69anaged to survive the events on 69station_name()69 as 69Player.real_name69.</b></font>")
 				else if(isAdminLevel(playerTurf.z))
-					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on 69station_name()69 as 69Player.real_name69.</b></font>")
 				else if(issilicon(Player))
-					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on 69station_name()69 as 69Player.real_name69.</b></font>")
 				else
-					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
+					to_chat(Player, "<font color='blue'><b>You69issed the crew transfer after the events on 69station_name()69 as 69Player.real_name69.</b></font>")
 			else
 				if(isghost(Player))
 					var/mob/observer/ghost/O = Player
 					if(!O.started_as_observer)
-						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+						to_chat(Player, "<font color='red'><b>You did not survive the events on 69station_name()69...</b></font>")
 				else
-					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+					to_chat(Player, "<font color='red'><b>You did not survive the events on 69station_name()69...</b></font>")
 	to_chat(world, "<br>")
 
 	for(var/mob/living/silicon/ai/aiPlayer in SSmobs.mob_list)
 		if(aiPlayer.stat != DEAD)
-			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
+			to_chat(world, "<b>69aiPlayer.name69 (Played by: 69aiPlayer.key69)'s laws at the end of the round were:</b>")
 		else
-			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
+			to_chat(world, "<b>69aiPlayer.name69 (Played by: 69aiPlayer.key69)'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(TRUE)
 
 		if(aiPlayer.connected_robots.len)
-			var/robolist = "<b>The AI's loyal minions were:</b> "
+			var/robolist = "<b>The AI's loyal69inions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
-			to_chat(world, "[robolist]")
+				robolist += "69robo.name6969robo.stat?" (Deactivated) (Played by: 69robo.key69), ":" (Played by: 69robo.key69), "69"
+			to_chat(world, "69robolist69")
 
 
 
 	for(var/mob/living/silicon/robot/robo in SSmobs.mob_list)
 		if(!isdrone(robo) && !robo.connected_ai)
 			if(robo.stat != 2)
-				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less synthetic! Its laws were:</b>")
+				to_chat(world, "<b>69robo.name69 (Played by: 69robo.key69) survived as an AI-less synthetic! Its laws were:</b>")
 			else
-				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>")
+				to_chat(world, "<b>69robo.name69 (Played by: 69robo.key69) was unable to survive the rigors of being a synthetic without an AI. Its laws were:</b>")
 
-			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
+			if(robo) //How the hell do we lose robo between here and the world69essages directly above this?
 				robo.laws.show_laws(world)
 	var/dronecount = GLOB.drones.len
 	if(dronecount)
-		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.</b>")
+		to_chat(world, "<b>There 69dronecount>1 ? "were" : "was"69 69dronecount69 industrious69aintenance 69dronecount>1 ? "drones" : "drone"69 at the end of this round.</b>")
 
 	GLOB.storyteller.declare_completion()//To declare normal completion.
 	scoreboard()//scores
-	//Ask the event manager to print round end information
+	//Ask the event69anager to print round end information
 	SSevent.RoundEnd()
 
 	//Print a list of antagonists to the server log
 	var/list/total_antagonists = list()
-	//Look into all mobs in world, dead or alive
+	//Look into all69obs in world, dead or alive
 	for(var/datum/antagonist/antag in GLOB.current_antags)
 		var/temprole = antag.id
 		if(temprole && antag.owner)							//if they are an antagonist of some sort.
 			if(!(temprole in total_antagonists))	//If the role doesn't exist in list, create it
 				total_antagonists.Add(temprole)
-			total_antagonists[temprole] += ", [antag.owner.name]([antag.owner.key])"
+			total_antagonists69temprole69 += ", 69antag.owner.name69(69antag.owner.key69)"
 
 
 	//Now print them all into the log!
 	log_game("Antagonists at round end were...")
 	for(var/i in total_antagonists)
-		log_game("[i]s[total_antagonists[i]].")
+		log_game("69i69s69total_antagonists69i6969.")
 
 /datum/controller/subsystem/ticker/proc/HasRoundStarted()
 	return current_state >= GAME_STATE_PLAYING
@@ -558,7 +558,7 @@ SUBSYSTEM_DEF(ticker)
 // /datum/controller/subsystem/ticker/proc/IsRoundInProgress()
 // 	return current_state == GAME_STATE_PLAYING
 
-// expand me pls
+// expand69e pls
 /datum/controller/subsystem/ticker/Recover()
 	current_state = SSticker.current_state
 

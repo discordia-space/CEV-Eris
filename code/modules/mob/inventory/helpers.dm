@@ -2,13 +2,13 @@
 	var/overslot = 0
 	var/obj/item/overslot_contents
 
-/mob/proc/slot_is_accessible(var/slot, var/obj/item/Item, mob/user)
+/mob/proc/slot_is_accessible(var/slot,69ar/obj/item/Item,69ob/user)
 	return TRUE
 
 /proc/mob_can_equip(mob/living/Mob, obj/item/Item, slot, disable_warning)
 	if(!istype(Mob) || !istype(Item) || !isnum(slot))
 		return FALSE
-	return Mob.can_equip(Item, slot, disable_warning) && Item.can_be_equipped(Mob, slot, disable_warning)
+	return69ob.can_equip(Item, slot, disable_warning) && Item.can_be_equipped(Mob, slot, disable_warning)
 
 /mob/proc/can_equip(obj/item/Item, slot, disable_warning = FALSE, skip_item_check = FALSE, skip_covering_check = FALSE)
 	if(skip_item_check)
@@ -19,7 +19,7 @@
 			return TRUE
 		if(!disable_warning)
 			to_chat(src, SPAN_WARNING("You already has something equipped here!"))
-		return FALSE //Note, this one goes from if(equipped), not overslot check
+		return FALSE //Note, this one goes from if(equipped),69ot overslot check
 	return TRUE
 
 /mob/living/carbon/human/can_equip(obj/item/Item, slot, disable_warning = FALSE, skip_item_check = FALSE, skip_covering_check = FALSE)
@@ -34,7 +34,7 @@
 	if(S && !S.can_equip(Item, src, disable_warning))
 		return FALSE
 
-	if(!skip_covering_check && !slot_is_accessible(slot, Item, disable_warning? null : src))
+	if(!skip_covering_check && !slot_is_accessible(slot, Item, disable_warning?69ull : src))
 		return FALSE
 
 	return ..()

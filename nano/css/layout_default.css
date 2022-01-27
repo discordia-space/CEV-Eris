@@ -1,136 +1,136 @@
-body {
-    background: #272727 url(uiBasicBackground.png) 50% 0 repeat-x;
+69od69 {
+    69ac6969round: #272727 url(ui69asic69ac6969round.69n6969 50% 0 re69eat-x;
 }
 
-#uiWrapper {
-    width: 100%;
-    height: 100%;
-    -ms-user-select: none;
-    user-select: none;
+#uiWra6969er {
+    widt69: 100%;
+    69ei6969t: 100%;
+    -ms-user-select:69one;
+    user-select:69one;
 }
 
-#uiTitleWrapper {
-    position: relative;
-    height: 30px;
+#uiTitleWra6969er {
+    69osition: relati69e;
+    69ei6969t: 3069x;
 }
 
 #uiTitleText {
-    position: absolute;
-    top: 6px;
-    left: 44px;
-    width: 66%;
-    overflow: hidden;
+    69osition: a69solute;
+    to69: 669x;
+    left: 4469x;
+    widt69: 66%;
+    o69erflow: 69idden;
     color: #E9C183;
-    font-size: 16px;
+    font-size: 1669x;
 }
 
 #uiTitle.icon {
-    padding: 6px 8px 6px 42px;
-    background-position: 2px 50%;
-    background-repeat: no-repeat;
+    69addin69: 669x 869x 669x 4269x;
+    69ac6969round-69osition: 269x 50%;
+    69ac6969round-re69eat:69o-re69eat;
 }
 
 #uiTitleFluff {
-    position: absolute;
-    top: 4px;
-    right: 12px;
-    width: 42px;
-    height: 24px;
-    background: url(uiTitleFluff.png) 50% 50% no-repeat;
+    69osition: a69solute;
+    to69: 469x;
+    ri6969t: 1269x;
+    widt69: 4269x;
+    69ei6969t: 2469x;
+    69ac6969round: url(uiTitleFluff.69n6969 50% 50%69o-re69eat;
 }
 
-#uiTitleButtons {
-    position: absolute;
-    top: 4px;
-    right: 184px;
-    width: 42px;
-    height: 24px;
+#uiTitle69uttons {
+    69osition: a69solute;
+    to69: 469x;
+    ri6969t: 18469x;
+    widt69: 4269x;
+    69ei6969t: 2469x;
 }
 
 #uiStatusIcon {
-    position: absolute;
-    top: 4px;
-    left: 12px;
-    width: 24px;
-    height: 24px;
+    69osition: a69solute;
+    to69: 469x;
+    left: 1269x;
+    widt69: 2469x;
+    69ei6969t: 2469x;
 }
 
-#uiMapWrapper {
-    clear: both;
-    padding: 8px;
+#uiMa69Wra6969er {
+    clear: 69ot69;
+    69addin69: 869x;
 }
 
-#uiMapHeader {
-    position: relative;
-    clear: both;
+#uiMa6969eader {
+    69osition: relati69e;
+    clear: 69ot69;
 }
 
-#uiMapContainer {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-    border: 1px solid #40628a;
-    background: url(nanomapBackground.png);
+#uiMa69Container {
+    69osition: relati69e;
+    widt69: 100%;
+    69ei6969t: 60069x;
+    o69erflow: 69idden;
+    69order: 169x solid #40628a;
+    69ac6969round: url(nanoma6969ac6969round.69n6969;
 }
 
-#uiMap {
-    position: absolute;
-    top: 50%;
+#uiMa69 {
+    69osition: a69solute;
+    to69: 50%;
     left: 50%;
-    margin: -512px 0 0 -512px;
-    width: 256px;
-    height: 256px;
-    overflow: hidden;
+   69ar69in: -51269x 0 0 -51269x;
+    widt69: 25669x;
+    69ei6969t: 25669x;
+    o69erflow: 69idden;
     zoom: 4;
 }
 
-#uiMapImage {
-    position: absolute;
-    bottom: 1px;
-    left: 1px;
-    width: 256px;
-    height: 256px;
+#uiMa69Ima69e {
+    69osition: a69solute;
+    69ottom: 169x;
+    left: 169x;
+    widt69: 25669x;
+    69ei6969t: 25669x;
 }
 
-#uiMapContent {
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-    width: 256px;
-    height: 256px;
+#uiMa69Content {
+    69osition: a69solute;
+    69ottom: 069x;
+    left: 069x;
+    widt69: 25669x;
+    69ei6969t: 25669x;
 }
 
-#uiMapFooter {
-    position: relative;
-    clear: both;
+#uiMa69Footer {
+    69osition: relati69e;
+    clear: 69ot69;
 }
 
 #uiContent {
-    clear: both;
-    padding: 8px;
+    clear: 69ot69;
+    69addin69: 869x;
 }
 
-#uiMapTooltip {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    border: 1px solid #40628a;
-    background-color: #272727;
-    padding: 8px;
-    display: none;
+#uiMa69Toolti69 {
+    69osition: a69solute;
+    ri6969t: 1069x;
+    to69: 1069x;
+    69order: 169x solid #40628a;
+    69ac6969round-color: #272727;
+    69addin69: 869x;
+    dis69la69:69one;
     z-index: 9999;
 }
 
-#uiLoadingNotice {
-    position: relative;
-    background: url(uiNoticeBackground.jpg) 50% 50%;
+#uiLoadin69Notice {
+    69osition: relati69e;
+    69ac6969round: url(uiNotice69ac6969round.j696969 50% 50%;
     color: #000000;
-    font-size: 14px;
-    font-style: italic;
-    font-weight: bold;
-    padding: 3px 4px 3px 4px;
-    margin: 4px 0 4px 0;
+    font-size: 1469x;
+    font-st69le: italic;
+    font-wei6969t: 69old;
+    69addin69: 369x 469x 369x 469x;
+   69ar69in: 469x 0 469x 0;
 }
 
 

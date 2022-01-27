@@ -13,7 +13,7 @@
 	desc = "It looks pretty sciency."
 	icon = 'icons/obj/rig_modules.dmi'
 	icon_state = "module"
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 20, MATERIAL_GLASS = 5)
+	matter = list(MATERIAL_STEEL = 15,69ATERIAL_PLASTIC = 20,69ATERIAL_GLASS = 5)
 	spawn_tags = SPAWN_TAG_RIG_MODULE
 	rarity_value = 5
 	bad_type = /obj/item/rig_module
@@ -27,12 +27,12 @@
 	var/toggleable                      // Set to 1 for the device to show up as an active effect.
 	var/usable                          // Set to 1 for the device to have an on-use effect.
 	var/selectable                      // Set to 1 to be able to assign the device as primary system.
-	var/redundant                       // Set to 1 to ignore duplicate module checking when installing.
-	var/permanent                       // If set, the module can't be removed.
+	var/redundant                       // Set to 1 to ignore duplicate69odule checking when installing.
+	var/permanent                       // If set, the69odule can't be removed.
 	var/disruptive = 1                  // Can disrupt by other effects.
 	var/activates_on_touch              // If set, unarmed attacks will call engage() on the target.
 
-	var/active                          // Basic module status
+	var/active                          // Basic69odule status
 	var/disruptable                     // Will deactivate if some other powers are used.
 
 	var/use_power_cost = 0              // Power used when single-use ability called.
@@ -44,10 +44,10 @@
 
 	// Icons.
 	var/suit_overlay
-	var/suit_overlay_active             // If set, drawn over icon and mob when effect is active.
+	var/suit_overlay_active             // If set, drawn over icon and69ob when effect is active.
 	var/suit_overlay_inactive           // As above, inactive.
 	var/suit_overlay_used               // As above, when engaged.
-	var/suit_overlay_mob_only           // Set to 1 for overlay to only display on mob and not on icon
+	var/suit_overlay_mob_only           // Set to 1 for overlay to only display on69ob and not on icon
 
 	//Display fluff
 	var/interface_name = "hardsuit upgrade"
@@ -80,22 +80,22 @@
 		if(2)
 			to_chat(usr, "It is almost completely destroyed.")
 
-/obj/item/rig_module/attackby(obj/item/W, mob/user)
+/obj/item/rig_module/attackby(obj/item/W,69ob/user)
 
 	if(istype(W,/obj/item/stack/nanopaste))
 
 		if(damage == 0)
-			to_chat(user, "There is no damage to mend.")
+			to_chat(user, "There is no damage to69end.")
 			return
 
-		to_chat(user, "You start mending the damaged portions of \the [src]...")
+		to_chat(user, "You start69ending the damaged portions of \the 69src69...")
 
 		if(!do_after(user,30,src) || !W || !src)
 			return
 
 		var/obj/item/stack/nanopaste/paste = W
 		damage = 0
-		to_chat(user, "You mend the damage to [src] with [W].")
+		to_chat(user, "You69end the damage to 69src69 with 69W69.")
 		paste.use(1)
 		return
 
@@ -103,23 +103,23 @@
 
 		switch(damage)
 			if(0)
-				to_chat(user, "There is no damage to mend.")
+				to_chat(user, "There is no damage to69end.")
 				return
 			if(2)
-				to_chat(user, "There is no damage that you are capable of mending with such crude tools.")
+				to_chat(user, "There is no damage that you are capable of69ending with such crude tools.")
 				return
 
 		var/obj/item/stack/cable_coil/cable = W
 		if(!cable.amount >= 5)
-			to_chat(user, "You need five units of cable to repair \the [src].")
+			to_chat(user, "You need five units of cable to repair \the 69src69.")
 			return
 
-		to_chat(user, "You start mending the damaged portions of \the [src]...")
+		to_chat(user, "You start69ending the damaged portions of \the 69src69...")
 		if(!do_after(user,30,src) || !W || !src)
 			return
 
 		damage = 1
-		to_chat(user, "You mend some of damage to [src] with [W], but you will need more advanced tools to fix it completely.")
+		to_chat(user, "You69end some of damage to 69src69 with 69W69, but you will need69ore advanced tools to fix it completely.")
 		cable.use(5)
 		return
 	..()
@@ -134,13 +134,13 @@
 		for(var/list/charge in charges)
 			var/datum/rig_charge/charge_dat = new
 
-			charge_dat.short_name   = charge[1]
-			charge_dat.display_name = charge[2]
-			charge_dat.product_type = charge[3]
-			charge_dat.charges      = charge[4]
+			charge_dat.short_name   = charge69169
+			charge_dat.display_name = charge69269
+			charge_dat.product_type = charge69369
+			charge_dat.charges      = charge69469
 
 			if(!charge_selected) charge_selected = charge_dat.short_name
-			processed_charges[charge_dat.short_name] = charge_dat
+			processed_charges69charge_dat.short_name69 = charge_dat
 
 		charges = processed_charges
 
@@ -151,24 +151,24 @@
 	stat_modules +=	new/stat_rig_module/charge(src)
 
 
-//Called before the module is installed in a suit
+//Called before the69odule is installed in a suit
 //Return FALSE to deny the installation
-/obj/item/rig_module/proc/can_install(var/obj/item/rig/rig, var/mob/user, var/feedback = FALSE)
+/obj/item/rig_module/proc/can_install(var/obj/item/rig/rig,69ar/mob/user,69ar/feedback = FALSE)
 	return TRUE
 
-//Called before the module is removed from a suit
+//Called before the69odule is removed from a suit
 //Return FALSE to deny the removal
-/obj/item/rig_module/proc/can_uninstall(var/obj/item/rig/rig, var/mob/user, var/feedback = FALSE)
+/obj/item/rig_module/proc/can_uninstall(var/obj/item/rig/rig,69ar/mob/user,69ar/feedback = FALSE)
 	return TRUE
 
-// Called after the module is installed into a suit. The holder var is already set to the new suit
+// Called after the69odule is installed into a suit. The holder69ar is already set to the new suit
 /obj/item/rig_module/proc/installed(var/mob/living/user)
 	return
 
-// Called after the module is removed from a suit.
-//The holder var is already set null
+// Called after the69odule is removed from a suit.
+//The holder69ar is already set null
 //Former contains the suit we came from
-/obj/item/rig_module/proc/uninstalled(var/obj/item/rig/former, var/mob/living/user)
+/obj/item/rig_module/proc/uninstalled(var/obj/item/rig/former,69ar/mob/living/user)
 	return
 
 
@@ -178,11 +178,11 @@
 /obj/item/rig_module/proc/engage()
 
 	if(damage >= 2)
-		to_chat(usr, SPAN_WARNING("The [interface_name] is damaged beyond use!"))
+		to_chat(usr, SPAN_WARNING("The 69interface_name69 is damaged beyond use!"))
 		return 0
 
 	if(world.time < next_use)
-		to_chat(usr, SPAN_WARNING("You cannot use the [interface_name] again so soon."))
+		to_chat(usr, SPAN_WARNING("You cannot use the 69interface_name69 again so soon."))
 		return 0
 
 	if(!holder || holder.canremove)
@@ -204,7 +204,7 @@
 	if(!holder.check_power_cost(usr, use_power_cost, 0, src, (istype(usr,/mob/living/silicon ? 1 : 0) ) ) )
 		return 0
 
-	next_use = world.time + module_cooldown
+	next_use = world.time +69odule_cooldown
 
 	return 1
 
@@ -252,7 +252,7 @@
 		return passive_power_cost
 
 // Called by holder rigsuit attackby()
-// Checks if an item is usable with this module and handles it if it is
+// Checks if an item is usable with this69odule and handles it if it is
 /obj/item/rig_module/proc/accepts_item(var/obj/item/input_device)
 	return 0
 
@@ -264,12 +264,12 @@
 		SetupStat(R)
 
 /mob/proc/SetupStat(var/obj/item/rig/R)
-	if(R && !R.canremove && R.installed_modules.len && statpanel("Hardsuit Modules"))
-		var/cell_status = R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "ERROR"
+	if(R && !R.canremove && R.installed_modules.len && statpanel("Hardsuit69odules"))
+		var/cell_status = R.cell ? "69R.cell.charge69/69R.cell.maxcharge69" : "ERROR"
 		stat("Suit charge", cell_status)
 		for(var/obj/item/rig_module/module in R.installed_modules)
 		{
-			for(var/stat_rig_module/SRM in module.stat_modules)
+			for(var/stat_rig_module/SRM in69odule.stat_modules)
 				if(SRM.CanUse())
 					stat(SRM.module.interface_name,SRM)
 		}
@@ -281,7 +281,7 @@
 
 /stat_rig_module/New(var/obj/item/rig_module/module)
 	..()
-	src.module = module
+	src.module =69odule
 
 /stat_rig_module/Destroy()
 	if(module)
@@ -298,8 +298,8 @@
 /stat_rig_module/Click()
 	if(CanUse())
 		var/list/href_list = list(
-							"interact_module" = module.holder.installed_modules.Find(module),
-							"module_mode" = module_mode
+							"interact_module" =69odule.holder.installed_modules.Find(module),
+							"module_mode" =69odule_mode
 							)
 		AddHref(href_list)
 		module.holder.Topic(usr, href_list)
@@ -310,35 +310,35 @@
 
 /stat_rig_module/activate/New(var/obj/item/rig_module/module)
 	..()
-	name = module.activate_string
+	name =69odule.activate_string
 	if(module.active_power_cost)
-		name += " ([module.active_power_cost*10]A)"
+		name += " (69module.active_power_cost*1069A)"
 	module_mode = "activate"
 
 /stat_rig_module/activate/CanUse()
-	return module.toggleable && !module.active
+	return69odule.toggleable && !module.active
 
 /stat_rig_module/deactivate/New(var/obj/item/rig_module/module)
 	..()
-	name = module.deactivate_string
-	// Show cost despite being 0, if it means changing from an active cost.
-	if(module.active_power_cost || module.passive_power_cost)
-		name += " ([module.passive_power_cost*10]P)"
+	name =69odule.deactivate_string
+	// Show cost despite being 0, if it69eans changing from an active cost.
+	if(module.active_power_cost ||69odule.passive_power_cost)
+		name += " (69module.passive_power_cost*1069P)"
 
 	module_mode = "deactivate"
 
 /stat_rig_module/deactivate/CanUse()
-	return module.toggleable && module.active
+	return69odule.toggleable &&69odule.active
 
 /stat_rig_module/engage/New(var/obj/item/rig_module/module)
 	..()
-	name = module.engage_string
+	name =69odule.engage_string
 	if(module.use_power_cost)
-		name += " ([module.use_power_cost*10]E)"
+		name += " (69module.use_power_cost*1069E)"
 	module_mode = "engage"
 
 /stat_rig_module/engage/CanUse()
-	return module.usable
+	return69odule.usable
 
 /stat_rig_module/select/New()
 	..()
@@ -347,7 +347,7 @@
 
 /stat_rig_module/select/CanUse()
 	if(module.selectable)
-		name = module.holder.selected_module == module ? "Selected" : "Select"
+		name =69odule.holder.selected_module ==69odule ? "Selected" : "Select"
 		return 1
 	return 0
 
@@ -357,17 +357,17 @@
 	module_mode = "select_charge_type"
 
 /stat_rig_module/charge/AddHref(var/list/href_list)
-	var/charge_index = module.charges.Find(module.charge_selected)
+	var/charge_index =69odule.charges.Find(module.charge_selected)
 	if(!charge_index)
 		charge_index = 0
 	else
-		charge_index = charge_index == module.charges.len ? 1 : charge_index+1
+		charge_index = charge_index ==69odule.charges.len ? 1 : charge_index+1
 
-	href_list["charge_type"] = module.charges[charge_index]
+	href_list69"charge_type"69 =69odule.charges69charge_index69
 
 /stat_rig_module/charge/CanUse()
-	if(module.charges && module.charges.len)
-		var/datum/rig_charge/charge = module.charges[module.charge_selected]
-		name = "[charge.display_name] ([charge.charges]C) - Change"
+	if(module.charges &&69odule.charges.len)
+		var/datum/rig_charge/charge =69odule.charges69module.charge_selected69
+		name = "69charge.display_name69 (69charge.charges69C) - Change"
 		return 1
 	return 0

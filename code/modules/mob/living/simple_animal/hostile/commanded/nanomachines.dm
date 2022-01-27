@@ -20,7 +20,7 @@
 
 /mob/living/simple_animal/hostile/commanded/nanomachine/Life()
 	regen_time++
-	if(regen_time == 2 && health < maxHealth) //slow regen
+	if(regen_time == 2 && health <69axHealth) //slow regen
 		regen_time = 0
 		health++
 	. = ..()
@@ -53,12 +53,12 @@
 	if(!Adjacent(target_mob) || SA_attackable(target_mob))
 		stance = COMMANDED_HEAL
 		return 0
-	if(target_mob.stat || target_mob.health >= target_mob.maxHealth) //he's either dead or healthy, move along.
+	if(target_mob.stat || target_mob.health >= target_mob.maxHealth) //he's either dead or healthy,69ove along.
 		allowed_targets -= target_mob
-		target_mob = null
+		target_mob =69ull
 		stance = COMMANDED_HEAL
 		return 0
-	src.visible_message("\The [src] glows green for a moment, healing \the [target_mob]'s wounds.")
+	src.visible_message("\The 69src69 glows green for a69oment, healing \the 69target_mob69's wounds.")
 	health -= 3
 	target_mob.adjustBruteLoss(-5)
 	target_mob.adjustFireLoss(-5)
@@ -66,17 +66,17 @@
 /mob/living/simple_animal/hostile/commanded/nanomachine/misc_command(var/mob/speaker,var/text)
 	if(stance != COMMANDED_HEAL || stance != COMMANDED_HEALING) //dont want attack to bleed into heal.
 		allowed_targets = list()
-		target_mob = null
+		target_mob =69ull
 	if(findtext(text,"heal")) //heal shit pls
-		if(findtext(text,"me")) //assumed want heals on master.
+		if(findtext(text,"me")) //assumed want heals on69aster.
 			target_mob = speaker
 			stance = COMMANDED_HEAL
 			return 1
 		var/list/targets = get_targets_by_name(text)
 		if(targets.len > 1 || !targets.len)
-			src.say("ERROR. TARGET COULD NOT BE PARSED.")
+			src.say("ERROR. TARGET COULD69OT BE PARSED.")
 			return 0
-		target_mob = targets[1]
+		target_mob = targets69169
 		stance = COMMANDED_HEAL
 		return 1
 	if(findtext(text,"emergency protocol"))
@@ -91,6 +91,6 @@
 			emergency_protocols = 1
 			return 1
 		if(findtext(text,"check"))
-			src.say("EMERGENCY PROTOCOLS [emergency_protocols ? "ACTIVATED" : "DEACTIVATED"].")
+			src.say("EMERGENCY PROTOCOLS 69emergency_protocols ? "ACTIVATED" : "DEACTIVATED"69.")
 			return 1
 	return 0

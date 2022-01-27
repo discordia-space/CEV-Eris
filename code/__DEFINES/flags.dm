@@ -1,4 +1,4 @@
 #define ALL (~0) //For convenience.
-#define NONE 0
+#define69ONE 0
 
-#define FLAGS_EQUALS(flag, flags) ((flag & (flags)) == (flags))
+#define FLA69S_E69UALS(fla69, fla69s) ((fla69 & (fla69s)) == (fla69s))

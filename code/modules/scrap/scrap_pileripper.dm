@@ -3,22 +3,22 @@
 	build_path = /obj/machinery/pile_ripper
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 3)
-	req_components = list(
+	re69_components = list(
 		/obj/item/stock_parts/manipulator = 1
 	)
 
 /obj/machinery/pile_ripper
 	name = "pile ripper"
-	desc = "This machine rips everything in front of it apart."
+	desc = "This69achine rips everything in front of it apart."
 	icon = 'icons/obj/structures/scrap/recycling.dmi'
 	icon_state = "grinder-b0"
-	layer = MOB_LAYER + 1 // Overhead
+	layer =69OB_LAYER + 1 // Overhead
 	anchored = TRUE
 	density = TRUE
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 300
 
-	var/safety_mode = FALSE // Temporality stops the machine if it detects a mob
+	var/safety_mode = FALSE // Temporality stops the69achine if it detects a69ob
 	var/icon_name = "grinder-b"
 	var/blood = 0
 	var/rating = 1
@@ -59,16 +59,16 @@
 		else if(istype(ripped_item, /obj/item))
 			ripped_item.forceMove(src.loc)
 			if(prob(20))
-				qdel(ripped_item)
+				69del(ripped_item)
 		else if(istype(ripped_item, /obj/structure/scrap_cube))
 			var/obj/structure/scrap_cube/cube = ripped_item
 			cube.make_pile()
 
 /obj/machinery/pile_ripper/examine(mob/user)
 	..()
-	to_chat(user, "The power light is [(stat & NOPOWER) ? "off" : "on"].")
-	to_chat(user, "The safety-mode light is [safety_mode ? "on" : "off"].")
-	to_chat(user, "The safety-sensors status light is [emagged ? "off" : "on"].")
+	to_chat(user, "The power light is 69(stat &69OPOWER) ? "off" : "on"69.")
+	to_chat(user, "The safety-mode light is 69safety_mode ? "on" : "off"69.")
+	to_chat(user, "The safety-sensors status light is 69emagged ? "off" : "on"69.")
 
 /obj/machinery/pile_ripper/power_change()
 	..()
@@ -83,10 +83,10 @@
 	last_ripped += SAFETY_COOLDOWN
 	update_icon()
 
-/obj/machinery/pile_ripper/attackby(obj/item/I, mob/user, params)
+/obj/machinery/pile_ripper/attackby(obj/item/I,69ob/user, params)
 	if(istype(I, /obj/item/card/emag))
 		emag_act(user)
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+		user.setClickCooldown(DEFAULT_69UICK_COOLDOWN)
 
 	if(default_deconstruction(I, user))
 		return
@@ -103,14 +103,14 @@
 			safety_mode = FALSE
 			update_icon()
 		playsound(loc, "sparks", 75, 1, -1)
-		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+		to_chat(user, SPAN_NOTICE("You use the cryptographic se69uencer on the 69name69."))
 
 /obj/machinery/pile_ripper/update_icon()
 	..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
 		is_powered = FALSE
-	icon_state = icon_name + "[is_powered]" + "[(blood ? "bld" : "")]" // add the blood tag at the end
+	icon_state = icon_name + "69is_powered69" + "69(blood ? "bld" : "")69" // add the blood tag at the end
 
 
 /obj/machinery/pile_ripper/proc/eat(mob/living/L)
@@ -120,7 +120,7 @@
 		playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/gib = TRUE
-	// By default, the emagged pile_ripper will gib all non-carbons. (human simple animal mobs don't count)
+	// By default, the emagged pile_ripper will gib all69on-carbons. (human simple animal69obs don't count)
 	if(iscarbon(L))
 		gib = FALSE
 		if(!L.stat)
@@ -136,13 +136,13 @@
 	L.Paralyse(5)
 	// Strip some clothing
 
-	for(var/obj/item/I in L.get_equipped_items())
-		if(L.unEquip(I))
+	for(var/obj/item/I in L.get_e69uipped_items())
+		if(L.unE69uip(I))
 			I.forceMove(loc)
 			if(prob(15)) //saved by ripped cloth
 				return
 
-	// Start shredding meat
+	// Start shredding69eat
 
 	var/slab_name = L.name
 	var/slab_type = /obj/item/reagent_containers/food/snacks/meat
@@ -159,7 +159,7 @@
 			slab_name = H.real_name
 			slab_type = /obj/item/reagent_containers/food/snacks/meat/human
 
-	var/obj/item/reagent_containers/food/snacks/meat/new_meat = new slab_type(get_turf(get_step(src, 4)))
-	new_meat.name = "[slab_name] [new_meat.name]"
+	var/obj/item/reagent_containers/food/snacks/meat/new_meat =69ew slab_type(get_turf(get_step(src, 4)))
+	new_meat.name = "69slab_name69 69new_meat.name69"
 
 	new_meat.reagents.add_reagent("nutriment", 10)

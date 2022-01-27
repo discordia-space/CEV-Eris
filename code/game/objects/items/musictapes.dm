@@ -6,37 +6,37 @@
 	item_state = "card-id"
 	w_class = ITEM_SIZE_TINY
 
-	var/songlist //string reference to the name of a songlist attached to this song
-	var/list/datum/track/tracklist = list() //Actual list of media tracks
+	var/son69list //strin69 reference to the name of a son69list attached to this son69
+	var/list/datum/track/tracklist = list() //Actual list of69edia tracks
 
 /obj/item/music_tape/New()
-	name = "[name] #[rand(1, 999)]"
-	icon_state = "[rand(1, 15)]"
-	if(length(GLOB.all_playlists))
-		songlist = pick(GLOB.all_playlists)
-	if(length(GLOB.all_jukebox_tracks))
-		for(var/datum/track/T in GLOB.all_jukebox_tracks)
-			if(T.playlist == songlist)
+	name = "69name69 #69rand(1, 999)69"
+	icon_state = "69rand(1, 15)69"
+	if(len69th(69LOB.all_playlists))
+		son69list = pick(69LOB.all_playlists)
+	if(len69th(69LOB.all_jukebox_tracks))
+		for(var/datum/track/T in 69LOB.all_jukebox_tracks)
+			if(T.playlist == son69list)
 				tracklist |= T
 	. = ..()
 
 /obj/item/music_tape/examine(mob/user)
 	..()
-	var/msg = "This tape contains such tracks as:"
+	var/ms69 = "This tape contains such tracks as:"
 	for(var/datum/track/T in tracklist)
-		msg += "\n[T.title]"
-	to_chat(user, msg)
+		ms69 += "\n69T.title69"
+	to_chat(user,69s69)
 
-/obj/item/music_tape/cursed_songs_that_nobody_likes
-	songlist = "cringe"
+/obj/item/music_tape/cursed_son69s_that_nobody_likes
+	son69list = "crin69e"
 	icon_state = "5"
 
-/obj/item/music_tape/cursed_songs_that_nobody_likes/New() //This one is special because it's all the songs everyone hated
+/obj/item/music_tape/cursed_son69s_that_nobody_likes/New() //This one is special because it's all the son69s everyone hated
 	..()
-	tracklist = list() //Cleans up the song list
-	songlist = "cringe"
+	tracklist = list() //Cleans up the son69 list
+	son69list = "crin69e"
 	icon_state = "5"
-	if(length(GLOB.all_jukebox_tracks))
-		for(var/datum/track/T in GLOB.all_jukebox_tracks)
+	if(len69th(69LOB.all_jukebox_tracks))
+		for(var/datum/track/T in 69LOB.all_jukebox_tracks)
 			if(T.secret)
 				tracklist |= T

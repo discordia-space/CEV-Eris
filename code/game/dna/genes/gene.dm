@@ -3,7 +3,7 @@
 *
 * domutcheck was getting pretty hairy.  This is the solution.
 *
-* All genes are stored in a global variable to cut down on memory
+* All genes are stored in a global69ariable to cut down on69emory
 * usage.
 *
 * @author N3X15 <nexisentertainment@gmail.com>
@@ -24,25 +24,25 @@
 	var/flags=0
 
 /**
-* Is the gene active in this mob's DNA?
+* Is the gene active in this69ob's DNA?
 */
 /datum/dna/gene/proc/is_active(var/mob/M)
-	return M.active_genes && (type in M.active_genes)
+	return69.active_genes && (type in69.active_genes)
 
 // Return 1 if we can activate.
-// HANDLE MUTCHK_FORCED HERE!
-/datum/dna/gene/proc/can_activate(var/mob/M, var/flags)
+// HANDLE69UTCHK_FORCED HERE!
+/datum/dna/gene/proc/can_activate(var/mob/M,69ar/flags)
 	return 0
 
-// Called when the gene activates.  Do your magic here.
-/datum/dna/gene/proc/activate(mob/M, var/connected, var/flags)
+// Called when the gene activates.  Do your69agic here.
+/datum/dna/gene/proc/activate(mob/M,69ar/connected,69ar/flags)
 	return
 
 /**
-* Called when the gene deactivates.  Undo your magic here.
+* Called when the gene deactivates.  Undo your69agic here.
 * Only called when the block is deactivated.
 */
-/datum/dna/gene/proc/deactivate(mob/M, var/connected, var/flags)
+/datum/dna/gene/proc/deactivate(mob/M,69ar/connected,69ar/flags)
 	return
 
 // This section inspired by goone's bioEffects.
@@ -54,34 +54,34 @@
 	return
 
 /**
-* Called when the mob dies
+* Called when the69ob dies
 */
 /datum/dna/gene/proc/OnMobDeath(mob/M)
 	return
 
 /**
-* Called when the mob says shit
+* Called when the69ob says shit
 */
-/datum/dna/gene/proc/OnSay(mob/M, var/message)
-	return message
+/datum/dna/gene/proc/OnSay(mob/M,69ar/message)
+	return69essage
 
 /**
-* Called after the mob runs update_icons.
+* Called after the69ob runs update_icons.
 *
-* @params M The subject.
+* @params69 The subject.
 * @params g Gender (m or f)
 */
-/datum/dna/gene/proc/OnDrawUnderlays(var/mob/M, var/g)
+/datum/dna/gene/proc/OnDrawUnderlays(var/mob/M,69ar/g)
 	return 0
 
 
 /////////////////////
 // BASIC GENES
 //
-// These just chuck in a mutation and display a message.
+// These just chuck in a69utation and display a69essage.
 //
 // Gene is activated:
-//  1. If mutation already exists in mob
+//  1. If69utation already exists in69ob
 //  2. If the probability roll succeeds
 //  3. Activation is forced (done in domutcheck)
 /////////////////////
@@ -90,20 +90,20 @@
 /datum/dna/gene/basic
 	name="BASIC GENE"
 
-	// Mutation to give
+	//69utation to give
 	var/mutation=0
 
 	// Activation probability
 	var/activation_prob=45
 
-	// Possible activation messages
+	// Possible activation69essages
 	var/list/activation_messages=list()
 
-	// Possible deactivation messages
+	// Possible deactivation69essages
 	var/list/deactivation_messages=list()
 
 /datum/dna/gene/basic/can_activate(mob/M,var/flags)
-	if(flags & MUTCHK_FORCED)
+	if(flags &69UTCHK_FORCED)
 		return 1
 	// Probability check
 	return probinj(activation_prob,(flags&MUTCHK_FORCED))
@@ -112,10 +112,10 @@
 	M.mutations.Add(mutation)
 	if(activation_messages.len)
 		var/msg = pick(activation_messages)
-		to_chat(M, SPAN_NOTICE("[msg]"))
+		to_chat(M, SPAN_NOTICE("69msg69"))
 
 /datum/dna/gene/basic/deactivate(var/mob/M)
 	M.mutations.Remove(mutation)
 	if(deactivation_messages.len)
 		var/msg = pick(deactivation_messages)
-		to_chat(M, SPAN_WARNING("[msg]"))
+		to_chat(M, SPAN_WARNING("69msg69"))

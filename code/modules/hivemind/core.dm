@@ -1,9 +1,9 @@
 //The Hivemind is a rogue AI using nanites.
-//The objective of this AI is to spread across the ship and destroy as much as possible.
+//The objective of this AI is to spread across the ship and destroy as69uch as possible.
 
 #define HIVE_FACTION 			"hive"
-#define MAX_NODES_AMOUNT 	10
-#define MIN_NODES_RANGE		15
+#define69AX_NODES_AMOUNT 	10
+#define69IN_NODES_RANGE		15
 #define ishivemindmob(A) 	istype(A, /mob/living/simple_animal/hostile/hivemind)
 
 var/datum/hivemind/hive_mind_ai
@@ -14,9 +14,9 @@ var/datum/hivemind/hive_mind_ai
 	var/evo_points = 0
 	var/evo_points_max = 1000
 	var/evo_level = 0					//level of hivemind in general. This is our progress of EP, since they are resets after new node creation
-	var/failure_chance = 25				//how often will be created dummy machines. This chance reduces by 1 each 10 EP //Changed from 45 to 25 -Wouju
+	var/failure_chance = 25				//how often will be created dummy69achines. This chance reduces by 1 each 10 EP //Changed from 45 to 25 -Wouju
 	var/list/hives = list() 			//all functional hives stored here
-	//i know, whitelist is bad, but it's required here
+	//i know, whitelist is bad, but it's re69uired here
 	var/list/restricted_machineries = list( /obj/machinery/light,			/obj/machinery/atmospherics,
 						/obj/machinery/door,			/obj/machinery/meter,
 						/obj/machinery/camera,			/obj/machinery/light_switch,	/obj/machinery/firealarm,
@@ -31,14 +31,14 @@ var/datum/hivemind/hive_mind_ai
 	var/list/global_abilities_cooldown = list()
 	var/list/EP_price_list = list()
 
-// more names would be interesting. It's just names afterall so nothing game changing
+//69ore names would be interesting. It's just names afterall so nothing game changing
 /datum/hivemind/New()
 	..()
 	name = pick("Von Neumann", "Lazarus", "Abattoir", "Auto-Surgeon", "NanoTrasen",
 				"NanoNurse", "Vivisector", "Ex Costa", "Apostasy", "Gnosis", "Balaam", "Ophite",
 				"Sarif", "VersaLife", "Slylandro", "SHODAN", "Pandora", "Fisto")
 
-	surname = pick("Mk I", "Mk II", "Mk III", "Mk IV", "Mk V",
+	surname = pick("Mk I", "Mk II", "Mk III", "Mk IV", "Mk69",
 			"v0.9", "v1.0", "v1.1", "v2.0", "2418-B", "Open Beta",
 			"Pre-Release", "Commercial Release", "Closed Alpha", "Hivebuilt")
 
@@ -46,16 +46,16 @@ var/datum/hivemind/hive_mind_ai
 	//price list building
 	//here we create list with EP price to compare it at annihilation proc
 	for(var/machine_path in all_machines)
-		var/obj/machinery/hivemind_machine/temporary_machine = new machine_path
-		EP_price_list[machine_path] = list("level" = temporary_machine.evo_level_required, "weight" = temporary_machine.spawn_weight)
-		qdel(temporary_machine)
-	message_admins("Hivemind [name] [surname] has been created.")
+		var/obj/machinery/hivemind_machine/temporary_machine = new69achine_path
+		EP_price_list69machine_path69 = list("level" = temporary_machine.evo_level_re69uired, "weight" = temporary_machine.spawn_weight)
+		69del(temporary_machine)
+	message_admins("Hivemind 69name69 69surname69 has been created.")
 
 
 /datum/hivemind/proc/die()
-	message_admins("Hivemind [name] [surname] is destroyed.")
+	message_admins("Hivemind 69name69 69surname69 is destroyed.")
 	hive_mind_ai = null
-	qdel(src)
+	69del(src)
 	level_eight_beta_announcement()
 
 /datum/hivemind/proc/get_points()

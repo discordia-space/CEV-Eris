@@ -1,9 +1,9 @@
-/obj/spawner/gun_upgrade
-	name = "random gun upgrade"
-	icon_state = "ammo-orange"
-	tags_to_spawn = list(SPAWN_GUN_UPGRADE)
+/obj/spawner/69un_up69rade
+	name = "random 69un up69rade"
+	icon_state = "ammo-oran69e"
+	ta69s_to_spawn = list(SPAWN_69UN_UP69RADE)
 
-/obj/spawner/gun_upgrade/low_chance
-	name = "low chance random gun upgrade"
-	icon_state = "ammo-orange-low"
-	spawn_nothing_percentage = 70
+/obj/spawner/69un_up69rade/low_chance
+	name = "low chance random 69un up69rade"
+	icon_state = "ammo-oran69e-low"
+	spawn_nothin69_percenta69e = 70

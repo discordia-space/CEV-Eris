@@ -1,19 +1,19 @@
 /obj/item/storage/part_replacer
 	name = "rapid part exchange device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	desc = "Special69echanical69odule69ade to store, sort, and apply standard69achine parts."
 	icon_state = "RPED"
 	item_state = "RPED"
 	w_class = ITEM_SIZE_HUGE
 	can_hold = list(/obj/item/stock_parts)
 	storage_slots = 50
 	use_to_pickup = TRUE
-	allow_quick_gather = TRUE
-	allow_quick_empty = TRUE
+	allow_69uick_gather = TRUE
+	allow_69uick_empty = TRUE
 	collection_mode = TRUE
 	display_contents_with_number = TRUE
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 100
-	matter = list(MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_PLASTIC = 5,69ATERIAL_STEEL = 2)
 
 /obj/item/storage/part_replacer/debugparts
 	bad_type = /obj/item/storage/part_replacer/debugparts

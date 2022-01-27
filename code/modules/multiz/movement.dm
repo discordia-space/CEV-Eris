@@ -1,49 +1,49 @@
-#define Z_MOVE_PHASE			/datum/vertical_travel_method/phase 	//Used by ghosts, AI eye and mobs with incorp move. Instant and goes through obstacle. It's basically an OOC action
+#define Z_MOVE_PHASE			/datum/vertical_travel_method/phase 	//Used by ghosts, AI eye and69obs with incorp69ove. Instant and goes through obstacle. It's basically an OOC action
 #define Z_MOVE_JETPACK			/datum/vertical_travel_method/jetpack
 #define Z_MOVE_CLIMB			/datum/vertical_travel_method/climb
-#define Z_MOVE_CLIMB_MAG		/datum/vertical_travel_method/climb/mag	//Walking up a wall with magboots in zero G. Fast and safe
+#define Z_MOVE_CLIMB_MAG		/datum/vertical_travel_method/climb/mag	//Walking up a wall with69agboots in zero G. Fast and safe
 #define Z_MOVE_JUMP				/datum/vertical_travel_method/jump
 
 /atom/movable
-	/** Used to check wether or not an atom is being handled by SSfalling. */
+	/** Used to check wether or69ot an atom is being handled by SSfalling. */
 	var/tmp/multiz_falling = 0
 
 /**
- * Verb for the mob to move up a z-level if possible.
+ *69erb for the69ob to69ove up a z-level if possible.
  */
 /mob/verb/up()
-	set name = "Move Upwards"
+	set69ame = "Move Upwards"
 	set category = "IC"
 
 	if(zMove(UP))
-		to_chat(usr, SPAN_NOTICE("You move upwards."))
+		to_chat(usr, SPAN_NOTICE("You69ove upwards."))
 
 /**
- * Verb for the mob to move down a z-level if possible.
+ *69erb for the69ob to69ove down a z-level if possible.
  */
 /mob/verb/down()
-	set name = "Move Downwards"
+	set69ame = "Move Downwards"
 	set category = "IC"
 
 	if(zMove(DOWN))
-		to_chat(usr, SPAN_NOTICE("You move down."))
+		to_chat(usr, SPAN_NOTICE("You69ove down."))
 
 /**
- * Used to check if a mob can move up or down a Z-level and to then actually do the move.
+ * Used to check if a69ob can69ove up or down a Z-level and to then actually do the69ove.
  *
- * @param	direction The direction in which we're moving. Expects defines UP or DOWN.
+ * @param	direction The direction in which we're69oving. Expects defines UP or DOWN.
  *
- * @return	TRUE if the mob has been successfully moved a Z-level.
+ * @return	TRUE if the69ob has been successfully69oved a Z-level.
  *			FALSE otherwise.
  */
-/mob/proc/zMove(direction, var/method = 0)
-	// In the case of an active eyeobj, move that instead.
+/mob/proc/zMove(direction,69ar/method = 0)
+	// In the case of an active eyeobj,69ove that instead.
 	if (eyeobj)
 		return eyeobj.zMove(direction)
 
 	var/atom/movable/mover = src
 
-	//If we're inside a thing, that thing is the thing that moves
+	//If we're inside a thing, that thing is the thing that69oves
 	if (istype(loc, /obj))
 		mover = loc
 
@@ -51,18 +51,18 @@
 	var/turf/destination = (direction == UP) ? GetAbove(src) : GetBelow(src)
 	var/turf/start = get_turf(src)
 	if(!destination)
-		to_chat(src, SPAN_NOTICE("There is nothing of interest in this direction"))
+		to_chat(src, SPAN_NOTICE("There is69othing of interest in this direction"))
 		return FALSE
 
-	//After checking that there's a valid destination, we'll first attempt phase movement as a shortcut.
+	//After checking that there's a69alid destination, we'll first attempt phase69ovement as a shortcut.
 	//Since it can pass through obstacles, we'll do this before checking whether anything is blocking us
 	if(src.current_vertical_travel_method)
 		to_chat(src, SPAN_NOTICE("You can't do this yet!"))
 		return
 
-	var/datum/vertical_travel_method/VTM = new Z_MOVE_PHASE(src)
+	var/datum/vertical_travel_method/VTM =69ew Z_MOVE_PHASE(src)
 	if(VTM.can_perform(direction))
-		src.current_vertical_travel_method = VTM
+		src.current_vertical_travel_method =69TM
 		VTM.attempt(direction)
 		return
 
@@ -78,23 +78,23 @@
 		to_chat(src, SPAN_WARNING("You can't leave this place in this direction."))
 		return FALSE
 	if(!destination.CanZPass(mover, (direction == UP ? DOWN : UP) ))
-		to_chat(src, SPAN_WARNING("\The [destination] blocks you."))
+		to_chat(src, SPAN_WARNING("\The 69destination69 blocks you."))
 		return FALSE
 
 	// Check for blocking atoms at the destination.
 	for (var/atom/A in destination)
 		if (!A.CanPass(mover, start, 1.5, 0))
-			to_chat(src, SPAN_WARNING("\The [A] blocks you."))
+			to_chat(src, SPAN_WARNING("\The 69A69 blocks you."))
 			return FALSE
 
 	for (var/a in possible_methods)
-		VTM = new a(src)
+		VTM =69ew a(src)
 		if(VTM.can_perform(direction))
-			src.current_vertical_travel_method = VTM
+			src.current_vertical_travel_method =69TM
 			VTM.attempt(direction)
 			return TRUE
 
-	to_chat(src, SPAN_NOTICE("You lack a means of z-travel in that direction."))
+	to_chat(src, SPAN_NOTICE("You lack a69eans of z-travel in that direction."))
 	return FALSE
 
 /mob/proc/zMoveUp()
@@ -114,11 +114,11 @@
 
 
 /**
- * An initial check for Z-level travel. Called relatively early in mob/proc/zMove.
+ * An initial check for Z-level travel. Called relatively early in69ob/proc/zMove.
  *
  * Useful for overwriting and special conditions for STOPPING z-level transit.
  *
- * @return	TRUE if the mob can move a Z-level of its own volition.
+ * @return	TRUE if the69ob can69ove a Z-level of its own69olition.
  *			FALSE otherwise.
  */
 /mob/proc/can_ztravel(var/direction)
@@ -151,12 +151,12 @@
 			return TRUE
 
 /**
- * Used to determine whether or not a given mob can override gravity when
+ * Used to determine whether or69ot a given69ob can override gravity when
  * attempting to Z-move UP.
  *
- * Returns FALSE in standard mob cases. Exists for carbon/human and other child overrides.
+ * Returns FALSE in standard69ob cases. Exists for carbon/human and other child overrides.
  *
- * @return	TRUE if the mob can Z-move up despite gravity.
+ * @return	TRUE if the69ob can Z-move up despite gravity.
  *			FALSE otherwise.
  */
 /mob/proc/CanAvoidGravity()
@@ -164,7 +164,7 @@
 
 // Humans and borgs have jetpacks which allows them to override gravity! Or rather,
 // they can have them. So we override and check.
-/* Maybe next time.
+/*69aybe69ext time.
 /mob/living/carbon/human/CanAvoidGravity()
 	if (!restrained())
 		var/obj/item/tank/jetpack/thrust = get_jetpack()
@@ -184,21 +184,21 @@
 */
 
 /**
- * An overridable proc used by SSfalling to determine whether or not an atom
- * should continue falling to the next level, or stop processing and be caught
- * in midair, effectively. One of the ways to make things never fall is to make
+ * An overridable proc used by SSfalling to determine whether or69ot an atom
+ * should continue falling to the69ext level, or stop processing and be caught
+ * in69idair, effectively. One of the ways to69ake things69ever fall is to69ake
  * this return FALSE.
  *
- * If the mob has fallen and is stopped amidst a fall by this, fall_impact is
- * invoked with the second argument being TRUE. As opposed to the default value, FALSE.
+ * If the69ob has fallen and is stopped amidst a fall by this, fall_impact is
+ * invoked with the second argument being TRUE. As opposed to the default69alue, FALSE.
  *
- * @param	below The turf that the mob is expected to end up at.
- * @param	dest The tile we're presuming the mob to be at for this check. Default
- * value is src.loc, (src. is important there!) but this is used for magboot lookahead
+ * @param	below The turf that the69ob is expected to end up at.
+ * @param	dest The tile we're presuming the69ob to be at for this check. Default
+ *69alue is src.loc, (src. is important there!) but this is used for69agboot lookahead
  * checks it turf/simulated/open/Enter().
  *
  * @return	TRUE if the atom can continue falling in its present situation.
- *			FALSE if it should stop falling and not invoke fall_through or fall_impact
+ *			FALSE if it should stop falling and69ot invoke fall_through or fall_impact
  * this cycle.
  */
 /atom/movable/proc/can_fall(turf/below, turf/simulated/open/dest = src.loc)
@@ -212,7 +212,7 @@
 	if(throwing > 0)
 		return FALSE
 
-	// The var/climbers API is implemented here.
+	// The69ar/climbers API is implemented here.
 	if (LAZYLEN(dest.climbers) && (src in dest.climbers))
 		return FALSE
 
@@ -236,9 +236,9 @@
 /mob/living/carbon/human/can_fall(turf/below, turf/simulated/open/dest = src.loc)
 	if (CanAvoidGravity())
 		return FALSE
-	// Special condition for jetpack mounted folk!
+	// Special condition for jetpack69ounted folk!
 	if (!restrained())
-		var/tile_view = view(src, 1)
+		var/tile_view =69iew(src, 1)
 		var/obj/item/clothing/shoes/magboots/MB = shoes
 		if(stats.getPerk(PERK_PARKOUR))
 			for(var/obj/structure/low_wall/LW in tile_view)
@@ -267,14 +267,14 @@
 	return ..()
 
 
-// Ladders and stairs pulling movement
+// Ladders and stairs pulling69ovement
 /obj/structure/multiz/proc/try_resolve_mob_pulling(mob/M, obj/structure/multiz/ES)
 	if(istype(M) && (ES && ES.istop == istop))
 		var/list/moveWithMob = list()
 		if(M.pulling)
-			moveWithMob += M.pulling
+			moveWithMob +=69.pulling
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H =69
 			for(var/obj/item/grab/G in list(H.r_hand, H.l_hand))
 				moveWithMob += G.affecting
 		if(moveWithMob.len)
@@ -283,16 +283,16 @@
 				pull_target = get_turf(target)
 			if(!pull_target)
 				pull_target = get_turf(M)
-			for(var/Elem in moveWithMob)
+			for(var/Elem in69oveWithMob)
 				var/atom/movable/A = Elem
 				A.forceMove(pull_target)
 
 /mob/observer/ghost/verb/moveup()
-	set name = "Move Upwards"
+	set69ame = "Move Upwards"
 	set category = "Ghost"
 	zMove(UP)
 
 /mob/observer/ghost/verb/movedown()
-	set name = "Move Downwards"
+	set69ame = "Move Downwards"
 	set category = "Ghost"
 	zMove(DOWN)

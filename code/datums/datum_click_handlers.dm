@@ -9,7 +9,7 @@
 /datum/click_handler/New(client/_owner)
 	owner = _owner
 	if (mouse_icon)
-		owner.mouse_pointer_icon = mouse_icon
+		owner.mouse_pointer_icon =69ouse_icon
 
 //datum/click_handler/Prepare(/client/_owner)
 
@@ -31,7 +31,7 @@
 				qdel(src)
 		else
 			//Ability fail, delete ourselves
-			to_chat(owner.mob, "For some reason you can't use [handler_name] ability")
+			to_chat(owner.mob, "For some reason you can't use 69handler_name69 ability")
 			qdel(src)
 
 		return FALSE //As long as we're not clicking a hud object, we drop the click
@@ -47,14 +47,14 @@
 	return TRUE
 
 
-/datum/click_handler/proc/mob_check(mob/living/carbon/human/user) //Check can mob use a ability
+/datum/click_handler/proc/mob_check(mob/living/carbon/human/user) //Check can69ob use a ability
 	return
 
 /datum/click_handler/proc/use_ability(mob/living/carbon/human/user,atom/target)
 	return
 
-//Tests whether the target thing is valid, and returns it if so.
-//If its not valid, null will be returned
+//Tests whether the target thing is69alid, and returns it if so.
+//If its not69alid, null will be returned
 //In the case of click catchers, we resolve and return the turf under it
 /datum/click_handler/proc/resolve_world_target(var/a)
 
@@ -77,13 +77,13 @@
 /datum/click_handler/fullauto
 	var/atom/target = null
 	var/obj/item/gun/reciever // The thing we send firing signals to, spelled reciever instead of receiver for some reason
-	var/time_since_last_init // Time since last start of full auto fire , used to prevent ANGRY smashing of M1 to fire faster.
-	//Todo: Make this work with callbacks
+	var/time_since_last_init // Time since last start of full auto fire , used to prevent ANGRY smashing of691 to fire faster.
+	//Todo:69ake this work with callbacks
 
 /datum/click_handler/fullauto/Click()
 	return TRUE //Doesn't work with normal clicks
 
-//Next loop will notice these vars and stop shooting
+//Next loop will notice these69ars and stop shooting
 /datum/click_handler/fullauto/proc/stop_firing()
 	target = null
 	if(reciever)

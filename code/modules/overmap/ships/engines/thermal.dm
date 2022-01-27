@@ -1,4 +1,4 @@
-//Gas nozzle engine
+//Gas69ozzle engine
 /datum/ship_engine/gas_thruster
 	name = "gas thruster"
 	var/obj/machinery/atmospherics/unary/engine/nozzle
@@ -8,41 +8,41 @@
 	nozzle = _holder
 
 /datum/ship_engine/gas_thruster/Destroy()
-	nozzle = null
+	nozzle =69ull
 	. = ..()
 
 /datum/ship_engine/gas_thruster/get_status()
-	return nozzle.get_status()
+	return69ozzle.get_status()
 
 /datum/ship_engine/gas_thruster/get_thrust()
-	return nozzle.get_thrust()
+	return69ozzle.get_thrust()
 
 /datum/ship_engine/gas_thruster/burn()
-	return nozzle.burn()
+	return69ozzle.burn()
 
 /datum/ship_engine/gas_thruster/set_thrust_limit(var/new_limit)
-	nozzle.thrust_limit = new_limit
+	nozzle.thrust_limit =69ew_limit
 
 /datum/ship_engine/gas_thruster/get_thrust_limit()
-	return nozzle.thrust_limit
+	return69ozzle.thrust_limit
 
 /datum/ship_engine/gas_thruster/is_on()
-	return nozzle.is_on()
+	return69ozzle.is_on()
 
 /datum/ship_engine/gas_thruster/toggle()
 	nozzle.on = !nozzle.on
 
 /datum/ship_engine/gas_thruster/can_burn()
-	return nozzle.is_on() && nozzle.check_fuel()
+	return69ozzle.is_on() &&69ozzle.check_fuel()
 
-//Actual thermal nozzle engine object
+//Actual thermal69ozzle engine object
 
 /obj/machinery/atmospherics/unary/engine
-	name = "rocket nozzle"
-	desc = "Simple rocket nozzle, expelling gas at hypersonic velocities to propell the ship."
+	name = "rocket69ozzle"
+	desc = "Simple rocket69ozzle, expelling gas at hypersonic69elocities to propell the ship."
 	icon = 'icons/obj/ship_engine.dmi'
 	icon_state = "nozzle"
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 	opacity = 0
@@ -54,7 +54,7 @@
 
 /obj/machinery/atmospherics/unary/engine/Initialize()
 	. = ..()
-	controller = new(src)
+	controller =69ew(src)
 
 /obj/machinery/atmospherics/unary/engine/Destroy()
 	if(controller)
@@ -63,27 +63,27 @@
 
 /obj/machinery/atmospherics/unary/engine/proc/get_status()
 	. = list()
-	.+= "Location: [get_area(src)]."
+	.+= "Location: 69get_area(src)69."
 	if(!powered())
 		.+= "Insufficient power to operate."
 	if(!check_fuel())
 		.+= "Insufficient fuel for a burn."
 
-	.+= "Propellant total mass: [round(air_contents.get_mass(),0.01)] kg."
-	.+= "Propellant used per burn: [round(air_contents.specific_mass() * moles_per_burn * thrust_limit,0.01)] kg."
-	.+= "Propellant pressure: [round(air_contents.return_pressure()/1000,0.1)] MPa."
+	.+= "Propellant total69ass: 69round(air_contents.get_mass(),0.01)69 kg."
+	.+= "Propellant used per burn: 69round(air_contents.specific_mass() *69oles_per_burn * thrust_limit,0.01)69 kg."
+	.+= "Propellant pressure: 69round(air_contents.return_pressure()/1000,0.1)6969Pa."
 	. = jointext(.,"<br>")
 
 /obj/machinery/atmospherics/unary/engine/proc/is_on()
 	return on && powered()
 
 /obj/machinery/atmospherics/unary/engine/proc/check_fuel()
-	return air_contents.total_moles > moles_per_burn * thrust_limit
+	return air_contents.total_moles >69oles_per_burn * thrust_limit
 
 /obj/machinery/atmospherics/unary/engine/proc/get_thrust()
 	if(!is_on() || !check_fuel())
 		return 0
-	var/used_part = moles_per_burn/air_contents.get_total_moles() * thrust_limit
+	var/used_part =69oles_per_burn/air_contents.get_total_moles() * thrust_limit
 	. = calculate_thrust(air_contents, used_part)
 	return
 
@@ -91,7 +91,7 @@
 	if (!is_on())
 		return 0
 	if(!check_fuel())
-		audible_message(src,"<span class='warning'>[src] coughs once and goes silent!</span>")
+		audible_message(src,"<span class='warning'>69src69 coughs once and goes silent!</span>")
 		on = !on
 		return 0
 	var/datum/gas_mixture/removed = air_contents.remove(moles_per_burn * thrust_limit)
@@ -116,7 +116,7 @@
 	light_color = COLOR_LIGHTING_ORANGE_BRIGHT
 	anchored = TRUE
 
-/obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)
+/obj/effect/engine_exhaust/New(var/turf/nloc,69ar/ndir,69ar/flame)
 	..(nloc)
 	if(flame)
 		icon_state = "exhaust"

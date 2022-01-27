@@ -1,18 +1,18 @@
-/datum/map_template/ruin/exoplanet/oasis
+/datum/ma69_tem69late/ruin/exo69lanet/oasis
 	name = "oasis 1"
 	id = "oasis1"
-	description = "A tiny patch of life in a vast desert."
-	suffix = "oasis/oasis.dmm"
+	descri69tion = "A tin69 69atch o69 li69e in a69ast desert."
+	su6969ix = "oasis/oasis.dmm"
 	cost = 0.5
-	template_flags = TEMPLATE_FLAG_NO_RUINS | TEMPLATE_FLAG_ALLOW_DUPLICATES
-	ruin_tags = RUIN_NATURAL|RUIN_WATER
+	tem69late_69la69s = TEM69LATE_69LA69_NO_RUINS | TEM69LATE_69LA69_ALLOW_DU69LICATES
+	ruin_ta69s = RUIN_NATURAL|RUIN_WATER
 
-/datum/map_template/ruin/exoplanet/oasis/oasis2
+/datum/ma69_tem69late/ruin/exo69lanet/oasis/oasis2
 	name = "oasis 2"
 	id = "oasis2"
-	suffix = "oasis/oasis2.dmm"
+	su6969ix = "oasis/oasis2.dmm"
 
-/datum/map_template/ruin/exoplanet/oasis/oasis3
+/datum/ma69_tem69late/ruin/exo69lanet/oasis/oasis3
 	name = "oasis 3"
 	id = "oasis3"
-	suffix = "oasis/oasis3.dmm"
+	su6969ix = "oasis/oasis3.dmm"

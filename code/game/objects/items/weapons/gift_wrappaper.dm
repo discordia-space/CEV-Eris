@@ -19,12 +19,12 @@
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	if(w_class < ITEM_SIZE_BULKY)
-		icon_state = "gift[w_class]"
+		icon_state = "gift69w_class69"
 	else
-		icon_state = "gift[pick(1, 2, 3)]"
+		icon_state = "gift69pick(1, 2, 3)69"
 
 /obj/item/a_gift/ex_act()
-	qdel(src)
+	69del(src)
 	return
 
 /obj/item/a_gift/attack_self(mob/M)
@@ -77,7 +77,7 @@
 	M.remove_from_mob(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
-	qdel(src)
+	69del(src)
 	return
 
 /obj/item/gift
@@ -97,14 +97,14 @@
 		src.gift.add_fingerprint(user)
 	else
 		to_chat(user, SPAN_WARNING("The gift was empty!"))
-	qdel(src)
+	69del(src)
 
-/obj/effect/spresent/relaymove(mob/user as mob)
+/obj/effect/spresent/relaymove(mob/user as69ob)
 	if (user.stat)
 		return
-	to_chat(user, SPAN_WARNING("You can't move."))
+	to_chat(user, SPAN_WARNING("You can't69ove."))
 
-/obj/effect/spresent/attackby(obj/item/W, mob/user)
+/obj/effect/spresent/attackby(obj/item/W,69ob/user)
 	..()
 
 	if (!istype(W, /obj/item/tool/wirecutters))
@@ -115,7 +115,7 @@
 
 	for(var/mob/M in src) //Should only be one but whatever.
 		M.forceMove(loc)
-	qdel(src)
+	69del(src)
 
 /*
  * Wrapping Paper
@@ -142,15 +142,15 @@
 	spawn_tags = SPAWN_TAG_JUNK
 	var/amount = 20
 
-/obj/item/wrapping_paper/attackby(obj/item/W, mob/user)
+/obj/item/wrapping_paper/attackby(obj/item/W,69ob/user)
 	..()
 	if (!( locate(/obj/structure/table, src.loc) ))
-		to_chat(user, SPAN_WARNING("You MUST put the paper on a table!"))
+		to_chat(user, SPAN_WARNING("You69UST put the paper on a table!"))
 	if (W.w_class < ITEM_SIZE_BULKY)
 		if ((istype(user.l_hand, /obj/item/tool/wirecutters) || istype(user.r_hand, /obj/item/tool/wirecutters)))
 			var/a_used = 2 ** (src.w_class - 1)
 			if (src.amount < a_used)
-				to_chat(user, SPAN_WARNING("You need more paper!"))
+				to_chat(user, SPAN_WARNING("You need69ore paper!"))
 				return
 			else
 				if(istype(W, /obj/item/smallDelivery) || istype(W, /obj/item/gift)) //No gift wrapping gifts!
@@ -161,7 +161,7 @@
 				var/obj/item/gift/G = new /obj/item/gift( src.loc )
 				G.size = W.w_class
 				G.w_class = G.size + 1
-				G.icon_state = text("gift[]", G.size)
+				G.icon_state = text("gift6969", G.size)
 				G.gift = W
 				W.loc = G
 				G.add_fingerprint(user)
@@ -169,7 +169,7 @@
 				src.add_fingerprint(user)
 			if (src.amount <= 0)
 				new /obj/item/c_tube( src.loc )
-				qdel(src)
+				69del(src)
 				return
 		else
 			to_chat(user, SPAN_WARNING("You need scissors!"))
@@ -180,9 +180,9 @@
 
 /obj/item/wrapping_paper/examine(mob/user)
 	if(..(user, 1))
-		to_chat(user, text("There is about [] square units of paper left!", src.amount))
+		to_chat(user, text("There is about 6969 s69uare units of paper left!", src.amount))
 
-/obj/item/wrapping_paper/attack(mob/target, mob/user)
+/obj/item/wrapping_paper/attack(mob/target,69ob/user)
 	if (!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target
@@ -198,11 +198,11 @@
 
 			H.loc = present
 
-			H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been wrapped with [src.name]  by [user.name] ([user.ckey])</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to wrap [H.name] ([H.ckey])</font>")
-			msg_admin_attack("[key_name(user)] used [src] to wrap [key_name(H)]")
+			H.attack_log += text("\6969time_stamp()69\69 <font color='orange'>Has been wrapped with 69src.name69  by 69user.name69 (69user.ckey69)</font>")
+			user.attack_log += text("\6969time_stamp()69\69 <font color='red'>Used the 69src.name69 to wrap 69H.name69 (69H.ckey69)</font>")
+			msg_admin_attack("69key_name(user)69 used 69src69 to wrap 69key_name(H)69")
 
 		else
-			to_chat(user, SPAN_WARNING("You need more paper."))
+			to_chat(user, SPAN_WARNING("You need69ore paper."))
 	else
-		to_chat(user, "They are moving around too much. A straightjacket would help.")
+		to_chat(user, "They are69oving around too69uch. A straightjacket would help.")

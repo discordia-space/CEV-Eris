@@ -1,7 +1,7 @@
 /datum/objective/faction
 	var/datum/faction/faction = null
 
-/datum/objective/faction/New(var/datum/faction/F, var/datum/mind/_target)
+/datum/objective/faction/New(var/datum/faction/F,69ar/datum/mind/_target)
 	faction = F
 	faction.objectives |= src
 	target = _target

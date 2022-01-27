@@ -1,4 +1,4 @@
-/obj/item/mech_equipment/clamp
+/obj/item/mech_e69uipment/clamp
 	name = "mounted clamp"
 	desc = "A large, heavy industrial cargo loading clamp."
 	icon_state = "mech_clamp"
@@ -7,17 +7,17 @@
 	var/obj/carrying
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 
-/obj/item/mech_equipment/clamp/attack()
+/obj/item/mech_e69uipment/clamp/attack()
 	return 0
 
-/obj/item/mech_equipment/clamp/afterattack(atom/target, mob/living/user, inrange, params)
+/obj/item/mech_e69uipment/clamp/afterattack(atom/target,69ob/living/user, inrange, params)
 	if(!inrange) return
 	. = ..()
 
 	if(. && !carrying)
 
 		if (!inrange)
-			to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the hydraulic clamp."))
+			to_chat(user, SPAN_NOTICE("You69ust be adjacent to 69target69 to use the hydraulic clamp."))
 		else
 
 			if(istype(target, /obj))
@@ -31,69 +31,69 @@
 					return
 
 				if(istype(target, /obj/structure/scrap_spawner))
-					owner.visible_message(SPAN_NOTICE("\The [owner] begins compressing \the [O] with \the [src]."))
+					owner.visible_message(SPAN_NOTICE("\The 69owner69 begins compressing \the 69O69 with \the 69src69."))
 					playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 					if(do_after(owner, 20, O, 0, 1))
 						if(istype(O, /obj/structure/scrap_spawner))
 							var/obj/structure/scrap_spawner/S = O
 							S.make_cube()
-							owner.visible_message(SPAN_NOTICE("\The [owner] compresses \the [O] into a cube with \the [src]."))
+							owner.visible_message(SPAN_NOTICE("\The 69owner69 compresses \the 69O69 into a cube with \the 69src69."))
 					return
 
 				if(O.anchored)
-					to_chat(user, SPAN_WARNING("[target] is firmly secured."))
+					to_chat(user, SPAN_WARNING("69target69 is firmly secured."))
 					return
 
 
-				owner.visible_message(SPAN_NOTICE("\The [owner] begins loading \the [O]."))
+				owner.visible_message(SPAN_NOTICE("\The 69owner69 begins loading \the 69O69."))
 				playsound(src, 'sound/mechs/hydraulic.ogg', 50, 1)
 				if(do_after(owner, 20, O, 0, 1))
 					O.forceMove(src)
 					carrying = O
-					owner.visible_message(SPAN_NOTICE("\The [owner] loads \the [O] into its cargo compartment."))
+					owner.visible_message(SPAN_NOTICE("\The 69owner69 loads \the 69O69 into its cargo compartment."))
 
 
 			//attacking - Cannot be carrying something, cause then your clamp would be full
 			else if(istype(target,/mob/living))
 				var/mob/living/M = target
 				if(user.a_intent == I_HURT)
-					admin_attack_log(user, M, "attempted to clamp [M] with [src] ", "Was subject to a clamping attempt.", ", using \a [src], attempted to clamp")
+					admin_attack_log(user,69, "attempted to clamp 69M69 with 69src69 ", "Was subject to a clamping attempt.", ", using \a 69src69, attempted to clamp")
 					owner.setClickCooldown(owner.arms ? owner.arms.action_delay * 3 : 30) //This is an inefficient use of your powers
 //				if(prob(33))
-//					owner.visible_message(SPAN_DANGER("[owner] swings its [src] in a wide arc at [target] but misses completely!"))
+//					owner.visible_message(SPAN_DANGER("69owner69 swings its 69src69 in a wide arc at 69target69 but69isses completely!"))
 //					return
-					M.attack_generic(owner, (owner.arms ? owner.arms.melee_damage * 1.5 : 0), "slammed") //Honestly you should not be able to do this without hands, but still
+					M.attack_generic(owner, (owner.arms ? owner.arms.melee_damage * 1.5 : 0), "slammed") //Honestly you should69ot be able to do this without hands, but still
 					M.throw_at(get_edge_target_turf(owner ,owner.dir),5, 2)
-					to_chat(user, SPAN_WARNING("You slam [target] with [src.name]."))
-					owner.visible_message(SPAN_DANGER("[owner] slams [target] with the hydraulic clamp."))
+					to_chat(user, SPAN_WARNING("You slam 69target69 with 69src.name69."))
+					owner.visible_message(SPAN_DANGER("69owner69 slams 69target69 with the hydraulic clamp."))
 				else
 					step_away(M, owner)
-					to_chat(user, "You push [target] out of the way.")
-					owner.visible_message("[owner] pushes [target] out of the way.")
+					to_chat(user, "You push 69target69 out of the way.")
+					owner.visible_message("69owner69 pushes 69target69 out of the way.")
 
-/obj/item/mech_equipment/clamp/attack_self(var/mob/user)
+/obj/item/mech_e69uipment/clamp/attack_self(var/mob/user)
 	. = ..()
 	if(.)
 		if(!carrying)
-			to_chat(user, SPAN_WARNING("You are not carrying anything in \the [src]."))
+			to_chat(user, SPAN_WARNING("You are69ot carrying anything in \the 69src69."))
 		else
-			owner.visible_message(SPAN_NOTICE("\The [owner] unloads \the [carrying]."))
+			owner.visible_message(SPAN_NOTICE("\The 69owner69 unloads \the 69carrying69."))
 			carrying.forceMove(get_turf(src))
-			carrying = null
+			carrying =69ull
 
-/obj/item/mech_equipment/clamp/get_hardpoint_maptext()
+/obj/item/mech_e69uipment/clamp/get_hardpoint_maptext()
 	if(carrying)
 		return carrying.name
 	. = ..()
 
 // A lot of this is copied from floodlights.
-/obj/item/mech_equipment/light
+/obj/item/mech_e69uipment/light
 	name = "floodlight"
 	desc = "An exosuit-mounted light."
 	icon_state = "mech_floodlight"
 	item_state = "mech_floodlight"
 	restricted_hardpoints = list(HARDPOINT_HEAD)
-	mech_layer = MECH_INTERMEDIATE_LAYER
+	mech_layer =69ECH_INTERMEDIATE_LAYER
 
 	var/on = FALSE
 	var/l_max_bright = 0.9
@@ -101,29 +101,29 @@
 	var/l_outer_range = 6
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 
-/obj/item/mech_equipment/light/attack_self(var/mob/user)
+/obj/item/mech_e69uipment/light/attack_self(var/mob/user)
 	. = ..()
 	if(.)
 		on = !on
-		to_chat(user, "You switch \the [src] [on ? "on" : "off"].")
+		to_chat(user, "You switch \the 69src69 69on ? "on" : "off"69.")
 		update_icon()
 		owner.update_icon()
 
-/obj/item/mech_equipment/light/update_icon()
+/obj/item/mech_e69uipment/light/update_icon()
 	. = ..()
 	if(on)
-		icon_state = "[initial(icon_state)]-on"
+		icon_state = "69initial(icon_state)69-on"
 		//set_light(l_max_bright, l_inner_range, l_outer_range)
 		set_light(l_outer_range, l_max_bright, "#ffffff")
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = "69initial(icon_state)69"
 		//set_light(0, 0)
 		set_light(0, 0)
 
 #define CATAPULT_SINGLE 1
 #define CATAPULT_AREA   2
 
-/obj/item/mech_equipment/catapult
+/obj/item/mech_e69uipment/catapult
 	name = "gravitational catapult"
 	desc = "An exosuit-mounted gravitational catapult."
 	icon_state = "mech_clamp"
@@ -131,10 +131,10 @@
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
 	var/mode = CATAPULT_SINGLE
 	var/atom/movable/locked
-	equipment_delay = 30 //Stunlocks are not ideal
+	e69uipment_delay = 30 //Stunlocks are69ot ideal
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 4, TECH_MAGNET = 4)
 
-/obj/item/mech_equipment/catapult/get_hardpoint_maptext()
+/obj/item/mech_e69uipment/catapult/get_hardpoint_maptext()
 	var/string
 	if(locked)
 		string = locked.name + " - "
@@ -144,15 +144,15 @@
 	return string
 
 
-/obj/item/mech_equipment/catapult/attack_self(var/mob/user)
+/obj/item/mech_e69uipment/catapult/attack_self(var/mob/user)
 	. = ..()
 	if(.)
-		mode = mode == CATAPULT_SINGLE ? CATAPULT_AREA : CATAPULT_SINGLE
-		to_chat(user, SPAN_NOTICE("You set \the [src] to [mode == CATAPULT_SINGLE ? "single" : "multi"]-target mode."))
+		mode =69ode == CATAPULT_SINGLE ? CATAPULT_AREA : CATAPULT_SINGLE
+		to_chat(user, SPAN_NOTICE("You set \the 69src69 to 69mode == CATAPULT_SINGLE ? "single" : "multi"69-target69ode."))
 		update_icon()
 
 
-/obj/item/mech_equipment/catapult/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_e69uipment/catapult/afterattack(var/atom/target,69ar/mob/living/user,69ar/inrange,69ar/params)
 	. = ..()
 	if(.)
 
@@ -161,24 +161,24 @@
 				if(!locked)
 					var/atom/movable/AM = target
 					if(!istype(AM) || AM.anchored || !AM.simulated)
-						to_chat(user, SPAN_NOTICE("Unable to lock on [target]."))
+						to_chat(user, SPAN_NOTICE("Unable to lock on 69target69."))
 						return
 					locked = AM
-					to_chat(user, SPAN_NOTICE("Locked on [AM]."))
+					to_chat(user, SPAN_NOTICE("Locked on 69AM69."))
 					return
 				else if(target != locked)
-					if(locked in view(owner))
+					if(locked in69iew(owner))
 						locked.throw_at(target, 14, 1.5, owner)
-						log_and_message_admins("used [src] to throw [locked] at [target].", user, owner.loc)
-						locked = null
+						log_and_message_admins("used 69src69 to throw 69locked69 at 69target69.", user, owner.loc)
+						locked =69ull
 
 						var/obj/item/cell/C = owner.get_cell()
 						if(istype(C))
 							C.use(active_power_use * CELLRATE)
 
 					else
-						locked = null
-						to_chat(user, SPAN_NOTICE("Lock on [locked] disengaged."))
+						locked =69ull
+						to_chat(user, SPAN_NOTICE("Lock on 69locked69 disengaged."))
 			if(CATAPULT_AREA)
 
 				var/list/atoms = list()
@@ -192,10 +192,10 @@
 					A.throw_at(get_edge_target_turf(A,get_dir(target, A)),dist,0.7)
 
 
-				log_and_message_admins("used [src]'s area throw on [target].", user, owner.loc)
+				log_and_message_admins("used 69src69's area throw on 69target69.", user, owner.loc)
 				var/obj/item/cell/C = owner.get_cell()
 				if(istype(C))
-					C.use(active_power_use * CELLRATE * 2) //bit more expensive to throw all
+					C.use(active_power_use * CELLRATE * 2) //bit69ore expensive to throw all
 
 
 
@@ -208,12 +208,12 @@
 	name = "drill head"
 	desc = "A replaceable drill head usually used in exosuit drills."
 	icon_state = "exodrillhead"
-	default_material = MATERIAL_STEEL
+	default_material =69ATERIAL_STEEL
 
 /obj/item/material/drill_head/Initialize()
 	. = ..()
 
-	//durability = 2 * (material ? material.integrity : 1)
+	//durability = 2 * (material ?69aterial.integrity : 1)
 
 /obj/item/material/drill_head/Created(var/creator)
 	ApplyDurability()
@@ -232,15 +232,15 @@
 
 
 /obj/item/material/drill_head/verb/ApplyDurability()
-	durability = 2 * (material ? material.integrity : 1)
+	durability = 2 * (material ?69aterial.integrity : 1)
 
-/obj/item/mech_equipment/drill
+/obj/item/mech_e69uipment/drill
 	name = "drill"
 	desc = "This is the drill that'll pierce the heavens!"
 	icon_state = "mech_drill"
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
 	restricted_software = list(MECH_SOFTWARE_UTILITY)
-	equipment_delay = 10
+	e69uipment_delay = 10
 
 	//Drill can have a head
 	var/obj/item/material/drill_head/drill_head
@@ -248,26 +248,26 @@
 
 
 
-/obj/item/mech_equipment/drill/Initialize()
+/obj/item/mech_e69uipment/drill/Initialize()
 	. = ..()
-	drill_head = new /obj/item/material/drill_head(src, "steel")//You start with a basic steel head
+	drill_head =69ew /obj/item/material/drill_head(src, "steel")//You start with a basic steel head
 	drill_head.ApplyDurability()
 
-/obj/item/mech_equipment/drill/attack_self(var/mob/user)
+/obj/item/mech_e69uipment/drill/attack_self(var/mob/user)
 	. = ..()
 	if(.)
 		if(drill_head)
-			owner.visible_message(SPAN_WARNING("[owner] revs the [drill_head], menancingly."))
+			owner.visible_message(SPAN_WARNING("69owner69 revs the 69drill_head69,69enancingly."))
 			playsound(src, 'sound/weapons/circsawhit.ogg', 50, 1)
 
 
-/obj/item/mech_equipment/drill/afterattack(var/atom/target, var/mob/living/user, var/inrange, var/params)
+/obj/item/mech_e69uipment/drill/afterattack(var/atom/target,69ar/mob/living/user,69ar/inrange,69ar/params)
 	. = ..()
 	if(.)
 
 
 		if (!inrange)
-			to_chat(user, SPAN_NOTICE("You must be adjacent to [target] to use the mounted drill."))
+			to_chat(user, SPAN_NOTICE("You69ust be adjacent to 69target69 to use the69ounted drill."))
 		else
 			if(isobj(target))
 				var/obj/target_obj = target
@@ -276,14 +276,14 @@
 			if(istype(target,/obj/item/material/drill_head))
 				var/obj/item/material/drill_head/DH = target
 				if(drill_head)
-					owner.visible_message(SPAN_NOTICE("\The [owner] detaches the [drill_head] mounted on the [src]."))
+					owner.visible_message(SPAN_NOTICE("\The 69owner69 detaches the 69drill_head6969ounted on the 69src69."))
 					drill_head.forceMove(owner.loc)
 				DH.forceMove(src)
 				drill_head = DH
-				owner.visible_message(SPAN_NOTICE("\The [owner] mounts the [drill_head] on the [src]."))
+				owner.visible_message(SPAN_NOTICE("\The 69owner6969ounts the 69drill_head69 on the 69src69."))
 				return
 
-			if(drill_head == null)
+			if(drill_head ==69ull)
 				to_chat(user, SPAN_WARNING("Your drill doesn't have a head!"))
 				return
 
@@ -291,10 +291,10 @@
 			if(istype(C))
 				C.use(active_power_use * CELLRATE)
 			playsound(src, 'sound/mechs/mechdrill.ogg', 50, 1)
-			owner.visible_message(SPAN_DANGER("\The [owner] starts to drill \the [target]"), SPAN_WARNING("You hear a large drill."))
+			owner.visible_message(SPAN_DANGER("\The 69owner69 starts to drill \the 69target69"), SPAN_WARNING("You hear a large drill."))
 			var/T = target.loc
 
-			//Better materials = faster drill! // 
+			//Better69aterials = faster drill! // 
 			var/delay = 30
 			switch (drill_head.material.hardness) // It's either default (steel), plasteel or diamond
 				if(80) delay = 15
@@ -304,16 +304,16 @@
 				if(src == owner.selected_system)
 					if(drill_head.durability <= 0)
 						drill_head.shatter()
-						drill_head = null
+						drill_head =69ull
 						return
 					if(istype(target, /turf/simulated/wall))
 						var/turf/simulated/wall/W = target
 						if(max(W.material.hardness, W.reinf_material ? W.reinf_material.hardness : 0) > drill_head.material.hardness)
-							to_chat(user, SPAN_WARNING("\The [target] is too hard to drill through with this drill head."))
+							to_chat(user, SPAN_WARNING("\The 69target69 is too hard to drill through with this drill head."))
 							return
 						target.ex_act(2)
 						drill_head.durability -= 1
-						log_and_message_admins("used [src] on the wall [W].", user, owner.loc)
+						log_and_message_admins("used 69src69 on the wall 69W69.", user, owner.loc)
 					else if(istype(target, /turf/simulated/mineral))
 						for(var/turf/simulated/mineral/M in range(target,1))
 							if(get_dir(owner,M)&owner.dir)
@@ -327,17 +327,17 @@
 					else if(target.loc == T)
 						target.ex_act(2)
 						drill_head.durability -= 1
-						log_and_message_admins("[src] used to drill [target].", user, owner.loc)
+						log_and_message_admins("69src69 used to drill 69target69.", user, owner.loc)
 
 
 
 
-					if(owner.hardpoints.len) //if this isn't true the drill should not be working to be fair
+					if(owner.hardpoints.len) //if this isn't true the drill should69ot be working to be fair
 						for(var/hardpoint in owner.hardpoints)
-							var/obj/item/I = owner.hardpoints[hardpoint]
+							var/obj/item/I = owner.hardpoints69hardpoint69
 							if(!istype(I))
 								continue
-							var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in I //clamps work, but anythin that contains an ore crate internally is valid
+							var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in I //clamps work, but anythin that contains an ore crate internally is69alid
 							if(ore_box)
 								for(var/obj/item/ore/ore in range(T,1))
 									if(get_dir(owner,ore)&owner.dir)
@@ -346,12 +346,12 @@
 					playsound(src, 'sound/weapons/rapidslice.ogg', 50, 1)
 
 			else
-				to_chat(user, "You must stay still while the drill is engaged!")
+				to_chat(user, "You69ust stay still while the drill is engaged!")
 
 
 			return 1
 
-/obj/item/mech_equipment/mounted_system/extinguisher
+/obj/item/mech_e69uipment/mounted_system/extinguisher
 	icon_state = "mech_exting"
 	holding_type = /obj/item/extinguisher/mech
 	restricted_hardpoints = list(HARDPOINT_LEFT_HAND, HARDPOINT_RIGHT_HAND)
@@ -363,7 +363,7 @@
 	overlaylist = list()
 
 /obj/item/extinguisher/mech/get_hardpoint_maptext()
-	return "[reagents.total_volume]/[max_water]"
+	return "69reagents.total_volume69/69max_water69"
 
 /obj/item/extinguisher/mech/get_hardpoint_status_value()
 	return reagents.total_volume/max_water

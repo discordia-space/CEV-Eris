@@ -7,7 +7,7 @@
 
 /datum/design/research/aimodule
 	build_type = IMPRINTER
-	name_category = "AI module"
+	name_category = "AI69odule"
 	category = CAT_AI
 
 /datum/design/research/aimodule/safeguard
@@ -30,9 +30,9 @@
 	build_path = /obj/item/electronics/ai_module/teleporterOffline
 	sort_string = "XABAD"
 
-/datum/design/research/aimodule/quarantine
-	name = "Quarantine"
-	build_path = /obj/item/electronics/ai_module/quarantine
+/datum/design/research/aimodule/69uarantine
+	name = "69uarantine"
+	build_path = /obj/item/electronics/ai_module/69uarantine
 	sort_string = "XABAE"
 
 /datum/design/research/aimodule/oxygen
@@ -55,9 +55,9 @@
 	build_path = /obj/item/electronics/ai_module/purge
 	sort_string = "XAAAB"
 
-// Core modules
+// Core69odules
 /datum/design/research/aimodule/core
-	name_category = "AI core module"
+	name_category = "AI core69odule"
 
 /datum/design/research/aimodule/core/freeformcore
 	name = "Freeform"

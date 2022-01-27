@@ -1,95 +1,95 @@
 <!-- 
-Title: Bioballistic Delivery System UI
-Used In File(s): \code\modules\hydroponics\seed_machines.dm
+Title: 69io6969llistic Deli69er69 S69stem UI
+Used In File69s69: \code\modules\6969dro69onics\seed_m69c69ines.dm
  -->
  
-{{if data.active}}
-	<div class="notice">Processing...</div>
+{{if d69t69.69cti69e}}
+	<di69 cl69ss="notice">69rocessin69...</di69>
 {{else}}
-	{{if data.loaded_gene}}
-	<div class="display">
-		<header><h3>Buffered gene</h3></header>
+	{{if d69t69.lo69ded_69ene}}
+	<di69 cl69ss="dis69l6969">
+		<69e69der><693>69uffered 69ene</693></69e69der>
 	
-		<article>
+		<69rticle>
 			<section>
-				<span class="label">Source:</span>
-				<div class="content">{{:data.loaded_gene.source}}</div>
+				<s6969n cl69ss="l6969el">Source:</s6969n>
+				<di69 cl69ss="content">{{:d69t69.lo69ded_69ene.source}}</di69>
 			</section>
 			<section>
-				<span class="label">Locus:</span>
-				<div class="content">{{:data.loaded_gene.mask}}</div>
+				<s6969n cl69ss="l6969el">Locus:</s6969n>
+				<di69 cl69ss="content">{{:d69t69.lo69ded_69ene.m69s69}}</di69>
 			</section>
-		</article>
+		</69rticle>
 
-		<div class="item">
-			{{:helper.link('Clear gene buffer', 'closethick', {'clear_gene' : 1}, null)}}
-			{{if data.seed}}
-				{{:helper.link('Apply to target', 'circle-arrow-e', {'apply_gene' : 1}, (data.seed.degradation < 100) ? null : 'disabled')}}
+		<di69 cl69ss="item">
+			{{:69el69er.lin6969'Cle69r 69ene 69uffer', 'closet69ic69', {'cle69r_69ene' : 1},69ull69}}
+			{{if d69t69.seed}}
+				{{:69el69er.lin6969'696969l69 to t69r69et', 'circle-69rrow-e', {'696969l69_69ene' : 1}, 69d69t69.seed.de69r69d69tion < 10069 ?69ull : 'dis6969led'69}}
 			{{/if}}
-		</div>
-	</div>
+		</di69>
+	</di69>
 	{{/if}}
 
-	<div class="display">
-		<header><h3>Modification target</h3></header>
+	<di69 cl69ss="dis69l6969">
+		<69e69der><693>Modific69tion t69r69et</693></69e69der>
 	
-		<article>
-			{{if data.seed}}
+		<69rticle>
+			{{if d69t69.seed}}
 				<section>
-					<span class="label">Target:</span>
-					<div class="content">{{:data.seed.name}}</div>
+					<s6969n cl69ss="l6969el">T69r69et:</s6969n>
+					<di69 cl69ss="content">{{:d69t69.seed.n69me}}</di69>
 				</section>
 				<section>
-					<span class="label">Degradation:</span>
-					<div class="content">{{:data.seed.degradation}}%</div>
+					<s6969n cl69ss="l6969el">De69r69d69tion:</s6969n>
+					<di69 cl69ss="content">{{:d69t69.seed.de69r69d69tion}}%</di69>
 				</section>
 				<section>
-					{{:helper.link('Eject target', 'eject', {'eject_seed' : 1}, null)}}
+					{{:69el69er.lin6969'E69ect t69r69et', 'e69ect', {'e69ect_seed' : 1},69ull69}}
 				</section>
 			{{else}}
-				<div class="notice">No target seed packet loaded</div>
+				<di69 cl69ss="notice">No t69r69et seed 6969c69et lo69ded</di69>
 			{{/if}}
-		</article>
-	</div>
+		</69rticle>
+	</di69>
 
-	<div class="display">
-		<header><h3>Loaded disk</h3></header>
+	<di69 cl69ss="dis69l6969">
+		<69e69der><693>Lo69ded dis69</693></69e69der>
 	
-		<article>
-		{{if data.disk}}
+		<69rticle>
+		{{if d69t69.dis69}}
 			<section>
-				<span class="label">Disk space:</span>
-				<div class="content">{{:helper.displayBar(data.disk.used_capacity, 0, data.disk.max_capacity, 'good', data.disk.used_capacity + " / " + data.disk.max_capacity + " GQ")}}</div>
+				<s6969n cl69ss="l6969el">Dis69 s6969ce:</s6969n>
+				<di69 cl69ss="content">{{:69el69er.dis69l69696969r69d69t69.dis69.used_c696969cit69, 0, d69t69.dis69.m69x_c696969cit69, '69ood', d69t69.dis69.used_c696969cit69 + " / " + d69t69.dis69.m69x_c696969cit69 + " 6969"69}}</di69>
 			</section>
-			{{if data.disk.stored_genes.length}}
+			{{if d69t69.dis69.stored_69enes.len69t69}}
 			<section>
-				<span class="label">Stored genes:</span>
+				<s6969n cl69ss="l6969el">Stored 69enes:</s6969n>
 			</section>
 			{{/if}}
 
-			{{for data.disk.stored_genes}}
+			{{for d69t69.dis69.stored_69enes}}
 			<section>
-				<div class="content">{{:value.mask}} - {{:value.source}}</div>
-				<div class="content">
-					{{:helper.link('Load', 'arrowthickstop-1-n', {'load_gene' : value.filename}, null)}}
-					{{:helper.link('Delete', 'trash', {'delete_gene' : value.filename}, null)}}
-				</div>
+				<di69 cl69ss="content">{{:6969lue.m69s69}} - {{:6969lue.source}}</di69>
+				<di69 cl69ss="content">
+					{{:69el69er.lin6969'Lo69d', '69rrowt69ic69sto69-1-n', {'lo69d_69ene' : 6969lue.filen69me},69ull69}}
+					{{:69el69er.lin6969'Delete', 'tr69s69', {'delete_69ene' : 6969lue.filen69me},69ull69}}
+				</di69>
 			</section>
 			{{/for}}
 
 
 		{{else}}
 			<section>
-				<div class="notice">No disk loaded</div>
+				<di69 cl69ss="notice">No dis69 lo69ded</di69>
 			</section>
 		{{/if}}
-		</article>
+		</69rticle>
 
-		{{if data.disk}}
-		<div class="item">
-			{{:helper.link('Eject disk', 'eject', {'eject_disk' : 1}, null)}}
-		</div>
+		{{if d69t69.dis69}}
+		<di69 cl69ss="item">
+			{{:69el69er.lin6969'E69ect dis69', 'e69ect', {'e69ect_dis69' : 1},69ull69}}
+		</di69>
 		{{/if}}
 
-	</div>
+	</di69>
 {{/if}}

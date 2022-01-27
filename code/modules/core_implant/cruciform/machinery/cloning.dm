@@ -10,7 +10,7 @@
 
 /obj/machinery/neotheology/cloner
 	name = "NeoTheology's clonepod"
-	desc = "The newest design and God's gift from NeoTheology, this automatic machine will return the flesh to the spirit in no time."
+	desc = "The newest design and God's gift from NeoTheology, this automatic69achine will return the flesh to the spirit in no time."
 	icon = 'icons/obj/neotheology_pod.dmi'
 	icon_state = "preview"
 	density = TRUE
@@ -29,7 +29,7 @@
 
 	var/progress = 0
 
-	var/cloning_speed = 1	//Try to avoid use of non integer values
+	var/cloning_speed = 1	//Try to avoid use of non integer69alues
 
 	var/biomass_consumption = 2
 
@@ -270,14 +270,14 @@
 
 		if(P >= CLONING_BONES)
 			I = image(icon, "clone_meat")
-			I.alpha = min(255,round(((P-CLONING_BONES)/(CLONING_MEAT-CLONING_BONES))*255))
+			I.alpha =69in(255,round(((P-CLONING_BONES)/(CLONING_MEAT-CLONING_BONES))*255))
 			I.layer = 5
 			I.pixel_z = 11
 			overlays.Add(I)
 
 			if(P >= CLONING_MEAT && occupant)
 				I = image(occupant.icon, occupant.icon_state)
-				I.alpha = min(255,round(((P-CLONING_MEAT)/(CLONING_BODY-CLONING_MEAT))*255))
+				I.alpha =69in(255,round(((P-CLONING_MEAT)/(CLONING_BODY-CLONING_MEAT))*255))
 				I.overlays = occupant.overlays
 				I.layer = 5
 				I.pixel_z = 11
@@ -332,7 +332,7 @@
 
 /obj/machinery/neotheology/biomass_container
 	name = "NeoTheology's biomass container"
-	desc = "Making strange noises barrel, filled with a substance which at any time may become someone else's body."
+	desc = "Making strange noises barrel, filled with a substance which at any time69ay become someone else's body."
 	icon_state = "biocan"
 	density = TRUE
 	anchored = TRUE
@@ -370,13 +370,13 @@
 	if(!reagents.has_reagent("biomatter"))
 		to_chat(user, SPAN_NOTICE("It is empty."))
 	else
-		to_chat(user, SPAN_NOTICE("Filled to [reagents.total_volume]/[biomass_capacity]."))
+		to_chat(user, SPAN_NOTICE("Filled to 69reagents.total_volume69/69biomass_capacity69."))
 
-/obj/machinery/neotheology/biomass_container/attackby(obj/item/I, mob/user)
+/obj/machinery/neotheology/biomass_container/attackby(obj/item/I,69ob/user)
 	if (istype(I, /obj/item/stack/material/biomatter))
 		var/obj/item/stack/material/biomatter/B = I
 		if (B.biomatter_in_sheet && B.amount)
-			var/sheets_amount_to_transfer = input(user, "How many sheets you want to load?", "Biomatter melting", 1) as num
+			var/sheets_amount_to_transfer = input(user, "How69any sheets you want to load?", "Biomatter69elting", 1) as num
 			if(sheets_amount_to_transfer > 0)
 				if(sheets_amount_to_transfer > B.amount)
 					sheets_amount_to_transfer = B.amount
@@ -386,24 +386,24 @@
 					total_transfer_from_stack += B.biomatter_in_sheet
 				B.use(sheets_amount_to_transfer)
 				user.visible_message(
-									"[user.name] inserted \the [B.name]'s sheets in \the [name].",
-									"You inserted \the [B.name] in  (in amount: [sheets_amount_to_transfer]) \the [name].\
-									And after that you see how the counter on \the [name] is incremented by [total_transfer_from_stack]."
+									"69user.name69 inserted \the 69B.name69's sheets in \the 69name69.",
+									"You inserted \the 69B.name69 in  (in amount: 69sheets_amount_to_transfer69) \the 69name69.\
+									And after that you see how the counter on \the 69name69 is incremented by 69total_transfer_from_stack69."
 									)
 				ping()
 			else
-				to_chat(user, SPAN_WARNING("You can't insert [sheets_amount_to_transfer] in [name][sheets_amount_to_transfer < 0 ? " because it is literally impossible" :""]."))
+				to_chat(user, SPAN_WARNING("You can't insert 69sheets_amount_to_transfer69 in 69name6969sheets_amount_to_transfer < 0 ? " because it is literally impossible" :""69."))
 			return
 		else
-			to_chat(user, SPAN_WARNING("\The [B.name] is exhausted and can't be melted to biomatter. "))
+			to_chat(user, SPAN_WARNING("\The 69B.name69 is exhausted and can't be69elted to biomatter. "))
 
 	if(istype(I, /obj/item/reagent_containers) && I.is_open_container())
 		var/obj/item/reagent_containers/container = I
 		if(container.reagents.get_reagent_amount("biomatter") == container.reagents.total_volume)
 			container.reagents.trans_to_holder(reagents, container.amount_per_transfer_from_this)
-			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from \the [container] to \the [name]."))
+			to_chat(user, SPAN_NOTICE("You transfer some of biomatter from \the 69container69 to \the 69name69."))
 		else
-			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill \the [name]."))
+			to_chat(user, SPAN_NOTICE("You need clear biomatter to fill \the 69name69."))
 
 /////////////////////
 
@@ -413,7 +413,7 @@
 
 /obj/machinery/neotheology/reader
 	name = "NeoTheology's cruciform reader"
-	desc = "The altar for scanning genetic information from medium of soul - the cruciform."
+	desc = "The altar for scanning genetic information from69edium of soul - the cruciform."
 	icon_state = "reader_off"
 	density = TRUE
 	anchored = TRUE
@@ -422,7 +422,7 @@
 	var/reading = FALSE
 
 
-/obj/machinery/neotheology/reader/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/neotheology/reader/attackby(obj/item/I,69ob/user as69ob)
 	if(istype(I, /obj/item/implant/core_implant/cruciform))
 		var/obj/item/implant/core_implant/cruciform/C = I
 		user.drop_item()
@@ -432,12 +432,12 @@
 	src.add_fingerprint(user)
 	update_icon()
 
-/obj/machinery/neotheology/reader/attack_hand(mob/user as mob)
+/obj/machinery/neotheology/reader/attack_hand(mob/user as69ob)
 	if(!implant)
 		return
 
 	if(reading)
-		to_chat(user, SPAN_WARNING("You try to pull the [implant], but it does not move."))
+		to_chat(user, SPAN_WARNING("You try to pull the 69implant69, but it does not69ove."))
 		return
 
 	user.put_in_active_hand(implant)

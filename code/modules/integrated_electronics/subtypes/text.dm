@@ -40,9 +40,9 @@
 	var/incoming = get_pin_data(IC_INPUT, 1)
 	if(!isnum_safe(incoming))
 		return
-	incoming = min(255, incoming)
-	incoming = max(incoming, 0)
-	result = "[sanitize(ascii2text(incoming))]"
+	incoming =69in(255, incoming)
+	incoming =69ax(incoming, 0)
+	result = "69sanitize(ascii2text(incoming))69"
 	set_pin_data(IC_OUTPUT, 1, result)
 	push_data()
 	activate_pin(2)
@@ -92,7 +92,7 @@
 
 /obj/item/integrated_circuit/text/concatenator
 	name = "concatenator"
-	desc = "This can join up to 8 strings together to get a string with a maximum of 512 characters."
+	desc = "This can join up to 8 strings together to get a string with a69aximum of 512 characters."
 	complexity = 4
 	inputs = list()
 	outputs = list("result" = IC_PINTYPE_STRING)
@@ -103,7 +103,7 @@
 
 /obj/item/integrated_circuit/text/concatenator/Initialize()
 	for(var/i = 1 to number_of_pins)
-		inputs["input [i]"] = IC_PINTYPE_STRING
+		inputs69"input 69i69"69 = IC_PINTYPE_STRING
 	. = ..()
 
 /obj/item/integrated_circuit/text/concatenator/do_work()
@@ -112,18 +112,18 @@
 	for(var/k in 1 to inputs.len)
 		var/I = sanitize(get_pin_data(IC_INPUT, k), trim = FALSE, extra = FALSE)
 		if(I)
-			if((result ? length_char(result) : 0) + length_char(I) > max_string_length)
+			if((result ? length_char(result) : 0) + length_char(I) >69ax_string_length)
 				spamprotection = (result ? length_char(result) : 0) + length_char(I)
 				break
 			result = result + I
 
-	if(spamprotection >= max_string_length*1.75 && assembly)
+	if(spamprotection >=69ax_string_length*1.75 && assembly)
 		if(assembly.fingerprintslast)
-			message_admins("A concatenator circuit has greatly exceeded its [max_string_length] character limit with a total of [spamprotection] characters, and has been deleted. Assembly last touched by [assembly.fingerprintslast].")
-			investigate_log("A concatenator circuit has greatly exceeded its [max_string_length] character limit with a total of [spamprotection] characters, and has been deleted. Assembly last touched by [assembly.fingerprintslast].", INVESTIGATE_CIRCUIT)
+			message_admins("A concatenator circuit has greatly exceeded its 69max_string_length69 character limit with a total of 69spamprotection69 characters, and has been deleted. Assembly last touched by 69assembly.fingerprintslast69.")
+			investigate_log("A concatenator circuit has greatly exceeded its 69max_string_length69 character limit with a total of 69spamprotection69 characters, and has been deleted. Assembly last touched by 69assembly.fingerprintslast69.", INVESTIGATE_CIRCUIT)
 		else
-			message_admins("A concatenator circuit has greatly exceeded its [max_string_length] character limit with a total of [spamprotection] characters, and has been deleted. No associated key.")
-			investigate_log("A concatenator circuit has greatly exceeded its [max_string_length] character limit with a total of [spamprotection] characters, and has been deleted. No associated key.", INVESTIGATE_CIRCUIT)
+			message_admins("A concatenator circuit has greatly exceeded its 69max_string_length69 character limit with a total of 69spamprotection69 characters, and has been deleted. No associated key.")
+			investigate_log("A concatenator circuit has greatly exceeded its 69max_string_length69 character limit with a total of 69spamprotection69 characters, and has been deleted. No associated key.", INVESTIGATE_CIRCUIT)
 		qdel(assembly)
 		return
 
@@ -133,14 +133,14 @@
 
 /obj/item/integrated_circuit/text/concatenator/small
 	name = "small concatenator"
-	desc = "This can join up to 4 strings together to get a string with a maximum of 256 characters."
+	desc = "This can join up to 4 strings together to get a string with a69aximum of 256 characters."
 	complexity = 2
 	number_of_pins = 4
 	max_string_length = 512
 
 /obj/item/integrated_circuit/text/concatenator/large
 	name = "large concatenator"
-	desc = "This can join up to 16 strings together to get a string with a maximum of 1024 characters."
+	desc = "This can join up to 16 strings together to get a string with a69aximum of 1024 characters."
 	complexity = 6
 	number_of_pins = 16
 	max_string_length = 2048
@@ -148,7 +148,7 @@
 /obj/item/integrated_circuit/text/separator
 	name = "separator"
 	desc = "This splits a single string into two at the relative split point."
-	extended_desc = "This circuit splits a given string into two, based on the string and the index value. \
+	extended_desc = "This circuit splits a given string into two, based on the string and the index69alue. \
 	The index splits the string <b>after</b> the given index, including spaces. So 'a person' with an index of '3' \
 	will split into 'a p' and 'erson'."
 	icon_state = "split"
@@ -168,7 +168,7 @@
 	var/text = get_pin_data(IC_INPUT, 1)
 	var/index = get_pin_data(IC_INPUT, 2)
 
-	var/split = min(index+1, length_char(text))
+	var/split =69in(index+1, length_char(text))
 
 	var/before_text = copytext(text, 1, split)
 	var/after_text = copytext(text, split, 0)
@@ -181,7 +181,7 @@
 
 /obj/item/integrated_circuit/text/indexer
 	name = "indexer"
-	desc = "This circuit takes a string and an index value, then returns the character found at in the string at the given index."
+	desc = "This circuit takes a string and an index69alue, then returns the character found at in the string at the given index."
 	extended_desc = "Make sure the index is not longer or shorter than the string length_char. If you don't, the circuit will return empty."
 	icon_state = "split"
 	complexity = 4
@@ -199,7 +199,7 @@
 	var/strin = get_pin_data(IC_INPUT, 1)
 	var/ind = get_pin_data(IC_INPUT, 2)
 	if(ind > 0 && ind <= length_char(strin))
-		set_pin_data(IC_OUTPUT, 1, strin[ind])
+		set_pin_data(IC_OUTPUT, 1, strin69ind69)
 	else
 		set_pin_data(IC_OUTPUT, 1, "")
 	push_data()
@@ -288,7 +288,7 @@
 /obj/item/integrated_circuit/text/text_replacer
 	name = "replace circuit"
 	desc = "Replaces all of one bit of text with another"
-	extended_desc = "Takes a string(haystack) and puts out the string while having a certain word(needle) replaced with another. Maximum 512 characters."
+	extended_desc = "Takes a string(haystack) and puts out the string while having a certain word(needle) replaced with another.69aximum 512 characters."
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	inputs = list(
 		"haystack" = IC_PINTYPE_STRING,
@@ -304,9 +304,9 @@
 	)
 	cooldown_per_use = (10 SECONDS)
 	complexity = 6
-	var/max_len = MAX_MESSAGE_LEN / 2
+	var/max_len =69AX_MESSAGE_LEN / 2
 
 /obj/item/integrated_circuit/text/text_replacer/do_work()
-	set_pin_data(IC_OUTPUT, 1, replacetext(copytext(get_pin_data(IC_INPUT, 1), 1, max_len), copytext(get_pin_data(IC_INPUT, 2), 1, max_len), copytext(get_pin_data(IC_INPUT, 3), 1, max_len)))
+	set_pin_data(IC_OUTPUT, 1, replacetext(copytext(get_pin_data(IC_INPUT, 1), 1,69ax_len), copytext(get_pin_data(IC_INPUT, 2), 1,69ax_len), copytext(get_pin_data(IC_INPUT, 3), 1,69ax_len)))
 	push_data()
 	activate_pin(2)

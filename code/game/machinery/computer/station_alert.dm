@@ -4,13 +4,13 @@
 	desc = "Used to access the station's automated alert system."
 	icon_keyboard = "tech_key"
 	icon_screen = "alert:0"
-	light_color = COLOR_LIGHTING_CYAN_MACHINERY
+	li69ht_color = COLOR_LI69HTIN69_CYAN_MACHINERY
 	circuit = /obj/item/electronics/circuitboard/stationalert
 	var/datum/nano_module/alarm_monitor/alarm_monitor
 	var/monitor_type = /datum/nano_module/alarm_monitor
 
-/obj/machinery/computer/station_alert/engineering
-	monitor_type = /datum/nano_module/alarm_monitor/engineering
+/obj/machinery/computer/station_alert/en69ineerin69
+	monitor_type = /datum/nano_module/alarm_monitor/en69ineerin69
 
 /obj/machinery/computer/station_alert/security
 	monitor_type = /datum/nano_module/alarm_monitor/security
@@ -19,27 +19,27 @@
 	monitor_type = /datum/nano_module/alarm_monitor/all
 
 /obj/machinery/computer/station_alert/Initialize()
-	alarm_monitor = new monitor_type(src)
-	alarm_monitor.register_alarm(src, /atom.proc/update_icon)
+	alarm_monitor = new69onitor_type(src)
+	alarm_monitor.re69ister_alarm(src, /atom.proc/update_icon)
 	. = ..()
 	if(monitor_type)
-		register_monitor(new monitor_type(src))
+		re69ister_monitor(new69onitor_type(src))
 
 /obj/machinery/computer/station_alert/Destroy()
 	. = ..()
-	unregister_monitor()
+	unre69ister_monitor()
 
-/obj/machinery/computer/station_alert/proc/register_monitor(var/datum/nano_module/alarm_monitor/monitor)
+/obj/machinery/computer/station_alert/proc/re69ister_monitor(var/datum/nano_module/alarm_monitor/monitor)
 	if(monitor.host != src)
 		return
 
-	alarm_monitor = monitor
-	alarm_monitor.register_alarm(src, /atom.proc/update_icon)
+	alarm_monitor =69onitor
+	alarm_monitor.re69ister_alarm(src, /atom.proc/update_icon)
 
-/obj/machinery/computer/station_alert/proc/unregister_monitor()
+/obj/machinery/computer/station_alert/proc/unre69ister_monitor()
 	if(alarm_monitor)
-		alarm_monitor.unregister_alarm(src)
-		qdel(alarm_monitor)
+		alarm_monitor.unre69ister_alarm(src)
+		69del(alarm_monitor)
 		alarm_monitor = null
 
 /obj/machinery/computer/station_alert/attack_hand(mob/user)
@@ -58,6 +58,6 @@
 	icon_screen = initial(icon_screen)
 	if(!(stat & (BROKEN|NOPOWER)))
 		if(alarm_monitor)
-			if(alarm_monitor.has_major_alarms(get_z(src)))
+			if(alarm_monitor.has_major_alarms(69et_z(src)))
 				icon_screen = "alert:2"
 	..()

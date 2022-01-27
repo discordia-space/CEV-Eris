@@ -1,6 +1,6 @@
 /obj/item/clothing/head/armor/acolyte
 	name = "Acolyte hood"
-	desc = "Even the most devout deserve head protection."
+	desc = "Even the69ost devout deserve head protection."
 	icon_state = "acolyte"
 	item_state = "acolyte"
 	flags_inv = BLOCKHAIR
@@ -22,7 +22,7 @@
 	desc = "Worn heavy, steadfast in the name of God."
 	icon_state = "acolyte"
 	item_state = "acolyte"
-	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 25, MATERIAL_BIOMATTER = 40)
+	matter = list(MATERIAL_PLASTIC = 30,69ATERIAL_STEEL = 25,69ATERIAL_BIOMATTER = 40)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 35,
@@ -60,7 +60,7 @@
 	icon_state = "botanist"
 	item_state = "botanist"
 	slowdown = 0
-	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
+	matter = list(MATERIAL_PLASTIC = 30,69ATERIAL_STEEL = 15,69ATERIAL_BIOMATTER = 40)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,
@@ -74,7 +74,7 @@
 
 /obj/item/clothing/head/armor/custodian
 	name = "Custodian helmet"
-	desc = "Cleaning floors is more dangerous than it looks."
+	desc = "Cleaning floors is69ore dangerous than it looks."
 	icon_state = "custodian"
 	item_state = "custodian"
 	action_button_name = "Toggle Helmet Light"
@@ -94,10 +94,10 @@
 
 /obj/item/clothing/suit/armor/custodian
 	name = "Custodian armor"
-	desc = "Someone's gotta clean this mess."
+	desc = "Someone's gotta clean this69ess."
 	icon_state = "custodian"
 	item_state = "custodian"
-	matter = list(MATERIAL_PLASTIC = 40, MATERIAL_STEEL = 15, MATERIAL_BIOMATTER = 40)
+	matter = list(MATERIAL_PLASTIC = 40,69ATERIAL_STEEL = 15,69ATERIAL_BIOMATTER = 40)
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	armor = list(
 		melee = 25,

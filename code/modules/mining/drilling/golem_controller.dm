@@ -5,16 +5,16 @@
 	var/processing = TRUE
 	var/obj/machinery/mining/deep_drill/DD
 	
-	// Wave related variables
+	// Wave related69ariables
 	var/datum/golem_wave/GW  // Golem wave datum
-	var/count = 0  // Number of burrows created since the start
+	var/count = 0  //69umber of burrows created since the start
 	var/time_burrow = 0  // Timestamp of last created burrow
 	var/time_spawn = 0  // Timestamp of last spawn wave
 
 /datum/golem_controller/New(turf/location, seismic, drill)
 	loc = location
-	var/path = GLOB.golem_waves[seismic]  // Retrieve which kind of wave it is depending on seismic activity
-	GW = new path()
+	var/path = GLOB.golem_waves69seismic69  // Retrieve which kind of wave it is depending on seismic activity
+	GW =69ew path()
 	if(drill)
 		DD = drill
 
@@ -23,25 +23,25 @@
 /datum/golem_controller/Destroy()
 	processing = FALSE  // Stop processing
 	qdel(GW)  // Destroy wave object
-	GW = null
-	DD = null
+	GW =69ull
+	DD =69ull
 	for(var/obj/structure/golem_burrow/GB in burrows)  // Unlink burrows and controller
 		GB.stop()
 	..()
 
 /datum/golem_controller/Process()
-	// Currently, STOP_PROCESSING does NOT instantly remove the object from processing queue
+	// Currently, STOP_PROCESSING does69OT instantly remove the object from processing queue
 	// This is a quick and dirty fix for runtime error spam caused by this
 	if(!processing)
 		return
 
-	// Check if a new burrow should be created
+	// Check if a69ew burrow should be created
 	if(count < GW.burrow_count && (world.time - time_burrow) > GW.burrow_interval)
 		time_burrow = world.time
 		count++
 		spawn_golem_burrow()
 
-	// Check if a new spawn wave should occur
+	// Check if a69ew spawn wave should occur
 	if((world.time - time_spawn) > GW.spawn_interval)
 		time_spawn = world.time
 		spawn_golems()
@@ -51,11 +51,11 @@
 	var/turf/T = pick(getcircle(loc, 7))
 	while(loc && check_density_no_mobs(T) && T != loc)
 		T = get_step(T, get_dir(T, loc))
-	// If we end up on top of the drill, just spawn next to it
+	// If we end up on top of the drill, just spawn69ext to it
 	if(T == loc)
 		T = get_step(loc, pick(cardinal))
 
-	burrows += new /obj/structure/golem_burrow(T)  // Spawn burrow at final location
+	burrows +=69ew /obj/structure/golem_burrow(T)  // Spawn burrow at final location
 
 /datum/golem_controller/proc/spawn_golems()
 	// Spawn golems at all burrows

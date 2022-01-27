@@ -1,4 +1,4 @@
-[*]
+69*69
 indent_style = tab
 indent_size = 4
 charset = utf-8
@@ -6,15 +6,15 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 end_of_line = lf
 
-[*.yml]
+69*.yml69
 indent_style = space
 indent_size = 2
 
-[*.py]
+69*.py69
 indent_style = space
 
-[*.md]
+69*.md69
 trim_trailing_whitespace = false
 
-[Dockerfile]
+69Dockerfile69
 indent_style = space

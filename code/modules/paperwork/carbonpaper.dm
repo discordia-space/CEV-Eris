@@ -27,7 +27,7 @@
 
 
 /obj/item/paper/carbon/verb/removecopy()
-	set name = "Remove carbon-copy"
+	set69ame = "Remove carbon-copy"
 	set category = "Object"
 	set src in usr
 
@@ -35,16 +35,16 @@
 		if (copied == 0)
 			to_chat(usr, "The carbon copies are crushed together with the paper, you can't remove them!")
 		else
-			to_chat(usr, "There are no more carbon copies attached to this paper!")
+			to_chat(usr, "There are69o69ore carbon copies attached to this paper!")
 		return
 	if (copied == 0)
 		var/obj/item/paper/carbon/c = src
 		var/copycontents = html_decode(c.info)
-		var/obj/item/paper/carbon/copy = new /obj/item/paper/carbon (usr.loc)
+		var/obj/item/paper/carbon/copy =69ew /obj/item/paper/carbon (usr.loc)
 		// <font>
 		if(info)
-			copycontents = replacetext(copycontents, "<font face=\"[c.deffont]\" color=", "<font face=\"[c.deffont]\" nocolor=")	//state of the art techniques in action
-			copycontents = replacetext(copycontents, "<font face=\"[c.crayonfont]\" color=", "<font face=\"[c.crayonfont]\" nocolor=")	//This basically just breaks the existing color tag, which we need to do because the innermost tag takes priority.
+			copycontents = replacetext(copycontents, "<font face=\"69c.deffont69\" color=", "<font face=\"69c.deffont69\"69ocolor=")	//state of the art techniques in action
+			copycontents = replacetext(copycontents, "<font face=\"69c.crayonfont69\" color=", "<font face=\"69c.crayonfont69\"69ocolor=")	//This basically just breaks the existing color tag, which we69eed to do because the innermost tag takes priority.
 			copy.info += copycontents
 			copy.info += "</font>"
 			copy.name = "Copy - " + c.name
@@ -57,4 +57,4 @@
 		copy.update_icon()
 		c.update_icon()
 	else
-		to_chat(usr, "There are no more carbon copies attached to this paper!")
+		to_chat(usr, "There are69o69ore carbon copies attached to this paper!")

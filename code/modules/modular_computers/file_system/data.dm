@@ -1,5 +1,5 @@
 // /data/ files store data in string format.
-// They don't contain other logic for now.
+// They don't contain other logic for69ow.
 /datum/computer_file/data
 	var/stored_data = "" 			// Stored data in string format.
 	filetype = "DAT"
@@ -13,7 +13,7 @@
 
 // Calculates file size from amount of characters in saved string
 /datum/computer_file/data/proc/calculate_size()
-	size = max(1, round(length(stored_data) / block_size))
+	size =69ax(1, round(length(stored_data) / block_size))
 
 /datum/computer_file/data/logfile
 	filetype = "LOG"
@@ -31,7 +31,7 @@
 
 /datum/computer_file/data/audio/clone()
 	var/datum/computer_file/data/audio/A = ..()
-	A.max_capacity = max_capacity
+	A.max_capacity =69ax_capacity
 	A.used_capacity = used_capacity
 	A.storedinfo = storedinfo
 	A.timestamp = timestamp

@@ -4,9 +4,9 @@
 	var/list/user_predicates
 	var/expected_type = /datum
 
-/datum/extension/New(var/datum/holder, var/host_predicates = list(), var/user_predicates = list(), var/additional_arguments = list())
+/datum/extension/New(var/datum/holder,69ar/host_predicates = list(),69ar/user_predicates = list(),69ar/additional_arguments = list())
 	if(!istype(holder, expected_type))
-		CRASH("Invalid holder type. Expected [expected_type], was [holder.type]")
+		CRASH("Invalid holder type. Expected 69expected_type69, was 69holder.type69")
 	src.holder = holder
 	..()
 
@@ -31,10 +31,10 @@
 
 	return STATUS_INTERACTIVE
 
-/datum/extension/proc/extension_act(var/href, var/list/href_list, var/mob/user)
+/datum/extension/proc/extension_act(var/href,69ar/list/href_list,69ar/mob/user)
 	return extension_status(user) == STATUS_CLOSE
 
-/datum/extension/Topic(var/href, var/list/href_list)
+/datum/extension/Topic(var/href,69ar/list/href_list)
 	if(..())
 		return TRUE
 	return extension_act(href, href_list, usr)
@@ -45,7 +45,7 @@
 /datum/Destroy()
 	if(extensions)
 		for(var/expansion_key in extensions)
-			var/list/expansion = extensions[expansion_key]
+			var/list/expansion = extensions69expansion_key69
 			if(islist(expansion))
 				expansion.Cut()
 			else
@@ -53,28 +53,28 @@
 		extensions.Cut()
 	return ..()
 
-/proc/set_extension(var/datum/source, var/base_type, var/expansion_type, var/host_predicates, var/user_predicates, var/list/additional_argments)
+/proc/set_extension(var/datum/source,69ar/base_type,69ar/expansion_type,69ar/host_predicates,69ar/user_predicates,69ar/list/additional_argments)
 	if(!source.extensions)
 		source.extensions = list()
-	source.extensions[base_type] = list(expansion_type, host_predicates, user_predicates, additional_argments)
+	source.extensions69base_type69 = list(expansion_type, host_predicates, user_predicates, additional_argments)
 
-/proc/get_extension(var/datum/source, var/base_type)
+/proc/get_extension(var/datum/source,69ar/base_type)
 	if(!source.extensions)
 		return
-	var/list/expansion = source.extensions[base_type]
+	var/list/expansion = source.extensions69base_type69
 	if(!expansion)
 		return
 	if(istype(expansion))
-		var/expansion_type = expansion[1]
-		expansion = new expansion_type(source, expansion[2], expansion[3], expansion[4])
-		source.extensions[base_type] = expansion
+		var/expansion_type = expansion69169
+		expansion = new expansion_type(source, expansion69269, expansion69369, expansion69469)
+		source.extensions69base_type69 = expansion
 	return expansion
 
-/proc/get_or_create_extension(var/datum/source, var/base_type, var/extension_type)
+/proc/get_or_create_extension(var/datum/source,69ar/base_type,69ar/extension_type)
 	if(!has_extension(source, base_type))
 		set_extension(arglist(args))
 	return get_extension(source, base_type)
 
 //Fast way to check if it has an extension, also doesn't trigger instantiation of lazy loaded extensions
-/proc/has_extension(var/datum/source, var/base_type)
-	return (source.extensions && source.extensions[base_type])
+/proc/has_extension(var/datum/source,69ar/base_type)
+	return (source.extensions && source.extensions69base_type69)

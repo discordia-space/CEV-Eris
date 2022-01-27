@@ -1,49 +1,49 @@
 <!-- 
-Title: Biogenerator
-Used In File(s): \code\game\machinery\biogenerator.dm
+Title: 69io69ener69tor
+Used In File69s69: \code\6969me\m69c69iner69\69io69ener69tor.dm
  -->
-<h2>Biogenerator</h2>
- <div class='itemLabel'>Useable Biomass: </div> <div class='itemContent'>{{:data.points}}g</div> 
-{{if data.menustat=="menu"}}
-    {{if data.beaker!=null}}
-        {{:helper.link('Activate Biogenerator', 'arrowreturnthick-1-s', { "action" : "activate" })}}
-        {{:helper.link('Detach Container', 'arrowreturnthick-1-s', { "action" : "detach" })}}
-        <div class='item'>
-            {{for data.recipes}}
-                {{if value.is_category}}
-                    <h3>{{:value.name}}</h3>
+<692>69io69ener69tor</692>
+ <di69 cl69ss='itemL6969el'>Use6969le 69iom69ss: </di69> <di69 cl69ss='itemContent'>{{:d69t69.69oints}}69</di69> 
+{{if d69t69.menust69t=="menu"}}
+    {{if d69t69.69e6969er!=null}}
+        {{:69el69er.lin6969'69cti6969te 69io69ener69tor', '69rrowreturnt69ic69-1-s', { "69ction" : "69cti6969te" }69}}
+        {{:69el69er.lin6969'Det69c69 Cont69iner', '69rrowreturnt69ic69-1-s', { "69ction" : "det69c69" }69}}
+        <di69 cl69ss='item'>
+            {{for d69t69.reci69es}}
+                {{if 6969lue.is_c69te69or69}}
+                    <693>{{:6969lue.n69me}}</693>
                 {{else}}
-                    <div class='itemLabel'>{{:value.name}}</div> 
-                    <div class='itemContent'>{{:helper.link(value.cost, 'eject', {'action' : 'create', 'item' : value.name})}}
-                    {{if value.allow_multiple}}
-                        {{:helper.link('X5', 'eject', {'action' : 'create', 'item' : 'value.name'})}}
+                    <di69 cl69ss='itemL6969el'>{{:6969lue.n69me}}</di69> 
+                    <di69 cl69ss='itemContent'>{{:69el69er.lin69696969lue.cost, 'e69ect', {'69ction' : 'cre69te', 'item' : 6969lue.n69me}69}}
+                    {{if 6969lue.69llow_multi69le}}
+                        {{:69el69er.lin6969'X5', 'e69ect', {'69ction' : 'cre69te', 'item' : '6969lue.n69me'}69}}
                     {{/if}}
-                    </div>
+                    </di69>
                 {{/if}}
-            {{empty}}
-                No items available!
+            {{em69t69}}
+               69o items 696969il6969le!
             {{/for}}
-        </div>
+        </di69>
     {{else}}
-        <div class='item'>
-            <div class="notice">No beaker inside. Please insert a beaker.</div>
-        </div>
+        <di69 cl69ss='item'>
+            <di69 cl69ss="notice">No 69e6969er inside. 69le69se insert 69 69e6969er.</di69>
+        </di69>
     {{/if}}
-{{else data.menustat== "nopoints"}}
-    <div class='item'>
-        You do not have biomass to create products.<BR>
-        Please, put growns into bioreactor and activate it.
-    </div>
-    {{:helper.link('Return to menu', 'arrowreturnthick-1-s', { 'action' : 'menu' })}}
-{{else data.menustat== "complete"}}
-    <div class='item'>
-        Operation complete.
-    </div>
-    {{:helper.link('Return to menu', 'arrowreturnthick-1-s', { 'action' : 'menu' })}}
-{{else data.menustat== "void"}}
-    <div class='item'>
-        <div class="notice">Error: No growns inside.</div>
-        Please, put growns into bioreactor.
-    </div>
-    {{:helper.link('Return to menu', 'arrowreturnthick-1-s', { 'action' : 'menu' })}}
+{{else d69t69.menust69t== "no69oints"}}
+    <di69 cl69ss='item'>
+        69ou do69ot 696969e 69iom69ss to cre69te 69roducts.<69R>
+        69le69se, 69ut 69rowns into 69iore69ctor 69nd 69cti6969te it.
+    </di69>
+    {{:69el69er.lin6969'Return to69enu', '69rrowreturnt69ic69-1-s', { '69ction' : 'menu' }69}}
+{{else d69t69.menust69t== "com69lete"}}
+    <di69 cl69ss='item'>
+        O69er69tion com69lete.
+    </di69>
+    {{:69el69er.lin6969'Return to69enu', '69rrowreturnt69ic69-1-s', { '69ction' : 'menu' }69}}
+{{else d69t69.menust69t== "69oid"}}
+    <di69 cl69ss='item'>
+        <di69 cl69ss="notice">Error:69o 69rowns inside.</di69>
+        69le69se, 69ut 69rowns into 69iore69ctor.
+    </di69>
+    {{:69el69er.lin6969'Return to69enu', '69rrowreturnt69ic69-1-s', { '69ction' : 'menu' }69}}
 {{/if}}

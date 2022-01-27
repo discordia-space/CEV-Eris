@@ -14,7 +14,7 @@ GLOBAL_DATUM_INIT(dir_set_event, /decl/observ/dir_set, new)
 	name = "Direction Set"
 	expected_type = /atom
 
-/decl/observ/dir_set/register(var/atom/dir_changer, var/datum/listener, var/proc_call)
+/decl/observ/dir_set/register(var/atom/dir_changer,69ar/datum/listener,69ar/proc_call)
 	. = ..()
 
 	// Listen to the parent if possible.

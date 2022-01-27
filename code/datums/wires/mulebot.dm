@@ -4,9 +4,9 @@
 
 var/const/WIRE_POWER1 = 1			// power connections
 var/const/WIRE_POWER2 = 2
-var/const/WIRE_AVOIDANCE = 4		// mob avoidance
+var/const/WIRE_AVOIDANCE = 4		//69ob avoidance
 var/const/WIRE_LOADCHECK = 8		// load checking (non-crate)
-var/const/WIRE_MOTOR1 = 16		// motor wires
+var/const/WIRE_MOTOR1 = 16		//69otor wires
 var/const/WIRE_MOTOR2 = 32		//
 var/const/WIRE_REMOTE_RX = 64		// remote recv functions
 var/const/WIRE_REMOTE_TX = 128	// remote trans status
@@ -27,15 +27,15 @@ var/const/WIRE_BEACON_RX = 256	// beacon ping recv
 /datum/wires/mulebot/UpdatePulsed(var/index)
 	switch(index)
 		if(WIRE_POWER1, WIRE_POWER2)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The charge light flick_lights."))
+			holder.visible_message(SPAN_NOTICE("\icon69holder69 The charge light flick_lights."))
 		if(WIRE_AVOIDANCE)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The external warning lights flash briefly."))
+			holder.visible_message(SPAN_NOTICE("\icon69holder69 The external warning lights flash briefly."))
 		if(WIRE_LOADCHECK)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The load platform clunks."))
+			holder.visible_message(SPAN_NOTICE("\icon69holder69 The load platform clunks."))
 		if(WIRE_MOTOR1, WIRE_MOTOR2)
-			holder.visible_message(SPAN_NOTICE("\icon[holder] The drive motor whines briefly."))
+			holder.visible_message(SPAN_NOTICE("\icon69holder69 The drive69otor whines briefly."))
 		else
-			holder.visible_message(SPAN_NOTICE("\icon[holder] You hear a radio crackle."))
+			holder.visible_message(SPAN_NOTICE("\icon69holder69 You hear a radio crackle."))
 
 // HELPER PROCS
 

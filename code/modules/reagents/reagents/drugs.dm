@@ -5,29 +5,29 @@
 
 /datum/reagent/drug/on_mob_add(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_ADD_DRUG)
+	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src,69OB_ADD_DRUG)
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain && ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		H.sanity.onDrug(src, effect_multiplier)
 	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain && ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		H.sanity.onDrug(src, effect_multiplier)
 	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/affect_ingest(mob/living/carbon/M, alien, effect_multiplier)
 	if(sanity_gain && ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		H.sanity.onDrug(src, effect_multiplier)
 	SEND_SIGNAL(M, COMSIG_CARBON_HAPPY, src, ON_MOB_DRUG)
 
 /datum/reagent/drug/on_mob_delete(mob/living/L)
 	..()
-	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src, MOB_DELETE_DRUG)
+	SEND_SIGNAL(L, COMSIG_CARBON_HAPPY, src,69OB_DELETE_DRUG)
 
 /datum/reagent/drug/space_drugs
 	name = "Space drugs"
@@ -35,7 +35,7 @@
 	description = "An illegal chemical compound used as drug."
 	taste_description = "bitterness"
 	taste_mult = 0.4
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#60A584"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -43,8 +43,8 @@
 	sanity_gain = 1.5
 
 /datum/reagent/drug/space_drugs/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.druggy = max(M.druggy, 15 * effect_multiplier)
-	if(prob(10 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+	M.druggy =69ax(M.druggy, 15 * effect_multiplier)
+	if(prob(10 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) &&69.canmove && !M.restrained())
 		step(M, pick(cardinal))
 	if(prob(7 * effect_multiplier))
 		M.emote(pick("twitch", "drool", "moan", "giggle"))
@@ -55,15 +55,15 @@
 /datum/reagent/drug/serotrotium
 	name = "Serotrotium"
 	id = "serotrotium"
-	description = "A chemical compound that promotes concentrated production of the serotonin neurotransmitter in humans."
+	description = "A chemical compound that promotes concentrated production of the serotonin69eurotransmitter in humans."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#202040"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
 	addiction_threshold = 20
 	addiction_chance = 10
-	sanity_gain = 3 // Very hard to make
+	sanity_gain = 3 //69ery hard to69ake
 
 /datum/reagent/drug/serotrotium/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	if(prob(7 * effect_multiplier))
@@ -76,7 +76,7 @@
 	id = "cryptobiolin"
 	description = "Cryptobiolin causes confusion and dizzyness."
 	taste_description = "sourness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#000055"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -84,26 +84,26 @@
 
 /datum/reagent/drug/cryptobiolin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	M.make_dizzy(4 * effect_multiplier)
-	M.confused = max(M.confused, 20 * effect_multiplier)
+	M.confused =69ax(M.confused, 20 * effect_multiplier)
 	..()
 
 
 /datum/reagent/drug/impedrezene
 	name = "Impedrezene"
 	id = "impedrezene"
-	description = "Impedrezene is a narcotic that impedes one's ability by slowing down the higher brain cell functions."
+	description = "Impedrezene is a69arcotic that impedes one's ability by slowing down the higher brain cell functions."
 	taste_description = "numbness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#C8A5DC"
 	overdose = REAGENTS_OVERDOSE
 	sanity_gain = 1
 
 /datum/reagent/drug/impedrezene/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.jitteriness = max(M.jitteriness - (5 * effect_multiplier), 0)
+	M.jitteriness =69ax(M.jitteriness - (5 * effect_multiplier), 0)
 	if(prob(80))
 		M.adjustBrainLoss(0.1 * effect_multiplier)
 	if(prob(50))
-		M.drowsyness = max(M.drowsyness, 3 * effect_multiplier)
+		M.drowsyness =69ax(M.drowsyness, 3 * effect_multiplier)
 	if(prob(10))
 		M.emote("drool")
 	..()
@@ -114,7 +114,7 @@
 	id = "mindbreaker"
 	description = "A powerful hallucinogen, it can cause fatal effects in users."
 	taste_description = "sourness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#B31008"
 	metabolism = REM * 0.25
 	overdose = REAGENTS_OVERDOSE
@@ -126,9 +126,9 @@
 /datum/reagent/drug/mindwipe
 	name = "Mindwipe"
 	id = "mindwipe"
-	description = "Shocks the user's brain hard enough to make him forget about his quirks. Is ill-advised because of side effects"
+	description = "Shocks the user's brain hard enough to69ake him forget about his 69uirks. Is ill-advised because of side effects"
 	taste_description = "bitter"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#bfff00"
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
@@ -139,14 +139,14 @@
 /datum/reagent/drug/mindwipe/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
 	M.hallucination(50 * effect_multiplier, 50 * effect_multiplier)
-	M.druggy = max(M.druggy, 5 * effect_multiplier)
+	M.druggy =69ax(M.druggy, 5 * effect_multiplier)
 	M.make_jittery(10 * effect_multiplier)
 	M.make_dizzy(10 * effect_multiplier)
-	M.confused = max(M.confused, 20 * effect_multiplier)
-	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+	M.confused =69ax(M.confused, 20 * effect_multiplier)
+	if(prob(5 * effect_multiplier) && isturf(M.loc) && !istype(M.loc, /turf/space) &&69.canmove && !M.restrained())
 		step(M, pick(cardinal))
 	if(ishuman(M) && (prob(5 * effect_multiplier)))
-		var/mob/living/carbon/human/affected = M
+		var/mob/living/carbon/human/affected =69
 		for(var/datum/breakdown/B in affected.sanity.breakdowns)
 			B.finished = TRUE
 			to_chat(M, SPAN_NOTICE("You feel that something eases the strain on your sanity. But at which price?"))
@@ -154,7 +154,7 @@
 /datum/reagent/drug/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
-	description = "A strong psycotropic derived from certain species of mushroom."
+	description = "A strong psycotropic derived from certain species of69ushroom."
 	taste_description = "mushroom"
 	color = "#E700E7"
 	overdose = REAGENTS_OVERDOSE * 0.66
@@ -165,7 +165,7 @@
 	sanity_gain = 1.5
 
 /datum/reagent/drug/psilocybin/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
-	M.druggy = max(M.druggy, 30 * effect_multiplier)
+	M.druggy =69ax(M.druggy, 30 * effect_multiplier)
 
 	var/effective_dose = dose
 	if(issmall(M)) effective_dose *= 2
@@ -180,14 +180,14 @@
 		M.apply_effect(3, STUTTER)
 		M.make_jittery(5)
 		M.make_dizzy(5)
-		M.druggy = max(M.druggy, 35)
+		M.druggy =69ax(M.druggy, 35)
 		if(prob(10))
 			M.emote(pick("twitch", "giggle"))
 	else
 		M.apply_effect(3, STUTTER)
 		M.make_jittery(10)
 		M.make_dizzy(10)
-		M.druggy = max(M.druggy, 40)
+		M.druggy =69ax(M.druggy, 40)
 		M.stats.addTempStat(STAT_COG, STAT_LEVEL_ADEPT, STIM_TIME, "psilocybin")
 		M.hallucination(100, 50)
 		if(prob(15))
@@ -200,13 +200,13 @@
 	id = "nicotine"
 	description = "A highly addictive stimulant extracted from the tobacco plant."
 	taste_description = "pepper"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#181818"
 	withdrawal_threshold = 0.01
 	overdose = REAGENTS_OVERDOSE/2
 	addiction_chance = 20
 	nerve_system_accumulations = 10
-	max_dose = 10 // Nanako tier solution
+	max_dose = 10 //69anako tier solution
 
 /datum/reagent/drug/nicotine/affect_blood(mob/living/carbon/M, alien, effect_multiplier)
 	..()
@@ -229,9 +229,9 @@
 /datum/reagent/drug/hyperzine
 	name = "Hyperzine"
 	id = "hyperzine"
-	description = "Hyperzine is a highly effective, long lasting, muscle stimulant."
+	description = "Hyperzine is a highly effective, long lasting,69uscle stimulant."
 	taste_description = "acid"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#FF3300"
 	metabolism = REM * 0.2
 	overdose = REAGENTS_OVERDOSE * 0.66
@@ -255,9 +255,9 @@
 /datum/reagent/drug/sanguinum
 	name = "Sanguinum"
 	id = "sanguinum"
-	description = "Forces bone marrow to produce more blood than usual. Have irritating side effects"
+	description = "Forces bone69arrow to produce69ore blood than usual. Have irritating side effects"
 	taste_description = "metal"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#e06270"
 	metabolism = REM
 	overdose = REAGENTS_OVERDOSE/2

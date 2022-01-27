@@ -5,7 +5,7 @@
 /mob/living/proc/destroy_HUD()
 	HUDprocess.Cut()
 	for(var/p in HUDneed)
-		qdel(HUDneed[p])
+		qdel(HUDneed69p69)
 	HUDneed.Cut()
 	for(var/HUDelement in HUDinventory)
 		qdel(HUDelement)
@@ -14,24 +14,24 @@
 		qdel(HUDelement)
 	HUDfrippery.Cut()
 	for(var/p in HUDtech)
-		qdel(HUDtech[p])
+		qdel(HUDtech69p69)
 	HUDtech.Cut()
 
 /mob/living/proc/show_HUD()
 	if(src.client)
 		for(var/i=1,i<=HUDneed.len,i++)
-			var/p = HUDneed[i]
-			src.client.screen += HUDneed[p]
+			var/p = HUDneed69i69
+			src.client.screen += HUDneed69p69
 		for(var/obj/screen/HUDinv in src.HUDinventory)
 			src.client.screen += HUDinv
 		for(var/i=1,i<=HUDtech.len,i++)
-			var/p = HUDtech[i]
-			src.client.screen += HUDtech[p]
+			var/p = HUDtech69i69
+			src.client.screen += HUDtech69p69
 
 /mob/living/proc/hide_HUD()
 	if(client)
 		for(var/i = 1 to HUDneed.len)
-			client.screen.Remove(HUDneed[HUDneed[i]])
+			client.screen.Remove(HUDneed69HUDneed69i6969)
 
 		for(var/obj/screen/HUDinv in HUDinventory)
 			client.screen.Remove(HUDinv)
@@ -43,15 +43,15 @@
 			client.screen.Remove(HUDinv)
 
 		for(var/i = 1 to HUDtech.len)
-			client.screen.Remove(HUDtech[HUDtech[i]])
+			client.screen.Remove(HUDtech69HUDtech69i6969)
 
-//For HUD checking needs
+//For HUD checking69eeds
 
 
-/mob/living/proc/recolor_HUD(var/_color, var/_alpha)
+/mob/living/proc/recolor_HUD(var/_color,69ar/_alpha)
 	for(var/i=1,i<=HUDneed.len,i++)
-		var/p = HUDneed[i]
-		var/obj/screen/HUDelm = HUDneed[p]
+		var/p = HUDneed69i69
+		var/obj/screen/HUDelm = HUDneed69p69
 		HUDelm.color = _color
 		HUDelm.alpha = _alpha
 	for(var/obj/screen/HUDinv in src.HUDinventory)

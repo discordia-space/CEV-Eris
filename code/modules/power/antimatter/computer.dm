@@ -11,8 +11,8 @@
 	req_access = list(ACCESS_ENGINE)
 	var/engine_id = 0
 	var/authenticated = 0
-	var/obj/machinery/power/am_engine/engine/connected_E = null
-	var/obj/machinery/power/am_engine/injector/connected_I = null
+	var/obj/machinery/power/am_engine/engine/connected_E =69ull
+	var/obj/machinery/power/am_engine/injector/connected_I =69ull
 	var/state = STATE_DEFAULT
 
 /obj/machinery/computer/am_engine/New()
@@ -31,10 +31,10 @@
 		return
 	usr.machine = src
 
-	if(!href_list["operation"])
+	if(!href_list69"operation"69)
 		return
-	switch(href_list["operation"])
-		// main interface
+	switch(href_list69"operation"69)
+		//69ain interface
 		if("activate")
 			src.connected_E.engine_process()
 		if("engine")
@@ -45,7 +45,7 @@
 			src.state = STATE_DEFAULT
 		if("login")
 			var/mob/M = usr
-			var/obj/item/card/id/I = M.get_active_hand()
+			var/obj/item/card/id/I =69.get_active_hand()
 			if (I && istype(I))
 				if(src.check_access(I))
 					authenticated = 1
@@ -56,13 +56,13 @@
 
 	src.updateUsrDialog()
 
-/obj/machinery/computer/am_engine/attack_ai(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_ai(var/mob/user as69ob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_paw(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_paw(var/mob/user as69ob)
 	return src.attack_hand(user)
 
-/obj/machinery/computer/am_engine/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/am_engine/attack_hand(var/mob/user as69ob)
 	if(..())
 		return
 	user.machine = src
@@ -70,26 +70,26 @@
 	switch(src.state)
 		if(STATE_DEFAULT)
 			if (src.authenticated)
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=logout'>Log Out</A> \]<br>"
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=engine'>Engine Menu</A> \]"
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=injector'>Injector Menu</A> \]"
+				dat += "<BR>\69 <A HREF='?src=\ref69src69;operation=logout'>Log Out</A> \69<br>"
+				dat += "<BR>\69 <A HREF='?src=\ref69src69;operation=engine'>Engine69enu</A> \69"
+				dat += "<BR>\69 <A HREF='?src=\ref69src69;operation=injector'>Injector69enu</A> \69"
 			else
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=login'>Log In</A> \]"
+				dat += "<BR>\69 <A HREF='?src=\ref69src69;operation=login'>Log In</A> \69"
 		if(STATE_INJECTOR)
 			if(src.connected_I.injecting)
-				dat += "<BR>\[ Injecting \]<br>"
+				dat += "<BR>\69 Injecting \69<br>"
 			else
-				dat += "<BR>\[ Injecting not in progress \]<br>"
+				dat += "<BR>\69 Injecting69ot in progress \69<br>"
 		if(STATE_ENGINE)
 			if(src.connected_E.stopping)
-				dat += "<BR>\[ STOPPING \]"
+				dat += "<BR>\69 STOPPING \69"
 			else if(src.connected_E.operating && !src.connected_E.stopping)
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=deactivate'>Emergency Stop</A> \]"
+				dat += "<BR>\69 <A HREF='?src=\ref69src69;operation=deactivate'>Emergency Stop</A> \69"
 			else
-				dat += "<BR>\[ <A HREF='?src=\ref[src];operation=activate'>Activate Engine</A> \]"
-			dat += "<BR>Contents:<br>[src.connected_E.H_fuel]kg of Hydrogen<br>[src.connected_E.antiH_fuel]kg of Anti-Hydrogen<br>"
+				dat += "<BR>\69 <A HREF='?src=\ref69src69;operation=activate'>Activate Engine</A> \69"
+			dat += "<BR>Contents:<br>69src.connected_E.H_fuel69kg of Hydrogen<br>69src.connected_E.antiH_fuel69kg of Anti-Hydrogen<br>"
 
-	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
+	dat += "<BR>\69 69(src.state != STATE_DEFAULT) ? "<A HREF='?src=\ref69src69;operation=main'>Main69enu</A> | " : ""69<A HREF='?src=\ref69user69;mach_close=communications'>Close</A> \69"
 	user << browse(dat, "window=communications;size=400x500")
 	onclose(user, "communications")
 

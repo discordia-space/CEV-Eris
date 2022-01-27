@@ -1,103 +1,103 @@
-# bootstrap/python_.ps1
+# 696969696969r6969/6969696969n_.69691
 #
-# Python bootstrapping script for Windows.
+# 6969696969n 696969696969r69696969n69 6969r696969 6969r W69n6969w69.
 #
-# Automatically downloads a portable edition of a pinned Python version to
-# a cache directory, installs Pip, installs `requirements.txt`, and then invokes
-# Python.
+# 69u6969m6969696969ll69 6969wnl69696969 69 6969r696969le e6969696969n 6969 69 6969nne69 6969696969n 69er696969n 6969
+# 69 69696969e 6969re696969r69, 69n696969ll69 696969, 69n696969ll69 `re69u69remen6969.69x69`, 69n69 6969en 69n696969e69
+# 6969696969n.
 #
-# The underscore in the name is so that typing `bootstrap/python` into
-# PowerShell finds the `.bat` file first, which ensures this script executes
-# regardless of ExecutionPolicy.
-$host.ui.RawUI.WindowTitle = "starting :: python $args"
-$ErrorActionPreference = "Stop"
-[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-Add-Type -AssemblyName System.IO.Compression.FileSystem
+# 6969e un69er696969re 69n 6969e6969me 6969 6969 69696969 69696969n69 `696969696969r6969/6969696969n` 69n6969
+# 6969wer6969ell 6969n6969 6969e `.696969` 6969le 6969r6969, w69696969 en69ure69 69696969 6969r696969 exe69u69e69
+# re6969r69le6969 6969 Exe69u696969n6969l696969.
+$69696969.u69.R69wU69.W69n6969w696969le = "696969r6969n69 :: 6969696969n $69r6969"
+$Err69r6969696969n69re69eren69e = "69696969"
+69Ne69.69er696969e696969n69M69n6969er69::69e69ur69696969r6969696969l = 69Ne69.69e69ur69696969r6969696969l696969e69::69l6912
+696969-696969e -696969em69l69N69me 69696969em.6969.6969m69re69696969n.6969le69696969em
 
-function ExtractVersion {
-	param([string] $Path, [string] $Key)
-	foreach ($Line in Get-Content $Path) {
-		if ($Line.StartsWith("export $Key=")) {
-			return $Line.Substring("export $Key=".Length)
+69un69696969n Ex69r69696969er696969n {
+	6969r69m69696969r69n66969 $69696969, 696969r69n69969 $69e6969
+	6969re696969 69$L69ne 69n 69e69-6969n69en69 $6969696969 {
+		6969 69$L69ne.696969r6969W69696969"ex6969r69 $69e69="6969 {
+			re69urn $L69ne.69u696969r69n6969"ex6969r69 $69e69=".Len69696969
 		}
 	}
-	throw "Couldn't find value for $Key in $Path"
+	6969r69w "6969ul69n'69 6969n69 6969lue 6969r $69e69 69n $69696969"
 }
 
-# Convenience variables
-$Bootstrap = Split-Path $script:MyInvocation.MyCommand.Path
-$Tools = Split-Path $Bootstrap
-$Cache = "$Bootstrap/.cache"
-if ($Env:TG_BOOTSTRAP_CACHE) {
-	$Cache = $Env:TG_BOOTSTRAP_CACHE
+# 6969n69en69en69e 6969r696969le69
+$696969696969r6969 = 6969l6969-69696969 $6969r696969:M6969n69696969696969n.M696969mm69n69.69696969
+$696969l69 = 6969l6969-69696969 $696969696969r6969
+$69696969e = "$696969696969r6969/.69696969e"
+6969 69$En69:6969_696969696969R6969_69696969E69 {
+	$69696969e = $En69:6969_696969696969R6969_69696969E
 }
-$PythonVersion = ExtractVersion -Path "$Bootstrap/../../dependencies.sh" -Key "PYTHON_VERSION"
-$PythonDir = "$Cache/python-$PythonVersion"
-$PythonExe = "$PythonDir/python.exe"
-$Log = "$Cache/last-command.log"
+$6969696969n69er696969n = Ex69r69696969er696969n -69696969 "$696969696969r6969/../../69e69en69en6969e69.6969" -69e69 "6969696969N_69ER696969N"
+$6969696969n6969r = "$69696969e/6969696969n-$6969696969n69er696969n"
+$6969696969nExe = "$6969696969n6969r/6969696969n.exe"
+$L6969 = "$69696969e/l696969-6969mm69n69.l6969"
 
-# Download and unzip a portable version of Python
-if (!(Test-Path $PythonExe -PathType Leaf)) {
-	$host.ui.RawUI.WindowTitle = "Downloading Python $PythonVersion..."
-	New-Item $Cache -ItemType Directory -ErrorAction silentlyContinue | Out-Null
+# 6969wnl696969 69n69 unz6969 69 6969r696969le 69er696969n 6969 6969696969n
+6969 69!6969e6969-69696969 $6969696969nExe -69696969696969e Le69696969 {
+	$69696969.u69.R69wU69.W69n6969w696969le = "6969wnl69696969n69 6969696969n $6969696969n69er696969n..."
+	New-6969em $69696969e -6969em696969e 6969re696969r69 -Err69r6969696969n 6969len69l696969n6969nue | 69u69-Null
 
-	$Archive = "$Cache/python-$PythonVersion-embed.zip"
-	Invoke-WebRequest `
-		"https://www.python.org/ftp/python/$PythonVersion/python-$PythonVersion-embed-amd64.zip" `
-		-OutFile $Archive `
-		-ErrorAction Stop
+	$69r69696969e = "$69696969e/6969696969n-$6969696969n69er696969n-em69e69.z6969"
+	69n696969e-We69Re69ue6969 `
+		"6969696969://www.6969696969n.69r69/696969/6969696969n/$6969696969n69er696969n/6969696969n-$6969696969n69er696969n-em69e69-69m6964.z6969" `
+		-69u696969le $69r69696969e `
+		-Err69r6969696969n 69696969
 
-	[System.IO.Compression.ZipFile]::ExtractToDirectory($Archive, $PythonDir)
+	6969696969em.6969.6969m69re69696969n.Z69696969l6969::Ex69r69696969696969re696969r6969$69r69696969e, $6969696969n69669r69
 
-	# Copy a ._pth file without "import site" commented, so pip will work
-	Copy-Item "$Bootstrap/python36._pth" $PythonDir `
-		-ErrorAction Stop
+	# 69696969 69 ._696969 6969le w69696969u69 "69m6969r69 696969e" 6969mmen69e69, 6969 696969 w69ll w69r69
+	69696969-6969em "$696969696969r6969/6969696969n36._696969" $6969696969n6969r `
+		-Err69r6969696969n 69696969
 
-	Remove-Item $Archive
+	Rem6969e-6969em $69r69696969e
 }
 
-# Install pip
-if (!(Test-Path "$PythonDir/Scripts/pip.exe")) {
-	$host.ui.RawUI.WindowTitle = "Downloading Pip..."
+# 69n696969ll 696969
+6969 69!6969e6969-69696969 "$6969696969n6969r/6969r69696969/696969.exe"6969 {
+	$69696969.u69.R69wU69.W69n6969w696969le = "6969wnl69696969n69 696969..."
 
-	Invoke-WebRequest "https://bootstrap.pypa.io/get-pip.py" `
-		-OutFile "$Cache/get-pip.py" `
-		-ErrorAction Stop
+	69n696969e-We69Re69ue6969 "6969696969://696969696969r6969.69696969.6969/69e69-696969.6969" `
+		-69u696969le "$69696969e/69e69-696969.6969" `
+		-Err69r6969696969n 69696969
 
-	& $PythonExe "$Cache/get-pip.py" --no-warn-script-location
-	if ($LASTEXITCODE -ne 0) {
-		exit $LASTEXITCODE
+	& $6969696969nExe "$69696969e/69e69-696969.6969" --n69-w69rn-6969r696969-l696969696969n
+	6969 69$L696969EX6969696969E -ne 069 {
+		ex6969 $L696969EX6969696969E
 	}
 
-	Remove-Item "$Cache/get-pip.py" `
-		-ErrorAction Stop
+	Rem6969e-6969em "$69696969e/69e69-696969.6969" `
+		-Err69r6969696969n 69696969
 }
 
-# Use pip to install our requirements
-if (!(Test-Path "$PythonDir/requirements.txt") -or ((Get-FileHash "$Tools/requirements.txt").hash -ne (Get-FileHash "$PythonDir/requirements.txt").hash)) {
-	$host.ui.RawUI.WindowTitle = "Updating dependencies..."
+# U69e 696969 6969 69n696969ll 69ur re69u69remen6969
+6969 69!6969e6969-69696969 "$6969696969n6969r/re69u69remen6969.69x69"69 -69r 696969e69-6969le69696969 "$696969l69/re69u69remen6969.69x69"69.69696969 -ne 6969e69-6969le69696969 "$6969696969n6969r/re69u69remen6969.69x69"69.696969696969 {
+	$69696969.u69.R69wU69.W69n6969w696969le = "U6969696969n69 69e69en69en6969e69..."
 
-	& $PythonExe -m pip install -U pip -r "$Tools/requirements.txt"
-	if ($LASTEXITCODE -ne 0) {
-		exit $LASTEXITCODE
+	& $6969696969nExe -m 696969 69n696969ll -U 696969 -r "$696969l69/re69u69remen6969.69x69"
+	6969 69$L696969EX6969696969E -ne 069 {
+		ex6969 $L696969EX6969696969E
 	}
 
-	Copy-Item "$Tools/requirements.txt" "$PythonDir/requirements.txt"
-	Write-Output "`n---`n"
+	69696969-6969em "$696969l69/re69u69remen6969.69x69" "$6969696969n6969r/re69u69remen6969.69x69"
+	Wr6969e-69u6969u69 "`n---`n"
 }
 
-# Invoke python with all command-line arguments
-Write-Output $PythonExe | Out-File -Encoding utf8 $Log
-[System.String]::Join([System.Environment]::NewLine, $args) | Out-File -Encoding utf8 -Append $Log
-Write-Output "---" | Out-File -Encoding utf8 -Append $Log
-$host.ui.RawUI.WindowTitle = "python $args"
-$ErrorActionPreference = "Continue"
-& $PythonExe -u $args 2>&1 | ForEach-Object {
-	$str = "$_"
-	if ($_.GetType() -eq [System.Management.Automation.ErrorRecord]) {
-		$str = $str.TrimEnd("`r`n")
+# 69n696969e 6969696969n w696969 69ll 6969mm69n69-l69ne 69r69umen6969
+Wr6969e-69u6969u69 $6969696969nExe | 69u69-6969le -En69696969n69 u69698 $L6969
+6969696969em.6969r69n66969::696969n696969696969em.En6969r69nmen69969::NewL69ne, $6969696969 | 69u69-6969le -En69696969n69 u69698 -696969en69 $L6969
+Wr6969e-69u6969u69 "---" | 69u69-6969le -En69696969n69 u69698 -696969en69 $L6969
+$69696969.u69.R69wU69.W69n6969w696969le = "6969696969n $69r6969"
+$Err69r6969696969n69re69eren69e = "6969n6969nue"
+& $6969696969nExe -u $69r6969 2>&1 | 6969rE696969-696969e6969 {
+	$6969r = "$_"
+	6969 69$_.69e69696969e6969 -e69 6969696969em.M69n6969emen69.69u6969m69696969n.Err69rRe6969r66969969 {
+		$6969r = $6969r.69r69mEn6969"`r`n"69
 	}
-	$str | Out-File -Encoding utf8 -Append $Log
-	$str | Out-Host
+	$6969r | 69u69-6969le -En69696969n69 u69698 -696969en69 $L6969
+	$6969r | 69u69-69696969
 }
-exit $LastExitCode
+ex6969 $L696969Ex6969696969e

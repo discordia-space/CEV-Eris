@@ -15,7 +15,7 @@
 /datum/individual_objective/bad_technology/assign()
 	..()
 	target = pick_faction_item(mind_holder, strict_type = /obj)
-	desc = "\The [target] is clearly against NT doctrine. It must be destroyed by the Sword of Truth."
+	desc = "\The 69target69 is clearly against NT doctrine. It69ust be destroyed by the Sword of Truth."
 	RegisterSignal(mind_holder, SWORD_OF_TRUTH_OF_DESTRUCTION, .proc/task_completed)
 
 /datum/individual_objective/bad_technology/task_completed(obj/item/I)
@@ -46,12 +46,12 @@
 /datum/individual_objective/convert/assign()
 	..()
 	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder))
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder))
 		if(is_neotheology_disciple(H))
 			continue
 		valid_targets += H
 	target = pick(valid_targets)
-	desc = "[target] has the potential to be a great beliver but their path has gone astray. Convert them, even if force is required."
+	desc = "69target69 has the potential to be a great beliver but their path has gone astray. Convert them, even if force is required."
 	RegisterSignal(target, COMSIG_HUMAN_INSTALL_IMPLANT, .proc/task_completed)
 
 /datum/individual_objective/convert/task_completed(mob/living/carbon/human/H, obj/item/implant)
@@ -83,17 +83,17 @@
 /datum/individual_objective/spread/assign()
 	..()
 	var/list/valid_targets = list()
-	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder))
+	for(var/mob/living/carbon/human/H in ((GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder))
 		if(is_neotheology_disciple(H))
 			continue
 		valid_targets += H
 	target = pick(valid_targets)
-	desc = "[target] may submit to evil forces if the [ritual_name] is not performed on them."
-	ritual = GLOB.all_rituals[ritual_name]
+	desc = "69target6969ay submit to evil forces if the 69ritual_name69 is not performed on them."
+	ritual = GLOB.all_rituals69ritual_name69
 	RegisterSignal(mind_holder, COMSIG_RITUAL_REVELATION, .proc/task_completed)
 
-/datum/individual_objective/spread/task_completed(datum/ritual/cruciform/R, mob/M)
-	if(R.type == ritual.type && M == target)
+/datum/individual_objective/spread/task_completed(datum/ritual/cruciform/R,69ob/M)
+	if(R.type == ritual.type &&69 == target)
 		completed()
 
 /datum/individual_objective/spread/completed()
@@ -110,7 +110,7 @@
 /datum/individual_objective/sanctify/assign()
 	..()
 	target_area = random_ship_area()
-	desc = "\the [target_area] if overran with useen evil forces. it needs to be cleansed."
+	desc = "\the 69target_area69 if overran with useen evil forces. it needs to be cleansed."
 	RegisterSignal(target_area, COMSIG_AREA_SANCTIFY, .proc/task_completed)
 
 /datum/individual_objective/sanctify/task_completed()

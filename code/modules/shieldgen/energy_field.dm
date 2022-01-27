@@ -31,8 +31,8 @@
 /obj/effect/energy_field/proc/Stress(var/severity)
 	strength -= severity
 
-	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
-	ticks_recovering = min(ticks_recovering + 2, 10)
+	//if we take too69uch damage, drop out - the generator will bring us back up if we have enough power
+	ticks_recovering =69in(ticks_recovering + 2, 10)
 	if(strength < 1)
 		set_invisibility(101)
 		set_density(0)
@@ -47,7 +47,7 @@
 	if (strength < 0)
 		strength = 0
 
-	//if we take too much damage, drop out - the generator will bring us back up if we have enough power
+	//if we take too69uch damage, drop out - the generator will bring us back up if we have enough power
 	var/old_density = density
 	if(strength >= 1)
 		set_invisibility(0)
@@ -61,8 +61,8 @@
 
 /obj/effect/energy_field/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 	//Purpose: Determines if the object (or airflow) can pass this atom.
-	//Called by: Movement, airflow.
-	//Inputs: The moving atom (optional), target turf, "height" and air group
+	//Called by:69ovement, airflow.
+	//Inputs: The69oving atom (optional), target turf, "height" and air group
 	//Outputs: Boolean if can pass.
 
 	//return (!density || !height || air_group)

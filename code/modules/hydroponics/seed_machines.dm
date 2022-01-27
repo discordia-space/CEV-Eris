@@ -29,11 +29,11 @@
 	SSnano.update_uis(src)
 	if(failed_task)
 		failed_task = FALSE
-		visible_message("[src] pings unhappily, flashing a red warning light.")
+		visible_message("69src69 pings unhappily, flashing a red warning light.")
 	else
-		visible_message("[src] pings happily.")
+		visible_message("69src69 pings happily.")
 
-/obj/machinery/botany/attackby(obj/item/I, mob/user)
+/obj/machinery/botany/attackby(obj/item/I,69ob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -53,7 +53,7 @@
 		I.forceMove(src)
 		seed = I
 		SSnano.update_uis(src)
-		to_chat(user, SPAN_NOTICE("You load [I] into [src]."))
+		to_chat(user, SPAN_NOTICE("You load 69I69 into 69src69."))
 		return
 
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable))
@@ -64,15 +64,15 @@
 			I.forceMove(src)
 			disk = I
 			SSnano.update_uis(src)
-			to_chat(user, SPAN_NOTICE("You load [I] into [src]."))
+			to_chat(user, SPAN_NOTICE("You load 69I69 into 69src69."))
 		return
 	..()
 
 /obj/machinery/botany/ui_data()
 	var/list/data = list()
-	data["active"] = (use_power == ACTIVE_POWER_USE)
+	data69"active"69 = (use_power == ACTIVE_POWER_USE)
 
-	data["loaded_gene"] = loaded_gene?.ui_data()
+	data69"loaded_gene"69 = loaded_gene?.ui_data()
 
 	if(disk)
 		var/list/disk_genes = list()
@@ -80,14 +80,14 @@
 			var/datum/computer_file/gene = f
 			disk_genes.Add(list(gene.ui_data()))
 
-		data["disk"] = list(
+		data69"disk"69 = list(
 			"max_capacity" = disk.max_capacity,
 			"used_capacity" = disk.used_capacity,
 			"stored_genes" = disk_genes
 		)
 
 	if(seed)
-		data["seed"] = list(
+		data69"seed"69 = list(
 			"name" = seed.name,
 			"degradation" = seed.modified
 		)
@@ -98,18 +98,18 @@
 	if(..())
 		return 1
 
-	if(href_list["eject_seed"])
+	if(href_list69"eject_seed"69)
 		if(!seed)
 			return 1
 
-		if(seed.seed.name == "new line" || isnull(plant_controller.seeds[seed.seed.name]))
+		if(seed.seed.name == "new line" || isnull(plant_controller.seeds69seed.seed.name69))
 			seed.seed.uid = plant_controller.seeds.len + 1
-			seed.seed.name = "[seed.seed.uid]"
-			plant_controller.seeds[seed.seed.name] = seed.seed
+			seed.seed.name = "69seed.seed.uid69"
+			plant_controller.seeds69seed.seed.name69 = seed.seed
 
 		seed.update_seed()
 
-		to_chat(usr, SPAN_NOTICE("You remove \the [seed] from \the [src]."))
+		to_chat(usr, SPAN_NOTICE("You remove \the 69seed69 from \the 69src69."))
 
 		seed.forceMove(drop_location())
 		if(Adjacent(usr))
@@ -118,11 +118,11 @@
 		seed = null
 		return 1
 
-	if(href_list["eject_disk"])
+	if(href_list69"eject_disk"69)
 		if(!disk)
 			return 1
 
-		to_chat(usr, SPAN_NOTICE("You remove \the [disk] from \the [src]."))
+		to_chat(usr, SPAN_NOTICE("You remove \the 69disk69 from \the 69src69."))
 
 		disk.forceMove(drop_location())
 		if(Adjacent(usr))
@@ -131,27 +131,27 @@
 		disk = null
 		return 1
 
-	if(href_list["clear_gene"])
+	if(href_list69"clear_gene"69)
 		loaded_gene = null
 		return 1
 
-	if(href_list["load_gene"])
+	if(href_list69"load_gene"69)
 		if(!disk)
 			return 1
 
-		var/datum/computer_file/binary/plantgene/gene = disk.find_file_by_name(href_list["load_gene"])
+		var/datum/computer_file/binary/plantgene/gene = disk.find_file_by_name(href_list69"load_gene"69)
 		if(istype(gene))
 			loaded_gene = gene.clone()
 		return 1
 
-	if(href_list["delete_gene"])
+	if(href_list69"delete_gene"69)
 		if(!disk)
 			return 1
 
-		disk.remove_file(disk.find_file_by_name(href_list["delete_gene"]))
+		disk.remove_file(disk.find_file_by_name(href_list69"delete_gene"69))
 		return 1
 
-	if(href_list["save_gene"])
+	if(href_list69"save_gene"69)
 		if(!loaded_gene || !disk)
 			return 1
 
@@ -171,16 +171,16 @@
 
 	var/list/geneMasks = list()
 	for(var/gene_tag in plant_controller.gene_tag_masks)
-		geneMasks.Add(list(list("tag" = gene_tag, "mask" = plant_controller.gene_tag_masks[gene_tag])))
-	data["geneMasks"] = geneMasks
+		geneMasks.Add(list(list("tag" = gene_tag, "mask" = plant_controller.gene_tag_masks69gene_tag69)))
+	data69"geneMasks"69 = geneMasks
 
 	if(seed && genes_processed)
-		data["hasGenetics"] = TRUE
-		data["sourceName"] = seed.seed.display_name
+		data69"hasGenetics"69 = TRUE
+		data69"sourceName"69 = seed.seed.display_name
 		if(!seed.seed.roundstart)
-			data["sourceName"] += " (variety #[seed.seed.uid])"
+			data69"sourceName"69 += " (variety #69seed.seed.uid69)"
 	else
-		data["hasGenetics"] = FALSE
+		data69"hasGenetics"69 = FALSE
 
 	return data
 
@@ -197,7 +197,7 @@
 	if(..())
 		return 1
 
-	if(href_list["scan_genome"])
+	if(href_list69"scan_genome"69)
 		if(!seed || genes_processed)
 			return 1
 
@@ -206,11 +206,11 @@
 		start_task()
 		return 1
 
-	if(href_list["get_gene"])
+	if(href_list69"get_gene"69)
 		if(!seed || !genes_processed)
 			return 1
 
-		var/datum/computer_file/binary/plantgene/P = seed.seed.get_gene(href_list["get_gene"])
+		var/datum/computer_file/binary/plantgene/P = seed.seed.get_gene(href_list69"get_gene"69)
 		if(!P)
 			return 1
 		loaded_gene = P
@@ -218,7 +218,7 @@
 		var/stat_multiplier = 1
 		if(usr.stats)
 			// Uses best of BIO and COG
-			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
+			stat_multiplier =69in(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
 
 		seed.modified += round(rand(30, 70) * stat_multiplier)
 		if(seed.modified >= 100)
@@ -229,12 +229,12 @@
 		start_task()
 		return 1
 
-	if(href_list["clear_buffer"])
+	if(href_list69"clear_buffer"69)
 		QDEL_NULL(seed)
 		genes_processed = FALSE
 		return 1
 
-	if(href_list["eject_seed"] && genes_processed)
+	if(href_list69"eject_seed"69 && genes_processed)
 		return 1
 
 
@@ -256,16 +256,16 @@
 	if(..())
 		return 1
 
-	if(href_list["apply_gene"])
+	if(href_list69"apply_gene"69)
 		if(!loaded_gene || !seed)
 			return 1
 
 		var/stat_multiplier = 1
 		if(usr.stats)
 			// Uses best of BIO and COG
-			stat_multiplier = min(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
+			stat_multiplier =69in(usr.stats.getMult(STAT_BIO, STAT_LEVEL_GODLIKE), usr.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE))
 
-		if(!isnull(plant_controller.seeds[seed.seed.name]))
+		if(!isnull(plant_controller.seeds69seed.seed.name69))
 			seed.seed = seed.seed.diverge(1)
 			seed.seed_type = seed.seed.name
 			seed.update_seed()
@@ -276,7 +276,7 @@
 
 		seed.seed.apply_gene(loaded_gene)
 		seed.modified += round(rand(10, 15) * stat_multiplier)
-		seed.modified = max(seed.modified, 100)
+		seed.modified =69ax(seed.modified, 100)
 
 		start_task()
 		return 1

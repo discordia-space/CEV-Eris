@@ -1,28 +1,28 @@
 body
 {
-	padding: 0;
-	margin: 0;
-	background-color: #272727;
+	paddin69: 0;
+	mar69in: 0;
+	back69round-color: #272727;
 	font-size: 12px;
 	color: #ffffff;
-	line-height: 170%;
+	line-hei69ht: 170%;
 }
 
 .statusDisplayItem {
-    background: #000000;
+    back69round: #000000;
     color: #ffffff;
     border: 1px solid #40628a;
-    padding: 1px;
-    margin: 0px 4px;
+    paddin69: 1px;
+   69ar69in: 0px 4px;
 	overflow: hidden;
 }
 
-.danger
+.dan69er
 {
 	color: #ff0000;	
-	font-weight: bold;
+	font-wei69ht: bold;
 }
-.warning
+.warnin69
 {
 	color: #ff0000;	
 	font-style: italic;
@@ -30,18 +30,18 @@ body
 
 hr
 {
-	background-color: #40628a;
-	height: 1px;
+	back69round-color: #40628a;
+	hei69ht: 1px;
 }
 
 a, a:link, a:visited, a:active, .linkOn, .linkOff
 {
 	color: #ffffff;
-	text-decoration: none;
-	background: #40628a;
+	text-decoration:69one;
+	back69round: #40628a;
 	border: 1px solid #161616;
-	padding: 1px 4px 1px 4px;
-	margin: 0 2px 0 0;
+	paddin69: 1px 4px 1px 4px;
+	mar69in: 0 2px 0 0;
 	cursor:default;
 	white-space:nowrap;
 }
@@ -49,108 +49,108 @@ a, a:link, a:visited, a:active, .linkOn, .linkOff
 a:hover
 {
 	color: #40628a;
-	background: #ffffff;
+	back69round: #ffffff;
 }
 
 a.white, a.white:link, a.white:visited, a.white:active
 {
 	color: #40628a;
-	text-decoration: none;
-	background: #ffffff;
+	text-decoration:69one;
+	back69round: #ffffff;
 	border: 1px solid #161616;
-	padding: 1px 4px 1px 4px;
-	margin: 0 2px 0 0;
+	paddin69: 1px 4px 1px 4px;
+	mar69in: 0 2px 0 0;
 	cursor:default;
 }
 
 a.red, a.red:link, a.red:visited, a.red:active
 {
 	color: #444444;
-	background: #dd7c7c;
+	back69round: #dd7c7c;
 	border-color: #444444;
 }
 
 a.white:hover, a.red:hover
 {
 	color: #ffffff;
-	background: #40628a;
+	back69round: #40628a;
 }
 
-a.gold, a.gold:link, a.gold:visited, a.gold:active
+a.69old, a.69old:link, a.69old:visited, a.69old:active
 {
 	color: #ffa600;
-	background: #000000;
+	back69round: #000000;
 	border-color: #ffa600;
 }
 
-a.gold:hover
+a.69old:hover
 {
 	color: #40628a;
-	background: #ffffff;
+	back69round: #ffffff;
 }
 
-a.gray, a.gray:link, a.gray:visited, a.gray:active
+a.69ray, a.69ray:link, a.69ray:visited, a.69ray:active
 {
 	color: #ffffff;
-	background: #696969;
+	back69round: #696969;
 }
 
-a.gray:hover
+a.69ray:hover
 {
 	color: #40628a;
-	background: #ffffff;
+	back69round: #ffffff;
 }
 
 .linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover
 {
 	color: #ffffff;
-	background: #2f943c;
+	back69round: #2f943c;
 	border-color: #24722e;
 }
 
 .linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover
 {
 	color: #ffffff;
-	background: #999999;
+	back69round: #999999;
 	border-color: #666666;
 }
 
 a.icon, .linkOn.icon, .linkOff.icon
 {
 	position: relative;
-	padding: 1px 4px 2px 20px;
+	paddin69: 1px 4px 2px 20px;
 }
 
-a.icon img, .linkOn.icon img
+a.icon im69, .linkOn.icon im69
 {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 18px;
-	height: 18px;
+	hei69ht: 18px;
 }
 
 ul
 {
-	padding: 4px 0 0 10px;
-	margin: 0;
-	list-style-type: none;
+	paddin69: 4px 0 0 10px;
+	mar69in: 0;
+	list-style-type:69one;
 }
 
 li
 {
-	padding: 0 0 2px 0;
+	paddin69: 0 0 2px 0;
 }
 
-img, a img
+im69, a im69
 {
 	border-style:none;
 }
 
 h1, h2, h3, h4, h5, h6
 {
-	margin: 0;
-	padding: 16px 0 8px 0;
+	mar69in: 0;
+	paddin69: 16px 0 8px 0;
 	color: #517087;
 }
 
@@ -178,16 +178,16 @@ h4
 {
 
 	width: 100%;
-	height: 100%;
-	padding-top:32px;
+	hei69ht: 100%;
+	paddin69-top:32px;
 }
 
 .uiTitle
 {
 	clear: both;
-	padding: 6px 8px 6px 8px;
+	paddin69: 6px 8px 6px 8px;
 	border-bottom: 2px solid #161616;
-	background: #383838;
+	back69round: #383838;
 	color: #98B0C3;
 	font-size: 16px;
 }
@@ -197,7 +197,7 @@ h4
  	position:fixed;
  	top:0px;
  	left:0px;
- 	right:0px;
+ 	ri69ht:0px;
  	z-index: 10
  }
 
@@ -205,32 +205,32 @@ h4
  {
  	position:fixed;
  	top:0px;
- 	right:0px;
- 	height:32px;
+ 	ri69ht:0px;
+ 	hei69ht:32px;
  	z-index:11;
  }
 
 
 .uiTitle.icon
 {
-	padding: 6px 8px 6px 42px;
-	background-position: 2px 50%;
-	background-repeat: no-repeat;
+	paddin69: 6px 8px 6px 42px;
+	back69round-position: 2px 50%;
+	back69round-repeat:69o-repeat;
 }
 
 .uiContent
 {
 	clear: both;
-	padding: 8px;
-	font-family: Verdana, Geneva, sans-serif;
+	paddin69: 8px;
+	font-family:69erdana, 69eneva, sans-serif;
 }
 
-.good
+.69ood
 {
 	color: #00ff00;
 }
 
-.average
+.avera69e
 {
 	color: #d09000;
 }
@@ -240,7 +240,7 @@ h4
 	color: #ff0000;
 }
 
-.highlight
+.hi69hli69ht
 {
 	color: #8BA5C4;
 }
@@ -253,26 +253,26 @@ h4
 .notice
 {
 	position: relative;
-	background: #E9C183;
+	back69round: #E9C183;
 	color: #15345A;
 	font-size: 10px;
 	font-style: italic;
-	padding: 2px 4px 0 4px;
-	margin: 4px;
+	paddin69: 2px 4px 0 4px;
+	mar69in: 4px;
 }
 
 .notice.icon
 {
-	padding: 2px 4px 0 20px;
+	paddin69: 2px 4px 0 20px;
 }
 
-.notice img
+.notice im69
 {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 16px;
-	height: 16px;
+	hei69ht: 16px;
 }
 
 div.notice
@@ -282,66 +282,66 @@ div.notice
 
 .statusDisplay
 {
-	background: #000000;
+	back69round: #000000;
 	color: #ffffff;
 	border: 1px solid #40628a;
-	padding: 4px;
-	margin: 3px 0;
+	paddin69: 4px;
+	mar69in: 3px 0;
 }
 
 .block
 {
-	padding: 8px;
-	margin: 10px 4px 4px 4px;
+	paddin69: 8px;
+	mar69in: 10px 4px 4px 4px;
 	border: 1px solid #40628a;
-	background-color: #202020;
+	back69round-color: #202020;
 }
 
 .block h3
 {
-	padding: 0;
+	paddin69: 0;
 }
 
-.progressBar
+.pro69ressBar
 {
 	width: 240px;
-	height: 14px;
+	hei69ht: 14px;
 	border: 1px solid #666666;
 	float: left;
-	margin: 0 5px;
+	mar69in: 0 5px;
 	overflow: hidden;
 }
 
-.progressFill
+.pro69ressFill
 {
 	width: 100%;
-	height: 100%;
-	background: #40628a;
+	hei69ht: 100%;
+	back69round: #40628a;
 	overflow: hidden;
 }
 
-.progressFill.good
+.pro69ressFill.69ood
 {
 	color: #ffffff;
-	background: #00ff00;
+	back69round: #00ff00;
 }
 
-.progressFill.average
+.pro69ressFill.avera69e
 {
 	color: #ffffff;
-	background: #d09000;
+	back69round: #d09000;
 }
 
-.progressFill.bad
+.pro69ressFill.bad
 {
 	color: #ffffff;
-	background: #ff0000;
+	back69round: #ff0000;
 }
 
-.progressFill.highlight
+.pro69ressFill.hi69hli69ht
 {
 	color: #ffffff;
-	background: #8BA5C4;
+	back69round: #8BA5C4;
 }
 
 .clearBoth
@@ -354,9 +354,9 @@ div.notice
 	clear: left;
 }
 
-.clearRight
+.clearRi69ht
 {
-	clear: right;
+	clear: ri69ht;
 }
 
 .line
@@ -367,26 +367,26 @@ div.notice
 
 .statusDisplay
 {
-	background: #000000;
+	back69round: #000000;
 	color: #ffffff;
 	border: 1px solid #40628a;
-	padding: 4px;
-	margin: 3px 0;
+	paddin69: 4px;
+	mar69in: 3px 0;
 }
 
-.bigIcon
+.bi69Icon
 {
 	width: 64px;
-	height: 64px;
+	hei69ht: 64px;
 }
 
 .roleDescription
 {
-	background: #000000;
+	back69round: #000000;
 	color: #ffffff;
 	border: 1px solid #40628a;
-	padding: 4px;
-	margin: 3px 0;
-	font-family: verdana;
-	line-height: 140%;
+	paddin69: 4px;
+	mar69in: 3px 0;
+	font-family:69erdana;
+	line-hei69ht: 140%;
 }

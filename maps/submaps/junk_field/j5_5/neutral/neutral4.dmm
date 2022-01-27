@@ -1,74 +1,74 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"b" = (
-/turf/template_noop,
-/area/template_noop)
-"d" = (
-/turf/simulated/wall/r_wall,
-/area/template_noop)
-"e" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"f" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"g" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"h" = (
-/obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"i" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"j" = (
-/mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"D" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/o6969/spawner/69un69,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/tur69/template_noop,
+/area/template_noop69
+"d" = 69
+/tur69/simulated/wall/r_wall,
+/area/template_noop69
+"e" = 69
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/69irder,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/69un69/low_chance,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"h" = 69
+/o6969/spawner/scrap/sparse/low_chance,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"i" = 69
+/o6969/spawner/scrap/sparse,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/mo69/livin69/simple_animal/hostile/carp,
+/tur69/simulated/69loor/platin69/under/airless,
+/area/template_noop69
+"D" = 69
+/o6969/structure/lattice,
+/tur69/template_noop,
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 e
 D
 e
 "}
-(2,1,1) = {"
+692,1,169 = {"
 D
 e
 i
 d
-f
+69
 "}
-(3,1,1) = {"
-f
-g
-j
+693,1,169 = {"
+69
+69
+69
 d
 D
 "}
-(4,1,1) = {"
+694,1,169 = {"
 d
 h
 e
 d
-b
+69
 "}
-(5,1,1) = {"
+695,1,169 = {"
 D
 e
 D
-f
+69
 D
 "}

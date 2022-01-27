@@ -15,15 +15,15 @@ var/const/AUTOLATHE_DISABLE_WIRE = 4
 /datum/wires/autolathe/GetInteractWindow(mob/living/user)
 	var/obj/machinery/autolathe/A = holder
 	. += ..(user)
-	. += "<BR>The red light is [A.disabled ? "off" : "on"]."
-	. += "<BR>The green light is [A.shocked ? "off" : "on"]."
-	. += "<BR>The blue light is [A.hacked ? "off" : "on"].<BR>"
+	. += "<BR>The red light is 69A.disabled ? "off" : "on"69."
+	. += "<BR>The green light is 69A.shocked ? "off" : "on"69."
+	. += "<BR>The blue light is 69A.hacked ? "off" : "on"69.<BR>"
 
 /datum/wires/autolathe/CanUse()
 	var/obj/machinery/autolathe/A = holder
 	return A.panel_open
 
-/datum/wires/autolathe/UpdateCut(index, mended)
+/datum/wires/autolathe/UpdateCut(index,69ended)
 	var/obj/machinery/autolathe/A = holder
 	switch(index)
 		if(AUTOLATHE_HACK_WIRE)

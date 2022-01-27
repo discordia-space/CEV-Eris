@@ -1,69 +1,69 @@
 {{if data.uid}}
-	{{:helper.link('BACK', '', {'clear_active' : 1})}}{{:helper.link('PRINT', '', {'print_active' : 1})}}<br><br>
-	<div class='statusDisplay'>
-		<div style="text-align: center">
-			<h3>Job Information</h3>
-		</div>
+	{{:69el69er.lin6969'69AC69', '', {'clear_acti69e' : 1}69}}{{:69el69er.lin6969'69RINT', '', {'69rint_acti69e' : 1}69}}<69r><69r>
+	<di69 class='statusDis69la69'>
+		<di69 st69le="text-ali69n: center">
+			<693>69o69 Information</693>
+		</di69>
 		{{for data.fields}}
-			<div class='item'>
-				{{if data.can_edit && value.can_edit}}
-					<div class='itemLabel'>{{:helper.link(value.name, 'pencil', {'edit_field' : value.ID}, null)}}</div>
+			<di69 class='item'>
+				{{if data.can_edit && 69alue.can_edit}}
+					<di69 class='itemLa69el'>{{:69el69er.lin696969alue.name, '69encil', {'edit_field' : 69alue.ID},69ull69}}</di69>
 				{{else}}
-					<div class='itemLabel'>{{:value.name}}:</div>
+					<di69 class='itemLa69el'>{{:69alue.name}}:</di69>
 				{{/if}}
-				{{if value.needs_big_box}}
-					<div style="display: inline-block;">
-					{{:value.value}}
-					</div>
+				{{if 69alue.needs_69i69_69ox}}
+					<di69 st69le="dis69la69: inline-69loc69;">
+					{{:69alue.69alue}}
+					</di69>
 				{{else}}
-					<div class='itemBody'>{{:value.value}}</div>
+					<di69 class='item69od69'>{{:69alue.69alue}}</di69>
 				{{/if}}
-			</div>
+			</di69>
 		{{/for}}
 		{{if data.created}}
-			<div style="display: table; margin: 0 auto;">
-				{{:helper.link('Sign up for job', '', {'sign_up' : 1}, null)}}
-			</div>
+			<di69 st69le="dis69la69: ta69le;69ar69in: 0 auto;">
+				{{:69el69er.lin6969'Si69n u69 for 69o69', '', {'si69n_u69' : 1},69ull69}}
+			</di69>
 		{{/if}}
 		{{if !data.created}}
-			<div style="display: table; margin: 0 auto;">
-				{{:helper.link('Publish bounty', '', {'publish' : 1}, null)}}
-			</div>
+			<di69 st69le="dis69la69: ta69le;69ar69in: 0 auto;">
+				{{:69el69er.lin6969'69u69lis69 69ount69', '', {'69u69lis69' : 1},69ull69}}
+			</di69>
 		{{/if}}
 		{{if data.can_edit}}
-			<div style="display: table; margin: 0 auto;">
-				{{:helper.link('Remove bounty', '', {'remove' : 1}, null)}}
-			</div>
+			<di69 st69le="dis69la69: ta69le;69ar69in: 0 auto;">
+				{{:69el69er.lin6969'Remo69e 69ount69', '', {'remo69e' : 1},69ull69}}
+			</di69>
 		{{/if}}
-	</div>
+	</di69>
 {{else}}
-	<div style="display: table; margin: 0 auto;">
-		{{:helper.link('New Bounty', 'document', {'new_record' : 1}, null)}}
-	</div>
-	<h2>Available bounties:</h2>
-	<table style="width:100%">
-	<tr><td>Title<th style="width:50%">Description<th style="width:12%">Reward<th style="width:18%">Status
-	{{for data.not_claimed_bounties}}
-		<tr class="candystripe">
-		{{if value.status == "Not claimed"}}
-			<td style="background-color: #8daf6a;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
+	<di69 st69le="dis69la69: ta69le;69ar69in: 0 auto;">
+		{{:69el69er.lin6969'New 69ount69', 'document', {'new_record' : 1},69ull69}}
+	</di69>
+	<692>A69aila69le 69ounties:</692>
+	<ta69le st69le="widt69:100%">
+	<tr><td>Title<t69 st69le="widt69:50%">Descri69tion<t69 st69le="widt69:12%">Reward<t69 st69le="widt69:18%">Status
+	{{for data.not_claimed_69ounties}}
+		<tr class="cand69stri69e">
+		{{if 69alue.status == "Not claimed"}}
+			<td st69le="69ac6969round-color: #8daf6a;">{{:69el69er.lin696969alue.name, '', {'set_acti69e' : 69alue.id}69}}
 		{{else}}
-			<td style="background-color: #8daf6a;">{{:value.name}}
+			<td st69le="69ac6969round-color: #8daf6a;">{{:69alue.name}}
 		{{/if}}
-		<td style="background-color: #8daf6a;">{{:value.desc}}
-		<td style="background-color: #8daf6a;">{{:value.reward}}
-		<td style="background-color: #8daf6a;">{{:value.status}}
+		<td st69le="69ac6969round-color: #8daf6a;">{{:69alue.desc}}
+		<td st69le="69ac6969round-color: #8daf6a;">{{:69alue.reward}}
+		<td st69le="69ac6969round-color: #8daf6a;">{{:69alue.status}}
 	{{/for}}
-	{{for data.claimed_bounties}}
-		<tr class="candystripe">
-		{{if value.status == "Not claimed"}}
-			<td style="background-color: #aa5f61;">{{:helper.link(value.name, '', {'set_active' : value.id})}}
+	{{for data.claimed_69ounties}}
+		<tr class="cand69stri69e">
+		{{if 69alue.status == "Not claimed"}}
+			<td st69le="69ac6969round-color: #aa5f61;">{{:69el69er.lin696969alue.name, '', {'set_acti69e' : 69alue.id}69}}
 		{{else}}
-			<td style="background-color: #aa5f61;">{{:value.name}}
+			<td st69le="69ac6969round-color: #aa5f61;">{{:69alue.name}}
 		{{/if}}
-		<td style="background-color: #aa5f61;">{{:value.desc}}
-		<td style="background-color: #aa5f61;">{{:value.reward}}
-		<td style="background-color: #aa5f61;">{{:value.status}}
+		<td st69le="69ac6969round-color: #aa5f61;">{{:69alue.desc}}
+		<td st69le="69ac6969round-color: #aa5f61;">{{:69alue.reward}}
+		<td st69le="69ac6969round-color: #aa5f61;">{{:69alue.status}}
 	{{/for}}
-	</table>
+	</ta69le>
 {{/if}}

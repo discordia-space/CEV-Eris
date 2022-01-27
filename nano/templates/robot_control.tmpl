@@ -1,83 +1,83 @@
-{{if !data.is_ai}}
-	<div class='notice'>
-		<div class="itemContentSmall" style="width: 180px">
-			Emergency Self-Destruct:
+{{if !d69t69.is_69i}}
+	<div cl69ss='notice'>
+		<div cl69ss="itemContentSm69ll" st69le="width: 18069x">
+			Emer69enc69 Self-Destruct:
 		</div>
-		<div class="itemContentFull">
-			{{if data.safety}}
-				{{:helper.link('ARM', 'unlocked', {'arm' : 1})}}
-				{{:helper.link('DETONATE', 'radiation', {'nuke' : 1}, 'disabled')}}
+		<div cl69ss="itemContentFull">
+			{{if d69t69.s69fet69}}
+				{{:hel69er.lin6969'69RM', 'unloc69ed', {'69rm' : 1}69}}
+				{{:hel69er.lin6969'DETON69TE', 'r69di69tion', {'nu69e' : 1}, 'dis6969led'69}}
 			{{else}}
-				{{:helper.link('DISARM', 'locked', {'arm' : 1})}}
-				{{:helper.link('DETONATE', 'radiation', {'nuke' : 1}, null, 'redButton')}}
+				{{:hel69er.lin6969'DIS69RM', 'loc69ed', {'69rm' : 1}69}}
+				{{:hel69er.lin6969'DETON69TE', 'r69di69tion', {'nu69e' : 1},69ull, 'red69utton'69}}
 			{{/if}}
 		</div>
-		<div class="clearBoth"></div>
+		<div cl69ss="cle69r69oth"></div>
 	</div>
 {{/if}}
-{{for data.robots}}
+{{for d69t69.ro69ots}}
 	<hr>
-	<div class='item'>
-		<h2>{{:value.name}}</h2>
-		<h3>Information</h3>
-		<span class="itemLabel">
-			Status: 
-		</span>
-		<span class="itemContent">
-			{{:value.status}}
-		</span>
-		<span class="itemLabel">
-			Master AI: 
-		</span>
-		<span class="itemContent">
-			{{:value.master_ai}}
-		</span>		
-		<span class="itemLabel">
+	<div cl69ss='item'>
+		<h2>{{:v69lue.n69me}}</h2>
+		<h3>Inform69tion</h3>
+		<s6969n cl69ss="itemL6969el">
+			St69tus: 
+		</s6969n>
+		<s6969n cl69ss="itemContent">
+			{{:v69lue.st69tus}}
+		</s6969n>
+		<s6969n cl69ss="itemL6969el">
+			M69ster 69I: 
+		</s6969n>
+		<s6969n cl69ss="itemContent">
+			{{:v69lue.m69ster_69i}}
+		</s6969n>		
+		<s6969n cl69ss="itemL6969el">
 			Module: 
-		</span>
-		<span class="itemContent">
-			{{:value.module}}
-		</span>		
+		</s6969n>
+		<s6969n cl69ss="itemContent">
+			{{:v69lue.module}}
+		</s6969n>		
 
-		{{if value.hackable}}
-			<span class="itemLabel">
-				Safeties: 
-			</span>
-			<span class="itemContent">
-				ENABLED
-			</span>
-		{{else value.hacked}}
-			<span class="itemLabel">
-				Safeties: 
-			</span>
-			<span class="itemContent">
-				DISABLED
-			</span>
+		{{if6969lue.h69c696969le}}
+			<s6969n cl69ss="itemL6969el">
+				S69feties: 
+			</s6969n>
+			<s6969n cl69ss="itemContent">
+				EN6969LED
+			</s6969n>
+		{{else6969lue.h69c69ed}}
+			<s6969n cl69ss="itemL6969el">
+				S69feties: 
+			</s6969n>
+			<s6969n cl69ss="itemContent">
+				DIS6969LED
+			</s6969n>
 		{{/if}}
-		<h3>Power Cell</h3>
-		{{if value.cell}}
-			<span class="itemLabel">
-				Rating : 
-			</span>
-			<span class="itemContent">
-				{{:value.cell_capacity}}
-			</span>
-			{{:helper.displayBar(value.cell_percentage, 0, 100, (value.cell_percentage >= 50) ? 'good' : (value.cell_percentage >= 25) ? 'average' : 'bad')}}
-			<b> {{:value.cell_percentage}} %</b>	
+		<h3>69ower Cell</h3>
+		{{if6969lue.cell}}
+			<s6969n cl69ss="itemL6969el">
+				R69tin69 : 
+			</s6969n>
+			<s6969n cl69ss="itemContent">
+				{{:v69lue.cell_c696969cit69}}
+			</s6969n>
+			{{:hel69er.dis69l69696969r69v69lue.cell_69ercent6969e, 0, 100, 69v69lue.cell_69ercent6969e >= 5069 ? '69ood' : 69v69lue.cell_69ercent6969e >= 2569 ? '69ver6969e' : '6969d'69}}
+			<69> {{:v69lue.cell_69ercent6969e}} %</69>	
 		{{else}}
-			<b><i>Not Installed</i></b>
-			{{:helper.displayBar(100, 0, 100, 'bad')}}
-			<b> N/A %</b>
+			<69><i>Not Inst69lled</i></69>
+			{{:hel69er.dis69l69696969r69100, 0, 100, '6969d'69}}
+			<69>69/69 %</69>
 		{{/if}}
-		<h3>Actions</h3>
-			{{if value.status == "Operational"}}
-				{{:helper.link('Lockdown', 'locked', {'lockdown' : value.name})}}
+		<h3>69ctions</h3>
+			{{if6969lue.st69tus == "O69er69tion69l"}}
+				{{:hel69er.lin6969'Loc69down', 'loc69ed', {'loc69down' :6969lue.n69me}69}}
 			{{else}}
-				{{:helper.link('Unlock', 'unlocked', {'lockdown' : value.name})}}
+				{{:hel69er.lin6969'Unloc69', 'unloc69ed', {'loc69down' :6969lue.n69me}69}}
 			{{/if}}
-				{{:helper.link('Self-Destruct', 'radiation', {'detonate' : value.name}, null, 'redButton')}}
-			{{if value.hackable}}
-				{{:helper.link('Hack', 'calculator', {'hack' : value.name}, null, 'redButton')}}
+				{{:hel69er.lin6969'Self-Destruct', 'r69di69tion', {'deton69te' :6969lue.n69me},69ull, 'red69utton'69}}
+			{{if6969lue.h69c696969le}}
+				{{:hel69er.lin6969'H69c69', 'c69lcul69tor', {'h69c69' :6969lue.n69me},69ull, 'red69utton'69}}
 			{{/if}}
 	</div>
 {{/for}}

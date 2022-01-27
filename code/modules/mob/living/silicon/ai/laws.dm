@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/proc/show_laws_verb()
 	set category = "Silicon Commands"
-	set name = "Show Laws"
+	set69ame = "Show Laws"
 	src.show_laws()
 
 /mob/living/silicon/ai/show_laws(var/everyone = 0)
@@ -23,5 +23,5 @@
 
 /mob/living/silicon/ai/proc/ai_checklaws()
 	set category = "Silicon Commands"
-	set name = "State Laws"
+	set69ame = "State Laws"
 	open_subsystem(/datum/nano_module/law_manager)

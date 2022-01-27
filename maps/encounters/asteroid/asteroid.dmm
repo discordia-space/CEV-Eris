@@ -1,729 +1,729 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CONVERTED B69 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
 "aa" = (
-/turf/unsimulated/mineral,
-/area/mine/unexplored)
+/tur69/unsimulated/mineral,
+/area/mine/unexplored69
 "ab" = (
-/obj/effect/overmap/sector/asteroid,
-/turf/unsimulated/mineral,
-/area/mine/unexplored)
+/ob69/e6969ect/overmap/sector/asteroid,
+/tur69/unsimulated/mineral,
+/area/mine/unexplored69
 "ac" = (
-/turf/unsimulated/mask,
-/area/mine/unexplored)
+/tur69/unsimulated/mas69,
+/area/mine/unexplored69
 "ad" = (
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "ae" = (
-/turf/unsimulated/mask,
-/area/mine/explored)
-"af" = (
-/turf/simulated/wall,
-/area/outpost/abandoned)
-"ag" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/unsimulated/mas69,
+/area/mine/explored69
+"a69" = (
+/tur69/simulated/wall,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/e6969ect/window_lwall_spawn/smartspawn,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "ai" = (
-/turf/simulated/floor/asteroid,
-/area/mine/explored)
-"ak" = (
-/obj/item/remains/human,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/asteroid,
+/area/mine/explored69
+"a69" = (
+/ob69/item/remains/human,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "am" = (
-/obj/spawner/gun/normal/low_chance,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/spawner/69un/normal/low_chance,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "ao" = (
-/obj/effect/floor_decal/rust,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/item/ammo_ma69azine/sm69,
+/ob69/item/ammo_ma69azine/sm69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "ap" = (
-/obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
-"aq" = (
-/mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/asteroid,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
+"a69" = (
+/mob/livin69/simple_animal/hostile/hivebot,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "ar" = (
-/obj/effect/shuttle_landmark/asteroid/nav1,
-/turf/simulated/floor/asteroid,
-/area/mine/explored)
+/ob69/e6969ect/shuttle_landmar69/asteroid/nav1,
+/tur69/simulated/69loor/asteroid,
+/area/mine/explored69
 "as" = (
-/obj/effect/shuttle_landmark/asteroid/nav2,
-/turf/simulated/floor/asteroid,
-/area/mine/explored)
+/ob69/e6969ect/shuttle_landmar69/asteroid/nav2,
+/tur69/simulated/69loor/asteroid,
+/area/mine/explored69
 "at" = (
-/turf/simulated/floor/asteroid,
-/area/mine/unexplored)
+/tur69/simulated/69loor/asteroid,
+/area/mine/unexplored69
 "au" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/low69e69random,
+/ob69/spawner/low69e69random,
+/ob69/spawner/low69e69random,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "av" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/surgery_tool,
-/obj/spawner/surgery_tool/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/sur69er69_tool,
+/ob69/spawner/sur69er69_tool/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aw" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/medical,
-/obj/spawner/medical/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/medical,
+/ob69/spawner/medical/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "ax" = (
-/obj/effect/floor_decal/rust,
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"ay" = (
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/spawner/69un6969ood/rotten,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/machiner69/door/airloc69/vault{
+	name = "NS69R -11"
 	},
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "az" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aA" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/material/resources/rare/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/material/resources/rare/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aB" = (
-/obj/spawner/material/resources/rare/low_chance,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/ob69/spawner/material/resources/rare/low_chance,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "aC" = (
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "aD" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"aF" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/firstaid/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"aG" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/tool,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/asteroid,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/69irstaid/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/tool,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aH" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aI" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/boxes,
-/obj/spawner/boxes/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"aJ" = (
-/obj/structure/barricade,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
-"aK" = (
-/obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/boxes,
+/ob69/spawner/boxes/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/structure/barricade,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/spawner/closet/tech/low_chance,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "aL" = (
-/obj/item/ammo_casing/shotgun/pellet,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/item/ammo_casin69/shot69un/pellet,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "aM" = (
-/obj/item/remains/human,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/item/remains/human,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "aN" = (
-/obj/effect/floor_decal/rust,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aO" = (
-/obj/effect/floor_decal/rust,
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/mob/livin69/simple_animal/hostile/hivebot/ran69e,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aP" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
-"aQ" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/structure/bed,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/mob/livin69/simple_animal/hostile/hivebot/ran69e,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/bed,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aR" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/gun/energy_cheap,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/69un/ener6969_cheap,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aS" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/techpart,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/techpart,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aT" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/bed,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/bed,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aU" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/closet/secure_closet/personal,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/closet/secure_closet/personal,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aV" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/steel,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aW" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/steel,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "aX" = (
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
+/ob69/machiner69/door/airloc69/vault{
+	name = "NS69R -11"
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"aY" = (
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"a69" = (
+/ob69/machiner69/door/airloc69/vault{
+	name = "NS69R -11"
 	},
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "aZ" = (
-/obj/effect/floor_decal/rust,
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/machiner69/door/airloc69/vault{
+	name = "NS69R -11"
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "ba" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bc" = (
-/obj/item/remains/human,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/item/remains/human,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bd" = (
-/obj/effect/floor_decal/rust,
-/obj/item/device/lighting/glowstick/flare,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/item/device/li69htin69/69lowstic69/69lare,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "be" = (
-/obj/effect/floor_decal/asteroid,
-/mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/asteroid,
+/mob/livin69/simple_animal/hostile/hivebot,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "bl" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "br" = (
-/obj/effect/floor_decal/rust,
-/mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/mob/livin69/simple_animal/hostile/hivebot,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bs" = (
-/obj/item/device/lighting/glowstick/flare,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/item/device/li69htin69/69lowstic69/69lare,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "bz" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/gun/normal/low_chance,
-/obj/spawner/ammo/low_chance,
-/obj/spawner/ammo/low_chance,
-/obj/spawner/ammo/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/69un/normal/low_chance,
+/ob69/spawner/ammo/low_chance,
+/ob69/spawner/ammo/low_chance,
+/ob69/spawner/ammo/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bA" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bD" = (
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bH" = (
-/obj/structure/closet/oldstyle,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/closet/oldst69le,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bI" = (
-/obj/structure/closet/oldstyle,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bJ" = (
-/obj/structure/bed/chair{
+/ob69/structure/closet/oldst69le,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/ob69/spawner/powercell/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"b69" = (
+/ob69/structure/bed/chair{
 	dir = 4
 	},
-/obj/effect/floor_decal/rust,
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bK" = (
-/obj/structure/table/steel,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/mob/livin69/simple_animal/hostile/hivebot/ran69e,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"b69" = (
+/ob69/structure/table/steel,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bL" = (
-/obj/structure/bed/chair{
+/ob69/structure/bed/chair{
 	dir = 8
 	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bM" = (
-/obj/structure/computerframe{
+/ob69/structure/computer69rame{
 	anchored = 1;
 	dir = 2;
 	icon_state = "0";
 	
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bN" = (
-/obj/structure/barricade,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/barricade,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bO" = (
-/obj/structure/bed/chair{
+/ob69/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bP" = (
-/obj/structure/bed/chair{
+/ob69/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bQ" = (
-/obj/structure/table/steel,
-/obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"b69" = (
+/ob69/structure/table/steel,
+/ob69/spawner/powercell/low_chance,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bR" = (
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/table/steel,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bS" = (
-/obj/structure/bed/chair{
+/ob69/structure/bed/chair{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "bX" = (
-/mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"bY" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/mob/livin69/simple_animal/hostile/hivebot,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"b69" = (
+/mob/livin69/simple_animal/hostile/hivebot/ran69e,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "ca" = (
-/obj/structure/computerframe{
+/ob69/structure/computer69rame{
 	icon_state = "0";
 	dir = 1;
 	anchored = 1
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cb" = (
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "0-4";
 	dir = 8
 	},
-/obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/spawner/traps/wire_splicin69/low_chance,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "cc" = (
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "cd" = (
-/turf/simulated/wall/r_wall,
-/area/outpost/abandoned)
+/tur69/simulated/wall/r_wall,
+/area/outpost/abandoned69
 "ch" = (
-/obj/structure/table/rack,
-/obj/item/ammo_magazine/smg,
-/obj/item/ammo_magazine/smg,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/table/rac69,
+/ob69/item/ammo_ma69azine/sm69,
+/ob69/item/ammo_ma69azine/sm69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "ci" = (
-/obj/structure/table/rack,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"ck" = (
-/obj/structure/table/rack,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/obj/item/ammo_casing/shotgun/pellet,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/table/rac69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/structure/table/rac69,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/ob69/item/ammo_casin69/shot69un/pellet,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cl" = (
-/obj/structure/table/rack,
-/obj/item/ammo_casing/shotgun/beanbag,
-/obj/item/ammo_casing/shotgun/beanbag,
-/obj/item/ammo_casing/shotgun/beanbag,
-/obj/item/ammo_casing/shotgun/beanbag,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/table/rac69,
+/ob69/item/ammo_casin69/shot69un/beanba69,
+/ob69/item/ammo_casin69/shot69un/beanba69,
+/ob69/item/ammo_casin69/shot69un/beanba69,
+/ob69/item/ammo_casin69/shot69un/beanba69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cm" = (
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/asteroid,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/asteroid,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "cn" = (
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/vault{
-	name = "NSKR -11"
+/ob69/machiner69/door/airloc69/vault{
+	name = "NS69R -11"
 	},
-/obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/spawner/traps/wire_splicin69/low_chance,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "co" = (
-/obj/machinery/power/smes/buildable,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/ob69/machiner69/power/smes/buildable,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "cp" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
-"cq" = (
-/obj/effect/floor_decal/rust,
-/obj/spawner/junkfood/rotten,
-/obj/structure/closet/crate,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/spawner/69un6969ood/rotten,
+/ob69/structure/closet/crate,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cr" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/spawner/junkfood/rotten,
-/obj/structure/closet/crate,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/spawner/69un6969ood/rotten,
+/ob69/structure/closet/crate,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cs" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/machinery/power/terminal{
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/machiner69/power/terminal{
 	icon_state = "term";
 	dir = 1
 	},
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "0-1";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "ct" = (
-/obj/machinery/power/terminal{
+/ob69/machiner69/power/terminal{
 	icon_state = "term";
 	dir = 1
 	},
-/obj/effect/floor_decal/rust,
-/obj/structure/cable/orange{
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/cable/oran69e{
 	icon_state = "0-1";
 	dir = 4
 	},
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "0-1";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "cu" = (
-/obj/effect/floor_decal/rust,
-/obj/machinery/power/terminal{
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/machiner69/power/terminal{
 	icon_state = "term";
 	dir = 1
 	},
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "0-1";
 	dir = 4
 	},
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "0-1";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "cv" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/structure/cable/orange{
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2";
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "cw" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/cable/orange{
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2";
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cx" = (
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/rust,
-/obj/structure/cable/orange{
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/cable/oran69e{
 	icon_state = "1-4";
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cy" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating,
-/area/outpost/abandoned)
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/platin69,
+/area/outpost/abandoned69
 "cz" = (
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e{
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cA" = (
-/obj/effect/floor_decal/rust,
-/obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/machiner69/atmospherics/pipe/simple/visible,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cB" = (
-/obj/machinery/atmospherics/binary/circulator{
+/ob69/machiner69/atmospherics/binar69/circulator{
 	anchored = 1;
 	dir = 1
 	},
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cC" = (
-/obj/machinery/power/generator{
+/ob69/machiner69/power/69enerator{
 	anchored = 1;
 	dir = 4
 	},
-/obj/structure/cable/orange,
-/obj/structure/cable/orange{
+/ob69/structure/cable/oran69e,
+/ob69/structure/cable/oran69e{
 	icon_state = "0-1";
 	dir = 1
 	},
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cD" = (
-/obj/machinery/atmospherics/binary/circulator{
+/ob69/machiner69/atmospherics/binar69/circulator{
 	anchored = 1
 	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cE" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/tool,
-/obj/spawner/tool,
-/obj/spawner/tool,
-/obj/spawner/tool,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cF" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/tank,
-/obj/spawner/tank,
-/obj/spawner/tank,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cG" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/rack/shelf,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/obj/spawner/toolbox,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/tool,
+/ob69/spawner/tool,
+/ob69/spawner/tool,
+/ob69/spawner/tool,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/tan69,
+/ob69/spawner/tan69,
+/ob69/spawner/tan69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/rac69/shel69,
+/ob69/spawner/toolbox,
+/ob69/spawner/toolbox,
+/ob69/spawner/toolbox,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cH" = (
-/obj/machinery/atmospherics/binary/circulator{
+/ob69/machiner69/atmospherics/binar69/circulator{
 	anchored = 1;
 	dir = 1
 	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "cI" = (
-/obj/machinery/power/generator{
+/ob69/machiner69/power/69enerator{
 	anchored = 1;
 	dir = 4
 	},
-/obj/structure/cable/orange,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cJ" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/closet/crate,
-/obj/spawner/material/resources/rare/low_chance,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cK" = (
-/obj/structure/closet/crate,
-/obj/spawner/material/resources/rare/low_chance,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/structure/cable/oran69e,
+/ob69/e6969ect/69loor_decal/rust,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/closet/crate,
+/ob69/spawner/material/resources/rare/low_chance,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/structure/closet/crate,
+/ob69/spawner/material/resources/rare/low_chance,
+/ob69/spawner/material/buildin69,
+/ob69/spawner/material/buildin69,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "cL" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/reinforced,
-/area/outpost/abandoned)
+/ob69/e6969ect/decal/cleanable/dirt,
+/tur69/simulated/69loor/rein69orced,
+/area/outpost/abandoned69
 "cM" = (
-/obj/effect/floor_decal/asteroid,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/reinforced,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/asteroid,
+/ob69/e6969ect/decal/cleanable/dirt,
+/tur69/simulated/69loor/rein69orced,
+/area/outpost/abandoned69
 "cN" = (
-/obj/map_data/asteroid,
-/turf/unsimulated/mineral,
-/area/mine/unexplored)
+/ob69/map_data/asteroid,
+/tur69/unsimulated/mineral,
+/area/mine/unexplored69
 "cO" = (
-/turf/simulated/wall,
-/area/mine/unexplored)
+/tur69/simulated/wall,
+/area/mine/unexplored69
 "cP" = (
-/obj/effect/floor_decal/rust,
-/obj/structure/table/steel,
-/obj/spawner/boxes,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"cQ" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/obj/structure/table/steel,
-/obj/spawner/techpart,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/steel,
+/ob69/spawner/boxes,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"c69" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/structure/table/steel,
+/ob69/spawner/techpart,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "dl" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/shotgun/pump,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"kC" = (
-/obj/structure/closet/oldstyle,
-/obj/item/hatton,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"qn" = (
-/obj/effect/floor_decal/rust,
-/obj/item/gun/projectile/colt,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"tj" = (
-/obj/item/gun/projectile/colt,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"vk" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/colt,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"yR" = (
-/obj/structure/table/steel,
-/obj/item/flame/lighter/zippo,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"Fe" = (
-/obj/structure/closet/oldstyle,
-/obj/item/hatton_magazine,
-/obj/item/hatton_magazine,
-/obj/item/hatton_magazine,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
-"JT" = (
-/obj/item/tool/shovel,
-/turf/simulated/floor/asteroid,
-/area/outpost/abandoned)
+/ob69/structure/table/rac69,
+/ob69/item/69un/pro69ectile/shot69un/pump,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"69C" = (
+/ob69/structure/closet/oldst69le,
+/ob69/item/hatton,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"69n" = (
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/item/69un/pro69ectile/colt,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"t69" = (
+/ob69/item/69un/pro69ectile/colt,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"v69" = (
+/ob69/structure/table/rac69,
+/ob69/item/69un/pro69ectile/colt,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"69R" = (
+/ob69/structure/table/steel,
+/ob69/item/69lame/li69hter/zippo,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"69e" = (
+/ob69/structure/closet/oldst69le,
+/ob69/item/hatton_ma69azine,
+/ob69/item/hatton_ma69azine,
+/ob69/item/hatton_ma69azine,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
+"69T" = (
+/ob69/item/tool/shovel,
+/tur69/simulated/69loor/asteroid,
+/area/outpost/abandoned69
 "OV" = (
-/obj/effect/floor_decal/rust,
-/obj/item/gun/projectile/shotgun/pump,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/e6969ect/69loor_decal/rust,
+/ob69/item/69un/pro69ectile/shot69un/pump,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "Zv" = (
-/obj/item/remains/human,
-/obj/item/gun/projectile/shotgun/pump,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/item/remains/human,
+/ob69/item/69un/pro69ectile/shot69un/pump,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 "ZH" = (
-/obj/structure/table/steel,
-/obj/item/storage/fancy/cigarettes,
-/turf/simulated/floor/tiled,
-/area/outpost/abandoned)
+/ob69/structure/table/steel,
+/ob69/item/stora69e/69anc69/ci69arettes,
+/tur69/simulated/69loor/tiled,
+/area/outpost/abandoned69
 
-(1,1,1) = {"
+(1,1,169 = {"
 aa
 aa
 aa
@@ -925,7 +925,7 @@ aa
 aa
 cN
 "}
-(2,1,1) = {"
+(2,1,169 = {"
 aa
 aa
 aa
@@ -1127,7 +1127,7 @@ aa
 aa
 aa
 "}
-(3,1,1) = {"
+(3,1,169 = {"
 aa
 aa
 aa
@@ -1329,7 +1329,7 @@ aa
 aa
 aa
 "}
-(4,1,1) = {"
+(4,1,169 = {"
 aa
 ab
 aa
@@ -1531,7 +1531,7 @@ aa
 aa
 aa
 "}
-(5,1,1) = {"
+(5,1,169 = {"
 aa
 aa
 aa
@@ -1733,7 +1733,7 @@ aa
 aa
 aa
 "}
-(6,1,1) = {"
+(6,1,169 = {"
 aa
 aa
 aa
@@ -1935,7 +1935,7 @@ aa
 aa
 aa
 "}
-(7,1,1) = {"
+(7,1,169 = {"
 aa
 aa
 ac
@@ -2137,7 +2137,7 @@ aa
 aa
 aa
 "}
-(8,1,1) = {"
+(8,1,169 = {"
 aa
 aa
 ac
@@ -2339,7 +2339,7 @@ aa
 aa
 aa
 "}
-(9,1,1) = {"
+(9,1,169 = {"
 aa
 aa
 ac
@@ -2541,7 +2541,7 @@ aa
 aa
 aa
 "}
-(10,1,1) = {"
+(10,1,169 = {"
 aa
 aa
 ac
@@ -2743,7 +2743,7 @@ aa
 aa
 aa
 "}
-(11,1,1) = {"
+(11,1,169 = {"
 aa
 aa
 ac
@@ -2945,7 +2945,7 @@ aa
 aa
 aa
 "}
-(12,1,1) = {"
+(12,1,169 = {"
 aa
 aa
 ac
@@ -3147,7 +3147,7 @@ aa
 aa
 aa
 "}
-(13,1,1) = {"
+(13,1,169 = {"
 aa
 aa
 ac
@@ -3349,7 +3349,7 @@ aa
 aa
 aa
 "}
-(14,1,1) = {"
+(14,1,169 = {"
 aa
 aa
 ac
@@ -3551,7 +3551,7 @@ aa
 aa
 aa
 "}
-(15,1,1) = {"
+(15,1,169 = {"
 aa
 aa
 ac
@@ -3753,7 +3753,7 @@ aa
 aa
 aa
 "}
-(16,1,1) = {"
+(16,1,169 = {"
 aa
 aa
 ac
@@ -3955,7 +3955,7 @@ aa
 aa
 aa
 "}
-(17,1,1) = {"
+(17,1,169 = {"
 aa
 aa
 ac
@@ -4157,7 +4157,7 @@ aa
 aa
 aa
 "}
-(18,1,1) = {"
+(18,1,169 = {"
 aa
 aa
 ac
@@ -4359,7 +4359,7 @@ aa
 aa
 aa
 "}
-(19,1,1) = {"
+(19,1,169 = {"
 aa
 aa
 ac
@@ -4561,7 +4561,7 @@ aa
 aa
 aa
 "}
-(20,1,1) = {"
+(20,1,169 = {"
 aa
 aa
 ac
@@ -4763,7 +4763,7 @@ aa
 aa
 aa
 "}
-(21,1,1) = {"
+(21,1,169 = {"
 aa
 aa
 ac
@@ -4965,7 +4965,7 @@ aa
 aa
 aa
 "}
-(22,1,1) = {"
+(22,1,169 = {"
 aa
 aa
 ac
@@ -5167,7 +5167,7 @@ aa
 aa
 aa
 "}
-(23,1,1) = {"
+(23,1,169 = {"
 aa
 aa
 ac
@@ -5369,7 +5369,7 @@ aa
 aa
 aa
 "}
-(24,1,1) = {"
+(24,1,169 = {"
 aa
 aa
 ac
@@ -5571,7 +5571,7 @@ aa
 aa
 aa
 "}
-(25,1,1) = {"
+(25,1,169 = {"
 aa
 aa
 ac
@@ -5773,7 +5773,7 @@ aa
 aa
 aa
 "}
-(26,1,1) = {"
+(26,1,169 = {"
 aa
 aa
 ac
@@ -5975,7 +5975,7 @@ aa
 aa
 aa
 "}
-(27,1,1) = {"
+(27,1,169 = {"
 aa
 aa
 ac
@@ -6177,7 +6177,7 @@ aa
 aa
 aa
 "}
-(28,1,1) = {"
+(28,1,169 = {"
 aa
 aa
 aa
@@ -6379,7 +6379,7 @@ aa
 aa
 aa
 "}
-(29,1,1) = {"
+(29,1,169 = {"
 aa
 aa
 aa
@@ -6581,7 +6581,7 @@ aa
 aa
 aa
 "}
-(30,1,1) = {"
+(30,1,169 = {"
 aa
 aa
 aa
@@ -6783,7 +6783,7 @@ aa
 aa
 aa
 "}
-(31,1,1) = {"
+(31,1,169 = {"
 aa
 aa
 aa
@@ -6985,7 +6985,7 @@ aa
 aa
 aa
 "}
-(32,1,1) = {"
+(32,1,169 = {"
 aa
 aa
 aa
@@ -7187,7 +7187,7 @@ aa
 aa
 aa
 "}
-(33,1,1) = {"
+(33,1,169 = {"
 aa
 aa
 aa
@@ -7389,7 +7389,7 @@ aa
 aa
 aa
 "}
-(34,1,1) = {"
+(34,1,169 = {"
 aa
 aa
 aa
@@ -7591,7 +7591,7 @@ ac
 ac
 aa
 "}
-(35,1,1) = {"
+(35,1,169 = {"
 aa
 aa
 aa
@@ -7793,7 +7793,7 @@ ac
 ac
 aa
 "}
-(36,1,1) = {"
+(36,1,169 = {"
 aa
 aa
 aa
@@ -7995,7 +7995,7 @@ ac
 aa
 aa
 "}
-(37,1,1) = {"
+(37,1,169 = {"
 aa
 aa
 aa
@@ -8197,7 +8197,7 @@ ac
 aa
 aa
 "}
-(38,1,1) = {"
+(38,1,169 = {"
 aa
 aa
 aa
@@ -8399,7 +8399,7 @@ aa
 aa
 aa
 "}
-(39,1,1) = {"
+(39,1,169 = {"
 aa
 aa
 aa
@@ -8601,7 +8601,7 @@ aa
 aa
 aa
 "}
-(40,1,1) = {"
+(40,1,169 = {"
 aa
 aa
 ac
@@ -8803,7 +8803,7 @@ aa
 aa
 aa
 "}
-(41,1,1) = {"
+(41,1,169 = {"
 aa
 aa
 ac
@@ -9005,7 +9005,7 @@ aa
 aa
 aa
 "}
-(42,1,1) = {"
+(42,1,169 = {"
 aa
 aa
 ac
@@ -9207,7 +9207,7 @@ aa
 aa
 aa
 "}
-(43,1,1) = {"
+(43,1,169 = {"
 aa
 aa
 ac
@@ -9409,7 +9409,7 @@ aa
 aa
 aa
 "}
-(44,1,1) = {"
+(44,1,169 = {"
 aa
 aa
 ac
@@ -9611,7 +9611,7 @@ aa
 aa
 aa
 "}
-(45,1,1) = {"
+(45,1,169 = {"
 aa
 aa
 ac
@@ -9813,7 +9813,7 @@ aa
 aa
 aa
 "}
-(46,1,1) = {"
+(46,1,169 = {"
 aa
 aa
 ac
@@ -10015,7 +10015,7 @@ aa
 aa
 aa
 "}
-(47,1,1) = {"
+(47,1,169 = {"
 aa
 aa
 ac
@@ -10217,7 +10217,7 @@ aa
 aa
 aa
 "}
-(48,1,1) = {"
+(48,1,169 = {"
 aa
 aa
 ac
@@ -10419,7 +10419,7 @@ aa
 aa
 aa
 "}
-(49,1,1) = {"
+(49,1,169 = {"
 aa
 aa
 ac
@@ -10621,7 +10621,7 @@ aa
 aa
 aa
 "}
-(50,1,1) = {"
+(50,1,169 = {"
 aa
 aa
 ac
@@ -10823,7 +10823,7 @@ aa
 aa
 aa
 "}
-(51,1,1) = {"
+(51,1,169 = {"
 aa
 aa
 ac
@@ -10943,13 +10943,13 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -11025,7 +11025,7 @@ aa
 aa
 aa
 "}
-(52,1,1) = {"
+(52,1,169 = {"
 aa
 aa
 ac
@@ -11145,13 +11145,13 @@ ac
 ac
 ac
 cO
-af
-aQ
+a69
+a69
 bl
 bl
 ba
-aQ
-af
+a69
+a69
 cO
 ac
 ac
@@ -11227,7 +11227,7 @@ aa
 aa
 aa
 "}
-(53,1,1) = {"
+(53,1,169 = {"
 aa
 aa
 ac
@@ -11429,7 +11429,7 @@ aa
 aa
 aa
 "}
-(54,1,1) = {"
+(54,1,169 = {"
 aa
 aa
 ac
@@ -11549,13 +11549,13 @@ ac
 ac
 ac
 cO
-af
-aQ
+a69
+a69
 ba
 bl
 br
 aT
-af
+a69
 cO
 ac
 ac
@@ -11631,7 +11631,7 @@ aa
 aa
 aa
 "}
-(55,1,1) = {"
+(55,1,169 = {"
 aa
 aa
 ac
@@ -11833,7 +11833,7 @@ aa
 aa
 aa
 "}
-(56,1,1) = {"
+(56,1,169 = {"
 aa
 aa
 ac
@@ -11953,13 +11953,13 @@ ac
 ac
 ac
 cO
-af
-aQ
+a69
+a69
 bl
 bl
 bl
 aT
-af
+a69
 cO
 ac
 ac
@@ -12035,7 +12035,7 @@ aa
 aa
 aa
 "}
-(57,1,1) = {"
+(57,1,169 = {"
 aa
 aa
 ac
@@ -12237,7 +12237,7 @@ aa
 aa
 aa
 "}
-(58,1,1) = {"
+(58,1,169 = {"
 aa
 aa
 ac
@@ -12357,13 +12357,13 @@ ac
 ac
 ac
 cO
-af
+a69
 aT
 bl
 bl
 bl
 aT
-af
+a69
 cO
 ac
 ac
@@ -12439,7 +12439,7 @@ aa
 aa
 aa
 "}
-(59,1,1) = {"
+(59,1,169 = {"
 aa
 aa
 ac
@@ -12641,7 +12641,7 @@ aa
 aa
 aa
 "}
-(60,1,1) = {"
+(60,1,169 = {"
 aa
 aa
 ac
@@ -12761,13 +12761,13 @@ ac
 ac
 ac
 cO
-af
+a69
 cP
 bl
 bl
 bl
 aV
-af
+a69
 cO
 ac
 ac
@@ -12843,7 +12843,7 @@ aa
 aa
 aa
 "}
-(61,1,1) = {"
+(61,1,169 = {"
 aa
 aa
 ac
@@ -12963,13 +12963,13 @@ ac
 ac
 ac
 ac
-af
+a69
 aV
 bl
 bl
 bl
 aV
-af
+a69
 ac
 ac
 ac
@@ -13045,7 +13045,7 @@ aa
 aa
 aa
 "}
-(62,1,1) = {"
+(62,1,169 = {"
 aa
 aa
 ac
@@ -13165,13 +13165,13 @@ ac
 ac
 ac
 ac
-af
+a69
 aV
 bl
 bl
 bl
 aV
-af
+a69
 ac
 ac
 ac
@@ -13247,7 +13247,7 @@ aa
 aa
 aa
 "}
-(63,1,1) = {"
+(63,1,169 = {"
 aa
 aa
 ac
@@ -13367,13 +13367,13 @@ ac
 ac
 ac
 ac
-af
-cQ
+a69
+c69
 bl
 bl
 bl
 aW
-af
+a69
 ac
 ac
 ac
@@ -13449,7 +13449,7 @@ aa
 aa
 aa
 "}
-(64,1,1) = {"
+(64,1,169 = {"
 aa
 aa
 ac
@@ -13569,13 +13569,13 @@ ac
 ac
 ac
 ac
-af
-af
-af
+a69
+a69
+a69
 bl
-af
-af
-af
+a69
+a69
+a69
 ac
 ac
 ac
@@ -13601,19 +13601,19 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -13651,7 +13651,7 @@ ac
 aa
 aa
 "}
-(65,1,1) = {"
+(65,1,169 = {"
 aa
 aa
 ac
@@ -13773,9 +13773,9 @@ ac
 ac
 ac
 ae
-af
+a69
 bl
-af
+a69
 ae
 ac
 ac
@@ -13803,19 +13803,19 @@ ac
 ac
 ac
 ac
-af
+a69
 co
 cs
 ad
 aD
 bl
 cE
-cF
-cG
+c69
+c69
 ad
 bl
 bl
-af
+a69
 ac
 ac
 ac
@@ -13853,7 +13853,7 @@ ac
 aa
 aa
 "}
-(66,1,1) = {"
+(66,1,169 = {"
 aa
 aa
 ac
@@ -13974,11 +13974,11 @@ ac
 ac
 ac
 ac
-af
-af
+a69
+a69
 aZ
-af
-af
+a69
+a69
 ac
 ac
 ac
@@ -14005,10 +14005,10 @@ ac
 ac
 ac
 ac
-af
+a69
 co
 ct
-cy
+c69
 ad
 bl
 bl
@@ -14017,7 +14017,7 @@ bl
 ad
 ad
 bl
-af
+a69
 ac
 ac
 ac
@@ -14055,7 +14055,7 @@ ac
 aa
 aa
 "}
-(67,1,1) = {"
+(67,1,169 = {"
 aa
 aa
 ac
@@ -14174,15 +14174,15 @@ ac
 ac
 ac
 ac
-af
-af
-af
+a69
+a69
+a69
 ad
 bl
 bl
-af
-af
-af
+a69
+a69
+a69
 ac
 ac
 ac
@@ -14207,10 +14207,10 @@ ac
 ac
 ac
 ac
-af
+a69
 co
 cu
-cy
+c69
 bl
 bl
 bl
@@ -14219,7 +14219,7 @@ bl
 bl
 bl
 bl
-af
+a69
 ac
 ac
 ac
@@ -14257,7 +14257,7 @@ ac
 aa
 aa
 "}
-(68,1,1) = {"
+(68,1,169 = {"
 aa
 aa
 ac
@@ -14375,17 +14375,17 @@ ac
 ac
 ac
 ac
-af
-af
-aK
+a69
+a69
+a69
 bl
 ad
 aD
 ad
 ad
-aK
-af
-af
+a69
+a69
+a69
 ac
 ac
 ac
@@ -14409,7 +14409,7 @@ ac
 ac
 ac
 ac
-af
+a69
 co
 cu
 bl
@@ -14421,7 +14421,7 @@ ba
 bl
 bl
 bl
-af
+a69
 ac
 ac
 ac
@@ -14459,7 +14459,7 @@ ac
 aa
 aa
 "}
-(69,1,1) = {"
+(69,1,169 = {"
 aa
 aa
 ac
@@ -14577,7 +14577,7 @@ ac
 ac
 ac
 ac
-af
+a69
 aD
 bl
 ad
@@ -14587,7 +14587,7 @@ ad
 bl
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -14611,7 +14611,7 @@ ac
 ac
 ac
 ac
-af
+a69
 co
 cu
 bl
@@ -14623,7 +14623,7 @@ bl
 bl
 aO
 aD
-af
+a69
 ac
 ac
 ac
@@ -14661,7 +14661,7 @@ ac
 aa
 aa
 "}
-(70,1,1) = {"
+(70,1,169 = {"
 aa
 aa
 ac
@@ -14778,8 +14778,8 @@ ae
 ae
 ae
 ae
-af
-af
+a69
+a69
 ad
 ad
 bl
@@ -14789,8 +14789,8 @@ bl
 bl
 bl
 ad
-af
-af
+a69
+a69
 ac
 ac
 ac
@@ -14813,7 +14813,7 @@ ac
 ac
 ac
 ac
-af
+a69
 cp
 cv
 bl
@@ -14825,7 +14825,7 @@ bl
 bl
 bl
 bl
-af
+a69
 cd
 cd
 cd
@@ -14863,7 +14863,7 @@ ac
 aa
 aa
 "}
-(71,1,1) = {"
+(71,1,169 = {"
 aa
 aa
 ac
@@ -14977,10 +14977,10 @@ ac
 ac
 ac
 ae
-af
+a69
 ad
-af
-af
+a69
+a69
 bl
 bl
 bl
@@ -14992,14 +14992,12 @@ bl
 ad
 ad
 aD
-af
-af
-af
+a69
+a69
+a69
 ae
-af
-af
-ae
-ae
+a69
+a69
 ae
 ae
 ae
@@ -15007,15 +15005,17 @@ ae
 ae
 ae
 ae
-af
-af
-af
+ae
+ae
+a69
+a69
+a69
 ae
 ae
 ae
 ae
-af
-af
+a69
+a69
 ad
 cw
 bl
@@ -15027,7 +15027,7 @@ bl
 cH
 cA
 bl
-ag
+a69
 cL
 cL
 cM
@@ -15065,7 +15065,7 @@ ac
 aa
 aa
 "}
-(72,1,1) = {"
+(72,1,169 = {"
 aa
 aa
 ac
@@ -15182,7 +15182,7 @@ ae
 ad
 ad
 ad
-ay
+a69
 bl
 bl
 bl
@@ -15267,7 +15267,7 @@ ac
 aa
 aa
 "}
-(73,1,1) = {"
+(73,1,169 = {"
 aa
 aa
 ac
@@ -15382,9 +15382,9 @@ ac
 ac
 ae
 ad
-af
-af
-af
+a69
+a69
+a69
 aD
 bl
 bl
@@ -15396,30 +15396,30 @@ bl
 ad
 ad
 am
-af
-af
-af
+a69
+a69
+a69
 ae
 ae
 ae
 ae
 ae
 ae
-af
-af
-af
+a69
+a69
+a69
 ae
 ae
 ae
 ae
-af
+a69
 ae
 ae
 ae
 ae
 ae
-af
-af
+a69
+a69
 bl
 bl
 bl
@@ -15431,7 +15431,7 @@ bl
 cD
 cA
 bl
-ag
+a69
 cL
 cL
 cL
@@ -15469,7 +15469,7 @@ ac
 aa
 aa
 "}
-(74,1,1) = {"
+(74,1,169 = {"
 aa
 aa
 ac
@@ -15586,8 +15586,8 @@ ae
 ae
 ae
 ae
-af
-af
+a69
+a69
 bl
 aL
 ad
@@ -15597,8 +15597,8 @@ bl
 bl
 ad
 aD
-af
-af
+a69
+a69
 ac
 ac
 ac
@@ -15621,7 +15621,7 @@ ac
 ac
 ac
 ac
-af
+a69
 bl
 ba
 bl
@@ -15633,7 +15633,7 @@ bl
 bl
 bl
 bl
-af
+a69
 cd
 cd
 cd
@@ -15671,7 +15671,7 @@ ac
 aa
 aa
 "}
-(75,1,1) = {"
+(75,1,169 = {"
 aa
 aa
 ac
@@ -15789,7 +15789,7 @@ ac
 ac
 ac
 ac
-af
+a69
 OV
 aM
 aL
@@ -15799,7 +15799,7 @@ bl
 bl
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -15823,7 +15823,7 @@ ac
 ac
 ac
 ac
-af
+a69
 bl
 bl
 bl
@@ -15835,7 +15835,7 @@ bl
 bl
 bl
 bl
-af
+a69
 ac
 ac
 ac
@@ -15873,7 +15873,7 @@ ac
 aa
 aa
 "}
-(76,1,1) = {"
+(76,1,169 = {"
 aa
 aa
 ac
@@ -15991,8 +15991,8 @@ ac
 ac
 ac
 ac
-af
-af
+a69
+a69
 aN
 ad
 ad
@@ -16000,8 +16000,8 @@ ad
 ap
 ad
 ad
-af
-af
+a69
+a69
 ac
 ac
 ac
@@ -16025,7 +16025,7 @@ ac
 ac
 ac
 ac
-af
+a69
 bl
 bl
 bl
@@ -16036,8 +16036,8 @@ ba
 bl
 bl
 aO
-cJ
-af
+c69
+a69
 ac
 ac
 ac
@@ -16075,7 +16075,7 @@ ac
 aa
 aa
 "}
-(77,1,1) = {"
+(77,1,169 = {"
 aa
 aa
 ac
@@ -16194,7 +16194,7 @@ ac
 ac
 ac
 ac
-af
+a69
 bl
 ad
 ad
@@ -16202,7 +16202,7 @@ ad
 ad
 ad
 aD
-af
+a69
 ac
 ac
 ac
@@ -16227,7 +16227,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ba
 bl
 ba
@@ -16238,8 +16238,8 @@ bl
 ad
 bl
 bl
-cK
-af
+c69
+a69
 ac
 ac
 ac
@@ -16277,7 +16277,7 @@ ac
 aa
 aa
 "}
-(78,1,1) = {"
+(78,1,169 = {"
 aa
 aa
 ac
@@ -16396,15 +16396,15 @@ ac
 ac
 ac
 ac
-af
-af
-af
+a69
+a69
+a69
 ap
 ad
 ad
-af
-af
-af
+a69
+a69
+a69
 ac
 ac
 ac
@@ -16429,8 +16429,8 @@ ac
 ac
 ac
 ac
-af
-cq
+a69
+c69
 bl
 bl
 bl
@@ -16440,8 +16440,8 @@ bl
 bl
 ad
 ad
-cJ
-af
+c69
+a69
 ac
 ac
 ac
@@ -16479,7 +16479,7 @@ ac
 aa
 aa
 "}
-(79,1,1) = {"
+(79,1,169 = {"
 aa
 aa
 ac
@@ -16600,11 +16600,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -16631,7 +16631,7 @@ ac
 ac
 ac
 ac
-af
+a69
 cr
 bl
 bl
@@ -16642,8 +16642,8 @@ bl
 bl
 bl
 bl
-cJ
-af
+c69
+a69
 ac
 ac
 ac
@@ -16681,7 +16681,7 @@ ac
 aa
 aa
 "}
-(80,1,1) = {"
+(80,1,169 = {"
 aa
 aa
 ac
@@ -16802,7 +16802,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ap
@@ -16833,19 +16833,19 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -16883,7 +16883,7 @@ ac
 aa
 aa
 "}
-(81,1,1) = {"
+(81,1,169 = {"
 aa
 aa
 ac
@@ -17004,213 +17004,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(82,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-af
-ad
-ad
-ad
-af
+a69
 ac
 ac
 ac
@@ -17287,7 +17085,209 @@ ac
 aa
 aa
 "}
-(83,1,1) = {"
+(82,1,169 = {"
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+a69
+ad
+ad
+ad
+a69
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(83,1,169 = {"
 aa
 aa
 ac
@@ -17408,7 +17408,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -17489,7 +17489,7 @@ ac
 aa
 aa
 "}
-(84,1,1) = {"
+(84,1,169 = {"
 aa
 aa
 ac
@@ -17610,413 +17610,9 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
-aq
-ad
-ae
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(85,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-af
-ad
-ad
-ad
-af
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(86,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-af
-ad
-ad
+a69
 ad
 ae
 ac
@@ -18095,7 +17691,7 @@ ac
 aa
 aa
 "}
-(87,1,1) = {"
+(85,1,169 = {"
 aa
 aa
 ac
@@ -18190,6 +17786,207 @@ ai
 ai
 ai
 ai
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+a69
+ad
+ad
+ad
+a69
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(86,1,169 = {"
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
 ai
 ac
 ac
@@ -18207,16 +18004,17 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+a69
 ad
 ad
 ad
@@ -18297,7 +18095,7 @@ ac
 aa
 aa
 "}
-(88,1,1) = {"
+(87,1,169 = {"
 aa
 aa
 ac
@@ -18409,16 +18207,218 @@ ac
 ac
 ac
 ac
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+ad
+ad
+ad
+ae
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(88,1,169 = {"
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+a69
 au
 bl
 av
 bl
 az
 bl
-aF
+a69
 bl
-af
+a69
 ad
 ad
 ad
@@ -18499,7 +18499,7 @@ ac
 aa
 aa
 "}
-(89,1,1) = {"
+(89,1,169 = {"
 aa
 aa
 ac
@@ -18611,20 +18611,20 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 av
 bl
 az
 bl
-aG
+a69
 aO
-ag
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -18701,7 +18701,7 @@ ac
 aa
 aa
 "}
-(90,1,1) = {"
+(90,1,169 = {"
 aa
 aa
 ac
@@ -18813,7 +18813,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 av
@@ -18822,11 +18822,11 @@ az
 bl
 aH
 bl
-ag
+a69
 bl
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -18903,7 +18903,7 @@ ac
 aa
 aa
 "}
-(91,1,1) = {"
+(91,1,169 = {"
 aa
 aa
 ac
@@ -19015,7 +19015,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 bl
@@ -19024,11 +19024,11 @@ bl
 bl
 bl
 bl
-af
+a69
 bl
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -19105,7 +19105,7 @@ ac
 aa
 aa
 "}
-(92,1,1) = {"
+(92,1,169 = {"
 aa
 aa
 ac
@@ -19217,7 +19217,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 bl
@@ -19230,7 +19230,7 @@ aX
 bl
 bl
 ad
-af
+a69
 ac
 ac
 ac
@@ -19307,7 +19307,7 @@ ac
 aa
 aa
 "}
-(93,1,1) = {"
+(93,1,169 = {"
 aa
 aa
 ac
@@ -19419,7 +19419,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 bl
@@ -19428,11 +19428,11 @@ bl
 bl
 bl
 bl
-af
+a69
 bl
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -19509,7 +19509,7 @@ ac
 aa
 aa
 "}
-(94,1,1) = {"
+(94,1,169 = {"
 aa
 aa
 ac
@@ -19621,7 +19621,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 aw
@@ -19630,11 +19630,11 @@ aA
 bl
 aI
 bl
-ag
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -19711,7 +19711,7 @@ ac
 aa
 aa
 "}
-(95,1,1) = {"
+(95,1,169 = {"
 aa
 aa
 ac
@@ -19823,7 +19823,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 aw
@@ -19832,7 +19832,7 @@ aA
 bl
 aI
 aO
-ag
+a69
 ad
 ad
 ad
@@ -19913,7 +19913,7 @@ ac
 aa
 aa
 "}
-(96,1,1) = {"
+(96,1,169 = {"
 aa
 aa
 ac
@@ -20025,7 +20025,7 @@ ac
 ac
 ac
 ac
-af
+a69
 au
 bl
 aw
@@ -20034,7 +20034,7 @@ aA
 bl
 aI
 bl
-af
+a69
 ad
 ad
 ad
@@ -20115,7 +20115,7 @@ ac
 aa
 aa
 "}
-(97,1,1) = {"
+(97,1,169 = {"
 aa
 aa
 ac
@@ -20227,16 +20227,16 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ad
 ad
 ad
@@ -20317,7 +20317,7 @@ ac
 aa
 aa
 "}
-(98,1,1) = {"
+(98,1,169 = {"
 aa
 aa
 ac
@@ -20438,7 +20438,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -20519,7 +20519,7 @@ ac
 aa
 aa
 "}
-(99,1,1) = {"
+(99,1,169 = {"
 aa
 aa
 ac
@@ -20640,7 +20640,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -20721,7 +20721,7 @@ ac
 aa
 aa
 "}
-(100,1,1) = {"
+(100,1,169 = {"
 aa
 aa
 ac
@@ -20842,7 +20842,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -20923,7 +20923,7 @@ ac
 ac
 aa
 "}
-(101,1,1) = {"
+(101,1,169 = {"
 aa
 aa
 ac
@@ -21044,7 +21044,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -21125,213 +21125,11 @@ ac
 ac
 aa
 "}
-(102,1,1) = {"
+(102,1,169 = {"
 aa
 aa
 aa
 ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ai
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ae
-ad
-ad
-ad
-ae
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-"}
-(103,1,1) = {"
-aa
-aa
-aa
-aa
 ac
 ac
 ac
@@ -21529,7 +21327,209 @@ ac
 ac
 aa
 "}
-(104,1,1) = {"
+(103,1,169 = {"
+aa
+aa
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ae
+ad
+ad
+ad
+ae
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+"}
+(104,1,169 = {"
 aa
 aa
 aa
@@ -21654,7 +21654,7 @@ ae
 ad
 ad
 ap
-af
+a69
 ac
 ac
 ac
@@ -21731,7 +21731,7 @@ ac
 ac
 aa
 "}
-(105,1,1) = {"
+(105,1,169 = {"
 aa
 aa
 aa
@@ -21856,7 +21856,7 @@ ae
 ad
 ap
 ad
-af
+a69
 ac
 ac
 ac
@@ -21933,7 +21933,7 @@ ac
 ac
 aa
 "}
-(106,1,1) = {"
+(106,1,169 = {"
 aa
 aa
 aa
@@ -22054,11 +22054,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -22135,7 +22135,7 @@ ac
 ac
 aa
 "}
-(107,1,1) = {"
+(107,1,169 = {"
 aa
 aa
 aa
@@ -22256,11 +22256,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -22337,7 +22337,7 @@ ac
 aa
 aa
 "}
-(108,1,1) = {"
+(108,1,169 = {"
 aa
 aa
 aa
@@ -22458,11 +22458,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -22539,7 +22539,7 @@ ac
 aa
 aa
 "}
-(109,1,1) = {"
+(109,1,169 = {"
 aa
 aa
 aa
@@ -22660,11 +22660,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -22741,7 +22741,7 @@ ac
 aa
 aa
 "}
-(110,1,1) = {"
+(110,1,169 = {"
 aa
 aa
 aa
@@ -22862,7 +22862,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ap
@@ -22943,7 +22943,7 @@ ac
 aa
 aa
 "}
-(111,1,1) = {"
+(111,1,169 = {"
 aa
 aa
 aa
@@ -23145,7 +23145,7 @@ ac
 aa
 aa
 "}
-(112,1,1) = {"
+(112,1,169 = {"
 aa
 aa
 aa
@@ -23347,7 +23347,7 @@ ac
 aa
 aa
 "}
-(113,1,1) = {"
+(113,1,169 = {"
 aa
 aa
 aa
@@ -23472,7 +23472,7 @@ ae
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -23549,7 +23549,7 @@ ac
 aa
 aa
 "}
-(114,1,1) = {"
+(114,1,169 = {"
 aa
 aa
 aa
@@ -23674,7 +23674,7 @@ ae
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -23751,7 +23751,7 @@ ac
 aa
 aa
 "}
-(115,1,1) = {"
+(115,1,169 = {"
 aa
 aa
 aa
@@ -23872,7 +23872,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -23953,7 +23953,7 @@ ac
 aa
 aa
 "}
-(116,1,1) = {"
+(116,1,169 = {"
 aa
 aa
 aa
@@ -24074,7 +24074,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -24155,7 +24155,7 @@ ac
 aa
 aa
 "}
-(117,1,1) = {"
+(117,1,169 = {"
 aa
 aa
 aa
@@ -24276,7 +24276,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ap
 ad
@@ -24357,7 +24357,7 @@ ac
 aa
 aa
 "}
-(118,1,1) = {"
+(118,1,169 = {"
 aa
 aa
 aa
@@ -24478,7 +24478,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -24559,209 +24559,7 @@ ac
 aa
 aa
 "}
-(119,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ae
-ad
-ad
-ad
-ae
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(120,1,1) = {"
+(119,1,169 = {"
 aa
 aa
 ac
@@ -24963,209 +24761,7 @@ ac
 aa
 aa
 "}
-(121,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ae
-ap
-ad
-ad
-af
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(122,1,1) = {"
+(120,1,169 = {"
 aa
 aa
 ac
@@ -25290,7 +24886,7 @@ ae
 ad
 ad
 ad
-af
+ae
 ac
 ac
 ac
@@ -25367,7 +24963,7 @@ ac
 aa
 aa
 "}
-(123,1,1) = {"
+(121,1,169 = {"
 aa
 aa
 ac
@@ -25492,7 +25088,7 @@ ae
 ap
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -25569,7 +25165,7 @@ ac
 aa
 aa
 "}
-(124,1,1) = {"
+(122,1,169 = {"
 aa
 aa
 ac
@@ -25694,7 +25290,7 @@ ae
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -25771,7 +25367,7 @@ ac
 aa
 aa
 "}
-(125,1,1) = {"
+(123,1,169 = {"
 aa
 aa
 ac
@@ -25892,11 +25488,415 @@ ac
 ac
 ac
 ac
-af
+ae
+ap
+ad
+ad
+a69
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(124,1,169 = {"
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ae
+ad
+ad
+ad
+a69
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(125,1,169 = {"
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+a69
 ad
 ad
 ap
-af
+a69
 ac
 ac
 ac
@@ -25973,7 +25973,7 @@ ac
 aa
 aa
 "}
-(126,1,1) = {"
+(126,1,169 = {"
 aa
 aa
 ac
@@ -26094,11 +26094,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -26175,7 +26175,7 @@ ac
 aa
 aa
 "}
-(127,1,1) = {"
+(127,1,169 = {"
 aa
 aa
 ac
@@ -26296,7 +26296,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 be
 ad
@@ -26377,7 +26377,7 @@ ac
 aa
 aa
 "}
-(128,1,1) = {"
+(128,1,169 = {"
 aa
 aa
 ac
@@ -26498,7 +26498,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -26579,7 +26579,7 @@ ac
 aa
 aa
 "}
-(129,1,1) = {"
+(129,1,169 = {"
 aa
 aa
 ac
@@ -26700,7 +26700,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -26781,7 +26781,7 @@ ac
 aa
 aa
 "}
-(130,1,1) = {"
+(130,1,169 = {"
 aa
 aa
 ac
@@ -26902,7 +26902,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -26983,7 +26983,7 @@ ac
 aa
 aa
 "}
-(131,1,1) = {"
+(131,1,169 = {"
 aa
 aa
 ac
@@ -27108,7 +27108,7 @@ ac
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -27185,7 +27185,7 @@ ac
 aa
 aa
 "}
-(132,1,1) = {"
+(132,1,169 = {"
 aa
 aa
 ac
@@ -27310,7 +27310,7 @@ ac
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -27387,7 +27387,7 @@ ac
 aa
 aa
 "}
-(133,1,1) = {"
+(133,1,169 = {"
 aa
 aa
 ac
@@ -27589,7 +27589,7 @@ ac
 aa
 aa
 "}
-(134,1,1) = {"
+(134,1,169 = {"
 aa
 aa
 ac
@@ -27791,7 +27791,7 @@ ac
 aa
 aa
 "}
-(135,1,1) = {"
+(135,1,169 = {"
 aa
 aa
 ac
@@ -27993,7 +27993,7 @@ ac
 aa
 aa
 "}
-(136,1,1) = {"
+(136,1,169 = {"
 aa
 aa
 ac
@@ -28114,7 +28114,7 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
@@ -28195,7 +28195,7 @@ ac
 aa
 aa
 "}
-(137,1,1) = {"
+(137,1,169 = {"
 aa
 aa
 ac
@@ -28316,11 +28316,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -28397,7 +28397,7 @@ ac
 aa
 aa
 "}
-(138,1,1) = {"
+(138,1,169 = {"
 aa
 aa
 ac
@@ -28518,11 +28518,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -28599,7 +28599,7 @@ ac
 aa
 aa
 "}
-(139,1,1) = {"
+(139,1,169 = {"
 aa
 aa
 ac
@@ -28720,11 +28720,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -28801,7 +28801,7 @@ ac
 aa
 aa
 "}
-(140,1,1) = {"
+(140,1,169 = {"
 aa
 aa
 ac
@@ -28922,11 +28922,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 bs
-af
+a69
 ac
 ac
 ac
@@ -29003,7 +29003,7 @@ ac
 aa
 aa
 "}
-(141,1,1) = {"
+(141,1,169 = {"
 aa
 aa
 ac
@@ -29124,11 +29124,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -29205,7 +29205,7 @@ ac
 aa
 aa
 "}
-(142,1,1) = {"
+(142,1,169 = {"
 aa
 aa
 ac
@@ -29326,11 +29326,11 @@ ac
 ac
 ac
 ac
-af
+a69
 ad
 bl
 bl
-af
+a69
 ac
 ac
 ac
@@ -29407,7 +29407,7 @@ ac
 aa
 aa
 "}
-(143,1,1) = {"
+(143,1,169 = {"
 aa
 aa
 ac
@@ -29523,16 +29523,16 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
 ad
 bl
 ad
-af
+a69
 ac
 ac
 ac
@@ -29609,7 +29609,7 @@ ac
 aa
 aa
 "}
-(144,1,1) = {"
+(144,1,169 = {"
 aa
 aa
 ac
@@ -29652,7 +29652,7 @@ ac
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -29725,16 +29725,16 @@ ac
 ac
 ac
 ac
-af
+a69
 aB
 aC
-af
+a69
 aC
-af
+a69
 bl
 bl
 bl
-af
+a69
 ac
 ac
 ac
@@ -29811,7 +29811,7 @@ ac
 aa
 aa
 "}
-(145,1,1) = {"
+(145,1,169 = {"
 aa
 aa
 ac
@@ -29854,7 +29854,7 @@ ad
 ad
 ad
 am
-af
+a69
 ac
 ac
 ac
@@ -29927,27 +29927,27 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-af
+a69
 aC
-af
-af
+a69
+a69
 aZ
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -30013,7 +30013,7 @@ ac
 aa
 aa
 "}
-(146,1,1) = {"
+(146,1,169 = {"
 aa
 aa
 ac
@@ -30052,11 +30052,11 @@ ac
 ac
 ac
 ad
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -30129,27 +30129,27 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-aJ
+a69
 aP
-af
+a69
 bl
 bl
 bl
 bD
 bD
 bD
-af
-kC
+a69
+69C
 bD
 bP
 bP
 bP
-bY
+b69
 bD
-af
+a69
 ac
 ac
 ac
@@ -30215,7 +30215,7 @@ ac
 aa
 aa
 "}
-(147,1,1) = {"
+(147,1,169 = {"
 aa
 aa
 ac
@@ -30254,11 +30254,11 @@ ac
 ac
 ac
 ad
-af
-JT
-ak
-qn
-af
+a69
+69T
+a69
+69n
+a69
 ac
 ac
 ac
@@ -30331,27 +30331,27 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-af
+a69
 aC
-af
+a69
 bl
 bl
 bD
 bD
 bD
 bc
-af
-Fe
+a69
+69e
 bD
-bQ
+b69
 bR
-yR
+69R
 bD
 bD
-af
+a69
 ac
 ac
 ac
@@ -30417,7 +30417,7 @@ ac
 aa
 aa
 "}
-(148,1,1) = {"
+(148,1,169 = {"
 aa
 aa
 ac
@@ -30460,7 +30460,7 @@ ad
 ad
 bl
 ao
-af
+a69
 ac
 ac
 ac
@@ -30533,19 +30533,19 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-af
+a69
 aC
-aY
+a69
 bl
 bD
 bD
 bD
 bD
-tj
-af
+t69
+a69
 bH
 bD
 bR
@@ -30553,7 +30553,7 @@ bR
 ZH
 bD
 bD
-af
+a69
 ac
 ac
 ac
@@ -30619,7 +30619,7 @@ ac
 aa
 aa
 "}
-(149,1,1) = {"
+(149,1,169 = {"
 aa
 aa
 ac
@@ -30658,11 +30658,11 @@ ac
 ac
 ac
 ad
-af
+a69
 ad
 ad
 bl
-af
+a69
 ac
 ac
 ac
@@ -30735,19 +30735,19 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
+a69
+a69
+a69
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bD
-af
+a69
 bI
 bD
 bS
@@ -30755,7 +30755,7 @@ bS
 bS
 bD
 bD
-af
+a69
 ac
 ac
 ac
@@ -30821,7 +30821,7 @@ ac
 ac
 aa
 "}
-(150,1,1) = {"
+(150,1,169 = {"
 aa
 aa
 ac
@@ -30860,11 +30860,11 @@ ac
 ac
 ac
 ad
-ag
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -30940,26 +30940,26 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
-af
+a69
 bc
 bD
 bD
 bD
 bD
 bD
-af
-af
-af
-af
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
 aX
-ag
-af
-af
-af
+a69
+a69
+a69
+a69
 cd
 cd
 cd
@@ -31023,7 +31023,7 @@ ac
 ac
 aa
 "}
-(151,1,1) = {"
+(151,1,169 = {"
 aa
 aa
 ac
@@ -31062,11 +31062,11 @@ ac
 ac
 ac
 ad
-ag
+a69
 ad
 ad
 ad
-af
+a69
 ac
 ac
 ac
@@ -31142,17 +31142,17 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bl
-ag
-bJ
+a69
+b69
 bN
 aX
 bD
@@ -31164,9 +31164,9 @@ bD
 bD
 cd
 bD
-vk
-vk
-vk
+v69
+v69
+v69
 bD
 ci
 cd
@@ -31225,7 +31225,7 @@ ac
 ac
 aa
 "}
-(152,1,1) = {"
+(152,1,169 = {"
 aa
 aa
 ac
@@ -31264,99 +31264,99 @@ ac
 ac
 ac
 ad
-af
+a69
 ad
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
 ae
 ae
-af
-af
-af
+a69
+a69
+a69
 ae
 ae
-af
-af
+a69
+a69
 ae
-af
-af
+a69
+a69
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-ac
-ac
-ac
-ac
-ac
-af
-af
-af
-ac
-ac
-ac
-af
-af
-af
-af
-ac
-ac
-ac
-af
-af
-af
-af
-af
-ac
-ac
-ac
-af
-af
-af
-ac
-ac
-ac
-af
-af
-ac
-ac
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
 ac
-af
-af
-af
-af
+ac
+a69
+a69
+a69
+ac
+ac
+ac
+a69
+a69
+a69
+a69
+ac
+ac
+ac
+a69
+a69
+a69
+a69
+a69
+ac
+ac
+ac
+a69
+a69
+a69
+ac
+ac
+ac
+a69
+a69
+ac
+ac
+a69
+a69
+a69
+a69
+a69
+ac
+ac
+ac
+ac
+a69
+a69
+a69
+a69
 ae
 ae
-af
-af
-af
+a69
+a69
+a69
 bD
 bD
 bD
 bD
 bD
 bl
-ag
-bK
-af
-af
+a69
+b69
+a69
+a69
 bD
 bX
 bD
@@ -31427,7 +31427,7 @@ ac
 ac
 aa
 "}
-(153,1,1) = {"
+(153,1,169 = {"
 aa
 aa
 ac
@@ -31472,7 +31472,7 @@ ad
 ad
 ap
 ad
-aq
+a69
 ad
 ad
 ad
@@ -31548,7 +31548,7 @@ ad
 ad
 bl
 aD
-af
+a69
 bd
 bD
 bD
@@ -31558,7 +31558,7 @@ bl
 bl
 bl
 bN
-af
+a69
 bD
 bD
 bD
@@ -31572,7 +31572,7 @@ ch
 ch
 ch
 bD
-ck
+c69
 cd
 ac
 ac
@@ -31629,7 +31629,7 @@ ac
 ac
 aa
 "}
-(154,1,1) = {"
+(154,1,169 = {"
 aa
 aa
 ac
@@ -31773,7 +31773,7 @@ bD
 bD
 bD
 bD
-bY
+b69
 cl
 cd
 ac
@@ -31831,7 +31831,7 @@ ac
 ac
 aa
 "}
-(155,1,1) = {"
+(155,1,169 = {"
 aa
 aa
 ac
@@ -31952,7 +31952,7 @@ ap
 ad
 ad
 bl
-af
+a69
 bl
 bD
 bD
@@ -31962,7 +31962,7 @@ bl
 bl
 bl
 bN
-af
+a69
 bD
 bD
 bD
@@ -31972,7 +31972,7 @@ bD
 bD
 cd
 bD
-vk
+v69
 ci
 ci
 bD
@@ -32033,7 +32033,7 @@ ac
 ac
 aa
 "}
-(156,1,1) = {"
+(156,1,169 = {"
 aa
 aa
 ac
@@ -32074,24 +32074,24 @@ ac
 ac
 ae
 ae
-af
-af
+a69
+a69
 ae
-af
+a69
 ae
-af
-ae
-ae
-af
-af
-af
-ae
-af
-af
-af
+a69
 ae
 ae
-af
+a69
+a69
+a69
+ae
+a69
+a69
+a69
+ae
+ae
+a69
 ac
 ac
 ac
@@ -32112,59 +32112,59 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
 ac
-af
-af
-af
-ac
-ac
-ac
-ac
-ac
-ac
-af
-af
-af
-af
-af
+a69
+a69
+a69
 ac
 ac
 ac
 ac
 ac
-af
-af
-af
+ac
+a69
+a69
+a69
+a69
+a69
+ac
+ac
+ac
+ac
+ac
+a69
+a69
+a69
 ac
 ac
 ac
 ac
 ae
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
 bD
 bD
 bD
 bD
 bD
 bl
-ag
-bK
-af
-af
+a69
+b69
+a69
+a69
 bD
 bX
 bD
@@ -32235,7 +32235,7 @@ ac
 ac
 aa
 "}
-(157,1,1) = {"
+(157,1,169 = {"
 aa
 aa
 ac
@@ -32354,16 +32354,16 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bl
-ag
+a69
 bL
 bN
 aX
@@ -32437,7 +32437,7 @@ ac
 ac
 aa
 "}
-(158,1,1) = {"
+(158,1,169 = {"
 aa
 aa
 ac
@@ -32556,26 +32556,26 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bD
-af
-af
-af
-af
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
 aX
-ag
-af
-af
-af
+a69
+a69
+a69
+a69
 cd
 cd
 cd
@@ -32639,7 +32639,7 @@ ac
 ac
 aa
 "}
-(159,1,1) = {"
+(159,1,169 = {"
 aa
 aa
 ac
@@ -32758,24 +32758,24 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bD
-af
+a69
 bM
 bO
 bM
 bO
-bY
+b69
 bD
 ca
-af
+a69
 ac
 ac
 ac
@@ -32841,7 +32841,7 @@ ac
 ac
 aa
 "}
-(160,1,1) = {"
+(160,1,169 = {"
 aa
 aa
 ac
@@ -32960,16 +32960,16 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bD
-af
+a69
 bM
 bO
 bM
@@ -32977,7 +32977,7 @@ bO
 bD
 bD
 ca
-af
+a69
 ac
 ac
 ac
@@ -33043,7 +33043,7 @@ ac
 ac
 aa
 "}
-(161,1,1) = {"
+(161,1,169 = {"
 aa
 aa
 ac
@@ -33159,19 +33159,19 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
+a69
+a69
+a69
+a69
 aC
-aY
+a69
 bD
 bD
 bD
 bD
 bD
 bD
-af
+a69
 bD
 bD
 bD
@@ -33179,7 +33179,7 @@ bD
 bD
 bD
 bD
-af
+a69
 ac
 ac
 ac
@@ -33245,7 +33245,7 @@ ac
 ac
 aa
 "}
-(162,1,1) = {"
+(162,1,169 = {"
 aa
 aa
 ac
@@ -33361,19 +33361,19 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bc
-af
+a69
 bM
 bO
 bM
@@ -33381,7 +33381,7 @@ bO
 bD
 bD
 ca
-af
+a69
 ac
 ac
 ac
@@ -33447,7 +33447,7 @@ ac
 ac
 aa
 "}
-(163,1,1) = {"
+(163,1,169 = {"
 aa
 aa
 ac
@@ -33563,19 +33563,19 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-af
+a69
 aC
-af
+a69
 bD
 bD
 bD
 bD
 bD
 bD
-af
+a69
 bM
 bO
 bM
@@ -33583,7 +33583,7 @@ bO
 bD
 bD
 ca
-af
+a69
 ac
 ac
 ac
@@ -33649,7 +33649,7 @@ ac
 ac
 aa
 "}
-(164,1,1) = {"
+(164,1,169 = {"
 aa
 aa
 ac
@@ -33765,27 +33765,27 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-aJ
+a69
 aP
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
-af
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -33851,7 +33851,7 @@ ac
 ac
 aa
 "}
-(165,1,1) = {"
+(165,1,169 = {"
 aa
 aa
 ac
@@ -33967,12 +33967,12 @@ ac
 ac
 ac
 ac
-af
+a69
 aC
 aC
-af
+a69
 aC
-af
+a69
 ac
 ac
 ac
@@ -34053,7 +34053,7 @@ ac
 ac
 aa
 "}
-(166,1,1) = {"
+(166,1,169 = {"
 aa
 aa
 ac
@@ -34169,12 +34169,12 @@ ac
 ac
 ac
 ac
-af
+a69
 aB
 aC
-af
+a69
 aC
-af
+a69
 ac
 ac
 ac
@@ -34255,7 +34255,7 @@ ac
 aa
 aa
 "}
-(167,1,1) = {"
+(167,1,169 = {"
 aa
 aa
 ac
@@ -34371,214 +34371,12 @@ ac
 ac
 ac
 ac
-af
-af
-af
-af
-af
-af
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(168,1,1) = {"
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
@@ -34659,7 +34457,7 @@ ac
 aa
 aa
 "}
-(169,1,1) = {"
+(168,1,169 = {"
 aa
 aa
 ac
@@ -34861,7 +34659,7 @@ ac
 aa
 aa
 "}
-(170,1,1) = {"
+(169,1,169 = {"
 aa
 aa
 ac
@@ -35063,7 +34861,7 @@ ac
 aa
 aa
 "}
-(171,1,1) = {"
+(170,1,169 = {"
 aa
 aa
 ac
@@ -35265,7 +35063,7 @@ ac
 aa
 aa
 "}
-(172,1,1) = {"
+(171,1,169 = {"
 aa
 aa
 ac
@@ -35467,613 +35265,7 @@ ac
 aa
 aa
 "}
-(173,1,1) = {"
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(174,1,1) = {"
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(175,1,1) = {"
-aa
-aa
-aa
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-ac
-aa
-aa
-"}
-(176,1,1) = {"
+(172,1,169 = {"
 aa
 aa
 ac
@@ -36275,7 +35467,613 @@ ac
 aa
 aa
 "}
-(177,1,1) = {"
+(173,1,169 = {"
+aa
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(174,1,169 = {"
+aa
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(175,1,169 = {"
+aa
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(176,1,169 = {"
 aa
 aa
 ac
@@ -36477,7 +36275,7 @@ ac
 aa
 aa
 "}
-(178,1,1) = {"
+(177,1,169 = {"
 aa
 aa
 ac
@@ -36679,7 +36477,7 @@ ac
 aa
 aa
 "}
-(179,1,1) = {"
+(178,1,169 = {"
 aa
 aa
 ac
@@ -36881,7 +36679,7 @@ ac
 aa
 aa
 "}
-(180,1,1) = {"
+(179,1,169 = {"
 aa
 aa
 ac
@@ -37083,7 +36881,7 @@ ac
 aa
 aa
 "}
-(181,1,1) = {"
+(180,1,169 = {"
 aa
 aa
 ac
@@ -37285,7 +37083,7 @@ ac
 aa
 aa
 "}
-(182,1,1) = {"
+(181,1,169 = {"
 aa
 aa
 ac
@@ -37487,7 +37285,7 @@ ac
 aa
 aa
 "}
-(183,1,1) = {"
+(182,1,169 = {"
 aa
 aa
 ac
@@ -37689,7 +37487,7 @@ ac
 aa
 aa
 "}
-(184,1,1) = {"
+(183,1,169 = {"
 aa
 aa
 ac
@@ -37891,7 +37689,7 @@ ac
 aa
 aa
 "}
-(185,1,1) = {"
+(184,1,169 = {"
 aa
 aa
 ac
@@ -38093,7 +37891,7 @@ ac
 aa
 aa
 "}
-(186,1,1) = {"
+(185,1,169 = {"
 aa
 aa
 ac
@@ -38295,7 +38093,7 @@ ac
 aa
 aa
 "}
-(187,1,1) = {"
+(186,1,169 = {"
 aa
 aa
 ac
@@ -38497,7 +38295,7 @@ ac
 aa
 aa
 "}
-(188,1,1) = {"
+(187,1,169 = {"
 aa
 aa
 ac
@@ -38699,7 +38497,7 @@ ac
 aa
 aa
 "}
-(189,1,1) = {"
+(188,1,169 = {"
 aa
 aa
 ac
@@ -38901,7 +38699,7 @@ ac
 aa
 aa
 "}
-(190,1,1) = {"
+(189,1,169 = {"
 aa
 aa
 ac
@@ -39103,7 +38901,7 @@ ac
 aa
 aa
 "}
-(191,1,1) = {"
+(190,1,169 = {"
 aa
 aa
 ac
@@ -39305,7 +39103,7 @@ ac
 aa
 aa
 "}
-(192,1,1) = {"
+(191,1,169 = {"
 aa
 aa
 ac
@@ -39507,7 +39305,209 @@ ac
 aa
 aa
 "}
-(193,1,1) = {"
+(192,1,169 = {"
+aa
+aa
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+aa
+aa
+"}
+(193,1,169 = {"
 aa
 aa
 aa
@@ -39709,7 +39709,7 @@ aa
 aa
 aa
 "}
-(194,1,1) = {"
+(194,1,169 = {"
 aa
 aa
 aa
@@ -39911,7 +39911,7 @@ aa
 aa
 aa
 "}
-(195,1,1) = {"
+(195,1,169 = {"
 aa
 aa
 aa
@@ -40113,7 +40113,7 @@ aa
 aa
 aa
 "}
-(196,1,1) = {"
+(196,1,169 = {"
 aa
 aa
 aa
@@ -40315,7 +40315,7 @@ aa
 aa
 aa
 "}
-(197,1,1) = {"
+(197,1,169 = {"
 aa
 aa
 aa
@@ -40517,7 +40517,7 @@ aa
 aa
 aa
 "}
-(198,1,1) = {"
+(198,1,169 = {"
 aa
 aa
 aa
@@ -40719,7 +40719,7 @@ aa
 aa
 aa
 "}
-(199,1,1) = {"
+(199,1,169 = {"
 aa
 aa
 aa
@@ -40921,7 +40921,7 @@ aa
 aa
 aa
 "}
-(200,1,1) = {"
+(200,1,169 = {"
 aa
 aa
 aa

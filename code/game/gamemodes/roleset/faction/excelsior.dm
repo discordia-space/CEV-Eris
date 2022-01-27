@@ -7,8 +7,8 @@
 	//min_cost = 10
 	//max_cost = 20
 
-	base_quantity = 2 //They're a group antag, we want a few of em
+	base_69uantity = 2 //They're a group antag, we want a few of em
 	scaling_threshold = 8
 
-	req_crew = 6
+	re69_crew = 6
 	leaders = -1 //Every excelsior spawned directly is a leader. Non leaders are those recruited during gameplay

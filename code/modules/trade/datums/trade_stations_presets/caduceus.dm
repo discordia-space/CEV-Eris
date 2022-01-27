@@ -1,6 +1,6 @@
 /datum/trade_station/caduceus
 	name_pool = list(
-		"MAV 'Caduceus'" = "Moebius Aid Vessel 'Caduceus':\n\"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you medical supplies in the mean time.\"."
+		"MAV 'Caduceus'" = "Moebius Aid69essel 'Caduceus':\n\"Hello there, we are from the Old Sol Republic. We will be leaving the system shortly but we can offer you69edical supplies in the69ean time.\"."
 	)
 	icon_states = "moe_capital"
 	forced_overmap_zone = list(
@@ -72,7 +72,7 @@
 		)
 	)
 	offer_types = list(
-		/obj/item/organ/internal/blood_vessel = offer_data("blood vessel", 100, 0),		// base price: 100
+		/obj/item/organ/internal/blood_vessel = offer_data("blood69essel", 100, 0),		// base price: 100
 		/obj/item/organ/internal/bone = offer_data("bone", 100, 0),						// base price: 100
 		/obj/item/organ/internal/muscle = offer_data("muscle", 100, 0),					// base price: 100
 		/obj/item/organ/internal/nerve = offer_data("nerve", 100, 0),					// base price: 100

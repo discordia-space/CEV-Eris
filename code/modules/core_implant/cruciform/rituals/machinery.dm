@@ -12,8 +12,8 @@
 //Cloning
 /datum/ritual/cruciform/machines/resurrection
 	name = "Resurrection"
-	phrase = "Qui fuit, et crediderunt in me non morietur in aeternum"
-	desc = "A ritual of formation of a new body in a speclially designed machine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
+	phrase = "Qui fuit, et crediderunt in69e non69orietur in aeternum"
+	desc = "A ritual of formation of a new body in a speclially designed69achine.  Deceased person's cruciform has to be placed on the scanner then a prayer is to be uttered over the apparatus."
 	var/clone_damage = 60
 
 /datum/ritual/cruciform/machines/resurrection/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -45,7 +45,7 @@
 /datum/ritual/cruciform/machines/cruciformforge
 	name = "Make cruciform"
 	phrase = "Nos nostrae initium creatores."
-	desc = "A ritual, that commands cruciform forge to make a new empty cruciform."
+	desc = "A ritual, that commands cruciform forge to69ake a new empty cruciform."
 
 /datum/ritual/cruciform/machines/cruciformforge/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/list/OBJS = get_front(user)
@@ -57,20 +57,20 @@
 		return FALSE
 
 	if(forge.working)
-		fail("[forge] is already working!", user, C)
+		fail("69forge69 is already working!", user, C)
 		return FALSE
 
 	if(forge.stat & NOPOWER)
-		fail("[forge] is off.", user, C)
+		fail("69forge69 is off.", user, C)
 		return FALSE
 
 	for(var/_material in forge.needed_material)
 		if(!(_material in forge.stored_material))
-			fail("[forge] does not have a [_material] to produce cruciform.", user, C)
+			fail("69forge69 does not have a 69_material69 to produce cruciform.", user, C)
 			return FALSE
 
-		if(forge.needed_material[_material] > forge.stored_material[_material])
-			fail("[forge] does not have enough [_material] to produce cruciform.", user, C)
+		if(forge.needed_material69_material69 > forge.stored_material69_material69)
+			fail("69forge69 does not have enough 69_material69 to produce cruciform.", user, C)
 			return FALSE
 
 	forge.produce()
@@ -93,7 +93,7 @@
 		return FALSE
 
 	if(door.stat & (BROKEN))
-		fail("[door] is off.", user, C)
+		fail("69door69 is off.", user, C)
 		return FALSE
 
 	door.locked ? door.unlock() : door.lock()
@@ -143,17 +143,17 @@
 		effect.success()
 		return TRUE
 	else
-		fail("Not enough biomatter found to repair the door, you need at least [REPAIR_DOOR_AMOUNT].", user, C)
+		fail("Not enough biomatter found to repair the door, you need at least 69REPAIR_DOOR_AMOUNT69.", user, C)
 		return FALSE
 
-////////////////////////BIOMATTER MANIPULATION MULTI MACHINES RITUALS
+////////////////////////BIOMATTER69ANIPULATION69ULTI69ACHINES RITUALS
 
 
-///////////////>Biogenerator manipulation rite</////////////////
+///////////////>Biogenerator69anipulation rite</////////////////
 /datum/ritual/cruciform/machines/power_biogen_awake
 	name = "Power biogenerator song"
 	phrase = "Dixitque Deus: Fiat lux. Et facta est lux.  Et lux in tenebris lucet, et renebrae eam non comprehenderunt."
-	desc = "A ritual, that can activate or deactivate power biogenerator machine. You should be nearby its metrics screen."
+	desc = "A ritual, that can activate or deactivate power biogenerator69achine. You should be nearby its69etrics screen."
 
 
 /datum/ritual/cruciform/machines/power_biogen_awake/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
@@ -182,15 +182,15 @@
 	if(bioreactor_screen && bioreactor_screen.MS)
 		var/datum/multistructure/bioreactor/bioreactor = bioreactor_screen.MS
 		//to prevent any copypaste
-		//let's make it a bit better
+		//let's69ake it a bit better
 		var/success = perform_command(bioreactor)
 		return success
 
-	fail("You should be near bioreactor metrics screen.", H, C)
+	fail("You should be near bioreactor69etrics screen.", H, C)
 	return FALSE
 
 
-//There we perform any manipulations with our bioreactor
+//There we perform any69anipulations with our bioreactor
 //Since console finder code is similar for both rituals
 /datum/ritual/cruciform/machines/bioreactor/proc/perform_command(datum/multistructure/bioreactor/bioreactor)
 	return
@@ -230,4 +230,4 @@
 	bioreactor.toggle_platform_door()
 	var/obj/machinery/multistructure/bioreactor_part/console/bioreactor_console = bioreactor.metrics_screen
 	bioreactor_console.ping()
-	bioreactor_console.visible_message("You hear a loud BANG. Then pause... Chamber's door mechanism start working quietly and softly.")
+	bioreactor_console.visible_message("You hear a loud BANG. Then pause... Chamber's door69echanism start working quietly and softly.")

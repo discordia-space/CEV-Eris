@@ -52,25 +52,25 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/stat_entry(msg)
 	msg += "\nC:{"
-	msg += "PN:[round(cost_pipenets,1)]|"
-	msg += "AM:[round(cost_atmos_machinery,1)]"
-	msg += "TC:[round(cost_tiles_curr,1)]|"
-	msg += "TD:[round(cost_tiles_def,1)]|"
-	msg += "E:[round(cost_edges,1)]|"
-	msg += "FZ:[round(cost_fire_zones,1)]|"
-	msg += "HS:[round(cost_hotspots,1)]|"
-	msg += "Z:[round(cost_zones,1)]|"
+	msg += "PN:69round(cost_pipenets,1)69|"
+	msg += "AM:69round(cost_atmos_machinery,1)69"
+	msg += "TC:69round(cost_tiles_curr,1)69|"
+	msg += "TD:69round(cost_tiles_def,1)69|"
+	msg += "E:69round(cost_edges,1)69|"
+	msg += "FZ:69round(cost_fire_zones,1)69|"
+	msg += "HS:69round(cost_hotspots,1)69|"
+	msg += "Z:69round(cost_zones,1)69|"
 	msg += "} "
-	msg += "PN:[networks.len]|"
-	msg += "AM:[GLOB.atmos_machinery.len]|"
-	msg += "TTU:[tiles_to_update.len]|"
-	msg += "DT:[deferred_tiles.len]|"
-	msg += "E:[active_edges.len]|"
-	msg += "FZ:[active_fire_zones.len]"
-	msg += "HS:[active_hotspots.len]|"
-	msg += "ZTU:[zones_to_update.len]|"
-	msg += "E:[edges.len]|"
-	msg += "Z:[zones.len]|"
+	msg += "PN:69networks.len69|"
+	msg += "AM:69GLOB.atmos_machinery.len69|"
+	msg += "TTU:69tiles_to_update.len69|"
+	msg += "DT:69deferred_tiles.len69|"
+	msg += "E:69active_edges.len69|"
+	msg += "FZ:69active_fire_zones.len69"
+	msg += "HS:69active_hotspots.len69|"
+	msg += "ZTU:69zones_to_update.len69|"
+	msg += "E:69edges.len69|"
+	msg += "Z:69zones.len69|"
 	..(msg)
 
 
@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(air)
 
 	if (currentpart == SSAIR_PIPENETS || !resumed)
 		process_pipenets(resumed)
-		cost_pipenets = MC_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_pipenets =69C_AVERAGE(cost_pipenets, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -95,7 +95,7 @@ SUBSYSTEM_DEF(air)
 	if(currentpart == SSAIR_ATMOSMACHINERY)
 		timer = world.tick_usage
 		process_atmos_machinery(resumed)
-		cost_atmos_machinery = MC_AVERAGE(cost_atmos_machinery, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_atmos_machinery =69C_AVERAGE(cost_atmos_machinery, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -103,14 +103,14 @@ SUBSYSTEM_DEF(air)
 
 	// defer updating of self-zone-blocked turfs until after all other turfs have been updated.
 	// this hopefully ensures that non-self-zone-blocked turfs adjacent to self-zone-blocked ones
-	// have valid zones when the self-zone-blocked turfs update.
+	// have69alid zones when the self-zone-blocked turfs update.
 
 	// This ensures that doorways don't form their own single-turf zones, since doorways are self-zone-blocked and
-	// can merge with an adjacent zone, whereas zones that are formed on adjacent turfs cannot merge with the doorway.
+	// can69erge with an adjacent zone, whereas zones that are formed on adjacent turfs cannot69erge with the doorway.
 	if (currentpart == SSAIR_TILES_CUR)
 		timer = world.tick_usage
 		process_tiles_current(resumed)
-		cost_tiles_curr = MC_AVERAGE(cost_tiles_curr, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_tiles_curr =69C_AVERAGE(cost_tiles_curr, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -119,7 +119,7 @@ SUBSYSTEM_DEF(air)
 	if (currentpart == SSAIR_TILES_DEF)
 		timer = world.tick_usage
 		process_tiles_deferred(resumed)
-		cost_tiles_def = MC_AVERAGE(cost_tiles_def, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_tiles_def =69C_AVERAGE(cost_tiles_def, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(air)
 	if (currentpart == SSAIR_EDGES)
 		timer = world.tick_usage
 		process_edges(resumed)
-		cost_edges = MC_AVERAGE(cost_edges, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_edges =69C_AVERAGE(cost_edges, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -139,7 +139,7 @@ SUBSYSTEM_DEF(air)
 	if (currentpart == SSAIR_FIRE_ZONES)
 		timer = world.tick_usage
 		process_fire_zones(resumed)
-		cost_fire_zones = MC_AVERAGE(cost_fire_zones, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_fire_zones =69C_AVERAGE(cost_fire_zones, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -149,7 +149,7 @@ SUBSYSTEM_DEF(air)
 	if (currentpart == SSAIR_HOTSPOTS)
 		timer = world.tick_usage
 		process_hotspots(resumed)
-		cost_hotspots = MC_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_hotspots =69C_AVERAGE(cost_hotspots, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -159,7 +159,7 @@ SUBSYSTEM_DEF(air)
 	if (currentpart == SSAIR_ZONES)
 		timer = world.tick_usage
 		process_zones(resumed)
-		cost_zones = MC_AVERAGE(cost_zones, TICK_DELTA_TO_MS(world.tick_usage - timer))
+		cost_zones =69C_AVERAGE(cost_zones, TICK_DELTA_TO_MS(world.tick_usage - timer))
 		if(state != SS_RUNNING)
 			return
 		resumed = 0
@@ -173,7 +173,7 @@ SUBSYSTEM_DEF(air)
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
-		var/datum/thing = currentrun[currentrun.len]
+		var/datum/thing = currentrun69currentrun.len69
 		currentrun.len--
 		if(!QDELETED(thing))
 			thing.Process()
@@ -189,7 +189,7 @@ SUBSYSTEM_DEF(air)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)
-		var/obj/machinery/M = currentrun[currentrun.len]
+		var/obj/machinery/M = currentrun69currentrun.len69
 		currentrun.len--
 		if(QDELETED(M) || (M.Process(seconds) == PROCESS_KILL))
 			GLOB.atmos_machinery.Remove(M)
@@ -198,7 +198,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_tiles_current(resumed = 0)
 	while (tiles_to_update.len)
-		var/turf/T = tiles_to_update[tiles_to_update.len]
+		var/turf/T = tiles_to_update69tiles_to_update.len69
 		tiles_to_update.len--
 
 		// Check if the turf is self-zone-blocked
@@ -221,7 +221,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_tiles_deferred(resumed = 0)
 	while (deferred_tiles.len)
-		var/turf/T = deferred_tiles[deferred_tiles.len]
+		var/turf/T = deferred_tiles69deferred_tiles.len69
 		deferred_tiles.len--
 
 		T.update_air_properties()
@@ -241,7 +241,7 @@ SUBSYSTEM_DEF(air)
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while (currentrun.len)
-		var/connection_edge/E = currentrun[currentrun.len]
+		var/connection_edge/E = currentrun69currentrun.len69
 		currentrun.len--
 		E.tick()
 		if (MC_TICK_CHECK)
@@ -253,7 +253,7 @@ SUBSYSTEM_DEF(air)
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while (currentrun.len)
-		var/zone/Z = currentrun[currentrun.len]
+		var/zone/Z = currentrun69currentrun.len69
 		currentrun.len--
 		Z.process_fire()
 		if (MC_TICK_CHECK)
@@ -265,7 +265,7 @@ SUBSYSTEM_DEF(air)
 	// Cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	while (currentrun.len)
-		var/obj/fire/F = currentrun[currentrun.len]
+		var/obj/fire/F = currentrun69currentrun.len69
 		currentrun.len--
 		F.Process()
 		if (MC_TICK_CHECK)
@@ -273,7 +273,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/process_zones(resumed = 0)
 	while (zones_to_update.len)
-		var/zone/Z = zones_to_update[zones_to_update.len]
+		var/zone/Z = zones_to_update69zones_to_update.len69
 		zones_to_update.len--
 		Z.tick()
 		Z.needs_update = FALSE
@@ -285,7 +285,7 @@ SUBSYSTEM_DEF(air)
 /datum/controller/subsystem/air/proc/setup_allturfs()
 	var/list/turfs_to_init = block(locate(1, 1, 1), locate(world.maxx, world.maxy, world.maxz))
 
-	map_init_levels = world.maxz // we simply set current max Z level (later on this value will be increased by maploading process).
+	map_init_levels = world.maxz // we simply set current69ax Z level (later on this69alue will be increased by69aploading process).
 
 	for(var/turf/simulated/T in turfs_to_init)
 		T.update_air_properties()
@@ -297,7 +297,7 @@ SUBSYSTEM_DEF(air)
 		CHECK_TICK
 
 //this can't be done with setup_atmos_machinery() because
-//	all atmos machinery has to initalize before the first
+//	all atmos69achinery has to initalize before the first
 //	pipenet can be built.
 /datum/controller/subsystem/air/proc/setup_pipenets()
 	for (var/obj/machinery/atmospherics/AM in GLOB.atmos_machinery)
@@ -319,7 +319,7 @@ SUBSYSTEM_DEF(air)
 
 /datum/controller/subsystem/air/proc/add_zone(zone/z)
 	zones += z
-	z.name = "Zone [next_id++]"
+	z.name = "Zone 69next_id++69"
 	mark_zone_update(z)
 
 /datum/controller/subsystem/air/proc/remove_zone(zone/z)
@@ -416,9 +416,9 @@ SUBSYSTEM_DEF(air)
 	if(T.needs_air_update)
 		return
 
-	if(map_loading && T.z > map_init_levels) // we don't want to interupt SS process on other levels
+	if(map_loading && T.z >69ap_init_levels) // we don't want to interupt SS process on other levels
 		if(queued_for_update)
-			queued_for_update[T] = T
+			queued_for_update69T69 = T
 	else
 		tiles_to_update += T
 		#ifdef ZASDBG
@@ -476,9 +476,9 @@ SUBSYSTEM_DEF(air)
 	#ifdef ZASDBG
 	if(istype(E, /connection_edge/zone))
 		var/connection_edge/zone/ZE = E
-		log_debug("ZASDBG: Active edge! Areas: [get_area(pick(ZE.A.contents))] / [get_area(pick(ZE.B.contents))]")
+		log_debug("ZASDBG: Active edge! Areas: 69get_area(pick(ZE.A.contents))69 / 69get_area(pick(ZE.B.contents))69")
 	else
-		log_debug("ZASDBG: Active edge! Area: [get_area(pick(E.A.contents))]")
+		log_debug("ZASDBG: Active edge! Area: 69get_area(pick(E.A.contents))69")
 	#endif
 
 /datum/controller/subsystem/air/proc/equivalent_pressure(zone/A, zone/B)

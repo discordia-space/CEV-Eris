@@ -1,10 +1,10 @@
-// MANIPULATION TREE
+//69ANIPULATION TREE
 //
-// Abilities in this tree allow the AI to physically manipulate systems around the station.
+// Abilities in this tree allow the AI to physically69anipulate systems around the station.
 // T1 - Electrical Pulse - Sends out pulse that breaks some lights and sometimes even APCs. This can actually break the AI's APC so be careful!
-// T2 - Hack Camera - Allows the AI to hack a camera. Deactivated areas may be reactivated, and functional cameras can be upgraded.
-// T3 - Emergency Forcefield - Allows the AI to project 1 tile forcefield that blocks movement and air flow. Forcefield�dissipates over time. It is also very susceptible to energetic weaponry.
-// T4 - Machine Overload - Detonates machine of choice in a minor explosion. Two of these are usually enough to kill or K/O someone.
+// T2 - Hack Camera - Allows the AI to hack a camera. Deactivated areas69ay be reactivated, and functional cameras can be upgraded.
+// T3 - Emergency Forcefield - Allows the AI to project 1 tile forcefield that blocks69ovement and air flow. Forcefield�dissipates over time. It is also69ery susceptible to energetic weaponry.
+// T4 -69achine Overload - Detonates69achine of choice in a69inor explosion. Two of these are usually enough to kill or K/O someone.
 
 
 // BEGIN RESEARCH DATUMS
@@ -36,7 +36,7 @@
 	name = "Machine Overload"
 
 // END RESEARCH DATUMS
-// BEGIN ABILITY VERBS
+// BEGIN ABILITY69ERBS
 
 /datum/game_mode/malfunction/verb/electrical_pulse()
 	set name = "Electrical Pulse"
@@ -50,7 +50,7 @@
 	for(var/obj/machinery/power/apc/AP in GLOB.apc_list)
 		if(prob(5))
 			AP.overload_lighting()
-		if(prob(1) && prob(1)) // Very very small chance to actually destroy the APC.
+		if(prob(1) && prob(1)) //69ery69ery small chance to actually destroy the APC.
 			AP.set_broken()
 
 
@@ -71,7 +71,7 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/action = input("Select required action: ") in list("Reset", "Add X-Ray", "Add Motion Sensor", "Add EMP Shielding")
+	var/action = input("Select re69uired action: ") in list("Reset", "Add X-Ray", "Add69otion Sensor", "Add EMP Shielding")
 	if(!action || !target)
 		return
 
@@ -89,16 +89,16 @@
 			else if(ability_pay(user, price))
 				target.upgradeXRay()
 				target.reset_wires()
-				to_chat(user, "X-Ray camera module enabled.")
+				to_chat(user, "X-Ray camera69odule enabled.")
 				return
-		if("Add Motion Sensor")
+		if("Add69otion Sensor")
 			if(target.isMotion())
-				to_chat(user, "Camera already has Motion Sensor function.")
+				to_chat(user, "Camera already has69otion Sensor function.")
 				return
 			else if(ability_pay(user, price))
 				target.upgradeMotion()
 				target.reset_wires()
-				to_chat(user, "Motion Sensor camera module enabled.")
+				to_chat(user, "Motion Sensor camera69odule enabled.")
 				return
 		if("Add EMP Shielding")
 			if(target.isEmpProof())
@@ -107,7 +107,7 @@
 			else if(ability_pay(user, price))
 				target.upgradeEmpProof()
 				target.reset_wires()
-				to_chat(user, "EMP Shielding camera module enabled.")
+				to_chat(user, "EMP Shielding camera69odule enabled.")
 				return
 
 
@@ -132,7 +132,7 @@
 
 /datum/game_mode/malfunction/verb/machine_overload(obj/machinery/M in GLOB.machines)
 	set name = "Machine Overload"
-	set desc = "400 CPU - Causes cyclic short-circuit in machine, resulting in weak explosion after some time."
+	set desc = "400 CPU - Causes cyclic short-circuit in69achine, resulting in weak explosion after some time."
 	set category = "Software"
 	var/price = 400
 	var/mob/living/silicon/ai/user = usr
@@ -140,23 +140,23 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/obj/machinery/power/N = M
+	var/obj/machinery/power/N =69
 
 	var/explosion_intensity = 2
 
-	// Verify if we can overload the target, if yes, calculate explosion strength. Some things have higher explosion strength than others, depending on charge(APCs, SMESs)
+	//69erify if we can overload the target, if yes, calculate explosion strength. Some things have higher explosion strength than others, depending on charge(APCs, SMESs)
 	if(N && istype(N)) // /obj/machinery/power first, these create bigger explosions due to direct powernet connection
-		if(!istype(N, /obj/machinery/power/apc) && !istype(N, /obj/machinery/power/smes/buildable) && (!N.powernet || !N.powernet.avail)) // Directly connected machine which is not an APC or SMES. Either it has no powernet connection or it's powernet does not have enough power to overload
-			to_chat(user, SPAN_NOTICE("ERROR: Low network voltage. Unable to overload. Increase network power level and try again."))
+		if(!istype(N, /obj/machinery/power/apc) && !istype(N, /obj/machinery/power/smes/buildable) && (!N.powernet || !N.powernet.avail)) // Directly connected69achine which is not an APC or SMES. Either it has no powernet connection or it's powernet does not have enough power to overload
+			to_chat(user, SPAN_NOTICE("ERROR: Low network69oltage. Unable to overload. Increase network power level and try again."))
 			return
 		else if (istype(N, /obj/machinery/power/apc)) // APC. Explosion is increased by available cell power.
 			var/obj/machinery/power/apc/A = N
 			if(A.cell && A.cell.charge)
 				explosion_intensity = 4 + round(A.cell.charge / 2000) // Explosion is increased by 1 for every 2k charge in cell
 			else
-				to_chat(user, SPAN_NOTICE("ERROR: APC Malfunction - Cell depleted or removed. Unable to overload."))
+				to_chat(user, SPAN_NOTICE("ERROR: APC69alfunction - Cell depleted or removed. Unable to overload."))
 				return
-		else if (istype(N, /obj/machinery/power/smes/buildable)) // SMES. These explode in a very very very big boom. Similar to magnetic containment failure when messing with coils.
+		else if (istype(N, /obj/machinery/power/smes/buildable)) // SMES. These explode in a69ery69ery69ery big boom. Similar to69agnetic containment failure when69essing with coils.
 			var/obj/machinery/power/smes/buildable/S = N
 			if(S.charge && S.RCon)
 				explosion_intensity = 4 + round(S.charge / 1000000)
@@ -165,22 +165,22 @@
 				if(!S.charge)
 					to_chat(user, SPAN_NOTICE("ERROR: SMES Depleted. Unable to overload. Please charge SMES unit and try again."))
 				else
-					to_chat(user, SPAN_NOTICE("ERROR: SMES RCon error - Unable to reach destination. Please verify wire connection."))
+					to_chat(user, SPAN_NOTICE("ERROR: SMES RCon error - Unable to reach destination. Please69erify wire connection."))
 				return
-	else if(M && istype(M)) // Not power machinery, so it's a regular machine instead. These have weak explosions.
+	else if(M && istype(M)) // Not power69achinery, so it's a regular69achine instead. These have weak explosions.
 		if(!M.use_power) // Not using power at all
 			to_chat(user, SPAN_NOTICE("ERROR: No power grid connection. Unable to overload."))
 			return
 		if(M.inoperable()) // Not functional
-			to_chat(user, SPAN_NOTICE("ERROR: Unknown error. Machine is probably damaged or power supply is nonfunctional."))
+			to_chat(user, SPAN_NOTICE("ERROR: Unknown error.69achine is probably damaged or power supply is nonfunctional."))
 			return
-	else // Not a machine at all (what the hell is this doing in Machines list anyway??)
-		to_chat(user, SPAN_NOTICE("ERROR: Unable to overload - target is not a machine."))
+	else // Not a69achine at all (what the hell is this doing in69achines list anyway??)
+		to_chat(user, SPAN_NOTICE("ERROR: Unable to overload - target is not a69achine."))
 		return
 
-	explosion_intensity = min(explosion_intensity, 12) // 3, 6, 12 explosion cap
+	explosion_intensity =69in(explosion_intensity, 12) // 3, 6, 12 explosion cap
 
-	M.use_power(2000000) // Major power spike, few of these will completely burn APC's cell - equivalent of 2GJ of power.
+	M.use_power(2000000) //69ajor power spike, few of these will completely burn APC's cell - e69uivalent of 2GJ of power.
 
 	// Trigger a powernet alarm. Careful engineers will probably notice something is going on.
 	var/area/temp_area = get_area(M)
@@ -193,7 +193,7 @@
 			if(temp_apc.cell)
 				temp_apc.cell.maxcharge -= between(0, (temp_apc.cell.maxcharge/2) + 500, temp_apc.cell.maxcharge)
 				if(temp_apc.cell.maxcharge < 100) // That's it, you busted the APC cell completely. Break the APC and completely destroy the cell.
-					qdel(temp_apc.cell)
+					69del(temp_apc.cell)
 					temp_apc.set_broken()
 
 
@@ -204,6 +204,6 @@
 	spawn(50)
 		explosion(get_turf(M), round(explosion_intensity/4),round(explosion_intensity/2),round(explosion_intensity),round(explosion_intensity * 2))
 		if(M)
-			qdel(M)
+			69del(M)
 
-// END ABILITY VERBS
+// END ABILITY69ERBS

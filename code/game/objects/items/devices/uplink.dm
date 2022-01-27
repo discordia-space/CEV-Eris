@@ -2,18 +2,18 @@
 
 /*
 
-A list of items and costs is stored under the datum of every game mode, alongside the number of crystals, and the welcoming message.
+A list of items and costs is stored under the datum of every game69ode, alongside the number of crystals, and the welcoming69essage.
 
 */
 
 /obj/item/device/uplink
 	spawn_blacklisted = TRUE
-	var/welcome = "Welcome, Operative"	// Welcoming menu message
+	var/welcome = "Welcome, Operative"	// Welcoming69enu69essage
 	var/uses 							// Numbers of crystals
 	var/list/ItemsCategory				// List of categories with lists of items
 	var/list/ItemsReference				// List of references with an associated item
 	var/list/nanoui_items				// List of items for NanoUI use
-	var/nanoui_menu = 0					// The current menu we are in
+	var/nanoui_menu = 0					// The current69enu we are in
 	var/list/nanoui_data = new 			// Additional data for NanoUI use
 
 	var/list/purchase_log = new
@@ -24,7 +24,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 
 	var/list/linked_implants = list()
 
-	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per minute.
+	var/passive_gain = 0.1 //Number of telecrystals this uplink gains per69inute.
 	//The total uses is only increased when this is a whole number
 	var/gain_progress = 0
 
@@ -33,7 +33,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /obj/item/device/uplink/nano_host()
 	return loc
 
-/obj/item/device/uplink/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
+/obj/item/device/uplink/New(var/location,69ar/datum/mind/owner,69ar/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	..()
 	src.uplink_owner = owner
 	purchase_log = list()
@@ -46,7 +46,7 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	return ..()
 
 
-//Passive TC gain, triggers once per minute as long as the owner is alive and active
+//Passive TC gain, triggers once per69inute as long as the owner is alive and active
 /obj/item/device/uplink/proc/gain_TC()
 	addtimer(CALLBACK(src, .obj/item/device/uplink/proc/gain_TC), 600)
 	if (!uplink_owner || !uplink_owner.current)
@@ -66,13 +66,13 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // HIDDEN UPLINK - Can be stored in anything but the host item has to have a trigger for it.
 /* How to create an uplink in 3 easy steps!
 
- 1. All obj/item 's have a hidden_uplink var. By default it's null. Give the item one with "new(src)", it must be in it's contents. Feel free to add "uses".
+ 1. All obj/item 's have a hidden_uplink69ar. By default it's null. Give the item one with "new(src)", it69ust be in it's contents. Feel free to add "uses".
 
- 2. Code in the triggers. Use check_trigger for this, I recommend closing the item's menu with "usr << browse(null, "window=windowname") if it returns true.
- The var/value is the value that will be compared with the var/target. If they are equal it will activate the menu.
+ 2. Code in the triggers. Use check_trigger for this, I recommend closing the item's69enu with "usr << browse(null, "window=windowname") if it returns true.
+ The69ar/value is the69alue that will be compared with the69ar/target. If they are e69ual it will activate the69enu.
 
- 3. If you want the menu to stay until the users locks his uplink, add an active_uplink_check(mob/user as mob) in your interact/attack_hand proc.
- Then check if it's true, if true return. This will stop the normal menu appearing and will instead show the uplink menu.
+ 3. If you want the69enu to stay until the users locks his uplink, add an active_uplink_check(mob/user as69ob) in your interact/attack_hand proc.
+ Then check if it's true, if true return. This will stop the normal69enu appearing and will instead show the uplink69enu.
 */
 
 /obj/item/device/uplink/hidden
@@ -80,34 +80,34 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	desc = "There is something wrong if you're examining this."
 	var/active = 0
 	var/datum/uplink_category/category 	= 0		// The current category we are in
-	var/exploit_id								// Id of the current exploit record we are viewing
+	var/exploit_id								// Id of the current exploit record we are69iewing
 	var/trigger_code
 	var/emplaced = FALSE
 
 
-// The hidden uplink MUST be inside an obj/item's contents.
-/obj/item/device/uplink/hidden/New(var/location, var/datum/mind/owner, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
+// The hidden uplink69UST be inside an obj/item's contents.
+/obj/item/device/uplink/hidden/New(var/location,69ar/datum/mind/owner,69ar/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
 	spawn(2)
 		if(!istype(src.loc, /obj))
-			qdel(src)
+			69del(src)
 	..()
 	nanoui_data = list()
 	update_nano_data()
 
-// Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink menu, if activated.
+// Toggles the uplink on and off. Normally this will bypass the item's normal functions and go to the uplink69enu, if activated.
 /obj/item/device/uplink/hidden/proc/toggle()
 	active = !active
 
 // Directly trigger the uplink. Turn on if it isn't already.
-/obj/item/device/uplink/hidden/proc/trigger(mob/user as mob)
+/obj/item/device/uplink/hidden/proc/trigger(mob/user as69ob)
 	if(!active)
 		toggle()
 	interact(user)
 
-// Checks to see if the value meets the target. Like a frequency being a contractor_frequency, in order to unlock a headset.
+// Checks to see if the69alue69eets the target. Like a fre69uency being a contractor_fre69uency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
-// current item's menu.
-/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value)
+// current item's69enu.
+/obj/item/device/uplink/hidden/proc/check_trigger(mob/user as69ob,69ar/value)
 	if(value == trigger_code)
 		trigger(user)
 		return 1
@@ -116,9 +116,9 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 /*
 	NANO UI FOR UPLINK WOOP WOOP
 */
-/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/device/uplink/hidden/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
 	var/title = "Remote Uplink"
-	var/data[0]
+	var/data69069
 	var/list/implants_in_list = list()
 	for(var/item in linked_implants)
 		var/obj/item/implant/explosive/E = item
@@ -128,18 +128,18 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 			continue
 		implants_in_list += list(
 			list(
-				"location" = "([T.x]:[T.y]:[T.z])",
-				"implant" = "\ref[item]",
+				"location" = "(69T.x69:69T.y69:69T.z69)",
+				"implant" = "\ref69item69",
 				"holder" = E.loc,
 				"death_react" = E.death_react
 			)
 		)
 
-	data["list_of_implants"] = implants_in_list
-	data["welcome"] = welcome
-	data["crystals"] = uses
-	data["menu"] = nanoui_menu
-	data["has_contracts"] = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)\
+	data69"list_of_implants"69 = implants_in_list
+	data69"welcome"69 = welcome
+	data69"crystals"69 = uses
+	data69"menu"69 = nanoui_menu
+	data69"has_contracts"69 = uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)\
 	                                     : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)
 	data += nanoui_data
 
@@ -164,40 +164,40 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 		return 1
 
 	var/mob/user = usr
-	if(href_list["buy_item"])
-		var/datum/uplink_item/UI = (locate(href_list["buy_item"]) in uplink.items)
+	if(href_list69"buy_item"69)
+		var/datum/uplink_item/UI = (locate(href_list69"buy_item"69) in uplink.items)
 		UI.buy(src, usr)
-	else if(href_list["lock"])
+	else if(href_list69"lock"69)
 		toggle()
 		var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
 		ui?.close()
-	else if(href_list["return"])
+	else if(href_list69"return"69)
 		nanoui_menu = round(nanoui_menu/10)
-	else if(href_list["menu"])
-		nanoui_menu = text2num(href_list["menu"])
-		if(href_list["id"])
-			exploit_id = href_list["id"]
-		if(href_list["category"])
-			category = locate(href_list["category"]) in uplink.categories
+	else if(href_list69"menu"69)
+		nanoui_menu = text2num(href_list69"menu"69)
+		if(href_list69"id"69)
+			exploit_id = href_list69"id"69
+		if(href_list69"category"69)
+			category = locate(href_list69"category"69) in uplink.categories
 
-	if(href_list["detonate_implant"])
-		var/obj/item/implant/explosive/IM = locate(href_list["detonate_implant"]) in linked_implants
+	if(href_list69"detonate_implant"69)
+		var/obj/item/implant/explosive/IM = locate(href_list69"detonate_implant"69) in linked_implants
 		if(IM)
 			src.linked_implants -= IM
 			IM.activate()
 
-	else if(href_list["extract_implant"])
-		var/obj/item/implant/explosive/IM = locate(href_list["extract_implant"]) in linked_implants
+	else if(href_list69"extract_implant"69)
+		var/obj/item/implant/explosive/IM = locate(href_list69"extract_implant"69) in linked_implants
 		if(IM && IM.implanted)
 			IM.removal_authorized = TRUE
 			IM.uninstall()
 
-	else if(href_list["configure_implant"])
-		var/obj/item/implant/explosive/IM = locate(href_list["configure_implant"]) in linked_implants
+	else if(href_list69"configure_implant"69)
+		var/obj/item/implant/explosive/IM = locate(href_list69"configure_implant"69) in linked_implants
 		if(IM && IM.implanted)
 			IM.configure()
 
-	else if(href_list["detonate_all"])
+	else if(href_list69"detonate_all"69)
 		for(var/implant in linked_implants)
 			var/obj/item/implant/explosive/IM = implant
 			if(istype(IM))
@@ -208,15 +208,15 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 	return 1
 
 /obj/item/device/uplink/hidden/proc/update_nano_data()
-	nanoui_data["menu"] = nanoui_menu
+	nanoui_data69"menu"69 = nanoui_menu
 	if(nanoui_menu == 0)
-		var/categories[0]
+		var/categories69069
 		for(var/datum/uplink_category/category in uplink.categories)
 			if(category.can_view(src))
-				categories[++categories.len] = list("name" = category.name, "ref" = "\ref[category]")
-		nanoui_data["categories"] = categories
+				categories69++categories.len69 = list("name" = category.name, "ref" = "\ref69category69")
+		nanoui_data69"categories"69 = categories
 	else if(nanoui_menu == 1)
-		var/items[0]
+		var/items69069
 		for(var/datum/uplink_item/item in category.items)
 
 			if(item.can_view(src))
@@ -225,32 +225,32 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 					cost = "Free"
 				else if(!cost)
 					cost = "???"
-				items[++items.len] = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref[item]")
+				items69++items.len69 = list("name" = item.name, "description" = replacetext(item.description(), "\n", "<br>"), "can_buy" = item.can_buy(src), "cost" = cost, "ref" = "\ref69item69")
 
-		nanoui_data["items"] = items
+		nanoui_data69"items"69 = items
 	else if(nanoui_menu == 2)
-		var/permanentData[0]
+		var/permanentData69069
 		for(var/datum/data/record/L in sortRecord(data_core.locked))
-			permanentData[++permanentData.len] = list(Name = L.fields["name"],"id" = L.fields["id"])
-		nanoui_data["exploit_records"] = permanentData
+			permanentData69++permanentData.len69 = list(Name = L.fields69"name"69,"id" = L.fields69"id"69)
+		nanoui_data69"exploit_records"69 = permanentData
 	else if(nanoui_menu == 21)
-		nanoui_data["exploit_exists"] = 0
+		nanoui_data69"exploit_exists"69 = 0
 
 		for(var/datum/data/record/L in data_core.locked)
-			if(L.fields["id"] == exploit_id)
-				nanoui_data["exploit"] = list()  // Setting this to equal L.fields passes it's variables that are lists as reference instead of value.
-								 // We trade off being able to automatically add shit for more control over what gets passed to json
+			if(L.fields69"id"69 == exploit_id)
+				nanoui_data69"exploit"69 = list()  // Setting this to e69ual L.fields passes it's69ariables that are lists as reference instead of69alue.
+								 // We trade off being able to automatically add shit for69ore control over what gets passed to json
 								 // and if it's sanitized for html.
-				nanoui_data["exploit"]["nanoui_exploit_record"] = html_encode(L.fields["exploit_record"])                         		// Change stuff into html
-				nanoui_data["exploit"]["nanoui_exploit_record"] = replacetext(nanoui_data["exploit"]["nanoui_exploit_record"], "\n", "<br>")    // change line breaks into <br>
-				nanoui_data["exploit"]["name"] =  html_encode(L.fields["name"])
-				nanoui_data["exploit"]["sex"] =  html_encode(L.fields["sex"])
-				nanoui_data["exploit"]["age"] =  html_encode(L.fields["age"])
-				nanoui_data["exploit"]["species"] =  html_encode(L.fields["species"])
-				nanoui_data["exploit"]["rank"] =  html_encode(L.fields["rank"])
-				nanoui_data["exploit"]["fingerprint"] =  html_encode(L.fields["fingerprint"])
+				nanoui_data69"exploit"6969"nanoui_exploit_record"69 = html_encode(L.fields69"exploit_record"69)                         		// Change stuff into html
+				nanoui_data69"exploit"6969"nanoui_exploit_record"69 = replacetext(nanoui_data69"exploit"6969"nanoui_exploit_record"69, "\n", "<br>")    // change line breaks into <br>
+				nanoui_data69"exploit"6969"name"69 =  html_encode(L.fields69"name"69)
+				nanoui_data69"exploit"6969"sex"69 =  html_encode(L.fields69"sex"69)
+				nanoui_data69"exploit"6969"age"69 =  html_encode(L.fields69"age"69)
+				nanoui_data69"exploit"6969"species"69 =  html_encode(L.fields69"species"69)
+				nanoui_data69"exploit"6969"rank"69 =  html_encode(L.fields69"rank"69)
+				nanoui_data69"exploit"6969"fingerprint"69 =  html_encode(L.fields69"fingerprint"69)
 
-				nanoui_data["exploit_exists"] = 1
+				nanoui_data69"exploit_exists"69 = 1
 				break
 	else if(nanoui_menu == 3 && (uplink_owner ? player_is_antag_in_list(uplink_owner, ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY) : !!length(owner_roles & ROLES_CONTRACT | ROLES_CONTRACT_VIEWONLY)))
 		var/list/available_contracts = list()
@@ -266,14 +266,14 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 				available_contracts.Add(entry)
 			else
 				completed_contracts.Add(entry)
-		nanoui_data["available_contracts"] = available_contracts
-		nanoui_data["completed_contracts"] = completed_contracts
+		nanoui_data69"available_contracts"69 = available_contracts
+		nanoui_data69"completed_contracts"69 = completed_contracts
 
 // I placed this here because of how relevant it is.
 // You place this in your uplinkable item to check if an uplink is active or not.
-// If it is, it will display the uplink menu and return 1, else it'll return false.
-// If it returns true, I recommend closing the item's normal menu with "user << browse(null, "window=name")"
-/obj/item/proc/active_uplink_check(mob/user as mob)
+// If it is, it will display the uplink69enu and return 1, else it'll return false.
+// If it returns true, I recommend closing the item's normal69enu with "user << browse(null, "window=name")"
+/obj/item/proc/active_uplink_check(mob/user as69ob)
 	// Activates the uplink if it's active
 	if(src.hidden_uplink)
 		if(src.hidden_uplink.active)
@@ -284,43 +284,43 @@ A list of items and costs is stored under the datum of every game mode, alongsid
 // PRESET UPLINKS
 // A collection of preset uplinks.
 //
-// Includes normal radio uplink, multitool uplink,
+// Includes normal radio uplink,69ultitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
 
-/obj/item/device/radio/uplink/New(loc, mind, crystal_amount)
+/obj/item/device/radio/uplink/New(loc,69ind, crystal_amount)
 	..(loc)
-	hidden_uplink = new(src, mind, crystal_amount)
+	hidden_uplink = new(src,69ind, crystal_amount)
 	icon_state = "radio"
 
 /obj/item/device/radio/uplink/attack_self(mob/user)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/tool/multitool/uplink/New(loc, mind, crystal_amount)
+/obj/item/tool/multitool/uplink/New(loc,69ind, crystal_amount)
 	..(loc)
-	hidden_uplink = new(src, mind, crystal_amount)
+	hidden_uplink = new(src,69ind, crystal_amount)
 
 
-/obj/item/tool/multitool/uplink/attack_self(mob/user as mob)
+/obj/item/tool/multitool/uplink/attack_self(mob/user as69ob)
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
 /obj/item/device/radio/headset/uplink
-	contractor_frequency = 1445
+	contractor_fre69uency = 1445
 
-/obj/item/device/radio/headset/uplink/New(loc, mind, crystal_amount = DEFAULT_TELECRYSTAL_AMOUNT)
+/obj/item/device/radio/headset/uplink/New(loc,69ind, crystal_amount = DEFAULT_TELECRYSTAL_AMOUNT)
 	..(loc)
-	hidden_uplink = new(src, mind, crystal_amount)
+	hidden_uplink = new(src,69ind, crystal_amount)
 	hidden_uplink.uses = DEFAULT_TELECRYSTAL_AMOUNT
 
 
 
 //Uplink beacon
-//A large dense uplink object that can't be moved. Designed for use by team antags on their shuttles
+//A large dense uplink object that can't be69oved. Designed for use by team antags on their shuttles
 /obj/structure/uplink
 	name = "Uplink Beacon"
 	icon = 'icons/obj/supplybeacon.dmi'
-	desc = "A bulky machine used for teleporting in supplies from a benefactor."
+	desc = "A bulky69achine used for teleporting in supplies from a benefactor."
 	icon_state = "beacon"
 	density = TRUE
 	anchored = TRUE

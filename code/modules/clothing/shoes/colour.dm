@@ -61,7 +61,7 @@
 	icon_state = "orange"
 	var/obj/item/handcuffs/chained = null
 
-/obj/item/clothing/shoes/color/orange/proc/attach_cuffs(var/obj/item/handcuffs/cuffs, mob/user as mob)
+/obj/item/clothing/shoes/color/orange/proc/attach_cuffs(var/obj/item/handcuffs/cuffs,69ob/user as69ob)
 	if (src.chained) return
 
 	user.drop_item()
@@ -70,7 +70,7 @@
 	src.slowdown = 15
 	src.icon_state = "orange1"
 
-/obj/item/clothing/shoes/color/orange/proc/remove_cuffs(mob/user as mob)
+/obj/item/clothing/shoes/color/orange/proc/remove_cuffs(mob/user as69ob)
 	if (!src.chained) return
 
 	user.put_in_hands(src.chained)
@@ -80,11 +80,11 @@
 	src.icon_state = "orange"
 	src.chained = null
 
-/obj/item/clothing/shoes/color/orange/attack_self(mob/user as mob)
+/obj/item/clothing/shoes/color/orange/attack_self(mob/user as69ob)
 	..()
 	remove_cuffs(user)
 
-/obj/item/clothing/shoes/color/orange/attackby(H as obj, mob/user as mob)
+/obj/item/clothing/shoes/color/orange/attackby(H as obj,69ob/user as69ob)
 	..()
 	if (istype(H, /obj/item/handcuffs))
 		attach_cuffs(H, user)

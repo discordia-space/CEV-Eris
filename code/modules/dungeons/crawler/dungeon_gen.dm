@@ -8,7 +8,7 @@
 	unacidable = 1
 	simulated = FALSE
 	invisibility = 101
-	var/max_x = 8 //if we ever make more than 4x4 dungeon run map, instead of making new procs for generation, we can just edit those vars - edit 16 x 16
+	var/max_x = 8 //if we ever69ake69ore than 4x4 dungeon run69ap, instead of69aking new procs for generation, we can just edit those69ars - edit 16 x 16
 	var/max_y = 8
 	var/generating = 0
 	var/area/crawler/myarea
@@ -72,7 +72,7 @@
 
 
 	/*myarea = get_area(loc)
-	for(var/obj/crawler/room_controller/RC in myarea.room_controllers)
+	for(var/obj/crawler/room_controller/RC in69yarea.room_controllers)
 		rooms += RC
 		if(RC.roomnum <= 4)
 			lane1 += RC
@@ -89,9 +89,9 @@
 
 /obj/crawler/map_maker/proc/generate_controllers()
 	var/roomnumber = 0
-	var/i = max_y
+	var/i =69ax_y
 	while(i > 0)
-		var/l = max_x
+		var/l =69ax_x
 		while(l > 0)
 			var/obj/crawler/room_controller/RC = new /obj/crawler/room_controller(locate(x + (13 * (max_x - l)), y - (9 * (max_y - i)), z))
 			RC.room_x = (max_x + 1) - l
@@ -112,13 +112,13 @@
 		if(RC.roomnum == num)
 			return RC
 
-/obj/crawler/map_maker/proc/get_room_by_coords(var/rx, var/ry)
+/obj/crawler/map_maker/proc/get_room_by_coords(var/rx,69ar/ry)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.room_x == rx && RC.room_y == ry)
 			return RC
 	return 0
 
-/obj/crawler/map_maker/proc/get_room_number_by_coords(var/rx, var/ry)
+/obj/crawler/map_maker/proc/get_room_number_by_coords(var/rx,69ar/ry)
 	for(var/obj/crawler/room_controller/RC in rooms)
 		if(RC.room_x == rx && RC.room_y == ry)
 			return RC.roomnum
@@ -140,7 +140,7 @@
 	else return get_room_number_by_coords(get_room_x_by_num(num), get_room_y_by_num(num) - 1)
 
 /obj/crawler/map_maker/proc/get_room_num_under(var/num)
-	if (get_room_y_by_num(num) == max_y)
+	if (get_room_y_by_num(num) ==69ax_y)
 		return 0
 	else return get_room_number_by_coords(get_room_x_by_num(num), get_room_y_by_num(num) + 1)
 
@@ -150,7 +150,7 @@
 	else return get_room_number_by_coords(get_room_x_by_num(num) - 1, get_room_y_by_num(num))
 
 /obj/crawler/map_maker/proc/get_room_num_right(var/num)
-	if (get_room_x_by_num(num) == max_x)
+	if (get_room_x_by_num(num) ==69ax_x)
 		return 0
 	else return get_room_number_by_coords(get_room_x_by_num(num) + 1, get_room_y_by_num(num))
 
@@ -198,7 +198,7 @@
 		return 0
 
 
-/obj/crawler/map_maker/proc/get_relative(var/num, var/r_direction)
+/obj/crawler/map_maker/proc/get_relative(var/num,69ar/r_direction)
 	switch(r_direction)
 		if (NORTH)
 			return get_room_num_above(num)
@@ -243,7 +243,7 @@
 					room_generating = next
 		if(generating)
 			occupied_rooms += get_room_by_num(room_generating)
-			//testing("Scheduled the mundane room with number:")
+			//testing("Scheduled the69undane room with number:")
 			//testing(room_generating)
 		else
 			var/obj/crawler/room_controller/endroom = get_room_by_num(room_generating)
@@ -301,12 +301,12 @@
 	testing("beginning dungeon initialization!")
 	var/datum/map_template/dungeon_template/init_template = starting_room.template
 	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
-	bounds[MAP_MINX] = 1
-	bounds[MAP_MINY] = 146
-	bounds[MAP_MINZ] = z
-	bounds[MAP_MAXX] = 210
-	bounds[MAP_MAXY] = 1
-	bounds[MAP_MAXZ] = z
+	bounds69MAP_MINX69 = 1
+	bounds69MAP_MINY69 = 146
+	bounds69MAP_MINZ69 = z
+	bounds69MAP_MAXX69 = 210
+	bounds69MAP_MAXY69 = 1
+	bounds69MAP_MAXZ69 = z
 	init_template.initTemplateBounds(bounds)
 	testing("finished dungeon initialization!")
 
@@ -315,7 +315,7 @@
 		W.update_connections(1)
 
 
-/obj/crawler/map_maker/proc/can_generate(var/roomnumber, var/datum/map_template/dungeon_template/r_template)
+/obj/crawler/map_maker/proc/can_generate(var/roomnumber,69ar/datum/map_template/dungeon_template/r_template)
 	var/list/disallowed_dirs = list()
 	var/obj/crawler/room_controller/c_room = get_room_by_num(roomnumber)
 	if(c_room.above)
@@ -329,7 +329,7 @@
 	//testing("CAN GENERATE!")
 	return 1
 
-/obj/crawler/map_maker/proc/can_connect(var/roomnumber, var/prevnum, var/datum/map_template/dungeon_template/r_template)
+/obj/crawler/map_maker/proc/can_connect(var/roomnumber,69ar/prevnum,69ar/datum/map_template/dungeon_template/r_template)
 	var/rc_dir = get_dir(get_room_by_num(roomnumber), get_room_by_num(prevnum))
 	var/cr_dir = get_dir(get_room_by_num(prevnum), get_room_by_num(roomnumber))
 	//testing(roomnumber)
@@ -353,7 +353,7 @@
 	else
 		return 0
 
-/obj/crawler/map_maker/proc/generate_room(var/roomnumber, var/roomtype, var/prevnum)
+/obj/crawler/map_maker/proc/generate_room(var/roomnumber,69ar/roomtype,69ar/prevnum)
 	var/datum/map_template/r_template = null
 	var/obj/crawler/room_controller/c_room = get_room_by_num(roomnumber)
 	var/turf/T = get_turf(c_room)
@@ -385,7 +385,7 @@
 				else if (!c_room.above)
 					if(prob(40))
 						r_template = pick(horizontal_room_templates)
-				//testing("Repeating - [get_room_by_num(prevnum).template.name] - [r_template.name]")
+				//testing("Repeating - 69get_room_by_num(prevnum).template.name69 - 69r_template.name69")
 				if(can_generate(roomnumber, r_template))
 					if(can_connect(roomnumber, prevnum, r_template))
 						//testing("yote")
@@ -399,7 +399,7 @@
 				tries--
 				r_template = pick(special_rooms)
 				sleep(2)
-				//testing("DEAD END REPEAT - [get_room_by_num(prevnum).template.name] - [r_template.name]")
+				//testing("DEAD END REPEAT - 69get_room_by_num(prevnum).template.name69 - 69r_template.name69")
 				if(can_generate(roomnumber, r_template))
 					if(can_connect(roomnumber, prevnum, r_template))
 						//testing("yote")

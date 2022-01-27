@@ -1,132 +1,132 @@
-//wrapper macros for easier grepping
+//wrapper69acros for easier 69reppin69
 #define DIRECT_OUTPUT(A, B) A << B
 #define DIRECT_INPUT(A, B) A >> B
-#define SEND_IMAGE(target, image) DIRECT_OUTPUT(target, image)
-#define SEND_SOUND(target, sound) DIRECT_OUTPUT(target, sound)
-#define SEND_TEXT(target, text) DIRECT_OUTPUT(target, text)
+#define SEND_IMA69E(tar69et, ima69e) DIRECT_OUTPUT(tar69et, ima69e)
+#define SEND_SOUND(tar69et, sound) DIRECT_OUTPUT(tar69et, sound)
+#define SEND_TEXT(tar69et, text) DIRECT_OUTPUT(tar69et, text)
 #define WRITE_FILE(file, text) DIRECT_OUTPUT(file, text)
 #define READ_FILE(file, text) DIRECT_INPUT(file, text)
-//print an error message to world.log
+//print an error69essa69e to world.lo69
 
 
-// On Linux/Unix systems the line endings are LF, on windows it's CRLF, admins that don't use notepad++
-// will get logs that are one big line if the system is Linux and they are using notepad.  This solves it by adding CR to every line ending
-// in the logs.  ascii character 13 = CR
+// On Linux/Unix systems the line endin69s are LF, on windows it's CRLF, admins that don't use69otepad++
+// will 69et lo69s that are one bi69 line if the system is Linux and they are usin6969otepad.  This solves it by addin69 CR to every line endin69
+// in the lo69s.  ascii character 13 = CR
 
-/var/global/log_end= world.system_type == UNIX ? ascii2text(13) : ""
+/var/69lobal/lo69_end= world.system_type == UNIX ? ascii2text(13) : ""
 
 #if defined(UNIT_TESTS) || defined(SPACEMAN_DMM)
-/proc/log_test(text)
-	// WRITE_LOG(GLOB.test_log, text)
-	log_world("## CI: [text]")
-	SEND_TEXT(world.log, text)
+/proc/lo69_test(text)
+	// WRITE_LO69(69LOB.test_lo69, text)
+	lo69_world("## CI: 69text69")
+	SEND_TEXT(world.lo69, text)
 #endif
 
-/proc/error(msg)
-	log_world("## ERROR: [msg][log_end]")
+/proc/error(ms69)
+	lo69_world("## ERROR: 69ms696969lo69_e69d69")
 
-#define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
-//print a warning message to world.log
-/proc/warning(msg)
-	log_world("## WARNING: [msg][log_end]")
+#define WARNIN69(MS69) warnin69("69MS6969 in 69__FILE69_69 at line 69__LIN69__69 src: 669src69 usr: 699usr69.")
+//print a warnin6969essa69e to world.lo69
+/proc/warnin69(ms69)
+	lo69_world("## WARNIN69: 69ms696969lo69_e69d69")
 
-//print a testing-mode debug message to world.log
-/proc/testing(msg)
-	log_world("## TESTING: [msg][log_end]")
+//print a testin69-mode debu6969essa69e to world.lo69
+/proc/testin69(ms69)
+	lo69_world("## TESTIN69: 69ms696969lo69_e69d69")
 
-/proc/game_log(category, text)
-	diary << "\[[time_stamp()]] [game_id] [category]: [text][log_end]"
+/proc/69ame_lo69(cate69ory, text)
+	diary << "\6969time_stamp69696969 6969ame69id69 69cate69ory69: 669text6969l6969_end69"
 
-/proc/log_admin(text)
-	admin_log.Add(text)
-	lobby_message(message = text, color = "#FFA500")
-	if (config.log_admin)
-		game_log("ADMIN", text)
+/proc/lo69_admin(text)
+	admin_lo69.Add(text)
+	lobby_messa69e(messa69e = text, color = "#FFA500")
+	if (confi69.lo69_admin)
+		69ame_lo69("ADMIN", text)
 
-/proc/log_debug(text)
-	if (config.log_debug)
-		game_log("DEBUG", text)
+/proc/lo69_debu69(text)
+	if (confi69.lo69_debu69)
+		69ame_lo69("DEBU69", text)
 
 	for(var/client/C in admins)
-		if(C.get_preference_value(/datum/client_preference/staff/show_debug_logs) == GLOB.PREF_SHOW)
-			to_chat(C, "DEBUG: [text]")
+		if(C.69et_preference_value(/datum/client_preference/staff/show_debu69_lo69s) == 69LOB.PREF_SHOW)
+			to_chat(C, "DEBU69: 69tex6969")
 
-/proc/log_game(text)
-	if (config.log_game)
-		game_log("GAME", text)
+/proc/lo69_69ame(text)
+	if (confi69.lo69_69ame)
+		69ame_lo69("69AME", text)
 
-/proc/log_vote(text)
-	if (config.log_vote)
-		game_log("VOTE", text)
+/proc/lo69_vote(text)
+	if (confi69.lo69_vote)
+		69ame_lo69("VOTE", text)
 
-/proc/log_access(text)
-	if (config.log_access)
-		game_log("ACCESS", text)
+/proc/lo69_access(text)
+	if (confi69.lo69_access)
+		69ame_lo69("ACCESS", text)
 
-/proc/log_say(text)
-	if (config.log_say)
-		game_log("SAY", text)
+/proc/lo69_say(text)
+	if (confi69.lo69_say)
+		69ame_lo69("SAY", text)
 
-/proc/log_ooc(text)
-	if (config.log_ooc)
-		game_log("OOC", text)
+/proc/lo69_ooc(text)
+	if (confi69.lo69_ooc)
+		69ame_lo69("OOC", text)
 
-/proc/log_whisper(text)
-	if (config.log_whisper)
-		game_log("WHISPER", text)
+/proc/lo69_whisper(text)
+	if (confi69.lo69_whisper)
+		69ame_lo69("WHISPER", text)
 
-/proc/log_emote(text)
-	if (config.log_emote)
-		game_log("EMOTE", text)
+/proc/lo69_emote(text)
+	if (confi69.lo69_emote)
+		69ame_lo69("EMOTE", text)
 
-/proc/log_attack(text)
-	if (config.log_attack)
-		game_log("ATTACK", text)
+/proc/lo69_attack(text)
+	if (confi69.lo69_attack)
+		69ame_lo69("ATTACK", text)
 
-/proc/log_adminsay(text)
-	if (config.log_adminchat)
-		game_log("ADMINSAY", text)
+/proc/lo69_adminsay(text)
+	if (confi69.lo69_adminchat)
+		69ame_lo69("ADMINSAY", text)
 
-/proc/log_adminwarn(text)
-	if (config.log_adminwarn)
-		game_log("ADMINWARN", text)
+/proc/lo69_adminwarn(text)
+	if (confi69.lo69_adminwarn)
+		69ame_lo69("ADMINWARN", text)
 
-/proc/log_pda(text)
-	if (config.log_pda)
-		game_log("PDA", text)
+/proc/lo69_pda(text)
+	if (confi69.lo69_pda)
+		69ame_lo69("PDA", text)
 
-/proc/log_href_exploit(atom/user)
-	log_admin("[key_name_admin(user)] has potentially attempted an href exploit.")
+/proc/lo69_href_exploit(atom/user)
+	lo69_admin("69key_name_admin(user6969 has potentially attempted an href exploit.")
 
-/proc/log_to_dd(text)
-	log_world(text)
-	if(config.log_world_output)
-		game_log("DD_OUTPUT", text)
+/proc/lo69_to_dd(text)
+	lo69_world(text)
+	if(confi69.lo69_world_output)
+		69ame_lo69("DD_OUTPUT", text)
 
-/proc/log_misc(text)
-	game_log("MISC", text)
+/proc/lo69_misc(text)
+	69ame_lo69("MISC", text)
 
-/proc/log_unit_test(text)
-	log_world("## UNIT_TEST ##: [text]")
-	log_debug(text)
+/proc/lo69_unit_test(text)
+	lo69_world("## UNIT_TEST ##: 69tex6969")
+	lo69_debu69(text)
 
-/proc/log_qdel(text)
-	world_qdel_log << "\[[time_stamp()]] [game_id] QDEL: [text][log_end]"
+/proc/lo69_69del(text)
+	world_69del_lo69 << "\6969time_stamp69696969 6969ame69id69 69DEL: 6969ext6969lo69_end69"
 
-//pretty print a direction bitflag, can be useful for debugging.
+//pretty print a direction bitfla69, can be useful for debu6969in69.
 /proc/print_dir(var/dir)
 	var/list/comps = list()
-	if(dir & NORTH) comps += "NORTH"
+	if(dir &69ORTH) comps += "NORTH"
 	if(dir & SOUTH) comps += "SOUTH"
 	if(dir & EAST) comps += "EAST"
 	if(dir & WEST) comps += "WEST"
 	if(dir & UP) comps += "UP"
 	if(dir & DOWN) comps += "DOWN"
 
-	return english_list(comps, nothing_text="0", and_text="|", comma_text="|")
+	return en69lish_list(comps,69othin69_text="0", and_text="|", comma_text="|")
 
-//more or less a logging utility
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
+//more or less a lo6969in69 utility
+/proc/key_name(var/whom,69ar/include_link =69ull,69ar/include_name = 1,69ar/hi69hli69ht_special_characters = 1)
 	var/mob/M
 	var/client/C
 	var/key
@@ -138,8 +138,8 @@
 		key = C.key
 	else if(ismob(whom))
 		M = whom
-		C = M.client
-		key = M.key
+		C =69.client
+		key =69.key
 	else if(istype(whom, /datum/mind))
 		var/datum/mind/D = whom
 		key = D.key
@@ -148,7 +148,7 @@
 			C = D.current.client
 	else if(istype(whom, /datum))
 		var/datum/D = whom
-		return "*invalid:[D.type]*"
+		return "*invalid:69D.typ6969*"
 	else
 		return "*invalid*"
 
@@ -156,7 +156,7 @@
 
 	if(key)
 		if(include_link && C)
-			. += "<a href='?priv_msg=\ref[C]'>"
+			. += "<a href='?priv_ms69=\ref696969'>"
 
 		if(C && C.holder && C.holder.fakekey && !include_name)
 			. += "Administrator"
@@ -169,74 +169,74 @@
 	else
 		. += "*no key*"
 
-	if(include_name && M)
+	if(include_name &&69)
 		var/name
 
 		if(M.real_name)
-			name = M.real_name
+			name =69.real_name
 		else if(M.name)
-			name = M.name
+			name =69.name
 
 
-		if(include_link && is_special_character(M) && highlight_special_characters)
-			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
+		if(include_link && is_special_character(M) && hi69hli69ht_special_characters)
+			. += "/(<font color='#FFA500'>69nam6969</font>)" //Oran69e
 		else
-			. += "/([name])"
+			. += "/(69nam6969)"
 
 	return .
 
-/proc/key_name_admin(var/whom, var/include_name = 1)
+/proc/key_name_admin(var/whom,69ar/include_name = 1)
 	return key_name(whom, 1, include_name)
 
-// Helper procs for building detailed log lines
-/datum/proc/get_log_info_line()
-	return "[src] ([type]) ([any2ref(src)])"
+// Helper procs for buildin69 detailed lo69 lines
+/datum/proc/69et_lo69_info_line()
+	return "69sr6969 (69ty69e69) (69any2ref(s69c)69)"
 
-/area/get_log_info_line()
-	return "[..()] ([isnum(z) ? "[x],[y],[z]" : "0,0,0"])"
+/area/69et_lo69_info_line()
+	return "69..(6969 (69isnum(z) ? "699x696969y69,69z69" : "0690,0"69)"
 
-/turf/get_log_info_line()
-	return "[..()] ([x],[y],[z]) ([loc ? loc.type : "NULL"])"
+/turf/69et_lo69_info_line()
+	return "69..(6969 (669x69,699y696969z69) (69loc ? loc.type : "69ULL"69)"
 
-/atom/movable/get_log_info_line()
-	var/turf/t = get_turf(src)
-	return "[..()] ([t ? t : "NULL"]) ([t ? "[t.x],[t.y],[t.z]" : "0,0,0"]) ([t ? t.type : "NULL"])"
+/atom/movable/69et_lo69_info_line()
+	var/turf/t = 69et_turf(src)
+	return "69..(6969 (69t ? t : "NUL69"69) (69t ? "669t.x69,699t.y696969t.z69" : "69,0,0"69) (69t ? t.type :69"NULL"69)"
 
-/mob/get_log_info_line()
-	return ckey ? "[..()] ([ckey])" : ..()
+/mob/69et_lo69_info_line()
+	return ckey ? "69..(6969 (69ck69y69)" : ..()
 
-/proc/log_info_line(var/datum/d)
+/proc/lo69_info_line(var/datum/d)
 	if(isnull(d))
 		return "*null*"
 	if(islist(d))
 		var/list/L = list()
 		for(var/e in d)
-			L += log_info_line(e)
-		return "\[[jointext(L, ", ")]\]" // We format the string ourselves, rather than use json_encode(), because it becomes difficult to read recursively escaped "
+			L += lo69_info_line(e)
+		return "\6969jointext(L, ", 69)69\69" // We format the strin69 ourselves, rather than use json_encode(), because it becomes difficult to read recursively escaped "
 	if(!istype(d))
 		return json_encode(d)
-	return d.get_log_info_line()
+	return d.69et_lo69_info_line()
 
-/proc/log_world(text) //general logging; displayed both in DD and in the text file
-	if(config && config.log_runtime)
+/proc/lo69_world(text) //69eneral lo6969in69; displayed both in DD and in the text file
+	if(confi69 && confi69.lo69_runtime)
 		runtime_diary << text	//save to it
-	world.log << text	//do that
+	world.lo69 << text	//do that
 
 
-// Helper proc for building detailed log lines
+// Helper proc for buildin69 detailed lo69 lines
 /proc/datum_info_line(datum/d)
 	if(!istype(d))
 		return
 	if(!ismob(d))
-		return "[d] ([d.type])"
+		return "696969 (69d.ty69e69)"
 	var/mob/m = d
-	return "[m] ([m.ckey]) ([m.type])"
+	return "696969 (69m.ck69y69) (69m.t69pe69)"
 
 /proc/atom_loc_line(var/atom/a)
 	if(!istype(a))
 		return
-	var/turf/t = get_turf(a)
+	var/turf/t = 69et_turf(a)
 	if(istype(t))
-		return "[a.loc] ([t.x],[t.y],[t.z]) ([a.loc.type])"
+		return "69a.lo6969 (69t69x69,6969.y69,669t.z69) (69a.loc69type69)"
 	else if(a.loc)
-		return "[a.loc] (0,0,0) ([a.loc.type])"
+		return "69a.lo6969 (0,0,0) (69a.loc.ty69e69)"

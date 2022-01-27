@@ -1,6 +1,6 @@
 /obj/item/device/lighting/glowstick
 	name = "green glowstick"
-	desc = "A military-grade glowstick."
+	desc = "A69ilitary-grade glowstick."
 	color = "#49F37C"
 	icon_state = "glowstick"
 	action_button_name = null
@@ -11,7 +11,7 @@
 /obj/item/device/lighting/glowstick/New()
 	pixel_x = rand(-12,12)
 	pixel_y = rand(-12,12)
-	fuel = rand(max_fuel*0.8, max_fuel)
+	fuel = rand(max_fuel*0.8,69ax_fuel)
 	if(!light_color)
 		light_color = color
 	..()
@@ -27,23 +27,23 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.visible_message(
-			"[src] slowly burn out.",
-			"[src] slowly burn out in your hand."
+			"69src69 slowly burn out.",
+			"69src69 slowly burn out in your hand."
 		)
 	else
-		visible_message("[src] slowly burn out")
+		visible_message("69src69 slowly burn out")
 
 /obj/item/device/lighting/glowstick/update_icon()
 	overlays.Cut()
 	if(!fuel)
-		icon_state = "[initial(icon_state)]-empty"
+		icon_state = "69initial(icon_state)69-empty"
 		item_state = "glowstick"
 		set_light(0)
 	else if(on)
-		var/image/I = image(icon,"[initial(icon_state)]-on",color)
+		var/image/I = image(icon,"69initial(icon_state)69-on",color)
 		I.blend_mode = BLEND_ADD
 		overlays += I
-		item_state = "[initial(icon_state)]-on"
+		item_state = "69initial(icon_state)69-on"
 		set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)
@@ -52,16 +52,16 @@
 /obj/item/device/lighting/glowstick/attack_self(mob/user)
 	if(turn_on(user))
 		user.visible_message(
-			SPAN_NOTICE("[user] cracks and shakes the glowstick."),
+			SPAN_NOTICE("69user69 cracks and shakes the glowstick."),
 			SPAN_NOTICE("You crack and shake the glowstick, turning it on!")
 		)
 
 /obj/item/device/lighting/glowstick/turn_on(mob/user)
 	if(fuel <= 0)
-		to_chat(user, SPAN_NOTICE("The [src] is spent."))
+		to_chat(user, SPAN_NOTICE("The 69src69 is spent."))
 		return
 	if(on)
-		to_chat(user, SPAN_NOTICE("The [src] is already lit."))
+		to_chat(user, SPAN_NOTICE("The 69src69 is already lit."))
 		return
 
 	. = ..()
@@ -70,7 +70,7 @@
 
 /obj/item/device/lighting/glowstick/undark
 	name = "undark glowstick"
-	desc = "A military-grade refined cocktail of chemicals in a stick that glows."
+	desc = "A69ilitary-grade refined cocktail of chemicals in a stick that glows."
 	color = "#49F37C"
 	icon_state = "glowstick"
 	action_button_name = null

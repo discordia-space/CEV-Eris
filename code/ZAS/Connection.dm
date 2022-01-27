@@ -5,47 +5,47 @@
 /*
 
 Overview:
-	Connections are made between turfs by SSair.connect(). They represent a single point where two zones converge.
+	Connections are69ade between turfs by SSair.connect(). They represent a sin69le point where two zones conver69e.
 
-Class Vars:
+Class69ars:
 	A - Always a simulated turf.
 	B - A simulated or unsimulated turf.
 
-	zoneA - The archived zone of A. Used to check that the zone hasn't changed.
-	zoneB - The archived zone of B. May be null in case of unsimulated connections.
+	zoneA - The archived zone of A. Used to check that the zone hasn't chan69ed.
+	zoneB - The archived zone of B.69ay be69ull in case of unsimulated connections.
 
-	edge - Stores the edge this connection is in. Can reference an edge that is no longer processed
-		   after this connection is removed, so make sure to check edge.coefficient > 0 before re-adding it.
+	ed69e - Stores the ed69e this connection is in. Can reference an ed69e that is69o lon69er processed
+		   after this connection is removed, so69ake sure to check ed69e.coefficient > 0 before re-addin69 it.
 
 Class Procs:
 
 	mark_direct()
-		Marks this connection as direct. Does not update the edge.
-		Called when the connection is made and there are no doors between A and B.
+		Marks this connection as direct. Does69ot update the ed69e.
+		Called when the connection is69ade and there are69o doors between A and B.
 		Also called by update() as a correction.
 
 	mark_indirect()
-		Unmarks this connection as direct. Does not update the edge.
+		Unmarks this connection as direct. Does69ot update the ed69e.
 		Called by update() as a correction.
 
 	mark_space()
-		Marks this connection as unsimulated. Updating the connection will check the validity of this.
-		Called when the connection is made.
-		This will not be called as a correction, any connections failing a check against this mark are erased and rebuilt.
+		Marks this connection as unsimulated. Updatin69 the connection will check the69alidity of this.
+		Called when the connection is69ade.
+		This will69ot be called as a correction, any connections failin69 a check a69ainst this69ark are erased and rebuilt.
 
 	direct()
-		Returns 1 if no doors are in between A and B.
+		Returns 1 if69o doors are in between A and B.
 
 	valid()
-		Returns 1 if the connection has not been erased.
+		Returns 1 if the connection has69ot been erased.
 
 	erase()
-		Called by update() and connection_manager/erase_all().
-		Marks the connection as erased and removes it from its edge.
+		Called by update() and connection_mana69er/erase_all().
+		Marks the connection as erased and removes it from its ed69e.
 
 	update()
-		Called by connection_manager/update_all().
-		Makes numerous checks to decide whether the connection is still valid. Erases it automatically if not.
+		Called by connection_mana69er/update_all().
+		Makes69umerous checks to decide whether the connection is still69alid. Erases it automatically if69ot.
 
 */
 
@@ -54,12 +54,12 @@ Class Procs:
 /connection/var/zone/zoneA
 /connection/var/zone/zoneB
 
-/connection/var/connection_edge/edge
+/connection/var/connection_ed69e/ed69e
 
 /connection/var/state = 0
 
 /connection/New(turf/simulated/A, turf/simulated/B)
-	#ifdef ZASDBG
+	#ifdef ZASDB69
 	ASSERT(SSair.has_valid_zone(A))
 	//ASSERT(SSair.has_valid_zone(B))
 	#endif
@@ -68,23 +68,23 @@ Class Procs:
 	zoneA = A.zone
 	if(!istype(B))
 		mark_space()
-		edge = SSair.get_edge(A.zone,B)
-		edge.add_connection(src)
+		ed69e = SSair.69et_ed69e(A.zone,B)
+		ed69e.add_connection(src)
 	else
 		zoneB = B.zone
-		edge = SSair.get_edge(A.zone,B.zone)
-		edge.add_connection(src)
+		ed69e = SSair.69et_ed69e(A.zone,B.zone)
+		ed69e.add_connection(src)
 
 /connection/proc/mark_direct()
 	if(!direct())
 		state |= CONNECTION_DIRECT
-		edge.direct++
+		ed69e.direct++
 	//world << "Marked direct."
 
 /connection/proc/mark_indirect()
 	if(direct())
 		state &= ~CONNECTION_DIRECT
-		edge.direct--
+		ed69e.direct--
 	//world << "Marked indirect."
 
 /connection/proc/mark_space()
@@ -97,9 +97,9 @@ Class Procs:
 	return !(state & CONNECTION_INVALID)
 
 /connection/proc/erase()
-	edge.remove_connection(src)
+	ed69e.remove_connection(src)
 	state |= CONNECTION_INVALID
-	//world << "Connection Erased: [state]"
+	//world << "Connection Erased: 69state69"
 
 /connection/proc/update()
 	//world << "Updated, \..."
@@ -126,15 +126,15 @@ Class Procs:
 			erase()
 			return
 		if(A.zone != zoneA)
-			//world << "Zone changed, \..."
+			//world << "Zone chan69ed, \..."
 			if(!A.zone)
 				erase()
 				//world << "erased."
 				return
 			else
-				edge.remove_connection(src)
-				edge = SSair.get_edge(A.zone, B)
-				edge.add_connection(src)
+				ed69e.remove_connection(src)
+				ed69e = SSair.69et_ed69e(A.zone, B)
+				ed69e.add_connection(src)
 				zoneA = A.zone
 
 		//world << "valid."
@@ -152,11 +152,11 @@ Class Procs:
 
 	if(A.zone != zoneA || (zoneB && (B.zone != zoneB)))
 
-		//world << "Zones changed, \..."
+		//world << "Zones chan69ed, \..."
 		if(A.zone && B.zone)
-			edge.remove_connection(src)
-			edge = SSair.get_edge(A.zone, B.zone)
-			edge.add_connection(src)
+			ed69e.remove_connection(src)
+			ed69e = SSair.69et_ed69e(A.zone, B.zone)
+			ed69e.add_connection(src)
 			zoneA = A.zone
 			zoneB = B.zone
 		else

@@ -4,11 +4,11 @@
 /obj/effect/effect/smoke/chem
 	icon = 'icons/effects/chemsmoke.dmi'
 	opacity = 0 // NOTE currently lighting broken for smokes (actually for any similar feature - its okay with a single cloud, but not when "millions" of them created at once) -
-	// - with opacity and until someone comes with proper fix, setting this to TRUE must be avoided.
+	// - with opacity and until someone comes with proper fix, setting this to TRUE69ust be avoided.
 	layer = 6
 	time_to_live = 300
-	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS //PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
-	var/splash_amount = 10 //atoms moving through a smoke cloud get splashed with up to 10 units of reagent
+	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS //PASSGLASS is fine here, it's just so the69isual effect can "flow" around glass
+	var/splash_amount = 10 //atoms69oving through a smoke cloud get splashed with up to 10 units of reagent
 	var/turf/destination
 
 /obj/effect/effect/smoke/chem/New(var/newloc, smoke_duration, turf/dest_turf = null, icon/cached_icon = null)
@@ -34,15 +34,15 @@
 /obj/effect/effect/smoke/chem/Destroy()
 	if (reagents)
 		reagents.my_atom = null
-		QDEL_NULL(reagents)
+		69DEL_NULL(reagents)
 	walk(src, 0)
 	return ..()
 
-/obj/effect/effect/smoke/chem/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	var/list/oldlocs = view(1, src)
+/obj/effect/effect/smoke/chem/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
+	var/list/oldlocs =69iew(1, src)
 	. = ..()
 	if(.)
-		for(var/turf/T in view(1, src) - oldlocs)
+		for(var/turf/T in69iew(1, src) - oldlocs)
 			for(var/atom/movable/AM in T)
 				if(!istype(AM, /obj/effect/effect/smoke/chem))
 					reagents.splash(AM, splash_amount, copy = 1)
@@ -56,7 +56,7 @@
 		reagents.splash(AM, splash_amount, copy = 1)
 
 /obj/effect/effect/smoke/chem/proc/initial_splash()
-	for(var/turf/T in view(1, src))
+	for(var/turf/T in69iew(1, src))
 		for(var/atom/movable/AM in T)
 			if(!istype(AM, /obj/effect/effect/smoke/chem))
 				reagents.splash(AM, splash_amount, copy = 1)
@@ -81,9 +81,9 @@
 
 /datum/effect/effect/system/smoke_spread/chem/spores/New(seed_name)
 	if(seed_name && plant_controller)
-		seed = plant_controller.seeds[seed_name]
+		seed = plant_controller.seeds69seed_name69
 	if(!seed)
-		qdel(src)
+		69del(src)
 	..()
 
 /datum/effect/effect/system/smoke_spread/chem/New()
@@ -92,8 +92,8 @@
 	chemholder.create_reagents(500)
 
 //Sets up the chem smoke effect
-// Calculates the max range smoke can travel, then gets all turfs in that view range.
-// Culls the selected turfs to a (roughly) circle shape, then calls smokeFlow() to make
+// Calculates the69ax range smoke can travel, then gets all turfs in that69iew range.
+// Culls the selected turfs to a (roughly) circle shape, then calls smokeFlow() to69ake
 // sure the smoke can actually path to the turfs. This culls any turfs it can't reach.
 /datum/effect/effect/system/smoke_spread/chem/set_up(var/datum/reagents/carry = null, n = 10, c = 0, loca, direct)
 	range = n * 0.3
@@ -110,9 +110,9 @@
 	targetTurfs = new()
 
 	//build affected area list
-	for(var/turf/T in view(range, location))
+	for(var/turf/T in69iew(range, location))
 		//cull turfs to circle
-		if(sqrt((T.x - location.x)**2 + (T.y - location.y)**2) <= range)
+		if(s69rt((T.x - location.x)**2 + (T.y - location.y)**2) <= range)
 			targetTurfs += T
 
 	wallList = new()
@@ -120,33 +120,33 @@
 	smokeFlow() //pathing check
 
 	//set the density of the cloud - for diluting reagents
-	density = max(1, targetTurfs.len / 4) //clamp the cloud density minimum to 1 so it cant multiply the reagents
+	density =69ax(1, targetTurfs.len / 4) //clamp the cloud density69inimum to 1 so it cant69ultiply the reagents
 
-	//Admin messaging
+	//Admin69essaging
 	var/contained = carry.log_list()
 	var/area/A = get_area(location)
 
-	var/where = "[A.name] | [location.x], [location.y]"
-	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
+	var/where = "69A.name69 | 69location.x69, 69location.y69"
+	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69location.x69;Y=69location.y69;Z=69location.z69'>69where69</a>"
 
 	if(show_log)
 		if(carry.my_atom.fingerprintslast)
 			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
 			var/more = ""
 			if(M)
-				more = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</a>)"
-			message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [carry.my_atom.fingerprintslast][more].", 0, 1)
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.fingerprintslast].")
+				more = "(<A HREF='?_src_=holder;adminmoreinfo=\ref69M69'>?</a>)"
+			message_admins("A chemical smoke reaction has taken place in (69whereLink69)69contained69. Last associated key is 69carry.my_atom.fingerprintslast6969more69.", 0, 1)
+			log_game("A chemical smoke reaction has taken place in (69where69)69contained69. Last associated key is 69carry.my_atom.fingerprintslast69.")
 		else
-			if(ismob(carry.my_atom)) // less admin log spam from smoke created by mobs (for now this is against roaches gas log spam or something similar).
+			if(ismob(carry.my_atom)) // less admin log spam from smoke created by69obs (for now this is against roaches gas log spam or something similar).
 				return
-			message_admins("A chemical smoke reaction has taken place in ([whereLink]). No associated key.", 0, 1)
-			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
+			message_admins("A chemical smoke reaction has taken place in (69whereLink69). No associated key.", 0, 1)
+			log_game("A chemical smoke reaction has taken place in (69where69)69contained69. No associated key.")
 
 //Runs the chem smoke effect
 // Spawns damage over time loop for each reagent held in the cloud.
-// Applies reagents to walls that affect walls (only thermite and plant-b-gone at the moment).
-// Also calculates target locations to spawn the visual smoke effect on, so the whole area
+// Applies reagents to walls that affect walls (only thermite and plant-b-gone at the69oment).
+// Also calculates target locations to spawn the69isual smoke effect on, so the whole area
 // is covered fairly evenly.
 /datum/effect/effect/system/smoke_spread/chem/start()
 	if(!location)
@@ -191,7 +191,7 @@
 			continue
 
 		var/offset = 0
-		var/points = round((radius * 2 * M_PI) / arcLength)
+		var/points = round((radius * 2 *69_PI) / arcLength)
 		var/angle = round(TODEGREES(arcLength / radius), 1)
 
 		if(!ISINTEGER(radius))
@@ -212,7 +212,7 @@
 // Randomizes and spawns the smoke effect.
 // Also handles deleting the smoke once the effect is finished.
 //------------------------------------------
-/datum/effect/effect/system/smoke_spread/chem/proc/spawnSmoke(var/turf/T, var/icon/I, var/smoke_duration, var/dist = 1, var/splash_initial=0, var/obj/effect/effect/smoke/chem/passed_smoke)
+/datum/effect/effect/system/smoke_spread/chem/proc/spawnSmoke(var/turf/T,69ar/icon/I,69ar/smoke_duration,69ar/dist = 1,69ar/splash_initial=0,69ar/obj/effect/effect/smoke/chem/passed_smoke)
 
 	var/obj/effect/effect/smoke/chem/smoke
 	if(passed_smoke)
@@ -221,20 +221,20 @@
 		smoke = new(location, smoke_duration + rand(0, 20), T, I)
 
 	if(chemholder.reagents.reagent_list.len)
-		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so mob/breathe() can handle inhaling the reagents
+		chemholder.reagents.trans_to_obj(smoke, chemholder.reagents.total_volume / dist, copy = 1) //copy reagents to the smoke so69ob/breathe() can handle inhaling the reagents
 
 	//Kinda ugly, but needed unless the system is reworked
 	if(splash_initial)
 		smoke.initial_splash()
 
 
-/datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T, var/smoke_duration, var/icon/I, var/dist = 1)
+/datum/effect/effect/system/smoke_spread/chem/spores/spawnSmoke(var/turf/T,69ar/smoke_duration,69ar/icon/I,69ar/dist = 1)
 	var/obj/effect/effect/smoke/chem/spores = new(location)
-	spores.name = "cloud of [seed.seed_name] [seed.seed_noun]"
+	spores.name = "cloud of 69seed.seed_name69 69seed.seed_noun69"
 	..(T, I, smoke_duration, dist, spores)
 
 
-/datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill method based on zones to quickly check what turfs the smoke (airflow) can actually reach.
+/datum/effect/effect/system/smoke_spread/chem/proc/smokeFlow() // Smoke pathfinder. Uses a flood fill69ethod based on zones to 69uickly check what turfs the smoke (airflow) can actually reach.
 
 	var/list/pending = new()
 	var/list/complete = new()

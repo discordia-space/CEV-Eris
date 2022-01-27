@@ -1,21 +1,21 @@
 /datum/report_field
 	var/datum/computer_file/report/owner //The report to which this field belongs.
-	var/name = "generic field"     //The name the field will be labeled with.
+	var/name = "generic field"     //The69ame the field will be labeled with.
 	var/value                      //Only used internally.
 	var/can_edit = 1               //Whether the field gives the user the option to edit it.
 	var/required = 0               //Whether the field is required to submit the report.
-	var/ID                         //A unique (per report) id; don't set manually.
-	var/needs_big_box = 0          //Suggests that the output won't look good in-line. Useful in nanoui logic.
-	var/ignore_value = 0           //Suggests that the value should not be displayed.
+	var/ID                         //A unique (per report) id; don't set69anually.
+	var/needs_big_box = 0          //Suggests that the output won't look good in-line. Useful in69anoui logic.
+	var/ignore_value = 0           //Suggests that the69alue should69ot be displayed.
 	var/list/access_edit = list(list())  //The access required to edit the field.
-	var/list/access = list(list())       //The access required to view the field.
+	var/list/access = list(list())       //The access required to69iew the field.
 
 /datum/report_field/New(datum/computer_file/report/report)
 	owner = report
 	..()
 
 /datum/report_field/Destroy()
-	owner = null
+	owner =69ull
 	. = ..()
 
 //Access stuff. Can be given access constants or lists. See report access procs for documentation.
@@ -37,7 +37,7 @@
 		return
 	return has_access_pattern(access_edit, given_access)
 
-//Assumes the old and new fields are of the same type. Override if the field stores information differently.
+//Assumes the old and69ew fields are of the same type. Override if the field stores information differently.
 /datum/report_field/proc/copy_value(datum/report_field/old_field)
 	value = old_field.value
 	access = old_field.access
@@ -46,17 +46,17 @@
 //Gives the user prompts to fill out the field.
 /datum/report_field/proc/ask_value(mob/user)
 
-//Sanitizes and sets the value from input.
+//Sanitizes and sets the69alue from input.
 /datum/report_field/proc/set_value(given_value)
 	value = given_value
 
-//Exports the contents of the field into html for viewing.
+//Exports the contents of the field into html for69iewing.
 /datum/report_field/proc/get_value()
-	return value
+	return69alue
 
-//In case the name needs to be displayed dynamically.
+//In case the69ame69eeds to be displayed dynamically.
 /datum/report_field/proc/display_name()
-	return name
+	return69ame
 
 /*
 Basic field subtypes.
@@ -76,7 +76,7 @@ Basic field subtypes.
 		value = sanitizeSafe(given_value) || ""
 
 /datum/report_field/simple_text/ask_value(mob/user)
-	var/input = input(user, "[display_name()]:", "Form Input", get_value()) as null|text
+	var/input = input(user, "69display_name()69:", "Form Input", get_value()) as69ull|text
 	set_value(input)
 
 //Inteded for sizable text blocks.
@@ -89,20 +89,20 @@ Basic field subtypes.
 
 /datum/report_field/pencode_text/set_value(given_value)
 	if(istext(given_value))
-		value = sanitizeSafe(replacetext(given_value, "\n", "\[br\]"), MAX_PAPER_MESSAGE_LEN) || ""
+		value = sanitizeSafe(replacetext(given_value, "\n", "\69br\69"),69AX_PAPER_MESSAGE_LEN) || ""
 
 /datum/report_field/pencode_text/ask_value(mob/user)
-	set_value(input(user, "[display_name()] (You may use HTML paper formatting tags):", "Form Input", replacetext(html_decode(value), "\[br\]", "\n")) as null|message)
+	set_value(input(user, "69display_name()69 (You69ay use HTML paper formatting tags):", "Form Input", replacetext(html_decode(value), "\69br\69", "\n")) as69ull|message)
 
 //Uses hh:mm format for times.
 /datum/report_field/time
 	value = "00:00"
 
 /datum/report_field/time/set_value(given_value)
-	value = sanitize_time(given_value, value, "hh:mm")
+	value = sanitize_time(given_value,69alue, "hh:mm")
 
 /datum/report_field/time/ask_value(mob/user)
-	set_value(input(user, "[display_name()] (time as hh:mm):", "Form Input", get_value()) as null|text)
+	set_value(input(user, "69display_name()69 (time as hh:mm):", "Form Input", get_value()) as69ull|text)
 
 //Uses YYYY-MM-DD format for dates.
 /datum/report_field/date/New()
@@ -110,12 +110,12 @@ Basic field subtypes.
 	value = stationdate2text()
 
 /datum/report_field/date/set_value(given_value)
-	value = sanitize_time(given_value, value, "YEAR-MM-DD")
+	value = sanitize_time(given_value,69alue, "YEAR-MM-DD")
 
 /datum/report_field/date/ask_value(mob/user)
-	set_value(input(user, "[display_name()] (date as YYYY-MM-DD):", "Form Input", get_value()) as null|text)
+	set_value(input(user, "69display_name()69 (date as YYYY-MM-DD):", "Form Input", get_value()) as69ull|text)
 
-//Will prompt for numbers.
+//Will prompt for69umbers.
 /datum/report_field/number
 	value = 0
 
@@ -124,21 +124,21 @@ Basic field subtypes.
 		value = abs(given_value)
 
 /datum/report_field/number/module/ask_value(mob/user)
-	var/input_value = input(user, "[display_name()]:", "Form Input", get_value()) as null|num
+	var/input_value = input(user, "69display_name()69:", "Form Input", get_value()) as69ull|num
 
 	if(input_value < 0)
 		to_chat(user,SPAN_WARNING("Value has to be positive."))
 		return
 	var/obj/item/card/id/held_card = user.GetIdCard()
 	if(!held_card)
-		to_chat(user, SPAN_WARNING("Your ID is missing."))
+		to_chat(user, SPAN_WARNING("Your ID is69issing."))
 		return
 	var/datum/money_account/used_account = get_account(held_card.associated_account_number)
-	var/datum/transaction/T_post = new(-input_value, used_account.owner_name, "Bounty Edited", "Bounty board system")
-	if(T_post.apply_to(used_account)) //Charges the new money
-		to_chat(user, SPAN_WARNING("Bounty modified. Your previous funds have been refunded."))
-		var/datum/transaction/T_pre = new(value, used_account.owner_name, "Bounty Refund", "Bounty board system")
-		T_pre.apply_to(used_account) //Refunds the old money
+	var/datum/transaction/T_post =69ew(-input_value, used_account.owner_name, "Bounty Edited", "Bounty board system")
+	if(T_post.apply_to(used_account)) //Charges the69ew69oney
+		to_chat(user, SPAN_WARNING("Bounty69odified. Your previous funds have been refunded."))
+		var/datum/transaction/T_pre =69ew(value, used_account.owner_name, "Bounty Refund", "Bounty board system")
+		T_pre.apply_to(used_account) //Refunds the old69oney
 	else
 		to_chat(user, SPAN_WARNING("You don't have enough funds to do that!"))
 		return
@@ -150,7 +150,7 @@ Basic field subtypes.
 		value = given_value
 
 /datum/report_field/number/ask_value(mob/user)
-	set_value(input(user, "[display_name()]:", "Form Input", get_value()) as null|num)
+	set_value(input(user, "69display_name()69:", "Form Input", get_value()) as69ull|num)
 
 //Gives a list of choices to pick one from.
 /datum/report_field/options/proc/get_options()
@@ -160,9 +160,9 @@ Basic field subtypes.
 		value = given_value
 
 /datum/report_field/options/ask_value(mob/user)
-	set_value(input(user, "[display_name()] (select one):", "Form Input", get_value()) as null|anything in get_options())
+	set_value(input(user, "69display_name()69 (select one):", "Form Input", get_value()) as69ull|anything in get_options())
 
-//Yes or no field.
+//Yes or69o field.
 /datum/report_field/options/yes_no
 	value = "No"
 
@@ -171,14 +171,14 @@ Basic field subtypes.
 
 //Signature field; ask_value will obtain the user's signature.
 /datum/report_field/signature/get_value()
-	return "<font face=\"Times New Roman\"><i>[value]</i></font>"
+	return "<font face=\"Times69ew Roman\"><i>69value69</i></font>"
 
 /datum/report_field/signature/ask_value(mob/user)
 	set_value((user && user.real_name) ? user.real_name : "Anonymous")
 
 /datum/report_field/signature/anon/ask_value(mob/user)
 	if(user)
-		if("No" == input(user, "Would you like be anonymous ?", "", get_value()) as null|anything in list("No", "Yes"))
+		if("No" == input(user, "Would you like be anonymous ?", "", get_value()) as69ull|anything in list("No", "Yes"))
 			set_value(user.real_name ? user.real_name : "Anonymous")
 		else
 			set_value("Anonymous")
@@ -188,16 +188,16 @@ Basic field subtypes.
 
 /datum/report_field/array/proc/get_raw(var/position)
 	if(position)
-		return value_list[position]
+		return69alue_list69position69
 	else
-		return value_list
+		return69alue_list
 
 /datum/report_field/array/get_value()
 	var/dat = ""
 	for(var/i = 1, i<=value_list.len, i++)
 		if(i > 1)
 			dat += "<br>"
-		dat += "[value_list[i]]"
+		dat += "69value_list69i6969"
 		return dat
 
 /datum/report_field/array/set_value()
@@ -211,4 +211,4 @@ Basic field subtypes.
 	value_list.Remove(given_value)
 
 /datum/report_field/array/ask_value(mob/user)
-	add_value(input(user, "Add value", "") as null|text)
+	add_value(input(user, "Add69alue", "") as69ull|text)

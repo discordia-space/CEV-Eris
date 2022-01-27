@@ -27,13 +27,13 @@ SUBSYSTEM_DEF(chemistry)
 		active_holders += holder
 
 /datum/controller/subsystem/chemistry/stat_entry()
-	..("[active_holders.len] reagent holder\s")
+	..("69active_holders.len69 reagent holder\s")
 
 /datum/controller/subsystem/chemistry/proc/get_random_chem(var/only_if_unique = FALSE, temperature = T20C)
 /*	for(var/type in typesof(/datum/reagent/random))
-		if(only_if_unique && random_chem_prototypes[type])
+		if(only_if_unique && random_chem_prototypes69type69)
 			continue
-		if(get_prototype(type, temperature)) //returns truthy if it's valid for the given temperature
+		if(get_prototype(type, temperature)) //returns truthy if it's69alid for the given temperature
 			return type*/
 	var/datum/reagent/random_type = pick(typesof(/datum/reagent))
 	var/datum/reagent/random_r = new random_type(src)

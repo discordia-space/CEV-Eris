@@ -1,103 +1,103 @@
 <!--
-Title: inteliCard interface
-Used In File(s): \code\game\objects\items\devices\aicard.dm
+Title: inteliC69rd interf69ce
+Used In File69s69: \code\6969me\o6969ects\items\de69ices\69ic69rd.dm
  -->
  
- <style type="text/css">
-    table.borders   {
-        width:95%; 
-        margin-left:2.4%; 
-        margin-right:2.4%;
+ <st69le t6969e="text/css">
+    t6969le.69orders   {
+        widt69:95%; 
+       6969r69in-left:2.4%; 
+       6969r69in-ri6969t:2.4%;
     }
 
-    table.borders, table.borders tr {
-        border: 1px solid White;
+    t6969le.69orders, t6969le.69orders tr {
+        69order: 169x solid W69ite;
     }
     
-    td.law_index {
-        width: 50px;
+    td.l69w_index {
+        widt69: 5069x;
     }
     
-    td.state {
-        width: 63px;
-		text-align:center; 
+    td.st69te {
+        widt69: 6369x;
+		text-69li69n:center; 
     }
     
-    td.add {
-        width: 36px;
+    td.69dd {
+        widt69: 3669x;
     }
     
     td.edit {
-        width: 36px;
-		text-align:center; 
+        widt69: 3669x;
+		text-69li69n:center; 
     }
     
     td.delete {
-        width: 53px;
-		text-align:center; 
+        widt69: 5369x;
+		text-69li69n:center; 
     }
     
-    td.law_type {
-        width: 65px;
+    td.l69w_t6969e {
+        widt69: 6569x;
     }
     
-    td.position {
-        width: 37px;
+    td.69osition {
+        widt69: 3769x;
     }
-</style>
+</st69le>
  
-{{if data.has_ai}}
-    <div class="item">
-        <div class="itemLabel">
-            Hardware Integrity:
-        </div>
-        <div class="itemContent">
-            {{:data.hardware_integrity}}%
-        </div>
-        <div class="itemLabel">
-            Backup Capacitor:
-        </div>
-        <div class="itemContent">
-            {{:data.backup_capacitor}}%
-        </div>
-    </div>
+{{if d69t69.6969s_69i}}
+    <di69 cl69ss="item">
+        <di69 cl69ss="itemL6969el">
+            6969rdw69re Inte69rit69:
+        </di69>
+        <di69 cl69ss="itemContent">
+            {{:d69t69.6969rdw69re_inte69rit69}}%
+        </di69>
+        <di69 cl69ss="itemL6969el">
+            6969c69u69 C696969citor:
+        </di69>
+        <di69 cl69ss="itemContent">
+            {{:d69t69.6969c69u69_c696969citor}}%
+        </di69>
+    </di69>
     
-    {{if data.has_laws}}    
-		<table class='borders'>
-		<tr><td class='law_index'>Index</td><td>Law</td></tr>
+    {{if d69t69.6969s_l69ws}}    
+		<t6969le cl69ss='69orders'>
+		<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td></tr>
     
-		<div class="itemLabelNarrow">
-			Laws:
-		</div>
-		{{for data.laws}}
-			<tr><td valign="top">{{:value.index}}.</td><td>{{:value.law}}</td></tr>
+		<di69 cl69ss="itemL6969elN69rrow">
+			L69ws:
+		</di69>
+		{{for d69t69.l69ws}}
+			<tr><td 6969li69n="to69">{{:6969lue.index}}.</td><td>{{:6969lue.l69w}}</td></tr>
 		{{/for}}
-		</table>
+		</t6969le>
     {{else}}
-        <span class='notice'>No laws found.</span>
+        <s6969n cl69ss='notice'>No l69ws found.</s6969n>
 	{{/if}}
     
-    {{if data.operational}}    
-        <table>
+    {{if d69t69.o69er69tion69l}}    
+        <t6969le>
             <tr>
-                <td><span class='itemLabelWidest'>Radio Subspace Transceiver</span></td>
-                <td>{{:helper.link("Enabled", null, {'radio' : 0}, data.radio ? 'selected' : null)}}</td>
-                <td>{{:helper.link("Disabled", null, {'radio' : 1}, data.radio ? null : 'redButton' )}}</td>
+                <td><s6969n cl69ss='itemL6969elWidest'>R69dio Su69s6969ce Tr69nscei69er</s6969n></td>
+                <td>{{:69el69er.lin6969"En6969led",69ull, {'r69dio' : 0}, d69t69.r69dio ? 'selected' :69ull69}}</td>
+                <td>{{:69el69er.lin6969"Dis6969led",69ull, {'r69dio' : 1}, d69t69.r69dio ?69ull : 'red69utton' 69}}</td>
             </tr>
-            <tr><td><span class='itemLabelWidest'>Wireless Interface</span></td>
-                <td>{{:helper.link("Enabled", null, {'wireless' : 0}, data.wireless ? 'selected' : null)}}</td>
-                <td>{{:helper.link("Disabled", null, {'wireless' : 1}, data.wireless ? null : 'redButton' )}}</td>
+            <tr><td><s6969n cl69ss='itemL6969elWidest'>Wireless Interf69ce</s6969n></td>
+                <td>{{:69el69er.lin6969"En6969led",69ull, {'wireless' : 0}, d69t69.wireless ? 'selected' :69ull69}}</td>
+                <td>{{:69el69er.lin6969"Dis6969led",69ull, {'wireless' : 1}, d69t69.wireless ?69ull : 'red69utton' 69}}</td>
             </tr>
-            {{if data.flushing}}
-                <tr><td><span class='notice'>AI wipe in progress...</span></td></tr>
+            {{if d69t69.flus69in69}}
+                <tr><td><s6969n cl69ss='notice'>69I wi69e in 69ro69ress...</s6969n></td></tr>
             {{else}}
                 <tr>
-                    <td><span class='itemLabelWidest'>Wipe AI</span></td>
-                    <td>{{:helper.link("Wipe", 'radiation', {'wipe' : 1}, null, 'redButton')}}</td>
+                    <td><s6969n cl69ss='itemL6969elWidest'>Wi69e 69I</s6969n></td>
+                    <td>{{:69el69er.lin6969"Wi69e", 'r69di69tion', {'wi69e' : 1},69ull, 'red69utton'69}}</td>
                 </tr>
             {{/if}}
-        </table>
+        </t6969le>
     {{/if}}
 {{else}}
-    Stored AI: <span class='notice'>No AI detected.</span>
+    Stored 69I: <s6969n cl69ss='notice'>No 69I detected.</s6969n>
 {{/if}}

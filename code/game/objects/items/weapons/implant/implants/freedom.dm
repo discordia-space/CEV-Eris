@@ -3,7 +3,7 @@
 
 /obj/item/implant/freedom
 	name = "freedom implant"
-	desc = "Use this if you ever get tied up. Has a cooldown of ten minutes."
+	desc = "Use this if you ever get tied up. Has a cooldown of ten69inutes."
 	icon_state = "implant_freedom"
 	implant_overlay = "implantstorage_freedom"
 	var/activation_emote = "chuckle"
@@ -13,19 +13,19 @@
 	origin_tech = list(TECH_COMBAT=5, TECH_MAGNET=3, TECH_BIO=4, TECH_COVERT=2)
 	allowed_organs = list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG)
 
-/obj/item/implant/freedom/trigger(emote, mob/living/carbon/source)
+/obj/item/implant/freedom/trigger(emote,69ob/living/carbon/source)
 	if (src.uses < 1)
 		to_chat (source, "You don't feel anything")
 		return
 	if (emote == src.activation_emote)
 		src.uses--
-		spawn(10 MINUTES)
+		spawn(1069INUTES)
 			src.uses++
 		to_chat(source, "You feel a faint click.")
 		if (source.handcuffed && install_organ == INSTALL_HANDS)
 			var/obj/item/W = source.handcuffed
 			source.handcuffed = null
-			if(source.buckled && source.buckled.buckle_require_restraints)
+			if(source.buckled && source.buckled.buckle_re69uire_restraints)
 				source.buckled.unbuckle_mob()
 			source.update_inv_handcuffed()
 			if (source.client)
@@ -56,8 +56,8 @@
 	activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	uses = 1
 	if(source.mind)
-		source.mind.store_memory("Freedom matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
-	to_chat(source, "The freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
+		source.mind.store_memory("Freedom69atter implant can be activated by using the 69src.activation_emote69 emote, <B>say *69src.activation_emote69</B> to attempt to activate.", 0, 0)
+	to_chat(source, "The freedom implant can be activated by using the 69src.activation_emote69 emote, <B>say *69src.activation_emote69</B> to attempt to activate.")
 
 /obj/item/implant/freedom/get_data()
 	var/data = {"

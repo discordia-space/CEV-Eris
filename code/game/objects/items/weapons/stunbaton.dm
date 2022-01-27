@@ -31,7 +31,7 @@
 	update_icon()
 
 /obj/item/melee/baton/Destroy()
-	QDEL_NULL(cell)
+	69DEL_NULL(cell)
 	return ..()
 
 /obj/item/melee/baton/get_cell()
@@ -39,7 +39,7 @@
 
 /obj/item/melee/baton/proc/set_status(s)
 	status = s
-	tool_qualities = status ? list(QUALITY_PULSING = 1) : null
+	tool_69ualities = status ? list(69UALITY_PULSING = 1) : null
 	update_icon()
 
 /obj/item/melee/baton/handle_atom_del(atom/A)
@@ -56,13 +56,13 @@
 
 /obj/item/melee/baton/update_icon()
 	if(status)
-		icon_state = "[initial(icon_state)]_active"
+		icon_state = "69initial(icon_state)69_active"
 	else if(!cell)
-		icon_state = "[initial(icon_state)]_nocell"
+		icon_state = "69initial(icon_state)69_nocell"
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = "69initial(icon_state)69"
 
-	if(icon_state == "[initial(icon_state)]_active")
+	if(icon_state == "69initial(icon_state)69_active")
 		set_light(1.5, 1)
 	else
 		set_light(0)
@@ -72,32 +72,32 @@
 		return
 
 	if(cell)
-		to_chat(user, SPAN_NOTICE("The baton is [round(cell.percent())]% charged."))
+		to_chat(user, SPAN_NOTICE("The baton is 69round(cell.percent())69% charged."))
 	else
 		to_chat(user, SPAN_WARNING("The baton does not have a power source installed."))
 
 /obj/item/melee/baton/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
 		set_status(!status)
-		to_chat(user, SPAN_NOTICE("[src] is now [status ? "on" : "off"]."))
+		to_chat(user, SPAN_NOTICE("69src69 is now 69status ? "on" : "off"69."))
 		playsound(loc, "sparks", 75, 1, -1)
 	else
 		set_status(FALSE)
 		if(!cell)
-			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
+			to_chat(user, SPAN_WARNING("69src69 does not have a power source!"))
 		else
-			to_chat(user, SPAN_WARNING("[src] is out of charge."))
+			to_chat(user, SPAN_WARNING("69src69 is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/melee/baton/attack(mob/M, mob/user)
+/obj/item/melee/baton/attack(mob/M,69ob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the [src]!"))
+		to_chat(user, SPAN_DANGER("You accidentally hit yourself with the 69src69!"))
 		user.Weaken(30)
 		deductcharge(hitcost)
 		return
 	return ..()
 
-/obj/item/melee/baton/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/melee/baton/apply_hit_effect(mob/living/target,69ob/living/user,69ar/hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -110,32 +110,32 @@
 
 	if(user.a_intent == I_HURT)
 		. = ..()
-		if (!.)	//item/attack() does it's own messaging and logs
-			return 0	// item/attack() will return 1 if they hit, 0 if they missed.
+		if (!.)	//item/attack() does it's own69essaging and logs
+			return 0	// item/attack() will return 1 if they hit, 0 if they69issed.
 
-		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
+		//whacking someone causes a69uch poorer electrical contact than deliberately prodding them.
 		stun *= 0.5
 		if(status)		//Checks to see if the stunbaton is on.
-			agony *= 0.5	//whacking someone causes a much poorer contact than prodding them.
+			agony *= 0.5	//whacking someone causes a69uch poorer contact than prodding them.
 		else
 			agony = 0	//Shouldn't really stun if it's off, should it?
 		//we can't really extract the actual hit zone from ..(), unfortunately. Just act like they attacked the area they intended to.
 	else if(!status)
 		if(affecting)
-			target.visible_message(SPAN_WARNING("[target] has been prodded in the [affecting.name] with [src] by [user]. Luckily it was off."))
+			target.visible_message(SPAN_WARNING("69target69 has been prodded in the 69affecting.name69 with 69src69 by 69user69. Luckily it was off."))
 		else
-			target.visible_message(SPAN_WARNING("[target] has been prodded with [src] by [user]. Luckily it was off."))
+			target.visible_message(SPAN_WARNING("69target69 has been prodded with 69src69 by 69user69. Luckily it was off."))
 	else
 		if(affecting)
-			target.visible_message(SPAN_DANGER("[target] has been prodded in the [affecting.name] with [src] by [user]!"))
+			target.visible_message(SPAN_DANGER("69target69 has been prodded in the 69affecting.name69 with 69src69 by 69user69!"))
 		else
-			target.visible_message(SPAN_DANGER("[target] has been prodded with [src] by [user]!"))
+			target.visible_message(SPAN_DANGER("69target69 has been prodded with 69src69 by 69user69!"))
 		playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	//stun effects
 	if(status && deductcharge(hitcost))
 		target.stun_effect_act(stun, agony, hit_zone, src)
-		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
+		msg_admin_attack("69key_name(user)69 stunned 69key_name(target)69 with the 69src69.")
 
 		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
@@ -146,7 +146,7 @@
 		cell.emp_act(severity)	//let's not duplicate code everywhere if we don't have to please.
 	..()
 
-//secborg stun baton module
+//secborg stun baton69odule
 /obj/item/melee/baton/robot
 	bad_type = /obj/item/melee/baton/robot
 
@@ -157,7 +157,7 @@
 		cell = R.cell
 	return ..()
 
-/obj/item/melee/baton/robot/attackby(obj/item/W, mob/user)
+/obj/item/melee/baton/robot/attackby(obj/item/W,69ob/user)
 	return
 
 /obj/item/melee/baton/MouseDrop(over_object)
@@ -166,7 +166,7 @@
 		set_status(FALSE)
 		update_icon()
 
-/obj/item/melee/baton/attackby(obj/item/C, mob/living/user)
+/obj/item/melee/baton/attackby(obj/item/C,69ob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		cell = C
 		update_icon()
@@ -180,7 +180,7 @@
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
 	stunforce = 0
-	agonyforce = 40	//same force as a stunbaton, but uses way more charge.
+	agonyforce = 40	//same force as a stunbaton, but uses way69ore charge.
 	hitcost = 150
 	attack_verb = list("poked")
 	slot_flags = null
@@ -201,7 +201,7 @@
 	attack_verb = list("battered")
 	slot_flags = SLOT_BELT
 	structure_damage_factor = STRUCTURE_DAMAGE_NORMAL
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTEEL = 5)
+	matter = list(MATERIAL_STEEL = 15,69ATERIAL_PLASTEEL = 5)
 	starting_cell = /obj/item/cell/medium/excelsior
 
 //excelsior baton has 2 inhand sprites

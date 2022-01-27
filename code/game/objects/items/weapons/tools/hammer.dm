@@ -8,8 +8,8 @@
 	worksound = WORKSOUND_HAMMER
 	flags = CONDUCT
 	origin_tech = list(TECH_ENGINEERING = 1)
-	tool_qualities = list(QUALITY_HAMMERING = 20, QUALITY_PRYING = 10)
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_WOOD = 2)
+	tool_69ualities = list(69UALITY_HAMMERING = 20, 69UALITY_PRYING = 10)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_WOOD = 2)
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked","flattened","pulped")
 	hitsound = 'sound/weapons/melee/blunthit.ogg'
 	rarity_value = 5
@@ -26,13 +26,13 @@
 	force_wielded_multiplier = 2.6
 	slot_flags = SLOT_BELT|SLOT_BACK
 	w_class = ITEM_SIZE_HUGE
-	tool_qualities = list(QUALITY_HAMMERING = 15)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1)
+	tool_69ualities = list(69UALITY_HAMMERING = 15)
+	matter = list(MATERIAL_STEEL = 15,69ATERIAL_PLASTIC = 1)
 	max_upgrades = 5
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 	rarity_value = 32
 
-/obj/item/tool/hammer/powered_hammer //to be made into proper two-handed tool as small "powered" hammer doesn't make sense
+/obj/item/tool/hammer/powered_hammer //to be69ade into proper two-handed tool as small "powered" hammer doesn't69ake sense
 	name = "powered hammer"					//lacks normal sprites, both icon, item and twohanded for this
 	desc = "Used for applying excessive blunt force to a surface. Powered edition."
 	icon_state = "powered_hammer"
@@ -41,8 +41,8 @@
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
 	w_class = ITEM_SIZE_HUGE
-	tool_qualities = list(QUALITY_HAMMERING = 30)
-	matter = list(MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 10, MATERIAL_PLASTIC = 1)
+	tool_69ualities = list(69UALITY_HAMMERING = 30)
+	matter = list(MATERIAL_STEEL = 5,69ATERIAL_PLASTEEL = 10,69ATERIAL_PLASTIC = 1)
 	degradation = 0.7
 	use_power_cost = 2
 	suitable_cell = /obj/item/cell/medium
@@ -51,7 +51,7 @@
 
 /obj/item/tool/hammer/powered_hammer/onestar_hammer
 	name = "One Star sledgehammer"
-	desc = "A sledgehammer model produced by One Star, used for applying immeasurable blunt force to anything in your way. Capable of breaching even the toughtest obstacles, and cracking the most resilient skulls."
+	desc = "A sledgehammer69odel produced by One Star, used for applying immeasurable blunt force to anything in your way. Capable of breaching even the toughtest obstacles, and cracking the69ost resilient skulls."
 	icon_state = "onehammer"
 	item_state = "onehammer"
 	wielded_icon = "onehammer_on"
@@ -61,8 +61,8 @@
 	force_wielded_multiplier = 1.65
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLATINUM = 5, MATERIAL_DIAMOND = 5)
-	tool_qualities = list(QUALITY_HAMMERING = 50)
+	matter = list(MATERIAL_STEEL = 10,69ATERIAL_PLATINUM = 5,69ATERIAL_DIAMOND = 5)
+	tool_69ualities = list(69UALITY_HAMMERING = 50)
 	degradation = 0.6
 	use_power_cost = 1.5
 	workspeed = 1.5
@@ -80,20 +80,20 @@
 	w_class = ITEM_SIZE_NORMAL
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_DANGEROUS
-	tool_qualities = list(QUALITY_HAMMERING = 20)
+	tool_69ualities = list(69UALITY_HAMMERING = 20)
 	spawn_tags = SPAWN_TAG_WEAPON
 	rarity_value = 15
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
 /obj/item/tool/hammer/mace/makeshift
-	name = "makeshift mace"
-	desc = "Some metal attached to the end of a stick, for applying blunt force trauma to a roach."
+	name = "makeshift69ace"
+	desc = "Some69etal attached to the end of a stick, for applying blunt force trauma to a roach."
 	icon_state = "ghetto_mace"
 	item_state = "ghetto_mace"
 	force = WEAPON_FORCE_PAINFUL
-	tool_qualities = list(QUALITY_HAMMERING = 15)
+	tool_69ualities = list(69UALITY_HAMMERING = 15)
 	degradation = 3 //This one breaks fast
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	max_upgrades = 5 //all69akeshift tools get69ore69ods to69ake them actually69iable for69id-late game
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -121,21 +121,21 @@
 
 /obj/item/tool/hammer/charge
 	name = "charge hammer"
-	desc = "After many issues with scientists trying to hammer a nail, one bright individual wondered what could be achieved by attaching a stellar-grade ship engine to the back."
+	desc = "After69any issues with scientists trying to hammer a nail, one bright individual wondered what could be achieved by attaching a stellar-grade ship engine to the back."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "chargehammer"
 	item_state = "chargehammer"
 	w_class = ITEM_SIZE_HUGE
 	switched_on_force = WEAPON_FORCE_BRUTAL
 	structure_damage_factor = STRUCTURE_DAMAGE_BREACHING
-	switched_on_qualities = list(QUALITY_HAMMERING = 60)
-	switched_off_qualities = list(QUALITY_HAMMERING = 35)
+	switched_on_69ualities = list(69UALITY_HAMMERING = 60)
+	switched_off_69ualities = list(69UALITY_HAMMERING = 35)
 	toggleable = TRUE
 	slot_flags = SLOT_BACK
 	suitable_cell = /obj/item/cell/medium
 	use_power_cost = 15
 	rarity_value = 100
-	spawn_frequency = 4
+	spawn_fre69uency = 4
 	var/datum/effect/effect/system/trail/T
 	var/last_launch
 
@@ -145,10 +145,10 @@
 	T.set_up(src)
 
 /obj/item/tool/hammer/charge/Destroy()
-	QDEL_NULL(T)
+	69DEL_NULL(T)
 	return ..()
 
-/obj/item/tool/hammer/charge/afterattack(atom/target, mob/user, proximity_flag, params)
+/obj/item/tool/hammer/charge/afterattack(atom/target,69ob/user, proximity_flag, params)
 	if(!switched_on || world.time < last_launch + 3 SECONDS)
 		return
 	var/cost = use_power_cost*get_dist(target, user)
@@ -162,7 +162,7 @@
 				var/mob/living/carbon/human/H = user
 				drop_prob *= H.stats.getMult(STAT_ROB, STAT_LEVEL_EXPERT)
 			if(prob(drop_prob))
-				to_chat(user, SPAN_WARNING("\The [src] launches from your grasp!"))
+				to_chat(user, SPAN_WARNING("\The 69src69 launches from your grasp!"))
 				user.drop_item(src)
 				T.start()
 				playsound(src, 'sound/machines/hiss.ogg', 50, 0, 0)
@@ -178,7 +178,7 @@
 
 /obj/item/tool/hammer/IH
 	name = "FS \"Ironhammer\" Breaching Hammer"
-	desc = "A modified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
+	desc = "A69odified sledgehammer produced by Frozen Star for Ironhammer forces. This tool can take down standard walls and if the user is strong enough, reinforced walls."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "iron_hammer"
 	item_state = "iron_hammer"
@@ -187,6 +187,6 @@
 	armor_penetration = ARMOR_PEN_DEEP
 	force = WEAPON_FORCE_ROBUST
 	structure_damage_factor = STRUCTURE_DAMAGE_BORING
-	tool_qualities = list(QUALITY_HAMMERING = 40, QUALITY_PRYING = 1)
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 2)
+	tool_69ualities = list(69UALITY_HAMMERING = 40, 69UALITY_PRYING = 1)
+	matter = list(MATERIAL_STEEL = 15,69ATERIAL_PLASTIC = 1,69ATERIAL_PLASTEEL = 2)
 	spawn_blacklisted = TRUE

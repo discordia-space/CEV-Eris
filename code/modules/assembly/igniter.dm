@@ -28,6 +28,6 @@
 		s.start()
 
 
-/obj/item/device/assembly/igniter/attack_self(mob/user as mob)
+/obj/item/device/assembly/igniter/attack_self(mob/user as69ob)
 	activate()
 	add_fingerprint(user)

@@ -1,6 +1,6 @@
 /obj/item/emp_mine
 	name = "OS Type - 183 \"Hei'an\""
-	desc = "Self-rechargeable EMP Chinese mine. It still works, despite all the age."
+	desc = "Self-rechargeable EMP Chinese69ine. It still works, despite all the age."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "empmine0"
 	w_class = ITEM_SIZE_BULKY
@@ -36,7 +36,7 @@
 
 
 /obj/item/emp_mine/update_icon()
-	icon_state = "empmine[armed ? "1":"0"]"
+	icon_state = "empmine69armed ? "1":"0"69"
 
 
 /obj/item/emp_mine/Process()
@@ -52,17 +52,17 @@
 				break
 
 
-/obj/item/emp_mine/attack_self(mob/user as mob)
+/obj/item/emp_mine/attack_self(mob/user as69ob)
 	src.add_fingerprint(user)
 	if(armed)
 		disarm()
-		to_chat(user, SPAN_NOTICE("You disarm \the [src]"))
+		to_chat(user, SPAN_NOTICE("You disarm \the 69src69"))
 	else
 		cooldown_timer = world.time - cooldown + 100
 		arm()
-		to_chat(user, SPAN_WARNING("You arm \the [src]! You have 10 seconds to run away."))
+		to_chat(user, SPAN_WARNING("You arm \the 69src69! You have 10 seconds to run away."))
 
-//Pre-armed mine
+//Pre-armed69ine
 /obj/item/emp_mine/armed/New()
 	..()
 	arm()

@@ -19,14 +19,14 @@
 	. = list()
 	. += "<b>Background</b><br>"
 	for(var/datum/category_group/setup_option_category/background/BG in SScharacter_setup.setup_options.categories)
-		. += "[BG]: <a href='?src=\ref[src];options_popup=[BG]'>[pref.setup_options[BG.name]]</a><br>"
+		. += "69BG69: <a href='?src=\ref69src69;options_popup=69BG69'>69pref.setup_options69BG.name6969</a><br>"
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/background/origin/get_title()
-	return ..() + ": [option_category]"
+	return ..() + ": 69option_category69"
 
 /datum/category_item/player_setup_item/background/origin/open_popup(category_name)
-	if(!istype(SScharacter_setup.setup_options[category_name], /datum/category_group/setup_option_category/background))
+	if(!istype(SScharacter_setup.setup_options69category_name69, /datum/category_group/setup_option_category/background))
 		return FALSE
-	option_category = SScharacter_setup.setup_options[category_name]
+	option_category = SScharacter_setup.setup_options69category_name69
 	return TRUE

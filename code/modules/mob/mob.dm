@@ -1,4 +1,4 @@
-/mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
+/mob/Destroy()//This69akes sure that69obs with clients/keys are69ot just deleted from the game.
 	STOP_PROCESSING(SSmobs, src)
 	GLOB.dead_mob_list -= src
 	GLOB.living_mob_list -= src
@@ -17,13 +17,13 @@
 /mob/proc/despawn()
 	return
 
-/mob/get_fall_damage(var/turf/from, var/turf/dest)
+/mob/get_fall_damage(var/turf/from,69ar/turf/dest)
 	return 0
 
-/mob/fall_impact(var/turf/from, var/turf/dest)
+/mob/fall_impact(var/turf/from,69ar/turf/dest)
 	return
 
-/mob/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+/mob/proc/take_overall_damage(var/brute,69ar/burn,69ar/used_weapon =69ull)
 	return
 
 /mob/Initialize()
@@ -36,7 +36,7 @@
 	move_intent = decls_repository.get_decl(move_intent)
 	. = ..()
 
-/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+/mob/proc/show_message(msg, type, alt, alt_type)//Message, type of69essage (1 or 2), alternative69essage, alt69essage type (1 or 2)
 
 	if(!client)	return
 
@@ -55,61 +55,61 @@
 				type = alt_type
 				if ((type & 1 && sdisabilities & BLIND))
 					return
-	// Added voice muffling for Issue 41.
+	// Added69oice69uffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
 		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
 	else
-		to_chat(src, msg)
+		to_chat(src,69sg)
 	return
 
-// Show a message to all mobs and objects in sight of this one
-// This would be for visible actions by the src mob
-// message is the message output to anyone who can see e.g. "[src] does something!"
-// self_message (optional) is what the src mob sees  e.g. "You do something!"
+// Show a69essage to all69obs and objects in sight of this one
+// This would be for69isible actions by the src69ob
+//69essage is the69essage output to anyone who can see e.g. "69src69 does something!"
+// self_message (optional) is what the src69ob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
 
-/mob/visible_message(var/message, var/self_message, var/blind_message, var/range = world.view)
+/mob/visible_message(var/message,69ar/self_message,69ar/blind_message,69ar/range = world.view)
 	var/list/messageturfs = list()//List of turfs we broadcast to.
-	var/list/messagemobs = list()//List of living mobs nearby who can hear it, and distant ghosts who've chosen to hear it
-	for (var/turf in view(range, get_turf(src)))
+	var/list/messagemobs = list()//List of living69obs69earby who can hear it, and distant ghosts who've chosen to hear it
+	for (var/turf in69iew(range, get_turf(src)))
 
 		messageturfs += turf
 
 	for(var/A in GLOB.player_list)
 		var/mob/M = A
 		if (QDELETED(M))
-			GLOB.player_list -= M
+			GLOB.player_list -=69
 			continue
 		if (!M.client || istype(M, /mob/new_player))
 			continue
-		if(get_turf(M) in messageturfs)
-			messagemobs += M
+		if(get_turf(M) in69essageturfs)
+			messagemobs +=69
 
-	for(var/A in messagemobs)
+	for(var/A in69essagemobs)
 		var/mob/M = A
-		if(self_message && M==src)
+		if(self_message &&69==src)
 			M.show_message(self_message, 1, blind_message, 2)
-		else if(M.see_invisible < invisibility)  // Cannot view the invisible, but you can hear it.
+		else if(M.see_invisible < invisibility)  // Cannot69iew the invisible, but you can hear it.
 			if(blind_message)
 				M.show_message(blind_message, 2)
 		else
 			M.show_message(message, 1, blind_message, 2)
 
 
-// Returns an amount of power drawn from the object (-1 if it's not viable).
-// If drain_check is set it will not actually drain power, just return a value.
-// If surge is set, it will destroy/damage the recipient and not return any power.
-// Not sure where to define this, so it can sit here for the rest of time.
-/atom/proc/drain_power(var/drain_check,var/surge, var/amount = 0)
+// Returns an amount of power drawn from the object (-1 if it's69ot69iable).
+// If drain_check is set it will69ot actually drain power, just return a69alue.
+// If surge is set, it will destroy/damage the recipient and69ot return any power.
+//69ot sure where to define this, so it can sit here for the rest of time.
+/atom/proc/drain_power(var/drain_check,var/surge,69ar/amount = 0)
 	return -1
 
-// Show a message to all mobs and objects in earshot of this one
-// This would be for audible actions by the src mob
-// message is the message output to anyone who can hear.
-// self_message (optional) is what the src mob hears.
+// Show a69essage to all69obs and objects in earshot of this one
+// This would be for audible actions by the src69ob
+//69essage is the69essage output to anyone who can hear.
+// self_message (optional) is what the src69ob hears.
 // deaf_message (optional) is what deaf people will see.
-// hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message)
+// hearing_distance (optional) is the range, how69any tiles away the69essage can be heard.
+/mob/audible_message(var/message,69ar/deaf_message,69ar/hearing_distance,69ar/self_message)
 
 	var/range = world.view
 	if(hearing_distance)
@@ -119,12 +119,12 @@
 
 	var/list/mobs = list()
 	var/list/objs = list()
-	get_mobs_and_objs_in_view_fast(T, range, mobs, objs)
+	get_mobs_and_objs_in_view_fast(T, range,69obs, objs)
 
 
-	for(var/m in mobs)
-		var/mob/M = m
-		if(self_message && M==src)
+	for(var/m in69obs)
+		var/mob/M =69
+		if(self_message &&69==src)
 			M.show_message(self_message,2,deaf_message,1)
 			continue
 
@@ -138,8 +138,8 @@
 
 /mob/proc/findname(msg)
 	for(var/mob/M in SSmobs.mob_list)
-		if (M.real_name == text("[]", msg))
-			return M
+		if (M.real_name == text("6969",69sg))
+			return69
 	return 0
 
 /mob/proc/movement_delay()
@@ -149,7 +149,7 @@
 		. += 6
 	if(lying) //Crawling, it's slower
 		. += 14 + (weakened)
-	. += move_intent.move_delay
+	. +=69ove_intent.move_delay
 
 
 /mob/proc/Life()
@@ -164,7 +164,7 @@
 #define FULLY_BUCKLED 2
 /mob/proc/buckled()
 	// Preliminary work for a future buckle rewrite,
-	// where one might be fully restrained (like an elecrical chair), or merely secured (shuttle chair, keeping you safe but not otherwise restrained from acting)
+	// where one69ight be fully restrained (like an elecrical chair), or69erely secured (shuttle chair, keeping you safe but69ot otherwise restrained from acting)
 	if(!buckled)
 		return UNBUCKLED
 	return restrained() ? FULLY_BUCKLED : PARTIALLY_BUCKLED
@@ -212,11 +212,11 @@
 		else
 			if (isturf(loc))
 				client.eye = client.mob
-				client.perspective = MOB_PERSPECTIVE
+				client.perspective =69OB_PERSPECTIVE
 			else
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = loc
-		client.view = world.view  // Reset view range if it has been altered
+		client.view = world.view  // Reset69iew range if it has been altered
 
 	if(hud_used)
 		hud_used.updatePlaneMasters(src)
@@ -224,12 +224,12 @@
 	return
 
 
-/mob/proc/show_inv(mob/user as mob)
+/mob/proc/show_inv(mob/user as69ob)
 	return
 
-//mob verbs are faster than object verbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/A as mob|obj|turf in view())
-	set name = "Examine"
+//mob69erbs are faster than object69erbs. See http://www.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
+/mob/verb/examinate(atom/A as69ob|obj|turf in69iew())
+	set69ame = "Examine"
 	set category = "IC"
 
 	if((is_blind(src) || usr.stat) && !isobserver(src))
@@ -242,11 +242,11 @@
 		FL.afterattack(A,src)
 	A.examine(src)
 
-/mob/verb/pointed(atom/A as mob|obj|turf in view())
-	set name = "Point To"
+/mob/verb/pointed(atom/A as69ob|obj|turf in69iew())
+	set69ame = "Point To"
 	set category = "Object"
 
-	if(!src || !isturf(src.loc) || !(A in view(src.loc)))
+	if(!src || !isturf(src.loc) || !(A in69iew(src.loc)))
 		return 0
 	if(istype(A, /obj/effect/decal/point))
 		return 0
@@ -255,7 +255,7 @@
 	if (!tile)
 		return 0
 
-	var/obj/P = new /obj/effect/decal/point(tile)
+	var/obj/P =69ew /obj/effect/decal/point(tile)
 	P.invisibility = invisibility
 	P.pixel_x = A.pixel_x
 	P.pixel_y = A.pixel_y
@@ -268,12 +268,12 @@
 /mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
 	if(!istype(l_hand, /obj/item/grab) && !istype(r_hand, /obj/item/grab))
 		if (!L)
-			return null
+			return69ull
 		else
 			return L.container
 	else
 		if(!L)
-			L = new /obj/effect/list_container/mobl(null)
+			L =69ew /obj/effect/list_container/mobl(null)
 			L.container += src
 			L.master = src
 		if(istype(l_hand, /obj/item/grab))
@@ -292,7 +292,7 @@
 			if (L.master == src)
 				var/list/temp = list()
 				temp += L.container
-				//L = null
+				//L =69ull
 				qdel(L)
 				return temp
 			else
@@ -300,7 +300,7 @@
 	return
 
 /mob/verb/mode()
-	set name = "Activate Held Object"
+	set69ame = "Activate Held Object"
 	set category = "Object"
 	set src = usr
 
@@ -313,22 +313,22 @@
 
 	var/master = "<PRE>"
 	for(var/t in typesof(/area))
-		master += text("[]\n", t)
+		master += text("6969\n", t)
 		//Foreach goto(26)
 	src << browse(master)
 	return
 */
 
 /mob/verb/memory()
-	set name = "Notes"
+	set69ame = "Notes"
 	set category = "IC"
 	if(mind)
 		mind.show_memory(src)
 	else
-		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
+		to_chat(src, "The game appears to have69isplaced your69ind datum, so we can't show you your69otes.")
 
-/mob/verb/add_memory(msg as message)
-	set name = "Add Note"
+/mob/verb/add_memory(msg as69essage)
+	set69ame = "Add69ote"
 	set category = "IC"
 
 	msg = sanitize(msg)
@@ -336,18 +336,18 @@
 	if(mind)
 		mind.store_memory(msg)
 	else
-		to_chat(src, "The game appears to have misplaced your mind datum, so we can't show you your notes.")
+		to_chat(src, "The game appears to have69isplaced your69ind datum, so we can't show you your69otes.")
 
-/mob/proc/store_memory(msg as message, popup, sane = 1)
-	msg = copytext(msg, 1, MAX_MESSAGE_LEN)
+/mob/proc/store_memory(msg as69essage, popup, sane = 1)
+	msg = copytext(msg, 1,69AX_MESSAGE_LEN)
 
 	if (sane)
 		msg = sanitize(msg)
 
 	if (length(memory) == 0)
-		memory += msg
+		memory +=69sg
 	else
-		memory += "<BR>[msg]"
+		memory += "<BR>69msg69"
 
 	if (popup)
 		memory()
@@ -356,23 +356,23 @@
 	set src in usr
 	if(usr != src)
 		to_chat(usr, "No.")
-	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)
+	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine'69erb. Can also be used for OOC69otes about your character.","Flavor Text",html_decode(flavor_text)) as69essage|null, extra = 0)
 
-	if(msg != null)
-		flavor_text = msg
+	if(msg !=69ull)
+		flavor_text =69sg
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
 		var/msg = trim(replacetext(flavor_text, "\n", " "))
 		if(!msg) return ""
 		if(length(msg) <= 40)
-			return "<font color='blue'>[msg]</font>"
+			return "<font color='blue'>69msg69</font>"
 		else
-			return "<font color='blue'>[copytext_preserve_html(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></font>"
+			return "<font color='blue'>69copytext_preserve_html(msg, 1, 37)69... <a href='byond://?src=\ref69src69;flavor_more=1'>More...</a></font>"
 
 /*
 /mob/verb/help()
-	set name = "Help"
+	set69ame = "Help"
 	src << browse('html/help.html', "window=help")
 	return
 */
@@ -380,7 +380,7 @@
 
 
 /client/verb/changes()
-	set name = "Changelog"
+	set69ame = "Changelog"
 	set category = "OOC"
 	getFiles(
 		'html/88x31.png',
@@ -409,14 +409,14 @@
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
 
 /mob/verb/observe()
-	set name = "Observe"
+	set69ame = "Observe"
 	set category = "OOC"
 	var/is_admin = 0
 
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
 	else if(stat != DEAD || isnewplayer(src))
-		to_chat(usr, "\blue You must be observing to use this!")
+		to_chat(usr, "\blue You69ust be observing to use this!")
 		return
 
 	if(is_admin && stat == DEAD)
@@ -432,87 +432,87 @@
 		if(istype(O, /obj/item/disk/nuclear))
 			var/name = "Nuclear Disk"
 			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
+				namecounts69name69++
+				name = "69name69 (69namecounts69name6969)"
 			else
 				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
+				namecounts69name69 = 1
+			creatures69name69 = O
 
 		if(istype(O, /obj/singularity))
 			var/name = "Singularity"
 			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
+				namecounts69name69++
+				name = "69name69 (69namecounts69name6969)"
 			else
 				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
+				namecounts69name69 = 1
+			creatures69name69 = O
 
 		if(istype(O, /obj/machinery/bot))
-			var/name = "BOT: [O.name]"
+			var/name = "BOT: 69O.name69"
 			if (names.Find(name))
-				namecounts[name]++
-				name = "[name] ([namecounts[name]])"
+				namecounts69name69++
+				name = "69name69 (69namecounts69name6969)"
 			else
 				names.Add(name)
-				namecounts[name] = 1
-			creatures[name] = O
+				namecounts69name69 = 1
+			creatures69name69 = O
 
 
 	for(var/mob/M in sortNames(SSmobs.mob_list))
-		var/name = M.name
+		var/name =69.name
 		if (names.Find(name))
-			namecounts[name]++
-			name = "[name] ([namecounts[name]])"
+			namecounts69name69++
+			name = "69name69 (69namecounts69name6969)"
 		else
 			names.Add(name)
-			namecounts[name] = 1
+			namecounts69name69 = 1
 
-		creatures[name] = M
+		creatures69name69 =69
 
 
 	client.perspective = EYE_PERSPECTIVE
 
-	var/eye_name = null
+	var/eye_name =69ull
 
-	var/ok = "[is_admin ? "Admin Observe" : "Observe"]"
-	eye_name = input("Please, select a player!", ok, null, null) as null|anything in creatures
+	var/ok = "69is_admin ? "Admin Observe" : "Observe"69"
+	eye_name = input("Please, select a player!", ok,69ull,69ull) as69ull|anything in creatures
 
 	if (!eye_name)
 		return
 
-	var/mob/mob_eye = creatures[eye_name]
+	var/mob/mob_eye = creatures69eye_name69
 
-	if(client && mob_eye)
-		client.eye = mob_eye
+	if(client &&69ob_eye)
+		client.eye =69ob_eye
 		if (is_admin)
 			client.adminobs = 1
 			if(mob_eye == client.mob || client.eye == client.mob)
 				client.adminobs = 0
 
 /mob/verb/cancel_camera()
-	set name = "Cancel Camera View"
+	set69ame = "Cancel Camera69iew"
 	set category = "OOC"
 	unset_machine()
 	reset_view(null)
 
 /mob/Topic(href, href_list)
-	if(href_list["mach_close"])
-		var/t1 = text("window=[href_list["mach_close"]]")
+	if(href_list69"mach_close"69)
+		var/t1 = text("window=69href_list69"mach_close"6969")
 		unset_machine()
 		src << browse(null, t1)
 
-	if(href_list["flavor_more"])
-		if(src in view(usr))
+	if(href_list69"flavor_more"69)
+		if(src in69iew(usr))
 			var/dat = {"
-				<html><meta charset=\"utf-8\"><head><title>[name]</title></head>
-				<body><tt>[replacetext(flavor_text, "\n", "<br>")]</tt></body>
+				<html><meta charset=\"utf-8\"><head><title>69name69</title></head>
+				<body><tt>69replacetext(flavor_text, "\n", "<br>")69</tt></body>
 				</html>
 			"}
-			usr << browse(dat, "window=[name];size=500x200")
-			onclose(usr, "[name]")
-	if(href_list["flavor_change"])
+			usr << browse(dat, "window=69name69;size=500x200")
+			onclose(usr, "69name69")
+	if(href_list69"flavor_change"69)
 		update_flavor_text()
 //	..()
 	return
@@ -523,14 +523,14 @@
 		var/mob/living/carbon/human/H = src
 		if(H.health - H.halloss <= HEALTH_THRESHOLD_SOFTCRIT)
 			for(var/name in H.organs_by_name)
-				var/obj/item/organ/external/e = H.organs_by_name[name]
+				var/obj/item/organ/external/e = H.organs_by_name69name69
 				if(e && H.lying)
 					if(((e.status & ORGAN_BROKEN && !(e.status & ORGAN_SPLINTED)) || e.status & ORGAN_BLEEDING) && (H.getBruteLoss() + H.getFireLoss() >= 100))
 						return 1
 		else
 			return 0
 
-/mob/MouseDrop(mob/M as mob)
+/mob/MouseDrop(mob/M as69ob)
 	..()
 	if(M != usr) return
 	if(usr == src) return
@@ -541,18 +541,18 @@
 
 /mob/verb/stop_pulling()
 
-	set name = "Stop Pulling"
+	set69ame = "Stop Pulling"
 	set category = "IC"
 
 	if(pulling)
-		pulling.pulledby = null
-		pulling = null
+		pulling.pulledby =69ull
+		pulling =69ull
 		/*if(pullin)
 			pullin.icon_state = "pull0"*/
 
 /mob/proc/start_pulling(var/atom/movable/AM)
 
-	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+	if ( !AM || !usr || src==AM || !isturf(src.loc) )	//if there's69o person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
 	if (AM.anchored)
@@ -562,7 +562,7 @@
 	var/mob/M = AM
 	if(ismob(AM))
 
-		if(M.mob_size >=  MOB_GIGANTIC)
+		if(M.mob_size >= 69OB_GIGANTIC)
 			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
@@ -570,20 +570,20 @@
 			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
-		if((mob_size < M.mob_size) && (can_pull_mobs != MOB_PULL_LARGER))
+		if((mob_size <69.mob_size) && (can_pull_mobs !=69OB_PULL_LARGER))
 			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
-		if((mob_size == M.mob_size) && (can_pull_mobs == MOB_PULL_SMALLER))
+		if((mob_size ==69.mob_size) && (can_pull_mobs ==69OB_PULL_SMALLER))
 			to_chat(src, SPAN_WARNING("It won't budge!"))
 			return
 
 		// If your size is larger than theirs and you have some
-		// kind of mob pull value AT ALL, you will be able to pull
+		// kind of69ob pull69alue AT ALL, you will be able to pull
 		// them, so don't bother checking that explicitly.
 
 		if(!iscarbon(src))
-			M.LAssailant = null
+			M.LAssailant =69ull
 		else
 			M.LAssailant = usr
 
@@ -609,7 +609,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(H.pull_damage())
-			to_chat(src, "\red <B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")
+			to_chat(src, "\red <B>Pulling \the 69H69 in their current condition would probably be a bad idea.</B>")
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -626,7 +626,7 @@
 	return stat == DEAD
 
 /mob/proc/is_mechanical()
-	if(mind && (mind.assigned_role == "Robot" || mind.assigned_role == "AI"))
+	if(mind && (mind.assigned_role == "Robot" ||69ind.assigned_role == "AI"))
 		return 1
 	return issilicon(src)
 
@@ -639,29 +639,29 @@
 /mob/proc/see(message)
 	if(!is_active())
 		return 0
-	to_chat(src, message)
+	to_chat(src,69essage)
 	return 1
 
 /mob/proc/show_viewers(message)
-	for(var/mob/M in viewers())
+	for(var/mob/M in69iewers())
 		M.see(message)
 
 /mob/Stat()
 	..()
-	. = (is_client_active(10 MINUTES))
+	. = (is_client_active(1069INUTES))
 
 	if(.)
 		if(statpanel("Status") && SSticker.current_state != GAME_STATE_PREGAME)
-			stat("Storyteller", "[master_storyteller]")
+			stat("Storyteller", "69master_storyteller69")
 			stat("Station Time", stationtime2text())
 			stat("Round Duration", roundduration2text())
 
 		if(client.holder)
 			if(statpanel("Status"))
-				stat("Location:", "([x], [y], [z]) [loc]")
+				stat("Location:", "(69x69, 69y69, 69z69) 69loc69")
 			if(statpanel("MC"))
-				stat("CPU:","[world.cpu]")
-				stat("Instances:","[world.contents.len]")
+				stat("CPU:","69world.cpu69")
+				stat("Instances:","69world.contents.len69")
 				stat(null)
 				if(Master)
 					Master.stat_entry()
@@ -677,12 +677,12 @@
 					stat("Globals:", "ERROR")
 				if(Master)
 					stat(null)
-					for(var/datum/controller/subsystem/SS in Master.subsystems)
+					for(var/datum/controller/subsystem/SS in69aster.subsystems)
 						SS.stat_entry()
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
-				listed_turf = null
+				listed_turf =69ull
 			else
 				if(statpanel("Turf"))
 					stat(listed_turf)
@@ -696,7 +696,7 @@
 						stat(A)
 
 
-// facing verbs
+// facing69erbs
 /mob/proc/canface()
 	if(!canmove)						return 0
 	if(stat)							return 0
@@ -704,7 +704,7 @@
 	if(transforming)						return 0
 	return 1
 
-// Not sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't need to fall over yet.
+//69ot sure what to call this. Used to check if humans are wearing an AI-controlled exosuit and hence don't69eed to fall over yet.
 /mob/proc/can_stand_overridden()
 	return 0
 
@@ -714,9 +714,9 @@
 
 //Updates lying and icons
 /*
-Note from Nanako: 2019-02-01
-TODO: Bay Movement:
-All Canmove setting in this proc is temporary. This var should not be set from here, but from movement controllers
+Note from69anako: 2019-02-01
+TODO: Bay69ovement:
+All Canmove setting in this proc is temporary. This69ar should69ot be set from here, but from69ovement controllers
 */
 /mob/proc/update_lying_buckled_and_verb_status()
 
@@ -751,9 +751,9 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 		if(G.force_stand())
 			lying = 0
 
-	//Temporarily moved here from the various life() procs
+	//Temporarily69oved here from the69arious life() procs
 	//I'm fixing stuff incrementally so this will likely find a better home.
-	//It just makes sense for now. ~Carn
+	//It just69akes sense for69ow. ~Carn
 	if( update_icon )	//forces a full overlay update
 		update_icon = 0
 		regenerate_icons()
@@ -797,52 +797,52 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return facedir(client.client_dir(SOUTH))
 
 
-//This might need a rename but it should replace the can this mob use things check
+//This69ight69eed a rename but it should replace the can this69ob use things check
 /mob/proc/IsAdvancedToolUser()
 	return 0
 
 /mob/proc/Stun(amount)
 	if(status_flags & CANSTUN)
-		facing_dir = null
-		stunned = max(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
+		facing_dir =69ull
+		stunned =69ax(max(stunned,amount),0) //can't go below 0, getting a low amount of stun doesn't lower your current stun
 		update_lying_buckled_and_verb_status()
 	return
 
-/mob/proc/SetStunned(amount) //if you REALLY need to set stun to a set amount without the whole "can't go below current stunned"
+/mob/proc/SetStunned(amount) //if you REALLY69eed to set stun to a set amount without the whole "can't go below current stunned"
 	if(status_flags & CANSTUN)
-		stunned = max(amount,0)
+		stunned =69ax(amount,0)
 		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/AdjustStunned(amount)
 	if(status_flags & CANSTUN)
-		stunned = max(stunned + amount,0)
+		stunned =69ax(stunned + amount,0)
 		update_lying_buckled_and_verb_status()
 	return
 
 /mob/proc/Weaken(amount)
 	if(status_flags & CANWEAKEN)
-		facing_dir = null
-		weakened = max(max(weakened,amount),0)
+		facing_dir =69ull
+		weakened =69ax(max(weakened,amount),0)
 		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/SetWeakened(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(amount,0)
+		weakened =69ax(amount,0)
 		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/AdjustWeakened(amount)
 	if(status_flags & CANWEAKEN)
-		weakened = max(weakened + amount,0)
+		weakened =69ax(weakened + amount,0)
 		update_lying_buckled_and_verb_status()	//updates lying, canmove and icons
 	return
 
 /mob/proc/Paralyse(amount)
 	if(status_flags & CANPARALYSE)
-		facing_dir = null
-		paralysis = max(max(paralysis,amount),0)
+		facing_dir =69ull
+		paralysis =69ax(max(paralysis,amount),0)
 		return TRUE
 	return
 
@@ -853,45 +853,45 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	.=..()
 	if (. && zero_before)
 		//These three procs instantly create the blinding/sleep overlay
-		//We only call them if the mob has just become paralysed, to prevent an infinite loop
+		//We only call them if the69ob has just become paralysed, to prevent an infinite loop
 		handle_regular_status_updates() //This checks paralysis and sets stat
 		handle_disabilities() //This checks stat and sets eye_blind
 		handle_regular_hud_updates() //This checks eye_blind and adds or removes the hud overlay
 
 /mob/proc/SetParalysis(amount)
 	if(status_flags & CANPARALYSE)
-		paralysis = max(amount,0)
+		paralysis =69ax(amount,0)
 	return
 
 /mob/proc/AdjustParalysis(amount)
 	if(status_flags & CANPARALYSE)
-		paralysis = max(paralysis + amount,0)
+		paralysis =69ax(paralysis + amount,0)
 	return
 
 /mob/proc/Sleeping(amount)
-	facing_dir = null
-	sleeping = max(max(sleeping,amount),0)
+	facing_dir =69ull
+	sleeping =69ax(max(sleeping,amount),0)
 	return
 
 /mob/proc/SetSleeping(amount)
-	sleeping = max(amount,0)
+	sleeping =69ax(amount,0)
 	return
 
 /mob/proc/AdjustSleeping(amount)
-	sleeping = max(sleeping + amount,0)
+	sleeping =69ax(sleeping + amount,0)
 	return
 
 /mob/proc/Resting(amount)
-	facing_dir = null
-	resting = max(max(resting,amount),0)
+	facing_dir =69ull
+	resting =69ax(max(resting,amount),0)
 	return
 
 /mob/proc/SetResting(amount)
-	resting = max(amount,0)
+	resting =69ax(amount,0)
 	return
 
 /mob/proc/AdjustResting(amount)
-	resting = max(resting + amount,0)
+	resting =69ax(resting + amount,0)
 	return
 
 /mob/proc/get_species()
@@ -901,25 +901,25 @@ All Canmove setting in this proc is temporary. This var should not be set from h
 	return
 
 /mob/living/flash_weak_pain()
-//	flick("weak_pain", flash["pain"])
+//	flick("weak_pain", flash69"pain"69)
 	if(HUDtech.Find("pain"))
-		flick("weak_pain", HUDtech["pain"])
+		flick("weak_pain", HUDtech69"pain"69)
 
 
 /mob/proc/get_visible_implants()
 	var/list/visible_implants = list()
 	for(var/obj/item/O in embedded)
 		visible_implants += O
-	return visible_implants
+	return69isible_implants
 
 /mob/proc/embedded_needs_process()
 	return (embedded.len > 0)
 
 mob/proc/yank_out_object()
 	set category = "Object"
-	set name = "Yank out object"
+	set69ame = "Yank out object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!isliving(usr) || !usr.can_click())
 		return
@@ -936,7 +936,7 @@ mob/proc/yank_out_object()
 	var/mob/S = src
 	var/mob/U = usr
 	var/list/valid_objects = list()
-	var/self = null
+	var/self =69ull
 
 	if(S == U)
 		self = 1 // Removing object from yourself.
@@ -944,17 +944,17 @@ mob/proc/yank_out_object()
 	valid_objects = get_visible_implants()
 	if(!valid_objects.len)
 		if(self)
-			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
+			to_chat(src, "You have69othing stuck in your body that is large enough to remove.")
 		else
-			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
+			to_chat(U, "69src69 has69othing stuck in their wounds that is large enough to remove.")
 		return
 
-	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
+	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in69alid_objects
 
 	if(self)
-		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
+		to_chat(src, "<span class='warning'>You attempt to get a good grip on 69selection69 in your body.</span>")
 	else
-		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
+		to_chat(U, "<span class='warning'>You attempt to get a good grip on 69selection69 in 69S69's body.</span>")
 
 	if(!do_mob(U, S, 30))
 		return
@@ -962,11 +962,11 @@ mob/proc/yank_out_object()
 		return
 
 	if(self)
-		visible_message("<span class='warning'><b>[src] rips [selection] out of their body.</b></span>","<span class='warning'><b>You rip [selection] out of your body.</b></span>")
+		visible_message("<span class='warning'><b>69src69 rips 69selection69 out of their body.</b></span>","<span class='warning'><b>You rip 69selection69 out of your body.</b></span>")
 	else
-		visible_message("<span class='warning'><b>[usr] rips [selection] out of [src]'s body.</b></span>","<span class='warning'><b>[usr] rips [selection] out of your body.</b></span>")
+		visible_message("<span class='warning'><b>69usr69 rips 69selection69 out of 69src69's body.</b></span>","<span class='warning'><b>69usr69 rips 69selection69 out of your body.</b></span>")
 	valid_objects = get_visible_implants()
-	if(valid_objects.len == 1) //Yanking out last object - removing verb.
+	if(valid_objects.len == 1) //Yanking out last object - removing69erb.
 		src.verbs -= /mob/proc/yank_out_object
 
 	if(ishuman(src))
@@ -1024,37 +1024,37 @@ mob/proc/yank_out_object()
 
 /mob/living/proc/handle_weakened()
 	if(weakened)
-		weakened = max(weakened-1,0)	//before you get mad Rockdtben: I done this so update_lying_buckled_and_verb_status isn't called multiple times
+		weakened =69ax(weakened-1,0)	//before you get69ad Rockdtben: I done this so update_lying_buckled_and_verb_status isn't called69ultiple times
 	return weakened
 
 /mob/living/proc/handle_stuttering()
 	if(stuttering)
-		stuttering = max(stuttering-1, 0)
+		stuttering =69ax(stuttering-1, 0)
 	return stuttering
 
 /mob/living/proc/handle_silent()
 	if(silent)
-		silent = max(silent-1, 0)
+		silent =69ax(silent-1, 0)
 	return silent
 
 /mob/living/proc/handle_drugged()
 	if(druggy)
-		druggy = max(druggy-1, 0)
+		druggy =69ax(druggy-1, 0)
 	return druggy
 
 /mob/living/proc/handle_slurring()
 	if(slurring)
-		slurring = max(slurring-1, 0)
+		slurring =69ax(slurring-1, 0)
 	return slurring
 
-/mob/living/proc/handle_paralysed() // Currently only used by simple_animal.dm, treated as a special case in other mobs
+/mob/living/proc/handle_paralysed() // Currently only used by simple_animal.dm, treated as a special case in other69obs
 	if(paralysis)
 		AdjustParalysis(-1)
 	return paralysis
 
 /mob/living/proc/handle_slowdown()
 	if(slowdown)
-		slowdown = max(slowdown-1, 0)
+		slowdown =69ax(slowdown-1, 0)
 	return slowdown
 
 //Check for brain worms in head.
@@ -1071,19 +1071,19 @@ mob/proc/yank_out_object()
 
 /mob/verb/face_direction()
 
-	set name = "Face Direction"
+	set69ame = "Face Direction"
 	set category = "IC"
 	set src = usr
 
 	set_face_dir()
 
 	if(!facing_dir)
-		to_chat(usr, "You are now not facing anything.")
+		to_chat(usr, "You are69ow69ot facing anything.")
 	else
-		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+		to_chat(usr, "You are69ow facing 69dir2text(facing_dir)69.")
 
 /mob/verb/browse_mine_stats()
-	set name		= "Show stats and perks"
+	set69ame		= "Show stats and perks"
 	set desc		= "Browse your character stats and perks."
 	set category	= "IC"
 	set src			= usr
@@ -1107,35 +1107,35 @@ mob/proc/yank_out_object()
 			}
 		</style>
 	"}
-	var/table_header = "<th>Stat Name<th>Stat Value"
+	var/table_header = "<th>Stat69ame<th>Stat69alue"
 	var/list/S = list()
 	for(var/TS in ALL_STATS)
-		S += "<td>[TS]<td>[getStatStats(TS)]"
+		S += "<td>69TS69<td>69getStatStats(TS)69"
 	var/data = {"
-		[additionalcss]
-		[user == src ? "Your stats:" : "[name]'s stats"]<br>
+		69additionalcss69
+		69user == src ? "Your stats:" : "69name69's stats"69<br>
 		<table width=20%>
-			<tr>[table_header]
-			<tr>[S.Join("<tr>")]
+			<tr>69table_header69
+			<tr>69S.Join("<tr>")69
 		</table>
 	"}
 	// Perks
 	var/list/Plist = list()
-	if (stats) // Check if mob has stats. Otherwise we cannot read null.perks
+	if (stats) // Check if69ob has stats. Otherwise we cannot read69ull.perks
 		for(var/perk in stats.perks)
 			var/datum/perk/P = perk
-			var/filename = sanitizeFileName("[P.type].png")
-			var/asset = asset_cache.cache[filename] // this is definitely a hack, but getAtomCacheFilename accepts only atoms for no fucking reason whatsoever.
+			var/filename = sanitizeFileName("69P.type69.png")
+			var/asset = asset_cache.cache69filename69 // this is definitely a hack, but getAtomCacheFilename accepts only atoms for69o fucking reason whatsoever.
 			if(asset)
-				Plist += "<td valign='middle'><img src=[filename]></td><td><span style='text-align:center'>[P.name]<br>[P.desc]</span></td>"
+				Plist += "<td69align='middle'><img src=69filename69></td><td><span style='text-align:center'>69P.name69<br>69P.desc69</span></td>"
 	data += {"
 		<table width=80%>
 			<th colspan=2>Perks</th>
-			<tr>[Plist.Join("</tr><tr>")]</tr>
+			<tr>69Plist.Join("</tr><tr>")69</tr>
 		</table>
 	"}
 
-	var/datum/browser/B = new(src, "StatsBrowser","[user == src ? "Your stats:" : "[name]'s stats"]", 1000, 345)
+	var/datum/browser/B =69ew(src, "StatsBrowser","69user == src ? "Your stats:" : "69name69's stats"69", 1000, 345)
 	B.set_content(data)
 	B.set_window_options("can_minimize=0")
 	B.open()
@@ -1147,13 +1147,13 @@ mob/proc/yank_out_object()
 		return 0
 
 /mob/proc/set_face_dir(var/newdir)
-	if(!isnull(facing_dir) && newdir == facing_dir)
-		facing_dir = null
+	if(!isnull(facing_dir) &&69ewdir == facing_dir)
+		facing_dir =69ull
 	else if(newdir)
 		set_dir(newdir)
-		facing_dir = newdir
+		facing_dir =69ewdir
 	else if(facing_dir)
-		facing_dir = null
+		facing_dir =69ull
 	else
 		set_dir(dir)
 		facing_dir = dir
@@ -1161,7 +1161,7 @@ mob/proc/yank_out_object()
 /mob/set_dir()
 	if(facing_dir)
 		if(!canface() || lying || buckled || restrained())
-			facing_dir = null
+			facing_dir =69ull
 		else if(dir != facing_dir)
 			return ..(facing_dir)
 	else
@@ -1170,46 +1170,46 @@ mob/proc/yank_out_object()
 /mob/verb/northfaceperm()
 	set hidden = 1
 	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
+		facing_dir =69ull
+		to_chat(usr, "You are69ow69ot facing anything.")
 	else
 		set_face_dir(client.client_dir(NORTH))
-		to_chat(usr, "You are now facing north.")
+		to_chat(usr, "You are69ow facing69orth.")
 
 /mob/verb/southfaceperm()
 	set hidden = 1
 	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
+		facing_dir =69ull
+		to_chat(usr, "You are69ow69ot facing anything.")
 	else
 		set_face_dir(client.client_dir(SOUTH))
-		to_chat(usr, "You are now facing south.")
+		to_chat(usr, "You are69ow facing south.")
 
 /mob/verb/eastfaceperm()
 	set hidden = 1
 	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
+		facing_dir =69ull
+		to_chat(usr, "You are69ow69ot facing anything.")
 	else
 		set_face_dir(client.client_dir(EAST))
-		to_chat(usr, "You are now facing east.")
+		to_chat(usr, "You are69ow facing east.")
 
 /mob/verb/westfaceperm()
 	set hidden = 1
 	if(facing_dir)
-		facing_dir = null
-		to_chat(usr, "You are now not facing anything.")
+		facing_dir =69ull
+		to_chat(usr, "You are69ow69ot facing anything.")
 	else
 		set_face_dir(client.client_dir(WEST))
-		to_chat(usr, "You are now facing west.")
+		to_chat(usr, "You are69ow facing west.")
 
 /mob/verb/change_move_intent()
-	set name = "Change moving intent"
+	set69ame = "Change69oving intent"
 	set category = "IC"
 	set src = usr
 
-	if(HUDneed["move intent"])
-		var/obj/screen/mov_intent/mov_intent = HUDneed["move intent"]
+	if(HUDneed69"move intent"69)
+		var/obj/screen/mov_intent/mov_intent = HUDneed69"move intent"69
 		mov_intent.Click()  // Yep , this is all.
 
 /mob/proc/adjustEarDamage()
@@ -1247,79 +1247,79 @@ mob/proc/yank_out_object()
 /mob/proc/swap_hand()
 	return
 
-/mob/proc/check_CH(CH_name as text, var/CH_type, var/second_arg = null)
+/mob/proc/check_CH(CH_name as text,69ar/CH_type,69ar/second_arg =69ull)
 	if(!src.client.CH || !istype(src.client.CH, CH_type))//(src.client.CH.handler_name != CH_name))
-		src.client.CH = new CH_type(client, second_arg)
-		to_chat(src, SPAN_WARNING("You prepare [CH_name]."))
+		src.client.CH =69ew CH_type(client, second_arg)
+		to_chat(src, SPAN_WARNING("You prepare 69CH_name69."))
 	else
 		kill_CH()
 	return
 
 /mob/proc/kill_CH()
 	if (src.client.CH)
-		to_chat(src, SPAN_NOTICE ("You unprepare [src.client.CH.handler_name]."))
+		to_chat(src, SPAN_NOTICE ("You unprepare 69src.client.CH.handler_name69."))
 		qdel(src.client.CH)
 
 
 /mob/living/proc/Released()
-	//This is called when the mob is let out of a holder
-	//Override for mob-specific functionality
+	//This is called when the69ob is let out of a holder
+	//Override for69ob-specific functionality
 	return
 
 /mob/proc/has_admin_rights()
 	return check_rights(R_ADMIN, 0, src)
 
 /mob/proc/get_face_name()
-	return name
+	return69ame
 
 /client/proc/check_has_body_select()
-	return mob && mob.HUDneed && mob.HUDneed["damage zone"]
+	return69ob &&69ob.HUDneed &&69ob.HUDneed69"damage zone"69
 
 /client/verb/body_toggle_head()
-	set name = "body-toggle-head"
+	set69ame = "body-toggle-head"
 	set hidden = TRUE
 	set category = "OOC"
 	toggle_zone_sel(list(BP_HEAD,BP_EYES,BP_MOUTH))
 
 /client/verb/body_r_arm()
-	set name = "body-r-arm"
+	set69ame = "body-r-arm"
 	set hidden = TRUE
 	set category = "OOC"
 	toggle_zone_sel(list(BP_R_ARM))
 
 /client/verb/body_l_arm()
-	set name = "body-l-arm"
+	set69ame = "body-l-arm"
 	set hidden = TRUE
 	toggle_zone_sel(list(BP_L_ARM))
 
 /client/verb/body_chest()
-	set name = "body-chest"
+	set69ame = "body-chest"
 	set hidden = TRUE
 	toggle_zone_sel(list(BP_CHEST))
 
 /client/verb/body_groin()
-	set name = "body-groin"
+	set69ame = "body-groin"
 	set hidden = TRUE
 	toggle_zone_sel(list(BP_GROIN))
 
 /client/verb/body_r_leg()
-	set name = "body-r-leg"
+	set69ame = "body-r-leg"
 	set hidden = TRUE
 	toggle_zone_sel(list(BP_R_LEG))
 
 /client/verb/body_l_leg()
-	set name = "body-l-leg"
+	set69ame = "body-l-leg"
 	set hidden = TRUE
 	toggle_zone_sel(list(BP_L_LEG))
 
 /client/proc/toggle_zone_sel(list/zones)
 	if(!check_has_body_select())
 		return
-	var/obj/screen/zone_sel/selector = mob.HUDneed["damage zone"]
+	var/obj/screen/zone_sel/selector =69ob.HUDneed69"damage zone"69
 	selector.set_selected_zone(next_list_item(mob.targeted_organ,zones))
 /mob/proc/set_stat(var/new_stat)
-	. = stat != new_stat
-	stat = new_stat
+	. = stat !=69ew_stat
+	stat =69ew_stat
 
 /mob/proc/ssd_check()
 	return !client && !teleop

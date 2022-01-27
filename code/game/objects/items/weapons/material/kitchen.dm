@@ -26,7 +26,7 @@
 		src.pixel_y = rand(0, 4)
 	create_reagents(5)
 
-/obj/item/material/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/material/kitchen/utensil/attack(mob/living/carbon/M as69ob,69ob/living/carbon/user as69ob)
 	if(!istype(M))
 		return ..()
 
@@ -42,19 +42,19 @@
 		if(M == user)
 			if(!M.can_eat(loaded))
 				return
-			M.visible_message(SPAN_NOTICE("\The [user] eats some [loaded] from \the [src]."))
+			M.visible_message(SPAN_NOTICE("\The 69user69 eats some 69loaded69 from \the 69src69."))
 			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		else
-			user.visible_message(SPAN_WARNING("\The [user] begins to feed \the [M]!"))
-			if(!(M.can_force_feed(user, loaded) && do_mob(user, M, 5 SECONDS)))
+			user.visible_message(SPAN_WARNING("\The 69user69 begins to feed \the 69M69!"))
+			if(!(M.can_force_feed(user, loaded) && do_mob(user,69, 5 SECONDS)))
 				return
-			M.visible_message(SPAN_NOTICE("\The [user] feeds some [loaded] to \the [M] with \the [src]."))
+			M.visible_message(SPAN_NOTICE("\The 69user69 feeds some 69loaded69 to \the 69M69 with \the 69src69."))
 			reagents.trans_to_mob(M, reagents.total_volume, CHEM_INGEST)
 		playsound(M.loc,'sound/items/eatfood.ogg', rand(10,40), 1)
 		overlays.Cut()
 		return
 	else
-		to_chat(user, SPAN_WARNING("You don't have anything on \the [src]."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
+		to_chat(user, SPAN_WARNING("You don't have anything on \the 69src69."))	//if we have help intent and no food scooped up DON'T STAB OURSELVES WITH THE FORK
 		return
 
 /obj/item/material/kitchen/utensil/fork
@@ -64,7 +64,7 @@
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
 
 /obj/item/material/kitchen/utensil/fork/plastic
-	default_material = MATERIAL_PLASTIC
+	default_material =69ATERIAL_PLASTIC
 
 /obj/item/material/kitchen/utensil/spoon
 	name = "spoon"
@@ -76,13 +76,13 @@
 	force_divisor = 0.1 //2 when wielded with weight 20 (steel)
 
 /obj/item/material/kitchen/utensil/spoon/plastic
-	default_material = MATERIAL_PLASTIC
+	default_material =69ATERIAL_PLASTIC
 
 /obj/item/material/kitchen/utensil/spoon/mre
 	desc = "A wooden spoon, almost chalky."
 	icon_state = "mre_spoon"
 	applies_material_colour = FALSE
-	default_material = MATERIAL_WOOD
+	default_material =69ATERIAL_WOOD
 
 /*
  * Rolling Pins
@@ -97,9 +97,9 @@
 	force_divisor = 0.7 // 10 when wielded with weight 15 (wood)
 	thrown_force_divisor = 1 // as above
 
-/obj/item/material/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/material/kitchen/rollingpin/attack(mob/living/M as69ob,69ob/living/user as69ob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, SPAN_WARNING("\The [src] slips out of your hand and hits your head."))
+		to_chat(user, SPAN_WARNING("\The 69src69 slips out of your hand and hits your head."))
 		user.drop_from_inventory(src)
 		user.take_organ_damage(10)
 		user.Paralyse(2)

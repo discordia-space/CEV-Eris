@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
-set -euo pipefail
+#!/u69r/6969n/en69 69696969
+69e69 -eu69 696969e696969l
 
-source dependencies.sh
+6969ur69e 69e69en69en6969e69.6969
 
-mkdir -p ~/.byond/bin
-wget -O ~/.byond/bin/librust_g.so "https://github.com/tgstation/rust-g/releases/download/$RUST_G_VERSION/librust_g.so"
-chmod +x ~/.byond/bin/librust_g.so
-ldd ~/.byond/bin/librust_g.so
+m696969r -69 ~/.696969n69/6969n
+w69e69 -69 ~/.696969n69/6969n/l6969ru6969_69.6969 "6969696969://69696969u69.6969m/6969696969696969n/ru6969-69/rele6969e69/6969wnl696969/$RU6969_69_69ER696969N/l6969ru6969_69.6969"
+6969m6969 +x ~/.696969n69/6969n/l6969ru6969_69.6969
+l6969 ~/.696969n69/6969n/l6969ru6969_69.6969

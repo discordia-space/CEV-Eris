@@ -22,7 +22,7 @@
 
 	Destroy()
 		if(Beacon)
-			qdel(Beacon)
+			69del(Beacon)
 		. = ..()
 
 	// update the invisibility and icon
@@ -35,10 +35,10 @@
 		var/state="floor_beacon"
 
 		if(invisibility)
-			icon_state = "[state]f"
+			icon_state = "69state69f"
 
 		else
-			icon_state = "[state]"
+			icon_state = "69state69"
 
 	Process()
 		if(!Beacon)

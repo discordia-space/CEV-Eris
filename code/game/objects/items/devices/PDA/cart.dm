@@ -1,508 +1,508 @@
-/obj/item/cartridge
-	name = "generic cartridge"
-	desc = "A data cartridge for portable microcomputers."
+/obj/item/cartrid69e
+	name = "69eneric cartrid69e"
+	desc = "A data cartrid69e for portable69icrocomputers."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "cart"
 	item_state = "electronic"
 	w_class = ITEM_SIZE_TINY
 
-	var/obj/item/radio/integrated/radio = null
+	var/obj/item/radio/inte69rated/radio = null
 	var/access_security = 0
-	var/access_engine = 0
+	var/access_en69ine = 0
 	var/access_atmos = 0
 	var/access_moebius = 0
 	var/access_clown = 0
 	var/access_mime = 0
 	var/access_janitor = 0
 //	var/access_flora = 0
-	var/access_reagent_scanner = 0
+	var/access_rea69ent_scanner = 0
 	var/access_remote_door = 0 // Control some blast doors remotely!!
 	var/remote_door_id = ""
 	var/access_status_display = 0
-	var/access_quartermaster = 0
+	var/access_69uartermaster = 0
 	var/access_detonate_pda = 0
 	var/access_hydroponics = 0
-	var/charges = 0
+	var/char69es = 0
 	var/mode
 	var/menu
-	var/datum/data/record/active1 //General
+	var/datum/data/record/active1 //69eneral
 	var/datum/data/record/active2 //Medical
 	var/datum/data/record/active3 //Security
 	var/selected_sensor // Power Sensor
-	var/message1	// used for status_displays
-	var/message2
+	var/messa69e1	// used for status_displays
+	var/messa69e2
 	var/list/stored_data = list()
 
-/obj/item/cartridge/engineering
-	name = "\improper Power-ON cartridge"
+/obj/item/cartrid69e/en69ineerin69
+	name = "\improper Power-ON cartrid69e"
 	icon_state = "cart-e"
-	access_engine = 1
+	access_en69ine = 1
 
-/obj/item/cartridge/atmos
-	name = "\improper BreatheDeep cartridge"
+/obj/item/cartrid69e/atmos
+	name = "\improper BreatheDeep cartrid69e"
 	icon_state = "cart-a"
 	access_atmos = 1
 
-/obj/item/cartridge/medical
-	name = "\improper Med-U cartridge"
+/obj/item/cartrid69e/medical
+	name = "\improper69ed-U cartrid69e"
 	icon_state = "cart-m"
 	access_moebius = 1
 
-/obj/item/cartridge/chemistry
-	name = "\improper ChemWhiz cartridge"
+/obj/item/cartrid69e/chemistry
+	name = "\improper ChemWhiz cartrid69e"
 	icon_state = "cart-chem"
-	access_reagent_scanner = 1
+	access_rea69ent_scanner = 1
 
-/obj/item/cartridge/security
-	name = "\improper R.O.B.U.S.T. cartridge"
+/obj/item/cartrid69e/security
+	name = "\improper R.O.B.U.S.T. cartrid69e"
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/cartridge/security/Initialize()
-	radio = new /obj/item/radio/integrated/beepsky(src)
+/obj/item/cartrid69e/security/Initialize()
+	radio = new /obj/item/radio/inte69rated/beepsky(src)
 	. = ..()
 
-/obj/item/cartridge/detective
-	name = "\improper D.E.T.E.C.T. cartridge"
+/obj/item/cartrid69e/detective
+	name = "\improper D.E.T.E.C.T. cartrid69e"
 	icon_state = "cart-s"
 	access_security = 1
 	access_moebius = 1
 
 
-/obj/item/cartridge/janitor
-	name = "\improper CustodiPRO cartridge"
-	desc = "The ultimate in clean-room design."
+/obj/item/cartrid69e/janitor
+	name = "\improper CustodiPRO cartrid69e"
+	desc = "The ultimate in clean-room desi69n."
 	icon_state = "cart-j"
 	access_janitor = 1
 
-/obj/item/cartridge/lawyer
-	name = "\improper P.R.O.V.E. cartridge"
+/obj/item/cartrid69e/lawyer
+	name = "\improper P.R.O.V.E. cartrid69e"
 	icon_state = "cart-s"
 	access_security = 1
 
-/obj/item/cartridge/clown
-	name = "\improper Honkworks 5.0 cartridge"
+/obj/item/cartrid69e/clown
+	name = "\improper Honkworks 5.0 cartrid69e"
 	icon_state = "cart-clown"
 	access_clown = 1
-	charges = 5
+	char69es = 5
 
-/obj/item/cartridge/mime
-	name = "\improper Gestur-O 1000 cartridge"
+/obj/item/cartrid69e/mime
+	name = "\improper 69estur-O 1000 cartrid69e"
 	icon_state = "cart-mi"
 	access_mime = 1
-	charges = 5
+	char69es = 5
 /*
-/obj/item/cartridge/botanist
-	name = "Green Thumb v4.20"
+/obj/item/cartrid69e/botanist
+	name = "69reen Thumb694.20"
 	icon_state = "cart-b"
 	access_flora = 1
 */
 
-/obj/item/cartridge/signal
-	name = "generic signaler cartridge"
-	desc = "A data cartridge with an integrated radio signaler module."
-	var/qdeled = 0
+/obj/item/cartrid69e/si69nal
+	name = "69eneric si69naler cartrid69e"
+	desc = "A data cartrid69e with an inte69rated radio si69naler69odule."
+	var/69deled = 0
 
-/obj/item/cartridge/signal/science
-	name = "\improper Signal Ace 2 cartridge"
-	desc = "Complete with integrated radio signaler!"
+/obj/item/cartrid69e/si69nal/science
+	name = "\improper Si69nal Ace 2 cartrid69e"
+	desc = "Complete with inte69rated radio si69naler!"
 	icon_state = "cart-tox"
-	access_reagent_scanner = 1
+	access_rea69ent_scanner = 1
 	access_atmos = 1
 
-/obj/item/cartridge/signal/Initialize()
-	radio = new /obj/item/radio/integrated/signal(src)
+/obj/item/cartrid69e/si69nal/Initialize()
+	radio = new /obj/item/radio/inte69rated/si69nal(src)
 	. = ..()
 
-/obj/item/cartridge/signal/Destroy()
-	qdel(radio)
+/obj/item/cartrid69e/si69nal/Destroy()
+	69del(radio)
 	. = ..()
 
-/obj/item/cartridge/quartermaster
-	name = "\improper Asters Guild Parts & Vendors cartridge"
-	desc = "Perfect for the Guild Merchant on the go!"
-	icon_state = "cart-q"
-	access_quartermaster = 1
+/obj/item/cartrid69e/69uartermaster
+	name = "\improper Asters 69uild Parts &69endors cartrid69e"
+	desc = "Perfect for the 69uild69erchant on the 69o!"
+	icon_state = "cart-69"
+	access_69uartermaster = 1
 
-/obj/item/cartridge/quartermaster/Initialize()
-	radio = new /obj/item/radio/integrated/mule(src)
+/obj/item/cartrid69e/69uartermaster/Initialize()
+	radio = new /obj/item/radio/inte69rated/mule(src)
 	. = ..()
 
-/obj/item/cartridge/head
+/obj/item/cartrid69e/head
 	name = "\improper Easy-Record DELUXE"
 	icon_state = "cart-h"
 	access_status_display = 1
 
-/obj/item/cartridge/hop
-	name = "\improper HumanResources9001 cartridge"
+/obj/item/cartrid69e/hop
+	name = "\improper HumanResources9001 cartrid69e"
 	icon_state = "cart-h"
 	access_status_display = 1
-	access_quartermaster = 1
+	access_69uartermaster = 1
 	access_janitor = 1
 	access_security = 1
 
-/obj/item/cartridge/hop/Initialize()
-	radio = new /obj/item/radio/integrated/mule(src)
+/obj/item/cartrid69e/hop/Initialize()
+	radio = new /obj/item/radio/inte69rated/mule(src)
 	. = ..()
 
-/obj/item/cartridge/hos
+/obj/item/cartrid69e/hos
 	name = "\improper R.O.B.U.S.T. DELUXE"
 	icon_state = "cart-hos"
 	access_status_display = 1
 	access_security = 1
 
-/obj/item/cartridge/hos/Initialize()
-	radio = new /obj/item/radio/integrated/beepsky(src)
+/obj/item/cartrid69e/hos/Initialize()
+	radio = new /obj/item/radio/inte69rated/beepsky(src)
 	. = ..()
 
-/obj/item/cartridge/ce
+/obj/item/cartrid69e/ce
 	name = "\improper Power-On DELUXE"
 	icon_state = "cart-ce"
 	access_status_display = 1
-	access_engine = 1
+	access_en69ine = 1
 	access_atmos = 1
 
-/obj/item/cartridge/cmo
-	name = "\improper Med-U DELUXE"
+/obj/item/cartrid69e/cmo
+	name = "\improper69ed-U DELUXE"
 	icon_state = "cart-cmo"
 	access_status_display = 1
-	access_reagent_scanner = 1
+	access_rea69ent_scanner = 1
 	access_moebius = 1
 
-/obj/item/cartridge/rd
-	name = "\improper Signal Ace DELUXE"
+/obj/item/cartrid69e/rd
+	name = "\improper Si69nal Ace DELUXE"
 	icon_state = "cart-rd"
 	access_status_display = 1
-	access_reagent_scanner = 1
+	access_rea69ent_scanner = 1
 	access_atmos = 1
 
-/obj/item/cartridge/rd/Initialize()
-	radio = new /obj/item/radio/integrated/signal(src)
+/obj/item/cartrid69e/rd/Initialize()
+	radio = new /obj/item/radio/inte69rated/si69nal(src)
 	. = ..()
 
-/obj/item/cartridge/captain
-	name = "\improper Value-PAK cartridge"
-	desc = "Now with 200% more value!"
+/obj/item/cartrid69e/captain
+	name = "\improper69alue-PAK cartrid69e"
+	desc = "Now with 200%69ore69alue!"
 	icon_state = "cart-c"
-	access_quartermaster = 1
+	access_69uartermaster = 1
 	access_janitor = 1
-	access_engine = 1
+	access_en69ine = 1
 	access_security = 1
 	access_moebius = 1
-	access_reagent_scanner = 1
+	access_rea69ent_scanner = 1
 	access_status_display = 1
 	access_atmos = 1
 
-/obj/item/cartridge/syndicate
-	name = "\improper Detomatix cartridge"
+/obj/item/cartrid69e/syndicate
+	name = "\improper Detomatix cartrid69e"
 	icon_state = "cart"
 	access_remote_door = 1
 	access_detonate_pda = 1
-	remote_door_id = "smindicate" //Make sure this matches the syndicate shuttle's shield/door id!!	//don't ask about the name, testing.
-	charges = 4
+	remote_door_id = "smindicate" //Make sure this69atches the syndicate shuttle's shield/door id!!	//don't ask about the name, testin69.
+	char69es = 4
 
-/obj/item/cartridge/proc/post_status(var/command, var/data1, var/data2)
+/obj/item/cartrid69e/proc/post_status(var/command,69ar/data1,69ar/data2)
 
-	var/datum/radio_frequency/frequency = SSradio.return_frequency(1435)
-	if(!frequency) return
+	var/datum/radio_fre69uency/fre69uency = SSradio.return_fre69uency(1435)
+	if(!fre69uency) return
 
-	var/datum/signal/status_signal = new
-	status_signal.source = src
-	status_signal.transmission_method = 1
-	status_signal.data["command"] = command
+	var/datum/si69nal/status_si69nal = new
+	status_si69nal.source = src
+	status_si69nal.transmission_method = 1
+	status_si69nal.data69"command"69 = command
 
 	switch(command)
-		if("message")
-			status_signal.data["msg1"] = data1
-			status_signal.data["msg2"] = data2
+		if("messa69e")
+			status_si69nal.data69"ms691"69 = data1
+			status_si69nal.data69"ms692"69 = data2
 			if(loc)
 				var/obj/item/PDA = loc
-				var/mob/user = PDA.fingerprintslast
-				if(isliving(PDA.loc))
+				var/mob/user = PDA.fin69erprintslast
+				if(islivin69(PDA.loc))
 					name = PDA.loc
-				log_admin("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
-				message_admins("STATUS: [user] set status screen with [PDA]. Message: [data1] [data2]")
+				lo69_admin("STATUS: 69user69 set status screen with 69PDA69.69essa69e: 69data169 69data269")
+				messa69e_admins("STATUS: 69user69 set status screen with 69PDA69.69essa69e: 69data169 69data269")
 
 		if("alert")
-			status_signal.data["picture_state"] = data1
+			status_si69nal.data69"picture_state"69 = data1
 
-	frequency.post_signal(src, status_signal)
+	fre69uency.post_si69nal(src, status_si69nal)
 
 
 /*
-	This generates the nano values of the cart menus.
+	This 69enerates the nano69alues of the cart69enus.
 	Because we close the UI when we insert a new cart
-	we don't have to worry about null values on items
-	the user can't access.  Well, unless they are href hacking.
+	we don't have to worry about null69alues on items
+	the user can't access.  Well, unless they are href hackin69.
 	But in that case their UI will just lock up.
 */
 
 
-/obj/item/cartridge/proc/create_NanoUI_values(mob/user as mob)
-	var/values[0]
+/obj/item/cartrid69e/proc/create_NanoUI_values(mob/user as69ob)
+	var/values69069
 
-	/*		Signaler (Mode: 40)				*/
+	/*		Si69naler (Mode: 40)				*/
 
 
-	if(istype(radio,/obj/item/radio/integrated/signal) && (mode==40))
-		var/obj/item/radio/integrated/signal/R = radio
-		values["signal_freq"] = format_frequency(R.frequency)
-		values["signal_code"] = R.code
+	if(istype(radio,/obj/item/radio/inte69rated/si69nal) && (mode==40))
+		var/obj/item/radio/inte69rated/si69nal/R = radio
+		values69"si69nal_fre69"69 = format_fre69uency(R.fre69uency)
+		values69"si69nal_code"69 = R.code
 
 
 	/*		Station Display (Mode: 42)			*/
 
 	if(mode==42)
-		values["message1"] = message1 ? message1 : "(none)"
-		values["message2"] = message2 ? message2 : "(none)"
+		values69"messa69e1"69 =69essa69e1 ?69essa69e1 : "(none)"
+		values69"messa69e2"69 =69essa69e2 ?69essa69e2 : "(none)"
 
 
 
-	/*		Power Monitor (Mode: 43 / 433)			*/
+	/*		Power69onitor (Mode: 43 / 433)			*/
 
-	if(mode==43 || mode==433)
+	if(mode==43 ||69ode==433)
 		var/list/sensors = list()
 		var/obj/machinery/power/sensor/MS = null
 
-		for(var/obj/machinery/power/sensor/S in GLOB.machines)
-			sensors.Add(list(list("name_tag" = S.name_tag)))
-			if(S.name_tag == selected_sensor)
+		for(var/obj/machinery/power/sensor/S in 69LOB.machines)
+			sensors.Add(list(list("name_ta69" = S.name_ta69)))
+			if(S.name_ta69 == selected_sensor)
 				MS = S
-		values["power_sensors"] = sensors
-		if(selected_sensor && MS)
-			values["sensor_reading"] = MS.return_reading_data()
+		values69"power_sensors"69 = sensors
+		if(selected_sensor &&69S)
+			values69"sensor_readin69"69 =69S.return_readin69_data()
 
 
-	/*		General Records (Mode: 44 / 441 / 45 / 451)	*/
-	if(mode == 44 || mode == 441 || mode == 45 || mode ==451)
-		if(istype(active1, /datum/data/record) && (active1 in data_core.general))
-			values["general"] = active1.fields
-			values["general_exists"] = 1
+	/*		69eneral Records (Mode: 44 / 441 / 45 / 451)	*/
+	if(mode == 44 ||69ode == 441 ||69ode == 45 ||69ode ==451)
+		if(istype(active1, /datum/data/record) && (active1 in data_core.69eneral))
+			values69"69eneral"69 = active1.fields
+			values69"69eneral_exists"69 = 1
 
 		else
-			values["general_exists"] = 0
+			values69"69eneral_exists"69 = 0
 
 
 
 	/*		Medical Records (Mode: 44 / 441)	*/
 
-	if(mode == 44 || mode == 441)
-		var/medData[0]
-		for(var/datum/data/record/R in sortRecord(data_core.general))
-			medData[++medData.len] = list(Name = R.fields["name"],"ref" = "\ref[R]")
-		values["medical_records"] = medData
+	if(mode == 44 ||69ode == 441)
+		var/medData69069
+		for(var/datum/data/record/R in sortRecord(data_core.69eneral))
+			medData69++medData.len69 = list(Name = R.fields69"name"69,"ref" = "\ref69R69")
+		values69"medical_records"69 =69edData
 
 		if(istype(active2, /datum/data/record) && (active2 in data_core.medical))
-			values["medical"] = active2.fields
-			values["medical_exists"] = 1
+			values69"medical"69 = active2.fields
+			values69"medical_exists"69 = 1
 		else
-			values["medical_exists"] = 0
+			values69"medical_exists"69 = 0
 
 	/*		Security Records (Mode:45 / 451)	*/
 
-	if(mode == 45 || mode == 451)
-		var/secData[0]
-		for (var/datum/data/record/R in sortRecord(data_core.general))
-			secData[++secData.len] = list(Name = R.fields["name"], "ref" = "\ref[R]")
-		values["security_records"] = secData
+	if(mode == 45 ||69ode == 451)
+		var/secData69069
+		for (var/datum/data/record/R in sortRecord(data_core.69eneral))
+			secData69++secData.len69 = list(Name = R.fields69"name"69, "ref" = "\ref69R69")
+		values69"security_records"69 = secData
 
 		if(istype(active3, /datum/data/record) && (active3 in data_core.security))
-			values["security"] = active3.fields
-			values["security_exists"] = 1
+			values69"security"69 = active3.fields
+			values69"security_exists"69 = 1
 		else
-			values["security_exists"] = 0
+			values69"security_exists"69 = 0
 
 	/*		Security Bot Control (Mode: 46)		*/
 
 	if(mode==46)
-		var/botsData[0]
-		var/beepskyData[0]
-		if(istype(radio,/obj/item/radio/integrated/beepsky))
-			var/obj/item/radio/integrated/beepsky/SC = radio
-			beepskyData["active"] = SC.active
+		var/botsData69069
+		var/beepskyData69069
+		if(istype(radio,/obj/item/radio/inte69rated/beepsky))
+			var/obj/item/radio/inte69rated/beepsky/SC = radio
+			beepskyData69"active"69 = SC.active
 			if(SC.active && !isnull(SC.botstatus))
-				var/area/loca = SC.botstatus["loca"]
+				var/area/loca = SC.botstatus69"loca"69
 				var/loca_name = sanitize(loca.name)
-				beepskyData["botstatus"] = list("loca" = loca_name, "mode" = SC.botstatus["mode"])
+				beepskyData69"botstatus"69 = list("loca" = loca_name, "mode" = SC.botstatus69"mode"69)
 			else
-				beepskyData["botstatus"] = list("loca" = null, "mode" = -1)
+				beepskyData69"botstatus"69 = list("loca" = null, "mode" = -1)
 			var/botsCount=0
 			if(SC.botlist && SC.botlist.len)
-				for(var/mob/living/bot/B in SC.botlist)
+				for(var/mob/livin69/bot/B in SC.botlist)
 					botsCount++
 					if(B.loc)
-						botsData[++botsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
+						botsData69++botsData.len69 = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref69B69")
 
 			if(!botsData.len)
-				botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+				botsData69++botsData.len69 = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
 
-			beepskyData["bots"] = botsData
-			beepskyData["count"] = botsCount
+			beepskyData69"bots"69 = botsData
+			beepskyData69"count"69 = botsCount
 
 		else
-			beepskyData["active"] = 0
-			botsData[++botsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
-			beepskyData["botstatus"] = list("loca" = null, "mode" = null)
-			beepskyData["bots"] = botsData
-			beepskyData["count"] = 0
+			beepskyData69"active"69 = 0
+			botsData69++botsData.len69 = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+			beepskyData69"botstatus"69 = list("loca" = null, "mode" = null)
+			beepskyData69"bots"69 = botsData
+			beepskyData69"count"69 = 0
 
-		values["beepsky"] = beepskyData
+		values69"beepsky"69 = beepskyData
 
 
 	/*		MULEBOT Control	(Mode: 48)		*/
 
 	if(mode==48)
-		var/muleData[0]
-		var/mulebotsData[0]
-		if(istype(radio,/obj/item/radio/integrated/mule))
-			var/obj/item/radio/integrated/mule/QC = radio
-			muleData["active"] = QC.active
-			if(QC.active && !isnull(QC.botstatus))
-				var/area/loca = QC.botstatus["loca"]
+		var/muleData69069
+		var/mulebotsData69069
+		if(istype(radio,/obj/item/radio/inte69rated/mule))
+			var/obj/item/radio/inte69rated/mule/69C = radio
+			muleData69"active"69 = 69C.active
+			if(69C.active && !isnull(69C.botstatus))
+				var/area/loca = 69C.botstatus69"loca"69
 				var/loca_name = sanitize(loca.name)
-				muleData["botstatus"] =  list("loca" = loca_name, "mode" = QC.botstatus["mode"],"home"=QC.botstatus["home"],"powr" = QC.botstatus["powr"],"retn" =QC.botstatus["retn"], "pick"=QC.botstatus["pick"], "load" = QC.botstatus["load"], "dest" = sanitize(QC.botstatus["dest"]))
+				muleData69"botstatus"69 =  list("loca" = loca_name, "mode" = 69C.botstatus69"mode"69,"home"=69C.botstatus69"home"69,"powr" = 69C.botstatus69"powr"69,"retn" =69C.botstatus69"retn"69, "pick"=69C.botstatus69"pick"69, "load" = 69C.botstatus69"load"69, "dest" = sanitize(69C.botstatus69"dest"69))
 
 			else
-				muleData["botstatus"] = list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
+				muleData69"botstatus"69 = list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
 
 
 			var/mulebotsCount=0
-			for(var/obj/machinery/bot/B in QC.botlist)
+			for(var/obj/machinery/bot/B in 69C.botlist)
 				mulebotsCount++
 				if(B.loc)
-					mulebotsData[++mulebotsData.len] = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref[B]")
+					mulebotsData69++mulebotsData.len69 = list("Name" = sanitize(B.name), "Location" = sanitize(B.loc.loc.name), "ref" = "\ref69B69")
 
 			if(!mulebotsData.len)
-				mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+				mulebotsData69++mulebotsData.len69 = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
 
-			muleData["bots"] = mulebotsData
-			muleData["count"] = mulebotsCount
+			muleData69"bots"69 =69ulebotsData
+			muleData69"count"69 =69ulebotsCount
 
 		else
-			muleData["botstatus"] =  list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
-			muleData["active"] = 0
-			mulebotsData[++mulebotsData.len] = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
-			muleData["bots"] = mulebotsData
-			muleData["count"] = 0
+			muleData69"botstatus"69 =  list("loca" = null, "mode" = -1,"home"=null,"powr" = null,"retn" =null, "pick"=null, "load" = null, "dest" = null)
+			muleData69"active"69 = 0
+			mulebotsData69++mulebotsData.len69 = list("Name" = "No bots found", "Location" = "Invalid", "ref"= null)
+			muleData69"bots"69 =69ulebotsData
+			muleData69"count"69 = 0
 
-		values["mulebot"] = muleData
+		values69"mulebot"69 =69uleData
 
 
 
-	/*	Supply Shuttle Requests Menu (Mode: 47)		*/
+	/*	Supply Shuttle Re69uests69enu (Mode: 47)		*/
 
 	if(mode==47)
-		var/supplyData[0]
+		var/supplyData69069
 		var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 		if (shuttle)
-			supplyData["shuttle_moving"] = shuttle.has_arrive_time()
-			supplyData["shuttle_eta"] = shuttle.eta_minutes()
-			supplyData["shuttle_loc"] = shuttle.at_station() ? "Station" : "Dock"
+			supplyData69"shuttle_movin69"69 = shuttle.has_arrive_time()
+			supplyData69"shuttle_eta"69 = shuttle.eta_minutes()
+			supplyData69"shuttle_loc"69 = shuttle.at_station() ? "Station" : "Dock"
 		var/supplyOrderCount = 0
-		var/supplyOrderData[0]
-		for(var/S in SSsupply.shoppinglist)
+		var/supplyOrderData69069
+		for(var/S in SSsupply.shoppin69list)
 			var/datum/supply_order/SO = S
 
-			supplyOrderData[++supplyOrderData.len] = list("Number" = SO.id, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.orderer, "Comment" = html_encode(SO.reason))
+			supplyOrderData69++supplyOrderData.len69 = list("Number" = SO.id, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.orderer, "Comment" = html_encode(SO.reason))
 		if(!supplyOrderData.len)
-			supplyOrderData[++supplyOrderData.len] = list("Number" = null, "Name" = null, "OrderedBy"=null)
+			supplyOrderData69++supplyOrderData.len69 = list("Number" = null, "Name" = null, "OrderedBy"=null)
 
-		supplyData["approved"] = supplyOrderData
-		supplyData["approved_count"] = supplyOrderCount
+		supplyData69"approved"69 = supplyOrderData
+		supplyData69"approved_count"69 = supplyOrderCount
 
-		var/requestCount = 0
-		var/requestData[0]
-		for(var/S in SSsupply.requestlist)
+		var/re69uestCount = 0
+		var/re69uestData69069
+		for(var/S in SSsupply.re69uestlist)
 			var/datum/supply_order/SO = S
-			requestCount++
-			requestData[++requestData.len] = list("Number" = SO.id, "Name" = html_encode(SO.object.name), "OrderedBy" = SO.orderer, "Comment" = html_encode(SO.reason))
-		if(!requestData.len)
-			requestData[++requestData.len] = list("Number" = null, "Name" = null, "orderedBy" = null, "Comment" = null)
+			re69uestCount++
+			re69uestData69++re69uestData.len69 = list("Number" = SO.id, "Name" = html_encode(SO.object.name), "OrderedBy" = SO.orderer, "Comment" = html_encode(SO.reason))
+		if(!re69uestData.len)
+			re69uestData69++re69uestData.len69 = list("Number" = null, "Name" = null, "orderedBy" = null, "Comment" = null)
 
-		supplyData["requests"] = requestData
-		supplyData["requests_count"] = requestCount
+		supplyData69"re69uests"69 = re69uestData
+		supplyData69"re69uests_count"69 = re69uestCount
 
 
-		values["supply"] = supplyData
+		values69"supply"69 = supplyData
 
 
 
 	/* 	Janitor Supplies Locator  (Mode: 49)      */
 	if(mode==49)
-		var/JaniData[0]
-		var/turf/cl = get_turf(src)
+		var/JaniData69069
+		var/turf/cl = 69et_turf(src)
 
 		if(cl)
-			JaniData["user_loc"] = list("x" = cl.x, "y" = cl.y)
+			JaniData69"user_loc"69 = list("x" = cl.x, "y" = cl.y)
 		else
-			JaniData["user_loc"] = list("x" = 0, "y" = 0)
-		var/MopData[0]
+			JaniData69"user_loc"69 = list("x" = 0, "y" = 0)
+		var/MopData69069
 		for(var/obj/item/mop/M in world)
-			var/turf/ml = get_turf(M)
+			var/turf/ml = 69et_turf(M)
 			if(ml)
 				if(ml.z != cl.z)
 					continue
-				var/direction = get_dir(src, M)
-				MopData[++MopData.len] = list ("x" = ml.x, "y" = ml.y, "dir" = uppertext(dir2text(direction)), "status" = M.reagents.total_volume ? "Wet" : "Dry")
+				var/direction = 69et_dir(src,69)
+				MopData69++MopData.len69 = list ("x" =69l.x, "y" =69l.y, "dir" = uppertext(dir2text(direction)), "status" =69.rea69ents.total_volume ? "Wet" : "Dry")
 
 		if(!MopData.len)
-			MopData[++MopData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
+			MopData69++MopData.len69 = list("x" = 0, "y" = 0, dir=null, status = null)
 
 
-		var/BucketData[0]
+		var/BucketData69069
 		for(var/obj/structure/mopbucket/B in world)
-			var/turf/bl = get_turf(B)
+			var/turf/bl = 69et_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
 					continue
-				var/direction = get_dir(src,B)
-				BucketData[++BucketData.len] = list ("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume/100)
+				var/direction = 69et_dir(src,B)
+				BucketData69++BucketData.len69 = list ("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.rea69ents.total_volume/100)
 
 		if(!BucketData.len)
-			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
+			BucketData69++BucketData.len69 = list("x" = 0, "y" = 0, dir=null, status = null)
 
-		var/CbotData[0]
-		for(var/mob/living/bot/cleanbot/B in world)
-			var/turf/bl = get_turf(B)
+		var/CbotData69069
+		for(var/mob/livin69/bot/cleanbot/B in world)
+			var/turf/bl = 69et_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
 					continue
-				var/direction = get_dir(src,B)
-				CbotData[++CbotData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.on ? "Online" : "Offline")
+				var/direction = 69et_dir(src,B)
+				CbotData69++CbotData.len69 = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.on ? "Online" : "Offline")
 
 
 		if(!CbotData.len)
-			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
-		var/CartData[0]
+			CbotData69++CbotData.len69 = list("x" = 0, "y" = 0, dir=null, status = null)
+		var/CartData69069
 		for(var/obj/structure/janitorialcart/B in world)
-			var/turf/bl = get_turf(B)
+			var/turf/bl = 69et_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
 					continue
-				var/direction = get_dir(src,B)
-				CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.reagents.total_volume/100)
+				var/direction = 69et_dir(src,B)
+				CartData69++CartData.len69 = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "status" = B.rea69ents.total_volume/100)
 		if(!CartData.len)
-			CartData[++CartData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
+			CartData69++CartData.len69 = list("x" = 0, "y" = 0, dir=null, status = null)
 
 
 
 
-		JaniData["mops"] = MopData
-		JaniData["buckets"] = BucketData
-		JaniData["cleanbots"] = CbotData
-		JaniData["carts"] = CartData
-		values["janitor"] = JaniData
+		JaniData69"mops"69 =69opData
+		JaniData69"buckets"69 = BucketData
+		JaniData69"cleanbots"69 = CbotData
+		JaniData69"carts"69 = CartData
+		values69"janitor"69 = JaniData
 
-	return values
-
-
+	return69alues
 
 
 
-/obj/item/cartridge/Topic(href, href_list)
+
+
+/obj/item/cartrid69e/Topic(href, href_list)
 	..()
 
-	if (!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
+	if (!usr.canmove || usr.stat || usr.restrained() || !in_ran69e(loc, usr))
 		usr.unset_machine()
 		usr << browse(null, "window=pda")
 		return
@@ -510,65 +510,65 @@
 
 
 
-	switch(href_list["choice"])
+	switch(href_list69"choice"69)
 		if("Medical Records")
-			var/datum/data/record/R = locate(href_list["target"])
-			var/datum/data/record/M = locate(href_list["target"])
+			var/datum/data/record/R = locate(href_list69"tar69et"69)
+			var/datum/data/record/M = locate(href_list69"tar69et"69)
 			loc:mode = 441
 			mode = 441
-			if (R in data_core.general)
+			if (R in data_core.69eneral)
 				for (var/datum/data/record/E in data_core.medical)
-					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+					if ((E.fields69"name"69 == R.fields69"name"69 || E.fields69"id"69 == R.fields69"id"69))
 						M = E
 						break
 				active1 = R
-				active2 = M
+				active2 =69
 
 		if("Security Records")
-			var/datum/data/record/R = locate(href_list["target"])
-			var/datum/data/record/S = locate(href_list["target"])
+			var/datum/data/record/R = locate(href_list69"tar69et"69)
+			var/datum/data/record/S = locate(href_list69"tar69et"69)
 			loc:mode = 451
 			mode = 451
-			if (R in data_core.general)
+			if (R in data_core.69eneral)
 				for (var/datum/data/record/E in data_core.security)
-					if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
+					if ((E.fields69"name"69 == R.fields69"name"69 || E.fields69"id"69 == R.fields69"id"69))
 						S = E
 						break
 				active1 = R
 				active3 = S
 
-		if("Send Signal")
+		if("Send Si69nal")
 			spawn( 0 )
-				radio:send_signal("ACTIVATE")
+				radio:send_si69nal("ACTIVATE")
 				return
 
-		if("Signal Frequency")
-			var/new_frequency = sanitize_frequency(radio:frequency + text2num(href_list["sfreq"]))
-			radio:set_frequency(new_frequency)
+		if("Si69nal Fre69uency")
+			var/new_fre69uency = sanitize_fre69uency(radio:fre69uency + text2num(href_list69"sfre69"69))
+			radio:set_fre69uency(new_fre69uency)
 
-		if("Signal Code")
-			radio:code += text2num(href_list["scode"])
+		if("Si69nal Code")
+			radio:code += text2num(href_list69"scode"69)
 			radio:code = round(radio:code)
-			radio:code = min(100, radio:code)
-			radio:code = max(1, radio:code)
+			radio:code =69in(100, radio:code)
+			radio:code =69ax(1, radio:code)
 
 		if("Status")
-			switch(href_list["statdisp"])
-				if("message")
-					post_status("message", message1, message2)
+			switch(href_list69"statdisp"69)
+				if("messa69e")
+					post_status("messa69e",69essa69e1,69essa69e2)
 				if("alert")
-					post_status("alert", href_list["alert"])
-				if("setmsg1")
-					message1 = reject_bad_text(sanitize(input("Line 1", "Enter Message Text", message1) as text|null, 40), 40)
-					updateSelfDialog()
-				if("setmsg2")
-					message2 = reject_bad_text(sanitize(input("Line 2", "Enter Message Text", message2) as text|null, 40), 40)
-					updateSelfDialog()
+					post_status("alert", href_list69"alert"69)
+				if("setms691")
+					messa69e1 = reject_bad_text(sanitize(input("Line 1", "Enter69essa69e Text",69essa69e1) as text|null, 40), 40)
+					updateSelfDialo69()
+				if("setms692")
+					messa69e2 = reject_bad_text(sanitize(input("Line 2", "Enter69essa69e Text",69essa69e2) as text|null, 40), 40)
+					updateSelfDialo69()
 				else
-					post_status(href_list["statdisp"])
+					post_status(href_list69"statdisp"69)
 
 		if("Power Select")
-			selected_sensor = href_list["target"]
+			selected_sensor = href_list69"tar69et"69
 			loc:mode = 433
 			mode = 433
 		if("Power Clear")

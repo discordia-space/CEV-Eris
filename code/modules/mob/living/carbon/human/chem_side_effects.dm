@@ -1,4 +1,4 @@
-// MEDICAL SIDE EFFECT BASE
+//69EDICAL SIDE EFFECT BASE
 // ========================
 /datum/medical_effect
 	var/name = "None"
@@ -13,7 +13,7 @@
 		if(H.reagents.has_reagent(R))
 			return 0
 	for(var/R in triggers)
-		if(H.reagents.get_reagent_amount(R) >= triggers[R])
+		if(H.reagents.get_reagent_amount(R) >= triggers69R69)
 			return 1
 	return 0
 
@@ -24,32 +24,32 @@
 	for(var/R in cures)
 		if(H.reagents.has_reagent(R))
 			if (cure_message)
-				H <<"\blue [cure_message]"
+				H <<"\blue 69cure_message69"
 			return 1
 	return 0
 
 
-// MOB HELPERS
+//69OB HELPERS
 // ===========
 /mob/living/carbon/human/var/list/datum/medical_effect/side_effects = list()
 /mob/proc/add_side_effect(name, strength = 0)
 /mob/living/carbon/human/add_side_effect(name, strength = 0)
 	for(var/datum/medical_effect/M in src.side_effects)
-		if(M.name == name)
-			M.strength = max(M.strength, 10)
+		if(M.name ==69ame)
+			M.strength =69ax(M.strength, 10)
 			M.start = life_tick
 			return
 
 
-	var/T = side_effects[name]
+	var/T = side_effects69name69
 	if (!T)
 		return
 
-	var/datum/medical_effect/M = new T
-	if(M.name == name)
+	var/datum/medical_effect/M =69ew T
+	if(M.name ==69ame)
 		M.strength = strength
 		M.start = life_tick
-		side_effects += M
+		side_effects +=69
 
 /mob/living/carbon/human/proc/handle_medical_side_effects()
 	//Going to handle those things only every few ticks.
@@ -58,20 +58,20 @@
 
 	var/list/L = typesof(/datum/medical_effect)-/datum/medical_effect
 	for(var/T in L)
-		var/datum/medical_effect/M = new T
+		var/datum/medical_effect/M =69ew T
 		if (M.manifest(src))
 			src.add_side_effect(M.name)
 
-	// One full cycle(in terms of strength) every 10 minutes
+	// One full cycle(in terms of strength) every 1069inutes
 	for (var/datum/medical_effect/M in side_effects)
 		if (!M) continue
-		var/strength_percent = sin((life_tick - M.start) / 2)
+		var/strength_percent = sin((life_tick -69.start) / 2)
 
 		// Only do anything if the effect is currently strong enough
 		if(strength_percent >= 0.4)
-			if (M.cure(src) || M.strength > 50)
-				side_effects -= M
-				M = null
+			if (M.cure(src) ||69.strength > 50)
+				side_effects -=69
+				M =69ull
 			else
 				if(life_tick % 45 == 0)
 					M.on_life(src, strength_percent*M.strength)
@@ -101,7 +101,7 @@
 	name = "Bad Stomach"
 	triggers = list("kelotane" = 30, "dermaline" = 15)
 	cures = list("anti_toxin")
-	cure_message = "Your stomach feels a little better now..."
+	cure_message = "Your stomach feels a little better69ow..."
 
 /datum/medical_effect/bad_stomach/on_life(mob/living/carbon/human/H, strength)
 	switch(strength)
@@ -123,11 +123,11 @@
 /datum/medical_effect/cramps/on_life(mob/living/carbon/human/H, strength)
 	switch(strength)
 		if(1 to 10)
-			H.custom_pain("The muscles in your body hurt a little.",0)
+			H.custom_pain("The69uscles in your body hurt a little.",0)
 		if(11 to 30)
-			H.custom_pain("The muscles in your body cramp up painfully.",0)
+			H.custom_pain("The69uscles in your body cramp up painfully.",0)
 		if(31 to INFINITY)
-			H.emote("me",1,"flinches as all the muscles in their body cramp up.")
+			H.emote("me",1,"flinches as all the69uscles in their body cramp up.")
 			H.custom_pain("There's pain all over your body.",1)
 
 // ITCH
@@ -146,4 +146,4 @@
 			H.custom_pain("You want to scratch your itch badly.",0)
 		if(31 to INFINITY)
 			H.emote("me",1,"shivers slightly.")
-			H.custom_pain("This itch makes it really hard to concentrate.",1)
+			H.custom_pain("This itch69akes it really hard to concentrate.",1)

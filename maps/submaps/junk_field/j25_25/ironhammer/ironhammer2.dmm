@@ -1,582 +1,582 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ag" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"ah" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"am" = (
-/mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/dark/airless,
-/area/template_noop)
-"ay" = (
-/obj/structure/window/reinforced{
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a69" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"ah" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"am" = 69
+/mo69/livin69/simple_animal/hostile/hive69ot,
+/turf/simulated/floor/tiled/dar69/airless,
+/area/template_noop69
+"ay" = 69
+/o6969/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/door/window/brigdoor/northright,
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"aP" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/cheap,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"aU" = (
-/obj/spawner/oddities/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform/airless,
-/area/template_noop)
-"bb" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bd" = (
-/obj/machinery/light_construct{
+/o6969/machinery/door/window/69ri69door/northri69ht,
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"aP" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69un/cheap,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"aU" = 69
+/o6969/spawner/oddities/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/spawner/scrap/sparse,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69d" = 69
+/o6969/machinery/li69ht_construct{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bm" = (
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69m" = 69
 /turf/simulated/floor/tiled/steel/airless,
-/area/template_noop)
-"bs" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
-	name = "Airlock";
-	req_access = list(1)
+/area/template_noop69
+"69s" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69/69lass_security{
+	name = "Airloc69";
+	re69_access = list69169
 	},
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"by" = (
-/obj/machinery/computer/arcade,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"bE" = (
-/obj/structure/bed/chair/wood,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"69y" = 69
+/o6969/machinery/computer/arcade,
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"69E" = 69
+/o6969/structure/69ed/chair/wood,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"bG" = (
-/obj/structure/cyberplant,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"dO" = (
-/obj/structure/showcase{
-	desc = "Ancient robotic frame, that is long deactivated and rusted solid. However, it still strikes am awesome pose, that somehow makes you think of justice and righteousness.";
-	name = "Statue of Judge Boopsky"
+/area/template_noop69
+"6969" = 69
+/o6969/structure/cy69erplant,
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"dO" = 69
+/o6969/structure/showcase{
+	desc = "Ancient ro69otic frame, that is lon69 deactivated and rusted solid. However, it still stri69es am awesome pose, that somehow69a69es you thin69 of 69ustice and ri69hteousness.";
+	name = "Statue of 69ud69e 69oops69y"
 	},
-/turf/simulated/floor/tiled/steel/gray_platform/airless,
-/area/template_noop)
-"eD" = (
-/obj/structure/window/reinforced{
+/turf/simulated/floor/tiled/steel/69ray_platform/airless,
+/area/template_noop69
+"eD" = 69
+/o6969/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"fy" = (
-/obj/structure/table/rack,
-/obj/item/clothing/suit/armor/heavy/ironhammer,
-/obj/item/clothing/suit/armor/heavy/ironhammer,
-/obj/item/clothing/head/armor/riot_hud,
-/obj/item/clothing/head/armor/riot_hud,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"gf" = (
-/obj/structure/table/woodentable,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"fy" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/clothin69/suit/armor/heavy/ironhammer,
+/o6969/item/clothin69/suit/armor/heavy/ironhammer,
+/o6969/item/clothin69/head/armor/riot_hud,
+/o6969/item/clothin69/head/armor/riot_hud,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"69f" = 69
+/o6969/structure/ta69le/woodenta69le,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"gt" = (
-/obj/machinery/light_construct{
+/area/template_noop69
+"69t" = 69
+/o6969/machinery/li69ht_construct{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"hy" = (
-/obj/machinery/door/airlock/centcom{
-	icon_state = "door_locked";
-	locked = 1
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"hy" = 69
+/o6969/machinery/door/airloc69/centcom{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"ib" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"iz" = (
-/obj/structure/bed/chair{
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"i69" = 69
+/o6969/effect/window_lwall_spawn/smartspawn,
+/o6969/machinery/door/firedoor,
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"iz" = 69
+/o6969/structure/69ed/chair{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"ku" = (
-/obj/machinery/door/window/brigdoor/northleft{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69u" = 69
+/o6969/machinery/door/window/69ri69door/northleft{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"lz" = (
-/obj/structure/bed/chair{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"lz" = 69
+/o6969/structure/69ed/chair{
 	dir = 4
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"nC" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"nQ" = (
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"nR" = (
-/obj/machinery/firealarm{
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"nC" = 69
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"n69" = 69
+/o6969/spawner/69un69food/rotten,
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"nR" = 69
+/o6969/machinery/firealarm{
 	dir = 1;
 	pixel_y = -28
 	},
-/obj/machinery/light,
+/o6969/machinery/li69ht,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"oS" = (
-/obj/structure/table/rack,
-/obj/item/storage/belt/tactical/ironhammer,
-/obj/item/gun/energy/gun/martin,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"pa" = (
-/obj/structure/bed/chair/comfy/black,
+/area/template_noop69
+"oS" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/stora69e/69elt/tactical/ironhammer,
+/o6969/item/69un/ener69y/69un/martin,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"pa" = 69
+/o6969/structure/69ed/chair/comfy/69lac69,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"pb" = (
-/obj/structure/table/woodentable,
-/obj/item/material/ashtray,
-/obj/item/storage/fancy/cigarettes/dromedaryco,
+/area/template_noop69
+"p69" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/material/ashtray,
+/o6969/item/stora69e/fancy/ci69arettes/dromedaryco,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"po" = (
-/obj/machinery/light_construct{
+/area/template_noop69
+"po" = 69
+/o6969/machinery/li69ht_construct{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"qk" = (
-/obj/structure/bed/chair{
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/69ed/chair{
 	dir = 4
 	},
-/obj/machinery/newscaster{
+/o6969/machinery/newscaster{
 	pixel_x = -27;
 	pixel_y = 1
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"qp" = (
-/obj/structure/closet/secure_closet/brig{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69p" = 69
+/o6969/structure/closet/secure_closet/69ri69{
 	id = "Cell 4";
-	name = "Cell 4 Locker"
+	name = "Cell 4 Loc69er"
 	},
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"rN" = (
-/turf/simulated/floor/tiled/dark/airless,
-/area/template_noop)
-"sD" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_security{
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"rN" = 69
+/turf/simulated/floor/tiled/dar69/airless,
+/area/template_noop69
+"sD" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69/69lass_security{
 	name = "Inspector Office";
-	req_access = list(4)
+	re69_access = list69469
 	},
-/obj/structure/disposalpipe/segment{
+/o6969/structure/disposalpipe/se69ment{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
-"up" = (
-/obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"uv" = (
-/obj/machinery/light_construct{
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
+"up" = 69
+/o6969/machinery/vendin69/cola,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"uv" = 69
+/o6969/machinery/li69ht_construct{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"uQ" = (
-/obj/structure/closet/secure_closet/brig,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"wg" = (
-/obj/structure/table/woodentable,
-/obj/item/storage/briefcase,
-/obj/item/storage/briefcase,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"u69" = 69
+/o6969/structure/closet/secure_closet/69ri69,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"w69" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/stora69e/69riefcase,
+/o6969/item/stora69e/69riefcase,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"ww" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/freezer{
-	name = "Docking Airlock"
+/area/template_noop69
+"ww" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69/freezer{
+	name = "Doc69in69 Airloc69"
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
-"xf" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/northright{
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
+"xf" = 69
+/o6969/structure/ta69le/reinforced,
+/o6969/machinery/door/window/69ri69door/northri69ht{
 	dir = 4;
-	req_access = null
+	re69_access =69ull
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid/airless,
-/area/template_noop)
-"xp" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"xN" = (
-/obj/structure/table/rack,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"xO" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin,
-/obj/item/pen,
+/turf/simulated/floor/tiled/steel/techfloor_69rid/airless,
+/area/template_noop69
+"xp" = 69
+/o6969/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"xN" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/medical,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"xO" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/paper_69in,
+/o6969/item/pen,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"yr" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid/airless,
-/area/template_noop)
-"yJ" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"zc" = (
-/obj/structure/table/woodentable,
-/obj/item/book/manual/wiki/security_ironparagraphs,
-/obj/structure/noticeboard{
+/area/template_noop69
+"yr" = 69
+/turf/simulated/floor/tiled/steel/techfloor_69rid/airless,
+/area/template_noop69
+"y69" = 69
+/o6969/machinery/door/firedoor,
+/o6969/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"zc" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/69oo69/manual/wi69i/security_ironpara69raphs,
+/o6969/structure/notice69oard{
 	pixel_x = 30
 	},
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"zj" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"zC" = (
-/obj/item/stool,
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"zO" = (
-/obj/structure/bed/chair/wood{
+/area/template_noop69
+"z69" = 69
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"zC" = 69
+/o6969/item/stool,
+/o6969/spawner/69un69food/rotten,
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"zO" = 69
+/o6969/structure/69ed/chair/wood{
 	dir = 8
 	},
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"Av" = (
-/mob/living/simple_animal/hostile/hivebot/range,
+/area/template_noop69
+"Av" = 69
+/mo69/livin69/simple_animal/hostile/hive69ot/ran69e,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"Ax" = (
-/obj/structure/table/woodentable,
-/obj/item/folder/blue,
+/area/template_noop69
+"Ax" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/folder/69lue,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"Az" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"BD" = (
-/obj/structure/bed/chair{
+/area/template_noop69
+"Az" = 69
+/o6969/machinery/li69ht,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69D" = 69
+/o6969/structure/69ed/chair{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"CD" = (
-/obj/structure/bed/chair{
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"CD" = 69
+/o6969/structure/69ed/chair{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"DI" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/metal{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"DI" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69/multi_tile/metal{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"Ej" = (
-/obj/structure/sign/faction/ironhammer{
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"E69" = 69
+/o6969/structure/si69n/faction/ironhammer{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"EA" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/normal,
-/obj/machinery/light{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"EA" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69un/normal,
+/o6969/machinery/li69ht{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"Fb" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"GD" = (
-/obj/structure/table/reinforced,
-/obj/machinery/recharger,
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"GZ" = (
-/obj/effect/floor_decal/industrial/warning{
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"F69" = 69
+/o6969/machinery/vendin69/coffee,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69D" = 69
+/o6969/structure/ta69le/reinforced,
+/o6969/machinery/rechar69er,
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"69Z" = 69
+/o6969/effect/floor_decal/industrial/warnin69{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"Hc" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet/orange,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"Hd" = (
-/obj/item/modular_computer/console{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"Hc" = 69
+/o6969/structure/69ed/padded,
+/o6969/item/69edsheet/oran69e,
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"Hd" = 69
+/o6969/item/modular_computer/console{
 	dir = 1
 	},
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"II" = (
-/mob/living/simple_animal/hostile/hivebot/range,
+/area/template_noop69
+"II" = 69
+/mo69/livin69/simple_animal/hostile/hive69ot/ran69e,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"Jd" = (
-/obj/structure/sign/faction/ironhammer{
+/area/template_noop69
+"69d" = 69
+/o6969/structure/si69n/faction/ironhammer{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"Js" = (
-/obj/machinery/holoposter{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69s" = 69
+/o6969/machinery/holoposter{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"JA" = (
-/obj/machinery/light{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69A" = 69
+/o6969/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"JW" = (
-/obj/effect/floor_decal/industrial/warning{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69W" = 69
+/o6969/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"KI" = (
-/obj/structure/table/rack,
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"KW" = (
-/obj/structure/filingcabinet,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"69I" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/stora69e/69ox/handcuffs,
+/o6969/item/stora69e/69ox/flash69an69s,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"69W" = 69
+/o6969/structure/filin69ca69inet,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"La" = (
-/obj/item/stool,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"Lz" = (
+/area/template_noop69
+"La" = 69
+/o6969/item/stool,
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"Lz" = 69
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"LE" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"LZ" = (
-/obj/structure/bed/chair{
+/area/template_noop69
+"LE" = 69
+/o6969/machinery/door/firedoor,
+/o6969/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"LZ" = 69
+/o6969/structure/69ed/chair{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/reinforced{
 	dir = 4
 	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"Mf" = (
-/obj/structure/table/woodentable,
-/obj/item/book/manual/wiki/security_ironparagraphs,
+/o6969/machinery/li69ht,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"Mf" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/69oo69/manual/wi69i/security_ironpara69raphs,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"ME" = (
-/obj/structure/table/woodentable,
-/obj/item/device/camera{
+/area/template_noop69
+"ME" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/device/camera{
 	desc = "A one use - polaroid camera. 30 photos left.";
 	name = "detectives camera";
 	pictures_left = 30
 	},
-/obj/item/device/camera{
+/o6969/item/device/camera{
 	desc = "A one use - polaroid camera. 30 photos left.";
 	name = "detectives camera";
 	pictures_left = 30
 	},
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
-/obj/item/device/camera_film,
+/o6969/item/device/camera_film,
+/o6969/item/device/camera_film,
+/o6969/item/device/camera_film,
+/o6969/item/device/camera_film,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"Ns" = (
-/obj/structure/bed/chair{
+/area/template_noop69
+"Ns" = 69
+/o6969/structure/69ed/chair{
 	dir = 4
 	},
-/obj/machinery/light_construct{
+/o6969/machinery/li69ht_construct{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"NH" = (
-/obj/structure/bed/chair/wood{
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"NH" = 69
+/o6969/structure/69ed/chair/wood{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"NL" = (
-/mob/living/simple_animal/hostile/hivebot/range,
+/area/template_noop69
+"NL" = 69
+/mo69/livin69/simple_animal/hostile/hive69ot/ran69e,
 /turf/simulated/floor/tiled/steel/airless,
-/area/template_noop)
-"NQ" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"NR" = (
-/obj/machinery/light,
-/obj/item/modular_computer/console{
+/area/template_noop69
+"N69" = 69
+/o6969/structure/rea69ent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"NR" = 69
+/o6969/machinery/li69ht,
+/o6969/item/modular_computer/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"Oz" = (
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"Oz" = 69
 /turf/simulated/wall,
-/area/template_noop)
-"Pb" = (
-/obj/structure/bed/chair/office/dark{
+/area/template_noop69
+"P69" = 69
+/o6969/structure/69ed/chair/office/dar69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"Pc" = (
-/obj/machinery/door/window/brigdoor/northright{
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"Pc" = 69
+/o6969/machinery/door/window/69ri69door/northri69ht{
 	dir = 8
 	},
-/obj/machinery/door/window/brigdoor/northright{
+/o6969/machinery/door/window/69ri69door/northri69ht{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
-"PT" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"Qn" = (
-/obj/item/modular_computer/console{
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
+"PT" = 69
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"69n" = 69
+/o6969/item/modular_computer/console{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"Qo" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark/cargo/airless,
-/area/template_noop)
-"QE" = (
-/turf/simulated/floor/tiled/steel/orangecorner/airless,
-/area/template_noop)
-"SV" = (
-/obj/spawner/soda,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"Th" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/security{
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"69o" = 69
+/o6969/machinery/door/firedoor,
+/turf/simulated/floor/tiled/dar69/car69o/airless,
+/area/template_noop69
+"69E" = 69
+/turf/simulated/floor/tiled/steel/oran69ecorner/airless,
+/area/template_noop69
+"SV" = 69
+/o6969/spawner/soda,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"Th" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69/security{
 	name = "Courtroom"
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
-"Ur" = (
-/obj/machinery/light_construct,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"Uy" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"UT" = (
-/obj/structure/lattice,
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
+"Ur" = 69
+/o6969/machinery/li69ht_construct,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"Uy" = 69
+/o6969/structure/window/reinforced,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"UT" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"VG" = (
+/area/template_noop69
+"V69" = 69
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"VK" = (
-/obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/area/template_noop69
+"V69" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/device/li69htin69/to6969lea69le/lamp/69reen,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"Wp" = (
-/obj/structure/table/reinforced,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"Xd" = (
-/mob/living/simple_animal/hostile/hivebot,
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"XL" = (
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"XS" = (
-/obj/structure/table/woodentable,
-/obj/spawner/lowkeyrandom,
+/area/template_noop69
+"Wp" = 69
+/o6969/structure/ta69le/reinforced,
+/o6969/item/paper_69in,
+/o6969/item/pen,
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"Xd" = 69
+/mo69/livin69/simple_animal/hostile/hive69ot,
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"XL" = 69
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"XS" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/spawner/low69eyrandom,
 /turf/simulated/floor/wood/airless,
-/area/template_noop)
-"Yy" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/flask/detflask,
-/obj/item/reagent_containers/food/drinks/flask/detflask,
-/obj/spawner/lowkeyrandom,
+/area/template_noop69
+"Yy" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/rea69ent_containers/food/drin69s/flas69/detflas69,
+/o6969/item/rea69ent_containers/food/drin69s/flas69/detflas69,
+/o6969/spawner/low69eyrandom,
 /turf/simulated/floor/carpet/airless,
-/area/template_noop)
-"YE" = (
-/obj/machinery/holoposter{
+/area/template_noop69
+"YE" = 69
+/o6969/machinery/holoposter{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/steel/bluecorner/airless,
-/area/template_noop)
-"Ze" = (
+/turf/simulated/floor/tiled/steel/69luecorner/airless,
+/area/template_noop69
+"Ze" = 69
 /turf/simulated/wall/r_wall,
-/area/template_noop)
-"Zy" = (
+/area/template_noop69
+"Zy" = 69
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 Zy
 Zy
 UT
-ag
+a69
 UT
 Zy
 UT
 ah
-ag
+a69
 UT
 Zy
 Zy
@@ -594,7 +594,7 @@ Zy
 UT
 Zy
 "}
-(2,1,1) = {"
+692,1,169 = {"
 Zy
 Zy
 Zy
@@ -606,7 +606,7 @@ Ze
 Ze
 ah
 UT
-ag
+a69
 ah
 ah
 UT
@@ -618,16 +618,16 @@ Zy
 UT
 UT
 ah
-ag
+a69
 Zy
 "}
-(3,1,1) = {"
+693,1,169 = {"
 Zy
 Zy
 Zy
 Ze
-pb
-wg
+p69
+w69
 ME
 Yy
 Ze
@@ -644,25 +644,25 @@ Zy
 Zy
 ah
 ah
-bb
-ag
+6969
+a69
 Zy
 "}
-(4,1,1) = {"
+694,1,169 = {"
 Zy
 Zy
 Zy
 LE
-VG
-VG
+V69
+V69
 Av
-VG
+V69
 sD
 XL
 ah
 Ze
-ag
-ag
+a69
+a69
 UT
 Zy
 Zy
@@ -675,13 +675,13 @@ XL
 Ze
 Zy
 "}
-(5,1,1) = {"
+695,1,169 = {"
 Zy
 Zy
 Zy
 LE
 pa
-VK
+V69
 NH
 nR
 Ze
@@ -702,26 +702,26 @@ Ur
 Ze
 Zy
 "}
-(6,1,1) = {"
+696,1,169 = {"
 Zy
 Zy
 Zy
 LE
-KW
+69W
 zc
 NH
-VG
+V69
 Ze
 nC
-Ej
-gt
+E69
+69t
 ah
 Zy
 Zy
 UT
 UT
-bb
-bd
+6969
+69d
 YE
 XL
 XL
@@ -729,7 +729,7 @@ XL
 Ze
 Zy
 "}
-(7,1,1) = {"
+697,1,169 = {"
 Zy
 Ze
 UT
@@ -751,31 +751,31 @@ Ze
 Ze
 Ze
 Ze
-Qo
+69o
 DI
 LE
 Zy
 "}
-(8,1,1) = {"
+698,1,169 = {"
 Zy
 UT
 Zy
 Ze
-by
+69y
 zC
 Hc
-yJ
-by
+y69
+69y
 La
 Hc
-yJ
-by
+y69
+69y
 La
 Hc
 Ze
-KI
-uQ
-uQ
+69I
+u69
+u69
 oS
 Ze
 XL
@@ -783,22 +783,22 @@ XL
 LE
 Zy
 "}
-(9,1,1) = {"
+699,1,169 = {"
 Zy
 UT
 Zy
 Ze
-bG
-QE
-QE
-yJ
-bG
-QE
-QE
-yJ
-bG
-QE
-QE
+6969
+69E
+69E
+y69
+6969
+69E
+69E
+y69
+6969
+69E
+69E
 Ze
 EA
 rN
@@ -810,22 +810,22 @@ Xd
 LE
 Zy
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 Zy
 UT
 Zy
 Ze
-qp
-QE
-QE
-yJ
-qp
-QE
-QE
-yJ
-qp
-QE
-QE
+69p
+69E
+69E
+y69
+69p
+69E
+69E
+y69
+69p
+69E
+69E
 Ze
 fy
 am
@@ -837,20 +837,20 @@ Az
 Ze
 Zy
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 Zy
 Ze
-yJ
+y69
 Ze
-yJ
-ag
+y69
+a69
 ah
 ah
 ah
-ag
+a69
 Pc
-yJ
-yJ
+y69
+y69
 Oz
 Pc
 Ze
@@ -859,39 +859,39 @@ Ze
 hy
 Ze
 Ze
-Jd
+69d
 XL
 LE
 Zy
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 Zy
 Ze
 aU
 eD
-zj
+z69
 uv
 ah
 UT
 ah
 po
-GZ
+69Z
 XL
-zj
-JA
-GZ
-NQ
+z69
+69A
+69Z
+N69
 Ze
-bm
+69m
 NL
-bm
-bs
-JW
+69m
+69s
+69W
 ah
 UT
 Zy
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 Zy
 Ze
 dO
@@ -909,8 +909,8 @@ XL
 Xd
 XL
 Ze
-GD
-nQ
+69D
+n69
 NR
 Ze
 XL
@@ -918,7 +918,7 @@ ah
 UT
 Zy
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 Zy
 Ze
 aU
@@ -937,42 +937,42 @@ XL
 XL
 Ze
 Wp
-Pb
-Qn
+P69
+69n
 Ze
-bb
+6969
 UT
 Zy
 Zy
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 Zy
 Ze
-yJ
+y69
 Ze
 up
-Fb
+F69
 Oz
 Oz
-ag
-ag
+a69
+a69
 Th
 Oz
 Oz
 Ze
-Qo
+69o
 DI
 Ze
-ib
+i69
 xf
-ib
+i69
 Ze
 ah
 ah
 UT
 Zy
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 Zy
 Zy
 Zy
@@ -984,13 +984,13 @@ iz
 iz
 Ns
 Xd
-qk
+6969
 iz
 Ze
-Js
+69s
 XL
-JA
-ku
+69A
+69u
 xp
 XL
 XL
@@ -999,7 +999,7 @@ ah
 UT
 Zy
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 Zy
 Zy
 Zy
@@ -1014,7 +1014,7 @@ XL
 iz
 iz
 Ze
-zj
+z69
 XL
 XL
 Uy
@@ -1026,7 +1026,7 @@ XL
 LE
 Zy
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 Zy
 Zy
 Zy
@@ -1053,7 +1053,7 @@ Ze
 Ze
 Zy
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 Zy
 Zy
 Zy
@@ -1063,10 +1063,10 @@ Zy
 LE
 Ax
 XS
-VG
-VG
+V69
+V69
 ay
-BD
+69D
 LE
 Zy
 Zy
@@ -1080,7 +1080,7 @@ LE
 Zy
 Zy
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 Zy
 Zy
 Zy
@@ -1088,12 +1088,12 @@ UT
 Zy
 Zy
 LE
-bE
+69E
 xO
-VG
-VG
+V69
+V69
 ay
-BD
+69D
 LE
 Zy
 Zy
@@ -1107,7 +1107,7 @@ Ze
 Zy
 Zy
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 Zy
 Zy
 Zy
@@ -1117,8 +1117,8 @@ Zy
 LE
 II
 Mf
-VG
-VG
+V69
+V69
 Lz
 Lz
 LE
@@ -1134,7 +1134,7 @@ Zy
 Zy
 Zy
 "}
-(22,1,1) = {"
+6922,1,169 = {"
 Zy
 Zy
 Zy
@@ -1145,8 +1145,8 @@ LE
 Lz
 Lz
 Lz
-gf
-gf
+69f
+69f
 xO
 LE
 UT
@@ -1161,7 +1161,7 @@ Zy
 Zy
 Zy
 "}
-(23,1,1) = {"
+6923,1,169 = {"
 Zy
 Zy
 Zy
@@ -1169,7 +1169,7 @@ UT
 Zy
 Zy
 LE
-bE
+69E
 Hd
 Lz
 Lz
@@ -1188,7 +1188,7 @@ Zy
 Zy
 Zy
 "}
-(24,1,1) = {"
+6924,1,169 = {"
 Zy
 Zy
 Zy
@@ -1215,7 +1215,7 @@ Zy
 Zy
 Zy
 "}
-(25,1,1) = {"
+6925,1,169 = {"
 Zy
 Zy
 Zy

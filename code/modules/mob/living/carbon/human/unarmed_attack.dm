@@ -2,7 +2,7 @@ var/global/list/sparring_attack_cache = list()
 
 //Species unarmed attacks
 /datum/unarmed_attack
-	var/attack_verb = list("attack")	// Empty hand hurt intent verb.
+	var/attack_verb = list("attack")	// Empty hand hurt intent69erb.
 	var/attack_noun = list("fist")
 	var/damage = 0						// Extra empty hand attack damage.
 	var/attack_sound = "punch"
@@ -16,20 +16,20 @@ var/global/list/sparring_attack_cache = list()
 
 /datum/unarmed_attack/proc/get_sparring_variant()
 	if(sparring_variant_type)
-		if(!sparring_attack_cache[sparring_variant_type])
-			sparring_attack_cache[sparring_variant_type] = new sparring_variant_type()
-		return sparring_attack_cache[sparring_variant_type]
+		if(!sparring_attack_cache69sparring_variant_type69)
+			sparring_attack_cache69sparring_variant_type69 =69ew sparring_variant_type()
+		return sparring_attack_cache69sparring_variant_type69
 
-/datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/proc/is_usable(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone)
 	if(user.restrained())
 		return 0
 
 	// Check if they have a functioning hand.
-	var/obj/item/organ/external/E = user.organs_by_name[BP_L_ARM]
+	var/obj/item/organ/external/E = user.organs_by_name69BP_L_ARM69
 	if(E && !E.is_stump())
 		return 1
 
-	E = user.organs_by_name[BP_R_ARM]
+	E = user.organs_by_name69BP_R_ARM69
 	if(E && !E.is_stump())
 		return 1
 
@@ -50,23 +50,23 @@ var/global/list/sparring_attack_cache = list()
 			if(BP_HEAD, BP_MOUTH, BP_EYES)
 				// Induce blurriness
 				target.visible_message(
-					SPAN_DANGER("[target] looks momentarily disoriented."),
+					SPAN_DANGER("69target69 looks69omentarily disoriented."),
 					SPAN_DANGER("You see stars.")
 				)
 				target.apply_effect(attack_damage*2, EYE_BLUR)
 			if(BP_L_ARM)
 				if (target.l_hand)
 					// Disarm left hand
-					//Urist McAssistant dropped the macguffin with a scream just sounds odd. Plus it doesn't work with NO_PAIN
+					//Urist69cAssistant dropped the69acguffin with a scream just sounds odd. Plus it doesn't work with69O_PAIN
 					target.visible_message(
-						SPAN_DANGER("\The [target.l_hand] was knocked right out of [target]'s grasp!")
+						SPAN_DANGER("\The 69target.l_hand69 was knocked right out of 69target69's grasp!")
 					)
 					target.drop_l_hand()
 			if(BP_R_ARM)
 				if (target.r_hand)
 					// Disarm right hand
 					target.visible_message(
-						SPAN_DANGER("\The [target.r_hand] was knocked right out of [target]'s grasp!")
+						SPAN_DANGER("\The 69target.r_hand69 was knocked right out of 69target69's grasp!")
 					)
 					target.drop_r_hand()
 			if(BP_CHEST)
@@ -75,41 +75,41 @@ var/global/list/sparring_attack_cache = list()
 					if(!T.density)
 						step(target, get_dir(get_turf(user), get_turf(target)))
 						target.visible_message(
-							SPAN_DANGER(pick("[target] was sent flying backward!","[target] staggers back from the impact!"))
+							SPAN_DANGER(pick("69target69 was sent flying backward!","69target69 staggers back from the impact!"))
 						)
 					else
-						target.visible_message(SPAN_DANGER("[target] slams into [T]!"))
+						target.visible_message(SPAN_DANGER("69target69 slams into 69T69!"))
 					if(prob(50))
-						target.set_dir(reverse_dir[target.dir])
+						target.set_dir(reverse_dir69target.dir69)
 					target.apply_effect(attack_damage * 0.4, WEAKEN)
 			if(BP_GROIN)
 				target.visible_message(
-					SPAN_WARNING("[target] looks like \he is in pain!"),
-					SPAN_WARNING((target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your[pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!")
+					SPAN_WARNING("69target69 looks like \he is in pain!"),
+					SPAN_WARNING((target.gender=="female") ? "Oh god that hurt!" : "Oh69o,69ot your69pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")69!")
 				)
 				target.apply_effects(stutter = attack_damage * 2, agony = attack_damage* 3)
 			if(BP_L_LEG, BP_R_LEG)
 				if(!target.lying)
-					target.visible_message(SPAN_WARNING("[target] gives way slightly."))
+					target.visible_message(SPAN_WARNING("69target69 gives way slightly."))
 					target.adjustHalLoss(attack_damage*3)
 	else if(attack_damage >= 5 && !(target == user) && (stun_chance + attack_damage * 5 >= 100) ) // Chance to get the usual throwdown as well (25% standard chance)
 		if(!target.lying)
-			target.visible_message("<span class='danger'>[target] [pick("slumps", "falls", "drops")] down to the ground!</span>")
+			target.visible_message("<span class='danger'>69target69 69pick("slumps", "falls", "drops")69 down to the ground!</span>")
 		else
-			target.visible_message(SPAN_DANGER("[target] has been weakened!"))
+			target.visible_message(SPAN_DANGER("69target69 has been weakened!"))
 		target.apply_effect(3, WEAKEN)
 
-/datum/unarmed_attack/proc/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/proc/show_attack(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone,69ar/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
-	user.visible_message(SPAN_WARNING("[user] [pick(attack_verb)] [target] in the [affecting.name]!"))
+	user.visible_message(SPAN_WARNING("69user69 69pick(attack_verb)69 69target69 in the 69affecting.name69!"))
 	playsound(user.loc, attack_sound, 25, 1, -1)
 
-/datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target)
+/datum/unarmed_attack/proc/handle_eye_attack(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target)
 	var/obj/item/organ/internal/eyes/eyes = target.random_organ_by_process(OP_EYES)
 	eyes.take_damage(rand(3,4), 1)
 
-	user.visible_message(SPAN_DANGER("[user] presses \his fingers into [target]'s [eyes.name]!")) //no need to check for claws because only humans(monkeys?) can grab(no, humans and monkeys don't have claws)
-	to_chat(target, SPAN_DANGER("You experience[(target.species.flags & NO_PAIN)? "" : " immense pain as you feel" ] digits being pressed into your [eyes.name][(target.species.flags & NO_PAIN)? "." : "!"]"))
+	user.visible_message(SPAN_DANGER("69user69 presses \his fingers into 69target69's 69eyes.name69!")) //no69eed to check for claws because only humans(monkeys?) can grab(no, humans and69onkeys don't have claws)
+	to_chat(target, SPAN_DANGER("You experience69(target.species.flags &69O_PAIN)? "" : " immense pain as you feel" 69 digits being pressed into your 69eyes.name6969(target.species.flags &69O_PAIN)? "." : "!"69"))
 
 /datum/unarmed_attack/bite
 	attack_verb = list("bit")
@@ -119,7 +119,7 @@ var/global/list/sparring_attack_cache = list()
 	sharp = FALSE
 	edge = FALSE
 
-/datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/bite/is_usable(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone)
 
 	if (user.wear_mask && (istype(user.wear_mask, /obj/item/clothing/mask/muzzle) || istype(user.wear_mask, /obj/item/grenade)))
 		return 0
@@ -132,14 +132,14 @@ var/global/list/sparring_attack_cache = list()
 	attack_noun = list("fist")
 	damage = 0
 
-/datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/punch/show_attack(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone,69ar/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 
 	attack_damage = CLAMP(attack_damage, 1, 5) // We expect damage input of 1 to 5 for this proc. But we leave this check juuust in case.
 
 	if(target == user)
-		user.visible_message(SPAN_DANGER("[user] [pick(attack_verb)] \himself in the [organ]!"))
+		user.visible_message(SPAN_DANGER("69user69 69pick(attack_verb)69 \himself in the 69organ69!"))
 		return 0
 
 	if(!target.lying)
@@ -148,33 +148,33 @@ var/global/list/sparring_attack_cache = list()
 				// ----- HEAD ----- //
 				switch(attack_damage)
 					if(1 to 2)
-						user.visible_message(SPAN_DANGER("[user] slapped [target] across \his cheek!"))
+						user.visible_message(SPAN_DANGER("69user69 slapped 69target69 across \his cheek!"))
 					if(3 to 4)
 						user.visible_message(pick(
-							40; SPAN_DANGER("[user] [pick(attack_verb)] [target] in the head!"),
-							30; "<span class='danger'>[user] struck [target] in the head[pick("", " with a closed fist")]!</span>",
-							30; SPAN_DANGER("[user] threw a hook against [target]'s head!")
+							40; SPAN_DANGER("69user69 69pick(attack_verb)69 69target69 in the head!"),
+							30; "<span class='danger'>69user69 struck 69target69 in the head69pick("", " with a closed fist")69!</span>",
+							30; SPAN_DANGER("69user69 threw a hook against 69target69's head!")
 							))
 					if(5)
 						user.visible_message(pick(
-							30; "<span class='danger'>[user] gave [target] a resounding [pick("slap", "punch")] to the face!</span>",
-							40; SPAN_DANGER("[user] smashed \his [pick(attack_noun)] into [target]'s face!"),
-							30; SPAN_DANGER("[user] gave a strong blow against [target]'s jaw!")
+							30; "<span class='danger'>69user69 gave 69target69 a resounding 69pick("slap", "punch")69 to the face!</span>",
+							40; SPAN_DANGER("69user69 smashed \his 69pick(attack_noun)69 into 69target69's face!"),
+							30; SPAN_DANGER("69user69 gave a strong blow against 69target69's jaw!")
 							))
 			else
 				// ----- BODY ----- //
 				switch(attack_damage)
-					if(1 to 2)	user.visible_message(SPAN_DANGER("[user] threw a glancing punch at [target]'s [organ]!"))
-					if(1 to 4)	user.visible_message(SPAN_DANGER("[user] [pick(attack_verb)] [target] in \his [organ]!"))
+					if(1 to 2)	user.visible_message(SPAN_DANGER("69user69 threw a glancing punch at 69target69's 69organ69!"))
+					if(1 to 4)	user.visible_message(SPAN_DANGER("69user69 69pick(attack_verb)69 69target69 in \his 69organ69!"))
 					if(5)
 						user.visible_message(pick(
-							50; SPAN_DANGER("[user] smashed \his [pick(attack_noun)] into [target]'s [organ]!"),
-							50; SPAN_DANGER("[user] landed a striking [pick(attack_noun)] on [target]'s [organ]!")
+							50; SPAN_DANGER("69user69 smashed \his 69pick(attack_noun)69 into 69target69's 69organ69!"),
+							50; SPAN_DANGER("69user69 landed a striking 69pick(attack_noun)69 on 69target69's 69organ69!")
 							))
 	else
-		//why do we have a separate set of verbs for lying targets?
+		//why do we have a separate set of69erbs for lying targets?
 		user.visible_message(
-			SPAN_DANGER("[user] [pick("punched", "threw a punch against", "struck", "slammed their [pick(attack_noun)] into")] [target]'s [organ]!")
+			SPAN_DANGER("69user69 69pick("punched", "threw a punch against", "struck", "slammed their 69pick(attack_noun)69 into")69 69target69's 69organ69!")
 		)
 
 /datum/unarmed_attack/kick
@@ -183,18 +183,18 @@ var/global/list/sparring_attack_cache = list()
 	attack_sound = "swing_hit"
 	damage = 0
 
-/datum/unarmed_attack/kick/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/kick/is_usable(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone)
 	if (user.legcuffed)
 		return 0
 
 	if(!(zone in (BP_LEGS + BP_GROIN)))
 		return 0
 
-	var/obj/item/organ/external/E = user.organs_by_name[BP_L_LEG]
+	var/obj/item/organ/external/E = user.organs_by_name69BP_L_LEG69
 	if(E && !E.is_stump())
 		return 1
 
-	E = user.organs_by_name[BP_R_LEG]
+	E = user.organs_by_name69BP_R_LEG69
 	if(E && !E.is_stump())
 		return 1
 
@@ -206,24 +206,24 @@ var/global/list/sparring_attack_cache = list()
 		return damage
 	return damage + (shoes ? shoes.force : 0)
 
-/datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/kick/show_attack(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone,69ar/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 
 	attack_damage = CLAMP(attack_damage, 1, 5)
 
 	switch(attack_damage)
-		if(1 to 2)	user.visible_message(SPAN_DANGER("[user] threw [target] a glancing [pick(attack_noun)] to the [organ]!")) //it's not that they're kicking lightly, it's that the kick didn't quite connect
-		if(3 to 4)	user.visible_message(SPAN_DANGER("[user] [pick(attack_verb)] [target] in \his [organ]!"))
-		if(5)		user.visible_message(SPAN_DANGER("[user] landed a strong [pick(attack_noun)] against [target]'s [organ]!"))
+		if(1 to 2)	user.visible_message(SPAN_DANGER("69user69 threw 69target69 a glancing 69pick(attack_noun)69 to the 69organ69!")) //it's69ot that they're kicking lightly, it's that the kick didn't quite connect
+		if(3 to 4)	user.visible_message(SPAN_DANGER("69user69 69pick(attack_verb)69 69target69 in \his 69organ69!"))
+		if(5)		user.visible_message(SPAN_DANGER("69user69 landed a strong 69pick(attack_noun)69 against 69target69's 69organ69!"))
 
 /datum/unarmed_attack/stomp
-	attack_verb = null
+	attack_verb =69ull
 	attack_noun = list("stomp")
 	attack_sound = "swing_hit"
 	damage = 0
 
-/datum/unarmed_attack/stomp/is_usable(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone)
+/datum/unarmed_attack/stomp/is_usable(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone)
 
 	if (user.legcuffed)
 		return 0
@@ -234,11 +234,11 @@ var/global/list/sparring_attack_cache = list()
 	if (!user.lying && (target.lying || (zone in list(BP_L_LEG, BP_R_LEG))))
 		if(target.grabbed_by == user && target.lying)
 			return 0
-		var/obj/item/organ/external/E = user.organs_by_name[BP_L_LEG]
+		var/obj/item/organ/external/E = user.organs_by_name69BP_L_LEG69
 		if(E && !E.is_stump())
 			return 1
 
-		E = user.organs_by_name[BP_R_LEG]
+		E = user.organs_by_name69BP_R_LEG69
 		if(E && !E.is_stump())
 			return 1
 
@@ -248,7 +248,7 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/clothing/shoes = user.shoes
 	return damage + (shoes ? shoes.force : 0)
 
-/datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/stomp/show_attack(var/mob/living/carbon/human/user,69ar/mob/living/carbon/human/target,69ar/zone,69ar/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)
 	var/organ = affecting.name
 	var/obj/item/clothing/shoes = user.shoes
@@ -258,16 +258,16 @@ var/global/list/sparring_attack_cache = list()
 	switch(attack_damage)
 		if(1 to 4)
 			var/msg = pick(\
-				"[user] stomped on [target]'s [organ]!",
-				"[user] slammed \his [shoes ? copytext(shoes.name, 1, -1) : "foot"] down onto [target]'s [organ]!",
+				"69user69 stomped on 69target69's 69organ69!",
+				"69user69 slammed \his 69shoes ? copytext(shoes.name, 1, -1) : "foot"69 down onto 69target69's 69organ69!",
 			)
 			user.visible_message(SPAN_DANGER(msg))
 		if(5)
-			//Devastated lol. No. We want to say that the stomp was powerful or forceful, not that it /wrought devastation/
+			//Devastated lol.69o. We want to say that the stomp was powerful or forceful,69ot that it /wrought devastation/
 			var/msg = pick(\
-				"[user] landed a powerful stomp on [target]'s [organ]!",
-				"[user] stomped down hard on [target]'s [organ]!",
-				"[user] slammed \his [shoes ? copytext(shoes.name, 1, -1) : "foot"] down hard onto [target]'s [organ]!",
+				"69user69 landed a powerful stomp on 69target69's 69organ69!",
+				"69user69 stomped down hard on 69target69's 69organ69!",
+				"69user69 slammed \his 69shoes ? copytext(shoes.name, 1, -1) : "foot"69 down hard onto 69target69's 69organ69!",
 			)
 			user.visible_message(SPAN_DANGER(msg))
 

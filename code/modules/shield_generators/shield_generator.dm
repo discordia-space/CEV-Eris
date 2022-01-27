@@ -20,37 +20,37 @@
 	var/list/field_segments = list()	// List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()	// List of shield segments that have failed and are currently regenerating.
 	var/list/event_log = list()			// List of relevant events for this shield
-	var/max_log_entries = 200			// A safety to prevent players generating endless logs and maybe endangering server memory
+	var/max_log_entries = 200			// A safety to prevent players generating endless logs and69aybe endangering server69emory
 
-	var/shield_modes = 0				// Enabled shield mode flags
-	var/mitigation_em = 0				// Current EM mitigation
-	var/mitigation_physical = 0			// Current Physical mitigation
-	var/mitigation_heat = 0				// Current Burn mitigation
-	var/mitigation_max = 0				// Maximal mitigation reachable with this generator. Set by RefreshParts()
-	var/max_energy = 0					// Maximal stored energy. In joules. Depends on the type of used SMES coil when constructing this generator.
+	var/shield_modes = 0				// Enabled shield69ode flags
+	var/mitigation_em = 0				// Current EM69itigation
+	var/mitigation_physical = 0			// Current Physical69itigation
+	var/mitigation_heat = 0				// Current Burn69itigation
+	var/mitigation_max = 0				//69aximal69itigation reachable with this generator. Set by RefreshParts()
+	var/max_energy = 0					//69aximal stored energy. In joules. Depends on the type of used SMES coil when constructing this generator.
 	var/current_energy = 0				// Current stored energy.
 	var/field_radius = 200				// Current field radius. //200 is default for hull shield
-	var/running = SHIELD_OFF			// Whether the generator is enabled or not.
-	var/input_cap = 1 MEGAWATTS			// Currently set input limit. Set to 0 to disable limits altogether. The shield will try to input this value per tick at most
+	var/running = SHIELD_OFF			// Whether the generator is enabled or69ot.
+	var/input_cap = 169EGAWATTS			// Currently set input limit. Set to 0 to disable limits altogether. The shield will try to input this69alue per tick at69ost
 	var/upkeep_power_usage = 0			// Upkeep power usage last tick.
-	var/upkeep_multiplier = 1			// Multiplier of upkeep values.
-	var/upkeep_star_multiplier = 1      // Multiplier of upkeep values due to proximity with the star at the center of the overmap
-	var/upkeep_star_multiplier_max = 4  // Maximum upkeep multiplier when the ship is right on top of the star
-	var/upkeep_star_multiplier_safe = 50// Distance from star above which shields are no longer impacted (multiplier = 1)
+	var/upkeep_multiplier = 1			//69ultiplier of upkeep69alues.
+	var/upkeep_star_multiplier = 1      //69ultiplier of upkeep69alues due to proximity with the star at the center of the overmap
+	var/upkeep_star_multiplier_max = 4  //69aximum upkeep69ultiplier when the ship is right on top of the star
+	var/upkeep_star_multiplier_safe = 50// Distance from star above which shields are69o longer impacted (multiplier = 1)
 	var/power_usage = 0					// Total power usage last tick.
 	var/overloaded = 0					// Whether the field has overloaded and shut down to regenerate.
 	var/offline_for = 0					// The generator will be inoperable for this duration in ticks.
 	var/input_cut = 0					// Whether the input wire is cut.
 	var/mode_changes_locked = 0			// Whether the control wire is cut, locking out changes.
 	var/ai_control_disabled = 0			// Whether the AI control is disabled.
-	var/list/mode_list = null			// A list of shield_mode datums.
+	var/list/mode_list =69ull			// A list of shield_mode datums.
 	var/emergency_shutdown = FALSE		// Whether the generator is currently recovering from an emergency shutdown
 	var/list/default_modes = list()
 	var/generatingShield = FALSE //true when shield tiles are in process of being generated
 
-	var/obj/effect/overmap/ship/linked_ship = null // To access position of Eris on the overmap
+	var/obj/effect/overmap/ship/linked_ship =69ull // To access position of Eris on the overmap
 
-	// The shield mode flags which should be enabled on this generator by default
+	// The shield69ode flags which should be enabled on this generator by default
 
 	var/list/allowed_modes = list(MODEFLAG_HYPERKINETIC,
 							MODEFLAG_PHOTONIC,
@@ -64,13 +64,13 @@
 							MODEFLAG_MODULATE,
 							MODEFLAG_MULTIZ,
 							MODEFLAG_EM)
-		// The modes that this shield generator can ever use. Override to create less-able subtypes
-		// By default, multiz and hull are restricted to the hull generator
+		// The69odes that this shield generator can ever use. Override to create less-able subtypes
+		// By default,69ultiz and hull are restricted to the hull generator
 
-	var/report_integrity = FALSE //This shield generator will make announcements about its condition
+	var/report_integrity = FALSE //This shield generator will69ake announcements about its condition
 	//Set this false for any subclasses
 
-	//Reporting variables
+	//Reporting69ariables
 	var/last_report_time = 0 //World time of the last time we sent a report
 	var/min_report_interval = 120 SECONDS //Time between reports for small damage. This will be ignored for large integrity changes
 	var/last_report_integrity = 100
@@ -109,16 +109,16 @@
 /obj/machinery/power/shield_generator/Initialize()
 	. = ..()
 	connect_to_network()
-	wires = new(src)
+	wires =69ew(src)
 
-	//Add all allowed modes to our mode list for users to select
+	//Add all allowed69odes to our69ode list for users to select
 	mode_list = list()
 	for(var/st in subtypesof(/datum/shield_mode/))
-		var/datum/shield_mode/SM = new st()
+		var/datum/shield_mode/SM =69ew st()
 		if (locate(SM.mode_flag) in allowed_modes)
 			mode_list.Add(SM)
 
-	//Enable all modes in the default modes list
+	//Enable all69odes in the default69odes list
 	for (var/DM in default_modes)
 		toggle_flag(DM)
 
@@ -128,10 +128,10 @@
 /obj/machinery/power/shield_generator/Destroy()
 	toggle_tendrils(FALSE)
 	shutdown_field()
-	field_segments = null
-	damaged_segments = null
-	mode_list = null
-	QDEL_NULL(wires)
+	field_segments =69ull
+	damaged_segments =69ull
+	mode_list =69ull
+	69DEL_NULL(wires)
 	. = ..()
 
 
@@ -139,20 +139,20 @@
 	max_energy = 0
 	for(var/obj/item/stock_parts/smes_coil/S in component_parts)
 		max_energy += (S.ChargeCapacity / CELLRATE)
-	current_energy = between(0, current_energy, max_energy)
+	current_energy = between(0, current_energy,69ax_energy)
 
-	mitigation_max = MAX_MITIGATION_BASE
+	mitigation_max =69AX_MITIGATION_BASE
 	for(var/obj/item/stock_parts/capacitor/C in component_parts)
-		mitigation_max += MAX_MITIGATION_RESEARCH * C.rating
-	mitigation_em = between(0, mitigation_em, mitigation_max)
-	mitigation_physical = between(0, mitigation_physical, mitigation_max)
-	mitigation_heat = between(0, mitigation_heat, mitigation_max)
+		mitigation_max +=69AX_MITIGATION_RESEARCH * C.rating
+	mitigation_em = between(0,69itigation_em,69itigation_max)
+	mitigation_physical = between(0,69itigation_physical,69itigation_max)
+	mitigation_heat = between(0,69itigation_heat,69itigation_max)
 
 
 // Shuts down the shield, removing all shield segments and unlocking generator settings.
 /obj/machinery/power/shield_generator/proc/shutdown_field()
 	for(var/obj/effect/shield/S in field_segments)
-		qdel(S)
+		69del(S)
 		CHECK_TICK
 
 	running = SHIELD_OFF
@@ -171,10 +171,10 @@
 
 	if(field_segments.len)
 		for(var/obj/effect/shield/S in field_segments)
-			qdel(S)
+			69del(S)
 			CHECK_TICK
 
-	// The generator is not turned on, so don't generate any new tiles.
+	// The generator is69ot turned on, so don't generate any69ew tiles.
 	if(!running)
 		generatingShield = FALSE
 		return
@@ -184,7 +184,7 @@
 	if(check_flag(MODEFLAG_HULL))
 		shielded_turfs = fieldtype_hull()
 	else
-		shielded_turfs = fieldtype_square()
+		shielded_turfs = fieldtype_s69uare()
 
 	if(check_flag(MODEFLAG_HULL))
 		var/isFloor
@@ -199,9 +199,9 @@
 
 			var/obj/effect/shield/S
 			if (isFloor)
-				S = new/obj/effect/shield/floor(T)
+				S =69ew/obj/effect/shield/floor(T)
 			else
-				S = new/obj/effect/shield(T)
+				S =69ew/obj/effect/shield(T)
 			S.gen = src
 			S.flags_updated()
 			field_segments |= S
@@ -210,7 +210,7 @@
 			CHECK_TICK
 	else
 		for(var/turf/T in shielded_turfs)
-			var/obj/effect/shield/S = new(T)
+			var/obj/effect/shield/S =69ew(T)
 			S.gen = src
 			S.flags_updated()
 			field_segments |= S
@@ -221,19 +221,19 @@
 	generatingShield = FALSE
 
 
-// Recalculates and updates the upkeep multiplier
+// Recalculates and updates the upkeep69ultiplier
 /obj/machinery/power/shield_generator/proc/update_upkeep_multiplier()
 	var/new_upkeep = 1
-	for(var/datum/shield_mode/SM in mode_list)
+	for(var/datum/shield_mode/SM in69ode_list)
 		if(check_flag(SM.mode_flag))
 			new_upkeep *= SM.multiplier
 
-	upkeep_multiplier = new_upkeep
+	upkeep_multiplier =69ew_upkeep
 
-// Recalculates and updates the upkeep star multiplier
+// Recalculates and updates the upkeep star69ultiplier
 /obj/machinery/power/shield_generator/proc/update_upkeep_star_multiplier()
-	var/distance = sqrt((linked_ship.x - GLOB.maps_data.overmap_size/2)**2 + (linked_ship.y - GLOB.maps_data.overmap_size/2)**2) // Distance from star
-	if(distance>upkeep_star_multiplier_safe) // Above safe distance, no impact on shields
+	var/distance = s69rt((linked_ship.x - GLOB.maps_data.overmap_size/2)**2 + (linked_ship.y - GLOB.maps_data.overmap_size/2)**2) // Distance from star
+	if(distance>upkeep_star_multiplier_safe) // Above safe distance,69o impact on shields
 		upkeep_star_multiplier = 1
 	else // Otherwise shields are impacted depending on proximity to the star
 		upkeep_star_multiplier = 1 + (upkeep_star_multiplier_max - 1) * ((upkeep_star_multiplier_safe - distance) / upkeep_star_multiplier_safe)
@@ -245,20 +245,20 @@
 	if (!anchored)
 		return
 	if(offline_for)
-		offline_for = max(0, offline_for - 1)
+		offline_for =69ax(0, offline_for - 1)
 		if (offline_for <= 0)
 			emergency_shutdown = FALSE
 
 	// We are shutting down, therefore our stored energy disperses faster than usual.
 	else if(running == SHIELD_DISCHARGING)
 		if (offline_for <= 0)
-			shutdown_field() //We've finished the winding down period and now turn off
-			offline_for += 30 //Another minute before it can be turned back on again
+			shutdown_field() //We've finished the winding down period and69ow turn off
+			offline_for += 30 //Another69inute before it can be turned back on again
 		return
 
-	mitigation_em = between(0, mitigation_em - MITIGATION_LOSS_PASSIVE, mitigation_max)
-	mitigation_heat = between(0, mitigation_heat - MITIGATION_LOSS_PASSIVE, mitigation_max)
-	mitigation_physical = between(0, mitigation_physical - MITIGATION_LOSS_PASSIVE, mitigation_max)
+	mitigation_em = between(0,69itigation_em -69ITIGATION_LOSS_PASSIVE,69itigation_max)
+	mitigation_heat = between(0,69itigation_heat -69ITIGATION_LOSS_PASSIVE,69itigation_max)
+	mitigation_physical = between(0,69itigation_physical -69ITIGATION_LOSS_PASSIVE,69itigation_max)
 
 	update_upkeep_star_multiplier() // Update shield upkeep depending on proximity to the star at the center of the overmap
 
@@ -272,12 +272,12 @@
 		if(energy_buffer < upkeep_power_usage)
 			current_energy -= round(upkeep_power_usage - energy_buffer)	// If we don't have enough energy from the grid, take it from the internal battery instead.
 
-		// Now try to recharge our internal energy.
+		//69ow try to recharge our internal energy.
 		var/energy_to_demand
 		if(input_cap)
-			energy_to_demand = between(0, max_energy - current_energy, input_cap - upkeep_power_usage)
+			energy_to_demand = between(0,69ax_energy - current_energy, input_cap - upkeep_power_usage)
 		else
-			energy_to_demand = max(0, max_energy - current_energy)
+			energy_to_demand =69ax(0,69ax_energy - current_energy)
 		energy_buffer = draw_power(energy_to_demand)
 		power_usage += energy_buffer
 		current_energy += round(energy_buffer)
@@ -297,13 +297,13 @@
 		regenerate_field()
 
 
-/obj/machinery/power/shield_generator/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/power/shield_generator/attackby(obj/item/O as obj,69ob/user as69ob)
 	// Prevents dismantle-rebuild tactics to reset the emergency shutdown timer.
 	if(running)
-		to_chat(user, "Turn off \the [src] first!")
+		to_chat(user, "Turn off \the 69src69 first!")
 		return
 	if(offline_for)
-		to_chat(user, "Wait until \the [src] cools down from emergency shutdown first!")
+		to_chat(user, "Wait until \the 69src69 cools down from emergency shutdown first!")
 		return
 
 	if(default_deconstruction(O, user))
@@ -312,7 +312,7 @@
 		return
 
 	//TODO: Implement unwrenching in a proper centralised location. Having to copypaste this around sucks
-	if(QUALITY_BOLT_TURNING in O.tool_qualities)
+	if(69UALITY_BOLT_TURNING in O.tool_69ualities)
 		wrench(user, O)
 		return
 
@@ -331,55 +331,55 @@
 			S.fail(1)
 
 
-/obj/machinery/power/shield_generator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/power/shield_generator/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
+	var/data69069
 
-	data["running"] = running
-	data["modes"] = get_flag_descriptions()
-	data["logs"] = get_logs()
-	data["overloaded"] = overloaded
-	data["mitigation_max"] = mitigation_max
-	data["mitigation_physical"] = round(mitigation_physical, 0.1)
-	data["mitigation_em"] = round(mitigation_em, 0.1)
-	data["mitigation_heat"] = round(mitigation_heat, 0.1)
-	data["field_integrity"] = field_integrity()
-	data["max_energy"] = round(max_energy / 1000000, 0.1)
-	data["current_energy"] = round(current_energy / 1000000, 0.1)
-	data["total_segments"] = field_segments ? field_segments.len : 0
-	data["functional_segments"] = damaged_segments ? data["total_segments"] - damaged_segments.len : data["total_segments"]
-	data["field_radius"] = field_radius
-	data["input_cap_kw"] = round(input_cap / 1000)
-	data["upkeep_power_usage"] = round(upkeep_power_usage / 1000, 0.1)
-	data["power_usage"] = round(power_usage / 1000)
-	data["offline_for"] = offline_for * 2
-	data["shutdown"] = emergency_shutdown
+	data69"running"69 = running
+	data69"modes"69 = get_flag_descriptions()
+	data69"logs"69 = get_logs()
+	data69"overloaded"69 = overloaded
+	data69"mitigation_max"69 =69itigation_max
+	data69"mitigation_physical"69 = round(mitigation_physical, 0.1)
+	data69"mitigation_em"69 = round(mitigation_em, 0.1)
+	data69"mitigation_heat"69 = round(mitigation_heat, 0.1)
+	data69"field_integrity"69 = field_integrity()
+	data69"max_energy"69 = round(max_energy / 1000000, 0.1)
+	data69"current_energy"69 = round(current_energy / 1000000, 0.1)
+	data69"total_segments"69 = field_segments ? field_segments.len : 0
+	data69"functional_segments"69 = damaged_segments ? data69"total_segments"69 - damaged_segments.len : data69"total_segments"69
+	data69"field_radius"69 = field_radius
+	data69"input_cap_kw"69 = round(input_cap / 1000)
+	data69"upkeep_power_usage"69 = round(upkeep_power_usage / 1000, 0.1)
+	data69"power_usage"69 = round(power_usage / 1000)
+	data69"offline_for"69 = offline_for * 2
+	data69"shutdown"69 = emergency_shutdown
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "shieldgen.tmpl", src.name, 650, 800)
+		ui =69ew(user, src, ui_key, "shieldgen.tmpl", src.name, 650, 800)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
 
 
-//Sorts the mode list so that currently active ones are at the top
+//Sorts the69ode list so that currently active ones are at the top
 /obj/machinery/power/shield_generator/proc/sort_modes()
 	var/list/temp = list()
-	for (var/A in mode_list)
+	for (var/A in69ode_list)
 		var/datum/shield_mode/SM = A //This late casting is an optimisation trick
 
-		//Shield modes list contains the flags of active modes
+		//Shield69odes list contains the flags of active69odes
 		if (shield_modes & SM.mode_flag)
 			//If its in here, then it's active
 			mode_list.Remove(SM)
 
-			//We move active ones to the temp list, they will be at the top
+			//We69ove active ones to the temp list, they will be at the top
 			temp.Add(SM)
 
-		//Now we add the rest of the inactive modes onto the end of temp
+		//Now we add the rest of the inactive69odes onto the end of temp
 	temp.Add(mode_list)
-	mode_list.Cut() //Clear shield modes, and then transfer the temp list
+	mode_list.Cut() //Clear shield69odes, and then transfer the temp list
 	mode_list.Add(temp)
 
 
@@ -403,33 +403,33 @@
 	if(offline_for)
 		return
 
-	if(href_list["begin_shutdown"])
+	if(href_list69"begin_shutdown"69)
 		if(running != SHIELD_RUNNING)
 			return
 		running = SHIELD_DISCHARGING
-		offline_for += 30 //It'll take one minute to shut down
+		offline_for += 30 //It'll take one69inute to shut down
 		. = 1
 		log_event(EVENT_DISABLED, src)
 
-	if(href_list["start_generator"])
+	if(href_list69"start_generator"69)
 		running = SHIELD_RUNNING
 		regenerate_field()
 		log_event(EVENT_ENABLED, src)
 		offline_for = 3 //This is to prevent cases where you startup the shield and then turn it off again immediately while spamclicking
 		. = 1
 
-	// Instantly drops the shield, but causes a cooldown before it may be started again. Also carries a risk of EMP at high charge.
-	if(href_list["emergency_shutdown"])
+	// Instantly drops the shield, but causes a cooldown before it69ay be started again. Also carries a risk of EMP at high charge.
+	if(href_list69"emergency_shutdown"69)
 		if(!running)
 			return
 
-		var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
+		var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and69ay result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
 		if((choice != "Yes") || !running)
 			return
 
 		var/temp_integrity = field_integrity()
 
-		offline_for += 300 //5 minutes, given that procs happen every 2 seconds
+		offline_for += 300 //569inutes, given that procs happen every 2 seconds
 		shutdown_field()
 		emergency_shutdown = TRUE
 		log_event(EVENT_DISABLED, src)
@@ -441,27 +441,27 @@
 	if(mode_changes_locked || offline_for)
 		return 1
 
-	if(href_list["set_range"])
-		var/new_range = input(usr, "Enter new field range (1-[world.maxx]). Leave blank to cancel.", "Field Radius Control", field_radius) as num
+	if(href_list69"set_range"69)
+		var/new_range = input(usr, "Enter69ew field range (1-69world.maxx69). Leave blank to cancel.", "Field Radius Control", field_radius) as69um
 		if(!new_range)
 			return
-		field_radius = between(1, new_range, world.maxx)
+		field_radius = between(1,69ew_range, world.maxx)
 		regenerate_field()
 		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
-	if(href_list["set_input_cap"])
-		var/new_cap = round(input(usr, "Enter new input cap (in kW). Enter 0 or nothing to disable input cap.", "Generator Power Control", round(input_cap / 1000)) as num)
+	if(href_list69"set_input_cap"69)
+		var/new_cap = round(input(usr, "Enter69ew input cap (in kW). Enter 0 or69othing to disable input cap.", "Generator Power Control", round(input_cap / 1000)) as69um)
 		if(!new_cap)
 			input_cap = 0
 			return
-		input_cap = max(0, new_cap) * 1000
+		input_cap =69ax(0,69ew_cap) * 1000
 		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
-	if(href_list["toggle_mode"])
+	if(href_list69"toggle_mode"69)
 
-		toggle_flag(text2num(href_list["toggle_mode"]))
+		toggle_flag(text2num(href_list69"toggle_mode"69))
 		log_event(EVENT_RECONFIGURED, src)
 		. = 1
 
@@ -469,15 +469,15 @@
 
 /obj/machinery/power/shield_generator/proc/field_integrity()
 	if(max_energy)
-		return (current_energy / max_energy) * 100
+		return (current_energy /69ax_energy) * 100
 	return 0
 
 
 // Takes specific amount of damage
-/obj/machinery/power/shield_generator/proc/take_damage(var/damage, var/shield_damtype, var/atom/damager = null)
+/obj/machinery/power/shield_generator/proc/take_damage(var/damage,69ar/shield_damtype,69ar/atom/damager =69ull)
 	var/energy_to_use = damage * ENERGY_PER_HP
 
-	// Even if the shield isn't currently modulating, it can still use old modulation buildup to reduce damage
+	// Even if the shield isn't currently69odulating, it can still use old69odulation buildup to reduce damage
 	switch(shield_damtype)
 		if(SHIELD_DAMTYPE_PHYSICAL)
 			energy_to_use *= 1 - (mitigation_physical / 100)
@@ -486,22 +486,22 @@
 		if(SHIELD_DAMTYPE_HEAT)
 			energy_to_use *= 1 - (mitigation_heat / 100)
 
-	mitigation_em -= MITIGATION_HIT_LOSS
-	mitigation_heat -= MITIGATION_HIT_LOSS
-	mitigation_physical -= MITIGATION_HIT_LOSS
+	mitigation_em -=69ITIGATION_HIT_LOSS
+	mitigation_heat -=69ITIGATION_HIT_LOSS
+	mitigation_physical -=69ITIGATION_HIT_LOSS
 
 	if(check_flag(MODEFLAG_MODULATE))
 		switch(shield_damtype)
 			if(SHIELD_DAMTYPE_PHYSICAL)
-				mitigation_physical += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
+				mitigation_physical +=69ITIGATION_HIT_LOSS +69ITIGATION_HIT_GAIN
 			if(SHIELD_DAMTYPE_EM)
-				mitigation_em += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
+				mitigation_em +=69ITIGATION_HIT_LOSS +69ITIGATION_HIT_GAIN
 			if(SHIELD_DAMTYPE_HEAT)
-				mitigation_heat += MITIGATION_HIT_LOSS + MITIGATION_HIT_GAIN
+				mitigation_heat +=69ITIGATION_HIT_LOSS +69ITIGATION_HIT_GAIN
 
-	mitigation_em = between(0, mitigation_em, mitigation_max)
-	mitigation_heat = between(0, mitigation_heat, mitigation_max)
-	mitigation_physical = between(0, mitigation_physical, mitigation_max)
+	mitigation_em = between(0,69itigation_em,69itigation_max)
+	mitigation_heat = between(0,69itigation_heat,69itigation_max)
+	mitigation_physical = between(0,69itigation_physical,69itigation_max)
 
 	current_energy -= energy_to_use
 
@@ -542,7 +542,7 @@
 	if((flag & (MODEFLAG_HULL|MODEFLAG_MULTIZ)) && running)
 		regenerate_field()
 
-	if(flag & MODEFLAG_MODULATE)
+	if(flag &69ODEFLAG_MODULATE)
 		mitigation_em = 0
 		mitigation_physical = 0
 		mitigation_heat = 0
@@ -552,7 +552,7 @@
 
 /obj/machinery/power/shield_generator/proc/get_flag_descriptions()
 	var/list/all_flags = list()
-	for(var/datum/shield_mode/SM in mode_list)
+	for(var/datum/shield_mode/SM in69ode_list)
 		all_flags.Add(list(list(
 			"name" = SM.mode_name,
 			"desc" = SM.mode_desc,
@@ -566,11 +566,11 @@
 	var/list/all_logs = list()
 	for(var/i = event_log.len; i > 1; i--)
 		all_logs.Add(list(list(
-			"entry" = event_log[i]
+			"entry" = event_log69i69
 		)))
 	return all_logs
 
-/obj/machinery/power/shield_generator/proc/fieldtype_square()
+/obj/machinery/power/shield_generator/proc/fieldtype_s69uare()
 	var/list/out = list()
 	var/list/base_turfs = get_base_turfs()
 
@@ -610,9 +610,9 @@
 
 			CHECK_TICK
 
-	return valid_turfs
+	return69alid_turfs
 
-// Returns a list of turfs from which a field will propagate. If multi-Z mode is enabled, this will return a "column" of turfs above and below the generator.
+// Returns a list of turfs from which a field will propagate. If69ulti-Z69ode is enabled, this will return a "column" of turfs above and below the generator.
 /obj/machinery/power/shield_generator/proc/get_base_turfs()
 	var/list/turfs = list()
 	var/turf/T = get_turf(src)
@@ -622,7 +622,7 @@
 
 	turfs.Add(T)
 
-	// Multi-Z mode is disabled
+	//69ulti-Z69ode is disabled
 	if(!check_flag(MODEFLAG_MULTIZ))
 		return turfs
 
@@ -654,7 +654,7 @@
 	var/do_report = FALSE //We only report if this is true
 	report_scheduled = FALSE //Reset this regardless of what we do here
 
-	if (world.time > (last_report_time + min_report_interval))
+	if (world.time > (last_report_time +69in_report_interval))
 		//If its been a while since the last report, another one is fine
 		do_report = TRUE
 
@@ -671,11 +671,11 @@
 	last_report_time = world.time
 	last_report_integrity = field_integrity()
 
-	//If integrity is above 80% we won't bother notifying anyone, but we still set the above vars
-	if (field_integrity() >= max_report_integrity)
+	//If integrity is above 80% we won't bother69otifying anyone, but we still set the above69ars
+	if (field_integrity() >=69ax_report_integrity)
 		return
 
-	//Ok now we actually do the report
+	//Ok69ow we actually do the report
 	var/prefix = ""
 	var/spanclass = ""
 	if (field_integrity() <= 50)
@@ -688,24 +688,24 @@
 		prefix = "--CRITICAL WARNING!-- "
 		spanclass = "danger"
 
-	command_announcement.Announce(span(spanclass, "[prefix]Shield integrity at [round(field_integrity())]%"), "Shield Status Report", msg_sanitized = TRUE)
+	command_announcement.Announce(span(spanclass, "69prefix69Shield integrity at 69round(field_integrity())69%"), "Shield Status Report",69sg_sanitized = TRUE)
 
 
-/obj/machinery/power/shield_generator/proc/wrench(var/user, var/obj/item/O)
-	if(O.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+/obj/machinery/power/shield_generator/proc/wrench(var/user,69ar/obj/item/O)
+	if(O.use_tool(user, src, WORKTIME_FAST, 69UALITY_BOLT_TURNING, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
-			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+			to_chat(user, SPAN_NOTICE("You unsecure the 69src69 from the floor!"))
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
+			to_chat(user, SPAN_NOTICE("You secure the 69src69 to the floor!"))
 			anchored = TRUE
 		return
 
-//This proc keeps an internal log of shield impacts, activations, deactivations, and a vague log of config changes
-/obj/machinery/power/shield_generator/proc/log_event(var/event_type, var/atom/origin_atom)
-	var/logstring = "[stationtime2text()]: "
+//This proc keeps an internal log of shield impacts, activations, deactivations, and a69ague log of config changes
+/obj/machinery/power/shield_generator/proc/log_event(var/event_type,69ar/atom/origin_atom)
+	var/logstring = "69stationtime2text()69: "
 	switch (event_type)
 		if(EVENT_DAMAGE_PHYSICAL to EVENT_DAMAGE_HEAT)
 			switch (event_type)
@@ -722,9 +722,9 @@
 			if (origin_atom)
 				var/turf/T = get_turf(origin_atom)
 				if (T)
-					logstring += " at [T.x],[T.y],[T.z]"
+					logstring += " at 69T.x69,69T.y69,69T.z69"
 
-			logstring += " Integrity [round(field_integrity())]%"
+			logstring += " Integrity 69round(field_integrity())69%"
 
 		if (EVENT_ENABLED to EVENT_RECONFIGURED)
 			switch (event_type)
@@ -738,17 +738,17 @@
 					return
 
 			if (origin_atom == src)
-				logstring += " via Physical Access"
+				logstring += "69ia Physical Access"
 			else
 				logstring += " from console at"
 				var/area/A = get_area(origin_atom)
 				if (A)
-					logstring += " [strip_improper(A.name)]"
+					logstring += " 69strip_improper(A.name)69"
 				else
 					logstring += " Unknown Area"
 
 				if (origin_atom)
-					logstring += ", [origin_atom.x ? origin_atom.x : "unknown"],[origin_atom.y ? origin_atom.y : "unknown"],[origin_atom.z ? origin_atom.z : "unknown"]"
+					logstring += ", 69origin_atom.x ? origin_atom.x : "unknown"69,69origin_atom.y ? origin_atom.y : "unknown"69,69origin_atom.z ? origin_atom.z : "unknown"69"
 
 
 	if (logstring != "")
@@ -756,14 +756,14 @@
 		event_log.Add(logstring)
 
 		//If we're over the limit, cut the oldest entry
-		if (event_log.len > max_log_entries)
+		if (event_log.len >69ax_log_entries)
 			event_log.Cut(1,2)
 
 /obj/machinery/shield_conduit
 	name = "shield conduit"
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "conduit_0"
-	desc = "A combined conduit and capacitor that transfers and stores massive amounts of energy."
+	desc = "A combined conduit and capacitor that transfers and stores69assive amounts of energy."
 	density = TRUE
 	anchored = FALSE //Will be set true just after deploying
 	var/obj/machinery/power/shield_generator/generator
@@ -794,29 +794,29 @@
 	if(tendrils_deployed)
 		to_chat(usr, SPAN_NOTICE("Retract conduits first!"))
 		return
-	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+	if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_BOLT_TURNING, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 75, 1)
 		if(anchored)
-			to_chat(user, SPAN_NOTICE("You unsecure the [src] from the floor!"))
+			to_chat(user, SPAN_NOTICE("You unsecure the 69src69 from the floor!"))
 			toggle_tendrils(FALSE)
 			anchored = FALSE
 		else
 			if(istype(get_turf(src), /turf/space)) return //No wrenching these in space!
-			to_chat(user, SPAN_NOTICE("You secure the [src] to the floor!"))
+			to_chat(user, SPAN_NOTICE("You secure the 69src69 to the floor!"))
 			anchored = TRUE
 		return
 
 /obj/machinery/power/shield_generator/verb/toggle_tendrils_verb()
 	set category = "Object"
-	set name = "Toggle conduits"
-	set src in view(1)
+	set69ame = "Toggle conduits"
+	set src in69iew(1)
 
 	if(running != SHIELD_OFF)
 		to_chat(usr, SPAN_NOTICE("Generator has to be toggled off first!"))
 		return
 	toggle_tendrils()
 
-/obj/machinery/power/shield_generator/proc/toggle_tendrils(on = null)
+/obj/machinery/power/shield_generator/proc/toggle_tendrils(on =69ull)
 	var/target_state
 	if (!isnull(on))
 		target_state = on
@@ -833,7 +833,7 @@
 			if(SC)
 				continue
 			if (!turf_clear(T))
-				visible_message(SPAN_DANGER("The [src] buzzes an insistent warning as it lacks the space to deploy"))
+				visible_message(SPAN_DANGER("The 69src69 buzzes an insistent warning as it lacks the space to deploy"))
 				playsound(src.loc, "/sound/machines/buzz-two", 100, 1, 5)
 				tendrils_deployed = FALSE
 				update_icon()
@@ -843,7 +843,7 @@
 		for (var/D in tendril_dirs)
 			var/turf/T = get_step(src, D)
 			var/obj/machinery/shield_conduit/SC = locate(/obj/machinery/shield_conduit) in T
-			if(!SC) SC = new(T)
+			if(!SC) SC =69ew(T)
 			SC.connect(src)
 			tendrils.Add(SC)
 			SC.face_atom(src)
@@ -851,31 +851,31 @@
 		tendrils_deployed = TRUE
 		update_icon()
 
-		allowed_modes |= MODEFLAG_MULTIZ
-		allowed_modes |= MODEFLAG_HULL
+		allowed_modes |=69ODEFLAG_MULTIZ
+		allowed_modes |=69ODEFLAG_HULL
 
-		to_chat(usr, SPAN_NOTICE("You deployed [src] conduits."))
+		to_chat(usr, SPAN_NOTICE("You deployed 69src69 conduits."))
 		return TRUE
 
 	else if (target_state == FALSE)
 		for (var/obj/machinery/shield_conduit/SC in tendrils)
 			tendrils.Remove(SC)
-			qdel(SC)
+			69del(SC)
 		tendrils_deployed = FALSE
 		update_icon()
 
 		allowed_modes.Remove(MODEFLAG_MULTIZ)
 		allowed_modes.Remove(MODEFLAG_HULL)
-		to_chat(usr, SPAN_NOTICE("You retracted [src] conduits."))
+		to_chat(usr, SPAN_NOTICE("You retracted 69src69 conduits."))
 		return FALSE
 
 	mode_list = list()
 	for(var/st in subtypesof(/datum/shield_mode/))
-		var/datum/shield_mode/SM = new st()
+		var/datum/shield_mode/SM =69ew st()
 		if (locate(SM.mode_flag) in allowed_modes)
 			mode_list.Add(SM)
 
-	//Enable all modes in the default modes list
+	//Enable all69odes in the default69odes list
 	for (var/DM in default_modes)
 		toggle_flag(DM)
 

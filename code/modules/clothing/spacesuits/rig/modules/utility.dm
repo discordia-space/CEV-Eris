@@ -19,7 +19,7 @@
 
 /obj/item/rig_module/device
 	name = "mounted device"
-	desc = "Some kind of hardsuit mount."
+	desc = "Some kind of hardsuit69ount."
 	usable = 0
 	selectable = 1
 	toggleable = 0
@@ -31,7 +31,7 @@
 	var/obj/item/device
 
 /obj/item/rig_module/device/healthscanner
-	name = "health scanner module"
+	name = "health scanner69odule"
 	desc = "A hardsuit-mounted health scanner."
 	icon_state = "scanner"
 	interface_name = "health scanner"
@@ -41,8 +41,8 @@
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
 /obj/item/rig_module/device/drill
-	name = "hardsuit drill mount"
-	desc = "A very heavy diamond-tipped drill."
+	name = "hardsuit drill69ount"
+	desc = "A69ery heavy diamond-tipped drill."
 	icon_state = "drill"
 	interface_name = "mounted drill"
 	interface_desc = "A diamond-tipped industrial drill."
@@ -68,11 +68,11 @@
 
 
 /obj/item/rig_module/device/orescanner
-	name = "ore scanner module"
+	name = "ore scanner69odule"
 	desc = "A clunky old ore scanner."
 	icon_state = "scanner"
 	interface_name = "ore detector"
-	interface_desc = "A sonar system for detecting large masses of ore."
+	interface_desc = "A sonar system for detecting large69asses of ore."
 	engage_string = "Begin Scan"
 	usable = 1
 	selectable = 0
@@ -81,7 +81,7 @@
 
 
 /obj/item/rig_module/device/rcd
-	name = "RCD mount"
+	name = "RCD69ount"
 	desc = "A cell-powered rapid construction device for a hardsuit."
 	icon_state = "rcd"
 	interface_name = "mounted RCD"
@@ -145,9 +145,9 @@
 	var/max_reagent_volume = 80 //Used when refilling.
 
 /obj/item/rig_module/chem_dispenser/ninja
-	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream. This variant is made to be extremely light and flexible."
+	interface_desc = "Dispenses loaded chemicals directly into the wearer's bloodstream. This69ariant is69ade to be extremely light and flexible."
 
-	//just over a syringe worth of each. Want more? Go refill. Gives the ninja another reason to have to show their face.
+	//just over a syringe worth of each. Want69ore? Go refill. Gives the ninja another reason to have to show their face.
 	charges = list(
 		list("tricordrazine", "tricordrazine", 0, 20),
 		list("tramadol",      "tramadol",      0, 20),
@@ -161,26 +161,26 @@
 	rarity_value = 5
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 
-/obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item, var/mob/living/user)
+/obj/item/rig_module/chem_dispenser/accepts_item(var/obj/item/input_item,69ar/mob/living/user)
 
 	if(!input_item.is_drainable())
 		return 0
 
 	if(!input_item.reagents || !input_item.reagents.total_volume)
-		to_chat(user, "\The [input_item] is empty.")
+		to_chat(user, "\The 69input_item69 is empty.")
 		return 0
 
-	// Magical chemical filtration system, do not question it.
+	//69agical chemical filtration system, do not question it.
 	var/total_transferred = 0
 	for(var/datum/reagent/R in input_item.reagents.reagent_list)
 		for(var/chargetype in charges)
-			var/datum/rig_charge/charge = charges[chargetype]
+			var/datum/rig_charge/charge = charges69chargetype69
 			if(charge.display_name == R.id)
 
 				var/chems_to_transfer = R.volume
 
-				if((charge.charges + chems_to_transfer) > max_reagent_volume)
-					chems_to_transfer = max_reagent_volume - charge.charges
+				if((charge.charges + chems_to_transfer) >69ax_reagent_volume)
+					chems_to_transfer =69ax_reagent_volume - charge.charges
 
 				charge.charges += chems_to_transfer
 				input_item.reagents.remove_reagent(R.id, chems_to_transfer)
@@ -189,7 +189,7 @@
 				break
 
 	if(total_transferred)
-		to_chat(user, "<font color='blue'>You transfer [total_transferred] units into the suit reservoir.</font>")
+		to_chat(user, "<font color='blue'>You transfer 69total_transferred69 units into the suit reservoir.</font>")
 	else
 		to_chat(user, SPAN_DANGER("None of the reagents seem suitable."))
 	return 1
@@ -205,7 +205,7 @@
 		to_chat(H, SPAN_DANGER("You have not selected a chemical type."))
 		return 0
 
-	var/datum/rig_charge/charge = charges[charge_selected]
+	var/datum/rig_charge/charge = charges69charge_selected69
 
 	if(!charge)
 		return 0
@@ -227,8 +227,8 @@
 		target_mob = H
 
 	if(target_mob != H)
-		to_chat(H, SPAN_DANGER("You inject [target_mob] with [chems_to_use] unit\s of [charge.display_name]."))
-	to_chat(target_mob, "<span class='danger'>You feel a rushing in your veins as [chems_to_use] unit\s of [charge.display_name] [chems_to_use == 1 ? "is" : "are"] injected.</span>")
+		to_chat(H, SPAN_DANGER("You inject 69target_mob69 with 69chems_to_use69 unit\s of 69charge.display_name69."))
+	to_chat(target_mob, "<span class='danger'>You feel a rushing in your69eins as 69chems_to_use69 unit\s of 69charge.display_name69 69chems_to_use == 1 ? "is" : "are"69 injected.</span>")
 	target_mob.reagents.add_reagent(charge.display_name, chems_to_use)
 
 	charge.charges -= chems_to_use
@@ -259,11 +259,11 @@
 	disruptive = 1
 
 	interface_name = "mounted chem injector"
-	interface_desc = "Dispenses loaded chemicals via an arm-mounted injector."
+	interface_desc = "Dispenses loaded chemicals69ia an arm-mounted injector."
 	rarity_value = 20
 
 /obj/item/rig_module/voice
-	name = "hardsuit voice synthesiser"
+	name = "hardsuit69oice synthesiser"
 	desc = "A speaker box and sound processor."
 	icon_state = "megaphone"
 	usable = 1
@@ -275,7 +275,7 @@
 	engage_string = "Configure Synthesiser"
 
 	interface_name = "voice synthesiser"
-	interface_desc = "A flexible and powerful voice modulator system."
+	interface_desc = "A flexible and powerful69oice69odulator system."
 	rarity_value = 5
 	var/obj/item/voice_changer/voice_holder
 
@@ -308,15 +308,15 @@
 			voice_holder.active = 0
 			to_chat(usr, "<font color='blue'>You disable the speech synthesiser.</font>")
 		if("Set Name")
-			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null, MAX_NAME_LEN)
+			var/raw_choice = sanitize(input(usr, "Please enter a new name.")  as text|null,69AX_NAME_LEN)
 			if(!raw_choice)
 				return 0
 			voice_holder.voice = raw_choice
-			to_chat(usr, "<font color='blue'>You are now mimicking <B>[voice_holder.voice]</B>.</font>")
+			to_chat(usr, "<font color='blue'>You are now69imicking <B>69voice_holder.voice69</B>.</font>")
 	return 1
 
 /obj/item/rig_module/maneuvering_jets
-	name = "hardsuit maneuvering jets"
+	name = "hardsuit69aneuvering jets"
 	desc = "A compact gas thruster system for a hardsuit."
 	icon_state = "thrusters"
 	usable = 1
@@ -333,7 +333,7 @@
 	deactivate_string = "Deactivate Thrusters"
 
 	interface_name = "maneuvering jets"
-	interface_desc = "An inbuilt EVA maneuvering system that runs off the rig air supply."
+	interface_desc = "An inbuilt EVA69aneuvering system that runs off the rig air supply."
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/obj/item/tank/jetpack/rig/jets
@@ -373,20 +373,20 @@
 	. = ..()
 	jets = new(src)
 
-//Some slightly complex setup here to make hardsuit jetpacks work right
+//Some slightly complex setup here to69ake hardsuit jetpacks work right
 /obj/item/rig_module/maneuvering_jets/installed()
 	..()
-	//Holder is the rig core module, the thing the user is wearing
+	//Holder is the rig core69odule, the thing the user is wearing
 	jets.holder = holder
 
 	//We set the jetpack's gastank to the core's internal airtank.
-	//So the jetpack isn't really a tank but more of a pressure valve for another tank
+	//So the jetpack isn't really a tank but69ore of a pressure69alve for another tank
 	jets.gastank = holder.air_supply
 
-	//Sets up the trail fx to track movement of the core module, and thusly the user
+	//Sets up the trail fx to track69ovement of the core69odule, and thusly the user
 	jets.trail.set_up(holder)
 
-	//Tells the trail that its jetpack isn't the core module, but the jets
+	//Tells the trail that its jetpack isn't the core69odule, but the jets
 	jets.trail.jetpack = jets
 
 /obj/item/rig_module/maneuvering_jets/uninstalled()
@@ -395,7 +395,7 @@
 	jets.trail.set_up(jets)
 
 /obj/item/rig_module/autodoc
-	name = "autodoc module"
+	name = "autodoc69odule"
 	desc = "A complex surgery system for almost all your needs."
 	use_power_cost = 10
 	active = 1

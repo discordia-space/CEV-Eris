@@ -7,35 +7,35 @@
 	name = "cardborg suit"
 	result = /obj/item/clothing/suit/cardborg
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_CARDBOARD)
+		list(CRAFT_MATERIAL, 3,69ATERIAL_CARDBOARD)
 	)
 
 /datum/craft_recipe/clothing/cardborg_helmet
 	name = "cardborg helmet"
 	result = /obj/item/clothing/head/cardborg
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_CARDBOARD)
 	)
 
 /datum/craft_recipe/clothing/sandals
 	name = "wooden sandals"
 	result = /obj/item/clothing/shoes/sandal
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_WOOD)
 	)
 
 /datum/craft_recipe/clothing/armorvest
-	name = "armor vest"
+	name = "armor69est"
 	result = /obj/item/clothing/suit/armor/vest/handmade
 	steps = list(
 		list(/obj/item/clothing/suit/storage/hazardvest, 1, "time" = 30),
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 4,69ATERIAL_STEEL),
 		list(/obj/item/part/armor, 2),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
 /datum/craft_recipe/clothing/armorvest/fullbody
-	name = "fullbody armor vest"
+	name = "fullbody armor69est"
 	result = /obj/item/clothing/suit/armor/vest/handmade/full
 	steps = list(
 		list(/obj/item/clothing/suit/armor/vest/handmade, 1, "time" = 30),
@@ -48,7 +48,7 @@
 	result = /obj/item/clothing/head/armor/helmet/handmade
 	steps = list(
 		list(/obj/item/reagent_containers/glass/bucket, 1, "time" = 30),
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 4,69ATERIAL_STEEL),
 		list(/obj/item/stack/cable_coil, 2)
 	)
 
@@ -62,15 +62,15 @@
 	)
 
 /datum/craft_recipe/clothing/riggedvoidsuit
-	name = "Makeshift armored void suit"
+	name = "Makeshift armored69oid suit"
 	result = /obj/item/clothing/suit/space/void/riggedvoidsuit
 	steps = list(
 		list(/obj/item/clothing/under, 1),
 		list(/obj/item/part/armor, 3),
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL),
-		list(CRAFT_MATERIAL, 20, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_PLASTIC),
 		list(QUALITY_ADHESIVE, 15, 15),
-		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
 
@@ -79,10 +79,10 @@
 	result = /obj/item/clothing/suit/storage/scavengerarmor
 	steps = list(
 		list(/obj/item/part/armor, 5),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_PLASTIC),
 		list(QUALITY_ADHESIVE, 15, 15),
-		list(CRAFT_MATERIAL, 10, MATERIAL_GLASS),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_GLASS),
 		list(QUALITY_WELDING, 10, 20),
 	)
 

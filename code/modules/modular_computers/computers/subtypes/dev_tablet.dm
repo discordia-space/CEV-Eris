@@ -1,9 +1,9 @@
 /obj/item/modular_computer/tablet
 	name = "tablet computer"
-	desc = "A small, portable microcomputer."
+	desc = "A small, portable69icrocomputer."
 	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "tablet"
-	matter = list(MATERIAL_STEEL = 5, MATERIAL_GLASS = 2)
+	matter = list(MATERIAL_STEEL = 5,69ATERIAL_GLASS = 2)
 
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_TABLET
@@ -16,12 +16,12 @@
 
 
 /obj/item/modular_computer/tablet/lease
-	desc = "A small, portable microcomputer. This one has a gold and blue stripe, and a serial number stamped into the case."
+	desc = "A small, portable69icrocomputer. This one has a gold and blue stripe, and a serial69umber stamped into the case."
 	icon_state = "tabletsol"
 
 
 /obj/item/modular_computer/tablet/moebius
-	desc = "A small, portable microcomputer. This one has two extra screens and a Moebius Laboratories logo stamped on the back."
+	desc = "A small, portable69icrocomputer. This one has two extra screens and a69oebius Laboratories logo stamped on the back."
 	icon = 'icons/obj/modular_tablet_moebius.dmi'
 	var/image/direction_overlay
 	var/image/z_level_overlay
@@ -40,7 +40,7 @@
 /obj/item/modular_computer/tablet/moebius/Destroy()
 	qdel(direction_overlay)
 	qdel(z_level_overlay)
-	target_mob = null
+	target_mob =69ull
 	. = ..()
 
 
@@ -78,8 +78,8 @@
 		direction_overlay.icon_state = "arrow"
 		new_dir = set_dir(get_dir(src, target_mob))
 
-	if(direction_overlay.dir != new_dir)
-		direction_overlay.dir = new_dir
+	if(direction_overlay.dir !=69ew_dir)
+		direction_overlay.dir =69ew_dir
 		direction_overlay_blink_delay = 4
 	else
 		direction_overlay_blink_delay = 0
@@ -91,8 +91,8 @@
 	else
 		new_state = "z_same"
 
-	if(z_level_overlay.icon_state != new_state)
-		z_level_overlay.icon_state = new_state
+	if(z_level_overlay.icon_state !=69ew_state)
+		z_level_overlay.icon_state =69ew_state
 		z_level_overlay_blink_delay = 4
 	else
 		z_level_overlay_blink_delay = 0

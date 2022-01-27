@@ -5,13 +5,13 @@
  * ## USAGE
  *
  * ```
- * var/datum/callback/C = new(object|null, /proc/type/path|"procstring", arg1, arg2, ... argn)
- * var/timerid = addtimer(C, time, timertype)
+ *69ar/datum/callback/C = new(object|null, /proc/type/path|"procstring", arg1, arg2, ... argn)
+ *69ar/timerid = addtimer(C, time, timertype)
  * you can also use the compiler define shorthand
- * var/timerid = addtimer(CALLBACK(object|null, /proc/type/path|procstring, arg1, arg2, ... argn), time, timertype)
+ *69ar/timerid = addtimer(CALLBACK(object|null, /proc/type/path|procstring, arg1, arg2, ... argn), time, timertype)
  * ```
  *
- * Note: proc strings can only be given for datum proc calls, global procs must be proc paths
+ * Note: proc strings can only be given for datum proc calls, global procs69ust be proc paths
  *
  * Also proc strings are strongly advised against because they don't compile error if the proc stops existing
  *
@@ -46,7 +46,7 @@
  *
  * `/some/type/.proc/some_proc_here`
  *
- * Otherwise you must always provide the full typepath of the proc (/type/of/thing/proc/procname)
+ * Otherwise you69ust always provide the full typepath of the proc (/type/of/thing/proc/procname)
  */
 /datum/callback
 
@@ -57,7 +57,7 @@
 	///A list of arguments to pass into the proc
 	var/list/arguments
 	///A weak reference to the user who triggered this callback @unimplimented
-	// var/datum/weakref/user
+	//69ar/datum/weakref/user
 
 /**
  * Create a new callback datum
@@ -101,7 +101,7 @@
  * Calls the registered proc on the registered object, if the user ref
  * can be resolved it also inclues that as an arg
  *
- * If the datum being called on is varedited, the call is wrapped via [WrapAdminProcCall][/proc/WrapAdminProcCall]
+ * If the datum being called on is69aredited, the call is wrapped69ia 69WrapAdminProcCall6969/proc/WrapAdminProcCall69
  */
 /datum/callback/proc/Invoke(...)
 	if (!object)
@@ -125,7 +125,7 @@
  * Calls the registered proc on the registered object, if the user ref
  * can be resolved it also inclues that as an arg
  *
- * If the datum being called on is varedited, the call is wrapped via WrapAdminProcCall
+ * If the datum being called on is69aredited, the call is wrapped69ia WrapAdminProcCall
  */
 /datum/callback/proc/InvokeAsync(...)
 	set waitfor = FALSE

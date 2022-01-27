@@ -33,7 +33,7 @@
 
 /obj/item/implant/excelsior/broken
 	name = "broken excelsior implant"
-	malfunction = MALFUNCTION_PERMANENT
+	malfunction =69ALFUNCTION_PERMANENT
 
 /obj/item/implantcase/excelsior/broken
 	name = "glass case - 'broken complant'"
@@ -44,11 +44,11 @@
 	name = "broken implanter-complant"
 	implant = /obj/item/implant/excelsior/broken
 
-//The excelsior implant converts humans into antags, but it also protects mobs from excelsior turrets and shields
-/obj/item/implant/excelsior/can_install(var/mob/living/carbon/human/target, var/obj/item/organ/external/E)
+//The excelsior implant converts humans into antags, but it also protects69obs from excelsior turrets and shields
+/obj/item/implant/excelsior/can_install(var/mob/living/carbon/human/target,69ar/obj/item/organ/external/E)
 	//First of all, handling of human players
 	if(istype(target))
-		//Human players have minds. If it doesnt have a mind, its probably a monkey
+		//Human players have69inds. If it doesnt have a69ind, its probably a69onkey
 		if (target.mind)
 			//We'll check if the target is already excelsior, return false if so, waste of an implant
 			for(var/datum/antagonist/A in target.mind.antagonist)
@@ -100,20 +100,20 @@
 	for(var/datum/antagonist/A in wearer.mind.antagonist)
 		if(A.id == antag_id)
 			A.remove_antagonist()
-	wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
+	wearer.visible_message(SPAN_DANGER("As \the 69src69 is removed from \the 69wearer69..."))
 	if(prob(66))
-		wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+		wearer.visible_message(SPAN_DANGER("\The 69wearer69's 69part.name6969iolently explodes from within!"))
 		wearer.adjustBrainLoss(200)
 		part.droplimb(FALSE, DROPLIMB_BLUNT)
 	else
-		wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
+		wearer.visible_message(SPAN_NOTICE("Something fizzles in \the 69wearer69's 69part.name69, but nothing interesting happens."))
 
-//The leader version of the implant is the one given to antags spawned by the storyteller.
+//The leader69ersion of the implant is the one given to antags spawned by the storyteller.
 //It has no special gameplay properties and is not attainable in normal gameplay, it just exists to
 //prevent buggy behaviour.
 /obj/item/implant/excelsior/leader
 
-//Caninstall returns true, so it wont fail when inserted into someone who was already made an antag
+//Caninstall returns true, so it wont fail when inserted into someone who was already69ade an antag
 /obj/item/implant/excelsior/leader/can_install()
 	return TRUE
 

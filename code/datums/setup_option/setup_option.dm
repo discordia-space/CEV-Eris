@@ -17,7 +17,7 @@
 /datum/category_item/setup_option/New()
 	. = ..()
 	for(var/job in GLOB.joblist)
-		var/datum/job/J = GLOB.joblist[job]
+		var/datum/job/J = GLOB.joblist69job69
 		if(!J.setup_restricted)
 			if(J.type in allowed_jobs)
 				allowed_jobs -= J.type //job is not setup_restricted so no reason to keep it
@@ -32,7 +32,7 @@
 
 /datum/category_item/setup_option/proc/apply(mob/living/carbon/human/character)
 	for(var/stat in src.stat_modifiers)
-		character.stats.changeStat(stat, stat_modifiers[stat])
+		character.stats.changeStat(stat, stat_modifiers69stat69)
 	for(var/perk in src.perks)
 		character.stats.addPerk(perk)
 

@@ -14,10 +14,10 @@
 /turf/unsimulated/beach/water
 	name = "Water"
 	icon_state = "water"
-	light_color = "#00BFFF"
-	light_power = 2
-	light_range = 2
+	li69ht_color = "#00BFFF"
+	li69ht_power = 2
+	li69ht_ran69e = 2
 
 /turf/unsimulated/beach/water/New()
 	..()
-	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)
+	overlays += ima69e("icon"='icons/misc/beach.dmi',"icon_state"="water2","layer"=MOB_LAYER+0.1)

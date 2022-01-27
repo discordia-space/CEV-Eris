@@ -1,175 +1,175 @@
-#define CONNECT_TYPE_REGULAR	1
+#define CONNECT_TYPE_RE69ULAR	1
 #define CONNECT_TYPE_SUPPLY		2
 #define CONNECT_TYPE_SCRUBBER	4
 #define CONNECT_TYPE_HE			8
 
 #define ADIABATIC_EXPONENT 0.667 //Actually adiabatic exponent - 1.
 
-var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_RED, "blue" = PIPE_COLOR_BLUE, "cyan" = PIPE_COLOR_CYAN, "green" = PIPE_COLOR_GREEN, "yellow" = PIPE_COLOR_YELLOW, "black" = PIPE_COLOR_BLACK)
+var/69lobal/list/pipe_colors = list("69rey" = PIPE_COLOR_69REY, "red" = PIPE_COLOR_RED, "blue" = PIPE_COLOR_BLUE, "cyan" = PIPE_COLOR_CYAN, "69reen" = PIPE_COLOR_69REEN, "yellow" = PIPE_COLOR_YELLOW, "black" = PIPE_COLOR_BLACK)
 
 /proc/pipe_color_lookup(var/color)
 	for(var/C in pipe_colors)
-		if(color == pipe_colors[C])
-			return "[C]"
+		if(color == pipe_colors69C69)
+			return "69C69"
 
 /proc/pipe_color_check(var/color)
 	if(!color)
 		return 1
 	for(var/C in pipe_colors)
-		if(color == pipe_colors[C])
+		if(color == pipe_colors69C69)
 			return 1
 	return 0
 
 //--------------------------------------------
-// Icon cache generation
+// Icon cache 69eneration
 //--------------------------------------------
 
-/datum/pipe_icon_manager
-	var/list/pipe_icons[]
-	var/list/manifold_icons[]
-	var/list/device_icons[]
-	var/list/underlays[]
-	//var/list/underlays_down[]
-	//var/list/underlays_exposed[]
-	//var/list/underlays_intact[]
-	//var/list/pipe_underlays_exposed[]
-	//var/list/pipe_underlays_intact[]
-	var/list/omni_icons[]
+/datum/pipe_icon_mana69er
+	var/list/pipe_icons6969
+	var/list/manifold_icons6969
+	var/list/device_icons6969
+	var/list/underlays6969
+	//var/list/underlays_down6969
+	//var/list/underlays_exposed6969
+	//var/list/underlays_intact6969
+	//var/list/pipe_underlays_exposed6969
+	//var/list/pipe_underlays_intact6969
+	var/list/omni_icons6969
 
-/datum/pipe_icon_manager/New()
+/datum/pipe_icon_mana69er/New()
 	check_icons()
 
-/datum/pipe_icon_manager/proc/get_atmos_icon(var/device, var/dir, var/color, var/state)
+/datum/pipe_icon_mana69er/proc/69et_atmos_icon(var/device,69ar/dir,69ar/color,69ar/state)
 	check_icons()
 
-	device = "[device]"
-	state = "[state]"
-	color = "[color]"
-	dir = "[dir]"
+	device = "69device69"
+	state = "69state69"
+	color = "69color69"
+	dir = "69dir69"
 
 	switch(device)
 		if("pipe")
-			return pipe_icons[state + color]
+			return pipe_icons69state + color69
 		if("manifold")
-			return manifold_icons[state + color]
+			return69anifold_icons69state + color69
 		if("device")
-			return device_icons[state]
+			return device_icons69state69
 		if("omni")
-			return omni_icons[state]
+			return omni_icons69state69
 		if("underlay")
-			return underlays[state + dir + color]
+			return underlays69state + dir + color69
 	//  if("underlay_intact")
-	//	return underlays_intact[state + dir + color]
+	//	return underlays_intact69state + dir + color69
 	//	if("underlay_exposed")
-	//		return underlays_exposed[state + dir + color]
+	//		return underlays_exposed69state + dir + color69
 	//	if("underlay_down")
-	//		return underlays_down[state + dir + color]
+	//		return underlays_down69state + dir + color69
 	//	if("pipe_underlay_exposed")
-	//		return pipe_underlays_exposed[state + dir + color]
+	//		return pipe_underlays_exposed69state + dir + color69
 	//	if("pipe_underlay_intact")
-	//		return pipe_underlays_intact[state + dir + color]
+	//		return pipe_underlays_intact69state + dir + color69
 
-/datum/pipe_icon_manager/proc/check_icons()
+/datum/pipe_icon_mana69er/proc/check_icons()
 	if(!pipe_icons)
-		gen_pipe_icons()
+		69en_pipe_icons()
 	if(!manifold_icons)
-		gen_manifold_icons()
+		69en_manifold_icons()
 	if(!device_icons)
-		gen_device_icons()
+		69en_device_icons()
 	if(!omni_icons)
-		gen_omni_icons()
+		69en_omni_icons()
 	//if(!underlays_intact || !underlays_down || !underlays_exposed || !pipe_underlays_exposed || !pipe_underlays_intact)
 	if(!underlays)
-		gen_underlay_icons()
+		69en_underlay_icons()
 
-/datum/pipe_icon_manager/proc/gen_pipe_icons()
+/datum/pipe_icon_mana69er/proc/69en_pipe_icons()
 	if(!pipe_icons)
-		pipe_icons = new()
+		pipe_icons =69ew()
 
-	var/icon/pipe = new('icons/atmos/pipes.dmi')
+	var/icon/pipe =69ew('icons/atmos/pipes.dmi')
 
 	for(var/state in pipe.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
 
 		var/cache_name = state
-		var/image/I = image('icons/atmos/pipes.dmi', icon_state = state)
-		pipe_icons[cache_name] = I
+		var/ima69e/I = ima69e('icons/atmos/pipes.dmi', icon_state = state)
+		pipe_icons69cache_name69 = I
 
 		for(var/pipe_color in pipe_colors)
-			I = image('icons/atmos/pipes.dmi', icon_state = state)
-			I.color = pipe_colors[pipe_color]
-			pipe_icons[state + "[pipe_colors[pipe_color]]"] = I
+			I = ima69e('icons/atmos/pipes.dmi', icon_state = state)
+			I.color = pipe_colors69pipe_color69
+			pipe_icons69state + "69pipe_colors69pipe_color6969"69 = I
 
-	pipe = new ('icons/atmos/heat.dmi')
+	pipe =69ew ('icons/atmos/heat.dmi')
 	for(var/state in pipe.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
-		pipe_icons["hepipe" + state] = image('icons/atmos/heat.dmi', icon_state = state)
+		pipe_icons69"hepipe" + state69 = ima69e('icons/atmos/heat.dmi', icon_state = state)
 
-	pipe = new ('icons/atmos/junction.dmi')
+	pipe =69ew ('icons/atmos/junction.dmi')
 	for(var/state in pipe.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
-		pipe_icons["hejunction" + state] = image('icons/atmos/junction.dmi', icon_state = state)
+		pipe_icons69"hejunction" + state69 = ima69e('icons/atmos/junction.dmi', icon_state = state)
 
 
-/datum/pipe_icon_manager/proc/gen_manifold_icons()
+/datum/pipe_icon_mana69er/proc/69en_manifold_icons()
 	if(!manifold_icons)
-		manifold_icons = new()
+		manifold_icons =69ew()
 
-	var/icon/pipe = new('icons/atmos/manifold.dmi')
+	var/icon/pipe =69ew('icons/atmos/manifold.dmi')
 
 	for(var/state in pipe.IconStates())
 		if(findtext(state, "clamps"))
-			var/image/I = image('icons/atmos/manifold.dmi', icon_state = state)
-			manifold_icons[state] = I
+			var/ima69e/I = ima69e('icons/atmos/manifold.dmi', icon_state = state)
+			manifold_icons69state69 = I
 			continue
 
 		if(findtext(state, "core") || findtext(state, "4way"))
-			var/image/I = image('icons/atmos/manifold.dmi', icon_state = state)
-			manifold_icons[state] = I
+			var/ima69e/I = ima69e('icons/atmos/manifold.dmi', icon_state = state)
+			manifold_icons69state69 = I
 			for(var/pipe_color in pipe_colors)
-				I = image('icons/atmos/manifold.dmi', icon_state = state)
-				I.color = pipe_colors[pipe_color]
-				manifold_icons[state + pipe_colors[pipe_color]] = I
+				I = ima69e('icons/atmos/manifold.dmi', icon_state = state)
+				I.color = pipe_colors69pipe_color69
+				manifold_icons69state + pipe_colors69pipe_color6969 = I
 
-/datum/pipe_icon_manager/proc/gen_device_icons()
+/datum/pipe_icon_mana69er/proc/69en_device_icons()
 	if(!device_icons)
-		device_icons = new()
+		device_icons =69ew()
 
 	var/icon/device
 
-	device = new('icons/atmos/vent_pump.dmi')
+	device =69ew('icons/atmos/vent_pump.dmi')
 	for(var/state in device.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
-		device_icons["vent" + state] = image('icons/atmos/vent_pump.dmi', icon_state = state)
+		device_icons69"vent" + state69 = ima69e('icons/atmos/vent_pump.dmi', icon_state = state)
 
-	device = new('icons/atmos/vent_scrubber.dmi')
+	device =69ew('icons/atmos/vent_scrubber.dmi')
 	for(var/state in device.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
-		device_icons["scrubber" + state] = image('icons/atmos/vent_scrubber.dmi', icon_state = state)
+		device_icons69"scrubber" + state69 = ima69e('icons/atmos/vent_scrubber.dmi', icon_state = state)
 
-/datum/pipe_icon_manager/proc/gen_omni_icons()
+/datum/pipe_icon_mana69er/proc/69en_omni_icons()
 	if(!omni_icons)
-		omni_icons = new()
+		omni_icons =69ew()
 
-	var/icon/omni = new('icons/atmos/omni_devices.dmi')
+	var/icon/omni =69ew('icons/atmos/omni_devices.dmi')
 
 	for(var/state in omni.IconStates())
 		if(!state || findtext(state, "map"))
 			continue
-		omni_icons[state] = image('icons/atmos/omni_devices.dmi', icon_state = state)
+		omni_icons69state69 = ima69e('icons/atmos/omni_devices.dmi', icon_state = state)
 
 
-/datum/pipe_icon_manager/proc/gen_underlay_icons()
+/datum/pipe_icon_mana69er/proc/69en_underlay_icons()
 
 	if(!underlays)
-		underlays = new()
+		underlays =69ew()
 
-	var/icon/pipe = new('icons/atmos/pipe_underlays.dmi')
+	var/icon/pipe =69ew('icons/atmos/pipe_underlays.dmi')
 
 	for(var/state in pipe.IconStates())
 		if(state == "")
@@ -178,103 +178,103 @@ var/global/list/pipe_colors = list("grey" = PIPE_COLOR_GREY, "red" = PIPE_COLOR_
 		var/cache_name = state
 
 		for(var/D in cardinal)
-			var/image/I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
-			underlays[cache_name + "[D]"] = I
+			var/ima69e/I = ima69e('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
+			underlays69cache_name + "69D69"69 = I
 			for(var/pipe_color in pipe_colors)
-				I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
-				I.color = pipe_colors[pipe_color]
-				underlays[state + "[D]" + "[pipe_colors[pipe_color]]"] = I
+				I = ima69e('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
+				I.color = pipe_colors69pipe_color69
+				underlays69state + "69D69" + "69pipe_colors69pipe_color6969"69 = I
 
 /*
-	Leaving the old icon manager code commented out for now, as we may want to rewrite the new code to cleanly
-	separate the newpipe icon caching (speshul supply and scrubber lines) from the rest of the pipe code.
+	Leavin69 the old icon69ana69er code commented out for69ow, as we69ay want to rewrite the69ew code to cleanly
+	separate the69ewpipe icon cachin69 (speshul supply and scrubber lines) from the rest of the pipe code.
 */
 
 /*
-/datum/pipe_icon_manager/proc/gen_underlay_icons()
+/datum/pipe_icon_mana69er/proc/69en_underlay_icons()
 	if(!underlays_intact)
-		underlays_intact = new()
+		underlays_intact =69ew()
 	if(!underlays_exposed)
-		underlays_exposed = new()
+		underlays_exposed =69ew()
 	if(!underlays_down)
-		underlays_down = new()
+		underlays_down =69ew()
 	if(!pipe_underlays_exposed)
-		pipe_underlays_exposed = new()
+		pipe_underlays_exposed =69ew()
 	if(!pipe_underlays_intact)
-		pipe_underlays_intact = new()
+		pipe_underlays_intact =69ew()
 
-	var/icon/pipe = new('icons/atmos/pipe_underlays.dmi')
+	var/icon/pipe =69ew('icons/atmos/pipe_underlays.dmi')
 
 	for(var/state in pipe.IconStates())
 		if(state == "")
 			continue
 
 		for(var/D in cardinal)
-			var/image/I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
+			var/ima69e/I = ima69e('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
 			switch(state)
 				if("intact")
-					underlays_intact["[D]"] = I
+					underlays_intact69"69D69"69 = I
 				if("exposed")
-					underlays_exposed["[D]"] = I
+					underlays_exposed69"69D69"69 = I
 				if("down")
-					underlays_down["[D]"] = I
+					underlays_down69"69D69"69 = I
 				if("pipe_exposed")
-					pipe_underlays_exposed["[D]"] = I
+					pipe_underlays_exposed69"69D69"69 = I
 				if("pipe_intact")
-					pipe_underlays_intact["[D]"] = I
+					pipe_underlays_intact69"69D69"69 = I
 				if("intact-supply")
-					underlays_intact["[D]"] = I
+					underlays_intact69"69D69"69 = I
 				if("exposed-supply")
-					underlays_exposed["[D]"] = I
+					underlays_exposed69"69D69"69 = I
 				if("down-supply")
-					underlays_down["[D]"] = I
+					underlays_down69"69D69"69 = I
 				if("pipe_exposed-supply")
-					pipe_underlays_exposed["[D]"] = I
+					pipe_underlays_exposed69"69D69"69 = I
 				if("pipe_intact-supply")
-					pipe_underlays_intact["[D]"] = I
+					pipe_underlays_intact69"69D69"69 = I
 				if("intact-scrubbers")
-					underlays_intact["[D]"] = I
+					underlays_intact69"69D69"69 = I
 				if("exposed-scrubbers")
-					underlays_exposed["[D]"] = I
+					underlays_exposed69"69D69"69 = I
 				if("down-scrubbers")
-					underlays_down["[D]"] = I
+					underlays_down69"69D69"69 = I
 				if("pipe_exposed-scrubbers")
-					pipe_underlays_exposed["[D]"] = I
+					pipe_underlays_exposed69"69D69"69 = I
 				if("pipe_intact-scrubbers")
-					pipe_underlays_intact["[D]"] = I
+					pipe_underlays_intact69"69D69"69 = I
 			for(var/pipe_color in pipe_colors)
-				I = image('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
-				I.color = pipe_colors[pipe_color]
+				I = ima69e('icons/atmos/pipe_underlays.dmi', icon_state = state, dir = D)
+				I.color = pipe_colors69pipe_color69
 				switch(state)
 					if("intact")
-						underlays_intact["[D]" + pipe_colors[pipe_color]] = I
+						underlays_intact69"69D69" + pipe_colors69pipe_color6969 = I
 					if("exposed")
-						underlays_exposed["[D]" + pipe_colors[pipe_color]] = I
+						underlays_exposed69"69D69" + pipe_colors69pipe_color6969 = I
 					if("down")
-						underlays_down["[D]" + pipe_colors[pipe_color]] = I
+						underlays_down69"69D69" + pipe_colors69pipe_color6969 = I
 					if("pipe_exposed")
-						pipe_underlays_exposed["[D]" + pipe_colors[pipe_color]] = I
+						pipe_underlays_exposed69"69D69" + pipe_colors69pipe_color6969 = I
 					if("pipe_intact")
-						pipe_underlays_intact["[D]" + pipe_colors[pipe_color]] = I
+						pipe_underlays_intact69"69D69" + pipe_colors69pipe_color6969 = I
 					if("intact-supply")
-						underlays_intact["[D]" + pipe_colors[pipe_color]] = I
+						underlays_intact69"69D69" + pipe_colors69pipe_color6969 = I
 					if("exposed-supply")
-						underlays_exposed["[D]" + pipe_colors[pipe_color]] = I
+						underlays_exposed69"69D69" + pipe_colors69pipe_color6969 = I
 					if("down-supply")
-						underlays_down["[D]" + pipe_colors[pipe_color]] = I
+						underlays_down69"69D69" + pipe_colors69pipe_color6969 = I
 					if("pipe_exposed-supply")
-						pipe_underlays_exposed["[D]" + pipe_colors[pipe_color]] = I
+						pipe_underlays_exposed69"69D69" + pipe_colors69pipe_color6969 = I
 					if("pipe_intact-supply")
-						pipe_underlays_intact["[D]" + pipe_colors[pipe_color]] = I
+						pipe_underlays_intact69"69D69" + pipe_colors69pipe_color6969 = I
 					if("intact-scrubbers")
-						underlays_intact["[D]" + pipe_colors[pipe_color]] = I
+						underlays_intact69"69D69" + pipe_colors69pipe_color6969 = I
 					if("exposed-scrubbers")
-						underlays_exposed["[D]" + pipe_colors[pipe_color]] = I
+						underlays_exposed69"69D69" + pipe_colors69pipe_color6969 = I
 					if("down-scrubbers")
-						underlays_down["[D]" + pipe_colors[pipe_color]] = I
+						underlays_down69"69D69" + pipe_colors69pipe_color6969 = I
 					if("pipe_exposed-scrubbers")
-						pipe_underlays_exposed["[D]" + pipe_colors[pipe_color]] = I
+						pipe_underlays_exposed69"69D69" + pipe_colors69pipe_color6969 = I
 					if("pipe_intact-scrubbers")
-						pipe_underlays_intact["[D]" + pipe_colors[pipe_color]] = I
+						pipe_underlays_intact69"69D69" + pipe_colors69pipe_color6969 = I
 
 */

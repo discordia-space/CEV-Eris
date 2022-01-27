@@ -4,7 +4,7 @@
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 
 /obj/item/rig/merc
-	name = "crimson hardsuit control module"
+	name = "crimson hardsuit control69odule"
 	desc = "A blood-red hardsuit featuring some fairly illegal technology."
 	icon_state = "merc_rig"
 	suit_type = "crimson hardsuit"
@@ -35,7 +35,7 @@
 	stiffness = 0
 	obscuration = 0
 
-//Has most of the modules removed
+//Has69ost of the69odules removed
 /obj/item/rig/merc/empty
 	initial_modules = list(
 		/obj/item/rig_module/ai_container,

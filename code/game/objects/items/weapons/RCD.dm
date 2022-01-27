@@ -14,7 +14,7 @@
 	throw_range = 5
 	w_class = ITEM_SIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASMA = 10, MATERIAL_URANIUM = 10)
+	matter = list(MATERIAL_PLASTEEL = 15,69ATERIAL_PLASMA = 10,69ATERIAL_URANIUM = 10)
 	price_tag = 2000
 	spawn_blacklisted = TRUE//antag_item_targets
 	var/datum/effect/effect/system/spark_spread/spark_system
@@ -35,7 +35,7 @@
 /obj/item/rcd/examine()
 	..()
 	if(src.type == /obj/item/rcd && loc == usr)
-		to_chat(usr, "It currently holds [stored_matter]/30 matter-units.")
+		to_chat(usr, "It currently holds 69stored_matter69/3069atter-units.")
 
 /obj/item/rcd/New()
 	..()
@@ -45,30 +45,30 @@
 	update_icon()	//Initializes the fancy ammo counter
 
 /obj/item/rcd/Destroy()
-	qdel(spark_system)
+	69del(spark_system)
 	spark_system = null
 	return ..()
 
-/obj/item/rcd/attackby(obj/item/W, mob/user)
+/obj/item/rcd/attackby(obj/item/W,69ob/user)
 	var/obj/item/stack/material/M = W
-	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
-		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
-		if(M.use(amount) && stored_matter < max_stored_matter)
+	if(istype(M) &&69.material.name ==69ATERIAL_COMPRESSED)
+		var/amount =69in(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter <69ax_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			to_chat(user, "<span class='notice'>You load 69amount69 Compressed69atter into \the 69src69</span>.")
 			update_icon()	//Updates the ammo counter
 	else
 		..()
 
 /obj/item/rcd/attack_self(mob/user)
-	//Change the mode
-	if(++mode > modes.len) mode = 1
-	to_chat(user, SPAN_NOTICE("Changed mode to '[modes[mode]]'"))
+	//Change the69ode
+	if(++mode >69odes.len)69ode = 1
+	to_chat(user, SPAN_NOTICE("Changed69ode to '69modes69mode6969'"))
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	if(prob(20)) src.spark_system.start()
 
-/obj/item/rcd/afterattack(atom/A, mob/user, proximity)
+/obj/item/rcd/afterattack(atom/A,69ob/user, proximity)
 	if(!proximity) return
 	if(disabled && !isrobot(user))
 		return 0
@@ -76,7 +76,7 @@
 		return 0
 	return alter_turf(A,user)
 
-/obj/item/rcd/proc/useResource(var/amount, var/mob/user, var/checkOnly)
+/obj/item/rcd/proc/useResource(var/amount,69ar/mob/user,69ar/checkOnly)
 	if(stored_matter < amount)
 		return 0
 	if (!checkOnly)
@@ -169,13 +169,13 @@
 
 	if(!useResource(build_cost, user, 1))
 		to_chat(user, "The \'Low Ammo\' light on the device blinks yellow.")
-		flick("[icon_state]-empty", src)
+		flick("69icon_state69-empty", src)
 		return 0
 
 	playsound(src.loc, 'sound/machines/click.ogg', 50, 1)
 
 	working = 1
-	to_chat(user, "[(mode==modes.len ? "Deconstructing" : "Building [build_type]")]...")
+	to_chat(user, "69(mode==modes.len ? "Deconstructing" : "Building 69build_type69")69...")
 
 	if(build_delay && !do_after(user, build_delay, src))
 		working = 0
@@ -187,7 +187,7 @@
 
 	if(!useResource(build_cost, user))
 		to_chat(user, "The \'Low Ammo\' light on the device blinks yellow.")
-		flick("[icon_state]-empty", src)
+		flick("69icon_state69-empty", src)
 		return 0
 
 	if(build_turf)
@@ -196,7 +196,7 @@
 		new build_object(local_turf)
 
 	if(build_type == "deconstruct")
-		qdel(T)
+		69del(T)
 
 	playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 	return 1
@@ -205,16 +205,16 @@
 	cut_overlays()
 
 	var/ratio = 0
-	ratio = stored_matter / 30	//30 is the hardcoded max capacity of the RCD
-	ratio = max(round(ratio, 0.10) * 100, 10)
+	ratio = stored_matter / 30	//30 is the hardcoded69ax capacity of the RCD
+	ratio =69ax(round(ratio, 0.10) * 100, 10)
 
-	overlays += "[icon_state]-[ratio]"
+	overlays += "69icon_state69-69ratio69"
 
 /obj/item/rcd/borg
 	canRwall = 1
 	spawn_tags = null
 
-/obj/item/rcd/borg/useResource(var/amount, mob/user, var/checkOnly)
+/obj/item/rcd/borg/useResource(var/amount,69ob/user,69ar/checkOnly)
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
 		if(R.cell)
@@ -234,11 +234,11 @@
 /obj/item/rcd/mounted
 	spawn_tags = null//mech item
 
-/obj/item/rcd/mounted/useResource(var/amount, mob/user, var/checkOnly)
+/obj/item/rcd/mounted/useResource(var/amount,69ob/user,69ar/checkOnly)
 	var/cost = amount*130 //so that a rig with default powercell can build ~2.5x the stuff a fully-loaded RCD can.
 	if(istype(loc,/obj/item/rig_module))
 		var/obj/item/rig_module/module = loc
-		if(module.holder && module.holder.cell)
+		if(module.holder &&69odule.holder.cell)
 			if(module.holder.cell.charge >= cost)
 				if (!checkOnly)
 					module.holder.cell.use(cost)

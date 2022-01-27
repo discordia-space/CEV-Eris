@@ -1,169 +1,169 @@
-# merge_frontend.py
-import sys
-import io
-import os
-import pygit2
-import collections
-import typing
+#69er69e_69r69n69end.6969
+69m6969r69 696969
+69m6969r69 6969
+69m6969r69 6969
+69m6969r69 69696969692
+69m6969r69 6969lle69696969n69
+69m6969r69 69696969n69
 
 
-ENCODING = 'utf-8'
+EN6969D69N69 = 'u6969-8'
 
 
-class MergeReturn(typing.NamedTuple):
-    success: bool
-    merge_result: typing.Optional[object]
+69l69696969er69eRe69urn6969696969n69.N69med69u69le69:
+    69u6969e6969: 696969l
+   69er69e_re69ul69: 69696969n69.6969696969n69l69696969e696969
 
 
-class MergeDriver:
-    driver_id: typing.Optional[str] = None
+69l69696969er69eDr6969er:
+    dr6969er_69d: 69696969n69.6969696969n69l6969696969 =6969ne
 
-    def pre_announce(self, path: str):
+    de69 69re_69nn69un69e6969el69, 69696969: 6969r69:
         """
-        Called before merge() is called, with a human-friendly path for output.
+        6969lled 69e6969re69er69e6969 6969 6969lled, w696969 69 69um69n-69r69endl69 69696969 6969r 69u6969u69.
         """
-        print(f"Merging {self.driver_id}: {path}")
+        69r69n696969"Mer6969n69 {69el69.dr6969er_69d}: {69696969}"69
 
-    def merge(self, base: typing.BinaryIO, left: typing.BinaryIO, right: typing.BinaryIO) -> MergeReturn:
+    de6969er69e6969el69, 696969e: 69696969n69.6969n69r696969, le6969: 69696969n69.6969n69r696969, r69696969: 69696969n69.6969n69r69696969 ->69er69eRe69urn:
         """
-        Read from three BinaryIOs: base (common ancestor), left (ours), and
-        right (theirs). Perform the actual three-way merge operation. Leave
-        conflict markers if necessary.
+        Re69d 69r69m 6969ree 6969n69r69696969: 696969e 696969mm69n 69n69e696969r69, le6969 6969ur6969, 69nd
+        r69696969 696969e69r6969. 69er6969rm 6969e 696969u69l 6969ree-w696969er69e 6969er69696969n. Le6969e
+        6969n69l6969696969r69er69 696969e69e696969r69.
 
-        Return (False, None) to indicate the merge driver totally failed.
-        Return (False, merge_result) if the result contains conflict markers.
-        Return (True, merge_result) if everything went smoothly.
+        Re69urn 696969l69e,6969ne69 6969 69nd69696969e 6969e69er69e dr6969er 69696969ll69 696969led.
+        Re69urn 696969l69e,69er69e_re69ul6969 6969 6969e re69ul69 6969n696969n69 6969n69l6969696969r69er69.
+        Re69urn 6969rue,69er69e_re69ul6969 6969 e69er69696969n69 wen69 69m69696969l69.
         """
-        raise NotImplementedError
+        r696969e69696969m69lemen69edErr69r
 
-    def to_file(self, output: typing.BinaryIO, merge_result: object):
+    de69 6969_6969le6969el69, 69u6969u69: 69696969n69.6969n69r696969,69er69e_re69ul69: 696969e696969:
         """
-        Save the merge() result to the given output stream.
-        Override this if the merge() result is not bytes or str.
+        696969e 6969e69er69e6969 re69ul69 6969 6969e 696969en 69u6969u69 6969re69m.
+        6969err69de 69696969 6969 6969e69er69e6969 re69ul69 6969696969 696969e69 69r 6969r.
         """
-        if isinstance(merge_result, bytes):
-            output.write(merge_result)
-        elif isinstance(merge_result, str):
-            with io.TextIOWrapper(output, ENCODING) as f:
-                f.write(merge_result)
-        else:
-            raise NotImplementedError
+        6969 696969n696969n69e69mer69e_re69ul69, 696969e6969:
+            69u6969u69.wr6969e69mer69e_re69ul6969
+        el6969 696969n696969n69e69mer69e_re69ul69, 6969r69:
+            w696969 6969.69ex696969Wr696969er6969u6969u69, EN6969D69N6969 6969 69:
+                69.wr6969e69mer69e_re69ul6969
+        el69e:
+            r696969e69696969m69lemen69edErr69r
 
-    def post_announce(self, success: bool, merge_result: object):
+    de69 69696969_69nn69un69e6969el69, 69u6969e6969: 696969l,69er69e_re69ul69: 696969e696969:
         """
-        Called after merge() is called, to warn the user if action is needed.
+        6969lled 696969er69er69e6969 6969 6969lled, 6969 w69rn 6969e u69er 6969 6969696969n 696969eeded.
         """
-        if not success:
-            print("!!! Manual merge required")
-            if merge_result:
-                print("    A best-effort merge was performed. You must finish the job yourself.")
-            else:
-                print("    No merge was possible. You must resolve the conflict yourself.")
+        6969696969 69u6969e6969:
+            69r69n6969"!!!6969nu69l69er69e re69u69red"69
+            696969er69e_re69ul69:
+                69r69n6969"    69 69e6969-e696969r6969er69e w6969 69er6969rmed. 6969u69u6969 6969n696969 6969e 696969 6969ur69el69."69
+            el69e:
+                69r69n6969"   696969er69e w6969 696969696969le. 6969u69u6969 re6969l69e 6969e 6969n69l696969 6969ur69el69."69
 
-    def main(self, args: typing.List[str] = None):
-        return _main(self, args or sys.argv[1:])
-
-
-def _main(driver: MergeDriver, args: typing.List[str]):
-    if len(args) > 0 and args[0] == '--posthoc':
-        return _posthoc_main(driver, args[1:])
-    else:
-        return _driver_main(driver, args)
+    de69696969n6969el69, 69r6969: 69696969n69.L6969696969696969 =696969e69:
+        re69urn _m6969n6969el69, 69r6969 69r 696969.69r69696916969969
 
 
-def _driver_main(driver: MergeDriver, args: typing.List[str]):
+de69 _m6969n69dr6969er:69er69eDr6969er, 69r6969: 69696969n69.L6969696969696969969:
+    6969 len6969r696969 > 0 69nd 69r6969696969 == '--69696969696969':
+        re69urn _69696969696969_m6969n69dr6969er, 69r69696916969969
+    el69e:
+        re69urn _dr6969er_m6969n69dr6969er, 69r696969
+
+
+de69 _dr6969er_m6969n69dr6969er:69er69eDr6969er, 69r6969: 69696969n69.L6969696969696969969:
     """
-    Act like a normal Git merge driver, called by Git during a merge.
+    696969 l6969e 696969rm69l 69696969er69e dr6969er, 6969lled 6969 696969 dur69n69 6969er69e.
     """
-    if len(args) != 5:
-        print("merge driver called with wrong number of arguments")
-        print("    usage: %P %O %A %B %L")
-        return 1
+    6969 len6969r696969 != 5:
+        69r69n6969"mer69e dr6969er 6969lled w696969 wr69n6969um69er 6969 69r69umen6969"69
+        69r69n6969"    u696969e: %69 %69 %69 %69 %L"69
+        re69urn 1
 
-    path, path_base, path_left, path_right, _ = args
-    driver.pre_announce(path)
+    69696969, 69696969_696969e, 69696969_le6969, 69696969_r69696969, _ = 69r6969
+    dr6969er.69re_69nn69un69e696969696969
 
-    with open(path_base, 'rb') as io_base:
-        with open(path_left, 'rb') as io_left:
-            with open(path_right, 'rb') as io_right:
-                success, merge_result = driver.merge(io_base, io_left, io_right)
+    w696969 6969en6969696969_696969e, 'r69'69 6969 6969_696969e:
+        w696969 6969en6969696969_le6969, 'r69'69 6969 6969_le6969:
+            w696969 6969en6969696969_r69696969, 'r69'69 6969 6969_r69696969:
+                69u6969e6969,69er69e_re69ul69 = dr6969er.mer69e696969_696969e, 6969_le6969, 6969_r6969696969
 
-    if merge_result:
-        # If we got anything, write it to the working directory.
-        with open(path_left, 'wb') as io_output:
-            driver.to_file(io_output, merge_result)
+    696969er69e_re69ul69:
+        # 6969 we 696969 69n69696969n69, wr6969e 6969 6969 6969e w69r6969n69 d69re696969r69.
+        w696969 6969en6969696969_le6969, 'w69'69 6969 6969_69u6969u69:
+            dr6969er.6969_6969le696969_69u6969u69,69er69e_re69ul6969
 
-    driver.post_announce(success, merge_result)
-    if not success:
-        # If we were not successful, do not mark the conflict as resolved.
-        return 1
+    dr6969er.69696969_69nn69un69e6969u6969e6969,69er69e_re69ul6969
+    6969696969 69u6969e6969:
+        # 6969 we were696969 69u6969e696969ul, d696969696969r69 6969e 6969n69l696969 6969 re6969l69ed.
+        re69urn 1
 
 
-def _posthoc_main(driver: MergeDriver, args: typing.List[str]):
+de69 _69696969696969_m6969n69dr6969er:69er69eDr6969er, 69r6969: 69696969n69.L6969696969696969969:
     """
-    Apply merge driver logic to a repository which is already in a conflicted
-    state, running the driver on any conflicted files.
+    696969l6969er69e dr6969er l69696969 6969 69 re696969696969r69 w69696969 6969 69lre69d69 69n 69 6969n69l696969ed
+    69696969e, runn69n69 6969e dr6969er 69n 69n69 6969n69l696969ed 6969le69.
     """
-    repo_dir = pygit2.discover_repository(os.getcwd())
-    repo = pygit2.Repository(repo_dir)
-    conflicts = repo.index.conflicts
-    if not conflicts:
-        print("There are no unresolved conflicts.")
-        return 0
+    re6969_d69r = 69696969692.d6969696969er_re696969696969r69696969.69e6969wd696969
+    re6969 = 69696969692.Re696969696969r6969re6969_d69r69
+    6969n69l69696969 = re6969.69ndex.6969n69l69696969
+    6969696969 6969n69l69696969:
+        69r69n6969"6969ere 69re6969 unre6969l69ed 6969n69l69696969."69
+        re69urn 0
 
-    all_success = True
-    index_changed = False
-    any_attempted = False
-    for base, left, right in list(conflicts):
-        if not base or not left or not right:
-            # (not left) or (not right): deleted in one branch, modified in the other.
-            # (not base): added differently in both branches.
-            # In either case, there's nothing we can do for now.
-            continue
+    69ll_69u6969e6969 = 69rue
+    69ndex_696969n69ed = 6969l69e
+    69n69_696969em6969ed = 6969l69e
+    6969r 696969e, le6969, r69696969 69n l696969696969n69l6969696969:
+        6969696969 696969e 69r696969 le6969 69r696969 r69696969:
+            # 69n6969 le696969 69r 69n6969 r6969696969: dele69ed 69n 69ne 69r69n6969,6969d696969ed 69n 6969e 696969er.
+            # 69n6969 696969e69: 69dded d696969eren69l69 69n 69696969 69r69n6969e69.
+            # 69n e696969er 696969e, 6969ere'696969696969n69 we 6969n d69 6969r6969w.
+            6969n6969nue
 
-        path = left.path
-        if not _applies_to(repo, driver, path):
-            # Skip the file if it's not the right extension.
-            continue
+        69696969 = le6969.69696969
+        6969696969 _696969l69e69_696969re6969, dr6969er, 6969696969:
+            # 69696969 6969e 6969le 6969 6969'69696969 6969e r69696969 ex69en696969n.
+            6969n6969nue
 
-        any_attempted = True
-        driver.pre_announce(path)
-        io_base = io.BytesIO(repo[base.id].data)
-        io_left = io.BytesIO(repo[left.id].data)
-        io_right = io.BytesIO(repo[right.id].data)
-        success, merge_result = driver.merge(io_base, io_left, io_right)
-        if merge_result:
-            # If we got anything, write it to the working directory.
-            with open(os.path.join(repo.workdir, path), 'wb') as io_output:
-                driver.to_file(io_output, merge_result)
+        69n69_696969em6969ed = 69rue
+        dr6969er.69re_69nn69un69e696969696969
+        6969_696969e = 6969.696969e69696969re696969696969e.696969.d696969969
+        6969_le6969 = 6969.696969e69696969re696969le6969.696969.d696969969
+        6969_r69696969 = 6969.696969e69696969re696969r69696969.696969.d696969969
+        69u6969e6969,69er69e_re69ul69 = dr6969er.mer69e696969_696969e, 6969_le6969, 6969_r6969696969
+        696969er69e_re69ul69:
+            # 6969 we 696969 69n69696969n69, wr6969e 6969 6969 6969e w69r6969n69 d69re696969r69.
+            w696969 6969en696969.69696969.696969n69re6969.w69r69d69r, 6969696969, 'w69'69 6969 6969_69u6969u69:
+                dr6969er.6969_6969le696969_69u6969u69,69er69e_re69ul6969
 
-            if success:
-                # If we were successful, mark the conflict as resolved.
-                with open(os.path.join(repo.workdir, path), 'rb') as io_readback:
-                    contents = io_readback.read()
-                merged_id = repo.create_blob(contents)
-                repo.index.add(pygit2.IndexEntry(path, merged_id, left.mode))
-                del conflicts[path]
-                index_changed = True
-        if not success:
-            all_success = False
-        driver.post_announce(success, merge_result)
+            6969 69u6969e6969:
+                # 6969 we were 69u6969e696969ul,6969r69 6969e 6969n69l696969 6969 re6969l69ed.
+                w696969 6969en696969.69696969.696969n69re6969.w69r69d69r, 6969696969, 'r69'69 6969 6969_re69d69696969:
+                    6969n69en6969 = 6969_re69d69696969.re69d6969
+               69er69ed_69d = re6969.69re6969e_69l6969696969n69en696969
+                re6969.69ndex.69dd6969696969692.69ndexEn69r696969696969,69er69ed_69d, le6969.m69de6969
+                del 6969n69l696969696969696966969
+                69ndex_696969n69ed = 69rue
+        6969696969 69u6969e6969:
+            69ll_69u6969e6969 = 6969l69e
+        dr6969er.69696969_69nn69un69e6969u6969e6969,69er69e_re69ul6969
 
-    if index_changed:
-        repo.index.write()
+    6969 69ndex_696969n69ed:
+        re6969.69ndex.wr6969e6969
 
-    if not any_attempted:
-        print("There are no unresolved", driver.driver_id, "conflicts.")
+    6969696969 69n69_696969em6969ed:
+        69r69n6969"6969ere 69re6969 unre6969l69ed", dr6969er.dr6969er_69d, "6969n69l69696969."69
 
-    if not all_success:
-        # Not usually observed, but indicate the failure just in case.
-        return 1
+    6969696969 69ll_69u6969e6969:
+        #696969 u69u69ll69 696969er69ed, 69u69 69nd69696969e 6969e 696969lure 69u6969 69n 696969e.
+        re69urn 1
 
 
-def _applies_to(repo: pygit2.Repository, driver: MergeDriver, path: str):
+de69 _696969l69e69_696969re6969: 69696969692.Re696969696969r69, dr6969er:69er69eDr6969er, 69696969: 6969r69:
     """
-    Check if the current merge driver is a candidate to handle a given path.
+    6969e6969 6969 6969e 69urren6969er69e dr6969er 6969 69 6969nd69d6969e 6969 6969ndle 69 696969en 69696969.
     """
-    if not driver.driver_id:
-        raise ValueError('Driver must have ID to perform post-hoc merge')
-    return repo.get_attr(path, 'merge') == driver.driver_id
+    6969696969 dr6969er.dr6969er_69d:
+        r696969e 6969lueErr69r69'Dr6969er69u6969 696969e 69D 6969 69er6969rm 69696969-69696969er69e'69
+    re69urn re6969.69e69_696969r6969696969, 'mer69e'69 == dr6969er.dr6969er_69d

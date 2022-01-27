@@ -7,7 +7,7 @@
 	name = "Gun assembly"
 	result = /obj/item/craft_frame/guns
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL, "time" = 30),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_PLASTEEL, "time" = 30),
 		list(QUALITY_WELDING, 10, 10)
 	)
 
@@ -15,9 +15,9 @@
 	name = "Handmade gun"
 	result = /obj/item/gun/projectile/handmade_pistol
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
@@ -27,9 +27,9 @@
 	steps = list(
 		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 15,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
@@ -39,9 +39,9 @@
 	steps = list(
 		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_PLASTIC),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
@@ -51,9 +51,9 @@
 	steps = list(
 		list(/obj/item/part/gun, 2),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
@@ -63,21 +63,21 @@
 	steps = list(
 		list(/obj/item/part/gun, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
 /datum/craft_recipe/gun/motherfucker
-	name = "HM Motherfucker .35 \"Punch Hole\""
+	name = "HM69otherfucker .35 \"Punch Hole\""
 	result = /obj/item/gun/projectile/automatic/motherfucker
 	steps = list(
 		list(/obj/item/part/gun, 5),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 15, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 15,69ATERIAL_WOOD),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
 
@@ -87,9 +87,9 @@
 	steps = list(
 		list(/obj/item/part/gun, 4),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTIC),
+		list(CRAFT_MATERIAL, 15,69ATERIAL_PLASTIC),
 		list(/obj/item/stock_parts/micro_laser , 4),
 		list(QUALITY_SCREW_DRIVING, 10)
 	)
@@ -100,9 +100,9 @@
 	steps = list(
 		list(/obj/item/part/gun, 4),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_WOOD),
 		list(QUALITY_HAMMERING, 10)
 	)
 
@@ -112,10 +112,10 @@
 	steps = list(
 		list(/obj/item/part/gun, 3),
 		list(QUALITY_ADHESIVE, 15, 70),
-		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 15,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20),
 		list(QUALITY_SCREW_DRIVING, 10),
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_WOOD),
 		list(QUALITY_ADHESIVE, 15)
 	)
 
@@ -124,7 +124,7 @@
 	result = /obj/item/gun/projectile/flare_gun/shotgun
 	steps = list(
 		list(/obj/item/gun/projectile/flare_gun, 1),
-		list(CRAFT_MATERIAL, 15, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 15,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20)
 	)
 
@@ -132,10 +132,10 @@
 	name = "Scrap ammo kit"
 	result = /obj/item/ammo_kit
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_STEEL),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(QUALITY_WELDING, 10, 20),
-		list(CRAFT_MATERIAL, 5, MATERIAL_CARDBOARD),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_CARDBOARD),
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
@@ -143,6 +143,6 @@
 	name = "Scrap ammo case"
 	result = /obj/item/storage/hcases/ammo/scrap
 	steps = list(
-		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 25,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20)
 	)

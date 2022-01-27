@@ -1,11 +1,11 @@
-name: Make changelogs
+name:69ake changelogs
 
 on:
   push:
-    branches: [master]
+    branches: 69master69
 
 jobs:
-  MakeCL:
+ 69akeCL:
     runs-on: ubuntu-latest
     if: github.repository == 'discordia-space/CEV-Eris'
     steps:
@@ -21,7 +21,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install ruamel.yaml PyGithub
-      - name: Make CL
+      - name:69ake CL
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_EMAIL: "action@github.com"

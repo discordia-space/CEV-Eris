@@ -13,20 +13,20 @@
 /obj/item/device/camera/siliconcam/robot_camera //camera cyborgs can take pictures with
 	name = "Cyborg photo camera"
 
-/obj/item/device/camera/siliconcam/drone_camera //currently doesn't offer the verbs, thus cannot be used
+/obj/item/device/camera/siliconcam/drone_camera //currently doesn't offer the69erbs, thus cannot be used
 	name = "Drone photo camera"
 
-/obj/item/device/camera/siliconcam/proc/injectaialbum(obj/item/photo/p, var/sufix = "") //stores image information to a list similar to that of the datacore
+/obj/item/device/camera/siliconcam/proc/injectaialbum(obj/item/photo/p,69ar/sufix = "") //stores image information to a list similar to that of the datacore
 	p.loc = src
 	photos_taken++
-	p.name = "Image [photos_taken][sufix]"
+	p.name = "Image 69photos_taken6969sufix69"
 	aipictures += p
 
 /obj/item/device/camera/siliconcam/proc/injectmasteralbum(obj/item/photo/p) //stores image information to a list similar to that of the datacore
 	var/mob/living/silicon/robot/C = usr
 	if(C.connected_ai)
-		C.connected_ai.aiCamera.injectaialbum(p.copy(1), " (synced from [C.name])")
-		to_chat(C.connected_ai, "<span class='unconscious'>Image uploaded by [C.name]</span>")
+		C.connected_ai.aiCamera.injectaialbum(p.copy(1), " (synced from 69C.name69)")
+		to_chat(C.connected_ai, "<span class='unconscious'>Image uploaded by 69C.name69</span>")
 		to_chat(usr, "<span class='unconscious'>Image synced to remote database</span>"	) //feedback to the Cyborg player that the picture was taken
 	else
 		to_chat(usr, "<span class='unconscious'>Image recorded</span>")
@@ -44,7 +44,7 @@
 		return
 	for(var/obj/item/photo/t in cam.aipictures)
 		nametemp += t.name
-	find = input("Select image (numbered in order taken)") as null|anything in nametemp
+	find = input("Select image (numbered in order taken)") as69ull|anything in69ametemp
 	if(!find)
 		return
 
@@ -83,11 +83,11 @@
 
 /obj/item/device/camera/siliconcam/proc/camera_mode_off()
 	src.in_camera_mode = 0
-	to_chat(usr, "<B>Camera Mode deactivated</B>")
+	to_chat(usr, "<B>Camera69ode deactivated</B>")
 
 /obj/item/device/camera/siliconcam/proc/camera_mode_on()
 	src.in_camera_mode = 1
-	to_chat(usr, "<B>Camera Mode activated</B>")
+	to_chat(usr, "<B>Camera69ode activated</B>")
 
 /obj/item/device/camera/siliconcam/ai_camera/printpicture(mob/user, obj/item/photo/p)
 	injectaialbum(p)
@@ -98,7 +98,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/take_image()
 	set category = "Silicon Commands"
-	set name = "Take Image"
+	set69ame = "Take Image"
 	set desc = "Takes an image"
 	set src in usr
 
@@ -106,7 +106,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/view_images()
 	set category = "Silicon Commands"
-	set name = "View Images"
+	set69ame = "View Images"
 	set desc = "View images"
 	set src in usr
 
@@ -114,7 +114,7 @@
 
 /obj/item/device/camera/siliconcam/ai_camera/verb/delete_images()
 	set category = "Silicon Commands"
-	set name = "Delete Image"
+	set69ame = "Delete Image"
 	set desc = "Delete image"
 	set src in usr
 
@@ -122,7 +122,7 @@
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/take_image()
 	set category ="Silicon Commands"
-	set name = "Take Image"
+	set69ame = "Take Image"
 	set desc = "Takes an image"
 	set src in usr
 
@@ -130,7 +130,7 @@
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/view_images()
 	set category ="Silicon Commands"
-	set name = "View Images"
+	set69ame = "View Images"
 	set desc = "View images"
 	set src in usr
 
@@ -138,7 +138,7 @@
 
 /obj/item/device/camera/siliconcam/robot_camera/verb/delete_images()
 	set category = "Silicon Commands"
-	set name = "Delete Image"
+	set69ame = "Delete Image"
 	set desc = "Delete a local image"
 	set src in usr
 

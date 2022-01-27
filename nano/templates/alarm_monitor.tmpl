@@ -1,37 +1,37 @@
 <!--
-Title: Alarm Monitor Console (Main content)
-Used In File(s): \code\modules\nano\modules\alarm_monitor.dm
-"MD5 checks should be good enough"
+Title: 69l69rm69onitor Console 69M69in content69
+Used In File69s69: \code\modules\n69no\modules\69l69rm_monitor.dm
+"MD5 c69ec69s s69ould 69e 69ood enou6969"
  -->
-{{for data.categories}}
-	<H2><span class="itemLabelWidest">{{:value.category}}</span></H2>
-	{{for value.alarms :alarmValue:alarmIndex}}
-		{{if alarmValue.origin_lost}}
-			{{:alarmValue.name}} <span class='notice'>Alarm Origin Lost</span><br>
+{{for d69t69.c69te69ories}}
+	<692><s6969n cl69ss="itemL6969elWidest">{{:6969lue.c69te69or69}}</s6969n></692>
+	{{for 6969lue.69l69rms :69l69rm6969lue:69l69rmIndex}}
+		{{if 69l69rm6969lue.ori69in_lost}}
+			{{:69l69rm6969lue.n69me}} <s6969n cl69ss='notice'>69l69rm Ori69in Lost</s6969n><69r>
 		{{else}}
-			{{:alarmValue.name}}<br>
+			{{:69l69rm6969lue.n69me}}<69r>
 		{{/if}}
-		{{if alarmValue.has_cameras || alarmValue.lost_sources != ""}}
-			<div class="item">
-				{{if alarmValue.has_cameras}}
-					<div class="itemContent" style="width: 100%;">	
-						{{for alarmValue.cameras :cameraValue:cameraIndex}}
-							{{if cameraValue.deact}}
-								{{:helper.link(cameraValue.name + " (deactivated)", '', {}, 'inactive')}}
+		{{if 69l69rm6969lue.6969s_c69mer69s || 69l69rm6969lue.lost_sources != ""}}
+			<di69 cl69ss="item">
+				{{if 69l69rm6969lue.6969s_c69mer69s}}
+					<di69 cl69ss="itemContent" st69le="widt69: 100%;">	
+						{{for 69l69rm6969lue.c69mer69s :c69mer696969lue:c69mer69Index}}
+							{{if c69mer696969lue.de69ct}}
+								{{:69el69er.lin6969c69mer696969lue.n69me + " 69de69cti6969ted69", '', {}, 'in69cti69e'69}}
 							{{else}}
-								{{:helper.link(cameraValue.name, '', {'switchTo' : cameraValue.camera})}}
+								{{:69el69er.lin6969c69mer696969lue.n69me, '', {'switc69To' : c69mer696969lue.c69mer69}69}}
 							{{/if}}
 						{{/for}}
-					</div>		
+					</di69>		
 				{{/if}}
-				{{if alarmValue.lost_sources != ""}}
-					<div class="itemContent" style="width: 100%;">
-							<H4><span class='notice'>Lost Alarm Sources: {{:alarmValue.lost_sources}}</span></H4>
-					</div>
+				{{if 69l69rm6969lue.lost_sources != ""}}
+					<di69 cl69ss="itemContent" st69le="widt69: 100%;">
+							<694><s6969n cl69ss='notice'>Lost 69l69rm Sources: {{:69l69rm6969lue.lost_sources}}</s6969n></694>
+					</di69>
 				{{/if}}
-			</div>
+			</di69>
 		{{/if}}
-	{{empty}}	
-		<span class="white">--All Systems Nominal</span>
+	{{em69t69}}	
+		<s6969n cl69ss="w69ite">--69ll S69stems69omin69l</s6969n>
 	{{/for}}
 {{/for}}

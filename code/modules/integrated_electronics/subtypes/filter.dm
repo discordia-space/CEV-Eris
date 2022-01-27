@@ -2,7 +2,7 @@
 	category_text = "Filter"
 	power_draw_per_use = 5
 	complexity = 2
-	activators = list("compare" = IC_PINTYPE_PULSE_IN, "if valid" = IC_PINTYPE_PULSE_OUT, "if not valid" = IC_PINTYPE_PULSE_OUT)
+	activators = list("compare" = IC_PINTYPE_PULSE_IN, "if69alid" = IC_PINTYPE_PULSE_OUT, "if69ot69alid" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	icon = 'icons/obj/electronic_assemblies.dmi'
 
@@ -13,7 +13,7 @@
 	push_data()
 
 /obj/item/integrated_circuit/filter/ref
-	extended_desc = "Uses heuristics and complex algoritms to match incoming data against its filtering parameters and occasionally produces both false positives and negatives."
+	extended_desc = "Uses heuristics and complex algoritms to69atch incoming data against its filtering parameters and occasionally produces both false positives and69egatives."
 	var/filter_type
 	complexity = 4
 	inputs = list( "input" = IC_PINTYPE_REF )
@@ -27,9 +27,9 @@
 
 
 /obj/item/integrated_circuit/filter/ref/do_work()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
-	O.data = may_pass(A.data) ? TRUE : FALSE
+	var/datum/integrated_io/A = inputs69169
+	var/datum/integrated_io/O = outputs69169
+	O.data =69ay_pass(A.data) ? TRUE : FALSE
 
 	if(get_pin_data(IC_OUTPUT, 1))
 		activate_pin(2)
@@ -39,7 +39,7 @@
 
 /obj/item/integrated_circuit/filter/ref/mob
 	name = "life filter"
-	desc = "Only allow refs belonging to more complex, currently or formerly, living but not necessarily biological entities through"
+	desc = "Only allow refs belonging to69ore complex, currently or formerly, living but69ot69ecessarily biological entities through"
 	icon_state = "filter_mob"
 	filter_type = /mob/living
 
@@ -51,19 +51,19 @@
 
 /obj/item/integrated_circuit/filter/ref/obj
 	name = "object filter"
-	desc = "Allows most kinds of refs to pass, as long as they are not considered (once) living entities."
+	desc = "Allows69ost kinds of refs to pass, as long as they are69ot considered (once) living entities."
 	icon_state = "filter_obj"
 	filter_type = /obj
 
 /obj/item/integrated_circuit/filter/ref/obj/item
 	name = "item filter"
-	desc = "Only allow refs belonging to minor items through, typically hand-held such."
+	desc = "Only allow refs belonging to69inor items through, typically hand-held such."
 	icon_state = "filter_item"
 	filter_type = /obj/item
 
 /obj/item/integrated_circuit/filter/ref/obj/machinery
 	name = "machinery filter"
-	desc = "Only allow refs belonging machinery or complex objects through, such as computers and consoles."
+	desc = "Only allow refs belonging69achinery or complex objects through, such as computers and consoles."
 	icon_state = "filter_machinery"
 	filter_type = /obj/machinery
 
@@ -75,7 +75,7 @@
 
 /obj/item/integrated_circuit/filter/ref/custom
 	name = "custom filter"
-	desc = "Allows custom filtering. It will match type against a stored reference."
+	desc = "Allows custom filtering. It will69atch type against a stored reference."
 	icon_state = "filter_custom"
 	inputs = list( "input" = IC_PINTYPE_REF, "expected type" = IC_PINTYPE_REF )
 
@@ -89,10 +89,10 @@
 	return (A && B && (istype(A, B.type)))
 
 /obj/item/integrated_circuit/filter/ref/custom/do_work()
-	var/datum/integrated_io/A = inputs[1]
-	var/datum/integrated_io/T = inputs[2]
-	var/datum/integrated_io/O = outputs[1]
-	O.data = may_pass(A.data, T.data) ? TRUE : FALSE
+	var/datum/integrated_io/A = inputs69169
+	var/datum/integrated_io/T = inputs69269
+	var/datum/integrated_io/O = outputs69169
+	O.data =69ay_pass(A.data, T.data) ? TRUE : FALSE
 
 	if(get_pin_data(IC_OUTPUT, 1))
 		activate_pin(2)

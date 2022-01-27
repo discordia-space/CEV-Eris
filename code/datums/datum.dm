@@ -12,14 +12,14 @@
 #endif
 
 /*
-// The following vars cannot be edited by anyone
+// The following69ars cannot be edited by anyone
 /datum/VV_static()
 	return ..() + list("gc_destroyed", "is_processing")
 */
 
 // Default implementation of clean-up code.
 // This should be overridden to remove all references pointing to the object being destroyed.
-// Return the appropriate QDEL_HINT; in most cases this is QDEL_HINT_QUEUE.
+// Return the appropriate QDEL_HINT; in69ost cases this is QDEL_HINT_QUEUE.
 /datum/proc/Destroy(force=FALSE)
 	tag = null
 	var/list/timers = active_timers
@@ -36,7 +36,7 @@
 
 	var/list/dc = datum_components
 	if(dc)
-		var/all_components = dc[/datum/component]
+		var/all_components = dc69/datum/component69
 		if(length(all_components))
 			for(var/I in all_components)
 				var/datum/component/C = I
@@ -49,7 +49,7 @@
 	var/list/lookup = comp_lookup
 	if(lookup)
 		for(var/sig in lookup)
-			var/list/comps = lookup[sig]
+			var/list/comps = lookup69sig69
 			if(length(comps))
 				for(var/i in comps)
 					var/datum/component/comp = i
@@ -60,7 +60,7 @@
 		comp_lookup = lookup = null
 
 	for(var/target in signal_procs)
-		UnregisterSignal(target, signal_procs[target])
+		UnregisterSignal(target, signal_procs69target69)
 	//END: ECS SHIT
 
 	return QDEL_HINT_QUEUE

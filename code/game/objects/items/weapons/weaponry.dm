@@ -1,6 +1,6 @@
 /obj/item/energy_net
 	name = "energy net"
-	desc = "A net made of green energy."
+	desc = "A net69ade of green energy."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 	throwforce = 0
@@ -9,33 +9,33 @@
 
 /obj/item/energy_net/dropped()
 	spawn(10)
-		if(src) qdel(src)
+		if(src) 69del(src)
 
 /obj/item/energy_net/throw_impact(atom/hit_atom)
 	..()
 
 	var/mob/living/M = hit_atom
 
-	if(!istype(M) || locate(/obj/effect/energy_net) in M.loc)
-		qdel(src)
+	if(!istype(M) || locate(/obj/effect/energy_net) in69.loc)
+		69del(src)
 		return 0
 
 	var/turf/T = get_turf(M)
 	if(T)
 		var/obj/effect/energy_net/net = new net_type(T)
-		net.layer = M.layer+1
+		net.layer =69.layer+1
 		M.captured = 1
-		net.affecting = M
-		T.visible_message("[M] was caught in an energy net!")
-		qdel(src)
+		net.affecting =69
+		T.visible_message("69M69 was caught in an energy net!")
+		69del(src)
 
-	// If we miss or hit an obstacle, we still want to delete the net.
+	// If we69iss or hit an obstacle, we still want to delete the net.
 	spawn(10)
-		if(src) qdel(src)
+		if(src) 69del(src)
 
 /obj/effect/energy_net
 	name = "energy net"
-	desc = "A net made of green energy."
+	desc = "A net69ade of green energy."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 
@@ -73,17 +73,17 @@
 	if(health <=0)
 		density = FALSE
 		src.visible_message("The energy net is torn apart!")
-		qdel(src)
+		69del(src)
 	return
 
 /obj/effect/energy_net/Process()
 
 	if(isnull(affecting) || affecting.loc != loc)
-		qdel(src)
+		69del(src)
 		return
 
 	// Countdown begin set to -1 will stop the teleporter from firing.
-	// Clientless mobs can be netted but they will not teleport or decrement the timer.
+	// Clientless69obs can be netted but they will not teleport or decrement the timer.
 	var/mob/living/M = affecting
 	if(countdown == -1 || (istype(M) && !M.client))
 		return
@@ -121,7 +121,7 @@
 	healthcheck()
 	return
 
-/obj/effect/energy_net/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/energy_net/attackby(obj/item/W as obj,69ob/user as69ob)
 	health -= W.force
 	healthcheck()
 	..()

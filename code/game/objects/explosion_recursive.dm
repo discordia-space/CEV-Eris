@@ -28,8 +28,8 @@ proc/explosion_rec(turf/epicenter, power)
 		if(get_dist(W, epicenter) < 10)
 			W.react_explosion(epicenter, power)
 
-	message_admins("Explosion with size ([power]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z])")
-	log_game("Explosion with size ([power]) in area [epicenter.loc.name] ")
+	message_admins("Explosion with size (69power69) in area 69epicenter.loc.name69 (69epicenter.x69,69epicenter.y69,69epicenter.z69)")
+	log_game("Explosion with size (69power69) in area 69epicenter.loc.name69 ")
 
 	playsound(epicenter, 'sound/effects/explosionfar.ogg', 100, 1, round(power*2,1) )
 	playsound(epicenter, "explosion", 100, 1, round(power,1) )
@@ -37,20 +37,20 @@ proc/explosion_rec(turf/epicenter, power)
 	explosion_in_progress = 1
 	explosion_turfs = list()
 
-	explosion_turfs[epicenter] = power
+	explosion_turfs69epicenter69 = power
 
-	//This steap handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the maximum possible amount of power dealt to it.
+	//This steap handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the69aximum possible amount of power dealt to it.
 	for(var/direction in cardinal)
 		var/turf/T = get_step(epicenter, direction)
 		T.explosion_spread(power - epicenter.explosion_resistance, direction)
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
 	for(var/turf/T in explosion_turfs)
-		if(explosion_turfs[T] <= 0) continue
+		if(explosion_turfs69T69 <= 0) continue
 		if(!T) continue
 
 		//Wow severity looks confusing to calculate... Fret not, I didn't leave you with any additional instructions or help. (just kidding, see the line under the calculation)
-		var/severity = 4 - round(max(min( 3, ((explosion_turfs[T] - T.explosion_resistance) / (max(3,(power/3)))) ) ,1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
+		var/severity = 4 - round(max(min( 3, ((explosion_turfs69T69 - T.explosion_resistance) / (max(3,(power/3)))) ) ,1), 1)								//sanity			effective power on tile				divided by either 3 or one third the total explosion power
 								//															One third because there are three power levels and I
 								//															want each one to take up a third of the crater
 		var/x = T.x
@@ -91,8 +91,8 @@ proc/explosion_rec(turf/epicenter, power)
 /turf/simulated/wall
 	explosion_resistance = 10
 
-//Code-wise, a safe value for power is something up to ~25 or ~30.. This does quite a bit of damage to the station.
-//direction is the direction that the spread took to come to this tile. So it is pointing in the main blast direction - meaning where this tile should spread most of it's force.
+//Code-wise, a safe69alue for power is something up to ~25 or ~30.. This does 69uite a bit of damage to the station.
+//direction is the direction that the spread took to come to this tile. So it is pointing in the69ain blast direction -69eaning where this tile should spread69ost of it's force.
 /turf/proc/explosion_spread(power, direction)
 	if(power <= 0)
 		return
@@ -102,9 +102,9 @@ proc/explosion_rec(turf/epicenter, power)
 	new/obj/effect/debugging/marker(src)
 	*/
 
-	if(explosion_turfs[src] >= power)
+	if(explosion_turfs69src69 >= power)
 		return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
-	explosion_turfs[src] = power
+	explosion_turfs69src69 = power
 
 	var/spread_power = power - src.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
 	for(var/obj/O in src)

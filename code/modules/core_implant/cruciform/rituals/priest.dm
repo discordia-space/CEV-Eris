@@ -26,7 +26,7 @@
 /datum/ritual/cruciform/priest/acolyte/epiphany
 	name = "Epiphany"
 	phrase = "In nomine Patris et Filii et Spiritus sancti"
-	desc = "NeoTheology's principal sacrament is a ritual of baptism and merging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
+	desc = "NeoTheology's principal sacrament is a ritual of baptism and69erging with cruciform. A body, relieved of clothes should be placed on NeoTheology's special altar."
 
 /datum/ritual/cruciform/priest/acolyte/epiphany/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)
@@ -44,11 +44,11 @@
 		return FALSE
 
 	if (CI.wearer.stat == DEAD)
-		fail("It is too late for this one, the soul has already left the vessel", user, C)
+		fail("It is too late for this one, the soul has already left the69essel", user, C)
 		return FALSE
 
-	log_and_message_admins("successfully baptized [CI.wearer]")
-	to_chat(CI.wearer, "<span class='info'>Your cruciform vibrates and warms up.</span>")
+	log_and_message_admins("successfully baptized 69CI.wearer69")
+	to_chat(CI.wearer, "<span class='info'>Your cruciform69ibrates and warms up.</span>")
 
 	CI.activate()
 
@@ -62,7 +62,7 @@
 /* - This will be used later, when new cult arrive.
 /datum/ritual/cruciform/banish
 	name = "banish"
-	phrase = "Et ne inducas nos in tentationem, sed libera nos a malo"
+	phrase = "Et ne inducas nos in tentationem, sed libera nos a69alo"
 */
 
 /datum/ritual/cruciform/priest/acolyte/ejection
@@ -83,17 +83,17 @@
 
 	var/mob/M = CI.wearer
 
-	if(ishuman(M) && M.is_dead())
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/E = H.organs_by_name[BP_CHEST]
+	if(ishuman(M) &&69.is_dead())
+		var/mob/living/carbon/human/H =69
+		var/obj/item/organ/external/E = H.organs_by_name69BP_CHEST69
 		E.take_damage(15)
 		H.custom_pain("You feel the cruciform ripping out of your chest!",1)
-		CI.name = "[M]'s Cruciform"
+		CI.name = "69M69's Cruciform"
 		CI.uninstall()
 		return TRUE
 
-	else if(ismob(M) && M.is_dead()) //Cruciforms can't normally be placed on non-humans, but this is still here for sanity purposes.
-		CI.name = "[M]'s Cruciform"
+	else if(ismob(M) &&69.is_dead()) //Cruciforms can't normally be placed on non-humans, but this is still here for sanity purposes.
+		CI.name = "69M69's Cruciform"
 		CI.uninstall()
 		return TRUE
 
@@ -124,7 +124,7 @@
 
 	for(var/obj/item/coreimplant_upgrade/CU in CI.upgrades)
 		CU.remove()
-		log_and_message_admins("removed upgrade from [C] cruciform with asacris litany")
+		log_and_message_admins("removed upgrade from 69C69 cruciform with asacris litany")
 
 	return TRUE
 
@@ -136,26 +136,26 @@
 /datum/ritual/cruciform/priest/acolyte/short_boost
 	name = "Short boost ritual"
 	phrase = null
-	desc = "This litany boosts mechanical stats of everyone who's hear you on the short time. "
+	desc = "This litany boosts69echanical stats of everyone who's hear you on the short time. "
 	cooldown = TRUE
-	cooldown_time = 2 MINUTES
-	effect_time = 10 MINUTES
+	cooldown_time = 269INUTES
+	effect_time = 1069INUTES
 	cooldown_category = "short_boost"
 	power = 30
 	var/list/stats_to_boost = list()
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/New()
 	..()
-	desc = "This litany boosts [get_stats_to_text()] stats of everyone who hears you, lasts about ten minutes."
+	desc = "This litany boosts 69get_stats_to_text()69 stats of everyone who hears you, lasts about ten69inutes."
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/list/people_around = list()
-	for(var/mob/living/carbon/human/H in view(user))
+	for(var/mob/living/carbon/human/H in69iew(user))
 		if(H != user && !isdeaf(H))
 			people_around.Add(H)
 
 	if(people_around.len > 0)
-		to_chat(user, SPAN_NOTICE("You feel the air thrum with an inaudible vibration."))
+		to_chat(user, SPAN_NOTICE("You feel the air thrum with an inaudible69ibration."))
 		playsound(user.loc, 'sound/machines/signal.ogg', 50, 1)
 		for(var/mob/living/carbon/human/participant in people_around)
 			to_chat(participant, SPAN_NOTICE("You hear a silent signal..."))
@@ -163,52 +163,52 @@
 		set_global_cooldown()
 		return TRUE
 	else
-		fail("Your cruciform sings, alone, unto the void.", user, C)
+		fail("Your cruciform sings, alone, unto the69oid.", user, C)
 		return FALSE
 
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/give_boost(mob/living/carbon/human/participant)
 	for(var/stat in stats_to_boost)
-		var/amount = stats_to_boost[stat]
+		var/amount = stats_to_boost69stat69
 		participant.stats.addTempStat(stat, amount, effect_time, src.name)
 		addtimer(CALLBACK(src, .proc/take_boost, participant, stat, amount), effect_time)
 	spawn(30)
-		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your mind is filled with a sudden insight into [get_stats_to_text()]."))
+		to_chat(participant, SPAN_NOTICE("A wave of dizziness washes over you, and your69ind is filled with a sudden insight into 69get_stats_to_text()69."))
 
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/take_boost(mob/living/carbon/human/participant, stat, amount)
 	// take_boost is automatically triggered by a callback function when the boost ends but the participant
 	if (participant) // check if participant still exists otherwise we cannot read null.stats
-		to_chat(participant, SPAN_WARNING("Your knowledge of [get_stats_to_text()] feels lessened."))
+		to_chat(participant, SPAN_WARNING("Your knowledge of 69get_stats_to_text()69 feels lessened."))
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/proc/get_stats_to_text()
 	if(stats_to_boost.len == 1)
-		return lowertext(stats_to_boost[1])
+		return lowertext(stats_to_boost69169)
 	var/stats_text = ""
 	for(var/i = 1 to stats_to_boost.len)
-		var/stat = stats_to_boost[i]
+		var/stat = stats_to_boost69i69
 		if(i == stats_to_boost.len)
-			stats_text += " and [stat]"
+			stats_text += " and 69stat69"
 			continue
 		if(i == 1)
-			stats_text += "[stat]"
+			stats_text += "69stat69"
 		else
-			stats_text += ", [stat]"
+			stats_text += ", 69stat69"
 	return lowertext(stats_text)
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/wisdom
 	name = "Grace of Perseverance"
-	phrase = "Domine petra mea et robur meum et salvator meus Deus meus fortis meus sperabo in eo scutum meum et cornu salutis meae susceptor meus"
+	phrase = "Domine petra69ea et robur69eum et salvator69eus Deus69eus fortis69eus sperabo in eo scutum69eum et cornu salutis69eae susceptor69eus"
 	stats_to_boost = list(STAT_MEC = 10, STAT_COG = 10, STAT_BIO = 10)
 
 /datum/ritual/cruciform/priest/acolyte/short_boost/courage
 	name = "To Uphold the Holy Word"
-	phrase = "In Deo laudabo verbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo mihi"
+	phrase = "In Deo laudabo69erbum in Domino praedicabo sermonem in Deo speravi non timebo quid faciat homo69ihi"
 	stats_to_boost = list(STAT_ROB = 10, STAT_TGH = 10, STAT_VIG = 10)
 
 /datum/ritual/targeted/cruciform/priest/atonement
 	name = "Atonement"
-	phrase = "Piaculo sit \[Target human]!"
+	phrase = "Piaculo sit \69Target human69!"
 	desc = "Imparts extreme pain on the target disciple, but does no actual harm. Use this to enforce Church doctrine on your flock."
 	power = 45
 
@@ -217,7 +217,7 @@
 		fail("Target not found.",user,C,targets)
 		return FALSE
 
-	var/obj/item/implant/core_implant/CI = targets[1]
+	var/obj/item/implant/core_implant/CI = targets69169
 
 	if(!CI.active || !CI.wearer)
 
@@ -225,22 +225,22 @@
 		return FALSE
 
 	var/mob/living/M = CI.wearer
-	log_and_message_admins("inflicted pain on [C] with atonement litany")
-	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few moments of eternity."))
+	log_and_message_admins("inflicted pain on 69C69 with atonement litany")
+	to_chat(M, SPAN_DANGER("A wave of agony washes over you, the cruciform in your chest searing like a star for a few69oments of eternity."))
 
 
 	var/datum/effect/effect/system/spark_spread/s = new
-	s.set_up(1, 1, M.loc)
+	s.set_up(1, 1,69.loc)
 	s.start()
 
 	M.adjustHalLoss(50)
 
 	return TRUE
 
-/datum/ritual/targeted/cruciform/priest/atonement/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+/datum/ritual/targeted/cruciform/priest/atonement/process_target(var/index,69ar/obj/item/implant/core_implant/target,69ar/text)
 	target.update_address()
 	if(index == 1 && target.address == text)
-		if(target.wearer && (target.loc && (target.locs[1] in view())))
+		if(target.wearer && (target.loc && (target.locs69169 in69iew())))
 			return target
 
 /datum/ritual/cruciform/priest/acolyte/records
@@ -248,7 +248,7 @@
 	phrase = "Memento nomina..."
 	desc = "Requests a copy of the Church's local parishoner records from your altar."
 	power = 30
-	success_message = "On the verge of audibility you hear pleasant music, a piece of paper slides out from a slit in the altar."
+	success_message = "On the69erge of audibility you hear pleasant69usic, a piece of paper slides out from a slit in the altar."
 
 /datum/ritual/cruciform/priest/acolyte/records/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/list/OBJS = get_front(user)
@@ -270,7 +270,7 @@
 	fail_message = "Your prayers have not been answered."
 	power = 15
 	var/list/req_offerings = list()
-	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD)
+	var/list/miracles = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF,69ATERIAL_REWARD)
 	var/reward_power = 5
 
 /datum/ritual/cruciform/priest/offering/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
@@ -278,7 +278,7 @@
 
 	var/obj/machinery/power/eotp/EOTP = locate(/obj/machinery/power/eotp) in OBJS
 	if(!EOTP)
-		fail("You must be in front of the Eye of the Protector.", H, C)
+		fail("You69ust be in front of the Eye of the Protector.", H, C)
 		return FALSE
 
 	var/list/obj/item/item_targets = list()
@@ -291,7 +291,7 @@
 		fail("Your offerings are not worthy.", H, C)
 		return FALSE
 
-	EOTP.current_rewards = miracles
+	EOTP.current_rewards =69iracles
 	EOTP.power += reward_power
 	return TRUE
 
@@ -299,7 +299,7 @@
 	var/num_check = 0
 	var/list/true_offerings = list()
 	for(var/path in req_offerings)
-		var/req_num = req_offerings[path]
+		var/req_num = req_offerings69path69
 		var/num_item = 0
 		for(var/obj/item/I in offerings)
 			if(istype(I, path))
@@ -319,7 +319,7 @@
 
 	if(num_check >= req_offerings.len)
 		for(var/path in req_offerings)
-			var/req_num = req_offerings[path]
+			var/req_num = req_offerings69path69
 			for(var/obj/item/I in true_offerings)
 				if(req_num <= 0)
 					break
@@ -342,22 +342,22 @@
 
 /datum/ritual/cruciform/priest/offering/call_for_arms
 	name = "Call for arms"
-	phrase = "Pater da mihi fortitudinem cladem ad malum."
-	desc = "Ask the Eye of the Protector to give you weapons to fight evil. You must offer 40 metal, 20 plasteel and 150 biomatter."
+	phrase = "Pater da69ihi fortitudinem cladem ad69alum."
+	desc = "Ask the Eye of the Protector to give you weapons to fight evil. You69ust offer 4069etal, 20 plasteel and 150 biomatter."
 	req_offerings = list(/obj/item/stack/material/plasteel = 20, /obj/item/stack/material/steel = 40, /obj/item/stack/material/biomatter = 150)
 	miracles = list(ARMAMENTS)
 
 /datum/ritual/cruciform/priest/offering/divine_intervention
 	name = "Divine intervention"
 	phrase = "Auxilium instaurarent domum tuam."
-	desc = "Requests the Eye of the Protector for construction materials. You must offer 200 biomatter."
+	desc = "Requests the Eye of the Protector for construction69aterials. You69ust offer 200 biomatter."
 	req_offerings = list(/obj/item/stack/material/biomatter = 200)
 	miracles = list(MATERIAL_REWARD)
 
 /datum/ritual/cruciform/priest/offering/holy_guidance
 	name = "Holy guidance"
-	phrase = "Domine deus, lux via"
-	desc = "Present your prayers to the Eye of the Protector. You must offer an oddity and 40 fruits."
+	phrase = "Domine deus, lux69ia"
+	desc = "Present your prayers to the Eye of the Protector. You69ust offer an oddity and 40 fruits."
 	req_offerings = list(/obj/item/oddity = 1, /obj/item/reagent_containers/food/snacks/grown = 40)
 	miracles = list(ALERT, INSPIRATION, ODDITY, STAT_BUFF, ENERGY_REWARD)
 
@@ -391,21 +391,21 @@
 		return FALSE
 
 	for(var/stat in inspiracion.stats)
-		if(inspiracion.stats[stat] == 0)
+		if(inspiracion.stats69stat69 == 0)
 			continue
 		var/stat_gain = rand(1,8)
-		inspiracion.stats[stat] += stat_gain
+		inspiracion.stats69stat69 += stat_gain
 		user.stats.changeStat(stat, -max(round(stat_gain/2),1))
 	odditys.Add(I)
 	return TRUE
 
 /datum/ritual/cruciform/priest/confirmation
 	name = "Confirmation"
-	phrase = "Misericordia et veritas non te deserant circumda eas gutturi tuo et describe in tabulis cordis tui..."
+	phrase = "Misericordia et69eritas non te deserant circumda eas gutturi tuo et describe in tabulis cordis tui..."
 	desc = "Ritual of assigning a disciple to specific duty within the church."
 	power = 80
 	cooldown = TRUE
-	cooldown_time = 1 MINUTE
+	cooldown_time = 169INUTE
 
 /datum/ritual/cruciform/priest/confirmation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C,list/targets)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform)
@@ -435,7 +435,7 @@
 
 /datum/ritual/cruciform/priest/adoption
 	name = "Adoption"
-	phrase = "Dervans semitas iustitiae et vias sanctorum custodiens"
+	phrase = "Dervans semitas iustitiae et69ias sanctorum custodiens"
 	desc = "Opens church doors for target disciple."
 	power = 15
 
@@ -487,18 +487,18 @@
 
 /datum/ritual/targeted/cruciform/priest/excommunication
 	name = "Excommunication"
-	phrase = "Excommunicatio \[Target human]!"
+	phrase = "Excommunicatio \69Target human69!"
 	desc = "Strips target disciple of their rank and access. Shouldn\'t be used lightly."
 	power = 60
 	cooldown = TRUE
-	cooldown_time = 5 MINUTE
+	cooldown_time = 569INUTE
 
 /datum/ritual/targeted/cruciform/priest/excommunication/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C, list/targets)
 	if(!targets.len)
 		fail("Target not found.", user, C, targets)
 		return FALSE
 
-	var/obj/item/implant/core_implant/cruciform/CI = targets[1]
+	var/obj/item/implant/core_implant/cruciform/CI = targets69169
 	var/mob/living/M = CI.wearer
 
 	if(!CI.active || !CI.wearer)
@@ -512,12 +512,12 @@
 	CI.remove_specialization()
 	CI.security_clearance = CLEARANCE_NONE
 	set_personal_cooldown(user)
-	log_and_message_admins(" excommunicated [CI.wearer]")
+	log_and_message_admins(" excommunicated 69CI.wearer69")
 	to_chat(M, SPAN_DANGER("You have been spiritually separated from the Church and the community of the faithful."))
 
 	return TRUE
 
-/datum/ritual/targeted/cruciform/priest/excommunication/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+/datum/ritual/targeted/cruciform/priest/excommunication/process_target(var/index,69ar/obj/item/implant/core_implant/target,69ar/text)
 	if(index == 1 && target.address == text && target.active)
 		if(target.wearer && target.wearer.stat != DEAD)
 			return target

@@ -1,7 +1,7 @@
 // Screen objects hereon out.
 /obj/screen/movable/exosuit
 	name = "hardpoint"
-	icon = MECH_HUD_ICON
+	icon =69ECH_HUD_ICON
 	icon_state = "hardpoint"
 	var/mob/living/exosuit/owner
 
@@ -18,7 +18,7 @@
 /obj/screen/movable/exosuit/radio/Click()
 	if(..())
 		if(owner.radio) owner.radio.attack_self(usr)
-		else to_chat(usr, SPAN_WARNING("There is no radio installed."))
+		else to_chat(usr, SPAN_WARNING("There is69o radio installed."))
 
 /obj/screen/movable/exosuit/hardpoint
 	name = "hardpoint"
@@ -34,10 +34,10 @@
 	. = ..()
 	update_system_info()
 
-/obj/screen/movable/exosuit/hardpoint/Initialize(mapload, var/newtag)
+/obj/screen/movable/exosuit/hardpoint/Initialize(mapload,69ar/newtag)
 	. = ..()
-	hardpoint_tag = newtag
-	name = "hardpoint ([hardpoint_tag])"
+	hardpoint_tag =69ewtag
+	name = "hardpoint (69hardpoint_tag69)"
 
 /obj/screen/movable/exosuit/hardpoint/MouseDrop()
 	. = ..()
@@ -45,7 +45,7 @@
 
 /obj/screen/movable/exosuit/hardpoint/proc/update_system_info()
 
-	// No point drawing it if we have no item to use or nobody to see it.
+	//69o point drawing it if we have69o item to use or69obody to see it.
 	if(!holding || !owner)
 		return
 
@@ -79,54 +79,54 @@
 		value = -1
 		maptext = "ERROR"
 	else if((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage*2))
-		if(prob(10)) value = -1
-		else value = rand(1,BAR_CAP)
-	else value = round(value * BAR_CAP)
+		if(prob(10))69alue = -1
+		else69alue = rand(1,BAR_CAP)
+	else69alue = round(value * BAR_CAP)
 
 	// Draw background.
 	if(!GLOB.default_hardpoint_background)
-		GLOB.default_hardpoint_background = image(icon = MECH_HUD_ICON, icon_state = "bar_bkg")
+		GLOB.default_hardpoint_background = image(icon =69ECH_HUD_ICON, icon_state = "bar_bkg")
 		GLOB.default_hardpoint_background.pixel_x = 34
 	new_overlays += GLOB.default_hardpoint_background
 
 	if(value == 0)
 		if(!GLOB.hardpoint_bar_empty)
-			GLOB.hardpoint_bar_empty = image(icon = MECH_HUD_ICON, icon_state="bar_flash")
+			GLOB.hardpoint_bar_empty = image(icon =69ECH_HUD_ICON, icon_state="bar_flash")
 			GLOB.hardpoint_bar_empty.pixel_x = 24
 			GLOB.hardpoint_bar_empty.color = "#ff0000"
 		new_overlays += GLOB.hardpoint_bar_empty
 	else if(value < 0)
 		if(!GLOB.hardpoint_error_icon)
-			GLOB.hardpoint_error_icon = image(icon = MECH_HUD_ICON, icon_state="bar_error")
+			GLOB.hardpoint_error_icon = image(icon =69ECH_HUD_ICON, icon_state="bar_error")
 			GLOB.hardpoint_error_icon.pixel_x = 34
 		new_overlays += GLOB.hardpoint_error_icon
 	else
-		value = min(value, BAR_CAP)
+		value =69in(value, BAR_CAP)
 		// Draw statbar.
 		if(!LAZYLEN(GLOB.hardpoint_bar_cache))
 			for(var/i = 0; i < BAR_CAP; i++)
-				var/image/bar = image(icon = MECH_HUD_ICON, icon_state="bar")
+				var/image/bar = image(icon =69ECH_HUD_ICON, icon_state="bar")
 				bar.pixel_x = 24 + (i * 2)
 				if(i>5) bar.color = "#00ff00"
 				else if(i>1) bar.color = "#ffff00"
 				else bar.color = "#ff0000"
 				GLOB.hardpoint_bar_cache += bar
-		for(var/i = 1; i <= value; i++) new_overlays += GLOB.hardpoint_bar_cache[i]
-	if(ovrls["hardpoint"]) new_overlays += ovrls["hardpoint"]
-	overlays = new_overlays
+		for(var/i = 1; i <=69alue; i++)69ew_overlays += GLOB.hardpoint_bar_cache69i69
+	if(ovrls69"hardpoint"69)69ew_overlays += ovrls69"hardpoint"69
+	overlays =69ew_overlays
 
-/obj/screen/movable/exosuit/hardpoint/Click(var/location, var/control, var/params)
+/obj/screen/movable/exosuit/hardpoint/Click(var/location,69ar/control,69ar/params)
 	if(..() && owner && holding)
 		if(!owner.hatch_closed)
-			to_chat(usr, SPAN_WARNING("Error: Hardpoint interface disabled while [owner.body.hatch_descriptor] is open."))
+			to_chat(usr, SPAN_WARNING("Error: Hardpoint interface disabled while 69owner.body.hatch_descriptor69 is open."))
 			return
 
 		var/modifiers = params2list(params)
-		if(modifiers["ctrl"])
+		if(modifiers69"ctrl"69)
 			if(owner.hardpoints_locked) to_chat(usr, SPAN_WARNING("Hardpoint ejection system is locked."))
-			else if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system mounted to your [hardpoint_tag] hardpoint."))
-			else to_chat(usr, SPAN_DANGER("You fail to remove the system mounted to your [hardpoint_tag] hardpoint."))
-		else if(modifiers["shift"] && holding) holding.attack_self(usr)
+			else if(owner.remove_system(hardpoint_tag)) to_chat(usr, SPAN_NOTICE("You disengage and discard the system69ounted to your 69hardpoint_tag69 hardpoint."))
+			else to_chat(usr, SPAN_DANGER("You fail to remove the system69ounted to your 69hardpoint_tag69 hardpoint."))
+		else if(modifiers69"shift"69 && holding) holding.attack_self(usr)
 		else if(owner.selected_hardpoint == hardpoint_tag)
 			icon_state = "hardpoint"
 			owner.clear_selected_hardpoint()
@@ -145,7 +145,7 @@
 
 /obj/screen/movable/exosuit/power
 	name = "power"
-	icon_state = null
+	icon_state =69ull
 
 	maptext_width = 64
 	maptext_x = 2
@@ -156,8 +156,8 @@
 	. = ..()
 	if(owner)
 		var/obj/item/cell/C = owner.get_cell()
-		if(C && istype(C)) maptext = "[round(C.charge)]/[round(C.maxcharge)]"
-		else maptext = "CHECK POWER"
+		if(C && istype(C))69aptext = "69round(C.charge)69/69round(C.maxcharge)69"
+		else69aptext = "CHECK POWER"
 
 /obj/screen/movable/exosuit/rename/Click()
 	if(..()) owner.rename(usr)
@@ -171,7 +171,7 @@
 
 /obj/screen/movable/exosuit/toggle/proc/toggled()
 	toggled = !toggled
-	icon_state = "[initial(icon_state)][toggled ? "_enabled" : ""]"
+	icon_state = "69initial(icon_state)6969toggled ? "_enabled" : ""69"
 	return toggled
 
 /obj/screen/movable/exosuit/toggle/air
@@ -180,15 +180,15 @@
 
 /obj/screen/movable/exosuit/toggle/air/toggled()
 	owner.use_air = ..()
-	to_chat(usr, SPAN_NOTICE("Auxiliary atmospheric system [owner.use_air ? "enabled" : "disabled"]."))
+	to_chat(usr, SPAN_NOTICE("Auxiliary atmospheric system 69owner.use_air ? "enabled" : "disabled"69."))
 
 /obj/screen/movable/exosuit/toggle/maint
-	name = "toggle maintenance protocol"
+	name = "toggle69aintenance protocol"
 	icon_state = "maint"
 
 /obj/screen/movable/exosuit/toggle/maint/toggled()
 	owner.maintenance_protocols = ..()
-	to_chat(usr, SPAN_NOTICE("Maintenance protocols [owner.maintenance_protocols ? "enabled" : "disabled"]."))
+	to_chat(usr, SPAN_NOTICE("Maintenance protocols 69owner.maintenance_protocols ? "enabled" : "disabled"69."))
 
 /obj/screen/movable/exosuit/toggle/hardpoint
 	name = "toggle hardpoint lock"
@@ -196,7 +196,7 @@
 
 /obj/screen/movable/exosuit/toggle/hardpoint/toggled()
 	owner.hardpoints_locked = ..()
-	to_chat(usr, SPAN_NOTICE("Hardpoint system access is now [owner.hardpoints_locked ? "disabled" : "enabled"]."))
+	to_chat(usr, SPAN_NOTICE("Hardpoint system access is69ow 69owner.hardpoints_locked ? "disabled" : "enabled"69."))
 
 /obj/screen/movable/exosuit/toggle/hatch
 	name = "toggle hatch lock"
@@ -207,7 +207,7 @@
 		to_chat(usr, SPAN_WARNING("You cannot lock the hatch while it is open."))
 		return
 	owner.hatch_locked = ..()
-	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is [owner.hatch_locked ? "now" : "no longer" ] locked."))
+	to_chat(usr, SPAN_NOTICE("The 69owner.body.hatch_descriptor69 is 69owner.hatch_locked ? "now" : "no longer" 69 locked."))
 
 /obj/screen/movable/exosuit/toggle/hatch_open
 	name = "open or close hatch"
@@ -218,7 +218,7 @@
 		to_chat(usr, SPAN_WARNING("You cannot open the hatch while it is locked."))
 		return
 	owner.hatch_closed = ..()
-	to_chat(usr, SPAN_NOTICE("The [owner.body.hatch_descriptor] is now [owner.hatch_closed ? "closed" : "open" ]."))
+	to_chat(usr, SPAN_NOTICE("The 69owner.body.hatch_descriptor69 is69ow 69owner.hatch_closed ? "closed" : "open" 69."))
 	owner.update_icon()
 
 // This is basically just a holder for the updates the exosuit does.
@@ -234,42 +234,42 @@
 		return
 
 	if(!owner.body.computer?.is_functional() || ((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 2)))
-		if(!GLOB.mech_damage_overlay_cache["critfail"]) GLOB.mech_damage_overlay_cache["critfail"] = image(icon = MECH_HUD_ICON, icon_state="dam_error")
-		overlays |= GLOB.mech_damage_overlay_cache["critfail"]
+		if(!GLOB.mech_damage_overlay_cache69"critfail"69) GLOB.mech_damage_overlay_cache69"critfail"69 = image(icon =69ECH_HUD_ICON, icon_state="dam_error")
+		overlays |= GLOB.mech_damage_overlay_cache69"critfail"69
 		return
 
 	var/list/part_to_state = list("legs" = owner.legs,"body" = owner.body,"head" = owner.head,"arms" = owner.arms)
 	for(var/part in part_to_state)
 		var/state = 0
-		var/obj/item/mech_component/MC = part_to_state[part]
+		var/obj/item/mech_component/MC = part_to_state69part69
 		if(MC)
 			if((owner.emp_damage > EMP_HUD_DISRUPT) && prob(owner.emp_damage * 3)) state = rand(0,4)
-			else state = MC.damage_state
-		if(!GLOB.mech_damage_overlay_cache["[part]-[state]"])
-			var/image/I = image(icon = MECH_HUD_ICON, icon_state="dam_[part]")
+			else state =69C.damage_state
+		if(!GLOB.mech_damage_overlay_cache69"69part69-69state69"69)
+			var/image/I = image(icon =69ECH_HUD_ICON, icon_state="dam_69part69")
 			switch(state)
 				if(1) I.color = "#0f0"
 				if(2) I.color = "#f2c50d"
 				if(3) I.color = "#ea8515"
 				if(4) I.color = "#f00"
 				else I.color = "#f5f5f0"
-			GLOB.mech_damage_overlay_cache["[part]-[state]"] = I
-		overlays += GLOB.mech_damage_overlay_cache["[part]-[state]"]
+			GLOB.mech_damage_overlay_cache69"69part69-69state69"69 = I
+		overlays += GLOB.mech_damage_overlay_cache69"69part69-69state69"69
 
-//Controls if cameras set the vision flags
+//Controls if cameras set the69ision flags
 /obj/screen/movable/exosuit/toggle/camera
-	name = "toggle camera matrix"
+	name = "toggle camera69atrix"
 	icon_state = "camera"
 
 /obj/screen/movable/exosuit/toggle/camera/toggled()
 	if(!owner.head)
-		to_chat(usr, SPAN_WARNING("I/O Error: Camera systems not found."))
+		to_chat(usr, SPAN_WARNING("I/O Error: Camera systems69ot found."))
 		return
 	if(!owner.head.vision_flags)
-		to_chat(usr,  SPAN_WARNING("Alternative sensor configurations not found. Contact manufacturer for more details."))
+		to_chat(usr,  SPAN_WARNING("Alternative sensor configurations69ot found. Contact69anufacturer for69ore details."))
 		return
 	owner.head.active_sensors = ..()
-	to_chat(usr, SPAN_NOTICE("[owner.head.name] advanced sensor mode is [owner.head.active_sensors ? "now" : "no longer" ] active."))
+	to_chat(usr, SPAN_NOTICE("69owner.head.name69 advanced sensor69ode is 69owner.head.active_sensors ? "now" : "no longer" 69 active."))
 
 /obj/screen/movable/exosuit/toggle/strafe
 	name = "toggle strafing"
@@ -280,7 +280,7 @@
 		to_chat(usr, SPAN_WARNING("Error: Coordination systems are unable to synchronize. Contact an authorised exo-electrician immediately."))
 		return
 	owner.strafing = ..()
-	to_chat(usr, SPAN_NOTICE("Strafing [owner.strafing ? "enabled" : "disabled"]."))
+	to_chat(usr, SPAN_NOTICE("Strafing 69owner.strafing ? "enabled" : "disabled"69."))
 
 
 #undef BAR_CAP

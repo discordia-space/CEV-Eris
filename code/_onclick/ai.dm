@@ -4,18 +4,18 @@
 	Note currently ai restrained() returns 0 in all cases,
 	therefore restrained code has been removed
 
-	The AI can double click to move the camera (this was already true but is cleaner),
-	or double click a mob to track them.
+	The AI can double click to69ove the camera (this was already true but is cleaner),
+	or double click a69ob to track them.
 
-	Note that AI have no need for the adjacency proc, and so this proc is a lot cleaner.
+	Note that AI have69o69eed for the adjacency proc, and so this proc is a lot cleaner.
 */
-/mob/living/silicon/ai/can_click()
+/mob/livin69/silicon/ai/can_click()
 	if (stat || control_disabled)
 		return FALSE
 	return ..()
 
-/mob/living/silicon/ai/DblClickOn(var/atom/A, params)
-	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
+/mob/livin69/silicon/ai/DblClickOn(var/atom/A, params)
+	if(client.buildmode) // comes after object.Click to allow buildmode 69ui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
 
@@ -25,50 +25,50 @@
 		A.move_camera_by_click()
 
 
-/mob/living/silicon/ai/ClickOn(var/atom/A, params)
+/mob/livin69/silicon/ai/ClickOn(var/atom/A, params)
 	if(!can_click())
 		return
 	next_click = world.time + 1
 
-	if(client.buildmode) // comes after object.Click to allow buildmode gui objects to be clicked
+	if(client.buildmode) // comes after object.Click to allow buildmode 69ui objects to be clicked
 		build_click(src, client.buildmode, params, A)
 		return
 
 
 	var/list/modifiers = params2list(params)
-	if(modifiers["shift"] && modifiers["ctrl"])
+	if(modifiers69"shift"69 &&69odifiers69"ctrl"69)
 		CtrlShiftClickOn(A)
 		return
-	if(modifiers["middle"])
+	if(modifiers69"middle6969)
 		MiddleClickOn(A)
 		return
-	if(modifiers["shift"])
+	if(modifiers69"shift6969)
 		ShiftClickOn(A)
 		return
-	if(modifiers["alt"]) // alt and alt-gr (rightalt)
+	if(modifiers69"alt6969) // alt and alt-69r (ri69htalt)
 		AltClickOn(A)
 		return
-	if(modifiers["ctrl"])
+	if(modifiers69"ctrl6969)
 		CtrlClickOn(A)
 		return
 
 
 	if(multitool_mode && isobj(A))
 		var/obj/O = A
-		var/datum/extension/multitool/MT = get_extension(O, /datum/extension/multitool)
+		var/datum/extension/multitool/MT = 69et_extension(O, /datum/extension/multitool)
 		if(MT)
 			MT.interact(aiMulti, src)
 			return
 
 	if(aiCamera.in_camera_mode)
-		if(!get_turf(A))
+		if(!69et_turf(A))
 			return
 		aiCamera.camera_mode_off()
-		aiCamera.captureimage(A, usr)
+		aiCamera.captureima69e(A, usr)
 		return
 
 	/*
-		AI restrained() currently does nothing
+		AI restrained() currently does69othin69
 	if(restrained())
 		RestrainedClickOn(A)
 	else
@@ -77,14 +77,14 @@
 	A.attack_ai(src)
 
 /*
-	AI has no need for the UnarmedAttack() and RangedAttack() procs,
-	because the AI code is not generic;	attack_ai() is used instead.
+	AI has69o69eed for the UnarmedAttack() and Ran69edAttack() procs,
+	because the AI code is69ot 69eneric;	attack_ai() is used instead.
 	The below is only really for safety, or you can alter the way
 	it functions and re-insert it above.
 */
-/mob/living/silicon/ai/UnarmedAttack(atom/A)
+/mob/livin69/silicon/ai/UnarmedAttack(atom/A)
 	A.attack_ai(src)
-/mob/living/silicon/ai/RangedAttack(atom/A)
+/mob/livin69/silicon/ai/Ran69edAttack(atom/A)
 	A.attack_ai(src)
 
 /atom/proc/attack_ai(mob/user)
@@ -92,33 +92,33 @@
 
 /*
 	Since the AI handles shift, ctrl, and alt-click differently
-	than anything else in the game, atoms have separate procs
-	for AI shift, ctrl, and alt clicking.
+	than anythin69 else in the 69ame, atoms have separate procs
+	for AI shift, ctrl, and alt clickin69.
 */
 
-/mob/living/silicon/ai/ShiftClickOn(var/atom/A)
+/mob/livin69/silicon/ai/ShiftClickOn(var/atom/A)
 	if(A.AIShiftClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/CtrlClickOn(var/atom/A)
+/mob/livin69/silicon/ai/CtrlClickOn(var/atom/A)
 	if(A.AICtrlClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/AltClickOn(var/atom/A)
+/mob/livin69/silicon/ai/AltClickOn(var/atom/A)
 	if(A.AIAltClick(src))
 		return
 	..()
 
-/mob/living/silicon/ai/MiddleClickOn(var/atom/A)
+/mob/livin69/silicon/ai/MiddleClickOn(var/atom/A)
 	if(A.AIMiddleClick(src))
 		return
 	..()
 
 /*
-	The following criminally helpful code is just the previous code cleaned up;
-	I have no idea why it was in atoms.dm instead of respective files.
+	The followin69 criminally helpful code is just the previous code cleaned up;
+	I have69o idea why it was in atoms.dm instead of respective files.
 */
 
 /atom/proc/AICtrlShiftClick()
@@ -153,7 +153,7 @@
 	return 1
 
 /obj/machinery/turretid/AICtrlClick(var/mob/user) //turns off/on Turrets
-	Topic(src, list("command"="enable", "value"="[!enabled]"))
+	Topic(src, list("command"="enable", "value"="69!enable6969"))
 	return 1
 
 /atom/proc/AIAltClick(var/mob/user)
@@ -164,60 +164,60 @@
 		// permanent shock
 		Topic(src, list("command"="electrify_permanently", "activate" = "1"))
 	else
-		// disable/6 is not in Topic; disable/5 disables both temporary and permanent shock
+		// disable/6 is69ot in Topic; disable/5 disables both temporary and permanent shock
 		Topic(src, list("command"="electrify_permanently", "activate" = "0"))
 	return 1
 
-/obj/machinery/turretid/AIAltClick(var/mob/user) //toggles lethal on turrets
-	Topic(src, list("command"="lethal", "value"="[!lethal]"))
+/obj/machinery/turretid/AIAltClick(var/mob/user) //to6969les lethal on turrets
+	Topic(src, list("command"="lethal", "value"="69!letha6969"))
 	return 1
 
-/atom/proc/AIMiddleClick(var/mob/living/silicon/user)
+/atom/proc/AIMiddleClick(var/mob/livin69/silicon/user)
 	return 0
 
-/obj/machinery/door/airlock/AIMiddleClick(var/mob/user) // Toggles door bolt lights.
+/obj/machinery/door/airlock/AIMiddleClick(var/mob/user) // To6969les door bolt li69hts.
 
 	if(..())
 		return
 
-	if(!src.lights)
-		Topic(src, list("command"="lights", "activate" = "1"))
+	if(!src.li69hts)
+		Topic(src, list("command"="li69hts", "activate" = "1"))
 	else
-		Topic(src, list("command"="lights", "activate" = "0"))
+		Topic(src, list("command"="li69hts", "activate" = "0"))
 	return 1
 
 //
-// Override AdjacentQuick for AltClicking
+// Override Adjacent69uick for AltClickin69
 //
 
-/mob/living/silicon/ai/TurfAdjacent(var/turf/T)
+/mob/livin69/silicon/ai/TurfAdjacent(var/turf/T)
 	return (cameranet && cameranet.checkTurfVis(T))
 
 //
-//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//	On Ctrl-Click will turn on if off otherwise will switch between Filterin69 and Panic Siphon
 //
 /obj/machinery/alarm/AICtrlClick(var/mob/user)
 	if(mode == AALARM_MODE_OFF)
-		Topic(src, list("command"="mode", "mode" = AALARM_MODE_SCRUBBING))
+		Topic(src, list("command"="mode", "mode" = AALARM_MODE_SCRUBBIN69))
 	else
 		Topic(src, list("command"="mode", "mode" = AALARM_MODE_OFF))
 	return 1
 
 //
-//	On Alt-Click will cycle through modes
+//	On Alt-Click will cycle throu69h69odes
 //
 /obj/machinery/alarm/AIAltClick(var/mob/user)
 	if(mode == AALARM_MODE_LAST)
 		Topic(src, list("command"="mode", "mode" = AALARM_MODE_FIRST))
 	else
-		Topic(src, list("command"="mode", "mode" = mode+1))
+		Topic(src, list("command"="mode", "mode" =69ode+1))
 	return 1
 
 //
-//	On Ctrl-Click will turn on if off otherwise will switch between Filtering and Panic Siphon
+//	On Ctrl-Click will turn on if off otherwise will switch between Filterin69 and Panic Siphon
 //
 /obj/machinery/firealarm/AICtrlClick(var/mob/user)
-	var/area/A = get_area(src)
+	var/area/A = 69et_area(src)
 	if(A.fire)
 		Topic(src, list("status"="reset"))
 	else
@@ -239,22 +239,22 @@
 	return 1
 
 //
-//	On Ctrl-Click will turn on or off gas cooling system
+//	On Ctrl-Click will turn on or off 69as coolin69 system
 //
 /obj/machinery/atmospherics/unary/freezer/AICtrlClick(var/mob/user)
-	Topic(src, list("toggleStatus"="1"))
+	Topic(src, list("to6969leStatus"="1"))
 	return 1
 
 //
-//	On Ctrl-Click will turn on or off telecomms machinery
-//	ENABLE WHEN TCOMS UI WILL BE UPDATED TO NANOUI
+//	On Ctrl-Click will turn on or off telecomms69achinery
+//	ENABLE WHEN TCOMS UI WILL BE UPDATED TO69ANOUI
 /*
 /obj/machinery/telecomms/AICtrlClick(var/mob/user)
-	Topic(src, list("input"="toggle"))
+	Topic(src, list("input"="to6969le"))
 	return 1
 */
 
-//QOL feature, clicking on turf can toogle doors
+//69OL feature, clickin69 on turf can too69le doors
 /turf/AICtrlClick(var/mob/user)
 	var/obj/machinery/door/airlock/AL = locate(/obj/machinery/door/airlock) in src.contents
 	if(AL)

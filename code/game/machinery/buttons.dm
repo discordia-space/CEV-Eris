@@ -20,11 +20,11 @@
 		wifi_sender = new/datum/wifi/sender/button(_wifi_id, src)
 
 /obj/machinery/button/Destroy()
-	qdel(wifi_sender)
+	69del(wifi_sender)
 	wifi_sender = null
 	return ..()
 
-/obj/machinery/button/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/button/attackby(obj/item/W,69ob/user as69ob)
 	return attack_hand(user)
 
 /obj/machinery/button/attack_hand(mob/living/user)
@@ -59,7 +59,7 @@
 	icon_state = "light0"
 
 /obj/machinery/button/switch/update_icon()
-	icon_state = "light[active]"
+	icon_state = "light69active69"
 
 //alternate button with the same functionality, except has a door control sprite instead
 /obj/machinery/button/alternate
@@ -91,7 +91,7 @@
 	icon_state = "light0"
 
 /obj/machinery/button/toggle/switch/update_icon()
-	icon_state = "light[active]"
+	icon_state = "light69active69"
 
 //alternate button with the same toggle functionality, except has a door control sprite instead
 /obj/machinery/button/toggle/alternate
@@ -104,8 +104,8 @@
 		icon_state = "doorctrl2"
 
 //-------------------------------
-// Mass Driver Button
-//  Passes the activate call to a mass driver wifi sender
+//69ass Driver Button
+//  Passes the activate call to a69ass driver wifi sender
 //-------------------------------
 /obj/machinery/button/mass_driver
 	name = "mass driver button"

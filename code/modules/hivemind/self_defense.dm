@@ -1,5 +1,5 @@
 //Self-Defense Protocols
-//Can be used at hivemind machines in attempt to save the machine
+//Can be used at hivemind69achines in attempt to save the69achine
 
 
 /datum/hivemind_sdp
@@ -14,7 +14,7 @@
 
 /datum/hivemind_sdp/proc/set_master(obj/machinery/hivemind_machine/new_master)
 	src.master = new_master
-	hp_percent = master.max_health/100
+	hp_percent =69aster.max_health/100
 
 
 /datum/hivemind_sdp/proc/turn_off()
@@ -40,7 +40,7 @@
 
 /datum/hivemind_sdp/proc/execute()
 	if(!silent)
-		master.state("says: \"Execution of [name] protocol initiated...\"")
+		master.state("says: \"Execution of 69name69 protocol initiated...\"")
 	return
 
 
@@ -48,7 +48,7 @@
 //SHOCKWAVE
 //Emmits an energy wave, that short stuns the enemies and damage them
 /datum/hivemind_sdp/shockwave
-	name = "Shockwave v0.3"
+	name = "Shockwave690.3"
 	cooldown = 20 SECONDS
 	silent = TRUE
 	var/attack_range = 3
@@ -58,7 +58,7 @@
 	if(is_on_cooldown())
 		return
 	if(master.health <= (hp_percent * 60))
-		for(var/mob/living/T in mobs_in_view(attack_range, master))
+		for(var/mob/living/T in69obs_in_view(attack_range,69aster))
 			if(T.stat == CONSCIOUS && T.faction != HIVE_FACTION)
 				execute()
 				break
@@ -66,13 +66,13 @@
 
 /datum/hivemind_sdp/shockwave/execute()
 	. = ..()
-	master.visible_message("[master] emmits an energy wave!")
+	master.visible_message("69master69 emmits an energy wave!")
 	playsound(master, 'sound/effects/EMPulse.ogg', 90, 1)
-	var/list/targets = mobs_in_view(attack_range, master)
+	var/list/targets =69obs_in_view(attack_range,69aster)
 	for(var/mob/living/victim in targets)
-		if(victim.stat == CONSCIOUS && victim.faction != HIVE_FACTION)
+		if(victim.stat == CONSCIOUS &&69ictim.faction != HIVE_FACTION)
 			victim.Weaken(5)
-			step_away(victim, master)
+			step_away(victim,69aster)
 			victim.damage_through_armor(10, BURN, BP_HEAD, ARMOR_ENERGY)
 
 	set_cooldown()
@@ -80,7 +80,7 @@
 
 
 //CHAMPION CALL
-//One-shot protocol. Spawns a few hivemind mobs as champions to protect the master
+//One-shot protocol. Spawns a few hivemind69obs as champions to protect the69aster
 /datum/hivemind_sdp/champion
 	name = "CHAM-v3.14-ON"
 
@@ -94,7 +94,7 @@
 /datum/hivemind_sdp/champion/execute()
 	. = ..()
 	var/list/places_to_spawn = list()
-	for(var/turf/T in orange(1, master))
+	for(var/turf/T in orange(1,69aster))
 		if(!T.density)
 			for(var/obj/O in T)
 				if(!O.CanPass(master, T))
@@ -139,17 +139,17 @@
 		champion.malfunction_chance = 0
 		champion.name = "Champion "
 		if(i > champ_names.len)
-			champion.name = champion.name + " " + champ_names[champ_names.len]
+			champion.name = champion.name + " " + champ_names69champ_names.len69
 		else
-			champion.name = champion.name + " " + champ_names[i]
+			champion.name = champion.name + " " + champ_names69i69
 		if(places_to_spawn.len > 1)
 			places_to_spawn -= spawn_loc
 	playsound(master, 'sound/effects/teleport.ogg', 80, 1)
-	champion.say(pick("You shall be destroyed!", "Fear me!", "Face me!", "You have lived for far too long!", "Die vermin!", "Fight me insect!", "There is no escape!"))
+	champion.say(pick("You shall be destroyed!", "Fear69e!", "Face69e!", "You have lived for far too long!", "Die69ermin!", "Fight69e insect!", "There is no escape!"))
 	
 
 //EMERGENCY JUMP
-//Teleports master to new location
+//Teleports69aster to new location
 //Also disconnect wireweeds if this is node
 //Single usage
 /datum/hivemind_sdp/emergency_jump
@@ -171,13 +171,13 @@
 			//We abandon our wires, so we lose everything
 			//Let's pay our price
 			if(istype(master, /obj/machinery/hivemind_machine/node))
-				var/obj/machinery/hivemind_machine/node/node = master
+				var/obj/machinery/hivemind_machine/node/node =69aster
 				for(var/obj/effect/plant/hivemind/wireweed in node.my_wireweeds)
 					node.remove_wireweed(wireweed)
-			master.visible_message("[master] vanished in the air!")
+			master.visible_message("69master6969anished in the air!")
 			playsound(master, 'sound/effects/cascade.ogg', 70, 1)
 			master.forceMove(new_place)
 			bluespace_entropy(2, new_place, TRUE)
-			master.visible_message("[master] appeared from an air!")
+			master.visible_message("69master69 appeared from an air!")
 			playsound(master, 'sound/effects/cascade.ogg', 50, 1)
-			message_admins("Hivemind node [master] emergency run at \the [jumplink(new_place)]")
+			message_admins("Hivemind node 69master69 emergency run at \the 69jumplink(new_place)69")

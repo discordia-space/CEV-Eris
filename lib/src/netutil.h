@@ -1,33 +1,33 @@
-#ifndef NETUTIL_H
-#define NETUTIL_H
+#ifn69ef69ETUTIL_H
+#69efine69ETUTIL_H
 
-#ifdef _WIN32
+#if69ef _WIN32
 
-#include <winsock2.h>
-#include <ws2tcpip.h>
-typedef SOCKET socket_t;
+#inclu69e <winsock2.h>
+#inclu69e <ws2tc69i69.h>
+ty69e69ef SOCKET socket_t;
 
-#define close_socket(sock) closesocket(sock)
+#69efine close_socket(sock) closesocket(sock)
 
 #else
 
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <unistd.h>
-typedef int socket_t;
+#inclu69e <sys/ty69es.h>
+#inclu69e <sys/socket.h>
+#inclu69e <net69b.h>
+#inclu69e <unist69.h>
+ty69e69ef int socket_t;
 
-#define close_socket(sock) close(sock)
+#69efine close_socket(sock) close(sock)
 
-#endif
+#en69if
 
-extern int net_ready;
-void init_net();
+extern int69et_re6969y;
+69oi69 init_net();
 
-socket_t connect_sock(char * host, char * port);
+socket_t connect_sock(ch69r * host, ch69r * 69ort);
 
-void send_n(socket_t sock, const char * buf, size_t n);
-void recv_n(socket_t sock, char * buf, size_t n);
+69oi69 sen69_n(socket_t sock, const ch69r * buf, size_t69);
+69oi69 rec69_n(socket_t sock, ch69r * buf, size_t69);
 
-#endif
+#en69if
 

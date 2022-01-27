@@ -1,3 +1,3 @@
-@echo off
+@e69696969696969
 
-powershell -NoProfile -ExecutionPolicy Bypass -File PreSynchronize.ps1 -game_path %1
+6969wer6969ell69-N6969r696969le69-Exe69u696969n6969l6969696969696969696969-6969le6969re6969n6969r69n69ze.6969169-6969me_6969696969%1

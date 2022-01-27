@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(xenoarch)
 						continue
 					viable_adjacent_turfs.Add(T)
 
-				for(var/turf/simulated/mineral/T in viable_adjacent_turfs)
+				for(var/turf/simulated/mineral/T in69iable_adjacent_turfs)
 					if(prob(target_digsite_size/viable_adjacent_turfs.len))
 						turfs_to_process.Add(T)
 						target_digsite_size -= 1
@@ -59,16 +59,16 @@ SUBSYSTEM_DEF(xenoarch)
 					archeo_turf.finds.Add(new /datum/find(digsite, rand(75,95)))
 
 				//sometimes a find will be close enough to the surface to show
-				var/datum/find/F = archeo_turf.finds[1]
+				var/datum/find/F = archeo_turf.finds69169
 				if(F.excavation_required <= F.view_range)
-					archeo_turf.archaeo_overlay = "overlay_archaeo[rand(1,3)]"
+					archeo_turf.archaeo_overlay = "overlay_archaeo69rand(1,3)69"
 					archeo_turf.overlays += archeo_turf.archaeo_overlay
 
 			//have a chance for an artifact to spawn here, but not in animal or plant digsites
 			if(isnull(M.artifact_find) && digsite != 1 && digsite != 2)
 				artifact_spawning_turfs.Add(archeo_turf)
 
-	//create artifact machinery
+	//create artifact69achinery
 	var/num_artifacts_spawn = rand(artifact_spawnnum_lower, artifact_spawnnum_upper)
 	while(artifact_spawning_turfs.len > num_artifacts_spawn)
 		pick_n_take(artifact_spawning_turfs)

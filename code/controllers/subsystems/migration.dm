@@ -1,8 +1,8 @@
 /*
-	The migration subsystem handles burrows and the movement of various NPC mobs aboard Eris.
+	The69igration subsystem handles burrows and the69ovement of69arious NPC69obs aboard Eris.
 
-	It allows mobs to move between burrows, dispatches reinforcements to distress calls from mobs under attack,
-	and keeps track of all the burrows, negating any need for them to process individually most of the time
+	It allows69obs to69ove between burrows, dispatches reinforcements to distress calls from69obs under attack,
+	and keeps track of all the burrows, negating any need for them to process individually69ost of the time
 	This subsystem also handles spreading plants through burrows
 
 */
@@ -16,22 +16,22 @@ SUBSYSTEM_DEF(migration)
 
 	wait = 300 //Ticks once per 30 seconds
 
-	var/burrow_scan_interval = 5 MINUTES //Every 5 minutes, they'll scan and catalogue the lifeforms around them
-	var/burrow_plantspread_interval = 10 MINUTES //Every 10 minutes, plants near burrows will spread through them
-	var/burrow_migrate_interval = 9 MINUTES //Every 9 minutes, some mobs will move from a populated burrow to a different place
+	var/burrow_scan_interval = 569INUTES //Every 569inutes, they'll scan and catalogue the lifeforms around them
+	var/burrow_plantspread_interval = 1069INUTES //Every 1069inutes, plants near burrows will spread through them
+	var/burrow_migrate_interval = 969INUTES //Every 969inutes, some69obs will69ove from a populated burrow to a different place
 
 
 	var/next_scan = 0 //We'll do a scan as soon as round starts
-	var/next_migrate = 10 MINUTES
-	var/next_plantspread = 10 MINUTES
+	var/next_migrate = 1069INUTES
+	var/next_plantspread = 1069INUTES
 
-	var/migrate_chance = 15 //The chance, during each migration, for each populated burrow, that mobs will move from there to somewhere else
+	var/migrate_chance = 15 //The chance, during each69igration, for each populated burrow, that69obs will69ove from there to somewhere else
 
 
 	var/roundstart_burrows = 120
-	var/migrate_time = 20 SECONDS //How long it takes to move mobs from one burrow to another
+	var/migrate_time = 20 SECONDS //How long it takes to69ove69obs from one burrow to another
 	var/reinforcement_time = 20 SECONDS //How long it takes for reinforcements to arrive
-	var/plantspread_burrows_num = 3 //How many other burrows will each one with plants send them to
+	var/plantspread_burrows_num = 3 //How69any other burrows will each one with plants send them to
 
 
 
@@ -39,39 +39,39 @@ SUBSYSTEM_DEF(migration)
 	Burrow Creation
 *************************************************/
 /*
-	On initialize, the migration system generates a large number of burrows spread across the ship
+	On initialize, the69igration system generates a large number of burrows spread across the ship
 */
 /datum/controller/subsystem/migration/Initialize()
 	. = ..()
 	for (var/i = 0; i < roundstart_burrows; i++)
 		var/area/A = random_ship_area(FALSE, FALSE, FALSE)
-		var/turf/T = A.random_space() //Lets make sure the selected area is valid
+		var/turf/T = A.random_space() //Lets69ake sure the selected area is69alid
 		create_burrow(T)
 
 
 
 /*
 Called by roaches when they spawn.
-This proc will attempt to create a burrow against a wall, within view of the target location
+This proc will attempt to create a burrow against a wall, within69iew of the target location
 */
 /proc/create_burrow(var/turf/target)
 	if (!isOnShipLevel(target))
 		return
 
 	//First of all lets get a list of everything in dview.
-	//Dview is just a view call that ignores darkness. We're probably creating it in a dark maintenance tunnel
+	//Dview is just a69iew call that ignores darkness. We're probably creating it in a dark69aintenance tunnel
 	var/list/viewlist = dview(10, target)
 
 	var/list/possible_turfs = list()
 	//Now lets look at all the floors
-	for (var/turf/simulated/floor/F in viewlist)
+	for (var/turf/simulated/floor/F in69iewlist)
 
 
 		//No being under a low wall
 		if (F.is_wall)
 			continue
 
-		//No stacking multiple burrows per tile
+		//No stacking69ultiple burrows per tile
 		if (locate(/obj/structure/burrow) in F)
 			continue
 
@@ -88,24 +88,24 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		if (turf_is_external(F))
 			continue
 
-		//To be valid, the floor needs to have a wall in a cardinal direction
+		//To be69alid, the floor needs to have a wall in a cardinal direction
 		for (var/d in cardinal)
 			var/turf/T = get_step(F, d)
 			if (T.is_wall)
 				//Its got a wall!
-				possible_turfs[F] = T //We put this floor and its wall into the possible turfs list
+				possible_turfs69F69 = T //We put this floor and its wall into the possible turfs list
 
 
 
-	//This can happen, there's at least one room made of catwalks that has no floor, and thusly no burrow spots
+	//This can happen, there's at least one room69ade of catwalks that has no floor, and thusly no burrow spots
 	if (!possible_turfs.len)
 		return
 
 
-	//Alrighty, now we have a list of viable floors in view, lets pick one
+	//Alrighty, now we have a list of69iable floors in69iew, lets pick one
 	var/turf/floor = pick(possible_turfs)
 	//And we create a burrow there, passing in the associated wall as its anchor
-	var/obj/structure/burrow/B = new /obj/structure/burrow(floor, possible_turfs[floor])
+	var/obj/structure/burrow/B = new /obj/structure/burrow(floor, possible_turfs69floor69)
 	return B
 
 //Looks for a burrow, and creates one if an existing burrow isnt found
@@ -142,7 +142,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	next_scan = world.time + burrow_scan_interval
 
 
-//Some of the populated holes will migrate part or all of their population to a new burrow
+//Some of the populated holes will69igrate part or all of their population to a new burrow
 /datum/controller/subsystem/migration/proc/do_migrate()
 	for (var/obj/structure/burrow/B in populated_burrows)
 
@@ -155,21 +155,21 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		var/obj/structure/burrow/target = choose_burrow_target(B)
 
 		if (!target)
-			//Something must have gone horribly wrong
-			//This could only happen if all the burrows on the map were collapsed
+			//Something69ust have gone horribly wrong
+			//This could only happen if all the burrows on the69ap were collapsed
 			return
 
 		if (!B.population.len)
-			// There is no mob nearby for the migration
+			// There is no69ob nearby for the69igration
 			// Avoid division by 0 in summon_mobs
 			continue
 
-		//Alright now we know where to go, next up, how many are we sending?
-		var/percentage = migration_percentage()
+		//Alright now we know where to go, next up, how69any are we sending?
+		var/percentage =69igration_percentage()
 
 
 		//We have all the data we need, lets go!
-		B.migrate_to(target, migrate_time, percentage)
+		B.migrate_to(target,69igrate_time, percentage)
 
 	next_migrate = world.time + burrow_migrate_interval
 
@@ -184,14 +184,14 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		var/obj/structure/burrow/source = choose_burrow_source()
 
-		//If we fail to find a source, then we must have run out of populated burrows to draw reinforcements from.
+		//If we fail to find a source, then we69ust have run out of populated burrows to draw reinforcements from.
 		//Sorry! nobody's coming to help
 		if (!source)
 			break
 
 		B.reinforcements--
 
-		source.migrate_to(B, reinforcement_time, migration_percentage())
+		source.migrate_to(B, reinforcement_time,69igration_percentage())
 
 	//Whether they got their reinforcements or not, all distress calls are handled. Clear the list
 	distressed_burrows.Cut()
@@ -205,10 +205,10 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 
 /*
-	Picks a destination for migrating mobs.
-	High chance to reroll burrows that are outside of maintenance areas, to minimise incursions into crew space
+	Picks a destination for69igrating69obs.
+	High chance to reroll burrows that are outside of69aintenance areas, to69inimise incursions into crew space
 */
-/datum/controller/subsystem/migration/proc/choose_burrow_target(var/obj/structure/burrow/source, var/reroll_type = TRUE, var/reroll_prob = 99.5)
+/datum/controller/subsystem/migration/proc/choose_burrow_target(var/obj/structure/burrow/source,69ar/reroll_type = TRUE,69ar/reroll_prob = 99.5)
 	var/obj/structure/burrow/candidate
 
 	//Lets copy the list into a candidates buffer
@@ -224,7 +224,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 
 		if (!candidate)
-			//If we get here both lists must have been empty
+			//If we get here both lists69ust have been empty
 			return null
 
 		if (candidate.target || candidate.recieving)
@@ -234,7 +234,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		if (candidate.obelisk_around)
 			continue
 
-		//And a high chance to reroll it if its not what we want in terms of being in/out of maintenance
+		//And a high chance to reroll it if its not what we want in terms of being in/out of69aintenance
 		if ((candidate.maintenance != reroll_type) && prob(reroll_prob))
 			continue
 
@@ -265,7 +265,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		candidate = pick_n_take(candidates)
 
-		//List must be empty?
+		//List69ust be empty?
 		if (!candidate)
 			return null
 
@@ -277,7 +277,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		if(candidate.isSealed)
 			continue
 
-		//Lets not take mobs away from a burrow that's requesting more
+		//Lets not take69obs away from a burrow that's requesting69ore
 		if (candidate in distressed_burrows)
 			continue
 
@@ -295,7 +295,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 /datum/controller/subsystem/migration/proc/migration_percentage()
 	if (prob(20))
-		return 1 //Significant chance to move the entire population of the burrow
+		return 1 //Significant chance to69ove the entire population of the burrow
 
 	//Otherwise, generate a random number
 	return rand()
@@ -314,8 +314,8 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	Plant Handling
 *************************************************/
 /*
-	This proc allows plants like maintshrooms to spread through burrows
-	Run every 10 minutes
+	This proc allows plants like69aintshrooms to spread through burrows
+	Run every 1069inutes
 */
 /datum/controller/subsystem/migration/proc/handle_plant_spreading()
 	next_plantspread = world.time + burrow_plantspread_interval//Setup the next spread tick
@@ -337,7 +337,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		else
 			//Branch 2: It has plants
-			//Lets check the validity of all its plantspread burrows
+			//Lets check the69alidity of all its plantspread burrows
 			for (var/b in B.plantspread_burrows)
 				//This is a list of refs, so resolve it
 				var/obj/structure/burrow/C = locate(b)
@@ -345,18 +345,18 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 					//If the specified burrow is no longer there, lets remove it from the list
 					B.plantspread_burrows.Remove(b)
 
-			//Now that those are validated, do we still have spread burrows left?
+			//Now that those are69alidated, do we still have spread burrows left?
 			if (!B.plantspread_burrows.len)
 				//If not, then we are suddenly no longer a burrow which has plants.
-				//Players must have rekt all the nearby burrows
+				//Players69ust have rekt all the nearby burrows
 				B.plant = null
 
-				//There may still be a plant in or near our turf, and if so it will be re-registered next tick
-				//For now, we've got to wait 10 minutes til we can spread plants again
+				//There69ay still be a plant in or near our turf, and if so it will be re-registered next tick
+				//For now, we've got to wait 1069inutes til we can spread plants again
 				continue
 
 
-			//Alright, we do still have burrows. Lets check the master plant in our turf, is it alright?
+			//Alright, we do still have burrows. Lets check the69aster plant in our turf, is it alright?
 			for (var/obj/effect/plant in B.loc)
 				//Yea its still there, we're done
 				continue
@@ -381,7 +381,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	var/i = 0 //Number of burrows we've sent plants to. We're done when this gets high enough
 	//Lets go through this list and find places to send plants to
 	while (i < plantspread_burrows_num && sorted.len)
-		var/obj/structure/burrow/C = sorted[1] //Grab the first element
+		var/obj/structure/burrow/C = sorted69169 //Grab the first element
 		sorted.Cut(1,2)//And remove it from the list
 
 
@@ -390,34 +390,34 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 			continue
 
 		//We don't want to send to other burrows in the same room as us.
-		//The point of burrows is to let things move between rooms
-		if (C in viewlist)
+		//The point of burrows is to let things69ove between rooms
+		if (C in69iewlist)
 			continue
 
-		//Chance to reject it anyways to make plant spreading less predictable
+		//Chance to reject it anyways to69ake plant spreading less predictable
 		if (prob(60))
 			continue
 
 		//If it has no plants yet, it should be okay to send things to it
 		i++ //Increment this
-		B.plantspread_burrows.Add("\ref[C]") //Add them to each other's plantspread lists
-		C.plantspread_burrows.Add("\ref[B]")
+		B.plantspread_burrows.Add("\ref69C69") //Add them to each other's plantspread lists
+		C.plantspread_burrows.Add("\ref69B69")
 		C.plant = B.plant //Make them share the same seed
-		C.spread_plants() //And make some plants at the new burrow
+		C.spread_plants() //And69ake some plants at the new burrow
 
 /*************************************************
 	Burrow Finding and Sorting
 *************************************************/
 
-//Things hidden under floors don't show in some view/range calls
+//Things hidden under floors don't show in some69iew/range calls
 //To work around this, use these procs to locate nearby burrows
-/proc/find_nearby_burrow(var/atom/target, var/dist = 10)
+/proc/find_nearby_burrow(var/atom/target,69ar/dist = 10)
 	var/turf/t = get_turf(target)
 	for (var/turf/T in range(dist, t))
 		for (var/obj/structure/burrow/B in T.contents)
 			return B
 
-/proc/find_nearby_burrows(var/atom/target, var/dist = 10)
+/proc/find_nearby_burrows(var/atom/target,69ar/dist = 10)
 	var/turf/t = get_turf(target)
 	var/list/NB = list()
 	for (var/turf/T in range(dist, t))
@@ -426,13 +426,13 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 	return NB
 
 
-/proc/find_visible_burrow(var/atom/target, var/dist = 10)
+/proc/find_visible_burrow(var/atom/target,69ar/dist = 10)
 	var/turf/t = get_turf(target)
 	for (var/turf/T in dview(dist, t))
 		for (var/obj/structure/burrow/B in T.contents)
 			return B
 
-/proc/find_visible_burrows(var/atom/target, var/dist = 10)
+/proc/find_visible_burrows(var/atom/target,69ar/dist = 10)
 	var/turf/t = get_turf(target)
 	var/list/NB = list()
 	for (var/turf/T in dview(dist, t))
@@ -455,7 +455,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 
 		//How far between the burrows?
 		var/dist = dist3D(source, B)
-		distances[B] = dist
+		distances69B69 = dist
 
 		//Now lets scroll through the list of sorted burrows and find where to insert it
 		var/index = 0
@@ -463,7 +463,7 @@ This proc will attempt to create a burrow against a wall, within view of the tar
 		for (var/a in sorted)
 			index++
 			//When we find one that is farther away than us, we will insert ourselves before it
-			if (dist <= distances[a])
+			if (dist <= distances69a69)
 				sorted.Insert(index, B)
 				inserted = TRUE
 				break

@@ -1,10 +1,10 @@
 --------------------------------
-Nano UI Template Guide
+N69no UI Tem69l69te 69uide
 --------------------------------
 
-Nano UI uses templates, which are comprised of HTML and a markup syntax. The markup allows you 
-to easily add conditionals (if statements), loops (for loops) and custom formatting (using helpers).
+N69no UI uses tem69l69tes, which 69re com69rised of HTML 69nd 696969rku69 s69nt69x. The6969rku69 69llows 69ou 
+to e69sil69 69dd condition69ls 69if st69tements69, loo69s 69for loo69s69 69nd custom form69ttin69 69usin69 hel69ers69.
 
-Templates are stored in the /nano/templates folder and the file extension is .tmpl.
+Tem69l69tes 69re stored in the /n69no/tem69l69tes folder 69nd the file extension is .tm69l.
 
-This guide is being replaced with a wiki entry, found here: http://wiki.baystation12.net/NanoUI
+This 69uide is 69ein69 re69l69ced with 69 wiki entr69, found here: htt69://wiki.696969st69tion12.net/N69noUI

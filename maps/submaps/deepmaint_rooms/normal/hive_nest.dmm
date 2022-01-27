@@ -1,278 +1,278 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/structure/catwalk,
-/obj/item/material/shard/plasma{
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"69" = 69
+/o6969/structure/catwal69,
+/o6969/item/material/shard/plasma{
 	pixel_x = -5
 	},
-/obj/item/stack/material/steel/random,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/trash/material/metal{
+/o6969/item/stac69/material/steel/random,
+/o6969/effect/decal/cleana69le/69lood/drip,
+/o6969/item/trash/material/metal{
 	pixel_x = 13;
 	pixel_y = -4
 	},
-/obj/item/trash/material/metal{
+/o6969/item/trash/material/metal{
 	pixel_x = -6;
 	pixel_y = 11
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"d" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"f" = (
-/obj/machinery/door/airlock/glass_science{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"d" = 69
+/o6969/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"f" = 69
+/o6969/machinery/door/airloc69/69lass_science{
 	name = "Nanite Research"
 	},
-/obj/structure/barricade,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"j" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/item/device/lighting/toggleable/lamp,
-/obj/spawner/gun/normal,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"k" = (
-/obj/item/material/shard/plasma{
+/o6969/structure/69arricade,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/item/device/li69htin69/to6969lea69le/lamp,
+/o6969/spawner/69un/normal,
+/o6969/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/item/material/shard/plasma{
 	pixel_y = -14
 	},
-/obj/effect/decal/cleanable/blood/drip,
-/obj/machinery/door/blast/regular/open,
-/obj/item/trash/material/metal{
+/o6969/effect/decal/cleana69le/69lood/drip,
+/o6969/machinery/door/69last/re69ular/open,
+/o6969/item/trash/material/metal{
 	pixel_x = 7;
 	pixel_y = 12
 	},
-/obj/item/trash/material/metal{
+/o6969/item/trash/material/metal{
 	pixel_x = -10;
 	pixel_y = -6
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"l" = (
-/obj/structure/barricade,
-/obj/structure/low_wall,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"m" = (
-/obj/item/material/shard/plasma{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"l" = 69
+/o6969/structure/69arricade,
+/o6969/structure/low_wall,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"m" = 69
+/o6969/item/material/shard/plasma{
 	pixel_x = -5;
 	pixel_y = 6
 	},
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/trash/material/metal{
+/o6969/effect/decal/cleana69le/69lood/drip,
+/o6969/item/trash/material/metal{
 	pixel_x = 11;
 	pixel_y = -3
 	},
-/obj/machinery/door/blast/regular/open,
-/obj/item/trash/material/metal,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"n" = (
-/obj/effect/window_lwall_spawn/smartspawnplasma,
-/obj/machinery/door/blast/regular,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"o" = (
-/mob/living/simple_animal/hostile/hivemind/mechiver{
+/o6969/machinery/door/69last/re69ular/open,
+/o6969/item/trash/material/metal,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"n" = 69
+/o6969/effect/window_lwall_spawn/smartspawnplasma,
+/o6969/machinery/door/69last/re69ular,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"o" = 69
+/mo69/livin69/simple_animal/hostile/hivemind/mechiver{
 	malfunction_chance = 0;
-	name = "Test Subject Beta-149"
+	name = "Test Su6969ect 69eta-149"
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"p" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/spawner/gun/shotgun/low_chance,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"q" = (
-/obj/structure/catwalk,
-/obj/item/clothing/suit/storage/toggle/labcoat,
-/obj/item/clothing/shoes/reinforced/medical,
-/obj/structure/table/standard,
-/obj/spawner/gun/cheap/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"s" = (
-/obj/structure/catwalk,
-/obj/structure/barricade,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"t" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"p" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/spawner/69un/shot69un/low_chance,
+/o6969/item/device/li69htin69/to6969lea69le/lamp,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/catwal69,
+/o6969/item/clothin69/suit/stora69e/to6969le/la69coat,
+/o6969/item/clothin69/shoes/reinforced/medical,
+/o6969/structure/ta69le/standard,
+/o6969/spawner/69un/cheap/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"s" = 69
+/o6969/structure/catwal69,
+/o6969/structure/69arricade,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"t" = 69
+/o6969/machinery/li69ht/small{
 	dir = 1
 	},
-/obj/item/trash/sosjerky,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"u" = (
+/o6969/item/trash/sos69er69y,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"u" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"v" = (
-/obj/machinery/light/small{
+/area/deepmaint69
+"v" = 69
+/o6969/machinery/li69ht/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"w" = (
-/obj/structure/catwalk,
-/obj/item/clothing/suit/storage/toggle/labcoat,
-/obj/item/clothing/shoes/reinforced/medical,
-/obj/structure/table/standard,
-/obj/spawner/pizza,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"x" = (
-/mob/living/simple_animal/hostile/hivemind/stinger{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"w" = 69
+/o6969/structure/catwal69,
+/o6969/item/clothin69/suit/stora69e/to6969le/la69coat,
+/o6969/item/clothin69/shoes/reinforced/medical,
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pizza,
+/o6969/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"x" = 69
+/mo69/livin69/simple_animal/hostile/hivemind/stin69er{
 	malfunction_chance = 0
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"y" = (
-/obj/item/material/shard/plasma{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"y" = 69
+/o6969/item/material/shard/plasma{
 	pixel_x = 5;
 	pixel_y = 3
 	},
-/obj/item/material/shard/plasma{
+/o6969/item/material/shard/plasma{
 	pixel_x = -7;
 	pixel_y = 8
 	},
-/obj/item/stack/material/steel/random,
-/obj/effect/decal/cleanable/blood,
-/obj/machinery/door/blast/regular/open,
-/obj/item/trash/material/metal{
+/o6969/item/stac69/material/steel/random,
+/o6969/effect/decal/cleana69le/69lood,
+/o6969/machinery/door/69last/re69ular/open,
+/o6969/item/trash/material/metal{
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"A" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/spawner/booze/low_chance,
-/obj/item/trash/cigbutt/cigarbutt,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"C" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"D" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"G" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/item/reagent_containers/glass/beaker/hivemind,
-/obj/spawner/oddities/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"H" = (
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"I" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/item/reagent_containers/glass/beaker/hivemind,
-/obj/item/clothing/head/bio_hoo,
-/obj/item/clothing/suit/bio_suit,
-/obj/item/clothing/shoes/reinforced/medical,
-/obj/spawner/firstaid/low_chance,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"J" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/spawner/gun_parts/low_chance,
-/obj/item/device/lighting/toggleable/lamp,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"K" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"A" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/spawner/69ooze/low_chance,
+/o6969/item/trash/ci6969utt/ci69ar69utt,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"C" = 69
+/o6969/effect/decal/cleana69le/69lood/drip,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"D" = 69
+/o6969/machinery/li69ht/small,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/item/rea69ent_containers/69lass/69ea69er/hivemind,
+/o6969/spawner/oddities/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"H" = 69
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"I" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/item/rea69ent_containers/69lass/69ea69er/hivemind,
+/o6969/item/clothin69/head/69io_hoo,
+/o6969/item/clothin69/suit/69io_suit,
+/o6969/item/clothin69/shoes/reinforced/medical,
+/o6969/spawner/firstaid/low_chance,
+/o6969/spawner/medical,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/spawner/69un_parts/low_chance,
+/o6969/item/device/li69htin69/to6969lea69le/lamp,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"L" = (
-/mob/living/simple_animal/hostile/hivemind/hiborg{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"L" = 69
+/mo69/livin69/simple_animal/hostile/hivemind/hi69or69{
 	malfunction_chance = 0
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"M" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"M" = 69
+/o6969/machinery/li69ht/small{
 	dir = 4
 	},
-/obj/item/trash/mre_can,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"N" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/spawner/powercell,
-/obj/spawner/gun/energy_cheap/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"O" = (
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"P" = (
-/obj/machinery/light/small{
+/o6969/item/trash/mre_can,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"N" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/spawner/powercell,
+/o6969/spawner/69un/ener69y_cheap/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"O" = 69
+/o6969/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"P" = 69
+/o6969/machinery/li69ht/small{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"Q" = (
-/mob/living/simple_animal/hostile/hivemind/himan{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/mo69/livin69/simple_animal/hostile/hivemind/himan{
 	malfunction_chance = 0
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"R" = (
-/mob/living/simple_animal/hostile/hivemind/phaser,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"T" = (
-/mob/living/simple_animal/hostile/hivemind/lobber{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"R" = 69
+/mo69/livin69/simple_animal/hostile/hivemind/phaser,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"T" = 69
+/mo69/livin69/simple_animal/hostile/hivemind/lo6969er{
 	malfunction_chance = 0
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"V" = (
-/obj/structure/catwalk,
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"X" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/structure/barricade,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"Y" = (
-/obj/item/trash/wok,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"Z" = (
-/obj/structure/table/standard,
-/obj/structure/catwalk,
-/obj/spawner/soda,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
-/obj/item/trash/tastybread,
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"V" = 69
+/o6969/structure/catwal69,
+/o6969/spawner/pac69/machine,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"X" = 69
+/o6969/effect/window_lwall_spawn/smartspawn,
+/o6969/structure/69arricade,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"Y" = 69
+/o6969/item/trash/wo69,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"Z" = 69
+/o6969/structure/ta69le/standard,
+/o6969/structure/catwal69,
+/o6969/spawner/soda,
+/o6969/spawner/rations/low_chance,
+/o6969/spawner/rations/low_chance,
+/o6969/spawner/rations/low_chance,
+/o6969/item/trash/tasty69read,
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 d
 d
 d
@@ -285,7 +285,7 @@ d
 d
 d
 "}
-(2,1,1) = {"
+692,1,169 = {"
 d
 u
 X
@@ -298,33 +298,33 @@ X
 u
 d
 "}
-(3,1,1) = {"
+693,1,169 = {"
 s
 u
 v
 H
-K
+69
 T
 C
-K
-Q
+69
+69
 u
 d
 "}
-(4,1,1) = {"
+694,1,169 = {"
 d
 X
 H
 V
 I
 V
-b
-j
+69
+69
 H
 l
 d
 "}
-(5,1,1) = {"
+695,1,169 = {"
 d
 l
 H
@@ -332,25 +332,25 @@ V
 n
 m
 y
-q
+69
 D
 u
 d
 "}
-(6,1,1) = {"
+696,1,169 = {"
 d
 f
 H
-J
+69
 n
 o
-k
+69
 A
 L
 f
 d
 "}
-(7,1,1) = {"
+697,1,169 = {"
 d
 u
 t
@@ -363,20 +363,20 @@ D
 u
 d
 "}
-(8,1,1) = {"
+698,1,169 = {"
 d
 X
 R
 Z
 N
 V
-G
+69
 p
 O
 u
 d
 "}
-(9,1,1) = {"
+699,1,169 = {"
 d
 u
 M
@@ -389,7 +389,7 @@ H
 X
 d
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 d
 u
 u
@@ -402,7 +402,7 @@ u
 u
 s
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 d
 d
 s

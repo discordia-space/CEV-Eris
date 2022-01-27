@@ -1,57 +1,57 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"b" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"c" = (
-/obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"d" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"e" = (
-/obj/structure/closet/onestar/tier1,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"f" = (
-/obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"g" = (
-/obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"h" = (
-/obj/crawler/crawler_chanceblock,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"i" = (
-/obj/crawler/crawler_chanceblock_danger,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"j" = (
-/obj/spawner/mob/roaches,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"k" = (
-/obj/spawner/mob/roaches/low_chance,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"l" = (
-/obj/spawner/mob/spiders,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
-"m" = (
-/obj/spawner/mob/spiders/low_chance,
-/turf/simulated/floor/tiled/white/gray_perforated,
-/area/space)
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"69" = 69
+/o6969/structure/69ed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"c" = 69
+/o6969/structure/69ed/chair/custom/onestar,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"d" = 69
+/o6969/structure/ta69le/onestar,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"e" = 69
+/o6969/structure/closet/onestar/tier1,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"f" = 69
+/o6969/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"69" = 69
+/o6969/structure/closet/onestar/tier3,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"h" = 69
+/o6969/crawler/crawler_chance69loc69,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"i" = 69
+/o6969/crawler/crawler_chance69loc69_dan69er,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"69" = 69
+/o6969/spawner/mo69/roaches,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"69" = 69
+/o6969/spawner/mo69/roaches/low_chance,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"l" = 69
+/o6969/spawner/mo69/spiders,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
+"m" = 69
+/o6969/spawner/mo69/spiders/low_chance,
+/turf/simulated/floor/tiled/white/69ra69_perforated,
+/area/space69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -62,9 +62,9 @@ a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
-b
+69
 l
 a
 a
@@ -73,7 +73,7 @@ a
 a
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 c
 m
@@ -84,7 +84,7 @@ a
 a
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 d
 a
@@ -95,7 +95,7 @@ a
 a
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 e
 a
@@ -106,7 +106,7 @@ a
 a
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 f
 a
@@ -117,9 +117,9 @@ a
 a
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
-g
+69
 a
 a
 a
@@ -128,7 +128,7 @@ a
 a
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 h
 a
@@ -139,7 +139,7 @@ a
 a
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 i
 a
@@ -150,20 +150,9 @@ a
 a
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
-j
-a
-a
-a
-a
-a
-a
-a
-"}
-(11,1,1) = {"
-a
-k
+69
 a
 a
 a
@@ -172,7 +161,18 @@ a
 a
 a
 "}
-(12,1,1) = {"
+6911,1,169 = {"
+a
+69
+a
+a
+a
+a
+a
+a
+a
+"}
+6912,1,169 = {"
 a
 a
 a
@@ -183,7 +183,7 @@ a
 a
 a
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 a
 a
 a

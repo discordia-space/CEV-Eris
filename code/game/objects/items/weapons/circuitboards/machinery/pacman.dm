@@ -4,7 +4,7 @@
 	board_type = "machine"
 	rarity_value = 10
 	origin_tech = list(TECH_DATA = 3, TECH_POWER = 3, TECH_PLASMA = 3, TECH_ENGINEERING = 3)
-	req_components = list(
+	re69_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/cable_coil = 2,
@@ -27,7 +27,7 @@
 	build_path = /obj/machinery/power/port_gen/pacman/diesel
 	board_type = "machine"
 	origin_tech = list(TECH_POWER = 2, TECH_ENGINEERING = 2)
-	req_components = list(
+	re69_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 		/obj/item/stack/cable_coil = 2,

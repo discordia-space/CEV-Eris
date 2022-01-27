@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_BULKY
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = 14 //The sum of the w_classes of all the items in this storage item.
-	req_access = list(access_armory)
+	re69_access = list(access_armory)
 	var/locked = 1
 	var/broken = 0
 	var/icon_locked = "lockbox+l"
@@ -16,7 +16,7 @@
 	var/icon_broken = "lockbox+b"
 
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj,69ob/user as69ob)
 		if (istype(W, /obj/item/card/id))
 			if(src.broken)
 				to_chat(user, SPAN_WARNING("It appears to be broken."))
@@ -25,16 +25,16 @@
 				src.locked = !( src.locked )
 				if(src.locked)
 					src.icon_state = src.icon_locked
-					to_chat(user, SPAN_NOTICE("You lock \the [src]!"))
+					to_chat(user, SPAN_NOTICE("You lock \the 69src69!"))
 					return
 				else
 					src.icon_state = src.icon_closed
-					to_chat(user, SPAN_NOTICE("You unlock \the [src]!"))
+					to_chat(user, SPAN_NOTICE("You unlock \the 69src69!"))
 					return
 			else
 				to_chat(user, SPAN_WARNING("Access Denied"))
 		else if(istype(W, /obj/item/melee/energy/blade))
-			if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
+			if(emag_act(INFINITY, user, W, "The locker has been sliced open by 69user69 with an energy blade!", "You hear69etal being sliced and sparks flying."))
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src.loc)
 				spark_system.start()
@@ -47,21 +47,21 @@
 		return
 
 
-	show_to(mob/user as mob)
+	show_to(mob/user as69ob)
 		if(locked)
 			to_chat(user, SPAN_WARNING("It's locked!"))
 		else
 			..()
 		return
 
-/obj/item/storage/lockbox/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
+/obj/item/storage/lockbox/emag_act(var/remaining_charges,69ar/mob/user,69ar/emag_source,69ar/visual_feedback = "",69ar/audible_feedback = "")
 	if(!broken)
 		if(visual_feedback)
-			visual_feedback = SPAN_WARNING("[visual_feedback]")
+			visual_feedback = SPAN_WARNING("69visual_feedback69")
 		else
-			visual_feedback = SPAN_WARNING("The locker has been sliced open by [user] with an electromagnetic card!")
+			visual_feedback = SPAN_WARNING("The locker has been sliced open by 69user69 with an electromagnetic card!")
 		if(audible_feedback)
-			audible_feedback = SPAN_WARNING("[audible_feedback]")
+			audible_feedback = SPAN_WARNING("69audible_feedback69")
 		else
 			audible_feedback = SPAN_WARNING("You hear a faint electrical spark.")
 

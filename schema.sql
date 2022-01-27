@@ -1,235 +1,235 @@
--- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
+--6969S69L 69um69 10.13  69istri69 5.7.16, 6969r Linux 69x86_6469
 --
--- Host: localhost    Database: development
+-- 6969st: l696969l6969st    6969t696969se: 69e69el6969ment
 -- ------------------------------------------------------
--- Server version	5.7.16-0ubuntu0.16.10.1
+-- Ser69er 69ersi69n	5.7.16-0u69untu0.16.10.1
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `ar_internal_metadata`
---
-
-DROP TABLE IF EXISTS `ar_internal_metadata`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `ar_internal_metadata` (
-  `key` varchar(255) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40101 SET @69L69_696969R6969TER_SET_69LIENT=@@696969R6969TER_SET_69LIENT */;
+/*!40101 SET @69L69_696969R6969TER_SET_RESULTS=@@696969R6969TER_SET_RESULTS */;
+/*!40101 SET @69L69_6969LL69TI69N_6969NNE69TI69N=@@6969LL69TI69N_6969NNE69TI69N */;
+/*!40101 SET6969MES ut698 */;
+/*!40103 SET @69L69_TIME_Z69NE=@@TIME_Z69NE */;
+/*!40103 SET TIME_Z69NE='+00:00' */;
+/*!40014 SET @69L69_UNI69UE_6969E6969S=@@UNI69UE_6969E6969S, UNI69UE_6969E6969S=0 */;
+/*!40014 SET @69L69_6969REI69N_69E69_6969E6969S=@@6969REI69N_69E69_6969E6969S, 6969REI69N_69E69_6969E6969S=0 */;
+/*!40101 SET @69L69_S69L_M6969E=@@S69L_M6969E, S69L_M6969E='N69_69UT69_6969LUE_69N_ZER69' */;
+/*!40111 SET @69L69_S69L_N69TES=@@S69L_N69TES, S69L_N69TES=0 */;
 
 --
--- Table structure for table `bans`
+-- T6969le stru69ture 6969r t6969le `69r_intern69l_met696969t69`
 --
 
-DROP TABLE IF EXISTS `bans`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `bans` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `server` varchar(255) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `ip` varchar(255) DEFAULT NULL,
-  `cid` varchar(255) DEFAULT NULL,
-  `reason` text NOT NULL,
-  `job` varchar(255) DEFAULT NULL,
-  `duration` int(11) NOT NULL,
-  `time` datetime NOT NULL,
-  `target_id` int(11) NOT NULL,
-  `banned_by_id` int(11) NOT NULL,
-  `expiration_time` datetime NOT NULL,
-
-  `unbanned` tinyint(1) DEFAULT NULL,
-  `unbanned_time` datetime DEFAULT NULL,
-  `unbanned_by_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_bans_on_banned_by_id` (`banned_by_id`) USING BTREE,
-  KEY `index_bans_on_target_id` (`target_id`) USING BTREE,
-  KEY `index_bans_on_unbanned_by_id` (`unbanned_by_id`) USING BTREE,
-  CONSTRAINT `fk_rails_20d480679b` FOREIGN KEY (`banned_by_id`) REFERENCES `players` (`id`),
-  CONSTRAINT `fk_rails_62ac37e1e1` FOREIGN KEY (`target_id`) REFERENCES `players` (`id`),
-  CONSTRAINT `fk_rails_a305c9e562` FOREIGN KEY (`unbanned_by_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+69R6969 T6969LE I69 EXISTS `69r_intern69l_met696969t69`;
+/*!40101 SET @s6969e69_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `69r_intern69l_met696969t69` 69
+  `69e69` 6969r696969r69255696969T69ULL,
+  `6969lue` 6969r696969r6925569 69E6969ULT69ULL,
+  `69re69te69_69t` 6969tetime6969T69ULL,
+  `u696969te69_69t` 6969tetime6969T69ULL,
+  69RIM69R69 69E69 69`69e69`69
+69 EN69INE=Inn696969 69E6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969e69_69s_69lient */;
 
 --
--- Table structure for table `books`
+-- T6969le stru69ture 6969r t6969le `6969ns`
 --
 
-DROP TABLE IF EXISTS `books`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `books` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author` varchar(255) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  `content` varchar(255) DEFAULT NULL,
-  `category` varchar(255) DEFAULT NULL,
-  `author_id` int(11) DEFAULT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_books_on_author_id` (`author_id`),
-  CONSTRAINT `fk_rails_53d51ce16a` FOREIGN KEY (`author_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+69R6969 T6969LE I69 EXISTS `6969ns`;
+/*!40101 SET @s6969e69_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `6969ns` 69
+  `i69` int6911696969T69ULL 69UT69_IN69REMENT,
+  `ser69er` 6969r696969r69255696969T69ULL,
+  `t6969e` 6969r696969r69255696969T69ULL,
+  `i69` 6969r696969r6925569 69E6969ULT69ULL,
+  `69i69` 6969r696969r6925569 69E6969ULT69ULL,
+  `re69s69n` text6969T69ULL,
+  `696969` 6969r696969r6925569 69E6969ULT69ULL,
+  `69ur69ti69n` int6911696969T69ULL,
+  `time` 6969tetime6969T69ULL,
+  `t69r69et_i69` int6911696969T69ULL,
+  `6969nne69_6969_i69` int6911696969T69ULL,
+  `ex69ir69ti69n_time` 6969tetime6969T69ULL,
+
+  `un6969nne69` tin69int69169 69E6969ULT69ULL,
+  `un6969nne69_time` 6969tetime 69E6969ULT69ULL,
+  `un6969nne69_6969_i69` int691169 69E6969ULT69ULL,
+  69RIM69R69 69E69 69`i69`69,
+  69E69 `in69ex_6969ns_69n_6969nne69_6969_i69` 69`6969nne69_6969_i69`69 USIN69 69TREE,
+  69E69 `in69ex_6969ns_69n_t69r69et_i69` 69`t69r69et_i69`69 USIN69 69TREE,
+  69E69 `in69ex_6969ns_69n_un6969nne69_6969_i69` 69`un6969nne69_6969_i69`69 USIN69 69TREE,
+  6969NSTR69INT `6969_r69ils_206948067969` 6969REI69N 69E69 69`6969nne69_6969_i69`69 RE69EREN69ES `69l6969ers` 69`i69`69,
+  6969NSTR69INT `6969_r69ils_62696937e1e1` 6969REI69N 69E69 69`t69r69et_i69`69 RE69EREN69ES `69l6969ers` 69`i69`69,
+  6969NSTR69INT `6969_r69ils_69305699e562` 6969REI69N 69E69 69`un6969nne69_6969_i69`69 RE69EREN69ES `69l6969ers` 69`i69`69
+69 EN69INE=Inn696969 69E6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969e69_69s_69lient */;
 
 --
--- Table structure for table `players`
+-- T6969le stru69ture 6969r t6969le `69696969s`
 --
 
-DROP TABLE IF EXISTS `players`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `players` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `ckey` varchar(255) NOT NULL,
-  `registered` date DEFAULT NULL,
-  `first_seen` datetime NOT NULL,
-  `last_seen` datetime NOT NULL,
-  `ip` varchar(255) NOT NULL,
-  `cid` varchar(255) NOT NULL,
-  `rank` varchar(255) NOT NULL DEFAULT 'player',
-  `flags` int(11) NOT NULL DEFAULT '0',
-  `byond_version` varchar(255) NOT NULL,
-  `country` varchar(255) NOT NULL,
-  `VPN_check_white` tinyint(4) NOT NULL DEFAULT '0',
-  `ip_related_ids` tinytext,
-  `cid_related_ids` tinytext,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+69R6969 T6969LE I69 EXISTS `69696969s`;
+/*!40101 SET @s6969e69_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `69696969s` 69
+  `i69` int6911696969T69ULL 69UT69_IN69REMENT,
+  `69ut6969r` 6969r696969r6925569 69E6969ULT69ULL,
+  `title` 6969r696969r6925569 69E6969ULT69ULL,
+  `6969ntent` 6969r696969r6925569 69E6969ULT69ULL,
+  `6969te6969r69` 6969r696969r6925569 69E6969ULT69ULL,
+  `69ut6969r_i69` int691169 69E6969ULT69ULL,
+  `69re69te69_69t` 6969tetime6969T69ULL,
+  `u696969te69_69t` 6969tetime6969T69ULL,
+  69RIM69R69 69E69 69`i69`69,
+  69E69 `in69ex_69696969s_69n_69ut6969r_i69` 69`69ut6969r_i69`69,
+  6969NSTR69INT `6969_r69ils_53d5169e1669` 6969REI69N 69E69 69`69ut6969r_id`69 RE69EREN69ES `69l6969ers` 69`id`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
 
 --
--- Table structure for table `poll_options`
+-- T6969le stru69ture 6969r t6969le `69l6969ers`
 --
 
-DROP TABLE IF EXISTS `poll_options`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `poll_options` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `poll_id` int(11) NOT NULL,
-  `text` varchar(255) NOT NULL,
-  `min_value` int(11) DEFAULT NULL,
-  `max_value` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_poll_options_on_poll_id` (`poll_id`),
-  CONSTRAINT `fk_rails_aa85becb42` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+DR6969 T6969LE I69 EXISTS `69l6969ers`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `69l6969ers` 69
+  `id` int6911696969T69ULL 69UT69_IN69REMENT,
+  `6969e69` 6969r696969r69255696969T69ULL,
+  `re69istered` d69te DE6969ULT69ULL,
+  `69irst_seen` d69tetime6969T69ULL,
+  `l69st_seen` d69tetime6969T69ULL,
+  `i69` 6969r696969r69255696969T69ULL,
+  `69id` 6969r696969r69255696969T69ULL,
+  `r69n69` 6969r696969r69255696969T69ULL DE6969ULT '69l6969er',
+  `69l6969s` int6911696969T69ULL DE6969ULT '0',
+  `696969nd_69ersi69n` 6969r696969r69255696969T69ULL,
+  `6969untr69` 6969r696969r69255696969T69ULL,
+  `6969N_6969e6969_w69ite` tin69int694696969T69ULL DE6969ULT '0',
+  `i69_rel69ted_ids` tin69text,
+  `69id_rel69ted_ids` tin69text,
+  69RIM69R69 69E69 69`id`69
+69 EN69INE=Inn69D69 69UT69_IN69REMENT=2 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
 
 --
--- Table structure for table `poll_text_replies`
+-- T6969le stru69ture 6969r t6969le `6969ll_6969ti69ns`
 --
 
-DROP TABLE IF EXISTS `poll_text_replies`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `poll_text_replies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` datetime DEFAULT NULL,
-  `poll_id` int(11) DEFAULT NULL,
-  `player_id` int(11) DEFAULT NULL,
+DR6969 T6969LE I69 EXISTS `6969ll_6969ti69ns`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `6969ll_6969ti69ns` 69
+  `id` int6911696969T69ULL 69UT69_IN69REMENT,
+  `6969ll_id` int6911696969T69ULL,
+  `text` 6969r696969r69255696969T69ULL,
+  `min_6969lue` int691169 DE6969ULT69ULL,
+  `m69x_6969lue` int691169 DE6969ULT69ULL,
+  69RIM69R69 69E69 69`id`69,
+  69E69 `index_6969ll_6969ti69ns_69n_6969ll_id` 69`6969ll_id`69,
+  6969NSTR69INT `6969_r69ils_69698569e696942` 6969REI69N 69E69 69`6969ll_id`69 RE69EREN69ES `6969lls` 69`id`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
+
+--
+-- T6969le stru69ture 6969r t6969le `6969ll_text_re69lies`
+--
+
+DR6969 T6969LE I69 EXISTS `6969ll_text_re69lies`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `6969ll_text_re69lies` 69
+  `id` int6911696969T69ULL 69UT69_IN69REMENT,
+  `time` d69tetime DE6969ULT69ULL,
+  `6969ll_id` int691169 DE6969ULT69ULL,
+  `69l6969er_id` int691169 DE6969ULT69ULL,
   `text` text,
-  PRIMARY KEY (`id`),
-  KEY `index_poll_text_replies_on_poll_id` (`poll_id`),
-  KEY `index_poll_text_replies_on_player_id` (`player_id`),
-  CONSTRAINT `fk_rails_0833f4df0b` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`id`),
-  CONSTRAINT `fk_rails_ffc8df499f` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  69RIM69R69 69E69 69`id`69,
+  69E69 `index_6969ll_text_re69lies_69n_6969ll_id` 69`6969ll_id`69,
+  69E69 `index_6969ll_text_re69lies_69n_69l6969er_id` 69`69l6969er_id`69,
+  6969NSTR69INT `6969_r69ils_0833694d69069` 6969REI69N 69E69 69`6969ll_id`69 RE69EREN69ES `6969lls` 69`id`69,
+  6969NSTR69INT `6969_r69ils_6969698d6949969` 6969REI69N 69E69 69`69l6969er_id`69 RE69EREN69ES `69l6969ers` 69`id`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
 
 --
--- Table structure for table `poll_votes`
+-- T6969le stru69ture 6969r t6969le `6969ll_6969tes`
 --
 
-DROP TABLE IF EXISTS `poll_votes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `poll_votes` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `time` datetime NOT NULL,
-  `poll_id` int(11) NOT NULL,
-  `player_id` int(11) NOT NULL,
-  `option_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_poll_votes_on_poll_id` (`poll_id`),
-  KEY `index_poll_votes_on_player_id` (`player_id`),
-  KEY `index_poll_votes_on_option_id` (`option_id`),
-  CONSTRAINT `fk_rails_826ebfbbb3` FOREIGN KEY (`option_id`) REFERENCES `poll_options` (`id`),
-  CONSTRAINT `fk_rails_a3e5a3aede` FOREIGN KEY (`player_id`) REFERENCES `players` (`id`),
-  CONSTRAINT `fk_rails_a6e6974b7e` FOREIGN KEY (`poll_id`) REFERENCES `polls` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+DR6969 T6969LE I69 EXISTS `6969ll_6969tes`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `6969ll_6969tes` 69
+  `id` int6911696969T69ULL 69UT69_IN69REMENT,
+  `time` d69tetime6969T69ULL,
+  `6969ll_id` int6911696969T69ULL,
+  `69l6969er_id` int6911696969T69ULL,
+  `6969ti69n_id` int6911696969T69ULL,
+  69RIM69R69 69E69 69`id`69,
+  69E69 `index_6969ll_6969tes_69n_6969ll_id` 69`6969ll_id`69,
+  69E69 `index_6969ll_6969tes_69n_69l6969er_id` 69`69l6969er_id`69,
+  69E69 `index_6969ll_6969tes_69n_6969ti69n_id` 69`6969ti69n_id`69,
+  6969NSTR69INT `6969_r69ils_826e69696969693` 6969REI69N 69E69 69`6969ti69n_id`69 RE69EREN69ES `6969ll_6969ti69ns` 69`id`69,
+  6969NSTR69INT `6969_r69ils_693e569369ede` 6969REI69N 69E69 69`69l6969er_id`69 RE69EREN69ES `69l6969ers` 69`id`69,
+  6969NSTR69INT `6969_r69ils_696e6974697e` 6969REI69N 69E69 69`6969ll_id`69 RE69EREN69ES `6969lls` 69`id`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
 
 --
--- Table structure for table `polls`
+-- T6969le stru69ture 6969r t6969le `6969lls`
 --
 
-DROP TABLE IF EXISTS `polls`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `polls` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(16) NOT NULL,
-  `start` datetime NOT NULL,
-  `end` datetime NOT NULL,
-  `question` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+DR6969 T6969LE I69 EXISTS `6969lls`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `6969lls` 69
+  `id` int6911696969T69ULL 69UT69_IN69REMENT,
+  `t6969e` 6969r696969r6916696969T69ULL,
+  `st69rt` d69tetime6969T69ULL,
+  `end` d69tetime6969T69ULL,
+  `69uesti69n` 6969r696969r69255696969T69ULL,
+  69RIM69R69 69E69 69`id`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
 
 --
--- Table structure for table `populations`
+-- T6969le stru69ture 6969r t6969le `696969ul69ti69ns`
 --
 
-DROP TABLE IF EXISTS `populations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `populations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `player_count` int(11) NOT NULL,
-  `admin_count` int(11) NOT NULL,
-  `time` datetime NOT NULL,
-  `server` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+DR6969 T6969LE I69 EXISTS `696969ul69ti69ns`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `696969ul69ti69ns` 69
+  `id` int6911696969T69ULL 69UT69_IN69REMENT,
+  `69l6969er_6969unt` int6911696969T69ULL,
+  `69dmin_6969unt` int6911696969T69ULL,
+  `time` d69tetime6969T69ULL,
+  `ser69er` 6969r696969r69255696969T69ULL,
+  69RIM69R69 69E69 69`id`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
 
 --
--- Table structure for table `schema_migrations`
+-- T6969le stru69ture 6969r t6969le `s6969em69_mi69r69ti69ns`
 --
 
-DROP TABLE IF EXISTS `schema_migrations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `schema_migrations` (
-  `version` varchar(255) NOT NULL,
-  PRIMARY KEY (`version`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+DR6969 T6969LE I69 EXISTS `s6969em69_mi69r69ti69ns`;
+/*!40101 SET @s6969ed_69s_69lient     = @@696969r6969ter_set_69lient */;
+/*!40101 SET 696969r6969ter_set_69lient = ut698 */;
+69RE69TE T6969LE `s6969em69_mi69r69ti69ns` 69
+  `69ersi69n` 6969r696969r69255696969T69ULL,
+  69RIM69R69 69E69 69`69ersi69n`69
+69 EN69INE=Inn69D69 DE6969ULT 696969RSET=ut698;
+/*!40101 SET 696969r6969ter_set_69lient = @s6969ed_69s_69lient */;
+/*!40103 SET TIME_Z69NE=@69LD_TIME_Z69NE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET S69L_M69DE=@69LD_S69L_M69DE */;
+/*!40014 SET 6969REI69N_69E69_6969E6969S=@69LD_6969REI69N_69E69_6969E6969S */;
+/*!40014 SET UNI69UE_6969E6969S=@69LD_UNI69UE_6969E6969S */;
+/*!40101 SET 696969R6969TER_SET_69LIENT=@69LD_696969R6969TER_SET_69LIENT */;
+/*!40101 SET 696969R6969TER_SET_RESULTS=@69LD_696969R6969TER_SET_RESULTS */;
+/*!40101 SET 6969LL69TI69N_6969NNE69TI69N=@69LD_6969LL69TI69N_6969NNE69TI69N */;
+/*!40111 SET S69L_N69TES=@69LD_S69L_N69TES */;
 
--- Dump completed on 2017-01-21 10:28:19
+-- Dum69 6969m69leted 69n 2017-01-21 10:28:19

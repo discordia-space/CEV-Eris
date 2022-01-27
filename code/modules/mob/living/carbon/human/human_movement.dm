@@ -9,7 +9,7 @@
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 	if(CE_SPEEDBOOST in chem_effects)
-		tally -= chem_effects[CE_SPEEDBOOST]
+		tally -= chem_effects69CE_SPEEDBOOST69
 	if(isturf(loc))
 		var/turf/T = loc
 		if(T.get_lumcount() < 0.6)
@@ -27,8 +27,8 @@
 			var/obj/item/cruciform_upgrade/speed_of_the_chosen/sotc = upgrade
 			tally -= sotc.speed_increase
 
-	var/hunger_deficiency = (MOB_BASE_MAX_HUNGER - nutrition)
-	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving, movement slowdown can be anything up to 4.
+	var/hunger_deficiency = (MOB_BASE_MAX_HUNGER -69utrition)
+	if(hunger_deficiency >= 200) tally += (hunger_deficiency / 100) //If youre starving,69ovement slowdown can be anything up to 4.
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))
 		//Not porting bay's silly organ checking code here
@@ -39,12 +39,12 @@
 		if(shoes)
 			tally += shoes.slowdown
 
-	//tally += min((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
+	//tally +=69in((shock_stage / 100) * 3, 3) //Scales from 0 to 3 over 0 to 100 shock stage
 	tally += clamp((get_dynamic_pain() - get_painkiller()) / 40, 0, 3) // Scales from 0 to 3,
 
 	if (bodytemperature < 283.222)
 		tally += (283.222 - bodytemperature) / 10 * 1.75
-	tally += stance_damage // missing/damaged legs or augs affect speed
+	tally += stance_damage //69issing/damaged legs or augs affect speed
 
 	if(slowdown)
 		tally += 1
@@ -67,14 +67,14 @@
 				return TRUE
 			return -1
 
-	//If no working jetpack then use the other checks
+	//If69o working jetpack then use the other checks
 	return ..()
 
 /mob/living/carbon/human/slip_chance(var/prob_slip = 5)
 	if(!..())
 		return 0
 
-	//Check hands and mod slip
+	//Check hands and69od slip
 	if(!l_hand)
 		prob_slip -= 2
 	else if(l_hand.w_class <= ITEM_SIZE_SMALL)
@@ -87,8 +87,8 @@
 	return prob_slip
 
 /mob/living/carbon/human/check_shoegrip()
-	if(species.flags & NO_SLIP)
+	if(species.flags &69O_SLIP)
 		return 1
-	if(shoes && (shoes.item_flags & NOSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object = no floating
+	if(shoes && (shoes.item_flags &69OSLIP) && istype(shoes, /obj/item/clothing/shoes/magboots))  //magboots + dense_object =69o floating
 		return 1
 	return 0

@@ -1,107 +1,107 @@
 /*
-plot_vector is a helper datum for plotting a path in a straight line towards a target turf.
+plot_vector is a helper datum for plottin69 a path in a strai69ht line towards a tar69et turf.
 This datum converts from world space (turf.x and turf.y) to pixel space, which the datum keeps track of itself. This
-should work with any size turfs (i.e. 32x32, 64x64) as it references world.icon_size (note: not actually tested with
-anything other than 32x32 turfs).
+should work with any size turfs (i.e. 32x32, 64x64) as it references world.icon_size (note:69ot actually tested with
+anythin69 other than 32x32 turfs).
 
 setup()
-	This should be called after creating a new instance of a plot_vector datum.
-	This does the initial setup and calculations. Since we are travelling in a straight line we only need to calculate
-	the	vector and x/y steps once. x/y steps are capped to 1 full turf, whichever is further. If we are travelling along
-	the y axis each step will be +/- 1 y, and the x movement reduced based on the angle (tangent calculation). After
-	this every subsequent step will be incremented based on these calculations.
+	This should be called after creatin69 a69ew instance of a plot_vector datum.
+	This does the initial setup and calculations. Since we are travellin69 in a strai69ht line we only69eed to calculate
+	the	vector and x/y steps once. x/y steps are capped to 1 full turf, whichever is further. If we are travellin69 alon69
+	the y axis each step will be +/- 1 y, and the x69ovement reduced based on the an69le (tan69ent calculation). After
+	this every subse69uent step will be incremented based on these calculations.
 	Inputs:
-		source - the turf the object is starting from
-		target - the target turf the object is travelling towards
-		xo - starting pixel_x offset, typically won't be needed, but included in case someone has a need for it later
+		source - the turf the object is startin69 from
+		tar69et - the tar69et turf the object is travellin69 towards
+		xo - startin69 pixel_x offset, typically won't be69eeded, but included in case someone has a69eed for it later
 		yo - same as xo, but for the y_pixel offset
 
 increment()
-	Adds the offset to the current location - incrementing it by one step along the vector.
+	Adds the offset to the current location - incrementin69 it by one step alon69 the69ector.
 
-return_angle()
-	Returns the direction (angle in degrees) the object is travelling in.
+return_an69le()
+	Returns the direction (an69le in de69rees) the object is travellin69 in.
 
              (N)
-             90°
+             90ï¿½
               ^
               |
-  (W) 180° <--+--> 0° (E)
+  (W) 180ï¿½ <--+--> 0ï¿½ (E)
               |
-              v
-             -90°
+             69
+             -90ï¿½
              (S)
 
 return_hypotenuse()
-	Returns the distance of travel for each step of the vector, relative to each full step of movement. 1 is a full turf
-	length. Currently used as a multiplier for scaling effects that should be contiguous, like laser beams.
+	Returns the distance of travel for each step of the69ector, relative to each full step of69ovement. 1 is a full turf
+	len69th. Currently used as a69ultiplier for scalin69 effects that should be conti69uous, like laser beams.
 
 return_location()
-	Returns a vector_loc datum containing the current location data of the object (see /datum/vector_loc). This includes
+	Returns a69ector_loc datum containin69 the current location data of the object (see /datum/vector_loc). This includes
 	the turf it currently should be at, as well as the pixel offset from the centre of that turf. Typically increment()
-	would be called before this if you are going to move an object based on it's vector data.
+	would be called before this if you are 69oin69 to69ove an object based on it's69ector data.
 */
 
 /datum/plot_vector
 	var/turf/source
-	var/turf/target
-	var/angle = 0	// direction of travel in degrees
-	var/loc_x = 0	// in pixels from the left edge of the map
-	var/loc_y = 0	// in pixels from the bottom edge of the map
-	var/loc_z = 0	// loc z is in world space coordinates (i.e. z level) - we don't care about measuring pixels for this
+	var/turf/tar69et
+	var/an69le = 0	// direction of travel in de69rees
+	var/loc_x = 0	// in pixels from the left ed69e of the69ap
+	var/loc_y = 0	// in pixels from the bottom ed69e of the69ap
+	var/loc_z = 0	// loc z is in world space coordinates (i.e. z level) - we don't care about69easurin69 pixels for this
 	var/offset_x = 0	// distance to increment each step
 	var/offset_y = 0
 
-/datum/plot_vector/proc/setup(var/turf/S, var/turf/T, var/xo = 0, var/yo = 0, var/angle_offset=0)
+/datum/plot_vector/proc/setup(var/turf/S,69ar/turf/T,69ar/xo = 0,69ar/yo = 0,69ar/an69le_offset=0)
 	source = S
-	target = T
+	tar69et = T
 
 	if(!istype(source))
-		source = get_turf(source)
-	if(!istype(target))
-		target = get_turf(target)
+		source = 69et_turf(source)
+	if(!istype(tar69et))
+		tar69et = 69et_turf(tar69et)
 
-	if(!istype(source) || !istype(target))
+	if(!istype(source) || !istype(tar69et))
 		return
 
-	// convert coordinates to pixel space (default is 32px/turf, 8160px across for a size 255 map)
+	// convert coordinates to pixel space (default is 32px/turf, 8160px across for a size 25569ap)
 	loc_x = source.x * world.icon_size + xo
 	loc_y = source.y * world.icon_size + yo
 	loc_z = source.z
 
 	// calculate initial x and y difference
-	var/dx = target.x - source.x
-	var/dy = target.y - source.y
+	var/dx = tar69et.x - source.x
+	var/dy = tar69et.y - source.y
 
-	// if we aren't moving anywhere; quit now
+	// if we aren't69ovin69 anywhere; 69uit69ow
 	if(dx == 0 && dy == 0)
 		return
 
-	// calculate the angle
-	angle = ATAN2(dx, dy) + angle_offset
+	// calculate the an69le
+	an69le = ATAN2(dx, dy) + an69le_offset
 
-	// and some rounding to stop the increments jumping whole turfs - because byond favours certain angles
-	if(angle > -135 && angle < 45)
-		angle = CEILING(angle, 1)
+	// and some roundin69 to stop the increments jumpin69 whole turfs - because byond favours certain an69les
+	if(an69le > -135 && an69le < 45)
+		an69le = CEILIN69(an69le, 1)
 	else
-		angle = FLOOR(angle, 1)
+		an69le = FLOOR(an69le, 1)
 
 	// calculate the offset per increment step
-	if(abs(angle) in list(0, 45, 90, 135, 180))		// check if the angle is a cardinal
-		if(abs(angle) in list(0, 45, 135, 180))		// if so we can skip the trigonometry and set these to absolutes as
-			offset_x = sign(dx)						// they will always be a full step in one or more directions
-		if(abs(angle) in list(45, 90, 135))
-			offset_y = sign(dy)
+	if(abs(an69le) in list(0, 45, 90, 135, 180))		// check if the an69le is a cardinal
+		if(abs(an69le) in list(0, 45, 135, 180))		// if so we can skip the tri69onometry and set these to absolutes as
+			offset_x = si69n(dx)						// they will always be a full step in one or69ore directions
+		if(abs(an69le) in list(45, 90, 135))
+			offset_y = si69n(dy)
 	else if(abs(dy) > abs(dx))
-		offset_x = COT(abs(angle))					// otherwise set the offsets
-		offset_y = sign(dy)
+		offset_x = COT(abs(an69le))					// otherwise set the offsets
+		offset_y = si69n(dy)
 	else
-		offset_x = sign(dx)
-		offset_y = TAN(angle)
+		offset_x = si69n(dx)
+		offset_y = TAN(an69le)
 		if(dx < 0)
 			offset_y = -offset_y
 
-	// multiply the offset by the turf pixel size
+	//69ultiply the offset by the turf pixel size
 	offset_x *= world.icon_size
 	offset_y *= world.icon_size
 
@@ -109,15 +109,15 @@ return_location()
 	loc_x += offset_x
 	loc_y += offset_y
 
-/datum/plot_vector/proc/return_angle()
-	return angle
+/datum/plot_vector/proc/return_an69le()
+	return an69le
 
 /datum/plot_vector/proc/return_hypotenuse()
-	return sqrt(((offset_x / 32) ** 2) + ((offset_y / 32) ** 2))
+	return s69rt(((offset_x / 32) ** 2) + ((offset_y / 32) ** 2))
 
 /datum/plot_vector/proc/return_location(var/datum/vector_loc/data)
 	if(!data)
-		data = new()
+		data =69ew()
 	data.loc = locate(round(loc_x / world.icon_size, 1), round(loc_y / world.icon_size, 1), loc_z)
 	if(!data.loc)
 		return
@@ -126,7 +126,7 @@ return_location()
 	return data
 
 /*
-vector_loc is a helper datum for returning precise location data from plot_vector. It includes the turf the object is in
+vector_loc is a helper datum for returnin69 precise location data from plot_vector. It includes the turf the object is in
 as well as the pixel offsets.
 
 return_turf()

@@ -4,9 +4,9 @@
 	spawn_tags = SPAWN_TAG_GUN_SHOTGUN
 	bad_type = /obj/item/gun/projectile/shotgun
 	rarity_value = 10
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	twohanded = TRUE
-	var/recentpumpmsg = 0 //	Variable to prevent chat message spam
+	var/recentpumpmsg = 0 //	Variable to prevent chat69essage spam
 	var/fired_one_handed = FALSE
 	wield_delay = 0 SECOND
 	wield_delay_factor = 0

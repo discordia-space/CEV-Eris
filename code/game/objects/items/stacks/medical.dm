@@ -1,214 +1,214 @@
 /obj/item/stack/medical
 	name = "medical pack"
-	singular_name = "medical pack"
+	sin69ular_name = "medical pack"
 	icon = 'icons/obj/stack/items.dmi'
 	amount = 5
 	max_amount = 5
 	w_class = ITEM_SIZE_SMALL
 	throw_speed = 4
-	throw_range = 20
-	price_tag = 10
-	spawn_tags = SPAWN_TAG_MEDICINE
+	throw_ran69e = 20
+	price_ta69 = 10
+	spawn_ta69s = SPAWN_TA69_MEDICINE
 	bad_type = /obj/item/stack/medical
 	matter = list(MATERIAL_BIOMATTER = 5)
 	var/heal_brute = 0
 	var/heal_burn = 0
-	var/automatic_charge_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from TG egun code
-	var/charge_sections = 5		// How many indicator blips are there?
-	var/charge_x_offset = 2		//The spacing between each charge indicator. Should be 2 to leave a 1px gap between each blip.
+	var/automatic_char69e_overlays = FALSE	//Do we handle overlays with base update_icon()? | Stolen from T69 e69un code
+	var/char69e_sections = 5		// How69any indicator blips are there?
+	var/char69e_x_offset = 2		//The spacin69 between each char69e indicator. Should be 2 to leave a 1px 69ap between each blip.
 
-/obj/item/stack/medical/attack(mob/living/M, mob/living/user)
-	var/types = M.get_classification()
-	if (!(types & CLASSIFICATION_ORGANIC))
-		to_chat(user, SPAN_WARNING("\The [src] cannot be applied to [M]!"))
+/obj/item/stack/medical/attack(mob/livin69/M,69ob/livin69/user)
+	var/types =69.69et_classification()
+	if (!(types & CLASSIFICATION_OR69ANIC))
+		to_chat(user, SPAN_WARNIN69("\The 69src69 cannot be applied to 69M69!"))
 		return 1
 
 	if ( ! (ishuman(user) || issilicon(user)) )
-		to_chat(user, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(user, SPAN_WARNIN69("You don't have the dexterity to do this!"))
 		return 1
 
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
+		var/mob/livin69/carbon/human/H =69
+		var/obj/item/or69an/external/affectin69 = H.69et_or69an(user.tar69eted_or69an)
 
-		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		if(!affectin69)
+			to_chat(user, SPAN_WARNIN69("What 69user.tar69eted_or69an69?"))
 			return TRUE
 
-		if(affecting.organ_tag == BP_HEAD)
-			if(H.head && istype(H.head,/obj/item/clothing/head/space))
-				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.head]!"))
+		if(affectin69.or69an_ta69 == BP_HEAD)
+			if(H.head && istype(H.head,/obj/item/clothin69/head/space))
+				to_chat(user, SPAN_WARNIN69("You can't apply 69src69 throu69h 69H.head69!"))
 				return 1
 		else
-			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
-				to_chat(user, SPAN_WARNING("You can't apply [src] through [H.wear_suit]!"))
+			if(H.wear_suit && istype(H.wear_suit,/obj/item/clothin69/suit/space))
+				to_chat(user, SPAN_WARNIN69("You can't apply 69src69 throu69h 69H.wear_suit69!"))
 				return 1
 
-		if(BP_IS_ROBOTIC(affecting))
+		if(BP_IS_ROBOTIC(affectin69))
 			// user is clueless
-			if(BP_IS_LIFELIKE(affecting) && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
-				user.visible_message( \
-				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
-				SPAN_NOTICE("You start applying [src] to [M].") \
+			if(BP_IS_LIFELIKE(affectin69) && user.stats.69etStat(STAT_BIO) < STAT_LEVEL_BASIC)
+				user.visible_messa69e( \
+				SPAN_NOTICE("69user69 starts applyin69 69src69 to 69M69."), \
+				SPAN_NOTICE("You start applyin69 69src69 to 69M69.") \
 				)
-				if (do_after(user, 30, M))
-					if(prob(10 + user.stats.getStat(STAT_BIO)))
-						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+				if (do_after(user, 30,69))
+					if(prob(10 + user.stats.69etStat(STAT_BIO)))
+						to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 					else
 						use(1)
-					user.visible_message( \
-						SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
-						SPAN_NOTICE("You apply [src] to [M].") \
+					user.visible_messa69e( \
+						SPAN_NOTICE("69M69 starts has been applied with 69src69 by 69user69."), \
+						SPAN_NOTICE("You apply 69src69 to 69M69.") \
 					)
 				M.updatehealth()
 				return 1
 
-			to_chat(user, SPAN_WARNING("This isn't useful at all on a robotic limb."))
+			to_chat(user, SPAN_WARNIN69("This isn't useful at all on a robotic limb."))
 			return 1
 
-		H.UpdateDamageIcon()
+		H.UpdateDama69eIcon()
 
 	else
 		if (!M.bruteloss && !M.fireloss)
-			to_chat(user, "<span class='notice'> [M] seems healthy, there are no wounds to treat! </span>")
+			to_chat(user, "<span class='notice'> 69M69 seems healthy, there are no wounds to treat! </span>")
 			return 1
 
-		user.visible_message( \
-				SPAN_NOTICE("[user] starts applying [src] to [M]."), \
-				SPAN_NOTICE("You start applying [src] to [M].") \
+		user.visible_messa69e( \
+				SPAN_NOTICE("69user69 starts applyin69 69src69 to 69M69."), \
+				SPAN_NOTICE("You start applyin69 69src69 to 69M69.") \
 			)
-		var/med_skill = user.stats.getStat(STAT_BIO)
-		if (do_after(user, 30, M))
-			M.heal_organ_damage((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
-			if(prob(10 + med_skill))
-				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+		var/med_skill = user.stats.69etStat(STAT_BIO)
+		if (do_after(user, 30,69))
+			M.heal_or69an_dama69e((src.heal_brute * (1+med_skill/50)/2), (src.heal_burn * (1+med_skill/50)/2))
+			if(prob(10 +69ed_skill))
+				to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 			else
 				use(1)
-			user.visible_message( \
-				SPAN_NOTICE("[M] starts has been applied with [src] by [user]."), \
-				SPAN_NOTICE("You apply [src] to [M].") \
+			user.visible_messa69e( \
+				SPAN_NOTICE("69M69 starts has been applied with 69src69 by 69user69."), \
+				SPAN_NOTICE("You apply 69src69 to 69M69.") \
 			)
 
 	M.updatehealth()
 
 /obj/item/stack/medical/update_icon()
-	if(QDELETED(src)) //Checks if the item has been deleted
-		return	//If it has, do nothing
+	if(69DELETED(src)) //Checks if the item has been deleted
+		return	//If it has, do nothin69
 	..()
-	if(!automatic_charge_overlays)	//Checks if the item has this feature enabled
-		return	//If it does not, do nothing
-	var/ratio = CEILING(CLAMP(amount / max_amount, 0, 1) * charge_sections, 1)
+	if(!automatic_char69e_overlays)	//Checks if the item has this feature enabled
+		return	//If it does not, do nothin69
+	var/ratio = CEILIN69(CLAMP(amount /69ax_amount, 0, 1) * char69e_sections, 1)
 	cut_overlays()
-	var/iconState = "[icon_state]_charge"
-	if(!amount)	//Checks if there are still charges left in the item
-		return //If it does not, do nothing, as the overlays have been cut before this already.
+	var/iconState = "69icon_state69_char69e"
+	if(!amount)	//Checks if there are still char69es left in the item
+		return //If it does not, do nothin69, as the overlays have been cut before this already.
 	else
-		var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
+		var/mutable_appearance/char69e_overlay =69utable_appearance(icon, iconState)
 		for(var/i = ratio, i >= 1, i--)
-			charge_overlay.pixel_x = charge_x_offset * (i - 1)
-			add_overlay(charge_overlay)
+			char69e_overlay.pixel_x = char69e_x_offset * (i - 1)
+			add_overlay(char69e_overlay)
 
 /obj/item/stack/medical/Initialize()
 	. = ..()
 	update_icon()
 
 /obj/item/stack/medical/bruise_pack
-	name = "roll of gauze"
-	singular_name = "gauze length"
-	desc = "Some sterile gauze to wrap around bloody stumps."
+	name = "roll of 69auze"
+	sin69ular_name = "69auze len69th"
+	desc = "Some sterile 69auze to wrap around bloody stumps."
 	icon_state = "brutepack"
-	origin_tech = list(TECH_BIO = 1)
+	ori69in_tech = list(TECH_BIO = 1)
 	heal_brute = 4
-	preloaded_reagents = list("silicon" = 4, "ethanol" = 8)
+	preloaded_rea69ents = list("silicon" = 4, "ethanol" = 8)
 	rarity_value = 5
-	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
+	spawn_ta69s = SPAWN_TA69_MEDICINE_COMMON
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/bruise_pack/attack(mob/livin69/carbon/M,69ob/livin69/user)
 	if(..())
 		return 1
 
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
+		var/mob/livin69/carbon/human/H =69
+		var/obj/item/or69an/external/affectin69 = H.69et_or69an(user.tar69eted_or69an)
 
-		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		if(!affectin69)
+			to_chat(user, SPAN_WARNIN69("What 69user.tar69eted_or69an69?"))
 			return TRUE
 
-		if(affecting.open == 0)
-			if(affecting.is_bandaged())
-				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been bandaged."))
+		if(affectin69.open == 0)
+			if(affectin69.is_banda69ed())
+				to_chat(user, SPAN_WARNIN69("The wounds on 69M69's 69affectin69.name69 have already been banda69ed."))
 				return 1
 			else
-				user.visible_message(
-					SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."),
-					SPAN_NOTICE("You start treating [M]'s [affecting.name].")
+				user.visible_messa69e(
+					SPAN_NOTICE("\The 69user69 starts treatin69 69M69's 69affectin69.name69."),
+					SPAN_NOTICE("You start treatin69 69M69's 69affectin69.name69.")
 				)
 				var/used = 0
-				for (var/datum/wound/W in affecting.wounds)
+				for (var/datum/wound/W in affectin69.wounds)
 					if(W.internal)
 						continue
-					if(W.bandaged)
+					if(W.banda69ed)
 						continue
 					if(used == amount)
 						break
-					if(!do_mob(user, M, W.damage/5))
-						to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
+					if(!do_mob(user,69, W.dama69e/5))
+						to_chat(user, SPAN_NOTICE("You69ust stand still to banda69e wounds."))
 						break
 					if(W.internal)
 						continue
-					if(W.bandaged)
+					if(W.banda69ed)
 						continue
 					if(used == amount)
 						break
-					if (W.current_stage <= W.max_bleeding_stage)
-						user.visible_message(
-							SPAN_NOTICE("\The [user] bandages \a [W.desc] on [M]'s [affecting.name]."),
-							SPAN_NOTICE("You bandage \a [W.desc] on [M]'s [affecting.name].")
+					if (W.current_sta69e <= W.max_bleedin69_sta69e)
+						user.visible_messa69e(
+							SPAN_NOTICE("\The 69user69 banda69es \a 69W.desc69 on 69M69's 69affectin69.name69."),
+							SPAN_NOTICE("You banda69e \a 69W.desc69 on 69M69's 69affectin69.name69.")
 						)
 						//H.add_side_effect("Itch")
-					else if (W.damage_type == BRUISE)
-						user.visible_message(
-							SPAN_NOTICE("\The [user] places a bruise patch over \a [W.desc] on [M]'s [affecting.name]."),
-							SPAN_NOTICE("You place a bruise patch over \a [W.desc] on [M]'s [affecting.name].")
+					else if (W.dama69e_type == BRUISE)
+						user.visible_messa69e(
+							SPAN_NOTICE("\The 69user69 places a bruise patch over \a 69W.desc69 on 69M69's 69affectin69.name69."),
+							SPAN_NOTICE("You place a bruise patch over \a 69W.desc69 on 69M69's 69affectin69.name69.")
 						)
 					else
-						user.visible_message(
-							SPAN_NOTICE("\The [user] places a bandaid over \a [W.desc] on [M]'s [affecting.name]."),
-							SPAN_NOTICE("You place a bandaid over \a [W.desc] on [M]'s [affecting.name].")
+						user.visible_messa69e(
+							SPAN_NOTICE("\The 69user69 places a bandaid over \a 69W.desc69 on 69M69's 69affectin69.name69."),
+							SPAN_NOTICE("You place a bandaid over \a 69W.desc69 on 69M69's 69affectin69.name69.")
 						)
-					W.bandage()
-					// user's stat check that causing pain if they are amateurs
-					if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
-						if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
-							var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
-							H.pain(affecting, pain)
+					W.banda69e()
+					// user's stat check that causin69 pain if they are amateurs
+					if(user && user.stats.69etStat(STAT_BIO) < STAT_LEVEL_BASIC)
+						if(prob(affectin69.69et_dama69e() - user.stats.69etStat(STAT_BIO)))
+							var/pain = rand(min(30,affectin69.69et_dama69e()),69ax(affectin69.69et_dama69e() + 30,60) - user.stats.69etStat(STAT_BIO))
+							H.pain(affectin69, pain)
 							if(user != H)
-								to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-								to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+								to_chat(H, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>\The 69user69's amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
+								to_chat(user, SPAN_WARNIN69("Your amateur actions caused 69H69 69pain > 50 ? "a lot of " : ""69pain."))
 							else
-								to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-					if(prob(10 + user.stats.getStat(STAT_BIO)))
-						to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+								to_chat(user, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>Your amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
+					if(prob(10 + user.stats.69etStat(STAT_BIO)))
+						to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 					else
 						used++
-				affecting.update_damages()
+				affectin69.update_dama69es()
 				if(used == amount)
-					if(affecting.is_bandaged())
-						to_chat(user, SPAN_WARNING("\The [src] is used up."))
+					if(affectin69.is_banda69ed())
+						to_chat(user, SPAN_WARNIN69("\The 69src69 is used up."))
 					else
-						to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
+						to_chat(user, SPAN_WARNIN69("\The 69src69 is used up, but there are69ore wounds to treat on \the 69affectin69.name69."))
 				use(used)
 		else
-			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if69ob is lyin69 down on table for sur69ery
+				if (do_sur69ery(H,user,src, TRUE))
 					return
 			else
-				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
+				to_chat(user, SPAN_NOTICE("The 69affectin69.name69 is cut open, you'll need69ore than a banda69e!"))
 
 /obj/item/stack/medical/bruise_pack/handmade
-	name = "non sterile bandage"
-	singular_name = "non sterile bandage"
+	name = "non sterile banda69e"
+	sin69ular_name = "non sterile banda69e"
 	desc = "Parts of clothes that can be wrapped around bloody stumps."
 	icon_state = "hm_brutepack"
 	spawn_blacklisted = TRUE
@@ -216,83 +216,83 @@
 /obj/item/stack/medical/ointment
 	name = "ointment"
 	desc = "Used to treat those nasty burns."
-	gender = PLURAL
-	singular_name = "ointment"
+	69ender = PLURAL
+	sin69ular_name = "ointment"
 	icon_state = "ointment"
 	heal_burn = 4
-	origin_tech = list(TECH_BIO = 1)
-	preloaded_reagents = list("silicon" = 4, "carbon" = 8)
+	ori69in_tech = list(TECH_BIO = 1)
+	preloaded_rea69ents = list("silicon" = 4, "carbon" = 8)
 	rarity_value = 5
-	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
+	spawn_ta69s = SPAWN_TA69_MEDICINE_COMMON
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/ointment/attack(mob/livin69/carbon/M,69ob/livin69/user)
 	if(..())
 		return 1
 
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
+		var/mob/livin69/carbon/human/H =69
+		var/obj/item/or69an/external/affectin69 = H.69et_or69an(user.tar69eted_or69an)
 
-		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		if(!affectin69)
+			to_chat(user, SPAN_WARNIN69("What 69user.tar69eted_or69an69?"))
 			return TRUE
 
-		if(affecting.open == 0)
-			if(affecting.is_salved())
-				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved."))
+		if(affectin69.open == 0)
+			if(affectin69.is_salved())
+				to_chat(user, SPAN_WARNIN69("The wounds on 69M69's 69affectin69.name69 have already been salved."))
 				return 1
 			else
-				user.visible_message(
-					SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."),
-					SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].")
+				user.visible_messa69e(
+					SPAN_NOTICE("\The 69user69 starts salvin69 wounds on 69M69's 69affectin69.name69."),
+					SPAN_NOTICE("You start salvin69 the wounds on 69M69's 69affectin69.name69.")
 				)
-				if(!do_mob(user, M, 10))
-					to_chat(user, SPAN_NOTICE("You must stand still to salve wounds."))
+				if(!do_mob(user,69, 10))
+					to_chat(user, SPAN_NOTICE("You69ust stand still to salve wounds."))
 					return 1
-				user.visible_message(
-					SPAN_NOTICE("[user] salved wounds on [M]'s [affecting.name]."),
-					SPAN_NOTICE("You salved wounds on [M]'s [affecting.name].")
+				user.visible_messa69e(
+					SPAN_NOTICE("69user69 salved wounds on 69M69's 69affectin69.name69."),
+					SPAN_NOTICE("You salved wounds on 69M69's 69affectin69.name69.")
 				)
-				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+				if(prob(10 + user.stats.69etStat(STAT_BIO)))
+					to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 				else
 					use(1)
-				affecting.salve()
-				// user's stat check that causing pain if they are amateurs
-				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
-					if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
-						var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
-						H.pain(affecting, pain)
+				affectin69.salve()
+				// user's stat check that causin69 pain if they are amateurs
+				if(user && user.stats.69etStat(STAT_BIO) < STAT_LEVEL_BASIC)
+					if(prob(affectin69.69et_dama69e() - user.stats.69etStat(STAT_BIO)))
+						var/pain = rand(min(30,affectin69.69et_dama69e()),69ax(affectin69.69et_dama69e() + 30,60) - user.stats.69etStat(STAT_BIO))
+						H.pain(affectin69, pain)
 						if(user != H)
-							to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-							to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+							to_chat(H, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>\The 69user69's amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
+							to_chat(user, SPAN_WARNIN69("Your amateur actions caused 69H69 69pain > 50 ? "a lot of " : ""69pain."))
 						else
-							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
+							to_chat(user, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>Your amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
 		else
-			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if69ob is lyin69 down on table for sur69ery
+				if (do_sur69ery(H,user,src, TRUE))
 					return
 			else
-				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a [src]!"))
+				to_chat(user, SPAN_NOTICE("The 69affectin69.name69 is cut open, you'll need69ore than a 69src69!"))
 
 /obj/item/stack/medical/advanced
 	bad_type = /obj/item/stack/medical/advanced
-	spawn_tags = SPAWN_TAG_MEDICINE_ADVANCED
+	spawn_ta69s = SPAWN_TA69_MEDICINE_ADVANCED
 
 /obj/item/stack/medical/advanced/bruise_pack
 	name = "advanced trauma kit"
-	singular_name = "advanced trauma kit"
+	sin69ular_name = "advanced trauma kit"
 	desc = "An advanced trauma kit for severe injuries."
 	icon_state = "traumakit"
 	heal_brute = 8
-	origin_tech = list(TECH_BIO = 2)
-	automatic_charge_overlays = TRUE
+	ori69in_tech = list(TECH_BIO = 2)
+	automatic_char69e_overlays = TRUE
 	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
-	splittable = FALSE	// Is the stack capable of being splitted?
-	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "lithium" = 4)
+	splittable = FALSE	// Is the stack capable of bein69 splitted?
+	preloaded_rea69ents = list("silicon" = 4, "ethanol" = 10, "lithium" = 4)
 	rarity_value = 10
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/livin69/carbon/M,69ob/livin69/user)
 	if(..())
 		return 1
 
@@ -302,100 +302,100 @@
 	if(!ishuman(M))
 		return
 
-	var/mob/living/carbon/human/H = M
-	var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
+	var/mob/livin69/carbon/human/H =69
+	var/obj/item/or69an/external/affectin69 = H.69et_or69an(user.tar69eted_or69an)
 
-	if(!affecting)
-		to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+	if(!affectin69)
+		to_chat(user, SPAN_WARNIN69("What 69user.tar69eted_or69an69?"))
 		return TRUE
 
-	if(affecting.open == 0)
-		if(affecting.is_bandaged() && affecting.is_disinfected())
-			to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been treated."))
+	if(affectin69.open == 0)
+		if(affectin69.is_banda69ed() && affectin69.is_disinfected())
+			to_chat(user, SPAN_WARNIN69("The wounds on 69M69's 69affectin69.name69 have already been treated."))
 			return 1
 		else
-			user.visible_message(
-				SPAN_NOTICE("\The [user] starts treating [M]'s [affecting.name]."),
-				SPAN_NOTICE("You start treating [M]'s [affecting.name].")
+			user.visible_messa69e(
+				SPAN_NOTICE("\The 69user69 starts treatin69 69M69's 69affectin69.name69."),
+				SPAN_NOTICE("You start treatin69 69M69's 69affectin69.name69.")
 			)
 			var/used = 0
-			for (var/datum/wound/W in affecting.wounds)
+			for (var/datum/wound/W in affectin69.wounds)
 				if(W.internal)
 					continue
-				if(W.bandaged && W.disinfected)
+				if(W.banda69ed && W.disinfected)
 					continue
 				if(used == amount)
 					break
-				if(!do_mob(user, M, W.damage/5))
-					to_chat(user, SPAN_NOTICE("You must stand still to bandage wounds."))
+				if(!do_mob(user,69, W.dama69e/5))
+					to_chat(user, SPAN_NOTICE("You69ust stand still to banda69e wounds."))
 					break
 				if(W.internal)
 					continue
-				if(W.bandaged && W.disinfected)
+				if(W.banda69ed && W.disinfected)
 					continue
 				if(used == amount)
 					break
-				if (W.current_stage <= W.max_bleeding_stage)
-					user.visible_message(
-						SPAN_NOTICE("\The [user] cleans \a [W.desc] on [M]'s [affecting.name] and seals the edges with bioglue."),
-						SPAN_NOTICE("You clean and seal \a [W.desc] on [M]'s [affecting.name].")
+				if (W.current_sta69e <= W.max_bleedin69_sta69e)
+					user.visible_messa69e(
+						SPAN_NOTICE("\The 69user69 cleans \a 69W.desc69 on 69M69's 69affectin69.name69 and seals the ed69es with bio69lue."),
+						SPAN_NOTICE("You clean and seal \a 69W.desc69 on 69M69's 69affectin69.name69.")
 					)
-				else if (W.damage_type == BRUISE)
-					user.visible_message(
-						SPAN_NOTICE("\The [user] places a medical patch over \a [W.desc] on [M]'s [affecting.name]."),
-						SPAN_NOTICE("You place a medical patch over \a [W.desc] on [M]'s [affecting.name].")
+				else if (W.dama69e_type == BRUISE)
+					user.visible_messa69e(
+						SPAN_NOTICE("\The 69user69 places a69edical patch over \a 69W.desc69 on 69M69's 69affectin69.name69."),
+						SPAN_NOTICE("You place a69edical patch over \a 69W.desc69 on 69M69's 69affectin69.name69.")
 					)
 				else
-					user.visible_message(
-						SPAN_NOTICE("\The [user] smears some bioglue over \a [W.desc] on [M]'s [affecting.name]."),
-						SPAN_NOTICE("You smear some bioglue over \a [W.desc] on [M]'s [affecting.name].")
+					user.visible_messa69e(
+						SPAN_NOTICE("\The 69user69 smears some bio69lue over \a 69W.desc69 on 69M69's 69affectin69.name69."),
+						SPAN_NOTICE("You smear some bio69lue over \a 69W.desc69 on 69M69's 69affectin69.name69.")
 					)
-				W.bandage()
+				W.banda69e()
 				W.disinfect()
-				W.heal_damage(heal_brute)
-				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+				W.heal_dama69e(heal_brute)
+				if(prob(10 + user.stats.69etStat(STAT_BIO)))
+					to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 				else
 					used++
-			affecting.update_damages()
-			// user's stat check that causing pain if they are amateurs
-			if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
-				if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
-					var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
-					H.pain(affecting, pain)
+			affectin69.update_dama69es()
+			// user's stat check that causin69 pain if they are amateurs
+			if(user && user.stats.69etStat(STAT_BIO) < STAT_LEVEL_BASIC)
+				if(prob(affectin69.69et_dama69e() - user.stats.69etStat(STAT_BIO)))
+					var/pain = rand(min(30,affectin69.69et_dama69e()),69ax(affectin69.69et_dama69e() + 30,60) - user.stats.69etStat(STAT_BIO))
+					H.pain(affectin69, pain)
 					if(user != H)
-						to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-						to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+						to_chat(H, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>\The 69user69's amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
+						to_chat(user, SPAN_WARNIN69("Your amateur actions caused 69H69 69pain > 50 ? "a lot of " : ""69pain."))
 					else
-						to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
+						to_chat(user, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>Your amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
 			if(used == amount)
-				if(affecting.is_bandaged())
-					to_chat(user, SPAN_WARNING("\The [src] is used up."))
+				if(affectin69.is_banda69ed())
+					to_chat(user, SPAN_WARNIN69("\The 69src69 is used up."))
 				else
-					to_chat(user, SPAN_WARNING("\The [src] is used up, but there are more wounds to treat on \the [affecting.name]."))
+					to_chat(user, SPAN_WARNIN69("\The 69src69 is used up, but there are69ore wounds to treat on \the 69affectin69.name69."))
 			use(used)
 			update_icon()
 	else
-		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-			if (do_surgery(H,user,src, TRUE))
+		if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if69ob is lyin69 down on table for sur69ery
+			if (do_sur69ery(H,user,src, TRUE))
 				return
 		else
-			to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
+			to_chat(user, SPAN_NOTICE("The 69affectin69.name69 is cut open, you'll need69ore than a banda69e!"))
 
 /obj/item/stack/medical/advanced/ointment
 	name = "advanced burn kit"
-	singular_name = "advanced burn kit"
+	sin69ular_name = "advanced burn kit"
 	desc = "An advanced treatment kit for severe burns."
 	icon_state = "burnkit"
 	heal_burn = 8
-	origin_tech = list(TECH_BIO = 2)
-	automatic_charge_overlays = TRUE
+	ori69in_tech = list(TECH_BIO = 2)
+	automatic_char69e_overlays = TRUE
 	consumable = FALSE	// Will the stack disappear entirely once the amount is used up?
-	splittable = FALSE	// Is the stack capable of being splitted?
-	preloaded_reagents = list("silicon" = 4, "ethanol" = 10, "mercury" = 4)
+	splittable = FALSE	// Is the stack capable of bein69 splitted?
+	preloaded_rea69ents = list("silicon" = 4, "ethanol" = 10, "mercury" = 4)
 	rarity_value = 10
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/advanced/ointment/attack(mob/livin69/carbon/M,69ob/livin69/user)
 	if(..())
 		return 1
 
@@ -403,150 +403,150 @@
 		return
 
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
+		var/mob/livin69/carbon/human/H =69
+		var/obj/item/or69an/external/affectin69 = H.69et_or69an(user.tar69eted_or69an)
 
-		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		if(!affectin69)
+			to_chat(user, SPAN_WARNIN69("What 69user.tar69eted_or69an69?"))
 			return TRUE
 
-		if(affecting.open == 0)
-			if(affecting.is_salved())
-				to_chat(user, SPAN_WARNING("The wounds on [M]'s [affecting.name] have already been salved."))
+		if(affectin69.open == 0)
+			if(affectin69.is_salved())
+				to_chat(user, SPAN_WARNIN69("The wounds on 69M69's 69affectin69.name69 have already been salved."))
 				return 1
 			else
-				user.visible_message(
-					SPAN_NOTICE("\The [user] starts salving wounds on [M]'s [affecting.name]."),
-					SPAN_NOTICE("You start salving the wounds on [M]'s [affecting.name].")
+				user.visible_messa69e(
+					SPAN_NOTICE("\The 69user69 starts salvin69 wounds on 69M69's 69affectin69.name69."),
+					SPAN_NOTICE("You start salvin69 the wounds on 69M69's 69affectin69.name69.")
 				)
-				if(!do_mob(user, M, 10))
-					to_chat(user, SPAN_NOTICE("You must stand still to salve wounds."))
+				if(!do_mob(user,69, 10))
+					to_chat(user, SPAN_NOTICE("You69ust stand still to salve wounds."))
 					return 1
-				user.visible_message(
-					SPAN_NOTICE("[user] covers wounds on [M]'s [affecting.name] with regenerative membrane."),
-					SPAN_NOTICE("You cover wounds on [M]'s [affecting.name] with regenerative membrane.")
+				user.visible_messa69e(
+					SPAN_NOTICE("69user69 covers wounds on 69M69's 69affectin69.name69 with re69enerative69embrane."),
+					SPAN_NOTICE("You cover wounds on 69M69's 69affectin69.name69 with re69enerative69embrane.")
 				)
-				affecting.heal_damage(0,heal_burn)
-				if(prob(10 + user.stats.getStat(STAT_BIO)))
-					to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+				affectin69.heal_dama69e(0,heal_burn)
+				if(prob(10 + user.stats.69etStat(STAT_BIO)))
+					to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 				else
 					use(1)
 					update_icon()
-				affecting.salve()
-				// user's stat check that causing pain if they are amateurs
-				if(user && user.stats.getStat(STAT_BIO) < STAT_LEVEL_BASIC)
-					if(prob(affecting.get_damage() - user.stats.getStat(STAT_BIO)))
-						var/pain = rand(min(30,affecting.get_damage()), max(affecting.get_damage() + 30,60) - user.stats.getStat(STAT_BIO))
-						H.pain(affecting, pain)
+				affectin69.salve()
+				// user's stat check that causin69 pain if they are amateurs
+				if(user && user.stats.69etStat(STAT_BIO) < STAT_LEVEL_BASIC)
+					if(prob(affectin69.69et_dama69e() - user.stats.69etStat(STAT_BIO)))
+						var/pain = rand(min(30,affectin69.69et_dama69e()),69ax(affectin69.69et_dama69e() + 30,60) - user.stats.69etStat(STAT_BIO))
+						H.pain(affectin69, pain)
 						if(user != H)
-							to_chat(H, "<span class='[pain > 50 ? "danger" : "warning"]'>\The [user]'s amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
-							to_chat(user, SPAN_WARNING("Your amateur actions caused [H] [pain > 50 ? "a lot of " : ""]pain."))
+							to_chat(H, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>\The 69user69's amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
+							to_chat(user, SPAN_WARNIN69("Your amateur actions caused 69H69 69pain > 50 ? "a lot of " : ""69pain."))
 						else
-							to_chat(user, "<span class='[pain > 50 ? "danger" : "warning"]'>Your amateur actions caused you [pain > 50 ? "a lot of " : ""]pain.</span>")
+							to_chat(user, "<span class='69pain > 50 ? "dan69er" : "warnin69"69'>Your amateur actions caused you 69pain > 50 ? "a lot of " : ""69pain.</span>")
 		else
-			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if mob is lying down on table for surgery
-				if (do_surgery(H,user,src, TRUE))
+			if (can_operate(H, user) == CAN_OPERATE_ALL)        //Checks if69ob is lyin69 down on table for sur69ery
+				if (do_sur69ery(H,user,src, TRUE))
 					return
 			else
-				to_chat(user, SPAN_NOTICE("The [affecting.name] is cut open, you'll need more than a bandage!"))
+				to_chat(user, SPAN_NOTICE("The 69affectin69.name69 is cut open, you'll need69ore than a banda69e!"))
 
 /obj/item/stack/medical/splint
 	name = "medical splints"
-	singular_name = "medical splint"
+	sin69ular_name = "medical splint"
 	icon_state = "splint"
 	amount = 5
 	max_amount = 5
 	rarity_value = 20
-	spawn_tags = SPAWN_TAG_MEDICINE_COMMON
+	spawn_ta69s = SPAWN_TA69_MEDICINE_COMMON
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/stack/medical/splint/attack(mob/livin69/carbon/M,69ob/livin69/user)
 	if(..())
 		return 1
 
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/affecting = H.get_organ(user.targeted_organ)
+		var/mob/livin69/carbon/human/H =69
+		var/obj/item/or69an/external/affectin69 = H.69et_or69an(user.tar69eted_or69an)
 
-		if(!affecting)
-			to_chat(user, SPAN_WARNING("What [user.targeted_organ]?"))
+		if(!affectin69)
+			to_chat(user, SPAN_WARNIN69("What 69user.tar69eted_or69an69?"))
 			return TRUE
 
-		var/limb = affecting.name
-		if(!(affecting.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST)))
-			to_chat(user, SPAN_DANGER("You can't apply a splint there!"))
+		var/limb = affectin69.name
+		if(!(affectin69.or69an_ta69 in list(BP_R_ARM, BP_L_ARM, BP_R_LE69, BP_L_LE69, BP_69ROIN, BP_HEAD, BP_CHEST)))
+			to_chat(user, SPAN_DAN69ER("You can't apply a splint there!"))
 			return
-		if(affecting.status & ORGAN_SPLINTED)
-			to_chat(user, SPAN_DANGER("[M]'s [limb] is already splinted!"))
+		if(affectin69.status & OR69AN_SPLINTED)
+			to_chat(user, SPAN_DAN69ER("69M69's 69limb69 is already splinted!"))
 			return
 		if (M != user)
-			user.visible_message(
-				SPAN_DANGER("[user] starts to apply \the [src] to [M]'s [limb]."),
-				SPAN_DANGER("You start to apply \the [src] to [M]'s [limb]."),
-				SPAN_DANGER("You hear something being wrapped.")
+			user.visible_messa69e(
+				SPAN_DAN69ER("69user69 starts to apply \the 69src69 to 69M69's 69limb69."),
+				SPAN_DAN69ER("You start to apply \the 69src69 to 69M69's 69limb69."),
+				SPAN_DAN69ER("You hear somethin69 bein69 wrapped.")
 			)
 		else
-			if((!user.hand && affecting.organ_tag == BP_R_ARM) || (user.hand && affecting.organ_tag == BP_L_ARM))
-				to_chat(user, SPAN_DANGER("You can't apply a splint to the arm you're using!"))
+			if((!user.hand && affectin69.or69an_ta69 == BP_R_ARM) || (user.hand && affectin69.or69an_ta69 == BP_L_ARM))
+				to_chat(user, SPAN_DAN69ER("You can't apply a splint to the arm you're usin69!"))
 				return
-			user.visible_message(
-				SPAN_DANGER("[user] starts to apply \the [src] to their [limb]."),
-				SPAN_DANGER("You start to apply \the [src] to your [limb]."),
-				SPAN_DANGER("You hear something being wrapped.")
+			user.visible_messa69e(
+				SPAN_DAN69ER("69user69 starts to apply \the 69src69 to their 69limb69."),
+				SPAN_DAN69ER("You start to apply \the 69src69 to your 69limb69."),
+				SPAN_DAN69ER("You hear somethin69 bein69 wrapped.")
 			)
-		if(do_after(user, max(0, 60 - user.stats.getStat(STAT_BIO)), M))
+		if(do_after(user,69ax(0, 60 - user.stats.69etStat(STAT_BIO)),69))
 			if (M != user)
-				user.visible_message(
-					SPAN_DANGER("[user] finishes applying \the [src] to [M]'s [limb]."),
-					SPAN_DANGER("You finish applying \the [src] to [M]'s [limb]."),
-					SPAN_DANGER("You hear something being wrapped.")
+				user.visible_messa69e(
+					SPAN_DAN69ER("69user69 finishes applyin69 \the 69src69 to 69M69's 69limb69."),
+					SPAN_DAN69ER("You finish applyin69 \the 69src69 to 69M69's 69limb69."),
+					SPAN_DAN69ER("You hear somethin69 bein69 wrapped.")
 				)
 			else
-				if(prob(25 + user.stats.getStat(STAT_BIO)))
-					user.visible_message(
-						SPAN_DANGER("[user] successfully applies \the [src] to their [limb]."),
-						SPAN_DANGER("You successfully apply \the [src] to your [limb]."),
-						SPAN_DANGER("You hear something being wrapped.")
+				if(prob(25 + user.stats.69etStat(STAT_BIO)))
+					user.visible_messa69e(
+						SPAN_DAN69ER("69user69 successfully applies \the 69src69 to their 69limb69."),
+						SPAN_DAN69ER("You successfully apply \the 69src69 to your 69limb69."),
+						SPAN_DAN69ER("You hear somethin69 bein69 wrapped.")
 					)
 				else
-					user.visible_message(
-						SPAN_DANGER("[user] fumbles \the [src]."),
-						SPAN_DANGER("You fumble \the [src]."),
-						SPAN_DANGER("You hear something being wrapped.")
+					user.visible_messa69e(
+						SPAN_DAN69ER("69user69 fumbles \the 69src69."),
+						SPAN_DAN69ER("You fumble \the 69src69."),
+						SPAN_DAN69ER("You hear somethin69 bein69 wrapped.")
 					)
 					return
-			affecting.status |= ORGAN_SPLINTED
-			if(prob(10 + user.stats.getStat(STAT_BIO)))
-				to_chat(user, SPAN_NOTICE("You have managed to waste less [src]."))
+			affectin69.status |= OR69AN_SPLINTED
+			if(prob(10 + user.stats.69etStat(STAT_BIO)))
+				to_chat(user, SPAN_NOTICE("You have69ana69ed to waste less 69src69."))
 			else
 				use(1)
 		return
 
 /obj/item/stack/medical/advanced/bruise_pack/nt
-	name = "NeoTheologian Bruisepack"
-	singular_name = "NeoTheologian Bruisepack"
-	desc = "An advanced bruisepack for severe injuries. Created by will of God."
+	name = "NeoTheolo69ian Bruisepack"
+	sin69ular_name = "NeoTheolo69ian Bruisepack"
+	desc = "An advanced bruisepack for severe injuries. Created by will of 69od."
 	icon_state = "nt_traumakit"
 	heal_brute = 10
-	automatic_charge_overlays = FALSE
+	automatic_char69e_overlays = FALSE
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 3)
-	origin_tech = list(TECH_BIO = 4)
+	ori69in_tech = list(TECH_BIO = 4)
 
 /obj/item/stack/medical/advanced/bruise_pack/nt/update_icon()
-	icon_state = "[initial(icon_state)][amount]"
+	icon_state = "69initial(icon_state)6969amount69"
 	..()
 
 /obj/item/stack/medical/advanced/ointment/nt
-	name = "NeoTheologian Burnpack"
-	singular_name = "NeoTheologian Burnpack"
-	desc = "An advanced treatment kit for severe burns. Created by will of God."
+	name = "NeoTheolo69ian Burnpack"
+	sin69ular_name = "NeoTheolo69ian Burnpack"
+	desc = "An advanced treatment kit for severe burns. Created by will of 69od."
 	icon_state = "nt_burnkit"
 	heal_brute = 10
-	automatic_charge_overlays = FALSE
+	automatic_char69e_overlays = FALSE
 	spawn_blacklisted = TRUE
 	matter = list(MATERIAL_BIOMATTER = 3)
-	origin_tech = list(TECH_BIO = 4)
+	ori69in_tech = list(TECH_BIO = 4)
 
 /obj/item/stack/medical/advanced/ointment/nt/update_icon()
-	icon_state = "[initial(icon_state)][amount]"
+	icon_state = "69initial(icon_state)6969amount69"
 	..()

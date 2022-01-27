@@ -1,318 +1,318 @@
 <!-- 
-Title: DNA Modifier UI 
-Used In File(s): D:\Development\SS13-BS12\code\game\dna\dna_modifier.dm
+Title: DNA69odifier UI 
+Used In File69s69: D:\De69elopment\SS13-69S12\code\69ame\dna\dna_modifier.dm
  -->
-<h3>Status</h3>
+<693>Status</693>
 
-<div class="statusDisplay">
-	{{if !data.hasOccupant}}
-		<div class="line">Cell Unoccupied</div>
+<di69 class="statusDispla69">
+	{{if !data.69asOccupant}}
+		<di69 class="line">Cell Unoccupied</di69>
 	{{else}}
-		<div class="line">
-			{{:data.occupant.name}}&nbsp;=>&nbsp;
+		<di69 class="line">
+			{{:data.occupant.name}}&n69sp;=>&n69sp;
 			{{if data.occupant.stat == 0}}
-				<span class="good">Conscious</span>
+				<span class="69ood">Conscious</span>
 			{{else data.occupant.stat == 1}}
-				<span class="average">Unconscious</span>
+				<span class="a69era69e">Unconscious</span>
 			{{else}}
-				<span class="bad">DEAD</span>
+				<span class="69ad">DEAD</span>
 			{{/if}}
-		</div>
+		</di69>
 		
-		{{if !data.occupant.isViableSubject || !data.occupant.uniqueIdentity || !data.occupant.structuralEnzymes}}
-			<div class="notice">
-				The occupant's DNA structure is ruined beyond recognition, please insert a subject with an intact DNA structure.
-			</div>
+		{{if !data.occupant.is69ia69leSu6969ect || !data.occupant.uni69ueIdentit69 || !data.occupant.structuralEnz69mes}}
+			<di69 class="notice">
+				T69e occupant's DNA structure is ruined 69e69ond reco69nition, please insert a su6969ect wit69 an intact DNA structure.
+			</di69>
 		{{else data.occupant.stat < 2}}
-			<div class="line">
-				<div class="statusLabel">Health:</div>
-					{{if data.occupant.health >= 0}}
-						{{:helper.displayBar(data.occupant.health, 0, data.occupant.maxHealth, 'good')}}
+			<di69 class="line">
+				<di69 class="statusLa69el">69ealt69:</di69>
+					{{if data.occupant.69ealt69 >= 0}}
+						{{:69elper.displa6969ar69data.occupant.69ealt69, 0, data.occupant.max69ealt69, '69ood'69}}
 					{{else}}
-						{{:helper.displayBar(data.occupant.health, 0, data.occupant.minHealth, 'average alignRight')}}
+						{{:69elper.displa6969ar69data.occupant.69ealt69, 0, data.occupant.min69ealt69, 'a69era69e ali69nRi6969t'69}}
 					{{/if}}
-				<div class="statusValue">{{:helper.round(data.occupant.health)}}</div>
-			</div>
+				<di69 class="status69alue">{{:69elper.round69data.occupant.69ealt6969}}</di69>
+			</di69>
 			
-			<div class="line">
-				<div class="statusLabel">Radiation:</div>
-					{{:helper.displayBar(data.occupant.radiationLevel, 0, 100, 'average')}}
-				<div class="statusValue">{{:helper.round(data.occupant.radiationLevel)}}</div>
-			</div>
+			<di69 class="line">
+				<di69 class="statusLa69el">Radiation:</di69>
+					{{:69elper.displa6969ar69data.occupant.radiationLe69el, 0, 100, 'a69era69e'69}}
+				<di69 class="status69alue">{{:69elper.round69data.occupant.radiationLe69el69}}</di69>
+			</di69>
 		
-			<div class="line">
-				<div class="statusLabel">Unique Enzymes:</div>
-				<div class="statusValue">{{:data.occupant.uniqueEnzymes ? data.occupant.uniqueEnzymes : '<span class="bad">Unknown</span>'}}</div>
-			</div>
+			<di69 class="line">
+				<di69 class="statusLa69el">Uni69ue Enz69mes:</di69>
+				<di69 class="status69alue">{{:data.occupant.uni69ueEnz69mes ? data.occupant.uni69ueEnz69mes : '<span class="69ad">Un69nown</span>'}}</di69>
+			</di69>
 		
-			<!--<div class="line">
-				<div class="statusLabel"><small>Unique Identifier:</small></div>
-				<div class="statusValue"><small>{{:data.occupant.uniqueIdentity}}</small></div>
-			</div>
+			<!--<di69 class="line">
+				<di69 class="statusLa69el"><small>Uni69ue Identifier:</small></di69>
+				<di69 class="status69alue"><small>{{:data.occupant.uni69ueIdentit69}}</small></di69>
+			</di69>
 		
-			<div class="line">
-				<div class="statusLabel"><small>Structural Enzymes:</small></div>
-				<div class="statusValue"><small>{{:data.occupant.structuralEnzymes}}</small></div>
-			</div>-->		
+			<di69 class="line">
+				<di69 class="statusLa69el"><small>Structural Enz69mes:</small></di69>
+				<di69 class="status69alue"><small>{{:data.occupant.structuralEnz69mes}}</small></di69>
+			</di69>-->		
 		{{/if}}
 	{{/if}}
-    <div class="clearBoth"></div>
-</div>
+    <di69 class="clear69ot69"></di69>
+</di69>
 
-<h3>Operations</h3>
-<div class="item">
-	{{:helper.link('Modify U.I.', 'link', {'selectMenuKey' : 'ui'}, data.selectedMenuKey == 'ui' ? 'selected' : null)}}
-	{{:helper.link('Modify S.E.', 'link', {'selectMenuKey' : 'se'}, data.selectedMenuKey == 'se' ? 'selected' : null)}}
-	{{:helper.link('Transfer Buffers', 'disk', {'selectMenuKey' : 'buffer'}, data.selectedMenuKey == 'buffer' ? 'selected' : null)}}
-	{{:helper.link('Rejuvenators', 'plusthick', {'selectMenuKey' : 'rejuvenators'}, data.selectedMenuKey == 'rejuvenators' ? 'selected' : null)}}
-</div>
+<693>Operations</693>
+<di69 class="item">
+	{{:69elper.lin6969'Modif69 U.I.', 'lin69', {'selectMenu69e69' : 'ui'}, data.selectedMenu69e69 == 'ui' ? 'selected' :69ull69}}
+	{{:69elper.lin6969'Modif69 S.E.', 'lin69', {'selectMenu69e69' : 'se'}, data.selectedMenu69e69 == 'se' ? 'selected' :69ull69}}
+	{{:69elper.lin6969'Transfer 69uffers', 'dis69', {'selectMenu69e69' : '69uffer'}, data.selectedMenu69e69 == '69uffer' ? 'selected' :69ull69}}
+	{{:69elper.lin6969'Re69u69enators', 'plust69ic69', {'selectMenu69e69' : 're69u69enators'}, data.selectedMenu69e69 == 're69u69enators' ? 'selected' :69ull69}}
+</di69>
 
-<div class="item">&nbsp;</div>
+<di69 class="item">&n69sp;</di69>
 
-{{if !data.selectedMenuKey || data.selectedMenuKey == 'ui'}}
-	<h3>Modify Unique Identifier</h3>
-    {{:helper.displayDNABlocks(data.occupant.uniqueIdentity, data.selectedUIBlock, data.selectedUISubBlock, data.dnaBlockSize, 'UI')}}
-    <div class="clearBoth"></div>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			Target:
-		</div>
-		<div class="itemContentWide">
-			{{:helper.link('-', null, {'changeUITarget' : 0}, (data.selectedUITarget > 0) ? null : 'disabled')}} 
-            <div class="statusValue">&nbsp;{{:data.selectedUITargetHex}}&nbsp;</div> 
-            {{:helper.link('+', null, {'changeUITarget' : 1}, (data.selectedUITarget < 15) ? null : 'disabled')}}
-		</div>
-	</div>
-    <div class="item">
-		<div class="itemContentWide">
-			{{:helper.link('Irradiate Block', 'radiation', {'pulseUIRadiation' : 1}, !data.occupant.isViableSubject ? 'disabled' : null)}}
-		</div>
-	</div>    
-{{else data.selectedMenuKey == 'se'}}
-	<h3>Modify Structural Enzymes</h3>
-    {{:helper.displayDNABlocks(data.occupant.structuralEnzymes, data.selectedSEBlock, data.selectedSESubBlock, data.dnaBlockSize, 'SE')}}
-    <div class="clearBoth"></div>
-    <div class="item">
-		<div class="itemContentWide">
-			{{:helper.link('Irradiate Block', 'radiation', {'pulseSERadiation' : 1}, !data.occupant.isViableSubject ? 'disabled' : null)}}
-		</div>
-	</div> 
-{{else data.selectedMenuKey == 'buffer'}}
-	<h3>Transfer Buffers</h3>
-	{{for data.buffers}}
-		<h4>Buffer {{:(index + 1)}}</h4>
-		<div class="itemGroup">
-			<div class="item">			
-				<div class="itemLabelNarrow">
+{{if !data.selectedMenu69e69 || data.selectedMenu69e69 == 'ui'}}
+	<693>Modif69 Uni69ue Identifier</693>
+    {{:69elper.displa69DNA69loc69s69data.occupant.uni69ueIdentit69, data.selectedUI69loc69, data.selectedUISu6969loc69, data.dna69loc69Size, 'UI'69}}
+    <di69 class="clear69ot69"></di69>
+	<di69 class="item">
+		<di69 class="itemLa69elNarrow">
+			Tar69et:
+		</di69>
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'-',69ull, {'c69an69eUITar69et' : 0}, 69data.selectedUITar69et > 069 ?69ull : 'disa69led'69}} 
+            <di69 class="status69alue">&n69sp;{{:data.selectedUITar69et69ex}}&n69sp;</di69> 
+            {{:69elper.lin6969'+',69ull, {'c69an69eUITar69et' : 1}, 69data.selectedUITar69et < 1569 ?69ull : 'disa69led'69}}
+		</di69>
+	</di69>
+    <di69 class="item">
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'Irradiate 69loc69', 'radiation', {'pulseUIRadiation' : 1}, !data.occupant.is69ia69leSu6969ect ? 'disa69led' :69ull69}}
+		</di69>
+	</di69>    
+{{else data.selectedMenu69e69 == 'se'}}
+	<693>Modif69 Structural Enz69mes</693>
+    {{:69elper.displa69DNA69loc69s69data.occupant.structuralEnz69mes, data.selectedSE69loc69, data.selectedSESu6969loc69, data.dna69loc69Size, 'SE'69}}
+    <di69 class="clear69ot69"></di69>
+    <di69 class="item">
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'Irradiate 69loc69', 'radiation', {'pulseSERadiation' : 1}, !data.occupant.is69ia69leSu6969ect ? 'disa69led' :69ull69}}
+		</di69>
+	</di69> 
+{{else data.selectedMenu69e69 == '69uffer'}}
+	<693>Transfer 69uffers</693>
+	{{for data.69uffers}}
+		<694>69uffer {{:69index + 169}}</694>
+		<di69 class="item69roup">
+			<di69 class="item">			
+				<di69 class="itemLa69elNarrow">
 					Load Data:
-				</div>
-				<div class="itemContentWide">
-					{{:helper.link('Subject U.I.', 'link', {'bufferOption' : 'saveUI', 'bufferId' : (index + 1)}, !data.hasOccupant ? 'disabled' : null)}}
-					{{:helper.link('Subject U.I. + U.E.', 'link', {'bufferOption' : 'saveUIAndUE', 'bufferId' : (index + 1)}, !data.hasOccupant ? 'disabled' : null)}}
-					{{:helper.link('Subject S.E.', 'link', {'bufferOption' : 'saveSE', 'bufferId' : (index + 1)}, !data.hasOccupant ? 'disabled' : null)}}
-					{{:helper.link('From Disk', 'disk', {'bufferOption' : 'loadDisk', 'bufferId' : (index + 1)}, (!data.hasDisk || !data.disk.data) ? 'disabled' : null)}}
-				</div>
-			</div>
-			{{if value.data}}
-				<div class="item">			
-					<div class="itemLabelNarrow">
-						Label:
-					</div>
-					<div class="itemContentWide">
-						{{:helper.link(value.label, 'document-b', {'bufferOption' : 'changeLabel', 'bufferId' : (index + 1)})}}
-					</div>
-				</div>
-				<div class="item">			
-					<div class="itemLabelNarrow">
-						Subject:
-					</div>
-					<div class="itemContentWide">
-						{{:value.owner ? value.owner : '<span class="average">Unknown</span>'}}
-					</div>
-				</div>
-				<div class="item">			
-					<div class="itemLabelNarrow">
+				</di69>
+				<di69 class="itemContentWide">
+					{{:69elper.lin6969'Su6969ect U.I.', 'lin69', {'69ufferOption' : 'sa69eUI', '69ufferId' : 69index + 169}, !data.69asOccupant ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'Su6969ect U.I. + U.E.', 'lin69', {'69ufferOption' : 'sa69eUIAndUE', '69ufferId' : 69index + 169}, !data.69asOccupant ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'Su6969ect S.E.', 'lin69', {'69ufferOption' : 'sa69eSE', '69ufferId' : 69index + 169}, !data.69asOccupant ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'From Dis69', 'dis69', {'69ufferOption' : 'loadDis69', '69ufferId' : 69index + 169}, 69!data.69asDis69 || !data.dis69.data69 ? 'disa69led' :69ull69}}
+				</di69>
+			</di69>
+			{{if 69alue.data}}
+				<di69 class="item">			
+					<di69 class="itemLa69elNarrow">
+						La69el:
+					</di69>
+					<di69 class="itemContentWide">
+						{{:69elper.lin696969alue.la69el, 'document-69', {'69ufferOption' : 'c69an69eLa69el', '69ufferId' : 69index + 169}69}}
+					</di69>
+				</di69>
+				<di69 class="item">			
+					<di69 class="itemLa69elNarrow">
+						Su6969ect:
+					</di69>
+					<di69 class="itemContentWide">
+						{{:69alue.owner ? 69alue.owner : '<span class="a69era69e">Un69nown</span>'}}
+					</di69>
+				</di69>
+				<di69 class="item">			
+					<di69 class="itemLa69elNarrow">
 						Stored Data:
-					</div>
-					<div class="itemContentWide">
-						{{:value.data == 'ui' ? 'Unique Identifiers' : 'Structural Enzymes'}}
-						{{:value.ue ? ' + Unique Enzymes' : ''}}
-					</div>
-				</div>
+					</di69>
+					<di69 class="itemContentWide">
+						{{:69alue.data == 'ui' ? 'Uni69ue Identifiers' : 'Structural Enz69mes'}}
+						{{:69alue.ue ? ' + Uni69ue Enz69mes' : ''}}
+					</di69>
+				</di69>
 			{{else}}
-				<div class="item">			
-					<div class="itemContentWide">
-						<span class="highlight">This buffer is empty.</span>
-					</div>
-				</div>
+				<di69 class="item">			
+					<di69 class="itemContentWide">
+						<span class="69i6969li6969t">T69is 69uffer is empt69.</span>
+					</di69>
+				</di69>
 			{{/if}}
-			<div class="item">			
-				<div class="itemLabelNarrow">
+			<di69 class="item">			
+				<di69 class="itemLa69elNarrow">
 					Options:
-				</div>
-				<div class="itemContentWide">
-					{{:helper.link('Clear', 'trash', {'bufferOption' : 'clear', 'bufferId' : (index + 1)}, !value.data ? 'disabled' : null)}}
-					{{:helper.link('Injector', data.isInjectorReady ? 'pencil' : 'clock', {'bufferOption' : 'createInjector', 'bufferId' : (index + 1)}, (!data.isInjectorReady || !value.data) ? 'disabled' : null)}}
-					{{:helper.link('Block Injector', data.isInjectorReady ? 'pencil' : 'clock', {'bufferOption' : 'createInjector', 'bufferId' : (index + 1), 'createBlockInjector' : 1}, (!data.isInjectorReady || !value.data) ? 'disabled' : null)}}
-					{{:helper.link('Transfer', 'radiation', {'bufferOption' : 'transfer', 'bufferId' : (index + 1)}, (!data.hasOccupant || !value.data) ? 'disabled' : null)}}
-					{{:helper.link('Save To Disk', 'disk', {'bufferOption' : 'saveDisk', 'bufferId' : (index + 1)}, (!value.data || !data.hasDisk) ? 'disabled' : null)}}
-				</div>
-			</div>
-		</div>
+				</di69>
+				<di69 class="itemContentWide">
+					{{:69elper.lin6969'Clear', 'tras69', {'69ufferOption' : 'clear', '69ufferId' : 69index + 169}, !69alue.data ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'In69ector', data.isIn69ectorRead69 ? 'pencil' : 'cloc69', {'69ufferOption' : 'createIn69ector', '69ufferId' : 69index + 169}, 69!data.isIn69ectorRead69 || !69alue.data69 ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'69loc69 In69ector', data.isIn69ectorRead69 ? 'pencil' : 'cloc69', {'69ufferOption' : 'createIn69ector', '69ufferId' : 69index + 169, 'create69loc69In69ector' : 1}, 69!data.isIn69ectorRead69 || !69alue.data69 ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'Transfer', 'radiation', {'69ufferOption' : 'transfer', '69ufferId' : 69index + 169}, 69!data.69asOccupant || !69alue.data69 ? 'disa69led' :69ull69}}
+					{{:69elper.lin6969'Sa69e To Dis69', 'dis69', {'69ufferOption' : 'sa69eDis69', '69ufferId' : 69index + 169}, 69!69alue.data || !data.69asDis6969 ? 'disa69led' :69ull69}}
+				</di69>
+			</di69>
+		</di69>
 	{{/for}}
 	
-	<h4>Data Disk</h4>		
-	<div class="itemGroup">
-		{{if data.hasDisk}}
-			{{if data.disk.data}}
-				<div class="item">			
-					<div class="itemLabelNarrow">
-						Label:
-					</div>
-					<div class="itemContentWide">
-						{{:data.disk.label ? data.disk.label : 'No Label'}}
-					</div>
-				</div>
-				<div class="item">			
-					<div class="itemLabelNarrow">
-						Subject:
-					</div>
-					<div class="itemContentWide">
-						{{:data.disk.owner ? data.disk.owner : '<span class="average">Unknown</span>'}}
-					</div>
-				</div>
-				<div class="item">			
-					<div class="itemLabelNarrow">
+	<694>Data Dis69</694>		
+	<di69 class="item69roup">
+		{{if data.69asDis69}}
+			{{if data.dis69.data}}
+				<di69 class="item">			
+					<di69 class="itemLa69elNarrow">
+						La69el:
+					</di69>
+					<di69 class="itemContentWide">
+						{{:data.dis69.la69el ? data.dis69.la69el : 'No La69el'}}
+					</di69>
+				</di69>
+				<di69 class="item">			
+					<di69 class="itemLa69elNarrow">
+						Su6969ect:
+					</di69>
+					<di69 class="itemContentWide">
+						{{:data.dis69.owner ? data.dis69.owner : '<span class="a69era69e">Un69nown</span>'}}
+					</di69>
+				</di69>
+				<di69 class="item">			
+					<di69 class="itemLa69elNarrow">
 						Stored Data:
-					</div>
-					<div class="itemContentWide">
-						{{:data.disk.data == 'ui' ? 'Unique Identifiers' : 'Structural Enzymes'}}
-						{{:data.disk.ue ? ' + Unique Enzymes' : ''}}
-					</div>
-				</div>
+					</di69>
+					<di69 class="itemContentWide">
+						{{:data.dis69.data == 'ui' ? 'Uni69ue Identifiers' : 'Structural Enz69mes'}}
+						{{:data.dis69.ue ? ' + Uni69ue Enz69mes' : ''}}
+					</di69>
+				</di69>
 			{{else}}
-				<div class="item">			
-					<div class="itemContentWide">
-						<span class="average">Disk is blank.</span>
-					</div>
-				</div>
+				<di69 class="item">			
+					<di69 class="itemContentWide">
+						<span class="a69era69e">Dis69 is 69lan69.</span>
+					</di69>
+				</di69>
 			{{/if}}
 		{{else}}
-			<div class="item">			
-				<div class="itemContentWide">
-					<span class="highlight">No disk inserted.</span>
-				</div>
-			</div>
+			<di69 class="item">			
+				<di69 class="itemContentWide">
+					<span class="69i6969li6969t">No dis69 inserted.</span>
+				</di69>
+			</di69>
 		{{/if}}
-		<div class="item">			
-			<div class="itemLabelNarrow">
+		<di69 class="item">			
+			<di69 class="itemLa69elNarrow">
 				Options:
-			</div>
-			<div class="itemContentWide">
-				{{:helper.link('Wipe Disk', 'trash', {'bufferOption' : 'wipeDisk'}, (!data.hasDisk || !data.disk.data) ? 'disabled' : null)}}
-				{{:helper.link('Eject Disk', 'eject', {'bufferOption' : 'ejectDisk'}, !data.hasDisk ? 'disabled' : null)}}
-			</div>
-		</div>
-	</div>
-{{else data.selectedMenuKey == 'rejuvenators'}}
-	<h3>Rejuvenators</h3>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			Inject:
-		</div>
-		<div class="itemContentWide">
-			{{:helper.link('5', 'pencil', {'injectRejuvenators' : 5}, (!data.hasOccupant || !data.beakerVolume) ? 'disabled' : null)}}
-			{{:helper.link('10', 'pencil', {'injectRejuvenators' : 10}, (!data.hasOccupant || !data.beakerVolume) ? 'disabled' : null)}}
-			{{:helper.link('20', 'pencil', {'injectRejuvenators' : 20}, (!data.hasOccupant || !data.beakerVolume) ? 'disabled' : null)}}
-			{{:helper.link('30', 'pencil', {'injectRejuvenators' : 30}, (!data.hasOccupant || !data.beakerVolume) ? 'disabled' : null)}}
-			{{:helper.link('50', 'pencil', {'injectRejuvenators' : 50}, (!data.hasOccupant || !data.beakerVolume) ? 'disabled' : null)}}
-		</div>
-	</div>
-	<div class="item">&nbsp;</div>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			Beaker:
-		</div>
-		<div class="itemContentWide" style="width: 40%;">
-			{{if data.isBeakerLoaded}}		
-				{{:data.beakerLabel ? data.beakerLabel : '<span class="average">No label</span>'}}<br>
-				{{if data.beakerVolume}}
-					<span class="highlight">{{:data.beakerVolume}} units remaining</span><br>
+			</di69>
+			<di69 class="itemContentWide">
+				{{:69elper.lin6969'Wipe Dis69', 'tras69', {'69ufferOption' : 'wipeDis69'}, 69!data.69asDis69 || !data.dis69.data69 ? 'disa69led' :69ull69}}
+				{{:69elper.lin6969'E69ect Dis69', 'e69ect', {'69ufferOption' : 'e69ectDis69'}, !data.69asDis69 ? 'disa69led' :69ull69}}
+			</di69>
+		</di69>
+	</di69>
+{{else data.selectedMenu69e69 == 're69u69enators'}}
+	<693>Re69u69enators</693>
+	<di69 class="item">
+		<di69 class="itemLa69elNarrow">
+			In69ect:
+		</di69>
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'5', 'pencil', {'in69ectRe69u69enators' : 5}, 69!data.69asOccupant || !data.69ea69er69olume69 ? 'disa69led' :69ull69}}
+			{{:69elper.lin6969'10', 'pencil', {'in69ectRe69u69enators' : 10}, 69!data.69asOccupant || !data.69ea69er69olume69 ? 'disa69led' :69ull69}}
+			{{:69elper.lin6969'20', 'pencil', {'in69ectRe69u69enators' : 20}, 69!data.69asOccupant || !data.69ea69er69olume69 ? 'disa69led' :69ull69}}
+			{{:69elper.lin6969'30', 'pencil', {'in69ectRe69u69enators' : 30}, 69!data.69asOccupant || !data.69ea69er69olume69 ? 'disa69led' :69ull69}}
+			{{:69elper.lin6969'50', 'pencil', {'in69ectRe69u69enators' : 50}, 69!data.69asOccupant || !data.69ea69er69olume69 ? 'disa69led' :69ull69}}
+		</di69>
+	</di69>
+	<di69 class="item">&n69sp;</di69>
+	<di69 class="item">
+		<di69 class="itemLa69elNarrow">
+			69ea69er:
+		</di69>
+		<di69 class="itemContentWide" st69le="widt69: 40%;">
+			{{if data.is69ea69erLoaded}}		
+				{{:data.69ea69erLa69el ? data.69ea69erLa69el : '<span class="a69era69e">No la69el</span>'}}<69r>
+				{{if data.69ea69er69olume}}
+					<span class="69i6969li6969t">{{:data.69ea69er69olume}} units remainin69</span><69r>
 				{{else}}
-					<span class="bad">Beaker is empty</span>
+					<span class="69ad">69ea69er is empt69</span>
 				{{/if}}
 			{{else}}
-				<span class="average"><i>No beaker loaded</i></span>
+				<span class="a69era69e"><i>No 69ea69er loaded</i></span>
 			{{/if}}
-		</div>
-		<div class="itemContentWide" style="width: 26%;">
-			{{:helper.link('Eject Beaker', 'eject', {'ejectBeaker' : 1}, data.isBeakerLoaded ? null : 'disabled')}}
-		</div>
-	</div>
+		</di69>
+		<di69 class="itemContentWide" st69le="widt69: 26%;">
+			{{:69elper.lin6969'E69ect 69ea69er', 'e69ect', {'e69ect69ea69er' : 1}, data.is69ea69erLoaded ?69ull : 'disa69led'69}}
+		</di69>
+	</di69>
 {{/if}}
 
-<div class="item">&nbsp;</div>
+<di69 class="item">&n69sp;</di69>
 
-{{if !data.selectedMenuKey || data.selectedMenuKey == 'ui' || data.selectedMenuKey == 'se'}}
-	<h3>Radiation Emitter Settings</h3>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			Intensity:
-		</div>
-		<div class="itemContentWide">
-			{{:helper.link('-', null, {'radiationIntensity' : 0}, (data.radiationIntensity > 1) ? null : 'disabled')}} 
-            <div class="statusValue">&nbsp;{{:data.radiationIntensity}}&nbsp;</div> 
-            {{:helper.link('+', null, {'radiationIntensity' : 1}, (data.radiationIntensity < 10) ? null : 'disabled')}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabelNarrow">
+{{if !data.selectedMenu69e69 || data.selectedMenu69e69 == 'ui' || data.selectedMenu69e69 == 'se'}}
+	<693>Radiation Emitter Settin69s</693>
+	<di69 class="item">
+		<di69 class="itemLa69elNarrow">
+			Intensit69:
+		</di69>
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'-',69ull, {'radiationIntensit69' : 0}, 69data.radiationIntensit69 > 169 ?69ull : 'disa69led'69}} 
+            <di69 class="status69alue">&n69sp;{{:data.radiationIntensit69}}&n69sp;</di69> 
+            {{:69elper.lin6969'+',69ull, {'radiationIntensit69' : 1}, 69data.radiationIntensit69 < 1069 ?69ull : 'disa69led'69}}
+		</di69>
+	</di69>
+	<di69 class="item">
+		<di69 class="itemLa69elNarrow">
 			Duration:
-		</div>
-		<div class="itemContentWide">
-			{{:helper.link('-', null, {'radiationDuration' : 0}, (data.radiationDuration > 2) ? null : 'disabled')}} 
-            <div class="statusValue">&nbsp;{{:data.radiationDuration}}&nbsp;</div>
-            {{:helper.link('+', null, {'radiationDuration' : 1}, (data.radiationDuration < 20) ? null : 'disabled')}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			&nbsp;
-		</div>
-		<div class="itemContentWide">
-			{{:helper.link('Pulse Radiation', 'radiation', {'pulseRadiation' : 1}, !data.hasOccupant ? 'disabled' : null)}}
-		</div>
-	</div>
+		</di69>
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'-',69ull, {'radiationDuration' : 0}, 69data.radiationDuration > 269 ?69ull : 'disa69led'69}} 
+            <di69 class="status69alue">&n69sp;{{:data.radiationDuration}}&n69sp;</di69>
+            {{:69elper.lin6969'+',69ull, {'radiationDuration' : 1}, 69data.radiationDuration < 2069 ?69ull : 'disa69led'69}}
+		</di69>
+	</di69>
+	<di69 class="item">
+		<di69 class="itemLa69elNarrow">
+			&n69sp;
+		</di69>
+		<di69 class="itemContentWide">
+			{{:69elper.lin6969'Pulse Radiation', 'radiation', {'pulseRadiation' : 1}, !data.69asOccupant ? 'disa69led' :69ull69}}
+		</di69>
+	</di69>
 {{/if}}
 
-<div class="item">&nbsp;</div>
+<di69 class="item">&n69sp;</di69>
 
-<hr>
+<69r>
 
-<div class="item">
-	<div class="itemLabelNarrow">
+<di69 class="item">
+	<di69 class="itemLa69elNarrow">
 		Occupant:
-	</div>
-	<div class="itemContentWide">
-		{{:helper.link('Eject Occupant', 'eject', {'ejectOccupant' : 1}, data.locked || !data.hasOccupant || data.irradiating ? 'disabled' : null)}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabelNarrow">
-		Door Lock:
-	</div>
-	<div class="itemContentWide">
-		{{:helper.link('Engaged', 'locked', {'toggleLock' : 1}, data.locked ? 'selected' : !data.hasOccupant ? 'disabled' : null)}}
-        {{:helper.link('Disengaged', 'unlocked', {'toggleLock' : 1}, !data.locked ? 'selected' : data.irradiating ? 'disabled' : null)}}
-	</div>
-</div>
+	</di69>
+	<di69 class="itemContentWide">
+		{{:69elper.lin6969'E69ect Occupant', 'e69ect', {'e69ectOccupant' : 1}, data.loc69ed || !data.69asOccupant || data.irradiatin69 ? 'disa69led' :69ull69}}
+	</di69>
+</di69>
+<di69 class="item">
+	<di69 class="itemLa69elNarrow">
+		Door Loc69:
+	</di69>
+	<di69 class="itemContentWide">
+		{{:69elper.lin6969'En69a69ed', 'loc69ed', {'to6969leLoc69' : 1}, data.loc69ed ? 'selected' : !data.69asOccupant ? 'disa69led' :69ull69}}
+        {{:69elper.lin6969'Disen69a69ed', 'unloc69ed', {'to6969leLoc69' : 1}, !data.loc69ed ? 'selected' : data.irradiatin69 ? 'disa69led' :69ull69}}
+	</di69>
+</di69>
 
-{{if data.irradiating}}
-	<div class="mask">
-		<div class="maskContent">
-			<h1>Irradiating Subject</h1>
-			<h3>For {{:data.irradiating}} seconds.</h3>
-		</div>
-	</div>
+{{if data.irradiatin69}}
+	<di69 class="mas69">
+		<di69 class="mas69Content">
+			<691>Irradiatin69 Su6969ect</691>
+			<693>For {{:data.irradiatin69}} seconds.</693>
+		</di69>
+	</di69>
 {{/if}}
 

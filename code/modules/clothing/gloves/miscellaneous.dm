@@ -17,7 +17,7 @@
 	permeability_coefficient = 0.05
 	price_tag = 200
 	spawn_tags = SPAWN_TAG_GLOVES_INSULATED
-	style = STYLE_NEG_HIGH // very powergame much unstylish... literal power this time
+	style = STYLE_NEG_HIGH //69ery powergame69uch unstylish... literal power this time
 
 /obj/item/clothing/gloves/insulated/cheap                          //Cheap Chinese Crap
 	desc = "These gloves are cheap copies of the coveted gloves, no way this can end badly."
@@ -80,7 +80,7 @@
 	icon_state = "latex"
 	item_state = "latex"
 	armor = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	siemens_coefficient = 1 //thin latex gloves, much more conductive than fabric gloves (basically a capacitor for AC)
+	siemens_coefficient = 1 //thin latex gloves,69uch69ore conductive than fabric gloves (basically a capacitor for AC)
 	permeability_coefficient = 0.01
 	germ_level = 0
 	price_tag = 50

@@ -23,27 +23,27 @@ GLOBAL_VAR_INIT(mp3_sound_channel, GLOB.sound_channels.request("MP3"))
 		if(channel_ceiling > 0)
 			channel = channel_ceiling--
 		else
-			CRASH("Unable to supply sound channel for [key].")
-	LAZYSET(keys_by_channel, "[channel]", key)
-	LAZYSET(channels_by_key, "[key]", channel)
+			CRASH("Unable to supply sound channel for 69key69.")
+	LAZYSET(keys_by_channel, "69channel69", key)
+	LAZYSET(channels_by_key, "69key69", channel)
 	return channel
 
 /repository/sound_channels/proc/release(var/channel)
-	var/key = LAZYACCESS(keys_by_channel, "[channel]")
+	var/key = LAZYACCESS(keys_by_channel, "69channel69")
 	if(!key)
 		CRASH("Invalid channel given.")
-	LAZYREMOVE(keys_by_channel, "[channel]")
-	LAZYREMOVE(channels_by_key, "[key]")
+	LAZYREMOVE(keys_by_channel, "69channel69")
+	LAZYREMOVE(channels_by_key, "69key69")
 	available_channels.push(channel)
 
 /repository/sound_channels/proc/release_by_key(var/key)
-	var/channel = LAZYACCESS(channels_by_key, "[key]")
+	var/channel = LAZYACCESS(channels_by_key, "69key69")
 	if(!channel)
 		CRASH("Invalid key given.")
-	LAZYREMOVE(keys_by_channel, "[channel]")
-	LAZYREMOVE(channels_by_key, "[key]")
+	LAZYREMOVE(keys_by_channel, "69channel69")
+	LAZYREMOVE(channels_by_key, "69key69")
 	available_channels.push(channel)
 
 /repository/sound_channels/proc/get_by_key(var/key)
-	var/channel = LAZYACCESS(channels_by_key, "[key]")
+	var/channel = LAZYACCESS(channels_by_key, "69key69")
 	return channel

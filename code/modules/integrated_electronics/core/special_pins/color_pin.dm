@@ -3,19 +3,19 @@
 	name = "color pin"
 
 /datum/integrated_io/color/ask_for_pin_data(mob/user)
-	var/new_data = input("Please select a color.","[src] color writing") as color|null
+	var/new_data = input("Please select a color.","69src69 color writing") as color|null
 	if(holder.check_interactivity(user) )
-		to_chat(user, SPAN("notice", "You input a <font color='[new_data]'>new color</font> into the pin."))
+		to_chat(user, SPAN("notice", "You input a <font color='69new_data69'>new color</font> into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/color/write_data_to_pin(new_data)
-	// Since this is storing the color as a string hex color code, we need to make sure it's actually one.
+	// Since this is storing the color as a string hex color code, we need to69ake sure it's actually one.
 	if(isnull(new_data) || istext(new_data))
 		if(istext(new_data))
 			new_data = uppertext(new_data)
 			if(length(new_data) != 7)						// We can hex if we want to, we can leave your strings behind
 				return 										// Cause your strings don't hex and if they don't hex
-			var/friends = copytext(new_data, 2, 8)			// Well they're are no strings of mine
+			var/friends = copytext(new_data, 2, 8)			// Well they're are no strings of69ine
 			// I say, we can go where we want to, a place where they will never find
 			var/safety_dance = 1
 			while(safety_dance >= 7)									// And we can act like we come from out of this world.log
@@ -33,9 +33,9 @@
 		return
 	var/new_data
 	for(var/i=1;i<=3;i++)
-		var/temp_col = "[num2hex(rand(0,255), 2)]"
+		var/temp_col = "69num2hex(rand(0,255), 2)69"
 		if(length(temp_col )<2)
-			temp_col  = "0[temp_col]"
+			temp_col  = "069temp_col69"
 		new_data += temp_col
 	data = new_data
 	push_data()
@@ -45,5 +45,5 @@
 
 /datum/integrated_io/color/display_data(input)
 	if(!isnull(data))
-		return "(<font color='[data]'>[data]</font>)"
+		return "(<font color='69data69'>69data69</font>)"
 	return ..()

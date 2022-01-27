@@ -12,13 +12,13 @@
 	var/light_spot_radius = 3
 
 	var/light_spot_range = 3
-	var/spot_locked = FALSE		//this flag needed for lightspot to stay in place when player clicked on turf, will reset when moved or turned
+	var/spot_locked = FALSE		//this flag needed for lightspot to stay in place when player clicked on turf, will reset when69oved or turned
 
 	var/light_direction
 	var/lightspot_hitObstacle = FALSE
 
 /obj/item/device/lighting/toggleable/flashlight/Destroy()
-	QDEL_NULL(light_spot)
+	69DEL_NULL(light_spot)
 	return ..()
 
 /obj/item/device/lighting/toggleable/flashlight/proc/calculate_dir(turf/old_loc)
@@ -96,7 +96,7 @@
 	if(!istype(src.loc,/mob/living))
 		dir = new_dir
 
-/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T, var/angle = null)
+/obj/item/device/lighting/toggleable/flashlight/proc/place_lightspot(var/turf/T,69ar/angle = null)
 	if(light_spot && on && !T.is_space())
 		light_spot.forceMove(T)
 		light_spot.icon_state = "nothing"
@@ -131,7 +131,7 @@
 					light_spot.transform = turn(light_spot.transform, -90)
 
 /obj/item/device/lighting/toggleable/flashlight/proc/lightSpotPassable(var/turf/T)
-	if(is_opaque(T))
+	if(is_opa69ue(T))
 		return FALSE
 	return TRUE
 
@@ -160,11 +160,11 @@
 	dir = WEST
 	return ..()
 
-/obj/item/device/lighting/toggleable/flashlight/dropped(mob/user as mob)
+/obj/item/device/lighting/toggleable/flashlight/dropped(mob/user as69ob)
 	if(light_direction)
 		set_dir(light_direction)
 
-/obj/item/device/lighting/toggleable/flashlight/afterattack(atom/A, mob/user)
+/obj/item/device/lighting/toggleable/flashlight/afterattack(atom/A,69ob/user)
 	var/turf/T = get_turf(A)
 	if(can_see(user,T) && light_spot_range >= get_dist(get_turf(src),T))
 		lightspot_hitObstacle = FALSE
@@ -197,7 +197,7 @@
 
 /obj/item/device/lighting/toggleable/flashlight/turn_off(mob/user)
 	. = ..()
-	qdel(light_spot)
+	69del(light_spot)
 	if(. && user)
 		user.update_action_buttons()
 
@@ -232,60 +232,60 @@
 		else if(cell.percent() <= 25)
 			apply_power_deficiency()
 
-/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M, mob/living/user)
+/obj/item/device/lighting/toggleable/flashlight/attack(mob/living/M,69ob/living/user)
 	add_fingerprint(user)
 	if(on && user.targeted_organ == BP_EYES)
 
 		if((CLUMSY in user.mutations) && prob(50))	//too dumb to use flashlight properly
 			return ..()	//just hit them in the head
 
-		var/mob/living/carbon/human/H = M	//mob has protective eyewear
+		var/mob/living/carbon/human/H =69	//mob has protective eyewear
 		if(istype(H))
 			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
 				if(istype(C) && (C.body_parts_covered & EYES))
-					to_chat(user, SPAN_WARNING("You're going to need to remove [C.name] first."))
+					to_chat(user, SPAN_WARNING("You're going to need to remove 69C.name69 first."))
 					return
 
 			var/obj/item/organ/vision
 			if(H.species.vision_organ)
 				vision = H.random_organ_by_process(H.species.vision_organ)
 			if(!vision)
-				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : BP_EYES] on [H]!</span>")
+				to_chat(user, "<span class='warning'>You can't find any 69H.species.vision_organ ? H.species.vision_organ : BP_EYES69 on 69H69!</span>")
 				return
 
-			user.visible_message(SPAN_NOTICE("\The [user] directs [src] to [M]'s eyes."), \
-							 	 SPAN_NOTICE("You direct [src] to [M]'s eyes."))
+			user.visible_message(SPAN_NOTICE("\The 69user69 directs 69src69 to 69M69's eyes."), \
+							 	 SPAN_NOTICE("You direct 69src69 to 69M69's eyes."))
 			if(H == user)	//can't look into your own eyes buster
-				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
-					to_chat(user, SPAN_WARNING("\The [M]'s pupils do not react to the light!"))
+				if(M.stat == DEAD ||69.blinded)	//mob is dead or fully blind
+					to_chat(user, SPAN_WARNING("\The 69M69's pupils do not react to the light!"))
 					return
-				if(XRAY in M.mutations)
-					to_chat(user, SPAN_NOTICE("\The [M] pupils give an eerie glow!"))
+				if(XRAY in69.mutations)
+					to_chat(user, SPAN_NOTICE("\The 69M69 pupils give an eerie glow!"))
 				if(vision.damage)
-					to_chat(user, SPAN_WARNING("There's visible damage to [M]'s [vision.name]!"))
+					to_chat(user, SPAN_WARNING("There's69isible damage to 69M69's 69vision.name69!"))
 				else if(M.eye_blurry)
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils react slower than normally."))
+					to_chat(user, SPAN_NOTICE("\The 69M69's pupils react slower than normally."))
 				if(M.getBrainLoss() > 15)
-					to_chat(user, SPAN_NOTICE("There's visible lag between left and right pupils' reactions."))
+					to_chat(user, SPAN_NOTICE("There's69isible lag between left and right pupils' reactions."))
 
 				var/list/pinpoint = list("oxycodone"=1,"tramadol"=5)
 				var/list/dilating = list("space_drugs"=5,"mindbreaker"=1)
 				if(M.reagents.has_any_reagent(pinpoint) || H.ingested.has_any_reagent(pinpoint))
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils are already pinpoint and cannot narrow any more."))
+					to_chat(user, SPAN_NOTICE("\The 69M69's pupils are already pinpoint and cannot narrow any69ore."))
 				else if(M.reagents.has_any_reagent(dilating) || H.ingested.has_any_reagent(dilating))
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils narrow slightly, but are still very dilated."))
+					to_chat(user, SPAN_NOTICE("\The 69M69's pupils narrow slightly, but are still69ery dilated."))
 				else
-					to_chat(user, SPAN_NOTICE("\The [M]'s pupils narrow."))
+					to_chat(user, SPAN_NOTICE("\The 69M69's pupils narrow."))
 
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //can be used offensively
 			if(M.HUDtech.Find("flash"))
-				flick("flash", M.HUDtech["flash"])
+				flick("flash",69.HUDtech69"flash"69)
 	else
 		return ..()
 
 /obj/item/device/lighting/toggleable/flashlight/pen
 	name = "penlight"
-	desc = "A pen-sized light, used by medical staff."
+	desc = "A pen-sized light, used by69edical staff."
 	icon_state = "penlight"
 	item_state = ""
 	slot_flags = SLOT_EARS
@@ -319,8 +319,8 @@
 	. = ..()
 
 	if(on)
-		item_state = "[initial(icon_state)]-on"
+		item_state = "69initial(icon_state)69-on"
 		update_wear_icon()
 	else
-		item_state = "[initial(icon_state)]"
+		item_state = "69initial(icon_state)69"
 		update_wear_icon()

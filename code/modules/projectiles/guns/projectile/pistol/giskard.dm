@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/giskard
 	name = "FS HG .35 Auto \"Giskard\""
-	desc = "A popular \"Frozen Star\" brand pocket pistol chambered for the ubiquitous .35 auto round. Uses standard capacity magazines."
+	desc = "A popular \"Frozen Star\" brand pocket pistol chambered for the ubi69uitous .35 auto round. Uses standard capacity69agazines."
 	icon = 'icons/obj/guns/projectile/giskard.dmi'
 	icon_state = "giskard"
 	item_state = "pistol"
@@ -11,10 +11,10 @@
 	fire_delay = 0.6
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 	caliber = CAL_PISTOL
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
-	matter = list(MATERIAL_PLASTEEL = 10, MATERIAL_WOOD = 4)
+	matter = list(MATERIAL_PLASTEEL = 10,69ATERIAL_WOOD = 4)
 	price_tag = 400
 	damage_multiplier = 1.3
 	penetration_multiplier = 0.8

@@ -1,3 +1,3 @@
-INGAME MANUALS
+IN69AME69ANUALS
 
-Ingame manuals are simple HTML files with basic information. They are linked to specific items/commands, such as the AI's display help command, or engine setup guide. Point of these files is to allow creation of basic guides for players which don't want to use wiki.
+In69ame69anuals are simple HTML files with basic information. They are linked to specific items/commands, such as the AI's display help command, or en69ine setup 69uide. Point of these files is to allow creation of basic 69uides for players which don't want to use wiki.

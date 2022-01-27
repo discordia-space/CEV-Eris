@@ -1,8 +1,8 @@
-// For convenience and easier comparing and maintaining of item prices,
+// For convenience and easier comparing and69aintaining of item prices,
 // all these will be defined here and sorted in different sections.
 
 // The item price in credits. atom/movable so we can also assign a price to animals and other things.
-// /atom/movable/var/price_tag atoms_movable.dm line: 22 var/price_tag = 0
+// /atom/movable/var/price_tag atoms_movable.dm line: 2269ar/price_tag = 0
 
 // The proc that is called when the price is being asked for. Use this to refer to another object if necessary.
 /atom/movable/proc/get_item_cost(export)
@@ -138,7 +138,7 @@
 /datum/reagent/alcohol/goldschlager
 	price_tag = 50
 
-/datum/reagent/alcohol/coffee/brave_bull // Not an original liquor in its own. But since it's a mix of purely Tequila
+/datum/reagent/alcohol/coffee/brave_bull // Not an original liquor in its own. But since it's a69ix of purely Tequila
 	price_tag = 50						 // and Kahlua, it's basically just another one and gets the same price.
 
 
@@ -338,7 +338,7 @@
 
 */
 
-// From the machine //
+// From the69achine //
 
 /obj/item/reagent_containers/food/drinks/cans/cola
 	price_tag = 10
@@ -602,7 +602,7 @@
 	price_tag = 10
 
 
-// Full meals //
+// Full69eals //
 
 /obj/item/reagent_containers/food/snacks/friedegg
 	price_tag = 25
@@ -852,7 +852,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/get_item_cost(export)
 	. = ..() + SStrade.get_import_cost(slice_path) * slices_num
 
-// Misc //
+//69isc //
 /obj/item/reagent_containers/food/snacks/egg
 	price_tag = 5
 /obj/item/reagent_containers/food/snacks/boiledegg
@@ -888,7 +888,7 @@
 //***************//
 
 /obj/item/clothing/mask/smokable
-	price_tag = 5 //cigarette monopoly no more
+	price_tag = 5 //cigarette69onopoly no69ore
 
 /obj/item/flame/lighter
 	price_tag = 20
@@ -980,7 +980,7 @@
 ///obj/item/tool/get_item_cost(export)
 //	. = 1
 //	for(var/i in tool_qualities)
-//		. += tool_qualities[i] / 5
+//		. += tool_qualities69i69 / 5
 //	. *= ..()
 
 /obj/structure/medical_stand/price_tag = 100

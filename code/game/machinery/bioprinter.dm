@@ -1,8 +1,8 @@
-//These machines are mostly just here for debugging/spawning. Skeletons of the feature to come.
+//These69achines are69ostly just here for debugging/spawning. Skeletons of the feature to come.
 
 /obj/machinery/bioprinter
 	name = "organ bioprinter"
-	desc = "A machine that grows replacement organs."
+	desc = "A69achine that grows replacement organs."
 	icon = 'icons/obj/surgery.dmi'
 
 	anchored = TRUE
@@ -26,7 +26,7 @@
 
 /obj/machinery/bioprinter/prosthetics
 	name = "prosthetics fabricator"
-	desc = "A machine that prints prosthetic organs."
+	desc = "A69achine that prints prosthetic organs."
 	prints_prosthetics = 1
 
 /obj/machinery/bioprinter/New()
@@ -41,28 +41,28 @@
 	if(!choice)
 		return
 
-	if(stored_matter >= products[choice][2])
+	if(stored_matter >= products69choice6969269)
 
-		stored_matter -= products[choice][2]
-		var/new_organ = products[choice][1]
+		stored_matter -= products69choice6969269
+		var/new_organ = products69choice6969169
 		var/obj/item/organ/O = new new_organ(get_turf(src))
 
 		if(prints_prosthetics)
-			O.nature = MODIFICATION_SILICON
+			O.nature =69ODIFICATION_SILICON
 		else if(loaded_dna)
 			visible_message("<span class='notice'>The printer injects the stored DNA into the biomass.</span>.")
 			O.transplant_data = list()
-			var/mob/living/carbon/C = loaded_dna["donor"]
-			O.transplant_data["species"] =    C.species.name
-			O.transplant_data["blood_type"] = loaded_dna["blood_type"]
-			O.transplant_data["blood_DNA"] =  loaded_dna["blood_DNA"]
+			var/mob/living/carbon/C = loaded_dna69"donor"69
+			O.transplant_data69"species"69 =    C.species.name
+			O.transplant_data69"blood_type"69 = loaded_dna69"blood_type"69
+			O.transplant_data69"blood_DNA"69 =  loaded_dna69"blood_DNA"69
 
 		visible_message("<span class='info'>The bioprinter spits out a new organ.</span>")
 
 	else
-		to_chat(user, SPAN_WARNING("There is not enough matter in the printer."))
+		to_chat(user, SPAN_WARNING("There is not enough69atter in the printer."))
 
-/obj/machinery/bioprinter/attackby(obj/item/W, mob/user)
+/obj/machinery/bioprinter/attackby(obj/item/W,69ob/user)
 
 	// DNA sample from syringe.
 	if(!prints_prosthetics && istype(W,/obj/item/reagent_containers/syringe))
@@ -72,22 +72,22 @@
 			loaded_dna = injected.data
 			to_chat(user, "<span class='info'>You inject the blood sample into the bioprinter.</span>")
 		return
-	// Meat for biomass.
+	//69eat for biomass.
 	if(!prints_prosthetics)
 		for(var/type in BIOMASS_TYPES)
 			if(istype(W,type))
-				stored_matter += BIOMASS_TYPES[type]
+				stored_matter += BIOMASS_TYPES69type69
 				user.drop_item()
-				to_chat(user, "<span class='info'>\The [src] processes \the [W]. Levels of stored biomass now: [stored_matter]</span>")
-				qdel(W)
+				to_chat(user, "<span class='info'>\The 69src69 processes \the 69W69. Levels of stored biomass now: 69stored_matter69</span>")
+				69del(W)
 				return
-	// Steel for matter.
-	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL)
+	// Steel for69atter.
+	if(prints_prosthetics && istype(W, /obj/item/stack/material) && W.get_material_name() ==69ATERIAL_STEEL)
 		var/obj/item/stack/S = W
 		stored_matter += S.amount * 10
 		user.drop_item()
-		to_chat(user, "<span class='info'>\The [src] processes \the [W]. Levels of stored matter now: [stored_matter]</span>")
-		qdel(W)
+		to_chat(user, "<span class='info'>\The 69src69 processes \the 69W69. Levels of stored69atter now: 69stored_matter69</span>")
+		69del(W)
 		return
 
 	return ..()

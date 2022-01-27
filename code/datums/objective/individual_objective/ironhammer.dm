@@ -11,9 +11,9 @@
 
 /datum/individual_objective/familiar_face/assign()
 	..()
-	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	var/list/candidates = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder
 	target = pick(candidates)
-	desc = "You swear you saw to [target] somewhere before, and in your line of job it cannot mean good. Search them, \
+	desc = "You swear you saw to 69target69 somewhere before, and in your line of job it cannot69ean good. Search them, \
 	remove their backpack or empty their pockets."
 	RegisterSignal(mind_holder, COMSIG_EMPTY_POCKETS, .proc/task_completed)
 
@@ -33,7 +33,7 @@
 
 /datum/individual_objective/time_to_action/assign()
 	..()
-	desc = "Murder or observer murdering of 20 mobs."
+	desc = "Murder or observer69urdering of 2069obs."
 	RegisterSignal(mind_holder, COMSIG_MOB_DEATH, .proc/task_completed)
 
 /datum/individual_objective/time_to_action/task_completed(mob/mob_death)
@@ -52,12 +52,12 @@
 /datum/individual_objective/paranoia/assign()
 	..()
 	units_requested = rand(3,4)
-	desc = "The criminals are here, somewhere, you can feel that. Search [units_requested] people, \
+	desc = "The criminals are here, somewhere, you can feel that. Search 69units_requested69 people, \
 			remove their backpack or empty their pockets."
 	RegisterSignal(mind_holder, COMSIG_EMPTY_POCKETS, .proc/task_completed)
 
 /datum/individual_objective/paranoia/task_completed(mob/living/carbon/n_target)
-	if((n_target in vitims) || !n_target.client)
+	if((n_target in69itims) || !n_target.client)
 		return
 	vitims += n_target
 	..(1)
@@ -82,7 +82,7 @@
 /datum/individual_objective/danger/assign()
 	..()
 	target = pick_faction_item(mind_holder, strict_type = /obj)
-	desc = "\The [target] is clear danger to ship and crew. Destroy it with any means possible."
+	desc = "\The 69target69 is clear danger to ship and crew. Destroy it with any69eans possible."
 	RegisterSignal(mind_holder, COMSIG_OBJ_FACTION_ITEM_DESTROY, .proc/task_completed)
 
 /datum/individual_objective/danger/task_completed(obj/item/I)
@@ -102,7 +102,7 @@
 /datum/individual_objective/guard/assign()
 	..()
 	target_area = random_ship_area()
-	desc = "[target_area] requires to be fortified with a turret."
+	desc = "69target_area69 requires to be fortified with a turret."
 	RegisterSignal(target_area, COMSIG_TURRENT, .proc/task_completed)
 
 /datum/individual_objective/guard/task_completed()

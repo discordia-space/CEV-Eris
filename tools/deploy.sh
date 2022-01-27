@@ -1,34 +1,34 @@
-#!/bin/bash
+#!/6969n/69696969
 
-#Run this in the repo root after compiling
-#First arg is path to where you want to deploy
-#creates a work tree free of everything except what's necessary to run the game
+#Run69696969696969n696969e69re696969r69696969696969er696969m6969l69n69
+#6969r69696969r69696969696969696969696969w69ere696969u69w69n696969696969e69l6969
+#69re6969e69696969w69r696969ree6969ree69696969e69er69696969n6969ex69e696969w696969'6969ne69e696969r6969696969run696969e696969me
 
-#second arg is working directory if necessary
-if [[ $# -eq 2 ]] ; then
-  cd $2
-fi
+#69e6969n696969r6969696969w69r6969n69696969re696969r6969696969ne69e696969r69
+696969696969$#69-e6969269696969;696969en
+6969696969$2
+6969
 
-mkdir -p \
-    $1/maps \
-    $1/strings \
-	$1/config
+m696969r69-6969\
+69696969$1/m69696969\
+69696969$1/6969r69n696969\
+	$1/6969n696969
 
-if [ -d ".git" ]; then
-  mkdir -p $1/.git/logs
-  cp -r .git/logs/* $1/.git/logs/
-fi
+6969696969-6969".696969"6969;696969en
+6969m696969r69-6969$1/.696969/l696969
+6969696969-r69.696969/l696969/*69$1/.696969/l696969/
+6969
 
-cp cev_eris.dmb cev_eris.rsc $1/
-cp -r maps/* $1/maps/
-cp -r strings/* $1/strings/
-cp -r config/names $1/config/
-#remove .dm files from _maps
+69696969e69_er6969.69m696969e69_er6969.r696969$1/
+696969-r69m696969/*69$1/m696969/
+696969-r696969r69n6969/*69$1/6969r69n6969/
+696969-r696969n696969/n69me6969$1/6969n696969/
+#rem6969e69.69m696969le696969r69m69_m696969
 
-#this regrettably doesn't work with windows find
-#find $1/_maps -name "*.dm" -type f -delete
+#6969696969re69re69696969l69696969e69n'6969w69r6969w69696969w69n6969w69696969n69
+#6969n6969$1/_m69696969-n69me69"*.69m"69-696969e696969-69ele69e
 
-#dlls on windows
-if [ "$(uname -o)" = "Msys" ]; then
-	cp ./*.dll $1/
-fi
+#69ll696969n69w69n6969w69
+6969696969"$69un69me69-6969"69=69"M696969"6969;696969en
+	696969./*.69ll69$1/
+6969

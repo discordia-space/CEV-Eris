@@ -12,7 +12,7 @@ var/list/disciples = list()
 	access = list(access_nt_disciple)
 	power = 50
 	max_power = 50
-	power_regen = 20/(1 MINUTES)
+	power_regen = 20/(169INUTES)
 	price_tag = 500
 	var/obj/item/cruciform_upgrade/upgrade
 
@@ -20,12 +20,12 @@ var/list/disciples = list()
 	var/max_righteous_life = 100
 
 /obj/item/implant/core_implant/cruciform/auto_restore_power()
-	if(power >= max_power)
+	if(power >=69ax_power)
 		return
 
 	var/true_power_regen = power_regen
-	true_power_regen += max(round(wearer.stats.getStat(STAT_COG) / 4), 0) * power_regen * 0.05
-	true_power_regen += power_regen * 1.5 * righteous_life / max_righteous_life
+	true_power_regen +=69ax(round(wearer.stats.getStat(STAT_COG) / 4), 0) * power_regen * 0.05
+	true_power_regen += power_regen * 1.5 * righteous_life /69ax_righteous_life
 	if(wearer && wearer.stats?.getPerk(/datum/perk/channeling))
 		true_power_regen += power_regen * disciples.len / 5 // Proportional to the number of cruciformed people on board
 
@@ -41,15 +41,15 @@ var/list/disciples = list()
 
 /obj/item/implant/core_implant/cruciform/proc/on_happy(datum/reagent/happy, signal)
 	if(istype(happy, /datum/reagent/ethanol) && happy.id != "ntcahors")
-		righteous_life = max(righteous_life - 0.1, 0)
+		righteous_life =69ax(righteous_life - 0.1, 0)
 	else if(istype(happy, /datum/reagent/drug))
-		righteous_life = max(righteous_life - 0.5, 0)
+		righteous_life =69ax(righteous_life - 0.5, 0)
 
 /obj/item/implant/core_implant/cruciform/proc/on_ritual()
-	righteous_life = min(righteous_life + 25, max_righteous_life)
+	righteous_life =69in(righteous_life + 25,69ax_righteous_life)
 
 
-/obj/item/implant/core_implant/cruciform/install(mob/living/target, organ, mob/user)
+/obj/item/implant/core_implant/cruciform/install(mob/living/target, organ,69ob/user)
 	. = ..()
 	if(.)
 		target.stats.addPerk(/datum/perk/sanityboost)
@@ -62,8 +62,8 @@ var/list/disciples = list()
 	return ..()
 
 /obj/item/implant/core_implant/cruciform/get_mob_overlay(gender)
-	gender = (gender == MALE) ? "m" : "f"
-	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "[icon_state]_[gender]")
+	gender = (gender ==69ALE) ? "m" : "f"
+	return image('icons/mob/human_races/cyberlimbs/neotheology.dmi', "69icon_state69_69gender69")
 
 /obj/item/implant/core_implant/cruciform/hard_eject()
 	if(!ishuman(wearer))
@@ -89,7 +89,7 @@ var/list/disciples = list()
 			observation_points /= 20
 		playsound(wearer.loc, 'sound/hallucinations/wail.ogg', 55, 1)
 		wearer.gib()
-		if(eotp)  // le mutants reward
+		if(eotp)  // le69utants reward
 			eotp.addObservation(observation_points)
 		return
 	..()
@@ -98,7 +98,7 @@ var/list/disciples = list()
 	disciples |= wearer
 	var/datum/core_module/cruciform/cloning/M = get_module(CRUCIFORM_CLONING)
 	if(M)
-		M.write_wearer(wearer) //writes all needed data to cloning module
+		M.write_wearer(wearer) //writes all needed data to cloning69odule
 	if(eotp)
 		eotp.addObservation(observation_points*0.25)
 	return TRUE
@@ -106,12 +106,12 @@ var/list/disciples = list()
 /obj/item/implant/core_implant/cruciform/examine(mob/user)
 	..()
 	var/datum/core_module/cruciform/cloning/data = get_module(CRUCIFORM_CLONING)
-	if(data?.mind) // if there is cloning data and it has a mind
+	if(data?.mind) // if there is cloning data and it has a69ind
 		to_chat(user, SPAN_NOTICE("This cruciform has been activated."))
 		if(isghost(user) || (user in disciples))
 			var/datum/mind/MN = data.mind
-			if(MN.name) // if there is a mind and it also has a name
-				to_chat(user, SPAN_NOTICE("It contains <b>[MN.name]</b>'s soul."))
+			if(MN.name) // if there is a69ind and it also has a name
+				to_chat(user, SPAN_NOTICE("It contains <b>69MN.name69</b>'s soul."))
 			else
 				to_chat(user, SPAN_DANGER("Something terrible has happened with this soul. Please notify somebody in charge."))
 	else // no cloning data
@@ -166,8 +166,8 @@ var/list/disciples = list()
 
 			if(R.owner != wearer)
 				continue
-			wearer.visible_message(SPAN_DANGER("[wearer]'s [R.name] tears off."),
-			SPAN_DANGER("Your [R.name] tears off."))
+			wearer.visible_message(SPAN_DANGER("69wearer69's 69R.name69 tears off."),
+			SPAN_DANGER("Your 69R.name69 tears off."))
 			R.droplimb()
 		if(istype(O, /obj/item/implant))
 			if(O == src)
@@ -177,11 +177,11 @@ var/list/disciples = list()
 				continue
 			if(R.cruciform_resist)
 				continue
-			wearer.visible_message(SPAN_DANGER("[R.name] rips through [wearer]'s [R.part]."),\
-			SPAN_DANGER("[R.name] rips through your [R.part]."))
+			wearer.visible_message(SPAN_DANGER("69R.name69 rips through 69wearer69's 69R.part69."),\
+			SPAN_DANGER("69R.name69 rips through your 69R.part69."))
 			R.part.take_damage(rand(20,40))
 			R.uninstall()
-			R.malfunction = MALFUNCTION_PERMANENT
+			R.malfunction =69ALFUNCTION_PERMANENT
 	if(ishuman(wearer))
 		var/mob/living/carbon/human/H = wearer
 		H.update_implants()

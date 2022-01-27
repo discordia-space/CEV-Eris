@@ -1,7 +1,7 @@
 //Wizard Rig
 /obj/item/clothing/head/space/void/wizard
-	name = "gem-encrusted voidsuit helmet"
-	desc = "A bizarre gem-encrusted helmet that radiates magical energies."
+	name = "gem-encrusted69oidsuit helmet"
+	desc = "A bizarre gem-encrusted helmet that radiates69agical energies."
 	icon_state = "rig0-wiz"
 	item_state_slots = list(
 		slot_l_hand_str = "wiz_helm",
@@ -20,7 +20,7 @@
 
 /obj/item/clothing/suit/space/void/wizard
 	icon_state = "rig-wiz"
-	name = "gem-encrusted voidsuit"
+	name = "gem-encrusted69oidsuit"
 	desc = "A bizarre gem-encrusted suit that radiates strange energy readings."
 	item_state = "wiz_voidsuit"
 	slowdown = 1

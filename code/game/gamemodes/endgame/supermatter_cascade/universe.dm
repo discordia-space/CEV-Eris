@@ -3,7 +3,7 @@ var/global/universe_has_ended = 0
 
 /datum/universal_state/supermatter_cascade
  	name = "Supermatter Cascade"
- 	desc = "Unknown harmonance affecting universal substructure, converting nearby matter to supermatter."
+ 	desc = "Unknown harmonance affecting universal substructure, converting nearby69atter to supermatter."
 
  	decay_rate = 5 // 5% chance of a turf decaying on lighting update/airflow (there's no actual tick for turfs)
 
@@ -44,10 +44,10 @@ var/global/universe_has_ended = 0
 
 	for(var/mob/living/M in GLOB.player_list)
 		if (M.HUDtech.Find("flash"))
-			flick("e_flash", M.HUDtech["flash"])
+			flick("e_flash",69.HUDtech69"flash"69)
 
 	if(evacuation_controller.cancel_evacuation())
-		priority_announcement.Announce("The escape pod launch sequence has been aborted due to bluespace distortion.")
+		priority_announcement.Announce("The escape pod launch se69uence has been aborted due to bluespace distortion.")
 
 	AreaSet()
 	MiscSet()
@@ -58,20 +58,20 @@ var/global/universe_has_ended = 0
 
 	spawn(rand(30,60) SECONDS)
 		var/txt = {"
-AUTOMATED ALERT: Attention [station_name()], this is a high alert broadcast to all ships from the central communication hub of the Hansa Trade Union, a catastrophe has happened on the ship [station_name()], information regarding the incident is classified.
+AUTOMATED ALERT: Attention 69station_name()69, this is a high alert broadcast to all ships from the central communication hub of the Hansa Trade Union, a catastrophe has happened on the ship 69station_name()69, information regarding the incident is classified.
 
 We highly suggest, that all corporate owned, and free ships within listening range depart into Bluespace. Until the incident ends, all employees aboard HTU operated ships will have their pay-rolls will be frozen, and their have benefits cut, independent ships not included.
 
-AUTOMATED ALERT: Link to [command_name()] lost.
+AUTOMATED ALERT: Link to 69command_name()69 lost.
 "}
 		priority_announcement.Announce(txt,"SUPERMATTER CASCADE DETECTED")
 
 		for(var/obj/machinery/computer/shuttle_control/C in GLOB.computer_list)
 			if(istype(C, /obj/machinery/computer/shuttle_control/research) || istype(C, /obj/machinery/computer/shuttle_control/mining))
-				C.req_access = list()
-				C.req_one_access = list()
+				C.re69_access = list()
+				C.re69_one_access = list()
 
-		spawn(5 MINUTES)
+		spawn(569INUTES)
 			SSticker.station_explosion_cinematic(0,null) // TODO: Custom cinematic
 			universe_has_ended = 1
 		return
@@ -106,7 +106,7 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 			if(APC.cell)
 				APC.cell.charge = 0
 			APC.emagged = 1
-			APC.queue_icon_update()
+			APC.69ueue_icon_update()
 
 /datum/universal_state/supermatter_cascade/proc/PlayerSet()
 	for(var/datum/antagonist/A in GLOB.current_antags)
@@ -114,8 +114,8 @@ AUTOMATED ALERT: Link to [command_name()] lost.
 			continue
 		if(A.owner.current.stat!=2)
 			A.owner.current.Weaken(10)
-//			flick("e_flash", M.current.flash)
+//			flick("e_flash",69.current.flash)
 			if (A.owner.current.HUDtech.Find("flash"))
-				flick("e_flash", A.owner.current.HUDtech["flash"])
+				flick("e_flash", A.owner.current.HUDtech69"flash"69)
 
 		A.remove_antagonist()

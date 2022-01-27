@@ -23,7 +23,7 @@
 		for (var/obj/machinery/power/smes/S in range (effectrange,src))
 			S.charge += 25
 		for (var/mob/living/silicon/robot/M in range(50, T))
-			for (var/obj/item/cell/large/D in M.contents)
+			for (var/obj/item/cell/large/D in69.contents)
 				D.give(25)
 				if(world.time - last_message > 200)
 					to_chat(M, "\blue SYSTEM ALERT: Energy boost detected!")
@@ -39,7 +39,7 @@
 		for (var/obj/machinery/power/smes/S in range (effectrange,src))
 			S.charge += 250
 		for (var/mob/living/silicon/robot/M in range(100, T))
-			for (var/obj/item/cell/large/D in M.contents)
+			for (var/obj/item/cell/large/D in69.contents)
 				D.give(rand() * 100)
 				if(world.time - last_message > 200)
 					to_chat(M, "\blue SYSTEM ALERT: Energy boost detected!")

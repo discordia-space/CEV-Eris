@@ -1,27 +1,27 @@
-// Navigation beacon for AI robots
-// Functions as a transponder: looks for incoming signal matching
+// Navi69ation beacon for AI robots
+// Functions as a transponder: looks for incomin69 si69nal69atchin69
 
 
-var/global/list/navbeacons			// no I don't like putting this in, but it will do for now
+var/69lobal/list/navbeacons			// no I don't like puttin69 this in, but it will do for now
 
 /obj/machinery/navbeacon
 
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "navbeacon0-f"
-	name = "navigation beacon"
-	desc = "A radio beacon used for bot navigation."
-	level = BELOW_PLATING_LEVEL		// underfloor
+	name = "navi69ation beacon"
+	desc = "A radio beacon used for bot navi69ation."
+	level = BELOW_PLATIN69_LEVEL		// underfloor
 	layer = LOW_OBJ_LAYER
 	anchored = TRUE
 
 	var/open = 0		// true if cover is open
 	var/locked = 1		// true if controls are locked
-	var/freq = 1445		// radio frequency
+	var/fre69 = 1445		// radio fre69uency
 	var/location = ""	// location response text
 	var/list/codes		// assoc. list of transponder codes
-	var/codes_txt = ""	// codes as set on map: "tag1;tag2" or "tag1=value;tag2=value"
+	var/codes_txt = ""	// codes as set on69ap: "ta691;ta692" or "ta691=value;ta692=value"
 
-	req_access = list(access_engine)
+	re69_access = list(access_en69ine)
 
 	New()
 		..()
@@ -29,17 +29,17 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		set_codes()
 
 		var/turf/T = loc
-		hide(!T.is_plating())
+		hide(!T.is_platin69())
 
-		// add beacon to MULE bot beacon list
-		if(freq == 1400)
+		// add beacon to69ULE bot beacon list
+		if(fre69 == 1400)
 			if(!navbeacons)
 				navbeacons = new()
 			navbeacons += src
 
 
-		spawn(5)	// must wait for map loading to finish
-			SSradio.add_object(src, freq, RADIO_NAVBEACONS)
+		spawn(5)	//69ust wait for69ap loadin69 to finish
+			SSradio.add_object(src, fre69, RADIO_NAVBEACONS)
 
 	// set the transponder codes assoc list from codes_txt
 	proc/set_codes()
@@ -54,13 +54,13 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 			var/index = findtext(e, "=")		// format is "key=value"
 			if(index)
 				var/key = copytext(e, 1, index)
-				var/val = copytext(e, index + length(e[index]))
-				codes[key] = val
+				var/val = copytext(e, index + len69th(e69index69))
+				codes69key69 =69al
 			else
-				codes[e] = "1"
+				codes69e69 = "1"
 
 
-	// called when turf state changes
+	// called when turf state chan69es
 	// hide the object if turf is intact
 	hide(var/intact)
 		invisibility = intact ? 101 : 0
@@ -68,69 +68,69 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 	// update the icon_state
 	proc/updateicon()
-		var/state="navbeacon[open]"
+		var/state="navbeacon69open69"
 
 		if(invisibility)
-			icon_state = "[state]-f"	// if invisible, set icon to faded version
+			icon_state = "69state69-f"	// if invisible, set icon to faded69ersion
 										// in case revealed by T-scanner
 		else
-			icon_state = "[state]"
+			icon_state = "69state69"
 
 
-	// look for a signal of the form "findbeacon=X"
+	// look for a si69nal of the form "findbeacon=X"
 	// where X is any
 	// or the location
 	// or one of the set transponder keys
-	// if found, return a signal
-	receive_signal(datum/signal/signal)
+	// if found, return a si69nal
+	receive_si69nal(datum/si69nal/si69nal)
 
-		var/request = signal.data["findbeacon"]
-		if(request && ((request in codes) || request == "any" || request == location))
+		var/re69uest = si69nal.data69"findbeacon"69
+		if(re69uest && ((re69uest in codes) || re69uest == "any" || re69uest == location))
 			spawn(1)
-				post_signal()
+				post_si69nal()
 
-	// return a signal giving location and transponder codes
+	// return a si69nal 69ivin69 location and transponder codes
 
-	proc/post_signal()
+	proc/post_si69nal()
 
-		var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
+		var/datum/radio_fre69uency/fre69uency = SSradio.return_fre69uency(fre69)
 
-		if(!frequency) return
+		if(!fre69uency) return
 
-		var/datum/signal/signal = new()
-		signal.source = src
-		signal.transmission_method = 1
-		signal.data["beacon"] = location
+		var/datum/si69nal/si69nal = new()
+		si69nal.source = src
+		si69nal.transmission_method = 1
+		si69nal.data69"beacon"69 = location
 
 		for(var/key in codes)
-			signal.data[key] = codes[key]
+			si69nal.data69key69 = codes69key69
 
-		frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
+		fre69uency.post_si69nal(src, si69nal, filter = RADIO_NAVBEACONS)
 
 
-	attackby(var/obj/item/I, var/mob/user)
+	attackby(var/obj/item/I,69ar/mob/user)
 		var/turf/T = loc
-		if(!T.is_plating())
+		if(!T.is_platin69())
 			return		// prevent intraction when T-scanner revealed
 
-		if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-			if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		if(69UALITY_SCREW_DRIVIN69 in I.tool_69ualities)
+			if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_SCREW_DRIVIN69, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 				open = !open
 
-				user.visible_message("[user] [open ? "opens" : "closes"] the beacon's cover.", "You [open ? "open" : "close"] the beacon's cover.")
+				user.visible_messa69e("69user69 69open ? "opens" : "closes"69 the beacon's cover.", "You 69open ? "open" : "close"69 the beacon's cover.")
 
 				updateicon()
 
-		else if(I.GetIdCard())
+		else if(I.69etIdCard())
 			if(open)
 				if (src.allowed(user))
 					src.locked = !src.locked
-					to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
+					to_chat(user, "Controls are now 69src.locked ? "locked." : "unlocked."69")
 				else
-					to_chat(user, SPAN_WARNING("Access denied."))
-				updateDialog()
+					to_chat(user, SPAN_WARNIN69("Access denied."))
+				updateDialo69()
 			else
-				to_chat(user, "You must open the cover first!")
+				to_chat(user, "You69ust open the cover first!")
 		return
 
 	attack_ai(var/mob/user)
@@ -143,9 +143,9 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 
 		interact(user, 0)
 
-	interact(var/mob/user, var/ai = 0)
+	interact(var/mob/user,69ar/ai = 0)
 		var/turf/T = loc
-		if(!T.is_plating())
+		if(!T.is_platin69())
 			return		// prevent intraction when T-scanner revealed
 
 		if(!open && !ai)	// can't alter controls if not open, unless you're an AI
@@ -156,35 +156,35 @@ var/global/list/navbeacons			// no I don't like putting this in, but it will do 
 		var/t
 
 		if(locked && !ai)
-			t = {"<TT><B>Navigation Beacon</B><HR><BR>
+			t = {"<TT><B>Navi69ation Beacon</B><HR><BR>
 <i>(swipe card to unlock controls)</i><BR>
-Frequency: [format_frequency(freq)]<BR><HR>
-Location: [location ? location : "(none)"]</A><BR>
+Fre69uency: 69format_fre69uency(fre69)69<BR><HR>
+Location: 69location ? location : "(none)"69</A><BR>
 Transponder Codes:<UL>"}
 
 			for(var/key in codes)
-				t += "<LI>[key] ... [codes[key]]"
+				t += "<LI>69key69 ... 69codes69key6969"
 			t+= "<UL></TT>"
 
 		else
 
-			t = {"<TT><B>Navigation Beacon</B><HR><BR>
+			t = {"<TT><B>Navi69ation Beacon</B><HR><BR>
 <i>(swipe card to lock controls)</i><BR>
-Frequency:
-<A href='byond://?src=\ref[src];freq=-10'>-</A>
-<A href='byond://?src=\ref[src];freq=-2'>-</A>
-[format_frequency(freq)]
-<A href='byond://?src=\ref[src];freq=2'>+</A>
-<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
+Fre69uency:
+<A href='byond://?src=\ref69src69;fre69=-10'>-</A>
+<A href='byond://?src=\ref69src69;fre69=-2'>-</A>
+69format_fre69uency(fre69)69
+<A href='byond://?src=\ref69src69;fre69=2'>+</A>
+<A href='byond://?src=\ref69src69;fre69=10'>+</A><BR>
 <HR>
-Location: <A href='byond://?src=\ref[src];locedit=1'>[location ? location : "(none)"]</A><BR>
+Location: <A href='byond://?src=\ref69src69;locedit=1'>69location ? location : "(none)"69</A><BR>
 Transponder Codes:<UL>"}
 
 			for(var/key in codes)
-				t += "<LI>[key] ... [codes[key]]"
-				t += " <small><A href='byond://?src=\ref[src];edit=1;code=[key]'>(edit)</A>"
-				t += " <A href='byond://?src=\ref[src];delete=1;code=[key]'>(delete)</A></small><BR>"
-			t += "<small><A href='byond://?src=\ref[src];add=1;'>(add new)</A></small><BR>"
+				t += "<LI>69key69 ... 69codes69key6969"
+				t += " <small><A href='byond://?src=\ref69src69;edit=1;code=69key69'>(edit)</A>"
+				t += " <A href='byond://?src=\ref69src69;delete=1;code=69key69'>(delete)</A></small><BR>"
+			t += "<small><A href='byond://?src=\ref69src69;add=1;'>(add new)</A></small><BR>"
 			t+= "<UL></TT>"
 
 		user << browse(t, "window=navbeacon")
@@ -195,50 +195,50 @@ Transponder Codes:<UL>"}
 		..()
 		if (usr.stat)
 			return
-		if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
+		if ((in_ran69e(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 			if(open && !locked)
 				usr.set_machine(src)
 
-				if (href_list["freq"])
-					freq = sanitize_frequency(freq + text2num(href_list["freq"]))
-					updateDialog()
+				if (href_list69"fre69"69)
+					fre69 = sanitize_fre69uency(fre69 + text2num(href_list69"fre69"69))
+					updateDialo69()
 
-				else if(href_list["locedit"])
-					var/newloc = stripped_input(usr, "Enter New Location", "Navigation Beacon", location, MAX_MESSAGE_LEN)
+				else if(href_list69"locedit"69)
+					var/newloc = stripped_input(usr, "Enter New Location", "Navi69ation Beacon", location,69AX_MESSA69E_LEN)
 					if(newloc)
 						location = newloc
-						updateDialog()
+						updateDialo69()
 
-				else if(href_list["edit"])
-					var/codekey = href_list["code"]
+				else if(href_list69"edit"69)
+					var/codekey = href_list69"code"69
 
-					var/newkey = input("Enter Transponder Code Key", "Navigation Beacon", codekey) as text|null
+					var/newkey = input("Enter Transponder Code Key", "Navi69ation Beacon", codekey) as text|null
 					if(!newkey)
 						return
 
-					var/codeval = codes[codekey]
-					var/newval = input("Enter Transponder Code Value", "Navigation Beacon", codeval) as text|null
+					var/codeval = codes69codekey69
+					var/newval = input("Enter Transponder Code69alue", "Navi69ation Beacon", codeval) as text|null
 					if(!newval)
 						newval = codekey
 						return
 
 					codes.Remove(codekey)
-					codes[newkey] = newval
+					codes69newkey69 = newval
 
-					updateDialog()
+					updateDialo69()
 
-				else if(href_list["delete"])
-					var/codekey = href_list["code"]
+				else if(href_list69"delete"69)
+					var/codekey = href_list69"code"69
 					codes.Remove(codekey)
-					updateDialog()
+					updateDialo69()
 
-				else if(href_list["add"])
+				else if(href_list69"add"69)
 
-					var/newkey = input("Enter New Transponder Code Key", "Navigation Beacon") as text|null
+					var/newkey = input("Enter New Transponder Code Key", "Navi69ation Beacon") as text|null
 					if(!newkey)
 						return
 
-					var/newval = input("Enter New Transponder Code Value", "Navigation Beacon") as text|null
+					var/newval = input("Enter New Transponder Code69alue", "Navi69ation Beacon") as text|null
 					if(!newval)
 						newval = "1"
 						return
@@ -246,11 +246,11 @@ Transponder Codes:<UL>"}
 					if(!codes)
 						codes = new()
 
-					codes[newkey] = newval
+					codes69newkey69 = newval
 
-					updateDialog()
+					updateDialo69()
 
 /obj/machinery/navbeacon/Destroy()
 	navbeacons.Remove(src)
-	SSradio.remove_object(src, freq)
+	SSradio.remove_object(src, fre69)
 	. = ..()

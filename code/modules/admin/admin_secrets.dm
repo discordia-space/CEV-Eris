@@ -10,7 +10,7 @@ var/datum/admin_secrets/admin_secrets = new()
 	items = list()
 	var/list/category_assoc = list()
 	for(var/datum/admin_secret_category/category in categories)
-		category_assoc[category.type] = category
+		category_assoc69category.type69 = category
 
 	for(var/item_type in (typesof(/datum/admin_secret_item) - /datum/admin_secret_item))
 		var/datum/admin_secret_item/secret_item = item_type
@@ -18,7 +18,7 @@ var/datum/admin_secrets/admin_secrets = new()
 			continue
 
 		var/datum/admin_secret_item/item = new item_type()
-		var/datum/admin_secret_category/category = category_assoc[item.category]
+		var/datum/admin_secret_category/category = category_assoc69item.category69
 		dd_insertObjectList(category.items, item)
 		items += item
 
@@ -46,7 +46,7 @@ var/datum/admin_secrets/admin_secrets = new()
 	var/warn_before_use = 0
 
 /datum/admin_secret_item/dd_SortValue()
-	return "[name]"
+	return "69name69"
 
 /datum/admin_secret_item/proc/name()
 	return name
@@ -56,7 +56,7 @@ var/datum/admin_secrets/admin_secrets = new()
 
 /datum/admin_secret_item/proc/can_execute(var/mob/user)
 	if(can_view(user))
-		if(!warn_before_use || alert("Execute the command '[name]'?", name, "No","Yes") == "Yes")
+		if(!warn_before_use || alert("Execute the command '69name69'?", name, "No","Yes") == "Yes")
 			return 1
 	return 0
 
@@ -65,7 +65,7 @@ var/datum/admin_secrets/admin_secrets = new()
 		return 0
 
 	if(log)
-		log_and_message_admins("used secret '[name]'", user)
+		log_and_message_admins("used secret '69name69'", user)
 
 	return 1
 

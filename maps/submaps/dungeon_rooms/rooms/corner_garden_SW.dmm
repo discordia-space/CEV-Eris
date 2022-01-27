@@ -1,168 +1,168 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"b" = (
-/obj/crawler/crawler_wallbreaker,
-/turf/simulated/floor/bluegrid,
-/area/crawler)
-"c" = (
-/turf/simulated/floor/grass,
-/area/crawler)
-"d" = (
-/obj/structure/railing/grey,
-/turf/simulated/floor/grass,
-/area/crawler)
-"e" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"69" = 69
+/o6969/crawler/crawler_wall69rea69er,
+/turf/simulated/floor/69lue69rid,
+/area/crawler69
+"c" = 69
+/turf/simulated/floor/69rass,
+/area/crawler69
+"d" = 69
+/o6969/structure/railin69/69rey,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"e" = 69
+/o6969/structure/railin69/69rey{
 	dir = 4
 	},
-/obj/structure/railing/grey,
-/turf/simulated/floor/grass,
-/area/crawler)
-"f" = (
-/obj/effect/floor_decal/grass_edge{
+/o6969/structure/railin69/69rey,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"f" = 69
+/o6969/effect/floor_decal/69rass_ed69e{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"g" = (
+/area/crawler69
+"69" = 69
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"h" = (
-/obj/effect/floor_decal/grass_edge{
+/area/crawler69
+"h" = 69
+/o6969/effect/floor_decal/69rass_ed69e{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"i" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"i" = 69
+/o6969/structure/railin69/69rey{
 	dir = 8
 	},
-/obj/structure/flora/ausbushes/sparsegrass,
-/turf/simulated/floor/grass,
-/area/crawler)
-"j" = (
-/obj,
-/obj/structure/flora/ausbushes/lavendergrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/structure/flora/ausbushes/stalkybush,
-/turf/simulated/floor/grass,
-/area/crawler)
-"k" = (
-/obj,
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/grass,
-/area/crawler)
-"l" = (
-/obj/structure/railing/grey{
+/o6969/structure/flora/aus69ushes/sparse69rass,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"69" = 69
+/o6969,
+/o6969/structure/flora/aus69ushes/lavender69rass,
+/o6969/structure/flora/aus69ushes/sparse69rass,
+/o6969/structure/flora/aus69ushes/stal69y69ush,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"69" = 69
+/o6969,
+/o6969/structure/flora/aus69ushes/69rflowers,
+/o6969/structure/flora/aus69ushes/lavender69rass,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"l" = 69
+/o6969/structure/railin69/69rey{
 	dir = 4
 	},
-/turf/simulated/floor/grass,
-/area/crawler)
-"m" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/grass,
-/area/crawler)
-"n" = (
-/obj/machinery/light/floor,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"m" = 69
+/o6969/structure/catwal69,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"n" = 69
+/o6969/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"o" = (
-/obj/structure/railing/grey,
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/simulated/floor/grass,
-/area/crawler)
-"p" = (
-/obj/structure/railing/grey,
-/obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/grass,
-/area/crawler)
-"q" = (
-/obj/crawler/crawler_wallbreaker/vertical,
+/area/crawler69
+"o" = 69
+/o6969/structure/railin69/69rey,
+/o6969/structure/flora/aus69ushes/lavender69rass,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"p" = 69
+/o6969/structure/railin69/69rey,
+/o6969/structure/flora/aus69ushes/69rflowers,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"69" = 69
+/o6969/crawler/crawler_wall69rea69er/vertical,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"r" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"r" = 69
+/o6969/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
+/o6969/structure/railin69/69rey,
+/o6969/structure/railin69/69rey{
 	dir = 8
 	},
-/turf/simulated/floor/grass,
-/area/crawler)
-"s" = (
-/obj/structure/railing/grey{
+/turf/simulated/floor/69rass,
+/area/crawler69
+"s" = 69
+/o6969/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/structure/railing/grey{
+/o6969/structure/railin69/69rey{
 	dir = 4
 	},
-/obj/structure/railing/grey,
-/turf/simulated/floor/grass,
-/area/crawler)
-"t" = (
-/obj/effect/floor_decal/grass_edge{
+/o6969/structure/railin69/69rey,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"t" = 69
+/o6969/effect/floor_decal/69rass_ed69e{
 	dir = 8
 	},
-/obj/machinery/light/floor,
+/o6969/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"u" = (
-/obj/effect/floor_decal/grass_edge{
+/area/crawler69
+"u" = 69
+/o6969/effect/floor_decal/69rass_ed69e{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"v" = (
-/obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/floor/bluegrid,
-/area/crawler)
-"w" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"v" = 69
+/o6969/crawler/crawler_wall69rea69er/vertical,
+/turf/simulated/floor/69lue69rid,
+/area/crawler69
+"w" = 69
+/o6969/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/machinery/light/floor,
-/turf/simulated/floor/grass,
-/area/crawler)
-"x" = (
-/obj/structure/railing/grey{
+/o6969/machinery/li69ht/floor,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"x" = 69
+/o6969/structure/railin69/69rey{
 	dir = 1
 	},
-/turf/simulated/floor/grass,
-/area/crawler)
-"y" = (
-/obj/effect/floor_decal/grass_edge,
-/obj/machinery/light/floor,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"y" = 69
+/o6969/effect/floor_decal/69rass_ed69e,
+/o6969/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"z" = (
-/obj/machinery/light/floor,
-/turf/simulated/floor/grass,
-/area/crawler)
-"A" = (
-/obj/effect/floor_decal/grass_edge,
+/area/crawler69
+"z" = 69
+/o6969/machinery/li69ht/floor,
+/turf/simulated/floor/69rass,
+/area/crawler69
+"A" = 69
+/o6969/effect/floor_decal/69rass_ed69e,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"C" = (
-/obj/crawler/crawler_wallbreaker,
+/area/crawler69
+"C" = 69
+/o6969/crawler/crawler_wall69rea69er,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
+/area/crawler69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
 a
 a
-q
+69
 a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
 l
@@ -173,7 +173,7 @@ c
 c
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 d
 m
@@ -184,7 +184,7 @@ c
 c
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 d
 m
@@ -195,7 +195,7 @@ c
 c
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 e
 m
@@ -206,8 +206,8 @@ c
 c
 C
 "}
-(6,1,1) = {"
-b
+696,1,169 = {"
+69
 f
 f
 f
@@ -217,80 +217,80 @@ z
 c
 C
 "}
-(7,1,1) = {"
-b
-g
-g
-g
-g
+697,1,169 = {"
+69
+69
+69
+69
+69
 y
 x
 c
 C
 "}
-(8,1,1) = {"
-b
+698,1,169 = {"
+69
 h
 n
-g
-g
+69
+69
 A
 x
 c
 C
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 i
 a
 n
-g
+69
 A
 x
 c
 C
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
-j
+69
 o
 u
-g
+69
 A
 x
 c
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
-k
+69
 o
 u
-g
+69
 A
 x
 c
 a
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 a
-k
+69
 p
 u
-g
+69
 A
 x
 c
 a
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 a
 a
-q
+69
 v
 v
 v
-q
+69
 a
 a
 "}

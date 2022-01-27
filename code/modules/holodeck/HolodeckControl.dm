@@ -30,7 +30,7 @@
 	supported_programs = list()
 	restricted_programs = list()
 
-/obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/attack_hand(var/mob/user as69ob)
 	if(..())
 		return 1
 	user.set_machine(src)
@@ -52,10 +52,10 @@
 		return
 
 	for(var/prog in supported_programs)
-		dat += "<A href='?src=\ref[src];program=[supported_programs[prog]]'>([prog])</A><BR>"
+		dat += "<A href='?src=\ref69src69;program=69supported_programs69prog6969'>(69prog69)</A><BR>"
 
 	dat += "<BR>"
-	dat += "<A href='?src=\ref[src];program=turnoff'>(Turn Off)</A><BR>"
+	dat += "<A href='?src=\ref69src69;program=turnoff'>(Turn Off)</A><BR>"
 
 	dat += "<BR>"
 	dat += "Please ensure that only holographic weapons are used in the holodeck if a combat simulation has been loaded.<BR>"
@@ -66,15 +66,15 @@
 			if (emagged)
 				dat += "<font color=red><b>ERROR</b>: Cannot re-enable Safety Protocols.</font><BR>"
 			else
-				dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=green>Re-Enable Safety Protocols?</font>)</A><BR>"
+				dat += "<A href='?src=\ref69src69;AIoverride=1'>(<font color=green>Re-Enable Safety Protocols?</font>)</A><BR>"
 		else
-			dat += "<A href='?src=\ref[src];AIoverride=1'>(<font color=red>Override Safety Protocols?</font>)</A><BR>"
+			dat += "<A href='?src=\ref69src69;AIoverride=1'>(<font color=red>Override Safety Protocols?</font>)</A><BR>"
 
 	dat += "<BR>"
 
 	if(safety_disabled)
 		for(var/prog in restricted_programs)
-			dat += "<A href='?src=\ref[src];program=[restricted_programs[prog]]'>(<font color=red>Begin [prog]</font>)</A><BR>"
+			dat += "<A href='?src=\ref69src69;program=69restricted_programs69prog6969'>(<font color=red>Begin 69prog69</font>)</A><BR>"
 			dat += "Ensure the holodeck is empty before testing.<BR>"
 			dat += "<BR>"
 		dat += "Safety Protocols are <font color=red> DISABLED </font><BR>"
@@ -82,9 +82,9 @@
 		dat += "Safety Protocols are <font color=green> ENABLED </font><BR>"
 
 	if(linkedholodeck.has_gravity)
-		dat += "Gravity is <A href='?src=\ref[src];gravity=1'><font color=green>(ON)</font></A><BR>"
+		dat += "Gravity is <A href='?src=\ref69src69;gravity=1'><font color=green>(ON)</font></A><BR>"
 	else
-		dat += "Gravity is <A href='?src=\ref[src];gravity=1'><font color=blue>(OFF)</font></A><BR>"
+		dat += "Gravity is <A href='?src=\ref69src69;gravity=1'><font color=blue>(OFF)</font></A><BR>"
 
 	user << browse(dat, "window=computer;size=400x500")
 	onclose(user, "computer")
@@ -96,12 +96,12 @@
 
 	usr.set_machine(src)
 
-	if(href_list["program"])
-		var/prog = href_list["program"]
+	if(href_list69"program"69)
+		var/prog = href_list69"program"69
 		if(prog in holodeck_programs)
-			loadProgram(holodeck_programs[prog])
+			loadProgram(holodeck_programs69prog69)
 
-	else if(href_list["AIoverride"])
+	else if(href_list69"AIoverride"69)
 		if(!issilicon(usr))
 			return
 
@@ -111,28 +111,28 @@
 		safety_disabled = !safety_disabled
 		update_projections()
 		if(safety_disabled)
-			message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
-			log_game("[key_name(usr)] overrided the holodeck's safeties")
+			message_admins("69key_name_admin(usr)69 overrode the holodeck's safeties")
+			log_game("69key_name(usr)69 overrided the holodeck's safeties")
 		else
-			message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
-			log_game("[key_name(usr)] restored the holodeck's safeties")
+			message_admins("69key_name_admin(usr)69 restored the holodeck's safeties")
+			log_game("69key_name(usr)69 restored the holodeck's safeties")
 
-	else if(href_list["gravity"])
+	else if(href_list69"gravity"69)
 		toggleGravity(linkedholodeck)
 
 	src.updateUsrDialog()
 	return
 
-/obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges, var/mob/user as mob)
+/obj/machinery/computer/HolodeckControl/emag_act(var/remaining_charges,69ar/mob/user as69ob)
 	playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 	last_to_emag = user //emag again to change the owner
 	if (!emagged)
 		emagged = 1
 		safety_disabled = 1
 		update_projections()
-		to_chat(user, SPAN_NOTICE("You vastly increase projector power and override the safety and security protocols."))
-		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call [company_name] maintenance and do not use the simulator.")
-		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
+		to_chat(user, SPAN_NOTICE("You69astly increase projector power and override the safety and security protocols."))
+		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call 69company_name6969aintenance and do not use the simulator.")
+		log_game("69key_name(usr)69 emagged the Holodeck Control Computer")
 		src.updateUsrDialog()
 		return 1
 	else
@@ -169,7 +169,7 @@
 		emergencyShutdown()
 
 /obj/machinery/computer/HolodeckControl/Process()
-	for(var/item in holographic_objs) // do this first, to make sure people don't take items out when power is down.
+	for(var/item in holographic_objs) // do this first, to69ake sure people don't take items out when power is down.
 		if(!(get_turf(item) in linkedholodeck))
 			derez(item, 0)
 
@@ -186,7 +186,7 @@
 
 		if(!checkInteg(linkedholodeck))
 			damaged = 1
-			loadProgram(holodeck_programs["turnoff"], 0)
+			loadProgram(holodeck_programs69"turnoff"69, 0)
 			active = 0
 			use_power = IDLE_POWER_USE
 			for(var/mob/M in range(10,src))
@@ -201,7 +201,7 @@
 				T.ex_act(3)
 				T.hotspot_expose(1000,500,1)
 
-/obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj , var/silent = 1)
+/obj/machinery/computer/HolodeckControl/proc/derez(var/obj/obj ,69ar/silent = 1)
 	holographic_objs.Remove(obj)
 
 	if(obj == null)
@@ -215,7 +215,7 @@
 
 	if(!silent)
 		var/obj/oldobj = obj
-		visible_message("The [oldobj.name] fades away!")
+		visible_message("The 69oldobj.name69 fades away!")
 	qdel(obj)
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
@@ -228,9 +228,9 @@
 //Why is it called toggle if it doesn't toggle?
 /obj/machinery/computer/HolodeckControl/proc/togglePower(var/toggleOn = 0)
 	if(toggleOn)
-		loadProgram(holodeck_programs["emptycourt"], 0)
+		loadProgram(holodeck_programs69"emptycourt"69, 0)
 	else
-		loadProgram(holodeck_programs["turnoff"], 0)
+		loadProgram(holodeck_programs69"turnoff"69, 0)
 
 
 
@@ -242,7 +242,7 @@
 		use_power = IDLE_POWER_USE
 
 
-/obj/machinery/computer/HolodeckControl/proc/loadProgram(var/datum/holodeck_program/HP, var/check_delay = 1)
+/obj/machinery/computer/HolodeckControl/proc/loadProgram(var/datum/holodeck_program/HP,69ar/check_delay = 1)
 	if(!HP)
 		return
 	var/area/A = locate(HP.target)
@@ -275,14 +275,14 @@
 	holographic_objs = A.copy_contents_to(linkedholodeck , 1)
 	for(var/obj/holo_obj in holographic_objs)
 		holo_obj.alpha *= 0.8 //give holodeck objs a slight transparency
-		holo_obj.plane = 95 //This makes all objects load on the plane that Eris's 4th z-level uses for objects. This is not dynamic.
+		holo_obj.plane = 95 //This69akes all objects load on the plane that Eris's 4th z-level uses for objects. This is not dynamic.
 
 	if(HP.ambience)
 		linkedholodeck.forced_ambience = HP.ambience
 	else
 		linkedholodeck.forced_ambience = list()
 
-	for(var/mob/living/M in mobs_in_area(linkedholodeck))
+	for(var/mob/living/M in69obs_in_area(linkedholodeck))
 		if(M.mind)
 			linkedholodeck.play_ambience(M)
 
@@ -329,7 +329,7 @@
 
 /obj/machinery/computer/HolodeckControl/proc/emergencyShutdown()
 	//Turn it back to the regular non-holographic room
-	loadProgram(holodeck_programs["turnoff"], 0)
+	loadProgram(holodeck_programs69"turnoff"69, 0)
 
 
 	linkedholodeck.has_gravity = TRUE

@@ -1,301 +1,301 @@
 
-// .25 handguns
+// .25 hand69uns
 
-/datum/design/autolathe/gun/mandella
-	name = "FS HG .25 Auto \"Mandella\""
-	build_path = /obj/item/gun/projectile/mandella
+/datum/desi69n/autolathe/69un/mandella
+	name = "FS H69 .25 Auto \"Mandella\""
+	build_path = /obj/item/69un/projectile/mandella
 
-// .35 handguns
+// .35 hand69uns
 
-/datum/design/autolathe/gun/olivaw
-	name = "FS HG .35 \"Olivaw\""
-	build_path = /obj/item/gun/projectile/olivaw
+/datum/desi69n/autolathe/69un/olivaw
+	name = "FS H69 .35 \"Olivaw\""
+	build_path = /obj/item/69un/projectile/olivaw
 
-/datum/design/autolathe/gun/giskard
-	name = "FS HG .35 \"Giskard\""
-	build_path = /obj/item/gun/projectile/giskard
+/datum/desi69n/autolathe/69un/69iskard
+	name = "FS H69 .35 \"69iskard\""
+	build_path = /obj/item/69un/projectile/69iskard
 
-/datum/design/autolathe/gun/clarissa
-	name = "FS HG .35 \"Clarissa\""
-	build_path = /obj/item/gun/projectile/selfload
+/datum/desi69n/autolathe/69un/clarissa
+	name = "FS H69 .35 \"Clarissa\""
+	build_path = /obj/item/69un/projectile/selfload
 
-/datum/design/autolathe/gun/makarov
+/datum/desi69n/autolathe/69un/makarov
 	name = "Excelsior .35 \"Makarov\""
-	build_path = /obj/item/gun/projectile/selfload/makarov
+	build_path = /obj/item/69un/projectile/selfload/makarov
 
-/datum/design/autolathe/gun/mk58
-	name = "NT HG .35 \"Mk58\""
-	build_path = /obj/item/gun/projectile/mk58
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/mk58
+	name = "NT H69 .35 \"Mk58\""
+	build_path = /obj/item/69un/projectile/mk58
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/mk58_wood
-	name = "NT HG .35 \"Mk58\""
-	build_path = /obj/item/gun/projectile/mk58/wood
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/mk58_wood
+	name = "NT H69 .35 \"Mk58\""
+	build_path = /obj/item/69un/projectile/mk58/wood
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/colt
-	name = "FS HG .35 Auto \"Colt M1911\""
-	build_path = /obj/item/gun/projectile/colt
+/datum/desi69n/autolathe/69un/colt
+	name = "FS H69 .35 Auto \"Colt691911\""
+	build_path = /obj/item/69un/projectile/colt
 
-/datum/design/autolathe/gun/havelock
+/datum/desi69n/autolathe/69un/havelock
 	name = "FS REV .35 \"Havelock\""
-	build_path = /obj/item/gun/projectile/revolver/havelock
+	build_path = /obj/item/69un/projectile/revolver/havelock
 
-// .40 handguns
+// .40 hand69uns
 
-/datum/design/autolathe/gun/revolver
+/datum/desi69n/autolathe/69un/revolver
 	name = "FS REV .40 \"Miller\""
-	build_path = /obj/item/gun/projectile/revolver
+	build_path = /obj/item/69un/projectile/revolver
 
-/datum/design/autolathe/gun/revolver_consul
+/datum/desi69n/autolathe/69un/revolver_consul
 	name = "FS REV .40 \"Consul\""
-	build_path = /obj/item/gun/projectile/revolver/consul
+	build_path = /obj/item/69un/projectile/revolver/consul
 
-/datum/design/autolathe/gun/revolver_deckard
+/datum/desi69n/autolathe/69un/revolver_deckard
 	name = "FS REV .40 \"Deckard\""
-	build_path = /obj/item/gun/projectile/revolver/deckard
+	build_path = /obj/item/69un/projectile/revolver/deckard
 
-/datum/design/autolathe/gun/revolver_mateba
-	name = "FS REV .40 Magnum \"Mateba\""
-	build_path = /obj/item/gun/projectile/revolver/mateba
+/datum/desi69n/autolathe/69un/revolver_mateba
+	name = "FS REV .4069a69num \"Mateba\""
+	build_path = /obj/item/69un/projectile/revolver/mateba
 
-/datum/design/autolathe/gun/lamia
-	name = "FS HG .40 \"Lamia\""
-	build_path = /obj/item/gun/projectile/lamia
+/datum/desi69n/autolathe/69un/lamia
+	name = "FS H69 .40 \"Lamia\""
+	build_path = /obj/item/69un/projectile/lamia
 
-/datum/design/autolathe/gun/avasarala
-	name = "FS HG .40 \"Avasarala\""
-	build_path = /obj/item/gun/projectile/avasarala
+/datum/desi69n/autolathe/69un/avasarala
+	name = "FS H69 .40 \"Avasarala\""
+	build_path = /obj/item/69un/projectile/avasarala
 
-// Shotguns
+// Shot69uns
 
-/datum/design/autolathe/gun/doublebarrel
-	name = "double-barreled shotgun"
-	build_path = /obj/item/gun/projectile/shotgun/doublebarrel
+/datum/desi69n/autolathe/69un/doublebarrel
+	name = "double-barreled shot69un"
+	build_path = /obj/item/69un/projectile/shot69un/doublebarrel
 
-/datum/design/autolathe/gun/pump_shotgun
-	name = "FS SG \"Kammerer\""
-	build_path = /obj/item/gun/projectile/shotgun/pump
+/datum/desi69n/autolathe/69un/pump_shot69un
+	name = "FS S69 \"Kammerer\""
+	build_path = /obj/item/69un/projectile/shot69un/pump
 
-/datum/design/autolathe/gun/regulator
-	name = "NT SG \"Regulator 1000\""
-	build_path = /obj/item/gun/projectile/shotgun/pump/regulator
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/re69ulator
+	name = "NT S69 \"Re69ulator 1000\""
+	build_path = /obj/item/69un/projectile/shot69un/pump/re69ulator
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/gladstone
-	name = "FS SG \"Gladstone\""
-	build_path = /obj/item/gun/projectile/shotgun/pump/gladstone
+/datum/desi69n/autolathe/69un/69ladstone
+	name = "FS S69 \"69ladstone\""
+	build_path = /obj/item/69un/projectile/shot69un/pump/69ladstone
 
-/datum/design/autolathe/gun/bojevic
-	name = "SA SG \"Bojevic\""
-	build_path = /obj/item/gun/projectile/shotgun/bojevic
+/datum/desi69n/autolathe/69un/bojevic
+	name = "SA S69 \"Bojevic\""
+	build_path = /obj/item/69un/projectile/shot69un/bojevic
 
-// SMGs
+// SM69s
 
-/datum/design/autolathe/gun/zoric
-	name = "SA SMG .40 \"Zoric\""
-	build_path = /obj/item/gun/projectile/automatic/zoric
+/datum/desi69n/autolathe/69un/zoric
+	name = "SA SM69 .40 \"Zoric\""
+	build_path = /obj/item/69un/projectile/automatic/zoric
 
-/datum/design/autolathe/gun/atreides
-	name = "FS SMG .35 \"Atreides\""
-	build_path = /obj/item/gun/projectile/automatic/atreides
+/datum/desi69n/autolathe/69un/atreides
+	name = "FS SM69 .35 \"Atreides\""
+	build_path = /obj/item/69un/projectile/automatic/atreides
 
-/datum/design/autolathe/gun/paco
-	name = "FS HG .35 \"Paco\""
-	build_path = /obj/item/gun/projectile/paco
+/datum/desi69n/autolathe/69un/paco
+	name = "FS H69 .35 \"Paco\""
+	build_path = /obj/item/69un/projectile/paco
 
-/datum/design/autolathe/gun/straylight
-	name = "FS SMG .35 \"Straylight\""
-	build_path = /obj/item/gun/projectile/automatic/straylight
+/datum/desi69n/autolathe/69un/strayli69ht
+	name = "FS SM69 .35 \"Strayli69ht\""
+	build_path = /obj/item/69un/projectile/automatic/strayli69ht
 
-/datum/design/autolathe/gun/molly
-	name = "FS MP .35 \"Molly\""
-	build_path = /obj/item/gun/projectile/automatic/molly
+/datum/desi69n/autolathe/69un/molly
+	name = "FS69P .35 \"Molly\""
+	build_path = /obj/item/69un/projectile/automatic/molly
 
-/datum/design/autolathe/gun/drozd
+/datum/desi69n/autolathe/69un/drozd
 	name = "Excelsior .40 \"Drozd\""
-	build_path = /obj/item/gun/projectile/automatic/drozd
+	build_path = /obj/item/69un/projectile/automatic/drozd
 
-/datum/design/autolathe/gun/slaught_o_matic //alledgedly a handgun, but practically an SMG
-	name = "FS HG .35 \"Slaught-o-Matic\""
-	build_path = /obj/item/gun/projectile/automatic/slaught_o_matic
+/datum/desi69n/autolathe/69un/slau69ht_o_matic //alled69edly a hand69un, but practically an SM69
+	name = "FS H69 .35 \"Slau69ht-o-Matic\""
+	build_path = /obj/item/69un/projectile/automatic/slau69ht_o_matic
 
 // .20 Rifles
 
-/datum/design/autolathe/gun/vintorez
+/datum/desi69n/autolathe/69un/vintorez
 	name = "Excelsior .20 \"Vintorez\""
-	build_path = /obj/item/gun/projectile/automatic/vintorez
+	build_path = /obj/item/69un/projectile/automatic/vintorez
 
-/datum/design/autolathe/gun/z8
-	name = "FS CAR .20 \"Z8 Bulldog\""
-	build_path = /obj/item/gun/projectile/automatic/z8
+/datum/desi69n/autolathe/69un/z8
+	name = "FS CAR .20 \"Z8 Bulldo69\""
+	build_path = /obj/item/69un/projectile/automatic/z8
 
-/datum/design/autolathe/gun/wintermute
+/datum/desi69n/autolathe/69un/wintermute
 	name = "FS AR .20 \"Wintermute\""
-	build_path = /obj/item/gun/projectile/automatic/wintermute
+	build_path = /obj/item/69un/projectile/automatic/wintermute
 
-/datum/design/autolathe/gun/kovacs
+/datum/desi69n/autolathe/69un/kovacs
 	name = "SA BR .20 \"Kovacs\""
-	build_path = /obj/item/gun/projectile/kovacs
+	build_path = /obj/item/69un/projectile/kovacs
 
 
 // .25 Rifles
 
-/datum/design/autolathe/gun/sol
+/datum/desi69n/autolathe/69un/sol
 	name = "FS CAR .25 CS \"Sol\""
-	build_path = /obj/item/gun/projectile/automatic/sol
+	build_path = /obj/item/69un/projectile/automatic/sol
 
-/datum/design/autolathe/gun/dallas
+/datum/desi69n/autolathe/69un/dallas
 	name = "PAR .25 CS \"Dallas\""
-	build_path = /obj/item/gun/projectile/automatic/dallas
+	build_path = /obj/item/69un/projectile/automatic/dallas
 
 // .30 Rifles
 
-/datum/design/autolathe/gun/boltgun
+/datum/desi69n/autolathe/69un/bolt69un
 	name = "Excelsior .30 \"Kardashev-Mosin\""
-	build_path = /obj/item/gun/projectile/boltgun
+	build_path = /obj/item/69un/projectile/bolt69un
 
-/datum/design/autolathe/gun/boltgun_serbian
+/datum/desi69n/autolathe/69un/bolt69un_serbian
 	name = "SA BR .30 \"Novakovic\""
-	build_path = /obj/item/gun/projectile/boltgun/serbian
+	build_path = /obj/item/69un/projectile/bolt69un/serbian
 
-/datum/design/autolathe/gun/boltgun_fs
+/datum/desi69n/autolathe/69un/bolt69un_fs
 	name = "FS BR .20 \"Tosshin\""
-	build_path = /obj/item/gun/projectile/boltgun/fs
+	build_path = /obj/item/69un/projectile/bolt69un/fs
 
-/datum/design/autolathe/gun/ak47
+/datum/desi69n/autolathe/69un/ak47
 	name = "Excelsior .30 AK-47"
-	build_path = /obj/item/gun/projectile/automatic/ak47
+	build_path = /obj/item/69un/projectile/automatic/ak47
 
-/datum/design/autolathe/gun/ak47_fs
+/datum/desi69n/autolathe/69un/ak47_fs
 	name = "FS AR .30 \"Vipr\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/fs
+	build_path = /obj/item/69un/projectile/automatic/ak47/fs
 
-/datum/design/autolathe/gun/ak47_fs_ih
-	name = "FS AR .30 \"Venger\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/fs/ih
+/datum/desi69n/autolathe/69un/ak47_fs_ih
+	name = "FS AR .30 \"Ven69er\""
+	build_path = /obj/item/69un/projectile/automatic/ak47/fs/ih
 
-/datum/design/autolathe/gun/ak47_sa
+/datum/desi69n/autolathe/69un/ak47_sa
 	name = "SA Car .30 \"Krinkov\""
-	build_path = /obj/item/gun/projectile/automatic/ak47/sa
+	build_path = /obj/item/69un/projectile/automatic/ak47/sa
 
-/datum/design/autolathe/gun/sts35
+/datum/desi69n/autolathe/69un/sts35
 	name = "STS-35"
-	build_path = /obj/item/gun/projectile/automatic/sts35
+	build_path = /obj/item/69un/projectile/automatic/sts35
 
 // Heavy
 
-/datum/design/autolathe/gun/heavysniper
+/datum/desi69n/autolathe/69un/heavysniper
 	name = "SA AMR .60 \"Hristov\""
-	build_path = /obj/item/gun/projectile/heavysniper
+	build_path = /obj/item/69un/projectile/heavysniper
 
-/datum/design/autolathe/gun/mg_pk
-	name = "SA MG .30 \"Pulemyot Kalashnikova\""
-	build_path = /obj/item/gun/projectile/automatic/lmg/pk
+/datum/desi69n/autolathe/69un/m69_pk
+	name = "SA6969 .30 \"Pulemyot Kalashnikova\""
+	build_path = /obj/item/69un/projectile/automatic/lm69/pk
 
-/datum/design/autolathe/gun/lmg_tk
-	name = "FS LMG .30 \"Takeshi\""
-	build_path = /obj/item/gun/projectile/automatic/lmg/tk
+/datum/desi69n/autolathe/69un/lm69_tk
+	name = "FS LM69 .30 \"Takeshi\""
+	build_path = /obj/item/69un/projectile/automatic/lm69/tk
 
-/datum/design/autolathe/gun/grenade_launcher
-	name = "NT GL \"Protector\""
-	build_path = /obj/item/gun/projectile/shotgun/pump/grenade
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/69renade_launcher
+	name = "NT 69L \"Protector\""
+	build_path = /obj/item/69un/projectile/shot69un/pump/69renade
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/grenade_launcher_lenar
-	name = "FS GL \"Lenar\""
-	build_path = /obj/item/gun/projectile/shotgun/pump/grenade/lenar
+/datum/desi69n/autolathe/69un/69renade_launcher_lenar
+	name = "FS 69L \"Lenar\""
+	build_path = /obj/item/69un/projectile/shot69un/pump/69renade/lenar
 
-/datum/design/autolathe/gun/hmg_maxim
-	name = "Excelsior HMG .30 \"Maxim\""
-	build_path = /obj/item/gun/projectile/automatic/maxim
+/datum/desi69n/autolathe/69un/hm69_maxim
+	name = "Excelsior HM69 .30 \"Maxim\""
+	build_path = /obj/item/69un/projectile/automatic/maxim
 
-// Energy small arms
+// Ener69y small arms
 
-/datum/design/autolathe/gun/taser
+/datum/desi69n/autolathe/69un/taser
 	name = "NT SP \"Counselor\""
-	build_path = /obj/item/gun/energy/taser
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/taser
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/energygun
+/datum/desi69n/autolathe/69un/ener69y69un
 	name = "FS PDW E \"Spider Rose\""
-	build_path = /obj/item/gun/energy/gun
+	build_path = /obj/item/69un/ener69y/69un
 
-/datum/design/autolathe/gun/energygun_martin
+/datum/desi69n/autolathe/69un/ener69y69un_martin
 	name = "FS PDW E \"Martin\""
-	build_path = /obj/item/gun/energy/gun/martin
+	build_path = /obj/item/69un/ener69y/69un/martin
 
-/datum/design/autolathe/gun/nt_svalinn
+/datum/desi69n/autolathe/69un/nt_svalinn
 	name = "NT LP \"Svalinn\""
-	build_path = /obj/item/gun/energy/nt_svalinn
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/nt_svalinn
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-// Energy general
+// Ener69y 69eneral
 
-/datum/design/autolathe/gun/energy_crossbow
+/datum/desi69n/autolathe/69un/ener69y_crossbow
 	name = "NT EC \"Nemesis\""
-	build_path = /obj/item/gun/energy/crossbow
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/crossbow
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/large_energy_crossbow
+/datum/desi69n/autolathe/69un/lar69e_ener69y_crossbow
 	name = "NT EC \"Themis\""
-	build_path = /obj/item/gun/energy/crossbow/largecrossbow
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/crossbow/lar69ecrossbow
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/laser
-	name = "NT LG \"Lightfall\""
-	build_path = /obj/item/gun/energy/laser
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/laser
+	name = "NT L69 \"Li69htfall\""
+	build_path = /obj/item/69un/ener69y/laser
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/retro
-	name = "OS LG \"Cog\""
-	build_path = /obj/item/gun/energy/retro
+/datum/desi69n/autolathe/69un/retro
+	name = "OS L69 \"Co69\""
+	build_path = /obj/item/69un/ener69y/retro
 
-/datum/design/autolathe/gun/ionrifle
+/datum/desi69n/autolathe/69un/ionrifle
 	name = "NT IR \"Halicon\""
-	build_path = /obj/item/gun/energy/ionrifle
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/ionrifle
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/sniperrifle
-	name = "NT MER \"Valkyrie\""
-	build_path = /obj/item/gun/energy/sniperrifle
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/sniperrifle
+	name = "NT69ER \"Valkyrie\""
+	build_path = /obj/item/69un/ener69y/sniperrifle
+	factions = list(FACTION_NEOTHEOLO69Y)
 
 // Plasma
 
-/datum/design/autolathe/gun/plasma/dominion
+/datum/desi69n/autolathe/69un/plasma/dominion
 	name = "NT PR \"Dominion\""
-	build_path = /obj/item/gun/energy/plasma
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/plasma
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/plasma/destroyer
-	name = "NT PR \"Purger\""
-	build_path = /obj/item/gun/energy/plasma/destroyer
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/plasma/destroyer
+	name = "NT PR \"Pur69er\""
+	build_path = /obj/item/69un/ener69y/plasma/destroyer
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/plasma/cassad
+/datum/desi69n/autolathe/69un/plasma/cassad
 	name = "FS PR \"Cassad\""
-	build_path = /obj/item/gun/energy/plasma/cassad
-	factions = list(FACTION_NEOTHEOLOGY)
+	build_path = /obj/item/69un/ener69y/plasma/cassad
+	factions = list(FACTION_NEOTHEOLO69Y)
 
 // Special
-/datum/design/autolathe/gun/reclaimer
+/datum/desi69n/autolathe/69un/reclaimer
 	name = "Excelsior reclaimer"
-	build_path = /obj/item/gun/matter/launcher/reclaimer
+	build_path = /obj/item/69un/matter/launcher/reclaimer
 
-/datum/design/autolathe/gun/nt_sprayer
-	name = "NT cleansing carbine"
-	build_path = /obj/item/gun/matter/launcher/nt_sprayer
-	factions = list(FACTION_NEOTHEOLOGY)
+/datum/desi69n/autolathe/69un/nt_sprayer
+	name = "NT cleansin69 carbine"
+	build_path = /obj/item/69un/matter/launcher/nt_sprayer
+	factions = list(FACTION_NEOTHEOLO69Y)
 
-/datum/design/autolathe/gun/syringe_gun
-	name = "syringe gun"
-	build_path = /obj/item/gun/launcher/syringe
+/datum/desi69n/autolathe/69un/syrin69e_69un
+	name = "syrin69e 69un"
+	build_path = /obj/item/69un/launcher/syrin69e
 
-/datum/design/autolathe/gun/dart_gun
-	name = "Z-H P Artemis Dartgun"
-	build_path = /obj/item/gun/projectile/dartgun
+/datum/desi69n/autolathe/69un/dart_69un
+	name = "Z-H P Artemis Dart69un"
+	build_path = /obj/item/69un/projectile/dart69un
 
-/datum/design/autolathe/gun/flare_gun
-	name = "flare gun"
-	build_path = /obj/item/gun/projectile/flare_gun
+/datum/desi69n/autolathe/69un/flare_69un
+	name = "flare 69un"
+	build_path = /obj/item/69un/projectile/flare_69un

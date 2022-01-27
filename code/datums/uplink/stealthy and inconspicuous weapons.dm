@@ -38,5 +38,5 @@
 	name = "Assassin's Dagger"
 	item_cost = 4
 	path = /obj/item/tool/knife/dagger/assassin
-Removed since it’s either useless or 1 hit with right chems. Will be re-added after melee rework or after having a look at chems. Maybe both.
+Removed since it’s either useless or 1 hit with right chems. Will be re-added after69elee rework or after having a look at chems.69aybe both.
 */

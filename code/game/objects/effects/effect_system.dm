@@ -1,7 +1,7 @@
-/* This is an attempt to make some easily reusable "particle" type effect, to stop the code
+/* This is an attempt to69ake some easily reusable "particle" type effect, to stop the code
 constantly having to be rewritten. An item like the jetpack that uses the ion_trail_follow system, just has one
 defined, then set up when it is created with New(). Then this same system can just be reused each time
-it needs to create more trails.A beaker could have a steam_trail_follow system set up, then the steam
+it needs to create69ore trails.A beaker could have a steam_trail_follow system set up, then the steam
 would spawn and follow the beaker, even if it is carried or thrown.
 */
 
@@ -27,7 +27,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 		else if (random_rotation == 2)
 			M.Turn(rand(0,360))
 
-		transform = M
+		transform =69
 	if(random_offset)
 		pixel_x += rand(-random_offset,random_offset)
 		pixel_y += rand(-random_offset,random_offset)
@@ -59,11 +59,11 @@ would spawn and follow the beaker, even if it is carried or thrown.
 //Usage: set_up(number of bits of steam, use North/South/East/West only, spawn location)
 // The attach(atom/atom) proc is optional, and can be called to attach the effect
 // to something, like a smoking beaker, so then you can just call start() and the steam
-// will always spawn at the items location, even if it's moved.
+// will always spawn at the items location, even if it's69oved.
 
 /* Example:
 var/datum/effect/system/steam_spread/steam = new /datum/effect/system/steam_spread() -- creates new system
-steam.set_up(5, 0, mob.loc) -- sets up variables
+steam.set_up(5, 0,69ob.loc) -- sets up69ariables
 OPTIONAL: steam.attach(mob)
 steam.start() -- spawns the effect
 */
@@ -99,7 +99,7 @@ steam.start() -- spawns the effect
 					sleep(5)
 					step(steam,direction)
 				spawn(20)
-					qdel(steam)
+					69del(steam)
 
 /////////////////////////////////////////////
 //SPARK SYSTEM (like steam system)
@@ -110,7 +110,7 @@ steam.start() -- spawns the effect
 
 /proc/do_sparks(n, c, source)
 	// n - number of sparks
-	// c - cardinals, bool, do the sparks only move in cardinal directions?
+	// c - cardinals, bool, do the sparks only69ove in cardinal directions?
 	// source - source of the sparks.
 
 	var/datum/effect/effect/system/spark_spread/sparks = new
@@ -134,7 +134,7 @@ steam.start() -- spawns the effect
 
 /obj/effect/sparks/Initialize()
 	. = ..()
-	QDEL_IN(src, 10 SECONDS)
+	69DEL_IN(src, 10 SECONDS)
 
 /obj/effect/sparks/Destroy()
 	var/turf/T = src.loc
@@ -142,7 +142,7 @@ steam.start() -- spawns the effect
 		T.hotspot_expose(1000,100)
 	return ..()
 
-/obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/sparks/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	var/turf/T = src.loc
 	if (istype(T, /turf))
@@ -181,15 +181,15 @@ steam.start() -- spawns the effect
 					step(sparks,direction)
 				spawn(20)
 					if(sparks)
-						qdel(sparks)
+						69del(sparks)
 					src.total_sparks--
 
 
 
 /////////////////////////////////////////////
 //// SMOKE SYSTEMS
-// direct can be optinally added when set_up, to make the smoke always travel in one direction
-// in case you wanted a vent to always smoke north for example
+// direct can be optinally added when set_up, to69ake the smoke always travel in one direction
+// in case you wanted a69ent to always smoke north for example
 /////////////////////////////////////////////
 
 
@@ -215,12 +215,12 @@ steam.start() -- spawns the effect
 		fade_out()
 
 
-/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/Crossed(mob/living/carbon/M as69ob )
 	..()
 	if(istype(M))
 		affect(M)
 
-/obj/effect/effect/smoke/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/effect/smoke/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	for(var/mob/living/carbon/M in get_turf(src))
 		affect(M)
@@ -232,23 +232,23 @@ steam.start() -- spawns the effect
 		if(M.wear_mask && (M.wear_mask.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 			return 0
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H =69
 			if(H.head && (H.head.item_flags & BLOCK_GAS_SMOKE_EFFECT & AIRTIGHT))
 				return 0
 		return 0
 	return 1
 
 
-// Fades out the smoke smoothly using it's alpha variable.
+// Fades out the smoke smoothly using it's alpha69ariable.
 /obj/effect/effect/smoke/proc/fade_out(var/frames = 16)
 	if(!alpha) return //already transparent
 	fading = TRUE
-	frames = max(frames, 1) //We will just assume that by 0 frames, the coder meant "during one frame".
+	frames =69ax(frames, 1) //We will just assume that by 0 frames, the coder69eant "during one frame".
 	var/alpha_step = round(alpha / frames)
 	while(alpha > 0)
-		alpha = max(0, alpha - alpha_step)
+		alpha =69ax(0, alpha - alpha_step)
 		sleep(world.tick_lag)
-	qdel(src)
+	69del(src)
 
 /////////////////////////////////////////////
 // Illumination
@@ -261,7 +261,7 @@ steam.start() -- spawns the effect
 	var/radius = 3
 	var/brightness = 2
 
-/obj/effect/effect/light/New(var/newloc, var/radius, var/brightness, color, selfdestruct_timer)
+/obj/effect/effect/light/New(var/newloc,69ar/radius,69ar/brightness, color, selfdestruct_timer)
 	..()
 
 	src.radius = radius
@@ -271,7 +271,7 @@ steam.start() -- spawns the effect
 
 	if(selfdestruct_timer)
 		spawn(selfdestruct_timer)
-		qdel(src)
+		69del(src)
 
 /obj/effect/effect/light/set_light(l_range, l_power, l_color)
 	..()
@@ -285,7 +285,7 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/New(var/newloc, var/brightness=15, var/lifetime=10, var/color=COLOR_WHITE)
+/obj/effect/effect/smoke/illumination/New(var/newloc,69ar/brightness=15,69ar/lifetime=10,69ar/color=COLOR_WHITE)
 	time_to_live=lifetime
 	..()
 	set_light(brightness, 1, color)
@@ -311,15 +311,15 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(air_group || (height==0)) return 1
 	if(istype(mover, /obj/item/projectile/beam))
-		var/obj/item/projectile/beam/B = mover
-		B.damage_types[BURN] /= 2
+		var/obj/item/projectile/beam/B =69over
+		B.damage_types69BURN69 /= 2
 	return 1
 /////////////////////////////////////////////
 // Sleep smoke
 /////////////////////////////////////////////
 
 
-/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as mob )
+/obj/effect/effect/smoke/sleepy/affect(mob/living/carbon/M as69ob )
 	if (!..())
 		return 0
 
@@ -331,7 +331,7 @@ steam.start() -- spawns the effect
 		spawn ( 20 )
 			M.coughedtime = 0
 /////////////////////////////////////////////
-// Mustard Gas
+//69ustard Gas
 /////////////////////////////////////////////
 
 
@@ -409,7 +409,7 @@ steam.start() -- spawns the effect
 
 
 /datum/effect/effect/system/reagents_explosion
-	var/amount 						// TNT equivalent
+	var/amount 						// TNT e69uivalent
 	var/flashing = 0			// does explosion creates flash effect?
 	var/flashing_factor = 0		// factor of how powerful the flash effect relatively to the explosion
 
@@ -431,9 +431,9 @@ steam.start() -- spawns the effect
 			s.set_up(2, 1, location)
 			s.start()
 
-			for(var/mob/M in viewers(5, location))
-				to_chat(M, SPAN_WARNING("The solution violently explodes."))
-			for(var/mob/M in viewers(1, location))
+			for(var/mob/M in69iewers(5, location))
+				to_chat(M, SPAN_WARNING("The solution69iolently explodes."))
+			for(var/mob/M in69iewers(1, location))
 				if (prob (50 * amount))
 					to_chat(M, SPAN_WARNING("The explosion knocks you down."))
 					M.Weaken(rand(1,5))
@@ -444,7 +444,7 @@ steam.start() -- spawns the effect
 			var/light = -1
 			var/flash = -1
 
-			// Clamp all values to fractions of max_explosion_range, following the same pattern as for tank transfer bombs
+			// Clamp all69alues to fractions of69ax_explosion_range, following the same pattern as for tank transfer bombs
 			if (round(amount/12) > 0)
 				devst = devst + amount/12
 
@@ -457,8 +457,8 @@ steam.start() -- spawns the effect
 			if (flashing && flashing_factor)
 				flash = (amount/4) * flashing_factor
 
-			for(var/mob/M in viewers(8, location))
-				to_chat(M, SPAN_WARNING("The solution violently explodes."))
+			for(var/mob/M in69iewers(8, location))
+				to_chat(M, SPAN_WARNING("The solution69iolently explodes."))
 
 			explosion(
 				location,

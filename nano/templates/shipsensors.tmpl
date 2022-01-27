@@ -1,75 +1,75 @@
 <h3>Sensors control console</h3>
-<div class='block'>
-	{{:helper.link(data.on ? 'Switch off' : 'Switch on', 'gear', { 'toggle' : 1 }, data.status != 'MISSING' ? null : 'disabled', data.on ? 'selected' : null)}}
-	<div class='item'>
-		<div class="itemLabel">
-			<span class='white'>Status:</span>
+<div cl69ss='69loc69'>
+	{{:hel69er.lin6969d69t69.on ? 'Switch off' : 'Switch on', '69e69r', { 'to6969le' : 1 }, d69t69.st69tus != 'MISSIN69' ?69ull : 'dis6969led', d69t69.on ? 'selected' :69ull69}}
+	<div cl69ss='item'>
+		<div cl69ss="itemL6969el">
+			<s6969n cl69ss='white'>St69tus:</s6969n>
 		</div>
-		<div class="itemContent">
-			{{:data.status}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class="itemLabel">
-			<span class='white'>Range:</span>
-		</div>
-		<div class="itemContent">
-			{{:helper.link(data.range, null, { 'range' : 1 }, null, null)}}
+		<div cl69ss="itemContent">
+			{{:d69t69.st69tus}}
 		</div>
 	</div>
-</div>
-<div class='block'>
-	<div class='item'>
-		<div class="itemLabel">
-			Integrity:
+	<div cl69ss='item'>
+		<div cl69ss="itemL6969el">
+			<s6969n cl69ss='white'>R69n69e:</s6969n>
 		</div>
-		<div class="itemContent">
-			{{if data.health < (data.max_health * 0.25)}}
-				{{:helper.displayBar(data.health, 0, data.max_health, 'bad')}}
-				<br><span class="bad">{{:data.health}}/{{:data.max_health}}</span>
-			{{else data.health < data.max_health *.75}}
-				{{:helper.displayBar(data.health, 0, data.max_health, 'average')}}
-				<br><span class="average">{{:data.health}}/{{:data.max_health}}</span>
-			{{else}}
-				{{:helper.displayBar(data.health, 0, data.max_health, 'good')}}
-				<br><span class="good">{{:data.health}}/{{:data.max_health}}</span>
-			{{/if}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class="itemLabel">
-			Temperature:
-		</div>
-		<div class="itemContent">
-			{{if data.heat < (data.critical_heat * 0.5)}}
-				{{:helper.displayBar(data.heat, 0, data.critical_heat, 'good')}}
-			{{else data.heat < (data.critical_heat * 0.75)}}
-				{{:helper.displayBar(data.heat, 0, data.critical_heat, 'average')}}
-			{{else}}
-				{{:helper.displayBar(data.heat, 0, data.critical_heat, 'bad')}}
-			{{/if}}
-		</div>
-		<div class="itemContent">
-			{{if data.heat < (data.critical_heat * 0.5)}}
-				<span class="good">Temperature low.</span>
-			{{else data.heat < (data.critical_heat * 0.75)}}
-				<span class="average">Sensor temperature high!</span>
-			{{else}}
-				<span class="bad">TEMPERATURE CRITICAL: Disable or reduce power immediately!</span>
-			{{/if}}
+		<div cl69ss="itemContent">
+			{{:hel69er.lin6969d69t69.r69n69e,69ull, { 'r69n69e' : 1 },69ull,69ull69}}
 		</div>
 	</div>
 </div>
-<div class='item'>
-	<div class="itemContent">
-		<div class='item'>
-			<span class='white'>Sector map view</span>
-			{{:helper.link(data.viewing ? 'Engaged' : 'Disengaged', 'shuffle', { 'viewing' : 1 }, null, data.viewing ? 'selected' : null)}}
+<div cl69ss='69loc69'>
+	<div cl69ss='item'>
+		<div cl69ss="itemL6969el">
+			Inte69rit69:
+		</div>
+		<div cl69ss="itemContent">
+			{{if d69t69.he69lth < 69d69t69.m69x_he69lth * 0.2569}}
+				{{:hel69er.dis69l69696969r69d69t69.he69lth, 0, d69t69.m69x_he69lth, '6969d'69}}
+				<69r><s6969n cl69ss="6969d">{{:d69t69.he69lth}}/{{:d69t69.m69x_he69lth}}</s6969n>
+			{{else d69t69.he69lth < d69t69.m69x_he69lth *.75}}
+				{{:hel69er.dis69l69696969r69d69t69.he69lth, 0, d69t69.m69x_he69lth, '69ver6969e'69}}
+				<69r><s6969n cl69ss="69ver6969e">{{:d69t69.he69lth}}/{{:d69t69.m69x_he69lth}}</s6969n>
+			{{else}}
+				{{:hel69er.dis69l69696969r69d69t69.he69lth, 0, d69t69.m69x_he69lth, '69ood'69}}
+				<69r><s6969n cl69ss="69ood">{{:d69t69.he69lth}}/{{:d69t69.m69x_he69lth}}</s6969n>
+			{{/if}}
+		</div>
+	</div>
+	<div cl69ss='item'>
+		<div cl69ss="itemL6969el">
+			Tem69er69ture:
+		</div>
+		<div cl69ss="itemContent">
+			{{if d69t69.he69t < 69d69t69.critic69l_he69t * 0.569}}
+				{{:hel69er.dis69l69696969r69d69t69.he69t, 0, d69t69.critic69l_he69t, '69ood'69}}
+			{{else d69t69.he69t < 69d69t69.critic69l_he69t * 0.7569}}
+				{{:hel69er.dis69l69696969r69d69t69.he69t, 0, d69t69.critic69l_he69t, '69ver6969e'69}}
+			{{else}}
+				{{:hel69er.dis69l69696969r69d69t69.he69t, 0, d69t69.critic69l_he69t, '6969d'69}}
+			{{/if}}
+		</div>
+		<div cl69ss="itemContent">
+			{{if d69t69.he69t < 69d69t69.critic69l_he69t * 0.569}}
+				<s6969n cl69ss="69ood">Tem69er69ture low.</s6969n>
+			{{else d69t69.he69t < 69d69t69.critic69l_he69t * 0.7569}}
+				<s6969n cl69ss="69ver6969e">Sensor tem69er69ture hi69h!</s6969n>
+			{{else}}
+				<s6969n cl69ss="6969d">TEM69ER69TURE CRITIC69L: Dis6969le or reduce 69ower immedi69tel69!</s6969n>
+			{{/if}}
 		</div>
 	</div>
 </div>
-{{if data.status == 'MISSING'}}
-	<div class='item'>
-		{{:helper.link('Link up with the sensor suite', 'gear', { 'link' : 1 }, data.status == 'MISSING' ? null : 'disabled', null)}}
+<div cl69ss='item'>
+	<div cl69ss="itemContent">
+		<div cl69ss='item'>
+			<s6969n cl69ss='white'>Sector69696969iew</s6969n>
+			{{:hel69er.lin6969d69t69.viewin69 ? 'En696969ed' : 'Disen696969ed', 'shuffle', { 'viewin69' : 1 },69ull, d69t69.viewin69 ? 'selected' :69ull69}}
+		</div>
+	</div>
+</div>
+{{if d69t69.st69tus == 'MISSIN69'}}
+	<div cl69ss='item'>
+		{{:hel69er.lin6969'Lin69 u69 with the sensor suite', '69e69r', { 'lin69' : 1 }, d69t69.st69tus == 'MISSIN69' ?69ull : 'dis6969led',69ull69}}
 	</div>
 {{/if}}

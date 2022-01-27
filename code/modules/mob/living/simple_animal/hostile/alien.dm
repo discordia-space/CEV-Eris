@@ -84,5 +84,5 @@
 
 /mob/living/simple_animal/hostile/alien/death()
 	..()
-	visible_message("[src] lets out a waning guttural screech, green blood bubbling from its maw...")
+	visible_message("69src69 lets out a waning guttural screech, green blood bubbling from its69aw...")
 	playsound(src, 'sound/voice/hiss6.ogg', 100, 1)

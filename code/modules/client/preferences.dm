@@ -17,13 +17,13 @@
 	//game-preferences
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 
-	var/list/time_of_death = list()//This is a list of last times of death for various things with different respawn timers
+	var/list/time_of_death = list()//This is a list of last times of death for69arious things with different respawn timers
 
 	var/list/crew_respawn_bonuses = list()
 	//This is a list of bonuses that are subtracted from your crew respawn time
-	//This is used to make certain ingame actions allow a dead player to respawn faster
+	//This is used to69ake certain ingame actions allow a dead player to respawn faster
 	//It uses an associative list to prevent exploits, so the same bonus cannot be gained repeatedly.
-	//It will just overwrite the value
+	//It will just overwrite the69alue
 
 	var/client/client = null
 	var/client_ckey = null
@@ -77,12 +77,12 @@
 		return
 
 	if(!get_mob_by_key(client_ckey))
-		to_chat(user, SPAN_DANGER("No mob exists for the given client!"))
+		to_chat(user, SPAN_DANGER("No69ob exists for the given client!"))
 		close_load_dialog(user)
 		return
 
 	if(!path && !IsGuestKey(user.client.key))
-		error("Prefs failed to setup (datum): [user.client.ckey]")
+		error("Prefs failed to setup (datum): 69user.client.ckey69")
 		load_path(user.client.ckey)
 		load_preferences()
 		load_and_update_character()
@@ -91,10 +91,10 @@
 
 	if(path)
 		dat += "Slot - "
-		dat += "<a href='?src=\ref[src];load=1'>Load slot</a> - "
-		dat += "<a href='?src=\ref[src];save=1'>Save slot</a> - "
-		dat += "<a href='?src=\ref[src];resetslot=1'>Reset slot</a> - "
-		dat += "<a href='?src=\ref[src];reload=1'>Reload slot</a>"
+		dat += "<a href='?src=\ref69src69;load=1'>Load slot</a> - "
+		dat += "<a href='?src=\ref69src69;save=1'>Save slot</a> - "
+		dat += "<a href='?src=\ref69src69;resetslot=1'>Reset slot</a> - "
+		dat += "<a href='?src=\ref69src69;reload=1'>Reload slot</a>"
 
 	else
 		dat += "Please create an account to save your preferences."
@@ -114,7 +114,7 @@
 	if(!user)	return
 	if(isliving(user)) return
 
-	if(href_list["preference"] == "open_whitelist_forum")
+	if(href_list69"preference"69 == "open_whitelist_forum")
 		if(config.forumurl)
 			user << link(config.forumurl)
 		else
@@ -135,22 +135,22 @@
 	if(..())
 		return 1
 
-	if(href_list["save"])
+	if(href_list69"save"69)
 		save_preferences()
 		save_character()
-	else if(href_list["reload"])
+	else if(href_list69"reload"69)
 		load_preferences()
 		load_character()
 		sanitize_preferences()
-	else if(href_list["load"])
+	else if(href_list69"load"69)
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
 			return 1
-	else if(href_list["changeslot"])
-		load_character(text2num(href_list["changeslot"]))
+	else if(href_list69"changeslot"69)
+		load_character(text2num(href_list69"changeslot"69))
 		sanitize_preferences()
 		close_load_dialog(usr)
-	else if(href_list["resetslot"])
+	else if(href_list69"resetslot"69)
 		if(real_name != input("This will reset the current slot. Enter the character's full name to confirm."))
 			return FALSE
 		load_character(SAVE_RESET)
@@ -162,7 +162,7 @@
 	return 1
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, is_preview_copy = FALSE)
-	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
+	// Sanitizing rather than saving as someone69ight still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 	character.set_species(species)
 	var/random_first = random_first_name(gender, species)
@@ -182,8 +182,8 @@
 
 	if(config.humans_need_surnames)
 		if(!real_last_name)	//we need a surname
-			real_last_name = "[pick(GLOB.last_names)]"
-			real_name += " [real_last_name]"
+			real_last_name = "69pick(GLOB.last_names)69"
+			real_name += " 69real_last_name69"
 	character.fully_replace_character_name(newname = real_name)
 	character.first_name = real_first_name
 	character.last_name = real_last_name
@@ -194,7 +194,7 @@
 	character.h_style = h_style
 	character.f_style = f_style
 
-	// Build mob body from prefs
+	// Build69ob body from prefs
 	character.rebuild_organs(src)
 
 	character.eyes_color = eyes_color
@@ -208,18 +208,18 @@
 	character.worn_underwear = list()
 
 	for(var/underwear_category_name in all_underwear)
-		var/datum/category_group/underwear/underwear_category = GLOB.underwear.categories_by_name[underwear_category_name]
+		var/datum/category_group/underwear/underwear_category = GLOB.underwear.categories_by_name69underwear_category_name69
 		if(underwear_category)
-			var/underwear_item_name = all_underwear[underwear_category_name]
-			var/datum/category_item/underwear/UWD = underwear_category.items_by_name[underwear_item_name]
-			var/metadata = all_underwear_metadata[underwear_category_name]
-			var/obj/item/underwear/UW = UWD.create_underwear(character, metadata, 'icons/inventory/underwear/mob.dmi')
+			var/underwear_item_name = all_underwear69underwear_category_name69
+			var/datum/category_item/underwear/UWD = underwear_category.items_by_name69underwear_item_name69
+			var/metadata = all_underwear_metadata69underwear_category_name69
+			var/obj/item/underwear/UW = UWD.create_underwear(character,69etadata, 'icons/inventory/underwear/mob.dmi')
 			if(UW)
 				UW.ForceEquipUnderwear(character, FALSE)
 		else
 			all_underwear -= underwear_category_name
 
-	character.backpack_setup = new(backpack, backpack_metadata["[backpack]"])
+	character.backpack_setup = new(backpack, backpack_metadata69"69backpack69"69)
 
 	character.force_update_limbs()
 	character.update_mutations(0)
@@ -239,7 +239,7 @@
 	for(var/lang in alternate_languages)
 		character.add_language(lang)
 
-	character.med_record = med_record
+	character.med_record =69ed_record
 	character.sec_record = sec_record
 	character.gen_record = gen_record
 	character.exploit_record = exploit_record
@@ -265,11 +265,11 @@
 		var/name
 		for(var/i=1, i<= config.character_slots, i++)
 			S.cd = GLOB.maps_data.character_load_path(S, i)
-			S["real_name"] >> name
-			if(!name)	name = "Character[i]"
+			S69"real_name"69 >> name
+			if(!name)	name = "Character69i69"
 			if(i==default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name]</a><br>"
+				name = "<b>69name69</b>"
+			dat += "<a href='?src=\ref69src69;changeslot=69i69'>69name69</a><br>"
 
 	dat += "<hr>"
 	dat += "</center></tt>"

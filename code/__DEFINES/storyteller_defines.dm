@@ -6,60 +6,60 @@
 #define EVENT_LEVEL_ECONOMY  "economy"
 
 
-//The threshold of points that we need before attempting to purchase things
+//The threshold of points that we69eed before attemptin69 to purchase thin69s
 #define POOL_THRESHOLD_MUNDANE	25
 #define POOL_THRESHOLD_MODERATE	50
 #define POOL_THRESHOLD_MAJOR	90
 #define POOL_THRESHOLD_ROLESET	120
 
 
-//Event tags. These loosely describe what the event will do to the ship and crew
-//Storytellers can vary the weighting and cost of events based on these tags
+//Event ta69s. These loosely describe what the event will do to the ship and crew
+//Storytellers can69ary the wei69htin69 and cost of events based on these ta69s
 
-//The event generates monsters or antags to battle.
+//The event 69enerates69onsters or anta69s to battle.
 //Example: Infestation, spiders, carp
-//Most antags are tagged combat too
-//Combat events usually create work for ironhammer and medical
-#define TAG_COMBAT "combat"
+//Most anta69s are ta6969ed combat too
+//Combat events usually create work for ironhammer and69edical
+#define TA69_COMBAT "combat"
 
 
 
-//The event involves one or very few people. The people who are unaffected often won't care
-//Examples: Ion storm, viral infection
-#define TAG_TARGETED "targeted"
+//The event involves one or69ery few people. The people who are unaffected often won't care
+//Examples: Ion storm,69iral infection
+#define TA69_TAR69ETED "tar69eted"
 
 
 
-//The event involves most or all of the crew, everyone has something to do, everyone is involved
-//Examples: Radiation storm, lights out, comms blackout
-#define TAG_COMMUNAL "communal"
+//The event involves69ost or all of the crew, everyone has somethin69 to do, everyone is involved
+//Examples: Radiation storm, li69hts out, comms blackout
+#define TA69_COMMUNAL "communal"
 
 
 
-//The event has the potential to deal damage to the ship and its structures
-//Examples: Meteors, APC damage, camera failure
-//Destructive events usually create work for engineers
-#define TAG_DESTRUCTIVE "destructive"
+//The event has the potential to deal dama69e to the ship and its structures
+//Examples:69eteors, APC dama69e, camera failure
+//Destructive events usually create work for en69ineers
+#define TA69_DESTRUCTIVE "destructive"
 
 
 
-//The event is negative. It harms people, breaks things, and generally creates problems
-//This is pretty much every event and antag. Almost everything will be tagged with negative
-#define TAG_NEGATIVE "negative"
+//The event is69e69ative. It harms people, breaks thin69s, and 69enerally creates problems
+//This is pretty69uch every event and anta69. Almost everythin69 will be ta6969ed with69e69ative
+#define TA69_NE69ATIVE "ne69ative"
 
 
 
-//The event helps people, gives them stuff, heals them
-//There are a few "nice antags" which this can be applied to.
+//The event helps people, 69ives them stuff, heals them
+//There are a few "nice anta69s" which this can be applied to.
 //No current random events afaik
-#define TAG_POSITIVE "positive"
+#define TA69_POSITIVE "positive"
 
 
-//The event helps to invoke a horror vibe. Plunges players into darkness, makes terrifying creatures, etc
-#define TAG_SCARY "scary"
+//The event helps to invoke a horror69ibe. Plun69es players into darkness,69akes terrifyin69 creatures, etc
+#define TA69_SCARY "scary"
 
 
-//The event comes from outside the ship. Maybe you have to go EVA to deal with it, or fight off boarders
-//Examples: Meteors, carp, rogue drones, mercenaries, raiders
-#define TAG_EXTERNAL "external"
+//The event comes from outside the ship.69aybe you have to 69o EVA to deal with it, or fi69ht off boarders
+//Examples:69eteors, carp, ro69ue drones,69ercenaries, raiders
+#define TA69_EXTERNAL "external"
 

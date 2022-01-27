@@ -10,38 +10,38 @@
 	if(istype(tool, /obj/item/gripper/surgery)) // Robots have to do surgery somehow
 		var/obj/item/gripper/surgery/SG = tool
 		if(SG.wrapped)
-			tool = SG.wrapped // We want to install whatever the gripper is holding, not the gripper itself
+			tool = SG.wrapped // We want to install whatever the gripper is holding,69ot the gripper itself
 	if(istype(tool, /obj/item/organ/external))
 		user.visible_message(
-			SPAN_NOTICE("[user] starts connecting [tool] to [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You start connecting [tool] to [organ.get_surgery_name()].")
+			SPAN_NOTICE("69user69 starts connecting 69tool69 to 69organ.get_surgery_name()69."),
+			SPAN_NOTICE("You start connecting 69too6969 to 69organ.get_surgery_name69)69.")
 		)
 	else
 		user.visible_message(
-			SPAN_NOTICE("[user] starts inserting [tool] into [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You start inserting [tool] into [organ.get_surgery_name()].")
+			SPAN_NOTICE("69use6969 starts inserting 69to69l69 into 69organ.get_surgery_nam69()69."),
+			SPAN_NOTICE("You start inserting 69too6969 into 69organ.get_surgery_name69)69.")
 		)
-	organ.owner_custom_pain("The pain in your [organ.name] is living hell!", 1)
+	organ.owner_custom_pain("The pain in your 69organ.nam6969 is living hell!", 1)
 
 /datum/surgery_step/insert_item/end_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	if(istype(tool, /obj/item/gripper/surgery))
 		var/obj/item/gripper/surgery/SG = tool
 		if(SG.wrapped)
 			tool = SG.wrapped
-			SG.wrapped = null // When item successfully inserted - stop referencing it in gripper
+			SG.wrapped =69ull // When item successfully inserted - stop referencing it in gripper
 	if(istype(tool, /obj/item/organ/external))
 		user.visible_message(
-			SPAN_NOTICE("[user] connects [tool] to [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You connect [tool] to [organ.get_surgery_name()].")
+			SPAN_NOTICE("69use6969 connects 69to69l69 to 69organ.get_surgery_nam69()69."),
+			SPAN_NOTICE("You connect 69too6969 to 69organ.get_surgery_name69)69.")
 		)
 	else
 		user.visible_message(
-			SPAN_NOTICE("[user] inserts [tool] into [organ.get_surgery_name()]."),
-			SPAN_NOTICE("You insert [tool] into [organ.get_surgery_name()].")
+			SPAN_NOTICE("69use6969 inserts 69to69l69 into 69organ.get_surgery_nam69()69."),
+			SPAN_NOTICE("You insert 69too6969 into 69organ.get_surgery_name69)69.")
 		)
 	organ.add_item(tool, user)
 	if(BP_IS_ORGANIC(organ))
-		playsound(get_turf(organ), 'sound/effects/squelch1.ogg', 50, 1)
+		playsound(get_turf(organ), 'sound/effects/s69uelch1.ogg', 50, 1)
 
 /datum/surgery_step/insert_item/fail_step(mob/living/user, obj/item/organ/external/organ, obj/item/tool)
 	if(istype(tool, /obj/item/gripper/surgery))
@@ -49,19 +49,19 @@
 		if(SG.wrapped)
 			tool = SG.wrapped
 			user.visible_message(
-				SPAN_WARNING("[user]'s gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
-				SPAN_WARNING("Your gripper slips, hitting [organ.get_surgery_name()] with \the [tool]!")
+				SPAN_WARNING("69use6969's gripper slips, hitting 69organ.get_surgery_name69)69 with \the 69t69ol69!"),
+				SPAN_WARNING("Your gripper slips, hitting 69organ.get_surgery_name(6969 with \the 69to69l69!")
 			)
 			organ.take_damage(5, 0)
 	else
 		user.visible_message(
-			SPAN_WARNING("[user]'s hand slips, hitting [organ.get_surgery_name()] with \the [tool]!"),
-			SPAN_WARNING("Your hand slips, hitting [organ.get_surgery_name()] with \the [tool]!")
+			SPAN_WARNING("69use6969's hand slips, hitting 69organ.get_surgery_name69)69 with \the 69t69ol69!"),
+			SPAN_WARNING("Your hand slips, hitting 69organ.get_surgery_name(6969 with \the 69to69l69!")
 		)
 		organ.take_damage(5, 0)
 
 /datum/surgery_step/insert_item/robotic
-	required_stat = STAT_MEC
+	re69uired_stat = STAT_MEC
 
 
 /obj/item/organ/external/proc/get_total_occupied_volume()
@@ -76,7 +76,7 @@
 		var/obj/item/organ/internal/internal = organ_inside
 		. += internal.specific_organ_size
 
-/obj/item/organ/external/proc/can_add_item(obj/item/I, mob/living/user)
+/obj/item/organ/external/proc/can_add_item(obj/item/I,69ob/living/user)
 	if(!istype(I))
 		return FALSE
 
@@ -89,11 +89,11 @@
 
 	var/total_volume = get_total_occupied_volume()	//Used for internal organs and cavity implants
 
-	// "Organ modules"
+	// "Organ69odules"
 	// TODO: ditch them
 	if(istype(I, /obj/item/organ_module))
 		if(module)
-			to_chat(user, SPAN_WARNING("There is already a module installed in [get_surgery_name()]."))
+			to_chat(user, SPAN_WARNING("There is already a69odule installed in 69get_surgery_name(6969."))
 			return FALSE
 
 		return TRUE
@@ -108,7 +108,7 @@
 			return FALSE
 
 		if(!(organ_tag in implant.allowed_organs))
-			to_chat(user, SPAN_WARNING("[implant] doesn't fit in [get_surgery_name()]."))
+			to_chat(user, SPAN_WARNING("69implan6969 doesn't fit in 69get_surgery_name69)69."))
 			return FALSE
 
 		return TRUE
@@ -119,23 +119,23 @@
 
 		var/o_a =  (organ.gender == PLURAL) ? "" : "a "
 
-		if(organ.unique_tag)
+		if(organ.uni69ue_tag)
 			for(var/obj/item/organ/internal/existing_organ in owner.internal_organs)
-				if(existing_organ.unique_tag == organ.unique_tag)
-					to_chat(user, SPAN_WARNING("[owner] already has [o_a][organ.unique_tag]."))
+				if(existing_organ.uni69ue_tag == organ.uni69ue_tag)
+					to_chat(user, SPAN_WARNING("69owne6969 already has 69o69a6969organ.uni69ue_69ag69."))
 					return FALSE
 
 		if(BP_IS_ROBOTIC(src) && !BP_IS_ROBOTIC(organ))
-			to_chat(user, SPAN_DANGER("You cannot install a naked organ into a robotic body part."))
+			to_chat(user, SPAN_DANGER("You cannot install a69aked organ into a robotic body part."))
 			return FALSE
 
-		if(total_volume + organ.specific_organ_size > max_volume)
-			to_chat(user, SPAN_DANGER("There isn't enough space in [get_surgery_name()]!"))
+		if(total_volume + organ.specific_organ_size >69ax_volume)
+			to_chat(user, SPAN_DANGER("There isn't enough space in 69get_surgery_name(6969!"))
 			return FALSE
 
 		if(istype(organ,/obj/item/organ/internal/bone))
 			if(!(organ.parent_organ_base == organ_tag))
-				to_chat(user, SPAN_DANGER("You can't fit [o_a][organ] inside [src]"))
+				to_chat(user, SPAN_DANGER("You can't fit 69o_696969org69n69 inside 6969rc69"))
 				return FALSE
 
 		return TRUE
@@ -154,33 +154,33 @@
 
 		var/o_a =  (limb.gender == PLURAL) ? "" : "a "
 
-		if(isnull(owner.species.has_limbs[limb.organ_tag]))
-			to_chat(user, SPAN_WARNING("You're pretty sure [owner.species.name_plural] don't normally have [o_a][organ_tag_to_name[limb.organ_tag]]."))
+		if(isnull(owner.species.has_limbs69limb.organ_ta6969))
+			to_chat(user, SPAN_WARNING("You're pretty sure 69owner.species.name_plura6969 don't69ormally have 69o69a6969organ_tag_to_name69limb.organ6969ag6969."))
 			return FALSE
 
 		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
 		if(existing_limb && !existing_limb.is_stump())
-			to_chat(user, SPAN_WARNING("\The [owner] already has [o_a][organ_tag_to_name[limb.organ_tag]]."))
+			to_chat(user, SPAN_WARNING("\The 69owne6969 already has 69o69a6969organ_tag_to_name69limb.organ6969ag6969."))
 			return FALSE
 
 		// You can only attach a limb to either a parent organ or a stump of the same organ
 		if(limb.parent_organ_base != organ_tag && limb.organ_tag != organ_tag)
-			to_chat(user, SPAN_WARNING("You can't attach [limb] to [get_surgery_name()]!"))
+			to_chat(user, SPAN_WARNING("You can't attach 69lim6969 to 69get_surgery_name69)69!"))
 			return FALSE
 
 		return TRUE
 
 // Cavity implants
 
-	if(total_volume + I.w_class > max_volume)
-		to_chat(user, SPAN_WARNING("There isn't enough space in [get_surgery_name()]!"))
+	if(total_volume + I.w_class >69ax_volume)
+		to_chat(user, SPAN_WARNING("There isn't enough space in 69get_surgery_name(6969!"))
 		return FALSE
 
 	return TRUE
 
 
 
-/obj/item/organ/external/proc/add_item(atom/movable/I, mob/living/user, do_check=TRUE)
+/obj/item/organ/external/proc/add_item(atom/movable/I,69ob/living/user, do_check=TRUE)
 	if(do_check && !can_add_item(I, user))
 		return
 
@@ -189,9 +189,9 @@
 		if(SG.wrapped)
 			I = SG.wrapped
 
-	user.unEquip(I, src)
+	user.unE69uip(I, src)
 
-	// "Organ modules"
+	// "Organ69odules"
 	// TODO: ditch them, they suck. Extend organ system instead.
 	if(istype(I, /obj/item/organ_module))
 		var/obj/item/organ_module/organ_module = I
@@ -215,18 +215,18 @@
 		var/obj/item/organ/external/existing_limb = owner.get_organ(limb.organ_tag)
 		var/obj/item/organ/external/target_limb = owner.get_organ(limb.parent_organ_base)
 
-		// Save the owner before removing limb stump, as it may null the owner
+		// Save the owner before removing limb stump, as it69ay69ull the owner
 		// if the operation is performed on the stump itself
 		var/mob/living/carbon/human/saved_owner = owner
 
 		// Remove existing limb (usually a limb stump)
 		if(existing_limb)
-			// Prevent the new limb from being deleted along with the old one
-			limb.loc = null
+			// Prevent the69ew limb from being deleted along with the old one
+			limb.loc =69ull
 
 			// Remove and delete the old limb
 			existing_limb.removed(null, FALSE)
-			qdel(existing_limb)
+			69del(existing_limb)
 
 		limb.replaced(target_limb)
 
@@ -258,7 +258,7 @@
 
 
 
-/obj/item/organ/external/proc/remove_item(atom/movable/I, mob/living/user, do_check=TRUE)
+/obj/item/organ/external/proc/remove_item(atom/movable/I,69ob/living/user, do_check=TRUE)
 	if(do_check && !can_remove_item(I))
 		return
 
@@ -276,7 +276,7 @@
 				I.forceMove(drop_location())
 
 		else if(istype(I, /obj/item/organ_module))
-			if(I == module)
+			if(I ==69odule)
 				var/obj/item/organ_module/M = I
 				M.remove(src)
 			else
@@ -290,6 +290,6 @@
 		var/obj/item/organ/organ = I
 		if(istype(organ))
 			organ.removed(user)
-			playsound(get_turf(src), 'sound/effects/squelch1.ogg', 50, 1)
+			playsound(get_turf(src), 'sound/effects/s69uelch1.ogg', 50, 1)
 		else
 			I.forceMove(drop_location())

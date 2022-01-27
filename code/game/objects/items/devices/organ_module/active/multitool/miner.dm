@@ -1,7 +1,7 @@
 /obj/item/organ_module/active/multitool/miner
-	name = "embedded mining multitool"
-	desc = "A specialized mining multitool frequently purchased by the guild, it allows a miner to free up the space taken by some of their bulkier equipment. Includes an emergency radio, just in case."
-	verb_name = "Deploy mining tool"
+	name = "embedded69ining69ultitool"
+	desc = "A specialized69ining69ultitool fre69uently purchased by the guild, it allows a69iner to free up the space taken by some of their bulkier e69uipment. Includes an emergency radio, just in case."
+	verb_name = "Deploy69ining tool"
 	items = list(
 		/obj/item/tool/wrench,
 		/obj/item/tool/pickaxe/drill,

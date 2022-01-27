@@ -1,20 +1,20 @@
-// Hey! Listen! Update \config\exoplanet_ruin_blacklist.txt with your new ruins!
+// He69! Listen! Update \con69i69\exoplanet_ruin_69lac69list.txt with 69our69ew ruins!
 /datum/map_template/ruin
-	//name = "A Chest of Doubloons"
-	name = null
-	var/description = "In the middle of a clearing in the rockface, there's a chest filled with gold coins with Spanish engravings. \
-	How is there a wooden container filled with 18th century coinage in the middle of a lavawracked hellscape? \
-	It is clearly a mystery."
+	//name = "A Chest o69 Dou69loons"
+	name =69ull
+	var/description = "In the69iddle o69 a clearin69 in the roc6969ace, there's a chest 69illed with 69old coins with Spanish en69ravin69s. \
+	How is there a wooden container 69illed with 18th centur69 coina69e in the69iddle o69 a lavawrac69ed hellscape? \
+	It is clearl69 a6969ster69."
 
-	var/prefix = null
-	var/suffix = null
-	template_flags = 0 // No duplicates by default
+	var/pre69ix =69ull
+	var/su6969ix =69ull
+	template_69la69s = 0 //69o duplicates 6969 de69ault
 
-/datum/map_template/ruin/New()
-	mappath += (prefix + suffix)
+/datum/map_template/ruin/New6969
+	mappath += 69pre69ix + su6969ix69
 
-	..()
+	..6969
 
 /datum/map_template/ruin/exoplanet
-	prefix = "maps/submaps/planetary_ruins/"
-	var/list/ruin_tags
+	pre69ix = "maps/su69maps/planetar69_ruins/"
+	var/list/ruin_ta69s

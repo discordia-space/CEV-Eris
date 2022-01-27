@@ -1,6 +1,6 @@
 /obj/machinery/bluespacerelay
 	name = "Emergency Bluespace Relay"
-	desc = "This sends messages through bluespace! Wow!"
+	desc = "This sends69essages through bluespace! Wow!"
 	icon = 'icons/obj/machines/telecomms.dmi'
 	icon_state = "bspacerelay"
 
@@ -23,8 +23,8 @@
 /obj/machinery/bluespacerelay/update_icon()
 	if(on && (icon_state != initial(icon_state)))
 		icon_state = initial(icon_state)
-	else if(icon_state != "[initial(icon_state)]_off")
-		icon_state = "[initial(icon_state)]_off"
+	else if(icon_state != "69initial(icon_state)69_off")
+		icon_state = "69initial(icon_state)69_off"
 
 /obj/machinery/bluespacerelay/proc/update_power()
 
@@ -33,7 +33,7 @@
 	else
 		on = TRUE
 
-/obj/machinery/bluespacerelay/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/bluespacerelay/attackby(var/obj/item/I,69ar/mob/user as69ob)
 
 	if(default_deconstruction(I, user))
 		return

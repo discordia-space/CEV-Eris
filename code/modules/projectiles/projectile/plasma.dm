@@ -34,7 +34,7 @@
 	damage_types = list(BURN = 0)
 
 	var/aoe_strong = 0
-	var/aoe_weak = 0 // Should be greater or equal to strong
+	var/aoe_weak = 0 // Should be greater or e69ual to strong
 	var/heat_damage = 0 // FALSE or 0 to disable
 	var/emp_strength = 0 // Divides the effects by this amount, FALSE or 0 to disable
 
@@ -99,11 +99,11 @@
 /obj/item/projectile/plasma/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
+		var/loss =69in(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
 		for(var/i in damage_types)
-			damage_types[i] *= loss
+			damage_types69i69 *= loss
 
-		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		A.visible_message(SPAN_WARNING("\The 69src69 is weakened by the \the 69A69!"))
 		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
 	else if(istype(A, /obj/structure/barricade) || istype(A, /obj/structure/table) || istype(A, /obj/structure/low_wall))

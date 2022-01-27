@@ -1,15 +1,15 @@
 /datum/species/slime
 	name = "Slime"
 	name_plural = "slimes"
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 
 	icobase = 'icons/mob/human_races/r_slime.dmi'
 	deform = 'icons/mob/human_races/r_slime.dmi'
 
-	language = null //todo?
+	language =69ull //todo?
 	unarmed_types = list(/datum/unarmed_attack/slime_glomp)
 	inherent_verbs = list(/mob/living/carbon/human/proc/regenerate_organs)
-	flags = NO_SCAN | NO_SLIP | NO_BREATHE | NO_MINOR_CUT
+	flags =69O_SCAN |69O_SLIP |69O_BREATHE |69O_MINOR_CUT
 	total_health = 200
 	brute_mod = 1.2
 	burn_mod = 0.7
@@ -27,21 +27,21 @@
 		BP_BRAIN = /obj/item/organ/internal/brain/slime
 		)
 
-	breath_type = null
-	poison_type = null
+	breath_type =69ull
+	poison_type =69ull
 
 	bump_flag = SLIME
-	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL
+	swap_flags =69ONKEY|SLIME|SIMPLE_ANIMAL
+	push_flags =69ONKEY|SLIME|SIMPLE_ANIMAL
 
 	has_limbs = list(
-		BP_CHEST =  new /datum/organ_description/chest/slime,
-		BP_GROIN =  new /datum/organ_description/groin/slime,
-		BP_HEAD =   new /datum/organ_description/head/slime,
-		BP_L_ARM =  new /datum/organ_description/arm/left/slime,
-		BP_R_ARM =  new /datum/organ_description/arm/right/slime,
-		BP_L_LEG =  new /datum/organ_description/leg/left/slime,
-		BP_R_LEG =  new /datum/organ_description/leg/right/slime
+		BP_CHEST = 69ew /datum/organ_description/chest/slime,
+		BP_GROIN = 69ew /datum/organ_description/groin/slime,
+		BP_HEAD =  69ew /datum/organ_description/head/slime,
+		BP_L_ARM = 69ew /datum/organ_description/arm/left/slime,
+		BP_R_ARM = 69ew /datum/organ_description/arm/right/slime,
+		BP_L_LEG = 69ew /datum/organ_description/leg/left/slime,
+		BP_R_LEG = 69ew /datum/organ_description/leg/right/slime
 	)
 
 /datum/species/slime/handle_death(var/mob/living/carbon/human/H)
@@ -50,8 +50,8 @@
 			H.gib()
 
 /mob/living/carbon/human/proc/regenerate_organs()
-	set name = "Regenerate missing limb"
-	set desc = "Regenerate a missing limb at the cost of nutrition"
+	set69ame = "Regenerate69issing limb"
+	set desc = "Regenerate a69issing limb at the cost of69utrition"
 	set category = "Abilities"
 	var/mob/living/carbon/human/user = usr
 	var/missing_limb_tag
@@ -60,7 +60,7 @@
 	if(user.stat)
 		return 
 	for(var/limb_tag in BP_ALL_LIMBS)
-		var/obj/item/organ/external/organ_to_check = organs_by_name[limb_tag]
+		var/obj/item/organ/external/organ_to_check = organs_by_name69limb_tag69
 		if(!organ_to_check || istype(organ_to_check , /obj/item/organ/external/stump))
 			missing_limb_tag = limb_tag
 			break
@@ -68,10 +68,10 @@
 		to_chat(user, "You don't have any limbs to replace!")
 		return
 	if(user.species.has_limbs.Find(missing_limb_tag))
-		var/stump_to_delete = organs_by_name[missing_limb_tag]
+		var/stump_to_delete = organs_by_name69missing_limb_tag69
 		if(stump_to_delete)
 			qdel(stump_to_delete)
 		user.adjustNutrition(-50)
-		var/datum/organ_description/OD = species.has_limbs[missing_limb_tag]
+		var/datum/organ_description/OD = species.has_limbs69missing_limb_tag69
 		OD.create_organ(src)
-		to_chat(user, "You regenerate your [missing_limb_tag]")
+		to_chat(user, "You regenerate your 69missing_limb_tag69")

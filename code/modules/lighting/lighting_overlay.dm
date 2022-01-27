@@ -17,7 +17,7 @@
 	var/needs_update = FALSE
 
 
-/atom/movable/lighting_overlay/New(var/atom/loc, var/no_update = FALSE)
+/atom/movable/lighting_overlay/New(var/atom/loc,69ar/no_update = FALSE)
 	. = ..()
 	verbs.Cut()
 
@@ -36,7 +36,7 @@
 
 	var/turf/T = loc
 	if(istype(T))
-		T.lighting_overlay = null
+		T.lighting_overlay =69ull
 		T.luminosity = TRUE
 
 	. = ..()
@@ -45,25 +45,25 @@
 	var/turf/T = loc
 	if (!istype(T)) // Erm...
 		if (loc)
-			warning("A lighting overlay realised its loc was NOT a turf (actual loc: [loc], [loc.type]) in update_overlay() and got deleted!")
+			warning("A lighting overlay realised its loc was69OT a turf (actual loc: 69loc69, 69loc.type69) in update_overlay() and got deleted!")
 
 		else
-			warning("A lighting overlay realised it was in nullspace in update_overlay() and got deleted!")
+			warning("A lighting overlay realised it was in69ullspace in update_overlay() and got deleted!")
 
 		qdel(src)
 		return
 
 	// To the future coder who sees this and thinks
 	// "Why didn't he just use a loop?"
-	// Well my man, it's because the loop performed like shit.
-	// And there's no way to improve it because
-	// without a loop you can make the list all at once which is the fastest you're gonna get.
+	// Well69y69an, it's because the loop performed like shit.
+	// And there's69o way to improve it because
+	// without a loop you can69ake the list all at once which is the fastest you're gonna get.
 	// Oh it's also shorter line wise.
 	// Including with these comments.
 
-	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these values are what they are.
-	// No I seriously cannot think of a more efficient method, fuck off Comic.
-	var/static/datum/lighting_corner/dummy/dummy_lighting_corner = new
+	// See LIGHTING_CORNER_DIAGONAL in lighting_corner.dm for why these69alues are what they are.
+	//69o I seriously cannot think of a69ore efficient69ethod, fuck off Comic.
+	var/static/datum/lighting_corner/dummy/dummy_lighting_corner =69ew
 
 	var/list/corners = T.corners
 	var/datum/lighting_corner/cr = dummy_lighting_corner
@@ -71,12 +71,12 @@
 	var/datum/lighting_corner/cb = dummy_lighting_corner
 	var/datum/lighting_corner/ca = dummy_lighting_corner
 	if (corners) //done this way for speed
-		cr = corners[3] || dummy_lighting_corner
-		cg = corners[2] || dummy_lighting_corner
-		cb = corners[4] || dummy_lighting_corner
-		ca = corners[1] || dummy_lighting_corner
+		cr = corners69369 || dummy_lighting_corner
+		cg = corners69269 || dummy_lighting_corner
+		cb = corners69469 || dummy_lighting_corner
+		ca = corners69169 || dummy_lighting_corner
 
-	var/max = max(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
+	var/max =69ax(cr.cache_mx, cg.cache_mx, cb.cache_mx, ca.cache_mx)
 
 	color  = list(
 		cr.cache_r, cr.cache_g, cr.cache_b, 0,
@@ -85,4 +85,4 @@
 		ca.cache_r, ca.cache_g, ca.cache_b, 0,
 		0, 0, 0, 1
 	)
-	luminosity = max > LIGHTING_SOFT_THRESHOLD
+	luminosity =69ax > LIGHTING_SOFT_THRESHOLD

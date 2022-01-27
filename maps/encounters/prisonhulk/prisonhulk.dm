@@ -1,33 +1,33 @@
-#include "prisonhulk.dmm"
+#include "prisonhul69.dmm"
 
-/obj/map_data/prisonhulk
-	name = "Prison Hulk Level"
-	is_player_level = TRUE
-	is_contact_level = TRUE
-	is_accessable_level = TRUE
-	height = 1
+/ob69/map_data/prisonhul69
+	name = "Prison Hul69 Le69el"
+	is_pla69er_le69el = TRUE
+	is_contact_le69el = TRUE
+	is_accessable_le69el = TRUE
+	hei69ht = 1
 
-//MINING-1 // CLUSTER
-/obj/effect/overmap/sector/prisonhulk
-	name = "derelict hulk"
-	desc = "An abandoned space hulk, which appears to be a former prison vessel. Minimal life signs."
-	generic_waypoints = list(
-		"nav_prisonhulk_1",
-		"nav_prisonhulk_2"
-	)
-	known = 1
+//MININ69-1 // CLUSTER
+/ob69/e6969ect/o69ermap/sector/prisonhul69
+	name = "derelict hul69"
+	desc = "An abandoned space hul69, which appears to be a 69ormer prison 69essel.69inimal li69e si69ns."
+	69eneric_wa69points = list(
+		"na69_prisonhul69_1",
+		"na69_prisonhul69_2"
+	69
+	69nown = 1
 
-	name_stages = list("prison hulk", "unknown object", "unknown spatial phenomenon")
-	icon_stages = list("spacehulk", "object", "poi")
+	name_sta69es = list("prison hul69", "un69nown ob69ect", "un69nown spatial phenomenon"69
+	icon_sta69es = list("spacehul69", "ob69ect", "poi"69
 
-/obj/effect/shuttle_landmark/prisonhulk/nav1
-	name = "Prison Hulk Navpoint #1"
-	icon_state = "shuttle-green"
-	landmark_tag = "nav_prisonhulk_1"
-	base_turf = /turf/space
+/ob69/e6969ect/shuttle_landmar69/prisonhul69/na691
+	name = "Prison Hul6969a69point #1"
+	icon_state = "shuttle-69reen"
+	landmar69_ta69 = "na69_prisonhul69_1"
+	base_tur69 = /tur69/space
 
-/obj/effect/shuttle_landmark/prisonhulk/nav2
-	name = "Prison Hulk Navpoint #2"
-	icon_state = "shuttle-green"
-	landmark_tag = "nav_prisonhulk_2"
-	base_turf = /turf/space
+/ob69/e6969ect/shuttle_landmar69/prisonhul69/na692
+	name = "Prison Hul6969a69point #2"
+	icon_state = "shuttle-69reen"
+	landmar69_ta69 = "na69_prisonhul69_2"
+	base_tur69 = /tur69/space

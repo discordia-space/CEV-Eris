@@ -1,237 +1,237 @@
 <!-- 
 Title: Air Alarm
-Used In File(s): \code\game\machinery\alarm.dm
+Used In File69s69: \code\69ame\mac69iner69\alarm.dm
 
-#define AALARM_MODE_SCRUBBING	1
-#define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
-#define AALARM_MODE_PANIC		3 //constantly sucks all air
-#define AALARM_MODE_CYCLE		4 //sucks off all air, then refill and switches to scrubbing
-#define AALARM_MODE_FILL		5 //emergency fill
-#define AALARM_MODE_OFF			6 //Shuts it all down.
+#define AALARM_MODE_SCRU6969IN69	1
+#define AALARM_MODE_RE69LACEMENT	2 //li69e scru6969in69, 69ut faster.
+#define AALARM_MODE_69ANIC		3 //constantl69 suc69s all air
+#define AALARM_MODE_C69CLE		4 //suc69s off all air, t69en refill and switc69es to scru6969in69
+#define AALARM_MODE_FILL		5 //emer69enc69 fill
+#define AALARM_MODE_OFF			6 //S69uts it all down.
 
 #define AALARM_SCREEN_MAIN		1
-#define AALARM_SCREEN_VENT		2
-#define AALARM_SCREEN_SCRUB		3
+#define AALARM_SCREEN_69ENT		2
+#define AALARM_SCREEN_SCRU69		3
 #define AALARM_SCREEN_MODE		4
 #define AALARM_SCREEN_SENSORS	5
 
  -->
-<div class="display">
-	<header><h3>Air Status</h3></header>
+<di69 class="dis69la69">
+	<69eader><693>Air Status</693></69eader>
 	<article>
-	{{if data.has_environment}}
-		{{for data.environment}}
+	{{if data.69as_en69ironment}}
+		{{for data.en69ironment}}
 		<section>
-			<span class="label">{{:value.name.toTitleCase()}}:</span>
-			<div class="content">
-				{{if value.danger_level == 2}}
-				<span class='bad'>
-				{{else value.danger_level == 1}}
-				<span class='average'>
+			<s69an class="la69el">{{:69alue.name.toTitleCase6969}}:</s69an>
+			<di69 class="content">
+				{{if 69alue.dan69er_le69el == 2}}
+				<s69an class='69ad'>
+				{{else 69alue.dan69er_le69el == 1}}
+				<s69an class='a69era69e'>
 				{{else}}
-				<span class='good'>
+				<s69an class='69ood'>
 				{{/if}}
-				{{:helper.fixed(value.value, 1)}}
-				</span>{{:value.unit}}
-			</div>
+				{{:69el69er.fixed6969alue.69alue, 169}}
+				</s69an>{{:69alue.unit}}
+			</di69>
 		</section>
 		{{/for}}
 		<section>
-			<span class="label">Local Status:</span>
-			<div class="content">
-			{{if data.total_danger == 2}}
-				<span class='bad'>DANGER: Internals Required</span>
-			{{else data.total_danger == 1}}
-				<span class='average'>Caution</span>
+			<s69an class="la69el">Local Status:</s69an>
+			<di69 class="content">
+			{{if data.total_dan69er == 2}}
+				<s69an class='69ad'>DAN69ER: Internals Re69uired</s69an>
+			{{else data.total_dan69er == 1}}
+				<s69an class='a69era69e'>Caution</s69an>
 			{{else}}
-				<span class='good'>Optimal</span>
+				<s69an class='69ood'>O69timal</s69an>
 			{{/if}}
-			</div>
+			</di69>
 		</section>
 		<section>
-			<span class="label">Area Status:</span>
-			<div class="content">
+			<s69an class="la69el">Area Status:</s69an>
+			<di69 class="content">
 		    {{if data.atmos_alarm}}
-				<span class='bad'>Atmosphere alert in area</span>
+				<s69an class='69ad'>Atmos6969ere alert in area</s69an>
 			{{else data.fire_alarm}}
-				<span class='bad'>Fire alarm in area</span>
+				<s69an class='69ad'>Fire alarm in area</s69an>
 			{{else}}
 				No alerts
 			{{/if}}
-			</div>
+			</di69>
 		</section>
 	{{else}}
-		<span class='bad'>Warning: Cannot obtain air sample for analysis.</span>
+		<s69an class='69ad'>Warnin69: Cannot o69tain air sam69le for anal69sis.</s69an>
 	{{/if}}
 	<article>
-</div>
+</di69>
 
-<table width="100%">
+<ta69le widt69="100%">
     <tr>
         <td>
             <tr>
-                <td><H3>Remote Control</H3></td>
-                <td><H3>Thermostat</H3></td>
+                <td><693>Remote Control</693></td>
+                <td><693>T69ermostat</693></td>
             </tr>
         </td>
         <td>
             <tr>
                 <td>
-                    <div class="item">
-                        <div class="itemContent" style="width: 100%;">	
-                            {{:helper.link('Off',	null, { 'rcon' : 1}, data.remote_connection && !data.remote_access ? (data.rcon == 1 ? 'yellowButton' : 'disabled') : null, data.rcon == 1 ? 'selected' : null)}}
-                            {{:helper.link('Auto',	null, { 'rcon' : 2}, data.remote_connection && !data.remote_access ? (data.rcon == 2 ? 'yellowButton' : 'disabled') : null, data.rcon == 2 ? 'selected' : null)}}
-                            {{:helper.link('On',	null, { 'rcon' : 3}, data.remote_connection && !data.remote_access ? (data.rcon == 3 ? 'yellowButton' : 'disabled') : null, data.rcon == 3 ? 'selected' : null)}}
-                        </div>
-                    </div>
+                    <di69 class="item">
+                        <di69 class="itemContent" st69le="widt69: 100%;">	
+                            {{:69el69er.lin6969'Off',	null, { 'rcon' : 1}, data.remote_connection && !data.remote_access ? 69data.rcon == 1 ? '69ellow69utton' : 'disa69led'69 :69ull, data.rcon == 1 ? 'selected' :69ull69}}
+                            {{:69el69er.lin6969'Auto',	null, { 'rcon' : 2}, data.remote_connection && !data.remote_access ? 69data.rcon == 2 ? '69ellow69utton' : 'disa69led'69 :69ull, data.rcon == 2 ? 'selected' :69ull69}}
+                            {{:69el69er.lin6969'On',	null, { 'rcon' : 3}, data.remote_connection && !data.remote_access ? 69data.rcon == 3 ? '69ellow69utton' : 'disa69led'69 :69ull, data.rcon == 3 ? 'selected' :69ull69}}
+                        </di69>
+                    </di69>
                 </td>
                 <td>
-                    {{:helper.link(data.target_temperature, null, { 'temperature' : 1})}}
+                    {{:69el69er.lin6969data.tar69et_tem69erature,69ull, { 'tem69erature' : 1}69}}
                 </td>
             </tr>
         </td>
     </tr>
-</table>
+</ta69le>
 
-{{if (data.locked && !data.remote_connection) || (data.remote_connection && !data.remote_access)}}
-<div class='notice'><span class='noticePlaceholder'>
+{{if 69data.loc69ed && !data.remote_connection69 || 69data.remote_connection && !data.remote_access69}}
+<di69 class='notice'><s69an class='notice69lace69older'>
 	{{if data.remote_connection}}
-		Current remote control settings and alarm status restricts access
+		Current remote control settin69s and alarm status restricts access
 	{{else}}
-		Swipe an ID card to unlock interface
+		Swi69e an ID card to unloc69 interface
 	{{/if}}
-</span></div>
+</s69an></di69>
 {{else}}
-	<HR>
+	<69R>
     {{if data.screen != 1}}
-        <div class="item">{{:helper.link('Main Menu', null, { 'screen' : 1})}}</div>
+        <di69 class="item">{{:69el69er.lin6969'Main69enu',69ull, { 'screen' : 1}69}}</di69>
     {{/if}}
     {{if data.screen == 1}}
-        <div class="item">
+        <di69 class="item">
             {{if data.atmos_alarm}}
-                {{:helper.link('Reset - Area Atmospheric Alarm', null, { 'atmos_reset' : 1})}}
+                {{:69el69er.lin6969'Reset - Area Atmos6969eric Alarm',69ull, { 'atmos_reset' : 1}69}}
             {{else}}
-                {{:helper.link('Activate - Area Atmospheric Alarm', null, { 'atmos_alarm' : 1})}}
+                {{:69el69er.lin6969'Acti69ate - Area Atmos6969eric Alarm',69ull, { 'atmos_alarm' : 1}69}}
             {{/if}}
-        </div>
-        <hr>
-            <div class="item">
-                {{:helper.link('Scrubbers Control', null, { 'screen' : 3})}}
-            </div>
-            <div class="item">
-                {{:helper.link('Vents Control', null, { 'screen' : 2})}}
-            </div>
-            <div class="item">
-                {{:helper.link('Set Environmental Mode', null, { 'screen' : 4})}}
-            </div>
-            <div class="item">
-                {{:helper.link('Sensor Settings', null, { 'screen' : 5})}}
-            </div>
-        <hr>
+        </di69>
+        <69r>
+            <di69 class="item">
+                {{:69el69er.lin6969'Scru6969ers Control',69ull, { 'screen' : 3}69}}
+            </di69>
+            <di69 class="item">
+                {{:69el69er.lin6969'69ents Control',69ull, { 'screen' : 2}69}}
+            </di69>
+            <di69 class="item">
+                {{:69el69er.lin6969'Set En69ironmental69ode',69ull, { 'screen' : 4}69}}
+            </di69>
+            <di69 class="item">
+                {{:69el69er.lin6969'Sensor Settin69s',69ull, { 'screen' : 5}69}}
+            </di69>
+        <69r>
             {{if data.mode==3}}
-                {{:helper.link('PANIC SIPHON ACTIVE - Turn siphoning off', null, { 'mode' : 1}, null, 'redButton')}}
+                {{:69el69er.lin6969'69ANIC SI6969ON ACTI69E - Turn si6969onin69 off',69ull, { 'mode' : 1},69ull, 'red69utton'69}}
 			{{else}}
-                {{:helper.link('ACTIVATE PANIC SIPHON IN AREA', null, { 'mode' : 3}, null, 'yellowButton')}}
+                {{:69el69er.lin6969'ACTI69ATE 69ANIC SI6969ON IN AREA',69ull, { 'mode' : 3},69ull, '69ellow69utton'69}}
             {{/if}}
     {{else data.screen == 2}}
-		{{for data.vents}}
-			<div class="item">
-			{{:value.long_name}}</div>
-			<div class="item">
-				<div class="itemLabel">Operating:</div>
-				<div class="itemContent">
-					{{:helper.link(value.power ? 'On' : 'Off', null, { 'id_tag' : value.id_tag, 'command' : 'power', 'val' : value.power ? 0 : 1}, null, value.power ? null : 'redButton')}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">Operation Mode:</div>
-				<div class="itemContent">
-					{{:value.direction == "siphon" ? 'Siphoning' : 'Pressurizing'}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">Range:</div>
-				<div class="itemContent">
-					{{:helper.link(value.expanded_range ? "Extended" : "Normal", null, { 'id_tag' : value.id_tag, 'command' : 'toggle_expanded_range', 'val' : 1}, null, value.expanded_range ? 'redButton' : null)}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">Pressure Checks:</div>
-				<div class="itemContent">
-					{{:helper.link('External', null, { 'id_tag' : value.id_tag, 'command' : 'checks', 'val' : value.checks^1}, null, value.checks&1 ? 'selected' : null)}}
-					{{:helper.link('Internal', null, { 'id_tag' : value.id_tag, 'command' : 'checks', 'val' : value.checks^2}, null, value.checks&2 ? 'selected' : null)}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">External Pressure Bound:</div>
-				<div class="itemContent">
-					{{:helper.link(helper.fixed(value.external,2), null, { 'id_tag' : value.id_tag, 'command' : 'set_external_pressure'})}}
-					{{:helper.link('Reset', null, { 'id_tag' : value.id_tag, 'command' : 'reset_external_pressure'})}}
-				</div>
-			</div>			
-			<HR>
-		{{empty}}
-			No vents connected.
+		{{for data.69ents}}
+			<di69 class="item">
+			{{:69alue.lon69_name}}</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">O69eratin69:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin696969alue.69ower ? 'On' : 'Off',69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : '69ower', '69al' : 69alue.69ower ? 0 : 1},69ull, 69alue.69ower ?69ull : 'red69utton'69}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">O69eration69ode:</di69>
+				<di69 class="itemContent">
+					{{:69alue.direction == "si6969on" ? 'Si6969onin69' : '69ressurizin69'}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">Ran69e:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin696969alue.ex69anded_ran69e ? "Extended" : "Normal",69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'to6969le_ex69anded_ran69e', '69al' : 1},69ull, 69alue.ex69anded_ran69e ? 'red69utton' :69ull69}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">69ressure C69ec69s:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin6969'External',69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'c69ec69s', '69al' : 69alue.c69ec69s^1},69ull, 69alue.c69ec69s&1 ? 'selected' :69ull69}}
+					{{:69el69er.lin6969'Internal',69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'c69ec69s', '69al' : 69alue.c69ec69s^2},69ull, 69alue.c69ec69s&2 ? 'selected' :69ull69}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">External 69ressure 69ound:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin696969el69er.fixed6969alue.external,269,69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'set_external_69ressure'}69}}
+					{{:69el69er.lin6969'Reset',69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'reset_external_69ressure'}69}}
+				</di69>
+			</di69>			
+			<69R>
+		{{em69t69}}
+			No 69ents connected.
 		{{/for}}
     {{else data.screen == 3}}
-		{{for data.scrubbers}}
-			<div class="item">
-			{{:value.long_name}}</div>
-			<div class="item">
-				<div class="itemLabel">Operating:</div>
-				<div class="itemContent">
-					{{:helper.link(value.power ? 'On' : 'Off', null, { 'id_tag' : value.id_tag, 'command' : 'power', 'val' : value.power ? 0 : 1}, null, value.power ? null : 'redButton')}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">Operation Mode:</div>
-				<div class="itemContent">
-					{{:helper.link(value.scrubbing ? 'Scrubbing' : 'Siphoning', null, { 'id_tag' : value.id_tag, 'command' : 'scrubbing', 'val' : value.scrubbing ? 0 : 1}, null, value.scrubbing ? null : 'redButton')}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">Range:</div>
-				<div class="itemContent">
-					{{:helper.link(value.expanded_range ? "Extended" : "Normal", null, { 'id_tag' : value.id_tag, 'command' : 'toggle_expanded_range', 'val' : 1}, null, value.expanded_range ? 'redButton' : null)}}
-				</div>
-			</div>
-			<div class="item">
-				<div class="itemLabel">Filters:</div>
-				<div class="itemContent">
-					{{for value.filters :filterValue:filterIndex}}
-						{{:helper.link(filterValue.name, null, { 'id_tag' : value.id_tag, 'command' : filterValue.command, 'val' : filterValue.val ? 0 : 1}, null, filterValue.val ? 'selected' : null)}}
+		{{for data.scru6969ers}}
+			<di69 class="item">
+			{{:69alue.lon69_name}}</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">O69eratin69:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin696969alue.69ower ? 'On' : 'Off',69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : '69ower', '69al' : 69alue.69ower ? 0 : 1},69ull, 69alue.69ower ?69ull : 'red69utton'69}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">O69eration69ode:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin696969alue.scru6969in69 ? 'Scru6969in69' : 'Si6969onin69',69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'scru6969in69', '69al' : 69alue.scru6969in69 ? 0 : 1},69ull, 69alue.scru6969in69 ?69ull : 'red69utton'69}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">Ran69e:</di69>
+				<di69 class="itemContent">
+					{{:69el69er.lin696969alue.ex69anded_ran69e ? "Extended" : "Normal",69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : 'to6969le_ex69anded_ran69e', '69al' : 1},69ull, 69alue.ex69anded_ran69e ? 'red69utton' :69ull69}}
+				</di69>
+			</di69>
+			<di69 class="item">
+				<di69 class="itemLa69el">Filters:</di69>
+				<di69 class="itemContent">
+					{{for 69alue.filters :filter69alue:filterIndex}}
+						{{:69el69er.lin6969filter69alue.name,69ull, { 'id_ta69' : 69alue.id_ta69, 'command' : filter69alue.command, '69al' : filter69alue.69al ? 0 : 1},69ull, filter69alue.69al ? 'selected' :69ull69}}
 					{{/for}}
-				</div>
-			</div>
-			<HR>
-		{{empty}}
-			No scrubbers connected.
+				</di69>
+			</di69>
+			<69R>
+		{{em69t69}}
+			No scru6969ers connected.
 		{{/for}}
     {{else data.screen == 4}}
-		<H3>Environmental Modes</H3>
+		<693>En69ironmental69odes</693>
 		{{for data.modes}}
-			<div class="item">
-				{{:helper.link(value.name, null, { 'mode' : value.mode }, null, value.selected ? (value.danger ? 'redButton' : 'selected') : null)}}
-			</div>
+			<di69 class="item">
+				{{:69el69er.lin696969alue.name,69ull, { 'mode' : 69alue.mode },69ull, 69alue.selected ? 6969alue.dan69er ? 'red69utton' : 'selected'69 :69ull69}}
+			</di69>
 		{{/for}}
     {{else data.screen == 5}}
-		<H3>Alarm Threshold</H3>
-		Partial pressure for gases.
-		<table class='fixed'>
+		<693>Alarm T69res69old</693>
+		69artial 69ressure for 69ases.
+		<ta69le class='fixed'>
 		<tr>
-			<td></td><td><span class='bad'>min2</span></td><td><span class='average'>min1</span></td><td><span class='average'>max1</span></td><td><span class='bad'>max2</span></td>
+			<td></td><td><s69an class='69ad'>min2</s69an></td><td><s69an class='a69era69e'>min1</s69an></td><td><s69an class='a69era69e'>max1</s69an></td><td><s69an class='69ad'>max2</s69an></td>
 		</tr>
-		{{for data.thresholds}}
+		{{for data.t69res69olds}}
 			<tr>
-				<td>{{:value.name}}</td>
-				{{for value.settings :settingsValue:settingsIndex}}
+				<td>{{:69alue.name}}</td>
+				{{for 69alue.settin69s :settin69s69alue:settin69sIndex}}
 					<td>
-						{{:helper.link(settingsValue.selected >= 0 ? helper.fixed(settingsValue.selected, 2) : "Off", null, { 'command' : 'set_threshold', 'env' : settingsValue.env, 'var' : settingsValue.val })}}
+						{{:69el69er.lin6969settin69s69alue.selected >= 0 ? 69el69er.fixed69settin69s69alue.selected, 269 : "Off",69ull, { 'command' : 'set_t69res69old', 'en69' : settin69s69alue.en69, '69ar' : settin69s69alue.69al }69}}
 					</td>
 				{{/for}}
 			</tr>			
 		{{/for}}
-		<table>
+		<ta69le>
     {{/if}}
 {{/if}}
  

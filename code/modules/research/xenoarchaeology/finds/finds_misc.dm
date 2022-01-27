@@ -10,6 +10,6 @@
 
 /obj/item/talkingcrystal/Initialize(mapload)
 	. = ..()
-	src.talking_atom = new (src)
+	src.talking_atom =69ew (src)
 	if(prob(50))
 		icon_state = "talk_crystal2"

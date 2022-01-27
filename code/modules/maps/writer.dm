@@ -22,60 +22,60 @@ dmm_suite{
 			"Z"
 			)
 		}
-	save_map(var/turf/t1 as turf, var/turf/t2 as turf, var/map_name as text, var/flags as num){
-		//Check for illegal characters in file name... in a cheap way.
+	save_map(var/turf/t1 as turf,69ar/turf/t2 as turf,69ar/map_name as text,69ar/flags as69um){
+		//Check for illegal characters in file69ame... in a cheap way.
 		if(!((ckeyEx(map_name)==map_name) && ckeyEx(map_name))){
 			CRASH("Invalid text supplied to proc save_map, invalid characters or empty string.")
 			}
-		//Check for valid turfs.
+		//Check for69alid turfs.
 		if(!isturf(t1) || !isturf(t2)){
-			CRASH("Invalid arguments supplied to proc save_map, arguments were not turfs.")
+			CRASH("Invalid arguments supplied to proc save_map, arguments were69ot turfs.")
 			}
 		var/file_text = write_map(t1,t2,flags)
-		if(fexists("[map_name].dmm")){
-			fdel("[map_name].dmm")
+		if(fexists("69map_name69.dmm")){
+			fdel("69map_name69.dmm")
 			}
-		var/saved_map = file("[map_name].dmm")
+		var/saved_map = file("69map_name69.dmm")
 		saved_map << file_text
 		return saved_map
 		}
-	write_map(var/turf/t1 as turf, var/turf/t2 as turf, var/flags as num){
-		//Check for valid turfs.
+	write_map(var/turf/t1 as turf,69ar/turf/t2 as turf,69ar/flags as69um){
+		//Check for69alid turfs.
 		if(!isturf(t1) || !isturf(t2)){
-			CRASH("Invalid arguments supplied to proc write_map, arguments were not turfs.")
+			CRASH("Invalid arguments supplied to proc write_map, arguments were69ot turfs.")
 			}
 		var/turf/nw = locate(min(t1.x,t2.x),max(t1.y,t2.y),min(t1.z,t2.z))
 		var/turf/se = locate(max(t1.x,t2.x),min(t1.y,t2.y),max(t1.z,t2.z))
-		var/list/templates[0]
+		var/list/templates69069
 		var/template_buffer = {""}
 		var/dmm_text = {""}
 		for(var/pos_z=nw.z;pos_z<=se.z;pos_z++){
 			for(var/pos_y=nw.y;pos_y>=se.y;pos_y--){
 				for(var/pos_x=nw.x;pos_x<=se.x;pos_x++){
 					var/turf/test_turf = locate(pos_x,pos_y,pos_z)
-					var/test_template = make_template(test_turf, flags)
+					var/test_template =69ake_template(test_turf, flags)
 					var/template_number = templates.Find(test_template)
 					if(!template_number){
 						templates.Add(test_template)
 						template_number = templates.len
 						}
-					template_buffer += "[template_number],"
+					template_buffer += "69template_number69,"
 					}
 				template_buffer += ";"
 				}
 			template_buffer += "."
 			}
 		var/key_length = round/*floor*/(log(letter_digits.len,templates.len-1)+1)
-		var/list/keys[templates.len]
+		var/list/keys69templates.len69
 		for(var/key_pos=1;key_pos<=templates.len;key_pos++){
-			keys[key_pos] = get_model_key(key_pos,key_length)
-			dmm_text += {""[keys[key_pos]]" = ([templates[key_pos]])\n"}
+			keys69key_pos69 = get_model_key(key_pos,key_length)
+			dmm_text += {""69keys69key_pos6969" = (69templates69key_pos6969)\n"}
 			}
 		var/z_level = 0
 		for(var/z_pos=1;;z_pos=findtext(template_buffer,".",z_pos)+1){
 			if(z_pos>=length(template_buffer)){break}
 			if(z_level){dmm_text+={"\n"}}
-			dmm_text += {"\n(1,1,[++z_level]) = {"\n"}
+			dmm_text += {"\n(1,1,69++z_level69) = {"\n"}
 			var/z_block = copytext(template_buffer,z_pos,findtext(template_buffer,".",z_pos))
 			for(var/y_pos=1;;y_pos=findtext(z_block,";",y_pos)+1){
 				if(y_pos>=length(z_block)){break}
@@ -84,7 +84,7 @@ dmm_suite{
 					if(x_pos>=length(y_block)){break}
 					var/x_block = copytext(y_block,x_pos,findtext(y_block,",",x_pos))
 					var/key_number = text2num(x_block)
-					var/temp_key = keys[key_number]
+					var/temp_key = keys69key_number69
 					dmm_text += temp_key
 					sleep(-1)
 					}
@@ -97,52 +97,52 @@ dmm_suite{
 		return dmm_text
 		}
 	proc{
-		make_template(var/turf/model as turf, var/flags as num){
+		make_template(var/turf/model as turf,69ar/flags as69um){
 			var/template = ""
 			var/obj_template = ""
 			var/mob_template = ""
 			var/turf_template = ""
 			if(!(flags & DMM_IGNORE_TURFS)){
-				turf_template = "[model.type][check_attributes(model)],"
-				} else{ turf_template = "[world.turf],"}
+				turf_template = "69model.type6969check_attributes(model)69,"
+				} else{ turf_template = "69world.turf69,"}
 			var/area_template = ""
 			if(!(flags & DMM_IGNORE_OBJS)){
-				for(var/obj/O in model.contents){
-					obj_template += "[O.type][check_attributes(O)],"
+				for(var/obj/O in69odel.contents){
+					obj_template += "69O.type6969check_attributes(O)69,"
 					}
 				}
-			for(var/mob/M in model.contents){
+			for(var/mob/M in69odel.contents){
 				if(M.client){
 					if(!(flags & DMM_IGNORE_PLAYERS)){
-						mob_template += "[M.type][check_attributes(M)],"
+						mob_template += "69M.type6969check_attributes(M)69,"
 						}
 					}
 				else{
 					if(!(flags & DMM_IGNORE_NPCS)){
-						mob_template += "[M.type][check_attributes(M)],"
+						mob_template += "69M.type6969check_attributes(M)69,"
 						}
 					}
 				}
 			if(!(flags & DMM_IGNORE_AREAS)){
-				var/area/m_area = model.loc
-				area_template = "[m_area.type][check_attributes(m_area)]"
-				} else{ area_template = "[world.area]"}
-			template = "[obj_template][mob_template][turf_template][area_template]"
+				var/area/m_area =69odel.loc
+				area_template = "69m_area.type6969check_attributes(m_area)69"
+				} else{ area_template = "69world.area69"}
+			template = "69obj_template6969mob_template6969turf_template6969area_template69"
 			return template
 			}
 		check_attributes(var/atom/A){
 			var/attributes_text = {"{"}
 			for(var/V in A.vars){
 				sleep(-1)
-				if((!issaved(A.vars[V])) || (A.vars[V]==initial(A.vars[V]))){continue}
-				if(istext(A.vars[V])){
-					attributes_text += {"[V] = "[A.vars[V]]""}
+				if((!issaved(A.vars69V69)) || (A.vars69V69==initial(A.vars69V69))){continue}
+				if(istext(A.vars69V69)){
+					attributes_text += {"69V69 = "69A.vars69V6969""}
 					}
-				else if(isnum(A.vars[V])||ispath(A.vars[V])){
-					attributes_text += {"[V] = [A.vars[V]]"}
+				else if(isnum(A.vars69V69)||ispath(A.vars69V69)){
+					attributes_text += {"69V69 = 69A.vars69V6969"}
 					}
-				else if(isicon(A.vars[V])||isfile(A.vars[V])){
-					attributes_text += {"[V] = '[A.vars[V]]'"}
+				else if(isicon(A.vars69V69)||isfile(A.vars69V69)){
+					attributes_text += {"69V69 = '69A.vars69V6969'"}
 					}
 				else{
 					continue
@@ -160,13 +160,13 @@ dmm_suite{
 			attributes_text += {"}"}
 			return attributes_text
 			}
-		get_model_key(var/which as num, var/key_length as num){
+		get_model_key(var/which as69um,69ar/key_length as69um){
 			var/key = ""
 			var/working_digit = which-1
 			for(var/digit_pos=key_length;digit_pos>=1;digit_pos--){
 				var/place_value = round/*floor*/(working_digit/(letter_digits.len**(digit_pos-1)))
 				working_digit-=place_value*(letter_digits.len**(digit_pos-1))
-				key = "[key][letter_digits[place_value+1]]"
+				key = "69key6969letter_digits69place_value+16969"
 				}
 			return key
 			}

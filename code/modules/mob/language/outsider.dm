@@ -1,6 +1,6 @@
 /datum/language/corticalborer
 	name = LANGUAGE_CORTICAL
-	desc = "Cortical borers possess a strange link between their tiny minds."
+	desc = "Cortical borers possess a strange link between their tiny69inds."
 	speech_verb = list("sings")
 	ask_verb = list("sings")
 	exclaim_verb = list("sings")
@@ -15,7 +15,7 @@
 
 	if(iscarbon(speaker))
 		var/mob/living/carbon/M = speaker
-		B = M.has_brain_worms()
+		B =69.has_brain_worms()
 	else if(istype(speaker,/mob/living/simple_animal/borer))
 		B = speaker
 
@@ -44,7 +44,7 @@
 
 /datum/language/cult
 	name = LANGUAGE_OCCULT
-	desc = "The initiated can share their thoughts by means defying all reason."
+	desc = "The initiated can share their thoughts by69eans defying all reason."
 	speech_verb = list("intones")
 	ask_verb = list("intones")
 	exclaim_verb = list("chants")

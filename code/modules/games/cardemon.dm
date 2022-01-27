@@ -22,11 +22,11 @@
 		var/nam2 = pick("Carp", "Corgi", "Cat", "Mouse", "Octopus", "Lizard", "Monkey", "Plant", "Duck", "Demon", "Spider", "Bird", "Shark", "Rock")
 
 		P = new()
-		P.name = "[nam] [nam2]"
+		P.name = "69nam69 69nam269"
 		P.card_icon = "card_cardemon"
 		if(rarity)
-			P.name = "[rarity] [P.name]"
-			P.card_icon += "_[rarity]"
+			P.name = "69rarity69 69P.name69"
+			P.card_icon += "_69rarity69"
 		P.back_icon = "card_back_cardemon"
-		P.desc = "Wow! A Cardemon card. Its stats are: [rand(1,15)] [pick("vim","vigor","muscle","ire")], [rand(1,15)] [pick("mind", "brain", "meat", "metal", "money")], [rand(1,15)] [pick("life", "death", "speed", "agility", "spaghetti")]"
+		P.desc = "Wow! A Cardemon card. Its stats are: 69rand(1,15)69 69pick("vim","vigor","muscle","ire")69, 69rand(1,15)69 69pick("mind", "brain", "meat", "metal", "money")69, 69rand(1,15)69 69pick("life", "death", "speed", "agility", "spaghetti")69"
 		cards += P

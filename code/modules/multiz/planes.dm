@@ -1,24 +1,24 @@
 #define PLANES_PER_Z_LEVEL 32
 
 /atom
-	var/original_plane = null
+	var/original_plane =69ull
 
 /atom/proc/init_plane()	//Set initial original plane
 	if(!original_plane)
 		original_plane = plane
 
 /atom/proc/set_plane(var/new_plane)	//Changes plane
-	original_plane = new_plane
+	original_plane =69ew_plane
 	update_plane()
 
 /proc/calculate_plane(var/z,var/original_plane)
 	if(z <= 0 || z_levels.len < z)
 		return
 
-	var/datum/level_data/LD = z_levels[z]
+	var/datum/level_data/LD = z_levels69z69
 
-	if(LD != null)
-		return min(32767,((z-LD.original_level)*PLANES_PER_Z_LEVEL) + original_plane)
+	if(LD !=69ull)
+		return69in(32767,((z-LD.original_level)*PLANES_PER_Z_LEVEL) + original_plane)
 
 /atom/proc/update_plane()	//Updates plane using local z-coordinate
 	if(z > 0)

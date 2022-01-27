@@ -1,17 +1,17 @@
 /*
- MODULAR ANTAGONIST SYSTEM
+69ODULAR ANTAGONIST SYSTEM
 
- Attempts to move all the bullshit snowflake antag tracking code into its own system, which
- has the added bonus of making the display procs consistent. Still needs work/adjustment/cleanup
+ Attempts to69ove all the bullshit snowflake antag tracking code into its own system, which
+ has the added bonus of69aking the display procs consistent. Still needs work/adjustment/cleanup
  but should be fairly self-explanatory with a review of the procs. Will supply a few examples
  of common tasks that the system will be expected to perform below. ~Z
 
  To use:
-   - Get the appropriate datum via get_antag_data("antagonist id")
-     using the id var of the desired /datum/antagonist ie. var/datum/antagonist/A = get_antag_data("contractor")
-   - Call add_antagonist() on the desired target mind ie. A.add_antagonist(mob.mind)
+   - Get the appropriate datum69ia get_antag_data("antagonist id")
+     using the id69ar of the desired /datum/antagonist ie.69ar/datum/antagonist/A = get_antag_data("contractor")
+   - Call add_antagonist() on the desired target69ind ie. A.add_antagonist(mob.mind)
    - To ignore protected roles, supply a positive second argument.
-   - To skip equipping with appropriate gear, supply a positive third argument.
+   - To skip e69uipping with appropriate gear, supply a positive third argument.
 */
 
 // Globals.
@@ -26,12 +26,12 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 // Global procs.
 /proc/get_antag_data(var/antag_type)
-	if(GLOB.all_antag_types[antag_type])
-		return GLOB.all_antag_types[antag_type]
+	if(GLOB.all_antag_types69antag_type69)
+		return GLOB.all_antag_types69antag_type69
 	else
 		var/list/all_antag_types = GLOB.all_antag_types
 		for(var/cur_antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[cur_antag_type]
+			var/datum/antagonist/antag = all_antag_types69cur_antag_type69
 			if(antag && antag.is_type(antag_type))
 				return antag
 
@@ -46,30 +46,30 @@ GLOBAL_LIST_EMPTY(faction_types)
 
 /proc/create_antag_instance(a_id)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
-	if(all_antag_types[a_id])
-		var/atype = all_antag_types[a_id].type
+	if(all_antag_types69a_id69)
+		var/atype = all_antag_types69a_id69.type
 		return new atype
 
-/proc/make_antagonist_ghost(var/mob/M, var/a_id)
+/proc/make_antagonist_ghost(var/mob/M,69ar/a_id)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
-	if(all_antag_types[a_id])
-		var/a_type = all_antag_types[a_id].type
+	if(all_antag_types69a_id69)
+		var/a_type = all_antag_types69a_id69.type
 		var/datum/antagonist/A = new a_type
 		if(A.create_from_ghost(M))
 			return A
 
-/proc/make_antagonist(var/datum/mind/M, var/a_id)
+/proc/make_antagonist(var/datum/mind/M,69ar/a_id)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
-	if(all_antag_types[a_id])
-		var/a_type = all_antag_types[a_id].type
+	if(all_antag_types69a_id69)
+		var/a_type = all_antag_types69a_id69.type
 		var/datum/antagonist/A = new a_type
 		if(istype(M) && A.create_antagonist(M))
 			return A
 
 /proc/make_antagonist_faction(datum/mind/M, a_id, datum/faction/F, check = TRUE)
 	var/list/datum/antagonist/all_antag_types = GLOB.all_antag_types
-	if(all_antag_types[a_id])
-		var/a_type = all_antag_types[a_id].type
+	if(all_antag_types69a_id69)
+		var/a_type = all_antag_types69a_id69.type
 		var/datum/antagonist/A = new a_type
 		A.create_antagonist(M, F, check = check)
 
@@ -86,28 +86,28 @@ GLOBAL_LIST_EMPTY(faction_types)
 		if(!A.id)
 			continue
 
-		GLOB.all_antag_types[A.id] = A
+		GLOB.all_antag_types69A.id69 = A
 
 		if(A.outer)
-			GLOB.outer_antag_types[A.id] = A
+			GLOB.outer_antag_types69A.id69 = A
 			var/list/start_locs = list()
 			for(var/obj/landmark/L in GLOB.landmarks_list)
 				if(L.name == A.landmark_id)
 					start_locs += get_turf(L)
-			GLOB.antag_starting_locations[A.id] = start_locs
+			GLOB.antag_starting_locations69A.id69 = start_locs
 		else
-			GLOB.station_antag_types[A.id] = A
+			GLOB.station_antag_types69A.id69 = A
 
 		if(A.selectable)
-			GLOB.all_antag_selectable_types[A.bantype] = A
+			GLOB.all_antag_selectable_types69A.bantype69 = A
 		if(A.faction_id)
-			GLOB.group_antag_types[A.id] = A
+			GLOB.group_antag_types69A.id69 = A
 
-		GLOB.antag_bantypes[A.id] = A.bantype
+		GLOB.antag_bantypes69A.id69 = A.bantype
 
 	for(var/faction_type in typesof(/datum/faction)-/datum/faction)
 		var/datum/faction/F = new faction_type
-		GLOB.faction_types[F.id] = F
+		GLOB.faction_types69F.id69 = F
 
 /proc/get_antags(var/id)
 	var/list/L = list()
@@ -143,7 +143,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			return TRUE
 	return FALSE
 
-/proc/player_is_antag_id(var/datum/mind/player, var/a_id)
+/proc/player_is_antag_id(var/datum/mind/player,69ar/a_id)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if(!a_id || antag.id == a_id)
 			return TRUE
@@ -165,7 +165,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			L.Add(antag)
 	return L
 
-/proc/get_player_antags(var/datum/mind/player, var/a_type)
+/proc/get_player_antags(var/datum/mind/player,69ar/a_type)
 	if(!a_type)
 		return player.antagonist
 
@@ -211,7 +211,7 @@ GLOBAL_LIST_EMPTY(faction_types)
 			L.Add(F)
 	return L
 
-/proc/player_is_antag_faction(var/datum/mind/player, var/a_id, var/datum/faction/F)
+/proc/player_is_antag_faction(var/datum/mind/player,69ar/a_id,69ar/datum/faction/F)
 	for(var/datum/antagonist/antag in player.antagonist)
 		if((!a_id || antag.id == a_id) && antag.faction == F)
 			return TRUE
@@ -226,4 +226,4 @@ GLOBAL_LIST_EMPTY(faction_types)
 	if(!factions.len)
 		return new f_id
 	else
-		return factions[1]
+		return factions69169

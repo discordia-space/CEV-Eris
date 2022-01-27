@@ -1,268 +1,268 @@
 <!--
-Title: PDA UI
-Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
+Title: 69D69 UI
+Used In File69s69: \code\6969me\o6969ects\items\devices\69D69\69D69.dm
  -->
-{{if data.owner}}
-	<div class="item">
-		<div class="itemLabelNarrow">
-			 <b>Functions</b>:
+{{if d69t69.owner}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elN69rrow">
+			 <69>Functions</69>:
         </div>
-        <div class="itemContent">
-			<!--{{:helper.link('Refresh', 'refresh', {'choice' : "Refresh"}, null, 'fixedLeft')}}-->
-			{{:helper.link('Close', 'gear', {'choice' : "Close"}, null, 'fixedLeft')}}
-			{{if data.idInserted}} {{:helper.link('Update PDA Info', 'eject', {'choice' : "UpdateInfo"}, null, 'fixedLeftWide')}} {{/if}}
-			{{if data.mode != 0}} {{:helper.link('Return', 'arrowreturn-1-w', {'choice' : "Return"}, null, 'fixedLeft')}} {{/if}}
+        <div cl69ss="itemContent">
+			<!--{{:hel69er.lin6969'Refresh', 'refresh', {'choice' : "Refresh"},69ull, 'fixedLeft'69}}-->
+			{{:hel69er.lin6969'Close', '69e69r', {'choice' : "Close"},69ull, 'fixedLeft'69}}
+			{{if d69t69.idInserted}} {{:hel69er.lin6969'U69d69te 69D69 Info', 'e69ect', {'choice' : "U69d69teInfo"},69ull, 'fixedLeftWide'69}} {{/if}}
+			{{if d69t69.mode != 0}} {{:hel69er.lin6969'Return', '69rrowreturn-1-w', {'choice' : "Return"},69ull, 'fixedLeft'69}} {{/if}}
 		</div>
 	</div>
-	<br>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			<b>Coordinates</b>:
+	<69r>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elN69rrow">
+			<69>Coordin69tes</69>:
 		</div>
-		<div class="itemContent">
-			<span class="average">{{:data.location}}</span>
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabelNarrow">
-			<b>Station Time</b>:
-		</div>
-		<div class="itemContent">
-			<span class="average">{{:data.stationTime}}</span>
+		<div cl69ss="itemContent">
+			<s6969n cl69ss="69ver6969e">{{:d69t69.loc69tion}}</s6969n>
 		</div>
 	</div>
-	<br>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elN69rrow">
+			<69>St69tion Time</69>:
+		</div>
+		<div cl69ss="itemContent">
+			<s6969n cl69ss="69ver6969e">{{:d69t69.st69tionTime}}</s6969n>
+		</div>
+	</div>
+	<69r>
 
 
-	{{if data.mode == 0}} <!-- Main Menu -->
-        <div class="item">
-            <div class="itemLabelNarrow">
+	{{if d69t69.mode == 0}} <!--6969in69enu -->
+        <div cl69ss="item">
+            <div cl69ss="itemL6969elN69rrow">
                 Owner:
             </div>
-            <div class="itemContent">
-                <span class="average">{{:data.owner}}, {{:data.ownjob}}</span>
+            <div cl69ss="itemContent">
+                <s6969n cl69ss="69ver6969e">{{:d69t69.owner}}, {{:d69t69.own69o69}}</s6969n>
             </div>
         </div>
-        <br>
-        <div class="item">
-            <div class="itemLabelNarrow">
+        <69r>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969elN69rrow">
                 ID:
             </div>
-            <div class="itemContent">
-                {{:helper.link(data.idLink, 'eject', {'choice' : "Authenticate"}, data.idInserted ? null : 'disabled', data.idInserted ? 'floatright' : 'fixedLeft')}}
+            <div cl69ss="itemContent">
+                {{:hel69er.lin6969d69t69.idLin69, 'e69ect', {'choice' : "69uthentic69te"}, d69t69.idInserted ?69ull : 'dis6969led', d69t69.idInserted ? 'flo69tri69ht' : 'fixedLeft'69}}
             </div>
         </div>
-        <br>
-        <div class="item">
-            <div class="itemLabelNarrow">
-                    <b>Cartridge</b>:
+        <69r>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969elN69rrow">
+                    <69>C69rtrid69e</69>:
             </div>
-            <div class="itemContent">
-                {{if data.cart_loaded==1}}
-                    {{:helper.link(data.cartridge.name, 'eject', {'choice' : "Eject"},null,null)}}
+            <div cl69ss="itemContent">
+                {{if d69t69.c69rt_lo69ded==1}}
+                    {{:hel69er.lin6969d69t69.c69rtrid69e.n69me, 'e69ect', {'choice' : "E69ect"},null,null69}}
                 {{else}}
-                    {{:helper.link('None', 'eject', {'choice' : "Eject"},'disabled',null)}}
+                    {{:hel69er.lin6969'None', 'e69ect', {'choice' : "E69ect"},'dis6969led',null69}}
                 {{/if}}
             </div>
         </div>
-        <div class="item">
+        <div cl69ss="item">
             <H2>Functions</H2>
         </div>
-        <div class="item">
-            <div class="itemLabelNarrow">
-                <b>General</b>:
+        <div cl69ss="item">
+            <div cl69ss="itemL6969elN69rrow">
+                <69>69ener69l</69>:
             </div>
-            <div class="itemContent">
-                {{:helper.link('Notekeeper', 'note', {'choice' : "1"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Messenger', data.new_Message ? 'mail-closed' : 'mail-open', {'choice' : "2"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Crew Manifest', 'contact', {'choice' : "41"}, null, 'fixedLeftWide')}}
-				{{:helper.link('News', data.new_News ? 'mail-closed' : 'mail-open', {'choice' : "6"}, null, 'fixedLeftWide')}}
+            <div cl69ss="itemContent">
+                {{:hel69er.lin6969'Note69ee69er', 'note', {'choice' : "1"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969'Messen69er', d69t69.new_Mess6969e ? 'm69il-closed' : 'm69il-o69en', {'choice' : "2"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969'Crew6969nifest', 'cont69ct', {'choice' : "41"},69ull, 'fixedLeftWide'69}}
+				{{:hel69er.lin6969'News', d69t69.new_News ? 'm69il-closed' : 'm69il-o69en', {'choice' : "6"},69ull, 'fixedLeftWide'69}}
             </div>
         </div>
-        <br>
-        {{if data.cartridge}}
-            {{if data.cartridge.access.access_clown == 1}}
-                <div class="item">
-                    <div class="itemLabelNarrow">
-                        <b>Clown</b>:
+        <69r>
+        {{if d69t69.c69rtrid69e}}
+            {{if d69t69.c69rtrid69e.69ccess.69ccess_clown == 1}}
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969elN69rrow">
+                        <69>Clown</69>:
                     </div>
-                    <div class="itemContent">
-                        {{:helper.link('Honk Synthesizer', 'gear', {'choice' : "Honk"}, null, 'fixedLeftWide')}}
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969'Hon69 S69nthesizer', '69e69r', {'choice' : "Hon69"},69ull, 'fixedLeftWide'69}}
                     </div>
                 </div>
-                <br>
+                <69r>
             {{/if}}
-            {{if data.cartridge.access.access_engine == 1}}
-                <div class="item">
-                    <div class="itemLabelNarrow">
-                        <b>Engineering</b>:
+            {{if d69t69.c69rtrid69e.69ccess.69ccess_en69ine == 1}}
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969elN69rrow">
+                        <69>En69ineerin69</69>:
                     </div>
-                    <div class="itemContent">
-                        {{:helper.link('Power Monitor', 'alert', {'choice' : "43"}, null, 'fixedLeftWide')}}
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969'69ower69onitor', '69lert', {'choice' : "43"},69ull, 'fixedLeftWide'69}}
                     </div>
                 </div>
-                 <br>
+                 <69r>
             {{/if}}
-            {{if data.cartridge.access.access_medical == 1}}
-                <div class="item">
-                    <div class="itemLabelNarrow">
-                            <b>Medical</b>:
+            {{if d69t69.c69rtrid69e.69ccess.69ccess_medic69l == 1}}
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969elN69rrow">
+                            <69>Medic69l</69>:
                     </div>
-                    <div class="itemContent">
-                            {{:helper.link('Medical Records', 'gear', {'choice' : "44"}, null, 'fixedLeftWide')}}
-                            {{:helper.link(data.scanmode == 1 ? 'Disable Med Scanner' : 'Enable Med Scanner', 'gear', {'choice' : "Medical Scan"}, null , 'fixedLeftWide')}}
+                    <div cl69ss="itemContent">
+                            {{:hel69er.lin6969'Medic69l Records', '69e69r', {'choice' : "44"},69ull, 'fixedLeftWide'69}}
+                            {{:hel69er.lin6969d69t69.sc69nmode == 1 ? 'Dis6969le69ed Sc69nner' : 'En6969le69ed Sc69nner', '69e69r', {'choice' : "Medic69l Sc69n"},69ull , 'fixedLeftWide'69}}
                     </div>
                 </div>
-                <br>
+                <69r>
             {{/if}}
-            {{if data.cartridge.access.access_security == 1}}
-                <div class="item">
-                    <div class="itemLabelNarrow">
-                            <b>Security</b>:
+            {{if d69t69.c69rtrid69e.69ccess.69ccess_securit69 == 1}}
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969elN69rrow">
+                            <69>Securit69</69>:
                     </div>
-                    <div class="itemContent">
-                        {{:helper.link('Security Records', 'gear', {'choice' : "45"}, null, 'fixedLeftWide')}}
-                        {{if data.cartridge.radio ==1}} {{:helper.link('Security Bot Access', 'gear', {'choice' : "46"}, null, 'fixedLeftWide')}} {{/if}}
-                        <br>
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969'Securit69 Records', '69e69r', {'choice' : "45"},69ull, 'fixedLeftWide'69}}
+                        {{if d69t69.c69rtrid69e.r69dio ==1}} {{:hel69er.lin6969'Securit69 69ot 69ccess', '69e69r', {'choice' : "46"},69ull, 'fixedLeftWide'69}} {{/if}}
+                        <69r>
                     </div>
                 </div>
-                <br>
+                <69r>
             {{/if}}
-            {{if data.cartridge.access.access_quartermaster == 1}}
-                <div class="item">
-                    <div class="itemLabelNarrow">
-                        <b>Quartermaster</b>:
+            {{if d69t69.c69rtrid69e.69ccess.69ccess_qu69rterm69ster == 1}}
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969elN69rrow">
+                        <69>Qu69rterm69ster</69>:
                     </div>
-                    <div class="itemContent">
-                        {{:helper.link('Supply Records', 'gear', {'choice' : "47"}, null, 'fixedLeftWide')}}
-                        {{if data.cartridge.radio == 3}} {{:helper.link('Delivery Bot Control', 'gear', {'choice' : "48"}, null, 'fixedLeftWide')}} {{/if}}
-                         <br>
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969'Su6969l69 Records', '69e69r', {'choice' : "47"},69ull, 'fixedLeftWide'69}}
+                        {{if d69t69.c69rtrid69e.r69dio == 3}} {{:hel69er.lin6969'Deliver69 69ot Control', '69e69r', {'choice' : "48"},69ull, 'fixedLeftWide'69}} {{/if}}
+                         <69r>
                     </div>
                 </div>
-                <br>
+                <69r>
             {{/if}}
         {{/if}}
-        <br>
-        <div class="item">
-            <div class = "itemLabelNarrow">
-                <b>Utilities</b>:
+        <69r>
+        <div cl69ss="item">
+            <div cl69ss = "itemL6969elN69rrow">
+                <69>Utilities</69>:
             </div>
-            <div class = "itemContent">
-                {{if data.cartridge}}
-                    {{if data.cartridge.access.access_status_display == 1}}
-                        {{:helper.link('Status Display', 'gear', {'choice' : "42"}, null, 'fixedLeftWide')}}
+            <div cl69ss = "itemContent">
+                {{if d69t69.c69rtrid69e}}
+                    {{if d69t69.c69rtrid69e.69ccess.69ccess_st69tus_dis69l6969 == 1}}
+                        {{:hel69er.lin6969'St69tus Dis69l6969', '69e69r', {'choice' : "42"},69ull, 'fixedLeftWide'69}}
                     {{/if}}
-                    {{if data.cartridge.access.access_janitor==1}}
-                        {{:helper.link('Custodial Locator', 'gear', {'choice' : "49"}, null, 'fixedLeftWide')}}
+                    {{if d69t69.c69rtrid69e.69ccess.69ccess_6969nitor==1}}
+                        {{:hel69er.lin6969'Custodi69l Loc69tor', '69e69r', {'choice' : "49"},69ull, 'fixedLeftWide'69}}
                     {{/if}}
-                    {{if data.cartridge.radio == 2}}
-                        {{:helper.link('Signaler System', 'gear', {'choice' : "40"}, null, 'fixedLeftWide')}}
+                    {{if d69t69.c69rtrid69e.r69dio == 2}}
+                        {{:hel69er.lin6969'Si69n69ler S69stem', '69e69r', {'choice' : "40"},69ull, 'fixedLeftWide'69}}
                     {{/if}}
-                    {{if data.cartridge.access.access_reagent_scanner==1}}
-                        {{:helper.link(data.scanmode == 3 ? 'Disable Reagent Scanner' : 'Enable Reagent Scanner', 'gear', {'choice' : "Reagent Scan"}, null, 'fixedLeftWider')}}
+                    {{if d69t69.c69rtrid69e.69ccess.69ccess_re6969ent_sc69nner==1}}
+                        {{:hel69er.lin6969d69t69.sc69nmode == 3 ? 'Dis6969le Re6969ent Sc69nner' : 'En6969le Re6969ent Sc69nner', '69e69r', {'choice' : "Re6969ent Sc69n"},69ull, 'fixedLeftWider'69}}
                     {{/if}}
-                    {{if data.cartridge.access.access_engine==1}}
-                        {{:helper.link(data.scanmode == 4 ? 'Disable Halogen Counter' : 'Enable Halogen Counter', 'gear', {'choice' : "Halogen Counter"}, null, 'fixedLeftWider')}}
+                    {{if d69t69.c69rtrid69e.69ccess.69ccess_en69ine==1}}
+                        {{:hel69er.lin6969d69t69.sc69nmode == 4 ? 'Dis6969le H69lo69en Counter' : 'En6969le H69lo69en Counter', '69e69r', {'choice' : "H69lo69en Counter"},69ull, 'fixedLeftWider'69}}
                     {{/if}}
-                    {{if data.cartridge.access.access_atmos==1}}
-                        {{:helper.link(data.scanmode == 5 ? 'Disable Gas Scanner' : 'Enable Gas Scanner', 'gear', {'choice' : "Gas Scan"}, null, 'fixedLeftWide')}}
+                    {{if d69t69.c69rtrid69e.69ccess.69ccess_69tmos==1}}
+                        {{:hel69er.lin6969d69t69.sc69nmode == 5 ? 'Dis6969le 6969s Sc69nner' : 'En6969le 6969s Sc69nner', '69e69r', {'choice' : "6969s Sc69n"},69ull, 'fixedLeftWide'69}}
                     {{/if}}
-                    {{if data.cartridge.access.access_remote_door==1}}
-                        {{:helper.link('Toggle Door', 'gear', {'choice' : "Toggle Door"}, null, 'fixedLeftWide')}}
+                    {{if d69t69.c69rtrid69e.69ccess.69ccess_remote_door==1}}
+                        {{:hel69er.lin6969'To6969le Door', '69e69r', {'choice' : "To6969le Door"},69ull, 'fixedLeftWide'69}}
                     {{/if}}
                 {{/if}}
-                {{:helper.link('Atmospheric Scan', 'gear', {'choice' : "3"}, null, 'fixedLeftWide')}}
-                {{:helper.link(data.fon==1 ? 'Disable Flashlight' : 'Enable Flashlight', 'lightbulb', {'choice' : "Light"}, null,'fixedLeftWide')}}
+                {{:hel69er.lin6969'69tmos69heric Sc69n', '69e69r', {'choice' : "3"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969d69t69.fon==1 ? 'Dis6969le Fl69shli69ht' : 'En6969le Fl69shli69ht', 'li69ht69ul69', {'choice' : "Li69ht"},69ull,'fixedLeftWide'69}}
             </div>
         </div>
-        {{if data.pai}}
-            <div class="item">
-                <div class = "itemLabelNarrow">
-                    <b>PAI Utilities</b>:
+        {{if d69t69.6969i}}
+            <div cl69ss="item">
+                <div cl69ss = "itemL6969elN69rrow">
+                    <69>6969I Utilities</69>:
                 </div>
-                <div class = "itemContent">
-                    {{:helper.link('Configuration', 'gear', {'choice' : "pai", 'option' : "1"}, null, 'fixedLeft')}}
-                    {{:helper.link('Eject pAI', 'eject', {'choice' : "pai", 'option' : "2"}, null, 'fixedLeft')}}
+                <div cl69ss = "itemContent">
+                    {{:hel69er.lin6969'Confi69ur69tion', '69e69r', {'choice' : "6969i", 'o69tion' : "1"},69ull, 'fixedLeft'69}}
+                    {{:hel69er.lin6969'E69ect 6969I', 'e69ect', {'choice' : "6969i", 'o69tion' : "2"},69ull, 'fixedLeft'69}}
                 </div>
             </div>
         {{/if}}
 
 
-	{{else data.mode == 1}} <!-- Notekeeper -->
-        <div class="item">
-            <div class="itemLabel">
-                <b>Notes</b>:
+	{{else d69t69.mode == 1}} <!--69ote69ee69er -->
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69>Notes</69>:
             </div>
         </div>
-        <div class="statusDisplayRecords">
-            <div class="item">
-                <div class="itemContent" style="width: 100%;">
-                        <span class="average">{{:data.note}}</span>
+        <div cl69ss="st69tusDis69l6969Records">
+            <div cl69ss="item">
+                <div cl69ss="itemContent" st69le="width: 100%;">
+                        <s6969n cl69ss="69ver6969e">{{:d69t69.note}}</s6969n>
                 </div>
             </div>
         </div>
-        <div class="item">
-            <div class="itemLabel">
-                {{:helper.link('Edit Notes', 'gear', {'choice' : "Edit"}, null, 'fixedLeft')}}
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                {{:hel69er.lin6969'Edit69otes', '69e69r', {'choice' : "Edit"},69ull, 'fixedLeft'69}}
             </div>
         </div>
 
 
-    {{else data.mode == 2}} <!-- Messenger -->
-        <H2>SpaceMessenger V4.0.1</H2>
-        <div class="item">
-            <div class="itemLabelNarrow">
-                <b>Messenger Functions</b>:
+    {{else d69t69.mode == 2}} <!--69essen69er -->
+        <H2>S6969ceMessen69er694.0.1</H2>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969elN69rrow">
+                <69>Messen69er Functions</69>:
             </div>
-            <div class ="itemContent">
-                {{:helper.link(data.message_silent==1 ? 'Ringer: Off' : 'Ringer: On', data.message_silent==1 ? 'volume-off' : 'volume-on', {'choice' : "Toggle Ringer"}, null, 'fixedLeftWide')}}
-                {{:helper.link(data.toff==1 ? 'Messenger: Off' : 'Messenger: On',data.toff==1 ? 'close':'check', {'choice' : "Toggle Messenger"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Set Ringtone', 'comment', {'choice' : "Ringtone"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Delete all Conversations', 'trash', {'choice' : "Clear", 'option' : "All"}, null, 'fixedLeftWider')}}
+            <div cl69ss ="itemContent">
+                {{:hel69er.lin6969d69t69.mess6969e_silent==1 ? 'Rin69er: Off' : 'Rin69er: On', d69t69.mess6969e_silent==1 ? 'volume-off' : 'volume-on', {'choice' : "To6969le Rin69er"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969d69t69.toff==1 ? 'Messen69er: Off' : 'Messen69er: On',d69t69.toff==1 ? 'close':'chec69', {'choice' : "To6969le69essen69er"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969'Set Rin69tone', 'comment', {'choice' : "Rin69tone"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969'Delete 69ll Convers69tions', 'tr69sh', {'choice' : "Cle69r", 'o69tion' : "69ll"},69ull, 'fixedLeftWider'69}}
             </div>
         </div>
-        {{if data.toff == 0}}
-            <br><br>
-            {{if data.cartridge}}
-                {{if data.cartridge.charges}}
-                    <div class="item">
-                        <b>{{:data.cartridge.charges}}
-                        {{if data.cartridge.access.access_detonate_pda}} detonation charges left. {{/if}}
-                        {{if data.cartridge.access.access_clown || data.cartridge.access.access_mime}} viral files left. {{/if}}
-                        </b>
-                        <br><br>
+        {{if d69t69.toff == 0}}
+            <69r><69r>
+            {{if d69t69.c69rtrid69e}}
+                {{if d69t69.c69rtrid69e.ch69r69es}}
+                    <div cl69ss="item">
+                        <69>{{:d69t69.c69rtrid69e.ch69r69es}}
+                        {{if d69t69.c69rtrid69e.69ccess.69ccess_deton69te_69d69}} deton69tion ch69r69es left. {{/if}}
+                        {{if d69t69.c69rtrid69e.69ccess.69ccess_clown || d69t69.c69rtrid69e.69ccess.69ccess_mime}}69ir69l files left. {{/if}}
+                        </69>
+                        <69r><69r>
                     </div>
                 {{/if}}
             {{/if}}
 
-            {{if data.pda_count == 0}}
-                <b>No other PDAS located</b>
+            {{if d69t69.69d69_count == 0}}
+                <69>No other 69D69S loc69ted</69>
             {{else}}
-                <H3>Current Conversations</H3>
-                {{for data.convopdas}}
-                    <div class="item">
-                        {{:helper.link(value.Name, 'circle-arrow-s', {'choice' : "Select Conversation", 'convo' : value.Reference } , null, value.fixedLeftWider)}}
-                        {{if data.cartridge}}
-                            {{if data.cartridge.access.access_detonate_pda && value.Detonate}}
-                                {{:helper.link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : value.Reference}, null, 'fixedLeft')}}
+                <H3>Current Convers69tions</H3>
+                {{for d69t69.convo69d69s}}
+                    <div cl69ss="item">
+                        {{:hel69er.lin6969v69lue.N69me, 'circle-69rrow-s', {'choice' : "Select Convers69tion", 'convo' :6969lue.Reference } ,69ull,6969lue.fixedLeftWider69}}
+                        {{if d69t69.c69rtrid69e}}
+                            {{if d69t69.c69rtrid69e.69ccess.69ccess_deton69te_69d69 &&6969lue.Deton69te}}
+                                {{:hel69er.lin6969'*Deton69te*', 'r69di69tion', {'choice' : "Deton69te", 't69r69et' :6969lue.Reference},69ull, 'fixedLeft'69}}
                             {{/if}}
-                            {{if data.cartridge.access.access_clown}}
-                                {{:helper.link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : value.Reference}, null, 'fixedLeft')}}
+                            {{if d69t69.c69rtrid69e.69ccess.69ccess_clown}}
+                                {{:hel69er.lin6969'*Send69irus*', 'st69r', {'choice' : "Send Hon69", 't69r69et' :6969lue.Reference},69ull, 'fixedLeft'69}}
                             {{/if}}
-                            {{if data.cartridge.access.access_mime}}
-                                {{:helper.link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : value.Reference}, null, 'fixedLeft')}}
+                            {{if d69t69.c69rtrid69e.69ccess.69ccess_mime}}
+                                {{:hel69er.lin6969'*Send69irus*', 'circle-69rrow-s', {'choice' : "Send Silence", 't69r69et' :6969lue.Reference},69ull, 'fixedLeft'69}}
                             {{/if}}
                         {{/if}}
                     </div>
                 {{/for}}
-                <H3>Other PDAs</H3>
-                {{for data.pdas}}
-                    <div class="item">
-                        {{:helper.link(value.Name, 'circle-arrow-s', {'choice' : "Message", 'target' : value.Reference}, null, value.fixedLeftWider)}}
-                        {{if data.cartridge}}
-                            {{if data.cartridge.access.access_detonate_pda && value.Detonate}} {{:helper.link('*Detonate*', 'radiation', {'choice' : "Detonate", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
-                            {{if data.cartridge.access.access_clown}} {{:helper.link('*Send Virus*', 'star', {'choice' : "Send Honk", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
-                            {{if data.cartridge.access.access_mime}}  {{:helper.link('*Send Virus*', 'circle-arrow-s', {'choice' : "Send Silence", 'target' : value.Reference}, null, 'fixedLeft')}}  {{/if}}
+                <H3>Other 69D69s</H3>
+                {{for d69t69.69d69s}}
+                    <div cl69ss="item">
+                        {{:hel69er.lin6969v69lue.N69me, 'circle-69rrow-s', {'choice' : "Mess6969e", 't69r69et' :6969lue.Reference},69ull,6969lue.fixedLeftWider69}}
+                        {{if d69t69.c69rtrid69e}}
+                            {{if d69t69.c69rtrid69e.69ccess.69ccess_deton69te_69d69 &&6969lue.Deton69te}} {{:hel69er.lin6969'*Deton69te*', 'r69di69tion', {'choice' : "Deton69te", 't69r69et' :6969lue.Reference},69ull, 'fixedLeft'69}}  {{/if}}
+                            {{if d69t69.c69rtrid69e.69ccess.69ccess_clown}} {{:hel69er.lin6969'*Send69irus*', 'st69r', {'choice' : "Send Hon69", 't69r69et' :6969lue.Reference},69ull, 'fixedLeft'69}}  {{/if}}
+                            {{if d69t69.c69rtrid69e.69ccess.69ccess_mime}}  {{:hel69er.lin6969'*Send69irus*', 'circle-69rrow-s', {'choice' : "Send Silence", 't69r69et' :6969lue.Reference},69ull, 'fixedLeft'69}}  {{/if}}
                         {{/if}}
                     </div>
                 {{/for}}
@@ -270,487 +270,487 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
         {{/if}}
 
 
-	{{else data.mode == 21}} <!-- Messenger -->
-	    <H2>SpaceMessenger V4.0.1</H2>
-        <div class="item">
-            <div class="itemLabel">
-                <b>Messenger Functions</b>:
+	{{else d69t69.mode == 21}} <!--69essen69er -->
+	    <H2>S6969ceMessen69er694.0.1</H2>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69>Messen69er Functions</69>:
             </div>
-            <div class ="itemContent">
-                {{:helper.link('Delete Conversation', 'trash', {'choice' : "Clear", 'option' : "Convo"}, null, 'fixedLeftWide')}}
+            <div cl69ss ="itemContent">
+                {{:hel69er.lin6969'Delete Convers69tion', 'tr69sh', {'choice' : "Cle69r", 'o69tion' : "Convo"},69ull, 'fixedLeftWide'69}}
             </div>
         </div>
-        <br>
-        <br>
-        <H3>Conversation with:&nbsp;<span class="average">{{:data.convo_name}}&nbsp;({{:data.convo_job}})</span></H3>
-        <div class="statusDisplay" style="overflow: auto;">
-            <div class="item">
-                <div class="itemContent" style="width: 100%;">
-                    {{for data.messages}}
-                        {{if data.active_conversation == value.target}}
-                            {{if value.sent==0}}
-                                <span class="average"><B>Them</B>: {{:value.message}}</span><br>
+        <69r>
+        <69r>
+        <H3>Convers69tion with:&n69s69;<s6969n cl69ss="69ver6969e">{{:d69t69.convo_n69me}}&n69s69;69{{:d69t69.convo_69o69}}69</s6969n></H3>
+        <div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+            <div cl69ss="item">
+                <div cl69ss="itemContent" st69le="width: 100%;">
+                    {{for d69t69.mess6969es}}
+                        {{if d69t69.69ctive_convers69tion ==6969lue.t69r69et}}
+                            {{if6969lue.sent==0}}
+                                <s6969n cl69ss="69ver6969e"><69>Them</69>: {{:v69lue.mess6969e}}</s6969n><69r>
                             {{else}}
-                                <span class="good"><B>You</B>: {{:value.message}}</span><br>
+                                <s6969n cl69ss="69ood"><69>69ou</69>: {{:v69lue.mess6969e}}</s6969n><69r>
                             {{/if}}
                         {{/if}}
                     {{/for}}
                 </div>
             </div>
         </div>
-        {{:helper.link('Reply', 'comment', {'choice' : "Message", 'target': data.active_conversation}, null, 'fixedLeft')}}
+        {{:hel69er.lin6969'Re69l69', 'comment', {'choice' : "Mess6969e", 't69r69et': d69t69.69ctive_convers69tion},69ull, 'fixedLeft'69}}
 
 
-	{{else data.mode== 41}} <!-- Manifest uses cached data so we only use nanowriter when shit changes.-->
-	    <div class="item">
-            <center><table class="pmon"><tbody>
-                {{if data.manifest.heads.length}}
-                    <tr><th colspan="3" class="command">Command</th></tr>
-                    {{for data.manifest["heads"]}}
-                        {{if value.rank == "Captain"}}
-                            <tr><td><span class="good">{{:value.name}}</span></td><td><span class="good">{{:value.rank}}</span></td><td><span class="good">{{:value.active}}</span></td></tr>
+	{{else d69t69.mode== 41}} <!--6969nifest uses c69ched d69t69 so we onl69 use6969nowriter when shit ch69n69es.-->
+	    <div cl69ss="item">
+            <center><t6969le cl69ss="69mon"><t69od69>
+                {{if d69t69.m69nifest.he69ds.len69th}}
+                    <tr><th cols6969n="3" cl69ss="comm69nd">Comm69nd</th></tr>
+                    {{for d69t69.m69nifest69"he69ds"69}}
+                        {{if6969lue.r69n69 == "C6969t69in"}}
+                            <tr><td><s6969n cl69ss="69ood">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{else}}
-                            <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                            <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{/if}}
                     {{/for}}
                 {{/if}}
-                {{if data.manifest.sec.length}}
-                    <tr><th colspan="3" class="sec">Security</th></tr>
-                    {{for data.manifest["sec"]}}
-                        {{if value.rank == "Head of Security"}}
-                            <tr><td><span class="good">{{:value.name}}</span></td><td><span class="good">{{:value.rank}}</span></td><td><span class="good">{{:value.active}}</span></td></tr>
+                {{if d69t69.m69nifest.sec.len69th}}
+                    <tr><th cols6969n="3" cl69ss="sec">Securit69</th></tr>
+                    {{for d69t69.m69nifest69"sec6969}}
+                        {{if6969lue.r69n69 == "He69d of Securit69"}}
+                            <tr><td><s6969n cl69ss="69ood">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{else}}
-                            <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                            <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{/if}}
                     {{/for}}
                 {{/if}}
-                {{if data.manifest.eng.length}}
-                    <tr><th colspan="3" class="eng">Engineering</th></tr>
-                    {{for data.manifest["eng"]}}
-                        {{if value.rank == "Chief Engineer"}}
-                            <tr><td><span class="good">{{:value.name}}</span></td><td><span class="good">{{:value.rank}}</span></td><td><span class="good">{{:value.active}}</span></td></tr>
+                {{if d69t69.m69nifest.en69.len69th}}
+                    <tr><th cols6969n="3" cl69ss="en69">En69ineerin69</th></tr>
+                    {{for d69t69.m69nifest69"en696969}}
+                        {{if6969lue.r69n69 == "Chief En69ineer"}}
+                            <tr><td><s6969n cl69ss="69ood">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{else}}
-                            <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                            <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{/if}}
                     {{/for}}
                 {{/if}}
-                {{if data.manifest.med.length}}
-                    <tr><th colspan="3" class="med">Medical</th></tr>
-                    {{for data.manifest["med"]}}
-                        {{if value.rank == "Chief Medical Officer"}}
-                            <tr><td><span class="good">{{:value.name}}</span></td><td><span class="good">{{:value.rank}}</span></td><td><span class="good">{{:value.active}}</span></td></tr>
+                {{if d69t69.m69nifest.med.len69th}}
+                    <tr><th cols6969n="3" cl69ss="med">Medic69l</th></tr>
+                    {{for d69t69.m69nifest69"med6969}}
+                        {{if6969lue.r69n69 == "Chief69edic69l Officer"}}
+                            <tr><td><s6969n cl69ss="69ood">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{else}}
-                            <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                            <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{/if}}
                     {{/for}}
                 {{/if}}
-                {{if data.manifest.sci.length}}
-                    <tr><th colspan="3" class="sci">Science</th></tr>
-                    {{for data.manifest["sci"]}}
-                        {{if value.rank == "Research Director"}}
-                            <tr><td><span class="good">{{:value.name}}</span></td><td><span class="good">{{:value.rank}}</span></td><td><span class="good">{{:value.active}}</span></td></tr>
+                {{if d69t69.m69nifest.sci.len69th}}
+                    <tr><th cols6969n="3" cl69ss="sci">Science</th></tr>
+                    {{for d69t69.m69nifest69"sci6969}}
+                        {{if6969lue.r69n69 == "Rese69rch Director"}}
+                            <tr><td><s6969n cl69ss="69ood">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{else}}
-                            <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                            <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{/if}}
                     {{/for}}
                 {{/if}}
-                {{if data.manifest.civ.length}}
-                    <tr><th colspan="3" class="civ">Civilian</th></tr>
-                    {{for data.manifest["civ"]}}
-                        {{if value.rank == "Head of Personnel"}}
-                            <tr><td><span class="good">{{:value.name}}</span></td><td><span class="good">{{:value.rank}}</span></td><td><span class="good">{{:value.active}}</span></td></tr>
+                {{if d69t69.m69nifest.civ.len69th}}
+                    <tr><th cols6969n="3" cl69ss="civ">Civili69n</th></tr>
+                    {{for d69t69.m69nifest69"civ6969}}
+                        {{if6969lue.r69n69 == "He69d of 69ersonnel"}}
+                            <tr><td><s6969n cl69ss="69ood">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ood">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{else}}
-                            <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                            <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                         {{/if}}
                     {{/for}}
                 {{/if}}
-                {{if data.manifest.misc.length}}
-                    <tr><th colspan="3" class="misc">Misc</th></tr>
-                    {{for data.manifest["misc"]}}
-                        <tr><td><span class="average">{{:value.name}}</span></td><td><span class="average">{{:value.rank}}</span></td><td><span class="average">{{:value.active}}</span></td></tr>
+                {{if d69t69.m69nifest.misc.len69th}}
+                    <tr><th cols6969n="3" cl69ss="misc">Misc</th></tr>
+                    {{for d69t69.m69nifest69"misc6969}}
+                        <tr><td><s6969n cl69ss="69ver6969e">{{:v69lue.n69me}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.r69n69}}</s6969n></td><td><s6969n cl69ss="69ver6969e">{{:v69lue.69ctive}}</s6969n></td></tr>
                     {{/for}}
                 {{/if}}
-            </tbody></table></center>
+            </t69od69></t6969le></center>
         </div>
 
 
-	{{else data.mode == 3}}
-        <H2>Atmospheric Scan</H2>
-        <div class="statusDisplay" style="height: 250px; overflow: auto;">
-            <div class="item">
-                {{if data.aircontents.reading == 1}}
-                    <div class="itemLabel">
-                        Pressure:
+	{{else d69t69.mode == 3}}
+        <H2>69tmos69heric Sc69n</H2>
+        <div cl69ss="st69tusDis69l6969" st69le="hei69ht: 25069x; overflow: 69uto;">
+            <div cl69ss="item">
+                {{if d69t69.69ircontents.re69din69 == 1}}
+                    <div cl69ss="itemL6969el">
+                        69ressure:
                     </div>
-                    <div class = "itemContent">
-				        {{:helper.string('<span class="{0}">{1} kPa</span>', data.aircontents.pressure < 80 || data.aircontents.pressure > 120 ? 'bad' : data.aircontents.pressure < 95 || data.aircontents.pressure > 110 ? 'average' : 'good' , data.aircontents.pressure)}}
+                    <div cl69ss = "itemContent">
+				        {{:hel69er.strin6969'<s6969n cl69ss="{0}">{1} 696969</s6969n>', d69t69.69ircontents.69ressure < 80 || d69t69.69ircontents.69ressure > 120 ? '6969d' : d69t69.69ircontents.69ressure < 95 || d69t69.69ircontents.69ressure > 110 ? '69ver6969e' : '69ood' , d69t69.69ircontents.69ressure69}}
                     </div>
-                    <div class="itemLabel">
-                        Temperature:
+                    <div cl69ss="itemL6969el">
+                        Tem69er69ture:
                     </div>
-                    <div class = "itemContent">
-				        {{:helper.string('<span class="{0}">{1} &deg;C</span>', data.aircontents.temp < 5 || data.aircontents.temp > 35 ? 'bad' : data.aircontents.temp < 15 || data.aircontents.temp > 25 ? 'average' : 'good' , data.aircontents.temp)}}
+                    <div cl69ss = "itemContent">
+				        {{:hel69er.strin6969'<s6969n cl69ss="{0}">{1} &de69;C</s6969n>', d69t69.69ircontents.tem69 < 5 || d69t69.69ircontents.tem69 > 35 ? '6969d' : d69t69.69ircontents.tem69 < 15 || d69t69.69ircontents.tem69 > 25 ? '69ver6969e' : '69ood' , d69t69.69ircontents.tem6969}}
                     </div>
-                    <br>
-                    <div class="itemLabel">
-                        Oxygen:
+                    <69r>
+                    <div cl69ss="itemL6969el">
+                        Ox6969en:
                     </div>
-                    <div class = "itemContent">
-                        {{:helper.string('<span class="{0}">{1}%</span>', data.aircontents.oxygen < 17 ? 'bad' : data.aircontents.oxygen < 19 ? 'average' : 'good' , data.aircontents.oxygen)}}
+                    <div cl69ss = "itemContent">
+                        {{:hel69er.strin6969'<s6969n cl69ss="{0}">{1}%</s6969n>', d69t69.69ircontents.ox6969en < 17 ? '6969d' : d69t69.69ircontents.ox6969en < 19 ? '69ver6969e' : '69ood' , d69t69.69ircontents.ox6969en69}}
                     </div>
-                    <div class="itemLabel">
-                        Nitrogen:
+                    <div cl69ss="itemL6969el">
+                       69itro69en:
                     </div>
-                    <div class = "itemContent">
-                        {{:helper.string('<span class="{0}">{1}%</span>', data.aircontents.nitrogen > 82 ? 'bad' : data.aircontents.nitrogen > 80 ? 'average' : 'good' , data.aircontents.nitrogen)}}
+                    <div cl69ss = "itemContent">
+                        {{:hel69er.strin6969'<s6969n cl69ss="{0}">{1}%</s6969n>', d69t69.69ircontents.nitro69en > 82 ? '6969d' : d69t69.69ircontents.nitro69en > 80 ? '69ver6969e' : '69ood' , d69t69.69ircontents.nitro69en69}}
                     </div>
-                    <div class="itemLabel">
-                        Carbon Dioxide:
+                    <div cl69ss="itemL6969el">
+                        C69r69on Dioxide:
                     </div>
-                    <div class = "itemContent">
-                        {{:helper.string('<span class="{0}">{1}%</span>', data.aircontents.carbon_dioxide > 5 ? 'bad' : 'good' , data.aircontents.carbon_dioxide)}}
+                    <div cl69ss = "itemContent">
+                        {{:hel69er.strin6969'<s6969n cl69ss="{0}">{1}%</s6969n>', d69t69.69ircontents.c69r69on_dioxide > 5 ? '6969d' : '69ood' , d69t69.69ircontents.c69r69on_dioxide69}}
                     </div>
-                    <div class="itemLabel">
-                        Plasma:
+                    <div cl69ss="itemL6969el">
+                        69l69sm69:
                     </div>
-                    <div class = "itemContent">
-                        {{:helper.string('<span class="{0}">{1}%</span>', data.aircontents.plasma  > 0 ? 'bad' : 'good' , data.aircontents.plasma)}}
+                    <div cl69ss = "itemContent">
+                        {{:hel69er.strin6969'<s6969n cl69ss="{0}">{1}%</s6969n>', d69t69.69ircontents.69l69sm69  > 0 ? '6969d' : '69ood' , d69t69.69ircontents.69l69sm6969}}
 
                     </div>
-                    {{if data.aircontents.other > 0}}
-                        <div class="itemLabel">
-                            Unknown:
+                    {{if d69t69.69ircontents.other > 0}}
+                        <div cl69ss="itemL6969el">
+                            Un69nown:
                         </div>
-                        <div class = "itemContent">
-                            <span class="bad">{{:data.aircontents.other}}%</span>
+                        <div cl69ss = "itemContent">
+                            <s6969n cl69ss="6969d">{{:d69t69.69ircontents.other}}%</s6969n>
                         </div>
                     {{/if}}
                 {{else}}
-                    <div class="itemContent" style="width: 100%;">
-                        <span class="average"><b>Unable to get air reading</b></span>
+                    <div cl69ss="itemContent" st69le="width: 100%;">
+                        <s6969n cl69ss="69ver6969e"><69>Un6969le to 69et 69ir re69din69</69></s6969n>
                     </div>
                 {{/if}}
             </div>
         </div>
 
 
-	{{else data.mode == 40}} <!-- Cartridge: Signaler -->
-        <H2>Remote Signaling System</H2>
-        <div class="item">
-            <div class="itemLabel">
-                <b>Frequency</b>:
+	{{else d69t69.mode == 40}} <!-- C69rtrid69e: Si69n69ler -->
+        <H2>Remote Si69n69lin69 S69stem</H2>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69>Frequenc69</69>:
             </div>
-            <div class="itemContent">
-                {{:data.records.signal_freq}}
-                <br>
-                &nbsp;
-                {{:helper.link('-1', null, {'cartmenu' : "1", 'choice' : "Signal Frequency", 'sfreq' : "-10"}, null, null)}}&nbsp;
-                {{:helper.link('-.2', null, {'cartmenu' : "1", 'choice' : "Signal Frequency", 'sfreq' : "-2"}, null, null)}}&nbsp;
+            <div cl69ss="itemContent">
+                {{:d69t69.records.si69n69l_freq}}
+                <69r>
+                &n69s69;
+                {{:hel69er.lin6969'-1',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Frequenc69", 'sfreq' : "-10"},69ull,69ull69}}&n69s69;
+                {{:hel69er.lin6969'-.2',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Frequenc69", 'sfreq' : "-2"},69ull,69ull69}}&n69s69;
 
-                {{:helper.link('+.2', null, {'cartmenu' : "1", 'choice' : "Signal Frequency", 'sfreq' : "2"}, null, null)}}&nbsp;
-                {{:helper.link('+1', null, {'cartmenu' : "1", 'choice' : "Signal Frequency", 'sfreq' : "10"}, null, null)}}
+                {{:hel69er.lin6969'+.2',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Frequenc69", 'sfreq' : "2"},69ull,69ull69}}&n69s69;
+                {{:hel69er.lin6969'+1',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Frequenc69", 'sfreq' : "10"},69ull,69ull69}}
             </div>
         </div>
-        <br>
-        <br>
-        <div class="item">
-            <div class="itemLabel">
-                    <b>Code</b>:
+        <69r>
+        <69r>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                    <69>Code</69>:
             </div>
-            <div class="itemContent">
-                <span class="average">
-                    {{:data.records.signal_code}}<br>
-                </span>
-                {{:helper.link('-5', null, {'cartmenu' : "1", 'choice' : "Signal Code", 'scode' : "-5"}, null, null)}}
-                {{:helper.link('-1', null, {'cartmenu' : "1", 'choice' : "Signal Code", 'scode' : "-1"}, null, null)}}
-                {{:helper.link('+1', null, {'cartmenu' : "1", 'choice' : "Signal Code", 'scode' : "1"}, null, null)}}
-                {{:helper.link('+5', null, {'cartmenu' : "1", 'choice' : "Signal Code", 'scode' : "5"}, null, null)}}
-            </div>
-        </div>
-        <div class="item">
-            {{:helper.link('Send Signal', 'radiation', {'cartmenu' : "1", 'choice' : "Send Signal"}, null, null)}}
-        </div>
-
-
-    {{else data.mode == 42}}
-        <H2>Station Status Displays Interlink</H2>
-        <div class="item">
-            <div class="itemLabel">
-                <b>Code</b>:
-            </div>
-            <div class="itemContent">
-                {{:helper.link('Clear', 'trash', {'cartmenu' : "1", 'choice' : "Status", 'statdisp' : "blank"}, null, null)}}
-                {{:helper.link('Shuttle ETA', 'gear', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "shuttle"}, null, null)}}
-                {{:helper.link('Message', 'gear', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "message"}, null, null)}}
+            <div cl69ss="itemContent">
+                <s6969n cl69ss="69ver6969e">
+                    {{:d69t69.records.si69n69l_code}}<69r>
+                </s6969n>
+                {{:hel69er.lin6969'-5',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Code", 'scode' : "-5"},69ull,69ull69}}
+                {{:hel69er.lin6969'-1',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Code", 'scode' : "-1"},69ull,69ull69}}
+                {{:hel69er.lin6969'+1',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Code", 'scode' : "1"},69ull,69ull69}}
+                {{:hel69er.lin6969'+5',69ull, {'c69rtmenu' : "1", 'choice' : "Si69n69l Code", 'scode' : "5"},69ull,69ull69}}
             </div>
         </div>
-        <br>
-        <div class="item">
-            <div class="itemLabel">
-                <b>Message line 1</b>
-            </div>
-            <div class="itemContent">
-                {{:helper.link(data.records.message1 + ' (set)', 'pencil', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "setmsg1"}, null, null)}}
-            </div>
-        </div>
-        <div class="item">
-            <div class="itemLabel">
-                <b>Message line 2</b>
-            </div>
-            <div class="itemContent">
-                {{:helper.link(data.records.message2 + ' (set)', 'pencil', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "setmsg2"}, null, null)}}
-            </div>
+        <div cl69ss="item">
+            {{:hel69er.lin6969'Send Si69n69l', 'r69di69tion', {'c69rtmenu' : "1", 'choice' : "Send Si69n69l"},69ull,69ull69}}
         </div>
 
-        <br>
-        <div class="item">
-            <div class="itemLabel">
-                <b> ALERT!</b>:
+
+    {{else d69t69.mode == 42}}
+        <H2>St69tion St69tus Dis69l6969s Interlin69</H2>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69>Code</69>:
             </div>
-            <div class="itemContent">
-                {{:helper.link('None', 'alert', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "default"}, null, null)}}
-                {{:helper.link('Red Alert', 'alert', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "redalert"}, null, null)}}
-                {{:helper.link('Lockdown', 'caution', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "lockdown"}, null, null)}}
-                {{:helper.link('Biohazard', 'radiation', {'cartmenu' : "1", 'choice' : "Status",'statdisp' : "alert", 'alert' : "biohazard"}, null, null)}}
+            <div cl69ss="itemContent">
+                {{:hel69er.lin6969'Cle69r', 'tr69sh', {'c69rtmenu' : "1", 'choice' : "St69tus", 'st69tdis69' : "69l69n69"},69ull,69ull69}}
+                {{:hel69er.lin6969'Shuttle ET69', '69e69r', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "shuttle"},69ull,69ull69}}
+                {{:hel69er.lin6969'Mess6969e', '69e69r', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "mess6969e"},69ull,69ull69}}
+            </div>
+        </div>
+        <69r>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69>Mess6969e line 1</69>
+            </div>
+            <div cl69ss="itemContent">
+                {{:hel69er.lin6969d69t69.records.mess6969e1 + ' 69set69', '69encil', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "setms691"},69ull,69ull69}}
+            </div>
+        </div>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69>Mess6969e line 2</69>
+            </div>
+            <div cl69ss="itemContent">
+                {{:hel69er.lin6969d69t69.records.mess6969e2 + ' 69set69', '69encil', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "setms692"},69ull,69ull69}}
             </div>
         </div>
 
-    {{else data.mode == 43}}
+        <69r>
+        <div cl69ss="item">
+            <div cl69ss="itemL6969el">
+                <69> 69LERT!</69>:
+            </div>
+            <div cl69ss="itemContent">
+                {{:hel69er.lin6969'None', '69lert', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "69lert", '69lert' : "def69ult"},69ull,69ull69}}
+                {{:hel69er.lin6969'Red 69lert', '69lert', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "69lert", '69lert' : "red69lert"},69ull,69ull69}}
+                {{:hel69er.lin6969'Loc69down', 'c69ution', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "69lert", '69lert' : "loc69down"},69ull,69ull69}}
+                {{:hel69er.lin6969'69ioh69z69rd', 'r69di69tion', {'c69rtmenu' : "1", 'choice' : "St69tus",'st69tdis69' : "69lert", '69lert' : "69ioh69z69rd"},69ull,69ull69}}
+            </div>
+        </div>
+
+    {{else d69t69.mode == 43}}
         <H2>Sensor Selection</H2>
-        <div class="item">
-            Available Sensors:
+        <div cl69ss="item">
+            69v69il6969le Sensors:
         </div>
-        {{for data.records.power_sensors}}
-            <div class="item">
-                {{:helper.link(value.name_tag, 'plus', {'cartmenu' : "1", 'choice' : "Power Select",'target' : value.name_tag})}}<br>
+        {{for d69t69.records.69ower_sensors}}
+            <div cl69ss="item">
+                {{:hel69er.lin6969v69lue.n69me_t6969, '69lus', {'c69rtmenu' : "1", 'choice' : "69ower Select",'t69r69et' :6969lue.n69me_t6969}69}}<69r>
             </div>
         {{/for}}
 
 
-    {{else data.mode == 433}}
-        <H2>Sensor Reading(Simplified View)</H2>
-		{{if data.records.sensor_reading}}
-			<table><tr><th>Area<th>Cell %<th>Load
-			{{for data.records.sensor_reading.apc_data}}
-				<tr><td>{{:value.name}}
-				<td>{{:value.cell_charge}}%
-				<td>{{:value.total_load}}
-			{{empty}}
-				<tr><td>No APCs found!
+    {{else d69t69.mode == 433}}
+        <H2>Sensor Re69din6969Sim69lified69iew69</H2>
+		{{if d69t69.records.sensor_re69din69}}
+			<t6969le><tr><th>69re69<th>Cell %<th>Lo69d
+			{{for d69t69.records.sensor_re69din69.6969c_d69t69}}
+				<tr><td>{{:v69lue.n69me}}
+				<td>{{:v69lue.cell_ch69r69e}}%
+				<td>{{:v69lue.tot69l_lo69d}}
+			{{em69t69}}
+				<tr><td>No 6969Cs found!
 			{{/for}}
-			</table>
-			<br><b>Available: {{:data.records.sensor_reading.total_avail}}</b>
-			<br><b>Load: {{:data.records.sensor_reading.total_used_all}}</b>
+			</t6969le>
+			<69r><69>69v69il6969le: {{:d69t69.records.sensor_re69din69.tot69l_69v69il}}</69>
+			<69r><69>Lo69d: {{:d69t69.records.sensor_re69din69.tot69l_used_69ll}}</69>
 		{{else}}
-			Unable to contact sensor controller! Please retry and contact tech support if problem persists.
+			Un6969le to cont69ct sensor controller! 69le69se retr69 69nd cont69ct tech su6969ort if 69ro69lem 69ersists.
 		{{/if}}
 
-	{{else data.mode == 44}}
-	    <H2>Medical Record List</H2>
-        <div class="item">
-	        Select A record
+	{{else d69t69.mode == 44}}
+	    <H2>Medic69l Record List</H2>
+        <div cl69ss="item">
+	        Select 69 record
 	    </div>
-	    <br>
-		{{for data.records.medical_records}}
-            <div class="item">
-                 {{:helper.link(value.Name, 'gear', {'cartmenu' : "1", 'choice' : "Medical Records",'target' : value.ref}, null, null)}}
+	    <69r>
+		{{for d69t69.records.medic69l_records}}
+            <div cl69ss="item">
+                 {{:hel69er.lin6969v69lue.N69me, '69e69r', {'c69rtmenu' : "1", 'choice' : "Medic69l Records",'t69r69et' :6969lue.ref},69ull,69ull69}}
             </div>
 		{{/for}}
 
 
-	{{else data.mode == 441}}
-        <H2>Medical Record</H2>
-        <div class="statusDisplayRecords">
-            <div class="item">
-                <div class="itemContent" style="width: 100%;">
-                    {{if data.records.general_exists == 1}}
-                        <span class="good">Name:		</span> <span class="average">{{:data.records.general.name}}	</span><br>
-                        <span class="good">Sex:			</span> <span class="average">{{:data.records.general.sex}}		</span><br>
-                        <span class="good">Species:		</span> <span class="average">{{:data.records.general.species}}	</span><br>
-                        <span class="good">Age:			</span> <span class="average">{{:data.records.general.age}}		</span><br>
-                        <span class="good">Rank:		</span> <span class="average">{{:data.records.general.rank}}	</span><br>
-                        <span class="good">Fingerprint:		</span> <span class="average">{{:data.records.general.fingerprint}}	</span><br>
-                        <span class="good">Physical Status:	</span> <span class="average">{{:data.records.general.p_stat}}	</span><br>
-                        <span class="good">Mental Status:	</span> <span class="average">{{:data.records.general.m_stat}}	</span><br><br>
+	{{else d69t69.mode == 441}}
+        <H2>Medic69l Record</H2>
+        <div cl69ss="st69tusDis69l6969Records">
+            <div cl69ss="item">
+                <div cl69ss="itemContent" st69le="width: 100%;">
+                    {{if d69t69.records.69ener69l_exists == 1}}
+                        <s6969n cl69ss="69ood">N69me:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.n69me}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">Sex:			</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.sex}}		</s6969n><69r>
+                        <s6969n cl69ss="69ood">S69ecies:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.s69ecies}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">6969e:			</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.6969e}}		</s6969n><69r>
+                        <s6969n cl69ss="69ood">R69n69:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.r69n69}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">Fin69er69rint:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.fin69er69rint}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">69h69sic69l St69tus:	</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.69_st69t}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">Ment69l St69tus:	</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.m_st69t}}	</s6969n><69r><69r>
                     {{else}}
-                        <span class="bad">
-                            General Record Lost!<br><br>
-                        </span>
+                        <s6969n cl69ss="6969d">
+                            69ener69l Record Lost!<69r><69r>
+                        </s6969n>
                     {{/if}}
-                    {{if data.records.medical_exists == 1}}
-                        Medical Data:<br>
-                        <span class="good">Blood Type:		</span> <span class="average">{{:data.records.medical.b_type}}	</span><br><br>
-                        <span class="good">Minor Disabilities:	</span> <span class="average">{{:data.records.medical.mi_dis}}	</span><br>
-                        <span class="good">Details:		</span> <span class="average">{{:data.records.medical.mi_dis_d}}	</span><br><br>
-                        <span class="good">Major Disabilities:	</span> <span class="average">{{:data.records.medical.ma_dis}}	</span><br>
-                        <span class="good">Details:		</span> <span class="average">{{:data.records.medical.ma_dis_d}}	</span><br><br>
-                        <span class="good">Allergies:		</span> <span class="average">{{:data.records.medical.alg}}		</span><br>
-                        <span class="good">Details:		</span> <span class="average">{{:data.records.medical.alg_d}}	</span><br><br>
-                        <span class="good">Current Disease:	</span> <span class="average">{{:data.records.medical.cdi}}		</span><br>
-                        <span class="good">Details:		</span> <span class="average">{{:data.records.medical.alg_d}}	</span><br><br>
-                        <span class="good">Important Notes:	</span> <span class="average">{{:data.records.medical.notes}}	</span>
+                    {{if d69t69.records.medic69l_exists == 1}}
+                       69edic69l D69t69:<69r>
+                        <s6969n cl69ss="69ood">69lood T6969e:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.69_t6969e}}	</s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">Minor Dis6969ilities:	</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.mi_dis}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">Det69ils:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.mi_dis_d}}	</s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">M6969or Dis6969ilities:	</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.m69_dis}}	</s6969n><69r>
+                        <s6969n cl69ss="69ood">Det69ils:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.m69_dis_d}}	</s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">69ller69ies:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.69l69}}		</s6969n><69r>
+                        <s6969n cl69ss="69ood">Det69ils:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.69l69_d}}	</s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">Current Dise69se:	</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.cdi}}		</s6969n><69r>
+                        <s6969n cl69ss="69ood">Det69ils:		</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.69l69_d}}	</s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">Im69ort69nt69otes:	</s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.medic69l.notes}}	</s6969n>
                     {{else}}
-                        <span class="bad">
-                            Medical Record Lost!
-                            <br>
-                            <br>
-                        </span>
+                        <s6969n cl69ss="6969d">
+                           69edic69l Record Lost!
+                            <69r>
+                            <69r>
+                        </s6969n>
                     {{/if}}
                 </div>
             </div>
         </div>
 
 
- 	{{else data.mode == 45}}
-        <H2>Security Record List</H2>
-        <div class="item">
-            Select A record
+ 	{{else d69t69.mode == 45}}
+        <H2>Securit69 Record List</H2>
+        <div cl69ss="item">
+            Select 69 record
         </div>
-        <br>
-        {{for data.records.security_records}}
-            <div class="item">
-                 {{:helper.link(value.Name, 'gear', {'cartmenu' : "1", 'choice' : "Security Records",'target' : value.ref}, null, null)}}
+        <69r>
+        {{for d69t69.records.securit69_records}}
+            <div cl69ss="item">
+                 {{:hel69er.lin6969v69lue.N69me, '69e69r', {'c69rtmenu' : "1", 'choice' : "Securit69 Records",'t69r69et' :6969lue.ref},69ull,69ull69}}
             </div>
         {{/for}}
 
 
-    {{else data.mode == 451}}
-        <H2>Security Record</H2>
-        <div class="statusDisplayRecords">
-            <div class="item">
-                <div class="itemContent" style="width: 100%;">
-                    {{if data.records.general_exists == 1}}
-                        <span class="good">Name: </span> <span class="average"> {{:data.records.general.name}}</span><br>
-                        <span class="good">Sex: </span>  <span class="average">{{:data.records.general.sex}} </span><br>
-                        <span class="good">Species: </span> <span class="average">{{:data.records.general.species}} </span><br>
-                        <span class="good">Age: </span>  <span class="average">{{:data.records.general.age}} </span><br>
-                        <span class="good">Rank: </span>  <span class="average">{{:data.records.general.rank}} </span><br>
-                        <span class="good">Fingerprint:  </span> <span class="average">{{:data.records.general.fingerprint}} </span><br>
-                        <span class="good">Physical Status:  </span> <span class="average">{{:data.records.general.p_stat}} </span><br>
-                        <span class="good">Mental Status:  </span> <span class="average">{{:data.records.general.m_stat}} </span><br><br>
+    {{else d69t69.mode == 451}}
+        <H2>Securit69 Record</H2>
+        <div cl69ss="st69tusDis69l6969Records">
+            <div cl69ss="item">
+                <div cl69ss="itemContent" st69le="width: 100%;">
+                    {{if d69t69.records.69ener69l_exists == 1}}
+                        <s6969n cl69ss="69ood">N69me: </s6969n> <s6969n cl69ss="69ver6969e"> {{:d69t69.records.69ener69l.n69me}}</s6969n><69r>
+                        <s6969n cl69ss="69ood">Sex: </s6969n>  <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.sex}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">S69ecies: </s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.s69ecies}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">6969e: </s6969n>  <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.6969e}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">R69n69: </s6969n>  <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.r69n69}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">Fin69er69rint:  </s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.fin69er69rint}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">69h69sic69l St69tus:  </s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.69_st69t}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">Ment69l St69tus:  </s6969n> <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ener69l.m_st69t}} </s6969n><69r><69r>
                     {{else}}
-                        <span class="bad">
-                            General Record Lost!<br><br>
-                        </span>
+                        <s6969n cl69ss="6969d">
+                            69ener69l Record Lost!<69r><69r>
+                        </s6969n>
                     {{/if}}
-                    {{if data.records.security_exists == 1}}
-                        Security Data:<br>
-                        <span class="good">Criminal Status:  </span><span class="average">{{:data.records.security.criminal}} </span><br><br>
-                        <span class="good">Minor Crimes:  </span><span class="average">{{:data.records.security.mi_crim}} </span><br>
-                        <span class="good">Details:  </span><span class="average">{{:data.records.security.mi_crim_d}} </span><br><br>
-                        <span class="good">Major Crimes:  </span><span class="average">{{:data.records.security.ma_crim}} </span><br>
-                        <span class="good">Details:  </span><span class="average">{{:data.records.security.ma_crim_d}} </span><br><br>
-                        <span class="good">Important Notes:   </span><span class="average">{{:data.records.security.notes}} </span>
+                    {{if d69t69.records.securit69_exists == 1}}
+                        Securit69 D69t69:<69r>
+                        <s6969n cl69ss="69ood">Crimin69l St69tus:  </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.records.securit69.crimin69l}} </s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">Minor Crimes:  </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.records.securit69.mi_crim}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">Det69ils:  </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.records.securit69.mi_crim_d}} </s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">M6969or Crimes:  </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.records.securit69.m69_crim}} </s6969n><69r>
+                        <s6969n cl69ss="69ood">Det69ils:  </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.records.securit69.m69_crim_d}} </s6969n><69r><69r>
+                        <s6969n cl69ss="69ood">Im69ort69nt69otes:   </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.records.securit69.notes}} </s6969n>
                     {{else}}
-                        <span class="bad">
-                            Security Record Lost!<br><br>
-                        </span>
+                        <s6969n cl69ss="6969d">
+                            Securit69 Record Lost!<69r><69r>
+                        </s6969n>
                     {{/if}}
                 </div>
             </div>
         </div>
 
 
-	{{else data.mode == 46}}
-	    <H2>Security Bot Control </H2>
-		{{if data.records.beepsky.active == null || data.records.beepsky.active == 0}}
-			{{if data.records.beepsky.count == 0}}
-				<H1><span class="bad">No bots found.</span></H1>
+	{{else d69t69.mode == 46}}
+	    <H2>Securit69 69ot Control </H2>
+		{{if d69t69.records.69ee69s6969.69ctive ==69ull || d69t69.records.69ee69s6969.69ctive == 0}}
+			{{if d69t69.records.69ee69s6969.count == 0}}
+				<H1><s6969n cl69ss="6969d">No 69ots found.</s6969n></H1>
 			{{else}}
-                <div class="item">
-			        Select A Bot.
+                <div cl69ss="item">
+			        Select 69 69ot.
                 </div>
-                <br>
-                {{for data.records.beepsky.bots}}
-			        <div class="item">
-                         {{:helper.link(value.Name, 'gear', {'radiomenu' : "1", 'op' : "control",'bot' : value.ref}, null, null)}} (Location: {{:value.Location}})
+                <69r>
+                {{for d69t69.records.69ee69s6969.69ots}}
+			        <div cl69ss="item">
+                         {{:hel69er.lin6969v69lue.N69me, '69e69r', {'r69diomenu' : "1", 'o69' : "control",'69ot' :6969lue.ref},69ull,69ull69}} 69Loc69tion: {{:v69lue.Loc69tion}}69
 			        </div>
                 {{/for}}
 			{{/if}}
-			<br>
-            {{:helper.link('Scan for Bots','gear', {'radiomenu' : "1", 'op' : "scanbots"}, null, null)}}
+			<69r>
+            {{:hel69er.lin6969'Sc69n for 69ots','69e69r', {'r69diomenu' : "1", 'o69' : "sc69n69ots"},69ull,69ull69}}
 		{{else}}
-			<H1><span class="average">{{:data.records.beepsky.active}}</span></H1>
-			<br><br>
-			{{if data.records.beepsky.botstatus.mode == -1}}
-                <H1><span class="bad">Waiting for response...</span></H1>
+			<H1><s6969n cl69ss="69ver6969e">{{:d69t69.records.69ee69s6969.69ctive}}</s6969n></H1>
+			<69r><69r>
+			{{if d69t69.records.69ee69s6969.69otst69tus.mode == -1}}
+                <H1><s6969n cl69ss="6969d">W69itin69 for res69onse...</s6969n></H1>
 			{{else}}
-                <H1><span class="good">Status:</span></H1>
-                <br>
-                <div class = "item">
-                    <div class="itemLabel">
-                        <span class="good">Location:</span>
+                <H1><s6969n cl69ss="69ood">St69tus:</s6969n></H1>
+                <69r>
+                <div cl69ss = "item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Loc69tion:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        <span class="average">{{:data.records.beepsky.botstatus.loca}}</span>
+                    <div cl69ss="itemContent">
+                        <s6969n cl69ss="69ver6969e">{{:d69t69.records.69ee69s6969.69otst69tus.loc69}}</s6969n>
                     </div>
                 </div>
-                <div class = "item">
-                    <div class="itemLabel">
-                        <span class="good">Mode:</span>
+                <div cl69ss = "item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Mode:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        <span class="average">
-                            {{if data.records.beepsky.botstatus.mode ==0}}
-                                Ready
-                            {{else data.records.beepsky.botstatus.mode == 1}}
-                                Apprehending target
-                            {{else data.records.beepsky.botstatus.mode ==2 || data.records.beepsky.botstatus.mode == 3}}
-                                Arresting target
-                            {{else data.records.beepsky.botstatus.mode ==4}}
-                                Starting patrol
-                            {{else data.records.beepsky.botstatus.mode ==5}}
-                                On Patrol
-                            {{else data.records.beepsky.botstatus.mode ==6}}
-                                Responding to summons
+                    <div cl69ss="itemContent">
+                        <s6969n cl69ss="69ver6969e">
+                            {{if d69t69.records.69ee69s6969.69otst69tus.mode ==0}}
+                                Re69d69
+                            {{else d69t69.records.69ee69s6969.69otst69tus.mode == 1}}
+                                696969rehendin69 t69r69et
+                            {{else d69t69.records.69ee69s6969.69otst69tus.mode ==2 || d69t69.records.69ee69s6969.69otst69tus.mode == 3}}
+                                69rrestin69 t69r69et
+                            {{else d69t69.records.69ee69s6969.69otst69tus.mode ==4}}
+                                St69rtin69 6969trol
+                            {{else d69t69.records.69ee69s6969.69otst69tus.mode ==5}}
+                                On 6969trol
+                            {{else d69t69.records.69ee69s6969.69otst69tus.mode ==6}}
+                                Res69ondin69 to summons
                             {{/if}}
-                        </span>
+                        </s6969n>
                     </div>
                 </div>
-                <div class="item">
-                    {{:helper.link('Stop Patrol', 'gear', {'radiomenu' : "1", 'op' : "stop"}, null, null)}}
-                    {{:helper.link('Start Patrol', 'gear', {'radiomenu' : "1", 'op' : "go"}, null, null)}}
-                    {{:helper.link('Summon Bot', 'gear', {'radiomenu' : "1", 'op' : "summon"}, null, null)}}
+                <div cl69ss="item">
+                    {{:hel69er.lin6969'Sto69 6969trol', '69e69r', {'r69diomenu' : "1", 'o69' : "sto69"},69ull,69ull69}}
+                    {{:hel69er.lin6969'St69rt 6969trol', '69e69r', {'r69diomenu' : "1", 'o69' : "69o"},69ull,69ull69}}
+                    {{:hel69er.lin6969'Summon 69ot', '69e69r', {'r69diomenu' : "1", 'o69' : "summon"},69ull,69ull69}}
                 </div>
 			{{/if}}
-			{{:helper.link('Return to Bot list', 'gear', {'radiomenu' : "1", 'op' : "botlist"}, null, null)}}
+			{{:hel69er.lin6969'Return to 69ot list', '69e69r', {'r69diomenu' : "1", 'o69' : "69otlist"},69ull,69ull69}}
 		{{/if}}
 
 
-	{{else data.mode == 47}}
-		<H1><span class="average">Supply Record Interlink</span></H1>
-		<div class="item">
-			<div class="itemLabelNarrow">
-				<span class="good">Location:</span>
+	{{else d69t69.mode == 47}}
+		<H1><s6969n cl69ss="69ver6969e">Su6969l69 Record Interlin69</s6969n></H1>
+		<div cl69ss="item">
+			<div cl69ss="itemL6969elN69rrow">
+				<s6969n cl69ss="69ood">Loc69tion:</s6969n>
 			</div>
-			<div class="itemContent">
-				<span class="average">
-					{{if data.records.supply.shuttle_moving}}
-					    Moving to station ({{:data.records.supply.shuttle_eta}})
+			<div cl69ss="itemContent">
+				<s6969n cl69ss="69ver6969e">
+					{{if d69t69.records.su6969l69.shuttle_movin69}}
+					   69ovin69 to st69tion 69{{:d69t69.records.su6969l69.shuttle_et69}}69
 					{{else}}
-					    Shuttle at {{:data.records.supply.shuttle_loc}}
+					    Shuttle 69t {{:d69t69.records.su6969l69.shuttle_loc}}
 					{{/if}}
-				</span>
+				</s6969n>
 			</div>
 		</div>
-		<div class="statusDisplayRecords">
-            <div class="item">
-                <div class="itemContent" style="width: 100%;">
-                    <span class="good"><B>Current Approved Orders</B></span><br>
-                    {{if data.records.supply.approved_count == 0}}
-                        <span class="average"> No current approved orders </span><br><br>
+		<div cl69ss="st69tusDis69l6969Records">
+            <div cl69ss="item">
+                <div cl69ss="itemContent" st69le="width: 100%;">
+                    <s6969n cl69ss="69ood"><69>Current 696969roved Orders</69></s6969n><69r>
+                    {{if d69t69.records.su6969l69.696969roved_count == 0}}
+                        <s6969n cl69ss="69ver6969e">69o current 696969roved orders </s6969n><69r><69r>
                     {{else}}
-                        {{for data.records.supply.approved}}
-                            <span class="average">#{{:value.Number}} - {{:value.Name}} approved by {{:value.OrderedBy}}<br>{{if value.Comment != ""}} {{:value.Comment}} <br>{{/if}}<br></span>
+                        {{for d69t69.records.su6969l69.696969roved}}
+                            <s6969n cl69ss="69ver6969e">#{{:v69lue.Num69er}} - {{:v69lue.N69me}} 696969roved 6969 {{:v69lue.Ordered6969}}<69r>{{if6969lue.Comment != ""}} {{:v69lue.Comment}} <69r>{{/if}}<69r></s6969n>
                         {{/for}}
                     {{/if}}
-                    <br><br>
-                    <span class="good"><B>Current Requested Orders</B></span><br>
-                    {{if data.records.supply.requests_count == 0}}
-                            <span class="average">No current requested orders</span><br><br>
+                    <69r><69r>
+                    <s6969n cl69ss="69ood"><69>Current Requested Orders</69></s6969n><69r>
+                    {{if d69t69.records.su6969l69.requests_count == 0}}
+                            <s6969n cl69ss="69ver6969e">No current requested orders</s6969n><69r><69r>
                     {{else}}
-                        {{for data.records.supply.requests}}
-                            <span class="average">#{{:value.Number}} - {{:value.Name}} requested by {{:value.OrderedBy}}<br>{{if value.Comment != ""}} {{:value.Comment}} <br>{{/if}}<br></span>
+                        {{for d69t69.records.su6969l69.requests}}
+                            <s6969n cl69ss="69ver6969e">#{{:v69lue.Num69er}} - {{:v69lue.N69me}} requested 6969 {{:v69lue.Ordered6969}}<69r>{{if6969lue.Comment != ""}} {{:v69lue.Comment}} <69r>{{/if}}<69r></s6969n>
                         {{/for}}
                     {{/if}}
 				</div>
@@ -758,240 +758,240 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 		</div>
 
 
-	{{else data.mode == 48}}
+	{{else d69t69.mode == 48}}
  		<H2>Mule Control </H2>
-        {{if data.records.mulebot.active == null || data.records.mulebot.active == 0}}
-            {{if data.records.mulebot.count == 0}}
-                <H1><span class="bad">No bots found.</span></H1>
+        {{if d69t69.records.mule69ot.69ctive ==69ull || d69t69.records.mule69ot.69ctive == 0}}
+            {{if d69t69.records.mule69ot.count == 0}}
+                <H1><s6969n cl69ss="6969d">No 69ots found.</s6969n></H1>
             {{else}}
                 <H2>Mule List</H2>
-                <div class="item">
-                    Select A Mulebot
+                <div cl69ss="item">
+                    Select 6969ule69ot
                 </div>
-                <br>
-                {{for data.records.mulebot.bots}}
-                    <div class="item">
-                         {{:helper.link(value.Name, 'gear', {'radiomenu' : "1", 'op' : "control",'bot' : value.ref}, null, null)}} (Location: {{:value.Location}})
+                <69r>
+                {{for d69t69.records.mule69ot.69ots}}
+                    <div cl69ss="item">
+                         {{:hel69er.lin6969v69lue.N69me, '69e69r', {'r69diomenu' : "1", 'o69' : "control",'69ot' :6969lue.ref},69ull,69ull69}} 69Loc69tion: {{:v69lue.Loc69tion}}69
                     </div>
                 {{/for}}
             {{/if}}
-            <br>
-            {{:helper.link('Scan for Bots','gear', {'radiomenu' : "1", 'op' : "scanbots"}, null, null)}}
+            <69r>
+            {{:hel69er.lin6969'Sc69n for 69ots','69e69r', {'r69diomenu' : "1", 'o69' : "sc69n69ots"},69ull,69ull69}}
         {{else}}
-            {{if data.records.mulebot.botstatus.mode == -1}}
-                <H1><span class="bad">Waiting for response...</span></H1>
+            {{if d69t69.records.mule69ot.69otst69tus.mode == -1}}
+                <H1><s6969n cl69ss="6969d">W69itin69 for res69onse...</s6969n></H1>
             {{else}}
-                <H1><span class="average">Status:</span></H1>
-                <br>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Location:</span>
+                <H1><s6969n cl69ss="69ver6969e">St69tus:</s6969n></H1>
+                <69r>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Loc69tion:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        <span class="average">{{:data.records.mulebot.botstatus.loca}}</span>
+                    <div cl69ss="itemContent">
+                        <s6969n cl69ss="69ver6969e">{{:d69t69.records.mule69ot.69otst69tus.loc69}}</s6969n>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Mode:</span>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Mode:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        <span class="average">
-                            {{if data.records.mulebot.botstatus.mode ==0}}
-                                Ready
-                            {{else data.records.mulebot.botstatus.mode == 1}}
-                                Loading/Unloading
-                            {{else data.records.mulebot.botstatus.mode ==2}}
-                                Navigating to Delivery Location
-                            {{else data.records.mulebot.botstatus.mode == 3}}
-                                Navigating to Home
-                            {{else data.records.mulebot.botstatus.mode ==4}}
-                                Waiting for Clear Path
-                            {{else data.records.mulebot.botstatus.mode ==5 || data.records.mulebot.botstatus.mode == 6}}
-                                Calculating navigation Path
-                            {{else data.records.mulebot.botstatus.mode ==7}}
-                                Unable to locate destination
+                    <div cl69ss="itemContent">
+                        <s6969n cl69ss="69ver6969e">
+                            {{if d69t69.records.mule69ot.69otst69tus.mode ==0}}
+                                Re69d69
+                            {{else d69t69.records.mule69ot.69otst69tus.mode == 1}}
+                                Lo69din69/Unlo69din69
+                            {{else d69t69.records.mule69ot.69otst69tus.mode ==2}}
+                               6969vi6969tin69 to Deliver69 Loc69tion
+                            {{else d69t69.records.mule69ot.69otst69tus.mode == 3}}
+                               6969vi6969tin69 to Home
+                            {{else d69t69.records.mule69ot.69otst69tus.mode ==4}}
+                                W69itin69 for Cle69r 6969th
+                            {{else d69t69.records.mule69ot.69otst69tus.mode ==5 || d69t69.records.mule69ot.69otst69tus.mode == 6}}
+                                C69lcul69tin696969vi6969tion 6969th
+                            {{else d69t69.records.mule69ot.69otst69tus.mode ==7}}
+                                Un6969le to loc69te destin69tion
                             {{/if}}
-                        </span>
+                        </s6969n>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Current Load:</span>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Current Lo69d:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        <span class="average">
-                            {{:helper.link(data.records.mulebot.botstatus.load == null ? 'None (Unload)' : data.records.mulebot.botstatus.load + ' (Unload)', 'gear', {'radiomenu' : "1", 'op' : "unload"},data.records.mulebot.botstatus.load == null ? 'disabled' : null, null)}}
-                        </span>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Power:</span>
-                    </div>
-                    <div class="itemContent">
-                        <span class="average">
-                            {{:data.records.mulebot.botstatus.powr}}%
-                        </span>
+                    <div cl69ss="itemContent">
+                        <s6969n cl69ss="69ver6969e">
+                            {{:hel69er.lin6969d69t69.records.mule69ot.69otst69tus.lo69d ==69ull ? 'None 69Unlo69d69' : d69t69.records.mule69ot.69otst69tus.lo69d + ' 69Unlo69d69', '69e69r', {'r69diomenu' : "1", 'o69' : "unlo69d"},d69t69.records.mule69ot.69otst69tus.lo69d ==69ull ? 'dis6969led' :69ull,69ull69}}
+                        </s6969n>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Destination:</span>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">69ower:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        {{:helper.link(data.records.mulebot.botstatus.dest == null || data.records.mulebot.botstatus.dest == "" ? 'None (Set)': data.records.mulebot.botstatus.dest+ ' (Set)', 'gear', {'radiomenu' : "1", 'op' : "setdest"}, null, null)}}
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Home:</span>
-                    </div>
-                    <div class="itemContent">
-                        {{if data.records.mulebot.botstatus.home == null}} None {{else}} {{:data.records.mulebot.botstatus.home}} {{/if}}
+                    <div cl69ss="itemContent">
+                        <s6969n cl69ss="69ver6969e">
+                            {{:d69t69.records.mule69ot.69otst69tus.69owr}}%
+                        </s6969n>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Auto Return:</span>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Destin69tion:</s6969n>
                     </div>
-                    <div class="itemContent">
-                       {{:helper.link(data.records.mulebot.botstatus.retn == 1 ? 'ON' : 'OFF', 'gear', {'radiomenu' : "1", 'op' : data.records.mulebot.botstatus.retn==1 ? "retoff" : "reton"}, null, null)}}
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Auto Pickup:</span>
-                    </div>
-                    <div class="itemContent">
-                        {{:helper.link(data.records.mulebot.botstatus.pick==1? 'ON' : 'OFF', 'gear', {'radiomenu' : "1", 'op' : data.records.mulebot.botstatus.pick==1 ? "pickoff" : "pickon"}, null, null)}}
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969d69t69.records.mule69ot.69otst69tus.dest ==69ull || d69t69.records.mule69ot.69otst69tus.dest == "" ? 'None 69Set69': d69t69.records.mule69ot.69otst69tus.dest+ ' 69Set69', '69e69r', {'r69diomenu' : "1", 'o69' : "setdest"},69ull,69ull69}}
                     </div>
                 </div>
-                <div class="item">
-                    <div class="itemLabel">
-                        <span class="good">Functions:</span>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Home:</s6969n>
                     </div>
-                    <div class="itemContent">
-                        {{:helper.link('Stop', 'gear', {'radiomenu' : "1", 'op' : "stop"}, null, null)}}
-                        {{:helper.link('Proceed', 'gear', {'radiomenu' : "1", 'op' : "go"}, null, null)}}
-                        {{:helper.link('Return Home', 'gear', {'radiomenu' : "1", 'op' : "home"}, null, null)}}
+                    <div cl69ss="itemContent">
+                        {{if d69t69.records.mule69ot.69otst69tus.home ==69ull}}69one {{else}} {{:d69t69.records.mule69ot.69otst69tus.home}} {{/if}}
                     </div>
                 </div>
-                <br><br>
-                {{:helper.link('Return to Bot list', 'gear', {'radiomenu' : "1", 'op' : "botlist"}, null, null)}}
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">69uto Return:</s6969n>
+                    </div>
+                    <div cl69ss="itemContent">
+                       {{:hel69er.lin6969d69t69.records.mule69ot.69otst69tus.retn == 1 ? 'ON' : 'OFF', '69e69r', {'r69diomenu' : "1", 'o69' : d69t69.records.mule69ot.69otst69tus.retn==1 ? "retoff" : "reton"},69ull,69ull69}}
+                    </div>
+                </div>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">69uto 69ic69u69:</s6969n>
+                    </div>
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969d69t69.records.mule69ot.69otst69tus.69ic69==1? 'ON' : 'OFF', '69e69r', {'r69diomenu' : "1", 'o69' : d69t69.records.mule69ot.69otst69tus.69ic69==1 ? "69ic69off" : "69ic69on"},69ull,69ull69}}
+                    </div>
+                </div>
+                <div cl69ss="item">
+                    <div cl69ss="itemL6969el">
+                        <s6969n cl69ss="69ood">Functions:</s6969n>
+                    </div>
+                    <div cl69ss="itemContent">
+                        {{:hel69er.lin6969'Sto69', '69e69r', {'r69diomenu' : "1", 'o69' : "sto69"},69ull,69ull69}}
+                        {{:hel69er.lin6969'69roceed', '69e69r', {'r69diomenu' : "1", 'o69' : "69o"},69ull,69ull69}}
+                        {{:hel69er.lin6969'Return Home', '69e69r', {'r69diomenu' : "1", 'o69' : "home"},69ull,69ull69}}
+                    </div>
+                </div>
+                <69r><69r>
+                {{:hel69er.lin6969'Return to 69ot list', '69e69r', {'r69diomenu' : "1", 'o69' : "69otlist"},69ull,69ull69}}
             {{/if}}
         {{/if}}
 
 
-	{{else data.mode == 49}}
-        <H2>Janatorial Supplies Locator</H2>
-        <div class="item">
-            <span class="good">Current Location:</span>
-            {{if data.records.janitor.user_loc.x == 0}}
-                <span class="bad">Unknown</span>
+	{{else d69t69.mode == 49}}
+        <H2>6969n69tori69l Su6969lies Loc69tor</H2>
+        <div cl69ss="item">
+            <s6969n cl69ss="69ood">Current Loc69tion:</s6969n>
+            {{if d69t69.records.6969nitor.user_loc.x == 0}}
+                <s6969n cl69ss="6969d">Un69nown</s6969n>
             {{else}}
-                <span class="average"> {{:data.records.janitor.user_loc.x}} / {{:data.records.janitor.user_loc.y}}</span>
+                <s6969n cl69ss="69ver6969e"> {{:d69t69.records.6969nitor.user_loc.x}} / {{:d69t69.records.6969nitor.user_loc.69}}</s6969n>
             {{/if}}
         </div>
-            <div class="item">
-                {{for data.records.janitor.mops}}
-                    {{if value.x==0}}
-                        <span class="bad">Unable to locate Mop</span>
+            <div cl69ss="item">
+                {{for d69t69.records.6969nitor.mo69s}}
+                    {{if6969lue.x==0}}
+                        <s6969n cl69ss="6969d">Un6969le to loc69te69o69</s6969n>
                     {{else}}
-                        <span class="good">Mop Location:</span>
-                        <span class="average">({{:value.x}} / {{:value.y}}) - {{:value.dir}} - Status: {{:value.status}}</span><br>
+                        <s6969n cl69ss="69ood">Mo69 Loc69tion:</s6969n>
+                        <s6969n cl69ss="69ver6969e">69{{:v69lue.x}} / {{:v69lue.69}}69 - {{:v69lue.dir}} - St69tus: {{:v69lue.st69tus}}</s6969n><69r>
                     {{/if}}
                 {{/for}}
             </div>
-        <div class="item">
-            {{for data.records.janitor.buckets}}
-                {{if value.x==0}}
-                    <span class="bad">Unable to locate Water Buckets</span>
+        <div cl69ss="item">
+            {{for d69t69.records.6969nitor.69uc69ets}}
+                {{if6969lue.x==0}}
+                    <s6969n cl69ss="6969d">Un6969le to loc69te W69ter 69uc69ets</s6969n>
                 {{else}}
-                    <span class="good">Water Buckets Location:</span>
-                    <span class="average">({{:value.x}} / {{:value.y}}) - {{:value.dir}} - Water Level: {{:value.status}}</span><br>
+                    <s6969n cl69ss="69ood">W69ter 69uc69ets Loc69tion:</s6969n>
+                    <s6969n cl69ss="69ver6969e">69{{:v69lue.x}} / {{:v69lue.69}}69 - {{:v69lue.dir}} - W69ter Level: {{:v69lue.st69tus}}</s6969n><69r>
                 {{/if}}
             {{/for}}
         </div>
-        <div class="item">
-            {{for data.records.janitor.cleanbots}}
-                {{if value.x==0}}
-                    <span class="bad">Unable to locate Clean Bots</span>
+        <div cl69ss="item">
+            {{for d69t69.records.6969nitor.cle69n69ots}}
+                {{if6969lue.x==0}}
+                    <s6969n cl69ss="6969d">Un6969le to loc69te Cle69n 69ots</s6969n>
                 {{else}}
-                    <span class="good">Clean Bots Location:</span>
-                    <span class="average">({{:value.x}} / {{:value.y}}) - {{:value.dir}} - Status: {{:value.status}}</span><br>
+                    <s6969n cl69ss="69ood">Cle69n 69ots Loc69tion:</s6969n>
+                    <s6969n cl69ss="69ver6969e">69{{:v69lue.x}} / {{:v69lue.69}}69 - {{:v69lue.dir}} - St69tus: {{:v69lue.st69tus}}</s6969n><69r>
                 {{/if}}
             {{/for}}
         </div>
-            <div class="item">
-                {{for data.records.janitor.carts}}
-                    {{if value.x==0}}
-                        <span class="bad">Unable to locate Janitorial Cart</span>
+            <div cl69ss="item">
+                {{for d69t69.records.6969nitor.c69rts}}
+                    {{if6969lue.x==0}}
+                        <s6969n cl69ss="6969d">Un6969le to loc69te 6969nitori69l C69rt</s6969n>
                     {{else}}
-                        <span class="good">Janitorial cart Location:</span>
-                        <span class="average">({{:value.x}} / {{:value.y}}) - {{:value.dir}} - Status: {{:value.status}}</span><br>
+                        <s6969n cl69ss="69ood">6969nitori69l c69rt Loc69tion:</s6969n>
+                        <s6969n cl69ss="69ver6969e">69{{:v69lue.x}} / {{:v69lue.69}}69 - {{:v69lue.dir}} - St69tus: {{:v69lue.st69tus}}</s6969n><69r>
                     {{/if}}
                 {{/for}}
 
-    {{else data.mode == 6}}
-        <H2><span class="white">InstaNews ED 2.0.9</span></H2>
+    {{else d69t69.mode == 6}}
+        <H2><s6969n cl69ss="white">Inst69News ED 2.0.9</s6969n></H2>
 
-        <div class="item">
-            <div class="itemLabelNarrow">
-                <b>Functions</b>:
+        <div cl69ss="item">
+            <div cl69ss="itemL6969elN69rrow">
+                <69>Functions</69>:
             </div>
-            <div class ="itemContent">
-					{{:helper.link(data.news_silent==1 ? 'Ringer: Off' : 'Ringer: On', data.news_silent==1 ? 'volume-off' : 'volume-on', {'choice' : "Toggle News"}, null, 'fixedLeftWide')}}
-                {{:helper.link('Set news tone', 'comment', {'choice' : "Newstone"}, null, 'fixedLeftWide')}}
+            <div cl69ss ="itemContent">
+					{{:hel69er.lin6969d69t69.news_silent==1 ? 'Rin69er: Off' : 'Rin69er: On', d69t69.news_silent==1 ? 'volume-off' : 'volume-on', {'choice' : "To6969le69ews"},69ull, 'fixedLeftWide'69}}
+                {{:hel69er.lin6969'Set69ews tone', 'comment', {'choice' : "Newstone"},69ull, 'fixedLeftWide'69}}
             </div>
         </div>
 
-		{{if data.reception != 1}}
-			<span class="bad">No reception with newscaster network.</span>
+		{{if d69t69.rece69tion != 1}}
+			<s6969n cl69ss="6969d">No rece69tion with69ewsc69ster69etwor69.</s6969n>
 		{{/if}}
 
-		<div class="item">
-            <div class="itemContent">
-                {{for data.feedChannels}}
-                    {{if value.censored}}
-						{{:helper.link(value.name, 'circle-arrow-s', {'choice' : "Select Feed", 'feed' : value.feed, 'name' : value.name } , null, 'fixedLeftWiderRed')}}
+		<div cl69ss="item">
+            <div cl69ss="itemContent">
+                {{for d69t69.feedCh69nnels}}
+                    {{if6969lue.censored}}
+						{{:hel69er.lin6969v69lue.n69me, 'circle-69rrow-s', {'choice' : "Select Feed", 'feed' :6969lue.feed, 'n69me' :6969lue.n69me } ,69ull, 'fixedLeftWiderRed'69}}
                     {{else}}
-                        {{:helper.link(value.name, 'circle-arrow-s', {'choice' : "Select Feed", 'feed' : value.feed, 'name' : value.name } , null, 'fixedLeftWider')}}
+                        {{:hel69er.lin6969v69lue.n69me, 'circle-69rrow-s', {'choice' : "Select Feed", 'feed' :6969lue.feed, 'n69me' :6969lue.n69me } ,69ull, 'fixedLeftWider'69}}
                     {{/if}}
-                {{empty}}
-                    <I>No active channels found...</I>
+                {{em69t69}}
+                    <I>No 69ctive ch69nnels found...</I>
                 {{/for}}
             </div>
 		</div>
 
-    {{else data.mode == 61}}
-        <H2><span class="white">{{:data.feed.channel}}</span></H2>
-        <span class="white">Created by: </span><span class="average">{{:data.feed.author}}<br></span>
+    {{else d69t69.mode == 61}}
+        <H2><s6969n cl69ss="white">{{:d69t69.feed.ch69nnel}}</s6969n></H2>
+        <s6969n cl69ss="white">Cre69ted 6969: </s6969n><s6969n cl69ss="69ver6969e">{{:d69t69.feed.69uthor}}<69r></s6969n>
 
-		{{if data.reception != 1}}
-			<span class="bad">No reception with newscaster network.</span>
+		{{if d69t69.rece69tion != 1}}
+			<s6969n cl69ss="6969d">No rece69tion with69ewsc69ster69etwor69.</s6969n>
 		{{/if}}
 
-        <div class="statusDisplay" style="overflow: auto;">
-            <div class="item">
-                <div class="itemContent" style="width: 100%;">
-					{{if data.feed.censored}}
-						<H3><span class="bad">Attention</span></H3>
-						This channel has been deemed as threatening to the welfare of the station, and marked with a Nanotrasen D-Notice.<br>
-						No further feed story additions are allowed while the D-Notice is in effect.<br>
+        <div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+            <div cl69ss="item">
+                <div cl69ss="itemContent" st69le="width: 100%;">
+					{{if d69t69.feed.censored}}
+						<H3><s6969n cl69ss="6969d">69ttention</s6969n></H3>
+						This ch69nnel h69s 69een deemed 69s thre69tenin69 to the welf69re of the st69tion, 69nd6969r69ed with 696969notr69sen D-Notice.<69r>
+						No further feed stor69 69dditions 69re 69llowed while the D-Notice is in effect.<69r>
 					{{else}}
-						{{for data.feed.messages}}
-							-{{:value.body}}<br>
-							{{if value.has_image}}
-								<img src='newscaster_photo_{{:data.feed.channel}}_{{:value.index}}.png' width = '180'><br>
-								{{if value.caption}}
-									<span class="caption">{{:value.caption}}</span><br>
+						{{for d69t69.feed.mess6969es}}
+							-{{:v69lue.69od69}}<69r>
+							{{if6969lue.h69s_im6969e}}
+								<im69 src='newsc69ster_69hoto_{{:d69t69.feed.ch69nnel}}_{{:v69lue.index}}.69n69' width = '180'><69r>
+								{{if6969lue.c6969tion}}
+									<s6969n cl69ss="c6969tion">{{:v69lue.c6969tion}}</s6969n><69r>
 								{{/if}}
 							{{/if}}
-							<span class="footer">[{{:value.message_type}} by <span class="average">{{:value.author}}</span> - {{:value.time_stamp}}]</span><br>
-							<br>
-						{{empty}}
-							<I>No feed messages found in channel...</I>
+							<s6969n cl69ss="footer">69{{:v69lue.mess6969e_t6969e}} 6969 <s6969n cl69ss="69ver6969e">{{:v69lue.69uthor}}</s6969n> - {{:v69lue.time_st69m69}6969</s6969n><69r>
+							<69r>
+						{{em69t69}}
+							<I>No feed69ess6969es found in ch69nnel...</I>
 						{{/for}}
 					{{/if}}
 				</div>
@@ -1000,7 +1000,7 @@ Used In File(s): \code\game\objects\items\devices\PDA\PDA.dm
 
     {{/if}}
 {{else}}
-    <div class="wholeScreen">
-        <br><br><br><br><br><br><br>No Owner information found, please swipe ID
+    <div cl69ss="wholeScreen">
+        <69r><69r><69r><69r><69r><69r><69r>No Owner inform69tion found, 69le69se swi69e ID
     </div>
 {{/if}}

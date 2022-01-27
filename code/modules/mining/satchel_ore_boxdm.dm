@@ -12,7 +12,7 @@
 	var/last_update = 0
 	var/list/stored_ore = list()
 
-/obj/structure/ore_box/attackby(obj/item/W, mob/user)
+/obj/structure/ore_box/attackby(obj/item/W,69ob/user)
 	if (istype(W, /obj/item/ore))
 		user.remove_from_mob(W)
 		src.contents += W
@@ -21,11 +21,11 @@
 		S.hide_from(usr)
 		if (locate(/obj/item/ore) in S.contents)
 			for(var/obj/item/ore/O in S.contents)
-				S.remove_from_storage(O, src) //This will move the item to this item's contents
+				S.remove_from_storage(O, src) //This will69ove the item to this item's contents
 			playsound(loc, S.use_sound, 50, 1, -5)
-			user.visible_message(SPAN_NOTICE("[user.name] empties the [S] into the box"), SPAN_NOTICE("You empty the [S] into the box."), SPAN_NOTICE("You hear a rustling sound"))
+			user.visible_message(SPAN_NOTICE("69user.name69 empties the 69S69 into the box"), SPAN_NOTICE("You empty the 69S69 into the box."), SPAN_NOTICE("You hear a rustling sound"))
 		else
-			to_chat(user, SPAN_WARNING("There's no ore inside the [S] to empty into here"))
+			to_chat(user, SPAN_WARNING("There's69o ore inside the 69S69 to empty into here"))
 	update_ore_count()
 
 	return
@@ -36,16 +36,16 @@
 
 	for(var/obj/item/ore/O in contents)
 
-		if(stored_ore[O.name])
-			stored_ore[O.name]++
+		if(stored_ore69O.name69)
+			stored_ore69O.name69++
 		else
-			stored_ore[O.name] = 1
+			stored_ore69O.name69 = 1
 
 /obj/structure/ore_box/examine(mob/user)
-	to_chat(user, "That's an [src].")
+	to_chat(user, "That's an 69src69.")
 	to_chat(user, desc)
 
-	// Borgs can now check contents too.
+	// Borgs can69ow check contents too.
 	if((!ishuman(user)) && (!isrobot(user)))
 		return
 
@@ -64,14 +64,14 @@
 
 	to_chat(user, "It holds:")
 	for(var/ore in stored_ore)
-		to_chat(user, "- [stored_ore[ore]] [ore]")
+		to_chat(user, "- 69stored_ore69ore6969 69ore69")
 	return
 
 
 /obj/structure/ore_box/verb/empty_box()
-	set name = "Empty Ore Box"
+	set69ame = "Empty Ore Box"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
 		to_chat(usr, "\red You are physically incapable of emptying the ore box.")

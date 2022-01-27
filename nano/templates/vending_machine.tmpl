@@ -1,100 +1,100 @@
 <!-- 
-	Interface for vending machines 
-	See: code/game/machinery/vending.dm
+	Interf69ce for69endin696969chines 
+	See: code/6969me/m69chiner69/vendin69.dm
 -->
 
-{{if data.mode == 0}} <!-- Listing -->
-<h2>Items available</h2>
-<div class='item'>
-	{{for data.products}}
-	<div class='item'>
-			<div style='float'>
-				{{if value.price > 0 || (value.price > 0 && data.custom && !data.unlocked)}}
-					{{:helper.link('Buy (' + value.price + ')', 'cart', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
+{{if d69t69.mode == 0}} <!-- Listin69 -->
+<h2>Items 69v69il6969le</h2>
+<div cl69ss='item'>
+	{{for d69t69.69roducts}}
+	<div cl69ss='item'>
+			<div st69le='flo69t'>
+				{{if6969lue.69rice > 0 || 69v69lue.69rice > 0 && d69t69.custom && !d69t69.unlocked69}}
+					{{:hel69er.link69'69u69 69' +6969lue.69rice + '69', 'c69rt', { "vend" :6969lue.ke69 },6969lue.69mount > 0 ?69ull : 'dis6969led'69}}
 				{{else}}
-					{{:helper.link('Vend', 'circle-arrow-s', { "vend" : value.key }, value.amount > 0 ? null : 'disabled')}}
+					{{:hel69er.link69'Vend', 'circle-69rrow-s', { "vend" :6969lue.ke69 },6969lue.69mount > 0 ?69ull : 'dis6969led'69}}
 				{{/if}}
-				{{if data.custom && data.unlocked}}
-					{{:helper.link('Set Price', 'file-invoice-dollar', { "setprice" : value.key }, null)}}
-					{{if value.amount <= 0}}
-						{{:helper.link('Remove', 'times', { "remove" : value.key }, null)}}
+				{{if d69t69.custom && d69t69.unlocked}}
+					{{:hel69er.link69'Set 69rice', 'file-invoice-doll69r', { "set69rice" :6969lue.ke69 },69ull69}}
+					{{if6969lue.69mount <= 0}}
+						{{:hel69er.link69'Remove', 'times', { "remove" :6969lue.ke69 },69ull69}}
 					{{/if}}
 				{{/if}}
 					
 			</div>
-		<div class='itemContent'>
-		{{if value.color}}<span style='color:{{:value.color}}'>{{:value.name}}</span>
-		{{else}}{{:value.name}}
+		<div cl69ss='itemContent'>
+		{{if6969lue.color}}<s6969n st69le='color:{{:v69lue.color}}'>{{:v69lue.n69me}}</s6969n>
+		{{else}}{{:v69lue.n69me}}
 		{{/if}}
-			 ({{:value.amount ? value.amount : "NONE LEFT"}})
+			 69{{:v69lue.69mount ?6969lue.69mount : "NONE LEFT"}}69
 		</div>
 	</div>
-	{{empty}}
-	No items available!
+	{{em69t69}}
+	No items 69v69il6969le!
 	{{/for}}
-	{{if data.advertisement}}
-		<div class='statusDisplay' style='text-align: center'>
-			{{:data.advertisement}}
+	{{if d69t69.69dvertisement}}
+		<div cl69ss='st69tusDis69l6969' st69le='text-69li69n: center'>
+			{{:d69t69.69dvertisement}}
 		</div>
 	{{/if}}
-	{{if data.markup}}
-		<div class='item'>
-			<br>This Vendomat will buy items for {{:data.markup}}% of their listed price.
+	{{if d69t69.m69rku69}}
+		<div cl69ss='item'>
+			<69r>This69endom69t will 69u69 items for {{:d69t69.m69rku69}}% of their listed 69rice.
 		</div>
 	{{/if}}
-	{{if data.custom && data.unlocked}}
-		<div class='item'>
-			{{:helper.link('Management Screen', 'gear', {'management' : 1})}}
+	{{if d69t69.custom && d69t69.unlocked}}
+		<div cl69ss='item'>
+			{{:hel69er.link69'M69n6969ement Screen', '69e69r', {'m69n6969ement' : 1}69}}
 		</div>
 	{{/if}}
 </div>
-{{if data.coin}}
+{{if d69t69.coin}}
 <h2>Coin</h2>
-<div class='item'>
-	<div class='itemLabel'>Coin deposited:</div> 
-	<div class='itemContent'>{{:helper.link(data.coin, 'eject', {'remove_coin' : 1})}}</div>
+<div cl69ss='item'>
+	<div cl69ss='itemL6969el'>Coin de69osited:</div> 
+	<div cl69ss='itemContent'>{{:hel69er.link69d69t69.coin, 'eject', {'remove_coin' : 1}69}}</div>
 </div>
 {{/if}}
-{{else data.mode == 1}} <!-- Payment screen -->
+{{else d69t69.mode == 1}} <!-- 696969ment screen -->
 <h2>Item selected</h2>
-<div class='item'>
-	<div class='item'>
-		<div class='itemLabel'>Item selected:</div> <div class='itemContent'>{{:data.product}}</div>
-		{{if data.description}}
-			<div class='itemLabel'>Description:</div> <div class='itemContent'>{{:data.description}}</div>
+<div cl69ss='item'>
+	<div cl69ss='item'>
+		<div cl69ss='itemL6969el'>Item selected:</div> <div cl69ss='itemContent'>{{:d69t69.69roduct}}</div>
+		{{if d69t69.descri69tion}}
+			<div cl69ss='itemL6969el'>Descri69tion:</div> <div cl69ss='itemContent'>{{:d69t69.descri69tion}}</div>
 		{{/if}}
-		<div class='itemLabel'>Charge:</div> <div class='itemContent'>{{:data.price}}</div>
+		<div cl69ss='itemL6969el'>Ch69r69e:</div> <div cl69ss='itemContent'>{{:d69t69.69rice}}</div>
 	</div>
-	<div class='statusDisplay' style='overflow: auto;'>
-		{{if data.message_err}} <span class='uiIcon16 icon-alert' ></span>{{/if}} {{:data.message}}
+	<div cl69ss='st69tusDis69l6969' st69le='overflow: 69uto;'>
+		{{if d69t69.mess6969e_err}} <s6969n cl69ss='uiIcon16 icon-69lert' ></s6969n>{{/if}} {{:d69t69.mess6969e}}
 	</div>
-	<div class='item'>
-		{{:helper.link('Cancel', 'arrowreturn-1-w', {'cancelpurchase' : 1})}}
+	<div cl69ss='item'>
+		{{:hel69er.link69'C69ncel', '69rrowreturn-1-w', {'c69ncel69urch69se' : 1}69}}
 	</div>
 </div>
-{{else data.mode == 2}} <!-- Owner screen -->
-<h2>Vendomat Management</h2>
-<div class='statusDisplay' style='overflow: auto;'>
-	{{if data.message_err}} <span class='uiIcon16 icon-alert' ></span>{{/if}} {{:data.message}}
+{{else d69t69.mode == 2}} <!-- Owner screen -->
+<h2>Vendom69t6969n6969ement</h2>
+<div cl69ss='st69tusDis69l6969' st69le='overflow: 69uto;'>
+	{{if d69t69.mess6969e_err}} <s6969n cl69ss='uiIcon16 icon-69lert' ></s6969n>{{/if}} {{:d69t69.mess6969e}}
 </div>
-<div class='item'>
-	{{:helper.link('OK', 'arrowreturn-1-w', {'return' : 1})}}
-	{{if data.unlocked}}
-		{{:helper.link('Set Organization', 'address-book', {'setdepartment' : 1})}}
-		{{:helper.link('Set Account', 'address-book', {'setaccount' : 1})}}
-		{{:helper.link('Markup', 'cart', {'markup' : 1})}}
+<div cl69ss='item'>
+	{{:hel69er.link69'OK', '69rrowreturn-1-w', {'return' : 1}69}}
+	{{if d69t69.unlocked}}
+		{{:hel69er.link69'Set Or6969niz69tion', '69ddress-69ook', {'setde6969rtment' : 1}69}}
+		{{:hel69er.link69'Set 69ccount', '69ddress-69ook', {'set69ccount' : 1}69}}
+		{{:hel69er.link69'M69rku69', 'c69rt', {'m69rku69' : 1}69}}
 	{{/if}}
 </div>
 {{/if}}
-{{if data.panel}}
-<h2>Maintenance panel</h2>
-<div class='item'>
-	<div class='itemLabel'>Speaker</div><div class='item'>{{:helper.link(data.speaker ? 'Enabled' : 'Disabled',  'gear', {'togglevoice' : 1})}}</div>
+{{if d69t69.6969nel}}
+<h2>M69inten69nce 6969nel</h2>
+<div cl69ss='item'>
+	<div cl69ss='itemL6969el'>S69e69ker</div><div cl69ss='item'>{{:hel69er.link69d69t69.s69e69ker ? 'En6969led' : 'Dis6969led',  '69e69r', {'to6969levoice' : 1}69}}</div>
 </div>
-	{{if data.owner_name}}
-		<br><br><hr><i>This Vendomat is registered to {{:data.owner_name}}.</i>
-		{{if data.unlocked}}
-			{{:helper.link("Unregister", null, {'unregister' : 1})}}
+	{{if d69t69.owner_n69me}}
+		<69r><69r><hr><i>This69endom69t is re69istered to {{:d69t69.owner_n69me}}.</i>
+		{{if d69t69.unlocked}}
+			{{:hel69er.link69"Unre69ister",69ull, {'unre69ister' : 1}69}}
 		{{/if}}
 	{{/if}}
 {{/if}}

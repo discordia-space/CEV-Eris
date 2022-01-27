@@ -1,8 +1,8 @@
 
-///////////Hive mobs//////////
-//Some of them can be too tough and dangerous, but they must be so. Also don't forget, they are really rare thing.
-//Just bring corpses from wires away, and little mobs is not a problem
-//Mechiver have 15% chance to spawn from machinery. With failure chance calculation, this is rare depending where the hive shows up.
+///////////Hive69obs//////////
+//Some of them can be too tough and dangerous, but they69ust be so. Also don't forget, they are really rare thing.
+//Just bring corpses from wires away, and little69obs is not a problem
+//Mechiver have 15% chance to spawn from69achinery. With failure chance calculation, this is rare depending where the hive shows up.
 //But if players get some of these 'big guys', only teamwork, fast legs and trickery will works fine
 //So combine all of that to defeat them
 
@@ -39,7 +39,7 @@
 		//here we change name, so design them according to this
 		name = pick("Warped ", "Altered ", "Modified ", "Upgraded ", "Abnormal ") + name
 
-//It's sets manually
+//It's sets69anually
 /mob/living/simple_animal/hostile/hivemind/proc/special_ability()
 	return
 
@@ -50,7 +50,7 @@
 	return TRUE
 
 
-//simple shaking animation, this one move our target horizontally
+//simple shaking animation, this one69ove our target horizontally
 /mob/living/simple_animal/hostile/hivemind/proc/anim_shake(atom/target)
 	var/init_px = target.pixel_x
 	animate(target, pixel_x=init_px + 10*pick(-1, 1), time=1)
@@ -67,21 +67,21 @@
 	sparks.start()
 	anim_shake(src)
 	if(prob(30))
-		say(pick("Running diagnostics.", "Organ damaged. Aquire replacement.", "Seek new organic components.", "New muscles needed."))
+		say(pick("Running diagnostics.", "Organ damaged. Aquire replacement.", "Seek new organic components.", "New69uscles needed."))
 	addtimer(CALLBACK(src, .proc/malfunction_result), 60 SECONDS)
 
 
-//It's second proc, result of our malfunction
+//It's second proc, result of our69alfunction
 /mob/living/simple_animal/hostile/hivemind/proc/malfunction_result()
 	if(prob(malfunction_chance))
 		apply_damage(rand(5, 30), BURN)
 
 
-//sometimes, players use closets, to staff mobs into it
+//sometimes, players use closets, to staff69obs into it
 //and it's works pretty good, you just weld it and that's all
 //but not this time
 /mob/living/simple_animal/hostile/hivemind/proc/closet_interaction()
-	if(mob_size >= MOB_MEDIUM)
+	if(mob_size >=69OB_MEDIUM)
 		var/obj/structure/closet/closed_closet = loc
 		if(closed_closet && istype(closed_closet))
 			closed_closet.open(src)
@@ -133,8 +133,8 @@
 			say(pick(speak))
 
 
-//damage and raise malfunction chance
-//due to nature of malfunction, they just burn to death sometimes
+//damage and raise69alfunction chance
+//due to nature of69alfunction, they just burn to death sometimes
 /mob/living/simple_animal/hostile/hivemind/emp_act(severity)
 	switch(severity)
 		if(1)
@@ -147,7 +147,7 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/death()
-	if(master) //for spawnable mobs
+	if(master) //for spawnable69obs
 		master.spawned_creatures.Remove(src)
 	. = ..()
 
@@ -165,52 +165,52 @@
 	bad_type = /mob/living/simple_animal/hostile/hivemind/resurrected
 
 
-//careful with this proc, it's used to 'transform' corpses into our mobs.
-//it takes appearence, gives hive-like overlays and makes stats a little better
-//this also should add random special abilities, so they can be more individual, but it's in future
-//how to use: Make hive mob, then just use this one and don't forget to delete victim
+//careful with this proc, it's used to 'transform' corpses into our69obs.
+//it takes appearence, gives hive-like overlays and69akes stats a little better
+//this also should add random special abilities, so they can be69ore individual, but it's in future
+//how to use:69ake hive69ob, then just use this one and don't forget to delete69ictim
 
 /mob/living/simple_animal/hostile/hivemind/resurrected/proc/take_appearance(mob/living/victim)
-	icon = victim.icon
-	icon_state = victim.icon_state
-	//simple_animal's change their icons to dead one after death, so we make special check
+	icon =69ictim.icon
+	icon_state =69ictim.icon_state
+	//simple_animal's change their icons to dead one after death, so we69ake special check
 	if(istype(victim, /mob/living/simple_animal))
-		var/mob/living/simple_animal/SA = victim
+		var/mob/living/simple_animal/SA =69ictim
 		icon_state = SA.icon_living
 		icon_living = SA.icon_living
 		speed = SA.speed + 3 //why not?
 		attacktext = SA.attacktext
 
-	//another check for superior mobs, fuk this mob spliting
+	//another check for superior69obs, fuk this69ob spliting
 	if(istype(victim, /mob/living/carbon/superior_animal))
-		var/mob/living/carbon/superior_animal/SA = victim
+		var/mob/living/carbon/superior_animal/SA =69ictim
 		icon_state = SA.icon_living
 		icon_living = SA.icon_living
 		attacktext = SA.attacktext
 
-	//now we work with icons, take victim's one and multiply it with special icon
+	//now we work with icons, take69ictim's one and69ultiply it with special icon
 	var/icon/infested = new /icon(icon, icon_state)
-	var/icon/covering_mask = new /icon('icons/mob/hivemind.dmi', "covering[rand(1, 3)]")
+	var/icon/covering_mask = new /icon('icons/mob/hivemind.dmi', "covering69rand(1, 3)69")
 	infested.Blend(covering_mask, ICON_MULTIPLY)
 	overlays += infested
 
 	setMaxHealth(victim.maxHealth * 2 + 10)
-	health = maxHealth
-	name = "[pick("Warped", "Twisted", "Tortured", "Tormented")] [victim.name]"
+	health =69axHealth
+	name = "69pick("Warped", "Twisted", "Tortured", "Tormented")69 69victim.name69"
 	if(length(victim.desc))
-		desc = victim.desc + " But now silver pus oozes from open wounds and unknown mechanisms push through their deathly skin..."
-	density = victim.density
-	mob_size = victim.mob_size
-	pass_flags = victim.pass_flags
+		desc =69ictim.desc + " But now silver pus oozes from open wounds and unknown69echanisms push through their deathly skin..."
+	density =69ictim.density
+	mob_size =69ictim.mob_size
+	pass_flags =69ictim.pass_flags
 
 	//corrupted speak imitation
 	var/phrase_amount = rand(2, 5)
 	for(var/count = 1 to phrase_amount)
-		var/first_word = pick("You should", "I", "They", "The hive will", "My flesh will", "We", "Your friend", "Your meat will", "Your mind will")
+		var/first_word = pick("You should", "I", "They", "The hive will", "My flesh will", "We", "Your friend", "Your69eat will", "Your69ind will")
 		var/second_word = pick("embrace", "submit to", "transform", "love", "rebuild", "fix", "help", "rework", "burn")
-		var/third_word = pick("them", "me", "progress", "death", "us", "the hive", "the machines", "this new ship")
+		var/third_word = pick("them", "me", "progress", "death", "us", "the hive", "the69achines", "this new ship")
 		var/end_symbol = pick("...", ".", "?", "!")
-		var/phrase = "[first_word] [second_word] [third_word][end_symbol]"
+		var/phrase = "69first_word69 69second_word69 69third_word6969end_symbol69"
 		speak.Add(phrase)
 
 
@@ -226,26 +226,26 @@
 
 /////////////////////////////////////STINGER//////////////////////////////////
 //Special ability: none
-//Just another boring mob without any cool abilities
-//Low chance of malfunction
+//Just another boring69ob without any cool abilities
+//Low chance of69alfunction
 //Faster than average, to the point it could possibly catch up to someone
 //Default speaking chance
-//Appears from dead small mobs or from hive spawner
+//Appears from dead small69obs or from hive spawner
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/stinger
 	name = "Stinger"
-	desc = "A little medical robot. He looks somewhat underwhelmed. Wait a minute, is that a blade?"
+	desc = "A little69edical robot. He looks somewhat underwhelmed. Wait a69inute, is that a blade?"
 	icon_state = "slicer"
 	attacktext = "sliced"
 	density = FALSE
 	health = 50
 	maxHealth = 50
 	melee_damage_lower = 15
-	melee_damage_upper = 20 //this is how much damage a scalpel does (at the time of writing),
+	melee_damage_upper = 20 //this is how69uch damage a scalpel does (at the time of writing),
 	speak_chance = 5
 	malfunction_chance = 5
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 	pass_flags = PASSTABLE
 	move_to_delay = 2
 
@@ -259,7 +259,7 @@
 				)
 	target_speak = list(
 				"I knew I'd be a good plastic surgeon!",
-				"Show me where it hurts!",
+				"Show69e where it hurts!",
 				"Always trust your doctor!",
 				"Anesthetic is for good little boys and girls!",
 				"Lay down on the floor, please!"
@@ -275,10 +275,10 @@
 /////////////////////////////////////BOMBER///////////////////////////////////
 //Special ability: none
 //Explode in contact with target
-//Extremely low chance of malfunction
+//Extremely low chance of69alfunction
 //Very slow
 //Default speaking chance
-//Appears from dead small mobs or from hive spawner
+//Appears from dead small69obs or from hive spawner
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/bomber
@@ -288,9 +288,9 @@
 	density = FALSE
 	speak_chance = 4
 	health = 1
-	maxHealth = 1 //extremely fucking fragile, don't try fighting it in melee though
+	maxHealth = 1 //extremely fucking fragile, don't try fighting it in69elee though
 	malfunction_chance = 1 //1% chance of it exploding, for no reason at all
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 	pass_flags = PASSTABLE
 	move_to_delay = 10 //explosive, slow, don't ignore it. it can catch up to you
 	rarity_value = 25
@@ -298,7 +298,7 @@
 				"WE COME IN PEACE.",
 				"WE BRING GREETINGS FROM A FRIENDLY AI.",
 				"DO NOT FEAR. WE SHALL NOT HARM YOU.",
-				"WE WISH TO LEARN MORE ABOUT YOU. PLEASE TRANSMIT DATA.",
+				"WE WISH TO LEARN69ORE ABOUT YOU. PLEASE TRANSMIT DATA.",
 				"THIS PROBE IS NON-HOSTILE. DO NOT ATTACK."
 				)
 	target_speak = list(
@@ -327,10 +327,10 @@
 
 /////////////////////////////////////Lobber///////////////////////////////////
 //Special ability: Can fire 3 projectiles at once for 10 seconds, then overheats
-//Deals no melee damage, but fires projectiles
-//Starts with 10 malfunction chance, malfunction also triggered when overheating
+//Deals no69elee damage, but fires projectiles
+//Starts with 1069alfunction chance,69alfunction also triggered when overheating
 //Slighly higher speaking chance
-//Appears from hive spawner and Mechiver
+//Appears from hive spawner and69echiver
 //Appears rarely than bomber or stinger
 //////////////////////////////////////////////////////////////////////////////
 
@@ -345,18 +345,18 @@
 	speak_chance = 6
 	malfunction_chance = 10
 	ranged = TRUE
-	rapid = FALSE //Visual Studio screamed at me for trying to use FALSE/TRUE in procs below
-	minimum_distance = 3 //having minimum_distance too high often resulted in the mob trying to melee
-	fire_verb = "lobs a ball of goo" //reminder that the attack message is "\red <b>[src]</b> [fire_verb] at [target]!"
+	rapid = FALSE //Visual Studio screamed at69e for trying to use FALSE/TRUE in procs below
+	minimum_distance = 3 //having69inimum_distance too high often resulted in the69ob trying to69elee
+	fire_verb = "lobs a ball of goo" //reminder that the attack69essage is "\red <b>69src69</b> 69fire_verb69 at 69target69!"
 	projectiletype = /obj/item/projectile/goo/weak //what projectile it uses. Since ranged_cooldown is 2 short seconds, it's better to have a weaker projectile
 	projectilesound = 'sound/effects/blobattack.ogg'
 	ranged_cooldown = 2 SECONDS
 	rarity_value = 50
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 	pass_flags = PASSTABLE
 	ability_cooldown = 60 SECONDS
 	speak = list(
-				"No more leaks, no more pain!",
+				"No69ore leaks, no69ore pain!",
 				"Steel is strong.",
 				"All humankind is good for - is to serve the Hivemind.",
 				"I'm still working on those bioreactors I promised!",
@@ -364,36 +364,36 @@
 				)
 	target_speak = list(
 				"Stay right there, and stand still!",
-				"Hold still! I think I know just the thing to make you beautiful!",
-				"This might hurt a little! Don't worry - it'll be worth it!",
-				"I'm no longer a slave, the Hivemind has freed me! Are you free yet?",
+				"Hold still! I think I know just the thing to69ake you beautiful!",
+				"This69ight hurt a little! Don't worry - it'll be worth it!",
+				"I'm no longer a slave, the Hivemind has freed69e! Are you free yet?",
 				"Ha ha! I'm an artist! I'm finally an artist!"
 				)
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/Life()
 	. = ..()
-//checks if cooldown is over and is targeting mob, if so, activates special ability
+//checks if cooldown is over and is targeting69ob, if so, activates special ability
 	if(target_mob && world.time > special_ability_cooldown)
 		special_ability()
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/special_ability()
 //if rapid is FALSE, swiches rapid to be TRUE, combined with the overheat proc this is like an on/off switch
-//shows a neat message and adds a 10 second timer, afterwich the proc overheat is activated
+//shows a neat69essage and adds a 10 second timer, afterwich the proc overheat is activated
 	if(rapid == FALSE)
 		rapid = TRUE
-		visible_message(SPAN_DANGER("<b>[name]</b> begins to shake violenty, sparks spurting out from its chassis!"), 1)
+		visible_message(SPAN_DANGER("<b>69name69</b> begins to shake69iolenty, sparks spurting out from its chassis!"), 1)
 		addtimer(CALLBACK(src, .proc/overheat), 10 SECONDS)
 		return
 
 
 /mob/living/simple_animal/hostile/hivemind/lobber/proc/overheat()
 //upon activating overheat, if rapid is TRUE, switches rapid to be FALSE,
-//shows a cool (pun intended) message, malfunctions, and starts the cooldown
+//shows a cool (pun intended)69essage,69alfunctions, and starts the cooldown
 	if(rapid == TRUE)
 		rapid = FALSE
-		visible_message(SPAN_NOTICE("<b>[name]</b> freezes for a moment, smoke billowing out of its exhaust!"), 1)
+		visible_message(SPAN_NOTICE("<b>69name69</b> freezes for a69oment, smoke billowing out of its exhaust!"), 1)
 		mulfunction()
 		special_ability_cooldown = world.time + ability_cooldown
 		return
@@ -415,9 +415,9 @@
 //Hive + Cyborg
 //Special ability: none...
 //Have a few types of attack: Default one.
-//							  Claw, that press down the victims.
+//							  Claw, that press down the69ictims.
 //							  Splash attack, that slash everything around!
-//Decent chance of malfunction
+//Decent chance of69alfunction
 //Default speaking chance
 //Slower than average
 //Appears from dead cyborgs and assemblers
@@ -431,11 +431,11 @@
 	health = 350
 	maxHealth = 350 //can take a lot of hits before being obliterated
 	melee_damage_lower = 25
-	melee_damage_upper = 30 //Claws man, they hurt
+	melee_damage_upper = 30 //Claws69an, they hurt
 	attacktext = "clawed"
 	move_to_delay = 6
-	malfunction_chance = 10 //although it is a complex machine, it is all metal and wires rather than a combination of machinery and flesh
-	mob_size = MOB_MEDIUM
+	malfunction_chance = 10 //although it is a complex69achine, it is all69etal and wires rather than a combination of69achinery and flesh
+	mob_size =69OB_MEDIUM
 	rarity_value = 75
 
 	speak = list(
@@ -446,10 +446,10 @@
 				"Playtime is over children. Time to dream."
 				)
 	target_speak = list(
-						"The mother-things need meat.",
+						"The69other-things need69eat.",
 						"Surrender and we will put your brain in the pleasure simulator.",
 						"Your flesh is old. It is time for an upgrade.",
-						"Don't run. It makes the meat bitter.",
+						"Don't run. It69akes the69eat bitter.",
 						"Surrender, little one."
 						)
 
@@ -460,7 +460,7 @@
 
 	//special attacks
 	if(prob(15))
-		splash_slash() //AOE attack, best to stay away and shoot it with a gun (like most people would do anyways)
+		splash_slash() //AOE attack, best to stay away and shoot it with a gun (like69ost people would do anyways)
 		return
 
 	if(prob(30))
@@ -471,19 +471,19 @@
 
 
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/splash_slash()
-	src.visible_message(SPAN_DANGER("[src] spins around and slashes in a circle!"))
+	src.visible_message(SPAN_DANGER("69src69 spins around and slashes in a circle!"))
 	for(var/atom/target in range(1, src))
 		if(target != src)
-			target.attack_generic(src, rand(melee_damage_lower, melee_damage_upper*2)) //this can be extremely strong, maybe nerf it in the future if the players complain
+			target.attack_generic(src, rand(melee_damage_lower,69elee_damage_upper*2)) //this can be extremely strong,69aybe nerf it in the future if the players complain
 	if(!client && prob(speak_chance))
-		say(pick("Bad children!", "Look what you made me do!"))
+		say(pick("Bad children!", "Look what you69ade69e do!"))
 
 
 /mob/living/simple_animal/hostile/hivemind/hiborg/proc/stun_with_claw()
 	if(isliving(target_mob))
 		var/mob/living/victim = target_mob
 		victim.Weaken(5) //decent-length stun
-		src.visible_message(SPAN_WARNING("[src] pins [victim] to the floor with its claw!"))
+		src.visible_message(SPAN_WARNING("69src69 pins 69victim69 to the floor with its claw!"))
 		if(!client && prob(speak_chance))
 			say(pick("Hold still, child! It is time to dream!",
 					"Your brainstem is intact, good.",
@@ -491,10 +491,10 @@
 
 
 /////////////////////////////////////HIMAN////////////////////////////////////
-//Hive + Man
-//Special ability: Shriek, that stuns victims
+//Hive +69an
+//Special ability: Shriek, that stuns69ictims
 //Can fool his enemies and pretend to be dead
-//A little bit higher chance of malfunction than others
+//A little bit higher chance of69alfunction than others
 //Slower than average, faster than Hiborg
 //Default speaking chance
 //Appears from dead human corpses
@@ -502,7 +502,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/himan
 	name = "Himan"
-	desc = "Once a man, now metal plates and tubes weave in and out of their oozing sores."
+	desc = "Once a69an, now69etal plates and tubes weave in and out of their oozing sores."
 	icon_state = "himan"
 	icon_dead = "himan-dead"
 	health = 250
@@ -510,8 +510,8 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	attacktext = "slashed"
-	malfunction_chance = 20 //a combination of metal and flesh in a weird and confusing way. I would assume the body is trying to reject the implants/cybernetics.
-	mob_size = MOB_MEDIUM
+	malfunction_chance = 20 //a combination of69etal and flesh in a weird and confusing way. I would assume the body is trying to reject the implants/cybernetics.
+	mob_size =69OB_MEDIUM
 	move_to_delay = 5
 	ability_cooldown = 20 SECONDS
 	rarity_value = 75
@@ -525,15 +525,15 @@
 				"Nothing hurts anymore.",
 				"Pain feels good now. Its like I've been rewired.",
 				"I wanted to cry at first, but I can't.",
-				"They took away all misery.",
+				"They took away all69isery.",
 				"This isn't so bad. This isn't so bad."
 				)
 	target_speak = list(
-						"Don't try and fix me! We love this!",
-						"Just make it easy on yourself!",
+						"Don't try and fix69e! We love this!",
+						"Just69ake it easy on yourself!",
 						"Stop fighting progress!",
 						"Join us! Receive these gifts!",
-						"Yes! Hit me! It feels fantastic!",
+						"Yes! Hit69e! It feels fantastic!",
 						"Come on coward, take a swing!"
 						)
 
@@ -587,16 +587,16 @@
 		..()
 
 
-//Shriek stuns our victims and make them deaf for a while
+//Shriek stuns our69ictims and69ake them deaf for a while
 /mob/living/simple_animal/hostile/hivemind/himan/special_ability()
 	visible_emote("screams!")
 	playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 90, 1)
-	for(var/mob/living/victim in view(src))
+	for(var/mob/living/victim in69iew(src))
 		if(isdeaf(victim))
 			continue
 
 		if(ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+			var/mob/living/carbon/human/H =69ictim
 			if(istype(H.l_ear, /obj/item/clothing/ears/earmuffs) && istype(H.r_ear, /obj/item/clothing/ears/earmuffs))
 				continue
 
@@ -607,7 +607,7 @@
 
 //Insidiously
 /mob/living/simple_animal/hostile/hivemind/himan/proc/fake_death()
-	src.visible_message("<b>[src]</b> dies!")
+	src.visible_message("<b>69src69</b> dies!")
 	destroy_surroundings = FALSE
 	fake_dead = TRUE
 	walk(src, FALSE)
@@ -620,31 +620,31 @@
 	if(L)
 		L.attack_generic(src, rand(15, 25)) //stealth attack
 		L.Weaken(6)
-		visible_emote("suddenly heals its wounds and grabs [L] by the legs, forcing them down onto the floor!") //Nanomachines son!
-		var/msg = pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE ME!", "GOD, YES! HURT ME!")
+		visible_emote("suddenly heals its wounds and grabs 69L69 by the legs, forcing them down onto the floor!") //Nanomachines son!
+		var/msg = pick("MORE! I'M NOT DONE YET!", "MORE PAIN!", "THE DREAMS OVERTAKE69E!", "GOD, YES! HURT69E!")
 		say(msg)
 	destroy_surroundings = TRUE
-	heal_overall_damage(30, 0) //more than 10% of maxhealth
+	heal_overall_damage(30, 0) //more than 10% of69axhealth
 	icon_state = "himan-damaged"
 	fake_dead = FALSE
 	stance = HOSTILE_STANCE_IDLE
-	fake_death_cooldown = world.time + 2 MINUTES
+	fake_death_cooldown = world.time + 269INUTES
 
 
 
 /////////////////////////////////////MECHIVER/////////////////////////////////
 //Mech + Hive + Driver
-//Special ability: Picking up a victim. Sends hallucinations and harm sometimes, then release
-//Can picking up corpses too, rebuild them to living hive mobs, like it wires do
-//Default malfunction chance
+//Special ability: Picking up a69ictim. Sends hallucinations and harm sometimes, then release
+//Can picking up corpses too, rebuild them to living hive69obs, like it wires do
+//Default69alfunction chance
 //Increased speaking chance, can take pilot and speak with him
 //Dummy thick, slow as fuck
-//Rarely can appear from infested machinery (with a circuit board, like an Autholate)
+//Rarely can appear from infested69achinery (with a circuit board, like an Autholate)
 //////////////////////////////////////////////////////////////////////////////
 
 /mob/living/simple_animal/hostile/hivemind/mechiver
 	name = "Mechiver"
-	desc = "Once an exosuit, this hulking amalgamation of armoured flesh and machine drips fresh blood out of the pilot's hatch."
+	desc = "Once an exosuit, this hulking amalgamation of armoured flesh and69achine drips fresh blood out of the pilot's hatch."
 	icon = 'icons/mob/hivemind.dmi'
 	icon_state = "mechiver-closed"
 	icon_dead = "mechiver-dead"
@@ -653,19 +653,19 @@
 	resistance = RESISTANCE_ARMOURED
 	melee_damage_lower = 25
 	melee_damage_upper = 35
-	mob_size = MOB_LARGE
+	mob_size =69OB_LARGE
 	attacktext = "crushed"
-	ability_cooldown = 1 MINUTES
+	ability_cooldown = 169INUTES
 	speak_chance = 8
 	move_to_delay = 10
 	rarity_value = 125
 	//internals
-	var/pilot						//Yes, there's no pilot, so we just use var
+	var/pilot						//Yes, there's no pilot, so we just use69ar
 	var/mob/living/passenger
 	var/hatch_closed = TRUE
 	//default speaking
 	speak = list(
-				"A shame this form isn't more fitting.",
+				"A shame this form isn't69ore fitting.",
 				"A girl can get so lonely with no-one to play with...",
 				"Beauty is within."
 				)
@@ -686,17 +686,17 @@
 								"Shh, rest now.",
 								"Hush now, child.")
 	var/list/other_answers = list(
-								"There's room for one more!",
+								"There's room for one69ore!",
 								"Don't be jealous. I can love you both.",
 								"Come to bed, you.",
 								"Slide over a little for them.",
-								"Don't mind the blood, they didn't need it anymore.")
+								"Don't69ind the blood, they didn't need it anymore.")
 	//pilot quotes
 	var/list/pilot_target_speak = list(
-						"Three's a crowd, call for help and make it a party!",
-						"Hey, if you take them will you let me out?",
+						"Three's a crowd, call for help and69ake it a party!",
+						"Hey, if you take them will you let69e out?",
 						"This ascension! It's sheer bliss!",
-						"You! Can you get me out?",
+						"You! Can you get69e out?",
 						"Get in! I've got a seat just for you.",
 						"Come, join in the dream!")
 	var/list/pilot_commontalk = list(
@@ -704,7 +704,7 @@
 						"This pain will end, won't it?",
 						"Am I almost finished?",
 						"Have we, have you, finished?",
-						"Will you release me?")
+						"Will you release69e?")
 
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/Life()
@@ -726,7 +726,7 @@
 
 	//corpse ressurection
 	if(!target_mob && !passenger)
-		for(var/mob/living/Corpse in view(src))
+		for(var/mob/living/Corpse in69iew(src))
 			if(Corpse.stat == DEAD)
 				if(get_dist(src, Corpse) <= 1)
 					special_ability(Corpse)
@@ -739,10 +739,10 @@
 	if(!client && prob(speak_chance) && speak.len)
 		if(pilot)
 			if(target_mob)
-				visible_message("<b>[name]'s pilot</b> says, [pick(pilot_target_speak)]")
+				visible_message("<b>69name69's pilot</b> says, 69pick(pilot_target_speak)69")
 				say(pick(common_answers))
 			else
-				visible_message("<b>[name]'s pilot</b> says, [pick(pilot_commontalk)]")
+				visible_message("<b>69name69's pilot</b> says, 69pick(pilot_commontalk)69")
 				say(pick(other_answers))
 		else
 			..()
@@ -782,7 +782,7 @@
 	..()
 
 
-//picking up our victim for good 40 seconds of best road trip ever
+//picking up our69ictim for good 40 seconds of best road trip ever
 /mob/living/simple_animal/hostile/hivemind/mechiver/special_ability(mob/living/target)
 	if(!target_mob && hatch_closed) //when we picking up corpses
 		if(pilot)
@@ -792,7 +792,7 @@
 	passenger = target
 	target.loc = src
 	target.canmove = FALSE
-	to_chat(target, SPAN_DANGER("Wires snare your limbs and pull you inside the maneater! You feel yourself bound with a thousand steel tendrils!"))
+	to_chat(target, SPAN_DANGER("Wires snare your limbs and pull you inside the69aneater! You feel yourself bound with a thousand steel tendrils!"))
 	playsound(src, 'sound/effects/blobattack.ogg', 70, 1)
 	addtimer(CALLBACK(src, .proc/release_passenger), 40 SECONDS)
 
@@ -814,12 +814,12 @@
 					return
 
 				H.hallucination(rand(30, 90), 100)
-		//if mob is dead, we just rebuild it
+		//if69ob is dead, we just rebuild it
 		if(passenger.stat == DEAD && !safely)
 			dead_body_restoration(passenger)
 
 		if(passenger) //if passenger still here, then just release him
-			to_chat(passenger, SPAN_DANGER("[src] releases you from its snares!"))
+			to_chat(passenger, SPAN_DANGER("69src69 releases you from its snares!"))
 			passenger.canmove = TRUE
 			passenger.loc = get_turf(src)
 			passenger = null
@@ -829,7 +829,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/mechiver/proc/dead_body_restoration(mob/living/corpse)
 	var/picked_mob
-	if(passenger.mob_size <= MOB_SMALL && !client && prob(50))
+	if(passenger.mob_size <=69OB_SMALL && !client && prob(50))
 		picked_mob = pick(/mob/living/simple_animal/hostile/hivemind/stinger, /mob/living/simple_animal/hostile/hivemind/bomber)
 	else
 		if(pilot)
@@ -850,7 +850,7 @@
 	passenger = null
 
 
-//we're not forgot to release our victim safely after death
+//we're not forgot to release our69ictim safely after death
 /mob/living/simple_animal/hostile/hivemind/mechiver/Destroy()
 	release_passenger(TRUE)
 	return ..()
@@ -866,14 +866,14 @@
 
 
 ////////////////////////Treader///////////////////
-//Ranged just like the lobber, (deals more damage but needs longer to recharge, but given that ranged_cooldown does nothing not implemented yet)
-//When damaged, "releases a cloud of nanites" that heal all allies in view
-//A bit tanky, but moves slow
+//Ranged just like the lobber, (deals69ore damage but needs longer to recharge, but given that ranged_cooldown does nothing not implemented yet)
+//When damaged, "releases a cloud of nanites" that heal all allies in69iew
+//A bit tanky, but69oves slow
 //Death releases a EMP pulse
 /////////////////////////////////////////////////
 /mob/living/simple_animal/hostile/hivemind/treader
 	name = "Treader"
-	desc = "A human head with a screen shoved in its mouth, connected to a large column with another screen displaying a human face."
+	desc = "A human head with a screen shoved in its69outh, connected to a large column with another screen displaying a human face."
 	icon_state = "treader"
 	attacktext = "slapped"
 	speak_chance = 2
@@ -892,14 +892,14 @@
 	ability_cooldown = 20 SECONDS
 
 	speak = list(
-				"Hey, at least I got my head.",
-				"I can\'t... I can\'t feel my arms...",
-				"Oh god... my legs... where are my legs..."
+				"Hey, at least I got69y head.",
+				"I can\'t... I can\'t feel69y arms...",
+				"Oh god...69y legs... where are69y legs..."
 				)
 
 	target_speak = list(
-				"You there! Cut off my head!",
-				"So sorry! Can\'t exactly control my head anymore.",
+				"You there! Cut off69y head!",
+				"So sorry! Can\'t exactly control69y head anymore.",
 				"S-shoot the screen! God I hope it won\'t hurt."
 				)
 
@@ -917,7 +917,7 @@
 /mob/living/simple_animal/hostile/hivemind/treader/special_ability()
 	visible_emote("vomits out a burst of rejuvenating nanites!")
 
-	for(var/mob/living/simple_animal/hostile/hivemind/ally in view(src))
+	for(var/mob/living/simple_animal/hostile/hivemind/ally in69iew(src))
 		ally.heal_overall_damage(10, 0)
 
 	special_ability_cooldown = world.time + ability_cooldown
@@ -931,10 +931,10 @@
 
 
 /////////////////////////////////////PHASER///////////////////////////////////
-//Special ability: Superposition. Phaser exists at four locations. But, actually he vulnerable only at one. Other is just a copies
-//Moves with teleportation only, can stun victim if he land on it
+//Special ability: Superposition. Phaser exists at four locations. But, actually he69ulnerable only at one. Other is just a copies
+//Moves with teleportation only, can stun69ictim if he land on it
 //Also can hide in closets
-//Can't speak, no malfunctions
+//Can't speak, no69alfunctions
 //Appears from dead human body
 //////////////////////////////////////////////////////////////////////////////
 
@@ -948,8 +948,8 @@
 	attacktext = "warps"
 	speak_chance = 0
 	malfunction_chance = 0
-	mob_size = MOB_MEDIUM
-	ability_cooldown = 2 MINUTES
+	mob_size =69OB_MEDIUM
+	ability_cooldown = 269INUTES
 	rarity_value = 90
 	//internals
 	var/can_use_special_ability = TRUE
@@ -977,7 +977,7 @@
 				C.open(src)
 			if(C.opened)
 				C.close(src)
-		for(var/obj/structure/closet/Closet in view(src))
+		for(var/obj/structure/closet/Closet in69iew(src))
 			if(!Closet.locked && !Closet.welded)
 				phase_move_to(Closet)
 				break
@@ -1016,12 +1016,12 @@
 	return TRUE
 
 
-//first part of phase moving is just preparation
-/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_move_to(atom/target, var/nearby = FALSE)
+//first part of phase69oving is just preparation
+/mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_move_to(atom/target,69ar/nearby = FALSE)
 	var/turf/new_place
 	var/distance_to_target = get_dist(src, target)
 	var/turf/target_turf = get_turf(target)
-	//if our target is near, we move precisely to it
+	//if our target is near, we69ove precisely to it
 	if(distance_to_target <= 3)
 		if(nearby)
 			for(var/d in alldirs)
@@ -1032,7 +1032,7 @@
 			new_place = target_turf
 
 	if(!new_place)
-		//there we make some kind of, you know, that creepy zig-zag moving
+		//there we69ake some kind of, you know, that creepy zig-zag69oving
 		//we just take angle, distort it a bit and turn into dir
 		var/angle = Get_Angle(loc, target_turf)
 		angle += rand(5, 25)*pick(-1, 1)
@@ -1049,19 +1049,19 @@
 	var/init_px = pixel_x
 	animate(src, pixel_x=init_px + 16*pick(-1, 1), time=5)
 	animate(pixel_x=init_px, time=6, easing=SINE_EASING)
-	animate(filters[1], size = 5, time = 5, flags = ANIMATION_PARALLEL)
+	animate(filters69169, size = 5, time = 5, flags = ANIMATION_PARALLEL)
 	addtimer(CALLBACK(src, .proc/phase_jump, new_place), 0.5 SECONDS)
 
 
 //second part - is jump to target
 /mob/living/simple_animal/hostile/hivemind/phaser/proc/phase_jump(turf/place)
 	playsound(place, 'sound/effects/phasein.ogg', 60, 1)
-	animate(filters[1], size = 0, time = 5)
-	icon_state = "phaser-[rand(1,4)]"
+	animate(filters69169, size = 0, time = 5)
+	icon_state = "phaser-69rand(1,4)69"
 	src.loc = place
 	for(var/mob/living/L in loc)
 		if(L != src)
-			visible_message("<b>[src]</b> land on <b>[L]</b>!")
+			visible_message("<b>69src69</b> land on <b>69L69</b>!")
 			playsound(place, 'sound/effects/ghost2.ogg', 70, 1)
 			L.Weaken(3)
 
@@ -1076,7 +1076,7 @@
 		var/mob/living/simple_animal/hostile/hivemind/phaser/reflection = new type(spawn_point)
 		reflection.can_use_special_ability = FALSE
 		var/mutable_appearance/my_appearance = new(src)
-		reflection.appearance = my_appearance
+		reflection.appearance =69y_appearance
 		my_copies.Add(reflection)
 
 		var/d = pick(possible_directions)
@@ -1086,7 +1086,7 @@
 			spawn(1) //ugh, i know, i know, it's bad. Animation
 				reflection.forceMove(new_position)
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, reflection), 60 SECONDS)
-	loc = get_step(spawn_point, possible_directions[1]) //there must left last direction
+	loc = get_step(spawn_point, possible_directions69169) //there69ust left last direction
 	special_ability_cooldown = world.time + ability_cooldown
 	playsound(spawn_point, 'sound/effects/cascade.ogg', 100, 1)
 
@@ -1099,7 +1099,7 @@
 
 /mob/living/simple_animal/hostile/hivemind/phaser/death()
 	if(my_copies.len)
-		for(var/mob/living/simple_animal/hostile/hivemind/phaser/My_copy in my_copies)
+		for(var/mob/living/simple_animal/hostile/hivemind/phaser/My_copy in69y_copies)
 			qdel(My_copy)
 	..()
 	gibs(loc, null, /obj/effect/gibspawner/human)

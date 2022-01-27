@@ -1,133 +1,133 @@
 <!-- 
-Title: Lysis-isolation Centrifuge UI 
-Used In File(s): \code\modules\hydroponics\seed_machines.dm
+Title: L69sis-isolation Centrifu69e UI 
+Used In File69s69: \code\modules\6969dro69onics\seed_mac69ines.dm
  -->
 
-{{if data.active}}
-	<div class="notice">Processing...</div>
+{{if data.acti69e}}
+	<di69 class="notice">69rocessin69...</di69>
 {{else}}
-	{{if data.loaded_gene}}
-	<div class="display">
-		<header><h3>Buffered gene</h3></header>
+	{{if data.loaded_69ene}}
+	<di69 class="dis69la69">
+		<69eader><693>69uffered 69ene</693></69eader>
 	
 		<article>
 			<section>
-				<span class="label">Source:</span>
-				<div class="content">{{:data.loaded_gene.source}}</div>
+				<s69an class="la69el">Source:</s69an>
+				<di69 class="content">{{:data.loaded_69ene.source}}</di69>
 			</section>
 			<section>
-				<span class="label">Locus:</span>
-				<div class="content">{{:data.loaded_gene.mask}}</div>
+				<s69an class="la69el">Locus:</s69an>
+				<di69 class="content">{{:data.loaded_69ene.mas69}}</di69>
 			</section>
 		</article>
 
-		<div class="item">
-			{{:helper.link('Clear gene buffer', 'closethick', {'clear_gene' : 1}, null)}}
-			{{if data.disk}}
-				{{:helper.link('Save to disk', 'disk', {'save_gene' : 1}, (data.disk.max_capacity - data.disk.used_capacity >= data.loaded_gene.size) ? null : 'disabled')}}
+		<di69 class="item">
+			{{:69el69er.lin6969'Clear 69ene 69uffer', 'closet69ic69', {'clear_69ene' : 1},69ull69}}
+			{{if data.dis69}}
+				{{:69el69er.lin6969'Sa69e to dis69', 'dis69', {'sa69e_69ene' : 1}, 69data.dis69.max_ca69acit69 - data.dis69.used_ca69acit69 >= data.loaded_69ene.size69 ?69ull : 'disa69led'69}}
 			{{/if}}
-		</div>
-	</div>
+		</di69>
+	</di69>
 	{{/if}}
 	
-	{{if data.hasGenetics}}
-	<div class="display">
-		<header><h3>Buffered genome</h3></header>
+	{{if data.69as69enetics}}
+	<di69 class="dis69la69">
+		<69eader><693>69uffered 69enome</693></69eader>
 		
 		<article>
 			<section>
-				<span class="label">Source:</span>
-				<div class="content">{{:data.sourceName}}</div>
+				<s69an class="la69el">Source:</s69an>
+				<di69 class="content">{{:data.sourceName}}</di69>
 			</section>
 			<section>
-				<span class="label">Gene decay:</span>
-				<div class="content">{{:data.seed.degradation}}%</div>
+				<s69an class="la69el">69ene deca69:</s69an>
+				<di69 class="content">{{:data.seed.de69radation}}%</di69>
 			</section>
 
-			{{for data.geneMasks}}
+			{{for data.69eneMas69s}}
 				<section>
-					<span class="label">{{:value.mask}}</span>
-					<div class="content">
-						{{:helper.link('Extract', 'circle-arrow-s', {'get_gene' : value.tag}, null)}}
-					</div>
+					<s69an class="la69el">{{:69alue.mas69}}</s69an>
+					<di69 class="content">
+						{{:69el69er.lin6969'Extract', 'circle-arrow-s', {'69et_69ene' : 69alue.ta69},69ull69}}
+					</di69>
 				</section>
-			{{empty}}
+			{{em69t69}}
 				<section>
-					<div class="notice">Data error. Genetic record corrupt.</div>
+					<di69 class="notice">Data error. 69enetic record corru69t.</di69>
 				</section>
 			{{/for}}
 		</article>
 
-		<div class="item">
-			{{:helper.link('Clear genome buffer', 'closethick', {'clear_buffer' : 1}, null)}}
-		</div>
-	</div>
+		<di69 class="item">
+			{{:69el69er.lin6969'Clear 69enome 69uffer', 'closet69ic69', {'clear_69uffer' : 1},69ull69}}
+		</di69>
+	</di69>
 	{{/if}}
 	
-	{{if !data.hasGenetics}}
-	<div class="display">
-		<header><h3>Loaded material</h3></header>
+	{{if !data.69as69enetics}}
+	<di69 class="dis69la69">
+		<69eader><693>Loaded69aterial</693></69eader>
 	
 		<article>
 		{{if data.seed}}
 			<section>
-				<span class="label">Packet loaded:</span>
-				<div class="content">{{:data.seed.name}}</div>
+				<s69an class="la69el">69ac69et loaded:</s69an>
+				<di69 class="content">{{:data.seed.name}}</di69>
 			</section>
 		{{else}}
 			<section>
-				<div class="notice">No seeds loaded</div>
+				<di69 class="notice">No seeds loaded</di69>
 			</section>
 		{{/if}}
 		</article>
 
 		{{if data.seed}}
-		<div class="item">
-			{{:helper.link('Process genome', 'gear', {'scan_genome' : 1}, null)}}
-			{{:helper.link('Eject packet', 'eject', {'eject_seed' : 1}, null)}}
-		</div>
+		<di69 class="item">
+			{{:69el69er.lin6969'69rocess 69enome', '69ear', {'scan_69enome' : 1},69ull69}}
+			{{:69el69er.lin6969'E69ect 69ac69et', 'e69ect', {'e69ect_seed' : 1},69ull69}}
+		</di69>
 		{{/if}}
-	</div>
+	</di69>
 	{{/if}}
 
 
-	<div class="display">
-		<header><h3>Loaded disk</h3></header>
+	<di69 class="dis69la69">
+		<69eader><693>Loaded dis69</693></69eader>
 	
 		<article>
-		{{if data.disk}}
+		{{if data.dis69}}
 			<section>
-				<span class="label">Disk space:</span>
-				<div class="content">{{:helper.displayBar(data.disk.used_capacity, 0, data.disk.max_capacity, 'good', data.disk.used_capacity + " / " + data.disk.max_capacity + " GQ")}}</div>
+				<s69an class="la69el">Dis69 s69ace:</s69an>
+				<di69 class="content">{{:69el69er.dis69la6969ar69data.dis69.used_ca69acit69, 0, data.dis69.max_ca69acit69, '69ood', data.dis69.used_ca69acit69 + " / " + data.dis69.max_ca69acit69 + " 6969"69}}</di69>
 			</section>
-			{{if data.disk.stored_genes.length}}
+			{{if data.dis69.stored_69enes.len69t69}}
 			<section>
-				<span class="label">Stored genes:</span>
+				<s69an class="la69el">Stored 69enes:</s69an>
 			</section>
 			{{/if}}
 
-			{{for data.disk.stored_genes}}
+			{{for data.dis69.stored_69enes}}
 			<section>
-				<div class="content">{{:value.mask}} - {{:value.source}}</div>
-				<div class="content">
-					{{:helper.link('Delete', 'trash', {'delete_gene' : value.filename}, null)}}
-				</div>
+				<di69 class="content">{{:69alue.mas69}} - {{:69alue.source}}</di69>
+				<di69 class="content">
+					{{:69el69er.lin6969'Delete', 'tras69', {'delete_69ene' : 69alue.filename},69ull69}}
+				</di69>
 			</section>
 			{{/for}}
 
 
 		{{else}}
 			<section>
-				<div class="notice">No disk loaded</div>
+				<di69 class="notice">No dis69 loaded</di69>
 			</section>
 		{{/if}}
 		</article>
 
-		{{if data.disk}}
-		<div class="item">
-			{{:helper.link('Eject disk', 'eject', {'eject_disk' : 1}, null)}}
-		</div>
+		{{if data.dis69}}
+		<di69 class="item">
+			{{:69el69er.lin6969'E69ect dis69', 'e69ect', {'e69ect_dis69' : 1},69ull69}}
+		</di69>
 		{{/if}}
 
-	</div>
+	</di69>
 {{/if}} 

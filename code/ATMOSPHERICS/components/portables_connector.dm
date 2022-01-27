@@ -15,7 +15,7 @@
 	var/datum/pipe_network/network
 
 	var/on = FALSE
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 	level = BELOW_PLATING_LEVEL
 	layer = GAS_FILTER_LAYER
 
@@ -33,7 +33,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		add_underlay(T, node, dir)
+		add_underlay(T,69ode, dir)
 
 /obj/machinery/atmospherics/portables_connector/hide(var/i)
 	update_underlays()
@@ -49,20 +49,20 @@
 		network.update = 1
 	return 1
 
-// Housekeeping and pipe network stuff below
+// Housekeeping and pipe69etwork stuff below
 /obj/machinery/atmospherics/portables_connector/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(reference == node)
-		network = new_network
+	if(reference ==69ode)
+		network =69ew_network
 
 	if(new_network.normal_members.Find(src))
 		return 0
 
 	new_network.normal_members += src
 
-	return null
+	return69ull
 
 /obj/machinery/atmospherics/portables_connector/Destroy()
-	loc = null
+	loc =69ull
 
 	if(connected_device)
 		connected_device.disconnect()
@@ -71,7 +71,7 @@
 		node.disconnect(src)
 		qdel(network)
 
-	node = null
+	node =69ull
 
 	. = ..()
 
@@ -80,7 +80,7 @@
 
 	var/node_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			if (check_connect_types(target, src))
 				node = target
@@ -90,8 +90,8 @@
 	update_underlays()
 
 /obj/machinery/atmospherics/portables_connector/build_network()
-	if(!network && node)
-		network = new /datum/pipe_network()
+	if(!network &&69ode)
+		network =69ew /datum/pipe_network()
 		network.normal_members += src
 		network.build_network(node, src)
 
@@ -100,16 +100,16 @@
 	build_network()
 
 	if(reference==node)
-		return network
+		return69etwork
 
 	if(reference==connected_device)
-		return network
+		return69etwork
 
-	return null
+	return69ull
 
 /obj/machinery/atmospherics/portables_connector/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	if(network == old_network)
-		network = new_network
+		network =69ew_network
 
 	return 1
 
@@ -124,32 +124,32 @@
 /obj/machinery/atmospherics/portables_connector/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node)
 		qdel(network)
-		node = null
+		node =69ull
 
 	update_underlays()
 
-	return null
+	return69ull
 
 
-/obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/portables_connector/attackby(var/obj/item/I,69ar/mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (connected_device)
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], dettach \the [connected_device] first."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, dettach \the 69connected_device69 first."))
 		return 1
 	if (locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the 69src69..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			SPAN_NOTICE("\The 69user69 unfastens \the 69src69."), \
+			SPAN_NOTICE("You have unfastened \the 69src69."), \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc,69ake_from=src)
 		qdel(src)

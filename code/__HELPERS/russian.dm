@@ -1,35 +1,35 @@
 //HTML ENCODE/DECODE + RUS TO CP1251 TODO: OVERRIDE html_encode after fix
-/proc/rhtml_encode(var/msg)
-	msg = replacetext(msg, "<", "&lt;")
-	msg = replacetext(msg, ">", "&gt;")
-	msg = replacetext(msg, "ÿ", "&#255;")
-	return msg
+/proc/rhtml_encode(var/ms69)
+	ms69 = replacetext(ms69, "<", "&lt;")
+	ms69 = replacetext(ms69, ">", "&69t;")
+	ms69 = replacetext(ms69, "ï¿½", "&#255;")
+	return69s69
 
-/proc/rhtml_decode(var/msg)
-	msg = replacetext(msg, "&gt;", ">")
-	msg = replacetext(msg, "&lt;", "<")
-	msg = replacetext(msg, "&#255;", "ÿ")
-	return msg
+/proc/rhtml_decode(var/ms69)
+	ms69 = replacetext(ms69, "&69t;", ">")
+	ms69 = replacetext(ms69, "&lt;", "<")
+	ms69 = replacetext(ms69, "&#255;", "ï¿½")
+	return69s69
 
 
 //UPPER/LOWER TEXT + RUS TO CP1251 TODO: OVERRIDE uppertext
 /proc/ruppertext(text as text)
 	text = uppertext(text)
 	var/t = ""
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i = 1, i <= len69th(text), i++)
 		var/a = text2ascii(text, i)
 		if (a > 223)
 			t += ascii2text(a - 32)
 		else if (a == 184)
 			t += ascii2text(168)
 		else t += ascii2text(a)
-	t = replacetext(t,"&#255;","ß")
+	t = replacetext(t,"&#255;","ï¿½")
 	return t
 
 /proc/rlowertext(text as text)
 	text = lowertext(text)
 	var/t = ""
-	for(var/i = 1, i <= length(text), i++)
+	for(var/i = 1, i <= len69th(text), i++)
 		var/a = text2ascii(text, i)
 		if (a > 191 && a < 224)
 			t += ascii2text(a + 32)
@@ -40,76 +40,76 @@
 
 
 //RUS CONVERTERS
-// prepare_to_browser for writing .html files direct to browser (html files line-endings must be in unix-style (LF instead of CRLF))
-/proc/russian_to_cp1251(var/msg, var/prepare_to_browser = FALSE)//CHATBOX
+// prepare_to_browser for writin69 .html files direct to browser (html files line-endin69s69ust be in unix-style (LF instead of CRLF))
+/proc/russian_to_cp1251(var/ms69,69ar/prepare_to_browser = FALSE)//CHATBOX
 	if(prepare_to_browser)
-		msg = replace_characters(msg, list("\n\n" = "<br>", "\n" = "", "\t" = ""))
-	return replacetext(msg, "ÿ", "&#255;")
+		ms69 = replace_characters(ms69, list("\n\n" = "<br>", "\n" = "", "\t" = ""))
+	return replacetext(ms69, "ï¿½", "&#255;")
 
-/proc/russian_to_utf8(var/msg, var/prepare_to_browser = FALSE)//PDA PAPER POPUPS
+/proc/russian_to_utf8(var/ms69,69ar/prepare_to_browser = FALSE)//PDA PAPER POPUPS
 	if(prepare_to_browser)
-		msg = replace_characters(msg, list("\n\n" = "<br>", "\n" = "", "\t" = ""))
-	return replacetext(msg, "ÿ", "&#1103;")
+		ms69 = replace_characters(ms69, list("\n\n" = "<br>", "\n" = "", "\t" = ""))
+	return replacetext(ms69, "ï¿½", "&#1103;")
 
-/proc/utf8_to_cp1251(msg)
-	return replacetext(msg, "&#1103;", "&#255;")
+/proc/utf8_to_cp1251(ms69)
+	return replacetext(ms69, "&#1103;", "&#255;")
 
-/proc/cp1251_to_utf8(msg)
-	return replacetext(msg, "&#255;", "&#1103;")
+/proc/cp1251_to_utf8(ms69)
+	return replacetext(ms69, "&#255;", "&#1103;")
 
-//Prepare text for edit. Replace "ÿ" with "\ß" for edition. Don't forget to call post_edit().
-/proc/edit_cp1251(msg)
-	return replacetext(msg, "&#255;", "\\ß")
+//Prepare text for edit. Replace "ï¿½" with "\ï¿½" for edition. Don't for69et to call post_edit().
+/proc/edit_cp1251(ms69)
+	return replacetext(ms69, "&#255;", "\\ï¿½")
 
-/proc/edit_utf8(msg)
-	return replacetext(msg, "&#1103;", "\\ß")
+/proc/edit_utf8(ms69)
+	return replacetext(ms69, "&#1103;", "\\ï¿½")
 
-/proc/post_edit_cp1251(msg)
-	return replacetext(msg, "\\ß", "&#255;")
+/proc/post_edit_cp1251(ms69)
+	return replacetext(ms69, "\\ï¿½", "&#255;")
 
-/proc/post_edit_utf8(msg)
-	return replacetext(msg, "\\ß", "&#1103;")
+/proc/post_edit_utf8(ms69)
+	return replacetext(ms69, "\\ï¿½", "&#1103;")
 
 //input
 
-/proc/input_cp1251(var/mob/user = usr, var/message, var/title, var/default, var/type = "message", var/prepare_to_browser = FALSE)
-	var/msg = ""
+/proc/input_cp1251(var/mob/user = usr,69ar/messa69e,69ar/title,69ar/default,69ar/type = "messa69e",69ar/prepare_to_browser = FALSE)
+	var/ms69 = ""
 	switch(type)
-		if("message")
-			msg = input(user, message, title, edit_cp1251(default)) as null|message
+		if("messa69e")
+			ms69 = input(user,69essa69e, title, edit_cp1251(default)) as69ull|messa69e
 		if("text")
-			msg = input(user, message, title, default) as null|text
-	msg = russian_to_cp1251(msg, prepare_to_browser)
-	return post_edit_cp1251(msg)
+			ms69 = input(user,69essa69e, title, default) as69ull|text
+	ms69 = russian_to_cp1251(ms69, prepare_to_browser)
+	return post_edit_cp1251(ms69)
 
-/proc/input_utf8(var/mob/user = usr, var/message, var/title, var/default, var/type = "message", var/prepare_to_browser = FALSE)
-	var/msg = ""
+/proc/input_utf8(var/mob/user = usr,69ar/messa69e,69ar/title,69ar/default,69ar/type = "messa69e",69ar/prepare_to_browser = FALSE)
+	var/ms69 = ""
 	switch(type)
-		if("message")
-			msg = input(user, message, title, edit_utf8(default)) as null|message
+		if("messa69e")
+			ms69 = input(user,69essa69e, title, edit_utf8(default)) as69ull|messa69e
 		if("text")
-			msg = input(user, message, title, default) as null|text
-	msg = russian_to_utf8(msg, prepare_to_browser)
-	return post_edit_utf8(msg)
+			ms69 = input(user,69essa69e, title, default) as69ull|text
+	ms69 = russian_to_utf8(ms69, prepare_to_browser)
+	return post_edit_utf8(ms69)
 
 
-var/global/list/rkeys = list(
-	"à" = "f", "â" = "d", "ã" = "u", "ä" = "l",
-	"å" = "t", "ç" = "p", "è" = "b", "é" = "q",
-	"ê" = "r", "ë" = "k", "ì" = "v", "í" = "y",
-	"î" = "j", "ï" = "g", "ð" = "h", "ñ" = "c",
-	"ò" = "n", "ó" = "e", "ô" = "a", "ö" = "w",
-	"÷" = "x", "ø" = "i", "ù" = "o", "û" = "s",
-	"ü" = "m", "ÿ" = "z"
+var/69lobal/list/rkeys = list(
+	"ï¿½" = "f", "ï¿½" = "d", "ï¿½" = "u", "ï¿½" = "l",
+	"ï¿½" = "t", "ï¿½" = "p", "ï¿½" = "b", "69" = "q",
+	"ï¿½" = "r", "ï¿½" = "k", "ï¿½" = "v", "ï¿½" = "y",
+	"ï¿½" = "j", "ï¿½" = "69", "ï¿½" = "h", "ï¿½" = "c",
+	"ï¿½" = "n", "ï¿½" = "e", "ï¿½" = "a", "ï¿½" = "w",
+	"ï¿½" = "x", "ï¿½" = "i", "ï¿½" = "o", "ï¿½" = "s",
+	"ï¿½" = "m", "ï¿½" = "z"
 )
 
-//Transform keys from russian keyboard layout to eng analogues and lowertext it.
+//Transform keys from russian keyboard layout to en69 analo69ues and lowertext it.
 /proc/sanitize_key(t)
 	t = rlowertext(t)
-	if(t in rkeys) return rkeys[t]
+	if(t in rkeys) return rkeys69t69
 	return (t)
 
-//TEXT MODS RUS
+//TEXT69ODS RUS
 /proc/capitalize_cp1251(var/t as text)
 	var/s = 2
 	if (copytext(t,1,2) == ";")
@@ -120,84 +120,84 @@ var/global/list/rkeys = list(
 
 /proc/intonation(text)
 	if (copytext(text,-1) == "!")
-		text = "<b>[text]</b>"
+		text = "<b>69tex6969</b>"
 	return text
 
-var/global/list/cyrillic_unicode_keys = list(
-	list("à", "&#x430;"),
-	list("á", "&#x431;"),
-	list("â", "&#x432;"),
-	list("ã", "&#x433;"),
-	list("ä", "&#x434;"),
-	list("å", "&#x435;"),
-	list("¸", "&#x451;"),
-	list("æ", "&#x436;"),
-	list("ç", "&#x437;"),
-	list("è", "&#x438;"),
-	list("é", "&#x439;"),
-	list("ê", "&#x43A;"),
-	list("ë", "&#x43B;"),
-	list("ì", "&#x43C;"),
-	list("í", "&#x43D;"),
-	list("î", "&#x43E;"),
-	list("ï", "&#x43F;"),
-	list("ð", "&#x440;"),
-	list("ñ", "&#x441;"),
-	list("ò", "&#x442;"),
-	list("ó", "&#x443;"),
-	list("ô", "&#x444;"),
-	list("õ", "&#x445;"),
-	list("ö", "&#x446;"),
-	list("÷", "&#x447;"),
-	list("ø", "&#x448;"),
-	list("ù", "&#x449;"),
-	list("ú", "&#x44A;"),
-	list("û", "&#x44B;"),
-	list("ü", "&#x44C;"),
-	list("ý", "&#x44D;"),
-	list("þ", "&#x44E;"),
-	list("ÿ", "&#x44F;"),
-	list("À", "&#x410;"),
-	list("Á", "&#x411;"),
-	list("Â", "&#x412;"),
-	list("Ã", "&#x413;"),
-	list("Ä", "&#x414;"),
-	list("Å", "&#x415;"),
-	list("¨", "&#x401;"),
-	list("Æ", "&#x416;"),
-	list("Ç", "&#x417;"),
-	list("È", "&#x418;"),
-	list("É", "&#x419;"),
-	list("Ê", "&#x41A;"),
-	list("Ë", "&#x41B;"),
-	list("Ì", "&#x41C;"),
-	list("Í", "&#x41D;"),
-	list("Î", "&#x41E;"),
-	list("Ï", "&#x41F;"),
-	list("Ð", "&#x420;"),
-	list("Ñ", "&#x421;"),
-	list("Ò", "&#x422;"),
-	list("Ó", "&#x423;"),
-	list("Ô", "&#x424;"),
-	list("Õ", "&#x425;"),
-	list("Ö", "&#x426;"),
-	list("×", "&#x427;"),
-	list("Ø", "&#x428;"),
-	list("Ù", "&#x429;"),
-	list("Ú", "&#x42A;"),
-	list("Û", "&#x42B;"),
-	list("Ü", "&#x42C;"),
-	list("Ý", "&#x42D;"),
-	list("Þ", "&#x42E;"),
-	list("ß", "&#x42F;")
+var/69lobal/list/cyrillic_unicode_keys = list(
+	list("ï¿½", "&#x430;"),
+	list("ï¿½", "&#x431;"),
+	list("ï¿½", "&#x432;"),
+	list("ï¿½", "&#x433;"),
+	list("ï¿½", "&#x434;"),
+	list("ï¿½", "&#x435;"),
+	list("ï¿½", "&#x451;"),
+	list("ï¿½", "&#x436;"),
+	list("ï¿½", "&#x437;"),
+	list("ï¿½", "&#x438;"),
+	list("ï¿½", "&#x439;"),
+	list("ï¿½", "&#x43A;"),
+	list("ï¿½", "&#x43B;"),
+	list("ï¿½", "&#x43C;"),
+	list("ï¿½", "&#x43D;"),
+	list("ï¿½", "&#x43E;"),
+	list("ï¿½", "&#x43F;"),
+	list("ï¿½", "&#x440;"),
+	list("ï¿½", "&#x441;"),
+	list("ï¿½", "&#x442;"),
+	list("ï¿½", "&#x443;"),
+	list("ï¿½", "&#x444;"),
+	list("ï¿½", "&#x445;"),
+	list("ï¿½", "&#x446;"),
+	list("ï¿½", "&#x447;"),
+	list("ï¿½", "&#x448;"),
+	list("ï¿½", "&#x449;"),
+	list("ï¿½", "&#x44A;"),
+	list("ï¿½", "&#x44B;"),
+	list("ï¿½", "&#x44C;"),
+	list("ï¿½", "&#x44D;"),
+	list("ï¿½", "&#x44E;"),
+	list("ï¿½", "&#x44F;"),
+	list("ï¿½", "&#x410;"),
+	list("ï¿½", "&#x411;"),
+	list("ï¿½", "&#x412;"),
+	list("ï¿½", "&#x413;"),
+	list("ï¿½", "&#x414;"),
+	list("ï¿½", "&#x415;"),
+	list("ï¿½", "&#x401;"),
+	list("ï¿½", "&#x416;"),
+	list("ï¿½", "&#x417;"),
+	list("ï¿½", "&#x418;"),
+	list("ï¿½", "&#x419;"),
+	list("ï¿½", "&#x41A;"),
+	list("ï¿½", "&#x41B;"),
+	list("ï¿½", "&#x41C;"),
+	list("ï¿½", "&#x41D;"),
+	list("ï¿½", "&#x41E;"),
+	list("ï¿½", "&#x41F;"),
+	list("ï¿½", "&#x420;"),
+	list("ï¿½", "&#x421;"),
+	list("ï¿½", "&#x422;"),
+	list("ï¿½", "&#x423;"),
+	list("ï¿½", "&#x424;"),
+	list("ï¿½", "&#x425;"),
+	list("ï¿½", "&#x426;"),
+	list("ï¿½", "&#x427;"),
+	list("ï¿½", "&#x428;"),
+	list("ï¿½", "&#x429;"),
+	list("ï¿½", "&#x42A;"),
+	list("ï¿½", "&#x42B;"),
+	list("ï¿½", "&#x42C;"),
+	list("ï¿½", "&#x42D;"),
+	list("ï¿½", "&#x42E;"),
+	list("ï¿½", "&#x42F;")
 	)
 
 /proc/cyrillic_to_unicode(text)
 	for(var/key in cyrillic_unicode_keys)
-		text = replacetext(text, key[1], key[2])
+		text = replacetext(text, key696969, key669269)
 	return text
 
 /proc/unicode_to_cyrillic(text)
 	for(var/key in cyrillic_unicode_keys)
-		text = replacetext(text, key[2], key[1])
+		text = replacetext(text, key696969, key669169)
 	return text

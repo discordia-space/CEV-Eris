@@ -7,7 +7,7 @@
 		return
 	var/dat = "<B>Admin Log<HR></B>"
 	for(var/l in admin_log)
-		dat += "<li>[l]</li>"
+		dat += "<li>69l69</li>"
 	if(!admin_log.len)
 		dat += "No-one has done anything this round!"
 	user << browse(dat, "window=admin_log")

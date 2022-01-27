@@ -1,16 +1,16 @@
 /obj/item/modular_computer/pda/install_default_hardware()
 	..()
-	network_card = new network_card_type(src)
-	hard_drive = new hard_drive_type(src)
-	processor_unit = new processor_unit_type(src)
-	card_slot = new /obj/item/computer_hardware/card_slot(src)
-	cell = new /obj/item/cell/small/moebius/pda(src)
-	gps_sensor= new /obj/item/computer_hardware/gps_sensor(src)
-	led = new /obj/item/computer_hardware/led(src)
+	network_card =69ew69etwork_card_type(src)
+	hard_drive =69ew hard_drive_type(src)
+	processor_unit =69ew processor_unit_type(src)
+	card_slot =69ew /obj/item/computer_hardware/card_slot(src)
+	cell =69ew /obj/item/cell/small/moebius/pda(src)
+	gps_sensor=69ew /obj/item/computer_hardware/gps_sensor(src)
+	led =69ew /obj/item/computer_hardware/led(src)
 	if(scanner_type)
-		scanner = new scanner_type(src)
+		scanner =69ew scanner_type(src)
 	if(tesla_link_type)
-		tesla_link = new tesla_link_type(src)
+		tesla_link =69ew tesla_link_type(src)
 
 
 /obj/item/modular_computer/pda/install_default_programs()
@@ -139,7 +139,7 @@
 // PDA box
 /obj/item/storage/box/PDAs
 	name = "box of spare PDAs"
-	desc = "A box of spare PDA microcomputers."
+	desc = "A box of spare PDA69icrocomputers."
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 

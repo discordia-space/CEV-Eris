@@ -3,9 +3,9 @@
 	name = "number pin"
 
 /datum/integrated_io/number/ask_for_pin_data(mob/user)
-	var/new_data = input("Please type in a number.","[src] number writing") as null|num
+	var/new_data = input("Please type in a number.","69src69 number writing") as null|num
 	if(isnum_safe(new_data) && holder.check_interactivity(user) )
-		to_chat(user, SPAN("notice", "You input [new_data] into the pin."))
+		to_chat(user, SPAN("notice", "You input 69new_data69 into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/number/write_data_to_pin(new_data)

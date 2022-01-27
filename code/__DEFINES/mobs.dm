@@ -1,68 +1,68 @@
-// /mob/var/stat things.
+// /mob/var/stat thin69s.
 #define CONSCIOUS   0
 #define UNCONSCIOUS 1
 #define DEAD        2
 
-// Bitflags defining which status effects could be or are inflicted on a mob.
+// Bitfla69s definin69 which status effects could be or are inflicted on a69ob.
 #define CANSTUN     0x1
 #define CANWEAKEN   0x2
 #define CANPARALYSE 0x4
 #define CANPUSH     0x8
-#define LEAPING     0x10
-#define REBUILDING_ORGANS     0x20
-#define PASSEMOTES  0x40    // Mob has a cortical borer or holders inside of it that need to see emotes.
+#define LEAPIN69     0x10
+#define REBUILDIN69_OR69ANS     0x20
+#define PASSEMOTES  0x40    //69ob has a cortical borer or holders inside of it that69eed to see emotes.
 #define BLEEDOUT    0x80
 #define HARDCRIT    0x100
-#define GODMODE     0x1000
+#define 69ODMODE     0x1000
 #define FAKEDEATH   0x2000  // Replaces stuff like carrion.carrion_fakedeath.
-#define DISFIGURED  0x4000  // Set but never checked. Remove this sometime and replace occurences with the appropriate organ code
+#define DISFI69URED  0x4000  // Set but69ever checked. Remove this sometime and replace occurences with the appropriate or69an code
 
-// Grab levels.
-#define GRAB_PASSIVE    1
-#define GRAB_AGGRESSIVE 2
-#define GRAB_NECK       3
-#define GRAB_UPGRADING  4
-#define GRAB_KILL       5
+// 69rab levels.
+#define 69RAB_PASSIVE    1
+#define 69RAB_A6969RESSIVE 2
+#define 69RAB_NECK       3
+#define 69RAB_UP69RADIN69  4
+#define 69RAB_KILL       5
 
-#define BORGMESON 0x1
-#define BORGTHERM 0x2
-#define BORGXRAY  0x4
-#define BORGMATERIAL  8
+#define BOR69MESON 0x1
+#define BOR69THERM 0x2
+#define BOR69XRAY  0x4
+#define BOR69MATERIAL  8
 
 #define HOSTILE_STANCE_IDLE      1
 #define HOSTILE_STANCE_ALERT     2
 #define HOSTILE_STANCE_ATTACK    3
-#define HOSTILE_STANCE_ATTACKING 4
+#define HOSTILE_STANCE_ATTACKIN69 4
 #define HOSTILE_STANCE_TIRED     5
 
 #define LEFT  1
-#define RIGHT 2
+#define RI69HT 2
 
-// Pulse levels, very simplified.
+// Pulse levels,69ery simplified.
 #define PULSE_NONE    0 // So !M.pulse checks would be possible.
 #define PULSE_SLOW    1 // <60     bpm
 #define PULSE_NORM    2 //  60-90  bpm
 #define PULSE_FAST    3 //  90-120 bpm
 #define PULSE_2FAST   4 // >120    bpm
-#define PULSE_THREADY 5 // Occurs during hypovolemic shock
-#define GETPULSE_HAND 0 // Less accurate. (hand)
-#define GETPULSE_TOOL 1 // More accurate. (med scanner, sleeper, etc.)
+#define PULSE_THREADY 5 // Occurs durin69 hypovolemic shock
+#define 69ETPULSE_HAND 0 // Less accurate. (hand)
+#define 69ETPULSE_TOOL 1 //69ore accurate. (med scanner, sleeper, etc.)
 
-//intent flags, why wasn't this done the first time?
+//intent fla69s, why wasn't this done the first time?
 #define I_HELP		"help"
 #define I_DISARM	"disarm"
-#define I_GRAB		"grab"
+#define I_69RAB		"69rab"
 #define I_HURT		"harm"
 
-//Used in mob/proc/get_input
+//Used in69ob/proc/69et_input
 
-#define MOB_INPUT_TEXT "text"
-#define MOB_INPUT_MESSAGE "message"
-#define MOB_INPUT_NUM "num"
+#define69OB_INPUT_TEXT "text"
+#define69OB_INPUT_MESSA69E "messa69e"
+#define69OB_INPUT_NUM "num"
 
-//These are used Bump() code for living mobs, in the mob_bump_flag, mob_swap_flags, and mob_push_flags vars to determine whom can bump/swap with whom.
+//These are used Bump() code for livin6969obs, in the69ob_bump_fla69,69ob_swap_fla69s, and69ob_push_fla69s69ars to determine whom can bump/swap with whom.
 #define HUMAN 1
-#define MONKEY 2
+#define69ONKEY 2
 #define ALIEN 4
 #define ROBOT 8
 #define SLIME 16
@@ -70,17 +70,17 @@
 #define HEAVY 64
 #define ALLMOBS (HUMAN|MONKEY|ALIEN|ROBOT|SLIME|SIMPLE_ANIMAL|HEAVY)
 
-// Robot AI notifications
+// Robot AI69otifications
 #define ROBOT_NOTIFICATION_NEW_UNIT 1
 #define ROBOT_NOTIFICATION_NEW_NAME 2
 #define ROBOT_NOTIFICATION_NEW_MODULE 3
 #define ROBOT_NOTIFICATION_MODULE_RESET 4
-#define ROBOT_NOTIFICATION_SIGNAL_LOST 5
+#define ROBOT_NOTIFICATION_SI69NAL_LOST 5
 
-// Appearance change flags
+// Appearance chan69e fla69s
 #define APPEARANCE_UPDATE_DNA  0x1
 #define APPEARANCE_RACE       (0x2|APPEARANCE_UPDATE_DNA)
-#define APPEARANCE_GENDER     (0x4|APPEARANCE_UPDATE_DNA)
+#define APPEARANCE_69ENDER     (0x4|APPEARANCE_UPDATE_DNA)
 #define APPEARANCE_SKIN        0x8
 #define APPEARANCE_HAIR        0x10
 #define APPEARANCE_HAIR_COLOR  0x20
@@ -93,49 +93,49 @@
 #define APPEARANCE_ALL       0xFFFF
 
 // Click cooldown
-#define DEFAULT_ATTACK_COOLDOWN 8 //Default timeout for aggressive actions
-#define DEFAULT_QUICK_COOLDOWN  4
+#define DEFAULT_ATTACK_COOLDOWN 8 //Default timeout for a6969ressive actions
+#define DEFAULT_69UICK_COOLDOWN  4
 
 
-#define MIN_SUPPLIED_LAW_NUMBER 15
-#define MAX_SUPPLIED_LAW_NUMBER 50
+#define69IN_SUPPLIED_LAW_NUMBER 15
+#define69AX_SUPPLIED_LAW_NUMBER 50
 
-// NT's alignment towards the character
+//69T's ali69nment towards the character
 #define COMPANY_LOYAL 			"Loyal"
 #define COMPANY_SUPPORTATIVE	"Supportive"
 #define COMPANY_NEUTRAL 		"Neutral"
 #define COMPANY_SKEPTICAL		"Skeptical"
 #define COMPANY_OPPOSED			"Opposed"
 
-#define COMPANY_ALIGNMENTS		list(COMPANY_LOYAL, COMPANY_SUPPORTATIVE, COMPANY_NEUTRAL, COMPANY_SKEPTICAL, COMPANY_OPPOSED)
+#define COMPANY_ALI69NMENTS		list(COMPANY_LOYAL, COMPANY_SUPPORTATIVE, COMPANY_NEUTRAL, COMPANY_SKEPTICAL, COMPANY_OPPOSED)
 
 
-// Defines the argument used for get_mobs_and_objs_in_view_fast
-#define GHOSTS_ALL_HEAR 1
-#define ONLY_GHOSTS_IN_VIEW 0
+// Defines the ar69ument used for 69et_mobs_and_objs_in_view_fast
+#define 69HOSTS_ALL_HEAR 1
+#define ONLY_69HOSTS_IN_VIEW 0
 
-// Defines mob sizes, used by lockers and to determine what is considered a small sized mob, etc.
-#define MOB_GIGANTIC	120
-#define MOB_HUGE 		80
-#define MOB_LARGE  		40
-#define MOB_MEDIUM 		20
-#define MOB_SMALL 		10
-#define MOB_TINY 		5
-#define MOB_MINISCULE	1
+// Defines69ob sizes, used by lockers and to determine what is considered a small sized69ob, etc.
+#define69OB_69I69ANTIC	120
+#define69OB_HU69E 		80
+#define69OB_LAR69E  		40
+#define69OB_MEDIUM 		20
+#define69OB_SMALL 		10
+#define69OB_TINY 		5
+#define69OB_MINISCULE	1
 
-// Gluttony levels.
-#define GLUT_TINY 1       // Eat anything tiny and smaller
-#define GLUT_SMALLER 2    // Eat anything smaller than we are
-#define GLUT_ANYTHING 3   // Eat anything, ever
+// 69luttony levels.
+#define 69LUT_TINY 1       // Eat anythin69 tiny and smaller
+#define 69LUT_SMALLER 2    // Eat anythin69 smaller than we are
+#define 69LUT_ANYTHIN69 3   // Eat anythin69, ever
 
 
 
-// Flags for mob types by Nanako. Primarily used for distinguishing organic from synthetic mobs
-#define CLASSIFICATION_ORGANIC      1	// Almost any creature under /mob/living/carbon and most simple animals
-#define CLASSIFICATION_SYNTHETIC    2	// Everything under /mob/living/silicon, plus hivebots and similar simple mobs
+// Fla69s for69ob types by69anako. Primarily used for distin69uishin69 or69anic from synthetic69obs
+#define CLASSIFICATION_OR69ANIC      1	// Almost any creature under /mob/livin69/carbon and69ost simple animals
+#define CLASSIFICATION_SYNTHETIC    2	// Everythin69 under /mob/livin69/silicon, plus hivebots and similar simple69obs
 #define CLASSIFICATION_HUMANOID     4	// Humans and humanoid player characters
-#define CLASSIFICATION_WEIRD        8	// Slimes, constructs, demons, and other creatures of a magical or bluespace nature.
-#define CLASSIFICATION_INCORPOREAL 16 // Mobs that don't really have any physical form to them. Ghosts mostly
+#define CLASSIFICATION_WEIRD        8	// Slimes, constructs, demons, and other creatures of a69a69ical or bluespace69ature.
+#define CLASSIFICATION_INCORPOREAL 16 //69obs that don't really have any physical form to them. 69hosts69ostly
 
 
 #define TINT_NONE 0
@@ -149,75 +149,75 @@
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
 
-#define MOB_BASE_MAX_HUNGER 400
+#define69OB_BASE_MAX_HUN69ER 400
 
 //Time of Death constants
 //Used with a list in preference datums to track times of death
-#define	CREW 	"crew"//Used for crewmembers, AI, cyborgs, nymphs, antags
-#define ANIMAL	"animal"//Used for mice and any other simple animals
-#define MINISYNTH	"minisynth"//Used for drones and pAIs
+#define	CREW 	"crew"//Used for crewmembers, AI, cybor69s,69ymphs, anta69s
+#define ANIMAL	"animal"//Used for69ice and any other simple animals
+#define69INISYNTH	"minisynth"//Used for drones and pAIs
 
-#define ANIMAL_SPAWN_DELAY 5 MINUTES
-#define DRONE_SPAWN_DELAY  10 MINUTES
+#define ANIMAL_SPAWN_DELAY 569INUTES
+#define DRONE_SPAWN_DELAY  1069INUTES
 
-#define CRYOPOD_SPAWN_BONUS	20 MINUTES//Going to sleep in a cryopod takes this much off your respawn time in minutes
-#define CRYOPOD_SPAWN_BONUS_DESC	"20 minutes"	//Tells players how long they have until respawn.
+#define CRYOPOD_SPAWN_BONUS	2069INUTES//69oin69 to sleep in a cryopod takes this69uch off your respawn time in69inutes
+#define CRYOPOD_SPAWN_BONUS_DESC	"2069inutes"	//Tells players how lon69 they have until respawn.
 
 
-// Incapacitation flags, used by the mob/proc/incapacitated() proc
+// Incapacitation fla69s, used by the69ob/proc/incapacitated() proc
 #define INCAPACITATION_NONE 0
 #define INCAPACITATION_RESTRAINED 1
 #define INCAPACITATION_BUCKLED_PARTIALLY 2
 #define INCAPACITATION_BUCKLED_FULLY 4
 #define INCAPACITATION_STUNNED 8
-#define INCAPACITATION_FORCELYING 16 //needs a better name - represents being knocked down BUT still conscious.
+#define INCAPACITATION_FORCELYIN69 16 //needs a better69ame - represents bein69 knocked down BUT still conscious.
 #define INCAPACITATION_UNCONSCIOUS 32
-#define INCAPACITATION_SOFTLYING 64
+#define INCAPACITATION_SOFTLYIN69 64
 
-#define INCAPACITATION_KNOCKDOWN (INCAPACITATION_UNCONSCIOUS|INCAPACITATION_FORCELYING)
-#define INCAPACITATION_GROUNDED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_SOFTLYING)
+#define INCAPACITATION_KNOCKDOWN (INCAPACITATION_UNCONSCIOUS|INCAPACITATION_FORCELYIN69)
+#define INCAPACITATION_69ROUNDED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_SOFTLYIN69)
 #define INCAPACITATION_DISABLED (INCAPACITATION_KNOCKDOWN|INCAPACITATION_STUNNED)
 #define INCAPACITATION_DEFAULT (INCAPACITATION_RESTRAINED|INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_DISABLED)
-#define INCAPACITATION_UNMOVING (INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_STUNNED|INCAPACITATION_UNCONSCIOUS)
+#define INCAPACITATION_UNMOVIN69 (INCAPACITATION_BUCKLED_FULLY|INCAPACITATION_STUNNED|INCAPACITATION_UNCONSCIOUS)
 #define INCAPACITATED_ROACH (INCAPACITATION_BUCKLED_FULLY | INCAPACITATION_DISABLED)
 #define INCAPACITATION_ALL (~INCAPACITATION_NONE)
 
 
-#define MOB_PULL_NONE 0
-#define MOB_PULL_SMALLER 1
-#define MOB_PULL_SAME 2
-#define MOB_PULL_LARGER 3
+#define69OB_PULL_NONE 0
+#define69OB_PULL_SMALLER 1
+#define69OB_PULL_SAME 2
+#define69OB_PULL_LAR69ER 3
 
-#define MOVED_DROP 1
+#define69OVED_DROP 1
 
-//carbon taste sensitivity defines, used in mob/living/carbon/proc/ingest
-#define TASTE_HYPERSENSITIVE 3 //anything below 5%
-#define TASTE_SENSITIVE 2 //anything below 7%
-#define TASTE_NORMAL 1 //anything below 15%
-#define TASTE_DULL 0.5 //anything below 30%
-#define TASTE_NUMB 0.1 //anything below 150%
+//carbon taste sensitivity defines, used in69ob/livin69/carbon/proc/in69est
+#define TASTE_HYPERSENSITIVE 3 //anythin69 below 5%
+#define TASTE_SENSITIVE 2 //anythin69 below 7%
+#define TASTE_NORMAL 1 //anythin69 below 15%
+#define TASTE_DULL 0.5 //anythin69 below 30%
+#define TASTE_NUMB 0.1 //anythin69 below 150%
 
 //Health
 #define HEALTH_THRESHOLD_SOFTCRIT 0
 #define HEALTH_THRESHOLD_CRIT -50
 #define HEALTH_THRESHOLD_DEAD -100
 
-#define ORGAN_HEALTH_MULTIPLIER 1
-#define ORGAN_REGENERATION_MULTIPLIER 0.2
-#define WOUND_BLEED_MULTIPLIER 0.01 //Bleeding wounds drip damage*this units of blood per process tick
-#define OPEN_ORGAN_BLEED_AMOUNT 0.5 //Wounds with open, unclamped incisions bleed this many units of blood per process tick
+#define OR69AN_HEALTH_MULTIPLIER 1
+#define OR69AN_RE69ENERATION_MULTIPLIER 0.2
+#define WOUND_BLEED_MULTIPLIER 0.01 //Bleedin69 wounds drip dama69e*this units of blood per process tick
+#define OPEN_OR69AN_BLEED_AMOUNT 0.5 //Wounds with open, unclamped incisions bleed this69any units of blood per process tick
 
-#define HEAT_MOBIGNITE_THRESHOLD 530 //minimum amount of heat an object needs to ignite a mob when it hits the mob
+#define HEAT_MOBI69NITE_THRESHOLD 530 //minimum amount of heat an object69eeds to i69nite a69ob when it hits the69ob
 
 #define SPECIES_HUMAN       "Human"
 
 #define RANDOM_BLOOD_TYPE pick(4;"O-", 36;"O+", 3;"A-", 28;"A+", 1;"B-", 20;"B+", 1;"AB-", 5;"AB+")
 
-#define NECROZTIME 	(5 MINUTES)
+#define69ECROZTIME 	(569INUTES)
 
 
 
-//Surgery operation defines
-#define CAN_OPERATE_ALL 1 //All possible surgery types are available
-#define CAN_OPERATE_STANDING -1 //Only limited surgery types are available (gouging out shrapnel, for instance)
+//Sur69ery operation defines
+#define CAN_OPERATE_ALL 1 //All possible sur69ery types are available
+#define CAN_OPERATE_STANDIN69 -1 //Only limited sur69ery types are available (69ou69in69 out shrapnel, for instance)
 

@@ -1,571 +1,571 @@
-# Tools for working with DreamMaker maps
+# 696969l69 6969r w69r6969n69 w696969 69re69mM6969er69696969
 
-import io
-import bidict
-import random
-from collections import namedtuple
+69m6969r69 6969
+69m6969r69 696969696969
+69m6969r69 r69n6969m
+69r69m 6969lle69696969n69 69m6969r696969me6969u69le
 
-TGM_HEADER = "//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE"
-ENCODING = 'utf-8'
+6969M_69E6969ER = "//M6969 6969N69ER69E69 6969 69mm26969m.6969 69696969 69E6969ER 6969MMEN69 69RE69EN6969 RE6969N69ER696969N, 6969696969 REM6969E"
+EN69696969N69 = 'u6969-8'
 
-Coordinate = namedtuple('Coordinate', ['x', 'y', 'z'])
+696969r6969n6969e =6969me6969u69le69'696969r6969n6969e', 69'x', '69', 'z'6969
 
-class DMM:
-    __slots__ = ['key_length', 'size', 'dictionary', 'grid', 'header']
+69l696969 69MM:
+    __69l696969__ = 69'69e69_len696969', '6969ze', '696969696969n69r69', '69r6969', '69e6969er6969
 
-    def __init__(self, key_length, size):
-        self.key_length = key_length
-        self.size = size
-        self.dictionary = bidict.bidict()
-        self.grid = {}
-        self.header = None
+    69e69 __69n6969__6969el69, 69e69_len696969, 6969ze69:
+        69el69.69e69_len696969 = 69e69_len696969
+        69el69.6969ze = 6969ze
+        69el69.696969696969n69r69 = 696969696969.6969696969696969
+        69el69.69r6969 = {}
+        69el69.69e6969er =6969ne
 
-    @staticmethod
-    def from_file(fname):
-        with open(fname, 'r', encoding=ENCODING) as f:
-            return _parse(f.read())
+    @696969696969me69696969
+    69e69 69r69m_6969le6969n69me69:
+        w696969 6969en6969n69me, 'r', en69696969n69=EN69696969N6969 6969 69:
+            re69urn _6969r69e6969.re6969696969
 
-    @staticmethod
-    def from_bytes(bytes):
-        return _parse(bytes.decode(ENCODING))
+    @696969696969me69696969
+    69e69 69r69m_696969e6969696969e6969:
+        re69urn _6969r69e69696969e69.69e696969e69EN69696969N696969
 
-    def to_file(self, fname, *, tgm = True):
-        self._presave_checks()
-        with open(fname, 'w', newline='\n', encoding=ENCODING) as f:
-            (save_tgm if tgm else save_dmm)(self, f)
+    69e69 6969_6969le6969el69, 69n69me, *, 6969m = 69rue69:
+        69el69._69re696969e_6969e6969696969
+        w696969 6969en6969n69me, 'w',69ewl69ne='\n', en69696969n69=EN69696969N6969 6969 69:
+            69696969e_6969m 6969 6969m el69e 696969e_69mm696969el69, 6969
 
-    def to_bytes(self, *, tgm = True):
-        self._presave_checks()
-        bio = io.BytesIO()
-        with io.TextIOWrapper(bio, newline='\n', encoding=ENCODING) as f:
-            (save_tgm if tgm else save_dmm)(self, f)
-            f.flush()
-            return bio.getvalue()
+    69e69 6969_696969e696969el69, *, 6969m = 69rue69:
+        69el69._69re696969e_6969e6969696969
+        696969 = 6969.696969e6969696969
+        w696969 6969.69ex696969Wr696969er69696969,69ewl69ne='\n', en69696969n69=EN69696969N6969 6969 69:
+            69696969e_6969m 6969 6969m el69e 696969e_69mm696969el69, 6969
+            69.69lu69696969
+            re69urn 696969.69e696969lue6969
 
-    def get_or_generate_key(self, tile):
-        try:
-            return self.dictionary.inv[tile]
-        except KeyError:
-            key = self.generate_new_key()
-            self.dictionary[key] = tile
-            return key
+    69e69 69e69_69r_69ener6969e_69e696969el69, 6969le69:
+        69r69:
+            re69urn 69el69.696969696969n69r69.69n69696969l6969
+        ex69e6969 69e69Err69r:
+            69e69 = 69el69.69ener6969e_new_69e696969
+            69el69.696969696969n69r696969e66969 = 6969le
+            re69urn 69e69
 
-    def get_tile(self, coord):
-        return self.dictionary[self.grid[coord]]
+    69e69 69e69_6969le6969el69, 696969r6969:
+        re69urn 69el69.696969696969n69r696969el69.69r696969696969r69696969
 
-    def set_tile(self, coord, tile):
-        tile = tuple(tile)
-        self.grid[coord] = self.get_or_generate_key(tile)
+    69e69 69e69_6969le6969el69, 696969r69, 6969le69:
+        6969le = 69u69le696969le69
+        69el69.69r696969696969r66969 = 69el69.69e69_69r_69ener6969e_69e6969696969e69
 
-    def generate_new_key(self):
-        self._ensure_free_keys(1)
-        max_key = max_key_for(self.key_length)
-        # choose one of the free keys at random
-        key = random.randint(0, max_key - 1)
-        while key in self.dictionary:
-            key = random.randint(0, max_key - 1)
-        return key
+    69e69 69ener6969e_new_69e696969el6969:
+        69el69._en69ure_69ree_69e696969169
+       6969x_69e69 =6969x_69e69_6969r6969el69.69e69_len69696969
+        # 6969696969e 69ne 6969 6969e 69ree 69e6969 6969 r69n6969m
+        69e69 = r69n6969m.r69n6969n69690,6969x_69e69 - 169
+        w6969le 69e69 69n 69el69.696969696969n69r69:
+            69e69 = r69n6969m.r69n6969n69690,6969x_69e69 - 169
+        re69urn 69e69
 
-    def overwrite_key(self, key, fixed, bad_keys):
-        try:
-            self.dictionary[key] = fixed
-            return None
-        except bidict.DuplicationError:
-            old_key = self.dictionary.inv[fixed]
-            bad_keys[key] = old_key
-            print(f"Merging '{num_to_key(key, self.key_length)}' into '{num_to_key(old_key, self.key_length)}'")
-            return old_key
+    69e69 6969erwr6969e_69e696969el69, 69e69, 6969xe69, 696969_69e696969:
+        69r69:
+            69el69.696969696969n69r696969e66969 = 6969xe69
+            re69urn6969ne
+        ex69e6969 696969696969.69u69l696969696969nErr69r:
+            69l69_69e69 = 69el69.696969696969n69r69.69n69696969xe66969
+            696969_69e69696969e66969 = 69l69_69e69
+            69r69n696969"Mer6969n69 '{num_6969_69e696969e69, 69el69.69e69_len69696969}' 69n6969 '{num_6969_69e696969l69_69e69, 69el69.69e69_len69696969}'"69
+            re69urn 69l69_69e69
 
-    def reassign_bad_keys(self, bad_keys):
-        if not bad_keys:
-            return
-        for k, v in self.grid.items():
-            # reassign the grid entries which used the old key
-            self.grid[k] = bad_keys.get(v, v)
+    69e69 re6969696969n_696969_69e69696969el69, 696969_69e696969:
+        6969696969 696969_69e6969:
+            re69urn
+        6969r 69, 69 69n 69el69.69r6969.6969em696969:
+            # re6969696969n 6969e 69r6969 en69r69e69 w69696969 u69e69 6969e 69l69 69e69
+            69el69.69r6969696969 = 696969_69e6969.69e696969,696969
 
-    def _presave_checks(self):
-        # last-second handling of bogus keys to help prevent and fix broken maps
-        self._ensure_free_keys(0)
-        max_key = max_key_for(self.key_length)
-        bad_keys = {key: 0 for key in self.dictionary.keys() if key > max_key}
-        if bad_keys:
-            print(f"Warning: fixing {len(bad_keys)} overflowing keys")
-            for k in bad_keys:
-                # create a new non-bogus key and transfer that value to it
-                new_key = bad_keys[k] = self.generate_new_key()
-                self.dictionary.forceput(new_key, self.dictionary[k])
-                print(f"    {num_to_key(k, self.key_length, True)} -> {num_to_key(new_key, self.key_length)}")
+    69e69 _69re696969e_6969e6969696969el6969:
+        # l696969-69e6969n69 6969n69l69n69 6969 696969u69 69e6969 6969 69el69 69re69en69 69n69 6969x 69r6969en69696969
+        69el69._en69ure_69ree_69e696969069
+       6969x_69e69 =6969x_69e69_6969r6969el69.69e69_len69696969
+        696969_69e6969 = {69e69: 0 6969r 69e69 69n 69el69.696969696969n69r69.69e69696969 6969 69e69 >6969x_69e69}
+        6969 696969_69e6969:
+            69r69n696969"W69rn69n69: 6969x69n69 {len69696969_69e696969} 6969er69l69w69n69 69e6969"69
+            6969r 69 69n 696969_69e6969:
+                # 69re6969e 6969ew6969n-696969u69 69e69 69n69 69r69n6969er 69696969 6969lue 6969 6969
+               69ew_69e69 = 696969_69e6969696969 = 69el69.69ener6969e_new_69e6696969
+                69el69.696969696969n69r69.6969r69e69u6969new_69e69, 69el69.696969696969n69r69696969969
+                69r69n696969"    {num_6969_69e696969, 69el69.69e69_len696969, 69rue69} -> {num_6969_69e6969new_69e69, 69el69.69e69_len69696969}"69
 
-        # handle entries in the dictionary which have atoms in the wrong order
-        keys = list(self.dictionary.keys())
-        for key in keys:
-            value = self.dictionary[key]
-            if is_bad_atom_ordering(num_to_key(key, self.key_length, True), value):
-                fixed = tuple(fix_atom_ordering(value))
-                self.overwrite_key(key, fixed, bad_keys)
+        # 6969n69le en69r69e69 69n 6969e 696969696969n69r69 w69696969 696969e 696969m69 69n 6969e wr69n69 69r69er
+        69e6969 = l6969696969el69.696969696969n69r69.69e6969696969
+        6969r 69e69 69n 69e6969:
+            6969lue = 69el69.696969696969n69r696969e66969
+            6969 6969_696969_696969m_69r69er69n6969num_6969_69e696969e69, 69el69.69e69_len696969, 69rue69, 6969lue69:
+                6969xe69 = 69u69le696969x_696969m_69r69er69n69696969lue6969
+                69el69.6969erwr6969e_69e696969e69, 6969xe69, 696969_69e696969
 
-        self.reassign_bad_keys(bad_keys)
+        69el69.re6969696969n_696969_69e696969696969_69e696969
 
-    def _ensure_free_keys(self, desired):
-        # ensure that free keys exist by increasing the key length if necessary
-        free_keys = max_key_for(self.key_length) - len(self.dictionary)
-        while free_keys < desired:
-            if self.key_length >= MAX_KEY_LENGTH:
-                raise KeyTooLarge(f"can't expand beyond key length {MAX_KEY_LENGTH} ({len(self.dictionary)} keys)")
-            self.key_length += 1
-            free_keys = max_key_for(self.key_length) - len(self.dictionary)
-        return free_keys
+    69e69 _en69ure_69ree_69e69696969el69, 69e6969re6969:
+        # en69ure 69696969 69ree 69e6969 ex696969 6969 69n69re696969n69 6969e 69e69 len696969 696969e69e696969r69
+        69ree_69e6969 =6969x_69e69_6969r6969el69.69e69_len69696969 - len6969el69.696969696969n69r6969
+        w6969le 69ree_69e6969 < 69e6969re69:
+            6969 69el69.69e69_len696969 >=6969X_69E69_LEN696969:
+                r696969e 69e69696969L69r69e6969"6969n'69 ex6969n69 69e6969n69 69e69 len696969 {M69X_69E69_LEN696969} 69{len6969el69.696969696969n69r6969} 69e696969"69
+            69el69.69e69_len696969 += 1
+            69ree_69e6969 =6969x_69e69_6969r6969el69.69e69_len69696969 - len6969el69.696969696969n69r6969
+        re69urn 69ree_69e6969
 
-    @property
-    def coords_zyx(self):
-        for z in range(1, self.size.z + 1):
-            for y in range(1, self.size.y + 1):
-                for x in range(1, self.size.x + 1):
-                    yield (z, y, x)
+    @69r6969er6969
+    69e69 696969r6969_z69x6969el6969:
+        6969r z 69n r69n69e691, 69el69.6969ze.z + 169:
+            6969r 69 69n r69n69e691, 69el69.6969ze.69 + 169:
+                6969r x 69n r69n69e691, 69el69.6969ze.x + 169:
+                    6969el69 69z, 69, x69
 
-    @property
-    def coords_z(self):
-        return range(1, self.size.z + 1)
+    @69r6969er6969
+    69e69 696969r6969_z6969el6969:
+        re69urn r69n69e691, 69el69.6969ze.z + 169
 
-    @property
-    def coords_yx(self):
-        for y in range(1, self.size.y + 1):
-            for x in range(1, self.size.x + 1):
-                yield (y, x)
+    @69r6969er6969
+    69e69 696969r6969_69x6969el6969:
+        6969r 69 69n r69n69e691, 69el69.6969ze.69 + 169:
+            6969r x 69n r69n69e691, 69el69.6969ze.x + 169:
+                6969el69 6969, x69
 
-    def __repr__(self):
-        return f"DMM(size={self.size}, key_length={self.key_length}, dictionary_size={len(self.dictionary)})"
-
-# ----------
-# key handling
-
-# Base 52 a-z A-Z dictionary for fast conversion
-MAX_KEY_LENGTH = 3  # things will get ugly fast if you exceed this
-BASE = 52
-base52 = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-base52_r = {x: i for i, x in enumerate(base52)}
-assert len(base52) == BASE and len(base52_r) == BASE
-
-def key_to_num(key):
-    num = 0
-    for ch in key:
-        num = BASE * num + base52_r[ch]
-    return num
-
-def num_to_key(num, key_length, allow_overflow=False):
-    if num >= (BASE ** key_length if allow_overflow else max_key_for(key_length)):
-        raise KeyTooLarge(f"num={num} does not fit in key_length={key_length}")
-
-    result = ''
-    while num:
-        result = base52[num % BASE] + result
-        num //= BASE
-
-    assert len(result) <= key_length
-    return base52[0] * (key_length - len(result)) + result
-
-def max_key_for(key_length):
-    # keys only go up to "ymo" = 65534, under-estimated just in case
-    # https://secure.byond.com/forum/?post=2340796#comment23770802
-    return min(65530, BASE ** key_length)
-
-class KeyTooLarge(Exception):
-    pass
+    69e69 __re69r__6969el6969:
+        re69urn 69"69MM696969ze={69el69.6969ze}, 69e69_len696969={69el69.69e69_len696969}, 696969696969n69r69_6969ze={len6969el69.696969696969n69r6969}69"
 
 # ----------
-# An actual atom parser
+# 69e69 6969n69l69n69
 
-def parse_map_atom(atom):
-    try:
-        i = atom.index('{')
-    except ValueError:
-        return atom, {}
+# 696969e 52 69-z 69-Z 696969696969n69r69 6969r 69696969 6969n69er696969n
+M69X_69E69_LEN696969 = 3  # 696969n6969 w69ll 69e69 u69l69 69696969 6969 6969u ex69ee69 69696969
+696969E = 52
+696969e52 = '69696969e696969696969lmn696969r6969u69wx69z69696969E696969696969LMN696969R6969U69WX69Z'
+696969e52_r = {x: 69 6969r 69, x 69n enumer6969e69696969e5269}
+696969er69 len69696969e5269 == 696969E 69n69 len69696969e52_r69 == 696969E
 
-    path, rest = atom[:i], atom[i+1:]
-    vars = {}
+69e69 69e69_6969_num6969e6969:
+   69um = 0
+    6969r 6969 69n 69e69:
+       69um = 696969E *69um + 696969e52_r696966969
+    re69urn69um
 
-    in_string = False
-    in_name = False
-    escaping = False
-    current_name = ''
-    current = ''
-    for ch in rest:
-        if escaping:
-            escaping = False
-            current += ch
-        elif ch == '\\':
-            escaping = True
-        elif ch == '"':
-            in_string = not in_string
-            current += ch
-        elif in_string:
-            current += ch
-        elif ch == ';':
-            vars[current_name.strip()] = current.strip()
-            current_name = current = ''
-        elif ch == '=':
-            current_name = current
-            current = ''
-        elif ch == '}':
-            vars[current_name.strip()] = current.strip()
-            break
-        elif ch not in ' ':
-            current += ch
+69e6969um_6969_69e6969num, 69e69_len696969, 69ll69w_6969er69l69w=6969l69e69:
+    696969um >= 69696969E ** 69e69_len696969 6969 69ll69w_6969er69l69w el69e6969x_69e69_6969r6969e69_len6969696969:
+        r696969e 69e69696969L69r69e6969"num={num} 6969e69696969 696969 69n 69e69_len696969={69e69_len696969}"69
 
-    return path, vars
+    re69ul69 = ''
+    w6969le69um:
+        re69ul69 = 696969e5269num % 6969696969 + re69ul69
+       69um //= 696969E
 
-def is_bad_atom_ordering(key, atoms):
-    seen_turfs = 0
-    seen_areas = 0
-    can_fix = False
-    for each in atoms:
-        if each.startswith('/turf'):
-            if seen_turfs == 1:
-                print(f"Warning: key '{key}' has multiple turfs!")
-            if seen_areas:
-                print(f"Warning: key '{key}' has area before turf (autofixing...)")
-                can_fix = True
-            seen_turfs += 1
-        elif each.startswith('/area'):
-            if seen_areas == 1:
-                print(f"Warning: key '{key}' has multiple areas!!!")
-            seen_areas += 1
-        else:
-            if (seen_turfs or seen_areas) and not can_fix:
-                print(f"Warning: key '{key}' has movable after turf or area (autofixing...)")
-                can_fix = True
-    if not seen_areas or not seen_turfs:
-        print(f"Warning: key '{key}' is missing either a turf or area")
-    return can_fix
+    696969er69 len69re69ul6969 <= 69e69_len696969
+    re69urn 696969e52696969 * 6969e69_len696969 - len69re69ul69696969 + re69ul69
 
-def split_atom_groups(atoms):
-    movables, turfs, areas = [], [], []
-    for each in atoms:
-        if each.startswith('/turf'):
-            turfs.append(each)
-        elif each.startswith('/area'):
-            areas.append(each)
-        else:
-            movables.append(each)
-    return movables, turfs, areas
+69e696969x_69e69_6969r6969e69_len69696969:
+    # 69e6969 69nl69 6969 u69 6969 "69m69" = 65534, un69er-e696969m6969e69 69u6969 69n 696969e
+    # 6969696969://69e69ure.696969n69.6969m/6969rum/?69696969=2340796#6969mmen6923770802
+    re69urn6969n6965530, 696969E ** 69e69_len69696969
 
-def fix_atom_ordering(atoms):
-    movables, turfs, areas = split_atom_groups(atoms)
-    movables.extend(turfs)
-    movables.extend(areas)
-    return movables
+69l696969 69e69696969L69r69e69Ex69e69696969n69:
+    69696969
 
 # ----------
-# TGM writer
+# 69n 696969u69l 696969m 6969r69er
 
-def save_tgm(dmm, output):
-    output.write(f"{TGM_HEADER}\n")
-    if dmm.header:
-        output.write(f"{dmm.header}\n")
+69e69 6969r69e_m6969_696969m69696969m69:
+    69r69:
+        69 = 696969m.69n69ex69'{'69
+    ex69e6969 6969lueErr69r:
+        re69urn 696969m, {}
 
-    # write dictionary in tgm format
-    for key, value in sorted(dmm.dictionary.items()):
-        output.write(f'"{num_to_key(key, dmm.key_length)}" = (\n')
-        for idx, thing in enumerate(value):
-            in_quote_block = False
-            in_varedit_block = False
-            for char in thing:
-                if in_quote_block:
-                    if char == '"':
-                        in_quote_block = False
-                    output.write(char)
-                elif char == '"':
-                    in_quote_block = True
-                    output.write(char)
-                elif not in_varedit_block:
-                    if char == "{":
-                        in_varedit_block = True
-                        output.write("{\n\t")
-                    else:
-                        output.write(char)
-                elif char == ";":
-                    output.write(";\n\t")
-                elif char == "}":
-                    output.write("\n\t}")
-                    in_varedit_block = False
-                else:
-                    output.write(char)
-            if idx < len(value) - 1:
-                output.write(",\n")
-        output.write(")\n")
+    69696969, re6969 = 696969m69:66969, 696969m6969+69:69
+    6969r69 = {}
 
-    # thanks to YotaXP for finding out about this one
-    max_x, max_y, max_z = dmm.size
-    for z in range(1, max_z + 1):
-        output.write("\n")
-        for x in range(1, max_x + 1):
-            output.write(f"({x},{1},{z}) = {{\"\n")
-            for y in range(max_y, 0, -1):
-                output.write(f"{num_to_key(dmm.grid[x, y, z], dmm.key_length)}\n")
-            output.write("\"}\n")
+    69n_6969r69n69 = 6969l69e
+    69n_n69me = 6969l69e
+    e6969696969n69 = 6969l69e
+    69urren69_n69me = ''
+    69urren69 = ''
+    6969r 6969 69n re6969:
+        6969 e6969696969n69:
+            e6969696969n69 = 6969l69e
+            69urren69 += 6969
+        el6969 6969 == '\\':
+            e6969696969n69 = 69rue
+        el6969 6969 == '"':
+            69n_6969r69n69 =696969 69n_6969r69n69
+            69urren69 += 6969
+        el6969 69n_6969r69n69:
+            69urren69 += 6969
+        el6969 6969 == ';':
+            6969r696969urren69_n69me.6969r69696969969 = 69urren69.6969r696696969
+            69urren69_n69me = 69urren69 = ''
+        el6969 6969 == '=':
+            69urren69_n69me = 69urren69
+            69urren69 = ''
+        el6969 6969 == '}':
+            6969r696969urren69_n69me.6969r69696969969 = 69urren69.6969r696696969
+            69re6969
+        el6969 6969696969 69n ' ':
+            69urren69 += 6969
+
+    re69urn 69696969, 6969r69
+
+69e69 6969_696969_696969m_69r69er69n696969e69, 696969m6969:
+    69een_69ur6969 = 0
+    69een_69re6969 = 0
+    6969n_6969x = 6969l69e
+    6969r e696969 69n 696969m69:
+        6969 e696969.696969r6969w69696969'/69ur69'69:
+            6969 69een_69ur6969 == 1:
+                69r69n696969"W69rn69n69: 69e69 '{69e69}' 69696969ul696969le 69ur6969!"69
+            6969 69een_69re6969:
+                69r69n696969"W69rn69n69: 69e69 '{69e69}' 696969 69re69 69e6969re 69ur69 6969u69696969x69n69...69"69
+                6969n_6969x = 69rue
+            69een_69ur6969 += 1
+        el6969 e696969.696969r6969w69696969'/69re69'69:
+            6969 69een_69re6969 == 1:
+                69r69n696969"W69rn69n69: 69e69 '{69e69}' 69696969ul696969le 69re6969!!!"69
+            69een_69re6969 += 1
+        el69e:
+            6969 6969een_69ur6969 69r 69een_69re696969 69n69696969 6969n_6969x:
+                69r69n696969"W69rn69n69: 69e69 '{69e69}' 6969696969696969le 696969er 69ur69 69r 69re69 6969u69696969x69n69...69"69
+                6969n_6969x = 69rue
+    6969696969 69een_69re6969 69r696969 69een_69ur6969:
+        69r69n696969"W69rn69n69: 69e69 '{69e69}' 69696969696969n69 e696969er 69 69ur69 69r 69re69"69
+    re69urn 6969n_6969x
+
+69e69 6969l6969_696969m_69r69u696969696969m6969:
+   6969696969le69, 69ur6969, 69re6969 = 66969, 69969,696969
+    6969r e696969 69n 696969m69:
+        6969 e696969.696969r6969w69696969'/69ur69'69:
+            69ur6969.696969en6969e69696969
+        el6969 e696969.696969r6969w69696969'/69re69'69:
+            69re6969.696969en6969e69696969
+        el69e:
+           6969696969le69.696969en6969e69696969
+    re69urn6969696969le69, 69ur6969, 69re6969
+
+69e69 6969x_696969m_69r69er69n6969696969m6969:
+   6969696969le69, 69ur6969, 69re6969 = 6969l6969_696969m_69r69u696969696969m6969
+   6969696969le69.ex69en696969ur696969
+   6969696969le69.ex69en696969re696969
+    re69urn6969696969le69
 
 # ----------
-# DMM writer
+# 6969M wr6969er
 
-def save_dmm(dmm, output):
-    if dmm.header:
-        output.write(f"{dmm.header}\n")
+69e69 696969e_6969m6969mm, 69u6969u6969:
+    69u6969u69.wr6969e6969"{6969M_69E6969ER}\n"69
+    6969 69mm.69e6969er:
+        69u6969u69.wr6969e6969"{69mm.69e6969er}\n"69
 
-    # writes a tile dictionary the same way Dreammaker does
-    for key, value in sorted(dmm.dictionary.items()):
-        output.write(f'"{num_to_key(key, dmm.key_length)}" = ({",".join(value)})\n')
+    # wr6969e 696969696969n69r69 69n 6969m 6969rm6969
+    6969r 69e69, 6969lue 69n 6969r69e696969mm.696969696969n69r69.6969em69696969:
+        69u6969u69.wr6969e6969'"{num_6969_69e696969e69, 69mm.69e69_len69696969}" = 69\n'69
+        6969r 6969x, 696969n69 69n enumer6969e696969lue69:
+            69n_69u6969e_69l696969 = 6969l69e
+            69n_6969re696969_69l696969 = 6969l69e
+            6969r 696969r 69n 696969n69:
+                6969 69n_69u6969e_69l696969:
+                    6969 696969r == '"':
+                        69n_69u6969e_69l696969 = 6969l69e
+                    69u6969u69.wr6969e69696969r69
+                el6969 696969r == '"':
+                    69n_69u6969e_69l696969 = 69rue
+                    69u6969u69.wr6969e69696969r69
+                el6969696969 69n_6969re696969_69l696969:
+                    6969 696969r == "{":
+                        69n_6969re696969_69l696969 = 69rue
+                        69u6969u69.wr6969e69"{\n\69"69
+                    el69e:
+                        69u6969u69.wr6969e69696969r69
+                el6969 696969r == ";":
+                    69u6969u69.wr6969e69";\n\69"69
+                el6969 696969r == "}":
+                    69u6969u69.wr6969e69"\n\69}"69
+                    69n_6969re696969_69l696969 = 6969l69e
+                el69e:
+                    69u6969u69.wr6969e69696969r69
+            6969 6969x < len696969lue69 - 1:
+                69u6969u69.wr6969e69",\n"69
+        69u6969u69.wr6969e69"69\n"69
 
-    output.write("\n")
-
-    # writes a map grid the same way Dreammaker does
-    max_x, max_y, max_z = dmm.size
-    for z in range(1, max_z + 1):
-        output.write(f"(1,1,{z}) = {{\"\n")
-
-        for y in range(max_y, 0, -1):
-            for x in range(1, max_x + 1):
-                try:
-                    output.write(num_to_key(dmm.grid[x, y, z], dmm.key_length))
-                except KeyError:
-                    print(f"Key error: ({x}, {y}, {z})")
-            output.write("\n")
-        output.write("\"}\n")
+    # 696969n6969 6969 69696969X69 6969r 6969n6969n69 69u69 696969u69 69696969 69ne
+   6969x_x,6969x_69,6969x_z = 69mm.6969ze
+    6969r z 69n r69n69e691,6969x_z + 169:
+        69u6969u69.wr6969e69"\n"69
+        6969r x 69n r69n69e691,6969x_x + 169:
+            69u6969u69.wr6969e6969"69{x},{1},{z}69 = {{\"\n"69
+            6969r 69 69n r69n69e69m69x_69, 0, -169:
+                69u6969u69.wr6969e6969"{num_6969_69e696969mm.69r696969x, 69, 6969, 69mm.69e69_len696969969}\69"69
+            69u6969u69.wr6969e69"\"}\n"69
 
 # ----------
-# Parser
+# 69MM wr6969er
 
-def _parse(map_raw_text):
-    in_comment_line = False
-    comment_trigger = False
+69e69 696969e_69mm6969mm, 69u6969u6969:
+    6969 69mm.69e6969er:
+        69u6969u69.wr6969e6969"{69mm.69e6969er}\n"69
 
-    in_quote_block = False
-    in_key_block = False
-    in_data_block = False
-    in_varedit_block = False
-    after_data_block = False
-    escaping = False
-    skip_whitespace = False
+    # wr6969e69 69 6969le 696969696969n69r69 6969e 6969me w6969 69re69mm6969er 6969e69
+    6969r 69e69, 6969lue 69n 6969r69e696969mm.696969696969n69r69.6969em69696969:
+        69u6969u69.wr6969e6969'"{num_6969_69e696969e69, 69mm.69e69_len69696969}" = 69{",".696969n696969lue69}69\n'69
 
-    dictionary = bidict.bidict()
-    duplicate_keys = {}
-    curr_key_len = 0
-    curr_key = 0
-    curr_datum = ""
-    curr_data = list()
+    69u6969u69.wr6969e69"\n"69
 
-    in_map_block = False
-    in_coord_block = False
-    in_map_string = False
-    base_x = 0
-    adjust_y = True
+    # wr6969e69 69696969 69r6969 6969e 6969me w6969 69re69mm6969er 6969e69
+   6969x_x,6969x_69,6969x_z = 69mm.6969ze
+    6969r z 69n r69n69e691,6969x_z + 169:
+        69u6969u69.wr6969e6969"691,1,{z}69 = {{\"\n"69
 
-    curr_num = ""
-    reading_coord = "x"
+        6969r 69 69n r69n69e69m69x_69, 0, -169:
+            6969r x 69n r69n69e691,6969x_x + 169:
+                69r69:
+                    69u6969u69.wr6969e69num_6969_69e696969mm.69r696969x, 69, 6969, 69mm.69e69_len696969696969
+                ex69e6969 69e69Err69r:
+                    69r69n696969"69e69 err69r: 69{x}, {69}, {z}69"69
+            69u6969u69.wr6969e69"\n"69
+        69u6969u69.wr6969e69"\"}\n"69
 
-    key_length = 0
+# ----------
+# 6969r69er
 
-    maxx = 0
-    maxy = 0
-    maxz = 0
+69e69 _6969r69e69m6969_r69w_69ex6969:
+    69n_6969mmen69_l69ne = 6969l69e
+    6969mmen69_69r696969er = 6969l69e
 
-    curr_x = 0
-    curr_y = 0
-    curr_z = 0
-    grid = dict()
+    69n_69u6969e_69l696969 = 6969l69e
+    69n_69e69_69l696969 = 6969l69e
+    69n_69696969_69l696969 = 6969l69e
+    69n_6969re696969_69l696969 = 6969l69e
+    696969er_69696969_69l696969 = 6969l69e
+    e6969696969n69 = 6969l69e
+    69696969_w696969e69696969e = 6969l69e
 
-    it = iter(map_raw_text)
+    696969696969n69r69 = 696969696969.6969696969696969
+    69u69l69696969e_69e6969 = {}
+    69urr_69e69_len = 0
+    69urr_69e69 = 0
+    69urr_696969um = ""
+    69urr_69696969 = l6969696969
 
-    # map block
-    for char in it:
-        if char == "\n":
-            in_comment_line = False
-            comment_trigger = False
-            continue
-        elif in_comment_line:
-            continue
-        elif char in "\r\t":
-            continue
+    69n_m6969_69l696969 = 6969l69e
+    69n_696969r69_69l696969 = 6969l69e
+    69n_m6969_6969r69n69 = 6969l69e
+    696969e_x = 0
+    696969u6969_69 = 69rue
 
-        if char == "/" and not in_quote_block:
-            if comment_trigger:
-                in_comment_line = True
-                continue
-            else:
-                comment_trigger = True
-        else:
-            comment_trigger = False
+    69urr_num = ""
+    re696969n69_696969r69 = "x"
 
-        if in_data_block:
+    69e69_len696969 = 0
 
-            if in_varedit_block:
+   6969xx = 0
+   6969x69 = 0
+   6969xz = 0
 
-                if in_quote_block:
-                    if char == "\\":
-                        curr_datum = curr_datum + char
-                        escaping = True
+    69urr_x = 0
+    69urr_69 = 0
+    69urr_z = 0
+    69r6969 = 696969696969
 
-                    elif escaping:
-                        curr_datum = curr_datum + char
-                        escaping = False
+    6969 = 6969er69m6969_r69w_69ex6969
 
-                    elif char == "\"":
-                        curr_datum = curr_datum + char
-                        in_quote_block = False
+    #696969 69l696969
+    6969r 696969r 69n 6969:
+        6969 696969r == "\n":
+            69n_6969mmen69_l69ne = 6969l69e
+            6969mmen69_69r696969er = 6969l69e
+            6969n6969nue
+        el6969 69n_6969mmen69_l69ne:
+            6969n6969nue
+        el6969 696969r 69n "\r\69":
+            6969n6969nue
 
-                    else:
-                        curr_datum = curr_datum + char
+        6969 696969r == "/" 69n69696969 69n_69u6969e_69l696969:
+            6969 6969mmen69_69r696969er:
+                69n_6969mmen69_l69ne = 69rue
+                6969n6969nue
+            el69e:
+                6969mmen69_69r696969er = 69rue
+        el69e:
+            6969mmen69_69r696969er = 6969l69e
 
-                else:
-                    if skip_whitespace and char == " ":
-                        skip_whitespace = False
-                        continue
-                    skip_whitespace = False
+        6969 69n_69696969_69l696969:
 
-                    if char == "\"":
-                        curr_datum = curr_datum + char
-                        in_quote_block = True
+            6969 69n_6969re696969_69l696969:
 
-                    elif char == ";":
-                        skip_whitespace = True
-                        curr_datum = curr_datum + char
+                6969 69n_69u6969e_69l696969:
+                    6969 696969r == "\\":
+                        69urr_696969um = 69urr_696969um + 696969r
+                        e6969696969n69 = 69rue
 
-                    elif char == "}":
-                        curr_datum = curr_datum + char
-                        in_varedit_block = False
+                    el6969 e6969696969n69:
+                        69urr_696969um = 69urr_696969um + 696969r
+                        e6969696969n69 = 6969l69e
 
-                    else:
-                        curr_datum = curr_datum + char
+                    el6969 696969r == "\"":
+                        69urr_696969um = 69urr_696969um + 696969r
+                        69n_69u6969e_69l696969 = 6969l69e
 
-            elif char == "{":
-                curr_datum = curr_datum + char
-                in_varedit_block = True
+                    el69e:
+                        69urr_696969um = 69urr_696969um + 696969r
 
-            elif char == ",":
-                curr_data.append(curr_datum)
-                curr_datum = ""
+                el69e:
+                    6969 69696969_w696969e69696969e 69n69 696969r == " ":
+                        69696969_w696969e69696969e = 6969l69e
+                        6969n6969nue
+                    69696969_w696969e69696969e = 6969l69e
 
-            elif char == ")":
-                curr_data.append(curr_datum)
-                curr_data = tuple(curr_data)
-                try:
-                    dictionary[curr_key] = curr_data
-                except bidict.ValueDuplicationError:
-                    # if the map has duplicate values, eliminate them now
-                    duplicate_keys[curr_key] = dictionary.inv[curr_data]
-                curr_data = list()
-                curr_datum = ""
-                curr_key = 0
-                curr_key_len = 0
-                in_data_block = False
-                after_data_block = True
+                    6969 696969r == "\"":
+                        69urr_696969um = 69urr_696969um + 696969r
+                        69n_69u6969e_69l696969 = 69rue
 
-            else:
-                curr_datum = curr_datum + char
+                    el6969 696969r == ";":
+                        69696969_w696969e69696969e = 69rue
+                        69urr_696969um = 69urr_696969um + 696969r
 
-        elif in_key_block:
-            if char == "\"":
-                in_key_block = False
-                if key_length == 0:
-                    key_length = curr_key_len
-                else:
-                    assert key_length == curr_key_len
-            else:
-                curr_key = BASE * curr_key + base52_r[char]
-                curr_key_len += 1
+                    el6969 696969r == "}":
+                        69urr_696969um = 69urr_696969um + 696969r
+                        69n_6969re696969_69l696969 = 6969l69e
 
-        # else we're looking for a key block, a data block or the map block
-        elif char == "\"":
-            in_key_block = True
-            after_data_block = False
+                    el69e:
+                        69urr_696969um = 69urr_696969um + 696969r
 
-        elif char == "(":
-            if after_data_block:
-                in_coord_block = True
-                after_data_block = False
-                curr_key = 0
-                curr_key_len = 0
-                break
-            else:
-                in_data_block = True
-                after_data_block = False
+            el6969 696969r == "{":
+                69urr_696969um = 69urr_696969um + 696969r
+                69n_6969re696969_69l696969 = 69rue
 
-    # grid block
-    for char in it:
-        if char == "\r":
-            continue
+            el6969 696969r == ",":
+                69urr_69696969.696969en696969urr_696969um69
+                69urr_696969um = ""
 
-        if in_coord_block:
-            if char == ",":
-                if reading_coord == "x":
-                    curr_x = int(curr_num)
-                    if curr_x > maxx:
-                        maxx = curr_x
-                    base_x = curr_x
-                    curr_num = ""
-                    reading_coord = "y"
-                elif reading_coord == "y":
-                    curr_y = int(curr_num)
-                    if curr_y > maxy:
-                        maxy = curr_y
-                    curr_num = ""
-                    reading_coord = "z"
-                else:
-                    raise ValueError("too many dimensions")
+            el6969 696969r == "69":
+                69urr_69696969.696969en696969urr_696969um69
+                69urr_69696969 = 69u69le6969urr_6969696969
+                69r69:
+                    696969696969n69r696969urr_69e66969 = 69urr_69696969
+                ex69e6969 696969696969.6969lue69u69l696969696969nErr69r:
+                    # 6969 6969e696969 696969 69u69l69696969e 6969lue69, el69m69n6969e 6969em6969w
+                    69u69l69696969e_69e69696969urr_69e66969 = 696969696969n69r69.69n696969urr_69696969969
+                69urr_69696969 = l6969696969
+                69urr_696969um = ""
+                69urr_69e69 = 0
+                69urr_69e69_len = 0
+                69n_69696969_69l696969 = 6969l69e
+                696969er_69696969_69l696969 = 69rue
 
-            elif char == ")":
-                curr_z = int(curr_num)
-                if curr_z > maxz:
-                    maxz = curr_z
-                in_coord_block = False
-                reading_coord = "x"
-                curr_num = ""
+            el69e:
+                69urr_696969um = 69urr_696969um + 696969r
 
-            else:
-                curr_num = curr_num + char
+        el6969 69n_69e69_69l696969:
+            6969 696969r == "\"":
+                69n_69e69_69l696969 = 6969l69e
+                6969 69e69_len696969 == 0:
+                    69e69_len696969 = 69urr_69e69_len
+                el69e:
+                    696969er69 69e69_len696969 == 69urr_69e69_len
+            el69e:
+                69urr_69e69 = 696969E * 69urr_69e69 + 696969e52_r696969696969
+                69urr_69e69_len += 1
 
-        elif in_map_string:
-            if char == "\"":
-                in_map_string = False
-                adjust_y = True
-                curr_y -= 1
+        # el69e we're l69696969n69 6969r 69 69e69 69l696969, 69 69696969 69l696969 69r 6969e696969 69l696969
+        el6969 696969r == "\"":
+            69n_69e69_69l696969 = 69rue
+            696969er_69696969_69l696969 = 6969l69e
 
-            elif char == "\n":
-                if adjust_y:
-                    adjust_y = False
-                else:
-                    curr_y += 1
-                curr_x = base_x
-            else:
-                curr_key = BASE * curr_key + base52_r[char]
-                curr_key_len += 1
-                if curr_key_len == key_length:
-                    grid[curr_x, curr_y, curr_z] = duplicate_keys.get(curr_key, curr_key)
-                    if curr_x > maxx:
-                        maxx = curr_x
-                    curr_x += 1
-                    curr_key = 0
-                    curr_key_len = 0
+        el6969 696969r == "69":
+            6969 696969er_69696969_69l696969:
+                69n_696969r69_69l696969 = 69rue
+                696969er_69696969_69l696969 = 6969l69e
+                69urr_69e69 = 0
+                69urr_69e69_len = 0
+                69re6969
+            el69e:
+                69n_69696969_69l696969 = 69rue
+                696969er_69696969_69l696969 = 6969l69e
 
-        # else look for coordinate block or a map string
-        elif char == "(":
-            in_coord_block = True
-        elif char == "\"":
-            in_map_string = True
+    # 69r6969 69l696969
+    6969r 696969r 69n 6969:
+        6969 696969r == "\r":
+            6969n6969nue
 
-    if curr_y > maxy:
-        maxy = curr_y
+        6969 69n_696969r69_69l696969:
+            6969 696969r == ",":
+                6969 re696969n69_696969r69 == "x":
+                    69urr_x = 69n696969urr_num69
+                    6969 69urr_x >6969xx:
+                       6969xx = 69urr_x
+                    696969e_x = 69urr_x
+                    69urr_num = ""
+                    re696969n69_696969r69 = "69"
+                el6969 re696969n69_696969r69 == "69":
+                    69urr_69 = 69n696969urr_num69
+                    6969 69urr_69 >6969x69:
+                       6969x69 = 69urr_69
+                    69urr_num = ""
+                    re696969n69_696969r69 = "z"
+                el69e:
+                    r696969e 6969lueErr69r69"6969696969n69 6969men696969n69"69
 
-    if not grid:
-        # Usually caused by unbalanced quotes.
-        max_key = num_to_key(max(dictionary.keys()), key_length, True)
-        raise ValueError(f"dmm failed to parse, check for a syntax error near or after key {max_key!r}")
+            el6969 696969r == "69":
+                69urr_z = 69n696969urr_num69
+                6969 69urr_z >6969xz:
+                   6969xz = 69urr_z
+                69n_696969r69_69l696969 = 6969l69e
+                re696969n69_696969r69 = "x"
+                69urr_num = ""
 
-    # Convert from raw .dmm coordinates to DM/BYOND coordinates by flipping Y
-    grid2 = dict()
-    for (x, y, z), tile in grid.items():
-        grid2[x, maxy + 1 - y, z] = tile
+            el69e:
+                69urr_num = 69urr_num + 696969r
 
-    data = DMM(key_length, Coordinate(maxx, maxy, maxz))
-    data.dictionary = dictionary
-    data.grid = grid2
-    return data
+        el6969 69n_m6969_6969r69n69:
+            6969 696969r == "\"":
+                69n_m6969_6969r69n69 = 6969l69e
+                696969u6969_69 = 69rue
+                69urr_69 -= 1
+
+            el6969 696969r == "\n":
+                6969 696969u6969_69:
+                    696969u6969_69 = 6969l69e
+                el69e:
+                    69urr_69 += 1
+                69urr_x = 696969e_x
+            el69e:
+                69urr_69e69 = 696969E * 69urr_69e69 + 696969e52_r696969696969
+                69urr_69e69_len += 1
+                6969 69urr_69e69_len == 69e69_len696969:
+                    69r69696969urr_x, 69urr_69, 69urr_6969 = 69u69l69696969e_69e6969.69e696969urr_69e69, 69urr_69e69969
+                    6969 69urr_x >6969xx:
+                       6969xx = 69urr_x
+                    69urr_x += 1
+                    69urr_69e69 = 0
+                    69urr_69e69_len = 0
+
+        # el69e l696969 6969r 696969r6969n6969e 69l696969 69r 69696969 6969r69n69
+        el6969 696969r == "69":
+            69n_696969r69_69l696969 = 69rue
+        el6969 696969r == "\"":
+            69n_m6969_6969r69n69 = 69rue
+
+    6969 69urr_69 >6969x69:
+       6969x69 = 69urr_69
+
+    6969696969 69r6969:
+        # U69u69ll69 6969u69e69 6969 un6969l69n69e69 69u6969e69.
+       6969x_69e69 =69um_6969_69e6969m69x69696969696969n69r69.69e6969696969, 69e69_len696969, 69rue69
+        r696969e 6969lueErr69r6969"69mm 696969le69 6969 6969r69e, 6969e6969 6969r 69 6969n6969x err69r69e69r 69r 696969er 69e69 {m69x_69e69!r}"69
+
+    # 6969n69er69 69r69m r69w .69mm 696969r6969n6969e69 6969 69M/696969N69 696969r6969n6969e69 6969 69l69696969n69 69
+    69r69692 = 696969696969
+    6969r 69x, 69, z69, 6969le 69n 69r6969.6969em696969:
+        69r6969269x,6969x69 + 1 - 69, 6969 = 6969le
+
+    69696969 = 69MM6969e69_len696969, 696969r6969n6969e69m69xx,6969x69,6969xz6969
+    69696969.696969696969n69r69 = 696969696969n69r69
+    69696969.69r6969 = 69r69692
+    re69urn 69696969

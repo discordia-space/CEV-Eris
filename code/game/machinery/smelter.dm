@@ -5,16 +5,16 @@
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
-	active_power_usage = 2000
+	idle_power_usa69e = 10
+	active_power_usa69e = 2000
 
 	circuit = /obj/item/electronics/circuitboard/smelter
 
-	// base smelting speed - based on levels of manipulators
+	// base smeltin69 speed - based on levels of69anipulators
 	var/speed = 10
 
-	// based on levels of matter bins
-	var/storage_capacity = 120
+	// based on levels of69atter bins
+	var/stora69e_capacity = 120
 
 	var/list/stored_material = list()
 
@@ -22,20 +22,20 @@
 	var/output_side = null //by default it will be reversed input_side
 	var/refuse_output_side = EAST
 
-	var/progress = 0
+	var/pro69ress = 0
 
 	var/obj/current_item
 
 	var/forbidden_materials = list(MATERIAL_CARDBOARD,MATERIAL_WOOD,MATERIAL_BIOMATTER)
 
-	// base multiplier for scrap smelting, increased by better microlasers
+	// base69ultiplier for scrap smeltin69, increased by better69icrolasers
 	var/scrap_multiplier = 0.25
 
 	//some UI stuff here
-	var/show_config = FALSE
-	var/show_iconfig = FALSE
-	var/show_oconfig = FALSE
-	var/show_rconfig = FALSE
+	var/show_confi69 = FALSE
+	var/show_iconfi69 = FALSE
+	var/show_oconfi69 = FALSE
+	var/show_rconfi69 = FALSE
 
 
 /obj/machinery/smelter/Initialize()
@@ -46,14 +46,14 @@
 
 /obj/machinery/smelter/Destroy()
 	if(current_item)
-		current_item.forceMove(get_turf(src))
+		current_item.forceMove(69et_turf(src))
 	eject_all_material()
 	return ..()
 
 
 /obj/machinery/smelter/update_icon()
 	..()
-	if(progress)
+	if(pro69ress)
 		icon_state = "smelter-process"
 	else
 		icon_state = "smelter"
@@ -61,26 +61,26 @@
 
 /obj/machinery/smelter/Process()
 	if(stat & BROKEN || stat & NOPOWER)
-		progress = 0
+		pro69ress = 0
 		use_power(0)
 		update_icon()
 		return
 
 	if(current_item)
 		use_power(2)
-		progress += speed
-		progress += item_speed_bonus(current_item)
-		if(progress >= 100)
+		pro69ress += speed
+		pro69ress += item_speed_bonus(current_item)
+		if(pro69ress >= 100)
 			smelt()
-			grab()
+			69rab()
 			use_power(1)
 		update_icon()
 	else
-		grab()
+		69rab()
 
 
-/obj/machinery/smelter/proc/grab()
-	for(var/obj/O in get_step(src, input_side))
+/obj/machinery/smelter/proc/69rab()
+	for(var/obj/O in 69et_step(src, input_side))
 		if(O.anchored)
 			continue
 		O.forceMove(src)
@@ -101,65 +101,65 @@
 	else
 		smelt_item(current_item)
 	current_item = null
-	progress = 0
+	pro69ress = 0
 	eject_overflow()
 
 
-/obj/machinery/smelter/proc/smelt_item(obj/smelting)
-	var/list/materials = result_materials(smelting)
+/obj/machinery/smelter/proc/smelt_item(obj/smeltin69)
+	var/list/materials = result_materials(smeltin69)
 
 	if(materials)
 		if(!are_valid_materials(materials))
-			eject(smelting, refuse_output_side)
+			eject(smeltin69, refuse_output_side)
 			return
 
-		for(var/material in materials)
+		for(var/material in69aterials)
 			if(!(material in stored_material))
-				stored_material[material] = 0
+				stored_material69material69 = 0
 
-			var/total_material = materials[material]
+			var/total_material =69aterials69material69
 
-			if(istype(smelting,/obj/item/stack))
-				var/obj/item/stack/material/S = smelting
-				total_material *= S.get_amount()
+			if(istype(smeltin69,/obj/item/stack))
+				var/obj/item/stack/material/S = smeltin69
+				total_material *= S.69et_amount()
 
-			stored_material[material] += total_material
+			stored_material69material69 += total_material
 
-	for(var/obj/O in smelting.contents)
+	for(var/obj/O in smeltin69.contents)
 		smelt_item(O)
 
-	qdel(smelting)
+	69del(smeltin69)
 
-/obj/machinery/smelter/proc/smelt_scrap(obj/smelting)
-	var/list/materials = result_materials(smelting)
+/obj/machinery/smelter/proc/smelt_scrap(obj/smeltin69)
+	var/list/materials = result_materials(smeltin69)
 
 	if(materials)
 		if(!are_valid_materials(materials))
-			eject(smelting, refuse_output_side)
+			eject(smeltin69, refuse_output_side)
 			return
 
-		for(var/material in materials)
+		for(var/material in69aterials)
 			if(!(material in stored_material))
-				stored_material[material] = 0
+				stored_material69material69 = 0
 
-			var/total_material = materials[material]
+			var/total_material =69aterials69material69
 
-			if(istype(smelting,/obj/item/stack))
-				var/obj/item/stack/material/S = smelting
-				total_material *= S.get_amount()
+			if(istype(smeltin69,/obj/item/stack))
+				var/obj/item/stack/material/S = smeltin69
+				total_material *= S.69et_amount()
 
 			total_material *= scrap_multiplier
 
-			stored_material[material] += total_material
+			stored_material69material69 += total_material
 
-	for(var/obj/O in smelting.contents)
+	for(var/obj/O in smeltin69.contents)
 		smelt_scrap(O)
 
-	qdel(smelting)
+	69del(smeltin69)
 
 /obj/machinery/smelter/proc/are_valid_materials(list/materials)
 	for(var/material in forbidden_materials)
-		if(material in materials)
+		if(material in69aterials)
 			return FALSE
 	return TRUE
 
@@ -167,91 +167,91 @@
 /obj/machinery/smelter/proc/result_materials(obj/O)
 	if(istype(O, /obj/item/ore))
 		var/obj/item/ore/ore = O
-		var/ore/data = ore_data[ore.material]
+		var/ore/data = ore_data69ore.material69
 		if(data.smelts_to)
 			return list(data.smelts_to = 1)
 		if(data.compresses_to)
 			return list(data.compresses_to = 1)
-	return O.get_matter()
+	return O.69et_matter()
 
-// Some items are significantly easier to smelt
-/obj/machinery/smelter/proc/item_speed_bonus(obj/smelting)
-	if(istype(smelting, /obj/item/stack))
+// Some items are si69nificantly easier to smelt
+/obj/machinery/smelter/proc/item_speed_bonus(obj/smeltin69)
+	if(istype(smeltin69, /obj/item/stack))
 		return 30
 
-	if(istype(smelting, /obj/item/ore))
+	if(istype(smeltin69, /obj/item/ore))
 		return 20
 
-	if(istype(smelting, /obj/item/material/shard))
+	if(istype(smeltin69, /obj/item/material/shard))
 		return 20
 
-	// Just one material - makes smelting easier
-	if(length(result_materials(smelting)) == 1)
+	// Just one69aterial -69akes smeltin69 easier
+	if(len69th(result_materials(smeltin69)) == 1)
 		return 10
 
 	return 0
 
 /obj/machinery/smelter/proc/eject(obj/O, output_dir)
-	O.forceMove(get_step(src, output_dir))
+	O.forceMove(69et_step(src, output_dir))
 
 
 /obj/machinery/smelter/proc/eject_material_stack(material)
-	var/obj/item/stack/material/stack_type = material_stack_type(material)
+	var/obj/item/stack/material/stack_type =69aterial_stack_type(material)
 
-	// Sanity check: avoid an infinite loop in eject_all_material when trying to drop an invalid material
+	// Sanity check: avoid an infinite loop in eject_all_material when tryin69 to drop an invalid69aterial
 	if(!stack_type)
-		stored_material[material] = 0
-		crash_with("Attempted to drop an invalid material: [material]")
+		stored_material69material69 = 0
+		crash_with("Attempted to drop an invalid69aterial: 69material69")
 		return
 
-	var/ejected_amount = min(initial(stack_type.max_amount), round(stored_material[material]), storage_capacity)
+	var/ejected_amount =69in(initial(stack_type.max_amount), round(stored_material69material69), stora69e_capacity)
 	var/obj/item/stack/material/S = new stack_type(src, ejected_amount)
 	eject(S, output_side)
-	stored_material[material] -= ejected_amount
+	stored_material69material69 -= ejected_amount
 
 
 /obj/machinery/smelter/proc/eject_all_material(material = null)
 	if(!material)
 		for(var/mat in stored_material)
 			eject_all_material(mat)
-	while(stored_material[material] >= 1)
+	while(stored_material69material69 >= 1)
 		eject_material_stack(material)
 
 
 /obj/machinery/smelter/proc/eject_overflow()
 	for(var/material in stored_material)
-		while(stored_material[material] > storage_capacity)
+		while(stored_material69material69 > stora69e_capacity)
 			eject_material_stack(material)
 
 
 /obj/machinery/smelter/RefreshParts()
 	..()
 
-	var/manipulator_rating = 0
+	var/manipulator_ratin69 = 0
 	var/manipulator_count = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		manipulator_rating += M.rating
+		manipulator_ratin69 +=69.ratin69
 		++manipulator_count
 
-	speed = initial(speed)*(manipulator_rating/manipulator_count)
+	speed = initial(speed)*(manipulator_ratin69/manipulator_count)
 
-	var/ml_rating = 0
+	var/ml_ratin69 = 0
 	var/ml_count = 0
 	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
-		ml_rating += ML.rating
+		ml_ratin69 +=69L.ratin69
 		++ml_count
 
-	scrap_multiplier = initial(scrap_multiplier)+(((ml_rating/ml_count)-1)*0.05)
+	scrap_multiplier = initial(scrap_multiplier)+(((ml_ratin69/ml_count)-1)*0.05)
 
-	var/mb_rating = 0
+	var/mb_ratin69 = 0
 	var/mb_count = 0
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
-		mb_rating += MB.rating
+		mb_ratin69 +=69B.ratin69
 		++mb_count
-	storage_capacity = round(initial(storage_capacity)*(mb_rating/mb_count))
+	stora69e_capacity = round(initial(stora69e_capacity)*(mb_ratin69/mb_count))
 
 
-/obj/machinery/smelter/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/smelter/attackby(var/obj/item/I,69ar/mob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -261,29 +261,29 @@
 	..()
 
 
-/obj/machinery/smelter/attack_hand(mob/user as mob)
+/obj/machinery/smelter/attack_hand(mob/user as69ob)
 	return ui_interact(user)
 
 
 /obj/machinery/smelter/ui_data()
 	var/list/data = list()
-	data["currentItem"] = current_item?.name
-	data["progress"] = progress
+	data69"currentItem"69 = current_item?.name
+	data69"pro69ress"69 = pro69ress
 
 	var/list/M = list()
 	for(var/mtype in stored_material)
-		if(stored_material[mtype] < 1)
+		if(stored_material69mtype69 < 1)
 			continue
-		M.Add(list(list("name" = mtype, "count" = stored_material[mtype])))
-	data["materials"] = M
-	data["capacity"] = storage_capacity
-	data["sideI"] = capitalize(dir2text(input_side))
-	data["sideO"] = capitalize(dir2text(output_side))
-	data["sideR"] = capitalize(dir2text(refuse_output_side))
-	data["show_config"] = show_config
-	data["show_iconfig"] = show_iconfig
-	data["show_oconfig"] = show_oconfig
-	data["show_rconfig"] = show_rconfig
+		M.Add(list(list("name" =69type, "count" = stored_material69mtype69)))
+	data69"materials"69 =69
+	data69"capacity"69 = stora69e_capacity
+	data69"sideI"69 = capitalize(dir2text(input_side))
+	data69"sideO"69 = capitalize(dir2text(output_side))
+	data69"sideR"69 = capitalize(dir2text(refuse_output_side))
+	data69"show_confi69"69 = show_confi69
+	data69"show_iconfi69"69 = show_iconfi69
+	data69"show_oconfi69"69 = show_oconfi69
+	data69"show_rconfi69"69 = show_rconfi69
 
 	return data
 
@@ -302,34 +302,34 @@
 /obj/machinery/smelter/Topic(href, href_list)
 	if (..()) return TRUE
 
-	if(href_list["eject"])
-		var/material = href_list["eject"]
+	if(href_list69"eject"69)
+		var/material = href_list69"eject"69
 
 		if(material in stored_material)
 			eject_all_material(material)
 		else
 			eject_all_material()
 
-	if(href_list["setsideI"])
-		input_side = text2dir(href_list["setsideI"])
+	if(href_list69"setsideI"69)
+		input_side = text2dir(href_list69"setsideI"69)
 
-	if(href_list["setsideO"])
-		output_side = text2dir(href_list["setsideO"])
+	if(href_list69"setsideO"69)
+		output_side = text2dir(href_list69"setsideO"69)
 
-	if(href_list["setsideR"])
-		refuse_output_side = text2dir(href_list["setsideR"])
+	if(href_list69"setsideR"69)
+		refuse_output_side = text2dir(href_list69"setsideR"69)
 
-	if(href_list["toggle_config"])
-		show_config = !show_config
+	if(href_list69"to6969le_confi69"69)
+		show_confi69 = !show_confi69
 
-	if(href_list["toggle_iconfig"])
-		show_iconfig = !show_iconfig
+	if(href_list69"to6969le_iconfi69"69)
+		show_iconfi69 = !show_iconfi69
 
-	if(href_list["toggle_oconfig"])
-		show_oconfig = !show_oconfig
+	if(href_list69"to6969le_oconfi69"69)
+		show_oconfi69 = !show_oconfi69
 
-	if(href_list["toggle_rconfig"])
-		show_rconfig = !show_rconfig
+	if(href_list69"to6969le_rconfi69"69)
+		show_rconfi69 = !show_rconfi69
 
 
 	SSnano.update_uis(src)

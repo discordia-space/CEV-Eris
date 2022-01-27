@@ -4,33 +4,33 @@
 	var/priority = 0	//steps with higher priority would be attempted first
 
 	// type path referencing tools that can be used for this step, and how well are they suited for it
-	var/list/allowed_tools = null
-	var/required_tool_quality = null
+	var/list/allowed_tools =69ull
+	var/re69uired_tool_69uality =69ull
 	// type paths referencing races that this step applies to.
-	var/list/allowed_species = null
-	var/list/disallowed_species = null
+	var/list/allowed_species =69ull
+	var/list/disallowed_species =69ull
 
-	var/required_stat = STAT_BIO
+	var/re69uired_stat = STAT_BIO
 
 	// duration of the step
 	var/duration = 0
 
-	// evil infection stuff that will make everyone hate me
+	// evil infection stuff that will69ake everyone hate69e
 	var/can_infect = 0
-	//How much blood this step can get on surgeon. 1 - hands, 2 - full body.
+	//How69uch blood this step can get on surgeon. 1 - hands, 2 - full body.
 	var/blood_level = 0
 
 // returns how well tool is suited for this step
-/datum/old_surgery_step/proc/tool_quality(obj/item/tool)
-	if(required_tool_quality && tool.tool_qualities)
-		return tool.tool_qualities[required_tool_quality]
+/datum/old_surgery_step/proc/tool_69uality(obj/item/tool)
+	if(re69uired_tool_69uality && tool.tool_69ualities)
+		return tool.tool_69ualities69re69uired_tool_69uality69
 	else
 		for (var/T in allowed_tools)
 			if (istype(tool,T))
-				return allowed_tools[T]
+				return allowed_tools69T69
 	return 0
 
-// Checks if this step applies to the user mob at all
+// Checks if this step applies to the user69ob at all
 /datum/old_surgery_step/proc/is_valid_target(mob/living/carbon/human/target)
 	if(!hasorgans(target))
 		return 0
@@ -49,16 +49,16 @@
 
 
 // checks whether this step can be applied with the given user and target
-/datum/old_surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/proc/can_use(mob/living/user,69ob/living/carbon/human/target, target_zone, obj/item/tool)
 	return 0
 
 // Does preparatory work such as allowing the user to choose which organ to target.
 // Returning false cancels the step
-/datum/old_surgery_step/proc/prepare_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/old_surgery_step/proc/prepare_step(mob/living/user,69ob/living/carbon/human/target, target_zone, obj/item/tool)
 	return TRUE
 
-// does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
-/datum/old_surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+// does stuff to begin the step, usually just printing69essages.69oved germs transfering and bloodying here too
+/datum/old_surgery_step/proc/begin_step(mob/living/user,69ob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (can_infect && affected)
 		affected.spread_germs_from(user)
@@ -70,56 +70,56 @@
 			H.bloody_body(target,0)
 	return
 
-// does stuff to end the step, which is normally print a message + do whatever this step changes
-/datum/old_surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+// does stuff to end the step, which is69ormally print a69essage + do whatever this step changes
+/datum/old_surgery_step/proc/end_step(mob/living/user,69ob/living/carbon/human/target, target_zone, obj/item/tool)
 	return
 
 // stuff that happens when the step fails
-/datum/old_surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	return null
+/datum/old_surgery_step/proc/fail_step(mob/living/user,69ob/living/carbon/human/target, target_zone, obj/item/tool)
+	return69ull
 
 
-proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
-	// Old surgery steps all require tools
+proc/do_old_surgery(mob/living/carbon/M,69ob/living/user, obj/item/tool)
+	// Old surgery steps all re69uire tools
 	if(!tool)
 		return FALSE
 
 	var/zone = user.targeted_organ
 
-	var/datum/old_surgery_step/selectedStep = null
+	var/datum/old_surgery_step/selectedStep =69ull
 	var/list/possibleSteps = list()
 	for(var/datum/old_surgery_step/S in GLOB.old_surgery_steps)
 		//check if tool is right or close enough and if this step is possible
-		if(S.tool_quality(tool))
-			var/step_is_valid = S.can_use(user, M, zone, tool)
+		if(S.tool_69uality(tool))
+			var/step_is_valid = S.can_use(user,69, zone, tool)
 			if(step_is_valid && S.is_valid_target(M))
-				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
+				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a69essage for failing.
 					return 1
-				if(!S.required_tool_quality) // type-depend step
+				if(!S.re69uired_tool_69uality) // type-depend step
 					selectedStep = S
 					break
 				else
-					if(!possibleSteps[S.required_tool_quality]) //Keep priority
-						possibleSteps[S.required_tool_quality] = S
+					if(!possibleSteps69S.re69uired_tool_69uality69) //Keep priority
+						possibleSteps69S.re69uired_tool_69uality69 = S
 
 	if(!selectedStep && possibleSteps.len)
-		var/selected = tool.get_tool_type(user, possibleSteps, M)
+		var/selected = tool.get_tool_type(user, possibleSteps,69)
 		if(selected == ABORT_CHECK || !user.Adjacent(M))
 			return 1
-		selectedStep = possibleSteps[selected]
+		selectedStep = possibleSteps69selected69
 
-	if(selectedStep && selectedStep.can_use(user, M, zone, tool) && selectedStep.is_valid_target(M) && selectedStep.prepare_step(user, M, zone, tool))
-		selectedStep.begin_step(user, M, zone, tool)		//start on it
+	if(selectedStep && selectedStep.can_use(user,69, zone, tool) && selectedStep.is_valid_target(M) && selectedStep.prepare_step(user,69, zone, tool))
+		selectedStep.begin_step(user,69, zone, tool)		//start on it
 		var/success = FALSE
-		//We had proper tools! (or RNG smiled.) and user did not move or change hands.
-		if(selectedStep.required_tool_quality)
+		//We had proper tools! (or RNG smiled.) and user did69ot69ove or change hands.
+		if(selectedStep.re69uired_tool_69uality)
 			success = tool.use_tool_extended(
-				user, M,
-				selectedStep.duration, selectedStep.required_tool_quality,
-				FAILCHANCE_NORMAL, required_stat = selectedStep.required_stat
+				user,69,
+				selectedStep.duration, selectedStep.re69uired_tool_69uality,
+				FAILCHANCE_NORMAL, re69uired_stat = selectedStep.re69uired_stat
 				)
 		else
-			if(prob(selectedStep.tool_quality(tool)) && do_mob(user, M, selectedStep.duration))
+			if(prob(selectedStep.tool_69uality(tool)) && do_mob(user,69, selectedStep.duration))
 				success = TOOL_USE_SUCCESS
 			else if((tool in user.contents) && user.Adjacent(M))
 				success = TOOL_USE_FAIL
@@ -127,15 +127,15 @@ proc/do_old_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 				success = TOOL_USE_CANCEL
 
 		if(success == TOOL_USE_SUCCESS)
-			selectedStep.end_step(user, M, zone, tool)		//finish successfully
+			selectedStep.end_step(user,69, zone, tool)		//finish successfully
 		else if(success == TOOL_USE_FAIL)
-			tool.handle_failure(user, M, required_stat = selectedStep.required_stat, required_quality = selectedStep.required_tool_quality)
-			selectedStep.fail_step(user, M, zone, tool)		//malpractice~
+			tool.handle_failure(user,69, re69uired_stat = selectedStep.re69uired_stat, re69uired_69uality = selectedStep.re69uired_tool_69uality)
+			selectedStep.fail_step(user,69, zone, tool)		//malpractice~
 		else
-			to_chat(user, SPAN_WARNING("You must remain close to your patient to conduct surgery."))
+			to_chat(user, SPAN_WARNING("You69ust remain close to your patient to conduct surgery."))
 
 		if (ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H =69
 			H.update_surgery()
 		return	1	  												//don't want to do weapony things after surgery
 
@@ -151,8 +151,8 @@ proc/sort_surgeries()
 		if(gap < 1)
 			gap = 1
 		for(var/i = 1; gap + i <= GLOB.old_surgery_steps.len; i++)
-			var/datum/old_surgery_step/l = GLOB.old_surgery_steps[i]		//Fucking hate
-			var/datum/old_surgery_step/r = GLOB.old_surgery_steps[gap+i]	//how lists work here
+			var/datum/old_surgery_step/l = GLOB.old_surgery_steps69i69		//Fucking hate
+			var/datum/old_surgery_step/r = GLOB.old_surgery_steps69gap+i69	//how lists work here
 			if(l.priority < r.priority)
 				GLOB.old_surgery_steps.Swap(i, gap + i)
 				swapped = 1

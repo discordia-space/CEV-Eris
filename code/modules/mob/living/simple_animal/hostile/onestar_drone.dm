@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/onestar_custodian
 	name = "One Star Custodial Drone"
-	desc = "Old and weathered One Star drone. It seems to be malfunctioning and hostile."
+	desc = "Old and weathered One Star drone. It seems to be69alfunctioning and hostile."
 	icon = 'icons/mob/build_a_drone.dmi'
 	icon_state = "drone_os"
 	faction = "onestar"
@@ -27,7 +27,7 @@
 	rarity_value = 23.8
 	var/shell_type = "os"
 	var/marks_type = "os"
-	var/screen_type = "os" //if someone decides to make the drones for something aside from OS and have different desgins
+	var/screen_type = "os" //if someone decides to69ake the drones for something aside from OS and have different desgins
 	var/tool = "laser"
 	var/tooltype = "os"
 
@@ -41,13 +41,13 @@
 /mob/living/simple_animal/hostile/onestar_custodian/update_icon()
 	. = ..()
 	overlays.Cut()
-	var/image/shell_I = image(icon, src, "shell_[shell_type]")
-	var/image/marks_I = image(icon, src, "marks_[marks_type]")
-	var/image/screen_I = image(icon, src, "screen_[screen_type]")
-	var/image/tool_I = image(icon, src, "tool_[tool]_[tooltype]")
+	var/image/shell_I = image(icon, src, "shell_69shell_type69")
+	var/image/marks_I = image(icon, src, "marks_69marks_type69")
+	var/image/screen_I = image(icon, src, "screen_69screen_type69")
+	var/image/tool_I = image(icon, src, "tool_69tool69_69tooltype69")
 	var/image/radio_I = image(icon, src, "radio_os")
 	overlays += shell_I
-	overlays += marks_I
+	overlays +=69arks_I
 	overlays += screen_I
 	overlays += tool_I
 	overlays += radio_I
@@ -56,9 +56,9 @@
 
 /mob/living/simple_animal/hostile/onestar_custodian/death()
 	..()
-	visible_message("<b>[src]</b> blows apart!")
+	visible_message("<b>69src69</b> blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
@@ -68,7 +68,7 @@
 
 /mob/living/simple_animal/hostile/onestar_custodian/chef
 	name = "One Star Service Drone"
-	desc = "Old and weathered One Star drone. This one looks like it used to cook. It seems to be malfunctioning and hostile."
+	desc = "Old and weathered One Star drone. This one looks like it used to cook. It seems to be69alfunctioning and hostile."
 	tool = "flamer"
 	fire_verb = "lobs flame"
 	screen_type = "os_red"
@@ -80,12 +80,12 @@
 /mob/living/simple_animal/hostile/onestar_custodian/chef/adjustFireLoss(amount)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
-	fireloss = min(max(fireloss + amount/2, 0),(maxHealth*2)) //Slightly resistant to fire, because it would blow apart otherwise
+	fireloss =69in(max(fireloss + amount/2, 0),(maxHealth*2)) //Slightly resistant to fire, because it would blow apart otherwise
 
 
 /mob/living/simple_animal/hostile/onestar_custodian/engineer
 	name = "One Star Engineering Drone"
-	desc = "Old and weathered One Star drone. This one has a laser welder. It seems to be malfunctioning and hostile."
+	desc = "Old and weathered One Star drone. This one has a laser welder. It seems to be69alfunctioning and hostile."
 	tool = "laser"
 	tooltype = "os_red"
 	screen_type = "yellow"

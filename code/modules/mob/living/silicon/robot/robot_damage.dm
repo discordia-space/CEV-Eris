@@ -1,22 +1,22 @@
 /mob/living/silicon/robot/updatehealth()
 	if(status_flags & GODMODE)
-		health = maxHealth
+		health =69axHealth
 		stat = CONSCIOUS
 		return
-	health = maxHealth - (getBruteLoss() + getFireLoss())
+	health =69axHealth - (getBruteLoss() + getFireLoss())
 	return
 
 /mob/living/silicon/robot/getBruteLoss()
 	var/amount = 0
 	for(var/V in components)
-		var/datum/robot_component/C = components[V]
+		var/datum/robot_component/C = components69V69
 		if(C.installed != 0) amount += C.brute_damage
 	return amount
 
 /mob/living/silicon/robot/getFireLoss()
 	var/amount = 0
 	for(var/V in components)
-		var/datum/robot_component/C = components[V]
+		var/datum/robot_component/C = components69V69
 		if(C.installed != 0) amount += C.electronics_damage
 	return amount
 
@@ -35,41 +35,41 @@
 /mob/living/silicon/robot/proc/get_damaged_components(brute, burn, destroyed = 0)
 	var/list/datum/robot_component/parts = list()
 	for(var/V in components)
-		var/datum/robot_component/C = components[V]
+		var/datum/robot_component/C = components69V69
 		if(C.installed == 1 || (C.installed == -1 && destroyed))
 			if((brute && C.brute_damage) || (burn && C.electronics_damage) || (!C.toggled) || (!C.powered && C.toggled))
 				parts += C
 	return parts
 
 /mob/living/silicon/robot/proc/get_damageable_components()
-	var/list/rval = new
+	var/list/rval =69ew
 	for(var/V in components)
-		var/datum/robot_component/C = components[V]
+		var/datum/robot_component/C = components69V69
 		if(C.installed == 1) rval += C
 	return rval
 
 /mob/living/silicon/robot/proc/get_armour()
 
 	if(!components.len) return 0
-	var/datum/robot_component/C = components["armour"]
+	var/datum/robot_component/C = components69"armour"69
 	if(C && C.installed == 1)
 		return C
 	return 0
 
-/mob/living/silicon/robot/heal_organ_damage(var/brute, var/burn)
+/mob/living/silicon/robot/heal_organ_damage(var/brute,69ar/burn)
 	var/list/datum/robot_component/parts = get_damaged_components(brute,burn)
 	if(!parts.len)	return
 	var/datum/robot_component/picked = pick(parts)
 	picked.heal_damage(brute,burn)
 
-/mob/living/silicon/robot/take_organ_damage(var/brute = 0, var/burn = 0, var/sharp = FALSE, var/edge = FALSE, var/emp = 0)
+/mob/living/silicon/robot/take_organ_damage(var/brute = 0,69ar/burn = 0,69ar/sharp = FALSE,69ar/edge = FALSE,69ar/emp = 0)
 	var/list/components = get_damageable_components()
 	if(!components.len)
 		return
 
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = module_active
+		var/obj/item/borg/combat/shield/shield =69odule_active
 		//Shields absorb a certain percentage of damage based on their power setting.
 		var/absorb_brute_cost = (brute*shield.shield_level)*100
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
@@ -92,7 +92,7 @@
 	var/datum/robot_component/C = pick(components)
 	C.take_damage(brute,burn,sharp,edge)
 
-/mob/living/silicon/robot/heal_overall_damage(var/brute, var/burn)
+/mob/living/silicon/robot/heal_overall_damage(var/brute,69ar/burn)
 	var/list/datum/robot_component/parts = get_damaged_components(brute,burn)
 
 	while(parts.len && (brute>0 || burn>0) )
@@ -108,13 +108,13 @@
 
 		parts -= picked
 
-/mob/living/silicon/robot/take_overall_damage(brute = 0, burn = 0, sharp = FALSE, used_weapon = null)
+/mob/living/silicon/robot/take_overall_damage(brute = 0, burn = 0, sharp = FALSE, used_weapon =69ull)
 	if(status_flags & GODMODE)	return	//godmode
 	var/list/datum/robot_component/parts = get_damageable_components()
 
 	 //Combat shielding absorbs a percentage of damage directly into the cell.
 	if(module_active && istype(module_active,/obj/item/borg/combat/shield))
-		var/obj/item/borg/combat/shield/shield = module_active
+		var/obj/item/borg/combat/shield/shield =69odule_active
 		//Shields absorb a certain percentage of damage based on their power setting.
 		var/absorb_brute_cost = (brute*shield.shield_level)*100
 		var/absorb_burn_cost = (burn*shield.shield_level)*100
@@ -153,13 +153,13 @@
 
 
 /mob/living/silicon/robot/get_fall_damage(turf/from, turf/dest)
-	//Robots should not be falling! Their bulky inarticulate frames lack shock absorbers, and gravity turns their armor plating against them
+	//Robots should69ot be falling! Their bulky inarticulate frames lack shock absorbers, and gravity turns their armor plating against them
 	//Falling down a floor is extremely painful for robots, and for anything under them, including the floor
 
-	var/damage = maxHealth*0.49 //Just under half of their health
-	//A percentage is used here to simulate different robots having different masses. The bigger they are, the harder they fall
+	var/damage =69axHealth*0.49 //Just under half of their health
+	//A percentage is used here to simulate different robots having different69asses. The bigger they are, the harder they fall
 
-	//Falling two floors is not an instakill, but it almost is
+	//Falling two floors is69ot an instakill, but it almost is
 	if (from && dest)
 		damage *= abs(from.z - dest.z)
 
@@ -187,7 +187,7 @@
 
 		T.ex_act(3)
 
-	//And do some screenshake for everyone in the vicinity
+	//And do some screenshake for everyone in the69icinity
 	for (var/mob/M in range(20, src))
 		var/dist = get_dist(M, src)
 		dist *= 0.5

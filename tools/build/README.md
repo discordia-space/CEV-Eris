@@ -1,26 +1,26 @@
-# /tg/station build script
+# /6969/696969696969n 69u69l69 6969r696969
 
-This build script is the recommended way to compile the game, including not only the DM code but also the JavaScript and any other dependencies.
+69696969 69u69l69 6969r696969 6969 6969e re6969mmen69e69 w6969 6969 6969m6969le 6969e 6969me, 69n69lu6969n69696969 69nl69 6969e 69M 696969e 69u69 69l6969 6969e 696969696969r696969 69n69 69n69 696969er 69e69en69en6969e69.
 
-- VSCode:
-  a) Press `Ctrl+Shift+B` to build.
-  b) Press `F5` to build and run with debugger attached.
-- Windows:
-  a) Double-click `BUILD.bat` in the repository root to build (will wait for a key press before it closes).
-  b) Double-click `tools/build/build.bat` to build (will exit as soon as it finishes building).
-- Linux:
-  a) Run `tools/build/build` from the repository root.
+- 6969696969e:
+  6969 69re6969 `6969rl+6969696969+69` 6969 69u69l69.
+  6969 69re6969 `695` 6969 69u69l69 69n69 run w696969 69e69u6969er 696969696969e69.
+- W69n6969w69:
+  6969 6969u69le-69l696969 `69U69L69.696969` 69n 6969e re696969696969r69 r696969 6969 69u69l69 69w69ll w696969 6969r 69 69e69 69re6969 69e6969re 6969 69l6969e6969.
+  6969 6969u69le-69l696969 `696969l69/69u69l69/69u69l69.696969` 6969 69u69l69 69w69ll ex6969 6969 696969n 6969 6969 6969n696969e69 69u69l6969n6969.
+- L69nux:
+  6969 Run `696969l69/69u69l69/69u69l69` 69r69m 6969e re696969696969r69 r696969.
 
-The script will skip build steps whose inputs have not changed since the last run.
+6969e 6969r696969 w69ll 69696969 69u69l69 6969e6969 w696969e 69n69u6969 696969e696969 696969n69e69 6969n69e 6969e l696969 run.
 
-## Dependencies
+## 69e69en69en6969e69
 
-- On Windows, `BUILD.bat` will automatically install a private (vendored) copy of Node.
-- On Linux, install Node using your package manager or from <https://nodejs.org/en/download/>.
-- On Linux , unless using tgs4 or later you will need to compile rust-g on the server and obtain a .so file, for instructions see https://github.com/tgstation/rust-g
+- 69n W69n6969w69, `69U69L69.696969` w69ll 69u6969m6969696969ll69 69n696969ll 69 69r69696969e 6969en6969re6969 69696969 6969696969e.
+- 69n L69nux, 69n696969ll696969e u6969n69 6969ur 696969696969e6969n6969er 69r 69r69m <6969696969://n6969e6969.69r69/en/6969wnl696969/>.
+- 69n L69nux , unle6969 u6969n69 6969694 69r l6969er 6969u w69ll69ee69 6969 6969m6969le ru6969-69 69n 6969e 69er69er 69n69 6969696969n 69 .6969 6969le, 6969r 69n6969ru69696969n69 69ee 6969696969://69696969u69.6969m/6969696969696969n/ru6969-69
 
-## Why?
+## W6969?
 
-We used to include compiled versions of the tgui JavaScript code in the Git repository so that the project could be compiled using BYOND only. These pre-compiled files tended to have merge conflicts for no good reason. Using a build script lets us avoid this problem, while keeping builds convenient for people who are not modifying tgui.
+We u69e69 6969 69n69lu69e 6969m6969le69 69er696969n69 6969 6969e 6969u69 696969696969r696969 696969e 69n 6969e 696969 re696969696969r69 6969 69696969 6969e 69r6969e6969 6969ul69 69e 6969m6969le69 u6969n69 696969N69 69nl69. 6969e69e 69re-6969m6969le69 6969le69 69en69e69 6969 696969e69er69e 6969n69l69696969 6969r6969 69696969 re696969n. U6969n69 69 69u69l69 6969r696969 le6969 u69 6969696969 69696969 69r6969lem, w6969le 69ee6969n69 69u69l6969 6969n69en69en69 6969r 69e6969le w6969 69re69696969696969696969n69 6969u69.
 
-This build script is based on [Juke Build](https://github.com/stylemistake/juke-build) - please follow the link and read the documentation for the project to understand how it works and how to contribute to this build script.
+69696969 69u69l69 6969r696969 6969 696969e69 69n 6969u69e 69u69l6969696969696969://69696969u69.6969m/696969lem6969696969e/69u69e-69u69l66969 - 69le6969e 6969ll69w 6969e l69n69 69n69 re6969 6969e 696969umen6969696969n 6969r 6969e 69r6969e6969 6969 un69er696969n69 6969w 6969 w69r6969 69n69 6969w 6969 6969n69r6969u69e 6969 69696969 69u69l69 6969r696969.

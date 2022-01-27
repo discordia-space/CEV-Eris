@@ -1,125 +1,125 @@
-/var/datum/announcement/priority/priority_announcement = new(do_log = 0)
-/var/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
+/var/datum/announcement/priority/priority_announcement =69ew(do_lo69 = 0)
+/var/datum/announcement/priority/command/command_announcement =69ew(do_lo69 = 0, do_newscast = 1)
 
 /datum/announcement
 	var/title = "Attention"
 	var/announcer = ""
-	var/log = 0
+	var/lo69 = 0
 	var/sound
 	var/newscast = 0
 	var/channel_name = "Ship Announcements"
 	var/announcement_type = "Announcement"
 
-/datum/announcement/New(var/do_log = 0, var/new_sound = null, var/do_newscast = 0)
-	sound = new_sound
-	log = do_log
+/datum/announcement/New(var/do_lo69 = 0,69ar/new_sound =69ull,69ar/do_newscast = 0)
+	sound =69ew_sound
+	lo69 = do_lo69
 	newscast = do_newscast
 
-/datum/announcement/priority/New(var/do_log = 1, var/new_sound = 'sound/misc/notice2.ogg', var/do_newscast = 0)
-	..(do_log, new_sound, do_newscast)
+/datum/announcement/priority/New(var/do_lo69 = 1,69ar/new_sound = 'sound/misc/notice2.o6969',69ar/do_newscast = 0)
+	..(do_lo69,69ew_sound, do_newscast)
 	title = "Priority Announcement"
 	announcement_type = "Priority Announcement"
 
-/datum/announcement/priority/command/New(var/do_log = 1, var/new_sound = 'sound/misc/notice2.ogg', var/do_newscast = 0)
-	..(do_log, new_sound, do_newscast)
-	title = "[command_name()] Update"
-	announcement_type = "[command_name()] Update"
+/datum/announcement/priority/command/New(var/do_lo69 = 1,69ar/new_sound = 'sound/misc/notice2.o6969',69ar/do_newscast = 0)
+	..(do_lo69,69ew_sound, do_newscast)
+	title = "69command_name()69 Update"
+	announcement_type = "69command_name()69 Update"
 
-/datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = 'sound/misc/notice2.ogg', var/do_newscast = 0)
-	..(do_log, new_sound, do_newscast)
+/datum/announcement/priority/security/New(var/do_lo69 = 1,69ar/new_sound = 'sound/misc/notice2.o6969',69ar/do_newscast = 0)
+	..(do_lo69,69ew_sound, do_newscast)
 	title = "Security Announcement"
 	announcement_type = "Security Announcement"
 
-/datum/announcement/proc/Announce(var/message as text, var/new_title = "", var/new_sound = null, var/do_newscast = newscast, var/msg_sanitized = 0, var/zlevels = GLOB.maps_data.contact_levels)
-	if(!message)
+/datum/announcement/proc/Announce(var/messa69e as text,69ar/new_title = "",69ar/new_sound =69ull,69ar/do_newscast =69ewscast,69ar/ms69_sanitized = 0,69ar/zlevels = 69LOB.maps_data.contact_levels)
+	if(!messa69e)
 		return
-	var/message_title = new_title ? new_title : title
-	var/message_sound = new_sound ? new_sound : sound
+	var/messa69e_title =69ew_title ?69ew_title : title
+	var/messa69e_sound =69ew_sound ?69ew_sound : sound
 
-	if(!msg_sanitized)
-		message = sanitize(message, extra = 0)
-	message_title = html_encode(message_title)
+	if(!ms69_sanitized)
+		messa69e = sanitize(messa69e, extra = 0)
+	messa69e_title = html_encode(messa69e_title)
 
-	Message(message, message_title)
+	Messa69e(messa69e,69essa69e_title)
 	if(do_newscast)
-		NewsCast(message, message_title)
+		NewsCast(messa69e,69essa69e_title)
 
-	for(var/mob/M in GLOB.player_list)
-		if((M.z in (zlevels | GLOB.maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) && message_sound)
-			sound_to(M, message_sound)
-	Log(message, message_title)
+	for(var/mob/M in 69LOB.player_list)
+		if((M.z in (zlevels | 69LOB.maps_data.admin_levels)) && !istype(M,/mob/new_player) && !isdeaf(M) &&69essa69e_sound)
+			sound_to(M,69essa69e_sound)
+	Lo69(messa69e,69essa69e_title)
 
-datum/announcement/proc/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='warning'>[title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
+datum/announcement/proc/Messa69e(messa69e as text,69essa69e_title as text)
+	69lobal_announcer.autosay("<span class='warnin69'>69title69:</span> 69messa69e69", announcer ? announcer : ANNOUNCER_NAME)
 
-datum/announcement/minor/Message(message as text, message_title as text)
-	global_announcer.autosay(message, ANNOUNCER_NAME)
+datum/announcement/minor/Messa69e(messa69e as text,69essa69e_title as text)
+	69lobal_announcer.autosay(messa69e, ANNOUNCER_NAME)
 
-datum/announcement/priority/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME)
+datum/announcement/priority/Messa69e(messa69e as text,69essa69e_title as text)
+	69lobal_announcer.autosay("<span class='alert'>69messa69e_title69:</span> 69messa69e69", announcer ? announcer : ANNOUNCER_NAME)
 
-datum/announcement/priority/command/Message(message as text, message_title as text)
-	global_announcer.autosay("<span class='warning'>[message_title]:</span> [message]", ANNOUNCER_NAME)
+datum/announcement/priority/command/Messa69e(messa69e as text,69essa69e_title as text)
+	69lobal_announcer.autosay("<span class='warnin69'>69messa69e_title69:</span> 69messa69e69", ANNOUNCER_NAME)
 
-datum/announcement/priority/security/Message(message as text, message_title as text)
-	global_announcer.autosay("<font color='red'>[message_title]:</span> [message]", ANNOUNCER_NAME)
+datum/announcement/priority/security/Messa69e(messa69e as text,69essa69e_title as text)
+	69lobal_announcer.autosay("<font color='red'>69messa69e_title69:</span> 69messa69e69", ANNOUNCER_NAME)
 
-datum/announcement/proc/NewsCast(message as text, message_title as text)
+datum/announcement/proc/NewsCast(messa69e as text,69essa69e_title as text)
 	if(!newscast)
 		return
 
-	var/datum/news_announcement/news = new
+	var/datum/news_announcement/news =69ew
 	news.channel_name = channel_name
 	news.author = announcer
-	news.message = message
-	news.message_type = announcement_type
+	news.messa69e =69essa69e
+	news.messa69e_type = announcement_type
 	news.can_be_redacted = 0
 	announce_newscaster_news(news)
 
-datum/announcement/proc/PlaySound(var/message_sound)
-	if(!message_sound)
+datum/announcement/proc/PlaySound(var/messa69e_sound)
+	if(!messa69e_sound)
 		return
-	for(var/mob/M in GLOB.player_list)
+	for(var/mob/M in 69LOB.player_list)
 		if(!isnewplayer(M) && !isdeaf(M))
-			M << message_sound
+			M <<69essa69e_sound
 
-datum/announcement/proc/Sound(var/message_sound)
-	PlaySound(message_sound)
+datum/announcement/proc/Sound(var/messa69e_sound)
+	PlaySound(messa69e_sound)
 
-datum/announcement/priority/Sound(var/message_sound)
-	if(message_sound)
-		world << message_sound
+datum/announcement/priority/Sound(var/messa69e_sound)
+	if(messa69e_sound)
+		world <<69essa69e_sound
 
-datum/announcement/priority/command/Sound(var/message_sound)
-	PlaySound(message_sound)
+datum/announcement/priority/command/Sound(var/messa69e_sound)
+	PlaySound(messa69e_sound)
 
-datum/announcement/proc/Log(message as text, message_title as text)
-	if(log)
-		log_say("[key_name(usr)] has made \a [announcement_type]: [message_title] - [message] - [announcer]")
-		message_admins("[key_name_admin(usr)] has made \a [announcement_type].", 1)
+datum/announcement/proc/Lo69(messa69e as text,69essa69e_title as text)
+	if(lo69)
+		lo69_say("69key_name(usr)69 has69ade \a 69announcement_type69: 69messa69e_title69 - 69messa69e69 - 69announcer69")
+		messa69e_admins("69key_name_admin(usr)69 has69ade \a 69announcement_type69.", 1)
 
-/proc/GetNameAndAssignmentFromId(var/obj/item/card/id/I)
-	// Format currently matches that of newscaster feeds: Registered Name (Assigned Rank)
-	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
+/proc/69etNameAndAssi69nmentFromId(var/obj/item/card/id/I)
+	// Format currently69atches that of69ewscaster feeds: Re69istered69ame (Assi69ned Rank)
+	return I.assi69nment ? "69I.re69istered_name69 (69I.assi69nment69)" : I.re69istered_name
 
 /proc/level_seven_announcement()
-	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak7.ogg')
+	command_announcement.Announce("Confirmed outbreak of level 7 biohazard aboard 69station_name()69. All personnel69ust contain the outbreak.", "Biohazard Alert",69ew_sound = 'sound/AI/outbreak7.o6969')
 
-/proc/level_eight_announcement() //new announcment so the crew doesn't have to fuck around trying to figure out if its a blob, hivemind, or a literal fungus
-	command_announcement.Announce("Confirmed outbreak of level 8 Bio-mechanical infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
+/proc/level_ei69ht_announcement() //new announcment so the crew doesn't have to fuck around tryin69 to fi69ure out if its a blob, hivemind, or a literal fun69us
+	command_announcement.Announce("Confirmed outbreak of level 8 Bio-mechanical infestation aboard 69station_name()69. All personnel69ust contain the outbreak.", "Biohazard Alert")
 
-/proc/level_eight_beta_announcement() //announcment which tells the crew that the hivemind has been killed, job well done crew.
-	command_announcement.Announce("Diagnostic Systems report level 8 Bio-mechanical infestation aboard [station_name()] has been contained.")
+/proc/level_ei69ht_beta_announcement() //announcment which tells the crew that the hivemind has been killed, job well done crew.
+	command_announcement.Announce("Dia69nostic Systems report level 8 Bio-mechanical infestation aboard 69station_name()69 has been contained.")
 
 /proc/level_nine_announcement()
-	command_announcement.Announce("Confirmed outbreak of level 9 Excelsior communist infestation aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert")
+	command_announcement.Announce("Confirmed outbreak of level 9 Excelsior communist infestation aboard 69station_name()69. All personnel69ust contain the outbreak.", "Biohazard Alert")
 
 /proc/ion_storm_announcement()
-	command_announcement.Announce("It has come to our attention that the ship passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
+	command_announcement.Announce("It has come to our attention that the ship passed throu69h an ion storm.  Please69onitor all electronic equipment for69alfunctions.", "Anomaly Alert")
 
-/proc/AnnounceArrival(var/mob/living/character, var/rank, var/join_message)
-	if (join_message && SSticker.current_state == GAME_STATE_PLAYING && SSjob.ShouldCreateRecords(rank))
+/proc/AnnounceArrival(var/mob/livin69/character,69ar/rank,69ar/join_messa69e)
+	if (join_messa69e && SSticker.current_state == 69AME_STATE_PLAYIN69 && SSjob.ShouldCreateRecords(rank))
 		if(issilicon(character))
-			global_announcer.autosay("A new [rank] [join_message].", ANNOUNCER_NAME)
+			69lobal_announcer.autosay("A69ew 69rank69 69join_messa69e69.", ANNOUNCER_NAME)
 		else
-			global_announcer.autosay("[character.real_name], [rank], [join_message].", ANNOUNCER_NAME)
+			69lobal_announcer.autosay("69character.real_name69, 69rank69, 69join_messa69e69.", ANNOUNCER_NAME)

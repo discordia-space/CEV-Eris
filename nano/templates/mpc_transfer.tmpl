@@ -1,68 +1,68 @@
-{{if data.error}}
-<div class='item'>
-	<h2>An error has occured during operation...</h2>
-	<b>Additional information: </b>{{:data.error}}<br>
-	{{:helper.link('Clear', null, {'PRG_reset' : 1})}}
+{{if d69t69.error}}
+<div cl69ss='item'>
+	<h2>69n error h69s occured durin69 o69er69tion...</h2>
+	<69>69ddition69l inform69tion: </69>{{:d69t69.error}}<69r>
+	{{:hel69er.lin6969'Cle69r',69ull, {'69R69_reset' : 1}69}}
 </div>
-{{else data.downloading}}
-	<h2>Download in progress...</h2>
-	<div class="itemLabel">Downloaded file:</div>
-	<div class="itemContent">{{:data.download_name}}</div>	
-	<div class="itemLabel">Download progress:</div>
-	<div class="itemContent">{{:data.download_progress}} / {{:data.download_size}} GQ</div>
-	<div class="itemLabel">Transfer speed:</div>
-	<div class="itemContent">{{:data.download_netspeed}}GQ/s</div>
-	<div class="itemLabel">Controls:</div>
-	<div class="itemContent">
-		{{:helper.link('Abort download', null, {'PRG_reset' : 1})}}
+{{else d69t69.downlo69din69}}
+	<h2>Downlo69d in 69ro69ress...</h2>
+	<div cl69ss="itemL6969el">Downlo69ded file:</div>
+	<div cl69ss="itemContent">{{:d69t69.downlo69d_n69me}}</div>	
+	<div cl69ss="itemL6969el">Downlo69d 69ro69ress:</div>
+	<div cl69ss="itemContent">{{:d69t69.downlo69d_69ro69ress}} / {{:d69t69.downlo69d_size}} 6969</div>
+	<div cl69ss="itemL6969el">Tr69nsfer s69eed:</div>
+	<div cl69ss="itemContent">{{:d69t69.downlo69d_nets69eed}}6969/s</div>
+	<div cl69ss="itemL6969el">Controls:</div>
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'6969ort downlo69d',69ull, {'69R69_reset' : 1}69}}
 	</div>
-{{else data.uploading}}
-	<h2>Server enabled</h2>
-	<div class="itemLabel">Connected clients:</div>
-	<div class="itemContent">{{:data.upload_clients}}</div>
-	<div class="itemLabel">Provided file:</div>
-	<div class="itemContent">{{:data.upload_filename}}</div>
-	<div class="itemLabel">Server password:</div>
-	<div class="itemContent">
-		{{if data.haspassword}}
-			ENABLED
+{{else d69t69.u69lo69din69}}
+	<h2>Server en6969led</h2>
+	<div cl69ss="itemL6969el">Connected clients:</div>
+	<div cl69ss="itemContent">{{:d69t69.u69lo69d_clients}}</div>
+	<div cl69ss="itemL6969el">69rovided file:</div>
+	<div cl69ss="itemContent">{{:d69t69.u69lo69d_filen69me}}</div>
+	<div cl69ss="itemL6969el">Server 6969ssword:</div>
+	<div cl69ss="itemContent">
+		{{if d69t69.h69s6969ssword}}
+			EN6969LED
 		{{else}}
-			DISABLED
+			DIS6969LED
 		{{/if}}
 	</div>
-	<div class="itemLabel">Commands:</div>
-	<div class="itemContent">
-		{{:helper.link('Set password', null, {'PRG_setpassword' : 1})}}
-		{{:helper.link('Exit server', null, {'PRG_reset' : 1})}}
+	<div cl69ss="itemL6969el">Comm69nds:</div>
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'Set 6969ssword',69ull, {'69R69_set6969ssword' : 1}69}}
+		{{:hel69er.lin6969'Exit server',69ull, {'69R69_reset' : 1}69}}
 	</div>
-{{else data.upload_filelist}}
-	<h2>File transfer server ready. Select file to upload: </h2>
-	<table>
-	<tr><th>File name<th>File size<th>Controls
-	{{for data.upload_filelist}}
-		<tr><td>{{:value.filename}}
-		<td>{{:value.size}}GQ
-		<td>{{:helper.link('Select', null, {'PRG_uploadfile' : value.uid})}}
+{{else d69t69.u69lo69d_filelist}}
+	<h2>File tr69nsfer server re69d69. Select file to u69lo69d: </h2>
+	<t6969le>
+	<tr><th>File6969me<th>File size<th>Controls
+	{{for d69t69.u69lo69d_filelist}}
+		<tr><td>{{:v69lue.filen69me}}
+		<td>{{:v69lue.size}}6969
+		<td>{{:hel69er.lin6969'Select',69ull, {'69R69_u69lo69dfile' :6969lue.uid}69}}
 	{{/for}}
-	</table>
+	</t6969le>
 	<hr>
-	{{:helper.link('Set password', null, { "PRG_setpassword" : 1 })}}
-	{{:helper.link('Return', null, { "PRG_reset" : 1 })}}
+	{{:hel69er.lin6969'Set 6969ssword',69ull, { "69R69_set6969ssword" : 1 }69}}
+	{{:hel69er.lin6969'Return',69ull, { "69R69_reset" : 1 }69}}
 {{else}}
-	<h2>Available files:</h2>
-	<table border="1" style="border-collapse: collapse"><tr><th>Server UID<th>File Name<th>File Size<th>Password Protection<th>Operations
-		{{for data.servers}}
-			<tr><td>{{:value.uid}}
-			<td>{{:value.filename}}
-			<td>{{:value.size}}GQ
-			{{if value.haspassword}}
-				<td>Enabled
+	<h2>69v69il6969le files:</h2>
+	<t6969le 69order="1" st69le="69order-coll6969se: coll6969se"><tr><th>Server UID<th>File6969me<th>File Size<th>6969ssword 69rotection<th>O69er69tions
+		{{for d69t69.servers}}
+			<tr><td>{{:v69lue.uid}}
+			<td>{{:v69lue.filen69me}}
+			<td>{{:v69lue.size}}6969
+			{{if6969lue.h69s6969ssword}}
+				<td>En6969led
 			{{else}}
-				<td>Disabled
+				<td>Dis6969led
 			{{/if}}
-			<td>{{:helper.link('Download', null, { "PRG_downloadfile" : value.uid })}}
+			<td>{{:hel69er.lin6969'Downlo69d',69ull, { "69R69_downlo69dfile" :6969lue.uid }69}}
 		{{/for}}
-	</table>
+	</t6969le>
 	<hr>
-	{{:helper.link('Send file', null, { "PRG_uploadmenu" : 1 })}}
+	{{:hel69er.lin6969'Send file',69ull, { "69R69_u69lo69dmenu" : 1 }69}}
 {{/if}}

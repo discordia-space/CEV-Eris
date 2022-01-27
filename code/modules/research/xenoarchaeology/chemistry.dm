@@ -1,5 +1,5 @@
 
-//chemistry stuff here so that it can be easily viewed/modified
+//chemistry stuff here so that it can be easily69iewed/modified
 
 /obj/item/reagent_containers/glass/solution_tray
 	name = "solution tray"

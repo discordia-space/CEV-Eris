@@ -81,7 +81,7 @@
 
 /datum/design/research/item/weapon/toolmod/laserguide
 	build_path = /obj/item/tool_upgrade/refinement/laserguide
-	sort_string = "TAAAQ"
+	sort_string = "TAAA69"
 	category = CAT_TOOLMODS
 
 /datum/design/research/item/weapon/toolmod/stabilizedgrip

@@ -10,11 +10,11 @@
 			if(!current_cell)
 				continue
 			if(x == 1 || y == 1 || x == limit_x || y == limit_y)
-				map[current_cell] = WALL_CHAR
+				map69current_cell69 = WALL_CHAR
 			else
-				map[current_cell] = FLOOR_CHAR
+				map69current_cell69 = FLOOR_CHAR
 
-/datum/random_map/building/handle_post_overlay_on(var/datum/random_map/target_map, var/tx, var/ty)
+/datum/random_map/building/handle_post_overlay_on(var/datum/random_map/target_map,69ar/tx,69ar/ty)
 	var/list/possible_doors
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
@@ -45,11 +45,11 @@
 		// Place at least one door.
 		var/placing_door = pick(possible_doors)
 		possible_doors -= placing_door
-		target_map.map[placing_door] = DOOR_CHAR
+		target_map.map69placing_door69 = DOOR_CHAR
 		// Keep placing doors until we get bored or lose interest.
 		while(possible_doors && !prob(30))
 			placing_door = pick(possible_doors)
 			possible_doors -= placing_door
-			target_map.map[placing_door] = DOOR_CHAR
+			target_map.map69placing_door69 = DOOR_CHAR
 
 	return

@@ -12,9 +12,9 @@
 /datum/random_map/automata/cave_system/get_appropriate_path(var/value)
 	switch(value)
 		if(DOOR_CHAR)
-			return mineral_sparse
+			return69ineral_sparse
 		if(EMPTY_CHAR)
-			return mineral_rich
+			return69ineral_rich
 		if(FLOOR_CHAR)
 			return floor_type
 		if(WALL_CHAR)
@@ -28,12 +28,12 @@
 			return "X"
 	return ..(value)
 
-/datum/random_map/automata/cave_system/revive_cell(var/target_cell, var/list/use_next_map, var/final_iter)
+/datum/random_map/automata/cave_system/revive_cell(var/target_cell,69ar/list/use_next_map,69ar/final_iter)
 	..()
 	if(final_iter)
 		ore_turfs |= target_cell
 
-/datum/random_map/automata/cave_system/kill_cell(var/target_cell, var/list/use_next_map, var/final_iter)
+/datum/random_map/automata/cave_system/kill_cell(var/target_cell,69ar/list/use_next_map,69ar/final_iter)
 	..()
 	if(final_iter)
 		ore_turfs -= target_cell
@@ -46,9 +46,9 @@
 		var/check_cell = pick(ore_turfs)
 		ore_turfs -= check_cell
 		if(prob(75))
-			map[check_cell] = DOOR_CHAR  // Mineral block
+			map69check_cell69 = DOOR_CHAR  //69ineral block
 		else
-			map[check_cell] = EMPTY_CHAR // Rare mineral block.
+			map69check_cell69 = EMPTY_CHAR // Rare69ineral block.
 		ore_count--
 		CHECK_TICK
 	return 1

@@ -1,19 +1,19 @@
 /datum/trade_station/collector
 	name_pool = list(
-		"RS 'Recoll'" = "Refinery Ship 'Recoll':\n\"Hey! We are a small refinery looking for customers. We accept all types of ores and we sell refined materials at cheap prices aswell!\""
+		"RS 'Recoll'" = "Refinery Ship 'Recoll':\n\"Hey! We are a small refinery looking for customers. We accept all types of ores and we sell refined69aterials at cheap prices aswell!\""
 	)
 	start_discovered = TRUE
 	spawn_always = TRUE
 	markup = COMMON_GOODS
-	markdown = 0		// Needs to be zero because it can be abused. When a item of type ...stack/material/mat_name/full is split, the new item retains the /full subtype and can be sold at the sell price shown.
-	base_income = 0		// Needs ore to refine
+	markdown = 0		//69eeds to be zero because it can be abused. When a item of type ...stack/material/mat_name/full is split, the69ew item retains the /full subtype and can be sold at the sell price shown.
+	base_income = 0		//69eeds ore to refine
 	wealth = 0
 	offer_limit = 30
-	secret_inv_threshold = 48000	// Has many offers
+	secret_inv_threshold = 48000	// Has69any offers
 	assortiment = list(
-		"Refined Materials" = list(
-			// Commenting out single stacks of goods because it is possible someone will want to order a bunch at once. Having too many items on the same tile is problematic.
-			// If miners are bringing back a bunch of ore, some of it is probably going to be smelted anyway.
+		"Refined69aterials" = list(
+			// Commenting out single stacks of goods because it is possible someone will want to order a bunch at once. Having too69any items on the same tile is problematic.
+			// If69iners are bringing back a bunch of ore, some of it is probably going to be smelted anyway.
 			/obj/item/stack/material/plastic/full = good_data("plastic sheets (x120)", list(-4, 6)),
 			/obj/item/stack/material/cardboard/full = good_data("cardboard sheets (x120)", list(-4, 6)),
 			/obj/item/stack/material/steel/full = good_data("steel sheets (x120)", list(-3, 5)),
@@ -32,7 +32,7 @@
 		),
 	)
 	secret_inventory = list(
-		"Refined Material Stacks" = list(
+		"Refined69aterial Stacks" = list(
 			/obj/item/stack/material/iron/full = good_data("iron ingots (x120)", list(1, 2)),
 			/obj/item/stack/material/silver/full = good_data("silver ingots (x120)", list(1, 2)),
 			/obj/item/stack/material/gold/full = good_data("gold ingots (x120)", list(1, 2)),
@@ -45,8 +45,8 @@
 		)
 	)
 	offer_types = list(
-		// Trash mats are priced based on expected value of sheets. Ores are priced based on smelting results and are priced slightly better than if the processed sheets were being sold directly.
-		/obj/item/trash/material/metal = offer_data("scrap metal", 120, 0),
+		// Trash69ats are priced based on expected69alue of sheets. Ores are priced based on smelting results and are priced slightly better than if the processed sheets were being sold directly.
+		/obj/item/trash/material/metal = offer_data("scrap69etal", 120, 0),
 		/obj/item/trash/material/circuit = offer_data("burnt circuit", 90, 0),
 		/obj/item/trash/material/device = offer_data("broken device", 205, 0),
 		/obj/item/ore/iron = offer_data("hematite", 20, 0),

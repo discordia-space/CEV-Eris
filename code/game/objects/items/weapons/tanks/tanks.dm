@@ -24,7 +24,7 @@ var/list/global/tank_gauge_cache = list()
 
 	//spawn_values
 	rarity_value = 10
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_blacklisted = FALSE
 	bad_type = /obj/item/tank
 	spawn_tags = SPAWN_TAG_TANK_GAS
@@ -35,8 +35,8 @@ var/list/global/tank_gauge_cache = list()
 	var/default_gas = null
 	var/integrity = 3
 	var/volume = 70 //liters
-	var/manipulated_by		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has messed with our tank or not.
-						//If they have and we haven't scanned it with the PDA or gas analyzer then we might just breath whatever they put in it.
+	var/manipulated_by		//Used by _onclick/hud/screen_objects.dm internals to determine if someone has69essed with our tank or not.
+						//If they have and we haven't scanned it with the PDA or gas analyzer then we69ight just breath whatever they put in it.
 
 /obj/item/tank/Initialize(mapload, ...)
 	. = ..()
@@ -52,7 +52,7 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/tank/Destroy()
 	if(air_contents)
-		QDEL_NULL(air_contents)
+		69DEL_NULL(air_contents)
 
 	STOP_PROCESSING(SSobj, src)
 
@@ -65,7 +65,7 @@ var/list/global/tank_gauge_cache = list()
 // Override in subtypes
 /obj/item/tank/proc/spawn_gas()
 	if(default_gas)
-		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C))
+		air_contents.adjust_gas(default_gas, default_pressure*volume/(R_IDEAL_GAS_E69UATION*T20C))
 
 /obj/item/tank/examine(mob/user)
 	. = ..(user, 0)
@@ -85,9 +85,9 @@ var/list/global/tank_gauge_cache = list()
 				descriptive = "room temperature"
 			else
 				descriptive = "cold"
-		to_chat(user, SPAN_NOTICE("\The [src] feels [descriptive]."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 feels 69descriptive69."))
 
-/obj/item/tank/attackby(obj/item/W, mob/living/user)
+/obj/item/tank/attackby(obj/item/W,69ob/living/user)
 	..()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
@@ -105,7 +105,7 @@ var/list/global/tank_gauge_cache = list()
 
 	ui_interact(user)
 
-/obj/item/tank/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/item/tank/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
 	var/mob/living/carbon/location = null
 
 	if(istype(loc, /obj/item/rig))		// check for tanks in rigs
@@ -120,34 +120,34 @@ var/list/global/tank_gauge_cache = list()
 			using_internal = 1
 
 	// this is the data which will be sent to the ui
-	var/data[0]
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(distribute_pressure ? distribute_pressure : 0)
-	data["defaultReleasePressure"] = round(TANK_DEFAULT_RELEASE_PRESSURE)
-	data["maxReleasePressure"] = round(TANK_MAX_RELEASE_PRESSURE)
-	data["valveOpen"] = using_internal ? 1 : 0
+	var/data69069
+	data69"tankPressure"69 = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
+	data69"releasePressure"69 = round(distribute_pressure ? distribute_pressure : 0)
+	data69"defaultReleasePressure"69 = round(TANK_DEFAULT_RELEASE_PRESSURE)
+	data69"maxReleasePressure"69 = round(TANK_MAX_RELEASE_PRESSURE)
+	data69"valveOpen"69 = using_internal ? 1 : 0
 
-	data["maskConnected"] = 0
+	data69"maskConnected"69 = 0
 
 	if(istype(location))
 		var/mask_check = 0
 
 		if(location.internal == src)	// if tank is current internal
 			mask_check = 1
-		else if(src in location)		// or if tank is in the mobs possession
+		else if(src in location)		// or if tank is in the69obs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
-		else if(istype(src.loc, /obj/item/rig) && (src.loc in location))	// or the rig is in the mobs possession
+		else if(istype(src.loc, /obj/item/rig) && (src.loc in location))	// or the rig is in the69obs possession
 			if(!location.internal)		// and they do not have any active internals
 				mask_check = 1
 
 		if(mask_check)
 			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
-				data["maskConnected"] = 1
+				data69"maskConnected"69 = 1
 			else if(ishuman(location))
 				var/mob/living/carbon/human/H = location
 				if(H.head && (H.head.item_flags & AIRTIGHT))
-					data["maskConnected"] = 1
+					data69"maskConnected"69 = 1
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -159,7 +159,7 @@ var/list/global/tank_gauge_cache = list()
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
-		// auto update every Master Controller tick
+		// auto update every69aster Controller tick
 		ui.set_auto_update(1)
 
 /obj/item/tank/Topic(href, href_list)
@@ -169,16 +169,16 @@ var/list/global/tank_gauge_cache = list()
 	if (src.loc != usr)
 		return 0
 
-	if (href_list["dist_p"])
-		if (href_list["dist_p"] == "reset")
+	if (href_list69"dist_p"69)
+		if (href_list69"dist_p"69 == "reset")
 			src.distribute_pressure = TANK_DEFAULT_RELEASE_PRESSURE
-		else if (href_list["dist_p"] == "max")
+		else if (href_list69"dist_p"69 == "max")
 			src.distribute_pressure = TANK_MAX_RELEASE_PRESSURE
 		else
-			var/cp = text2num(href_list["dist_p"])
+			var/cp = text2num(href_list69"dist_p"69)
 			src.distribute_pressure += cp
-		src.distribute_pressure = min(max(round(src.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
-	if (href_list["stat"])
+		src.distribute_pressure =69in(max(round(src.distribute_pressure), 0), TANK_MAX_RELEASE_PRESSURE)
+	if (href_list69"stat"69)
 		toggle_valve(loc)
 	return 1
 
@@ -187,7 +187,7 @@ var/list/global/tank_gauge_cache = list()
 		var/mob/living/carbon/location = loc
 		if(location.internal == src)
 			location.internal = null
-			to_chat(usr, SPAN_NOTICE("You close the tank release valve."))
+			to_chat(usr, SPAN_NOTICE("You close the tank release69alve."))
 		else
 			var/can_open_valve
 			if(location.wear_mask && (location.wear_mask.item_flags & AIRTIGHT))
@@ -198,12 +198,12 @@ var/list/global/tank_gauge_cache = list()
 					can_open_valve = 1
 			if(can_open_valve)
 				location.internal = src
-				to_chat(usr, SPAN_NOTICE("You open \the [src] valve."))
+				to_chat(usr, SPAN_NOTICE("You open \the 69src6969alve."))
 				playsound(usr, 'sound/effects/Custom_internals.ogg', 100, 0)
 			else
-				to_chat(usr, SPAN_WARNING("You need something to connect to \the [src]."))
+				to_chat(usr, SPAN_WARNING("You need something to connect to \the 69src69."))
 			if(location.HUDneed.Find("internal"))
-				var/obj/screen/HUDelm = location.HUDneed["internal"]
+				var/obj/screen/HUDelm = location.HUDneed69"internal"69
 				HUDelm.update_icon()
 		src.add_fingerprint(usr)
 
@@ -227,7 +227,7 @@ var/list/global/tank_gauge_cache = list()
 	if(tank_pressure < distribute_pressure)
 		distribute_pressure = tank_pressure
 
-	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_EQUATION*air_contents.temperature)
+	var/moles_needed = distribute_pressure*volume_to_return/(R_IDEAL_GAS_E69UATION*air_contents.temperature)
 
 	return remove_air(moles_needed)
 
@@ -255,14 +255,14 @@ var/list/global/tank_gauge_cache = list()
 
 	var/indicator
 	if(gauge_pressure > TANK_IDEAL_PRESSURE)
-		indicator = "[gauge_icon]-overload"
+		indicator = "69gauge_icon69-overload"
 	else
-		indicator = "[gauge_icon]-[round((gauge_pressure/default_pressure)*gauge_cap)]"
+		indicator = "69gauge_icon69-69round((gauge_pressure/default_pressure)*gauge_cap)69"
 
 	overlays.Cut()
-	if(!tank_gauge_cache[indicator])
-		tank_gauge_cache[indicator] = image(icon, indicator)
-	overlays += tank_gauge_cache[indicator]
+	if(!tank_gauge_cache69indicator69)
+		tank_gauge_cache69indicator69 = image(icon, indicator)
+	overlays += tank_gauge_cache69indicator69
 
 /obj/item/tank/proc/check_status()
 	//Handle exploding, leaking, and rupturing of the tank
@@ -273,10 +273,10 @@ var/list/global/tank_gauge_cache = list()
 	var/pressure = air_contents.return_pressure()
 	if(pressure > TANK_FRAGMENT_PRESSURE)
 		if(!istype(src.loc,/obj/item/device/transfer_valve))
-			message_admins("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
-			log_game("Explosive tank rupture! last key to touch the tank was [src.fingerprintslast].")
+			message_admins("Explosive tank rupture! last key to touch the tank was 69src.fingerprintslast69.")
+			log_game("Explosive tank rupture! last key to touch the tank was 69src.fingerprintslast69.")
 
-		//Give the gas a chance to build up more pressure through reacting
+		//Give the gas a chance to build up69ore pressure through reacting
 		air_contents.react()
 		air_contents.react()
 		air_contents.react()
@@ -291,11 +291,11 @@ var/list/global/tank_gauge_cache = list()
 			round(min(BOMBCAP_LIGHT_RADIUS, range*1.00)),
 			round(min(BOMBCAP_FLASH_RADIUS, range*1.50)),
 			)
-		qdel(src)
+		69del(src)
 
 	else if(pressure > TANK_RUPTURE_PRESSURE)
 		#ifdef FIREDBG
-		log_debug(SPAN_WARNING("[x],[y] tank is rupturing: [pressure] kPa, integrity [integrity]"))
+		log_debug(SPAN_WARNING("69x69,69y69 tank is rupturing: 69pressure69 kPa, integrity 69integrity69"))
 		#endif
 
 		if(integrity <= 0)
@@ -304,13 +304,13 @@ var/list/global/tank_gauge_cache = list()
 				return
 			T.assume_air(air_contents)
 			playsound(src.loc, 'sound/effects/spray.ogg', 10, 1, -3)
-			qdel(src)
+			69del(src)
 		else
 			integrity--
 
 	else if(pressure > TANK_LEAK_PRESSURE)
 		#ifdef FIREDBG
-		log_debug(SPAN_WARNING("[x],[y] tank is leaking: [pressure] kPa, integrity [integrity]"))
+		log_debug(SPAN_WARNING("69x69,69y69 tank is leaking: 69pressure69 kPa, integrity 69integrity69"))
 		#endif
 
 		if(integrity <= 0)

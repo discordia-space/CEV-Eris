@@ -20,9 +20,9 @@ proc/keycode2char(N)
 		if(190)return "."
 		if(191)return "/"
 		if(192)return "`"
-		if(219)return "\["
+		if(219)return "\69"
 		if(220)return "\\"
-		if(221)return "]"
+		if(221)return "69"
 		if(222)return "'"
 		else return 0
 
@@ -30,29 +30,29 @@ KeyState
 	var
 		client/client
 		shift = 0
-		list/key[255]
+		list/key6925569
 		mouse_x=0;mouse_y=0
 	New(client/C)
 		if(C)client=C
 		var/index
 		for(index = 1 to 255)
-			key[index]=0
+			key69index69=0
 	proc
 		Update(event,KeyCode)
 			var/T=KeyCode
 			KeyCode=text2num(KeyCode)
 			switch(event)
 				if("KeyUp")
-					if(key[KeyCode])
-						key[KeyCode]=0
+					if(key69KeyCode69)
+						key69KeyCode69=0
 						switch(KeyCode)
 							if(16)shift&=~1
 							if(17)shift&=~2
 							if(18)shift&=~4
 						if(client)client.KeyUp(KeyCode,shift)
 				if("KeyDown")
-					if(!key[KeyCode])
-						key[KeyCode]=1
+					if(!key69KeyCode69)
+						key69KeyCode69=1
 						switch(KeyCode)
 							if(16)shift|=1
 							if(17)shift|=2
@@ -70,16 +70,16 @@ client
 		avail_resolution
 		system_type
 		color_quality
-	Topic(href,href_list[])
+	Topic(href,href_list6969)
 		if("action" in href_list)
-			if(href_list["action"]=="KeyState")
-				var/event = href_list[2]
-				keystate.Update(event,href_list[event])
-			if(href_list["action"]=="infosetup")
-				resolution=href_list["resolution"]
-				avail_resolution=href_list["availresolution"]
-				color_quality=href_list["color"]
-				system_type=href_list["os"]
+			if(href_list69"action"69=="KeyState")
+				var/event = href_list69269
+				keystate.Update(event,href_list69event69)
+			if(href_list69"action"69=="infosetup")
+				resolution=href_list69"resolution"69
+				avail_resolution=href_list69"availresolution"69
+				color_quality=href_list69"color"69
+				system_type=href_list69"os"69
 		return ..()
 	verb/manual_focus()
 		set hidden = 1
@@ -164,14 +164,14 @@ this.focus()
 function KeyUp(event)
 {
 	window.location="?action=KeyState&KeyUp="+event.keyCode
-	down\[event.keyCode]=0
+	down\69event.keyCode69=0
 }
 
 function KeyDown(event)
 {
-if(down\[event.keyCode]==0)
+if(down\69event.keyCode69==0)
 {
-	down\[event.keyCode]=1
+	down\69event.keyCode69=1
 	window.location="?action=KeyState&KeyDown="+event.keyCode
 }
 }
@@ -183,7 +183,7 @@ if(down\[event.keyCode]==0)
 down = new Array(255);
 for(index=0; index<255; index+=1)
 {
-	down\[index]=0;
+	down\69index69=0;
 }
 this.focus()
 </script>

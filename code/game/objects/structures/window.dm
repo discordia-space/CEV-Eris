@@ -9,8 +9,8 @@
 	flags = ON_BORDER
 	var/maxhealth = 20
 	var/resistance = RESISTANCE_NONE	//Incoming damage is reduced by this flat amount before being subtracted from health. Defines found in code\__defines\weapons.dm
-	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
-	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they might as well break quickly.
+	var/maximal_heat = T0C + 100 		//69aximal heat before this window begins taking damage from fire
+	var/damage_per_fire_tick = 2 		// Amount of damage per fire tick. Regular windows are not fireproof so they69ight as well break 69uickly.
 	var/health
 	var/ini_dir = null
 	var/state = 2
@@ -24,7 +24,7 @@
 /obj/structure/window/can_prevent_fall()
 	return !is_fulltile()
 
-/obj/structure/window/get_fall_damage(var/turf/from, var/turf/dest)
+/obj/structure/window/get_fall_damage(var/turf/from,69ar/turf/dest)
 	var/damage = health * 0.4
 
 	if (from && dest)
@@ -35,16 +35,16 @@
 /obj/structure/window/examine(mob/user)
 	. = ..(user)
 
-	if(health == maxhealth)
+	if(health ==69axhealth)
 		to_chat(user, SPAN_NOTICE("It looks fully intact."))
 	else
-		var/perc = health / maxhealth
+		var/perc = health /69axhealth
 		if(perc > 0.75)
 			to_chat(user, SPAN_NOTICE("It has a few cracks."))
 		else if(perc > 0.5)
 			to_chat(user, SPAN_WARNING("It looks slightly damaged."))
 		else if(perc > 0.25)
-			to_chat(user, SPAN_WARNING("It looks moderately damaged."))
+			to_chat(user, SPAN_WARNING("It looks69oderately damaged."))
 		else
 			to_chat(user, SPAN_DANGER("It looks heavily damaged."))
 	if(silicate)
@@ -57,20 +57,20 @@
 
 
 //Subtracts resistance from damage then applies it
-//Returns the actual damage taken after resistance is accounted for. This is useful for audio volumes
-/obj/structure/window/proc/take_damage(var/damage = 0,  var/sound_effect = 1, var/ignore_resistance = FALSE)
+//Returns the actual damage taken after resistance is accounted for. This is useful for audio69olumes
+/obj/structure/window/proc/take_damage(var/damage = 0, 69ar/sound_effect = 1,69ar/ignore_resistance = FALSE)
 	var/initialhealth = health
 
 	if (!ignore_resistance)
 		damage = damage * (1 - silicate / 200) // up to 50% damage resistance
-		damage -= resistance // then flat resistance from material
+		damage -= resistance // then flat resistance from69aterial
 	if (damage <= 0)
 		return 0
 
-	health = max(0, health - damage)
+	health =69ax(0, health - damage)
 
 	if(health <= 0)
-		if (prob(damage*2))//Heavy hits are more likely to send shards flying
+		if (prob(damage*2))//Heavy hits are69ore likely to send shards flying
 			shatter(FALSE, TRUE)
 		else
 			//To break it safely, use a lighter hit to deal the finishing touch, or throw things from afar
@@ -78,21 +78,21 @@
 	else
 		if(sound_effect)
 			playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
-		if(health < maxhealth / 4 && initialhealth >= maxhealth / 4)
-			visible_message("[src] looks like it's about to shatter!" )
-		else if(health < maxhealth / 2 && initialhealth >= maxhealth / 2)
-			visible_message("[src] looks seriously damaged!" )
-		else if(health < maxhealth * 3/4 && initialhealth >= maxhealth * 3/4)
-			visible_message("Cracks begin to appear in [src]!" )
+		if(health <69axhealth / 4 && initialhealth >=69axhealth / 4)
+			visible_message("69src69 looks like it's about to shatter!" )
+		else if(health <69axhealth / 2 && initialhealth >=69axhealth / 2)
+			visible_message("69src69 looks seriously damaged!" )
+		else if(health <69axhealth * 3/4 && initialhealth >=69axhealth * 3/4)
+			visible_message("Cracks begin to appear in 69src69!" )
 	return damage
 
 /obj/structure/window/proc/apply_silicate(var/amount)
-	if(health < maxhealth) // Mend the damage
-		health = min(health + amount * 3, maxhealth)
-		if(health == maxhealth)
-			visible_message("[src] looks fully repaired." )
+	if(health <69axhealth) //69end the damage
+		health =69in(health + amount * 3,69axhealth)
+		if(health ==69axhealth)
+			visible_message("69src69 looks fully repaired." )
 	else // Reinforce
-		silicate = min(silicate + amount, 100)
+		silicate =69in(silicate + amount, 100)
 		updateSilicate()
 
 /obj/structure/window/proc/updateSilicate()
@@ -106,8 +106,8 @@
 	img.alpha = silicate * 255 / 100
 	overlays += img
 
-//Setting the explode var makes the shattering louder and more violent, possibly injuring surrounding mobs
-/obj/structure/window/proc/shatter(var/display_message = 1, var/explode = FALSE)
+//Setting the explode69ar69akes the shattering louder and69ore69iolent, possibly injuring surrounding69obs
+/obj/structure/window/proc/shatter(var/display_message = 1,69ar/explode = FALSE)
 	alpha = 0
 	if (explode)
 		playsound(src, "shatter", 100, 1, 5,5)
@@ -122,7 +122,7 @@
 		nearby = (RANGE_TURFS(1, src) - get_turf(src))
 
 	if(display_message)
-		visible_message("[src] shatters!")
+		visible_message("69src69 shatters!")
 	if(is_full_window())
 		var/index = null
 		index = 0
@@ -139,7 +139,7 @@
 		new shardtype(loc) //todo pooling?
 		if(reinf)
 			new /obj/item/stack/rods(loc)
-	qdel(src)
+	69del(src)
 	return
 
 
@@ -156,7 +156,7 @@
 /obj/structure/window/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 			return
 		if(2)
 			shatter(0,TRUE)
@@ -166,24 +166,24 @@
 				shatter(0,TRUE)
 				return
 
-//TODO: Make full windows a separate type of window.
+//TODO:69ake full windows a separate type of window.
 //Once a full window, it will always be a full window, so there's no point
 //having the same type for both.
 /obj/structure/window/proc/is_full_window()
 	return (dir == SOUTHWEST || dir == SOUTHEAST || dir == NORTHWEST || dir == NORTHEAST)
 
 /obj/structure/window/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
+	if(istype(mover) &&69over.checkpass(PASSGLASS))
 		return 1
 	if(is_full_window())
-		return 0	//full tile window, you can't move into it!
+		return 0	//full tile window, you can't69ove into it!
 	if(get_dir(loc, target) & dir)
 		return !density
 	else
 		return 1
 
 
-/obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
+/obj/structure/window/CheckExit(atom/movable/O as69ob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
@@ -191,9 +191,9 @@
 	return 1
 
 
-/obj/structure/window/hitby(AM as mob|obj)
+/obj/structure/window/hitby(AM as69ob|obj)
 	..()
-	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
+	visible_message(SPAN_DANGER("69src69 was hit by 69AM69."))
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -207,15 +207,15 @@
 	hit(tforce)
 	mount_check()
 
-/obj/structure/window/attack_tk(mob/user as mob)
-	user.visible_message(SPAN_NOTICE("Something knocks on [src]."))
+/obj/structure/window/attack_tk(mob/user as69ob)
+	user.visible_message(SPAN_NOTICE("Something knocks on 69src69."))
 	playsound(loc, 'sound/effects/Glasshit.ogg', 50, 1)
 
-/obj/structure/window/attack_hand(mob/user as mob)
+/obj/structure/window/attack_hand(mob/user as69ob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(HULK in user.mutations)
 		user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
-		user.visible_message(SPAN_DANGER("[user] smashes through [src]!"))
+		user.visible_message(SPAN_DANGER("69user69 smashes through 69src69!"))
 		user.do_attack_animation(src)
 		shatter(TRUE,TRUE)
 
@@ -228,85 +228,85 @@
 				return
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 100, 1, 10, 10)
 		user.do_attack_animation(src)
-		usr.visible_message(SPAN_DANGER("\The [usr] bangs against \the [src]!"),
-							SPAN_DANGER("You bang against \the [src]!"),
+		usr.visible_message(SPAN_DANGER("\The 69usr69 bangs against \the 69src69!"),
+							SPAN_DANGER("You bang against \the 69src69!"),
 							"You hear a banging sound.")
 	else
 		playsound(src.loc, 'sound/effects/glassknock.ogg', 80, 1, 5, 5)
-		usr.visible_message("[usr.name] knocks on the [src.name].",
-							"You knock on the [src.name].",
+		usr.visible_message("69usr.name69 knocks on the 69src.name69.",
+							"You knock on the 69src.name69.",
 							"You hear a knocking sound.")
 	return
 
-/obj/structure/window/attack_generic(var/mob/user, var/damage)
+/obj/structure/window/attack_generic(var/mob/user,69ar/damage)
 	if(istype(user))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
 	if(damage >= resistance)
-		visible_message(SPAN_DANGER("[user] smashes into [src]!"))
+		visible_message(SPAN_DANGER("69user69 smashes into 69src69!"))
 		hit(damage)
 	else
-		visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		visible_message(SPAN_NOTICE("\The 69user69 bonks \the 69src69 harmlessly."))
 		playsound(src.loc, 'sound/effects/glasshit.ogg', 40, 1)
 		return
 	return 1
 
-/obj/structure/window/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
-	target.do_attack_animation(src, FALSE) //This is to visually create the appearance of the victim being bashed against the window
+/obj/structure/window/affect_grab(var/mob/living/user,69ar/mob/living/target,69ar/state)
+	target.do_attack_animation(src, FALSE) //This is to69isually create the appearance of the69ictim being bashed against the window
 	//So we pass false on the use_item flag so it doesn't look like they hit the window with something
 	switch(state)
 		if(GRAB_PASSIVE)
-			visible_message(SPAN_WARNING("[user] slams [target] against \the [src]!"))
+			visible_message(SPAN_WARNING("69user69 slams 69target69 against \the 69src69!"))
 			target.damage_through_armor(6, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(10)
 		if(GRAB_AGGRESSIVE)
-			visible_message(SPAN_DANGER("[user] bashes [target] against \the [src]!"))
+			visible_message(SPAN_DANGER("69user69 bashes 69target69 against \the 69src69!"))
 			if(prob(30))
 				target.Weaken(1)
 			target.damage_through_armor(8, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(15)
 		if(GRAB_NECK)
-			visible_message(SPAN_DANGER("<big>[user] crushes [target] against \the [src]!</big>"))
+			visible_message(SPAN_DANGER("<big>69user69 crushes 69target69 against \the 69src69!</big>"))
 			target.Weaken(5)
 			target.damage_through_armor(12, BRUTE, BP_HEAD, ARMOR_MELEE)
 			hit(20)
 	admin_attack_log(user, target,
-		"Smashed [key_name(target)] against \the [src]",
-		"Smashed against \the [src] by [key_name(user)]",
-		"smashed [key_name(target)] against \the [src]."
+		"Smashed 69key_name(target)69 against \the 69src69",
+		"Smashed against \the 69src69 by 69key_name(user)69",
+		"smashed 69key_name(target)69 against \the 69src69."
 	)
 	sleep(5) //Allow a littleanimating time
 	return TRUE
 
 
-/obj/structure/window/attackby(obj/item/I, mob/user)
+/obj/structure/window/attackby(obj/item/I,69ob/user)
 
-	var/list/usable_qualities = list()
+	var/list/usable_69ualities = list()
 	if(!anchored && (!state || !reinf))
-		usable_qualities.Add(QUALITY_BOLT_TURNING)
+		usable_69ualities.Add(69UALITY_BOLT_TURNING)
 	if((reinf && state >= 1) || (reinf && state == 0) || (!reinf))
-		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+		usable_69ualities.Add(69UALITY_SCREW_DRIVING)
 	if(reinf && state <= 1)
-		usable_qualities.Add(QUALITY_PRYING)
-	if (health < maxhealth)
-		usable_qualities.Add(QUALITY_SEALING)
+		usable_69ualities.Add(69UALITY_PRYING)
+	if (health <69axhealth)
+		usable_69ualities.Add(69UALITY_SEALING)
 
 	//If you set intent to harm, you can hit the window with tools to break it. Set to any other intent to use tools on it
 	if (usr.a_intent != I_HURT)
-		var/tool_type = I.get_tool_type(user, usable_qualities, src)
+		var/tool_type = I.get_tool_type(user, usable_69ualities, src)
 		switch(tool_type)
-			if(QUALITY_SEALING)
-				user.visible_message("[user] starts sealing up cracks in [src] with the [I]", "You start sealing up cracks in [src] with the [I]")
-				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), QUALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
-					to_chat(user, SPAN_NOTICE("The [src] looks pretty solid now!"))
-					health = maxhealth
-			if(QUALITY_BOLT_TURNING)
+			if(69UALITY_SEALING)
+				user.visible_message("69user69 starts sealing up cracks in 69src69 with the 69I69", "You start sealing up cracks in 69src69 with the 69I69")
+				if (I.use_tool(user, src, 60 + ((maxhealth - health)*3), 69UALITY_SEALING, FAILCHANCE_NORMAL, STAT_MEC))
+					to_chat(user, SPAN_NOTICE("The 69src69 looks pretty solid now!"))
+					health =69axhealth
+			if(69UALITY_BOLT_TURNING)
 				if(!anchored && (!state || !reinf))
 					if(!glasstype)
-						to_chat(user, SPAN_NOTICE("You're not sure how to dismantle \the [src] properly."))
+						to_chat(user, SPAN_NOTICE("You're not sure how to dismantle \the 69src69 properly."))
 						return
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-						visible_message(SPAN_NOTICE("[user] dismantles \the [src]."))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+						visible_message(SPAN_NOTICE("69user69 dismantles \the 69src69."))
 						var/obj/glass
 						if(is_fulltile())
 							glass = new glasstype(loc, 6)
@@ -314,27 +314,27 @@
 							glass = new glasstype(loc, 1)
 						glass.add_fingerprint(user)
 
-						qdel(src)
+						69del(src)
 						return
 				return 1 //No whacking the window with tools unless harm intent
 
-			if(QUALITY_PRYING)
+			if(69UALITY_PRYING)
 				if(reinf && state <= 1)
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 						state = 1 - state
 						to_chat(user, (state ? SPAN_NOTICE("You have pried the window into the frame.") : SPAN_NOTICE("You have pried the window out of the frame.")))
 				return 1 //No whacking the window with tools unless harm intent
 
 
-			if(QUALITY_SCREW_DRIVING)
+			if(69UALITY_SCREW_DRIVING)
 				if(reinf && state >= 1)
-					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 						state = 3 - state
 						update_nearby_icons()
 						to_chat(user, (state == 1 ? SPAN_NOTICE("You have unfastened the window from the frame.") : SPAN_NOTICE("You have fastened the window to the frame.")))
 						return
 				if(reinf && state == 0)
-					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 						set_anchored(!anchored)
 						to_chat(user, (anchored ? SPAN_NOTICE("You have fastened the frame to the floor.") : SPAN_NOTICE("You have unfastened the frame from the floor.")))
 						return
@@ -415,7 +415,7 @@
 	if (start_dir)
 		set_dir(start_dir)
 
-	health = maxhealth
+	health =69axhealth
 
 	ini_dir = dir
 
@@ -436,7 +436,7 @@
 	loc = location
 	. = ..()
 
-/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/window/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
 	. = ..()
@@ -463,7 +463,7 @@
 	for(var/obj/structure/window/W in orange(src, 1))
 		W.update_icon()
 
-//Updates the availabiliy of the rotation verbs
+//Updates the availabiliy of the rotation69erbs
 /obj/structure/window/proc/update_verbs()
 	if(anchored)
 		verbs -= /obj/structure/window/proc/rotate
@@ -474,11 +474,11 @@
 
 //merges adjacent full-tile windows into one (blatant ripoff from game/smoothwall.dm)
 /obj/structure/window/update_icon()
-	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
+	//A little cludge here, since I don't know how it will work with slim windows.69ost likely69ERY wrong.
 	//this way it will only update full-tile ones
 	overlays.Cut()
 	if(!is_fulltile())
-		icon_state = "[basestate]"
+		icon_state = "69basestate69"
 		return
 	/*
 	var/list/dirs = list()
@@ -503,13 +503,13 @@
 
 	icon_state = ""
 	for(var/i = 1 to 4)
-		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
+		var/image/I = image(icon, "69basestate6969connections69i6969", dir = 1<<(i-1))
 		overlays += I
 
 	return
 
 /obj/structure/window/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
-	if(exposed_temperature > maximal_heat)
+	if(exposed_temperature >69aximal_heat)
 		hit(damage_per_fire_tick, TRUE, TRUE)
 	..()
 
@@ -521,7 +521,7 @@
 	basestate = "window"
 	glasstype = /obj/item/stack/material/glass
 	maximal_heat = T0C + 200	// Was 100. Spaceship windows surely surpass coffee pots.
-	damage_per_fire_tick = 3	// Was 2. Made weaker than rglass per tick.
+	damage_per_fire_tick = 3	// Was 2.69ade weaker than rglass per tick.
 	maxhealth = 15
 	resistance = RESISTANCE_NONE
 
@@ -536,7 +536,7 @@
 
 /obj/structure/window/plasmabasic
 	name = "plasma window"
-	desc = "A borosilicate alloy window. It seems to be quite strong."
+	desc = "A borosilicate alloy window. It seems to be 69uite strong."
 
 	icon_state = "plasmawindow"
 	shardtype = /obj/item/material/shard/plasma
@@ -558,11 +558,11 @@
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
-	desc = "It looks rather strong. Might take a few good hits to shatter it."
+	desc = "It looks rather strong.69ight take a few good hits to shatter it."
 	icon_state = "rwindow"
 	basestate = "rwindow"
 	reinf = 1
-	maximal_heat = T0C + 750	// Fused quartz.
+	maximal_heat = T0C + 750	// Fused 69uartz.
 	damage_per_fire_tick = 2
 	glasstype = /obj/item/stack/material/glass/reinforced
 
@@ -587,7 +587,7 @@
 
 /obj/structure/window/reinforced/plasma
 	name = "reinforced plasma window"
-	desc = "A borosilicate alloy window, with rods supporting it. It seems to be very strong."
+	desc = "A borosilicate alloy window, with rods supporting it. It seems to be69ery strong."
 	basestate = "plasmarwindow"
 	icon_state = "plasmarwindow"
 	shardtype = /obj/item/material/shard/plasma
@@ -609,20 +609,20 @@
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
-	desc = "It looks rather strong and opaque. Might take a few good hits to shatter it."
+	desc = "It looks rather strong and opa69ue.69ight take a few good hits to shatter it."
 	icon_state = "twindow"
 	basestate = "twindow"
 	opacity = 1
 
 /obj/structure/window/reinforced/tinted/frosted
 	name = "frosted window"
-	desc = "It looks rather strong and frosted over. Looks like it might take a few less hits then a normal reinforced window."
+	desc = "It looks rather strong and frosted over. Looks like it69ight take a few less hits then a normal reinforced window."
 	icon_state = "fwindow"
 	basestate = "fwindow"
 
 /obj/structure/window/shuttle
 	name = "shuttle window"
-	desc = "It looks rather strong. Might take a few good hits to shatter it."
+	desc = "It looks rather strong.69ight take a few good hits to shatter it."
 	icon = 'icons/obj/podwindows.dmi'
 	icon_state = "window"
 	basestate = "window"
@@ -635,7 +635,7 @@
 /obj/structure/window/reinforced/polarized
 	name = "electrochromic window"
 
-	desc = "Adjusts its tint with voltage. Might take a few good hits to shatter it."
+	desc = "Adjusts its tint with69oltage.69ight take a few good hits to shatter it."
 	var/id
 
 /obj/structure/window/reinforced/polarized/full
@@ -679,7 +679,7 @@
 	desc = "A remote control switch for polarized windows."
 	var/range = 7
 
-/obj/machinery/button/windowtint/attack_hand(mob/user as mob)
+/obj/machinery/button/windowtint/attack_hand(mob/user as69ob)
 	if(..())
 		return 1
 
@@ -703,13 +703,13 @@
 		toggle_tint()
 
 /obj/machinery/button/windowtint/update_icon()
-	icon_state = "light[active]"
+	icon_state = "light69active69"
 
 
 //Fulltile windows can only exist ontop of a low wall
 //If they're ever not on a wall, they will drop to the floor and smash.
 /obj/structure/window/proc/mount_check()
-	if(QDELETED(src))
+	if(69DELETED(src))
 		return
 
 	if (!is_full_window())
@@ -740,9 +740,9 @@
 
 
 //Used when the window finds itself no longer on a tile. For example if someone drags it out of the wall
-//The window will do a litle animation of falling to the floor, giving them a brief moment to regret their mistake
+//The window will do a litle animation of falling to the floor, giving them a brief69oment to regret their69istake
 /obj/structure/window/proc/shatterfall()
 	sleep(5)
-	animate(src, pixel_y = -12, time = 7, easing = QUAD_EASING)
+	animate(src, pixel_y = -12, time = 7, easing = 69UAD_EASING)
 	spawn(8)
-		shatter(TRUE, TRUE) //Use explosive shattering, might injure nearby mobs with shards
+		shatter(TRUE, TRUE) //Use explosive shattering,69ight injure nearby69obs with shards

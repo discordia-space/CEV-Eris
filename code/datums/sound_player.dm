@@ -7,14 +7,14 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	..()
 	sound_tokens_by_sound_id = list()
 
-/decl/sound_player/proc/play_datum(var/atom/source, var/sound_id, var/sound/sound, var/range, var/prefer_mute)
+/decl/sound_player/proc/play_datum(var/atom/source,69ar/sound_id,69ar/sound/sound,69ar/range,69ar/prefer_mute)
 	var/token_type = isnum(sound.environment) ? /datum/sound_token : /datum/sound_token/static_environment
 	return new token_type(source, sound_id, sound, range, prefer_mute)
 
-/decl/sound_player/proc/play_looping(var/atom/source, var/sound_id, var/sound, var/volume, var/range, var/falloff = 1, var/echo, var/frequency, var/prefer_mute)
+/decl/sound_player/proc/play_looping(var/atom/source,69ar/sound_id,69ar/sound,69ar/volume,69ar/range,69ar/falloff = 1,69ar/echo,69ar/frequency,69ar/prefer_mute)
 	var/sound/s = istype(sound, /sound) ? sound : new(sound)
 	s.environment = 0
-	s.volume = volume
+	s.volume =69olume
 	s.falloff = falloff
 	s.echo = echo
 	s.frequency = frequency
@@ -25,7 +25,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	var/channel = sound_token.sound.channel
 	var/sound_id = sound_token.sound_id
 
-	var/sound_tokens = sound_tokens_by_sound_id[sound_id]
+	var/sound_tokens = sound_tokens_by_sound_id69sound_id69
 	if(!(sound_token in sound_tokens))
 		return
 	sound_tokens -= sound_token
@@ -42,10 +42,10 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 		if(!.)
 			return
 
-	var/sound_tokens = sound_tokens_by_sound_id[sound_id]
+	var/sound_tokens = sound_tokens_by_sound_id69sound_id69
 	if(!sound_tokens)
 		sound_tokens = list()
-		sound_tokens_by_sound_id[sound_id] = sound_tokens
+		sound_tokens_by_sound_id69sound_id69 = sound_tokens
 	sound_tokens += sound_token
 
 /datum/sound_token
@@ -62,16 +62,16 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	var/datum/proximity_trigger/square/proxy_listener
 	var/list/can_be_heard_from
 
-/datum/sound_token/New(var/atom/source, var/sound_id, var/sound/sound, var/range = 4, var/prefer_mute = FALSE)
+/datum/sound_token/New(var/atom/source,69ar/sound_id,69ar/sound/sound,69ar/range = 4,69ar/prefer_mute = FALSE)
 	..()
 	if(!istype(source))
-		CRASH("Invalid sound source: [log_info_line(source)]")
+		CRASH("Invalid sound source: 69log_info_line(source)69")
 	if(!istype(sound))
-		CRASH("Invalid sound: [log_info_line(sound)]")
+		CRASH("Invalid sound: 69log_info_line(sound)69")
 	if(sound.repeat && !sound_id)
 		CRASH("No sound id given")
 	if(!is_environment(sound.environment))
-		CRASH("Invalid sound environment: [log_info_line(sound.environment)]")
+		CRASH("Invalid sound environment: 69log_info_line(sound.environment)69")
 
 	listeners = list()
 	listener_status = list()
@@ -135,12 +135,12 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 	GLOB.sound_player.stop_sound(src)
 
-/datum/sound_token/proc/locate_listeners(var/list/prior_turfs, var/list/current_turfs)
+/datum/sound_token/proc/locate_listeners(var/list/prior_turfs,69ar/list/current_turfs)
 	if(status & SOUND_STOPPED)
 		return
 
 	can_be_heard_from = current_turfs
-	var/current_listeners = mob_hearers(get_turf(source), range)
+	var/current_listeners =69ob_hearers(get_turf(source), range)
 	var/former_listenrs = listeners - current_listeners
 	var/new_listeners = current_listeners - listeners
 
@@ -168,7 +168,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 		return
 
 	listeners += listener
-	sound.status = status | listener_status[listener]
+	sound.status = status | listener_status69listener69
 	sound_to(listener, sound)
 
 	GLOB.moved_event.register(listener, src, /datum/sound_token/proc/update_listener_loc)
@@ -176,7 +176,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 	update_listener_loc(listener)
 
-/datum/sound_token/proc/remove_listener(var/atom/listener, var/sound/null_sound)
+/datum/sound_token/proc/remove_listener(var/atom/listener,69ar/sound/null_sound)
 	null_sound = null_sound || new(channel = sound.channel)
 	sound_to(listener, null_sound)
 	GLOB.moved_event.unregister(listener, src, /datum/sound_token/proc/update_listener_loc)
@@ -190,11 +190,11 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 	var/distance = get_dist(source_turf, listener_turf)
 	if(!listener_turf || (distance > range) || !(listener_turf in can_be_heard_from))
 		if(prefer_mute)
-			listener_status[listener] |= SOUND_MUTE
+			listener_status69listener69 |= SOUND_MUTE
 		else
 			remove_listener(listener)
 	else if(prefer_mute)
-		listener_status[listener] &= ~SOUND_MUTE
+		listener_status69listener69 &= ~SOUND_MUTE
 
 	sound.x = source_turf.x - listener_turf.x
 	sound.z = source_turf.y - listener_turf.y
@@ -209,7 +209,7 @@ GLOBAL_DATUM_INIT(sound_player, /decl/sound_player, new)
 
 /datum/sound_token/proc/update_listener(var/listener)
 	sound.environment = get_environment(listener)
-	sound.status = status | listener_status[listener] | SOUND_UPDATE
+	sound.status = status | listener_status69listener69 | SOUND_UPDATE
 	sound_to(listener, sound)
 
 /datum/sound_token/proc/get_environment(var/listener)

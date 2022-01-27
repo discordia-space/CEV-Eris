@@ -1,39 +1,39 @@
-// A basis of new organ-based surgery system.
+// A basis of69ew organ-based surgery system.
 
 /datum/surgery_step
 	// type path referencing tools that can be used for this step, and how well are they suited for it
-	var/list/allowed_tools = null
-	var/required_tool_quality = null
+	var/list/allowed_tools =69ull
+	var/re69uired_tool_69uality =69ull
 	var/target_organ_type = /obj/item/organ/external
 
 	var/difficulty = FAILCHANCE_NORMAL
-	var/required_stat = STAT_BIO
+	var/re69uired_stat = STAT_BIO
 	var/duration = 60
 
 	// Can the step transfer germs?
 	var/can_infect = FALSE
-	// How much blood this step can get on surgeon. 1 - hands, 2 - full body.
+	// How69uch blood this step can get on surgeon. 1 - hands, 2 - full body.
 	var/blood_level = 0
-	// How much pain should a surgery step cause?
+	// How69uch pain should a surgery step cause?
 	var/inflict_agony = 60
 
 // returns how well a given tool is suited for this step
-/datum/surgery_step/proc/tool_quality(obj/item/tool)
+/datum/surgery_step/proc/tool_69uality(obj/item/tool)
 	if(!tool)
 		return 0
 
-	if(required_tool_quality && tool.tool_qualities)
-		return tool.tool_qualities[required_tool_quality]
+	if(re69uired_tool_69uality && tool.tool_69ualities)
+		return tool.tool_69ualities69re69uired_tool_69uality69
 	else
 		for(var/T in allowed_tools)
 			if(istype(tool, T))
-				return allowed_tools[T]
+				return allowed_tools69T69
 	return 0
 
-// requests an appropriate tool
-/datum/surgery_step/proc/require_tool_message(mob/living/user)
-	if(required_tool_quality)
-		to_chat(user, SPAN_WARNING("You need a tool capable of [required_tool_quality] to complete this step."))
+// re69uests an appropriate tool
+/datum/surgery_step/proc/re69uire_tool_message(mob/living/user)
+	if(re69uired_tool_69uality)
+		to_chat(user, SPAN_WARNING("You69eed a tool capable of 69re69uired_tool_69uality69 to complete this step."))
 
 // checks whether this step can be applied to given target organ at all
 /datum/surgery_step/proc/is_valid_target(obj/item/organ/organ, target)
@@ -48,11 +48,11 @@
 /datum/surgery_step/proc/prepare_step(mob/living/user, obj/item/organ/organ, obj/item/tool, target)
 	return TRUE
 
-// Does stuff to begin the step, usually just printing messages.
+// Does stuff to begin the step, usually just printing69essages.
 /datum/surgery_step/proc/begin_step(mob/living/user, obj/item/organ/organ, obj/item/tool, target)
 	return
 
-// Does stuff to end the step, which is normally print a message + do whatever this step changes
+// Does stuff to end the step, which is69ormally print a69essage + do whatever this step changes
 /datum/surgery_step/proc/end_step(mob/living/user, obj/item/organ/organ, obj/item/tool, target)
 	return
 
@@ -75,16 +75,16 @@
 	if(inflict_agony)
 		var/strength = inflict_agony
 
-		// At STAT_LEVEL_GODLIKE, there is no pain from the surgery at all
-		// This supports negative stat values
+		// At STAT_LEVEL_GODLIKE, there is69o pain from the surgery at all
+		// This supports69egative stat69alues
 		if(user && user.stats)
-			strength *= max((STAT_LEVEL_GODLIKE - user.stats.getStat(required_stat)) / STAT_LEVEL_GODLIKE, 0)
+			strength *=69ax((STAT_LEVEL_GODLIKE - user.stats.getStat(re69uired_stat)) / STAT_LEVEL_GODLIKE, 0)
 
 		organ.owner_pain(strength)
 
 
-/obj/item/organ/proc/try_surgery_step(step_type, mob/living/user, obj/item/tool, target, no_tool_message = FALSE)
-	var/datum/surgery_step/S = GLOB.surgery_steps[step_type]
+/obj/item/organ/proc/try_surgery_step(step_type,69ob/living/user, obj/item/tool, target,69o_tool_message = FALSE)
+	var/datum/surgery_step/S = GLOB.surgery_steps69step_type69
 
 	if(!S.is_valid_target(src, target))
 		SSnano.update_uis(src)
@@ -93,10 +93,10 @@
 	if(!tool)
 		tool = user.get_active_hand()
 
-	var/quality = S.tool_quality(tool)
-	if(!quality)
+	var/69uality = S.tool_69uality(tool)
+	if(!69uality)
 		if(!no_tool_message)
-			S.require_tool_message(user)
+			S.re69uire_tool_message(user)
 		return FALSE
 
 	if(!S.can_use(user, src, tool, target) || !S.prepare_step(user, src, tool, target))
@@ -113,18 +113,18 @@
 		difficulty_adjust = 20
 
 		// ...unless you are a carrion
-		// It makes sense that lings have a way of making their flesh cooperate
+		// It69akes sense that lings have a way of69aking their flesh cooperate
 		if(is_carrion(user))
 			difficulty_adjust = -50
 
 	var/atom/surgery_target = get_surgery_target()
-	if(S.required_tool_quality && (S.required_tool_quality in tool.tool_qualities))
+	if(S.re69uired_tool_69uality && (S.re69uired_tool_69uality in tool.tool_69ualities))
 		success = tool.use_tool_extended(
 			user, surgery_target,
 			S.duration,
-			S.required_tool_quality,
+			S.re69uired_tool_69uality,
 			S.difficulty + difficulty_adjust,
-			required_stat = S.required_stat
+			re69uired_stat = S.re69uired_stat
 		)
 	else
 		var/wait
@@ -133,7 +133,7 @@
 		else
 			wait = do_after(user, S.duration, surgery_target)
 
-		if(wait && prob(S.tool_quality(tool) - difficulty_adjust))
+		if(wait && prob(S.tool_69uality(tool) - difficulty_adjust))
 			success = TOOL_USE_SUCCESS
 		else if((tool in user.contents) && user.Adjacent(surgery_target))
 			success = TOOL_USE_FAIL
@@ -144,7 +144,7 @@
 		S.end_step(user, src, tool, target)		//finish successfully
 		S.after_attempted_step(user, src, tool, target)
 	else if(success == TOOL_USE_FAIL)
-		tool.handle_failure(user, surgery_target, required_stat = S.required_stat, required_quality = S.required_tool_quality)
+		tool.handle_failure(user, surgery_target, re69uired_stat = S.re69uired_stat, re69uired_69uality = S.re69uired_tool_69uality)
 		S.fail_step(user, src, tool, target)	//malpractice
 		S.after_attempted_step(user, src, tool, target)
 
@@ -153,7 +153,7 @@
 	return TRUE
 
 
-proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+proc/do_surgery(mob/living/carbon/M,69ob/living/user, obj/item/tool,69ar/surgery_status = CAN_OPERATE_ALL)
 	if(!istype(M))
 		return FALSE
 	if(user.a_intent != I_HELP)	//check for Hippocratic Oath
@@ -163,11 +163,11 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 	var/obj/item/organ/external/affected
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 
 		affected = H.get_organ(zone)
 		if(affected)
-			// Self-surgery sanity check: no operating on your right arm with a tool held in your right hand
+			// Self-surgery sanity check:69o operating on your right arm with a tool held in your right hand
 			if(M == user)
 				var/obj/item/held_item
 				if(affected.organ_tag == BP_L_ARM)
@@ -177,7 +177,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 					held_item = H.r_hand
 
 				if(held_item)
-					to_chat(user, SPAN_WARNING("You cannot operate on your [affected.name] while holding [held_item] in it!"))
+					to_chat(user, SPAN_WARNING("You cannot operate on your 69affected.name69 while holding 69held_item69 in it!"))
 					return TRUE
 
 			if(affected.do_surgery(user, tool, surgery_status))
@@ -185,19 +185,19 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 	// Invoke legacy surgery code
 	if(!do_old_surgery(M, user, tool))
-		if(affected && affected.open && tool && tool.tool_qualities)
+		if(affected && affected.open && tool && tool.tool_69ualities)
 			// Open or update surgery UI
 			affected.ui_interact(user)
 
-			to_chat(user, SPAN_WARNING("You can't see any useful way to use [tool] on [M]."))
+			to_chat(user, SPAN_WARNING("You can't see any useful way to use 69tool69 on 69M69."))
 			return 1 //Prevents attacking the patient when trying to do surgery
-			//We check if tool qualities is populated here, so that, if it's not, we can return zero
+			//We check if tool 69ualities is populated here, so that, if it's69ot, we can return zero
 			//This will allow afterattack to be called for things which aren't exactly surgery tools, such as the autopsy scanner
 
 
 // Some surgery steps can be ran just by clicking a limb with a tool, old surgery style
 // Those are handled here
-/obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool, var/surgery_status = CAN_OPERATE_ALL)
+/obj/item/organ/external/do_surgery(mob/living/user, obj/item/tool,69ar/surgery_status = CAN_OPERATE_ALL)
 	if(!tool)
 		if(is_open())
 			ui_interact(user)
@@ -205,27 +205,27 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 		return FALSE
 	var/list/possible_steps
 	if(surgery_status == CAN_OPERATE_STANDING)
-		possible_steps = list(QUALITY_CUTTING, QUALITY_CAUTERIZING)
+		possible_steps = list(69UALITY_CUTTING, 69UALITY_CAUTERIZING)
 		var/tool_type = tool.get_tool_type(user, possible_steps, get_surgery_target())
 		switch(tool_type)
-			if(QUALITY_CUTTING)
+			if(69UALITY_CUTTING)
 				try_surgery_step(/datum/surgery_step/remove_shrapnel, user, tool)
 				return TRUE
-			if(QUALITY_CAUTERIZING)
+			if(69UALITY_CAUTERIZING)
 				try_surgery_step(/datum/surgery_step/close_wounds, user, tool)
 				return TRUE
 		return FALSE
 	if(BP_IS_ROBOTIC(src))
-		possible_steps = list(QUALITY_SCREW_DRIVING, QUALITY_WELDING)
+		possible_steps = list(69UALITY_SCREW_DRIVING, 69UALITY_WELDING)
 
 		var/tool_type = tool.get_tool_type(user, possible_steps, get_surgery_target())
 
 		switch(tool_type)
-			if(QUALITY_SCREW_DRIVING)
+			if(69UALITY_SCREW_DRIVING)
 				try_surgery_step(/datum/surgery_step/robotic/open, user, tool)
 				return TRUE
 
-			if(QUALITY_WELDING)
+			if(69UALITY_WELDING)
 				try_surgery_step(/datum/surgery_step/robotic/fix_brute, user, tool)
 				return TRUE
 
@@ -237,39 +237,39 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 		possible_steps = list()
 
 		if(open)
-			possible_steps += QUALITY_CAUTERIZING
+			possible_steps += 69UALITY_CAUTERIZING
 
 			if(open == 1)
-				possible_steps += QUALITY_RETRACTING
+				possible_steps += 69UALITY_RETRACTING
 
 			if(status & ORGAN_BLEEDING)
-				possible_steps += QUALITY_CLAMPING
+				possible_steps += 69UALITY_CLAMPING
 
 		else
-			possible_steps += QUALITY_CUTTING
-			possible_steps += QUALITY_LASER_CUTTING
+			possible_steps += 69UALITY_CUTTING
+			possible_steps += 69UALITY_LASER_CUTTING
 
 
 		var/tool_type = tool.get_tool_type(user, possible_steps, get_surgery_target())
 
 		switch(tool_type)
-			if(QUALITY_CUTTING)
+			if(69UALITY_CUTTING)
 				try_surgery_step(/datum/surgery_step/cut_open, user, tool)
 				return TRUE
 
-			if(QUALITY_LASER_CUTTING)
+			if(69UALITY_LASER_CUTTING)
 				try_surgery_step(/datum/surgery_step/cut_open/laser, user, tool)
 				return TRUE
 
-			if(QUALITY_RETRACTING)
+			if(69UALITY_RETRACTING)
 				try_surgery_step(/datum/surgery_step/retract_skin, user, tool)
 				return TRUE
 
-			if(QUALITY_CLAMPING)
+			if(69UALITY_CLAMPING)
 				try_surgery_step(/datum/surgery_step/fix_bleeding, user, tool)
 				return TRUE
 
-			if(QUALITY_CAUTERIZING)
+			if(69UALITY_CAUTERIZING)
 				try_surgery_step(/datum/surgery_step/cauterize, user, tool)
 				return TRUE
 
@@ -287,7 +287,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 			return TRUE
 
 		if(user.stats?.getStat(BP_IS_ROBOTIC(src) ? STAT_MEC : STAT_BIO) >= STAT_LEVEL_EXPERT)
-			to_chat(user, SPAN_NOTICE("One brief look at [get_surgery_name()] is enough for you to see all the issues immediately."))
+			to_chat(user, SPAN_NOTICE("One brief look at 69get_surgery_name()69 is enough for you to see all the issues immediately."))
 			diagnosed = TRUE
 			return TRUE
 
@@ -299,16 +299,16 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool, var/surgery
 
 	return FALSE
 
-//check if mob is lying down on something we can operate him on.
-/proc/can_operate(mob/living/carbon/M, mob/living/user)
+//check if69ob is lying down on something we can operate him on.
+/proc/can_operate(mob/living/carbon/M,69ob/living/user)
 	if(M == user)	// Self-surgery
 
-		// Lings don't need to sit in a chair to perform a surgery on themselves
+		// Lings don't69eed to sit in a chair to perform a surgery on themselves
 		if(is_carrion(user))
 			return TRUE
 
-		// Normal humans do
-		var/atom/chair = locate(/obj/structure/bed/chair, M.loc)
-		return (chair && chair.buckled_mob == M) ? CAN_OPERATE_ALL : CAN_OPERATE_STANDING
+		//69ormal humans do
+		var/atom/chair = locate(/obj/structure/bed/chair,69.loc)
+		return (chair && chair.buckled_mob ==69) ? CAN_OPERATE_ALL : CAN_OPERATE_STANDING
 
-	return M.lying && (locate(/obj/machinery/optable, M.loc) || (locate(/obj/structure/bed, M.loc)) || locate(/obj/structure/table, M.loc))
+	return69.lying && (locate(/obj/machinery/optable,69.loc) || (locate(/obj/structure/bed,69.loc)) || locate(/obj/structure/table,69.loc))

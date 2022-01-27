@@ -16,7 +16,7 @@
 
 /obj/item/robot_parts/Initialize(newloc)
 	. = ..()
-	name = "robot [initial(name)]"
+	name = "robot 69initial(name)69"
 
 /obj/item/robot_parts/proc/is_ready(var/mob/living/user)
 	return TRUE
@@ -75,7 +75,7 @@
 
 /obj/item/robot_parts/robot_suit
 	name = "endoskeleton"
-	desc = "A complex metal backbone with standard limb sockets and pseudomuscle anchors."
+	desc = "A complex69etal backbone with standard limb sockets and pseudomuscle anchors."
 	icon_state = "robo_suit"
 	matter = list(MATERIAL_STEEL = 20)
 	var/list/req_parts = list(
@@ -99,22 +99,22 @@
 	)
 	for(var/path in preinstalled)
 		var/obj/item/robot_parts/P = new path (src)
-		parts[P.body_part] = P
+		parts69P.body_part69 = P
 	update_icon()
 
 /obj/item/robot_parts/robot_suit/update_icon()
 	src.overlays.Cut()
 	for(var/part in parts)
-		if(parts[part])
-			overlays += "[part]+o"
+		if(parts69part69)
+			overlays += "69part69+o"
 
 /obj/item/robot_parts/robot_suit/is_ready()
 	var/list/missed = req_parts - parts
 	return !missed.len
 
-/obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj,69ob/user as69ob)
 	..()
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MATERIAL_STEEL && !parts.len)
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() ==69ATERIAL_STEEL && !parts.len)
 		var/obj/item/stack/material/M = W
 		if (M.use(1))
 			var/obj/item/secbot_assembly/ed209_assembly/B = new(loc)
@@ -125,17 +125,17 @@
 				user.put_in_inactive_hand(B)
 			qdel(src)
 		else
-			to_chat(user, SPAN_WARNING("You need one sheet of metal to arm the robot frame."))
+			to_chat(user, SPAN_WARNING("You need one sheet of69etal to arm the robot frame."))
 
 	if(W.has_quality(QUALITY_BOLT_TURNING))
 		var/part = input("Select part for detach", "Detach") \
 			as null|anything in parts
-		var/obj/item/robot_parts/selected = part ? parts[part] : null
+		var/obj/item/robot_parts/selected = part ? parts69part69 : null
 		if(!Adjacent(user) || !selected) return
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 100, 1)
 		if(!W.use_tool(user, src, 30, QUALITY_BOLT_TURNING))
-			to_chat(user, SPAN_NOTICE("You stop detaching [selected]."))
+			to_chat(user, SPAN_NOTICE("You stop detaching 69selected69."))
 			return
 
 		if(selected.loc == src)
@@ -146,9 +146,9 @@
 		selected.forceMove(get_turf(src))
 		src.update_icon()
 		user.visible_message(
-			SPAN_NOTICE("[user] detached [selected] from [src]."),
-			SPAN_NOTICE("You had successfuly detach [selected] from [src]."),
-			SPAN_WARNING("You have hear how something metallic hit the floor.")
+			SPAN_NOTICE("69user69 detached 69selected69 from 69src69."),
+			SPAN_NOTICE("You had successfuly detach 69selected69 from 69src69."),
+			SPAN_WARNING("You have hear how something69etallic hit the floor.")
 		)
 		return
 
@@ -157,12 +157,12 @@
 		if(!req_parts.Find(RP.body_part))
 			to_chat(user, SPAN_WARNING("You can't attach that here!"))
 			return
-		if(parts[RP.body_part])
-			to_chat(user, SPAN_WARNING("There is already one [parts[RP.body_part]] attached."))
+		if(parts69RP.body_part69)
+			to_chat(user, SPAN_WARNING("There is already one 69parts69RP.body_part6969 attached."))
 			return
 		if(!RP.is_ready(user))
 			return
-		parts[RP.body_part] = RP
+		parts69RP.body_part69 = RP
 
 		user.drop_from_inventory(W, src)
 		src.update_icon()
@@ -170,32 +170,32 @@
 	if(istype(W, /obj/item/device/mmi))
 		var/obj/item/device/mmi/M = W
 		if(!is_ready(user))
-			to_chat(user, SPAN_WARNING("The MMI must go in after everything else!"))
+			to_chat(user, SPAN_WARNING("The69MI69ust go in after everything else!"))
 			return
 
 		if(!istype(loc,/turf))
-			to_chat(user, SPAN_WARNING("You can't put \the [W] in, the frame has to be standing on the ground to be perfectly precise."))
+			to_chat(user, SPAN_WARNING("You can't put \the 69W69 in, the frame has to be standing on the ground to be perfectly precise."))
 			return
 		if(!M.brainmob)
-			to_chat(user, SPAN_WARNING("Sticking an empty [W] into the frame would sort of defeat the purpose."))
+			to_chat(user, SPAN_WARNING("Sticking an empty 69W69 into the frame would sort of defeat the purpose."))
 			return
 		if(!M.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(M.brainmob.mind)
 				for(var/mob/observer/ghost/G in GLOB.player_list)
-					if(G.can_reenter_corpse && G.mind == M.brainmob.mind)
+					if(G.can_reenter_corpse && G.mind ==69.brainmob.mind)
 						ghost_can_reenter = 1
 						break
 			if(!ghost_can_reenter)
-				to_chat(user, SPAN_NOTICE("\The [W] is completely unresponsive; there's no point."))
+				to_chat(user, SPAN_NOTICE("\The 69W69 is completely unresponsive; there's no point."))
 				return
 
 		if(M.brainmob.stat == DEAD)
-			to_chat(user, SPAN_WARNING("Sticking a dead [W] into the frame would sort of defeat the purpose."))
+			to_chat(user, SPAN_WARNING("Sticking a dead 69W69 into the frame would sort of defeat the purpose."))
 			return
 
 		if(jobban_isbanned(M.brainmob, "Robot"))
-			to_chat(user, SPAN_WARNING("This [W] does not seem to fit."))
+			to_chat(user, SPAN_WARNING("This 69W69 does not seem to fit."))
 			return
 
 		var/mob/living/silicon/robot/O = new (get_turf(loc), unfinished = 1)
@@ -203,7 +203,7 @@
 
 		user.unEquip(M)
 
-		O.mmi = M
+		O.mmi =69
 		O.invisibility = 0
 		O.custom_name = created_name
 		O.updatename("Default")
@@ -213,12 +213,12 @@
 		if(O.mind && player_is_antag(O.mind))
 			O.mind.store_memory({"
 				In case you look at this after being borged,
-				the objectives are only here until I find a way to make them not show up for you,
+				the objectives are only here until I find a way to69ake them not show up for you,
 				as I can't simply delete them without screwing up round-end reporting. --NeoFite
 			"})
 
 		O.job = "Robot"
-		var/obj/item/robot_parts/chest/chest = parts["chest"]
+		var/obj/item/robot_parts/chest/chest = parts69"chest"69
 		O.cell = chest.cell
 		O.cell.forceMove(O)
 		//Should fix cybros run time erroring when blown up. It got deleted before, along with the frame.
@@ -226,7 +226,7 @@
 
 		// Since we "magically" installed a cell, we also have to update the correct component.
 		if(O.cell)
-			var/datum/robot_component/cell_component = O.components["power cell"]
+			var/datum/robot_component/cell_component = O.components69"power cell"69
 			cell_component.wrapped = O.cell
 			cell_component.installed = 1
 
@@ -236,7 +236,7 @@
 		qdel(src)
 
 	if (istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", src.name, src.created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(input(user, "Enter new robot name", src.name, src.created_name),69AX_NAME_LEN)
 		if (!t)
 			return
 		if (!Adjacent(user) && src.loc != user)
@@ -246,7 +246,7 @@
 
 	return
 
-/obj/item/robot_parts/chest/attackby(obj/item/W, mob/living/user)
+/obj/item/robot_parts/chest/attackby(obj/item/W,69ob/living/user)
 	if(istype(W, /obj/item/cell))
 		if(src.cell)
 			to_chat(user, SPAN_WARNING("You have already inserted a cell!"))
@@ -285,7 +285,7 @@
 				to_chat(user, SPAN_WARNING("There is no wire inside!"))
 
 
-/obj/item/robot_parts/head/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/head/attackby(obj/item/W as obj,69ob/user as69ob)
 	..()
 	if(istype(W, /obj/item/device/flash))
 		if(isrobot(user))
@@ -301,17 +301,17 @@
 	else if(W.has_quality(QUALITY_SCREW_DRIVING))
 		if(flash2)
 			user.put_in_hands(flash2)
-			user.visible_message(SPAN_NOTICE("[user] eject [flash2] from [src]."))
+			user.visible_message(SPAN_NOTICE("69user69 eject 69flash269 from 69src69."))
 			flash2 = null
 		else if(flash1)
 			user.put_in_hands(flash1)
-			user.visible_message(SPAN_NOTICE("[user] eject [flash1] from [src]."))
+			user.visible_message(SPAN_NOTICE("69user69 eject 69flash169 from 69src69."))
 			flash1 = null
 		else
 			to_chat(user, "<span class='warning'There is nothing to eject.</span>")
 
 	else if(istype(W, /obj/item/stock_parts/manipulator))
-		to_chat(user, SPAN_NOTICE("You install some manipulators and modify the head, creating a functional spider-bot!"))
+		to_chat(user, SPAN_NOTICE("You install some69anipulators and69odify the head, creating a functional spider-bot!"))
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
 		user.drop_from_inventory(W)
 		qdel(W)
@@ -319,7 +319,7 @@
 
 
 //Made into a seperate proc to avoid copypasta
-/obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj, mob/user as mob)
+/obj/item/robot_parts/head/proc/add_flashes(obj/item/W as obj,69ob/user as69ob)
 	if(src.flash1 && src.flash2)
 		to_chat(user, SPAN_NOTICE("You have already inserted the eyes!"))
 		return

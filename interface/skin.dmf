@@ -1,1497 +1,1497 @@
-macro "borghotkeymode"
+m69cro "bor69hotkeymode"
 	elem 
-		name = "WEST"
-		command = "MoveKey 8 1"
+		n69me = "WEST"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "WEST+UP"
-		command = "MoveKey 8 0"
+		n69me = "WEST+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "NORTH"
-		command = "MoveKey 1 1"
+		n69me = "NORTH"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "NORTH+UP"
-		command = "MoveKey 1 0"
+		n69me = "NORTH+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "EAST"
-		command = "MoveKey 4 1"
+		n69me = "E69ST"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "EAST+UP"
-		command = "MoveKey 4 0"
+		n69me = "E69ST+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "SOUTH"
-		command = "MoveKey 2 1"
+		n69me = "SOUTH"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "SOUTH+UP"
-		command = "MoveKey 2 0"
+		n69me = "SOUTH+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "A"
-		command = "MoveKey 8 1"
+		n69me = "69"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "A+UP"
-		command = "MoveKey 8 0"
+		n69me = "69+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "W"
-		command = "MoveKey 1 1"
+		n69me = "W"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "W+UP"
-		command = "MoveKey 1 0"
+		n69me = "W+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "D"
-		command = "MoveKey 4 1"
+		n69me = "D"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "D+UP"
-		command = "MoveKey 4 0"
+		n69me = "D+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "S"
-		command = "MoveKey 2 1"
+		n69me = "S"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "S+UP"
-		command = "MoveKey 2 0"
+		n69me = "S+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "TAB"
-		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
+		n69me = "T69B"
+		comm69nd = ".winset \"m69inwindow.m69cro=bor69m69cro hotkey_to6969le.is-checked=f69lse input.focus=true input.b69ck69round-color=#D3B5B5\""
 	elem 
-		name = "CENTER+REP"
-		command = ".center"
+		n69me = "CENTER+REP"
+		comm69nd = ".center"
 	elem 
-		name = "NORTHEAST"
-		command = ".northeast"
+		n69me = "NORTHE69ST"
+		comm69nd = ".northe69st"
 	elem 
-		name = "SOUTHEAST"
-		command = ".southeast"
+		n69me = "SOUTHE69ST"
+		comm69nd = ".southe69st"
 	elem 
-		name = "SOUTHWEST"
-		command = ".southwest"
+		n69me = "SOUTHWEST"
+		comm69nd = ".southwest"
 	elem 
-		name = "NORTHWEST"
-		command = ".northwest"
+		n69me = "NORTHWEST"
+		comm69nd = ".northwest"
 	elem 
-		name = "ALT+CTRL+WEST"
-		command = "westfaceperm"
+		n69me = "69LT+CTRL+WEST"
+		comm69nd = "westf69ceperm"
 	elem 
-		name = "CTRL+WEST"
-		command = "westface"
+		n69me = "CTRL+WEST"
+		comm69nd = "westf69ce"
 	elem 
-		name = "ALT+CTRL+NORTH"
-		command = "northfaceperm"
+		n69me = "69LT+CTRL+NORTH"
+		comm69nd = "northf69ceperm"
 	elem 
-		name = "CTRL+NORTH"
-		command = "northface"
+		n69me = "CTRL+NORTH"
+		comm69nd = "northf69ce"
 	elem 
-		name = "ALT+CTRL+EAST"
-		command = "eastfaceperm"
+		n69me = "69LT+CTRL+E69ST"
+		comm69nd = "e69stf69ceperm"
 	elem 
-		name = "CTRL+EAST"
-		command = "eastface"
+		n69me = "CTRL+E69ST"
+		comm69nd = "e69stf69ce"
 	elem 
-		name = "ALT+CTRL+SOUTH"
-		command = "southfaceperm"
+		n69me = "69LT+CTRL+SOUTH"
+		comm69nd = "southf69ceperm"
 	elem 
-		name = "CTRL+SOUTH"
-		command = "southface"
+		n69me = "CTRL+SOUTH"
+		comm69nd = "southf69ce"
 	elem
-		name = "ALT+CTRL+A"
-		command = "westfaceperm"
+		n69me = "69LT+CTRL+69"
+		comm69nd = "westf69ceperm"
 	elem 
-		name = "CTRL+A"
-		command = "westface"
+		n69me = "CTRL+69"
+		comm69nd = "westf69ce"
 	elem 
-		name = "ALT+CTRL+W"
-		command = "northfaceperm"
+		n69me = "69LT+CTRL+W"
+		comm69nd = "northf69ceperm"
 	elem 
-		name = "CTRL+W"
-		command = "northface"
+		n69me = "CTRL+W"
+		comm69nd = "northf69ce"
 	elem 
-		name = "ALT+CTRL+D"
-		command = "eastfaceperm"
+		n69me = "69LT+CTRL+D"
+		comm69nd = "e69stf69ceperm"
 	elem 
-		name = "CTRL+D"
-		command = "eastface"
+		n69me = "CTRL+D"
+		comm69nd = "e69stf69ce"
 	elem 
-		name = "ALT+CTRL+S"
-		command = "southfaceperm"
+		n69me = "69LT+CTRL+S"
+		comm69nd = "southf69ceperm"
 	elem 
-		name = "CTRL+S"
-		command = "southface"
+		n69me = "CTRL+S"
+		comm69nd = "southf69ce"
 	elem 
-		name = "INSERT"
-		command = "a-intent right"
+		n69me = "INSERT"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "DELETE"
-		command = "delete-key-pressed"
+		n69me = "DELETE"
+		comm69nd = "delete-key-pressed"
 	elem 
-		name = "1"
-		command = "toggle-module 1"
+		n69me = "1"
+		comm69nd = "to6969le-module 1"
 	elem 
-		name = "CTRL+1"
-		command = "toggle-module 1"
+		n69me = "CTRL+1"
+		comm69nd = "to6969le-module 1"
 	elem 
-		name = "2"
-		command = "toggle-module 2"
+		n69me = "2"
+		comm69nd = "to6969le-module 2"
 	elem 
-		name = "CTRL+2"
-		command = "toggle-module 2"
+		n69me = "CTRL+2"
+		comm69nd = "to6969le-module 2"
 	elem 
-		name = "3"
-		command = "toggle-module 3"
+		n69me = "3"
+		comm69nd = "to6969le-module 3"
 	elem 
-		name = "CTRL+3"
-		command = "toggle-module 3"
+		n69me = "CTRL+3"
+		comm69nd = "to6969le-module 3"
 	elem 
-		name = "4"
-		command = "a-intent left"
+		n69me = "4"
+		comm69nd = "69-intent left"
 	elem 
-		name = "CTRL+4"
-		command = "a-intent left"
+		n69me = "CTRL+4"
+		comm69nd = "69-intent left"
 	elem 
-		name = "5"
-		command = "me-verb"
+		n69me = "5"
+		comm69nd = "me-69erb"
 	elem 
-		name = "F"
-		command = "a-intent left"
+		n69me = "F"
+		comm69nd = "69-intent left"
 	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
+		n69me = "CTRL+F"
+		comm69nd = "69-intent left"
 	elem 
-		name = "G"
-		command = "a-intent right"
+		n69me = "69"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
+		n69me = "CTRL+69"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "J"
-		command = "toggle-gun-mode"
+		n69me = "J"
+		comm69nd = "to6969le-69un-mode"
 	elem 
-		name = "CTRL+J"
-		command = "toggle-gun-mode"
+		n69me = "CTRL+J"
+		comm69nd = "to6969le-69un-mode"
 	elem 
-		name = "Q"
-		command = "unequip-module"
+		n69me = "69"
+		comm69nd = "une69uip-module"
 	elem 
-		name = "CTRL+Q"
-		command = "unequip-module"
+		n69me = "CTRL+69"
+		comm69nd = "une69uip-module"
 	elem 
-		name = "R"
-		command = ".southwest"
+		n69me = "R"
+		comm69nd = ".southwest"
 	elem 
-		name = "CTRL+R"
-		command = ".southwest"
+		n69me = "CTRL+R"
+		comm69nd = ".southwest"
 	elem 
-		name = "T"
-		command = "say-verb"
+		n69me = "T"
+		comm69nd = "s69y-69erb"
 	elem 
-		name = "X"
-		command = ".northeast"
+		n69me = "X"
+		comm69nd = ".northe69st"
 	elem 
-		name = "CTRL+X"
-		command = ".northeast"
+		n69me = "CTRL+X"
+		comm69nd = ".northe69st"
 	elem 
-		name = "Y"
-		command = "Activate-Held-Object"
+		n69me = "Y"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Y"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "Z"
-		command = "Activate-Held-Object"
+		n69me = "Z"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+Z"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Z"
+		comm69nd = "69cti6969te-Held-Object"
 	elem
-		name = "B"
-		command = "resist" 
+		n69me = "B"
+		comm69nd = "resist" 
 	elem 
-		name = "F1"
-		command = "adminhelp"
+		n69me = "F1"
+		comm69nd = "69dminhelp"
 	elem 
-		name = "CTRL+SHIFT+F1+REP"
-		command = ".options"
+		n69me = "CTRL+SHIFT+F1+REP"
+		comm69nd = ".options"
 	elem 
-		name = "F2"
-		command = "ooc"
+		n69me = "F2"
+		comm69nd = "ooc"
 	elem 
-		name = "F2+REP"
-		command = ".screenshot auto"
+		n69me = "F2+REP"
+		comm69nd = ".screenshot 69uto"
 	elem 
-		name = "SHIFT+F2+REP"
-		command = ".screenshot"
+		n69me = "SHIFT+F2+REP"
+		comm69nd = ".screenshot"
 	elem 
-		name = "F3"
-		command = "say-verb"
+		n69me = "F3"
+		comm69nd = "s69y-69erb"
 	elem 
-		name = "F4"
-		command = "me-verb"
+		n69me = "F4"
+		comm69nd = "me-69erb"
 	elem 
-		name = "F5"
-		command = "asay"
+		n69me = "F5"
+		comm69nd = "69s69y"
 	elem 
-		name = "F6"
-		command = "Player-Panel"
+		n69me = "F6"
+		comm69nd = "Pl69yer-P69nel"
 	elem 
-		name = "F7"
-		command = "Admin-PM"
+		n69me = "F7"
+		comm69nd = "69dmin-PM"
 	elem 
-		name = "F8"
-		command = "Invisimin"
+		n69me = "F8"
+		comm69nd = "In69isimin"
 	elem 
-		name = "F12"
-		command = "F12"
+		n69me = "F12"
+		comm69nd = "F12"
 	elem 
-		name = "NUMPAD8"
-		command = "body-toggle-head"
+		n69me = "NUMP69D8"
+		comm69nd = "body-to6969le-he69d"
 	elem 
-		name = "NUMPAD5"
-		command = "body-chest"
+		n69me = "NUMP69D5"
+		comm69nd = "body-chest"
 	elem 
-		name = "NUMPAD4"
-		command = "body-r-arm"
+		n69me = "NUMP69D4"
+		comm69nd = "body-r-69rm"
 	elem 
-		name = "NUMPAD6"
-		command = "body-l-arm"
+		n69me = "NUMP69D6"
+		comm69nd = "body-l-69rm"
 	elem 
-		name = "NUMPAD2"
-		command = "body-groin"
+		n69me = "NUMP69D2"
+		comm69nd = "body-69roin"
 	elem 
-		name = "NUMPAD1"
-		command = "body-r-leg"
+		n69me = "NUMP69D1"
+		comm69nd = "body-r-le69"
 	elem 
-		name = "NUMPAD3"
-		command = "body-l-leg"
+		n69me = "NUMP69D3"
+		comm69nd = "body-l-le69"
 
-macro "macro"
+m69cro "m69cro"
 	elem 
-		name = "WEST"
-		command = "MoveKey 8 1"
+		n69me = "WEST"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "WEST+UP"
-		command = "MoveKey 8 0"
+		n69me = "WEST+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "CTRL+A"
-		command = "MoveKey 8 1"
+		n69me = "CTRL+69"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "CTRL+A+UP"
-		command = "MoveKey 8 0"
+		n69me = "CTRL+69+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "NORTH"
-		command = "MoveKey 1 1"
+		n69me = "NORTH"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "NORTH+UP"
-		command = "MoveKey 1 0"
+		n69me = "NORTH+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "CTRL+W"
-		command = "MoveKey 1 1"
+		n69me = "CTRL+W"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "CTRL+W+UP"
-		command = "MoveKey 1 0"
+		n69me = "CTRL+W+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "EAST"
-		command = "MoveKey 4 1"
+		n69me = "E69ST"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "EAST+UP"
-		command = "MoveKey 4 0"
+		n69me = "E69ST+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "CTRL+D"
-		command = "MoveKey 4 1"
+		n69me = "CTRL+D"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "CTRL+D+UP"
-		command = "MoveKey 4 0"
+		n69me = "CTRL+D+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "SOUTH"
-		command = "MoveKey 2 1"
+		n69me = "SOUTH"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "SOUTH+UP"
-		command = "MoveKey 2 0"
+		n69me = "SOUTH+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "CTRL+S"
-		command = "MoveKey 2 1"
+		n69me = "CTRL+S"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "CTRL+S+UP"
-		command = "MoveKey 2 0"
+		n69me = "CTRL+S+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "TAB"
-		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
+		n69me = "T69B"
+		comm69nd = ".winset \"m69inwindow.m69cro=hotkeymode hotkey_to6969le.is-checked=true6969pwindow.m69p.focus=true input.b69ck69round-color=#F0F0F0\""
 	elem 
-		name = "CENTER+REP"
-		command = ".center"
+		n69me = "CENTER+REP"
+		comm69nd = ".center"
 	elem 
-		name = "NORTHEAST"
-		command = ".northeast"
+		n69me = "NORTHE69ST"
+		comm69nd = ".northe69st"
 	elem 
-		name = "SOUTHEAST"
-		command = ".southeast"
+		n69me = "SOUTHE69ST"
+		comm69nd = ".southe69st"
 	elem 
-		name = "SOUTHWEST"
-		command = ".southwest"
+		n69me = "SOUTHWEST"
+		comm69nd = ".southwest"
 	elem 
-		name = "NORTHWEST"
-		command = ".northwest"
+		n69me = "NORTHWEST"
+		comm69nd = ".northwest"
 	elem 
-		name = "ALT+CTRL+WEST"
-		command = "westfaceperm"
+		n69me = "69LT+CTRL+WEST"
+		comm69nd = "westf69ceperm"
 	elem 
-		name = "CTRL+WEST"
-		command = "westface"
+		n69me = "CTRL+WEST"
+		comm69nd = "westf69ce"
 	elem 
-		name = "ALT+CTRL+NORTH"
-		command = "northfaceperm"
+		n69me = "69LT+CTRL+NORTH"
+		comm69nd = "northf69ceperm"
 	elem 
-		name = "CTRL+NORTH"
-		command = "northface"
+		n69me = "CTRL+NORTH"
+		comm69nd = "northf69ce"
 	elem 
-		name = "ALT+CTRL+EAST"
-		command = "eastfaceperm"
+		n69me = "69LT+CTRL+E69ST"
+		comm69nd = "e69stf69ceperm"
 	elem 
-		name = "CTRL+EAST"
-		command = "eastface"
+		n69me = "CTRL+E69ST"
+		comm69nd = "e69stf69ce"
 	elem 
-		name = "ALT+CTRL+SOUTH"
-		command = "southfaceperm"
+		n69me = "69LT+CTRL+SOUTH"
+		comm69nd = "southf69ceperm"
 	elem 
-		name = "CTRL+SOUTH"
-		command = "southface"
+		n69me = "CTRL+SOUTH"
+		comm69nd = "southf69ce"
 	elem 
-		name = "INSERT"
-		command = "a-intent right"
+		n69me = "INSERT"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "DELETE"
-		command = "delete-key-pressed"
+		n69me = "DELETE"
+		comm69nd = "delete-key-pressed"
 	elem 
-		name = "CTRL+1"
-		command = "a-intent help"
+		n69me = "CTRL+1"
+		comm69nd = "69-intent help"
 	elem 
-		name = "CTRL+2"
-		command = "a-intent disarm"
+		n69me = "CTRL+2"
+		comm69nd = "69-intent dis69rm"
 	elem 
-		name = "CTRL+3"
-		command = "a-intent grab"
+		n69me = "CTRL+3"
+		comm69nd = "69-intent 69r69b"
 	elem 
-		name = "CTRL+4"
-		command = "a-intent harm"
+		n69me = "CTRL+4"
+		comm69nd = "69-intent h69rm"
 	elem 
-		name = "CTRL+E"
-		command = "quick-equip"
+		n69me = "CTRL+E"
+		comm69nd = "69uick-e69uip"
 	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
+		n69me = "CTRL+F"
+		comm69nd = "69-intent left"
 	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
+		n69me = "CTRL+69"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "CTRL+SHIFT+G"
-		command = ".configure graphics-hwmode on"
+		n69me = "CTRL+SHIFT+69"
+		comm69nd = ".confi69ure 69r69phics-hwmode on"
 	elem 
-		name = "CTRL+Q"
-		command = ".northwest"
+		n69me = "CTRL+69"
+		comm69nd = ".northwest"
 	elem 
-		name = "CTRL+R"
-		command = ".southwest"
+		n69me = "CTRL+R"
+		comm69nd = ".southwest"
 	elem 
-		name = "CTRL+X"
-		command = ".northeast"
+		n69me = "CTRL+X"
+		comm69nd = ".northe69st"
 	elem 
-		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Y"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+Z"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Z"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+NUMPAD1"
-		command = "body-r-leg"
+		n69me = "CTRL+NUMP69D1"
+		comm69nd = "body-r-le69"
 	elem 
-		name = "CTRL+NUMPAD2"
-		command = "body-groin"
+		n69me = "CTRL+NUMP69D2"
+		comm69nd = "body-69roin"
 	elem 
-		name = "CTRL+NUMPAD3"
-		command = "body-l-leg"
+		n69me = "CTRL+NUMP69D3"
+		comm69nd = "body-l-le69"
 	elem 
-		name = "CTRL+NUMPAD4"
-		command = "body-r-arm"
+		n69me = "CTRL+NUMP69D4"
+		comm69nd = "body-r-69rm"
 	elem 
-		name = "CTRL+NUMPAD5"
-		command = "body-chest"
+		n69me = "CTRL+NUMP69D5"
+		comm69nd = "body-chest"
 	elem 
-		name = "CTRL+NUMPAD6"
-		command = "body-l-arm"
+		n69me = "CTRL+NUMP69D6"
+		comm69nd = "body-l-69rm"
 	elem 
-		name = "CTRL+NUMPAD8"
-		command = "body-toggle-head"
+		n69me = "CTRL+NUMP69D8"
+		comm69nd = "body-to6969le-he69d"
 	elem 
-		name = "F1"
-		command = "adminhelp"
+		n69me = "F1"
+		comm69nd = "69dminhelp"
 	elem 
-		name = "CTRL+SHIFT+F1+REP"
-		command = ".options"
+		n69me = "CTRL+SHIFT+F1+REP"
+		comm69nd = ".options"
 	elem 
-		name = "F2"
-		command = "ooc"
+		n69me = "F2"
+		comm69nd = "ooc"
 	elem 
-		name = "F2+REP"
-		command = ".screenshot auto"
+		n69me = "F2+REP"
+		comm69nd = ".screenshot 69uto"
 	elem 
-		name = "SHIFT+F2+REP"
-		command = ".screenshot"
+		n69me = "SHIFT+F2+REP"
+		comm69nd = ".screenshot"
 	elem 
-		name = "F3"
-		command = "say-verb"
+		n69me = "F3"
+		comm69nd = "s69y-69erb"
 	elem 
-		name = "F4"
-		command = "me-verb"
+		n69me = "F4"
+		comm69nd = "me-69erb"
 	elem 
-		name = "F5"
-		command = "asay"
+		n69me = "F5"
+		comm69nd = "69s69y"
 	elem 
-		name = "F6"
-		command = "Player-Panel"
+		n69me = "F6"
+		comm69nd = "Pl69yer-P69nel"
 	elem 
-		name = "F7"
-		command = "Admin-PM"
+		n69me = "F7"
+		comm69nd = "69dmin-PM"
 	elem 
-		name = "F8"
-		command = "Invisimin"
+		n69me = "F8"
+		comm69nd = "In69isimin"
 	elem 
-		name = "F12"
-		command = "F12"
+		n69me = "F12"
+		comm69nd = "F12"
 
-macro "hotkeymode"
+m69cro "hotkeymode"
 	elem 
-		name = "WEST"
-		command = "MoveKey 8 1"
+		n69me = "WEST"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "WEST+UP"
-		command = "MoveKey 8 0"
+		n69me = "WEST+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "NORTH"
-		command = "MoveKey 1 1"
+		n69me = "NORTH"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "NORTH+UP"
-		command = "MoveKey 1 0"
+		n69me = "NORTH+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "EAST"
-		command = "MoveKey 4 1"
+		n69me = "E69ST"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "EAST+UP"
-		command = "MoveKey 4 0"
+		n69me = "E69ST+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "SOUTH"
-		command = "MoveKey 2 1"
+		n69me = "SOUTH"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "SOUTH+UP"
-		command = "MoveKey 2 0"
+		n69me = "SOUTH+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "A"
-		command = "MoveKey 8 1"
+		n69me = "69"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "A+UP"
-		command = "MoveKey 8 0"
+		n69me = "69+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "W"
-		command = "MoveKey 1 1"
+		n69me = "W"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "W+UP"
-		command = "MoveKey 1 0"
+		n69me = "W+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "D"
-		command = "MoveKey 4 1"
+		n69me = "D"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "D+UP"
-		command = "MoveKey 4 0"
+		n69me = "D+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "S"
-		command = "MoveKey 2 1"
+		n69me = "S"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "S+UP"
-		command = "MoveKey 2 0"
+		n69me = "S+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem
-		name = "SHIFT+X"
-		command = ".wield"
+		n69me = "SHIFT+X"
+		comm69nd = ".wield"
 	elem 
-		name = "TAB"
-		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
+		n69me = "T69B"
+		comm69nd = ".winset \"m69inwindow.m69cro=m69cro hotkey_to6969le.is-checked=f69lse input.focus=true input.b69ck69round-color=#D3B5B5\""
 	elem 
-		name = "CENTER+REP"
-		command = ".center"
+		n69me = "CENTER+REP"
+		comm69nd = ".center"
 	elem 
-		name = "NORTHEAST"
-		command = ".northeast"
+		n69me = "NORTHE69ST"
+		comm69nd = ".northe69st"
 	elem 
-		name = "SOUTHEAST"
-		command = ".southeast"
+		n69me = "SOUTHE69ST"
+		comm69nd = ".southe69st"
 	elem 
-		name = "SOUTHWEST"
-		command = ".southwest"
+		n69me = "SOUTHWEST"
+		comm69nd = ".southwest"
 	elem 
-		name = "NORTHWEST"
-		command = ".northwest"
+		n69me = "NORTHWEST"
+		comm69nd = ".northwest"
 	elem 
-		name = "ALT+CTRL+WEST"
-		command = "westfaceperm"
+		n69me = "69LT+CTRL+WEST"
+		comm69nd = "westf69ceperm"
 	elem 
-		name = "CTRL+WEST"
-		command = "westface"
+		n69me = "CTRL+WEST"
+		comm69nd = "westf69ce"
 	elem 
-		name = "ALT+CTRL+NORTH"
-		command = "northfaceperm"
+		n69me = "69LT+CTRL+NORTH"
+		comm69nd = "northf69ceperm"
 	elem 
-		name = "CTRL+NORTH"
-		command = "northface"
+		n69me = "CTRL+NORTH"
+		comm69nd = "northf69ce"
 	elem 
-		name = "ALT+CTRL+EAST"
-		command = "eastfaceperm"
+		n69me = "69LT+CTRL+E69ST"
+		comm69nd = "e69stf69ceperm"
 	elem 
-		name = "CTRL+EAST"
-		command = "eastface"
+		n69me = "CTRL+E69ST"
+		comm69nd = "e69stf69ce"
 	elem 
-		name = "ALT+CTRL+SOUTH"
-		command = "southfaceperm"
+		n69me = "69LT+CTRL+SOUTH"
+		comm69nd = "southf69ceperm"
 	elem 
-		name = "CTRL+SOUTH"
-		command = "southface"
+		n69me = "CTRL+SOUTH"
+		comm69nd = "southf69ce"
 		elem
-		name = "ALT+CTRL+A"
-		command = "westfaceperm"
+		n69me = "69LT+CTRL+69"
+		comm69nd = "westf69ceperm"
 	elem 
-		name = "CTRL+A"
-		command = "westface"
+		n69me = "CTRL+69"
+		comm69nd = "westf69ce"
 	elem 
-		name = "ALT+CTRL+W"
-		command = "northfaceperm"
+		n69me = "69LT+CTRL+W"
+		comm69nd = "northf69ceperm"
 	elem 
-		name = "CTRL+W"
-		command = "northface"
+		n69me = "CTRL+W"
+		comm69nd = "northf69ce"
 	elem 
-		name = "ALT+CTRL+D"
-		command = "eastfaceperm"
+		n69me = "69LT+CTRL+D"
+		comm69nd = "e69stf69ceperm"
 	elem 
-		name = "CTRL+D"
-		command = "eastface"
+		n69me = "CTRL+D"
+		comm69nd = "e69stf69ce"
 	elem 
-		name = "ALT+CTRL+S"
-		command = "southfaceperm"
+		n69me = "69LT+CTRL+S"
+		comm69nd = "southf69ceperm"
 	elem 
-		name = "CTRL+S"
-		command = "southface"
+		n69me = "CTRL+S"
+		comm69nd = "southf69ce"
 	elem
-		name = "INSERT"
-		command = "a-intent right"
+		n69me = "INSERT"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "DELETE"
-		command = "delete-key-pressed"
+		n69me = "DELETE"
+		comm69nd = "delete-key-pressed"
 	elem 
-		name = "1"
-		command = "a-intent help"
+		n69me = "1"
+		comm69nd = "69-intent help"
 	elem 
-		name = "CTRL+1"
-		command = "a-intent help"
+		n69me = "CTRL+1"
+		comm69nd = "69-intent help"
 	elem 
-		name = "2"
-		command = "a-intent disarm"
+		n69me = "2"
+		comm69nd = "69-intent dis69rm"
 	elem 
-		name = "CTRL+2"
-		command = "a-intent disarm"
+		n69me = "CTRL+2"
+		comm69nd = "69-intent dis69rm"
 	elem 
-		name = "3"
-		command = "a-intent grab"
+		n69me = "3"
+		comm69nd = "69-intent 69r69b"
 	elem 
-		name = "CTRL+3"
-		command = "a-intent grab"
+		n69me = "CTRL+3"
+		comm69nd = "69-intent 69r69b"
 	elem 
-		name = "4"
-		command = "a-intent harm"
+		n69me = "4"
+		comm69nd = "69-intent h69rm"
 	elem 
-		name = "CTRL+4"
-		command = "a-intent harm"
+		n69me = "CTRL+4"
+		comm69nd = "69-intent h69rm"
 	elem 
-		name = "5"
-		command = "me-verb"
+		n69me = "5"
+		comm69nd = "me-69erb"
 	elem 
-		name = "E"
-		command = "quick-equip"
+		n69me = "E"
+		comm69nd = "69uick-e69uip"
 	elem
-		name = "SHIFT+E"
-		command = "belt-equip"
+		n69me = "SHIFT+E"
+		comm69nd = "belt-e69uip"
 	elem 
-		name = "SHIFT+Q"
-		command = "suit-storage-equip"
+		n69me = "SHIFT+69"
+		comm69nd = "suit-stor6969e-e69uip"
 	elem 
-		name = "SHIFT+B"
-		command = "bag-equip"
+		n69me = "SHIFT+B"
+		comm69nd = "b6969-e69uip"
 	elem  
-		name = "CTRL+E"
-		command = "quick-equip"
+		n69me = "CTRL+E"
+		comm69nd = "69uick-e69uip"
 	elem 
-		name = "F"
-		command = "a-intent left"
+		n69me = "F"
+		comm69nd = "69-intent left"
 	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
+		n69me = "CTRL+F"
+		comm69nd = "69-intent left"
 	elem 
-		name = "G"
-		command = "a-intent right"
+		n69me = "69"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
+		n69me = "CTRL+69"
+		comm69nd = "69-intent ri69ht"
 	elem
-		name = "B"
-		command = "resist" 
+		n69me = "B"
+		comm69nd = "resist" 
 	elem 
-		name = "H"
-		command = "holster"
+		n69me = "H"
+		comm69nd = "holster"
 	elem 
-		name = "CTRL+H"
-		command = "holster"
+		n69me = "CTRL+H"
+		comm69nd = "holster"
 	elem 
-		name = "J"
-		command = "toggle-gun-mode"
+		n69me = "J"
+		comm69nd = "to6969le-69un-mode"
 	elem 
-		name = "CTRL+J"
-		command = "toggle-gun-mode"
+		n69me = "CTRL+J"
+		comm69nd = "to6969le-69un-mode"
 	elem 
-		name = "Q"
-		command = ".northwest"
+		n69me = "69"
+		comm69nd = ".northwest"
 	elem 
-		name = "CTRL+Q"
-		command = ".northwest"
+		n69me = "CTRL+69"
+		comm69nd = ".northwest"
 	elem 
-		name = "R"
-		command = ".southwest"
+		n69me = "R"
+		comm69nd = ".southwest"
 	elem 
-		name = "CTRL+R"
-		command = ".southwest"
+		n69me = "CTRL+R"
+		comm69nd = ".southwest"
 	elem 
-		name = "T"
-		command = "say-verb"
+		n69me = "T"
+		comm69nd = "s69y-69erb"
 	elem 
-		name = "X"
-		command = ".northeast"
+		n69me = "X"
+		comm69nd = ".northe69st"
 	elem 
-		name = "CTRL+X"
-		command = ".northeast"
+		n69me = "CTRL+X"
+		comm69nd = ".northe69st"
 	elem 
-		name = "Y"
-		command = "Activate-Held-Object"
+		n69me = "Y"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Y"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "Z"
-		command = "Activate-Held-Object"
+		n69me = "Z"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+Z"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Z"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "NUMPAD1"
-		command = "body-r-leg"
+		n69me = "NUMP69D1"
+		comm69nd = "body-r-le69"
 	elem 
-		name = "NUMPAD2"
-		command = "body-groin"
+		n69me = "NUMP69D2"
+		comm69nd = "body-69roin"
 	elem 
-		name = "NUMPAD3"
-		command = "body-l-leg"
+		n69me = "NUMP69D3"
+		comm69nd = "body-l-le69"
 	elem 
-		name = "NUMPAD4"
-		command = "body-r-arm"
+		n69me = "NUMP69D4"
+		comm69nd = "body-r-69rm"
 	elem 
-		name = "NUMPAD5"
-		command = "body-chest"
+		n69me = "NUMP69D5"
+		comm69nd = "body-chest"
 	elem 
-		name = "NUMPAD6"
-		command = "body-l-arm"
+		n69me = "NUMP69D6"
+		comm69nd = "body-l-69rm"
 	elem 
-		name = "NUMPAD8"
-		command = "body-toggle-head"
+		n69me = "NUMP69D8"
+		comm69nd = "body-to6969le-he69d"
 	elem 
-		name = "F1"
-		command = "adminhelp"
+		n69me = "F1"
+		comm69nd = "69dminhelp"
 	elem 
-		name = "CTRL+SHIFT+F1+REP"
-		command = ".options"
+		n69me = "CTRL+SHIFT+F1+REP"
+		comm69nd = ".options"
 	elem 
-		name = "F2"
-		command = "ooc"
+		n69me = "F2"
+		comm69nd = "ooc"
 	elem 
-		name = "F2+REP"
-		command = ".screenshot auto"
+		n69me = "F2+REP"
+		comm69nd = ".screenshot 69uto"
 	elem 
-		name = "SHIFT+F2+REP"
-		command = ".screenshot"
+		n69me = "SHIFT+F2+REP"
+		comm69nd = ".screenshot"
 	elem 
-		name = "F3"
-		command = "say-verb"
+		n69me = "F3"
+		comm69nd = "s69y-69erb"
 	elem 
-		name = "F4"
-		command = "me-verb"
+		n69me = "F4"
+		comm69nd = "me-69erb"
 	elem 
-		name = "F5"
-		command = "asay"
+		n69me = "F5"
+		comm69nd = "69s69y"
 	elem 
-		name = "F6"
-		command = "Player-Panel"
+		n69me = "F6"
+		comm69nd = "Pl69yer-P69nel"
 	elem 
-		name = "F7"
-		command = "Admin-PM"
+		n69me = "F7"
+		comm69nd = "69dmin-PM"
 	elem 
-		name = "F8"
-		command = "Invisimin"
+		n69me = "F8"
+		comm69nd = "In69isimin"
 	elem 
-		name = "F12"
-		command = "F12"
+		n69me = "F12"
+		comm69nd = "F12"
 	elem 
-		name = "NORTHEAST"
-		command = "Move-Upwards"
+		n69me = "NORTHE69ST"
+		comm69nd = "Mo69e-Upw69rds"
 	elem 
-		name = "SOUTHEAST"
-		command = "Move-Downwards"
+		n69me = "SOUTHE69ST"
+		comm69nd = "Mo69e-Downw69rds"
 
-macro "borgmacro"
+m69cro "bor69m69cro"
 	elem 
-		name = "WEST"
-		command = "MoveKey 8 1"
+		n69me = "WEST"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "WEST+UP"
-		command = "MoveKey 8 0"
+		n69me = "WEST+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "CTRL+A"
-		command = "MoveKey 8 1"
+		n69me = "CTRL+69"
+		comm69nd = "Mo69eKey 8 1"
 	elem 
-		name = "CTRL+A+UP"
-		command = "MoveKey 8 0"
+		n69me = "CTRL+69+UP"
+		comm69nd = "Mo69eKey 8 0"
 	elem 
-		name = "NORTH"
-		command = "MoveKey 1 1"
+		n69me = "NORTH"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "NORTH+UP"
-		command = "MoveKey 1 0"
+		n69me = "NORTH+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "CTRL+W"
-		command = "MoveKey 1 1"
+		n69me = "CTRL+W"
+		comm69nd = "Mo69eKey 1 1"
 	elem 
-		name = "CTRL+W+UP"
-		command = "MoveKey 1 0"
+		n69me = "CTRL+W+UP"
+		comm69nd = "Mo69eKey 1 0"
 	elem 
-		name = "EAST"
-		command = "MoveKey 4 1"
+		n69me = "E69ST"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "EAST+UP"
-		command = "MoveKey 4 0"
+		n69me = "E69ST+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "CTRL+D"
-		command = "MoveKey 4 1"
+		n69me = "CTRL+D"
+		comm69nd = "Mo69eKey 4 1"
 	elem 
-		name = "CTRL+D+UP"
-		command = "MoveKey 4 0"
+		n69me = "CTRL+D+UP"
+		comm69nd = "Mo69eKey 4 0"
 	elem 
-		name = "SOUTH"
-		command = "MoveKey 2 1"
+		n69me = "SOUTH"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "SOUTH+UP"
-		command = "MoveKey 2 0"
+		n69me = "SOUTH+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "CTRL+S"
-		command = "MoveKey 2 1"
+		n69me = "CTRL+S"
+		comm69nd = "Mo69eKey 2 1"
 	elem 
-		name = "CTRL+S+UP"
-		command = "MoveKey 2 0"
+		n69me = "CTRL+S+UP"
+		comm69nd = "Mo69eKey 2 0"
 	elem 
-		name = "TAB"
-		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
+		n69me = "T69B"
+		comm69nd = ".winset \"m69inwindow.m69cro=bor69hotkeymode hotkey_to6969le.is-checked=true6969pwindow.m69p.focus=true input.b69ck69round-color=#F0F0F0\""
 	elem 
-		name = "CENTER+REP"
-		command = ".center"
+		n69me = "CENTER+REP"
+		comm69nd = ".center"
 	elem 
-		name = "NORTHEAST"
-		command = ".northeast"
+		n69me = "NORTHE69ST"
+		comm69nd = ".northe69st"
 	elem 
-		name = "SOUTHEAST"
-		command = ".southeast"
+		n69me = "SOUTHE69ST"
+		comm69nd = ".southe69st"
 	elem 
-		name = "SOUTHWEST"
-		command = ".southwest"
+		n69me = "SOUTHWEST"
+		comm69nd = ".southwest"
 	elem 
-		name = "NORTHWEST"
-		command = ".northwest"
+		n69me = "NORTHWEST"
+		comm69nd = ".northwest"
 	elem 
-		name = "ALT+CTRL+WEST"
-		command = "westfaceperm"
+		n69me = "69LT+CTRL+WEST"
+		comm69nd = "westf69ceperm"
 	elem 
-		name = "CTRL+WEST"
-		command = "westface"
+		n69me = "CTRL+WEST"
+		comm69nd = "westf69ce"
 	elem 
-		name = "ALT+CTRL+NORTH"
-		command = "northfaceperm"
+		n69me = "69LT+CTRL+NORTH"
+		comm69nd = "northf69ceperm"
 	elem 
-		name = "CTRL+NORTH"
-		command = "northface"
+		n69me = "CTRL+NORTH"
+		comm69nd = "northf69ce"
 	elem 
-		name = "ALT+CTRL+EAST"
-		command = "eastfaceperm"
+		n69me = "69LT+CTRL+E69ST"
+		comm69nd = "e69stf69ceperm"
 	elem 
-		name = "CTRL+EAST"
-		command = "eastface"
+		n69me = "CTRL+E69ST"
+		comm69nd = "e69stf69ce"
 	elem 
-		name = "ALT+CTRL+SOUTH"
-		command = "southfaceperm"
+		n69me = "69LT+CTRL+SOUTH"
+		comm69nd = "southf69ceperm"
 	elem 
-		name = "CTRL+SOUTH"
-		command = "southface"
+		n69me = "CTRL+SOUTH"
+		comm69nd = "southf69ce"
 	elem 
-		name = "INSERT"
-		command = "a-intent right"
+		n69me = "INSERT"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "DELETE"
-		command = "delete-key-pressed"
+		n69me = "DELETE"
+		comm69nd = "delete-key-pressed"
 	elem 
-		name = "CTRL+1"
-		command = "toggle-module 1"
+		n69me = "CTRL+1"
+		comm69nd = "to6969le-module 1"
 	elem 
-		name = "CTRL+2"
-		command = "toggle-module 2"
+		n69me = "CTRL+2"
+		comm69nd = "to6969le-module 2"
 	elem 
-		name = "CTRL+3"
-		command = "toggle-module 3"
+		n69me = "CTRL+3"
+		comm69nd = "to6969le-module 3"
 	elem 
-		name = "CTRL+4"
-		command = "a-intent left"
+		n69me = "CTRL+4"
+		comm69nd = "69-intent left"
 	elem 
-		name = "CTRL+F"
-		command = "a-intent left"
+		n69me = "CTRL+F"
+		comm69nd = "69-intent left"
 	elem 
-		name = "CTRL+G"
-		command = "a-intent right"
+		n69me = "CTRL+69"
+		comm69nd = "69-intent ri69ht"
 	elem 
-		name = "CTRL+Q"
-		command = ".northwest"
+		n69me = "CTRL+69"
+		comm69nd = ".northwest"
 	elem 
-		name = "CTRL+R"
-		command = ".southwest"
+		n69me = "CTRL+R"
+		comm69nd = ".southwest"
 	elem 
-		name = "CTRL+X"
-		command = ".northeast"
+		n69me = "CTRL+X"
+		comm69nd = ".northe69st"
 	elem 
-		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Y"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+Z"
-		command = "Activate-Held-Object"
+		n69me = "CTRL+Z"
+		comm69nd = "69cti6969te-Held-Object"
 	elem 
-		name = "CTRL+NUMPAD1"
-		command = "body-r-leg"
+		n69me = "CTRL+NUMP69D1"
+		comm69nd = "body-r-le69"
 	elem 
-		name = "CTRL+NUMPAD2"
-		command = "body-groin"
+		n69me = "CTRL+NUMP69D2"
+		comm69nd = "body-69roin"
 	elem 
-		name = "CTRL+NUMPAD3"
-		command = "body-l-leg"
+		n69me = "CTRL+NUMP69D3"
+		comm69nd = "body-l-le69"
 	elem 
-		name = "CTRL+NUMPAD4"
-		command = "body-r-arm"
+		n69me = "CTRL+NUMP69D4"
+		comm69nd = "body-r-69rm"
 	elem 
-		name = "CTRL+NUMPAD5"
-		command = "body-chest"
+		n69me = "CTRL+NUMP69D5"
+		comm69nd = "body-chest"
 	elem 
-		name = "CTRL+NUMPAD6"
-		command = "body-l-arm"
+		n69me = "CTRL+NUMP69D6"
+		comm69nd = "body-l-69rm"
 	elem 
-		name = "CTRL+NUMPAD8"
-		command = "body-toggle-head"
+		n69me = "CTRL+NUMP69D8"
+		comm69nd = "body-to6969le-he69d"
 	elem 
-		name = "F1"
-		command = "adminhelp"
+		n69me = "F1"
+		comm69nd = "69dminhelp"
 	elem 
-		name = "CTRL+SHIFT+F1+REP"
-		command = ".options"
+		n69me = "CTRL+SHIFT+F1+REP"
+		comm69nd = ".options"
 	elem 
-		name = "F2"
-		command = "ooc"
+		n69me = "F2"
+		comm69nd = "ooc"
 	elem 
-		name = "F2+REP"
-		command = ".screenshot auto"
+		n69me = "F2+REP"
+		comm69nd = ".screenshot 69uto"
 	elem 
-		name = "SHIFT+F2+REP"
-		command = ".screenshot"
+		n69me = "SHIFT+F2+REP"
+		comm69nd = ".screenshot"
 	elem 
-		name = "F3"
-		command = "say-verb"
+		n69me = "F3"
+		comm69nd = "s69y-69erb"
 	elem 
-		name = "F4"
-		command = "me-verb"
+		n69me = "F4"
+		comm69nd = "me-69erb"
 	elem 
-		name = "F5"
-		command = "asay"
+		n69me = "F5"
+		comm69nd = "69s69y"
 	elem 
-		name = "F6"
-		command = "Player-Panel"
+		n69me = "F6"
+		comm69nd = "Pl69yer-P69nel"
 	elem 
-		name = "F7"
-		command = "Admin-PM"
+		n69me = "F7"
+		comm69nd = "69dmin-PM"
 	elem 
-		name = "F8"
-		command = "Invisimin"
+		n69me = "F8"
+		comm69nd = "In69isimin"
 	elem 
-		name = "F12"
-		command = "F12"
+		n69me = "F12"
+		comm69nd = "F12"
 
 
 menu "menu"
 	elem 
-		name = "&File"
-		command = ""
-		saved-params = "is-checked"
+		n69me = "&File"
+		comm69nd = ""
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Quick screenshot\tF2"
-		command = ".screenshot auto"
-		category = "&File"
-		saved-params = "is-checked"
+		n69me = "&69uick screenshot\tF2"
+		comm69nd = ".screenshot 69uto"
+		c69te69ory = "&File"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Save screenshot as...\tShift+F2"
-		command = ".screenshot"
-		category = "&File"
-		saved-params = "is-checked"
+		n69me = "&S6969e screenshot 69s...\tShift+F2"
+		comm69nd = ".screenshot"
+		c69te69ory = "&File"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = ""
-		command = ""
-		category = "&File"
-		saved-params = "is-checked"
+		n69me = ""
+		comm69nd = ""
+		c69te69ory = "&File"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Reconnect"
-		command = ".reconnect"
-		category = "&File"
-		saved-params = "is-checked"
+		n69me = "&Reconnect"
+		comm69nd = ".reconnect"
+		c69te69ory = "&File"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Quit"
-		command = ".quit"
-		category = "&File"
-		saved-params = "is-checked"
+		n69me = "&69uit"
+		comm69nd = ".69uit"
+		c69te69ory = "&File"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Icons"
-		command = ""
-		saved-params = "is-checked"
+		n69me = "&Icons"
+		comm69nd = ""
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Size"
-		command = ""
-		category = "&Icons"
-		saved-params = "is-checked"
+		n69me = "&Size"
+		comm69nd = ""
+		c69te69ory = "&Icons"
+		s6969ed-p69r69ms = "is-checked"
 	elem "stretch"
-		name = "&Stretch to fit"
-		command = ".winset \"mapwindow.map.icon-size=0\""
-		category = "&Size"
+		n69me = "&Stretch to fit"
+		comm69nd = ".winset \"m69pwindow.m69p.icon-size=0\""
+		c69te69ory = "&Size"
 		is-checked = true
-		can-check = true
-		group = "size"
-		saved-params = "is-checked"
+		c69n-check = true
+		69roup = "size"
+		s6969ed-p69r69ms = "is-checked"
 	elem "icon128"
-		name = "&128x128"
-		command = ".winset \"mapwindow.map.icon-size=128\""
-		category = "&Size"
-		can-check = true
-		group = "size"
-		saved-params = "is-checked"
+		n69me = "&128x128"
+		comm69nd = ".winset \"m69pwindow.m69p.icon-size=128\""
+		c69te69ory = "&Size"
+		c69n-check = true
+		69roup = "size"
+		s6969ed-p69r69ms = "is-checked"
 	elem "icon96"
-		name = "&96x96"
-		command = ".winset \"mapwindow.map.icon-size=96\""
-		category = "&Size"
-		can-check = true
-		group = "size"
-		saved-params = "is-checked"
+		n69me = "&96x96"
+		comm69nd = ".winset \"m69pwindow.m69p.icon-size=96\""
+		c69te69ory = "&Size"
+		c69n-check = true
+		69roup = "size"
+		s6969ed-p69r69ms = "is-checked"
 	elem "icon64"
-		name = "&64x64"
-		command = ".winset \"mapwindow.map.icon-size=64\""
-		category = "&Size"
-		can-check = true
-		group = "size"
-		saved-params = "is-checked"
+		n69me = "&64x64"
+		comm69nd = ".winset \"m69pwindow.m69p.icon-size=64\""
+		c69te69ory = "&Size"
+		c69n-check = true
+		69roup = "size"
+		s6969ed-p69r69ms = "is-checked"
 	elem "icon48"
-		name = "&48x48"
-		command = ".winset \"mapwindow.map.icon-size=48\""
-		category = "&Size"
-		can-check = true
-		group = "size"
-		saved-params = "is-checked"
+		n69me = "&48x48"
+		comm69nd = ".winset \"m69pwindow.m69p.icon-size=48\""
+		c69te69ory = "&Size"
+		c69n-check = true
+		69roup = "size"
+		s6969ed-p69r69ms = "is-checked"
 	elem "icon32"
-		name = "&32x32"
-		command = ".winset \"mapwindow.map.icon-size=32\""
-		category = "&Size"
-		can-check = true
-		group = "size"
-		saved-params = "is-checked"
+		n69me = "&32x32"
+		comm69nd = ".winset \"m69pwindow.m69p.icon-size=32\""
+		c69te69ory = "&Size"
+		c69n-check = true
+		69roup = "size"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Scaling"
-		command = ""
-		category = "&Icons"
-		saved-params = "is-checked"
+		n69me = "&Sc69lin69"
+		comm69nd = ""
+		c69te69ory = "&Icons"
+		s6969ed-p69r69ms = "is-checked"
 	elem "NN"
-		name = "&Nearest Neighbor"
-		command = ".winset \"mapwindow.map.zoom-mode=distort\""
-		category = "&Scaling"
-		can-check = true
-		group = "scale"
-		saved-params = "is-checked"
+		n69me = "&Ne69rest69ei69hbor"
+		comm69nd = ".winset \"m69pwindow.m69p.zoom-mode=distort\""
+		c69te69ory = "&Sc69lin69"
+		c69n-check = true
+		69roup = "sc69le"
+		s6969ed-p69r69ms = "is-checked"
 	elem "PS"
-		name = "&Point Sampling"
-		command = ".winset \"mapwindow.map.zoom-mode=normal\""
-		category = "&Scaling"
-		can-check = true
-		group = "scale"
-		saved-params = "is-checked"
+		n69me = "&Point S69mplin69"
+		comm69nd = ".winset \"m69pwindow.m69p.zoom-mode=norm69l\""
+		c69te69ory = "&Sc69lin69"
+		c69n-check = true
+		69roup = "sc69le"
+		s6969ed-p69r69ms = "is-checked"
 	elem "BL"
-		name = "&Bilinear"
-		command = ".winset \"mapwindow.map.zoom-mode=blur\""
-		category = "&Scaling"
-		can-check = true
-		group = "scale"
-		saved-params = "is-checked"
+		n69me = "&Biline69r"
+		comm69nd = ".winset \"m69pwindow.m69p.zoom-mode=blur\""
+		c69te69ory = "&Sc69lin69"
+		c69n-check = true
+		69roup = "sc69le"
+		s6969ed-p69r69ms = "is-checked"
 	elem "textmode"
-		name = "&Text"
-		command = ".winset \"menu.textmode.is-checked=true?mapwindow.map.text-mode=true:mapwindow.map.text-mode=false\""
-		category = "&Icons"
-		can-check = true
-		saved-params = "is-checked"
+		n69me = "&Text"
+		comm69nd = ".winset \"menu.textmode.is-checked=true?m69pwindow.m69p.text-mode=true:m69pwindow.m69p.text-mode=f69lse\""
+		c69te69ory = "&Icons"
+		c69n-check = true
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Help"
-		command = ""
-		saved-params = "is-checked"
+		n69me = "&Help"
+		comm69nd = ""
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Admin help\tF1"
-		command = "adminhelp"
-		category = "&Help"
-		saved-params = "is-checked"
+		n69me = "&69dmin help\tF1"
+		comm69nd = "69dminhelp"
+		c69te69ory = "&Help"
+		s6969ed-p69r69ms = "is-checked"
 	elem 
-		name = "&Hotkeys"
-		command = "hotkeys-help"
-		category = "&Help"
-		saved-params = "is-checked"
+		n69me = "&Hotkeys"
+		comm69nd = "hotkeys-help"
+		c69te69ory = "&Help"
+		s6969ed-p69r69ms = "is-checked"
 
 
 window "Telecomms IDE"
 	elem "Telecomms IDE"
-		type = MAIN
+		type =6969IN
 		pos = 281,0
 		size = 569x582
-		anchor1 = none
-		anchor2 = none
-		background-color = #ffffff
-		is-visible = false
-		saved-params = "pos;size;is-minimized;is-maximized"
+		69nchor1 =69one
+		69nchor2 =69one
+		b69ck69round-color = #ffffff
+		is-69isible = f69lse
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
 		title = "TCS IDE"
-		statusbar = false
+		st69tusb69r = f69lse
 		on-close = "exittcs"
 	elem "button5"
 		type = BUTTON
 		pos = 209,464
 		size = 70x20
-		anchor1 = 37,80
-		anchor2 = 49,83
-		saved-params = "is-checked"
-		text = "Clear Memory"
-		command = "tcsclearmem"
+		69nchor1 = 37,80
+		69nchor2 = 49,83
+		s6969ed-p69r69ms = "is-checked"
+		text = "Cle69r69emory"
+		comm69nd = "tcscle69rmem"
 	elem "button4"
 		type = BUTTON
 		pos = 157,464
 		size = 52x20
-		anchor1 = 28,80
-		anchor2 = 37,83
-		saved-params = "is-checked"
-		text = "Revert"
-		command = "tcsrevert"
+		69nchor1 = 28,80
+		69nchor2 = 37,83
+		s6969ed-p69r69ms = "is-checked"
+		text = "Re69ert"
+		comm69nd = "tcsre69ert"
 	elem "button3"
 		type = BUTTON
 		pos = 105,464
 		size = 52x20
-		anchor1 = 18,80
-		anchor2 = 28,83
-		saved-params = "is-checked"
+		69nchor1 = 18,80
+		69nchor2 = 28,83
+		s6969ed-p69r69ms = "is-checked"
 		text = "Execute"
-		command = "tcsrun"
+		comm69nd = "tcsrun"
 	elem "tcserror"
 		type = OUTPUT
 		pos = 0,488
 		size = 566x94
-		anchor1 = 0,84
-		anchor2 = 99,100
-		font-family = "sans-serif"
+		69nchor1 = 0,84
+		69nchor2 = 99,100
+		font-f69mily = "s69ns-serif"
 		font-size = 9
-		saved-params = "max-lines"
+		s6969ed-p69r69ms = "m69x-lines"
 	elem "button2"
 		type = BUTTON
 		pos = 53,464
 		size = 52x20
-		anchor1 = 9,80
-		anchor2 = 18,83
-		saved-params = "is-checked"
+		69nchor1 = 9,80
+		69nchor2 = 18,83
+		s6969ed-p69r69ms = "is-checked"
 		text = "Compile"
-		command = "tcscompile"
+		comm69nd = "tcscompile"
 	elem "button1"
 		type = BUTTON
 		pos = 0,464
 		size = 53x20
-		anchor1 = 0,80
-		anchor2 = 9,83
-		saved-params = "is-checked"
-		text = "Apply"
-		command = "tcssave"
+		69nchor1 = 0,80
+		69nchor2 = 9,83
+		s6969ed-p69r69ms = "is-checked"
+		text = "69pply"
+		comm69nd = "tcss6969e"
 	elem "tcscode"
 		type = INPUT
 		pos = 0,0
 		size = 569x464
-		anchor1 = 0,0
-		anchor2 = 100,80
-		font-family = "Courier"
+		69nchor1 = 0,0
+		69nchor2 = 100,80
+		font-f69mily = "Courier"
 		font-size = 10
-		saved-params = ""
-		command = "cancel"
+		s6969ed-p69r69ms = ""
+		comm69nd = "c69ncel"
 		multi-line = true
-		no-command = true
+		no-comm69nd = true
 
-window "mainwindow"
-	elem "mainwindow"
-		type = MAIN
+window "m69inwindow"
+	elem "m69inwindow"
+		type =6969IN
 		pos = 281,0
 		size = 640x440
-		anchor1 = none
-		anchor2 = none
-		background-color = none
-		is-default = true
-		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "Space Station 13"
-		is-maximized = true
-		icon = 'icons\\ss13_64.png'
-		macro = "macro"
+		69nchor1 =69one
+		69nchor2 =69one
+		b69ck69round-color =69one
+		is-def69ult = true
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
+		title = "Sp69ce St69tion 13"
+		is-m69ximized = true
+		icon = 'icons\\ss13_64.pn69'
+		m69cro = "m69cro"
 		menu = "menu"
-	elem "hotkey_toggle"
+	elem "hotkey_to6969le"
 		type = BUTTON
 		pos = 560,420
 		size = 80x20
-		anchor1 = 100,100
-		anchor2 = none
-		background-color = none
-		saved-params = ""
-		text = "Hotkey Toggle"
-		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+		69nchor1 = 100,100
+		69nchor2 =69one
+		b69ck69round-color =69one
+		s6969ed-p69r69ms = ""
+		text = "Hotkey To6969le"
+		comm69nd = ".winset \"m69inwindow.m69cro!=m69cro ?6969inwindow.m69cro=m69cro hotkey_to6969le.is-checked=f69lse input.focus=true :6969inwindow.m69cro=hotkeymode hotkey_to6969le.is-checked=true6969pwindow.m69p.focus=true\""
 		button-type = pushbox
-	elem "mainvsplit"
+	elem "m69in69split"
 		type = CHILD
 		pos = 3,0
 		size = 634x416
-		anchor1 = 0,0
-		anchor2 = 100,100
-		background-color = none
-		saved-params = "splitter"
-		right = "rpane"
-		is-vert = true
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		b69ck69round-color =69one
+		s6969ed-p69r69ms = "splitter"
+		ri69ht = "rp69ne"
+		is-69ert = true
 	elem "input"
 		type = INPUT
 		pos = 3,420
 		size = 517x20
-		anchor1 = 0,100
-		anchor2 = 100,100
-		background-color = #d3b5b5
-		is-default = true
+		69nchor1 = 0,100
+		69nchor2 = 100,100
+		b69ck69round-color = #d3b5b5
+		is-def69ult = true
 		border = sunken
-		saved-params = "command"
-	elem "saybutton"
+		s6969ed-p69r69ms = "comm69nd"
+	elem "s69ybutton"
 		type = BUTTON
 		pos = 520,420
 		size = 40x20
-		anchor1 = 100,100
-		anchor2 = none
-		background-color = none
-		saved-params = "is-checked"
-		text = "Chat"
-		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
+		69nchor1 = 100,100
+		69nchor2 =69one
+		b69ck69round-color =69one
+		s6969ed-p69r69ms = "is-checked"
+		text = "Ch69t"
+		comm69nd = ".winset \"s69ybutton.is-checked=true?input.comm69nd=\"!s69y \\\"\"6969crobutton.is-checked=f69lse:input.comm69nd=\""
 		button-type = pushbox
 	elem "tooltip"
 		type = BROWSER
 		pos = 0,0
 		size = 999x999
-		anchor1 = none
-		anchor2 = none
-		background-color = none
-		is-visible = false
-		saved-params = ""
+		69nchor1 =69one
+		69nchor2 =69one
+		b69ck69round-color =69one
+		is-69isible = f69lse
+		s6969ed-p69r69ms = ""
 
 
-window "mapwindow"
-	elem "mapwindow"
-		type = MAIN
+window "m69pwindow"
+	elem "m69pwindow"
+		type =6969IN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		background-color = none
-		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
-		is-pane = true
-	elem "map"
-		type = MAP
+		69nchor1 =69one
+		69nchor2 =69one
+		b69ck69round-color =69one
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
+		titleb69r = f69lse
+		st69tusb69r = f69lse
+		c69n-close = f69lse
+		c69n-minimize = f69lse
+		c69n-resize = f69lse
+		is-p69ne = true
+	elem "m69p"
+		type =6969P
 		pos = 0,0
 		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		font-family = "Arial Rounded MT Bold,Arial Black,Arial,sans-serif"
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		font-f69mily = "69ri69l Rounded69T Bold,69ri69l Bl69ck,69ri69l,s69ns-serif"
 		font-size = 7
-		is-default = true
-		saved-params = "icon-size"
-		on-show = ".winset\"mainwindow.mainvsplit.left=mapwindow\""
-		on-hide = ".winset\"mainwindow.mainvsplit.left=\""
+		is-def69ult = true
+		s6969ed-p69r69ms = "icon-size"
+		on-show = ".winset\"m69inwindow.m69in69split.left=m69pwindow\""
+		on-hide = ".winset\"m69inwindow.m69in69split.left=\""
 	elem "lobbybrowser"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		background-color = none
-		is-visible = false
-		is-disabled = true
-		saved-params = ""
-		auto-format = false
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		b69ck69round-color =69one
+		is-69isible = f69lse
+		is-dis69bled = true
+		s6969ed-p69r69ms = ""
+		69uto-form69t = f69lse
 
 window "outputwindow"
 	elem "outputwindow"
-		type = MAIN
+		type =6969IN
 		pos = 0,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		saved-params = "pos;size;is-minimized;is-maximized"
-		is-pane = true
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
+		is-p69ne = true
 	elem "browseroutput"
 		type = BROWSER
 		pos = 0,0
 		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		background-color = #ffffff
-		is-visible = false
-		is-disabled = true
-		saved-params = ""
-		auto-format = false
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		b69ck69round-color = #ffffff
+		is-69isible = f69lse
+		is-dis69bled = true
+		s6969ed-p69r69ms = ""
+		69uto-form69t = f69lse
 	elem "output"
 		type = OUTPUT
 		pos = 0,0
 		size = 640x480
-		anchor1 = 0,0
-		anchor2 = 100,100
-		is-default = true
-		saved-params = ""
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		is-def69ult = true
+		s6969ed-p69r69ms = ""
 
-window "rpane"
-	elem "rpane"
-		type = MAIN
+window "rp69ne"
+	elem "rp69ne"
+		type =6969IN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		saved-params = "pos;size;is-minimized;is-maximized"
-		is-pane = true
-	elem "rpanewindow"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
+		is-p69ne = true
+	elem "rp69newindow"
 		type = CHILD
 		pos = 0,0
 		size = 640x499
-		anchor1 = 0,0
-		anchor2 = 100,100
-		saved-params = "splitter"
-		right = "outputwindow"
-		is-vert = false
-	elem "githuburl"
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		s6969ed-p69r69ms = "splitter"
+		ri69ht = "outputwindow"
+		is-69ert = f69lse
+	elem "69ithuburl"
 		type = BUTTON
 		pos = 352,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Github"
-		command = "githuburl"
-		group = "rpanemode"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
+		text = "69ithub"
+		comm69nd = "69ithuburl"
+		69roup = "rp69nemode"
 	elem "discordurl"
 		type = BUTTON
 		pos = 216,0
 		size = 67x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
 		text = "Discord"
-		command = "discordurl"
-		group = "rpanemode"
-	elem "changelog"
+		comm69nd = "discordurl"
+		69roup = "rp69nemode"
+	elem "ch69n69elo69"
 		type = BUTTON
 		pos = 416,0
 		size = 67x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Changelog"
-		command = "Changelog"
-		group = "rpanemode"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
+		text = "Ch69n69elo69"
+		comm69nd = "Ch69n69elo69"
+		69roup = "rp69nemode"
 	elem "tickets"
 		type = BUTTON
 		pos = 487,0
 		size = 67x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
 		text = "Tickets"
-		command = "ticketsshortcut"
-		group = "rpanemode"
+		comm69nd = "ticketsshortcut"
+		69roup = "rp69nemode"
 	elem "rulesb"
 		type = BUTTON
 		pos = 288,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
 		text = "Rules"
-		command = "rules"
-		group = "rpanemode"
+		comm69nd = "rules"
+		69roup = "rp69nemode"
 	elem "wikiurl"
 		type = BUTTON
 		pos = 152,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
 		text = "Wiki"
-		command = "wikiurl"
-		group = "rpanemode"
+		comm69nd = "wikiurl"
+		69roup = "rp69nemode"
 	elem "textb"
 		type = BUTTON
 		pos = 0,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		is-69isible = f69lse
+		s6969ed-p69r69ms = "is-checked"
 		text = "Text"
-		command = ".winset \"rpanewindow.left=;\""
+		comm69nd = ".winset \"rp69newindow.left=;\""
 		is-checked = true
-		group = "rpanemode"
+		69roup = "rp69nemode"
 		button-type = pushbox
 	elem "browseb"
 		type = BUTTON
 		pos = 576,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		is-69isible = f69lse
+		s6969ed-p69r69ms = "is-checked"
 		text = "Browser"
-		command = ".winset \"rpanewindow.left=browserwindow\""
-		group = "rpanemode"
+		comm69nd = ".winset \"rp69newindow.left=browserwindow\""
+		69roup = "rp69nemode"
 		button-type = pushbox
 	elem "infob"
 		type = BUTTON
 		pos = 64,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = "is-checked"
+		69nchor1 =69one
+		69nchor2 =69one
+		is-69isible = f69lse
+		s6969ed-p69r69ms = "is-checked"
 		text = "Info"
-		command = ".winset \"rpanewindow.left=infowindow\""
-		group = "rpanemode"
+		comm69nd = ".winset \"rp69newindow.left=infowindow\""
+		69roup = "rp69nemode"
 		button-type = pushbox
-	elem "mediapanel"
+	elem "medi69p69nel"
 		type = BROWSER
 		pos = 392,25
 		size = 1x1
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = ""
+		69nchor1 =69one
+		69nchor2 =69one
+		is-69isible = f69lse
+		s6969ed-p69r69ms = ""
 
 window "browserwindow"
 	elem "browserwindow"
-		type = MAIN
+		type =6969IN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		saved-params = "pos;size;is-minimized;is-maximized"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
 		title = "Browser"
-		is-pane = true
+		is-p69ne = true
 	elem "browser"
 		type = BROWSER
 		pos = 0,0
 		size = 640x499
-		anchor1 = 0,0
-		anchor2 = 100,100
-		background-color = #ffffff
-		is-default = true
-		saved-params = ""
-		on-show = ".winset\"rpane.infob.is-visible=true?rpane.infob.pos=130,0;rpane.textb.is-visible=true;rpane.browseb.is-visible=true;rpane.browseb.is-checked=true;rpane.rpanewindow.pos=0,30;rpane.rpanewindow.size=0x0;rpane.rpanewindow.left=browserwindow\""
-		on-hide = ".winset\"rpane.infob.is-visible=true?rpane.infob.is-checked=true rpane.infob.pos=65,0 rpane.rpanewindow.left=infowindow:rpane.rpanewindow.left=textwindow rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0\""
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		b69ck69round-color = #ffffff
+		is-def69ult = true
+		s6969ed-p69r69ms = ""
+		on-show = ".winset\"rp69ne.infob.is-69isible=true?rp69ne.infob.pos=130,0;rp69ne.textb.is-69isible=true;rp69ne.browseb.is-69isible=true;rp69ne.browseb.is-checked=true;rp69ne.rp69newindow.pos=0,30;rp69ne.rp69newindow.size=0x0;rp69ne.rp69newindow.left=browserwindow\""
+		on-hide = ".winset\"rp69ne.infob.is-69isible=true?rp69ne.infob.is-checked=true rp69ne.infob.pos=65,0 rp69ne.rp69newindow.left=infowindow:rp69ne.rp69newindow.left=textwindow rp69ne.textb.is-69isible=true rp69ne.rp69newindow.pos=0,30 rp69ne.rp69newindow.size=0x0\""
 
 window "infowindow"
 	elem "infowindow"
-		type = MAIN
+		type =6969IN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		saved-params = "pos;size;is-minimized;is-maximized"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
 		title = "Info"
-		is-pane = true
+		is-p69ne = true
 	elem "info"
 		type = INFO
 		pos = 0,0
 		size = 638x477
-		anchor1 = 0,0
-		anchor2 = 100,100
-		is-default = true
-		saved-params = ""
-		highlight-color = #00aa00
-		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
-		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
+		69nchor1 = 0,0
+		69nchor2 = 100,100
+		is-def69ult = true
+		s6969ed-p69r69ms = ""
+		hi69hli69ht-color = #00696900
+		on-show = ".winset\"rp69ne.infob.is-69isible=true;rp69ne.browseb.is-69isible=true?rp69ne.infob.pos=130,0:rp69ne.infob.pos=65,0 rp69ne.textb.is-69isible=true rp69ne.infob.is-checked=true rp69ne.rp69newindow.pos=0,30 rp69ne.rp69newindow.size=0x0 rp69ne.rp69newindow.left=infowindow\""
+		on-hide = ".winset\"rp69ne.infob.is-69isible=f69lse;rp69ne.browseb.is-69isible=true?rp69ne.browseb.is-checked=true rp69ne.rp69newindow.left=browserwindow:rp69ne.textb.is-69isible=true rp69ne.rp69newindow.pos=0,30 rp69ne.rp69newindow.size=0x0 rp69ne.rp69newindow.left=\""
 
 window "text_editor"
 	elem "text_editor"
-		type = MAIN
+		type =6969IN
 		pos = 281,0
 		size = 360x488
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
+		69nchor1 =69one
+		69nchor2 =69one
+		is-69isible = f69lse
 		border = sunken
-		saved-params = "pos;size;is-minimized;is-maximized"
+		s6969ed-p69r69ms = "pos;size;is-minimized;is-m69ximized"
 		title = "Text Editor"
-		can-minimize = false
-		can-resize = false
+		c69n-minimize = f69lse
+		c69n-resize = f69lse
 	elem "exit"
 		type = BUTTON
 		pos = 248,456
 		size = 104x24
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Exit without saving"
-		command = ""
-	elem "save"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
+		text = "Exit without s6969in69"
+		comm69nd = ""
+	elem "s6969e"
 		type = BUTTON
 		pos = 128,456
 		size = 104x24
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Save"
-		command = ""
-	elem "saveexit"
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
+		text = "S6969e"
+		comm69nd = ""
+	elem "s6969eexit"
 		type = BUTTON
 		pos = 8,456
 		size = 104x24
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Save + Exit"
-		command = ""
+		69nchor1 =69one
+		69nchor2 =69one
+		s6969ed-p69r69ms = "is-checked"
+		text = "S6969e + Exit"
+		comm69nd = ""
 	elem "textedit"
 		type = INPUT
 		pos = 0,0
 		size = 360x448
-		anchor1 = none
-		anchor2 = none
+		69nchor1 =69one
+		69nchor2 =69one
 		border = line
-		saved-params = ""
+		s6969ed-p69r69ms = ""
 		multi-line = true
 

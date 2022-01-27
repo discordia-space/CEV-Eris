@@ -16,7 +16,7 @@ var/global/datum/repository/cameras/camera_repository = new()
 
 /datum/repository/cameras/proc/cameras_in_network(var/network)
 	setup_cache()
-	var/list/network_list = networks[network]
+	var/list/network_list = networks69network69
 	return network_list
 
 /datum/repository/cameras/proc/setup_cache()
@@ -28,7 +28,7 @@ var/global/datum/repository/cameras/camera_repository = new()
 	for(var/obj/machinery/camera/C in cameranet.cameras)
 		var/cam = C.nano_structure()
 		for(var/network in C.network)
-			if(!networks[network])
-				networks[network] = list()
-			var/list/netlist = networks[network]
-			netlist[++netlist.len] = cam
+			if(!networks69network69)
+				networks69network69 = list()
+			var/list/netlist = networks69network69
+			netlist69++netlist.len69 = cam

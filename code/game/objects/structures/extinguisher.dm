@@ -1,28 +1,28 @@
-/obj/structure/extinguisher_cabinet
-	name = "extinguisher cabinet"
-	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
+/obj/structure/extin69uisher_cabinet
+	name = "extin69uisher cabinet"
+	desc = "A small wall69ounted cabinet desi69ned to hold a fire extin69uisher."
 	icon = 'icons/obj/closet.dmi'
-	icon_state = "extinguisher_closed"
+	icon_state = "extin69uisher_closed"
 	anchored = TRUE
 	density = FALSE
-	var/obj/item/extinguisher/has_extinguisher
+	var/obj/item/extin69uisher/has_extin69uisher
 	var/opened = 0
 
-/obj/structure/extinguisher_cabinet/New()
+/obj/structure/extin69uisher_cabinet/New()
 	..()
-	has_extinguisher = new/obj/item/extinguisher(src)
+	has_extin69uisher = new/obj/item/extin69uisher(src)
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
+/obj/structure/extin69uisher_cabinet/attackby(obj/item/O,69ob/user)
 	if(isrobot(user))
 		return
-	if(istype(O, /obj/item/extinguisher))
-		if(!has_extinguisher && opened)
+	if(istype(O, /obj/item/extin69uisher))
+		if(!has_extin69uisher && opened)
 			user.remove_from_mob(O)
 			contents += O
-			has_extinguisher = O
-			to_chat(user, SPAN_NOTICE("You place [O] in [src]."))
-			playsound(src.loc, 'sound/machines/Custom_extin.ogg', 50, 0)
+			has_extin69uisher = O
+			to_chat(user, SPAN_NOTICE("You place 69O69 in 69src69."))
+			playsound(src.loc, 'sound/machines/Custom_extin.o6969', 50, 0)
 		else
 			opened = !opened
 	else
@@ -30,72 +30,72 @@
 	update_icon()
 
 
-/obj/structure/extinguisher_cabinet/attack_hand(mob/user)
+/obj/structure/extin69uisher_cabinet/attack_hand(mob/user)
 	if(isrobot(user))
 		return
 	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
+		var/mob/livin69/carbon/human/H = user
+		var/obj/item/or69an/external/temp = H.or69ans_by_name69BP_R_ARM69
 		if (user.hand)
-			temp = H.organs_by_name[BP_L_ARM]
+			temp = H.or69ans_by_name69BP_L_ARM69
 		if(temp && !temp.is_usable())
-			to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
+			to_chat(user, SPAN_NOTICE("You try to69ove your 69temp.name69, but cannot!"))
 			return
-	if(has_extinguisher)
-		user.put_in_hands(has_extinguisher)
-		to_chat(user, SPAN_NOTICE("You take [has_extinguisher] from [src]."))
-		playsound(src.loc, 'sound/machines/Custom_extout.ogg', 50, 0)
-		has_extinguisher = null
+	if(has_extin69uisher)
+		user.put_in_hands(has_extin69uisher)
+		to_chat(user, SPAN_NOTICE("You take 69has_extin69uisher69 from 69src69."))
+		playsound(src.loc, 'sound/machines/Custom_extout.o6969', 50, 0)
+		has_extin69uisher = null
 		opened = 1
 	else
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/proc/toggle_open(mob/user)
+/obj/structure/extin69uisher_cabinet/proc/to6969le_open(mob/user)
 	if(isrobot(user))
 		return
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, SPAN_WARNIN69("You can't do that ri69ht now!"))
 		return
-	if(!in_range(src, user))
+	if(!in_ran69e(src, user))
 		return
 	else
-		playsound(src.loc, 'sound/machines/Custom_extin.ogg', 50, 0)
+		playsound(src.loc, 'sound/machines/Custom_extin.o6969', 50, 0)
 		opened = !opened
 		update_icon()
 
-/obj/structure/extinguisher_cabinet/AltClick(mob/living/user)
-	src.toggle_open(user)
+/obj/structure/extin69uisher_cabinet/AltClick(mob/livin69/user)
+	src.to6969le_open(user)
 
-/obj/structure/extinguisher_cabinet/verb/toggle(mob/living/usr)
+/obj/structure/extin69uisher_cabinet/verb/to6969le(mob/livin69/usr)
 	set name = "Open/Close"
-	set category = "Object"
+	set cate69ory = "Object"
 	set src in oview(1)
-	src.toggle_open(usr)
+	src.to6969le_open(usr)
 
-/obj/structure/extinguisher_cabinet/attack_tk(mob/user)
-	if(has_extinguisher)
-		has_extinguisher.loc = loc
-		to_chat(user, SPAN_NOTICE("You telekinetically remove [has_extinguisher] from [src]."))
-		has_extinguisher = null
+/obj/structure/extin69uisher_cabinet/attack_tk(mob/user)
+	if(has_extin69uisher)
+		has_extin69uisher.loc = loc
+		to_chat(user, SPAN_NOTICE("You telekinetically remove 69has_extin69uisher69 from 69src69."))
+		has_extin69uisher = null
 		opened = 1
 	else
 		opened = !opened
 	update_icon()
 
-/obj/structure/extinguisher_cabinet/update_icon()
+/obj/structure/extin69uisher_cabinet/update_icon()
 	if(!opened)
-		if(istype(has_extinguisher, /obj/item/extinguisher/mini))
-			icon_state = "extinguisher_closed_mini"
-		else if(istype(has_extinguisher, /obj/item/extinguisher))
-			icon_state = "extinguisher_closed_full"
+		if(istype(has_extin69uisher, /obj/item/extin69uisher/mini))
+			icon_state = "extin69uisher_closed_mini"
+		else if(istype(has_extin69uisher, /obj/item/extin69uisher))
+			icon_state = "extin69uisher_closed_full"
 		else
-			icon_state = "extinguisher_closed"
+			icon_state = "extin69uisher_closed"
 		return
-	if(has_extinguisher)
-		if(istype(has_extinguisher, /obj/item/extinguisher/mini))
-			icon_state = "extinguisher_mini"
+	if(has_extin69uisher)
+		if(istype(has_extin69uisher, /obj/item/extin69uisher/mini))
+			icon_state = "extin69uisher_mini"
 		else
-			icon_state = "extinguisher_full"
+			icon_state = "extin69uisher_full"
 	else
-		icon_state = "extinguisher_empty"
+		icon_state = "extin69uisher_empty"

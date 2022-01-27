@@ -1,6 +1,6 @@
 /*
 	This event spawns a ton of spaceborne fighter drones which crowd around the hull and fire lasers in
-	through windows. They can be quite lethal if you stand around infront of them, but closing firelocks works
+	through windows. They can be 69uite lethal if you stand around infront of them, but closing firelocks works
 */
 
 /datum/storyevent/rogue_drone
@@ -24,8 +24,8 @@
 
 /datum/event/rogue_drone/setup()
 	//We'll pick space tiles which have windows nearby
-	//This means that drones will only be spawned in places where someone could see them
-		//And thusly, places where they might fire into the ship
+	//This69eans that drones will only be spawned in places where someone could see them
+		//And thusly, places where they69ight fire into the ship
 	var/area/spess = locate(/area/space) in world
 	for (var/turf/T in spess)
 		if (!(T.z in GLOB.maps_data.station_levels))
@@ -36,14 +36,14 @@
 
 		//The number of windows near each tile is recorded
 		var/numwin
-		for (var/obj/structure/window/W in view(4, T))
+		for (var/obj/structure/window/W in69iew(4, T))
 			numwin++
 
-		//And the square of it is entered into the list as a weight
+		//And the s69uare of it is entered into the list as a weight
 		if (numwin)
-			viable_turfs[T] = numwin*numwin
+			viable_turfs69T69 = numwin*numwin
 
-	//We will then use pickweight and this will be more likely to choose tiles with many windows, for maximum exposure
+	//We will then use pickweight and this will be69ore likely to choose tiles with69any windows, for69aximum exposure
 
 
 	announceWhen = rand(40, 60)
@@ -63,7 +63,7 @@
 	//Pick a list of spawn locatioons
 	var/list/spawn_locations = pickweight_mult(viable_turfs, drones_to_spawn)
 
-	log_and_message_admins("Spawning [drones_to_spawn]")
+	log_and_message_admins("Spawning 69drones_to_spawn69")
 	for(var/turf/T in spawn_locations)
 		var/mob/living/simple_animal/hostile/retaliate/malf_drone/D = new /mob/living/simple_animal/hostile/retaliate/malf_drone(T)
 		drones_list.Add(D)
@@ -72,7 +72,7 @@
 		if (prob(95))
 			D.hostile_drone = TRUE //There's a small chance that each one wont attack
 		if (prob(5))
-			log_and_message_admins("Drone spawned at [jumplink(T)],")
+			log_and_message_admins("Drone spawned at 69jumplink(T)69,")
 
 /datum/event/rogue_drone/end()
 	var/num_recovered = 0
@@ -80,13 +80,13 @@
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, D.loc)
 		sparks.start()
-		D.z = GLOB.maps_data.admin_levels[1]
+		D.z = GLOB.maps_data.admin_levels69169
 		D.has_loot = 0
 
-		qdel(D)
+		69del(D)
 		num_recovered++
 
 	if(num_recovered > drones_list.len * 0.75)
-		command_announcement.Announce("IHS Atomos drone control reports the malfunctioning wing has been recovered safely.", "Rogue drone alert")
+		command_announcement.Announce("IHS Atomos drone control reports the69alfunctioning wing has been recovered safely.", "Rogue drone alert")
 	else
 		command_announcement.Announce("IHS Atomos drone control registers disappointment at the loss of the drones, but the survivors have been recovered.", "Rogue drone alert")

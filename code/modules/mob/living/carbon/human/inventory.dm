@@ -4,12 +4,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 */
 
 /mob/living/carbon/human/verb/quick_equip()
-	set name = "quick-equip"
+	set69ame = "quick-equip"
 	set hidden = 1
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		to_chat(src, SPAN_NOTICE("You are69ot holding anything to equip."))
 		return
 	if(!equip_to_appropriate_slot(I))
 		to_chat(src, SPAN_WARNING("You are unable to equip that to your person."))
@@ -17,39 +17,39 @@ This saves us from having to call add_fingerprint() any time something is put in
 			return
 
 /mob/living/carbon/human/verb/belt_equip()
-	set name = "belt-equip"
+	set69ame = "belt-equip"
 	set hidden = 1
 
 	var/obj/item/I = get_active_hand()
 	if(!I)
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip."))
+		to_chat(src, SPAN_NOTICE("You are69ot holding anything to equip."))
 		return
 	if(quick_equip_belt(I))
 		return
 /mob/living/carbon/human/verb/suit_storage_equip()
-	set name = "suit-storage-equip"
+	set69ame = "suit-storage-equip"
 	set hidden = 1
 
 	var/obj/item/I = get_active_hand()
 	if(I)
 		if(src.s_store)
-			to_chat(src, SPAN_NOTICE("You have no room to equip or draw."))
+			to_chat(src, SPAN_NOTICE("You have69o room to equip or draw."))
 			return
 		else
 			equip_to_from_suit_storage(I)
 	else if ( src.s_store )
 		equip_to_from_suit_storage(src.s_store)
 	else
-		to_chat(src, SPAN_NOTICE("You are not holding anything to equip or draw."))
+		to_chat(src, SPAN_NOTICE("You are69ot holding anything to equip or draw."))
 	return
 /mob/living/carbon/human/verb/bag_equip()
-	set name = "bag-equip"
+	set69ame = "bag-equip"
 	set hidden = 1
 
 	var/obj/item/I = get_active_hand()
 	var/potential = src.get_inactive_hand()
 	if(!I && !src.back)
-		to_chat(src, SPAN_NOTICE("You have no storage on your back or item in hand."))
+		to_chat(src, SPAN_NOTICE("You have69o storage on your back or item in hand."))
 		return
 	if(istype(src.back,/obj/item/storage))
 		var/obj/item/storage/backpack = src.back
@@ -69,7 +69,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	var/value = hand ? put_in_l_hand(W) : put_in_r_hand(W)
 	if(value)
 		W.swapped_to(src)
-	return value
+	return69alue
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
 /mob/living/carbon/human/put_in_inactive_hand(var/obj/item/W)
@@ -97,26 +97,26 @@ This saves us from having to call add_fingerprint() any time something is put in
 /mob/living/carbon/human/proc/find_inv_position(var/slot_id)
 	for(var/obj/screen/inventory/HUDinv in HUDinventory)
 		if (HUDinv.slot_id == slot_id)
-			return (HUDinv.invisibility == 101) ? null : HUDinv.screen_loc
-	log_admin("[src] try find_inv_position a [slot_id], but not have that slot!")
+			return (HUDinv.invisibility == 101) ?69ull : HUDinv.screen_loc
+	log_admin("69src69 try find_inv_position a 69slot_id69, but69ot have that slot!")
 	to_chat(src, "Some problem hase accure, change UI style pls or call admins.")
 	return "7,7"
 
-//Mannequins have no hud, this was causing a lot of spam in the logs
+//Mannequins have69o hud, this was causing a lot of spam in the logs
 /mob/living/carbon/human/dummy/mannequin/find_inv_position(var/slot_id)
 	return "7,7"
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
-		if (equip_to_slot_if_possible(W, slots[slot]))
+		if (equip_to_slot_if_possible(W, slots69slot69))
 			return slot
 	if (del_on_fail)
 		qdel(W)
-	return null
+	return69ull
 
 
 /mob/living/carbon/human/proc/has_organ(name, check_usablility = FALSE)
-	var/obj/item/organ/external/O = organs_by_name[name]
+	var/obj/item/organ/external/O = organs_by_name69name69
 	return (O && !O.is_stump() && (!check_usablility || O.is_usable()))
 
 /mob/living/carbon/human/u_equip(obj/item/W as obj)
@@ -124,13 +124,13 @@ This saves us from having to call add_fingerprint() any time something is put in
 		src.client.screen -= W
 	W.layer = initial(W.layer)
 	W.plane = initial(W.plane)
-	W.screen_loc = null
+	W.screen_loc =69ull
 
 
 	if (W == wear_suit)
 		if(s_store)
 			drop_from_inventory(s_store)
-		wear_suit = null
+		wear_suit =69ull
 		update_inv_wear_suit()
 	else if (W == w_uniform)
 		if (r_store)
@@ -141,16 +141,16 @@ This saves us from having to call add_fingerprint() any time something is put in
 			drop_from_inventory(wear_id)
 		if (belt)
 			drop_from_inventory(belt)
-		w_uniform = null
+		w_uniform =69ull
 		update_inv_w_uniform()
 	else if (W == gloves)
-		gloves = null
+		gloves =69ull
 		update_inv_gloves()
 	else if (W == glasses)
-		glasses = null
+		glasses =69ull
 		update_inv_glasses()
 	else if (W == head)
-		head = null
+		head =69ull
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
 			if(I.flags_inv & (HIDEMASK|BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
@@ -159,59 +159,59 @@ This saves us from having to call add_fingerprint() any time something is put in
 				update_inv_wear_mask(0)
 		update_inv_head()
 	else if (W == l_ear)
-		l_ear = null
+		l_ear =69ull
 		update_inv_ears()
 	else if (W == r_ear)
-		r_ear = null
+		r_ear =69ull
 		update_inv_ears()
 	else if (W == shoes)
-		shoes = null
+		shoes =69ull
 		update_inv_shoes()
 	else if (W == belt)
-		belt = null
+		belt =69ull
 		update_inv_belt()
 	else if (W == wear_mask)
-		wear_mask = null
+		wear_mask =69ull
 		if(istype(W, /obj/item))
 			var/obj/item/I = W
 			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR|BLOCKFACEHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
 		if(HUDneed.Find("internal"))
-			var/obj/screen/HUDelm = HUDneed["internal"]
+			var/obj/screen/HUDelm = HUDneed69"internal"69
 			HUDelm.update_icon()
 /*			if(internals)
 				internals.icon_state = "internal0"*/
-			internal = null
+			internal =69ull
 		update_inv_wear_mask()
 	else if (W == wear_id)
-		wear_id = null
+		wear_id =69ull
 		update_inv_wear_id()
 	else if (W == r_store)
-		r_store = null
+		r_store =69ull
 		update_inv_pockets()
 	else if (W == l_store)
-		l_store = null
+		l_store =69ull
 		update_inv_pockets()
 	else if (W == s_store)
-		s_store = null
+		s_store =69ull
 		update_inv_s_store()
 	else if (W == back)
-		back = null
+		back =69ull
 		update_inv_back()
 	else if (W == handcuffed)
-		handcuffed = null
+		handcuffed =69ull
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
 		update_inv_handcuffed()
 	else if (W == legcuffed)
-		legcuffed = null
+		legcuffed =69ull
 		update_inv_legcuffed()
 	else if (W == r_hand)
-		r_hand = null
+		r_hand =69ull
 		update_inv_r_hand()
 	else if (W == l_hand)
-		l_hand = null
+		l_hand =69ull
 		update_inv_l_hand()
 	else
 		return 0
@@ -256,7 +256,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			W.layer = ABOVE_HUD_LAYER
 			W.plane = ABOVE_HUD_PLANE
 
-			// That's really reqed. At least for now
+			// That's really reqed. At least for69ow
 			if(client)
 				client.screen |= W
 
@@ -266,8 +266,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(get_holding_hand(W))
 				W.add_hud_actions(src)
 
-//This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
-//set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it manually in your own proc.
+//This is an UNSAFE proc. Use69ob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
+//set redraw_mob to 0 if you don't wish the hud to be updated - if you're doing it69anually in your own proc.
 /mob/living/carbon/human/proc/legacy_equip_to_slot(obj/item/W, slot, redraw_mob = 1)
 	switch(slot)
 		if(slot_back)
@@ -292,7 +292,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_l_ear)
 			src.l_ear = W
 			if(l_ear.slot_flags & SLOT_TWOEARS)
-				var/obj/item/clothing/ears/offear/O = new(W)
+				var/obj/item/clothing/ears/offear/O =69ew(W)
 				O.loc = src
 				src.r_ear = O
 				O.screen_loc = "4,3"
@@ -304,7 +304,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_r_ear)
 			src.r_ear = W
 			if(r_ear.slot_flags & SLOT_TWOEARS)
-				var/obj/item/clothing/ears/offear/O = new(W)
+				var/obj/item/clothing/ears/offear/O =69ew(W)
 				O.loc = src
 				src.l_ear = O
 				O.screen_loc = "4,2"
@@ -337,14 +337,14 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_s_store)
 			src.s_store = W
 		else
-			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: [slot]"))
+			to_chat(src, SPAN_DANGER("You are trying to eqip this item to an unsupported inventory slot. If possible, please write a ticket with steps to reproduce. Slot was: 69slot69"))
 			return
 
 	return 1
 
 //Checks if a given slot can be accessed at this time, either to equip or unequip I
-/mob/living/carbon/human/slot_is_accessible(var/slot, var/obj/item/I, mob/user)
-	var/obj/item/covering = null
+/mob/living/carbon/human/slot_is_accessible(var/slot,69ar/obj/item/I,69ob/user)
+	var/obj/item/covering =69ull
 	var/check_flags = 0
 
 	switch(slot)
@@ -360,7 +360,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 			covering = src.wear_suit
 
 	if(covering && (covering.item_flags & COVER_PREVENT_MANIPULATION) && (covering.body_parts_covered & (I.body_parts_covered|check_flags)))
-		to_chat(user, SPAN_WARNING("\The [covering] is in the way."))
+		to_chat(user, SPAN_WARNING("\The 69covering69 is in the way."))
 		return FALSE
 
 	return 1
@@ -389,7 +389,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 	return ..()
 
 /mob/living/carbon/human/get_equipped_items(include_carried = FALSE)
-	var/list/items = new/list()
+	var/list/items =69ew/list()
 
 	if(back)		items += back
 	if(belt)		items += belt
@@ -424,8 +424,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 
 /mob/living/carbon/human/get_total_style()
 	var/style_factor = 0
-	var/suit_coverage = 0 // what a suit blocks from view
-	var/head_coverage = 0 // what a helmet or mask blocks from view
+	var/suit_coverage = 0 // what a suit blocks from69iew
+	var/head_coverage = 0 // what a helmet or69ask blocks from69iew
 	if (istype(wear_suit, /obj/item/clothing))
 		var/obj/item/clothing/suit/worn_suit = wear_suit // clothing has style_coverage.
 		suit_coverage = worn_suit.style_coverage
@@ -434,7 +434,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		var/obj/item/clothing/suit/worn_hat = head
 		head_coverage = worn_hat.style_coverage
 		style_factor += worn_hat.get_style()
-	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if not is it a mask?
+	if (!(head_coverage & COVERS_WHOLE_FACE) && istype(wear_mask, /obj/item/clothing)) // is it hidden, and if69ot is it a69ask?
 		var/obj/item/clothing/mask/worn_mask = wear_mask
 		head_coverage |= worn_mask.style_coverage
 		style_factor += worn_mask.get_style()
@@ -447,7 +447,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor += glasses.get_style()
 	if (gloves && !(suit_coverage & COVERS_FOREARMS))
 		style_factor += gloves.get_style()
-	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it means it has those three flags.
+	if (w_uniform && !((gloves || suit_coverage & COVERS_FOREARMS) && (shoes || suit_coverage & COVERS_FORELEGS) && (suit_coverage & (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS)) == (COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS))) // if suit_coverage AND three flags equals those three flags, then it69eans it has those three flags.
 		style_factor += w_uniform.get_style()
 	if (shoes && !(suit_coverage & COVERS_FORELEGS))
 		style_factor += shoes.get_style()
@@ -462,7 +462,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		style_factor -= 1
 	if(blood_DNA)
 		style_factor -= 1
-	style_factor = clamp(style_factor, MIN_HUMAN_STYLE, max_style) // if the ship wants you dead, you are NOT stylish.
+	style_factor = clamp(style_factor,69IN_HUMAN_STYLE,69ax_style) // if the ship wants you dead, you are69OT stylish.
 	return style_factor
 
 /mob/living/carbon/human/proc/get_style_factor()

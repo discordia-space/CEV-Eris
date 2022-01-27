@@ -7,13 +7,13 @@
 #define WASHSTATE_BLOODCLOSEDDOOR 7
 #define WASHSTATE_BLOODRUNNING 8
 
-//Halved as the Machinery SS takes 2 seconds to fire
+//Halved as the69achinery SS takes 2 seconds to fire
 #define WASH_BASETIME 30
 #define WASH_ADDTIME 2.5
 
 /obj/machinery/washing_machine
-	name = "Washing Machine"
-	desc = "Always able to clean your muddy clothes."
+	name = "Washing69achine"
+	desc = "Always able to clean your69uddy clothes."
 	icon = 'icons/obj/machines/washing_machine.dmi'
 	icon_state = "wm_10"
 	density = TRUE
@@ -48,12 +48,12 @@
 	/obj/item/rig)
 
 /obj/machinery/washing_machine/Destroy()
-	qdel(crayon)
+	69del(crayon)
 	crayon = null
 	. = ..()
 
 
-//A washing machine cleans away most of the bad effects of old clothes
+//A washing69achine cleans away69ost of the bad effects of old clothes
 //Armor penalties and name/desc changes are left
 /obj/machinery/washing_machine/proc/wash(atom/A)
 	A.clean_blood()
@@ -76,13 +76,13 @@
 						var/obj/item/clothing/C = I
 						var/obj/item/pen/crayon/CR = crayon
 						C.color = CR.colour
-						C.name = "[CR.colourName] dyed [C.initial_name]"
+						C.name = "69CR.colourName69 dyed 69C.initial_name69"
 
 			//Tanning!
 			for(var/obj/item/stack/material/hairlesshide/HH in contents)
 				var/obj/item/stack/material/wetleather/WL = new(src)
 				WL.amount = HH.amount
-				qdel(HH)
+				69del(HH)
 
 			if( locate(/mob,contents) )
 				state = WASHSTATE_BLOODCLOSEDDOOR
@@ -95,7 +95,7 @@
 /obj/machinery/washing_machine/examine(mob/user)
 	..()
 	if(tick > 0 && (state in list(WASHSTATE_BLOODRUNNING, WASHSTATE_RUNNING)))
-		to_chat(user, SPAN_NOTICE("It has [tick*(SSmachines.wait/10)] seconds remaining on this cycle."))
+		to_chat(user, SPAN_NOTICE("It has 69tick*(SSmachines.wait/10)69 seconds remaining on this cycle."))
 
 
 /obj/machinery/washing_machine/verb/start()
@@ -107,7 +107,7 @@
 		return
 
 	if( state != WASHSTATE_FULLCLOSEDDOOR )
-		to_chat(usr, "The washing machine cannot run in this state.")
+		to_chat(usr, "The washing69achine cannot run in this state.")
 		return
 
 	if( locate(/mob,contents) )
@@ -132,19 +132,19 @@
 
 
 /obj/machinery/washing_machine/update_icon()
-	icon_state = "wm_[state][panel]"
+	icon_state = "wm_69state6969panel69"
 
-/obj/machinery/washing_machine/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/washing_machine/affect_grab(var/mob/user,69ar/mob/target)
 	if((state == WASHSTATE_EMPTYOPENDOOR) && hacked)
 		if(ishuman(user) && iscorgi(target))
 			target.forceMove(src)
 			state = WASHSTATE_FULLOPENDOOR
 			return TRUE
 
-/obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/washing_machine/attackby(obj/item/W as obj,69ob/user as69ob)
 	/*if(istype(W,/obj/item/tool/screwdriver))
 		panel = !panel
-		to_chat(user, "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>")*/
+		to_chat(user, "<span class='notice'>You 69panel ? "open" : "close"69 the 69src69's69aintenance panel</span>")*/
 	if(istype(W,/obj/item/pen/crayon))
 		if( state in list(WASHSTATE_EMPTYOPENDOOR,WASHSTATE_FULLOPENDOOR,WASHSTATE_BLOODOPENDOOR) )
 			if(!crayon)
@@ -158,19 +158,19 @@
 	else if(is_type_in_list(W, allowed_types))
 		if(contents.len < 10)
 			if( state in list(WASHSTATE_EMPTYOPENDOOR, WASHSTATE_FULLOPENDOOR) )
-				user.unEquip(W, src)
+				user.unE69uip(W, src)
 				state = WASHSTATE_FULLOPENDOOR
 			else
 				to_chat(user, SPAN_NOTICE("You can't put the item in right now."))
 		else
-			to_chat(user, SPAN_NOTICE("The washing machine is full."))
+			to_chat(user, SPAN_NOTICE("The washing69achine is full."))
 		update_icon()
 		return
 	update_icon()
 	..()
 
 
-/obj/machinery/washing_machine/attack_hand(mob/user as mob)
+/obj/machinery/washing_machine/attack_hand(mob/user as69ob)
 	switch(state)
 		if(WASHSTATE_EMPTYOPENDOOR)
 			state = WASHSTATE_EMPTYCLOSEDDOOR
@@ -186,7 +186,7 @@
 			crayon = null
 			state = WASHSTATE_EMPTYOPENDOOR
 		if(WASHSTATE_RUNNING)
-			to_chat(user, SPAN_WARNING("The [src] is busy."))
+			to_chat(user, SPAN_WARNING("The 69src69 is busy."))
 		if(WASHSTATE_BLOODOPENDOOR)
 			state = WASHSTATE_BLOODCLOSEDDOOR
 		if(WASHSTATE_BLOODCLOSEDDOOR)

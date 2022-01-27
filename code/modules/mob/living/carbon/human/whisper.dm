@@ -7,10 +7,10 @@
 		return
 
 	message = sanitize(message)
-	log_whisper("[src.name]/[src.key] : [message]")
+	log_whisper("69src.name69/69src.key69 : 69message69")
 
 	if (src.client)
-		if (src.client.prefs.muted & MUTE_IC)
+		if (src.client.prefs.muted &69UTE_IC)
 			to_chat(src, "\red You cannot whisper (muted).")
 			return
 
@@ -24,7 +24,7 @@
 		return
 
 	if(name != rank_prefix_name(GetVoice()))
-		alt_name = "(as [rank_prefix_name(get_id_name())])"
+		alt_name = "(as 69rank_prefix_name(get_id_name())69)"
 
 	//parse the language code and consume it
 	var/datum/language/speaking = parse_language(message)
@@ -34,11 +34,11 @@
 	whisper_say(message, speaking, alt_name)
 
 
-//This is used by both the whisper verb and human/say() to handle whispering
-/mob/living/carbon/human/proc/whisper_say(var/message, var/datum/language/speaking = null, var/alt_name="", var/verb="whispers")
+//This is used by both the whisper69erb and human/say() to handle whispering
+/mob/living/carbon/human/proc/whisper_say(var/message,69ar/datum/language/speaking =69ull,69ar/alt_name="",69ar/verb="whispers")
 
 	if (istype(src.wear_mask, /obj/item/clothing/mask/muzzle) || istype(src.wear_mask, /obj/item/grenade))
-		to_chat(src, SPAN_DANGER("You're muzzled and cannot speak!"))
+		to_chat(src, SPAN_DANGER("You're69uzzled and cannot speak!"))
 		return
 
 	var/message_range = 1
@@ -46,36 +46,36 @@
 	var/watching_range = 5
 	var/italics = 1
 
-	var/not_heard //the message displayed to people who could not hear the whispering
+	var/not_heard //the69essage displayed to people who could69ot hear the whispering
 	if (speaking)
 		if (speaking.whisper_verb)
 			verb = safepick(speaking.whisper_verb)
-			not_heard = "[verb] something"
+			not_heard = "69verb69 something"
 		if(!verb)
 			var/adverb = pick("quietly", "softly")
-			verb = "[safepick(speaking.speech_verb)] [adverb]"
-			not_heard = "[verb] something [adverb]"
+			verb = "69safepick(speaking.speech_verb)69 69adverb69"
+			not_heard = "69verb69 something 69adverb69"
 	else
-		not_heard = "[verb] something" //TODO get rid of the null language and just prevent speech if language is null
+		not_heard = "69verb69 something" //TODO get rid of the69ull language and just prevent speech if language is69ull
 
 	message = trim(message)
 
 	if(speech_problem_flag)
 		var/list/handle_r = handle_speech_problems(message)
-		message = handle_r[1]
-		verb = handle_r[2]
+		message = handle_r69169
+		verb = handle_r69269
 		if(verb == "yells loudly")
 			verb = "slurs emphatically"
 		else
 			var/adverb = pick("quietly", "softly")
-			verb = "[verb] [adverb]"
+			verb = "69verb69 69adverb69"
 
-		speech_problem_flag = handle_r[3]
+		speech_problem_flag = handle_r69369
 
-	if(!message || message=="")
+	if(!message ||69essage=="")
 		return
 
-	//looks like this only appears in whisper. Should it be elsewhere as well? Maybe handle_speech_problems?
+	//looks like this only appears in whisper. Should it be elsewhere as well?69aybe handle_speech_problems?
 	var/voice_sub
 	if(istype(back,/obj/item/rig))
 		var/obj/item/rig/rig = back
@@ -98,8 +98,8 @@
 				pick_list += i
 			for(var/i=1, i <= abs(temp_message.len/3), i++)
 				var/H = pick(pick_list)
-				if(findtext(temp_message[H], "*") || findtext(temp_message[H], ";") || findtext(temp_message[H], ":")) continue
-				temp_message[H] = ninjaspeak(temp_message[H])
+				if(findtext(temp_message69H69, "*") || findtext(temp_message69H69, ";") || findtext(temp_message69H69, ":")) continue
+				temp_message69H69 =69injaspeak(temp_message69H69)
 				pick_list -= H
 			message = jointext(temp_message, " ")
 			message = replacetext(message, "o", "�")
@@ -116,8 +116,8 @@
 	for (var/mob/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
-		if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-			listening |= M
+		if(M.stat == DEAD &&69.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+			listening |=69
 
 	//Pass whispers on to anything inside the immediate listeners.
 	for(var/mob/L in listening)
@@ -125,11 +125,11 @@
 			if(isliving(C))
 				listening += C
 
-	//pass on the message to objects that can hear us.
-	for (var/obj/O in view(message_range, src))
+	//pass on the69essage to objects that can hear us.
+	for (var/obj/O in69iew(message_range, src))
 		spawn (0)
 			if (O)
-				O.hear_talk(src, message, verb, speaking, 1)
+				O.hear_talk(src,69essage,69erb, speaking, 1)
 
 	var/list/eavesdropping = hearers(eavesdropping_range, src)
 	eavesdropping -= src
@@ -140,27 +140,27 @@
 	watching  -= listening
 	watching  -= eavesdropping
 
-	//now mobs
+	//now69obs
 	var/speech_bubble_test = say_test(message)
-	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h[speech_bubble_test]")
+	var/image/speech_bubble = image('icons/mob/talk.dmi',src,"h69speech_bubble_test69")
 	QDEL_IN(speech_bubble, 30)
 
 	var/list/speech_bubble_recipients = list()
 	for(var/mob/M in listening)
 		if(M.client)
-			speech_bubble_recipients |= M.client
-		M.hear_say(message, verb, speaking, alt_name, italics, src)
+			speech_bubble_recipients |=69.client
+		M.hear_say(message,69erb, speaking, alt_name, italics, src)
 
 	if (eavesdropping.len)
-		var/new_message = stars(message)	//hopefully passing the message twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear normally you would be able to catch even less.
+		var/new_message = stars(message)	//hopefully passing the69essage twice through stars() won't hurt... I guess if you already don't understand the language, when they speak it too quietly to hear69ormally you would be able to catch even less.
 		for(var/mob/M in eavesdropping)
 			if(M.client)
-				speech_bubble_recipients |= M.client
-			M.hear_say(new_message, verb, speaking, alt_name, italics, src)
+				speech_bubble_recipients |=69.client
+			M.hear_say(new_message,69erb, speaking, alt_name, italics, src)
 
 	animate_speechbubble(speech_bubble, speech_bubble_recipients, 30)
 
 	if (watching.len)
-		var/rendered = "<span class='game say'><span class='name'>[src.name]</span> [not_heard].</span>"
+		var/rendered = "<span class='game say'><span class='name'>69src.name69</span> 69not_heard69.</span>"
 		for (var/mob/M in watching)
 			M.show_message(rendered, 2)

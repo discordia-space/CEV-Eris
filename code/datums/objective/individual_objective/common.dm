@@ -1,6 +1,6 @@
 /datum/individual_objective/upgrade
 	name = "Upgrade"
-	desc =  "Its time to improve your meat with shiny chrome. Gain new bionics, implant, or any mutation."
+	desc =  "Its time to improve your69eat with shiny chrome. Gain new bionics, implant, or any69utation."
 	allow_cruciform = FALSE
 
 /datum/individual_objective/upgrade/can_assign(mob/living/carbon/human/H)
@@ -30,7 +30,7 @@
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
 /datum/individual_objective/inspiration/task_completed(mob/living/L, datum/breakdown/breakdown)
-	if(istype(breakdown, breakdown_type) && L != mind_holder)
+	if(istype(breakdown, breakdown_type) && L !=69ind_holder)
 		completed()
 
 /datum/individual_objective/inspiration/completed()
@@ -52,9 +52,9 @@
 
 /datum/individual_objective/derange/assign()
 	..()
-	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder
 	target = pick(valid_targets)
-	desc = "[target] really pisses you off, ensure that they will get a mental breakdown."
+	desc = "69target69 really pisses you off, ensure that they will get a69ental breakdown."
 	RegisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN, .proc/task_completed)
 
 /datum/individual_objective/derange/task_completed(mob/living/L, datum/breakdown/breakdown)
@@ -66,30 +66,30 @@
 	UnregisterSignal(mind_holder, COMSIG_HUMAN_BREAKDOWN)
 	..()
 
-#define MOB_ADD_DRUG 1
+#define69OB_ADD_DRUG 1
 #define ON_MOB_DRUG 2
-#define MOB_DELETE_DRUG 3
+#define69OB_DELETE_DRUG 3
 
 /datum/individual_objective/addict
 	name = "Oil the Cogs"
 	based_time = TRUE
-	units_requested = 5 MINUTES
+	units_requested = 569INUTES
 	var/list/drugs = list()
 	var/timer
 
 /datum/individual_objective/addict/assign()
 	..()
 	timer = world.time
-	desc = "Stay intoxicated by alcohol or recreational drugs for [unit2time(units_requested)] minutes."
+	desc = "Stay intoxicated by alcohol or recreational drugs for 69unit2time(units_requested)6969inutes."
 	RegisterSignal(mind_holder, COMSIG_CARBON_HAPPY, .proc/task_completed)
 
 /datum/individual_objective/addict/task_completed(datum/reagent/happy, signal)
 	if(!drugs.len)
 		timer = world.time
 	if(!(happy.id in drugs))
-		if(signal != MOB_DELETE_DRUG)
+		if(signal !=69OB_DELETE_DRUG)
 			drugs += happy.id
-	else if(signal == MOB_DELETE_DRUG)
+	else if(signal ==69OB_DELETE_DRUG)
 		drugs -= happy.id
 	else if(signal == ON_MOB_DRUG)
 		units_completed += abs(world.time - timer)
@@ -104,7 +104,7 @@
 
 /datum/individual_objective/gift
 	name = "Gift"
-	desc = "You feel a need to leave a mark in other people lives. Ensure that at \
+	desc = "You feel a need to leave a69ark in other people lives. Ensure that at \
 			least someone will level up with oddity that you touched."
 
 /datum/individual_objective/gift/assign()
@@ -113,7 +113,7 @@
 
 /datum/individual_objective/gift/task_completed(mob/living/carbon/human/H, obj/item/O)
 	if(mind_holder == H) return
-	var/full_print = mind_holder.get_full_print()
+	var/full_print =69ind_holder.get_full_print()
 	if(full_print in O.fingerprints)
 		completed()
 
@@ -124,7 +124,7 @@
 
 /datum/individual_objective/protector
 	name = "Protector"
-	units_requested = 15 MINUTES
+	units_requested = 1569INUTES
 	based_time = TRUE
 	var/mob/living/carbon/human/target
 	var/timer
@@ -138,10 +138,10 @@
 
 /datum/individual_objective/protector/assign()
 	..()
-	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder
 	target = pick(valid_targets)
-	desc = "Ensure that [target] will not get their health slowered to [health_threshold] and below \
-			for [unit2time(units_requested)] minutes. Timer resets if health reaches the threshold."
+	desc = "Ensure that 69target69 will not get their health slowered to 69health_threshold69 and below \
+			for 69unit2time(units_requested)6969inutes. Timer resets if health reaches the threshold."
 	timer = world.time
 	RegisterSignal(target, COMSIG_HUMAN_HEALTH, .proc/task_completed)
 
@@ -164,7 +164,7 @@
 
 /datum/individual_objective/helper
 	name = "Helping Hand"
-	units_requested = 15 MINUTES
+	units_requested = 1569INUTES
 	based_time = TRUE
 	var/mob/living/carbon/human/target
 	var/timer
@@ -178,10 +178,10 @@
 
 /datum/individual_objective/helper/assign()
 	..()
-	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder
 	target = pick(valid_targets)
-	desc = "Ensure that [target] will not get their sanity lowered to [sanity_threshold] and below \
-			for [unit2time(units_requested)] minutes. Timer resets if sanity reaches the threshold."
+	desc = "Ensure that 69target69 will not get their sanity lowered to 69sanity_threshold69 and below \
+			for 69unit2time(units_requested)6969inutes. Timer resets if sanity reaches the threshold."
 	timer = world.time
 	RegisterSignal(target, COMSIG_HUMAN_SANITY, .proc/task_completed)
 
@@ -206,7 +206,7 @@
 	name = "Obsessive Observation"
 	var/mob/living/carbon/human/target
 	var/timer
-	units_requested = 5 MINUTES
+	units_requested = 569INUTES
 	based_time = TRUE
 
 /datum/individual_objective/obsession/can_assign(mob/living/L)
@@ -217,17 +217,17 @@
 
 /datum/individual_objective/obsession/assign()
 	..()
-	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) - mind_holder
+	var/list/valid_targets = (GLOB.player_list & GLOB.living_mob_list & GLOB.human_mob_list) -69ind_holder
 	target = pick(valid_targets)
-	desc = "There is something interesting in [target]. For [unit2time(units_requested)] minutes, you need \
-			to keep eye contact with them, and keep them in your view. Cameras will not work."
+	desc = "There is something interesting in 69target69. For 69unit2time(units_requested)6969inutes, you need \
+			to keep eye contact with them, and keep them in your69iew. Cameras will not work."
 	timer = world.time
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
 /datum/individual_objective/obsession/task_completed()
 	if(mind_holder.stat == DEAD)
 		return
-	if(target in view(mind_holder))
+	if(target in69iew(mind_holder))
 		units_completed += abs(world.time - timer)
 		timer = world.time
 	else
@@ -243,7 +243,7 @@
 
 /datum/individual_objective/greed
 	name = "Greed"
-	units_requested = 10 MINUTES
+	units_requested = 1069INUTES
 	based_time = TRUE
 	limited_antag = TRUE
 	rarity = 4
@@ -258,7 +258,7 @@
 /datum/individual_objective/greed/assign()
 	..()
 	target = pick_faction_item(mind_holder, TRUE)
-	desc = "Acquire and hold \the [target] for [unit2time(units_requested)] minutes."
+	desc = "Acquire and hold \the 69target69 for 69unit2time(units_requested)6969inutes."
 	timer = world.time
 	RegisterSignal(mind_holder, COMSIG_MOB_LIFE, .proc/task_completed)
 
@@ -266,7 +266,7 @@
 	if(mind_holder.stat == DEAD)
 		return
 	var/find = FALSE
-	for(var/obj/item/I in mind_holder.GetAllContents())
+	for(var/obj/item/I in69ind_holder.GetAllContents())
 		if(target.type == I.type)
 			units_completed += abs(world.time - timer)
 			timer = world.time
@@ -293,14 +293,14 @@
 /datum/individual_objective/collenction/assign()
 	..()
 	target = pick_candidates()
-	desc = "Get your hands on a [target.name]."
+	desc = "Get your hands on a 69target.name69."
 	RegisterSignal(mind_holder, COMSING_HUMAN_EQUITP, .proc/task_completed)
 
 /datum/individual_objective/collenction/task_completed(obj/item/W)
 	if(W.type == target.type)
 		completed()
 	else
-		for(var/obj/item/I in mind_holder.GetAllContents())
+		for(var/obj/item/I in69ind_holder.GetAllContents())
 			if(I.type == target.type)
 				completed()
 
@@ -323,7 +323,7 @@
 		if(H.mind && H.mind.initial_account)
 			valids_targets += H.mind.initial_account
 	valids_targets -= L.mind.initial_account
-	return valids_targets.len
+	return69alids_targets.len
 
 /datum/individual_objective/economy/assign()
 	..()
@@ -334,8 +334,8 @@
 	valids_targets -= owner.initial_account
 	target = pick(valids_targets)
 	units_requested = rand(500, 1000)
-	desc = "The money must always flow but you must also prevent fees from ruining you.  \
-			Make a bank transfer from you personal account for amount of [units_requested][CREDITS]."
+	desc = "The69oney69ust always flow but you69ust also prevent fees from ruining you.  \
+			Make a bank transfer from you personal account for amount of 69units_requested6969CREDITS69."
 	RegisterSignal(owner.initial_account, COMSIG_TRANSATION, .proc/task_completed)
 
 /datum/individual_objective/economy/task_completed(datum/money_account/S, datum/money_account/T, amount)

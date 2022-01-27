@@ -3,7 +3,7 @@
  */
 /obj/item/clothing/head/space/bomb
 	name = "bomb helmet"
-	desc = "Use in case of bomb. The shielded visor makes aiming harder."
+	desc = "Use in case of bomb. The shielded69isor69akes aiming harder."
 	icon_state = "bombsuit"
 	armor = list(
 		melee = 40,

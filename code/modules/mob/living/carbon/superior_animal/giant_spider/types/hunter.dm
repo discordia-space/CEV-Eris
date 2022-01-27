@@ -1,7 +1,7 @@
-//hunters have the most poison and move the fastest, so they can find prey
+//hunters have the69ost poison and69ove the fastest, so they can find prey
 /mob/living/carbon/superior_animal/giant_spider/hunter
 	name = "Sokuryou Spider"
-	desc = "A massive widow spider. This arachnid skitters around deftly, and an unknown liquid drips from its fangs."
+	desc = "A69assive widow spider. This arachnid skitters around deftly, and an unknown liquid drips from its fangs."
 	icon_state = "hunter"
 	icon_living = "hunter"
 	maxHealth = 90

@@ -1,8 +1,8 @@
 //--------------------------------------------
-// Gas mixer - omni variant
+// Gas69ixer - omni69ariant
 //--------------------------------------------
 /obj/machinery/atmospherics/omni/mixer
-	name = "omni gas mixer"
+	name = "omni gas69ixer"
 	icon_state = "map_mixer"
 
 	use_power = IDLE_POWER_USE
@@ -12,7 +12,7 @@
 	var/list/inputs = new()
 	var/datum/omni_port/output
 
-	//setup tags for initial concentration values (must be decimal)
+	//setup tags for initial concentration69alues (must be decimal)
 	var/tag_north_con
 	var/tag_south_con
 	var/tag_east_con
@@ -32,19 +32,19 @@
 				if(NORTH)
 					if(tag_north_con && tag_north == 1)
 						P.concentration = tag_north_con
-						con += max(0, tag_north_con)
+						con +=69ax(0, tag_north_con)
 				if(SOUTH)
 					if(tag_south_con && tag_south == 1)
 						P.concentration = tag_south_con
-						con += max(0, tag_south_con)
+						con +=69ax(0, tag_south_con)
 				if(EAST)
 					if(tag_east_con && tag_east == 1)
 						P.concentration = tag_east_con
-						con += max(0, tag_east_con)
+						con +=69ax(0, tag_east_con)
 				if(WEST)
 					if(tag_west_con && tag_west == 1)
 						P.concentration = tag_west_con
-						con += max(0, tag_west_con)
+						con +=69ax(0, tag_west_con)
 
 	for(var/datum/omni_port/P in ports)
 		P.air.volume = ATMOS_DEFAULT_VOLUME_MIXER
@@ -70,7 +70,7 @@
 
 	if(!mapper_set())
 		for(var/datum/omni_port/P in inputs)
-			P.concentration = 1 / max(1, inputs.len)
+			P.concentration = 1 /69ax(1, inputs.len)
 
 	if(output)
 		output.air.volume = ATMOS_DEFAULT_VOLUME_MIXER * 0.75 * inputs.len
@@ -84,10 +84,10 @@
 /obj/machinery/atmospherics/omni/mixer/error_check()
 	if(!output || !inputs)
 		return 1
-	if(inputs.len < 2) //requires at least 2 inputs ~otherwise why are you using a mixer?
+	if(inputs.len < 2) //requires at least 2 inputs ~otherwise why are you using a69ixer?
 		return 1
 
-	//concentration must add to 1
+	//concentration69ust add to 1
 	var/total = 0
 	for (var/datum/omni_port/P in inputs)
 		total += P.concentration
@@ -101,14 +101,14 @@
 	if(!..())
 		return 0
 
-	//Figure out the amount of moles to transfer
+	//Figure out the amount of69oles to transfer
 	var/transfer_moles = 0
 	for (var/datum/omni_port/P in inputs)
 		transfer_moles += (set_flow_rate*P.concentration/P.air.volume)*P.air.total_moles
 
 	var/power_draw = -1
-	if (transfer_moles > MINIMUM_MOLES_TO_FILTER)
-		power_draw = mix_gas(src, mixing_inputs, output.air, transfer_moles, power_rating)
+	if (transfer_moles >69INIMUM_MOLES_TO_FILTER)
+		power_draw =69ix_gas(src,69ixing_inputs, output.air, transfer_moles, power_rating)
 
 	if (power_draw >= 0)
 		last_power_draw = power_draw
@@ -123,7 +123,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/omni/mixer/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/atmospherics/omni/mixer/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
 	usr.set_machine(src)
 
 	var/list/data = new()
@@ -133,7 +133,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "omni_mixer.tmpl", "Omni Mixer Control", 360, 330)
+		ui = new(user, src, ui_key, "omni_mixer.tmpl", "Omni69ixer Control", 360, 330)
 		ui.set_initial_data(data)
 
 		ui.open()
@@ -141,10 +141,10 @@
 /obj/machinery/atmospherics/omni/mixer/proc/build_uidata()
 	var/list/data = new()
 
-	data["power"] = use_power
-	data["config"] = configuring
+	data69"power"69 = use_power
+	data69"config"69 = configuring
 
-	var/portData[0]
+	var/portData69069
 	for(var/datum/omni_port/P in ports)
 		if(!configuring && P.mode == 0)
 			continue
@@ -157,57 +157,57 @@
 			if(ATM_OUTPUT)
 				output = 1
 
-		portData[++portData.len] = list("dir" = dir_name(P.dir, capitalize = 1), \
+		portData69++portData.len69 = list("dir" = dir_name(P.dir, capitalize = 1), \
 										"concentration" = P.concentration, \
 										"input" = input, \
 										"output" = output, \
 										"con_lock" = P.con_lock)
 
 	if(portData.len)
-		data["ports"] = portData
+		data69"ports"69 = portData
 	if(output)
-		data["set_flow_rate"] = round(set_flow_rate*10)		//because nanoui can't handle rounded decimals.
-		data["last_flow_rate"] = round(last_flow_rate*10)
+		data69"set_flow_rate"69 = round(set_flow_rate*10)		//because nanoui can't handle rounded decimals.
+		data69"last_flow_rate"69 = round(last_flow_rate*10)
 
 	return data
 
 /obj/machinery/atmospherics/omni/mixer/Topic(href, href_list)
 	if(..()) return 1
 
-	switch(href_list["command"])
+	switch(href_list69"command"69)
 		if("power")
 			if(!configuring)
 				use_power = !use_power
 			else
 				use_power = NO_POWER_USE
-			investigate_log("was [use_power ? "enabled" : "disabled"] by [key_name(usr)]", "atmos")
+			investigate_log("was 69use_power ? "enabled" : "disabled"69 by 69key_name(usr)69", "atmos")
 		if("configure")
 			configuring = !configuring
 			if(configuring)
 				use_power = NO_POWER_USE
 
-	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
+	//only allows config changes when in configuring69ode ~otherwise you'll get weird pressure stuff going on
 	if(configuring && !use_power)
-		switch(href_list["command"])
+		switch(href_list69"command"69)
 			if("set_flow_rate")
-				var/new_flow_rate = input(usr, "Enter new flow rate limit (0-[max_flow_rate]L/s)", "Flow Rate Control", set_flow_rate) as num
-				set_flow_rate = between(0, new_flow_rate, max_flow_rate)
+				var/new_flow_rate = input(usr, "Enter new flow rate limit (0-69max_flow_rate69L/s)", "Flow Rate Control", set_flow_rate) as num
+				set_flow_rate = between(0, new_flow_rate,69ax_flow_rate)
 			if("switch_mode")
-				switch_mode(dir_flag(href_list["dir"]), href_list["mode"])
+				switch_mode(dir_flag(href_list69"dir"69), href_list69"mode"69)
 			if("switch_con")
-				change_concentration(dir_flag(href_list["dir"]))
+				change_concentration(dir_flag(href_list69"dir"69))
 			if("switch_conlock")
-				con_lock(dir_flag(href_list["dir"]))
-		if((href_list["command"]))
-			investigate_log("had it's settings modified by [key_name(usr)]", "atmos")
+				con_lock(dir_flag(href_list69"dir"69))
+		if((href_list69"command"69))
+			investigate_log("had it's settings69odified by 69key_name(usr)69", "atmos")
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	update_icon()
 	SSnano.update_uis(src)
 	return
 
-/obj/machinery/atmospherics/omni/mixer/proc/switch_mode(var/port = NORTH, var/mode = ATM_NONE)
-	if(mode != ATM_INPUT && mode != ATM_OUTPUT)
+/obj/machinery/atmospherics/omni/mixer/proc/switch_mode(var/port = NORTH,69ar/mode = ATM_NONE)
+	if(mode != ATM_INPUT &&69ode != ATM_OUTPUT)
 		switch(mode)
 			if("in")
 				mode = ATM_INPUT
@@ -223,15 +223,15 @@
 				if(ATM_INPUT)
 					if(P.mode == ATM_OUTPUT)
 						return
-					P.mode = mode
+					P.mode =69ode
 				if(ATM_OUTPUT)
-					P.mode = mode
+					P.mode =69ode
 				if(ATM_NONE)
 					if(P.mode == ATM_OUTPUT)
 						return
 					if(P.mode == ATM_INPUT && inputs.len > 2)
-						P.mode = mode
-		else if(P.mode == ATM_OUTPUT && mode == ATM_OUTPUT)
+						P.mode =69ode
+		else if(P.mode == ATM_OUTPUT &&69ode == ATM_OUTPUT)
 			P.mode = ATM_INPUT
 		if(P.mode != old_mode)
 			switch(P.mode)
@@ -268,18 +268,18 @@
 	if(non_locked < 1)
 		return
 
-	var/new_con = (input(usr, "Enter a new concentration (0-[round(remain_con * 100, 0.5)])%", "Concentration control", min(remain_con, old_con)*100) as num) / 100
+	var/new_con = (input(usr, "Enter a new concentration (0-69round(remain_con * 100, 0.5)69)%", "Concentration control",69in(remain_con, old_con)*100) as num) / 100
 
-	//cap it between 0 and the max remaining concentration
+	//cap it between 0 and the69ax remaining concentration
 	new_con = between(0, new_con, remain_con)
 
-	//new_con = min(remain_con, new_con)
+	//new_con =69in(remain_con, new_con)
 
 	//clamp remaining concentration so we don't go into negatives
-	remain_con = max(0, remain_con - new_con)
+	remain_con =69ax(0, remain_con - new_con)
 
 	//distribute remaining concentration between unlocked ports evenly
-	remain_con /= max(1, non_locked)
+	remain_con /=69ax(1, non_locked)
 
 	for(var/datum/omni_port/P in inputs)
 		if(P.dir == port)
@@ -292,7 +292,7 @@
 /obj/machinery/atmospherics/omni/mixer/proc/rebuild_mixing_inputs()
 	mixing_inputs.Cut()
 	for(var/datum/omni_port/P in inputs)
-		mixing_inputs[P.air] = P.concentration
+		mixing_inputs69P.air69 = P.concentration
 
 /obj/machinery/atmospherics/omni/mixer/proc/con_lock(var/port = NORTH)
 	for(var/datum/omni_port/P in inputs)

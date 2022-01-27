@@ -18,15 +18,15 @@
 	return see
 
 /mob/living/simple_animal/hostile/retaliate/proc/Retaliate()
-	var/list/around = view(src, 7)
+	var/list/around =69iew(src, 7)
 
 	for(var/atom/movable/A in around)
 		if(A == src)
 			continue
 		if(isliving(A))
 			var/mob/living/M = A
-			if(!attack_same && M.faction != faction)
-				enemies |= M
+			if(!attack_same &&69.faction != faction)
+				enemies |=69
 
 	for(var/mob/living/simple_animal/hostile/retaliate/H in around)
 		if(!attack_same && !H.attack_same && H.faction == faction)

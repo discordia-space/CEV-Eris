@@ -1,56 +1,56 @@
-/obj/structure/grille
-	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
-	name = "grille"
+/obj/structure/69rille
+	desc = "A flimsy lattice of69etal rods, with screws to secure it to the floor."
+	name = "69rille"
 	icon = 'icons/obj/structures.dmi'
-	icon_state = "grille"
+	icon_state = "69rille"
 	density = TRUE
 	anchored = TRUE
-	flags = CONDUCT
+	fla69s = CONDUCT
 	layer = BELOW_OBJ_LAYER
 	explosion_resistance = 1
 	var/health = 50
 	var/destroyed = 0
 
 
-/obj/structure/grille/ex_act(severity)
-	qdel(src)
+/obj/structure/69rille/ex_act(severity)
+	69del(src)
 
-/obj/structure/grille/update_icon()
+/obj/structure/69rille/update_icon()
 	if(destroyed)
-		icon_state = "[initial(icon_state)]-b"
+		icon_state = "69initial(icon_state)69-b"
 	else
 		icon_state = initial(icon_state)
 
-/obj/structure/grille/Bumped(atom/user)
+/obj/structure/69rille/Bumped(atom/user)
 	if(ismob(user)) shock(user, 70)
 
-/obj/structure/grille/attack_hand(mob/user as mob)
+/obj/structure/69rille/attack_hand(mob/user as69ob)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+	playsound(loc, 'sound/effects/69rillehit.o6969', 80, 1)
 	user.do_attack_animation(src)
 
-	var/damage_dealt = 1
-	var/attack_message = "kicks"
+	var/dama69e_dealt = 1
+	var/attack_messa69e = "kicks"
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/livin69/carbon/human/H = user
 		if(H.species.can_shred(H))
-			attack_message = "mangles"
-			damage_dealt = 5
+			attack_messa69e = "man69les"
+			dama69e_dealt = 5
 
 	if(shock(user, 70))
 		return
 
 	if(HULK in user.mutations)
-		damage_dealt += 5
+		dama69e_dealt += 5
 	else
-		damage_dealt += 1
+		dama69e_dealt += 1
 
-	attack_generic(user,damage_dealt,attack_message)
+	attack_69eneric(user,dama69e_dealt,attack_messa69e)
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
-	if(istype(mover) && mover.checkpass(PASSGRILLE))
+/obj/structure/69rille/CanPass(atom/movable/mover, turf/tar69et, hei69ht=0, air_69roup=0)
+	if(air_69roup || (hei69ht==0)) return 1
+	if(istype(mover) &&69over.checkpass(PASS69RILLE))
 		return 1
 	else
 		if(istype(mover, /obj/item/projectile))
@@ -58,70 +58,70 @@
 		else
 			return !density
 
-/obj/structure/grille/bullet_act(var/obj/item/projectile/Proj)
+/obj/structure/69rille/bullet_act(var/obj/item/projectile/Proj)
 	if(!Proj)	return
 
-	//Flimsy grilles aren't so great at stopping projectiles. However they can absorb some of the impact
-	var/damage = Proj.get_structure_damage()
-	var/passthrough = 0
+	//Flimsy 69rilles aren't so 69reat at stoppin69 projectiles. However they can absorb some of the impact
+	var/dama69e = Proj.69et_structure_dama69e()
+	var/passthrou69h = 0
 
-	if(!damage) return
+	if(!dama69e) return
 
-	//20% chance that the grille provides a bit more cover than usual. Support structure for example might take up 20% of the grille's area.
-	//If they click on the grille itself then we assume they are aiming at the grille itself and the extra cover behaviour is always used.
-	for(var/i in Proj.damage_types)
+	//20% chance that the 69rille provides a bit69ore cover than usual. Support structure for example69i69ht take up 20% of the 69rille's area.
+	//If they click on the 69rille itself then we assume they are aimin69 at the 69rille itself and the extra cover behaviour is always used.
+	for(var/i in Proj.dama69e_types)
 		if(i == BRUTE)
 			//bullets
-			if(Proj.original == src || prob(20))
-				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 0.5)
-				if(prob(max((damage-10)/25, 0))*100)
-					passthrough = 1
+			if(Proj.ori69inal == src || prob(20))
+				Proj.dama69e_types69i69 *= between(0, Proj.dama69e_types69i69/60, 0.5)
+				if(prob(max((dama69e-10)/25, 0))*100)
+					passthrou69h = 1
 			else
-				Proj.damage_types[i] *= between(0, Proj.damage_types[i]/60, 1)
-				passthrough = 1
+				Proj.dama69e_types69i69 *= between(0, Proj.dama69e_types69i69/60, 1)
+				passthrou69h = 1
 		if(i == BURN)
-			//beams and other projectiles are either blocked completely by grilles or stop half the damage.
-			if(!(Proj.original == src || prob(20)))
-				Proj.damage_types[i] *= 0.5
-				passthrough = 1
+			//beams and other projectiles are either blocked completely by 69rilles or stop half the dama69e.
+			if(!(Proj.ori69inal == src || prob(20)))
+				Proj.dama69e_types69i69 *= 0.5
+				passthrou69h = 1
 
-	if(passthrough)
+	if(passthrou69h)
 		. = PROJECTILE_CONTINUE
-		damage = between(0, (damage - Proj.get_structure_damage())*(Proj.damage_types[BRUTE] ? 0.4 : 1), 10) //if the bullet passes through then the grille avoids most of the damage
+		dama69e = between(0, (dama69e - Proj.69et_structure_dama69e())*(Proj.dama69e_types69BRUTE69 ? 0.4 : 1), 10) //if the bullet passes throu69h then the 69rille avoids69ost of the dama69e
 
-	src.health -= damage*0.2
-	spawn(0) healthcheck() //spawn to make sure we return properly if the grille is deleted
+	src.health -= dama69e*0.2
+	spawn(0) healthcheck() //spawn to69ake sure we return properly if the 69rille is deleted
 
-/obj/structure/grille/attackby(obj/item/I, mob/user)
+/obj/structure/69rille/attackby(obj/item/I,69ob/user)
 
-	var/list/usable_qualities = list(QUALITY_WIRE_CUTTING)
+	var/list/usable_69ualities = list(69UALITY_WIRE_CUTTIN69)
 	if(anchored)
-		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+		usable_69ualities.Add(69UALITY_SCREW_DRIVIN69)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.69et_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
 
-		if(QUALITY_WIRE_CUTTING)
+		if(69UALITY_WIRE_CUTTIN69)
 			if(!shock(user, 100))
-				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					new /obj/item/stack/rods(get_turf(src), destroyed ? 1 : 2)
-					qdel(src)
+				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
+					new /obj/item/stack/rods(69et_turf(src), destroyed ? 1 : 2)
+					69del(src)
 					return
 			return
 
-		if(QUALITY_SCREW_DRIVING)
+		if(69UALITY_SCREW_DRIVIN69)
 			if(anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 					anchored = !anchored
-					user.visible_message("<span class='notice'>[user] [anchored ? "fastens" : "unfastens"] the grille.</span>", \
-										 "<span class='notice'>You have [anchored ? "fastened the grille to" : "unfastened the grill from"] the floor.</span>")
+					user.visible_messa69e("<span class='notice'>69user69 69anchored ? "fastens" : "unfastens"69 the 69rille.</span>", \
+										 "<span class='notice'>You have 69anchored ? "fastened the 69rille to" : "unfastened the 69rill from"69 the floor.</span>")
 					return
 			return
 
 		if(ABORT_CHECK)
 			return
 
-//window placing begin //TODO CONVERT PROPERLY TO MATERIAL DATUM
+//window placin69 be69in //TODO CONVERT PROPERLY TO69ATERIAL DATUM
 	if(istype(I,/obj/item/stack/material))
 		var/obj/item/stack/material/ST = I
 		if(!ST.material.created_window)
@@ -144,68 +144,68 @@
 						dir_to_set = 4
 			else
 				to_chat(user, SPAN_NOTICE("You can't reach."))
-				return //Only works for cardinal direcitons, diagonals aren't supposed to work like this.
+				return //Only works for cardinal direcitons, dia69onals aren't supposed to work like this.
 		for(var/obj/structure/window/WINDOW in loc)
 			if(WINDOW.dir == dir_to_set)
-				to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
+				to_chat(user, SPAN_NOTICE("There is already a window facin69 this way there."))
 				return
-		to_chat(user, SPAN_NOTICE("You start placing the window."))
+		to_chat(user, SPAN_NOTICE("You start placin69 the window."))
 		if(do_after(user,20,src))
 			for(var/obj/structure/window/WINDOW in loc)
-				if(WINDOW.dir == dir_to_set)//checking this for a 2nd time to check if a window was made while we were waiting.
-					to_chat(user, SPAN_NOTICE("There is already a window facing this way there."))
+				if(WINDOW.dir == dir_to_set)//checkin69 this for a 2nd time to check if a window was69ade while we were waitin69.
+					to_chat(user, SPAN_NOTICE("There is already a window facin69 this way there."))
 					return
 
 			var/wtype = ST.material.created_window
 			if (ST.use(1))
 				var/obj/structure/window/WD = new wtype(loc, dir_to_set, 1)
-				to_chat(user, SPAN_NOTICE("You place the [WD] on [src]."))
+				to_chat(user, SPAN_NOTICE("You place the 69WD69 on 69src69."))
 				WD.update_icon()
 		return
-//window placing end
+//window placin69 end
 
-	else if(!(I.flags & CONDUCT) || !shock(user, 70))
+	else if(!(I.fla69s & CONDUCT) || !shock(user, 70))
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 		user.do_attack_animation(src)
-		playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
-		health -= I.force * I.structure_damage_factor
+		playsound(loc, 'sound/effects/69rillehit.o6969', 80, 1)
+		health -= I.force * I.structure_dama69e_factor
 	healthcheck()
 	..()
 	return
 
 
-/obj/structure/grille/proc/healthcheck()
+/obj/structure/69rille/proc/healthcheck()
 	if(health <= 0)
 		if(!destroyed)
 			density = FALSE
 			destroyed = 1
 			update_icon()
-			new /obj/item/stack/rods(get_turf(src))
+			new /obj/item/stack/rods(69et_turf(src))
 
 		else
 			if(health <= -6)
-				new /obj/item/stack/rods(get_turf(src))
-				qdel(src)
+				new /obj/item/stack/rods(69et_turf(src))
+				69del(src)
 				return
 	return
 
-// shock user with probability prb (if all connections & power are working)
+// shock user with probability prb (if all connections & power are workin69)
 // returns 1 if shocked, 0 otherwise
 
-/obj/structure/grille/proc/shock(mob/user as mob, prb)
+/obj/structure/69rille/proc/shock(mob/user as69ob, prb)
 
-	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
+	if(!anchored || destroyed)		// anchored/destroyed 69rilles are never connected
 		return 0
 	if(!prob(prb))
 		return 0
-	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
+	if(!in_ran69e(src, user))//To prevent TK and69ech users from 69ettin69 shocked
 		return 0
-	var/turf/T = get_turf(src)
-	var/obj/structure/cable/C = T.get_cable_node()
+	var/turf/T = 69et_turf(src)
+	var/obj/structure/cable/C = T.69et_cable_node()
 	if(C)
 		if(electrocute_mob(user, C, src))
 			if(C.powernet)
-				C.powernet.trigger_warning()
+				C.powernet.tri6969er_warnin69()
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
@@ -215,62 +215,62 @@
 			return 0
 	return 0
 
-/obj/structure/grille/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/structure/69rille/fire_act(datum/69as_mixture/air, exposed_temperature, exposed_volume)
 	if(!destroyed)
 		if(exposed_temperature > T0C + 1500)
 			health -= 1
 			healthcheck()
 	..()
 
-/obj/structure/grille/attack_generic(var/mob/user, var/damage, var/attack_verb)
-	visible_message(SPAN_DANGER("[user] [attack_verb] the [src]!"))
+/obj/structure/69rille/attack_69eneric(var/mob/user,69ar/dama69e,69ar/attack_verb)
+	visible_messa69e(SPAN_DAN69ER("69user69 69attack_verb69 the 69src69!"))
 	attack_animation(user)
-	health -= damage
+	health -= dama69e
 	spawn(1) healthcheck()
 	return 1
 
-/obj/structure/grille/hitby(AM as mob|obj)
+/obj/structure/69rille/hitby(AM as69ob|obj)
 	..()
-	visible_message(SPAN_DANGER("[src] was hit by [AM]."))
-	playsound(loc, 'sound/effects/grillehit.ogg', 80, 1)
+	visible_messa69e(SPAN_DAN69ER("69src69 was hit by 69AM69."))
+	playsound(loc, 'sound/effects/69rillehit.o6969', 80, 1)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 10
 	else if(isobj(AM))
 		var/obj/item/I = AM
 		tforce = I.throwforce
-	health = max(0, health - tforce)
+	health =69ax(0, health - tforce)
 	if(health <= 0)
 		destroyed=1
-		new /obj/item/stack/rods(get_turf(src))
+		new /obj/item/stack/rods(69et_turf(src))
 		density = FALSE
 		update_icon()
 
-// Used in mapping to avoid
-/obj/structure/grille/broken
+// Used in69appin69 to avoid
+/obj/structure/69rille/broken
 	destroyed = 1
-	icon_state = "grille-b"
+	icon_state = "69rille-b"
 	density = FALSE
 	New()
 		..()
 		health = rand(-5, -1) //In the destroyed but not utterly threshold.
-		healthcheck() //Send this to healthcheck just in case we want to do something else with it.
+		healthcheck() //Send this to healthcheck just in case we want to do somethin69 else with it.
 
-/obj/structure/grille/cult
-	name = "cult grille"
-	desc = "A matrice built out of an unknown material, with some sort of force field blocking air around it"
-	icon_state = "grillecult"
-	health = 40 //Make it strong enough to avoid people breaking in too easily
+/obj/structure/69rille/cult
+	name = "cult 69rille"
+	desc = "A69atrice built out of an unknown69aterial, with some sort of force field blockin69 air around it"
+	icon_state = "69rillecult"
+	health = 40 //Make it stron69 enou69h to avoid people breakin69 in too easily
 
-/obj/structure/grille/cult/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
-	if(air_group)
+/obj/structure/69rille/cult/CanPass(atom/movable/mover, turf/tar69et, hei69ht = 1.5, air_69roup = 0)
+	if(air_69roup)
 		return 0 //Make sure air doesn't drain
 	..()
 
-/obj/structure/grille/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = health * 0.4
+/obj/structure/69rille/69et_fall_dama69e(var/turf/from,69ar/turf/dest)
+	var/dama69e = health * 0.4
 
 	if (from && dest)
-		damage *= abs(from.z - dest.z)
+		dama69e *= abs(from.z - dest.z)
 
-	return damage
+	return dama69e

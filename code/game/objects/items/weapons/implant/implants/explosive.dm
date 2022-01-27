@@ -1,6 +1,6 @@
 /obj/item/implant/explosive
 	name = "explosive implant"
-	desc = "A military grade micro bio-explosive. Highly dangerous."
+	desc = "A69ilitary grade69icro bio-explosive. Highly dangerous."
 	var/death_react = "Safe Hand"
 	var/explosion_delay = 70
 	var/removal_authorized = FALSE
@@ -30,10 +30,10 @@
 		<b>Implant Details:</b><BR>
 		<b>Function:</b> Contains a compact, electrically detonated explosive that detonates upon receiving a specially encoded signal or upon host death.<BR>
 		<b>Special Features:</b> Explodes<BR>
-		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally69alfunction."}
 	return data
 
-/obj/item/implant/explosive/hear_talk(mob/M, msg, verb, datum/language/speaking, speech_volume)
+/obj/item/implant/explosive/hear_talk(mob/M,69sg,69erb, datum/language/speaking, speech_volume)
 	hear(msg)
 
 /obj/item/implant/explosive/hear(var/msg)
@@ -41,16 +41,16 @@
 	msg = replace_characters(msg, replacechars)
 	if(findtext(msg,phrase))
 		activate()
-		qdel(src)
+		69del(src)
 
 /obj/item/implant/explosive/proc/do_boom()
 	playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 	sleep(25)
 	explosion(get_turf(src), 1, 2, 3, 3)
-	qdel(src)
+	69del(src)
 
 /obj/item/implant/explosive/activate(delay)
-	if (malfunction == MALFUNCTION_PERMANENT)
+	if (malfunction ==69ALFUNCTION_PERMANENT)
 		return
 
 	STOP_PROCESSING(SSobj, src)
@@ -58,22 +58,22 @@
 
 	if(istype(wearer, /mob/))
 		var/mob/T = wearer
-		message_admins("Explosive implant triggered in [T] ([T.key]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>) ")
-		log_game("Explosive implant triggered in [T] ([T.key]).")
+		message_admins("Explosive implant triggered in 69T69 (69T.key69). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69T.x69;Y=69T.y69;Z=69T.z69'>JMP</a>) ")
+		log_game("Explosive implant triggered in 69T69 (69T.key69).")
 
 		if(ishuman(wearer))
 			if(part)
-				wearer.visible_message("<span class='warning'>Something beeps inside [wearer][part ? "'s [part.name]" : ""]!</span>")
+				wearer.visible_message("<span class='warning'>Something beeps inside 69wearer6969part ? "'s 69part.name69" : ""69!</span>")
 				playsound(loc, 'sound/items/countdown.ogg', 75, 1, -3)
 				sleep(25)
 				if (part.organ_tag in list(BP_CHEST, BP_HEAD, BP_GROIN))
 					part.createwound(BRUISE, 60)
 					explosion(get_turf(wearer), 1, 2, 3, 3)
-					qdel(src)
+					69del(src)
 				else
 					explosion(get_turf(wearer), 1, 2, 3, 3)
 					part.droplimb(0,DROPLIMB_BLUNT)
-					qdel(src)
+					69del(src)
 
 		else
 			do_boom()
@@ -89,17 +89,17 @@
 	if(!istype(wearer) || !wearer.mind)
 		return
 	if(removal_authorized)
-		wearer.visible_message(SPAN_DANGER("\The [src] rips through \the [wearer]'s [part.name]!"))
+		wearer.visible_message(SPAN_DANGER("\The 69src69 rips through \the 69wearer69's 69part.name69!"))
 		part.take_damage(rand(20,40))
 		removal_authorized = FALSE
 	else
-		wearer.visible_message(SPAN_DANGER("As \the [src] is removed from \the [wearer]..."))
+		wearer.visible_message(SPAN_DANGER("As \the 69src69 is removed from \the 69wearer69..."))
 		if(prob(66))
-			wearer.visible_message(SPAN_DANGER("\The [wearer]'s [part.name] violently explodes from within!"))
+			wearer.visible_message(SPAN_DANGER("\The 69wearer69's 69part.name6969iolently explodes from within!"))
 			wearer.adjustBrainLoss(200)
 			part.droplimb(FALSE, DROPLIMB_BLUNT)
 		else
-			wearer.visible_message(SPAN_NOTICE("Something fizzles in \the [wearer]'s [part.name], but nothing interesting happens."))
+			wearer.visible_message(SPAN_NOTICE("Something fizzles in \the 69wearer69's 69part.name69, but nothing interesting happens."))
 
 /obj/item/implant/explosive/proc/configure()
 	death_react = alert("Should implant be activated on user's death?", "Implant Intent", "Safe Hand", "Dead Hand")
@@ -126,7 +126,7 @@
 /obj/item/implant/explosive/malfunction(severity)
 	if (malfunction)
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malfunction =69ALFUNCTION_TEMPORARY
 	switch (severity)
 		if (2)
 			if (prob(15))
@@ -137,7 +137,7 @@
 			else
 				meltdown()
 	spawn (20)
-		malfunction = MALFUNCTION_NONE
+		malfunction =69ALFUNCTION_NONE
 
 
 /obj/item/implantcase/explosive

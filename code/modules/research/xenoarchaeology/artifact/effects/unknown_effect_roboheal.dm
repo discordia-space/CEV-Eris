@@ -11,7 +11,7 @@
 	if(user)
 		if (isrobot(user))
 			var/mob/living/silicon/robot/R = user
-			to_chat(R, "\blue Your systems report damaged components mending by themselves!")
+			to_chat(R, "\blue Your systems report damaged components69ending by themselves!")
 			R.adjustBruteLoss(rand(-10,-30))
 			R.adjustFireLoss(rand(-10,-30))
 			return 1

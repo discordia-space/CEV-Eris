@@ -1,10 +1,10 @@
 //----------------------------------------
 //
-//   Take a source icon, convert into a mask,
+//   Take a source icon, convert into a69ask,
 //  then create a border around it.
 //
 //   The output then uses the colors and
-//  alpha values provided.
+//  alpha69alues provided.
 //
 //----------------------------------------
 
@@ -16,10 +16,10 @@
 	I.MapColors(0,	0,	0,	0, //-\  Ignore
 				0,	0,	0,	0, //--> The
 				0,	0,	0,	0, //-/  Colors
-				0,255,	0,	1, //Keep alpha channel, any pixel with non-zero alpha gets max green channel
+				0,255,	0,	1, //Keep alpha channel, any pixel with non-zero alpha gets69ax green channel
 				0,	0,	0,	0)
 
-	//Loop over the image, calculating the border value, and storing it in the red channel
+	//Loop over the image, calculating the border69alue, and storing it in the red channel
 	//Store border's alpha in the blue channel
 	for(var/x = 1, x <= 32, x++)
 		for(var/y = 1, y <= 32, y++)
@@ -73,7 +73,7 @@
 
 //----------------------------------------
 //
-//   Take a source icon, convert into a mask,
+//   Take a source icon, convert into a69ask,
 //  and border. Color them according to args,
 //  and animate.
 //
@@ -81,17 +81,17 @@
 
 /proc/animate_rune_full(icon/input, rr1, rg1, rb1, ra1, rr2, rg2, rb2, ra2, br1, bg1, bb1, ba1, br2, bg2, bb2, ba2, ar1, ag1, ab1, aa1, ar2, ag2, ab2, aa2, or1, og1, ob1, oa1, or2, og2, ob2, oa2, frames)
 
-	var/list/colors[10]
-	colors[ 1] = list(rr1, rg1, rb1, ra1) //Rune color 1
-	colors[ 2] = list(rr2, rg2, rb2, ra2) //Rune color 2
-	colors[ 3] = list(br1, bg1, bb1, ba1) //Border color 1
-	colors[ 4] = list(br2, bg2, bb2, ba2) //Border color 2
-	colors[ 5] = list(  0,   0,   0,   0) //Unused
-	colors[ 6] = list(  0,   0,   0,   0) //Unused
-	colors[ 7] = list(ar1, ag1, ab1, aa1) //Alpha color 1
-	colors[ 8] = list(ar2, ag2, ab2, aa2) //Alpha color 2
-	colors[ 9] = list(or1, og1, ob1, oa1) //Added color 1
-	colors[10] = list(or2, og2, ob2, oa2) //Added color 2
+	var/list/colors691069
+	colors69 169 = list(rr1, rg1, rb1, ra1) //Rune color 1
+	colors69 269 = list(rr2, rg2, rb2, ra2) //Rune color 2
+	colors69 369 = list(br1, bg1, bb1, ba1) //Border color 1
+	colors69 469 = list(br2, bg2, bb2, ba2) //Border color 2
+	colors69 569 = list(  0,   0,   0,   0) //Unused
+	colors69 669 = list(  0,   0,   0,   0) //Unused
+	colors69 769 = list(ar1, ag1, ab1, aa1) //Alpha color 1
+	colors69 869 = list(ar2, ag2, ab2, aa2) //Alpha color 2
+	colors69 969 = list(or1, og1, ob1, oa1) //Added color 1
+	colors691069 = list(or2, og2, ob2, oa2) //Added color 2
 
 	var/icon/base = create_border_image(input, "#00ff0000", "#ff000000")
 
@@ -104,11 +104,11 @@
 //
 //   Calls the above, but accepts colors in
 //  the form of "#RRGGBBAA", and provides
-//  default values.
+//  default69alues.
 //
-//   Main limit is that it doesn't accept
-//  negative values, which you probably
-//  don't need anyway. Also missing a few
+//  69ain limit is that it doesn't accept
+//  negative69alues, which you probably
+//  don't need anyway. Also69issing a few
 //  color inputs, which would also be rarely
 //  used.
 //
@@ -171,16 +171,16 @@ var/list/rune_animation = list(
 /var/list/rune_cache = list()
 
 /proc/get_rune(rune_bits, animated = 0)
-	var/lookup = "[rune_bits]-[animated]"
+	var/lookup = "69rune_bits69-69animated69"
 
 	if(lookup in rune_cache)
-		return rune_cache[lookup]
+		return rune_cache69lookup69
 
 	var/icon/base = icon('icons/effects/uristrunes.dmi', "")
 
 	for(var/i = 0, i < 10, i++)
 		if(BITTEST(rune_bits, i))
-			base.Blend(icon('icons/effects/uristrunes.dmi', "rune-[1 << i]"), ICON_OVERLAY)
+			base.Blend(icon('icons/effects/uristrunes.dmi', "rune-691 << i69"), ICON_OVERLAY)
 
 	var/icon/result
 
@@ -190,7 +190,7 @@ var/list/rune_animation = list(
 	else
 		result = inanimate_rune(base)
 
-	rune_cache[lookup] = result
+	rune_cache69lookup69 = result
 	return result
 
 
@@ -218,7 +218,7 @@ var/list/rune_animation = list(
 
 	for(var/i = 0, i < 10, i++)
 		if(BITTEST(rune, i))
-			I.Blend(icon('icons/effects/uristrunes.dmi', "rune-[1 << i]"), ICON_OVERLAY)
+			I.Blend(icon('icons/effects/uristrunes.dmi', "rune-691 << i69"), ICON_OVERLAY)
 
 	var/obj/o = new(locate(x, y, z))
 	o.icon = animate_rune(I, color1, border1, color2, border2, alpha1, alpha2)
@@ -230,7 +230,7 @@ var/list/rune_animation = list(
 		var/rune = rand(1, 1023)
 		for(var/i = 0, i < 10, i++)
 			if(BITTEST(rune, i))
-				I.Blend(icon('icons/effects/uristrunes.dmi', "rune-[1 << i]"), ICON_OVERLAY)
+				I.Blend(icon('icons/effects/uristrunes.dmi', "rune-691 << i69"), ICON_OVERLAY)
 
 		var/obj/o = new(t)
 		o.icon = animate_rune_full(I, rand(0, 255), rand(0, 255), rand(0, 255), rand(-255, 255),

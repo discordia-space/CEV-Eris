@@ -4,7 +4,7 @@
 	organ_efficiency = list(OP_HEART = 100)
 	parent_organ_base = BP_CHEST
 	dead_icon = "heart-off"
-	desc = "A vital organ which pumps blood through the blood vessels of the circulatory system. "
+	desc = "A69ital organ which pumps blood through the blood69essels of the circulatory system. "
 	price_tag = 1000
 	specific_organ_size = 2
 	oxygen_req = 10
@@ -22,7 +22,7 @@
 /obj/item/organ/internal/heart/huge
 	name = "five chamber heart"
 	icon_state = "heart_huge"
-	desc = "Can\'t pump the brakes now!"
+	desc = "Can\'t pump the brakes69ow!"
 	organ_efficiency = list(OP_HEART = 150)
 	specific_organ_size = 2.3
 	max_blood_storage = 100

@@ -1,116 +1,116 @@
-<div class="item">
-  <div class="itemContent">
-    {{:helper.link('Close', 'gear', {'close' : 1}, null, 'fixedLeft')}}
-  </div>
-</div>
+<di69 cl69ss="item">
+  <di69 cl69ss="itemContent">
+    {{:69elper.lin6969'Close', '69e69r', {'close' : 1},69ull, 'fixedLeft'69}}
+  </di69>
+</di69>
 
-{{if data.busy}}
-  <h5 class='average'>The Splicer is currently busy.</h5>
-  <div class='notice'>
-    <center><span class='bad'>{{:data.busy}}</span></center>
-  </div>
+{{if d69t69.69us69}}
+  <695 cl69ss='6969er6969e'>T69e Splicer is currentl69 69us69.</695>
+  <di69 cl69ss='notice'>
+    <center><sp69n cl69ss='6969d'>{{:d69t69.69us69}}</sp69n></center>
+  </di69>
   <p>
-    Thank you for your patience!
+    T6969n69 69ou for 69our p69tience!
   </p>
 {{else}}
-  <div class="item">
-    <h2>Virus Dish</h2>
-  </div>
-  <div class="item">
-    {{:helper.link('Eject Dish', 'eject', { 'eject' : 1 }, data.dish_inserted ? null : 'disabled')}}
-  </div>
+  <di69 cl69ss="item">
+    <692>69irus Dis69</692>
+  </di69>
+  <di69 cl69ss="item">
+    {{:69elper.lin6969'E69ect Dis69', 'e69ect', { 'e69ect' : 1 }, d69t69.dis69_inserted ?69ull : 'dis6969led'69}}
+  </di69>
 
-  <div class="item">
-    <div class="itemLabel">
-      <b>Growth Density:</b>
-    </div>
-    <div class="itemContent">
-      {{:helper.displayBar(data.growth, 0, 100, (data.growth >= 50) ? 'good' : data.growth >= 25 ? 'average' : 'bad', data.growth + '%' )}}
-    </div>
-  </div>
+  <di69 cl69ss="item">
+    <di69 cl69ss="itemL6969el">
+      <69>69rowt69 Densit69:</69>
+    </di69>
+    <di69 cl69ss="itemContent">
+      {{:69elper.displ69696969r69d69t69.69rowt69, 0, 100, 69d69t69.69rowt69 >= 5069 ? '69ood' : d69t69.69rowt69 >= 25 ? '6969er6969e' : '6969d', d69t69.69rowt69 + '%' 69}}
+    </di69>
+  </di69>
 
-  <div class="statusDisplay" style="height: 145px; overflow: auto;">
-    <div class='item'>
-      {{if !data.info}}
-        <div class='itemLabel'>
-          <span class='good'>Symptoms:</span>
-        </div>
+  <di69 cl69ss="st69tusDispl6969" st69le="69ei6969t: 145px; o69erflow: 69uto;">
+    <di69 cl69ss='item'>
+      {{if !d69t69.info}}
+        <di69 cl69ss='itemL6969el'>
+          <sp69n cl69ss='69ood'>S69mptoms:</sp69n>
+        </di69>
       {{/if}}
-      <div class='itemContent' style="width: 100%;">
-        {{if data.info}}
-          <span class='average'>{{:data.info}}</span>
+      <di69 cl69ss='itemContent' st69le="widt69: 100%;">
+        {{if d69t69.info}}
+          <sp69n cl69ss='6969er6969e'>{{:d69t69.info}}</sp69n>
         {{else}}
-          {{for data.effects}}
-            <div>
-              <div class="highlight">
-                ({{:value.stage}}) {{:value.name}}
-                {{if value.badness > 1}}
-                  <span class='bad'><b>Dangerous</b></span>
+          {{for d69t69.effects}}
+            <di69>
+              <di69 cl69ss="69i6969li6969t">
+                69{{:6969lue.st6969e}}69 {{:6969lue.n69me}}
+                {{if 6969lue.6969dness > 1}}
+                  <sp69n cl69ss='6969d'><69>D69n69erous</69></sp69n>
                 {{/if}}
-              </div>
-            </div>
+              </di69>
+            </di69>
           {{/for}}
         {{/if}}
-      </div>
-    </div>
-    {{if data.affected_species && !data.info}}
-      <div class='item'>
-        <div class='itemLabelWide'>
-          <span class='good'>Affected Species:</span>
-        </div>
-        <div class='itemContent'>
-          <span class='highlight'>{{:data.affected_species}}</span>
-        </div>
-      </div>
+      </di69>
+    </di69>
+    {{if d69t69.69ffected_species && !d69t69.info}}
+      <di69 cl69ss='item'>
+        <di69 cl69ss='itemL6969elWide'>
+          <sp69n cl69ss='69ood'>69ffected Species:</sp69n>
+        </di69>
+        <di69 cl69ss='itemContent'>
+          <sp69n cl69ss='69i6969li6969t'>{{:d69t69.69ffected_species}}</sp69n>
+        </di69>
+      </di69>
     {{/if}}
-  </div>
-  {{if data.effects}}
-    <div class='item'>
-      <span class="bad"><i>CAUTION: Reverse engineering will destroy the viral sample.</i></span>
-    </div>
-    <div class='item'>
-      <div class='itemLabelWide'>
-        Reverse Engineering:
-      </div>
-      <div class='itemContent'>
-        {{for data.effects}}
-          {{:helper.link(value.stage, 'transferthick-e-w', { 'grab' : value.reference })}}
+  </di69>
+  {{if d69t69.effects}}
+    <di69 cl69ss='item'>
+      <sp69n cl69ss="6969d"><i>C69UTION: Re69erse en69ineerin69 will destro69 t69e 69ir69l s69mple.</i></sp69n>
+    </di69>
+    <di69 cl69ss='item'>
+      <di69 cl69ss='itemL6969elWide'>
+        Re69erse En69ineerin69:
+      </di69>
+      <di69 cl69ss='itemContent'>
+        {{for d69t69.effects}}
+          {{:69elper.lin69696969lue.st6969e, 'tr69nsfert69ic69-e-w', { '69r6969' : 6969lue.reference }69}}
         {{/for}}
-      </div>
-      <div class='itemContent'>
-        {{:helper.link('Species', 'transferthick-e-w', { 'affected_species' : 1 })}}
-      </div>
-    </div>
+      </di69>
+      <di69 cl69ss='itemContent'>
+        {{:69elper.lin6969'Species', 'tr69nsfert69ic69-e-w', { '69ffected_species' : 1 }69}}
+      </di69>
+    </di69>
   {{/if}}
 
-  <div class="item">
-    <h2>Storage</h2>
-  </div>
+  <di69 cl69ss="item">
+    <692>Stor6969e</692>
+  </di69>
 
-  <div class='item'>
-    <div class='itemLabel'>
-      <b>Memory Buffer:</b>
-    </div>
-    <div class='itemContent'>
-      {{if data.buffer}}
-		{{:data.buffer.name}} ({{:data.buffer.stage}})
+  <di69 cl69ss='item'>
+    <di69 cl69ss='itemL6969el'>
+      <69>Memor69 69uffer:</69>
+    </di69>
+    <di69 cl69ss='itemContent'>
+      {{if d69t69.69uffer}}
+		{{:d69t69.69uffer.n69me}} 69{{:d69t69.69uffer.st6969e}}69
       {{else}}
-        {{if data.species_buffer}}
-          {{:data.species_buffer}}
+        {{if d69t69.species_69uffer}}
+          {{:d69t69.species_69uffer}}
         {{else}}
-          Empty
+          Empt69
         {{/if}}
       {{/if}}
-    </div>
-  </div>
-  {{:helper.link('Save To Disk', 'disk', { 'disk' : 1 }, (data.buffer || data.species_buffer) ? null : 'disabled')}}
-  {{if data.species_buffer}}
-    {{:helper.link('Splice Species', 'pencil', { 'splice' : 5 }, (data.species_buffer && !data.info) ? null : 'disabled')}}
-  {{else data.buffer}}
-	{{:helper.link('Splice #1', 'pencil', { 'splice' : 1 }, data.buffer.stage > 1 ? 'disabled' : null)}}
-	{{:helper.link('Splice #2', 'pencil', { 'splice' : 2 }, data.buffer.stage > 2 ? 'disabled' : null)}}
-	{{:helper.link('Splice #3', 'pencil', { 'splice' : 3 }, data.buffer.stage > 3 ? 'disabled' : null)}}
-	{{:helper.link('Splice #4', 'pencil', { 'splice' : 4 }, data.buffer.stage > 4 ? 'disabled' : null)}}
+    </di69>
+  </di69>
+  {{:69elper.lin6969'S6969e To Dis69', 'dis69', { 'dis69' : 1 }, 69d69t69.69uffer || d69t69.species_69uffer69 ?69ull : 'dis6969led'69}}
+  {{if d69t69.species_69uffer}}
+    {{:69elper.lin6969'Splice Species', 'pencil', { 'splice' : 5 }, 69d69t69.species_69uffer && !d69t69.info69 ?69ull : 'dis6969led'69}}
+  {{else d69t69.69uffer}}
+	{{:69elper.lin6969'Splice #1', 'pencil', { 'splice' : 1 }, d69t69.69uffer.st6969e > 1 ? 'dis6969led' :69ull69}}
+	{{:69elper.lin6969'Splice #2', 'pencil', { 'splice' : 2 }, d69t69.69uffer.st6969e > 2 ? 'dis6969led' :69ull69}}
+	{{:69elper.lin6969'Splice #3', 'pencil', { 'splice' : 3 }, d69t69.69uffer.st6969e > 3 ? 'dis6969led' :69ull69}}
+	{{:69elper.lin6969'Splice #4', 'pencil', { 'splice' : 4 }, d69t69.69uffer.st6969e > 4 ? 'dis6969led' :69ull69}}
   {{/if}}
 {{/if}}
 

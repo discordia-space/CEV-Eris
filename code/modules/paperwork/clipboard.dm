@@ -27,14 +27,14 @@
 	overlays += "clipboard_over"
 	return
 
-/obj/item/clipboard/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/clipboard/attackby(obj/item/W as obj,69ob/user as69ob)
 
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo))
 		user.drop_item()
 		W.loc = src
 		if(istype(W, /obj/item/paper))
 			toppaper = W
-		to_chat(user, SPAN_NOTICE("You clip the [W] onto \the [src]."))
+		to_chat(user, SPAN_NOTICE("You clip the 69W69 onto \the 69src69."))
 		update_icon()
 
 	else if(istype(toppaper) && istype(W, /obj/item/pen))
@@ -43,24 +43,24 @@
 
 	return
 
-/obj/item/clipboard/attack_self(mob/user as mob)
+/obj/item/clipboard/attack_self(mob/user as69ob)
 	var/dat = "<title>Clipboard</title>"
 	if(haspen)
-		dat += "<A href='?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"
+		dat += "<A href='?src=\ref69src69;pen=1'>Remove Pen</A><BR><HR>"
 	else
-		dat += "<A href='?src=\ref[src];addpen=1'>Add Pen</A><BR><HR>"
+		dat += "<A href='?src=\ref69src69;addpen=1'>Add Pen</A><BR><HR>"
 
 	//The topmost paper. I don't think there's any way to organise contents in byond, so this is what we're stuck with.	-Pete
 	if(toppaper)
 		var/obj/item/paper/P = toppaper
-		dat += "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
+		dat += "<A href='?src=\ref69src69;write=\ref69P69'>Write</A> <A href='?src=\ref69src69;remove=\ref69P69'>Remove</A> <A href='?src=\ref69src69;rename=\ref69P69'>Rename</A> - <A href='?src=\ref69src69;read=\ref69P69'>69P.name69</A><BR><HR>"
 
 	for(var/obj/item/paper/P in src)
 		if(P==toppaper)
 			continue
-		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+		dat += "<A href='?src=\ref69src69;remove=\ref69P69'>Remove</A> <A href='?src=\ref69src69;rename=\ref69P69'>Rename</A> - <A href='?src=\ref69src69;read=\ref69P69'>69P.name69</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+		dat += "<A href='?src=\ref69src69;remove=\ref69Ph69'>Remove</A> <A href='?src=\ref69src69;rename=\ref69Ph69'>Rename</A> - <A href='?src=\ref69src69;look=\ref69Ph69'>69Ph.name69</A><BR>"
 
 	user << browse(dat, "window=clipboard")
 	onclose(user, "clipboard")
@@ -74,23 +74,23 @@
 
 	if(src.loc == usr)
 
-		if(href_list["pen"])
+		if(href_list69"pen"69)
 			if(istype(haspen) && (haspen.loc == src))
 				haspen.loc = usr.loc
 				usr.put_in_hands(haspen)
-				haspen = null
+				haspen =69ull
 
-		else if(href_list["addpen"])
+		else if(href_list69"addpen"69)
 			if(!haspen)
 				var/obj/item/pen/W = usr.get_active_hand()
 				if(istype(W, /obj/item/pen))
 					usr.drop_item()
 					W.loc = src
 					haspen = W
-					to_chat(usr, SPAN_NOTICE("You slot the pen into \the [src]."))
+					to_chat(usr, SPAN_NOTICE("You slot the pen into \the 69src69."))
 
-		else if(href_list["write"])
-			var/obj/item/P = locate(href_list["write"])
+		else if(href_list69"write"69)
+			var/obj/item/P = locate(href_list69"write"69)
 
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) && (P == toppaper) )
 
@@ -100,23 +100,23 @@
 
 					P.attackby(I, usr)
 
-		else if(href_list["remove"])
-			var/obj/item/P = locate(href_list["remove"])
+		else if(href_list69"remove"69)
+			var/obj/item/P = locate(href_list69"remove"69)
 
 			if(P && (P.loc == src) && (istype(P, /obj/item/paper) || istype(P, /obj/item/photo)) )
 
 				P.loc = usr.loc
 				usr.put_in_hands(P)
 				if(P == toppaper)
-					toppaper = null
+					toppaper =69ull
 					var/obj/item/paper/newtop = locate(/obj/item/paper) in src
 					if(newtop && (newtop != P))
-						toppaper = newtop
+						toppaper =69ewtop
 					else
-						toppaper = null
+						toppaper =69ull
 
-		else if(href_list["rename"])
-			var/obj/item/O = locate(href_list["rename"])
+		else if(href_list69"rename"69)
+			var/obj/item/O = locate(href_list69"rename"69)
 
 			if(O && (O.loc == src))
 				if(istype(O, /obj/item/paper))
@@ -127,28 +127,28 @@
 					var/obj/item/photo/to_rename = O
 					to_rename.rename()
 
-		else if(href_list["read"])
-			var/obj/item/paper/P = locate(href_list["read"])
+		else if(href_list69"read"69)
+			var/obj/item/paper/P = locate(href_list69"read"69)
 
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) )
 
 				if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+					usr << browse("<HTML><HEAD><TITLE>69P.name69</TITLE></HEAD><BODY>69stars(P.info)6969P.stamps69</BODY></HTML>", "window=69P.name69")
+					onclose(usr, "69P.name69")
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+					usr << browse("<HTML><HEAD><TITLE>69P.name69</TITLE></HEAD><BODY>69P.info6969P.stamps69</BODY></HTML>", "window=69P.name69")
+					onclose(usr, "69P.name69")
 
-		else if(href_list["look"])
-			var/obj/item/photo/P = locate(href_list["look"])
+		else if(href_list69"look"69)
+			var/obj/item/photo/P = locate(href_list69"look"69)
 			if(P && (P.loc == src) && istype(P, /obj/item/photo) )
 				P.show(usr)
 
-		else if(href_list["top"]) // currently unused
-			var/obj/item/P = locate(href_list["top"])
+		else if(href_list69"top"69) // currently unused
+			var/obj/item/P = locate(href_list69"top"69)
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) )
 				toppaper = P
-				to_chat(usr, SPAN_NOTICE("You move [P.name] to the top."))
+				to_chat(usr, SPAN_NOTICE("You69ove 69P.name69 to the top."))
 
 		//Update everything
 		attack_self(usr)

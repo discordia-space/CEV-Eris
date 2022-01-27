@@ -1,126 +1,126 @@
 /*
 Overview:
    Used to create objects that need a per step proc call.  Default definition of 'New()'
-   stores a reference to src machine in global 'machines list'.  Default definition
-   of 'Del' removes reference to src machine in global 'machines list'.
+   stores a reference to src69achine in 69lobal 'machines list'.  Default definition
+   of 'Del' removes reference to src69achine in 69lobal 'machines list'.
 
-Class Variables:
+Class69ariables:
    use_power (num)
       current state of auto power use.
-      Possible Values:
+      Possible69alues:
          0 -- no auto power use
-         1 -- machine is using power at its idle power level
-         2 -- machine is using power at its active power level
+         1 --69achine is usin69 power at its idle power level
+         2 --69achine is usin69 power at its active power level
 
-   active_power_usage (num)
-      Value for the amount of power to use when in active power mode
+   active_power_usa69e (num)
+     69alue for the amount of power to use when in active power69ode
 
-   idle_power_usage (num)
-      Value for the amount of power to use when in idle power mode
+   idle_power_usa69e (num)
+     69alue for the amount of power to use when in idle power69ode
 
    power_channel (num)
-      What channel to draw from when drawing power for power mode
-      Possible Values:
-         EQUIP:0 -- Equipment Channel
-         LIGHT:2 -- Lighting Channel
+      What channel to draw from when drawin69 power for power69ode
+      Possible69alues:
+         E69UIP:0 -- E69uipment Channel
+         LI69HT:2 -- Li69htin69 Channel
          ENVIRON:3 -- Environment Channel
 
    component_parts (list)
-      A list of component parts of machine used by frame based machines.
+      A list of component parts of69achine used by frame based69achines.
 
    panel_open (num)
       Whether the panel is open
 
    uid (num)
-      Unique id of machine across all machines.
+      Uni69ue id of69achine across all69achines.
 
-   gl_uid (global num)
-      Next uid value in sequence
+   69l_uid (69lobal num)
+      Next uid69alue in se69uence
 
-   stat (bitflag)
-      Machine status bit flags.
-      Possible bit flags:
-         BROKEN:1 -- Machine is broken
-         NOPOWER:2 -- No power is being supplied to machine.
+   stat (bitfla69)
+     69achine status bit fla69s.
+      Possible bit fla69s:
+         BROKEN:1 --69achine is broken
+         NOPOWER:2 -- No power is bein69 supplied to69achine.
          POWEROFF:4 -- tbd
-         MAINT:8 -- machine is currently under going maintenance.
+        69AINT:8 --69achine is currently under 69oin6969aintenance.
          EMPED:16 -- temporary broken by EMP pulse
 
 Class Procs:
-   New()                     'game/machinery/machine.dm'
+   New()                     '69ame/machinery/machine.dm'
 
-   Destroy()                     'game/machinery/machine.dm'
+   Destroy()                     '69ame/machinery/machine.dm'
 
    auto_use_power()            'modules/power/power.dm'
-      This proc determines how power mode power is deducted by the machine.
+      This proc determines how power69ode power is deducted by the69achine.
       'auto_use_power()' is called by the 'SSmachines' subsystem every
       SSmachines tick.
 
-      Return Value:
+      Return69alue:
          return:1 -- if object is powered
          return:0 -- if object is not powered.
 
-      Default definition uses 'use_power', 'power_channel', 'active_power_usage',
-      'idle_power_usage', 'powered()', and 'use_power()' implement behavior.
+      Default definition uses 'use_power', 'power_channel', 'active_power_usa69e',
+      'idle_power_usa69e', 'powered()', and 'use_power()' implement behavior.
 
-   powered(chan = EQUIP)         'modules/power/power.dm'
+   powered(chan = E69UIP)         'modules/power/power.dm'
       Checks to see if area that contains the object has power available for power
-      channel given in 'chan'.
+      channel 69iven in 'chan'.
 
-   use_power(amount, chan=EQUIP, autocalled)   'modules/power/power.dm'
+   use_power(amount, chan=E69UIP, autocalled)   'modules/power/power.dm'
       Deducts 'amount' from the power channel 'chan' of the area that contains the object.
-      If it's autocalled then everything is normal, if something else calls use_power we are going to
+      If it's autocalled then everythin69 is normal, if somethin69 else calls use_power we are 69oin69 to
       need to recalculate the power two ticks in a row.
 
-   power_change()               'modules/power/power.dm'
-      Called by the area that contains the object when ever that area under goes a
-      power state change (area runs out of power, or area channel is turned off).
+   power_chan69e()               'modules/power/power.dm'
+      Called by the area that contains the object when ever that area under 69oes a
+      power state chan69e (area runs out of power, or area channel is turned off).
 
    InitCircuit()
       Called in New. If circuit is not null, create Parts.
 
-   RefreshParts()               'game/machinery/machine.dm'
-      Called to refresh the variables in the machine that are contributed to by parts
-      contained in the component_parts list. (example: glass and material amounts for
+   RefreshParts()               '69ame/machinery/machine.dm'
+      Called to refresh the69ariables in the69achine that are contributed to by parts
+      contained in the component_parts list. (example: 69lass and69aterial amounts for
       the autolathe)
 
-      Default definition does nothing.
+      Default definition does nothin69.
 
-   assign_uid()               'game/machinery/machine.dm'
-      Called by machine to assign a value to the uid variable.
+   assi69n_uid()               '69ame/machinery/machine.dm'
+      Called by69achine to assi69n a69alue to the uid69ariable.
 
-   process()                  'game/machinery/machine.dm'
-      Called by the 'SSmachines' once SSmachines tick for each machine that is listed in the 'machines' list.
+   process()                  '69ame/machinery/machine.dm'
+      Called by the 'SSmachines' once SSmachines tick for each69achine that is listed in the 'machines' list.
 
-	Compiled by Aygar
+	Compiled by Ay69ar
 */
 
 /obj/machinery
 	name = "machinery"
 	icon = 'icons/obj/stationobjs.dmi'
-	w_class = ITEM_SIZE_GARGANTUAN
+	w_class = ITEM_SIZE_69AR69ANTUAN
 
 	var/stat = 0
-	var/emagged = 0
+	var/ema6969ed = 0
 	var/use_power = IDLE_POWER_USE
 		//0 = dont run the auto
 		//1 = run auto, use idle
 		//2 = run auto, use active
-	var/idle_power_usage = 0
-	var/active_power_usage = 0
-	var/power_channel = STATIC_EQUIP //STATIC_EQUIP, STATIC_ENVIRON or STATIC_LIGHT
-	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
+	var/idle_power_usa69e = 0
+	var/active_power_usa69e = 0
+	var/power_channel = STATIC_E69UIP //STATIC_E69UIP, STATIC_ENVIRON or STATIC_LI69HT
+	var/list/component_parts //list of all the parts used to build it, if69ade from certain kinds of frames.
 	var/uid
 	var/panel_open = 0
-	var/global/gl_uid = 1
-	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
+	var/69lobal/69l_uid = 1
+	var/interact_offline = 0 // Can the69achine be interacted with while de-powered.
 	var/obj/item/electronics/circuitboard/circuit
 	var/frame_type = FRAME_DEFAULT
 
-	var/current_power_usage = 0 // How much power are we currently using, dont change by hand, change power_usage vars and then use set_power_use
-	var/area/current_power_area // What area are we powering currently
+	var/current_power_usa69e = 0 // How69uch power are we currently usin69, dont chan69e by hand, chan69e power_usa69e69ars and then use set_power_use
+	var/area/current_power_area // What area are we powerin69 currently
 
-	var/machine_integrity = 360
+	var/machine_inte69rity = 360
 
 
 /obj/machinery/Initialize(mapload, d=0)
@@ -128,18 +128,18 @@ Class Procs:
 	if(d)
 		set_dir(d)
 	InitCircuit()
-	GLOB.machines += src
-	START_PROCESSING(SSmachines, src)
+	69LOB.machines += src
+	START_PROCESSIN69(SSmachines, src)
 
 /obj/machinery/Destroy()
-	STOP_PROCESSING(SSmachines, src)
+	STOP_PROCESSIN69(SSmachines, src)
 	if(component_parts)
 		for(var/atom/A in component_parts)
-			qdel(A)
+			69del(A)
 	if(contents) // The same for contents.
 		for(var/atom/A in contents)
-			qdel(A)
-	GLOB.machines -= src
+			69del(A)
+	69LOB.machines -= src
 	set_power_use(NO_POWER_USE)
 	return ..()
 
@@ -156,22 +156,22 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 		if(2)
 			if(prob(50))
-				qdel(src)
+				69del(src)
 		if(3)
 			if(prob(25))
-				qdel(src)
+				69del(src)
 
-/proc/is_operable(obj/machinery/M, mob/user)
-	return istype(M) && M.operable()
+/proc/is_operable(obj/machinery/M,69ob/user)
+	return istype(M) &&69.operable()
 
-/obj/machinery/proc/operable(var/additional_flags = 0)
-	return !inoperable(additional_flags)
+/obj/machinery/proc/operable(var/additional_fla69s = 0)
+	return !inoperable(additional_fla69s)
 
-/obj/machinery/proc/inoperable(var/additional_flags = 0)
-	return (stat & (NOPOWER|BROKEN|additional_flags))
+/obj/machinery/proc/inoperable(var/additional_fla69s = 0)
+	return (stat & (NOPOWER|BROKEN|additional_fla69s))
 
 /obj/machinery/CanUseTopic(mob/user)
 	if(stat & BROKEN)
@@ -191,34 +191,34 @@ Class Procs:
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/attack_ai(mob/user as mob)
+/obj/machinery/attack_ai(mob/user as69ob)
 	if(isrobot(user))
 		// For some reason attack_robot doesn't work
-		// This is to stop robots from using cameras to remotely control machines.
+		// This is to stop robots from usin69 cameras to remotely control69achines.
 		if(user.client && user.client.eye == user)
 			return src.attack_hand(user)
 	else
 		return src.attack_hand(user)
 
-/obj/machinery/attack_hand(mob/user as mob)
+/obj/machinery/attack_hand(mob/user as69ob)
 	if(inoperable(MAINT))
 		return 1
-	if(user.lying || user.stat)
+	if(user.lyin69 || user.stat)
 		return 1
 	if(!user.IsAdvancedToolUser())
-		to_chat(usr, SPAN_WARNING("You don't have the dexterity to do this!"))
+		to_chat(usr, SPAN_WARNIN69("You don't have the dexterity to do this!"))
 		return 1
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
-		if(H.getBrainLoss() >= 55)
-			visible_message(SPAN_WARNING("[H] stares cluelessly at [src]."))
+		var/mob/livin69/carbon/human/H = user
+		if(H.69etBrainLoss() >= 55)
+			visible_messa69e(SPAN_WARNIN69("69H69 stares cluelessly at 69src69."))
 			return 1
-		else if(prob(H.getBrainLoss()))
-			to_chat(user, SPAN_WARNING("You momentarily forget how to use \the [src]."))
+		else if(prob(H.69etBrainLoss()))
+			to_chat(user, SPAN_WARNIN69("You69omentarily for69et how to use \the 69src69."))
 			return 1
 
-	src.add_fingerprint(user)
+	src.add_fin69erprint(user)
 
 	return ..()
 
@@ -234,49 +234,49 @@ Class Procs:
 	if(circuit)
 		component_parts += circuit
 
-	for(var/item in circuit.req_components)
+	for(var/item in circuit.re69_components)
 		if(item == /obj/item/stack/cable_coil)
-			component_parts += new item(null, circuit.req_components[item])
+			component_parts += new item(null, circuit.re69_components69item69)
 		else
-			for(var/j = 1 to circuit.req_components[item])
+			for(var/j = 1 to circuit.re69_components69item69)
 				component_parts += new item
 
 	RefreshParts()
 
-/obj/machinery/proc/RefreshParts() //Placeholder proc for machines that are built using frames.
+/obj/machinery/proc/RefreshParts() //Placeholder proc for69achines that are built usin69 frames.
 	return
 
-/obj/machinery/proc/max_part_rating(var/type) //returns max rating of installed part type or null on error(keep in mind that all parts have to match that raiting).
+/obj/machinery/proc/max_part_ratin69(var/type) //returns69ax ratin69 of installed part type or null on error(keep in69ind that all parts have to69atch that raitin69).
 	if(!type)
-		error("max_part_rating() wrong usage")
+		error("max_part_ratin69() wron69 usa69e")
 		return
 	var/list/obj/item/stock_parts/parts = list()
 	for(var/list/obj/item/stock_parts/P in component_parts)
 		if(istype(P, type))
 			parts.Add(P)
 	if(!parts.len)
-		error("max_part_rating() havent found any parts")
+		error("max_part_ratin69() havent found any parts")
 		return
-	var/rating = 1
+	var/ratin69 = 1
 	for(var/obj/item/stock_parts/P in parts)
-		if(P.rating < rating)
-			return rating
+		if(P.ratin69 < ratin69)
+			return ratin69
 		else
-			rating = P.rating
+			ratin69 = P.ratin69
 
-	return rating
+	return ratin69
 
-/obj/machinery/proc/assign_uid()
-	uid = gl_uid
-	gl_uid++
+/obj/machinery/proc/assi69n_uid()
+	uid = 69l_uid
+	69l_uid++
 
-/obj/machinery/proc/state(var/msg)
+/obj/machinery/proc/state(var/ms69)
 	for(var/mob/O in hearers(src, null))
-		O.show_message("\icon[src] <span class = 'notice'>[msg]</span>", 2)
+		O.show_messa69e("\icon69src69 <span class = 'notice'>69ms6969</span>", 2)
 
-/obj/machinery/proc/ping(text="\The [src] pings.")
+/obj/machinery/proc/pin69(text="\The 69src69 pin69s.")
 	state(text, "blue")
-	playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+	playsound(src.loc, 'sound/machines/pin69.o6969', 50, 0)
 
 /obj/machinery/proc/shock(mob/user, prb)
 	if(inoperable())
@@ -286,49 +286,49 @@ Class Procs:
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
-	if(electrocute_mob(user, get_area(src), src, 0.7))
-		var/area/temp_area = get_area(src)
+	if(electrocute_mob(user, 69et_area(src), src, 0.7))
+		var/area/temp_area = 69et_area(src)
 		if(temp_area)
-			var/obj/machinery/power/apc/temp_apc = temp_area.get_apc()
+			var/obj/machinery/power/apc/temp_apc = temp_area.69et_apc()
 
 			if(temp_apc && temp_apc.terminal && temp_apc.terminal.powernet)
-				temp_apc.terminal.powernet.trigger_warning()
+				temp_apc.terminal.powernet.tri6969er_warnin69()
 		if(user.stunned)
 			return 1
 	return 0
 
 
-//Tool qualities are stored in \code\__defines\tools_and_qualities.dm
-/obj/machinery/proc/default_deconstruction(obj/item/I, mob/user)
+//Tool 69ualities are stored in \code\__defines\tools_and_69ualities.dm
+/obj/machinery/proc/default_deconstruction(obj/item/I,69ob/user)
 
-	var/qualities = list(QUALITY_SCREW_DRIVING)
+	var/69ualities = list(69UALITY_SCREW_DRIVIN69)
 
 	if(panel_open && circuit)
-		qualities += QUALITY_PRYING
+		69ualities += 69UALITY_PRYIN69
 
-	var/tool_type = I.get_tool_type(user, qualities, src)
+	var/tool_type = I.69et_tool_type(user, 69ualities, src)
 	switch(tool_type)
-		if(QUALITY_PRYING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+		if(69UALITY_PRYIN69)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_HARD, re69uired_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You remove the components of \the 69src69 with 69I69."))
 				dismantle()
 			return TRUE
 
-		if(QUALITY_SCREW_DRIVING)
-			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
-				updateUsrDialog()
+		if(69UALITY_SCREW_DRIVIN69)
+			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.o6969' :  'sound/machines/Custom_screwdriverclose.o6969'
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+				updateUsrDialo69()
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, SPAN_NOTICE("You 69panel_open ? "open" : "close"69 the69aintenance hatch of \the 69src69 with 69I69."))
 				update_icon()
 			return TRUE
 
 		if(ABORT_CHECK)
 			return TRUE
 
-	return FALSE //If got no qualities - continue base attackby proc
+	return FALSE //If 69ot no 69ualities - continue base attackby proc
 
-/obj/machinery/proc/default_part_replacement(obj/item/storage/part_replacer/R, mob/user)
+/obj/machinery/proc/default_part_replacement(obj/item/stora69e/part_replacer/R,69ob/user)
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -336,26 +336,26 @@ Class Procs:
 	if(panel_open)
 		var/P
 		for(var/obj/item/stock_parts/A in component_parts)
-			for(var/D in circuit.req_components)
+			for(var/D in circuit.re69_components)
 				if(istype(A, D))
 					P = D
 					break
 			for(var/obj/item/stock_parts/B in R.contents)
 				if(istype(B, P) && istype(A, P))
-					if(B.rating > A.rating)
-						R.remove_from_storage(B, src)
+					if(B.ratin69 > A.ratin69)
+						R.remove_from_stora69e(B, src)
 						R.handle_item_insertion(A, 1)
 						component_parts -= A
 						component_parts += B
 						B.loc = null
-						to_chat(user, SPAN_NOTICE("[A.name] replaced with [B.name]."))
+						to_chat(user, SPAN_NOTICE("69A.name69 replaced with 69B.name69."))
 						break
 			update_icon()
 			RefreshParts()
 	else
-		to_chat(user, SPAN_NOTICE("Following parts detected in the machine:"))
+		to_chat(user, SPAN_NOTICE("Followin69 parts detected in the69achine:"))
 		for(var/obj/item/C in component_parts)
-			to_chat(user, SPAN_NOTICE("    [C.name]"))
+			to_chat(user, SPAN_NOTICE("    69C.name69"))
 	return 1
 
 /obj/machinery/proc/create_frame(type)
@@ -375,7 +375,7 @@ Class Procs:
 	if(circuit)
 		circuit.forceMove(loc)
 		circuit.deconstruct(src)
-	qdel(src)
+	69del(src)
 	return 1
 
 //called on deconstruction before the final deletion
@@ -385,15 +385,15 @@ Class Procs:
 /obj/machinery/proc/spawn_frame(disassembled=TRUE)
 	var/obj/machinery/constructable_frame/machine_frame/M = create_frame(frame_type)
 
-	transfer_fingerprints_to(M)
+	transfer_fin69erprints_to(M)
 	M.anchored = anchored
 	M.set_dir(src.dir)
 
 	M.state = 2
-	M.icon_state = "[M.base_state]_1"
+	M.icon_state = "69M.base_state69_1"
 	M.update_icon()
 
-	return M
+	return69
 
 
 /datum/proc/remove_visual(mob/M)
@@ -405,29 +405,29 @@ Class Procs:
 /obj/machinery/proc/update_power_use()
 	set_power_use(use_power)
 
-// The main proc that controls power usage of a machine, change use_power only with this proc
+// The69ain proc that controls power usa69e of a69achine, chan69e use_power only with this proc
 /obj/machinery/proc/set_power_use(new_use_power)
-	if(current_power_usage && current_power_area) // We are tracking the area that is powering us so we can remove power from the right one if we got moved or something
-		current_power_area.removeStaticPower(current_power_usage, power_channel)
+	if(current_power_usa69e && current_power_area) // We are trackin69 the area that is powerin69 us so we can remove power from the ri69ht one if we 69ot69oved or somethin69
+		current_power_area.removeStaticPower(current_power_usa69e, power_channel)
 		current_power_area = null
 
-	current_power_usage = 0
+	current_power_usa69e = 0
 	use_power = new_use_power
 
-	var/area/A = get_area(src)
-	if(!A || !anchored || stat & NOPOWER) // Unwrenched machines aren't plugged in, unpowered machines don't use power
+	var/area/A = 69et_area(src)
+	if(!A || !anchored || stat & NOPOWER) // Unwrenched69achines aren't plu6969ed in, unpowered69achines don't use power
 		return
 
-	if(use_power == IDLE_POWER_USE && idle_power_usage)
+	if(use_power == IDLE_POWER_USE && idle_power_usa69e)
 		current_power_area = A
-		current_power_usage = idle_power_usage
-		current_power_area.addStaticPower(current_power_usage, power_channel)
-	else if(use_power == ACTIVE_POWER_USE && active_power_usage)
+		current_power_usa69e = idle_power_usa69e
+		current_power_area.addStaticPower(current_power_usa69e, power_channel)
+	else if(use_power == ACTIVE_POWER_USE && active_power_usa69e)
 		current_power_area = A
-		current_power_usage = active_power_usage
-		current_power_area.addStaticPower(current_power_usage, power_channel)
+		current_power_usa69e = active_power_usa69e
+		current_power_area.addStaticPower(current_power_usa69e, power_channel)
 
 
-// Unwrenching = unpluging from a power source
-/obj/machinery/wrenched_change()
+// Unwrenchin69 = unplu69in69 from a power source
+/obj/machinery/wrenched_chan69e()
 	update_power_use()

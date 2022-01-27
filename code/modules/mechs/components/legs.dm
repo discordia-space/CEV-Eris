@@ -16,18 +16,18 @@
 
 /obj/item/mech_component/propulsion/show_missing_parts(var/mob/user)
 	if(!motivator)
-		to_chat(user, SPAN_WARNING("It is missing an actuator."))
+		to_chat(user, SPAN_WARNING("It is69issing an actuator."))
 
 /obj/item/mech_component/propulsion/ready_to_install()
-	return motivator
+	return69otivator
 
 /obj/item/mech_component/propulsion/update_components()
 	motivator = locate() in src
 
-/obj/item/mech_component/propulsion/attackby(obj/item/I, mob/living/user)
+/obj/item/mech_component/propulsion/attackby(obj/item/I,69ob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/actuator))
 		if(motivator)
-			to_chat(user, SPAN_WARNING("\The [src] already has an actuator installed."))
+			to_chat(user, SPAN_WARNING("\The 69src69 already has an actuator installed."))
 			return
 		if(insert_item(I, user))
 			motivator = I
@@ -35,9 +35,9 @@
 		return ..()
 
 /obj/item/mech_component/propulsion/prebuild()
-	motivator = new(src)
+	motivator =69ew(src)
 
-/obj/item/mech_component/propulsion/proc/can_move_on(var/turf/location, var/turf/target_loc)
+/obj/item/mech_component/propulsion/proc/can_move_on(var/turf/location,69ar/turf/target_loc)
 	if(!location) //Unsure on how that'd even work
 		return 0
 	if(!istype(location))

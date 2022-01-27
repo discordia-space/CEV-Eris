@@ -16,4 +16,4 @@
 	if(!powered())
 		icon_state = "off"
 	else
-		icon_state = "[use_power ? "on" : "off"]"
+		icon_state = "69use_power ? "on" : "off"69"

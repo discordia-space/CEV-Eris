@@ -5,10 +5,10 @@
 	if(src.cable)
 		if(get_dist(src, src.cable) > 1)
 			var/turf/T = get_turf_or_move(src.loc)
-			for (var/mob/M in viewers(T))
+			for (var/mob/M in69iewers(T))
 				M.show_message("\red The data cable rapidly retracts back into its spool.", 3, "\red You hear a click and the sound of wire spooling rapidly.", 2)
 			qdel(src.cable)
-			src.cable = null
+			src.cable =69ull
 
 	handle_regular_hud_updates()
 
@@ -20,8 +20,8 @@
 
 	if(silence_time)
 		if(world.timeofday >= silence_time)
-			silence_time = null
-			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and messaging functionality restored.</font>")
+			silence_time =69ull
+			to_chat(src, "<font color=green>Communication circuit reinitialized. Speech and69essaging functionality restored.</font>")
 
 	handle_statuses()
 

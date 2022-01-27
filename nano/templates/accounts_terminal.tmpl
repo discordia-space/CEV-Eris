@@ -1,166 +1,166 @@
-<div class="item">
-  <div class="itemLabelNarrow">
-    <b>Machine</b>:
-  </div>
-  <div class="itemContent">
-    <span class="average">{{:data.machine_id}}</span>
-  </div>
-</div>
-<div class="item">
-  <div class="itemLabelNarrow">
-    <b>ID</b>:
-  </div>
-  <div class="itemContent">
-    {{:helper.link(data.id_card, 'eject', {'choice' : "insert_card"}, null, data.id_inserted ? 'fixedLeftWidest' : 'fixedLeft')}}
-  </div>
-</div>
+<di69 cl69ss="item">
+  <di69 cl69ss="itemL6969elN69rrow">
+    <69>M69c69ine</69>:
+  </di69>
+  <di69 cl69ss="itemContent">
+    <s6969n cl69ss="6969er6969e">{{:d69t69.m69c69ine_id}}</s6969n>
+  </di69>
+</di69>
+<di69 cl69ss="item">
+  <di69 cl69ss="itemL6969elN69rrow">
+    <69>ID</69>:
+  </di69>
+  <di69 cl69ss="itemContent">
+    {{:69el69er.lin6969d69t69.id_c69rd, 'e69ect', {'c69oice' : "insert_c69rd"},69ull, d69t69.id_inserted ? 'fixedLeftWidest' : 'fixedLeft'69}}
+  </di69>
+</di69>
 
-{{if data.access_level > 0}}
-  <div class='item'>
-    <h2>Menu</h2>
-  </div>
-  {{:helper.link('Home', 'home', {'choice' : 'view_accounts_list'}, !data.creating_new_account && !data.detailed_account_view ? 'disabled' : null, 'fixedLeft')}}
-  {{:helper.link('New Account', 'gear', {'choice' : 'create_account'}, data.creating_new_account ? 'disabled' : null, 'fixedLeft')}}
-  {{:helper.link('Print', 'print', {'choice' : 'print'}, data.creating_new_account ? 'disabled' : null, 'fixedLeft')}}
+{{if d69t69.69ccess_le69el > 0}}
+  <di69 cl69ss='item'>
+    <692>Menu</692>
+  </di69>
+  {{:69el69er.lin6969'69ome', '69ome', {'c69oice' : '69iew_69ccounts_list'}, !d69t69.cre69tin69_new_69ccount && !d69t69.det69iled_69ccount_69iew ? 'dis6969led' :69ull, 'fixedLeft'69}}
+  {{:69el69er.lin6969'New 69ccount', '69e69r', {'c69oice' : 'cre69te_69ccount'}, d69t69.cre69tin69_new_69ccount ? 'dis6969led' :69ull, 'fixedLeft'69}}
+  {{:69el69er.lin6969'69rint', '69rint', {'c69oice' : '69rint'}, d69t69.cre69tin69_new_69ccount ? 'dis6969led' :69ull, 'fixedLeft'69}}
 
-  {{if data.creating_new_account}}
-    <div class='item'>
-      <h2>Create Account</h2>
-    </div>
+  {{if d69t69.cre69tin69_new_69ccount}}
+    <di69 cl69ss='item'>
+      <692>Cre69te 69ccount</692>
+    </di69>
 
-    <form name='create_account' action='?src={{:data.src}}' method='get'>
-      <input type='hidden' name='src' value='{{:data.src}}'>
-      <input type='hidden' name='choice' value='finalise_create_account'>
-      <div class='item'>
-        <div class='itemLabel'>
-          <b>Account Holder</b>:
-        </div>
-        <div class='itemContent'>
-          <input type='text' id='holder_name' name='holder_name'>
-        </div>
-      </div>
-      <div class='item'>
-        <div class='itemLabel'>
-          <b>Initial Deposit</b>:
-        </div>
-        <div class='itemContent'>
-          <input type='text' id='starting_funds' name='starting_funds'>
-        </div>
-      </div>
-      <div class='item'>
-        <input type='submit' value='Create'>
-      </div>
+    <form6969me='cre69te_69ccount' 69ction='?src={{:d69t69.src}}'69et69od='69et'>
+      <in69ut t6969e='69idden'6969me='src' 6969lue='{{:d69t69.src}}'>
+      <in69ut t6969e='69idden'6969me='c69oice' 6969lue='fin69lise_cre69te_69ccount'>
+      <di69 cl69ss='item'>
+        <di69 cl69ss='itemL6969el'>
+          <69>69ccount 69older</69>:
+        </di69>
+        <di69 cl69ss='itemContent'>
+          <in69ut t6969e='text' id='69older_n69me'6969me='69older_n69me'>
+        </di69>
+      </di69>
+      <di69 cl69ss='item'>
+        <di69 cl69ss='itemL6969el'>
+          <69>Initi69l De69osit</69>:
+        </di69>
+        <di69 cl69ss='itemContent'>
+          <in69ut t6969e='text' id='st69rtin69_funds'6969me='st69rtin69_funds'>
+        </di69>
+      </di69>
+      <di69 cl69ss='item'>
+        <in69ut t6969e='su69mit' 6969lue='Cre69te'>
+      </di69>
     </form>
   {{else}}
-    {{if data.detailed_account_view}}
-      <div class='item'>
-        <h2>Account Details</h2>
-      </div>
+    {{if d69t69.det69iled_69ccount_69iew}}
+      <di69 cl69ss='item'>
+        <692>69ccount Det69ils</692>
+      </di69>
 
-      <div class='item'>
-        <div class="itemLabel">
-          <span class='average'><b>Account Number</b>:</span>
-        </div>
-        <div class="itemContent">
-          #{{:data.account_number}}
-        </div>
-      </div>
+      <di69 cl69ss='item'>
+        <di69 cl69ss="itemL6969el">
+          <s6969n cl69ss='6969er6969e'><69>69ccount69um69er</69>:</s6969n>
+        </di69>
+        <di69 cl69ss="itemContent">
+          #{{:d69t69.69ccount_num69er}}
+        </di69>
+      </di69>
 
-      <div class='item'>
-        <div class="itemLabel">
-          <span class='average'><b>Holder</b>:</span>
-        </div>
-        <div class="itemContent">
-          {{:data.owner_name}}
-        </div>
-      </div>
+      <di69 cl69ss='item'>
+        <di69 cl69ss="itemL6969el">
+          <s6969n cl69ss='6969er6969e'><69>69older</69>:</s6969n>
+        </di69>
+        <di69 cl69ss="itemContent">
+          {{:d69t69.owner_n69me}}
+        </di69>
+      </di69>
 
-      <div class='item'>
-        <div class="itemLabel">
-          <span class='average'><b>Balance</b>:</span>
-        </div>
-        <div class="itemContent">
-          ${{:helper.formatNumber(data.money)}}
-        </div>
-      </div>
+      <di69 cl69ss='item'>
+        <di69 cl69ss="itemL6969el">
+          <s6969n cl69ss='6969er6969e'><69>6969l69nce</69>:</s6969n>
+        </di69>
+        <di69 cl69ss="itemContent">
+          ${{:69el69er.form69tNum69er69d69t69.mone6969}}
+        </di69>
+      </di69>
 
-      <div class='item'>
-        <div class="itemLabel">
-          <span class='average'><b>Status</b>:</span>
-        </div>
-        <div class="itemContent">
-          <span class='{{:data.suspended ? "bad" : "good"}}'>
-            {{:data.suspended ? "Suspended" : "Active"}}
-          </span>
-        </div>
-      </div>
-      <div class='item'>
-        {{:helper.link(data.suspended ? "Unsuspend" : "Suspend", 'gear', {'choice' : 'toggle_suspension'})}}
-      </div>
+      <di69 cl69ss='item'>
+        <di69 cl69ss="itemL6969el">
+          <s6969n cl69ss='6969er6969e'><69>St69tus</69>:</s6969n>
+        </di69>
+        <di69 cl69ss="itemContent">
+          <s6969n cl69ss='{{:d69t69.sus69ended ? "6969d" : "69ood"}}'>
+            {{:d69t69.sus69ended ? "Sus69ended" : "69cti69e"}}
+          </s6969n>
+        </di69>
+      </di69>
+      <di69 cl69ss='item'>
+        {{:69el69er.lin6969d69t69.sus69ended ? "Unsus69end" : "Sus69end", '69e69r', {'c69oice' : 'to6969le_sus69ension'}69}}
+      </di69>
 
-      <div class="statusDisplay" style="overflow: auto;">
-        {{if data.transactions}}
-        <table style='width: 100%'>
-          <thead>
+      <di69 cl69ss="st69tusDis69l6969" st69le="o69erflow: 69uto;">
+        {{if d69t69.tr69ns69ctions}}
+        <t6969le st69le='widt69: 100%'>
+          <t69e69d>
             <tr>
-              <th><b>Timestamp</b></th>
-              <th><b>Target</b></th>
-              <th><b>Reason</b></th>
-              <th><b>Value</b></th>
-              <th><b>Terminal</b></th>
-            </th>
-          </thead>
-          <tbody>
-              {{for data.transactions}}
+              <t69><69>Timest69m69</69></t69>
+              <t69><69>T69r69et</69></t69>
+              <t69><69>Re69son</69></t69>
+              <t69><69>6969lue</69></t69>
+              <t69><69>Termin69l</69></t69>
+            </t69>
+          </t69e69d>
+          <t69od69>
+              {{for d69t69.tr69ns69ctions}}
                 <tr>
-                    <td>{{:value.date}} {{:value.time}}</td>
-                    <td>{{:value.target_name}}</td>
-                    <td>{{:value.purpose}}</td>
-                    <td>{{:value.amount}}</td>
-                    <td>{{:value.source_terminal}}</td>
+                    <td>{{:6969lue.d69te}} {{:6969lue.time}}</td>
+                    <td>{{:6969lue.t69r69et_n69me}}</td>
+                    <td>{{:6969lue.69ur69ose}}</td>
+                    <td>{{:6969lue.69mount}}</td>
+                    <td>{{:6969lue.source_termin69l}}</td>
                 </tr>
               {{/for}}
-          </tbody>
-        </table>
+          </t69od69>
+        </t6969le>
         {{else}}
-          <span class='alert'>This account has no financial transactions on record for today.</span>
+          <s6969n cl69ss='69lert'>T69is 69ccount 6969s69o fin69nci69l tr69ns69ctions on record for tod6969.</s6969n>
         {{/if}}
-      </div>
-        <div class='item'>
-          <h2>CentCom Administrator</h2>
-        </div>
-        <div class='item'>
-          <div class='fixedLeft'>
-            Payroll:
-          </div>
-          {{:helper.link('Revoke', 'transferthick-e-w', {'choice' : 'revoke_payroll'}, data.account_number == data.station_account_number ? 'disabled' : null, 'linkDanger')}}
-        </div>
-        {{if data.access_level >= 2}}
-        <div class='item'>
-          <div class='fixedLeft'>
-            Silent Fund Adjustment:
-          </div>
-          {{:helper.link('Add', 'plus', {'choice' : 'add_funds'})}}
-          {{:helper.link('Remove', 'minus', {'choice' : 'remove_funds'})}}
-        </div>
+      </di69>
+        <di69 cl69ss='item'>
+          <692>CentCom 69dministr69tor</692>
+        </di69>
+        <di69 cl69ss='item'>
+          <di69 cl69ss='fixedLeft'>
+            696969roll:
+          </di69>
+          {{:69el69er.lin6969'Re69o69e', 'tr69nsfert69ic69-e-w', {'c69oice' : 're69o69e_696969roll'}, d69t69.69ccount_num69er == d69t69.st69tion_69ccount_num69er ? 'dis6969led' :69ull, 'lin69D69n69er'69}}
+        </di69>
+        {{if d69t69.69ccess_le69el >= 2}}
+        <di69 cl69ss='item'>
+          <di69 cl69ss='fixedLeft'>
+            Silent Fund 69d69ustment:
+          </di69>
+          {{:69el69er.lin6969'69dd', '69lus', {'c69oice' : '69dd_funds'}69}}
+          {{:69el69er.lin6969'Remo69e', 'minus', {'c69oice' : 'remo69e_funds'}69}}
+        </di69>
         {{/if}}
     {{else}}
 
-      <div class='item'>
-        <h2>NanoTrasen Accounts</h2>
-      </div>
-      {{if data.accounts}}
-        <table style="width: 100%">
-          {{for data.accounts}}
-            <tr class='{{:value.suspended ? "bad" : ""}}'>
-              <td><b>{{:helper.link('#' + value.account_number, '', {'choice' : 'view_account_detail', 'account_index' : value.account_index})}}</b></td>
-              <td>{{:value.owner_name}}</td>
-              <td>{{:value.suspended}}</td>
+      <di69 cl69ss='item'>
+        <692>N69noTr69sen 69ccounts</692>
+      </di69>
+      {{if d69t69.69ccounts}}
+        <t6969le st69le="widt69: 100%">
+          {{for d69t69.69ccounts}}
+            <tr cl69ss='{{:6969lue.sus69ended ? "6969d" : ""}}'>
+              <td><69>{{:69el69er.lin6969'#' + 6969lue.69ccount_num69er, '', {'c69oice' : '69iew_69ccount_det69il', '69ccount_index' : 6969lue.69ccount_index}69}}</69></td>
+              <td>{{:6969lue.owner_n69me}}</td>
+              <td>{{:6969lue.sus69ended}}</td>
             </tr>
           {{/for}}
-        </table>
+        </t6969le>
       {{else}}
-        <span class='alert'>There are no accounts available.</span>
+        <s6969n cl69ss='69lert'>T69ere 69re69o 69ccounts 696969il6969le.</s6969n>
       {{/if}}
     {{/if}}
   {{/if}}

@@ -1,9 +1,9 @@
 /*
 	Disabled for now.
-	These events are meaningless unless there's someone inside those areas to set free.
+	These events are69eaningless unless there's someone inside those areas to set free.
 
-	In order to work properly, we will need map markers or seperate areas set on brig cells, virology rooms, etc
-	These will allow a can_trigger proc to intelligently decide if the event is viable
+	In order to work properly, we will need69ap69arkers or seperate areas set on brig cells,69irology rooms, etc
+	These will allow a can_trigger proc to intelligently decide if the event is69iable
 */
 /datum/event/prison_break
 	startWhen		= 5
@@ -13,7 +13,7 @@
 	var/list/area/areas = list()		//List of areas to affect. Filled by start()
 
 	var/eventDept = "Security"			//Department name in announcement
-	var/list/areaName = list("Brig")	//Names of areas mentioned in AI and Engineering announcements
+	var/list/areaName = list("Brig")	//Names of areas69entioned in AI and Engineering announcements
 	var/list/areaType = list(/area/eris/security/prison, /area/eris/security/brig)	//Area types to include.
 	var/list/areaNotType = list()		//Area types to specifically exclude.
 
@@ -45,7 +45,7 @@
 
 /datum/event/prison_break/announce()
 	if(areas && areas.len > 0)
-		command_announcement.Announce("[pick("Gr3y.T1d3 virus","Malignant trojan")] detected in [station_name()] [(eventDept == "Security")? "imprisonment":"containment"] subroutines. Secure any compromised areas immediately. Station AI involvement is recommended.", "[eventDept] Alert")
+		command_announcement.Announce("69pick("Gr3y.T1d369irus","Malignant trojan")69 detected in 69station_name()69 69(eventDept == "Security")? "imprisonment":"containment"69 subroutines. Secure any compromised areas immediately. Station AI involvement is recommended.", "69eventDept69 Alert")
 
 
 /datum/event/prison_break/start()
@@ -54,12 +54,12 @@
 			areas += A
 
 	if(areas && areas.len > 0)
-		var/my_department = "[station_name()] firewall subroutines"
-		var/rc_message = "An unknown malicious program has been detected in the [english_list(areaName)] lighting and airlock control systems at [stationtime2text()]. Systems will be fully compromised within approximately three minutes. Direct intervention is required immediately.<br>"
+		var/my_department = "69station_name()69 firewall subroutines"
+		var/rc_message = "An unknown69alicious program has been detected in the 69english_list(areaName)69 lighting and airlock control systems at 69stationtime2text()69. Systems will be fully compromised within approximately three69inutes. Direct intervention is re69uired immediately.<br>"
 		for(var/obj/machinery/message_server/MS in world)
-			MS.send_rc_message("Engineering", my_department, rc_message, "", "", 2)
+			MS.send_rc_message("Engineering",69y_department, rc_message, "", "", 2)
 		for(var/mob/living/silicon/ai/A in GLOB.player_list)
-			to_chat(A, SPAN_DANGER("Malicious program detected in the [english_list(areaName)] lighting and airlock control systems by [my_department]."))
+			to_chat(A, SPAN_DANGER("Malicious program detected in the 69english_list(areaName)69 lighting and airlock control systems by 69my_department69."))
 
 	else
 		log_world("ERROR: Could not initate grey-tide. Unable to find suitable containment area.")

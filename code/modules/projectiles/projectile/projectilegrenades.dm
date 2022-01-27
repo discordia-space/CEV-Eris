@@ -20,7 +20,7 @@
 /obj/item/projectile/bullet/grenade/Move()	//Makes grenade shells cause their effect when they arrive at their target turf
 	if(get_turf(src) == get_turf(original))
 		grenade_effect(get_turf(src))
-		qdel(src)
+		69del(src)
 	else
 		..()
 

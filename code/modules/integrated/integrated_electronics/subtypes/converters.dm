@@ -1,4 +1,4 @@
-//These circuits convert one variable to another.
+//These circuits convert one69ariable to another.
 /obj/item/integrated_circuit/converter
 	complexity = 2
 	inputs = list("input")
@@ -14,7 +14,7 @@
 
 /obj/item/integrated_circuit/converter/num2text
 	name = "number to string"
-	desc = "This circuit can convert a number variable into a string."
+	desc = "This circuit can convert a number69ariable into a string."
 	icon_state = "num-string"
 	inputs = list("\<NUM\> input")
 	outputs = list("\<TEXT\> output")
@@ -33,7 +33,7 @@
 
 /obj/item/integrated_circuit/converter/text2num
 	name = "string to number"
-	desc = "This circuit can convert a string variable into a number."
+	desc = "This circuit can convert a string69ariable into a number."
 	icon_state = "string-num"
 	inputs = list("\<TEXT\> input")
 	outputs = list("\<NUM\> output")
@@ -109,7 +109,7 @@
 
 /obj/item/integrated_circuit/converter/concatenatior
 	name = "concatenatior"
-	desc = "This joins many strings or numbers together to get one big string."
+	desc = "This joins69any strings or numbers together to get one big string."
 	complexity = 4
 	inputs = list(
 		"\<TEXT/NUM\> A",
@@ -137,7 +137,7 @@
 		if(length(result) >= IC_MAX_STRING_SIZE)
 			break
 
-	var/datum/integrated_io/outgoing = outputs[1]
+	var/datum/integrated_io/outgoing = outputs69169
 	outgoing.data = copytext(result, 1, IC_MAX_STRING_SIZE)
 	outgoing.push_data()
 	activate_pin(2)

@@ -11,19 +11,19 @@
 
 /obj/item/organ/internal/bone/Initialize()
     . = ..()
-    src.transform *= 0.5 // this little trick makes bone size small while keeping detail level of 32x32 bones.
+    src.transform *= 0.5 // this little trick69akes bone size small while keeping detail level of 32x32 bones.
 
 /obj/item/organ/internal/bone/proc/fracture()
 	if(owner)
 		owner.visible_message(
-			SPAN_DANGER("You hear a loud cracking sound coming from \the [owner]."),
-			SPAN_DANGER("Something feels like it shattered in your [name]"),
+			SPAN_DANGER("You hear a loud cracking sound coming from \the 69owner69."),
+			SPAN_DANGER("Something feels like it shattered in your 69name69"),
 			SPAN_DANGER("You hear a sickening crack.")
 		)
-		if(owner.species && !(owner.species.flags & NO_PAIN))
+		if(owner.species && !(owner.species.flags &69O_PAIN))
 			owner.emote("scream")
 
-	parent.status |= ORGAN_BROKEN	//Holding the status on the parent organ to make transition to erismed organ processes easier.
+	parent.status |= ORGAN_BROKEN	//Holding the status on the parent organ to69ake transition to erismed organ processes easier.
 	broken_description = pick("broken","fracture","hairline fracture")
 	parent.perma_injury = parent.brute_dam
 	take_damage(10, 0)
@@ -38,24 +38,24 @@
 		if(parent.status & ORGAN_BROKEN)
 			actions_list.Add(list(list(
 				"name" = "Mend break",
-				"organ" = "\ref[src]",
+				"organ" = "\ref69src69",
 				"step" = /datum/surgery_step/robotic/fix_bone
 			)))
 	else
 		actions_list.Add(list(list(
 			"name" = (parent.status & ORGAN_BROKEN) ? "Mend" : "Break",
-			"organ" = "\ref[src]",
+			"organ" = "\ref69src69",
 			"step" = (parent.status & ORGAN_BROKEN) ? /datum/surgery_step/mend_bone : /datum/surgery_step/break_bone
 		)))
 		if(parent.status & ORGAN_BROKEN)
 			actions_list.Add(list(list(
 					"name" = "Reinforce",
-					"organ" = "\ref[src]",
+					"organ" = "\ref69src69",
 					"step" = /datum/surgery_step/reinforce_bone
 				)))
 		actions_list.Add(list(list(
 				"name" = "Replace",
-				"organ" = "\ref[src]",
+				"organ" = "\ref69src69",
 				"step" = /datum/surgery_step/replace_bone
 			)))
 
@@ -69,10 +69,10 @@
 
 /obj/item/organ/internal/bone/proc/reinforce()
 	if(!reinforced) //Just in case
-		organ_efficiency[OP_BONE] += 33
+		organ_efficiency69OP_BONE69 += 33
 		reinforced = TRUE
-		name = "reinforced [name]"
-		icon_state = "reinforced_[icon_state]"
+		name = "reinforced 69name69"
+		icon_state = "reinforced_69icon_state69"
 
 /obj/item/organ/internal/bone/chest
 	name = "ribcage"
@@ -111,53 +111,53 @@
 	parent_organ_base = BP_L_LEG
 	force = WEAPON_FORCE_PAINFUL
 
-//Robotic limb variants
+//Robotic limb69ariants
 /obj/item/organ/internal/bone/chest/robotic
 	name = "chest frame"
 	icon_state = "metal_ribcage"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/groin/robotic
 	name = "groin frame"
 	icon_state = "metal_pelvis"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/head/robotic
 	name = "head frame"
 	icon_state = "metal_skull"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/r_arm/robotic
 	name = "right arm frame"
 	icon_state = "metal_right_arm"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/l_arm/robotic
 	name = "left arm frame"
 	icon_state = "metal_left_arm"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/r_leg/robotic
 	name = "right leg frame"
 	icon_state = "metal_right_leg"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 /obj/item/organ/internal/bone/l_leg/robotic
 	name = "left leg frame"
 	icon_state = "metal_left_leg"
-	nature = MODIFICATION_SILICON
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2)
+	nature =69ODIFICATION_SILICON
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2)
 
 //Bone braces
 /obj/item/bone_brace
 	name = "bone braces"
-	desc = "Little metal bits that bones can be reinforced with"
+	desc = "Little69etal bits that bones can be reinforced with"
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "bone_braces"
 	w_class = ITEM_SIZE_SMALL

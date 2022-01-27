@@ -1,14 +1,14 @@
 //Uncommenting ALLOW_HOLIDAYS in config.txt will enable Holidays
 var/global/Holiday = null
 
-//Just thinking ahead! Here's the foundations to a more robust Holiday event system.
+//Just thinking ahead! Here's the foundations to a69ore robust Holiday event system.
 //It's easy as hell to add stuff. Just set Holiday to something using the switch (or something else)
-//then use if(Holiday == "MyHoliday") to make stuff happen on that specific day only
+//then use if(Holiday == "MyHoliday") to69ake stuff happen on that specific day only
 //Please, Don't spam stuff up with easter eggs, I'd rather somebody just delete this than people cause
-//the game to lag even more in the name of one-day content.
+//the game to lag even69ore in the name of one-day content.
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
-//ALSO, MOST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
+//ALSO,69OST IMPORTANTLY: Don't add stupid stuff! Discuss bonus content with Project-Heads first please!//
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //																							~Carn
 
@@ -16,14 +16,14 @@ var/global/Holiday = null
 	Get_Holiday()
 	return 1
 
-//sets up the Holiday global variable. Shouldbe called on game configuration or something.
+//sets up the Holiday global69ariable. Shouldbe called on game configuration or something.
 /proc/Get_Holiday()
 	if(!Holiday)	return		// Holiday stuff was not enabled in the config!
 
 	Holiday = null				// reset our switch now so we can recycle it as our Holiday name
 
 	var/YY	=	text2num(time2text(world.timeofday, "YY")) 	// get the current year
-	var/MM	=	text2num(time2text(world.timeofday, "MM")) 	// get the current month
+	var/MM	=	text2num(time2text(world.timeofday, "MM")) 	// get the current69onth
 	var/DD	=	text2num(time2text(world.timeofday, "DD")) 	// get the current day
 
 	//Main switch. If any of these are too dumb/inappropriate, or you have better ones, feel free to change whatever
@@ -85,7 +85,7 @@ var/global/Holiday = null
 		if(9)	//Sep
 			switch(DD)
 				if(19)							Holiday = "Talk-Like-a-Pirate Day"
-				if(28)							Holiday = "Stupid-Questions Day"
+				if(28)							Holiday = "Stupid-69uestions Day"
 
 		if(10)	//Oct
 			switch(DD)
@@ -118,12 +118,12 @@ var/global/Holiday = null
 			if(time2text(world.timeofday, "DDD") == "Fri")
 				Holiday = "Friday the 13th"
 
-//Allows GA and GM to set the Holiday variable
+//Allows GA and GM to set the Holiday69ariable
 ADMIN_VERB_ADD(/client/proc/Set_Holiday, R_SERVER, null)
 /client/proc/Set_Holiday(T as text|null)
 	set name = ".Set Holiday"
 	set category = "Fun"
-	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
+	set desc = "Force-set the Holiday69ariable to69ake the game think it's a certain day."
 	if(!check_rights(R_SERVER))	return
 
 	Holiday = T
@@ -134,15 +134,15 @@ ADMIN_VERB_ADD(/client/proc/Set_Holiday, R_SERVER, null)
 	world.update_status()
 	Holiday_Game_Start()
 
-	message_admins("<span class='notice'>ADMIN: Event: [key_name(src)] force-set Holiday to \"[Holiday]\"</span>")
-	log_admin("[key_name(src)] force-set Holiday to \"[Holiday]\"")
+	message_admins("<span class='notice'>ADMIN: Event: 69key_name(src)69 force-set Holiday to \"69Holiday69\"</span>")
+	log_admin("69key_name(src)69 force-set Holiday to \"69Holiday69\"")
 
 
 //Run at the  start of a round
 /proc/Holiday_Game_Start()
 	if(Holiday)
 		to_chat(world, "<font color='blue'>and...</font>")
-		to_chat(world, "<h4>Happy [Holiday] Everybody!</h4>")
+		to_chat(world, "<h4>Happy 69Holiday69 Everybody!</h4>")
 		switch(Holiday)			//special holidays
 			if("Easter")
 				//do easter stuff

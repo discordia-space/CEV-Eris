@@ -34,21 +34,21 @@
 /datum/ritual/proc/failed(mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets, on_chance = FALSE)
 	return
 
-/datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/implant/core_implant/C, var/list/targets, var/force = FALSE)
+/datum/ritual/proc/activate(mob/living/carbon/human/H, obj/item/implant/core_implant/C,69ar/list/targets,69ar/force = FALSE)
 	if(!pre_check(H,C,targets))
 		return
 	if(!force && !check_success(C))
-		to_chat(H, SPAN_DANGER("[fail_message]"))
+		to_chat(H, SPAN_DANGER("69fail_message69"))
 		failed(H, C, targets, TRUE)
 	else
 		if(perform(H, C, targets))
 			C.use_power(src.power)
-			to_chat(H, SPAN_NOTICE("[success_message]"))
+			to_chat(H, SPAN_NOTICE("69success_message69"))
 
-/datum/ritual/proc/fail(var/message, mob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
+/datum/ritual/proc/fail(var/message,69ob/living/carbon/human/H, obj/item/implant/core_implant/C, targets)
 	if(!message)
 		message = fail_message
-	to_chat(H, SPAN_DANGER("[message]"))
+	to_chat(H, SPAN_DANGER("69message69"))
 	failed(H, C, targets)
 
 /datum/ritual/proc/check_success(obj/item/implant/core_implant/C)
@@ -57,7 +57,7 @@
 /datum/ritual/proc/is_allowed(obj/item/implant/core_implant/C)
 	return TRUE
 
-//returns phrase to say, may require to specify target
+//returns phrase to say,69ay require to specify target
 /datum/ritual/proc/get_say_phrase()
 	return phrase
 
@@ -78,22 +78,22 @@
 //sets global cooldown for ritual's cooldown category
 /datum/ritual/proc/set_global_cooldown()
 	if(src.cooldown)
-		GLOB.global_ritual_cooldowns[src.cooldown_category] = TRUE
+		GLOB.global_ritual_cooldowns69src.cooldown_category69 = TRUE
 		addtimer(CALLBACK(src, .proc/reset_global_cooldown), src.cooldown_time)
 //resets personal cooldown for user if he's not nil or resets global cooldown, internal proc
 /datum/ritual/proc/reset_global_cooldown()
-	GLOB.global_ritual_cooldowns[src.cooldown_category] = FALSE
+	GLOB.global_ritual_cooldowns69src.cooldown_category69 = FALSE
 
 //sets personal cooldown for user of ritual's cooldown category
 /datum/ritual/proc/set_personal_cooldown(mob/living/carbon/human/user)
 	if(src.cooldown)
-		user.personal_ritual_cooldowns[src.cooldown_category] = world.time + src.cooldown_time
+		user.personal_ritual_cooldowns69src.cooldown_category69 = world.time + src.cooldown_time
 
 //check's if ritual at personal or global cooldown
 /datum/ritual/proc/is_on_cooldown(mob/living/carbon/human/user)
-	if(GLOB.global_ritual_cooldowns[src.cooldown_category])
+	if(GLOB.global_ritual_cooldowns69src.cooldown_category69)
 		return TRUE
-	if(user.personal_ritual_cooldowns[src.cooldown_category] > world.time)
+	if(user.personal_ritual_cooldowns69src.cooldown_category69 > world.time)
 		return TRUE
 	return FALSE
 
@@ -101,7 +101,7 @@
 
 
 
-//Getting mobs
+//Getting69obs
 /proc/get_grabbed_mob(var/mob/living/carbon/human/user)
 	var/obj/item/grab/G = locate(/obj/item/grab) in user
 
@@ -157,7 +157,7 @@
 	return T.contents
 
 
-/proc/pick_disciple_global(var/mob/user, var/allow_dead = TRUE)
+/proc/pick_disciple_global(var/mob/user,69ar/allow_dead = TRUE)
 	var/list/candidates = list()
 	for (var/mob/living/L in disciples)
 		if (QDELETED(L))

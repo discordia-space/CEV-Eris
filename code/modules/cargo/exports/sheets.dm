@@ -17,7 +17,7 @@
 /datum/export/stack/skin
 	unit_name = ""
 
-// Monkey hide. Cheap.
+//69onkey hide. Cheap.
 /datum/export/stack/skin/monkey
 	cost = 150
 	unit_name = "monkey hide"
@@ -44,14 +44,14 @@
 	unit_name = "cat hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/cat)
 
-// Corgi hide. You monster.
+// Corgi hide. You69onster.
 /datum/export/stack/skin/corgi
 	cost = 2500
 	contraband = 1
 	unit_name = "corgi hide"
 	export_types = list(/obj/item/stack/sheet/animalhide/corgi)
 
-// Lizard hide. Very expensive.
+// Lizard hide.69ery expensive.
 /datum/export/stack/skin/lizard
 	cost = 5000
 	unit_name = "lizard hide"
@@ -64,15 +64,15 @@
 	export_types = list(/obj/item/stack/sheet/animalhide/xeno)
 */
 
-// Common materials.
+// Common69aterials.
 
-// Metal. Common building material.
+//69etal. Common building69aterial.
 /datum/export/stack/metal
 	cost = 2
-	message = "of metal"
+	message = "of69etal"
 	export_types = list(/obj/item/stack/material/steel)
 
-// Glass. Common building material.
+// Glass. Common building69aterial.
 /datum/export/stack/glass
 	cost = 2
 	message = "of glass"
@@ -84,13 +84,13 @@
 	message = "of plasteel"
 	export_types = list(/obj/item/stack/material/plasteel)
 
-// Reinforced Glass. Common building material. 1 glass + 0.5 metal, cost is rounded up.
+// Reinforced Glass. Common building69aterial. 1 glass + 0.569etal, cost is rounded up.
 /datum/export/stack/rglass
 	cost = 8
 	message = "of reinforced glass"
 	export_types = list(/obj/item/stack/material/glass/reinforced)
 
-// Wood. Quite expensive in the grim and dark 26 century.
+// Wood. 69uite expensive in the grim and dark 26 century.
 /datum/export/stack/wood
 	cost = 10
 	unit_name = "wood plank"
@@ -139,7 +139,7 @@
 
 /datum/export/stack/plasma/get_cost(obj/O, contr = 0, emag = 0)
 	. = ..(O)
-	if(emag) // Syndicate pays you more for the plasma.
+	if(emag) // Syndicate pays you69ore for the plasma.
 		. = round(. * 1.5)
 
 // Uranium. Still useful for both power generation and nuclear annihilation.

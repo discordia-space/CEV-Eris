@@ -17,8 +17,8 @@ var/global/list/plant_seed_sprites = list()
 
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
-	if(!seed && seed_type && !isnull(plant_controller.seeds) && plant_controller.seeds[seed_type])
-		seed = plant_controller.seeds[seed_type]
+	if(!seed && seed_type && !isnull(plant_controller.seeds) && plant_controller.seeds69seed_type69)
+		seed = plant_controller.seeds69seed_type69
 	update_appearance()
 
 //Updates strings and icon appropriately based on seed datum.
@@ -29,38 +29,38 @@ var/global/list/plant_seed_sprites = list()
 	overlays.Cut()
 	var/is_seeds = ((seed.seed_noun in list("seeds","pits","nodes")) ? 1 : 0)
 	var/image/seed_mask
-	var/seed_base_key = "base-[is_seeds ? seed.get_trait(TRAIT_PLANT_COLOUR) : "spores"]"
-	if(plant_seed_sprites[seed_base_key])
-		seed_mask = plant_seed_sprites[seed_base_key]
+	var/seed_base_key = "base-69is_seeds ? seed.get_trait(TRAIT_PLANT_COLOUR) : "spores"69"
+	if(plant_seed_sprites69seed_base_key69)
+		seed_mask = plant_seed_sprites69seed_base_key69
 	else
-		seed_mask = image('icons/obj/seeds.dmi',"[is_seeds ? "seed" : "spore"]-mask")
+		seed_mask = image('icons/obj/seeds.dmi',"69is_seeds ? "seed" : "spore"69-mask")
 		if(is_seeds) // Spore glass bits aren't coloured.
 			seed_mask.color = seed.get_trait(TRAIT_PLANT_COLOUR)
-		plant_seed_sprites[seed_base_key] = seed_mask
+		plant_seed_sprites69seed_base_key69 = seed_mask
 
 	var/image/seed_overlay
-	var/seed_overlay_key = "[seed.get_trait(TRAIT_PRODUCT_ICON)]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"
-	if(plant_seed_sprites[seed_overlay_key])
-		seed_overlay = plant_seed_sprites[seed_overlay_key]
+	var/seed_overlay_key = "69seed.get_trait(TRAIT_PRODUCT_ICON)69-69seed.get_trait(TRAIT_PRODUCT_COLOUR)69"
+	if(plant_seed_sprites69seed_overlay_key69)
+		seed_overlay = plant_seed_sprites69seed_overlay_key69
 	else
-		seed_overlay = image('icons/obj/seeds.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]")
+		seed_overlay = image('icons/obj/seeds.dmi',"69seed.get_trait(TRAIT_PRODUCT_ICON)69")
 		seed_overlay.color = seed.get_trait(TRAIT_PRODUCT_COLOUR)
-		plant_seed_sprites[seed_overlay_key] = seed_overlay
+		plant_seed_sprites69seed_overlay_key69 = seed_overlay
 
 	overlays |= seed_mask
 	overlays |= seed_overlay
 
 	if(is_seeds)
-		src.name = "packet of [seed.seed_name] [seed.seed_noun]"
-		src.desc = "It has a picture of [seed.display_name] on the front."
+		src.name = "packet of 69seed.seed_name69 69seed.seed_noun69"
+		src.desc = "It has a picture of 69seed.display_name69 on the front."
 	else
-		src.name = "sample of [seed.seed_name] [seed.seed_noun]"
-		src.desc = "It's labelled as coming from [seed.display_name]."
+		src.name = "sample of 69seed.seed_name69 69seed.seed_noun69"
+		src.desc = "It's labelled as coming from 69seed.display_name69."
 
 /obj/item/seeds/examine(mob/user)
 	..(user)
 	if(seed && !seed.roundstart)
-		to_chat(user, "It's tagged as variety #[seed.uid].")
+		to_chat(user, "It's tagged as69ariety #69seed.uid69.")
 
 /obj/item/seeds/cutting
 	name = "cuttings"
@@ -68,7 +68,7 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/cutting/update_appearance()
 	..()
-	src.name = "packet of [seed.seed_name] cuttings"
+	src.name = "packet of 69seed.seed_name69 cuttings"
 
 /obj/item/seeds/random
 	seed_type = null

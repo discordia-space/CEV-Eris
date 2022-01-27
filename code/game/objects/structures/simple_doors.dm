@@ -16,21 +16,21 @@
 	TemperatureAct(exposed_temperature)
 
 /obj/structure/simple_door/proc/TemperatureAct(temperature)
-	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
+	hardness -=69aterial.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/New(var/newloc, var/material_name)
+/obj/structure/simple_door/New(var/newloc,69ar/material_name)
 	..()
 	if(!material_name)
-		material_name = MATERIAL_STEEL
+		material_name =69ATERIAL_STEEL
 	material = get_material_by_name(material_name)
 	if(!material)
-		qdel(src)
+		69del(src)
 		return
-	hardness = max(1,round(material.integrity/10))
-	icon_state = material.door_icon_base
-	name = "[material.display_name] door"
-	color = material.icon_colour
+	hardness =69ax(1,round(material.integrity/10))
+	icon_state =69aterial.door_icon_base
+	name = "69material.display_name69 door"
+	color =69aterial.icon_colour
 	if(material.opacity < 0.5)
 		set_opacity(FALSE)
 	else
@@ -45,7 +45,7 @@
 	. = ..()
 
 /obj/structure/simple_door/get_material()
-	return material
+	return69aterial
 
 /obj/structure/simple_door/Bumped(atom/user)
 	..()
@@ -53,14 +53,14 @@
 		return TryToSwitchState(user)
 	return
 
-/obj/structure/simple_door/attack_ai(mob/user as mob) //those aren't machinery, they're just big fucking slabs of a mineral
+/obj/structure/simple_door/attack_ai(mob/user as69ob) //those aren't69achinery, they're just big fucking slabs of a69ineral
 	if(isAI(user)) //so the AI can't open it
 		return
 	else if(isrobot(user)) //but cyborgs can
 		if(get_dist(user,src) <= 1) //not remotely though
 			return TryToSwitchState(user)
 
-/obj/structure/simple_door/attack_hand(mob/user as mob)
+/obj/structure/simple_door/attack_hand(mob/user as69ob)
 	return TryToSwitchState(user)
 
 /obj/structure/simple_door/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
@@ -79,7 +79,7 @@
 			return
 		if(M.client)
 			if(iscarbon(M))
-				var/mob/living/carbon/C = M
+				var/mob/living/carbon/C =69
 				if(!C.handcuffed)
 					SwitchState()
 			else
@@ -95,8 +95,8 @@
 
 /obj/structure/simple_door/proc/Open()
 	isSwitchingStates = 1
-	playsound(loc, material.dooropen_noise, 100, 1)
-	flick("[material.door_icon_base]opening",src)
+	playsound(loc,69aterial.dooropen_noise, 100, 1)
+	flick("69material.door_icon_base69opening",src)
 	sleep(10)
 	density = FALSE
 	set_opacity(FALSE)
@@ -107,8 +107,8 @@
 
 /obj/structure/simple_door/proc/Close()
 	isSwitchingStates = 1
-	playsound(loc, material.dooropen_noise, 100, 1)
-	flick("[material.door_icon_base]closing",src)
+	playsound(loc,69aterial.dooropen_noise, 100, 1)
+	flick("69material.door_icon_base69closing",src)
 	sleep(10)
 	density = TRUE
 	set_opacity(TRUE)
@@ -119,20 +119,20 @@
 
 /obj/structure/simple_door/update_icon()
 	if(state)
-		icon_state = "[material.door_icon_base]open"
+		icon_state = "69material.door_icon_base69open"
 	else
-		icon_state = material.door_icon_base
+		icon_state =69aterial.door_icon_base
 
-/obj/structure/simple_door/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/simple_door/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/pickaxe))
 		var/obj/item/pickaxe/digTool = W
-		user << "You start digging the [name]."
+		user << "You start digging the 69name69."
 		if(do_after(user,digTool.digspeed*hardness) && src)
 			user << "You finished digging."
 			Dismantle()
 	else if(istype(W,/obj/item)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force/100
-		user << "You hit the [name] with your [W.name]!"
+		user << "You hit the 69name69 with your 69W.name69!"
 		CheckHardness()
 	else if(istype(W,/obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
@@ -148,7 +148,7 @@
 
 /obj/structure/simple_door/proc/Dismantle(devastated = 0)
 	material.place_dismantled_product(get_turf(src))
-	qdel(src)
+	69del(src)
 
 /obj/structure/simple_door/ex_act(severity = 1)
 	switch(severity)
@@ -172,26 +172,26 @@
 		L.apply_effect(round(material.radioactivity/3),IRRADIATE,0)
 
 /obj/structure/simple_door/iron/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_IRON)
+	..(newloc,69ATERIAL_IRON)
 
 /obj/structure/simple_door/silver/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_SILVER)
+	..(newloc,69ATERIAL_SILVER)
 
 /obj/structure/simple_door/gold/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_GOLD)
+	..(newloc,69ATERIAL_GOLD)
 
 /obj/structure/simple_door/uranium/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_URANIUM)
+	..(newloc,69ATERIAL_URANIUM)
 
 /obj/structure/simple_door/sandstone/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_SANDSTONE)
+	..(newloc,69ATERIAL_SANDSTONE)
 
 /obj/structure/simple_door/plasma/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_PLASMA)
+	..(newloc,69ATERIAL_PLASMA)
 
 /obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_DIAMOND)
+	..(newloc,69ATERIAL_DIAMOND)
 
 /obj/structure/simple_door/wood/New(var/newloc,var/material_name)
-	..(newloc, MATERIAL_WOOD)
+	..(newloc,69ATERIAL_WOOD)
 

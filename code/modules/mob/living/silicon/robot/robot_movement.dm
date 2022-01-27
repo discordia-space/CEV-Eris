@@ -1,5 +1,5 @@
 /mob/living/silicon/robot/slip_chance(var/prob_slip)
-	if(module && module.no_slip)
+	if(module &&69odule.no_slip)
 		return 0
 	..(prob_slip)
 
@@ -22,7 +22,7 @@
 
 /mob/living/silicon/robot/movement_delay()
 	var/tally = ..()
-	tally += speed //This var is a placeholder
+	tally += speed //This69ar is a placeholder
 	if(module_active && istype(module_active,/obj/item/borg/combat/mobility)) //And so is this silly check
 		tally-=1
 	tally /= speed_factor

@@ -4,7 +4,7 @@
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 2)
 	rarity_value = 13.3
-	req_components = list(
+	re69_components = list(
 		/obj/item/stock_parts/matter_bin = 1,
 		/obj/item/stock_parts/manipulator = 1
 	)

@@ -1,12 +1,12 @@
 /mob/living/silicon/ai/Login()	//ThisIsDumb(TM) TODO: tidy this up ¬_¬ ~Carn
 	..()
 	regenerate_icons()
-/*	flash = new /obj/screen()
+/*	flash =69ew /obj/screen()
 	flash.icon_state = "blank"
 	flash.name = "flash"
 	flash.screen_loc = ui_entire_screen
 	flash.layer = 17
-	blind = new /obj/screen()
+	blind =69ew /obj/screen()
 	blind.icon_state = "black"
 	blind.name = " "
 	blind.screen_loc = ui_entire_screen

@@ -4,53 +4,53 @@
 	var/pipe_type = 0
 	//var/pipe_dir = 0
 	var/pipename
-	var/connect_types = CONNECT_TYPE_REGULAR
+	var/connect_types = CONNECT_TYPE_RE69ULAR
 	force = 7
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "simple"
 	item_state = "buildpipe"
 	w_class = ITEM_SIZE_NORMAL
-	level = ABOVE_PLATING_LEVEL
+	level = ABOVE_PLATIN69_LEVEL
 
 /obj/item/pipe/can_fall()
-	var/turf/below = GetBelow(get_turf(src))
+	var/turf/below = 69etBelow(69et_turf(src))
 	var/pipe_below = istype(below)
 	if(pipe_below)
 		pipe_below = locate(/obj/machinery/atmospherics/pipe/zpipe/up) in below
 	return !(anchored || pipe_below)
 
-/obj/item/pipe/New(var/loc, var/pipe_type as num, var/dir as num, var/obj/machinery/atmospherics/make_from = null)
+/obj/item/pipe/New(var/loc,69ar/pipe_type as num,69ar/dir as num,69ar/obj/machinery/atmospherics/make_from = null)
 	..()
 	if (make_from)
 		src.set_dir(make_from.dir)
-		src.pipename = make_from.name
-		color = make_from.pipe_color
+		src.pipename =69ake_from.name
+		color =69ake_from.pipe_color
 		var/is_bent
 		if  (make_from.initialize_directions in list(NORTH|SOUTH, WEST|EAST))
 			is_bent = 0
 		else
 			is_bent = 1
-		if     (istype(make_from, /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction))
+		if     (istype(make_from, /obj/machinery/atmospherics/pipe/simple/heat_exchan69in69/junction))
 			src.pipe_type = PIPE_JUNCTION
-			connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE
-		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple/heat_exchanging))
-			src.pipe_type = PIPE_HE_STRAIGHT + is_bent
+			connect_types = CONNECT_TYPE_RE69ULAR|CONNECT_TYPE_HE
+		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple/heat_exchan69in69))
+			src.pipe_type = PIPE_HE_STRAI69HT + is_bent
 			connect_types = CONNECT_TYPE_HE
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple/insulated))
-			src.pipe_type = PIPE_INSULATED_STRAIGHT + is_bent
+			src.pipe_type = PIPE_INSULATED_STRAI69HT + is_bent
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple/visible/supply) || istype(make_from, /obj/machinery/atmospherics/pipe/simple/hidden/supply))
-			src.pipe_type = PIPE_SUPPLY_STRAIGHT + is_bent
+			src.pipe_type = PIPE_SUPPLY_STRAI69HT + is_bent
 			connect_types = CONNECT_TYPE_SUPPLY
 			src.color = PIPE_COLOR_BLUE
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple/visible/scrubbers) || istype(make_from, /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers))
-			src.pipe_type = PIPE_SCRUBBERS_STRAIGHT + is_bent
+			src.pipe_type = PIPE_SCRUBBERS_STRAI69HT + is_bent
 			connect_types = CONNECT_TYPE_SCRUBBER
 			src.color = PIPE_COLOR_RED
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple/visible/universal) || istype(make_from, /obj/machinery/atmospherics/pipe/simple/hidden/universal))
 			src.pipe_type = PIPE_UNIVERSAL
-			connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
+			connect_types = CONNECT_TYPE_RE69ULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/simple))
-			src.pipe_type = PIPE_SIMPLE_STRAIGHT + is_bent
+			src.pipe_type = PIPE_SIMPLE_STRAI69HT + is_bent
 		else if(istype(make_from, /obj/machinery/atmospherics/portables_connector))
 			src.pipe_type = PIPE_CONNECTOR
 		else if(istype(make_from, /obj/machinery/atmospherics/pipe/manifold/visible/supply) || istype(make_from, /obj/machinery/atmospherics/pipe/manifold/hidden/supply))
@@ -67,26 +67,26 @@
 			src.pipe_type = PIPE_UVENT
 		else if(istype(make_from, /obj/machinery/atmospherics/valve))
 			src.pipe_type = PIPE_MVALVE
-		else if(istype(make_from, /obj/machinery/atmospherics/binary/pump/high_power))
+		else if(istype(make_from, /obj/machinery/atmospherics/binary/pump/hi69h_power))
 			src.pipe_type = PIPE_VOLUME_PUMP
 		else if(istype(make_from, /obj/machinery/atmospherics/binary/pump))
 			src.pipe_type = PIPE_PUMP
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/filter/m_filter))
-			src.pipe_type = PIPE_GAS_FILTER_M
+			src.pipe_type = PIPE_69AS_FILTER_M
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			src.pipe_type = PIPE_GAS_MIXER_T
+			src.pipe_type = PIPE_69AS_MIXER_T
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/mixer/m_mixer))
-			src.pipe_type = PIPE_GAS_MIXER_M
+			src.pipe_type = PIPE_69AS_MIXER_M
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/filter))
-			src.pipe_type = PIPE_GAS_FILTER
+			src.pipe_type = PIPE_69AS_FILTER
 		else if(istype(make_from, /obj/machinery/atmospherics/trinary/mixer))
-			src.pipe_type = PIPE_GAS_MIXER
+			src.pipe_type = PIPE_69AS_MIXER
 		else if(istype(make_from, /obj/machinery/atmospherics/unary/vent_scrubber))
 			src.pipe_type = PIPE_SCRUBBER
-		else if(istype(make_from, /obj/machinery/atmospherics/binary/passive_gate))
-			src.pipe_type = PIPE_PASSIVE_GATE
-		else if(istype(make_from, /obj/machinery/atmospherics/unary/heat_exchanger))
-			src.pipe_type = PIPE_HEAT_EXCHANGE
+		else if(istype(make_from, /obj/machinery/atmospherics/binary/passive_69ate))
+			src.pipe_type = PIPE_PASSIVE_69ATE
+		else if(istype(make_from, /obj/machinery/atmospherics/unary/heat_exchan69er))
+			src.pipe_type = PIPE_HEAT_EXCHAN69E
 		else if(istype(make_from, /obj/machinery/atmospherics/tvalve/mirrored))
 			src.pipe_type = PIPE_MTVALVEM
 		else if(istype(make_from, /obj/machinery/atmospherics/tvalve))
@@ -149,15 +149,15 @@
 		else if (pipe_type == 2 || pipe_type == 3)
 			connect_types = CONNECT_TYPE_HE
 		else if (pipe_type == 6)
-			connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_HE
+			connect_types = CONNECT_TYPE_RE69ULAR|CONNECT_TYPE_HE
 		else if (pipe_type == 28)
-			connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
-	//src.pipe_dir = get_pipe_dir()
+			connect_types = CONNECT_TYPE_RE69ULAR|CONNECT_TYPE_SUPPLY|CONNECT_TYPE_SCRUBBER
+	//src.pipe_dir = 69et_pipe_dir()
 	update()
 	src.pixel_x = rand(-5, 5)
 	src.pixel_y = rand(-5, 5)
 
-//update the name and icon of the pipe item depending on the type
+//update the name and icon of the pipe item dependin69 on the type
 
 /obj/item/pipe/proc/update()
 	var/list/nlist = list( \
@@ -174,22 +174,22 @@
 		"scrubber", \
 		"insulated pipe", \
 		"bent insulated pipe", \
-		"gas filter", \
-		"gas mixer", \
-		"pressure regulator", \
-		"high power pump", \
-		"heat exchanger", \
+		"69as filter", \
+		"69as69ixer", \
+		"pressure re69ulator", \
+		"hi69h power pump", \
+		"heat exchan69er", \
 		"t-valve", \
-		"4-way manifold", \
+		"4-way69anifold", \
 		"pipe cap", \
 ///// Z-Level stuff
 		"pipe up", \
 		"pipe down", \
 ///// Z-Level stuff
-		"gas filter m", \
-		"gas mixer t", \
-		"gas mixer m", \
-		"omni mixer", \
+		"69as filter69", \
+		"69as69ixer t", \
+		"69as69ixer69", \
+		"omni69ixer", \
 		"omni filter", \
 ///// Supply and scrubbers pipes
 		"universal pipe adapter", \
@@ -197,19 +197,19 @@
 		"bent supply pipe", \
 		"scrubbers pipe", \
 		"bent scrubbers pipe", \
-		"supply manifold", \
-		"scrubbers manifold", \
-		"supply 4-way manifold", \
-		"scrubbers 4-way manifold", \
+		"supply69anifold", \
+		"scrubbers69anifold", \
+		"supply 4-way69anifold", \
+		"scrubbers 4-way69anifold", \
 		"supply pipe up", \
 		"scrubbers pipe up", \
 		"supply pipe down", \
 		"scrubbers pipe down", \
 		"supply pipe cap", \
 		"scrubbers pipe cap", \
-		"t-valve m", \
+		"t-valve69", \
 	)
-	name = nlist[pipe_type+1] + " fitting"
+	name = nlist69pipe_type+169 + " fittin69"
 	var/list/islist = list( \
 		"simple", \
 		"simple", \
@@ -226,7 +226,7 @@
 		"insulated", \
 		"filter", \
 		"mixer", \
-		"passivegate", \
+		"passive69ate", \
 		"volumepump", \
 		"heunary", \
 		"mtvalve", \
@@ -259,44 +259,44 @@
 		"cap", \
 		"mtvalvem", \
 	)
-	icon_state = islist[pipe_type + 1]
+	icon_state = islist69pipe_type + 169
 
 //called when a turf is attacked with a pipe item
-/obj/item/pipe/afterattack(turf/simulated/floor/target, mob/user, proximity)
+/obj/item/pipe/afterattack(turf/simulated/floor/tar69et,69ob/user, proximity)
 	if(!proximity) return
-	if(istype(target))
-		user.drop_from_inventory(src, target)
+	if(istype(tar69et))
+		user.drop_from_inventory(src, tar69et)
 	else
 		return ..()
 
 // rotate the pipe item clockwise
 
 /obj/item/pipe/verb/rotate()
-	set category = "Object"
+	set cate69ory = "Object"
 	set name = "Rotate Pipe"
-	set src in view(1)
+	set src in69iew(1)
 
 	if ( usr.stat || usr.restrained() )
 		return
 
 	src.set_dir(turn(src.dir, -90))
 
-	if (pipe_type in list (PIPE_SIMPLE_STRAIGHT, PIPE_SUPPLY_STRAIGHT, PIPE_SCRUBBERS_STRAIGHT, PIPE_UNIVERSAL, PIPE_HE_STRAIGHT, PIPE_INSULATED_STRAIGHT, PIPE_MVALVE))
+	if (pipe_type in list (PIPE_SIMPLE_STRAI69HT, PIPE_SUPPLY_STRAI69HT, PIPE_SCRUBBERS_STRAI69HT, PIPE_UNIVERSAL, PIPE_HE_STRAI69HT, PIPE_INSULATED_STRAI69HT, PIPE_MVALVE))
 		if(dir==2)
 			set_dir(1)
 		else if(dir==8)
 			set_dir(4)
 	else if (pipe_type in list (PIPE_MANIFOLD4W, PIPE_SUPPLY_MANIFOLD4W, PIPE_SCRUBBERS_MANIFOLD4W))
 		set_dir(2)
-	//src.pipe_set_dir(get_pipe_dir())
+	//src.pipe_set_dir(69et_pipe_dir())
 	return
 
-/obj/item/pipe/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/pipe/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/69lide_size_override = 0)
 	. = ..()
 	if ((pipe_type in list (PIPE_SIMPLE_BENT, PIPE_SUPPLY_BENT, PIPE_SCRUBBERS_BENT, PIPE_HE_BENT, PIPE_INSULATED_BENT)) \
 		&& (src.dir in cardinal))
 		src.set_dir(src.dir|turn(src.dir, 90))
-	else if (pipe_type in list (PIPE_SIMPLE_STRAIGHT, PIPE_SUPPLY_STRAIGHT, PIPE_SCRUBBERS_STRAIGHT, PIPE_UNIVERSAL, PIPE_HE_STRAIGHT, PIPE_INSULATED_STRAIGHT, PIPE_MVALVE))
+	else if (pipe_type in list (PIPE_SIMPLE_STRAI69HT, PIPE_SUPPLY_STRAI69HT, PIPE_SCRUBBERS_STRAI69HT, PIPE_UNIVERSAL, PIPE_HE_STRAI69HT, PIPE_INSULATED_STRAI69HT, PIPE_MVALVE))
 		if(dir==2)
 			set_dir(1)
 		else if(dir==8)
@@ -304,7 +304,7 @@
 
 // returns all pipe's endpoints
 
-/obj/item/pipe/proc/get_pipe_dir()
+/obj/item/pipe/proc/69et_pipe_dir()
 	if (!dir)
 		return 0
 	var/flip = turn(dir, 180)
@@ -312,32 +312,32 @@
 	var/acw = turn(dir, 90)
 
 	switch(pipe_type)
-		if(	PIPE_SIMPLE_STRAIGHT, \
-			PIPE_INSULATED_STRAIGHT, \
-			PIPE_HE_STRAIGHT, \
+		if(	PIPE_SIMPLE_STRAI69HT, \
+			PIPE_INSULATED_STRAI69HT, \
+			PIPE_HE_STRAI69HT, \
 			PIPE_JUNCTION ,\
 			PIPE_PUMP ,\
 			PIPE_VOLUME_PUMP ,\
-			PIPE_PASSIVE_GATE ,\
+			PIPE_PASSIVE_69ATE ,\
 			PIPE_MVALVE, \
-			PIPE_SUPPLY_STRAIGHT, \
-			PIPE_SCRUBBERS_STRAIGHT, \
+			PIPE_SUPPLY_STRAI69HT, \
+			PIPE_SCRUBBERS_STRAI69HT, \
 			PIPE_UNIVERSAL, \
 		)
 			return dir|flip
 		if(PIPE_SIMPLE_BENT, PIPE_INSULATED_BENT, PIPE_HE_BENT, PIPE_SUPPLY_BENT, PIPE_SCRUBBERS_BENT)
 			return dir //dir|acw
-		if(PIPE_CONNECTOR,PIPE_UVENT,PIPE_SCRUBBER,PIPE_HEAT_EXCHANGE)
+		if(PIPE_CONNECTOR,PIPE_UVENT,PIPE_SCRUBBER,PIPE_HEAT_EXCHAN69E)
 			return dir
 		if(PIPE_MANIFOLD4W, PIPE_SUPPLY_MANIFOLD4W, PIPE_SCRUBBERS_MANIFOLD4W, PIPE_OMNI_MIXER, PIPE_OMNI_FILTER)
 			return dir|flip|cw|acw
 		if(PIPE_MANIFOLD, PIPE_SUPPLY_MANIFOLD, PIPE_SCRUBBERS_MANIFOLD)
 			return flip|cw|acw
-		if(PIPE_GAS_FILTER, PIPE_GAS_MIXER, PIPE_MTVALVE)
+		if(PIPE_69AS_FILTER, PIPE_69AS_MIXER, PIPE_MTVALVE)
 			return dir|flip|cw
-		if(PIPE_GAS_FILTER_M, PIPE_GAS_MIXER_M, PIPE_MTVALVEM)
+		if(PIPE_69AS_FILTER_M, PIPE_69AS_MIXER_M, PIPE_MTVALVEM)
 			return dir|flip|acw
-		if(PIPE_GAS_MIXER_T)
+		if(PIPE_69AS_MIXER_T)
 			return dir|cw|acw
 		if(PIPE_CAP, PIPE_SUPPLY_CAP, PIPE_SCRUBBERS_CAP)
 			return dir
@@ -347,81 +347,81 @@
 ///// Z-Level stuff
 	return 0
 
-/obj/item/pipe/proc/get_pdir() //endpoints for regular pipes
+/obj/item/pipe/proc/69et_pdir() //endpoints for re69ular pipes
 
 	var/flip = turn(dir, 180)
 //	var/cw = turn(dir, -90)
 //	var/acw = turn(dir, 90)
 
-	if (!(pipe_type in list(PIPE_HE_STRAIGHT, PIPE_HE_BENT, PIPE_JUNCTION)))
-		return get_pipe_dir()
+	if (!(pipe_type in list(PIPE_HE_STRAI69HT, PIPE_HE_BENT, PIPE_JUNCTION)))
+		return 69et_pipe_dir()
 	switch(pipe_type)
-		if(PIPE_HE_STRAIGHT,PIPE_HE_BENT)
+		if(PIPE_HE_STRAI69HT,PIPE_HE_BENT)
 			return 0
 		if(PIPE_JUNCTION)
 			return flip
 	return 0
 
-// return the h_dir (heat-exchange pipes) from the type and the dir
+// return the h_dir (heat-exchan69e pipes) from the type and the dir
 
-/obj/item/pipe/proc/get_hdir() //endpoints for h/e pipes
+/obj/item/pipe/proc/69et_hdir() //endpoints for h/e pipes
 
 //	var/flip = turn(dir, 180)
 //	var/cw = turn(dir, -90)
 
 	switch(pipe_type)
-		if(PIPE_HE_STRAIGHT)
-			return get_pipe_dir()
+		if(PIPE_HE_STRAI69HT)
+			return 69et_pipe_dir()
 		if(PIPE_HE_BENT)
-			return get_pipe_dir()
+			return 69et_pipe_dir()
 		if(PIPE_JUNCTION)
 			return dir
 		else
 			return 0
 
-/obj/item/pipe/attack_self(mob/user as mob)
+/obj/item/pipe/attack_self(mob/user as69ob)
 	return rotate()
 
-/obj/item/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe/attackby(var/obj/item/W as obj,69ar/mob/user as69ob)
 	..()
 	//*
 	var/obj/item/tool/tool = W
 	if (!tool)
 		return ..()
-	if (!tool.has_quality(QUALITY_BOLT_TURNING))
+	if (!tool.has_69uality(69UALITY_BOLT_TURNIN69))
 		return ..()
 	if (!tool.check_tool_effects(WORKTIME_NEAR_INSTANT))
 		return ..()
 	if (!isturf(src.loc))
 		return 1
-	if (pipe_type in list (PIPE_SIMPLE_STRAIGHT, PIPE_SUPPLY_STRAIGHT, PIPE_SCRUBBERS_STRAIGHT, PIPE_HE_STRAIGHT, PIPE_INSULATED_STRAIGHT, PIPE_MVALVE))
+	if (pipe_type in list (PIPE_SIMPLE_STRAI69HT, PIPE_SUPPLY_STRAI69HT, PIPE_SCRUBBERS_STRAI69HT, PIPE_HE_STRAI69HT, PIPE_INSULATED_STRAI69HT, PIPE_MVALVE))
 		if(dir==2)
 			set_dir(1)
 		else if(dir==8)
 			set_dir(4)
 	else if (pipe_type in list(PIPE_MANIFOLD4W, PIPE_SUPPLY_MANIFOLD4W, PIPE_SCRUBBERS_MANIFOLD4W, PIPE_OMNI_MIXER, PIPE_OMNI_FILTER))
 		set_dir(2)
-	var/pipe_dir = get_pipe_dir()
+	var/pipe_dir = 69et_pipe_dir()
 
 	for(var/obj/machinery/atmospherics/M in src.loc)
-		if((M.initialize_directions & pipe_dir) && M.check_connect_types_construction(M,src))	// matches at least one direction on either type of pipe & same connection type
-			to_chat(user, SPAN_WARNING("There is already a pipe of the same type at this location."))
+		if((M.initialize_directions & pipe_dir) &&69.check_connect_types_construction(M,src))	//69atches at least one direction on either type of pipe & same connection type
+			to_chat(user, SPAN_WARNIN69("There is already a pipe of the same type at this location."))
 			return 1
 	// no conflicts found
 
-	var/pipefailtext = SPAN_WARNING("There's nothing to connect this pipe section to!") //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+	var/pipefailtext = SPAN_WARNIN69("There's nothin69 to connect this pipe section to!") //(with how the pipe code works, at least one end needs to be connected to somethin69, otherwise the 69ame deletes the se69ment)"
 
-	//TODO: Move all of this stuff into the various pipe constructors.
+	//TODO:69ove all of this stuff into the69arious pipe constructors.
 	switch(pipe_type)
-		if(PIPE_SIMPLE_STRAIGHT, PIPE_SIMPLE_BENT)
+		if(PIPE_SIMPLE_STRAI69HT, PIPE_SIMPLE_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/P = new( src.loc )
 			P.pipe_color = color
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
-			if (QDELETED(P))
+			if (69DELETED(P))
 				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
@@ -432,15 +432,15 @@
 				P.node2.atmos_init()
 				P.node2.build_network()
 
-		if(PIPE_SUPPLY_STRAIGHT, PIPE_SUPPLY_BENT)
+		if(PIPE_SUPPLY_STRAI69HT, PIPE_SUPPLY_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/hidden/supply/P = new( src.loc )
 			P.color = color
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
-			if (QDELETED(P))
+			if (69DELETED(P))
 				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
@@ -451,15 +451,15 @@
 				P.node2.atmos_init()
 				P.node2.build_network()
 
-		if(PIPE_SCRUBBERS_STRAIGHT, PIPE_SCRUBBERS_BENT)
+		if(PIPE_SCRUBBERS_STRAI69HT, PIPE_SCRUBBERS_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers/P = new( src.loc )
 			P.color = color
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
-			if (QDELETED(P))
+			if (69DELETED(P))
 				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
@@ -476,9 +476,9 @@
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
-			if (QDELETED(P))
+			if (69DELETED(P))
 				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
@@ -489,13 +489,13 @@
 				P.node2.atmos_init()
 				P.node2.build_network()
 
-		if(PIPE_HE_STRAIGHT, PIPE_HE_BENT)
-			var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/P = new ( src.loc )
+		if(PIPE_HE_STRAI69HT, PIPE_HE_BENT)
+			var/obj/machinery/atmospherics/pipe/simple/heat_exchan69in69/P = new ( src.loc )
 			P.set_dir(src.dir)
-			P.initialize_directions = pipe_dir //this var it's used to know if the pipe is bent or not
+			P.initialize_directions = pipe_dir //this69ar it's used to know if the pipe is bent or not
 			P.initialize_directions_he = pipe_dir
 			P.atmos_init()
-			if (QDELETED(P))
+			if (69DELETED(P))
 				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
@@ -513,7 +513,7 @@
 			if (pipename)
 				C.name = pipename
 			var/turf/T = C.loc
-			C.level = !T.is_plating() ? 2 : 1
+			C.level = !T.is_platin69() ? 2 : 1
 			C.atmos_init()
 			C.build_network()
 			if (C.node)
@@ -527,10 +527,10 @@
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			//M.New()
-			var/turf/T = M.loc
-			M.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			M.level = !T.is_platin69() ? 2 : 1
 			M.atmos_init()
-			if (QDELETED(M))
+			if (69DELETED(M))
 				to_chat(usr, pipefailtext)
 				return 1
 			M.build_network()
@@ -550,11 +550,11 @@
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			//M.New()
-			var/turf/T = M.loc
-			M.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			M.level = !T.is_platin69() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
+				to_chat(usr, "There's nothin69 to connect this69anifold to! (with how the pipe code works, at least one end needs to be connected to somethin69, otherwise the 69ame deletes the se69ment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -573,11 +573,11 @@
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			//M.New()
-			var/turf/T = M.loc
-			M.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			M.level = !T.is_platin69() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
+				to_chat(usr, "There's nothin69 to connect this69anifold to! (with how the pipe code works, at least one end needs to be connected to somethin69, otherwise the 69ame deletes the se69ment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -590,16 +590,16 @@
 				M.node3.atmos_init()
 				M.node3.build_network()
 
-		if(PIPE_MANIFOLD4W)		//4-way manifold
+		if(PIPE_MANIFOLD4W)		//4-way69anifold
 			var/obj/machinery/atmospherics/pipe/manifold4w/M = new( src.loc )
 			M.pipe_color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			//M.New()
-			var/turf/T = M.loc
-			M.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			M.level = !T.is_platin69() ? 2 : 1
 			M.atmos_init()
-			if (QDELETED(M))
+			if (69DELETED(M))
 				to_chat(usr, pipefailtext)
 				return 1
 			M.build_network()
@@ -616,18 +616,18 @@
 				M.node4.atmos_init()
 				M.node4.build_network()
 
-		if(PIPE_SUPPLY_MANIFOLD4W)		//4-way manifold
+		if(PIPE_SUPPLY_MANIFOLD4W)		//4-way69anifold
 			var/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply/M = new( src.loc )
 			M.color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			M.connect_types = src.connect_types
 			//M.New()
-			var/turf/T = M.loc
-			M.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			M.level = !T.is_platin69() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
+				to_chat(usr, "There's nothin69 to connect this69anifold to! (with how the pipe code works, at least one end needs to be connected to somethin69, otherwise the 69ame deletes the se69ment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -643,18 +643,18 @@
 				M.node4.atmos_init()
 				M.node4.build_network()
 
-		if(PIPE_SCRUBBERS_MANIFOLD4W)		//4-way manifold
+		if(PIPE_SCRUBBERS_MANIFOLD4W)		//4-way69anifold
 			var/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers/M = new( src.loc )
 			M.color = color
 			M.set_dir(dir)
 			M.initialize_directions = pipe_dir
 			M.connect_types = src.connect_types
 			//M.New()
-			var/turf/T = M.loc
-			M.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			M.level = !T.is_platin69() ? 2 : 1
 			M.atmos_init()
 			if (!M)
-				to_chat(usr, "There's nothing to connect this manifold to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
+				to_chat(usr, "There's nothin69 to connect this69anifold to! (with how the pipe code works, at least one end needs to be connected to somethin69, otherwise the 69ame deletes the se69ment)")
 				return 1
 			M.build_network()
 			if (M.node1)
@@ -671,13 +671,13 @@
 				M.node4.build_network()
 
 		if(PIPE_JUNCTION)
-			var/obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction/P = new ( src.loc )
+			var/obj/machinery/atmospherics/pipe/simple/heat_exchan69in69/junction/P = new ( src.loc )
 			P.set_dir(src.dir)
-			P.initialize_directions = src.get_pdir()
-			P.initialize_directions_he = src.get_hdir()
+			P.initialize_directions = src.69et_pdir()
+			P.initialize_directions_he = src.69et_hdir()
 			P.atmos_init()
-			if (QDELETED(P))
-				to_chat(usr, pipefailtext) //"There's nothing to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)")
+			if (69DELETED(P))
+				to_chat(usr, pipefailtext) //"There's nothin69 to connect this pipe to! (with how the pipe code works, at least one end needs to be connected to somethin69, otherwise the 69ame deletes the se69ment)")
 				return 1
 			P.build_network()
 			if (P.node1)
@@ -687,14 +687,14 @@
 				P.node2.atmos_init()
 				P.node2.build_network()
 
-		if(PIPE_UVENT)		//unary vent
+		if(PIPE_UVENT)		//unary69ent
 			var/obj/machinery/atmospherics/unary/vent_pump/V = new( src.loc )
 			V.set_dir(dir)
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			V.level = !T.is_platin69() ? 2 : 1
 			V.atmos_init()
 			V.build_network()
 			if (V.node1)
@@ -702,33 +702,33 @@
 				V.node1.build_network()
 
 
-		if(PIPE_MVALVE)		//manual valve
+		if(PIPE_MVALVE)		//manual69alve
 			var/obj/machinery/atmospherics/valve/V = new( src.loc)
 			V.set_dir(dir)
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			V.level = !T.is_platin69() ? 2 : 1
 			V.atmos_init()
 			V.build_network()
 			if (V.node1)
-//					world << "[V.node1.name] is connected to valve, forcing it to update its nodes."
+//					world << "69V.node1.name69 is connected to69alve, forcin69 it to update its nodes."
 				V.node1.atmos_init()
 				V.node1.build_network()
 			if (V.node2)
-//					world << "[V.node2.name] is connected to valve, forcing it to update its nodes."
+//					world << "69V.node2.name69 is connected to69alve, forcin69 it to update its nodes."
 				V.node2.atmos_init()
 				V.node2.build_network()
 
-		if(PIPE_PUMP)		//gas pump
+		if(PIPE_PUMP)		//69as pump
 			var/obj/machinery/atmospherics/binary/pump/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -738,14 +738,14 @@
 				P.node2.atmos_init()
 				P.node2.build_network()
 
-		if(PIPE_GAS_FILTER)		//gas filter
+		if(PIPE_69AS_FILTER)		//69as filter
 			var/obj/machinery/atmospherics/trinary/filter/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -758,14 +758,14 @@
 				P.node3.atmos_init()
 				P.node3.build_network()
 
-		if(PIPE_GAS_MIXER)		//gas mixer
+		if(PIPE_69AS_MIXER)		//69as69ixer
 			var/obj/machinery/atmospherics/trinary/mixer/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -778,14 +778,14 @@
 				P.node3.atmos_init()
 				P.node3.build_network()
 
-		if(PIPE_GAS_FILTER_M)		//gas filter mirrored
+		if(PIPE_69AS_FILTER_M)		//69as filter69irrored
 			var/obj/machinery/atmospherics/trinary/filter/m_filter/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -798,14 +798,14 @@
 				P.node3.atmos_init()
 				P.node3.build_network()
 
-		if(PIPE_GAS_MIXER_T)		//gas mixer-t
+		if(PIPE_69AS_MIXER_T)		//69as69ixer-t
 			var/obj/machinery/atmospherics/trinary/mixer/t_mixer/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -818,14 +818,14 @@
 				P.node3.atmos_init()
 				P.node3.build_network()
 
-		if(PIPE_GAS_MIXER_M)		//gas mixer mirrored
+		if(PIPE_69AS_MIXER_M)		//69as69ixer69irrored
 			var/obj/machinery/atmospherics/trinary/mixer/m_mixer/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -845,21 +845,21 @@
 			if (pipename)
 				S.name = pipename
 			var/turf/T = S.loc
-			S.level = !T.is_plating() ? 2 : 1
+			S.level = !T.is_platin69() ? 2 : 1
 			S.atmos_init()
 			S.build_network()
 			if (S.node1)
 				S.node1.atmos_init()
 				S.node1.build_network()
 
-		if(PIPE_INSULATED_STRAIGHT, PIPE_INSULATED_BENT)
+		if(PIPE_INSULATED_STRAI69HT, PIPE_INSULATED_BENT)
 			var/obj/machinery/atmospherics/pipe/simple/insulated/P = new( src.loc )
 			P.set_dir(src.dir)
 			P.initialize_directions = pipe_dir
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
-			if (QDELETED(P))
+			if (69DELETED(P))
 				to_chat(usr, pipefailtext)
 				return 1
 			P.build_network()
@@ -876,8 +876,8 @@
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			V.level = !T.is_platin69() ? 2 : 1
 			V.atmos_init()
 			V.build_network()
 			if (V.node1)
@@ -896,8 +896,8 @@
 			V.initialize_directions = pipe_dir
 			if (pipename)
 				V.name = pipename
-			var/turf/T = V.loc
-			V.level = !T.is_plating() ? 2 : 1
+			var/turf/T =69.loc
+			V.level = !T.is_platin69() ? 2 : 1
 			V.atmos_init()
 			V.build_network()
 			if (V.node1)
@@ -940,14 +940,14 @@
 				C.node.atmos_init()
 				C.node.build_network()
 
-		if(PIPE_PASSIVE_GATE)		//passive gate
-			var/obj/machinery/atmospherics/binary/passive_gate/P = new(src.loc)
+		if(PIPE_PASSIVE_69ATE)		//passive 69ate
+			var/obj/machinery/atmospherics/binary/passive_69ate/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -958,13 +958,13 @@
 				P.node2.build_network()
 
 		if(PIPE_VOLUME_PUMP)		//volume pump
-			var/obj/machinery/atmospherics/binary/pump/high_power/P = new(src.loc)
+			var/obj/machinery/atmospherics/binary/pump/hi69h_power/P = new(src.loc)
 			P.set_dir(dir)
 			P.initialize_directions = pipe_dir
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -974,14 +974,14 @@
 				P.node2.atmos_init()
 				P.node2.build_network()
 
-		if(PIPE_HEAT_EXCHANGE)		// heat exchanger
-			var/obj/machinery/atmospherics/unary/heat_exchanger/C = new( src.loc )
+		if(PIPE_HEAT_EXCHAN69E)		// heat exchan69er
+			var/obj/machinery/atmospherics/unary/heat_exchan69er/C = new( src.loc )
 			C.set_dir(dir)
 			C.initialize_directions = pipe_dir
 			if (pipename)
 				C.name = pipename
 			var/turf/T = C.loc
-			C.level = !T.is_plating() ? 2 : 1
+			C.level = !T.is_platin69() ? 2 : 1
 			C.atmos_init()
 			C.build_network()
 			if (C.node1)
@@ -995,7 +995,7 @@
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -1011,7 +1011,7 @@
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -1027,7 +1027,7 @@
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -1043,7 +1043,7 @@
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -1059,7 +1059,7 @@
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -1075,7 +1075,7 @@
 			if (pipename)
 				P.name = pipename
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 			if (P.node1)
@@ -1088,18 +1088,18 @@
 		if(PIPE_OMNI_MIXER)
 			var/obj/machinery/atmospherics/omni/mixer/P = new(loc)
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 		if(PIPE_OMNI_FILTER)
 			var/obj/machinery/atmospherics/omni/filter/P = new(loc)
 			var/turf/T = P.loc
-			P.level = !T.is_plating() ? 2 : 1
+			P.level = !T.is_platin69() ? 2 : 1
 			P.atmos_init()
 			P.build_network()
 	// there was some code, but it is handled in ../tool/ now.
-	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
-	qdel(src)	// remove the pipe item
+	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, 69UALITY_BOLT_TURNIN69, FAILCHANCE_ZERO, re69uired_stat = STAT_MEC)
+	69del(src)	// remove the pipe item
 
 	return
 	 //TODO: DEFERRED
@@ -1110,25 +1110,25 @@
 
 /obj/item/pipe_meter
 	name = "meter"
-	desc = "A meter that can be laid on pipes"
+	desc = "A69eter that can be laid on pipes"
 	icon = 'icons/obj/pipe-item.dmi'
 	icon_state = "meter"
 	item_state = "buildpipe"
 	w_class = ITEM_SIZE_BULKY
 
-/obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/pipe_meter/attackby(var/obj/item/W as obj,69ar/mob/user as69ob)
 	..()
 
 	var/obj/item/tool/tool = W
 	if (!tool)
 		return ..()
-	if (!tool.has_quality(QUALITY_BOLT_TURNING))
+	if (!tool.has_69uality(69UALITY_BOLT_TURNIN69))
 		return ..()
 	if (!tool.check_tool_effects(WORKTIME_NEAR_INSTANT))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
-		to_chat(user, SPAN_WARNING("You need to fasten it to a pipe"))
+		to_chat(user, SPAN_WARNIN69("You need to fasten it to a pipe"))
 		return 1
 	new/obj/machinery/meter( src.loc )
-	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_BOLT_TURNING, FAILCHANCE_ZERO, required_stat = STAT_MEC)
-	qdel(src)
+	W.use_tool(user, src, WORKTIME_NEAR_INSTANT, 69UALITY_BOLT_TURNIN69, FAILCHANCE_ZERO, re69uired_stat = STAT_MEC)
+	69del(src)

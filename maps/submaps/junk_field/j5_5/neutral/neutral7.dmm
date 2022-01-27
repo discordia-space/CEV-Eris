@@ -1,100 +1,100 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"b" = (
-/obj/structure/lattice,
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"d" = (
+/area/template_noop69
+"d" = 69
 /turf/simulated/wall/r_wall,
-/area/template_noop)
-"e" = (
+/area/template_noop69
+"e" = 69
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"f" = (
-/obj/structure/railing{
+/area/template_noop69
+"f" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"g" = (
-/obj/structure/railing{
+/o6969/spawner/traps/wire_splicin69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"h" = (
-/obj/structure/railing{
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"h" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"i" = (
-/obj/structure/railing{
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"i" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"j" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"k" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"l" = (
-/mob/living/simple_animal/hostile/carp,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"l" = 69
+/mo69/livin69/simple_animal/hostile/carp,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"m" = (
-/obj/spawner/junk/low_chance,
+/area/template_noop69
+"m" = 69
+/o6969/spawner/69un69/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"Q" = (
+/area/template_noop69
+"69" = 69
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 
-(1,1,1) = {"
-Q
-b
-b
+691,1,169 = {"
+69
+69
+69
 f
-b
+69
 "}
-(2,1,1) = {"
-Q
-k
+692,1,169 = {"
+69
+69
 l
-g
+69
 a
 "}
-(3,1,1) = {"
-Q
+693,1,169 = {"
+69
 d
 m
 h
 a
 "}
-(4,1,1) = {"
-b
+694,1,169 = {"
+69
 d
 e
 i
-j
+69
 "}
-(5,1,1) = {"
-k
+695,1,169 = {"
+69
 d
 a
 f
-b
+69
 "}

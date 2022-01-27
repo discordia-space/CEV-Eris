@@ -4,7 +4,7 @@ This file is included but not used. This overpowered event is too game-ruining t
 Immovable rod random event.
 The rod will spawn at some location outside the station, and travel in a straight line to the opposite side of the station
 Everything solid in the way will be ex_act()'d
-In my current plan for it, 'solid' will be defined as anything with density == 1
+In69y current plan for it, 'solid' will be defined as anything with density == 1
 
 --NEOFite
 */
@@ -38,7 +38,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 			if(clong.density || prob(10))
 				clong.ex_act(2)
 		else
-			qdel(src)
+			69del(src)
 
 		if(clong && prob(25))
 			src.loc = clong.loc
@@ -74,7 +74,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 
 	//rod time!
 	var/obj/effect/immovablerod/immrod = new /obj/effect/immovablerod(locate(startx, starty, 1))
-//	world << "Rod in play, starting at [start.loc.x],[start.loc.y] and going to [end.loc.x],[end.loc.y]"
+//	world << "Rod in play, starting at 69start.loc.x69,69start.loc.y69 and going to 69end.loc.x69,69end.loc.y69"
 	var/end = locate(endx, endy, 1)
 	spawn(0)
 		walk_towards(immrod, end,1)
@@ -83,7 +83,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 		if (isNotStationLevel(immrod.z))
 			immrod.z = pick(GLOB.maps_data.station_levels)
 		if(immrod.loc == end)
-			qdel(immrod)
+			69del(immrod)
 		sleep(10)
 	for(var/obj/effect/immovablerod/imm in world)
 		return

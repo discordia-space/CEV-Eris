@@ -13,6 +13,6 @@
 /datum/ritual/mind/compare()
 	return FALSE
 
-//Proc, which will be added to mob's verb list
+//Proc, which will be added to69ob's69erb list
 /datum/ritual/mind/proc/activator()
 

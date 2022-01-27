@@ -15,12 +15,12 @@
 	//node2 is output port
 	//node1 is input port
 
-	name = "Dual Port Air Vent"
-	desc = "Has a valve and pump attached to it. There are two ports."
+	name = "Dual Port Air69ent"
+	desc = "Has a69alve and pump attached to it. There are two ports."
 
 	level = BELOW_PLATING_LEVEL
 
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 7500			//7500 W ~ 10 HP
 
@@ -37,18 +37,18 @@
 	var/datum/radio_frequency/radio_connection
 
 	var/pressure_checks = PRESSURE_CHECK_EXTERNAL
-	//1: Do not pass external_pressure_bound
-	//2: Do not pass input_pressure_min
-	//4: Do not pass output_pressure_max
+	//1: Do69ot pass external_pressure_bound
+	//2: Do69ot pass input_pressure_min
+	//4: Do69ot pass output_pressure_max
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/New()
 	..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
-	icon = null
+	icon =69ull
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/high_volume
-	name = "Large Dual Port Air Vent"
+	name = "Large Dual Port Air69ent"
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/high_volume/New()
 	..()
@@ -67,15 +67,15 @@
 	if(!istype(T))
 		return
 
-	if(!T.is_plating() && node1 && node2 && node1.level == BELOW_PLATING_LEVEL && node2.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
+	if(!T.is_plating() &&69ode1 &&69ode2 &&69ode1.level == BELOW_PLATING_LEVEL &&69ode2.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
 		vent_icon += "h"
 
 	if(!powered())
 		vent_icon += "off"
 	else
-		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
+		vent_icon += "69use_power ? "69pump_direction ? "out" : "in"69" : "off"69"
 
-	overlays += icon_manager.get_atmos_icon("device", , , vent_icon)
+	overlays += icon_manager.get_atmos_icon("device", , ,69ent_icon)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_underlays()
 	if(..())
@@ -83,17 +83,17 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		if(!T.is_plating() && node1 && node2 && node1.level == BELOW_PLATING_LEVEL && node2.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
+		if(!T.is_plating() &&69ode1 &&69ode2 &&69ode1.level == BELOW_PLATING_LEVEL &&69ode2.level == BELOW_PLATING_LEVEL && istype(node1, /obj/machinery/atmospherics/pipe) && istype(node2, /obj/machinery/atmospherics/pipe))
 			return
 		else
 			if (node1)
-				add_underlay(T, node1, turn(dir, -180), node1.icon_connect_type)
+				add_underlay(T,69ode1, turn(dir, -180),69ode1.icon_connect_type)
 			else
-				add_underlay(T, node1, turn(dir, -180))
+				add_underlay(T,69ode1, turn(dir, -180))
 			if (node2)
-				add_underlay(T, node2, dir, node2.icon_connect_type)
+				add_underlay(T,69ode2, dir,69ode2.icon_connect_type)
 			else
-				add_underlay(T, node2, dir)
+				add_underlay(T,69ode2, dir)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/hide(var/i)
 	update_icon()
@@ -121,17 +121,17 @@
 				var/transfer_moles = calculate_transfer_moles(air1, environment, pressure_delta)
 				power_draw = pump_gas(src, air1, environment, transfer_moles, power_rating)
 
-				if(power_draw >= 0 && network1)
+				if(power_draw >= 0 &&69etwork1)
 					network1.update = 1
 		else //external -> internal
 			if (node2 && (environment.temperature || air2.temperature))
-				var/transfer_moles = calculate_transfer_moles(environment, air2, pressure_delta, (network2)? network2.volume : 0)
+				var/transfer_moles = calculate_transfer_moles(environment, air2, pressure_delta, (network2)?69etwork2.volume : 0)
 
 				//limit flow rate from turfs
-				transfer_moles = min(transfer_moles, environment.total_moles*air2.volume/environment.volume)	//group_multiplier gets divided out here
+				transfer_moles =69in(transfer_moles, environment.total_moles*air2.volume/environment.volume)	//group_multiplier gets divided out here
 				power_draw = pump_gas(src, environment, air2, transfer_moles, power_rating)
 
-				if(power_draw >= 0 && network2)
+				if(power_draw >= 0 &&69etwork2)
 					network2.update = 1
 
 	if (power_draw >= 0)
@@ -146,14 +146,14 @@
 
 	if(pump_direction) //internal -> external
 		if(pressure_checks & PRESSURE_CHECK_EXTERNAL)
-			pressure_delta = min(pressure_delta, external_pressure_bound - environment_pressure) //increasing the pressure here
+			pressure_delta =69in(pressure_delta, external_pressure_bound - environment_pressure) //increasing the pressure here
 		if(pressure_checks & PRESSURE_CHECK_INPUT)
-			pressure_delta = min(pressure_delta, air1.return_pressure() - input_pressure_min) //decreasing the pressure here
+			pressure_delta =69in(pressure_delta, air1.return_pressure() - input_pressure_min) //decreasing the pressure here
 	else //external -> internal
 		if(pressure_checks & PRESSURE_CHECK_EXTERNAL)
-			pressure_delta = min(pressure_delta, environment_pressure - external_pressure_bound) //decreasing the pressure here
+			pressure_delta =69in(pressure_delta, environment_pressure - external_pressure_bound) //decreasing the pressure here
 		if(pressure_checks & PRESSURE_CHECK_OUTPUT)
-			pressure_delta = min(pressure_delta, output_pressure_max - air2.return_pressure()) //increasing the pressure here
+			pressure_delta =69in(pressure_delta, output_pressure_max - air2.return_pressure()) //increasing the pressure here
 
 	return pressure_delta
 
@@ -162,7 +162,7 @@
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
+	frequency =69ew_frequency
 	if(frequency)
 		radio_connection = SSradio.add_object(src, frequency, filter = RADIO_ATMOSIA)
 
@@ -170,7 +170,7 @@
 	if(!radio_connection)
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal =69ew
 	signal.transmission_method = 1 //radio signal
 	signal.source = src
 
@@ -196,7 +196,7 @@
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/examine(mob/user)
 	if(..(user, 1))
-		to_chat(user, "A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W")
+		to_chat(user, "A small gauge in the corner reads 69round(last_flow_rate, 0.1)69 L/s; 69round(last_power_draw)69 W")
 
 
 /obj/machinery/atmospherics/unary/vent_pump/power_change()
@@ -206,53 +206,53 @@
 		update_icon()
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data69"tag"69 || (signal.data69"tag"69 != id) || (signal.data69"sigtype"69!="command"))
 		return 0
-	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+	if(signal.data69"power"69)
+		use_power = text2num(signal.data69"power"69)
 
-	if(signal.data["power_toggle"])
+	if(signal.data69"power_toggle"69)
 		use_power = !use_power
 
-	if(signal.data["direction"])
-		pump_direction = text2num(signal.data["direction"])
+	if(signal.data69"direction"69)
+		pump_direction = text2num(signal.data69"direction"69)
 
-	if(signal.data["checks"])
-		pressure_checks = text2num(signal.data["checks"])
+	if(signal.data69"checks"69)
+		pressure_checks = text2num(signal.data69"checks"69)
 
-	if(signal.data["purge"])
+	if(signal.data69"purge"69)
 		pressure_checks &= ~1
 		pump_direction = 0
 
-	if(signal.data["stabalize"])
+	if(signal.data69"stabalize"69)
 		pressure_checks |= 1
 		pump_direction = 1
 
-	if(signal.data["set_input_pressure"])
+	if(signal.data69"set_input_pressure"69)
 		input_pressure_min = between(
 			0,
-			text2num(signal.data["set_input_pressure"]),
+			text2num(signal.data69"set_input_pressure"69),
 			ONE_ATMOSPHERE*50
 		)
 
-	if(signal.data["set_output_pressure"])
+	if(signal.data69"set_output_pressure"69)
 		output_pressure_max = between(
 			0,
-			text2num(signal.data["set_output_pressure"]),
+			text2num(signal.data69"set_output_pressure"69),
 			ONE_ATMOSPHERE*50
 		)
 
-	if(signal.data["set_external_pressure"])
+	if(signal.data69"set_external_pressure"69)
 		external_pressure_bound = between(
 			0,
-			text2num(signal.data["set_external_pressure"]),
+			text2num(signal.data69"set_external_pressure"69),
 			ONE_ATMOSPHERE*50
 		)
 
-	if(signal.data["status"])
+	if(signal.data69"status"69)
 		spawn(2)
 			broadcast_status()
-		return //do not update_icon
+		return //do69ot update_icon
 
 	spawn(2)
 		broadcast_status()

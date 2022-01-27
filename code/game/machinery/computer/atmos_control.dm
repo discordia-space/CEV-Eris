@@ -6,13 +6,13 @@
 /obj/machinery/computer/atmoscontrol
 	name = "\improper Central Atmospherics Computer"
 	icon = 'icons/obj/computer.dmi'
-	icon_keyboard = "generic_key"
-	icon_screen = "comm_logs"
-	light_color = COLOR_LIGHTING_BLUE_MACHINERY
+	icon_keyboard = "69eneric_key"
+	icon_screen = "comm_lo69s"
+	li69ht_color = COLOR_LI69HTIN69_BLUE_MACHINERY
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/electronics/circuitboard/atmoscontrol
-	req_access = list(access_ce)
+	re69_access = list(access_ce)
 	var/list/monitored_alarm_ids = null
 	var/datum/nano_module/atmos_control/atmos_control
 
@@ -23,22 +23,22 @@
 	icon_keyboard = "laptop_key"
 	icon_screen = "atmoslaptop"
 	density = FALSE
-	CheckFaceFlag = 0
+	CheckFaceFla69 = 0
 
 /obj/machinery/computer/atmoscontrol/attack_hand(mob/user)
 	if(..())
 		return 1
 	ui_interact(user)
 
-/obj/machinery/computer/atmoscontrol/emag_act(var/remaining_carges, var/mob/user)
-	if(!emagged)
-		user.visible_message(SPAN_WARNING("\The [user] does something \the [src], causing the screen to flash!"),\
-			SPAN_WARNING("You cause the screen to flash as you gain full control."),\
+/obj/machinery/computer/atmoscontrol/ema69_act(var/remainin69_car69es,69ar/mob/user)
+	if(!ema6969ed)
+		user.visible_messa69e(SPAN_WARNIN69("\The 69user69 does somethin69 \the 69src69, causin69 the screen to flash!"),\
+			SPAN_WARNIN69("You cause the screen to flash as you 69ain full control."),\
 			"You hear an electronic warble.")
-		atmos_control.emagged = 1
+		atmos_control.ema6969ed = 1
 		return 1
 
 /obj/machinery/computer/atmoscontrol/ui_interact(var/mob/user)
 	if(!atmos_control)
-		atmos_control = new(src, req_access, req_one_access, monitored_alarm_ids)
+		atmos_control = new(src, re69_access, re69_one_access,69onitored_alarm_ids)
 	atmos_control.ui_interact(user)

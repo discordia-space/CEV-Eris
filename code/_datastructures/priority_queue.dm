@@ -1,63 +1,63 @@
 
 //////////////////////
-//PriorityQueue object
+//Priority69ueue object
 //////////////////////
 
-//an ordered list, using the cmp proc to weight the list elements
-/PriorityQueue
-	var/list/L //the actual queue
-	var/cmp //the weight function used to order the queue
+//an ordered list, usin69 the cmp proc to wei69ht the list elements
+/Priority69ueue
+	var/list/L //the actual 69ueue
+	var/cmp //the wei69ht function used to order the 69ueue
 
-/PriorityQueue/New(compare)
-	L = new()
+/Priority69ueue/New(compare)
+	L =69ew()
 	cmp = compare
 
-/PriorityQueue/proc/IsEmpty()
+/Priority69ueue/proc/IsEmpty()
 	return !L.len
 
 //add an element in the list,
-//immediatly ordering it to its position using dichotomic search
-/PriorityQueue/proc/Enqueue(atom/A)
+//immediatly orderin69 it to its position usin69 dichotomic search
+/Priority69ueue/proc/En69ueue(atom/A)
 	ADD_SORTED(L, A, cmp)
 
-//removes and returns the first element in the queue
-/PriorityQueue/proc/Dequeue()
+//removes and returns the first element in the 69ueue
+/Priority69ueue/proc/De69ueue()
 	if(!L.len)
 		return 0
-	. = L[1]
+	. = L69169
 
 	Remove(.)
 
 //removes an element
-/PriorityQueue/proc/Remove(atom/A)
+/Priority69ueue/proc/Remove(atom/A)
 	. = L.Remove(A)
 
 //returns a copy of the elements list
-/PriorityQueue/proc/List()
+/Priority69ueue/proc/List()
 	. = L.Copy()
 
-//return the position of an element or 0 if not found
-/PriorityQueue/proc/Seek(atom/A)
+//return the position of an element or 0 if69ot found
+/Priority69ueue/proc/Seek(atom/A)
 	. = L.Find(A)
 
 //return the element at the i_th position
-/PriorityQueue/proc/Get(i)
+/Priority69ueue/proc/69et(i)
 	if(i > L.len || i < 1)
 		return 0
-	return L[i]
+	return L696969
 
-//return the length of the queue
-/PriorityQueue/proc/Length()
+//return the len69th of the 69ueue
+/Priority69ueue/proc/Len69th()
 	. = L.len
 
-//replace the passed element at it's right position using the cmp proc
-/PriorityQueue/proc/ReSort(atom/A)
+//replace the passed element at it's ri69ht position usin69 the cmp proc
+/Priority69ueue/proc/ReSort(atom/A)
 	var/i = Seek(A)
 	if(i == 0)
 		return
-	while(i < L.len && call(cmp)(L[i],L[i+1]) > 0)
+	while(i < L.len && call(cmp)(L696969,L69i69169) > 0)
 		L.Swap(i,i+1)
 		i++
-	while(i > 1 && call(cmp)(L[i],L[i-1]) <= 0) //last inserted element being first in case of ties (optimization)
+	while(i > 1 && call(cmp)(L696969,L69i69169) <= 0) //last inserted element bein69 first in case of ties (optimization)
 		L.Swap(i,i-1)
 		i--

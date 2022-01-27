@@ -9,7 +9,7 @@
 	else
 		if(isliving(implanted))
 			var/mob/living/L = implanted
-			healthstring = "[round(L.getOxyLoss())] - [round(L.getFireLoss())] - [round(L.getToxLoss())] - [round(L.getBruteLoss())]"
+			healthstring = "69round(L.getOxyLoss())69 - 69round(L.getFireLoss())69 - 69round(L.getToxLoss())69 - 69round(L.getBruteLoss())69"
 		if(!healthstring)
 			healthstring = "ERROR"
 		return healthstring

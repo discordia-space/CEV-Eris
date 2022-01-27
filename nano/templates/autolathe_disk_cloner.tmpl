@@ -1,109 +1,109 @@
 <!-- 
-Title: Autolathe disk cloner
-Used In File(s): \code\game\machinery\autolathe_disk_cloner.dm
+Title: 69utol69t69e dis69 cloner
+Used In File69s69: \code\6969me\m69c69iner69\69utol69t69e_dis69_cloner.dm
  -->
-<div class="fixedWidest" style="width:100%;">
-	<div class="block">
-		<div class="item">
-			<div class="itemContentWidest">
-				{{if data.copying}}
-					{{:helper.link('STOP', '', {'start' : 1}, null, 'bigRedButton')}} 
+<di69 cl69ss="fixedWidest" st69le="widt69:100%;">
+	<di69 cl69ss="69loc69">
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemContentWidest">
+				{{if d69t69.co6969in69}}
+					{{:69el69er.lin6969'STO69', '', {'st69rt' : 1},69ull, '69i69Red69utton'69}} 
 				{{else}}
-					{{:helper.link('START', '', {'start' : 1}, null, 'bigButton')}} 
+					{{:69el69er.lin6969'ST69RT', '', {'st69rt' : 1},69ull, '69i6969utton'69}} 
 				{{/if}}
-			</div>
-			<div class="itemContentWidest">
-				{{if data.copying}}
-					Copying {{:data.copyingnow}}/{{:data.copyingtotal}}
+			</di69>
+			<di69 cl69ss="itemContentWidest">
+				{{if d69t69.co6969in69}}
+					Co6969in69 {{:d69t69.co6969in69now}}/{{:d69t69.co6969in69tot69l}}
 				{{else}}
 					IDLE
 				{{/if}}
-			</div>
-		</div>
-	</div>
-</div>
+			</di69>
+		</di69>
+	</di69>
+</di69>
 
-<div class="fixedLeftWider" style="width:50%;">
-	<div class="block">
-		<div class="item">
-			{{if data.disk1}}
-				<div class="itemLabelWidest">Source disk</div>
-				<div class="itemContentWidest">{{:data.disk1.disk_name ? data.disk1.disk_name : 'data disk'}}</div>
-				<div class="itemContent">
-					{{if data.disk1.license >= 0}}
-						<span class="good">Licenses: {{:data.disk1.license}}</span>
+<di69 cl69ss="fixedLeftWider" st69le="widt69:50%;">
+	<di69 cl69ss="69loc69">
+		<di69 cl69ss="item">
+			{{if d69t69.dis691}}
+				<di69 cl69ss="itemL6969elWidest">Source dis69</di69>
+				<di69 cl69ss="itemContentWidest">{{:d69t69.dis691.dis69_n69me ? d69t69.dis691.dis69_n69me : 'd69t69 dis69'}}</di69>
+				<di69 cl69ss="itemContent">
+					{{if d69t69.dis691.license >= 0}}
+						<s6969n cl69ss="69ood">Licenses: {{:d69t69.dis691.license}}</s6969n>
 					{{/if}}
-				</div>
-				<div class="itemLabelWidest">{{:helper.link('eject', 'eject', {'eject' : 'f'}, null, 'statusValue')}}</div>
+				</di69>
+				<di69 cl69ss="itemL6969elWidest">{{:69el69er.lin6969'e69ect', 'e69ect', {'e69ect' : 'f'},69ull, 'st69tus6969lue'69}}</di69>
 			{{else}}
-				<div class="itemLabelWidest">Source disk</div>
-				<div class="itemContentWidest"><span class="bad">no disk</span></div>
-				<div class="itemLabelWidest">{{:helper.link('insert', 'eject', {'eject' : 'f'}, null, 'statusValue')}}</div>
+				<di69 cl69ss="itemL6969elWidest">Source dis69</di69>
+				<di69 cl69ss="itemContentWidest"><s6969n cl69ss="6969d">no dis69</s6969n></di69>
+				<di69 cl69ss="itemL6969elWidest">{{:69el69er.lin6969'insert', 'e69ect', {'e69ect' : 'f'},69ull, 'st69tus6969lue'69}}</di69>
 			{{/if}}
-		</div>
-		<div class="block">
-			{{if data.disk1}}
-			<div class="item">
-			{{for data.disk1.files}}
-				<div class="itemContent">
-					{{if value.filetype == 'CCD'}}
-					<div class="itemLabelWidest" style="background-color: #ee0000;">
-					{{else value.filetype == 'SCD'}}
-					<div class="itemLabelWidest" style="color: #ee0000;">
+		</di69>
+		<di69 cl69ss="69loc69">
+			{{if d69t69.dis691}}
+			<di69 cl69ss="item">
+			{{for d69t69.dis691.files}}
+				<di69 cl69ss="itemContent">
+					{{if 6969lue.filet6969e == 'CCD'}}
+					<di69 cl69ss="itemL6969elWidest" st69le="6969c6969round-color: #ee0000;">
+					{{else 6969lue.filet6969e == 'SCD'}}
+					<di69 cl69ss="itemL6969elWidest" st69le="color: #ee0000;">
 					{{else}}
-					<div class="itemLabelWidest">
+					<di69 cl69ss="itemL6969elWidest">
 					{{/if}}
-						{{:value.filename}}.{{:value.filetype}}
-					</div>
-				</div>
-			{{empty}}
-				<div class="itemLabelWide">Empty.</div>
+						{{:6969lue.filen69me}}.{{:6969lue.filet6969e}}
+					</di69>
+				</di69>
+			{{em69t69}}
+				<di69 cl69ss="itemL6969elWide">Em69t69.</di69>
 			{{/for}}
-			</div>
+			</di69>
 			{{/if}}
-		</div>
-	</div>
-</div>
-<div class="fixedLeftWider" style="width:50%;">
-	<div class="block">
-		<div class="item">
-			{{if data.disk2}}
-				<div class="itemLabelWidest">Target disk</div>
-				<div class="itemContentWidest">{{:data.disk2.disk_name ? data.disk2.disk_name : 'data disk'}}</div>
-				<div class="itemContent">
-					{{if (data.copyingnow && !data.copying) || data.disk2.used_capacity}}
-						<span class="bad">NOT EMPTY</span>
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="fixedLeftWider" st69le="widt69:50%;">
+	<di69 cl69ss="69loc69">
+		<di69 cl69ss="item">
+			{{if d69t69.dis692}}
+				<di69 cl69ss="itemL6969elWidest">T69r69et dis69</di69>
+				<di69 cl69ss="itemContentWidest">{{:d69t69.dis692.dis69_n69me ? d69t69.dis692.dis69_n69me : 'd69t69 dis69'}}</di69>
+				<di69 cl69ss="itemContent">
+					{{if 69d69t69.co6969in69now && !d69t69.co6969in6969 || d69t69.dis692.used_c696969cit69}}
+						<s6969n cl69ss="6969d">NOT EM69T69</s6969n>
 					{{else}}
-						<span class="good">OK</span>
+						<s6969n cl69ss="69ood">O69</s6969n>
 					{{/if}}
-				</div>
-				<div class="itemLabelWidest">{{:helper.link('eject', 'eject', {'eject' : 's'}, null, 'statusValue')}}</div>
+				</di69>
+				<di69 cl69ss="itemL6969elWidest">{{:69el69er.lin6969'e69ect', 'e69ect', {'e69ect' : 's'},69ull, 'st69tus6969lue'69}}</di69>
 			{{else}}
-				<div class="itemLabelWidest">Target disk</div>
-				<div class="itemContentWidest"><span class="bad">no disk</span></div>
-				<div class="itemLabelWidest">{{:helper.link('insert', 'eject', {'eject' : 's'}, null, 'statusValue')}}</div>
+				<di69 cl69ss="itemL6969elWidest">T69r69et dis69</di69>
+				<di69 cl69ss="itemContentWidest"><s6969n cl69ss="6969d">no dis69</s6969n></di69>
+				<di69 cl69ss="itemL6969elWidest">{{:69el69er.lin6969'insert', 'e69ect', {'e69ect' : 's'},69ull, 'st69tus6969lue'69}}</di69>
 			{{/if}}
-		</div>
-		<div class="block">
-			{{if data.disk2}}
-			<div class="item">
-			{{for data.disk2.files}}
-				<div class="itemContent">
-					{{if value.filetype == 'CCD'}}
-					<div class="itemLabelWidest" style="background-color: #ee0000;">
-					{{else value.filetype == 'SCD'}}
-					<div class="itemLabelWidest" style="color: #ee0000;">
+		</di69>
+		<di69 cl69ss="69loc69">
+			{{if d69t69.dis692}}
+			<di69 cl69ss="item">
+			{{for d69t69.dis692.files}}
+				<di69 cl69ss="itemContent">
+					{{if 6969lue.filet6969e == 'CCD'}}
+					<di69 cl69ss="itemL6969elWidest" st69le="6969c6969round-color: #ee0000;">
+					{{else 6969lue.filet6969e == 'SCD'}}
+					<di69 cl69ss="itemL6969elWidest" st69le="color: #ee0000;">
 					{{else}}
-					<div class="itemLabelWidest">
+					<di69 cl69ss="itemL6969elWidest">
 					{{/if}}
-						{{:value.filename}}.{{:value.filetype}}
-					</div>
-				</div>
-			{{empty}}
-				<div class="itemLabelWide">Empty.</div>
+						{{:6969lue.filen69me}}.{{:6969lue.filet6969e}}
+					</di69>
+				</di69>
+			{{em69t69}}
+				<di69 cl69ss="itemL6969elWide">Em69t69.</di69>
 			{{/for}}
-			</div>
+			</di69>
 			{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>

@@ -1,5 +1,5 @@
-// We manually initialize the alarm handlers instead of looping over all existing types
-// to make it possible to write: camera.triggerAlarm() rather than alarm_manager.managers[datum/alarm_handler/camera].triggerAlarm() or a variant thereof.
+// We69anually initialize the alarm handlers instead of looping over all existing types
+// to69ake it possible to write: camera.triggerAlarm() rather than alarm_manager.managers69datum/alarm_handler/camera69.triggerAlarm() or a69ariant thereof.
 /var/global/datum/alarm_handler/atmosphere/atmosphere_alarm
 /var/global/datum/alarm_handler/camera/camera_alarm
 /var/global/datum/alarm_handler/fire/fire_alarm
@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(alarm)
 	power_alarm = new()
 
 /datum/controller/subsystem/alarm/Initialize(start_timeofday)
-	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
+	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm,69otion_alarm, power_alarm)
 	return ..()
 
 /datum/controller/subsystem/alarm/fire(resumed = FALSE)
@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(alarm)
 		active_alarm_cache.Cut()
 
 	while (current.len)
-		var/datum/alarm_handler/AH = current[current.len]
+		var/datum/alarm_handler/AH = current69current.len69
 		current.len--
 
 		AH.Process()
@@ -43,4 +43,4 @@ SUBSYSTEM_DEF(alarm)
 			return
 
 /datum/controller/subsystem/alarm/stat_entry()
-	..("[active_alarm_cache.len] alarm\s")
+	..("69active_alarm_cache.len69 alarm\s")

@@ -1,6 +1,6 @@
 //Spacesuit
-//Note: Everything in modules/clothing/spacesuits should have the entire suit grouped together.
-//      Meaning the the suit is defined directly after the corrisponding helmet. Just like below!
+//Note: Everything in69odules/clothing/spacesuits should have the entire suit grouped together.
+//     69eaning the the suit is defined directly after the corrisponding helmet. Just like below!
 
 /obj/item/clothing/head/space
 	name = "space helmet"
@@ -63,13 +63,13 @@
 		camera.set_status(!camera.status)
 		if(camera.status)
 			camera.c_tag = FindNameFromID(usr)
-			to_chat(usr, SPAN_NOTICE("User scanned as [camera.c_tag]. Camera activated."))
+			to_chat(usr, SPAN_NOTICE("User scanned as 69camera.c_tag69. Camera activated."))
 		else
 			to_chat(usr, SPAN_NOTICE("Camera deactivated."))
 
 /obj/item/clothing/head/space/examine(var/mob/user)
 	if(..(user, 1) && camera_networks && camera_networks.len)
-		to_chat(user, "This helmet has a built-in camera. It's [camera && camera.status ? "" : "in"]active.")
+		to_chat(user, "This helmet has a built-in camera. It's 69camera && camera.status ? "" : "in"69active.")
 
 /obj/item/clothing/suit/space
 	name = "space suit"
@@ -81,7 +81,7 @@
 	permeability_coefficient = 0.02
 	item_flags = STOPPRESSUREDAMAGE|THICKMATERIAL|COVER_PREVENT_MANIPULATION
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	matter = list(MATERIAL_PLASTIC = 30, MATERIAL_STEEL = 10)
+	matter = list(MATERIAL_PLASTIC = 30,69ATERIAL_STEEL = 10)
 	armor = list(
 		melee = 10,
 		bullet = 10,
@@ -111,7 +111,7 @@
 	check_limb_support(user)
 	..()
 
-// Some space suits are equipped with reactive membranes that support
+// Some space suits are equipped with reactive69embranes that support
 // broken limbs - at the time of writing, only the ninja suit, but
 // I can see it being useful for other suits as we expand them. ~ Z
 // The actual splinting occurs in /obj/item/organ/external/proc/fracture()
@@ -127,5 +127,5 @@
 	// Otherwise, remove the splints.
 	for(var/obj/item/organ/external/E in supporting_limbs)
 		E.status &= ~ ORGAN_SPLINTED
-		to_chat(user, "The suit stops supporting your [E.name].")
+		to_chat(user, "The suit stops supporting your 69E.name69.")
 	supporting_limbs = list()

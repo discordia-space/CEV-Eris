@@ -18,7 +18,7 @@
 	var/list/recipes = list(
 		"Food",
 			list(name="Milk, 30u", cost=60, reagent="milk"),
-			list(name="Slab of meat", cost=50, path=/obj/item/reagent_containers/food/snacks/meat),
+			list(name="Slab of69eat", cost=50, path=/obj/item/reagent_containers/food/snacks/meat),
 			list(name="Box of eggs", cost=200, path=/obj/item/storage/fancy/egg_box),
 		"Nutrient",
 			list(name="EZ-Nutrient, 30u", cost=30, reagent="eznutrient"),
@@ -62,7 +62,7 @@
 		icon_state = "biogen-work"
 	return
 
-/obj/machinery/biogenerator/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/biogenerator/attackby(var/obj/item/I,69ar/mob/user)
 
 	if(default_deconstruction(I, user))
 		return
@@ -71,52 +71,52 @@
 		return
 	if(istype(I, /obj/item/reagent_containers/glass))
 		if(beaker)
-			to_chat(user, SPAN_NOTICE("The [src] is already loaded."))
+			to_chat(user, SPAN_NOTICE("The 69src69 is already loaded."))
 		else
 			user.remove_from_mob(I)
 			I.loc = src
 			beaker = I
 			updateUsrDialog()
 	else if(processing)
-		to_chat(user, SPAN_NOTICE("\The [src] is currently processing."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is currently processing."))
 	else if(istype(I, /obj/item/storage/bag/produce))
 		var/i = 0
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, SPAN_NOTICE("\The [src] is already full! Activate it."))
+			to_chat(user, SPAN_NOTICE("\The 69src69 is already full! Activate it."))
 		else
 			for(var/obj/item/reagent_containers/food/snacks/grown/G in I.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
-					to_chat(user, SPAN_NOTICE("You fill \the [src] to its capacity."))
+					to_chat(user, SPAN_NOTICE("You fill \the 69src69 to its capacity."))
 					break
 			if(i < 10)
-				to_chat(user, SPAN_NOTICE("You empty \the [I] into \the [src]."))
+				to_chat(user, SPAN_NOTICE("You empty \the 69I69 into \the 69src69."))
 
 
 	else if(!istype(I, /obj/item/reagent_containers/food/snacks/grown))
-		to_chat(user, SPAN_NOTICE("You cannot put this in \the [src]."))
+		to_chat(user, SPAN_NOTICE("You cannot put this in \the 69src69."))
 	else
 		var/i = 0
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
-			to_chat(user, SPAN_NOTICE("\The [src] is full! Activate it."))
+			to_chat(user, SPAN_NOTICE("\The 69src69 is full! Activate it."))
 		else
 			user.remove_from_mob(I)
 			I.loc = src
-			to_chat(user, SPAN_NOTICE("You put \the [I] in \the [src]"))
+			to_chat(user, SPAN_NOTICE("You put \the 69I69 in \the 69src69"))
 	update_icon()
 	return
 
-/obj/machinery/biogenerator/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state =GLOB.outside_state)
+/obj/machinery/biogenerator/ui_interact(var/mob/user,69ar/ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS,69ar/datum/topic_state/state =GLOB.outside_state)
 	user.set_machine(src)
 	var/list/data = list()
-	data["points"] = points
+	data69"points"69 = points
 	if(menustat == "menu")
-		data["beaker"] = beaker
+		data69"beaker"69 = beaker
 		if(beaker)
 
 			var/list/tmp_recipes = list()
@@ -130,17 +130,17 @@
 					var/list/L = smth
 					tmp_recipes += list(list(
 						"is_category" = 0,
-						"name" = L["name"],
-						"cost" = round(L["cost"]/build_eff),
-						"allow_multiple" = L["allow_multiple"],
+						"name" = L69"name"69,
+						"cost" = round(L69"cost"69/build_eff),
+						"allow_multiple" = L69"allow_multiple"69,
 					))
 
-			data["recipes"] = tmp_recipes
+			data69"recipes"69 = tmp_recipes
 
-	data["processing"] = processing
-	data["menustat"] = menustat
+	data69"processing"69 = processing
+	data69"menustat"69 =69enustat
 	if(menustat == "menu")
-		data["beaker"] = beaker
+		data69"beaker"69 = beaker
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -152,7 +152,7 @@
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/biogenerator/attack_hand(mob/user as mob)
+/obj/machinery/biogenerator/attack_hand(mob/user as69ob)
 	if(..())
 		return TRUE
 
@@ -173,7 +173,7 @@
 		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
 			points += 1
 		else points += I.reagents.get_reagent_amount("nutriment") * 8 * eat_eff
-		qdel(I)
+		69del(I)
 	if(S)
 		processing = 1
 		update_icon()
@@ -187,13 +187,13 @@
 		menustat = "void"
 	return
 
-/obj/machinery/biogenerator/proc/create_product(var/item, var/amount)
+/obj/machinery/biogenerator/proc/create_product(var/item,69ar/amount)
 	var/list/recipe = null
 	if(processing)
 		return
 
 	for(var/list/R in recipes)
-		if(R["name"] == item)
+		if(R69"name"69 == item)
 			recipe = R
 			break
 	if(!recipe)
@@ -202,9 +202,9 @@
 	if(!("allow_multiple" in recipe))
 		amount = 1
 	else
-		amount = max(amount, 1)
+		amount =69ax(amount, 1)
 
-	var/cost = recipe["cost"] * amount / build_eff
+	var/cost = recipe69"cost"69 * amount / build_eff
 
 	if(cost > points)
 		menustat = "nopoints"
@@ -216,9 +216,9 @@
 	points -= cost
 	sleep(cost*0.5)
 
-	var/creating = recipe["path"]
-	var/reagent = recipe["reagent"]
-	if(reagent) //For reagents like milk
+	var/creating = recipe69"path"69
+	var/reagent = recipe69"reagent"69
+	if(reagent) //For reagents like69ilk
 		beaker.reagents.add_reagent(reagent, 30)
 	else
 		for(var/i in 1 to amount)
@@ -234,7 +234,7 @@
 	if(!in_range(src, usr)) return
 	usr.set_machine(src)
 
-	switch(href_list["action"])
+	switch(href_list69"action"69)
 		if("activate")
 			activate()
 		if("detach")
@@ -243,7 +243,7 @@
 				beaker = null
 				update_icon()
 		if("create")
-			create_product(href_list["item"], text2num(href_list["amount"]))
+			create_product(href_list69"item"69, text2num(href_list69"amount"69))
 		if("menu")
 			menustat = "menu"
 	updateUsrDialog()
@@ -259,5 +259,5 @@
 		if(istype(P, /obj/item/stock_parts/manipulator))
 			man_rating += P.rating
 
-	build_eff = man_rating
+	build_eff =69an_rating
 	eat_eff = bin_rating

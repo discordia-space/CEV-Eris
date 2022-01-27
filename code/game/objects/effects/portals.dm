@@ -12,13 +12,13 @@
 	var/lifetime = 0
 	var/birthtime = 0
 	var/next_teleport
-	var/origin_turf //The last mob thing that attempted to enter this portal came from thus turf
+	var/origin_turf //The last69ob thing that attempted to enter this portal came from thus turf
 	var/entropy_value = 4
 
 /obj/effect/portal/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(istype(mover)) // if mover is not null, e.g. mob
+	if(istype(mover)) // if69over is not null, e.g.69ob
 		return FALSE
-	return TRUE // if mover is null (air movement)
+	return TRUE // if69over is null (air69ovement)
 
 /obj/effect/portal/Bumped(atom/movable/M)
 	origin_turf = get_turf(M)
@@ -28,7 +28,7 @@
 	origin_turf = get_turf(AM)
 	src.teleport(AM)
 
-/obj/effect/portal/attack_hand(mob/user as mob)
+/obj/effect/portal/attack_hand(mob/user as69ob)
 	origin_turf = get_turf(user)
 	src.teleport(user)
 
@@ -46,13 +46,13 @@
 var/list/portal_cache = list()
 
 /obj/effect/portal/proc/blend_icon(turf/T)
-	if(!("icon[initial(T.icon)]_iconstate[T.icon_state]_[type]" in portal_cache))//If the icon has not been added yet
+	if(!("icon69initial(T.icon)69_iconstate69T.icon_state69_69type69" in portal_cache))//If the icon has not been added yet
 		var/icon/I1 = icon(icon,mask)//Generate it.
 		var/icon/I2 = icon(initial(T.icon),T.icon_state)
 		I1.Blend(I2,ICON_MULTIPLY)
-		portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"] = I1 //And cache it!
+		portal_cache69"icon69initial(T.icon)69_iconstate69T.icon_state69_69type69"69 = I1 //And cache it!
 
-	overlays += portal_cache["icon[initial(T.icon)]_iconstate[T.icon_state]_[type]"]
+	overlays += portal_cache69"icon69initial(T.icon)69_iconstate69T.icon_state69_69type69"69
 
 
 
@@ -69,9 +69,9 @@ var/list/portal_cache = list()
 		return get_step(T, dir)
 
 /obj/effect/portal/proc/close()
-	qdel(src)
+	69del(src)
 
-/obj/effect/portal/proc/teleport(atom/movable/M as mob|obj)
+/obj/effect/portal/proc/teleport(atom/movable/M as69ob|obj)
 	if (world.time < next_teleport)
 		return
 	if (M == src)
@@ -83,22 +83,22 @@ var/list/portal_cache = list()
 	if (M.anchored && !istype(M, /mob/living/exosuit))
 		return
 	if (!( target ))
-		qdel(src)
+		69del(src)
 		return
 	if (istype(M, /atom/movable))
 		if(prob(failchance)) //oh dear a problem, put em in deep space
 			on_fail(M)
 		else
-			go_to_bluespace(origin_turf, entropy_value, FALSE, M, get_destination(origin_turf), 0) ///You will appear adjacent to the beacon
+			go_to_bluespace(origin_turf, entropy_value, FALSE,69, get_destination(origin_turf), 0) ///You will appear adjacent to the beacon
 			next_teleport = world.time + 3 //Tiny cooldown to prevent doubleporting
 			return TRUE
 
-/obj/effect/portal/proc/on_fail(atom/movable/M as mob|obj)
+/obj/effect/portal/proc/on_fail(atom/movable/M as69ob|obj)
 	src.icon_state = "portal1"
-	go_to_bluespace(origin_turf, entropy_value, FALSE, M, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
+	go_to_bluespace(origin_turf, entropy_value, FALSE,69, locate(rand(5, world.maxx - 5), rand(5, world.maxy -5), 3), 0)
 /*
 	Wormholes come in linked pairs and can be traversed freely from either end.
-	They gain some instability after being used, and should be left to settle or risk mishaps
+	They gain some instability after being used, and should be left to settle or risk69ishaps
 */
 /obj/effect/portal/wormhole
 	icon = 'icons/obj/objects.dmi'
@@ -112,12 +112,12 @@ var/list/portal_cache = list()
 
 /obj/effect/portal/wormhole/New(loc, lifetime, exit)
 	if(admin_announce_new)
-		message_admins("Wormhole with lifetime [time2text(lifetime, "hh hours, mm minutes and ss seconds")] created at ([jumplink(src)])", 0, 1)
+		message_admins("Wormhole with lifetime 69time2text(lifetime, "hh hours,69m69inutes and ss seconds")69 created at (69jumplink(src)69)", 0, 1)
 	..(loc, lifetime)
 	set_target(exit)
 	pair()
 
-/obj/effect/portal/wormhole/teleport(atom/movable/M as mob|obj)
+/obj/effect/portal/wormhole/teleport(atom/movable/M as69ob|obj)
 	.=..(M)
 
 	//Parent returns true if someone was successfully teleported
@@ -143,7 +143,7 @@ var/list/portal_cache = list()
 /obj/effect/portal/wormhole/update_icon()
 	if (failchance > 0)
 		icon_state = "wormhole_unstable"
-		desc = "It is whirling violently. Going into this thing might be a bad idea."
+		desc = "It is whirling69iolently. Going into this thing69ight be a bad idea."
 	else
 		icon_state = "wormhole"
 		desc = "It spins gently and calmly. It's probably safe, right?"
@@ -157,7 +157,7 @@ var/list/portal_cache = list()
 	var/turf/T = get_turf(target)
 	partner = (locate(/obj/effect/portal/wormhole) in T)
 
-	//There's no wormhole in the target tile yet. We shall make one
+	//There's no wormhole in the target tile yet. We shall69ake one
 	if (!partner)
 		partner = new /obj/effect/portal/wormhole(T, lifetime, loc)
 
@@ -165,13 +165,13 @@ var/list/portal_cache = list()
 
 /obj/effect/portal/unstable
 
-/obj/effect/portal/unstable/on_fail(atom/movable/M as mob|obj)
+/obj/effect/portal/unstable/on_fail(atom/movable/M as69ob|obj)
 	src.icon_state = "portal1"
 	if(istype(M, /mob/living))
-		var/mob/living/victim = M
-		//Portals ignore armor when messing you up, it's logical
+		var/mob/living/victim =69
+		//Portals ignore armor when69essing you up, it's logical
 		victim.apply_damage(20+rand(60), BRUTE, pick(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG))
-	go_to_bluespace(origin_turf, entropy_value, FALSE, M, get_destination(get_turf(M)), 1)
+	go_to_bluespace(origin_turf, entropy_value, FALSE,69, get_destination(get_turf(M)), 1)
 
 
 /obj/effect/portal/wormhole/rift
@@ -185,13 +185,13 @@ var/list/portal_cache = list()
 	entropy_value = 50
 	var/teleportations_left
 
-/obj/effect/portal/wormhole/rift/New(loc, exit, msg_admins=TRUE)
+/obj/effect/portal/wormhole/rift/New(loc, exit,69sg_admins=TRUE)
 	teleportations_left = rand(3, 10)
 	entropy_value = round(entropy_value/teleportations_left)
 	..(loc, 0, exit)
 	deltimer(lifetime)
 	if(msg_admins)
-		message_admins("Bluespace rift created between [jumplink(src)] and [jumplink(src.target)] with [teleportations_left] teleportations left")
+		message_admins("Bluespace rift created between 69jumplink(src)69 and 69jumplink(src.target)69 with 69teleportations_left69 teleportations left")
 
 /obj/effect/portal/wormhole/rift/pair()
 	partner = null
@@ -208,8 +208,8 @@ var/list/portal_cache = list()
 
 /obj/effect/portal/wormhole/rift/close()
 	if(teleportations_left <= 0)
-		qdel(src.target)
-		qdel(src)
+		69del(src.target)
+		69del(src)
 
 /obj/effect/portal/wormhole/rift/teleport(atom/movable/M)
 	. = ..(M)
@@ -223,12 +223,12 @@ var/list/portal_cache = list()
 /obj/effect/portal/wormhole/update_icon()
 
 /*
-Portal used to move from the ship to the junk field generated by junk tractor beam
+Portal used to69ove from the ship to the junk field generated by junk tractor beam
 Basically a portal without time limit and failchance
 */
 /obj/effect/portal/jtb
 	name = "junk field portal"
-	desc = "A portal stabilized by heavy-duty machinery. It is safe to cross."
+	desc = "A portal stabilized by heavy-duty69achinery. It is safe to cross."
 	failchance = 0
 	entropy_value = 1
 

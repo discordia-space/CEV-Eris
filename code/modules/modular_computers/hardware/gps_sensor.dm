@@ -1,10 +1,10 @@
 /obj/item/computer_hardware/gps_sensor
 	name = "relay positioning receiver"
-	desc = "A module that connects a computer to the ship navigation system, commonly installed in PDAs."
+	desc = "A69odule that connects a computer to the ship69avigation system, commonly installed in PDAs."
 	power_usage = 5 //W
 	icon_state = "gps_basic"
 	hardware_size = 1
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 2)
 	matter_reagents = list("silicon" = 10)
 	origin_tech = list(TECH_BLUESPACE = 2)
 	usage_flags = PROGRAM_ALL
@@ -18,7 +18,7 @@
 	else if(istype(loc, /obj/item/modular_computer/tablet))
 		prefix = "TAB"
 
-	gps = new /datum/gps_data/modular_pc(src, new_prefix=prefix)
+	gps =69ew /datum/gps_data/modular_pc(src,69ew_prefix=prefix)
 
 /obj/item/computer_hardware/gps_sensor/Destroy()
 	QDEL_NULL(gps)
@@ -26,14 +26,14 @@
 
 /obj/item/computer_hardware/gps_sensor/examine(mob/user)
 	..()
-	to_chat(user, "Serial number is [gps.serial_number].")
+	to_chat(user, "Serial69umber is 69gps.serial_number69.")
 
 /obj/item/computer_hardware/gps_sensor/proc/get_position_text()
 	var/error_text = "<span class='average'>ERROR: Unable to reach positioning system relays.</span>"
 	return gps.get_coordinates_text(default=error_text)
 
 
-// Only works if installed in MPC, enabled and not too damaged
+// Only works if installed in69PC, enabled and69ot too damaged
 /datum/gps_data/modular_pc
 
 /datum/gps_data/modular_pc/is_functioning()

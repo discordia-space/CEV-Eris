@@ -1,52 +1,52 @@
 /obj/item/stack/rods
 	name = "metal rod"
-	desc = "Some rods. Can be used for building, or something."
+	desc = "Some rods. Can be used for buildin69, or somethin69."
 	icon = 'icons/obj/stack/items.dmi'
-	singular_name = "metal rod"
+	sin69ular_name = "metal rod"
 	icon_state = "rods"
 	novariants = FALSE
-	flags = CONDUCT
+	fla69s = CONDUCT
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_WEAK
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 5
-	throw_range = 20
+	throw_ran69e = 20
 	matter = list(MATERIAL_STEEL = 1)
 	max_amount = 60
-	attack_verb = list("hit", "bludgeoned", "whacked")
-	price_tag = 1
+	attack_verb = list("hit", "blud69eoned", "whacked")
+	price_ta69 = 1
 
 /obj/item/stack/rods/random
 	rand_min = 2
 	rand_max = 30
-	spawn_tags = SPAWN_TAG_ORE_TAG_JUNK
+	spawn_ta69s = SPAWN_TA69_ORE_TA69_JUNK
 	rarity_value = 10
 
-/obj/item/stack/rods/cyborg
+/obj/item/stack/rods/cybor69
 	name = "metal rod synthesizer"
-	desc = "A device that makes metal rods."
-	gender = NEUTER
+	desc = "A device that69akes69etal rods."
+	69ender = NEUTER
 	matter = null
-	uses_charge = 1
-	charge_costs = list(500)
+	uses_char69e = 1
+	char69e_costs = list(500)
 	stacktype = /obj/item/stack/rods
-	spawn_tags = null
+	spawn_ta69s = null
 
-/obj/item/stack/rods/attackby(obj/item/I, mob/living/user)
+/obj/item/stack/rods/attackby(obj/item/I,69ob/livin69/user)
 	..()
-	if(QUALITY_WELDING in I.tool_qualities)
-		if(get_amount() < 2)
-			to_chat(user, SPAN_WARNING("You need at least two rods to do this."))
+	if(69UALITY_WELDIN69 in I.tool_69ualities)
+		if(69et_amount() < 2)
+			to_chat(user, SPAN_WARNIN69("You need at least two rods to do this."))
 			return
 
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WELDING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WELDIN69, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 			var/obj/item/stack/material/steel/new_item = new (usr.loc)
 			new_item.add_to_stacks(usr)
-			for (var/mob/M in viewers(src))
-				M.show_message(SPAN_NOTICE("[src] is shaped into metal by [user.name] with the [I.name]."), 3, SPAN_NOTICE("You hear welding."), 2)
+			for (var/mob/M in69iewers(src))
+				M.show_messa69e(SPAN_NOTICE("69src69 is shaped into69etal by 69user.name69 with the 69I.name69."), 3, SPAN_NOTICE("You hear weldin69."), 2)
 			var/obj/item/stack/rods/R = src
 			src = null
-			var/replace = (user.get_inactive_hand() == R)
+			var/replace = (user.69et_inactive_hand() == R)
 			R.use(2)
 			if(!R && replace)
 				user.put_in_hands(new_item)
@@ -54,5 +54,5 @@
 	..()
 
 
-/obj/item/stack/rods/attack_self(mob/living/user)
-	user.open_craft_menu("Tiles")//see menu.dm
+/obj/item/stack/rods/attack_self(mob/livin69/user)
+	user.open_craft_menu("Tiles")//see69enu.dm

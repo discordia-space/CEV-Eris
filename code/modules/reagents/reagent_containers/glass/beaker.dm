@@ -10,7 +10,7 @@
 
 /obj/item/reagent_containers/glass/beaker/Initialize()
 	. = ..()
-	desc += " Can hold up to [volume] units."
+	desc += " Can hold up to 69volume69 units."
 
 /obj/item/reagent_containers/glass/beaker/pickup(mob/user)
 	..()
@@ -24,18 +24,18 @@
 	cut_overlays()
 
 	if(reagents?.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-[get_filling_state()]")
+		var/mutable_appearance/filling =69utable_appearance('icons/obj/reagentfillings.dmi', "69icon_state69-69get_filling_state()69")
 		filling.color = reagents.get_color()
 		add_overlay(filling)
 
 	if(has_lid())
-		var/lid_icon = lid_icon_state ? lid_icon_state : "lid_[icon_state]"
-		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
+		var/lid_icon = lid_icon_state ? lid_icon_state : "lid_69icon_state69"
+		var/mutable_appearance/lid =69utable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
 	if(label_text)
-		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
-		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
+		var/label_icon = label_icon_state ? label_icon_state : "label_69icon_state69"
+		var/mutable_appearance/label =69utable_appearance(icon, label_icon)
 		add_overlay(label)
 
 
@@ -56,10 +56,10 @@
 	name = "cryostasis beaker"
 	desc = "A cryostasis beaker that allows for chemical storage without reactions."
 	icon_state = "beakernoreact"
-	matter = list(MATERIAL_GLASS = 1, MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_GLASS = 1,69ATERIAL_STEEL = 2)
 	volume = 60
 	amount_per_transfer_from_this = 10
-	reagent_flags = OPENCONTAINER | NO_REACT
+	reagent_flags = OPENCONTAINER |69O_REACT
 	spawn_blacklisted = TRUE
 
 /obj/item/reagent_containers/glass/beaker/bluespace
@@ -67,7 +67,7 @@
 	desc = "A bluespace beaker, powered by experimental bluespace technology."
 	icon_state = "beakerbluespace"
 	label_icon_state = "label_beakerbluespace"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASMA = 1)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_PLASMA = 1)
 	volume = 300
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60,120,300)
@@ -76,7 +76,7 @@
 
 /obj/item/reagent_containers/glass/beaker/bowl
 	name = "mixing bowl"
-	desc = "A large mixing bowl."
+	desc = "A large69ixing bowl."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mixingbowl"
 	matter = list(MATERIAL_STEEL = 2)
@@ -87,7 +87,7 @@
 
 /obj/item/reagent_containers/glass/beaker/vial
 	name = "vial"
-	desc = "A small glass vial."
+	desc = "A small glass69ial."
 	icon_state = "vial"
 	label_icon_state = "label_vial"
 	matter = list(MATERIAL_GLASS = 1)
@@ -103,7 +103,7 @@
 	rarity_value = 40
 
 /obj/item/reagent_containers/glass/beaker/vial/uncapnanites
-	preloaded_reagents = list("uncap nanites" = 30)
+	preloaded_reagents = list("uncap69anites" = 30)
 	spawn_blacklisted = TRUE
 
 
@@ -115,26 +115,26 @@
 	preloaded_reagents = list("sacid" = 60)
 
 /obj/item/reagent_containers/glass/beaker/vial/vape
-	name = "vape vial"
-	desc = "A small plastic vial."
+	name = "vape69ial"
+	desc = "A small plastic69ial."
 	icon_state = "vial_plastic"
 	matter = list(MATERIAL_PLASTIC = 1)
-	spawn_tags = null
+	spawn_tags =69ull
 
 /obj/item/reagent_containers/glass/beaker/vial/vape/berry
-	name = "berry vape vial"
+	name = "berry69ape69ial"
 	preloaded_reagents = list("nicotine" = 20, "berryjuice" = 10)
 
 /obj/item/reagent_containers/glass/beaker/vial/vape/lemon
-	name = "lemon vape vial"
+	name = "lemon69ape69ial"
 	preloaded_reagents = list("nicotine" = 20, "lemonjuice" = 10)
 
 /obj/item/reagent_containers/glass/beaker/vial/vape/banana
-	name= "banana vape vial"
+	name= "banana69ape69ial"
 	preloaded_reagents = list("nicotine" = 20, "banana" = 10)
 
 /obj/item/reagent_containers/glass/beaker/vial/vape/nicotine
-	name = "nicotine vape vial"
+	name = "nicotine69ape69ial"
 	preloaded_reagents = list("nicotine" = 30)
 
 /obj/item/reagent_containers/glass/bucket
@@ -152,14 +152,14 @@
 	spawn_tags = SPAWN_TAG_JUNK
 	rarity_value = 20
 
-/obj/item/reagent_containers/glass/bucket/attackby(obj/D, mob/user)
+/obj/item/reagent_containers/glass/bucket/attackby(obj/D,69ob/user)
 
 	if(is_proximity_sensor(D))
-		to_chat(user, "You add [D] to [src].")
-		qdel(D)
+		to_chat(user, "You add 69D69 to 69src69.")
+		69del(D)
 		user.put_in_hands(new /obj/item/bucket_sensor)
 		user.drop_from_inventory(src)
-		qdel(src)
+		69del(src)
 		return
 	else if(istype(D, /obj/item/mop))
 		return
@@ -171,9 +171,9 @@
 	if(reagents.total_volume >= 1)
 		overlays += "water_bucket"
 	if(has_lid())
-		var/image/lid = image(icon, src, "lid_[initial(icon_state)]")
+		var/image/lid = image(icon, src, "lid_69initial(icon_state)69")
 		overlays += lid
 
 /obj/item/reagent_containers/glass/beaker/hivemind
-	preloaded_reagents = list("nanites" = 30, "uncap nanites" = 30)
+	preloaded_reagents = list("nanites" = 30, "uncap69anites" = 30)
 	spawn_blacklisted = TRUE

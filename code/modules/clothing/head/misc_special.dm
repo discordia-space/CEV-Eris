@@ -1,6 +1,6 @@
 /*
  * Contents:
- *		Welding mask
+ *		Welding69ask
  *		Cakehat
  *		Ushanka
  *		Pumpkin head
@@ -9,7 +9,7 @@
  */
 
 /*
- * Welding mask
+ * Welding69ask
  */
 /obj/item/clothing/head/welding
 	name = "welding helmet"
@@ -19,7 +19,7 @@
 		slot_l_hand_str = "welding",
 		slot_r_hand_str = "welding",
 		)
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_GLASS = 2)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_GLASS = 2)
 	var/up = 0
 	armor = list(
 		melee = 20,
@@ -31,7 +31,7 @@
 	)
 	flags_inv = (HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
 	body_parts_covered = HEAD|FACE|EYES
-	action_button_name = "Flip Welding Mask"
+	action_button_name = "Flip Welding69ask"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -49,7 +49,7 @@
 
 /obj/item/clothing/head/welding/verb/toggle()
 	set category = "Object"
-	set name = "Adjust welding mask"
+	set name = "Adjust welding69ask"
 	set src in usr
 
 	if(!usr.incapacitated())
@@ -61,7 +61,7 @@
 			tint = initial(tint)
 			obscuration = initial(obscuration)
 			icon_state = base_state
-			to_chat(usr, "You flip the [src] down to protect your eyes.")
+			to_chat(usr, "You flip the 69src69 down to protect your eyes.")
 			style_coverage = COVERS_WHOLE_FACE
 		else
 			src.up = !src.up
@@ -70,10 +70,10 @@
 			tint = TINT_NONE
 			obscuration = 0
 			flags_inv &= ~(HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE)
-			icon_state = "[base_state]up"
-			to_chat(usr, "You push the [src] up out of your face.")
+			icon_state = "69base_state69up"
+			to_chat(usr, "You push the 69src69 up out of your face.")
 			style_coverage = COVERS_HAIR
-		update_wear_icon()	//so our mob-overlays
+		update_wear_icon()	//so our69ob-overlays
 		usr.update_action_buttons()
 
 
@@ -97,13 +97,13 @@
 	var/turf/location = src.loc
 	if(istype(location, /mob/))
 		var/mob/living/carbon/human/M = location
-		if(M.l_hand == src || M.r_hand == src || M.head == src)
-			location = M.loc
+		if(M.l_hand == src ||69.r_hand == src ||69.head == src)
+			location =69.loc
 
 	if (istype(location, /turf))
 		location.hotspot_expose(700, 1)
 
-/obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
+/obj/item/clothing/head/cakehat/attack_self(mob/user as69ob)
 	src.onfire = !( src.onfire )
 	if (src.onfire)
 		src.force = 3
@@ -154,7 +154,7 @@
 
 
 /obj/item/clothing/head/richard
-	name = "chicken mask"
+	name = "chicken69ask"
 	desc = "You can hear the distant sounds of rhythmic electronica."
 	icon_state = "richard"
 	body_parts_covered = HEAD|FACE

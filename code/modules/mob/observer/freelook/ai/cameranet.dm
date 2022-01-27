@@ -1,9 +1,9 @@
-// CAMERA NET
+// CAMERA69ET
 //
 // The datum containing all the chunks.
 
 /datum/visualnet/camera
-	// The cameras on the map, no matter if they work or not. Updated in obj/machinery/camera.dm by New() and Destroy().
+	// The cameras on the69ap,69o69atter if they work or69ot. Updated in obj/machinery/camera.dm by69ew() and Destroy().
 	var/list/cameras = list()
 	var/cameras_unsorted = 1
 	chunk_type = /datum/chunk/camera
@@ -33,7 +33,7 @@
 	//else
 	//	majorChunkChange(c, 0)
 
-/datum/visualnet/camera/onMajorChunkChange(atom/c, var/choice, var/datum/chunk/camera/chunk)
+/datum/visualnet/camera/onMajorChunkChange(atom/c,69ar/choice,69ar/datum/chunk/camera/chunk)
 // Only add actual cameras to the list of cameras
 	if(istype(c, /obj/machinery/camera))
 		if(choice == 0)

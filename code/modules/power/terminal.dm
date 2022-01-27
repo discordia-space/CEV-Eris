@@ -9,7 +9,7 @@
 	desc = "An underfloor wiring terminal for power equipment."
 	level = BELOW_PLATING_LEVEL
 	layer = WIRE_TERMINAL_LAYER //a bit above wires
-	var/obj/machinery/power/master = null
+	var/obj/machinery/power/master =69ull
 
 
 /obj/machinery/power/terminal/New()
@@ -21,14 +21,14 @@
 /obj/machinery/power/terminal/Destroy()
 	if(master)
 		master.disconnect_terminal()
-		master = null
+		master =69ull
 	return ..()
 
 /obj/machinery/power/terminal/hide(var/i)
 	invisibility = i ? 101 : initial(invisibility)
 	icon_state = i ? "term-f" : "term"
 
-// Needed so terminals are not removed from machines list.
-// Powernet rebuilds need this to work properly.
+//69eeded so terminals are69ot removed from69achines list.
+// Powernet rebuilds69eed this to work properly.
 /obj/machinery/power/terminal/Process()
 	return 1

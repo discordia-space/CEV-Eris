@@ -51,7 +51,7 @@
 
 /obj/item/reagent_containers/glass/Initialize()
 	. = ..()
-	base_name = name
+	base_name =69ame
 
 /obj/item/reagent_containers/glass/proc/has_lid()
 	return !is_open_container()
@@ -66,10 +66,10 @@
 
 /obj/item/reagent_containers/glass/is_closed_message(mob/user)
 	if(has_lid())
-		to_chat(user, SPAN_NOTICE("You need to take the lid off [src] first!"))
+		to_chat(user, SPAN_NOTICE("You69eed to take the lid off 69src69 first!"))
 
 /obj/item/reagent_containers/glass/self_feed_message(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
+	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the 69src69."))
 
 /obj/item/reagent_containers/glass/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -85,36 +85,36 @@
 	if(toggle_lid())
 		playsound(src,'sound/effects/Lid_Removal_Bottle_mono.ogg',50,1)
 		if(has_lid())
-			to_chat(user, SPAN_NOTICE("You put the lid on \the [src]."))
+			to_chat(user, SPAN_NOTICE("You put the lid on \the 69src69."))
 		else
-			to_chat(user, SPAN_NOTICE("You take the lid off \the [src]."))
+			to_chat(user, SPAN_NOTICE("You take the lid off \the 69src69."))
 
-/obj/item/reagent_containers/glass/pre_attack(atom/A, mob/user, params)
+/obj/item/reagent_containers/glass/pre_attack(atom/A,69ob/user, params)
 	if(user.a_intent == I_HURT)
-		user.investigate_log("splashed [src] filled with [reagents.log_list()] onto [A]", "chemistry")
+		user.investigate_log("splashed 69src69 filled with 69reagents.log_list()69 onto 69A69", "chemistry")
 		if(standard_splash_mob(user, A))
 			return TRUE
 		if(is_drainable() && reagents.total_volume)
 			if(istype(A, /obj/structure/sink))
-				to_chat(user, SPAN_NOTICE("You pour the solution into [A]."))
+				to_chat(user, SPAN_NOTICE("You pour the solution into 69A69."))
 				reagents.remove_any(reagents.total_volume)
 			else
 				playsound(src,'sound/effects/Splash_Small_01_mono.ogg',50,1)
-				to_chat(user, SPAN_NOTICE("You splash the solution onto [A]."))
+				to_chat(user, SPAN_NOTICE("You splash the solution onto 69A69."))
 				reagents.splash(A, reagents.total_volume)
 			return TRUE
 	return ..()
 
-/obj/item/reagent_containers/glass/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+/obj/item/reagent_containers/glass/attack(mob/M as69ob,69ob/user as69ob, def_zone)
+	if(force && !(flags &69OBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
-	if(standard_feed_mob(user, M))
+	if(standard_feed_mob(user,69))
 		return
 
 	return 0
 
-/obj/item/reagent_containers/glass/afterattack(var/obj/target, var/mob/user, var/flag)
+/obj/item/reagent_containers/glass/afterattack(var/obj/target,69ar/mob/user,69ar/flag)
 	if(!flag)
 		return
 	for(var/type in can_be_placed_into)
@@ -125,13 +125,13 @@
 	if(standard_dispenser_refill(user, target))
 		return 1
 
-/obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user)
+/obj/item/reagent_containers/glass/attackby(obj/item/I,69ob/user)
 	if(istype(I, /obj/item/pen) || istype(I, /obj/item/device/lighting/toggleable/flashlight/pen))
-		var/tmp_label = sanitizeSafe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(input(user, "Enter a label for 69name69", "Label", label_text),69AX_NAME_LEN)
 		if(length(tmp_label) > 10)
-			to_chat(user, SPAN_NOTICE("The label can be at most 10 characters long."))
+			to_chat(user, SPAN_NOTICE("The label can be at69ost 10 characters long."))
 		else
-			to_chat(user, SPAN_NOTICE("You set the label to \"[tmp_label]\"."))
+			to_chat(user, SPAN_NOTICE("You set the label to \"69tmp_label69\"."))
 			label_text = tmp_label
 			update_name_label()
 			update_icon()
@@ -139,7 +139,7 @@
 	var/hotness = I.is_hot()
 	if(hotness && reagents)
 		reagents.expose_temperature(hotness)
-		to_chat(user, SPAN_NOTICE("You heat [name] with [I]!"))
+		to_chat(user, SPAN_NOTICE("You heat 69name69 with 69I69!"))
 
 	..()
 
@@ -148,7 +148,7 @@
 	if(label_text == "")
 		name = base_name
 	else
-		name = "[base_name] ([label_text])"
+		name = "69base_name69 (69label_text69)"
 
 /obj/item/reagent_containers/glass/MouseDrop(obj/over_object,src_location,over_location)
 	. = ..()

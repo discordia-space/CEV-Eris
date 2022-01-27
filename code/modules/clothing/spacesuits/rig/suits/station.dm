@@ -23,12 +23,12 @@
 
 
 /***************************************
-	Industrial Suit: For Mining
+	Industrial Suit: For69ining
 ****************************************/
 /obj/item/rig/industrial
-	name = "industrial suit control module"
+	name = "industrial suit control69odule"
 	suit_type = "industrial hardsuit"
-	desc = "A heavy, powerful rig used by construction crews and mining corporations."
+	desc = "A heavy, powerful rig used by construction crews and69ining corporations."
 	icon_state = "engineering_rig"
 	armor = list(
 		melee = 50,
@@ -69,9 +69,9 @@
 	EVA Suit
 ****************************************/
 /obj/item/rig/eva
-	name = "EVA suit control module"
+	name = "EVA suit control69odule"
 	suit_type = "EVA hardsuit"
-	desc = "A light rig for repairs and maintenance to the outside of habitats and vessels."
+	desc = "A light rig for repairs and69aintenance to the outside of habitats and69essels."
 	icon_state = "eva_rig"
 	armor = list(
 		melee = 20,
@@ -107,12 +107,12 @@
 
 
 /***************************************
-Advanced Voidsuit: Technomancer Exultant
+Advanced69oidsuit: Technomancer Exultant
 ****************************************/
 /obj/item/rig/ce
-	name = "advanced voidsuit control module"
-	suit_type = "advanced voidsuit"
-	desc = "An advanced voidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
+	name = "advanced69oidsuit control69odule"
+	suit_type = "advanced69oidsuit"
+	desc = "An advanced69oidsuit that protects against hazardous, low pressure environments. Shines with a high polish."
 	icon_state = "ce_rig"
 	rarity_value = 20
 	armor = list(
@@ -163,15 +163,15 @@ Advanced Voidsuit: Technomancer Exultant
 	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/magboots/rig/ce
-	name = "advanced magboots"
-	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
+	name = "advanced69agboots"
+	desc = "Advanced69agnetic boots that have a lighter69agnetic pull, placing less burden on the wearer."
 	mag_slow = 1
 
 /***************************************
 Technomancer RIG
 ***************************************/
 /obj/item/rig/techno
-	name = "technomancer suit control module"
+	name = "technomancer suit control69odule"
 	suit_type = "technomancer RIG suit"
 	desc = "An advanced RIG suit that protects against hazardous, low pressure and high temperature environments."
 	icon_state = "techno_rig"
@@ -214,19 +214,19 @@ Technomancer RIG
 
 
 /obj/item/clothing/shoes/magboots/rig/techno
-	name = "advanced magboots"
-	desc = "Advanced magnetic boots that have a lighter magnetic pull, placing less burden on the wearer."
+	name = "advanced69agboots"
+	desc = "Advanced69agnetic boots that have a lighter69agnetic pull, placing less burden on the wearer."
 	mag_slow = 1
 
 
 
 /***************************************
-	Hazmat: Moebius Overseer
+	Hazmat:69oebius Overseer
 ****************************************/
 /obj/item/rig/hazmat
-	name = "AMI control module"
+	name = "AMI control69odule"
 	suit_type = "hazmat hardsuit"
-	desc = "An Anomalous Material Interaction hardsuit that protects against the strangest energies the universe can throw at it."
+	desc = "An Anomalous69aterial Interaction hardsuit that protects against the strangest energies the universe can throw at it."
 	icon_state = "science_rig"
 	spawn_tags = SPAWN_TAG_RIG_HAZMAT
 	rarity_value = 25
@@ -277,9 +277,9 @@ Technomancer RIG
 	Medical
 ****************************************/
 /obj/item/rig/medical
-	name = "rescue suit control module"
+	name = "rescue suit control69odule"
 	suit_type = "rescue hardsuit"
-	desc = "A relatively lightweight and durable RIG suit designed for medical rescue in hazardous locations."
+	desc = "A relatively lightweight and durable RIG suit designed for69edical rescue in hazardous locations."
 	icon_state = "medical_rig"
 	armor = list(
 		melee = 20,
@@ -300,7 +300,7 @@ Technomancer RIG
 		/obj/item/roller
 	)
 	slowdown = HEAVY_SLOWDOWN * 0.5
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
 /obj/item/rig/medical/equipped
 	req_access = list()

@@ -51,7 +51,7 @@
 
 /obj/item/clothing/suit/wcoat
 	name = "waistcoat"
-	desc = "For some classy, murderous fun."
+	desc = "For some classy,69urderous fun."
 	icon_state = "vest"
 	item_state = "wcoat"
 	blood_overlay_type = "armor"
@@ -62,7 +62,7 @@
 	name = "red space suit replica"
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
-	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
+	desc = "A plastic replica of the syndicate space suit, you'll look just like a real69urderous syndicate agent in this! This is a toy, it is not69ade for use in space!"
 	w_class = ITEM_SIZE_NORMAL
 	allowed = list(/obj/item/device/lighting/toggleable/flashlight,/obj/item/tank,/obj/item/toy)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
@@ -72,7 +72,7 @@
 
 /obj/item/clothing/suit/chickensuit
 	name = "Chicken Suit"
-	desc = "A suit made long ago by the ancient empire KFC."
+	desc = "A suit69ade long ago by the ancient empire KFC."
 	icon_state = "chickensuit"
 	item_state = "chickensuit"
 	body_parts_covered = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS
@@ -99,7 +99,7 @@
 	flags_inv = HIDEJUMPSUIT
 
 /*
- * Misc
+ *69isc
  */
 
 /obj/item/clothing/suit/straight_jacket
@@ -132,7 +132,7 @@
 
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
-	desc = "A suit made out of chitinous alien hide."
+	desc = "A suit69ade out of chitinous alien hide."
 	icon_state = "xenos"
 	item_state = "xenos_helm"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -196,7 +196,7 @@
 
 /obj/item/clothing/suit/storage/leather_jacket
 	name = "leather jacket"
-	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. And remember, Tunnel Snakes rule!"
+	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too69uch.69ore importantly, it69akes you look like a really bad boy or girl. And remember, Tunnel Snakes rule!"
 	icon_state = "leather_jacket"
 	item_state = "leather_jacket"
 	armor = list(
@@ -213,13 +213,13 @@
 	siemens_coefficient = 0.7
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake
 	name = "Sleek leather Jacket"
-	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl."
+	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too69uch.69ore importantly, it69akes you look like a really bad boy or girl."
 	icon_state = "tunnelsnake_blank"
 	item_state = "tunnelsnake_blank"
 
 /obj/item/clothing/suit/storage/leather_jacket/tunnelsnake_jager
 	name = "Jaeger leather Jacket"
-	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too much. More importantly, it makes you look like a really bad boy or girl. This jacket has a Jaeger roach pictured on the back. Jaeger Roach rules!"
+	desc = "A sturdy, synthetic leather jacket with a high collar. It is able to protect you from a knife slice or a bite, but don't expect too69uch.69ore importantly, it69akes you look like a really bad boy or girl. This jacket has a Jaeger roach pictured on the back. Jaeger Roach rules!"
 	icon_state = "tunnelsnake_jager"
 	item_state = "tunnelsnake_jager"
 
@@ -249,7 +249,7 @@
 
 /obj/item/clothing/suit/storage/cyberpunksleek
 	name = "\improper Enforcer's Overcoat"
-	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek"
 	item_state = "brown_jacket"
 	armor = list(
@@ -265,26 +265,26 @@
 
 /obj/item/clothing/suit/storage/cyberpunksleek/green
 	name = "Enforcer's gray overcoat"
-	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_green"
 	item_state = "cyberpunksleek_green"
 
 
 /obj/item/clothing/suit/storage/cyberpunksleek/black
 	name = "Enforcer's gray overcoat"
-	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_black"
 	item_state = "cyberpunksleek_black"
 
 /obj/item/clothing/suit/storage/cyberpunksleek/white
 	name = "Enforcer's gray overcoat"
-	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_white"
 	item_state = "cyberpunksleek_white"
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long
 	name = "\improper Enforcer's long Overcoat"
-	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek long overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_long"
 	item_state = "cyberpunksleek_long"
 	armor = list(
@@ -300,20 +300,20 @@
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long/green
 	name = "Enforcer's long green overcoat"
-	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek long overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_long_green"
 	item_state = "cyberpunksleek_long_green"
 
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long/black
 	name = "Enforcer's long black overcoat"
-	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek long overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_long_black"
 	item_state = "cyberpunksleek_long_black"
 
 /obj/item/clothing/suit/storage/cyberpunksleek_long/white
 	name = "Enforcer's long white overcoat"
-	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
+	desc = "A sleek long overcoat69ade of neo-laminated fabric. Has a reasonably sized pocket on the inside."
 	icon_state = "cyberpunksleek_long_white"
 	item_state = "cyberpunksleek_long_white"
 
@@ -365,8 +365,8 @@
 	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/punkvest
-	name = "punk vest"
-	desc = "A dark vest made out of light, breathable fabric. Feeling lucky, punk?"
+	name = "punk69est"
+	desc = "A dark69est69ade out of light, breathable fabric. Feeling lucky, punk?"
 	icon_state = "punkvest"
 	item_state = "punkvest"
 	armor = list(
@@ -397,8 +397,8 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 
 /obj/item/clothing/suit/punkvest/cyber
-	name = "cyberpunk vest"
-	desc = "A red vest with golden streaks. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
+	name = "cyberpunk69est"
+	desc = "A red69est with golden streaks. It's69ade out of tough69aterials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
 	icon_state = "cyberpunk"
 	item_state = "cyberpunk"
 	armor = list(
@@ -412,7 +412,7 @@
 
 /obj/item/clothing/suit/storage/scavengerarmor
 	name = "scavenger armor"
-	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as most vests. made fully from junk."
+	desc = "A sturdy, rigged Scavenger armor. strong and sturdy as69ost69ests.69ade fully from junk."
 	icon_state = "scav_armor"
 	item_state = "scav_armor"
 	armor = list(

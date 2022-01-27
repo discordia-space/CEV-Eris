@@ -6,7 +6,7 @@
 	message = sanitize(message)
 
 	if(!(container && istype(container, /obj/item/device/mmi)))
-		return //No MMI, can't speak, bucko./N
+		return //No69MI, can't speak, bucko./N
 	else
 		var/datum/language/speaking = parse_language(message)
 		if(speaking)
@@ -22,10 +22,10 @@
 				verb="asks"
 
 		if(prob(emp_damage*4))
-			if(prob(10))//10% chane to drop the message entirely
+			if(prob(10))//10% chane to drop the69essage entirely
 				return
 			else
-				message = Gibberish(message, (emp_damage*6))//scrambles the message, gets worse when emp_damage is higher
+				message = Gibberish(message, (emp_damage*6))//scrambles the69essage, gets worse when emp_damage is higher
 
 		if(speaking && speaking.flags & HIVEMIND)
 			speaking.broadcast(src,trim(message))
@@ -34,5 +34,5 @@
 		if(istype(container, /obj/item/device/mmi/radio_enabled))
 			var/obj/item/device/mmi/radio_enabled/R = container
 			if(R.radio)
-				spawn(0) R.radio.hear_talk(src, sanitize(message), verb, speaking, getSpeechVolume())
-		..(trim(message), speaking, verb)
+				spawn(0) R.radio.hear_talk(src, sanitize(message),69erb, speaking, getSpeechVolume())
+		..(trim(message), speaking,69erb)

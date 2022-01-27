@@ -33,7 +33,7 @@
 				body_parts_covered = FACE
 				style_coverage = COVERS_MOUTH|COVERS_HAIR
 				icon_state = initial(icon_state) + "_mouth"
-				to_chat(user, "You adjust the balaclava up to cover your mouth.")
+				to_chat(user, "You adjust the balaclava up to cover your69outh.")
 				open = 2
 			else
 				flags_inv = HIDEFACE|BLOCKHAIR
@@ -44,7 +44,7 @@
 				open = 0
 		user.update_hair(0)
 		user.update_inv_ears(0)
-		user.update_inv_wear_mask() //Updates mob icons
+		user.update_inv_wear_mask() //Updates69ob icons
 
 /obj/item/clothing/mask/balaclava/attack_self(mob/user)
 	adjust_mask(user)

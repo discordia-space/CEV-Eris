@@ -16,7 +16,7 @@
 	var/flora_prob = 10
 	var/flora_diversity = 4
 	var/fauna_prob = 2
-	var/megafauna_spawn_prob = 0.5 //chance that a given fauna mob will instead be a megafauna
+	var/megafauna_spawn_prob = 0.5 //chance that a given fauna69ob will instead be a69egafauna
 
 	var/list/fauna_types = list()
 	var/list/megafauna_types = list()
@@ -25,11 +25,11 @@
 	var/list/plantcolors = list("RANDOM")
 	var/list/grass_cache
 
-/datum/random_map/noise/exoplanet/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/never_be_priority = 0, var/_planetary_area, var/list/_plant_colors)
+/datum/random_map/noise/exoplanet/New(var/seed,69ar/tx,69ar/ty,69ar/tz,69ar/tlx,69ar/tly,69ar/do_not_apply,69ar/do_not_announce,69ar/never_be_priority = 0,69ar/_planetary_area,69ar/list/_plant_colors)
 	target_turf_type = world.turf
 	water_level = rand(water_level_min,water_level_max)
 	planetary_area = _planetary_area
-	//automagically adjust probs for bigger maps to help with lag
+	//automagically adjust probs for bigger69aps to help with lag
 	var/size_mod = intended_x / tlx * intended_y / tly
 	flora_prob *= size_mod
 	large_flora_prob *= size_mod
@@ -39,29 +39,29 @@
 	generate_flora()
 	..()
 
-	base_turf_by_z[num2text(tz)] = land_type
+	base_turf_by_z69num2text(tz)69 = land_type
 
 /datum/random_map/noise/exoplanet/proc/noise2value(var/value)
-	return min(9,max(0,round((value/cell_range)*10)))
+	return69in(9,max(0,round((value/cell_range)*10)))
 
 /datum/random_map/noise/exoplanet/proc/is_edge_turf(turf/T)
 	return T.x <= TRANSITIONEDGE || T.x >= (limit_x - TRANSITIONEDGE + 1) || T.y <= TRANSITIONEDGE || T.y >= (limit_y - TRANSITIONEDGE + 1)
 
 /datum/random_map/noise/exoplanet/get_map_char(var/value)
-	if(water_type && noise2value(value) < water_level)
+	if(water_type &&69oise2value(value) < water_level)
 		return "~"
-	return "[noise2value(value)]"
+	return "69noise2value(value)69"
 
 /datum/random_map/noise/exoplanet/get_appropriate_path(var/value)
-	if(water_type && noise2value(value) < water_level)
+	if(water_type &&69oise2value(value) < water_level)
 		return water_type
 	else
 		return land_type
 
-/datum/random_map/noise/exoplanet/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/exoplanet/get_additional_spawns(var/value,69ar/turf/T)
 	if(is_edge_turf(T))
 		return
-	var/parsed_value = noise2value(value)
+	var/parsed_value =69oise2value(value)
 	switch(parsed_value)
 		if(2 to 3)
 			if(prob(fauna_prob))
@@ -91,9 +91,9 @@
 
 /datum/random_map/noise/exoplanet/proc/generate_flora()
 	for(var/i = 1 to flora_diversity)
-		var/datum/seed/S = new()
+		var/datum/seed/S =69ew()
 		S.randomize()
-		var/planticon = "alien[rand(1,4)]"
+		var/planticon = "alien69rand(1,4)69"
 		S.set_trait(TRAIT_PRODUCT_ICON,planticon)
 		S.set_trait(TRAIT_PLANT_ICON,planticon)
 		var/color = pick(plantcolors)
@@ -108,11 +108,11 @@
 			S.set_trait(TRAIT_CARNIVOROUS,1)
 		small_flora_types += S
 	if(large_flora_prob)
-		var/tree_diversity = max(1,flora_diversity/2)
+		var/tree_diversity =69ax(1,flora_diversity/2)
 		for(var/i = 1 to tree_diversity)
-			var/datum/seed/S = new()
+			var/datum/seed/S =69ew()
 			S.randomize()
-			S.set_trait(TRAIT_PRODUCT_ICON,"alien[rand(1,5)]")
+			S.set_trait(TRAIT_PRODUCT_ICON,"alien69rand(1,5)69")
 			S.set_trait(TRAIT_PLANT_ICON,"tree")
 			S.set_trait(TRAIT_SPREAD,0)
 			S.set_trait(TRAIT_HARVEST_REPEAT,1)
@@ -121,21 +121,21 @@
 			if(color == "RANDOM")
 				color = get_random_colour(0,75,190)
 //			S.set_trait(TRAIT_LEAVES_COLOUR,color)
-//			S.chems[/datum/reagent/woodpulp] = 1
+//			S.chems69/datum/reagent/woodpulp69 = 1
 			big_flora_types += S
 
 /datum/random_map/noise/exoplanet/proc/get_grass_overlay()
-	var/grass_num = "[rand(1,6)]"
+	var/grass_num = "69rand(1,6)69"
 	if(!LAZYACCESS(grass_cache, grass_num))
 		var/color = pick(plantcolors)
 		if(color == "RANDOM")
 			color = get_random_colour(0,75,190)
-		var/image/grass = overlay_image('icons/obj/flora/greygrass.dmi', "grass_[grass_num]", color, RESET_COLOR)
-		grass.underlays += overlay_image('icons/obj/flora/greygrass.dmi', "grass_[grass_num]_shadow", null, RESET_COLOR)
+		var/image/grass = overlay_image('icons/obj/flora/greygrass.dmi', "grass_69grass_num69", color, RESET_COLOR)
+		grass.underlays += overlay_image('icons/obj/flora/greygrass.dmi', "grass_69grass_num69_shadow",69ull, RESET_COLOR)
 		LAZYSET(grass_cache, grass_num, grass)
-	return grass_cache[grass_num]
+	return grass_cache69grass_num69
 
-/datum/random_map/noise/exoplanet/proc/spawn_flora(var/turf/T, var/big)
+/datum/random_map/noise/exoplanet/proc/spawn_flora(var/turf/T,69ar/big)
 	if(big)
 		if(LAZYLEN(big_flora_types))
 			new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(T, pick(big_flora_types), 1)
@@ -151,4 +151,4 @@
 		return
 	if(locate(/obj/effect/floor_decal) in T)
 		return
-	new /obj/effect/floor_decal(T, newappearance = get_grass_overlay())
+	new /obj/effect/floor_decal(T,69ewappearance = get_grass_overlay())

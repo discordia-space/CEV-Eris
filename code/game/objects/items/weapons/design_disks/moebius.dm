@@ -1,6 +1,6 @@
-// Moebius
+//69oebius
 /obj/item/computer_hardware/hard_drive/portable/design/medical
-	disk_name = "Moebius Medical Designs"
+	disk_name = "Moebius69edical Designs"
 	icon_state = "moebius"
 	rarity_value = 4.5
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON

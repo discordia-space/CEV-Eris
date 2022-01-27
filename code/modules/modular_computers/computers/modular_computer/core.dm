@@ -16,13 +16,13 @@
 			PRG.event_network_failure()
 
 		if(PRG.program_state != PROGRAM_STATE_KILLED)
-			PRG.ntnet_status = ntnet_status
+			PRG.ntnet_status =69tnet_status
 			PRG.computer_emagged = computer_emagged
 			PRG.process_tick()
 		else
 			all_threads.Remove(PRG)
 			if(PRG == active_program)
-				active_program = null
+				active_program =69ull
 
 	handle_power() // Handles all computer power interaction
 	check_update_ui_need()
@@ -37,7 +37,7 @@
 
 // Used to perform preset-specific hardware changes.
 /obj/item/modular_computer/proc/install_default_hardware()
-	cell = new suitable_cell(src)
+	cell =69ew suitable_cell(src)
 	return TRUE
 
 // Used to install preset-specific programs
@@ -53,7 +53,7 @@
 		return
 
 	for(var/prog_type in jb.software_on_spawn)
-		var/datum/computer_file/program/prog_file = new prog_type
+		var/datum/computer_file/program/prog_file =69ew prog_type
 		if(prog_file.is_supported_by_hardware(src))
 			hard_drive.store_file(prog_file)
 
@@ -61,7 +61,7 @@
 	START_PROCESSING(SSobj, src)
 
 	if(stores_pen && ispath(stored_pen))
-		stored_pen = new stored_pen(src)
+		stored_pen =69ew stored_pen(src)
 
 	install_default_hardware()
 	if(hard_drive)
@@ -86,19 +86,19 @@
 	QDEL_NULL(cell)
 	return ..()
 
-// A new computer hull was just built - remove all components
+// A69ew computer hull was just built - remove all components
 /obj/item/modular_computer/Created()
 	for(var/obj/item/CH in get_all_components())
 		qdel(CH)
 	QDEL_NULL(cell)
 
-/obj/item/modular_computer/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/modular_computer/emag_act(var/remaining_charges,69ar/mob/user)
 	if(computer_emagged)
-		to_chat(user, "\The [src] was already emagged.")
-		return NO_EMAG_ACT
+		to_chat(user, "\The 69src69 was already emagged.")
+		return69O_EMAG_ACT
 	else
 		computer_emagged = TRUE
-		to_chat(user, "You emag \the [src]. Its screen flick_lights briefly.")
+		to_chat(user, "You emag \the 69src69. Its screen flick_lights briefly.")
 		return TRUE
 
 /obj/item/modular_computer/update_icon()
@@ -128,7 +128,7 @@
 //skip_screen_check is used when set_light is called from update_icon
 /obj/item/modular_computer/set_light(range, brightness, color, skip_screen_check = FALSE)
 	if (enabled && led && led.enabled)
-		//We need to buff non handheld devices cause othervise their screen light might be brighter
+		//We69eed to buff69on handheld devices cause othervise their screen light69ight be brighter
 		brightness = (hardware_flag & (PROGRAM_PDA | PROGRAM_TABLET)) ? led.brightness_power : (led.brightness_power * 1.4)
 		range = (hardware_flag & (PROGRAM_PDA | PROGRAM_TABLET)) ? led.brightness_range : (led.brightness_range * 1.2)
 		..(range, brightness, led.brightness_color)
@@ -156,48 +156,48 @@
 		return
 	if(tesla_link)
 		tesla_link.enabled = TRUE
-	var/issynth = issilicon(user) // Robots and AIs get different activation messages.
+	var/issynth = issilicon(user) // Robots and AIs get different activation69essages.
 	if(damage > broken_damage)
 		if(issynth)
-			to_chat(user, SPAN_WARNING("You send an activation signal to \the [src], but it responds with an error code. It must be damaged."))
+			to_chat(user, SPAN_WARNING("You send an activation signal to \the 69src69, but it responds with an error code. It69ust be damaged."))
 		else
-			to_chat(user, SPAN_WARNING("You press the power button, but the computer fails to boot up, displaying variety of errors before shutting down again."))
+			to_chat(user, SPAN_WARNING("You press the power button, but the computer fails to boot up, displaying69ariety of errors before shutting down again."))
 		return
-	if(processor_unit && try_use_power(0)) // Battery-run and charged or non-battery but powered by APC.
+	if(processor_unit && try_use_power(0)) // Battery-run and charged or69on-battery but powered by APC.
 		if(issynth)
-			to_chat(user, SPAN_NOTICE("You send an activation signal to \the [src], turning it on"))
+			to_chat(user, SPAN_NOTICE("You send an activation signal to \the 69src69, turning it on"))
 		else
-			to_chat(user, SPAN_NOTICE("You press the power button and start up \the [src]."))
+			to_chat(user, SPAN_NOTICE("You press the power button and start up \the 69src69."))
 		enable_computer(user)
 
 	else // Unpowered
 		if(issynth)
-			to_chat(user, SPAN_WARNING("You send an activation signal to \the [src] but it does not respond."))
+			to_chat(user, SPAN_WARNING("You send an activation signal to \the 69src69 but it does69ot respond."))
 		else
-			to_chat(user, SPAN_WARNING("You press the power button but \the [src] does not respond."))
+			to_chat(user, SPAN_WARNING("You press the power button but \the 69src69 does69ot respond."))
 
 // Relays kill program request to currently active program. Use this to quit current program.
 /obj/item/modular_computer/proc/kill_program(forced = FALSE)
 	if(active_program)
 		active_program.kill_program(forced)
 		all_threads.Remove(active_program)
-		active_program = null
+		active_program =69ull
 	var/mob/user = usr
 	if(user && istype(user))
-		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+		ui_interact(user) // Re-open the UI on this computer. It should show the69ain screen69ow.
 	update_icon()
 
-// Returns 0 for No Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
+// Returns 0 for69o Signal, 1 for Low Signal and 2 for Good Signal. 3 is for wired connection (always-on)
 /obj/item/modular_computer/proc/get_ntnet_status(var/specific_action = FALSE)
 	if(network_card)
-		return network_card.get_signal(specific_action)
+		return69etwork_card.get_signal(specific_action)
 	else
 		return FALSE
 
 /obj/item/modular_computer/proc/add_log(var/text)
 	if(!get_ntnet_status())
 		return FALSE
-	return ntnet_global.add_log(text, network_card)
+	return69tnet_global.add_log(text,69etwork_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
 	QDEL_NULL_LIST(terminals)
@@ -208,12 +208,12 @@
 		PRG.kill_program(forced=TRUE)
 		all_threads.Remove(PRG)
 
-	//Turn on all non-disabled hardware
+	//Turn on all69on-disabled hardware
 	for (var/obj/item/computer_hardware/H in src)
 		if (H.enabled)
 			H.disabled()
 	if(loud)
-		visible_message("\The [src] shuts down.", range = TRUE)
+		visible_message("\The 69src69 shuts down.", range = TRUE)
 	enabled = FALSE
 	update_icon()
 
@@ -221,7 +221,7 @@
 	enabled = TRUE
 	update_icon()
 
-	//Turn on all non-disabled hardware
+	//Turn on all69on-disabled hardware
 	for (var/obj/item/computer_hardware/H in src)
 		if (H.enabled)
 			H.enabled()
@@ -243,13 +243,13 @@
 
 	active_program.program_state = PROGRAM_STATE_BACKGROUND // Should close any existing UIs
 	SSnano.close_uis(active_program.NM ? active_program.NM : active_program)
-	active_program = null
+	active_program =69ull
 	update_icon()
 	if(istype(user))
-		ui_interact(user) // Re-open the UI on this computer. It should show the main screen now.
+		ui_interact(user) // Re-open the UI on this computer. It should show the69ain screen69ow.
 
 /obj/item/modular_computer/proc/run_program(prog_name, obj/item/computer_hardware/hard_drive/disk)
-	var/datum/computer_file/program/P = null
+	var/datum/computer_file/program/P =69ull
 	var/mob/user = usr
 
 	if(disk)
@@ -257,8 +257,8 @@
 	else
 		P = getFileByName(prog_name)
 
-	if(!istype(P)) // Program not found or it's not executable program.
-		to_chat(user, SPAN_WARNING("I/O ERROR - Unable to run [prog_name]"))
+	if(!istype(P)) // Program69ot found or it's69ot executable program.
+		to_chat(user, SPAN_WARNING("I/O ERROR - Unable to run 69prog_name69"))
 		return
 
 	P.computer = src
@@ -275,8 +275,8 @@
 		to_chat(user, SPAN_WARNING("Maximal CPU load reached. Unable to run another program."))
 		return
 
-	if(P.requires_ntnet && !get_ntnet_status(P.requires_ntnet_feature)) // The program requires NTNet connection, but we are not connected to NTNet.
-		to_chat(user, SPAN_WARNING("NETWORK ERROR - Unable to connect to network. Please retry. If problem persists, contact your system administrator."))
+	if(P.requires_ntnet && !get_ntnet_status(P.requires_ntnet_feature)) // The program requires69TNet connection, but we are69ot connected to69TNet.
+		to_chat(user, SPAN_WARNING("NETWORK ERROR - Unable to connect to69etwork. Please retry. If problem persists, contact your system administrator."))
 		return
 
 	if(active_program)
@@ -300,7 +300,7 @@
 /obj/item/modular_computer/proc/update_label()
 	var/obj/item/card/id/I = GetIdCard()
 	if (istype(I))
-		SetName("[initial(name)]-[I.registered_name] ([I.assignment])")
+		SetName("69initial(name)69-69I.registered_name69 (69I.assignment69)")
 		return
 
 	SetName(initial(name))
@@ -331,7 +331,7 @@
 			var/datum/computer_file/program/PRG = p
 			if(!PRG.ui_header)
 				continue
-			current_header_icons[PRG.type] = PRG.ui_header
+			current_header_icons69PRG.type69 = PRG.ui_header
 		if(!last_header_icons)
 			last_header_icons = current_header_icons
 
@@ -340,7 +340,7 @@
 			ui_update_needed = TRUE
 		else
 			for(var/x in last_header_icons|current_header_icons)
-				if(last_header_icons[x]!=current_header_icons[x])
+				if(last_header_icons69x69!=current_header_icons69x69)
 					last_header_icons = current_header_icons
 					ui_update_needed = TRUE
 					break
@@ -348,7 +348,7 @@
 	if(ui_update_needed)
 		update_uis()
 
-// Used by camera monitor program
+// Used by camera69onitor program
 /obj/item/modular_computer/check_eye(var/mob/user)
 	if(active_program)
 		return active_program.check_eye(user)
@@ -377,11 +377,11 @@
 		return
 	if(has_terminal(user))
 		return
-	LAZYADD(terminals, new /datum/terminal/(user, src))
+	LAZYADD(terminals,69ew /datum/terminal/(user, src))
 
 
 /obj/item/modular_computer/proc/getProgramByType(type, include_portable=TRUE)
-	var/datum/computer_file/F = null
+	var/datum/computer_file/F =69ull
 
 	if(hard_drive?.check_functionality())
 		F = locate(type) in hard_drive.stored_files
@@ -392,7 +392,7 @@
 	return F
 
 /obj/item/modular_computer/proc/getFileByName(name, include_portable=TRUE)
-	var/datum/computer_file/F = null
+	var/datum/computer_file/F =69ull
 
 	if(hard_drive?.check_functionality())
 		F = hard_drive.find_file_by_name(name)
@@ -402,7 +402,7 @@
 
 	return F
 
-// accepts either name or type
+// accepts either69ame or type
 /obj/item/modular_computer/proc/getNanoModuleByFile(var/name)
 	var/datum/computer_file/program/P
 	if(ispath(name))
@@ -410,8 +410,8 @@
 	else
 		P = getFileByName(name)
 	if(!P || !istype(P))
-		return null
+		return69ull
 	var/datum/nano_module/module = P.NM
 	if(!module)
-		return null
-	return module
+		return69ull
+	return69odule

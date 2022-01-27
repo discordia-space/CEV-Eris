@@ -1,9 +1,9 @@
-#define MOB_SIZE_LARGE 3
+#define69OB_SIZE_LARGE 3
 #define LARGE_MOB_LAYER 4.4
 
 /mob/living/simple_animal/hostile/megafauna
 	name = "boss of this gym"
-	desc = "Attack the weak point for massive damage."
+	desc = "Attack the weak point for69assive damage."
 	health = 1000
 	maxHealth = 1000
 	a_intent = I_HURT
@@ -13,13 +13,13 @@
 	var/atom/target
 	minbodytemp = 0
 	maxbodytemp = INFINITY
-	mob_size = MOB_SIZE_LARGE
-	status_flags = 0 //No pushing, no stunning, no paralyze and no weaken.
-	layer = LARGE_MOB_LAYER //Looks weird with them slipping under mineral walls and cameras and shit otherwise
-	mouse_opacity = MOUSE_OPACITY_OPAQUE // Easier to click on in melee, they're giant targets anyway
+	mob_size =69OB_SIZE_LARGE
+	status_flags = 0 //No pushing,69o stunning,69o paralyze and69o weaken.
+	layer = LARGE_MOB_LAYER //Looks weird with them slipping under69ineral walls and cameras and shit otherwise
+	mouse_opacity =69OUSE_OPACITY_OPAQUE // Easier to click on in69elee, they're giant targets anyway
 	var/anger_modifier = 0
 	var/recovery_time = 0
-	var/chosen_attack = 1 // chosen attack num
+	var/chosen_attack = 1 // chosen attack69um
 	var/list/attack_action_types = list()
 	var/megafauna_min_cooldown = 10
 	var/megafauna_max_cooldown = 20
@@ -28,13 +28,13 @@
 /mob/living/simple_animal/hostile/megafauna/Initialize(mapload)
 	. = ..()
 	for(var/action_type in attack_action_types)
-		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
+		var/datum/action/innate/megafauna_attack/attack_action =69ew action_type()
 		attack_action.Grant(src)
 
 /mob/living/simple_animal/hostile/megafauna/proc/prevent_content_explosion()
 	return TRUE
 
-/mob/living/simple_animal/hostile/megafauna/death(gibbed, var/list/force_grant)
+/mob/living/simple_animal/hostile/megafauna/death(gibbed,69ar/list/force_grant)
 	..()
 	qdel(src)
 
@@ -60,8 +60,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		SPAN_DANGER("[src] devours [L]!</span>"),
-		SPAN_DANGER("You feast on [L], restoring your health!"))
+		SPAN_DANGER("69src69 devours 69L69!</span>"),
+		SPAN_DANGER("You feast on 69L69, restoring your health!"))
 	if(client)
 		adjustBruteLoss(-L.maxHealth/2)
 	L.gib()
@@ -101,7 +101,7 @@
 
 
 /mob/living/simple_animal/hostile/megafauna/proc/select_spiral_attack()
-	if(health < maxHealth/3)
+	if(health <69axHealth/3)
 		return double_spiral()
 	return spiral_shoot()
 
@@ -118,10 +118,10 @@
 /mob/living/simple_animal/hostile/megafauna/proc/spiral_shoot(negative = pick(TRUE, FALSE), rounds = 20)
 	set waitfor = 0
 	var/turf/start_turf = get_step(src, pick(GLOB.alldirs))
-	var/incvar = negative ? -1 : 1
+	var/incvar =69egative ? -1 : 1
 	var/dirpoint = 1
 	var/list/alldirs = GLOB.alldirs.Copy()
-	var/firedir = alldirs[dirpoint]
+	var/firedir = alldirs69dirpoint69
 	for(var/i = 0 to rounds)
 		shoot_projectile(start_turf, firedir)
 		dirpoint += incvar
@@ -129,14 +129,14 @@
 			dirpoint = alldirs.len
 		else if(dirpoint > alldirs.len)
 			dirpoint = 1
-		firedir = alldirs[dirpoint]
+		firedir = alldirs69dirpoint69
 		sleep(rand(1,3))
 
-/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker, var/dir)
-	if(!marker || marker == loc)
+/mob/living/simple_animal/hostile/megafauna/proc/shoot_projectile(turf/marker,69ar/dir)
+	if(!marker ||69arker == loc)
 		return
 	var/turf/startloc = get_turf(src)
-	var/obj/item/projectile/P = new projectiletype(startloc)
+	var/obj/item/projectile/P =69ew projectiletype(startloc)
 	P.firer = src
 	if(target)
 		P.original = target

@@ -1,111 +1,111 @@
-/datum/design/autolathe/circuit
+/datum/desi69n/autolathe/circuit
 
-/datum/design/autolathe/circuit/airlockmodule
+/datum/desi69n/autolathe/circuit/airlockmodule
 	name = "airlock electronics"
 	build_path = /obj/item/electronics/airlock
 
-/datum/design/autolathe/circuit/airlockmodule/secure
+/datum/desi69n/autolathe/circuit/airlockmodule/secure
 	name = "secure airlock electronics"
 	build_path = /obj/item/electronics/airlock/secure
 
-/datum/design/autolathe/circuit/airalarm
+/datum/desi69n/autolathe/circuit/airalarm
 	name = "air alarm electronics"
 	build_path = /obj/item/electronics/airalarm
 
-/datum/design/autolathe/circuit/firealarm
+/datum/desi69n/autolathe/circuit/firealarm
 	name = "fire alarm electronics"
 	build_path = /obj/item/electronics/firealarm
 
-/datum/design/autolathe/circuit/powermodule
-	name = "power control module"
+/datum/desi69n/autolathe/circuit/powermodule
+	name = "power control69odule"
 	build_path = /obj/item/electronics/circuitboard/apc
 
-/datum/design/autolathe/circuit/holomap
+/datum/desi69n/autolathe/circuit/holomap
 	name = "holomap electronics"
 	build_path = /obj/item/electronics/circuitboard/holomap
 
-/datum/design/autolathe/circuit/vending
-	name = "custom Vendomat"
-	build_path = /obj/item/electronics/circuitboard/vending
+/datum/desi69n/autolathe/circuit/vendin69
+	name = "custom69endomat"
+	build_path = /obj/item/electronics/circuitboard/vendin69
 
-/datum/design/autolathe/circuit/autolathe_disk_cloner
+/datum/desi69n/autolathe/circuit/autolathe_disk_cloner
 	name = "autolathe disk cloner"
 	build_path = /obj/item/electronics/circuitboard/autolathe_disk_cloner
 
-/datum/design/autolathe/circuit/recharger
-	name = "recharger"
-	build_path = /obj/item/electronics/circuitboard/recharger
+/datum/desi69n/autolathe/circuit/rechar69er
+	name = "rechar69er"
+	build_path = /obj/item/electronics/circuitboard/rechar69er
 
-/datum/design/autolathe/circuit/helm
+/datum/desi69n/autolathe/circuit/helm
 	name = "helm control console"
 	build_path = /obj/item/electronics/circuitboard/helm
 
-/datum/design/autolathe/circuit/nav
-	name = "navigation console"
+/datum/desi69n/autolathe/circuit/nav
+	name = "navi69ation console"
 	build_path = /obj/item/electronics/circuitboard/nav
 
-/datum/design/autolathe/circuit/jtb
+/datum/desi69n/autolathe/circuit/jtb
 	name = "junk tractor beam control console"
 	build_path = /obj/item/electronics/circuitboard/jtb
 
-/datum/design/autolathe/circuit/centrifuge
-	name = "centrifuge"
-	build_path = /obj/item/electronics/circuitboard/centrifuge
+/datum/desi69n/autolathe/circuit/centrifu69e
+	name = "centrifu69e"
+	build_path = /obj/item/electronics/circuitboard/centrifu69e
 
-/datum/design/autolathe/circuit/electrolyzer
+/datum/desi69n/autolathe/circuit/electrolyzer
 	name = "electrolyzer"
 	build_path = /obj/item/electronics/circuitboard/electrolyzer
 
-/datum/design/autolathe/circuit/reagentgrinder
-	name = "reagent grinder"
-	build_path = /obj/item/electronics/circuitboard/reagentgrinder
+/datum/desi69n/autolathe/circuit/rea69ent69rinder
+	name = "rea69ent 69rinder"
+	build_path = /obj/item/electronics/circuitboard/rea69ent69rinder
 
-/datum/design/autolathe/circuit/smelter
+/datum/desi69n/autolathe/circuit/smelter
 	name = "smelter"
 	build_path = /obj/item/electronics/circuitboard/smelter
 
-/datum/design/autolathe/circuit/sorter
+/datum/desi69n/autolathe/circuit/sorter
 	name = "sorter"
 	build_path = /obj/item/electronics/circuitboard/sorter
 
-/datum/design/autolathe/circuit/industrialgrinder
-	name = "industrial grinder"
-	build_path = /obj/item/electronics/circuitboard/industrial_grinder
+/datum/desi69n/autolathe/circuit/industrial69rinder
+	name = "industrial 69rinder"
+	build_path = /obj/item/electronics/circuitboard/industrial_69rinder
 
-/datum/design/autolathe/circuit/craftingstation
-	name = "crafting station"
-	build_path = /obj/item/electronics/circuitboard/crafting_station
+/datum/desi69n/autolathe/circuit/craftin69station
+	name = "craftin69 station"
+	build_path = /obj/item/electronics/circuitboard/craftin69_station
 
 
 //Exelsior ciruits
-/datum/design/autolathe/circuit/shieldgen_excelsior
-	name = "excelsior shield wall generator"
-	build_path = /obj/item/electronics/circuitboard/excelsiorshieldwallgen
+/datum/desi69n/autolathe/circuit/shield69en_excelsior
+	name = "excelsior shield wall 69enerator"
+	build_path = /obj/item/electronics/circuitboard/excelsiorshieldwall69en
 
-/datum/design/autolathe/circuit/reconstructor_excelsior
+/datum/desi69n/autolathe/circuit/reconstructor_excelsior
 	name = "excelsior implant reconstructor"
 	build_path = /obj/item/electronics/circuitboard/excelsiorreconstructor
 
-/datum/design/autolathe/circuit/diesel_excelsior
-	name = "excelsior diesel generator"
+/datum/desi69n/autolathe/circuit/diesel_excelsior
+	name = "excelsior diesel 69enerator"
 	build_path = /obj/item/electronics/circuitboard/diesel
 
-/datum/design/autolathe/circuit/excelsior_boombox
+/datum/desi69n/autolathe/circuit/excelsior_boombox
 	name = "excelsior boombox"
 	build_path = /obj/item/electronics/circuitboard/excelsior_boombox
 
-/datum/design/autolathe/circuit/excelsior_autodoc
+/datum/desi69n/autolathe/circuit/excelsior_autodoc
 	name = "excelsior autodoc"
 	build_path = /obj/item/electronics/circuitboard/excelsior_autodoc
 
-/datum/design/autolathe/circuit/teleporter_excelsior
-	name = "excelsior long-range teleporter"
+/datum/desi69n/autolathe/circuit/teleporter_excelsior
+	name = "excelsior lon69-ran69e teleporter"
 	build_path = /obj/item/electronics/circuitboard/excelsior_teleporter
 
-/datum/design/autolathe/circuit/turret_excelsior
+/datum/desi69n/autolathe/circuit/turret_excelsior
 	name = "excelsior turret"
 	build_path = /obj/item/electronics/circuitboard/excelsior_turret
 
-/datum/design/autolathe/circuit/autolathe_excelsior
-	name = "excelsior autoforge"
+/datum/desi69n/autolathe/circuit/autolathe_excelsior
+	name = "excelsior autofor69e"
 	build_path = /obj/item/electronics/circuitboard/excelsiorautolathe

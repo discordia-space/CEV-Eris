@@ -11,18 +11,18 @@
 #define TELECOMM_Z 3
 
 /obj/machinery/telecomms
-	var/temp = "" // output message
+	var/temp = "" // output69essage
 	var/construct_op = 0
 
 
-/obj/machinery/telecomms/attackby(obj/item/I, mob/user)
+/obj/machinery/telecomms/attackby(obj/item/I,69ob/user)
 	if(default_deconstruction(I, user))
 		return
 
 	if(default_part_replacement(I, user))
 		return
 
-	// Hardcoded tool paths are bad, but the tcomm code relies a "buffer" function that only the actual multitool has
+	// Hardcoded tool paths are bad, but the tcomm code relies a "buffer" function that only the actual69ultitool has
 	// I really don't want to try and fix that now, so it stays that way
 	if(istype(I, /obj/item/tool/multitool))
 		attack_hand(user)
@@ -34,17 +34,17 @@
 		if(integrity < 100) //Damaged, let's repair!
 			if(T.use(1))
 				integrity = between(0, integrity + rand(10,20), 100)
-				to_chat(usr, SPAN_WARNING("You apply nanopaste to [src], repairing some of the damage."))
+				to_chat(usr, SPAN_WARNING("You apply nanopaste to 69src69, repairing some of the damage."))
 		else
-			to_chat(usr, SPAN_WARNING("This machine is already in perfect condition."))
+			to_chat(usr, SPAN_WARNING("This69achine is already in perfect condition."))
 		return
 
 
-/obj/machinery/telecomms/attack_hand(var/mob/user as mob)
+/obj/machinery/telecomms/attack_hand(var/mob/user as69ob)
 
-	// You need a multitool to use this, or be silicon
+	// You need a69ultitool to use this, or be silicon
 	if(!issilicon(user))
-		// istype returns false if the value is null
+		// istype returns false if the69alue is null
 		if(!istype(user.get_active_hand(), /obj/item/tool/multitool))
 			return
 
@@ -55,19 +55,19 @@
 
 	user.set_machine(src)
 	var/dat
-	dat = "<font face = \"Courier\"><HEAD><TITLE>[src.name]</TITLE></HEAD><center><H3>[src.name] Access</H3></center>"
-	dat += "<br>[temp]<br>"
-	dat += "<br>Power Status: <a href='?src=\ref[src];input=toggle'>[src.toggled ? "On" : "Off"]</a>"
+	dat = "<font face = \"Courier\"><HEAD><TITLE>69src.name69</TITLE></HEAD><center><H3>69src.name69 Access</H3></center>"
+	dat += "<br>69temp69<br>"
+	dat += "<br>Power Status: <a href='?src=\ref69src69;input=toggle'>69src.toggled ? "On" : "Off"69</a>"
 	if(on && toggled)
 		if(id != "" && id)
-			dat += "<br>Identification String: <a href='?src=\ref[src];input=id'>[id]</a>"
+			dat += "<br>Identification String: <a href='?src=\ref69src69;input=id'>69id69</a>"
 		else
-			dat += "<br>Identification String: <a href='?src=\ref[src];input=id'>NULL</a>"
-		dat += "<br>Network: <a href='?src=\ref[src];input=network'>[network]</a>"
-		dat += "<br>Prefabrication: [autolinkers.len ? "TRUE" : "FALSE"]"
+			dat += "<br>Identification String: <a href='?src=\ref69src69;input=id'>NULL</a>"
+		dat += "<br>Network: <a href='?src=\ref69src69;input=network'>69network69</a>"
+		dat += "<br>Prefabrication: 69autolinkers.len ? "TRUE" : "FALSE"69"
 		if(hide) dat += "<br>Shadow Link: ACTIVE</a>"
 
-		//Show additional options for certain machines.
+		//Show additional options for certain69achines.
 		dat += Options_Menu()
 
 		dat += "<br>Linked Network Entities: <ol>"
@@ -77,31 +77,31 @@
 			i++
 			if(T.hide && !src.hide)
 				continue
-			dat += "<li>\ref[T] [T.name] ([T.id])  <a href='?src=\ref[src];unlink=[i]'>\[X\]</a></li>"
+			dat += "<li>\ref69T69 69T.name69 (69T.id69)  <a href='?src=\ref69src69;unlink=69i69'>\69X\69</a></li>"
 		dat += "</ol>"
 
-		dat += "<br>Filtering Frequencies: "
+		dat += "<br>Filtering Fre69uencies: "
 
 		i = 0
-		if(length(freq_listening))
-			for(var/x in freq_listening)
+		if(length(fre69_listening))
+			for(var/x in fre69_listening)
 				i++
-				if(i < length(freq_listening))
-					dat += "[format_frequency(x)] GHz<a href='?src=\ref[src];delete=[x]'>\[X\]</a>; "
+				if(i < length(fre69_listening))
+					dat += "69format_fre69uency(x)69 GHz<a href='?src=\ref69src69;delete=69x69'>\69X\69</a>; "
 				else
-					dat += "[format_frequency(x)] GHz<a href='?src=\ref[src];delete=[x]'>\[X\]</a>"
+					dat += "69format_fre69uency(x)69 GHz<a href='?src=\ref69src69;delete=69x69'>\69X\69</a>"
 		else
 			dat += "NONE"
 
-		dat += "<br>  <a href='?src=\ref[src];input=freq'>\[Add Filter\]</a>"
+		dat += "<br>  <a href='?src=\ref69src69;input=fre69'>\69Add Filter\69</a>"
 		dat += "<hr>"
 
 		if(P)
 			var/obj/machinery/telecomms/device = P.get_buffer()
 			if(istype(device))
-				dat += "<br><br>MULTITOOL BUFFER: [device] ([device.id]) <a href='?src=\ref[src];link=1'>\[Link\]</a> <a href='?src=\ref[src];flush=1'>\[Flush\]"
+				dat += "<br><br>MULTITOOL BUFFER: 69device69 (69device.id69) <a href='?src=\ref69src69;link=1'>\69Link\69</a> <a href='?src=\ref69src69;flush=1'>\69Flush\69"
 			else
-				dat += "<br><br>MULTITOOL BUFFER: <a href='?src=\ref[src];buffer=1'>\[Add Machine\]</a>"
+				dat += "<br><br>MULTITOOL BUFFER: <a href='?src=\ref69src69;buffer=1'>\69Add69achine\69</a>"
 
 	dat += "</font>"
 	temp = ""
@@ -120,7 +120,7 @@
 	var/turf/position = get_turf(src)
 
 	// Toggle on/off getting signals from the station or the current Z level
-	if(src.listening_levels == STATION_Z) // equals the station
+	if(src.listening_levels == STATION_Z) // e69uals the station
 		src.listening_levels = TELECOMM_Z
 		return 1
 	else if(position.z == TELECOMM_Z)
@@ -128,9 +128,9 @@
 		return 1
 	return 0
 */
-// Returns a multitool from a user depending on their mobtype.
+// Returns a69ultitool from a user depending on their69obtype.
 
-/obj/machinery/telecomms/proc/get_multitool(mob/user as mob)
+/obj/machinery/telecomms/proc/get_multitool(mob/user as69ob)
 
 	var/obj/item/tool/multitool/P = null
 	// Let's double check
@@ -144,16 +144,16 @@
 			P = user.get_active_hand()
 	return P
 
-// Additional Options for certain machines. Use this when you want to add an option to a specific machine.
+// Additional Options for certain69achines. Use this when you want to add an option to a specific69achine.
 // Example of how to use below.
 
 /obj/machinery/telecomms/proc/Options_Menu()
 	return ""
 
 /*
-// Add an option to the processor to switch processing mode. (COMPRESS -> UNCOMPRESS or UNCOMPRESS -> COMPRESS)
+// Add an option to the processor to switch processing69ode. (COMPRESS -> UNCOMPRESS or UNCOMPRESS -> COMPRESS)
 /obj/machinery/telecomms/processor/Options_Menu()
-	var/dat = "<br>Processing Mode: <A href='?src=\ref[src];process=1'>[process_mode ? "UNCOMPRESS" : "COMPRESS"]</a>"
+	var/dat = "<br>Processing69ode: <A href='?src=\ref69src69;process=1'>69process_mode ? "UNCOMPRESS" : "COMPRESS"69</a>"
 	return dat
 */
 // The topic for Additional Options. Use this for checking href links for your specific option.
@@ -164,8 +164,8 @@
 /*
 /obj/machinery/telecomms/processor/Options_Topic(href, href_list)
 
-	if(href_list["process"])
-		temp = "<font color = #666633>-% Processing mode changed. %-</font>"
+	if(href_list69"process"69)
+		temp = "<font color = #666633>-% Processing69ode changed. %-</font>"
 		src.process_mode = !src.process_mode
 */
 
@@ -175,51 +175,51 @@
 	var/dat = ""
 /*
 	if(src.z == TELECOMM_Z)
-		dat += "<br>Signal Locked to Station: <A href='?src=\ref[src];change_listening=1'>[listening_levels == STATION_Z ? "TRUE" : "FALSE"]</a>"
+		dat += "<br>Signal Locked to Station: <A href='?src=\ref69src69;change_listening=1'>69listening_levels == STATION_Z ? "TRUE" : "FALSE"69</a>"
 */
-	dat += "<br>Broadcasting: <A href='?src=\ref[src];broadcast=1'>[broadcasting ? "YES" : "NO"]</a>"
-	dat += "<br>Receiving:    <A href='?src=\ref[src];receive=1'>[receiving ? "YES" : "NO"]</a>"
+	dat += "<br>Broadcasting: <A href='?src=\ref69src69;broadcast=1'>69broadcasting ? "YES" : "NO"69</a>"
+	dat += "<br>Receiving:    <A href='?src=\ref69src69;receive=1'>69receiving ? "YES" : "NO"69</a>"
 	return dat
 
 /obj/machinery/telecomms/relay/Options_Topic(href, href_list)
 
-	if(href_list["receive"])
+	if(href_list69"receive"69)
 		receiving = !receiving
-		temp = "<font color = #666633>-% Receiving mode changed. %-</font>"
-	if(href_list["broadcast"])
+		temp = "<font color = #666633>-% Receiving69ode changed. %-</font>"
+	if(href_list69"broadcast"69)
 		broadcasting = !broadcasting
-		temp = "<font color = #666633>-% Broadcasting mode changed. %-</font>"
+		temp = "<font color = #666633>-% Broadcasting69ode changed. %-</font>"
 /*
-	if(href_list["change_listening"])
+	if(href_list69"change_listening"69)
 		//Lock to the station OR lock to the current position!
-		//You need at least two receivers and two broadcasters for this to work, this includes the machine.
+		//You need at least two receivers and two broadcasters for this to work, this includes the69achine.
 		var/result = toggle_level()
 		if(result)
-			temp = "<font color = #666633>-% [src]'s signal has been successfully changed.</font>"
+			temp = "<font color = #666633>-% 69src69's signal has been successfully changed.</font>"
 		else
-			temp = "<font color = #666633>-% [src] could not lock it's signal onto the station. Two broadcasters or receivers required.</font>"
+			temp = "<font color = #666633>-% 69src69 could not lock it's signal onto the station. Two broadcasters or receivers re69uired.</font>"
 */
 // BUS
 
 /obj/machinery/telecomms/bus/Options_Menu()
-	var/dat = "<br>Change Signal Frequency: <A href='?src=\ref[src];change_freq=1'>[change_frequency ? "YES ([change_frequency])" : "NO"]</a>"
+	var/dat = "<br>Change Signal Fre69uency: <A href='?src=\ref69src69;change_fre69=1'>69change_fre69uency ? "YES (69change_fre69uency69)" : "NO"69</a>"
 	return dat
 
 /obj/machinery/telecomms/bus/Options_Topic(href, href_list)
 
-	if(href_list["change_freq"])
+	if(href_list69"change_fre69"69)
 
-		var/newfreq = input(usr, "Specify a new frequency for new signals to change to. Enter null to turn off frequency changing. Decimals assigned automatically.", src, network) as null|num
+		var/newfre69 = input(usr, "Specify a new fre69uency for new signals to change to. Enter null to turn off fre69uency changing. Decimals assigned automatically.", src, network) as null|num
 		if(canAccess(usr))
-			if(newfreq)
-				if(findtext(num2text(newfreq), "."))
-					newfreq *= 10 // shift the decimal one place
-				if(newfreq < 10000)
-					change_frequency = newfreq
-					temp = "<font color = #666633>-% New frequency to change to assigned: \"[newfreq] GHz\" %-</font>"
+			if(newfre69)
+				if(findtext(num2text(newfre69), "."))
+					newfre69 *= 10 // shift the decimal one place
+				if(newfre69 < 10000)
+					change_fre69uency = newfre69
+					temp = "<font color = #666633>-% New fre69uency to change to assigned: \"69newfre6969 GHz\" %-</font>"
 			else
-				change_frequency = 0
-				temp = "<font color = #666633>-% Frequency changing deactivated %-</font>"
+				change_fre69uency = 0
+				temp = "<font color = #666633>-% Fre69uency changing deactivated %-</font>"
 
 
 /obj/machinery/telecomms/Topic(href, href_list)
@@ -233,33 +233,33 @@
 
 	var/obj/item/tool/multitool/P = get_multitool(usr)
 
-	if(href_list["input"])
-		switch(href_list["input"])
+	if(href_list69"input"69)
+		switch(href_list69"input"69)
 
 			if("toggle")
 
 				src.toggled = !src.toggled
-				temp = "<font color = #666633>-% [src] has been [src.toggled ? "activated" : "deactivated"].</font>"
+				temp = "<font color = #666633>-% 69src69 has been 69src.toggled ? "activated" : "deactivated"69.</font>"
 				update_power()
 
 			/*
 			if("hide")
 				src.hide = !hide
-				temp = "<font color = #666633>-% Shadow Link has been [src.hide ? "activated" : "deactivated"].</font>"
+				temp = "<font color = #666633>-% Shadow Link has been 69src.hide ? "activated" : "deactivated"69.</font>"
 			*/
 
 			if("id")
-				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+				var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this69achine", src, id) as null|text),1,MAX_MESSAGE_LEN)
 				if(newid && canAccess(usr))
 					id = newid
-					temp = "<font color = #666633>-% New ID assigned: \"[id]\" %-</font>"
+					temp = "<font color = #666633>-% New ID assigned: \"69id69\" %-</font>"
 
 			if("network")
-				var/newnet = input(usr, "Specify the new network for this machine. This will break all current links.", src, network) as null|text
+				var/newnet = input(usr, "Specify the new network for this69achine. This will break all current links.", src, network) as null|text
 				if(newnet && canAccess(usr))
 
 					if(length(newnet) > 15)
-						temp = "<font color = #666633>-% Too many characters in new network tag %-</font>"
+						temp = "<font color = #666633>-% Too69any characters in new network tag %-</font>"
 
 					else
 						for(var/obj/machinery/telecomms/T in links)
@@ -267,31 +267,31 @@
 
 						network = newnet
 						links = list()
-						temp = "<font color = #666633>-% New network tag assigned: \"[network]\" %-</font>"
+						temp = "<font color = #666633>-% New network tag assigned: \"69network69\" %-</font>"
 
 
-			if("freq")
-				var/newfreq = input(usr, "Specify a new frequency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
-				if(newfreq && canAccess(usr))
-					if(findtext(num2text(newfreq), "."))
-						newfreq *= 10 // shift the decimal one place
-					if(!(newfreq in freq_listening) && newfreq < 10000)
-						freq_listening.Add(newfreq)
-						temp = "<font color = #666633>-% New frequency filter assigned: \"[newfreq] GHz\" %-</font>"
+			if("fre69")
+				var/newfre69 = input(usr, "Specify a new fre69uency to filter (GHz). Decimals assigned automatically.", src, network) as null|num
+				if(newfre69 && canAccess(usr))
+					if(findtext(num2text(newfre69), "."))
+						newfre69 *= 10 // shift the decimal one place
+					if(!(newfre69 in fre69_listening) && newfre69 < 10000)
+						fre69_listening.Add(newfre69)
+						temp = "<font color = #666633>-% New fre69uency filter assigned: \"69newfre6969 GHz\" %-</font>"
 
-	if(href_list["delete"])
+	if(href_list69"delete"69)
 
 		// changed the layout about to workaround a pesky runtime -- Doohl
 
-		var/x = text2num(href_list["delete"])
-		temp = "<font color = #666633>-% Removed frequency filter [x] %-</font>"
-		freq_listening.Remove(x)
+		var/x = text2num(href_list69"delete"69)
+		temp = "<font color = #666633>-% Removed fre69uency filter 69x69 %-</font>"
+		fre69_listening.Remove(x)
 
-	if(href_list["unlink"])
+	if(href_list69"unlink"69)
 
-		if(text2num(href_list["unlink"]) <= length(links))
-			var/obj/machinery/telecomms/T = links[text2num(href_list["unlink"])]
-			temp = "<font color = #666633>-% Removed \ref[T] [T.name] from linked entities. %-</font>"
+		if(text2num(href_list69"unlink"69) <= length(links))
+			var/obj/machinery/telecomms/T = links69text2num(href_list69"unlink"69)69
+			temp = "<font color = #666633>-% Removed \ref69T69 69T.name69 from linked entities. %-</font>"
 
 			// Remove link entries from both T and src.
 
@@ -299,7 +299,7 @@
 				T.links.Remove(src)
 			links.Remove(T)
 
-	if(href_list["link"])
+	if(href_list69"link"69)
 
 		if(P)
 			var/obj/machinery/telecomms/device = P.get_buffer()
@@ -310,19 +310,19 @@
 				if(!(device in src.links))
 					src.links.Add(device)
 
-				temp = "<font color = #666633>-% Successfully linked with \ref[device] [device.name] %-</font>"
+				temp = "<font color = #666633>-% Successfully linked with \ref69device69 69device.name69 %-</font>"
 
 			else
-				temp = "<font color = #666633>-% Unable to acquire buffer %-</font>"
+				temp = "<font color = #666633>-% Unable to ac69uire buffer %-</font>"
 
-	if(href_list["buffer"])
+	if(href_list69"buffer"69)
 
 		P.set_buffer(src)
 		var/atom/buffer = P.get_buffer()
-		temp = "<font color = #666633>-% Successfully stored \ref[buffer] [buffer.name] in buffer %-</font>"
+		temp = "<font color = #666633>-% Successfully stored \ref69buffer69 69buffer.name69 in buffer %-</font>"
 
 
-	if(href_list["flush"])
+	if(href_list69"flush"69)
 
 		temp = "<font color = #666633>-% Buffer successfully flushed. %-</font>"
 		P.set_buffer(null)

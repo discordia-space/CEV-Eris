@@ -1,62 +1,62 @@
-var/list/floor_light_cache = list()
+var/list/floor_li69ht_cache = list()
 
-/obj/machinery/floor_light
-	name = "floor light"
-	icon = 'icons/obj/machines/floor_light.dmi'
+/obj/machinery/floor_li69ht
+	name = "floor li69ht"
+	icon = 'icons/obj/machines/floor_li69ht.dmi'
 	icon_state = "base"
 	desc = "A backlit floor panel."
 	plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
 	anchored = FALSE
 	use_power = ACTIVE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 20
-	power_channel = STATIC_LIGHT
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_GLASS = 3)
+	idle_power_usa69e = 2
+	active_power_usa69e = 20
+	power_channel = STATIC_LI69HT
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_69LASS = 3)
 
 	var/on
-	var/damaged
-	var/default_light_range = 4
-	var/default_light_power = 2
-	var/default_light_colour = COLOR_LIGHTING_DEFAULT_BRIGHT
+	var/dama69ed
+	var/default_li69ht_ran69e = 4
+	var/default_li69ht_power = 2
+	var/default_li69ht_colour = COLOR_LI69HTIN69_DEFAULT_BRI69HT
 
-/obj/machinery/floor_light/prebuilt
+/obj/machinery/floor_li69ht/prebuilt
 	anchored = TRUE
 
-/obj/machinery/floor_light/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/floor_li69ht/attackby(var/obj/item/I,69ar/mob/user)
 
-	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_SCREW_DRIVING)
-	if((damaged || (stat & BROKEN)))
-		usable_qualities.Add(QUALITY_WELDING)
+	var/list/usable_69ualities = list(69UALITY_PULSIN69, 69UALITY_SCREW_DRIVIN69)
+	if((dama69ed || (stat & BROKEN)))
+		usable_69ualities.Add(69UALITY_WELDIN69)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.69et_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
 
-		if(QUALITY_PULSING)
+		if(69UALITY_PULSIN69)
 			if(on)
-				to_chat(user, SPAN_WARNING("\The [src] must be turn off to change a color."))
+				to_chat(user, SPAN_WARNIN69("\The 69src6969ust be turn off to chan69e a color."))
 				return
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				var/new_light_colour = input("Please select color.", "Color", rgb(255,255,255)) as color|null
-				default_light_colour = new_light_colour
-				update_brightness()
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
+				var/new_li69ht_colour = input("Please select color.", "Color", r69b(255,255,255)) as color|null
+				default_li69ht_colour = new_li69ht_colour
+				update_bri69htness()
 				return
 			return
 
-		if(QUALITY_WELDING)
-			if((damaged || (stat & BROKEN)))
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					visible_message(SPAN_NOTICE("\The [user] has repaired \the [src]."))
+		if(69UALITY_WELDIN69)
+			if((dama69ed || (stat & BROKEN)))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
+					visible_messa69e(SPAN_NOTICE("\The 69user69 has repaired \the 69src69."))
 					stat &= ~BROKEN
-					damaged = null
-					update_brightness()
+					dama69ed = null
+					update_bri69htness()
 					return
 			return
 
-		if(QUALITY_SCREW_DRIVING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		if(69UALITY_SCREW_DRIVIN69)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 				anchored = !anchored
-				visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
+				visible_messa69e("<span class='notice'>\The 69user69 has 69anchored ? "attached" : "detached"69 \the 69src69.</span>")
 				return
 			return
 
@@ -67,40 +67,40 @@ var/list/floor_light_cache = list()
 		attack_hand(user)
 	return
 
-/obj/machinery/floor_light/attack_hand(var/mob/user)
+/obj/machinery/floor_li69ht/attack_hand(var/mob/user)
 
 	if(user.a_intent == I_HURT && !issmall(user))
-		if(!isnull(damaged) && !(stat & BROKEN))
-			visible_message(SPAN_DANGER("\The [user] smashes \the [src]!"))
+		if(!isnull(dama69ed) && !(stat & BROKEN))
+			visible_messa69e(SPAN_DAN69ER("\The 69user69 smashes \the 69src69!"))
 			playsound(src, "shatter", 70, 1)
 			stat |= BROKEN
 		else
-			visible_message(SPAN_DANGER("\The [user] attacks \the [src]!"))
-			playsound(src.loc, 'sound/effects/Glasshit.ogg', 75, 1)
-			if(isnull(damaged)) damaged = 0
-		update_brightness()
+			visible_messa69e(SPAN_DAN69ER("\The 69user69 attacks \the 69src69!"))
+			playsound(src.loc, 'sound/effects/69lasshit.o6969', 75, 1)
+			if(isnull(dama69ed)) dama69ed = 0
+		update_bri69htness()
 		return
 	else
 
 		if(!anchored)
-			to_chat(user, SPAN_WARNING("\The [src] must be screwed down first."))
+			to_chat(user, SPAN_WARNIN69("\The 69src6969ust be screwed down first."))
 			return
 
 		if(stat & BROKEN)
-			to_chat(user, SPAN_WARNING("\The [src] is too damaged to be functional."))
+			to_chat(user, SPAN_WARNIN69("\The 69src69 is too dama69ed to be functional."))
 			return
 
 		if(stat & NOPOWER)
-			to_chat(user, SPAN_WARNING("\The [src] is unpowered."))
+			to_chat(user, SPAN_WARNIN69("\The 69src69 is unpowered."))
 			return
 
 		on = !on
 		if(on) use_power = ACTIVE_POWER_USE
-		visible_message("<span class='notice'>\The [user] turns \the [src] [on ? "on" : "off"].</span>")
-		update_brightness()
+		visible_messa69e("<span class='notice'>\The 69user69 turns \the 69src69 69on ? "on" : "off"69.</span>")
+		update_bri69htness()
 		return
 
-/obj/machinery/floor_light/Process()
+/obj/machinery/floor_li69ht/Process()
 	..()
 	var/need_update
 	if((!anchored || broken()) && on)
@@ -111,66 +111,66 @@ var/list/floor_light_cache = list()
 		use_power = NO_POWER_USE
 		need_update = 1
 	if(need_update)
-		update_brightness()
+		update_bri69htness()
 
-/obj/machinery/floor_light/proc/update_brightness()
+/obj/machinery/floor_li69ht/proc/update_bri69htness()
 	if(on && use_power == 2)
-		if(light_range != default_light_range || light_power != default_light_power || light_color != default_light_colour)
-			set_light(default_light_range, default_light_power, default_light_colour)
+		if(li69ht_ran69e != default_li69ht_ran69e || li69ht_power != default_li69ht_power || li69ht_color != default_li69ht_colour)
+			set_li69ht(default_li69ht_ran69e, default_li69ht_power, default_li69ht_colour)
 	else
 		use_power = NO_POWER_USE
-		if(light_range || light_power)
-			set_light(0)
+		if(li69ht_ran69e || li69ht_power)
+			set_li69ht(0)
 
-	active_power_usage = ((light_range + light_power) * 10)
+	active_power_usa69e = ((li69ht_ran69e + li69ht_power) * 10)
 	update_icon()
 
-/obj/machinery/floor_light/update_icon()
+/obj/machinery/floor_li69ht/update_icon()
 	overlays.Cut()
 	if(use_power && !broken())
-		if(isnull(damaged))
-			var/cache_key = "floorlight-[default_light_colour]"
-			if(!floor_light_cache[cache_key])
-				var/image/I = image("on")
-				I.color = default_light_colour
+		if(isnull(dama69ed))
+			var/cache_key = "floorli69ht-69default_li69ht_colour69"
+			if(!floor_li69ht_cache69cache_key69)
+				var/ima69e/I = ima69e("on")
+				I.color = default_li69ht_colour
 				I.layer = ABOVE_OPEN_TURF_LAYER
-				floor_light_cache[cache_key] = I
-			overlays |= floor_light_cache[cache_key]
+				floor_li69ht_cache69cache_key69 = I
+			overlays |= floor_li69ht_cache69cache_key69
 		else
-			if(damaged == 0) //Needs init.
-				damaged = rand(1,4)
-			var/cache_key = "floorlight-broken[damaged]-[default_light_colour]"
-			if(!floor_light_cache[cache_key])
-				var/image/I = image("flick_light[damaged]")
-				I.color = default_light_colour
+			if(dama69ed == 0) //Needs init.
+				dama69ed = rand(1,4)
+			var/cache_key = "floorli69ht-broken69dama69ed69-69default_li69ht_colour69"
+			if(!floor_li69ht_cache69cache_key69)
+				var/ima69e/I = ima69e("flick_li69ht69dama69ed69")
+				I.color = default_li69ht_colour
 				I.layer = ABOVE_OPEN_TURF_LAYER
-				floor_light_cache[cache_key] = I
-			overlays |= floor_light_cache[cache_key]
+				floor_li69ht_cache69cache_key69 = I
+			overlays |= floor_li69ht_cache69cache_key69
 
-/obj/machinery/floor_light/proc/broken()
+/obj/machinery/floor_li69ht/proc/broken()
 	return (stat & (BROKEN|NOPOWER))
 
-/obj/machinery/floor_light/ex_act(severity)
+/obj/machinery/floor_li69ht/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 		if(2)
 			if (prob(50))
-				qdel(src)
+				69del(src)
 			else if(prob(20))
 				stat |= BROKEN
 			else
-				if(isnull(damaged))
-					damaged = 0
+				if(isnull(dama69ed))
+					dama69ed = 0
 		if(3)
 			if (prob(5))
-				qdel(src)
-			else if(isnull(damaged))
-				damaged = 0
+				69del(src)
+			else if(isnull(dama69ed))
+				dama69ed = 0
 	return
 
-/obj/machinery/floor_light/Destroy()
-	var/area/A = get_area(src)
+/obj/machinery/floor_li69ht/Destroy()
+	var/area/A = 69et_area(src)
 	if(A)
 		on = FALSE
 	. = ..()

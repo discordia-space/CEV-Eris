@@ -1,42 +1,42 @@
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Escape Pod Status:
-		</div>
-		<div class="itemContent">
-			{{if data.docking_status == "docked"}}
-				{{if data.armed}}
-					<span class="average">ARMED</span>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Esc69pe Pod St69tus:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+				{{if d69t69.69rmed}}
+					<sp69n cl69ss="6969er6969e">69RMED</sp69n>
 				{{else}}
-					<span class="good">SYSTEMS OK</span>
+					<sp69n cl69ss="69ood">S69STEMS O69</sp69n>
 				{{/if}}
-			{{else data.docking_status == "undocking"}}
-				<span class="average">EJECTING-STAND CLEAR!</span>
-			{{else data.docking_status == "undocked"}}
-				<span class="idle">POD EJECTED</span>
-			{{else data.docking_status == "docking"}}
-				<span class="good">INITIALIZING...</span>
+			{{else d69t69.doc69in69_st69tus == "undoc69in69"}}
+				<sp69n cl69ss="6969er6969e">E69ECTIN69-ST69ND CLE69R!</sp69n>
+			{{else d69t69.doc69in69_st69tus == "undoc69ed"}}
+				<sp69n cl69ss="idle">POD E69ECTED</sp69n>
+			{{else d69t69.doc69in69_st69tus == "doc69in69"}}
+				<sp69n cl69ss="69ood">INITI69LIZIN69...</sp69n>
 			{{else}}
-				<span class="bad">ERROR</span>
+				<sp69n cl69ss="6969d">ERROR</sp69n>
 			{{/if}}
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-		{{if data.armed}}
-			{{if data.docking_status == "docked"}}
-				{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, data.override_enabled ? null : 'disabled', null)}}
-				{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent" st69le="p69ddin69-top: 2px; widt69: 100%">
+		{{if d69t69.69rmed}}
+			{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+				{{:69elper.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_door'}, d69t69.o69erride_en6969led ?69ull : 'dis6969led',69ull69}}
+				{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
 			{{else}}
-				{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, data.override_enabled ? null : 'disabled', data.override_enabled ? 'redButton' : null)}}
-				{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : 'yellowButton')}}
+				{{:69elper.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_door'}, d69t69.o69erride_en6969led ?69ull : 'dis6969led', d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
+				{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' : '69ellow69utton'69}}
 			{{/if}}
 		{{else}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, 'disabled', null)}}
-			{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, 'disabled', null)}}
+			{{:69elper.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_door'}, 'dis6969led',69ull69}}
+			{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'}, 'dis6969led',69ull69}}
 		{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>

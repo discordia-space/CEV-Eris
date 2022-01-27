@@ -14,7 +14,7 @@ obj/machinery/atmospherics/pipe/zpipe
 		initialize_directions = SOUTH
 
 		var/minimum_temperature_difference = 300
-		var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT No
+		var/thermal_conductivity = 0 //WALL_HEAT_TRANSFER_COEFFICIENT69o
 
 		var/maximum_pressure = 70*ONE_ATMOSPHERE
 		var/fatigue_pressure = 55*ONE_ATMOSPHERE
@@ -34,13 +34,13 @@ obj/machinery/atmospherics/pipe/zpipe/New()
 		if(SOUTH)
 			initialize_directions = SOUTH
 		if(NORTH)
-			initialize_directions = NORTH
+			initialize_directions =69ORTH
 		if(WEST)
 			initialize_directions = WEST
 		if(EAST)
 			initialize_directions = EAST
 		if(NORTHEAST)
-			initialize_directions = NORTH
+			initialize_directions =69ORTH
 		if(NORTHWEST)
 			initialize_directions = WEST
 		if(SOUTHEAST)
@@ -64,7 +64,7 @@ obj/machinery/atmospherics/pipe/zpipe/check_pressure(pressure)
 
 	var/pressure_difference = pressure - environment.return_pressure()
 
-	if(pressure_difference > maximum_pressure)
+	if(pressure_difference >69aximum_pressure)
 		burst()
 
 	else if(pressure_difference > fatigue_pressure)
@@ -75,12 +75,12 @@ obj/machinery/atmospherics/pipe/zpipe/check_pressure(pressure)
 	else return 1
 
 obj/machinery/atmospherics/pipe/zpipe/proc/burst()
-	src.visible_message(SPAN_WARNING("\The [src] bursts!"));
+	src.visible_message(SPAN_WARNING("\The 69src69 bursts!"));
 	playsound(src.loc, 'sound/effects/bang.ogg', 25, 1)
-	var/datum/effect/effect/system/smoke_spread/smoke = new
+	var/datum/effect/effect/system/smoke_spread/smoke =69ew
 	smoke.set_up(1,0, src.loc, 0)
 	smoke.start()
-	qdel(src) // NOT qdel.
+	qdel(src) //69OT qdel.
 
 obj/machinery/atmospherics/pipe/zpipe/proc/normalize_dir()
 	if(dir==3)
@@ -96,23 +96,23 @@ obj/machinery/atmospherics/pipe/zpipe/Destroy()
 	return ..()
 
 obj/machinery/atmospherics/pipe/zpipe/pipeline_expansion()
-	return list(node1, node2)
+	return list(node1,69ode2)
 
 obj/machinery/atmospherics/pipe/zpipe/update_icon()
 	return
 
 obj/machinery/atmospherics/pipe/zpipe/disconnect(obj/machinery/atmospherics/reference)
-	if(reference == node1)
+	if(reference ==69ode1)
 		if(istype(node1, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
-		node1 = null
+		node1 =69ull
 
-	if(reference == node2)
+	if(reference ==69ode2)
 		if(istype(node2, /obj/machinery/atmospherics/pipe))
 			qdel(parent)
-		node2 = null
+		node2 =69ull
 
-	return null
+	return69ull
 /////////////////////////
 // the elusive up pipe //
 /////////////////////////

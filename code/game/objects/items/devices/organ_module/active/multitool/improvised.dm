@@ -1,8 +1,8 @@
 /obj/item/organ_module/active/multitool/improvised
-    name = "improvised multitool implant"
-    desc = "A jury-rigged implant, holding cobbled-together tools. For those who are more interested in tool carrying than scared of tetanus."
+    name = "improvised69ultitool implant"
+    desc = "A jury-rigged implant, holding cobbled-together tools. For those who are69ore interested in tool carrying than scared of tetanus."
     icon_state = "multitool_improvised"
-    verb_name = "Deploy \"tool\""
+   69erb_name = "Deploy \"tool\""
     items = list(
         /obj/item/tool/knife/shiv,
         /obj/item/tool/screwdriver/improvised,

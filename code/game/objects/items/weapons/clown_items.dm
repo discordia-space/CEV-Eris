@@ -8,13 +8,13 @@
 /*
  * Banana Peals
  */
-/obj/item/bananapeel/Crossed(AM as mob|obj)
+/obj/item/bananapeel/Crossed(AM as69ob|obj)
 	if (isliving(AM))
 		var/mob/living/M = AM
 		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
-			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
+			visible_message(SPAN_DANGER("\The 69M69 carefully avoids stepping down on \the 69src69."))
 			return
-		M.slip("the [src.name]",4)
+		M.slip("the 69src.name69",4)
 /*
  * Soap
  */
@@ -40,63 +40,63 @@
 	playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 	reagents.add_reagent("cleaner", 20)
 
-/obj/item/soap/Crossed(AM as mob|obj)
+/obj/item/soap/Crossed(AM as69ob|obj)
 	if (isliving(AM))
 		var/mob/living/M = AM
 		if((locate(/obj/structure/multiz/stairs) in get_turf(loc)) || (locate(/obj/structure/multiz/ladder) in get_turf(loc)))
-			visible_message(SPAN_DANGER("\The [M] carefully avoids stepping down on \the [src]."))
+			visible_message(SPAN_DANGER("\The 69M69 carefully avoids stepping down on \the 69src69."))
 			return
-		M.slip("the [src.name]",3)
+		M.slip("the 69src.name69",3)
 
-/obj/item/soap/afterattack(atom/target, mob/user as mob, proximity)
+/obj/item/soap/afterattack(atom/target,69ob/user as69ob, proximity)
 	if(!proximity) return
 /*
 	else if(istype(target,/obj/effect/decal/cleanable))
-		to_chat(user, "<span class='notice'>You scrub \the [target.name] out.</span>")
-		qdel(target)
+		to_chat(user, "<span class='notice'>You scrub \the 69target.name69 out.</span>")
+		69del(target)
 		return
 */
 	else if(istype(target,/turf))
-		to_chat(user, "You start scrubbing the [target.name]")
-		if(do_after(user, 50, target)) //Soap should be slower and worse than mop
-			to_chat(user, "<span class='notice'>You scrub \the [target.name] clean.</span>")
+		to_chat(user, "You start scrubbing the 69target.name69")
+		if(do_after(user, 50, target)) //Soap should be slower and worse than69op
+			to_chat(user, "<span class='notice'>You scrub \the 69target.name69 clean.</span>")
 			var/turf/T = target
 			T.clean(src, user)
 			return
 		else
-			to_chat(user, "<span class='notice'>You need to stand still to clean \the [target.name]!</span>")
+			to_chat(user, "<span class='notice'>You need to stand still to clean \the 69target.name69!</span>")
 			return
 	else if(istype(target,/obj/structure/sink) || istype(target,/obj/structure/sink))
-		to_chat(user, "<span class='notice'>You wet \the [src] in the sink.</span>")
+		to_chat(user, "<span class='notice'>You wet \the 69src69 in the sink.</span>")
 		wet()
 		return
 	else if (istype(target, /obj/structure/mopbucket) || istype(target, /obj/item/reagent_containers/glass) || istype(target, /obj/structure/reagent_dispensers/watertank))
 		if (target.reagents && target.reagents.total_volume)
-			to_chat(user, "<span class='notice'>You wet \the [src] in the [target].</span>")
+			to_chat(user, "<span class='notice'>You wet \the 69src69 in the 69target69.</span>")
 			wet()
 			return
 		else
-			to_chat(user, "\The [target] is empty!")
+			to_chat(user, "\The 69target69 is empty!")
 
 	//I couldn't feasibly  fix the overlay bugs caused by cleaning items we are wearing.
-	//So this is a workaround. This also makes more sense from an IC standpoint. ~Carn
+	//So this is a workaround. This also69akes69ore sense from an IC standpoint. ~Carn
 	if(user.client && (target in user.client.screen) && !(target == user.get_inactive_hand())) // being unable to clean an item because you're holding it is silly -vode
-		to_chat(user, "<span class='notice'>You need to take that [target.name] off before cleaning it.</span>")
+		to_chat(user, "<span class='notice'>You need to take that 69target.name69 off before cleaning it.</span>")
 		return
 	else
-		to_chat(user, "<span class='notice'>You clean \the [target.name].</span>")
+		to_chat(user, "<span class='notice'>You clean \the 69target.name69.</span>")
 		target.clean_blood()
 		return
 
 
 
 //attack_as_weapon
-/obj/item/soap/attack(mob/living/target, mob/living/user, var/target_zone)
+/obj/item/soap/attack(mob/living/target,69ob/living/user,69ar/target_zone)
 	if(ishuman(target) && ishuman(user) && !target.stat && user.targeted_organ == BP_MOUTH)
 		user.visible_message(
-			SPAN_DANGER("\The [user] washes \the [target]'s mouth out with soap!")
+			SPAN_DANGER("\The 69user69 washes \the 69target69's69outh out with soap!")
 		)
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //prevent spam
+		user.setClickCooldown(DEFAULT_69UICK_COOLDOWN) //prevent spam
 		return
 	..()
 
@@ -108,7 +108,7 @@
 	icon_state = "soapdeluxe"
 
 /obj/item/soap/deluxe/New()
-	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
+	desc = "A deluxe Waffle Co. brand bar of soap. Smells of 69pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")69."
 	..()
 
 /obj/item/soap/syndie

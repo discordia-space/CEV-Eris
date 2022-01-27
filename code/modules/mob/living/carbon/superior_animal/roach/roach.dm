@@ -1,12 +1,12 @@
 /mob/living/carbon/superior_animal/roach
 	name = "Kampfer Roach"
-	desc = "A monstrous, dog-sized cockroach. These huge mutants can be everywhere where humans are, on ships, planets and stations."
+	desc = "A69onstrous, dog-sized cockroach. These huge69utants can be everywhere where humans are, on ships, planets and stations."
 
 	icon_state = "roach"
 
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 
-	density = FALSE //Swarming roaches! They also more robust that way.
+	density = FALSE //Swarming roaches! They also69ore robust that way.
 
 	attack_sound = 'sound/voice/insect_battle_bite.ogg'
 	emote_see = list("chirps loudly.", "cleans its whiskers with forelegs.")
@@ -19,7 +19,7 @@
 	maxHealth = 10
 	health = 10
 
-	var/blattedin_revives_left = 1 // how many times blattedin can get us back to life (as num for adminbus fun).
+	var/blattedin_revives_left = 1 // how69any times blattedin can get us back to life (as69um for adminbus fun).
 
 	melee_damage_lower = 3
 	melee_damage_upper = 8
@@ -46,7 +46,7 @@
 	var/busy_time // how long it will take to eat/lay egg
 	var/busy_start_time // when it started eating/laying egg
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = 0,
 		bullet = 0,
@@ -55,7 +55,7 @@
 		bio = 25,
 		rad = 50
 	)
-//When roaches die near a leader, the leader may call for reinforcements
+//When roaches die69ear a leader, the leader69ay call for reinforcements
 /mob/living/carbon/superior_animal/roach/death()
 	.=..()
 	if(.)
@@ -63,5 +63,5 @@
 			F.distress_call()
 
 	if(prob(3))
-		visible_message(SPAN_DANGER("\the [src] hacks up a tape!"))
+		visible_message(SPAN_DANGER("\the 69src69 hacks up a tape!"))
 		new /obj/item/music_tape(get_turf(src))

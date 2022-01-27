@@ -1,6 +1,6 @@
 /datum/design/research/item/mechfab/robot
 	category = CAT_ROBOT
-	build_type = AUTOLATHE | MECHFAB
+	build_type = AUTOLATHE |69ECHFAB
 	starts_unlocked = TRUE
 
 /datum/design/research/item/mechfab/robot/exoskeleton
@@ -63,8 +63,8 @@
 
 
 /datum/design/research/item/mechfab/robot/component/jetpack
-	name = "Jetpack module"
-	desc = "Self refilling jetpack that makes the unit suitable for EVA work."
+	name = "Jetpack69odule"
+	desc = "Self refilling jetpack that69akes the unit suitable for EVA work."
 	build_path = /obj/item/robot_parts/robot_component/jetpack
 	starts_unlocked = FALSE
 
@@ -72,47 +72,47 @@
 
 // Robot updates
 /datum/design/research/item/robot_upgrade
-	build_type = AUTOLATHE | MECHFAB
+	build_type = AUTOLATHE |69ECHFAB
 	category = CAT_ROBOT
 	name_category = "robot upgrade"
 
 /datum/design/research/item/robot_upgrade/rename
-	name = "Rename module"
+	name = "Rename69odule"
 	desc = "Used to rename a cyborg."
 	build_path = /obj/item/borg/upgrade/rename
 	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/reset
-	name = "Reset module"
-	desc = "Used to reset a cyborg's module. Destroys any other upgrades applied to the robot."
+	name = "Reset69odule"
+	desc = "Used to reset a cyborg's69odule. Destroys any other upgrades applied to the robot."
 	build_path = /obj/item/borg/upgrade/reset
 	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/floodlight
-	name = "Floodlight module"
+	name = "Floodlight69odule"
 	desc = "Used to boost cyborg's integrated light intensity."
 	build_path = /obj/item/borg/upgrade/floodlight
 	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/restart
-	name = "Emergency restart module"
+	name = "Emergency restart69odule"
 	desc = "Used to force a restart of a disabled-but-repaired robot, bringing it back online."
 	build_path = /obj/item/borg/upgrade/restart
 	starts_unlocked = TRUE
 
 /datum/design/research/item/robot_upgrade/vtec
-	name = "VTEC module"
-	desc = "Used to kick in a robot's VTEC systems, increasing their speed."
+	name = "VTEC69odule"
+	desc = "Used to kick in a robot's69TEC systems, increasing their speed."
 	build_path = /obj/item/borg/upgrade/vtec
 
 /datum/design/research/item/robot_upgrade/tasercooler
-	name = "Rapid taser cooling module"
-	desc = "Used to cool a mounted taser, increasing the potential current in it and thus its recharge rate."
+	name = "Rapid taser cooling69odule"
+	desc = "Used to cool a69ounted taser, increasing the potential current in it and thus its recharge rate."
 	build_path = /obj/item/borg/upgrade/tasercooler
 
 /datum/design/research/item/robot_upgrade/rcd
-	name = "RCD module"
-	desc = "A rapid construction device module for use during construction operations."
+	name = "RCD69odule"
+	desc = "A rapid construction device69odule for use during construction operations."
 	build_path = /obj/item/borg/upgrade/rcd
 
 /datum/design/research/item/robot_upgrade/syndicate

@@ -1,156 +1,156 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/closet/crate/freezer/rations,
-/obj/effect/decal/cleanable/cobweb2,
-/obj/spawner/booze,
-/obj/spawner/junkfood/rotten/low_chance,
-/obj/spawner/junkfood/low_chance,
-/obj/spawner/junkfood,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"b" = (
-/turf/simulated/wall/silver,
-/area/template_noop)
-"c" = (
-/obj/structure/table/rack,
-/obj/spawner/voidsuit,
-/obj/spawner/gun/energy_cheap/low_chance,
-/obj/spawner/gun/energy_cheap/low_chance,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"d" = (
-/obj/structure/table/marble,
-/obj/spawner/pack/tech_loot/onestar,
-/obj/spawner/booze,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"e" = (
-/obj/machinery/artifact_scanpad,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"f" = (
-/obj/machinery/r_n_d/server,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"g" = (
-/obj/structure/curtain/black,
-/turf/simulated/floor/carpet,
-/area/template_noop)
-"h" = (
-/obj/structure/inflatable/door,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"i" = (
-/obj/structure/filingcabinet,
-/obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"k" = (
-/obj/structure/bed/chair/wheelchair,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"n" = (
-/turf/template_noop,
-/area/template_noop)
-"o" = (
-/obj/structure/bookcase/manuals/xenoarchaeology,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"p" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"q" = (
-/mob/living/simple_animal/hostile/hivebot/range,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"r" = (
-/mob/living/bot/medbot,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"C" = (
-/obj/structure/bed,
-/obj/item/bedsheet/rainbow,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/carpet,
-/area/template_noop)
-"G" = (
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"I" = (
-/obj/item/pen/multi,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
-"K" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
-/area/template_noop)
-"Z" = (
-/obj/structure/table/marble,
-/obj/item/paper_bin,
-/turf/simulated/floor/tiled/dark,
-/area/template_noop)
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/o6969/structure/closet/crate/69reezer/rations,
+/o6969/e6969ect/decal/cleana69le/co69we692,
+/o6969/spawner/69ooze,
+/o6969/spawner/69un6969ood/rotten/low_chance,
+/o6969/spawner/69un6969ood/low_chance,
+/o6969/spawner/69un6969ood,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"69" = 69
+/tur69/simulated/wall/silver,
+/area/template_noop69
+"c" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/voidsuit,
+/o6969/spawner/69un/ener6969_cheap/low_chance,
+/o6969/spawner/69un/ener6969_cheap/low_chance,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"d" = 69
+/o6969/structure/ta69le/mar69le,
+/o6969/spawner/pac69/tech_loot/onestar,
+/o6969/spawner/69ooze,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"e" = 69
+/o6969/machiner69/arti69act_scanpad,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"69" = 69
+/o6969/machiner69/r_n_d/server,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"69" = 69
+/o6969/structure/curtain/69lac69,
+/tur69/simulated/69loor/carpet,
+/area/template_noop69
+"h" = 69
+/o6969/structure/in69lata69le/door,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"i" = 69
+/o6969/structure/69ilin69ca69inet,
+/o6969/e6969ect/decal/cleana69le/co69we69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"69" = 69
+/o6969/structure/69ed/chair/wheelchair,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"n" = 69
+/tur69/template_noop,
+/area/template_noop69
+"o" = 69
+/o6969/structure/69oo69case/manuals/xenoarchaeolo6969,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"p" = 69
+/o6969/spawner/69un69,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"69" = 69
+/mo69/livin69/simple_animal/hostile/hive69ot/ran69e,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"r" = 69
+/mo69/livin69/69ot/med69ot,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"C" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/rain69ow,
+/o6969/spawner/low69e69random,
+/tur69/simulated/69loor/carpet,
+/area/template_noop69
+"69" = 69
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"I" = 69
+/o6969/item/pen/multi,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
+"69" = 69
+/o6969/e6969ect/window_lwall_spawn/rein69orced,
+/tur69/simulated/69loor/wood,
+/area/template_noop69
+"Z" = 69
+/o6969/structure/ta69le/mar69le,
+/o6969/item/paper_69in,
+/tur69/simulated/69loor/tiled/dar69,
+/area/template_noop69
 
-(1,1,1) = {"
-b
-b
-K
-K
-b
-b
-b
+691,1,169 = {"
+69
+69
+69
+69
+69
+69
+69
 "}
-(2,1,1) = {"
-b
+692,1,169 = {"
+69
 i
 p
 c
 e
-f
-b
+69
+69
 "}
-(3,1,1) = {"
-b
+693,1,169 = {"
+69
 o
-G
-q
+69
+69
 I
 d
-b
+69
 "}
-(4,1,1) = {"
-b
+694,1,169 = {"
+69
 a
-q
+69
 r
-k
+69
 Z
-K
+69
 "}
-(5,1,1) = {"
-b
-b
-b
-G
-b
-b
-b
+695,1,169 = {"
+69
+69
+69
+69
+69
+69
+69
 "}
-(6,1,1) = {"
+696,1,169 = {"
 n
 h
 h
-G
-g
+69
+69
 C
-b
+69
 "}
-(7,1,1) = {"
+697,1,169 = {"
 n
-b
-b
-b
-b
-b
-b
+69
+69
+69
+69
+69
+69
 "}

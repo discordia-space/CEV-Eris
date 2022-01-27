@@ -12,7 +12,7 @@
 /datum/export/gear/sec_armor
 	cost = 200
 	include_subtypes = FALSE
-	unit_name = "armor vest"
+	unit_name = "armor69est"
 	export_types = list(/obj/item/clothing/suit/armor/vest)
 	include_subtypes = FALSE
 
@@ -29,12 +29,12 @@
 
 /datum/export/gear/bulletproof_armor
 	cost = 500
-	unit_name = "bulletproof armor vest"
+	unit_name = "bulletproof armor69est"
 	export_types = list(/obj/item/clothing/suit/armor/bulletproof)
 
 /datum/export/gear/reflector_armor
 	cost = 650
-	unit_name = "reflector armor vest"
+	unit_name = "reflector armor69est"
 	export_types = list(/obj/item/clothing/suit/armor/laserproof)
 
 
@@ -44,15 +44,15 @@
 	export_types = list(/obj/item/shield/riot)
 
 
-// Masks
+//69asks
 /datum/export/gear/mask/breath
 	cost = 20
-	unit_name = "breath mask"
+	unit_name = "breath69ask"
 	export_types = list(/obj/item/clothing/mask/breath)
 
 /datum/export/gear/mask/gas
 	cost = 50
-	unit_name = "gas mask"
+	unit_name = "gas69ask"
 	export_types = list(/obj/item/clothing/mask/gas)
 	include_subtypes = FALSE
 
@@ -107,7 +107,7 @@
 
 /datum/export/gear/space/syndievoid
 	cost = 2500 //1500 for the suit, 1000 for the helmet
-	unit_name = "Syndicate void suit"
+	unit_name = "Syndicate69oid suit"
 	export_types = list(/obj/item/clothing/suit/space/void/merc)
 	include_subtypes = TRUE
 
@@ -167,13 +167,13 @@
 
 /datum/export/gear/glasses/night
 	cost = 2000
-	unit_name = "night vision glasses"
+	unit_name = "night69ision glasses"
 	export_types = list(/obj/item/clothing/glasses/powered/night)
 
 /datum/export/gear/glasses/thermal
 	cost = 3000
 	include_subtypes = TRUE
-	unit_name = "thermal vision glasses"
+	unit_name = "thermal69ision glasses"
 	export_types = list(/obj/item/clothing/glasses/powered/thermal)
 
 /datum/export/gear/glasses/welding

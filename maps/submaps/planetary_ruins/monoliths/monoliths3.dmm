@@ -1,33 +1,33 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/unsimulated/beach/sand,
-/area/template_noop)
-"c" = (
-/obj/structure/monolith,
-/turf/unsimulated/beach/sand,
-/area/template_noop)
-"d" = (
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/turf/unsimulated/69each/sand,
+/area/tem69late_noo6969
+"c" = 69
+/o6969/structure/monolith,
+/turf/unsimulated/69each/sand,
+/area/tem69late_noo6969
+"d" = 69
 /turf/simulated/floor/alium/ruin,
-/area/template_noop)
-"Q" = (
-/obj/machinery/artifact,
-/obj/structure/window/reinforced/plasma{
+/area/tem69late_noo6969
+"69" = 69
+/o6969/machiner69/artifact,
+/o6969/structure/window/reinforced/69lasma{
 	dir = 4
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/reinforced/69lasma{
 	dir = 1
 	},
-/obj/structure/window/reinforced/plasma{
+/o6969/structure/window/reinforced/69lasma{
 	dir = 8
 	},
-/obj/structure/window/reinforced/plasma,
+/o6969/structure/window/reinforced/69lasma,
 /turf/simulated/floor/alium/ruin,
-/area/template_noop)
+/area/tem69late_noo6969
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -39,7 +39,7 @@ a
 d
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 a
 a
@@ -51,7 +51,7 @@ d
 a
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 d
 a
@@ -63,67 +63,67 @@ a
 d
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 a
 d
 d
-b
-b
+69
+69
 d
 d
 a
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 a
 a
 d
-b
+69
 c
 d
 a
 d
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 d
 a
 d
 d
 d
-Q
+69
 d
 a
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 a
 d
 d
-b
-b
+69
+69
 d
 a
 d
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 a
 a
 d
-b
+69
 c
 d
 d
 a
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 a
 a
@@ -135,7 +135,7 @@ a
 d
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 a
 a

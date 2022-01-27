@@ -2,15 +2,15 @@
 	bad_type = /obj/item/contraband/poster/wanted
 
 /obj/item/contraband/poster/wanted/New(turf/loc, icon/person_icon, wanted_name, description)
-	name = "wanted poster ([wanted_name])"
-	desc = "A wanted poster for [wanted_name]."
+	name = "wanted poster (69wanted_name69)"
+	desc = "A wanted poster for 69wanted_name69."
 	desc = description
 	..(loc, new /datum/poster/wanted (person_icon, wanted_name, description))
 
-/datum/poster/wanted/New(var/icon/person_icon, var/person_name, var/description)
+/datum/poster/wanted/New(var/icon/person_icon,69ar/person_name,69ar/description)
 	name = person_name
 	desc = description
-	person_icon = icon(person_icon, dir = SOUTH)//copy the image so we don't mess with the one in the record.
+	person_icon = icon(person_icon, dir = SOUTH)//copy the image so we don't69ess with the one in the record.
 	var/icon/the_icon = icon(icon, "wanted_background")
 	var/icon/icon_foreground = icon(icon, "wanted_foreground")
 	person_icon.Shift(SOUTH, 7)
@@ -26,4 +26,4 @@
 
 /datum/poster/wanted/set_design(var/obj/item/contraband/poster/P)
 	..()
-	P.name = "wanted poster ([name])"
+	P.name = "wanted poster (69name69)"

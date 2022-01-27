@@ -1,9 +1,9 @@
 /*
 	Telekinesis
 
-	This needs more thinking out, but I might as well.
+	This69eeds69ore thinkin69 out, but I69i69ht as well.
 */
-var/const/tk_maxrange = 15
+var/const/tk_maxran69e = 15
 
 /*
 	Telekinetic attack:
@@ -16,11 +16,11 @@ var/const/tk_maxrange = 15
 	return
 
 /*
-	This is similar to item attack_self, but applies to anything
-	that you can grab with a telekinetic grab.
+	This is similar to item attack_self, but applies to anythin69
+	that you can 69rab with a telekinetic 69rab.
 
-	It is used for manipulating things at range, for example, opening and closing closets.
-	There are not a lot of defaults at this time, add more where appropriate.
+	It is used for69anipulatin69 thin69s at ran69e, for example, openin69 and closin69 closets.
+	There are69ot a lot of defaults at this time, add69ore where appropriate.
 */
 /atom/proc/attack_self_tk(mob/user)
 	return
@@ -31,7 +31,7 @@ var/const/tk_maxrange = 15
 		..()
 		return
 
-	var/obj/item/tk_grab/O = new(src)
+	var/obj/item/tk_69rab/O =69ew(src)
 	user.put_in_active_hand(O)
 	O.host = user
 	O.focus_object(src)
@@ -39,131 +39,131 @@ var/const/tk_maxrange = 15
 
 /obj/item/attack_tk(mob/user)
 	if(user.stat || !isturf(loc)) return
-	if((TK in user.mutations) && !user.get_active_hand()) // both should already be true to get here
-		var/obj/item/tk_grab/O = new(src)
+	if((TK in user.mutations) && !user.69et_active_hand()) // both should already be true to 69et here
+		var/obj/item/tk_69rab/O =69ew(src)
 		user.put_in_active_hand(O)
 		O.host = user
 		O.focus_object(src)
 	else
-		warning("Strange attack_tk(): TK([TK in user.mutations]) empty hand([!user.get_active_hand()])")
+		warnin69("Stran69e attack_tk(): TK(69TK in user.mutations69) empty hand(69!user.69et_active_hand()69)")
 	return
 
 
 /mob/attack_tk(mob/user)
-	return // needs more thinking about
+	return //69eeds69ore thinkin69 about
 
 /*
-	TK Grab Item (the workhorse of old TK)
+	TK 69rab Item (the workhorse of old TK)
 
-	* If you have not grabbed something, do a normal tk attack
-	* If you have something, throw it at the target.  If it is already adjacent, do a normal attackby()
-	* If you click what you are holding, or attack_self(), do an attack_self_tk() on it.
-	* Deletes itself if it is ever not in your hand, or if you should have no access to TK.
+	* If you have69ot 69rabbed somethin69, do a69ormal tk attack
+	* If you have somethin69, throw it at the tar69et.  If it is already adjacent, do a69ormal attackby()
+	* If you click what you are holdin69, or attack_self(), do an attack_self_tk() on it.
+	* Deletes itself if it is ever69ot in your hand, or if you should have69o access to TK.
 */
-/obj/item/tk_grab
-	name = "Telekinetic Grab"
-	desc = "Magic"
-	icon = 'icons/obj/magic.dmi'//Needs sprites
+/obj/item/tk_69rab
+	name = "Telekinetic 69rab"
+	desc = "Ma69ic"
+	icon = 'icons/obj/ma69ic.dmi'//Needs sprites
 	icon_state = "2"
-	flags = NOBLUDGEON
-	//item_state = null
+	fla69s =69OBLUD69EON
+	//item_state =69ull
 	w_class = ITEM_SIZE_COLOSSAL
 	layer = ABOVE_HUD_LAYER
 	plane = ABOVE_HUD_PLANE
-	spawn_tags = null
+	spawn_ta69s =69ull
 
 	var/last_throw = 0
 	var/atom/movable/focus
-	var/mob/living/host
+	var/mob/livin69/host
 
-/obj/item/tk_grab/dropped(mob/user)
-	if(focus && user && loc != user && loc != user.loc) // drop_item() gets called when you tk-attack a table/closet with an item
+/obj/item/tk_69rab/dropped(mob/user)
+	if(focus && user && loc != user && loc != user.loc) // drop_item() 69ets called when you tk-attack a table/closet with an item
 		if(focus.Adjacent(loc))
 			focus.loc = loc
-	loc = null
+	loc =69ull
 	spawn(1)
-		qdel(src)
+		69del(src)
 	return
 
-//stops TK grabs being equipped anywhere but into hands
-/obj/item/tk_grab/equipped(mob/user, var/slot)
+//stops TK 69rabs bein69 e69uipped anywhere but into hands
+/obj/item/tk_69rab/e69uipped(mob/user,69ar/slot)
 	..()
 	if( (slot == slot_l_hand) || (slot== slot_r_hand) )	return
-	qdel(src)
+	69del(src)
 	return
 
-/obj/item/tk_grab/attack_self(mob/user)
+/obj/item/tk_69rab/attack_self(mob/user)
 	if(focus)
 		focus.attack_self_tk(user)
 
-/obj/item/tk_grab/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity)//TODO: go over this
-	if(!target || !user)	return
+/obj/item/tk_69rab/afterattack(atom/tar69et as69ob|obj|turf|area,69ob/livin69/user as69ob|obj, proximity)//TODO: 69o over this
+	if(!tar69et || !user)	return
 	if(last_throw+3 > world.time)	return
 	if(!host || host != user)
-		qdel(src)
+		69del(src)
 		return
 	if(!(TK in host.mutations))
-		qdel(src)
+		69del(src)
 		return
-	if(isobj(target) && !isturf(target.loc))
+	if(isobj(tar69et) && !isturf(tar69et.loc))
 		return
 
-	var/d = get_dist(user, target)
+	var/d = 69et_dist(user, tar69et)
 	if(focus)
-		d = max(d, get_dist(user, focus)) // whichever is further
+		d =69ax(d, 69et_dist(user, focus)) // whichever is further
 	if (d == 0)
 		return
-	if (d > tk_maxrange)
-		to_chat(user, SPAN_NOTICE("Your mind won't reach that far."))
+	if (d > tk_maxran69e)
+		to_chat(user, SPAN_NOTICE("Your69ind won't reach that far."))
 		return
 
 	if(!focus)
-		focus_object(target, user)
+		focus_object(tar69et, user)
 		return
 
-	if(target == focus)
-		target.attack_self_tk(user)
-		return // todo: something like attack_self not laden with assumptions inherent to attack_self
+	if(tar69et == focus)
+		tar69et.attack_self_tk(user)
+		return // todo: somethin69 like attack_self69ot laden with assumptions inherent to attack_self
 
 
-	if(!istype(target, /turf) && istype(focus,/obj/item) && target.Adjacent(focus))
+	if(!istype(tar69et, /turf) && istype(focus,/obj/item) && tar69et.Adjacent(focus))
 		var/obj/item/I = focus
-		var/resolved = target.attackby(I, user, user:get_organ_target())
-		if(!resolved && target && I)
-			I.afterattack(target, user, 1) // for splashing with beakers
+		var/resolved = tar69et.attackby(I, user, user:69et_or69an_tar69et())
+		if(!resolved && tar69et && I)
+			I.afterattack(tar69et, user, 1) // for splashin69 with beakers
 	else
 		apply_focus_overlay()
-		focus.throw_at(target, 10, 1, user)
+		focus.throw_at(tar69et, 10, 1, user)
 		last_throw = world.time
 	return
 
-/obj/item/tk_grab/attack(mob/living/M, mob/living/user, def_zone)
+/obj/item/tk_69rab/attack(mob/livin69/M,69ob/livin69/user, def_zone)
 	return
 
 
-/obj/item/tk_grab/proc/focus_object(var/obj/target, var/mob/living/user)
-	if(!isobj(target))
-		return//Cant throw non objects atm might let it do mobs later
-	if(target.anchored || !isturf(target.loc))
-		qdel(src)
+/obj/item/tk_69rab/proc/focus_object(var/obj/tar69et,69ar/mob/livin69/user)
+	if(!isobj(tar69et))
+		return//Cant throw69on objects atm69i69ht let it do69obs later
+	if(tar69et.anchored || !isturf(tar69et.loc))
+		69del(src)
 		return
-	focus = target
+	focus = tar69et
 	update_icon()
 	apply_focus_overlay()
 	return
 
-/obj/item/tk_grab/proc/apply_focus_overlay()
+/obj/item/tk_69rab/proc/apply_focus_overlay()
 	if(!focus)
 		return
-	new /obj/effect/overlay/pulse(get_turf(focus), 5)
+	new /obj/effect/overlay/pulse(69et_turf(focus), 5)
 
-/obj/item/tk_grab/update_icon()
+/obj/item/tk_69rab/update_icon()
 	overlays.Cut()
 	if(focus)
 		var/old_layer = focus.layer
 		var/old_plane = focus.plane
 		focus.layer = layer+0.01
 		focus.set_plane(ABOVE_HUD_PLANE)
-		overlays += focus //this is kind of ick, but it's better than using icon()
+		overlays += focus //this is kind of ick, but it's better than usin69 icon()
 		focus.layer = old_layer
 		focus.set_plane(old_plane)

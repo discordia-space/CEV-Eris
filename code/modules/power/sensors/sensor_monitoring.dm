@@ -1,11 +1,11 @@
-// POWERNET SENSOR MONITORING CONSOLE
+// POWERNET SENSOR69ONITORING CONSOLE
 // Connects to powernet sensors and loads data from them. Shows this data to the user.
-// Newly supports NanoUI.
+//69ewly supports69anoUI.
 
 
 /obj/machinery/computer/power_monitor
-	name = "Power Monitoring Console"
-	desc = "Computer designed to remotely monitor power levels around the station"
+	name = "Power69onitoring Console"
+	desc = "Computer designed to remotely69onitor power levels around the station"
 	icon_keyboard = "power_key"
 	icon_screen = "power_monitor"
 	light_color = COLOR_LIGHTING_ORANGE_MACHINERY
@@ -41,7 +41,7 @@
 // On creation automatically connects to active sensors. This is delayed to ensure sensors already exist.
 /obj/machinery/computer/power_monitor/New()
 	..()
-	power_monitor = new(src)
+	power_monitor =69ew(src)
 
 // On user click opens the UI of this computer.
 /obj/machinery/computer/power_monitor/attack_hand(mob/user)
@@ -51,12 +51,12 @@
 		return
 	ui_interact(user)
 
-// Uses dark magic to operate the NanoUI of this computer.
-/obj/machinery/computer/power_monitor/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+// Uses dark69agic to operate the69anoUI of this computer.
+/obj/machinery/computer/power_monitor/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
 	power_monitor.ui_interact(user, ui_key, ui, force_open)
 
 
-// Verifies if any warnings were registered by connected sensors.
+//69erifies if any warnings were registered by connected sensors.
 /obj/machinery/computer/power_monitor/proc/check_warnings()
 	for(var/obj/machinery/power/sensor/S in power_monitor.grid_sensors)
 		if(S.check_grid_warning())

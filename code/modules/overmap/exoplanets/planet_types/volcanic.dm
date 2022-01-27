@@ -1,6 +1,6 @@
 /obj/effect/overmap/sector/exoplanet/volcanic
 	planet_type = "volcanic"
-	desc = "A tectonically unstable planet, extremely rich in minerals."
+	desc = "A tectonically unstable planet, extremely rich in69inerals."
 	//color = "#8e3900"
 	planetary_area = /area/exoplanet/volcanic
 	rock_colors = list(COLOR_DARK_GRAY)
@@ -31,7 +31,7 @@
 
 /obj/effect/overmap/sector/exoplanet/volcanic/adapt_animal(var/mob/living/simple_animal/A)
 	..()
-	A.heat_damage_per_tick = 0 //animals not hot, no burning in lava
+	A.heat_damage_per_tick = 0 //animals69ot hot,69o burning in lava
 
 /datum/random_map/noise/exoplanet/volcanic
 	descriptor = "volcanic exoplanet"
@@ -48,22 +48,22 @@
 	//fauna_types = list(/mob/living/simple_animal/thinbug)
 	//megafauna_types = list(/mob/living/simple_animal/hostile/drake)
 
-//Squashing most of 1 tile lava puddles
+//Squashing69ost of 1 tile lava puddles
 /datum/random_map/noise/exoplanet/volcanic/cleanup()
 	for(var/x = 1, x <= limit_x, x++)
 		for(var/y = 1, y <= limit_y, y++)
 			var/current_cell = get_map_cell(x,y)
-			if(noise2value(map[current_cell]) < water_level)
+			if(noise2value(map69current_cell69) < water_level)
 				continue
 			var/frendos
 			for(var/dx in list(-1,0,1))
 				for(var/dy in list(-1,0,1))
 					var/tmp_cell = get_map_cell(x+dx,y+dy)
-					if(tmp_cell && tmp_cell != current_cell && noise2value(map[tmp_cell]) >= water_level)
+					if(tmp_cell && tmp_cell != current_cell &&69oise2value(map69tmp_cell69) >= water_level)
 						frendos = 1
 						break
 			if(!frendos)
-				map[current_cell] = 1
+				map69current_cell69 = 1
 
 /area/exoplanet/volcanic
 	forced_ambience = list('sound/ambience/magma.ogg')
@@ -76,17 +76,17 @@
 	dirt_color = COLOR_GRAY20
 
 /turf/simulated/floor/exoplanet/volcanic/New()
-	icon_state = "basalt[rand(0,12)]"
+	icon_state = "basalt69rand(0,12)69"
 	..()
 
 /datum/random_map/automata/cave_system/mountains/volcanic
 	iterations = 2
-	descriptor = "space volcanic mountains"
+	descriptor = "space69olcanic69ountains"
 	wall_type =  /turf/simulated/mineral/volcanic
 	mineral_sparse =  /turf/simulated/mineral/random/volcanic
 	rock_color = COLOR_DARK_GRAY
 
-/datum/random_map/automata/cave_system/mountains/volcanic/get_additional_spawns(value, var/turf/simulated/mineral/T)
+/datum/random_map/automata/cave_system/mountains/volcanic/get_additional_spawns(value,69ar/turf/simulated/mineral/T)
 	..()
 	if(planetary_area)
 		T.mined_turf = prob(90) ? planetary_area.base_turf : /turf/simulated/floor/exoplanet/lava
@@ -127,11 +127,11 @@
 
 /turf/simulated/floor/exoplanet/lava/Process()
 	if(locate(/obj/structure/catwalk/) in src)
-		victims = null
+		victims =69ull
 		return PROCESS_KILL
-	for(var/weakref/W in victims)
+	for(var/weakref/W in69ictims)
 		var/atom/movable/AM = W.resolve()
-		if (AM == null || get_turf(AM) != src || !(isliving(AM) || isobj(AM)) || istype(AM,/obj/effect/effect/light)) //|| AM.is_burnable() == FALSE
+		if (AM ==69ull || get_turf(AM) != src || !(isliving(AM) || isobj(AM)) || istype(AM,/obj/effect/effect/light)) //|| AM.is_burnable() == FALSE
 			victims -= W
 			continue
 		var/datum/gas_mixture/environment = return_air()

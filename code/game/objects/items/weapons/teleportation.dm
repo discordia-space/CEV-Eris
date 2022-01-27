@@ -17,7 +17,7 @@
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_MAGNET = 1, TECH_BLUESPACE = 3)
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1, MATERIAL_URANIUM = 1)
+	matter = list(MATERIAL_PLASTIC = 3,69ATERIAL_GLASS = 1,69ATERIAL_SILVER = 1,69ATERIAL_URANIUM = 1)
 	spawn_blacklisted = TRUE///obj/item/hand_tele
 	var/obj/item/cell/cell
 	var/suitable_cell = /obj/item/cell/small
@@ -42,20 +42,20 @@
 
 /obj/item/hand_tele/attack_self(mob/user)
 	if(!cell || !cell.checked_use( cell_charge_per_attempt ))
-		to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+		to_chat(user, SPAN_WARNING("69src69 battery is dead or69issing."))
 		return
 	var/turf/current_location = get_turf(user)//What turf is the user on?
 	if(!current_location||current_location.z>=7)//If turf was not found or they're on z >7 which does not currently exist.
-		to_chat(user, SPAN_NOTICE("\The [src] is malfunctioning!"))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is69alfunctioning!"))
 		return
 	var/list/L = list()
 	for(var/obj/machinery/teleport/hub/R in world)
 		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
 		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
 			if(R.icon_state == "tele1")
-				L["[com.id] (Active)"] = com.locked
+				L69"69com.id69 (Active)"69 = com.locked
 			else
-				L["[com.id] (Inactive)"] = com.locked
+				L69"69com.id69 (Inactive)"69 = com.locked
 	var/list/turfs = list()
 	var/turf/TLoc = get_turf(src)
 	for(var/turf/T in RANGE_TURFS(10, TLoc) - TLoc)
@@ -65,11 +65,11 @@
 			continue
 		turfs += T
 	if(turfs.len)
-		L["None (Dangerous)"] = pick(turfs)
+		L69"None (Dangerous)"69 = pick(turfs)
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
 	if ((user.get_active_hand() != src || user.stat || user.restrained()))
 		return
-	var/T = L[t1]
+	var/T = L69t169
 	to_chat(user, SPAN_NOTICE("Portal locked in."))
 	var/obj/effect/portal/P = new portal_type(get_turf(src))
 	P.set_target(T)
@@ -82,7 +82,7 @@
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 
-/obj/item/hand_tele/attackby(obj/item/C, mob/living/user)
+/obj/item/hand_tele/attackby(obj/item/C,69ob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 
@@ -93,16 +93,16 @@
 
 /obj/item/hand_tele/handmade
 	name = "Handmade hand-teleporter"
-	desc = "Handmade version of hand-tele. Woah, that's was they call an experimental science!"
+	desc = "Handmade69ersion of hand-tele. Woah, that's was they call an experimental science!"
 	icon_state = "hm_hand-tele"
 	portal_type = /obj/effect/portal/unstable
 	portal_fail_chance = 50
 	cell_charge_per_attempt = 50
 	entropy_value = 3 //for bluespace entropy
 	spawn_blacklisted = FALSE
-	var/calibration_required = TRUE
+	var/calibration_re69uired = TRUE
 
-/obj/item/hand_tele/handmade/attackby(obj/item/C, mob/living/user)
+/obj/item/hand_tele/handmade/attackby(obj/item/C,69ob/living/user)
 	..()
 	if(istype(C, /obj/item/tool/screwdriver))
 		if(user.a_intent == I_HURT)
@@ -114,42 +114,42 @@
 					go_to_bluespace(get_turf(src), entropy_value, TRUE, user, teleport_location, 1)
 					return
 			if(do_after(user, 30))
-				if(calibration_required)
-					to_chat(user, SPAN_WARNING("You loosen [src]'s calibration, it'll probably fail when used now."))
+				if(calibration_re69uired)
+					to_chat(user, SPAN_WARNING("You loosen 69src69's calibration, it'll probably fail when used now."))
 					portal_fail_chance = 90
-					calibration_required = FALSE
+					calibration_re69uired = FALSE
 				else
-					calibration_required = TRUE
-					to_chat(user, SPAN_NOTICE("You recalibrate [src]. It'll probably function now."))
+					calibration_re69uired = TRUE
+					to_chat(user, SPAN_NOTICE("You recalibrate 69src69. It'll probably function now."))
 					portal_fail_chance = 50
 		else
 			if(do_after(user, 30))
-				if(calibration_required)
+				if(calibration_re69uired)
 					var/user_intelligence = user.stats.getStat(STAT_COG)
 					portal_fail_chance -= user_intelligence
 					if(portal_fail_chance < 0)
 						portal_fail_chance = 0
-					calibration_required = FALSE
-					to_chat(user, SPAN_NOTICE("You carefully place the bluespace crystal into slot to the end, and tweak the circuit with your [C]. [src] now looks more reliable."))
+					calibration_re69uired = FALSE
+					to_chat(user, SPAN_NOTICE("You carefully place the bluespace crystal into slot to the end, and tweak the circuit with your 69C69. 69src69 now looks69ore reliable."))
 				else
-					to_chat(user, SPAN_WARNING("[src] is calibrated already. You can decalibrate it to sabotage the device."))
+					to_chat(user, SPAN_WARNING("69src69 is calibrated already. You can decalibrate it to sabotage the device."))
 
 /obj/item/tele_spear
 	name = "Telespear"
-	desc = "A crude-looking metal stick with some dodgy device tied to the end."
+	desc = "A crude-looking69etal stick with some dodgy device tied to the end."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "telespear"
 	item_state = "telespear"
 	slot_flags = SLOT_BACK
 	var/entropy_value = 1 //for bluespace entropy
 
-/obj/item/tele_spear/attack(mob/living/carbon/human/M, mob/living/carbon/user)
+/obj/item/tele_spear/attack(mob/living/carbon/human/M,69ob/living/carbon/user)
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 65, 1)
 	var/turf/teleport_location = pick( getcircle(user.loc, 8) )
 	if(prob(5))
 		go_to_bluespace(get_turf(src), entropy_value, FALSE, user, teleport_location, 1)
 	else
-		go_to_bluespace(get_turf(src), entropy_value, FALSE, M, teleport_location, 1)
-	qdel(src)
+		go_to_bluespace(get_turf(src), entropy_value, FALSE,69, teleport_location, 1)
+	69del(src)
 	var/obj/item/stack/rods/R = new(M.loc)
 	user.put_in_active_hand(R)

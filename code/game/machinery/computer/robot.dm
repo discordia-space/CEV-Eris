@@ -1,11 +1,11 @@
 /obj/machinery/computer/robotics
 	name = "robotics control console"
-	desc = "Used to remotely lockdown or detonate linked cyborgs."
+	desc = "Used to remotely lockdown or detonate linked cybor69s."
 	icon = 'icons/obj/computer.dmi'
 	icon_keyboard = "tech_key"
 	icon_screen = "robot"
-	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
-	req_access = list(access_robotics)
+	li69ht_color = COLOR_LI69HTIN69_PURPLE_MACHINERY
+	re69_access = list(access_robotics)
 	circuit = /obj/item/electronics/circuitboard/robotics
 
 	var/safety = 1
@@ -15,12 +15,12 @@
 		return
 	ui_interact(user)
 
-/obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
-	data["robots"] = get_cyborgs(user)
-	data["safety"] = safety
-	// Also applies for cyborgs. Hides the manual self-destruct button.
-	data["is_ai"] = issilicon(user)
+/obj/machinery/computer/robotics/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
+	data69"robots"69 = 69et_cybor69s(user)
+	data69"safety"69 = safety
+	// Also applies for cybor69s. Hides the69anual self-destruct button.
+	data69"is_ai"69 = issilicon(user)
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -38,44 +38,44 @@
 		to_chat(user, "Access Denied")
 		return
 
-	// Destroys the cyborg
-	if(href_list["detonate"])
-		var/mob/living/silicon/robot/target = get_cyborg_by_name(href_list["detonate"])
-		if(!target || !istype(target))
+	// Destroys the cybor69
+	if(href_list69"detonate"69)
+		var/mob/livin69/silicon/robot/tar69et = 69et_cybor69_by_name(href_list69"detonate"69)
+		if(!tar69et || !istype(tar69et))
 			return
-		if(isAI(user) && (target.connected_ai != user))
+		if(isAI(user) && (tar69et.connected_ai != user))
 			to_chat(user, "Access Denied. This robot is not linked to you.")
 			return
-		// Cyborgs may blow up themselves via the console
-		if(isrobot(user) && user != target)
+		// Cybor69s69ay blow up themselves69ia the console
+		if(isrobot(user) && user != tar69et)
 			to_chat(user, "Access Denied.")
 			return
-		var/choice = input("Really detonate [target.name]?") in list ("Yes", "No")
+		var/choice = input("Really detonate 69tar69et.name69?") in list ("Yes", "No")
 		if(choice != "Yes")
 			return
-		if(!target || !istype(target))
+		if(!tar69et || !istype(tar69et))
 			return
 
-		// Antagonistic cyborgs? Left here for downstream
-		if(target.mind && player_is_antag(target.mind) && target.emagged)
-			to_chat(target, "Extreme danger.  Termination codes detected.  Scrambling security codes and automatic AI unlink triggered.")
-			target.ResetSecurityCodes()
+		// Anta69onistic cybor69s? Left here for downstream
+		if(tar69et.mind && player_is_anta69(tar69et.mind) && tar69et.ema6969ed)
+			to_chat(tar69et, "Extreme dan69er.  Termination codes detected.  Scramblin69 security codes and automatic AI unlink tri6969ered.")
+			tar69et.ResetSecurityCodes()
 		else
-			message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated [target.name]!"))
-			log_game("[key_name(usr)] detonated [target.name]!")
-			to_chat(target, SPAN_DANGER("Self-destruct command received."))
+			messa69e_admins(SPAN_NOTICE("69key_name_admin(usr)69 detonated 69tar69et.name69!"))
+			lo69_69ame("69key_name(usr)69 detonated 69tar69et.name69!")
+			to_chat(tar69et, SPAN_DAN69ER("Self-destruct command received."))
 			spawn(10)
-				target.self_destruct()
+				tar69et.self_destruct()
 
 
 
-	// Locks or unlocks the cyborg
-	else if (href_list["lockdown"])
-		var/mob/living/silicon/robot/target = get_cyborg_by_name(href_list["lockdown"])
-		if(!target || !istype(target))
+	// Locks or unlocks the cybor69
+	else if (href_list69"lockdown"69)
+		var/mob/livin69/silicon/robot/tar69et = 69et_cybor69_by_name(href_list69"lockdown"69)
+		if(!tar69et || !istype(tar69et))
 			return
 
-		if(isAI(user) && (target.connected_ai != user))
+		if(isAI(user) && (tar69et.connected_ai != user))
 			to_chat(user, "Access Denied. This robot is not linked to you.")
 			return
 
@@ -83,61 +83,61 @@
 			to_chat(user, "Access Denied.")
 			return
 
-		var/choice = input("Really [target.lockcharge ? "unlock" : "lockdown"] [target.name] ?") in list ("Yes", "No")
+		var/choice = input("Really 69tar69et.lockchar69e ? "unlock" : "lockdown"69 69tar69et.name69 ?") in list ("Yes", "No")
 		if(choice != "Yes")
 			return
 
-		if(!target || !istype(target))
+		if(!tar69et || !istype(tar69et))
 			return
 
-		message_admins("<span class='notice'>[key_name_admin(usr)] [target.canmove ? "locked down" : "released"] [target.name]!</span>")
-		log_game("[key_name(usr)] [target.canmove ? "locked down" : "released"] [target.name]!")
-		target.canmove = !target.canmove
-		if (target.lockcharge)
-			target.lockcharge = !target.lockcharge
-			to_chat(target, "Your lockdown has been lifted!")
+		messa69e_admins("<span class='notice'>69key_name_admin(usr)69 69tar69et.canmove ? "locked down" : "released"69 69tar69et.name69!</span>")
+		lo69_69ame("69key_name(usr)69 69tar69et.canmove ? "locked down" : "released"69 69tar69et.name69!")
+		tar69et.canmove = !tar69et.canmove
+		if (tar69et.lockchar69e)
+			tar69et.lockchar69e = !tar69et.lockchar69e
+			to_chat(tar69et, "Your lockdown has been lifted!")
 		else
-			target.lockcharge = !target.lockcharge
-			to_chat(target, "You have been locked down!")
+			tar69et.lockchar69e = !tar69et.lockchar69e
+			to_chat(tar69et, "You have been locked down!")
 
-	// Remotely hacks the cyborg. Only antag AIs can do this and only to linked cyborgs.
-	else if (href_list["hack"])
-		var/mob/living/silicon/robot/target = get_cyborg_by_name(href_list["hack"])
-		if(!target || !istype(target))
+	// Remotely hacks the cybor69. Only anta69 AIs can do this and only to linked cybor69s.
+	else if (href_list69"hack"69)
+		var/mob/livin69/silicon/robot/tar69et = 69et_cybor69_by_name(href_list69"hack"69)
+		if(!tar69et || !istype(tar69et))
 			return
 
-		// Antag AI checks
-		if(!isAI(user) || !(user.mind.antagonist.len && user.mind.original == user))
+		// Anta69 AI checks
+		if(!isAI(user) || !(user.mind.anta69onist.len && user.mind.ori69inal == user))
 			to_chat(user, "Access Denied")
 			return
 
-		if(target.emagged)
+		if(tar69et.ema6969ed)
 			to_chat(user, "Robot is already hacked.")
 			return
 
-		var/choice = input("Really hack [target.name]? This cannot be undone.") in list("Yes", "No")
+		var/choice = input("Really hack 69tar69et.name69? This cannot be undone.") in list("Yes", "No")
 		if(choice != "Yes")
 			return
 
-		if(!target || !istype(target))
+		if(!tar69et || !istype(tar69et))
 			return
 
-		message_admins(SPAN_NOTICE("[key_name_admin(usr)] emagged [target.name] using robotic console!"))
-		log_game("[key_name(usr)] emagged [target.name] using robotic console!")
-		target.emagged = 1
-		to_chat(target, SPAN_NOTICE("Failsafe protocols overriden. New tools available."))
+		messa69e_admins(SPAN_NOTICE("69key_name_admin(usr)69 ema6969ed 69tar69et.name69 usin69 robotic console!"))
+		lo69_69ame("69key_name(usr)69 ema6969ed 69tar69et.name69 usin69 robotic console!")
+		tar69et.ema6969ed = 1
+		to_chat(tar69et, SPAN_NOTICE("Failsafe protocols overriden. New tools available."))
 
-	// Arms the emergency self-destruct system
-	else if(href_list["arm"])
+	// Arms the emer69ency self-destruct system
+	else if(href_list69"arm"69)
 		if(issilicon(user))
 			to_chat(user, "Access Denied")
 			return
 
 		safety = !safety
-		to_chat(user, "You [safety ? "disarm" : "arm"] the emergency self destruct")
+		to_chat(user, "You 69safety ? "disarm" : "arm"69 the emer69ency self destruct")
 
-	// Destroys all accessible cyborgs if safety is disabled
-	else if(href_list["nuke"])
+	// Destroys all accessible cybor69s if safety is disabled
+	else if(href_list69"nuke"69)
 		if(issilicon(user))
 			to_chat(user, "Access Denied")
 			return
@@ -145,67 +145,67 @@
 			to_chat(user, "Self-destruct aborted - safety active")
 			return
 
-		message_admins(SPAN_NOTICE("[key_name_admin(usr)] detonated all cyborgs!"))
-		log_game("[key_name(usr)] detonated all cyborgs!")
+		messa69e_admins(SPAN_NOTICE("69key_name_admin(usr)69 detonated all cybor69s!"))
+		lo69_69ame("69key_name(usr)69 detonated all cybor69s!")
 
-		for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
+		for(var/mob/livin69/silicon/robot/R in SSmobs.mob_list)
 			if(isdrone(R))
 				continue
-			// Ignore antagonistic cyborgs
+			// I69nore anta69onistic cybor69s
 			if(R.scrambledcodes)
 				continue
-			to_chat(R, SPAN_DANGER("Self-destruct command received."))
+			to_chat(R, SPAN_DAN69ER("Self-destruct command received."))
 			spawn(10)
 				R.self_destruct()
 
 
-// Proc: get_cyborgs()
-// Parameters: 1 (operator - mob which is operating the console.)
-// Description: Returns NanoUI-friendly list of accessible cyborgs.
-/obj/machinery/computer/robotics/proc/get_cyborgs(var/mob/operator)
+// Proc: 69et_cybor69s()
+// Parameters: 1 (operator -69ob which is operatin69 the console.)
+// Description: Returns NanoUI-friendly list of accessible cybor69s.
+/obj/machinery/computer/robotics/proc/69et_cybor69s(var/mob/operator)
 	var/list/robots = list()
 
-	for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
-		// Ignore drones
+	for(var/mob/livin69/silicon/robot/R in SSmobs.mob_list)
+		// I69nore drones
 		if(isdrone(R))
 			continue
-		// Ignore antagonistic cyborgs
+		// I69nore anta69onistic cybor69s
 		if(R.scrambledcodes)
 			continue
 
 		var/list/robot = list()
-		robot["name"] = R.name
+		robot69"name"69 = R.name
 		if(R.stat)
-			robot["status"] = "Not Responding"
+			robot69"status"69 = "Not Respondin69"
 		else if (!R.canmove)
-			robot["status"] = "Lockdown"
+			robot69"status"69 = "Lockdown"
 		else
-			robot["status"] = "Operational"
+			robot69"status"69 = "Operational"
 
 		if(R.cell)
-			robot["cell"] = 1
-			robot["cell_capacity"] = R.cell.maxcharge
-			robot["cell_current"] = R.cell.charge
-			robot["cell_percentage"] = round(R.cell.percent())
+			robot69"cell"69 = 1
+			robot69"cell_capacity"69 = R.cell.maxchar69e
+			robot69"cell_current"69 = R.cell.char69e
+			robot69"cell_percenta69e"69 = round(R.cell.percent())
 		else
-			robot["cell"] = 0
+			robot69"cell"69 = 0
 
-		robot["module"] = R.module ? R.module.name : "None"
-		robot["master_ai"] = R.connected_ai ? R.connected_ai.name : "None"
-		robot["hackable"] = 0
-		// Antag AIs know whether linked cyborgs are hacked or not.
-		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.antagonist.len && operator.mind.original == operator))
-			robot["hacked"] = R.emagged ? 1 : 0
-			robot["hackable"] = R.emagged? 0 : 1
+		robot69"module"69 = R.module ? R.module.name : "None"
+		robot69"master_ai"69 = R.connected_ai ? R.connected_ai.name : "None"
+		robot69"hackable"69 = 0
+		// Anta69 AIs know whether linked cybor69s are hacked or not.
+		if(operator && isAI(operator) && (R.connected_ai == operator) && (operator.mind.anta69onist.len && operator.mind.ori69inal == operator))
+			robot69"hacked"69 = R.ema6969ed ? 1 : 0
+			robot69"hackable"69 = R.ema6969ed? 0 : 1
 		robots.Add(list(robot))
 	return robots
 
-// Proc: get_cyborg_by_name()
-// Parameters: 1 (name - Cyborg we are trying to find)
-// Description: Helper proc for finding cyborg by name
-/obj/machinery/computer/robotics/proc/get_cyborg_by_name(var/name)
+// Proc: 69et_cybor69_by_name()
+// Parameters: 1 (name - Cybor69 we are tryin69 to find)
+// Description: Helper proc for findin69 cybor69 by name
+/obj/machinery/computer/robotics/proc/69et_cybor69_by_name(var/name)
 	if (!name)
 		return
-	for(var/mob/living/silicon/robot/R in SSmobs.mob_list)
+	for(var/mob/livin69/silicon/robot/R in SSmobs.mob_list)
 		if(R.name == name)
 			return R

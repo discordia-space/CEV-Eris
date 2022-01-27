@@ -3,7 +3,7 @@
 
 /mob/living/carbon/human/proc/tackle()
 	set category = "Abilities"
-	set name = "Tackle"
+	set69ame = "Tackle"
 	set desc = "Tackle someone down."
 
 	if(last_special > world.time)
@@ -14,12 +14,12 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/M in view(1,src))
+	for(var/mob/living/M in69iew(1,src))
 		if(!issilicon(M) && Adjacent(M))
-			choices += M
+			choices +=69
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to tackle?") as null|anything in choices
+	var/mob/living/T = input(src,"Who do you wish to tackle?") as69ull|anything in choices
 
 	if(!T || !src || src.stat) return
 
@@ -45,13 +45,13 @@
 	if(failed)
 		src.Weaken(rand(2,4))
 
-	for(var/mob/O in viewers(src, null))
+	for(var/mob/O in69iewers(src,69ull))
 		if ((O.client && !( O.blinded )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+			O.show_message(text("\red <B>6969 69failed ? "tried to tackle" : "has tackled"69 down 6969!</B>", src, T), 1)
 
 /mob/living/carbon/human/proc/leap()
 	set category = "Abilities"
-	set name = "Leap"
+	set69ame = "Leap"
 	set desc = "Leap at a target and grab them aggressively."
 
 	if(last_special > world.time)
@@ -62,12 +62,12 @@
 		return
 
 	var/list/choices = list()
-	for(var/mob/living/M in view(6,src))
+	for(var/mob/living/M in69iew(6,src))
 		if(!issilicon(M))
-			choices += M
+			choices +=69
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+	var/mob/living/T = input(src,"Who do you wish to leap at?") as69ull|anything in choices
 
 	if(!T || !src || src.stat) return
 
@@ -83,7 +83,7 @@
 	last_special = world.time + 75
 	status_flags |= LEAPING
 
-	src.visible_message(SPAN_DANGER("\The [src] leaps at [T]!"))
+	src.visible_message(SPAN_DANGER("\The 69src69 leaps at 69T69!"))
 	src.throw_at(get_step(get_turf(T),get_turf(src)), 4, 1, src)
 	mob_playsound(src.loc, 'sound/voice/shriek1.ogg', 50, 1)
 
@@ -92,12 +92,12 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		to_chat(src, SPAN_WARNING("You miss!"))
+		to_chat(src, SPAN_WARNING("You69iss!"))
 		return
 
 	T.Weaken(3)
 
-	// Pariahs are not good at leaping. This is snowflakey, pls fix.
+	// Pariahs are69ot good at leaping. This is snowflakey, pls fix.
 	if(species.name == "Vox Pariah")
 		src.Weaken(5)
 		return
@@ -105,14 +105,14 @@
 	var/use_hand = "left"
 	if(l_hand)
 		if(r_hand)
-			to_chat(src, SPAN_DANGER("You need to have one hand free to grab someone."))
+			to_chat(src, SPAN_DANGER("You69eed to have one hand free to grab someone."))
 			return
 		else
 			use_hand = "right"
 
-	src.visible_message(SPAN_WARNING("<b>\The [src]</b> seizes [T] aggressively!"))
+	src.visible_message(SPAN_WARNING("<b>\The 69src69</b> seizes 69T69 aggressively!"))
 
-	var/obj/item/grab/G = new(src,T)
+	var/obj/item/grab/G =69ew(src,T)
 	if(use_hand == "left")
 		l_hand = G
 	else
@@ -124,7 +124,7 @@
 
 /mob/living/carbon/human/proc/gut()
 	set category = "Abilities"
-	set name = "Gut"
+	set69ame = "Gut"
 	set desc = "While grabbing someone aggressively, rip their guts out or tear them apart."
 
 	if(last_special > world.time)
@@ -136,16 +136,16 @@
 
 	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
-		to_chat(src, "\red You are not grabbing anyone.")
+		to_chat(src, "\red You are69ot grabbing anyone.")
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		to_chat(src, "\red You must have an aggressive grab to gut your prey!")
+		to_chat(src, "\red You69ust have an aggressive grab to gut your prey!")
 		return
 
 	last_special = world.time + 50
 
-	visible_message(SPAN_WARNING("<b>\The [src]</b> rips viciously at \the [G.affecting]'s body with its claws!"))
+	visible_message(SPAN_WARNING("<b>\The 69src69</b> rips69iciously at \the 69G.affecting69's body with its claws!"))
 
 	if(ishuman(G.affecting))
 		var/mob/living/carbon/human/H = G.affecting
@@ -161,44 +161,44 @@
 
 /mob/living/carbon/human/proc/commune()
 	set category = "Abilities"
-	set name = "Commune with creature"
-	set desc = "Send a telepathic message to an unlucky recipient."
+	set69ame = "Commune with creature"
+	set desc = "Send a telepathic69essage to an unlucky recipient."
 
 	var/list/targets = list()
-	var/target = null
-	var/text = null
+	var/target =69ull
+	var/text =69ull
 
 	targets += getmobs() //Fill list, prompt user with list
-	target = input("Select a creature!", "Speak to creature", null, null) as null|anything in targets
+	target = input("Select a creature!", "Speak to creature",69ull,69ull) as69ull|anything in targets
 
 	if(!target) return
 
-	text = input("What would you like to say?", "Speak to creature", null, null)
+	text = input("What would you like to say?", "Speak to creature",69ull,69ull)
 
 	text = sanitize(text)
 
 	if(!text) return
 
-	var/mob/M = targets[target]
+	var/mob/M = targets69target69
 
-	if(isghost(M) || M.stat == DEAD)
-		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
+	if(isghost(M) ||69.stat == DEAD)
+		to_chat(src, "Not even a 69src.species.name69 can speak to the dead.")
 		return
 
-	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
+	log_say("69key_name(src)69 communed to 69key_name(M)69: 69text69")
 
-	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
+	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your69ind: 69text69")
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		if(H.species.name == src.species.name)
 			return
 
-		to_chat(H, SPAN_WARNING("Your nose begins to bleed..."))
+		to_chat(H, SPAN_WARNING("Your69ose begins to bleed..."))
 		H.drip_blood(1)
 
 
 /mob/living/carbon/human/proc/regurgitate()
-	set name = "Regurgitate"
+	set69ame = "Regurgitate"
 	set desc = "Empties the contents of your stomach"
 	set category = "Abilities"
 
@@ -207,17 +207,17 @@
 			if(M in stomach_contents)
 				stomach_contents.Remove(M)
 				M.loc = loc
-		src.visible_message("\red <B>[src] hurls out the contents of their stomach!</B>")
+		src.visible_message("\red <B>69src69 hurls out the contents of their stomach!</B>")
 	return
 
-/mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
-	set name = "Psychic Whisper"
+/mob/living/carbon/human/proc/psychic_whisper(mob/M as69ob in oview())
+	set69ame = "Psychic Whisper"
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
-		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		to_chat(M, "\green You hear a strange, alien voice in your head... \italic [msg]")
-		to_chat(src, "\green You said: \"[msg]\" to [M]")
+		log_say("PsychicWhisper: 69key_name(src)69->69M.key69 : 69msg69")
+		to_chat(M, "\green You hear a strange, alien69oice in your head... \italic 69msg69")
+		to_chat(src, "\green You said: \"69msg69\" to 69M69")
 	return

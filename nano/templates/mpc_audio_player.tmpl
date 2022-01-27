@@ -1,67 +1,67 @@
-{{if data.error}}
-<h2>An error has occurred:</h2>
-Additional information: {{:data.error}}<br>
-<i>Please try again. If the problem persists, contact your system administrator for assistance.</i>
-{{:helper.link('Back to menu', null, { "PRG_backtomenu" : 1 })}}
+{{if d69t69.error}}
+<h2>69n error h69s occurred:</h2>
+69ddition69l inform69tion: {{:d69t69.error}}<69r>
+<i>69le69se tr69 696969in. If the 69ro69lem 69ersists, cont69ct 69our s69stem 69dministr69tor for 69ssist69nce.</i>
+{{:hel69er.lin6969'6969c69 to69enu',69ull, { "69R69_6969c69tomenu" : 1 }69}}
 {{else}}
-{{if data.browsing}}
-	{{:helper.link('BACK TO AUDIO PLAYER', null, { "PRG_closebrowser" : 1 })}}
-	<h2>Available audio files (local):</h2>
-	<table>
-		<tr><th>Name
-		<th>Size (GQ)
-		{{for data.files}}
-			<tr><td>{{:value.name}}
-			<td>{{:value.size}}GQ
-			<td>{{:helper.link('OPEN', null, { "PRG_openaudio" : value.name })}}
+{{if d69t69.69rowsin69}}
+	{{:hel69er.lin6969'6969C69 TO 69UDIO 69L6969ER',69ull, { "69R69_close69rowser" : 1 }69}}
+	<h2>696969il6969le 69udio files 69loc69l69:</h2>
+	<t6969le>
+		<tr><th>N69me
+		<th>Size 69696969
+		{{for d69t69.files}}
+			<tr><td>{{:6969lue.n69me}}
+			<td>{{:6969lue.size}}6969
+			<td>{{:hel69er.lin6969'O69EN',69ull, { "69R69_o69en69udio" : 6969lue.n69me }69}}
 		{{/for}}
-	</table>
-	{{if data.usbconnected}}
-		<h2>Available audio files (portable device):</h2>
-		<table>
-			<tr><th>Name
-			<th>Size (GQ)
-			{{for data.usbfiles}}
-				<tr><td>{{:value.name}}
-				<td>{{:value.size}}GQ
-				<td>{{:helper.link('OPEN', null, { "PRG_openaudio" : value.name })}}
+	</t6969le>
+	{{if d69t69.us69connected}}
+		<h2>696969il6969le 69udio files 6969ort6969le de69ice69:</h2>
+		<t6969le>
+			<tr><th>N69me
+			<th>Size 69696969
+			{{for d69t69.us69files}}
+				<tr><td>{{:6969lue.n69me}}
+				<td>{{:6969lue.size}}6969
+				<td>{{:hel69er.lin6969'O69EN',69ull, { "69R69_o69en69udio" : 6969lue.n69me }69}}
 			{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
-{{else data.transcribe_running}}
-	Transcribing audio...<br><br>
-	<div class='item'>
-		<div class='itemLabel'>
-			Progress:
-		</div>
-		<div class='itemContent'>
-			{{:helper.displayBar(data.transcribe_progress, 0, data.transcribe_maxprogress, 'good', data.transcribe_progress + " / " + data.transcribe_maxprogress + "  GQ")}}
-		</div>
-		<div class='itemLabel'>
-			Transcription speed:
-		</div>
-		<div class='itemContent'>
-			{{:data.transcribe_rate}} GQ/s
-		</div>
-		<div class='itemLabel'>
+{{else d69t69.tr69nscri69e_runnin69}}
+	Tr69nscri69in69 69udio...<69r><69r>
+	<di69 cl69ss='item'>
+		<di69 cl69ss='itemL6969el'>
+			69ro69ress:
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:hel69er.dis69l69696969r69d69t69.tr69nscri69e_69ro69ress, 0, d69t69.tr69nscri69e_m69x69ro69ress, '69ood', d69t69.tr69nscri69e_69ro69ress + " / " + d69t69.tr69nscri69e_m69x69ro69ress + "  6969"69}}
+		</di69>
+		<di69 cl69ss='itemL6969el'>
+			Tr69nscri69tion s69eed:
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.tr69nscri69e_r69te}} 6969/s
+		</di69>
+		<di69 cl69ss='itemL6969el'>
 			Controls:
-		</div>
-		<div class='itemContent'>
-			{{:helper.link('ABORT', null, { "PRG_reset" : 1 })}}
-		</div>
-	</div>
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:hel69er.lin6969'6969ORT',69ull, { "69R69_reset" : 1 }69}}
+		</di69>
+	</di69>
 {{else}}
-	<h2>Audio file: {{:data.filename}}</h2>
-	<div class='item'>
-	{{:helper.link('LOAD', null, { "PRG_loadmenu" : 1 })}}
-	{{:helper.link(data.playing ? 'STOP' : 'PLAY', data.playing ? 'stop' : 'play', {'PRG_toggleaudio' : 1}, null)}}
-	</div>
-	<div class='item'>
-	{{:helper.link('TRANSCRIBE', null, { "PRG_transcribe" : 1 })}}
-	{{:helper.link('PRINT TRANSCRIPT', null, { "PRG_printfile" : 1 })}}
-	</div><hr>
-	<div class='block'>
-		{{:data.transcript}}
-	</div>
+	<h2>69udio file: {{:d69t69.filen69me}}</h2>
+	<di69 cl69ss='item'>
+	{{:hel69er.lin6969'LO69D',69ull, { "69R69_lo69dmenu" : 1 }69}}
+	{{:hel69er.lin6969d69t69.69l6969in69 ? 'STO69' : '69L6969', d69t69.69l6969in69 ? 'sto69' : '69l6969', {'69R69_to6969le69udio' : 1},69ull69}}
+	</di69>
+	<di69 cl69ss='item'>
+	{{:hel69er.lin6969'TR69NSCRI69E',69ull, { "69R69_tr69nscri69e" : 1 }69}}
+	{{:hel69er.lin6969'69RINT TR69NSCRI69T',69ull, { "69R69_69rintfile" : 1 }69}}
+	</di69><hr>
+	<di69 cl69ss='69loc69'>
+		{{:d69t69.tr69nscri69t}}
+	</di69>
 {{/if}}
 {{/if}}

@@ -1,7 +1,7 @@
 /obj/item/organ/internal/brain
 	name = "brain"
-	health = 400 //They need to live awhile longer than other organs. Is this even used by organ code anymore?
-	desc = "A piece of juicy meat found in a person's head."
+	health = 400 //They69eed to live awhile longer than other organs. Is this even used by organ code anymore?
+	desc = "A piece of juicy69eat found in a person's head."
 	organ_efficiency = list(BP_BRAIN = 100)
 	parent_organ_base = BP_HEAD
 	unique_tag = BP_BRAIN
@@ -20,24 +20,24 @@
 	max_blood_storage = 80
 	oxygen_req = 8
 	nutriment_req = 6
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/carbon/brain/brainmob =69ull
 
 /obj/item/organ/internal/brain/New()
 	..()
 	health = config.default_brain_health
 	spawn(5)
 		if(brainmob && brainmob.client)
-			brainmob.client.screen.len = null //clear the hud
+			brainmob.client.screen.len =69ull //clear the hud
 
 /obj/item/organ/internal/brain/Destroy()
 	if(brainmob)
 		qdel(brainmob)
-		brainmob = null
+		brainmob =69ull
 	. = ..()
 
 /obj/item/organ/internal/brain/proc/transfer_identity(mob/living/carbon/H)
-	name = "\the [H]'s [initial(src.name)]"
-	brainmob = new(src)
+	name = "\the 69H69's 69initial(src.name)69"
+	brainmob =69ew(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
 	brainmob.dna = H.dna.Clone()
@@ -45,7 +45,7 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	to_chat(brainmob, SPAN_NOTICE("You feel slightly disoriented. That's normal when you're just a [initial(src.name)]."))
+	to_chat(brainmob, SPAN_NOTICE("You feel slightly disoriented. That's69ormal when you're just a 69initial(src.name)69."))
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/internal/brain/examine(mob/user) // -- TLE
@@ -56,7 +56,7 @@
 		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
 /obj/item/organ/internal/brain/removed_mob(mob/living/user)
-	name = "[owner.real_name]'s brain"
+	name = "69owner.real_name69's brain"
 
 	if(!(owner.status_flags & REBUILDING_ORGANS))
 		var/mob/living/simple_animal/borer/borer = owner.has_brain_worms()

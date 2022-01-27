@@ -62,7 +62,7 @@
 	seed_name = "glowberry"
 	display_name = "glowberry bush"
 	mutants = null
-	chems = list("nutriment" = list(1,10), MATERIAL_URANIUM = list(3,5))
+	chems = list("nutriment" = list(1,10),69ATERIAL_URANIUM = list(3,5))
 
 /datum/seed/berry/glow/New()
 	..()
@@ -298,8 +298,8 @@
 //Ambrosia/varieties.
 /datum/seed/ambrosia
 	name = "ambrosia"
-	seed_name = "ambrosia vulgaris"
-	display_name = "ambrosia vulgaris"
+	seed_name = "ambrosia69ulgaris"
+	display_name = "ambrosia69ulgaris"
 	mutants = list("ambrosiadeus")
 	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "kelotane" = list(1,8,1), "bicaridine" = list(1,10,1), "toxin" = list(1,10))
 	kitchen_tag = "ambrosia"
@@ -334,7 +334,7 @@
 	name = "mushrooms"
 	seed_name = "chanterelle"
 	seed_noun = "spores"
-	display_name = "chanterelle mushrooms"
+	display_name = "chanterelle69ushrooms"
 	mutants = list("reishi","amanita","plumphelmet")
 	chems = list("nutriment" = list(1,25))
 	splat_type = /obj/effect/plant
@@ -356,8 +356,8 @@
 
 /datum/seed/mushroom/mold
 	name = "mold"
-	seed_name = "brown mold"
-	display_name = "brown mold"
+	seed_name = "brown69old"
+	display_name = "brown69old"
 	mutants = null
 
 /datum/seed/mushroom/mold/New()
@@ -374,7 +374,7 @@
 /datum/seed/mushroom/plump
 	name = "plumphelmet"
 	seed_name = "plump helmet"
-	display_name = "plump helmet mushrooms"
+	display_name = "plump helmet69ushrooms"
 	mutants = list("walkingmushroom","towercap")
 	chems = list("nutriment" = list(2,10))
 	kitchen_tag = "plumphelmet"
@@ -391,8 +391,8 @@
 
 /datum/seed/mushroom/plump/walking
 	name = "walkingmushroom"
-	seed_name = "walking mushroom"
-	display_name = "walking mushrooms"
+	seed_name = "walking69ushroom"
+	display_name = "walking69ushrooms"
 	mutants = null
 	can_self_harvest = 1
 	has_mob_product = /mob/living/simple_animal/mushroom
@@ -425,7 +425,7 @@
 /datum/seed/mushroom/hallucinogenic/strong
 	name = "libertycap"
 	seed_name = "liberty cap"
-	display_name = "liberty cap mushrooms"
+	display_name = "liberty cap69ushrooms"
 	mutants = null
 	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "space_drugs" = list(1,25))
 
@@ -441,7 +441,7 @@
 /datum/seed/mushroom/poison
 	name = "amanita"
 	seed_name = "fly amanita"
-	display_name = "fly amanita mushrooms"
+	display_name = "fly amanita69ushrooms"
 	mutants = list("destroyingangel","plastic")
 	chems = list("nutriment" = list(1), "amatoxin" = list(3,3), "psilocybin" = list(1,25))
 
@@ -459,7 +459,7 @@
 /datum/seed/mushroom/poison/death
 	name = "destroyingangel"
 	seed_name = "destroying angel"
-	display_name = "destroying angel mushrooms"
+	display_name = "destroying angel69ushrooms"
 	mutants = null
 	chems = list("nutriment" = list(1,50), "amatoxin" = list(13,3), "psilocybin" = list(1,25))
 
@@ -530,7 +530,7 @@
 
 /datum/seed/mushroom/maintshroom
 	name = "fungoartiglieria"
-	seed_name = "Fungo di Artiglieria mushroom"
+	seed_name = "Fungo di Artiglieria69ushroom"
 	display_name = "Fungo di Artiglieria"
 	mutants = null
 
@@ -608,34 +608,34 @@
 	shuffle(firstnames)
 	shuffle(secondnames)
 	var/list/names = list()
-	for (var/i = 1; i <= min(firstnames.len, secondnames.len); i++)
-		names += "[firstnames[i]] [secondnames[i]]"
+	for (var/i = 1; i <=69in(firstnames.len, secondnames.len); i++)
+		names += "69firstnames69i6969 69secondnames69i6969"
 
 	var/random = 0
 	random = rand(1, possible_chems.len)
-	var/new_chem = possible_chems[random]
-	chems[new_chem] = list(rand(1,5),rand(5,10))
+	var/new_chem = possible_chems69random69
+	chems69new_chem69 = list(rand(1,5),rand(5,10))
 
-	//Give the maintshroom the name
+	//Give the69aintshroom the name
 	var generated_name = ""
 	if (random <= names.len)
-		generated_name = names[random]
+		generated_name = names69random69
 	else
-		generated_name = names[1]
-	name = "[generated_name]"
-	seed_name = "[generated_name]"
-	display_name = "[generated_name]"
+		generated_name = names69169
+	name = "69generated_name69"
+	seed_name = "69generated_name69"
+	display_name = "69generated_name69"
 
-	//Set the maintshroom to the hue of the chem
-	var/datum/reagent/chem = GLOB.chemical_reagents_list[new_chem]
+	//Set the69aintshroom to the hue of the chem
+	var/datum/reagent/chem = GLOB.chemical_reagents_list69new_chem69
 	var/color = chem.color
 
 	//Color Wizardry
 	//We will take the color's hue completely
-	//We will cap its saturation to a low value, giving more of a pastel shade
-	//We will hard set the brightness to max
+	//We will cap its saturation to a low69alue, giving69ore of a pastel shade
+	//We will hard set the brightness to69ax
 	var/list/HSV = ReadHSV(RGBtoHSV(color))
-	color = set_HSV(color, list(null, min(HSV[2],100), 255))
+	color = set_HSV(color, list(null,69in(HSV69269,100), 255))
 
 	if (chem)
 		set_trait(TRAIT_PLANT_COLOUR,color)
@@ -731,7 +731,7 @@
 /datum/seed/peanuts
 	name = "peanut"
 	seed_name = "peanut"
-	display_name = "peanut vines"
+	display_name = "peanut69ines"
 	chems = list("nutriment" = list(1,10))
 
 /datum/seed/peanuts/New()
@@ -965,7 +965,7 @@
 /datum/seed/watermelon
 	name = "watermelon"
 	seed_name = "watermelon"
-	display_name = "watermelon vine"
+	display_name = "watermelon69ine"
 	chems = list("nutriment" = list(1,6), "watermelonjuice" = list(10,6))
 
 /datum/seed/watermelon/New()
@@ -988,7 +988,7 @@
 /datum/seed/pumpkin
 	name = "pumpkin"
 	seed_name = "pumpkin"
-	display_name = "pumpkin vine"
+	display_name = "pumpkin69ine"
 	chems = list("nutriment" = list(1,6))
 	kitchen_tag = "pumpkin"
 
@@ -1114,7 +1114,7 @@
 /datum/seed/kudzu
 	name = "kudzu"
 	seed_name = "kudzu"
-	display_name = "kudzu vines"
+	display_name = "kudzu69ines"
 	chems = list("nutriment" = list(1,50), "anti_toxin" = list(1,25))
 
 /datum/seed/kudzu/New()
@@ -1263,7 +1263,7 @@
 /datum/seed/surik
 	name = "surik"
 	seed_name = "surik"
-	display_name = "surik vine"
+	display_name = "surik69ine"
 	chems = list("impedrezene" = list(1,3),"synaptizine" = list(1,2),"nutriment" = list(1,5))
 
 /datum/seed/surik/New()

@@ -21,9 +21,9 @@
 
 /datum/stash/ninja/seppuku
 	contents_list_external = list(/obj/item/remains/human = 1)
-	lore = "My mission has failed, and I have brought dishonour upon the clan.<br>\
-	Worse still, my suit has malfunctioned, the self destruct module will not activate.<br>\
-	I am crippled, unable to walk, and soldiers hunt for me all over the ship. I cannot even crawl to an airlock.<br>\
-	Our technology must remain hidden, death in battle is not an option.<br>\
+	lore = "My69ission has failed, and I have brought dishonour upon the clan.<br>\
+	Worse still,69y suit has69alfunctioned, the self destruct69odule will69ot activate.<br>\
+	I am crippled, unable to walk, and soldiers hunt for69e all over the ship. I cannot even crawl to an airlock.<br>\
+	Our technology69ust remain hidden, death in battle is69ot an option.<br>\
 	My only remaining recourse is to hide in the darkest corner I can find, and die with some semblance of honour. %D<br>\
-	If you, reader are not of our clan, then I ask one final favour. Destroy everything you find with my body. Erase my existence from history"
+	If you, reader are69ot of our clan, then I ask one final favour. Destroy everything you find with69y body. Erase69y existence from history"

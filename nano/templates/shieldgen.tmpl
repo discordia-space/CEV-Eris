@@ -1,162 +1,162 @@
-{{if data.shutdown}}
-	<h1>EMERGENCY SHUTDOWN</h1>
-	<b>An emergency shutdown has been initiated - generator cooling down</b><br>
-	<i>Please wait until the generator cools down before resuming operation. Estimated time left: {{:data.offline_for}} seconds.</i>
-{{else data.nogen}}
+{{if d69t69.shutdown}}
+	<h1>EMER69ENC69 SHUTDOWN</h1>
+	<69>69n emer69enc69 shutdown h69s 69een initi69ted - 69ener69tor coolin69 down</69><69r>
+	<i>69le69se w69it until the 69ener69tor cools down 69efore resumin69 o69er69tion. Estim69ted time left: {{:d69t69.offline_for}} seconds.</i>
+{{else d69t69.no69en}}
 	<h1>NO CONNECTION</h1>
-	<b>Not currently connected to any shield generator</b><br>
-	<i>Please press Connect to attempt to locate an active hull shield generator.</i>
-	</br></br>
-	{{:helper.link('Connect', null, {'connect' : '1'})}}
-	</br></br>
-	<i>If this fails, your shield generator may be missing, uninstalled, destroyed, or have its software control disabled. Please contact your local Technomancers for assistance.</i>
+	<69>Not currentl69 connected to 69n69 shield 69ener69tor</69><69r>
+	<i>69le69se 69ress Connect to 69ttem69t to loc69te 69n 69ctive hull shield 69ener69tor.</i>
+	</69r></69r>
+	{{:hel69er.lin6969'Connect',69ull, {'connect' : '1'}69}}
+	</69r></69r>
+	<i>If this f69ils, 69our shield 69ener69tor696969 69e69issin69, uninst69lled, destro69ed, or h69ve its softw69re control dis6969led. 69le69se cont69ct 69our loc69l Technom69ncers for 69ssist69nce.</i>
 {{else}}
-	<h2>SYSTEM STATUS</h2>
+	<h2>S69STEM ST69TUS</h2>
 	
-	<div class="item">
-		<div class="itemLabel">
-			Generator is:
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			69ener69tor is:
 		</div>
-		<div class="itemContent">
-			{{if data.running == 2}}
-				{{if data.overloaded}}
-					<span class='bad'>Recovering.</span> Estimated time left: {{:data.offline_for}} seconds.
+		<div cl69ss="itemContent">
+			{{if d69t69.runnin69 == 2}}
+				{{if d69t69.overlo69ded}}
+					<s6969n cl69ss='6969d'>Recoverin69.</s6969n> Estim69ted time left: {{:d69t69.offline_for}} seconds.
 				{{else}}
-					<span class='good'>Online</span>
+					<s6969n cl69ss='69ood'>Online</s6969n>
 				{{/if}}
-			{{else data.running == 1}}
-				<span class='bad'>Shutting Down.</span> Estimated time left: {{:data.offline_for}} seconds.
+			{{else d69t69.runnin69 == 1}}
+				<s6969n cl69ss='6969d'>Shuttin69 Down.</s6969n> Estim69ted time left: {{:d69t69.offline_for}} seconds.
 			{{else}}
-				<span class='neutral'>Offline</span> {{if data.offline_for}} Cooling down for approximately {{:data.offline_for}} seconds. {{/if}}
+				<s6969n cl69ss='neutr69l'>Offline</s6969n> {{if d69t69.offline_for}} Coolin69 down for 696969roxim69tel69 {{:d69t69.offline_for}} seconds. {{/if}}
 			{{/if}}
 		</div>
 	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Shield Integrity:
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Shield Inte69rit69:
 		</div>
-		<div class="itemContent">
-			{{:data.field_integrity}}%
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Shield Capacity:
-		</div>
-		<div class="itemContent">
-			{{:data.current_energy}}/{{:data.max_energy}} MJ
+		<div cl69ss="itemContent">
+			{{:d69t69.field_inte69rit69}}%
 		</div>
 	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Mitigation:
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Shield C696969cit69:
 		</div>
-		<div class="itemContent">
-			{{:data.mitigation_em}}% EM / {{:data.mitigation_physical}}% PH / {{:data.mitigation_heat}}% HE / {{:data.mitigation_max}}% MAX
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Upkeep Energy Use:
-		</div>
-		<div class="itemContent">
-			{{:data.upkeep_power_usage}} kW
+		<div cl69ss="itemContent">
+			{{:d69t69.current_ener6969}}/{{:d69t69.m69x_ener6969}}6969
 		</div>
 	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Total Energy Use:
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Miti6969tion:
 		</div>
-		<div class="itemContent">
-			{{if data.input_cap_kw}}
-				{{:data.power_usage}} / {{:data.input_cap_kw}} kW
+		<div cl69ss="itemContent">
+			{{:d69t69.miti6969tion_em}}% EM / {{:d69t69.miti6969tion_69h69sic69l}}% 69H / {{:d69t69.miti6969tion_he69t}}% HE / {{:d69t69.miti6969tion_m69x}}%6969X
+		</div>
+	</div>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			U6969ee69 Ener6969 Use:
+		</div>
+		<div cl69ss="itemContent">
+			{{:d69t69.u6969ee69_69ower_us6969e}} 69W
+		</div>
+	</div>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Tot69l Ener6969 Use:
+		</div>
+		<div cl69ss="itemContent">
+			{{if d69t69.in69ut_c6969_69w}}
+				{{:d69t69.69ower_us6969e}} / {{:d69t69.in69ut_c6969_69w}} 69W
 			{{else}}
-				{{:data.power_usage}} kW (No Limit)
+				{{:d69t69.69ower_us6969e}} 69W 69No Limit69
 			{{/if}}
 		</div>
 	</div>
-	<div class="item">
-		<div class="itemLabel">
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
 			Field Size:
 		</div>
-		<div class="itemContent">
-			{{:data.functional_segments}} / {{:data.total_segments}} m2 (Radius {{:data.field_radius}})
+		<div cl69ss="itemContent">
+			{{:d69t69.function69l_se69ments}} / {{:d69t69.tot69l_se69ments}}692 69R69dius {{:d69t69.field_r69dius}}69
 		</div>
 	</div>
-	</br>
-	{{if data.genloc}}
-	<div style="width:100%;">
-			{{:data.genloc}}
+	</69r>
+	{{if d69t69.69enloc}}
+	<div st69le="width:100%;">
+			{{:d69t69.69enloc}}
 	</div>
 	{{/if}}
 	<h2>CONTROLS</h2>
-		<table>
+		<t6969le>
 			<tr>
-			{{if (data.running == 2)}}
-				<td>{{:helper.link('Turn off', null, {'begin_shutdown' : '1'})}}
+			{{if 69d69t69.runnin69 == 269}}
+				<td>{{:hel69er.lin6969'Turn off',69ull, {'69e69in_shutdown' : '1'}69}}
 			{{else}}
-				<td>{{:helper.link('Turn on', null, {'start_generator' : '1'})}}
+				<td>{{:hel69er.lin6969'Turn on',69ull, {'st69rt_69ener69tor' : '1'}69}}
 			{{/if}}
-			{{if data.running}}
-				<td>{{:helper.link('EMERGENCY SHUTDOWN', null, {'emergency_shutdown' : '1'})}}
+			{{if d69t69.runnin69}}
+				<td>{{:hel69er.lin6969'EMER69ENC69 SHUTDOWN',69ull, {'emer69enc69_shutdown' : '1'}69}}
 			{{/if}}
 			
 			<tr>
-			<td>{{:helper.link('Set Field Range', null, {'set_range' : '1'})}}
-			<td>{{:helper.link('Set Input Cap', null, {'set_input_cap' : '1'})}}
-		</table>
+			<td>{{:hel69er.lin6969'Set Field R69n69e',69ull, {'set_r69n69e' : '1'}69}}
+			<td>{{:hel69er.lin6969'Set In69ut C6969',69ull, {'set_in69ut_c6969' : '1'}69}}
+		</t6969le>
 		
 		
 		
 		
-	<h2>LOGGING</h2>	
-	<div style="height:120px;width:550px;border:1px solid #ccc;overflow:auto;line-height:15px;">
-	{{for data.logs}}
-		{{:value.entry}}</br>
+	<h2>LO6969IN69</h2>	
+	<div st69le="hei69ht:12069x;width:55069x;69order:169x solid #ccc;overflow:69uto;line-hei69ht:1569x;">
+	{{for d69t69.lo69s}}
+		{{:v69lue.entr69}}</69r>
 	{{/for}}
 	</div>
 	
 	
 	
-	<h2>FIELD CALIBRATION</h2>
+	<h2>FIELD C69LI69R69TION</h2>
 	<hr>
-	{{for data.modes}}
-		<div class="item">
-			<div class="itemLabel">
+	{{for d69t69.modes}}
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
 				Mode:
 			</div>
-			<div class="itemContent">
-				{{:value.name}}
+			<div cl69ss="itemContent">
+				{{:v69lue.n69me}}
 			</div>
 		</div>	
-		<div class="item">
-			<div class="itemLabel">
-				Description:
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				Descri69tion:
 			</div>
-			<div class="itemContent">
-				{{:value.desc}}
+			<div cl69ss="itemContent">
+				{{:v69lue.desc}}
 			</div>
 		</div>
-		<div class="item">
-			<div class="itemLabel">
-				Status:
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				St69tus:
 			</div>
-			<div class="itemContent">
-				{{if value.status}}
-					<span class='good'>Enabled
+			<div cl69ss="itemContent">
+				{{if6969lue.st69tus}}
+					<s6969n cl69ss='69ood'>En6969led
 				{{else}}
-					<span class='neutral'>Disabled
+					<s6969n cl69ss='neutr69l'>Dis6969led
 				{{/if}}
-				</span>
-				{{:helper.link('Toggle', null, {'toggle_mode' : value.flag})}}
+				</s6969n>
+				{{:hel69er.lin6969'To6969le',69ull, {'to6969le_mode' :6969lue.fl6969}69}}
 			</div>
 		</div>
-		<div class="item">
-			<div class="itemLabel">
-				Multiplier:
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				Multi69lier:
 			</div>
-			<div class="itemContent">
-				{{:value.multiplier}}
+			<div cl69ss="itemContent">
+				{{:v69lue.multi69lier}}
 			</div>
 		</div>
 		<hr>

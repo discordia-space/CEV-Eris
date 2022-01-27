@@ -5,20 +5,20 @@
 	return src
 
 /datum/proc/CanUseTopic(mob/user, datum/topic_state/state = GLOB.default_state)
-	var/datum/src_object = nano_host(TRUE)
+	var/datum/src_object =69ano_host(TRUE)
 	return state.can_use_topic(src_object, user)
 
 /datum/topic_state/proc/href_list(var/mob/user)
 	return list()
 
-/datum/topic_state/proc/can_use_topic(var/src_object, var/mob/user)
+/datum/topic_state/proc/can_use_topic(var/src_object,69ar/mob/user)
 	return STATUS_CLOSE
 
 /mob/proc/shared_nano_interaction()
 	if (stat || !client)
-		return STATUS_CLOSE						// no updates, close the interface
+		return STATUS_CLOSE						//69o updates, close the interface
 	else if (incapacitated())
-		return STATUS_UPDATE					// update only (orange visibility)
+		return STATUS_UPDATE					// update only (orange69isibility)
 	return STATUS_INTERACTIVE
 
 /mob/living/silicon/ai/shared_nano_interaction()
@@ -34,4 +34,4 @@
 		return STATUS_CLOSE
 	if(lockcharge)
 		. = STATUS_DISABLED
-	return min(., ..())
+	return69in(., ..())

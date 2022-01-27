@@ -3,39 +3,39 @@
 #define DIRECTION_REVERSED	-1
 #define IS_OPERATING		(operating && can_conveyor_run())
 
-GLOBAL_LIST_INIT(conveyor_belts, list()) //Saves us having to look through the entire machines list for our things
+GLOBAL_LIST_INIT(conveyor_belts, list()) //Saves us having to look through the entire69achines list for our things
 GLOBAL_LIST_INIT(conveyor_switches, list())
 
 
-//conveyor2 is pretty much like the original, except it supports corners, but not diverters.
+//conveyor2 is pretty69uch like the original, except it supports corners, but69ot diverters.
 
 /obj/machinery/conveyor
 	icon = 'icons/obj/machines/conveyor.dmi'
 	icon_state = "conveyor_stopped_cw"
 	name = "conveyor belt"
-	desc = "A conveyor belt, commonly used to transport large numbers of items elsewhere quite quickly."
+	desc = "A conveyor belt, commonly used to transport large69umbers of items elsewhere 69uite 69uickly."
 	layer = BELOW_OPEN_DOOR_LAYER
 	anchored = TRUE
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
+	matter = list(MATERIAL_STEEL = 6,69ATERIAL_PLASTIC = 4)
 
-	var/operating = FALSE	// NB: this can be TRUE while the belt doesn't go
+	var/operating = FALSE	//69B: this can be TRUE while the belt doesn't go
 	var/forwards			// The direction the conveyor sends you in
 	var/backwards			// hopefully self-explanatory
 	var/clockwise = TRUE	// For corner pieces - do we go clockwise or counterclockwise?
 	var/operable = TRUE		// Can this belt actually go?
-	var/list/affecting		// the list of all items that will be moved this ptick
+	var/list/affecting		// the list of all items that will be69oved this ptick
 	var/reversed = FALSE	// set to TRUE to have the conveyor belt be reversed
 	var/id					// ID of the connected lever
 
 
 // create a conveyor
-/obj/machinery/conveyor/New(loc, new_dir, new_id)
+/obj/machinery/conveyor/New(loc,69ew_dir,69ew_id)
 	..(loc)
 	GLOB.conveyor_belts += src
 	if(new_id)
-		id = new_id
+		id =69ew_id
 	if(new_dir)
-		dir = new_dir
+		dir =69ew_dir
 	update_move_direction()
 	for(var/I in GLOB.conveyor_switches)
 		var/obj/machinery/conveyor_switch/S = I
@@ -47,26 +47,26 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	return ..()
 
 // attack with item, place item on conveyor
-/obj/machinery/conveyor/attackby(obj/item/I, mob/user)
-	var/list/usable_qualities = list(QUALITY_PRYING)
+/obj/machinery/conveyor/attackby(obj/item/I,69ob/user)
+	var/list/usable_69ualities = list(69UALITY_PRYING)
 	if(!(stat & BROKEN))
-		usable_qualities.Add(QUALITY_BOLT_TURNING)
+		usable_69ualities.Add(69UALITY_BOLT_TURNING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.get_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
-		if(QUALITY_PRYING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		if(69UALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 				if(!(stat & BROKEN))
-					var/obj/item/construct/conveyor/C = new(loc)
+					var/obj/item/construct/conveyor/C =69ew(loc)
 					C.id = id
-					C.matter = matter
+					C.matter =69atter
 					transfer_fingerprints_to(C)
 				to_chat(user, SPAN_NOTICE("You remove the conveyor belt."))
-				qdel(src)
+				69del(src)
 			return
 
-		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		if(69UALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 				set_rotation(user)
 				update_move_direction()
 			return
@@ -85,13 +85,13 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 			if(CS.id == id)
 				CS.conveyors -= src
 		id = S.id
-		to_chat(user, SPAN_NOTICE("You link [I] with [src]."))
+		to_chat(user, SPAN_NOTICE("You link 69I69 with 69src69."))
 	else if(user.a_intent != I_HURT)
-		user.unEquip(I, loc)
+		user.unE69uip(I, loc)
 	else
 		return ..()
 
-// attack with hand, move pulled object onto conveyor
+// attack with hand,69ove pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user)
 	if (!user.canmove || user.restrained() || !user.pulling)
 		return
@@ -112,38 +112,38 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 /obj/machinery/conveyor/update_icon()
 	..()
 	if(operating && can_conveyor_run())
-		icon_state = "conveyor_started_[clockwise ? "cw" : "ccw"]"
+		icon_state = "conveyor_started_69clockwise ? "cw" : "ccw"69"
 		if(reversed)
 			icon_state += "_r"
 	else
-		icon_state = "conveyor_stopped_[clockwise ? "cw" : "ccw"]"
+		icon_state = "conveyor_stopped_69clockwise ? "cw" : "ccw"69"
 
 /obj/machinery/conveyor/proc/update_move_direction()
 	update_icon()
 	switch(dir)
 		if(NORTH)
-			forwards = NORTH
+			forwards =69ORTH
 			backwards = SOUTH
 		if(EAST)
 			forwards = EAST
 			backwards = WEST
 		if(SOUTH)
 			forwards = SOUTH
-			backwards = NORTH
+			backwards =69ORTH
 		if(WEST)
 			forwards = WEST
 			backwards = EAST
 		if(NORTHEAST)
-			forwards = clockwise ? EAST : NORTH
+			forwards = clockwise ? EAST :69ORTH
 			backwards = clockwise ? SOUTH : WEST
 		if(SOUTHEAST)
 			forwards = clockwise ? SOUTH : EAST
-			backwards = clockwise ? WEST : NORTH
+			backwards = clockwise ? WEST :69ORTH
 		if(SOUTHWEST)
 			forwards = clockwise ? WEST : SOUTH
-			backwards = clockwise ? NORTH : EAST
+			backwards = clockwise ?69ORTH : EAST
 		if(NORTHWEST)
-			forwards = clockwise ? NORTH : WEST
+			forwards = clockwise ?69ORTH : WEST
 			backwards = clockwise ? EAST : SOUTH
 	if(!reversed)
 		return
@@ -153,10 +153,10 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 
 /obj/machinery/conveyor/proc/set_rotation(mob/user)
 	dir = turn(reversed ? backwards : forwards, -90) //Fuck it, let's do it this way instead of doing something clever with dir
-	var/turf/left = get_step(src, turn(dir, 90))	//We need to get conveyors to the right, left, and behind this one to be able to determine if we need to make a corner piece
+	var/turf/left = get_step(src, turn(dir, 90))	//We69eed to get conveyors to the right, left, and behind this one to be able to determine if we69eed to69ake a corner piece
 	var/turf/right = get_step(src, turn(dir, -90))
 	var/turf/back = get_step(src, turn(dir, 180))
-	to_chat(user, SPAN_NOTICE("You rotate [src]."))
+	to_chat(user, SPAN_NOTICE("You rotate 69src69."))
 	var/obj/machinery/conveyor/CL = locate() in left
 	var/obj/machinery/conveyor/CR = locate() in right
 	var/obj/machinery/conveyor/CB = locate() in back
@@ -172,9 +172,9 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	if(CB)
 		if(CB.id == id && get_step(CB, CB.reversed ? CB.backwards : CB.forwards) == loc)
 			link_to_back = TRUE
-	if(link_to_back) //Don't need to do anything because we can assume the conveyor carries on in a line
+	if(link_to_back) //Don't69eed to do anything because we can assume the conveyor carries on in a line
 		return
-	else if(!(link_to_left ^ link_to_right)) //Either no valid conveyors point here, or two point here (making a "junction" with this belt as the middle piece). Either way we don't need a corner
+	else if(!(link_to_left ^ link_to_right)) //Either69o69alid conveyors point here, or two point here (making a "junction" with this belt as the69iddle piece). Either way we don't69eed a corner
 		return
 	if(link_to_right)
 		dir = turn(dir, 45)
@@ -194,26 +194,26 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	if(!can_conveyor_run())
 		return
 	use_power(100)
-	affecting = loc.contents - src // moved items will be all in loc
+	affecting = loc.contents - src //69oved items will be all in loc
 	if(!affecting)
 		return
 	sleep(1)
 	for(var/atom/movable/A in affecting)
 		if(!A.anchored)
-			if(A.loc == loc) // prevents the object from being affected if it's not currently here.
+			if(A.loc == loc) // prevents the object from being affected if it's69ot currently here.
 				step_glide(A, forwards, DELAY2GLIDESIZE(wait))
 		CHECK_TICK
 
 /obj/machinery/conveyor/proc/can_conveyor_run()
 	if(stat & BROKEN)
 		return FALSE
-	else if(stat & NOPOWER)
+	else if(stat &69OPOWER)
 		return FALSE
 	else if(!operable)
 		return FALSE
 	return TRUE
 
-// make the conveyor broken and propagate inoperability to any connected conveyor with the same conveyor datum
+//69ake the conveyor broken and propagate inoperability to any connected conveyor with the same conveyor datum
 /obj/machinery/conveyor/proc/make_broken()
 	stat |= BROKEN
 	operable = FALSE
@@ -225,8 +225,8 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	if(C)
 		C.set_operable(FALSE, id, FALSE)
 
-/obj/machinery/conveyor/proc/set_operable(propagate_forwards, match_id, op) //Sets a conveyor inoperable if ID matches it, and propagates forwards / backwards
-	if(id != match_id)
+/obj/machinery/conveyor/proc/set_operable(propagate_forwards,69atch_id, op) //Sets a conveyor inoperable if ID69atches it, and propagates forwards / backwards
+	if(id !=69atch_id)
 		return
 	operable = op
 	update_icon()
@@ -252,14 +252,14 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	var/id
 	var/list/conveyors = list()
 
-	// DEPRECATED: remove once map is updated
+	// DEPRECATED: remove once69ap is updated
 	var/convdir
 
-/obj/machinery/conveyor_switch/New(newloc, new_id)
+/obj/machinery/conveyor_switch/New(newloc,69ew_id)
 	..(newloc)
 	GLOB.conveyor_switches += src
 	if(!id)
-		id = new_id
+		id =69ew_id
 	for(var/I in GLOB.conveyor_belts)
 		var/obj/machinery/conveyor/C = I
 		if(C.id == id)
@@ -275,11 +275,11 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		icon_state = "switch-off"
 	else if(position == DIRECTION_REVERSED)
 		icon_state = "switch-rev"
-		if(!(stat & NOPOWER))
+		if(!(stat &69OPOWER))
 			overlays += "redlight"
 	else if(position == DIRECTION_FORWARDS)
 		icon_state = "switch-fwd"
-		if(!(stat & NOPOWER))
+		if(!(stat &69OPOWER))
 			overlays += "greenlight"
 
 // attack with hand, switch position
@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		else
 			C.update_icon()
 		CHECK_TICK
-	for(var/I in GLOB.conveyor_switches) // find any switches with same id as this one, and set their positions to match us
+	for(var/I in GLOB.conveyor_switches) // find any switches with same id as this one, and set their positions to69atch us
 		var/obj/machinery/conveyor_switch/S = I
 		if(S == src || S.id != id)
 			continue
@@ -317,24 +317,24 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		S.update_icon()
 		CHECK_TICK
 
-/obj/machinery/conveyor_switch/attackby(obj/item/I, mob/user)
-	var/list/usable_qualities = list(QUALITY_PRYING, QUALITY_PULSING)
+/obj/machinery/conveyor_switch/attackby(obj/item/I,69ob/user)
+	var/list/usable_69ualities = list(69UALITY_PRYING, 69UALITY_PULSING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.get_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
-		if(QUALITY_PRYING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				var/obj/item/construct/conveyor_switch/C = new(loc, id)
-				C.matter = matter
+		if(69UALITY_PRYING)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+				var/obj/item/construct/conveyor_switch/C =69ew(loc, id)
+				C.matter =69atter
 				transfer_fingerprints_to(C)
 				to_chat(user, SPAN_NOTICE("You detach the conveyor switch."))
-				qdel(src)
+				69del(src)
 			return
 
-		if(QUALITY_PULSING)
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+		if(69UALITY_PULSING)
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 				one_way = !one_way
-				to_chat(user, SPAN_NOTICE("[src] will now go [one_way ? "forwards only" : "both forwards and backwards"]."))
+				to_chat(user, SPAN_NOTICE("69src69 will69ow go 69one_way ? "forwards only" : "both forwards and backwards"69."))
 			return
 
 		if(ABORT_CHECK)
@@ -360,17 +360,17 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	icon = 'icons/obj/machines/conveyor.dmi'
 	icon_state = "conveyor_loose"
 	w_class = ITEM_SIZE_BULKY
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_PLASTIC = 4)
+	matter = list(MATERIAL_STEEL = 6,69ATERIAL_PLASTIC = 4)
 	var/id = "" //inherited by the belt
 
-/obj/item/construct/conveyor/attackby(obj/item/I, mob/user, params)
+/obj/item/construct/conveyor/attackby(obj/item/I,69ob/user, params)
 	..()
 	if(istype(I, /obj/item/construct/conveyor_switch))
 		to_chat(user, SPAN_NOTICE("You link the switch to the conveyor belt assembly."))
 		var/obj/item/construct/conveyor_switch/C = I
 		id = C.id
 
-/obj/item/construct/conveyor/afterattack(atom/A, mob/user, proximity)
+/obj/item/construct/conveyor/afterattack(atom/A,69ob/user, proximity)
 	if(!proximity || !istype(A, /turf/simulated/floor) || istype(A, /area/shuttle) || user.incapacitated())
 		return
 	var/cdir = get_dir(A, user)
@@ -380,11 +380,11 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 		if(CB.dir == cdir || CB.dir == turn(cdir,180))
 			return
 		cdir |= CB.dir
-		qdel(CB)
-	var/obj/machinery/conveyor/C = new/obj/machinery/conveyor(A, cdir, id)
-	C.matter = matter
+		69del(CB)
+	var/obj/machinery/conveyor/C =69ew/obj/machinery/conveyor(A, cdir, id)
+	C.matter =69atter
 	transfer_fingerprints_to(C)
-	qdel(src)
+	69del(src)
 
 
 /obj/item/construct/conveyor_switch
@@ -396,28 +396,28 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	matter = list(MATERIAL_STEEL = 4)
 	var/id = "" //inherited by the switch
 
-/obj/item/construct/conveyor_switch/New(loc, new_id)
+/obj/item/construct/conveyor_switch/New(loc,69ew_id)
 	..(loc)
 	if(new_id)
-		id = new_id
+		id =69ew_id
 	else
 		id = world.time + rand() //this couldn't possibly go wrong
 
-/obj/item/construct/conveyor_switch/afterattack(atom/A, mob/user, proximity)
+/obj/item/construct/conveyor_switch/afterattack(atom/A,69ob/user, proximity)
 	if(!proximity || !istype(A, /turf/simulated/floor) || istype(A, /area/shuttle) || user.incapacitated())
 		return
 	var/found = FALSE
-	for(var/obj/machinery/conveyor/C in view())
+	for(var/obj/machinery/conveyor/C in69iew())
 		if(C.id == src.id)
 			found = TRUE
 			break
 	if(!found)
-		to_chat(user, SPAN_NOTICE("The conveyor switch did not detect any linked conveyor belts in range."))
+		to_chat(user, SPAN_NOTICE("The conveyor switch did69ot detect any linked conveyor belts in range."))
 		return
-	var/obj/machinery/conveyor_switch/NC = new/obj/machinery/conveyor_switch(A, id)
-	NC.matter = matter
+	var/obj/machinery/conveyor_switch/NC =69ew/obj/machinery/conveyor_switch(A, id)
+	NC.matter =69atter
 	transfer_fingerprints_to(NC)
-	qdel(src)
+	69del(src)
 
 
 /obj/machinery/conveyor/centcom_auto
@@ -426,12 +426,12 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 /obj/machinery/conveyor_switch/oneway
 	one_way = TRUE
 
-//Other types of conveyor, mostly for saving yourself a headache during mapping
+//Other types of conveyor,69ostly for saving yourself a headache during69apping
 /obj/machinery/conveyor/north
-	dir = NORTH
+	dir =69ORTH
 
 /obj/machinery/conveyor/northeast
-	dir = NORTHEAST
+	dir =69ORTHEAST
 
 /obj/machinery/conveyor/east
 	dir = EAST
@@ -449,7 +449,7 @@ GLOBAL_LIST_INIT(conveyor_switches, list())
 	dir = WEST
 
 /obj/machinery/conveyor/northwest
-	dir = NORTHWEST
+	dir =69ORTHWEST
 
 /obj/machinery/conveyor/north/ccw
 	icon_state = "conveyor_stopped_ccw"

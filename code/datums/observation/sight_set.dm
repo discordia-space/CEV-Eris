@@ -1,10 +1,10 @@
 //	Observer Pattern Implementation: Sight Set
 //		Registration type: /mob
 //
-//		Raised when: A mob's sight value changes.
+//		Raised when: A69ob's sight69alue changes.
 //
 //		Arguments that the called proc should expect:
-//			/mob/sightee:  The mob that had its sight set
+//			/mob/sightee:  The69ob that had its sight set
 //			/old_sight: sight before the change
 //			/new_sight: sight after the change
 

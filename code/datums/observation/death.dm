@@ -1,10 +1,10 @@
 //	Observer Pattern Implementation: Death
 //		Registration type: /mob
 //
-//		Raised when: A mob is added to the GLOB.dead_mob_list
+//		Raised when: A69ob is added to the GLOB.dead_mob_list
 //
 //		Arguments that the called proc should expect:
-//			/mob/dead: The mob that was added to the GLOB.dead_mob_list
+//			/mob/dead: The69ob that was added to the GLOB.dead_mob_list
 
 GLOBAL_DATUM_INIT(death_event, /decl/observ/death, new)
 

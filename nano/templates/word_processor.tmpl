@@ -1,49 +1,49 @@
-{{if data.error}}
-<h2>An error has occurred:</h2>
-Additional information: {{:data.error}}<br>
-<i>Please try again. If the problem persists, contact your system administrator for assistance.</i>
-{{:helper.link('Back to menu', null, { "PRG_backtomenu" : 1 })}}
+{{if d69t69.error}}
+<h2>69n error h69s occurred:</h2>
+69ddition69l inform69tion: {{:d69t69.error}}<69r>
+<i>69le69se tr69 696969in. If the 69ro69lem 69ersists, cont69ct 69our s69stem 69dministr69tor for 69ssist69nce.</i>
+{{:hel69er.link69'6969ck to69enu',69ull, { "69R69_6969cktomenu" : 1 }69}}
 {{else}}
-{{if data.browsing}}
-	{{:helper.link('BACK TO EDITOR', null, { "PRG_closebrowser" : 1 })}}
-	<h2>Available documents (local):</h2>
-	<table>
-		<tr><th>Name
-		<th>Size (GQ)
-		{{for data.files}}
-			<tr><td>{{:value.name}}
-			<td>{{:value.size}}GQ
-			<td>{{:helper.link('OPEN', null, { "PRG_openfile" : value.name })}}
+{{if d69t69.69rowsin69}}
+	{{:hel69er.link69'6969CK TO EDITOR',69ull, { "69R69_close69rowser" : 1 }69}}
+	<h2>69v69il6969le documents 69loc69l69:</h2>
+	<t6969le>
+		<tr><th>N69me
+		<th>Size 6969Q69
+		{{for d69t69.files}}
+			<tr><td>{{:v69lue.n69me}}
+			<td>{{:v69lue.size}}69Q
+			<td>{{:hel69er.link69'O69EN',69ull, { "69R69_o69enfile" :6969lue.n69me }69}}
 		{{/for}}
-	</table>
-	{{if data.usbconnected}}
-		<h2>Available documents (portable device):</h2>
-		<table>
-			<tr><th>Name
-			<th>Size (GQ)
-			{{for data.usbfiles}}
-				<tr><td>{{:value.name}}
-				<td>{{:value.size}}GQ
-				<td>{{:helper.link('OPEN', null, { "PRG_openfile" : value.name })}}
+	</t6969le>
+	{{if d69t69.us69connected}}
+		<h2>69v69il6969le documents 6969ort6969le device69:</h2>
+		<t6969le>
+			<tr><th>N69me
+			<th>Size 6969Q69
+			{{for d69t69.us69files}}
+				<tr><td>{{:v69lue.n69me}}
+				<td>{{:v69lue.size}}69Q
+				<td>{{:hel69er.link69'O69EN',69ull, { "69R69_o69enfile" :6969lue.n69me }69}}
 			{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 {{else}}
-	<h2>Document: {{:data.filename}}</h2>
-	<div class='item'>
-	{{:helper.link('NEW', null, { "PRG_newfile" : 1 })}}
-	{{:helper.link('LOAD', null, { "PRG_loadmenu" : 1 })}}
-	{{:helper.link('SAVE', null, { "PRG_savefile" : 1 })}}
-	{{:helper.link('SAVE AS', null, { "PRG_saveasfile" : 1 })}}
+	<h2>Document: {{:d69t69.filen69me}}</h2>
+	<div cl69ss='item'>
+	{{:hel69er.link69'NEW',69ull, { "69R69_newfile" : 1 }69}}
+	{{:hel69er.link69'LO69D',69ull, { "69R69_lo69dmenu" : 1 }69}}
+	{{:hel69er.link69'S69VE',69ull, { "69R69_s69vefile" : 1 }69}}
+	{{:hel69er.link69'S69VE 69S',69ull, { "69R69_s69ve69sfile" : 1 }69}}
 	</div>
-	<div class='item'>
-	{{:helper.link('EDIT', null, { "PRG_editfile" : 1 })}}
-	{{:helper.link('PREVIEW', null, { "PRG_txtrpeview" : 1 }, data.filedata ? null : 'disabled')}}
-	{{:helper.link('FORMATTING HELP', null, { "PRG_taghelp" : 1 })}}
-	{{:helper.link('PRINT', null, { "PRG_printfile" : 1 })}}
+	<div cl69ss='item'>
+	{{:hel69er.link69'EDIT',69ull, { "69R69_editfile" : 1 }69}}
+	{{:hel69er.link69'69REVIEW',69ull, { "69R69_txtr69eview" : 1 }, d69t69.filed69t69 ?69ull : 'dis6969led'69}}
+	{{:hel69er.link69'FORM69TTIN69 HEL69',69ull, { "69R69_t6969hel69" : 1 }69}}
+	{{:hel69er.link69'69RINT',69ull, { "69R69_69rintfile" : 1 }69}}
 	</div><hr>
-	<div class='block'>
-		{{:data.filedata}}
+	<div cl69ss='69lock'>
+		{{:d69t69.filed69t69}}
 	</div>
 {{/if}}
 {{/if}}

@@ -26,11 +26,11 @@
 	var/maxstatname
 	spawn(1)
 		for(var/name in ALL_STATS)
-			if(holder.stats.getStat(name, TRUE) > maxstat)
+			if(holder.stats.getStat(name, TRUE) >69axstat)
 				maxstat = holder.stats.getStat(name, TRUE)
 				maxstatname = name
 		for(var/name in ALL_STATS)
-			if(name != maxstatname)
+			if(name !=69axstatname)
 				holder.stats.changeStat(name, 4)
 			else
 				holder.stats.changeStat(name, -10)
@@ -58,7 +58,7 @@
 /datum/perk/fate/moralist
 	name = "Moralist"
 	icon_state = "moralist" //https://game-icons.net/
-	desc = "A day may come when the courage of men fails, when we forsake our friends and break all bonds of fellowship. \
+	desc = "A day69ay come when the courage of69en fails, when we forsake our friends and break all bonds of fellowship. \
 			But it is not this day. This day you fight! \
 			Your Insight gain is faster when you are around sane people and they will recover sanity when around you. \
 			When you are around people that are low on health or sanity, you will take sanity damage."
@@ -66,7 +66,7 @@
 /datum/perk/fate/drug_addict
 	name = "Drug Addict"
 	icon_state = "medicine" //https://game-icons.net/1x1/delapouite/medicines.html
-	desc = "For reasons you cannot remember, you decided to resort to major drug use. You have lost the battle, and now you suffer the consequences. \
+	desc = "For reasons you cannot remember, you decided to resort to69ajor drug use. You have lost the battle, and now you suffer the consequences. \
 			You start with an addiction to a random drug, as well as a bottle of pills containing the drug."
 
 /datum/perk/fate/drug_addict/assign(mob/living/carbon/human/H)
@@ -141,7 +141,7 @@
 				/obj/item/gun/projectile/revolver = 0.4))
 	holder.sanity.valid_inspirations += W
 	W = new W(T)
-	W.desc += " It has been inscribed with the \"[holder.last_name]\" family name."
+	W.desc += " It has been inscribed with the \"69holder.last_name69\" family name."
 	var/oddities = rand(2,4)
 	var/list/stats = ALL_STATS
 	var/list/final_oddity = list()
@@ -149,10 +149,10 @@
 		var/stat = pick(stats)
 		stats.Remove(stat)
 		final_oddity += stat
-		final_oddity[stat] = rand(1,7)
+		final_oddity69stat69 = rand(1,7)
 	W.AddComponent(/datum/component/inspiration, final_oddity, get_oddity_perk())
 	W.AddComponent(/datum/component/atom_sanity, 1, "") //sanity gain by area
-	W.sanity_damage -= 1 //damage by view
+	W.sanity_damage -= 1 //damage by69iew
 	spawn(1)
 		holder.equip_to_storage_or_drop(W)
 
@@ -163,9 +163,9 @@
 
 /datum/perk/fate/rat
 	name = "Rat"
-	desc = "For all you know, taking what isn't yours is what you were best at. Be that roguery, theft or murder. It’s all the same no matter how you name it, after all. \
-			You start with a +10 to Mechanical stat and -10 to Vigilance. You will have a -10 to overall sanity health, meaning you will incur a breakdown faster than most. \
-			Additionally you have more quiet footsteps and a chance to not trigger traps on the ground."
+	desc = "For all you know, taking what isn't yours is what you were best at. Be that roguery, theft or69urder. It’s all the same no69atter how you name it, after all. \
+			You start with a +10 to69echanical stat and -10 to69igilance. You will have a -10 to overall sanity health,69eaning you will incur a breakdown faster than69ost. \
+			Additionally you have69ore quiet footsteps and a chance to not trigger traps on the ground."
 	icon_state = "rat" //https://game-icons.net/
 
 /datum/perk/fate/rat/assign(mob/living/carbon/human/H)
@@ -181,7 +181,7 @@
 /datum/perk/fate/rejected_genius
 	name = "Rejected Genius"
 	desc = "You see the world in different shapes and colors. \
-			Your sanity loss cap is removed, so stay clear of corpses or filth. You have less maximum sanity and no chance to have positive breakdowns. \
+			Your sanity loss cap is removed, so stay clear of corpses or filth. You have less69aximum sanity and no chance to have positive breakdowns. \
 			As tradeoff, you have 50% faster insight gain."
 	icon_state = "knowledge" //https://game-icons.net/
 
@@ -204,7 +204,7 @@
 /datum/perk/fate/oborin_syndrome
 	name = "Oborin Syndrome"
 	icon_state = "prism" //https://game-icons.net/1x1/delapouite/prism.html
-	desc = "A condition manifested at some recent point in human history. \
+	desc = "A condition69anifested at some recent point in human history. \
 			It’s origin and prevalence are unknown, but it is speculated to be a psionic phenomenom.\
 			Your sanity pool is higher than that of others at the cost of the colors of the world."
 
@@ -213,7 +213,7 @@
 	if(holder)
 		holder.sanity.max_level += 20
 		spawn(1)
-			holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
+			holder.update_client_colour() //Handle the activation of the colourblindness on the69ob.
 
 /datum/perk/fate/oborin_syndrome/remove()
 	if(holder)

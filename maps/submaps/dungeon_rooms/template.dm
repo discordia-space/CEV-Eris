@@ -1,10 +1,10 @@
-/datum/map_template/dungeon_template
+/datum/map_template/dun69eon_template
 	name = "Crawler Template"
-	desc = "Some text should go here. Maybe."
-	template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
+	desc = "Some text should 69o here.69a6969e."
+	template_69roup =69ull // If this is set,69o69ore than one template in the same 69roup will 69e spawned, per su69map seedin69.
 	width = 13
-	height = 9
-	mappath = null
-	annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
-	var/list/directional_flags = list("north",  "south" , "east", "west")
-	var/room_tag
+	hei69ht = 9
+	mappath =69ull
+	annihilate = FALSE // If true, all 69mova69le69 atoms at the location where the69ap is loaded will 69e deleted 69efore the69ap is loaded in.
+	var/list/directional_fla69s = list69"north",  "south" , "east", "west"69
+	var/room_ta69

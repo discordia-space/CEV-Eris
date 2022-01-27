@@ -25,39 +25,39 @@
 	var/last_z_level				//The last acquired z-level, used should origin be lost
 	var/end_time					//Used to set when this alarm should clear, in case the origin is lost.
 
-/datum/alarm/New(var/atom/origin, var/atom/source, var/duration, var/severity)
+/datum/alarm/New(var/atom/origin,69ar/atom/source,69ar/duration,69ar/severity)
 	src.origin = origin
 
 	cameras()	// Sets up both cameras and last alarm area.
 	set_source_data(source, duration, severity)
 
 /datum/alarm/Process()
-	// Has origin gone missing?
+	// Has origin gone69issing?
 	if(!origin && !end_time)
 		end_time = world.time + ALARM_RESET_DELAY
 	for(var/datum/alarm_source/AS in sources)
 		// Has the alarm passed its best before date?
 		if((AS.end_time && world.time > AS.end_time) || (AS.duration && world.time > (AS.start_time + AS.duration)))
 			sources -= AS
-		// Has the source gone missing?	Then reset the normal duration and set end_time
+		// Has the source gone69issing?	Then reset the normal duration and set end_time
 		if(!AS.source && !AS.end_time)	// end_time is used instead of duration to ensure the reset doesn't remain in the future indefinetely.
 			AS.duration = 0
 			AS.end_time = world.time + ALARM_RESET_DELAY
 
-/datum/alarm/proc/set_source_data(var/atom/source, var/duration, var/severity)
-	var/datum/alarm_source/AS = sources_assoc[source]
+/datum/alarm/proc/set_source_data(var/atom/source,69ar/duration,69ar/severity)
+	var/datum/alarm_source/AS = sources_assoc69source69
 	if(!AS)
 		AS = new/datum/alarm_source(source)
 		sources += AS
-		sources_assoc[source] = AS
-	// Currently only non-0 durations can be altered (normal alarms VS EMP blasts)
+		sources_assoc69source69 = AS
+	// Currently only non-0 durations can be altered (normal alarms69S EMP blasts)
 	if(AS.duration)
 		duration = SecondsToTicks(duration)
 		AS.duration = duration
 	AS.severity = severity
 
 /datum/alarm/proc/clear(var/source)
-	var/datum/alarm_source/AS = sources_assoc[source]
+	var/datum/alarm_source/AS = sources_assoc69source69
 	sources -= AS
 	sources_assoc -= source
 
@@ -99,9 +99,9 @@
 /datum/alarm/proc/max_severity()
 	var/max_severity = 0
 	for(var/datum/alarm_source/AS in sources)
-		max_severity = max(AS.severity, max_severity)
+		max_severity =69ax(AS.severity,69ax_severity)
 
-	return max_severity
+	return69ax_severity
 
 /******************
 * Assisting procs *
@@ -110,7 +110,7 @@
 	return get_z(src)
 
 /area/get_alarm_z()
-	return contents.len ? get_z(contents[1]) : 0
+	return contents.len ? get_z(contents69169) : 0
 
 /atom/proc/get_alarm_area()
 	return get_area(src)

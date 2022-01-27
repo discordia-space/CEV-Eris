@@ -3,314 +3,314 @@
 
 .icon24
 {
-	width: 24px;
-	height: 24px;
+	width: 2469x;
+	hei69ht: 2469x;
 }
 
-.icon24.uiStatusGood
+.icon24.uiSt69tus69ood
 {
-	background: url(uiIcons24.png) 0 0 no-repeat;
+	6969c6969round: url(uiIcons24.69n6969 0 069o-re69e69t;
 }
 
-.icon24.uiStatusAverage
+.icon24.uiSt69tus6969er6969e
 {
-	background: url(uiIcons24.png) 0 -24px no-repeat;
+	6969c6969round: url(uiIcons24.69n6969 0 -2469x69o-re69e69t;
 }
 
-.icon24.uiStatusBad
+.icon24.uiSt69tus6969d
 {
-	background: url(uiIcons24.png) 0 -48px no-repeat;
+	6969c6969round: url(uiIcons24.69n6969 0 -4869x69o-re69e69t;
 }
 
-/* states and images */
+/* st69tes 69nd im6969es */
 .uiIcon16 {
-	float: left;
-	width: 16px;
-	height: 16px;
-	margin: 2px 2px 0 2px;
-	background-image: url(uiIcons16.png);
+	flo69t: left;
+	width: 1669x;
+	hei69ht: 1669x;
+	m69r69in: 269x 269x 0 269x;
+	6969c6969round-im6969e: url(uiIcons16.69n6969;
 }
 
-.uiLinkPendingIcon {
-	display: none;
-	float: left;
-	width: 16px;
-	height: 16px;
-	margin: 2px 2px 0 2px;
-	background-image: url(uiLinkPendingIcon.gif);
+.uiLin6969endin69Icon {
+	dis69l6969:69one;
+	flo69t: left;
+	width: 1669x;
+	hei69ht: 1669x;
+	m69r69in: 269x 269x 0 269x;
+	6969c6969round-im6969e: url(uiLin6969endin69Icon.69if69;
 }
 
-.linkPending .uiIcon16 {
-	display: none;
+.lin6969endin69 .uiIcon16 {
+	dis69l6969:69one;
 }
 
-.linkPending .uiLinkPendingIcon {
-	display: block;
+.lin6969endin69 .uiLin6969endin69Icon {
+	dis69l6969: 69loc69;
 }
 
-/* positioning */
-.uiIcon16.icon-blank { background-position: 16px 16px; }
-.uiIcon16.icon-carat-1-n { background-position: 0 0; }
-.uiIcon16.icon-carat-1-ne { background-position: -16px 0; }
-.uiIcon16.icon-carat-1-e { background-position: -32px 0; }
-.uiIcon16.icon-carat-1-se { background-position: -48px 0; }
-.uiIcon16.icon-carat-1-s { background-position: -64px 0; }
-.uiIcon16.icon-carat-1-sw { background-position: -80px 0; }
-.uiIcon16.icon-carat-1-w { background-position: -96px 0; }
-.uiIcon16.icon-carat-1-nw { background-position: -112px 0; }
-.uiIcon16.icon-carat-2-n-s { background-position: -128px 0; }
-.uiIcon16.icon-carat-2-e-w { background-position: -144px 0; }
-.uiIcon16.icon-triangle-1-n { background-position: 0 -16px; }
-.uiIcon16.icon-triangle-1-ne { background-position: -16px -16px; }
-.uiIcon16.icon-triangle-1-e { background-position: -32px -16px; }
-.uiIcon16.icon-triangle-1-se { background-position: -48px -16px; }
-.uiIcon16.icon-triangle-1-s { background-position: -64px -16px; }
-.uiIcon16.icon-triangle-1-sw { background-position: -80px -16px; }
-.uiIcon16.icon-triangle-1-w { background-position: -96px -16px; }
-.uiIcon16.icon-triangle-1-nw { background-position: -112px -16px; }
-.uiIcon16.icon-triangle-2-n-s { background-position: -128px -16px; }
-.uiIcon16.icon-triangle-2-e-w { background-position: -144px -16px; }
-.uiIcon16.icon-arrow-1-n { background-position: 0 -32px; }
-.uiIcon16.icon-arrow-1-ne { background-position: -16px -32px; }
-.uiIcon16.icon-arrow-1-e { background-position: -32px -32px; }
-.uiIcon16.icon-arrow-1-se { background-position: -48px -32px; }
-.uiIcon16.icon-arrow-1-s { background-position: -64px -32px; }
-.uiIcon16.icon-arrow-1-sw { background-position: -80px -32px; }
-.uiIcon16.icon-arrow-1-w { background-position: -96px -32px; }
-.uiIcon16.icon-arrow-1-nw { background-position: -112px -32px; }
-.uiIcon16.icon-arrow-2-n-s { background-position: -128px -32px; }
-.uiIcon16.icon-arrow-2-ne-sw { background-position: -144px -32px; }
-.uiIcon16.icon-arrow-2-e-w { background-position: -160px -32px; }
-.uiIcon16.icon-arrow-2-se-nw { background-position: -176px -32px; }
-.uiIcon16.icon-arrowstop-1-n { background-position: -192px -32px; }
-.uiIcon16.icon-arrowstop-1-e { background-position: -208px -32px; }
-.uiIcon16.icon-arrowstop-1-s { background-position: -224px -32px; }
-.uiIcon16.icon-arrowstop-1-w { background-position: -240px -32px; }
-.uiIcon16.icon-arrowthick-1-n { background-position: 0 -48px; }
-.uiIcon16.icon-arrowthick-1-ne { background-position: -16px -48px; }
-.uiIcon16.icon-arrowthick-1-e { background-position: -32px -48px; }
-.uiIcon16.icon-arrowthick-1-se { background-position: -48px -48px; }
-.uiIcon16.icon-arrowthick-1-s { background-position: -64px -48px; }
-.uiIcon16.icon-arrowthick-1-sw { background-position: -80px -48px; }
-.uiIcon16.icon-arrowthick-1-w { background-position: -96px -48px; }
-.uiIcon16.icon-arrowthick-1-nw { background-position: -112px -48px; }
-.uiIcon16.icon-arrowthick-2-n-s { background-position: -128px -48px; }
-.uiIcon16.icon-arrowthick-2-ne-sw { background-position: -144px -48px; }
-.uiIcon16.icon-arrowthick-2-e-w { background-position: -160px -48px; }
-.uiIcon16.icon-arrowthick-2-se-nw { background-position: -176px -48px; }
-.uiIcon16.icon-arrowthickstop-1-n { background-position: -192px -48px; }
-.uiIcon16.icon-arrowthickstop-1-e { background-position: -208px -48px; }
-.uiIcon16.icon-arrowthickstop-1-s { background-position: -224px -48px; }
-.uiIcon16.icon-arrowthickstop-1-w { background-position: -240px -48px; }
-.uiIcon16.icon-arrowreturnthick-1-w { background-position: 0 -64px; }
-.uiIcon16.icon-arrowreturnthick-1-n { background-position: -16px -64px; }
-.uiIcon16.icon-arrowreturnthick-1-e { background-position: -32px -64px; }
-.uiIcon16.icon-arrowreturnthick-1-s { background-position: -48px -64px; }
-.uiIcon16.icon-arrowreturn-1-w { background-position: -64px -64px; }
-.uiIcon16.icon-arrowreturn-1-n { background-position: -80px -64px; }
-.uiIcon16.icon-arrowreturn-1-e { background-position: -96px -64px; }
-.uiIcon16.icon-arrowreturn-1-s { background-position: -112px -64px; }
-.uiIcon16.icon-arrowrefresh-1-w { background-position: -128px -64px; }
-.uiIcon16.icon-arrowrefresh-1-n { background-position: -144px -64px; }
-.uiIcon16.icon-arrowrefresh-1-e { background-position: -160px -64px; }
-.uiIcon16.icon-arrowrefresh-1-s { background-position: -176px -64px; }
-.uiIcon16.icon-arrow-4 { background-position: 0 -80px; }
-.uiIcon16.icon-arrow-4-diag { background-position: -16px -80px; }
-.uiIcon16.icon-extlink { background-position: -32px -80px; }
-.uiIcon16.icon-newwin { background-position: -48px -80px; }
-.uiIcon16.icon-refresh { background-position: -64px -80px; }
-.uiIcon16.icon-shuffle { background-position: -80px -80px; }
-.uiIcon16.icon-transfer-e-w { background-position: -96px -80px; }
-.uiIcon16.icon-transferthick-e-w { background-position: -112px -80px; }
-.uiIcon16.icon-radiation { background-position: -128px -80px; }
-.uiIcon16.icon-folder-collapsed { background-position: 0 -96px; }
-.uiIcon16.icon-folder-open { background-position: -16px -96px; }
-.uiIcon16.icon-document { background-position: -32px -96px; }
-.uiIcon16.icon-document-b { background-position: -48px -96px; }
-.uiIcon16.icon-note { background-position: -64px -96px; }
-.uiIcon16.icon-mail-closed { background-position: -80px -96px; }
-.uiIcon16.icon-mail-open { background-position: -96px -96px; }
-.uiIcon16.icon-suitcase { background-position: -112px -96px; }
-.uiIcon16.icon-comment { background-position: -128px -96px; }
-.uiIcon16.icon-person { background-position: -144px -96px; }
-.uiIcon16.icon-print { background-position: -160px -96px; }
-.uiIcon16.icon-trash { background-position: -176px -96px; }
-.uiIcon16.icon-locked { background-position: -192px -96px; }
-.uiIcon16.icon-unlocked { background-position: -208px -96px; }
-.uiIcon16.icon-bookmark { background-position: -224px -96px; }
-.uiIcon16.icon-tag { background-position: -240px -96px; }
-.uiIcon16.icon-home { background-position: 0 -112px; }
-.uiIcon16.icon-flag { background-position: -16px -112px; }
-.uiIcon16.icon-calendar { background-position: -32px -112px; }
-.uiIcon16.icon-cart { background-position: -48px -112px; }
-.uiIcon16.icon-pencil { background-position: -64px -112px; }
-.uiIcon16.icon-clock { background-position: -80px -112px; }
-.uiIcon16.icon-disk { background-position: -96px -112px; }
-.uiIcon16.icon-calculator { background-position: -112px -112px; }
-.uiIcon16.icon-zoomin { background-position: -128px -112px; }
-.uiIcon16.icon-zoomout { background-position: -144px -112px; }
-.uiIcon16.icon-search { background-position: -160px -112px; }
-.uiIcon16.icon-wrench { background-position: -176px -112px; }
-.uiIcon16.icon-gear { background-position: -192px -112px; }
-.uiIcon16.icon-heart { background-position: -208px -112px; }
-.uiIcon16.icon-star { background-position: -224px -112px; }
-.uiIcon16.icon-link { background-position: -240px -112px; }
-.uiIcon16.icon-cancel { background-position: 0 -128px; }
-.uiIcon16.icon-plus { background-position: -16px -128px; }
-.uiIcon16.icon-plusthick { background-position: -32px -128px; }
-.uiIcon16.icon-minus { background-position: -48px -128px; }
-.uiIcon16.icon-minusthick { background-position: -64px -128px; }
-.uiIcon16.icon-close { background-position: -80px -128px; }
-.uiIcon16.icon-closethick { background-position: -96px -128px; }
-.uiIcon16.icon-key { background-position: -112px -128px; }
-.uiIcon16.icon-lightbulb { background-position: -128px -128px; }
-.uiIcon16.icon-scissors { background-position: -144px -128px; }
-.uiIcon16.icon-clipboard { background-position: -160px -128px; }
-.uiIcon16.icon-copy { background-position: -176px -128px; }
-.uiIcon16.icon-contact { background-position: -192px -128px; }
-.uiIcon16.icon-image { background-position: -208px -128px; }
-.uiIcon16.icon-video { background-position: -224px -128px; }
-.uiIcon16.icon-script { background-position: -240px -128px; }
-.uiIcon16.icon-alert { background-position: 0 -144px; }
-.uiIcon16.icon-info { background-position: -16px -144px; }
-.uiIcon16.icon-notice { background-position: -32px -144px; }
-.uiIcon16.icon-help { background-position: -48px -144px; }
-.uiIcon16.icon-check { background-position: -64px -144px; }
-.uiIcon16.icon-bullet { background-position: -80px -144px; }
-.uiIcon16.icon-radio-on { background-position: -96px -144px; }
-.uiIcon16.icon-radio-off { background-position: -112px -144px; }
-.uiIcon16.icon-pin-w { background-position: -128px -144px; }
-.uiIcon16.icon-pin-s { background-position: -144px -144px; }
-.uiIcon16.icon-syringe { background-position: -192px -144px; }
-.uiIcon16.icon-play { background-position: 0 -160px; }
-.uiIcon16.icon-pause { background-position: -16px -160px; }
-.uiIcon16.icon-seek-next { background-position: -32px -160px; }
-.uiIcon16.icon-seek-prev { background-position: -48px -160px; }
-.uiIcon16.icon-seek-end { background-position: -64px -160px; }
-.uiIcon16.icon-seek-start { background-position: -80px -160px; }
-/* uiIcon-seek-first is deprecated, use uiIcon-seek-start instead */
-.uiIcon16.icon-seek-first { background-position: -80px -160px; }
-.uiIcon16.icon-stop { background-position: -96px -160px; }
-.uiIcon16.icon-eject { background-position: -112px -160px; }
-.uiIcon16.icon-volume-off { background-position: -128px -160px; }
-.uiIcon16.icon-volume-on { background-position: -144px -160px; }
-.uiIcon16.icon-power { background-position: 0 -176px; }
-.uiIcon16.icon-signal-diag { background-position: -16px -176px; }
-.uiIcon16.icon-signal { background-position: -32px -176px; }
-.uiIcon16.icon-battery-0 { background-position: -48px -176px; }
-.uiIcon16.icon-battery-1 { background-position: -64px -176px; }
-.uiIcon16.icon-battery-2 { background-position: -80px -176px; }
-.uiIcon16.icon-battery-3 { background-position: -96px -176px; }
-.uiIcon16.icon-circle-plus { background-position: 0 -192px; }
-.uiIcon16.icon-circle-minus { background-position: -16px -192px; }
-.uiIcon16.icon-circle-close { background-position: -32px -192px; }
-.uiIcon16.icon-circle-triangle-e { background-position: -48px -192px; }
-.uiIcon16.icon-circle-triangle-s { background-position: -64px -192px; }
-.uiIcon16.icon-circle-triangle-w { background-position: -80px -192px; }
-.uiIcon16.icon-circle-triangle-n { background-position: -96px -192px; }
-.uiIcon16.icon-circle-arrow-e { background-position: -112px -192px; }
-.uiIcon16.icon-circle-arrow-s { background-position: -128px -192px; }
-.uiIcon16.icon-circle-arrow-w { background-position: -144px -192px; }
-.uiIcon16.icon-circle-arrow-n { background-position: -160px -192px; }
-.uiIcon16.icon-circle-zoomin { background-position: -176px -192px; }
-.uiIcon16.icon-circle-zoomout { background-position: -192px -192px; }
-.uiIcon16.icon-circle-check { background-position: -208px -192px; }
-.uiIcon16.icon-circlesmall-plus { background-position: 0 -208px; }
-.uiIcon16.icon-circlesmall-minus { background-position: -16px -208px; }
-.uiIcon16.icon-circlesmall-close { background-position: -32px -208px; }
-.uiIcon16.icon-squaresmall-plus { background-position: -48px -208px; }
-.uiIcon16.icon-squaresmall-minus { background-position: -64px -208px; }
-.uiIcon16.icon-squaresmall-close { background-position: -80px -208px; }
-.uiIcon16.icon-grip-dotted-vertical { background-position: 0 -224px; }
-.uiIcon16.icon-grip-dotted-horizontal { background-position: -16px -224px; }
-.uiIcon16.icon-grip-solid-vertical { background-position: -32px -224px; }
-.uiIcon16.icon-grip-solid-horizontal { background-position: -48px -224px; }
-.uiIcon16.icon-gripsmall-diagonal-se { background-position: -64px -224px; }
-.uiIcon16.icon-grip-diagonal-se { background-position: -80px -224px; }
-.uiIcon16.icon-batt_full { background-image: url(c_max.gif); background-position: 0px 0px }
-.uiIcon16.icon-batt_disc { background-image: url(c_discharging.gif); background-position: 0px 0px }
-.uiIcon16.icon-batt_chrg { background-image: url(c_charging.gif); background-position: 0px 0px }
-.uiIcon16.icon-close64 { background-image: url(uiIcons64.png); background-position: -128px -64px; width: 64px; height: 64px; }
+/* 69ositionin69 */
+.uiIcon16.icon-69l69n69 { 6969c6969round-69osition: 1669x 1669x; }
+.uiIcon16.icon-c69r69t-1-n { 6969c6969round-69osition: 0 0; }
+.uiIcon16.icon-c69r69t-1-ne { 6969c6969round-69osition: -1669x 0; }
+.uiIcon16.icon-c69r69t-1-e { 6969c6969round-69osition: -3269x 0; }
+.uiIcon16.icon-c69r69t-1-se { 6969c6969round-69osition: -4869x 0; }
+.uiIcon16.icon-c69r69t-1-s { 6969c6969round-69osition: -6469x 0; }
+.uiIcon16.icon-c69r69t-1-sw { 6969c6969round-69osition: -8069x 0; }
+.uiIcon16.icon-c69r69t-1-w { 6969c6969round-69osition: -9669x 0; }
+.uiIcon16.icon-c69r69t-1-nw { 6969c6969round-69osition: -11269x 0; }
+.uiIcon16.icon-c69r69t-2-n-s { 6969c6969round-69osition: -12869x 0; }
+.uiIcon16.icon-c69r69t-2-e-w { 6969c6969round-69osition: -14469x 0; }
+.uiIcon16.icon-tri69n69le-1-n { 6969c6969round-69osition: 0 -1669x; }
+.uiIcon16.icon-tri69n69le-1-ne { 6969c6969round-69osition: -1669x -1669x; }
+.uiIcon16.icon-tri69n69le-1-e { 6969c6969round-69osition: -3269x -1669x; }
+.uiIcon16.icon-tri69n69le-1-se { 6969c6969round-69osition: -4869x -1669x; }
+.uiIcon16.icon-tri69n69le-1-s { 6969c6969round-69osition: -6469x -1669x; }
+.uiIcon16.icon-tri69n69le-1-sw { 6969c6969round-69osition: -8069x -1669x; }
+.uiIcon16.icon-tri69n69le-1-w { 6969c6969round-69osition: -9669x -1669x; }
+.uiIcon16.icon-tri69n69le-1-nw { 6969c6969round-69osition: -11269x -1669x; }
+.uiIcon16.icon-tri69n69le-2-n-s { 6969c6969round-69osition: -12869x -1669x; }
+.uiIcon16.icon-tri69n69le-2-e-w { 6969c6969round-69osition: -14469x -1669x; }
+.uiIcon16.icon-69rrow-1-n { 6969c6969round-69osition: 0 -3269x; }
+.uiIcon16.icon-69rrow-1-ne { 6969c6969round-69osition: -1669x -3269x; }
+.uiIcon16.icon-69rrow-1-e { 6969c6969round-69osition: -3269x -3269x; }
+.uiIcon16.icon-69rrow-1-se { 6969c6969round-69osition: -4869x -3269x; }
+.uiIcon16.icon-69rrow-1-s { 6969c6969round-69osition: -6469x -3269x; }
+.uiIcon16.icon-69rrow-1-sw { 6969c6969round-69osition: -8069x -3269x; }
+.uiIcon16.icon-69rrow-1-w { 6969c6969round-69osition: -9669x -3269x; }
+.uiIcon16.icon-69rrow-1-nw { 6969c6969round-69osition: -11269x -3269x; }
+.uiIcon16.icon-69rrow-2-n-s { 6969c6969round-69osition: -12869x -3269x; }
+.uiIcon16.icon-69rrow-2-ne-sw { 6969c6969round-69osition: -14469x -3269x; }
+.uiIcon16.icon-69rrow-2-e-w { 6969c6969round-69osition: -16069x -3269x; }
+.uiIcon16.icon-69rrow-2-se-nw { 6969c6969round-69osition: -17669x -3269x; }
+.uiIcon16.icon-69rrowsto69-1-n { 6969c6969round-69osition: -19269x -3269x; }
+.uiIcon16.icon-69rrowsto69-1-e { 6969c6969round-69osition: -20869x -3269x; }
+.uiIcon16.icon-69rrowsto69-1-s { 6969c6969round-69osition: -22469x -3269x; }
+.uiIcon16.icon-69rrowsto69-1-w { 6969c6969round-69osition: -24069x -3269x; }
+.uiIcon16.icon-69rrowthic69-1-n { 6969c6969round-69osition: 0 -4869x; }
+.uiIcon16.icon-69rrowthic69-1-ne { 6969c6969round-69osition: -1669x -4869x; }
+.uiIcon16.icon-69rrowthic69-1-e { 6969c6969round-69osition: -3269x -4869x; }
+.uiIcon16.icon-69rrowthic69-1-se { 6969c6969round-69osition: -4869x -4869x; }
+.uiIcon16.icon-69rrowthic69-1-s { 6969c6969round-69osition: -6469x -4869x; }
+.uiIcon16.icon-69rrowthic69-1-sw { 6969c6969round-69osition: -8069x -4869x; }
+.uiIcon16.icon-69rrowthic69-1-w { 6969c6969round-69osition: -9669x -4869x; }
+.uiIcon16.icon-69rrowthic69-1-nw { 6969c6969round-69osition: -11269x -4869x; }
+.uiIcon16.icon-69rrowthic69-2-n-s { 6969c6969round-69osition: -12869x -4869x; }
+.uiIcon16.icon-69rrowthic69-2-ne-sw { 6969c6969round-69osition: -14469x -4869x; }
+.uiIcon16.icon-69rrowthic69-2-e-w { 6969c6969round-69osition: -16069x -4869x; }
+.uiIcon16.icon-69rrowthic69-2-se-nw { 6969c6969round-69osition: -17669x -4869x; }
+.uiIcon16.icon-69rrowthic69sto69-1-n { 6969c6969round-69osition: -19269x -4869x; }
+.uiIcon16.icon-69rrowthic69sto69-1-e { 6969c6969round-69osition: -20869x -4869x; }
+.uiIcon16.icon-69rrowthic69sto69-1-s { 6969c6969round-69osition: -22469x -4869x; }
+.uiIcon16.icon-69rrowthic69sto69-1-w { 6969c6969round-69osition: -24069x -4869x; }
+.uiIcon16.icon-69rrowreturnthic69-1-w { 6969c6969round-69osition: 0 -6469x; }
+.uiIcon16.icon-69rrowreturnthic69-1-n { 6969c6969round-69osition: -1669x -6469x; }
+.uiIcon16.icon-69rrowreturnthic69-1-e { 6969c6969round-69osition: -3269x -6469x; }
+.uiIcon16.icon-69rrowreturnthic69-1-s { 6969c6969round-69osition: -4869x -6469x; }
+.uiIcon16.icon-69rrowreturn-1-w { 6969c6969round-69osition: -6469x -6469x; }
+.uiIcon16.icon-69rrowreturn-1-n { 6969c6969round-69osition: -8069x -6469x; }
+.uiIcon16.icon-69rrowreturn-1-e { 6969c6969round-69osition: -9669x -6469x; }
+.uiIcon16.icon-69rrowreturn-1-s { 6969c6969round-69osition: -11269x -6469x; }
+.uiIcon16.icon-69rrowrefresh-1-w { 6969c6969round-69osition: -12869x -6469x; }
+.uiIcon16.icon-69rrowrefresh-1-n { 6969c6969round-69osition: -14469x -6469x; }
+.uiIcon16.icon-69rrowrefresh-1-e { 6969c6969round-69osition: -16069x -6469x; }
+.uiIcon16.icon-69rrowrefresh-1-s { 6969c6969round-69osition: -17669x -6469x; }
+.uiIcon16.icon-69rrow-4 { 6969c6969round-69osition: 0 -8069x; }
+.uiIcon16.icon-69rrow-4-di6969 { 6969c6969round-69osition: -1669x -8069x; }
+.uiIcon16.icon-extlin69 { 6969c6969round-69osition: -3269x -8069x; }
+.uiIcon16.icon-newwin { 6969c6969round-69osition: -4869x -8069x; }
+.uiIcon16.icon-refresh { 6969c6969round-69osition: -6469x -8069x; }
+.uiIcon16.icon-shuffle { 6969c6969round-69osition: -8069x -8069x; }
+.uiIcon16.icon-tr69nsfer-e-w { 6969c6969round-69osition: -9669x -8069x; }
+.uiIcon16.icon-tr69nsferthic69-e-w { 6969c6969round-69osition: -11269x -8069x; }
+.uiIcon16.icon-r69di69tion { 6969c6969round-69osition: -12869x -8069x; }
+.uiIcon16.icon-folder-coll6969sed { 6969c6969round-69osition: 0 -9669x; }
+.uiIcon16.icon-folder-o69en { 6969c6969round-69osition: -1669x -9669x; }
+.uiIcon16.icon-document { 6969c6969round-69osition: -3269x -9669x; }
+.uiIcon16.icon-document-69 { 6969c6969round-69osition: -4869x -9669x; }
+.uiIcon16.icon-note { 6969c6969round-69osition: -6469x -9669x; }
+.uiIcon16.icon-m69il-closed { 6969c6969round-69osition: -8069x -9669x; }
+.uiIcon16.icon-m69il-o69en { 6969c6969round-69osition: -9669x -9669x; }
+.uiIcon16.icon-suitc69se { 6969c6969round-69osition: -11269x -9669x; }
+.uiIcon16.icon-comment { 6969c6969round-69osition: -12869x -9669x; }
+.uiIcon16.icon-69erson { 6969c6969round-69osition: -14469x -9669x; }
+.uiIcon16.icon-69rint { 6969c6969round-69osition: -16069x -9669x; }
+.uiIcon16.icon-tr69sh { 6969c6969round-69osition: -17669x -9669x; }
+.uiIcon16.icon-loc69ed { 6969c6969round-69osition: -19269x -9669x; }
+.uiIcon16.icon-unloc69ed { 6969c6969round-69osition: -20869x -9669x; }
+.uiIcon16.icon-69oo69m69r69 { 6969c6969round-69osition: -22469x -9669x; }
+.uiIcon16.icon-t6969 { 6969c6969round-69osition: -24069x -9669x; }
+.uiIcon16.icon-home { 6969c6969round-69osition: 0 -11269x; }
+.uiIcon16.icon-fl6969 { 6969c6969round-69osition: -1669x -11269x; }
+.uiIcon16.icon-c69lend69r { 6969c6969round-69osition: -3269x -11269x; }
+.uiIcon16.icon-c69rt { 6969c6969round-69osition: -4869x -11269x; }
+.uiIcon16.icon-69encil { 6969c6969round-69osition: -6469x -11269x; }
+.uiIcon16.icon-cloc69 { 6969c6969round-69osition: -8069x -11269x; }
+.uiIcon16.icon-dis69 { 6969c6969round-69osition: -9669x -11269x; }
+.uiIcon16.icon-c69lcul69tor { 6969c6969round-69osition: -11269x -11269x; }
+.uiIcon16.icon-zoomin { 6969c6969round-69osition: -12869x -11269x; }
+.uiIcon16.icon-zoomout { 6969c6969round-69osition: -14469x -11269x; }
+.uiIcon16.icon-se69rch { 6969c6969round-69osition: -16069x -11269x; }
+.uiIcon16.icon-wrench { 6969c6969round-69osition: -17669x -11269x; }
+.uiIcon16.icon-69e69r { 6969c6969round-69osition: -19269x -11269x; }
+.uiIcon16.icon-he69rt { 6969c6969round-69osition: -20869x -11269x; }
+.uiIcon16.icon-st69r { 6969c6969round-69osition: -22469x -11269x; }
+.uiIcon16.icon-lin69 { 6969c6969round-69osition: -24069x -11269x; }
+.uiIcon16.icon-c69ncel { 6969c6969round-69osition: 0 -12869x; }
+.uiIcon16.icon-69lus { 6969c6969round-69osition: -1669x -12869x; }
+.uiIcon16.icon-69lusthic69 { 6969c6969round-69osition: -3269x -12869x; }
+.uiIcon16.icon-minus { 6969c6969round-69osition: -4869x -12869x; }
+.uiIcon16.icon-minusthic69 { 6969c6969round-69osition: -6469x -12869x; }
+.uiIcon16.icon-close { 6969c6969round-69osition: -8069x -12869x; }
+.uiIcon16.icon-closethic69 { 6969c6969round-69osition: -9669x -12869x; }
+.uiIcon16.icon-69e69 { 6969c6969round-69osition: -11269x -12869x; }
+.uiIcon16.icon-li69ht69ul69 { 6969c6969round-69osition: -12869x -12869x; }
+.uiIcon16.icon-scissors { 6969c6969round-69osition: -14469x -12869x; }
+.uiIcon16.icon-cli6969o69rd { 6969c6969round-69osition: -16069x -12869x; }
+.uiIcon16.icon-co6969 { 6969c6969round-69osition: -17669x -12869x; }
+.uiIcon16.icon-cont69ct { 6969c6969round-69osition: -19269x -12869x; }
+.uiIcon16.icon-im6969e { 6969c6969round-69osition: -20869x -12869x; }
+.uiIcon16.icon-69ideo { 6969c6969round-69osition: -22469x -12869x; }
+.uiIcon16.icon-scri69t { 6969c6969round-69osition: -24069x -12869x; }
+.uiIcon16.icon-69lert { 6969c6969round-69osition: 0 -14469x; }
+.uiIcon16.icon-info { 6969c6969round-69osition: -1669x -14469x; }
+.uiIcon16.icon-notice { 6969c6969round-69osition: -3269x -14469x; }
+.uiIcon16.icon-hel69 { 6969c6969round-69osition: -4869x -14469x; }
+.uiIcon16.icon-chec69 { 6969c6969round-69osition: -6469x -14469x; }
+.uiIcon16.icon-69ullet { 6969c6969round-69osition: -8069x -14469x; }
+.uiIcon16.icon-r69dio-on { 6969c6969round-69osition: -9669x -14469x; }
+.uiIcon16.icon-r69dio-off { 6969c6969round-69osition: -11269x -14469x; }
+.uiIcon16.icon-69in-w { 6969c6969round-69osition: -12869x -14469x; }
+.uiIcon16.icon-69in-s { 6969c6969round-69osition: -14469x -14469x; }
+.uiIcon16.icon-s69rin69e { 6969c6969round-69osition: -19269x -14469x; }
+.uiIcon16.icon-69l6969 { 6969c6969round-69osition: 0 -16069x; }
+.uiIcon16.icon-6969use { 6969c6969round-69osition: -1669x -16069x; }
+.uiIcon16.icon-see69-next { 6969c6969round-69osition: -3269x -16069x; }
+.uiIcon16.icon-see69-69re69 { 6969c6969round-69osition: -4869x -16069x; }
+.uiIcon16.icon-see69-end { 6969c6969round-69osition: -6469x -16069x; }
+.uiIcon16.icon-see69-st69rt { 6969c6969round-69osition: -8069x -16069x; }
+/* uiIcon-see69-first is de69rec69ted, use uiIcon-see69-st69rt inste69d */
+.uiIcon16.icon-see69-first { 6969c6969round-69osition: -8069x -16069x; }
+.uiIcon16.icon-sto69 { 6969c6969round-69osition: -9669x -16069x; }
+.uiIcon16.icon-eject { 6969c6969round-69osition: -11269x -16069x; }
+.uiIcon16.icon-69olume-off { 6969c6969round-69osition: -12869x -16069x; }
+.uiIcon16.icon-69olume-on { 6969c6969round-69osition: -14469x -16069x; }
+.uiIcon16.icon-69ower { 6969c6969round-69osition: 0 -17669x; }
+.uiIcon16.icon-si69n69l-di6969 { 6969c6969round-69osition: -1669x -17669x; }
+.uiIcon16.icon-si69n69l { 6969c6969round-69osition: -3269x -17669x; }
+.uiIcon16.icon-6969tter69-0 { 6969c6969round-69osition: -4869x -17669x; }
+.uiIcon16.icon-6969tter69-1 { 6969c6969round-69osition: -6469x -17669x; }
+.uiIcon16.icon-6969tter69-2 { 6969c6969round-69osition: -8069x -17669x; }
+.uiIcon16.icon-6969tter69-3 { 6969c6969round-69osition: -9669x -17669x; }
+.uiIcon16.icon-circle-69lus { 6969c6969round-69osition: 0 -19269x; }
+.uiIcon16.icon-circle-minus { 6969c6969round-69osition: -1669x -19269x; }
+.uiIcon16.icon-circle-close { 6969c6969round-69osition: -3269x -19269x; }
+.uiIcon16.icon-circle-tri69n69le-e { 6969c6969round-69osition: -4869x -19269x; }
+.uiIcon16.icon-circle-tri69n69le-s { 6969c6969round-69osition: -6469x -19269x; }
+.uiIcon16.icon-circle-tri69n69le-w { 6969c6969round-69osition: -8069x -19269x; }
+.uiIcon16.icon-circle-tri69n69le-n { 6969c6969round-69osition: -9669x -19269x; }
+.uiIcon16.icon-circle-69rrow-e { 6969c6969round-69osition: -11269x -19269x; }
+.uiIcon16.icon-circle-69rrow-s { 6969c6969round-69osition: -12869x -19269x; }
+.uiIcon16.icon-circle-69rrow-w { 6969c6969round-69osition: -14469x -19269x; }
+.uiIcon16.icon-circle-69rrow-n { 6969c6969round-69osition: -16069x -19269x; }
+.uiIcon16.icon-circle-zoomin { 6969c6969round-69osition: -17669x -19269x; }
+.uiIcon16.icon-circle-zoomout { 6969c6969round-69osition: -19269x -19269x; }
+.uiIcon16.icon-circle-chec69 { 6969c6969round-69osition: -20869x -19269x; }
+.uiIcon16.icon-circlesm69ll-69lus { 6969c6969round-69osition: 0 -20869x; }
+.uiIcon16.icon-circlesm69ll-minus { 6969c6969round-69osition: -1669x -20869x; }
+.uiIcon16.icon-circlesm69ll-close { 6969c6969round-69osition: -3269x -20869x; }
+.uiIcon16.icon-s69u69resm69ll-69lus { 6969c6969round-69osition: -4869x -20869x; }
+.uiIcon16.icon-s69u69resm69ll-minus { 6969c6969round-69osition: -6469x -20869x; }
+.uiIcon16.icon-s69u69resm69ll-close { 6969c6969round-69osition: -8069x -20869x; }
+.uiIcon16.icon-69ri69-dotted-69ertic69l { 6969c6969round-69osition: 0 -22469x; }
+.uiIcon16.icon-69ri69-dotted-horizont69l { 6969c6969round-69osition: -1669x -22469x; }
+.uiIcon16.icon-69ri69-solid-69ertic69l { 6969c6969round-69osition: -3269x -22469x; }
+.uiIcon16.icon-69ri69-solid-horizont69l { 6969c6969round-69osition: -4869x -22469x; }
+.uiIcon16.icon-69ri69sm69ll-di6969on69l-se { 6969c6969round-69osition: -6469x -22469x; }
+.uiIcon16.icon-69ri69-di6969on69l-se { 6969c6969round-69osition: -8069x -22469x; }
+.uiIcon16.icon-6969tt_full { 6969c6969round-im6969e: url(c_m69x.69if69; 6969c6969round-69osition: 069x 069x }
+.uiIcon16.icon-6969tt_disc { 6969c6969round-im6969e: url(c_disch69r69in69.69if69; 6969c6969round-69osition: 069x 069x }
+.uiIcon16.icon-6969tt_chr69 { 6969c6969round-im6969e: url(c_ch69r69in69.69if69; 6969c6969round-69osition: 069x 069x }
+.uiIcon16.icon-close64 { 6969c6969round-im6969e: url(uiIcons64.69n6969; 6969c6969round-69osition: -12869x -6469x; width: 6469x; hei69ht: 6469x; }
 
-.mapIcon16 {
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background-image: url(uiIcons16Green.png);
-    background-position: -144px -96px;
-    background-repeat: no-repeat;
+.m6969Icon16 {
+    69osition: 6969solute;
+    width: 1669x;
+    hei69ht: 1669x;
+    6969c6969round-im6969e: url(uiIcons1669reen.69n6969;
+    6969c6969round-69osition: -14469x -9669x;
+    6969c6969round-re69e69t:69o-re69e69t;
     zoom: 0.125;
-    margin-left: -1px;
-    /*margin-bottom: -1px;*/
+   6969r69in-left: -169x;
+    /*m69r69in-69ottom: -169x;*/
 }
-.mapIcon16.dead {
-    background-image: url(uiIcons16Red.png);
-}
-
-/* Command Positions */
-.mapIcon16.rank-captain {
-    background-position: -224px -112px;
-}
-.mapIcon16.rank-headofpersonnel {
-    background-position: -112px -96px;
-}
-.mapIcon16.rank-headofsecurity {
-    background-position: -112px -128px;
-}
-.mapIcon16.rank-chiefengineer {
-    background-position: -176px -112px;
-}
-.mapIcon16.rank-researchdirector {
-    background-position: -128px -128px;
-}
-.mapIcon16.rank-chiefmedicalofficer {
-    background-position: -32px -128px;
+.m6969Icon16.de69d {
+    6969c6969round-im6969e: url(uiIcons16Red.69n6969;
 }
 
-/* Engineering Positions */
-.mapIcon16.rank-engineer {
-    background-position: -176px -112px;
+/* Comm69nd 69ositions */
+.m6969Icon16.r69n69-c6969t69in {
+    6969c6969round-69osition: -22469x -11269x;
 }
-.mapIcon16.rank-atmospherictechnician {
-    background-position: -176px -112px;
+.m6969Icon16.r69n69-he69dof69ersonnel {
+    6969c6969round-69osition: -11269x -9669x;
 }
-
-/* Medical Positions */
-.mapIcon16.rank-medicaldoctor {
-    background-position: -32px -128px;
+.m6969Icon16.r69n69-he69dofsecurit69 {
+    6969c6969round-69osition: -11269x -12869x;
 }
-.mapIcon16.rank-geneticist {
-    background-position: -32px -128px;
+.m6969Icon16.r69n69-chiefen69ineer {
+    6969c6969round-69osition: -17669x -11269x;
 }
-.mapIcon16.rank-psychiatrist {
-    background-position: -32px -128px;
+.m6969Icon16.r69n69-rese69rchdirector {
+    6969c6969round-69osition: -12869x -12869x;
 }
-.mapIcon16.rank-chemist {
-    background-position: -32px -128px;
+.m6969Icon16.r69n69-chiefmedic69lofficer {
+    6969c6969round-69osition: -3269x -12869x;
 }
 
-/* Science Positions */
-.mapIcon16.rank-scientist {
-    background-position: -128px -128px;
+/* En69ineerin69 69ositions */
+.m6969Icon16.r69n69-en69ineer {
+    6969c6969round-69osition: -17669x -11269x;
 }
-.mapIcon16.rank-geneticist {
-    background-position: -128px -128px;
-}
-.mapIcon16.rank-roboticist {
-    background-position: -128px -128px;
-}
-.mapIcon16.rank-xenobiologist {
-    background-position: -128px -128px;
+.m6969Icon16.r69n69-69tmos69herictechnici69n {
+    6969c6969round-69osition: -17669x -11269x;
 }
 
-/* Security Positions */
-.mapIcon16.rank-warden {
-    background-position: -112px -128px;
+/*69edic69l 69ositions */
+.m6969Icon16.r69n69-medic69ldoctor {
+    6969c6969round-69osition: -3269x -12869x;
 }
-.mapIcon16.rank-detective {
-    background-position: -112px -128px;
+.m6969Icon16.r69n69-69eneticist {
+    6969c6969round-69osition: -3269x -12869x;
 }
-.mapIcon16.rank-securityofficer {
-    background-position: -112px -128px;
+.m6969Icon16.r69n69-69s69chi69trist {
+    6969c6969round-69osition: -3269x -12869x;
+}
+.m6969Icon16.r69n69-chemist {
+    6969c6969round-69osition: -3269x -12869x;
+}
+
+/* Science 69ositions */
+.m6969Icon16.r69n69-scientist {
+    6969c6969round-69osition: -12869x -12869x;
+}
+.m6969Icon16.r69n69-69eneticist {
+    6969c6969round-69osition: -12869x -12869x;
+}
+.m6969Icon16.r69n69-ro69oticist {
+    6969c6969round-69osition: -12869x -12869x;
+}
+.m6969Icon16.r69n69-xeno69iolo69ist {
+    6969c6969round-69osition: -12869x -12869x;
+}
+
+/* Securit69 69ositions */
+.m6969Icon16.r69n69-w69rden {
+    6969c6969round-69osition: -11269x -12869x;
+}
+.m6969Icon16.r69n69-detecti69e {
+    6969c6969round-69osition: -11269x -12869x;
+}
+.m6969Icon16.r69n69-securit69officer {
+    6969c6969round-69osition: -11269x -12869x;
 }
 

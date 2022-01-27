@@ -1,6 +1,6 @@
 /obj/structure/wire_splicing
 	name = "wire splicing"
-	desc = "Looks like someone was very drunk when doing this, or just didn't care. This can be removed by wirecutters."
+	desc = "Looks like someone was69ery drunk when doing this, or just didn't care. This can be removed by wirecutters."
 	icon = 'icons/obj/traps.dmi'
 	icon_state = "wire_splicing1"
 	density = FALSE
@@ -8,7 +8,7 @@
 	flags = CONDUCT
 	layer = TURF_LAYER + 0.45
 	rarity_value = 10
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_tags = SPAWN_TAG_TRAP_ARMED_WIRE
 	var/messiness = 0 // How bad the splicing was, determines the chance of shock
 
@@ -45,7 +45,7 @@
 			if (turf_is_external(T))
 				continue //No traps in space
 
-			//Catwalks are made for walking on, we definitely want traps there
+			//Catwalks are69ade for walking on, we definitely want traps there
 			if (locate(/obj/structure/catwalk) in T)
 				turf_score += 2
 
@@ -62,35 +62,35 @@
 
 		//No nearby cables? Cancel
 		if (!candidates.len)
-			return INITIALIZE_HINT_QDEL
+			return INITIALIZE_HINT_69DEL
 
 
 		loc = pick(candidates)
 	messiness = rand (1,10)
-	icon_state = "wire_splicing[messiness]"
+	icon_state = "wire_splicing69messiness69"
 
-	//At messiness of 2 or below, triggering when walking on a catwalk is impossible
-	//Above that it becomes possible, so we will change the layer to make it poke through catwalks
+	//At69essiness of 2 or below, triggering when walking on a catwalk is impossible
+	//Above that it becomes possible, so we will change the layer to69ake it poke through catwalks
 	if (messiness > 2)
 		layer = LOW_OBJ_LAYER  // I wont do such stuff on splicing "reinforcement". Take it as nasty feature
 
 /obj/structure/wire_splicing/examine(mob/user)
 	..()
-	to_chat(user, "It has [messiness] wire[messiness > 1?"s":""] dangling around")
+	to_chat(user, "It has 69messiness69 wire69messiness > 1?"s":""69 dangling around")
 
-/obj/structure/wire_splicing/Crossed(AM as mob|obj)
+/obj/structure/wire_splicing/Crossed(AM as69ob|obj)
 	if(isliving(AM))
 		var/mob/living/L = AM
 		var/turf/T = get_turf(src)
-		var/chance_to_shock = messiness * 10
+		var/chance_to_shock =69essiness * 10
 		chance_to_shock -= L.skill_to_evade_traps()
 		if(locate(/obj/structure/catwalk) in T)
 			chance_to_shock -= 20
 		if(prob(chance_to_shock))
 			shock(L, FALSE)
 
-/obj/structure/wire_splicing/proc/shock(mob/user as mob, using_hands = TRUE)
-	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
+/obj/structure/wire_splicing/proc/shock(mob/user as69ob, using_hands = TRUE)
+	if(!in_range(src, user))//To prevent TK and69ech users from getting shocked
 		return FALSE
 	var/turf/T = get_turf(src)
 	var/obj/structure/cable/C = locate(/obj/structure/cable) in T
@@ -102,22 +102,22 @@
 				to_chat(user, SPAN_WARNING("You got electrocuted by wire splicing!"))
 				return TRUE
 
-/obj/structure/wire_splicing/attackby(obj/item/I, mob/user)
-	if(QUALITY_WIRE_CUTTING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_WIRE_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+/obj/structure/wire_splicing/attackby(obj/item/I,69ob/user)
+	if(69UALITY_WIRE_CUTTING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_WIRE_CUTTING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 			if(!shock(user, 100))
 				to_chat(user, SPAN_NOTICE("You remove the splicing."))
-				qdel(src)
+				69del(src)
 
-	if(QUALITY_CUTTING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_CUTTING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+	if(69UALITY_CUTTING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_CUTTING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 			if(!shock(user, 100))
 				to_chat(user, SPAN_NOTICE("You remove the splicing."))
-				qdel(src)
+				69del(src)
 
 	if(istype(I, /obj/item/stack/cable_coil) && user.a_intent == I_HURT)
 		if(used_now)
-			to_chat(user, "The [src.name] is already being manipulated!") //so people with low stats can't spam their way past the failure chance
+			to_chat(user, "The 69src.name69 is already being69anipulated!") //so people with low stats can't spam their way past the failure chance
 			return
 		if(messiness >= 10)
 			messiness = 10
@@ -138,7 +138,7 @@
 				var/fail_chance = FAILCHANCE_HARD - user.stats.getStat(STAT_MEC) // 72 for assistant
 				if(prob(fail_chance))
 					if(!shock(user, FALSE)) //why not
-						to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [fail_chance]% chance to screw this up."))
+						to_chat(user, SPAN_WARNING("You failed to finish your task with 69src.name69! There was a 69fail_chance69% chance to screw this up."))
 					used_now = FALSE
 					return
 				if(messiness >= 10)
@@ -146,7 +146,7 @@
 				//all clear, update things
 				coil.use(1)
 				messiness += 1
-				icon_state = "wire_splicing[messiness]"
-				to_chat(user, SPAN_NOTICE("You added one more wire."))
+				icon_state = "wire_splicing69messiness69"
+				to_chat(user, SPAN_NOTICE("You added one69ore wire."))
 				used_now = FALSE
 

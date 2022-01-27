@@ -13,12 +13,12 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 	if(active)
 		active = FALSE
 		GLOB.active_mindboil_spiders -= src
-		to_chat(owner_mob, SPAN_NOTICE("\The [src] is deactivated."))
+		to_chat(owner_mob, SPAN_NOTICE("\The 69src69 is deactivated."))
 
 	else
 		active = TRUE
 		GLOB.active_mindboil_spiders += src
-		to_chat(owner_mob, SPAN_NOTICE("\The [src] is active."))
+		to_chat(owner_mob, SPAN_NOTICE("\The 69src69 is active."))
 	..()
 
 
@@ -30,10 +30,10 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 			attack_from = wearer
 		else
 			attack_from = src
-		for(var/mob/living/carbon/human/H in view(5, attack_from))
-			if(H.get_species() != SPECIES_HUMAN || (H in victims) || (H == owner_mob))
+		for(var/mob/living/carbon/human/H in69iew(5, attack_from))
+			if(H.get_species() != SPECIES_HUMAN || (H in69ictims) || (H == owner_mob))
 				continue
-			H.sanity.onPsyDamage(1) //Half the ammount of mind fryer, can be mass produced
+			H.sanity.onPsyDamage(1) //Half the ammount of69ind fryer, can be69ass produced
 
 		// Pick up a new contract if there is none
 		if(owner_mob && !contract)
@@ -59,11 +59,11 @@ GLOBAL_LIST_EMPTY(active_mindboil_spiders)
 	if(victim == owner_mob)
 		return
 
-	victims |= victim
-	if(!(src in view(5, victim))) //Anti-cheese as these things stack, may be removed if it doesn't become problematic
+	victims |=69ictim
+	if(!(src in69iew(5,69ictim))) //Anti-cheese as these things stack,69ay be removed if it doesn't become problematic
 		to_chat(victim, SPAN_DANGER("SOMETHING IS WATCHING YOU"))
 
-	if(contract && victims.len >= contract.count)
+	if(contract &&69ictims.len >= contract.count)
 		if(owner_mob.mind)
 			if(contract.completed)
 				return

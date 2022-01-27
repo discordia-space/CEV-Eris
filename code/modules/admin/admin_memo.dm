@@ -1,9 +1,9 @@
-#define MEMOFILE "data/memo.sav"	//where the memos are saved
+#define69EMOFILE "data/memo.sav"	//where the69emos are saved
 
 ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
-//admin memo system. show/delete/write.
-// +SERVER needed to delete admin memos of others
-//switch verb so we don't spam up the verb lists with like, 3 verbs for this feature.
+//admin69emo system. show/delete/write.
+// +SERVER needed to delete admin69emos of others
+//switch69erb so we don't spam up the69erb lists with like, 369erbs for this feature.
 /client/proc/admin_memo(task in list("write","show","delete"))
 	set name = "Memo"
 	set category = "Server"
@@ -14,11 +14,11 @@ ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 		if("show")		admin_memo_show()
 		if("delete")	admin_memo_delete()
 
-//write a message
+//write a69essage
 /client/proc/admin_memo_write()
 	var/savefile/F = new(MEMOFILE)
 	if(F)
-		var/memo = sanitize(input(src,"Type your memo\n(Leaving it blank will delete your current memo):","Write Memo",null) as null|message, extra = 0)
+		var/memo = sanitize(input(src,"Type your69emo\n(Leaving it blank will delete your current69emo):","Write69emo",null) as null|message, extra = 0)
 		switch(memo)
 			if(null)
 				return
@@ -28,28 +28,28 @@ ADMIN_VERB_ADD(/client/proc/admin_memo, R_ADMIN, FALSE)
 				return
 		if( findtext(memo,"<script",1,0) )
 			return
-		F[ckey] << "[key] on [time2text(world.realtime,"(DDD) DD MMM hh:mm")]<br>[memo]"
-		message_admins("[key] set an admin memo:<br>[memo]")
+		F69ckey69 << "69key69 on 69time2text(world.realtime,"(DDD) DD69MM hh:mm")69<br>69memo69"
+		message_admins("69key69 set an admin69emo:<br>69memo69")
 
-//show all memos
+//show all69emos
 /client/proc/admin_memo_show()
 	if(config.admin_memo_system)
 		var/savefile/F = new(MEMOFILE)
 		if(F)
 			for(var/ckey in F.dir)
-				to_chat(src, "<center><span class='motd'><b>Admin Memo</b><i> by [F[ckey]]</i></span></center>")
+				to_chat(src, "<center><span class='motd'><b>Admin69emo</b><i> by 69F69ckey6969</i></span></center>")
 
-//delete your own or somebody else's memo
+//delete your own or somebody else's69emo
 /client/proc/admin_memo_delete()
 	var/savefile/F = new(MEMOFILE)
 	if(F)
 		var/ckey
-		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos
-			ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
+		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's69emos
+			ckey = input(src,"Whose69emo shall we remove?","Remove69emo",null) as null|anything in F.dir
 		else
 			ckey = src.ckey
 		if(ckey)
 			F.dir.Remove(ckey)
-			to_chat(src, "<b>Removed Memo created by [ckey].</b>")
+			to_chat(src, "<b>Removed69emo created by 69ckey69.</b>")
 
-#undef MEMOFILE
+#undef69EMOFILE

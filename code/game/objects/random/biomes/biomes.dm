@@ -13,7 +13,7 @@
 	biome_spawner = TRUE
 	spawn_nothing_percentage = 60
 
-// only mobs
+// only69obs
 /obj/landmark/loot_biomes/mob
 	name = "mob biome"
 	icon_state = "hostilemob-purple-biome"
@@ -26,16 +26,16 @@
 
 /obj/landmark/loot_biomes/mob/chek_tags()
 	if(!mob_tags.len)
-		crash_with("[src.name] has no spawn tag: [x],[y],[z]")
+		crash_with("69src.name69 has no spawn tag: 69x69,69y69,69z69")
 
 /obj/spawner/mob/biome_spawner_mob
-	name = "biome mob spawner"
+	name = "biome69ob spawner"
 	icon_state = "hostilemob-purple-spawner"
 	biome_spawner = TRUE
 	latejoin = TRUE
 
 /obj/spawner/mob/biome_spawner_mob/low_chance
-	name = "biome mob spawner"
+	name = "biome69ob spawner"
 	icon_state = "hostilemob-purple-spawner-low"
 	spawn_nothing_percentage = 60
 
@@ -70,7 +70,7 @@
 
 /obj/landmark/loot_biomes/trap/chek_tags()
 	if(!trap_tags.len)
-		crash_with("[src.name] has no spawn tag: [x],[y],[z]")
+		crash_with("69src.name69 has no spawn tag: 69x69,69y69,69z69")
 
 /obj/spawner/traps/biome_spawner_trap
 	name = "biome trap spawner"
@@ -86,12 +86,12 @@
 
 // Junk Tractor Beam (JTB)
 /obj/landmark/loot_biomes/jtb
-	range = 10 // Maximum could be 12 since we have 25x25 chunks and landmark is at the center
+	range = 10 //69aximum could be 12 since we have 25x25 chunks and landmark is at the center
 	min_loot_amount = 4
 	max_loot_amount = 8
 	min_traps_amount = 4
 	max_traps_amount = 8
-	min_mobs_amount = 0 // Mobs are hardcoded in map file
+	min_mobs_amount = 0 //69obs are hardcoded in69ap file
 	max_mobs_amount = 0
 
 /obj/landmark/loot_biomes/jtb/neutral

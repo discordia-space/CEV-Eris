@@ -13,31 +13,31 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/log_admin = 0					// log admin actions
 	var/log_debug = 1					// log debug output
 	var/log_game = 0					// log game events
-	var/log_vote = 0					// log voting
+	var/log_vote = 0					// log69oting
 	var/log_whisper = 0					// log client whisper
 	var/log_emote = 0					// log emotes
-	var/log_attack = 0					// log attack messages
-	var/log_adminchat = 0				// log admin chat messages
+	var/log_attack = 0					// log attack69essages
+	var/log_adminchat = 0				// log admin chat69essages
 	var/log_adminwarn = 0				// log warnings admins get about bomb construction and such
-	var/log_pda = 0						// log pda messages
+	var/log_pda = 0						// log pda69essages
 	var/log_hrefs = 0					// logs all links clicked in-game. Could be used for debugging and tracking down exploits
 	var/log_runtime = 0					// logs world.log to a file
 	var/log_world_output = 0			// log log_world(messages)
 	var/sql_enabled = 1					// for sql switching
 	var/allow_admin_ooccolor = 0		// Allows admins with relevant permissions to have their own ooc colour
-	var/allow_vote_restart = 0 			// allow votes to restart
+	var/allow_vote_restart = 0 			// allow69otes to restart
 	var/ert_admin_call_only = 0
-	var/allow_vote_mode = 0				// allow votes to change mode
-	var/vote_delay = 6000				// minimum time between voting sessions (deciseconds, 10 minute default)
-	var/vote_period = 600				// length of voting period (deciseconds, default 1 minute)
-	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode vote is called (in seconds, default 100).
-	var/vote_no_default = 0				// vote does not default to nochange/norestart (tbi)
-	var/vote_no_dead = 0				// dead people can't vote (tbi)
+	var/allow_vote_mode = 0				// allow69otes to change69ode
+	var/vote_delay = 6000				//69inimum time between69oting sessions (deciseconds, 1069inute default)
+	var/vote_period = 600				// length of69oting period (deciseconds, default 169inute)
+	var/vote_autogamemode_timeleft = 100 //Length of time before round start when autogamemode69ote is called (in seconds, default 100).
+	var/vote_no_default = 0				//69ote does not default to nochange/norestart (tbi)
+	var/vote_no_dead = 0				// dead people can't69ote (tbi)
 	//var/enable_authentication = 0		// goon authentication
 	var/del_new_on_log = 1				// del's new players if they log before they spawn in
 	var/objectives_disabled = 0 			//if objectives are disabled or not
 	var/protect_roles_from_antagonist = 0// If security and such can be contractor/cult/other
-	var/allow_Metadata = 0				// Metadata is supported.
+	var/allow_Metadata = 0				//69etadata is supported.
 	var/popup_admin_pm = 0				//adminPMs to non-admins show in a pop-up 'reply' window when set to 1.
 	var/tick_limit_mc_init = TICK_LIMIT_MC_INIT_DEFAULT	//SSinitialization throttling
 	var/fps = 40
@@ -46,15 +46,15 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/antag_hud_allowed = 0			// Ghosts can turn on Antagovision to see a HUD of who is the bad guys this round.
 	var/antag_hud_restricted = 0                    // Ghosts that turn on Antagovision cannot rejoin the round.
 	var/list/storyteller_names = list()
-	var/list/storytellers = list()				// allowed modes
+	var/list/storytellers = list()				// allowed69odes
 	var/humans_need_surnames = 0
-	var/allow_random_events = 0			// enables random events mid-round when set to 1
+	var/allow_random_events = 0			// enables random events69id-round when set to 1
 	var/allow_ai = 0					// allow ai job
 	var/hostedby
 	var/respawn_delay = 30
 	var/guest_jobban = 1
 	var/usewhitelist = 0
-	var/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
+	var/kick_inactive = 0				//force disconnect for inactive players after this69any69inutes, if non-0
 	var/show_mods = 0
 	var/show_mentors = 0
 	var/mods_can_tempban = 0
@@ -65,21 +65,21 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/ToRban = 0
 	var/automute_on = 0					//enables automuting/spam prevention
 	var/use_cortical_stacks = 0			//enables neural lace
-	var/empty_server_restart_time = 0	// Time in minutes before empty server will restart
+	var/empty_server_restart_time = 0	// Time in69inutes before empty server will restart
 
 	var/character_slots = 10				// The number of available character slots
 	var/loadout_slots = 3					// The number of loadout slots per character
 
 	var/max_gear_cost = 10 // Used in chargen for accessory loadout limit. 0 disables loadout, negative allows infinite points.
 
-	var/max_maint_drones = 5				//This many drones can spawn,
+	var/max_maint_drones = 5				//This69any drones can spawn,
 	var/allow_drone_spawn = 1				//assuming the admin allow them to.
-	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 2 minutes.
+	var/drone_build_time = 1200				//A drone will become available every X ticks since last drone spawn. Default is 269inutes.
 
-	var/enable_mob_sleep = 1  //Experimental - make mobs sleep when no danger is present
+	var/enable_mob_sleep = 1  //Experimental -69ake69obs sleep when no danger is present
 
 	var/disable_player_mice = 0
-	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned mice from understanding human speech
+	var/uneducated_mice = 0 //Set to 1 to prevent newly-spawned69ice from understanding human speech
 
 	var/allow_extra_antags = 0
 	var/guests_allowed = 1
@@ -95,30 +95,30 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	var/discordurl
 
 	var/static/ip_reputation = FALSE		//Should we query IPs to get scores? Generates HTTP traffic to an API service.
-	var/static/ipr_email					//Left null because you MUST specify one otherwise you're making the internet worse.
-	var/static/ipr_block_bad_ips = FALSE	//Should we block anyone who meets the minimum score below? Otherwise we just log it (If paranoia logging is on, visibly in chat).
-	var/static/ipr_bad_score = 1			//The API returns a value between 0 and 1 (inclusive), with 1 being 'definitely VPN/Tor/Proxy'. Values equal/above this var are considered bad.
-	var/static/ipr_allow_existing = FALSE 	//Should we allow known players to use VPNs/Proxies? If the player is already banned then obviously they still can't connect.
-	var/static/ipr_minimum_age = 5			//How many days before a player is considered 'fine' for the purposes of allowing them to use VPNs.
+	var/static/ipr_email					//Left null because you69UST specify one otherwise you're69aking the internet worse.
+	var/static/ipr_block_bad_ips = FALSE	//Should we block anyone who69eets the69inimum score below? Otherwise we just log it (If paranoia logging is on,69isibly in chat).
+	var/static/ipr_bad_score = 1			//The API returns a69alue between 0 and 1 (inclusive), with 1 being 'definitely69PN/Tor/Proxy'.69alues equal/above this69ar are considered bad.
+	var/static/ipr_allow_existing = FALSE 	//Should we allow known players to use69PNs/Proxies? If the player is already banned then obviously they still can't connect.
+	var/static/ipr_minimum_age = 5			//How69any days before a player is considered 'fine' for the purposes of allowing them to use69PNs.
 	var/static/ipqualityscore_apikey		//API key for ipqualityscore.com. Optional additional service that can be used if an API key is provided.
 
-	var/static/panic_bunker = FALSE			//Only allow ckeys who have already been seen by the DB. Only makes sense if you have a DB.
+	var/static/panic_bunker = FALSE			//Only allow ckeys who have already been seen by the DB. Only69akes sense if you have a DB.
 	var/static/paranoia_logging = FALSE		//Log new byond accounts and first-time joins
 
 	//Alert level description
-	var/alert_desc_green = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
-	var/alert_desc_blue_upto = "The ship has received reliable information about possible hostile activity on the ship. Security staff may have weapons visible, random searches are permitted."
-	var/alert_desc_blue_downto = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
-	var/alert_desc_red_upto = "There is an immediate serious threat to the ship. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	var/alert_desc_red_downto = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the ship. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	var/alert_desc_green = "All threats to the ship have passed. Security69ay not have weapons69isible, privacy laws are once again fully enforced."
+	var/alert_desc_blue_upto = "The ship has received reliable information about possible hostile activity on the ship. Security staff69ay have weapons69isible, random searches are permitted."
+	var/alert_desc_blue_downto = "The immediate threat has passed. Security69ay no longer have weapons drawn at all times, but69ay continue to have them69isible. Random searches are still allowed."
+	var/alert_desc_red_upto = "There is an immediate serious threat to the ship. Security69ay have weapons unholstered at all times. Random searches are allowed and advised."
+	var/alert_desc_red_downto = "The self-destruct69echanism has been deactivated, there is still however an immediate serious threat to the ship. Security69ay have weapons unholstered at all times, random searches are allowed and advised."
 
 	var/forbid_singulo_possession = 0
 
 	var/organs_decay
 	var/default_brain_health = 400
 
-	//Paincrit knocks someone down once they hit 60 shock_stage, so by default make it so that close to 100 additional damage needs to be dealt,
-	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes much longer to wear off than a halloss stun.
+	//Paincrit knocks someone down once they hit 60 shock_stage, so by default69ake it so that close to 100 additional damage needs to be dealt,
+	//so that it's similar to HALLOSS. Lowered it a bit since hitting paincrit takes69uch longer to wear off than a halloss stun.
 	var/organ_damage_spillover_multiplier = 0.5
 
 	var/bones_can_break = 0
@@ -142,13 +142,13 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/use_recursive_explosions //Defines whether the server uses recursive or circular explosions.
 
-	var/assistant_maint = 0 //Do assistants get maint access?
+	var/assistant_maint = 0 //Do assistants get69aint access?
 	var/gateway_delay = 18000 //How long the gateway takes before it activates. Default is half an hour.
 	var/ghost_interaction = 0
 
 	var/comms_password = ""
 
-	var/list/forbidden_versions = list() // Clients with these byond versions will be autobanned. Format: string "byond_version.byond_build"; separate with ; in config, e.g. 512.1234;512.1235
+	var/list/forbidden_versions = list() // Clients with these byond69ersions will be autobanned. Format: string "byond_version.byond_build"; separate with ; in config, e.g. 512.1234;512.1235
 	var/minimum_byond_version
 	var/minimum_byond_build
 
@@ -169,7 +169,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 	// Event settings
 	var/expected_round_length = 3 * 60 * 60 * 10 // 3 hours
 	// If the first delay has a custom start time
-	// No custom time, no custom time, between 80 to 100 minutes respectively.
+	// No custom time, no custom time, between 80 to 10069inutes respectively.
 	var/list/event_first_run   = list(
 		EVENT_LEVEL_MUNDANE = null,
 		EVENT_LEVEL_MODERATE = null,
@@ -178,7 +178,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_ECONOMY = list("lower" = 16000, "upper" = 20000),
 	)
 	// The lowest delay until next event
-	// 10, 30, 50 minutes respectively
+	// 10, 30, 5069inutes respectively
 	var/list/event_delay_lower = list(
 		EVENT_LEVEL_MUNDANE = 6000,
 		EVENT_LEVEL_MODERATE = 18000,
@@ -187,7 +187,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		EVENT_LEVEL_ECONOMY = 18000
 	)
 	// The upper delay until next event
-	// 15, 45, 70 minutes respectively
+	// 15, 45, 7069inutes respectively
 	var/list/event_delay_upper = list(
 		EVENT_LEVEL_MUNDANE = 9000,
 		EVENT_LEVEL_MODERATE = 27000,
@@ -236,17 +236,17 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 	var/list/L = typesof(/datum/storyteller)-/datum/storyteller
 	for (var/T in L)
-		// I wish I didn't have to instance the game modes in order to look up
+		// I wish I didn't have to instance the game69odes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/storyteller/S = new T()
 		if (S.config_tag)
-			GLOB.storyteller_cache[S.config_tag] = S // So we don't instantiate them repeatedly.
-			if(!(S.config_tag in storytellers))		// ensure each mode is added only once
-				log_misc("Adding storyteller [S.name] ([S.config_tag]) to configuration.")
+			GLOB.storyteller_cache69S.config_tag69 = S // So we don't instantiate them repeatedly.
+			if(!(S.config_tag in storytellers))		// ensure each69ode is added only once
+				log_misc("Adding storyteller 69S.name69 (69S.config_tag69) to configuration.")
 				src.storytellers += S.config_tag
-				src.storyteller_names[S.config_tag] = S.name
+				src.storyteller_names69S.config_tag69 = S.name
 
-/datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
+/datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not69aking it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
 
 	for(var/t in Lines)
@@ -341,9 +341,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if ("log_runtime")
 					config.log_runtime = 1
-					var/newlog = file("data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log")
+					var/newlog = file("data/logs/runtimes/runtime-69time2text(world.realtime, "YYYY-MM-DD")69.log")
 					if(runtime_diary != newlog)
-						world.log << "Now logging runtimes to data/logs/runtimes/runtime-[time2text(world.realtime, "YYYY-MM-DD")].log"
+						world.log << "Now logging runtimes to data/logs/runtimes/runtime-69time2text(world.realtime, "YYYY-MM-DD")69.log"
 						runtime_diary = newlog
 
 				if ("generate_asteroid")
@@ -392,46 +392,46 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.respawn_delay = text2num(value)
 
 				if ("servername")
-					config.server_name = value
+					config.server_name =69alue
 
 				if ("serversuffix")
 					config.server_suffix = 1
 
 				if ("nudge_script_path")
-					config.nudge_script_path = value
+					config.nudge_script_path =69alue
 
 				if ("hostedby")
-					config.hostedby = value
+					config.hostedby =69alue
 
 				if ("serverurl")
-					config.serverurl = value
+					config.serverurl =69alue
 
 				if ("language")
-					config.language = value
+					config.language =69alue
 
 				if ("server")
-					config.server = value
+					config.server =69alue
 
 				if ("banappeals")
-					config.banappeals = value
+					config.banappeals =69alue
 
 				if ("wikiurl")
-					config.wikiurl = value
+					config.wikiurl =69alue
 
 				if ("discordurl")
-					config.discordurl = value
+					config.discordurl =69alue
 
 				if ("forumurl")
-					config.forumurl = value
+					config.forumurl =69alue
 
 				if ("githuburl")
-					config.githuburl = value
+					config.githuburl =69alue
 
 				if("ip_reputation")
 					config.ip_reputation = 1
 
 				if("ipr_email")
-					config.ipr_email = value
+					config.ipr_email =69alue
 
 				if("ipr_block_bad_ips")
 					config.ipr_block_bad_ips = 1
@@ -446,7 +446,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.ipr_minimum_age = text2num(value)
 
 				if ("ipqualityscore_apikey")
-					config.ipqualityscore_apikey = value
+					config.ipqualityscore_apikey =69alue
 
 				if ("panic_bunker")
 					config.panic_bunker = 1
@@ -455,7 +455,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.paranoia_logging = 1
 
 				if ("ghosts_can_possess_animals")
-					config.ghosts_can_possess_animals = value
+					config.ghosts_can_possess_animals =69alue
 
 				if ("guest_jobban")
 					config.guest_jobban = 1
@@ -519,19 +519,19 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					load_jobs_from_txt = 1
 
 				if("alert_red_upto")
-					config.alert_desc_red_upto = value
+					config.alert_desc_red_upto =69alue
 
 				if("alert_red_downto")
-					config.alert_desc_red_downto = value
+					config.alert_desc_red_downto =69alue
 
 				if("alert_blue_downto")
-					config.alert_desc_blue_downto = value
+					config.alert_desc_blue_downto =69alue
 
 				if("alert_blue_upto")
-					config.alert_desc_blue_upto = value
+					config.alert_desc_blue_upto =69alue
 
 				if("alert_green")
-					config.alert_desc_green = value
+					config.alert_desc_green =69alue
 
 				if("forbid_singulo_possession")
 					forbid_singulo_possession = 1
@@ -587,7 +587,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.uneducated_mice = 1
 
 				if("comms_password")
-					config.comms_password = value
+					config.comms_password =69alue
 
 				if("forbidden_versions")
 					config.forbidden_versions = splittext(value, ";")
@@ -599,20 +599,20 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.minimum_byond_build = text2num(value)
 
 				if("irc_bot_host")
-					config.irc_bot_host = value
+					config.irc_bot_host =69alue
 
 				if("main_irc")
-					config.main_irc = value
+					config.main_irc =69alue
 
 				if("admin_irc")
-					config.admin_irc = value
+					config.admin_irc =69alue
 
 				if("announce_shuttle_dock_to_irc")
 					config.announce_shuttle_dock_to_irc = TRUE
 
 				if("python_path")
 					if(value)
-						config.python_path = value
+						config.python_path =69alue
 
 				if("use_lib_nudge")
 					config.use_lib_nudge = 1
@@ -638,7 +638,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.use_overmap = 1
 
 				if("expected_round_length")
-					config.expected_round_length = MinutesToTicks(text2num(value))
+					config.expected_round_length =69inutesToTicks(text2num(value))
 
 				if("disable_welder_vision")
 					config.welder_vision = 0
@@ -648,36 +648,36 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 				if("event_custom_start_mundane")
 					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_MUNDANE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+					config.event_first_run69EVENT_LEVEL_MUNDANE69 = list("lower" =69inutesToTicks(values69169), "upper" =69inutesToTicks(values69269))
 
 				if("event_custom_start_moderate")
 					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_MODERATE] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+					config.event_first_run69EVENT_LEVEL_MODERATE69 = list("lower" =69inutesToTicks(values69169), "upper" =69inutesToTicks(values69269))
 
 				if("event_custom_start_major")
 					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_MAJOR] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+					config.event_first_run69EVENT_LEVEL_MAJOR69 = list("lower" =69inutesToTicks(values69169), "upper" =69inutesToTicks(values69269))
 
 				if("event_custom_start_economy")
 					var/values = text2numlist(value, ";")
-					config.event_first_run[EVENT_LEVEL_ECONOMY] = list("lower" = MinutesToTicks(values[1]), "upper" = MinutesToTicks(values[2]))
+					config.event_first_run69EVENT_LEVEL_ECONOMY69 = list("lower" =69inutesToTicks(values69169), "upper" =69inutesToTicks(values69269))
 
 				if("event_delay_lower")
 					var/values = text2numlist(value, ";")
-					config.event_delay_lower[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
-					config.event_delay_lower[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
-					config.event_delay_lower[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
-					config.event_delay_lower[EVENT_LEVEL_ECONOMY] = MinutesToTicks(values[4])
+					config.event_delay_lower69EVENT_LEVEL_MUNDANE69 =69inutesToTicks(values69169)
+					config.event_delay_lower69EVENT_LEVEL_MODERATE69 =69inutesToTicks(values69269)
+					config.event_delay_lower69EVENT_LEVEL_MAJOR69 =69inutesToTicks(values69369)
+					config.event_delay_lower69EVENT_LEVEL_ECONOMY69 =69inutesToTicks(values69469)
 
 				if("event_delay_upper")
 					var/values = text2numlist(value, ";")
-					config.event_delay_upper[EVENT_LEVEL_MUNDANE] = MinutesToTicks(values[1])
-					config.event_delay_upper[EVENT_LEVEL_MODERATE] = MinutesToTicks(values[2])
-					config.event_delay_upper[EVENT_LEVEL_MAJOR] = MinutesToTicks(values[3])
-					config.event_delay_upper[EVENT_LEVEL_ECONOMY] = MinutesToTicks(values[4])
+					config.event_delay_upper69EVENT_LEVEL_MUNDANE69 =69inutesToTicks(values69169)
+					config.event_delay_upper69EVENT_LEVEL_MODERATE69 =69inutesToTicks(values69269)
+					config.event_delay_upper69EVENT_LEVEL_MAJOR69 =69inutesToTicks(values69369)
+					config.event_delay_upper69EVENT_LEVEL_ECONOMY69 =69inutesToTicks(values69469)
 
 				if("starlight")
-					config.starlight = value ? value : 0
+					config.starlight =69alue ?69alue : 0
 
 				if("random_submap_orientation")
 					config.random_submap_orientation = 1
@@ -694,7 +694,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.loadout_slots = text2num(value)
 
 				if("law_zero")
-					law_zero = value
+					law_zero =69alue
 
 				if("aggressive_changelog")
 					config.aggressive_changelog = 1
@@ -702,7 +702,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("default_language_prefixes")
 					var/list/values = splittext(value, " ")
 					if(values.len > 0)
-						language_prefixes = values
+						language_prefixes =69alues
 
 				if("empty_server_restart_time")
 					config.empty_server_restart_time = text2num(value)
@@ -717,10 +717,10 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					config.enable_mob_sleep = 1
 
 				if("webhook_key")
-					config.webhook_key = value
+					config.webhook_key =69alue
 
 				if("webhook_url")
-					config.webhook_url = value
+					config.webhook_url =69alue
 
 
 				if("random_start")
@@ -729,7 +729,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 						"abandoned fortress",
 						"space ruins")
 					var/pick = rand(1, startlist.len)
-					config.start_location = startlist[pick]
+					config.start_location = startlist69pick69
 
 				if("asteroid_start")
 					config.start_location = "asteroid"
@@ -746,23 +746,23 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 				if("generate_loot_data")
 					config.generate_loot_data = TRUE
 				else
-					log_misc("Unknown setting in configuration: '[name]'")
+					log_misc("Unknown setting in configuration: '69name69'")
 
 
 		else if(type == "game_options")
 			if(!value)
-				log_misc("Unknown value for setting [name] in [filename].")
+				log_misc("Unknown69alue for setting 69name69 in 69filename69.")
 			value = text2num(value)
 
 			switch(name)
 				if("revival_pod_plants")
-					config.revival_pod_plants = value
+					config.revival_pod_plants =69alue
 				if("revival_cloning")
-					config.revival_cloning = value
+					config.revival_cloning =69alue
 				if("revival_brain_life")
-					config.revival_brain_life = value
+					config.revival_brain_life =69alue
 				if("organ_damage_spillover_multiplier")
-					config.organ_damage_spillover_multiplier = value / 100
+					config.organ_damage_spillover_multiplier =69alue / 100
 				if("organs_can_decay")
 					config.organs_decay = 1
 				if("default_brain_health")
@@ -770,9 +770,9 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 					if(!config.default_brain_health || config.default_brain_health < 1)
 						config.default_brain_health = initial(config.default_brain_health)
 				if("bones_can_break")
-					config.bones_can_break = value
+					config.bones_can_break =69alue
 				if("limbs_can_break")
-					config.limbs_can_break = value
+					config.limbs_can_break =69alue
 
 
 				if("use_loyalty_implants")
@@ -782,7 +782,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 
 				else
-					log_misc("Unknown setting in configuration: '[name]'")
+					log_misc("Unknown setting in configuration: '69name69'")
 	LoadChatFilter()
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE
@@ -811,30 +811,30 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 		switch (name)
 			if ("address")
-				sqladdress = value
+				sqladdress =69alue
 			if ("port")
-				sqlport = value
+				sqlport =69alue
 			if ("database")
-				sqldb = value
+				sqldb =69alue
 			if ("login")
-				sqllogin = value
+				sqllogin =69alue
 			if ("password")
-				sqlpass = value
+				sqlpass =69alue
 			else
-				log_misc("Unknown setting in configuration: '[name]'")
+				log_misc("Unknown setting in configuration: '69name69'")
 
 /datum/configuration/proc/pick_storyteller(story_name)
-	// I wish I didn't have to instance the game modes in order to look up
+	// I wish I didn't have to instance the game69odes in order to look up
 	// their information, but it is the only way (at least that I know of).
 	if(story_name in GLOB.storyteller_cache)
-		return GLOB.storyteller_cache[story_name]
+		return GLOB.storyteller_cache69story_name69
 
-	return GLOB.storyteller_cache[STORYTELLER_BASE]
+	return GLOB.storyteller_cache69STORYTELLER_BASE69
 
 /datum/configuration/proc/get_storytellers()
 	var/list/runnable_storytellers = list()
 	for(var/storyteller in GLOB.storyteller_cache)
-		var/datum/storyteller/S = GLOB.storyteller_cache[storyteller]
+		var/datum/storyteller/S = GLOB.storyteller_cache69storyteller69
 		if(S)
 			runnable_storytellers |= S
 	return runnable_storytellers
@@ -842,7 +842,7 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 
 
 /datum/configuration/proc/post_load()
-	//apply a default value to config.python_path, if needed
+	//apply a default69alue to config.python_path, if needed
 	if (!config.python_path)
 		if(world.system_type == UNIX)
 			config.python_path = "/usr/bin/env python2"
@@ -863,4 +863,4 @@ GLOBAL_LIST_EMPTY(storyteller_cache)
 		GLOB.in_character_filter += line
 
 	if(!ic_filter_regex && GLOB.in_character_filter.len)
-		ic_filter_regex = regex("\\b([jointext(GLOB.in_character_filter, "|")])\\b", "i")
+		ic_filter_regex = regex("\\b(69jointext(GLOB.in_character_filter, "|")69)\\b", "i")

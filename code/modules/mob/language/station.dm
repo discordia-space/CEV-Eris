@@ -1,6 +1,6 @@
 /datum/language/common
 	name = LANGUAGE_COMMON
-	desc = "Most popular language in Canis Majoris constellation, thanks to many USA colonial ships arrived there in distant past."
+	desc = "Most popular language in Canis69ajoris constellation, thanks to69any USA colonial ships arrived there in distant past."
 	key = "0"
 	flags = RESTRICTED
 	shorthand = "CO"
@@ -20,7 +20,7 @@
 
 //Syllable Lists
 /*
-	This list really long, mainly because I can't make up my mind about which mandarin syllables should be removed,
+	This list really long,69ainly because I can't69ake up69y69ind about which69andarin syllables should be removed,
 	and the english syllables had to be duplicated so that there is roughly a 50-50 weighting.
 
 	Sources:

@@ -3,7 +3,7 @@
 	name = "Portable Destructive Analyzer"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "portable_analyzer"
-	desc = "Similar to the stationary version, this rather unwieldy device allows you to break down objects in the name of science."
+	desc = "Similar to the stationary69ersion, this rather unwieldy device allows you to break down objects in the name of science."
 	bad_type = /obj/item/portable_destructive_analyzer
 
 	var/min_reliability = 90 //Can't upgrade, call it laziness or a drawback
@@ -17,7 +17,7 @@
 	. = ..()
 	files = new /datum/research(src) //Setup the research data holder.
 
-/obj/item/portable_destructive_analyzer/attack_self(user as mob)
+/obj/item/portable_destructive_analyzer/attack_self(user as69ob)
 	var/response = alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
 							Syncing to the research server will send the data that is stored inside to research.\n\
 							Ejecting will place the loaded item onto the floor.",
@@ -26,7 +26,7 @@
 		if(loaded_item)
 			var/confirm = alert(user, "This will destroy the item inside forever.  Are you sure?","Confirm Analyze","Yes","No")
 			if(confirm == "Yes") //This is pretty copypasta-y
-				to_chat(user, "You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.")
+				to_chat(user, "You activate the analyzer's69icrolaser, analyzing \the 69loaded_item69 and breaking it down.")
 				flick("portable_analyzer_scan", src)
 				playsound(src.loc, 'sound/items/Welder2.ogg', 50, 1)
 				for(var/T in loaded_item.origin_tech)
@@ -34,8 +34,8 @@
 					var/object_research_value = files.experiments.get_object_research_value(loaded_item)
 					files.adjust_research_points(object_research_value)
 					files.experiments.do_research_object(loaded_item)
-					to_chat(user, "\The [loaded_item] incremented the research points by [object_research_value].")
-					for(var/mob/living/carbon/human/H in viewers(user))
+					to_chat(user, "\The 69loaded_item69 incremented the research points by 69object_research_value69.")
+					for(var/mob/living/carbon/human/H in69iewers(user))
 						SEND_SIGNAL(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
 				loaded_item = null
 				for(var/obj/I in contents)
@@ -57,7 +57,7 @@
 			else
 				return
 		else
-			to_chat(user, "The [src] is empty.  Put something inside it first.")
+			to_chat(user, "The 69src69 is empty.  Put something inside it first.")
 	if(response == "Sync")
 		var/success = 0
 		for(var/obj/machinery/r_n_d/server/S in GLOB.machines)
@@ -65,7 +65,7 @@
 			files.download_from(S.files)
 			success = TRUE
 		if(success)
-			to_chat(user, "You connect to the research server, push your data upstream to it, then pull the resulting merged data from the master branch.")
+			to_chat(user, "You connect to the research server, push your data upstream to it, then pull the resulting69erged data from the69aster branch.")
 			playsound(src.loc, 'sound/machines/twobeep.ogg', 50, 1)
 		else
 			to_chat(user, "Reserch server ping response timed out.  Unable to connect.  Please contact the system administrator.")
@@ -77,26 +77,26 @@
 			icon_state = initial(icon_state)
 			loaded_item = null
 		else
-			to_chat(user, "The [src] is already empty.")
+			to_chat(user, "The 69src69 is already empty.")
 
 
-/obj/item/portable_destructive_analyzer/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/portable_destructive_analyzer/afterattack(atom/target,69ob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
 		return
-	if(!isturf(target.loc)) // Don't load up stuff if it's inside a container or mob!
+	if(!isturf(target.loc)) // Don't load up stuff if it's inside a container or69ob!
 		return
 	if(istype(target,/obj/item))
 		if(loaded_item)
-			to_chat(user, "Your [src] already has something inside.  Analyze or eject it first.")
+			to_chat(user, "Your 69src69 already has something inside.  Analyze or eject it first.")
 			return
 		var/obj/item/I = target
 		I.loc = src
 		loaded_item = I
-		for(var/mob/M in viewers())
-			M.show_message(text(SPAN_NOTICE("[user] adds the [I] to the [src].")), 1)
-		desc = initial(desc) + "<br>It is holding \the [loaded_item]."
+		for(var/mob/M in69iewers())
+			M.show_message(text(SPAN_NOTICE("69user69 adds the 69I69 to the 69src69.")), 1)
+		desc = initial(desc) + "<br>It is holding \the 69loaded_item69."
 		flick("portable_analyzer_load", src)
 		icon_state = "portable_analyzer_full"
 
@@ -111,12 +111,12 @@
 //A harvest item for serviceborgs.
 /obj/item/robot_harvester
 	name = "auto harvester"
-	desc = "A hand-held harvest tool that resembles a sickle.  It uses energy to cut plant matter very efficently."
+	desc = "A hand-held harvest tool that resembles a sickle.  It uses energy to cut plant69atter69ery efficently."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "autoharvester"
 	bad_type = /obj/item/robot_harvester
 
-/obj/item/robot_harvester/afterattack(var/atom/target, var/mob/living/user, proximity)
+/obj/item/robot_harvester/afterattack(var/atom/target,69ar/mob/living/user, proximity)
 	if(!target)
 		return
 	if(!proximity)
@@ -128,7 +128,7 @@
 		else if(T.dead) //It's probably dead otherwise.
 			T.remove_dead(user)
 	else
-		to_chat(user, "Harvesting \a [target] is not the purpose of this tool.  The [src] is for plants being grown.")
+		to_chat(user, "Harvesting \a 69target69 is not the purpose of this tool.  The 69src69 is for plants being grown.")
 
 // A special tray for the service droid. Allow droid to pick up and drop items as if they were using the tray normally
 // Click on table to unload, click on item to load. Otherwise works identically to a tray.
@@ -139,15 +139,15 @@
 	desc = "An autoloading tray specialized for carrying refreshments."
 	bad_type = /obj/item/tray/robotray
 
-/obj/item/tray/robotray/afterattack(atom/target, mob/user, proximity)
+/obj/item/tray/robotray/afterattack(atom/target,69ob/user, proximity)
 	if(!proximity)
 		return
 	if ( !target )
 		return
-	// pick up items, mostly copied from base tray pickup proc
+	// pick up items,69ostly copied from base tray pickup proc
 	// see code\game\objects\items\weapons\kitchen.dm line 241
 	if ( istype(target,/obj/item))
-		if ( !isturf(target.loc) ) // Don't load up stuff if it's inside a container or mob!
+		if ( !isturf(target.loc) ) // Don't load up stuff if it's inside a container or69ob!
 			return
 		var turf/pickup = target.loc
 
@@ -164,7 +164,7 @@
 					add = 3
 				else
 					add = 5
-				if(calc_carry() + add >= max_carry)
+				if(calc_carry() + add >=69ax_carry)
 					break
 
 				I.forceMove(src)
@@ -172,7 +172,7 @@
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("\blue [user] load some items onto their service tray.")
+			user.visible_message("\blue 69user69 load some items onto their service tray.")
 
 		return
 
@@ -181,7 +181,7 @@
 
 	if ( isturf(target) || istype(target,/obj/structure/table) )
 		var foundtable = istype(target,/obj/structure/table/)
-		if ( !foundtable ) //it must be a turf!
+		if ( !foundtable ) //it69ust be a turf!
 			for(var/obj/structure/table/T in target)
 				foundtable = 1
 				break
@@ -204,7 +204,7 @@
 			carrying.Remove(I)
 			droppedSomething = 1
 			if(!foundtable && isturf(dropspot))
-				// if no table, presume that the person just shittily dropped the tray on the ground and made a mess everywhere!
+				// if no table, presume that the person just shittily dropped the tray on the ground and69ade a69ess everywhere!
 				spawn()
 					for(var/i = 1, i <= rand(1,2), i++)
 						if(I)
@@ -212,27 +212,27 @@
 							sleep(rand(2,4))
 		if ( droppedSomething )
 			if ( foundtable )
-				user.visible_message("\blue [user] unloads their service tray.")
+				user.visible_message("\blue 69user69 unloads their service tray.")
 			else
-				user.visible_message("\blue [user] drops all the items on their tray.")
+				user.visible_message("\blue 69user69 drops all the items on their tray.")
 
 	return ..()
 
 
 
 
-// A special pen for service droids. Can be toggled to switch between normal writting mode, and paper rename mode
+// A special pen for service droids. Can be toggled to switch between normal writting69ode, and paper rename69ode
 // Allows service droids to rename paper items.
 
 /obj/item/pen/robopen
-	desc = "A black ink printing attachment with a paper naming mode."
+	desc = "A black ink printing attachment with a paper naming69ode."
 	name = "Printing Pen"
 	var/mode = 1
 	bad_type = /obj/item/pen/robopen
 
 /obj/item/pen/robopen/attack_self(mob/user)
 
-	var/choice = input("Would you like to change colour or mode?") as null|anything in list("Colour","Mode")
+	var/choice = input("Would you like to change colour or69ode?") as null|anything in list("Colour","Mode")
 	if(!choice) return
 
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
@@ -248,11 +248,11 @@
 				mode = 2
 			else
 				mode = 1
-			to_chat(user, "Changed printing mode to '[mode == 2 ? "Rename Paper" : "Write Paper"]'")
+			to_chat(user, "Changed printing69ode to '69mode == 2 ? "Rename Paper" : "Write Paper"69'")
 
 	return
 
-// Copied over from paper's rename verb
+// Copied over from paper's rename69erb
 // see code\modules\paperwork\paper.dm line 62
 
 /obj/item/pen/robopen/proc/RenamePaper(mob/user,obj/paper)
@@ -264,7 +264,7 @@
 
 	//n_name = copytext(n_name, 1, 32)
 	if(( get_dist(user,paper) <= 1  && user.stat == 0))
-		paper.name = "paper[(n_name ? text("- '[n_name]'") : null)]"
+		paper.name = "paper69(n_name ? text("- '69n_name69'") : null)69"
 	add_fingerprint(user)
 	return
 
@@ -277,10 +277,10 @@
 	item_state = "sheet-metal"
 	bad_type = /obj/item/form_printer
 
-/obj/item/form_printer/attack(mob/living/carbon/M, mob/living/carbon/user)
+/obj/item/form_printer/attack(mob/living/carbon/M,69ob/living/carbon/user)
 	return
 
-/obj/item/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)
+/obj/item/form_printer/afterattack(atom/target as69ob|obj|turf|area,69ob/living/user as69ob|obj, flag, params)
 
 	if(!target || !flag)
 		return
@@ -292,14 +292,14 @@
 	deploy_paper(get_turf(src))
 
 /obj/item/form_printer/proc/deploy_paper(var/turf/T)
-	T.visible_message("\blue \The [src.loc] dispenses a sheet of crisp white paper.")
+	T.visible_message("\blue \The 69src.loc69 dispenses a sheet of crisp white paper.")
 	new /obj/item/paper(T)
 
 
-//Personal shielding for the combat module.
+//Personal shielding for the combat69odule.
 /obj/item/borg/combat/shield
 	name = "personal shielding"
-	desc = "A powerful experimental module that turns aside or absorbs incoming attacks at the cost of charge."
+	desc = "A powerful experimental69odule that turns aside or absorbs incoming attacks at the cost of charge."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 	var/shield_level = 0.5 //Percentage of damage absorbed by the shield.
@@ -309,12 +309,12 @@
 	set category = "Object"
 	set src in range(0)
 
-	var/N = input("How much damage should the shield absorb?") in list("5","10","25","50","75","100")
+	var/N = input("How69uch damage should the shield absorb?") in list("5","10","25","50","75","100")
 	if (N)
 		shield_level = text2num(N)/100
 
 /obj/item/borg/combat/mobility
-	name = "mobility module"
+	name = "mobility69odule"
 	desc = "By retracting limbs and tucking in its head, a combat android can roll at high speeds."
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
@@ -327,7 +327,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_ITEM_UTILITY
 	rarity_value = 15
-	// By default stores up to 10 walls and 5 doors. May be changed.
+	// By default stores up to 10 walls and 5 doors.69ay be changed.
 	var/stored_walls = 10
 	var/stored_doors = 5
 	var/max_walls = 10
@@ -337,14 +337,14 @@
 /obj/item/inflatable_dispenser/examine(mob/user)
 	if(!..(user))
 		return
-	to_chat(user, "It has [stored_walls] wall segment\s and [stored_doors] door segment\s stored.")
-	to_chat(user, "It is set to deploy [mode ? "doors" : "walls"]")
+	to_chat(user, "It has 69stored_walls69 wall segment\s and 69stored_doors69 door segment\s stored.")
+	to_chat(user, "It is set to deploy 69mode ? "doors" : "walls"69")
 
 /obj/item/inflatable_dispenser/attack_self()
 	mode = !mode
-	to_chat(usr, "You set \the [src] to deploy [mode ? "doors" : "walls"].")
+	to_chat(usr, "You set \the 69src69 to deploy 69mode ? "doors" : "walls"69.")
 
-/obj/item/inflatable_dispenser/afterattack(atom/A, mob/user)
+/obj/item/inflatable_dispenser/afterattack(atom/A,69ob/user)
 	..(A, user)
 	if(!user)
 		return
@@ -356,10 +356,10 @@
 	if(istype(A, /obj/item/inflatable) || istype(A, /obj/structure/inflatable))
 		pick_up(A, user)
 
-/obj/item/inflatable_dispenser/proc/try_deploy_inflatable(turf/T, mob/living/user)
+/obj/item/inflatable_dispenser/proc/try_deploy_inflatable(turf/T,69ob/living/user)
 	if(mode) // Door deployment
 		if(!stored_doors)
-			to_chat(user, "\The [src] is out of doors!")
+			to_chat(user, "\The 69src69 is out of doors!")
 			return
 
 		if(T && istype(T))
@@ -368,7 +368,7 @@
 
 	else // Wall deployment
 		if(!stored_walls)
-			to_chat(user, "\The [src] is out of walls!")
+			to_chat(user, "\The 69src69 is out of walls!")
 			return
 
 		if(T && istype(T))
@@ -376,42 +376,42 @@
 			stored_walls--
 
 	playsound(T, 'sound/items/zip.ogg', 75, 1)
-	to_chat(user, "You deploy the inflatable [mode ? "door" : "wall"]!")
+	to_chat(user, "You deploy the inflatable 69mode ? "door" : "wall"69!")
 
-/obj/item/inflatable_dispenser/proc/pick_up(obj/A, mob/living/user)
+/obj/item/inflatable_dispenser/proc/pick_up(obj/A,69ob/living/user)
 	if(istype(A, /obj/structure/inflatable))
 		if(istype(A, /obj/structure/inflatable/wall))
-			if(stored_walls >= max_walls)
-				to_chat(user, "\The [src] is full.")
+			if(stored_walls >=69ax_walls)
+				to_chat(user, "\The 69src69 is full.")
 				return
 			stored_walls++
 			qdel(A)
 		else
-			if(stored_doors >= max_doors)
-				to_chat(user, "\The [src] is full.")
+			if(stored_doors >=69ax_doors)
+				to_chat(user, "\The 69src69 is full.")
 				return
 			stored_doors++
 			qdel(A)
 		playsound(loc, 'sound/machines/hiss.ogg', 75, 1)
-		visible_message("\The [user] deflates \the [A] with \the [src]!")
+		visible_message("\The 69user69 deflates \the 69A69 with \the 69src69!")
 		return
 	if(istype(A, /obj/item/inflatable))
 		if(istype(A, /obj/item/inflatable/wall))
-			if(stored_walls >= max_walls)
-				to_chat(user, "\The [src] is full.")
+			if(stored_walls >=69ax_walls)
+				to_chat(user, "\The 69src69 is full.")
 				return
 			stored_walls++
 			qdel(A)
 		else
-			if(stored_doors >= max_doors)
-				to_chat(usr, "\The [src] is full!")
+			if(stored_doors >=69ax_doors)
+				to_chat(usr, "\The 69src69 is full!")
 				return
 			stored_doors++
 			qdel(A)
-		visible_message("\The [user] picks up \the [A] with \the [src]!")
+		visible_message("\The 69user69 picks up \the 69A69 with \the 69src69!")
 		return
 
-	to_chat(user, "You fail to pick up \the [A] with \the [src]")
+	to_chat(user, "You fail to pick up \the 69A69 with \the 69src69")
 	return
 
 /obj/item/tool/crowbar/robotic
@@ -436,7 +436,7 @@
 
 /obj/item/tool/robotic_medical_omnitool
 	name = "Medical Omnitool"
-	desc = "An all-in-one medical omnitool."
+	desc = "An all-in-one69edical omnitool."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "medmulti"
 	force = WEAPON_FORCE_PAINFUL

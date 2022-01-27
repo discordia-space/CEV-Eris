@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/paco
 	name = "FS HG .35 Auto \"Paco\""
-	desc = "A modern and reliable sidearm for the soldier in the field. Commonly issued as a sidearm to Ironhammer Operatives. Uses standard .35 and high capacity magazines."
+	desc = "A69odern and reliable sidearm for the soldier in the field. Commonly issued as a sidearm to Ironhammer Operatives. Uses standard .35 and high capacity69agazines."
 	icon = 'icons/obj/guns/projectile/paco.dmi'
 	icon_state = "paco"
 	item_state = "paco"
@@ -10,11 +10,11 @@
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = /obj/item/ammo_casing/pistol
 	caliber = CAL_PISTOL
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	auto_eject = 1
-	matter = list(MATERIAL_PLASTEEL = 14, MATERIAL_PLASTIC = 4)
+	matter = list(MATERIAL_PLASTEEL = 14,69ATERIAL_PLASTIC = 4)
 	price_tag = 1500
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'

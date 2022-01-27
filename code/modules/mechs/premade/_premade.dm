@@ -1,13 +1,13 @@
 //GLOBAL_LIST_INIT(mech_decals, (icon_states(MECH_DECALS_ICON)-list("template", "mask")))
 /mob/living/exosuit/premade
 	name = "impossible exosuit"
-	desc = "It seems to be saying 'please let me die'."
+	desc = "It seems to be saying 'please let69e die'."
 
-	material = MATERIAL_STEEL
+	material =69ATERIAL_STEEL
 
 	//spawn_values
 	spawn_tags = SPAWN_TAG_MECH
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	rarity_value = 10
 	bad_type = /mob/living/exosuit/premade
 
@@ -21,15 +21,15 @@
 	var/installed_armor = /obj/item/robot_parts/robot_component/armour/exosuit
 	var/list/installed_software_boards = list()
 	var/list/installed_systems = list(
-		HARDPOINT_HEAD = /obj/item/mech_equipment/light
+		HARDPOINT_HEAD = /obj/item/mech_e69uipment/light
 	)
 
 
 /mob/living/exosuit/premade/Initialize()
-	arms = new arms(src)
-	body = new body(src)
-	head = new head(src)
-	legs = new legs(src)
+	arms =69ew arms(src)
+	body =69ew body(src)
+	head =69ew head(src)
+	legs =69ew legs(src)
 
 	for(var/obj/item/mech_component/C in list(arms, legs, head, body))
 		if(decal)
@@ -44,13 +44,13 @@
 		body.computer.update_software()
 
 	if(body && body.armor?.type != installed_armor)
-		QDEL_NULL(body.armor) // Delete old armor, if any
-		body.armor_plate = new installed_armor(src)
+		69DEL_NULL(body.armor) // Delete old armor, if any
+		body.armor_plate =69ew installed_armor(src)
 
 	..()
 
 	for(var/hardpoint in installed_systems)
-		var/system_type = installed_systems[hardpoint]
+		var/system_type = installed_systems69hardpoint69
 		install_system(new system_type(src), hardpoint)
 
 

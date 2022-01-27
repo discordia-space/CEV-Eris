@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/selfload
 	name = "S HG .35 Auto \"Clarissa\""
-	desc = "A small, easily concealable, but somewhat underpowered gun. Uses both standard and highcap .35 Auto mags."
+	desc = "A small, easily concealable, but somewhat underpowered gun. Uses both standard and highcap .35 Auto69ags."
 
 	icon = 'icons/obj/guns/projectile/clarissa.dmi'
 	icon_state = "clarissa"
@@ -10,12 +10,12 @@
 	can_dual = TRUE
 	silenced = FALSE
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
+	matter = list(MATERIAL_PLASTEEL = 12,69ATERIAL_PLASTIC = 6)
 	price_tag = 1000
 	fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
 	caliber = CAL_PISTOL
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL|MAG_WELL_H_PISTOL
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_PISTOL|MAG_WELL_H_PISTOL
 	magazine_type = /obj/item/ammo_magazine/pistol
 	rarity_value = 16
 	damage_multiplier = 1
@@ -63,6 +63,6 @@
 		)
 
 /obj/item/gun/projectile/selfload/moebius
-	name = "ML HG .35 Auto \"Anne\"" // ML stands for Moebius Laboratories
-	desc = "Self-loading pistol of Syndicate design rebranded by Moebius Laboratories. Uses both standard and highcap .35 Auto mags."
+	name = "ML HG .35 Auto \"Anne\"" //69L stands for69oebius Laboratories
+	desc = "Self-loading pistol of Syndicate design rebranded by69oebius Laboratories. Uses both standard and highcap .35 Auto69ags."
 	icon = 'icons/obj/guns/projectile/clarissa_white.dmi'

@@ -1,6 +1,6 @@
 /obj/item/storage/hcases //probably should rename
 	name = "hard case"
-	desc = "A hardcase that can hold a lot of various things. Alt+click to open and close."
+	desc = "A hardcase that can hold a lot of69arious things. Alt+click to open and close."
 	icon = 'icons/obj/cases.dmi'
 	icon_state = "hcase"
 	var/sticker_name = "hcase"
@@ -26,7 +26,7 @@
 /obj/item/storage/hcases/verb/apply_sticker(mob/user)
 	set name = "Apply Sticker"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(can_interact(user) == 1)
 		return
@@ -34,12 +34,12 @@
 
 /obj/item/storage/hcases/proc/sticker(mob/user)
 	var/list/options = list()
-	options["Orange"] = "[sticker_name]_sticker_o"
-	options["Blue"] = "[sticker_name]_sticker_b"
-	options["Red"] = "[sticker_name]_sticker_r"
-	options["Green"] = "[sticker_name]_sticker_g"
-	options["Purple"] = "[sticker_name]_sticker_p"
-	options["IH Blue"] = "[sticker_name]_sticker_ih"
+	options69"Orange"69 = "69sticker_name69_sticker_o"
+	options69"Blue"69 = "69sticker_name69_sticker_b"
+	options69"Red"69 = "69sticker_name69_sticker_r"
+	options69"Green"69 = "69sticker_name69_sticker_g"
+	options69"Purple"69 = "69sticker_name69_sticker_p"
+	options69"IH Blue"69 = "69sticker_name69_sticker_ih"
 
 
 	var/choice = input(user,"Which color do you want?") as null|anything in options
@@ -47,14 +47,14 @@
 	if(!choice)
 		return
 
-	sticker = options[choice]
+	sticker = options69choice69
 	update_icon()
 
 /obj/item/storage/hcases/update_icon()
-	icon_state = "[initial(icon_state)][closed ? "" : "_open"]"
+	icon_state = "69initial(icon_state)6969closed ? "" : "_open"69"
 	cut_overlays()
 	if(sticker)
-		overlays += "[sticker][closed ? "" : "_open"]"
+		overlays += "69sticker6969closed ? "" : "_open"69"
 
 /obj/item/storage/hcases/open(mob/user)
 	if(closed)
@@ -63,12 +63,12 @@
 
 	. = ..()
 
-/obj/item/storage/hcases/verb/quick_open_close(mob/user)
+/obj/item/storage/hcases/verb/69uick_open_close(mob/user)
 	set name = "Close Lid"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
-	if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
+	if(can_interact(user) == 1)	//can't use right click69erbs inside bags so only need to check for ablity
 		return
 
 	open_close(user)
@@ -81,7 +81,7 @@
 		return
 
 	if(able == 2)
-		to_chat(user, SPAN_NOTICE("You cannot open the lid of \the [src] while it\'s in a container."))
+		to_chat(user, SPAN_NOTICE("You cannot open the lid of \the 69src69 while it\'s in a container."))
 		return
 
 	open_close(user)
@@ -89,33 +89,33 @@
 /obj/item/storage/hcases/proc/open_close(user)
 	close_all()
 	if(closed)
-		to_chat(user, SPAN_NOTICE("You open the lid of the [src]."))
+		to_chat(user, SPAN_NOTICE("You open the lid of the 69src69."))
 		w_class = ITEM_SIZE_BULKY
 		closed = FALSE
 	else
-		to_chat(user, SPAN_NOTICE("You close the lid of the [src]."))
+		to_chat(user, SPAN_NOTICE("You close the lid of the 69src69."))
 		w_class = ITEM_SIZE_NORMAL
 		closed = TRUE
 
 	playsound(loc, 'sound/weapons/guns/interact/selector.ogg', 100, 1)
 	update_icon()
 
-obj/item/storage/hcases/attackby(obj/item/W, mob/user)
+obj/item/storage/hcases/attackby(obj/item/W,69ob/user)
 	if(closed)
-		to_chat(user, SPAN_NOTICE("You try to access \the [src] but its lid is closed!"))
+		to_chat(user, SPAN_NOTICE("You try to access \the 69src69 but its lid is closed!"))
 		return
 	. = ..()
 
 /obj/item/storage/hcases/scrap	//Scrap isn't worse beyond poor shaming
 	icon_state = "scrap"
 	sticker_name = "scrap"
-	desc = "A lacquer coated hardcase that can hold a lot of various things. Alt+click to open and close."
+	desc = "A lac69uer coated hardcase that can hold a lot of69arious things. Alt+click to open and close."
 
 //////////////////////////////////////////Ammo//////////////////////////////////////////
 
 /obj/item/storage/hcases/ammo
 	name = "ammo hard case"
-	desc = "A generic ammo can. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "A generic ammo can. Can hold ammo69agazines, boxes, and bullets. Alt+click to open and close."
 	icon_state = "ammo_case"
 	sticker_name = "ammo"
 	matter = list(MATERIAL_STEEL = 20)
@@ -130,30 +130,30 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 
 /obj/item/storage/hcases/ammo/ih
 	icon_state = "ammo_case_ih"
-	desc = "An ammo can for Ironhammer. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "An ammo can for Ironhammer. Can hold ammo69agazines, boxes, and bullets. Alt+click to open and close."
 
 /obj/item/storage/hcases/ammo/serb
 	icon_state = "ammo_case_serb"
-	desc = "An ammo can made by the Serbs. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "An ammo can69ade by the Serbs. Can hold ammo69agazines, boxes, and bullets. Alt+click to open and close."
 
 /obj/item/storage/hcases/ammo/blackmarket
 	icon_state = "ammo_case_blackmarket"
-	desc = "A shady looking ammo can. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "A shady looking ammo can. Can hold ammo69agazines, boxes, and bullets. Alt+click to open and close."
 
 /obj/item/storage/hcases/ammo/excel
 	icon_state = "ammo_case_excel"
-	desc = "A communist ammo can! Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "A communist ammo can! Can hold ammo69agazines, boxes, and bullets. Alt+click to open and close."
 
 /obj/item/storage/hcases/ammo/scrap
 	icon_state = "ammo_case_scrap"
-	desc = "A lacquer coated ammo can. Can hold ammo magazines, boxes, and bullets. Alt+click to open and close."
+	desc = "A lac69uer coated ammo can. Can hold ammo69agazines, boxes, and bullets. Alt+click to open and close."
 	rarity_value = 30
 
 //////////////////////////////////////////Parts//////////////////////////////////////////
 
 /obj/item/storage/hcases/parts
 	name = "parts hard case"
-	desc = "A hard case that can hold weapon, armor, machine, and electronic parts. Alt+click to open and close."
+	desc = "A hard case that can hold weapon, armor,69achine, and electronic parts. Alt+click to open and close."
 	icon_state = "hcase_parts"
 	matter = list(MATERIAL_STEEL = 20)
 	spawn_blacklisted = FALSE
@@ -171,14 +171,14 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 /obj/item/storage/hcases/parts/scrap
 	icon_state = "scrap_parts"
 	sticker_name = "scrap"
-	desc = "A lacquer coated hard case that can hold weapon, armor, machine, and electronic parts. Alt+click to open and close."
+	desc = "A lac69uer coated hard case that can hold weapon, armor,69achine, and electronic parts. Alt+click to open and close."
 	rarity_value = 30
 
 //////////////////////////////////////////Medical//////////////////////////////////////////
 
 /obj/item/storage/hcases/med
 	name = "medical hard case"
-	desc = "A hardcase with medical markings that can hold a lot of medical supplies. Alt+click to open and close."
+	desc = "A hardcase with69edical69arkings that can hold a lot of69edical supplies. Alt+click to open and close."
 	icon_state = "hcase_medi"
 	matter = list(MATERIAL_STEEL = 20)
 	spawn_blacklisted = FALSE
@@ -206,14 +206,14 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 /obj/item/storage/hcases/med/scrap
 	icon_state = "scrap_medi"
 	sticker_name = "scrap"
-	desc = "A lacquer coated hardcase with medical markings that can hold a lot of medical supplies. Alt+click to open and close."
+	desc = "A lac69uer coated hardcase with69edical69arkings that can hold a lot of69edical supplies. Alt+click to open and close."
 	rarity_value = 30
 
 //////////////////////////////////////////Engineering//////////////////////////////////////////
 
 /obj/item/storage/hcases/engi
 	name = "tool hard case"
-	desc = "A hardcase with engineering markings that can hold a variety of different tools and materials. Alt+click to open and close."
+	desc = "A hardcase with engineering69arkings that can hold a69ariety of different tools and69aterials. Alt+click to open and close."
 	icon_state = "hcase_engi"
 	matter = list(MATERIAL_STEEL = 20)
 	spawn_blacklisted = FALSE
@@ -249,5 +249,5 @@ obj/item/storage/hcases/attackby(obj/item/W, mob/user)
 /obj/item/storage/hcases/engi/scrap
 	icon_state = "scrap_engi"
 	sticker_name = "scrap"
-	desc = "An old lacquer coated hardcase with engineering markings that can hold a variety of different tools and materials. Alt+click to open and close."
+	desc = "An old lac69uer coated hardcase with engineering69arkings that can hold a69ariety of different tools and69aterials. Alt+click to open and close."
 	rarity_value = 30

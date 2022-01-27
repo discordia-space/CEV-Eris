@@ -1,4 +1,4 @@
-// Large objects that don't fit in crates, but must be sellable anyway.
+// Large objects that don't fit in crates, but69ust be sellable anyway.
 
 // Crates, boxes, lockers.
 /datum/export/large/crate
@@ -46,7 +46,7 @@
 
 
 
-// Heavy engineering equipment. Singulo/Tesla parts mostly.
+// Heavy engineering e69uipment. Singulo/Tesla parts69ostly.
 /datum/export/large/emitter
 	cost = 400
 	unit_name = "emitter"
@@ -86,7 +86,7 @@
 
 
 
-// Misc
+//69isc
 /datum/export/large/medical_stand
 	cost = 300
 	unit_name = "medical stand"

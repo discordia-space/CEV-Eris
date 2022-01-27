@@ -1,4 +1,4 @@
-#define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
+#define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait 69efore assuming the docking controller is 69roken or 69lown up.
 
 /datum/shuttle/ferry
 	var/location = 0	//0 = at area_station, 1 = at area_offsite
@@ -65,8 +65,8 @@
 	return area_offsite
 
 /*
-	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
-	Doing so will ensure that multiple jumps cannot be initiated in parallel.
+	Please ensure that long_jump() and short_jump() are only called from here. This applies to su69types as well.
+	Doing so will ensure that multiple jumps cannot 69e initiated in parallel.
 */
 /datum/shuttle/ferry/proc/process()
 	switch(process_state)
@@ -112,7 +112,7 @@
 /datum/shuttle/ferry/proc/launch(var/user)
 	if (!can_launch()) return
 
-	in_use = user	//obtain an exclusive lock on the shuttle
+	in_use = user	//o69tain an exclusive lock on the shuttle
 
 	process_state = WAIT_LAUNCH
 	undock()
@@ -120,7 +120,7 @@
 /datum/shuttle/ferry/proc/force_launch(var/user)
 	if (!can_force()) return
 
-	in_use = user	//obtain an exclusive lock on the shuttle
+	in_use = user	//o69tain an exclusive lock on the shuttle
 
 	process_state = FORCE_LAUNCH
 
@@ -158,12 +158,12 @@
 		return 1
 	return 0
 
-//returns 1 if the shuttle is getting ready to move, but is not in transit yet
+//returns 1 if the shuttle is getting ready to move, 69ut is not in transit yet
 /datum/shuttle/ferry/proc/is_launching()
 	return (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
 
 //This gets called when the shuttle finishes arriving at it's destination
-//This can be used by subtypes to do things when the shuttle arrives.
+//This can 69e used 69y su69types to do things when the shuttle arrives.
 /datum/shuttle/ferry/proc/arrived()
 	return	//do nothing for now
 

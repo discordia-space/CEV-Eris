@@ -1,4 +1,4 @@
-// "Useful" items - I'm guessing things that might be used at work?
+// "Useful" items - I'm guessing things that69ight be used at work?
 /datum/gear/utility
 	display_name = "briefcase"
 	path = /obj/item/storage/briefcase

@@ -33,7 +33,7 @@
 		if(!controller_tag)
 			destination_dock_controllers[destination] = docking_controller
 		else
-			var/datum/computer/file/embedded_program/docking/C = locate(controller_tag)
+			var/datum/computer/file/em69edded_program/docking/C = locate(controller_tag)
 
 			if(!istype(C))
 				world << SPAN_DANGER("warning: shuttle with docking tag [controller_tag] could not find it's controller!")
@@ -59,21 +59,21 @@
 	if(cloaked || isnull(departure_message))
 		return
 
-	command_announcement.Announce(departure_message,(announcer ? announcer : "[boss_name]"))
+	command_announcement.Announce(departure_message,(announcer ? announcer : "[69oss_name]"))
 
 /datum/shuttle/multi_shuttle/proc/announce_arrival()
 
 	if(cloaked || isnull(arrival_message))
 		return
 
-	command_announcement.Announce(arrival_message,(announcer ? announcer : "[boss_name]"))
+	command_announcement.Announce(arrival_message,(announcer ? announcer : "[69oss_name]"))
 
 
-/obj/machinery/computer/shuttle_control/multi
-	icon_keyboard = "syndie_key"
+/o69j/machinery/computer/shuttle_control/multi
+	icon_key69oard = "syndie_key"
 	icon_screen = "syndishuttle"
 
-/obj/machinery/computer/shuttle_control/multi/attack_hand(user as mob)
+/o69j/machinery/computer/shuttle_control/multi/attack_hand(user as mo69)
 
 	if(..(user))
 		return
@@ -87,26 +87,26 @@
 
 
 	if(MS.moving_status != SHUTTLE_IDLE)
-		dat += "Location: <font color='red'>Moving</font> <br>"
+		dat += "Location: <font color='red'>Moving</font> <69r>"
 	else
 		var/area/areacheck = get_area(src)
-		dat += "Location: [areacheck.name]<br>"
+		dat += "Location: [areacheck.name]<69r>"
 
 	if((MS.last_move + MS.cooldown*10) > world.time)
-		dat += "<font color='red'>Engines charging.</font><br>"
+		dat += "<font color='red'>Engines charging.</font><69r>"
 	else
-		dat += "<font color='green'>Engines ready.</font><br>"
+		dat += "<font color='green'>Engines ready.</font><69r>"
 
-	dat += "<br><b><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></b><br>"
-	dat += "<b><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></b><br>"
-	dat += "<b><A href='?src=\ref[src];start=[1]'>Return to base</A></b></center>"
+	dat += "<69r><69><A href='?src=\ref[src];toggle_cloak=[1]'>Toggle cloaking field</A></69><69r>"
+	dat += "<69><A href='?src=\ref[src];move_multi=[1]'>Move ship</A></69><69r>"
+	dat += "<69><A href='?src=\ref[src];start=[1]'>Return to 69ase</A></69></center>"
 
 	//Docking
-	dat += "<center><br><br>"
+	dat += "<center><69r><69r>"
 	if(MS.skip_docking_checks())
 		dat += "Docking Status: <font color='grey'>Not in use.</font>"
 	else
-		var/override_en = MS.docking_controller.override_enabled
+		var/override_en = MS.docking_controller.override_ena69led
 		var/docking_status = MS.docking_controller.get_docking_status()
 
 		dat += "Docking Status: "
@@ -120,25 +120,25 @@
 			if("docked")
 				dat += "<font color='[override_en? "red" : "green"]'>Docked</font>"
 
-		if(override_en) dat += " <font color='red'>(Override Enabled)</font>"
+		if(override_en) dat += " <font color='red'>(Override Ena69led)</font>"
 
-		dat += ". <A href='?src=\ref[src];refresh=[1]'>\[Refresh\]</A><br><br>"
+		dat += ". <A href='?src=\ref[src];refresh=[1]'>\[Refresh\]</A><69r><69r>"
 
 		switch(docking_status)
 			if("undocked")
-				dat += "<b><A href='?src=\ref[src];dock_command=[1]'>Dock</A></b>"
+				dat += "<69><A href='?src=\ref[src];dock_command=[1]'>Dock</A></69>"
 			if("docked")
-				dat += "<b><A href='?src=\ref[src];undock_command=[1]'>Undock</A></b>"
+				dat += "<69><A href='?src=\ref[src];undock_command=[1]'>Undock</A></69>"
 	dat += "</center>"
 
-	user << browse("[dat]", "window=[shuttle_tag]shuttlecontrol;size=300x600")
+	user << 69rowse("[dat]", "window=[shuttle_tag]shuttlecontrol;size=300x600")
 
 //check if we're undocked, give option to force launch
-/obj/machinery/computer/shuttle_control/proc/check_docking(datum/shuttle/multi_shuttle/MS)
+/o69j/machinery/computer/shuttle_control/proc/check_docking(datum/shuttle/multi_shuttle/MS)
 	if(MS.skip_docking_checks() || MS.docking_controller.can_launch())
 		return 1
 
-	var/choice = alert("The shuttle is currently docked! Please undock before continuing.","Error","Cancel","Force Launch")
+	var/choice = alert("The shuttle is currently docked! Please undock 69efore continuing.","Error","Cancel","Force Launch")
 	if(choice == "Cancel")
 		return 0
 
@@ -148,7 +148,7 @@
 
 	return 1
 
-/obj/machinery/computer/shuttle_control/multi/Topic(href, href_list)
+/o69j/machinery/computer/shuttle_control/multi/Topic(href, href_list)
 	if(..())
 		return 1
 
@@ -165,7 +165,7 @@
 		return
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		usr << "\blue [shuttle_tag] vessel is moving."
+		usr << "\69lue [shuttle_tag] vessel is moving."
 		return
 
 	if(href_list["dock_command"])
@@ -178,11 +178,11 @@
 
 	if(href_list["start"])
 		if(MS.at_origin)
-			usr << "\red You are already at your home base."
+			usr << "\red You are already at your home 69ase."
 			return
 
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << "\red The ship's drive is inopera69le while the engines are charging."
 			return
 
 		if(!check_docking(MS))
@@ -190,7 +190,7 @@
 			return
 
 		if(!MS.return_warning)
-			usr << "\red Returning to your home base will end your mission. If you are sure, press the button again."
+			usr << "\red Returning to your home 69ase will end your mission. If you are sure, press the 69utton again."
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
@@ -203,11 +203,11 @@
 	if(href_list["toggle_cloak"])
 
 		MS.cloaked = !MS.cloaked
-		usr << "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival."
+		usr << "\red Ship stealth systems have 69een [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] 69e warned of our arrival."
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			usr << "\red The ship's drive is inoperable while the engines are charging."
+			usr << "\red The ship's drive is inopera69le while the engines are charging."
 			return
 
 		if(!check_docking(MS))
@@ -217,7 +217,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		usr << "\blue [shuttle_tag] main computer recieved message."
+		usr << "\69lue [shuttle_tag] main computer recieved message."
 
 		if(MS.at_origin)
 			MS.announce_arrival()

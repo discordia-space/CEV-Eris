@@ -5,7 +5,7 @@
 	var/list/obj/item/seeds/seeds = list() // Tracks actual objects contained in the pile
 	var/ID
 
-/datum/seed_pile/New(var/obj/item/seeds/O, var/ID)
+/datum/seed_pile/New(var/obj/item/seeds/O,69ar/ID)
 	name = O.name
 	amount = 1
 	seed_type = O.seed
@@ -29,19 +29,19 @@
 
 	var/list/datum/seed_pile/piles = list()
 	var/list/starting_seeds = list()
-	var/list/scanner = list() // What properties we can view
+	var/list/scanner = list() // What properties we can69iew
 
 /obj/machinery/seed_storage/Initialize(var/mapload)
 	. = ..()
 	for(var/typepath in starting_seeds)
-		var/amount = starting_seeds[typepath]
+		var/amount = starting_seeds69typepath69
 		if(isnull(amount))
 			amount = 1
 		for (var/i = 1 to amount)
 			var/O = new typepath
 			add(O)
 
-/obj/machinery/seed_storage/random // This is mostly for testing, but I guess admins could spawn it
+/obj/machinery/seed_storage/random // This is69ostly for testing, but I guess admins could spawn it
 	name = "Random seed storage"
 	scanner = list("stats", "produce", "soil", "temperature", "light")
 	starting_seeds = list(/obj/item/seeds/random = 50)
@@ -132,11 +132,11 @@
 		/obj/item/seeds/random = 6
 	)
 
-/obj/machinery/seed_storage/attack_hand(mob/user as mob)
+/obj/machinery/seed_storage/attack_hand(mob/user as69ob)
 	user.set_machine(src)
 	interact(user)
 
-/obj/machinery/seed_storage/interact(mob/user as mob)
+/obj/machinery/seed_storage/interact(mob/user as69ob)
 	if (..())
 		return
 
@@ -160,18 +160,18 @@
 			if(!seed)
 				continue
 			dat += "<tr>"
-			dat += "<td>[seed.seed_name]</td>"
-			dat += "<td>#[seed.uid]</td>"
+			dat += "<td>69seed.seed_name69</td>"
+			dat += "<td>#69seed.uid69</td>"
 			if ("stats" in scanner)
-				dat += "<td>[seed.get_trait(TRAIT_ENDURANCE)]</td><td>[seed.get_trait(TRAIT_YIELD)]</td><td>[seed.get_trait(TRAIT_MATURATION)]</td><td>[seed.get_trait(TRAIT_PRODUCTION)]</td><td>[seed.get_trait(TRAIT_POTENCY)]</td>"
+				dat += "<td>69seed.get_trait(TRAIT_ENDURANCE)69</td><td>69seed.get_trait(TRAIT_YIELD)69</td><td>69seed.get_trait(TRAIT_MATURATION)69</td><td>69seed.get_trait(TRAIT_PRODUCTION)69</td><td>69seed.get_trait(TRAIT_POTENCY)69</td>"
 				if(seed.get_trait(TRAIT_HARVEST_REPEAT))
 					dat += "<td>Multiple</td>"
 				else
 					dat += "<td>Single</td>"
 			if ("temperature" in scanner)
-				dat += "<td>[seed.get_trait(TRAIT_IDEAL_HEAT)] K</td>"
+				dat += "<td>69seed.get_trait(TRAIT_IDEAL_HEAT)69 K</td>"
 			if ("light" in scanner)
-				dat += "<td>[seed.get_trait(TRAIT_IDEAL_LIGHT)] L</td>"
+				dat += "<td>69seed.get_trait(TRAIT_IDEAL_LIGHT)69 L</td>"
 			if ("soil" in scanner)
 				if(seed.get_trait(TRAIT_REQUIRES_NUTRIENTS))
 					if(seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) < 0.05)
@@ -240,19 +240,19 @@
 			if(seed.get_trait(TRAIT_BIOLUM))
 				dat += "LUM "
 			dat += "</td>"
-			dat += "<td>[S.amount]</td>"
-			dat += "<td><a href='byond://?src=\ref[src];task=vend;id=[S.ID]'>Vend</a> <a href='byond://?src=\ref[src];task=purge;id=[S.ID]'>Purge</a></td>"
+			dat += "<td>69S.amount69</td>"
+			dat += "<td><a href='byond://?src=\ref69src69;task=vend;id=69S.ID69'>Vend</a> <a href='byond://?src=\ref69src69;task=purge;id=69S.ID69'>Purge</a></td>"
 			dat += "</tr>"
 		dat += "</table>"
 
 	user << browse(dat, "window=seedstorage")
 	onclose(user, "seedstorage")
 
-/obj/machinery/seed_storage/Topic(var/href, var/list/href_list)
+/obj/machinery/seed_storage/Topic(var/href,69ar/list/href_list)
 	if (..())
 		return
-	var/task = href_list["task"]
-	var/ID = text2num(href_list["id"])
+	var/task = href_list69"task"69
+	var/ID = text2num(href_list69"id"69)
 
 	for (var/datum/seed_pile/N in piles)
 		if (N.ID == ID)
@@ -276,10 +276,10 @@
 			break
 	updateUsrDialog()
 
-/obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/seed_storage/attackby(var/obj/item/O as obj,69ar/mob/user as69ob)
 	if (istype(O, /obj/item/seeds))
 		add(O)
-		user.visible_message("[user] puts \the [O.name] into \the [src].", "You put \the [O] into \the [src].")
+		user.visible_message("69user69 puts \the 69O.name69 into \the 69src69.", "You put \the 69O69 into \the 69src69.")
 		return
 	else if (istype(O, /obj/item/storage/bag/produce))
 		var/obj/item/storage/P = O
@@ -288,14 +288,14 @@
 			++loaded
 			add(G)
 		if (loaded)
-			user.visible_message("[user] puts the seeds from \the [O.name] into \the [src].", "You put the seeds from \the [O.name] into \the [src].")
+			user.visible_message("69user69 puts the seeds from \the 69O.name69 into \the 69src69.", "You put the seeds from \the 69O.name69 into \the 69src69.")
 		else
-			to_chat(user, SPAN_NOTICE("There are no seeds in \the [O.name]."))
+			to_chat(user, SPAN_NOTICE("There are no seeds in \the 69O.name69."))
 		return
 	else if(istype(O, /obj/item/tool/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		anchored = !anchored
-		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
+		to_chat(user, "You 69anchored ? "wrench" : "unwrench"69 \the 69src69.")
 
 /obj/machinery/seed_storage/proc/add(var/obj/item/seeds/O as obj)
 	if (ismob(O.loc))

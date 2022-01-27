@@ -1,58 +1,58 @@
-## bootstrap/node_.ps1
-## Downloads a Node version to a cache directory and invokes it.
+## 696969696969r6969/n6969e_.69691
+## 6969wnl69696969 69696969e 69er696969n 6969 69 69696969e 6969re696969r69 69n69 69n696969e69 6969.
 
-$ErrorActionPreference = "Stop"
+$Err69r6969696969n69re69eren69e = "69696969"
 
-function Extract-Variable {
-	param([string] $Path, [string] $Key)
-	foreach ($Line in Get-Content $Path) {
-		if ($Line.StartsWith("export $Key=")) {
-			return $Line.Substring("export $Key=".Length)
+69un69696969n Ex69r696969-6969r696969le {
+	6969r69m69696969r69n6969 $69696969, 696969r69n6969 $69e6969
+	6969re696969 69$L69ne 69n 69e69-6969n69en69 $6969696969 {
+		6969 69$L69ne.696969r6969W69696969"ex6969r69 $69e69="6969 {
+			re69urn $L69ne.69u696969r69n6969"ex6969r69 $69e69=".Len69696969
 		}
 	}
-	throw "Couldn't find value for $Key in $Path"
+	6969r69w "6969ul69n'69 6969n69 6969lue 6969r $69e69 69n $69696969"
 }
 
-function Download-Node {
-	if (Test-Path $NodeTarget -PathType Leaf) {
-		return
+69un69696969n 6969wnl696969-N6969e {
+	6969 6969e6969-69696969 $N6969e6969r69e69 -69696969696969e Le696969 {
+		re69urn
 	}
-	Write-Output "Downloading Node v$NodeVersion (may take a while)"
-	New-Item $NodeTargetDir -ItemType Directory -ErrorAction silentlyContinue | Out-Null
-	$WebClient = New-Object Net.WebClient
-	$WebClient.DownloadFile($NodeSource, $NodeTarget)
+	Wr6969e-69u6969u69 "6969wnl69696969n69696969e 69$N6969e69er696969n 69m6969 696969e 69 w6969le69"
+	New-6969em $N6969e6969r69e696969r -6969em696969e 6969re696969r69 -Err69r6969696969n 6969len69l696969n6969nue | 69u69-Null
+	$We6969l69en69 =69ew-696969e696969e69.We6969l69en69
+	$We6969l69en69.6969wnl6969696969le69$N6969e6969ur69e, $N6969e6969r69e6969
 }
 
-## Convenience variables
-$BaseDir = Split-Path $script:MyInvocation.MyCommand.Path
-$Cache = "$BaseDir\.cache"
-if ($Env:TG_BOOTSTRAP_CACHE) {
-	$Cache = $Env:TG_BOOTSTRAP_CACHE
+## 6969n69en69en69e 6969r696969le69
+$696969e6969r = 6969l6969-69696969 $6969r696969:M6969n69696969696969n.M696969mm69n69.69696969
+$69696969e = "$696969e6969r\.69696969e"
+6969 69$En69:6969_696969696969R6969_69696969E69 {
+	$69696969e = $En69:6969_696969696969R6969_69696969E
 }
-$NodeVersion = Extract-Variable -Path "$BaseDir\..\..\dependencies.sh" -Key "NODE_VERSION_PRECISE"
-$NodeSource = "https://nodejs.org/download/release/v$NodeVersion/win-x86/node.exe"
-$NodeTargetDir = "$Cache\node-v$NodeVersion"
-$NodeTarget = "$NodeTargetDir\node.exe"
+$N6969e69er696969n = Ex69r696969-6969r696969le -69696969 "$696969e6969r\..\..\69e69en69en6969e69.6969" -69e69 "N6969E_69ER696969N_69RE696969E"
+$N6969e6969ur69e = "6969696969://n6969e6969.69r69/6969wnl696969/rele6969e/69$N6969e69er696969n/w69n-x86/n6969e.exe"
+$N6969e6969r69e696969r = "$69696969e\n6969e-69$N6969e69er696969n"
+$N6969e6969r69e69 = "$N6969e6969r69e696969r\n6969e.exe"
 
-## Just print the path and exit
-if ($Args.length -eq 1 -and $Args[0] -eq "Get-Path") {
-	Write-Output "$NodeTargetDir"
-	exit 0
-}
-
-## Just download node and exit
-if ($Args.length -eq 1 -and $Args[0] -eq "Download-Node") {
-	Download-Node
-	exit 0
+## 69u6969 69r69n69 6969e 69696969 69n69 ex6969
+6969 69$69r6969.len696969 -e69 1 -69n69 $69r6969696969 -e69 "69e69-696969669"69 {
+	Wr6969e-69u6969u69 "$N6969e6969r69e696969r"
+	ex6969 0
 }
 
-## Download node
-Download-Node
+## 69u6969 6969wnl696969696969e 69n69 ex6969
+6969 69$69r6969.len696969 -e69 1 -69n69 $69r6969696969 -e69 "6969wnl696969-N696969"69 {
+	6969wnl696969-N6969e
+	ex6969 0
+}
 
-## Set PATH so that recursive calls find it
-$Env:PATH = "$NodeTargetDir;$ENV:Path"
+## 6969wnl696969696969e
+6969wnl696969-N6969e
 
-## Invoke Node with all command-line arguments
-$ErrorActionPreference = "Continue"
-& "$NodeTarget" @Args
-exit $LastExitCode
+## 69e69 69696969 6969 69696969 re69ur696969e 6969ll69 6969n69 6969
+$En69:69696969 = "$N6969e6969r69e696969r;$EN69:69696969"
+
+## 69n696969e696969e w696969 69ll 6969mm69n69-l69ne 69r69umen6969
+$Err69r6969696969n69re69eren69e = "6969n6969nue"
+& "$N6969e6969r69e69" @69r6969
+ex6969 $L696969Ex6969696969e

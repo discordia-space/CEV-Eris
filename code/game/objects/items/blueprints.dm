@@ -20,9 +20,9 @@
 	var/const/ROOM_ERR_SPACE = -1
 	var/const/ROOM_ERR_TOOLARGE = -2
 
-/obj/item/blueprints/attack_self(mob/M as mob)
+/obj/item/blueprints/attack_self(mob/M as69ob)
 	if (!ishuman(M))
-		to_chat(M, "This stack of blue paper means nothing to you." ) //monkeys cannot into projecting
+		to_chat(M, "This stack of blue paper69eans nothing to you." ) //monkeys cannot into projecting
 		return
 	interact()
 	return
@@ -31,9 +31,9 @@
 	..()
 	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
 		return
-	if (!href_list["action"])
+	if (!href_list69"action"69)
 		return
-	switch(href_list["action"])
+	switch(href_list69"action"69)
 		if ("create_area")
 			if (get_area_type()!=AREA_SPACE)
 				interact()
@@ -47,20 +47,20 @@
 
 /obj/item/blueprints/interact()
 	var/area/A = get_area(usr)
-	var/text = {"<HTML><head><title>[src]</title></head><BODY>
-<h2>[station_name()] blueprints</h2>
-<small>Property of [company_name]. For heads of staff only. Store in high-secure storage.</small><hr>
+	var/text = {"<HTML><head><title>69src69</title></head><BODY>
+<h2>69station_name()69 blueprints</h2>
+<small>Property of 69company_name69. For heads of staff only. Store in high-secure storage.</small><hr>
 "}
 	switch (get_area_type())
 		if (AREA_SPACE)
 			text += {"
 <p>According the blueprints, you are now in <b>outer space</b>.  Hold your breath.</p>
-<p><a href='?src=\ref[src];action=create_area'>Mark this place as new area.</a></p>
+<p><a href='?src=\ref69src69;action=create_area'>Mark this place as new area.</a></p>
 "}
 		if (AREA_STATION)
 			text += {"
-<p>According the blueprints, you are now in <b>\"[A.name]\"</b>.</p>
-<p>You may <a href='?src=\ref[src];action=edit_area'>
+<p>According the blueprints, you are now in <b>\"69A.name69\"</b>.</p>
+<p>You69ay <a href='?src=\ref69src69;action=edit_area'>
 move an amendment</a> to the drawing.</p>
 "}
 		if (AREA_SPECIAL)
@@ -96,7 +96,7 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				to_chat(usr, SPAN_WARNING("The new area must be completely airtight!"))
+				to_chat(usr, SPAN_WARNING("The new area69ust be completely airtight!"))
 				return
 			if(ROOM_ERR_TOOLARGE)
 				to_chat(usr, SPAN_WARNING("The new area too large!"))
@@ -105,7 +105,7 @@ move an amendment</a> to the drawing.</p>
 				to_chat(usr, SPAN_WARNING("Error! Please notify administration!"))
 				return
 	var/list/turf/turfs = res
-	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""), MAX_NAME_LEN)
+	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", ""),69AX_NAME_LEN)
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
@@ -114,9 +114,9 @@ move an amendment</a> to the drawing.</p>
 	var/area/A = new
 	A.name = str
 	//var/ma
-	//ma = A.master ? "[A.master]" : "(null)"
-	//world << "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
-	A.power_equip = 0
+	//ma = A.master ? "69A.master69" : "(null)"
+	//world << "DEBUG: create_area: <br>A.name=69A.name69<br>A.tag=69A.tag69<br>A.master=69ma69"
+	A.power_e69uip = 0
 	A.power_light = 0
 	A.power_environ = 0
 	A.always_unpowered = 0
@@ -125,23 +125,23 @@ move an amendment</a> to the drawing.</p>
 	A.always_unpowered = 0
 
 	spawn(5)
-		//ma = A.master ? "[A.master]" : "(null)"
-		//world << "DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
+		//ma = A.master ? "69A.master69" : "(null)"
+		//world << "DEBUG: create_area(5): <br>A.name=69A.name69<br>A.tag=69A.tag69<br>A.master=69ma69"
 		interact()
 	return
 
 
-/obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
+/obj/item/blueprints/proc/move_turfs_to_area(var/list/turf/turfs,69ar/area/A)
 	A.contents.Add(turfs)
 		//oldarea.contents.Remove(usr.loc) // not needed
-		//T.loc = A //error: cannot change constant value
+		//T.loc = A //error: cannot change constant69alue
 
 
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area(usr)
 	//world << "DEBUG: edit_area"
-	var/prevname = "[A.name]"
-	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", prevname), MAX_NAME_LEN)
+	var/prevname = "69A.name69"
+	var/str = sanitizeSafe(input("New area name:","Blueprint Editing", prevname),69AX_NAME_LEN)
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
@@ -149,7 +149,7 @@ move an amendment</a> to the drawing.</p>
 		return
 	set_area_machinery_title(A,str,prevname)
 	A.name = str
-	to_chat(usr, SPAN_NOTICE("You set the area '[prevname]' title to '[str]'."))
+	to_chat(usr, SPAN_NOTICE("You set the area '69prevname69' title to '69str69'."))
 	interact()
 	return
 
@@ -169,7 +169,7 @@ move an amendment</a> to the drawing.</p>
 		M.name = replacetext(M.name,oldtitle,title)
 	for(var/obj/machinery/door/M in A)
 		M.name = replacetext(M.name,oldtitle,title)
-	//TODO: much much more. Unnamed airlocks, cameras, etc.
+	//TODO:69uch69uch69ore. Unnamed airlocks, cameras, etc.
 
 /obj/item/blueprints/proc/check_tile_is_border(var/turf/T2,var/dir)
 	if (istype(T2, /turf/space))
@@ -202,7 +202,7 @@ move an amendment</a> to the drawing.</p>
 	while(pending.len)
 		if (found.len+pending.len > 300)
 			return ROOM_ERR_TOOLARGE
-		var/turf/T = pending[1] //why byond havent list::pop()?
+		var/turf/T = pending69169 //why byond havent list::pop()?
 		pending -= T
 		for (var/dir in cardinal)
 			var/skip = 0
@@ -223,9 +223,9 @@ move an amendment</a> to the drawing.</p>
 				if(BORDER_NONE)
 					pending+=NT
 				if(BORDER_BETWEEN)
-					//do nothing, may be later i'll add 'rejected' list as optimization
+					//do nothing,69ay be later i'll add 'rejected' list as optimization
 				if(BORDER_2NDTILE)
-					found+=NT //tile included to new area, but we dont seek more
+					found+=NT //tile included to new area, but we dont seek69ore
 				if(BORDER_SPACE)
 					return ROOM_ERR_SPACE
 		found+=T

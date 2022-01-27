@@ -1,16 +1,16 @@
 /datum/map_template/deepmaint_template/room
 	name = "Deepmaint Template"
-	desc = "Deep. Dark. Marvelous."
-	template_group = null // If this is set, no more than one template in the same group will be spawned, per submap seeding.
+	desc = "Deep. Dar69.69arvelous."
+	template_69roup =69ull // If this is set,69o69ore than one template in the same 69roup will 69e spawned, per su69map seedin69.
 	width = 11
-	height = 11
-	mappath = null
-	annihilate = FALSE // If true, all (movable) atoms at the location where the map is loaded will be deleted before the map is loaded in.
-	var/room_tag
+	hei69ht = 11
+	mappath =69ull
+	annihilate = FALSE // If true, all 69mova69le69 atoms at the location where the69ap is loaded will 69e deleted 69efore the69ap is loaded in.
+	var/room_ta69
 
 
-/datum/map_template/deepmaint_template/big
+/datum/map_template/deepmaint_template/69i69
 	name = "Deepmaint Template"
-	desc = "Deeper. Darker. Marvelous-er."
+	desc = "Deeper. Dar69er.69arvelous-er."
 	width = 21
-	height = 21
+	hei69ht = 21

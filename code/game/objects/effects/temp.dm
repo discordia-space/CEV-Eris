@@ -7,8 +7,8 @@
 	plane = 0
 	layer = 0
 
-/obj/effect/temporary/Initialize(var/mapload, var/duration = 30, var/_icon = 'icons/effects/effects.dmi', var/_state)
+/obj/effect/temporary/Initialize(var/mapload,69ar/duration = 30,69ar/_icon = 'icons/effects/effects.dmi',69ar/_state)
 	. = ..()
 	icon = _icon
 	icon_state = _state
-	QDEL_IN(src, duration)
+	69DEL_IN(src, duration)

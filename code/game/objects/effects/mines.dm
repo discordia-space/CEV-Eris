@@ -5,22 +5,22 @@
 	anchored = TRUE
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "uglymine"
-	var/triggerproc = "explode" //name of the proc thats called when the mine is triggered
+	var/triggerproc = "explode" //name of the proc thats called when the69ine is triggered
 	var/triggered = 0
 
 /obj/effect/mine/New()
 	icon_state = "uglyminearmed"
 
-/obj/effect/mine/Crossed(AM as mob|obj)
+/obj/effect/mine/Crossed(AM as69ob|obj)
 	Bumped(AM)
 
-/obj/effect/mine/Bumped(mob/M as mob|obj)
+/obj/effect/mine/Bumped(mob/M as69ob|obj)
 
 	if(triggered) return
 
 	if(ishuman(M))
-		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the \icon[src] [src]</font>")
+		for(var/mob/O in69iewers(world.view, src.loc))
+			to_chat(O, "<font color='red'>69M69 triggered the \icon69src69 69src69</font>")
 		triggered = 1
 		call(src,triggerproc)(M)
 
@@ -32,7 +32,7 @@
 	randmutb(obj)
 	domutcheck(obj,null)
 	spawn(0)
-		qdel(src)
+		69del(src)
 
 /obj/effect/mine/proc/triggerstun(obj)
 	if(ismob(obj))
@@ -42,7 +42,7 @@
 	s.set_up(3, 1, src)
 	s.start()
 	spawn(0)
-		qdel(src)
+		69del(src)
 
 /obj/effect/mine/proc/triggern2o(obj)
 	//example: n2o triggerproc
@@ -53,7 +53,7 @@
 			target.assume_gas("sleeping_agent", 30)
 
 	spawn(0)
-		qdel(src)
+		69del(src)
 
 /obj/effect/mine/proc/triggerplasma(obj)
 	for (var/turf/simulated/floor/target in RANGE_TURFS(1,src))
@@ -63,42 +63,42 @@
 			target.hotspot_expose(1000, CELL_VOLUME)
 
 	spawn(0)
-		qdel(src)
+		69del(src)
 
 /obj/effect/mine/proc/triggerkick(obj)
 	var/datum/effect/effect/system/spark_spread/s = new
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(obj:client)
+	69del(obj:client)
 	spawn(0)
-		qdel(src)
+		69del(src)
 
 /obj/effect/mine/proc/explode(obj)
 	explosion(loc, 0, 1, 2, 3)
 	spawn(0)
-		qdel(src)
+		69del(src)
 
 /obj/effect/mine/dnascramble
-	name = "Radiation Mine"
+	name = "Radiation69ine"
 	icon_state = "uglymine"
 	triggerproc = "triggerrad"
 
 /obj/effect/mine/plasma
-	name = "Plasma Mine"
+	name = "Plasma69ine"
 	icon_state = "uglymine"
 	triggerproc = "triggerplasma"
 
 /obj/effect/mine/kick
-	name = "Kick Mine"
+	name = "Kick69ine"
 	icon_state = "uglymine"
 	triggerproc = "triggerkick"
 
 /obj/effect/mine/n2o
-	name = "N2O Mine"
+	name = "N2O69ine"
 	icon_state = "uglymine"
 	triggerproc = "triggern2o"
 
 /obj/effect/mine/stun
-	name = "Stun Mine"
+	name = "Stun69ine"
 	icon_state = "uglymine"
 	triggerproc = "triggerstun"

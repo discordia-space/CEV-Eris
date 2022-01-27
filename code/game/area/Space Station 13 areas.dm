@@ -2,13 +2,13 @@
 
 ### This file contains a list of all the areas in your station. Format is as follows:
 
-/area/CATEGORY/OR/DESCRIPTOR/NAME 	(you can make as many subdivisions as you want)
-	name = "NICE NAME" 				(not required but makes things really nice)
+/area/CATEGORY/OR/DESCRIPTOR/NAME 	(you can69ake as69any subdivisions as you want)
+	name = "NICE NAME" 				(not required but69akes things really nice)
 	icon = "ICON FILENAME" 			(defaults to areas.dmi)
 	icon_state = "NAME OF ICON" 	(defaults to "unknown" (blank))
 	requires_power = 0 				(defaults to 1)
 
-NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please maintain these lists valid. --rastaf0
+NOTE: there are two lists of areas in the end of this file: centcom and station itself. Please69aintain these lists69alid. --rastaf0
 
 */
 
@@ -49,10 +49,10 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/holomap_color // Color of this area on station holomap
 	var/vessel = "CEV Eris" //The ship or station this area is on. This is so far just for the benefit of shield generators
-	//Consoles can only control shields on the same vessel as them
+	//Consoles can only control shields on the same69essel as them
 
-/*Adding a wizard area teleport list because motherfucking lag -- Urist*/
-/*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
+/*Adding a wizard area teleport list because69otherfucking lag -- Urist*/
+/*I am far too lazy to69ake it a proper list of areas so I'll just69ake it run the usual telepot routine at the start of the game*/
 
 /*-----------------------------------------------------------------------------*/
 
@@ -108,7 +108,7 @@ area/space/atmosalert()
 ////////////
 //SHUTTLES//
 ////////////
-//shuttle areas must contain at least two areas in a subgroup if you want to move a shuttle from one
+//shuttle areas69ust contain at least two areas in a subgroup if you want to69ove a shuttle from one
 //place to another. Look at escape shuttle for example.
 //All shuttles should now be under shuttle since we have smooth-wall code.
 
@@ -138,7 +138,7 @@ area/space/atmosalert()
 	name = "\improper Emergency Shuttle Centcom"
 	icon_state = "shuttle"
 
-/area/shuttle/escape/transit // the area to pass through for 3 minute transit
+/area/shuttle/escape/transit // the area to pass through for 369inute transit
 	name = "\improper Emergency Shuttle Transit"
 	icon_state = "shuttle"
 
@@ -181,7 +181,7 @@ area/space/atmosalert()
 /area/shuttle/escape_pod3/transit
 	icon_state = "shuttle"
 
-/area/shuttle/escape_pod5 //Pod 4 was lost to meteors
+/area/shuttle/escape_pod5 //Pod 4 was lost to69eteors
 	name = "\improper Escape Pod Five"
 	flags = AREA_FLAG_RAD_SHIELDED
 
@@ -195,7 +195,7 @@ area/space/atmosalert()
 	icon_state = "shuttle"
 
 /area/shuttle/mining
-	name = "\improper Mining Shuttle"
+	name = "\improper69ining Shuttle"
 
 /area/shuttle/mining/station
 	icon_state = "shuttle2"
@@ -221,7 +221,7 @@ area/space/atmosalert()
 
 /area/shuttle/alien/mine
 	icon_state = "shuttle"
-	name = "\improper Alien Shuttle Mine"
+	name = "\improper Alien Shuttle69ine"
 	requires_power = 1
 
 /area/shuttle/prison/
@@ -244,7 +244,7 @@ area/space/atmosalert()
 	icon_state = "shuttlered2"
 
 /area/shuttle/mercenary
-	name = "\improper Mercenary Ship"
+	name = "\improper69ercenary Ship"
 	flags = AREA_FLAG_RAD_SHIELDED
 
 /area/shuttle/syndicate_elite/mothership
@@ -352,11 +352,11 @@ area/space/atmosalert()
 	vessel = "alien"
 
 /area/centcom/merc_base
-	name = "\improper Mercenary Base"
+	name = "\improper69ercenary Base"
 	icon_state = "syndie-ship"
 	requires_power = 0
 	dynamic_lighting = 0
-	vessel = "syndicate mothership"
+	vessel = "syndicate69othership"
 
 /area/centcom/raider_base
 	name = "\improper Raider Base"
@@ -380,19 +380,19 @@ area/space/atmosalert()
 //EXTRA
 
 /area/asteroid					// -- TLE
-	name = "\improper Moon"
+	name = "\improper69oon"
 	icon_state = "asteroid"
 	requires_power = 0
 	sound_env = ASTEROID
 
 /area/asteroid/cave				// -- TLE
-	name = "\improper Moon - Underground"
+	name = "\improper69oon - Underground"
 	icon_state = "cave"
 	requires_power = 0
 	sound_env = ASTEROID
 
 /area/asteroid/artifactroom
-	name = "\improper Moon - Artifact"
+	name = "\improper69oon - Artifact"
 	icon_state = "cave"
 	sound_env = SMALL_ENCLOSED
 
@@ -434,7 +434,7 @@ area/space/atmosalert()
 	icon_state = "southeast"
 
 /area/skipjack_station/mining
-	name = "\improper south of mining station"
+	name = "\improper south of69ining station"
 	icon_state = "north"
 	base_turf = /turf/simulated/floor/asteroid
 
@@ -491,7 +491,7 @@ area/space/atmosalert()
 	name = "\improper Holodeck - Wildlife Simulation"
 
 /area/holodeck/source_meetinghall
-	name = "\improper Holodeck - Meeting Hall"
+	name = "\improper Holodeck -69eeting Hall"
 	sound_env = AUDITORIUM
 
 /area/holodeck/source_theatre
@@ -578,11 +578,11 @@ area/space/atmosalert()
 	icon_state = "fitness"
 
 /area/derelict/medical
-	name = "Derelict Medbay"
+	name = "Derelict69edbay"
 	icon_state = "medbay"
 
 /area/derelict/medical/morgue
-	name = "\improper Derelict Morgue"
+	name = "\improper Derelict69orgue"
 	icon_state = "morgue"
 
 /area/derelict/medical/chapel
@@ -684,7 +684,7 @@ area/space/atmosalert()
 	dynamic_lighting = 0
 
 /area/turret_protected/NewAIMain
-	name = "\improper AI Main New"
+	name = "\improper AI69ain New"
 	icon_state = "storage"
 
 
@@ -712,7 +712,7 @@ area/space/atmosalert()
 
 
 
-// Away Missions
+// Away69issions
 /area/awaymission
 	name = "\improper Strange Location"
 	icon_state = "away"
@@ -722,13 +722,13 @@ area/space/atmosalert()
 	icon_state = "away"
 
 /area/awaymission/wwmines
-	name = "\improper Wild West Mines"
+	name = "\improper Wild West69ines"
 	icon_state = "away1"
 	luminosity = 1
 	requires_power = 0
 
 /area/awaymission/wwgov
-	name = "\improper Wild West Mansion"
+	name = "\improper Wild West69ansion"
 	icon_state = "away2"
 	luminosity = 1
 	requires_power = 0
@@ -740,11 +740,11 @@ area/space/atmosalert()
 	requires_power = 0
 
 /area/awaymission/wwvault
-	name = "\improper Wild West Vault"
+	name = "\improper Wild West69ault"
 	icon_state = "away3"
 
 /area/awaymission/wwvaultdoors
-	name = "\improper Wild West Vault Doors"  // this is to keep the vault area being entirely lit because of requires_power
+	name = "\improper Wild West69ault Doors"  // this is to keep the69ault area being entirely lit because of requires_power
 	icon_state = "away2"
 	requires_power = 0
 
@@ -757,7 +757,7 @@ area/space/atmosalert()
 	icon_state = "away1"
 
 /area/awaymission/BMPship2
-	name = "\improper Midship Block"
+	name = "\improper69idship Block"
 	icon_state = "away2"
 
 /area/awaymission/BMPship3
@@ -827,14 +827,14 @@ area/space/atmosalert()
 		if(ismob(Obj))
 			if(Obj:client)
 				mysound.status = SOUND_UPDATE
-				Obj << mysound
+				Obj <<69ysound
 		return
 
 	Exited(atom/movable/Obj)
 		if(ismob(Obj))
 			if(Obj:client)
 				mysound.status = SOUND_PAUSED | SOUND_UPDATE
-				Obj << mysound
+				Obj <<69ysound
 
 	Process()
 		set background = 1
@@ -842,7 +842,7 @@ area/space/atmosalert()
 		var/sound/S
 		var/sound_delay = 0
 		if(prob(25))
-			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'), volume=100)
+			S = sound(file=pick('sound/ambience/seag1.ogg','sound/ambience/seag2.ogg','sound/ambience/seag3.ogg'),69olume=100)
 			sound_delay = rand(0, 50)
 
 		for(var/mob/living/carbon/human/H in src)
@@ -851,7 +851,7 @@ area/space/atmosalert()
 				H.update_body()
 			if(H.client)
 				mysound.status = SOUND_UPDATE
-				H << mysound
+				H <<69ysound
 				if(S)
 					spawn(sound_delay)
 						H << S
@@ -861,7 +861,7 @@ area/space/atmosalert()
 /////////////////////////////////////////////////////////////////////
 /*
  Lists of areas to be used with is_type_in_list.
- Used in gamemodes code at the moment. --rastaf0
+ Used in gamemodes code at the69oment. --rastaf0
 */
 
 // CENTCOM
@@ -878,7 +878,7 @@ var/list/centcom_areas = list (
 )
 
 
-//Rouguelike Mining
+//Rouguelike69ining
 /area/asteroid/rogue
 	icon_state = "away"
 	name = "Asteroid Belt"
@@ -889,7 +889,7 @@ var/list/centcom_areas = list (
 
 /area/deepmaint
 	icon_state = "away"
-	name = "Deep Maintenance"
+	name = "Deep69aintenance"
 	sound_env = TUNNEL_ENCLOSED
 	turf_initializer = new /datum/turf_initializer/maintenance()
 	forced_ambience = list('sound/ambience/maintambience.ogg')

@@ -8,11 +8,11 @@ var/repository/unique/uniqueness_repository = new()
 	generators = list()
 
 /repository/unique/proc/Generate()
-	var/generator_type = args[1]
-	var/datum/uniqueness_generator/generator = generators[generator_type]
+	var/generator_type = args69169
+	var/datum/uniqueness_generator/generator = generators69generator_type69
 	if(!generator)
 		generator = new generator_type()
-		generators[generator_type] = generator
+		generators69generator_type69 = generator
 	var/list/generator_args = args.Copy() // Cannot cut args directly, BYOND complains about it being readonly.
 	generator_args -= generator_type
 	return generator.Generate(arglist(generator_args))
@@ -27,14 +27,14 @@ var/repository/unique/uniqueness_repository = new()
 	..()
 	ids_by_key = list()
 
-/datum/uniqueness_generator/id_sequential/Generate(var/key, var/default_id = 100)
-	var/id = ids_by_key[key]
+/datum/uniqueness_generator/id_sequential/Generate(var/key,69ar/default_id = 100)
+	var/id = ids_by_key69key69
 	if(id)
 		id++
 	else
 		id = default_id
 
-	ids_by_key[key] = id
+	ids_by_key69key69 = id
 	. = id
 
 /datum/uniqueness_generator/id_random
@@ -44,19 +44,19 @@ var/repository/unique/uniqueness_repository = new()
 	..()
 	ids_by_key = list()
 
-/datum/uniqueness_generator/id_random/Generate(var/key, var/min, var/max)
-	var/list/ids = ids_by_key[key]
+/datum/uniqueness_generator/id_random/Generate(var/key,69ar/min,69ar/max)
+	var/list/ids = ids_by_key69key69
 	if(!ids)
 		ids = list()
-		ids_by_key[key] = ids
+		ids_by_key69key69 = ids
 
-	if(ids.len >= (max - min) + 1)
-		error("Random ID limit reached for key [key].")
+	if(ids.len >= (max -69in) + 1)
+		error("Random ID limit reached for key 69key69.")
 		ids.Cut()
 
-	if(ids.len >= 0.6 * ((max-min) + 1)) // if more than 60% of possible ids used
+	if(ids.len >= 0.6 * ((max-min) + 1)) // if69ore than 60% of possible ids used
 		. = list()
-		for(var/i = min to max)
+		for(var/i =69in to69ax)
 			if(i in ids)
 				continue
 			. += i
@@ -65,6 +65,6 @@ var/repository/unique/uniqueness_repository = new()
 		return id
 	else
 		do
-			. = rand(min, max)
+			. = rand(min,69ax)
 		while(. in ids)
 		ids += .

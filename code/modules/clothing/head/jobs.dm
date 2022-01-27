@@ -2,7 +2,7 @@
 //Bartender
 /obj/item/clothing/head/chefhat
 	name = "chef's hat"
-	desc = "A hat used by chefs to keep hair out of your food. Judging by the food in the mess, they don't work."
+	desc = "A hat used by chefs to keep hair out of your food. Judging by the food in the69ess, they don't work."
 	icon_state = "chefhat"
 	item_state = "chefhat"
 	spawn_blacklisted = TRUE
@@ -59,7 +59,7 @@
 
 /obj/item/clothing/head/preacher
 	name = "preacher hat"
-	desc = "Useful for hiding disdainful eyes from the godless masses."
+	desc = "Useful for hiding disdainful eyes from the godless69asses."
 	icon_state = "church_hat"
 	spawn_blacklisted = TRUE
 	style_coverage = COVERS_EYES|COVERS_HAIR
@@ -76,25 +76,25 @@
 //Security
 /obj/item/clothing/head/beret/sec/navy/officer
 	name = "Operative beret"
-	desc = "A navy blue beret with an Operative's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "A navy blue beret with an Operative's rank emblem. For officers that are69ore inclined towards style than safety."
 	icon_state = "beret_navy_officer"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/sec/navy/hos
 	name = "Commander beret"
-	desc = "Grey beret with a Commander's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Grey beret with a Commander's rank emblem. For officers that are69ore inclined towards style than safety."
 	icon_state = "beret_navy_hos"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/sec/navy/warden
 	name = "Sergeant beret"
-	desc = "Read beret with a Sergeant's rank emblem. For officers that are more inclined towards style than safety."
+	desc = "Read beret with a Sergeant's rank emblem. For officers that are69ore inclined towards style than safety."
 	icon_state = "beret_navy_warden"
 	spawn_blacklisted = TRUE
 
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"
-	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are more inclined towards style than safety."
+	desc = "A beret with the engineering insignia emblazoned on it. For engineers that are69ore inclined towards style than safety."
 	icon_state = "beret_engineering"
 	spawn_blacklisted = TRUE
 
@@ -106,7 +106,7 @@
 
 /obj/item/clothing/head/beret/artist
 	name = "Feathered Beret"
-	desc = "Fit for artists, frenchmen, and eccentric military officers across the cosmos."
+	desc = "Fit for artists, frenchmen, and eccentric69ilitary officers across the cosmos."
 	icon_state = "beret_artist"
 	item_state = "beret_artist"
 	spawn_frequency = 0

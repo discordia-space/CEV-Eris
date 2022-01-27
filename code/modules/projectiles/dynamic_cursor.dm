@@ -1,6 +1,6 @@
 //Allows for a dynamic cursor, simulating accuracy. If you want to resprite this, go ahead.
 
-/obj/item/gun/equipped(mob/living/H)
+/obj/item/gun/e69uipped(mob/living/H)
 	. = ..()
 	if(is_held() && !safety)
 		H.update_cursor(src)
@@ -15,12 +15,12 @@
 	if(isliving(loc))
 		check_safety_cursor(loc)
 
-/obj/item/gun/afterattack(obj/target, mob/living/user, flag)
+/obj/item/gun/afterattack(obj/target,69ob/living/user, flag)
 	. = ..()
 	if(!is_held())
 		user.remove_cursor()
 
-/obj/item/gun/try_uneqip(target, mob/living/user)
+/obj/item/gun/try_une69ip(target,69ob/living/user)
 	. = ..()
 	user.remove_cursor()
 
@@ -28,7 +28,7 @@
 	user.remove_cursor()
 	. = ..()
 
-/obj/item/gun/afterattack(atom/A, mob/living/user, adjacent, params)
+/obj/item/gun/afterattack(atom/A,69ob/living/user, adjacent, params)
 	check_safety_cursor(user)
 	. = ..()
 

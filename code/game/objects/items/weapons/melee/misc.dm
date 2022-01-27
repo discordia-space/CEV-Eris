@@ -1,6 +1,6 @@
 /obj/item/melee/toolbox_maul
-	name = "toolmop the maul"
-	desc = "Toolbox tied to mop. A weapon of choice."
+	name = "toolmop the69aul"
+	desc = "Toolbox tied to69op. A weapon of choice."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "hm_hammer"
 	item_state = "hm_hammer"
@@ -15,8 +15,8 @@
 	New()
 		..()
 		if(!toolbox)
-			src.name = "unfinished [src.name]"
-			src.desc = "Wired mop. You need toolbox to finish this."
+			src.name = "unfinished 69src.name69"
+			src.desc = "Wired69op. You need toolbox to finish this."
 			icon_state = "hm_hammer_unfinished"
 			item_state = ""
 			force = WEAPON_FORCE_WEAK
@@ -28,10 +28,10 @@
 	..()
 	cut_overlays()
 	if(reinforced)
-		overlays += "[icon_state]-duct_tape"
+		overlays += "69icon_state69-duct_tape"
 
 /obj/item/melee/toolbox_maul/proc/break_apart(var/mob/living/user)
-	qdel(src)
+	69del(src)
 	var/obj/item/mop/mop = new(user.loc)
 	if(!user.get_active_hand())
 		user.put_in_active_hand(mop)
@@ -40,24 +40,24 @@
 	toolbox.loc = user.loc
 
 
-/obj/item/melee/toolbox_maul/attackby(obj/item/C, mob/living/user)
+/obj/item/melee/toolbox_maul/attackby(obj/item/C,69ob/living/user)
 	if(toolbox)
 		if(istype(C, /obj/item/tool/wirecutters))
 			if(reinforced)
-				to_chat(user, SPAN_NOTICE("You cutted up the tapes from [src]."))
+				to_chat(user, SPAN_NOTICE("You cutted up the tapes from 69src69."))
 				reinforced = FALSE
 			else
-				to_chat(user, SPAN_NOTICE("You carefully cut cables from [src]."))
+				to_chat(user, SPAN_NOTICE("You carefully cut cables from 69src69."))
 				break_apart(user)
 
 		if(istype(C, /obj/item/tool/tape_roll))
-			to_chat(user, SPAN_NOTICE("You begins to tie [src] with [C]..."))
+			to_chat(user, SPAN_NOTICE("You begins to tie 69src69 with 69C69..."))
 			if(do_after(user, 50))
 				if(!reinforced)
-					to_chat(user, SPAN_NOTICE("You reinforce [src]."))
+					to_chat(user, SPAN_NOTICE("You reinforce 69src69."))
 					reinforced = TRUE
 				else
-					to_chat(user, SPAN_WARNING("[src] is already reinforced."))
+					to_chat(user, SPAN_WARNING("69src69 is already reinforced."))
 	else
 		if(istype(C, /obj/item/storage/toolbox))
 			src.name = initial(src.name)
@@ -75,12 +75,12 @@
 			if(istype(C, /obj/item/storage/toolbox/mechanical))
 				icon_state = "hm_hammer_blue"
 				item_state = "hm_hammer_blue"
-			to_chat(user, SPAN_NOTICE("You tied [C] to [src] and finally finish it!"))
+			to_chat(user, SPAN_NOTICE("You tied 69C69 to 69src69 and finally finish it!"))
 	update_icon()
 
-/obj/item/melee/toolbox_maul/attack(mob/living/carbon/human/M as mob, mob/living/carbon/user as mob)
+/obj/item/melee/toolbox_maul/attack(mob/living/carbon/human/M as69ob,69ob/living/carbon/user as69ob)
 	..()
 	if(!reinforced && prob(5))
 		break_apart(user)
 		playsound(src.loc, 'sound/effects/bang.ogg', 45, 1)
-		user.visible_message(SPAN_WARNING("[src] breaks in hands of [user]!"))
+		user.visible_message(SPAN_WARNING("69src69 breaks in hands of 69user69!"))

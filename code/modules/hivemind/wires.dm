@@ -1,6 +1,6 @@
 //Wireweeds are created by the AI's nanites to spread its connectivity through the ship.
-//When they reach any machine, they annihilate them and re-purpose them to the AI's needs. They are the 'hands' of our rogue AI.
-//The three acids and chlorine, a strong oxidizer of metals, are killer reagents
+//When they reach any69achine, they annihilate them and re-purpose them to the AI's needs. They are the 'hands' of our rogue AI.
+//The three acids and chlorine, a strong oxidizer of69etals, are killer reagents
 
 /obj/effect/plant/hivemind
 	layer = 2
@@ -30,7 +30,7 @@
 	if(master_node)
 		master_node.add_wireweed(child)
 	spawn(1)
-		child.dir = get_dir(loc, target_turf) //actually this means nothing for wires, but need for animation
+		child.dir = get_dir(loc, target_turf) //actually this69eans nothing for wires, but need for animation
 		flick("spread_anim", child)
 		child.forceMove(target_turf)
 		for(var/obj/effect/plant/hivemind/neighbor in range(1, child))
@@ -40,7 +40,7 @@
 /obj/effect/plant/hivemind/proc/try_to_assimilate()
 	for(var/obj/machinery/machine_on_my_tile in loc)
 		var/can_assimilate = TRUE
-		if(machine_on_my_tile.alpha == 0) //which mean that machine is already assimilated
+		if(machine_on_my_tile.alpha == 0) //which69ean that69achine is already assimilated
 			continue
 
 		//whitelist check
@@ -54,14 +54,14 @@
 			anim_shake(machine_on_my_tile)
 			return
 
-		 //only one machine per turf
+		 //only one69achine per turf
 		if(can_assimilate && !locate(/obj/machinery/hivemind_machine) in loc)
 			assimilate(machine_on_my_tile)
 			return
 
 	//modular computers handling
 	var/obj/item/modular_computer/console/mod_comp = locate() in loc
-	if(mod_comp && mod_comp.alpha != 0)
+	if(mod_comp &&69od_comp.alpha != 0)
 		assimilate(mod_comp)
 
 	//dead bodies handling
@@ -78,19 +78,19 @@
 
 
 /obj/effect/plant/hivemind/spread()
-	if(hive_mind_ai && master_node)
+	if(hive_mind_ai &&69aster_node)
 		..()
 
 
 /obj/effect/plant/hivemind/life()
-	if(hive_mind_ai && master_node)
+	if(hive_mind_ai &&69aster_node)
 		try_to_assimilate()
 		chem_handler()
 		var/obj/machinery/door/door_on_my_tile = locate(/obj/machinery/door) in loc
 		if(door_on_my_tile && door_on_my_tile.density)
 			door_interaction(door_on_my_tile)
 	else
-		//slow vanishing after node death
+		//slow69anishing after node death
 		health -= 10
 		alpha = 255 * health/max_health
 		check_health()
@@ -108,7 +108,7 @@
 		icon_state = "wires_burrow"
 	else
 		for(var/i = 1 to 4)
-			I = image(src.icon, "wires[wires_connections[i]]", dir = 1<<(i-1))
+			I = image(src.icon, "wires69wires_connections69i6969", dir = 1<<(i-1))
 			overlays += I
 
 	//wallhug
@@ -230,50 +230,50 @@
 		var/obj/machinery/hivemind_machine/created_machine
 
 		//New node creation
-		if(hive_mind_ai.hives.len < MAX_NODES_AMOUNT)
-			var/EP_range = hive_mind_ai.hives.len * (hive_mind_ai.evo_points_max / MAX_NODES_AMOUNT)
-			if(hive_mind_ai.evo_points > EP_range) //one hive per: max_EP / max_nodes_amount
+		if(hive_mind_ai.hives.len <69AX_NODES_AMOUNT)
+			var/EP_range = hive_mind_ai.hives.len * (hive_mind_ai.evo_points_max /69AX_NODES_AMOUNT)
+			if(hive_mind_ai.evo_points > EP_range) //one hive per:69ax_EP /69ax_nodes_amount
 				var/can_spawn_new_node = TRUE
 				for(var/obj/machinery/hivemind_machine/node/other_node in hive_mind_ai.hives)
-					if(get_dist(other_node, subject) < MIN_NODES_RANGE)
+					if(get_dist(other_node, subject) <69IN_NODES_RANGE)
 						can_spawn_new_node = FALSE
 						break
 				if(can_spawn_new_node)
 					created_machine = new /obj/machinery/hivemind_machine/node(get_turf(subject))
 
 
-		//Critical failure chance! This machine would be a dummy, which means - without any ability
+		//Critical failure chance! This69achine would be a dummy, which69eans - without any ability
 		if(!created_machine && prob(hive_mind_ai.failure_chance))
-			//let's make an infested sprite
+			//let's69ake an infested sprite
 			created_machine = new (get_turf(subject))
-			var/icon/infected_icon = new('icons/obj/hivemind_machines.dmi', icon_state = "wires-[rand(1, 3)]")
+			var/icon/infected_icon = new('icons/obj/hivemind_machines.dmi', icon_state = "wires-69rand(1, 3)69")
 			var/icon/new_icon = new(subject.icon, icon_state = subject.icon_state, dir = subject.dir)
 			new_icon.Blend(infected_icon, ICON_OVERLAY)
 			created_machine.icon = new_icon
 			var/prefix = pick("Warped", "Altered", "Modified", "Upgraded", "Abnormal")
-			created_machine.name = "[prefix] [subject.name]"
+			created_machine.name = "69prefix69 69subject.name69"
 			created_machine.pixel_x = subject.pixel_x
 			created_machine.pixel_y = subject.pixel_y
 
-		//Here we have a little chance to spawn our machinery horror
+		//Here we have a little chance to spawn our69achinery horror
 		if(istype(subject, /obj/machinery))
 			var/obj/machinery/victim = subject
-			if(prob(15) && victim.circuit)
+			if(prob(15) &&69ictim.circuit)
 				new /mob/living/simple_animal/hostile/hivemind/mechiver(get_turf(subject))
-				new victim.circuit.type(get_turf(subject))
+				new69ictim.circuit.type(get_turf(subject))
 				qdel(subject)
 				return
 
-		//New hivemind machine creation
+		//New hivemind69achine creation
 		if(!created_machine)
 			var/list/possible_machines = list()
-			//here we compare hivemind's EP level with machine's required value
+			//here we compare hivemind's EP level with69achine's required69alue
 			for(var/machine_path in hive_mind_ai.EP_price_list)
-				var/list/machine_list = hive_mind_ai.EP_price_list[machine_path]
-				if(hive_mind_ai.evo_level >= machine_list["level"])
+				var/list/machine_list = hive_mind_ai.EP_price_list69machine_path69
+				if(hive_mind_ai.evo_level >=69achine_list69"level"69)
 					possible_machines.Add(machine_path)
-					//setting of weight of machine
-					possible_machines[machine_path] = machine_list["weight"]
+					//setting of weight of69achine
+					possible_machines69machine_path69 =69achine_list69"weight"69
 
 			var/picked_machine = pickweight(possible_machines)
 			created_machine = new picked_machine(get_turf(subject))
@@ -292,7 +292,7 @@
 			for(var/obj/item/W in L)
 				L.drop_from_inventory(W)
 			var/M = pick(/mob/living/simple_animal/hostile/hivemind/himan, /mob/living/simple_animal/hostile/hivemind/phaser)
-			new M(loc)
+			new69(loc)
 		//robot corpses
 		else if(issilicon(subject))
 			new /mob/living/simple_animal/hostile/hivemind/hiborg(loc)
@@ -311,7 +311,7 @@
 
 //in fact, this is some kind of reinforced wires, so we can't take samples from it and inject something too
 //but we still can slice it with something sharp
-/obj/effect/plant/hivemind/attackby(obj/item/W, mob/user)
+/obj/effect/plant/hivemind/attackby(obj/item/W,69ob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 
 	var/weapon_type
@@ -323,27 +323,27 @@
 
 		if(weapon_type)
 			if(W.use_tool(user, src, WORKTIME_FAST, weapon_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_DANGER("[user] cuts down [src]."), SPAN_DANGER("You cut down [src]."))
+				user.visible_message(SPAN_DANGER("69user69 cuts down 69src69."), SPAN_DANGER("You cut down 69src69."))
 				die_off()
 				return
 			return
 		else
 			if(W.sharp && W.force >= 10)
-				health -= rand(W.force/2, W.force) //hm, maybe make damage based on player's robust stat?
-				user.visible_message(SPAN_DANGER("[user] slices [src]."), SPAN_DANGER("You slice [src]."))
+				health -= rand(W.force/2, W.force) //hm,69aybe69ake damage based on player's robust stat?
+				user.visible_message(SPAN_DANGER("69user69 slices 69src69."), SPAN_DANGER("You slice 69src69."))
 			else
-				to_chat(user, SPAN_DANGER("You try to slice [src], but it's useless!"))
+				to_chat(user, SPAN_DANGER("You try to slice 69src69, but it's useless!"))
 		check_health()
 
 
-//fire is effective, but there need some time to melt the covering
+//fire is effective, but there need some time to69elt the covering
 /obj/effect/plant/hivemind/fire_act()
 	health -= rand(1, 4)
 	check_health()
 
 
 //emp is effective too
-//it causes electricity failure, so our wireweeds just blowing up inside, what makes them fragile
+//it causes electricity failure, so our wireweeds just blowing up inside, what69akes them fragile
 /obj/effect/plant/hivemind/emp_act(severity)
 	if(severity)
 		die_off()
@@ -360,6 +360,6 @@
 
 
 #undef HIVE_FACTION
-#undef MAX_NODES_AMOUNT
-#undef MIN_NODES_RANGE
+#undef69AX_NODES_AMOUNT
+#undef69IN_NODES_RANGE
 #undef ishivemindmob

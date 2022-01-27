@@ -1,5 +1,5 @@
 /***************************************
-* Highly Visible and Dangerous Weapons *
+* Highly69isible and Dangerous Weapons *
 ***************************************/
 /datum/uplink_item/item/visible_weapons
 	category = /datum/uplink_category/visible_weapons
@@ -89,7 +89,7 @@
 
 /datum/uplink_item/item/visible_weapons/psychic_lasercannon
 	name = "Prototype: psychic laser cannon"
-	desc = "A laser cannon that attacks the minds of people, causing sanity loss and inducing mental breakdowns. Also can be used to complete mind fryer contracts."
+	desc = "A laser cannon that attacks the69inds of people, causing sanity loss and inducing69ental breakdowns. Also can be used to complete69ind fryer contracts."
 	item_cost = 12
 	path = /obj/item/gun/energy/psychic/lasercannon
 

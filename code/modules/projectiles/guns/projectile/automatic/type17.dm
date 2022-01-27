@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/type_17
-    name = "OS AR .20 \"Type XVII\""
-    desc = "An old Onestar assault rifle. A reliable, if unintuitive, design. Uses .20 Rifle magazines."
+   69ame = "OS AR .20 \"Type XVII\""
+    desc = "An old Onestar assault rifle. A reliable, if unintuitive, design. Uses .20 Rifle69agazines."
     icon = 'icons/obj/guns/projectile/os/type_17.dmi'
     icon_state = "type_17"
     item_state = "type_17"
@@ -9,10 +9,10 @@
     caliber = CAL_SRIFLE
     origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 1)
     slot_flags = SLOT_BACK
-    load_method = MAGAZINE
-    mag_well = MAG_WELL_RIFLE
-    magazine_type = /obj/item/ammo_magazine/srifle
-    matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 10)
+    load_method =69AGAZINE
+   69ag_well =69AG_WELL_RIFLE
+   69agazine_type = /obj/item/ammo_magazine/srifle
+   69atter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLATINUM = 8,69ATERIAL_PLASTIC = 10)
     price_tag = 3800
     fire_sound = 'sound/weapons/guns/fire/cal/20.ogg'
     unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'

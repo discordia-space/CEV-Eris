@@ -26,11 +26,11 @@
 		if (!at_station())	//at centcom
 			SSsupply.buy()
 
-		//We pretend it's a long_jump by making the shuttle stay at centcom for the "in-transit" period.
+		//We pretend it's a long_jump by69aking the shuttle stay at centcom for the "in-transit" period.
 		var/obj/effect/shuttle_landmark/away_waypoint = get_location_waypoint(away_location)
 		moving_status = SHUTTLE_INTRANSIT
 
-		//If we are at the away_landmark then we are just pretending to move, otherwise actually do the move
+		//If we are at the away_landmark then we are just pretending to69ove, otherwise actually do the69ove
 		if (next_location == away_waypoint)
 			attempt_move(away_waypoint)
 
@@ -51,7 +51,7 @@
 		if (!at_station())	//at centcom
 			SSsupply.sell()
 
-// returns 1 if the supply shuttle should be prevented from moving because it contains forbidden atoms
+// returns 1 if the supply shuttle should be prevented from69oving because it contains forbidden atoms
 /datum/shuttle/autodock/ferry/supply/proc/forbidden_atoms_check()
 	if (!at_station())
 		return 0	//if badmins want to send forbidden atoms on the supply shuttle from centcom we don't care
@@ -63,15 +63,15 @@
 /datum/shuttle/autodock/ferry/supply/proc/at_station()
 	return (!location)
 
-//returns 1 if the shuttle is idle and we can still mess with the cargo shopping list
+//returns 1 if the shuttle is idle and we can still69ess with the cargo shopping list
 /datum/shuttle/autodock/ferry/supply/proc/idle()
 	return (moving_status == SHUTTLE_IDLE)
 
-//returns the ETA in minutes
+//returns the ETA in69inutes
 /datum/shuttle/autodock/ferry/supply/proc/eta_minutes()
 	var/ticksleft = arrive_time - world.time
-	return max(0, round(ticksleft/600,1))
+	return69ax(0, round(ticksleft/600,1))
 
 /datum/shuttle/autodock/ferry/supply/proc/eta_seconds()
 	var/ticksleft = arrive_time - world.time
-	return max(0, round(ticksleft/10,1))
+	return69ax(0, round(ticksleft/10,1))

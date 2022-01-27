@@ -1,7 +1,7 @@
 
 /obj/machinery/auto_cloner
 	name = "mysterious pod"
-	desc = "It's full of a viscous liquid, but appears dark and silent."
+	desc = "It's full of a69iscous li69uid, but appears dark and silent."
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cellold0"
 	var/spawn_type
@@ -20,7 +20,7 @@
 
 	time_per_spawn = rand(1200,3600)
 
-	//33% chance to spawn nasties
+	//33% chance to spawn69asties
 	if(prob(33))
 		spawn_type = pick(\
 		/mob/living/carbon/superior_animal/giant_spider/nurse,\
@@ -48,19 +48,19 @@
 		if(!previous_power_state)
 			previous_power_state = 1
 			icon_state = "cellold1"
-			src.visible_message("\blue \icon[src] [src] suddenly comes to life!")
+			src.visible_message("\blue \icon69src69 69src69 suddenly comes to life!")
 
-		//slowly grow a mob
+		//slowly grow a69ob
 		if(prob(5))
-			src.visible_message("\blue \icon[src] [src] [pick("gloops","glugs","whirrs","whooshes","hisses","purrs","hums","gushes")].")
+			src.visible_message("\blue \icon69src69 69src69 69pick("gloops","glugs","whirrs","whooshes","hisses","purrs","hums","gushes")69.")
 
 		//if we've finished growing...
 		if(time_spent_spawning >= time_per_spawn)
 			time_spent_spawning = 0
 			use_power = IDLE_POWER_USE
-			src.visible_message("\blue \icon[src] [src] pings!")
+			src.visible_message("\blue \icon69src69 69src69 pings!")
 			icon_state = "cellold1"
-			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
+			desc = "It's full of a bubbling69iscous li69uid, and is lit by a69ysterious glow."
 			if(spawn_type)
 				new spawn_type(src.loc)
 
@@ -68,20 +68,20 @@
 		if(time_spent_spawning / time_per_spawn > 0.75)
 			use_power = ACTIVE_POWER_USE
 			icon_state = "cellold2"
-			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow. A dark shape appears to be forming inside..."
+			desc = "It's full of a bubbling69iscous li69uid, and is lit by a69ysterious glow. A dark shape appears to be forming inside..."
 		else
 			use_power = IDLE_POWER_USE
 			icon_state = "cellold1"
-			desc = "It's full of a bubbling viscous liquid, and is lit by a mysterious glow."
+			desc = "It's full of a bubbling69iscous li69uid, and is lit by a69ysterious glow."
 
 		time_spent_spawning = time_spent_spawning + world.time - last_process
 	else
 		if(previous_power_state)
 			previous_power_state = 0
 			icon_state = "cellold0"
-			src.visible_message("\blue \icon[src] [src] suddenly shuts down.")
+			src.visible_message("\blue \icon69src69 69src69 suddenly shuts down.")
 
-		//cloned mob slowly breaks down
-		time_spent_spawning = max(time_spent_spawning + last_process - world.time, 0)
+		//cloned69ob slowly breaks down
+		time_spent_spawning =69ax(time_spent_spawning + last_process - world.time, 0)
 
 	last_process = world.time

@@ -25,14 +25,14 @@
 	if(!istype(T)) return
 
 	//blind adjacent people
-	for (var/mob/living/carbon/M in viewers(T, flash_range))
+	for (var/mob/living/carbon/M in69iewers(T, flash_range))
 		if(M.eyecheck() < FLASH_PROTECTION_MODERATE)
 			if (M.HUDtech.Find("flash"))
-				flick("e_flash", M.HUDtech["flash"])
+				flick("e_flash",69.HUDtech69"flash"69)
 
 	//snap pop
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
-	src.visible_message(SPAN_WARNING("\The [src] explodes in a bright flash!"))
+	src.visible_message(SPAN_WARNING("\The 69src69 explodes in a bright flash!"))
 
 	new /obj/effect/decal/cleanable/ash(src.loc) //always use src.loc so that ash doesn't end up inside windows
 	new /obj/effect/sparks(T)
@@ -53,7 +53,7 @@
 	taser_effect = 1
 	agony = 40
 	damage_types = list(HALLOSS = 0)
-	//Damage will be handled on the MOB side, to prevent window shattering.
+	//Damage will be handled on the69OB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"

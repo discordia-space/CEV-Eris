@@ -19,42 +19,42 @@ RSF
 
 /obj/item/rsf/examine(mob/user)
 	if(..(user, 0))
-		to_chat(user, "It currently holds [stored_matter]/30 Compressed Matter.")
+		to_chat(user, "It currently holds 69stored_matter69/30 Compressed69atter.")
 
-/obj/item/rsf/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/rsf/attackby(obj/item/W as obj,69ob/user as69ob)
 	var/obj/item/stack/material/M = W
-	if(istype(M) && M.material.name == MATERIAL_COMPRESSED)
-		var/amount = min(M.get_amount(), round(max_stored_matter - stored_matter))
-		if(M.use(amount) && stored_matter < max_stored_matter)
+	if(istype(M) &&69.material.name ==69ATERIAL_COMPRESSED)
+		var/amount =69in(M.get_amount(), round(max_stored_matter - stored_matter))
+		if(M.use(amount) && stored_matter <69ax_stored_matter)
 			stored_matter += amount
 			playsound(src.loc, 'sound/machines/click.ogg', 10, 1)
-			to_chat(user, "<span class='notice'>You load [amount] Compressed Matter into \the [src]</span>.")
+			to_chat(user, "<span class='notice'>You load 69amount69 Compressed69atter into \the 69src69</span>.")
 	else
 		..()
-/obj/item/rsf/attack_self(mob/user as mob)
+/obj/item/rsf/attack_self(mob/user as69ob)
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	if (mode == 1)
 		mode = 2
-		to_chat(user, "Changed dispensing mode to 'Drinking Glass'")
+		to_chat(user, "Changed dispensing69ode to 'Drinking Glass'")
 		return
 	if (mode == 2)
 		mode = 3
-		to_chat(user, "Changed dispensing mode to 'Paper'")
+		to_chat(user, "Changed dispensing69ode to 'Paper'")
 		return
 	if (mode == 3)
 		mode = 4
-		to_chat(user, "Changed dispensing mode to 'Pen'")
+		to_chat(user, "Changed dispensing69ode to 'Pen'")
 		return
 	if (mode == 4)
 		mode = 5
-		to_chat(user, "Changed dispensing mode to 'Dice Pack'")
+		to_chat(user, "Changed dispensing69ode to 'Dice Pack'")
 		return
 	if (mode == 5)
 		mode = 1
-		to_chat(user, "Changed dispensing mode to 'Cigarette'")
+		to_chat(user, "Changed dispensing69ode to 'Cigarette'")
 		return
 
-/obj/item/rsf/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/rsf/afterattack(atom/A,69ob/user as69ob, proximity)
 
 	if(!proximity) return
 
@@ -90,7 +90,7 @@ RSF
 			product = new /obj/item/storage/pill_bottle/dice()
 			used_energy = 200
 
-	to_chat(user, "Dispensing [product ? product : "product"]...")
+	to_chat(user, "Dispensing 69product ? product : "product"69...")
 	product.loc = get_turf(A)
 
 	if(isrobot(user))
@@ -99,4 +99,4 @@ RSF
 			R.cell.use(used_energy)
 	else
 		stored_matter--
-		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")
+		to_chat(user, "The RSF now holds 69stored_matter69/30 fabrication-units.")

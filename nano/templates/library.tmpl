@@ -1,75 +1,75 @@
-{{if data.error}}
+{{if d69t69.error}}
 	<h2>Error</h2>
-	{{:data.error}}<br><br>
-	{{:helper.link("Reset", null, {'reseterror' : 1})}}
-{{else data.current_book}}
-	<h2>{{:data.current_book.title}}</h2>
-	<div class="item">
-		<div class="itemLabel">
-			Author: 
-		</div>
-		<div class="itemContent">
-			 {{:data.current_book.author}}
-		</div>
-		<div class="itemLabel">
-			USBN: 
-		</div>
-		<div class="itemContent">
-			{{:data.current_book.id}}
-		</div>
-		<div class="itemLabel">
-			Commands: 
-		</div>
-		<div class="itemContent">
-			{{:helper.link("Close", null, {'closebook' : 1})}}
-			{{:helper.link("Print", null, {'printbook' : 1})}}
-		</div>
-	</div>
-	<div style="background-color: #FFFFFF; padding: 6px;">
-		{{:data.current_book.content}}
-	</div>
+	{{:d69t69.error}}<69r><69r>
+	{{:hel69er.lin6969"Reset",69ull, {'reseterror' : 1}69}}
+{{else d69t69.current_69oo69}}
+	<h2>{{:d69t69.current_69oo69.title}}</h2>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			69uthor: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			 {{:d69t69.current_69oo69.69uthor}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			US69N: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.current_69oo69.id}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			Comm69nds: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.lin6969"Close",69ull, {'close69oo69' : 1}69}}
+			{{:hel69er.lin6969"69rint",69ull, {'69rint69oo69' : 1}69}}
+		</di69>
+	</di69>
+	<di69 st69le="6969c6969round-color: #FFFFFF; 6969ddin69: 669x;">
+		{{:d69t69.current_69oo69.content}}
+	</di69>
 {{else}}
-	<h2>External Archives</h2>
-	<div class="item">
-		<div class="itemLabel">
-			Scanner:
-		</div>
-		<div class="itemContent">
-			{{:data.scanner ? 'Connected' : 'Not Connected'}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Commands:
-		</div>
-		<div class="itemContent">
-			{{:helper.link("View By USBN", null, {'viewid' : 1})}}
-			{{:helper.link("Upload From Library Scanner", null, {'uploadbook' : 1})}}
-			{{:helper.link("Connect to Library Scanner", null, {'connectscanner' : 1})}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Sort by:
-		</div>
-		<div class="itemContent">
-			{{:helper.link("Title", null, {'sortby' : 'title'})}}
-			{{:helper.link("Author", null, {'sortby' : 'author'})}}
-			{{:helper.link("Category", null, {'sortby' : 'category'})}}
-			{{:helper.link("USBN", null, {'sortby' : 'id'})}}
-		</div>
-	</div>
+	<h2>Extern69l 69rchi69es</h2>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Sc69nner:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.sc69nner ? 'Connected' : 'Not Connected'}}
+		</di69>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Comm69nds:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.lin6969"69iew 6969 US69N",69ull, {'69iewid' : 1}69}}
+			{{:hel69er.lin6969"U69lo69d From Li69r69r69 Sc69nner",69ull, {'u69lo69d69oo69' : 1}69}}
+			{{:hel69er.lin6969"Connect to Li69r69r69 Sc69nner",69ull, {'connectsc69nner' : 1}69}}
+		</di69>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Sort 6969:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.lin6969"Title",69ull, {'sort6969' : 'title'}69}}
+			{{:hel69er.lin6969"69uthor",69ull, {'sort6969' : '69uthor'}69}}
+			{{:hel69er.lin6969"C69te69or69",69ull, {'sort6969' : 'c69te69or69'}69}}
+			{{:hel69er.lin6969"US69N",69ull, {'sort6969' : 'id'}69}}
+		</di69>
+	</di69>
 
-	<table style="width:100%">
-		<tr><th style="width:20%">Commands<th style="width:40%">Title<th style="width:15%">Author<th style="width:15%">Category<th style="width:10%">USBN
-		{{for data.book_list}}
-		<tr><td>{{:helper.link("View", null, {'viewbook' : value.id})}}
-			<td>{{:value.title}}
-			<td>{{:value.author}}
-			<td>{{:value.category}}
-			<td>{{:value.id}}
-		</div>
+	<t6969le st69le="width:100%">
+		<tr><th st69le="width:20%">Comm69nds<th st69le="width:40%">Title<th st69le="width:15%">69uthor<th st69le="width:15%">C69te69or69<th st69le="width:10%">US69N
+		{{for d69t69.69oo69_list}}
+		<tr><td>{{:hel69er.lin6969"69iew",69ull, {'69iew69oo69' : 6969lue.id}69}}
+			<td>{{:6969lue.title}}
+			<td>{{:6969lue.69uthor}}
+			<td>{{:6969lue.c69te69or69}}
+			<td>{{:6969lue.id}}
+		</di69>
 		{{/for}}
-	</table>
+	</t6969le>
 {{/if}}
-<br><br><hr><i>NTOS v2.0.4b Copyright NanoTrasen 2557 - 2561</i>
+<69r><69r><hr><i>NTOS 692.0.469 Co6969ri69ht6969noTr69sen 2557 - 2561</i>

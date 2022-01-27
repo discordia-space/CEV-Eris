@@ -10,7 +10,7 @@
 
 /obj/item/integrated_circuit/reagent/smoke
 	name = "smoke generator"
-	desc = "Unlike most electronics, creating smoke is completely intentional."
+	desc = "Unlike69ost electronics, creating smoke is completely intentional."
 	icon_state = "smoke"
 	extended_desc = "This smoke generator creates clouds of smoke on command.  It can also hold liquids inside, which will go \
 	into the smoke clouds when activated."
@@ -38,8 +38,8 @@
 	name = "integrated hypo-injector"
 	desc = "This scary looking thing is able to pump liquids into whatever it's pointed at."
 	icon_state = "injector"
-	extended_desc = "This autoinjector can push reagents into another container or someone else outside of the machine.  The target \
-	must be adjacent to the machine, and if it is a person, they cannot be wearing thick clothing."
+	extended_desc = "This autoinjector can push reagents into another container or someone else outside of the69achine.  The target \
+	must be adjacent to the69achine, and if it is a person, they cannot be wearing thick clothing."
 	reagent_flags = OPENCONTAINER
 	complexity = 20
 	cooldown_per_use = 6 SECONDS
@@ -79,25 +79,25 @@
 		if(isliving(AM))
 			var/mob/living/L = AM
 			var/turf/T = get_turf(AM)
-			T.visible_message(SPAN_WARNING("[src] is trying to inject [L]!"))
+			T.visible_message(SPAN_WARNING("69src69 is trying to inject 69L69!"))
 			sleep(3 SECONDS)
 			if(!inject_check(L))
 				return
 			var/contained = reagents.log_list()
 			var/trans = reagents.trans_to_mob(L, inject_amount(), CHEM_BLOOD)
-			message_admins("[src] injected \the [L] with [trans]u of [contained].")
+			message_admins("69src69 injected \the 69L69 with 69trans69u of 69contained69.")
 			to_chat(L, SPAN_NOTICE("You feel a tiny prick!"))
-			visible_message(SPAN_WARNING("[src] injects [L]!"))
+			visible_message(SPAN_WARNING("69src69 injects 69L69!"))
 		else
 			reagents.trans_to(AM, inject_amount())
 
 /obj/item/integrated_circuit/reagent/pump
 	name = "reagent pump"
-	desc = "Moves liquids safely inside a machine, or even nearby it."
+	desc = "Moves liquids safely inside a69achine, or even nearby it."
 	icon_state = "reagent_pump"
-	extended_desc = "This is a pump, which will move liquids from the source ref to the target ref.  The third pin determines \
-	how much liquid is moved per pulse, between 0 and 50.  The pump can move reagents to any open container inside the machine, or \
-	outside the machine if it is next to the machine.  Note that this cannot be used on entities."
+	extended_desc = "This is a pump, which will69ove liquids from the source ref to the target ref.  The third pin determines \
+	how69uch liquid is69oved per pulse, between 0 and 50.  The pump can69ove reagents to any open container inside the69achine, or \
+	outside the69achine if it is next to the69achine.  Note that this cannot be used on entities."
 	reagent_flags = OPENCONTAINER
 	complexity = 8
 	inputs = list("\<REF\> source", "\<REF\> target", "\<NUM\> injection amount" = 10)
@@ -109,7 +109,7 @@
 	power_draw_per_use = 10
 
 /obj/item/integrated_circuit/reagent/pump/on_data_written()
-	var/datum/integrated_io/amount = inputs[3]
+	var/datum/integrated_io/amount = inputs69369
 	if(isnum(amount.data))
 		amount.data = CLAMP(amount.data, 0, 50)
 		transfer_amount = amount.data
@@ -149,7 +149,7 @@
 	volume = 60
 
 /obj/item/integrated_circuit/reagent/storage/on_reagent_change()
-	var/datum/integrated_io/A = outputs[1]
+	var/datum/integrated_io/A = outputs69169
 	A.data = reagents.total_volume
 	A.push_data()
 

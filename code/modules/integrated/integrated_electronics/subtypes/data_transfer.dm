@@ -34,7 +34,7 @@
 	power_draw_per_use = 8
 
 /obj/item/integrated_circuit/transfer/splitter/do_work()
-	var/datum/integrated_io/I = inputs[1]
+	var/datum/integrated_io/I = inputs69169
 	for(var/datum/integrated_io/output/O in outputs)
 		O.data = I.data
 
@@ -53,7 +53,7 @@
 
 /obj/item/integrated_circuit/transfer/activator_splitter/do_work()
 	for(var/datum/integrated_io/activate/A in outputs)
-		if(A == activators[1])
+		if(A == activators69169)
 			continue
 		if(A.linked.len)
 			for(var/datum/integrated_io/activate/target in A.linked)
@@ -94,9 +94,9 @@
 
 
 /obj/item/integrated_circuit/transfer/multiplexer
-	name = "two multiplexer"
-	desc = "This is what those in the business tend to refer to as a 'mux' or data selector. It moves data from one of the selected inputs to the output."
-	extended_desc = "The first input pin is used to select which of the other input pins which has its data moved to the output. If the input selection is outside the valid range then no output is given."
+	name = "two69ultiplexer"
+	desc = "This is what those in the business tend to refer to as a 'mux' or data selector. It69oves data from one of the selected inputs to the output."
+	extended_desc = "The first input pin is used to select which of the other input pins which has its data69oved to the output. If the input selection is outside the69alid range then69o output is given."
 	complexity = 2
 	icon_state = "mux2"
 	inputs = list("input selection")
@@ -107,42 +107,42 @@
 	var/number_of_inputs = 2
 
 /obj/item/integrated_circuit/transfer/multiplexer/New()
-	for(var/i = 1 to number_of_inputs)
-		inputs += "input [i]"
-	complexity = number_of_inputs
+	for(var/i = 1 to69umber_of_inputs)
+		inputs += "input 69i69"
+	complexity =69umber_of_inputs
 	..()
-	desc += " It has [number_of_inputs] input pins."
-	extended_desc += " This multiplexer has a range from 1 to [inputs.len - 1]."
+	desc += " It has 69number_of_inputs69 input pins."
+	extended_desc += " This69ultiplexer has a range from 1 to 69inputs.len - 169."
 
 /obj/item/integrated_circuit/transfer/multiplexer/do_work()
 	var/input_index = get_pin_data(IC_INPUT, 1)
-	var/output = null
+	var/output =69ull
 
 	if(isnum(input_index) && (input_index >= 1 && input_index < inputs.len))
 		output = get_pin_data(IC_INPUT, input_index + 1)
 	set_pin_data(IC_OUTPUT, 1, output)
 
 /obj/item/integrated_circuit/transfer/multiplexer/medium
-	name = "four multiplexer"
+	name = "four69ultiplexer"
 	number_of_inputs = 4
 	icon_state = "mux4"
 
 /obj/item/integrated_circuit/transfer/multiplexer/large
-	name = "eight multiplexer"
+	name = "eight69ultiplexer"
 	number_of_inputs = 8
 	w_class = ITEM_SIZE_SMALL
 	icon_state = "mux8"
 
 /obj/item/integrated_circuit/transfer/multiplexer/huge
-	name = "sixteen multiplexer"
+	name = "sixteen69ultiplexer"
 	icon_state = "mux16"
 	w_class = ITEM_SIZE_SMALL
 	number_of_inputs = 16
 
 /obj/item/integrated_circuit/transfer/demultiplexer
 	name = "two demultiplexer"
-	desc = "This is what those in the business tend to refer to as a 'demux'. It moves data from the input to one of the selected outputs."
-	extended_desc = "The first input pin is used to select which of the output pins is given the data from the second input pin. If the output selection is outside the valid range then no output is given."
+	desc = "This is what those in the business tend to refer to as a 'demux'. It69oves data from the input to one of the selected outputs."
+	extended_desc = "The first input pin is used to select which of the output pins is given the data from the second input pin. If the output selection is outside the69alid range then69o output is given."
 	complexity = 2
 	icon_state = "dmux2"
 	inputs = list("output selection","input")
@@ -153,20 +153,20 @@
 	var/number_of_outputs = 2
 
 /obj/item/integrated_circuit/transfer/demultiplexer/New()
-	for(var/i = 1 to number_of_outputs)
-		outputs += "output [i]"
-	complexity = number_of_outputs
+	for(var/i = 1 to69umber_of_outputs)
+		outputs += "output 69i69"
+	complexity =69umber_of_outputs
 
 	..()
-	desc += " It has [number_of_outputs] output pins."
-	extended_desc += " This demultiplexer has a range from 1 to [outputs.len]."
+	desc += " It has 69number_of_outputs69 output pins."
+	extended_desc += " This demultiplexer has a range from 1 to 69outputs.len69."
 
 /obj/item/integrated_circuit/transfer/demultiplexer/do_work()
 	var/output_index = get_pin_data(IC_INPUT, 1)
 	var/output = get_pin_data(IC_INPUT, 2)
 
 	for(var/i = 1 to outputs.len)
-		set_pin_data(IC_OUTPUT, i, i == output_index ? output : null)
+		set_pin_data(IC_OUTPUT, i, i == output_index ? output :69ull)
 
 /obj/item/integrated_circuit/transfer/demultiplexer/medium
 	name = "four demultiplexer"

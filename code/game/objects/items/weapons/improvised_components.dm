@@ -34,16 +34,16 @@
 	rarity_value = 16.66
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 
-/obj/item/material/wirerod/attackby(var/obj/item/I, mob/user)
+/obj/item/material/wirerod/attackby(var/obj/item/I,69ob/user)
 	..()
 	var/obj/item/finished
-	if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities))
+	if((69UALITY_CUTTING in I.tool_69ualities) || (69UALITY_WIRE_CUTTING in I.tool_69ualities))
 		finished = new /obj/item/melee/baton/cattleprod(get_turf(user))
 		to_chat(user, SPAN_NOTICE("You fasten the wirecutters to the top of the rod with the cable, prongs outward."))
 	if(finished)
 		user.drop_from_inventory(src)
 		user.drop_from_inventory(I)
-		qdel(I)
-		qdel(src)
+		69del(I)
+		69del(src)
 		user.put_in_hands(finished)
 	update_icon(user)

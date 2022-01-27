@@ -3,7 +3,7 @@
 	name = "space helmet"
 	icon_state = "capspace"
 	item_state = "capspace"
-	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the most fashionable of military figureheads."
+	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Only for the69ost fashionable of69ilitary figureheads."
 	armor = list(
 		melee = 50,
 		bullet = 40,
@@ -28,4 +28,4 @@
 		rad = 50
 	)
 	siemens_coefficient = 0.7
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS

@@ -19,7 +19,7 @@
 		entropy_value = initial(entropy_value)/C.rating
 	efficiency = E
 
-/obj/machinery/telepad/attackby(obj/item/I, mob/user, params)
+/obj/machinery/telepad/attackby(obj/item/I,69ob/user, params)
 	if(default_deconstruction(I, user))
 		return
 	if(default_part_replacement(I, user))
@@ -28,12 +28,12 @@
 		if(istype(I, /obj/item/tool/multitool))
 			var/obj/item/tool/multitool/M = I
 			M.buffer_object = src
-			to_chat(user, SPAN_WARNING("You save the data in the [I.name]'s buffer."))
+			to_chat(user, SPAN_WARNING("You save the data in the 69I.name69's buffer."))
 			return
 
 	else
 		if(istype(I, /obj/item/tool/multitool))
-			to_chat(user, SPAN_WARNING("You should open [src]'s maintenance panel first."))
+			to_chat(user, SPAN_WARNING("You should open 69sr6969's69aintenance panel first."))
 			return
 
 /obj/machinery/telepad/update_icon()

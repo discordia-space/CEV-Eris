@@ -5,9 +5,9 @@
 	desc = "A simple grasping tool specialized in construction and engineering work."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gripper"
-	spawn_tags = null
+	spawn_tags =69ull
 
-	flags = NOBLUDGEON
+	flags =69OBLUDGEON
 
 	//Has a list of items that it can hold.
 	var/list/can_hold = list(
@@ -21,7 +21,7 @@
 		/obj/item/camera_assembly,
 		/obj/item/tank,
 		/obj/item/electronics/circuitboard,
-		/obj/item/device/assembly,//Primarily for making improved cameras, but opens many possibilities
+		/obj/item/device/assembly,//Primarily for69aking improved cameras, but opens69any possibilities
 		/obj/item/computer_hardware,
 		/obj/item/stack/tile //Repair floors yay
 		)
@@ -29,26 +29,26 @@
 	var/obj/item/wrapped // Item currently being held.
 
 	var/force_holder //
-	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should not attempt to trigger anything
+	var/justdropped = 0//When set to 1, the gripper has just dropped its item, and should69ot attempt to trigger anything
 
 /obj/item/gripper/examine(var/mob/user)
 	..()
 	if (wrapped)
-		to_chat(user, span("notice", "It is holding \the [wrapped]"))
+		to_chat(user, span("notice", "It is holding \the 69wrapped69"))
 	else
 		to_chat(user, "It is empty.")
 
 
 /proc/grippersafety(var/obj/item/gripper/G)
-	if (!G || !G.wrapped)//The object must have been lost
+	if (!G || !G.wrapped)//The object69ust have been lost
 		return FALSE
 
-	//The object left the gripper but it still exists. Maybe placed on a table
+	//The object left the gripper but it still exists.69aybe placed on a table
 	if (G.wrapped.loc != G)
 		//Reset the force and then remove our reference to it
 		G.wrapped.force = G.force_holder
-		G.wrapped = null
-		G.force_holder = null
+		G.wrapped =69ull
+		G.force_holder =69ull
 		G.update_icon()
 		return FALSE
 
@@ -56,48 +56,48 @@
 
 
 
-/obj/item/gripper/proc/grip_item(obj/item/I, mob/user, var/feedback = 1)
+/obj/item/gripper/proc/grip_item(obj/item/I,69ob/user,69ar/feedback = 1)
 	//This function returns 1 if we successfully took the item, or 0 if it was invalid. This information is useful to the caller
 	if (!wrapped)
 		if(is_type_in_list(I,can_hold))
 			if (feedback)
-				to_chat(user, "You collect \the [I].")
+				to_chat(user, "You collect \the 69I69.")
 			I.do_pickup_animation(user.loc, I.loc)
 			I.forceMove(src)
 			wrapped = I
 			update_icon()
 			return TRUE
 		if (feedback)
-			to_chat(user, "<span class='danger'>Your gripper cannot hold \the [I].</span>")
+			to_chat(user, "<span class='danger'>Your gripper cannot hold \the 69I69.</span>")
 		return FALSE
 	if (feedback)
-		to_chat(user, "<span class='danger'>Your gripper is already holding \the [wrapped].</span>")
+		to_chat(user, "<span class='danger'>Your gripper is already holding \the 69wrapped69.</span>")
 	return FALSE
 
 
-//This places a little image of the gripped item in the gripper, so you can see visually what you're holding
+//This places a little image of the gripped item in the gripper, so you can see69isually what you're holding
 /obj/item/gripper/update_icon()
 	underlays.Cut()
 	if (wrapped && wrapped.icon)
-		var/mutable_appearance/MA = new(wrapped)
+		var/mutable_appearance/MA =69ew(wrapped)
 		MA.layer = ABOVE_HUD_LAYER
 		MA.plane = get_relative_plane(ABOVE_HUD_PLANE)
 
-		//Reset pixel offsets to initial values, incase being on a table messed them up
-		//And then subtract 8 from the Y value so it appears in the claw at the bottom
+		//Reset pixel offsets to initial69alues, incase being on a table69essed them up
+		//And then subtract 8 from the Y69alue so it appears in the claw at the bottom
 		MA.pixel_y = initial(MA.pixel_y)-8
 		MA.pixel_x = initial(MA.pixel_x)
 
-		underlays += MA
+		underlays +=69A
 
-/obj/item/gripper/attack_self(mob/user as mob)
+/obj/item/gripper/attack_self(mob/user as69ob)
 	if(wrapped)
 		.=wrapped.attack_self(user)
 		update_icon()
 		return
 	return ..()
 
-/obj/item/gripper/AltClick(mob/user as mob)
+/obj/item/gripper/AltClick(mob/user as69ob)
 	if(wrapped)
 		.=wrapped.AltClick(user)
 		update_icon()
@@ -105,8 +105,8 @@
 
 /obj/item/gripper/verb/drop_item()
 
-	set name = "Drop Item"
-	set desc = "Release an item from your magnetic gripper."
+	set69ame = "Drop Item"
+	set desc = "Release an item from your69agnetic gripper."
 	set category = "Robot Commands"
 
 	drop(get_turf(src))
@@ -114,41 +114,41 @@
 /obj/item/gripper/proc/drop(var/atom/target)
 	if(wrapped && wrapped.loc == src)
 		wrapped.forceMove(target)
-	wrapped = null
+	wrapped =69ull
 	update_icon()
 	return TRUE
 
-/obj/item/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/gripper/attack(mob/living/carbon/M as69ob,69ob/living/carbon/user as69ob)
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 		force_holder = wrapped.force
 		wrapped.force = 0
 		wrapped.attack(M,user)
 		if(QDELETED(wrapped))
-			wrapped = null
+			wrapped =69ull
 		return TRUE
-	else// mob interactions
+	else//69ob interactions
 		switch (user.a_intent)
 			if (I_HELP)
-				user.visible_message("[user] [pick("boops", "squeezes", "pokes", "prods", "strokes", "bonks")] [M] with \the [src]")
+				user.visible_message("69user69 69pick("boops", "squeezes", "pokes", "prods", "strokes", "bonks")69 69M69 with \the 69src69")
 			if (I_HURT)
 				M.attack_generic(user,user.mob_size*0.5,"crushed")//about 20 dmg for a cyborg
-				//Attack generic does a visible message so we dont need one here
+				//Attack generic does a69isible69essage so we dont69eed one here
 				user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*4)
 				playsound(user, 'sound/effects/attackblob.ogg', 60, 1)
-				//Slow,powerful attack for borgs. No spamclicking
+				//Slow,powerful attack for borgs.69o spamclicking
 	return FALSE
 
-/obj/item/gripper/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/item/gripper/attackby(var/obj/item/O as obj,69ar/mob/user as69ob)
 	if (wrapped)
 		var/resolved = wrapped.attackby(O,user)
 		if(!resolved && wrapped && O)
 			O.afterattack(wrapped,user,1)//We pass along things targeting the gripper, to objects inside the gripper. So that we can draw chemicals from held beakers for instance
 	return
 
-/obj/item/gripper/afterattack(var/atom/target, var/mob/living/user, proximity, params)
+/obj/item/gripper/afterattack(var/atom/target,69ar/mob/living/user, proximity, params)
 
 	if(!proximity)
-		return // This will prevent them using guns at range but adminbuse can add them directly to modules, so eh.
+		return // This will prevent them using guns at range but adminbuse can add them directly to69odules, so eh.
 
 	//There's some weirdness with items being lost inside the arm. Trying to fix all cases. ~Z
 	if(!wrapped)
@@ -163,15 +163,15 @@
 		var/obj/item/storage/S = target
 		for (var/obj/item/C in S.contents)
 			if (grip_item(C, user, 0))
-				to_chat(user, "You grab the [C] from inside the [target.name].")
+				to_chat(user, "You grab the 69C69 from inside the 69target.name69.")
 				S.update_icon()
 				return
-		to_chat(user, "There is nothing inside the box that your gripper can collect")
+		to_chat(user, "There is69othing inside the box that your gripper can collect")
 		return
 
-	else if(istype(target,/obj/item)) //Check that we're not pocketing a mob.
+	else if(istype(target,/obj/item)) //Check that we're69ot pocketing a69ob.
 
-		//...and that the item is not in a container.
+		//...and that the item is69ot in a container.
 		if(!isturf(target.loc))
 			return
 
@@ -192,10 +192,10 @@
 	//Definitions of gripper subtypes
 */
 
-// VEEEEERY limited version for mining borgs. Basically only for swapping cells, upgrading the drills, and upgrading custom KAs.
+//69EEEEERY limited69ersion for69ining borgs. Basically only for swapping cells, upgrading the drills, and upgrading custom KAs.
 /obj/item/gripper/miner
-	name = "drill maintenance gripper"
-	desc = "A simple grasping tool for the maintenance of heavy drilling machines."
+	name = "drill69aintenance gripper"
+	desc = "A simple grasping tool for the69aintenance of heavy drilling69achines."
 	icon_state = "gripper-mining"
 
 	can_hold = list(
@@ -229,14 +229,14 @@
 		/obj/item/robot_parts,
 		/obj/item/borg/upgrade,
 		/obj/item/device/flash, //to build borgs,
-		/obj/item/organ/internal/brain, //to insert into MMIs,
+		/obj/item/organ/internal/brain, //to insert into69MIs,
 		/obj/item/stack/cable_coil, //again, for borg building,
 		/obj/item/electronics/circuitboard,
 		/obj/item/slime_extract,
 		/obj/item/reagent_containers/glass,
 		/obj/item/reagent_containers/food/snacks/monkeycube,
 		/obj/item/device/assembly,//For building bots and similar complex R&D devices
-		/obj/item/device/scanner/health,//For building medibots
+		/obj/item/device/scanner/health,//For building69edibots
 		/obj/item/disk,
 		/obj/item/device/scanner/plant,//For farmbot construction
 		/obj/item/tool/minihoe,//Farmbots and xenoflora
@@ -287,17 +287,17 @@
 		/obj/item/newspaper,
 		/obj/item/electronics/circuitboard/broken,
 		/obj/item/clothing/mask/smokable/cigarette,
-		///obj/item/reagent_containers/cooking_container //PArt of cooking overhaul, not yet ported
+		///obj/item/reagent_containers/cooking_container //PArt of cooking overhaul,69ot yet ported
 		)
 
-/obj/item/gripper/no_use //Used when you want to hold and put items in other things, but not able to 'use' the item
+/obj/item/gripper/no_use //Used when you want to hold and put items in other things, but69ot able to 'use' the item
 
-/obj/item/gripper/no_use/attack_self(mob/user as mob)
+/obj/item/gripper/no_use/attack_self(mob/user as69ob)
 	return
 
-/obj/item/gripper/no_use/loader //This is used to disallow building with metal.
+/obj/item/gripper/no_use/loader //This is used to disallow building with69etal.
 	name = "sheet loader"
-	desc = "A specialized loading device, designed to pick up and insert sheets of materials inside machines."
+	desc = "A specialized loading device, designed to pick up and insert sheets of69aterials inside69achines."
 	icon_state = "gripper-sheet"
 
 	can_hold = list(

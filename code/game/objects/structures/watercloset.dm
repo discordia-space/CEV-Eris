@@ -2,7 +2,7 @@
 
 /obj/structure/toilet
 	name = "toilet"
-	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
+	desc = "The HT-451, a tor69ue rotation-based, waste disposal unit for small69atter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet00"
 	density = FALSE
@@ -11,17 +11,17 @@
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
-	var/mob/living/swirlie = null	//the mob being given a swirlie
+	var/mob/living/swirlie = null	//the69ob being given a swirlie
 
 /obj/structure/toilet/New()
 	open = round(rand(0, 1))
 	update_icon()
 
-/obj/structure/toilet/attack_hand(mob/living/user as mob)
+/obj/structure/toilet/attack_hand(mob/living/user as69ob)
 	if(swirlie)
 		usr.visible_message(
-			SPAN_DANGER("[user] slams the toilet seat onto [swirlie.name]'s head!"),
-			SPAN_NOTICE("You slam the toilet seat onto [swirlie.name]'s head!"),
+			SPAN_DANGER("69user69 slams the toilet seat onto 69swirlie.name69's head!"),
+			SPAN_NOTICE("You slam the toilet seat onto 69swirlie.name69's head!"),
 			"You hear reverberating porcelain."
 		)
 		swirlie.adjustBruteLoss(8)
@@ -37,7 +37,7 @@
 				user.put_in_hands(I)
 			else
 				I.loc = get_turf(src)
-			to_chat(user, SPAN_NOTICE("You find \an [I] in the cistern."))
+			to_chat(user, SPAN_NOTICE("You find \an 69I69 in the cistern."))
 			w_items -= I.w_class
 			return
 
@@ -45,20 +45,20 @@
 	update_icon()
 
 /obj/structure/toilet/update_icon()
-	icon_state = "toilet[open][cistern]"
+	icon_state = "toilet69open6969cistern69"
 
-/obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(QUALITY_PRYING in I.tool_qualities)
-		to_chat(user, "<span class='notice'>You start to [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"].</span>")
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			user.visible_message("<span class='notice'>[user] [cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"]!</span>", "<span class='notice'>You [cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"]!</span>", "You hear grinding porcelain.")
+/obj/structure/toilet/attackby(obj/item/I as obj,69ob/living/user as69ob)
+	if(69UALITY_PRYING in I.tool_69ualities)
+		to_chat(user, "<span class='notice'>You start to 69cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"69.</span>")
+		if(I.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_PRYING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+			user.visible_message("<span class='notice'>69user69 69cistern ? "replaces the lid on the cistern" : "lifts the lid off the cistern"69!</span>", "<span class='notice'>You 69cistern ? "replace the lid on the cistern" : "lift the lid off the cistern"69!</span>", "You hear grinding porcelain.")
 			cistern = !cistern
 			update_icon()
 			return
 
-	if(cistern && !isrobot(user)) //STOP PUTTING YOUR MODULES IN THE TOILET.
+	if(cistern && !isrobot(user)) //STOP PUTTING YOUR69ODULES IN THE TOILET.
 		if(I.w_class >= ITEM_SIZE_BULKY)
-			to_chat(user, SPAN_NOTICE("\The [I] does not fit."))
+			to_chat(user, SPAN_NOTICE("\The 69I69 does not fit."))
 			return
 		if(w_items + I.w_class > ITEM_SIZE_HUGE)
 			to_chat(user, SPAN_NOTICE("The cistern is full."))
@@ -66,7 +66,7 @@
 		user.drop_item()
 		I.loc = src
 		w_items += I.w_class
-		to_chat(user, "You carefully place \the [I] into the cistern.")
+		to_chat(user, "You carefully place \the 69I69 into the cistern.")
 		return
 
 /obj/structure/toilet/AltClick(var/mob/living/user)
@@ -77,26 +77,26 @@
 		var/obj/item/reagent_containers/O = user.get_active_hand()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
-			to_chat(user, SPAN_NOTICE("You empty the [O] into the [src]."))
+			to_chat(user, SPAN_NOTICE("You empty the 69O69 into the 69src69."))
 
 
-/obj/structure/toilet/affect_grab(var/mob/user, var/mob/living/target, var/state)
+/obj/structure/toilet/affect_grab(var/mob/user,69ar/mob/living/target,69ar/state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
 	if(!target.loc == loc)
-		to_chat(user, SPAN_NOTICE("[target] needs to be on the toilet."))
+		to_chat(user, SPAN_NOTICE("69target69 needs to be on the toilet."))
 		return FALSE
 	if(open && !swirlie)
 		user.visible_message(
-			SPAN_DANGER("[user] starts to give [target] a swirlie!"),
-			SPAN_NOTICE("You start to give [target] a swirlie!")
+			SPAN_DANGER("69user69 starts to give 69target69 a swirlie!"),
+			SPAN_NOTICE("You start to give 69target69 a swirlie!")
 		)
 		swirlie = target
 		if (do_after(user, 30, src) || !Adjacent(target))
 			user.visible_message(
-				SPAN_DANGER("[user] gives [target] a swirlie!"),
-				SPAN_NOTICE("You give [target] a swirlie!"),
+				SPAN_DANGER("69user69 gives 69target69 a swirlie!"),
+				SPAN_NOTICE("You give 69target69 a swirlie!"),
 				"You hear a toilet flushing."
 			)
 			var/mob/living/carbon/C = target
@@ -105,13 +105,13 @@
 		swirlie = null
 	else
 		user.visible_message(
-			SPAN_DANGER("[user] slams [target] into the [src]!"),
-			SPAN_NOTICE("You slam [target] into the [src]!")
+			SPAN_DANGER("69user69 slams 69target69 into the 69src69!"),
+			SPAN_NOTICE("You slam 69target69 into the 69src69!")
 		)
 		admin_attack_log(user, target,
-			"slams <b>[key_name(target)]</b> into the [src]",
-			"Was slamed by <b>[key_name(user)] into the [src]</b>",
-			"slamed into the [src]"
+			"slams <b>69key_name(target)69</b> into the 69src69",
+			"Was slamed by <b>69key_name(user)69 into the 69src69</b>",
+			"slamed into the 69src69"
 		)
 		target.adjustBruteLoss(8)
 	return TRUE
@@ -125,21 +125,21 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/structure/urinal/affect_grab(var/mob/living/user, var/mob/living/target, var/state)
+/obj/structure/urinal/affect_grab(var/mob/living/user,69ar/mob/living/target,69ar/state)
 	if(state == GRAB_PASSIVE)
 		to_chat(user, SPAN_NOTICE("You need a tighter grip."))
 		return FALSE
 	if(!target.loc == loc)
-		to_chat(user, SPAN_NOTICE("[target] needs to be on the urinal."))
+		to_chat(user, SPAN_NOTICE("69target69 needs to be on the urinal."))
 		return
 	user.visible_message(
-		SPAN_DANGER("[user] slams [target] into the [src]!"),
-		SPAN_NOTICE("You slam [target] into the [src]!")
+		SPAN_DANGER("69user69 slams 69target69 into the 69src69!"),
+		SPAN_NOTICE("You slam 69target69 into the 69src69!")
 	)
 	admin_attack_log(user, target,
-		"slams <b>[key_name(target)]</b> into the [src]",
-		"Was slamed by <b>[key_name(user)] into the [src]</b>",
-		"slamed into the [src]"
+		"slams <b>69key_name(target)69</b> into the 69src69",
+		"Was slamed by <b>69key_name(user)69 into the 69src69</b>",
+		"slamed into the 69src69"
 	)
 	target.adjustBruteLoss(8)
 	return TRUE
@@ -155,7 +155,7 @@
 	use_power = NO_POWER_USE
 	var/on = FALSE
 	var/obj/effect/mist/mymist = null
-	var/ismist = 0				//needs a var so we can make it linger~
+	var/ismist = 0				//needs a69ar so we can69ake it linger~
 	var/watertemp = "normal"	//freezing, normal, or boiling
 	var/is_washing = 0
 	var/list/temperature_settings = list("normal" = 310, "boiling" = T0C+100, "freezing" = T0C)
@@ -174,7 +174,7 @@
 	anchored = TRUE
 	mouse_opacity = 0
 
-/obj/machinery/shower/attack_hand(mob/M as mob)
+/obj/machinery/shower/attack_hand(mob/M as69ob)
 	on = !on
 	update_icon()
 	if(on)
@@ -184,26 +184,26 @@
 		for (var/atom/movable/G in loc)
 			G.clean_blood()
 
-/obj/machinery/shower/attackby(obj/item/I, mob/user)
-	if(QUALITY_PULSING in I.tool_qualities)
-		to_chat(user, SPAN_NOTICE("The water temperature seems to be [watertemp]."))
-	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY,  required_stat = STAT_MEC))
+/obj/machinery/shower/attackby(obj/item/I,69ob/user)
+	if(69UALITY_PULSING in I.tool_69ualities)
+		to_chat(user, SPAN_NOTICE("The water temperature seems to be 69watertemp69."))
+	if(69UALITY_BOLT_TURNING in I.tool_69ualities)
+		var/newtemp = input(user, "What setting would you like to set the temperature69alve to?", "Water Temperature69alve") in temperature_settings
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY,  re69uired_stat = STAT_MEC))
 			watertemp = newtemp
-			user.visible_message(SPAN_NOTICE("\The [user] adjusts \the [src] with \the [I]."), SPAN_NOTICE("You adjust the shower with \the [I]."))
+			user.visible_message(SPAN_NOTICE("\The 69user69 adjusts \the 69src69 with \the 69I69."), SPAN_NOTICE("You adjust the shower with \the 69I69."))
 			add_fingerprint(user)
 
-/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
+/obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it69akes the shower69ist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
-		qdel(mymist)
+		69del(mymist)
 		mymist = null
 
 	if(on)
 		overlays += image('icons/obj/watercloset.dmi', src, "water", ABOVE_MOB_LAYER, dir)
-		if(temperature_settings[watertemp] < T20C)
-			return //no mist for cold water
+		if(temperature_settings69watertemp69 < T20C)
+			return //no69ist for cold water
 		if(!ismist)
 			spawn(50)
 				if(src && on)
@@ -215,7 +215,7 @@
 		mymist = new(loc)
 		spawn(250)
 			if(src && !on)
-				qdel(mymist)
+				69del(mymist)
 				mymist = null
 				ismist = 0
 
@@ -226,7 +226,7 @@
 	if(isliving(O))
 		var/mob/living/L = O
 		L.ExtinguishMob()
-		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
+		L.fire_stacks = -20 //Douse ourselves with water to avoid fire69ore easily
 
 	if(iscarbon(O))
 		var/mob/living/carbon/M = O
@@ -240,11 +240,11 @@
 
 		//flush away reagents on the skin
 		if(M.touching)
-			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
+			var/remove_amount =69.touching.maximum_volume *69.reagent_permeability() //take off your suit first
 			M.touching.remove_any(remove_amount)
 
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H =69
 			var/washgloves = 1
 			var/washshoes = 1
 			var/washmask = 1
@@ -299,7 +299,7 @@
 			H.clean_blood(washshoes)
 			H.update_icons()
 		else
-			if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
+			if(M.wear_mask)						//if the69ob is not human, it cleans the69ask without asking for bitflags
 				if(M.wear_mask.clean_blood())
 					M.update_inv_wear_mask(0)
 			M.clean_blood()
@@ -310,7 +310,7 @@
 		var/turf/tile = loc
 		for(var/obj/effect/E in tile)
 			if(istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				qdel(E)
+				69del(E)
 
 	reagents.splash(O, 10)
 
@@ -340,12 +340,12 @@
 /obj/machinery/shower/proc/process_heat(mob/living/M)
 	if(!on || !istype(M)) return
 
-	var/temperature = temperature_settings[watertemp]
-	var/temp_adj = between(BODYTEMP_COOLING_MAX, temperature - M.bodytemperature, BODYTEMP_HEATING_MAX)
+	var/temperature = temperature_settings69watertemp69
+	var/temp_adj = between(BODYTEMP_COOLING_MAX, temperature -69.bodytemperature, BODYTEMP_HEATING_MAX)
 	M.bodytemperature += temp_adj
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		if(temperature >= H.species.heat_level_1)
 			to_chat(H, SPAN_DANGER("The water is searing hot!"))
 		else if(temperature <= H.species.cold_level_1)
@@ -353,7 +353,7 @@
 
 /obj/item/bikehorn/rubberducky
 	name = "rubber ducky"
-	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
+	desc = "Rubber ducky you're so fine, you69ake bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
 	item_state = "rubberducky"
@@ -367,29 +367,29 @@
 	desc = "A sink used for washing one's hands and face."
 	anchored = TRUE
 	reagent_flags = OPENCONTAINER
-	var/busy = 0 	//Something's being washed at the moment
+	var/busy = 0 	//Something's being washed at the69oment
 
-/obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
+/obj/structure/sink/MouseDrop_T(var/obj/item/thing,69ar/mob/user)
 	. = ..()
 	if(!istype(thing) || !thing.is_drainable())
 		return
 	if(!usr.Adjacent(src))
 		return
 	if(!thing.reagents || thing.reagents.total_volume == 0)
-		to_chat(usr, SPAN_WARNING("\The [thing] is empty."))
+		to_chat(usr, SPAN_WARNING("\The 69thing69 is empty."))
 		return FALSE
-	// Clear the vessel.
-	visible_message(SPAN_NOTICE("\The [usr] tips the contents of \the [thing] into \the [src]."))
+	// Clear the69essel.
+	visible_message(SPAN_NOTICE("\The 69usr69 tips the contents of \the 69thing69 into \the 69src69."))
 	thing.reagents.clear_reagents()
 
-/obj/structure/sink/attack_hand(mob/user as mob)
+/obj/structure/sink/attack_hand(mob/user as69ob)
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/organ/external/temp = H.organs_by_name[BP_R_ARM]
+		var/obj/item/organ/external/temp = H.organs_by_name69BP_R_ARM69
 		if (user.hand)
-			temp = H.organs_by_name[BP_L_ARM]
+			temp = H.organs_by_name69BP_L_ARM69
 		if(temp && !temp.is_usable())
-			to_chat(user, SPAN_NOTICE("You try to move your [temp.name], but cannot!"))
+			to_chat(user, SPAN_NOTICE("You try to69ove your 69temp.name69, but cannot!"))
 			return
 
 	if(isrobot(user) || isAI(user))
@@ -410,24 +410,24 @@
 	sleep(40)
 	busy = 0
 
-	if(!Adjacent(user)) return		//Person has moved away from the sink
+	if(!Adjacent(user)) return		//Person has69oved away from the sink
 
 	user.clean_blood()
 	if(ishuman(user))
 		user:update_inv_gloves()
-	for(var/mob/V in viewers(src, null))
-		V.show_message(SPAN_NOTICE("[user] washes their hands using \the [src]."))
+	for(var/mob/V in69iewers(src, null))
+		V.show_message(SPAN_NOTICE("69user69 washes their hands using \the 69src69."))
 
 
-/obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
+/obj/structure/sink/attackby(obj/item/O as obj,69ob/living/user as69ob)
 	if(busy)
 		to_chat(user, SPAN_WARNING("Someone's already washing here."))
 		return
 
 	var/obj/item/reagent_containers/RG = O
 	if (istype(RG) && RG.is_refillable())
-		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message(SPAN_NOTICE("[user] fills \the [RG] using \the [src]."),SPAN_NOTICE("You fill \the [RG] using \the [src]."))
+		RG.reagents.add_reagent("water",69in(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
+		user.visible_message(SPAN_NOTICE("69user69 fills \the 69RG69 using \the 69src69."),SPAN_NOTICE("You fill \the 69RG69 using \the 69src69."))
 		playsound(loc, 'sound/effects/watersplash.ogg', 100, 1)
 		return 1
 
@@ -445,8 +445,8 @@
 				else
 					B.deductcharge(B.hitcost)
 				user.visible_message(
-					SPAN_DANGER("[user] was stunned by \his wet [O]!"),
-					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>"
+					SPAN_DANGER("69user69 was stunned by \his wet 69O69!"),
+					"<span class='userdanger'>69user69 was stunned by \his wet 69O69!</span>"
 				)
 				return 1
 	else if(istype(O, /obj/item/mop))
@@ -458,20 +458,20 @@
 	var/obj/item/I = O
 	if(!I || !istype(I,/obj/item)) return
 
-	to_chat(usr, SPAN_NOTICE("You start washing \the [I]."))
+	to_chat(usr, SPAN_NOTICE("You start washing \the 69I69."))
 
 	busy = 1
 	sleep(40)
 	busy = 0
 
-	if(user.loc != location) return				//User has moved
+	if(user.loc != location) return				//User has69oved
 	if(!I) return 								//Item's been destroyed while washing
 	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \
-		SPAN_NOTICE("[user] washes \a [I] using \the [src]."), \
-		SPAN_NOTICE("You wash \a [I] using \the [src]."))
+		SPAN_NOTICE("69user69 washes \a 69I69 using \the 69src69."), \
+		SPAN_NOTICE("You wash \a 69I69 using \the 69src69."))
 
 /obj/structure/sink/AltClick(var/mob/living/user)
 	var/H = user.get_active_hand()
@@ -479,7 +479,7 @@
 		var/obj/item/reagent_containers/O = user.get_active_hand()
 		if(O.reagents && O.reagents.total_volume)
 			O.reagents.clear_reagents()
-			to_chat(user, SPAN_NOTICE("You empty the [O] into the [src]."))
+			to_chat(user, SPAN_NOTICE("You empty the 69O69 into the 69src69."))
 
 
 /obj/structure/sink/kitchen
@@ -490,12 +490,12 @@
 	name = "puddle"
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attack_hand(mob/M as mob)
+/obj/structure/sink/puddle/attack_hand(mob/M as69ob)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"
 
-/obj/structure/sink/puddle/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/sink/puddle/attackby(obj/item/O as obj,69ob/user as69ob)
 	icon_state = "puddle-splash"
 	..()
 	icon_state = "puddle"

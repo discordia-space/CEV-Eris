@@ -1,6 +1,6 @@
 /obj/item/device/lighting/glowstick/flare
 	name = "flare"
-	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
+	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord,69ake light'."
 	brightness_on = 4 // Pretty bright.
 	light_power = 2
 	color = null
@@ -28,7 +28,7 @@
 /obj/item/device/lighting/glowstick/flare/attack_self(mob/user)
 	if(turn_on(user))
 		user.visible_message(
-			SPAN_NOTICE("\The [user] activates \the [src]."),
+			SPAN_NOTICE("\The 69user69 activates \the 69src69."),
 			SPAN_NOTICE("You pull the cord on the flare, activating it!")
 		)
 
@@ -41,10 +41,10 @@
 /obj/item/device/lighting/glowstick/flare/update_icon()
 	overlays.Cut()
 	if(!fuel)
-		icon_state = "[initial(icon_state)]-empty"
+		icon_state = "69initial(icon_state)69-empty"
 		set_light(0)
 	else if(on)
-		icon_state = "[initial(icon_state)]-on"
+		icon_state = "69initial(icon_state)69-on"
 		set_light(brightness_on)
 	else
 		icon_state = initial(icon_state)

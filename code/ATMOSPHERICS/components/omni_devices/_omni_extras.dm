@@ -14,7 +14,7 @@
 //--------------------------------------------
 // Omni port datum
 //
-// Used by omni devices to manage connections
+// Used by omni devices to69anage connections
 //  to other atmospheric objects.
 //--------------------------------------------
 /datum/omni_port
@@ -29,11 +29,11 @@
 	var/obj/machinery/atmospherics/node
 	var/datum/pipe_network/network
 
-/datum/omni_port/New(var/obj/machinery/atmospherics/omni/M, var/direction = NORTH)
+/datum/omni_port/New(var/obj/machinery/atmospherics/omni/M,69ar/direction = NORTH)
 	..()
 	dir = direction
 	if(istype(M))
-		master = M
+		master =69
 	air = new
 	air.volume = 200
 
@@ -59,7 +59,7 @@
 //returns a text string based on the direction flag input
 // if capitalize is true, it will return the string capitalized
 // otherwise it will return the direction string in lower case
-/proc/dir_name(var/dir, var/capitalize = 0)
+/proc/dir_name(var/dir,69ar/capitalize = 0)
 	var/string = null
 	switch(dir)
 		if(NORTH)

@@ -1,14 +1,14 @@
 /obj/machinery/autolathe
 	name = "autolathe"
-	desc = "It produces items using metal and glass."
+	desc = "It produces items usin6969etal and 69lass."
 	icon = 'icons/obj/machines/autolathe.dmi'
 	icon_state = "autolathe"
 	density = TRUE
 	anchored = TRUE
 	layer = BELOW_OBJ_LAYER
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
-	active_power_usage = 2000
+	idle_power_usa69e = 10
+	active_power_usa69e = 2000
 	circuit = /obj/item/electronics/circuitboard/autolathe
 
 	var/build_type = AUTOLATHE
@@ -16,11 +16,11 @@
 	var/obj/item/computer_hardware/hard_drive/portable/disk
 
 	var/list/stored_material = list()
-	var/obj/item/reagent_containers/glass/container
+	var/obj/item/rea69ent_containers/69lass/container
 
 	var/unfolded
-	var/show_category
-	var/list/categories
+	var/show_cate69ory
+	var/list/cate69ories
 
 	var/list/special_actions
 
@@ -29,66 +29,66 @@
 	var/disabled = FALSE
 	var/shocked = FALSE
 
-	var/working = FALSE
+	var/workin69 = FALSE
 	var/paused = FALSE
 	var/error
-	var/progress = 0
+	var/pro69ress = 0
 
-	var/datum/computer_file/binary/design/current_file
-	var/list/queue = list()
-	var/queue_max = 8
+	var/datum/computer_file/binary/desi69n/current_file
+	var/list/69ueue = list()
+	var/69ueue_max = 8
 
-	var/storage_capacity = 120
+	var/stora69e_capacity = 120
 	var/speed = 2
 	var/mat_efficiency = 1
 
 	var/default_disk	// The disk that spawns in autolathe by default
 
-	// Various autolathe functions that can be disabled in subtypes
+	//69arious autolathe functions that can be disabled in subtypes
 	var/have_disk = TRUE
-	var/have_reagents = TRUE
+	var/have_rea69ents = TRUE
 	var/have_materials = TRUE
-	var/have_recycling = TRUE
-	var/have_design_selector = TRUE
+	var/have_recyclin69 = TRUE
+	var/have_desi69n_selector = TRUE
 
 	var/list/unsuitable_materials = list(MATERIAL_BIOMATTER)
-	var/list/suitable_materials //List that limits autolathes to eating mats only in that list.
+	var/list/suitable_materials //List that limits autolathes to eatin6969ats only in that list.
 
-	var/global/list/error_messages = list(
-		ERR_NOLICENSE = "Not enough license points left.",
-		ERR_NOTFOUND = "Design data not found.",
-		ERR_NOMATERIAL = "Not enough materials.",
-		ERR_NOREAGENT = "Not enough reagents.",
+	var/69lobal/list/error_messa69es = list(
+		ERR_NOLICENSE = "Not enou69h license points left.",
+		ERR_NOTFOUND = "Desi69n data not found.",
+		ERR_NOMATERIAL = "Not enou69h69aterials.",
+		ERR_NOREA69ENT = "Not enou69h rea69ents.",
 		ERR_PAUSED = "**Construction Paused**",
-		ERR_NOINSIGHT = "Not enough insight.",
+		ERR_NOINSI69HT = "Not enou69h insi69ht.",
 		ERR_NOODDITY = "catalyst not found."
 	)
 
 	var/tmp/datum/wires/autolathe/wires
 
-	// A vis_contents hack for materials loading animation.
-	var/tmp/obj/effect/flick_light_overlay/image_load
-	var/tmp/obj/effect/flick_light_overlay/image_load_material
+	// A69is_contents hack for69aterials loadin69 animation.
+	var/tmp/obj/effect/flick_li69ht_overlay/ima69e_load
+	var/tmp/obj/effect/flick_li69ht_overlay/ima69e_load_material
 
-	// If it prints high quality or bulky/deformed/debuffed items, or if it prints good items for one faction only.
-	var/low_quality_print = TRUE
-	var/list/high_quality_faction_list = list()
+	// If it prints hi69h 69uality or bulky/deformed/debuffed items, or if it prints 69ood items for one faction only.
+	var/low_69uality_print = TRUE
+	var/list/hi69h_69uality_faction_list = list()
 	// If it prints items with positive traits
-	var/extra_quality_print = FALSE
+	var/extra_69uality_print = FALSE
 
-	//for nanoforge and/or artist bench
+	//for nanofor69e and/or artist bench
 	var/use_oddities = FALSE
 	var/datum/component/inspiration/inspiration
 	var/obj/item/oddity
-	var/is_nanoforge = FALSE
-	var/list/saved_designs = list()
+	var/is_nanofor69e = FALSE
+	var/list/saved_desi69ns = list()
 
 /obj/machinery/autolathe/Initialize()
 	. = ..()
 	wires = new(src)
 
-	image_load = new(src)
-	image_load_material = new(src)
+	ima69e_load = new(src)
+	ima69e_load_material = new(src)
 
 	if(have_disk && default_disk)
 		disk = new default_disk(src)
@@ -96,13 +96,13 @@
 	update_icon()
 
 /obj/machinery/autolathe/Destroy()
-	QDEL_NULL(wires)
-	QDEL_NULL(image_load)
-	QDEL_NULL(image_load_material)
+	69DEL_NULL(wires)
+	69DEL_NULL(ima69e_load)
+	69DEL_NULL(ima69e_load_material)
 	return ..()
 
-/obj/machinery/autolathe/proc/requiere_license(datum/computer_file/binary/design/_design_file)
-	if(_design_file in saved_designs)
+/obj/machinery/autolathe/proc/re69uiere_license(datum/computer_file/binary/desi69n/_desi69n_file)
+	if(_desi69n_file in saved_desi69ns)
 		return FALSE
 	return TRUE
 
@@ -110,29 +110,29 @@
 /obj/machinery/autolathe/proc/materials_data()
 	var/list/data = list()
 
-	data["mat_efficiency"] = mat_efficiency
-	data["mat_capacity"] = storage_capacity
+	data69"mat_efficiency"69 =69at_efficiency
+	data69"mat_capacity"69 = stora69e_capacity
 
-	data["container"] = !!container
-	if(container && container.reagents)
+	data69"container"69 = !!container
+	if(container && container.rea69ents)
 		var/list/L = list()
-		for(var/datum/reagent/R in container.reagents.reagent_list)
+		for(var/datum/rea69ent/R in container.rea69ents.rea69ent_list)
 			var/list/LE = list("name" = R.name, "amount" = R.volume)
 			L.Add(list(LE))
 
-		data["reagents"] = L
+		data69"rea69ents"69 = L
 
 	var/list/M = list()
 	for(var/mtype in stored_material)
-		if(stored_material[mtype] <= 0)
+		if(stored_material69mtype69 <= 0)
 			continue
 
-		var/material/MAT = get_material_by_name(mtype)
-		var/list/ME = list("name" = MAT.display_name, "id" = mtype, "amount" = stored_material[mtype], "ejectable" = !!MAT.stack_type)
+		var/material/MAT = 69et_material_by_name(mtype)
+		var/list/ME = list("name" =69AT.display_name, "id" =69type, "amount" = stored_material69mtype69, "ejectable" = !!MAT.stack_type)
 
 		M.Add(list(ME))
 
-	data["materials"] = M
+	data69"materials"69 =69
 
 	return data
 
@@ -140,97 +140,97 @@
 /obj/machinery/autolathe/ui_data()
 	var/list/data = list()
 
-	data["have_disk"] = have_disk
-	data["have_reagents"] = have_reagents
-	data["have_materials"] = have_materials
-	data["have_design_selector"] = have_design_selector
+	data69"have_disk"69 = have_disk
+	data69"have_rea69ents"69 = have_rea69ents
+	data69"have_materials"69 = have_materials
+	data69"have_desi69n_selector"69 = have_desi69n_selector
 
-	data["error"] = error
-	data["paused"] = paused
+	data69"error"69 = error
+	data69"paused"69 = paused
 
-	data["unfolded"] = unfolded
+	data69"unfolded"69 = unfolded
 
-	data["speed"] = speed
+	data69"speed"69 = speed
 
 	if(disk)
-		data["disk"] = list(
-			"name" = disk.get_disk_name(),
+		data69"disk"69 = list(
+			"name" = disk.69et_disk_name(),
 			"license" = disk.license,
 			"read_only" = disk.read_only
 		)
 
-	if(categories)
-		data["categories"] = categories
-		data["show_category"] = show_category
+	if(cate69ories)
+		data69"cate69ories"69 = cate69ories
+		data69"show_cate69ory"69 = show_cate69ory
 
-	data["special_actions"] = special_actions
+	data69"special_actions"69 = special_actions
 
-	data |= materials_data()
+	data |=69aterials_data()
 
 	var/list/L = list()
-	for(var/d in design_list())
-		var/datum/computer_file/binary/design/design_file = d
-		if(!show_category || design_file.design.category == show_category)
-			L.Add(list(design_file.ui_data()))
-	data["designs"] = L
+	for(var/d in desi69n_list())
+		var/datum/computer_file/binary/desi69n/desi69n_file = d
+		if(!show_cate69ory || desi69n_file.desi69n.cate69ory == show_cate69ory)
+			L.Add(list(desi69n_file.ui_data()))
+	data69"desi69ns"69 = L
 
 
 	if(current_file)
-		data["current"] = current_file.ui_data()
-		data["progress"] = progress
+		data69"current"69 = current_file.ui_data()
+		data69"pro69ress"69 = pro69ress
 
-	var/list/Q = list()
+	var/list/69 = list()
 	var/licenses_used = 0
-	var/list/qmats = stored_material.Copy()
+	var/list/69mats = stored_material.Copy()
 
-	for(var/i = 1; i <= queue.len; i++)
-		var/datum/computer_file/binary/design/design_file = queue[i]
-		var/list/QR = design_file.ui_data()
+	for(var/i = 1; i <= 69ueue.len; i++)
+		var/datum/computer_file/binary/desi69n/desi69n_file = 69ueue69i69
+		var/list/69R = desi69n_file.ui_data()
 
-		QR["ind"] = i
+		69R69"ind"69 = i
 
-		QR["error"] = 0
+		69R69"error"69 = 0
 
-		if(design_file.copy_protected)
+		if(desi69n_file.copy_protected)
 			licenses_used++
 
 			if(!disk || licenses_used > disk.license)
-				QR["error"] = 1
+				69R69"error"69 = 1
 
-		for(var/rmat in design_file.design.materials)
-			if(!(rmat in qmats))
-				qmats[rmat] = 0
+		for(var/rmat in desi69n_file.desi69n.materials)
+			if(!(rmat in 69mats))
+				69mats69rmat69 = 0
 
-			qmats[rmat] -= design_file.design.materials[rmat]
-			if(qmats[rmat] < 0)
-				QR["error"] = 1
+			69mats69rmat69 -= desi69n_file.desi69n.materials69rmat69
+			if(69mats69rmat69 < 0)
+				69R69"error"69 = 1
 
-		if(can_print(design_file) != ERR_OK)
-			QR["error"] = 2
+		if(can_print(desi69n_file) != ERR_OK)
+			69R69"error"69 = 2
 
-		Q.Add(list(QR))
+		69.Add(list(69R))
 
-	data["queue"] = Q
-	data["queue_max"] = queue_max
+	data69"69ueue"69 = 69
+	data69"69ueue_max"69 = 69ueue_max
 
-	data["use_oddities"] = use_oddities
+	data69"use_oddities"69 = use_oddities
 
 	if(inspiration)
 		var/list/stats = list()
 		var/list/LE = inspiration.calculate_statistics()
 		for(var/stat in LE)
-			var/list/LF = list("name" = stat, "level" = LE[stat])
+			var/list/LF = list("name" = stat, "level" = LE69stat69)
 			stats.Add(list(LF))
 
-		data["oddity_name"] = oddity.name
-		data["oddity_stats"] = stats
+		data69"oddity_name"69 = oddity.name
+		data69"oddity_stats"69 = stats
 
-	data["use_license"] = !!disk
-	data["is_nanoforge"] = is_nanoforge
+	data69"use_license"69 = !!disk
+	data69"is_nanofor69e"69 = is_nanofor69e
 	return data
 
 
-/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/autolathe/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
 	var/list/data = ui_data(user, ui_key)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -239,20 +239,20 @@
 		// for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
 		ui = new(user, src, ui_key, "autolathe.tmpl", capitalize(name), 600, 700)
 
-		// template keys starting with _ are not appended to the UI automatically and have to be called manually
+		// template keys startin69 with _ are not appended to the UI automatically and have to be called69anually
 		ui.add_template("_materials", "autolathe_materials.tmpl")
-		ui.add_template("_reagents", "autolathe_reagents.tmpl")
-		ui.add_template("_designs", "autolathe_designs.tmpl")
-		ui.add_template("_queue", "autolathe_queue.tmpl")
+		ui.add_template("_rea69ents", "autolathe_rea69ents.tmpl")
+		ui.add_template("_desi69ns", "autolathe_desi69ns.tmpl")
+		ui.add_template("_69ueue", "autolathe_69ueue.tmpl")
 		ui.add_template("_oddity", "autolathe_oddity.tmpl")
-		ui.add_template("_nanoforge", "nanoforge_actions.tmpl")
+		ui.add_template("_nanofor69e", "nanofor69e_actions.tmpl")
 
 		// when the ui is first opened this is the data it will use
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
 
-/obj/machinery/autolathe/attackby(obj/item/I, mob/user)
+/obj/machinery/autolathe/attackby(obj/item/I,69ob/user)
 	if(default_deconstruction(I, user))
 		wires?.Interact(user)
 		return
@@ -268,12 +268,12 @@
 		eat(user, I)
 		return
 
-	if(istype(I, /obj/item/reagent_containers/glass))
+	if(istype(I, /obj/item/rea69ent_containers/69lass))
 		insert_beaker(user, I)
 		return
 
 	if(use_oddities)
-		GET_COMPONENT_FROM(C, /datum/component/inspiration, I)
+		69ET_COMPONENT_FROM(C, /datum/component/inspiration, I)
 		if(C && C.perk)
 			insert_oddity(user, I)
 			return
@@ -304,114 +304,114 @@
 
 	usr.set_machine(src)
 
-	if(href_list["insert"])
+	if(href_list69"insert"69)
 		eat(usr)
 		return 1
 
-	if(href_list["disk"])
+	if(href_list69"disk"69)
 		if(disk)
 			eject_disk(usr)
 		else
 			insert_disk(usr)
 		return 1
 
-	if(href_list["container"])
+	if(href_list69"container"69)
 		if(container)
 			eject_beaker(usr)
 		else
 			insert_beaker(usr)
 		return 1
 
-	if(href_list["category"] && categories)
-		var/new_category = text2num(href_list["category"])
+	if(href_list69"cate69ory"69 && cate69ories)
+		var/new_cate69ory = text2num(href_list69"cate69ory"69)
 
-		if(new_category && new_category <= length(categories))
-			show_category = categories[new_category]
+		if(new_cate69ory && new_cate69ory <= len69th(cate69ories))
+			show_cate69ory = cate69ories69new_cate69ory69
 		return 1
 
-	if(href_list["eject_material"] && (!current_file || paused || error))
-		var/material = href_list["eject_material"]
-		var/material/M = get_material_by_name(material)
+	if(href_list69"eject_material"69 && (!current_file || paused || error))
+		var/material = href_list69"eject_material"69
+		var/material/M = 69et_material_by_name(material)
 
 		if(!M.stack_type)
 			return
 
-		var/num = input("Enter sheets number to eject. 0-[stored_material[material]]","Eject",0) as num
+		var/num = input("Enter sheets number to eject. 0-69stored_material69material6969","Eject",0) as num
 		if(!CanUseTopic(usr))
 			return
 
-		num = min(max(num,0), stored_material[material])
+		num =69in(max(num,0), stored_material69material69)
 
 		eject(material, num)
 		return 1
 
 
-	if(href_list["add_to_queue"])
-		var/recipe_filename = href_list["add_to_queue"]
-		var/datum/computer_file/binary/design/design_file
+	if(href_list69"add_to_69ueue"69)
+		var/recipe_filename = href_list69"add_to_69ueue"69
+		var/datum/computer_file/binary/desi69n/desi69n_file
 
-		for(var/f in design_list())
+		for(var/f in desi69n_list())
 			var/datum/computer_file/temp_file = f
 			if(temp_file.filename == recipe_filename)
-				design_file = temp_file
+				desi69n_file = temp_file
 				break
 
-		if(design_file)
+		if(desi69n_file)
 			var/amount = 1
 
-			if(href_list["several"])
-				amount = input("How many \"[design_file.design.name]\" you want to print ?", "Print several") as null|num
-				if(!CanUseTopic(usr) || !(design_file in design_list()))
+			if(href_list69"several"69)
+				amount = input("How69any \"69desi69n_file.desi69n.name69\" you want to print ?", "Print several") as null|num
+				if(!CanUseTopic(usr) || !(desi69n_file in desi69n_list()))
 					return
 
-			queue_design(design_file, amount)
+			69ueue_desi69n(desi69n_file, amount)
 
 		return 1
 
-	if(href_list["remove_from_queue"])
-		var/ind = text2num(href_list["remove_from_queue"])
-		if(ind >= 1 && ind <= queue.len)
-			queue.Cut(ind, ind + 1)
+	if(href_list69"remove_from_69ueue"69)
+		var/ind = text2num(href_list69"remove_from_69ueue"69)
+		if(ind >= 1 && ind <= 69ueue.len)
+			69ueue.Cut(ind, ind + 1)
 		return 1
 
-	if(href_list["move_up_queue"])
-		var/ind = text2num(href_list["move_up_queue"])
-		if(ind >= 2 && ind <= queue.len)
-			queue.Swap(ind, ind - 1)
+	if(href_list69"move_up_69ueue"69)
+		var/ind = text2num(href_list69"move_up_69ueue"69)
+		if(ind >= 2 && ind <= 69ueue.len)
+			69ueue.Swap(ind, ind - 1)
 		return 1
 
-	if(href_list["move_down_queue"])
-		var/ind = text2num(href_list["move_down_queue"])
-		if(ind >= 1 && ind <= queue.len-1)
-			queue.Swap(ind, ind + 1)
+	if(href_list69"move_down_69ueue"69)
+		var/ind = text2num(href_list69"move_down_69ueue"69)
+		if(ind >= 1 && ind <= 69ueue.len-1)
+			69ueue.Swap(ind, ind + 1)
 		return 1
 
 
-	if(href_list["abort_print"])
+	if(href_list69"abort_print"69)
 		abort()
 		return 1
 
-	if(href_list["pause"])
+	if(href_list69"pause"69)
 		paused = !paused
 		return 1
 
-	if(href_list["unfold"])
-		if(unfolded == href_list["unfold"])
+	if(href_list69"unfold"69)
+		if(unfolded == href_list69"unfold"69)
 			unfolded = null
 		else
-			unfolded = href_list["unfold"]
+			unfolded = href_list69"unfold"69
 		return 1
 
-	if(href_list["oddity_name"])
+	if(href_list69"oddity_name"69)
 		if(oddity)
 			remove_oddity(usr)
 		else
 			insert_oddity(usr)
 		return TRUE
 
-/obj/machinery/autolathe/proc/insert_disk(mob/living/user, obj/item/computer_hardware/hard_drive/portable/inserted_disk)
+/obj/machinery/autolathe/proc/insert_disk(mob/livin69/user, obj/item/computer_hardware/hard_drive/portable/inserted_disk)
 	if(!inserted_disk && istype(user))
-		inserted_disk = user.get_active_hand()
+		inserted_disk = user.69et_active_hand()
 
 	if(!istype(inserted_disk))
 		return
@@ -420,25 +420,25 @@
 		return
 
 	if(!have_disk)
-		to_chat(user, SPAN_WARNING("[src] has no slot for a data disk."))
+		to_chat(user, SPAN_WARNIN69("69src69 has no slot for a data disk."))
 		return
 
 	if(disk)
-		to_chat(user, SPAN_NOTICE("There's already \a [disk] inside [src]."))
+		to_chat(user, SPAN_NOTICE("There's already \a 69disk69 inside 69src69."))
 		return
 
 	if(istype(user) && (inserted_disk in user))
-		user.unEquip(inserted_disk, src)
+		user.unE69uip(inserted_disk, src)
 
 	inserted_disk.forceMove(src)
 	disk = inserted_disk
-	to_chat(user, SPAN_NOTICE("You insert \the [inserted_disk] into [src]."))
+	to_chat(user, SPAN_NOTICE("You insert \the 69inserted_disk69 into 69src69."))
 	SSnano.update_uis(src)
 
 
-/obj/machinery/autolathe/proc/insert_beaker(mob/living/user, obj/item/reagent_containers/glass/beaker)
+/obj/machinery/autolathe/proc/insert_beaker(mob/livin69/user, obj/item/rea69ent_containers/69lass/beaker)
 	if(!beaker && istype(user))
-		beaker = user.get_active_hand()
+		beaker = user.69et_active_hand()
 
 	if(!istype(beaker))
 		return
@@ -446,24 +446,24 @@
 	if(!Adjacent(user) && !Adjacent(beaker))
 		return
 
-	if(!have_reagents)
-		to_chat(user, SPAN_WARNING("[src] has no slot for a beaker."))
+	if(!have_rea69ents)
+		to_chat(user, SPAN_WARNIN69("69src69 has no slot for a beaker."))
 		return
 
 	if(container)
-		to_chat(user, SPAN_WARNING("There's already \a [container] inside [src]."))
+		to_chat(user, SPAN_WARNIN69("There's already \a 69container69 inside 69src69."))
 		return
 
 	if(istype(user) && (beaker in user))
-		user.unEquip(beaker, src)
+		user.unE69uip(beaker, src)
 
 	beaker.forceMove(src)
 	container = beaker
-	to_chat(user, SPAN_NOTICE("You put \the [beaker] into [src]."))
+	to_chat(user, SPAN_NOTICE("You put \the 69beaker69 into 69src69."))
 	SSnano.update_uis(src)
 
 
-/obj/machinery/autolathe/proc/eject_beaker(mob/living/user)
+/obj/machinery/autolathe/proc/eject_beaker(mob/livin69/user)
 	if(!container)
 		return
 
@@ -471,7 +471,7 @@
 		return
 
 	container.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [container] from \the [src]."))
+	to_chat(usr, SPAN_NOTICE("You remove \the 69container69 from \the 69src69."))
 
 	if(istype(user) && Adjacent(user))
 		user.put_in_active_hand(container)
@@ -480,80 +480,80 @@
 
 
 //This proc ejects the autolathe disk, but it also does some DRM fuckery to prevent exploits
-/obj/machinery/autolathe/proc/eject_disk(mob/living/user)
+/obj/machinery/autolathe/proc/eject_disk(mob/livin69/user)
 	if(!disk)
 		return
 
-	var/list/design_list = design_list()
+	var/list/desi69n_list = desi69n_list()
 
-	// Go through the queue and remove any recipes we find which came from this disk
-	for(var/design in queue)
-		if(design in design_list)
-			queue -= design
+	// 69o throu69h the 69ueue and remove any recipes we find which came from this disk
+	for(var/desi69n in 69ueue)
+		if(desi69n in desi69n_list)
+			69ueue -= desi69n
 
 	//Check the current too
-	if(current_file in design_list)
+	if(current_file in desi69n_list)
 		//And abort it if it came from this disk
 		abort()
 
 
-	//Digital Rights have been successfully managed. The corporations win again.
-	//Now they will graciously allow you to eject the disk
+	//Di69ital Ri69hts have been successfully69ana69ed. The corporations win a69ain.
+	//Now they will 69raciously allow you to eject the disk
 	disk.forceMove(drop_location())
-	to_chat(usr, SPAN_NOTICE("You remove \the [disk] from \the [src]."))
+	to_chat(usr, SPAN_NOTICE("You remove \the 69disk69 from \the 69src69."))
 
 	if(istype(user) && Adjacent(user))
 		user.put_in_active_hand(disk)
 
 	disk = null
 
-/obj/machinery/autolathe/AltClick(mob/living/user)
+/obj/machinery/autolathe/AltClick(mob/livin69/user)
 	if(user.incapacitated())
-		to_chat(user, SPAN_WARNING("You can't do that right now!"))
+		to_chat(user, SPAN_WARNIN69("You can't do that ri69ht now!"))
 		return
-	if(!in_range(src, user))
+	if(!in_ran69e(src, user))
 		return
 	src.eject_disk(user)
 
-/obj/machinery/autolathe/proc/eat(mob/living/user, obj/item/eating)
-	if(!eating && istype(user))
-		eating = user.get_active_hand()
+/obj/machinery/autolathe/proc/eat(mob/livin69/user, obj/item/eatin69)
+	if(!eatin69 && istype(user))
+		eatin69 = user.69et_active_hand()
 
-	if(!istype(eating))
+	if(!istype(eatin69))
 		return FALSE
 
 	if(stat)
 		return FALSE
 
-	if(!Adjacent(user) && !Adjacent(eating))
+	if(!Adjacent(user) && !Adjacent(eatin69))
 		return FALSE
 
-	if(is_robot_module(eating))
+	if(is_robot_module(eatin69))
 		return FALSE
 
-	if(!have_recycling && !istype(eating, /obj/item/stack))
-		to_chat(user, SPAN_WARNING("[src] does not support material recycling."))
+	if(!have_recyclin69 && !istype(eatin69, /obj/item/stack))
+		to_chat(user, SPAN_WARNIN69("69src69 does not support69aterial recyclin69."))
 		return FALSE
 
-	if(!length(eating.get_matter()))
-		to_chat(user, SPAN_WARNING("\The [eating] does not contain significant amounts of useful materials and cannot be accepted."))
+	if(!len69th(eatin69.69et_matter()))
+		to_chat(user, SPAN_WARNIN69("\The 69eatin6969 does not contain si69nificant amounts of useful69aterials and cannot be accepted."))
 		return FALSE
 
-	if(istype(eating, /obj/item/computer_hardware/hard_drive/portable))
-		var/obj/item/computer_hardware/hard_drive/portable/DISK = eating
+	if(istype(eatin69, /obj/item/computer_hardware/hard_drive/portable))
+		var/obj/item/computer_hardware/hard_drive/portable/DISK = eatin69
 		if(DISK.license)
-			to_chat(user, SPAN_WARNING("\The [src] refuses to accept \the [eating] as it has non-null license."))
+			to_chat(user, SPAN_WARNIN69("\The 69src69 refuses to accept \the 69eatin6969 as it has non-null license."))
 			return FALSE
 
-	var/filltype = 0       // Used to determine message.
-	var/reagents_filltype = 0
-	var/total_used = 0     // Amount of material used.
-	var/mass_per_sheet = 0 // Amount of material constituting one sheet.
+	var/filltype = 0       // Used to determine69essa69e.
+	var/rea69ents_filltype = 0
+	var/total_used = 0     // Amount of69aterial used.
+	var/mass_per_sheet = 0 // Amount of69aterial constitutin69 one sheet.
 
-	var/list/total_material_gained = list()
+	var/list/total_material_69ained = list()
 
-	for(var/obj/O in eating.GetAllContents(includeSelf = TRUE))
-		var/list/_matter = O.get_matter()
+	for(var/obj/O in eatin69.69etAllContents(includeSelf = TRUE))
+		var/list/_matter = O.69et_matter()
 		if(_matter)
 			for(var/material in _matter)
 				if(material in unsuitable_materials)
@@ -564,115 +564,115 @@
 						continue
 
 				if(!(material in stored_material))
-					stored_material[material] = 0
+					stored_material69material69 = 0
 
-				if(!(material in total_material_gained))
-					total_material_gained[material] = 0
+				if(!(material in total_material_69ained))
+					total_material_69ained69material69 = 0
 
-				if(stored_material[material] + total_material_gained[material] >= storage_capacity)
+				if(stored_material69material69 + total_material_69ained69material69 >= stora69e_capacity)
 					continue
 
-				var/total_material = _matter[material]
+				var/total_material = _matter69material69
 
-				//If it's a stack, we eat multiple sheets.
+				//If it's a stack, we eat69ultiple sheets.
 				if(istype(O, /obj/item/stack))
 					var/obj/item/stack/material/stack = O
-					total_material *= stack.get_amount()
+					total_material *= stack.69et_amount()
 
-				if(stored_material[material] + total_material > storage_capacity)
-					total_material = storage_capacity - stored_material[material]
+				if(stored_material69material69 + total_material > stora69e_capacity)
+					total_material = stora69e_capacity - stored_material69material69
 					filltype = 1
 				else
 					filltype = 2
 
-				total_material_gained[material] += total_material
+				total_material_69ained69material69 += total_material
 				total_used += total_material
-				mass_per_sheet += O.matter[material]
+				mass_per_sheet += O.matter69material69
 
-		if(O.matter_reagents)
+		if(O.matter_rea69ents)
 			if(container)
-				var/datum/reagents/RG = new(0)
-				for(var/r in O.matter_reagents)
-					RG.maximum_volume += O.matter_reagents[r]
-					RG.add_reagent(r ,O.matter_reagents[r])
-				reagents_filltype = 1
-				RG.trans_to(container, RG.total_volume)
+				var/datum/rea69ents/R69 = new(0)
+				for(var/r in O.matter_rea69ents)
+					R69.maximum_volume += O.matter_rea69ents69r69
+					R69.add_rea69ent(r ,O.matter_rea69ents69r69)
+				rea69ents_filltype = 1
+				R69.trans_to(container, R69.total_volume)
 
 			else
-				reagents_filltype = 2
+				rea69ents_filltype = 2
 
-		if(O.reagents && container)
-			O.reagents.trans_to(container, O.reagents.total_volume)
+		if(O.rea69ents && container)
+			O.rea69ents.trans_to(container, O.rea69ents.total_volume)
 
-	if(!filltype && !reagents_filltype)
-		to_chat(user, SPAN_NOTICE("\The [src] is full or this thing isn't suitable for this autolathe type. Try remove material from [src] in order to insert more."))
+	if(!filltype && !rea69ents_filltype)
+		to_chat(user, SPAN_NOTICE("\The 69src69 is full or this thin69 isn't suitable for this autolathe type. Try remove69aterial from 69src69 in order to insert69ore."))
 		return
 
-	// Determine what was the main material
+	// Determine what was the69ain69aterial
 	var/main_material
 	var/main_material_amt = 0
-	for(var/material in total_material_gained)
-		stored_material[material] += total_material_gained[material]
-		if(total_material_gained[material] > main_material_amt)
-			main_material_amt = total_material_gained[material]
-			main_material = material
+	for(var/material in total_material_69ained)
+		stored_material69material69 += total_material_69ained69material69
+		if(total_material_69ained69material69 >69ain_material_amt)
+			main_material_amt = total_material_69ained69material69
+			main_material =69aterial
 
-	if(istype(eating, /obj/item/stack))
-		res_load(get_material_by_name(main_material)) // Play insertion animation.
-		var/obj/item/stack/stack = eating
-		var/used_sheets = min(stack.get_amount(), round(total_used/mass_per_sheet))
+	if(istype(eatin69, /obj/item/stack))
+		res_load(69et_material_by_name(main_material)) // Play insertion animation.
+		var/obj/item/stack/stack = eatin69
+		var/used_sheets =69in(stack.69et_amount(), round(total_used/mass_per_sheet))
 
-		to_chat(user, SPAN_NOTICE("You add [used_sheets] [main_material] [stack.singular_name]\s to \the [src]."))
+		to_chat(user, SPAN_NOTICE("You add 69used_sheets69 69main_material69 69stack.sin69ular_name69\s to \the 69src69."))
 
 		if(!stack.use(used_sheets))
-			qdel(stack)	// Protects against weirdness
+			69del(stack)	// Protects a69ainst weirdness
 	else
 		res_load() // Play insertion animation.
-		to_chat(user, SPAN_NOTICE("You recycle \the [eating] in \the [src]."))
-		qdel(eating)
+		to_chat(user, SPAN_NOTICE("You recycle \the 69eatin6969 in \the 69src69."))
+		69del(eatin69)
 
-	if(reagents_filltype == 1)
-		to_chat(user, SPAN_NOTICE("Some liquid flowed to \the [container]."))
-	else if(reagents_filltype == 2)
-		to_chat(user, SPAN_NOTICE("Some liquid flowed to the floor from \the [src]."))
+	if(rea69ents_filltype == 1)
+		to_chat(user, SPAN_NOTICE("Some li69uid flowed to \the 69container69."))
+	else if(rea69ents_filltype == 2)
+		to_chat(user, SPAN_NOTICE("Some li69uid flowed to the floor from \the 69src69."))
 
 
-/obj/machinery/autolathe/proc/queue_design(datum/computer_file/binary/design/design_file, amount=1)
-	if(!design_file || !amount)
+/obj/machinery/autolathe/proc/69ueue_desi69n(datum/computer_file/binary/desi69n/desi69n_file, amount=1)
+	if(!desi69n_file || !amount)
 		return
 
-	// Copy the designs that are not copy protected so they can be printed even if the disk is ejected.
-	if(!design_file.copy_protected)
-		design_file = design_file.clone()
+	// Copy the desi69ns that are not copy protected so they can be printed even if the disk is ejected.
+	if(!desi69n_file.copy_protected)
+		desi69n_file = desi69n_file.clone()
 
-	while(amount && queue.len < queue_max)
-		queue.Add(design_file)
+	while(amount && 69ueue.len < 69ueue_max)
+		69ueue.Add(desi69n_file)
 		amount--
 
 	if(!current_file)
 		next_file()
 
-/obj/machinery/autolathe/proc/clear_queue()
-	queue.Cut()
+/obj/machinery/autolathe/proc/clear_69ueue()
+	69ueue.Cut()
 
-/obj/machinery/autolathe/proc/check_craftable_amount_by_material(datum/design/design, material)
-	return stored_material[material] / max(1, SANITIZE_LATHE_COST(design.materials[material])) // loaded material / required material
+/obj/machinery/autolathe/proc/check_craftable_amount_by_material(datum/desi69n/desi69n,69aterial)
+	return stored_material69material69 /69ax(1, SANITIZE_LATHE_COST(desi69n.materials69material69)) // loaded69aterial / re69uired69aterial
 
-/obj/machinery/autolathe/proc/check_craftable_amount_by_chemical(datum/design/design, reagent)
-	if(!container || !container.reagents)
+/obj/machinery/autolathe/proc/check_craftable_amount_by_chemical(datum/desi69n/desi69n, rea69ent)
+	if(!container || !container.rea69ents)
 		return 0
 
-	return container.reagents.get_reagent_amount(reagent) / max(1, design.chemicals[reagent])
+	return container.rea69ents.69et_rea69ent_amount(rea69ent) /69ax(1, desi69n.chemicals69rea69ent69)
 
 
 //////////////////////////////////////////
 //Helper procs for derive possibility
 //////////////////////////////////////////
-/obj/machinery/autolathe/proc/design_list()
+/obj/machinery/autolathe/proc/desi69n_list()
 	if(!disk)
-		return saved_designs
+		return saved_desi69ns
 
-	return disk.find_files_by_type(/datum/computer_file/binary/design)
+	return disk.find_files_by_type(/datum/computer_file/binary/desi69n)
 
 /obj/machinery/autolathe/proc/icon_off()
 	if(stat & NOPOWER)
@@ -685,56 +685,56 @@
 	icon_state = initial(icon_state)
 
 	if(panel_open)
-		overlays.Add(image(icon, "[icon_state]_panel"))
+		overlays.Add(ima69e(icon, "69icon_state69_panel"))
 
 	if(icon_off())
 		return
 
-	if(working) // if paused, work animation looks awkward.
+	if(workin69) // if paused, work animation looks awkward.
 		if(paused || error)
-			icon_state = "[icon_state]_pause"
+			icon_state = "69icon_state69_pause"
 		else
-			icon_state = "[icon_state]_work"
+			icon_state = "69icon_state69_work"
 
-//Procs for handling print animation
+//Procs for handlin69 print animation
 /obj/machinery/autolathe/proc/print_pre()
-	flick("[initial(icon_state)]_start", src)
+	flick("69initial(icon_state)69_start", src)
 
 /obj/machinery/autolathe/proc/print_post()
-	flick("[initial(icon_state)]_finish", src)
-	if(!current_file && !queue.len)
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 1, -3)
-		visible_message("\The [src] pings, indicating that queue is complete.")
+	flick("69initial(icon_state)69_finish", src)
+	if(!current_file && !69ueue.len)
+		playsound(src.loc, 'sound/machines/pin69.o6969', 50, 1, -3)
+		visible_messa69e("\The 69src69 pin69s, indicatin69 that 69ueue is complete.")
 
 
 /obj/machinery/autolathe/proc/res_load(material/material)
-	flick("[initial(icon_state)]_load", image_load)
+	flick("69initial(icon_state)69_load", ima69e_load)
 	if(material)
-		image_load_material.color = material.icon_colour
-		image_load_material.alpha = max(255 * material.opacity, 200) // The icons are too transparent otherwise
-		flick("[initial(icon_state)]_load_m", image_load_material)
+		ima69e_load_material.color =69aterial.icon_colour
+		ima69e_load_material.alpha =69ax(255 *69aterial.opacity, 200) // The icons are too transparent otherwise
+		flick("69initial(icon_state)69_load_m", ima69e_load_material)
 
 
-/obj/machinery/autolathe/proc/check_materials(datum/design/design)
+/obj/machinery/autolathe/proc/check_materials(datum/desi69n/desi69n)
 
-	for(var/rmat in design.materials)
+	for(var/rmat in desi69n.materials)
 		if(!(rmat in stored_material))
 			return ERR_NOMATERIAL
 
-		if(stored_material[rmat] < SANITIZE_LATHE_COST(design.materials[rmat]))
+		if(stored_material69rmat69 < SANITIZE_LATHE_COST(desi69n.materials69rmat69))
 			return ERR_NOMATERIAL
 
-	if(design.chemicals.len)
+	if(desi69n.chemicals.len)
 		if(!container || !container.is_drawable())
-			return ERR_NOREAGENT
+			return ERR_NOREA69ENT
 
-		for(var/rgn in design.chemicals)
-			if(!container.reagents.has_reagent(rgn, design.chemicals[rgn]))
-				return ERR_NOREAGENT
+		for(var/r69n in desi69n.chemicals)
+			if(!container.rea69ents.has_rea69ent(r69n, desi69n.chemicals69r69n69))
+				return ERR_NOREA69ENT
 
 	return ERR_OK
 
-/obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/design/design_file)
+/obj/machinery/autolathe/proc/can_print(datum/computer_file/binary/desi69n/desi69n_file)
 
 	if(use_oddities && !oddity)
 		return ERR_NOODDITY
@@ -742,25 +742,25 @@
 	if(paused)
 		return ERR_PAUSED
 
-	if(progress <= 0)
-		if(!design_file || !design_file.design)
+	if(pro69ress <= 0)
+		if(!desi69n_file || !desi69n_file.desi69n)
 			return ERR_NOTFOUND
 
-		if(requiere_license(design_file) && !design_file.check_license())
+		if(re69uiere_license(desi69n_file) && !desi69n_file.check_license())
 			return ERR_NOLICENSE
 
-		var/datum/design/design = design_file.design
-		var/error_mat = check_materials(design)
+		var/datum/desi69n/desi69n = desi69n_file.desi69n
+		var/error_mat = check_materials(desi69n)
 		if(error_mat != ERR_OK)
 			return error_mat
 
 	return ERR_OK
 
 
-/obj/machinery/autolathe/power_change()
+/obj/machinery/autolathe/power_chan69e()
 	..()
 	if(stat & NOPOWER)
-		working = FALSE
+		workin69 = FALSE
 	update_icon()
 	SSnano.update_uis(src)
 
@@ -774,56 +774,56 @@
 		if(err == ERR_OK)
 			error = null
 
-			working = TRUE
-			progress += speed
+			workin69 = TRUE
+			pro69ress += speed
 
-		else if(err in error_messages)
-			error = error_messages[err]
+		else if(err in error_messa69es)
+			error = error_messa69es69err69
 		else
 			error = "Unknown error."
 
-		if(current_file.design && progress >= current_file.design.time)
+		if(current_file.desi69n && pro69ress >= current_file.desi69n.time)
 			finish_construction()
 
 	else
 		error = null
-		working = FALSE
+		workin69 = FALSE
 		next_file()
 
-	use_power = working ? ACTIVE_POWER_USE : IDLE_POWER_USE
+	use_power = workin69 ? ACTIVE_POWER_USE : IDLE_POWER_USE
 
 	special_process()
 	update_icon()
 	SSnano.update_uis(src)
 
 
-/obj/machinery/autolathe/proc/consume_materials(datum/design/design)
-	for(var/material in design.materials)
-		var/material_cost = design.adjust_materials ? SANITIZE_LATHE_COST(design.materials[material]) : design.materials[material]
-		stored_material[material] = max(0, stored_material[material] - material_cost)
+/obj/machinery/autolathe/proc/consume_materials(datum/desi69n/desi69n)
+	for(var/material in desi69n.materials)
+		var/material_cost = desi69n.adjust_materials ? SANITIZE_LATHE_COST(desi69n.materials69material69) : desi69n.materials69material69
+		stored_material69material69 =69ax(0, stored_material69material69 -69aterial_cost)
 
-	for(var/reagent in design.chemicals)
-		container.reagents.remove_reagent(reagent, design.chemicals[reagent])
+	for(var/rea69ent in desi69n.chemicals)
+		container.rea69ents.remove_rea69ent(rea69ent, desi69n.chemicals69rea69ent69)
 
 	return TRUE
 
 
 /obj/machinery/autolathe/proc/next_file()
 	current_file = null
-	progress = 0
-	if(queue.len)
-		current_file = queue[1]
+	pro69ress = 0
+	if(69ueue.len)
+		current_file = 69ueue69169
 		print_pre()
-		working = TRUE
-		queue.Cut(1, 2) // Cut queue[1]
+		workin69 = TRUE
+		69ueue.Cut(1, 2) // Cut 69ueue69169
 	else
-		working = FALSE
+		workin69 = FALSE
 	update_icon()
 
 /obj/machinery/autolathe/proc/special_process()
 	return
 
-//Autolathes can eject decimal quantities of material as a shard
+//Autolathes can eject decimal 69uantities of69aterial as a shard
 /obj/machinery/autolathe/proc/eject(material, amount)
 	if(!(material in stored_material))
 		return
@@ -831,124 +831,124 @@
 	if(!amount)
 		return
 
-	var/material/M = get_material_by_name(material)
+	var/material/M = 69et_material_by_name(material)
 
 	if(!M.stack_type)
 		return
-	amount = min(amount, stored_material[material])
+	amount =69in(amount, stored_material69material69)
 
 	var/whole_amount = round(amount)
 	var/remainder = amount - whole_amount
 
 	if(whole_amount)
-		var/obj/item/stack/material/S = new M.stack_type(drop_location())
+		var/obj/item/stack/material/S = new69.stack_type(drop_location())
 
-		//Accounting for the possibility of too much to fit in one stack
+		//Accountin69 for the possibility of too69uch to fit in one stack
 		if(whole_amount <= S.max_amount)
 			S.amount = whole_amount
-			S.update_strings()
+			S.update_strin69s()
 			S.update_icon()
 		else
-			//There's too much, how many stacks do we need
+			//There's too69uch, how69any stacks do we need
 			var/fullstacks = round(whole_amount / S.max_amount)
-			//And how many sheets leftover for this stack
+			//And how69any sheets leftover for this stack
 			S.amount = whole_amount % S.max_amount
 
 			if(!S.amount)
-				qdel(S)
+				69del(S)
 
 			for(var/i = 0; i < fullstacks; i++)
-				var/obj/item/stack/material/MS = new M.stack_type(drop_location())
-				MS.amount = MS.max_amount
-				MS.update_strings()
+				var/obj/item/stack/material/MS = new69.stack_type(drop_location())
+				MS.amount =69S.max_amount
+				MS.update_strin69s()
 				MS.update_icon()
 
 	//And if there's any remainder, we eject that as a shard
 	if(remainder)
-		new /obj/item/material/shard(drop_location(), material, _amount = remainder)
+		new /obj/item/material/shard(drop_location(),69aterial, _amount = remainder)
 
-	//The stored material gets the amount (whole+remainder) subtracted
-	stored_material[material] -= amount
+	//The stored69aterial 69ets the amount (whole+remainder) subtracted
+	stored_material69material69 -= amount
 
 
 /obj/machinery/autolathe/on_deconstruction()
 	for(var/mat in stored_material)
-		eject(mat, stored_material[mat])
+		eject(mat, stored_material69mat69)
 
 	eject_disk()
 	..()
 
-//Updates lathe material storage size, production speed and material efficiency.
+//Updates lathe69aterial stora69e size, production speed and69aterial efficiency.
 /obj/machinery/autolathe/RefreshParts()
 	..()
-	var/mb_rating = 0
+	var/mb_ratin69 = 0
 	var/mb_amount = 0
 	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
-		mb_rating += MB.rating
+		mb_ratin69 +=69B.ratin69
 		mb_amount++
 
-	storage_capacity = round(initial(storage_capacity)*(mb_rating/mb_amount))
+	stora69e_capacity = round(initial(stora69e_capacity)*(mb_ratin69/mb_amount))
 
-	var/man_rating = 0
+	var/man_ratin69 = 0
 	var/man_amount = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		man_rating += M.rating
+		man_ratin69 +=69.ratin69
 		man_amount++
-	man_rating -= man_amount
+	man_ratin69 -=69an_amount
 
-	var/las_rating = 0
+	var/las_ratin69 = 0
 	var/las_amount = 0
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts)
-		las_rating += M.rating
+		las_ratin69 +=69.ratin69
 		las_amount++
-	las_rating -= las_amount
+	las_ratin69 -= las_amount
 
-	speed = initial(speed) + man_rating + las_rating
-	mat_efficiency = max(0.2, 1 - (man_rating * 0.1))
+	speed = initial(speed) +69an_ratin69 + las_ratin69
+	mat_efficiency =69ax(0.2, 1 - (man_ratin69 * 0.1))
 
 
 
 
 //Cancels the current construction
 /obj/machinery/autolathe/proc/abort()
-	if(working)
+	if(workin69)
 		print_post()
 	current_file = null
 	paused = TRUE
-	working = FALSE
+	workin69 = FALSE
 	update_icon()
 
-//Finishing current construction
+//Finishin69 current construction
 /obj/machinery/autolathe/proc/finish_construction()
-	if(!requiere_license(current_file) || current_file.use_license()) //In the case of an an unprotected design, this will always be true
-		fabricate_design(current_file.design)
+	if(!re69uiere_license(current_file) || current_file.use_license()) //In the case of an an unprotected desi69n, this will always be true
+		fabricate_desi69n(current_file.desi69n)
 	else
-		//If we get here, then the user attempted to print something but the disk had run out of its limited licenses
-		//Those dirty cheaters will not get their item. It is aborted before it finishes
+		//If we 69et here, then the user attempted to print somethin69 but the disk had run out of its limited licenses
+		//Those dirty cheaters will not 69et their item. It is aborted before it finishes
 		abort()
 
 
-/obj/machinery/autolathe/proc/fabricate_design(datum/design/design)
-	consume_materials(design)
+/obj/machinery/autolathe/proc/fabricate_desi69n(datum/desi69n/desi69n)
+	consume_materials(desi69n)
 
-	if(disk && disk.GetComponent(/datum/component/oldficator))
-		design.Fabricate(drop_location(), mat_efficiency, src, TRUE)
+	if(disk && disk.69etComponent(/datum/component/oldficator))
+		desi69n.Fabricate(drop_location(),69at_efficiency, src, TRUE)
 	else
-		design.Fabricate(drop_location(), mat_efficiency, src, FALSE, extra_quality_print)
+		desi69n.Fabricate(drop_location(),69at_efficiency, src, FALSE, extra_69uality_print)
 
-	working = FALSE
+	workin69 = FALSE
 	current_file = null
 	print_post()
 	next_file()
 
 
-/obj/machinery/autolathe/proc/insert_oddity(mob/living/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/oddity/inserted_oddity
+/obj/machinery/autolathe/proc/insert_oddity(mob/livin69/user, obj/item/inserted_oddity) //Not sure if nessecary to name oddity this way. obj/item/oddity/inserted_oddity
 	if(oddity)
-		to_chat(user, SPAN_NOTICE("There's already \a [oddity] inside [src]."))
+		to_chat(user, SPAN_NOTICE("There's already \a 69oddity69 inside 69src69."))
 		return
 
 	if(!inserted_oddity && istype(user))
-		inserted_oddity = user.get_active_hand()
+		inserted_oddity = user.69et_active_hand()
 
 	if(!istype(inserted_oddity))
 		return
@@ -956,29 +956,29 @@
 	if(!Adjacent(user) || !Adjacent(inserted_oddity))
 		return
 
-	GET_COMPONENT_FROM(C, /datum/component/inspiration, inserted_oddity)
+	69ET_COMPONENT_FROM(C, /datum/component/inspiration, inserted_oddity)
 	if(!C || !C.perk)
 		return
 
 	if(istype(user) && (inserted_oddity in user))
-		user.unEquip(inserted_oddity, src)
+		user.unE69uip(inserted_oddity, src)
 
 	inserted_oddity.forceMove(src)
 	oddity = inserted_oddity
 	inspiration = C
-	to_chat(user, SPAN_NOTICE("You insert [oddity] in [src]."))
+	to_chat(user, SPAN_NOTICE("You insert 69oddity69 in 69src69."))
 	SSnano.update_uis(src)
 
-/obj/machinery/autolathe/proc/remove_oddity(mob/living/user, use_perk = FALSE)
+/obj/machinery/autolathe/proc/remove_oddity(mob/livin69/user, use_perk = FALSE)
 	if(!oddity)
 		return
 
 	oddity.forceMove(drop_location())
 	if(user)
 		if(!use_perk)
-			to_chat(user, SPAN_NOTICE("You remove [oddity] from [src]."))
+			to_chat(user, SPAN_NOTICE("You remove 69oddity69 from 69src69."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] consumes the perk of [oddity]"))
+			to_chat(user, SPAN_NOTICE("69src69 consumes the perk of 69oddity69"))
 			inspiration.perk = null
 
 		if(istype(user) && Adjacent(user))
@@ -991,40 +991,40 @@
 #undef ERR_OK
 #undef ERR_NOTFOUND
 #undef ERR_NOMATERIAL
-#undef ERR_NOREAGENT
+#undef ERR_NOREA69ENT
 #undef ERR_NOLICENSE
 #undef ERR_PAUSED
-#undef ERR_NOINSIGHT
+#undef ERR_NOINSI69HT
 
-// A version with some materials already loaded, to be used on map spawn
+// A69ersion with some69aterials already loaded, to be used on69ap spawn
 /obj/machinery/autolathe/loaded
 	stored_material = list(
 		MATERIAL_STEEL = 60,
 		MATERIAL_PLASTIC = 60,
-		MATERIAL_GLASS = 60,
+		MATERIAL_69LASS = 60,
 		)
 
 /obj/machinery/autolathe/loaded/Initialize()
 	. = ..()
-	container = new /obj/item/reagent_containers/glass/beaker(src)
+	container = new /obj/item/rea69ent_containers/69lass/beaker(src)
 
 
-// You (still) can't flick_light overlays in BYOND, and this is a vis_contents hack to provide the same functionality.
-// Used for materials loading animation.
-/obj/effect/flick_light_overlay
+// You (still) can't flick_li69ht overlays in BYOND, and this is a69is_contents hack to provide the same functionality.
+// Used for69aterials loadin69 animation.
+/obj/effect/flick_li69ht_overlay
 	name = ""
 	icon_state = ""
-	// Acts like a part of the object it's created for when in vis_contents
-	// Inherits everything but the icon_state
-	vis_flags = VIS_INHERIT_ICON | VIS_INHERIT_DIR | VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
+	// Acts like a part of the object it's created for when in69is_contents
+	// Inherits everythin69 but the icon_state
+	vis_fla69s =69IS_INHERIT_ICON |69IS_INHERIT_DIR |69IS_INHERIT_LAYER |69IS_INHERIT_PLANE |69IS_INHERIT_ID
 
-/obj/effect/flick_light_overlay/New(atom/movable/loc)
+/obj/effect/flick_li69ht_overlay/New(atom/movable/loc)
 	..()
-	// Just VIS_INHERIT_ICON isn't enough: flick_light() needs an actual icon to be set
+	// Just69IS_INHERIT_ICON isn't enou69h: flick_li69ht() needs an actual icon to be set
 	icon = loc.icon
 	loc.vis_contents += src
 
-/obj/effect/flick_light_overlay/Destroy()
+/obj/effect/flick_li69ht_overlay/Destroy()
 	if(istype(loc, /atom/movable))
 		var/atom/movable/A = loc
 		A.vis_contents -= src

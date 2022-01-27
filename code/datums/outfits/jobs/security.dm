@@ -53,7 +53,7 @@
 	backpack_overrides.Cut()
 
 /decl/hierarchy/outfit/job/security/medspec
-	name = OUTFIT_JOB_NAME("Ironhammer Medical Specialist")
+	name = OUTFIT_JOB_NAME("Ironhammer69edical Specialist")
 	l_pocket = /obj/item/device/flash
 	id_type = /obj/item/card/id/medcpec
 	uniform = /obj/item/clothing/under/rank/medspec

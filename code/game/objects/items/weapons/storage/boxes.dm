@@ -4,16 +4,16 @@
  *
  *	Contains:
  *		Empty box, starter boxes (survival/engineer),
- *		Latex glove and sterile mask boxes,
+ *		Latex glove and sterile69ask boxes,
  *		Syringe, beaker, dna injector boxes,
  *		Blanks, flashbangs, and EMP grenade boxes,
  *		Tracking and chemical implant boxes,
  *		Prescription glasses and drinking glass boxes,
  *		Condiment bottle and silly cup boxes,
- *		Donkpocket and monkeycube boxes,
+ *		Donkpocket and69onkeycube boxes,
  *		ID and security PDA cart boxes,
- *		Handcuff, mousetrap, and pillbottle boxes,
- *		Snap-pops and matchboxes,
+ *		Handcuff,69ousetrap, and pillbottle boxes,
+ *		Snap-pops and69atchboxes,
  *		Replacement light boxes.
  *
  *		For syndicate call-ins see uplink_kits.dm
@@ -33,7 +33,7 @@
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_BOX
 	rarity_value = 20
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	var/foldable = /obj/item/stack/material/cardboard	//If set, can be folded (when empty) into the set object.
 	var/illustration = "writing"
 	var/initial_amount = 0
@@ -56,13 +56,13 @@
 /obj/item/storage/box/proc/check_health()
 	if (health <= 0)
 		spill()
-		qdel(src)
+		69del(src)
 
 /obj/item/storage/box/attack_generic(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*2)
 	if (istype(user, /mob/living))
 		var/mob/living/L = user
-		var/damage = L.mob_size ? L.mob_size : MOB_MINISCULE
+		var/damage = L.mob_size ? L.mob_size :69OB_MINISCULE
 
 		if (!damage || damage <= 0)
 			return
@@ -74,7 +74,7 @@
 		shake_animation()
 		spawn(5)
 			if ((health-damage) <= 0)
-				L.visible_message("<span class='danger'>[L] tears open \the [src], spilling its contents everywhere!</span>", "<span class='danger'>You tear open the [src], spilling its contents everywhere!</span>")
+				L.visible_message("<span class='danger'>69L69 tears open \the 69src69, spilling its contents everywhere!</span>", "<span class='danger'>You tear open the 69src69, spilling its contents everywhere!</span>")
 			damage(damage)
 		..()
 
@@ -92,10 +92,10 @@
 	// Close any open UI windows first
 	close_all()
 
-	// Now make the cardboard
-	to_chat(user, SPAN_NOTICE("You fold [src] flat."))
+	// Now69ake the cardboard
+	to_chat(user, SPAN_NOTICE("You fold 69src69 flat."))
 	new src.foldable(get_turf(src))
-	qdel(src)
+	69del(src)
 
 /obj/item/storage/box/survival/populate_contents()
 	new /obj/item/clothing/mask/breath(src)
@@ -120,8 +120,8 @@
 		new spawn_type(src)
 
 /obj/item/storage/box/masks
-	name = "box of sterile masks"
-	desc = "This box contains masks of sterility."
+	name = "box of sterile69asks"
+	desc = "This box contains69asks of sterility."
 	illustration = "sterile"
 	initial_amount = 7
 	spawn_type = /obj/item/clothing/mask/surgical
@@ -189,7 +189,7 @@
 
 /obj/item/storage/box/shotgunammo
 	name = "box of shotgun slugs"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition.69isuse69ay result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 40
 	spawn_tags = SPAWN_TAG_AMMO_SHOTGUN_COMMON
@@ -243,8 +243,8 @@
 
 
 /obj/item/storage/box/sniperammo
-	name = "box of .60 \"Penetrator\" Anti Material shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
+	name = "box of .60 \"Penetrator\" Anti69aterial shells"
+	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition.69isuse69ay result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
 	initial_amount = 1
@@ -257,8 +257,8 @@
 		temp_casing.update_icon()
 
 /obj/item/storage/box/sniperammo/emp
-	name = "box of .60 \"Blackout\" Anti Material shells"
-	desc = "It has a picture of a gun and several warning symbols on the front, among them is a symbol you're not quite able to make sense of.<br>WARNING: Live EMP ammunition. Misuse may result in serious injury or death."
+	name = "box of .60 \"Blackout\" Anti69aterial shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, among them is a symbol you're not 69uite able to69ake sense of.<br>WARNING: Live EMP ammunition.69isuse69ay result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
 	initial_amount = 1
@@ -271,8 +271,8 @@
 		temp_casing.update_icon()
 
 /obj/item/storage/box/sniperammo/uranium
-	name = "box of .60 \"Meltdown\" Anti Material shells"
-	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live depleted uranium ammunition. Misuse may result in serious injury or death."
+	name = "box of .60 \"Meltdown\" Anti69aterial shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, including a radiation hazard sign.<br>WARNING: Live depleted uranium ammunition.69isuse69ay result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
 	initial_amount = 1
@@ -285,8 +285,8 @@
 		temp_casing.update_icon()
 
 /obj/item/storage/box/sniperammo/breach
-	name = "box of .60 \"Breacher\" Anti Material shells"
-	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition. Misuse may result in serious injury or death."
+	name = "box of .60 \"Breacher\" Anti69aterial shells"
+	desc = "It has a picture of a gun and several warning symbols on the front, including an explosive hazard sign.<br>WARNING: Live breaching ammunition.69isuse69ay result in serious injury or death."
 	illustration = "ammo"
 	rarity_value = 80
 	initial_amount = 1
@@ -322,7 +322,7 @@
 
 /obj/item/storage/box/teargas
 	name = "box of pepperspray grenades"
-	desc = "A box containing 6 tear gas grenades. A gas mask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
+	desc = "A box containing 6 tear gas grenades. A gas69ask is printed on the label.<br> WARNING: Exposure carries risk of serious injury or death. Keep away from persons with lung conditions."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 50
@@ -335,7 +335,7 @@
 
 /obj/item/storage/box/emps
 	name = "box of emp grenades"
-	desc = "A box containing 5 military grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis may occur."
+	desc = "A box containing 569ilitary grade EMP grenades.<br> WARNING: Do not use near unshielded electronics or biomechanical augmentations, death or permanent paralysis69ay occur."
 	icon_state = "box_security"
 	illustration = "flashbang"
 	rarity_value = 60
@@ -549,7 +549,7 @@
 
 /obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<B>Instructions:</B> <I>Heat in69icrowave. Product will cool if not eaten within seven69inutes.</I>"
 	icon_state = "box_donk_pocket"
 	illustration = null
 	rarity_value = 10
@@ -562,7 +562,7 @@
 
 /obj/item/storage/box/sinpockets
 	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
+	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven69inutes.</I>"
 	icon_state = "box_donk_pocket"
 	illustration = null
 	initial_amount = 6
@@ -574,7 +574,7 @@
 
 /obj/item/storage/box/monkeycubes
 	name = "monkey cube box"
-	desc = "Drymate brand monkey cubes. Just add water!"
+	desc = "Drymate brand69onkey cubes. Just add water!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "monkeycubebox"
 	illustration = null
@@ -588,7 +588,7 @@
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
-	desc = "Has so many empty IDs."
+	desc = "Has so69any empty IDs."
 	icon_state = "box_id"
 	illustration = null
 	initial_amount = 7
@@ -613,7 +613,7 @@
 
 
 /obj/item/storage/box/mousetraps
-	name = "box of Pest-B-Gon mousetraps"
+	name = "box of Pest-B-Gon69ousetraps"
 	desc = "<B><FONT color='red'>WARNING:</FONT></B> <I>Keep out of reach of children</I>."
 	illustration = "mousetraps"
 	initial_amount = 7
@@ -647,7 +647,7 @@
 
 /obj/item/storage/box/matches
 	name = "matchbox"
-	desc = "A small box of 'Space-Proof' premium matches."
+	desc = "A small box of 'Space-Proof' premium69atches."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "matchbox"
 	item_state = "zippo"
@@ -664,13 +664,13 @@
 		new spawn_type(src)
 	make_exact_fit()
 
-/obj/item/storage/box/matches/attackby(obj/item/flame/match/W, mob/user)
+/obj/item/storage/box/matches/attackby(obj/item/flame/match/W,69ob/user)
 	if(istype(W) && !W.lit && !W.burnt)
 		playsound(src, 'sound/items/matchstrike.ogg', 20, 1, 1)
 		W.lit = 1
 		W.damtype = "burn"
 		W.icon_state = "match_lit"
-		W.tool_qualities = list(QUALITY_CAUTERIZING = 10)
+		W.tool_69ualities = list(69UALITY_CAUTERIZING = 10)
 		START_PROCESSING(SSobj, W)
 	W.update_icon()
 	return
@@ -691,7 +691,7 @@
 	name = "box of replacement bulbs"
 	illustration = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
-	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that69ost people will try
 	spawn_tags = SPAWN_TAG_BOX_TAG_JUNK
 	initial_amount = 21
 	spawn_type = /obj/item/light/bulb
@@ -762,10 +762,10 @@
 		new spawn_type(src)
 
 /obj/item/storage/box/happy_meal
-	name = "McRonalds' Robust Meal"
-	desc = "This is typical Robust Meal from McRonalds.\
+	name = "McRonalds' Robust69eal"
+	desc = "This is typical Robust69eal from69cRonalds.\
 	And you almost feel smell of delicious food from it.\
-	Wait! It must have toy inside! Unpack it now!"
+	Wait! It69ust have toy inside! Unpack it now!"
 	icon_state = "happy_meal"
 
 /obj/item/storage/box/happy_meal/New()

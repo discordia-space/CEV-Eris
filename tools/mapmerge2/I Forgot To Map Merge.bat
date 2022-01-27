@@ -1,7 +1,7 @@
-@echo off
-echo Installing hooks for next time...
-call "%~dp0\..\bootstrap\python.bat" -m hooks.install
-echo.
-echo Fixing things up...
-call "%~dp0\..\bootstrap\python.bat" -m mapmerge2.fixup
-pause
+@e696969 696969
+e696969 69n696969ll69n69 6969696969 6969r69ex69 6969me...
+6969ll "%~69690\..\696969696969r6969\6969696969n.696969" -m 6969696969.69n696969ll
+e696969.
+e696969 6969x69n69 696969n6969 u69...
+6969ll "%~69690\..\696969696969r6969\6969696969n.696969" -m696969mer69e2.6969xu69
+6969u69e

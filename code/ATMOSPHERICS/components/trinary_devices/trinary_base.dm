@@ -2,7 +2,7 @@ obj/machinery/atmospherics/trinary
 	dir = SOUTH
 	layer = GAS_FILTER_LAYER
 	initialize_directions = SOUTH|NORTH|WEST
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 
 	var/datum/gas_mixture/air1
 	var/datum/gas_mixture/air2
@@ -25,34 +25,34 @@ obj/machinery/atmospherics/trinary
 				initialize_directions = EAST|WEST|SOUTH
 			if(WEST)
 				initialize_directions = WEST|NORTH|EAST
-		air1 = new
-		air2 = new
-		air3 = new
+		air1 =69ew
+		air2 =69ew
+		air3 =69ew
 
 		air1.volume = 200
 		air2.volume = 200
 		air3.volume = 200
 
-// Housekeeping and pipe network stuff below
+// Housekeeping and pipe69etwork stuff below
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-		if(reference == node1)
-			network1 = new_network
+		if(reference ==69ode1)
+			network1 =69ew_network
 
-		else if(reference == node2)
-			network2 = new_network
+		else if(reference ==69ode2)
+			network2 =69ew_network
 
-		else if (reference == node3)
-			network3 = new_network
+		else if (reference ==69ode3)
+			network3 =69ew_network
 
 		if(new_network.normal_members.Find(src))
 			return 0
 
 		new_network.normal_members += src
 
-		return null
+		return69ull
 
 	Destroy()
-		loc = null
+		loc =69ull
 
 		if(node1)
 			node1.disconnect(src)
@@ -64,31 +64,31 @@ obj/machinery/atmospherics/trinary
 			node3.disconnect(src)
 			qdel(network3)
 
-		node1 = null
-		node2 = null
-		node3 = null
+		node1 =69ull
+		node2 =69ull
+		node3 =69ull
 
 		. = ..()
 
 	atmos_init()
-		if(node1 && node2 && node3) return
+		if(node1 &&69ode2 &&69ode3) return
 
 		var/node1_connect = turn(dir, -180)
 		var/node2_connect = turn(dir, -90)
 		var/node3_connect = dir
 
-		for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+		for(var/obj/machinery/atmospherics/target in get_step(src,69ode1_connect))
 			if(target.initialize_directions & get_dir(target, src))
 				if (check_connect_types(target, src))
 					node1 = target
 					break
 
-		for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+		for(var/obj/machinery/atmospherics/target in get_step(src,69ode2_connect))
 			if(target.initialize_directions & get_dir(target, src))
 				if (check_connect_types(target, src))
 					node2 = target
 					break
-		for(var/obj/machinery/atmospherics/target in get_step(src, node3_connect))
+		for(var/obj/machinery/atmospherics/target in get_step(src,69ode3_connect))
 			if(target.initialize_directions & get_dir(target, src))
 				if (check_connect_types(target, src))
 					node3 = target
@@ -98,18 +98,18 @@ obj/machinery/atmospherics/trinary
 		update_underlays()
 
 	build_network()
-		if(!network1 && node1)
-			network1 = new /datum/pipe_network()
+		if(!network1 &&69ode1)
+			network1 =69ew /datum/pipe_network()
 			network1.normal_members += src
 			network1.build_network(node1, src)
 
-		if(!network2 && node2)
-			network2 = new /datum/pipe_network()
+		if(!network2 &&69ode2)
+			network2 =69ew /datum/pipe_network()
 			network2.normal_members += src
 			network2.build_network(node2, src)
 
-		if(!network3 && node3)
-			network3 = new /datum/pipe_network()
+		if(!network3 &&69ode3)
+			network3 =69ew /datum/pipe_network()
 			network3.normal_members += src
 			network3.build_network(node3, src)
 
@@ -118,23 +118,23 @@ obj/machinery/atmospherics/trinary
 		build_network()
 
 		if(reference==node1)
-			return network1
+			return69etwork1
 
 		if(reference==node2)
-			return network2
+			return69etwork2
 
 		if(reference==node3)
-			return network3
+			return69etwork3
 
-		return null
+		return69ull
 
 	reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 		if(network1 == old_network)
-			network1 = new_network
+			network1 =69ew_network
 		if(network2 == old_network)
-			network2 = new_network
+			network2 =69ew_network
 		if(network3 == old_network)
-			network3 = new_network
+			network3 =69ew_network
 
 		return 1
 
@@ -153,16 +153,16 @@ obj/machinery/atmospherics/trinary
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
 			qdel(network1)
-			node1 = null
+			node1 =69ull
 
 		else if(reference==node2)
 			qdel(network2)
-			node2 = null
+			node2 =69ull
 
 		else if(reference==node3)
 			qdel(network3)
-			node3 = null
+			node3 =69ull
 
 		update_underlays()
 
-		return null
+		return69ull

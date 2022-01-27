@@ -5,10 +5,10 @@
 	var/text
 
 	if (objectives.len)
-		text = "<b>Your [role_text] current objectives:</b>"
+		text = "<b>Your 69role_text69 current objectives:</b>"
 
 	if(faction)
-		text = "<b>Your [faction.name] faction current objectives:</b>"
+		text = "<b>Your 69faction.name69 faction current objectives:</b>"
 
 	text += print_objectives(FALSE)
 
@@ -20,16 +20,16 @@
 
 	var/mob/player = owner.current
 	// Basic intro text.
-	to_chat(player, "<span class='danger'><font size=3>You are \a [role_text]!</font></span>")
+	to_chat(player, "<span class='danger'><font size=3>You are \a 69role_text69!</font></span>")
 	if(faction)
 		if(src in faction.leaders)
-			to_chat(player, "You are a leader of the [faction.name]!")
+			to_chat(player, "You are a leader of the 69faction.name69!")
 		else
-			to_chat(player, "You are a member of the [faction.name].")
+			to_chat(player, "You are a69ember of the 69faction.name69.")
 
-		to_chat(player, "[faction.welcome_text]")
+		to_chat(player, "69faction.welcome_text69")
 	else
-		to_chat(player, "[welcome_text]")
+		to_chat(player, "69welcome_text69")
 
 	show_objectives()
 	printTip()
@@ -39,7 +39,7 @@
 	var/tipsAndTricks/T = SStips.getRoleTip(src)
 	if(T)
 		var/mob/player = owner.current
-		to_chat(player, SStips.formatTip(T, "Tip for \a [role_text]: "))
+		to_chat(player, SStips.formatTip(T, "Tip for \a 69role_text69: "))
 
 /datum/antagonist/proc/get_special_objective_text()
 	return ""
@@ -73,18 +73,18 @@
 			total_tc += contract.reward
 			num++
 
-			text += "<br><b>Contract [num]:</b> [contract.desc] <font color='green'>(+[contract.reward] TC)</font>"
+			text += "<br><b>Contract 69num69:</b> 69contract.desc69 <font color='green'>(+69contract.reward69 TC)</font>"
 
-		text += "<br><b>Total: [num] contracts, <font color='green'>[total_tc] TC</font></b><br>"
+		text += "<br><b>Total: 69num69 contracts, <font color='green'>69total_tc69 TC</font></b><br>"
 
 	if(length(objectives))
 		var/failed = FALSE
 		var/num = 1
 		for(var/datum/objective/O in objectives)
 
-			text += "<br><b>Objective [num]:</b> [O.explanation_text] "
+			text += "<br><b>Objective 69num69:</b> 69O.explanation_text69 "
 			if(append_success)
-				text += "[O.get_info()] "
+				text += "69O.get_info()69 "
 				if(O.check_completion())
 					text += "<font color='green'><B>Success!</B></font>"
 				else
@@ -94,9 +94,9 @@
 
 		if(append_success)
 			if(failed)
-				text += "<br><font color='red'><B>The [role_text] has failed.</B></font>"
+				text += "<br><font color='red'><B>The 69role_text69 has failed.</B></font>"
 			else
-				text += "<br><font color='green'><B>The [role_text] was successful!</B></font>"
+				text += "<br><font color='green'><B>The 69role_text69 was successful!</B></font>"
 
 	return text
 
@@ -104,8 +104,8 @@
 	if(!owner)
 		return
 
-	var/role = owner.assigned_role ? "\improper[owner.assigned_role]" : "\improper[role_text]"
-	var/text = "<br><b>[owner.name]</b> (<b>[owner.key]</b>) as \a <b>[role]</b> ("
+	var/role = owner.assigned_role ? "\improper69owner.assigned_role69" : "\improper69role_text69"
+	var/text = "<br><b>69owner.name69</b> (<b>69owner.key69</b>) as \a <b>69role69</b> ("
 	if(owner.current)
 		if(owner.current.stat == DEAD)
 			text += "died"
@@ -114,7 +114,7 @@
 		else
 			text += "survived"
 		if(owner.current.real_name != owner.name)
-			text += " as <b>[owner.current.real_name]</b>"
+			text += " as <b>69owner.current.real_name69</b>"
 	else
 		text += "body destroyed"
 	text += ")"
@@ -133,10 +133,10 @@
 			TC_uses += H.used_TC
 
 			for(var/datum/uplink_item/UI in H.purchase_log)
-				purchases.Add("[H.purchase_log[UI]]x[UI.log_icon()][UI.name]")
+				purchases.Add("69H.purchase_log69UI6969x69UI.log_icon()6969UI.name69")
 
-	text += " (used [TC_uses] TC)"
+	text += " (used 69TC_uses69 TC)"
 	if(purchases.len)
-		text += "<br>[english_list(purchases, nothing_text = "")]"
+		text += "<br>69english_list(purchases, nothing_text = "")69"
 
 	return text

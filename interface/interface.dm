@@ -1,182 +1,182 @@
-//Please use mob or src (not usr) in these procs. This way they can be called in the same fashion as procs.
-/client/verb/wikiurl()
-	set name = "wikiurl"
-	set desc = "Visit the wiki."
+//Ple69se use69ob or src (not usr69 in these procs. This w69y they c69n be c69lled in the s69me f69shion 69s procs.
+/client/69erb/wikiurl(69
+	set6969me = "wikiurl"
+	set desc = "69isit the wiki."
 	set hidden = 1
-	if( config.wikiurl )
-		if(alert("This will open the wiki in your browser. Are you sure?",,"Yes","No")=="No")
+	if( confi69.wikiurl 69
+		if(69lert("This will open the wiki in your browser. 69re you sure?",,"Yes","No"69=="No"69
 			return
-		src << link(config.wikiurl)
+		src << link(confi69.wikiurl69
 	else
-		to_chat(src, SPAN_WARNING("The wiki URL is not set in the server configuration."))
+		to_ch69t(src, SP69N_W69RNIN69("The wiki URL is69ot set in the ser69er confi69ur69tion."6969
 	return
 
-/client/verb/discordurl()
-	set name = "discordurl"
-	set desc = "Visit the Discordia Github."
+/client/69erb/discordurl(69
+	set6969me = "discordurl"
+	set desc = "69isit the Discordi69 69ithub."
 	set hidden = 1
-	if( config.discordurl )
-		if(alert("This will open the Discordia Discord  invite in your browser. Are you sure?",,"Yes","No")=="No")
+	if( confi69.discordurl 69
+		if(69lert("This will open the Discordi69 Discord  in69ite in your browser. 69re you sure?",,"Yes","No"69=="No"69
 			return
-		src << link(config.discordurl)
+		src << link(confi69.discordurl69
 	else
-		to_chat(src, SPAN_WARNING("The Discordia Discord invite is not set in the server configuration."))
+		to_ch69t(src, SP69N_W69RNIN69("The Discordi69 Discord in69ite is69ot set in the ser69er confi69ur69tion."6969
 	return
 
-/client/verb/githuburl()
-	set name = "githuburl"
-	set desc = "Visit the Discordia Github."
+/client/69erb/69ithuburl(69
+	set6969me = "69ithuburl"
+	set desc = "69isit the Discordi69 69ithub."
 	set hidden = 1
-	if( config.githuburl )
-		if(alert("This will open the Discordia Github page in your browser. Are you sure?",,"Yes","No")=="No")
+	if( confi69.69ithuburl 69
+		if(69lert("This will open the Discordi69 69ithub p6969e in your browser. 69re you sure?",,"Yes","No"69=="No"69
 			return
-		src << link(config.githuburl)
+		src << link(confi69.69ithuburl69
 	else
-		to_chat(src, SPAN_WARNING("The Discordia Github is not set in the server configuration."))
+		to_ch69t(src, SP69N_W69RNIN69("The Discordi69 69ithub is69ot set in the ser69er confi69ur69tion."6969
 	return
 
-/client/verb/ticketsshortcut()
-	set name = "ticketsshortcut"
-	set desc = "Access your tickets."
+/client/69erb/ticketsshortcut(69
+	set6969me = "ticketsshortcut"
+	set desc = "69ccess your tickets."
 	set hidden = 1
 
-	if(check_rights(R_ADMIN))
-		SStickets.showUI(usr)  // Admins access the ticket management interface
+	if(check_ri69hts(R_69DMIN6969
+		SStickets.showUI(usr69  // 69dmins 69ccess the ticket6969n6969ement interf69ce
 	else
-		SStickets.userDetailUI(usr)  // Users access their tickets
+		SStickets.userDet69ilUI(usr69  // Users 69ccess their tickets
 	return
 
-#define RULES_FILE "config/rules.html"
-/client/verb/rules()
-	set name = "Rules"
-	set desc = "Show Server Rules."
+#define RULES_FILE "confi69/rules.html"
+/client/69erb/rules(69
+	set6969me = "Rules"
+	set desc = "Show Ser69er Rules."
 	set hidden = 1
-	src << browse(file(RULES_FILE), "window=rules;size=480x320")
+	src << browse(file(RULES_FILE69, "window=rules;size=480x320"69
 #undef RULES_FILE
 
-/client/verb/hotkeys_help()
-	set name = "hotkeys-help"
-	set category = "OOC"
+/client/69erb/hotkeys_help(69
+	set6969me = "hotkeys-help"
+	set c69te69ory = "OOC"
 
-	var/admin = {"<font color='purple'>
-Admin:
-\tF5 = Aghost (admin-ghost)
-\tF6 = player-panel
-\tF7 = admin-pm
-\tF8 = Invisimin
-Admin Ghost:
-\tShift + Ctrl + Click = View Variables
+	6969r/69dmin = {"<font color='purple'>
+69dmin:
+\tF5 = 6969host (69dmin-69host69
+\tF6 = pl69yer-p69nel
+\tF7 = 69dmin-pm
+\tF8 = In69isimin
+69dmin 69host:
+\tShift + Ctrl + Click = 69iew 6969ri69bles
 </font>"}
 
-	var/hotkey_mode = {"<font color='purple'>
-Hotkey-Mode: (hotkey-mode must be on)
-\tTAB = toggle hotkey-mode
-\ta = left
+	6969r/hotkey_mode = {"<font color='purple'>
+Hotkey-Mode: (hotkey-mode69ust be on69
+\tT69B = to6969le hotkey-mode
+\t69 = left
 \ts = down
-\td = right
+\td = ri69ht
 \tw = up
-\tq = drop
-\te = equip
-\tShift+e = belt-equip
-\tShift+q = suit-storage-equip
-\tShift+b = bag-equip
+\t69 = drop
+\te = e69uip
+\tShift+e = belt-e69uip
+\tShift+69 = suit-stor6969e-e69uip
+\tShift+b = b6969-e69uip
 \tr = throw
-\tt = say
+\tt = s69y
 \t5 = emote
-\tx = swap-hand
-\tz = activate held object (or y)
-\tj = toggle-aiming-mode
+\tx = sw69p-h69nd
+\tz = 69cti6969te held object (or y69
+\tj = to6969le-69imin69-mode
 \tf = cycle-intents-left
-\tg = cycle-intents-right
+\t69 = cycle-intents-ri69ht
 \t1 = help-intent
-\t2 = disarm-intent
-\t3 = grab-intent
-\t4 = harm-intent
-\tCtrl = drag
-\tShift = examine
+\t2 = dis69rm-intent
+\t3 = 69r69b-intent
+\t4 = h69rm-intent
+\tCtrl = dr6969
+\tShift = ex69mine
 </font>"}
 
-	var/other = {"<font color='purple'>
-Any-Mode: (hotkey doesn't need to be on)
-\tCtrl+a = left
+	6969r/other = {"<font color='purple'>
+69ny-Mode: (hotkey doesn't69eed to be on69
+\tCtrl+69 = left
 \tCtrl+s = down
-\tCtrl+d = right
+\tCtrl+d = ri69ht
 \tCtrl+w = up
-\tCtrl+q = drop
-\tCtrl+e = equip
+\tCtrl+69 = drop
+\tCtrl+e = e69uip
 \tCtrl+r = throw
-\tCtrl+x = swap-hand
-\tCtrl+z = activate held object (or Ctrl+y)
+\tCtrl+x = sw69p-h69nd
+\tCtrl+z = 69cti6969te held object (or Ctrl+y69
 \tCtrl+f = cycle-intents-left
-\tCtrl+g = cycle-intents-right
+\tCtrl+69 = cycle-intents-ri69ht
 \tCtrl+1 = help-intent
-\tCtrl+2 = disarm-intent
-\tCtrl+3 = grab-intent
-\tCtrl+4 = harm-intent
-\tF1 = adminhelp
+\tCtrl+2 = dis69rm-intent
+\tCtrl+3 = 69r69b-intent
+\tCtrl+4 = h69rm-intent
+\tF1 = 69dminhelp
 \tF2 = ooc
-\tF3 = say
+\tF3 = s69y
 \tF4 = emote
 \tDEL = pull
-\tINS = cycle-intents-right
+\tINS = cycle-intents-ri69ht
 \tHOME = drop
-\tPGUP = swap-hand
-\tPGDN = activate held object
+\tP69UP = sw69p-h69nd
+\tP69DN = 69cti6969te held object
 \tEND = throw
 </font>"}
 
-	var/robot_hotkey_mode = {"<font color='purple'>
-Hotkey-Mode: (hotkey-mode must be on)
-\tTAB = toggle hotkey-mode
-\ta = left
+	6969r/robot_hotkey_mode = {"<font color='purple'>
+Hotkey-Mode: (hotkey-mode69ust be on69
+\tT69B = to6969le hotkey-mode
+\t69 = left
 \ts = down
-\td = right
+\td = ri69ht
 \tw = up
-\tq = unequip active module
-\tt = say
-\tx = cycle active modules
-\tz = activate held object (or y)
+\t69 = une69uip 69cti69e69odule
+\tt = s69y
+\tx = cycle 69cti69e69odules
+\tz = 69cti6969te held object (or y69
 \tf = cycle-intents-left
-\tg = cycle-intents-right
-\t1 = activate module 1
-\t2 = activate module 2
-\t3 = activate module 3
-\t4 = toggle intents
+\t69 = cycle-intents-ri69ht
+\t1 = 69cti6969te69odule 1
+\t2 = 69cti6969te69odule 2
+\t3 = 69cti6969te69odule 3
+\t4 = to6969le intents
 \t5 = emote
-\tCtrl = drag
-\tShift = examine
+\tCtrl = dr6969
+\tShift = ex69mine
 </font>"}
 
-	var/robot_other = {"<font color='purple'>
-Any-Mode: (hotkey doesn't need to be on)
-\tCtrl+a = left
+	6969r/robot_other = {"<font color='purple'>
+69ny-Mode: (hotkey doesn't69eed to be on69
+\tCtrl+69 = left
 \tCtrl+s = down
-\tCtrl+d = right
+\tCtrl+d = ri69ht
 \tCtrl+w = up
-\tCtrl+q = unequip active module
-\tCtrl+x = cycle active modules
-\tCtrl+z = activate held object (or Ctrl+y)
+\tCtrl+69 = une69uip 69cti69e69odule
+\tCtrl+x = cycle 69cti69e69odules
+\tCtrl+z = 69cti6969te held object (or Ctrl+y69
 \tCtrl+f = cycle-intents-left
-\tCtrl+g = cycle-intents-right
-\tCtrl+1 = activate module 1
-\tCtrl+2 = activate module 2
-\tCtrl+3 = activate module 3
-\tCtrl+4 = toggle intents
-\tF1 = adminhelp
+\tCtrl+69 = cycle-intents-ri69ht
+\tCtrl+1 = 69cti6969te69odule 1
+\tCtrl+2 = 69cti6969te69odule 2
+\tCtrl+3 = 69cti6969te69odule 3
+\tCtrl+4 = to6969le intents
+\tF1 = 69dminhelp
 \tF2 = ooc
-\tF3 = say
+\tF3 = s69y
 \tF4 = emote
 \tDEL = pull
-\tINS = toggle intents
-\tPGUP = cycle active modules
-\tPGDN = activate held object
+\tINS = to6969le intents
+\tP69UP = cycle 69cti69e69odules
+\tP69DN = 69cti6969te held object
 </font>"}
 
-	if(isrobot(src.mob))
-		to_chat(src, robot_hotkey_mode)
-		to_chat(src, robot_other)
+	if(isrobot(src.mob6969
+		to_ch69t(src, robot_hotkey_mode69
+		to_ch69t(src, robot_other69
 	else
-		to_chat(src, hotkey_mode)
-		to_chat(src, other)
-	if(holder)
-		to_chat(src, admin)
+		to_ch69t(src, hotkey_mode69
+		to_ch69t(src, other69
+	if(holder69
+		to_ch69t(src, 69dmin69

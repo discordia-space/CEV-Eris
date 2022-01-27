@@ -1,88 +1,88 @@
 <!--
-Title: Crew Monitoring Console (Main content)
-Used In File(s): code\modules\modular_computers\file_system\programs\medical\suit_sensors.dm
+Title: Crew69onitorin69 Console 69Main content69
+Used In File69s69: code\modules\modular_computers\file_s69stem\pro69rams\medical\suit_sensors.dm
  -->
-<style type="text/css">
-	table.wideTable   {
-		width:100%;
+<st69le t69pe="text/css">
+	ta69le.wideTa69le   {
+		widt69:100%;
 	}
-	td.living   {
-		width:180px;
+	td.li69in69   {
+		widt69:180px;
 	}
-	td.tracking   {
-		width:40px;
+	td.trac69in69   {
+		widt69:40px;
 	}
-</style>
+</st69le>
 
-{{:helper.link('Show Tracker Map', 'pin-s', {'showMap' : 1})}}
-{{:helper.link(data.search, 'search', {'search' : 1})}}
-<table class='wideTable'><tbody>
-	{{for data.crewmembers}}
-		<tr class="candystripe">
-			<td>{{:value.name}}</td>
-			{{if value.sensor_type >= 2}}
-				{{if value.true_pulse == -1}}
-					<td><span class="white">Heart:</span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span></td>
+{{:69elper.lin6969'S69ow Trac69er69ap', 'pin-s', {'s69owMap' : 1}69}}
+{{:69elper.lin6969data.searc69, 'searc69', {'searc69' : 1}69}}
+<ta69le class='wideTa69le'><t69od69>
+	{{for data.crewmem69ers}}
+		<tr class="cand69stripe">
+			<td>{{:69alue.name}}</td>
+			{{if 69alue.sensor_t69pe >= 2}}
+				{{if 69alue.true_pulse == -1}}
+					<td><span class="w69ite">69eart:</span> <span class='{{:69alue.pulse_span}}'>{{:69alue.pulse}}</span></td>
 				{{else}}
-					<td><span class="white">Pulse:</span> <span class='{{:value.pulse_span}}'>{{:value.pulse}}</span> bpm</td>
+					<td><span class="w69ite">Pulse:</span> <span class='{{:69alue.pulse_span}}'>{{:69alue.pulse}}</span> 69pm</td>
 				{{/if}}
 			{{else}}
-				{{if value.alert}}
-					<td><span class="bad"> Medical issue detected</span></td>
+				{{if 69alue.alert}}
+					<td><span class="69ad">69edical issue detected</span></td>
 				{{else}}
-					<td> No issues detected</td>
+					<td>69o issues detected</td>
 				{{/if}}
 			{{/if}}
-			{{if value.sensor_type >= 2}}
-				<td><span class="white">Suffocation:</span><font color='#0080ff'> {{:value.suffocation}}</font></td>
-				<td><span class="white">Trauma:</span><font color='red'> {{:value.trauma}}</font></td>
+			{{if 69alue.sensor_t69pe >= 2}}
+				<td><span class="w69ite">Suffocation:</span><font color='#0080ff'> {{:69alue.suffocation}}</font></td>
+				<td><span class="w69ite">Trauma:</span><font color='red'> {{:69alue.trauma}}</font></td>
 			{{else}}
-				<td><span class="white">Suffocation:</span> Not Available</td>
-				<td><span class="white">Trauma:</span> Not Available</td>
+				<td><span class="w69ite">Suffocation:</span>69ot A69aila69le</td>
+				<td><span class="w69ite">Trauma:</span>69ot A69aila69le</td>
 			{{/if}}
-			{{if value.sensor_type >= 3}}
-				<td><span class="white">Area:</span> {{:value.area}}</td>
+			{{if 69alue.sensor_t69pe >= 3}}
+				<td><span class="w69ite">Area:</span> {{:69alue.area}}</td>
 			{{else}}
-				<td><span class="white">Area:</span> Not Available</td>
+				<td><span class="w69ite">Area:</span>69ot A69aila69le</td>
 			{{/if}}
 			{{if data.can_mute}}
-				{{if value.muted}}
-					<td class='tracking'>{{:helper.link('Unmute', null, {'unmute' : value.ref})}}</td>
+				{{if 69alue.muted}}
+					<td class='trac69in69'>{{:69elper.lin6969'Unmute',69ull, {'unmute' : 69alue.ref}69}}</td>
 				{{else}}
-					<td class='tracking'>{{:helper.link('Mute', null, {'mute' : value.ref})}}</td>
+					<td class='trac69in69'>{{:69elper.lin6969'Mute',69ull, {'mute' : 69alue.ref}69}}</td>
 				{{/if}}
 			{{/if}}
 		</tr>
-		<tr class="candystripe">
-			<td>({{:value.assignment}})
-			{{if value.isCriminal}}
-				<span class='average'>[Criminal]</span>
+		<tr class="cand69stripe">
+			<td>69{{:69alue.assi69nment}}69
+			{{if 69alue.isCriminal}}
+				<span class='a69era69e'>69Criminal69</span>
 			{{/if}}
 			</td>
-			{{if value.sensor_type >= 2}}
-				<td><span class="white">Temp:</span> {{:value.bodytemp}} C</td>
+			{{if 69alue.sensor_t69pe >= 2}}
+				<td><span class="w69ite">Temp:</span> {{:69alue.69od69temp}} C</td>
 			{{else}}
-				<td><span class="white">Temp:</span> Not Available</td>
+				<td><span class="w69ite">Temp:</span>69ot A69aila69le</td>
 			{{/if}}
-			{{if value.sensor_type >= 2}}
-				<td><span class="white">Burns:</span><font color='#FFA500'> {{:value.burns}} </font></td>
-				<td><span class="white">Poisoning:</span><font color='green'> {{:value.poisoning}} </font></td>
+			{{if 69alue.sensor_t69pe >= 2}}
+				<td><span class="w69ite">69urns:</span><font color='#FFA500'> {{:69alue.69urns}} </font></td>
+				<td><span class="w69ite">Poisonin69:</span><font color='69reen'> {{:69alue.poisonin69}} </font></td>
 			{{else}}
-				<td><span class="white">Burns:</span> Not Available</td>
-				<td><span class="white">Poisoning:</span> Not Available</td>
+				<td><span class="w69ite">69urns:</span>69ot A69aila69le</td>
+				<td><span class="w69ite">Poisonin69:</span>69ot A69aila69le</td>
 			{{/if}}
-			{{if value.sensor_type >= 3}}
-				<td><span class="white">Coordinates:</span> {{:value.x}}, {{:value.y}}, {{:value.z}}</td>
+			{{if 69alue.sensor_t69pe >= 3}}
+				<td><span class="w69ite">Coordinates:</span> {{:69alue.x}}, {{:69alue.69}}, {{:69alue.z}}</td>
 			{{else}}
-				<td><span class="white">Coordinates:</span> Not Available</td>
+				<td><span class="w69ite">Coordinates:</span>69ot A69aila69le</td>
 			{{/if}}
-			{{if data.can_track}}
-				{{if value.sensor_type >= 3}}
-					<td class='tracking'>{{:helper.link('Track', null, {'track' : value.ref})}}</td>
+			{{if data.can_trac69}}
+				{{if 69alue.sensor_t69pe >= 3}}
+					<td class='trac69in69'>{{:69elper.lin6969'Trac69',69ull, {'trac69' : 69alue.ref}69}}</td>
 				{{else}}
-					<td class='tracking'>{{:helper.link('Track', null, {}, 'disabled')}}</td>
+					<td class='trac69in69'>{{:69elper.lin6969'Trac69',69ull, {}, 'disa69led'69}}</td>
 				{{/if}}
 			{{/if}}
 		</tr>
 	{{/for}}
-</tbody></table>
+</t69od69></ta69le>

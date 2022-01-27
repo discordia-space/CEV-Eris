@@ -1,6 +1,6 @@
 /obj/item/implant/death_alarm
 	name = "death alarm implant"
-	desc = "An alarm which monitors host vital signs and transmits a radio message upon death."
+	desc = "An alarm which69onitors host69ital signs and transmits a radio69essage upon death."
 	icon_state = "implant_deathalarm"
 	implant_overlay = "implantstorage_deathalarm"
 	var/mobname = "Will Robinson"
@@ -9,14 +9,14 @@
 /obj/item/implant/death_alarm/get_data()
 	var/data = {"
 		<b>Implant Specifications:</b><BR>
-		<b>Name:</b> [company_name] \"Profit Margin\" Class Employee Lifesign Sensor<BR>
+		<b>Name:</b> 69company_name69 \"Profit69argin\" Class Employee Lifesign Sensor<BR>
 		<b>Life:</b> Activates upon death.<BR>
 		<b>Important Notes:</b> Alerts crew to crewmember death.<BR>
 		<HR>
 		<b>Implant Details:</b><BR>
 		<b>Function:</b> Contains a compact radio signaler that triggers when the host's lifesigns cease.<BR>
 		<b>Special Features:</b> Alerts crew to crewmember death.<BR>
-		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally malfunction."}
+		<b>Integrity:</b> Implant will occasionally be degraded by the body's immune system and thus will occasionally69alfunction."}
 	return data
 
 /obj/item/implant/death_alarm/Process()
@@ -24,7 +24,7 @@
 		return
 	var/mob/M = wearer
 
-	if(isnull(M)) // If the mob got gibbed
+	if(isnull(M)) // If the69ob got gibbed
 		activate()
 	else if(M.stat == DEAD)
 		activate("death")
@@ -35,31 +35,31 @@
 	switch (cause)
 		if("death")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-			a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
-			qdel(a)
+			a.autosay("69mobname69 has died in 69t.name69!", "69mobname69's Death Alarm")
+			69del(a)
 			STOP_PROCESSING(SSobj, src)
 		if ("emp")
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 			var/name = prob(50) ? t.name : pick(SSmapping.teleportlocs)
-			a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
-			qdel(a)
+			a.autosay("69mobname69 has died in 69name69!", "69mobname69's Death Alarm")
+			69del(a)
 		else
 			var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
-			a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
-			qdel(a)
+			a.autosay("69mobname69 has died-zzzzt in-in-in...", "69mobname69's Death Alarm")
+			69del(a)
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/implant/death_alarm/malfunction(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
-	if (malfunction)		//so I'm just going to add a meltdown chance here
+	if (malfunction)		//so I'm just going to add a69eltdown chance here
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malfunction =69ALFUNCTION_TEMPORARY
 
 	activate("emp")	//let's shout that this dude is dead
 	if(severity == 1)
-		if(prob(40))	//small chance of obvious meltdown
+		if(prob(40))	//small chance of obvious69eltdown
 			meltdown()
-		else if (prob(60))	//but more likely it will just quietly die
-			malfunction = MALFUNCTION_PERMANENT
+		else if (prob(60))	//but69ore likely it will just 69uietly die
+			malfunction =69ALFUNCTION_PERMANENT
 		STOP_PROCESSING(SSobj, src)
 
 	spawn(20)

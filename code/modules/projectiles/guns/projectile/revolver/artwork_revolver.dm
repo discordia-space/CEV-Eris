@@ -6,20 +6,20 @@
 	item_state = "artwork_revolver_1"
 	drawChargeMeter = FALSE
 	max_shells = 7
-	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4) //Arbitrary values
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4) //Arbitrary69alues
+	matter = list(MATERIAL_PLASTEEL = 12,69ATERIAL_WOOD = 6)
 	price_tag = 1000
 	damage_multiplier = 1.4 //because pistol round //From havelock.dm
 	penetration_multiplier = 1.4
 	recoil_buildup = 3
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 
 /obj/item/gun/projectile/revolver/artwork_revolver/Initialize()
 	name = get_weapon_name(capitalize = TRUE)
 	var/random_icon = rand(1,8)
-	icon_state = "artwork_revolver_[random_icon]"
-	item_state = "artwork_revolver_[random_icon]"
-	set_item_state("_[random_icon]")
+	icon_state = "artwork_revolver_69random_icon69"
+	item_state = "artwork_revolver_69random_icon69"
+	set_item_state("_69random_icon69")
 	caliber = pick(CAL_MAGNUM,CAL_PISTOL)
 	max_shells += rand(-2,7)
 

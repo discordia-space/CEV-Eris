@@ -17,8 +17,8 @@
 
 /obj/item/integrated_circuit/lists/for_lists
 	name = "foreach circuit"
-	desc = "This circuit will go foreach item in input list and then output value and pulse some activator with cooldown in one second between activations"
-	extended_desc = "The second pin used for mode selected, 0 for reverse iteration, 1 for normal iteration, the third pin is step amount"
+	desc = "This circuit will go foreach item in input list and then output69alue and pulse some activator with cooldown in one second between activations"
+	extended_desc = "The second pin used for69ode selected, 0 for reverse iteration, 1 for normal iteration, the third pin is step amount"
 	inputs = list(
 		"input" = IC_PINTYPE_LIST,
 		"mode" = IC_PINTYPE_NUMBER,
@@ -42,14 +42,14 @@
 	. = ..()
 	var/list/check_list = get_pin_data(IC_INPUT, 1)
 	var/check_mod = get_pin_data(IC_INPUT, 2)
-	if((input_list != check_list) && (check_mod != mode))
+	if((input_list != check_list) && (check_mod !=69ode))
 		step = 0
 
 /obj/item/integrated_circuit/lists/for_lists/do_work()
 	input_list = get_pin_data(IC_INPUT, 1) // List pins guarantee that there is a list inside, even if just an empty one.
 	mode = get_pin_data(IC_INPUT, 2)
 	var/step_amount = get_pin_data(IC_INPUT, 3)
-	step_amount = max(1, step_amount)
+	step_amount =69ax(1, step_amount)
 	mode = clamp(mode, 0, 1)
 	if(input_list.len && isnum_safe(step_amount))
 		if(mode)
@@ -66,7 +66,7 @@
 				step = 0
 				activate_pin(2)
 				return
-		var/element = input_list[step]
+		var/element = input_list69step69
 		if(!element)
 			activate_pin(3)
 			return
@@ -79,7 +79,7 @@
 /obj/item/integrated_circuit/lists/dublicate_lists
 	name = "dublicates circuit"
 	desc = "This circuit will add elements in output list if element from list A in list B"
-	extended_desc = "The list A and the list B are not modified."
+	extended_desc = "The list A and the list B are not69odified."
 	inputs = list(
 		"list A" = IC_PINTYPE_LIST,
 		"list B" = IC_PINTYPE_LIST
@@ -93,7 +93,7 @@
 		"on failure" = IC_PINTYPE_PULSE_OUT,
 		)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
-	cooldown_per_use = 5 SECONDS // list might be very large and possible will crash server, if we set cooldown_per_use about 2-3 seconds
+	cooldown_per_use = 5 SECONDS // list69ight be69ery large and possible will crash server, if we set cooldown_per_use about 2-3 seconds
 
 /obj/item/integrated_circuit/lists/dublicate_lists/do_work()
 	var/list/buffer = list()
@@ -113,7 +113,7 @@
 /obj/item/integrated_circuit/lists/pick
 	name = "pick circuit"
 	desc = "This circuit will pick a random element from the input list, and output that element."
-	extended_desc = "The input list is not modified."
+	extended_desc = "The input list is not69odified."
 	icon_state = "addition"
 	outputs = list(
 		"result" = IC_PINTYPE_ANY
@@ -165,7 +165,7 @@
 /obj/item/integrated_circuit/lists/search
 	name = "search circuit"
 	desc = "This circuit will get the index location of the desired element in a list."
-	extended_desc = "Search will start at position 1 and will return the first matching position."
+	extended_desc = "Search will start at position 1 and will return the first69atching position."
 	inputs = list(
 		"list" = IC_PINTYPE_LIST,
 		"item" = IC_PINTYPE_ANY
@@ -198,21 +198,21 @@
 
 /obj/item/integrated_circuit/lists/filter
 	name = "filter circuit"
-	desc = "This circuit will search through a list for anything matching the desired element(s) and outputs two lists: \
-	one containing only the matching elements, and one with the matching elements filtered out."
-	extended_desc = "Sample accepts lists. If no match is found, the original list is sent to output 1."
+	desc = "This circuit will search through a list for anything69atching the desired element(s) and outputs two lists: \
+	one containing only the69atching elements, and one with the69atching elements filtered out."
+	extended_desc = "Sample accepts lists. If no69atch is found, the original list is sent to output 1."
 	inputs = list(
 		"input list" = IC_PINTYPE_LIST,
 		"sample" = IC_PINTYPE_ANY
 		)
 	outputs = list(
 		"list filtered" = IC_PINTYPE_LIST,
-		"list matched" = IC_PINTYPE_LIST
+		"list69atched" = IC_PINTYPE_LIST
 		)
 	activators = list(
 		"compute" = IC_PINTYPE_PULSE_IN,
-		"on match" = IC_PINTYPE_PULSE_OUT,
-		"on no match" = IC_PINTYPE_PULSE_OUT
+		"on69atch" = IC_PINTYPE_PULSE_OUT,
+		"on no69atch" = IC_PINTYPE_PULSE_OUT
 		)
 	complexity = 6
 	icon_state = "addition"
@@ -305,14 +305,14 @@
 	var/list/input_list = get_pin_data(IC_INPUT, 1)
 	var/index = get_pin_data(IC_INPUT, 2)
 
-	// Check if index is valid
+	// Check if index is69alid
 	if(index > input_list.len)
 		set_pin_data(IC_OUTPUT, 1, null)
 		push_data()
 		activate_pin(3)
 		return
 
-	set_pin_data(IC_OUTPUT, 1, input_list[index])
+	set_pin_data(IC_OUTPUT, 1, input_list69index69)
 	push_data()
 	activate_pin(2)
 
@@ -338,7 +338,7 @@
 
 	if(length(input_list))
 		for(var/j in 1 to input_list.len)
-			var/I = input_list[j]
+			var/I = input_list69j69
 			if(j != index)
 				red_list.Add(I)
 	set_pin_data(IC_OUTPUT, 1, red_list)
@@ -371,7 +371,7 @@
 	var/index = get_pin_data(IC_INPUT, 2)
 	var/item = get_pin_data(IC_INPUT, 3)
 
-	// Check if index is valid
+	// Check if index is69alid
 	if(index > input_list.len)
 		set_pin_data(IC_OUTPUT, 1, input_list)
 		push_data()
@@ -380,7 +380,7 @@
 
 	if(!islist(item))
 		var/list/red_list = input_list.Copy()			//crash proof
-		red_list[index] = item
+		red_list69index69 = item
 		set_pin_data(IC_OUTPUT, 1, red_list)
 		push_data()
 		activate_pin(2)
@@ -445,7 +445,7 @@
 
 /obj/item/integrated_circuit/lists/constructor
 	name = "large list constructor"
-	desc = "This circuit will build a list out of up to sixteen input values."
+	desc = "This circuit will build a list out of up to sixteen input69alues."
 	icon_state = "constr8"
 	inputs = list()
 	outputs = list(
@@ -456,7 +456,7 @@
 
 /obj/item/integrated_circuit/lists/constructor/Initialize()
 	for(var/i = 1 to number_of_pins)
-		inputs["input [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
+		inputs69"input 69i69"69 = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
 	complexity = number_of_pins / 2
 	. = ..()
 
@@ -477,20 +477,20 @@
 
 /obj/item/integrated_circuit/lists/constructor/small
 	name = "list constructor"
-	desc = "This circuit will build a list out of up to four input values."
+	desc = "This circuit will build a list out of up to four input69alues."
 	icon_state = "constr"
 	number_of_pins = 4
 
 /obj/item/integrated_circuit/lists/constructor/medium
 	name = "medium list constructor"
-	desc = "This circuit will build a list out of up to eight input values."
+	desc = "This circuit will build a list out of up to eight input69alues."
 	icon_state = "constr8"
 	number_of_pins = 8
 
 
 /obj/item/integrated_circuit/lists/deconstructor
 	name = "large list deconstructor"
-	desc = "This circuit will write the first sixteen entries of its input list, starting with the index, into the output values."
+	desc = "This circuit will write the first sixteen entries of its input list, starting with the index, into the output69alues."
 	icon_state = "deconstr8"
 	inputs = list(
 		"input" = IC_PINTYPE_LIST,
@@ -502,7 +502,7 @@
 
 /obj/item/integrated_circuit/lists/deconstructor/Initialize()
 	for(var/i = 1 to number_of_pins)
-		outputs["output [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
+		outputs69"output 69i69"69 = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
 	complexity = number_of_pins / 2
 	. = ..()
 
@@ -515,20 +515,20 @@
 		if(list_index > input_list.len)
 			set_pin_data(IC_OUTPUT, i, null)
 		else
-			set_pin_data(IC_OUTPUT, i, input_list[list_index])
+			set_pin_data(IC_OUTPUT, i, input_list69list_index69)
 
 	push_data()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/lists/deconstructor/small
 	name = "list deconstructor"
-	desc = "This circuit will write the first four entries of its input list, starting with the index, into the output values."
+	desc = "This circuit will write the first four entries of its input list, starting with the index, into the output69alues."
 	icon_state = "deconstr"
 	number_of_pins = 4
 
 /obj/item/integrated_circuit/lists/deconstructor/medium
 	name = "medium list deconstructor"
-	desc = "This circuit will write the first eight entries of its input list, starting with the index, into the output values."
+	desc = "This circuit will write the first eight entries of its input list, starting with the index, into the output69alues."
 	number_of_pins = 8
 
 

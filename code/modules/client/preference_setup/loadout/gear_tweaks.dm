@@ -1,19 +1,19 @@
 /datum/gear_tweak/proc/get_contents(var/metadata)
 	return
 
-/datum/gear_tweak/proc/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/proc/get_metadata(var/user,69ar/list/metadata,69ar/title)
 	return
 
 /datum/gear_tweak/proc/get_default()
 	return
 
-/datum/gear_tweak/proc/tweak_gear_data(var/metadata, var/datum/gear_data)
+/datum/gear_tweak/proc/tweak_gear_data(var/metadata,69ar/datum/gear_data)
 	return
 
-/datum/gear_tweak/proc/tweak_item(var/obj/item/I, var/metadata)
+/datum/gear_tweak/proc/tweak_item(var/obj/item/I,69ar/metadata)
 	return
 
-/datum/gear_tweak/proc/tweak_description(var/description, var/metadata)
+/datum/gear_tweak/proc/tweak_description(var/description,69ar/metadata)
 	return description
 
 /*
@@ -24,22 +24,22 @@
 	var/list/valid_colors
 
 /datum/gear_tweak/color/New(var/list/valid_colors)
-	src.valid_colors = valid_colors
+	src.valid_colors =69alid_colors
 	..()
 
 /datum/gear_tweak/color/get_contents(var/metadata)
-	return "Color: <font color='[metadata]'>&#9899;</font>"
+	return "Color: <font color='69metadata69'>&#9899;</font>"
 
 /datum/gear_tweak/color/get_default()
-	return valid_colors ? valid_colors[1] : COLOR_WHITE
+	return69alid_colors ?69alid_colors69169 : COLOR_WHITE
 
-/datum/gear_tweak/color/get_metadata(var/user, var/metadata, var/title = CHARACTER_PREFERENCE_INPUT_TITLE)
+/datum/gear_tweak/color/get_metadata(var/user,69ar/metadata,69ar/title = CHARACTER_PREFERENCE_INPUT_TITLE)
 	if(valid_colors)
-		return input(user, "Choose a color.", title, metadata) as null|anything in valid_colors
-	return input(user, "Choose a color.", title, metadata) as color|null
+		return input(user, "Choose a color.", title,69etadata) as null|anything in69alid_colors
+	return input(user, "Choose a color.", title,69etadata) as color|null
 
-/datum/gear_tweak/color/tweak_item(var/obj/item/I, var/metadata)
-	if(valid_colors && !(metadata in valid_colors))
+/datum/gear_tweak/color/tweak_item(var/obj/item/I,69ar/metadata)
+	if(valid_colors && !(metadata in69alid_colors))
 		return
 	I.color = sanitize_hexcolor(metadata, I.color)
 
@@ -55,16 +55,16 @@
 		CRASH("No type paths given")
 	var/list/duplicate_keys = duplicates(valid_paths)
 	if(duplicate_keys.len)
-		CRASH("Duplicate names found: [english_list(duplicate_keys)]")
+		CRASH("Duplicate names found: 69english_list(duplicate_keys)69")
 	var/list/duplicate_values = duplicates(list_values(valid_paths))
 	if(duplicate_values.len)
-		CRASH("Duplicate types found: [english_list(duplicate_values)]")
-	for(var/path_name in valid_paths)
+		CRASH("Duplicate types found: 69english_list(duplicate_values)69")
+	for(var/path_name in69alid_paths)
 		if(!istext(path_name))
-			CRASH("Expected a text key, was [log_info_line(path_name)]")
-		var/selection_type = valid_paths[path_name]
+			CRASH("Expected a text key, was 69log_info_line(path_name)69")
+		var/selection_type =69alid_paths69path_name69
 		if(!ispath(selection_type, /obj/item))
-			CRASH("Expected an /obj/item path, was [log_info_line(selection_type)]")
+			CRASH("Expected an /obj/item path, was 69log_info_line(selection_type)69")
 	src.valid_paths = sortAssoc(valid_paths)
 
 /datum/gear_tweak/path/type/New(var/type_path)
@@ -80,23 +80,23 @@
 	..(atomtypes2nameassoclist(args))
 
 /datum/gear_tweak/path/get_contents(var/metadata)
-	return "Type: [metadata]"
+	return "Type: 69metadata69"
 
 /datum/gear_tweak/path/get_default()
-	return valid_paths[1]
+	return69alid_paths69169
 
-/datum/gear_tweak/path/get_metadata(var/user, var/list/metadata, var/title)
-	return input(user, "Choose a type.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in valid_paths
+/datum/gear_tweak/path/get_metadata(var/user,69ar/list/metadata,69ar/title)
+	return input(user, "Choose a type.", CHARACTER_PREFERENCE_INPUT_TITLE,69etadata) as null|anything in69alid_paths
 
-/datum/gear_tweak/path/tweak_gear_data(var/metadata, var/datum/gear_data/gear_data)
-	if(!(metadata in valid_paths))
+/datum/gear_tweak/path/tweak_gear_data(var/metadata,69ar/datum/gear_data/gear_data)
+	if(!(metadata in69alid_paths))
 		return
-	gear_data.path = valid_paths[metadata]
+	gear_data.path =69alid_paths69metadata69
 
-/datum/gear_tweak/path/tweak_description(var/description, var/metadata)
-	if(!(metadata in valid_paths))
+/datum/gear_tweak/path/tweak_description(var/description,69ar/metadata)
+	if(!(metadata in69alid_paths))
 		return ..()
-	var/obj/O = valid_paths[metadata]
+	var/obj/O =69alid_paths69metadata69
 	return initial(O.desc) || description
 
 /*
@@ -111,41 +111,41 @@
 	..()
 
 /datum/gear_tweak/contents/get_contents(var/metadata)
-	return "Contents: [english_list(metadata, and_text = ", ")]"
+	return "Contents: 69english_list(metadata, and_text = ", ")69"
 
 /datum/gear_tweak/contents/get_default()
 	. = list()
-	for(var/i = 1 to valid_contents.len)
+	for(var/i = 1 to69alid_contents.len)
 		. += "Random"
 
-/datum/gear_tweak/contents/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/contents/get_metadata(var/user,69ar/list/metadata,69ar/title)
 	. = list()
-	for(var/i = metadata.len to (valid_contents.len - 1))
+	for(var/i =69etadata.len to (valid_contents.len - 1))
 		metadata += "Random"
-	for(var/i = 1 to valid_contents.len)
-		var/entry = input(user, "Choose an entry.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata[i]) as null|anything in (valid_contents[i] + list("Random", "None"))
+	for(var/i = 1 to69alid_contents.len)
+		var/entry = input(user, "Choose an entry.", CHARACTER_PREFERENCE_INPUT_TITLE,69etadata69i69) as null|anything in (valid_contents69i69 + list("Random", "None"))
 		if(entry)
 			. += entry
 		else
-			return metadata
+			return69etadata
 
-/datum/gear_tweak/contents/tweak_item(var/obj/item/I, var/list/metadata)
+/datum/gear_tweak/contents/tweak_item(var/obj/item/I,69ar/list/metadata)
 	if(length(metadata) != length(valid_contents))
 		return
-	for(var/i = 1 to valid_contents.len)
+	for(var/i = 1 to69alid_contents.len)
 		var/path
-		var/list/contents = valid_contents[i]
-		if(metadata[i] == "Random")
+		var/list/contents =69alid_contents69i69
+		if(metadata69i69 == "Random")
 			path = pick(contents)
-			path = contents[path]
-		else if(metadata[i] == "None")
+			path = contents69path69
+		else if(metadata69i69 == "None")
 			continue
 		else
-			path = 	contents[metadata[i]]
+			path = 	contents69metadata69i6969
 		if(path)
 			new path(I)
 		else
-			log_debug("Failed to tweak item: Index [i] in [json_encode(metadata)] did not result in a valid path. Valid contents: [json_encode(valid_contents)]")
+			log_debug("Failed to tweak item: Index 69i69 in 69json_encode(metadata)69 did not result in a69alid path.69alid contents: 69json_encode(valid_contents)69")
 
 /*
 * Ragent adjustment
@@ -159,24 +159,24 @@
 	..()
 
 /datum/gear_tweak/reagents/get_contents(var/metadata)
-	return "Reagents: [metadata]"
+	return "Reagents: 69metadata69"
 
 /datum/gear_tweak/reagents/get_default()
 	return "Random"
 
-/datum/gear_tweak/reagents/get_metadata(var/user, var/list/metadata, var/title)
-	. = input(user, "Choose an entry.", CHARACTER_PREFERENCE_INPUT_TITLE, metadata) as null|anything in (valid_reagents + list("Random", "None"))
+/datum/gear_tweak/reagents/get_metadata(var/user,69ar/list/metadata,69ar/title)
+	. = input(user, "Choose an entry.", CHARACTER_PREFERENCE_INPUT_TITLE,69etadata) as null|anything in (valid_reagents + list("Random", "None"))
 	if(!.)
-		return metadata
+		return69etadata
 
-/datum/gear_tweak/reagents/tweak_item(var/obj/item/I, var/list/metadata)
+/datum/gear_tweak/reagents/tweak_item(var/obj/item/I,69ar/list/metadata)
 	if(metadata == "None")
 		return
 	var/reagent
 	if(metadata == "Random")
-		reagent = valid_reagents[pick(valid_reagents)]
+		reagent =69alid_reagents69pick(valid_reagents)69
 	else
-		reagent = valid_reagents[metadata]
+		reagent =69alid_reagents69metadata69
 	if(reagent)
 		return I.reagents.add_reagent(reagent, I.reagents.get_free_space())
 
@@ -191,143 +191,143 @@
 
 /datum/gear_tweak/tablet/get_contents(var/list/metadata)
 	var/list/names = list()
-	var/obj/O = ValidProcessors[metadata[1]]
+	var/obj/O =69alidProcessors69metadata6916969
 	if(O)
 		names += initial(O.name)
-	O = ValidBatteries[metadata[2]]
+	O =69alidBatteries69metadata6926969
 	if(O)
 		names += initial(O.name)
-	O = ValidHardDrives[metadata[3]]
+	O =69alidHardDrives69metadata6936969
 	if(O)
 		names += initial(O.name)
-	O = ValidNetworkCards[metadata[4]]
+	O =69alidNetworkCards69metadata6946969
 	if(O)
 		names += initial(O.name)
-	O = ValidPrinters[metadata[5]]
+	O =69alidPrinters69metadata6956969
 	if(O)
 		names += initial(O.name)
-	O = ValidCardSlots[metadata[6]]
+	O =69alidCardSlots69metadata6966969
 	if(O)
 		names += initial(O.name)
-	O = ValidTeslaLinks[metadata[7]]
+	O =69alidTeslaLinks69metadata6976969
 	if(O)
 		names += initial(O.name)
-	return "[english_list(names, and_text = ", ")]"
+	return "69english_list(names, and_text = ", ")69"
 
-/datum/gear_tweak/tablet/get_metadata(var/user, var/list/metadata, var/title)
+/datum/gear_tweak/tablet/get_metadata(var/user,69ar/list/metadata,69ar/title)
 	. = list()
 
 	var/list/names = list()
 	var/counter = 1
-	for(var/i in ValidProcessors)
+	for(var/i in69alidProcessors)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	var/entry = input(user, "Choose a processor.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 	names = list()
 	counter = 1
-	for(var/i in ValidBatteries)
+	for(var/i in69alidBatteries)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	entry = input(user, "Choose a battery.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 	names = list()
 	counter = 1
-	for(var/i in ValidHardDrives)
+	for(var/i in69alidHardDrives)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	entry = input(user, "Choose a hard drive.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 	names = list()
 	counter = 1
-	for(var/i in ValidNetworkCards)
+	for(var/i in69alidNetworkCards)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	entry = input(user, "Choose a network card.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 	names = list()
 	counter = 1
-	for(var/i in ValidPrinters)
+	for(var/i in69alidPrinters)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	entry = input(user, "Choose a printer.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 	names = list()
 	counter = 1
-	for(var/i in ValidCardSlots)
+	for(var/i in69alidCardSlots)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	entry = input(user, "Choose a card slot.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 	names = list()
 	counter = 1
-	for(var/i in ValidTeslaLinks)
+	for(var/i in69alidTeslaLinks)
 		if(i)
 			var/obj/O = i
-			names[initial(O.name)] = counter++
+			names69initial(O.name)69 = counter++
 		else
-			names["None"] = counter++
+			names69"None"69 = counter++
 
 	entry = input(user, "Choose a tesla link.", CHARACTER_PREFERENCE_INPUT_TITLE) in names
-	. += names[entry]
+	. += names69entry69
 
 /datum/gear_tweak/tablet/get_default()
 	. = list()
 	for(var/i in 1 to TWEAKABLE_COMPUTER_PART_SLOTS)
 		. += 1
 
-/datum/gear_tweak/tablet/tweak_item(var/obj/item/modular_computer/tablet/I, var/list/metadata)
+/datum/gear_tweak/tablet/tweak_item(var/obj/item/modular_computer/tablet/I,69ar/list/metadata)
 	if(length(metadata) < TWEAKABLE_COMPUTER_PART_SLOTS)
 		return
-	if(ValidProcessors[metadata[1]])
-		var/t = ValidProcessors[metadata[1]]
+	if(ValidProcessors69metadata6916969)
+		var/t =69alidProcessors69metadata6916969
 		I.processor_unit = new t(I)
-	if(ValidBatteries[metadata[2]])
-		var/t = ValidBatteries[metadata[2]]
+	if(ValidBatteries69metadata6926969)
+		var/t =69alidBatteries69metadata6926969
 		I.cell = new t(I)
 		I.cell.charge = I.cell.maxcharge
-	if(ValidHardDrives[metadata[3]])
-		var/t = ValidHardDrives[metadata[3]]
+	if(ValidHardDrives69metadata6936969)
+		var/t =69alidHardDrives69metadata6936969
 		I.hard_drive = new t(I)
-	if(ValidNetworkCards[metadata[4]])
-		var/t = ValidNetworkCards[metadata[4]]
+	if(ValidNetworkCards69metadata6946969)
+		var/t =69alidNetworkCards69metadata6946969
 		I.network_card = new t(I)
-	if(ValidPrinters[metadata[5]])
-		var/t = ValidPrinters[metadata[5]]
+	if(ValidPrinters69metadata6956969)
+		var/t =69alidPrinters69metadata6956969
 		I.printer = new t(I)
-	if(ValidCardSlots[metadata[6]])
-		var/t = ValidCardSlots[metadata[6]]
+	if(ValidCardSlots69metadata6966969)
+		var/t =69alidCardSlots69metadata6966969
 		I.card_slot = new t(I)
-	if(ValidTeslaLinks[metadata[7]])
-		var/t = ValidTeslaLinks[metadata[7]]
+	if(ValidTeslaLinks69metadata6976969)
+		var/t =69alidTeslaLinks69metadata6976969
 		I.tesla_link = new t(I)

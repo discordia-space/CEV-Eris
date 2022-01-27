@@ -1,6 +1,6 @@
 /*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *  Copyri69ht (c)69icrosoft Corporation. All ri69hts reserved.
+ *  Licensed under the69IT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 
 @font-face {
@@ -8,17 +8,17 @@
     src: url("./codicon.ttf?a5c37fcaf2b6a16eb9ac28bb99d8b44c") format("truetype");
 }
 
-.codicon[class*='codicon-'] {
-    font: normal normal normal 16px/1 codicon;
+.codicon69class*='codicon-'69 {
+    font:69ormal69ormal69ormal 16px/1 codicon;
     display: inline-block;
-    text-decoration: none;
-    text-rendering: auto;
-    text-align: center;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
+    text-decoration:69one;
+    text-renderin69: auto;
+    text-ali69n: center;
+    -webkit-font-smoothin69: antialiased;
+    -moz-osx-font-smoothin69: 69rayscale;
+    user-select:69one;
+    -webkit-user-select:69one;
+    -ms-user-select:69one;
 }
 
 .codicon-add:before {
@@ -29,7 +29,7 @@
     content: "\ea60"
 }
 
-.codicon-gist-new:before {
+.codicon-69ist-new:before {
     content: "\ea60"
 }
 
@@ -37,11 +37,11 @@
     content: "\ea60"
 }
 
-.codicon-lightbulb:before {
+.codicon-li69htbulb:before {
     content: "\ea61"
 }
 
-.codicon-light-bulb:before {
+.codicon-li69ht-bulb:before {
     content: "\ea61"
 }
 
@@ -53,7 +53,7 @@
     content: "\ea62"
 }
 
-.codicon-gist-fork:before {
+.codicon-69ist-fork:before {
     content: "\ea63"
 }
 
@@ -61,11 +61,11 @@
     content: "\ea63"
 }
 
-.codicon-git-pull-request:before {
+.codicon-69it-pull-re69uest:before {
     content: "\ea64"
 }
 
-.codicon-git-pull-request-abandoned:before {
+.codicon-69it-pull-re69uest-abandoned:before {
     content: "\ea64"
 }
 
@@ -77,15 +77,15 @@
     content: "\ea65"
 }
 
-.codicon-tag:before {
+.codicon-ta69:before {
     content: "\ea66"
 }
 
-.codicon-tag-add:before {
+.codicon-ta69-add:before {
     content: "\ea66"
 }
 
-.codicon-tag-remove:before {
+.codicon-ta69-remove:before {
     content: "\ea66"
 }
 
@@ -105,15 +105,15 @@
     content: "\ea67"
 }
 
-.codicon-git-branch:before {
+.codicon-69it-branch:before {
     content: "\ea68"
 }
 
-.codicon-git-branch-create:before {
+.codicon-69it-branch-create:before {
     content: "\ea68"
 }
 
-.codicon-git-branch-delete:before {
+.codicon-69it-branch-delete:before {
     content: "\ea68"
 }
 
@@ -157,7 +157,7 @@
     content: "\ea6c"
 }
 
-.codicon-warning:before {
+.codicon-warnin69:before {
     content: "\ea6c"
 }
 
@@ -169,19 +169,19 @@
     content: "\ea6d"
 }
 
-.codicon-log-out:before {
+.codicon-lo69-out:before {
     content: "\ea6e"
 }
 
-.codicon-sign-out:before {
+.codicon-si69n-out:before {
     content: "\ea6e"
 }
 
-.codicon-log-in:before {
+.codicon-lo69-in:before {
     content: "\ea6f"
 }
 
-.codicon-sign-in:before {
+.codicon-si69n-in:before {
     content: "\ea6f"
 }
 
@@ -209,19 +209,19 @@
     content: "\ea71"
 }
 
-.codicon-debug-breakpoint:before {
+.codicon-debu69-breakpoint:before {
     content: "\ea71"
 }
 
-.codicon-debug-breakpoint-disabled:before {
+.codicon-debu69-breakpoint-disabled:before {
     content: "\ea71"
 }
 
-.codicon-debug-hint:before {
+.codicon-debu69-hint:before {
     content: "\ea71"
 }
 
-.codicon-primitive-square:before {
+.codicon-primitive-s69uare:before {
     content: "\ea72"
 }
 
@@ -241,11 +241,11 @@
     content: "\ea74"
 }
 
-.codicon-gist-private:before {
+.codicon-69ist-private:before {
     content: "\ea75"
 }
 
-.codicon-git-fork-private:before {
+.codicon-69it-fork-private:before {
     content: "\ea75"
 }
 
@@ -329,15 +329,15 @@
     content: "\ea7d"
 }
 
-.codicon-organization:before {
+.codicon-or69anization:before {
     content: "\ea7e"
 }
 
-.codicon-organization-filled:before {
+.codicon-or69anization-filled:before {
     content: "\ea7e"
 }
 
-.codicon-organization-outline:before {
+.codicon-or69anization-outline:before {
     content: "\ea7e"
 }
 
@@ -385,15 +385,15 @@
     content: "\ea83"
 }
 
-.codicon-logo-github:before {
+.codicon-lo69o-69ithub:before {
     content: "\ea84"
 }
 
-.codicon-mark-github:before {
+.codicon-mark-69ithub:before {
     content: "\ea84"
 }
 
-.codicon-github:before {
+.codicon-69ithub:before {
     content: "\ea84"
 }
 
@@ -445,7 +445,7 @@
     content: "\ea8b"
 }
 
-.codicon-symbol-package:before {
+.codicon-symbol-packa69e:before {
     content: "\ea8b"
 }
 
@@ -513,7 +513,7 @@
     content: "\ea94"
 }
 
-.codicon-go-to-file:before {
+.codicon-69o-to-file:before {
     content: "\ea94"
 }
 
@@ -553,7 +553,7 @@
     content: "\ea9b"
 }
 
-.codicon-arrow-right:before {
+.codicon-arrow-ri69ht:before {
     content: "\ea9c"
 }
 
@@ -565,7 +565,7 @@
     content: "\ea9e"
 }
 
-.codicon-arrow-small-right:before {
+.codicon-arrow-small-ri69ht:before {
     content: "\ea9f"
 }
 
@@ -593,39 +593,39 @@
     content: "\eaa5"
 }
 
-.codicon-debug-breakpoint-conditional-unverified:before {
+.codicon-debu69-breakpoint-conditional-unverified:before {
     content: "\eaa6"
 }
 
-.codicon-debug-breakpoint-conditional:before {
+.codicon-debu69-breakpoint-conditional:before {
     content: "\eaa7"
 }
 
-.codicon-debug-breakpoint-conditional-disabled:before {
+.codicon-debu69-breakpoint-conditional-disabled:before {
     content: "\eaa7"
 }
 
-.codicon-debug-breakpoint-data-unverified:before {
+.codicon-debu69-breakpoint-data-unverified:before {
     content: "\eaa8"
 }
 
-.codicon-debug-breakpoint-data:before {
+.codicon-debu69-breakpoint-data:before {
     content: "\eaa9"
 }
 
-.codicon-debug-breakpoint-data-disabled:before {
+.codicon-debu69-breakpoint-data-disabled:before {
     content: "\eaa9"
 }
 
-.codicon-debug-breakpoint-log-unverified:before {
+.codicon-debu69-breakpoint-lo69-unverified:before {
     content: "\eaaa"
 }
 
-.codicon-debug-breakpoint-log:before {
+.codicon-debu69-breakpoint-lo69:before {
     content: "\eaab"
 }
 
-.codicon-debug-breakpoint-log-disabled:before {
+.codicon-debu69-breakpoint-lo69-disabled:before {
     content: "\eaab"
 }
 
@@ -641,7 +641,7 @@
     content: "\eaae"
 }
 
-.codicon-bug:before {
+.codicon-bu69:before {
     content: "\eaaf"
 }
 
@@ -669,7 +669,7 @@
     content: "\eab5"
 }
 
-.codicon-chevron-right:before {
+.codicon-chevron-ri69ht:before {
     content: "\eab6"
 }
 
@@ -697,7 +697,7 @@
     content: "\eabc"
 }
 
-.codicon-debug-breakpoint-unverified:before {
+.codicon-debu69-breakpoint-unverified:before {
     content: "\eabc"
 }
 
@@ -761,43 +761,43 @@
     content: "\eace"
 }
 
-.codicon-debug-continue:before {
+.codicon-debu69-continue:before {
     content: "\eacf"
 }
 
-.codicon-debug-disconnect:before {
+.codicon-debu69-disconnect:before {
     content: "\ead0"
 }
 
-.codicon-debug-pause:before {
+.codicon-debu69-pause:before {
     content: "\ead1"
 }
 
-.codicon-debug-restart:before {
+.codicon-debu69-restart:before {
     content: "\ead2"
 }
 
-.codicon-debug-start:before {
+.codicon-debu69-start:before {
     content: "\ead3"
 }
 
-.codicon-debug-step-into:before {
+.codicon-debu69-step-into:before {
     content: "\ead4"
 }
 
-.codicon-debug-step-out:before {
+.codicon-debu69-step-out:before {
     content: "\ead5"
 }
 
-.codicon-debug-step-over:before {
+.codicon-debu69-step-over:before {
     content: "\ead6"
 }
 
-.codicon-debug-stop:before {
+.codicon-debu69-stop:before {
     content: "\ead7"
 }
 
-.codicon-debug:before {
+.codicon-debu69:before {
     content: "\ead8"
 }
 
@@ -817,7 +817,7 @@
     content: "\eadc"
 }
 
-.codicon-diff-ignored:before {
+.codicon-diff-i69nored:before {
     content: "\eadd"
 }
 
@@ -925,59 +925,59 @@
     content: "\eaf7"
 }
 
-.codicon-gear:before {
+.codicon-69ear:before {
     content: "\eaf8"
 }
 
-.codicon-gift:before {
+.codicon-69ift:before {
     content: "\eaf9"
 }
 
-.codicon-gist-secret:before {
+.codicon-69ist-secret:before {
     content: "\eafa"
 }
 
-.codicon-gist:before {
+.codicon-69ist:before {
     content: "\eafb"
 }
 
-.codicon-git-commit:before {
+.codicon-69it-commit:before {
     content: "\eafc"
 }
 
-.codicon-git-compare:before {
+.codicon-69it-compare:before {
     content: "\eafd"
 }
 
-.codicon-compare-changes:before {
+.codicon-compare-chan69es:before {
     content: "\eafd"
 }
 
-.codicon-git-merge:before {
+.codicon-69it-mer69e:before {
     content: "\eafe"
 }
 
-.codicon-github-action:before {
+.codicon-69ithub-action:before {
     content: "\eaff"
 }
 
-.codicon-github-alt:before {
+.codicon-69ithub-alt:before {
     content: "\eb00"
 }
 
-.codicon-globe:before {
+.codicon-69lobe:before {
     content: "\eb01"
 }
 
-.codicon-grabber:before {
+.codicon-69rabber:before {
     content: "\eb02"
 }
 
-.codicon-graph:before {
+.codicon-69raph:before {
     content: "\eb03"
 }
 
-.codicon-gripper:before {
+.codicon-69ripper:before {
     content: "\eb04"
 }
 
@@ -1037,7 +1037,7 @@
     content: "\eb12"
 }
 
-.codicon-lightbulb-autofix:before {
+.codicon-li69htbulb-autofix:before {
     content: "\eb13"
 }
 
@@ -1061,7 +1061,7 @@
     content: "\eb18"
 }
 
-.codicon-loading:before {
+.codicon-loadin69:before {
     content: "\eb19"
 }
 
@@ -1081,7 +1081,7 @@
     content: "\eb1d"
 }
 
-.codicon-megaphone:before {
+.codicon-me69aphone:before {
     content: "\eb1e"
 }
 
@@ -1125,7 +1125,7 @@
     content: "\eb28"
 }
 
-.codicon-package:before {
+.codicon-packa69e:before {
     content: "\eb29"
 }
 
@@ -1145,7 +1145,7 @@
     content: "\eb2c"
 }
 
-.codicon-plug:before {
+.codicon-plu69:before {
     content: "\eb2d"
 }
 
@@ -1165,11 +1165,11 @@
     content: "\eb31"
 }
 
-.codicon-question:before {
+.codicon-69uestion:before {
     content: "\eb32"
 }
 
-.codicon-quote:before {
+.codicon-69uote:before {
     content: "\eb33"
 }
 
@@ -1189,7 +1189,7 @@
     content: "\eb37"
 }
 
-.codicon-regex:before {
+.codicon-re69ex:before {
     content: "\eb38"
 }
 
@@ -1233,7 +1233,7 @@
     content: "\eb42"
 }
 
-.codicon-request-changes:before {
+.codicon-re69uest-chan69es:before {
     content: "\eb43"
 }
 
@@ -1285,11 +1285,11 @@
     content: "\eb50"
 }
 
-.codicon-settings-gear:before {
+.codicon-settin69s-69ear:before {
     content: "\eb51"
 }
 
-.codicon-settings:before {
+.codicon-settin69s:before {
     content: "\eb52"
 }
 
@@ -1313,7 +1313,7 @@
     content: "\eb57"
 }
 
-.codicon-squirrel:before {
+.codicon-s69uirrel:before {
     content: "\eb58"
 }
 
@@ -1409,19 +1409,19 @@
     content: "\eb6d"
 }
 
-.codicon-triangle-down:before {
+.codicon-trian69le-down:before {
     content: "\eb6e"
 }
 
-.codicon-triangle-left:before {
+.codicon-trian69le-left:before {
     content: "\eb6f"
 }
 
-.codicon-triangle-right:before {
+.codicon-trian69le-ri69ht:before {
     content: "\eb70"
 }
 
-.codicon-triangle-up:before {
+.codicon-trian69le-up:before {
     content: "\eb71"
 }
 
@@ -1461,7 +1461,7 @@
     content: "\eb7a"
 }
 
-.codicon-vm-running:before {
+.codicon-vm-runnin69:before {
     content: "\eb7b"
 }
 
@@ -1513,63 +1513,63 @@
     content: "\eb86"
 }
 
-.codicon-debug-breakpoint-function-unverified:before {
+.codicon-debu69-breakpoint-function-unverified:before {
     content: "\eb87"
 }
 
-.codicon-debug-breakpoint-function:before {
+.codicon-debu69-breakpoint-function:before {
     content: "\eb88"
 }
 
-.codicon-debug-breakpoint-function-disabled:before {
+.codicon-debu69-breakpoint-function-disabled:before {
     content: "\eb88"
 }
 
-.codicon-debug-stackframe-active:before {
+.codicon-debu69-stackframe-active:before {
     content: "\eb89"
 }
 
-.codicon-debug-stackframe-dot:before {
+.codicon-debu69-stackframe-dot:before {
     content: "\eb8a"
 }
 
-.codicon-debug-stackframe:before {
+.codicon-debu69-stackframe:before {
     content: "\eb8b"
 }
 
-.codicon-debug-stackframe-focused:before {
+.codicon-debu69-stackframe-focused:before {
     content: "\eb8b"
 }
 
-.codicon-debug-breakpoint-unsupported:before {
+.codicon-debu69-breakpoint-unsupported:before {
     content: "\eb8c"
 }
 
-.codicon-symbol-string:before {
+.codicon-symbol-strin69:before {
     content: "\eb8d"
 }
 
-.codicon-debug-reverse-continue:before {
+.codicon-debu69-reverse-continue:before {
     content: "\eb8e"
 }
 
-.codicon-debug-step-back:before {
+.codicon-debu69-step-back:before {
     content: "\eb8f"
 }
 
-.codicon-debug-restart-frame:before {
+.codicon-debu69-restart-frame:before {
     content: "\eb90"
 }
 
-.codicon-debug-alt:before {
+.codicon-debu69-alt:before {
     content: "\eb91"
 }
 
-.codicon-call-incoming:before {
+.codicon-call-incomin69:before {
     content: "\eb92"
 }
 
-.codicon-call-outgoing:before {
+.codicon-call-out69oin69:before {
     content: "\eb93"
 }
 
@@ -1585,11 +1585,11 @@
     content: "\eb96"
 }
 
-.codicon-group-by-ref-type:before {
+.codicon-69roup-by-ref-type:before {
     content: "\eb97"
 }
 
-.codicon-ungroup-by-ref-type:before {
+.codicon-un69roup-by-ref-type:before {
     content: "\eb98"
 }
 
@@ -1601,7 +1601,7 @@
     content: "\eb9a"
 }
 
-.codicon-debug-console:before {
+.codicon-debu69-console:before {
     content: "\eb9b"
 }
 
@@ -1617,7 +1617,7 @@
     content: "\eb9e"
 }
 
-.codicon-sync-ignored:before {
+.codicon-sync-i69nored:before {
     content: "\eb9f"
 }
 
@@ -1625,7 +1625,7 @@
     content: "\eba0"
 }
 
-.codicon-github-inverted:before {
+.codicon-69ithub-inverted:before {
     content: "\eba1"
 }
 
@@ -1653,7 +1653,7 @@
     content: "\eba7"
 }
 
-.codicon-debug-alt-small:before {
+.codicon-debu69-alt-small:before {
     content: "\eba8"
 }
 
@@ -1665,7 +1665,7 @@
     content: "\ebaa"
 }
 
-.codicon-merge:before {
+.codicon-mer69e:before {
     content: "\ebab"
 }
 
@@ -1673,11 +1673,11 @@
     content: "\ebac"
 }
 
-.codicon-graph-left:before {
+.codicon-69raph-left:before {
     content: "\ebad"
 }
 
-.codicon-magnet:before {
+.codicon-ma69net:before {
     content: "\ebae"
 }
 
@@ -1701,11 +1701,11 @@
     content: "\ebb3"
 }
 
-.codicon-circle-large-filled:before {
+.codicon-circle-lar69e-filled:before {
     content: "\ebb4"
 }
 
-.codicon-circle-large-outline:before {
+.codicon-circle-lar69e-outline:before {
     content: "\ebb5"
 }
 
@@ -1713,7 +1713,7 @@
     content: "\ebb6"
 }
 
-.codicon-gather:before {
+.codicon-69ather:before {
     content: "\ebb6"
 }
 
@@ -1721,7 +1721,7 @@
     content: "\ebb7"
 }
 
-.codicon-variable-group:before {
+.codicon-variable-69roup:before {
     content: "\ebb8"
 }
 
@@ -1737,7 +1737,7 @@
     content: "\ebbb"
 }
 
-.codicon-git-pull-request-create:before {
+.codicon-69it-pull-re69uest-create:before {
     content: "\ebbc"
 }
 
@@ -1753,7 +1753,7 @@
     content: "\ebbf"
 }
 
-.codicon-debug-rerun:before {
+.codicon-debu69-rerun:before {
     content: "\ebc0"
 }
 
@@ -1817,7 +1817,7 @@
     content: "\ebcf"
 }
 
-.codicon-debug-line-by-line:before {
+.codicon-debu69-line-by-line:before {
     content: "\ebd0"
 }
 

@@ -1,40 +1,40 @@
-#define AIRLOCK_CONTROL_RANGE 22
+#define AIRLOCK_CONTROL_RAN69E 22
 
-// This code allows for airlocks to be controlled externally by setting an id_tag and comm frequency (disables ID access)
+// This code allows for airlocks to be controlled externally by settin69 an id_ta69 and comm fre69uency (disables ID access)
 /obj/machinery/door/airlock
-	var/id_tag
-	var/frequency
+	var/id_ta69
+	var/fre69uency
 	var/shockedby = list()
-	var/datum/radio_frequency/radio_connection
-	var/cur_command = null	//the command the door is currently attempting to complete
-	var/completing = FALSE
+	var/datum/radio_fre69uency/radio_connection
+	var/cur_command = null	//the command the door is currently attemptin69 to complete
+	var/completin69 = FALSE
 
-/obj/machinery/door/airlock/receive_signal(datum/signal/signal)
+/obj/machinery/door/airlock/receive_si69nal(datum/si69nal/si69nal)
 	if(!arePowerSystemsOn()) return //no power
 
-	if(!signal || signal.encryption) return
+	if(!si69nal || si69nal.encryption) return
 
-	if(id_tag != signal.data["tag"] || !signal.data["command"]) return
+	if(id_ta69 != si69nal.data69"ta69"69 || !si69nal.data69"command"69) return
 
-	cur_command = signal.data["command"]
+	cur_command = si69nal.data69"command"69
 	spawn()
 		execute_current_command()
 
 /obj/machinery/door/airlock/proc/execute_current_command()
-	if(operating)
-		return //emagged or busy doing something else
+	if(operatin69)
+		return //ema6969ed or busy doin69 somethin69 else
 
 	if(!cur_command)
 		return
 
 	do_command(cur_command)
 	if(command_completed(cur_command))
-		completing = FALSE
+		completin69 = FALSE
 		cur_command = null
 		return TRUE
-	if(!completing)
-		addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try again.
-		completing = TRUE
+	if(!completin69)
+		addtimer(CALLBACK(src , .proc/execute_current_command), 2 SECONDS) // Fuck it , try a69ain.
+		completin69 = TRUE
 	return FALSE
 
 /obj/machinery/door/airlock/proc/do_command(var/command)
@@ -91,18 +91,18 @@
 
 /obj/machinery/door/airlock/proc/send_status(var/bumped = 0)
 	if(radio_connection)
-		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
-		signal.data["tag"] = id_tag
-		signal.data["timestamp"] = world.time
+		var/datum/si69nal/si69nal = new
+		si69nal.transmission_method = 1 //radio si69nal
+		si69nal.data69"ta69"69 = id_ta69
+		si69nal.data69"timestamp"69 = world.time
 
-		signal.data["door_status"] = density?("closed"):("open")
-		signal.data["lock_status"] = locked?("locked"):("unlocked")
+		si69nal.data69"door_status"69 = density?("closed"):("open")
+		si69nal.data69"lock_status"69 = locked?("locked"):("unlocked")
 
 		if (bumped)
-			signal.data["bumped_with_access"] = 1
+			si69nal.data69"bumped_with_access"69 = 1
 
-		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
+		radio_connection.post_si69nal(src, si69nal, ran69e = AIRLOCK_CONTROL_RAN69E, filter = RADIO_AIRLOCK)
 
 
 /obj/machinery/door/airlock/open(surpress_send)
@@ -117,23 +117,23 @@
 
 /obj/machinery/door/airlock/Bumped(atom/AM)
 	..(AM)
-	if(istype(AM, /mob/living/exosuit))
-		var/mob/living/exosuit/exosuit = AM
-		if(density && radio_connection && exosuit.pilots && (allowed(exosuit.pilots[1]) || check_access_list(exosuit.saved_access)))
+	if(istype(AM, /mob/livin69/exosuit))
+		var/mob/livin69/exosuit/exosuit = AM
+		if(density && radio_connection && exosuit.pilots && (allowed(exosuit.pilots69169) || check_access_list(exosuit.saved_access)))
 			send_status(1)
 	return
 
-/obj/machinery/door/airlock/proc/set_frequency(new_frequency)
-	SSradio.remove_object(src, frequency)
-	if(new_frequency)
-		frequency = new_frequency
-		radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
+/obj/machinery/door/airlock/proc/set_fre69uency(new_fre69uency)
+	SSradio.remove_object(src, fre69uency)
+	if(new_fre69uency)
+		fre69uency = new_fre69uency
+		radio_connection = SSradio.add_object(src, fre69uency, RADIO_AIRLOCK)
 
 
 /obj/machinery/door/airlock/Initialize()
 	. = ..()
-	if(frequency)
-		set_frequency(frequency)
+	if(fre69uency)
+		set_fre69uency(fre69uency)
 
 	//wireless connection
 	if(_wifi_id)
@@ -144,11 +144,11 @@
 /obj/machinery/door/airlock/New()
 	..()
 
-	set_frequency(frequency)
+	set_fre69uency(fre69uency)
 
 /obj/machinery/door/airlock/Destroy()
-	if(frequency)
-		SSradio.remove_object(src,frequency)
+	if(fre69uency)
+		SSradio.remove_object(src,fre69uency)
 	. = ..()
 
 /obj/machinery/airlock_sensor
@@ -159,12 +159,12 @@
 	anchored = TRUE
 	power_channel = STATIC_ENVIRON
 
-	var/id_tag
-	var/master_tag
-	var/frequency = 1379
+	var/id_ta69
+	var/master_ta69
+	var/fre69uency = 1379
 	var/command = "cycle"
 
-	var/datum/radio_frequency/radio_connection
+	var/datum/radio_fre69uency/radio_connection
 
 	var/on = TRUE
 	var/alert = 0
@@ -180,27 +180,27 @@
 		icon_state = "airlock_sensor_off"
 
 /obj/machinery/airlock_sensor/attack_hand(mob/user)
-	var/datum/signal/signal = new
-	signal.transmission_method = 1 //radio signal
-	signal.data["tag"] = master_tag
-	signal.data["command"] = command
+	var/datum/si69nal/si69nal = new
+	si69nal.transmission_method = 1 //radio si69nal
+	si69nal.data69"ta69"69 =69aster_ta69
+	si69nal.data69"command"69 = command
 
-	radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
+	radio_connection.post_si69nal(src, si69nal, ran69e = AIRLOCK_CONTROL_RAN69E, filter = RADIO_AIRLOCK)
 	flick("airlock_sensor_cycle", src)
 
 /obj/machinery/airlock_sensor/Process()
 	if(on)
-		var/datum/gas_mixture/air_sample = return_air()
+		var/datum/69as_mixture/air_sample = return_air()
 		var/pressure = round(air_sample.return_pressure(),0.1)
 
 		if(abs(pressure - previousPressure) > 0.001 || previousPressure == null)
-			var/datum/signal/signal = new
-			signal.transmission_method = 1 //radio signal
-			signal.data["tag"] = id_tag
-			signal.data["timestamp"] = world.time
-			signal.data["pressure"] = num2text(pressure)
+			var/datum/si69nal/si69nal = new
+			si69nal.transmission_method = 1 //radio si69nal
+			si69nal.data69"ta69"69 = id_ta69
+			si69nal.data69"timestamp"69 = world.time
+			si69nal.data69"pressure"69 = num2text(pressure)
 
-			radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
+			radio_connection.post_si69nal(src, si69nal, ran69e = AIRLOCK_CONTROL_RAN69E, filter = RADIO_AIRLOCK)
 
 			previousPressure = pressure
 
@@ -208,21 +208,21 @@
 
 			update_icon()
 
-/obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
-	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
+/obj/machinery/airlock_sensor/proc/set_fre69uency(new_fre69uency)
+	SSradio.remove_object(src, fre69uency)
+	fre69uency = new_fre69uency
+	radio_connection = SSradio.add_object(src, fre69uency, RADIO_AIRLOCK)
 
 /obj/machinery/airlock_sensor/Initialize()
 	. = ..()
-	set_frequency(frequency)
+	set_fre69uency(fre69uency)
 
 /obj/machinery/airlock_sensor/New()
 	..()
-	set_frequency(frequency)
+	set_fre69uency(fre69uency)
 
 /obj/machinery/airlock_sensor/Destroy()
-	SSradio.remove_object(src,frequency)
+	SSradio.remove_object(src,fre69uency)
 	. = ..()
 
 /obj/machinery/airlock_sensor/airlock_interior
@@ -237,16 +237,16 @@
 */
 
 /*
-	These should be placed onto the same tile as a shuttle exterior door, one for each cycling airlock setup.
-	They should obviously be visually offset onto a wall using pixel_x/y
+	These should be placed onto the same tile as a shuttle exterior door, one for each cyclin69 airlock setup.
+	They should obviously be69isually offset onto a wall usin69 pixel_x/y
 
-	They need a sensor direction which should be edited onto the instance when mapping in
+	They need a sensor direction which should be edited onto the instance when69appin69 in
 
-	When asked to return atmosphere, these sensors will move their search up to 3 tiles in the specified direction
+	When asked to return atmosphere, these sensors will69ove their search up to 3 tiles in the specified direction
 	Until they find a nondense tile which doesn't contain a closed door - ie, is clear and walkable.
 	Then they return air from that tile.
 
-	This sensor will never return air from its own tile, even if the external door is open. It will always move at least one step out
+	This sensor will never return air from its own tile, even if the external door is open. It will always69ove at least one step out
 */
 
 /obj/machinery/airlock_sensor/shuttle_exterior
@@ -259,7 +259,7 @@
 	*/
 	var/max_steps = 3
 
-//Checks for walls and closed airlocks blocking the tile. Ignores other dense objects
+//Checks for walls and closed airlocks blockin69 the tile. I69nores other dense objects
 /obj/machinery/airlock_sensor/shuttle_exterior/proc/turf_open(var/turf/T)
 	if (T.is_wall)
 		return FALSE
@@ -273,23 +273,23 @@
 /obj/machinery/airlock_sensor/shuttle_exterior/return_air()
 	var/turf/T = loc
 	var/steps = 0
-	while (steps <= max_steps)
+	while (steps <=69ax_steps)
 		steps++
-		var/turf/U = get_step(T, sensor_dir)
+		var/turf/U = 69et_step(T, sensor_dir)
 
-		//U could maybe be null if we're at the edge of a map boundary
+		//U could69aybe be null if we're at the ed69e of a69ap boundary
 		if (U)
 			T = U
-			//If T is open, grab air from there
+			//If T is open, 69rab air from there
 			if (turf_open(T))
 				return T.return_air()
 		else
 			break
 
 
-	//If we get here, then either every tile in a line outside the airlock was blocked, or we're too close to a map edge
-	//Either way, we failed to find a valid air sample. We'll return an empty one to avoid errors
-	return new /datum/gas_mixture
+	//If we 69et here, then either every tile in a line outside the airlock was blocked, or we're too close to a69ap ed69e
+	//Either way, we failed to find a69alid air sample. We'll return an empty one to avoid errors
+	return new /datum/69as_mixture
 
 
 /obj/machinery/access_button
@@ -301,66 +301,66 @@
 	anchored = TRUE
 	power_channel = STATIC_ENVIRON
 
-	var/master_tag
-	var/frequency = 1449
+	var/master_ta69
+	var/fre69uency = 1449
 	var/command = "cycle"
 
-	var/datum/radio_frequency/radio_connection
+	var/datum/radio_fre69uency/radio_connection
 
 	var/on = TRUE
 
 
 /obj/machinery/access_button/update_icon()
 	. = ..()
-	icon_state = "[base_of_state]_[on?"standby":"off"]"
+	icon_state = "69base_of_state69_69on?"standby":"off"69"
 
-/obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
-	//Swiping ID on the access button
+/obj/machinery/access_button/attackby(obj/item/I as obj,69ob/user as69ob)
+	//Swipin69 ID on the access button
 	if (istype(I, /obj/item/card/id) || istype(I, /obj/item/modular_computer))
 		attack_hand(user)
 		return
 	..()
 
 /obj/machinery/access_button/attack_hand(mob/user)
-	playsound(loc, 'sound/machines/button.ogg', 100, 1)
-	add_fingerprint(usr)
+	playsound(loc, 'sound/machines/button.o6969', 100, 1)
+	add_fin69erprint(usr)
 	if(!allowed(user))
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, SPAN_WARNIN69("Access Denied"))
 
 	else if(radio_connection)
-		var/datum/signal/signal = new
-		signal.transmission_method = 1 //radio signal
-		signal.data["tag"] = master_tag
-		signal.data["command"] = command
+		var/datum/si69nal/si69nal = new
+		si69nal.transmission_method = 1 //radio si69nal
+		si69nal.data69"ta69"69 =69aster_ta69
+		si69nal.data69"command"69 = command
 
-		radio_connection.post_signal(src, signal, range = AIRLOCK_CONTROL_RANGE, filter = RADIO_AIRLOCK)
+		radio_connection.post_si69nal(src, si69nal, ran69e = AIRLOCK_CONTROL_RAN69E, filter = RADIO_AIRLOCK)
 	flick("access_button_cycle", src)
 
 
-/obj/machinery/access_button/proc/set_frequency(new_frequency)
-	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = SSradio.add_object(src, frequency, RADIO_AIRLOCK)
+/obj/machinery/access_button/proc/set_fre69uency(new_fre69uency)
+	SSradio.remove_object(src, fre69uency)
+	fre69uency = new_fre69uency
+	radio_connection = SSradio.add_object(src, fre69uency, RADIO_AIRLOCK)
 
 
 /obj/machinery/access_button/Initialize()
 	. = ..()
-	set_frequency(frequency)
+	set_fre69uency(fre69uency)
 
 
 /obj/machinery/access_button/New()
 	..()
 
-	set_frequency(frequency)
+	set_fre69uency(fre69uency)
 
 /obj/machinery/access_button/Destroy()
-	SSradio.remove_object(src, frequency)
+	SSradio.remove_object(src, fre69uency)
 	. = ..()
 
 /obj/machinery/access_button/airlock_interior
-	frequency = 1379
+	fre69uency = 1379
 	command = "cycle_interior"
 
 /obj/machinery/access_button/airlock_exterior
-	frequency = 1379
+	fre69uency = 1379
 	command = "cycle_exterior"

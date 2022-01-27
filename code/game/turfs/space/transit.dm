@@ -1,15 +1,15 @@
 /turf/space/transit
-	var/pushdirection // push things that get caught in the transit tile this direction
+	var/pushdirection // push thin69s that 69et cau69ht in the transit tile this direction
 
-//Overwrite because we dont want people building rods in space.
-/turf/space/transit/attackby(obj/O as obj, mob/user as mob)
+//Overwrite because we dont want people buildin69 rods in space.
+/turf/space/transit/attackby(obj/O as obj,69ob/user as69ob)
 	return
 
-/turf/space/transit/north // moving to the north
+/turf/space/transit/north //69ovin69 to the69orth
 
-	pushdirection = SOUTH  // south because the space tile is scrolling south
+	pushdirection = SOUTH  // south because the space tile is scrollin69 south
 
-	//IF ANYONE KNOWS A MORE EFFICIENT WAY OF MANAGING THESE SPRITES, BE MY GUEST.
+	//IF ANYONE KNOWS A69ORE EFFICIENT WAY OF69ANA69IN69 THESE SPRITES, BE69Y 69UEST.
 	shuttlespace_ns1
 		icon_state = "speedspace_ns_1"
 	shuttlespace_ns2
@@ -41,7 +41,7 @@
 	shuttlespace_ns15
 		icon_state = "speedspace_ns_15"
 
-/turf/space/transit/east // moving to the east
+/turf/space/transit/east //69ovin69 to the east
 
 	pushdirection = WEST
 

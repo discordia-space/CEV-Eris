@@ -14,7 +14,7 @@
 	var/static/inv_spawn_count = 3
 
 /obj/item/oddity/secdocs/Initialize()
-	icon_state = "folder-[pick("omega","psi","theta")]"
+	icon_state = "folder-69pick("omega","psi","theta")69"
 	name = pick("Attractor field theory",
 				"World lines theory",
 				"Evidence of an outside-context problem",
@@ -22,10 +22,10 @@
 				"Evidence of time travel related changes in history",
 				"Geography of nonexistent cities",
 				"Production of Alliance nanomachines",
-				"Known SAU equipment specifications",
+				"Known SAU e69uipment specifications",
 				"Known access points to Discordia",
 				"The Door phenomenon",
-				"Parallel world-related mutations",
+				"Parallel world-related69utations",
 				"Mass hallucinations or breach from another world?",
 				"Ironhammer budget: evidence of SAU overfund",
 				"The truth behind the fall of One Star",
@@ -34,7 +34,7 @@
 	. = ..()
 	var/mob/living/carbon/human/owner = loc
 	if(istype(owner))
-		to_chat(owner, SPAN_NOTICE("You have valuable scientific data on your person. Do not let it fall into the wrong hands."))
+		to_chat(owner, SPAN_NOTICE("You have69aluable scientific data on your person. Do not let it fall into the wrong hands."))
 
 /hook/roundstart/proc/place_docs()
 	var/list/obj/landmark/storyevent/midgame_stash_spawn/L = list()
@@ -48,6 +48,6 @@
 		return FALSE
 
 	for(var/i in 1 to 3)
-		new /obj/item/oddity/secdocs(L[i].get_loc())
+		new /obj/item/oddity/secdocs(L69i69.get_loc())
 
 	return TRUE

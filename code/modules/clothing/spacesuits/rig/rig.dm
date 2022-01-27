@@ -13,9 +13,9 @@
  */
 
 /obj/item/rig
-	name = "hardsuit control module"
+	name = "hardsuit control69odule"
 	icon = 'icons/obj/rig_modules.dmi'
-	desc = "A back-mounted hardsuit deployment and control mechanism."
+	desc = "A back-mounted hardsuit deployment and control69echanism."
 	slot_flags = SLOT_BACK
 	req_one_access = list()
 	req_access = list()
@@ -23,9 +23,9 @@
 	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
 	spawn_tags = SPAWN_TAG_RIG
 	rarity_value = 10
-	bad_type = /obj/item/rig //TODO: Resprite these, remove old bay leftover RIGs, add a RIG to moeb R&D, add more RIGs in general
+	bad_type = /obj/item/rig //TODO: Resprite these, remove old bay leftover RIGs, add a RIG to69oeb R&D, add69ore RIGs in general
 
-	// These values are passed on to all component pieces.
+	// These69alues are passed on to all component pieces.
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -39,16 +39,16 @@
 	siemens_coefficient = 0.1
 	permeability_coefficient = 0.1
 	unacidable = 1
-	slowdown = HEAVY_SLOWDOWN // Very slow, but gimbal makes aim steady
+	slowdown = HEAVY_SLOWDOWN //69ery slow, but gimbal69akes aim steady
 	stiffness = LIGHT_STIFFNESS
 	obscuration = LIGHT_OBSCURATION
 
 	var/interface_path = "hardsuit.tmpl"
 	var/ai_interface_path = "hardsuit.tmpl"
 	var/interface_title = "Hardsuit Controller"
-	var/wearer_move_delay //Used for AI moving.
+	var/wearer_move_delay //Used for AI69oving.
 	var/ai_controlled_move_delay = 10
-	var/aimove_power_usage = 200							  // Power usage per tile traveled when suit is moved by AI in IIS. In joules.
+	var/aimove_power_usage = 200							  // Power usage per tile traveled when suit is69oved by AI in IIS. In joules.
 	var/drain = 1											  // Power drained per tick when the suit is sealed. In 10 joule steps.
 
 
@@ -69,14 +69,14 @@
 	var/obj/item/clothing/head/space/rig/helmet				 // Deployable helmet, if any.
 	var/obj/item/clothing/gloves/rig/gloves					// Deployable gauntlets, if any.
 	var/obj/item/cell/large/cell						// Power supply, if any.
-	var/obj/item/rig_module/selected_module      		      // Primary system (used with middle-click)
-	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a var for a module, but saves time.
+	var/obj/item/rig_module/selected_module      		      // Primary system (used with69iddle-click)
+	var/obj/item/rig_module/vision/visor                      // Kinda shitty to have a69ar for a69odule, but saves time.
 	var/obj/item/rig_module/voice/speech                      // As above.
-	var/obj/item/rig_module/storage/storage					  // var for installed storage module, if any
+	var/obj/item/rig_module/storage/storage					  //69ar for installed storage69odule, if any
 	var/mob/living/carbon/human/wearer                        // The person currently wearing the rig.
 	var/list/installed_modules = list()                       // Power consumption/use bookkeeping.
 
-	// Rig status vars.
+	// Rig status69ars.
 	var/active = FALSE
 	var/open = 0                                              // Access panel status.
 	var/locked = 1 // Lock status. 0 = unlocked, 1 = locked with ID, -1 = broken lock, permanantly unlocked
@@ -92,10 +92,10 @@
 
 	var/seal_delay = SEAL_DELAY
 	var/sealing                                               // Keeps track of seal status independantly of canremove.
-	var/offline = 1                                           // Should we be applying suit maluses?
+	var/offline = 1                                           // Should we be applying suit69aluses?
 	var/offline_slowdown = HEAVY_SLOWDOWN * 3                 // If the suit is deployed and unpowered, it sets slowdown to this.
 	var/vision_restriction
-	var/offline_vision_restriction = 1                        // 0 - none, 1 - welder vision, 2 - blind. Maybe move this to helmets.
+	var/offline_vision_restriction = 1                        // 0 - none, 1 - welder69ision, 2 - blind.69aybe69ove this to helmets.
 	var/airtight = 1 //If set, will adjust AIRTIGHT and STOPPRESSUREDAMAGE flags on components. Otherwise it should leave them untouched.
 
 	var/emp_protection = 0
@@ -113,8 +113,8 @@
 
 
 /obj/item/rig/proc/getCurrentGlasses()
-	if(wearer && visor && visor && visor.vision && visor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
-		return visor.vision.glasses
+	if(wearer &&69isor &&69isor &&69isor.vision &&69isor.vision.glasses && (!helmet || (wearer.head && helmet == wearer.head)))
+		return69isor.vision.glasses
 
 /obj/item/rig/examine()
 	..()
@@ -122,11 +122,11 @@
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			to_chat(usr, "\icon[piece] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed.")
+			to_chat(usr, "\icon69piece69 \The 69piece69 69piece.gender == PLURAL ? "are" : "is"69 deployed.")
 
 	if(loc == usr)
-		to_chat(usr, "The maintenance panel is [open ? "open" : "closed"].")
-		to_chat(usr, "Hardsuit systems are [offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"].")
+		to_chat(usr, "The69aintenance panel is 69open ? "open" : "closed"69.")
+		to_chat(usr, "Hardsuit systems are 69offline ? "<font color='red'>offline</font>" : "<font color='green'>online</font>"69.")
 
 /obj/item/rig/Initialize()
 	. = ..()
@@ -149,7 +149,7 @@
 
 
 
-	// Create and initialize our various segments.
+	// Create and initialize our69arious segments.
 	if(cell_type)
 		cell = new cell_type(src)
 	if(air_type)
@@ -182,11 +182,11 @@
 		if(!istype(piece))
 			continue
 		piece.canremove = 0
-		piece.name = "[suit_type] [initial(piece.name)]"
-		piece.desc = "It seems to be part of a [name]."
-		piece.icon_state = "[initial(icon_state)]"
-		piece.min_cold_protection_temperature = min_cold_protection_temperature
-		piece.max_heat_protection_temperature = max_heat_protection_temperature
+		piece.name = "69suit_type69 69initial(piece.name)69"
+		piece.desc = "It seems to be part of a 69name69."
+		piece.icon_state = "69initial(icon_state)69"
+		piece.min_cold_protection_temperature =69in_cold_protection_temperature
+		piece.max_heat_protection_temperature =69ax_heat_protection_temperature
 		if(piece.siemens_coefficient > siemens_coefficient) //So that insulated gloves keep their insulation.
 			piece.siemens_coefficient = siemens_coefficient
 		piece.permeability_coefficient = permeability_coefficient
@@ -206,7 +206,7 @@
 	return ..()
 
 /obj/item/rig/handle_atom_del(atom/A)
-	if(A == cell) // Clear a cell that has, most likely, exploded
+	if(A == cell) // Clear a cell that has,69ost likely, exploded
 		cell = null
 	..()
 
@@ -229,7 +229,7 @@
 	active = FALSE
 	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 		if(!piece) continue
-		piece.icon_state = "[initial(icon_state)]"
+		piece.icon_state = "69initial(icon_state)69"
 		if(airtight)
 			piece.item_flags &= ~(STOPPRESSUREDAMAGE|AIRTIGHT)
 	update_icon(1)
@@ -260,15 +260,15 @@
 	sealing = 1
 
 	if(seal_target && !suit_is_deployed())
-		wearer.visible_message(SPAN_DANGER("[wearer]'s suit flashes an error light."),SPAN_DANGER("Your suit flashes an error light. It can't function properly without being fully deployed."))
+		wearer.visible_message(SPAN_DANGER("69wearer69's suit flashes an error light."),SPAN_DANGER("Your suit flashes an error light. It can't function properly without being fully deployed."))
 		failed_to_seal = 1
 
 	if(!failed_to_seal)
 
 		if(!instant)
-			wearer.visible_message("<font color='blue'>[wearer]'s suit emits a quiet hum as it begins to adjust its seals.</font>","<font color='blue'>With a quiet hum, the suit begins running checks and adjusting components.</font>")
+			wearer.visible_message("<font color='blue'>69wearer69's suit emits a quiet hum as it begins to adjust its seals.</font>","<font color='blue'>With a quiet hum, the suit begins running checks and adjusting components.</font>")
 			if(seal_delay && !do_after(wearer,seal_delay, src))
-				if(wearer) to_chat(wearer, SPAN_WARNING("You must remain still while the suit is adjusting the components."))
+				if(wearer) to_chat(wearer, SPAN_WARNING("You69ust remain still while the suit is adjusting the components."))
 				failed_to_seal = 1
 
 		if(!wearer)
@@ -276,16 +276,16 @@
 		else
 			for(var/list/piece_data in list(list(wearer.shoes,boots,"boots",boot_type),list(wearer.gloves,gloves,"gloves",glove_type),list(wearer.head,helmet,"helmet",helm_type),list(wearer.wear_suit,chest,"chest",chest_type)))
 
-				var/obj/item/piece = piece_data[1]
-				var/obj/item/compare_piece = piece_data[2]
-				var/msg_type = piece_data[3]
-				var/piece_type = piece_data[4]
+				var/obj/item/piece = piece_data69169
+				var/obj/item/compare_piece = piece_data69269
+				var/msg_type = piece_data69369
+				var/piece_type = piece_data69469
 
 				if(!piece || !piece_type)
 					continue
 
 				if(!istype(wearer) || !istype(piece) || !istype(compare_piece) || !msg_type)
-					if(wearer) to_chat(wearer, SPAN_WARNING("You must remain still while the suit is adjusting the components."))
+					if(wearer) to_chat(wearer, SPAN_WARNING("You69ust remain still while the suit is adjusting the components."))
 					failed_to_seal = 1
 					break
 
@@ -294,19 +294,19 @@
 					if(seal_delay && !instant && !do_after(wearer,seal_delay,src,needhand=0))
 						failed_to_seal = 1
 
-					piece.icon_state = "[initial(icon_state)][seal_target ? "_sealed" : ""]"
+					piece.icon_state = "69initial(icon_state)6969seal_target ? "_sealed" : ""69"
 					switch(msg_type)
 						if("boots")
-							to_chat(wearer, "<font color='blue'>\The [piece] [seal_target ? "seal around your feet" : "relax their grip on your legs"].</font>")
+							to_chat(wearer, "<font color='blue'>\The 69piece69 69seal_target ? "seal around your feet" : "relax their grip on your legs"69.</font>")
 							wearer.update_inv_shoes()
 						if("gloves")
-							to_chat(wearer, "<font color='blue'>\The [piece] [seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"].</font>")
+							to_chat(wearer, "<font color='blue'>\The 69piece69 69seal_target ? "tighten around your fingers and wrists" : "become loose around your fingers"69.</font>")
 							wearer.update_inv_gloves()
 						if("chest")
-							to_chat(wearer, "<font color='blue'>\The [piece] [seal_target ? "cinches tight again your chest" : "releases your chest"].</font>")
+							to_chat(wearer, "<font color='blue'>\The 69piece69 69seal_target ? "cinches tight again your chest" : "releases your chest"69.</font>")
 							wearer.update_inv_wear_suit()
 						if("helmet")
-							to_chat(wearer, "<font color='blue'>\The [piece] hisses [seal_target ? "closed" : "open"].</font>")
+							to_chat(wearer, "<font color='blue'>\The 69piece69 hisses 69seal_target ? "closed" : "open"69.</font>")
 							wearer.update_inv_head()
 							if(helmet)
 								helmet.update_light(wearer)
@@ -328,7 +328,7 @@
 	if(failed_to_seal)
 		for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 			if(!piece) continue
-			piece.icon_state = "[initial(icon_state)][seal_target ? "" : "_sealed"]"
+			piece.icon_state = "69initial(icon_state)6969seal_target ? "" : "_sealed"69"
 		canremove = !active
 
 		if(airtight)
@@ -339,10 +339,10 @@
 	// Success!
 	active = seal_target
 	canremove = !active
-	to_chat(wearer, "<font color='blue'><b>Your entire suit [active ? "tightens around you as the components lock into place" : "loosens as the components relax"].</b></font>")
+	to_chat(wearer, "<font color='blue'><b>Your entire suit 69active ? "tightens around you as the components lock into place" : "loosens as the components relax"69.</b></font>")
 
 	if(wearer != initiator)
-		to_chat(initiator, "<font color='blue'>Suit adjustment complete. Suit is now [active ? "unsealed" : "sealed"].</font>")
+		to_chat(initiator, "<font color='blue'>Suit adjustment complete. Suit is now 69active ? "unsealed" : "sealed"69.</font>")
 
 	if(canremove)
 		for(var/obj/item/rig_module/module in installed_modules)
@@ -383,9 +383,9 @@
 						if (offline_slowdown < 3)
 							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly goes dead."))
 						else
-							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit."))
+							to_chat(wearer, SPAN_DANGER("Your suit beeps stridently, and suddenly you're wearing a leaden69ass of69etal and plastic composites instead of a powered suit."))
 					if(offline_vision_restriction == 1)
-						to_chat(wearer, SPAN_DANGER("The suit optics flick_light and die, leaving you with restricted vision."))
+						to_chat(wearer, SPAN_DANGER("The suit optics flick_light and die, leaving you with restricted69ision."))
 					else if(offline_vision_restriction == 2)
 						to_chat(wearer, SPAN_DANGER("The suit optics drop out completely, drowning you in darkness."))
 		if(!offline)
@@ -417,7 +417,7 @@
 	for(var/obj/item/rig_module/module in installed_modules)
 		cell.use(module.Process()*10)
 
-/obj/item/rig/proc/check_power_cost(var/mob/living/user, var/cost, var/use_unconcious, var/obj/item/rig_module/mod, var/user_is_ai)
+/obj/item/rig/proc/check_power_cost(var/mob/living/user,69ar/cost,69ar/use_unconcious,69ar/obj/item/rig_module/mod,69ar/user_is_ai)
 
 	if(!istype(user))
 		return 0
@@ -427,9 +427,9 @@
 	if(!user_is_ai)
 		var/mob/living/carbon/human/H = user
 		if(istype(H) && H.back != src)
-			fail_msg = SPAN_WARNING("You must be wearing \the [src] to do this.")
+			fail_msg = SPAN_WARNING("You69ust be wearing \the 69src69 to do this.")
 		else if(user.incorporeal_move)
-			fail_msg = SPAN_WARNING("You must be solid to do this.")
+			fail_msg = SPAN_WARNING("You69ust be solid to do this.")
 	if(sealing)
 		fail_msg = SPAN_WARNING("The hardsuit is in the process of adjusting seals and cannot be activated.")
 	else if(!fail_msg && ((use_unconcious && user.stat > 1) || (!use_unconcious && user.stat)))
@@ -444,44 +444,44 @@
 		return 0
 
 	// This is largely for cancelling stealth and whatever.
-	if(mod && mod.disruptive)
-		for(var/obj/item/rig_module/module in (installed_modules - mod))
-			if(module.active && module.disruptable)
+	if(mod &&69od.disruptive)
+		for(var/obj/item/rig_module/module in (installed_modules -69od))
+			if(module.active &&69odule.disruptable)
 				module.deactivate()
 
 	cell.use(cost*10)
 	return 1
 
-/obj/item/rig/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/nano_state =GLOB.inventory_state)
+/obj/item/rig/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS,69ar/nano_state =GLOB.inventory_state)
 	if(!user)
 		return
 
 	var/list/data = list()
 
 	if(selected_module)
-		data["primarysystem"] = "[selected_module.interface_name]"
+		data69"primarysystem"69 = "69selected_module.interface_name69"
 
 	if(loc != user)
-		data["ai"] = 1
+		data69"ai"69 = 1
 
-	data["active"] =     "[active]"
-	data["sealing"] =   "[sealing]"
-	data["helmet"] =    (helmet ? "[helmet.name]" : "None.")
-	data["gauntlets"] = (gloves ? "[gloves.name]" : "None.")
-	data["boots"] =     (boots ?  "[boots.name]" :  "None.")
-	data["chest"] =     (chest ?  "[chest.name]" :  "None.")
+	data69"active"69 =     "69active69"
+	data69"sealing"69 =   "69sealing69"
+	data69"helmet"69 =    (helmet ? "69helmet.name69" : "None.")
+	data69"gauntlets"69 = (gloves ? "69gloves.name69" : "None.")
+	data69"boots"69 =     (boots ?  "69boots.name69" :  "None.")
+	data69"chest"69 =     (chest ?  "69chest.name69" :  "None.")
 
-	data["charge"] =       cell ? round(cell.charge,1) : 0
-	data["maxcharge"] =    cell ? cell.maxcharge : 0
-	data["chargestatus"] = cell ? FLOOR((cell.charge/cell.maxcharge)*50, 1) : 0
+	data69"charge"69 =       cell ? round(cell.charge,1) : 0
+	data69"maxcharge"69 =    cell ? cell.maxcharge : 0
+	data69"chargestatus"69 = cell ? FLOOR((cell.charge/cell.maxcharge)*50, 1) : 0
 
-	data["emagged"] =       subverted
-	data["coverlock"] =     locked
-	data["interfacelock"] = interface_locked
-	data["aicontrol"] =     control_overridden
-	data["aioverride"] =    ai_override_enabled
-	data["securitycheck"] = security_check_enabled
-	data["malf"] =          malfunction_delay
+	data69"emagged"69 =       subverted
+	data69"coverlock"69 =     locked
+	data69"interfacelock"69 = interface_locked
+	data69"aicontrol"69 =     control_overridden
+	data69"aioverride"69 =    ai_override_enabled
+	data69"securitycheck"69 = security_check_enabled
+	data69"malf"69 =         69alfunction_delay
 
 
 	var/list/module_list = list()
@@ -489,36 +489,36 @@
 	for(var/obj/item/rig_module/module in installed_modules)
 		var/list/module_data = list(
 			"index" =             i,
-			"name" =              "[module.interface_name]",
-			"desc" =              "[module.interface_desc]",
-			"can_use" =           "[module.usable]",
-			"can_select" =        "[module.selectable]",
-			"can_toggle" =        "[module.toggleable]",
-			"is_active" =         "[module.active]",
-			"engagecost" =        module.use_power_cost*10,
-			"activecost" =        module.active_power_cost*10,
-			"passivecost" =       module.passive_power_cost*10,
-			"engagestring" =      module.engage_string,
-			"activatestring" =    module.activate_string,
-			"deactivatestring" =  module.deactivate_string,
-			"damage" =            module.damage
+			"name" =              "69module.interface_name69",
+			"desc" =              "69module.interface_desc69",
+			"can_use" =           "69module.usable69",
+			"can_select" =        "69module.selectable69",
+			"can_toggle" =        "69module.toggleable69",
+			"is_active" =         "69module.active69",
+			"engagecost" =       69odule.use_power_cost*10,
+			"activecost" =       69odule.active_power_cost*10,
+			"passivecost" =      69odule.passive_power_cost*10,
+			"engagestring" =     69odule.engage_string,
+			"activatestring" =   69odule.activate_string,
+			"deactivatestring" = 69odule.deactivate_string,
+			"damage" =           69odule.damage
 			)
 
-		if(module.charges && module.charges.len)
+		if(module.charges &&69odule.charges.len)
 
-			module_data["charges"] = list()
-			var/datum/rig_charge/selected = module.charges[module.charge_selected]
-			module_data["chargetype"] = selected ? "[selected.display_name]" : "none"
+			module_data69"charges"69 = list()
+			var/datum/rig_charge/selected =69odule.charges69module.charge_selected69
+			module_data69"chargetype"69 = selected ? "69selected.display_name69" : "none"
 
-			for(var/chargetype in module.charges)
-				var/datum/rig_charge/charge = module.charges[chargetype]
-				module_data["charges"] += list(list("caption" = "[chargetype] ([charge.charges])", "index" = "[chargetype]"))
+			for(var/chargetype in69odule.charges)
+				var/datum/rig_charge/charge =69odule.charges69chargetype69
+				module_data69"charges"69 += list(list("caption" = "69chargetype69 (69charge.charges69)", "index" = "69chargetype69"))
 
 		module_list += list(module_data)
 		i++
 
 	if(module_list.len)
-		data["modules"] = module_list
+		data69"modules"69 =69odule_list
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -534,7 +534,7 @@
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay && !module.suit_overlay_mob_only)
-				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = module.suit_overlay, "dir" = SOUTH)
+				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" =69odule.suit_overlay, "dir" = SOUTH)
 
 /obj/item/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
 
@@ -556,24 +556,24 @@
 
 	return 1
 
-//TODO: Fix Topic vulnerabilities for malfunction and AI override.
+//TODO: Fix Topic69ulnerabilities for69alfunction and AI override.
 /obj/item/rig/Topic(href,href_list)
 	if(!check_suit_access(usr))
 		return 0
 
-	if(href_list["toggle_piece"])
+	if(href_list69"toggle_piece"69)
 		if(ishuman(usr) && (usr.stat || usr.stunned || usr.lying))
 			return 0
-		toggle_piece(href_list["toggle_piece"], usr)
-	else if(href_list["toggle_seals"])
+		toggle_piece(href_list69"toggle_piece"69, usr)
+	else if(href_list69"toggle_seals"69)
 		toggle_seals(usr)
-	else if(href_list["interact_module"])
+	else if(href_list69"interact_module"69)
 
-		var/module_index = text2num(href_list["interact_module"])
+		var/module_index = text2num(href_list69"interact_module"69)
 
-		if(module_index > 0 && module_index <= installed_modules.len)
-			var/obj/item/rig_module/module = installed_modules[module_index]
-			switch(href_list["module_mode"])
+		if(module_index > 0 &&69odule_index <= installed_modules.len)
+			var/obj/item/rig_module/module = installed_modules69module_index69
+			switch(href_list69"module_mode"69)
 				if("activate")
 					module.activate()
 				if("deactivate")
@@ -581,13 +581,13 @@
 				if("engage")
 					module.engage()
 				if("select")
-					selected_module = module
+					selected_module =69odule
 				if("select_charge_type")
-					module.charge_selected = href_list["charge_type"]
-	else if(href_list["toggle_ai_control"])
+					module.charge_selected = href_list69"charge_type"69
+	else if(href_list69"toggle_ai_control"69)
 		ai_override_enabled = !ai_override_enabled
-		notify_ai("Synthetic suit control has been [ai_override_enabled ? "enabled" : "disabled"].")
-	else if(href_list["toggle_suit_lock"])
+		notify_ai("Synthetic suit control has been 69ai_override_enabled ? "enabled" : "disabled"69.")
+	else if(href_list69"toggle_suit_lock"69)
 		if (locked != -1)
 			locked = !locked
 
@@ -597,12 +597,12 @@
 
 /obj/item/rig/proc/notify_ai(var/message)
 	for(var/obj/item/rig_module/ai_container/module in installed_modules)
-		if(module.integrated_ai && module.integrated_ai.client && !module.integrated_ai.stat)
-			to_chat(module.integrated_ai, "[message]")
+		if(module.integrated_ai &&69odule.integrated_ai.client && !module.integrated_ai.stat)
+			to_chat(module.integrated_ai, "69message69")
 			. = 1
 
 //Delayed equipping of rigs
-/obj/item/rig/pre_equip(var/mob/user, var/slot)
+/obj/item/rig/pre_equip(var/mob/user,69ar/slot)
 	if (active)
 		//Can't take it off while it's engaged
 		return TRUE
@@ -610,36 +610,36 @@
 	if (slot == rig_wear_slot)
 		if(seal_delay > 0)
 			user.visible_message(
-				SPAN_NOTICE("[user] starts putting on \the [src]..."),
-				SPAN_NOTICE("You start putting on \the [src]...")
+				SPAN_NOTICE("69user69 starts putting on \the 69src69..."),
+				SPAN_NOTICE("You start putting on \the 69src69...")
 			)
 			if(!do_after(user,seal_delay,src))
-				return TRUE //A nonzero return value will cause the equipping operation to fail
+				return TRUE //A nonzero return69alue will cause the equipping operation to fail
 	//Delayed unequipping too
 	else if (is_worn())
 		retract()
 		if(seal_delay > 0)
 			user.visible_message(
-				SPAN_NOTICE("[user] starts taking off \the [src]..."),
-				SPAN_NOTICE("You start taking off \the [src]...")
+				SPAN_NOTICE("69user69 starts taking off \the 69src69..."),
+				SPAN_NOTICE("You start taking off \the 69src69...")
 			)
 			if(!do_after(user,seal_delay,src))
-				return TRUE //A nonzero return value will cause the equipping operation to fail
+				return TRUE //A nonzero return69alue will cause the equipping operation to fail
 
 
-/obj/item/rig/equipped(var/mob/user, var/slot)
+/obj/item/rig/equipped(var/mob/user,69ar/slot)
 	..()
 	if (slot == rig_wear_slot)
 		user.visible_message(
-			SPAN_NOTICE("<b>[user] struggles into \the [src].</b>"),
-			SPAN_NOTICE("<b>You struggle into \the [src].</b>")
+			SPAN_NOTICE("<b>69user69 struggles into \the 69src69.</b>"),
+			SPAN_NOTICE("<b>You struggle into \the 69src69.</b>")
 		)
 		wearer = user
 		wearer.wearing_rig = src
 		update_icon()
 
 
-/obj/item/rig/proc/toggle_piece(piece, mob/initiator, deploy_mode)
+/obj/item/rig/proc/toggle_piece(piece,69ob/initiator, deploy_mode)
 
 	if(sealing || !cell || cell.is_empty())
 		return
@@ -678,7 +678,7 @@
 	if(use_obj)
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
 			if (active && !(use_obj.retract_while_active))
-				to_chat(wearer, SPAN_DANGER("The [use_obj] is locked in place while [src] is active. You must deactivate it first!"))
+				to_chat(wearer, SPAN_DANGER("The 69use_obj69 is locked in place while 69src69 is active. You69ust deactivate it first!"))
 				return
 
 			var/mob/living/carbon/human/holder
@@ -691,7 +691,7 @@
 						if (wearer.unEquip(use_obj, src))
 							if(use_obj.overslot)
 								use_obj.remove_overslot_contents(wearer)
-							to_chat(wearer, "<font color='blue'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></font>")
+							to_chat(wearer, "<font color='blue'><b>Your 69use_obj.name69 69use_obj.gender == PLURAL ? "retract" : "retracts"69 swiftly.</b></font>")
 						use_obj.canremove = 0
 
 
@@ -702,17 +702,17 @@
 			if(!wearer.equip_to_slot_if_possible(use_obj, equip_to, TRUE)) //Disable_warning
 				use_obj.forceMove(src)
 				if(check_slot)
-					to_chat(initiator, SPAN_DANGER("You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way."))
+					to_chat(initiator, SPAN_DANGER("You are unable to deploy \the 69piece69 as \the 69check_slot69 69check_slot.gender == PLURAL ? "are" : "is"69 in the way."))
 					return
 			else
-				to_chat(wearer, SPAN_NOTICE("Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly."))
+				to_chat(wearer, SPAN_NOTICE("Your 69use_obj.name69 69use_obj.gender == PLURAL ? "deploy" : "deploys"69 swiftly."))
 
 	if(piece == "helmet" && helmet)
 		helmet.update_light(wearer)
 
 /obj/item/rig/proc/deploy(mob/M,var/sealed)
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/carbon/human/H =69
 
 	if(!H || !istype(H)) return
 
@@ -767,16 +767,16 @@
 	return 0
 
 /obj/item/rig/emp_act(severity_class)
-	//set malfunctioning
+	//set69alfunctioning
 	if(emp_protection < 30) //for ninjas, really.
 		malfunctioning += 10
 		if(malfunction_delay <= 0)
-			malfunction_delay = max(malfunction_delay, round(30/severity_class))
+			malfunction_delay =69ax(malfunction_delay, round(30/severity_class))
 
 	//drain some charge
 	if(cell) cell.emp_act(severity_class + 15)
 
-	//possibly damage some modules
+	//possibly damage some69odules
 	take_hit((100/severity_class), "electrical pulse", 1)
 
 /obj/item/rig/proc/shock(mob/user)
@@ -798,22 +798,22 @@
 	if(!is_emp)
 		chance = 2*max(0, damage - (chest? chest.breach_threshold : 0))
 	else
-		//Want this to be roughly independant of the number of modules, meaning that X emp hits will disable Y% of the suit's modules on average.
-		//that way people designing hardsuits don't have to worry (as much) about how adding that extra module will affect emp resiliance by 'soaking' hits for other modules
+		//Want this to be roughly independant of the number of69odules,69eaning that X emp hits will disable Y% of the suit's69odules on average.
+		//that way people designing hardsuits don't have to worry (as69uch) about how adding that extra69odule will affect emp resiliance by 'soaking' hits for other69odules
 		chance = 2*max(0, damage - emp_protection)*min(installed_modules.len/15, 1)
 
 	if(!prob(chance))
 		return
 
-	//deal addition damage to already damaged module first.
-	//This way the chances of a module being disabled aren't so remote.
+	//deal addition damage to already damaged69odule first.
+	//This way the chances of a69odule being disabled aren't so remote.
 	var/list/valid_modules = list()
 	var/list/damaged_modules = list()
 	for(var/obj/item/rig_module/module in installed_modules)
 		if(module.damage < 2)
-			valid_modules |= module
+			valid_modules |=69odule
 			if(module.damage > 0)
-				damaged_modules |= module
+				damaged_modules |=69odule
 
 	var/obj/item/rig_module/dam_module = null
 	if(damaged_modules.len)
@@ -830,9 +830,9 @@
 
 	if(wearer)
 		if(dam_module.damage >= 2)
-			to_chat(wearer, SPAN_DANGER("The [source] has disabled your [dam_module.interface_name]!"))
+			to_chat(wearer, SPAN_DANGER("The 69source69 has disabled your 69dam_module.interface_name69!"))
 		else
-			to_chat(wearer, SPAN_WARNING("The [source] has damaged your [dam_module.interface_name]!"))
+			to_chat(wearer, SPAN_WARNING("The 69source69 has damaged your 69dam_module.interface_name69!"))
 	dam_module.deactivate()
 
 /obj/item/rig/proc/malfunction_check(var/mob/living/carbon/human/user)
@@ -847,7 +847,7 @@
 /obj/item/rig/get_cell()
 	return cell
 
-/obj/item/rig/proc/ai_can_move_suit(var/mob/user, var/check_user_module = 0, var/check_for_ai = 0)
+/obj/item/rig/proc/ai_can_move_suit(var/mob/user,69ar/check_user_module = 0,69ar/check_for_ai = 0)
 
 	if(check_for_ai)
 		if(!(locate(/obj/item/rig_module/ai_container) in contents))
@@ -856,7 +856,7 @@
 		for(var/obj/item/rig_module/ai_container/module in contents)
 			if(module.damage >= 2)
 				continue
-			if(module.integrated_ai && module.integrated_ai.client && !module.integrated_ai.stat)
+			if(module.integrated_ai &&69odule.integrated_ai.client && !module.integrated_ai.stat)
 				found_ai = 1
 				break
 		if(!found_ai)
@@ -866,8 +866,8 @@
 		if(!user || !user.loc || !user.loc.loc)
 			return 0
 		var/obj/item/rig_module/ai_container/module = user.loc.loc
-		if(!istype(module) || module.damage >= 2)
-			to_chat(user, SPAN_WARNING("Your host module is unable to interface with the suit."))
+		if(!istype(module) ||69odule.damage >= 2)
+			to_chat(user, SPAN_WARNING("Your host69odule is unable to interface with the suit."))
 			return 0
 
 	if(offline || !cell || cell.is_empty() || locked_down)
@@ -885,9 +885,9 @@
 	if(!ai_can_move_suit(user, check_user_module = 1))
 		return
 	wearer.lay_down()
-	to_chat(user, "<span class='notice'>\The [wearer] is now [wearer.resting ? "resting" : "getting up"].</span>")
+	to_chat(user, "<span class='notice'>\The 69wearer69 is now 69wearer.resting ? "resting" : "getting up"69.</span>")
 
-/obj/item/rig/proc/forced_move(var/direction, var/mob/user)
+/obj/item/rig/proc/forced_move(var/direction,69ar/mob/user)
 	if(malfunctioning)
 		direction = pick(GLOB.cardinal)
 
@@ -897,7 +897,7 @@
 	if(!wearer || !wearer.loc || !ai_can_move_suit(user, check_user_module = 1))
 		return
 
-	// AIs are a bit slower than regular and ignore move intent.
+	// AIs are a bit slower than regular and ignore69ove intent.
 	wearer_move_delay = world.time + ai_controlled_move_delay
 
 	cell.use(aimove_power_usage * CELLRATE)
@@ -917,14 +917,14 @@
 
 
 //Used in random rig spawning for cargo
-//Randomly deletes modules
+//Randomly deletes69odules
 /obj/item/rig/proc/lose_modules(var/probability)
 	for(var/obj/item/rig_module/module in installed_modules)
 		if (probability)
 			qdel(module)
 
 
-//Fiddles with some wires to possibly make the suit malfunction a little
+//Fiddles with some wires to possibly69ake the suit69alfunction a little
 /obj/item/rig/proc/misconfigure(var/probability)
 	if (prob(probability))
 		wires.UpdatePulsed(RIG_SECURITY)//Fiddle with access

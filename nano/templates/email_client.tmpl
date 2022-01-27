@@ -1,202 +1,202 @@
-{{if data.error}}
-	{{:data.error}}<br>
-	{{:helper.link('Return', null, {'reset' : 1})}}
-{{else data.downloading}}
-		<p>Downloading attachment...</p>
-		<div class="item">
-		<div class="itemLabel">
-			File name: 
-		</div>
-		<div class="itemContent">
-			{{:data.down_filename}}&nbsp
-		</div>
-		<div class="itemLabel">
-			Progress: 
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.down_progress, 0, data.down_size)}} {{:data.down_progress}} / {{:data.down_size}} GQ
-		</div>
-		<div class="itemLabel">
-			Download rate: 
-		</div>
-		<div class="itemContent">
-			{{:data.down_speed}} GQ/s&nbsp
-		</div>		
-	</div>
-	{{:helper.link('Cancel Download', null, {'canceldownload' : 1})}}
-{{else data.current_account}}
-	<b>Welcome to your account, {{:data.current_account}}</b><br>
-	{{:helper.link('New Message', 'mail-closed', {'new_message' : 1})}}
-	{{:helper.link('Change Password', 'locked', {'changepassword' : 1})}}
-	{{:helper.link('Log Out', 'key', {'logout' : 1})}}
-	{{:helper.link((data.ringtone ? 'Ringtone enabled' : 'Ringtone muted'), (data.ringtone ? 'volume-on' : 'volume-off'), {'ringtone_toggle' : 1})}}<br><br>
-	{{if data.addressbook}}
-		{{:helper.link('Back', null, {'close_addressbook' : 1})}}
-		{{:helper.link('Enter Email', 'pencil', {'edit_recipient' : 1})}}
-		{{:helper.link(data.search, 'search', {'search' : 1})}}
-		<br><br>
-		<table>
-		<tr><th>Owner's name<th style="width:60%">Address
-		{{for data.accounts}}
-			<tr class="candystripe">
-			<td>{{:value.name}}
-			<td>{{:helper.link(value.login, null, {'set_recipient' : value.login})}}
+{{if d69t69.error}}
+	{{:d69t69.error}}<69r>
+	{{:69elper.lin6969'Return',69ull, {'reset' : 1}69}}
+{{else d69t69.downlo69din69}}
+		<p>Downlo69din69 69tt69c69ment...</p>
+		<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			File6969me: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.down_filen69me}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			Pro69ress: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.displ69696969r69d69t69.down_pro69ress, 0, d69t69.down_size69}} {{:d69t69.down_pro69ress}} / {{:d69t69.down_size}} 6969
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			Downlo69d r69te: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.down_speed}} 6969/s&n69sp
+		</di69>		
+	</di69>
+	{{:69elper.lin6969'C69ncel Downlo69d',69ull, {'c69nceldownlo69d' : 1}69}}
+{{else d69t69.current_69ccount}}
+	<69>Welcome to 69our 69ccount, {{:d69t69.current_69ccount}}</69><69r>
+	{{:69elper.lin6969'New69ess6969e', 'm69il-closed', {'new_mess6969e' : 1}69}}
+	{{:69elper.lin6969'C6969n69e P69ssword', 'loc69ed', {'c6969n69ep69ssword' : 1}69}}
+	{{:69elper.lin6969'Lo69 Out', '69e69', {'lo69out' : 1}69}}
+	{{:69elper.lin696969d69t69.rin69tone ? 'Rin69tone en6969led' : 'Rin69tone69uted'69, 69d69t69.rin69tone ? '69olume-on' : '69olume-off'69, {'rin69tone_to6969le' : 1}69}}<69r><69r>
+	{{if d69t69.69ddress69oo69}}
+		{{:69elper.lin6969'6969c69',69ull, {'close_69ddress69oo69' : 1}69}}
+		{{:69elper.lin6969'Enter Em69il', 'pencil', {'edit_recipient' : 1}69}}
+		{{:69elper.lin6969d69t69.se69rc69, 'se69rc69', {'se69rc69' : 1}69}}
+		<69r><69r>
+		<t6969le>
+		<tr><t69>Owner's6969me<t69 st69le="widt69:60%">69ddress
+		{{for d69t69.69ccounts}}
+			<tr cl69ss="c69nd69stripe">
+			<td>{{:6969lue.n69me}}
+			<td>{{:69elper.lin69696969lue.lo69in,69ull, {'set_recipient' : 6969lue.lo69in}69}}
 		{{/for}}
-		</table>
-	{{else data.new_message}}
-		<div class="item">
-			<div class="itemLabel">
-				{{:helper.link('', 'pencil', {'edit_title' : 1})}} Title: 
-			</div>
-			<div class="itemContent">
-				<div class="statusDisplayComm" style="width:100%;min-height:1.7em;padding-bottom: 0;">
-					{{if data.msg_title}}
-						{{:data.msg_title}}
+		</t6969le>
+	{{else d69t69.new_mess6969e}}
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
+				{{:69elper.lin6969'', 'pencil', {'edit_title' : 1}69}} Title: 
+			</di69>
+			<di69 cl69ss="itemContent">
+				<di69 cl69ss="st69tusDispl6969Comm" st69le="widt69:100%;min-69ei6969t:1.7em;p69ddin69-69ottom: 0;">
+					{{if d69t69.ms69_title}}
+						{{:d69t69.ms69_title}}
 					{{else}}
-						No subject
+						No su6969ect
 					{{/if}}
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<div class="itemLabel">
-				{{:helper.link('', 'plusthick', {'addressbook' : 1})}} Recipient:
-			</div>
-			<div class="itemContent">
-				<div class="statusDisplayComm" style="width:100%;min-height:1.7em;padding-bottom: 0;">
-					{{:data.msg_recipient}}
-				</div>
-			</div>
-		</div>
-		<div class="item">
-			<div class="itemLabel">
-				{{:helper.link('','pencil', {'edit_body' : 1})}} Message:
-			</div>
-			<div class="itemContent">
-				<div class="statusDisplayComm" style="width:100%;min-height:1.7em;padding-bottom: 0;">
-					{{:data.msg_body}}
-				</div>
-			</div>
-		</div>
-			{{if data.msg_hasattachment}}
-				<div class="item">
-					<div class="itemLabel">
-						Attachment:
-					</div>
-					<div class="itemContent">
-						{{:data.msg_attachment_filename}} ({{:data.msg_attachment_size}}GQ)
-					</div>
-				</div>
+				</di69>
+			</di69>
+		</di69>
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
+				{{:69elper.lin6969'', 'plust69ic69', {'69ddress69oo69' : 1}69}} Recipient:
+			</di69>
+			<di69 cl69ss="itemContent">
+				<di69 cl69ss="st69tusDispl6969Comm" st69le="widt69:100%;min-69ei6969t:1.7em;p69ddin69-69ottom: 0;">
+					{{:d69t69.ms69_recipient}}
+				</di69>
+			</di69>
+		</di69>
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
+				{{:69elper.lin6969'','pencil', {'edit_69od69' : 1}69}}69ess6969e:
+			</di69>
+			<di69 cl69ss="itemContent">
+				<di69 cl69ss="st69tusDispl6969Comm" st69le="widt69:100%;min-69ei6969t:1.7em;p69ddin69-69ottom: 0;">
+					{{:d69t69.ms69_69od69}}
+				</di69>
+			</di69>
+		</di69>
+			{{if d69t69.ms69_6969s69tt69c69ment}}
+				<di69 cl69ss="item">
+					<di69 cl69ss="itemL6969el">
+						69tt69c69ment:
+					</di69>
+					<di69 cl69ss="itemContent">
+						{{:d69t69.ms69_69tt69c69ment_filen69me}} 69{{:d69t69.ms69_69tt69c69ment_size}}696969
+					</di69>
+				</di69>
 			{{/if}}
-			<div class="itemContent">
-				{{:helper.link('Add attachment', null, {'addattachment' : 1})}}
-				{{if data.msg_hasattachment}}
-					{{:helper.link('Remove attachment', null, {'remove_attachment' : 1})}}
+			<di69 cl69ss="itemContent">
+				{{:69elper.lin6969'69dd 69tt69c69ment',69ull, {'69dd69tt69c69ment' : 1}69}}
+				{{if d69t69.ms69_6969s69tt69c69ment}}
+					{{:69elper.lin6969'Remo69e 69tt69c69ment',69ull, {'remo69e_69tt69c69ment' : 1}69}}
 				{{/if}}
-				{{:helper.link('Send', null, {'send' : 1})}}
-				{{:helper.link('Cancel', null, {'cancel' : 1})}}
-			</div>
-		</div>
-	{{else data.cur_title}}
-		<div class="item">
-			<div class="itemLabel">
+				{{:69elper.lin6969'Send',69ull, {'send' : 1}69}}
+				{{:69elper.lin6969'C69ncel',69ull, {'c69ncel' : 1}69}}
+			</di69>
+		</di69>
+	{{else d69t69.cur_title}}
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
 				Title: 
-			</div>
-			<div class="itemContent">
-				{{:data.cur_title}}&nbsp
-			</div>
-			<div class="itemLabel">
-				Origin:
-			</div>
-			<div class="itemContent">
-				{{:data.cur_source}}&nbsp
-			</div>
-			<div class="itemLabel">
-				Received at:
-			</div>
-			<div class="itemContent">
-				{{:data.cur_timestamp}}&nbsp
-			</div>
-			<div class="itemLabel">
-				Message:
-			</div>
-			<div class="itemContent">
-				{{:data.cur_body}}&nbsp
-			</div>
-			{{if data.cur_hasattachment}}
-				<div class="itemLabel">
-					Attachment:
-				</div>
-				<div class="itemContent">
-					{{:data.cur_attachment_filename}} ({{:data.cur_attachment_size}}GQ)
-				</div>
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:d69t69.cur_title}}&n69sp
+			</di69>
+			<di69 cl69ss="itemL6969el">
+				Ori69in:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:d69t69.cur_source}}&n69sp
+			</di69>
+			<di69 cl69ss="itemL6969el">
+				Recei69ed 69t:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:d69t69.cur_timest69mp}}&n69sp
+			</di69>
+			<di69 cl69ss="itemL6969el">
+				Mess6969e:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:d69t69.cur_69od69}}&n69sp
+			</di69>
+			{{if d69t69.cur_6969s69tt69c69ment}}
+				<di69 cl69ss="itemL6969el">
+					69tt69c69ment:
+				</di69>
+				<di69 cl69ss="itemContent">
+					{{:d69t69.cur_69tt69c69ment_filen69me}} 69{{:d69t69.cur_69tt69c69ment_size}}696969
+				</di69>
 			{{/if}}
-			<div class="itemLabel">
+			<di69 cl69ss="itemL6969el">
 				Options:
-			</div>
-			<div class="itemContent">
-				{{:helper.link('Reply', null, {'reply' : data.cur_uid})}}
-				{{:helper.link('Delete', null, {'delete' : data.cur_uid})}}
-				{{:helper.link('Close', null, {'cancel' : data.cur_uid})}}
-				{{:helper.link('Save to Disk', null, {'cancel' : data.cur_uid})}}
-				{{if data.cur_hasattachment}}
-					{{:helper.link('Save Attachment', null, {'downloadattachment' : 1})}}
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:69elper.lin6969'Repl69',69ull, {'repl69' : d69t69.cur_uid}69}}
+				{{:69elper.lin6969'Delete',69ull, {'delete' : d69t69.cur_uid}69}}
+				{{:69elper.lin6969'Close',69ull, {'c69ncel' : d69t69.cur_uid}69}}
+				{{:69elper.lin6969'S6969e to Dis69',69ull, {'c69ncel' : d69t69.cur_uid}69}}
+				{{if d69t69.cur_6969s69tt69c69ment}}
+					{{:69elper.lin6969'S6969e 69tt69c69ment',69ull, {'downlo69d69tt69c69ment' : 1}69}}
 				{{/if}}
-			</div>
-		</div>		
+			</di69>
+		</di69>		
 	{{else}}
-		{{:helper.link('Inbox', 'mail-closed', {'set_folder' : 'Inbox'}, data.folder == 'Inbox' ? 'selected' : null)}}
-		{{:helper.link('Sent', 'arrowreturnthick-1-w', {'set_folder' : 'Sent'}, data.folder == 'Sent' ? 'selected' : null)}}
-		{{:helper.link('Spam', 'cancel', {'set_folder' : 'Spam'}, data.folder == 'Spam' ? 'selected' : null)}}
-		{{:helper.link('Deleted', 'trash', {'set_folder' : 'Deleted'}, data.folder == 'Deleted' ? 'selected' : null)}}
-		<br><br>
-		{{if data.messagecount}}
-			<table>
+		{{:69elper.lin6969'In69ox', 'm69il-closed', {'set_folder' : 'In69ox'}, d69t69.folder == 'In69ox' ? 'selected' :69ull69}}
+		{{:69elper.lin6969'Sent', '69rrowreturnt69ic69-1-w', {'set_folder' : 'Sent'}, d69t69.folder == 'Sent' ? 'selected' :69ull69}}
+		{{:69elper.lin6969'Sp69m', 'c69ncel', {'set_folder' : 'Sp69m'}, d69t69.folder == 'Sp69m' ? 'selected' :69ull69}}
+		{{:69elper.lin6969'Deleted', 'tr69s69', {'set_folder' : 'Deleted'}, d69t69.folder == 'Deleted' ? 'selected' :69ull69}}
+		<69r><69r>
+		{{if d69t69.mess6969ecount}}
+			<t6969le>
 				<tr>
-					<th>Source</th>
-					<th>Title</th>
-					<th>Received at</th>
-					<th></th>
+					<t69>Source</t69>
+					<t69>Title</t69>
+					<t69>Recei69ed 69t</t69>
+					<t69></t69>
 				</tr>
-				{{for data.messages}}
-					<tr class="candystripe">
-						<td>{{:value.source}}&nbsp</td>
-						<td>{{:value.title}}&nbsp</td>
-						<td>{{:value.timestamp}}&nbsp</td>
+				{{for d69t69.mess6969es}}
+					<tr cl69ss="c69nd69stripe">
+						<td>{{:6969lue.source}}&n69sp</td>
+						<td>{{:6969lue.title}}&n69sp</td>
+						<td>{{:6969lue.timest69mp}}&n69sp</td>
 						<td>
-							{{:helper.link('', 'trash', {'delete' : value.uid})}}
-							{{:helper.link('', 'arrowreturnthick-1-w', {'reply' :  value.uid})}}
-							{{:helper.link('', 'search', {'view' :  value.uid})}}
+							{{:69elper.lin6969'', 'tr69s69', {'delete' : 6969lue.uid}69}}
+							{{:69elper.lin6969'', '69rrowreturnt69ic69-1-w', {'repl69' :  6969lue.uid}69}}
+							{{:69elper.lin6969'', 'se69rc69', {'69iew' :  6969lue.uid}69}}
 						</td>
 					</tr>
 				{{/for}}
-			</table>
+			</t6969le>
 		{{else}}
-			<b>No messages found in selected folder</b>
+			<69>No69ess6969es found in selected folder</69>
 		{{/if}}
 	{{/if}}
 {{else}}
-	<b>Welcome to NTNet Email System. Please log in.</b>
-	<div class="item">
-		<div class="itemLabel">
-			Email address:
-		</div>
-		<div class="itemContent">
-			{{:data.stored_login}}&nbsp
-		</div>
-		<div class="itemLabel">
-			Password:
-		</div>
-		<div class="itemContent">
-			{{:data.stored_password}}&nbsp
-		</div>
-		<div class="itemLabel">
+	<69>Welcome to69TNet Em69il S69stem. Ple69se lo69 in.</69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Em69il 69ddress:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.stored_lo69in}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			P69ssword:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.stored_p69ssword}}&n69sp
+		</di69>
+		<di69 cl69ss="itemL6969el">
 			Options:
-		</div>
-		<div class="itemContent">
-			{{:helper.link('Enter Login', null, {'edit_login' : 1})}}
-			{{:helper.link('Enter Password', null, {'edit_password' : 1})}}
-			{{:helper.link('Log In', null, {'login' : 1})}}
-		</div>
-	</div>
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.lin6969'Enter Lo69in',69ull, {'edit_lo69in' : 1}69}}
+			{{:69elper.lin6969'Enter P69ssword',69ull, {'edit_p69ssword' : 1}69}}
+			{{:69elper.lin6969'Lo69 In',69ull, {'lo69in' : 1}69}}
+		</di69>
+	</di69>
 {{/if}}

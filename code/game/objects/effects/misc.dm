@@ -7,21 +7,21 @@
 	density = TRUE
 	anchored = FALSE
 
-// nt magik
+// nt69agik
 /obj/effect/overlay/nt_construction
 	name = "neotheology construct"
 	desc = "It shimmers and glows a little."
 	icon = 'icons/effects/nt_construction.dmi'
 	icon_state = "rcd_short"
 	layer = ABOVE_MOB_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity =69OUSE_OPACITY_TRANSPARENT
 	alpha = 128
 
 /obj/effect/overlay/nt_construction/proc/cleanup()
 	spawn(5)
 		light.destroy()
 	spawn(20)
-		qdel(src)
+		69del(src)
 
 /obj/effect/overlay/nt_construction/New(loc, lifetime)
 	..(loc)

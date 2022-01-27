@@ -26,43 +26,43 @@
 	return -1
 
 /obj/machinery/portable_atmospherics/canister/sleeping_agent
-	name = "Canister: \[N2O]"
+	name = "Canister: \69N2O69"
 	icon_state = "redws"
 	canister_color = "redws"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/nitrogen
-	name = "Canister: \[N2]"
+	name = "Canister: \69N269"
 	icon_state = "red"
 	canister_color = "red"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/prechilled
-	name = "Canister: \[N2 (Cooling)]"
+	name = "Canister: \69N2 (Cooling)69"
 
 /obj/machinery/portable_atmospherics/canister/oxygen
-	name = "Canister: \[O2]"
+	name = "Canister: \69O269"
 	icon_state = "blue"
 	canister_color = "blue"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled
-	name = "Canister: \[O2 (Cryo)]"
+	name = "Canister: \69O2 (Cryo)69"
 
 /obj/machinery/portable_atmospherics/canister/plasma
-	name = "Canister \[Plasma]"
+	name = "Canister \69Plasma69"
 	icon_state = "orange"
 	canister_color = "orange"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide
-	name = "Canister \[CO2]"
+	name = "Canister \69CO269"
 	icon_state = "black"
 	canister_color = "black"
 	can_label = 0
 
 /obj/machinery/portable_atmospherics/canister/air
-	name = "Canister \[Air]"
+	name = "Canister \69Air69"
 	icon_state = "grey"
 	canister_color = "grey"
 	can_label = 0
@@ -75,23 +75,23 @@
 	can_label = 1
 
 /obj/machinery/portable_atmospherics/canister/empty/oxygen
-	name = "Canister: \[O2]"
+	name = "Canister: \69O269"
 	icon_state = "blue"
 	canister_color = "blue"
 /obj/machinery/portable_atmospherics/canister/empty/plasma
-	name = "Canister \[Plasma]"
+	name = "Canister \69Plasma69"
 	icon_state = "orange"
 	canister_color = "orange"
 /obj/machinery/portable_atmospherics/canister/empty/nitrogen
-	name = "Canister \[N2]"
+	name = "Canister \69N269"
 	icon_state = "red"
 	canister_color = "red"
 /obj/machinery/portable_atmospherics/canister/empty/carbon_dioxide
-	name = "Canister \[CO2]"
+	name = "Canister \69CO269"
 	icon_state = "black"
 	canister_color = "black"
 /obj/machinery/portable_atmospherics/canister/empty/sleeping_agent
-	name = "Canister \[N2O]"
+	name = "Canister \69N2O69"
 	icon_state = "redws"
 	canister_color = "redws"
 
@@ -134,11 +134,11 @@ update_flag
 
 	if (src.destroyed)
 		src.overlays = 0
-		src.icon_state = text("[]-1", src.canister_color)
+		src.icon_state = text("6969-1", src.canister_color)
 		return
 
-	if(icon_state != "[canister_color]")
-		icon_state = "[canister_color]"
+	if(icon_state != "69canister_color69")
+		icon_state = "69canister_color69"
 
 	if(check_change()) //Returns 1 if no change needed to icons.
 		return
@@ -203,7 +203,7 @@ update_flag
 
 		if((air_contents.temperature > 0) && (pressure_delta > 0))
 			var/transfer_moles = calculate_transfer_moles(air_contents, environment, pressure_delta)
-			transfer_moles = min(transfer_moles, (release_flow_rate/air_contents.volume)*air_contents.total_moles) //flow rate limit
+			transfer_moles =69in(transfer_moles, (release_flow_rate/air_contents.volume)*air_contents.total_moles) //flow rate limit
 
 			var/returnval = pump_gas_passive(src, air_contents, environment, transfer_moles)
 			if(returnval >= 0)
@@ -237,29 +237,29 @@ update_flag
 		healthcheck()
 	..()
 
-/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/portable_atmospherics/canister/attackby(var/obj/item/I,69ar/mob/user)
 
 	if(isrobot(user) && istype(I, /obj/item/tank/jetpack))
 		var/datum/gas_mixture/thejetpack = I:air_contents
 		var/env_pressure = thejetpack.return_pressure()
-		var/pressure_delta = min(10*ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
+		var/pressure_delta =69in(10*ONE_ATMOSPHERE - env_pressure, (air_contents.return_pressure() - env_pressure)/2)
 		//Can not have a pressure delta that would cause environment pressure > tank pressure
 		var/transfer_moles = 0
 		if((air_contents.temperature > 0) && (pressure_delta > 0))
-			transfer_moles = pressure_delta*thejetpack.volume/(air_contents.temperature * R_IDEAL_GAS_EQUATION)//Actually transfer the gas
+			transfer_moles = pressure_delta*thejetpack.volume/(air_contents.temperature * R_IDEAL_GAS_E69UATION)//Actually transfer the gas
 			var/datum/gas_mixture/removed = air_contents.remove(transfer_moles)
 			thejetpack.merge(removed)
 			to_chat(user, "You pulse-pressurize your jetpack from the tank.")
 		return
 
-	else if(((QUALITY_BOLT_TURNING in I.tool_qualities) || ((istype(I, /obj/item/tank)) && !(src.destroyed))))
+	else if(((69UALITY_BOLT_TURNING in I.tool_69ualities) || ((istype(I, /obj/item/tank)) && !(src.destroyed))))
 		..()
 		return
 
-	else if(QUALITY_PULSING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+	else if(69UALITY_PULSING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_PULSING, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 			if(valve_open == 1)
-				to_chat(user, SPAN_WARNING("You can't seal the gasket while the valve is open!"))
+				to_chat(user, SPAN_WARNING("You can't seal the gasket while the69alve is open!"))
 				return
 			else if(sealed == FALSE)
 				to_chat(user, "You seal the gasket with a pulse of electricity.")
@@ -267,42 +267,42 @@ update_flag
 				desc = "<font color='#8a0808'><i>The gasket has been sealed shut!</i></font>"
 				return
 			else if(sealed == TRUE)
-				to_chat(user, "You zap the gasket's seal, unlocking it with a voltaic crackle.")
+				to_chat(user, "You zap the gasket's seal, unlocking it with a69oltaic crackle.")
 				sealed = FALSE
 				return
 
 	else
-		visible_message(SPAN_WARNING("\The [user] hits \the [src] with \a [I]!"))
+		visible_message(SPAN_WARNING("\The 69user69 hits \the 69src69 with \a 69I69!"))
 		src.health -= I.force
 		src.add_fingerprint(user)
 		healthcheck()
 
 	SSnano.update_uis(src) // Update all NanoUIs attached to src
 
-/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_ai(var/mob/user as69ob)
 	return src.attack_hand(user)
 
-/obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as mob)
+/obj/machinery/portable_atmospherics/canister/attack_hand(var/mob/user as69ob)
 	return src.ui_interact(user)
 
-/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/portable_atmospherics/canister/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
 	if (src.destroyed)
 		return
 
 	// this is the data which will be sent to the ui
-	var/data[0]
-	data["name"] = name
-	data["canLabel"] = can_label ? 1 : 0
-	data["portConnected"] = connected_port ? 1 : 0
-	data["tankPressure"] = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
-	data["releasePressure"] = round(release_pressure ? release_pressure : 0)
-	data["minReleasePressure"] = round(ONE_ATMOSPHERE/10)
-	data["maxReleasePressure"] = round(10*ONE_ATMOSPHERE)
-	data["valveOpen"] = valve_open ? 1 : 0
+	var/data69069
+	data69"name"69 = name
+	data69"canLabel"69 = can_label ? 1 : 0
+	data69"portConnected"69 = connected_port ? 1 : 0
+	data69"tankPressure"69 = round(air_contents.return_pressure() ? air_contents.return_pressure() : 0)
+	data69"releasePressure"69 = round(release_pressure ? release_pressure : 0)
+	data69"minReleasePressure"69 = round(ONE_ATMOSPHERE/10)
+	data69"maxReleasePressure"69 = round(10*ONE_ATMOSPHERE)
+	data69"valveOpen"69 =69alve_open ? 1 : 0
 
-	data["hasHoldingTank"] = holding ? 1 : 0
+	data69"hasHoldingTank"69 = holding ? 1 : 0
 	if (holding)
-		data["holdingTank"] = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
+		data69"holdingTank"69 = list("name" = holding.name, "tankPressure" = round(holding.air_contents.return_pressure()))
 
 	// update the ui if it exists, returns null if no ui is passed/found
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -314,13 +314,13 @@ update_flag
 		ui.set_initial_data(data)
 		// open the new ui window
 		ui.open()
-		// auto update every Master Controller tick
+		// auto update every69aster Controller tick
 		ui.set_auto_update(1)
 
 /obj/machinery/portable_atmospherics/canister/Topic(href, href_list)
 
-	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict. // yeah but without SOME sort of Topic check any dick can mess with them via exploits as he pleases -walter0o
-	//First comment might be outdated.
+	//Do not use "if(..()) return" here, canisters will stop working in unpowered areas like space or on the derelict. // yeah but without SOME sort of Topic check any dick can69ess with them69ia exploits as he pleases -walter0o
+	//First comment69ight be outdated.
 	if (!istype(src.loc, /turf))
 		return 0
 
@@ -329,58 +329,58 @@ update_flag
 		onclose(usr, "canister")
 		return
 
-	if(href_list["toggle"])
+	if(href_list69"toggle"69)
 		if (sealed == TRUE)
-			to_chat(usr, SPAN_WARNING("You can't turn the valve while the gasket is sealed!"))
+			to_chat(usr, SPAN_WARNING("You can't turn the69alve while the gasket is sealed!"))
 			return
 		else if (sealed == FALSE)
 			if (valve_open)
 				if (holding)
-					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+					release_log += "Valve was <b>closed</b> by 69usr69 (69usr.ckey69), stopping the transfer into the 69holding69<br>"
 				else
-					release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the <font color='red'><b>air</b></font><br>"
+					release_log += "Valve was <b>closed</b> by 69usr69 (69usr.ckey69), stopping the transfer into the <font color='red'><b>air</b></font><br>"
 			else
 				if (holding)
-					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the [holding]<br>"
+					release_log += "Valve was <b>opened</b> by 69usr69 (69usr.ckey69), starting the transfer into the 69holding69<br>"
 				else
-					release_log += "Valve was <b>opened</b> by [usr] ([usr.ckey]), starting the transfer into the <font color='red'><b>air</b></font><br>"
+					release_log += "Valve was <b>opened</b> by 69usr69 (69usr.ckey69), starting the transfer into the <font color='red'><b>air</b></font><br>"
 					log_open()
 			valve_open = !valve_open
 
-	if (href_list["remove_tank"])
+	if (href_list69"remove_tank"69)
 		if(holding)
 			if (valve_open)
 				valve_open = 0
-				release_log += "Valve was <b>closed</b> by [usr] ([usr.ckey]), stopping the transfer into the [holding]<br>"
+				release_log += "Valve was <b>closed</b> by 69usr69 (69usr.ckey69), stopping the transfer into the 69holding69<br>"
 			if(istype(holding, /obj/item/tank))
 				holding.manipulated_by = usr.real_name
 			holding.loc = loc
 			playsound(usr.loc, 'sound/machines/Custom_extout.ogg', 100, 1)
 			holding = null
 
-	if (href_list["pressure_adj"])
-		var/diff = text2num(href_list["pressure_adj"])
+	if (href_list69"pressure_adj"69)
+		var/diff = text2num(href_list69"pressure_adj"69)
 		if(diff > 0)
-			release_pressure = min(10*ONE_ATMOSPHERE, release_pressure+diff)
+			release_pressure =69in(10*ONE_ATMOSPHERE, release_pressure+diff)
 		else
-			release_pressure = max(ONE_ATMOSPHERE/10, release_pressure+diff)
+			release_pressure =69ax(ONE_ATMOSPHERE/10, release_pressure+diff)
 
-	if (href_list["relabel"])
+	if (href_list69"relabel"69)
 		if (can_label)
 			var/list/colors = list(\
-				"\[N2O\]" = "redws", \
-				"\[N2\]" = "red", \
-				"\[O2\]" = "blue", \
-				"\[Plasma\]" = "orange", \
-				"\[CO2\]" = "black", \
-				"\[Air\]" = "grey", \
-				"\[CAUTION\]" = "yellow", \
+				"\69N2O\69" = "redws", \
+				"\69N2\69" = "red", \
+				"\69O2\69" = "blue", \
+				"\69Plasma\69" = "orange", \
+				"\69CO2\69" = "black", \
+				"\69Air\69" = "grey", \
+				"\69CAUTION\69" = "yellow", \
 			)
 			var/label = input("Choose canister label", "Gas canister") as null|anything in colors
 			if (label)
-				src.canister_color = colors[label]
-				src.icon_state = colors[label]
-				src.name = "Canister: [label]"
+				src.canister_color = colors69label69
+				src.icon_state = colors69label69
+				src.name = "Canister: 69label69"
 
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 	src.add_fingerprint(usr)
@@ -391,14 +391,14 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/plasma/New()
 	..()
 
-	src.air_contents.adjust_gas("plasma", MolesForPressure())
+	src.air_contents.adjust_gas("plasma",69olesForPressure())
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/oxygen/New()
 	..()
 
-	src.air_contents.adjust_gas("oxygen", MolesForPressure())
+	src.air_contents.adjust_gas("oxygen",69olesForPressure())
 	src.update_icon()
 	return 1
 
@@ -411,14 +411,14 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/New()
 	..()
 
-	air_contents.adjust_gas("sleeping_agent", MolesForPressure())
+	air_contents.adjust_gas("sleeping_agent",69olesForPressure())
 	src.update_icon()
 	return 1
 
 //Dirty way to fill room with gas. However it is a bit easier to do than creating some floor/engine/n2o -rastaf0
 /obj/machinery/portable_atmospherics/canister/sleeping_agent/roomfiller/New()
 	..()
-	air_contents.gas["sleeping_agent"] = 9*4000
+	air_contents.gas69"sleeping_agent"69 = 9*4000
 	spawn(10)
 		var/turf/simulated/location = src.loc
 		if (istype(src.loc))
@@ -430,7 +430,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/nitrogen/New()
 	..()
-	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
+	src.air_contents.adjust_gas("nitrogen",69olesForPressure())
 	src.update_icon()
 	return 1
 
@@ -442,7 +442,7 @@ update_flag
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
 	..()
-	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
+	src.air_contents.adjust_gas("carbon_dioxide",69olesForPressure())
 	src.update_icon()
 	return 1
 
@@ -450,28 +450,28 @@ update_flag
 /obj/machinery/portable_atmospherics/canister/air/New()
 	..()
 	var/list/air_mix = StandardAirMix()
-	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
+	src.air_contents.adjust_multi("oxygen", air_mix69"oxygen"69, "nitrogen", air_mix69"nitrogen"69)
 
 	src.update_icon()
 	return 1
 
 
 
-// Special types used for engine setup admin verb, they contain double amount of that of normal canister.
+// Special types used for engine setup admin69erb, they contain double amount of that of normal canister.
 /obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/New()
 	..()
-	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
+	src.air_contents.adjust_gas("nitrogen",69olesForPressure())
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/New()
 	..()
-	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
+	src.air_contents.adjust_gas("carbon_dioxide",69olesForPressure())
 	src.update_icon()
 	return 1
 
 /obj/machinery/portable_atmospherics/canister/plasma/engine_setup/New()
 	..()
-	src.air_contents.adjust_gas("plasma", MolesForPressure())
+	src.air_contents.adjust_gas("plasma",69olesForPressure())
 	src.update_icon()
 	return 1

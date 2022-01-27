@@ -16,7 +16,7 @@
 
 /obj/item/clothing/mask/muzzle/tape
 	name = "length of tape"
-	desc = "A robust DIY muzzle!"
+	desc = "A robust DIY69uzzle!"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "tape_cross"
 	item_state = null
@@ -24,18 +24,18 @@
 
 /obj/item/clothing/mask/muzzle/New()
     ..()
-    say_messages = list("Mmfph!", "Mmmf mrrfff!", "Mmmf mnnf!")
+    say_messages = list("Mmfph!", "Mmmf69rrfff!", "Mmmf69nnf!")
     say_verbs = list("mumbles", "says")
 
-// Clumsy folks can't take the mask off themselves.
-/obj/item/clothing/mask/muzzle/attack_hand(mob/user as mob)
+// Clumsy folks can't take the69ask off themselves.
+/obj/item/clothing/mask/muzzle/attack_hand(mob/user as69ob)
 	if(user.wear_mask == src && !user.IsAdvancedToolUser())
 		return 0
 	..()
 
 /obj/item/clothing/mask/surgical
-	name = "sterile mask"
-	desc = "A sterile mask designed to help prevent the spread of diseases."
+	name = "sterile69ask"
+	desc = "A sterile69ask designed to help prevent the spread of diseases."
 	icon_state = "sterile"
 	item_state = "sterile"
 	w_class = ITEM_SIZE_SMALL
@@ -59,8 +59,8 @@
 	AddComponent(/datum/component/clothing_sanity_protection, NORMAL_MASK_SANITY_COEFF_BUFF)
 
 /obj/item/clothing/mask/thief
-	name = "mastermind's mask"
-	desc = "A white mask with some strange drawings. Designed to hide the wearer's face"
+	name = "mastermind's69ask"
+	desc = "A white69ask with some strange drawings. Designed to hide the wearer's face"
 	icon_state = "dallas"
 	flags_inv = HIDEFACE
 	w_class = ITEM_SIZE_SMALL
@@ -81,18 +81,18 @@
 	AddComponent(/datum/component/clothing_sanity_protection, THIEF_MASK_SANITY_COEFF_BUFF)
 
 /obj/item/clothing/mask/thief/wolf
-	name = "technician's mask"
+	name = "technician's69ask"
 	icon_state = "wolf"
 
 /obj/item/clothing/mask/thief/hoxton
-	name = "fugitive's mask"
+	name = "fugitive's69ask"
 	icon_state = "hoxton"
 
 /obj/item/clothing/mask/thief/chains
-	name = "enforcer's mask"
+	name = "enforcer's69ask"
 	icon_state = "chains"
 
-//Adminbus versions with extremly high armor, should never spawn in game
+//Adminbus69ersions with extremly high armor, should never spawn in game
 /obj/item/clothing/mask/thief/adminspawn
 	spawn_blacklisted = TRUE
 	body_parts_covered = HEAD|FACE
@@ -106,20 +106,20 @@
 	)
 
 /obj/item/clothing/mask/thief/adminspawn/wolf
-	name = "technician's mask"
+	name = "technician's69ask"
 	icon_state = "wolf"
 
 /obj/item/clothing/mask/thief/adminspawn/hoxton
-	name = "fugitive's mask"
+	name = "fugitive's69ask"
 	icon_state = "hoxton"
 
 /obj/item/clothing/mask/thief/adminspawn/chains
-	name = "enforcer's mask"
+	name = "enforcer's69ask"
 	icon_state = "chains"
 
 /obj/item/clothing/mask/fakemoustache
-	name = "fake moustache"
-	desc = "Warning: moustache is fake."
+	name = "fake69oustache"
+	desc = "Warning:69oustache is fake."
 	icon_state = "fake-moustache"
 	flags_inv = HIDEFACE
 	body_parts_covered = 0
@@ -133,7 +133,7 @@
 	body_parts_covered = 0
 	style_coverage = COVERS_WHOLE_FACE
 
-//scarves (fit in in mask slot)
+//scarves (fit in in69ask slot)
 /obj/item/clothing/mask/scarf
 	name = "blue neck scarf"
 	desc = "A blue neck scarf."
@@ -217,8 +217,8 @@
 	item_state = "redscarf"
 
 /obj/item/clothing/mask/pig
-	name = "pig mask"
-	desc = "A rubber pig mask."
+	name = "pig69ask"
+	desc = "A rubber pig69ask."
 	icon_state = "pig"
 	item_state = "pig"
 	flags_inv = HIDEFACE|BLOCKHAIR
@@ -232,8 +232,8 @@
 	AddComponent(/datum/component/clothing_sanity_protection, NORMAL_MASK_SANITY_COEFF_BUFF)
 
 /obj/item/clothing/mask/horsehead
-	name = "horse head mask"
-	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
+	name = "horse head69ask"
+	desc = "A69ask69ade of soft69inyl and latex, representing the head of a horse."
 	icon_state = "horsehead"
 	item_state = "horsehead"
 	flags_inv = HIDEFACE|BLOCKHAIR
@@ -244,15 +244,15 @@
 
 /obj/item/clothing/mask/horsehead/New()
 	..()
-	// The horse mask doesn't cause voice changes by default, the wizard spell changes the flag as necessary
+	// The horse69ask doesn't cause69oice changes by default, the wizard spell changes the flag as necessary
 	say_messages = list("NEEIIGGGHHHH!", "NEEEIIIIGHH!", "NEIIIGGHH!", "HAAWWWWW!", "HAAAWWW!")
 	say_verbs = list("whinnies", "neighs", "says")
 	AddComponent(/datum/component/clothing_sanity_protection, NORMAL_MASK_SANITY_COEFF_BUFF)
 
 
 /obj/item/clothing/mask/ai
-	name = "camera MIU"
-	desc = "Allows for direct mental connection to accessible camera networks."
+	name = "camera69IU"
+	desc = "Allows for direct69ental connection to accessible camera networks."
 	icon_state = "s-ninja"
 	item_state = "s-ninja"
 	flags_inv = HIDEFACE
@@ -266,7 +266,7 @@
 	. = ..()
 	eye = new(src)
 
-/obj/item/clothing/mask/ai/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/ai/equipped(var/mob/user,69ar/slot)
 	..(user, slot)
 	if(slot == slot_wear_mask)
 		eye.owner = user
@@ -299,7 +299,7 @@
 	price_tag = 20
 	style = STYLE_LOW
 
-/obj/item/clothing/mask/bandana/equipped(var/mob/user, var/slot)
+/obj/item/clothing/mask/bandana/equipped(var/mob/user,69ar/slot)
 	switch(slot)
 		if(slot_wear_mask) //Mask is the default for all the settings
 			flags_inv = HIDEFACE
@@ -309,7 +309,7 @@
 		if(slot_head)
 			flags_inv = 0
 			body_parts_covered = HEAD
-			icon_state = "[initial(icon_state)]_up"
+			icon_state = "69initial(icon_state)69_up"
 			style_coverage = COVERS_HAIR
 
 	return ..()

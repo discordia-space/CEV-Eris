@@ -39,7 +39,7 @@
 /mob/living/simple_animal/hostile/tree/FindTarget()
 	. = ..()
 	if(.)
-		visible_message("growls at [.]")
+		visible_message("growls at 69.69")
 
 /mob/living/simple_animal/hostile/tree/AttackingTarget()
 	. =..()
@@ -47,7 +47,7 @@
 	if(istype(L))
 		if(prob(15))
 			L.Weaken(3)
-			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
+			L.visible_message(SPAN_DANGER("\the 69src69 knocks down \the 69L69!"))
 
 /mob/living/simple_animal/hostile/tree/death()
 	..(null,"is hacked into pieces!")

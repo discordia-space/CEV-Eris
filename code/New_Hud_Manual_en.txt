@@ -1,118 +1,118 @@
-//existing overlays: flash, pain, blind, damageoverlay, blurry, druggy, nvg, thermal, meson, science
-Used global variables:
-GLOB.HUDdatums - here datums with subtype /datum/hud are contained, using association datum's name = datum itself
+//existin69 overlays: flash, pain, blind, dama69eoverlay, blurry, dru6969y,69v69, thermal,69eson, science
+Used 69lobal69ariables:
+69LOB.HUDdatums - here datums with subtype /datum/hud are contained, usin69 association datum's69ame = datum itself
 
 ________________________________________________________________________________________________________________________
 Datum /datum/hud
-This datum contains information about HUD: name, elements etc.
+This datum contains information about HUD:69ame, elements etc.
 
 
-name - datum's name
-list/HUDneed - a list of necessary elements (e.g. healthbar). Using this list mob's HUDneed and HUDprocess is filling
-list/slot_data - a list of inventory elements. Using this list mob's HUDinventory is filling
+name - datum's69ame
+list/HUDneed - a list of69ecessary elements (e.69. healthbar). Usin69 this list69ob's HUDneed and HUDprocess is fillin69
+list/slot_data - a list of inventory elements. Usin69 this list69ob's HUDinventory is fillin69
 icon/icon - used dmi file
-HUDfrippery - a list of HUD frippery. Using this list mob's HUDfrippery is filling
-HUDoverlays - a list of "technical" elements. Using this list mob's HUDtech is filling and mob's HUDprocess is complemented
-ConteinerData - information for functions /obj/item/storage/proc/space_orient_objs and /obj/item/storage/proc/slot_orient_objs.
-IconUnderlays - a list of underlays for HUD's elements via "max" version. May be empty.
-MinStyleFlag - a flag, which denotes if a HUD's type has "min" version. Take the values 1 or 0
+HUDfrippery - a list of HUD frippery. Usin69 this list69ob's HUDfrippery is fillin69
+HUDoverlays - a list of "technical" elements. Usin69 this list69ob's HUDtech is fillin69 and69ob's HUDprocess is complemented
+ConteinerData - information for functions /obj/item/stora69e/proc/space_orient_objs and /obj/item/stora69e/proc/slot_orient_objs.
+IconUnderlays - a list of underlays for HUD's elements69ia "max"69ersion.69ay be empty.
+MinStyleFla69 - a fla69, which denotes if a HUD's type has "min"69ersion. Take the69alues 1 or 0
 
 An example of element in HUDneed list:
-"health"      = list("type" = /obj/screen/health, "loc" = "16,6", "minloc" = "15,7", "background" = "back1"),
+"health"      = list("type" = /obj/screen/health, "loc" = "16,6", "minloc" = "15,7", "back69round" = "back1"),
 
 Description of the entered data:
-"health" - HUD's name and ID
-"type" - HUD's type, needed in order that system know what to create exactly
-"loc" - position on a screen in a "max" version
-"minloc" - position on a screen in a "min". Optional. used if MinStyleFlag = 1
-"background" - underlay used in the "max" version. Name is taken from IconUnderlays. Optional.
+"health" - HUD's69ame and ID
+"type" - HUD's type,69eeded in order that system know what to create exactly
+"loc" - position on a screen in a "max"69ersion
+"minloc" - position on a screen in a "min". Optional. used if69inStyleFla69 = 1
+"back69round" - underlay used in the "max"69ersion.69ame is taken from IconUnderlays. Optional.
 
 An example of element in HUDoverlays list:
-"damageoverlay" = list("type" = /obj/screen/damageoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
+"dama69eoverlay" = list("type" = /obj/screen/dama69eoverlay, "loc" = "1,1", "icon" =  'icons/mob/screen1_full.dmi'),
 
 Description of the entered data:
-"damageoverlay" - HUD's name and ID
-"type" - HUD's type, needed in order that system know what to create exactly
+"dama69eoverlay" - HUD's69ame and ID
+"type" - HUD's type,69eeded in order that system know what to create exactly
 "loc" - position on a screen
 "icon" - used dmi file, rewrites icon of a datum. Optional.
 
 An example of element in slot_data list:
-"Uniform" =   list("loc" = "2,1","minloc" = "1,2", "state" = "center",  "hideflag" = TOGGLE_INVENTORY_FLAG, "background" = "back1"),
+"Uniform" =   list("loc" = "2,1","minloc" = "1,2", "state" = "center",  "hidefla69" = TO6969LE_INVENTORY_FLA69, "back69round" = "back1"),
 
 Description of entered data:
-"Uniform" - slot's name
-"loc" - position on a screen in a "max" version
-"minloc" position on a screen in a "min". Optional. used if MinStyleFlag = 1
-"hideflag" - used for functions that hides HUD's elements, such as /obj/screen/toggle_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (does not work). Optional.
-"background" - underlay used in the "max" version. Name is taken from IconUnderlays. Optional.
+"Uniform" - slot's69ame
+"loc" - position on a screen in a "max"69ersion
+"minloc" position on a screen in a "min". Optional. used if69inStyleFla69 = 1
+"hidefla69" - used for functions that hides HUD's elements, such as /obj/screen/to6969le_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (does69ot work). Optional.
+"back69round" - underlay used in the "max"69ersion.69ame is taken from IconUnderlays. Optional.
 
 An example of element in HUDfrippery list
-list("loc" = "1,1", "icon_state" = "frame2-2",  "hideflag" = TOGGLE_INVENTORY_FLAG),
+list("loc" = "1,1", "icon_state" = "frame2-2",  "hidefla69" = TO6969LE_INVENTORY_FLA69),
 
 Description of entered data:
-"loc" - position on a screen in a "max" version
+"loc" - position on a screen in a "max"69ersion
 "icon_state" - icon, which is taken from dmi file
-"hideflag" - used for functions that hides HUD's elements, such as /obj/screen/toggle_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (does not work). Optional.
+"hidefla69" - used for functions that hides HUD's elements, such as /obj/screen/to6969le_invetory/proc/hideobjects(), /mob/verb/button_pressed_F12 (does69ot work). Optional.
 
 ________________________________________________________________________________________________________________________
 Description of objects for HUD
 
-General type: /obj/screen
+69eneral type: /obj/screen
 
-Used unique variables:
-	var/mob/living/parentmob - mob to which HUD is tied
-	var/process_flag = 0 - flag of necessity call subprogram process()
+Used uni69ue69ariables:
+	var/mob/livin69/parentmob -69ob to which HUD is tied
+	var/process_fla69 = 0 - fla69 of69ecessity call subpro69ram process()
 
-Used subprograms:
-/Click() - for elements which works by clicking on them
-/process() - for elements that do something constantly (generally on call mob's life).
+Used subpro69rams:
+/Click() - for elements which works by clickin69 on them
+/process() - for elements that do somethin69 constantly (69enerally on call69ob's life).
 
 ________________________________________________________________________________________________________________________
 Datum /datum/species
 
-Used unique variables:
+Used uni69ue69ariables:
 var/datum/hud_data/hud - here contains a link for datum with subtype /datum/hud_data
 var/hud_type - here contains datum type /datum/hud_data for race
 
 ________________________________________________________________________________________________________________________
 Datum /datum/hud_data
 
-Used unique variables:
+Used uni69ue69ariables:
 	var/list/ProcessHUD - in this list "names" of HUD elements are introducted for initialization.
 	Example: "health"
 
-	var/list/gear - a list for HUD elements of inventory, slot's "name" is used with association.
-	Example: "i_clothing" =   slot_w_uniform,
+	var/list/69ear - a list for HUD elements of inventory, slot's "name" is used with association.
+	Example: "i_clothin69" =   slot_w_uniform,
 ________________________________________________________________________________________________________________________
-Used variables at mob's level
-/mob/living
-	var/list/HUDneed - a list of HUD elements for displaying on screen
-	var/list/HUDinventory -  a list of HUD elements, which are the "inventory" of a mob, for displaying on screen
-	var/list/HUDfrippery - a list of all the frippery (e.g. frame)
-	var/list/HUDprocess -  a list of HUD elements, which process() is needed to be called
-	var/list/HUDtech - a list of HUD elements, which are "technical" (e.g. layer for mob's blindness), for displaying on screen
-	var/defaultHUD - default HUD name which is used by mob
+Used69ariables at69ob's level
+/mob/livin69
+	var/list/HUDneed - a list of HUD elements for displayin69 on screen
+	var/list/HUDinventory -  a list of HUD elements, which are the "inventory" of a69ob, for displayin69 on screen
+	var/list/HUDfrippery - a list of all the frippery (e.69. frame)
+	var/list/HUDprocess -  a list of HUD elements, which process() is69eeded to be called
+	var/list/HUDtech - a list of HUD elements, which are "technical" (e.69. layer for69ob's blindness), for displayin69 on screen
+	var/defaultHUD - default HUD69ame which is used by69ob
 
 ________________________________________________________________________________________________________________________
-Used subprograms at mob's level
-/mob/proc/create_HUD() - subprogram for creating HUD elements
-/mob/living/proc/destroy_HUD() - subprogram for destroying HUD elements
-/mob/living/proc/show_HUD() - subprogram for displaying HUD elements at client's
+Used subpro69rams at69ob's level
+/mob/proc/create_HUD() - subpro69ram for creatin69 HUD elements
+/mob/livin69/proc/destroy_HUD() - subpro69ram for destroyin69 HUD elements
+/mob/livin69/proc/show_HUD() - subpro69ram for displayin69 HUD elements at client's
 
-/mob/living/proc/check_HUD() - basic subprogram which analyzes "correctness" of a HUD, and create/display elements on screen
-/mob/living/proc/check_HUDdatum() - checks current mob's datum for correctness, returns 1, if all is correct, or 0 in any other case
-/mob/living/proc/check_HUDinventory() - checks mob's variable HUDinventory for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
-/mob/living/proc/check_HUDneed() - checks mob's variable HUDneed for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
-/mob/living/proc/check_HUDfrippery() - checks mob's variable HUDfrippery for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
-/mob/living/proc/check_HUDprocess() - checks mob's variable HUDprocess for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
-/mob/living/proc/check_HUDtech() - checks mob's variable HUDtech for correctness, returns 1, if all is correct, or 0 in any other case. (does not use, but exists)
+/mob/livin69/proc/check_HUD() - basic subpro69ram which analyzes "correctness" of a HUD, and create/display elements on screen
+/mob/livin69/proc/check_HUDdatum() - checks current69ob's datum for correctness, returns 1, if all is correct, or 0 in any other case
+/mob/livin69/proc/check_HUDinventory() - checks69ob's69ariable HUDinventory for correctness, returns 1, if all is correct, or 0 in any other case. (does69ot use, but exists)
+/mob/livin69/proc/check_HUDneed() - checks69ob's69ariable HUDneed for correctness, returns 1, if all is correct, or 0 in any other case. (does69ot use, but exists)
+/mob/livin69/proc/check_HUDfrippery() - checks69ob's69ariable HUDfrippery for correctness, returns 1, if all is correct, or 0 in any other case. (does69ot use, but exists)
+/mob/livin69/proc/check_HUDprocess() - checks69ob's69ariable HUDprocess for correctness, returns 1, if all is correct, or 0 in any other case. (does69ot use, but exists)
+/mob/livin69/proc/check_HUDtech() - checks69ob's69ariable HUDtech for correctness, returns 1, if all is correct, or 0 in any other case. (does69ot use, but exists)
 
-The following subprograms creates elements in the corresponding arrays
-/mob/living/proc/create_HUDinventory() - in mob's HUDinventory
-/mob/living/proc/create_HUDneed() - in mob's HUDneed
-/mob/living/proc/create_HUDfrippery() - in mob's HUDfrippery
-/mob/living/proc/create_HUDprocess() - in mob's HUDprocess
-/mob/living/proc/create_HUDtech() - in mob's HUDtech
+The followin69 subpro69rams creates elements in the correspondin69 arrays
+/mob/livin69/proc/create_HUDinventory() - in69ob's HUDinventory
+/mob/livin69/proc/create_HUDneed() - in69ob's HUDneed
+/mob/livin69/proc/create_HUDfrippery() - in69ob's HUDfrippery
+/mob/livin69/proc/create_HUDprocess() - in69ob's HUDprocess
+/mob/livin69/proc/create_HUDtech() - in69ob's HUDtech
 
 ________________________________________________________________________________________________________________________
 How does this work
@@ -120,13 +120,13 @@ How does this work
 
 
 ________________________________________________________________________________________________________________________
-An agreement for single style
+An a69reement for sin69le style
 
-1) By rewriting the code for mob's suptype features, create new file with the naming "[type_name]_hud". E.g. human_hud.dm, robot_hud.dm.
-2) By creating new subprogram for work with the system, write its naming ang add in the end _HUD. E.g. create_HUD(), show_HUD().
-2.1) By working with variables, add variable's naming. E.g. check_HUDfrippery()
-3) By rewriting the code for features of subtype /obj/screen, create new file with the naming "[HUDname]_screen_object",
-if you are creating elements for "race", create file with naming "[species_name]_[HUDname]_screen_object".
+1) By rewritin69 the code for69ob's suptype features, create69ew file with the69amin69 "69type_name69_hud". E.69. human_hud.dm, robot_hud.dm.
+2) By creatin6969ew subpro69ram for work with the system, write its69amin69 an69 add in the end _HUD. E.69. create_HUD(), show_HUD().
+2.1) By workin69 with69ariables, add69ariable's69amin69. E.69. check_HUDfrippery()
+3) By rewritin69 the code for features of subtype /obj/screen, create69ew file with the69amin69 "69HUDnam6969_screen_object",
+if you are creatin69 elements for "race", create file with69amin69 "69species_nam6969_69HUDna69e69_screen_object".
 NOTE: "screen_object.dmi" contains "base" code.
-4)All subprograms which are responsible for checking smth (check_HUDdatum(), check_HUDinventory() etc.) should not contain code which does not related with checking,
-e.g warning output. Subprograms which are responsible for checking must give the check result.
+4)All subpro69rams which are responsible for checkin69 smth (check_HUDdatum(), check_HUDinventory() etc.) should69ot contain code which does69ot related with checkin69,
+e.69 warnin69 output. Subpro69rams which are responsible for checkin6969ust 69ive the check result.

@@ -25,7 +25,7 @@
 	smoothing_iterations = 2
 	flora_prob = 5
 	large_flora_prob = 20
-	megafauna_spawn_prob = 2 //Remember to change this if more types are added.
+	megafauna_spawn_prob = 2 //Remember to change this if69ore types are added.
 	flora_diversity = 3
 	water_level_max = 3
 	water_level_min = 2
@@ -45,7 +45,7 @@
 	name = "tar"
 	icon = 'icons/turf/shrouded.dmi'
 	icon_state = "shrouded_tar"
-	desc = "A pool of viscous and sticky tar."
+	desc = "A pool of69iscous and sticky tar."
 	movement_delay = 12
 	reagent_type = /datum/reagent/toxin/tar
 	dirt_color = "#3e3960"
@@ -62,5 +62,5 @@
 	dirt_color = "#3e3960"
 
 /turf/simulated/floor/exoplanet/shrouded/New()
-	icon_state = "shrouded[rand(0,8)]"
+	icon_state = "shrouded69rand(0,8)69"
 	..()

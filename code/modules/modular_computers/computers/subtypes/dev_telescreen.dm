@@ -19,14 +19,14 @@
 
 /obj/item/modular_computer/telescreen/New()
 	..()
-	// Allows us to create "north bump" "south bump" etc. named objects, for more comfortable mapping.
+	// Allows us to create "north bump" "south bump" etc.69amed objects, for69ore comfortable69apping.
 	name = initial(name)
 
-/obj/item/modular_computer/telescreen/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/item/modular_computer/telescreen/attackby(var/obj/item/W as obj,69ar/mob/user as69ob)
 	if(QUALITY_PRYING in W.tool_qualities)
 		var/choice
 		if(!anchored)
-			choice = input(user, "Where do you want to place \the [src]?", "Offset selection") in list("North", "South", "West", "East", "This tile", "Cancel")
+			choice = input(user, "Where do you want to place \the 69src69?", "Offset selection") in list("North", "South", "West", "East", "This tile", "Cancel")
 			if(choice == "Cancel")
 				return
 		if(W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
@@ -36,7 +36,7 @@
 				screen_on = FALSE
 				pixel_x = 0
 				pixel_y = 0
-				to_chat(user, "You unsecure \the [src].")
+				to_chat(user, "You unsecure \the 69src69.")
 			else
 				var/valid = FALSE
 				switch(choice)
@@ -58,6 +58,6 @@
 				if(valid)
 					anchored = TRUE
 					screen_on = TRUE
-					to_chat(user, "You secure \the [src].")
+					to_chat(user, "You secure \the 69src69.")
 				return
 	..()

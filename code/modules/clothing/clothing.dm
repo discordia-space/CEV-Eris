@@ -7,7 +7,7 @@
 	spawn_frequency = 10
 	spawn_tags = SPAWN_TAG_CLOTHING
 	var/flash_protection = FLASH_PROTECTION_NONE	// Sets the item's level of flash protection.
-	var/tint = TINT_NONE							// Sets the item's level of visual impairment tint.
+	var/tint = TINT_NONE							// Sets the item's level of69isual impairment tint.
 	var/list/species_restricted				// Only these species can wear this kit.
 	var/gunshot_residue								// Used by forensics.
 	var/initial_name = "clothing"					// For coloring
@@ -15,9 +15,9 @@
 	var/list/accessories = list()
 	var/list/valid_accessory_slots
 	var/list/restricted_accessory_slots
-	var/equip_delay = 0 //If set to a nonzero value, the item will require that much time to wear and remove
+	var/equip_delay = 0 //If set to a nonzero69alue, the item will require that69uch time to wear and remove
 
-	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
+	//Used for hardsuits. If false, this piece cannot be retracted while the core69odule is engaged
 	var/retract_while_active = TRUE
 
 	style = STYLE_NONE
@@ -28,16 +28,16 @@
 	var/brightness_on
 	var/on = FALSE
 
-	stiffness = 0 // Recoil caused by moving, defined in obj/item
-	obscuration = 0 // Similar to tint, but decreases firearm accuracy instead via giving minimum extra offset, defined in obj/item
+	stiffness = 0 // Recoil caused by69oving, defined in obj/item
+	obscuration = 0 // Similar to tint, but decreases firearm accuracy instead69ia giving69inimum extra offset, defined in obj/item
 
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)
 		if(!isturf(user.loc))
-			to_chat(user, "You cannot turn the light on while in this [user.loc]")
+			to_chat(user, "You cannot turn the light on while in this 69user.loc69")
 			return
 		on = !on
-		to_chat(user, "You [on ? "enable" : "disable"] the helmet light.")
+		to_chat(user, "You 69on ? "enable" : "disable"69 the helmet light.")
 		update_flashlight(user)
 	else
 		return ..(user)
@@ -62,14 +62,14 @@
 	if(on)
 
 		// Generate object icon.
-		if(!light_overlay_cache["[light_overlay]_icon"])
-			light_overlay_cache["[light_overlay]_icon"] = image('icons/obj/light_overlays.dmi', light_overlay)
-		overlays |= light_overlay_cache["[light_overlay]_icon"]
+		if(!light_overlay_cache69"69light_overlay69_icon"69)
+			light_overlay_cache69"69light_overlay69_icon"69 = image('icons/obj/light_overlays.dmi', light_overlay)
+		overlays |= light_overlay_cache69"69light_overlay69_icon"69
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
-		var/cache_key = "[light_overlay][H ? "_[H.species.get_bodytype()]" : ""]"
-		if(!light_overlay_cache[cache_key])
-			light_overlay_cache[cache_key] = image('icons/mob/light_overlays.dmi', light_overlay)
+		var/cache_key = "69light_overlay6969H ? "_69H.species.get_bodytype()69" : ""69"
+		if(!light_overlay_cache69cache_key69)
+			light_overlay_cache69cache_key69 = image('icons/mob/light_overlays.dmi', light_overlay)
 
 	if(H)
 		H.update_inv_head()
@@ -112,24 +112,24 @@
 /obj/item/clothing/pre_equip(mob/user, slot)
 	..(user, slot)
 	if (equip_delay > 0)
-		//If its currently worn, we must be taking it off
+		//If its currently worn, we69ust be taking it off
 		if (is_worn())
 			user.visible_message(
-				SPAN_NOTICE("[user] starts taking off \the [src]..."),
-				SPAN_NOTICE("You start taking off \the [src]...")
+				SPAN_NOTICE("69user69 starts taking off \the 69src69..."),
+				SPAN_NOTICE("You start taking off \the 69src69...")
 			)
 			if(!do_after(user,equip_delay,src))
-				return TRUE //A nonzero return value will cause the equipping operation to fail
+				return TRUE //A nonzero return69alue will cause the equipping operation to fail
 
 		else if (is_held() && !(slot in unworn_slots))
 			user.visible_message(
-				SPAN_NOTICE("[user] starts putting on \the [src]..."),
-				SPAN_NOTICE("You start putting on \the [src]...")
+				SPAN_NOTICE("69user69 starts putting on \the 69src69..."),
+				SPAN_NOTICE("You start putting on \the 69src69...")
 			)
 			if(!do_after(user,equip_delay,src))
-				return TRUE //A nonzero return value will cause the equipping operation to fail
+				return TRUE //A nonzero return69alue will cause the equipping operation to fail
 
-// To catch MouseDrop on clothing
+// To catch69ouseDrop on clothing
 /obj/item/clothing/MouseDrop(over_object)
 	if(!(item_flags & DRAG_AND_DROP_UNEQUIP))
 		return ..()
@@ -173,23 +173,23 @@
 	if(armorlist.len)
 		var/list/armor_vals = list()
 		for(var/i in armorlist)
-			if(armorlist[i])
+			if(armorlist69i69)
 				armor_vals += list(list(
 					"name" = i,
-					"value" = armorlist[i]
+					"value" = armorlist69i69
 					))
-		data["armor_info"] = armor_vals
+		data69"armor_info"69 = armor_vals
 	if(body_parts_covered)
 		var/body_part_string = body_part_coverage_to_string(body_parts_covered)
-		data["body_coverage"] = body_part_string
-	data["slowdown"] = slowdown
+		data69"body_coverage"69 = body_part_string
+	data69"slowdown"69 = slowdown
 	if(heat_protection)
-		data["heat_protection"] = body_part_coverage_to_string(heat_protection)
-		data["heat_protection_temperature"] = max_heat_protection_temperature
+		data69"heat_protection"69 = body_part_coverage_to_string(heat_protection)
+		data69"heat_protection_temperature"69 =69ax_heat_protection_temperature
 	if(cold_protection)
-		data["cold_protection"] = body_part_coverage_to_string(cold_protection)
-		data["cold_protection_temperature"] = min_cold_protection_temperature
-	data["equip_delay"] = equip_delay
+		data69"cold_protection"69 = body_part_coverage_to_string(cold_protection)
+		data69"cold_protection_temperature"69 =69in_cold_protection_temperature
+	data69"equip_delay"69 = equip_delay
 	return data
 
 /obj/item/clothing/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1, state = GLOB.default_state)
@@ -280,7 +280,7 @@
 
 /obj/item/clothing/ears/offear/can_be_equipped(mob/living/user, slot, disable_warning)
 	var/other_slot = (slot == slot_l_ear) ? slot_r_ear : slot_l_ear
-	if(user.get_equipped_item(other_slot) != master_item || user.get_equipped_item(slot))
+	if(user.get_equipped_item(other_slot) !=69aster_item || user.get_equipped_item(slot))
 		return FALSE
 	return ..()
 
@@ -295,12 +295,12 @@
 ///////////////////////////////////////////////////////////////////////
 //Glasses
 /*
-SEE_SELF  // can see self, no matter what
-SEE_MOBS  // can see all mobs, no matter what
-SEE_OBJS  // can see all objs, no matter what
-SEE_TURFS // can see all turfs (and areas), no matter what
+SEE_SELF  // can see self, no69atter what
+SEE_MOBS  // can see all69obs, no69atter what
+SEE_OBJS  // can see all objs, no69atter what
+SEE_TURFS // can see all turfs (and areas), no69atter what
 SEE_PIXELS// if an object is located on an unlit area, but some of its pixels are
-          // in a lit area (via pixel_x,y or smooth movement), can see those pixels
+          // in a lit area (via pixel_x,y or smooth69ovement), can see those pixels
 BLIND     // can't see anything
 */
 /obj/item/clothing/glasses
@@ -335,23 +335,23 @@ BLIND     // can't see anything
 	var/wired = 0
 	var/clipped = 0
 
-// Called just before an attack_hand(), in mob/UnarmedAttack()
+// Called just before an attack_hand(), in69ob/UnarmedAttack()
 /obj/item/clothing/gloves/proc/Touch(atom/A, proximity)
 	return 0 // return 1 to cancel attack_hand()
 
-/obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
+/obj/item/clothing/gloves/attackby(obj/item/W,69ob/user)
 	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/scalpel))
 		if (clipped)
-			to_chat(user, SPAN_NOTICE("The [src] have already been clipped!"))
+			to_chat(user, SPAN_NOTICE("The 69src69 have already been clipped!"))
 			update_icon()
 			return
 
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 100, 1)
-		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
+		user.visible_message("\red 69user69 cuts the fingertips off of the 69src69.","\red You cut the fingertips off of the 69src69.")
 
 		clipped = 1
-		name = "modified [name]"
-		desc = "[desc]<br>They have had the fingertips cut off of them."
+		name = "modified 69name69"
+		desc = "69desc69<br>They have had the fingertips cut off of them."
 		return
 
 ///////////////////////////////////////////////////////////////////////
@@ -395,7 +395,7 @@ BLIND     // can't see anything
 	else if(success == 2)
 		to_chat(user, SPAN_WARNING("You are already wearing a hat."))
 	else if(success == 1)
-		to_chat(user, SPAN_NOTICE("You crawl under \the [src]."))
+		to_chat(user, SPAN_NOTICE("You crawl under \the 69src69."))
 	return 1
 
 ///////////////////////////////////////////////////////////////////////
@@ -450,13 +450,13 @@ BLIND     // can't see anything
 		return
 
 	if(!holding)
-		to_chat(usr, SPAN_WARNING("\The [src] has no knife."))
+		to_chat(usr, SPAN_WARNING("\The 69src69 has no knife."))
 		return
 
 	holding.forceMove(get_turf(usr))
 
 	if(usr.put_in_hands(holding))
-		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
+		usr.visible_message(SPAN_DANGER("\The 69usr69 pulls a knife out of their boot!"))
 		holding = null
 		if (ishuman(usr))
 			var/mob/living/carbon/human/stylish = usr
@@ -483,7 +483,7 @@ BLIND     // can't see anything
 	else
 		..()
 
-/obj/item/clothing/shoes/attackby(obj/item/I, mob/user)
+/obj/item/clothing/shoes/attackby(obj/item/I,69ob/user)
 	var/global/knifes
 	if(istype(I,/obj/item/noslipmodule))
 		if (item_flags != 0)
@@ -507,11 +507,11 @@ BLIND     // can't see anything
 		)
 	if(can_hold_knife && is_type_in_list(I, knifes))
 		if(holding)
-			to_chat(user, SPAN_WARNING("\The [src] is already holding \a [holding]."))
+			to_chat(user, SPAN_WARNING("\The 69src69 is already holding \a 69holding69."))
 			return
 		if(user.unEquip(I, src))
 			holding = I
-			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
+			user.visible_message(SPAN_NOTICE("\The 69user69 shoves \the 69I69 into \the 69src69."))
 			verbs |= /obj/item/clothing/shoes/proc/draw_knife
 			update_icon()
 			if (ishuman(user))
@@ -523,7 +523,7 @@ BLIND     // can't see anything
 /obj/item/clothing/shoes/verb/detach_noslipmodule()
 	set name = "Detach acccessory"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if (module_inside == 1 )
 		if (noslip != 0)
@@ -536,7 +536,7 @@ BLIND     // can't see anything
 /obj/item/clothing/shoes/update_icon()
 	cut_overlays()
 	if(holding)
-		overlays += image(icon, "[icon_state]_knife")
+		overlays += image(icon, "69icon_state69_knife")
 	return ..()
 
 /obj/item/clothing/shoes/proc/handle_movement(turf/walking, running)
@@ -602,7 +602,7 @@ BLIND     // can't see anything
 	w_class = ITEM_SIZE_NORMAL
 	spawn_tags = SPAWN_TAG_CLOTHING_UNDER
 	bad_type = /obj/item/clothing/under
-	var/has_sensor = 1 //For the crew computer 2 = unable to change mode
+	var/has_sensor = 1 //For the crew computer 2 = unable to change69ode
 	var/sensor_mode = 0
 		/*
 		1 = Report living/dead
@@ -612,7 +612,7 @@ BLIND     // can't see anything
 	var/displays_id = 1
 	equip_delay = 2 SECONDS
 
-	//convenience var for defining the icon state for the overlay used when the clothing is worn.
+	//convenience69ar for defining the icon state for the overlay used when the clothing is worn.
 
 	valid_accessory_slots = list("armor","utility","armband","decor")
 	restricted_accessory_slots = list("armor","utility", "armband")
@@ -627,7 +627,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/under/New()
 	..()
-	item_state_slots[slot_w_uniform_str] = icon_state //TODO: drop or gonna use it?
+	item_state_slots69slot_w_uniform_str69 = icon_state //TODO: drop or gonna use it?
 
 /obj/item/clothing/under/examine(mob/user)
 	..(user)
@@ -637,9 +637,9 @@ BLIND     // can't see anything
 		if(1)
 			to_chat(user, "Its binary life sensors appear to be enabled.")
 		if(2)
-			to_chat(user, "Its vital tracker appears to be enabled.")
+			to_chat(user, "Its69ital tracker appears to be enabled.")
 		if(3)
-			to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+			to_chat(user, "Its69ital tracker and tracking beacon appear to be enabled.")
 
 /obj/item/clothing/under/proc/set_sensors(mob/M)
 	if(has_sensor >= 2)
@@ -661,23 +661,23 @@ BLIND     // can't see anything
 			if(1)
 				to_chat(usr, "Your suit will now report whether you are live or dead.")
 			if(2)
-				to_chat(usr, "Your suit will now report your vital lifesigns.")
+				to_chat(usr, "Your suit will now report your69ital lifesigns.")
 			if(3)
-				to_chat(usr, "Your suit will now report your vital lifesigns as well as your coordinate position.")
+				to_chat(usr, "Your suit will now report your69ital lifesigns as well as your coordinate position.")
 	else if (ismob(loc))
 		switch(sensor_mode)
 			if(0)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("\red [usr] disables [src.loc]'s remote sensing equipment.", 1)
+				for(var/mob/V in69iewers(usr, 1))
+					V.show_message("\red 69usr69 disables 69src.loc69's remote sensing equipment.", 1)
 			if(1)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[usr] turns [src.loc]'s remote sensors to binary.", 1)
+				for(var/mob/V in69iewers(usr, 1))
+					V.show_message("69usr69 turns 69src.loc69's remote sensors to binary.", 1)
 			if(2)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[usr] sets [src.loc]'s sensors to track vitals.", 1)
+				for(var/mob/V in69iewers(usr, 1))
+					V.show_message("69usr69 sets 69src.loc69's sensors to track69itals.", 1)
 			if(3)
-				for(var/mob/V in viewers(usr, 1))
-					V.show_message("[usr] sets [src.loc]'s sensors to maximum.", 1)
+				for(var/mob/V in69iewers(usr, 1))
+					V.show_message("69usr69 sets 69src.loc69's sensors to69aximum.", 1)
 
 /obj/item/clothing/under/rank
 	bad_type = /obj/item/clothing/under/rank
@@ -687,7 +687,7 @@ BLIND     // can't see anything
 	sensor_mode = 3
 	..()
 
-/obj/item/clothing/under/attackby(obj/item/I, mob/U)
+/obj/item/clothing/under/attackby(obj/item/I,69ob/U)
 	if(I.get_tool_type(usr, list(QUALITY_SCREW_DRIVING), src) && ishuman(U))
 		set_sensors(U)
 	else

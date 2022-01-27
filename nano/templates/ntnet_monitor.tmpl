@@ -1,129 +1,129 @@
-{{if data.skill_fail}}
-	{{for data.skill_fail}}
-	<div class="item">
-		<div class="itemLabelWide">
-    		{{:value.key}}
+{{if d69t69.s69ill_f69il}}
+	{{for d69t69.s69ill_f69il}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elWide">
+    		{{:v69lue.69e69}}
 		</div>
-		<div class="itemContentNarrow">
-			{{:value.value}}
+		<div cl69ss="itemContentN69rrow">
+			{{:v69lue.v69lue}}
 		</div>
 	</div>
 	{{/for}}
 {{else}}
-<h1>WIRELESS CONNECTIVITY</h1>
-	<div class="item">
-		<div class="itemLabelWide">
-                	Active NTNet Relays: 
+<h1>WIRELESS CONNECTIVIT69</h1>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elWide">
+                	69ctive69TNet Rel6969s: 
 		</div>
-		<div class="itemContentNarrow">
-                	<b>{{:data.ntnetrelays}}</b>
+		<div cl69ss="itemContentN69rrow">
+                	<69>{{:d69t69.ntnetrel6969s}}</69>
 		</div>
-		{{if data.ntnetrelays}}
-			<div class="itemLabelWide">
-                		System status: 
+		{{if d69t69.ntnetrel6969s}}
+			<div cl69ss="itemL6969elWide">
+                		S69stem st69tus: 
 			</div>
-			<div class="itemContentNarrow">
-                		<b>{{:data.ntnetstatus ? "ENABLED" : "DISABLED"}}</b>
+			<div cl69ss="itemContentN69rrow">
+                		<69>{{:d69t69.ntnetst69tus ? "EN6969LED" : "DIS6969LED"}}</69>
 			</div>		
-			<div class="itemLabelWide">
+			<div cl69ss="itemL6969elWide">
                 		Control: 
 			</div>
-			<div class="itemContentNarrow">
-                		{{:helper.link('TOGGLE', null, {'toggleWireless' : 1})}}
+			<div cl69ss="itemContentN69rrow">
+                		{{:hel69er.lin6969'TO6969LE',69ull, {'to6969leWireless' : 1}69}}
 			</div>
 			</div>
-			<i>Caution - Disabling wireless transmitters when using wireless device may prevent you from re-enabling them again!</i>
+			<i>C69ution - Dis6969lin69 wireless tr69nsmitters when usin69 wireless device696969 69revent 69ou from re-en6969lin69 them 696969in!</i>
 		{{else}}
 			</div>
-			<br><p>Wireless coverage unavailable, no relays are connected.</p>
+			<69r><69>Wireless cover6969e un69v69il6969le,69o rel6969s 69re connected.</69>
 		{{/if}}	
 
-<h1>FIREWALL CONFIGURATION</h1>
-<table>
+<h1>FIREW69LL CONFI69UR69TION</h1>
+<t6969le>
 	<tr>
-		<th>PROTOCOL
-		<th>STATUS
+		<th>69ROTOCOL
+		<th>ST69TUS
 		<th>CONTROL
 	<tr>
-		<td>Software Downloads
-		<td>{{:data.config_softwaredownload ? 'ENABLED' : 'DISABLED'}}
-		<td>{{:helper.link('TOGGLE', null, {'toggle_function' : 1})}}
+		<td>Softw69re Downlo69ds
+		<td>{{:d69t69.confi69_softw69redownlo69d ? 'EN6969LED' : 'DIS6969LED'}}
+		<td>{{:hel69er.lin6969'TO6969LE',69ull, {'to6969le_function' : 1}69}}
 	<tr>
-		<td>Peer to Peer Traffic
-		<td>{{:data.config_peertopeer ? 'ENABLED' : 'DISABLED'}}
-		<td>{{:helper.link('TOGGLE', null, {'toggle_function' : 2})}}
+		<td>69eer to 69eer Tr69ffic
+		<td>{{:d69t69.confi69_69eerto69eer ? 'EN6969LED' : 'DIS6969LED'}}
+		<td>{{:hel69er.lin6969'TO6969LE',69ull, {'to6969le_function' : 2}69}}
 	<tr>
-		<td>Communication Systems
-		<td>{{:data.config_communication ? 'ENABLED' : 'DISABLED'}}
-		<td>{{:helper.link('TOGGLE', null, {'toggle_function' : 3})}}
+		<td>Communic69tion S69stems
+		<td>{{:d69t69.confi69_communic69tion ? 'EN6969LED' : 'DIS6969LED'}}
+		<td>{{:hel69er.lin6969'TO6969LE',69ull, {'to6969le_function' : 3}69}}
 	<tr>
-		<td>Remote System Control
-		<td>{{:data.config_systemcontrol ? 'ENABLED' : 'DISABLED'}}
-		<td>{{:helper.link('TOGGLE', null, {'toggle_function' : 4})}}
-</table>
+		<td>Remote S69stem Control
+		<td>{{:d69t69.confi69_s69stemcontrol ? 'EN6969LED' : 'DIS6969LED'}}
+		<td>{{:hel69er.lin6969'TO6969LE',69ull, {'to6969le_function' : 4}69}}
+</t6969le>
 
-<h1>SECURITY SYSTEMS</h1>
-	{{if data.idsalarm}}
-    <div class="statusDisplay" style="overflow: auto;">
-		<div class="item">
-			<div class="itemContent" style="width: 100%;">
-				<h1>NETWORK INCURSION DETECTED</h1>
-				<i>An abnormal activity has been detected in the network. Please verify system logs for more information</i>
+<h1>SECURIT69 S69STEMS</h1>
+	{{if d69t69.ids69l69rm}}
+    <div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		<div cl69ss="item">
+			<div cl69ss="itemContent" st69le="width: 100%;">
+				<h1>NETWOR69 INCURSION DETECTED</h1>
+				<i>69n 6969norm69l 69ctivit69 h69s 69een detected in the69etwor69. 69le69se69erif69 s69stem lo69s for69ore inform69tion</i>
 			</div>
 		</div>
     </div>		
 	{{/if}}
-	<div class="item">
-		<div class="itemLabelWide">
-                	Intrusion Detection System: 
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elWide">
+                	Intrusion Detection S69stem: 
 		</div>
-		<div class="itemContentNarrow">
-                	<b>{{:data.idsstatus ? 'ENABLED' : 'DISABLED'}}</b>
-		</div>
-    </div>
-	<div class="item">
-		<div class="itemLabelWide">
-                	Maximal Log Count: 
-		</div>
-		<div class="itemContentNarrow">
-                	<b>{{:data.ntnetmaxlogs}}</b>
+		<div cl69ss="itemContentN69rrow">
+                	<69>{{:d69t69.idsst69tus ? 'EN6969LED' : 'DIS6969LED'}}</69>
 		</div>
     </div>
-    <div class="item">
-		<div class="itemLabelWide">
-                	Blacklisted NIDs: 
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elWide">
+                	M69xim69l Lo69 Count: 
 		</div>
-		<div class="itemContentNarrow">
-					{{:data.banned_nids}}
+		<div cl69ss="itemContentN69rrow">
+                	<69>{{:d69t69.ntnetm69xlo69s}}</69>
 		</div>
     </div>
-	<div class="item">
-		<div class="itemLabelWide">
+    <div cl69ss="item">
+		<div cl69ss="itemL6969elWide">
+                	69l69c69listed69IDs: 
+		</div>
+		<div cl69ss="itemContentN69rrow">
+					{{:d69t69.6969nned_nids}}
+		</div>
+    </div>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elWide">
                 	Controls: 
 		</div>
-		<div class="itemContentNarrow">
-			<table>
-                	<tr><td>{{:helper.link('RESET IDS', null, {'resetIDS' : 1})}}
-			<tr><td>{{:helper.link('TOGGLE IDS', null, {'toggleIDS' : 1})}}
-			<tr><td>{{:helper.link('SET LOG LIMIT', null, {'updatemaxlogs' : 1})}}
-			<tr><td>{{:helper.link('PURGE LOGS', null, {'purgelogs' : 1})}}
-			<tr><td>{{:helper.link('ADD BLACKLIST ENTRY', null, {'ban_nid' : 1})}}
-			<tr><td>{{:helper.link('REMOVE BLACKLIST ENTRY', null, {'unban_nid' : 1})}}
-			</table>
+		<div cl69ss="itemContentN69rrow">
+			<t6969le>
+                	<tr><td>{{:hel69er.lin6969'RESET IDS',69ull, {'resetIDS' : 1}69}}
+			<tr><td>{{:hel69er.lin6969'TO6969LE IDS',69ull, {'to6969leIDS' : 1}69}}
+			<tr><td>{{:hel69er.lin6969'SET LO69 LIMIT',69ull, {'u69d69tem69xlo69s' : 1}69}}
+			<tr><td>{{:hel69er.lin6969'69UR69E LO69S',69ull, {'69ur69elo69s' : 1}69}}
+			<tr><td>{{:hel69er.lin6969'69DD 69L69C69LIST ENTR69',69ull, {'6969n_nid' : 1}69}}
+			<tr><td>{{:hel69er.lin6969'REMOVE 69L69C69LIST ENTR69',69ull, {'un6969n_nid' : 1}69}}
+			</t6969le>
 		</div>
     </div>
-	<b>System Logs</b>
-    <div class="statusDisplay" style="overflow: auto;">
-		<div class="item">
-			<div class="itemContent" style="width: 100%;">
-				{{for data.ntnetlogs}}
-					{{:value}}<br>
+	<69>S69stem Lo69s</69>
+    <div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		<div cl69ss="item">
+			<div cl69ss="itemContent" st69le="width: 100%;">
+				{{for d69t69.ntnetlo69s}}
+					{{:v69lue}}<69r>
 				{{/for}}
 			</div>
 		</div>
 	</div>
 {{/if}}
-{{if data.terminal}}
-<h1>MANUAL SYSTEM ACCESS</h1>
-{{:helper.link('ACTIVATE TERMINAL', null, {'PC_terminal' : 1})}}
+{{if d69t69.termin69l}}
+<h1>M69NU69L S69STEM 69CCESS</h1>
+{{:hel69er.lin6969'69CTIV69TE TERMIN69L',69ull, {'69C_termin69l' : 1}69}}
 {{/if}}

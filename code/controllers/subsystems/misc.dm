@@ -3,7 +3,7 @@ SUBSYSTEM_DEF(misc)
 	init_order = INIT_ORDER_LATELOAD
 	flags = SS_NO_FIRE
 	var/num_exoplanets = 2
-	var/list/planet_size  //dimensions of planet zlevel, defaults to world size. Due to how maps are generated, must be (2^n+1) e.g. 17,33,65,129 etc. Map will just round up to those if set to anything other.
+	var/list/planet_size  //dimensions of planet zlevel, defaults to world size. Due to how69aps are generated,69ust be (2^n+1) e.g. 17,33,65,129 etc.69ap will just round up to those if set to anything other.
 
 /datum/controller/subsystem/misc/Initialize(timeofday)
 	if(!LAZYLEN(planet_size))
@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(misc)
 GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to lists of offsets, which point to icons
 
 /proc/initialize_cursors()
-	for(var/i = 0 to MAX_ACCURACY_OFFSET)
+	for(var/i = 0 to69AX_ACCURACY_OFFSET)
 		make_cursor_icon('icons/obj/gun_cursors/standard/standard.dmi', i)
 
 /datum/controller/subsystem/misc/proc/build_exoplanets()
@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(cursor_icons, list()) //list of icon files, which point to list
 		return
 	for(var/i = 0, i < num_exoplanets, i++)
 		var/exoplanet_type = pick(subtypesof(/obj/effect/overmap/sector/exoplanet))
-		var/obj/effect/overmap/sector/exoplanet/new_planet = new exoplanet_type(null, planet_size[1], planet_size[2])
+		var/obj/effect/overmap/sector/exoplanet/new_planet = new exoplanet_type(null, planet_size69169, planet_size69269)
 		new_planet.build_level()
 
 /datum/controller/subsystem/misc/proc/build_junk_field()

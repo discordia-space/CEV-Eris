@@ -1,303 +1,303 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/turf/simulated/wall/r_wall,
-/area/template_noop)
-"ac" = (
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"ad" = (
-/obj/spawner/pack/tech_loot,
-/obj/effect/decal/cleanable/cobweb,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/mucus,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"ae" = (
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"af" = (
-/obj/structure/closet/crate/secure/loot,
-/turf/template_noop,
-/area/template_noop)
-"ag" = (
-/obj/structure/sign/securearea{
-	pixel_y = 32
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/tur69/template_noop,
+/area/template_noop69
+"a69" = 69
+/tur69/simulated/wall/r_wall,
+/area/template_noop69
+"ac" = 69
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"ad" = 69
+/o6969/spawner/pac69/tech_loot,
+/o6969/e6969ect/decal/cleana69le/co69we69,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/mucus,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"ae" = 69
+/o6969/spawner/pac69/tech_loot,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/closet/crate/secure/loot,
+/tur69/template_noop,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/si69n/securearea{
+	pixel_69 = 32
 	},
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"ah" = (
-/obj/structure/bed,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"ai" = (
-/obj/machinery/floodlight,
-/turf/template_noop,
-/area/template_noop)
-"aj" = (
-/obj/structure/sign/department/anomaly{
-	pixel_y = 32
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"ah" = 69
+/o6969/structure/69ed,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/69lood/drip,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"ai" = 69
+/o6969/machiner69/69loodli69ht,
+/tur69/template_noop,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/si69n/department/anomal69{
+	pixel_69 = 32
 	},
-/obj/effect/decal/cleanable/spiderling_remains,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"ak" = (
-/obj/machinery/artifact,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"al" = (
-/obj/spawner/pack/tech_loot,
-/obj/effect/decal/cleanable/mucus,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"am" = (
-/turf/simulated/floor/plating,
-/area/template_noop)
-"ao" = (
-/obj/spawner/junk,
-/turf/template_noop,
-/area/template_noop)
-"ap" = (
-/obj/structure/closet/crate,
-/turf/template_noop,
-/area/template_noop)
-"aq" = (
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"ar" = (
-/obj/structure/closet/crate/trashcart,
-/turf/template_noop,
-/area/template_noop)
-"as" = (
-/obj/structure/closet/crate/freezer/rations,
-/turf/template_noop,
-/area/template_noop)
-"at" = (
-/obj/spawner/pack/tech_loot,
-/mob/living/carbon/superior_animal/giant_spider/nurse,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"au" = (
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"av" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/o6969/e6969ect/decal/cleana69le/spiderlin69_remains,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"a69" = 69
+/o6969/machiner69/arti69act,
+/o6969/e6969ect/decal/cleana69le/co69we692,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"al" = 69
+/o6969/spawner/pac69/tech_loot,
+/o6969/e6969ect/decal/cleana69le/mucus,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"am" = 69
+/tur69/simulated/69loor/platin69,
+/area/template_noop69
+"ao" = 69
+/o6969/spawner/69un69,
+/tur69/template_noop,
+/area/template_noop69
+"ap" = 69
+/o6969/structure/closet/crate,
+/tur69/template_noop,
+/area/template_noop69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"ar" = 69
+/o6969/structure/closet/crate/trashcart,
+/tur69/template_noop,
+/area/template_noop69
+"as" = 69
+/o6969/structure/closet/crate/69reezer/rations,
+/tur69/template_noop,
+/area/template_noop69
+"at" = 69
+/o6969/spawner/pac69/tech_loot,
+/mo69/livin69/car69on/superior_animal/69iant_spider/nurse,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"au" = 69
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"av" = 69
+/o6969/structure/ta69le/standard{
+	name = "plastic ta69le 69rame"
 	},
-/obj/spawner/contraband,
-/obj/spawner/cloth/armor,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"aw" = (
-/obj/effect/decal/cleanable/mucus,
-/mob/living/carbon/superior_animal/giant_spider/hunter,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"ax" = (
-/obj/structure/bed/chair/office/light,
-/obj/structure/closet/wall_mounted/emcloset,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"ay" = (
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/o6969/spawner/contra69and,
+/o6969/spawner/cloth/armor,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"aw" = 69
+/o6969/e6969ect/decal/cleana69le/mucus,
+/mo69/livin69/car69on/superior_animal/69iant_spider/hunter,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"ax" = 69
+/o6969/structure/69ed/chair/o6969ice/li69ht,
+/o6969/structure/closet/wall_mounted/emcloset,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/ta69le/standard{
+	name = "plastic ta69le 69rame"
 	},
-/obj/item/virusdish/random,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"az" = (
-/obj/machinery/door/unpowered/simple/wood,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aA" = (
-/obj/structure/sign/biohazard{
-	pixel_y = -32
+/o6969/item/virusdish/random,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"az" = 69
+/o6969/machiner69/door/unpowered/simple/wood,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aA" = 69
+/o6969/structure/si69n/69iohazard{
+	pixel_69 = -32
 	},
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"aB" = (
-/obj/item/clothing/head/bio_hood,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aC" = (
-/obj/spawner/closet,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aE" = (
-/obj/structure/bookcase/manuals/xenoarchaeology,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aF" = (
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aG" = (
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aH" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aI" = (
-/obj/machinery/door/airlock/vault{
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"a69" = 69
+/o6969/item/clothin69/head/69io_hood,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"aC" = 69
+/o6969/spawner/closet,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aE" = 69
+/o6969/structure/69oo69case/manuals/xenoarchaeolo6969,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"a69" = 69
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aH" = 69
+/o6969/spawner/69un69,
+/o6969/spawner/69un69,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"aI" = 69
+/o6969/machiner69/door/airloc69/vault{
 	name = "Door"
 	},
-/obj/item/beartrap{
-	deployed = 1;
-	icon_state = "beartrap1"
+/o6969/item/69eartrap{
+	deplo69ed = 1;
+	icon_state = "69eartrap1"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aJ" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"aK" = (
-/obj/effect/decal/cleanable/spiderling_remains,
-/obj/structure/table/standard{
-	name = "plastic table frame"
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"a69" = 69
+/o6969/spawner/69un69,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/spiderlin69_remains,
+/o6969/structure/ta69le/standard{
+	name = "plastic ta69le 69rame"
 	},
-/obj/machinery/reagentgrinder,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aL" = (
-/obj/structure/table/rack,
-/obj/spawner/firstaid,
-/obj/spawner/tool/advanced,
-/obj/spawner/tool/advanced,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"aM" = (
-/obj/effect/decal/cleanable/vomit,
-/obj/item/tool_upgrade/productivity/red_paint,
-/obj/spawner/medical,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aN" = (
-/obj/effect/decal/cleanable/mucus,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"aO" = (
-/obj/machinery/door/airlock/vault{
+/o6969/machiner69/rea69ent69rinder,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aL" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69irstaid,
+/o6969/spawner/tool/advanced,
+/o6969/spawner/tool/advanced,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"aM" = 69
+/o6969/e6969ect/decal/cleana69le/vomit,
+/o6969/item/tool_up69rade/productivit69/red_paint,
+/o6969/spawner/medical,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aN" = 69
+/o6969/e6969ect/decal/cleana69le/mucus,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"aO" = 69
+/o6969/machiner69/door/airloc69/vault{
 	name = "Door";
-	welded = null
+	welded =69ull
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aP" = (
-/obj/machinery/door/airlock/external{
-	locked = 1
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"aP" = 69
+/o6969/machiner69/door/airloc69/external{
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aQ" = (
-/obj/effect/decal/cleanable/cobweb2,
-/obj/structure/closet/cabinet,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aR" = (
-/obj/structure/extinguisher_cabinet{
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"a69" = 69
+/o6969/e6969ect/decal/cleana69le/co69we692,
+/o6969/structure/closet/ca69inet,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aR" = 69
+/o6969/structure/extin69uisher_ca69inet{
 	pixel_x = -32
 	},
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aS" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/template_noop,
-/area/template_noop)
-"aT" = (
-/obj/machinery/door/airlock/vault{
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aS" = 69
+/o6969/spawner/69un69,
+/o6969/spawner/69un69,
+/tur69/template_noop,
+/area/template_noop69
+"aT" = 69
+/o6969/machiner69/door/airloc69/vault{
 	name = "Door"
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aU" = (
-/obj/spawner/junk,
-/obj/structure/bed/chair/office/light,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aV" = (
-/obj/item/material/harpoon,
-/obj/landmark/corpse/scientist,
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"aW" = (
-/obj/item/beartrap,
-/obj/structure/sign/department/anomaly{
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"aU" = 69
+/o6969/spawner/69un69,
+/o6969/structure/69ed/chair/o6969ice/li69ht,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aV" = 69
+/o6969/item/material/harpoon,
+/o6969/landmar69/corpse/scientist,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"aW" = 69
+/o6969/item/69eartrap,
+/o6969/structure/si69n/department/anomal69{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"aX" = (
-/obj/spawner/junk,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aY" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet/purple,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"aZ" = (
-/obj/structure/railing,
-/obj/machinery/replicator,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"ba" = (
-/obj/spawner/junkfood,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"bb" = (
-/obj/structure/table/rack,
-/obj/spawner/powercell,
-/obj/spawner/voidsuit,
-/obj/spawner/toolbox,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"bc" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet/mime,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"bd" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"be" = (
-/obj/effect/decal/cleanable/mucus,
-/turf/simulated/floor/carpet/blucarpet,
-/area/template_noop)
-"bf" = (
-/obj/spawner/junk,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/mucus,
-/mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/template_noop)
-"bg" = (
-/obj/spawner/junk,
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_y = -32
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"aX" = 69
+/o6969/spawner/69un69,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/69ed/padded,
+/o6969/item/69edsheet/purple,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"aZ" = 69
+/o6969/structure/railin69,
+/o6969/machiner69/replicator,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"69a" = 69
+/o6969/spawner/69un6969ood,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/powercell,
+/o6969/spawner/voidsuit,
+/o6969/spawner/tool69ox,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"69c" = 69
+/o6969/structure/69ed/padded,
+/o6969/item/69edsheet/mime,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"69d" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/drip,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"69e" = 69
+/o6969/e6969ect/decal/cleana69le/mucus,
+/tur69/simulated/69loor/carpet/69lucarpet,
+/area/template_noop69
+"6969" = 69
+/o6969/spawner/69un69,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/e6969ect/decal/cleana69le/mucus,
+/mo69/livin69/car69on/superior_animal/69iant_spider,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/template_noop69
+"6969" = 69
+/o6969/spawner/69un69,
+/o6969/structure/closet/wall_mounted/emcloset{
+	pixel_69 = -32
 	},
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/white,
-/area/template_noop)
-"sW" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating,
-/area/template_noop)
+/o6969/e6969ect/decal/cleana69le/69lood/drip,
+/tur69/simulated/69loor/tiled/white,
+/area/template_noop69
+"sW" = 69
+/o6969/e6969ect/window_lwall_spawn/rein69orced,
+/tur69/simulated/69loor/platin69,
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
@@ -312,172 +312,172 @@ aa
 aa
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 ao
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 aP
-ab
+a69
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 aa
-ab
+a69
 ad
 aw
 aI
 ac
 aV
 aL
-ab
-aB
+a69
+a69
 au
-ab
+a69
 ao
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
-ab
+a69
 al
-bf
+6969
 am
-aq
-aJ
+a69
+a69
 ac
 aP
 au
 aW
-ab
+a69
 aa
 "}
-(5,1,1) = {"
+695,1,169 = {"
 aa
-ab
-ab
-ab
-ab
-ag
+a69
+a69
+a69
+a69
+a69
 ac
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
 aS
 "}
-(6,1,1) = {"
+696,1,169 = {"
 aa
-ab
+a69
 ah
-aF
+a69
 aO
 aN
 aA
-ab
+a69
 aZ
 aR
 aC
-ab
+a69
 aa
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
-ab
-ak
+a69
+a69
 aH
 am
 ac
-bg
-ab
+6969
+a69
 aE
 aU
-aK
+a69
 sW
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 aa
-ab
-ab
-ab
-ab
-aj
-bd
+a69
+a69
+a69
+a69
+a69
+69d
 az
-ba
+69a
 aX
-bb
+6969
 sW
 aa
 "}
-(9,1,1) = {"
+699,1,169 = {"
 aa
-ab
+a69
 at
 au
 aT
-bd
+69d
 av
-ab
+a69
 aM
-be
-aG
+69e
+a69
 sW
 aa
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 aa
-ab
+a69
 au
 ae
 am
 ax
-ay
-ab
-aQ
-aY
-bc
-ab
+a69
+a69
+a69
+a69
+69c
+a69
 aa
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 aa
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 aa
-ab
+a69
 aa
-af
-ab
+a69
+a69
 ai
 ai
-ab
+a69
 ap
 ar
 as
-ab
+a69
 aa
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 aa
 aa
 aa

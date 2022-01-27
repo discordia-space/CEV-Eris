@@ -80,9 +80,9 @@
 	allowed_roles = list("Ironhammer Operative")
 
 /datum/gear/uniform/medspec_skirt
-	display_name = "jumpskirt, medical specialist"
+	display_name = "jumpskirt,69edical specialist"
 	path = /obj/item/clothing/under/rank/medspec/skirt
-	allowed_roles = list("Ironhammer Medical Specialist")
+	allowed_roles = list("Ironhammer69edical Specialist")
 
 /datum/gear/uniform/warden_skirt
 	display_name = "jumpskirt, warden"

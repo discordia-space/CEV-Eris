@@ -4,7 +4,7 @@
 
 /obj/item/storage/deferred/stash/sack
 	name = "hidden stash"
-	desc = "A suspiciously lumpy sack full of mystery."
+	desc = "A suspiciously lumpy sack full of69ystery."
 	icon_state = "sack"
 	item_state = "sack"
 	max_w_class = ITEM_SIZE_HUGE

@@ -21,21 +21,21 @@
 /obj/item/integrated_circuit/output/screen/any_examine(mob/user)
 	var/shown_label = ""
 	if(displayed_name && displayed_name != name)
-		shown_label = " labeled '[displayed_name]'"
+		shown_label = " labeled '69displayed_name69'"
 
-	to_chat(user, "There is \a [src][shown_label], which displays [!isnull(stuff_to_display) ? "'[stuff_to_display]'" : "nothing"].")
+	to_chat(user, "There is \a 69src6969shown_label69, which displays 69!isnull(stuff_to_display) ? "'69stuff_to_display69'" : "nothing"69.")
 
 /obj/item/integrated_circuit/output/screen/get_topic_data()
 	return stuff_to_display ? list(stuff_to_display) : list()
 
 /obj/item/integrated_circuit/output/screen/do_work()
-	var/datum/integrated_io/I = inputs[1]
+	var/datum/integrated_io/I = inputs69169
 	if(isweakref(I.data))
 		var/datum/d = I.data_as_type(/datum)
 		if(d)
-			stuff_to_display = "[d]"
+			stuff_to_display = "69d69"
 	else
-		stuff_to_display = replacetext("[I.data]", eol , "\n")
+		stuff_to_display = replacetext("69I.data69", eol , "\n")
 
 /obj/item/integrated_circuit/output/screen/large
 	name = "large screen"
@@ -47,7 +47,7 @@
 /obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
 
-	if(isliving(assembly.loc))//this whole block just returns if the assembly is neither in a mobs hands or on the ground
+	if(isliving(assembly.loc))//this whole block just returns if the assembly is neither in a69obs hands or on the ground
 		var/mob/living/H = assembly.loc
 		if(H.get_active_hand() != assembly && H.get_inactive_hand() != assembly && istype(H))
 			return
@@ -58,11 +58,11 @@
 	var/list/nearby_things = range(0, get_turf(src))
 	for(var/mob/M in nearby_things)
 		var/obj/O = assembly ? assembly : src
-		to_chat(M, SPAN("notice", "[icon2html(O.icon, world, O.icon_state)] [stuff_to_display]"))
+		to_chat(M, SPAN("notice", "69icon2html(O.icon, world, O.icon_state)69 69stuff_to_display69"))
 	if(assembly)
-		assembly.investigate_log("displayed \"[html_encode(stuff_to_display)]\" with [type].", INVESTIGATE_CIRCUIT)
+		assembly.investigate_log("displayed \"69html_encode(stuff_to_display)69\" with 69type69.", INVESTIGATE_CIRCUIT)
 	else
-		investigate_log("displayed \"[html_encode(stuff_to_display)]\" as [type].", INVESTIGATE_CIRCUIT)
+		investigate_log("displayed \"69html_encode(stuff_to_display)69\" as 69type69.", INVESTIGATE_CIRCUIT)
 
 /obj/item/integrated_circuit/output/light
 	name = "light"
@@ -98,7 +98,7 @@
 
 /obj/item/integrated_circuit/output/light/advanced
 	name = "advanced light"
-	desc = "A light that takes a hexadecimal color value and a brightness value, and can be toggled on/off by pulsing it."
+	desc = "A light that takes a hexadecimal color69alue and a brightness69alue, and can be toggled on/off by pulsing it."
 	icon_state = "light_adv"
 	complexity = 8
 	inputs = list(
@@ -124,7 +124,7 @@
 
 /obj/item/integrated_circuit/output/sound
 	name = "speaker circuit"
-	desc = "A miniature speaker is attached to this component."
+	desc = "A69iniature speaker is attached to this component."
 	icon_state = "speaker"
 	complexity = 8
 	cooldown_per_use = 4 SECONDS
@@ -145,31 +145,31 @@
 	extended_desc = list()
 	extended_desc += "The first input pin determines which sound is used. The choices are; "
 	extended_desc += jointext(sounds, ", ")
-	extended_desc += ". The second pin determines the volume of sound that is played"
-	extended_desc += ", and the third determines if the frequency of the sound will vary with each activation."
+	extended_desc += ". The second pin determines the69olume of sound that is played"
+	extended_desc += ", and the third determines if the frequency of the sound will69ary with each activation."
 	extended_desc = jointext(extended_desc, null)
 
 /obj/item/integrated_circuit/output/sound/do_work()
 	var/ID = get_pin_data(IC_INPUT, 1)
-	var/vol = volume
+	var/vol =69olume
 	var/freq = get_pin_data(IC_INPUT, 3)
 	if(!isnull(ID) && !isnull(vol))
-		var/selected_sound = sounds[ID]
+		var/selected_sound = sounds69ID69
 		if(!selected_sound)
 			return
 		vol = clamp(vol, 0, 100)
-		playsound(src, selected_sound, vol, freq, -1)
+		playsound(src, selected_sound,69ol, freq, -1)
 		var/atom/A = get_object()
-		A.investigate_log("played a sound ([selected_sound]) as [type].", INVESTIGATE_CIRCUIT)
+		A.investigate_log("played a sound (69selected_sound69) as 69type69.", INVESTIGATE_CIRCUIT)
 
 /obj/item/integrated_circuit/output/sound/on_data_written()
 	volume = get_pin_data(IC_INPUT, 2)
 	volume = clamp(volume, 0, 100)
-	power_draw_per_use =  volume * 15
+	power_draw_per_use = 69olume * 15
 
 /obj/item/integrated_circuit/output/sound/beeper
 	name = "beeper circuit"
-	desc = "Takes a sound name as an input, and will play said sound when pulsed. This circuit has a variety of beeps, boops, and buzzes to choose from."
+	desc = "Takes a sound name as an input, and will play said sound when pulsed. This circuit has a69ariety of beeps, boops, and buzzes to choose from."
 	sounds = list(
 		"beep"			= 'sound/machines/twobeep.ogg',
 		"chime"			= 'sound/machines/chime.ogg',
@@ -242,8 +242,8 @@
 
 /obj/item/integrated_circuit/output/text_to_speech
 	name = "text-to-speech circuit"
-	desc = "Takes any string as an input and will make the device say the string when pulsed."
-	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech."
+	desc = "Takes any string as an input and will69ake the device say the string when pulsed."
+	extended_desc = "This unit is69ore advanced than the plain speaker circuit, able to transpose any69alid text to speech."
 	icon_state = "speaker"
 	cooldown_per_use = 10
 	complexity = 12
@@ -258,16 +258,16 @@
 	if(!isnull(text))
 		var/atom/movable/A = get_object()
 		var/sanitized_text = sanitize(html_decode(text))
-		A.audible_message("\The [A] states, \"[sanitized_text]\"")
+		A.audible_message("\The 69A69 states, \"69sanitized_text69\"")
 		if(assembly)
-			log_say("[assembly] [ref(assembly)] : [sanitized_text]")
+			log_say("69assembly69 69ref(assembly)69 : 69sanitized_text69")
 		else
-			log_say("[name] ([type]) : [sanitized_text]")
+			log_say("69name69 (69type69) : 69sanitized_text69")
 
 /obj/item/integrated_circuit/output/text_to_speech/direct_message
-	name = "personal message circuit"
-	desc = "Takes any string as an input and will connect to brain/borg brain via antennas in body to sends message to person, if they are near"
-	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech, but person need to have cruciform inside his head"
+	name = "personal69essage circuit"
+	desc = "Takes any string as an input and will connect to brain/borg brain69ia antennas in body to sends69essage to person, if they are near"
+	extended_desc = "This unit is69ore advanced than the plain speaker circuit, able to transpose any69alid text to speech, but person need to have cruciform inside his head"
 	complexity = 14
 	inputs = list(
 		"to speech" = IC_PINTYPE_STRING,
@@ -297,10 +297,10 @@
 		var/mob/living/carbon/human/h = L
 		var/obj/item/implant/core_implant/cruciform/S = h.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(S)
-			message_before_tts = "Your [S] reciving signal: "
+			message_before_tts = "Your 69S69 reciving signal: "
 	if(istext(message_before_tts))
 		text_to_speech = sanitize(text_to_speech)
-		to_chat(L, SPAN_NOTICE("[message_before_tts][text_to_speech]"))
+		to_chat(L, SPAN_NOTICE("69message_before_tts6969text_to_speech69"))
 		activate_pin(2)
 	else
 		activate_pin(3)
@@ -308,7 +308,7 @@
 /obj/item/integrated_circuit/output/video_camera
 	name = "video camera circuit"
 	desc = "Takes a string as a name and a boolean to determine whether it is on, and uses this to be a camera linked to a list of networks you choose."
-	extended_desc = "The camera is linked to a list of camera networks of your choosing. Common choices are 'rd' for the research network, 'ss13' for the main station network (visible to AI), 'mine' for the mining network, and 'thunder' for the thunderdome network (viewable from bar)."
+	extended_desc = "The camera is linked to a list of camera networks of your choosing. Common choices are 'rd' for the research network, 'ss13' for the69ain station network (visible to AI), 'mine' for the69ining network, and 'thunder' for the thunderdome network (viewable from bar)."
 	icon_state = "video_camera"
 	w_class = ITEM_SIZE_SMALL
 	complexity = 10
@@ -362,7 +362,7 @@
 
 /obj/item/integrated_circuit/output/move_detector
 	name = "movement detection"
-	desc = "It's have a complicit gyroscope system, that activates pin if assembly moved"
+	desc = "It's have a complicit gyroscope system, that activates pin if assembly69oved"
 	category_text = "Output"
 	complexity = 4
 	inputs = list()
@@ -381,8 +381,8 @@
 
 /obj/item/integrated_circuit/output/led
 	name = "light-emitting diode"
-	desc = "RGB LED. Takes a boolean value in, and if the boolean value is 'true-equivalent', the LED will be marked as lit on examine."
-	extended_desc = "TRUE-equivalent values are: Non-empty strings, non-zero numbers, and valid refs."
+	desc = "RGB LED. Takes a boolean69alue in, and if the boolean69alue is 'true-equivalent', the LED will be69arked as lit on examine."
+	extended_desc = "TRUE-equivalent69alues are: Non-empty strings, non-zero numbers, and69alid refs."
 	complexity = 0.1
 	max_allowed = 4
 	icon_state = "led"
@@ -400,7 +400,7 @@
 	var/led_color = "#FF0000"
 
 /obj/item/integrated_circuit/output/led/get_topic_data()
-	return list("\An [initial(name)] that is currently [get_pin_data(IC_INPUT, 1) ? "lit" : "unlit."]")
+	return list("\An 69initial(name)69 that is currently 69get_pin_data(IC_INPUT, 1) ? "lit" : "unlit."69")
 
 /obj/item/integrated_circuit/output/led/on_data_written()
 	power_draw_idle = get_pin_data(IC_INPUT, 1) ? 1 : 0
@@ -413,16 +413,16 @@
 	var/text_output = "There is "
 
 	if(name == displayed_name)
-		text_output += "\an [name]"
+		text_output += "\an 69name69"
 	else
-		text_output += "\an ["\improper[name]"] labeled '[displayed_name]'"
-	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>*</font>" : "unlit"]."
+		text_output += "\an 69"\improper69name69"69 labeled '69displayed_name69'"
+	text_output += " which is currently 69get_pin_data(IC_INPUT, 1) ? "lit <font color=69led_color69>*</font>" : "unlit"69."
 	to_chat(user, text_output)
 
 /obj/item/integrated_circuit/output/screen/large
 	name = "medium screen"
 
-/obj/item/integrated_circuit/output/screen/extralarge // the subtype is called "extralarge" because tg brought back medium screens and they named the subtype /screen/large
+/obj/item/integrated_circuit/output/screen/extralarge // the subtype is called "extralarge" because tg brought back69edium screens and they named the subtype /screen/large
 	name = "large screen"
 	desc = "Takes any data type as an input and displays it to the user upon examining, and to all nearby beings when pulsed."
 	icon_state = "screen_large"
@@ -432,8 +432,8 @@
 /obj/item/integrated_circuit/output/screen/extralarge/do_work()
 	..()
 	var/obj/O = assembly ? get_turf(assembly) : loc
-	O.visible_message(SPAN("notice", "[icon2html(O.icon, world, O.icon_state)]  [stuff_to_display]"))
+	O.visible_message(SPAN("notice", "69icon2html(O.icon, world, O.icon_state)69  69stuff_to_display69"))
 	if(assembly)
-		assembly.investigate_log("displayed \"[html_encode(stuff_to_display)]\" with [type].", INVESTIGATE_CIRCUIT)
+		assembly.investigate_log("displayed \"69html_encode(stuff_to_display)69\" with 69type69.", INVESTIGATE_CIRCUIT)
 	else
-		investigate_log("displayed \"[html_encode(stuff_to_display)]\" as [type].", INVESTIGATE_CIRCUIT)
+		investigate_log("displayed \"69html_encode(stuff_to_display)69\" as 69type69.", INVESTIGATE_CIRCUIT)

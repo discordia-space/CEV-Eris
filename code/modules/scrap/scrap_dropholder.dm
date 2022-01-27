@@ -1,5 +1,5 @@
 /obj/effect/falling_effect
-	name = "you should not see this"
+	name = "you should69ot see this"
 	desc = "no data"
 	invisibility = 101
 	anchored = TRUE
@@ -25,7 +25,7 @@
 	dropped.opacity = FALSE
 	animate(dropped, pixel_y = initial_y, pixel_x = initial_x , time = 7)
 	addtimer(CALLBACK(dropped, /atom/movable.proc/end_fall), 7)
-	qdel(src)
+	69del(src)
 
 /atom/movable/proc/end_fall()
 	for(var/atom/movable/AM in loc)

@@ -37,19 +37,19 @@ SUBSYSTEM_DEF(atoms)
 		for(var/I in atoms)
 			var/atom/A = I
 			if(!A.initialized)
-				if(InitAtom(I, mapload_arg))
+				if(InitAtom(I,69apload_arg))
 					atoms -= I
 				CHECK_TICK
 	else
 		count = 0
 		for(var/atom/A in world)
 			if(!A.initialized)
-				InitAtom(A, mapload_arg)
+				InitAtom(A,69apload_arg)
 				++count
 				CHECK_TICK
 
 	if(!Master.current_runlevel)//So it only does it at roundstart
-		report_progress("Initialized [count] atom\s")
+		report_progress("Initialized 69count69 atom\s")
 
 
 	init_state = INITIALIZATION_INNEW_REGULAR
@@ -59,7 +59,7 @@ SUBSYSTEM_DEF(atoms)
 			var/atom/A = I
 			A.LateInitialize(arglist(mapload_arg))
 		if(!Master.current_runlevel)//So it only does it at roundstart
-			report_progress("Late initialized [late_loaders.len] atom\s")
+			report_progress("Late initialized 69late_loaders.len69 atom\s")
 		late_loaders.Cut()
 
 	if(atoms)
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
 	var/the_type = A.type
 	if(QDELING(A))
-		BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
+		BadInitializeCalls69the_type69 |= BAD_INIT_QDEL_BEFORE
 		return TRUE
 
 	var/start_tick = world.time
@@ -77,14 +77,14 @@ SUBSYSTEM_DEF(atoms)
 	var/result = A.Initialize(arglist(arguments))
 
 	if(start_tick != world.time)
-		BadInitializeCalls[the_type] |= BAD_INIT_SLEPT
+		BadInitializeCalls69the_type69 |= BAD_INIT_SLEPT
 
 	var/qdeleted = FALSE
 
 	if(result != INITIALIZE_HINT_NORMAL)
 		switch(result)
 			if(INITIALIZE_HINT_LATELOAD)
-				if(arguments[1])	//mapload
+				if(arguments69169)	//mapload
 					late_loaders += A
 				else
 					A.LateInitialize(arglist(arguments))
@@ -92,17 +92,17 @@ SUBSYSTEM_DEF(atoms)
 				qdel(A)
 				qdeleted = TRUE
 			else
-				BadInitializeCalls[the_type] |= BAD_INIT_NO_HINT
+				BadInitializeCalls69the_type69 |= BAD_INIT_NO_HINT
 
 	if(!A)	//possible harddel
 		qdeleted = TRUE
 	else if(!A.initialized)
-		BadInitializeCalls[the_type] |= BAD_INIT_DIDNT_INIT
+		BadInitializeCalls69the_type69 |= BAD_INIT_DIDNT_INIT
 
 	return qdeleted || QDELING(A)
 
 /datum/controller/subsystem/atoms/stat_entry(msg)
-	..("Bad Initialize Calls:[BadInitializeCalls.len]")
+	..("Bad Initialize Calls:69BadInitializeCalls.len69")
 
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
 	old_init_state = init_state
@@ -121,8 +121,8 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""
 	for(var/path in BadInitializeCalls)
-		. += "Path : [path] \n"
-		var/fails = BadInitializeCalls[path]
+		. += "Path : 69path69 \n"
+		var/fails = BadInitializeCalls69path69
 		if(fails & BAD_INIT_DIDNT_INIT)
 			. += "- Didn't call atom/Initialize()\n"
 		if(fails & BAD_INIT_NO_HINT)

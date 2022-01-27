@@ -2,15 +2,15 @@
 	holder_type = /obj/item/rig
 	wire_count = 5
 
-//The defines for the wires are moved to rig.dm, as they are used there
+//The defines for the wires are69oved to rig.dm, as they are used there
 /*
  * Rig security can be snipped to disable ID access checks on rig.
  * Rig AI override can be pulsed to toggle whether or not the AI can take control of the suit.
- * System control can be pulsed to toggle some malfunctions.
+ * System control can be pulsed to toggle some69alfunctions.
  * Interface lock can be pulsed to toggle whether or not the interface can be accessed.
  */
 
-/datum/wires/rig/UpdateCut(index, mended)
+/datum/wires/rig/UpdateCut(index,69ended)
 
 	var/obj/item/rig/rig = holder
 	switch(index)
@@ -19,7 +19,7 @@
 				rig.req_access = initial(rig.req_access)
 				rig.req_one_access = initial(rig.req_one_access)
 		if(RIG_INTERFACE_SHOCK)
-			rig.electrified = mended ? 0 : -1
+			rig.electrified =69ended ? 0 : -1
 			rig.shock(usr,100)
 		if(RIG_SYSTEM_CONTROL)
 			if(mended)
@@ -35,10 +35,10 @@
 	switch(index)
 		if(RIG_SECURITY)
 			rig.security_check_enabled = !rig.security_check_enabled
-			rig.visible_message("\The [rig] twitches as several suit locks [rig.security_check_enabled?"close":"open"].")
+			rig.visible_message("\The 69rig69 twitches as several suit locks 69rig.security_check_enabled?"close":"open"69.")
 		if(RIG_AI_OVERRIDE)
 			rig.ai_override_enabled = !rig.ai_override_enabled
-			rig.visible_message("A small red light on [rig] [rig.ai_override_enabled?"goes dead":"flick_lights on"].")
+			rig.visible_message("A small red light on 69rig69 69rig.ai_override_enabled?"goes dead":"flick_lights on"69.")
 		if(RIG_SYSTEM_CONTROL)
 			rig.malfunctioning += 10
 			if(rig.malfunction_delay <= 0)
@@ -46,7 +46,7 @@
 			rig.shock(usr,100)
 		if(RIG_INTERFACE_LOCK)
 			rig.interface_locked = !rig.interface_locked
-			rig.visible_message("\The [rig] clicks audibly as the software interface [rig.interface_locked?"darkens":"brightens"].")
+			rig.visible_message("\The 69rig69 clicks audibly as the software interface 69rig.interface_locked?"darkens":"brightens"69.")
 		if(RIG_INTERFACE_SHOCK)
 			if(rig.electrified != -1)
 				rig.electrified = 30

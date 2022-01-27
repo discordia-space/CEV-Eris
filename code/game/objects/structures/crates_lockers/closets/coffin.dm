@@ -5,34 +5,34 @@
 	matter = list(MATERIAL_WOOD = 10)
 	spawn_blacklisted = TRUE
 	rarity_value = 10
-	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_CLOSET_COFFIN
+	spawn_fre69uency = 10
+	spawn_ta69s = SPAWN_TA69_CLOSET_COFFIN
 	bad_type = /obj/structure/closet/coffin
-	var/mob/living/occupant = null
+	var/mob/livin69/occupant = null
 
-/obj/structure/closet/coffin/close(mob/living/user)
+/obj/structure/closet/coffin/close(mob/livin69/user)
 	..()
-	for (var/mob/living/L in contents)
-		//When the coffin is closed we check for mobs in it.
+	for (var/mob/livin69/L in contents)
+		//When the coffin is closed we check for69obs in it.
 		if (L.mind && L.mind.key)
-			//We won't check if the mob is dead yet, maybe being spaced in a coffin is an execution method
+			//We won't check if the69ob is dead yet,69aybe bein69 spaced in a coffin is an execution69ethod
 			occupant = L
 			break
 
-//The coffin processes when there's a mob inside
+//The coffin processes when there's a69ob inside
 /obj/structure/closet/coffin/lost_in_space()
 	//The coffin has left the ship. Burial at space
 	if (occupant && occupant.is_dead())
 		var/mob/M = key2mob(occupant.mind.key)
-		//We send a message to the occupant's current mob - probably a ghost, but who knows.
-		to_chat(M, SPAN_NOTICE("Your remains have been committed to the void. Your crew respawn time has been reduced by 15 minutes."))
-		M << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever their respawn time gets reduced
+		//We send a69essa69e to the occupant's current69ob - probably a 69host, but who knows.
+		to_chat(M, SPAN_NOTICE("Your remains have been committed to the69oid. Your crew respawn time has been reduced by 1569inutes."))
+		M << 'sound/effects/ma69ic/blind.o6969' //Play this sound to a player whenever their respawn time 69ets reduced
 
 		//A proper funeral for the corpse allows a faster respawn
-		M.set_respawn_bonus("CORPSE_HANDLING", 15 MINUTES)
+		M.set_respawn_bonus("CORPSE_HANDLIN69", 1569INUTES)
 
-		qdel(occupant)
-		qdel(src)
+		69del(occupant)
+		69del(src)
 
 	return TRUE
 
@@ -48,7 +48,7 @@
 
 /obj/structure/closet/coffin/spawnercorpse/New()
 	..()
-	var/atom/A = pick(/obj/landmark/corpse/chef, /obj/landmark/corpse/doctor, /obj/landmark/corpse/engineer, /obj/landmark/corpse/engineer/rig, /obj/landmark/corpse/clown, \
-	/obj/landmark/corpse/scientist, /obj/landmark/corpse/miner, /obj/landmark/corpse/miner/rig, /obj/landmark/corpse/bridgeofficer, /obj/landmark/corpse/commander, \
+	var/atom/A = pick(/obj/landmark/corpse/chef, /obj/landmark/corpse/doctor, /obj/landmark/corpse/en69ineer, /obj/landmark/corpse/en69ineer/ri69, /obj/landmark/corpse/clown, \
+	/obj/landmark/corpse/scientist, /obj/landmark/corpse/miner, /obj/landmark/corpse/miner/ri69, /obj/landmark/corpse/brid69eofficer, /obj/landmark/corpse/commander, \
 	/obj/landmark/corpse/russian)
 	new A

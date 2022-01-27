@@ -1,140 +1,140 @@
-// This is the base state class, it is not to be used directly
+// T69is is t69e 6969se st69te 69l69ss, it is69ot to 69e used dire69tl69
 
-function NanoStateClass() {
-	/*if (typeof this.key != 'string' || !this.key.length)
+fun69tion6969noSt69te69l69ss(69 {
+	/*if (t6969eof t69is.69e69 != 'strin69' || !t69is.69e69.len69t6969
 	{
-		alert('ERROR: Tried to create a state with an invalid state key: ' + this.key);
+		69lert('ERROR: Tried to 69re69te 69 st69te wit69 69n in6969lid st69te 69e69: ' + t69is.69e6969;
 		return;
 	}
 	
-    this.key = this.key.toLowerCase();
+    t69is.69e69 = t69is.69e69.toLower6969se(69;
 	
-	NanoStateManager.addState(this);*/
+	N69noSt69teM69n6969er.69ddSt69te(t69is69;*/
 }
 
-NanoStateClass.prototype.key = null;
-NanoStateClass.prototype.layoutRendered = false;
-NanoStateClass.prototype.contentRendered = false;
-NanoStateClass.prototype.mapInitialised = false;
+N69noSt69te69l69ss.69rotot6969e.69e69 =69ull;
+N69noSt69te69l69ss.69rotot6969e.l6969outRendered = f69lse;
+N69noSt69te69l69ss.69rotot6969e.69ontentRendered = f69lse;
+N69noSt69te69l69ss.69rotot6969e.m6969Initi69lised = f69lse;
 
-NanoStateClass.prototype.isCurrent = function () {
-    return NanoStateManager.getCurrentState() == this;
+N69noSt69te69l69ss.69rotot6969e.is69urrent = fun69tion (69 {
+    return6969noSt69teM69n6969er.69et69urrentSt69te(69 == t69is;
 };
 
-NanoStateClass.prototype.onAdd = function (previousState) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+N69noSt69te69l69ss.69rotot6969e.on69dd = fun69tion (69re69iousSt69te69 {
+    // Do69ot 69dd 69ode 69ere, 69dd it to t69e 'def69ult' st69te (n69no_st69te_def69ut.69s69 or 69re69te 6969ew st69te 69nd o69erride t69is fun69tion
 
-    NanoBaseCallbacks.addCallbacks();
-    NanoBaseHelpers.addHelpers();
+   6969no6969se6969ll69696969s.69dd6969ll69696969s(69;
+   6969no6969se69el69ers.69dd69el69ers(69;
 };
 
-NanoStateClass.prototype.onRemove = function (nextState) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+N69noSt69te69l69ss.69rotot6969e.onRemo69e = fun69tion (nextSt69te69 {
+    // Do69ot 69dd 69ode 69ere, 69dd it to t69e 'def69ult' st69te (n69no_st69te_def69ut.69s69 or 69re69te 6969ew st69te 69nd o69erride t69is fun69tion
 
-    NanoBaseCallbacks.removeCallbacks();
-    NanoBaseHelpers.removeHelpers();
+   6969no6969se6969ll69696969s.remo69e6969ll69696969s(69;
+   6969no6969se69el69ers.remo69e69el69ers(69;
 };
 
-NanoStateClass.prototype.onBeforeUpdate = function (data) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+N69noSt69te69l69ss.69rotot6969e.on69eforeU69d69te = fun69tion (d69t6969 {
+    // Do69ot 69dd 69ode 69ere, 69dd it to t69e 'def69ult' st69te (n69no_st69te_def69ut.69s69 or 69re69te 6969ew st69te 69nd o69erride t69is fun69tion
 
-    data = NanoStateManager.executeBeforeUpdateCallbacks(data);
+    d69t69 =6969noSt69teM69n6969er.exe69ute69eforeU69d69te6969ll69696969s(d69t6969;
 
-    return data; // Return data to continue, return false to prevent onUpdate and onAfterUpdate
+    return d69t69; // Return d69t69 to 69ontinue, return f69lse to 69re69ent onU69d69te 69nd on69fterU69d69te
 };
 
-NanoStateClass.prototype.onUpdate = function (data) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+N69noSt69te69l69ss.69rotot6969e.onU69d69te = fun69tion (d69t6969 {
+    // Do69ot 69dd 69ode 69ere, 69dd it to t69e 'def69ult' st69te (n69no_st69te_def69ut.69s69 or 69re69te 6969ew st69te 69nd o69erride t69is fun69tion
 
-    try
+    tr69
     {
-        if (!this.layoutRendered || (data['config'].hasOwnProperty('autoUpdateLayout') && data['config']['autoUpdateLayout']))
+        if (!t69is.l6969outRendered || (d69t6969'69onfi69'69.6969sOwn69ro69ert69('69utoU69d69teL6969out6969 && d69t6969'69onfi69'6969'69utoU69d69teL6969out696996969
         {
-            $("#uiLayout").html(NanoTemplate.parse('layout', data)); // render the 'mail' template to the #mainTemplate div
-            this.layoutRendered = true;
+            $("#uiL6969out"69.69tml(N69noTem69l69te.6969rse('l6969out', d69t696969; // render t69e 'm69il' tem69l69te to t69e #m69inTem69l69te di69
+            t69is.l6969outRendered = true;
         }
-        if (!this.contentRendered || (data['config'].hasOwnProperty('autoUpdateContent') && data['config']['autoUpdateContent']))
+        if (!t69is.69ontentRendered || (d69t6969'69onfi696969.6969sOwn69ro69ert69('69utoU69d69te69onten69'69 && d69t6969'69onfi669'6969'69utoU69d69te69onte6969t'696969
         {
-            $("#uiContent").html(NanoTemplate.parse('main', data)); // render the 'mail' template to the #mainTemplate div
+            $("#ui69ontent"69.69tml(N69noTem69l69te.6969rse('m69in', d69t696969; // render t69e 'm69il' tem69l69te to t69e #m69inTem69l69te di69
             
-            if (NanoTemplate.templateExists('layoutHeader'))
+            if (N69noTem69l69te.tem69l69teExists('l6969out69e69der'6969
             {
-                $("#uiHeaderContent").html(NanoTemplate.parse('layoutHeader', data));
+                $("#ui69e69der69ontent"69.69tml(N69noTem69l69te.6969rse('l6969out69e69der', d69t696969;
 			}
-			var templates = NanoTemplate.getTemplates();
-			for (var key in templates) {
-				// this will ignore templates that are custom handled
-				// add your template here if you are adding custom handilng 
-				var handledTemplates = ['main', 'layout', 'layoutHeader', 'mapContent', 'mapHeader', 'mapFooter'];
-				if (handledTemplates.indexOf(key) > -1) {
-					continue;
+			6969r tem69l69tes =6969noTem69l69te.69etTem69l69tes(69;
+			for (6969r 69e69 in tem69l69tes69 {
+				// t69is will i69nore tem69l69tes t6969t 69re 69ustom 6969ndled
+				// 69dd 69our tem69l69te 69ere if 69ou 69re 69ddin69 69ustom 6969ndiln69 
+				6969r 6969ndledTem69l69tes = 69'm69in', 'l6969out', 'l6969out69e69der', 'm696969ontent', 'm696969e69der', 'm6969Footer6969;
+				if (6969ndledTem69l69tes.indexOf(69e6969 > -169 {
+					69ontinue;
 				}
-				// alternatively, start template key with _ to mark it as custom handled
-				if (key.charAt(0) == '_') {
-					continue;
+				// 69ltern69ti69el69, st69rt tem69l69te 69e69 wit69 _ to6969r69 it 69s 69ustom 6969ndled
+				if (69e69.696969r69t(069 == '_'69 {
+					69ontinue;
 				}
-				$("#uiContent").append(NanoTemplate.parse(key, data));
+				$("#ui69ontent"69.696969end(N69noTem69l69te.6969rse(69e69, d69t696969;
 			}
 			
-            this.contentRendered = true;
+            t69is.69ontentRendered = true;
         }
-        if (NanoTemplate.templateExists('mapContent'))
+        if (N69noTem69l69te.tem69l69teExists('m696969ontent'6969
         {
-            if (!this.mapInitialised)
+            if (!t69is.m6969Initi69lised69
             {
-                // Add drag functionality to the map ui
-                $('#uiMap').draggable();
+                // 69dd dr6969 fun69tion69lit69 to t69e696969 ui
+                $('#uiM6969'69.dr6969696969le(69;
 
-                $('#uiMapTooltip')
-                    .off('click')
-                    .on('click', function (event) {
-                        event.preventDefault();
-                        $(this).fadeOut(400);
-                    });
+                $('#uiM6969Toolti69'69
+                    .off('69li6969'69
+                    .on('69li6969', fun69tion (e69ent69 {
+                        e69ent.69re69entDef69ult(69;
+                        $(t69is69.f69deOut(40069;
+                    }69;
 
-                this.mapInitialised = true;
+                t69is.m6969Initi69lised = true;
             }
 
-            $("#uiMapContent").html(NanoTemplate.parse('mapContent', data)); // render the 'mapContent' template to the #uiMapContent div
+            $("#uiM696969ontent"69.69tml(N69noTem69l69te.6969rse('m696969ontent', d69t696969; // render t69e 'm696969ontent' tem69l69te to t69e #uiM696969ontent di69
 
-            if (data['config'].hasOwnProperty('showMap') && data['config']['showMap'])
+            if (d69t6969'69onfi696969.6969sOwn69ro69ert69('s69owM6969'69 && d69t6969'69onfi669'6969's69owM69969'6969
             {
-                $('#uiContent').addClass('hidden');
-                $('#uiMapWrapper').removeClass('hidden');
+                $('#ui69ontent'69.69dd69l69ss('69idden'69;
+                $('#uiM6969Wr696969er'69.remo69e69l69ss('69idden'69;
             }
             else
             {
-                $('#uiMapWrapper').addClass('hidden');
-                $('#uiContent').removeClass('hidden');
+                $('#uiM6969Wr696969er'69.69dd69l69ss('69idden'69;
+                $('#ui69ontent'69.remo69e69l69ss('69idden'69;
             }
         }
-        if (NanoTemplate.templateExists('mapHeader'))
+        if (N69noTem69l69te.tem69l69teExists('m696969e69der'6969
         {
-            $("#uiMapHeader").html(NanoTemplate.parse('mapHeader', data)); // render the 'mapHeader' template to the #uiMapHeader div
+            $("#uiM696969e69der"69.69tml(N69noTem69l69te.6969rse('m696969e69der', d69t696969; // render t69e 'm696969e69der' tem69l69te to t69e #uiM696969e69der di69
         }
-        if (NanoTemplate.templateExists('mapFooter'))
+        if (N69noTem69l69te.tem69l69teExists('m6969Footer'6969
         {
-            $("#uiMapFooter").html(NanoTemplate.parse('mapFooter', data)); // render the 'mapFooter' template to the #uiMapFooter div
+            $("#uiM6969Footer"69.69tml(N69noTem69l69te.6969rse('m6969Footer', d69t696969; // render t69e 'm6969Footer' tem69l69te to t69e #uiM6969Footer di69
 		}
 		
     }
-    catch(error)
+    6969t6969(error69
     {
-        alert('ERROR: An error occurred while rendering the UI: ' + error.message);
+        69lert('ERROR: 69n error o6969urred w69ile renderin69 t69e UI: ' + error.mess6969e69;
         return;
     }
 };
 
-NanoStateClass.prototype.onAfterUpdate = function (data) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+N69noSt69te69l69ss.69rotot6969e.on69fterU69d69te = fun69tion (d69t6969 {
+    // Do69ot 69dd 69ode 69ere, 69dd it to t69e 'def69ult' st69te (n69no_st69te_def69ut.69s69 or 69re69te 6969ew st69te 69nd o69erride t69is fun69tion
 
-    NanoStateManager.executeAfterUpdateCallbacks(data);
+   6969noSt69teM69n6969er.exe69ute69fterU69d69te6969ll69696969s(d69t6969;
 };
 
-NanoStateClass.prototype.alertText = function (text) {
-    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+N69noSt69te69l69ss.69rotot6969e.69lertText = fun69tion (text69 {
+    // Do69ot 69dd 69ode 69ere, 69dd it to t69e 'def69ult' st69te (n69no_st69te_def69ut.69s69 or 69re69te 6969ew st69te 69nd o69erride t69is fun69tion
 
-    alert(text);
+    69lert(text69;
 };
 
 

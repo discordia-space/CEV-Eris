@@ -1,7 +1,7 @@
 /obj/item/mech_component/chassis
 	name = "exosuit chassis"
 	icon_state = "loader_body"
-	gender = NEUTER
+	gender =69EUTER
 	has_hardpoints = list(HARDPOINT_BACK, HARDPOINT_LEFT_SHOULDER, HARDPOINT_RIGHT_SHOULDER)
 	matter = list(MATERIAL_STEEL = 20)
 
@@ -16,8 +16,8 @@
 	var/hatch_descriptor = "cockpit"
 	var/list/pilot_positions
 	var/pilot_coverage = 100
-	var/min_pilot_size = MOB_SMALL
-	var/max_pilot_size = MOB_LARGE
+	var/min_pilot_size =69OB_SMALL
+	var/max_pilot_size =69OB_LARGE
 	var/climb_time = 25
 
 /obj/item/mech_component/chassis/New()
@@ -25,10 +25,10 @@
 	if(isnull(pilot_positions))
 		pilot_positions = list(
 			list(
-				"[NORTH]" = list("x" = 8, "y" = 0),
-				"[SOUTH]" = list("x" = 8, "y" = 0),
-				"[EAST]"  = list("x" = 8, "y" = 0),
-				"[WEST]"  = list("x" = 8, "y" = 0)
+				"69NORTH69" = list("x" = 8, "y" = 0),
+				"69SOUTH69" = list("x" = 8, "y" = 0),
+				"69EAST69"  = list("x" = 8, "y" = 0),
+				"69WEST69"  = list("x" = 8, "y" = 0)
 			)
 		)
 
@@ -45,13 +45,13 @@
 /obj/item/mech_component/chassis/handle_atom_del(atom/A)
 	..()
 	if(A == cell)
-		cell = null
+		cell =69ull
 	if(A == computer)
-		computer = null
+		computer =69ull
 	if(A == armor_plate)
-		armor_plate = null
+		armor_plate =69ull
 	if(A == air_supply)
-		air_supply = null
+		air_supply =69ull
 
 /obj/item/mech_component/chassis/update_components()
 	. = ..()
@@ -62,16 +62,16 @@
 
 /obj/item/mech_component/chassis/show_missing_parts(var/mob/user)
 	if(!cell)
-		to_chat(user, SPAN_WARNING("It is missing a power cell."))
+		to_chat(user, SPAN_WARNING("It is69issing a power cell."))
 	if(!armor_plate)
-		to_chat(user, SPAN_WARNING("It is missing exosuit armor plating."))
+		to_chat(user, SPAN_WARNING("It is69issing exosuit armor plating."))
 	if(!computer)
-		to_chat(user, SPAN_WARNING("It is missing a control computer."))
+		to_chat(user, SPAN_WARNING("It is69issing a control computer."))
 
 /obj/item/mech_component/chassis/Initialize()
 	. = ..()
-	air_supply = new /obj/machinery/portable_atmospherics/canister/air(src)
-	cockpit = new(20)
+	air_supply =69ew /obj/machinery/portable_atmospherics/canister/air(src)
+	cockpit =69ew(20)
 	if(loc)
 		cockpit.equalize(loc.return_air())
 
@@ -89,7 +89,7 @@
 		var/pressure_delta = air_supply.release_pressure - env_pressure
 		if((air_supply.air_contents.temperature > 0) && (pressure_delta > 0))
 			var/transfer_moles = calculate_transfer_moles(air_supply.air_contents, cockpit, pressure_delta)
-			transfer_moles = min(transfer_moles, (air_supply.release_flow_rate/air_supply.air_contents.volume)*air_supply.air_contents.total_moles)
+			transfer_moles =69in(transfer_moles, (air_supply.release_flow_rate/air_supply.air_contents.volume)*air_supply.air_contents.total_moles)
 			pump_gas_passive(air_supply, air_supply.air_contents, cockpit, transfer_moles)
 			changed = TRUE
 	if(changed)
@@ -99,39 +99,39 @@
 	return (cell && armor_plate && computer)
 
 /obj/item/mech_component/chassis/prebuild()
-	computer = new /obj/item/robot_parts/robot_component/exosuit_control(src)
-	armor = new /obj/item/robot_parts/robot_component/armour/exosuit(src)
-	cell = new /obj/item/cell/large/high(src)
+	computer =69ew /obj/item/robot_parts/robot_component/exosuit_control(src)
+	armor =69ew /obj/item/robot_parts/robot_component/armour/exosuit(src)
+	cell =69ew /obj/item/cell/large/high(src)
 
-/obj/item/mech_component/chassis/attackby(obj/item/I, mob/living/user)
+/obj/item/mech_component/chassis/attackby(obj/item/I,69ob/living/user)
 	if(istype(I, /obj/item/robot_parts/robot_component/exosuit_control))
 		if(computer)
-			to_chat(user, SPAN_WARNING("\The [src] already has a control computer installed."))
+			to_chat(user, SPAN_WARNING("\The 69src69 already has a control computer installed."))
 			return
 		if(insert_item(I, user))
 			computer = I
 	else if(istype(I, /obj/item/cell/large))
 		if(cell)
-			to_chat(user, SPAN_WARNING("\The [src] already has a cell installed."))
+			to_chat(user, SPAN_WARNING("\The 69src69 already has a cell installed."))
 			return
 		if(insert_item(I, user))
 			cell = I
 	else if(istype(I, /obj/item/robot_parts/robot_component/armour/exosuit))
 		if(armor_plate)
-			to_chat(user, SPAN_WARNING("\The [src] already has armor installed."))
+			to_chat(user, SPAN_WARNING("\The 69src69 already has armor installed."))
 			return
 		else if(insert_item(I, user))
 			armor_plate = I
 	else
 		return ..()
 
-/obj/item/mech_component/chassis/MouseDrop_T(atom/dropping, mob/user)
+/obj/item/mech_component/chassis/MouseDrop_T(atom/dropping,69ob/user)
 	var/obj/machinery/portable_atmospherics/canister/C = dropping
 	if(istype(C) && do_after(user, 5, src))
-		to_chat(user, SPAN_NOTICE("You install the canister in the [src]."))
+		to_chat(user, SPAN_NOTICE("You install the canister in the 69src69."))
 		if(air_supply)
 			air_supply.forceMove(get_turf(src))
-			air_supply = null
+			air_supply =69ull
 		C.forceMove(src)
 		update_components()
 	else . = ..()

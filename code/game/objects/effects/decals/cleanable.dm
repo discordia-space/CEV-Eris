@@ -8,7 +8,7 @@
 
 /obj/effect/decal/cleanable/clean_blood(ignore = 0)
 	if(!ignore)
-		qdel(src)
+		69del(src)
 		return
 	..()
 

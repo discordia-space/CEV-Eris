@@ -1,5 +1,5 @@
 /obj/item/gun/projectile/revolver/capgun
-	name = "FS REV .357 \"Miller\"" //for that epic clown robbery meme
+	name = "FS REV .357 \"Miller\"" //for that epic clown robbery69eme
 	desc = "Looks almost like the real thing! Ages 8 and up."
 	icon_state = "revolver"
 	item_state = "revolver"

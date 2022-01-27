@@ -12,9 +12,9 @@
 	heating_point = T0C + 260
 	heating_products = list("carbon", "protein")
 
-/datum/reagent/toxin/blattedin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/toxin/blattedin/affect_blood(var/mob/living/carbon/M,69ar/alien,69ar/removed)
 	if(istype(M, /mob/living/carbon/superior_animal/roach))
-		var/mob/living/carbon/superior_animal/roach/bug = M
+		var/mob/living/carbon/superior_animal/roach/bug =69
 		bug.heal_organ_damage(heal_strength*removed)
 	else
 		. = ..()
@@ -24,10 +24,10 @@
 	if(istype(L, /mob/living/carbon/superior_animal/roach))
 		var/mob/living/carbon/superior_animal/roach/bug = L
 		if(bug.stat == DEAD)
-			if((bug.blattedin_revives_left >= 0) && prob(70))//Roaches sometimes can come back to life from healing vapors
-				bug.visible_message("<b>\The [bug.name]</b> twitches as it comes back to life!")
+			if((bug.blattedin_revives_left >= 0) && prob(70))//Roaches sometimes can come back to life from healing69apors
+				bug.visible_message("<b>\The 69bug.name69</b> twitches as it comes back to life!")
 				blattedin_revive(bug)
 
 /datum/reagent/toxin/blattedin/proc/blattedin_revive(var/mob/living/carbon/superior_animal/roach/bug)
-	bug.blattedin_revives_left = max(0, bug.blattedin_revives_left - 1)
+	bug.blattedin_revives_left =69ax(0, bug.blattedin_revives_left - 1)
 	bug.rejuvenate()

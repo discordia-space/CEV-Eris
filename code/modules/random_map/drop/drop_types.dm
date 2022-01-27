@@ -8,19 +8,19 @@ var/global/list/datum/supply_drop_loot/supply_drop
 
 /datum/supply_drop_loot
 	var/name = ""
-	var/container = null
-	var/list/contents = null
+	var/container =69ull
+	var/list/contents =69ull
 
 /datum/supply_drop_loot/proc/contents()
 	return contents
 
 /datum/supply_drop_loot/proc/drop(turf/T)
-	var/C = container ? new container(T) : T
+	var/C = container ?69ew container(T) : T
 	for(var/content in contents())
 		new content(C)
 
 /datum/supply_drop_loot/dd_SortValue()
-	return name
+	return69ame
 
 /datum/supply_drop_loot/lasers
 	name = "Lasers"

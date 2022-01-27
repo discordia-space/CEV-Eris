@@ -1,19 +1,19 @@
-#define MALFUNCTION_NONE 0
-#define MALFUNCTION_TEMPORARY 1
-#define MALFUNCTION_PERMANENT 2
+#define69ALFUNCTION_NONE 0
+#define69ALFUNCTION_TEMPORARY 1
+#define69ALFUNCTION_PERMANENT 2
 
 /obj/item/implant
 	name = "implant"
 	icon = 'icons/obj/device.dmi'
 	icon_state = "implant_health"
 	w_class = ITEM_SIZE_TINY
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_GLASS = 1)
 	var/implanted = FALSE
 	var/mob/living/carbon/human/wearer
 	var/obj/item/organ/external/part
 	var/implant_overlay = "implantstorage_deathalarm"
 	var/allow_reagents = FALSE
-	var/malfunction = MALFUNCTION_NONE
+	var/malfunction =69ALFUNCTION_NONE
 	var/is_legal = TRUE
 	var/list/allowed_organs = list()
 	var/position_flag = 0
@@ -21,19 +21,19 @@
 	var/cruciform_resist = FALSE
 	var/scanner_hidden = FALSE	//Does this implant show up on the body scanner
 
-/obj/item/implant/attackby(obj/item/I, mob/user)
+/obj/item/implant/attackby(obj/item/I,69ob/user)
 	..()
 	if(istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if(is_external())
 			return
-		if(!M.implant && user.unEquip(src, M))
+		if(!M.implant && user.unE69uip(src,69))
 			M.implant = src
 			M.update_icon()
 		return TRUE
 
 
-/obj/item/implant/proc/trigger(emote, mob/living/source)
+/obj/item/implant/proc/trigger(emote,69ob/living/source)
 /obj/item/implant/proc/activate()
 	return TRUE
 
@@ -46,28 +46,28 @@
 	return external
 
 //return TRUE for implanter icon update.
-/obj/item/implant/proc/install(mob/living/target, organ, mob/user)
+/obj/item/implant/proc/install(mob/living/target, organ,69ob/user)
 	var/obj/item/organ/external/affected
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
-		affected = H.organs_by_name[organ]
+		affected = H.organs_by_name69organ69
 		if(!affected)
 			if(allowed_organs.len)
 				organ = pick(allowed_organs)
 			else
 				organ = BP_CHEST
-		affected = H.organs_by_name[organ]
+		affected = H.organs_by_name69organ69
 
 		if(!affected)
-			to_chat(user, SPAN_WARNING("[H] is missing that body part!."))
+			to_chat(user, SPAN_WARNING("69H69 is69issing that body part!."))
 			return
 
 		if(allowed_organs && allowed_organs.len && !(organ in allowed_organs))
-			to_chat(user, SPAN_WARNING("[src] cannot be implanted in this limb."))
+			to_chat(user, SPAN_WARNING("69src69 cannot be implanted in this limb."))
 			return
 
 	if(!can_install(target, affected))
-		to_chat(user, SPAN_WARNING("You can't install [src]."))
+		to_chat(user, SPAN_WARNING("You can't install 69src69."))
 		return
 	forceMove(target)
 	wearer = target
@@ -79,14 +79,14 @@
 
 	on_install(target, affected)
 	wearer.update_implants()
-	for(var/mob/living/carbon/human/H in viewers(target))
+	for(var/mob/living/carbon/human/H in69iewers(target))
 		SEND_SIGNAL(H, COMSIG_HUMAN_INSTALL_IMPLANT, target, src)
 	return TRUE
 
-/obj/item/implant/proc/can_install(var/mob/living/target, var/obj/item/organ/external/E)
+/obj/item/implant/proc/can_install(var/mob/living/target,69ar/obj/item/organ/external/E)
 	return TRUE
 
-/obj/item/implant/proc/on_install(var/mob/living/target, var/obj/item/organ/external/E)
+/obj/item/implant/proc/on_install(var/mob/living/target,69ar/obj/item/organ/external/E)
 
 /obj/item/implant/proc/uninstall()
 	on_uninstall()
@@ -105,19 +105,19 @@
 /obj/item/implant/proc/get_data()
 	return "No information available"
 
-/obj/item/implant/proc/hear(message, mob/source)
+/obj/item/implant/proc/hear(message,69ob/source)
 
-/obj/item/implant/proc/meltdown()	//breaks it down, making implant unrecongizible
-	to_chat(wearer, "<span class='warning'>You feel something melting inside [part ? "your [part.name]" : "you"]!</span>")
+/obj/item/implant/proc/meltdown()	//breaks it down,69aking implant unrecongizible
+	to_chat(wearer, "<span class='warning'>You feel something69elting inside 69part ? "your 69part.name69" : "you"69!</span>")
 	if (part)
-		part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
+		part.take_damage(burn = 15, used_weapon = "Electronics69eltdown")
 	else
 		var/mob/living/M = wearer
 		M.apply_damage(15,BURN)
 	name = "melted implant"
-	desc = "Charred circuit in melted plastic case. Wonder what that used to be..."
+	desc = "Charred circuit in69elted plastic case. Wonder what that used to be..."
 	icon_state = "implant_melted"
-	malfunction = MALFUNCTION_PERMANENT
+	malfunction =69ALFUNCTION_PERMANENT
 
 /obj/item/implant/proc/restore()
 	name = initial(name)

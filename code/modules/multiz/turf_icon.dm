@@ -2,7 +2,7 @@
 	var/_initialized_transparency = FALSE //used only for roundstard update_icon
 	var/isTransparent = FALSE
 
-	var/image/DARKOVER = null
+	var/image/DARKOVER =69ull
 
 /turf/simulated/open
 	isTransparent = TRUE
@@ -10,7 +10,7 @@
 /turf/space
 	isTransparent = TRUE
 
-/turf/simulated/open/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
+/turf/simulated/open/update_icon(var/update_neighbors,69ar/roundstart_update = FALSE)
 	if (SSticker.current_state != GAME_STATE_PLAYING)
 		return
 
@@ -35,7 +35,7 @@
 	_initialized_transparency = TRUE
 	update_openspace() //propagate update upwards
 
-/turf/space/update_icon(var/update_neighbors, var/roundstart_update = FALSE)
+/turf/space/update_icon(var/update_neighbors,69ar/roundstart_update = FALSE)
 	if (SSticker.current_state < GAME_STATE_PLAYING)
 		return
 

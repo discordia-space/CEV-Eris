@@ -6,7 +6,7 @@
 
 /obj/item/device/electronics/integrated/wirer
 	name = "circuit wirer"
-	desc = "A small wiring tool containing a wire roll, electric soldering iron, wire cutter, and more in one package. \
+	desc = "A small wiring tool containing a wire roll, electric soldering iron, wire cutter, and69ore in one package. \
 	The wires used are generally useful for small electronics, such as circuitboards and breadboards, as opposed to larger wires \
 	used for power or data transmission."
 	icon = 'icons/obj/electronic_assemblies.dmi'
@@ -16,35 +16,35 @@
 	w_class = ITEM_SIZE_SMALL
 	var/datum/integrated_io/selected_io = null
 	var/mode = WIRE
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_GLASS = 1)
 
 /obj/item/device/electronics/integrated/wirer/update_icon()
-	icon_state = "wirer-[mode]"
+	icon_state = "wirer-69mode69"
 
-/obj/item/device/electronics/integrated/wirer/proc/wire(var/datum/integrated_io/io, mob/user)
+/obj/item/device/electronics/integrated/wirer/proc/wire(var/datum/integrated_io/io,69ob/user)
 	if(!io.holder.assembly)
-		to_chat(user, SPAN_WARNING("\The [io.holder] needs to be secured inside an assembly first."))
+		to_chat(user, SPAN_WARNING("\The 69io.holder69 needs to be secured inside an assembly first."))
 		return
 	if(mode == WIRE)
 		selected_io = io
-		to_chat(user, SPAN_NOTICE("You attach a data wire to \the [selected_io.holder]'s [selected_io.name] data channel."))
+		to_chat(user, SPAN_NOTICE("You attach a data wire to \the 69selected_io.holder69's 69selected_io.name69 data channel."))
 		mode = WIRING
 		update_icon()
 	else if(mode == WIRING)
 		if(io == selected_io)
-			to_chat(user, SPAN_WARNING("Wiring \the [selected_io.holder]'s [selected_io.name] into itself is rather pointless."))
+			to_chat(user, SPAN_WARNING("Wiring \the 69selected_io.holder69's 69selected_io.name69 into itself is rather pointless."))
 			return
 		if(io.io_type != selected_io.io_type)
-			to_chat(user, SPAN_WARNING("Those two types of channels are incompatable.  The first is a [selected_io.io_type], \
-			while the second is a [io.io_type]."))
+			to_chat(user, SPAN_WARNING("Those two types of channels are incompatable.  The first is a 69selected_io.io_type69, \
+			while the second is a 69io.io_type69."))
 			return
 		if(io.holder.assembly && io.holder.assembly != selected_io.holder.assembly)
-			to_chat(user, SPAN_WARNING("Both \the [io.holder] and \the [selected_io.holder] need to be inside the same assembly."))
+			to_chat(user, SPAN_WARNING("Both \the 69io.holder69 and \the 69selected_io.holder69 need to be inside the same assembly."))
 			return
 		selected_io.linked |= io
 		io.linked |= selected_io
 
-		to_chat(user, SPAN_NOTICE("You connect \the [selected_io.holder]'s [selected_io.name] to \the [io.holder]'s [io.name]."))
+		to_chat(user, SPAN_NOTICE("You connect \the 69selected_io.holder69's 69selected_io.name69 to \the 69io.holder69's 69io.name69."))
 		mode = WIRE
 		update_icon()
 		selected_io.holder.interact(user) // This is to update the UI.
@@ -53,31 +53,31 @@
 	else if(mode == UNWIRE)
 		selected_io = io
 		if(!io.linked.len)
-			to_chat(user, SPAN_WARNING("There is nothing connected to \the [selected_io] data channel."))
+			to_chat(user, SPAN_WARNING("There is nothing connected to \the 69selected_io69 data channel."))
 			selected_io = null
 			return
-		to_chat(user, SPAN_NOTICE("You prepare to detach a data wire from \the [selected_io.holder]'s [selected_io.name] data channel."))
+		to_chat(user, SPAN_NOTICE("You prepare to detach a data wire from \the 69selected_io.holder69's 69selected_io.name69 data channel."))
 		mode = UNWIRING
 		update_icon()
 		return
 
 	else if(mode == UNWIRING)
 		if(io == selected_io)
-			to_chat(user, SPAN_WARNING("You can't wire a pin into each other, so unwiring \the [selected_io.holder] from \
-			the same pin is rather moot."))
+			to_chat(user, SPAN_WARNING("You can't wire a pin into each other, so unwiring \the 69selected_io.holder69 from \
+			the same pin is rather69oot."))
 			return
 		if(selected_io in io.linked)
 			io.linked.Remove(selected_io)
 			selected_io.linked.Remove(io)
-			to_chat(user, SPAN_NOTICE("You disconnect \the [selected_io.holder]'s [selected_io.name] from \
-			\the [io.holder]'s [io.name]."))
+			to_chat(user, SPAN_NOTICE("You disconnect \the 69selected_io.holder69's 69selected_io.name69 from \
+			\the 69io.holder69's 69io.name69."))
 			selected_io.holder.interact(user) // This is to update the UI.
 			selected_io = null
 			mode = UNWIRE
 			update_icon()
 		else
-			to_chat(user, SPAN_WARNING("\The [selected_io.holder]'s [selected_io.name] and \the [io.holder]'s \
-			[io.name] are not connected."))
+			to_chat(user, SPAN_WARNING("\The 69selected_io.holder69's 69selected_io.name69 and \the 69io.holder69's \
+			69io.name69 are not connected."))
 			return
 	return
 
@@ -98,7 +98,7 @@
 			selected_io = null
 			mode = UNWIRE
 	update_icon()
-	to_chat(user, SPAN_NOTICE("You set \the [src] to [mode]."))
+	to_chat(user, SPAN_NOTICE("You set \the 69src69 to 69mode69."))
 
 #undef WIRE
 #undef WIRING
@@ -107,7 +107,7 @@
 
 /obj/item/device/electronics/integrated/debugger
 	name = "circuit debugger"
-	desc = "This small tool allows one working with custom machinery to directly set data to a specific pin, useful for writing \
+	desc = "This small tool allows one working with custom69achinery to directly set data to a specific pin, useful for writing \
 	settings to specific circuits, or for debugging purposes.  It can also pulse activation pins."
 	icon = 'icons/obj/electronic_assemblies.dmi'
 	icon_state = "debugger"
@@ -115,10 +115,10 @@
 	w_class = ITEM_SIZE_SMALL
 	var/data_to_write = null
 	var/accepting_refs = 0
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_GLASS = 1)
 
 /obj/item/device/electronics/integrated/debugger/attack_self(mob/user)
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
+	var/type_to_use = input("Please choose a type to use.","69src69 type setting") as null|anything in list("string","number","ref", "null")
 	if(!CanInteract(user,GLOB.physical_state))
 		return
 
@@ -126,33 +126,33 @@
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = input("Now type in a string.","[src] string writing") as null|text
+			new_data = input("Now type in a string.","69src69 string writing") as null|text
 			if(istext(new_data) && CanInteract(user,GLOB.physical_state))
 				data_to_write = new_data
-				to_chat(user, "<span class='notice'>You set \the [src]'s memory to \"[new_data]\".</span>")
+				to_chat(user, "<span class='notice'>You set \the 69src69's69emory to \"69new_data69\".</span>")
 		if("number")
 			accepting_refs = 0
-			new_data = input("Now type in a number.","[src] number writing") as null|num
+			new_data = input("Now type in a number.","69src69 number writing") as null|num
 			if(isnum(new_data) && CanInteract(user,GLOB.physical_state))
 				data_to_write = new_data
-				to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to [new_data]."))
+				to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to 69new_data69."))
 		if("ref")
 			accepting_refs = 1
-			to_chat(user, SPAN_NOTICE("You turn \the [src]'s ref scanner on.  Slide it across \
-			an object for a ref of that object to save it in memory."))
+			to_chat(user, SPAN_NOTICE("You turn \the 69src69's ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in69emory."))
 		if("null")
 			data_to_write = null
-			to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing."))
+			to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to absolutely nothing."))
 
-/obj/item/device/electronics/integrated/debugger/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/device/electronics/integrated/debugger/afterattack(atom/target,69ob/living/user, proximity)
 	if(accepting_refs && proximity)
 		data_to_write = weakref(target)
-		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
-		to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
+		visible_message(SPAN_NOTICE("69user69 slides \a 69src69's over \the 69target69."))
+		to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to a reference to 69target.name69 \69Ref\69.  The ref scanner is \
 		now off."))
 		accepting_refs = 0
 
-/obj/item/device/electronics/integrated/debugger/proc/write_data(var/datum/integrated_io/io, mob/user)
+/obj/item/device/electronics/integrated/debugger/proc/write_data(var/datum/integrated_io/io,69ob/user)
 	if(io.io_type == DATA_CHANNEL)
 		io.write_data_to_pin(data_to_write)
 		var/data_to_show = data_to_write
@@ -160,10 +160,10 @@
 			var/weakref/w = data_to_write
 			var/atom/A = w.resolve()
 			data_to_show = A.name
-		to_chat(user, "<span class='notice'>You write '[data_to_write ? data_to_show : "NULL"]' to the '[io]' pin of \the [io.holder].</span>")
+		to_chat(user, "<span class='notice'>You write '69data_to_write ? data_to_show : "NULL"69' to the '69io69' pin of \the 69io.holder69.</span>")
 	else if(io.io_type == PULSE_CHANNEL)
 		io.holder.check_then_do_work(ignore_power = TRUE)
-		to_chat(user, SPAN_NOTICE("You pulse \the [io.holder]'s [io]."))
+		to_chat(user, SPAN_NOTICE("You pulse \the 69io.holder69's 69io69."))
 
 	io.holder.interact(user) // This is to update the UI.
 
@@ -240,7 +240,7 @@
 
 /obj/item/storage/bag/circuits/mini/arithmetic
 	name = "arithmetic circuit box"
-	desc = "Warning: Contains math."
+	desc = "Warning: Contains69ath."
 	icon_state = "box_arithmetic"
 
 /obj/item/storage/bag/circuits/mini/arithmetic/all // Don't believe this will ever be needed.
@@ -256,7 +256,7 @@
 
 /obj/item/storage/bag/circuits/mini/trig
 	name = "trig circuit box"
-	desc = "Danger: Contains more math."
+	desc = "Danger: Contains69ore69ath."
 	icon_state = "box_trig"
 
 /obj/item/storage/bag/circuits/mini/trig/all // Ditto
@@ -320,7 +320,7 @@
 
 /obj/item/storage/bag/circuits/mini/logic
 	name = "logic circuit box"
-	desc = "May or may not be Turing complete."
+	desc = "May or69ay not be Turing complete."
 	icon_state = "box_logic"
 
 /obj/item/storage/bag/circuits/mini/logic/all
@@ -336,7 +336,7 @@
 
 /obj/item/storage/bag/circuits/mini/time
 	name = "time circuit box"
-	desc = "No time machine parts, sadly."
+	desc = "No time69achine parts, sadly."
 	icon_state = "box_time"
 
 /obj/item/storage/bag/circuits/mini/time/all
@@ -352,7 +352,7 @@
 
 /obj/item/storage/bag/circuits/mini/reagents
 	name = "reagent circuit box"
-	desc = "Unlike most electronics, these circuits are supposed to come in contact with liquids."
+	desc = "Unlike69ost electronics, these circuits are supposed to come in contact with liquids."
 	icon_state = "box_reagents"
 
 /obj/item/storage/bag/circuits/mini/reagents/all
@@ -368,7 +368,7 @@
 
 /obj/item/storage/bag/circuits/mini/transfer
 	name = "transfer circuit box"
-	desc = "Useful for moving data representing something arbitrary to another arbitrary virtual place."
+	desc = "Useful for69oving data representing something arbitrary to another arbitrary69irtual place."
 	icon_state = "box_transfer"
 
 /obj/item/storage/bag/circuits/mini/transfer/all
@@ -414,7 +414,7 @@
 
 /obj/item/storage/bag/circuits/mini/manipulation
 	name = "manipulation box"
-	desc = "Make your machines actually useful with these."
+	desc = "Make your69achines actually useful with these."
 	icon_state = "box_manipulation"
 
 /obj/item/storage/bag/circuits/mini/manipulation/all

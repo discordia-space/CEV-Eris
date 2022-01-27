@@ -30,7 +30,7 @@ datum/category_group/underwear/dd_SortValue()
 
 /datum/category_group/underwear/undershirt
 	name = "Undershirt"
-	sort_order = 4 // Undershirts currently have the highest sort order because they may cover both underwear and socks.
+	sort_order = 4 // Undershirts currently have the highest sort order because they69ay cover both underwear and socks.
 	category_item_type = /datum/category_item/underwear/undershirt
 
 /*******************
@@ -59,7 +59,7 @@ datum/category_group/underwear/dd_SortValue()
 /datum/category_item/underwear/proc/is_default(var/gender)
 	return is_default
 
-/datum/category_item/underwear/proc/create_underwear(var/atom/location, var/list/metadata, var/iconfile)	//we iconfile from bodybuild
+/datum/category_item/underwear/proc/create_underwear(var/atom/location,69ar/list/metadata,69ar/iconfile)	//we iconfile from bodybuild
 	if(!underwear_type)
 		return
 
@@ -70,5 +70,5 @@ datum/category_group/underwear/dd_SortValue()
 	UW.icon_state = icon_state
 
 	for(var/datum/gear_tweak/gt in tweaks)
-		gt.tweak_item(UW, metadata && metadata["[gt]"] ? metadata["[gt]"] : gt.get_default())
+		gt.tweak_item(UW,69etadata &&69etadata69"69gt69"69 ?69etadata69"69gt69"69 : gt.get_default())
 	return UW

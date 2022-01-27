@@ -12,17 +12,17 @@
 /datum/poster/bay_3
 	icon_state="bsposter3"
 	name = "Paranoia"
-	desc = "This particular one warns of the dangers of trusting your co-workers too much."
+	desc = "This particular one warns of the dangers of trusting your co-workers too69uch."
 
 /datum/poster/bay_4
 	icon_state="bsposter4"
 	name = "Keep Calm"
-	desc = "This particular one is of a famous New Earth design, although a bit modified. Someone has scribbled an O over the A on the poster."
+	desc = "This particular one is of a famous New Earth design, although a bit69odified. Someone has scribbled an O over the A on the poster."
 
 /datum/poster/bay_5
 	icon_state="bsposter5"
 	name = "Martian Warlord"
-	desc = "This particular one depicts the cartoony mug of a certain Martial Warmonger."
+	desc = "This particular one depicts the cartoony69ug of a certain69artial Warmonger."
 
 /datum/poster/bay_6
 	icon_state="bsposter6"
@@ -32,7 +32,7 @@
 /datum/poster/bay_7
 	icon_state="bsposter7"
 	name = "Wasteland"
-	desc = "This particular one is of a couple of ragged gunmen, one male and one female, on top of a mound of rubble. The number \"12\" is visible on their blue jumpsuits."
+	desc = "This particular one is of a couple of ragged gunmen, one69ale and one female, on top of a69ound of rubble. The number \"12\" is69isible on their blue jumpsuits."
 
 /datum/poster/bay_8
 	icon_state="bsposter8"
@@ -62,7 +62,7 @@
 /datum/poster/bay_13
 	icon_state="bsposter13"
 	name = "User of the Arcane Arts"
-	desc = "This particular one depicts a wizard, casting a spell. You can't really make out if it's an actual photograph or a computer-generated image."
+	desc = "This particular one depicts a wizard, casting a spell. You can't really69ake out if it's an actual photograph or a computer-generated image."
 
 /datum/poster/bay_14
 	icon_state="bsposter14"
@@ -77,17 +77,17 @@
 /datum/poster/bay_16
 	icon_state="bsposter16"
 	name = "Dangerous Static"
-	desc = "This particular one depicts nothing remarkable other than a rather mesmerising pattern of monitor static. There's a tag on the sides of the poster, but it's ripped off."
+	desc = "This particular one depicts nothing remarkable other than a rather69esmerising pattern of69onitor static. There's a tag on the sides of the poster, but it's ripped off."
 
 /datum/poster/bay_17
 	icon_state="bsposter17"
-	name = "Pinup Girl Val"
-	desc = "Luscious Val McNeil, the vertically challenged Legal Extraordinaire, winner of Miss Space two years running and favoured pinup girl of Lawyers Weekly."
+	name = "Pinup Girl69al"
+	desc = "Luscious69al69cNeil, the69ertically challenged Legal Extraordinaire, winner of69iss Space two years running and favoured pinup girl of Lawyers Weekly."
 
 /datum/poster/bay_18
 	icon_state="bsposter18"
 	name = "Derpman, Enforcer of the State"
-	desc = "Here to protect and serve... your donuts! A generously proportioned man, he teaches you the value of hiding your snacks."
+	desc = "Here to protect and serve... your donuts! A generously proportioned69an, he teaches you the69alue of hiding your snacks."
 
 /datum/poster/bay_21
 	icon_state="bsposter21"
@@ -97,37 +97,37 @@
 /datum/poster/bay_22
 	icon_state="bsposter22"
 	name = "Looking for a career with excitement?"
-	desc = "A recruitment poster starring a dark haired woman with glasses and a purple shirt that has \"Got Brains? Got Talent? Not afraid of electric flying monsters that want to suck the soul out of you? Then Xenobiology could use someone like you!\" written on the bottom."
+	desc = "A recruitment poster starring a dark haired woman with glasses and a purple shirt that has \"Got Brains? Got Talent? Not afraid of electric flying69onsters that want to suck the soul out of you? Then Xenobiology could use someone like you!\" written on the bottom."
 
 /datum/poster/bay_23
 	icon_state="bsposter23"
 	name = "Safety first: because electricity doesn't wait!"
-	desc = "A safety poster starring a clueless looking redhead with frazzled hair. \"Every year, hundreds of NT employees expose themselves to electric shock. Play it safe. Avoid suspicious doors after electrical storms, and always wear protection when doing electric maintenance.\""
+	desc = "A safety poster starring a clueless looking redhead with frazzled hair. \"Every year, hundreds of NT employees expose themselves to electric shock. Play it safe. Avoid suspicious doors after electrical storms, and always wear protection when doing electric69aintenance.\""
 
 /datum/poster/bay_24
 	icon_state="bsposter24"
-	name = "Responsible medbay habits, No #259"
+	name = "Responsible69edbay habits, No #259"
 	desc = "A poster with a nervous looking geneticist on it states; \"Friends Don't Tell Friends They're Clones. It can cause severe and irreparable emotional trauma. Always do the right thing and never tell them that they were dead.\""
 
 /datum/poster/bay_25
 	icon_state="bsposter25"
-	name = "Irresponsible medbay habits, No #2"
+	name = "Irresponsible69edbay habits, No #2"
 	desc = "This is a safety poster starring a perverted looking naked doctor. \"Sexual harassment is never okay. REPORT any acts of sexual deviance or harassment that disrupt a healthy working environment.\""
 
 /datum/poster/bay_26
 	icon_state="bsposter26"
-	name = "The Men We Knew"
-	desc = "This movie poster depicts a group of soldiers fighting a large mech, the movie seems to be a patriotic war movie."
+	name = "The69en We Knew"
+	desc = "This69ovie poster depicts a group of soldiers fighting a large69ech, the69ovie seems to be a patriotic war69ovie."
 
 /datum/poster/bay_27
 	icon_state="bsposter27"
 	name = "Plastic Sheep Can't Scream"
-	desc = "This is a movie poster for an upcoming horror movie, it features an AI in the front of it."
+	desc = "This is a69ovie poster for an upcoming horror69ovie, it features an AI in the front of it."
 
 /datum/poster/bay_28
 	icon_state="bsposter28"
 	name = "The Stars Know Love"
-	desc = "This is a movie poster. A bleeding woman is shown drawing a heart in her blood on the window of space ship, it seems to be a romantic Drama."
+	desc = "This is a69ovie poster. A bleeding woman is shown drawing a heart in her blood on the window of space ship, it seems to be a romantic Drama."
 
 /datum/poster/bay_29
 	icon_state="bsposter29"
@@ -136,8 +136,8 @@
 
 /datum/poster/bay_30
 	icon_state="bsposter30"
-	name = "Ambrosia Vulgaris"
-	desc = "Just looking at this poster makes you feel a little bit dizzy."
+	name = "Ambrosia69ulgaris"
+	desc = "Just looking at this poster69akes you feel a little bit dizzy."
 
 /datum/poster/bay_31
 	icon_state="bsposter31"
@@ -162,17 +162,17 @@
 /datum/poster/bay_35
 	icon_state="bsposter35"
 	name = "Lamarr"
-	desc = "This is a poster depicting the pet and mascot of the science department."
+	desc = "This is a poster depicting the pet and69ascot of the science department."
 
 /datum/poster/bay_36
 	icon_state="bsposter36"
 	name = "Fancy Borg"
-	desc = "A poster depicting a cyborg using the service module. 'Fancy Borg' is written on it."
+	desc = "A poster depicting a cyborg using the service69odule. 'Fancy Borg' is written on it."
 
 /datum/poster/bay_37
 	icon_state="bsposter37"
 	name = "Fancier Borg"
-	desc = "A poster depicting a cyborg using the service module. 'Fancy Borg' is written on it. This is even fancier than the first poster."
+	desc = "A poster depicting a cyborg using the service69odule. 'Fancy Borg' is written on it. This is even fancier than the first poster."
 
 /datum/poster/bay_38
 	icon_state="bsposter38"
@@ -181,13 +181,13 @@
 
 /datum/poster/bay_39
 	icon_state="bsposter39"
-	name = "Responsible medbay habits, No #91"
-	desc = "A safety poster with a chemist holding a vial. \"Always wear safety gear while handling dangerous chemicals, even if it concerns only small amounts.\""
+	name = "Responsible69edbay habits, No #91"
+	desc = "A safety poster with a chemist holding a69ial. \"Always wear safety gear while handling dangerous chemicals, even if it concerns only small amounts.\""
 
 /datum/poster/bay_40
 	icon_state="bsposter40"
 	name = "Agreeable work environment"
-	desc = "This poster depicts a young woman in a stylish dress. \"Try to aim for a pleasant atmosphere in the workspace. A friendly word can do more than forms in triplicate.\""
+	desc = "This poster depicts a young woman in a stylish dress. \"Try to aim for a pleasant atmosphere in the workspace. A friendly word can do69ore than forms in triplicate.\""
 
 /datum/poster/bay_41
 	icon_state="bsposter41"
@@ -197,11 +197,11 @@
 /datum/poster/bay_42
 	icon_state="bsposter42"
 	name = "Engineering pinup"
-	desc = "This is pin-up poster. A half-naked girl with white hair, toned muscles and stunning blue eyes looks back at you from the poster. Her welding helmet, tattoos and grey jumpsuit hanging around her waist gives a bit of a rugged feel."
+	desc = "This is pin-up poster. A half-naked girl with white hair, toned69uscles and stunning blue eyes looks back at you from the poster. Her welding helmet, tattoos and grey jumpsuit hanging around her waist gives a bit of a rugged feel."
 
 /datum/poster/bay_43
 	icon_state="bsposter43"
-	name = "Responsible medbay habits, No #3"
+	name = "Responsible69edbay habits, No #3"
 	desc = "A safety poster with a purple-haired surgeon. She looks a bit cross. \"Let the surgeons do their work. NEVER replace or remove a surgery tool from where the surgeon put it.\""
 
 /datum/poster/bay_44
@@ -212,17 +212,17 @@
 /datum/poster/bay_45
 	icon_state="bsposter45"
 	name = "Responsible engineering habits, No #1"
-	desc = "A safety poster featuring a blue haired engineer. \"When repairing a machine or construction, always aim for long-term solutions.\""
+	desc = "A safety poster featuring a blue haired engineer. \"When repairing a69achine or construction, always aim for long-term solutions.\""
 
 /datum/poster/bay_47
 	icon_state="bsposter47"
 	name = "Security pinup"
-	desc = "This is a pin-up poster. A dark skinned white haired girl poses in the sunlight wearing a tank top with her stomach exposed. The text on the poster states \"M, Succubus of Security.\" and a lipstick mark stains the top right corner, as if kissed by the model herself."
+	desc = "This is a pin-up poster. A dark skinned white haired girl poses in the sunlight wearing a tank top with her stomach exposed. The text on the poster states \"M, Succubus of Security.\" and a lipstick69ark stains the top right corner, as if kissed by the69odel herself."
 
 /datum/poster/bay_48
 	icon_state="bsposter48"
 	name = "Borg pinup?"
-	desc = "This is a.. pin-up poster? It is a diagram on an old model of cyborg with a note scribbled in marker on the bottom, on the top there is a large XO written in red marker."
+	desc = "This is a.. pin-up poster? It is a diagram on an old69odel of cyborg with a note scribbled in69arker on the bottom, on the top there is a large XO written in red69arker."
 
 /datum/poster/bay_49
 	icon_state="bsposter49"
@@ -262,4 +262,4 @@
 /datum/poster/bay_58
 	icon_state="bsposter58"
 	name = "space carp information poster"
-	desc = "This poster showcases an old spacer saying on the dangers of migrant space carp."
+	desc = "This poster showcases an old spacer saying on the dangers of69igrant space carp."

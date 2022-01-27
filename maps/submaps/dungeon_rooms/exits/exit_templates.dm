@@ -1,4 +1,4 @@
-/datum/map_template/dungeon_template/exit/one
+/datum/map_template/dun69eon_template/exit/one
 	name = "Exit - 1"
-	desc = "Get out."
-	mappath = 'maps/submaps/dungeon_rooms/exits/1.dmm'
+	desc = "69et out."
+	mappath = 'maps/su69maps/dun69eon_rooms/exits/1.dmm'

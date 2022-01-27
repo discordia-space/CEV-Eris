@@ -2,17 +2,17 @@
 	var/metabolism_class //CHEM_TOUCH, CHEM_INGEST, or CHEM_BLOOD
 	var/mob/living/carbon/parent
 
-/datum/reagents/metabolism/New(var/max = 100, mob/living/carbon/parent_mob, var/met_class)
+/datum/reagents/metabolism/New(var/max = 100,69ob/living/carbon/parent_mob,69ar/met_class)
 	..(max, parent_mob)
 
-	metabolism_class = met_class
+	metabolism_class =69et_class
 	if(istype(parent_mob))
 		parent = parent_mob
 
 /datum/reagents/metabolism/proc/metabolize()
 	expose_temperature(parent.bodytemperature, 0.25)
 
-	var/metabolism_type = 0 //non-human mobs
+	var/metabolism_type = 0 //non-human69obs
 	if(ishuman(parent))
 		var/mob/living/carbon/human/H = parent
 		metabolism_type = H.species.reagent_tag
@@ -20,14 +20,14 @@
 	for(var/current in reagent_list)
 		var/datum/reagent/R = current
 
-		parent.metabolism_effects.check_reagent(R, metabolism_class)
-		R.on_mob_life(parent, metabolism_type, metabolism_class)
+		parent.metabolism_effects.check_reagent(R,69etabolism_class)
+		R.on_mob_life(parent,69etabolism_type,69etabolism_class)
 
 	update_total()
 
 // Lasting side effects from reagents: addictions, withdrawals.
 /datum/metabolism_effects
-	var/list/nerve_system_accumulations = list() // Nerve system accumulations
+	var/list/nerve_system_accumulations = list() //69erve system accumulations
 	var/nsa_threshold_base = 100
 	var/nsa_threshold = 100
 	var/nsa_current = 0
@@ -39,48 +39,48 @@
 	var/list/datum/reagent/active_withdrawals = list()
 	var/list/datum/reagent/addiction_list = list()
 	var/addiction_tick = 1
-	/// The final chance for an addiction to manifest is multiplied by this value before being passed to prob.
+	/// The final chance for an addiction to69anifest is69ultiplied by this69alue before being passed to prob.
 	var/addiction_chance_multiplier = 1
 
 /datum/metabolism_effects/proc/adjust_nsa(value, tag)
 	if(!tag)
 		crash_with("no tag given to adjust_nsa()")
 		return
-	nerve_system_accumulations[tag] = value
+	nerve_system_accumulations69tag69 =69alue
 
 /datum/metabolism_effects/proc/remove_nsa(tag)
-	for(var/i in nerve_system_accumulations)
+	for(var/i in69erve_system_accumulations)
 		if(findtext(i, tag, 1, 0) == 1)
 			nerve_system_accumulations.Remove(i)
 
 
 /datum/metabolism_effects/proc/get_nsa_value(tag)
-	if(nerve_system_accumulations[tag])
-		return nerve_system_accumulations[tag]
+	if(nerve_system_accumulations69tag69)
+		return69erve_system_accumulations69tag69
 
 /datum/metabolism_effects/proc/get_nsa()
-	SEND_SIGNAL(parent, COMSING_NSA, nsa_current)
-	return nsa_current
+	SEND_SIGNAL(parent, COMSING_NSA,69sa_current)
+	return69sa_current
 
 /datum/metabolism_effects/proc/get_nsa_target()
 	var/accumulatedNSA = 0
-	for(var/tag in nerve_system_accumulations)
-		accumulatedNSA += nerve_system_accumulations[tag]
+	for(var/tag in69erve_system_accumulations)
+		accumulatedNSA +=69erve_system_accumulations69tag69
 	return accumulatedNSA
 
 /datum/metabolism_effects/proc/handle_nsa()
-	nsa_threshold = nsa_threshold_base + (parent.stats.getStat(STAT_COG) / 3)
+	nsa_threshold =69sa_threshold_base + (parent.stats.getStat(STAT_COG) / 3)
 	var/nsa_target = get_nsa_target()
-	if(nsa_target != nsa_current)
-		nsa_current = nsa_target > nsa_current \
-		            ? min(nsa_current + nsa_target / 30, nsa_target) \
-		            : max(nsa_current - 6.66, nsa_target)
+	if(nsa_target !=69sa_current)
+		nsa_current =69sa_target >69sa_current \
+		            ?69in(nsa_current +69sa_target / 30,69sa_target) \
+		            :69ax(nsa_current - 6.66,69sa_target)
 		nsa_changed()
-	if(get_nsa() > nsa_threshold)
+	if(get_nsa() >69sa_threshold)
 		nsa_breached_effect()
 
 /datum/metabolism_effects/proc/nsa_changed()
-	if(get_nsa() > nsa_threshold)
+	if(get_nsa() >69sa_threshold)
 		var/stat_mod = get_nsa() > 140 ? -20 : -10
 		for(var/stat in ALL_STATS)
 			parent.stats.addTempStat(stat, stat_mod, INFINITY, "nsa_breach")
@@ -88,24 +88,24 @@
 		for(var/stat in ALL_STATS)
 			parent.stats.removeTempStat(stat, "nsa_breach")
 
-	var/obj/screen/nsa/hud = parent.HUDneed["neural system accumulation"]
+	var/obj/screen/nsa/hud = parent.HUDneed69"neural system accumulation"69
 	hud?.update_icon()
 
 /datum/metabolism_effects/proc/nsa_breached_effect()
-	if(get_nsa() < nsa_threshold*1.2) // 20% more
+	if(get_nsa() <69sa_threshold*1.2) // 20%69ore
 		return
 	parent.vomit()
 
-	if(get_nsa() < nsa_threshold*1.6)
+	if(get_nsa() <69sa_threshold*1.6)
 		return
 	parent.drop_l_hand()
 	parent.drop_r_hand()
 
-	if(get_nsa() < nsa_threshold*1.8)
+	if(get_nsa() <69sa_threshold*1.8)
 		return
 	parent.adjustToxLoss(1)
 
-	if(get_nsa() < nsa_threshold*2)
+	if(get_nsa() <69sa_threshold*2)
 		return
 	parent.Sleeping(2)
 
@@ -115,24 +115,24 @@
 	if(istype(parent_mob))
 		parent = parent_mob
 
-/datum/metabolism_effects/proc/check_reagent(datum/reagent/R, metabolism_class)
+/datum/metabolism_effects/proc/check_reagent(datum/reagent/R,69etabolism_class)
 	present_reagent_ids += R.id
 
 	//Nerve System Accumulation
-	parent.metabolism_effects.adjust_nsa(R.nerve_system_accumulations, "[R.id]_[metabolism_class]")
+	parent.metabolism_effects.adjust_nsa(R.nerve_system_accumulations, "69R.id69_69metabolism_class69")
 
 	// Withdrawals
 	if(R.withdrawal_threshold && R.volume >= R.withdrawal_threshold && !is_type_in_list(R, withdrawal_list))
 		if(R.volume >= R.withdrawal_threshold)
-			var/datum/reagent/new_reagent = new R.type()
+			var/datum/reagent/new_reagent =69ew R.type()
 			new_reagent.max_dose = R.max_dose
-			withdrawal_list[new_reagent] = R.max_dose
+			withdrawal_list69new_reagent69 = R.max_dose
 
 	if(is_type_in_list(R, withdrawal_list))
 		for(var/withdrawal in withdrawal_list)
 			var/datum/reagent/A = withdrawal
 			if(istype(R, A))
-				withdrawal_list[A] = max(withdrawal_list[A], R.max_dose)
+				withdrawal_list69A69 =69ax(withdrawal_list69A69, R.max_dose)
 
 	// Addictions
 	if(R.addiction_threshold || R.addiction_chance)
@@ -145,18 +145,18 @@
 
 
 		if(add_addiction_flag && !is_type_in_list(R, addiction_list))
-			var/datum/reagent/new_reagent = new R.type()
+			var/datum/reagent/new_reagent =69ew R.type()
 			new_reagent.max_dose = R.max_dose
 			addiction_list.Add(new_reagent)
-			addiction_list[new_reagent] = 0
-			for(var/mob/living/carbon/human/H in viewers(parent))
+			addiction_list69new_reagent69 = 0
+			for(var/mob/living/carbon/human/H in69iewers(parent))
 				SEND_SIGNAL(H, COMSIG_CARBON_ADICTION, parent, R)
 
 	if(is_type_in_list(R, addiction_list))
 		for(var/addiction in addiction_list)
 			var/datum/reagent/A = addiction
 			if(istype(R, A))
-				addiction_list[A] = -15 // you're satisfied for a good while.
+				addiction_list69A69 = -15 // you're satisfied for a good while.
 
 
 /datum/metabolism_effects/proc/process()
@@ -182,14 +182,14 @@
 			stop_withdrawal(R)
 			continue
 
-		if(withdrawal_list[R] <= 0)
+		if(withdrawal_list69R69 <= 0)
 			stop_withdrawal(R)
 			withdrawal_list.Remove(R)
 			continue
 
-		if(!parent.chem_effects[CE_NOWITHDRAW])
+		if(!parent.chem_effects69CE_NOWITHDRAW69)
 			R.withdrawal_act(parent)
-		withdrawal_list[R] -= R.withdrawal_rate
+		withdrawal_list69R69 -= R.withdrawal_rate
 
 /datum/metabolism_effects/proc/start_withdrawal(datum/reagent/R)
 	active_withdrawals += R
@@ -207,10 +207,10 @@
 			addiction_list.Remove(R)
 			continue
 
-		addiction_list[R] += 1
-		if(!parent.chem_effects[CE_PURGER])
+		addiction_list69R69 += 1
+		if(!parent.chem_effects69CE_PURGER69)
 
-			switch(addiction_list[R])
+			switch(addiction_list69R69)
 				if(1 to 10)
 					R.addiction_act_stage1(parent)
 				if(10 to 20)

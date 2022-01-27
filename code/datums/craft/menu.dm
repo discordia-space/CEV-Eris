@@ -3,11 +3,11 @@
 
 //this one is called when you need just a regular CM, without strick tab opened
 /mob/living/verb/craft_menu()
-	set name = "Craft Menu"
+	set name = "Craft69enu"
 	set category = "IC"
 	src.open_craft_menu()
 
-//this is called when you use any proc and not verb, like atack_self and want to give tab name to be opened
+//this is called when you use any proc and not69erb, like atack_self and want to give tab name to be opened
 /mob/living/proc/open_craft_menu(category = null)
 	if(!CM)
 		CM = new(src)
@@ -15,27 +15,27 @@
 	CM.ui_interact(src)
 
 /datum/nano_module/craft
-	name = "Craft menu"
+	name = "Craft69enu"
 	available_to_ai = FALSE
 
 /datum/nano_module/craft/proc/get_category(mob/mob)
-	var/ckey = mob.ckey
+	var/ckey =69ob.ckey
 	if(!(ckey in SScraft.current_category))
-		SScraft.current_category[ckey] = SScraft.cat_names[1]
-	return SScraft.current_category[ckey]
+		SScraft.current_category69ckey69 = SScraft.cat_names69169
+	return SScraft.current_category69ckey69
 
-/datum/nano_module/craft/proc/set_category(category, mob/mob)
+/datum/nano_module/craft/proc/set_category(category,69ob/mob)
 	if(!category || !(category in SScraft.cat_names))
 		return FALSE
-	SScraft.current_category[mob.ckey] = category
+	SScraft.current_category69mob.ckey69 = category
 	set_item(null, usr)
 	return TRUE
 
 /datum/nano_module/craft/proc/get_item(mob/mob)
-	return (mob.ckey in SScraft.current_item) ? SScraft.current_item[mob.ckey] : null
+	return (mob.ckey in SScraft.current_item) ? SScraft.current_item69mob.ckey69 : null
 
-/datum/nano_module/craft/proc/set_item(item_ref, mob/mob)
-	SScraft.current_item[mob.ckey] = locate(item_ref)
+/datum/nano_module/craft/proc/set_item(item_ref,69ob/mob)
+	SScraft.current_item69mob.ckey69 = locate(item_ref)
 
 /datum/nano_module/craft/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
 	if(!usr)
@@ -46,33 +46,33 @@
 	var/list/data = list()
 	var/curr_category = get_category(usr)
 
-	data["is_admin"] = check_rights(show_msg = FALSE)
-	data["categories"] = SScraft.cat_names
-	data["cur_category"] = curr_category
+	data69"is_admin"69 = check_rights(show_msg = FALSE)
+	data69"categories"69 = SScraft.cat_names
+	data69"cur_category"69 = curr_category
 	var/datum/craft_recipe/CR = get_item(usr)
-	data["cur_item"] = null
+	data69"cur_item"69 = null
 
 	if(CR)
-		data["cur_item"] = list(
+		data69"cur_item"69 = list(
 			"name" = CR.name,
 			"icon" = getAtomCacheFilename(CR.result),
-			"ref"  = "\ref[CR]",
+			"ref"  = "\ref69CR69",
 			"desc" = CR.get_description(),
 			"batch" = CR.flags & CRAFT_BATCH
 		)
 	var/list/items = list()
-	for(var/datum/craft_recipe/recipe in SScraft.categories[curr_category])
+	for(var/datum/craft_recipe/recipe in SScraft.categories69curr_category69)
 		if((recipe.avaliableToEveryone || (recipe.type in user.mind.knownCraftRecipes)))
 			items += list(list(
 				"name" = capitalize(recipe.name),
-				"ref" = "\ref[recipe]"
+				"ref" = "\ref69recipe69"
 			))
-	data["items"] = items
+	data69"items"69 = items
 
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "craft.tmpl", "[src]", 800, 450, state = state)
+		ui = new(user, src, ui_key, "craft.tmpl", "69src69", 800, 450, state = state)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -83,12 +83,12 @@
 	if(usr.incapacitated())
 		return
 
-	if(href_list["build"])
-		var/datum/craft_recipe/CR = locate(href_list["build"])
-		var/amount = href_list["amount"]
+	if(href_list69"build"69)
+		var/datum/craft_recipe/CR = locate(href_list69"build"69)
+		var/amount = href_list69"amount"69
 		if(amount && (CR.flags & CRAFT_BATCH))
 			if(amount == "input")
-				amount = input("How many \"[CR.name]\" you want to craft?", "Craft batch") as null|num
+				amount = input("How69any \"69CR.name69\" you want to craft?", "Craft batch") as null|num
 			else
 				amount = text2num(amount)
 			amount = CLAMP(amount, 0, 50)
@@ -97,11 +97,11 @@
 			CR.build_batch(usr, amount)
 		else
 			CR.try_build(usr)
-	else if(href_list["view_vars"] && check_rights())
-		usr.client.debug_variables(locate(href_list["view_vars"]))
-	else if(href_list["category"])
-		set_category(href_list["category"], usr)
+	else if(href_list69"view_vars"69 && check_rights())
+		usr.client.debug_variables(locate(href_list69"view_vars"69))
+	else if(href_list69"category"69)
+		set_category(href_list69"category"69, usr)
 		SSnano.update_uis(src)
-	else if(href_list["item"])
-		set_item(href_list["item"], usr)
+	else if(href_list69"item"69)
+		set_item(href_list69"item"69, usr)
 		SSnano.update_uis(src)

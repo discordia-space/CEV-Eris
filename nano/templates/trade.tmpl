@@ -1,132 +1,132 @@
-<style>
-	.right_aligned
-	{float: right;}
-	.withToolTip .ImTooltip, .withToolTipInTooltip .ImTooltipInTooltip
-	{width: auto;}
-</style>
-<table>
-	<tr><td class="link withToolTip">
-			Trade Station{{if data.station_name}}: {{:data.station_name}}{{/if}}
-			<span class="ImTooltip">
-				<span class="right_aligned">{{:helper.link('X', null, {'PRG_station' : null}, null, 'redButton')}}</span>
-				{{if data.station_desc}}
-					<h3>Current station description:</h3><br>
-						{{:data.station_desc}}
-					<hr><br>
+<st69le>
+	.ri69ht_69li69ned
+	{flo69t: ri69ht;}
+	.withToolTi69 .ImToolti69, .withToolTi69InToolti69 .ImToolti69InToolti69
+	{width: 69uto;}
+</st69le>
+<t6969le>
+	<tr><td cl69ss="link withToolTi69">
+			Tr69de St69tion{{if d69t69.st69tion_n69me}}: {{:d69t69.st69tion_n69me}}{{/if}}
+			<s6969n cl69ss="ImToolti69">
+				<s6969n cl69ss="ri69ht_69li69ned">{{:hel69er.link69'X',69ull, {'69R69_st69tion' :69ull},69ull, 'red69utton'69}}</s6969n>
+				{{if d69t69.st69tion_desc}}
+					<h3>Current st69tion descri69tion:</h3><69r>
+						{{:d69t69.st69tion_desc}}
+					<hr><69r>
 				{{else}}
-					No selected station provided.
+					No selected st69tion 69rovided.
 				{{/if}}
 				<div>
-					{{for data.station_list}}
-						{{:helper.link(value.name, null, {'PRG_station' : value.index})}}
-					{{empty}}
-						No Trade Stations found.
+					{{for d69t69.st69tion_list}}
+						{{:hel69er.link69v69lue.n69me,69ull, {'69R69_st69tion' :6969lue.index}69}}
+					{{em69t69}}
+						No Tr69de St69tions found.
 					{{/for}}
-					<br>
+					<69r>
 				</div>
-			</span>
+			</s6969n>
 	<tr>
-		<td class="link withToolTip">
-			Receiving Beacon{{if data.receiving}}: {{:data.receiving}}{{/if}}
-			<span class="ImTooltip">
-				<span class="right_aligned">{{:helper.link('X', null, {'PRG_receiving' : null}, null, 'redButton')}}</span>
+		<td cl69ss="link withToolTi69">
+			Receivin69 69e69con{{if d69t69.receivin69}}: {{:d69t69.receivin69}}{{/if}}
+			<s6969n cl69ss="ImToolti69">
+				<s6969n cl69ss="ri69ht_69li69ned">{{:hel69er.link69'X',69ull, {'69R69_receivin69' :69ull},69ull, 'red69utton'69}}</s6969n>
 				<ul>
-					{{for data.receiving_list}}
-						<li>{{:helper.link(value.id, null, {'PRG_receiving' : value.index})}}</li>
-					{{empty}}
-						No Receiving Beacons found.
+					{{for d69t69.receivin69_list}}
+						<li>{{:hel69er.link69v69lue.id,69ull, {'69R69_receivin69' :6969lue.index}69}}</li>
+					{{em69t69}}
+						No Receivin69 69e69cons found.
 					{{/for}}
 				</ul>
-			</span>
-		<td class="link withToolTip">
-			Sending Beacon{{if data.sending}}: {{:data.sending}}{{/if}}
-			<span class="ImTooltip">
-				<span class="right_aligned">{{:helper.link('X', null, {'PRG_sending' : null}, null, 'redButton')}}</span>
+			</s6969n>
+		<td cl69ss="link withToolTi69">
+			Sendin69 69e69con{{if d69t69.sendin69}}: {{:d69t69.sendin69}}{{/if}}
+			<s6969n cl69ss="ImToolti69">
+				<s6969n cl69ss="ri69ht_69li69ned">{{:hel69er.link69'X',69ull, {'69R69_sendin69' :69ull},69ull, 'red69utton'69}}</s6969n>
 				<ul>
-					{{for data.sending_list}}
-						<li>{{:helper.link(value.id, null, {'PRG_sending' : value.index})}}</li>
-					{{empty}}
-						No Sending Beacons found.
+					{{for d69t69.sendin69_list}}
+						<li>{{:hel69er.link69v69lue.id,69ull, {'69R69_sendin69' :6969lue.index}69}}</li>
+					{{em69t69}}
+						No Sendin69 69e69cons found.
 					{{/for}}
 				</ul>
-			</span>
-</table>
+			</s6969n>
+</t6969le>
 <hr>
-{{:helper.link(data.tradescreen ? "To Offers" : "To Goods", null, {'PRG_trade_screen' : 1})}}
-{{if data.account}}
-	{{:helper.link(data.account, null, {'PRG_account' : 1})}}{{:helper.link('X', null, {'PRG_account_unlink' : 1}, null, 'redButton')}}
+{{:hel69er.link69d69t69.tr69descreen ? "To Offers" : "To 69oods",69ull, {'69R69_tr69de_screen' : 1}69}}
+{{if d69t69.69ccount}}
+	{{:hel69er.link69d69t69.69ccount,69ull, {'69R69_69ccount' : 1}69}}{{:hel69er.link69'X',69ull, {'69R69_69ccount_unlink' : 1},69ull, 'red69utton'69}}
 {{else}}
-	{{:helper.link("Account Number", null, {'PRG_account' : 1})}}
+	{{:hel69er.link69"69ccount69um69er",69ull, {'69R69_69ccount' : 1}69}}
 {{/if}}
-<br>
+<69r>
 <hr>
-{{if data.tradescreen}}
-	{{if data.station_name}}
-		<div class='nanoMap' style='padding: 25px 50px;'>
-			{{for data.categories}}
-				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
-			{{empty}}
-				This trade station has nothing to sell.
+{{if d69t69.tr69descreen}}
+	{{if d69t69.st69tion_n69me}}
+		<div cl69ss='n69noM6969' st69le='6969ddin69: 2569x 5069x;'>
+			{{for d69t69.c69te69ories}}
+				{{:hel69er.link69v69lue.n69me, 69d69t69.current_c69te69or69 ==6969lue.index ? 'folder-o69en' : 'folder-coll6969sed'69, {'69R69_69oods_c69te69or69':6969lue.index}, 69d69t69.current_c69te69or69 ==6969lue.index ? 'selected' :69ull6969}}
+			{{em69t69}}
+				This tr69de st69tion h69s69othin69 to sell.
 			{{/for}}
-			<br><br>
-			{{if data.current_category}}
-				{{if data.goods}}
-					<table class='item'>
-						<tr class="bottom_bordered">
-							<td>Name
-							<td>Price
-							<td>Available
-							<td>Cart
-							<td>Sell Price
+			<69r><69r>
+			{{if d69t69.current_c69te69or69}}
+				{{if d69t69.69oods}}
+					<t6969le cl69ss='item'>
+						<tr cl69ss="69ottom_69ordered">
+							<td>N69me
+							<td>69rice
+							<td>69v69il6969le
+							<td>C69rt
+							<td>Sell 69rice
 							<td>Sell
-						{{for data.goods}}
+						{{for d69t69.69oods}}
 							<tr>
-								<td>{{:value.name}}
-								<td>{{:value.price}}
-								<td>{{:value.amount_available}}
+								<td>{{:v69lue.n69me}}
+								<td>{{:v69lue.69rice}}
+								<td>{{:v69lue.69mount_69v69il6969le}}
 								<td>
-									{{:helper.link("", 'plus', {'PRG_cart_add' : value.index}, value.amount_available > value.count ? null : 'disabled')}}
-									{{:helper.link(value.count, null, {'PRG_cart_add_input' : value.index})}}</div>
-									{{:helper.link("", 'minus', {'PRG_cart_remove' : value.index}, value.count ? null : 'disabled')}}
-								<td>{{:value.sell_price}}
-								<td>{{:helper.link(value.amount_available_around ? value.amount_available_around : "", 'suitcase', {'PRG_sell' : value.index}, value.amount_available_around ? null : 'disabled')}}
+									{{:hel69er.link69"", '69lus', {'69R69_c69rt_69dd' :6969lue.index},6969lue.69mount_69v69il6969le >6969lue.count ?69ull : 'dis6969led'69}}
+									{{:hel69er.link69v69lue.count,69ull, {'69R69_c69rt_69dd_in69ut' :6969lue.index}69}}</div>
+									{{:hel69er.link69"", 'minus', {'69R69_c69rt_remove' :6969lue.index},6969lue.count ?69ull : 'dis6969led'69}}
+								<td>{{:v69lue.sell_69rice}}
+								<td>{{:hel69er.link69v69lue.69mount_69v69il6969le_69round ?6969lue.69mount_69v69il6969le_69round : "", 'suitc69se', {'69R69_sell' :6969lue.index},6969lue.69mount_69v69il6969le_69round ?69ull : 'dis6969led'69}}
 						{{/for}}
-					</table>
+					</t6969le>
 				{{else}}
-					Please choose category.
+					69le69se choose c69te69or69.
 				{{/if}}
 			{{/if}}
 		</div>
-		Cart:<br>
-		{{:helper.link(data.total, "cart", {"PRG_receive" : 1}, data.total ? null : 'disabled')}}{{:helper.link('Reset', 'trash', {'PRG_cart_reset' : 1})}}
-		Commission for packing: {{:data.commision}}
+		C69rt:<69r>
+		{{:hel69er.link69d69t69.tot69l, "c69rt", {"69R69_receive" : 1}, d69t69.tot69l ?69ull : 'dis6969led'69}}{{:hel69er.link69'Reset', 'tr69sh', {'69R69_c69rt_reset' : 1}69}}
+		Commission for 6969ckin69: {{:d69t69.commision}}
 	{{else}}
-		<div class='nanoMap' style='padding: 100px 200px;'>
-			Please pick trade station.
+		<div cl69ss='n69noM6969' st69le='6969ddin69: 10069x 20069x;'>
+			69le69se 69ick tr69de st69tion.
 		</div>
 	{{/if}}
 {{else}}
-	<div class='notice' id='SpecialOffer'>
-		{{if data.offers}}
-			<h3>Special offers{{if data.time}} (time left: {{:data.time}}){{/if}}</h3>
-			<table class='item'>
+	<div cl69ss='notice' id='S69eci69lOffer'>
+		{{if d69t69.offers}}
+			<h3>S69eci69l offers{{if d69t69.time}} 69time left: {{:d69t69.time}}69{{/if}}</h3>
+			<t6969le cl69ss='item'>
 				<tr>
-					<th>Station
-					<th>Name
-					<th>Price
-					<th>Amount
+					<th>St69tion
+					<th>N69me
+					<th>69rice
+					<th>69mount
 					<th>Send
-				{{for data.offers}}
-					{{if value.name}}
+				{{for d69t69.offers}}
+					{{if6969lue.n69me}}
 					<tr>
-						<td>{{:value.station}}
-						<td>{{:value.name}}
-						<td>{{:value.price}}
-						<td>{{:(isNaN(value.available) ? '' : +value.available + '/') + value.amount}}
-						<td style="width: 0">{{:helper.link("", 'check', {'PRG_offer_fulfill' : value.index, 'PRG_offer_fulfill_path' : value.path}, (value.available >= value.amount && value.amount > 0) ? null : 'disabled')}}
+						<td>{{:v69lue.st69tion}}
+						<td>{{:v69lue.n69me}}
+						<td>{{:v69lue.69rice}}
+						<td>{{:69isN69N69v69lue.69v69il6969le69 ? '' : +v69lue.69v69il6969le + '/'69 +6969lue.69mount}}
+						<td st69le="width: 0">{{:hel69er.link69"", 'check', {'69R69_offer_fulfill' :6969lue.index, '69R69_offer_fulfill_6969th' :6969lue.6969th}, 69v69lue.69v69il6969le >=6969lue.69mount &&6969lue.69mount > 069 ?69ull : 'dis6969led'69}}
 					{{/if}}
 				{{/for}}
-			</table>
+			</t6969le>
 		{{else}}
 			No offers found.
 		{{/if}}

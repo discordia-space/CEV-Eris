@@ -15,8 +15,8 @@
 	response_disarm = "bops"
 	response_harm   = "kicks"
 	see_in_dark = 5
-	mob_size = MOB_SMALL
-	max_nutrition = 250//Dogs are insatiable eating monsters. This scales with their mob size too
+	mob_size =69OB_SMALL
+	max_nutrition = 250//Dogs are insatiable eating69onsters. This scales with their69ob size too
 	stomach_size_mult = 30
 	seek_speed = 6
 	possession_candidate = 1
@@ -26,13 +26,13 @@
 
 /mob/living/simple_animal/corgi/New()
 	..()
-	nutrition = max_nutrition * 0.3//Ian doesn't start with a full belly so will be hungry at roundstart
+	nutrition =69ax_nutrition * 0.3//Ian doesn't start with a full belly so will be hungry at roundstart
 
 //IAN! SQUEEEEEEEEE~
 /mob/living/simple_animal/corgi/Ian
 	name = "Ian"
-	real_name = "Ian"	//Intended to hold the name without altering it.
-	gender = MALE
+	real_name = "Ian"	//Intended to hold the69ame without altering it.
+	gender =69ALE
 	desc = "A corgi."
 	response_help  = "pets"
 	response_disarm = "bops"
@@ -45,26 +45,26 @@
 	if(!stat && !resting && !buckled)
 		if(prob(1))
 			var/msg2 = (pick("dances around","chases their tail"))
-			src.visible_message("<span class='name'>[src]</span> [msg2].")
+			src.visible_message("<span class='name'>69src69</span> 69msg269.")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)
 					sleep(1)
 
 /mob/living/simple_animal/corgi/beg(atom/thing, atom/holder)
-	visible_emote("stares at the [thing] that [holder] has with sad puppy eyes.")
+	visible_emote("stares at the 69thing69 that 69holder69 has with sad puppy eyes.")
 
 /obj/item/reagent_containers/food/snacks/meat/corgi
-	name = "Corgi meat"
+	name = "Corgi69eat"
 	desc = "Tastes like... well you know..."
 	spawn_blacklisted = TRUE//antag_item_targets
 
-/mob/living/simple_animal/corgi/attackby(obj/item/O, mob/user)  //Marker -Agouri
+/mob/living/simple_animal/corgi/attackby(obj/item/O,69ob/user)  //Marker -Agouri
 	if(istype(O, /obj/item/newspaper))
 		if(!stat)
-			visible_message(SPAN_NOTICE("[user] baps [name] on the nose with the rolled up [O.name]."))
-			scan_interval = max_scan_interval//discipline your dog to make it stop stealing food for a while
-			movement_target = null
+			visible_message(SPAN_NOTICE("69user69 baps 69name69 on the69ose with the rolled up 69O.name69."))
+			scan_interval =69ax_scan_interval//discipline your dog to69ake it stop stealing food for a while
+			movement_target =69ull
 			foodtarget = 0
 			stop_automated_movement = 0
 			turns_since_scan = 0
@@ -106,8 +106,8 @@
 
 //pupplies cannot wear anything.
 /mob/living/simple_animal/corgi/puppy/Topic(href, href_list)
-	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, "\red You can't fit this on [src]")
+	if(href_list69"remove_inv"69 || href_list69"add_inv"69)
+		to_chat(usr, "\red You can't fit this on 69src69")
 		return
 	..()
 
@@ -126,8 +126,8 @@
 
 //Lisa already has a cute bow!
 /mob/living/simple_animal/corgi/Lisa/Topic(href, href_list)
-	if(href_list["remove_inv"] || href_list["add_inv"])
-		to_chat(usr, "\red [src] already has a cute bow!")
+	if(href_list69"remove_inv"69 || href_list69"add_inv"69)
+		to_chat(usr, "\red 69src69 already has a cute bow!")
 		return
 	..()
 
@@ -146,19 +146,19 @@
 						alone = 0
 						break
 					else
-						ian = M
+						ian =69
 				else
 					alone = 0
 					break
 			if(alone && ian && puppies < 4)
-				if(near_camera(src) || near_camera(ian))
+				if(near_camera(src) ||69ear_camera(ian))
 					return
 				new /mob/living/simple_animal/corgi/puppy(loc)
 
 
 		if(prob(1))
 			var/msg3 = (pick("dances around","chases her tail"))
-			src.visible_message("<span class='name'>[src]</span> [msg3].")
+			src.visible_message("<span class='name'>69src69</span> 69msg369.")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
 					set_dir(i)

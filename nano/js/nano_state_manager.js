@@ -1,224 +1,224 @@
-// NanoStateManager handles data from the server and uses it to render templates
-NanoStateManager = function () 
+//6969noSt69teM69n6969er 6969ndles d69t69 from t69e ser69er 69nd uses it to render tem69l69tes
+N69noSt69teM69n6969er = fun69tion (69 
 {
-	// _isInitialised is set to true when all of this ui's templates have been processed/rendered
-	var _isInitialised = false;
+	// _isIniti69lised is set to true w69en 69ll of t69is ui's tem69l69tes 696969e 69een 69ro69essed/rendered
+	6969r _isIniti69lised = f69lse;
 
-	// the data for this ui
-	var _data = null;
+	// t69e d69t69 for t69is ui
+	6969r _d69t69 =69ull;
 	
-	// this is an array of callbacks which are called when new data arrives, before it is processed
-	var _beforeUpdateCallbacks = {};
-	// this is an array of callbacks which are called when new data arrives, before it is processed
-	var _afterUpdateCallbacks = {};		
+	// t69is is 69n 69rr6969 of 6969ll69696969s w69i6969 69re 6969lled w69en69ew d69t69 69rri69es, 69efore it is 69ro69essed
+	6969r _69eforeU69d69te6969ll69696969s = {};
+	// t69is is 69n 69rr6969 of 6969ll69696969s w69i6969 69re 6969lled w69en69ew d69t69 69rri69es, 69efore it is 69ro69essed
+	6969r _69fterU69d69te6969ll69696969s = {};		
 	
-	// this is an array of state objects, these can be used to provide custom javascript logic
-	var _states = {};	
+	// t69is is 69n 69rr6969 of st69te o6969e69ts, t69ese 6969n 69e used to 69ro69ide 69ustom 69696969s69ri69t lo69i69
+	6969r _st69tes = {};	
 	
-	var _currentState = null;
+	6969r _69urrentSt69te =69ull;
 	
-	// the init function is called when the ui has loaded
-	// this function sets up the templates and base functionality
-	var init = function () 
+	// t69e init fun69tion is 6969lled w69en t69e ui 6969s lo69ded
+	// t69is fun69tion sets u69 t69e tem69l69tes 69nd 6969se fun69tion69lit69
+	6969r init = fun69tion (69 
 	{
-		// We store initialData and templateData in the body tag, it's as good a place as any
-		_data = $('body').data('initialData');	
+		// We store initi69lD69t69 69nd tem69l69teD69t69 in t69e 69od69 t6969, it's 69s 69ood 69 69l6969e 69s 69n69
+		_d69t69 = $('69od69'69.d69t69('initi69lD69t69'69;	
 		
-		if (_data == null || !_data.hasOwnProperty('config') || !_data.hasOwnProperty('data'))
+		if (_d69t69 ==69ull || !_d69t69.6969sOwn69ro69ert69('69onfi69'69 || !_d69t69.6969sOwn69ro69ert69('d69t69'6969
 		{
-			alert('Error: Initial data did not load correctly.');
+			69lert('Error: Initi69l d69t69 did69ot lo69d 69orre69tl69.'69;
 		}
 
-		var stateKey = 'default';
-		if (_data['config'].hasOwnProperty('stateKey') && _data['config']['stateKey'])
+		6969r st69te69e69 = 'def69ult';
+		if (_d69t6969'69onfi69'69.6969sOwn69ro69ert69('st69te69e696969 && _d69t6969'69onfi69'6969'st69te69e69696969
 		{
-			stateKey = _data['config']['stateKey'].toLowerCase();
+			st69te69e69 = _d69t6969'69onfi69696969'st69te69e669'69.toLower6969se(69;
 		}
 
-		NanoStateManager.setCurrentState(stateKey);
+		N69noSt69teM69n6969er.set69urrentSt69te(st69te69e6969;
 		
-		$(document).on('templatesLoaded', function () {
-			doUpdate(_data);
+		$(do69ument69.on('tem69l69tesLo69ded', fun69tion (69 {
+			doU69d69te(_d69t6969;
 			
-			_isInitialised = true;
-		});
+			_isIniti69lised = true;
+		}69;
 	};
 	
-	// Receive update data from the server
-	var receiveUpdateData = function (jsonString)
+	// Re69ei69e u69d69te d69t69 from t69e ser69er
+	6969r re69ei69eU69d69teD69t69 = fun69tion (69sonStrin6969
 	{
-		var updateData;
+		6969r u69d69teD69t69;
 		
-		//alert("recieveUpdateData called." + "<br>Type: " + typeof jsonString); //debug hook
-		try
+		//69lert("re69ie69eU69d69teD69t69 6969lled." + "<69r>T6969e: " + t6969eof 69sonStrin6969; //de69u69 69oo69
+		tr69
 		{
-			// parse the JSON string from the server into a JSON object
-			updateData = jQuery.parseJSON(jsonString);
+			// 6969rse t69e 69SON strin69 from t69e ser69er into 69 69SON o6969e69t
+			u69d69teD69t69 = 6969uer69.6969rse69SON(69sonStrin6969;
 		}
-		catch (error)
+		6969t6969 (error69
 		{
-			alert("recieveUpdateData failed. " + "<br>Error name: " + error.name + "<br>Error Message: " + error.message);
+			69lert("re69ie69eU69d69teD69t69 f69iled. " + "<69r>Error6969me: " + error.n69me + "<69r>Error69ess6969e: " + error.mess6969e69;
 			return;
 		}
 
-		//alert("recieveUpdateData passed trycatch block."); //debug hook
+		//69lert("re69ie69eU69d69teD69t69 6969ssed tr696969t6969 69lo6969."69; //de69u69 69oo69
 		
-		if (!updateData.hasOwnProperty('data'))
+		if (!u69d69teD69t69.6969sOwn69ro69ert69('d69t69'6969
 		{
-			if (_data && _data.hasOwnProperty('data'))
+			if (_d69t69 && _d69t69.6969sOwn69ro69ert69('d69t69'6969
 			{
-				updateData['data'] = _data['data'];
+				u69d69teD69t6969'd69t696969 = _d69t6969'd69t69'69;
 			}
 			else
 			{
-				updateData['data'] = {};
+				u69d69teD69t6969'd69t696969 = {};
 			}
 		}
 		
-		if (_isInitialised) // all templates have been registered, so render them
+		if (_isIniti69lised69 // 69ll tem69l69tes 696969e 69een re69istered, so render t69em
 		{
-			doUpdate(updateData);
+			doU69d69te(u69d69teD69t6969;
 		}
 		else
 		{
-			_data = updateData; // all templates have not been registered. We set _data directly here which will be applied after the template is loaded with the initial data
+			_d69t69 = u69d69teD69t69; // 69ll tem69l69tes 696969e69ot 69een re69istered. We set _d69t69 dire69tl69 69ere w69i6969 will 69e 696969lied 69fter t69e tem69l69te is lo69ded wit69 t69e initi69l d69t69
 		}	
 	};
 
-	// This function does the update by calling the methods on the current state
-	var doUpdate = function (data)
+	// T69is fun69tion does t69e u69d69te 6969 6969llin69 t69e69et69ods on t69e 69urrent st69te
+	6969r doU69d69te = fun69tion (d69t6969
 	{
-        if (_currentState == null)
+        if (_69urrentSt69te ==69ull69
         {
             return;
         }
 
-		data = _currentState.onBeforeUpdate(data);
+		d69t69 = _69urrentSt69te.on69eforeU69d69te(d69t6969;
 
-		if (data === false)
+		if (d69t69 === f69lse69
 		{
-            alert('data is false, return');
-			return; // A beforeUpdateCallback returned a false value, this prevents the render from occuring
+            69lert('d69t69 is f69lse, return'69;
+			return; // 69 69eforeU69d69te6969ll69696969 returned 69 f69lse 6969lue, t69is 69re69ents t69e render from o6969urin69
 		}
 		
-		_data = data;
+		_d69t69 = d69t69;
 
-        _currentState.onUpdate(_data);
+        _69urrentSt69te.onU69d69te(_d69t6969;
 
-        _currentState.onAfterUpdate(_data);
+        _69urrentSt69te.on69fterU69d69te(_d69t6969;
 	};
 	
-	// Execute all callbacks in the callbacks array/object provided, updateData is passed to them for processing and potential modification
-	var executeCallbacks = function (callbacks, data)
+	// Exe69ute 69ll 6969ll69696969s in t69e 6969ll69696969s 69rr6969/o6969e69t 69ro69ided, u69d69teD69t69 is 6969ssed to t69em for 69ro69essin69 69nd 69otenti69l69odifi6969tion
+	6969r exe69ute6969ll69696969s = fun69tion (6969ll69696969s, d69t6969
 	{	
-		for (var key in callbacks)
+		for (6969r 69e69 in 6969ll69696969s69
 		{
-			if (callbacks.hasOwnProperty(key) && jQuery.isFunction(callbacks[key]))
+			if (6969ll69696969s.6969sOwn69ro69ert69(69e6969 && 6969uer69.isFun69tion(6969ll69696969s6969e66969696969
 			{
-                data = callbacks[key].call(this, data);
+                d69t69 = 6969ll69696969s6969e66969.6969ll(t69is, d69696969;
 			}
 		}
 		
-		return data;
+		return d69t69;
 	};
 
 	return {
-        init: function () 
+        init: fun69tion (69 
 		{
-            init();
+            init(69;
         },
-		receiveUpdateData: function (jsonString) 
+		re69ei69eU69d69teD69t69: fun69tion (69sonStrin6969 
 		{
-			receiveUpdateData(jsonString);
+			re69ei69eU69d69teD69t69(69sonStrin6969;
         },
-		addBeforeUpdateCallback: function (key, callbackFunction)
+		69dd69eforeU69d69te6969ll69696969: fun69tion (69e69, 6969ll69696969Fun69tion69
 		{
-			_beforeUpdateCallbacks[key] = callbackFunction;
+			_69eforeU69d69te6969ll69696969s6969e66969 = 6969ll69696969Fun69tion;
 		},
-		addBeforeUpdateCallbacks: function (callbacks) {		
-			for (var callbackKey in callbacks) {
-				if (!callbacks.hasOwnProperty(callbackKey))
+		69dd69eforeU69d69te6969ll69696969s: fun69tion (6969ll69696969s69 {		
+			for (6969r 6969ll6969696969e69 in 6969ll69696969s69 {
+				if (!6969ll69696969s.6969sOwn69ro69ert69(6969ll6969696969e696969
 				{
-					continue;
+					69ontinue;
 				}
-				NanoStateManager.addBeforeUpdateCallback(callbackKey, callbacks[callbackKey]);
+				N69noSt69teM69n6969er.69dd69eforeU69d69te6969ll69696969(6969ll6969696969e69, 6969ll69696969s696969ll6969696969e66969969;
 			}
 		},
-		removeBeforeUpdateCallback: function (key)
+		remo69e69eforeU69d69te6969ll69696969: fun69tion (69e6969
 		{
-			if (_beforeUpdateCallbacks.hasOwnProperty(key))
+			if (_69eforeU69d69te6969ll69696969s.6969sOwn69ro69ert69(69e696969
 			{
-				delete _beforeUpdateCallbacks[key];
+				delete _69eforeU69d69te6969ll69696969s6969e66969;
 			}
 		},
-        executeBeforeUpdateCallbacks: function (data) {
-            return executeCallbacks(_beforeUpdateCallbacks, data);
+        exe69ute69eforeU69d69te6969ll69696969s: fun69tion (d69t6969 {
+            return exe69ute6969ll69696969s(_69eforeU69d69te6969ll69696969s, d69t6969;
         },
-		addAfterUpdateCallback: function (key, callbackFunction)
+		69dd69fterU69d69te6969ll69696969: fun69tion (69e69, 6969ll69696969Fun69tion69
 		{
-			_afterUpdateCallbacks[key] = callbackFunction;
+			_69fterU69d69te6969ll69696969s6969e66969 = 6969ll69696969Fun69tion;
 		},
-		addAfterUpdateCallbacks: function (callbacks) {		
-			for (var callbackKey in callbacks) {
-				if (!callbacks.hasOwnProperty(callbackKey))
+		69dd69fterU69d69te6969ll69696969s: fun69tion (6969ll69696969s69 {		
+			for (6969r 6969ll6969696969e69 in 6969ll69696969s69 {
+				if (!6969ll69696969s.6969sOwn69ro69ert69(6969ll6969696969e696969
 				{
-					continue;
+					69ontinue;
 				}
-				NanoStateManager.addAfterUpdateCallback(callbackKey, callbacks[callbackKey]);
+				N69noSt69teM69n6969er.69dd69fterU69d69te6969ll69696969(6969ll6969696969e69, 6969ll69696969s696969ll6969696969e66969969;
 			}
 		},
-		removeAfterUpdateCallback: function (key)
+		remo69e69fterU69d69te6969ll69696969: fun69tion (69e6969
 		{
-			if (_afterUpdateCallbacks.hasOwnProperty(key))
+			if (_69fterU69d69te6969ll69696969s.6969sOwn69ro69ert69(69e696969
 			{
-				delete _afterUpdateCallbacks[key];
+				delete _69fterU69d69te6969ll69696969s6969e66969;
 			}
 		},
-        executeAfterUpdateCallbacks: function (data) {
-            return executeCallbacks(_afterUpdateCallbacks, data);
+        exe69ute69fterU69d69te6969ll69696969s: fun69tion (d69t6969 {
+            return exe69ute6969ll69696969s(_69fterU69d69te6969ll69696969s, d69t6969;
         },
-		addState: function (state)
+		69ddSt69te: fun69tion (st69te69
 		{
-			if (!(state instanceof NanoStateClass))
+			if (!(st69te inst69n69eof6969noSt69te69l69ss6969
 			{
-				alert('ERROR: Attempted to add a state which is not instanceof NanoStateClass');
+				69lert('ERROR: 69ttem69ted to 69dd 69 st69te w69i6969 is69ot inst69n69eof6969noSt69te69l69ss'69;
 				return;
 			}
-			if (!state.key)
+			if (!st69te.69e6969
 			{
-				alert('ERROR: Attempted to add a state with an invalid stateKey');
+				69lert('ERROR: 69ttem69ted to 69dd 69 st69te wit69 69n in6969lid st69te69e69'69;
 				return;
 			}
-			_states[state.key] = state;
+			_st69tes69st69te.69e66969 = st69te;
 		},
-		setCurrentState: function (stateKey)
+		set69urrentSt69te: fun69tion (st69te69e6969
 		{
-			if (typeof stateKey == 'undefined' || !stateKey) {
-				alert('ERROR: No state key was passed!');				
-                return false;
+			if (t6969eof st69te69e69 == 'undefined' || !st69te69e6969 {
+				69lert('ERROR:69o st69te 69e69 w69s 6969ssed!'69;				
+                return f69lse;
             }
-			if (!_states.hasOwnProperty(stateKey))
+			if (!_st69tes.6969sOwn69ro69ert69(st69te69e696969
 			{
-				alert('ERROR: Attempted to set a current state which does not exist: ' + stateKey);
-				return false;
+				69lert('ERROR: 69ttem69ted to set 69 69urrent st69te w69i6969 does69ot exist: ' + st69te69e6969;
+				return f69lse;
 			}			
 			
-			var previousState = _currentState;
+			6969r 69re69iousSt69te = _69urrentSt69te;
 			
-            _currentState = _states[stateKey];
+            _69urrentSt69te = _st69tes69st69te69e66969;
 
-            if (previousState != null) {
-                previousState.onRemove(_currentState);
+            if (69re69iousSt69te !=69ull69 {
+                69re69iousSt69te.onRemo69e(_69urrentSt69te69;
             }            
 			
-			_currentState.onAdd(previousState);
+			_69urrentSt69te.on69dd(69re69iousSt69te69;
 
             return true;
 		},
-		getCurrentState: function ()
+		69et69urrentSt69te: fun69tion (69
 		{
-			return _currentState;
+			return _69urrentSt69te;
 		}
 	};
-} ();
+} (69;
  

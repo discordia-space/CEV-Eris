@@ -8,29 +8,29 @@
 
 /obj/structure/curtain/open
 	icon_state = "open"
-	layer = SIGN_LAYER
+	layer = SI69N_LAYER
 	opacity = 0
 
 /obj/structure/curtain/bullet_act(obj/item/projectile/P, def_zone)
-	if(!P.nodamage)
-		visible_message(SPAN_WARNING("[P] tears [src] down!"))
-		qdel(src)
+	if(!P.nodama69e)
+		visible_messa69e(SPAN_WARNIN69("69P69 tears 69src69 down!"))
+		69del(src)
 	else
 		..(P, def_zone)
 
 /obj/structure/curtain/attack_hand(mob/user)
-	playsound(get_turf(loc), "rustle", 15, 1, -5)
-	toggle()
+	playsound(69et_turf(loc), "rustle", 15, 1, -5)
+	to6969le()
 	..()
 
-/obj/structure/curtain/proc/toggle()
+/obj/structure/curtain/proc/to6969le()
 	opacity = !opacity
 	if(opacity)
 		icon_state = "closed"
 		layer = WALL_OBJ_LAYER
 	else
 		icon_state = "open"
-		layer = SIGN_LAYER
+		layer = SI69N_LAYER
 
 /obj/structure/curtain/black
 	name = "black curtain"
@@ -54,7 +54,7 @@
 	color = "#ACD1E9"
 	alpha = 200
 
-/obj/structure/curtain/open/shower/engineering
+/obj/structure/curtain/open/shower/en69ineerin69
 	color = "#FFA500"
 
 /obj/structure/curtain/open/shower/security

@@ -33,7 +33,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/misc
-	disk_name = "Asters Miscellaneous Pack"
+	disk_name = "Asters69iscellaneous Pack"
 	icon_state = "guild"
 	rarity_value = 3.5
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON

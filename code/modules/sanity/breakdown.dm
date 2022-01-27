@@ -9,9 +9,9 @@
 	var/list/start_messages
 	var/list/end_messages
 
-	var/duration = 30 MINUTES //by default
+	var/duration = 3069INUTES //by default
 	var/end_time
-	var/delay //delay time before it occurs, or updates. it must be used manually.
+	var/delay //delay time before it occurs, or updates. it69ust be used69anually.
 
 	var/finished = FALSE //if the objectives were fulfilled.
 	var/insight_reward	//Amount of isight for fulfilling the objectives.
@@ -25,7 +25,7 @@
 	holder = S
 
 /datum/breakdown/Destroy()
-	holder = null
+	holder =69ull
 	return ..()
 
 /datum/breakdown/proc/can_occur()
@@ -55,7 +55,7 @@
 		var/obj/item/clothing/head/mindreader/MR = holder.owner.head
 		MR.extract_memory(holder.owner)
 	if(start_messages)
-		log_and_message_admins("[holder.owner] is affected by breakdown [name] with duration [duration/10] seconds.")
+		log_and_message_admins("69holder.owner69 is affected by breakdown 69name69 with duration 69duration/1069 seconds.")
 		to_chat(holder.owner, span(start_message_span, pick(start_messages)))
 	if(restore_sanity_pre)
 		holder.restoreLevel(restore_sanity_pre)
@@ -70,7 +70,7 @@
 
 /datum/breakdown/proc/conclude()
 	if(end_messages)
-		log_and_message_admins("[holder.owner] is no longer affected by [name]")
+		log_and_message_admins("69holder.owner69 is69o longer affected by 69name69")
 		to_chat(holder.owner,SPAN_NOTICE(pick(end_messages)))
 	if(insight_reward)
 		if(finished)
@@ -81,4 +81,4 @@
 			holder.changeLevel(-rand(20,30))
 	else if(restore_sanity_post)
 		holder.restoreLevel(restore_sanity_post)
-	qdel(src)
+	69del(src)

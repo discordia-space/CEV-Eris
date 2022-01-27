@@ -1,11 +1,11 @@
 /*
-	A (sort of) positive major event. Rare thing!
-	Supply pod event causes a drop pod to hit the ship, containing a variety of rare and useful loot.
-	Assistants are sure to swarm it and ironhammer will need to fight them off. Or the assistants might die horribly
+	A (sort of) positive69ajor event. Rare thing!
+	Supply pod event causes a drop pod to hit the ship, containing a69ariety of rare and useful loot.
+	Assistants are sure to swarm it and ironhammer will need to fight them off. Or the assistants69ight die horribly
 
-	The pod causes major devastation where it hits, Technomancers will need to rebuild the room
-	It may contain monsters or traps.But it also contains a very large quantity of items,
-	including quite a few rares
+	The pod causes69ajor devastation where it hits, Technomancers will need to rebuild the room
+	It69ay contain69onsters or traps.But it also contains a69ery large 69uantity of items,
+	including 69uite a few rares
 
 */
 
@@ -14,7 +14,7 @@
 	name = "supply pod"
 	weight = 0.75
 	event_type = /datum/event/supply_pod
-	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2) //Slightly higher cost than other major events
+	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR*1.2) //Slightly higher cost than other69ajor events
 
 	tags = list(TAG_DESTRUCTIVE, TAG_POSITIVE, TAG_COMBAT, TAG_EXTERNAL)
 
@@ -77,12 +77,12 @@
 
 //Next, what will be in it?
 /datum/event/supply_pod/proc/build_contents()
-	//First of all, we'll make it contain a couple of the possible supply pack contents
+	//First of all, we'll69ake it contain a couple of the possible supply pack contents
 	for (var/i = 0; i < 2; i++)
 		var/droptype = pick(subtypesof(/datum/supply_drop_loot))
 		var/datum/supply_drop_loot/dropdatum = new droptype
 		pod_contents.Add(dropdatum.contents)
-		qdel(dropdatum)
+		69del(dropdatum)
 
 
 	//Secondly, some rare items, to bring all the boys to the yard
@@ -94,7 +94,7 @@
 		pod_contents.Add(/obj/spawner/lowkeyrandom)
 
 
-//Some mobs too!
+//Some69obs too!
 /datum/event/supply_pod/proc/add_guardians()
 	var/list/possible_mobs = list(/mob/living/simple_animal/hostile/hivebot,
 	/mob/living/simple_animal/hostile/scarybat,
@@ -109,7 +109,7 @@
 	/mob/living/simple_animal/hostile/carp/pike
 	)
 
-	//It may not contain mobs, or it may be a clown car full of horrors that spill forth like boiling oil
+	//It69ay not contain69obs, or it69ay be a clown car full of horrors that spill forth like boiling oil
 	while (prob(80))
 		var/newtype = pick(possible_mobs)
 
@@ -119,5 +119,5 @@
 
 
 /datum/event/supply_pod/start()
-	log_and_message_admins("Drop pod impacted at [jumplink(epicentre)],")
+	log_and_message_admins("Drop pod impacted at 69jumplink(epicentre)69,")
 	new /datum/random_map/droppod/supply(null, epicentre.x, epicentre.y, epicentre.z, supplied_drops = pod_contents, supplied_drop = null, automated = auto_open)

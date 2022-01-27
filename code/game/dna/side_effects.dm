@@ -1,5 +1,5 @@
 /datum/genetics/side_effect
-	var/name // name of the side effect, to use as a header in the manual
+	var/name // name of the side effect, to use as a header in the69anual
 	var/symptom // description of the symptom of the side effect
 	var/treatment // description of the treatment of the side effect
 	var/effect // description of what happens when not treated
@@ -7,7 +7,7 @@
 
 	proc/start(mob/living/carbon/human/H)
 		// start the side effect, this should give some cue as to what's happening,
-		// such as gasping. These cues need to be unique among side-effects.
+		// such as gasping. These cues need to be uni69ue among side-effects.
 
 	proc/finish(mob/living/carbon/human/H)
 		// Finish the side-effect. This should first check whether the cure has been
@@ -21,7 +21,7 @@
 	duration = 10*30
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "starts turning very red..")
+		H.emote("me", 1, "starts turning69ery red..")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("dexalin"))
@@ -50,11 +50,11 @@
 	name = "Monkey"
 	symptom = "Subject starts drooling uncontrollably."
 	treatment = "Inject small dose of dylovene."
-	effect = "Subject turns into monkey."
+	effect = "Subject turns into69onkey."
 	duration = 10*90
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
+		H.emote("me", 1, "has drool running down from 69H.gender ==69ALE ? "his" : H.gender == FEMALE ? "her" : "their"6969outh.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))
@@ -68,7 +68,7 @@
 	duration = 10*30
 
 	start(mob/living/carbon/human/H)
-		H.emote("me", 1, "has drool running down from [H.gender == MALE ? "his" : H.gender == FEMALE ? "her" : "their"] mouth.")
+		H.emote("me", 1, "has drool running down from 69H.gender ==69ALE ? "his" : H.gender == FEMALE ? "her" : "their"6969outh.")
 
 	finish(mob/living/carbon/human/H)
 		if(!H.reagents.has_reagent("anti_toxin"))

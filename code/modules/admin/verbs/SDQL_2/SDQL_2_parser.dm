@@ -1,4 +1,4 @@
-//I'm pretty sure that this is a recursive [s]descent[/s] ascent parser.
+//I'm pretty sure that this is a recursive 69s69descent69/s69 ascent parser.
 
 
 //Spec
@@ -10,27 +10,27 @@
 //	select_query		:	'SELECT' object_selectors
 //	delete_query		:	'DELETE' object_selectors
 //	update_query		:	'UPDATE' object_selectors 'SET' assignments
-//	call_query			:	'CALL' variable 'ON' object_selectors // Note here: 'variable' does function calls. This simplifies parsing.
+//	call_query			:	'CALL'69ariable 'ON' object_selectors // Note here: 'variable' does function calls. This simplifies parsing.
 //
 //	select_item			:	'*' | object_type
 //
-//  object_selectors    :   select_item [('FROM' | 'IN') from_item] [modifier_list]
-//  modifier_list       :   ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
+//  object_selectors    :   select_item 69('FROM' | 'IN') from_item69 69modifier_list69
+// 69odifier_list       :   ('WHERE' bool_expression | 'MAP' expression) 69modifier_list69
 // 
 //	from_item			:	'world' | expression
 //
-//	call_function		:	<function name> '(' [arguments] ')'
-//	arguments			:	expression [',' arguments]
+//	call_function		:	<function name> '(' 69arguments69 ')'
+//	arguments			:	expression 69',' arguments69
 //
 //	object_type			:	<type path>
 //
-//	assignments			:	assignment [',' assignments]
+//	assignments			:	assignment 69',' assignments69
 //	assignment			:	<variable name> '=' expression
-//	variable			:	<variable name> | <variable name> '.' variable | '[' <hex number> ']' | '[' <hex number> ']' '.' variable
+//	variable			:	<variable name> | <variable name> '.'69ariable | '69' <hex number> '69' | '69' <hex number> '69' '.'69ariable
 //  
-//	bool_expression		:	expression comparitor expression  [bool_operator bool_expression]
-//	expression			:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
-//	unary_expression	:	unary_operator ( unary_expression | value | '(' expression ')' )
+//	bool_expression		:	expression comparitor expression  69bool_operator bool_expression69
+//	expression			:	( unary_expression | '(' expression ')' |69alue ) 69binary_operator expression69
+//	unary_expression	:	unary_operator ( unary_expression |69alue | '(' expression ')' )
 //	comparitor			:	'=' | '==' | '!=' | '<>' | '<' | '<=' | '>' | '>='
 //	value				:	variable | string | number | 'null' | object_type
 //	unary_operator		:	'!' | '-' | '~'
@@ -63,7 +63,7 @@
 
 /datum/SDQL_parser/proc/parse_error(error_message)
 	error = 1
-	to_chat(usr, "<span class='warning'>SQDL2 Parsing Error: [error_message]</span>")
+	to_chat(usr, "<span class='warning'>SQDL2 Parsing Error: 69error_message69</span>")
 	return query.len + 1
 
 /datum/SDQL_parser/proc/parse()
@@ -77,7 +77,7 @@
 
 /datum/SDQL_parser/proc/token(i)
 	if(i <= query.len)
-		return query[i]
+		return query69i69
 
 	else
 		return null
@@ -111,8 +111,8 @@
 
 		if("explain")
 			node += "explain"
-			node["explain"] = list()
-			query(i + 1, node["explain"])
+			node69"explain"69 = list()
+			query(i + 1, node69"explain"69)
 
 
 //	select_query:	'SELECT' object_selectors
@@ -120,7 +120,7 @@
 	var/list/select = list()
 	i = object_selectors(i + 1, select)
 
-	node["select"] = select
+	node69"select"69 = select
 	return i
 
 
@@ -129,7 +129,7 @@
 	var/list/select = list()
 	i = object_selectors(i + 1, select)
 
-	node["delete"] = select
+	node69"delete"69 = select
 
 	return i
 
@@ -139,25 +139,25 @@
 	var/list/select = list()
 	i = object_selectors(i + 1, select)
 
-	node["update"] = select
+	node69"update"69 = select
 
 	if(tokenl(i) != "set")
-		i = parse_error("UPDATE has misplaced SET")
+		i = parse_error("UPDATE has69isplaced SET")
 
 	var/list/set_assignments = list()
 	i = assignments(i + 1, set_assignments)
 
-	node["set"] = set_assignments
+	node69"set"69 = set_assignments
 
 	return i
 
 
-//call_query:	'CALL' call_function ['ON' object_selectors]
+//call_query:	'CALL' call_function 69'ON' object_selectors69
 /datum/SDQL_parser/proc/call_query(i, list/node)
 	var/list/func = list()
-	i = variable(i + 1, func) // Yes technically does anything variable() matches but I don't care, if admins fuck up this badly then they shouldn't be allowed near SDQL.
+	i =69ariable(i + 1, func) // Yes technically does anything69ariable()69atches but I don't care, if admins fuck up this badly then they shouldn't be allowed near SDQL.
 
-	node["call"] = func
+	node69"call"69 = func
 
 	if(tokenl(i) != "on")
 		return parse_error("You need to specify what to call ON.")
@@ -165,11 +165,11 @@
 	var/list/select = list()
 	i = object_selectors(i + 1, select)
 
-	node["on"] = select
+	node69"on"69 = select
 
 	return i
 
-// object_selectors: select_item [('FROM' | 'IN') from_item] [modifier_list]
+// object_selectors: select_item 69('FROM' | 'IN') from_item69 69modifier_list69
 /datum/SDQL_parser/proc/object_selectors(i, list/node)
 	i = select_item(i, node)
 
@@ -177,15 +177,15 @@
 		i++
 		var/list/from = list()
 		i = from_item(i, from)
-		node[++node.len] = from
+		node69++node.len69 = from
 
 	else
-		node[++node.len] = list("world")
+		node69++node.len69 = list("world")
 
-	i = modifier_list(i, node)
+	i =69odifier_list(i, node)
 	return i
 
-// modifier_list: ('WHERE' bool_expression | 'MAP' expression) [modifier_list]
+//69odifier_list: ('WHERE' bool_expression | 'MAP' expression) 69modifier_list69
 /datum/SDQL_parser/proc/modifier_list(i, list/node)
 	while (TRUE)
 		if (tokenl(i) == "where")
@@ -193,19 +193,19 @@
 			node += "where"
 			var/list/expr = list()
 			i = bool_expression(i, expr)
-			node[++node.len] = expr
+			node69++node.len69 = expr
 
 		else if (tokenl(i) == "map")
 			i++
 			node += "map"
 			var/list/expr = list()
 			i = expression(i, expr)
-			node[++node.len] = expr
+			node69++node.len69 = expr
 	
 		else
 			return i
 
-//select_list:select_item [',' select_list]
+//select_list:select_item 69',' select_list69
 /datum/SDQL_parser/proc/select_list(i, list/node)
 	i = select_item(i, node)
 
@@ -214,7 +214,7 @@
 
 	return i
 
-//assignments:	assignment, [',' assignments]
+//assignments:	assignment, 69',' assignments69
 /datum/SDQL_parser/proc/assignments(i, list/node)
 	i = assignment(i, node)
 
@@ -238,7 +238,7 @@
 
 	return i
 
-// Standardized method for handling the IN/FROM and WHERE options.
+// Standardized69ethod for handling the IN/FROM and WHERE options.
 /datum/SDQL_parser/proc/selectors(i, list/node)
 	while (token(i))
 		var/tok = tokenl(i)
@@ -246,21 +246,21 @@
 			var/list/from = list()
 			i = from_item(i + 1, from)
 
-			node["from"] = from
+			node69"from"69 = from
 			continue
 
 		if (tok == "where")
 			var/list/where = list()
 			i = bool_expression(i + 1, where)
 
-			node["where"] = where
+			node69"where"69 = where
 			continue
 
-		parse_error("Expected either FROM, IN or WHERE token, found [token(i)] instead.")
+		parse_error("Expected either FROM, IN or WHERE token, found 69token(i)69 instead.")
 		return i + 1
 
 	if (!node.Find("from"))
-		node["from"] = list("world")
+		node69"from"69 = list("world")
 
 	return i
 
@@ -276,13 +276,13 @@
 	return i
 
 
-//bool_expression:	expression [bool_operator bool_expression]
+//bool_expression:	expression 69bool_operator bool_expression69
 /datum/SDQL_parser/proc/bool_expression(i, list/node)
 
 	var/list/bool = list()
 	i = expression(i, bool)
 
-	node[++node.len] = bool
+	node69++node.len69 = bool
 
 	if(tokenl(i) in boolean_operators)
 		i = bool_operator(i, node)
@@ -292,7 +292,7 @@
 
 
 //assignment:	<variable name> '=' expression
-/datum/SDQL_parser/proc/assignment(var/i, var/list/node, var/list/assignment_list = list())
+/datum/SDQL_parser/proc/assignment(var/i,69ar/list/node,69ar/list/assignment_list = list())
 	assignment_list += token(i)
 
 	if(token(i + 1) == ".")
@@ -300,7 +300,7 @@
 
 	else if(token(i + 1) == "=")
 		var/exp_list = list()
-		node[assignment_list] = exp_list
+		node69assignment_list69 = exp_list
 
 		i = expression(i + 2, exp_list)
 
@@ -310,10 +310,10 @@
 	return i
 
 
-//variable:	<variable name> | <variable name> '.' variable | '[' <hex number> ']' | '[' <hex number> ']' '.' variable
+//variable:	<variable name> | <variable name> '.'69ariable | '69' <hex number> '69' | '69' <hex number> '69' '.'69ariable
 /datum/SDQL_parser/proc/variable(i, list/node)
 	var/list/L = list(token(i))
-	node[++node.len] = L
+	node69++node.len69 = L
 
 	if(token(i) == "{")
 		L += token(i + 1)
@@ -324,22 +324,22 @@
 
 	if(token(i + 1) == ".")
 		L += "."
-		i = variable(i + 2, L)
+		i =69ariable(i + 2, L)
 
 	else if (token(i + 1) == "(") // OH BOY PROC
 		var/list/arguments = list()
 		i = call_function(i, null, arguments)
 		L += ":"
-		L[++L.len] = arguments
+		L69++L.len69 = arguments
 
-	else if (token(i + 1) == "\[")
+	else if (token(i + 1) == "\69")
 		var/list/expression = list()
 		i = expression(i + 2, expression)
-		if (token(i) != "]")
-			parse_error("Missing ] at the end of list access.")
+		if (token(i) != "69")
+			parse_error("Missing 69 at the end of list access.")
 
-		L += "\["
-		L[++L.len] = expression
+		L += "\69"
+		L69++L.len69 = expression
 		i++
 
 	else
@@ -356,7 +356,7 @@
 	
 	var/path = text2path(token(i))
 	if (path == null)
-		return parse_error("Nonexistant type path: [token(i)]")
+		return parse_error("Nonexistant type path: 69token(i)69")
 
 	node += path
 
@@ -370,7 +370,7 @@
 		node += token(i)
 
 	else
-		parse_error("Unknown comparitor [token(i)]")
+		parse_error("Unknown comparitor 69token(i)69")
 
 	return i + 1
 
@@ -382,7 +382,7 @@
 		node += token(i)
 
 	else
-		parse_error("Unknown comparitor [token(i)]")
+		parse_error("Unknown comparitor 69token(i)69")
 
 	return i + 1
 
@@ -394,23 +394,23 @@
 		node += token(i)
 
 	else
-		parse_error("Expected string but found '[token(i)]'")
+		parse_error("Expected string but found '69token(i)69'")
 
 	return i + 1
 
-//array:	'[' expression, expression, ... ']'
-/datum/SDQL_parser/proc/array(var/i, var/list/node)
-	// Arrays get turned into this: list("[", list(exp_1a = exp_1b, ...), ...), "[" is to mark the next node as an array.
-	if(copytext(token(i), 1, 2) != "\[")
-		parse_error("Expected an array but found '[token(i)]'")
+//array:	'69' expression, expression, ... '69'
+/datum/SDQL_parser/proc/array(var/i,69ar/list/node)
+	// Arrays get turned into this: list("69", list(exp_1a = exp_1b, ...), ...), "69" is to69ark the next node as an array.
+	if(copytext(token(i), 1, 2) != "\69")
+		parse_error("Expected an array but found '69token(i)69'")
 		return i + 1
 
-	node += token(i) // Add the "["
+	node += token(i) // Add the "69"
 
 	var/list/expression_list = list()
 
 	i++
-	if(token(i) != "]")
+	if(token(i) != "69")
 		var/list/temp_expression_list = list()
 		var/tok
 		do
@@ -420,19 +420,19 @@
 					parse_error("Found ',' or ':' without expression in an array.")
 					return i + 1
 
-				expression_list[++expression_list.len] = temp_expression_list
+				expression_list69++expression_list.len69 = temp_expression_list
 				temp_expression_list = null
 				if (tok == ":")
 					temp_expression_list = list()
 					i = expression(i + 1, temp_expression_list)
-					expression_list[expression_list[expression_list.len]] = temp_expression_list
+					expression_list69expression_list69expression_list.len6969 = temp_expression_list
 					temp_expression_list = null
 					tok = token(i)
 					if (tok != ",")
-						if (tok == "]")
+						if (tok == "69")
 							break
 
-						parse_error("Expected ',' or ']' after array assoc value, but found '[token(i)]'")
+						parse_error("Expected ',' or '69' after array assoc69alue, but found '69token(i)69'")
 						return i
 
 
@@ -446,7 +446,7 @@
 			// Not having these lines here causes the parser to die
 			// on an error saying that list/token() doesn't exist as a proc.
 			// These lines prevent that.
-			// I assume the compiler/VM is shitting itself and swapping out some variables internally?
+			// I assume the compiler/VM is shitting itself and swapping out some69ariables internally?
 			// While throwing in debug logging it disappeared
 			// And these 3 lines prevent it from happening while being quiet.
 			// So.. it works.
@@ -455,16 +455,16 @@
 			whatthefuck = src.type
 			whatthefuck = whatthefuck
 
-		while(token(i) && token(i) != "]")
+		while(token(i) && token(i) != "69")
 
 		if (temp_expression_list)
-			expression_list[++expression_list.len] = temp_expression_list
+			expression_list69++expression_list.len69 = temp_expression_list
 
-	node[++node.len] = expression_list
+	node69++node.len69 = expression_list
 
 	return i + 1
 
-//call_function:	<function name> ['(' [arguments] ')']
+//call_function:	<function name> 69'(' 69arguments69 ')'69
 /datum/SDQL_parser/proc/call_function(i, list/node, list/arguments)
 	if(length(tokenl(i)))
 		var/procname = ""
@@ -473,20 +473,20 @@
 			procname = "global."
 		node += procname + token(i++)
 		if(token(i) != "(")
-			parse_error("Expected ( but found '[token(i)]'")
+			parse_error("Expected ( but found '69token(i)69'")
 
 		else if(token(i + 1) != ")")
 			var/list/temp_expression_list = list()
 			do
 				i = expression(i + 1, temp_expression_list)
 				if(token(i) == ",")
-					arguments[++arguments.len] = temp_expression_list
+					arguments69++arguments.len69 = temp_expression_list
 					temp_expression_list = list()
 					continue
 
 			while(token(i) && token(i) != ")")
 
-			arguments[++arguments.len] = temp_expression_list // The code this is copy pasted from won't be executed when it's the last param, this fixes that.
+			arguments69++arguments.len69 = temp_expression_list // The code this is copy pasted from won't be executed when it's the last param, this fixes that.
 		else
 			i++
 	else
@@ -494,7 +494,7 @@
 	return i + 1
 
 
-//expression:	( unary_expression | '(' expression ')' | value ) [binary_operator expression]
+//expression:	( unary_expression | '(' expression ')' |69alue ) 69binary_operator expression69
 /datum/SDQL_parser/proc/expression(i, list/node)
 
 	if(token(i) in unary_operators)
@@ -511,10 +511,10 @@
 		else
 			i++
 
-		node[++node.len] = expr
+		node69++node.len69 = expr
 
 	else
-		i = value(i, node)
+		i =69alue(i, node)
 
 	if(token(i) in binary_operators)
 		i = binary_operator(i, node)
@@ -526,13 +526,13 @@
 		var/list/rhs = list()
 		i = expression(i, rhs)
 
-		node[++node.len] = rhs
+		node69++node.len69 = rhs
 
 
 	return i
 
 
-//unary_expression:	unary_operator ( unary_expression | value | '(' expression ')' )
+//unary_expression:	unary_operator ( unary_expression |69alue | '(' expression ')' )
 /datum/SDQL_parser/proc/unary_expression(i, list/node)
 
 	if(token(i) in unary_operators)
@@ -555,16 +555,16 @@
 			else
 				i++
 
-			unary_exp[++unary_exp.len] = expr
+			unary_exp69++unary_exp.len69 = expr
 
 		else
-			i = value(i, unary_exp)
+			i =69alue(i, unary_exp)
 
-		node[++node.len] = unary_exp
+		node69++node.len69 = unary_exp
 
 
 	else
-		parse_error("Expected unary operator but found '[token(i)]'")
+		parse_error("Expected unary operator but found '69token(i)69'")
 
 	return i
 
@@ -576,7 +576,7 @@
 		node += token(i)
 
 	else
-		parse_error("Unknown binary operator [token(i)]")
+		parse_error("Unknown binary operator 69token(i)69")
 
 	return i + 1
 
@@ -598,11 +598,11 @@
 	else if(copytext(token(i), 1, 2) in list("'", "\""))
 		i = string(i, node)
 
-	else if(copytext(token(i), 1, 2) == "\[") // Start a list.
+	else if(copytext(token(i), 1, 2) == "\69") // Start a list.
 		i = array(i, node)
 	else if(copytext(token(i), 1, 2) == "/")
 		i = object_type(i, node)
 	else
-		i = variable(i, node)
+		i =69ariable(i, node)
 
 	return i

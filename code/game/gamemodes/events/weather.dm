@@ -1,10 +1,10 @@
-//The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch most unprotected creatures.
+//The effects of weather occur across an entire z-level. For instance, lavaland has periodic ash storms that scorch69ost unprotected creatures.
 
 /datum/weather
 	var/name = "space wind"
 	var/desc = "Heavy gusts of wind blanket the area, periodically knocking down anyone caught in the open."
 
-	var/telegraph_message = "<span class='warning'>The wind begins to pick up.</span>" //The message displayed in chat to foreshadow the weather's beginning
+	var/telegraph_message = "<span class='warning'>The wind begins to pick up.</span>" //The69essage displayed in chat to foreshadow the weather's beginning
 	var/telegraph_duration = 300 //In deciseconds, how long from the beginning of the telegraph until the weather begins
 	var/telegraph_sound //The sound file played to everyone on an affected z-level
 	var/telegraph_overlay //The overlay applied to all tiles on the z-level
@@ -19,17 +19,17 @@
 	var/list/affectareas = list()
 
 	var/end_message = "<span class='danger'>The wind relents its assault.</span>" //Displayed once the weather is over
-	var/end_duration = 300 //In deciseconds, how long the "wind-down" graphic will appear before vanishing entirely
+	var/end_duration = 300 //In deciseconds, how long the "wind-down" graphic will appear before69anishing entirely
 	var/end_sound
 	var/end_overlay
 
 	var/area_type = /area //Types of area to affect
 	var/list/protected_areas = list()//Areas that are protected and excluded from the affected areas.
 
-	var/overlay_layer = 35 //Since it's above everything else, this is the layer used by default. TURF_LAYER is below mobs and walls if you need to use that.
+	var/overlay_layer = 35 //Since it's above everything else, this is the layer used by default. TURF_LAYER is below69obs and walls if you need to use that.
 	//var/overlay_plane = BLACKNESS_PLANE
 	var/aesthetic = FALSE //If the weather has no purpose other than looks
-	var/immunity_type = "storm" //Used by mobs to prevent them from being affected by the weather
+	var/immunity_type = "storm" //Used by69obs to prevent them from being affected by the weather
 
 	var/stage = END_STAGE //The stage of the weather, from 1-4
 
@@ -45,7 +45,7 @@
 		return
 	stage = STARTUP_STAGE
 	for(var/V in get_areas(area_type))
-		affectareas += V
+		affectareas +=69
 	for(var/V in protected_areas)
 		affectareas -= get_areas(V)
 
@@ -63,9 +63,9 @@
 		addtimer(CALLBACK(src, .proc/start), telegraph_duration)
 
 /datum/weather/proc/start()
-	if(stage >= MAIN_STAGE)
+	if(stage >=69AIN_STAGE)
 		return
-	stage = MAIN_STAGE
+	stage =69AIN_STAGE
 	update_areas()
 	for(var/M in GLOB.player_list)
 		var/turf/mob_turf = get_turf(M)
@@ -100,7 +100,7 @@
 	STOP_PROCESSING(SSweather, src)
 	update_areas()
 
-/datum/weather/proc/can_weather_act(mob/living/L) //Can this weather impact a mob?
+/datum/weather/proc/can_weather_act(mob/living/L) //Can this weather impact a69ob?
 	var/turf/mob_turf = get_turf(L)
 	if(mob_turf && !(mob_turf.z in world))
 		return
@@ -108,12 +108,12 @@
 		return
 	return 1
 
-/datum/weather/proc/weather_act(mob/living/L) //What effect does this weather have on the hapless mob?
+/datum/weather/proc/weather_act(mob/living/L) //What effect does this weather have on the hapless69ob?
 	return
 
 /datum/weather/proc/update_areas()
 	for(var/V in affectareas)
-		var/area/N = V
+		var/area/N =69
 		N.layer = overlay_layer
 		N.plane = 150
 		N.icon = 'icons/effects/weather_effects.dmi'
@@ -154,32 +154,32 @@ SUBSYSTEM_DEF(weather)
 /datum/controller/subsystem/weather/fire()
 	// process active weather
 	for(var/V in processing)
-		var/datum/weather/W = V
-		if(W.aesthetic || W.stage != MAIN_STAGE)
+		var/datum/weather/W =69
+		if(W.aesthetic || W.stage !=69AIN_STAGE)
 			continue
 
 /datum/controller/subsystem/weather/Initialize(start_timeofday)
 	for(var/V in subtypesof(/datum/weather))
-		var/datum/weather/W = V
+		var/datum/weather/W =69
 		var/probability = initial(W.probability)
 
-		// any weather with a probability set may occur at random
+		// any weather with a probability set69ay occur at random
 		if (probability)
 			var/list/levels_by_trait = list(1,2,3,4)
 			for(var/z in levels_by_trait)
-				LAZYINITLIST(eligible_zlevels["[z]"])
-				eligible_zlevels["[z]"][W] = probability
+				LAZYINITLIST(eligible_zlevels69"69z69"69)
+				eligible_zlevels69"69z69"6969W69 = probability
 	return ..()
 
 /datum/controller/subsystem/weather/proc/run_weather(datum/weather/weather_datum_type)
 	if (istext(weather_datum_type))
 		for (var/V in subtypesof(/datum/weather))
-			var/datum/weather/W = V
+			var/datum/weather/W =69
 			if (initial(W.name) == weather_datum_type)
-				weather_datum_type = V
+				weather_datum_type =69
 				break
 	if (!ispath(weather_datum_type, /datum/weather))
-		CRASH("run_weather called with invalid weather_datum_type: [weather_datum_type || "null"]")
+		CRASH("run_weather called with invalid weather_datum_type: 69weather_datum_type || "null"69")
 
 	var/datum/weather/W = new weather_datum_type()
 	W.telegraph()

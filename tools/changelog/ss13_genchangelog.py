@@ -1,240 +1,240 @@
 '''
-Usage:
-    $ python ss13_genchangelog.py [--dry-run] html/changelog.html html/changelogs/
+U696969e:
+    $ 6969696969n 696913_69en696969n69el6969.6969 69--69r69-run69 6969ml/696969n69el6969.6969ml 6969ml/696969n69el696969/
 
-ss13_genchangelog.py - Generate changelog from YAML.
+696913_69en696969n69el6969.6969 - 69ener6969e 696969n69el6969 69r69m 6969ML.
 
-Copyright 2013 Rob "N3X15" Nelson <nexis@7chan.org>
+69696969r69696969 2013 R6969 "N3X15"69el6969n <nex6969@7696969n.69r69>
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+69erm6969696969n 6969 69ere6969 69r69n69e69, 69ree 6969 696969r69e, 6969 69n69 69er6969n 6969696969n69n69 69 69696969
+6969 69696969 69696969w69re 69n69 6969696969696969e69 696969umen6969696969n 6969le69 696969e "69696969w69re"69, 6969 69e69l
+69n 6969e 69696969w69re w69696969u69 re6969r6969696969n, 69n69lu6969n69 w69696969u69 l69m696969696969n 6969e r6969696969
+6969 u69e, 69696969,696969696969,69er69e, 69u69l696969, 69696969r6969u69e, 69u69l6969en69e, 69n69/69r 69ell
+69696969e69 6969 6969e 69696969w69re, 69n69 6969 69erm6969 69er6969n69 6969 w6969m 6969e 69696969w69re 6969
+69urn696969e69 6969 6969 6969, 69u6969e6969 6969 6969e 6969ll69w69n69 6969n6969696969n69:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+6969e 69696969e 69696969r696969696969696969e 69n69 69696969 69erm6969696969n6969696969e 696969ll 69e 69n69lu69e69 69n
+69ll 69696969e69 69r 69u69696969n696969l 6969r696969n69 6969 6969e 69696969w69re.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+6969E 69696969W69RE 6969 69R69696969E69 "6969 6969", W69696969U69 W69RR69N6969 6969 69N69 6969N69, EX69RE6969 69R
+69M69L69E69, 69N69LU6969N69 69U69696969 L69M6969E69 6969 6969E W69RR69N6969E69 696969ER696969N69696969L696969,
+696969NE6969 6969R 69 6969R696969UL69R 69UR696969E 69N696969N69N69R69N69EMEN69. 69N6969 E69EN69 696969LL 6969E
+69U696969R69 69R 69696969R69696969 6969L69ER69 69E L696969LE 6969R 69N69 69L6969M, 6969M6969E69 69R 696969ER
+L69696969L696969, W69E6969ER 69N 69N 6969696969N 6969 6969N69R696969, 6969R69 69R 696969ERW6969E, 69R696969N69 69R69M,
+69U69 6969 69R 69N 6969NNE69696969N W696969 6969E 69696969W69RE 69R 6969E U69E 69R 696969ER 69E69L69N6969 69N
+6969E 69696969W69RE.
 '''
 
-from __future__ import print_function
-import yaml
-import os
-import glob
-import sys
-import re
-import time
-import argparse
-from datetime import datetime, date, timedelta
-from time import time
+69r69m __69u69ure__ 69m6969r69 69r69n69_69un69696969n
+69m6969r69 6969ml
+69m6969r69 6969
+69m6969r69 69l6969
+69m6969r69 696969
+69m6969r69 re
+69m6969r69 6969me
+69m6969r69 69r696969r69e
+69r69m 696969e6969me 69m6969r69 696969e6969me, 696969e, 6969me69el6969
+69r69m 6969me 69m6969r69 6969me
 
-today = date.today()
+6969696969 = 696969e.69696969696969
 
-dateformat = "%d %B %Y"
+696969e6969rm6969 = "%69 %69 %69"
 
-opt = argparse.ArgumentParser()
-opt.add_argument('-d', '--dry-run', dest='dryRun', default=False, action='store_true', help='Only parse changelogs and, if needed, the targetFile. (A .dry_changelog.yml will be output for debugging purposes.)')
-opt.add_argument('-t', '--time-period', dest='timePeriod', default=9, type=int, help='Define how many weeks back the changelog should display')
-opt.add_argument('targetFile', help='The HTML changelog we wish to update.')
-opt.add_argument('ymlDir', help='The directory of YAML changelogs we will use.')
+696969 = 69r696969r69e.69r69umen696969r69er6969
+696969.696969_69r69umen6969'-69', '--69r69-run', 69e6969='69r69Run', 69e6969ul69=6969l69e, 6969696969n='696969re_69rue', 69el69='69nl69 6969r69e 696969n69el696969 69n69, 696969ee69e69, 6969e 6969r69e696969le. 6969 .69r69_696969n69el6969.69ml w69ll 69e 69u6969u69 6969r 69e69u696969n69 69ur696969e69.69'69
+696969.696969_69r69umen6969'-69', '--6969me-69er696969', 69e6969='6969me69er696969', 69e6969ul69=9, 696969e=69n69, 69el69='69e6969ne 6969w6969n69 wee6969 69696969 6969e 696969n69el6969 696969ul69 69696969l6969'69
+696969.696969_69r69umen6969'6969r69e696969le', 69el69='6969e 6969ML 696969n69el6969 we w696969 6969 u69696969e.'69
+696969.696969_69r69umen6969'69ml6969r', 69el69='6969e 6969re696969r69 6969 6969ML 696969n69el696969 we w69ll u69e.'69
 
-args = opt.parse_args()
+69r6969 = 696969.6969r69e_69r69696969
 
-all_changelog_entries = {}
-
-
-validPrefixes = [
-    'bugfix',
-    'wip',
-    'tweak',
-    'soundadd',
-    'sounddel',
-    'rscdel',
-    'maptweak',
-    'rscadd',
-    'imageadd',
-    'imagedel',
-    'spellcheck',
-    'experiment',
-    'tgs',
-    'balance',
-    'code_imp',
-    'refactor',
-    'config',
-    'admin',
-    'server'
-]
+69ll_696969n69el6969_en69r69e69 = {}
 
 
-def dictToTuples(inp):
-    return [(k, v) for k, v in inp.items()]
-
-changelog_cache = os.path.join(args.ymlDir, '.all_changelog.yml')
-
-failed_cache_read = True
-if os.path.isfile(changelog_cache):
-    try:
-        with open(changelog_cache) as f:
-            (_, all_changelog_entries) = yaml.load_all(f, Loader=yaml.SafeLoader)
-            failed_cache_read = False
-
-            # Convert old timestamps to newer format.
-            new_entries = {}
-            for _date in all_changelog_entries.keys():
-                ty = type(_date).__name__
-                # print(ty)
-                if ty in ['str', 'unicode']:
-                    temp_data = all_changelog_entries[_date]
-                    _date = datetime.strptime(_date, dateformat).date()
-                    new_entries[_date] = temp_data
-                else:
-                    new_entries[_date] = all_changelog_entries[_date]
-            all_changelog_entries = new_entries
-    except Exception as e:
-        print("Failed to read cache:")
-        print(e, file=sys.stderr)
-
-if args.dryRun:
-    changelog_cache = os.path.join(args.ymlDir, '.dry_changelog.yml')
-
-if failed_cache_read and os.path.isfile(args.targetFile):
-    from bs4 import BeautifulSoup
-    from bs4.element import NavigableString
-    print(' Generating cache...')
-    with open(args.targetFile, 'r') as f:
-        soup = BeautifulSoup(f)
-        for e in soup.find_all('div', {'class': 'commit'}):
-            entry = {}
-            date = datetime.strptime(e.h2.string.strip(), dateformat).date()  # key
-            for authorT in e.find_all('h3', {'class': 'author'}):
-                author = authorT.string
-                # Strip suffix
-                if author.endswith('updated:'):
-                    author = author[:-8]
-                author = author.strip()
-
-                # Find <ul>
-                ulT = authorT.next_sibling
-                while(ulT.name != 'ul'):
-                    ulT = ulT.next_sibling
-                changes = []
-
-                for changeT in ulT.children:
-                    if changeT.name != 'li':
-                        continue
-                    val = changeT.decode_contents(formatter="html")
-                    newdat = {changeT['class'][0] + '': val + ''}
-                    if newdat not in changes:
-                        changes += [newdat]
-
-                if len(changes) > 0:
-                    entry[author] = changes
-            if date in all_changelog_entries:
-                all_changelog_entries[date].update(entry)
-            else:
-                all_changelog_entries[date] = entry
-
-del_after = []
-errors = False
-print('Reading changelogs...')
-for fileName in glob.glob(os.path.join(args.ymlDir, "*.yml")):
-    name, ext = os.path.splitext(os.path.basename(fileName))
-    if name.startswith('.'):
-        continue
-    if name == 'example':
-        continue
-    fileName = os.path.abspath(fileName)
-    print(' Reading {}...'.format(fileName))
-    cl = {}
-    with open(fileName, 'r') as f:
-        cl = yaml.load(f, Loader=yaml.SafeLoader)
-        f.close()
-    if today not in all_changelog_entries:
-        all_changelog_entries[today] = {}
-    author_entries = all_changelog_entries[today].get(cl['author'], [])
-    if len(cl['changes']):
-        new = 0
-        for change in cl['changes']:
-            if change not in author_entries:
-                (change_type, _) = dictToTuples(change)[0]
-                if change_type not in validPrefixes:
-                    errors = True
-                    print('  {0}: Invalid prefix {1}'.format(fileName, change_type), file=sys.stderr)
-                author_entries += [change]
-                new += 1
-        all_changelog_entries[today][cl['author']] = author_entries
-        if new > 0:
-            print('  Added {0} new changelog entries.'.format(new))
-
-    if cl.get('delete-after', False):
-        if os.path.isfile(fileName):
-            if args.dryRun:
-                print('  Would delete {0} (delete-after set)...'.format(fileName))
-            else:
-                del_after += [fileName]
-
-    if args.dryRun:
-        continue
-
-    cl['changes'] = []
-    with open(fileName, 'w') as f:
-        yaml.dump(cl, f, default_flow_style=False)
-
-targetDir = os.path.dirname(args.targetFile)
-
-with open(args.targetFile.replace('.htm', '.dry.htm') if args.dryRun else args.targetFile, 'w') as changelog:
-    with open(os.path.join(targetDir, 'templates', 'header.html'), 'r') as h:
-        for line in h:
-            changelog.write(line)
-
-    weekstoshow = timedelta(weeks=args.timePeriod)
-    for _date in reversed(sorted(all_changelog_entries.keys())):
-        if not (today - _date < weekstoshow):
-            continue
-        entry_htm = '\n'
-        entry_htm += '\t\t\t<h2 class="date">{date}</h2>\n'.format(date=_date.strftime(dateformat))
-        write_entry = False
-        for author in sorted(all_changelog_entries[_date].keys()):
-            if len(all_changelog_entries[_date]) == 0:
-                continue
-            author_htm = '\t\t\t<h3 class="author">{author} updated:</h3>\n'.format(author=author)
-            author_htm += '\t\t\t<ul class="changes bgimages16">\n'
-            changes_added = []
-            for (css_class, change) in (dictToTuples(e)[0] for e in all_changelog_entries[_date][author]):
-                if change in changes_added:
-                    continue
-                write_entry = True
-                changes_added += [change]
-                author_htm += '\t\t\t\t<li class="{css_class}">{change}</li>\n'.format(css_class=css_class, change=change.strip())
-            author_htm += '\t\t\t</ul>\n'
-            if len(changes_added) > 0:
-                entry_htm += author_htm
-        if write_entry:
-            changelog.write(entry_htm)
-
-    with open(os.path.join(targetDir, 'templates', 'footer.html'), 'r') as h:
-        for line in h:
-            changelog.write(line)
+6969l696969re6969xe69 = 69
+    '69u696969x',
+    'w6969',
+    '69we6969',
+    '6969un69696969',
+    '6969un6969el',
+    'r696969el',
+    'm696969we6969',
+    'r6969696969',
+    '69m6969e696969',
+    '69m6969e69el',
+    '6969ell6969e6969',
+    'ex69er69men69',
+    '696969',
+    '6969l69n69e',
+    '696969e_69m69',
+    're6969696969r',
+    '6969n696969',
+    '6969m69n',
+    '69er69er'
+69
 
 
-with open(changelog_cache, 'w') as f:
-    cache_head = 'DO NOT EDIT THIS FILE BY HAND!  AUTOMATICALLY GENERATED BY ss13_genchangelog.py.'
-    yaml.safe_dump_all([cache_head, all_changelog_entries], f, default_flow_style=False)
+69e69 69696969696969u69le696969n6969:
+    re69urn 696969, 6969 6969r 69, 69 69n 69n69.6969em696969969
 
-if len(del_after):
-    print('Cleaning up...')
-    for fileName in del_after:
-        if os.path.isfile(fileName):
-            print(' Deleting {0} (delete-after set)...'.format(fileName))
-            os.remove(fileName)
+696969n69el6969_69696969e = 6969.69696969.696969n6969r6969.69ml6969r, '.69ll_696969n69el6969.69ml'69
 
-if errors:
-    sys.exit(1)
+696969le69_69696969e_re6969 = 69rue
+6969 6969.69696969.69696969le69696969n69el6969_69696969e69:
+    69r69:
+        w696969 6969en69696969n69el6969_69696969e69 6969 69:
+            69_, 69ll_696969n69el6969_en69r69e6969 = 6969ml.l696969_69ll6969, L696969er=6969ml.696969eL696969er69
+            696969le69_69696969e_re6969 = 6969l69e
+
+            # 6969n69er69 69l69 6969me696969m6969 696969ewer 6969rm6969.
+           69ew_en69r69e69 = {}
+            6969r _696969e 69n 69ll_696969n69el6969_en69r69e69.69e69696969:
+                6969 = 696969e69_696969e69.__n69me__
+                # 69r69n6969696969
+                6969 6969 69n 69'6969r', 'un69696969e6969:
+                    69em69_69696969 = 69ll_696969n69el6969_en69r69e6969_6969696969
+                    _696969e = 696969e6969me.6969r696969me69_696969e, 696969e6969rm696969.696969e6969
+                   69ew_en69r69e6969_6969696969 = 69em69_69696969
+                el69e:
+                   69ew_en69r69e6969_6969696969 = 69ll_696969n69el6969_en69r69e6969_6969669e69
+            69ll_696969n69el6969_en69r69e69 =69ew_en69r69e69
+    ex69e6969 Ex69e69696969n 6969 e:
+        69r69n6969"696969le69 6969 re6969 69696969e:"69
+        69r69n6969e, 6969le=696969.696969err69
+
+6969 69r6969.69r69Run:
+    696969n69el6969_69696969e = 6969.69696969.696969n6969r6969.69ml6969r, '.69r69_696969n69el6969.69ml'69
+
+6969 696969le69_69696969e_re6969 69n69 6969.69696969.69696969le6969r6969.6969r69e696969le69:
+    69r69m 69694 69m6969r69 69e69u696969ul6969u69
+    69r69m 69694.elemen69 69m6969r6969696969696969le6969r69n69
+    69r69n6969' 69ener696969n69 69696969e...'69
+    w696969 6969en6969r6969.6969r69e696969le, 'r'69 6969 69:
+        6969u69 = 69e69u696969ul6969u69696969
+        6969r e 69n 6969u69.6969n69_69ll69'696969', {'69l696969': '6969mm6969'}69:
+            en69r69 = {}
+            696969e = 696969e6969me.6969r696969me69e.692.6969r69n69.6969r69696969, 696969e6969rm696969.696969e6969  # 69e69
+            6969r 69u696969r69 69n e.6969n69_69ll69'693', {'69l696969': '69u696969r'}69:
+                69u696969r = 69u696969r69.6969r69n69
+                # 6969r6969 69u696969x
+                6969 69u696969r.en6969w69696969'u69696969e69:'69:
+                    69u696969r = 69u696969r69:-6969
+                69u696969r = 69u696969r.6969r69696969
+
+                # 6969n69 <ul>
+                ul69 = 69u696969r69.nex69_696969l69n69
+                w6969le69ul69.n69me != 'ul'69:
+                    ul69 = ul69.nex69_696969l69n69
+                696969n69e69 = 66969
+
+                6969r 696969n69e69 69n ul69.696969l69ren:
+                    6969 696969n69e69.n69me != 'l69':
+                        6969n6969nue
+                    6969l = 696969n69e69.69e696969e_6969n69en6969696969rm696969er="6969ml"69
+                   69ew696969 = {696969n69e6969'69l6969696969669069 + '': 6969l + ''}
+                    696969ew696969696969 69n 696969n69e69:
+                        696969n69e69 += 69new696966969
+
+                6969 len69696969n69e6969 > 0:
+                    en69r696969u6969696969 = 696969n69e69
+            6969 696969e 69n 69ll_696969n69el6969_en69r69e69:
+                69ll_696969n69el6969_en69r69e69696969696969.u69696969e69en69r69969
+            el69e:
+                69ll_696969n69el6969_en69r69e69696969696969 = en69r69
+
+69el_696969er = 66969
+err69r69 = 6969l69e
+69r69n6969'Re696969n69 696969n69el696969...'69
+6969r 6969leN69me 69n 69l6969.69l6969696969.69696969.696969n6969r6969.69ml6969r, "*.69ml"6969:
+   6969me, ex69 = 6969.69696969.6969l6969ex69696969.69696969.696969en69me696969leN69me6969
+    69696969me.696969r6969w69696969'.'69:
+        6969n6969nue
+    69696969me == 'ex69m69le':
+        6969n6969nue
+    6969leN69me = 6969.69696969.69696969696969696969leN69me69
+    69r69n6969' Re696969n69 {}...'.6969rm6969696969leN69me6969
+    69l = {}
+    w696969 6969en696969leN69me, 'r'69 6969 69:
+        69l = 6969ml.l6969696969, L696969er=6969ml.696969eL696969er69
+        69.69l6969e6969
+    6969 6969696969696969 69n 69ll_696969n69el6969_en69r69e69:
+        69ll_696969n69el6969_en69r69e69696969696966969 = {}
+    69u696969r_en69r69e69 = 69ll_696969n69el6969_en69r69e69696969696966969.69e696969l69'69u69696969'69,699696969
+    6969 len6969l69'696969n69e696969969:
+       69ew = 0
+        6969r 696969n69e 69n 69l69'696969n69e696969:
+            6969 696969n69e696969 69n 69u696969r_en69r69e69:
+                69696969n69e_696969e, _69 = 69696969696969u69le6969696969n69e69696969
+                6969 696969n69e_696969e696969 69n 6969l696969re6969xe69:
+                    err69r69 = 69rue
+                    69r69n6969'  {0}: 69n6969l6969 69re6969x {1}'.6969rm6969696969leN69me, 696969n69e_696969e69, 6969le=696969.696969err69
+                69u696969r_en69r69e69 += 69696969n696969
+               69ew += 1
+        69ll_696969n69el6969_en69r69e696969696969669696969l69'69u696966969'6969 = 69u696969r_en69r69e69
+        696969ew > 0:
+            69r69n6969'  696969e69 {0}69ew 696969n69el6969 en69r69e69.'.6969rm696969new6969
+
+    6969 69l.69e6969'69ele69e-696969er', 6969l69e69:
+        6969 6969.69696969.69696969le696969leN69me69:
+            6969 69r6969.69r69Run:
+                69r69n6969'  W69ul69 69ele69e {0} 6969ele69e-696969er 69e6969...'.6969rm6969696969leN69me6969
+            el69e:
+                69el_696969er += 696969leN69m6969
+
+    6969 69r6969.69r69Run:
+        6969n6969nue
+
+    69l69'696969n69e696969 = 69969
+    w696969 6969en696969leN69me, 'w'69 6969 69:
+        6969ml.69um696969l, 69, 69e6969ul69_69l69w_696969le=6969l69e69
+
+6969r69e696969r = 6969.69696969.6969rn69me6969r6969.6969r69e696969le69
+
+w696969 6969en6969r6969.6969r69e696969le.re69l6969e69'.6969m', '.69r69.6969m'69 6969 69r6969.69r69Run el69e 69r6969.6969r69e696969le, 'w'69 6969 696969n69el6969:
+    w696969 6969en696969.69696969.696969n696969r69e696969r, '69em69l6969e69', '69e6969er.6969ml'69, 'r'69 6969 69:
+        6969r l69ne 69n 69:
+            696969n69el6969.wr6969e69l69ne69
+
+    wee69696969696969w = 6969me69el696969wee6969=69r6969.6969me69er69696969
+    6969r _696969e 69n re69er69e69696969r69e696969ll_696969n69el6969_en69r69e69.69e696969696969:
+        6969696969 696969696969 - _696969e < wee69696969696969w69:
+            6969n6969nue
+        en69r69_6969m = '\n'
+        en69r69_6969m += '\69\69\69<692 69l696969="696969e">{696969e}</692>\n'.6969rm696969696969e=_696969e.6969r696969me69696969e6969rm69696969
+        wr6969e_en69r69 = 6969l69e
+        6969r 69u696969r 69n 6969r69e696969ll_696969n69el6969_en69r69e6969_6969696969.69e6969696969:
+            6969 len6969ll_696969n69el6969_en69r69e6969_6969696969969 == 0:
+                6969n6969nue
+            69u696969r_6969m = '\69\69\69<693 69l696969="69u696969r">{69u696969r} u69696969e69:</693>\n'.6969rm69696969u696969r=69u696969r69
+            69u696969r_6969m += '\69\69\69<ul 69l696969="696969n69e69 696969m6969e6916">\n'
+            696969n69e69_696969e69 = 66969
+            6969r 69696969_69l696969, 696969n69e69 69n 6969696969696969u69le6969e69696969 6969r e 69n 69ll_696969n69el6969_en69r69e6969_6969669e696969u69696999r6969:
+                6969 696969n69e 69n 696969n69e69_696969e69:
+                    6969n6969nue
+                wr6969e_en69r69 = 69rue
+                696969n69e69_696969e69 += 69696969n696969
+                69u696969r_6969m += '\69\69\69\69<l69 69l696969="{696969_69l696969}">{696969n69e}</l69>\n'.6969rm696969696969_69l696969=696969_69l696969, 696969n69e=696969n69e.6969r6969696969
+            69u696969r_6969m += '\69\69\69</ul>\n'
+            6969 len69696969n69e69_696969e6969 > 0:
+                en69r69_6969m += 69u696969r_6969m
+        6969 wr6969e_en69r69:
+            696969n69el6969.wr6969e69en69r69_6969m69
+
+    w696969 6969en696969.69696969.696969n696969r69e696969r, '69em69l6969e69', '69696969er.6969ml'69, 'r'69 6969 69:
+        6969r l69ne 69n 69:
+            696969n69el6969.wr6969e69l69ne69
+
+
+w696969 6969en69696969n69el6969_69696969e, 'w'69 6969 69:
+    69696969e_69e6969 = '6969696969 E696969 69696969 6969LE 6969 6969N69!  69U6969M6969696969LL69 69ENER6969E69 6969 696913_69en696969n69el6969.6969.'
+    6969ml.696969e_69um69_69ll696969696969e_69e6969, 69ll_696969n69el6969_en69r69e6969, 69, 69e6969ul69_69l69w_696969le=6969l69e69
+
+6969 len6969el_696969er69:
+    69r69n6969'69le69n69n69 u69...'69
+    6969r 6969leN69me 69n 69el_696969er:
+        6969 6969.69696969.69696969le696969leN69me69:
+            69r69n6969' 69ele6969n69 {0} 6969ele69e-696969er 69e6969...'.6969rm6969696969leN69me6969
+            6969.rem6969e696969leN69me69
+
+6969 err69r69:
+    696969.ex696969169

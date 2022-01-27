@@ -19,8 +19,8 @@
 	category = CAT_MINING
 
 /datum/design/research/item/mesons
-	name = "Optical meson scanners"
-	desc = "Using the meson-scanning technology those glasses allow you to see through walls, floor or anything else."
+	name = "Optical69eson scanners"
+	desc = "Using the69eson-scanning technology those glasses allow you to see through walls, floor or anything else."
 	build_path = /obj/item/clothing/glasses/powered/meson
 	category = CAT_MINING
 	sort_string = "KAAAE"

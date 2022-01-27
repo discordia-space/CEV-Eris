@@ -1,11 +1,11 @@
 //	Observer Pattern Implementation: Logged Out
 //		Registration type: /mob
 //
-//		Raised when: A mob logs out (client either logged out or was moved to another mob)
+//		Raised when: A69ob logs out (client either logged out or was69oved to another69ob)
 //
 //		Arguments that the called proc should expect:
-//			/mob/leaver:    The mob that has logged out
-//			/client/client: The mob's client
+//			/mob/leaver:    The69ob that has logged out
+//			/client/client: The69ob's client
 
 GLOBAL_DATUM_INIT(logged_out_event, /decl/observ/logged_out, new)
 
@@ -19,6 +19,6 @@ GLOBAL_DATUM_INIT(logged_out_event, /decl/observ/logged_out, new)
 
 /mob/Logout()
 // TODO: enable after baymed
-	//GLOB.logged_out_event.raise_event(src, my_client)
+	//GLOB.logged_out_event.raise_event(src,69y_client)
 
 	..()

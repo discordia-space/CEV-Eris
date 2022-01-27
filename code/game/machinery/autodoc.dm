@@ -25,7 +25,7 @@
 	src.go_out()
 	return
 
-/obj/machinery/autodoc/attackby(obj/item/I, mob/living/user)
+/obj/machinery/autodoc/attackby(obj/item/I,69ob/living/user)
 	if(default_deconstruction(I, user))
 		return
 	if(default_part_replacement(I, user))
@@ -33,7 +33,7 @@
 	..()
 
 /obj/machinery/autodoc/verb/eject()
-	set src in view(1)
+	set src in69iew(1)
 	set category = "Object"
 	set name = "Eject Autodoc"
 
@@ -44,7 +44,7 @@
 	return
 
 /obj/machinery/autodoc/verb/move_inside()
-	set src in view(1)
+	set src in69iew(1)
 	set category = "Object"
 	set name = "Enter Autodoc"
 
@@ -90,12 +90,12 @@
 		L.set_machine(src)
 	update_icon()
 
-/obj/machinery/autodoc/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/autodoc/affect_grab(var/mob/user,69ar/mob/target)
 	if (src.occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to69ove them."))
 		return
 	if(target.abiotic())
 		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
@@ -104,7 +104,7 @@
 	src.add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/autodoc/MouseDrop_T(var/mob/target, var/mob/user)
+/obj/machinery/autodoc/MouseDrop_T(var/mob/target,69ar/mob/user)
 	if(!ismob(target))
 		return
 	if (src.occupant)
@@ -114,11 +114,11 @@
 		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to69ove them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		SPAN_NOTICE("\The 69user69 begins placing \the 69target69 into \the 69src69."),
+		SPAN_NOTICE("You start placing \the 69target69 into \the 69src69.")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
@@ -135,7 +135,7 @@
 		locked = autodoc_processor.active
 	update_icon()
 
-/obj/machinery/autodoc/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FORCE_OPEN, var/datum/topic_state/state = GLOB.default_state)
+/obj/machinery/autodoc/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FORCE_OPEN,69ar/datum/topic_state/state = GLOB.default_state)
 	autodoc_processor.ui_interact(user, ui_key, ui, force_open, state)
 
 /obj/machinery/autodoc/Topic(href, href_list)

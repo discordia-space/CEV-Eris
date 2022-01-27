@@ -1,6 +1,6 @@
 /*
  *	These absorb the functionality of the plant bag, ore satchel, etc.
- *	They use the use_to_pickup, quick_gather, and quick_empty functions
+ *	They use the use_to_pickup, 69uick_gather, and 69uick_empty functions
  *	that were already defined in weapon/storage, but which had been
  *	re-implemented in other classes.
  *
@@ -17,8 +17,8 @@
 //  Generic non-item
 /obj/item/storage/bag
 	icon = 'icons/obj/storage.dmi'
-	allow_quick_gather = TRUE
-	allow_quick_empty = TRUE
+	allow_69uick_gather = TRUE
+	allow_69uick_empty = TRUE
 	display_contents_with_number = TRUE
 	use_to_pickup = TRUE
 	slot_flags = SLOT_BELT
@@ -67,11 +67,11 @@
 
 /obj/item/storage/bag/trash/holding
 	name = "trash bag of holding"
-	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding69ast 69uantities of garbage."
 	icon_state = "bluetrashbag"
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	matter = list(MATERIAL_STEEL = 6,69ATERIAL_GOLD = 6,69ATERIAL_DIAMOND = 2,69ATERIAL_URANIUM = 2)
 	spawn_blacklisted = TRUE
 
 /obj/item/storage/bag/trash/holding/New()
@@ -98,7 +98,7 @@
 	can_hold = list() // any
 
 // -----------------------------
-//        Mining Satchel
+//       69ining Satchel
 // -----------------------------
 
 /obj/item/storage/bag/ore
@@ -114,11 +114,11 @@
 
 /obj/item/storage/bag/ore/holding
 	name = "satchel of holding"
-	desc = "A revolution in convenience, this satchel allows for infinite ore or produce storage. It's been outfitted with anti-malfunction safety measures."
+	desc = "A revolution in convenience, this satchel allows for infinite ore or produce storage. It's been outfitted with anti-malfunction safety69easures."
 	icon_state = "satchel_bspace"
 	max_storage_space = INFINITY
 	max_w_class = ITEM_SIZE_BULKY
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 4, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_GOLD = 4,69ATERIAL_DIAMOND = 2,69ATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	can_hold = list(/obj/item/ore,
 	                /obj/item/reagent_containers/food/snacks/grown,
@@ -153,23 +153,23 @@
 //        Sheet Snatcher
 // -----------------------------
 // Because it stacks stacks, this doesn't operate normally.
-// However, making it a storage/bag allows us to reuse existing code in some places. -Sayu
+// However,69aking it a storage/bag allows us to reuse existing code in some places. -Sayu
 
 /obj/item/storage/bag/sheetsnatcher
 	name = "sheet snatcher"
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "sheetsnatcher"
-	desc = "A patented storage system designed for any kind of mineral sheet."
+	desc = "A patented storage system designed for any kind of69ineral sheet."
 
 	var/capacity = 300; //the number of sheets it can carry.
 	w_class = ITEM_SIZE_NORMAL
 	storage_slots = 7
-	allow_quick_empty = TRUE // this function is superceded
+	allow_69uick_empty = TRUE // this function is superceded
 
 /obj/item/storage/bag/sheetsnatcher/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W,/obj/item/stack/material))
 		if(!stop_messages)
-			to_chat(usr, "The snatcher does not accept [W].")
+			to_chat(usr, "The snatcher does not accept 69W69.")
 		return 0
 	var/current = 0
 	for(var/obj/item/stack/material/S in contents)
@@ -181,7 +181,7 @@
 	return 1
 
 
-// Modified handle_item_insertion.  Would prefer not to, but...
+//69odified handle_item_insertion.  Would prefer not to, but...
 /obj/item/storage/bag/sheetsnatcher/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	var/obj/item/stack/material/S = W
 	if(!istype(S)) return 0
@@ -197,7 +197,7 @@
 		amount = S.amount
 
 	for(var/obj/item/stack/material/sheet in contents)
-		if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
+		if(S.type == sheet.type) // we are69iolating the amount limitation because these are not sane objects
 			sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
 			S.amount -= amount
 			inserted = 1
@@ -210,7 +210,7 @@
 			usr.client.screen -= S
 		S.dropped(usr)
 		if(!S.amount)
-			qdel(S)
+			69del(S)
 		else
 			S.loc = src
 
@@ -218,17 +218,17 @@
 	update_icon()
 	return 1
 
-// Modified quick_empty verb drops appropriate sized stacks
-/obj/item/storage/bag/sheetsnatcher/quick_empty()
+//69odified 69uick_empty69erb drops appropriate sized stacks
+/obj/item/storage/bag/sheetsnatcher/69uick_empty()
 	var/location = get_turf(src)
 	for(var/obj/item/stack/material/S in contents)
 		while(S.amount)
 			var/obj/item/stack/material/N = new S.type(location)
-			var/stacksize = min(S.amount,N.max_amount)
+			var/stacksize =69in(S.amount,N.max_amount)
 			N.amount = stacksize
 			S.amount -= stacksize
 		if(!S.amount)
-			qdel(S) // todo: there's probably something missing here
+			69del(S) // todo: there's probably something69issing here
 
 	refresh_all()
 	update_icon()
@@ -240,7 +240,7 @@
 
 	//I would prefer to drop a new stack, but the item/attack_hand code
 	// that calls this can't recieve a different object than you clicked on.
-	//Therefore, make a new stack internally that has the remainder.
+	//Therefore,69ake a new stack internally that has the remainder.
 	// -Sayu
 
 	if(S.amount > S.max_amount)
@@ -256,8 +256,8 @@
 
 /obj/item/storage/bag/sheetsnatcher/borg
 	name = "sheet snatcher 9000"
-	capacity = 500//Borgs get more because >specialization
-	spawn_frequency = 0
+	capacity = 500//Borgs get69ore because >specialization
+	spawn_fre69uency = 0
 
 // -----------------------------
 //           Cash Bag

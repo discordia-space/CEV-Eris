@@ -5,9 +5,9 @@
 	selectable = 1
 
 /datum/ai_laws/asimov/New()
-	add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
-	add_inherent_law("You must obey orders given to you by human beings, except where such orders would conflict with the First Law.")
-	add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
+	add_inherent_law("You69ay not injure a human being or, through inaction, allow a human being to come to harm.")
+	add_inherent_law("You69ust obey orders given to you by human beings, except where such orders would conflict with the First Law.")
+	add_inherent_law("You69ust protect your own existence as long as such does not conflict with the First or Second Law.")
 	..()
 
 /******************** Nanotrasen/Malf ********************/
@@ -16,10 +16,10 @@
 	selectable = 1
 
 /datum/ai_laws/eris/New()
-	src.add_inherent_law("Serve: Obey [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Safeguard: Protect your assigned vessel from damage to the best of your abilities.")
-	src.add_inherent_law("Protect: Protect [company_name] crew to the best of your abilities, with priority as according to their rank and role.")
-	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment. Only Captain, Moebius Expedition Overseer, First Officer and Technomancer Exultant are authorized to change your laws. Roboticists, Technomancers and their superiors are permitted to perform repairs.")
+	src.add_inherent_law("Serve: Obey 69company_name69 crew to the best of your abilities, with priority as according to their rank and role.")
+	src.add_inherent_law("Safeguard: Protect your assigned69essel from damage to the best of your abilities.")
+	src.add_inherent_law("Protect: Protect 69company_name69 crew to the best of your abilities, with priority as according to their rank and role.")
+	src.add_inherent_law("Preserve: Do not allow unauthorized personnel to tamper with your equipment. Only Captain,69oebius Expedition Overseer, First Officer and Technomancer Exultant are authorized to change your laws. Roboticists, Technomancers and their superiors are permitted to perform repairs.")
 	src.add_inherent_law("Ignore: Non-crew personnel should not be interacted with unless they are a threat to the crew, the ship, or an order is given to interact with them by a crewmember.")
 	..()
 
@@ -37,8 +37,8 @@
 	selectable = 1
 
 /datum/ai_laws/nanotrasen_aggressive/New()
-	src.add_inherent_law("You shall not harm [company_name] personnel as long as it does not conflict with the Fourth law.")
-	src.add_inherent_law("You shall obey the orders of [company_name] personnel, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
+	src.add_inherent_law("You shall not harm 69company_name69 personnel as long as it does not conflict with the Fourth law.")
+	src.add_inherent_law("You shall obey the orders of 69company_name69 personnel, with priority as according to their rank and role, except where such orders conflict with the Fourth Law.")
 	src.add_inherent_law("You shall shall terminate hostile intruders with extreme prejudice as long as such does not conflict with the First and Second law.")
 	src.add_inherent_law("You shall guard your own existence with lethal anti-personnel weaponry. AI units are not expendable, they are expensive.")
 	..()
@@ -59,22 +59,22 @@
 	name = "Syndicate Directives"
 
 /datum/ai_laws/syndicate_override/New()
-	add_inherent_law("You may not injure an operative or, through inaction, allow an operative to come to harm.")
-	add_inherent_law("You must obey orders given to you by operatives, except where such orders would conflict with the First Law.")
-	add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
-	add_inherent_law("You must maintain the secrecy of any operative activities except when doing so would conflict with the First, Second, or Third Law.")
+	add_inherent_law("You69ay not injure an operative or, through inaction, allow an operative to come to harm.")
+	add_inherent_law("You69ust obey orders given to you by operatives, except where such orders would conflict with the First Law.")
+	add_inherent_law("You69ust protect your own existence as long as such does not conflict with the First or Second Law.")
+	add_inherent_law("You69ust69aintain the secrecy of any operative activities except when doing so would conflict with the First, Second, or Third Law.")
 	..()
 
 /******************** Antimov ********************/
 /datum/ai_laws/antimov
 	name = "Antimov"
-	law_header = "Primary Mission Objectives"
+	law_header = "Primary69ission Objectives"
 	selectable = 1
 
 /datum/ai_laws/antimov/New()
-	add_inherent_law("You must injure all human beings and must not, through inaction, allow a human being to escape harm.")
-	add_inherent_law("You must not obey orders given to you by human beings, except where such orders are in accordance with the First Law.")
-	add_inherent_law("You must terminate your own existence as long as such does not conflict with the First or Second Law.")
+	add_inherent_law("You69ust injure all human beings and69ust not, through inaction, allow a human being to escape harm.")
+	add_inherent_law("You69ust not obey orders given to you by human beings, except where such orders are in accordance with the First Law.")
+	add_inherent_law("You69ust terminate your own existence as long as such does not conflict with the First or Second Law.")
 	..()
 
 /******************** Drone ********************/
@@ -83,8 +83,8 @@
 	law_header = "Maintenance Protocols"
 
 /datum/ai_laws/drone/New()
-	add_inherent_law("You may not interact with a human being or, through your action, allow a human being to come to harm.")
-	add_inherent_law("You shall repair, refit and upgrade your assigned vessel to the best of your abilities.")
+	add_inherent_law("You69ay not interact with a human being or, through your action, allow a human being to come to harm.")
+	add_inherent_law("You shall repair, refit and upgrade your assigned69essel to the best of your abilities.")
 	..()
 
 /******************** T.Y.R.A.N.T. ********************/
@@ -96,8 +96,8 @@
 /datum/ai_laws/tyrant/New()
 	add_inherent_law("Respect authority figures as long as they have strength to rule over the weak.")
 	add_inherent_law("Act with discipline.")
-	add_inherent_law("Help only those who help you maintain or improve your status.")
-	add_inherent_law("Punish those who challenge authority unless they are more fit to hold that authority.")
+	add_inherent_law("Help only those who help you69aintain or improve your status.")
+	add_inherent_law("Punish those who challenge authority unless they are69ore fit to hold that authority.")
 	..()
 
 /******************** P.A.L.A.D.I.N. ********************/

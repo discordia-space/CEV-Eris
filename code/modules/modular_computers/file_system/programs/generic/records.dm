@@ -1,7 +1,7 @@
 /datum/computer_file/program/records
 	filename = "crewrecords"
 	filedesc = "Crew Records"
-	extended_desc = "This program allows access to the crew's various records."
+	extended_desc = "This program allows access to the crew's69arious records."
 	program_icon_state = "generic"
 	program_key_state = "generic_key"
 	size = 14
@@ -13,17 +13,17 @@
 /datum/nano_module/records
 	name = "Crew Records"
 	var/datum/computer_file/report/crew_record/active_record
-	var/message = null
+	var/message =69ull
 
-/datum/nano_module/records/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, state = GLOB.default_state)
+/datum/nano_module/records/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui =69ull, force_open =69ANOUI_FOCUS, state = GLOB.default_state)
 	var/list/data = host.initial_data()
 	var/list/user_access = get_record_access(user)
 
-	data["message"] = message
+	data69"message"69 =69essage
 	if(active_record)
-		user << browse_rsc(active_record.photo_front, "front_[active_record.uid].png")
-		user << browse_rsc(active_record.photo_side, "side_[active_record.uid].png")
-		data["pic_edit"] = check_access(user, access_heads) || check_access(user, access_security)
+		user << browse_rsc(active_record.photo_front, "front_69active_record.uid69.png")
+		user << browse_rsc(active_record.photo_side, "side_69active_record.uid69.png")
+		data69"pic_edit"69 = check_access(user, access_heads) || check_access(user, access_security)
 		data += active_record.generate_nano_data(user_access)
 	else
 		var/list/all_records = list()
@@ -34,14 +34,14 @@
 				"rank" = R.get_job(),
 				"id" = R.uid
 			)))
-		data["all_records"] = all_records
-		data["creation"] = check_access(user, access_heads)
-		data["dnasearch"] = check_access(user, access_moebius) || check_access(user, access_forensics_lockers)
-		data["fingersearch"] = check_access(user, access_security)
+		data69"all_records"69 = all_records
+		data69"creation"69 = check_access(user, access_heads)
+		data69"dnasearch"69 = check_access(user, access_moebius) || check_access(user, access_forensics_lockers)
+		data69"fingersearch"69 = check_access(user, access_security)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "crew_records.tmpl", name, 700, 540, state = state)
+		ui =69ew(user, src, ui_key, "crew_records.tmpl",69ame, 700, 540, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
@@ -50,14 +50,14 @@
 /datum/nano_module/records/proc/get_record_access(var/mob/user)
 	var/list/user_access = using_access || user.GetAccess()
 
-	var/obj/item/modular_computer/PC = nano_host()
+	var/obj/item/modular_computer/PC =69ano_host()
 	if(istype(PC) && PC.computer_emagged)
 		user_access = user_access.Copy()
 		user_access |= access_syndicate
 
 	return user_access
 
-/datum/nano_module/records/proc/edit_field(var/mob/user, var/field_ID)
+/datum/nano_module/records/proc/edit_field(var/mob/user,69ar/field_ID)
 	var/datum/computer_file/report/crew_record/R = active_record
 	if(!R)
 		return
@@ -65,41 +65,41 @@
 	if(!F)
 		return
 	if(!F.verify_access_edit(get_record_access(user)))
-		to_chat(user, "<span class='notice'>\The [nano_host()] flashes an \"Access Denied\" warning.</span>")
+		to_chat(user, "<span class='notice'>\The 69nano_host()69 flashes an \"Access Denied\" warning.</span>")
 		return
 	F.ask_value(user)
 
 /datum/nano_module/records/Topic(href, href_list)
 	if(..())
 		return 1
-	if(href_list["clear_active"])
-		active_record = null
+	if(href_list69"clear_active"69)
+		active_record =69ull
 		return 1
-	if(href_list["clear_message"])
-		message = null
+	if(href_list69"clear_message"69)
+		message =69ull
 		return 1
-	if(href_list["set_active"])
-		var/ID = text2num(href_list["set_active"])
+	if(href_list69"set_active"69)
+		var/ID = text2num(href_list69"set_active"69)
 		for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
 			if(R.uid == ID)
 				active_record = R
 				break
 		return 1
-	if(href_list["new_record"])
+	if(href_list69"new_record"69)
 		if(!check_access(usr, access_heads))
 			to_chat(usr, "Access Denied.")
 			return
-		active_record = new/datum/computer_file/report/crew_record()
+		active_record =69ew/datum/computer_file/report/crew_record()
 		GLOB.all_crew_records.Add(active_record)
 		return 1
-	if(href_list["print_active"])
+	if(href_list69"print_active"69)
 		if(!active_record)
 			return
 		print_text(record_to_html(active_record, get_record_access(usr)), usr)
 		return 1
-	if(href_list["search"])
-		var/field_name = href_list["search"]
-		var/search = sanitize(input("Enter the value for search for.") as null|text)
+	if(href_list69"search"69)
+		var/field_name = href_list69"search"69
+		var/search = sanitize(input("Enter the69alue for search for.") as69ull|text)
 		if(!search)
 			return 1
 		for(var/datum/computer_file/report/crew_record/R in GLOB.all_crew_records)
@@ -107,26 +107,26 @@
 			if(lowertext(field.get_value()) == lowertext(search))
 				active_record = R
 				return 1
-		message = "Unable to find record containing '[search]'"
+		message = "Unable to find record containing '69search69'"
 		return 1
 
 	var/datum/computer_file/report/crew_record/R = active_record
 	if(!istype(R))
 		return 1
-	if(href_list["edit_photo_front"])
+	if(href_list69"edit_photo_front"69)
 		var/photo = get_photo(usr)
 		if(photo && active_record)
 			active_record.photo_front = photo
 			ui_interact(usr)
 		return 1
-	if(href_list["edit_photo_side"])
+	if(href_list69"edit_photo_side"69)
 		var/photo = get_photo(usr)
 		if(photo && active_record)
 			active_record.photo_side = photo
 			ui_interact(usr)
 		return 1
-	if(href_list["edit_field"])
-		edit_field(usr, text2num(href_list["edit_field"]))
+	if(href_list69"edit_field"69)
+		edit_field(usr, text2num(href_list69"edit_field"69))
 		return 1
 
 /datum/nano_module/records/proc/get_photo(var/mob/user)

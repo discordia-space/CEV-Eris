@@ -10,20 +10,20 @@
 	if(!msg)	return
 
 	if(usr.client)
-		if(usr.client.prefs.muted & MUTE_PRAY)
+		if(usr.client.prefs.muted &69UTE_PRAY)
 			to_chat(usr, "\red You cannot pray (muted).")
 			return
 		if(src.client.handle_spam_prevention(msg,MUTE_PRAY))
 			return
 
 	var/image/cross = image('icons/obj/storage.dmi',"bible")
-	msg = "\blue \icon[cross] <b><font color=purple>PRAY: </font>[key_name(src, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[src]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[src]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[src]'>SM</A>) ([admin_jump_link(src, src)]) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;adminspawncookie=\ref[src]'>SC</a>):</b> [msg]"
+	msg = "\blue \icon69cross69 <b><font color=purple>PRAY: </font>69key_name(src, 1)69 (<A HREF='?_src_=holder;adminmoreinfo=\ref69src69'>?</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref69src69'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref69src69'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref69src69'>SM</A>) (69admin_jump_link(src, src)69) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;adminspawncookie=\ref69src69'>SC</a>):</b> 69msg69"
 
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
 			if(C.get_preference_value(/datum/client_preference/staff/show_chat_prayers) == GLOB.PREF_SHOW)
-				to_chat(C, msg)
+				to_chat(C,69sg)
 	to_chat(usr, "Your prayers have been received by the gods.")
 
 
-	//log_admin("HELP: [key_name(src)]: [msg]")
+	//log_admin("HELP: 69key_name(src)69: 69msg69")

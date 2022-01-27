@@ -8,7 +8,7 @@
 
 /obj/item/integrated_circuit/time/delay
 	name = "two-sec delay circuit"
-	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
+	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex69achine.  \
 	This circuit is set to send a pulse after a delay of two seconds."
 	icon_state = "delay-20"
 	var/delay = 2 SECONDS
@@ -21,7 +21,7 @@
 
 /obj/item/integrated_circuit/time/delay/five_sec
 	name = "five-sec delay circuit"
-	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
+	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex69achine.  \
 	This circuit is set to send a pulse after a delay of five seconds."
 	icon_state = "delay-50"
 	delay = 5 SECONDS
@@ -29,7 +29,7 @@
 
 /obj/item/integrated_circuit/time/delay/one_sec
 	name = "one-sec delay circuit"
-	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
+	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex69achine.  \
 	This circuit is set to send a pulse after a delay of one second."
 	icon_state = "delay-10"
 	delay = 1 SECONDS
@@ -37,7 +37,7 @@
 
 /obj/item/integrated_circuit/time/delay/half_sec
 	name = "half-sec delay circuit"
-	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
+	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex69achine.  \
 	This circuit is set to send a pulse after a delay of half a second."
 	icon_state = "delay-5"
 	delay = 0.5 SECONDS
@@ -45,7 +45,7 @@
 
 /obj/item/integrated_circuit/time/delay/tenth_sec
 	name = "tenth-sec delay circuit"
-	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex machine.  \
+	desc = "This sends a pulse signal out after a delay, critical for ensuring proper control flow in a complex69achine.  \
 	This circuit is set to send a pulse after a delay of 1/10th of a second."
 	icon_state = "delay-1"
 	delay = 0.1 SECONDS
@@ -54,7 +54,7 @@
 /obj/item/integrated_circuit/time/delay/custom
 	name = "custom delay circuit"
 	desc = "This sends a pulse signal out after a delay defined in tenths of a second, critical for ensuring proper control \
-	flow in a complex machine. This circuit's delay can be customized, between 1/10th of a second to one hour. \
+	flow in a complex69achine. This circuit's delay can be customized, between 1/10th of a second to one hour. \
 	The delay is updated upon receiving a pulse."
 	extended_desc = "The delay is defined in tenths of a second. For instance, 4 will be a delay of 0.4 seconds, or 15 for 1.5 seconds."
 	icon_state = "delay"
@@ -66,7 +66,7 @@
 	var/delay_input = get_pin_data(IC_INPUT, 1)
 	if(!isnum_safe(delay_input))
 		return
-	if(delay_input < 1 || delay_input > 1 HOURS) // Value had to be clamped, update the pin. Check's here to avoid infinitely setting the pin.
+	if(delay_input < 1 || delay_input > 1 HOURS) //69alue had to be clamped, update the pin. Check's here to avoid infinitely setting the pin.
 		set_pin_data(IC_INPUT, 1, clamp(delay_input, 1, 1 HOURS))
 		return
 	delay = delay_input

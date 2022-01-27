@@ -1,7 +1,7 @@
 
-//override procs in children as necessary
+//override procs in children as69ecessary
 /datum/artifact_effect
-	var/effecttype = "unknown"		//purely used for admin checks ingame, not needed any more
+	var/effecttype = "unknown"		//purely used for admin checks ingame,69ot69eeded any69ore
 	var/effect = EFFECT_TOUCH
 	var/effectrange = 4
 	var/trigger = TRIGGER_TOUCH
@@ -12,7 +12,7 @@
 	var/artifact_id = ""
 	var/effect_type = 0
 
-//0 = Unknown / none detectable
+//0 = Unknown /69one detectable
 //1 = Concentrated energy
 //2 = Intermittent psionic wavefront
 //3 = Electromagnetic energy
@@ -28,7 +28,7 @@
 	trigger = rand(0,MAX_TRIGGER)
 
 	//this will be replaced by the excavation code later, but it's here just in case
-	artifact_id = "[pick("kappa","sigma","antaeres","beta","omicron","iota","epsilon","omega","gamma","delta","tau","alpha")]-[rand(100,999)]"
+	artifact_id = "69pick("kappa","sigma","antaeres","beta","omicron","iota","epsilon","omega","gamma","delta","tau","alpha")69-69rand(100,999)69"
 
 	//random charge time and distance
 	switch(pick(100;1, 50;2, 25;3))
@@ -37,7 +37,7 @@
 			chargelevelmax = rand(3, 20)
 			effectrange = rand(1, 3)
 		if(2)
-			//medium range, medium charge time
+			//medium range,69edium charge time
 			chargelevelmax = rand(15, 40)
 			effectrange = rand(5, 15)
 		if(3)
@@ -55,16 +55,16 @@
 		if(reveal_toggle && holder)
 			if(istype(holder, /obj/machinery/artifact))
 				var/obj/machinery/artifact/A = holder
-				A.icon_state = "ano[A.icon_num][activated]"
+				A.icon_state = "ano69A.icon_num6969activated69"
 			var/display_msg
 			if(activated)
-				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flick_lights slightly!","vibrates!","shimmers slightly for a moment!")
+				display_msg = pick("momentarily glows brightly!","distorts slightly for a69oment!","flick_lights slightly!","vibrates!","shimmers slightly for a69oment!")
 			else
-				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
+				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes69ery still!","suddenly becomes69ery 69uiet!")
 			var/atom/toplevelholder = holder
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
-			toplevelholder.visible_message("\red \icon[toplevelholder] [toplevelholder] [display_msg]")
+			toplevelholder.visible_message("\red \icon69toplevelholder69 69toplevelholder69 69display_msg69")
 
 /datum/artifact_effect/proc/DoEffectTouch(var/mob/user)
 /datum/artifact_effect/proc/DoEffectAura(var/atom/holder)
@@ -82,7 +82,7 @@
 			chargelevel = 0
 			DoEffectPulse()
 
-//returns 0..1, with 1 being no protection and 0 being fully protected
+//returns 0..1, with 1 being69o protection and 0 being fully protected
 proc/GetAnomalySusceptibility(var/mob/living/carbon/human/H)
 	if(!H || !istype(H))
 		return 1

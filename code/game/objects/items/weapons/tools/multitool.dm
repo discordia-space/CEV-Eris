@@ -1,6 +1,6 @@
 /**
- * Multitool -- A multitool is used for hacking electronic devices.
- * TO-DO -- Using it as a power measurement tool for cables etc. Nannek.
+ *69ultitool -- A69ultitool is used for hacking electronic devices.
+ * TO-DO -- Using it as a power69easurement tool for cables etc. Nannek.
  *
  */
 
@@ -13,8 +13,8 @@
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_HARMLESS
 	worksound = WORKSOUND_PULSING
-	tool_qualities = list(QUALITY_PULSING = 30)
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	tool_69ualities = list(69UALITY_PULSING = 30)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_GLASS = 1)
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 	rarity_value = 12
@@ -28,7 +28,7 @@
 
 /obj/item/tool/multitool/proc/get_buffer(typepath)
 	// Only allow clearing the buffer name when someone fetches the buffer.
-	// Means you cannot be sure the source hasn't been destroyed until the very moment it's needed.
+	//69eans you cannot be sure the source hasn't been destroyed until the69ery69oment it's needed.
 	get_buffer_name(TRUE)
 	if(buffer_object && (!typepath || istype(buffer_object, typepath)))
 		return buffer_object
@@ -51,12 +51,12 @@
 
 /obj/item/tool/multitool/proc/unregister_buffer(atom/buffer_to_unregister)
 	// Only remove the buffered object, don't reset the name
-	// This means one cannot know if the buffer has been destroyed until one attempts to use it.
+	// This69eans one cannot know if the buffer has been destroyed until one attempts to use it.
 	if(buffer_to_unregister == buffer_object && buffer_object)
 		GLOB.destroyed_event.unregister(buffer_object, src)
 		buffer_object = null
 
-/obj/item/tool/multitool/resolve_attackby(atom/A, mob/user)
+/obj/item/tool/multitool/resolve_attackby(atom/A,69ob/user)
 	if(!isobj(A))
 		return ..(A, user)
 

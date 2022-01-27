@@ -1,8 +1,8 @@
 
 
 //Bioreactor
-//This huge multistructure takes objects with biomatter and carbon mobs to dissolve them into usable liquid biomatter
-//There are six various machines where multistructure datum is just a holder, each part proccess almost independently
+//This huge69ultistructure takes objects with biomatter and carbon69obs to dissolve them into usable liquid biomatter
+//There are six69arious69achines where69ultistructure datum is just a holder, each part proccess almost independently
 
 #define CLEANING_TIME 2 SECONDS
 #define CLONE_DAMAGE_PER_TICK 5
@@ -22,7 +22,7 @@
 
 
 	var/list/obj/machinery/multistructure/bioreactor_part/platform/platforms = list()
-	var/platform_enter_side = WEST		//this one represent 'door' side, used by various checks
+	var/platform_enter_side = WEST		//this one represent 'door' side, used by69arious checks
 	var/chamber_closed = TRUE
 	var/chamber_solution = FALSE
 	var/chamber_breached = FALSE
@@ -44,7 +44,7 @@
 			if(C.make_glasswalls_after_creation)
 				C.make_windows()
 			platforms += part
-	solution = new(platforms[1].loc)
+	solution = new(platforms69169.loc)
 	solution.icon_state = ""
 	solution.pixel_y = -26
 
@@ -156,4 +156,4 @@
 	icon = 'icons/obj/machines/bioreactor.dmi'
 	icon_state = "solution"
 	layer = ABOVE_MOB_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity =69OUSE_OPACITY_TRANSPARENT

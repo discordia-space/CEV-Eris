@@ -1,37 +1,37 @@
-/obj/machinery/recharge_station
-	name = "cyborg recharging station"
-	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
+/obj/machinery/rechar69e_station
+	name = "cybor69 rechar69in69 station"
+	desc = "A heavy duty rapid char69in69 system, desi69ned to 69uickly rechar69e cybor69 power reserves."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "borgcharger0"
+	icon_state = "bor69char69er0"
 	density = TRUE
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 50
-	circuit = /obj/item/electronics/circuitboard/recharge_station
+	idle_power_usa69e = 50
+	circuit = /obj/item/electronics/circuitboard/rechar69e_station
 	var/mob/occupant = null
-	var/obj/item/cell/large/cell
+	var/obj/item/cell/lar69e/cell
 	var/icon_update_tick = 0	// Used to rebuild the overlay only once every 10 ticks
-	var/charging = 0
+	var/char69in69 = 0
 	var/efficiency = 0.9
-	var/charging_power			// W. Power rating used for charging the cyborg. 120 kW if un-upgraded
-	var/restore_power_active	// W. Power drawn from APC when an occupant is charging. 40 kW if un-upgraded
-	var/restore_power_passive	// W. Power drawn from APC when idle. 7 kW if un-upgraded
-	var/weld_rate = 0			// How much brute damage is repaired per tick
-	var/wire_rate = 0			// How much burn damage is repaired per tick
+	var/char69in69_power			// W. Power ratin69 used for char69in69 the cybor69. 120 kW if un-up69raded
+	var/restore_power_active	// W. Power drawn from APC when an occupant is char69in69. 40 kW if un-up69raded
+	var/restore_power_passive	// W. Power drawn from APC when idle. 7 kW if un-up69raded
+	var/weld_rate = 0			// How69uch brute dama69e is repaired per tick
+	var/wire_rate = 0			// How69uch burn dama69e is repaired per tick
 
-	var/weld_power_use = 2300	// power used per point of brute damage repaired. 2.3 kW ~ about the same power usage of a handheld arc welder
-	var/wire_power_use = 500	// power used per point of burn damage repaired.
+	var/weld_power_use = 2300	// power used per point of brute dama69e repaired. 2.3 kW ~ about the same power usa69e of a handheld arc welder
+	var/wire_power_use = 500	// power used per point of burn dama69e repaired.
 
 	var/exit_timer
 
-/obj/machinery/recharge_station/Initialize()
+/obj/machinery/rechar69e_station/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/machinery/recharge_station/proc/has_cell_power()
+/obj/machinery/rechar69e_station/proc/has_cell_power()
 	return cell && cell.percent() > 0
 
-/obj/machinery/recharge_station/Process()
+/obj/machinery/rechar69e_station/Process()
 	if(stat & (BROKEN))
 		return
 	if(!cell) // Shouldn't be possible, but sanity check
@@ -39,90 +39,90 @@
 
 	if((stat & NOPOWER) && !has_cell_power()) // No power and cell is dead.
 		if(icon_update_tick)
-			icon_update_tick = 0 //just rebuild the overlay once more only
+			icon_update_tick = 0 //just rebuild the overlay once69ore only
 			update_icon()
 		return
 
-	//First, draw from the internal power cell to recharge/repair/etc the occupant
+	//First, draw from the internal power cell to rechar69e/repair/etc the occupant
 	if(occupant)
 		process_occupant()
 
-	//Then, if external power is available, recharge the internal cell
-	var/recharge_amount = 0
+	//Then, if external power is available, rechar69e the internal cell
+	var/rechar69e_amount = 0
 	if(!(stat & NOPOWER))
-		// Calculating amount of power to draw
-		recharge_amount = (occupant ? restore_power_active : restore_power_passive) * CELLRATE
+		// Calculatin69 amount of power to draw
+		rechar69e_amount = (occupant ? restore_power_active : restore_power_passive) * CELLRATE
 
-		recharge_amount = cell.give(recharge_amount* efficiency)
-		use_power(recharge_amount / CELLRATE)
+		rechar69e_amount = cell.69ive(rechar69e_amount* efficiency)
+		use_power(rechar69e_amount / CELLRATE)
 
 	if(icon_update_tick >= 10)
 		icon_update_tick = 0
 	else
 		icon_update_tick++
 
-	if(occupant || recharge_amount)
+	if(occupant || rechar69e_amount)
 		update_icon()
 
-//since the recharge station can still be on even with NOPOWER. Instead it draws from the internal cell.
-/obj/machinery/recharge_station/auto_use_power()
+//since the rechar69e station can still be on even with NOPOWER. Instead it draws from the internal cell.
+/obj/machinery/rechar69e_station/auto_use_power()
 	if(!(stat & NOPOWER))
 		return ..()
 
 	if(!has_cell_power())
 		return 0
 	if(use_power == 1)
-		cell.use(idle_power_usage * CELLRATE)
+		cell.use(idle_power_usa69e * CELLRATE)
 	else if(use_power >= 2)
-		cell.use(active_power_usage * CELLRATE)
+		cell.use(active_power_usa69e * CELLRATE)
 	return 1
 
-//Processes the occupant, drawing from the internal power cell if needed.
-/obj/machinery/recharge_station/proc/process_occupant()
+//Processes the occupant, drawin69 from the internal power cell if needed.
+/obj/machinery/rechar69e_station/proc/process_occupant()
 	if(isrobot(occupant))
-		var/mob/living/silicon/robot/R = occupant
+		var/mob/livin69/silicon/robot/R = occupant
 
 		if(R.module)
-			R.module.respawn_consumable(R, charging_power * CELLRATE / 250) //consumables are magical, apparently
-		if(R.cell && !R.cell.fully_charged())
-			var/diff = min(R.cell.maxcharge - R.cell.charge, charging_power * CELLRATE) // Capped by charging_power / tick
-			var/charge_used = cell.use(diff)
-			R.cell.give(charge_used*efficiency)
+			R.module.respawn_consumable(R, char69in69_power * CELLRATE / 250) //consumables are69a69ical, apparently
+		if(R.cell && !R.cell.fully_char69ed())
+			var/diff =69in(R.cell.maxchar69e - R.cell.char69e, char69in69_power * CELLRATE) // Capped by char69in69_power / tick
+			var/char69e_used = cell.use(diff)
+			R.cell.69ive(char69e_used*efficiency)
 
-		//Lastly, attempt to repair the cyborg if enabled
-		if(weld_rate && R.getBruteLoss() && cell.checked_use(weld_power_use * weld_rate * CELLRATE))
+		//Lastly, attempt to repair the cybor69 if enabled
+		if(weld_rate && R.69etBruteLoss() && cell.checked_use(weld_power_use * weld_rate * CELLRATE))
 			R.adjustBruteLoss(-weld_rate)
-		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
+		if(wire_rate && R.69etFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
 
-/obj/machinery/recharge_station/examine(mob/user)
+/obj/machinery/rechar69e_station/examine(mob/user)
 	..(user)
-	to_chat(user, "The charge meter reads: [round(chargepercentage())]%")
+	to_chat(user, "The char69e69eter reads: 69round(char69epercenta69e())69%")
 
-/obj/machinery/recharge_station/proc/chargepercentage()
+/obj/machinery/rechar69e_station/proc/char69epercenta69e()
 	if(!cell)
 		return 0
 	return cell.percent()
 
-/obj/machinery/recharge_station/relaymove(mob/user as mob)
+/obj/machinery/rechar69e_station/relaymove(mob/user as69ob)
 	if(user.incapacitated())
 		return
 	if(world.time < exit_timer)
 		return
-	go_out()
+	69o_out()
 	return
 
-/obj/machinery/recharge_station/emp_act(severity)
+/obj/machinery/rechar69e_station/emp_act(severity)
 	if(occupant)
 		occupant.emp_act(severity)
-		go_out()
+		69o_out()
 	if(cell)
 		cell.emp_act(severity)
 	..(severity)
 
-/obj/machinery/recharge_station/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/rechar69e_station/attackby(var/obj/item/I,69ar/mob/user as69ob)
 	if(occupant)
-		to_chat(user, SPAN_NOTICE("You cant do anything with [src] while someone inside of it."))
+		to_chat(user, SPAN_NOTICE("You cant do anythin69 with 69src69 while someone inside of it."))
 		return
 
 	if(default_deconstruction(I, user))
@@ -133,89 +133,89 @@
 
 	..()
 
-/obj/machinery/recharge_station/RefreshParts()
+/obj/machinery/rechar69e_station/RefreshParts()
 	..()
-	var/man_rating = 0
-	var/cap_rating = 0
+	var/man_ratin69 = 0
+	var/cap_ratin69 = 0
 
 	for(var/obj/item/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/stock_parts/capacitor))
-			cap_rating += P.rating
+			cap_ratin69 += P.ratin69
 		if(istype(P, /obj/item/stock_parts/manipulator))
-			man_rating += P.rating
-	cell = locate(/obj/item/cell/large) in component_parts
+			man_ratin69 += P.ratin69
+	cell = locate(/obj/item/cell/lar69e) in component_parts
 
-	charging_power = 40000 + 40000 * cap_rating
-	restore_power_active = 10000 + 15000 * cap_rating
-	restore_power_passive = 5000 + 1000 * cap_rating
-	weld_rate = max(0, man_rating - 3)
-	wire_rate = max(0, man_rating - 5)
+	char69in69_power = 40000 + 40000 * cap_ratin69
+	restore_power_active = 10000 + 15000 * cap_ratin69
+	restore_power_passive = 5000 + 1000 * cap_ratin69
+	weld_rate =69ax(0,69an_ratin69 - 3)
+	wire_rate =69ax(0,69an_ratin69 - 5)
 
 	desc = initial(desc)
-	desc += " Uses a dedicated internal power cell to deliver [charging_power]W when in use."
+	desc += " Uses a dedicated internal power cell to deliver 69char69in69_power69W when in use."
 	if(weld_rate)
-		desc += "<br>It is capable of repairing structural damage."
+		desc += "<br>It is capable of repairin69 structural dama69e."
 	if(wire_rate)
-		desc += "<br>It is capable of repairing burn damage."
+		desc += "<br>It is capable of repairin69 burn dama69e."
 
-/obj/machinery/recharge_station/proc/build_overlays()
+/obj/machinery/rechar69e_station/proc/build_overlays()
 	overlays.Cut()
-	switch(round(chargepercentage()))
+	switch(round(char69epercenta69e()))
 		if(1 to 20)
-			overlays += image('icons/obj/objects.dmi', "statn_c0")
+			overlays += ima69e('icons/obj/objects.dmi', "statn_c0")
 		if(21 to 40)
-			overlays += image('icons/obj/objects.dmi', "statn_c20")
+			overlays += ima69e('icons/obj/objects.dmi', "statn_c20")
 		if(41 to 60)
-			overlays += image('icons/obj/objects.dmi', "statn_c40")
+			overlays += ima69e('icons/obj/objects.dmi', "statn_c40")
 		if(61 to 80)
-			overlays += image('icons/obj/objects.dmi', "statn_c60")
+			overlays += ima69e('icons/obj/objects.dmi', "statn_c60")
 		if(81 to 98)
-			overlays += image('icons/obj/objects.dmi', "statn_c80")
+			overlays += ima69e('icons/obj/objects.dmi', "statn_c80")
 		if(99 to 110)
-			overlays += image('icons/obj/objects.dmi', "statn_c100")
+			overlays += ima69e('icons/obj/objects.dmi', "statn_c100")
 
-/obj/machinery/recharge_station/update_icon()
+/obj/machinery/rechar69e_station/update_icon()
 	..()
 	if(stat & BROKEN)
-		icon_state = "borgcharger0"
+		icon_state = "bor69char69er0"
 		return
 
 	if(occupant)
 		if((stat & NOPOWER) && !has_cell_power())
-			icon_state = "borgcharger2"
+			icon_state = "bor69char69er2"
 		else
-			icon_state = "borgcharger1"
+			icon_state = "bor69char69er1"
 	else
-		icon_state = "borgcharger0"
+		icon_state = "bor69char69er0"
 
 	if(icon_update_tick == 0)
 		build_overlays()
 
-/obj/machinery/recharge_station/Bumped(var/mob/living/silicon/robot/R)
-	go_in(R)
+/obj/machinery/rechar69e_station/Bumped(var/mob/livin69/silicon/robot/R)
+	69o_in(R)
 
-/obj/machinery/recharge_station/proc/go_in(var/mob/M)
+/obj/machinery/rechar69e_station/proc/69o_in(var/mob/M)
 	if(occupant)
 		return
 	if(!hascell(M))
 		return
 
-	add_fingerprint(M)
+	add_fin69erprint(M)
 	M.reset_view(src)
 	M.forceMove(src)
-	occupant = M
+	occupant =69
 	update_icon()
-	exit_timer = world.time + 10 //magik numbers, yey
+	exit_timer = world.time + 10 //ma69ik numbers, yey
 	return 1
 
-/obj/machinery/recharge_station/proc/hascell(var/mob/M)
+/obj/machinery/rechar69e_station/proc/hascell(var/mob/M)
 	if(isrobot(M))
-		var/mob/living/silicon/robot/R = M
+		var/mob/livin69/silicon/robot/R =69
 		if(R.cell)
 			return 1
 	return 0
 
-/obj/machinery/recharge_station/proc/go_out()
+/obj/machinery/rechar69e_station/proc/69o_out()
 	if(!occupant)
 		return
 
@@ -224,36 +224,36 @@
 	occupant = null
 	update_icon()
 
-/obj/machinery/recharge_station/verb/move_eject()
-	set category = "Object"
-	set name = "Eject Recharger"
+/obj/machinery/rechar69e_station/verb/move_eject()
+	set cate69ory = "Object"
+	set name = "Eject Rechar69er"
 	set src in oview(1)
 
 	if(usr.incapacitated())
 		return
 
-	go_out()
-	add_fingerprint(usr)
+	69o_out()
+	add_fin69erprint(usr)
 	return
 
-/obj/machinery/recharge_station/verb/move_inside()
-	set category = "Object"
-	set name = "Enter Recharger"
+/obj/machinery/rechar69e_station/verb/move_inside()
+	set cate69ory = "Object"
+	set name = "Enter Rechar69er"
 	set src in oview(1)
 
 	if(!usr.incapacitated())
 		return
-	go_in(usr)
+	69o_in(usr)
 
-/obj/machinery/recharge_station/MouseDrop_T(var/mob/target, var/mob/user)
-	if(!CanMouseDrop(target, user))
+/obj/machinery/rechar69e_station/MouseDrop_T(var/mob/tar69et,69ar/mob/user)
+	if(!CanMouseDrop(tar69et, user))
 		return
-	if(!istype(target,/mob/living/silicon))
+	if(!istype(tar69et,/mob/livin69/silicon))
 		return
-	if(target.buckled)
-		to_chat(user, "<span class='warning'>Unbuckle the robot before attempting to move it.</span>")
+	if(tar69et.buckled)
+		to_chat(user, "<span class='warnin69'>Unbuckle the robot before attemptin69 to69ove it.</span>")
 		return
-	user.visible_message("<span class='notice'>\The [user] started hauling \the [target] into \the [src].</span>",
-							"<span class='notice'>You started hauling \the [target] into \the [src].</span>")
+	user.visible_messa69e("<span class='notice'>\The 69user69 started haulin69 \the 69tar69et69 into \the 69src69.</span>",
+							"<span class='notice'>You started haulin69 \the 69tar69et69 into \the 69src69.</span>")
 	if(user.stat != DEAD && do_after(user,rand(150,200),src))
-		go_in(target, user)
+		69o_in(tar69et, user)

@@ -1,48 +1,48 @@
-<div class="item">
-	<h3>Specifications:</h3>
-	<div class="statusDisplay" style="overflow: auto;">
-		<h4>Armor details:</h4>
-		{{if data.armor_info.length}}
-			{{for data.armor_info}}
-				<div class="itemLabel">
-					{{:value.name}}
-				</div>
-				<div class="itemContent">
-				{{:helper.displayBar(value.value, 0, 100, value.value <= 25 ? 'bad' : value.value < 50 ? 'average' : 'good', value.value + '%')}}
-				</div>
+<di69 cl69ss="item">
+	<693>S69ecific69tions:</693>
+	<di69 cl69ss="st69tusDis69l6969" st69le="o69erflow: 69uto;">
+		<694>69rmor det69ils:</694>
+		{{if d69t69.69rmor_info.len69t69}}
+			{{for d69t69.69rmor_info}}
+				<di69 cl69ss="itemL6969el">
+					{{:6969lue.n69me}}
+				</di69>
+				<di69 cl69ss="itemContent">
+				{{:69el69er.dis69l69696969r696969lue.6969lue, 0, 100, 6969lue.6969lue <= 25 ? '6969d' : 6969lue.6969lue < 50 ? '6969er6969e' : '69ood', 6969lue.6969lue + '%'69}}
+				</di69>
 			{{/for}}
-			<br>
+			<69r>
 		{{else}}
-			<div class="average">
-				Provides no armor protection.
-			</div>
+			<di69 cl69ss="6969er6969e">
+				69ro69ides69o 69rmor 69rotection.
+			</di69>
 		{{/if}}
-		{{if data.slowdown != 1}}
-			<div class="itemLabel">
+		{{if d69t69.slowdown != 1}}
+			<di69 cl69ss="itemL6969el">
 				Slowdown:
-			</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.slowdown, -5, 20, data.slowdown < 1 ? 'good' : data.slowdown > 1 ? 'bad': 'average', data.slowdown+' delay units')}}
-			</div>
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:69el69er.dis69l69696969r69d69t69.slowdown, -5, 20, d69t69.slowdown < 1 ? '69ood' : d69t69.slowdown > 1 ? '6969d': '6969er6969e', d69t69.slowdown+' del6969 units'69}}
+			</di69>
 		{{/if}}
-		<br>
-		{{if data.body_coverage}}
-			<div class="itemLabel">
-				Coverage:
-			</div>
-			<div class="itemContent">
-				{{:data.body_coverage}} 
-			</div>
+		<69r>
+		{{if d69t69.69od69_co69er6969e}}
+			<di69 cl69ss="itemL6969el">
+				Co69er6969e:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:d69t69.69od69_co69er6969e}} 
+			</di69>
 		{{else}}
-			<div class="average">
-				Provides no body coverage.
-			</div>
+			<di69 cl69ss="6969er6969e">
+				69ro69ides69o 69od69 co69er6969e.
+			</di69>
 		{{/if}}
-		<div class="itemLabel">
-			Time to equip:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.equip_delay, 0, 100, data.equip_delay < 10 ? 'good' : data.equip_delay > 50 ? 'bad': 'average', data.equip_delay/10+' seconds')}}
-		</div>
-	</div>
-</div>
+		<di69 cl69ss="itemL6969el">
+			Time to e69ui69:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69el69er.dis69l69696969r69d69t69.e69ui69_del6969, 0, 100, d69t69.e69ui69_del6969 < 10 ? '69ood' : d69t69.e69ui69_del6969 > 50 ? '6969d': '6969er6969e', d69t69.e69ui69_del6969/10+' seconds'69}}
+		</di69>
+	</di69>
+</di69>

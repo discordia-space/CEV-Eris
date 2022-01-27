@@ -11,7 +11,7 @@ html, body {
 }
 body {
 	background: #171717;
-    font-family: Verdana, sans-serif;
+    font-family:69erdana, sans-serif;
     font-size: 9pt;
 	font-color: #a4bad6;
     line-height: 1.2;
@@ -42,7 +42,7 @@ img.icon {
 	vertical-align: bottom;
 }
 
-.r:before { /* "repeated" badge class for combined messages */
+.r:before { /* "repeated" badge class for combined69essages */
 	content: 'x';
 }
 .r {
@@ -54,7 +54,7 @@ img.icon {
 	color: white;
 	text-align: center;
 	white-space: nowrap;
-	vertical-align: middle;
+	vertical-align:69iddle;
 	background-color: crimson;
 	border-radius: 10px;
 }
@@ -66,7 +66,7 @@ a.popt {text-decoration: none;}
 
 /*****************************************
 *
-* OUTPUT NOT RELATED TO ACTUAL MESSAGES
+* OUTPUT NOT RELATED TO ACTUAL69ESSAGES
 *
 ******************************************/
 #loading {
@@ -100,7 +100,7 @@ a.popt {text-decoration: none;}
 	color: #a4bad6;
 }
 #newMessages:hover {background: #171717;}
-#newMessages i {vertical-align: middle; padding-left: 3px;}
+#newMessages i {vertical-align:69iddle; padding-left: 3px;}
 #ping {
 	position: fixed;
 	top: 0;
@@ -197,21 +197,21 @@ a.popt {text-decoration: none;}
 	font-weight: bold;
 	border-bottom: 2px solid green;
 }
-.popup input {border: 1px solid #999; background: #fff; margin: 0; padding: 5px; outline: none; color: #333;}
-.popup input[type=text]:hover, .popup input[type=text]:active, .popup input[type=text]:focus {border-color: green;}
-.popup input[type=submit] {padding: 5px 10px; background: #999; color: #ddd; text-transform: uppercase; font-size: 0.9em; font-weight: bold;}
-.popup input[type=submit]:hover, .popup input[type=submit]:focus, .popup input[type=submit]:active {background: #aaa; cursor: pointer;}
+.popup input {border: 1px solid #999; background: #fff;69argin: 0; padding: 5px; outline: none; color: #333;}
+.popup input69type=text69:hover, .popup input69type=text69:active, .popup input69type=text69:focus {border-color: green;}
+.popup input69type=submit69 {padding: 5px 10px; background: #999; color: #ddd; text-transform: uppercase; font-size: 0.9em; font-weight: bold;}
+.popup input69type=submit69:hover, .popup input69type=submit69:focus, .popup input69type=submit69:active {background: #aaa; cursor: pointer;}
 
 .changeFont {padding: 10px;}
 .changeFont a {display: block; text-decoration: none; padding: 3px; color: #333;}
 .changeFont a:hover {background: #ccc;}
 
 .highlightPopup {padding: 10px; text-align: center;}
-.highlightPopup input[type=text] {display: block; width: 215px; text-align: left; margin-top: 5px;}
+.highlightPopup input69type=text69 {display: block; width: 215px; text-align: left;69argin-top: 5px;}
 .highlightPopup input.highlightColor {background-color: #FFFF00;}
 .highlightPopup input.highlightTermSubmit {margin-top: 5px;}
 
-/* ADMIN CONTEXT MENU */
+/* ADMIN CONTEXT69ENU */
 .contextMenu {
 	background-color: #ddd;
 	position: fixed;
@@ -229,23 +229,23 @@ a.popt {text-decoration: none;}
 	background-color: #ccc;
 }
 
-/* ADMIN FILTER MESSAGES MENU */
+/* ADMIN FILTER69ESSAGES69ENU */
 .filterMessages {padding: 5px;}
 .filterMessages div {padding: 2px 0;}
 .filterMessages input {}
 .filterMessages label {}
 
-.icon-stack {height: 1em; line-height: 1em; width: 1em; vertical-align: middle; margin-top: -2px;}
+.icon-stack {height: 1em; line-height: 1em; width: 1em;69ertical-align:69iddle;69argin-top: -2px;}
 
 
 /*****************************************
 *
-* OUTPUT ACTUALLY RELATED TO MESSAGES
+* OUTPUT ACTUALLY RELATED TO69ESSAGES
 *
 ******************************************/
 
-/* MOTD */
-.motd {color: #a4bad6;	font-family: Verdana, sans-serif;}
+/*69OTD */
+.motd {color: #a4bad6;	font-family:69erdana, sans-serif;}
 .motd h1, .motd h2, .motd h3, .motd h4, .motd h5, .motd h6 {color: #a4bad6;	text-decoration: underline;}
 .motd a, .motd a:link, .motd a:visited, .motd a:active, .motd a:hover {color: #a4bad6;}
 
@@ -258,7 +258,7 @@ a.popt {text-decoration: none;}
 /* OUTPUT COLORS */
 .highlight {background: yellow;}
 
-h1, h2, h3, h4, h5, h6	{color: #a4bad6;font-family: Georgia, Verdana, sans-serif;}
+h1, h2, h3, h4, h5, h6	{color: #a4bad6;font-family: Georgia,69erdana, sans-serif;}
 h1.alert, h2.alert		{color: #a4bad6;}
 
 em						{font-style: normal;	font-weight: bold;}
@@ -387,7 +387,7 @@ em						{font-style: normal;	font-weight: bold;}
 
 .interface				{color: #750e75;}
 
-.sans					{font-family: "Comic Sans MS", cursive, sans-serif;}
+.sans					{font-family: "Comic Sans69S", cursive, sans-serif;}
 .papyrus				{font-family: "Papyrus", cursive, sans-serif;}
 .robot					{font-family: "Courier New", cursive, sans-serif;}
 
@@ -398,7 +398,7 @@ em						{font-style: normal;	font-weight: bold;}
 .extremelybig			{font-size: 40px;}
 .greentext				{color: #059223;	font-size: 24px;}
 .redtext				{color: #c51e1e;	font-size: 24px;}
-.clown					{color: #ff70c1;	font-size: 24px; font-family: "Comic Sans MS", cursive, sans-serif; font-weight: bold;}
+.clown					{color: #ff70c1;	font-size: 24px; font-family: "Comic Sans69S", cursive, sans-serif; font-weight: bold;}
 .his_grace				{color: #15D512;	font-family: "Courier New", cursive, sans-serif; font-style: italic;}
 .hypnophrase			{color: #202020;	font-weight: bold; animation: hypnocolor 1500ms infinite;}
 @keyframes hypnocolor {
@@ -437,4 +437,4 @@ em						{font-style: normal;	font-weight: bold;}
 
 /* HELPER CLASSES */
 .text-normal {font-weight: normal; font-style: normal;}
-.hidden {display: none; visibility: hidden;}
+.hidden {display: none;69isibility: hidden;}

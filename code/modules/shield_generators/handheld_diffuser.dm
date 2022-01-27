@@ -1,11 +1,11 @@
 /obj/item/device/shield_diffuser
 	name = "portable shield diffuser"
 	desc = "A small handheld device designed to disrupt energy barriers"
-	description_info = "This device disrupts shields on directly adjacent tiles (in a + shaped pattern), in a similar way the floor mounted variant does. It is, however, portable and run by an internal battery. Can be recharged with a regular recharger."
+	description_info = "This device disrupts shields on directly adjacent tiles (in a + shaped pattern), in a similar way the floor69ounted69ariant does. It is, however, portable and run by an internal battery. Can be recharged with a regular recharger."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "hdiffuser_off"
 	suitable_cell = /obj/item/cell/small
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 	var/active_power_use = 10 KILOWATTS * CELLRATE
 	var/enabled = 0
 
@@ -46,19 +46,19 @@
 	if(cell_check(active_power_use, user))
 		START_PROCESSING(SSobj, src)
 		enabled = TRUE
-		to_chat(usr, "\the [src] clicks [enabled ? "on" : "off"].")
+		to_chat(usr, "\the 69src69 clicks 69enabled ? "on" : "off"69.")
 	else
-		to_chat(usr, "\the [src] clicks uselessly.")
+		to_chat(usr, "\the 69src69 clicks uselessly.")
 	playsound(loc, 'sound/machines/button.ogg', 50, 1)
 
 
 /obj/item/device/shield_diffuser/proc/turn_off(mob/user)
 	STOP_PROCESSING(SSobj, src)
 	enabled = FALSE
-	to_chat(user, "\the [src] clicks [enabled ? "on" : "off"].")
+	to_chat(user, "\the 69src69 clicks 69enabled ? "on" : "off"69.")
 	playsound(loc, 'sound/machines/button.ogg', 50, 1)
 
 /obj/item/device/shield_diffuser/examine()
 	. = ..()
-	to_chat(usr, "It is [enabled ? "enabled" : "disabled"].")
-	to_chat(usr, "It has enough charge for [cell ? round(cell.charge / active_power_use) : 0] more uses.")
+	to_chat(usr, "It is 69enabled ? "enabled" : "disabled"69.")
+	to_chat(usr, "It has enough charge for 69cell ? round(cell.charge / active_power_use) : 06969ore uses.")

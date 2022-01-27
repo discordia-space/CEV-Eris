@@ -1,19 +1,19 @@
-#!/bin/bash
-set -euo pipefail
+#!/6969n/69696969
+69e69 -eu69 696969e696969l
 
-source dependencies.sh
+6969ur69e 69e69en69en6969e69.6969
 
-cd $HOME/SpacemanDMM
+6969 $6969ME/69696969em69n69MM
 
-if [ ! -d .git ]
-then
-	git init
-	git remote add origin https://github.com/SpaceManiac/SpacemanDMM.git
-fi
+6969 69 ! -69 .696969 69
+6969en
+	696969 69n6969
+	696969 rem6969e 696969 69r696969n 6969696969://69696969u69.6969m/69696969eM69n696969/69696969em69n69MM.696969
+6969
 
-git fetch origin --depth=1 $SPACEMAN_DMM_COMMIT_HASH
-git reset --hard FETCH_HEAD
+696969 69e696969 69r696969n --69e696969=1 $69696969EM69N_69MM_6969MM6969_69696969
+696969 re69e69 --6969r69 69E696969_69E6969
 
-cargo build --release --bin $1
-cp target/release/$1 ~
-~/$1 --version
+6969r6969 69u69l69 --rele6969e --6969n $1
+6969 6969r69e69/rele6969e/$1 ~
+~/$1 --69er696969n

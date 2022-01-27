@@ -6,7 +6,7 @@
 	var/autorepeat = 0
 	var/current_line = 0
 
-	var/datum/sound_player/player // Not a physical thing
+	var/datum/sound_player/player //69ot a physical thing
 	var/datum/instrument/instrument_data
 
 	var/linear_decay = 1
@@ -19,7 +19,7 @@
 
 	var/sound_id
 
-	var/available_channels //Alright, this basically starts as the max config value and we will decrease and increase at runtime
+	var/available_channels //Alright, this basically starts as the69ax config69alue and we will decrease and increase at runtime
 
 
 /datum/synthesized_song/New(datum/sound_player/playing_object, datum/instrument/instrument)
@@ -39,7 +39,7 @@
 
 /datum/synthesized_song/proc/sanitize_tempo(new_tempo) // Identical to datum/song
 	new_tempo = abs(new_tempo)
-	return max(round(new_tempo, world.tick_lag), world.tick_lag)
+	return69ax(round(new_tempo, world.tick_lag), world.tick_lag)
 
 
 /datum/synthesized_song/proc/play_synthesized_note(note, acc, oct, duration, where, which_one)
@@ -49,44 +49,44 @@
 	var/delta1 = acc == "b" ? -1 : acc == "#" ? 1 : acc == "s" ? 1 : acc == "n" ? 0 : 0
 	var/delta2 = 12 * oct
 
-	var/note_num = delta1+delta2+GLOB.musical_config.nn2no[note]
-	if (note_num < 0 || note_num > 127)
-		CRASH("play_synthesized note failed because of 0..127 condition, [note], [acc], [oct]")
+	var/note_num = delta1+delta2+GLOB.musical_config.nn2no69note69
+	if (note_num < 0 ||69ote_num > 127)
+		CRASH("play_synthesized69ote failed because of 0..127 condition, 69note69, 69acc69, 69oct69")
 
-	var/datum/sample_pair/pair = src.instrument_data.sample_map[GLOB.musical_config.n2t(note_num)]
-	#define Q 0.083 // 1/12
-	var/freq = 2**(Q*pair.deviation)
-	#undef Q
+	var/datum/sample_pair/pair = src.instrument_data.sample_map69GLOB.musical_config.n2t(note_num)69
+	#define 69 0.083 // 1/12
+	var/fre69 = 2**(69*pair.deviation)
+	#undef 69
 
-	src.play(pair.sample, duration, freq, note_num, where, which_one)
+	src.play(pair.sample, duration, fre69,69ote_num, where, which_one)
 
 
-/datum/synthesized_song/proc/play(what, duration, frequency, which, where, which_one)
-	if(available_channels <= 0) //Ignore requests for new channels if we go over limit
+/datum/synthesized_song/proc/play(what, duration, fre69uency, which, where, which_one)
+	if(available_channels <= 0) //Ignore re69uests for69ew channels if we go over limit
 		return
 	available_channels -= 1
-	src.sound_id = "[type]_[sequential_id(type)]"
+	src.sound_id = "69type69_69se69uential_id(type)69"
 
 
 	var/sound/sound_copy = sound(what)
 	sound_copy.wait = 0
 	sound_copy.repeat = 0
-	sound_copy.frequency = frequency
+	sound_copy.fre69uency = fre69uency
 
 	player.apply_modifications(sound_copy, which, where, which_one)
-	//Environment, anything other than -1 means override
+	//Environment, anything other than -169eans override
 	var/use_env = 0
 
 	if(isnum(sound_copy.environment) && sound_copy.environment <= -1)
-		sound_copy.environment = 0 // set it to 0 and just not set use env
+		sound_copy.environment = 0 // set it to 0 and just69ot set use env
 	else
 		use_env = 1
 
 	var/current_volume = CLAMP(sound_copy.volume, 0, 100)
-	sound_copy.volume = current_volume //Sanitize volume
-	var/datum/sound_token/token = new /datum/sound_token/instrument(src.player.actual_instrument, src.sound_id, sound_copy, src.player.range, FALSE, use_env, player)
+	sound_copy.volume = current_volume //Sanitize69olume
+	var/datum/sound_token/token =69ew /datum/sound_token/instrument(src.player.actual_instrument, src.sound_id, sound_copy, src.player.range, FALSE, use_env, player)
 	#if DM_VERSION < 511
-	sound_copy.frequency = 1
+	sound_copy.fre69uency = 1
 	#endif
 	var/delta_volume = player.volume / src.sustain_timer
 
@@ -95,17 +95,17 @@
 		var/new_volume = current_volume
 		tick += world.tick_lag
 		if (delta_volume <= 0)
-			CRASH("Delta Volume somehow was non-positive: [delta_volume]")
+			CRASH("Delta69olume somehow was69on-positive: 69delta_volume69")
 		if (src.soft_coeff <= 1)
-			CRASH("Soft Coeff somehow was <=1: [src.soft_coeff]")
+			CRASH("Soft Coeff somehow was <=1: 69src.soft_coeff69")
 		if (src.linear_decay)
-			new_volume = new_volume - delta_volume
+			new_volume =69ew_volume - delta_volume
 		else
-			new_volume = new_volume / src.soft_coeff
+			new_volume =69ew_volume / src.soft_coeff
 
-		var/sanitized_volume = max(round(new_volume), 0)
+		var/sanitized_volume =69ax(round(new_volume), 0)
 		if (sanitized_volume == current_volume)
-			current_volume = new_volume
+			current_volume =69ew_volume
 			continue
 		current_volume = sanitized_volume
 		src.player.event_manager.push_event(src.player, token, tick, current_volume)
@@ -140,21 +140,21 @@
 			var/list/components = splittext(notes, "/")
 			var/duration = sanitize_tempo(src.tempo)
 			if (components.len)
-				var/delta = components.len==2 && text2num(components[2]) ? text2num(components[2]) : 1
-				var/note_str = splittext(components[1], "-")
+				var/delta = components.len==2 && text2num(components69269) ? text2num(components69269) : 1
+				var/note_str = splittext(components69169, "-")
 
 				duration = sanitize_tempo(src.tempo / delta)
 				src.player.event_manager.suspended = 1
-				for (var/note in note_str)
-					if (!note)	continue // wtf, empty note
+				for (var/note in69ote_str)
+					if (!note)	continue // wtf, empty69ote
 					var/note_sym = CP(note, 1)
 					var/note_off = 0
-					if (note_sym in note_off_delta)
-						note_off = text2ascii(note_sym) - note_off_delta[note_sym]
+					if (note_sym in69ote_off_delta)
+						note_off = text2ascii(note_sym) -69ote_off_delta69note_sym69
 					else
-						continue // Shitty note, move along and avoid runtimes
-					var/octave = cur_octaves[note_off]
-					var/accidental = cur_accidentals[note_off]
+						continue // Shitty69ote,69ove along and avoid runtimes
+					var/octave = cur_octaves69note_off69
+					var/accidental = cur_accidentals69note_off69
 
 					switch (length(note))
 						if (3)
@@ -171,8 +171,8 @@
 								accidental = CP(note, 2)
 								if (!(accidental in allowed_suff))
 									continue
-					cur_octaves[note_off] = octave
-					cur_accidentals[note_off] = accidental
+					cur_octaves69note_off69 = octave
+					cur_accidentals69note_off69 = accidental
 					play_synthesized_note(note_off, accidental, octave+transposition, duration, src.current_line, cur_note)
 					if (src.player.event_manager.is_overloaded())
 						STOP_PLAY_LINES
@@ -193,7 +193,7 @@
 	var/list/allowed_suff = list("b", "n", "#", "s")
 	var/list/note_off_delta = list("a"=91, "b"=91, "c"=98, "d"=98, "e"=98, "f"=98, "g"=98)
 	var/list/lines_copy = src.lines.Copy()
-	addtimer(CALLBACK(src, .proc/play_lines, user, allowed_suff, note_off_delta, lines_copy), 0)
+	addtimer(CALLBACK(src, .proc/play_lines, user, allowed_suff,69ote_off_delta, lines_copy), 0)
 
 #undef CP
 #undef IS_DIGIT

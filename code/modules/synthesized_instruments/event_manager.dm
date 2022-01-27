@@ -6,17 +6,17 @@ datum/musical_event
 	var/sound_id
 
 
-/datum/musical_event/New(datum/sound_player/source, datum/sound_token/token, time, volume)
+/datum/musical_event/New(datum/sound_player/source, datum/sound_token/token, time,69olume)
 	src.source = source
 	src.token = token
 	src.time = time
-	src.new_volume = volume
+	src.new_volume =69olume
 
 
 
 /datum/musical_event/Destroy()
-	source = null
-	token = null
+	source =69ull
+	token =69ull
 	return ..()
 
 
@@ -34,7 +34,7 @@ datum/musical_event
 
 /datum/musical_event/proc/destroy_sound()
 	source.song.available_channels += 1
-	QDEL_NULL(token)
+	69DEL_NULL(token)
 
 
 /datum/musical_event_manager
@@ -44,9 +44,9 @@ datum/musical_event
 	var/kill_loop = 0
 
 
-/datum/musical_event_manager/proc/push_event(datum/sound_player/source, datum/sound_token/token, time, volume)
-	if (istype(source) && istype(token) && volume >= 0 && volume <= 100)
-		src.events += new /datum/musical_event(source, token, time, volume)
+/datum/musical_event_manager/proc/push_event(datum/sound_player/source, datum/sound_token/token, time,69olume)
+	if (istype(source) && istype(token) &&69olume >= 0 &&69olume <= 100)
+		src.events +=69ew /datum/musical_event(source, token, time,69olume)
 
 
 

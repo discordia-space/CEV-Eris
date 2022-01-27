@@ -1,73 +1,73 @@
 <!-- 
  -->
-{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
-	{{if data.print_avaliable}}
-		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+{{if data.catalo69_69rowse_sta69e == "entr69" || data.catalo69_69rowse_sta69e == "entr69_entr69"}}
+	{{if data.69rint_a69alia69le}}
+		{{:69el69er.lin6969'69RINT', '', {'69rint_acti69e' : 1}69}}
 	{{/if}}
-	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
-	<br><br>
-	<div class="item"><h1>{{:data.name}}</h1></div>
-	<div class="item">{{:data.description}}</div>
-	<div class="item">{{:data.taste}}</div>
+	{{:69el69er.lin6969'69AC69', '', {'69o_69ac69_entr69' : 1},69ull, 'floatRi6969t'69}}
+	<69r><69r>
+	<di69 class="item"><691>{{:data.name}}</691></di69>
+	<di69 class="item">{{:data.descri69tion}}</di69>
+	<di69 class="item">{{:data.taste}}</di69>
 
-	<div class="item">
-		<h4>Specifications:</h4>
-		<div class="itemLabel">Type:</div>
-		<div class="itemContent">{{:data.thing_nature}}</div>
+	<di69 class="item">
+		<694>S69ecifications:</694>
+		<di69 class="itemLa69el">T6969e:</di69>
+		<di69 class="itemContent">{{:data.t69in69_nature}}</di69>
 
-		<div class="itemLabel">Color:</div>
-		<div class="itemContent"><span class='colorBox' style='background-color:{{:data.color}}'></span></div>
+		<di69 class="itemLa69el">Color:</di69>
+		<di69 class="itemContent"><s69an class='color69ox' st69le='69ac6969round-color:{{:data.color}}'></s69an></di69>
 
-		{{if data.strength}}
-			<div class="itemLabel">Alcohol strength:</div>
-			<div class="itemContent">{{:data.strength}}</div>
+		{{if data.stren69t69}}
+			<di69 class="itemLa69el">Alco69ol stren69t69:</di69>
+			<di69 class="itemContent">{{:data.stren69t69}}</di69>
 		{{/if}}
-		{{if data.temperature}}
-			<div class="itemLabel">Served:</div>
-			<div class="itemContent">{{:data.temperature}}</div>
+		{{if data.tem69erature}}
+			<di69 class="itemLa69el">Ser69ed:</di69>
+			<di69 class="itemContent">{{:data.tem69erature}}</di69>
 		{{/if}}
 		{{if data.nutrition}}
-			<div class="itemLabel">Nourishment:</div>
-			<div class="itemContent">{{:data.nutrition}}</div>
+			<di69 class="itemLa69el">Nouris69ment:</di69>
+			<di69 class="itemContent">{{:data.nutrition}}</di69>
 		{{/if}}
-		{{if data.taste_tag}}
-			<div class="itemLabel">classification by taste:</div>
-			<div class="itemContent">
-				<div class="statusDisplay" style="overflow: auto;">
-					{{for data.taste_tag :val:val_i}}
-							{{:val}}<br>
+		{{if data.taste_ta69}}
+			<di69 class="itemLa69el">classification 6969 taste:</di69>
+			<di69 class="itemContent">
+				<di69 class="statusDis69la69" st69le="o69erflow: auto;">
+					{{for data.taste_ta69 :69al:69al_i}}
+							{{:69al}}<69r>
 					{{/for}}
-				</div>
-			</div>
+				</di69>
+			</di69>
 		{{/if}}
-		{{if data.recipe_data}}
-			<div class="itemLabel">Recipe:</div>
-			<div class="itemContent">
-				{{for data.recipe_data}}
-					<div class="statusDisplay" style="overflow: auto;">
-						{{for value.reagents :val:val_i}}
-							{{:val.parts}} of {{:helper.catalogEntryLink(val.type)}}<br>
+		{{if data.reci69e_data}}
+			<di69 class="itemLa69el">Reci69e:</di69>
+			<di69 class="itemContent">
+				{{for data.reci69e_data}}
+					<di69 class="statusDis69la69" st69le="o69erflow: auto;">
+						{{for 69alue.rea69ents :69al:69al_i}}
+							{{:69al.69arts}} of {{:69el69er.catalo69Entr69Lin696969al.t6969e69}}<69r>
 						{{/for}}
-						{{for value.catalyst :val:val_i}}
-							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{for 69alue.catal69st :69al:69al_i}}
+							In 69resense of {{:69al.units}}u of {{:69el69er.catalo69Entr69Lin696969al.t6969e69}}<69r>
 						{{/for}}
 
-						{{if value.minimum_temperature && value.maximum_temperature}}
-							At temperatures between {{:value.minimum_temperature}}K and {{:value.maximum_temperature}}K<br>
-						{{else value.minimum_temperature}}
-							At temperatures above {{:value.minimum_temperature}}K<br>
-						{{else value.maximum_temperature}}
-							At temperatures below {{:value.maximum_temperature}}K<br>
+						{{if 69alue.minimum_tem69erature && 69alue.maximum_tem69erature}}
+							At tem69eratures 69etween {{:69alue.minimum_tem69erature}}69 and {{:69alue.maximum_tem69erature}}69<69r>
+						{{else 69alue.minimum_tem69erature}}
+							At tem69eratures a69o69e {{:69alue.minimum_tem69erature}}69<69r>
+						{{else 69alue.maximum_tem69erature}}
+							At tem69eratures 69elow {{:69alue.maximum_tem69erature}}69<69r>
 						{{/if}}
 
-						{{if value.required_object}}
-							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}<br>
+						{{if 69alue.re69uired_o6969ect}}
+							S69ould ta69e 69lace inside of {{:69el69er.catalo69Entr69Lin696969alue.re69uired_o6969ect69}}<69r>
 						{{/if}}
-						Results in {{:value.result_amount}} of substance
-					</div>
+						Results in {{:69alue.result_amount}} of su69stance
+					</di69>
 				{{/for}}
-			</div>
+			</di69>
 		{{/if}}
 
-	</div>
+	</di69>
 {{/if}}

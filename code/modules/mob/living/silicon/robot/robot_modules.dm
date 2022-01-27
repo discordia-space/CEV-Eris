@@ -13,8 +13,8 @@ var/global/list/robot_modules = list(
 	)
 
 /obj/item/robot_module
-	name = "robot module"
-	desc = "This is a robot module parent class. You shouldn't see this description"
+	name = "robot69odule"
+	desc = "This is a robot69odule parent class. You shouldn't see this description"
 	icon = 'icons/obj/module.dmi'
 	icon_state = "std_module"
 	w_class = 100
@@ -55,10 +55,10 @@ var/global/list/robot_modules = list(
 
 	//Module stats, these are applied to the robot
 	health = 200 //Max health. Apparently this is already defined in item.dm
-	var/speed_factor = 1 //Speed factor, applied as a divisor on movement delay
+	var/speed_factor = 1 //Speed factor, applied as a divisor on69ovement delay
 	var/power_efficiency = 1 //Power efficiency, applied as a divisor on power taken from the internal cell
 
-	//Stat modifiers for skillchecks
+	//Stat69odifiers for skillchecks
 	var/list/stat_modifiers = list(
 		STAT_BIO = 5,
 		STAT_COG = 5,
@@ -92,32 +92,32 @@ var/global/list/robot_modules = list(
 	R.power_efficiency = power_efficiency
 
 	for(var/name in stat_modifiers)
-		R.stats.changeStat(name, stat_modifiers[name])
+		R.stats.changeStat(name, stat_modifiers69name69)
 
 	R.set_module_sprites(sprites)
 	R.icon_selected = 0
 	spawn()
-		R.choose_icon() //Choose icon recurses and blocks new from completing, so spawn it off
+		R.choose_icon() //Choose icon recurses and blocks69ew from completing, so spawn it off
 
 
 /obj/item/robot_module/Initialize()
 	. = ..()
-	for(var/obj/item/I in modules)
+	for(var/obj/item/I in69odules)
 		I.canremove = 0
 		I.set_plane(ABOVE_HUD_PLANE)
 		I.layer = ABOVE_HUD_LAYER
 
-	for(var/obj/item/tool/T in modules)
+	for(var/obj/item/tool/T in69odules)
 		T.degradation = 0 //We don't want robot tools breaking
 
-	//A quick hack to stop robot modules running out of power
+	//A quick hack to stop robot69odules running out of power
 	//Later they'll be wired to the robot's central battery once we code functionality for that
-	//Setting it to infinity causes errors, so just a high number is fine
-	for(var/obj/item/I in modules)
+	//Setting it to infinity causes errors, so just a high69umber is fine
+	for(var/obj/item/I in69odules)
 		if(!istype(I, /obj/item/gun/energy)) // Guns have their own code for drawing charge from cyborg cell
 			for(var/obj/item/cell/C in I)
 				C.charge = 999999999
-	// I wanna make component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
+	// I wanna69ake component cell holders soooo bad, but it's going to be a big refactor, and I don't have the time -- ACCount
 
 /obj/item/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)
@@ -129,7 +129,7 @@ var/global/list/robot_modules = list(
 	R.speed_factor = initial(R.speed_factor)
 	R.power_efficiency = initial(R.power_efficiency)
 	for(var/name in stat_modifiers)
-		R.stats.changeStat(name, stat_modifiers[name]*-1)
+		R.stats.changeStat(name, stat_modifiers69name69*-1)
 
 	if(R.radio)
 		R.radio.recalculateChannels()
@@ -143,14 +143,14 @@ var/global/list/robot_modules = list(
 	qdel(emag)
 	qdel(jetpack)
 	qdel(malfAImodule)
-	emag = null
-	malfAImodule = null
-	jetpack = null
+	emag =69ull
+	malfAImodule =69ull
+	jetpack =69ull
 	return ..()
 
 /obj/item/robot_module/emp_act(severity)
 	if(modules)
-		for(var/obj/O in modules)
+		for(var/obj/O in69odules)
 			O.emp_act(severity)
 	if(emag)
 		emag.emp_act(severity)
@@ -160,7 +160,7 @@ var/global/list/robot_modules = list(
 	..()
 	return
 
-/obj/item/robot_module/proc/respawn_consumable(mob/living/silicon/robot/R, var/rate)
+/obj/item/robot_module/proc/respawn_consumable(mob/living/silicon/robot/R,69ar/rate)
 	var/obj/item/device/flash/F = locate() in src.modules
 	if(F)
 		if(F.broken)
@@ -176,37 +176,37 @@ var/global/list/robot_modules = list(
 	for(var/datum/matter_synth/T in synths)
 		T.add_charge(T.recharge_rate * rate)
 
-/obj/item/robot_module/proc/rebuild()//Rebuilds the list so it's possible to add/remove items from the module
-	var/list/temp_list = modules
+/obj/item/robot_module/proc/rebuild()//Rebuilds the list so it's possible to add/remove items from the69odule
+	var/list/temp_list =69odules
 	modules = list()
 	for(var/obj/O in temp_list)
 		if(O)
 			modules += O
 
 /obj/item/robot_module/proc/add_languages(var/mob/living/silicon/robot/R)
-	// Stores the languages as they were before receiving the module, and whether they could be synthezized.
+	// Stores the languages as they were before receiving the69odule, and whether they could be synthezized.
 	for(var/datum/language/language_datum in R.languages)
-		original_languages[language_datum] = (language_datum in R.speech_synthesizer_langs)
+		original_languages69language_datum69 = (language_datum in R.speech_synthesizer_langs)
 
 	for(var/language in languages)
-		R.add_language(language, languages[language])
+		R.add_language(language, languages69language69)
 
 /obj/item/robot_module/proc/remove_languages(var/mob/living/silicon/robot/R)
-	// Clear all added languages, whether or not we originally had them.
+	// Clear all added languages, whether or69ot we originally had them.
 	for(var/language in languages)
 		R.remove_language(language)
 
 	// Then add back all the original languages, and the relevant synthezising ability
 	for(var/original_language in original_languages)
-		R.add_language(original_language, original_languages[original_language])
+		R.add_language(original_language, original_languages69original_language69)
 	original_languages.Cut()
 
 /obj/item/robot_module/proc/add_camera_networks(var/mob/living/silicon/robot/R)
 	if(R.camera && (NETWORK_ROBOTS in R.camera.network))
-		for(var/network in networks)
+		for(var/network in69etworks)
 			if(!(network in R.camera.network))
 				R.camera.add_network(network)
-				added_networks |= network
+				added_networks |=69etwork
 
 /obj/item/robot_module/proc/remove_camera_networks(var/mob/living/silicon/robot/R)
 	if(R.camera)
@@ -230,9 +230,9 @@ var/global/list/robot_modules = list(
 		R.status_flags |= CANPUSH
 
 
-//The generic robot, a good choice for any situation. Moderately good at everything
+//The generic robot, a good choice for any situation.69oderately good at everything
 /obj/item/robot_module/standard
-	name = "standard robot module"
+	name = "standard robot69odule"
 	sprites = list(	"Basic" = "robot",
 					"Android" = "droid",
 					"Default" = "robot_old",
@@ -253,22 +253,22 @@ var/global/list/robot_modules = list(
 
 /obj/item/robot_module/standard/New(var/mob/living/silicon/robot/R)
 
-	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/melee/baton(src)
-	src.modules += new /obj/item/extinguisher(src)
-	src.modules += new /obj/item/tool/wrench/robotic(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/device/scanner/health(src)
-	src.modules += new /obj/item/gripper(src)
-	src.modules += new /obj/item/device/t_scanner(src)
-	src.emag = new /obj/item/melee/energy/sword(src)
+	src.modules +=69ew /obj/item/device/flash(src)
+	src.modules +=69ew /obj/item/melee/baton(src)
+	src.modules +=69ew /obj/item/extinguisher(src)
+	src.modules +=69ew /obj/item/tool/wrench/robotic(src)
+	src.modules +=69ew /obj/item/tool/crowbar/robotic(src)
+	src.modules +=69ew /obj/item/device/scanner/health(src)
+	src.modules +=69ew /obj/item/gripper(src)
+	src.modules +=69ew /obj/item/device/t_scanner(src)
+	src.emag =69ew /obj/item/melee/energy/sword(src)
 
-	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
-	synths += medicine
+	var/datum/matter_synth/medicine =69ew /datum/matter_synth/medicine(10000)
+	synths +=69edicine
 
-	//Comes with bandages and ointment, the basic/weak versions only
-	var/obj/item/stack/medical/bruise_pack/B = new /obj/item/stack/medical/bruise_pack(src)
-	var/obj/item/stack/medical/ointment/O = new /obj/item/stack/medical/ointment(src)
+	//Comes with bandages and ointment, the basic/weak69ersions only
+	var/obj/item/stack/medical/bruise_pack/B =69ew /obj/item/stack/medical/bruise_pack(src)
+	var/obj/item/stack/medical/ointment/O =69ew /obj/item/stack/medical/ointment(src)
 	B.uses_charge = 1
 	B.charge_costs = list(1000)
 	B.synths = list(medicine)
@@ -280,7 +280,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 /obj/item/robot_module/medical
-	name = "medical robot module"
+	name = "medical robot69odule"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
 
@@ -291,21 +291,21 @@ var/global/list/robot_modules = list(
 				"Heavy" = "heavymed",
 				"Needles" = "medicalrobot",
 				"Standard" = "surgeon",
-				"Advanced Droid - Medical" = "droid-medical",
+				"Advanced Droid -69edical" = "droid-medical",
 				"Advanced Droid - Chemistry" = "droid-chemistry",
-				"Drone - Medical" = "drone-surgery",
+				"Drone -69edical" = "drone-surgery",
 				"Drone - Chemistry" = "drone-chemistry",
-				"Sleek - Medical" = "sleekmedic",
+				"Sleek -69edical" = "sleekmedic",
 				"Sleek - Chemistry" = "sleekchemistry"
 				)
 
-	desc = "A versatile medical droid, equipped with all the tools necessary for surgery, chemistry, and \
-	 general patient treatments. Medical has a vast array of items, but this comes at a hefty cost. \
-	 The medical module is essentially shackled to the medbay and can't afford to stray too far. \
-	 Its low power efficiency means it needs to charge regularly"
+	desc = "A69ersatile69edical droid, equipped with all the tools69ecessary for surgery, chemistry, and \
+	 general patient treatments.69edical has a69ast array of items, but this comes at a hefty cost. \
+	 The69edical69odule is essentially shackled to the69edbay and can't afford to stray too far. \
+	 Its low power efficiency69eans it69eeds to charge regularly"
 
 /obj/item/robot_module/medical/general
-	name = "medical robot module"
+	name = "medical robot69odule"
 	health = 140 //Fragile
 	speed_factor = 0.8 //Kinda slow
 	power_efficiency = 0.6 //Very poor, shackled to a charger
@@ -316,30 +316,30 @@ var/global/list/robot_modules = list(
 	)
 
 /obj/item/robot_module/medical/general/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/tool/wrench/robotic(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/tool/screwdriver/robotic(src)
-	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/borg/sight/hud/med(src)
-	src.modules += new /obj/item/device/scanner/health(src)
-	src.modules += new /obj/item/reagent_containers/borghypo/medical(src)
-	src.modules += new /obj/item/tool/robotic_medical_omnitool(src)
-	src.modules += new /obj/item/gripper/chemistry(src)
-	src.modules += new /obj/item/gripper/surgery(src)
-	src.modules += new /obj/item/reagent_containers/dropper/industrial(src)
-	src.modules += new /obj/item/reagent_containers/syringe(src)
-	src.modules += new /obj/item/device/scanner/reagent/adv(src)
-	src.modules += new /obj/item/autopsy_scanner(src) // an autopsy scanner
-	src.emag = new /obj/item/reagent_containers/spray(src)
+	src.modules +=69ew /obj/item/tool/wrench/robotic(src)
+	src.modules +=69ew /obj/item/tool/crowbar/robotic(src)
+	src.modules +=69ew /obj/item/tool/screwdriver/robotic(src)
+	src.modules +=69ew /obj/item/device/flash(src)
+	src.modules +=69ew /obj/item/borg/sight/hud/med(src)
+	src.modules +=69ew /obj/item/device/scanner/health(src)
+	src.modules +=69ew /obj/item/reagent_containers/borghypo/medical(src)
+	src.modules +=69ew /obj/item/tool/robotic_medical_omnitool(src)
+	src.modules +=69ew /obj/item/gripper/chemistry(src)
+	src.modules +=69ew /obj/item/gripper/surgery(src)
+	src.modules +=69ew /obj/item/reagent_containers/dropper/industrial(src)
+	src.modules +=69ew /obj/item/reagent_containers/syringe(src)
+	src.modules +=69ew /obj/item/device/scanner/reagent/adv(src)
+	src.modules +=69ew /obj/item/autopsy_scanner(src) // an autopsy scanner
+	src.emag =69ew /obj/item/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
 
-	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(10000)
-	synths += medicine
+	var/datum/matter_synth/medicine =69ew /datum/matter_synth/medicine(10000)
+	synths +=69edicine
 
-	var/obj/item/stack/nanopaste/N = new /obj/item/stack/nanopaste(src)
-	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
-	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	var/obj/item/stack/nanopaste/N =69ew /obj/item/stack/nanopaste(src)
+	var/obj/item/stack/medical/advanced/bruise_pack/B =69ew /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O =69ew /obj/item/stack/medical/advanced/ointment(src)
 	N.uses_charge = 1
 	N.charge_costs = list(1000)
 	N.synths = list(medicine)
@@ -349,11 +349,11 @@ var/global/list/robot_modules = list(
 	O.uses_charge = 1
 	O.charge_costs = list(1000)
 	O.synths = list(medicine)
-	src.modules += N
+	src.modules +=69
 	src.modules += B
 	src.modules += O
 
-	var/obj/item/stack/medical/splint/S = new /obj/item/stack/medical/splint(src)
+	var/obj/item/stack/medical/splint/S =69ew /obj/item/stack/medical/splint(src)
 	S.uses_charge = 1
 	S.charge_costs = list(1000)
 	S.synths = list(medicine)
@@ -362,7 +362,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/medical/general/respawn_consumable(mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/medical/general/respawn_consumable(mob/living/silicon/robot/R,69ar/amount)
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
 		S.reagents.clear_reagents()
@@ -376,7 +376,7 @@ var/global/list/robot_modules = list(
 	..()
 
 /obj/item/robot_module/medical/rescue
-	name = "rescue robot module"
+	name = "rescue robot69odule"
 	sprites = list(
 			"Basic" = "robotmedi",
 			"Classic" = "medbot",
@@ -388,8 +388,8 @@ var/global/list/robot_modules = list(
 			"Heavy" = "heavymed"
 			)
 
-	//Rescue module has built in crew monitor
-	//General medical does not, they're expected to stay in medbay and use the computers
+	//Rescue69odule has built in crew69onitor
+	//General69edical does69ot, they're expected to stay in69edbay and use the computers
 	subsystems = list(/datum/nano_module/crew_monitor)
 
 
@@ -404,35 +404,35 @@ var/global/list/robot_modules = list(
 	)
 
 	desc = "The rescue borg fills the role of paramedic. \
-	Fearlessly venturing out into danger in order to pick up the wounded, stabilise them and bring \
-	them home. It has a relatively small toolset, mostly gear for getting where it needs to go and \
-	finding its way around. This streamlined design allows it to be the fastest of all droid modules."
+	Fearlessly69enturing out into danger in order to pick up the wounded, stabilise them and bring \
+	them home. It has a relatively small toolset,69ostly gear for getting where it69eeds to go and \
+	finding its way around. This streamlined design allows it to be the fastest of all droid69odules."
 
 
 
-//TODO: Give the rescue module some kind of powerful melee weapon to use as a breaching tool.
+//TODO: Give the rescue69odule some kind of powerful69elee weapon to use as a breaching tool.
 //Possibly a robot equivilant of the fire axe
 /obj/item/robot_module/medical/rescue/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/borg/sight/hud/med(src)
-	src.modules += new /obj/item/device/scanner/health(src)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/roller_holder(src)
-	src.modules += new /obj/item/hatton/robot(src)
-	src.modules += new /obj/item/reagent_containers/borghypo/rescue(src)
-	src.modules += new /obj/item/reagent_containers/syringe(src)
-	src.modules += new /obj/item/extinguisher/mini(src)
-	src.modules += new /obj/item/inflatable_dispenser(src) // Allows usage of inflatables. Since they are basically robotic alternative to EMTs, they should probably have them.
-	src.modules += new /obj/item/device/gps(src) // for coordinating with medical suit health sensors console
-	src.emag = new /obj/item/reagent_containers/spray(src)
+	src.modules +=69ew /obj/item/device/flash(src)
+	src.modules +=69ew /obj/item/borg/sight/hud/med(src)
+	src.modules +=69ew /obj/item/device/scanner/health(src)
+	src.modules +=69ew /obj/item/tool/crowbar/robotic(src)
+	src.modules +=69ew /obj/item/roller_holder(src)
+	src.modules +=69ew /obj/item/hatton/robot(src)
+	src.modules +=69ew /obj/item/reagent_containers/borghypo/rescue(src)
+	src.modules +=69ew /obj/item/reagent_containers/syringe(src)
+	src.modules +=69ew /obj/item/extinguisher/mini(src)
+	src.modules +=69ew /obj/item/inflatable_dispenser(src) // Allows usage of inflatables. Since they are basically robotic alternative to EMTs, they should probably have them.
+	src.modules +=69ew /obj/item/device/gps(src) // for coordinating with69edical suit health sensors console
+	src.emag =69ew /obj/item/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("pacid", 250)
 	src.emag.name = "Polyacid spray"
 
-	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(15000)
-	synths += medicine
+	var/datum/matter_synth/medicine =69ew /datum/matter_synth/medicine(15000)
+	synths +=69edicine
 
-	var/obj/item/stack/medical/advanced/bruise_pack/B = new /obj/item/stack/medical/advanced/bruise_pack(src)
-	var/obj/item/stack/medical/advanced/ointment/O = new /obj/item/stack/medical/advanced/ointment(src)
+	var/obj/item/stack/medical/advanced/bruise_pack/B =69ew /obj/item/stack/medical/advanced/bruise_pack(src)
+	var/obj/item/stack/medical/advanced/ointment/O =69ew /obj/item/stack/medical/advanced/ointment(src)
 	B.uses_charge = 1
 	B.charge_costs = list(1000)
 	B.synths = list(medicine)
@@ -442,7 +442,7 @@ var/global/list/robot_modules = list(
 	src.modules += B
 	src.modules += O
 
-	var/obj/item/stack/medical/splint/S = new /obj/item/stack/medical/splint(src)
+	var/obj/item/stack/medical/splint/S =69ew /obj/item/stack/medical/splint(src)
 	S.uses_charge = 1
 	S.charge_costs = list(1000)
 	S.synths = list(medicine)
@@ -450,7 +450,7 @@ var/global/list/robot_modules = list(
 
 	..(R)
 
-/obj/item/robot_module/medical/rescue/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/medical/rescue/respawn_consumable(var/mob/living/silicon/robot/R,69ar/amount)
 	var/obj/item/reagent_containers/syringe/S = locate() in src.modules
 	if(S.mode == 2)
 		S.reagents.clear_reagents()
@@ -466,7 +466,7 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/robot_module/engineering
-	name = "engineering robot module"
+	name = "engineering robot69odule"
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
 	subsystems = list(/datum/nano_module/power_monitor)
@@ -487,8 +487,8 @@ var/global/list/robot_modules = list(
 	speed_factor = 1.1 //Slightly above average
 	power_efficiency = 0.9 //Slightly below average
 
-	desc = "The engineering module is designed for setting up and maintaining core ship systems, \
-	as well as occasional repair work here and there. It's a good all rounder that can serve most \
+	desc = "The engineering69odule is designed for setting up and69aintaining core ship systems, \
+	as well as occasional repair work here and there. It's a good all rounder that can serve69ost \
 	engineering tasks."
 
 	stat_modifiers = list(
@@ -497,148 +497,148 @@ var/global/list/robot_modules = list(
 	)
 
 /obj/item/robot_module/engineering/construction
-	name = "construction robot module"
+	name = "construction robot69odule"
 	no_slip = 1
 	health = 270 //tough
 	speed_factor = 0.65 //Very slow!
 	power_efficiency = 1.3 //Good for the long haul
 
-	desc = "The construction module is a ponderous, overgeared monstrosity, huge and bulky. \
-	Designed for constructing new ship sections or repairing major damage, it is equipped for long \
-	journeys through maintenance or around the hull. The heavy chassis and power system comes at a great \
+	desc = "The construction69odule is a ponderous, overgeared69onstrosity, huge and bulky. \
+	Designed for constructing69ew ship sections or repairing69ajor damage, it is equipped for long \
+	journeys through69aintenance or around the hull. The heavy chassis and power system comes at a great \
 	toll in speed though."
 
 /obj/item/robot_module/engineering/construction/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/extinguisher(src)
-	src.modules += new /obj/item/rcd/borg(src)
-	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
-	src.modules += new /obj/item/device/pipe_painter(src)
-	src.modules += new /obj/item/gripper/no_use/loader(src)
-	src.modules += new /obj/item/gripper(src)
-	src.modules += new /obj/item/device/t_scanner(src) // to check underfloor wiring
-	src.modules += new /obj/item/device/scanner/gas(src) // to check air pressure in the area
-	src.modules += new /obj/item/device/lightreplacer(src) // to install lightning in the area
-	src.modules += new /obj/item/device/floor_painter(src)// to make america great again (c)
-	src.modules += new /obj/item/inflatable_dispenser(src) // to stop those pesky human beings entering the zone
-	src.modules += new /obj/item/rpd/borg(src) //to allow for easier access to pipes
-	src.modules += new /obj/item/tool/pickaxe/drill(src)
-	src.modules += new /obj/item/hatton/robot(src)
-	//src.emag = new /obj/item/gun/energy/plasmacutter/mounted(src)
-	//src.malfAImodule += new /obj/item/rtf(src) //We don't have these features
+	src.modules +=69ew /obj/item/device/flash(src)
+	src.modules +=69ew /obj/item/borg/sight/meson(src)
+	src.modules +=69ew /obj/item/extinguisher(src)
+	src.modules +=69ew /obj/item/rcd/borg(src)
+	src.modules +=69ew /obj/item/tool/robotic_engineering_omnitool(src)
+	src.modules +=69ew /obj/item/device/pipe_painter(src)
+	src.modules +=69ew /obj/item/gripper/no_use/loader(src)
+	src.modules +=69ew /obj/item/gripper(src)
+	src.modules +=69ew /obj/item/device/t_scanner(src) // to check underfloor wiring
+	src.modules +=69ew /obj/item/device/scanner/gas(src) // to check air pressure in the area
+	src.modules +=69ew /obj/item/device/lightreplacer(src) // to install lightning in the area
+	src.modules +=69ew /obj/item/device/floor_painter(src)// to69ake america great again (c)
+	src.modules +=69ew /obj/item/inflatable_dispenser(src) // to stop those pesky human beings entering the zone
+	src.modules +=69ew /obj/item/rpd/borg(src) //to allow for easier access to pipes
+	src.modules +=69ew /obj/item/tool/pickaxe/drill(src)
+	src.modules +=69ew /obj/item/hatton/robot(src)
+	//src.emag =69ew /obj/item/gun/energy/plasmacutter/mounted(src)
+	//src.malfAImodule +=69ew /obj/item/rtf(src) //We don't have these features
 
-	var/datum/matter_synth/metal = new /datum/matter_synth/metal(80000)
-	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(40000)
-	var/datum/matter_synth/glass = new /datum/matter_synth/glass(60000)
-	var/datum/matter_synth/wire = new /datum/matter_synth/wire(60)
-	synths += metal
+	var/datum/matter_synth/metal =69ew /datum/matter_synth/metal(80000)
+	var/datum/matter_synth/plasteel =69ew /datum/matter_synth/plasteel(40000)
+	var/datum/matter_synth/glass =69ew /datum/matter_synth/glass(60000)
+	var/datum/matter_synth/wire =69ew /datum/matter_synth/wire(60)
+	synths +=69etal
 	synths += plasteel
 	synths += glass
 	synths += wire
 
-	var/obj/item/stack/material/cyborg/steel/M = new (src)
+	var/obj/item/stack/material/cyborg/steel/M =69ew (src)
 	M.synths = list(metal)
-	src.modules += M
+	src.modules +=69
 
-	var/obj/item/stack/material/cyborg/glass/G = new (src)
+	var/obj/item/stack/material/cyborg/glass/G =69ew (src)
 	G.synths = list(glass)
 	src.modules += G
 
-	var/obj/item/stack/rods/cyborg/Ro = new /obj/item/stack/rods/cyborg(src)
+	var/obj/item/stack/rods/cyborg/Ro =69ew /obj/item/stack/rods/cyborg(src)
 	Ro.synths = list(metal)
 	src.modules += Ro
 
-	var/obj/item/stack/material/cyborg/plasteel/S = new (src)
+	var/obj/item/stack/material/cyborg/plasteel/S =69ew (src)
 	S.synths = list(plasteel)
 	src.modules += S
 
-	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
+	var/obj/item/stack/material/cyborg/glass/reinforced/RG =69ew (src)
 	RG.synths = list(metal, glass)
 	src.modules += RG
 
-	var/obj/item/stack/tile/floor/cyborg/FT = new /obj/item/stack/tile/floor/cyborg(src) // to add floor over the metal rods lattice
+	var/obj/item/stack/tile/floor/cyborg/FT =69ew /obj/item/stack/tile/floor/cyborg(src) // to add floor over the69etal rods lattice
 	FT.synths = list(metal)
 	src.modules += FT
 
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src) // Let there be light electric said and after that did cut the wire
+	var/obj/item/stack/cable_coil/cyborg/C =69ew /obj/item/stack/cable_coil/cyborg(src) // Let there be light electric said and after that did cut the wire
 	C.synths = list(wire)
 	src.modules += C
 
 	..(R)
 
 /obj/item/robot_module/engineering/general/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/borg/sight/meson(src)
-	src.modules += new /obj/item/extinguisher(src)
-	src.modules += new /obj/item/tool/robotic_engineering_omnitool(src)
-	src.modules += new /obj/item/device/t_scanner(src)
-	src.modules += new /obj/item/device/scanner/gas(src)
-	src.modules += new /obj/item/taperoll/engineering(src)
-	src.modules += new /obj/item/gripper(src)
-	src.modules += new /obj/item/gripper/no_use/loader(src)
-	src.modules += new /obj/item/device/lightreplacer(src)
-	src.modules += new /obj/item/device/pipe_painter(src)
-	src.modules += new /obj/item/device/floor_painter(src)
-	src.modules += new /obj/item/inflatable_dispenser(src)
-	src.modules += new /obj/item/rpd/borg(src)
-	src.emag = new /obj/item/melee/baton(src)
+	src.modules +=69ew /obj/item/device/flash(src)
+	src.modules +=69ew /obj/item/borg/sight/meson(src)
+	src.modules +=69ew /obj/item/extinguisher(src)
+	src.modules +=69ew /obj/item/tool/robotic_engineering_omnitool(src)
+	src.modules +=69ew /obj/item/device/t_scanner(src)
+	src.modules +=69ew /obj/item/device/scanner/gas(src)
+	src.modules +=69ew /obj/item/taperoll/engineering(src)
+	src.modules +=69ew /obj/item/gripper(src)
+	src.modules +=69ew /obj/item/gripper/no_use/loader(src)
+	src.modules +=69ew /obj/item/device/lightreplacer(src)
+	src.modules +=69ew /obj/item/device/pipe_painter(src)
+	src.modules +=69ew /obj/item/device/floor_painter(src)
+	src.modules +=69ew /obj/item/inflatable_dispenser(src)
+	src.modules +=69ew /obj/item/rpd/borg(src)
+	src.emag =69ew /obj/item/melee/baton(src)
 
-	var/datum/matter_synth/metal = new /datum/matter_synth/metal(60000)
-	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
-	var/datum/matter_synth/plasteel = new /datum/matter_synth/plasteel(20000)
-	var/datum/matter_synth/wire = new /datum/matter_synth/wire(45)
-	var/datum/matter_synth/wood = new /datum/matter_synth/wood(20000)
-	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(15000)
-	synths += metal
+	var/datum/matter_synth/metal =69ew /datum/matter_synth/metal(60000)
+	var/datum/matter_synth/glass =69ew /datum/matter_synth/glass(40000)
+	var/datum/matter_synth/plasteel =69ew /datum/matter_synth/plasteel(20000)
+	var/datum/matter_synth/wire =69ew /datum/matter_synth/wire(45)
+	var/datum/matter_synth/wood =69ew /datum/matter_synth/wood(20000)
+	var/datum/matter_synth/plastic =69ew /datum/matter_synth/plastic(15000)
+	synths +=69etal
 	synths += glass
 	synths += plasteel
 	synths += wire
 	synths += wood
 	synths += plastic
 
-	var/obj/item/matter_decompiler/MD = new /obj/item/matter_decompiler(src)
-	MD.metal = metal
+	var/obj/item/matter_decompiler/MD =69ew /obj/item/matter_decompiler(src)
+	MD.metal =69etal
 	MD.glass = glass
-	src.modules += MD
+	src.modules +=69D
 
-	var/obj/item/stack/material/cyborg/steel/M = new (src)
+	var/obj/item/stack/material/cyborg/steel/M =69ew (src)
 	M.synths = list(metal)
-	src.modules += M
+	src.modules +=69
 
-	var/obj/item/stack/material/cyborg/glass/G = new (src)
+	var/obj/item/stack/material/cyborg/glass/G =69ew (src)
 	G.synths = list(glass)
 	src.modules += G
 
-	var/obj/item/stack/rods/cyborg/Ro = new /obj/item/stack/rods/cyborg(src)
+	var/obj/item/stack/rods/cyborg/Ro =69ew /obj/item/stack/rods/cyborg(src)
 	Ro.synths = list(metal)
 	src.modules += Ro
 
-	var/obj/item/stack/cable_coil/cyborg/C = new /obj/item/stack/cable_coil/cyborg(src)
+	var/obj/item/stack/cable_coil/cyborg/C =69ew /obj/item/stack/cable_coil/cyborg(src)
 	C.synths = list(wire)
 	src.modules += C
 
-	var/obj/item/stack/tile/floor/cyborg/S = new /obj/item/stack/tile/floor/cyborg(src)
+	var/obj/item/stack/tile/floor/cyborg/S =69ew /obj/item/stack/tile/floor/cyborg(src)
 	S.synths = list(metal)
 	src.modules += S
 
-	var/obj/item/stack/material/cyborg/glass/reinforced/RG = new (src)
+	var/obj/item/stack/material/cyborg/glass/reinforced/RG =69ew (src)
 	RG.synths = list(metal, glass)
 	src.modules += RG
 
-	var/obj/item/stack/material/cyborg/plasteel/PL = new (src)
+	var/obj/item/stack/material/cyborg/plasteel/PL =69ew (src)
 	PL.synths = list(plasteel)
 	src.modules += PL
 
-	var/obj/item/stack/material/cyborg/wood/W = new (src)
+	var/obj/item/stack/material/cyborg/wood/W =69ew (src)
 	W.synths = list(wood)
 	src.modules += W
 
-	var/obj/item/stack/material/cyborg/plastic/PS = new (src)
+	var/obj/item/stack/material/cyborg/plastic/PS =69ew (src)
 	PS.synths = list(plastic)
 	src.modules += PS
 
-	var/obj/item/stack/tile/wood/cyborg/FWT = new (src)
+	var/obj/item/stack/tile/wood/cyborg/FWT =69ew (src)
 	FWT.synths = list(wood)
 	src.modules += FWT
 
@@ -646,22 +646,22 @@ var/global/list/robot_modules = list(
 
 
 	//TODO: Insert appropriate tiles here
-	//var/obj/item/stack/tile/floor_white/cyborg/FTW = new (src)
+	//var/obj/item/stack/tile/floor_white/cyborg/FTW =69ew (src)
 	//FTW.synths = list(plastic)
 	//src.modules += FTW
 
-	//var/obj/item/stack/tile/floor_freezer/cyborg/FTF = new (src)
+	//var/obj/item/stack/tile/floor_freezer/cyborg/FTF =69ew (src)
 	//FTF.synths = list(plastic)
 	//src.modules += FTF
 
-	//var/obj/item/stack/tile/floor_dark/cyborg/FTD = new (src)
+	//var/obj/item/stack/tile/floor_dark/cyborg/FTD =69ew (src)
 	//FTD.synths = list(plasteel)
 	//src.modules += FTD
 
 
-//Possible todo: Discuss giving security module some kind of lethal ranged weapon
+//Possible todo: Discuss giving security69odule some kind of lethal ranged weapon
 /obj/item/robot_module/security
-	name = "security robot module"
+	name = "security robot69odule"
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	can_be_pushed = 0
@@ -671,7 +671,7 @@ var/global/list/robot_modules = list(
 	speed_factor = 0.85 //Kinda slow
 	power_efficiency = 1.15 //Decent
 
-	desc = "Focused on keeping the peace and fighting off threats to the ship, the security module is a \
+	desc = "Focused on keeping the peace and fighting off threats to the ship, the security69odule is a \
 	heavily armored, though lightly armed battle unit."
 
 	stat_modifiers = list(
@@ -693,11 +693,11 @@ var/global/list/robot_modules = list(
 				)
 
 /obj/item/robot_module/security/general/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/tool/crowbar/robotic(src)
-	src.modules += new /obj/item/device/flash(src)
-	src.modules += new /obj/item/borg/sight/hud/sec(src)
-	src.modules += new /obj/item/handcuffs/cyborg(src)
-	src.modules += new /obj/item/melee/baton/robot(src)
+	src.modules +=69ew /obj/item/tool/crowbar/robotic(src)
+	src.modules +=69ew /obj/item/device/flash(src)
+	src.modules +=69ew /obj/item/borg/sight/hud/sec(src)
+	src.modules +=69ew /obj/item/handcuffs/cyborg(src)
+	src.modules +=69ew /obj/item/melee/baton/robot(src)
 	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	//src.modules += new /obj/item/device/holowarrant(src)
@@ -706,7 +706,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/security/respawn_consumable(var/mob/living/silicon/robot/R,69ar/amount)
 	..()
 	var/obj/item/gun/energy/taser/mounted/cyborg/T = locate() in src.modules
 	if(T.cell.charge < T.cell.maxcharge)
@@ -719,7 +719,7 @@ var/global/list/robot_modules = list(
 		B.cell.give(amount)
 
 /obj/item/robot_module/custodial
-	name = "custodial robot module"
+	name = "custodial robot69odule"
 	channels = list("Service" = 1)
 	sprites = list(
 					"Basic" = "robotjani",
@@ -732,16 +732,16 @@ var/global/list/robot_modules = list(
 					"Maid" = "maidbot"
 					)
 	health = 250 //Bulky
-	speed_factor = 1.0 // Normal speed, its a cleaning unit and you wouldnt choose it if you sweep floors with ultra slow movement
+	speed_factor = 1.0 // Normal speed, its a cleaning unit and you wouldnt choose it if you sweep floors with ultra slow69ovement
 	power_efficiency = 0.8 //Poor
 
 	stat_modifiers = list(
 		STAT_ROB = 20
 	)
 
-	desc = "A vast machine designed for cleaning up trash and scrubbing floors. A fairly specialised task, \
+	desc = "A69ast69achine designed for cleaning up trash and scrubbing floors. A fairly specialised task, \
 	but requiring a large capacity. The huge chassis consequentially grants it a degree of toughness, \
-	though it is slow and cheaply made"
+	though it is slow and cheaply69ade"
 
 
 /obj/item/robot_module/custodial/New(var/mob/living/silicon/robot/R)
@@ -764,7 +764,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/custodial/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/custodial/respawn_consumable(var/mob/living/silicon/robot/R,69ar/amount)
 	..()
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
@@ -774,7 +774,7 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/robot_module/service
-	name = "service robot module"
+	name = "service robot69odule"
 	channels = list("Service" = 1)
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
@@ -834,7 +834,7 @@ var/global/list/robot_modules = list(
 
 	var/obj/item/rsf/M = new /obj/item/rsf(src)
 	M.stored_matter = 30
-	src.modules += M
+	src.modules +=69
 
 	src.modules += new /obj/item/reagent_containers/dropper/industrial(src)
 
@@ -855,7 +855,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 
-/obj/item/robot_module/service/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/service/respawn_consumable(var/mob/living/silicon/robot/R,69ar/amount)
 	..()
 	var/obj/item/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
 	E.reagents.add_reagent("enzyme", 2 * amount)
@@ -864,7 +864,7 @@ var/global/list/robot_modules = list(
 		B.reagents.add_reagent("beer2", 2 * amount)
 
 /obj/item/robot_module/miner
-	name = "miner robot module"
+	name = "miner robot69odule"
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 	sprites = list(
@@ -886,10 +886,10 @@ var/global/list/robot_modules = list(
 		STAT_TGH = 20
 	)
 
-	desc = "Built for digging on asteroids, excavating the ores and materials to keep the ship running, \
+	desc = "Built for digging on asteroids, excavating the ores and69aterials to keep the ship running, \
 	this is heavy and powerful unit with a fairly singleminded purpose. It needs to withstand impacts \
 	from falling boulders, and exist for long periods out on an airless rock, often far from a charging \
-	port. It is built with these purposes in mind."
+	port. It is built with these purposes in69ind."
 
 /obj/item/robot_module/miner/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/tool/crowbar/robotic(src)
@@ -907,7 +907,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 /obj/item/robot_module/research
-	name = "research module"
+	name = "research69odule"
 	channels = list("Science" = 1)
 	networks = list(NETWORK_RESEARCH)
 	sprites = list(
@@ -922,8 +922,8 @@ var/global/list/robot_modules = list(
 	speed_factor = 1 //Average
 	power_efficiency = 0.75 //Poor efficiency
 
-	desc = "Built for working in a well-equipped lab, and designed to handle a wide variety of research \
-	duties, this module prioritises flexibility over efficiency. Capable of working in R&D, Toxins, \
+	desc = "Built for working in a well-equipped lab, and designed to handle a wide69ariety of research \
+	duties, this69odule prioritises flexibility over efficiency. Capable of working in R&D, Toxins, \
 	chemistry, xenobiology and robotics."
 
 	stat_modifiers = list(
@@ -967,7 +967,7 @@ var/global/list/robot_modules = list(
 
 //Syndicate borg is intended for summoning by contractors. Not currently implemented
 /obj/item/robot_module/syndicate
-	name = "syndicate robot module"
+	name = "syndicate robot69odule"
 	hide_on_manifest = TRUE
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
@@ -1001,11 +1001,11 @@ var/global/list/robot_modules = list(
 
 	..(R)
 
-//Combat module is a high grade security borg for use in emergencies.
+//Combat69odule is a high grade security borg for use in emergencies.
 //They have lethal weapons and shielding
 //Not currently implemented, needs discussion
 /obj/item/robot_module/combat
-	name = "combat robot module"
+	name = "combat robot69odule"
 	hide_on_manifest = TRUE
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -1025,7 +1025,7 @@ var/global/list/robot_modules = list(
 	..(R)
 
 /obj/item/robot_module/drone
-	name = "drone module"
+	name = "drone69odule"
 	hide_on_manifest = TRUE
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
@@ -1057,22 +1057,22 @@ var/global/list/robot_modules = list(
 	var/datum/matter_synth/wood = new /datum/matter_synth/wood(10000)
 	var/datum/matter_synth/plastic = new /datum/matter_synth/plastic(10000)
 	var/datum/matter_synth/wire = new /datum/matter_synth/wire(30)
-	synths += metal
+	synths +=69etal
 	synths += glass
 	synths += wood
 	synths += plastic
 	synths += wire
 
 	var/obj/item/matter_decompiler/MD = new /obj/item/matter_decompiler(src)
-	MD.metal = metal
+	MD.metal =69etal
 	MD.glass = glass
 	MD.wood = wood
 	MD.plastic = plastic
-	src.modules += MD
+	src.modules +=69D
 
 	var/obj/item/stack/material/cyborg/steel/M = new (src)
 	M.synths = list(metal)
-	src.modules += M
+	src.modules +=69
 
 	var/obj/item/stack/material/cyborg/glass/G = new (src)
 	G.synths = list(glass)
@@ -1107,7 +1107,7 @@ var/global/list/robot_modules = list(
 	src.modules += P
 	..(R)
 
-/obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+/obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R,69ar/amount)
 	var/obj/item/device/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	..()
@@ -1118,7 +1118,7 @@ var/global/list/robot_modules = list(
 //Sort of like a robot ninja
 //Not currently implemented
 /obj/item/robot_module/hunter_seeker
-	name = "hunter seeker robot module"
+	name = "hunter seeker robot69odule"
 	languages = list(
 					LANGUAGE_SOL_COMMON = 1,
 					LANGUAGE_TRADEBAND = 1,

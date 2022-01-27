@@ -8,7 +8,7 @@
 	var/shuttle_tag = input(user, "Which shuttle do you want to jump?") as null|anything in SSshuttle.shuttles
 	if (!shuttle_tag) return
 
-	var/datum/shuttle/S = SSshuttle.shuttles[shuttle_tag]
+	var/datum/shuttle/S = SSshuttle.shuttles69shuttle_tag69
 
 	var/origin_area = input(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
 	if (!origin_area) return
@@ -21,12 +21,12 @@
 		var/transition_area = input(user, "Which area is the transition area? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
 		if (!transition_area) return
 
-		var/move_duration = input(user, "How many seconds will this jump take?") as num
+		var/move_duration = input(user, "How69any seconds will this jump take?") as num
 
-		S.long_jump(origin_area, destination_area, transition_area, move_duration)
-		message_admins(SPAN_NOTICE("[key_name_admin(user)] has initiated a jump from [origin_area] to [destination_area] lasting [move_duration] seconds for the [shuttle_tag] shuttle"), 1)
-		log_admin("[key_name_admin(user)] has initiated a jump from [origin_area] to [destination_area] lasting [move_duration] seconds for the [shuttle_tag] shuttle")
+		S.long_jump(origin_area, destination_area, transition_area,69ove_duration)
+		message_admins(SPAN_NOTICE("69key_name_admin(user)69 has initiated a jump from 69origin_area69 to 69destination_area69 lasting 69move_duration69 seconds for the 69shuttle_tag69 shuttle"), 1)
+		log_admin("69key_name_admin(user)69 has initiated a jump from 69origin_area69 to 69destination_area69 lasting 69move_duration69 seconds for the 69shuttle_tag69 shuttle")
 	else
 		S.short_jump(origin_area, destination_area)
-		message_admins(SPAN_NOTICE("[key_name_admin(user)] has initiated a jump from [origin_area] to [destination_area] for the [shuttle_tag] shuttle"), 1)
-		log_admin("[key_name_admin(user)] has initiated a jump from [origin_area] to [destination_area] for the [shuttle_tag] shuttle")
+		message_admins(SPAN_NOTICE("69key_name_admin(user)69 has initiated a jump from 69origin_area69 to 69destination_area69 for the 69shuttle_tag69 shuttle"), 1)
+		log_admin("69key_name_admin(user)69 has initiated a jump from 69origin_area69 to 69destination_area69 for the 69shuttle_tag69 shuttle")

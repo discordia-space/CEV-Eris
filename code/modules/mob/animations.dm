@@ -1,20 +1,20 @@
 /*
-adds a dizziness amount to a mob
-use this rather than directly changing var/dizziness
+adds a dizziness amount to a69ob
+use this rather than directly changing69ar/dizziness
 since this ensures that the dizzy_process proc is started
 currently only humans get dizzy
 
 value of dizziness ranges from 0 to 1000
-below 100 is not dizzy
+below 100 is69ot dizzy
 */
 
 /mob/proc/make_dizzy(var/amount)
 	return
 
-// for the moment, only humans get dizzy
+// for the69oment, only humans get dizzy
 /mob/living/carbon/human/make_dizzy(var/amount)
-	dizziness = min(1000, dizziness + amount)	// store what will be new value
-													// clamped to max 1000
+	dizziness =69in(1000, dizziness + amount)	// store what will be69ew69alue
+													// clamped to69ax 1000
 	if(dizziness > 100 && !is_dizzy)
 		spawn(0)
 			dizzy_process()
@@ -26,8 +26,8 @@ below 100 is not dizzy
 
 /*
 dizzy process - wiggles the client's pixel offset over time
-spawned from make_dizzy(), will terminate automatically when dizziness gets <100
-note dizziness decrements automatically in the mob's Life() proc.
+spawned from69ake_dizzy(), will terminate automatically when dizziness gets <100
+note dizziness decrements automatically in the69ob's Life() proc.
 */
 /mob/living/carbon/human/proc/dizzy_process()
 	is_dizzy = 1
@@ -53,18 +53,18 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/jitteriness = 0
 
 /mob/living/carbon/human/make_jittery(var/amount)
-	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
-													// clamped to max 1000
+	jitteriness =69in(1000, jitteriness + amount)	// store what will be69ew69alue
+													// clamped to69ax 1000
 	if(jitteriness > 100 && !is_jittery)
 		spawn(0)
 			jittery_process()
 
 
-// Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
+// Typo from the oriignal coder here, below lies the jitteriness process. So69ake of his code what you will, the previous comment here was just a copypaste of the above.
 /mob/living/carbon/human/proc/jittery_process()
 	is_jittery = 1
 	while(jitteriness > 100)
-		var/amplitude = min(4, jitteriness / 100)
+		var/amplitude =69in(4, jitteriness / 100)
 		pixel_x = default_pixel_x + rand(-amplitude, amplitude)
 		pixel_y = default_pixel_y + rand(-amplitude/3, amplitude/3)
 
@@ -80,8 +80,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 /mob/var/floatiness = 0
 
 //You can pass in true or false in a case where you've already done the calculations and can skip some checking here
-//Its perfectly fine to call this proc with no input, it will figure out what it needs to do
-/mob/proc/update_floating(var/setstate = null)
+//Its perfectly fine to call this proc with69o input, it will figure out what it69eeds to do
+/mob/proc/update_floating(var/setstate =69ull)
 	if (!isnull(setstate))
 		make_floating(setstate)
 		return
@@ -98,7 +98,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return
 
 /mob/proc/make_floating(var/n)
-	floatiness = n
+	floatiness =69
 
 	if(floatiness && !is_floating)
 		start_floating()
@@ -110,7 +110,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	is_floating = 1
 
 	var/amplitude = 2 //maximum displacement from original position
-	var/period = 36 //time taken for the mob to go up >> down >> original position, in deciseconds. Should be multiple of 4
+	var/period = 36 //time taken for the69ob to go up >> down >> original position, in deciseconds. Should be69ultiple of 4
 
 	var/top = default_pixel_y + amplitude
 	var/bottom = default_pixel_y - amplitude
@@ -126,7 +126,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 	//reset the pixel offsets to zero
 	is_floating = 0
 
-/atom/movable/proc/do_attack_animation(atom/A, var/use_item = TRUE, var/depth = 8)
+/atom/movable/proc/do_attack_animation(atom/A,69ar/use_item = TRUE,69ar/depth = 8)
 	var/prev_x = pixel_x
 	var/prev_y = pixel_y
 	var/pixel_x_diff = 0
@@ -156,12 +156,12 @@ note dizziness decrements automatically in the mob's Life() proc.
 	animate(src, pixel_x = pixel_x + pixel_x_diff, pixel_y = pixel_y + pixel_y_diff, time = 2)
 	animate(pixel_x = prev_x, pixel_y = prev_y, time = 2)
 
-/mob/do_attack_animation(atom/A, var/use_item = TRUE)
+/mob/do_attack_animation(atom/A,69ar/use_item = TRUE)
 	..()
-	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we make sure we restart the bouncing after the next movement.
+	is_floating = 0 // If we were without gravity, the bouncing animation got stopped, so we69ake sure we restart the bouncing after the69ext69ovement.
 
 	if (!use_item)
-		//The use item flag governs whether or not we'll add a little weapon image to the animation
+		//The use item flag governs whether or69ot we'll add a little weapon image to the animation
 		return
 
 	// What icon do we use for the attack?
@@ -174,16 +174,16 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	// Who can see the attack?
 	var/list/viewing = list()
-	for (var/mob/M in viewers(A))
+	for (var/mob/M in69iewers(A))
 		if (M.client)
-			viewing |= M.client
-	flick_overlay(I, viewing, 5) // 5 ticks/half a second
+			viewing |=69.client
+	flick_overlay(I,69iewing, 5) // 5 ticks/half a second
 
 	// Scale the icon.
 	I.transform *= 0.75
 	// Set the direction of the icon animation.
 	var/direction = get_dir(src, A)
-	if(direction & NORTH)
+	if(direction &69ORTH)
 		I.pixel_y = -16
 	else if(direction & SOUTH)
 		I.pixel_y = 16
@@ -203,24 +203,24 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 
 /atom/proc/SpinAnimation(speed = 10, loops = -1)
-	var/matrix/m120 = matrix(transform)
+	var/matrix/m120 =69atrix(transform)
 	m120.Turn(120)
-	var/matrix/m240 = matrix(transform)
+	var/matrix/m240 =69atrix(transform)
 	m240.Turn(240)
-	var/matrix/m360 = matrix(transform)
+	var/matrix/m360 =69atrix(transform)
 	speed /= 3      //Gives us 3 equal time segments for our three turns.
-	                //Why not one turn? Because byond will see that the start and finish are the same place and do nothing
-	                //Why not two turns? Because byond will do a flip instead of a turn
-	animate(src, transform = m120, time = speed, loops)
-	animate(transform = m240, time = speed)
-	animate(transform = m360, time = speed)
+	                //Why69ot one turn? Because byond will see that the start and finish are the same place and do69othing
+	                //Why69ot two turns? Because byond will do a flip instead of a turn
+	animate(src, transform =69120, time = speed, loops)
+	animate(transform =69240, time = speed)
+	animate(transform =69360, time = speed)
 
 
 
-//Shakes the mob's camera
-//Strength is not recommended to set higher than 4, and even then its a bit wierd
-/proc/shake_camera(mob/M, duration, strength = 1, var/taper = 0.25)
-	if(!M || !M.client || M.shakecamera || M.stat || isEye(M) || isAI(M))
+//Shakes the69ob's camera
+//Strength is69ot recommended to set higher than 4, and even then its a bit wierd
+/proc/shake_camera(mob/M, duration, strength = 1,69ar/taper = 0.25)
+	if(!M || !M.client ||69.shakecamera ||69.stat || isEye(M) || isAI(M))
 		return
 
 	M.shakecamera = 1
@@ -241,10 +241,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
 			sleep(1)
 
-		//Taper code added by nanako.
-		//Will make the strength falloff after the duration.
-		//This helps to reduce jarring effects of major screenshaking suddenly returning to stability
-		//Recommended taper values are 0.05-0.1
+		//Taper code added by69anako.
+		//Will69ake the strength falloff after the duration.
+		//This helps to reduce jarring effects of69ajor screenshaking suddenly returning to stability
+		//Recommended taper69alues are 0.05-0.1
 		if (taper > 0)
 			while (strength > 0)
 				strength -= taper
@@ -272,7 +272,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 				if(EAST)
 					D = SOUTH
 				if(WEST)
-					D = NORTH
+					D =69ORTH
 			set_dir(D)
 			spintime -= speed
 	return
@@ -300,21 +300,21 @@ note dizziness decrements automatically in the mob's Life() proc.
 
 	flick_overlay(I, clients, 7)
 
-	var/matrix/M = new
+	var/matrix/M =69ew
 	M.Turn(pick(30, -30))
 
-	animate(I, transform = M, time = 1)
+	animate(I, transform =69, time = 1)
 	sleep(1)
-	animate(I, transform = matrix(), time = 1)
+	animate(I, transform =69atrix(), time = 1)
 	sleep(1)
 
 	var/to_x = (target.x - old_turf.x) * 32
 	var/to_y = (target.y - old_turf.y) * 32
 
-	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix() * 0, easing = CUBIC_EASING)
+	animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform =69atrix() * 0, easing = CUBIC_EASING)
 	sleep(3)
 
-/atom/movable/proc/do_putdown_animation(atom/target, mob/user)
+/atom/movable/proc/do_putdown_animation(atom/target,69ob/user)
 	spawn()
 		if (QDELETED(src))
 			return
@@ -322,7 +322,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 			return
 		if (QDELETED(user))
 			return
-		var/old_invisibility = invisibility // I don't know, it may be used.
+		var/old_invisibility = invisibility // I don't know, it69ay be used.
 		invisibility = 100
 		var/turf/old_turf = get_turf(user)
 		if (QDELETED(old_turf))
@@ -330,7 +330,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		var/image/I = image(icon = src, loc = old_turf, layer = layer + 0.1)
 		I.plane = get_relative_plane(GAME_PLANE)
 		I.layer = ABOVE_MOB_LAYER
-		I.transform = matrix() * 0
+		I.transform =69atrix() * 0
 		I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 		I.pixel_x = 0
 		I.pixel_y = 0
@@ -345,7 +345,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 		pixel_x = 0
 		pixel_y = 0
 
-		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform = matrix(), easing = CUBIC_EASING)
+		animate(I, pixel_x = to_x, pixel_y = to_y, time = 3, transform =69atrix(), easing = CUBIC_EASING)
 		sleep(3)
 		if (QDELETED(src))
 			return
@@ -356,7 +356,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 /atom/movable/proc/simple_move_animation(atom/target)
 	set waitfor = FALSE
 
-	var/old_invisibility = invisibility // I don't know, it may be used.
+	var/old_invisibility = invisibility // I don't know, it69ay be used.
 	invisibility = 100
 	var/turf/old_turf = get_turf(src)
 	var/image/I = image(icon = src, loc = src.loc, layer = layer + 0.1)

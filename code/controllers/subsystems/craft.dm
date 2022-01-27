@@ -19,11 +19,11 @@ SUBSYSTEM_DEF(craft)
 		cat_names |= CR.category
 		if(!CR.steps.len)
 			if(CR.name)
-				world.log << "ERROR: empty steps for craft recipe [CR.type]"
+				world.log << "ERROR: empty steps for craft recipe 69CR.type69"
 			qdel(CR)
 		if(!(CR.category in categories))
-			categories[CR.category] = list()
-		categories[CR.category] += CR
+			categories69CR.category69 = list()
+		categories69CR.category69 += CR
 		CHECK_TICK
 	return ..()
 

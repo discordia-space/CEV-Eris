@@ -3,10 +3,10 @@
 	name = "char pin"
 
 /datum/integrated_io/char/ask_for_pin_data(mob/user)
-	var/new_data = input(user, "Please type in one character.","[src] char writing") as text
+	var/new_data = input(user, "Please type in one character.","69src69 char writing") as text
 	new_data = sanitize(new_data, 1, trim=0)
 	if(holder.check_interactivity(user) && new_data)
-		to_chat(user, SPAN("notice", "You input [new_data ? "new_data" : "NULL"] into the pin."))
+		to_chat(user, SPAN("notice", "You input 69new_data ? "new_data" : "NULL"69 into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/char/write_data_to_pin(new_data)
@@ -16,7 +16,7 @@
 		data = new_data
 		holder.on_data_written()
 
-// This makes the text go from "A" to "%".
+// This69akes the text go from "A" to "%".
 /datum/integrated_io/char/scramble()
 	if(!is_valid())
 		return

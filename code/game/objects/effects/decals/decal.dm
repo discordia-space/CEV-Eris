@@ -1,5 +1,5 @@
 /obj/effect
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	bad_type = /obj/effect
 	spawn_tags = null
 

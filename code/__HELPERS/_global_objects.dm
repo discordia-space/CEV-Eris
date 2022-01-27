@@ -1,10 +1,10 @@
-var/datum/gear_tweak/color/gear_tweak_free_color_choice_
+var/datum/69ear_tweak/color/69ear_tweak_free_color_choice_
 
-/proc/gear_tweak_free_color_choice()
-	if(!gear_tweak_free_color_choice_) 
-		gear_tweak_free_color_choice_ = new()
-	return gear_tweak_free_color_choice_
+/proc/69ear_tweak_free_color_choice()
+	if(!69ear_tweak_free_color_choice_) 
+		69ear_tweak_free_color_choice_ =69ew()
+	return 69ear_tweak_free_color_choice_
 
-//var/datum/gear_tweak/color/gear_tweak_free_color_choice_
-//#define gear_tweak_free_color_choice (gear_tweak_free_color_choice_ ? gear_tweak_free_color_choice_ : (gear_tweak_free_color_choice_ = new()))
-// Might work in 511 assuming x=y=5 gets implemented.
+//var/datum/69ear_tweak/color/69ear_tweak_free_color_choice_
+//#define 69ear_tweak_free_color_choice (69ear_tweak_free_color_choice_ ? 69ear_tweak_free_color_choice_ : (69ear_tweak_free_color_choice_ =69ew()))
+//69i69ht work in 511 assumin69 x=y=5 69ets implemented.

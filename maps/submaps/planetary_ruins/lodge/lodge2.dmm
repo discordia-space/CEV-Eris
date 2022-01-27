@@ -1,354 +1,354 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ah" = (
-/obj/structure/table/woodentable,
-/obj/machinery/microwave,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"bF" = (
-/obj/structure/toilet{
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"ah" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/machiner69/microwave,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"6969" = 69
+/o6969/structure/toilet{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"ce" = (
-/obj/structure/closet/cabinet,
-/obj/item/clothing/under/color/black,
-/obj/spawner/cloth/shoes,
-/obj/item/clothing/mask/breath,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"dO" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"fz" = (
-/obj/structure/table/standard,
-/obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"im" = (
-/obj/structure/table/woodentable,
-/obj/effect/floor_decal/spline/fancy/wood/corner{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"ce" = 69
+/o6969/structure/closet/ca69inet,
+/o6969/item/clothin69/under/color/69lac69,
+/o6969/s69awner/cloth/shoes,
+/o6969/item/clothin69/mas69/69reath,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"dO" = 69
+/o6969/s69awner/69un69/low_chance,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"69z" = 69
+/o6969/structure/ta69le/standard,
+/o6969/s69awner/medical_lowcost,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"im" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/e6969ect/69loor_decal/s69line/69anc69/wood/corner{
 	dir = 1
 	},
-/obj/spawner/booze/low_chance,
-/obj/machinery/light{
+/o6969/s69awner/69ooze/low_chance,
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"iR" = (
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"lg" = (
-/obj/structure/closet/crate/freezer,
-/obj/effect/floor_decal/spline/fancy/wood{
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"iR" = 69
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"l69" = 69
+/o6969/structure/closet/crate/69reezer,
+/o6969/e6969ect/69loor_decal/s69line/69anc69/wood{
 	dir = 4
 	},
-/obj/spawner/junkfood,
-/obj/spawner/junkfood,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"lX" = (
-/obj/machinery/door/unpowered/simple/wood,
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"mc" = (
-/obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp,
-/obj/effect/floor_decal/spline/fancy/wood{
+/o6969/s69awner/69un6969ood,
+/o6969/s69awner/69un6969ood,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"lX" = 69
+/o6969/machiner69/door/un69owered/sim69le/wood,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"mc" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/device/li69htin69/to6969lea69le/lam69,
+/o6969/e6969ect/69loor_decal/s69line/69anc69/wood{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"mn" = (
-/obj/structure/table/rack,
-/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
-/obj/spawner/ammo/shotgun,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"ny" = (
-/obj/spawner/medical_lowcost/low_chance,
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"qb" = (
-/obj/structure/computerframe{
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"mn" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/69un/69ro69ectile/shot69un/dou69le69arrel/sawn,
+/o6969/s69awner/ammo/shot69un,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"n69" = 69
+/o6969/s69awner/medical_lowcost/low_chance,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"6969" = 69
+/o6969/structure/com69uter69rame{
 	anchored = 1;
 	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"qq" = (
-/obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
-	pixel_x = 2;
-	pixel_y = -2
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"6969" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/rea69ent_containers/69ood/drin69s/69ottle/small/69eer{
+	69ixel_x = 2;
+	69ixel_69 = -2
 	},
-/obj/item/reagent_containers/food/drinks/bottle/small/beer{
-	pixel_x = -6;
-	pixel_y = 5
+/o6969/item/rea69ent_containers/69ood/drin69s/69ottle/small/69eer{
+	69ixel_x = -6;
+	69ixel_69 = 5
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"qK" = (
-/obj/structure/sink{
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"6969" = 69
+/o6969/structure/sin69{
 	dir = 4;
-	pixel_x = 11
+	69ixel_x = 11
 	},
-/obj/structure/mirror{
+/o6969/structure/mirror{
 	dir = 8;
-	pixel_x = 28
+	69ixel_x = 28
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"sB" = (
-/obj/structure/table/woodentable,
-/obj/item/paper_bin,
-/obj/item/pen,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"uE" = (
-/obj/structure/closet,
-/obj/item/stack/material/steel{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"s69" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/69a69er_69in,
+/o6969/item/69en,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"uE" = 69
+/o6969/structure/closet,
+/o6969/item/stac69/material/steel{
 	amount = 10
 	},
-/obj/item/stack/material/wood{
+/o6969/item/stac69/material/wood{
 	amount = 50
 	},
-/obj/item/stack/tile/carpet/turcarpet{
+/o6969/item/stac69/tile/car69et/turcar69et{
 	amount = 50
 	},
-/obj/item/stack/material/glass/reinforced{
+/o6969/item/stac69/material/69lass/rein69orced{
 	amount = 10
 	},
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"uX" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/turf/template_noop,
-/area/template_noop)
-"ve" = (
-/obj/machinery/shower{
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"uX" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics/soil,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"ve" = 69
+/o6969/machiner69/shower{
 	dir = 4
 	},
-/obj/machinery/door/window/eastright{
-	base_state = "left";
-	icon_state = "left";
+/o6969/machiner69/door/window/eastri69ht{
+	69ase_state = "le69t";
+	icon_state = "le69t";
 	name = "Shower"
 	},
-/obj/item/bikehorn/rubberducky,
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"wU" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"xm" = (
-/obj/structure/bed/chair/comfy/brown{
+/o6969/item/69i69ehorn/ru6969erduc6969,
+/o6969/structure/window/rein69orced,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"wU" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/69un_69a,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"xm" = 69
+/o6969/structure/69ed/chair/com6969/69rown{
 	dir = 4
 	},
-/obj/machinery/light,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"Ag" = (
-/obj/effect/floor_decal/spline/fancy/wood{
+/o6969/machiner69/li69ht,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"A69" = 69
+/o6969/e6969ect/69loor_decal/s69line/69anc69/wood{
 	dir = 5
 	},
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"Bi" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"Cp" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/map_template/lodge)
-"Fh" = (
-/obj/structure/table/woodentable,
-/obj/item/folder/blue,
-/obj/machinery/light,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"FX" = (
-/obj/structure/table/standard,
-/obj/item/soap/deluxe,
-/obj/machinery/light{
+/o6969/s69awner/69un6969ood/rotten,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"69i" = 69
+/o6969/s69awner/69un69/low_chance,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"C69" = 69
+/tur69/simulated/69loor/tiled/white/tech69loor_69rid,
+/area/ma69_tem69late/lod69e69
+"69h" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/69older/69lue,
+/o6969/machiner69/li69ht,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"69X" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/soa69/deluxe,
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"HH" = (
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"Iz" = (
-/obj/structure/bed,
-/obj/item/bedsheet,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"Jv" = (
-/obj/effect/floor_decal/spline/fancy/wood{
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"HH" = 69
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"Iz" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"69v" = 69
+/o6969/e6969ect/69loor_decal/s69line/69anc69/wood{
 	dir = 1
 	},
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"JF" = (
-/obj/machinery/power/port_gen/pacman,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"Nr" = (
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"NT" = (
-/obj/structure/filingcabinet,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"NU" = (
-/obj/structure/table/woodentable,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/item/tool/knife/butch,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/lodge)
-"Om" = (
-/turf/template_noop,
-/area/template_noop)
-"OA" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/white,
-/area/map_template/lodge)
-"OH" = (
-/obj/machinery/portable_atmospherics/powered/scrubber,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"OW" = (
-/obj/item/device/lighting/toggleable/lamp/green,
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"PB" = (
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"Qu" = (
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"RF" = (
-/obj/machinery/door/unpowered/simple/wood,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"RM" = (
-/obj/structure/bed/chair/comfy/brown{
+/o6969/s69awner/69un6969ood/rotten,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"6969" = 69
+/o6969/machiner69/69ower/69ort_69en/69acman,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"Nr" = 69
+/o6969/e6969ect/window_lwall_s69awn/rein69orced,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"NT" = 69
+/o6969/structure/69ilin69ca69inet,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"NU" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/item/tool/69ni69e/69utch,
+/o6969/s69awner/69ooze/low_chance,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/lod69e69
+"Om" = 69
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"OA" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/69oom69a,
+/tur69/simulated/69loor/tiled/white,
+/area/ma69_tem69late/lod69e69
+"OH" = 69
+/o6969/machiner69/69orta69le_atmos69herics/69owered/scru6969er,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"OW" = 69
+/o6969/item/device/li69htin69/to6969lea69le/lam69/69reen,
+/o6969/structure/ta69le/woodenta69le,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"6969" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/sla69er,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"69u" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/sla69er,
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"R69" = 69
+/o6969/machiner69/door/un69owered/sim69le/wood,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"RM" = 69
+/o6969/structure/69ed/chair/com6969/69rown{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"Sf" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"Si" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/obj/item/seeds/potatoseed,
-/turf/template_noop,
-/area/template_noop)
-"Uy" = (
-/obj/structure/table/woodentable,
-/obj/item/board,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"VI" = (
-/obj/structure/table/woodentable,
-/obj/item/clothing/mask/smokable/pipe/cobpipe,
-/obj/machinery/light{
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"S69" = 69
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"Si" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics/soil,
+/o6969/item/seeds/69otatoseed,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"U69" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/69oard,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"VI" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/item/clothin69/mas69/smo69a69le/69i69e/co6969i69e,
+/o6969/machiner69/li69ht{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/map_template/lodge)
-"WX" = (
-/obj/structure/table/rack,
-/obj/effect/decal/cleanable/dirt,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/wood,
-/area/map_template/lodge)
-"Yu" = (
-/turf/simulated/wall,
-/area/map_template/lodge)
+/tur69/simulated/69loor/car69et/turcar69et,
+/area/ma69_tem69late/lod69e69
+"WX" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/s69awner/69ac69/tech_loot,
+/tur69/simulated/69loor/wood,
+/area/ma69_tem69late/lod69e69
+"69u" = 69
+/tur69/simulated/wall,
+/area/ma69_tem69late/lod69e69
 
-(1,1,1) = {"
+691,1,169 = {"
 Om
-Yu
-Yu
+69u
+69u
 Nr
-Yu
-Yu
-Yu
-Yu
-Yu
-Yu
+69u
+69u
+69u
+69u
+69u
+69u
 Om
 "}
-(2,1,1) = {"
+692,1,169 = {"
 Om
-Yu
+69u
 ve
-FX
-fz
-Yu
-lg
+69X
+69z
+69u
+l69
 im
 ah
-Yu
+69u
 Om
 "}
-(3,1,1) = {"
+693,1,169 = {"
 Om
 Nr
-Cp
-ny
+C69
+n69
 OA
 lX
-Sf
-Jv
+S69
+69v
 NU
 Nr
 Om
 "}
-(4,1,1) = {"
+694,1,169 = {"
 Om
-Yu
-bF
-qK
-ny
-Yu
+69u
+6969
+6969
+n69
+69u
 wU
-Ag
+A69
 mc
 Nr
 Om
 "}
-(5,1,1) = {"
+695,1,169 = {"
 Om
-Yu
-Yu
-Yu
-Yu
-Yu
-Sf
+69u
+69u
+69u
+69u
+69u
+S69
 iR
 OH
 Nr
 Om
 "}
-(6,1,1) = {"
+696,1,169 = {"
 Om
 uX
 Om
@@ -356,12 +356,12 @@ Si
 Om
 Nr
 dO
-PB
+6969
 WX
-Yu
+69u
 Om
 "}
-(7,1,1) = {"
+697,1,169 = {"
 Om
 uX
 Om
@@ -369,116 +369,116 @@ uX
 Om
 Nr
 iR
-Sf
+S69
 iR
-Yu
+69u
 Om
 "}
-(8,1,1) = {"
+698,1,169 = {"
 Om
 Om
 Om
 Om
 Om
-RF
-Sf
+R69
+S69
 dO
-Sf
-RF
+S69
+R69
 Om
 "}
-(9,1,1) = {"
+699,1,169 = {"
 Om
 uX
 Om
 uX
 Om
-Yu
+69u
 uE
-PB
+6969
 xm
-Yu
+69u
 Om
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 Om
 Si
 Om
 uX
 Om
-Yu
-JF
-Sf
-Uy
-Yu
+69u
+6969
+S69
+U69
+69u
 Om
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 Om
-Yu
-Yu
+69u
+69u
 Nr
-Yu
-Yu
-Yu
-RF
-Yu
-Yu
+69u
+69u
+69u
+R69
+69u
+69u
 Om
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 Om
-Yu
+69u
 ce
 OW
-Bi
+69i
 HH
-Qu
+69u
 HH
 NT
-Yu
+69u
 Om
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 Om
 Nr
 HH
-Qu
+69u
 HH
 HH
-sB
-qb
-Fh
-Yu
+s69
+6969
+69h
+69u
 Om
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 Om
-Yu
+69u
 Iz
 VI
 mn
 HH
-Bi
+69i
 RM
-qq
-Yu
+6969
+69u
 Om
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 Om
-Yu
-Yu
-Yu
+69u
+69u
+69u
 Nr
 Nr
 Nr
-Yu
-Yu
-Yu
+69u
+69u
+69u
 Om
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 Om
 Om
 Om

@@ -33,7 +33,7 @@
 
 	faction = "russian"
 
-//SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT MY HAND OFF!!
+//SPACE BEARS! SQUEEEEEEEE~     OW! FUCK! IT BIT69Y HAND OFF!!
 /mob/living/simple_animal/hostile/bear/Hudson
 	name = "Hudson"
 	desc = ""
@@ -61,7 +61,7 @@
 			stance_step++
 			if(stance_step >= 10) //rests for 10 ticks
 				if(target_mob && (target_mob in ListTargets(10)))
-					stance = HOSTILE_STANCE_ATTACK //If the mob he was chasing is still nearby, resume the attack, otherwise go idle.
+					stance = HOSTILE_STANCE_ATTACK //If the69ob he was chasing is still69earby, resume the attack, otherwise go idle.
 				else
 					stance = HOSTILE_STANCE_IDLE
 
@@ -70,44 +70,44 @@
 			var/found_mob = 0
 			if(target_mob && (target_mob in ListTargets(10)))
 				if(!(SA_attackable(target_mob)))
-					stance_step = max(0, stance_step) //If we have not seen a mob in a while, the stance_step will be negative, we need to reset it to 0 as soon as we see a mob again.
+					stance_step =69ax(0, stance_step) //If we have69ot seen a69ob in a while, the stance_step will be69egative, we69eed to reset it to 0 as soon as we see a69ob again.
 					stance_step++
 					found_mob = 1
-					src.set_dir(get_dir(src,target_mob))	//Keep staring at the mob
+					src.set_dir(get_dir(src,target_mob))	//Keep staring at the69ob
 
 					if(stance_step in list(1,4,7)) //every 3 ticks
-						var/action = pick( list( "growls at [target_mob].", "stares angrily at [target_mob].", "prepares to attack [target_mob]!", "closely watches [target_mob]." ) )
+						var/action = pick( list( "growls at 69target_mob69.", "stares angrily at 69target_mob69.", "prepares to attack 69target_mob69!", "closely watches 69target_mob69." ) )
 						if(action)
 							visible_emote(action)
 			if(!found_mob)
 				stance_step--
 
-			if(stance_step <= -20) //If we have not found a mob for 20-ish ticks, revert to idle mode
+			if(stance_step <= -20) //If we have69ot found a69ob for 20-ish ticks, revert to idle69ode
 				stance = HOSTILE_STANCE_IDLE
-			if(stance_step >= 7)   //If we have been staring at a mob for 7 ticks,
+			if(stance_step >= 7)   //If we have been staring at a69ob for 7 ticks,
 				stance = HOSTILE_STANCE_ATTACK
 
 		if(HOSTILE_STANCE_ATTACKING)
-			if(stance_step >= 20)	//attacks for 20 ticks, then it gets tired and needs to rest
-				visible_emote("is worn out and needs to rest.")
+			if(stance_step >= 20)	//attacks for 20 ticks, then it gets tired and69eeds to rest
+				visible_emote("is worn out and69eeds to rest.")
 				stance = HOSTILE_STANCE_TIRED
 				stance_step = 0
 				walk(src, 0) //This stops the bear's walking
 				return
 
 
-/mob/living/simple_animal/hostile/bear/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/mob/living/simple_animal/hostile/bear/attackby(var/obj/item/O as obj,69ar/mob/user as69ob)
 	if(stance != HOSTILE_STANCE_ATTACK && stance != HOSTILE_STANCE_ATTACKING)
 		stance = HOSTILE_STANCE_ALERT
 		stance_step = 6
 		target_mob = user
 	..()
 
-/mob/living/simple_animal/hostile/bear/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/hostile/bear/attack_hand(mob/living/carbon/human/M as69ob)
 	if(stance != HOSTILE_STANCE_ATTACK && stance != HOSTILE_STANCE_ATTACKING)
 		stance = HOSTILE_STANCE_ALERT
 		stance_step = 6
-		target_mob = M
+		target_mob =69
 	..()
 
 /mob/living/simple_animal/hostile/bear/allow_spacemove()
@@ -116,7 +116,7 @@
 /mob/living/simple_animal/hostile/bear/FindTarget()
 	. = ..()
 	if(.)
-		visible_emote("stares alertly at [.].")
+		visible_emote("stares alertly at 69.69.")
 		stance = HOSTILE_STANCE_ALERT
 
 /mob/living/simple_animal/hostile/bear/LoseTarget()
@@ -125,7 +125,7 @@
 /mob/living/simple_animal/hostile/bear/AttackingTarget()
 	if(!Adjacent(target_mob))
 		return
-	visible_emote(list("slashes at [target_mob]!", "bites [target_mob]!"))
+	visible_emote(list("slashes at 69target_mob69!", "bites 69target_mob69!"))
 
 	var/damage = rand(20,30)
 

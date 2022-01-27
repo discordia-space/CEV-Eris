@@ -1,4 +1,4 @@
-//These circuits do not-so-simple math.
+//These circuits do not-so-simple69ath.
 /obj/item/integrated_circuit/trig
 	complexity = 1
 	inputs = list(
@@ -16,7 +16,7 @@
 	category_text = "Trig"
 	extended_desc = "Input and output are in degrees."
 	autopulse = 1
-	power_draw_per_use = 1 // Still cheap math.
+	power_draw_per_use = 1 // Still cheap69ath.
 
 /obj/item/integrated_circuit/trig/on_data_written()
 	if(autopulse == 1)

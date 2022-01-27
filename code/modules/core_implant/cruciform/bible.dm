@@ -8,9 +8,9 @@
 /obj/item/book/ritual/cruciform/ritual(var/datum/ritual/R)
 	var/data = ""
 	data += "<div style='margin-bottom:10px;'>"
-	data += "<b>[capitalize(R.name)]</b><br>"
-	data += "<a href='[href(R)]'>[R.get_display_phrase()]</a><br>"
-	data += "<i>[R.desc]</i></div>"
+	data += "<b>69capitalize(R.name)69</b><br>"
+	data += "<a href='69href(R)69'>69R.get_display_phrase()69</a><br>"
+	data += "<i>69R.desc69</i></div>"
 	return data
 */
 

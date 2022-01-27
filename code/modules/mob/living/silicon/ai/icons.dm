@@ -1,4 +1,4 @@
-var/datum/ai_icon/default_ai_icon = new/datum/ai_icon/blue()
+var/datum/ai_icon/default_ai_icon =69ew/datum/ai_icon/blue()
 var/list/datum/ai_icon/ai_icons
 
 /datum/ai_icon
@@ -10,14 +10,14 @@ var/list/datum/ai_icon/ai_icons
 	var/dead_icon = "ai-crash"
 	var/dead_light = "#000099"
 
-/datum/ai_icon/New(var/name, var/alive_icon, var/nopower_icon, var/dead_icon, var/alive_light, var/nopower_light, var/dead_light)
+/datum/ai_icon/New(var/name,69ar/alive_icon,69ar/nopower_icon,69ar/dead_icon,69ar/alive_light,69ar/nopower_light,69ar/dead_light)
 	if(name)
-		src.name = name
+		src.name =69ame
 		src.alive_icon = alive_icon
-		src.nopower_icon = nopower_icon
+		src.nopower_icon =69opower_icon
 		src.dead_icon = dead_icon
 		src.alive_light = alive_light
-		src.nopower_light = nopower_light
+		src.nopower_light =69opower_light
 		src.dead_light = dead_light
 	if(!ai_icons)
 		ai_icons = list()

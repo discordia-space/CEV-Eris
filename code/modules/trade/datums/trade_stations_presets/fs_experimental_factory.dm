@@ -1,11 +1,11 @@
 /datum/trade_station/fs_experimental_factory
-	name_pool = list("FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. They're sending a message. \"Hello there! We are looking for beta testers of our experimental weapons and upgrades. Sign up now!\"")
+	name_pool = list("FSTB 'Suoh'" = "Frozen Star Trade Beacon 'Suoh'. They're sendin69 a69essa69e. \"Hello there! We are lookin69 for beta testers of our experimental weapons and up69rades. Si69n up69ow!\"")
 	markup = 1
 	spawn_probability = 10
 	assortiment = list(
-		"Gunmods" = list(
-			/obj/item/gun_upgrade/trigger/dangerzone,
-			/obj/item/gun_upgrade/trigger/cop_block,
+		"69unmods" = list(
+			/obj/item/69un_up69rade/tri6969er/dan69erzone,
+			/obj/item/69un_up69rade/tri6969er/cop_block,
 			/obj/item/gun_upgrade/mechanism/weintraub,
 			/obj/item/gun_upgrade/scope/watchman
 		),

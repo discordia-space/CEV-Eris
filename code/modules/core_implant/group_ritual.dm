@@ -39,11 +39,11 @@
 		return FALSE
 
 /datum/ritual/group/proc/get_group_say_phrase(var/ind)
-	return phrases[ind]
+	return phrases69ind69
 
 //returns phrase to display in bible
 /datum/ritual/group/proc/get_group_display_phrase(var/ind)
-	return phrases[ind]
+	return phrases69ind69
 
 /datum/ritual/group/get_say_phrase()
 	return ""
@@ -78,19 +78,19 @@
 		return
 
 
-/datum/core_module/group_ritual/proc/hear(var/mob/user, var/phrase)
+/datum/core_module/group_ritual/proc/hear(var/mob/user,69ar/phrase)
 	if(!(locate(implant_type) in user))
 		return
 
 	if(user == implant.wearer)
 		if(phrases.len > 2)
-			if(phrase == phrases[2] && ritual.step_check(user))
+			if(phrase == phrases69269 && ritual.step_check(user))
 				next_phrase()
 			else
 				effect.trigger_fail(implant.wearer,participants)
 				implant.remove_module(src)
 		else
-			if(phrase == phrases[2] && ritual.step_check(user) && participants.len)	//It's a group ritual, isn't it?
+			if(phrase == phrases69269 && ritual.step_check(user) && participants.len)	//It's a group ritual, isn't it?
 				effect.trigger_success(implant.wearer,participants)
 				implant.remove_module(src)
 			else
@@ -99,7 +99,7 @@
 
 	else
 		if(first || (user in participants))
-			if(phrase == phrases[1] && !(user in correct_participants) && ritual.step_check(user))
+			if(phrase == phrases69169 && !(user in correct_participants) && ritual.step_check(user))
 				correct_participants.Add(user)
 			else
 				participants.Remove(user)
@@ -110,7 +110,7 @@
 	first = FALSE
 	participants = correct_participants
 	correct_participants = list()
-	to_chat(implant.wearer, SPAN_NOTICE("There is [participants.len] followers continuing the ritual."))
+	to_chat(implant.wearer, SPAN_NOTICE("There is 69participants.len69 followers continuing the ritual."))
 
 
 ////////////////////////
@@ -122,7 +122,7 @@
 	var/starter_succ_message = null
 	var/starter_fail_message = null
 
-/datum/group_ritual_effect/proc/trigger_success(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/proc/trigger_success(var/mob/starter,69ar/list/participants)
 	if(!starter_succ_message)
 		starter_succ_message = succ_message
 
@@ -136,10 +136,10 @@
 		SEND_SIGNAL(affected, COMSIG_GROUP_RITUAL)
 	GLOB.grup_ritual_performed++
 
-/datum/group_ritual_effect/proc/success(var/mob/affected, var/part_len)
+/datum/group_ritual_effect/proc/success(var/mob/affected,69ar/part_len)
 	return
 
-/datum/group_ritual_effect/proc/trigger_fail(var/mob/starter, var/list/participants)
+/datum/group_ritual_effect/proc/trigger_fail(var/mob/starter,69ar/list/participants)
 	if(!starter_fail_message)
 		starter_fail_message = fail_message
 
@@ -150,5 +150,5 @@
 		to_chat(affected, fail_message)
 		fail(affected, participants.len)
 
-/datum/group_ritual_effect/proc/fail(var/mob/affected, var/part_len)
+/datum/group_ritual_effect/proc/fail(var/mob/affected,69ar/part_len)
 	return

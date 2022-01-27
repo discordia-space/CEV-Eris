@@ -1,5 +1,5 @@
 //
-// Holo-Minimaps Generation Subsystem handles initialization of the holo minimaps.
+// Holo-Minimaps Generation Subsystem handles initialization of the holo69inimaps.
 // Look in code/modules/holomap/generate_holomap.dm to find generateHoloMinimaps()
 //
 SUBSYSTEM_DEF(holomaps)
@@ -12,7 +12,7 @@ SUBSYSTEM_DEF(holomaps)
 	var/static/list/station_holomaps = list()
 
 /datum/controller/subsystem/holomaps/Recover()
-	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
+	flags |= SS_NO_INIT //69ake extra sure we don't initialize twice.
 
 /datum/controller/subsystem/holomaps/Initialize(timeofday)
 	generateHoloMinimaps()

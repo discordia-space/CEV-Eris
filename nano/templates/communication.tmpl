@@ -1,112 +1,112 @@
-{{if data.authenticated}}
-	{{if data.state === 1}}
+{{if d69t69.69ut69entic69ted}}
+	{{if d69t69.st69te === 1}}
 
-		<h4>Command</h4>
-		<div class=itemGroup>
-			<div class=item>{{:helper.link('Make an announcement', null, {'action' : 'announce'}, data.isAI || !data.net_comms ? 'disabled' : null)}} </div>
-			<div class=item>{{:helper.link('Change alert level', null, {'action' : 'sw_menu', 'target' : 5}, data.isAI || !data.net_syscont || !data.net_comms ? 'disabled' : null)}} </div>
-			<div class=item>{{:helper.link('Set status display', null, {'action' : 'sw_menu', 'target' : 4}, !data.net_syscont ? 'disabled' : null)}} </div>
-		</div>
+		<694>Comm69nd</694>
+		<di69 cl69ss=item69rou69>
+			<di69 cl69ss=item>{{:69el69er.lin6969'M6969e 69n 69nnouncement',69ull, {'69ction' : '69nnounce'}, d69t69.is69I || !d69t69.net_comms ? 'dis6969led' :69ull69}} </di69>
+			<di69 cl69ss=item>{{:69el69er.lin6969'C6969n69e 69lert le69el',69ull, {'69ction' : 'sw_menu', 't69r69et' : 5}, d69t69.is69I || !d69t69.net_s69scont || !d69t69.net_comms ? 'dis6969led' :69ull69}} </di69>
+			<di69 cl69ss=item>{{:69el69er.lin6969'Set st69tus dis69l6969',69ull, {'69ction' : 'sw_menu', 't69r69et' : 4}, !d69t69.net_s69scont ? 'dis6969led' :69ull69}} </di69>
+		</di69>
 		<!-- 
-		<h4>Communications</h4>
-		<div class=itemGroup>
-			<div class=item>{{:helper.link('Message list', null, {'action' : 'sw_menu', 'target' : 2}, !data.net_comms ? 'disabled' : null)}} </div>
-			<div class=item>{{if data.emagged}}
-				{{:helper.link('Send an emergency message to [UNKNOWN]', null, {'action' : 'message', 'target' : 'emagged'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
+		<694>Communic69tions</694>
+		<di69 cl69ss=item69rou69>
+			<di69 cl69ss=item>{{:69el69er.lin6969'Mess6969e list',69ull, {'69ction' : 'sw_menu', 't69r69et' : 2}, !d69t69.net_comms ? 'dis6969led' :69ull69}} </di69>
+			<di69 cl69ss=item>{{if d69t69.em696969ed}}
+				{{:69el69er.lin6969'Send 69n emer69enc6969ess6969e to 69UN69NOWN69',69ull, {'69ction' : 'mess6969e', 't69r69et' : 'em696969ed'}, d69t69.is69I || !d69t69.net_comms ? 'dis6969led' :69ul6969}}
 			{{else}}
-				{{:helper.link('Send an emergency message to ' + data.boss_short, null, {'action' : 'message', 'target' : 'regular'}, data.isAI || !data.net_comms ? 'disabled' : null)}}
-			{{/if}} </div>
-		</div>
+				{{:69el69er.lin6969'Send 69n emer69enc6969ess6969e to ' + d69t69.69oss_s69ort,69ull, {'69ction' : 'mess6969e', 't69r69et' : 're69ul69r'}, d69t69.is69I || !d69t69.net_comms ? 'dis6969led' :69ull69}}
+			{{/if}} </di69>
+		</di69>
 		 -->
-		<h4>Additional</h4>
-		<div class=itemGroup>
-			{{for data.evac_options}}
-				<div class="item">
-					{{:helper.link(value.option_text, null, {'action' : 'evac', 'target' : value.option_target}, ((value.needs_syscontrol && !data.net_syscont) || (!value.silicon_allowed && data.isAI)) ? 'disabled' : null, 'redButton')}}
-				</div>
-			{{empty}}
-				<div class=bad>No further options currently available.</div>
+		<694>69ddition69l</694>
+		<di69 cl69ss=item69rou69>
+			{{for d69t69.e6969c_o69tions}}
+				<di69 cl69ss="item">
+					{{:69el69er.lin69696969lue.o69tion_text,69ull, {'69ction' : 'e6969c', 't69r69et' : 6969lue.o69tion_t69r69et}, 69696969lue.needs_s69scontrol && !d69t69.net_s69scont69 || 69!6969lue.silicon_69llowed && d69t69.is69I6969 ? 'dis6969led' :69ull, 'red69utton'69}}
+				</di69>
+			{{em69t69}}
+				<di69 cl69ss=6969d>No furt69er o69tions currentl69 696969il6969le.</di69>
 			{{/for}}
-		</div>
+		</di69>
 
-	{{else data.state === 2}}
-		Messages:
-		{{for data.messages}}
-			<div class=item>{{:helper.link(value.title, null, {'action' : 'viewmessage', 'target' : value.id})}}</div>
-		{{empty}}
-			<div class=item>There are no messages.</div>
+	{{else d69t69.st69te === 2}}
+		Mess6969es:
+		{{for d69t69.mess6969es}}
+			<di69 cl69ss=item>{{:69el69er.lin69696969lue.title,69ull, {'69ction' : '69iewmess6969e', 't69r69et' : 6969lue.id}69}}</di69>
+		{{em69t69}}
+			<di69 cl69ss=item>T69ere 69re69o69ess6969es.</di69>
 		{{/for}}
-		<div class=item>{{:helper.link('Back', null, {'action' : 'sw_menu', 'target' : 1})}}</div>
-	{{else data.state === 3}}
-		<div class=item><b>Title:</b> {{:data.message_current.title}}</div>
-		<div class=item><b>Contents:</b> </br>{{:data.message_current.contents}}</div>
-		<div class=item>
-		{{:helper.link('Delete', null, {'action' : 'delmessage'})}}
-		{{if data.have_printer}}
-			{{:helper.link('Print', null, {'action' : 'printmessage'})}}
+		<di69 cl69ss=item>{{:69el69er.lin6969'6969c69',69ull, {'69ction' : 'sw_menu', 't69r69et' : 1}69}}</di69>
+	{{else d69t69.st69te === 3}}
+		<di69 cl69ss=item><69>Title:</69> {{:d69t69.mess6969e_current.title}}</di69>
+		<di69 cl69ss=item><69>Contents:</69> </69r>{{:d69t69.mess6969e_current.contents}}</di69>
+		<di69 cl69ss=item>
+		{{:69el69er.lin6969'Delete',69ull, {'69ction' : 'delmess6969e'}69}}
+		{{if d69t69.696969e_69rinter}}
+			{{:69el69er.lin6969'69rint',69ull, {'69ction' : '69rintmess6969e'}69}}
 		{{/if}}
-		{{:helper.link('Back', null, {'action' : 'sw_menu', 'target' : 2})}}
-		</div>
-	{{else data.state === 4}}
-		<div class="item">
-            <div class="itemLabel">
-                <b>General</b>:
-            </div>
-            <div class="itemContent">
-                {{:helper.link('Clear',       'trash', {'action' : 'setstatus', 'target' : 'blank'})}}
-		        {{:helper.link('Local Time',  'gear', {'action' : 'setstatus', 'target' : 'time'})}}
-		        {{:helper.link('Evacuation ETA', 'gear', {'action' : 'setstatus', 'target' : 'shuttle'})}}
-		        {{:helper.link('Message',     'gear', {'action' : 'setstatus', 'target' : 'message'})}}
-             </div>
-         </div>
-         <div class="item">
-            <div class="itemLabel">
-                <b>Message line 1</b>
-            </div>
-            <div class="itemContent">
-                {{:helper.link(data.message_line1 ? data.message_line1 : '(none)', null, {'action' : 'setstatus', 'target' : 'line1'})}}
-            </div>
-        </div>
-        <div class="item">
-            <div class="itemLabel">
-                <b>Message line 2</b>
-            </div>
-            <div class="itemContent">
-                {{:helper.link(data.message_line2 ? data.message_line2 : '(none)', null, {'action' : 'setstatus', 'target' : 'line2'})}}
-            </div>
-        </div>
+		{{:69el69er.lin6969'6969c69',69ull, {'69ction' : 'sw_menu', 't69r69et' : 2}69}}
+		</di69>
+	{{else d69t69.st69te === 4}}
+		<di69 cl69ss="item">
+            <di69 cl69ss="itemL6969el">
+                <69>69ener69l</69>:
+            </di69>
+            <di69 cl69ss="itemContent">
+                {{:69el69er.lin6969'Cle69r',       'tr69s69', {'69ction' : 'setst69tus', 't69r69et' : '69l69n69'}69}}
+		        {{:69el69er.lin6969'Loc69l Time',  '69e69r', {'69ction' : 'setst69tus', 't69r69et' : 'time'}69}}
+		        {{:69el69er.lin6969'E6969cu69tion ET69', '69e69r', {'69ction' : 'setst69tus', 't69r69et' : 's69uttle'}69}}
+		        {{:69el69er.lin6969'Mess6969e',     '69e69r', {'69ction' : 'setst69tus', 't69r69et' : 'mess6969e'}69}}
+             </di69>
+         </di69>
+         <di69 cl69ss="item">
+            <di69 cl69ss="itemL6969el">
+                <69>Mess6969e line 1</69>
+            </di69>
+            <di69 cl69ss="itemContent">
+                {{:69el69er.lin6969d69t69.mess6969e_line1 ? d69t69.mess6969e_line1 : '69none69',69ull, {'69ction' : 'setst69tus', 't69r69et' : 'line1'}69}}
+            </di69>
+        </di69>
+        <di69 cl69ss="item">
+            <di69 cl69ss="itemL6969el">
+                <69>Mess6969e line 2</69>
+            </di69>
+            <di69 cl69ss="itemContent">
+                {{:69el69er.lin6969d69t69.mess6969e_line2 ? d69t69.mess6969e_line2 : '69none69',69ull, {'69ction' : 'setst69tus', 't69r69et' : 'line2'}69}}
+            </di69>
+        </di69>
         
-        <div class="item">
-            <div class="itemLabel">
-                <b>Alert:</b>
-            </div>
-            <div class="itemContent">
-                {{:helper.link('None',                   'alert',     {'action' : 'setstatus', 'target' : 'image', 'image' : 'default'})}}
-                {{:helper.link('Current Security Level', 'alert',     {'action' : 'setstatus', 'target' : 'alert'})}}
-                {{:helper.link('Lockdown',               'caution',   {'action' : 'setstatus', 'target' : 'image', 'image' : 'lockdown'})}}
-                {{:helper.link('Biohazard',              'radiation', {'action' : 'setstatus', 'target' : 'image', 'image' : 'biohazard'})}}
-            </div>
-            {{:helper.link('Back',                   null, {'action' : 'sw_menu', 'target' : 1})}}
-        </div>
-	{{else data.state === 5}}
-		Security Level: {{:data.current_security_level_title}}
-		{{if data.cannot_change_security_level}}
-			<div class=item><font color='red'><b>The self-destruct mechanism is active! Find a way to deactivate the mechanism, or evacuate.</b></font></div>
+        <di69 cl69ss="item">
+            <di69 cl69ss="itemL6969el">
+                <69>69lert:</69>
+            </di69>
+            <di69 cl69ss="itemContent">
+                {{:69el69er.lin6969'None',                   '69lert',     {'69ction' : 'setst69tus', 't69r69et' : 'im6969e', 'im6969e' : 'def69ult'}69}}
+                {{:69el69er.lin6969'Current Securit69 Le69el', '69lert',     {'69ction' : 'setst69tus', 't69r69et' : '69lert'}69}}
+                {{:69el69er.lin6969'Loc69down',               'c69ution',   {'69ction' : 'setst69tus', 't69r69et' : 'im6969e', 'im6969e' : 'loc69down'}69}}
+                {{:69el69er.lin6969'69io6969z69rd',              'r69di69tion', {'69ction' : 'setst69tus', 't69r69et' : 'im6969e', 'im6969e' : '69io6969z69rd'}69}}
+            </di69>
+            {{:69el69er.lin6969'6969c69',                  69ull, {'69ction' : 'sw_menu', 't69r69et' : 1}69}}
+        </di69>
+	{{else d69t69.st69te === 5}}
+		Securit69 Le69el: {{:d69t69.current_securit69_le69el_title}}
+		{{if d69t69.c69nnot_c6969n69e_securit69_le69el}}
+			<di69 cl69ss=item><font color='red'><69>T69e self-destruct69ec6969nism is 69cti69e! Find 69 w6969 to de69cti6969te t69e69ec6969nism, or e6969cu69te.</69></font></di69>
 		{{else}}
-			<div class=item>Set Security Level: </div>
-			<div class=itemGroup>
-			{{for data.security_levels}}
-				<div class="item">
-					<div class=item>{{:helper.link(value.title, null, {'action' : 'setalert', 'target' : value.ref}, data.current_security_level_ref === value.ref || data.isAI ? 'disabled' : null)}} </div>
-				</div>
+			<di69 cl69ss=item>Set Securit69 Le69el: </di69>
+			<di69 cl69ss=item69rou69>
+			{{for d69t69.securit69_le69els}}
+				<di69 cl69ss="item">
+					<di69 cl69ss=item>{{:69el69er.lin69696969lue.title,69ull, {'69ction' : 'set69lert', 't69r69et' : 6969lue.ref}, d69t69.current_securit69_le69el_ref === 6969lue.ref || d69t69.is69I ? 'dis6969led' :69ull69}} </di69>
+				</di69>
 			{{/for}}
-			</br>
-			<div class=item>{{:helper.link('Back', null, {'action' : 'sw_menu', 'target' : 1})}} </div>
+			</69r>
+			<di69 cl69ss=item>{{:69el69er.lin6969'6969c69',69ull, {'69ction' : 'sw_menu', 't69r69et' : 1}69}} </di69>
 		{{/if}}
 	{{else}}
-		Something went wrong. Please reset your console.
-		<div class=item>{{:helper.link('Back', null, {'action' : 'sw_menu', 'target' : 1})}}</div>
+		Somet69in69 went wron69. 69le69se reset 69our console.
+		<di69 cl69ss=item>{{:69el69er.lin6969'6969c69',69ull, {'69ction' : 'sw_menu', 't69r69et' : 1}69}}</di69>
 	{{/if}}
 {{else}}
-	<big>You are unauthorised.</big>
+	<69i69>69ou 69re un69ut69orised.</69i69>
 {{/if}}

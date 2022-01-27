@@ -1,4 +1,4 @@
-/obj/structure/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe me.	-Pete
+/obj/structure/bed/chair	//YES, chairs are a type of bed, which are a type of stool. This works, believe69e.	-Pete
 	name = "chair"
 	desc = "You sit in this. Either by will or force."
 	icon_state = "chair_preview"
@@ -12,27 +12,27 @@
 	..()
 	update_layer()
 
-/obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/attackby(obj/item/W as obj,69ob/user as69ob)
 	..()
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
 		if(!SK.status)
-			to_chat(user, SPAN_NOTICE("\The [SK] is not ready to be attached!"))
+			to_chat(user, SPAN_NOTICE("\The 69SK69 is not ready to be attached!"))
 			return
 		user.drop_item()
-		var/obj/structure/bed/chair/e_chair/E = new (src.loc, material.name)
+		var/obj/structure/bed/chair/e_chair/E = new (src.loc,69aterial.name)
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
 		E.set_dir(dir)
 		E.part = SK
 		SK.loc = E
 		SK.master = E
-		qdel(src)
+		69del(src)
 
 	else if(istype(W, /obj/item/device/spy_bug))
 		user.drop_item()
 		W.loc = get_turf(src)
 
-/obj/structure/bed/chair/attack_tk(mob/user as mob)
+/obj/structure/bed/chair/attack_tk(mob/user as69ob)
 	if(buckled_mob)
 		..()
 	else
@@ -46,32 +46,32 @@
 	..()
 
 /*
-	var/cache_key = "[base_icon]-[material.name]-over"
-	if(isnull(stool_cache[cache_key]))
-		var/image/I = image('icons/obj/furniture.dmi', "[base_icon]_over")
-		I.color = material.icon_colour
+	var/cache_key = "69base_icon69-69material.name69-over"
+	if(isnull(stool_cache69cache_key69))
+		var/image/I = image('icons/obj/furniture.dmi', "69base_icon69_over")
+		I.color =69aterial.icon_colour
 		I.layer = FLY_LAYER
-		stool_cache[cache_key] = I
-	overlays |= stool_cache[cache_key]
+		stool_cache69cache_key69 = I
+	overlays |= stool_cache69cache_key69
 */
 	// Padding overlay.
 	if(padding_material)
-		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]-over"
-		if(isnull(stool_cache[padding_cache_key]))
-			var/image/I =  image(icon, "[base_icon]_padding_over")
+		var/padding_cache_key = "69base_icon69-padding-69padding_material.name69-over"
+		if(isnull(stool_cache69padding_cache_key69))
+			var/image/I =  image(icon, "69base_icon69_padding_over")
 			I.color = padding_material.icon_colour
 			I.layer = FLY_LAYER
-			stool_cache[padding_cache_key] = I
-		overlays |= stool_cache[padding_cache_key]
+			stool_cache69padding_cache_key69 = I
+		overlays |= stool_cache69padding_cache_key69
 
 	if(buckled_mob && padding_material)
-		var/cache_key = "[base_icon]-armrest-[padding_material.name]"
-		if(isnull(stool_cache[cache_key]))
-			var/image/I = image(icon, "[base_icon]_armrest")
+		var/cache_key = "69base_icon69-armrest-69padding_material.name69"
+		if(isnull(stool_cache69cache_key69))
+			var/image/I = image(icon, "69base_icon69_armrest")
 			I.layer = ABOVE_MOB_LAYER
 			I.color = padding_material.icon_colour
-			stool_cache[cache_key] = I
-		overlays |= stool_cache[cache_key]
+			stool_cache69cache_key69 = I
+		overlays |= stool_cache69cache_key69
 
 /obj/structure/bed/chair/proc/update_layer()
 	if(src.dir == NORTH)
@@ -121,10 +121,10 @@
 	icon_state = "comfychair_preview"
 
 /obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
-	..(newloc,MATERIAL_STEEL, MATERIAL_LEATHER)
+	..(newloc,MATERIAL_STEEL,69ATERIAL_LEATHER)
 
 /obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
-	..(newloc,MATERIAL_STEEL, MATERIAL_CARPET)
+	..(newloc,MATERIAL_STEEL,69ATERIAL_CARPET)
 
 /obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
 	..(newloc,MATERIAL_STEEL,"teal")
@@ -154,12 +154,12 @@
 /obj/structure/bed/chair/office/update_icon()
 	return
 
-/obj/structure/bed/chair/office/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/office/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
 
-/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/bed/chair/office/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	if(buckled_mob)
 		var/mob/living/occupant = buckled_mob
@@ -196,12 +196,12 @@
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 
-			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUN,69ictim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, WEAKEN,69ictim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUTTER,69ictim.getarmor(def_zone, ARMOR_MELEE))
 			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
-		occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
+		occupant.visible_message(SPAN_DANGER("69occupant69 crashed into \the 69A69!"))
 
 /obj/structure/bed/chair/office/light
 	icon_state = "officechair_white"
@@ -211,14 +211,14 @@
 
 /obj/structure/bed/chair/office/New()
 	..()
-	var/image/I = image(icon, "[icon_state]_over")
+	var/image/I = image(icon, "69icon_state69_over")
 	I.layer = FLY_LAYER
 	overlays += I
 
 // Chair types
 
-//This should be removed and need replace all wooden chairs with custom wooden type (at map)
-//Don't want to broke something. Clock will do it, cause he's working with the map
+//This should be removed and need replace all wooden chairs with custom wooden type (at69ap)
+//Don't want to broke something. Clock will do it, cause he's working with the69ap
 //from here
 /obj/structure/bed/chair/wood
 	name = "wooden chair"
@@ -229,14 +229,14 @@
 /obj/structure/bed/chair/wood/update_icon()
 	return
 
-/obj/structure/bed/chair/wood/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/wood/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
 
 /obj/structure/bed/chair/wood/New(var/newloc)
-	..(newloc, MATERIAL_WOOD)
-	var/image/I = image(icon, "[icon_state]_over")
+	..(newloc,69ATERIAL_WOOD)
+	var/image/I = image(icon, "69icon_state69_over")
 	I.layer = FLY_LAYER
 	overlays += I
 
@@ -252,14 +252,14 @@
 /obj/structure/bed/chair/custom/update_icon()
 	return
 
-/obj/structure/bed/chair/custom/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/bed/chair/custom/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/stack) || istype(W, /obj/item/tool/wirecutters))
 		return
 	..()
 
 /obj/structure/bed/chair/custom/New(var/newloc)
 	. = ..()
-	var/image/I = image(icon, "[icon_state]_over")
+	var/image/I = image(icon, "69icon_state69_over")
 	I.layer = FLY_LAYER
 	overlays += I
 
@@ -271,7 +271,7 @@
 	icon_state = "wooden_chair"
 
 /obj/structure/bed/chair/custom/wood/New(var/newloc)
-	..(newloc, MATERIAL_WOOD)
+	..(newloc,69ATERIAL_WOOD)
 
 
 /obj/structure/bed/chair/custom/wood/wings
@@ -287,7 +287,7 @@
 //onestar
 /obj/structure/bed/chair/custom/onestar
 	name = "onestar chair"
-	desc = "A duranium chair manufactured by OneStar. Doesn't look very comfortable."
+	desc = "A duranium chair69anufactured by OneStar. Doesn't look69ery comfortable."
 	icon_state = "onestar_chair_grey"
 
 /obj/structure/bed/chair/custom/onestar/red

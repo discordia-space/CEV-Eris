@@ -7,8 +7,8 @@
 	y = 0.2
 	icon = "gps"
 
-	required_technologies = list()
-	required_tech_levels = list()
+	re69uired_technologies = list()
+	re69uired_tech_levels = list()
 	cost = 0
 
 	unlocks_designs = list(/datum/design/research/item/beacon)
@@ -22,23 +22,23 @@
 	y = 0.4
 	icon = "headset"
 
-	required_technologies = list(/datum/technology/basic_bluespace)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_bluespace)
+	re69uired_tech_levels = list()
 	cost = 200
 
 	unlocks_designs = list()
 
 /datum/technology/telecommunications
 	name = "Roots\' Telecommunications"
-	desc = "Parts for telecommunications. Hyperwave filtering method. Subspace ansible. Subspace transmition and analyzing method. Advanced bluespace broadcasting and receiving. Transmition system monitoring."
+	desc = "Parts for telecommunications. Hyperwave filtering69ethod. Subspace ansible. Subspace transmition and analyzing69ethod. Advanced bluespace broadcasting and receiving. Transmition system69onitoring."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.2
 	y = 0.6
 	icon = "communications"
 
-	required_technologies = list(/datum/technology/radio_transmission)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/radio_transmission)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(	/datum/design/research/circuit/comconsole,
@@ -58,15 +58,15 @@
 
 /datum/technology/bluespace_telecommunications
 	name = "Advanced Telecommunications"
-	desc = "Advanced telecommunications machinery. Decryption method. Relays\' system. Complex sorting of machinery. Data storing system. Network relay."
+	desc = "Advanced telecommunications69achinery. Decryption69ethod. Relays\' system. Complex sorting of69achinery. Data storing system.69etwork relay."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.4
 	y = 0.6
 	icon = "bluespacething"
 
-	required_technologies = list(/datum/technology/telecommunications)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/telecommunications)
+	re69uired_tech_levels = list()
 	cost = 800
 
 	unlocks_designs = list(
@@ -87,8 +87,8 @@
 	y = 0.8
 	icon = "radiogrid"
 
-	required_technologies = list(/datum/technology/telecommunications)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/telecommunications)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list()
@@ -102,7 +102,7 @@
 
 	x = 0.5
 	y = 0.4
-	required_technologies = list(/datum/technology/basic_bluespace)
+	re69uired_technologies = list(/datum/technology/basic_bluespace)
 	cost = 800
 
 	unlocks_designs = list(	/datum/design/research/item/ano_scanner,
@@ -119,8 +119,8 @@
 	y = 0.4
 	icon = "shield"
 
-	required_technologies = list(/datum/technology/spatial_scan)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/spatial_scan)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(/datum/design/research/circuit/shield/hull)
@@ -134,8 +134,8 @@
 	y = 0.6
 	icon = "teleporter"
 
-	required_technologies = list(/datum/technology/spatial_scan)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/spatial_scan)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(/datum/design/research/circuit/teleconsole,
@@ -150,7 +150,7 @@
 
 	x = 0.5
 	y = 0.6
-	required_technologies = list(/datum/technology/teleportation)
+	re69uired_technologies = list(/datum/technology/teleportation)
 	cost = 800
 
 	unlocks_designs = list(	/datum/design/research/circuit/telesci/console,
@@ -165,15 +165,15 @@
 
 /datum/technology/bluespace_tools
 	name = "Advanced Bluespace Tech"
-	desc = "In-Bluespace storing method, allowing store objects/reagents in bluespace. And The method of separate storage of reagents."
+	desc = "In-Bluespace storing69ethod, allowing store objects/reagents in bluespace. And The69ethod of separate storage of reagents."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.8
 	y = 0.8
 	icon = "bagofholding"
 
-	required_technologies = list(/datum/technology/teleportation)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/teleportation)
+	re69uired_tech_levels = list()
 	cost = 3000
 
 	unlocks_designs = list(	/datum/design/research/item/beaker/bluespace,
@@ -185,15 +185,15 @@
 
 /datum/technology/bluespace_extended
 	name = "Extended Bluespace Tech"
-	desc = "Application of the bluespace storing technology to a wider variety of containers."
+	desc = "Application of the bluespace storing technology to a wider69ariety of containers."
 	tech_type = RESEARCH_BLUESPACE
 
 	x = 0.8
 	y = 0.9
 	icon = "holdingpouch"
 
-	required_technologies = list(/datum/technology/bluespace_tools)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/bluespace_tools)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(	/datum/design/research/item/belt_holding,
@@ -212,8 +212,8 @@
 	y = 0.4
 	icon = "bluespacerped"
 
-	required_technologies = list(/datum/technology/teleportation)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/teleportation)
+	re69uired_tech_levels = list()
 	cost = 3000
 
 	unlocks_designs = list()

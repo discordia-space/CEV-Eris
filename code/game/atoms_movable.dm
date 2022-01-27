@@ -2,7 +2,7 @@
 	layer = OBJ_LAYER
 	var/last_move
 	var/anchored = FALSE
-	// var/elevation = 2    - not used anywhere
+	//69ar/elevation = 2    - not used anywhere
 	var/move_speed = 10
 	var/l_move_time = 1
 	var/m_flag = 1
@@ -22,7 +22,7 @@
 	var/surplus_tag = FALSE //If true, attempting to export this will net you a greatly reduced amount of credits, but we don't want to affect the actual price tag for selling to others.
 	var/spawn_tags
 	var/rarity_value = 1 //min:1
-	var/spawn_frequency = 0 //min:0
+	var/spawn_fre69uency = 0 //min:0
 	var/accompanying_object	//path or text "obj/item,/obj/item/device"
 	var/prob_aditional_object = 100
 	var/spawn_blacklisted = FALSE
@@ -30,18 +30,18 @@
 
 /atom/movable/Del()
 	if(isnull(gc_destroyed) && loc)
-		testing("GC: -- [type] was deleted via del() rather than qdel() --")
-		crash_with("GC: -- [type] was deleted via del() rather than qdel() --") // stick a stack trace in the runtime logs
+		testing("GC: -- 69type69 was deleted69ia del() rather than 69del() --")
+		crash_with("GC: -- 69type69 was deleted69ia del() rather than 69del() --") // stick a stack trace in the runtime logs
 //	else if(isnull(gcDestroyed))
-//		testing("GC: [type] was deleted via GC without qdel()") //Not really a huge issue but from now on, please qdel()
+//		testing("GC: 69type69 was deleted69ia GC without 69del()") //Not really a huge issue but from now on, please 69del()
 //	else
-//		testing("GC: [type] was deleted via GC with qdel()")
+//		testing("GC: 69type69 was deleted69ia GC with 69del()")
 	..()
 
 /atom/movable/Destroy()
 	. = ..()
 	for(var/atom/movable/AM in contents)
-		qdel(AM)
+		69del(AM)
 
 	if(loc)
 		loc.handle_atom_del(src)
@@ -68,7 +68,7 @@
 /atom/movable/proc/entered_with_container(var/atom/old_loc)
 	return
 
-/atom/movable/proc/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/atom/movable/proc/forceMove(atom/destination,69ar/special_event, glide_size_override=0)
 	if(loc == destination)
 		return 0
 
@@ -95,7 +95,7 @@
 
 	if(destination)
 		destination.Entered(src, origin, special_event)
-		if(is_destination_turf) // If we're entering a turf, cross all movable atoms
+		if(is_destination_turf) // If we're entering a turf, cross all69ovable atoms
 			for(var/atom/movable/AM in loc)
 				if(AM != src)
 					AM.Crossed(src)
@@ -104,9 +104,9 @@
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, origin, loc)
 
-	// Only update plane if we're located on map
+	// Only update plane if we're located on69ap
 	if(isturf(loc))
-		// if we wasn't on map OR our Z coord was changed
+		// if we wasn't on69ap OR our Z coord was changed
 		if( !isturf(origin) || (get_z(loc) != get_z(origin)) )
 			update_plane()
 
@@ -114,7 +114,7 @@
 
 
 //called when src is thrown into hit_atom
-/atom/movable/proc/throw_impact(atom/hit_atom, var/speed)
+/atom/movable/proc/throw_impact(atom/hit_atom,69ar/speed)
 	if(isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.hitby(src,speed)
@@ -135,7 +135,7 @@
 				var/mob/living/M = src
 				M.turf_collision(T, speed)
 
-//decided whether a movable atom being thrown can pass through the turf it is in.
+//decided whether a69ovable atom being thrown can pass through the turf it is in.
 /atom/movable/proc/hit_check(var/speed)
 	if(src.throwing)
 		for(var/atom/A in get_turf(src))
@@ -144,12 +144,12 @@
 				if(A:lying) continue
 				src.throw_impact(A,speed)
 			if(isobj(A))
-				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop movement
+				if(A.density && !A.throwpass)	// **TODO: Better behaviour for windows which are dense, but shouldn't always stop69ovement
 					src.throw_impact(A,speed)
 
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	if(!target || !src)	return 0
-	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+	//use a69odified69ersion of Bresenham's algorithm to get from the atom's current position to that of the target
 
 	set_dir(pick(cardinal))
 	src.throwing = 1
@@ -183,10 +183,10 @@
 		var/error = dist_x/2 - dist_y
 
 		while(src && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && istype(src.loc, /turf))
-			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
+			// only stop when we've gone the whole distance (or69ax throw range) and are on a non-space tile, or hit something, or hit the end of the69ap, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(!step) // going off the edge of the69ap69akes get_step return null, don't let things go off the edge
 					break
 				src.Move(step)
 				hit_check(speed)
@@ -198,7 +198,7 @@
 					sleep(1)
 			else
 				var/atom/step = get_step(src, dx)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(!step) // going off the edge of the69ap69akes get_step return null, don't let things go off the edge
 					break
 				src.Move(step)
 				hit_check(speed)
@@ -212,10 +212,10 @@
 	else
 		var/error = dist_y/2 - dist_x
 		while(src && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/space)) && src.throwing && istype(src.loc, /turf))
-			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
+			// only stop when we've gone the whole distance (or69ax throw range) and are on a non-space tile, or hit something, or hit the end of the69ap, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(!step) // going off the edge of the69ap69akes get_step return null, don't let things go off the edge
 					break
 				src.Move(step)
 				hit_check(speed)
@@ -227,7 +227,7 @@
 					sleep(1)
 			else
 				var/atom/step = get_step(src, dy)
-				if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+				if(!step) // going off the edge of the69ap69akes get_step return null, don't let things go off the edge
 					break
 				src.Move(step)
 				hit_check(speed)
@@ -240,7 +240,7 @@
 
 			a = get_area(src.loc)
 
-	//done throwing, either because it hit something or it finished moving
+	//done throwing, either because it hit something or it finished69oving
 	src.throwing = 0
 	src.thrower = null
 	src.throw_source = null
@@ -299,48 +299,48 @@
 			move_to_y = TRANSITIONEDGE + 1
 			move_to_x = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-		forceMove(locate(move_to_x, move_to_y, move_to_z))
+		forceMove(locate(move_to_x,69ove_to_y,69ove_to_z))
 
 //by default, transition randomly to another zlevel
 /atom/movable/proc/get_transit_zlevel()
 	var/list/candidates = GLOB.maps_data.accessable_levels.Copy()
-	candidates.Remove("[src.z]")
+	candidates.Remove("69src.z69")
 
 	//If something was ejected from the ship, it does not end up on another part of the ship.
 	if (z in GLOB.maps_data.station_levels)
 		for (var/n in GLOB.maps_data.station_levels)
-			candidates.Remove("[n]")
+			candidates.Remove("69n69")
 
 	if(!candidates.len)
 		return null
 	return text2num(pickweight(candidates))
 
 
-/atom/movable/proc/set_glide_size(glide_size_override = 0, var/min = 0.2, var/max = world.icon_size/2)
-	if (!glide_size_override || glide_size_override > max)
+/atom/movable/proc/set_glide_size(glide_size_override = 0,69ar/min = 0.2,69ar/max = world.icon_size/2)
+	if (!glide_size_override || glide_size_override >69ax)
 		glide_size = 0
 	else
-		glide_size = max(min, glide_size_override)
+		glide_size =69ax(min, glide_size_override)
 
 /*	for (var/atom/movable/AM in contents)
-		AM.set_glide_size(glide_size, min, max)
+		AM.set_glide_size(glide_size,69in,69ax)
 
 */
 //This proc should never be overridden elsewhere at /atom/movable to keep directions sane.
-// Spoiler alert: it is, in moved.dm
-/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+// Spoiler alert: it is, in69oved.dm
+/atom/movable/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	if (glide_size_override > 0)
 		set_glide_size(glide_size_override)
 
-	// To prevent issues, diagonal movements are broken up into two cardinal movements.
+	// To prevent issues, diagonal69ovements are broken up into two cardinal69ovements.
 
-	// Is this a diagonal movement?
+	// Is this a diagonal69ovement?
 	SEND_SIGNAL(src, COMSIG_MOVABLE_PREMOVE, src)
 	if (Dir & (Dir - 1))
 		if (Dir & NORTH)
 			if (Dir & EAST)
-				// Pretty simple really, try to move north -> east, else try east -> north
-				// Pretty much exactly the same for all the other cases here.
+				// Pretty simple really, try to69ove north -> east, else try east -> north
+				// Pretty69uch exactly the same for all the other cases here.
 				if (step(src, NORTH))
 					step(src, EAST)
 				else
@@ -370,7 +370,7 @@
 								step(src, SOUTH)
 	else
 		var/atom/oldloc = src.loc
-		var/olddir = dir //we can't override this without sacrificing the rest of movable/New()
+		var/olddir = dir //we can't override this without sacrificing the rest of69ovable/New()
 
 		. = ..()
 
@@ -385,16 +385,16 @@
 		if (oldloc != src.loc && oldloc && oldloc.z == src.z)
 			src.last_move = get_dir(oldloc, src.loc)
 
-		// Only update plane if we're located on map
+		// Only update plane if we're located on69ap
 		if(isturf(loc))
-			// if we wasn't on map OR our Z coord was changed
+			// if we wasn't on69ap OR our Z coord was changed
 			if( !isturf(oldloc) || (get_z(loc) != get_z(oldloc)) )
 				update_plane()
 				onTransitZ(get_z(oldloc, get_z(loc)))
 
 		SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, oldloc, loc)
 
-// Wrapper of step() that also sets glide size to a specific value.
+// Wrapper of step() that also sets glide size to a specific69alue.
 /proc/step_glide(atom/movable/AM, newdir, glide_size_override)
 	AM.set_glide_size(glide_size_override)
 	return step(AM, newdir)
@@ -408,16 +408,16 @@
 /mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
 	if (registered_z != new_z)
 		if (registered_z)
-			SSmobs.mob_living_by_zlevel[registered_z] -= src
+			SSmobs.mob_living_by_zlevel69registered_z69 -= src
 		if (new_z)
-			SSmobs.mob_living_by_zlevel[new_z] += src
+			SSmobs.mob_living_by_zlevel69new_z69 += src
 		registered_z = new_z
 
 // if this returns true, interaction to turf will be redirected to src instead
 /atom/movable/proc/preventsTurfInteractions()
 	return FALSE
 
-///Sets the anchored var and returns if it was sucessfully changed or not.
+///Sets the anchored69ar and returns if it was sucessfully changed or not.
 /atom/movable/proc/set_anchored(anchorvalue)
 	SHOULD_CALL_PARENT(TRUE)
 	if(anchored == anchorvalue || !can_anchor)

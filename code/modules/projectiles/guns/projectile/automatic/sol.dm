@@ -6,20 +6,20 @@
 	item_state = "sol"
 	w_class = ITEM_SIZE_BULKY
 	ammo_mag = "ih_sol"
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_IH
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_IH
 	caliber = CAL_CLRIFLE
 	magazine_type = /obj/item/ammo_magazine/ihclrifle
 	auto_eject = 1
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BELT
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLASTIC = 12)
 	price_tag = 2300
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	recoil_buildup = 2
 	penetration_multiplier = 1.1
 	damage_multiplier = 1.15
-	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
+	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be69ery accurate. One-handed recoil is69ow as69uch as it was back in the day when wielded.
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
@@ -34,7 +34,7 @@
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
-	overlays += "sol_[ratio]"
+	overlays += "sol_69ratio69"
 
 /obj/item/gun/projectile/automatic/sol/update_icon()
 	..()

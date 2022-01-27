@@ -1,76 +1,76 @@
-<div class="item">
-	<div class="itemLabel">
-		Input Pressure:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		In69ut 69ressure:
 	</div>
-	<div class="itemContent">
-		{{:(data.input_pressure/100)}} kPa
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Output Pressure:
-	</div>
-	<div class="itemContent">
-		{{:(data.output_pressure/100)}} kPa
+	<div cl69ss="itemContent">
+		{{:69d69t69.in69ut_69ressure/10069}} 696969
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Flow Rate:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Out69ut 69ressure:
 	</div>
-	<div class="itemContent">
-		<div class="statusValue">
-			{{:(data.last_flow_rate/10)}} L/s
+	<div cl69ss="itemContent">
+		{{:69d69t69.out69ut_69ressure/10069}} 696969
+	</div>
+</div>
+
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Flow R69te:
+	</div>
+	<div cl69ss="itemContent">
+		<div cl69ss="st69tusV69lue">
+			{{:69d69t69.l69st_flow_r69te/1069}} L/s
 		</div>
 	</div>
 </div>
 
 <hr>
 
-<div class="item">
-	<div class="itemLabel">
-		Valve:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		V69lve:
 	</div>
-	<div class="itemContent">
-		{{:helper.link(data.on? 'Unlocked' : 'Closed', null, {'toggle_valve' : 1})}}
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Pressure Regulation:
-	</div>
-	<div class="itemContent">
-		{{:helper.link('Off', null, {'regulate_mode' : 'off'}, data.regulate_mode == 0? 'selected' : null)}}
-		{{:helper.link('Input', null, {'regulate_mode' : 'input'}, data.regulate_mode == 1? 'selected' : null)}}
-		{{:helper.link('Output', null, {'regulate_mode' : 'output'}, data.regulate_mode == 2? 'selected' : null)}}
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969d69t69.on? 'Unloc69ed' : 'Closed',69ull, {'to6969le_v69lve' : 1}69}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Target Pressure:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		69ressure Re69ul69tion:
 	</div>
-	<div class="itemContent">
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('MAX', null, {'set_press' : 'max'}, null)}}
-			{{:helper.link('SET', null, {'set_press' : 'set'}, null)}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:(data.pressure_set/100)}} kPa&nbsp;</div>
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'Off',69ull, {'re69ul69te_mode' : 'off'}, d69t69.re69ul69te_mode == 0? 'selected' :69ull69}}
+		{{:hel69er.lin6969'In69ut',69ull, {'re69ul69te_mode' : 'in69ut'}, d69t69.re69ul69te_mode == 1? 'selected' :69ull69}}
+		{{:hel69er.lin6969'Out69ut',69ull, {'re69ul69te_mode' : 'out69ut'}, d69t69.re69ul69te_mode == 2? 'selected' :69ull69}}
+	</div>
+</div>
+
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		T69r69et 69ressure:
+	</div>
+	<div cl69ss="itemContent">
+		<div st69le="cle69r: 69oth; 6969ddin69-to69: 469x;">
+			{{:hel69er.lin6969'M69X',69ull, {'set_69ress' : 'm69x'},69ull69}}
+			{{:hel69er.lin6969'SET',69ull, {'set_69ress' : 'set'},69ull69}}
+			<div st69le="flo69t: left; width: 8069x; text-69li69n: center;">&n69s69;{{:69d69t69.69ressure_set/10069}} 696969&n69s69;</div>
 		</div>
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Flow Rate Limit:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Flow R69te Limit:
 	</div>
-	<div class="itemContent">
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('MAX', null, {'set_flow_rate' : 'max'}, null)}}
-			{{:helper.link('SET', null, {'set_flow_rate' : 'set'}, null)}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:(data.set_flow_rate/10)}} L/s&nbsp;</div>
+	<div cl69ss="itemContent">
+		<div st69le="cle69r: 69oth; 6969ddin69-to69: 469x;">
+			{{:hel69er.lin6969'M69X',69ull, {'set_flow_r69te' : 'm69x'},69ull69}}
+			{{:hel69er.lin6969'SET',69ull, {'set_flow_r69te' : 'set'},69ull69}}
+			<div st69le="flo69t: left; width: 8069x; text-69li69n: center;">&n69s69;{{:69d69t69.set_flow_r69te/1069}} L/s&n69s69;</div>
 		</div>
 	</div>
 </div>

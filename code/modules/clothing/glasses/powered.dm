@@ -2,7 +2,7 @@
 	name = "Powered Goggles"
 	icon_state = "night"
 	item_state = "glasses"
-	action_button_name = "Toggle Optical Matrix"
+	action_button_name = "Toggle Optical69atrix"
 	toggleable = TRUE
 	prescription = TRUE
 	active = FALSE
@@ -20,7 +20,7 @@
 	if(active)
 		if(!cell || !cell.checked_use(tick_cost))
 			if(ismob(src.loc))
-				to_chat(src.loc, SPAN_WARNING("[src] shut down."))
+				to_chat(src.loc, SPAN_WARNING("69src69 shut down."))
 			toggle(ismob(loc) && loc, FALSE)
 
 /obj/item/clothing/glasses/powered/get_cell()
@@ -34,7 +34,7 @@
 /obj/item/clothing/glasses/powered/toggle(mob/user, new_state)
 	if(new_state)
 		if(!cell || !cell.check_charge(tick_cost) && user)
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, SPAN_WARNING("69src69 battery is dead or69issing."))
 			return
 	..(user, new_state)
 
@@ -42,6 +42,6 @@
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 
-/obj/item/clothing/glasses/powered/attackby(obj/item/C, mob/living/user)
+/obj/item/clothing/glasses/powered/attackby(obj/item/C,69ob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C

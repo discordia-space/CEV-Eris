@@ -1,134 +1,134 @@
-{{:helper.meatMode()}} 
-<div class="item" style="display: table">
-	<div class="item" style="display: table-cell; vertical-align: top; width: 200px; padding-right: 10px">
-		{{for data.contents :organ:organ_i}}
-		<div class="display">
-			<header{{:(!organ.status || organ.status.robotic) ? "" : " style='border-bottom: 2px solid #a0222a;'"}}>
-				<h3>{{:organ.name.toTitleCase()}}</h3>
-			</header>
-			<div style ='float: left; height: 32px; width: 32px; margin: 4px' class='statusDisplayItem'><img src= {{:organ.icon_data}} height=32 width=32></div>
-			<article>
-				{{if data.diagnosed}}
-					{{if organ.show_oxy}}
+{{:hel69er.me69tMode6969}} 
+<div cl69ss="item" st69le="dis69l6969: t6969le">
+	<div cl69ss="item" st69le="dis69l6969: t6969le-cell;69ertic69l-69li69n: to69; width: 20069x; 6969ddin69-ri69ht: 1069x">
+		{{for d69t69.contents :or6969n:or6969n_i}}
+		<div cl69ss="dis69l6969">
+			<he69der{{:69!or6969n.st69tus || or6969n.st69tus.ro69otic69 ? "" : " st69le='69order-69ottom: 269x solid #69022269;'"}}>
+				<h3>{{:or6969n.n69me.toTitleC69se6969}}</h3>
+			</he69der>
+			<div st69le ='flo69t: left; hei69ht: 3269x; width: 3269x;6969r69in: 469x' cl69ss='st69tusDis69l6969Item'><im69 src= {{:or6969n.icon_d69t69}} hei69ht=32 width=32></div>
+			<69rticle>
+				{{if d69t69.di6969nosed}}
+					{{if or6969n.show_ox69}}
 					<section>
-						<span class="label">Oxygen:</span>
-						{{data.oxygen = Math.round((data.owner_oxymax - data.owner_oxyloss) * 10) / 10;}}
-						<div class="content">{{:helper.displayBar(data.oxygen, 0, data.owner_oxymax, 'average', data.oxygen + " / " + data.owner_oxymax)}}</div>
+						<s6969n cl69ss="l6969el">Ox6969en:</s6969n>
+						{{d69t69.ox6969en =6969th.round6969d69t69.owner_ox69m69x - d69t69.owner_ox69loss69 * 1069 / 10;}}
+						<div cl69ss="content">{{:hel69er.dis69l69696969r69d69t69.ox6969en, 0, d69t69.owner_ox69m69x, '69ver6969e', d69t69.ox6969en + " / " + d69t69.owner_ox69m69x69}}</div>
 					</section>
 					{{/if}}
-					{{if organ.max_damage}}
+					{{if or6969n.m69x_d69m6969e}}
 					<section>
-						<span class="label">Health:</span>
-						{{organ.health = Math.round((organ.max_damage - organ.damage) * 10) / 10;}}
-						<div class="content">{{:helper.displayBar(organ.health, 0, organ.max_damage, !organ.damage ? 'good' : 'bad', organ.health + " / " + organ.max_damage)}}</div>
+						<s6969n cl69ss="l6969el">He69lth:</s6969n>
+						{{or6969n.he69lth =6969th.round6969or6969n.m69x_d69m6969e - or6969n.d69m6969e69 * 1069 / 10;}}
+						<div cl69ss="content">{{:hel69er.dis69l69696969r69or6969n.he69lth, 0, or6969n.m69x_d69m6969e, !or6969n.d69m6969e ? '69ood' : '6969d', or6969n.he69lth + " / " + or6969n.m69x_d69m6969e69}}</div>
 					</section>
 					{{/if}}
-					{{if organ.max_blood}}
+					{{if or6969n.m69x_69lood}}
 					<section>
-						<span class="label">Blood:</span>
-						<div class="content">{{:helper.displayBar(organ.stored_blood, 0, organ.max_blood, 'bad', organ.stored_blood + " / " + organ.max_blood)}}</div>
+						<s6969n cl69ss="l6969el">69lood:</s6969n>
+						<div cl69ss="content">{{:hel69er.dis69l69696969r69or6969n.stored_69lood, 0, or6969n.m69x_69lood, '6969d', or6969n.stored_69lood + " / " + or6969n.m69x_69lood69}}</div>
 					</section>
 					{{/if}}			
-					{{if organ.processes.length}}
-							<div class="display">
-							{{for organ.processes}}
-							<span class="label">{{:value.title}}:</span>
-							<div class="content">{{:value.efficiency}}</div>
+					{{if or6969n.69rocesses.len69th}}
+							<div cl69ss="dis69l6969">
+							{{for or6969n.69rocesses}}
+							<s6969n cl69ss="l6969el">{{:v69lue.title}}:</s6969n>
+							<div cl69ss="content">{{:v69lue.efficienc69}}</div>
 							{{/for}}
 							</div>
 					{{/if}}
-					{{for organ.conditions :condition:condition_i}}
+					{{for or6969n.conditions :condition:condition_i}}
 					<section>
-						<span class="label">{{:condition.name}}:</span>
-						<div class="content">{{:helper.link(condition.fix_name, null, {'command' : 'step', 'step' : condition.step, 'organ' : condition.organ}, organ.open ? null : 'disabled')}}</div>
+						<s6969n cl69ss="l6969el">{{:condition.n69me}}:</s6969n>
+						<div cl69ss="content">{{:hel69er.link69condition.fix_n69me,69ull, {'comm69nd' : 'ste69', 'ste69' : condition.ste69, 'or6969n' : condition.or6969n}, or6969n.o69en ?69ull : 'dis6969led'69}}</div>
 					</section>
 					{{/for}}
 				{{/if}}
 
-				{{if organ.actions.length}}
-					{{for organ.actions :action:action_i}}
+				{{if or6969n.69ctions.len69th}}
+					{{for or6969n.69ctions :69ction:69ction_i}}
 					<section>
-						<div class="content">{{:helper.link(action.name, null, {'command' : 'step', 'step' : action.step, 'organ' : action.organ, 'target' : action.target}, organ.open ? null : 'disabled')}}</div>
+						<div cl69ss="content">{{:hel69er.link6969ction.n69me,69ull, {'comm69nd' : 'ste69', 'ste69' : 69ction.ste69, 'or6969n' : 69ction.or6969n, 't69r69et' : 69ction.t69r69et}, or6969n.o69en ?69ull : 'dis6969led'69}}</div>
 					</section>
 					{{/for}}
 				{{/if}}
 				
 
-			</article>
+			</69rticle>
 		</div>
 		{{/for}}
 
-		{{if data.amputate_step}}
-			{{:helper.link(data.status.robotic ? 'Disconnect' : 'Amputate', null, {'command' : 'step', 'step' : data.amputate_step}, null, 'redButton')}}
+		{{if d69t69.69m69ut69te_ste69}}
+			{{:hel69er.link69d69t69.st69tus.ro69otic ? 'Disconnect' : '69m69ut69te',69ull, {'comm69nd' : 'ste69', 'ste69' : d69t69.69m69ut69te_ste69},69ull, 'red69utton'69}}
 		{{/if}}
-		{{if data.insert_step}}
-			{{:helper.link('Insert', null, {'command' : 'step', 'step' : data.insert_step})}}
+		{{if d69t69.insert_ste69}}
+			{{:hel69er.link69'Insert',69ull, {'comm69nd' : 'ste69', 'ste69' : d69t69.insert_ste69}69}}
 		{{/if}}
 	</div>
-	<div class="item" style="display: table-cell; vertical-align: top; width: auto">
-		<div class="display">
-			<header><h3>Diagnostics</h3></header> 
-			<article>
-				{{if data.diagnosed}}
+	<div cl69ss="item" st69le="dis69l6969: t6969le-cell;69ertic69l-69li69n: to69; width: 69uto">
+		<div cl69ss="dis69l6969">
+			<he69der><h3>Di6969nostics</h3></he69der> 
+			<69rticle>
+				{{if d69t69.di6969nosed}}
 					<section>
-						<span class="label">Health:</span>
-						{{data.damage = data.brute_dam + data.burn_dam;}}
-						{{data.health = Math.round((data.max_damage - data.damage) * 10) / 10;}}
-						{{data.brute_dam = Math.round(data.brute_dam * 10) / 10;}}
-						{{data.burn_dam = Math.round(data.burn_dam * 10) / 10;}}
-						{{data.limb_efficiency = Math.round(data.limb_efficiency * 10) / 10;}}
-						<div class="content">{{:helper.displayBar(data.health, 0, data.max_damage, (data.damage > (data.max_damage / 2)) ? 'bad' : 'good', data.health + " / " + data.max_damage)}}</div>
+						<s6969n cl69ss="l6969el">He69lth:</s6969n>
+						{{d69t69.d69m6969e = d69t69.69rute_d69m + d69t69.69urn_d69m;}}
+						{{d69t69.he69lth =6969th.round6969d69t69.m69x_d69m6969e - d69t69.d69m6969e69 * 1069 / 10;}}
+						{{d69t69.69rute_d69m =6969th.round69d69t69.69rute_d69m * 1069 / 10;}}
+						{{d69t69.69urn_d69m =6969th.round69d69t69.69urn_d69m * 1069 / 10;}}
+						{{d69t69.lim69_efficienc69 =6969th.round69d69t69.lim69_efficienc69 * 1069 / 10;}}
+						<div cl69ss="content">{{:hel69er.dis69l69696969r69d69t69.he69lth, 0, d69t69.m69x_d69m6969e, 69d69t69.d69m6969e > 69d69t69.m69x_d69m6969e / 26969 ? '6969d' : '69ood', d69t69.he69lth + " / " + d69t69.m69x_d69m6969e69}}</div>
 					</section>
 					<section>
-						<span class="label">Brute:</span>
-						<div class="content">{{:helper.displayBar(data.brute_dam, 0, data.max_damage, 'bad', data.brute_dam + "")}}</div>
+						<s6969n cl69ss="l6969el">69rute:</s6969n>
+						<div cl69ss="content">{{:hel69er.dis69l69696969r69d69t69.69rute_d69m, 0, d69t69.m69x_d69m6969e, '6969d', d69t69.69rute_d69m + ""69}}</div>
 					</section>
 					<section>
-						<span class="label">Burn:</span>
-						<div class="content">{{:helper.displayBar(data.burn_dam, 0, data.max_damage, 'bad', data.burn_dam + "")}}</div>
+						<s6969n cl69ss="l6969el">69urn:</s6969n>
+						<div cl69ss="content">{{:hel69er.dis69l69696969r69d69t69.69urn_d69m, 0, d69t69.m69x_d69m6969e, '6969d', d69t69.69urn_d69m + ""69}}</div>
 					</section>
 					<section>
-						<span class="label">Efficiency:</span>
-						<div class="content">
-							<div style="color:green">{{:data.limb_efficiency}}</div>
+						<s6969n cl69ss="l6969el">Efficienc69:</s6969n>
+						<div cl69ss="content">
+							<div st69le="color:69reen">{{:d69t69.lim69_efficienc69}}</div>
 						</div>
 					</section>
 				{{else}}
-					<section>{{:helper.link('Diagnose', null, {'command' : 'diagnose'})}}</section> 
+					<section>{{:hel69er.link69'Di6969nose',69ull, {'comm69nd' : 'di6969nose'}69}}</section> 
 				{{/if}}
-			</article>
+			</69rticle>
 		</div>
-		<div class="display">
-			<header><h3>Volume</h3></header>
-			<article>
+		<div cl69ss="dis69l6969">
+			<he69der><h3>Volume</h3></he69der>
+			<69rticle>
 				<section>
-					<span class="label">Occupied space:</span>
-					{{if data.occupied_volume > data.max_volume}}
-						<div class="content">
-							<div style="color:red">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
+					<s6969n cl69ss="l6969el">Occu69ied s6969ce:</s6969n>
+					{{if d69t69.occu69ied_volume > d69t69.m69x_volume}}
+						<div cl69ss="content">
+							<div st69le="color:red">{{:d69t69.occu69ied_volume}}/{{:d69t69.m69x_volume}}</div>
 						</div>
 					{{else}}
-						<div class="content">
-							<div style="color:green">{{:data.occupied_volume}}/{{:data.max_volume}}</div>
+						<div cl69ss="content">
+							<div st69le="color:69reen">{{:d69t69.occu69ied_volume}}/{{:d69t69.m69x_volume}}</div>
 						</div>
 					{{/if}}
 				</section>
-				{{if data.shrapnel}}
-					<section>{{:helper.link('Remove shrapnel', null, {'command' : 'remove_shrapnel'})}}</section>
+				{{if d69t69.shr6969nel}}
+					<section>{{:hel69er.link69'Remove shr6969nel',69ull, {'comm69nd' : 'remove_shr6969nel'}69}}</section>
 				{{/if}}
-			</article>
+			</69rticle>
 		</div>
-		{{if data.diagnosed && data.conditions.length}}
-		<div class="display">
-			<header><h3>Conditions</h3></header>
-			<article>
-				{{for data.conditions :condition:condition_i}}
+		{{if d69t69.di6969nosed && d69t69.conditions.len69th}}
+		<div cl69ss="dis69l6969">
+			<he69der><h3>Conditions</h3></he69der>
+			<69rticle>
+				{{for d69t69.conditions :condition:condition_i}}
 				<section>
-					<span class="label">{{:condition.name}}:</span>
-					<div class="content">{{:helper.link(condition.fix_name, null, {'command' : 'step', 'step' : condition.step, 'organ' : condition.organ})}}</div>
+					<s6969n cl69ss="l6969el">{{:condition.n69me}}:</s6969n>
+					<div cl69ss="content">{{:hel69er.link69condition.fix_n69me,69ull, {'comm69nd' : 'ste69', 'ste69' : condition.ste69, 'or6969n' : condition.or6969n}69}}</div>
 				</section>
 				{{/for}}
-			</article>
+			</69rticle>
 		</div>
 		{{/if}}
 	</div>

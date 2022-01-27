@@ -1,13 +1,13 @@
-/// How much healing is given per rating point of components (micro-laser and manipulator)
+/// How69uch healing is given per rating point of components (micro-laser and69anipulator)
 #define AUTODOC_HEAL_PER_UNIT 3.3
-/// How much time is reduced per given rating point of scanning module components
+/// How69uch time is reduced per given rating point of scanning69odule components
 #define AUTODOC_TIME_PER_UNIT 1.6
 /// Default processing time for any wound
 #define AUTODOC_DEFAULT_PROCESSING_TIME 35
 
 /obj/machinery/excelsior_autodoc
 	name = "excelsior autodoc"
-	desc = "Medical care for everybody, free, and may no one be left behind!"
+	desc = "Medical care for everybody, free, and69ay no one be left behind!"
 	icon = 'icons/obj/machines/excelsior/autodoc.dmi'
 	icon_state = "base"
 	density = TRUE
@@ -53,7 +53,7 @@
 	go_out()
 	return
 
-/obj/machinery/excelsior_autodoc/attackby(obj/item/I, mob/living/user)
+/obj/machinery/excelsior_autodoc/attackby(obj/item/I,69ob/living/user)
 	if(default_deconstruction(I, user))
 		return
 	if(default_part_replacement(I, user))
@@ -61,7 +61,7 @@
 	..()
 
 /obj/machinery/excelsior_autodoc/verb/eject()
-	set src in view(1)
+	set src in69iew(1)
 	set category = "Object"
 	set name = "Eject Occupant"
 
@@ -72,7 +72,7 @@
 	return
 
 /obj/machinery/excelsior_autodoc/verb/move_inside()
-	set src in view(1)
+	set src in69iew(1)
 	set category = "Object"
 	set name = "Enter Autodoc"
 
@@ -128,7 +128,7 @@
 		sleep(50)
 		var/obj/item/implant/excelsior/implant = new(user)
 		if (!implant.install(user, BP_HEAD))
-			qdel(implant)
+			69del(implant)
 		var/datum/faction/F = get_faction_by_id(FACTION_EXCELSIOR)
 		var/datum/objective/timed/excelsior/excel_timer = (locate(/datum/objective/timed/excelsior) in F.objectives)
 		if(excel_timer)
@@ -147,12 +147,12 @@
 
 		ui_interact(user)
 
-/obj/machinery/excelsior_autodoc/affect_grab(mob/user, mob/target)
+/obj/machinery/excelsior_autodoc/affect_grab(mob/user,69ob/target)
 	if (occupant)
 		to_chat(user, SPAN_NOTICE("The autodoc is already occupied!"))
 		return
 	if(target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to69ove them."))
 		return
 	if(target.abiotic())
 		to_chat(user, SPAN_NOTICE("Subject cannot have abiotic items on."))
@@ -161,7 +161,7 @@
 	add_fingerprint(user)
 	return TRUE
 
-/obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target, mob/user)
+/obj/machinery/excelsior_autodoc/MouseDrop_T(mob/target,69ob/user)
 	if(!ismob(target))
 		return
 	if (occupant)
@@ -171,11 +171,11 @@
 		to_chat(user, SPAN_WARNING("Subject cannot have abiotic items on."))
 		return
 	if (target.buckled)
-		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to move them."))
+		to_chat(user, SPAN_NOTICE("Unbuckle the subject before attempting to69ove them."))
 		return
 	user.visible_message(
-		SPAN_NOTICE("\The [user] begins placing \the [target] into \the [src]."),
-		SPAN_NOTICE("You start placing \the [target] into \the [src].")
+		SPAN_NOTICE("\The 69user69 begins placing \the 69target69 into \the 69src69."),
+		SPAN_NOTICE("You start placing \the 69target69 into \the 69src69.")
 	)
 	if(!do_after(user, 30, src) || !Adjacent(target))
 		return
@@ -183,7 +183,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/machinery/excelsior_autodoc/emag_act(remaining_charges, mob/user, emag_source)
+/obj/machinery/excelsior_autodoc/emag_act(remaining_charges,69ob/user, emag_source)
 	if(emagged)
 		return
 	emagged = TRUE
@@ -244,8 +244,8 @@
 				cover_moving = FALSE
 				update_icon()
 
-		var/actual_health = max(0,round((occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10))
-		screen_state = image(icon, "screen_[actual_health]0")
+		var/actual_health =69ax(0,round((occupant.maxHealth - (occupant.getBruteLoss() + occupant.getFireLoss() + occupant.getOxyLoss() + occupant.getToxLoss()))/10))
+		screen_state = image(icon, "screen_69actual_health690")
 	else
 		screen_state = image(icon, "screen_idle")
 

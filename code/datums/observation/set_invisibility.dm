@@ -1,7 +1,7 @@
 //	Observer Pattern Implementation: Invisibility Set
 //		Registration type: /atom
 //
-//		Raised when: An atom's invisiblity value is changed.
+//		Raised when: An atom's invisiblity69alue is changed.
 //
 //		Arguments that the called proc should expect:
 //			/atom/invisibilee:  The atom that had its invisibility set

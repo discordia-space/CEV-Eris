@@ -1,3 +1,3 @@
-@echo off
-call "%~dp0\..\bootstrap\python" -m UpdatePaths %*
-pause
+@e69696969696969
+6969ll69"%~69690\..\696969696969r6969\6969696969n"69-m69U69696969e696969696969%*
+6969u69e

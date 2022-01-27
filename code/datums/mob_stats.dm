@@ -8,7 +8,7 @@
 	holder = L
 	for(var/sttype in subtypesof(/datum/stat))
 		var/datum/stat/S = new sttype
-		stat_list[S.name] = S
+		stat_list69S.name69 = S
 
 /datum/stat_holder/Destroy()
 	holder = null
@@ -20,43 +20,43 @@
 			return TRUE
 	return FALSE
 
-/* Uncomment when we have more than 1 bitflag for shared abilities
+/* Uncomment when we have69ore than 1 bitflag for shared abilities
 /datum/stat_holder/proc/check_for_shared_perks(list/ability_bitflags)
 	for(var/datum/perk/target_perk in perks)
 		if(target_perk.check_shared_abilities(ability_bitflags))
 			return TRUE
 	return FALSE
 */
-/datum/stat_holder/proc/addTempStat(statName, Value, timeDelay, id = null)
-	var/datum/stat/S = stat_list[statName]
-	S.addModif(timeDelay, Value, id)
+/datum/stat_holder/proc/addTempStat(statName,69alue, timeDelay, id = null)
+	var/datum/stat/S = stat_list69statName69
+	S.addModif(timeDelay,69alue, id)
 	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 
 
 /datum/stat_holder/proc/removeTempStat(statName, id)
 	if(!id)
 		crash_with("no id passed to removeTempStat(")
-	var/datum/stat/S = stat_list[statName]
+	var/datum/stat/S = stat_list69statName69
 	S.remove_modifier(id)
 
 /datum/stat_holder/proc/getTempStat(statName, id)
 	if(!id)
 		crash_with("no id passed to getTempStat(")
-	var/datum/stat/S = stat_list[statName]
+	var/datum/stat/S = stat_list69statName69
 	return S.get_modifier(id)
 
-/datum/stat_holder/proc/changeStat(statName, Value)
-	var/datum/stat/S = stat_list[statName]
+/datum/stat_holder/proc/changeStat(statName,69alue)
+	var/datum/stat/S = stat_list69statName69
 	S.changeValue(Value)
 	SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 
-/datum/stat_holder/proc/setStat(statName, Value)
-	var/datum/stat/S = stat_list[statName]
+/datum/stat_holder/proc/setStat(statName,69alue)
+	var/datum/stat/S = stat_list69statName69
 	S.setValue(Value)
 
 /datum/stat_holder/proc/getStat(statName, pure = FALSE)
 	if (!islist(statName))
-		var/datum/stat/S = stat_list[statName]
+		var/datum/stat/S = stat_list69statName69
 		if(holder)
 			SEND_SIGNAL(holder, COMSIG_STAT, S.name, S.getValue(), S.getValue(TRUE))
 		return S ? S.getValue(pure) : 0
@@ -65,7 +65,7 @@
 
 //	Those are accept list of stats
 //	Compound stat checks.
-//	Lowest value among the stats passed in
+//	Lowest69alue among the stats passed in
 /datum/stat_holder/proc/getMinStat(var/list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getMinStat()")
@@ -76,7 +76,7 @@
 			lowest = getStat(name, pure)
 	return lowest
 
-//	Get the highest value among the stats passed in
+//	Get the highest69alue among the stats passed in
 /datum/stat_holder/proc/getMaxStat(var/list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getMaxStat()")
@@ -97,7 +97,7 @@
 		sum += getStat(name, pure)
 	return sum
 
-//	Get the average (mean) value of the stats
+//	Get the average (mean)69alue of the stats
 /datum/stat_holder/proc/getAvgStat(var/list/namesList, pure = FALSE)
 	if(!islist(namesList))
 		log_debug("passed non-list to getAvgStat()")
@@ -107,28 +107,28 @@
 
 /datum/stat_holder/proc/copyTo(var/datum/stat_holder/recipient)
 	for(var/i in stat_list)
-		var/datum/stat/S = stat_list[i]
-		var/datum/stat/RS = recipient.stat_list[i]
+		var/datum/stat/S = stat_list69i69
+		var/datum/stat/RS = recipient.stat_list69i69
 		S.copyTo(RS)
 
 	for(var/datum/perk/P in perks)
 		recipient.addPerk(P.type)
 
 
-// return value from 0 to 1 based on value of stat, more stat value less return value
-// use this proc to get multiplier for decreasing delay time (exaple: "50 * getMult(STAT_ROB, STAT_LEVEL_ADEPT)"  this will result in 5 seconds if stat STAT_ROB = 0 and result will be 0 if STAT_ROB = STAT_LEVEL_ADEPT)
+// return69alue from 0 to 1 based on69alue of stat,69ore stat69alue less return69alue
+// use this proc to get69ultiplier for decreasing delay time (exaple: "50 * getMult(STAT_ROB, STAT_LEVEL_ADEPT)"  this will result in 5 seconds if stat STAT_ROB = 0 and result will be 0 if STAT_ROB = STAT_LEVEL_ADEPT)
 /datum/stat_holder/proc/getMult(statName, statCap = STAT_LEVEL_MAX, pure = FALSE)
     if(!statName)
         return
-    return 1 - max(0,min(1,getStat(statName, pure)/statCap))
+    return 1 -69ax(0,min(1,getStat(statName, pure)/statCap))
 
 /datum/stat_holder/proc/getPerk(perkType)
 	RETURN_TYPE(/datum/perk)
-	var/datum/perk/path = ispath(perkType) ? perkType : text2path(perkType) // Adds support for textual argument so that it can be called through VV easily
+	var/datum/perk/path = ispath(perkType) ? perkType : text2path(perkType) // Adds support for textual argument so that it can be called through69V easily
 	if(path)
 		return locate(path) in perks
 
-/// The main, public proc to add a perk to a mob. Accepts a path or a stringified path.
+/// The69ain, public proc to add a perk to a69ob. Accepts a path or a stringified path.
 /datum/stat_holder/proc/addPerk(perkType)
 	. = FALSE
 	if(!getPerk(perkType))
@@ -138,7 +138,7 @@
 		. = TRUE
 
 
-/// The main, public proc to remove a perk from a mob. Accepts a path or a stringified path.
+/// The69ain, public proc to remove a perk from a69ob. Accepts a path or a stringified path.
 /datum/stat_holder/proc/removePerk(perkType)
 	var/datum/perk/P = getPerk(perkType)
 	if(P)
@@ -167,7 +167,7 @@
 	var/list/mods = list()
 
 /datum/stat/proc/addModif(delay, affect, id)
-	for(var/elem in mods)
+	for(var/elem in69ods)
 		var/datum/stat_mod/SM = elem
 		if(SM.id == id)
 			if(delay == INFINITY)
@@ -179,27 +179,27 @@
 	mods += new /datum/stat_mod(delay, affect, id)
 
 /datum/stat/proc/remove_modifier(id)
-	for(var/elem in mods)
+	for(var/elem in69ods)
 		var/datum/stat_mod/SM = elem
 		if(SM.id == id)
 			mods.Remove(SM)
 			return
 
 /datum/stat/proc/get_modifier(id)
-	for(var/elem in mods)
+	for(var/elem in69ods)
 		var/datum/stat_mod/SM = elem
 		if(SM.id == id)
 			return SM
 
 /datum/stat/proc/changeValue(affect)
-	value = value + affect
+	value =69alue + affect
 
 /datum/stat/proc/getValue(pure = FALSE)
 	if(pure)
-		return value
+		return69alue
 	else
-		. = value
-		for(var/elem in mods)
+		. =69alue
+		for(var/elem in69ods)
 			var/datum/stat_mod/SM = elem
 			if(SM.time != -1 && SM.time < world.time)
 				mods -= SM
@@ -208,18 +208,18 @@
 			. += SM.value
 
 /datum/stat/proc/setValue(value)
-	src.value = value
+	src.value =69alue
 
 /datum/stat/proc/copyTo(var/datum/stat/recipient)
 	recipient.value = getValue(TRUE)
 
 /datum/stat/productivity
 	name = STAT_MEC
-	desc = "The world hadn't ever had so many moving parts or so few labels. Character's ability in building and using various tools.."
+	desc = "The world hadn't ever had so69any69oving parts or so few labels. Character's ability in building and using69arious tools.."
 
 /datum/stat/cognition
 	name = STAT_COG
-	desc = "Too many dots, not enough lines. Knowledge and ability to create new items."
+	desc = "Too69any dots, not enough lines. Knowledge and ability to create new items."
 
 /datum/stat/biology
 	name = STAT_BIO

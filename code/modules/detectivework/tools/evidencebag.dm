@@ -17,7 +17,7 @@
 	var/mob/living/carbon/human/user = usr
 
 	if (!(user.l_hand == src || user.r_hand == src))
-		return //bag must be in your hands to use
+		return //bag69ust be in your hands to use
 
 	if (isturf(I.loc))
 		if (!user.Adjacent(I))
@@ -47,14 +47,14 @@
 		return
 
 	if(I.w_class >= ITEM_SIZE_BULKY)
-		to_chat(user, SPAN_NOTICE("[I] won't fit in [src]."))
+		to_chat(user, SPAN_NOTICE("69I69 won't fit in 69src69."))
 		return
 
 	if(contents.len)
-		to_chat(user, SPAN_NOTICE("[src] already has something inside it."))
+		to_chat(user, SPAN_NOTICE("69src69 already has something inside it."))
 		return
 
-	user.visible_message("[user] puts [I] into [src]", "You put [I] inside [src].",\
+	user.visible_message("69user69 puts 69I69 into 69src69", "You put 69I69 inside 69src69.",\
 	"You hear a rustle as someone puts something into a plastic bag.")
 
 	icon_state = "evidence"
@@ -69,17 +69,17 @@
 	overlays += img
 	overlays += "evidence"	//should look nicer for transparent stuff. not really that important, but hey.
 
-	desc = "An evidence bag containing [I]."
+	desc = "An evidence bag containing 69I69."
 	I.loc = src
 	stored_item = I
 	w_class = I.w_class
 	return
 
 
-/obj/item/evidencebag/attack_self(mob/user as mob)
+/obj/item/evidencebag/attack_self(mob/user as69ob)
 	if(contents.len)
-		var/obj/item/I = contents[1]
-		user.visible_message("[user] takes [I] out of [src]", "You take [I] out of [src].",\
+		var/obj/item/I = contents69169
+		user.visible_message("69user69 takes 69I69 out of 69src69", "You take 69I69 out of 69src69.",\
 		"You hear someone rustle around in a plastic bag, and remove something.")
 		overlays.Cut()	//remove the overlays
 
@@ -90,7 +90,7 @@
 		icon_state = "evidenceobj"
 		desc = "An empty evidence bag."
 	else
-		to_chat(user, "[src] is empty.")
+		to_chat(user, "69src69 is empty.")
 		icon_state = "evidenceobj"
 	return
 

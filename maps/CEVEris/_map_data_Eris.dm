@@ -1,4 +1,4 @@
-#include "overmap-eris.dm"
+#include "o69ermap-eris.dm"
 #include "shuttles-eris.dm"
-#include "_CEV_Eris.dmm"
+#include "_CE69_Eris.dmm"
 #include "centcomm.dmm"

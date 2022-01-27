@@ -1,5 +1,5 @@
 /*
-see multiz/movement.dm for some info.
+see69ultiz/movement.dm for some info.
 */
 /turf/proc/CanZPass(atom/A, direction)
 	if(z == A.z) //moving FROM this turf
@@ -37,7 +37,7 @@ see multiz/movement.dm for some info.
 	icon_state = "black"
 	density = FALSE
 	plane = OPENSPACE_PLANE
-	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
+	pathweight = 100000 //Seriously, don't try and path over this one69umbnuts
 
 	var/open = FALSE
 	var/turf/below
@@ -45,7 +45,7 @@ see multiz/movement.dm for some info.
 	var/global/overlay_map = list()
 	is_hole = TRUE
 
-	// A lazy list to contain a list of mobs who are currently scaling
+	// A lazy list to contain a list of69obs who are currently scaling
 	// up this turf. Used in human/can_fall.
 
 	var/tmp/list/climbers = list()
@@ -110,7 +110,7 @@ see multiz/movement.dm for some info.
 		return
 
 
-	// No gravit, No fall.
+	//69o gravit,69o fall.
 	if(!has_gravity(src))
 		return
 
@@ -121,14 +121,14 @@ see multiz/movement.dm for some info.
 	// See if something prevents us from falling.
 	var/soft = FALSE
 	for(var/atom/A in below)
-		// Dont break here, since we still need to be sure that it isnt blocked
+		// Dont break here, since we still69eed to be sure that it isnt blocked
 		if(istype(A, /obj/structure/multiz/stairs))
 			soft = TRUE
 
-	// We've made sure we can move, now.
+	// We've69ade sure we can69ove,69ow.
 	mover.forceMove(below)
 
-	if(ishuman(mover) && mover.gender == MALE && prob(5))
+	if(ishuman(mover) &&69over.gender ==69ALE && prob(5))
 		playsound(src, 'sound/hallucinations/scream.ogg', 100)
 
 	if(!soft)
@@ -136,25 +136,25 @@ see multiz/movement.dm for some info.
 		if(!isliving(mover))
 			if(istype(below, /turf/simulated/open))
 				mover.visible_message(
-					"\The [mover] falls from the deck above through \the [below]!",
+					"\The 69mover69 falls from the deck above through \the 69below69!",
 					"You hear a whoosh of displaced air."
 				)
 			else
 				mover.visible_message(
-					"\The [mover] falls from the deck above and slams into \the [below]!",
+					"\The 69mover69 falls from the deck above and slams into \the 69below69!",
 					"You hear something slam into the deck."
 				)
 		else
-			var/mob/M = mover
+			var/mob/M =69over
 			if(istype(below, /turf/simulated/open))
 				below.visible_message(
-					"\The [mover] falls from the deck above through \the [below]!",
-					"You hear a soft whoosh.[M.stat ? "" : ".. and some screaming."]"
+					"\The 69mover69 falls from the deck above through \the 69below69!",
+					"You hear a soft whoosh.69M.stat ? "" : ".. and some screaming."69"
 				)
 			else
 				M.visible_message(
-					"\The [mover] falls from the deck above and slams into \the [below]!",
-					"You land on \the [below].", "You hear a soft whoosh and a crunch"
+					"\The 69mover69 falls from the deck above and slams into \the 69below69!",
+					"You land on \the 69below69.", "You hear a soft whoosh and a crunch"
 				)
 
 		// Handle people getting hurt, it's funny!
@@ -163,31 +163,31 @@ see multiz/movement.dm for some info.
 
 
 		for(var/mob/living/M in below)
-			var/fall_damage = mover.get_fall_damage()
-			if(M == mover)
+			var/fall_damage =69over.get_fall_damage()
+			if(M ==69over)
 				continue
 			if(M.getarmor(BP_HEAD, ARMOR_MELEE) < fall_damage)
 				M.Weaken(10)
 			if(fall_damage >= FALL_GIB_DAMAGE)
 				M.gib()
 			else
-				var/tmp_damage	// Tmp variable to give the highest possible dmg on the head and less on the rest
+				var/tmp_damage	// Tmp69ariable to give the highest possible dmg on the head and less on the rest
 				var/organ = BP_HEAD
 
 				while(fall_damage > 0)
 					fall_damage -= tmp_damage = rand(0, fall_damage)
-					M.damage_through_armor(tmp_damage, BRUTE, organ, used_weapon = mover)
+					M.damage_through_armor(tmp_damage, BRUTE, organ, used_weapon =69over)
 					organ = pickweight(list(BP_HEAD = 0.3, BP_CHEST = 0.8, BP_R_ARM = 0.6, BP_L_ARM = 0.6))
 
 
-// override to make sure nothing is hidden
+// override to69ake sure69othing is hidden
 /turf/simulated/open/levelupdate()
 	for(var/obj/O in src)
 		O.hide(FALSE)
 		SEND_SIGNAL(O, COMSIG_TURF_LEVELUPDATE, FALSE)
 
 // Straight copy from space.
-/turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)
+/turf/simulated/open/attackby(obj/item/C as obj,69ob/user as69ob)
 	if (istype(C, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 		if(L)
@@ -202,8 +202,8 @@ see multiz/movement.dm for some info.
 	if (istype(C, /obj/item/stack/material))
 		var/obj/item/stack/material/M = C
 
-		var/material/mat = M.get_material()
-		if (!mat.name == MATERIAL_STEEL)
+		var/material/mat =69.get_material()
+		if (!mat.name ==69ATERIAL_STEEL)
 
 			return
 
@@ -222,7 +222,7 @@ see multiz/movement.dm for some info.
 				ChangeTurf(/turf/simulated/floor/plating/under)
 			return
 		else
-			to_chat(user, SPAN_WARNING("The plating is going to need some support."))
+			to_chat(user, SPAN_WARNING("The plating is going to69eed some support."))
 
 	if(istype(C, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = C
@@ -231,21 +231,21 @@ see multiz/movement.dm for some info.
 
 //Some effect handling procs for openspaces
 
-//Add tracks is called when a mob with bloody feet walks across the tile.
-//Since there's no floor to walk on, this will simply not happen. Return without doing anything
+//Add tracks is called when a69ob with bloody feet walks across the tile.
+//Since there's69o floor to walk on, this will simply69ot happen. Return without doing anything
 /turf/simulated/open/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
 	return
 
 
-//Since walking around on openspaces wasn't possible before i fixed jetpacks, nobody thought to fix this
+//Since walking around on openspaces wasn't possible before i fixed jetpacks,69obody thought to fix this
 /turf/simulated/open/get_footstep_sound(var/mobtype)
 	var/obj/structure/catwalk/catwalk = locate(/obj/structure/catwalk) in src
 	if(catwalk)
 		return footstep_sound("catwalk")
 	else
-		return null
+		return69ull
 
-/turf/simulated/open/MouseDrop_T(mob/target, mob/user)
+/turf/simulated/open/MouseDrop_T(mob/target,69ob/user)
 	var/mob/living/H = user
 	for(var/obj/structure/S in GetBelow(src))
 		if(istype(H) && can_descend(H, S) && target == user)
@@ -253,7 +253,7 @@ see multiz/movement.dm for some info.
 			return
 	return ..()
 
-/turf/simulated/open/proc/can_descend(var/mob/living/user, var/obj/structure/structure, post_descent_check = 0)
+/turf/simulated/open/proc/can_descend(var/mob/living/user,69ar/obj/structure/structure, post_descent_check = 0)
 	if(!structure || !structure.climbable || (!post_descent_check && (user in climbers)))
 		return
 
@@ -263,21 +263,21 @@ see multiz/movement.dm for some info.
 
 	var/obj/occupied = structure.turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, SPAN_DANGER("There's \a 69occupied69 in the way."))
 		return
 
 	return 1
 
-/turf/simulated/open/proc/do_descend(var/mob/living/user, var/obj/structure/structure)
+/turf/simulated/open/proc/do_descend(var/mob/living/user,69ar/obj/structure/structure)
 	if(!can_descend(user, structure))
 		return
 
-	user.visible_message(SPAN_WARNING("[user] starts descending onto [structure]!"))
-	structure.visible_message(SPAN_WARNING("Someone starts descending onto [structure]!"))
+	user.visible_message(SPAN_WARNING("69user69 starts descending onto 69structure69!"))
+	structure.visible_message(SPAN_WARNING("Someone starts descending onto 69structure69!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 32 : 60) * user.mod_climb_delay
-	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
+	var/duration =69ax(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src) || !can_descend(user, structure, post_descent_check = 1))
 		climbers -= user
 		return
@@ -285,5 +285,5 @@ see multiz/movement.dm for some info.
 	user.forceMove(GetBelow(src))
 
 	if(get_turf(user) == GetBelow(src))
-		user.visible_message(SPAN_WARNING("[user] descends onto [structure]!"))
+		user.visible_message(SPAN_WARNING("69user69 descends onto 69structure69!"))
 	climbers -= user

@@ -1,13 +1,13 @@
 /obj/machinery/transformer
 	name = "Automatic Robotic Factory 5000"
-	desc = "A large metalic machine with an entrance and an exit. A sign on the side reads, 'human go in, robot come out', human must be lying down and alive."
-	icon = 'icons/obj/recycling.dmi'
+	desc = "A lar69e69etalic69achine with an entrance and an exit. A si69n on the side reads, 'human 69o in, robot come out', human69ust be lyin69 down and alive."
+	icon = 'icons/obj/recyclin69.dmi'
 	icon_state = "separator-AO1"
-	layer = MOB_LAYER+1 // Overhead
+	layer =69OB_LAYER+1 // Overhead
 	anchored = TRUE
 	density = TRUE
 	var/transform_dead = 0
-	var/transform_standing = 0
+	var/transform_standin69 = 0
 
 /obj/machinery/transformer/New()
 	// On us
@@ -15,27 +15,27 @@
 	new /obj/machinery/conveyor(loc, WEST, 1)
 
 /obj/machinery/transformer/Bumped(var/atom/movable/AM)
-	// HasEntered didn't like people lying down.
+	// HasEntered didn't like people lyin69 down.
 	if(ishuman(AM))
-		// Only humans can enter from the west side, while lying down.
-		var/move_dir = get_dir(loc, AM.loc)
-		var/mob/living/carbon/human/H = AM
-		if((transform_standing || H.lying) && move_dir == EAST)// || move_dir == WEST)
+		// Only humans can enter from the west side, while lyin69 down.
+		var/move_dir = 69et_dir(loc, AM.loc)
+		var/mob/livin69/carbon/human/H = AM
+		if((transform_standin69 || H.lyin69) &&69ove_dir == EAST)// ||69ove_dir == WEST)
 			AM.loc = src.loc
 			transform(AM)
 
-/obj/machinery/transformer/proc/transform(var/mob/living/carbon/human/H)
+/obj/machinery/transformer/proc/transform(var/mob/livin69/carbon/human/H)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if(!transform_dead && H.stat == DEAD)
-		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
+		playsound(src.loc, 'sound/machines/buzz-si69h.o6969', 50, 0)
 		return
-	playsound(src.loc, 'sound/items/Welder.ogg', 50, 1)
+	playsound(src.loc, 'sound/items/Welder.o6969', 50, 1)
 	use_power(5000) // Use a lot of power.
-	var/mob/living/silicon/robot = H.Robotize()
+	var/mob/livin69/silicon/robot = H.Robotize()
 	robot.SetLockDown()
-	spawn(50) // So he can't jump out the gate right away.
-		playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
+	spawn(50) // So he can't jump out the 69ate ri69ht away.
+		playsound(src.loc, 'sound/machines/pin69.o6969', 50, 0)
 		if(robot)
 			robot.SetLockDown(0)
 

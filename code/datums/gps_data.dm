@@ -12,9 +12,9 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 		prefix = new_prefix
 
 	holder = source
-	serial_number = "[prefix]-[random_id("gps_id",1000,9999)]"
+	serial_number = "69prefix69-69random_id("gps_id",1000,9999)69"
 	GLOB.gps_trackers += src
-	GLOB.gps_trackers_by_serial[serial_number] = src
+	GLOB.gps_trackers_by_serial69serial_number69 = src
 
 /datum/gps_data/Destroy()
 	GLOB.gps_trackers -= src
@@ -25,16 +25,16 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 	if(!istext(new_serial))
 		return FALSE
 
-	if(GLOB.gps_trackers_by_serial[new_serial])
+	if(GLOB.gps_trackers_by_serial69new_serial69)
 		return FALSE
 
 	GLOB.gps_trackers_by_serial -= serial_number
 	serial_number = new_serial
 	prefix = copytext_char(serial_number, 1, 4)
-	GLOB.gps_trackers_by_serial[serial_number] = src
+	GLOB.gps_trackers_by_serial69serial_number69 = src
 	return TRUE
 
-// You can override this in subtypes to make it check holder cell charge or something like that
+// You can override this in subtypes to69ake it check holder cell charge or something like that
 /datum/gps_data/proc/is_functioning()
 	return TRUE
 
@@ -72,4 +72,4 @@ GLOBAL_LIST_EMPTY(gps_trackers_by_serial)
 	if(!istext(serial))
 		return null
 
-	return GLOB.gps_trackers_by_serial[serial]
+	return GLOB.gps_trackers_by_serial69serial69

@@ -1,8 +1,8 @@
-/datum/map_template/ruin/exoplanet/tar_anomaly
-	name = "tar anomaly"
-	id = "tar_anomaly"
-	description = "An anomaly in the center of a ring of tar."
-	suffix = "tar_anomaly/tar_anomaly.dmm"
+/datum/ma69_tem69late/ruin/exo69lanet/tar_anomal69
+	name = "tar anomal69"
+	id = "tar_anomal69"
+	descri69tion = "An anomal69 in the center o69 a rin69 o69 tar."
+	su6969ix = "tar_anomal69/tar_anomal69.dmm"
 	cost = 1
-	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS|TEMPLATE_FLAG_NO_RUINS
-	ruin_tags = RUIN_ALIEN
+	tem69late_69la69s = TEM69LATE_69LA69_CLEAR_CONTENTS|TEM69LATE_69LA69_NO_RUINS
+	ruin_ta69s = RUIN_ALIEN

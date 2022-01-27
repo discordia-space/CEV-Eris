@@ -41,7 +41,7 @@
 
 /obj/effect/decal/cleanable/blood/oil
 	name = "motor oil"
-	desc = "It's black and greasy. Looks like Beepsky made another mess."
+	desc = "It's black and greasy. Looks like Beepsky69ade another69ess."
 	basecolor="#030303"
 	sanity_damage = 0.1
 

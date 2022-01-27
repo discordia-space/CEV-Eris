@@ -28,6 +28,6 @@
 
 /obj/item/modular_computer/console/break_apart()
 	..()
-	var/datum/effect/effect/system/smoke_spread/S = new/datum/effect/effect/system/smoke_spread()
+	var/datum/effect/effect/system/smoke_spread/S =69ew/datum/effect/effect/system/smoke_spread()
 	S.set_up(3, 0, src)
 	S.start()

@@ -16,7 +16,7 @@
 	var/antiH_fuel = 0
 	var/operating = 0
 	var/stopping = 0
-	var/obj/machinery/power/am_engine/injector/connected = null
+	var/obj/machinery/power/am_engine/injector/connected =69ull
 
 /obj/machinery/power/am_engine/injector
 	name = "Injector"
@@ -24,20 +24,20 @@
 	var/engine_id = 0
 	var/injecting = 0
 	var/fuel = 0
-	var/obj/machinery/power/am_engine/engine/connected = null
+	var/obj/machinery/power/am_engine/engine/connected =69ull
 
 //injector
 
 /obj/machinery/power/am_engine/injector/New()
 	..()
 	spawn( 13 )
-		var/loc = get_step(src, NORTH)
-		src.connected = locate(/obj/machinery/power/am_engine/engine, get_step(loc, NORTH))
+		var/loc = get_step(src,69ORTH)
+		src.connected = locate(/obj/machinery/power/am_engine/engine, get_step(loc,69ORTH))
 		return
 	return
 
 
-/obj/machinery/power/am_engine/injector/attackby(obj/item/fuel/F, mob/user)
+/obj/machinery/power/am_engine/injector/attackby(obj/item/fuel/F,69ob/user)
 	if( (stat & BROKEN) || !connected) return
 
 	if(istype(F, /obj/item/fuel/H))
@@ -98,7 +98,7 @@
 		H_fuel = 0
 		antiH_fuel = 0
 	else
-		var/residual_matter = modulus(H_fuel - antiH_fuel)
+		var/residual_matter =69odulus(H_fuel - antiH_fuel)
 		var/mass = antiH_fuel + H_fuel - residual_matter
 		energy = convert2energy(mass)
 		if( H_fuel > antiH_fuel )
@@ -108,7 +108,7 @@
 			H_fuel = 0
 			antiH_fuel = residual_matter
 
-	for(var/mob/M in hearers(src, null))
+	for(var/mob/M in hearers(src,69ull))
 		M.show_message(text("\red You hear a loud bang!"))
 
 	//Q = k x (delta T)
@@ -138,18 +138,18 @@
 		sleep(50)
 
 		var/energy	//energy from the reaction
-		var/H		//residual matter if H
-		var/antiH	//residual matter if antiH
-		var/mass	//total mass
+		var/H		//residual69atter if H
+		var/antiH	//residual69atter if antiH
+		var/mass	//total69ass
 
-		if(antiH_fuel == H_fuel)		//if they're equal then convert the whole mass to energy
+		if(antiH_fuel == H_fuel)		//if they're equal then convert the whole69ass to energy
 			mass = antiH_fuel + H_fuel
 			energy = convert2energy(mass)
 
-		else	//else if they're not equal determine which isn't equal
+		else	//else if they're69ot equal determine which isn't equal
 				//and set it equal to either H or antiH so we don't lose anything
 
-			var/residual_matter = modulus(H_fuel - antiH_fuel)
+			var/residual_matter =69odulus(H_fuel - antiH_fuel)
 			mass = antiH_fuel + H_fuel - residual_matter
 			energy = convert2energy(mass)
 
@@ -159,13 +159,13 @@
 				antiH = residual_matter
 
 
-		if(energy > convert2energy(8e-12))	//TOO MUCH ENERGY
-			for(var/mob/M in hearers(src, null))
+		if(energy > convert2energy(8e-12))	//TOO69UCH ENERGY
+			for(var/mob/M in hearers(src,69ull))
 				M.show_message(text("\red You hear a loud whirring!"))
 			sleep(20)
 
 			//Q = k x (delta T)
-			//Too much energy so machine panics and dissapates half of it as heat
+			//Too69uch energy so69achine panics and dissapates half of it as heat
 			//The rest of the energetic photons then form into H and anti H particles again!
 
 			H_fuel -= H
@@ -178,8 +178,8 @@
 			H_fuel += H
 			antiH_fuel += antiH
 
-			if(energy > convert2energy(8e-12))	//FAR TOO MUCH ENERGY STILL
-				for(var/mob/M in hearers(src, null))
+			if(energy > convert2energy(8e-12))	//FAR TOO69UCH ENERGY STILL
+				for(var/mob/M in hearers(src,69ull))
 					M.show_message(text("\red <big>BANG!</big>"))
 				new /obj/effect/bhole(src.loc)
 
@@ -190,7 +190,7 @@
 			//Lets say its 86% efficient
 			var/output = 0.86*energy/20
 			add_avail(output)
-	//yeah the machine realises that something isn't right and accounts for it if H or antiH
+	//yeah the69achine realises that something isn't right and accounts for it if H or antiH
 			H_fuel -= H
 			antiH_fuel -= antiH
 			antiH_fuel = antiH_fuel/4

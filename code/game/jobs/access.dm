@@ -1,11 +1,11 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-/obj/var/list/req_access = list()
-/obj/var/list/req_one_access = list()
+/obj/var/list/re69_access = list()
+/obj/var/list/re69_one_access = list()
 
-//returns 1 if this mob has sufficient access to use this object
+//returns 1 if this69ob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
-	//check if it doesn't require any access at all
+	//check if it doesn't re69uire any access at all
 	if(src.check_access(null))
 		return 1
 	if(!istype(M))
@@ -18,7 +18,7 @@
 
 /proc/get_access_by_id(id)
 	var/list/AS = priv_all_access_datums_id || get_all_access_datums_by_id()
-	return AS[num2text(id)]
+	return AS69num2text(id)69
 
 /proc/get_access_region_by_id(id)
 	var/datum/access/AD = get_access_by_id(id)
@@ -31,19 +31,19 @@
 	return check_access_list(I ? I.GetAccess() : list())
 
 /obj/proc/check_access_list(var/list/L)
-	if(!req_access)		req_access = list()
-	if(!req_one_access)	req_one_access = list()
+	if(!re69_access)		re69_access = list()
+	if(!re69_one_access)	re69_one_access = list()
 	if(!L)	return 0
 	if(!istype(L, /list))	return 0
-	return has_access(req_access, req_one_access, L)
+	return has_access(re69_access, re69_one_access, L)
 
-/proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
-	for(var/req in req_access)
-		if(!(req in accesses)) //doesn't have this access
+/proc/has_access(var/list/re69_access,69ar/list/re69_one_access,69ar/list/accesses)
+	for(var/re69 in re69_access)
+		if(!(re69 in accesses)) //doesn't have this access
 			return 0
-	if(req_one_access.len)
-		for(var/req in req_one_access)
-			if(req in accesses) //has an access from the single access list
+	if(re69_one_access.len)
+		for(var/re69 in re69_one_access)
+			if(re69 in accesses) //has an access from the single access list
 				return 1
 		return 0
 	return 1
@@ -82,7 +82,7 @@
 	if(!priv_all_access_datums_id)
 		priv_all_access_datums_id = list()
 		for(var/datum/access/A in get_all_access_datums())
-			priv_all_access_datums_id["[A.id]"] = A
+			priv_all_access_datums_id69"69A.id69"69 = A
 
 	return priv_all_access_datums_id
 
@@ -91,9 +91,9 @@
 	if(!priv_all_access_datums_region)
 		priv_all_access_datums_region = list()
 		for(var/datum/access/A in get_all_access_datums())
-			if(!priv_all_access_datums_region[A.region])
-				priv_all_access_datums_region[A.region] = list()
-			priv_all_access_datums_region[A.region] += A
+			if(!priv_all_access_datums_region69A.region69)
+				priv_all_access_datums_region69A.region69 = list()
+			priv_all_access_datums_region69A.region69 += A
 
 	return priv_all_access_datums_region
 
@@ -140,11 +140,11 @@
 	if(!priv_region_access)
 		priv_region_access = list()
 		for(var/datum/access/A in get_all_access_datums())
-			if(!priv_region_access["[A.region]"])
-				priv_region_access["[A.region]"] = list()
-			priv_region_access["[A.region]"] += A.id
+			if(!priv_region_access69"69A.region69"69)
+				priv_region_access69"69A.region69"69 = list()
+			priv_region_access69"69A.region69"69 += A.id
 
-	return priv_region_access["[code]"].Copy()
+	return priv_region_access69"69code69"69.Copy()
 
 /proc/get_region_accesses_name(var/code)
 	switch(code)
@@ -156,7 +156,7 @@
 			return "Medbay"
 		if(ACCESS_REGION_RESEARCH) //research
 			return "Research"
-		if(ACCESS_REGION_ENGINEERING) //engineering and maintenance
+		if(ACCESS_REGION_ENGINEERING) //engineering and69aintenance
 			return "Engineering"
 		if(ACCESS_REGION_COMMAND) //command
 			return "Command"
@@ -171,7 +171,7 @@
 
 /proc/get_access_desc(id)
 	var/list/AS = get_all_access_datums_by_id()
-	var/datum/access/A = AS["[id]"]
+	var/datum/access/A = AS69"69id69"69
 
 	return A ? A.desc : ""
 
@@ -238,11 +238,11 @@ var/obj/item/card/id/all_access/ghost_all_access
 	return idcard
 
 
-proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
-	var/obj/item/card/id/C = M.GetIdCard()
+proc/FindNameFromID(var/mob/M,69ar/missing_id_name = "Unknown")
+	var/obj/item/card/id/C =69.GetIdCard()
 	if(C)
 		return C.registered_name
-	return missing_id_name
+	return69issing_id_name
 
 proc/get_all_job_icons() //For all existing HUD icons
 	return GLOB.joblist + list("Prisoner")

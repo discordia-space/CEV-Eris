@@ -9,21 +9,21 @@
 	health = 5
 	var/amount_grown = 0
 
-/obj/item/roach_egg/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/roach_egg/afterattack(obj/O as obj,69ob/user as69ob, proximity)
 	if(istype(O,/obj/machinery/microwave))
 		return ..()
 	if(!proximity || !O.is_refillable())
 		return
-	to_chat(user, "You crack \the [src] into \the [O].")
+	to_chat(user, "You crack \the 69src69 into \the 69O69.")
 	reagents.trans_to(O, reagents.total_volume)
 	user.drop_from_inventory(src)
-	qdel(src)
+	69del(src)
 
-/obj/item/roach_egg/attackby(var/obj/item/I, var/mob/user)
+/obj/item/roach_egg/attackby(var/obj/item/I,69ar/mob/user)
 	if(I.attack_verb.len)
-		visible_message(SPAN_WARNING("\The [src] have been [pick(I.attack_verb)] with \the [I][(user ? " by [user]." : ".")]"))
+		visible_message(SPAN_WARNING("\The 69src69 have been 69pick(I.attack_verb)69 with \the 69I6969(user ? " by 69user69." : ".")69"))
 	else
-		visible_message(SPAN_WARNING("\The [src] have been attacked with \the [I][(user ? " by [user]." : ".")]"))
+		visible_message(SPAN_WARNING("\The 69src69 have been attacked with \the 69I6969(user ? " by 69user69." : ".")69"))
 
 	health -= (I.force / 2)
 	healthcheck()
@@ -35,9 +35,9 @@
 
 /obj/item/roach_egg/proc/healthcheck()
 	if(health <= 0)
-		visible_message(SPAN_WARNING("[src] is squished!"))
+		visible_message(SPAN_WARNING("69src69 is s69uished!"))
 		new /obj/effect/decal/cleanable/roach_egg_remains(loc)
-		qdel(src)
+		69del(src)
 
 /obj/item/roach_egg/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300 + T0C)
@@ -46,7 +46,7 @@
 
 
 
-/obj/item/roach_egg/New(var/location, var/atom/parent)
+/obj/item/roach_egg/New(var/location,69ar/atom/parent)
 	pixel_x = rand(3,-3)
 	pixel_y = rand(3,-3)
 	START_PROCESSING(SSobj, src)
@@ -67,7 +67,7 @@
 			var/obj/item/organ/external/O
 			if(istype(loc, /obj/item/organ/external)) // In case you want to implant some roach eggs into someone, gross!
 				O = loc
-				src.visible_message(SPAN_WARNING("A roachling makes its way out of [O.owner ? "[O.owner]\'s [O.name]" : "\the [O]"]!"))
+				src.visible_message(SPAN_WARNING("A roachling69akes its way out of 69O.owner ? "69O.owner69\'s 69O.name69" : "\the 69O69"69!"))
 				if(O.owner)
 					O.owner.apply_damage(1, BRUTE, O.organ_tag, used_weapon = src)
 				O.implants -= src // Remove from implants and spawn the roachling on the ground
@@ -75,12 +75,12 @@
 
 			var/spawn_type = /mob/living/carbon/superior_animal/roach/roachling
 			new spawn_type(src.loc, src)
-			qdel(src)
+			69del(src)
 		else
 			amount_grown += rand(0,2)
 
 /obj/effect/decal/cleanable/roach_egg_remains
 	name = "roach egg remains"
-	desc = "Green squishy mess."
+	desc = "Green s69uishy69ess."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenshatter"

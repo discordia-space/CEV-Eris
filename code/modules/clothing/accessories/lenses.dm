@@ -20,7 +20,7 @@
 /obj/item/clothing/glasses/verb/detach_lenses()
 	set name = "Detach lenses"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if (have_lenses)
 		flash_protection = initial(protection)
@@ -29,36 +29,36 @@
 		var/obj/item/clothing/glasses/attachable_lenses/lenses = have_lenses
 		overlay = lenses.saved_last_overlay
 		lenses.saved_last_overlay = FALSE
-		to_chat(usr, "You detach \the [have_lenses] from \the [src]");
+		to_chat(usr, "You detach \the 69have_lenses69 from \the 69src69");
 		usr.put_in_hands(have_lenses)
 		SEND_SIGNAL(src, COMSIG_GLASS_LENSES_REMOVED, usr, src)
 		have_lenses = FALSE
 	else
-		to_chat(usr, "You haven't got any lenses in \the [src]");
+		to_chat(usr, "You haven't got any lenses in \the 69src69");
 
 
-/obj/item/clothing/glasses/attachable_lenses/proc/handle_insertion(obj/item/clothing/glasses/target, mob/living/carbon/human/inserter)
+/obj/item/clothing/glasses/attachable_lenses/proc/handle_insertion(obj/item/clothing/glasses/target,69ob/living/carbon/human/inserter)
 	if(target.have_lenses)
-		to_chat(inserter, "You already have lenses in \the [target]")
+		to_chat(inserter, "You already have lenses in \the 69target69")
 		return FALSE
 	if(overlay)
 		saved_last_overlay = target.overlay
 		target.overlay = overlay
 	if(vision_flags) // Don/t override if we don't have it set.
-		target.vision_flags = vision_flags
+		target.vision_flags =69ision_flags
 	if(see_invisible)
 		target.see_invisible = see_invisible
 	if(flash_protection)
 		target.protection = flash_protection
 		target.flash_protection = flash_protection
-	to_chat(inserter, "You attached \the [src] to \the [target]")
+	to_chat(inserter, "You attached \the 69src69 to \the 69target69")
 	target.have_lenses = src
 	inserter.drop_item(src)
 	forceMove(target)
 
 
 /*
- Good example of how to make a subtype of googles that handles everything.
+ Good example of how to69ake a subtype of googles that handles everything.
 
 /obj/item/clothing/glasses/attachable_lenses/explosive
 	name = "explosive lenses"
@@ -73,7 +73,7 @@
 	..()
 	overlay = null
 
-/obj/item/clothing/glasses/attachable_lenses/explosive/handle_insertion(obj/item/clothing/glasses/target, mob/living/carbon/human/inserter)
+/obj/item/clothing/glasses/attachable_lenses/explosive/handle_insertion(obj/item/clothing/glasses/target,69ob/living/carbon/human/inserter)
 	..()
 	RegisterSignal(target, COMSIG_CLOTH_EQUIPPED, .proc/handle_boom)
 	RegisterSignal(target, COMSIG_GLASS_LENSES_REMOVED, .proc/handle_removal)
@@ -86,8 +86,8 @@
 	var/obj/item/clothing/glasses/our_glasses = loc
 	if(!our_glasses.is_worn()) // We aren't worn
 		return FALSE
-	visible_message(SPAN_DANGER("[unfortunate_man]'s skull gets pierced by a jet of molten slag as he puts \the [loc] on his eyes"),
-					SPAN_DANGER("You hear the sound of a skull cracking and meat sizzling"), 6)
+	visible_message(SPAN_DANGER("69unfortunate_man69's skull gets pierced by a jet of69olten slag as he puts \the 69loc69 on his eyes"),
+					SPAN_DANGER("You hear the sound of a skull cracking and69eat sizzling"), 6)
 	playsound(get_turf(loc), 'sound/effects/bangtaper.ogg' ,50, 1)
 	spawn(1 SECONDS)
 		playsound(get_turf(loc), 'sound/effects/flare.ogg', 100, 1)

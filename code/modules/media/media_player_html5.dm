@@ -4,14 +4,14 @@ var/const/PLAYER_HTML5_HTML={"<!DOCTYPE html>
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=11">
 <script type="text/javascript">
-function noErrorMessages () { return true; }
-window.onerror = noErrorMessages;
-function SetMusic(url, time, volume) {
+function69oErrorMessages () { return true; }
+window.onerror =69oErrorMessages;
+function SetMusic(url, time,69olume) {
 	var player = document.getElementById('player');
-	// IE can't handle us setting the time before it loads, so we must wait for asychronous load
+	// IE can't handle us setting the time before it loads, so we69ust wait for asychronous load
 	var setTime = function () {
 		player.removeEventListener("canplay", setTime);  // One time only!
-		player.volume = volume;
+		player.volume =69olume;
 		player.currentTime = time;
 		player.play();
 	}

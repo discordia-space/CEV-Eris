@@ -1,36 +1,36 @@
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Chamber Pressure:
+<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Ch69m69er 69ressure:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.chamber_pressure, 0, 200, (data.chamber_pressure < 80) || (data.chamber_pressure > 120) ? 'bad' : (data.chamber_pressure < 95) || (data.chamber_pressure > 110) ? 'average' : 'good')}}
-			<div class="statusValue">
-				{{:data.chamber_pressure}} kPa
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.ch69m69er_69ressure, 0, 200, 69d69t69.ch69m69er_69ressure < 8069 || 69d69t69.ch69m69er_69ressure > 12069 ? '6969d' : 69d69t69.ch69m69er_69ressure < 9569 || 69d69t69.ch69m69er_69ressure > 11069 ? '69ver6969e' : '69ood'69}}
+			<div cl69ss="st69tusV69lue">
+				{{:d69t69.ch69m69er_69ressure}} 696969
 			</div>
 		</div>
 	</div>
 </div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="width: 100%">
-			{{:helper.link('Cycle to Exterior', 'arrowthickstop-1-w', {'command' : 'cycle_ext'}, data.processing ? 'disabled' : null)}}
-			{{:helper.link('Cycle to Interior', 'arrowthickstop-1-e', {'command' : 'cycle_int'}, data.processing ? 'disabled' : null)}}
+<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<div cl69ss="item">
+		<div cl69ss="itemContent" st69le="width: 100%">
+			{{:hel69er.lin6969'C69cle to Exterior', '69rrowthic69sto69-1-w', {'comm69nd' : 'c69cle_ext'}, d69t69.69rocessin69 ? 'dis6969led' :69ull69}}
+			{{:hel69er.lin6969'C69cle to Interior', '69rrowthic69sto69-1-e', {'comm69nd' : 'c69cle_int'}, d69t69.69rocessin69 ? 'dis6969led' :69ull69}}
 		</div>
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-		{{if data.interior_status.state == "open"}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_ext'}, null, 'redButton')}}
+		<div cl69ss="itemContent" st69le="6969ddin69-to69: 269x; width: 100%">
+		{{if d69t69.interior_st69tus.st69te == "o69en"}}
+			{{:hel69er.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_ext'},69ull, 'red69utton'69}}
 		{{else}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_ext'}, null, data.processing ? 'yellowButton' : null)}}
+			{{:hel69er.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_ext'},69ull, d69t69.69rocessin69 ? '69ellow69utton' :69ull69}}
 		{{/if}}
-		{{if data.exterior_status.state == "open"}}
-			{{:helper.link('Force interior door', 'alert', {'command' : 'force_int'}, null, 'redButton')}}
+		{{if d69t69.exterior_st69tus.st69te == "o69en"}}
+			{{:hel69er.lin6969'Force interior door', '69lert', {'comm69nd' : 'force_int'},69ull, 'red69utton'69}}
 		{{else}}
-			{{:helper.link('Force interior door', 'alert', {'command' : 'force_int'}, null, data.processing ? 'yellowButton' : null)}}
+			{{:hel69er.lin6969'Force interior door', '69lert', {'comm69nd' : 'force_int'},69ull, d69t69.69rocessin69 ? '69ellow69utton' :69ull69}}
 		{{/if}}
 		</div>
 	</div>
-	<div class="item" style="padding-top: 10px; width: 100%">
-			{{:helper.link('Abort', 'cancel', {'command' : 'abort'}, data.processing ? null : 'disabled', data.processing ? 'redButton' : null)}}
+	<div cl69ss="item" st69le="6969ddin69-to69: 1069x; width: 100%">
+			{{:hel69er.lin6969'6969ort', 'c69ncel', {'comm69nd' : '6969ort'}, d69t69.69rocessin69 ?69ull : 'dis6969led', d69t69.69rocessin69 ? 'red69utton' :69ull69}}
 	</div>
 </div>

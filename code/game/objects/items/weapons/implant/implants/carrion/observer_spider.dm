@@ -68,7 +68,7 @@
 	start()
 
 	var/spider_amount = length(get_local_spiders())
-	to_chat(usr, SPAN_NOTICE("Spider is observing. [spider_amount] spider\s active in the area."))
+	to_chat(usr, SPAN_NOTICE("Spider is observing. 69spider_amount69 spider\s active in the area."))
 	if(spider_amount >= 3 && timer)
 		to_chat(usr, SPAN_NOTICE("Data observation initiated."))
 		if(owner_mind)
@@ -90,7 +90,7 @@
 /obj/item/implant/carrion_spider/observer/proc/start()
 	var/list/local_spiders = get_local_spiders()
 	if(local_spiders.len >= 3)
-		timer = addtimer(CALLBACK(src, .proc/finish), 10 MINUTES, TIMER_STOPPABLE)
+		timer = addtimer(CALLBACK(src, .proc/finish), 1069INUTES, TIMER_STOPPABLE)
 		for(var/obj/item/implant/carrion_spider/observer/S in local_spiders)
 			S.timer = timer
 			S.group = local_spiders

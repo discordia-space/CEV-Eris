@@ -1,111 +1,111 @@
-<div class="item">
-    {{:helper.link('Overall info', 'note', {'state' :'status'}, null, data.state == 'status' ? 'selected' : null)}}
-    {{:helper.link('Details', 'note', {'state' : 'engines'}, null, data.state == 'engines' ? 'selected' : null)}}
-</div>
-<div class="item">
-	<div class='item'>
-		<div class="itemLabel">
-			<span class='average'>Global controls:</span>
-		</div>
-		<div class="itemContent">
-			{{:helper.link(data.global_state ? 'Shut all down' : 'Power all up', 'power', {'global_toggle' : 1}, null, data.global_state ? 'selected' : null)}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class="itemLabel">
-			<span class='average'>Thrust limit:</span>
-		</div>
-		<div class="itemContent">
-			{{:helper.link('', 'circle-plus', { 'global_limit' : 0.1}, null, null)}}
-			{{:helper.link(data.global_limit+'%', null, { 'set_global_limit' : 1 }, null, null)}}
-			{{:helper.link('', 'circle-minus', { 'global_limit' : -0.1}, null, null)}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class="itemLabel">
-			<span class='average'>Total thrust:</span>
-		</div>
-		<div class="itemContent">
-			<span class='white'>{{:data.total_thrust}}</span>
-		</div>
-	</div>
-</div>
-{{if data.state == "engines"}}
-	{{if data.engines_info}}
-		{{for data.engines_info}}
-			<div class='item'>
-				<div class="itemLabel">
-					<span class='white'>Engine #{{:(index + 1)}}:</span>
-				</div>
-				<div class="itemContent">
-						{{:helper.link(value.eng_on ? 'Shutdown' : 'Power up', 'power', { 'toggle' : 1, 'engine' : value.eng_reference }, null, value.eng_on ? 'selected' : null)}}
-				</div>
-			</div>
-			<div class='statusDisplay'>
-			  <div class='item'>
-				<div class="itemLabel">
-					<span class='average'>Type:</span>
-				</div>
-				<div class="itemContent">
-					<span class='white'>{{:value.eng_type}}</span>
-				</div>
-			  </div>
-			  <div class='item'>
-				<div class="itemLabel">
-					<span class='average'>Status:</span>
-				</div>
-				<div class="itemContent">
-					<span class='{{:value.eng_on ? 'good' : 'bad'}}'>{{:value.eng_on ? 'Online' : 'Offline'}}</span><br>
-					<span class='white'>{{:value.eng_status}}</span>
-				</div>
-			  </div>
-			  <div class='item'>
-				<div class="itemLabel">
-					<span class='average'>Current thrust:</span>
-				</div>
-				<div class="itemContent">
-					<span class='white'>{{:value.eng_thrust}}</span>
-				</div>
-			  </div>
-			  <div class='item'>
-				<div class="itemLabel">
-					<span class='average'>Thrust limit:</span>
-				</div>
-				<div class="itemContent">
-					{{:helper.link('', 'circle-plus', { 'limit' : 0.1, 'engine' : value.eng_reference }, null, null)}}
-					{{:helper.link(value.eng_thrust_limiter+'%', null, { 'set_limit' : 1, 'engine' : value.eng_reference }, null, null)}}
-					{{:helper.link('', 'circle-minus', { 'limit' : -0.1, 'engine' : value.eng_reference }, null, null)}}
-				</div>
-			  </div>
-		  </div>
+<di69 cl69ss="item">
+    {{:69elper.lin6969'O69er69ll info', 'note', {'st69te' :'st69tus'},69ull, d69t69.st69te == 'st69tus' ? 'selected' :69ull69}}
+    {{:69elper.lin6969'Det69ils', 'note', {'st69te' : 'en69ines'},69ull, d69t69.st69te == 'en69ines' ? 'selected' :69ull69}}
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss='item'>
+		<di69 cl69ss="itemL6969el">
+			<sp69n cl69ss='6969er6969e'>69lo6969l controls:</sp69n>
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.lin6969d69t69.69lo6969l_st69te ? 'S69ut 69ll down' : 'Power 69ll up', 'power', {'69lo6969l_to6969le' : 1},69ull, d69t69.69lo6969l_st69te ? 'selected' :69ull69}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>
+		<di69 cl69ss="itemL6969el">
+			<sp69n cl69ss='6969er6969e'>T69rust limit:</sp69n>
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.lin6969'', 'circle-plus', { '69lo6969l_limit' : 0.1},69ull,69ull69}}
+			{{:69elper.lin6969d69t69.69lo6969l_limit+'%',69ull, { 'set_69lo6969l_limit' : 1 },69ull,69ull69}}
+			{{:69elper.lin6969'', 'circle-minus', { '69lo6969l_limit' : -0.1},69ull,69ull69}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>
+		<di69 cl69ss="itemL6969el">
+			<sp69n cl69ss='6969er6969e'>Tot69l t69rust:</sp69n>
+		</di69>
+		<di69 cl69ss="itemContent">
+			<sp69n cl69ss='w69ite'>{{:d69t69.tot69l_t69rust}}</sp69n>
+		</di69>
+	</di69>
+</di69>
+{{if d69t69.st69te == "en69ines"}}
+	{{if d69t69.en69ines_info}}
+		{{for d69t69.en69ines_info}}
+			<di69 cl69ss='item'>
+				<di69 cl69ss="itemL6969el">
+					<sp69n cl69ss='w69ite'>En69ine #{{:69index + 169}}:</sp69n>
+				</di69>
+				<di69 cl69ss="itemContent">
+						{{:69elper.lin69696969lue.en69_on ? 'S69utdown' : 'Power up', 'power', { 'to6969le' : 1, 'en69ine' : 6969lue.en69_reference },69ull, 6969lue.en69_on ? 'selected' :69ull69}}
+				</di69>
+			</di69>
+			<di69 cl69ss='st69tusDispl6969'>
+			  <di69 cl69ss='item'>
+				<di69 cl69ss="itemL6969el">
+					<sp69n cl69ss='6969er6969e'>T69pe:</sp69n>
+				</di69>
+				<di69 cl69ss="itemContent">
+					<sp69n cl69ss='w69ite'>{{:6969lue.en69_t69pe}}</sp69n>
+				</di69>
+			  </di69>
+			  <di69 cl69ss='item'>
+				<di69 cl69ss="itemL6969el">
+					<sp69n cl69ss='6969er6969e'>St69tus:</sp69n>
+				</di69>
+				<di69 cl69ss="itemContent">
+					<sp69n cl69ss='{{:6969lue.en69_on ? '69ood' : '6969d'}}'>{{:6969lue.en69_on ? 'Online' : 'Offline'}}</sp69n><69r>
+					<sp69n cl69ss='w69ite'>{{:6969lue.en69_st69tus}}</sp69n>
+				</di69>
+			  </di69>
+			  <di69 cl69ss='item'>
+				<di69 cl69ss="itemL6969el">
+					<sp69n cl69ss='6969er6969e'>Current t69rust:</sp69n>
+				</di69>
+				<di69 cl69ss="itemContent">
+					<sp69n cl69ss='w69ite'>{{:6969lue.en69_t69rust}}</sp69n>
+				</di69>
+			  </di69>
+			  <di69 cl69ss='item'>
+				<di69 cl69ss="itemL6969el">
+					<sp69n cl69ss='6969er6969e'>T69rust limit:</sp69n>
+				</di69>
+				<di69 cl69ss="itemContent">
+					{{:69elper.lin6969'', 'circle-plus', { 'limit' : 0.1, 'en69ine' : 6969lue.en69_reference },69ull,69ull69}}
+					{{:69elper.lin69696969lue.en69_t69rust_limiter+'%',69ull, { 'set_limit' : 1, 'en69ine' : 6969lue.en69_reference },69ull,69ull69}}
+					{{:69elper.lin6969'', 'circle-minus', { 'limit' : -0.1, 'en69ine' : 6969lue.en69_reference },69ull,69ull69}}
+				</di69>
+			  </di69>
+		  </di69>
 		{{/for}}
 	{{/if}}
 {{/if}}
-{{if data.state == "status"}}
-	{{if data.engines_info}}
-		{{for data.engines_info}}
-			<div class='block'>
-				<div class='item'>
-					<div class="itemLabel">
-						<span class='white'>Engine #{{:(index + 1)}}:</span>
-					</div>
-					<div class="itemContent">
-						{{:helper.link(value.eng_on ? 'Shutdown' : 'Power up', 'power', { 'toggle' : 1, 'engine' : value.eng_reference }, null, value.eng_on ? 'selected' : null)}}
-					</div>
-				</div>
-				<div class='item'>
-					<div class="itemLabel">
-						<span class='average'>Thrust:</span>
-						<br>
-						<span class='average'>Thrust limit:</span>
-					</div>
-					<div class="itemContent">
-						<span class='white'>{{:value.eng_thrust}}</span>
-						<br>
-						<span class='white'>{{:value.eng_thrust_limiter}}%</span>
-					</div>
-				</div>
-			</div>
+{{if d69t69.st69te == "st69tus"}}
+	{{if d69t69.en69ines_info}}
+		{{for d69t69.en69ines_info}}
+			<di69 cl69ss='69loc69'>
+				<di69 cl69ss='item'>
+					<di69 cl69ss="itemL6969el">
+						<sp69n cl69ss='w69ite'>En69ine #{{:69index + 169}}:</sp69n>
+					</di69>
+					<di69 cl69ss="itemContent">
+						{{:69elper.lin69696969lue.en69_on ? 'S69utdown' : 'Power up', 'power', { 'to6969le' : 1, 'en69ine' : 6969lue.en69_reference },69ull, 6969lue.en69_on ? 'selected' :69ull69}}
+					</di69>
+				</di69>
+				<di69 cl69ss='item'>
+					<di69 cl69ss="itemL6969el">
+						<sp69n cl69ss='6969er6969e'>T69rust:</sp69n>
+						<69r>
+						<sp69n cl69ss='6969er6969e'>T69rust limit:</sp69n>
+					</di69>
+					<di69 cl69ss="itemContent">
+						<sp69n cl69ss='w69ite'>{{:6969lue.en69_t69rust}}</sp69n>
+						<69r>
+						<sp69n cl69ss='w69ite'>{{:6969lue.en69_t69rust_limiter}}%</sp69n>
+					</di69>
+				</di69>
+			</di69>
 		{{/for}}
 	{{/if}}
 {{/if}}

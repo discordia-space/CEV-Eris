@@ -26,11 +26,11 @@
 	return TRUE
 
 
-// Forcibly shut down the device. To be used when something bugs out and the UI is nonfunctional.
+// Forcibly shut down the device. To be used when something bugs out and the UI is69onfunctional.
 /obj/item/modular_computer/verb/emergency_shutdown()
-	set name = "Forced Shutdown"
+	set69ame = "Forced Shutdown"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!can_interact(usr))
 		return
@@ -39,7 +39,7 @@
 		bsod = 1
 		update_icon()
 		shutdown_computer()
-		to_chat(usr, "You press a hard-reset button on \the [src]. It displays a brief debug screen before shutting down.")
+		to_chat(usr, "You press a hard-reset button on \the 69src69. It displays a brief debug screen before shutting down.")
 		spawn(2 SECONDS)
 			bsod = 0
 			update_icon()
@@ -47,9 +47,9 @@
 
 // Eject ID card from computer, if it has ID slot with card inside.
 /obj/item/modular_computer/verb/eject_id()
-	set name = "Remove ID"
+	set69ame = "Remove ID"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!can_interact(usr))
 		return
@@ -59,9 +59,9 @@
 
 // Eject USB from computer
 /obj/item/modular_computer/verb/eject_usb()
-	set name = "Eject Portable Storage"
+	set69ame = "Eject Portable Storage"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!can_interact(usr))
 		return
@@ -69,9 +69,9 @@
 	proc_eject_usb(usr)
 
 /obj/item/modular_computer/verb/eject_ai()
-	set name = "Eject AI"
+	set69ame = "Eject AI"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!can_interact(usr))
 		return
@@ -79,19 +79,19 @@
 	proc_eject_ai(usr)
 
 /obj/item/modular_computer/verb/remove_pen()
-	set name = "Remove Pen"
+	set69ame = "Remove Pen"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(!can_interact(usr))
 		return
 
 	if(istype(stored_pen))
-		to_chat(usr, SPAN_NOTICE("You remove [stored_pen] from [src]."))
+		to_chat(usr, SPAN_NOTICE("You remove 69stored_pen69 from 69src69."))
 		stored_pen.forceMove(get_turf(src))
 		if(!issilicon(usr))
 			usr.put_in_hands(stored_pen)
-		stored_pen = null
+		stored_pen =69ull
 		update_verbs()
 
 /obj/item/modular_computer/proc/proc_eject_id(mob/user)
@@ -108,8 +108,8 @@
 	card_slot.stored_card.forceMove(get_turf(src))
 	if(!issilicon(user))
 		user.put_in_hands(card_slot.stored_card)
-	to_chat(user, SPAN_NOTICE("You remove [card_slot.stored_card] from [src]."))
-	card_slot.stored_card = null
+	to_chat(user, SPAN_NOTICE("You remove 69card_slot.stored_card69 from 69src69."))
+	card_slot.stored_card =69ull
 	update_uis()
 	update_verbs()
 	update_label()
@@ -119,7 +119,7 @@
 		user = usr
 
 	if(!portable_drive)
-		to_chat(user, "There is no portable device connected to \the [src].")
+		to_chat(user, "There is69o portable device connected to \the 69src69.")
 		return
 
 	var/obj/item/computer_hardware/hard_drive/portable/PD = portable_drive
@@ -133,11 +133,11 @@
 		user = usr
 
 	if(!ai_slot || !ai_slot.stored_card)
-		to_chat(user, "There is no intellicard connected to \the [src].")
+		to_chat(user, "There is69o intellicard connected to \the 69src69.")
 		return
 
 	ai_slot.stored_card.forceMove(get_turf(src))
-	ai_slot.stored_card = null
+	ai_slot.stored_card =69ull
 	ai_slot.update_power_usage()
 	update_uis()
 
@@ -164,15 +164,15 @@
 	else if(!enabled && screen_on)
 		turn_on(user)
 
-/obj/item/modular_computer/attackby(obj/item/W, mob/user, sound_mute = FALSE)
+/obj/item/modular_computer/attackby(obj/item/W,69ob/user, sound_mute = FALSE)
 	if(istype(W, /obj/item/card/id)) // ID Card, try to insert it.
 		var/obj/item/card/id/I = W
 		if(!card_slot)
-			to_chat(user, "You try to insert [I] into [src], but it does not have an ID card slot installed.")
+			to_chat(user, "You try to insert 69I69 into 69src69, but it does69ot have an ID card slot installed.")
 			return
 
 		if(card_slot.stored_card)
-			to_chat(user, "You try to insert [I] into [src], but its ID card slot is occupied.")
+			to_chat(user, "You try to insert 69I69 into 69src69, but its ID card slot is occupied.")
 			return
 
 		if(!user.unEquip(I, src))
@@ -182,14 +182,14 @@
 		update_label()
 		update_uis()
 		update_verbs()
-		if(sound_mute == FALSE) // This is here so that the sound doesn't play every time you spawn in because ID's now get moved in to PDA's on spawn.
+		if(sound_mute == FALSE) // This is here so that the sound doesn't play every time you spawn in because ID's69ow get69oved in to PDA's on spawn.
 			playsound(loc, 'sound/machines/id_swipe.ogg', 100, 1)
-		to_chat(user, "You insert [I] into [src].")
+		to_chat(user, "You insert 69I69 into 69src69.")
 
 		return
 	if(istype(W, /obj/item/pen) && stores_pen)
 		if(istype(stored_pen))
-			to_chat(user, "<span class='notice'>There is already a pen in [src].</span>")
+			to_chat(user, "<span class='notice'>There is already a pen in 69src69.</span>")
 			return
 		if(!insert_item(W, user))
 			return
@@ -226,21 +226,21 @@
 			if(QUALITY_BOLT_TURNING)
 				var/list/components = get_all_components()
 				if(components.len)
-					to_chat(user, "Remove all components from \the [src] before disassembling it.")
+					to_chat(user, "Remove all components from \the 69src69 before disassembling it.")
 					return
 				if(tool.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_COG))
 					new /obj/item/stack/material/steel( get_turf(src.loc), steel_sheet_cost )
-					src.visible_message("\The [src] has been disassembled by [user].")
+					src.visible_message("\The 69src69 has been disassembled by 69user69.")
 					qdel(src)
 					return
 
 			if(QUALITY_WELDING)
 				if(!damage)
-					to_chat(user, "\The [src] does not require repairs.")
+					to_chat(user, "\The 69src69 does69ot require repairs.")
 					return
 				if(tool.use_tool(user, src, WORKTIME_SLOW, QUALITY_WELDING, FAILCHANCE_HARD, required_stat = STAT_COG))
 					damage = 0
-					to_chat(user, "You repair \the [src].")
+					to_chat(user, "You repair \the 69src69.")
 					return
 
 			if(QUALITY_SCREW_DRIVING)
@@ -256,7 +256,7 @@
 					for(var/X in all_components)
 						var/obj/item/TT = X
 						if(TT.name == i)
-							options[i] = image(icon = TT.icon, icon_state = TT.icon_state)
+							options69i69 = image(icon = TT.icon, icon_state = TT.icon_state)
 				var/choice
 				choice = show_radial_menu(user, src, options, radius = 32)
 				if(!choice)
@@ -275,21 +275,21 @@
 	. = ..()
 
 	if(enabled && .)
-		to_chat(user, "The time [stationtime2text()] is displayed in the corner of the screen.")
+		to_chat(user, "The time 69stationtime2text()69 is displayed in the corner of the screen.")
 
 	if(card_slot && card_slot.stored_card)
-		to_chat(user, "The [card_slot.stored_card] is inserted into it.")
+		to_chat(user, "The 69card_slot.stored_card69 is inserted into it.")
 
 /obj/item/modular_computer/MouseDrop(atom/over_object)
 	var/mob/M = usr
 	if(!istype(over_object, /obj/screen) && can_interact(M))
 		return attack_self(M)
 
-	if((src.loc == M) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, M))
-		cell = null
+	if((src.loc ==69) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell,69))
+		cell =69ull
 		update_icon()
 
-/obj/item/modular_computer/afterattack(atom/target, mob/user, proximity)
+/obj/item/modular_computer/afterattack(atom/target,69ob/user, proximity)
 	. = ..()
 	if(scanner)
 		scanner.do_on_afterattack(user, target, proximity)

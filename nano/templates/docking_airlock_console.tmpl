@@ -1,97 +1,97 @@
-<div class="item" style="padding-top: 10px">
-	<h1>{{:data.name}}</h1>
-	<div class="item">
-		<div class="itemLabel">
-			Docking Port Status:
-		</div>
-		{{if data.docking_status == "docked"}}
-			<div class="itemContent" style="float:left">
-				{{if !data.override_enabled}}
-					<span class="good" style="float:left">DOCKED</span>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<691>{{:d69t69.n69me}}</691>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Doc69in69 Port St69tus:
+		</di69>
+		{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+			<di69 cl69ss="itemContent" st69le="flo69t:left">
+				{{if !d69t69.o69erride_en6969led}}
+					<sp69n cl69ss="69ood" st69le="flo69t:left">DOC69ED</sp69n>
 				{{else}}
-					<span class="bad" style="float:left">DOCKED-OVERRIDE ENABLED</span>
+					<sp69n cl69ss="6969d" st69le="flo69t:left">DOC69ED-O69ERRIDE EN6969LED</sp69n>
 				{{/if}}
-				<span style="float:right">
-					{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
-				</span>
-			</div>
-		{{else data.docking_status == "docking"}}
-			<div class="itemContent" style="float:left">
-				{{if !data.override_enabled}}
-					<span class="average" style="float:left">DOCKING</span>
+				<sp69n st69le="flo69t:ri6969t">
+					{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
+				</sp69n>
+			</di69>
+		{{else d69t69.doc69in69_st69tus == "doc69in69"}}
+			<di69 cl69ss="itemContent" st69le="flo69t:left">
+				{{if !d69t69.o69erride_en6969led}}
+					<sp69n cl69ss="6969er6969e" st69le="flo69t:left">DOC69IN69</sp69n>
 				{{else}}
-					<span class="bad" style="float:left">DOCKING-OVERRIDE ENABLED</span>
+					<sp69n cl69ss="6969d" st69le="flo69t:left">DOC69IN69-O69ERRIDE EN6969LED</sp69n>
 				{{/if}}
-				<span style="float:right">
-					{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
-				</span>
-			</div>
-		{{else data.docking_status == "undocking"}}
-			<div class="itemContent" style="float:left">
-				{{if !data.override_enabled}}
-					<span class="average" style="float:left">UNDOCKING</span>
+				<sp69n st69le="flo69t:ri6969t">
+					{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
+				</sp69n>
+			</di69>
+		{{else d69t69.doc69in69_st69tus == "undoc69in69"}}
+			<di69 cl69ss="itemContent" st69le="flo69t:left">
+				{{if !d69t69.o69erride_en6969led}}
+					<sp69n cl69ss="6969er6969e" st69le="flo69t:left">UNDOC69IN69</sp69n>
 				{{else}}
-					<span class="bad" style="float:left">UNDOCKING-OVERRIDE ENABLED</span>
+					<sp69n cl69ss="6969d" st69le="flo69t:left">UNDOC69IN69-O69ERRIDE EN6969LED</sp69n>
 				{{/if}}
-				<span style="float:right">
-					{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
-				</span>
-			</div>
-		{{else data.docking_status == "undocked"}}
-			<div class="itemContent" style="float:left">
-				{{if !data.override_enabled}}
-					<span class="idle" style="float:left">NOT IN USE</span>
+				<sp69n st69le="flo69t:ri6969t">
+					{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
+				</sp69n>
+			</di69>
+		{{else d69t69.doc69in69_st69tus == "undoc69ed"}}
+			<di69 cl69ss="itemContent" st69le="flo69t:left">
+				{{if !d69t69.o69erride_en6969led}}
+					<sp69n cl69ss="idle" st69le="flo69t:left">NOT IN USE</sp69n>
 				{{else}}
-					<span class="bad" style="float:left">OVERRIDE ENABLED</span>
+					<sp69n cl69ss="6969d" st69le="flo69t:left">O69ERRIDE EN6969LED</sp69n>
 				{{/if}}
-				<span style="float:right">
-					{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
-				</span>
-			</div>
+				<sp69n st69le="flo69t:ri6969t">
+					{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
+				</sp69n>
+			</di69>
 		{{else}}
-			<span class="bad">ERROR</span>
-			{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
+			<sp69n cl69ss="6969d">ERROR</sp69n>
+			{{:69elper.lin6969'O69erride', '69lert', {'comm69nd' : 'to6969le_o69erride'},69ull, d69t69.o69erride_en6969led ? 'red69utton' :69ull69}}
 		{{/if}}
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Chamber Pressure:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.chamber_pressure, 0, 200, (data.chamber_pressure < 80 || data.chamber_pressure > 120) ? 'bad' : (data.chamber_pressure < 95 || data.chamber_pressure > 110) ? 'average' : 'good')}}
-			<div class="statusValue">
-				{{:data.chamber_pressure}} kPa
-			</div>
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="width: 100%">
-			{{:helper.link('Cycle to Exterior', 'arrowthickstop-1-w', {'command' : 'cycle_ext'}, (data.processing || data.airlock_disabled) ? 'disabled' : null)}}
-			{{:helper.link('Cycle to Interior', 'arrowthickstop-1-e', {'command' : 'cycle_int'}, (data.processing || data.airlock_disabled) ? 'disabled' : null)}}
-		</div>
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-		{{if data.airlock_disabled}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_ext'}, 'disabled', null)}}
-			{{:helper.link('Force interior door', 'alert', {'command' : 'force_int'}, 'disabled', null)}}
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			C6969m69er Pressure:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.displ69696969r69d69t69.c6969m69er_pressure, 0, 200, 69d69t69.c6969m69er_pressure < 80 || d69t69.c6969m69er_pressure > 12069 ? '6969d' : 69d69t69.c6969m69er_pressure < 95 || d69t69.c6969m69er_pressure > 11069 ? '6969er6969e' : '69ood'69}}
+			<di69 cl69ss="st69tus6969lue">
+				{{:d69t69.c6969m69er_pressure}} 69P69
+			</di69>
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent" st69le="widt69: 100%">
+			{{:69elper.lin6969'C69cle to Exterior', '69rrowt69ic69stop-1-w', {'comm69nd' : 'c69cle_ext'}, 69d69t69.processin69 || d69t69.69irloc69_dis6969led69 ? 'dis6969led' :69ull69}}
+			{{:69elper.lin6969'C69cle to Interior', '69rrowt69ic69stop-1-e', {'comm69nd' : 'c69cle_int'}, 69d69t69.processin69 || d69t69.69irloc69_dis6969led69 ? 'dis6969led' :69ull69}}
+		</di69>
+		<di69 cl69ss="itemContent" st69le="p69ddin69-top: 2px; widt69: 100%">
+		{{if d69t69.69irloc69_dis6969led}}
+			{{:69elper.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_ext'}, 'dis6969led',69ull69}}
+			{{:69elper.lin6969'Force interior door', '69lert', {'comm69nd' : 'force_int'}, 'dis6969led',69ull69}}
 		{{else}}
-			{{if data.interior_status.state == "open"}}
-				{{:helper.link('Force exterior door', 'alert', {'command' : 'force_ext'}, null, 'redButton')}}
+			{{if d69t69.interior_st69tus.st69te == "open"}}
+				{{:69elper.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_ext'},69ull, 'red69utton'69}}
 			{{else}}
-				{{:helper.link('Force exterior door', 'alert', {'command' : 'force_ext'}, null, data.processing ? 'yellowButton' : null)}}
+				{{:69elper.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_ext'},69ull, d69t69.processin69 ? '69ellow69utton' :69ull69}}
 			{{/if}}
-			{{if data.exterior_status.state == "open"}}
-				{{:helper.link('Force interior door', 'alert', {'command' : 'force_int'}, null, 'redButton')}}
+			{{if d69t69.exterior_st69tus.st69te == "open"}}
+				{{:69elper.lin6969'Force interior door', '69lert', {'comm69nd' : 'force_int'},69ull, 'red69utton'69}}
 			{{else}}
-				{{:helper.link('Force interior door', 'alert', {'command' : 'force_int'}, null, data.processing ? 'yellowButton' : null)}}
+				{{:69elper.lin6969'Force interior door', '69lert', {'comm69nd' : 'force_int'},69ull, d69t69.processin69 ? '69ellow69utton' :69ull69}}
 			{{/if}}
 		{{/if}}
-		</div>
-	</div>
-	<div class="item" style="padding-top: 10px; width: 100%">
-			{{:helper.link('Abort', 'cancel', {'command' : 'abort'}, (data.processing && !data.airlock_disabled) ? null : 'disabled', (data.processing && !data.airlock_disabled) ? 'redButton' : null)}}
-	</div>
-</div>
+		</di69>
+	</di69>
+	<di69 cl69ss="item" st69le="p69ddin69-top: 10px; widt69: 100%">
+			{{:69elper.lin6969'6969ort', 'c69ncel', {'comm69nd' : '6969ort'}, 69d69t69.processin69 && !d69t69.69irloc69_dis6969led69 ?69ull : 'dis6969led', 69d69t69.processin69 && !d69t69.69irloc69_dis6969led69 ? 'red69utton' :69ull69}}
+	</di69>
+</di69>

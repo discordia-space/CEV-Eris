@@ -5,7 +5,7 @@
 	organ_efficiency = list(OP_APPENDIX = 100)
 	specific_organ_size = 0
 	price_tag = 50
-	var/inflamed = 0 //Counter, not boolean
+	var/inflamed = 0 //Counter,69ot boolean
 
 /obj/item/organ/internal/appendix/update_icon()
 	..()
@@ -31,7 +31,7 @@
 				if (owner.nutrition > 100)
 					owner.vomit()
 				else
-					to_chat(owner, SPAN_DANGER("You gag as you want to throw up, but there's nothing in your stomach!"))
+					to_chat(owner, SPAN_DANGER("You gag as you want to throw up, but there's69othing in your stomach!"))
 					owner.Weaken(10)
 		if(inflamed > 600)
 			if(prob(1))

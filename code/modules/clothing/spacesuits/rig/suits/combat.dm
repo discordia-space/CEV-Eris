@@ -3,7 +3,7 @@
 	spawn_tags = null
 
 /obj/item/rig/combat
-	name = "combat hardsuit control module"
+	name = "combat hardsuit control69odule"
 	desc = "A sleek and dangerous hardsuit for active combat."
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
@@ -39,8 +39,8 @@
 	light_overlay = "sec_light"
 
 /obj/item/rig/combat/ironhammer
-	name = "ironhammer hardsuit control module"
-	desc = "Standard operative suit issued to Ironhammer mercenaries. Provides balanced overall protection against various threats and widely used on planets surface, space stations or in open space."
+	name = "ironhammer hardsuit control69odule"
+	desc = "Standard operative suit issued to Ironhammer69ercenaries. Provides balanced overall protection against69arious threats and widely used on planets surface, space stations or in open space."
 	icon_state = "ihs_rig"
 	helm_type = /obj/item/clothing/head/space/rig/combat/ironhammer
 	suit_type = "ironhammer hardsuit"
@@ -60,7 +60,7 @@
 	rarity_value = 20
 
 /obj/item/rig/hazard
-	name = "hazard hardsuit control module"
+	name = "hazard hardsuit control69odule"
 	suit_type = "hazard hardsuit"
 	desc = "A Security hardsuit designed for prolonged EVA in dangerous environments."
 	icon_state = "hazard_rig"

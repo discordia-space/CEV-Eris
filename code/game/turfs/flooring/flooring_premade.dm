@@ -39,7 +39,7 @@
 	icon_state = "oracarpet"
 	initial_flooring = /decl/flooring/carpet/oracarpet
 
-// Airless versions
+// Airless69ersions
 /turf/simulated/floor/carpet/airless
 	oxygen = 0
 	nitrogen = 0
@@ -368,8 +368,8 @@
 	nitrogen = 0
 
 /turf/simulated/floor/reinforced/airmix
-	oxygen = MOLES_O2ATMOS
-	nitrogen = MOLES_N2ATMOS
+	oxygen =69OLES_O2ATMOS
+	nitrogen =69OLES_N2ATMOS
 
 /turf/simulated/floor/reinforced/nitrogen
 	oxygen = 0
@@ -402,7 +402,7 @@
 /turf/simulated/floor/reinforced/n20/New()
 	..()
 	sleep(-1)
-	if(!air) make_air()
+	if(!air)69ake_air()
 	air.adjust_gas("sleeping_agent", ATMOSTANK_NITROUSOXIDE)
 
 
@@ -475,7 +475,7 @@
 	initial_flooring = /decl/flooring/tiling/derelict/white_big_edges
 
 ////
-// Airless versions
+// Airless69ersions
 ////
 /turf/simulated/floor/tiled/steel/airless
 	oxygen = 0

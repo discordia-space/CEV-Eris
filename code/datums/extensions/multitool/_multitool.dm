@@ -1,3 +1,3 @@
-#define MT_NOACTION 0
-#define MT_REFRESH 1
-#define MT_CLOSE 2
+#define69T_NOACTION 0
+#define69T_REFRESH 1
+#define69T_CLOSE 2

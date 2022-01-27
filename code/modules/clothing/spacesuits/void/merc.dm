@@ -15,11 +15,11 @@
 	species_restricted = list(SPECIES_HUMAN)
 	camera_networks = list(NETWORK_MERCENARY)
 	light_overlay = "helmet_light_green"
-	obscuration = MEDIUM_OBSCURATION
+	obscuration =69EDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/SCAF
 	name = "SCAF suit"
-	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to make it EVA capable but also reducing mobility."
+	desc = "A bulky antique suit of refurbished infantry armour, retrofitted with seals and coatings to69ake it EVA capable but also reducing69obility."
 	icon_state = "scaf"
 	item_state = "scaf"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
@@ -38,14 +38,14 @@
 	supporting_limbs = list()
 	helmet = /obj/item/clothing/head/space/void/SCAF
 	spawn_blacklisted = TRUE
-	slowdown = MEDIUM_SLOWDOWN * 1.5
-	stiffness = MEDIUM_STIFFNESS
+	slowdown =69EDIUM_SLOWDOWN * 1.5
+	stiffness =69EDIUM_STIFFNESS
 
 
 //Voidsuit for contractors
 /obj/item/clothing/head/space/void/merc
-	name = "blood-red voidsuit helmet"
-	desc = "An advanced helmet designed for work in special operations. This version is additionally reinforced against melee attacks."
+	name = "blood-red69oidsuit helmet"
+	desc = "An advanced helmet designed for work in special operations. This69ersion is additionally reinforced against69elee attacks."
 	icon_state = "syndiehelm"
 	item_state = "syndiehelm"
 	armor = list(
@@ -72,8 +72,8 @@
 
 /obj/item/clothing/suit/space/void/merc
 	icon_state = "syndievoidsuit"
-	name = "blood-red voidsuit"
-	desc = "An advanced suit that protects against injuries during special operations. Surprisingly flexible. This version is additionally reinforced against melee attacks."
+	name = "blood-red69oidsuit"
+	desc = "An advanced suit that protects against injuries during special operations. Surprisingly flexible. This69ersion is additionally reinforced against69elee attacks."
 	item_state = "syndie_voidsuit"
 	armor = list(
 		melee = 50,
@@ -88,7 +88,7 @@
 	resilience = 0.08
 	species_restricted = list(SPECIES_HUMAN)
 	helmet = /obj/item/clothing/head/space/void/merc
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
 /obj/item/clothing/suit/space/void/merc/equipped
 	spawn_blacklisted = TRUE

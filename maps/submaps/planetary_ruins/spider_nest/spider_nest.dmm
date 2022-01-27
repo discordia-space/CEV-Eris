@@ -1,363 +1,363 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/spider_nest)
-"c" = (
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_x = 32
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/s69ider_nest69
+"c" = 69
+/o6969/structure/closet/wall_mounted/emcloset{
+	69ixel_x = 32
 	},
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"d" = (
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/spider_nest)
-"e" = (
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"f" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/obj/structure/barricade,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"h" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"i" = (
-/obj/structure/table/standard{
-	flipped = 1
+/o6969/e6969ect/decal/cleana69le/69lood/s69latter,
+/o6969/s69awner/low69e69random,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"d" = 69
+/o6969/machiner69/door/airloc69/external,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/s69ider_nest69
+"e" = 69
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/e6969ect/window_lwall_s69awn/smarts69awn,
+/o6969/structure/69arricade,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"h" = 69
+/o6969/structure/69rille,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"i" = 69
+/o6969/structure/ta69le/standard{
+	69li6969ed = 1
 	},
-/obj/effect/spider/cocoon,
-/obj/spawner/junkfood,
-/obj/spawner/powercell,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"j" = (
-/obj/structure/table/standard{
-	flipped = 1
+/o6969/e6969ect/s69ider/cocoon,
+/o6969/s69awner/69un6969ood,
+/o6969/s69awner/69owercell,
+/o6969/s69awner/69un69,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/structure/ta69le/standard{
+	69li6969ed = 1
 	},
-/obj/item/pen,
-/obj/spawner/junk,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"k" = (
-/obj/structure/filingcabinet,
-/obj/effect/decal/cleanable/cobweb,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"l" = (
-/obj/structure/bed/chair/comfy/blue,
-/obj/item/pen,
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"m" = (
-/obj/spawner/junk,
-/turf/template_noop,
-/area/template_noop)
-"n" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"o" = (
-/obj/structure/table/standard{
-	flipped = 1
+/o6969/item/69en,
+/o6969/s69awner/69un69,
+/o6969/e6969ect/s69ider/stic6969we69,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/structure/69ilin69ca69inet,
+/o6969/e6969ect/decal/cleana69le/co69we69,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"l" = 69
+/o6969/structure/69ed/chair/com6969/69lue,
+/o6969/item/69en,
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"m" = 69
+/o6969/s69awner/69un69,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"n" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"o" = 69
+/o6969/structure/ta69le/standard{
+	69li6969ed = 1
 	},
-/obj/spawner/junk,
-/obj/spawner/pack/tech_loot,
-/obj/item/paper,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"p" = (
-/obj/landmark/corpse/doctor,
-/obj/effect/decal/cleanable/blood,
-/obj/item/material/shard,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/vomit,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/spider_nest)
-"q" = (
-/obj/item/melee/telebaton,
-/obj/item/seeds/random,
-/obj/effect/decal/cleanable/spiderling_remains,
-/obj/structure/fireaxecabinet{
-	pixel_x = -32
+/o6969/s69awner/69un69,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/item/69a69er,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/landmar69/cor69se/doctor,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/item/material/shard,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/vomit,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/item/melee/tele69aton,
+/o6969/item/seeds/random,
+/o6969/e6969ect/decal/cleana69le/s69iderlin69_remains,
+/o6969/structure/69ireaxeca69inet{
+	69ixel_x = -32
 	},
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"r" = (
-/obj/item/paper_bin,
-/obj/spawner/junk,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"s" = (
-/obj/machinery/seed_storage/random,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"t" = (
-/obj/item/paper,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"u" = (
-/obj/effect/spider/stickyweb,
-/obj/item/paper,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"v" = (
-/obj/spawner/junk,
-/obj/effect/spider/stickyweb,
-/obj/item/seeds/random,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"w" = (
-/obj/effect/decal/cleanable/spiderling_remains,
-/obj/effect/decal/cleanable/blood,
-/mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"x" = (
-/obj/structure/grille/broken,
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/effect/decal/cleanable/blood/drip,
-/mob/living/carbon/superior_animal/giant_spider/nurse,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"y" = (
-/obj/spawner/junk,
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"z" = (
-/obj/effect/decal/cleanable/blood,
-/obj/item/paper,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"A" = (
-/obj/spawner/pack/tech_loot,
-/obj/structure/sign/department/xenolab{
-	pixel_y = 32
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"r" = 69
+/o6969/item/69a69er_69in,
+/o6969/s69awner/69un69,
+/o6969/e6969ect/s69ider/stic6969we69,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"s" = 69
+/o6969/machiner69/seed_stora69e/random,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"t" = 69
+/o6969/item/69a69er,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"u" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/item/69a69er,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"v" = 69
+/o6969/s69awner/69un69,
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/item/seeds/random,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"w" = 69
+/o6969/e6969ect/decal/cleana69le/s69iderlin69_remains,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"x" = 69
+/o6969/structure/69rille/69ro69en,
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/69i69s/lim69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider/nurse,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/s69awner/69un69,
+/o6969/e6969ect/s69ider/stic6969we69,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"z" = 69
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/item/69a69er,
+/o6969/s69awner/69ac69/tech_loot,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"A" = 69
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/structure/si69n/de69artment/xenola69{
+	69ixel_69 = 32
 	},
-/turf/template_noop,
-/area/template_noop)
-"B" = (
-/obj/spawner/booze,
-/obj/spawner/voidsuit/low_chance,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"C" = (
-/obj/spawner/pack/tech_loot,
-/mob/living/carbon/superior_animal/giant_spider/hunter,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"D" = (
-/obj/structure/bookcase/manuals/research_and_development,
-/obj/effect/decal/cleanable/cobweb2,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"E" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/spider/cocoon,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/reinforced,
-/area/map_template/spider_nest)
-"F" = (
-/obj/structure/bed/chair/comfy/purp,
-/obj/effect/decal/cleanable/blood/drip,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"G" = (
-/obj/structure/grille/broken,
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"H" = (
-/obj/structure/grille/broken,
-/obj/spawner/junk,
-/obj/effect/decal/cleanable/blood,
-/obj/spawner/pack/tech_loot,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
-"I" = (
-/obj/item/paper,
-/obj/effect/decal/cleanable/blood/drip,
-/mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"J" = (
-/obj/effect/spider/stickyweb,
-/obj/machinery/door/airlock/external,
-/turf/simulated/floor/tiled/steel/techfloor,
-/area/map_template/spider_nest)
-"K" = (
-/obj/spawner/junk,
-/obj/effect/decal/cleanable/blood/gibs/body,
-/turf/simulated/floor/reinforced,
-/area/map_template/spider_nest)
-"L" = (
-/obj/spawner/pack/tech_loot,
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/gibs/limb,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/reinforced,
-/area/map_template/spider_nest)
-"M" = (
-/obj/effect/decal/cleanable/blood,
-/turf/template_noop,
-/area/template_noop)
-"N" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"O" = (
-/obj/effect/decal/cleanable/spiderling_remains,
-/turf/template_noop,
-/area/template_noop)
-"P" = (
-/obj/effect/decal/cleanable/blood/drip,
-/turf/template_noop,
-/area/template_noop)
-"R" = (
-/obj/structure/sign/biohazard,
-/turf/simulated/wall/r_wall,
-/area/map_template/spider_nest)
-"W" = (
-/obj/effect/spider/stickyweb,
-/obj/spawner/voidsuit,
-/obj/spawner/pack/tech_loot,
-/obj/effect/decal/cleanable/vomit,
-/obj/structure/extinguisher_cabinet{
-	pixel_x = -32
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/s69awner/69ooze,
+/o6969/s69awner/voidsuit/low_chance,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"C" = 69
+/o6969/s69awner/69ac69/tech_loot,
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider/hunter,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"D" = 69
+/o6969/structure/69oo69case/manuals/research_and_develo69ment,
+/o6969/e6969ect/decal/cleana69le/co69we692,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"E" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/s69ider/cocoon,
+/o6969/s69awner/69ac69/tech_loot,
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/structure/69ed/chair/com6969/69ur69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/o6969/e6969ect/decal/cleana69le/dirt,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/structure/69rille/69ro69en,
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"H" = 69
+/o6969/structure/69rille/69ro69en,
+/o6969/s69awner/69un69,
+/o6969/e6969ect/decal/cleana69le/69lood,
+/o6969/s69awner/69ac69/tech_loot,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
+"I" = 69
+/o6969/item/69a69er,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/machiner69/door/airloc69/external,
+/tur69/simulated/69loor/tiled/steel/tech69loor,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/s69awner/69un69,
+/o6969/e6969ect/decal/cleana69le/69lood/69i69s/69od69,
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/s69ider_nest69
+"L" = 69
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/69i69s/lim69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/s69ider_nest69
+"M" = 69
+/o6969/e6969ect/decal/cleana69le/69lood,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"N" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"O" = 69
+/o6969/e6969ect/decal/cleana69le/s69iderlin69_remains,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"R" = 69
+/o6969/structure/si69n/69iohazard,
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/s69ider_nest69
+"W" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/s69awner/voidsuit,
+/o6969/s69awner/69ac69/tech_loot,
+/o6969/e6969ect/decal/cleana69le/vomit,
+/o6969/structure/extin69uisher_ca69inet{
+	69ixel_x = -32
 	},
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"X" = (
-/obj/structure/filingcabinet,
-/turf/simulated/floor/tiled/cafe,
-/area/map_template/spider_nest)
-"Y" = (
-/obj/effect/spider/stickyweb,
-/obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/reinforced,
-/area/map_template/spider_nest)
-"Z" = (
-/obj/effect/spider/stickyweb,
-/turf/simulated/floor/plating,
-/area/map_template/spider_nest)
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"X" = 69
+/o6969/structure/69ilin69ca69inet,
+/tur69/simulated/69loor/tiled/ca69e,
+/area/ma69_tem69late/s69ider_nest69
+"69" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/o6969/e6969ect/decal/cleana69le/69lood/dri69,
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/s69ider_nest69
+"Z" = 69
+/o6969/e6969ect/s69ider/stic6969we69,
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/s69ider_nest69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
-b
-b
-b
-b
-b
-b
-b
+69
+69
+69
+69
+69
+69
+69
 m
 "}
-(2,1,1) = {"
-b
-b
+692,1,169 = {"
+69
+69
 s
-q
+69
 W
 h
-K
-b
+69
+69
 a
 "}
-(3,1,1) = {"
-b
-k
+693,1,169 = {"
+69
+69
 t
 v
 w
 x
 L
-b
+69
 a
 "}
-(4,1,1) = {"
-f
+694,1,169 = {"
+69
 i
 l
-B
-y
-b
-b
+69
+69
+69
+69
 R
 M
 "}
-(5,1,1) = {"
-f
+695,1,169 = {"
+69
 o
 e
 z
 N
 d
-p
-J
-P
+69
+69
+69
 "}
-(6,1,1) = {"
-f
-j
+696,1,169 = {"
+69
+69
 u
 n
-F
-b
-b
-b
+69
+69
+69
+69
 A
 "}
-(7,1,1) = {"
-b
+697,1,169 = {"
+69
 X
 r
 Z
 I
-G
-Y
-b
+69
+69
+69
 O
 "}
-(8,1,1) = {"
-b
-b
+698,1,169 = {"
+69
+69
 D
 C
 c
 H
 E
-b
+69
 m
 "}
-(9,1,1) = {"
+699,1,169 = {"
 m
-b
-b
-b
-b
-b
-b
-b
+69
+69
+69
+69
+69
+69
+69
 a
 "}

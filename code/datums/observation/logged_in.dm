@@ -1,10 +1,10 @@
 //	Observer Pattern Implementation: Logged in
 //		Registration type: /mob
 //
-//		Raised when: A mob logs in (not client)
+//		Raised when: A69ob logs in (not client)
 //
 //		Arguments that the called proc should expect:
-//			/mob/joiner: The mob that has logged in
+//			/mob/joiner: The69ob that has logged in
 
 GLOBAL_DATUM_INIT(logged_in_event, /decl/observ/logged_in, new)
 

@@ -1,4 +1,4 @@
 /turf/unsimulated
 	name = "command"
-	oxygen = MOLES_O2STANDARD
-	nitrogen = MOLES_N2STANDARD
+	oxy69en =69OLES_O2STANDARD
+	nitro69en =69OLES_N2STANDARD

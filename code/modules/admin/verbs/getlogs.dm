@@ -2,22 +2,22 @@
 	HOW DO I LOG RUNTIMES?
 	Firstly, start dreamdeamon if it isn't already running. Then select "world>Log Session" (or press the F3 key)
 	navigate the popup window to the data/logs/runtime/ folder from where your tgstation .dmb is located.
-	(you may have to make this folder yourself)
+	(you69ay have to69ake this folder yourself)
 
-	OPTIONAL: 	you can select the little checkbox down the bottom to make dreamdeamon save the log everytime you
+	OPTIONAL: 	you can select the little checkbox down the bottom to69ake dreamdeamon save the log everytime you
 				start a world. Just remember to repeat these steps with a new name when you update to a new revision!
 
 	Save it with the name of the revision your server uses (e.g. r3459.txt).
-	Game Masters will now be able to grant access any runtime logs you have archived this way!
-	This will allow us to gather information on bugs across multiple servers and make maintaining the TG
+	Game69asters will now be able to grant access any runtime logs you have archived this way!
+	This will allow us to gather information on bugs across69ultiple servers and69ake69aintaining the TG
 	codebase for the entire /TG/station commuity a TONNE easier :3 Thanks for your help!
 */
 
 
-//This proc allows Game Masters to grant a client access to the .getruntimelog verb
+//This proc allows Game69asters to grant a client access to the .getruntimelog69erb
 //Permissions expire at the end of each round.
-//Runtimes can be used to meta or spot game-crashing exploits so it's advised to only grant coders that
-//you trust access. Also, it may be wise to ensure that they are not going to play in the current round.
+//Runtimes can be used to69eta or spot game-crashing exploits so it's advised to only grant coders that
+//you trust access. Also, it69ay be wise to ensure that they are not going to play in the current round.
 ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN, FALSE)
 //allows us to give access to runtime logs to somebody
 /client/proc/giveruntimelog()
@@ -26,7 +26,7 @@ ADMIN_VERB_ADD(/client/proc/giveruntimelog, R_ADMIN, FALSE)
 	set category = null
 
 	if(!src.holder)
-		to_chat(src, "<font color='red'>Only Admins may use this command.</font>")
+		to_chat(src, "<font color='red'>Only Admins69ay use this command.</font>")
 		return
 
 	var/client/target = input(src,"Choose somebody to grant access to the server's runtime logs (permissions expire at the end of each round):","Grant Permissions",null) as null|anything in clients
@@ -55,9 +55,9 @@ ADMIN_VERB_ADD(/client/proc/getruntimelog, R_DEBUG, FALSE)
 	if(file_spam_check())
 		return
 
-	message_admins("[key_name_admin(src)] accessed file: [path]")
+	message_admins("69key_name_admin(src)69 accessed file: 69path69")
 	src << run( file(path) )
-	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
+	to_chat(src, "Attempting to send file, this69ay take a fair few69inutes if the file is69ery large.")
 	return
 
 
@@ -76,9 +76,9 @@ ADMIN_VERB_ADD(/client/proc/getserverlog, R_ADMIN, FALSE)
 	if(file_spam_check())
 		return
 
-	message_admins("[key_name_admin(src)] accessed file: [path]")
+	message_admins("69key_name_admin(src)69 accessed file: 69path69")
 	src << run( file(path) )
-	to_chat(src, "Attempting to send file, this may take a fair few minutes if the file is very large.")
+	to_chat(src, "Attempting to send file, this69ay take a fair few69inutes if the file is69ery large.")
 	return
 
 
@@ -92,11 +92,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/view_txt_log, R_ADMIN, FALSE)
 	set name = "Show Server Log"
 	set desc = "Shows today's server log."
 
-	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")].log"
+	var/path = "data/logs/69time2text(world.realtime,"YYYY/MM-Month/DD-Day")69.log"
 	if( fexists(path) )
 		src << run( file(path) )
 	else
-		to_chat(src, "<font color='red'>Error: view_txt_log(): File not found/Invalid path([path]).</font>")
+		to_chat(src, "<font color='red'>Error:69iew_txt_log(): File not found/Invalid path(69path69).</font>")
 		return
 
 	return
@@ -109,11 +109,11 @@ ADMIN_VERB_ADD(/datum/admins/proc/view_atk_log, R_ADMIN, FALSE)
 	set name = "Show Server Attack Log"
 	set desc = "Shows today's server attack log."
 
-	var/path = "data/logs/[time2text(world.realtime,"YYYY/MM-Month/DD-Day")] Attack.log"
+	var/path = "data/logs/69time2text(world.realtime,"YYYY/MM-Month/DD-Day")69 Attack.log"
 	if( fexists(path) )
 		src << run( file(path) )
 	else
-		to_chat(src, "<font color='red'>Error: view_atk_log(): File not found/Invalid path([path]).</font>")
+		to_chat(src, "<font color='red'>Error:69iew_atk_log(): File not found/Invalid path(69path69).</font>")
 		return
 	usr << run( file(path) )
 

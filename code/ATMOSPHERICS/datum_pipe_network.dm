@@ -2,7 +2,7 @@
 
 datum/pipe_network
 	var/list/datum/gas_mixture/gases = list() //All of the gas_mixtures continuously connected in this network
-	var/volume = 0	//caches the total volume for atmos machines to use in gas calculations
+	var/volume = 0	//caches the total69olume for atmos69achines to use in gas calculations
 
 	var/list/obj/machinery/atmospherics/normal_members = list()
 	var/list/datum/pipeline/line_members = list()
@@ -37,13 +37,13 @@ datum/pipe_network
 			update = 0
 			reconcile_air() //equalize_gases(gases)
 
-		//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat - Mport
+		//Give pipelines their process call for pressure checking and what not. Have to remove pressure checks for the time being as pipes dont radiate heat -69port
 		//for(var/datum/pipeline/line_member in line_members)
 		//	line_member.Process()
 
 	proc/build_network(obj/machinery/atmospherics/start_normal, obj/machinery/atmospherics/reference)
-		//Purpose: Generate membership roster
-		//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
+		//Purpose: Generate69embership roster
+		//Notes: Assuming that69embers will add themselves to appropriate roster in network_expand()
 
 		if(!start_normal)
 			qdel(src)
@@ -75,7 +75,7 @@ datum/pipe_network
 		return 1
 
 	proc/update_network_gases()
-		//Go through membership roster and make sure gases is up to date
+		//Go through69embership roster and69ake sure gases is up to date
 
 		gases = list()
 		volume = 0

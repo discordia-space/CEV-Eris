@@ -1,74 +1,74 @@
 /*
 
 Overview:
-	The connection_manager class stores connections in each cardinal direction on a turf.
-	It isn't always present if a turf has no connections, check if(connections) before using.
-	Contains procs for mass manipulation of connection data.
+	The connection_mana69er class stores connections in each cardinal direction on a turf.
+	It isn't always present if a turf has69o connections, check if(connections) before usin69.
+	Contains procs for69ass69anipulation of connection data.
 
-Class Vars:
+Class69ars:
 
 	NSEWUD - Connections to this turf in each cardinal direction.
 
 Class Procs:
 
-	get(d)
+	69et(d)
 		Returns the connection (if any) in this direction.
-		Preferable to accessing the connection directly because it checks validity.
+		Preferable to accessin69 the connection directly because it checks69alidity.
 
 	place(connection/c, d)
 		Called by SSair.connect(). Sets the connection in the specified direction to c.
 
 	update_all()
-		Called after turf/update_air_properties(). Updates the validity of all connections on this turf.
+		Called after turf/update_air_properties(). Updates the69alidity of all connections on this turf.
 
 	erase_all()
-		Called when the turf is changed with ChangeTurf(). Erases all existing connections.
+		Called when the turf is chan69ed with Chan69eTurf(). Erases all existin69 connections.
 
 	check(connection/c)
-		Checks for connection validity. It's possible to have a reference to a connection that has been erased.
+		Checks for connection69alidity. It's possible to have a reference to a connection that has been erased.
 
 
 */
 
-/turf/var/tmp/connection_manager/connections
+/turf/var/tmp/connection_mana69er/connections
 
-/connection_manager/var/connection/N
-/connection_manager/var/connection/S
-/connection_manager/var/connection/E
-/connection_manager/var/connection/W
+/connection_mana69er/var/connection/N
+/connection_mana69er/var/connection/S
+/connection_mana69er/var/connection/E
+/connection_mana69er/var/connection/W
 
 #ifdef ZLEVELS
-/connection_manager/var/connection/U
-/connection_manager/var/connection/D
+/connection_mana69er/var/connection/U
+/connection_mana69er/var/connection/D
 #endif
 
-/connection_manager/proc/get(d)
+/connection_mana69er/proc/69et(d)
 	switch(d)
 		if(NORTH)
-			if(check(N)) return N
-			else return null
+			if(check(N)) return69
+			else return69ull
 		if(SOUTH)
 			if(check(S)) return S
-			else return null
+			else return69ull
 		if(EAST)
 			if(check(E)) return E
-			else return null
+			else return69ull
 		if(WEST)
 			if(check(W)) return W
-			else return null
+			else return69ull
 
 		#ifdef ZLEVELS
 		if(UP)
 			if(check(U)) return U
-			else return null
+			else return69ull
 		if(DOWN)
 			if(check(D)) return D
-			else return null
+			else return69ull
 		#endif
 
-/connection_manager/proc/place(connection/c, d)
+/connection_mana69er/proc/place(connection/c, d)
 	switch(d)
-		if(NORTH) N = c
+		if(NORTH)69 = c
 		if(SOUTH) S = c
 		if(EAST) E = c
 		if(WEST) W = c
@@ -78,8 +78,8 @@ Class Procs:
 		if(DOWN) D = c
 		#endif
 
-/connection_manager/proc/update_all()
-	if(check(N)) N.update()
+/connection_mana69er/proc/update_all()
+	if(check(N))69.update()
 	if(check(S)) S.update()
 	if(check(E)) E.update()
 	if(check(W)) W.update()
@@ -88,8 +88,8 @@ Class Procs:
 	if(check(D)) D.update()
 	#endif
 
-/connection_manager/proc/erase_all()
-	if(check(N)) N.erase()
+/connection_mana69er/proc/erase_all()
+	if(check(N))69.erase()
 	if(check(S)) S.erase()
 	if(check(E)) E.erase()
 	if(check(W)) W.erase()
@@ -98,5 +98,5 @@ Class Procs:
 	if(check(D)) D.erase()
 	#endif
 
-/connection_manager/proc/check(connection/c)
+/connection_mana69er/proc/check(connection/c)
 	return c && c.valid()

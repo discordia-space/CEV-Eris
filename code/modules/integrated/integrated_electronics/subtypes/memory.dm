@@ -14,20 +14,20 @@
 	..()
 	var/i
 	for(i = 1, i <= outputs.len, i++)
-		var/datum/integrated_io/O = outputs[i]
+		var/datum/integrated_io/O = outputs69i69
 		var/data = "nothing"
 		if(isweakref(O.data))
 			var/datum/d = O.data_as_type(/datum)
 			if(d)
-				data = "[d]"
+				data = "69d69"
 		else if(!isnull(O.data))
 			data = O.data
-		to_chat(user, "\The [src] has [data] saved to address [i].")
+		to_chat(user, "\The 69src69 has 69data69 saved to address 69i69.")
 
 /obj/item/integrated_circuit/memory/do_work()
 	for(var/i = 1 to inputs.len)
-		var/datum/integrated_io/I = inputs[i]
-		var/datum/integrated_io/O = outputs[i]
+		var/datum/integrated_io/I = inputs69i69
+		var/datum/integrated_io/O = outputs69i69
 		O.data = I.data
 
 /obj/item/integrated_circuit/memory/medium
@@ -42,7 +42,7 @@
 	power_draw_per_use = 2
 
 /obj/item/integrated_circuit/memory/large
-	name = "large memory circuit"
+	name = "large69emory circuit"
 	desc = "This big circuit can hold eight pieces of data."
 	icon_state = "memory8"
 	w_class = ITEM_SIZE_SMALL
@@ -70,8 +70,8 @@
 	power_draw_per_use = 4
 
 /obj/item/integrated_circuit/memory/huge
-	name = "large memory stick"
-	desc = "This stick of memory can hold up up to sixteen pieces of data."
+	name = "large69emory stick"
+	desc = "This stick of69emory can hold up up to sixteen pieces of data."
 	icon_state = "memory16"
 	w_class = ITEM_SIZE_NORMAL
 	complexity = 16
@@ -126,42 +126,42 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
 /obj/item/integrated_circuit/memory/constant/do_work()
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	O.push_data()
 
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
-	var/datum/integrated_io/O = outputs[1]
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
+	var/datum/integrated_io/O = outputs69169
+	var/type_to_use = input("Please choose a type to use.","69src69 type setting") as69ull|anything in list("string","number","ref", "null")
 	if(!CanInteract(user,GLOB.physical_state))
 		return
 
-	var/new_data = null
+	var/new_data =69ull
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = input("Now type in a string.","[src] string writing") as null|text
+			new_data = input("Now type in a string.","69src69 string writing") as69ull|text
 			if(istext(new_data) && CanInteract(user,GLOB.physical_state))
-				O.data = new_data
-				to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()]."))
+				O.data =69ew_data
+				to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to 69O.display_data()69."))
 		if("number")
 			accepting_refs = 0
-			new_data = input("Now type in a number.","[src] number writing") as null|num
+			new_data = input("Now type in a69umber.","69src6969umber writing") as69ull|num
 			if(isnum(new_data) && CanInteract(user,GLOB.physical_state))
-				O.data = new_data
-				to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to [O.display_data()]."))
+				O.data =69ew_data
+				to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to 69O.display_data()69."))
 		if("ref")
 			accepting_refs = 1
-			to_chat(user, SPAN_NOTICE("You turn \the [src]'s ref scanner on.  Slide it across \
-			an object for a ref of that object to save it in memory."))
+			to_chat(user, SPAN_NOTICE("You turn \the 69src69's ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in69emory."))
 		if("null")
-			O.data = null
-			to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to absolutely nothing."))
+			O.data =69ull
+			to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to absolutely69othing."))
 
-/obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/integrated_circuit/memory/constant/afterattack(atom/target,69ob/living/user, proximity)
 	if(accepting_refs && proximity)
-		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/O = outputs69169
 		O.data = weakref(target)
-		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
-		to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to a reference to [O.display_data()].  The ref scanner is \
+		visible_message(SPAN_NOTICE("69user69 slides \a 69src69's over \the 69target69."))
+		to_chat(user, SPAN_NOTICE("You set \the 69src69's69emory to a reference to 69O.display_data()69.  The ref scanner is \
 		now off."))
 		accepting_refs = 0

@@ -24,9 +24,9 @@
 	var/placement_explosion_flash = 3
 
 	var/list/floor_tiles = list()
-	var/turf/origin = null
+	var/turf/origin =69ull
 
-/datum/random_map/droppod/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/supplied_drop, var/list/supplied_drops, var/automated)
+/datum/random_map/droppod/New(var/seed,69ar/tx,69ar/ty,69ar/tz,69ar/tlx,69ar/tly,69ar/do_not_apply,69ar/do_not_announce,69ar/supplied_drop,69ar/list/supplied_drops,69ar/automated)
 
 	if(supplied_drop)
 		drop_type = supplied_drop
@@ -38,19 +38,19 @@
 
 	origin = locate(tx,ty,tz)
 
-	//Make sure there is a clear midpoint.
+	//Make sure there is a clear69idpoint.
 	if(limit_x % 2 == 0) limit_x++
 	if(limit_y % 2 == 0) limit_y++
 	..()
 
 	//Clean up this datum once we're done
-	qdel(src)
+	69del(src)
 
 /datum/random_map/droppod/generate_map()
 
-	// No point calculating these 200 times.
-	var/x_midpoint = n_ceil(limit_x / 2)
-	var/y_midpoint = n_ceil(limit_y / 2)
+	//69o point calculating these 200 times.
+	var/x_midpoint =69_ceil(limit_x / 2)
+	var/y_midpoint =69_ceil(limit_y / 2)
 
 	// Draw walls/floors/doors.
 	for(var/x = 1, x <= limit_x, x++)
@@ -63,59 +63,59 @@
 			var/on_y_bound = (y == 1 || y == limit_x)
 			var/draw_corners = (limit_x < 5 && limit_y < 5)
 			if(on_x_bound || on_y_bound)
-				// Draw access points in midpoint of each wall.
+				// Draw access points in69idpoint of each wall.
 				if(x == x_midpoint || y == y_midpoint)
-					map[current_cell] = SD_DOOR_TILE
+					map69current_cell69 = SD_DOOR_TILE
 				// Draw the actual walls.
 				else if(draw_corners || (!on_x_bound || !on_y_bound))
-					map[current_cell] = SD_WALL_TILE
+					map69current_cell69 = SD_WALL_TILE
 				//Don't draw the far corners on large pods.
 				else
-					map[current_cell] = SD_EMPTY_TILE
+					map69current_cell69 = SD_EMPTY_TILE
 			else
 				// Fill in the corners.
 				if((x == 2 || x == (limit_x-1)) && (y == 2 || y == (limit_y-1)))
-					map[current_cell] = SD_WALL_TILE
+					map69current_cell69 = SD_WALL_TILE
 				// Fill in EVERYTHING ELSE.
 				else
-					map[current_cell] = SD_FLOOR_TILE
+					map69current_cell69 = SD_FLOOR_TILE
 
 	// Draw the drop contents.
 	var/current_cell = get_map_cell(x_midpoint,y_midpoint)
 	if(current_cell)
-		map[current_cell] = SD_SUPPLY_TILE
+		map69current_cell69 = SD_SUPPLY_TILE
 	return 1
 
 /datum/random_map/droppod/apply_to_map()
 	if(placement_explosion_dev || placement_explosion_heavy || placement_explosion_light || placement_explosion_flash)
-		var/turf/T = locate((origin_x + n_ceil(limit_x / 2)-1), (origin_y + n_ceil(limit_y / 2)-1), origin_z)
+		var/turf/T = locate((origin_x +69_ceil(limit_x / 2)-1), (origin_y +69_ceil(limit_y / 2)-1), origin_z)
 		if(istype(T))
 			explosion(T, placement_explosion_dev, placement_explosion_heavy, placement_explosion_light, placement_explosion_flash)
-			sleep(15) // Let the explosion finish proccing before we ChangeTurf(), otherwise it might destroy our spawned objects.
+			sleep(15) // Let the explosion finish proccing before we ChangeTurf(), otherwise it69ight destroy our spawned objects.
 	return ..()
 
 /datum/random_map/droppod/get_appropriate_path(var/value)
-	if(value == SD_FLOOR_TILE || value == SD_SUPPLY_TILE)
+	if(value == SD_FLOOR_TILE ||69alue == SD_SUPPLY_TILE)
 		return floor_type
 	else if(value == SD_WALL_TILE)
 		return wall_type
 	else if(value == SD_DOOR_TILE )
 		return wall_type
-	return null
+	return69ull
 
 // Pods are circular. Get the direction this object is facing from the center of the pod.
-/datum/random_map/droppod/get_spawn_dir(var/x, var/y)
-	var/x_midpoint = n_ceil(limit_x / 2)
-	var/y_midpoint = n_ceil(limit_y / 2)
+/datum/random_map/droppod/get_spawn_dir(var/x,69ar/y)
+	var/x_midpoint =69_ceil(limit_x / 2)
+	var/y_midpoint =69_ceil(limit_y / 2)
 	if(x == x_midpoint && y == y_midpoint)
-		return null
+		return69ull
 	var/turf/target = locate(origin_x+x-1, origin_y+y-1, origin_z)
 	var/turf/middle = locate(origin_x+x_midpoint-1, origin_y+y_midpoint-1, origin_z)
 	if(!istype(target) || !istype(middle))
-		return null
+		return69ull
 	return get_dir(middle, target)
 
-/datum/random_map/droppod/get_additional_spawns(var/value, var/turf/T, var/spawn_dir)
+/datum/random_map/droppod/get_additional_spawns(var/value,69ar/turf/T,69ar/spawn_dir)
 
 	// Splatter anything under us that survived the explosion.
 	if(value != SD_EMPTY_TILE && T.contents.len)
@@ -125,34 +125,34 @@
 
 	// Also spawn doors and loot.
 	if(value == SD_DOOR_TILE)
-		var/obj/structure/S = new door_type(T, auto_open_doors, origin)
+		var/obj/structure/S =69ew door_type(T, auto_open_doors, origin)
 		S.set_dir(spawn_dir)
 
 	else if(value == SD_SUPPLY_TILE)
 		get_spawned_drop(T)
 
 /datum/random_map/droppod/proc/get_spawned_drop(var/turf/T)
-	var/obj/structure/bed/chair/C = new(T)
+	var/obj/structure/bed/chair/C =69ew(T)
 	C.set_light(3, l_color = "#CC0000")
 	var/mob/living/drop
-	// This proc expects a list of mobs to be passed to the spawner.
-	// Use the supply pod if you don't want to drop mobs.
-	// Mobs will not double up; if you want multiple mobs, you
-	// will need multiple drop tiles.
+	// This proc expects a list of69obs to be passed to the spawner.
+	// Use the supply pod if you don't want to drop69obs.
+	//69obs will69ot double up; if you want69ultiple69obs, you
+	// will69eed69ultiple drop tiles.
 	if(islist(supplied_drop_types) && supplied_drop_types.len)
 		while(supplied_drop_types.len)
 			drop = pick(supplied_drop_types)
 			supplied_drop_types -= drop
 			if(istype(drop))
-				drop.tag = null
+				drop.tag =69ull
 				if(drop.buckled)
-					drop.buckled = null
+					drop.buckled =69ull
 				drop.forceMove(T)
 	else if(ispath(drop_type))
-		drop = new drop_type(T)
+		drop =69ew drop_type(T)
 		if(istype(drop))
 			if(drop.buckled)
-				drop.buckled = null
+				drop.buckled =69ull
 			drop.forceMove(T)
 
 
@@ -160,7 +160,7 @@ ADMIN_VERB_ADD(/datum/admins/proc/call_drop_pod, R_FUN, FALSE)
 /datum/admins/proc/call_drop_pod()
 	set category = "Fun"
 	set desc = "Call an immediate drop pod on your location."
-	set name = "Call Drop Pod"
+	set69ame = "Call Drop Pod"
 
 	if(!check_rights(R_FUN)) return
 
@@ -168,18 +168,18 @@ ADMIN_VERB_ADD(/datum/admins/proc/call_drop_pod, R_FUN, FALSE)
 	var/mob/living/spawned_mob
 	var/list/spawned_mobs = list()
 
-	var/spawn_path = input("Select a mob type.", "Drop Pod Selection", null) as null|anything in typesof(/mob/living)-/mob/living
+	var/spawn_path = input("Select a69ob type.", "Drop Pod Selection",69ull) as69ull|anything in typesof(/mob/living)-/mob/living
 	if(!spawn_path)
 		return
 
-	if(alert("Do you wish the mob to have a player?",,"No","Yes") == "No")
-		var/spawn_count = input("How many mobs do you wish the pod to contain?", "Drop Pod Selection", null) as num
+	if(alert("Do you wish the69ob to have a player?",,"No","Yes") == "No")
+		var/spawn_count = input("How69any69obs do you wish the pod to contain?", "Drop Pod Selection",69ull) as69um
 		if(spawn_count <= 0)
 			return
 		for(var/i=0;i<spawn_count;i++)
-			var/mob/living/M = new spawn_path()
+			var/mob/living/M =69ew spawn_path()
 			M.tag = "awaiting drop"
-			spawned_mobs |= M
+			spawned_mobs |=69
 	else
 		var/list/candidates = list()
 		for(var/client/player in clients)
@@ -187,33 +187,33 @@ ADMIN_VERB_ADD(/datum/admins/proc/call_drop_pod, R_FUN, FALSE)
 				candidates |= player
 
 		if(!candidates.len)
-			to_chat(usr, "There are no candidates for a drop pod launch.")
+			to_chat(usr, "There are69o candidates for a drop pod launch.")
 			return
 
-		// Get a player and a mob type.
-		selected_player = input("Select a player.", "Drop Pod Selection", null) as null|anything in candidates
+		// Get a player and a69ob type.
+		selected_player = input("Select a player.", "Drop Pod Selection",69ull) as69ull|anything in candidates
 		if(!selected_player)
 			return
 
-		// Spawn the mob in nullspace for now.
-		spawned_mob = new spawn_path()
+		// Spawn the69ob in69ullspace for69ow.
+		spawned_mob =69ew spawn_path()
 		spawned_mob.tag = "awaiting drop"
 
-		// Equip them, if they are human and it is desirable.
+		// E69uip them, if they are human and it is desirable.
 /*		if(ishuman(spawned_mob))
-			var/antag_type = input("Select an equipment template to use or cancel for nude.", null) as null|anything in all_antag_types
+			var/antag_type = input("Select an e69uipment template to use or cancel for69ude.",69ull) as69ull|anything in all_antag_types
 			if(antag_type)
-				var/datum/antagonist/A = all_antag_types[antag_type]
-				A.equip(spawned_mob)
+				var/datum/antagonist/A = all_antag_types69antag_type69
+				A.e69uip(spawned_mob)
 */
 	if(alert("Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.",,"No","Yes") == "No")
 		if(spawned_mob)
-			qdel(spawned_mob)
+			69del(spawned_mob)
 		if(spawned_mobs.len)
 			for(var/mob/living/M in spawned_mobs)
-				spawned_mobs -= M
-				M.tag = null
-				qdel(M)
+				spawned_mobs -=69
+				M.tag =69ull
+				69del(M)
 			spawned_mobs.Cut()
 		return
 
@@ -225,12 +225,12 @@ ADMIN_VERB_ADD(/datum/admins/proc/call_drop_pod, R_FUN, FALSE)
 		else
 			spawned_mob.ckey = selected_player.mob.ckey
 		spawned_mobs = list(spawned_mob)
-		message_admins("[key_name(usr)] dropped a pod containing \the [spawned_mob] ([spawned_mob.key]) at ([usr.x],[usr.y],[usr.z])")
-		log_admin("[key_name(usr)] dropped a pod containing \the [spawned_mob] ([spawned_mob.key]) at ([usr.x],[usr.y],[usr.z])")
+		message_admins("69key_name(usr)69 dropped a pod containing \the 69spawned_mob69 (69spawned_mob.key69) at (69usr.x69,69usr.y69,69usr.z69)")
+		log_admin("69key_name(usr)69 dropped a pod containing \the 69spawned_mob69 (69spawned_mob.key69) at (69usr.x69,69usr.y69,69usr.z69)")
 	else if(spawned_mobs.len)
 		automatic_pod = 1
-		message_admins("[key_name(usr)] dropped a pod containing [spawned_mobs.len] [spawned_mobs[1]] at ([usr.x],[usr.y],[usr.z])")
-		log_admin("[key_name(usr)] dropped a pod containing [spawned_mobs.len] [spawned_mobs[1]] at ([usr.x],[usr.y],[usr.z])")
+		message_admins("69key_name(usr)69 dropped a pod containing 69spawned_mobs.len69 69spawned_mobs6916969 at (69usr.x69,69usr.y69,69usr.z69)")
+		log_admin("69key_name(usr)69 dropped a pod containing 69spawned_mobs.len69 69spawned_mobs6916969 at (69usr.x69,69usr.y69,69usr.z69)")
 	else
 		return
 

@@ -1,6 +1,6 @@
-/matrix/proc/TurnTo(old_angle, new_angle)
-	. = new_angle - old_angle
-	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
+/matrix/proc/TurnTo(old_an69le,69ew_an69le)
+	. =69ew_an69le - old_an69le
+	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES69OT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
 
 
@@ -8,52 +8,52 @@
 	var/init_px = pixel_x
 	var/shake_dir = pick(-1, 1)
 	animate(src, transform=turn(matrix(), intensity*shake_dir), pixel_x=init_px + 2*shake_dir, time=1)
-	animate(transform=null, pixel_x=init_px, time=6, easing=ELASTIC_EASING)
+	animate(transform=null, pixel_x=init_px, time=6, easin69=ELASTIC_EASIN69)
 
-//The X pixel offset of this matrix
-/matrix/proc/get_x_shift()
+//The X pixel offset of this69atrix
+/matrix/proc/69et_x_shift()
 	. = c
 
-//The Y pixel offset of this matrix
-/matrix/proc/get_y_shift()
+//The Y pixel offset of this69atrix
+/matrix/proc/69et_y_shift()
 	. = f
-// Color matrices:
+// Color69atrices:
 
-//Luma coefficients suggested for HDTVs. If you change these, make sure they add up to 1.
+//Luma coefficients su6969ested for HDTVs. If you chan69e these,69ake sure they add up to 1.
 #define LUMR 0.2126
-#define LUMG 0.7152
+#define LUM69 0.7152
 #define LUMB 0.0722
 
-#if LUMR + LUMG + LUMB != 1
-#error Luma coefficients summ should give 1
+#if LUMR + LUM69 + LUMB != 1
+#error Luma coefficients summ should 69ive 1
 #endif
 
-//Still need color matrix addition, negation, and multiplication.
+//Still69eed color69atrix addition,69e69ation, and69ultiplication.
 
-//Returns an identity color matrix which does nothing
+//Returns an identity color69atrix which does69othin69
 /proc/color_identity()
 	return list(1,0,0, 0,1,0, 0,0,1)
 
-//Moves all colors angle degrees around the color wheel while maintaining intensity of the color and not affecting whites
-//TODO: Need a version that only affects one color (ie shift red to blue but leave greens and blues alone)
-/proc/color_rotation(angle)
-	if(angle == 0)
+//Moves all colors an69le de69rees around the color wheel while69aintainin69 intensity of the color and69ot affectin69 whites
+//TODO:69eed a69ersion that only affects one color (ie shift red to blue but leave 69reens and blues alone)
+/proc/color_rotation(an69le)
+	if(an69le == 0)
 		return color_identity()
-	angle = CLAMP(angle, -180, 180)
-	var/cos = cos(angle)
-	var/sin = sin(angle)
+	an69le = CLAMP(an69le, -180, 180)
+	var/cos = cos(an69le)
+	var/sin = sin(an69le)
 
 	var/constA = 0.143
 	var/constB = 0.140
 	var/constC = -0.283
 	return list(
 	LUMR + cos * (1-LUMR) + sin * -LUMR, LUMR + cos * -LUMR + sin * constA, LUMR + cos * -LUMR + sin * -(1-LUMR),
-	LUMG + cos * -LUMG + sin * -LUMG, LUMG + cos * (1-LUMG) + sin * constB, LUMG + cos * -LUMG + sin * LUMG,
+	LUM69 + cos * -LUM69 + sin * -LUM69, LUM69 + cos * (1-LUM69) + sin * constB, LUM69 + cos * -LUM69 + sin * LUM69,
 	LUMB + cos * -LUMB + sin * (1-LUMB), LUMB + cos * -LUMB + sin * constC, LUMB + cos * (1-LUMB) + sin * LUMB
 	)
 
-//Makes everything brighter or darker without regard to existing color or brightness
-/proc/color_brightness(power)
+//Makes everythin69 bri69hter or darker without re69ard to existin69 color or bri69htness
+/proc/color_bri69htness(power)
 	power = CLAMP(power, -255, 255)
 	power = power/255
 
@@ -72,7 +72,7 @@
 	7.3,  7.5,  7.8,  8.0,  8.4,  8.7,  9.0,  9.4,  9.6,  9.8,
 	10.0)
 
-//Exxagerates or removes brightness
+//Exxa69erates or removes bri69htness
 /proc/color_contrast(value)
 	value = CLAMP(value, -100, 100)
 	if(value == 0)
@@ -80,46 +80,46 @@
 
 	var/x = 0
 	if (value < 0)
-		x = 127 + value / 100 * 127;
+		x = 127 +69alue / 100 * 127;
 	else
-		x = value % 1
+		x =69alue % 1
 		if(x == 0)
-			x = delta_index[value]
+			x = delta_index69value69
 		else
-			x = delta_index[value] * (1-x) + delta_index[value+1] * x//use linear interpolation for more granularity.
+			x = delta_index69valu6969 * (1-x) + delta_index69value69169 * x//use linear interpolation for69ore 69ranularity.
 		x = x * 127 + 127
 
 	var/mult = x / 127
 	var/add = 0.5 * (127-x) / 255
 	return list(mult,0,0, 0,mult,0, 0,0,mult, add,add,add)
 
-//Exxagerates or removes colors
-/proc/color_saturation(value as num)
+//Exxa69erates or removes colors
+/proc/color_saturation(value as69um)
 	if(value == 0)
 		return color_identity()
 	value = CLAMP(value, -100, 100)
 	if(value > 0)
 		value *= 3
-	var/x = 1 + value / 100
+	var/x = 1 +69alue / 100
 	var/inv = 1 - x
 	var/R = LUMR * inv
-	var/G = LUMG * inv
+	var/69 = LUM69 * inv
 	var/B = LUMB * inv
 
-	return list(R + x,R,R, G,G + x,G, B,B,B + x)
+	return list(R + x,R,R, 69,69 + x,69, B,B,B + x)
 
 
-//Changes our pixel offset by offset pixels towards the target atom
-/atom/proc/offset_to(var/atom/target, var/offset = 1)
-	if (target.x < x)
+//Chan69es our pixel offset by offset pixels towards the tar69et atom
+/atom/proc/offset_to(var/atom/tar69et,69ar/offset = 1)
+	if (tar69et.x < x)
 		pixel_x -= offset
-	else if (target.x > x)
+	else if (tar69et.x > x)
 		pixel_x += offset
-	if (target.y < y)
+	if (tar69et.y < y)
 		pixel_y -= offset
-	else if (target.y > y)
+	else if (tar69et.y > y)
 		pixel_y += offset
 
 #undef LUMR
-#undef LUMG
+#undef LUM69
 #undef LUMB

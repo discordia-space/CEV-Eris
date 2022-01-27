@@ -1,5 +1,5 @@
 /**********
-* Medical *
+*69edical *
 **********/
 /datum/uplink_item/item/medical
 	category = /datum/uplink_category/medical
@@ -17,18 +17,18 @@
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 
 /datum/uplink_item/item/medical/combat
-	name = "Combat medical kit"
+	name = "Combat69edical kit"
 	item_cost = 6
 	path = /obj/item/storage/firstaid/combat
 
 /datum/uplink_item/item/medical/nanites
-	name = "Raw nanites vial"
+	name = "Raw nanites69ial"
 	item_cost = 2
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/reagent_containers/glass/beaker/vial/nanites
 
 /datum/uplink_item/item/medical/uncapnanites
-	name = "Raw uncapped nanites vial"
+	name = "Raw uncapped nanites69ial"
 	item_cost = 3
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/reagent_containers/glass/beaker/vial/uncapnanites
@@ -40,7 +40,7 @@
 	path = /obj/item/storage/box/syndie_kit/randomstim
 
 /datum/uplink_item/item/medical/gene_vial
-	name = "Genetic material vial"
+	name = "Genetic69aterial69ial"
 	item_cost = 5
 	path = /obj/item/gene_vial
 	antag_roles = list(ROLE_CARRION)

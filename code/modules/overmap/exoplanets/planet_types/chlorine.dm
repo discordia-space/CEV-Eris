@@ -21,7 +21,7 @@
 /obj/effect/overmap/sector/exoplanet/chlorine/generate_atmosphere()
 	..()
 	if(atmosphere)
-		atmosphere.adjust_gas("plasma", MOLES_O2STANDARD) //TODO GAS_CHLORINE
+		atmosphere.adjust_gas("plasma",69OLES_O2STANDARD) //TODO GAS_CHLORINE
 		atmosphere.temperature = T100C - rand(0, 100)
 		atmosphere.update_values()
 
@@ -44,10 +44,10 @@
 	base_turf = /turf/simulated/floor/exoplanet/chlorine_sand
 
 /turf/simulated/floor/exoplanet/water/shallow/chlorine_liquid
-	name = "chlorine marsh"
+	name = "chlorine69arsh"
 	icon = 'icons/turf/chlorine.dmi'
 	icon_state = "chlorine_liquid"
-	desc = "A pool of noxious liquid chlorine. It's full of silt and plant matter."
+	desc = "A pool of69oxious liquid chlorine. It's full of silt and plant69atter."
 	dirt_color = "#d2e0b7"
 	reagent_type = /datum/reagent/toxin/chlorine
 
@@ -60,5 +60,5 @@
 	footstep_type = /decl/footsteps/sand
 
 /turf/simulated/floor/exoplanet/chlorine_sand/New()
-	icon_state = "chlorine_sand[rand(0,11)]"
+	icon_state = "chlorine_sand69rand(0,11)69"
 	..()

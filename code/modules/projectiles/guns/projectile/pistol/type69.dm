@@ -1,18 +1,18 @@
 /obj/item/gun/projectile/type_69
-    name = "OS MP .40 \"Type LXIX\""
-    desc = "An Onestar machine pistol. While unwieldy, its users can't deny that it is brutally effective. Uses .40 pistol magazines."
+   69ame = "OS69P .40 \"Type LXIX\""
+    desc = "An Onestar69achine pistol. While unwieldy, its users can't deny that it is brutally effective. Uses .40 pistol69agazines."
     icon = 'icons/obj/guns/projectile/os/type_69.dmi'
     icon_state = "type_69"
     item_state = "type_69"
     origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 2)
     caliber = CAL_MAGNUM
-    load_method = MAGAZINE
-    mag_well = MAG_WELL_PISTOL
-    magazine_type = /obj/item/ammo_magazine/magnum
-    matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLATINUM = 8, MATERIAL_PLASTIC = 4)
+    load_method =69AGAZINE
+   69ag_well =69AG_WELL_PISTOL
+   69agazine_type = /obj/item/ammo_magazine/magnum
+   69atter = list(MATERIAL_PLASTEEL = 12,69ATERIAL_PLATINUM = 8,69ATERIAL_PLASTIC = 4)
     can_dual = TRUE
     slot_flags = SLOT_BELT|SLOT_HOLSTER
-    one_hand_penalty = 10 //a bit more than smg level
+    one_hand_penalty = 10 //a bit69ore than smg level
     damage_multiplier = 1.2
     penetration_multiplier = 1.1
     recoil_buildup = 2.5

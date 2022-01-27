@@ -7,20 +7,20 @@
 	target_turf_type = /turf/space
 
 /datum/random_map/noise/desert/get_map_char(var/value)
-	return "<font color='#[value][value][value][value][value][value]'>[pick(list(",",".","'","`"))]</font>"
+	return "<font color='#69value6969value6969value6969value6969value6969value69'>69pick(list(",",".","'","`"))69</font>"
 
 /datum/random_map/noise/desert/get_appropriate_path(var/value)
-	var/val = min(9,max(0,round((value/cell_range)*10)))
-	if(isnull(val)) val = 0
+	var/val =69in(9,max(0,round((value/cell_range)*10)))
+	if(isnull(val))69al = 0
 	switch(val)
 		if(0 to 1)
 			return /turf/simulated/floor/beach/water
 		else
 			return /turf/simulated/floor/beach/sand/desert
 
-/datum/random_map/noise/desert/get_additional_spawns(var/value, var/turf/T)
-	var/val = min(9,max(0,round((value/cell_range)*10)))
-	if(isnull(val)) val = 0
+/datum/random_map/noise/desert/get_additional_spawns(var/value,69ar/turf/T)
+	var/val =69in(9,max(0,round((value/cell_range)*10)))
+	if(isnull(val))69al = 0
 	switch(val)
 		if(2 to 3)
 			if(prob(60))
@@ -28,7 +28,7 @@
 				new grass_path(T)
 			if(prob(5))
 				var/mob_type = pick(list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse))
-				new mob_type(T)
+				new69ob_type(T)
 		if(5 to 6)
 			if(prob(20))
 				var/grass_path = pick(typesof(/obj/structure/flora/grass)-/obj/structure/flora/grass)

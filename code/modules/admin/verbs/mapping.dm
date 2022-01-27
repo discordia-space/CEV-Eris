@@ -5,19 +5,19 @@
 //- Does the area have lights?
 //- Does the area have a light switch?
 //- Does the area have enough intercoms?
-//- Does the area have enough security cameras? (Use the 'Camera Range Display' verb under Debug)
+//- Does the area have enough security cameras? (Use the 'Camera Range Display'69erb under Debug)
 //- Is the area connected to the scrubbers air loop?
-//- Is the area connected to the vent air loop? (vent pumps)
+//- Is the area connected to the69ent air loop? (vent pumps)
 //- Is everything wired properly?
 //- Does the area have a fire alarm and firedoors?
 //- Do all pod doors work properly?
 //- Are accesses set properly on doors, pod buttons, etc.
-//- Are all items placed properly? (not below vents, scrubbers, tables)
+//- Are all items placed properly? (not below69ents, scrubbers, tables)
 //- Does the disposal system work properly from all the disposal units in this room and all the units, the pipes of which pass through this room?
-//- Check for any misplaced or stacked piece of pipe (air and disposal)
-//- Check for any misplaced or stacked piece of wire
+//- Check for any69isplaced or stacked piece of pipe (air and disposal)
+//- Check for any69isplaced or stacked piece of wire
 //- Identify how hard it is to break into the area and where the weak points are
-//- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
+//- Check if the area has too69uch empty space. If so,69ake it smaller and replace the rest with69aintenance tunnels.
 
 var/camera_range_display_status = 0
 var/intercom_range_display_status = 0
@@ -34,7 +34,7 @@ var/intercom_range_display_status = 0
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "yellow"
 
-/obj/effect/debugging/marker/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/effect/debugging/marker/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	return 0
 
 /client/proc/do_not_use_these()
@@ -72,17 +72,17 @@ var/intercom_range_display_status = 0
 		CL += C
 
 	var/output = {"<B>CAMERA ANNOMALITIES REPORT</B><HR>
-<B>The following annomalities have been detected. The ones in red need immediate attention: Some of those in black may be intentional.</B><BR><ul>"}
+<B>The following annomalities have been detected. The ones in red need immediate attention: Some of those in black69ay be intentional.</B><BR><ul>"}
 
 	for(var/obj/machinery/camera/C1 in CL)
 		for(var/obj/machinery/camera/C2 in CL)
 			if(C1 != C2)
 				if(C1.c_tag == C2.c_tag)
-					output += "<li><font color='red'>c_tag match for sec. cameras at \[[C1.x], [C1.y], [C1.z]\] ([C1.loc.loc]) and \[[C2.x], [C2.y], [C2.z]\] ([C2.loc.loc]) - c_tag is [C1.c_tag]</font></li>"
+					output += "<li><font color='red'>c_tag69atch for sec. cameras at \6969C1.x69, 69C1.y69, 69C1.z69\69 (69C1.loc.loc69) and \6969C2.x69, 69C2.y69, 69C2.z69\69 (69C2.loc.loc69) - c_tag is 69C1.c_tag69</font></li>"
 				if(C1.loc == C2.loc && C1.dir == C2.dir && C1.pixel_x == C2.pixel_x && C1.pixel_y == C2.pixel_y)
-					output += "<li><font color='red'>FULLY overlapping sec. cameras at \[[C1.x], [C1.y], [C1.z]\] ([C1.loc.loc]) Networks: [C1.network] and [C2.network]</font></li>"
+					output += "<li><font color='red'>FULLY overlapping sec. cameras at \6969C1.x69, 69C1.y69, 69C1.z69\69 (69C1.loc.loc69) Networks: 69C1.network69 and 69C2.network69</font></li>"
 				if(C1.loc == C2.loc)
-					output += "<li>overlapping sec. cameras at \[[C1.x], [C1.y], [C1.z]\] ([C1.loc.loc]) Networks: [C1.network] and [C2.network]</font></li>"
+					output += "<li>overlapping sec. cameras at \6969C1.x69, 69C1.y69, 69C1.z69\69 (69C1.loc.loc69) Networks: 69C1.network69 and 69C2.network69</font></li>"
 		var/turf/T = get_step(C1,turn(C1.dir,180))
 		if(!T || !isturf(T) || !T.density )
 			if(!(locate(/obj/structure/grille,T)))
@@ -92,7 +92,7 @@ var/intercom_range_display_status = 0
 						window_check = 1
 						break
 				if(!window_check)
-					output += "<li><font color='red'>Camera not connected to wall at \[[C1.x], [C1.y], [C1.z]\] ([C1.loc.loc]) Network: [C1.network]</color></li>"
+					output += "<li><font color='red'>Camera not connected to wall at \6969C1.x69, 69C1.y69, 69C1.z69\69 (69C1.loc.loc69) Network: 69C1.network69</color></li>"
 
 	output += "</ul>"
 	usr << browse(output,"window=airreport;size=1000x500")
@@ -114,7 +114,7 @@ var/intercom_range_display_status = 0
 		for(var/obj/item/device/radio/intercom/I in world)
 			for(var/turf/T in RANGE_TURFS(7, I))
 				var/obj/effect/debugging/marker/F = new(T)
-				if (!(F in view(7, I.loc)))
+				if (!(F in69iew(7, I.loc)))
 					qdel(F)
 
 
@@ -160,7 +160,7 @@ var/list/debug_verbs = list (
 ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 /client/proc/enable_debug_verbs()
 	set category = "Debug"
-	set name = "Debug verbs"
+	set name = "Debug69erbs"
 
 	if(!check_rights(R_DEBUG)) return
 
@@ -170,7 +170,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 
 /client/proc/hide_debug_verbs()
 	set category = "Debug"
-	set name = "Hide Debug verbs"
+	set name = "Hide Debug69erbs"
 
 	if(!check_rights(R_DEBUG)) return
 
@@ -183,7 +183,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 	var/usedZAScolors = 0
 	var/list/image/ZAScolors = list()
 
-/client/proc/recurse_zone(var/zone/Z, var/recurse_level =1)
+/client/proc/recurse_zone(var/zone/Z,69ar/recurse_level =1)
 	testZAScolors_zones += Z
 	if(recurse_level > 10)
 		return
@@ -212,7 +212,7 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 		to_chat(usr, "\red this debug tool cannot be used from space")
 		return
 
-	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to make thousands of these.
+	var/icon/red = new('icons/misc/debug_group.dmi', "red")		//created here so we don't have to69ake thousands of these.
 	var/icon/green = new('icons/misc/debug_group.dmi', "green")
 	var/icon/blue = new('icons/misc/debug_group.dmi', "blue")
 
@@ -294,11 +294,11 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 		var/line = ""
 		for(var/j = 1; j <= 10; j++)
 			if(i*10+j <= atom_list.len)
-				temp_atom = atom_list[i*10+j]
-				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
+				temp_atom = atom_list69i*10+j69
+				line += " no.69i+10+j69@\6969temp_atom.x69, 69temp_atom.y69, 69temp_atom.z69\69; "
 		world << line*/
 
-	to_chat(world, "There are [count] objects of type [type_path] on z-level [num_level]")
+	to_chat(world, "There are 69count69 objects of type 69type_path69 on z-level 69num_level69")
 
 
 /client/proc/count_objects_all()
@@ -321,11 +321,11 @@ ADMIN_VERB_ADD(/client/proc/enable_debug_verbs, R_DEBUG, FALSE)
 		var/line = ""
 		for(var/j = 1; j <= 10; j++)
 			if(i*10+j <= atom_list.len)
-				temp_atom = atom_list[i*10+j]
-				line += " no.[i+10+j]@\[[temp_atom.x], [temp_atom.y], [temp_atom.z]\]; "
+				temp_atom = atom_list69i*10+j69
+				line += " no.69i+10+j69@\6969temp_atom.x69, 69temp_atom.y69, 69temp_atom.z69\69; "
 		world << line*/
 
-	to_chat(world, "There are [count] objects of type [type_path] in the game world")
+	to_chat(world, "There are 69count69 objects of type 69type_path69 in the game world")
 
 
 
@@ -338,7 +338,7 @@ var/global/prevent_airgroup_regroup = 0
 	/*prevent_airgroup_regroup = 1
 	for(var/datum/air_group/AG in SSair.air_groups)
 		AG.suspend_group_processing()
-	message_admins("[src.ckey] used 'Break All Airgroups'")*/
+	message_admins("69src.ckey69 used 'Break All Airgroups'")*/
 
 /client/proc/regroup_all_air_groups()
 	set category = "Mapping"
@@ -349,7 +349,7 @@ var/global/prevent_airgroup_regroup = 0
 	/*prevent_airgroup_regroup = 0
 	for(var/datum/air_group/AG in SSair.air_groups)
 		AG.check_regroup()
-	message_admins("[src.ckey] used 'Regroup All Airgroups Attempt'")*/
+	message_admins("69src.ckey69 used 'Regroup All Airgroups Attempt'")*/
 
 /client/proc/kill_pipe_processing()
 	set category = "Mapping"
@@ -359,9 +359,9 @@ var/global/prevent_airgroup_regroup = 0
 
 	/*pipe_processing_killed = !pipe_processing_killed
 	if(pipe_processing_killed)
-		message_admins("[src.ckey] used 'kill pipe processing', stopping all pipe processing.")
+		message_admins("69src.ckey69 used 'kill pipe processing', stopping all pipe processing.")
 	else
-		message_admins("[src.ckey] used 'kill pipe processing', restoring all pipe processing.")*/
+		message_admins("69src.ckey69 used 'kill pipe processing', restoring all pipe processing.")*/
 
 /client/proc/kill_air_processing()
 	set category = "Mapping"
@@ -371,36 +371,36 @@ var/global/prevent_airgroup_regroup = 0
 
 	/*air_processing_killed = !air_processing_killed
 	if(air_processing_killed)
-		message_admins("[src.ckey] used 'kill air processing', stopping all air processing.")
+		message_admins("69src.ckey69 used 'kill air processing', stopping all air processing.")
 	else
-		message_admins("[src.ckey] used 'kill air processing', restoring all air processing.")*/
+		message_admins("69src.ckey69 used 'kill air processing', restoring all air processing.")*/
 
 //This proc is intended to detect lag problems relating to communication procs
 var/global/say_disabled = 0
 /client/proc/disable_communication()
 	set category = "Mapping"
-	set name = "Disable all communication verbs"
+	set name = "Disable all communication69erbs"
 
 	to_chat(usr, "\red Proc disabled.")
 
 	/*say_disabled = !say_disabled
 	if(say_disabled)
-		message_admins("[src.ckey] used 'Disable all communication verbs', killing all communication methods.")
+		message_admins("69src.ckey69 used 'Disable all communication69erbs', killing all communication69ethods.")
 	else
-		message_admins("[src.ckey] used 'Disable all communication verbs', restoring all communication methods.")*/
+		message_admins("69src.ckey69 used 'Disable all communication69erbs', restoring all communication69ethods.")*/
 
-//This proc is intended to detect lag problems relating to movement
+//This proc is intended to detect lag problems relating to69ovement
 var/global/movement_disabled = 0
 var/global/movement_disabled_exception //This is the client that calls the proc, so he can continue to run around to gauge any change to lag.
 /client/proc/disable_movement()
 	set category = "Mapping"
-	set name = "Disable all movement"
+	set name = "Disable all69ovement"
 
 	to_chat(usr, "\red Proc disabled.")
 
 	/*movement_disabled = !movement_disabled
 	if(movement_disabled)
-		message_admins("[src.ckey] used 'Disable all movement', killing all movement.")
+		message_admins("69src.ckey69 used 'Disable all69ovement', killing all69ovement.")
 		movement_disabled_exception = usr.ckey
 	else
-		message_admins("[src.ckey] used 'Disable all movement', restoring all movement.")*/
+		message_admins("69src.ckey69 used 'Disable all69ovement', restoring all69ovement.")*/

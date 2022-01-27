@@ -2,19 +2,19 @@
 Asset cache quick users guide:
 
 Make a datum at the bottom of this file with your assets for your thing.
-The simple subsystem will most like be of use for most cases.
+The simple subsystem will69ost like be of use for69ost cases.
 Then call get_asset_datum() with the type of the datum you created and store the return
-Then call .send(client) on that stored return value.
+Then call .send(client) on that stored return69alue.
 
-You can set verify to TRUE if you want send() to sleep until the client has the assets.
+You can set69erify to TRUE if you want send() to sleep until the client has the assets.
 */
 
 
-// Amount of time(ds) MAX to send per asset, if this get exceeded we cancel the sleeping.
+// Amount of time(ds)69AX to send per asset, if this get exceeded we cancel the sleeping.
 // This is doubled for the first asset, then added per asset after
 #define ASSET_CACHE_SEND_TIMEOUT 7
 
-//When sending mutiple assets, how many before we give the client a quaint little sending resources message
+//When sending69utiple assets, how69any before we give the client a quaint little sending resources69essage
 #define ASSET_CACHE_TELL_CLIENT_AMOUNT 8
 
 /client
@@ -22,19 +22,19 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/list/completed_asset_jobs = list() // List of all completed jobs, awaiting acknowledgement.
 	var/list/sending = list()
 	var/last_asset_job = 0 // Last job done.
-	var/VPN_whitelist //avoid vpn cheking
+	var/VPN_whitelist //avoid69pn cheking
 
 	var/list/related_ip = list()
 	var/list/related_cid = list()
 
 //This proc sends the asset to the client, but only if it needs it.
-//This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset(client/client, asset_name, verify = TRUE)
+//This proc blocks(sleeps) unless69erify is set to false
+/proc/send_asset(client/client, asset_name,69erify = TRUE)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
 			if(M.client)
-				client = M.client
+				client =69.client
 
 			else
 				return 0
@@ -45,7 +45,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	if(client.cache.Find(asset_name) || client.sending.Find(asset_name))
 		return 0
 
-	client << browse_rsc(asset_cache.cache[asset_name], asset_name)
+	client << browse_rsc(asset_cache.cache69asset_name69, asset_name)
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
 			client.cache += asset_name
@@ -58,7 +58,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	client << browse({"
 	<script>
-		window.location.href="?asset_cache_confirm_arrival=[job]"
+		window.location.href="?asset_cache_confirm_arrival=69job69"
 	</script>
 	"}, "window=asset_cache_browser")
 
@@ -75,13 +75,13 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	return 1
 
-//This proc blocks(sleeps) unless verify is set to false
-/proc/send_asset_list(client/client, list/asset_list, verify = TRUE)
+//This proc blocks(sleeps) unless69erify is set to false
+/proc/send_asset_list(client/client, list/asset_list,69erify = TRUE)
 	if(!istype(client))
 		if(ismob(client))
 			var/mob/M = client
 			if(M.client)
-				client = M.client
+				client =69.client
 
 			else
 				return 0
@@ -96,7 +96,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		to_chat(client, "Sending Resources...")
 	for(var/asset in unreceived)
 		if (asset in asset_cache.cache)
-			client << browse_rsc(asset_cache.cache[asset], asset)
+			client << browse_rsc(asset_cache.cache69asset69, asset)
 
 	if(!verify || !winexists(client, "asset_cache_browser")) // Can't access the asset cache browser, rip.
 		if (client)
@@ -109,7 +109,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 
 	client << browse({"
 	<script>
-		window.location.href="?asset_cache_confirm_arrival=[job]"
+		window.location.href="?asset_cache_confirm_arrival=69job69"
 	</script>
 	"}, "window=asset_cache_browser")
 
@@ -135,7 +135,7 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		if (!client)
 			break
 		if (register_assets)
-			register_asset(file, files[file])
+			register_asset(file, files69file69)
 		send_asset(client, file)
 
 		if(!important && world.time > (last_batch_start + 5 SECONDS))
@@ -145,27 +145,27 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 			// Give other browse calls (newly opened UIs) a chance to slip in if we are sending hundreds of pics.
 		else
 			sleep(0)
-			// queuing calls like this too quickly can cause issues in some client versions
+			// queuing calls like this too quickly can cause issues in some client69ersions
 
 //This proc "registers" an asset, it adds it to the cache for further use, you cannot touch it from this point on or you'll fuck things up.
 //if it's an icon or something be careful, you'll have to copy it before further use.
 /proc/register_asset(asset_name, asset)
-	asset_cache.cache[asset_name] = asset
+	asset_cache.cache69asset_name69 = asset
 
 //Generated names do not include file extention.
-//Used mainly for code that deals with assets in a generic way
+//Used69ainly for code that deals with assets in a generic way
 //The same asset will always lead to the same asset name
 /proc/generate_asset_name(var/file)
-	return "asset.[md5(fcopy_rsc(file))]"
+	return "asset.69md5(fcopy_rsc(file))69"
 
 // will return filename for cached atom icon or null if not cached
 // can accept atom objects or types
 /proc/getAtomCacheFilename(var/atom/A)
 	if(!A || (!istype(A) && !ispath(A)))
 		return
-	var/filename = "[ispath(A) ? A : A.type].png"
+	var/filename = "69ispath(A) ? A : A.type69.png"
 	filename = sanitizeFileName(filename)
-	if(asset_cache.cache[filename])
+	if(asset_cache.cache69filename69)
 		return filename
 
 //These datums are used to populate the asset cache, the proc "register()" does this.
@@ -182,23 +182,23 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	var/registred = FALSE
 	var/verify = FALSE
 
-//get a assetdatum or make a new one
+//get a assetdatum or69ake a new one
 /proc/get_asset_datum(type)
 	if (!(type in asset_datums))
 		return new type()
-	return asset_datums[type]
+	return asset_datums69type69
 
 /datum/asset/New()
-	asset_datums[type] = src
+	asset_datums69type69 = src
 	register()
 
 /datum/asset/proc/register()
 	for(var/asset_name in assets)
-		register_asset(asset_name, assets[asset_name])
+		register_asset(asset_name, assets69asset_name69)
 	registred = TRUE
 
 /datum/asset/proc/send(client)
-	send_asset_list(client, assets, verify)
+	send_asset_list(client, assets,69erify)
 
 /datum/asset/proc/send_slow(client)
 	getFilesSlow(client, assets, register_assets = FALSE, important = !isTrivial)
@@ -221,11 +221,11 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 		for(var/filename in filenames)
 			if(copytext(filename, length(filename)) != "/") // Ignore directories.
 				if(fexists(path + filename))
-					assets[filename] = fcopy_rsc(path + filename)
+					assets69filename69 = fcopy_rsc(path + filename)
 	..()
 
 
-// For registering or sending multiple others at once
+// For registering or sending69ultiple others at once
 /datum/asset/group
 	var/list/children = list()
 
@@ -256,49 +256,49 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 	for(var/D in SSresearch.all_designs)
 		var/datum/design/design = D
 
-		var/filename = sanitizeFileName("[design.build_path].png")
+		var/filename = sanitizeFileName("69design.build_path69.png")
 		var/icon/I = getFlatTypeIcon(design.build_path)
-		assets[filename] = I
+		assets69filename69 = I
 
-		design.ui_data["icon"] = filename
+		design.ui_data69"icon"69 = filename
 	..()
 
 
 /datum/asset/simple/craft/register()
 	for(var/name in SScraft.categories)
-		for(var/datum/craft_recipe/CR in SScraft.categories[name])
+		for(var/datum/craft_recipe/CR in SScraft.categories69name69)
 			if(CR.result)
-				var/filename = sanitizeFileName("[CR.result].png")
+				var/filename = sanitizeFileName("69CR.result69.png")
 				var/icon/I = getFlatTypeIcon(CR.result)
-				assets[filename] = I
+				assets69filename69 = I
 
 			for(var/datum/craft_step/CS in CR.steps)
 				if(CS.reqed_type)
-					var/filename = sanitizeFileName("[CS.reqed_type].png")
+					var/filename = sanitizeFileName("69CS.reqed_type69.png")
 					var/icon/I = getFlatTypeIcon(CS.reqed_type)
-					assets[filename] = I
+					assets69filename69 = I
 	..()
 
 /datum/asset/simple/materials/register()
 	for(var/type in subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg))
-		var/filename = sanitizeFileName("[type].png")
+		var/filename = sanitizeFileName("69type69.png")
 		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
+		assets69filename69 = I
 	..()
 
 /datum/asset/simple/tool_upgrades/register()
 	for(var/type in subtypesof(/obj/item/tool_upgrade))
-		var/filename = sanitizeFileName("[type].png")
+		var/filename = sanitizeFileName("69type69.png")
 		var/icon/I = getFlatTypeIcon(type)
-		assets[filename] = I
+		assets69filename69 = I
 	..()
 
 /datum/asset/simple/perks/register()
 	for(var/type in subtypesof(/datum/perk))
 		var/datum/perk/P = new type
-		var/filename = sanitizeFileName("[type].png")
+		var/filename = sanitizeFileName("69type69.png")
 		var/icon/I = icon(P.icon, P.icon_state)
-		assets[filename] = I
+		assets69filename69 = I
 	..()
 
 /datum/asset/simple/codicon
@@ -327,14 +327,14 @@ You can set verify to TRUE if you want send() to sleep until the client has the 
 /datum/asset/images_map/register()
 	var/list/mapnames = list()
 	for(var/z in GLOB.maps_data.station_levels)
-		mapnames += map_image_file_name(z)
+		mapnames +=69ap_image_file_name(z)
 
 	var/list/filenames = flist(MAP_IMAGE_PATH)
 	for(var/filename in filenames)
 		if(copytext(filename, length(filename)) != "/") // Ignore directories.
-			var/file_path = MAP_IMAGE_PATH + filename
-			if((filename in mapnames) && fexists(file_path))
-				assets[filename] = fcopy_rsc(file_path)
+			var/file_path =69AP_IMAGE_PATH + filename
+			if((filename in69apnames) && fexists(file_path))
+				assets69filename69 = fcopy_rsc(file_path)
 	..()
 
 /*

@@ -33,27 +33,27 @@
 
 /obj/item/clothing/head/collectable/chef
 	name = "collectable chef's hat"
-	desc = "A rare Chef's Hat meant for hat collectors!"
+	desc = "A rare Chef's Hat69eant for hat collectors!"
 	icon_state = "chefhat"
 	item_state = "chefhat"
 
 /obj/item/clothing/head/collectable/paper
 	name = "collectable paper hat"
-	desc = "What looks like an ordinary paper hat, is actually a rare and valuable collector's edition paper hat. Keep away from water, fire and Librarians."
+	desc = "What looks like an ordinary paper hat, is actually a rare and69aluable collector's edition paper hat. Keep away from water, fire and Librarians."
 	icon_state = "paper"
 	item_state = "paper"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/tophat
 	name = "collectable top hat"
-	desc = "A top hat worn by only the most prestigious hat collectors."
+	desc = "A top hat worn by only the69ost prestigious hat collectors."
 	icon_state = "tophat"
 	item_state = "tophat"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/captain
 	name = "collectable captain's hat"
-	desc = "A Collectable Hat that'll make you look just like a real comdom!"
+	desc = "A Collectable Hat that'll69ake you look just like a real comdom!"
 	icon_state = "captain"
 	item_state_slots = list(
 		slot_l_hand_str = "caphat",
@@ -96,7 +96,7 @@
 
 /obj/item/clothing/head/collectable/pirate
 	name = "collectable pirate hat"
-	desc = "You'd make a great Dread Syndie Roberts!"
+	desc = "You'd69ake a great Dread Syndie Roberts!"
 	icon_state = "pirate"
 	body_parts_covered = 0
 
@@ -115,7 +115,7 @@
 
 /obj/item/clothing/head/collectable/wizard
 	name = "collectable wizard's hat"
-	desc = "NOTE:Any magical powers gained from wearing this hat are purely coincidental."
+	desc = "NOTE:Any69agical powers gained from wearing this hat are purely coincidental."
 	icon_state = "wizard"
 
 /obj/item/clothing/head/collectable/hardhat
@@ -126,7 +126,7 @@
 
 /obj/item/clothing/head/collectable/thunderdome
 	name = "collectable Thunderdome helmet"
-	desc = "Go Red! I mean Green! I mean Red! No Green!"
+	desc = "Go Red! I69ean Green! I69ean Red! No Green!"
 	icon_state = "thunderdome"
 
 /obj/item/clothing/head/collectable/swat
@@ -136,7 +136,7 @@
 
 /obj/item/clothing/head/collectable/gnome
 	name = "gnome hat"
-	desc = "Why do gnomes come out of our toilet? Maybe they're searching for money?"
+	desc = "Why do gnomes come out of our toilet?69aybe they're searching for69oney?"
 	icon_state = "gnome_hat"
 	spawn_blacklisted = FALSE
 	body_parts_covered = 0

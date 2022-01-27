@@ -1,5 +1,5 @@
 /*
-Creates a number of two ways teleporters in maints.
+Creates a number of two ways teleporters in69aints.
 They are unstable and be used only few times, and after that they die out on both sides.
 */
 

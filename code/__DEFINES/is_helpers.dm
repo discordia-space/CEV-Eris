@@ -7,58 +7,58 @@
 
 #define isobserver(A) istype(A, /mob/observer)
 
-#define isghost(A) istype(A, /mob/observer/ghost)
+#define is69host(A) istype(A, /mob/observer/69host)
 
 #define isEye(A) istype(A, /mob/observer/eye)
 
-#define isangel(A) istype(A, /mob/observer/eye/angel)
+#define isan69el(A) istype(A, /mob/observer/eye/an69el)
 
 #define isnewplayer(A) istype(A, /mob/new_player)
 
-#define isbst(A) istype(A, /mob/living/carbon/human/bst)
+#define isbst(A) istype(A, /mob/livin69/carbon/human/bst)
 
-#define ismech(A) istype(A, /mob/living/exosuit)
+#define ismech(A) istype(A, /mob/livin69/exosuit)
 
 //++++++++++++++++++++++++++++++++++++++++++++++
 
-#define isliving(A) istype(A, /mob/living)
+#define islivin69(A) istype(A, /mob/livin69)
 //---------------------------------------------------
 
-#define iscarbon(A) istype(A, /mob/living/carbon)
+#define iscarbon(A) istype(A, /mob/livin69/carbon)
 
-#define isslime(A) istype(A, /mob/living/carbon/slime)
+#define isslime(A) istype(A, /mob/livin69/carbon/slime)
 
-#define isroach(A) istype(A, /mob/living/carbon/superior_animal/roach)
+#define isroach(A) istype(A, /mob/livin69/carbon/superior_animal/roach)
 
-#define isbrain(A) istype(A, /mob/living/carbon/brain)
+#define isbrain(A) istype(A, /mob/livin69/carbon/brain)
 
-#define ishuman(A) istype(A, /mob/living/carbon/human)
+#define ishuman(A) istype(A, /mob/livin69/carbon/human)
 //---------------------------------------------------
 
-#define isanimal(A) istype(A, /mob/living/simple_animal)
+#define isanimal(A) istype(A, /mob/livin69/simple_animal)
 
-#define iscorgi(A) istype(A, /mob/living/simple_animal/corgi)
+#define iscor69i(A) istype(A, /mob/livin69/simple_animal/cor69i)
 
-#define iscat(A) istype(A, /mob/living/simple_animal/cat)
+#define iscat(A) istype(A, /mob/livin69/simple_animal/cat)
 
-#define ismouse(A) istype(A, /mob/living/simple_animal/mouse)
+#define ismouse(A) istype(A, /mob/livin69/simple_animal/mouse)
 
-#define issuperioranimal(A) istype(A, /mob/living/carbon/superior_animal)
+#define issuperioranimal(A) istype(A, /mob/livin69/carbon/superior_animal)
 
 #define isburrow(A) istype(A, /obj/structure/burrow)
 //---------------------------------------------------
 
-#define issilicon(A) istype(A, /mob/living/silicon)
+#define issilicon(A) istype(A, /mob/livin69/silicon)
 
-#define isAI(A) istype(A, /mob/living/silicon/ai)
+#define isAI(A) istype(A, /mob/livin69/silicon/ai)
 
-#define ispAI(A) istype(A, /mob/living/silicon/pai)
+#define ispAI(A) istype(A, /mob/livin69/silicon/pai)
 
-#define isrobot(A) istype(A, /mob/living/silicon/robot)
+#define isrobot(A) istype(A, /mob/livin69/silicon/robot)
 
-#define isdrone(A) istype(A, /mob/living/silicon/robot/drone)
+#define isdrone(A) istype(A, /mob/livin69/silicon/robot/drone)
 
-#define isblitzshell(A) istype(A, /mob/living/silicon/robot/drone/blitzshell)
+#define isblitzshell(A) istype(A, /mob/livin69/silicon/robot/drone/blitzshell)
 
 //-----------------Objects
 #define ismovable(A) istype(A, /atom/movable)
@@ -69,9 +69,9 @@
 
 #define isitem(A) istype(A, /obj/item)
 
-#define isorgan(A) istype(A, /obj/item/organ/external)
+#define isor69an(A) istype(A, /obj/item/or69an/external)
 
-#define isgun(A) istype(A, /obj/item/gun)
+#define is69un(A) istype(A, /obj/item/69un)
 
 #define istool(A) istype(A, /obj/item/tool)
 
@@ -83,7 +83,7 @@
 
 #define isWrench(A) istype(A, /obj/item/tool/wrench)
 
-#define isWelder(A) istype(A, /obj/item/tool/weldingtool)
+#define isWelder(A) istype(A, /obj/item/tool/weldin69tool)
 
 #define isWirecutter(A) istype(A, /obj/item/tool/wirecutters)
 

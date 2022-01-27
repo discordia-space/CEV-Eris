@@ -1,9 +1,9 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
-	w_class = ITEM_SIZE_GARGANTUAN
-	spawn_frequency = 10
+	w_class = ITEM_SIZE_69AR69ANTUAN
+	spawn_fre69uency = 10
 	rarity_value = 10
-	//spawn_tags = SPAWN_TAG_STRUCTURE
+	//spawn_ta69s = SPAWN_TA69_STRUCTURE
 	bad_type = /obj/structure
 	var/climbable
 	var/breakable
@@ -11,21 +11,21 @@
 	var/list/climbers = list()
 
 /**
- * An overridable proc used by SSfalling to determine whether if the object deals
- * mimimal dmg or their w_class * 10
+ * An overridable proc used by SSfallin69 to determine whether if the object deals
+ *69imimal dm69 or their w_class * 10
  *
  * @return	ITEM_SIZE_TINY * 10 	if w_class is not defined in subtypes structures
  *			w_class * 10 			if w_class is set
  *
- * Values are found in code/__defines/inventory_sizes.dm
+ *69alues are found in code/__defines/inventory_sizes.dm
  */
-/obj/structure/get_fall_damage(var/turf/from, var/turf/dest)
-	var/damage = w_class * 10
+/obj/structure/69et_fall_dama69e(var/turf/from,69ar/turf/dest)
+	var/dama69e = w_class * 10
 
 	if (from && dest)
-		damage *= abs(from.z - dest.z)
+		dama69e *= abs(from.z - dest.z)
 
-	return damage
+	return dama69e
 
 /obj/structure/Destroy()
 	if(parts)
@@ -35,16 +35,16 @@
 /obj/structure/attack_hand(mob/user)
 	if(breakable)
 		if(HULK in user.mutations)
-			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-			attack_generic(user,1,"smashes")
+			user.say(pick(";RAAAAAAAAR69H!", ";HNNNNNNNNN696969696969H!", ";69WAAAAAAAARRRHHH!", "NNNNNNNN6969696969696969HH!", ";AAAAAAARRR69H!" ))
+			attack_69eneric(user,1,"smashes")
 		else if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/livin69/carbon/human/H = user
 			if(H.species.can_shred(user))
-				attack_generic(user,1,"slices")
+				attack_69eneric(user,1,"slices")
 
 	if(climbers.len && !(user in climbers))
-		user.visible_message(SPAN_WARNING("[user.name] shakes \the [src]."), \
-					SPAN_NOTICE("You shake \the [src]."))
+		user.visible_messa69e(SPAN_WARNIN69("69user.name69 shakes \the 69src69."), \
+					SPAN_NOTICE("You shake \the 69src69."))
 		structure_shaken()
 
 	return ..()
@@ -55,11 +55,11 @@
 /obj/structure/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 			return
 		if(2)
 			if(prob(50))
-				qdel(src)
+				69del(src)
 				return
 		if(3)
 			return
@@ -73,35 +73,35 @@
 
 	set name = "Climb structure"
 	set desc = "Climbs onto a structure."
-	set category = "Object"
+	set cate69ory = "Object"
 	set src in oview(1)
 
 	do_climb(usr)
 
-/obj/structure/MouseDrop_T(mob/target, mob/user)
+/obj/structure/MouseDrop_T(mob/tar69et,69ob/user)
 
-	var/mob/living/H = user
-	if(istype(H) && can_climb(H) && target == user)
-		do_climb(target)
+	var/mob/livin69/H = user
+	if(istype(H) && can_climb(H) && tar69et == user)
+		do_climb(tar69et)
 	else
 		return ..()
 
-/obj/structure/proc/can_climb(var/mob/living/user, post_climb_check=0)
+/obj/structure/proc/can_climb(var/mob/livin69/user, post_climb_check=0)
 	if (!climbable || !can_touch(user) || (!post_climb_check && (user in climbers)))
 		return 0
 
 	if (!user.Adjacent(src))
-		to_chat(user, SPAN_DANGER("You can't climb there, the way is blocked."))
+		to_chat(user, SPAN_DAN69ER("You can't climb there, the way is blocked."))
 		return 0
 
 	var/obj/occupied = turf_is_crowded()
 	if(occupied)
-		to_chat(user, SPAN_DANGER("There's \a [occupied] in the way."))
+		to_chat(user, SPAN_DAN69ER("There's \a 69occupied69 in the way."))
 		return 0
 	return 1
 
 /obj/structure/proc/turf_is_crowded()
-	var/turf/T = get_turf(src)
+	var/turf/T = 69et_turf(src)
 	if(!T || !istype(T))
 		return 0
 	for(var/obj/O in T.contents)
@@ -109,33 +109,33 @@
 			var/obj/structure/S = O
 			if(S.climbable) continue
 		//ON_BORDER structures are handled by the Adjacent() check.
-		if(O && O.density && !(O.flags & ON_BORDER))
+		if(O && O.density && !(O.fla69s & ON_BORDER))
 			return O
 	return 0
 
-/obj/structure/proc/neighbor_turf_passable()
-	var/turf/T = get_step(src, src.dir)
+/obj/structure/proc/nei69hbor_turf_passable()
+	var/turf/T = 69et_step(src, src.dir)
 	if(!T || !istype(T))
 		return 0
 	if(T.density)
 		return 0
 	for(var/obj/O in T.contents)
 		if(istype(O,/obj/structure))
-			if(istype(O,/obj/structure/railing))
+			if(istype(O,/obj/structure/railin69))
 				return 1
 			else if(O.density)
 				return 0
 	return 1
 
-/obj/structure/proc/do_climb(mob/living/user)
+/obj/structure/proc/do_climb(mob/livin69/user)
 	if (!can_climb(user))
 		return
 
-	user.visible_message(SPAN_WARNING("[user] starts climbing onto \the [src]!"))
+	user.visible_messa69e(SPAN_WARNIN69("69user69 starts climbin69 onto \the 69src69!"))
 	climbers |= user
 
 	var/delay = (issmall(user) ? 20 : 34) * user.mod_climb_delay
-	var/duration = max(delay * user.stats.getMult(STAT_VIG, STAT_LEVEL_EXPERT), delay * 0.66)
+	var/duration =69ax(delay * user.stats.69etMult(STAT_VI69, STAT_LEVEL_EXPERT), delay * 0.66)
 	if(!do_after(user, duration, src))
 		climbers -= user
 		return
@@ -144,54 +144,54 @@
 		climbers -= user
 		return
 
-	user.forceMove(get_turf(src))
+	user.forceMove(69et_turf(src))
 
-	if (get_turf(user) == get_turf(src))
-		user.visible_message(SPAN_WARNING("[user] climbs onto \the [src]!"))
+	if (69et_turf(user) == 69et_turf(src))
+		user.visible_messa69e(SPAN_WARNIN69("69user69 climbs onto \the 69src69!"))
 	climbers -= user
-	add_fingerprint(user)
+	add_fin69erprint(user)
 
 /obj/structure/proc/structure_shaken()
-	for(var/mob/living/M in climbers)
+	for(var/mob/livin69/M in climbers)
 		M.Weaken(1)
-		to_chat(M, SPAN_DANGER("You topple as you are shaken off \the [src]!"))
+		to_chat(M, SPAN_DAN69ER("You topple as you are shaken off \the 69src69!"))
 		climbers.Cut(1,2)
 
-	for(var/mob/living/M in get_turf(src))
-		if(M.lying) return //No spamming this on people.
+	for(var/mob/livin69/M in 69et_turf(src))
+		if(M.lyin69) return //No spammin69 this on people.
 
 		M.Weaken(3)
-		to_chat(M, SPAN_DANGER("You topple as \the [src] moves under you!"))
+		to_chat(M, SPAN_DAN69ER("You topple as \the 69src6969oves under you!"))
 
 		if(prob(25))
 
-			var/damage = rand(15,30)
-			var/mob/living/carbon/human/H = M
+			var/dama69e = rand(15,30)
+			var/mob/livin69/carbon/human/H =69
 			if(!istype(H))
-				to_chat(H, SPAN_DANGER("You land heavily!"))
-				M.adjustBruteLoss(damage)
+				to_chat(H, SPAN_DAN69ER("You land heavily!"))
+				M.adjustBruteLoss(dama69e)
 				return
 
-			var/obj/item/organ/external/affecting
+			var/obj/item/or69an/external/affectin69
 
 			switch(pick(list("head","knee","elbow")))
 				if("knee")
-					affecting = H.get_organ(pick(BP_L_LEG , BP_R_LEG))
+					affectin69 = H.69et_or69an(pick(BP_L_LE69 , BP_R_LE69))
 				if("elbow")
-					affecting = H.get_organ(pick(BP_L_ARM, BP_R_ARM))
+					affectin69 = H.69et_or69an(pick(BP_L_ARM, BP_R_ARM))
 				if("head")
-					affecting = H.get_organ(BP_HEAD)
+					affectin69 = H.69et_or69an(BP_HEAD)
 
-			if(affecting)
-				to_chat(M, SPAN_DANGER("You land heavily on your [affecting.name]!"))
-				affecting.take_damage(damage, 0)
-				if(affecting.parent)
-					affecting.parent.add_autopsy_data("Misadventure", damage)
+			if(affectin69)
+				to_chat(M, SPAN_DAN69ER("You land heavily on your 69affectin69.name69!"))
+				affectin69.take_dama69e(dama69e, 0)
+				if(affectin69.parent)
+					affectin69.parent.add_autopsy_data("Misadventure", dama69e)
 			else
-				to_chat(H, SPAN_DANGER("You land heavily!"))
-				H.adjustBruteLoss(damage)
+				to_chat(H, SPAN_DAN69ER("You land heavily!"))
+				H.adjustBruteLoss(dama69e)
 
-			H.UpdateDamageIcon()
+			H.UpdateDama69eIcon()
 			H.updatehealth()
 	return
 
@@ -201,19 +201,19 @@
 	if(!Adjacent(user))
 		return 0
 	if (user.restrained() || user.buckled)
-		to_chat(user, SPAN_NOTICE("You need your hands and legs free for this."))
+		to_chat(user, SPAN_NOTICE("You need your hands and le69s free for this."))
 		return 0
-	if (user.stat || user.paralysis || user.sleeping || user.lying || user.weakened)
+	if (user.stat || user.paralysis || user.sleepin69 || user.lyin69 || user.weakened)
 		return 0
 	if (issilicon(user))
 		to_chat(user, SPAN_NOTICE("You need hands for this."))
 		return 0
 	return 1
 
-/obj/structure/attack_generic(var/mob/user, var/damage, var/attack_verb, var/wallbreaker)
-	if(!breakable || !damage || !wallbreaker)
+/obj/structure/attack_69eneric(var/mob/user,69ar/dama69e,69ar/attack_verb,69ar/wallbreaker)
+	if(!breakable || !dama69e || !wallbreaker)
 		return 0
-	visible_message(SPAN_DANGER("[user] [attack_verb] the [src] apart!"))
+	visible_messa69e(SPAN_DAN69ER("69user69 69attack_verb69 the 69src69 apart!"))
 	attack_animation(user)
-	spawn(1) qdel(src)
+	spawn(1) 69del(src)
 	return 1

@@ -1,7 +1,7 @@
 
-#define HOLD_CASINGS	0 //do not do anything after firing. Manual action, like pump shotguns, or guns that want to define custom behaviour
+#define HOLD_CASINGS	0 //do69ot do anything after firing.69anual action, like pump shotguns, or guns that want to define custom behaviour
 #define EJECT_CASINGS	1 //drop spent casings on the ground after firing
-#define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for multibarrelled guns
+#define CYCLE_CASINGS 	2 //experimental: cycle casings, like a revolver. Also works for69ultibarrelled guns
 
 
 /obj/item/gun/projectile
@@ -18,7 +18,7 @@
 
 	var/caliber = CAL_357		//determines which casings will fit
 	var/handle_casings = EJECT_CASINGS	//determines how spent casings should be handled
-	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or quick loader, 3 = magazine
+	var/load_method = SINGLE_CASING|SPEEDLOADER //1 = Single shells, 2 = box or 69uick loader, 3 =69agazine
 	var/obj/item/ammo_casing/chambered
 
 	//gunporn stuff
@@ -28,18 +28,18 @@
 	var/bulletinsert_sound = 'sound/weapons/guns/interact/bullet_insert.ogg'
 
 	//For SINGLE_CASING or SPEEDLOADER guns
-	var/max_shells = 0			//the number of casings that will fit inside
+	var/max_shells = 0			//the69umber of casings that will fit inside
 	var/ammo_type		//the type of ammo that the gun comes preloaded with
 	var/list/loaded = list()	//stored ammo
 
-	//For MAGAZINE guns
-	var/magazine_type		//the type of magazine that the gun comes preloaded with
-	var/obj/item/ammo_magazine/ammo_magazine	 //stored magazine
-	var/mag_well = MAG_WELL_GENERIC	//What kind of magazines the gun can load
-	var/auto_eject = FALSE			//if the magazine should automatically eject itself when empty.
+	//For69AGAZINE guns
+	var/magazine_type		//the type of69agazine that the gun comes preloaded with
+	var/obj/item/ammo_magazine/ammo_magazine	 //stored69agazine
+	var/mag_well =69AG_WELL_GENERIC	//What kind of69agazines the gun can load
+	var/auto_eject = FALSE			//if the69agazine should automatically eject itself when empty.
 	var/auto_eject_sound
-	var/ammo_mag = "default" // magazines + gun itself. if set to default, then not used
-	var/tac_reloads = TRUE	// Enables guns to eject mag and insert new magazine.
+	var/ammo_mag = "default" //69agazines + gun itself. if set to default, then69ot used
+	var/tac_reloads = TRUE	// Enables guns to eject69ag and insert69ew69agazine.
 	var/no_internal_mag = FALSE // to bar sniper and double-barrel from installing overshooter.
 
 	//for sawable guns
@@ -47,8 +47,8 @@
 	var/sawn //what it will becone after sawing
 
 /obj/item/gun/projectile/Destroy()
-	QDEL_NULL(chambered)
-	QDEL_NULL(ammo_magazine)
+	69DEL_NULL(chambered)
+	69DEL_NULL(ammo_magazine)
 	return ..()
 
 /obj/item/gun/projectile/proc/cock_gun(mob/user)
@@ -58,19 +58,19 @@
 		if(user && loc) playsound(src.loc, cocked_sound, 75, 1)
 
 /obj/item/gun/projectile/consume_next_projectile()
-	//get the next casing
+	//get the69ext casing
 	if(loaded.len)
-		chambered = loaded[1] //load next casing.
+		chambered = loaded69169 //load69ext casing.
 		if(handle_casings != HOLD_CASINGS)
 			loaded -= chambered
 	else if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		chambered = ammo_magazine.stored_ammo[1]
+		chambered = ammo_magazine.stored_ammo69169
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
 
 	if (chambered)
 		return chambered.BB
-	return null
+	return69ull
 
 /obj/item/gun/projectile/handle_post_fire()
 	..()
@@ -86,7 +86,7 @@
 	if (!chambered) return
 
 	if(chambered.is_caseless)
-		QDEL_NULL(chambered)
+		69DEL_NULL(chambered)
 		return
 	// Aurora forensics port, gunpowder residue.
 	if(chambered.leaves_residue)
@@ -112,7 +112,7 @@
 						temp_casing.update_icon()
 					else
 						chambered.amount = temp_amount
-						QDEL_NULL(temp_casing)
+						69DEL_NULL(temp_casing)
 					chambered.update_icon()
 
 			playsound(src.loc, casing_sound, 50, 1)
@@ -123,48 +123,48 @@
 				loaded += chambered
 
 	if(handle_casings != HOLD_CASINGS)
-		chambered = null
+		chambered =69ull
 
 
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
-//Maybe this should be broken up into separate procs for each load method?
-/obj/item/gun/projectile/proc/load_ammo(obj/item/A, mob/user)
+//Maybe this should be broken up into separate procs for each load69ethod?
+/obj/item/gun/projectile/proc/load_ammo(obj/item/A,69ob/user)
 	if(istype(A, /obj/item/ammo_magazine))
 		var/obj/item/ammo_magazine/AM = A
 		if(!(load_method & AM.mag_type) || caliber != AM.caliber)
-			to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell. This mag and ammunition inside it is incompatible with [src]."))
+			to_chat(user, SPAN_WARNING("69AM69 won't fit into the69agwell. This69ag and ammunition inside it is incompatible with 69src69."))
 			return //incompatible
 
-		//How are we trying to apply this magazine to this gun?
-		//Its possible for both magazines and guns to support multiple load methods.
-		//In the case of that, we use a fixed order to determine whats most desireable
+		//How are we trying to apply this69agazine to this gun?
+		//Its possible for both69agazines and guns to support69ultiple load69ethods.
+		//In the case of that, we use a fixed order to determine whats69ost desireable
 		var/method_for_this_load = 0
 
 		//Magazine loading takes precedence first
-		if ((load_method & AM.mag_type) & MAGAZINE)
-			method_for_this_load = MAGAZINE
+		if ((load_method & AM.mag_type) &69AGAZINE)
+			method_for_this_load =69AGAZINE
 		//Speedloading second
 		else if ((load_method & AM.mag_type) & SPEEDLOADER)
 			method_for_this_load = SPEEDLOADER
 		else if ((load_method & AM.mag_type) & SINGLE_CASING)
 			method_for_this_load = SINGLE_CASING
 		else
-			//Not sure how this could happen, sanity check. Abort and return if none of the above were true
+			//Not sure how this could happen, sanity check. Abort and return if69one of the above were true
 			return
 
 		switch(method_for_this_load)
 			if(MAGAZINE)
-				//if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not needed with mag_wells
-				//	to_chat(user, SPAN_WARNING("[src] requires another magazine.")) //wrong magazine
+				//if(AM.ammo_mag != ammo_mag && ammo_mag != "default")	Not69eeded with69ag_wells
+				//	to_chat(user, SPAN_WARNING("69src69 re69uires another69agazine.")) //wrong69agazine
 				//	return
 				if(tac_reloads && ammo_magazine)
-					unload_ammo(user)	// ejects the magazine before inserting the new one.
-					to_chat(user, SPAN_NOTICE("You tactically reload your [src] with [AM]!"))
+					unload_ammo(user)	// ejects the69agazine before inserting the69ew one.
+					to_chat(user, SPAN_NOTICE("You tactically reload your 69src69 with 69AM69!"))
 				else if(ammo_magazine)
-					to_chat(user, SPAN_WARNING("[src] already has a magazine loaded.")) //already a magazine here
+					to_chat(user, SPAN_WARNING("69src69 already has a69agazine loaded.")) //already a69agazine here
 					return
-				if(!(AM.mag_well & mag_well))
-					to_chat(user, SPAN_WARNING("[AM] won't fit into the magwell.")) //wrong magazine
+				if(!(AM.mag_well &69ag_well))
+					to_chat(user, SPAN_WARNING("69AM69 won't fit into the69agwell.")) //wrong69agazine
 					return
 				user.remove_from_mob(AM)
 				. = 1
@@ -175,15 +175,15 @@
 				cock_gun(user)
 				update_firemode()
 			if(SPEEDLOADER)
-				if(loaded.len >= max_shells)
-					to_chat(user, SPAN_WARNING("[src] is full!"))
+				if(loaded.len >=69ax_shells)
+					to_chat(user, SPAN_WARNING("69src69 is full!"))
 					return
 				var/count = 0
 				if(AM.reload_delay)
-					to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [AM]..."))
+					to_chat(user, SPAN_NOTICE("It takes some time to reload 69src69 with 69AM69..."))
 				if (do_after(user, AM.reload_delay, user))
 					for(var/obj/item/ammo_casing/C in AM.stored_ammo)
-						if(loaded.len >= max_shells)
+						if(loaded.len >=69ax_shells)
 							break
 						if(C.caliber == caliber)
 							C.forceMove(src)
@@ -191,7 +191,7 @@
 							AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 							count++
 				if(count)
-					user.visible_message("[user] reloads [src].", SPAN_NOTICE("You load [count] round\s into [src]."))
+					user.visible_message("69user69 reloads 69src69.", SPAN_NOTICE("You load 69count69 round\s into 69src69."))
 					if(reload_sound) playsound(src.loc, reload_sound, 75, 1)
 					cock_gun(user)
 					. = 1
@@ -200,20 +200,20 @@
 	else if(istype(A, /obj/item/ammo_casing))
 		var/obj/item/ammo_casing/C = A
 		if(!(load_method & SINGLE_CASING) || caliber != C.caliber)
-			to_chat(user, SPAN_WARNING("[src] is incompatible with [C]."))
+			to_chat(user, SPAN_WARNING("69src69 is incompatible with 69C69."))
 			return //incompatible
-		if(loaded.len >= max_shells)
-			to_chat(user, SPAN_WARNING("[src] is full."))
+		if(loaded.len >=69ax_shells)
+			to_chat(user, SPAN_WARNING("69src69 is full."))
 			return
 
 		if(C.reload_delay)
-			to_chat(user, SPAN_NOTICE("It takes some time to reload [src] with [C]..."))
+			to_chat(user, SPAN_NOTICE("It takes some time to reload 69src69 with 69C69..."))
 		if (!do_after(user, C.reload_delay, user))
 			return
 
 		if(C.amount > 1)
 			C.amount -= 1
-			var/obj/item/ammo_casing/inserted_casing = new /obj/item/ammo_casing(src)	//Couldn't make it seperate, so it must be cloned
+			var/obj/item/ammo_casing/inserted_casing =69ew /obj/item/ammo_casing(src)	//Couldn't69ake it seperate, so it69ust be cloned
 			inserted_casing.name = C.name
 			inserted_casing.desc = C.desc
 			inserted_casing.caliber = C.caliber
@@ -222,7 +222,7 @@
 			inserted_casing.spent_icon = C.spent_icon
 			inserted_casing.maxamount = C.maxamount
 			if(ispath(inserted_casing.projectile_type) && C.BB)
-				inserted_casing.BB = new inserted_casing.projectile_type(inserted_casing)
+				inserted_casing.BB =69ew inserted_casing.projectile_type(inserted_casing)
 
 			inserted_casing.sprite_use_small = C.sprite_use_small
 			inserted_casing.sprite_max_rotate = C.sprite_max_rotate
@@ -230,7 +230,7 @@
 			inserted_casing.sprite_update_spawn = C.sprite_update_spawn
 
 			if(inserted_casing.sprite_update_spawn)
-				var/matrix/rotation_matrix = matrix()
+				var/matrix/rotation_matrix =69atrix()
 				rotation_matrix.Turn(round(45 * rand(0, inserted_casing.sprite_max_rotate) / 2))
 				if(inserted_casing.sprite_use_small)
 					inserted_casing.transform = rotation_matrix * inserted_casing.sprite_scale
@@ -249,20 +249,20 @@
 			loaded.Insert(1, C) //add to the head of the list
 		update_firemode()
 		. = 1
-		user.visible_message("[user] inserts \a [C] into [src].", SPAN_NOTICE("You insert \a [C] into [src]."))
+		user.visible_message("69user69 inserts \a 69C69 into 69src69.", SPAN_NOTICE("You insert \a 69C69 into 69src69."))
 		if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 
 	update_icon()
 
-//attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
-/obj/item/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
+//attempts to unload src. If allow_dump is set to 0, the speedloader unloading69ethod will be disabled
+/obj/item/gun/projectile/proc/unload_ammo(mob/user,69ar/allow_dump=1)
 	if(ammo_magazine)
 		user.put_in_hands(ammo_magazine)
 
 		if(unload_sound)
 			playsound(src.loc, unload_sound, 75, 1)
 		ammo_magazine.update_icon()
-		ammo_magazine = null
+		ammo_magazine =69ull
 	else if(loaded.len)
 		//presumably, if it can be speed-loaded, it can be speed-unloaded.
 		if(allow_dump && (load_method & SPEEDLOADER))
@@ -274,51 +274,51 @@
 					count++
 				loaded.Cut()
 			if(count)
-				user.visible_message("[user] unloads [src].", SPAN_NOTICE("You unload [count] round\s from [src]."))
+				user.visible_message("69user69 unloads 69src69.", SPAN_NOTICE("You unload 69count69 round\s from 69src69."))
 				if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 		else if(load_method & SINGLE_CASING)
-			var/obj/item/ammo_casing/C = loaded[loaded.len]
+			var/obj/item/ammo_casing/C = loaded69loaded.len69
 			loaded.len--
 			user.put_in_hands(C)
-			user.visible_message("[user] removes \a [C] from [src].", SPAN_NOTICE("You remove \a [C] from [src]."))
+			user.visible_message("69user69 removes \a 69C69 from 69src69.", SPAN_NOTICE("You remove \a 69C69 from 69src69."))
 			if(bulletinsert_sound) playsound(src.loc, bulletinsert_sound, 75, 1)
 	else
-		to_chat(user, SPAN_WARNING("[src] is empty."))
+		to_chat(user, SPAN_WARNING("69src69 is empty."))
 	update_icon()
 
-/obj/item/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/attackby(var/obj/item/A as obj,69ob/user as69ob)
 	.=..()
-	if(QUALITY_SAWING in A.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
+	if(69UALITY_SAWING in A.tool_69ualities)
+		to_chat(user, SPAN_NOTICE("You begin to saw down \the 69src69."))
 		if(saw_off == FALSE)
-			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
+			to_chat(user, SPAN_NOTICE("Sawing down \the 69src69 will achieve69othing or69ay impede operation."))
 			return
 		if (src.item_upgrades.len)
 			if(src.dna_compare_samples) //or else you can override dna lock
-				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
+				to_chat(user, SPAN_NOTICE("Sawing down \the 69src69 will69ot allow use of the firearm."))
 				return
 			if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
 				return
 		if(loaded.len)
-			for(var/i in 1 to max_shells)
+			for(var/i in 1 to69ax_shells)
 				afterattack(user, user)	//will this work? //it will. we call it twice, for twice the FUN
 				playsound(user, fire_sound, 50, 1)
-			user.visible_message(SPAN_DANGER("The [src] goes off!"), SPAN_DANGER("The [src] goes off in your face!"))
+			user.visible_message(SPAN_DANGER("The 69src69 goes off!"), SPAN_DANGER("The 69src69 goes off in your face!"))
 			return
-		if(saw_off && A.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			qdel(src)
+		if(saw_off && A.use_tool(user, src, WORKTIME_LONG, 69UALITY_SAWING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
+			69del(src)
 			new sawn(usr.loc)
-			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
+			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else69ice from \the 69src69, ruining a perfectly good weapon."))
 	if (!.) //Parent returns true if attackby is handled
 		load_ammo(A, user)
 
-/obj/item/gun/projectile/attack_self(mob/user as mob)
+/obj/item/gun/projectile/attack_self(mob/user as69ob)
 	if(firemodes.len > 1)
 		..()
 	else
 		unload_ammo(user)
 
-/obj/item/gun/projectile/attack_hand(mob/user as mob)
+/obj/item/gun/projectile/attack_hand(mob/user as69ob)
 	if(user.get_inactive_hand() == src)
 		unload_ammo(user, allow_dump=0)
 	else
@@ -329,25 +329,25 @@
 	if(src.loc == usr && istype(over_object, /obj/screen/inventory/hand))
 		unload_ammo(usr, allow_dump=0)
 
-/obj/item/gun/projectile/afterattack(atom/A, mob/living/user)
+/obj/item/gun/projectile/afterattack(atom/A,69ob/living/user)
 	..()
 	if(auto_eject && ammo_magazine && ammo_magazine.stored_ammo && !ammo_magazine.stored_ammo.len)
 		ammo_magazine.forceMove(get_turf(src.loc))
 		user.visible_message(
-			"[ammo_magazine] falls out and clatters on the floor!",
-			SPAN_NOTICE("[ammo_magazine] falls out and clatters on the floor!")
+			"69ammo_magazine69 falls out and clatters on the floor!",
+			SPAN_NOTICE("69ammo_magazine69 falls out and clatters on the floor!")
 			)
 		if(auto_eject_sound)
 			playsound(user, auto_eject_sound, 40, 1)
 		ammo_magazine.update_icon()
-		ammo_magazine = null
+		ammo_magazine =69ull
 		update_icon() //make sure to do this after unsetting ammo_magazine
 
 /obj/item/gun/projectile/examine(mob/user)
 	..(user)
 	if(ammo_magazine)
-		to_chat(user, "It has \a [ammo_magazine] loaded.")
-	to_chat(user, "Has [get_ammo()] round\s remaining.")
+		to_chat(user, "It has \a 69ammo_magazine69 loaded.")
+	to_chat(user, "Has 69get_ammo()69 round\s remaining.")
 	return
 
 /obj/item/gun/projectile/proc/get_ammo()
@@ -362,17 +362,17 @@
 
 /obj/item/gun/projectile/proc/get_max_ammo()
 	var/bullets = 0
-	if (load_method & MAGAZINE)
+	if (load_method &69AGAZINE)
 		if(ammo_magazine)
 			bullets += ammo_magazine.max_ammo
 	if (load_method & SPEEDLOADER)
-		bullets += max_shells
+		bullets +=69ax_shells
 	return bullets
 
 /* Unneeded -- so far.
 //in case the weapon has firemodes and can't unload using attack_hand()
 /obj/item/gun/projectile/verb/unload_gun()
-	set name = "Unload Ammo"
+	set69ame = "Unload Ammo"
 	set category = "Object"
 	set src in usr
 
@@ -383,9 +383,9 @@
 
 /obj/item/gun/projectile/ui_data(mob/user)
 	var/list/data = ..()
-	data["caliber"] = caliber
-	data["current_ammo"] = get_ammo()
-	data["max_shells"] = get_max_ammo()
+	data69"caliber"69 = caliber
+	data69"current_ammo"69 = get_ammo()
+	data69"max_shells"69 = get_max_ammo()
 
 	return data
 
@@ -394,18 +394,18 @@
 	if(chambered)
 		proj_type = chambered.BB.type
 	else if(loaded.len)
-		var/obj/item/ammo_casing/A = loaded[1]
+		var/obj/item/ammo_casing/A = loaded69169
 		if(!A.BB)
-			return null
+			return69ull
 		proj_type = A.BB.type
 	else if(ammo_magazine && ammo_magazine.stored_ammo.len)
-		var/obj/item/ammo_casing/A = ammo_magazine.stored_ammo[1]
+		var/obj/item/ammo_casing/A = ammo_magazine.stored_ammo69169
 		if(!A.BB)
-			return null
+			return69ull
 		proj_type = A.BB.type
 	if(!proj_type)
-		return null
-	return new proj_type
+		return69ull
+	return69ew proj_type
 
 /obj/item/gun/projectile/refresh_upgrades()
 	max_shells = initial(max_shells)
@@ -417,6 +417,6 @@
 	switch(caliber)
 		if(CAL_PISTOL)
 			gun_tags |= GUN_CALIBRE_35
-		//Others to be implemented when needed
+		//Others to be implemented when69eeded
 	if(max_shells && !no_internal_mag) // so the overshooter can't be attached to the AMR and double-barrel anymore
 		gun_tags |= GUN_INTERNAL_MAG

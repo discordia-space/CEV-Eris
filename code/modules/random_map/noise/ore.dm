@@ -1,8 +1,8 @@
 /datum/random_map/noise/ore
-	descriptor = "ore distribution map"
-	var/deep_val = 0.8              // Threshold for deep metals, set in new as percentage of cell_range.
-	var/rare_val = 0.7              // Threshold for rare metal, set in new as percentage of cell_range.
-	var/chunk_size = 4              // Size each cell represents on map
+	descriptor = "ore distribution69ap"
+	var/deep_val = 0.8              // Threshold for deep69etals, set in69ew as percentage of cell_range.
+	var/rare_val = 0.7              // Threshold for rare69etal, set in69ew as percentage of cell_range.
+	var/chunk_size = 4              // Size each cell represents on69ap
 
 /datum/random_map/noise/ore/New()
 	rare_val = cell_range * rare_val
@@ -15,8 +15,8 @@
 	var/surface_count = 0
 	var/deep_count = 0
 
-	// Increment map sanity counters.
-	for(var/value in map)
+	// Increment69ap sanity counters.
+	for(var/value in69ap)
 		if(value < rare_val)
 			surface_count++
 		else if(value < deep_val)
@@ -24,14 +24,14 @@
 		else
 			deep_count++
 	// Sanity check.
-	if(surface_count < MIN_SURFACE_COUNT)
-		admin_notice(SPAN_DANGER("Insufficient surface minerals. Rerolling..."), R_DEBUG)
+	if(surface_count <69IN_SURFACE_COUNT)
+		admin_notice(SPAN_DANGER("Insufficient surface69inerals. Rerolling..."), R_DEBUG)
 		return 0
-	else if(rare_count < MIN_RARE_COUNT)
-		admin_notice(SPAN_DANGER("Insufficient rare minerals. Rerolling..."), R_DEBUG)
+	else if(rare_count <69IN_RARE_COUNT)
+		admin_notice(SPAN_DANGER("Insufficient rare69inerals. Rerolling..."), R_DEBUG)
 		return 0
-	else if(deep_count < MIN_DEEP_COUNT)
-		admin_notice(SPAN_DANGER("Insufficient deep minerals. Rerolling..."), R_DEBUG)
+	else if(deep_count <69IN_DEEP_COUNT)
+		admin_notice(SPAN_DANGER("Insufficient deep69inerals. Rerolling..."), R_DEBUG)
 		return 0
 	else
 		return 1
@@ -48,39 +48,39 @@
 				continue
 			if(!priority_process) sleep(-1)
 			T.resources = list()
-			T.resources[MATERIAL_GLASS] = rand(7,12)
-			T.resources[MATERIAL_PLASTIC] = rand(7,12)
+			T.resources69MATERIAL_GLASS69 = rand(7,12)
+			T.resources69MATERIAL_PLASTIC69 = rand(7,12)
 
 			T.seismic_activity = rand(SEISMIC_MIN, SEISMIC_MAX)
 
-			var/current_cell = map[get_map_cell(x,y)]
-			if(current_cell < rare_val)      // Surface metals.
-				T.resources[MATERIAL_IRON] =     rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources[MATERIAL_GOLD] =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources[MATERIAL_SILVER] =   rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources[MATERIAL_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources[MATERIAL_DIAMOND] =  0
-				T.resources[MATERIAL_PLASMA] =   0
-				T.resources[MATERIAL_OSMIUM] =   0
-				T.resources[MATERIAL_TRITIUM] =  0
-			else if(current_cell < deep_val) // Rare metals.
-				T.resources[MATERIAL_GOLD] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources[MATERIAL_SILVER] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources[MATERIAL_URANIUM] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources[MATERIAL_PLASMA] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources[MATERIAL_OSMIUM] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources[MATERIAL_TRITIUM] =  0
-				T.resources[MATERIAL_DIAMOND] =  0
-				T.resources[MATERIAL_IRON] =     0
-			else                             // Deep metals.
-				T.resources[MATERIAL_URANIUM] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources[MATERIAL_DIAMOND] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
-				T.resources[MATERIAL_PLASMA] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources[MATERIAL_OSMIUM] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
-				T.resources[MATERIAL_TRITIUM] =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
-				T.resources[MATERIAL_IRON] =     0
-				T.resources[MATERIAL_GOLD] =     0
-				T.resources[MATERIAL_SILVER] =   0
+			var/current_cell =69ap69get_map_cell(x,y)69
+			if(current_cell < rare_val)      // Surface69etals.
+				T.resources69MATERIAL_IRON69 =     rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources69MATERIAL_GOLD69 =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources69MATERIAL_SILVER69 =   rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources69MATERIAL_URANIUM69 =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources69MATERIAL_DIAMOND69 =  0
+				T.resources69MATERIAL_PLASMA69 =   0
+				T.resources69MATERIAL_OSMIUM69 =   0
+				T.resources69MATERIAL_TRITIUM69 =  0
+			else if(current_cell < deep_val) // Rare69etals.
+				T.resources69MATERIAL_GOLD69 =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources69MATERIAL_SILVER69 =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources69MATERIAL_URANIUM69 =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources69MATERIAL_PLASMA69 =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources69MATERIAL_OSMIUM69 =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources69MATERIAL_TRITIUM69 =  0
+				T.resources69MATERIAL_DIAMOND69 =  0
+				T.resources69MATERIAL_IRON69 =     0
+			else                             // Deep69etals.
+				T.resources69MATERIAL_URANIUM69 =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources69MATERIAL_DIAMOND69 =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources69MATERIAL_PLASMA69 =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources69MATERIAL_OSMIUM69 =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources69MATERIAL_TRITIUM69 =  rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
+				T.resources69MATERIAL_IRON69 =     0
+				T.resources69MATERIAL_GOLD69 =     0
+				T.resources69MATERIAL_SILVER69 =   0
 			CHECK_TICK
 	return
 

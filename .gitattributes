@@ -1,6 +1,6 @@
 * text=auto
 
-## Enforce text mode and LF line breaks
+## Enforce text69ode and LF line breaks
 *.bat text eol=lf
 *.cjs text eol=lf
 *.css text eol=lf
@@ -25,7 +25,7 @@
 *.yaml text eol=lf
 *.yml text eol=lf
 
-## Enforce binary mode
+## Enforce binary69ode
 *.bmp binary
 *.dll binary
 *.dmb binary
@@ -35,9 +35,9 @@
 *.png binary
 *.so binary
 
-## Merger hooks, run tools/hooks/install.bat or install.sh to set up
-*.dmm text eol=lf merge=dmm
-*.dmi binary merge=dmi
+##69erger hooks, run tools/hooks/install.bat or install.sh to set up
+*.dmm text eol=lf69erge=dmm
+*.dmi binary69erge=dmi
 
 ## Force tab indents on dm files
 *.dm whitespace=indent-with-non-tab

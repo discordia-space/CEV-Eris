@@ -17,18 +17,18 @@
 	cut_overlays()
 
 	if(reagents?.total_volume)
-		var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-[get_filling_state()]")
+		var/mutable_appearance/filling =69utable_appearance('icons/obj/reagentfillings.dmi', "69icon_state69-69get_filling_state()69")
 		filling.color = reagents.get_color()
 		add_overlay(filling)
 
 	if(has_lid())
-		var/lid_icon = lid_icon_state ? lid_icon_state : "lid_[icon_state]"
-		var/mutable_appearance/lid = mutable_appearance(icon, lid_icon)
+		var/lid_icon = lid_icon_state ? lid_icon_state : "lid_69icon_state69"
+		var/mutable_appearance/lid =69utable_appearance(icon, lid_icon)
 		add_overlay(lid)
 
 	if(label_text)
-		var/label_icon = label_icon_state ? label_icon_state : "label_[icon_state]"
-		var/mutable_appearance/label = mutable_appearance(icon, label_icon)
+		var/label_icon = label_icon_state ? label_icon_state : "label_69icon_state69"
+		var/mutable_appearance/label =69utable_appearance(icon, label_icon)
 		add_overlay(label)
 
 /obj/item/reagent_containers/glass/bottle/inaprovaline
@@ -39,7 +39,7 @@
 
 /obj/item/reagent_containers/glass/bottle/toxin
 	name = "toxin bottle"
-	desc = "A small bottle of toxins. Do not drink, it is poisonous."
+	desc = "A small bottle of toxins. Do69ot drink, it is poisonous."
 	icon_state = "bottle"
 	preloaded_reagents = list("toxin" = 60)
 
@@ -51,13 +51,13 @@
 
 /obj/item/reagent_containers/glass/bottle/stoxin
 	name = "soporific bottle"
-	desc = "A small bottle of soporific. Just the fumes make you sleepy."
+	desc = "A small bottle of soporific. Just the fumes69ake you sleepy."
 	icon_state = "bottle"
 	preloaded_reagents = list("stoxin" = 60)
 
 /obj/item/reagent_containers/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
-	desc = "A small bottle of chloral hydrate. Mickey's Favorite!"
+	desc = "A small bottle of chloral hydrate.69ickey's Favorite!"
 	icon_state = "bottle"
 	preloaded_reagents = list("chloralhydrate" = 30)
 
@@ -68,8 +68,8 @@
 	preloaded_reagents = list("anti_toxin" = 60)
 
 /obj/item/reagent_containers/glass/bottle/mutagen
-	name = "unstable mutagen bottle"
-	desc = "A small bottle of unstable mutagen. Randomly changes the DNA structure of whoever comes in contact."
+	name = "unstable69utagen bottle"
+	desc = "A small bottle of unstable69utagen. Randomly changes the DNA structure of whoever comes in contact."
 	icon_state = "bottle"
 	preloaded_reagents = list("mutagen" = 60)
 
@@ -106,7 +106,7 @@
 
 /obj/item/reagent_containers/glass/bottle/adminordrazine
 	name = "adminordrazine bottle"
-	desc = "A small bottle. Contains the liquid essence of the gods."
+	desc = "A small bottle. Contains the li69uid essence of the gods."
 	icon = 'icons/obj/drinks.dmi'
 	icon_state = "holyflask"
 	preloaded_reagents = list("adminordrazine" = 60)

@@ -1,51 +1,51 @@
 <!-- 
-Title: Chemical Heater 
-Used In File(s): \code\modules\reagents\machinery\chem_heater.dm
+Title: C69emic69l 69e69ter 
+Used In File69s69: \code\modules\re6969ents\m69c69iner69\c69em_69e69ter.dm
  -->
-<div class="item">
-	<div class="itemLabel">
-		Power:
-	</div>
-	<div class="itemContent">
-		{{:helper.link("On", 'power-off', {'power' : 1}, data.on ? 'selected' : null)}}
-		{{:helper.link("Off", 'close', {'power' : 1}, !data.on ? 'selected' : null)}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel">
-		Target:
-	</div>
-	<div class="itemContent">
-		{{:helper.link(helper.fixed(data.target_temperature) + ' K', 'pencil', {'temperature' : 1, 'target' : 'input'})}}
-	</div>
-</div>
-<div class="item">&nbsp;</div>
-<div class="item">
-	<div class="itemLabel">
-		Beaker
-	</div>
-	<div class="itemContent">
-		{{:helper.link('Eject Beaker', 'eject', {'eject' : 1}, data.beaker ? null : 'disabled', 'floatRight')}}
-	</div>
-</div>
-<div class="statusDisplay" style="min-height: 180px;">
-	<div class="item">
-		<div class="itemContent" style="width: 100%;">
-			{{if data.beaker}}
-				Volume:&nbsp;{{:helper.fixed(data.beaker.total_volume)}}&nbsp;/&nbsp;{{:data.beaker.maximum_volume}}<br>
-				Temperature:&nbsp;{{:helper.fixed(data.beaker.chem_temp)}} K<br>
-				{{for data.beaker.contents}}
-					<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
-				{{empty}}
-					<span class="bad">
-						Beaker is empty
-					</span>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		69ower:
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:69el69er.lin6969"On", '69ower-off', {'69ower' : 1}, d69t69.on ? 'selected' :69ull69}}
+		{{:69el69er.lin6969"Off", 'close', {'69ower' : 1}, !d69t69.on ? 'selected' :69ull69}}
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		T69r69et:
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:69el69er.lin696969el69er.fixed69d69t69.t69r69et_tem69er69ture69 + ' 69', '69encil', {'tem69er69ture' : 1, 't69r69et' : 'in69ut'}69}}
+	</di69>
+</di69>
+<di69 cl69ss="item">&n69s69;</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		69e6969er
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:69el69er.lin6969'E69ect 69e6969er', 'e69ect', {'e69ect' : 1}, d69t69.69e6969er ?69ull : 'dis6969led', 'flo69tRi6969t'69}}
+	</di69>
+</di69>
+<di69 cl69ss="st69tusDis69l6969" st69le="min-69ei6969t: 18069x;">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent" st69le="widt69: 100%;">
+			{{if d69t69.69e6969er}}
+				69olume:&n69s69;{{:69el69er.fixed69d69t69.69e6969er.tot69l_69olume69}}&n69s69;/&n69s69;{{:d69t69.69e6969er.m69ximum_69olume}}<69r>
+				Tem69er69ture:&n69s69;{{:69el69er.fixed69d69t69.69e6969er.c69em_tem6969}} 69<69r>
+				{{for d69t69.69e6969er.contents}}
+					<s6969n cl69ss="69i6969li6969t">{{:69el69er.fixed696969lue.69olume69}} units of {{:6969lue.n69me}}</s6969n><69r>
+				{{em69t69}}
+					<s6969n cl69ss="6969d">
+						69e6969er is em69t69
+					</s6969n>
 				{{/for}}
 			{{else}}
-				<span class="average"><i>
-					No beaker loaded
-				</i></span>
+				<s6969n cl69ss="6969er6969e"><i>
+					No 69e6969er lo69ded
+				</i></s6969n>
 			{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>

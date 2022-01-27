@@ -1,6 +1,6 @@
 /obj/machinery/bluespacerelay
-	name = "Emergency Bluespace Relay"
-	desc = "This sends messages through bluespace! Wow!"
+	name = "Emer69ency Bluespace Relay"
+	desc = "This sends69essa69es throu69h bluespace! Wow!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "bspacerelay"
 
@@ -9,8 +9,8 @@
 	use_power = IDLE_POWER_USE
 	var/on = TRUE
 
-	idle_power_usage = 15000
-	active_power_usage = 15000
+	idle_power_usa69e = 15000
+	active_power_usa69e = 15000
 
 /obj/machinery/bluespacerelay/process()
 
@@ -23,7 +23,7 @@
 	if(on)
 		icon_state = initial(icon_state)
 	else
-		icon_state = "[initial(icon_state)]_off"
+		icon_state = "69initial(icon_state)69_off"
 
 /obj/machinery/bluespacerelay/proc/update_power()
 

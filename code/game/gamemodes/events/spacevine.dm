@@ -1,6 +1,6 @@
 /*
 	Spawns a rapidly expanding plant that can grow through doors.
-	The plant is vulnerable to fire and cutting weapons
+	The plant is69ulnerable to fire and cutting weapons
 
 	It's not really dangerous, it doesn't eat you like the blob, so it has a lower cost
 */

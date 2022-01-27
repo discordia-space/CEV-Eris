@@ -23,7 +23,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 /datum/category_group/player_setup_category/background_preferences/content(var/mob/user)
 	. = ""
 	for(var/datum/category_item/player_setup_item/PI in items)
-		. += "[PI.content(user)]<br>"
+		. += "69PI.content(user)69<br>"
 
 /datum/category_group/player_setup_category/occupation_preferences
 	name = "Occupation"
@@ -68,7 +68,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 /datum/category_collection/player_setup_collection/New(var/datum/preferences/preferences)
 	src.preferences = preferences
 	..()
-	selected_category = categories[1]
+	selected_category = categories69169
 
 /datum/category_collection/player_setup_collection/Destroy()
 	preferences = null
@@ -95,7 +95,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		PS.save_preferences(S)
 
-/datum/category_collection/player_setup_collection/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_collection/player_setup_collection/proc/update_setup(var/savefile/preferences,69ar/savefile/character)
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		. = PS.update_setup(preferences, character) || .
 
@@ -103,9 +103,9 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	var/dat = ""
 	for(var/datum/category_group/player_setup_category/PS in categories)
 		if(PS == selected_category)
-			dat += "[PS.name] "	// TODO: Check how to properly mark a href/button selected in a classic browser window
+			dat += "69PS.name69 "	// TODO: Check how to properly69ark a href/button selected in a classic browser window
 		else
-			dat += "<a href='?src=\ref[src];category=\ref[PS]'>[PS.name]</a> "
+			dat += "<a href='?src=\ref69src69;category=\ref69PS69'>69PS.name69</a> "
 	return dat
 
 /datum/category_collection/player_setup_collection/proc/content(var/mob/user)
@@ -119,8 +119,8 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	if(!user.client)
 		return 1
 
-	if(href_list["category"])
-		var/category = locate(href_list["category"])
+	if(href_list69"category"69)
+		var/category = locate(href_list69"category"69)
 		if(category && (category in categories))
 			selected_category = category
 			if(selected_category.update_preview_icon)
@@ -167,7 +167,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.save_preferences(S)
 
-/datum/category_group/player_setup_category/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_group/player_setup_category/proc/update_setup(var/savefile/preferences,69ar/savefile/character)
 	for(var/datum/category_item/player_setup_item/PI in items)
 		. = PI.update_setup(preferences, character) || .
 
@@ -179,12 +179,12 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 		if(halfway && current++ >= halfway)
 			halfway = 0
 			. += "</td><td></td><td style='width:50%'>"
-		. += "[PI.content(user)]<br>"
+		. += "69PI.content(user)69<br>"
 	. += "</td></tr></table>"
 
 /datum/category_group/player_setup_category/occupation_preferences/content(var/mob/user)
 	for(var/datum/category_item/player_setup_item/PI in items)
-		. += "[PI.content(user)]<br>"
+		. += "69PI.content(user)69<br>"
 
 /**********************
 * Category Item Setup *
@@ -199,11 +199,11 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 	pref = psc.preferences
 
 	if(!isnull(option_category))
-		if(!istext(option_category) || !SScharacter_setup.setup_options[option_category])
-			warning("Wrong initial option_category: [option_category]")
+		if(!istext(option_category) || !SScharacter_setup.setup_options69option_category69)
+			warning("Wrong initial option_category: 69option_category69")
 			option_category = null
 		else
-			option_category = SScharacter_setup.setup_options[option_category]
+			option_category = SScharacter_setup.setup_options69option_category69
 
 /datum/category_item/player_setup_item/Destroy()
 	pref = null
@@ -241,7 +241,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 /*
 * Called when the item is asked to update user/global settings
 */
-/datum/category_item/player_setup_item/proc/update_setup(var/savefile/preferences, var/savefile/character)
+/datum/category_item/player_setup_item/proc/update_setup(var/savefile/preferences,69ar/savefile/character)
 	return 0
 
 /datum/category_item/player_setup_item/proc/content()
@@ -264,7 +264,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 
 	. = OnTopic(href, href_list, usr)
 
-	// The user might have joined the game or otherwise had a change of mob while tweaking their preferences.
+	// The user69ight have joined the game or otherwise had a change of69ob while tweaking their preferences.
 	pref_mob = preference_mob()
 	if(!pref_mob || !pref_mob.client)
 		return 1
@@ -277,7 +277,7 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 /datum/category_item/player_setup_item/CanUseTopic(var/mob/user)
 	return 1
 
-/datum/category_item/player_setup_item/proc/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/proc/OnTopic(var/href,var/list/href_list,69ar/mob/user)
 	return TOPIC_NOACTION
 
 /datum/category_item/player_setup_item/proc/preference_mob()
@@ -299,5 +299,5 @@ var/const/CHARACTER_PREFERENCE_INPUT_TITLE = "Character Preference"
 		return pref.client.mob
 /*
 /datum/category_item/player_setup_item/proc/preference_species()
-	return all_species[pref.species] || all_species[SPECIES_HUMAN]
+	return all_species69pref.species69 || all_species69SPECIES_HUMAN69
 */

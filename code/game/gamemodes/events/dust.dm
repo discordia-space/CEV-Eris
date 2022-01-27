@@ -3,8 +3,8 @@
 /*
 Space dust
 Commonish random event that causes small clumps of "space dust" to hit the station at high speeds.
-No command report on the common version of this event.
-The "dust" will damage the hull of the station causin minor hull breaches.
+No command report on the common69ersion of this event.
+The "dust" will damage the hull of the station causin69inor hull breaches.
 */
 
 
@@ -73,7 +73,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 	density = TRUE
 	anchored = TRUE
 	var/strength = 2 //ex_act severity number
-	var/life = 2 //how many things we hit before qdel(src)
+	var/life = 2 //how69any things we hit before 69del(src)
 
 	weak
 		strength = 3
@@ -127,7 +127,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 		return
 
 	touch_map_edge()
-		qdel(src)
+		69del(src)
 
 	Bump(atom/A)
 		spawn(0)
@@ -143,13 +143,13 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 
 				//Protect the singularity from getting released every round!
 				else if(!istype(A,/obj/machinery/power/emitter) && !istype(A,/obj/machinery/field_generator))
-					//Changing emitter/field gen ex_act would make it immune to bombs and C4
+					//Changing emitter/field gen ex_act would69ake it immune to bombs and C4
 					A.ex_act(strength)
 
 				life--
 				if(life <= 0)
 					walk(src,0)
-					qdel(src)
+					69del(src)
 					return
 		return
 
@@ -160,7 +160,7 @@ The "dust" will damage the hull of the station causin minor hull breaches.
 
 
 	ex_act(severity)
-		qdel(src)
+		69del(src)
 		return
 
 

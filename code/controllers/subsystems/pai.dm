@@ -5,12 +5,12 @@ SUBSYSTEM_DEF(pai)
 	var/inquirer = null
 	var/list/pai_candidates = list()
 	var/list/asked = list()
-	var/askDelay = 1 MINUTES
+	var/askDelay = 169INUTES
 
-/datum/controller/subsystem/pai/Topic(href, href_list[])
-	if(href_list["download"])
-		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
-		var/obj/item/device/paicard/card = locate(href_list["device"])
+/datum/controller/subsystem/pai/Topic(href, href_list6969)
+	if(href_list69"download"69)
+		var/datum/paiCandidate/candidate = locate(href_list69"candidate"69)
+		var/obj/item/device/paicard/card = locate(href_list69"device"69)
 		if(card.pai)
 			return
 		if(istype(card,/obj/item/device/paicard) && istype(candidate,/datum/paiCandidate))
@@ -30,18 +30,18 @@ SUBSYSTEM_DEF(pai)
 			pai_candidates -= candidate
 			usr << browse(null, "window=findPai")
 
-	if(href_list["new"])
-		var/datum/paiCandidate/candidate = locate(href_list["candidate"])
-		var/option = href_list["option"]
+	if(href_list69"new"69)
+		var/datum/paiCandidate/candidate = locate(href_list69"candidate"69)
+		var/option = href_list69"option"69
 		var/t = ""
 
 		switch(option)
 			if("name")
-				t = sanitizeSafe(input("Enter a name for your pAI", "pAI Name", candidate.name) as text, MAX_NAME_LEN)
+				t = sanitizeSafe(input("Enter a name for your pAI", "pAI Name", candidate.name) as text,69AX_NAME_LEN)
 				if(t)
 					candidate.name = t
 			if("desc")
-				t = input("Enter a description for your pAI", "pAI Description", candidate.description) as message
+				t = input("Enter a description for your pAI", "pAI Description", candidate.description) as69essage
 				if(t)
 					candidate.description = sanitize(t)
 			if("role")
@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(pai)
 				if(t)
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = input("Enter any OOC comments", "pAI OOC Comments", candidate.comments) as message
+				t = input("Enter any OOC comments", "pAI OOC Comments", candidate.comments) as69essage
 				if(t)
 					candidate.comments = sanitize(t)
 			if("save")
@@ -58,7 +58,7 @@ SUBSYSTEM_DEF(pai)
 				candidate.savefile_load(usr)
 				//In case people have saved unsanitized stuff.
 				if(candidate.name)
-					candidate.name = sanitizeSafe(candidate.name, MAX_NAME_LEN)
+					candidate.name = sanitizeSafe(candidate.name,69AX_NAME_LEN)
 				if(candidate.description)
 					candidate.description = sanitize(candidate.description)
 				if(candidate.role)
@@ -75,18 +75,18 @@ SUBSYSTEM_DEF(pai)
 				usr << browse(null, "window=paiRecruit")
 				return
 
-		recruitWindow(usr, href_list["allow_submit"] != "0")
+		recruitWindow(usr, href_list69"allow_submit"69 != "0")
 
 /datum/controller/subsystem/pai/proc/recruitWindow(mob/M, allowSubmit = TRUE)
 	var/datum/paiCandidate/candidate
 	for(var/datum/paiCandidate/c in pai_candidates)
 		if(!istype(c) || !istype(M))
 			break
-		if(c.key == M.key)
+		if(c.key ==69.key)
 			candidate = c
 	if(!candidate)
 		candidate = new /datum/paiCandidate()
-		candidate.key = M.key
+		candidate.key =69.key
 		pai_candidates.Add(candidate)
 
 	var/dat = ""
@@ -155,44 +155,44 @@ SUBSYSTEM_DEF(pai)
 
 		<table>
 			<tr class="d0">
-				<th rowspan="2"><a href='byond://?src=\ref[src];option=name;new=1;allow_submit=[allowSubmit];candidate=\ref[candidate]'>Name</a>:</th>
-				<td class="desc">[candidate.name]&nbsp;</td>
+				<th rowspan="2"><a href='byond://?src=\ref69src69;option=name;new=1;allow_submit=69allowSubmit69;candidate=\ref69candidate69'>Name</a>:</th>
+				<td class="desc">69candidate.name69&nbsp;</td>
 			</tr>
 			<tr class="d1">
 				<td>What you plan to call yourself. Suggestions: Any character name you would choose for a station character OR an AI.</td>
 			</tr>
 			<tr class="d0">
-				<th rowspan="2"><a href='byond://?src=\ref[src];option=desc;new=1;allow_submit=[allowSubmit];candidate=\ref[candidate]'>Description</a>:</th>
-				<td class="desc">[candidate.description]&nbsp;</td>
+				<th rowspan="2"><a href='byond://?src=\ref69src69;option=desc;new=1;allow_submit=69allowSubmit69;candidate=\ref69candidate69'>Description</a>:</th>
+				<td class="desc">69candidate.description69&nbsp;</td>
 			</tr>
 			<tr class="d1">
-				<td>What sort of pAI you typically play; your mannerisms, your quirks, etc. This can be as sparse or as detailed as you like.</td>
+				<td>What sort of pAI you typically play; your69annerisms, your quirks, etc. This can be as sparse or as detailed as you like.</td>
 			</tr>
 			<tr class="d0">
-				<th rowspan="2"><a href='byond://?src=\ref[src];option=role;new=1;allow_submit=[allowSubmit];candidate=\ref[candidate]'>Preferred Role</a>:</th>
-				<td class="desc">[candidate.role]&nbsp;</td>
+				<th rowspan="2"><a href='byond://?src=\ref69src69;option=role;new=1;allow_submit=69allowSubmit69;candidate=\ref69candidate69'>Preferred Role</a>:</th>
+				<td class="desc">69candidate.role69&nbsp;</td>
 			</tr>
 			<tr class="d1">
-				<td>Do you like to partner with sneaky social ninjas? Like to help security hunt down thugs? Enjoy watching an engineer's back while he saves the station yet again? This doesn't have to be limited to just station jobs. Pretty much any general descriptor for what you'd like to be doing works here.</td>
+				<td>Do you like to partner with sneaky social ninjas? Like to help security hunt down thugs? Enjoy watching an engineer's back while he saves the station yet again? This doesn't have to be limited to just station jobs. Pretty69uch any general descriptor for what you'd like to be doing works here.</td>
 			</tr>
 			<tr class="d0">
-				<th rowspan="2"><a href='byond://?src=\ref[src];option=ooc;new=1;allow_submit=[allowSubmit];candidate=\ref[candidate]'>OOC Comments</a>:</th>
-				<td class="desc">[candidate.comments]&nbsp;</td>
+				<th rowspan="2"><a href='byond://?src=\ref69src69;option=ooc;new=1;allow_submit=69allowSubmit69;candidate=\ref69candidate69'>OOC Comments</a>:</th>
+				<td class="desc">69candidate.comments69&nbsp;</td>
 			</tr>
 			<tr class="d1">
-				<td>Anything you'd like to address specifically to the player reading this in an OOC manner. \"I prefer more serious RP.\", \"I'm still learning the interface!\", etc. Feel free to leave this blank if you want.</td>
+				<td>Anything you'd like to address specifically to the player reading this in an OOC69anner. \"I prefer69ore serious RP.\", \"I'm still learning the interface!\", etc. Feel free to leave this blank if you want.</td>
 			</tr>
 		</table>
 		<br>
 		<table>
 			<tr>
 				<td class="button">
-					<a href='byond://?src=\ref[src];option=save;new=1;allow_submit=[allowSubmit];candidate=\ref[candidate]' class="button">Save Personality</a>
+					<a href='byond://?src=\ref69src69;option=save;new=1;allow_submit=69allowSubmit69;candidate=\ref69candidate69' class="button">Save Personality</a>
 				</td>
 			</tr>
 			<tr>
 				<td class="button">
-					<a href='byond://?src=\ref[src];option=load;new=1;allow_submit=[allowSubmit];candidate=\ref[candidate]' class="button">Load Personality</a>
+					<a href='byond://?src=\ref69src69;option=load;new=1;allow_submit=69allowSubmit69;candidate=\ref69candidate69' class="button">Load Personality</a>
 				</td>
 			</tr>
 		</table><br>
@@ -200,7 +200,7 @@ SUBSYSTEM_DEF(pai)
 	if(allowSubmit)
 		dat += {"
 			<table>
-				<td class="button"><a href='byond://?src=\ref[src];option=submit;new=1;candidate=\ref[candidate]' class="button"><b><font size="4px">Submit Personality</font></b></a></td>
+				<td class="button"><a href='byond://?src=\ref69src69;option=submit;new=1;candidate=\ref69candidate69' class="button"><b><font size="4px">Submit Personality</font></b></a></td>
 			</table><br>
 			"}
 	dat += {"
@@ -209,7 +209,7 @@ SUBSYSTEM_DEF(pai)
 
 	M << browse(dat, "window=paiRecruit;size=580x580;")
 
-/datum/controller/subsystem/pai/proc/findPAI(obj/item/device/paicard/p, mob/user)
+/datum/controller/subsystem/pai/proc/findPAI(obj/item/device/paicard/p,69ob/user)
 	requestRecruits(user)
 	var/list/available = list()
 	for(var/datum/paiCandidate/c in pai_candidates)
@@ -289,30 +289,30 @@ SUBSYSTEM_DEF(pai)
 			<body>
 				<b><font size='3px'>pAI Availability List</font></b><br><br>
 	"}
-	dat += "<p>Displaying available AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>"
+	dat += "<p>Displaying available AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as69ore personalities69ay be added.</p>"
 
 	for(var/datum/paiCandidate/c in available)
 		dat += {"
 				<table class="desc">
 					<tr class="d0">
 						<th>Name:</th>
-						<td>[c.name]</td>
+						<td>69c.name69</td>
 					</tr>
 					<tr class="d1">
 						<th>Description:</th>
-						<td>[c.description]</td>
+						<td>69c.description69</td>
 					</tr>
 					<tr class="d0">
 						<th>Preferred Role:</th>
-						<td>[c.role]</td>
+						<td>69c.role69</td>
 					</tr>
 					<tr class="d1">
 						<th>OOC Comments:</th>
-						<td>[c.comments]</td>
+						<td>69c.comments69</td>
 					</tr>
 				</table>
 				<table class="download">
-					<td class="download"><a href='byond://?src=\ref[src];download=1;candidate=\ref[c];device=\ref[p]' class="button"><b>Download [c.name]</b></a>
+					<td class="download"><a href='byond://?src=\ref69src69;download=1;candidate=\ref69c69;device=\ref69p69' class="button"><b>Download 69c.name69</b></a>
 					</td>
 				</table>
 				<br>
@@ -334,7 +334,7 @@ SUBSYSTEM_DEF(pai)
 		if(jobban_isbanned(O, "pAI"))
 			continue
 		if(asked.Find(O.key))
-			if(world.time < asked[O.key] + askDelay)
+			if(world.time < asked69O.key69 + askDelay)
 				continue
 			else
 				asked.Remove(O.key)
@@ -347,8 +347,8 @@ SUBSYSTEM_DEF(pai)
 		if(!C)
 			return
 		asked.Add(C.key)
-		asked[C.key] = world.time
-		var/response = alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", "Yes", "No", "Never for this round")
+		asked69C.key69 = world.time
+		var/response = alert(C, "69inquirer69 is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", "Yes", "No", "Never for this round")
 		if(!C)
 			return // handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")

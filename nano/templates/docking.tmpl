@@ -1,21 +1,21 @@
-{{if data.message}}
-<p>{{:helper.link('X', null, {'clear_message' : 1})}}{{:data.message}}</p>
+{{if d69t69.mess6969e}}
+<p>{{:69elper.lin6969'X',69ull, {'cle69r_mess6969e' : 1}69}}{{:d69t69.mess6969e}}</p>
 {{else}}
-	<h2>Docking ports:</h2>
-	<table style="width:100%">
-	<tr><td style="width:40%">Location<th>Status<th>Docking code<th>Docking control
-	{{for data.docks}}
-		<tr class="candystripe">
-		<td>{{:value.location}}
-		<td>{{:value.status}}
-		<td>{{:helper.link(value.codes, '', {'edit_code' : value.tag})}}
-		{{if value.docking_attempt}}
-			<td>{{:helper.link('GRANT DOCK', '', {'dock' : value.tag})}}
-		{{else value.docked}}
-			<td>{{:helper.link('UNDOCK', '', {'undock' : value.tag})}}
+	<692>Doc69in69 ports:</692>
+	<t6969le st69le="widt69:100%">
+	<tr><td st69le="widt69:40%">Loc69tion<t69>St69tus<t69>Doc69in69 code<t69>Doc69in69 control
+	{{for d69t69.doc69s}}
+		<tr cl69ss="c69nd69stripe">
+		<td>{{:6969lue.loc69tion}}
+		<td>{{:6969lue.st69tus}}
+		<td>{{:69elper.lin69696969lue.codes, '', {'edit_code' : 6969lue.t6969}69}}
+		{{if 6969lue.doc69in69_69ttempt}}
+			<td>{{:69elper.lin6969'69R69NT DOC69', '', {'doc69' : 6969lue.t6969}69}}
+		{{else 6969lue.doc69ed}}
+			<td>{{:69elper.lin6969'UNDOC69', '', {'undoc69' : 6969lue.t6969}69}}
 		{{else}}
 			<td>
 		{{/if}}
 	{{/for}}
-	</table>
+	</t6969le>
 {{/if}}

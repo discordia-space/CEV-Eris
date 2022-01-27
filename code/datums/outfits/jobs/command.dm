@@ -13,19 +13,19 @@
 
 /decl/hierarchy/outfit/job/captain/New()
 	..()
-	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/storage/backpack/captain
-	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/storage/backpack/satchel/captain
+	backpack_overrides69/decl/backpack_outfit/backpack69      = /obj/item/storage/backpack/captain
+	backpack_overrides69/decl/backpack_outfit/satchel69       = /obj/item/storage/backpack/satchel/captain
 
 /decl/hierarchy/outfit/job/captain/post_equip(var/mob/living/carbon/human/H)
 	..()
 	if(H.age>49)
 		// Since we can have something other than the default uniform at this
-		// point, check if we can actually attach the medal
+		// point, check if we can actually attach the69edal
 		var/obj/item/clothing/uniform = H.get_equipped_item(slot_w_uniform)
 		if(uniform)
 			var/obj/item/clothing/accessory/medal/gold/captain/medal = new()
 			if(uniform.can_attach_accessory(medal))
-				uniform.attach_accessory(null, medal)
+				uniform.attach_accessory(null,69edal)
 			else
 				qdel(medal)
 

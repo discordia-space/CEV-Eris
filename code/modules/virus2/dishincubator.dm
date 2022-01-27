@@ -1,11 +1,11 @@
 /obj/machinery/disease2/incubator/
-	name = "pathogenic incubator"
+	name = "patho69enic incubator"
 	density = TRUE
 	anchored = TRUE
-	icon = 'icons/obj/virology.dmi'
+	icon = 'icons/obj/virolo69y.dmi'
 	icon_state = "incubator"
 	var/obj/item/virusdish/dish
-	var/obj/item/reagent_containers/glass/beaker = null
+	var/obj/item/rea69ent_containers/69lass/beaker =69ull
 	var/radiation = 0
 
 	var/on = FALSE
@@ -14,18 +14,18 @@
 	var/foodsupply = 0
 	var/toxins = 0
 
-/obj/machinery/disease2/incubator/attackby(var/obj/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/syringe))
+/obj/machinery/disease2/incubator/attackby(var/obj/O as obj,69ar/mob/user as69ob)
+	if(istype(O, /obj/item/rea69ent_containers/69lass) || istype(O,/obj/item/rea69ent_containers/syrin69e))
 
 		if(beaker)
-			to_chat(user, "\The [src] is already loaded.")
+			to_chat(user, "\The 69src69 is already loaded.")
 			return
 
 		beaker = O
 		user.drop_item()
 		O.loc = src
 
-		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
+		user.visible_messa69e("69use6969 adds \a 669O69 to \the 6969rc69!", "You add \a6969O69 to \the 699src69!")
 		SSnano.update_uis(src)
 
 		src.attack_hand(user)
@@ -41,76 +41,76 @@
 		user.drop_item()
 		O.loc = src
 
-		user.visible_message("[user] adds \a [O] to \the [src]!", "You add \a [O] to \the [src]!")
+		user.visible_messa69e("69use6969 adds \a 669O69 to \the 6969rc69!", "You add \a6969O69 to \the 699src69!")
 		SSnano.update_uis(src)
 
 		src.attack_hand(user)
 
-/obj/machinery/disease2/incubator/attack_hand(mob/user as mob)
+/obj/machinery/disease2/incubator/attack_hand(mob/user as69ob)
 	if(stat & (NOPOWER|BROKEN)) return
 	ui_interact(user)
 
-/obj/machinery/disease2/incubator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/disease2/incubator/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
 	user.set_machine(src)
 
-	var/data[0]
-	data["chemicals_inserted"] = !!beaker
-	data["dish_inserted"] = !!dish
-	data["food_supply"] = foodsupply
-	data["radiation"] = radiation
-	data["toxins"] = min(toxins, 100)
-	data["on"] = on
-	data["system_in_use"] = foodsupply > 0 || radiation > 0 || toxins > 0
-	data["chemical_volume"] = beaker ? beaker.reagents.total_volume : 0
-	data["max_chemical_volume"] = beaker ? beaker.volume : 1
-	data["virus"] = dish ? dish.virus2 : null
-	data["growth"] = dish ? min(dish.growth, 100) : 0
-	data["infection_rate"] = dish && dish.virus2 ? dish.virus2.infectionchance * 10 : 0
-	data["analysed"] = dish && dish.analysed ? 1 : 0
-	data["can_breed_virus"] = null
-	data["blood_already_infected"] = null
+	var/data696969
+	data69"chemicals_inserted6969 = !!beaker
+	data69"dish_inserted6969 = !!dish
+	data69"food_supply6969 = foodsupply
+	data69"radiation6969 = radiation
+	data69"toxins6969 =69in(toxins, 100)
+	data69"on6969 = on
+	data69"system_in_use6969 = foodsupply > 0 || radiation > 0 || toxins > 0
+	data69"chemical_volume6969 = beaker ? beaker.rea69ents.total_volume : 0
+	data69"max_chemical_volume6969 = beaker ? beaker.volume : 1
+	data69"virus6969 = dish ? dish.virus2 :69ull
+	data69"69rowth6969 = dish ?69in(dish.69rowth, 100) : 0
+	data69"infection_rate6969 = dish && dish.virus2 ? dish.virus2.infectionchance * 10 : 0
+	data69"analysed6969 = dish && dish.analysed ? 1 : 0
+	data69"can_breed_virus6969 =69ull
+	data69"blood_already_infected6969 =69ull
 
 	if (beaker)
-		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in beaker.reagents.reagent_list
-		data["can_breed_virus"] = dish && dish.virus2 && B
+		var/datum/rea69ent/or69anic/blood/B = locate(/datum/rea69ent/or69anic/blood) in beaker.rea69ents.rea69ent_list
+		data69"can_breed_virus6969 = dish && dish.virus2 && B
 
 		if (B)
-			if (!B.data["virus2"])
-				B.data["virus2"] = list()
+			if (!B.data69"virus26969)
+				B.data69"virus26969 = list()
 
-			var/list/virus = B.data["virus2"]
-			for (var/ID in virus)
-				data["blood_already_infected"] = virus[ID]
+			var/list/virus = B.data69"virus26969
+			for (var/ID in69irus)
+				data69"blood_already_infected6969 =69irus6969D69
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "dish_incubator.tmpl", src.name, 400, 600)
+		ui =69ew(user, src, ui_key, "dish_incubator.tmpl", src.name, 400, 600)
 		ui.set_initial_data(data)
 		ui.open()
 
 /obj/machinery/disease2/incubator/Process()
 	if(dish && on && dish.virus2)
-		use_power(50,STATIC_EQUIP)
-		if(!powered(STATIC_EQUIP))
+		use_power(50,STATIC_E69UIP)
+		if(!powered(STATIC_E69UIP))
 			on = FALSE
 			icon_state = "incubator"
 
 		if(foodsupply)
-			if(dish.growth + 3 >= 100 && dish.growth < 100)
-				ping("\The [src] pings, \"Sufficient viral growth density achieved.\"")
+			if(dish.69rowth + 3 >= 100 && dish.69rowth < 100)
+				pin69("\The 69sr6969 pin69s, \"Sufficient69iral 69rowth density achieved.\"")
 
 			foodsupply -= 1
-			dish.growth += 3
+			dish.69rowth += 3
 			SSnano.update_uis(src)
 
 		if(radiation)
 			if(radiation > 50 & prob(5))
 				dish.virus2.majormutate()
 				if(dish.info)
-					dish.info = "OUTDATED : [dish.info]"
-					dish.basic_info = "OUTDATED: [dish.basic_info]"
+					dish.info = "OUTDATED : 69dish.inf6969"
+					dish.basic_info = "OUTDATED: 69dish.basic_inf6969"
 					dish.analysed = 0
-				ping("\The [src] pings, \"Mutant viral strain detected.\"")
+				pin69("\The 69sr6969 pin69s, \"Mutant69iral strain detected.\"")
 			else if(prob(5))
 				dish.virus2.minormutate()
 			radiation -= 1
@@ -119,8 +119,8 @@
 			dish.virus2.infectionchance -= 1
 			SSnano.update_uis(src)
 		if(toxins > 50)
-			dish.growth = 0
-			dish.virus2 = null
+			dish.69rowth = 0
+			dish.virus2 =69ull
 			SSnano.update_uis(src)
 	else if(!dish)
 		on = FALSE
@@ -128,18 +128,18 @@
 		SSnano.update_uis(src)
 
 	if(beaker)
-		if(foodsupply < 100 && beaker.reagents.remove_reagent("virusfood",5))
+		if(foodsupply < 100 && beaker.rea69ents.remove_rea69ent("virusfood",5))
 			if(foodsupply + 10 <= 100)
 				foodsupply += 10
 			else
-				beaker.reagents.add_reagent("virusfood",(100 - foodsupply)/2)
+				beaker.rea69ents.add_rea69ent("virusfood",(100 - foodsupply)/2)
 				foodsupply = 100
 			SSnano.update_uis(src)
 
-		if (locate(/datum/reagent/toxin) in beaker.reagents.reagent_list && toxins < 100)
-			for(var/datum/reagent/toxin/T in beaker.reagents.reagent_list)
-				toxins += max(T.strength,1)
-				beaker.reagents.remove_reagent(T.id,1)
+		if (locate(/datum/rea69ent/toxin) in beaker.rea69ents.rea69ent_list && toxins < 100)
+			for(var/datum/rea69ent/toxin/T in beaker.rea69ents.rea69ent_list)
+				toxins +=69ax(T.stren69th,1)
+				beaker.rea69ents.remove_rea69ent(T.id,1)
 				if(toxins > 100)
 					toxins = 100
 					break
@@ -149,56 +149,56 @@
 	if (..()) return 1
 
 	var/mob/user = usr
-	var/datum/nanoui/ui = SSnano.get_open_ui(user, src, "main")
+	var/datum/nanoui/ui = SSnano.69et_open_ui(user, src, "main")
 
-	if (href_list["close"])
+	if (href_list69"close6969)
 		user.unset_machine()
 		ui.close()
 		return 0
 
-	if (href_list["ejectchem"])
+	if (href_list69"ejectchem6969)
 		if(beaker)
 			beaker.loc = src.loc
-			beaker = null
+			beaker =69ull
 		return 1
 
-	if (href_list["power"])
+	if (href_list69"power6969)
 		if (dish)
 			on = !on
 			icon_state = on ? "incubator_on" : "incubator"
 		return 1
 
-	if (href_list["ejectdish"])
+	if (href_list69"ejectdish6969)
 		if(dish)
 			dish.loc = src.loc
-			dish = null
+			dish =69ull
 		return 1
 
-	if (href_list["rad"])
-		radiation = min(100, radiation + 10)
+	if (href_list69"rad6969)
+		radiation =69in(100, radiation + 10)
 		return 1
 
-	if (href_list["flush"])
+	if (href_list69"flush6969)
 		radiation = 0
 		toxins = 0
 		foodsupply = 0
 		return 1
 
-	if(href_list["virus"])
+	if(href_list69"virus6969)
 		if (!dish)
 			return 1
 
-		var/datum/reagent/organic/blood/B = locate(/datum/reagent/organic/blood) in beaker.reagents.reagent_list
+		var/datum/rea69ent/or69anic/blood/B = locate(/datum/rea69ent/or69anic/blood) in beaker.rea69ents.rea69ent_list
 		if (!B)
 			return 1
 
-		if (!B.data["virus2"])
-			B.data["virus2"] = list()
+		if (!B.data69"virus26969)
+			B.data69"virus26969 = list()
 
-		var/list/virus = list("[dish.virus2.uniqueID]" = dish.virus2.getcopy())
-		B.data["virus2"] += virus
+		var/list/virus = list("69dish.virus2.uni69ueI6969" = dish.virus2.69etcopy())
+		B.data69"virus26969 +=69irus
 
-		ping("\The [src] pings, \"Injection complete.\"")
+		pin69("\The 69sr6969 pin69s, \"Injection complete.\"")
 		return 1
 
 	return 0

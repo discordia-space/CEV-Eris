@@ -15,7 +15,7 @@
 		else
 			return 0 //Error, or runtime.
  * @endcode
- * All hooks must return nonzero on success, as runtimes will force return null.
+ * All hooks69ust return nonzero on success, as runtimes will force return null.
  */
 
 /**
@@ -24,16 +24,16 @@
  * @returns		1 if all hooked code runs successfully, 0 otherwise.
  */
 /proc/callHook(hook, list/args=null)
-	var/hook_path = text2path("/hook/[hook]")
+	var/hook_path = text2path("/hook/69hook69")
 	if(!hook_path)
-		error("Invalid hook '/hook/[hook]' called.")
+		error("Invalid hook '/hook/69hook69' called.")
 		return 0
 
 	var/caller = new hook_path
 	var/status = 1
-	for(var/P in typesof("[hook_path]/proc"))
+	for(var/P in typesof("69hook_path69/proc"))
 		if(!call(caller, P)(arglist(args)))
-			error("Hook '[P]' failed or runtimed.")
+			error("Hook '69P69' failed or runtimed.")
 			status = 0
 
 	return status

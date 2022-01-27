@@ -1,6 +1,6 @@
-#define TARGET_PATTERN "\\\[Target .*?\\]"
-#define TARGET_TEXT "\[Target words]"
-#define TARGET_CANCEL "\[CANCEL]"
+#define TARGET_PATTERN "\\\69Target .*?\\69"
+#define TARGET_TEXT "\69Target words69"
+#define TARGET_CANCEL "\69CANCEL69"
 
 /datum/ritual/targeted
 	name = "targeted ritual"
@@ -11,7 +11,7 @@
 	if(!phrase || phrase == "")
 		return
 
-	var/regex/R = regex("([TARGET_PATTERN])","g")
+	var/regex/R = regex("(69TARGET_PATTERN69)","g")
 
 	var/list/G = list()
 
@@ -23,22 +23,22 @@
 	for(var/i = 1; i<=length(G); i+=1)
 		var/list/CL = list()
 		var/address = null
-		if(G[i] != TARGET_TEXT)
+		if(G69i69 != TARGET_TEXT)
 			for(var/obj/item/implant/core_implant/C in world)
 				C.update_address()
-				if(istype(C, implant_type) && C.address && (get_turf(C) in view()))
+				if(istype(C, implant_type) && C.address && (get_turf(C) in69iew()))
 					CL.Add(C.address)
 
 			CL.Add(TARGET_CANCEL)
 			if(CL.len)
-				address = input("Select [copytext(G[i],2,-1)]","Ritual target",null) in CL
+				address = input("Select 69copytext(G69i69,2,-1)69","Ritual target",null) in CL
 
 			if(!address || address == TARGET_CANCEL)
 				return
 		else
 			address = input("Type words","Words","")
 
-		final_phrase = replacetextEx(final_phrase,G[i],address)
+		final_phrase = replacetextEx(final_phrase,G69i69,address)
 	return final_phrase
 
 /datum/ritual/targeted/get_display_phrase()
@@ -48,7 +48,7 @@
 	if(!phrase || phrase == "")
 		return
 
-	var/regex/R = regex("([TARGET_PATTERN])","g")
+	var/regex/R = regex("(69TARGET_PATTERN69)","g")
 
 	var/T = replacetext(R.Replace(REGEX_QUOTE(phrase),".*"),"\\.*",".*")
 
@@ -59,7 +59,7 @@
 	return R.index != null && R.index > 0
 
 /datum/ritual/targeted/get_targets(var/text)
-	var/regex/R = regex("[TARGET_PATTERN]","g")
+	var/regex/R = regex("69TARGET_PATTERN69","g")
 
 	var/T = replacetext(R.Replace(REGEX_QUOTE(phrase),"(.*)"),"\\(.*)","(.*)")
 
@@ -83,6 +83,6 @@
 	return targets
 
 //returns object that will be placed in targets list, of null
-/datum/ritual/targeted/proc/process_target(var/index, var/obj/item/implant/core_implant/target, var/text)
+/datum/ritual/targeted/proc/process_target(var/index,69ar/obj/item/implant/core_implant/target,69ar/text)
 	return TRUE
 

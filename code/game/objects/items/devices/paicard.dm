@@ -4,54 +4,54 @@
 	icon_state = "pai"
 	item_state = "electronic"
 	w_class = ITEM_SIZE_SMALL
-	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_DATA = 2)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	slot_fla69s = SLOT_BELT
+	ori69in_tech = list(TECH_DATA = 2)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 1,69ATERIAL_69LASS = 1)
 	var/obj/item/device/radio/radio
-	var/looking_for_personality = 0
-	var/mob/living/silicon/pai/pai
+	var/lookin69_for_personality = 0
+	var/mob/livin69/silicon/pai/pai
 
-/obj/item/device/paicard/relaymove(var/mob/user, var/direction)
+/obj/item/device/paicard/relaymove(var/mob/user,69ar/direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/rig/rig = src.get_rig()
-	if(istype(rig))
-		rig.forced_move(direction, user)
+	var/obj/item/ri69/ri69 = src.69et_ri69()
+	if(istype(ri69))
+		ri69.forced_move(direction, user)
 
 /obj/item/device/paicard/New()
 	..()
 	overlays += "pai-off"
 
 /obj/item/device/paicard/Destroy()
-	//Will stop people throwing friend pAIs into the singularity so they can respawn
+	//Will stop people throwin69 friend pAIs into the sin69ularity so they can respawn
 	if(!isnull(pai))
 		pai.death(0)
 	. = ..()
 
 /obj/item/device/paicard/attack_self(mob/user)
-	if (!in_range(src, user))
+	if (!in_ran69e(src, user))
 		return
 	user.set_machine(src)
 	var/dat = {"
-		<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">
+		<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.or69/TR/html4/loose.dtd\">
 		<html>
 			<head>
 				<style>
 					body {
-					    margin-top:5px;
+					   69ar69in-top:5px;
 					    font-family:Verdana;
 					    color:white;
 					    font-size:13px;
-					    background-image:url('uiBackground.png');
-					    background-repeat:repeat-x;
-					    background-color:#272727;
-						background-position:center top;
+					    back69round-ima69e:url('uiBack69round.pn69');
+					    back69round-repeat:repeat-x;
+					    back69round-color:#272727;
+						back69round-position:center top;
 					}
 					table {
 					    font-size:13px;
-					    margin-left:-2px;
+					   69ar69in-left:-2px;
 					}
-					table.request {
+					table.re69uest {
 					    border-collapse:collapse;
 					}
 					table.desc {
@@ -67,51 +67,51 @@
 					    width:100%;
 					}
 					tr.d0 td, tr.d0 th {
-					    background-color: #506070;
+					    back69round-color: #506070;
 					    color: white;
 					}
 					tr.d1 td, tr.d1 th {
-					    background-color: #708090;
+					    back69round-color: #708090;
 					    color: white;
 					}
 					tr.d2 td {
-					    background-color: #00FF00;
+					    back69round-color: #00FF00;
 					    color: white;
-					    text-align:center;
+					    text-ali69n:center;
 					}
 					td.button {
 					    border: 1px solid #161616;
-					    background-color: #40628a;
+					    back69round-color: #40628a;
 					}
 					td.button {
 					    border: 1px solid #161616;
-					    background-color: #40628a;
-					    text-align: center;
+					    back69round-color: #40628a;
+					    text-ali69n: center;
 					}
 					td.button_red {
 					    border: 1px solid #161616;
-					    background-color: #B04040;
-					    text-align: center;
+					    back69round-color: #B04040;
+					    text-ali69n: center;
 					}
 					td.download {
 					    border: 1px solid #161616;
-					    background-color: #40628a;
-					    text-align: center;
+					    back69round-color: #40628a;
+					    text-ali69n: center;
 					}
 					th {
-					    text-align:left;
+					    text-ali69n:left;
 					    width:125px;
 					}
-					td.request {
+					td.re69uest {
 					    width:140px;
-					    vertical-align:top;
+					   69ertical-ali69n:top;
 					}
 					td.radio {
 					    width:90px;
-					    vertical-align:top;
+					   69ertical-ali69n:top;
 					}
-					td.request {
-					    vertical-align:top;
+					td.re69uest {
+					   69ertical-ali69n:top;
 					}
 					a {
 					    color:#4477E0;
@@ -131,18 +131,18 @@
 	if(pai)
 		dat += {"
 			<b><font size='3px'>Personal AI Device</font></b><br><br>
-			<table class="request">
+			<table class="re69uest">
 				<tr>
-					<td class="request">Installed Personality:</td>
-					<td>[pai.name]</td>
+					<td class="re69uest">Installed Personality:</td>
+					<td>69pai.name69</td>
 				</tr>
 				<tr>
-					<td class="request">Prime directive:</td>
-					<td>[pai.pai_law0]</td>
+					<td class="re69uest">Prime directive:</td>
+					<td>69pai.pai_law069</td>
 				</tr>
 				<tr>
-					<td class="request">Additional directives:</td>
-					<td>[pai.pai_laws]</td>
+					<td class="re69uest">Additional directives:</td>
+					<td>69pai.pai_laws69</td>
 				</tr>
 			</table>
 			<br>
@@ -150,7 +150,7 @@
 		dat += {"
 			<table>
 				<td class="button">
-					<a href='byond://?src=\ref[src];setlaws=1' class='button'>Configure Directives</a>
+					<a href='byond://?src=\ref69src69;setlaws=1' class='button'>Confi69ure Directives</a>
 				</td>
 			</table>
 		"}
@@ -158,7 +158,7 @@
 			dat += {"
 				<table>
 					<td class="button">
-						<a href='byond://?src=\ref[src];setdna=1' class='button'>Imprint Master DNA</a>
+						<a href='byond://?src=\ref69src69;setdna=1' class='button'>Imprint69aster DNA</a>
 					</td>
 				</table>
 			"}
@@ -166,16 +166,16 @@
 		if(radio)
 			dat += "<b>Radio Uplink</b>"
 			dat += {"
-				<table class="request">
+				<table class="re69uest">
 					<tr>
 						<td class="radio">Transmit:</td>
-						<td><a href='byond://?src=\ref[src];wires=4'>[radio.broadcasting ? "<font color=#55FF55>En" : "<font color=#FF5555>Dis" ]abled</font></a>
+						<td><a href='byond://?src=\ref69src69;wires=4'>69radio.broadcastin69 ? "<font color=#55FF55>En" : "<font color=#FF5555>Dis" 69abled</font></a>
 
 						</td>
 					</tr>
 					<tr>
 						<td class="radio">Receive:</td>
-						<td><a href='byond://?src=\ref[src];wires=2'>[radio.listening ? "<font color=#55FF55>En" : "<font color=#FF5555>Dis" ]abled</font></a>
+						<td><a href='byond://?src=\ref69src69;wires=2'>69radio.listenin69 ? "<font color=#55FF55>En" : "<font color=#FF5555>Dis" 69abled</font></a>
 
 						</td>
 					</tr>
@@ -187,38 +187,38 @@
 			dat += "<font color=red><i>Radio firmware not loaded. Please install a pAI personality to load firmware.</i></font><br>"
 		dat += {"
 			<table>
-				<td class="button_red"><a href='byond://?src=\ref[src];wipe=1' class='button'>Wipe current pAI personality</a>
+				<td class="button_red"><a href='byond://?src=\ref69src69;wipe=1' class='button'>Wipe current pAI personality</a>
 
 				</td>
 			</table>
 		"}
 	else
-		if(looking_for_personality)
+		if(lookin69_for_personality)
 			dat += {"
-				<b><font size='3px'>pAI Request Module</font></b><br><br>
-				<p>Requesting AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check again later as more personalities may be added.</p>
-				<img src='loading.gif' /> Searching for personalities<br><br>
+				<b><font size='3px'>pAI Re69uest69odule</font></b><br><br>
+				<p>Re69uestin69 AI personalities from central database... If there are no entries, or if a suitable entry is not listed, check a69ain later as69ore personalities69ay be added.</p>
+				<im69 src='loadin69.69if' /> Searchin69 for personalities<br><br>
 
 				<table>
 					<tr>
 						<td class="button">
-							<a href='byond://?src=\ref[src];request=1' class="button">Refresh available personalities</a>
+							<a href='byond://?src=\ref69src69;re69uest=1' class="button">Refresh available personalities</a>
 						</td>
 					</tr>
 				</table><br>
 			"}
 		else
 			dat += {"
-				<b><font size='3px'>pAI Request Module</font></b><br><br>
+				<b><font size='3px'>pAI Re69uest69odule</font></b><br><br>
 			    <p>No personality is installed.</p>
 				<table>
 					<tr>
-						<td class="button"><a href='byond://?src=\ref[src];request=1' class="button">Request personality</a>
+						<td class="button"><a href='byond://?src=\ref69src69;re69uest=1' class="button">Re69uest personality</a>
 						</td>
 					</tr>
 				</table>
 				<br>
-				<p>Each time this button is pressed, a request will be sent out to any available personalities. Check back often give plenty of time for personalities to respond. This process could take anywhere from 15 seconds to several minutes, depending on the available personalities' timeliness.</p>
+				<p>Each time this button is pressed, a re69uest will be sent out to any available personalities. Check back often 69ive plenty of time for personalities to respond. This process could take anywhere from 15 seconds to several69inutes, dependin69 on the available personalities' timeliness.</p>
 			"}
 	user << browse(dat, "window=paicard")
 	onclose(user, "paicard")
@@ -229,7 +229,7 @@
 	if(!usr || usr.stat)
 		return
 
-	if(href_list["setdna"])
+	if(href_list69"setdna"69)
 		if(pai.master_dna)
 			return
 		var/mob/M = usr
@@ -237,43 +237,43 @@
 			to_chat(usr, "<font color=blue>You don't have any DNA, or your DNA is incompatible with this device.</font>")
 		else
 			var/datum/dna/dna = usr.dna
-			pai.master = M.real_name
-			pai.master_dna = dna.unique_enzymes
-			to_chat(pai, "<font color = red><h3>You have been bound to a new master.</h3></font>")
-	if(href_list["request"])
-		src.looking_for_personality = 1
+			pai.master =69.real_name
+			pai.master_dna = dna.uni69ue_enzymes
+			to_chat(pai, "<font color = red><h3>You have been bound to a new69aster.</h3></font>")
+	if(href_list69"re69uest"69)
+		src.lookin69_for_personality = 1
 		SSpai.findPAI(src, usr)
-	if(href_list["wipe"])
+	if(href_list69"wipe"69)
 		var/confirm = input("Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe") in list("Yes", "No")
 		if(confirm == "Yes")
 			for(var/mob/M in src)
-				to_chat(M, "<font color = #ff0000><h2>You feel yourself slipping away from reality.</h2></font>")
+				to_chat(M, "<font color = #ff0000><h2>You feel yourself slippin69 away from reality.</h2></font>")
 				to_chat(M, "<font color = #ff4d4d><h3>Byte by byte you lose your sense of self.</h3></font>")
-				to_chat(M, "<font color = #ff8787><h4>Your mental faculties leave you.</h4></font>")
+				to_chat(M, "<font color = #ff8787><h4>Your69ental faculties leave you.</h4></font>")
 				to_chat(M, "<font color = #ffc4c4><h5>oblivion... </h5></font>")
 				M.death(0)
 			removePersonality()
-	if(href_list["wires"])
-		var/t1 = text2num(href_list["wires"])
+	if(href_list69"wires"69)
+		var/t1 = text2num(href_list69"wires"69)
 		switch(t1)
 			if(4)
-				radio.ToggleBroadcast()
+				radio.To6969leBroadcast()
 			if(2)
-				radio.ToggleReception()
-	if(href_list["setlaws"])
-		var/newlaws = sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message)
+				radio.To6969leReception()
+	if(href_list69"setlaws"69)
+		var/newlaws = sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's alle69iance to its imprinted69aster. Conflictin69 directives will be i69nored.", "pAI Directive Confi69uration", pai.pai_laws) as69essa69e)
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
-			to_chat(pai, "Prime Directive: <br>[pai.pai_law0]")
-			to_chat(pai, "Supplemental Directives: <br>[pai.pai_laws]")
+			to_chat(pai, "Prime Directive: <br>69pai.pai_law069")
+			to_chat(pai, "Supplemental Directives: <br>69pai.pai_laws69")
 	attack_self(usr)
 
-// 		WIRE_SIGNAL = 1
+// 		WIRE_SI69NAL = 1
 //		WIRE_RECEIVE = 2
 //		WIRE_TRANSMIT = 4
 
-/obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
+/obj/item/device/paicard/proc/setPersonality(mob/livin69/silicon/pai/personality)
 	src.pai = personality
 	src.overlays += "pai-happy"
 
@@ -292,23 +292,23 @@
 			if(2) src.overlays += "pai-cat"
 			if(3) src.overlays += "pai-extremely-happy"
 			if(4) src.overlays += "pai-face"
-			if(5) src.overlays += "pai-laugh"
+			if(5) src.overlays += "pai-lau69h"
 			if(6) src.overlays += "pai-off"
 			if(7) src.overlays += "pai-sad"
-			if(8) src.overlays += "pai-angry"
+			if(8) src.overlays += "pai-an69ry"
 			if(9) src.overlays += "pai-what"
 			if(10) src.overlays += "pai-neutral"
 			if(11) src.overlays += "pai-silly"
 			if(12) src.overlays += "pai-nose"
 			if(13) src.overlays += "pai-smirk"
 			if(14) src.overlays += "pai-exclamation"
-			if(15) src.overlays += "pai-question"
+			if(15) src.overlays += "pai-69uestion"
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()
-	var/turf/T = get_turf_or_move(src.loc)
-	for (var/mob/M in viewers(T))
-		M.show_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", 3, SPAN_NOTICE("\The [src] bleeps electronically."), 2)
+	var/turf/T = 69et_turf_or_move(src.loc)
+	for (var/mob/M in69iewers(T))
+		M.show_messa69e("<span class='notice'>\The 69src69 flashes a69essa69e across its screen, \"Additional personalities available for download.\"</span>", 3, SPAN_NOTICE("\The 69src69 bleeps electronically."), 2)
 
 /obj/item/device/paicard/emp_act(severity)
 	for(var/mob/M in src)
@@ -318,16 +318,16 @@
 	if(pai)
 		pai.ex_act(severity)
 	else
-		qdel(src)
+		69del(src)
 
-/obj/item/device/paicard/see_emote(mob/living/M, text)
+/obj/item/device/paicard/see_emote(mob/livin69/M, text)
 	if(pai && pai.client && !pai.canmove)
-		var/rendered = "<span class='message'>[text]</span>"
-		pai.show_message(rendered, 2)
+		var/rendered = "<span class='messa69e'>69text69</span>"
+		pai.show_messa69e(rendered, 2)
 	..()
 
-/obj/item/device/paicard/show_message(msg, type, alt, alt_type)
+/obj/item/device/paicard/show_messa69e(ms69, type, alt, alt_type)
 	if(pai && pai.client)
-		var/rendered = "<span class='message'>[msg]</span>"
-		pai.show_message(rendered, type)
+		var/rendered = "<span class='messa69e'>69ms6969</span>"
+		pai.show_messa69e(rendered, type)
 	..()

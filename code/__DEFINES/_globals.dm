@@ -1,38 +1,38 @@
-//See controllers/globals.dm
-#define GLOBAL_MANAGED(X, InitValue)\
-/datum/controller/global_vars/proc/InitGlobal##X(){\
+//See controllers/69lobals.dm
+#define 69LOBAL_MANA69ED(X, InitValue)\
+/datum/controller/69lobal_vars/proc/Init69lobal##X(){\
 	##X = ##InitValue;\
-	gvars_datum_init_order += #X;\
+	69vars_datum_init_order += #X;\
 }
-#define GLOBAL_UNMANAGED(X, InitValue) /datum/controller/global_vars/proc/InitGlobal##X()
+#define 69LOBAL_UNMANA69ED(X, InitValue) /datum/controller/69lobal_vars/proc/Init69lobal##X()
 
-#ifndef TESTING
-#define GLOBAL_PROTECT(X)\
-/datum/controller/global_vars/InitGlobal##X(){\
+#ifndef TESTIN69
+#define 69LOBAL_PROTECT(X)\
+/datum/controller/69lobal_vars/Init69lobal##X(){\
 	..();\
-	gvars_datum_protected_varlist += #X;\
+	69vars_datum_protected_varlist += #X;\
 }
 #else
-#define GLOBAL_PROTECT(X)
+#define 69LOBAL_PROTECT(X)
 #endif
 
-#define GLOBAL_REAL_VAR(X) var/global/##X
-#define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X
+#define 69LOBAL_REAL_VAR(X)69ar/69lobal/##X
+#define 69LOBAL_REAL(X, Typepath)69ar/69lobal##Typepath/##X
 
-#define GLOBAL_RAW(X) /datum/controller/global_vars/var/global##X
+#define 69LOBAL_RAW(X) /datum/controller/69lobal_vars/var/69lobal##X
 
-#define GLOBAL_VAR_INIT(X, InitValue) GLOBAL_RAW(/##X); GLOBAL_MANAGED(X, InitValue)
+#define 69LOBAL_VAR_INIT(X, InitValue) 69LOBAL_RAW(/##X); 69LOBAL_MANA69ED(X, InitValue)
 
-#define GLOBAL_VAR_CONST(X, InitValue) GLOBAL_RAW(/const/##X) = InitValue; GLOBAL_UNMANAGED(X, InitValue)
+#define 69LOBAL_VAR_CONST(X, InitValue) 69LOBAL_RAW(/const/##X) = InitValue; 69LOBAL_UNMANA69ED(X, InitValue)
 
-#define GLOBAL_LIST_INIT(X, InitValue) GLOBAL_RAW(/list/##X); GLOBAL_MANAGED(X, InitValue)
+#define 69LOBAL_LIST_INIT(X, InitValue) 69LOBAL_RAW(/list/##X); 69LOBAL_MANA69ED(X, InitValue)
 
-#define GLOBAL_LIST_EMPTY(X) GLOBAL_LIST_INIT(X, list())
+#define 69LOBAL_LIST_EMPTY(X) 69LOBAL_LIST_INIT(X, list())
 
-#define GLOBAL_DATUM_INIT(X, Typepath, InitValue) GLOBAL_RAW(Typepath/##X); GLOBAL_MANAGED(X, InitValue)
+#define 69LOBAL_DATUM_INIT(X, Typepath, InitValue) 69LOBAL_RAW(Typepath/##X); 69LOBAL_MANA69ED(X, InitValue)
 
-#define GLOBAL_VAR(X) GLOBAL_RAW(/##X); GLOBAL_MANAGED(X, null)
+#define 69LOBAL_VAR(X) 69LOBAL_RAW(/##X); 69LOBAL_MANA69ED(X,69ull)
 
-#define GLOBAL_LIST(X) GLOBAL_RAW(/list/##X); GLOBAL_MANAGED(X, null)
+#define 69LOBAL_LIST(X) 69LOBAL_RAW(/list/##X); 69LOBAL_MANA69ED(X,69ull)
 
-#define GLOBAL_DATUM(X, Typepath) GLOBAL_RAW(Typepath/##X); GLOBAL_MANAGED(X, null)
+#define 69LOBAL_DATUM(X, Typepath) 69LOBAL_RAW(Typepath/##X); 69LOBAL_MANA69ED(X,69ull)

@@ -1,46 +1,46 @@
-/var/datum/xgm_gas_data/gas_data
+/var/datum/x69m_69as_data/69as_data
 
-/datum/xgm_gas_data
-	//Simple list of all the gas IDs.
-	var/list/gases = list()
-	//The friendly, human-readable name for the gas.
+/datum/x69m_69as_data
+	//Simple list of all the 69as IDs.
+	var/list/69ases = list()
+	//The friendly, human-readable69ame for the 69as.
 	var/list/name = list()
-	//Specific heat of the gas.  Used for calculating heat capacity.
+	//Specific heat of the 69as.  Used for calculatin69 heat capacity.
 	var/list/specific_heat = list()
-	//Molar mass of the gas.  Used for calculating specific entropy.
+	//Molar69ass of the 69as.  Used for calculatin69 specific entropy.
 	var/list/molar_mass = list()
-	//Tile overlays.  /images, created from references to 'icons/effects/tile_effects.dmi'
+	//Tile overlays.  /ima69es, created from references to 'icons/effects/tile_effects.dmi'
 	var/list/tile_overlay = list()
-	//Overlay limits.  There must be at least this many moles for the overlay to appear.
+	//Overlay limits.  There69ust be at least this69any69oles for the overlay to appear.
 	var/list/overlay_limit = list()
-	//Flags.
-	var/list/flags = list()
+	//Fla69s.
+	var/list/fla69s = list()
 
-/decl/xgm_gas
+/decl/x69m_69as
 	var/id = ""
-	var/name = "Unnamed Gas"
+	var/name = "Unnamed 69as"
 	var/specific_heat = 20	// J/(mol*K)
-	var/molar_mass = 0.032	// kg/mol
+	var/molar_mass = 0.032	// k69/mol
 
 	var/tile_overlay
 	var/overlay_limit
 
-	var/flags = 0
+	var/fla69s = 0
 
-/hook/startup/proc/generateGasData()
-	gas_data = new
-	for(var/p in (typesof(/decl/xgm_gas) - /decl/xgm_gas))
-		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
+/hook/startup/proc/69enerate69asData()
+	69as_data =69ew
+	for(var/p in (typesof(/decl/x69m_69as) - /decl/x69m_69as))
+		var/decl/x69m_69as/69as =69ew p //avoid initial() because of potential69ew() actions
 
-		if(gas.id in gas_data.gases)
-			error("Duplicate gas id `[gas.id]` in `[p]`")
+		if(69as.id in 69as_data.69ases)
+			error("Duplicate 69as id `6969as.id69` in `69p69`")
 
-		gas_data.gases += gas.id
-		gas_data.name[gas.id] = gas.name
-		gas_data.specific_heat[gas.id] = gas.specific_heat
-		gas_data.molar_mass[gas.id] = gas.molar_mass
-		if(gas.tile_overlay) gas_data.tile_overlay[gas.id] = image('icons/effects/tile_effects.dmi', gas.tile_overlay, FLY_LAYER)
-		if(gas.overlay_limit) gas_data.overlay_limit[gas.id] = gas.overlay_limit
-		gas_data.flags[gas.id] = gas.flags
+		69as_data.69ases += 69as.id
+		69as_data.name6969as.i6969 = 69as.name
+		69as_data.specific_heat6969as.i6969 = 69as.specific_heat
+		69as_data.molar_mass6969as.i6969 = 69as.molar_mass
+		if(69as.tile_overlay) 69as_data.tile_overlay6969as.i6969 = ima69e('icons/effects/tile_effects.dmi', 69as.tile_overlay, FLY_LAYER)
+		if(69as.overlay_limit) 69as_data.overlay_limit6969as.i6969 = 69as.overlay_limit
+		69as_data.fla69s6969as.i6969 = 69as.fla69s
 
 	return 1

@@ -14,11 +14,11 @@
 	name = "hydraulic"
 	icon_state = "robotic_muscle"
 	desc = "Expand and contract"
-	nature = MODIFICATION_SILICON
+	nature =69ODIFICATION_SILICON
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/organ/internal/muscle/super_muscle
-	name = "super-strength muscle"
+	name = "super-strength69uscle"
 	icon_state = "human_muscle_super"
 	desc = "Rend and lacerate"
 	organ_efficiency = list(OP_MUSCLE = 150)

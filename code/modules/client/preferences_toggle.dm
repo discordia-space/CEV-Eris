@@ -7,13 +7,13 @@ var/list/client_preference_stats_
 	if(!client_preference_stats_)
 		client_preference_stats_ = list()
 		for(var/datum/client_preference/client_pref in get_client_preferences())
-			client_preference_stats_[client_pref.description] = new /stat_client_preference(null, client_pref)
+			client_preference_stats_69client_pref.description69 = new /stat_client_preference(null, client_pref)
 
 	for(var/client_pref_description in client_preference_stats_)
-		var/stat_client_preference/scp = client_preference_stats_[client_pref_description]
+		var/stat_client_preference/scp = client_preference_stats_69client_pref_description69
 		if(scp.client_preference.may_set(user))
 			scp.update_name(user)
-			.[client_pref_description] = scp
+			.69client_pref_description69 = scp
 
 /client/verb/toggle_preference_verb(var/client_pref_name in client_preference_stats_for_usr())
 	set name = "Toggle Preference"
@@ -21,7 +21,7 @@ var/list/client_preference_stats_
 	set category = "OOC"
 
 	var/list/client_stats = client_preference_stats_for_usr()
-	var/stat_client_preference/scp = client_stats[client_pref_name]
+	var/stat_client_preference/scp = client_stats69client_pref_name69
 	if(istype(scp))
 		scp.Click()
 
@@ -31,7 +31,7 @@ var/list/client_preference_stats_
 		return
 	var/list/preferences = client_preference_stats_for_usr(src)
 	for(var/client_preference_description in preferences)
-		var/stat_client_preference/scp = client_preference_stats_[client_preference_description]
+		var/stat_client_preference/scp = client_preference_stats_69client_preference_description69
 		stat(scp.client_preference.description, scp)
 
 /stat_client_preference
@@ -39,7 +39,7 @@ var/list/client_preference_stats_
 	simulated = FALSE
 	var/datum/client_preference/client_preference
 
-/stat_client_preference/New(var/loc, var/preference)
+/stat_client_preference/New(var/loc,69ar/preference)
 	client_preference = preference
 	update_name(usr)
 	..()
@@ -56,7 +56,7 @@ var/list/client_preference_stats_
 		return
 
 	usr.client.prefs.save_preferences()
-	to_chat(usr, "[client_preference.description]: [usr.get_preference_value(client_preference)]")
+	to_chat(usr, "69client_preference.description69: 69usr.get_preference_value(client_preference)69")
 
 /stat_client_preference/proc/update_name(var/mob/user)
 	name = user.get_preference_value(client_preference)

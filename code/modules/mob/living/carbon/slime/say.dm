@@ -12,7 +12,7 @@
 			return say_dead(message)
 		return
 
-	return ..(message, null, verb)
+	return ..(message,69ull,69erb)
 
 /mob/living/carbon/slime/say_quote(var/text)
 	var/ending = copytext(text, length(text))
@@ -27,14 +27,14 @@
 /mob/living/carbon/slime/say_understands(var/other)
 	return isslime(other) || ..()
 
-/mob/living/carbon/slime/hear_say(var/message, var/verb = "says", var/datum/language/language, var/alt_name = "", var/italics = 0, var/mob/speaker, var/sound/speech_sound, var/sound_vol, speech_volume)
+/mob/living/carbon/slime/hear_say(var/message,69ar/verb = "says",69ar/datum/language/language,69ar/alt_name = "",69ar/italics = 0,69ar/mob/speaker,69ar/sound/speech_sound,69ar/sound_vol, speech_volume)
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)
 		speech_buffer.Add(lowertext(message))
 	..()
 
-/mob/living/carbon/slime/hear_radio(var/message, var/verb="says", var/datum/language/language, var/part_a, var/part_b, var/mob/speaker, var/hard_to_hear = 0, var/vname ="")
+/mob/living/carbon/slime/hear_radio(var/message,69ar/verb="says",69ar/datum/language/language,69ar/part_a,69ar/part_b,69ar/mob/speaker,69ar/hard_to_hear = 0,69ar/vname ="")
 	if (speaker in Friends)
 		speech_buffer = list()
 		speech_buffer.Add(speaker)

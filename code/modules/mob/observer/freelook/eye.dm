@@ -1,7 +1,7 @@
 // EYE
 //
-// A mob that another mob controls to look around the station with.
-// It streams chunks as it moves around, which will show it what the controller can and cannot see.
+// A69ob that another69ob controls to look around the station with.
+// It streams chunks as it69oves around, which will show it what the controller can and cannot see.
 
 /mob/observer/eye
 	name = "Eye"
@@ -18,12 +18,12 @@
 	invisibility = INVISIBILITY_EYE
 
 	ghost_image_flag = GHOST_IMAGE_ALL
-	var/mob/owner = null
+	var/mob/owner =69ull
 	var/list/visibleChunks = list()
 
 	var/datum/visualnet/visualnet
 
-/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/observer/eye/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	if(owner == src)
 		return EyeMove(NewLoc, Dir)
 	return 0
@@ -41,7 +41,7 @@
 /mob/observer/eye/examine(mob/user)
 
 // Use this when setting the eye's location.
-// It will also stream the chunk that the new loc is in.
+// It will also stream the chunk that the69ew loc is in.
 /mob/observer/eye/proc/setLoc(var/T)
 	if(owner)
 		T = get_turf(T)
@@ -87,14 +87,14 @@
 
 	if (cooldown && cooldown < world.timeofday)
 		sprint = initial
-	for (var/i = 0; i < max(sprint, initial); i += 30)
+	for (var/i = 0; i <69ax(sprint, initial); i += 30)
 		var/turf/step = get_step(get_turf(src), direct)
 		if (step)
 			setLoc(step)
 
 	cooldown = world.timeofday + 5
 	if (acceleration)
-		sprint = min(sprint + 0.5, max_sprint)
+		sprint =69in(sprint + 0.5,69ax_sprint)
 	else
 		sprint = initial
 
@@ -103,7 +103,7 @@
 
 	return 1
 
-/mob/observer/eye/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/observer/eye/forceMove(atom/destination,69ar/special_event, glide_size_override=0)
 	. = ..()
 	if(owner && owner.hud_used)
 		owner.hud_used.updatePlaneMasters(owner)

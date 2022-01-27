@@ -5,8 +5,8 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "fdiffuser_on"
 
-	//By setting these values to zero, shield diffusers will not process. They dont need to process
-	use_power = NO_POWER_USE
+	//By setting these69alues to zero, shield diffusers will69ot process. They dont69eed to process
+	use_power =69O_POWER_USE
 	idle_power_usage = 0
 	active_power_usage = 0
 
@@ -17,13 +17,13 @@
 	var/enabled = 1
 	var/list/diffused_turfs = list()
 
-//Updates the turfs we're affecting, called when moved, placed, or destroyed
+//Updates the turfs we're affecting, called when69oved, placed, or destroyed
 /obj/machinery/shield_diffuser/proc/update_turfs()
 	//Remove our diffusal from the turfs we affected
 	for (var/turf/T in diffused_turfs)
 		T.diffused--
 
-	//Empty our list ..but firstly check if we need to regen shields
+	//Empty our list ..but firstly check if we69eed to regen shields
 	if(!enabled)
 		for(var/turf/T in diffused_turfs)
 			var/obj/effect/shield/shield = locate(/obj/effect/shield) in T
@@ -71,7 +71,7 @@
 	update_turfs()
 	. = ..()
 
-/obj/machinery/shield_diffuser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/shield_diffuser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	update_turfs()
 
@@ -80,7 +80,7 @@
 	update_turfs()
 	return ..()
 
-/obj/machinery/shield_diffuser/attackby(obj/item/O as obj, mob/user as mob)
+/obj/machinery/shield_diffuser/attackby(obj/item/O as obj,69ob/user as69ob)
 	if(default_deconstruction(O, user))
 		return
 	if(default_part_replacement(O, user))
@@ -97,14 +97,14 @@
 
 /obj/machinery/shield_diffuser/attack_hand()
 	if(alarm)
-		to_chat(usr, "You press an override button on \the [src], re-enabling it.")
+		to_chat(usr, "You press an override button on \the 69src69, re-enabling it.")
 		alarm = 0
 		update_icon()
 		return
 	enabled = !enabled
 	update_turfs()
 	update_icon()
-	to_chat(usr, "You turn \the [src] [enabled ? "on" : "off"].")
+	to_chat(usr, "You turn \the 69src69 69enabled ? "on" : "off"69.")
 
 /obj/machinery/shield_diffuser/proc/meteor_alarm(var/duration)
 	if(!duration)
@@ -114,7 +114,7 @@
 
 /obj/machinery/shield_diffuser/examine(var/mob/user)
 	. = ..()
-	to_chat(user, "It is [enabled ? "enabled" : "disabled"].")
+	to_chat(user, "It is 69enabled ? "enabled" : "disabled"69.")
 	if(alarm)
 		to_chat(user, "A red LED labeled \"Proximity Alarm\" is blinking on the control panel.")
 

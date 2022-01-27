@@ -4,35 +4,35 @@
 #define CAL_SRIFLE ".20"
 #define CAL_PISTOL ".35"
 #define CAL_LRIFLE ".30"
-#define CAL_MAGNUM ".40 magnum"
-#define CAL_ANTIM ".60 Anti Material"
-#define CAL_SHOTGUN "Shotgun Shell"
+#define CAL_MA69NUM ".4069a69num"
+#define CAL_ANTIM ".60 Anti69aterial"
+#define CAL_SHOT69UN "Shot69un Shell"
 #define CAL_70 ".70"
 #define CAL_CAP "plastic cap"
-#define CAL_ROCKET "rocket propelled grenade"
+#define CAL_ROCKET "rocket propelled 69renade"
 #define CAL_DART "chemical dart"
 #define CAL_FLARE "flare shell"
-#define CAL_GRENADE "grenade"
+#define CAL_69RENADE "69renade"
 
-//Gun loading types
-#define SINGLE_CASING 	1	//The gun only accepts ammo_casings. ammo_magazines should never have this as their mag_type.
-#define SPEEDLOADER 	2	//Transfers casings from the mag to the gun when used.
-#define MAGAZINE 		4	//The magazine item itself goes inside the gun
+//69un loadin69 types
+#define SIN69LE_CASIN69 	1	//The 69un only accepts ammo_casin69s. ammo_ma69azines should69ever have this as their69a69_type.
+#define SPEEDLOADER 	2	//Transfers casin69s from the69a69 to the 69un when used.
+#define69A69AZINE 		4	//The69a69azine item itself 69oes inside the 69un
 
-#define MAG_WELL_GENERIC	0	//Guns without special magwells
-#define MAG_WELL_L_PISTOL	1	//Pistols
-#define MAG_WELL_PISTOL		2
-#define MAG_WELL_H_PISTOL	4	//High cap Pistols
-#define MAG_WELL_SMG		8	//smgs
-#define MAG_WELL_RIFLE		16	//Normal non-IH rifles
-#define MAG_WELL_IH			32	//IH guns
-#define MAG_WELL_BOX		64	//Lmgs with box mags
-#define MAG_WELL_PAN		128	//Lmgs with pan mags
-#define MAG_WELL_DART       256 //Dartgun mag
+#define69A69_WELL_69ENERIC	0	//69uns without special69a69wells
+#define69A69_WELL_L_PISTOL	1	//Pistols
+#define69A69_WELL_PISTOL		2
+#define69A69_WELL_H_PISTOL	4	//Hi69h cap Pistols
+#define69A69_WELL_SM69		8	//sm69s
+#define69A69_WELL_RIFLE		16	//Normal69on-IH rifles
+#define69A69_WELL_IH			32	//IH 69uns
+#define69A69_WELL_BOX		64	//Lm69s with box69a69s
+#define69A69_WELL_PAN		128	//Lm69s with pan69a69s
+#define69A69_WELL_DART       256 //Dart69un69a69
 
 #define SLOT_BARREL "barrel"
-#define SLOT_GRIP "grip"
-#define SLOT_TRIGGER "trigger"
+#define SLOT_69RIP "69rip"
+#define SLOT_TRI6969ER "tri6969er"
 #define SLOT_MUZZLE "muzzle"
 #define SLOT_SCOPE "scope"
 #define SLOT_UNDERBARREL "underbarrel"

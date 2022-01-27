@@ -3,7 +3,7 @@
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
 	origin_tech = list(TECH_COMBAT = 1)
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)
+	matter = list(MATERIAL_PLASTIC = 1,69ATERIAL_STEEL = 1)
 	var/armed = FALSE
 	var/prob_catch = 100
 
@@ -21,7 +21,7 @@
 		if(holder)
 			holder.update_icon()
 
-/obj/item/device/assembly/mousetrap/proc/triggered(var/mob/living/target, var/type = "feet")
+/obj/item/device/assembly/mousetrap/proc/triggered(var/mob/living/target,69ar/type = "feet")
 	if(!armed || !istype(target))
 		return
 
@@ -39,7 +39,7 @@
 					zone = pick(BP_L_LEG , BP_R_LEG)
 					if(!H.shoes)
 						H.adjustHalLoss(500/(target.mob_size))//Halloss instead of instant knockdown
-						//Mainly for the benefit of giant monsters like vaurca breeders
+						//Mainly for the benefit of giant69onsters like69aurca breeders
 				if(BP_L_ARM , BP_R_ARM)
 					zone = type
 					if(!H.gloves)
@@ -49,44 +49,44 @@
 			target.damage_through_armor(rand(8,15), BRUTE, zone, ARMOR_MELEE, used_weapon = src)
 
 	playsound(target.loc, 'sound/effects/snap.ogg', 50, 1)
-	layer = MOB_LAYER - 0.2
+	layer =69OB_LAYER - 0.2
 	armed = FALSE
 	update_icon()
 	pulse(0)
 
 
-/obj/item/device/assembly/mousetrap/attack_self(mob/living/user as mob)
+/obj/item/device/assembly/mousetrap/attack_self(mob/living/user as69ob)
 	if(!armed)
-		to_chat(user, "<span class='notice'>You arm [src].</span>")
+		to_chat(user, "<span class='notice'>You arm 69src69.</span>")
 	else
 		if((CLUMSY in user.mutations)&& prob(50))
 			var/which_hand = "l_hand"
 			if(!user.hand)
 				which_hand = "r_hand"
 			triggered(user, which_hand)
-			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
+			user.visible_message("<span class='warning'>69user69 accidentally sets off 69src69, breaking their fingers.</span>", \
+								 "<span class='warning'>You accidentally trigger 69src69!</span>")
 			return
-		to_chat(user, "<span class='notice'>You disarm [src].</span>")
+		to_chat(user, "<span class='notice'>You disarm 69src69.</span>")
 	armed = !armed
 	update_icon()
 	playsound(user.loc, 'sound/weapons/handcuffs.ogg', 30, 1, -3)
 
 
-/obj/item/device/assembly/mousetrap/attack_hand(mob/living/user as mob)
+/obj/item/device/assembly/mousetrap/attack_hand(mob/living/user as69ob)
 	if(armed)
 		if((CLUMSY in user.mutations) && prob(50))
 			var/which_hand = "l_hand"
 			if(!user.hand)
 				which_hand = "r_hand"
 			triggered(user, which_hand)
-			user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
-								 "<span class='warning'>You accidentally trigger [src]!</span>")
+			user.visible_message("<span class='warning'>69user69 accidentally sets off 69src69, breaking their fingers.</span>", \
+								 "<span class='warning'>You accidentally trigger 69src69!</span>")
 			return
 	..()
 
 
-/obj/item/device/assembly/mousetrap/Crossed(AM as mob|obj)
+/obj/item/device/assembly/mousetrap/Crossed(AM as69ob|obj)
 	if(armed)
 		if(ismouse(AM))
 			triggered(AM)
@@ -96,25 +96,25 @@
 			if(!prob(true_prob_catch))
 				return ..()
 			triggered(L)
-			L.visible_message("<span class='warning'>[L] accidentally steps on [src].</span>", \
-							  "<span class='warning'>You accidentally step on [src]</span>")
+			L.visible_message("<span class='warning'>69L69 accidentally steps on 69src69.</span>", \
+							  "<span class='warning'>You accidentally step on 69src69</span>")
 
 	..()
 
 
-/obj/item/device/assembly/mousetrap/on_found(mob/finder as mob)
+/obj/item/device/assembly/mousetrap/on_found(mob/finder as69ob)
 	if(armed)
-		finder.visible_message("<span class='warning'>[finder] accidentally sets off [src], breaking their fingers.</span>", \
-							   "<span class='warning'>You accidentally trigger [src]!</span>")
+		finder.visible_message("<span class='warning'>69finder69 accidentally sets off 69src69, breaking their fingers.</span>", \
+							   "<span class='warning'>You accidentally trigger 69src69!</span>")
 		triggered(finder, finder.hand ? "l_hand" : "r_hand")
 		return TRUE	//end the search!
 	return FALSE
 
 
-/obj/item/device/assembly/mousetrap/hitby(A as mob|obj)
+/obj/item/device/assembly/mousetrap/hitby(A as69ob|obj)
 	if(!armed)
 		return ..()
-	visible_message("<span class='warning'>[src] is triggered by [A].</span>")
+	visible_message("<span class='warning'>69src69 is triggered by 69A69.</span>")
 	triggered(null)
 
 
@@ -136,4 +136,4 @@
 		return
 
 	layer = TURF_LAYER+0.2
-	to_chat(usr, "<span class='notice'>You hide [src].</span>")
+	to_chat(usr, "<span class='notice'>You hide 69src69.</span>")

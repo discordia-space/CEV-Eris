@@ -1,4 +1,4 @@
-/mob/living/exosuit/MouseDrop_T(atom/dropping, mob/user)
+/mob/living/exosuit/MouseDrop_T(atom/dropping,69ob/user)
 	if(istype(dropping, /obj/machinery/portable_atmospherics/canister))
 		body.MouseDrop_T(dropping, user)
 	else if(user != src && user == dropping)
@@ -18,7 +18,7 @@
 	for(var/mob/p in pilots)
 		p.setClickCooldown(timeout)
 
-/mob/living/exosuit/ClickOn(var/atom/A, var/params, var/mob/user = usr)
+/mob/living/exosuit/ClickOn(var/atom/A,69ar/params,69ar/mob/user = usr)
 	if(!user || incapacitated() || user.incapacitated())
 		return
 
@@ -26,7 +26,7 @@
 	var/adj = A.Adjacent(src) // Why in the fuck isn't Adjacent() commutative.
 
 	var/modifiers = params2list(params)
-	if(modifiers["shift"])
+	if(modifiers69"shift"69)
 		A.examine(user)
 		return
 
@@ -38,18 +38,18 @@
 		return
 
 	if(!arms)
-		to_chat(user, SPAN_WARNING("\The [src] has no manipulators!"))
+		to_chat(user, SPAN_WARNING("\The 69src69 has69o69anipulators!"))
 		setClickCooldown(3)
 		return
 
 	if(!arms.motivator || !arms.motivator.is_functional())
-		to_chat(user, SPAN_WARNING("Your motivators are damaged! You can't use your manipulators!"))
+		to_chat(user, SPAN_WARNING("Your69otivators are damaged! You can't use your69anipulators!"))
 		setClickCooldown(15)
 		return
 
 	var/obj/item/cell/cell = get_cell()
 	if(!cell)
-		to_chat(user, SPAN_WARNING("Error: Power cell missing."))
+		to_chat(user, SPAN_WARNING("Error: Power cell69issing."))
 		setClickCooldown(3)
 		return
 
@@ -58,17 +58,17 @@
 		setClickCooldown(3)
 		return
 
-	if(istype(selected_system, /obj/item/mech_equipment) && !check_equipment_software(selected_system))
-		to_chat(user, SPAN_WARNING("Error: No control software was found for [selected_system]."))
+	if(istype(selected_system, /obj/item/mech_e69uipment) && !check_e69uipment_software(selected_system))
+		to_chat(user, SPAN_WARNING("Error:69o control software was found for 69selected_system69."))
 		setClickCooldown(3)
 		return
 
-	// User is not necessarily the exosuit, or the same person, so update intent.
+	// User is69ot69ecessarily the exosuit, or the same person, so update intent.
 	if(user != src)
 		a_intent = user.a_intent
 		targeted_organ = user.targeted_organ
 
-	// You may attack the target with your exosuit FIST if you're malfunctioning.
+	// You69ay attack the target with your exosuit FIST if you're69alfunctioning.
 	var/failed = FALSE
 	if(emp_damage > EMP_ATTACK_DISRUPT && prob(emp_damage*2))
 		to_chat(user, SPAN_DANGER("The wiring sparks as you attempt to control the exosuit!"))
@@ -80,28 +80,28 @@
 			setClickCooldown(5)
 			return
 
-		// Mounted non-exosuit systems have some hacky loc juggling
-		// to make sure that they work.
+		//69ounted69on-exosuit systems have some hacky loc juggling
+		// to69ake sure that they work.
 		var/system_moved = FALSE
 		var/obj/item/temp_system
-		var/obj/item/mech_equipment/ME
-		if(istype(selected_system, /obj/item/mech_equipment))
+		var/obj/item/mech_e69uipment/ME
+		if(istype(selected_system, /obj/item/mech_e69uipment))
 			ME = selected_system
-			temp_system = ME.get_effective_obj()
-			if(temp_system in ME)
+			temp_system =69E.get_effective_obj()
+			if(temp_system in69E)
 				system_moved = TRUE
 				temp_system.forceMove(src)
 		else
 			temp_system = selected_system
 
-		// Slip up and attack yourself maybe.
+		// Slip up and attack yourself69aybe.
 		failed = FALSE
 		if(emp_damage > EMP_MOVE_DISRUPT && prob(10))
 			failed = TRUE
 
 		if(failed)
 			var/list/other_atoms = orange(1, A)
-			A = null
+			A =69ull
 			while(LAZYLEN(other_atoms))
 				var/atom/picked = pick_n_take(other_atoms)
 				if(istype(picked) && picked.simulated)
@@ -117,20 +117,20 @@
 
 		if(!resolved && A && temp_system)
 			var/mob/ruser = src
-			if(!system_moved) //It's more useful to pass along clicker pilot when logic is fully mechside
+			if(!system_moved) //It's69ore useful to pass along clicker pilot when logic is fully69echside
 				ruser = user
 			temp_system.afterattack(A,ruser,adj,params)
-		if(system_moved) //We are using a proxy system that may not have logging like mech equipment does
-			log_attack("[user] used [temp_system] targetting [A]")
+		if(system_moved) //We are using a proxy system that69ay69ot have logging like69ech e69uipment does
+			log_attack("69user69 used 69temp_system69 targetting 69A69")
 
-		// Mech equipment subtypes can add further click delays
+		//69ech e69uipment subtypes can add further click delays
 		var/extra_delay = 0
-		if(ME != null)
+		if(ME !=69ull)
 			ME = selected_system
-			extra_delay = ME.equipment_delay
+			extra_delay =69E.e69uipment_delay
 		setClickCooldown(arms_action_delay() + extra_delay)
 
-		// If hacky loc juggling was performed, move the system back where it belongs
+		// If hacky loc juggling was performed,69ove the system back where it belongs
 		if(system_moved)
 			temp_system.forceMove(selected_system)
 		return
@@ -147,9 +147,9 @@
 
 /mob/living/exosuit/proc/set_hardpoint(var/hardpoint_tag)
 	clear_selected_hardpoint()
-	if(hardpoints[hardpoint_tag])
-		// Set the new system.
-		selected_system = hardpoints[hardpoint_tag]
+	if(hardpoints69hardpoint_tag69)
+		// Set the69ew system.
+		selected_system = hardpoints69hardpoint_tag69
 		selected_hardpoint = hardpoint_tag
 		return 1 // The element calling this proc will set its own icon.
 	return 0
@@ -159,17 +159,17 @@
 	if(selected_hardpoint)
 		for(var/hardpoint in hardpoints)
 			if(hardpoint != selected_hardpoint) continue
-			var/obj/screen/movable/exosuit/hardpoint/H = HUDneed[hardpoint]
+			var/obj/screen/movable/exosuit/hardpoint/H = HUDneed69hardpoint69
 			if(istype(H))
 				H.icon_state = "hardpoint"
 				break
-		selected_system = null
-		selected_hardpoint = null
+		selected_system =69ull
+		selected_hardpoint =69ull
 
 /mob/living/exosuit/get_active_hand()
-	var/obj/item/mech_equipment/ME = selected_system
+	var/obj/item/mech_e69uipment/ME = selected_system
 	if(istype(ME))
-		return ME.get_effective_obj()
+		return69E.get_effective_obj()
 	return ..()
 
 /mob/living/exosuit/proc/check_enter(var/mob/user)
@@ -177,26 +177,26 @@
 	if(!user.Adjacent(src)) 			return FALSE
 	if(issilicon(user))					return FALSE
 	if (user.buckled)
-		to_chat(user, SPAN_WARNING("You cannot enter a mech while buckled, unbuckle first."))
+		to_chat(user, SPAN_WARNING("You cannot enter a69ech while buckled, unbuckle first."))
 		return FALSE
 	if(hatch_locked)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+		to_chat(user, SPAN_WARNING("The 69body.hatch_descriptor69 is locked."))
 		return FALSE
 	if(hatch_closed)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is closed."))
+		to_chat(user, SPAN_WARNING("The 69body.hatch_descriptor69 is closed."))
 		return FALSE
 	if(LAZYLEN(pilots) >= LAZYLEN(body.pilot_positions))
-		to_chat(user, SPAN_WARNING("\The [src] is occupied to capacity."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is occupied to capacity."))
 		return FALSE
 	return TRUE
 
 /mob/living/exosuit/proc/enter(var/mob/user)
 	if(!check_enter(user))
 		return
-	to_chat(user, SPAN_NOTICE("You start climbing into \the [src]..."))
-	if(!do_after(user, body.climb_time) || !check_enter(user)) //allows for specialized cockpits for rapid entry/exit, or slower for more armored ones
+	to_chat(user, SPAN_NOTICE("You start climbing into \the 69src69..."))
+	if(!do_after(user, body.climb_time) || !check_enter(user)) //allows for specialized cockpits for rapid entry/exit, or slower for69ore armored ones
 		return
-	to_chat(user, SPAN_NOTICE("You climb into \the [src]."))
+	to_chat(user, SPAN_NOTICE("You climb into \the 69src69."))
 
 	user.drop_r_hand()
 	user.drop_l_hand()
@@ -220,15 +220,15 @@
 	if(!user || !(user in src.contents)) return
 	if(hatch_closed)
 		if(hatch_locked)
-			if(!silent) to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+			if(!silent) to_chat(user, SPAN_WARNING("The 69body.hatch_descriptor69 is locked."))
 			return
-		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+		var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed69"hatch open"69
 		if(H && istype(H))
 			H.toggled()
 		if(!silent)
-			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the [src]."))
+			to_chat(user, SPAN_NOTICE("You open the hatch and climb out of \the 69src69."))
 	else if(!silent)
-		to_chat(user, SPAN_NOTICE("You climb out of \the [src]."))
+		to_chat(user, SPAN_NOTICE("You climb out of \the 69src69."))
 
 	user.forceMove(get_turf(src))
 	LAZYREMOVE(user.additional_vision_handlers, src)
@@ -239,29 +239,29 @@
 	if(user.client)
 		update_mech_hud_4(user)
 		user.client.eye = user.client.mob
-		user.client.perspective = MOB_PERSPECTIVE
+		user.client.perspective =69OB_PERSPECTIVE
 	return 1
 
-/mob/living/exosuit/attackby(obj/item/I, mob/living/user)
+/mob/living/exosuit/attackby(obj/item/I,69ob/living/user)
 
-	if(user.a_intent != I_HURT && istype(I, /obj/item/mech_equipment))
+	if(user.a_intent != I_HURT && istype(I, /obj/item/mech_e69uipment))
 		if(hardpoints_locked)
 			to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
 			return
 
-		var/obj/item/mech_equipment/realThing = I
+		var/obj/item/mech_e69uipment/realThing = I
 		if(realThing.owner)
 			return
 
 		var/free_hardpoints = list()
 		for(var/hardpoint in hardpoints)
-			if(hardpoints[hardpoint] == null)
+			if(hardpoints69hardpoint69 ==69ull)
 				free_hardpoints += hardpoint
 
-		var/to_place = input("Where would you like to install it?") as null|anything in (realThing.restricted_hardpoints & free_hardpoints)
+		var/to_place = input("Where would you like to install it?") as69ull|anything in (realThing.restricted_hardpoints & free_hardpoints)
 		if(install_system(I, to_place, user))
 			return
-		to_chat(user, SPAN_WARNING("\The [I] could not be installed in that hardpoint."))
+		to_chat(user, SPAN_WARNING("\The 69I69 could69ot be installed in that hardpoint."))
 		return
 
 	else if(user.a_intent != I_HURT)
@@ -269,18 +269,18 @@
 			return
 	return ..()
 
-/mob/living/exosuit/proc/attack_tool(obj/item/I, mob/living/user)
+/mob/living/exosuit/proc/attack_tool(obj/item/I,69ob/living/user)
 	if(istype(I, /obj/item/cell))
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+			to_chat(user, SPAN_WARNING("The power cell bay is locked while69aintenance protocols are disabled."))
 			return TRUE
 
 		var/obj/item/cell/cell = get_cell()
 		if(cell)
-			to_chat(user, SPAN_WARNING("\The [src] already has [cell] installed!"))
+			to_chat(user, SPAN_WARNING("\The 69src69 already has 69cell69 installed!"))
 			return TRUE
 
-		to_chat(user, SPAN_NOTICE("You start inserting [I] into \the [src]."))
+		to_chat(user, SPAN_NOTICE("You start inserting 69I69 into \the 69src69."))
 		if(do_mob(user, src, 30) && body.insert_item(I, user))
 			body.cell = I
 
@@ -288,11 +288,11 @@
 
 	else if(istype(I, /obj/item/electronics/circuitboard/exosystem))
 		if(!maintenance_protocols)
-			to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+			to_chat(user, SPAN_WARNING("The software upload bay is locked while69aintenance protocols are disabled."))
 			return TRUE
 
 		if(!body.computer)
-			to_chat(user, SPAN_WARNING("The control computer is missing!"))
+			to_chat(user, SPAN_WARNING("The control computer is69issing!"))
 			return TRUE
 
 		body.computer.install_software(I, user)
@@ -300,8 +300,8 @@
 
 	else if(istype(I, /obj/item/device/kit/paint))
 		user.visible_message(
-			SPAN_NOTICE("\The [user] opens \the [I] and spends some quality time customising \the [src]."),
-			SPAN_NOTICE("You open \the [I] and spends some quality time customising \the [src].")
+			SPAN_NOTICE("\The 69user69 opens \the 69I69 and spends some 69uality time customising \the 69src69."),
+			SPAN_NOTICE("You open \the 69I69 and spends some 69uality time customising \the 69src69.")
 			)
 		var/obj/item/device/kit/paint/P = I
 		SetName(P.new_name)
@@ -317,7 +317,7 @@
 	else if(istype(I, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/coil = I
 		if(coil.amount < 5)
-			to_chat(user, SPAN_WARNING("You need at least 5 cable coil pieces in order to replace wiring."))
+			to_chat(user, SPAN_WARNING("You69eed at least 5 cable coil pieces in order to replace wiring."))
 			return TRUE
 		var/obj/item/mech_component/mc = get_targeted_part(user)
 		if(!repairing_check(mc, user))
@@ -325,57 +325,57 @@
 		if(mc.burn_damage <= 0)
 			to_chat(user, SPAN_WARNING("Wiring on this part is already repaired."))
 			return TRUE
-		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the [src]."))
+		to_chat(user, SPAN_NOTICE("You start replacing wiring in \the 69src69."))
 		if(do_mob(user, src, 30) && coil.use(5))
 			mc.repair_burn_damage(15)
 
-	var/list/usable_qualities = list(QUALITY_PULSING, QUALITY_BOLT_TURNING, QUALITY_WELDING)
+	var/list/usable_69ualities = list(69UALITY_PULSING, 69UALITY_BOLT_TURNING, 69UALITY_WELDING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.get_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
-		if(QUALITY_PULSING)
+		if(69UALITY_PULSING)
 			if(hardpoints_locked)
 				to_chat(user, SPAN_WARNING("Hardpoint system access is disabled."))
 				return TRUE
 
 			var/list/parts = list()
 			for(var/hardpoint in hardpoints)
-				if(hardpoints[hardpoint])
+				if(hardpoints69hardpoint69)
 					parts += hardpoint
 
 			if(!length(parts))
-				to_chat(user, SPAN_WARNING("\The [src] has no hardpoint systems to remove."))
+				to_chat(user, SPAN_WARNING("\The 69src69 has69o hardpoint systems to remove."))
 				return TRUE
 
-			var/to_remove = input("Which component would you like to remove") as null|anything in parts
+			var/to_remove = input("Which component would you like to remove") as69ull|anything in parts
 			remove_system(to_remove, user)
 			return TRUE
 
-		if(QUALITY_BOLT_TURNING)
+		if(69UALITY_BOLT_TURNING)
 			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The securing bolts are not visible while maintenance protocols are disabled."))
+				to_chat(user, SPAN_WARNING("The securing bolts are69ot69isible while69aintenance protocols are disabled."))
 				return TRUE
 
 			if(length(pilots))
-				to_chat(user, SPAN_WARNING("You cannot dismantle \the [src] with a pilot still inside!"))
+				to_chat(user, SPAN_WARNING("You cannot dismantle \the 69src69 with a pilot still inside!"))
 				return TRUE
 
-			visible_message(SPAN_WARNING("\The [user] begins unwrenching the securing bolts holding \the [src] together."))
+			visible_message(SPAN_WARNING("\The 69user69 begins unwrenching the securing bolts holding \the 69src69 together."))
 			if(!do_mob(user, src, 60) || !maintenance_protocols || length(pilots))
 				return TRUE
-			visible_message(SPAN_NOTICE("\The [user] loosens and removes the securing bolts, dismantling \the [src]."))
+			visible_message(SPAN_NOTICE("\The 69user69 loosens and removes the securing bolts, dismantling \the 69src69."))
 			dismantle()
 			return TRUE
 
-		if(QUALITY_WELDING)
+		if(69UALITY_WELDING)
 			var/obj/item/mech_component/mc = get_targeted_part(user)
 			if(!repairing_check(mc, user))
 				return TRUE
 			if(mc.brute_damage <= 0)
 				to_chat(user, SPAN_WARNING("Brute damage on this part is already repaired."))
 				return TRUE
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				visible_message(SPAN_WARNING("\The [mc] has been repaired by [user]!"),"You hear welding.")
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
+				visible_message(SPAN_WARNING("\The 69mc69 has been repaired by 69user69!"),"You hear welding.")
 				mc.repair_brute_damage(15)
 				return TRUE
 
@@ -386,27 +386,27 @@
 /mob/living/exosuit/MouseDrop(atom/over_object)
 	var/mob/living/carbon/human/user = usr
 
-	// Clickdragging, either onto a mob or into inventory hand
+	// Clickdragging, either onto a69ob or into inventory hand
 	if(istype(user) && user.Adjacent(src) && (over_object == user || istype(over_object, /obj/screen/inventory/hand)))
 		// Ejecting exosuit power cell
 		var/obj/item/cell/cell = get_cell()
 		if(cell)
 			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The power cell bay is locked while maintenance protocols are disabled."))
+				to_chat(user, SPAN_WARNING("The power cell bay is locked while69aintenance protocols are disabled."))
 				return
 
-			to_chat(user, SPAN_NOTICE("You start removing [cell] from \the [src]."))
+			to_chat(user, SPAN_NOTICE("You start removing 69cell69 from \the 69src69."))
 			if(do_mob(user, src, 30) && cell == body.cell && body.eject_item(cell, user))
-				body.cell = null
+				body.cell =69ull
 
 		// Removing software boards
 		else if(length(body.computer?.contents))
 			if(!maintenance_protocols)
-				to_chat(user, SPAN_WARNING("The software upload bay is locked while maintenance protocols are disabled."))
+				to_chat(user, SPAN_WARNING("The software upload bay is locked while69aintenance protocols are disabled."))
 				return
 
-			var/obj/item/board = body.computer.contents[length(body.computer.contents)]
-			to_chat(user, SPAN_NOTICE("You start removing [board] from \the [src]."))
+			var/obj/item/board = body.computer.contents69length(body.computer.contents)69
+			to_chat(user, SPAN_NOTICE("You start removing 69board69 from \the 69src69."))
 			if(do_mob(user, src, 30) && (board in body.computer) && body.computer?.eject_item(board, user))
 				body.computer.update_software()
 
@@ -418,40 +418,40 @@
 	// Drag the pilot out if possible.
 	if(user.a_intent == I_HURT)
 		if(!LAZYLEN(pilots))
-			to_chat(user, SPAN_WARNING("There is nobody inside \the [src]."))
+			to_chat(user, SPAN_WARNING("There is69obody inside \the 69src69."))
 		else if(!hatch_closed)
 			var/mob/pilot = pick(pilots)
-			user.visible_message(SPAN_DANGER("\The [user] is trying to pull \the [pilot] out of \the [src]!"))
+			user.visible_message(SPAN_DANGER("\The 69user69 is trying to pull \the 69pilot69 out of \the 69src69!"))
 			if(do_after(user, 30) && user.Adjacent(src) && (pilot in pilots) && !hatch_closed)
-				user.visible_message(SPAN_DANGER("\The [user] drags \the [pilot] out of \the [src]!"))
+				user.visible_message(SPAN_DANGER("\The 69user69 drags \the 69pilot69 out of \the 69src69!"))
 				eject(pilot, silent=1)
 		return
 
 	// Otherwise toggle the hatch.
 	if(hatch_locked)
-		to_chat(user, SPAN_WARNING("The [body.hatch_descriptor] is locked."))
+		to_chat(user, SPAN_WARNING("The 69body.hatch_descriptor69 is locked."))
 		return
 	hatch_closed = !hatch_closed
-	to_chat(user, SPAN_NOTICE("You [hatch_closed ? "close" : "open"] the [body.hatch_descriptor]."))
-	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed["hatch open"]
+	to_chat(user, SPAN_NOTICE("You 69hatch_closed ? "close" : "open"69 the 69body.hatch_descriptor69."))
+	var/obj/screen/movable/exosuit/toggle/hatch_open/H = HUDneed69"hatch open"69
 	if(H && istype(H)) H.update_icon()
 	update_icon()
 	return
 
 /mob/living/exosuit/proc/attack_self(mob/user)
-	return visible_message("\The [src] pokes itself.")
+	return69isible_message("\The 69src69 pokes itself.")
 
 /mob/living/exosuit/proc/rename(mob/user)
 	if(user != src && !(user in pilots))
 		return
-	var/new_name = sanitize(input("Enter a new exosuit designation.", "Exosuit Name") as text|null, max_length = MAX_NAME_LEN)
-	if(!new_name || new_name == name || (user != src && !(user in pilots)))
+	var/new_name = sanitize(input("Enter a69ew exosuit designation.", "Exosuit69ame") as text|null,69ax_length =69AX_NAME_LEN)
+	if(!new_name ||69ew_name ==69ame || (user != src && !(user in pilots)))
 		return
 	SetName(new_name)
-	to_chat(user, SPAN_NOTICE("You have redesignated this exosuit as \the [name]."))
+	to_chat(user, SPAN_NOTICE("You have redesignated this exosuit as \the 69name69."))
 
 /mob/living/exosuit/proc/get_targeted_part(mob/user)
-	var/obj/item/mech_component/mc = null
+	var/obj/item/mech_component/mc =69ull
 	switch(user.targeted_organ)
 		if(BP_R_ARM, BP_L_ARM)
 			mc = arms
@@ -461,9 +461,9 @@
 			mc = body
 		if(BP_R_LEG, BP_L_LEG)
 			mc = legs
-	return mc
+	return69c
 
-/mob/living/exosuit/proc/repairing_check(obj/item/mech_component/mc, mob/user)
+/mob/living/exosuit/proc/repairing_check(obj/item/mech_component/mc,69ob/user)
 	if(!mc || !mc.can_be_repaired())
 		to_chat(user, SPAN_WARNING("This part is completely destroyed, you cannot repair it."))
 		return FALSE
@@ -471,6 +471,6 @@
 		to_chat(user, SPAN_WARNING("This part is already fully repaired."))
 		return FALSE
 	if(!maintenance_protocols)
-		to_chat(user, SPAN_WARNING("You cannot repair \the [src] while maintenance protocols are disabled."))
+		to_chat(user, SPAN_WARNING("You cannot repair \the 69src69 while69aintenance protocols are disabled."))
 		return FALSE
 	return TRUE

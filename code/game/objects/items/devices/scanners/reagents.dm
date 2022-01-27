@@ -5,7 +5,7 @@
 	item_state = "analyzer"
 	spawn_tags = SPAWN_TAG_DIVICE_SCIENCE
 	rarity_value = 10
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_GLASS = 1)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 
 	charge_per_use = 7
@@ -16,20 +16,20 @@
 /obj/item/device/scanner/reagent/is_valid_scan_target(obj/O)
 	return istype(O)
 
-/obj/item/device/scanner/reagent/scan(obj/O, mob/user)
+/obj/item/device/scanner/reagent/scan(obj/O,69ob/user)
 	scan_data = reagent_scan_results(O, details)
-	scan_title = "Reagents scan - [O]"
+	scan_title = "Reagents scan - 69O69"
 	user.show_message(SPAN_NOTICE(scan_data))
 
 /proc/reagent_scan_results(obj/O, details = 0)
 	if(isnull(O.reagents))
-		return "No significant chemical agents found in [O]."
+		return "No significant chemical agents found in 69O69."
 	if(O.reagents.reagent_list.len == 0)
-		return "No active chemical agents found in [O]."
-	. = list("Chemicals found in [O]:")
+		return "No active chemical agents found in 69O69."
+	. = list("Chemicals found in 69O69:")
 	var/one_percent = O.reagents.total_volume / 100
 	for (var/datum/reagent/R in O.reagents.reagent_list)
-		. += "[R][details ? ": [R.volume / one_percent]%" : ""]"
+		. += "69R6969details ? ": 69R.volume / one_percent69%" : ""69"
 	. = jointext(., "<br>")
 
 /obj/item/device/scanner/reagent/adv

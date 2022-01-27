@@ -1,6 +1,6 @@
 /obj/structure/table/rack
 	name = "rack"
-	desc = "Different from the medieval version."
+	desc = "Different from the69edieval69ersion."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
 	can_plate = 0

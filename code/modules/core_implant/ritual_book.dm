@@ -30,14 +30,14 @@
 	)
 
 	if(!CI)
-		data["noimplant"] = TRUE
+		data69"noimplant"69 = TRUE
 		return data
 
 	var/list/ritual_data = list()
 	var/list/category_data = list()
 
 	for(var/RT in CI.known_rituals)
-		var/datum/ritual/R = GLOB.all_rituals[RT]
+		var/datum/ritual/R = GLOB.all_rituals69RT69
 
 		if(!(R.category in category_data))
 			category_data.Add(R.category)
@@ -49,34 +49,34 @@
 			var/list/L = list(
 				"name" = capitalize(R.name),
 				"desc" = R.desc,
-				"type" = "[RT]"
+				"type" = "69RT69"
 			)
 
 			if(istype(R, /datum/ritual/group))
-				L["group"] = TRUE
+				L69"group"69 = TRUE
 
 				var/datum/ritual/group/GR = R
 				var/list/P = list()
 				for(var/i = 1; i <= GR.phrases.len; i++)
-					P.Add(list(list("ind" = i, "phrase" = GR.phrases[i], "type" = "[RT]")))
+					P.Add(list(list("ind" = i, "phrase" = GR.phrases69i69, "type" = "69RT69")))
 
-				L["phrases"] = P
+				L69"phrases"69 = P
 
 			else
-				L["group"] = FALSE
-				L["phrase"] = R.get_display_phrase()
+				L69"group"69 = FALSE
+				L69"phrase"69 = R.get_display_phrase()
 
 			ritual_data.Add(list(L))
 
-	data["rituals"] = ritual_data
-	data["categories"] = category_data
+	data69"rituals"69 = ritual_data
+	data69"categories"69 = category_data
 
-	data["firstcat"] = ""
+	data69"firstcat"69 = ""
 	if(category_data.len)
-		data["firstcat"] = category_data[1]
+		data69"firstcat"69 = category_data69169
 
-	data["currcat"] = current_category
-	data["currexp"] = expanded_group
+	data69"currcat"69 = current_category
+	data69"currexp"69 = expanded_group
 
 	return data
 
@@ -108,26 +108,26 @@
 
 	var/obj/item/implant/core_implant/cruciform/CI = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 
-	if(href_list["set_category"])
-		current_category = href_list["set_category"]
+	if(href_list69"set_category"69)
+		current_category = href_list69"set_category"69
 
-	if(href_list["unfold"])
-		expanded_group = href_list["unfold"]
+	if(href_list69"unfold"69)
+		expanded_group = href_list69"unfold"69
 
-	if(href_list["say"] || href_list["say_group"])
+	if(href_list69"say"69 || href_list69"say_group"69)
 		var/incantation = ""
 		if(!CI)
 			return
 
 		for(var/RT in CI.known_rituals)
 
-			if("[RT]" == href_list["say"])
-				var/datum/ritual/R = GLOB.all_rituals[RT]
+			if("69RT69" == href_list69"say"69)
+				var/datum/ritual/R = GLOB.all_rituals69RT69
 				incantation = R.get_say_phrase()
 				break
-			if("[RT]" == href_list["say_group"])
-				var/ind = text2num(href_list["say_id"])
-				var/datum/ritual/group/R = GLOB.all_rituals[RT]
+			if("69RT69" == href_list69"say_group"69)
+				var/ind = text2num(href_list69"say_id"69)
+				var/datum/ritual/group/R = GLOB.all_rituals69RT69
 				incantation = R.get_group_say_phrase(ind)
 				break
 		if (incantation != "")

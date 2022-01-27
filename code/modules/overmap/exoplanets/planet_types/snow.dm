@@ -17,7 +17,7 @@
 		if(habitability_class <= HABITABILITY_OKAY)
 			var/datum/species/human/H = /datum/species/human
 			limit = initial(H.cold_level_1) + rand(1,10)
-		atmosphere.temperature = max(T0C - rand(10, 100), limit)
+		atmosphere.temperature =69ax(T0C - rand(10, 100), limit)
 		atmosphere.update_values()
 
 /datum/random_map/noise/exoplanet/snow
@@ -51,7 +51,7 @@
 	footstep_type = /decl/footsteps/snow
 
 /turf/simulated/floor/exoplanet/snow/New()
-	icon_state = pick("snow[rand(1,12)]","snow0")
+	icon_state = pick("snow69rand(1,12)69","snow0")
 	..()
 
 /turf/simulated/floor/exoplanet/snow/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)

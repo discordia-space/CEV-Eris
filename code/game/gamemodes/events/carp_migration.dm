@@ -1,10 +1,10 @@
 /*
-	A vast number of space carp spawn around the ship. Will heavily stress the shields
+	A69ast number of space carp spawn around the ship. Will heavily stress the shields
 	They eventually go away
 */
 /datum/storyevent/carp_migration
 	id = "carp_migration"
-	name = "carp migration"
+	name = "carp69igration"
 
 	event_type =/datum/event/carp_migration
 	event_pools = list(EVENT_LEVEL_MAJOR = POOL_THRESHOLD_MAJOR)
@@ -20,7 +20,7 @@
 
 /datum/event/carp_migration/setup()
 	//We'll pick space tiles which have windows nearby
-	//This means that carp will only be spawned in places where someone could see them
+	//This69eans that carp will only be spawned in places where someone could see them
 	var/area/spess = locate(/area/space) in world
 	for (var/turf/T in spess)
 		if (!(T.z in GLOB.maps_data.station_levels))
@@ -31,14 +31,14 @@
 
 		//The number of windows near each tile is recorded
 		var/numwin
-		for (var/obj/structure/window/W in view(4, T))
+		for (var/obj/structure/window/W in69iew(4, T))
 			numwin++
 
-		//And the square of it is entered into the list as a weight
+		//And the s69uare of it is entered into the list as a weight
 		if (numwin)
-			viable_turfs[T] = numwin*numwin
+			viable_turfs69T69 = numwin*numwin
 
-	//We will then use pickweight and this will be more likely to choose tiles with many windows, for maximum exposure
+	//We will then use pickweight and this will be69ore likely to choose tiles with69any windows, for69aximum exposure
 
 	announceWhen = rand(40, 60)
 	endWhen = rand(600,1200)
@@ -46,9 +46,9 @@
 /datum/event/carp_migration/announce()
 	var/announcement = ""
 	if(severity == EVENT_LEVEL_MAJOR)
-		announcement = "Massive migration of unknown biological entities has been detected near [station_name()], please stand-by."
+		announcement = "Massive69igration of unknown biological entities has been detected near 69station_name()69, please stand-by."
 	else
-		announcement = "Unknown biological [spawned_carp.len == 1 ? "entity has" : "entities have"] been detected near [station_name()], please stand-by."
+		announcement = "Unknown biological 69spawned_carp.len == 1 ? "entity has" : "entities have"69 been detected near 69station_name()69, please stand-by."
 	command_announcement.Announce(announcement, "Lifesign Alert")
 
 /datum/event/carp_migration/start()
@@ -71,4 +71,4 @@
 		if(!C.stat)
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/space))
-				qdel(C)
+				69del(C)

@@ -14,10 +14,10 @@
 
 	. = ..(user)
 	var/obj/machinery/camera/C = holder
-	. += "<br>\n[(C.view_range == initial(C.view_range) ? "The focus light is on." : "The focus light is off.")]"
-	. += "<br>\n[(C.can_use() ? "The power link light is on." : "The power link light is off.")]"
-	. += "<br>\n[(C.light_disabled ? "The camera light is off." : "The camera light is on.")]"
-	. += "<br>\n[(C.alarm_on ? "The alarm light is on." : "The alarm light is off.")]"
+	. += "<br>\n69(C.view_range == initial(C.view_range) ? "The focus light is on." : "The focus light is off.")69"
+	. += "<br>\n69(C.can_use() ? "The power link light is on." : "The power link light is off.")69"
+	. += "<br>\n69(C.light_disabled ? "The camera light is off." : "The camera light is on.")69"
+	. += "<br>\n69(C.alarm_on ? "The alarm light is on." : "The alarm light is off.")69"
 	return .
 
 /datum/wires/camera/CanUse(var/mob/living/L)
@@ -31,7 +31,7 @@ var/const/CAMERA_WIRE_ALARM = 8
 var/const/CAMERA_WIRE_NOTHING1 = 16
 var/const/CAMERA_WIRE_NOTHING2 = 32
 
-/datum/wires/camera/UpdateCut(var/index, var/mended)
+/datum/wires/camera/UpdateCut(var/index,69ar/mended)
 	var/obj/machinery/camera/C = holder
 
 	switch(index)
@@ -40,7 +40,7 @@ var/const/CAMERA_WIRE_NOTHING2 = 32
 			C.setViewRange(range)
 
 		if(CAMERA_WIRE_POWER)
-			if(C.status && !mended || !C.status && mended)
+			if(C.status && !mended || !C.status &&69ended)
 				C.deactivate(usr, 1)
 
 		if(CAMERA_WIRE_LIGHT)
@@ -66,7 +66,7 @@ var/const/CAMERA_WIRE_NOTHING2 = 32
 			C.light_disabled = !C.light_disabled
 
 		if(CAMERA_WIRE_ALARM)
-			C.visible_message("\icon[C] *beep*", "\icon[C] *beep*")
+			C.visible_message("\icon69C69 *beep*", "\icon69C69 *beep*")
 	return
 
 /datum/wires/camera/proc/CanDeconstruct()

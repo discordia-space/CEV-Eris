@@ -7,23 +7,23 @@
 /proc/cmp_name_dsc(atom/a, atom/b)
 	return sorttext(a.name, b.name)
 
-/proc/cmp_catalog_entry_asc(datum/catalog_entry/a, datum/catalog_entry/b)
+/proc/cmp_catalo69_entry_asc(datum/catalo69_entry/a, datum/catalo69_entry/b)
 	return sorttext(b.title, a.title)
 
-/proc/cmp_catalog_entry_chem(datum/catalog_entry/reagent/a, datum/catalog_entry/reagent/b)
-	if(a.reagent_type != b.reagent_type)
-		return sorttext(b.reagent_type, a.reagent_type)
-	return cmp_catalog_entry_asc(a, b)
+/proc/cmp_catalo69_entry_chem(datum/catalo69_entry/rea69ent/a, datum/catalo69_entry/rea69ent/b)
+	if(a.rea69ent_type != b.rea69ent_type)
+		return sorttext(b.rea69ent_type, a.rea69ent_type)
+	return cmp_catalo69_entry_asc(a, b)
 
 /proc/cmp_numeric_asc(a,b)
 	return a - b
 
-GLOBAL_VAR_INIT(cmp_field, "name")
+69LOBAL_VAR_INIT(cmp_field, "name")
 /proc/cmp_records_asc(datum/data/record/a, datum/data/record/b)
-	return sorttext(b.fields[GLOB.cmp_field], a.fields[GLOB.cmp_field])
+	return sorttext(b.fields6969LOB.cmp_field69, a.fields6969LOB.cmp_field69)
 
 /proc/cmp_records_dsc(datum/data/record/a, datum/data/record/b)
-	return sorttext(a.fields[GLOB.cmp_field], b.fields[GLOB.cmp_field])
+	return sorttext(a.fields6969LOB.cmp_fiel6969, b.fields6969LOB.cmp_fie69d69)
 
 /proc/cmp_ckey_asc(client/a, client/b)
 	return sorttext(b.ckey, a.ckey)
@@ -52,17 +52,17 @@ GLOBAL_VAR_INIT(cmp_field, "name")
 /proc/cmp_text_dsc(a,b)
 	return sorttext(a, b)
 
-/proc/cmp_qdel_item_time(datum/qdel_item/A, datum/qdel_item/B)
+/proc/cmp_69del_item_time(datum/69del_item/A, datum/69del_item/B)
 	. = B.hard_delete_time - A.hard_delete_time
 	if (!.)
 		. = B.destroy_time - A.destroy_time
 	if (!.)
 		. = B.failures - A.failures
 	if (!.)
-		. = B.qdels - A.qdels
+		. = B.69dels - A.69dels
 
 /proc/cmp_crew_sensor_modifier(crew_sensor_modifier/a, crew_sensor_modifier/b)
 	return b.priority - a.priority
 
-/proc/cmp_smeslist_rcon_tag(list/A, list/B)
-	return sorttext(A["RCON_tag"], B["RCON_tag"])
+/proc/cmp_smeslist_rcon_ta69(list/A, list/B)
+	return sorttext(A69"RCON_ta696969, B69"RCON_ta69"69)

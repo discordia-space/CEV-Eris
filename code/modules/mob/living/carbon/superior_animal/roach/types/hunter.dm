@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/roach/hunter
 	name = "Jager Roach"
-	desc = "A monstrous, dog-sized cockroach. This one has bigger claws."
+	desc = "A69onstrous, dog-sized cockroach. This one has bigger claws."
 	icon_state = "jager"
 
 	turns_per_move = 3
@@ -16,7 +16,7 @@
 	meat_amount = 3
 	rarity_value = 11.25
 
-	// Armor related variables - jager jacket
+	// Armor related69ariables - jager jacket
 	armor = list(
 		melee = 20,
 		bullet = 10,

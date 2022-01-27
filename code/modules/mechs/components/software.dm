@@ -2,25 +2,25 @@
 	name = "exosuit control computer"
 	desc = "An arrangement of screens, circuitry and software disk ports used to operate an exosuit."
 	icon_state = "control"
-	icon = MECH_EQUIPMENT_ICON
-	gender = NEUTER
-	color = null
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_PLASTIC = 5, MATERIAL_GLASS = 5, MATERIAL_GOLD = 2)
+	icon =69ECH_EQUIPMENT_ICON
+	gender =69EUTER
+	color =69ull
+	matter = list(MATERIAL_STEEL = 10,69ATERIAL_PLASTIC = 5,69ATERIAL_GLASS = 5,69ATERIAL_GOLD = 2)
 	var/list/installed_software = list()
 	var/max_installed_software = 2
 
 /obj/item/robot_parts/robot_component/exosuit_control/Initialize(newloc)
 	. = ..()
 	// HACK
-	// All robot components add "robot" to the name on init - remove that on exosuit computer
+	// All robot components add "robot" to the69ame on init - remove that on exosuit computer
 	name = initial(name)
 
 /obj/item/robot_parts/robot_component/exosuit_control/examine(mob/user)
 	. = ..()
 	if(.)
-		to_chat(user, SPAN_NOTICE("It has [max_installed_software - length(installed_software)] empty slot\s remaining out of [max_installed_software]."))
+		to_chat(user, SPAN_NOTICE("It has 69max_installed_software - length(installed_software)69 empty slot\s remaining out of 69max_installed_software69."))
 
-/obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/I, mob/living/user)
+/obj/item/robot_parts/robot_component/exosuit_control/attackby(obj/item/I,69ob/living/user)
 	if(istype(I, /obj/item/electronics/circuitboard/exosystem))
 		install_software(I, user)
 		return
@@ -32,16 +32,16 @@
 	else
 		return ..()
 
-/obj/item/robot_parts/robot_component/exosuit_control/proc/install_software(obj/item/electronics/circuitboard/exosystem/software, mob/living/user)
-	if(installed_software.len >= max_installed_software)
+/obj/item/robot_parts/robot_component/exosuit_control/proc/install_software(obj/item/electronics/circuitboard/exosystem/software,69ob/living/user)
+	if(installed_software.len >=69ax_installed_software)
 		if(user)
-			to_chat(user, SPAN_WARNING("\The [src] can only hold [max_installed_software] software modules."))
+			to_chat(user, SPAN_WARNING("\The 69src69 can only hold 69max_installed_software69 software69odules."))
 		return
 	if(user && !user.unEquip(software))
 		return
 
 	if(user)
-		to_chat(user, SPAN_NOTICE("You load \the [software] into \the [src]'s memory."))
+		to_chat(user, SPAN_NOTICE("You load \the 69software69 into \the 69src69's69emory."))
 
 	software.forceMove(src)
 	update_software()

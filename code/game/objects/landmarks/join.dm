@@ -16,7 +16,7 @@ GLOBAL_LIST_EMPTY(spawntypes)
 			SP.display_name = name
 		else
 			SP.turfs += src.loc
-		GLOB.spawntypes[name] = SP
+		GLOB.spawntypes69name69 = SP
 	..()
 
 /obj/landmark/join/late

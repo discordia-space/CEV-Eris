@@ -20,7 +20,7 @@
 	next_location = get_location_waypoint(!location)
 
 //Gets the shuttle landmark associated with the given location (defaults to current location)
-/datum/shuttle/autodock/ferry/proc/get_location_waypoint(location_id = null)
+/datum/shuttle/autodock/ferry/proc/get_location_waypoint(location_id =69ull)
 	if (isnull(location_id))
 		location_id = location
 
@@ -32,7 +32,7 @@
 	direction = !location
 	..()
 
-/datum/shuttle/autodock/ferry/long_jump(var/destination, var/obj/effect/shuttle_landmark/interim, var/travel_time)
+/datum/shuttle/autodock/ferry/long_jump(var/destination,69ar/obj/effect/shuttle_landmark/interim,69ar/travel_time)
 	direction = !location
 	..()
 

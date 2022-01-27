@@ -1,13 +1,13 @@
-//These are meant for spawning on maps, namely Away Missions.
+//These are69eant for spawning on69aps, namely Away69issions.
 
-//If someone can do this in a neater way, be my guest-Kor
+//If someone can do this in a neater way, be69y guest-Kor
 
-//To do: Allow corpses to appear mangled, bloody, etc. Allow customizing the bodies appearance (they're all bald and white right now).
+//To do: Allow corpses to appear69angled, bloody, etc. Allow customizing the bodies appearance (they're all bald and white right now).
 
 /obj/landmark/corpse
 	name = "Unknown"
 	icon_state = "player-black"
-	var/mobname = "Unknown"  //Unused now but it'd fuck up maps to remove it now
+	var/mobname = "Unknown"  //Unused now but it'd fuck up69aps to remove it now
 	var/corpseuniform //Set this to an object path to have the slot filled with said object on the corpse.
 	var/corpsesuit
 	var/corpseshoes
@@ -21,48 +21,48 @@
 	var/corpsepocket2
 	var/corpseback
 	var/corpseid = 0     //Just set to 1 if you want them to have an ID
-	var/corpseidjob // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
-	var/corpseidaccess //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
+	var/corpseidjob // Needs to be in 69uotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
+	var/corpseidaccess //This is for access. See access.dm for which jobs give what access. Again, put in 69uotes. Use "Captain" if you want it to be all access.
 	var/species = SPECIES_HUMAN
 
 /obj/landmark/corpse/Initialize()
 	..()
 	createCorpse()
-	return INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_69DEL
 
-/obj/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
+/obj/landmark/corpse/proc/createCorpse() //Creates a69ob and checks for gear in each slot before attempting to e69uip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
 	M.set_species(species)
 	M.real_name = src.name
-	M.death(1) //Kills the new mob
+	M.death(1) //Kills the new69ob
 	if(src.corpseuniform)
-		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
+		M.e69uip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
 	if(src.corpsesuit)
-		M.equip_to_slot_or_del(new src.corpsesuit(M), slot_wear_suit)
+		M.e69uip_to_slot_or_del(new src.corpsesuit(M), slot_wear_suit)
 	if(src.corpseshoes)
-		M.equip_to_slot_or_del(new src.corpseshoes(M), slot_shoes)
+		M.e69uip_to_slot_or_del(new src.corpseshoes(M), slot_shoes)
 	if(src.corpsegloves)
-		M.equip_to_slot_or_del(new src.corpsegloves(M), slot_gloves)
+		M.e69uip_to_slot_or_del(new src.corpsegloves(M), slot_gloves)
 	if(src.corpseradio)
-		M.equip_to_slot_or_del(new src.corpseradio(M), slot_l_ear)
+		M.e69uip_to_slot_or_del(new src.corpseradio(M), slot_l_ear)
 	if(src.corpseglasses)
-		M.equip_to_slot_or_del(new src.corpseglasses(M), slot_glasses)
+		M.e69uip_to_slot_or_del(new src.corpseglasses(M), slot_glasses)
 	if(src.corpsemask)
-		M.equip_to_slot_or_del(new src.corpsemask(M), slot_wear_mask)
+		M.e69uip_to_slot_or_del(new src.corpsemask(M), slot_wear_mask)
 	if(src.corpsehelmet)
-		M.equip_to_slot_or_del(new src.corpsehelmet(M), slot_head)
+		M.e69uip_to_slot_or_del(new src.corpsehelmet(M), slot_head)
 	if(src.corpsebelt)
-		M.equip_to_slot_or_del(new src.corpsebelt(M), slot_belt)
+		M.e69uip_to_slot_or_del(new src.corpsebelt(M), slot_belt)
 	if(src.corpsepocket1)
-		M.equip_to_slot_or_del(new src.corpsepocket1(M), slot_r_store)
+		M.e69uip_to_slot_or_del(new src.corpsepocket1(M), slot_r_store)
 	if(src.corpsepocket2)
-		M.equip_to_slot_or_del(new src.corpsepocket2(M), slot_l_store)
+		M.e69uip_to_slot_or_del(new src.corpsepocket2(M), slot_l_store)
 	if(src.corpseback)
-		M.equip_to_slot_or_del(new src.corpseback(M), slot_back)
+		M.e69uip_to_slot_or_del(new src.corpseback(M), slot_back)
 
 	var/datum/job/jobdatum = corpseidjob && SSjob.GetJob(corpseidjob)
 	if(jobdatum)
-		jobdatum.equip(M)
+		jobdatum.e69uip(M)
 
 	if(src.corpseid)
 		var/datum/job/job_access = jobdatum
@@ -75,11 +75,11 @@
 			W.access = list()
 		W.assignment = corpseidjob
 		M.set_id_info(W)
-		M.equip_to_slot_or_del(W, slot_wear_id)
+		M.e69uip_to_slot_or_del(W, slot_wear_id)
 
 
 
-// I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
+// I'll work on69aking a list of corpses people re69uest for69aps, or that I think will be commonly used. Syndicate operatives for example.
 
 
 
@@ -172,12 +172,12 @@
 	corpseidjob = "Scientist"
 
 /obj/landmark/corpse/miner
-	name = "Guild Miner"
+	name = "Guild69iner"
 	corpseuniform = /obj/item/clothing/under/rank/miner
 	corpseshoes = /obj/item/clothing/shoes/color/black
 	corpseradio = /obj/item/device/radio/headset/headset_cargo
 	corpseid = 1
-	corpseidjob = "Guild Miner"
+	corpseidjob = "Guild69iner"
 
 /obj/landmark/corpse/miner/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/mining

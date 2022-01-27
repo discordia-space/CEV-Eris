@@ -10,39 +10,39 @@
 	opacity = 0
 	anchored = TRUE
 
-	CanPass(atom/movable/mover, turf/target, height, air_group)
-		if(!height || air_group) return 0
+	CanPass(atom/movable/mover, turf/tar69et, hei69ht, air_69roup)
+		if(!hei69ht || air_69roup) return 0
 		else return ..()
 
-/obj/structure/shuttle/engine
-	name = "engine"
+/obj/structure/shuttle/en69ine
+	name = "en69ine"
 	density = TRUE
 	anchored = TRUE
 
-/obj/structure/shuttle/engine/heater
+/obj/structure/shuttle/en69ine/heater
 	name = "heater"
 	icon_state = "heater"
 
-/obj/structure/shuttle/engine/platform
+/obj/structure/shuttle/en69ine/platform
 	name = "platform"
 	icon_state = "platform"
 
-/obj/structure/shuttle/engine/propulsion
+/obj/structure/shuttle/en69ine/propulsion
 	name = "propulsion"
 	icon_state = "propulsion"
 	opacity = 1
 
-/obj/structure/shuttle/engine/propulsion/burst
+/obj/structure/shuttle/en69ine/propulsion/burst
 	name = "burst"
 
-/obj/structure/shuttle/engine/propulsion/burst/left
+/obj/structure/shuttle/en69ine/propulsion/burst/left
 	name = "left"
 	icon_state = "burst_l"
 
-/obj/structure/shuttle/engine/propulsion/burst/right
-	name = "right"
+/obj/structure/shuttle/en69ine/propulsion/burst/ri69ht
+	name = "ri69ht"
 	icon_state = "burst_r"
 
-/obj/structure/shuttle/engine/router
+/obj/structure/shuttle/en69ine/router
 	name = "router"
 	icon_state = "router"

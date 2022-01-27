@@ -1,5 +1,5 @@
 //STRIKE TEAMS
-var/const/commandos_possible = 6 //if more Commandos are needed in the future
+var/const/commandos_possible = 6 //if69ore Commandos are needed in the future
 
 /client/proc/strike_team()
 	set category = "Fun"
@@ -7,11 +7,11 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 	set desc = "Spawns a strike team if you want to run an admin event."
 
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		src << "Only administrators69ay use this command."
 		return
 
 	if(world.time < 6000)
-		usr << "<font color='red'>There are [(6000-world.time)/10] seconds remaining before it may be called.</font>"
+		usr << "<font color='red'>There are 69(6000-world.time)/1069 seconds remaining before it69ay be called.</font>"
 		return
 
 	var/datum/antagonist/deathsquad/team
@@ -35,13 +35,13 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 	if(alert("Do you want to send in a strike team? Once enabled, this is irreversible.",,"Yes","No")!="Yes")
 		return
 
-	alert("This 'mode' will go on until everyone is dead or the station is destroyed. You may also admin-call the evac shuttle when appropriate. Spawned commandos have internals cameras which are viewable through a monitor inside the Spec. Ops. Office. Assigning the team's detailed task is recommended from there. While you will be able to manually pick the candidates from active ghosts, their assignment in the squad will be random.")
+	alert("This 'mode' will go on until everyone is dead or the station is destroyed. You69ay also admin-call the evac shuttle when appropriate. Spawned commandos have internals cameras which are69iewable through a69onitor inside the Spec. Ops. Office. Assigning the team's detailed task is recommended from there. While you will be able to69anually pick the candidates from active ghosts, their assignment in the squad will be random.")
 
 	choice = null
 	while(!choice)
-		choice = sanitize(input(src, "Please specify which mission the strike team shall undertake.", "Specify Mission", ""))
+		choice = sanitize(input(src, "Please specify which69ission the strike team shall undertake.", "Specify69ission", ""))
 		if(!choice)
-			if(alert("Error, no mission set. Do you want to exit the setup process?",,"Yes","No")=="Yes")
+			if(alert("Error, no69ission set. Do you want to exit the setup process?",,"Yes","No")=="Yes")
 				return
 
 	if(team.deployed)

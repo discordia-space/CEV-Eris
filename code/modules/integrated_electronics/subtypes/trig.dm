@@ -1,4 +1,4 @@
-//These circuits do not-so-simple math.
+//These circuits do not-so-simple69ath.
 /obj/item/integrated_circuit/trig
 	complexity = 1
 	inputs = list(
@@ -15,13 +15,13 @@
 	activators = list("compute" = IC_PINTYPE_PULSE_IN, "on computed" = IC_PINTYPE_PULSE_OUT)
 	category_text = "Trig"
 	extended_desc = "Input and output are in degrees."
-	power_draw_per_use = 1 // Still cheap math.
+	power_draw_per_use = 1 // Still cheap69ath.
 
 // Sine //
 
 /obj/item/integrated_circuit/trig/sine
 	name = "sin circuit"
-	desc = "Only evil if you're allergic to math. Takes a degree and outputs the sine of said degree."
+	desc = "Only evil if you're allergic to69ath. Takes a degree and outputs the sine of said degree."
 	icon_state = "sine"
 	inputs = list("A" = IC_PINTYPE_NUMBER)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH

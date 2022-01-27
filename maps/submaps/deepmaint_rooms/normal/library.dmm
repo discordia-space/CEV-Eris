@@ -1,103 +1,103 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/o6969/spawner/mo69/roaches/cluster/low_chance,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"b" = (
+/area/deepmaint69
+"69" = 69
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"c" = (
-/obj/spawner/junk,
+/area/deepmaint69
+"c" = 69
+/o6969/spawner/69un69,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"d" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"e" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"f" = (
-/obj/structure/bookcase,
+/area/deepmaint69
+"d" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"e" = 69
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"f" = 69
+/o6969/structure/69oo69case,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"g" = (
-/obj/structure/barricade,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/69arricade,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"h" = (
-/obj/spawner/pack/machine,
+/area/deepmaint69
+"h" = 69
+/o6969/spawner/pac69/machine,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"i" = (
-/obj/structure/table/woodentable,
-/obj/structure/barricade,
+/area/deepmaint69
+"i" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/structure/69arricade,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"j" = (
-/obj/machinery/deployable/barrier,
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/deploya69le/69arrier,
 /turf/simulated/floor/wood,
-/area/deepmaint)
-"k" = (
-/obj/structure/table/woodentable,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"l" = (
-/obj/structure/table/woodentable,
-/obj/spawner/junkfood,
-/obj/spawner/junkfood,
-/obj/spawner/junkfood,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"m" = (
-/obj/structure/table/woodentable,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"n" = (
-/obj/item/remains,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"o" = (
-/obj/structure/table/woodentable,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/spawner/pac69/rare,
+/o6969/spawner/pac69/rare,
+/o6969/spawner/pac69/rare/low_chance,
+/o6969/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"l" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/spawner/69un69food,
+/o6969/spawner/69un69food,
+/o6969/spawner/69un69food,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"m" = 69
+/o6969/structure/ta69le/woodenta69le,
+/o6969/spawner/pac69/69un_loot,
+/o6969/spawner/pac69/69un_loot,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"n" = 69
+/o6969/item/remains,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"o" = 69
+/o6969/structure/ta69le/woodenta69le,
 /turf/simulated/floor/wood,
-/area/deepmaint)
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
-b
+69
 c
-b
+69
 e
 e
 d
-b
-b
-b
-b
+69
+69
+69
+69
 "}
-(2,1,1) = {"
-b
-b
+692,1,169 = {"
+69
+69
 f
-g
-g
+69
+69
 h
-j
-j
+69
+69
 f
 h
-b
+69
 "}
-(3,1,1) = {"
+693,1,169 = {"
 c
 f
 f
@@ -110,25 +110,25 @@ f
 f
 c
 "}
-(4,1,1) = {"
-b
-g
+694,1,169 = {"
+69
+69
 i
-g
-b
+69
+69
 c
-b
-g
+69
+69
 o
-j
-b
+69
+69
 "}
-(5,1,1) = {"
+695,1,169 = {"
 d
-g
+69
 f
-b
-k
+69
+69
 e
 e
 c
@@ -136,81 +136,81 @@ f
 h
 e
 "}
-(6,1,1) = {"
+696,1,169 = {"
 e
 h
 f
-b
+69
 l
 n
 e
 c
 f
-g
+69
 d
 "}
-(7,1,1) = {"
+697,1,169 = {"
 d
-g
+69
 f
-b
+69
 m
 e
 e
 c
 f
-g
+69
 e
 "}
-(8,1,1) = {"
-b
-g
+698,1,169 = {"
+69
+69
 i
-g
-b
-b
-b
-g
+69
+69
+69
+69
+69
 o
-j
-b
+69
+69
 "}
-(9,1,1) = {"
-b
+699,1,169 = {"
+69
 f
 f
-g
+69
 f
 f
 f
-g
+69
 f
 f
 c
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 c
 a
 f
-j
+69
 h
 h
-g
-j
+69
+69
 f
-b
-b
+69
+69
 "}
-(11,1,1) = {"
-b
-b
+6911,1,169 = {"
+69
+69
 c
-b
+69
 e
 d
 e
-b
-b
+69
+69
 c
 a
 "}

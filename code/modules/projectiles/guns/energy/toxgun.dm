@@ -7,7 +7,7 @@
 	w_class = ITEM_SIZE_NORMAL
 	can_dual = TRUE
 	origin_tech = list(TECH_COMBAT = 5, TECH_PLASMA = 4)
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASMA = 5)
+	matter = list(MATERIAL_STEEL = 20,69ATERIAL_PLASMA = 5)
 	price_tag = 2500
 	projectile_type = /obj/item/projectile/energy/plasma
 

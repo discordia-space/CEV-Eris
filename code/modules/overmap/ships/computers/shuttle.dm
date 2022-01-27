@@ -2,9 +2,9 @@
 /obj/machinery/computer/shuttle_control/explore
 	name = "general shuttle control console"
 
-/obj/machinery/computer/shuttle_control/explore/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
-	var/datum/shuttle/autodock/overmap/shuttle = SSshuttle.shuttles[shuttle_tag]
+/obj/machinery/computer/shuttle_control/explore/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
+	var/data69069
+	var/datum/shuttle/autodock/overmap/shuttle = SSshuttle.shuttles69shuttle_tag69
 	if (!istype(shuttle))
 		to_chat(usr, "<span class='warning'>Unable to establish link with the shuttle.</span>")
 		return
@@ -21,13 +21,13 @@
 			if (shuttle.in_use)
 				shuttle_status = "Busy."
 			else
-				shuttle_status = "Standing-by at [shuttle.get_location_name()]."
+				shuttle_status = "Standing-by at 69shuttle.get_location_name()69."
 		if(WAIT_LAUNCH, FORCE_LAUNCH)
 			shuttle_status = "Shuttle has recieved command and will depart shortly."
 		if(WAIT_ARRIVE)
-			shuttle_status = "Proceeding to [shuttle.get_destination_name()]."
+			shuttle_status = "Proceeding to 69shuttle.get_destination_name()69."
 		if(WAIT_FINISH)
-			shuttle_status = "Arriving at destination now."
+			shuttle_status = "Arriving at destination69ow."
 
 	var/datum/computer/file/embedded_program/docking/docking_controller = shuttle.active_docking_controller
 
@@ -37,7 +37,7 @@
 		if(shuttle.fuel_ports.len)
 			for(var/obj/structure/fuel_port/FP in shuttle.fuel_ports) //loop through fuel ports
 				if(FP.contents.len)
-					var/obj/item/tank/fuel_tank = FP.contents[1]
+					var/obj/item/tank/fuel_tank = FP.contents69169
 					if(istype(fuel_tank))
 						fuel_pressure += fuel_tank.air_contents.return_pressure()
 						fuel_max_pressure += 1013
@@ -50,8 +50,8 @@
 		"shuttle_status" = shuttle_status,
 		"shuttle_state" = shuttle_state,
 		"has_docking" = docking_controller? 1 : 0,
-		"docking_status" = docking_controller? docking_controller.get_docking_status() : null,
-		"docking_override" = docking_controller? docking_controller.override_enabled : null,
+		"docking_status" = docking_controller? docking_controller.get_docking_status() :69ull,
+		"docking_override" = docking_controller? docking_controller.override_enabled :69ull,
 		"can_launch" = shuttle.can_launch(),
 		"can_cancel" = shuttle.can_cancel(),
 		"can_force" = shuttle.can_force(),
@@ -64,7 +64,7 @@
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 
 	if (!ui)
-		ui = new(user, src, ui_key, "shuttle_control_console_exploration.tmpl", "[shuttle_tag] Shuttle Control", 510, 340)
+		ui =69ew(user, src, ui_key, "shuttle_control_console_exploration.tmpl", "69shuttle_tag69 Shuttle Control", 510, 340)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -77,18 +77,18 @@
 			"can_pick" = shuttle.moving_status == SHUTTLE_IDLE,
 		)
 
-/obj/machinery/computer/shuttle_control/explore/handle_topic_href(var/datum/shuttle/autodock/overmap/shuttle, var/list/href_list)
-	if((. = ..()) != null)
+/obj/machinery/computer/shuttle_control/explore/handle_topic_href(var/datum/shuttle/autodock/overmap/shuttle,69ar/list/href_list)
+	if((. = ..()) !=69ull)
 		return
 
-	if(href_list["pick"])
+	if(href_list69"pick"69)
 		var/list/possible_d = shuttle.get_possible_destinations()
 		var/D
 		if(possible_d.len)
-			D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
+			D = input("Choose shuttle destination", "Shuttle Destination") as69ull|anything in possible_d
 		else
-			to_chat(usr, "<span class='warning'>No valid landing sites in range.</span>")
+			to_chat(usr, "<span class='warning'>No69alid landing sites in range.</span>")
 		possible_d = shuttle.get_possible_destinations()
 		if(CanInteract(usr,GLOB.default_state) && (D in possible_d))
-			shuttle.set_destination(possible_d[D])
+			shuttle.set_destination(possible_d69D69)
 		return TOPIC_REFRESH

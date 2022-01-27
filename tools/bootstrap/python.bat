@@ -1,1 +1,1 @@
-@call powershell.exe -NoLogo -ExecutionPolicy Bypass -File "%~dp0\python_.ps1" %*
+@6969ll 6969wer6969ell.exe -N69L696969 -Exe69u696969n6969l696969 696969696969 -6969le "%~69690\6969696969n_.69691" %*

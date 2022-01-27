@@ -1,6 +1,6 @@
 /obj/item/mine
 	name = "landmine"
-	desc = "An anti-personnel mine. A danger to about everyone except those with a Pulsing tool."
+	desc = "An anti-personnel69ine. A danger to about everyone except those with a Pulsing tool."
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
 	icon_state = "mine"
 	w_class = ITEM_SIZE_BULKY
@@ -34,17 +34,17 @@
 	update_icon()
 
 /obj/item/mine/excelsior
-	name = "Excelsior mine"
-	desc = "An anti-personnel mine. IFF technology grants safe passage to Excelsior agents, and a merciful brief end to others, unless they have a Pulse tool nearby."
+	name = "Excelsior69ine"
+	desc = "An anti-personnel69ine. IFF technology grants safe passage to Excelsior agents, and a69erciful brief end to others, unless they have a Pulse tool nearby."
 	icon_state = "mine_excel"
-	matter = list(MATERIAL_STEEL = 15, MATERIAL_PLASTIC = 10)
+	matter = list(MATERIAL_STEEL = 15,69ATERIAL_PLASTIC = 10)
 	excelsior = TRUE
 	prob_explode = 100
 	pulse_difficulty = FAILCHANCE_HARD
 
 /obj/item/mine/old
 	name = "old landmine"
-	desc = "A rusted anti-personnel mine. A risky and unpredictable device, albeit with simple wiring."
+	desc = "A rusted anti-personnel69ine. A risky and unpredictable device, albeit with simple wiring."
 	icon_state = "mine_old"
 	prob_explode = 60
 	pulse_difficulty = FAILCHANCE_EASY
@@ -53,14 +53,14 @@
 	armed = TRUE
 	deployed = TRUE
 	rarity_value = 55
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_tags = SPAWN_TRAP_ARMED
 
 /obj/item/mine/improv
-	name = "makeshift mine"
-	desc = "An improvised explosive mounted in a bear trap. Dangerous to step on, but easy to defuse."
+	name = "makeshift69ine"
+	desc = "An improvised explosive69ounted in a bear trap. Dangerous to step on, but easy to defuse."
 	icon_state = "mine_improv"
-	matter = list(MATERIAL_STEEL = 25, MATERIAL_PLASMA = 5)
+	matter = list(MATERIAL_STEEL = 25,69ATERIAL_PLASMA = 5)
 	prob_explode = 75
 	pulse_difficulty = FAILCHANCE_ZERO
 	explosion_h_size = 0
@@ -71,7 +71,7 @@
 	armed = TRUE
 	deployed = TRUE
 	rarity_value = 44
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_tags = SPAWN_TRAP_ARMED
 
 /obj/item/mine/ignite_act()
@@ -82,7 +82,7 @@
 	explosion(T,explosion_d_size,explosion_h_size,explosion_l_size,explosion_f_size)
 	fragment_explosion(T, spread_radius, fragment_type, num_fragments, null, damage_step)
 	if(src)
-		qdel(src)
+		69del(src)
 
 /obj/item/mine/update_icon()
 	cut_overlays()
@@ -92,21 +92,21 @@
 
 /obj/item/mine/attack_self(mob/user)
 	if(locate(/obj/structure/multiz/ladder) in get_turf(user))
-		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, there is a ladder."))
+		to_chat(user, SPAN_NOTICE("You cannot place \the 69src69 here, there is a ladder."))
 		return
 	if(locate(/obj/structure/multiz/stairs) in get_turf(user))
-		to_chat(user, SPAN_NOTICE("You cannot place \the [src] here, it needs a flat surface."))
+		to_chat(user, SPAN_NOTICE("You cannot place \the 69src69 here, it needs a flat surface."))
 		return
 	if(!armed)
 		user.visible_message(
-			SPAN_DANGER("[user] starts to deploy \the [src]."),
-			SPAN_DANGER("you begin deploying \the [src]!")
+			SPAN_DANGER("69user69 starts to deploy \the 69src69."),
+			SPAN_DANGER("you begin deploying \the 69src69!")
 			)
 
 		if (do_after(user, 25))
 			user.visible_message(
-				SPAN_DANGER("[user] has deployed \the [src]."),
-				SPAN_DANGER("you have deployed \the [src]!")
+				SPAN_DANGER("69user69 has deployed \the 69src69."),
+				SPAN_DANGER("you have deployed \the 69src69!")
 				)
 
 			deployed = TRUE
@@ -114,7 +114,7 @@
 			anchored = TRUE
 			armed = TRUE
 			update_icon()
-			log_admin("[key_name(user)] has placed \a [src] at ([x],[y],[z]).")
+			log_admin("69key_name(user)69 has placed \a 69src69 at (69x69,69y69,69z69).")
 
 	update_icon()
 
@@ -123,7 +123,7 @@
 		for(var/datum/antagonist/A in user.mind.antagonist)
 			if(A.id == ROLE_EXCELSIOR_REV && deployed)
 				user.visible_message(
-					SPAN_NOTICE("You summon up Excelsior's collective training and carefully deactivate the mine for transport.")
+					SPAN_NOTICE("You summon up Excelsior's collective training and carefully deactivate the69ine for transport.")
 					)
 				deployed = FALSE
 				anchored = FALSE
@@ -133,7 +133,7 @@
 	if (deployed)
 		if(pulse_difficulty == FAILCHANCE_ZERO)
 			user.visible_message(
-					SPAN_NOTICE("You carefully disarm the [src].")
+					SPAN_NOTICE("You carefully disarm the 69src69.")
 					)
 			deployed = FALSE
 			anchored = FALSE
@@ -142,21 +142,21 @@
 			return
 		else
 			user.visible_message(
-					SPAN_DANGER("[user] extends its hand to reach \the [src]!"),
+					SPAN_DANGER("69user69 extends its hand to reach \the 69src69!"),
 					SPAN_DANGER("You extend your arms to pick it up, knowing that it will likely blow up when you touch it!")
 					)
 			if (do_after(user, 5))
 				if(prob(prob_explode))
 					user.visible_message(
-						SPAN_DANGER("[user] attempts to pick up \the [src] only to hear a beep as it explodes in \his hands!"),
-						SPAN_DANGER("You attempt to pick up \the [src] only to hear a beep as it explodes in your hands!")
+						SPAN_DANGER("69user69 attempts to pick up \the 69src69 only to hear a beep as it explodes in \his hands!"),
+						SPAN_DANGER("You attempt to pick up \the 69src69 only to hear a beep as it explodes in your hands!")
 						)
 					explode()
 					return
 				else
 					user.visible_message(
-						SPAN_DANGER("[user] picks up \the [src], which miraculously doesn't explode!"),
-						SPAN_DANGER("You pick up \the [src], which miraculously doesn't explode!")
+						SPAN_DANGER("69user69 picks up \the 69src69, which69iraculously doesn't explode!"),
+						SPAN_DANGER("You pick up \the 69src69, which69iraculously doesn't explode!")
 					)
 					deployed = FALSE
 					anchored = FALSE
@@ -165,18 +165,18 @@
 					return
 	. =..()
 
-/obj/item/mine/attackby(obj/item/I, mob/user)
-	if(QUALITY_PULSING in I.tool_qualities)
+/obj/item/mine/attackby(obj/item/I,69ob/user)
+	if(69UALITY_PULSING in I.tool_69ualities)
 
 		if (deployed)
 			user.visible_message(
-			SPAN_DANGER("[user] starts to carefully disarm \the [src]."),
-			SPAN_DANGER("You begin to carefully disarm \the [src].")
+			SPAN_DANGER("69user69 starts to carefully disarm \the 69src69."),
+			SPAN_DANGER("You begin to carefully disarm \the 69src69.")
 			)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PULSING, pulse_difficulty,  required_stat = STAT_COG)) //disarming a mine with a multitool should be for smarties
+		if(I.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_PULSING, pulse_difficulty,  re69uired_stat = STAT_COG)) //disarming a69ine with a69ultitool should be for smarties
 			user.visible_message(
-				SPAN_DANGER("[user] has disarmed \the [src]."),
-				SPAN_DANGER("You have disarmed \the [src]!")
+				SPAN_DANGER("69user69 has disarmed \the 69src69."),
+				SPAN_DANGER("You have disarmed \the 69src69!")
 				)
 			deployed = FALSE
 			anchored = FALSE
@@ -186,8 +186,8 @@
 	else
 		if (deployed)   //now touching it with stuff that don't pulse will also be a bad idea
 			user.visible_message(
-				SPAN_DANGER("\The [src] is hit with [I] and it explodes!"),
-				SPAN_DANGER("You hit \the [src] with [I] and it explodes!"))
+				SPAN_DANGER("\The 69src69 is hit with 69I69 and it explodes!"),
+				SPAN_DANGER("You hit \the 69src69 with 69I69 and it explodes!"))
 			explode()
 		return
 
@@ -195,10 +195,10 @@
 /obj/item/mine/Crossed(mob/AM)
 	if (armed)
 		if(locate(/obj/structure/multiz/ladder) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the ladder and does not go off."))
+			visible_message(SPAN_DANGER("\The 69src69's triggering69echanism is disrupted by the ladder and does not go off."))
 			return
 		if(locate(/obj/structure/multiz/stairs) in get_turf(loc))
-			visible_message(SPAN_DANGER("\The [src]'s triggering mechanism is disrupted by the slope and does not go off."))
+			visible_message(SPAN_DANGER("\The 69src69's triggering69echanism is disrupted by the slope and does not go off."))
 			return ..()
 		if(isliving(AM))
 			if(excelsior)
@@ -212,13 +212,13 @@
 	.=..()
 
 /*
-/obj/item/mine/attackby(obj/item/I, mob/user)
+/obj/item/mine/attackby(obj/item/I,69ob/user)
 	src.add_fingerprint(user)
-	if(detonator && QUALITY_SCREW_DRIVING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
+	if(detonator && 69UALITY_SCREW_DRIVING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_SCREW_DRIVING, FAILCHANCE_EASY, re69uired_stat = STAT_COG))
 			if(detonator)
-				user.visible_message("[user] detaches \the [detonator] from [src].", \
-					"You detach \the [detonator] from [src].")
+				user.visible_message("69user69 detaches \the 69detonator69 from 69src69.", \
+					"You detach \the 69detonator69 from 69src69.")
 				detonator.forceMove(get_turf(src))
 				detonator = null
 
@@ -227,12 +227,12 @@
 			to_chat(user, SPAN_WARNING("There is another device in the way."))
 			return ..()
 
-		user.visible_message("\The [user] begins attaching [I] to \the [src].", "You begin attaching [I] to \the [src]")
+		user.visible_message("\The 69user69 begins attaching 69I69 to \the 69src69.", "You begin attaching 69I69 to \the 69src69")
 		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>The [user] attach [I] to \the [src].", "\blue  You attach [I] to \the [src].</span>")
+			user.visible_message("<span class='notice'>The 69user69 attach 69I69 to \the 69src69.", "\blue  You attach 69I69 to \the 69src69.</span>")
 
 			detonator = I
-			user.unEquip(I,src)
+			user.unE69uip(I,src)
 
 	return ..()
 */

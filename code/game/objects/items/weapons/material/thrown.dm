@@ -1,6 +1,6 @@
 /obj/item/material/star
 	name = "shuriken"
-	desc = "A sharp, perfectly weighted piece of metal."
+	desc = "A sharp, perfectly weighted piece of69etal."
 	icon_state = "star"
 	force_divisor = 0.1 // 6 with hardness 60 (steel)
 	thrown_force_divisor = 0.75 // 15 with weight 20 (steel)
@@ -17,7 +17,7 @@
 
 /obj/item/material/star/throw_impact(atom/hit_atom)
 	..()
-	if(material && material.radioactivity>0 && isliving(hit_atom))
+	if(material &&69aterial.radioactivity>0 && isliving(hit_atom))
 		var/mob/living/M = hit_atom
 		M.adjustToxLoss(rand(20,40))
 

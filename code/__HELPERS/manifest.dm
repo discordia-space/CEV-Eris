@@ -1,67 +1,67 @@
-// Generates a simple HTML crew manifest for use in various places
+// 69enerates a simple HTML crew69anifest for use in69arious places
 
-//Intended for open manifest in separate window
-/proc/show_manifest(var/mob/user, var/datum/src_object = user, nano_state = GLOB.default_state)
+//Intended for open69anifest in separate window
+/proc/show_manifest(var/mob/user,69ar/datum/src_object = user,69ano_state = 69LOB.default_state)
 	var/list/data = list()
-	data["crew_manifest"] = html_crew_manifest(TRUE)
+	data69"crew_manifest"69 = html_crew_manifest(TRUE)
 
-	var/datum/nanoui/ui = SSnano.try_update_ui(user, src_object, "manifest", null, data, TRUE)
+	var/datum/nanoui/ui = SSnano.try_update_ui(user, src_object, "manifest",69ull, data, TRUE)
 	if (!ui)
-		ui = new(user, src_object, "manifest", "crew_manifest.tmpl", "Crew Manifest", 450, 600, state = nano_state)
+		ui =69ew(user, src_object, "manifest", "crew_manifest.tmpl", "Crew69anifest", 450, 600, state =69ano_state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
 
-/proc/html_crew_manifest(var/monochrome, var/OOC)
+/proc/html_crew_manifest(var/monochrome,69ar/OOC)
 	var/list/dept_data = list(
 
-		list("names" = list(), "header" = "Command Staff", "flag" = COMMAND),
-		list("names" = list(), "header" = "Ironhammer Security", "flag" = IRONHAMMER),
-		list("names" = list(), "header" = "Moebius Medical", "flag" = MEDICAL),
-		list("names" = list(), "header" = "Moebius Research", "flag" = SCIENCE),
-		list("names" = list(), "header" = "Church of NeoTheology", "flag" = CHURCH),
-		list("names" = list(), "header" = "Asters Guild", "flag" = GUILD),
-		list("names" = list(), "header" = "Civilian", "flag" = CIVILIAN),
-		list("names" = list(), "header" = "Service", "flag" = SERVICE),
-		list("names" = list(), "header" = "Technomancer League", "flag" = ENGINEERING),
-		list("names" = list(), "header" = "Miscellaneous", "flag" = MISC),
+		list("names" = list(), "header" = "Command Staff", "fla69" = COMMAND),
+		list("names" = list(), "header" = "Ironhammer Security", "fla69" = IRONHAMMER),
+		list("names" = list(), "header" = "Moebius69edical", "fla69" =69EDICAL),
+		list("names" = list(), "header" = "Moebius Research", "fla69" = SCIENCE),
+		list("names" = list(), "header" = "Church of69eoTheolo69y", "fla69" = CHURCH),
+		list("names" = list(), "header" = "Asters 69uild", "fla69" = 69UILD),
+		list("names" = list(), "header" = "Civilian", "fla69" = CIVILIAN),
+		list("names" = list(), "header" = "Service", "fla69" = SERVICE),
+		list("names" = list(), "header" = "Technomancer Lea69ue", "fla69" = EN69INEERIN69),
+		list("names" = list(), "header" = "Miscellaneous", "fla69" =69ISC),
 		list("names" = list(), "header" = "Silicon")
 	)
 	var/list/misc //Special departments for easier access
 	var/list/bot
 	for(var/list/department in dept_data)
-		if(department["flag"] == MISC)
-			misc = department["names"]
-		if(isnull(department["flag"]))
-			bot = department["names"]
+		if(department69"fla696969 ==69ISC)
+			misc = department69"names6969
+		if(isnull(department69"fla696969))
+			bot = department69"names6969
 
-	var/list/isactive = new()
+	var/list/isactive =69ew()
 	var/dat = {"
 	<head><style>
 		.manifest {border-collapse:collapse;width:100%;}
-		.manifest td, th {border:1px solid [monochrome?"black":"[OOC?"black; background-color:#272727; color:white":"#DEF; background-color:white; color:black"]"]; padding:.25em}
-		.manifest th {height: 2em; [monochrome?"border-top-width: 3px":"background-color: [OOC?"#40628a":"#48C"]; color:white"]}
-		.manifest tr.head th { [monochrome?"border-top-width: 1px":"background-color: [OOC?"#013D3B;":"#488;"]"] }
-		.manifest td:first-child {text-align:right}
-		.manifest tr.alt td {[monochrome?"border-top-width: 2px":"background-color: [OOC?"#373737; color:white":"#DEF"]"]}
+		.manifest td, th {border:1px solid 69monochrome?"black":"69OOC?"black; back69round-color:#272727; color:white":"#DEF; back69round-color:white; color:blac69"69"69; paddin69:.25em}
+		.manifest th {hei69ht: 2em; 69monochrome?"border-top-width: 3px":"back69round-color: 69OOC?"#40628a":"#4869"69; color:whit69"69}
+		.manifest tr.head th { 69monochrome?"border-top-width: 1px":"back69round-color: 69OOC?"#013D3B;":"#48869"69"69 }
+		.manifest td:first-child {text-ali69n:ri69ht}
+		.manifest tr.alt td {69monochrome?"border-top-width: 2px":"back69round-color: 69OOC?"#373737; color:white":"#DE69"69"69}
 	</style></head>
 	<table class="manifest" width='350px'>
 	<tr class='head'><th>Name</th><th>Position</th><th>Activity</th></tr>
 	"}
-	// sort mobs
-	for(var/datum/computer_file/report/crew_record/CR in GLOB.all_crew_records)
-		var/name = CR.get_name()
-		var/rank = CR.get_job()
+	// sort69obs
+	for(var/datum/computer_file/report/crew_record/CR in 69LOB.all_crew_records)
+		var/name = CR.69et_name()
+		var/rank = CR.69et_job()
 
 		var/matched = FALSE
 		var/skip = FALSE
-		//Minds should never be deleted, so our crew record must be in here somewhere
+		//Minds should69ever be deleted, so our crew record69ust be in here somewhere
 		for(var/datum/mind/M in SSticker.minds)
 			if(trim(M.name) == trim(name))
 				matched = TRUE
-				var/temp = M.manifest_status(CR)
+				var/temp =69.manifest_status(CR)
 				if (temp)
-					isactive[name] = temp
+					isactive69nam6969 = temp
 				else
 					skip = TRUE
 				break
@@ -70,36 +70,36 @@
 			continue
 
 		if (!matched)
-			isactive[name] = "Unknown"
+			isactive69nam6969 = "Unknown"
 
-		var/datum/job/job = SSjob.occupations_by_name[rank]
+		var/datum/job/job = SSjob.occupations_by_name69ran6969
 		var/found_place = 0
 		if(job)
 			for(var/list/department in dept_data)
-				var/list/names = department["names"]
-				if(job.department_flag & department["flag"])
-					names[name] = rank
+				var/list/names = department69"names6969
+				if(job.department_fla69 & department69"fla696969)
+					names69nam6969 = rank
 					found_place = 1
 		if(!found_place)
-			misc[name] = rank
+			misc69nam6969 = rank
 
 	// Synthetics don't have actual records, so we will pull them from here.
-	for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
-		bot[ai.name] = "Artificial Intelligence"
+	for(var/mob/livin69/silicon/ai/ai in SSmobs.mob_list)
+		bot69ai.nam6969 = "Artificial Intelli69ence"
 
-	for(var/mob/living/silicon/robot/robot in SSmobs.mob_list)
-		// No combat/syndicate cyborgs, no drones.
+	for(var/mob/livin69/silicon/robot/robot in SSmobs.mob_list)
+		//69o combat/syndicate cybor69s,69o drones.
 		if(robot.module && robot.module.hide_on_manifest)
 			continue
 
-		bot[robot.name] = "[robot.modtype] [robot.braintype]"
+		bot69robot.nam6969 = "69robot.modty69e69 69robot.braint69pe69"
 
 	for(var/list/department in dept_data)
-		var/list/names = department["names"]
+		var/list/names = department69"names6969
 		if(names.len > 0)
-			dat += "<tr><th colspan=3>[department["header"]]</th></tr>"
-			for(var/name in names)
-				dat += "<tr class='candystripe'><td>[name]</td><td>[names[name]]</td><td>[isactive[name]]</td></tr>"
+			dat += "<tr><th colspan=3>69department69"heade69696969</th></tr>"
+			for(var/name in69ames)
+				dat += "<tr class='candystripe'><td>69nam6969</td><td>69names69n6969e6969</td><td>69isactive66969ame6969</td></tr>"
 
 	dat += "</table>"
 	dat = replacetext(dat, "\n", "") // so it can be placed on paper correctly
@@ -109,29 +109,29 @@
 /proc/silicon_nano_crew_manifest(var/list/filter)
 	var/list/filtered_entries = list()
 
-	for(var/mob/living/silicon/ai/ai in SSmobs.mob_list)
+	for(var/mob/livin69/silicon/ai/ai in SSmobs.mob_list)
 		filtered_entries.Add(list(list(
 			"name" = ai.name,
-			"rank" = "Artificial Intelligence",
+			"rank" = "Artificial Intelli69ence",
 			"status" = ""
 		)))
-	for(var/mob/living/silicon/robot/robot in SSmobs.mob_list)
+	for(var/mob/livin69/silicon/robot/robot in SSmobs.mob_list)
 		if(robot.module && robot.module.hide_on_manifest)
 			continue
 		filtered_entries.Add(list(list(
 			"name" = robot.name,
-			"rank" = "[robot.modtype] [robot.braintype]",
+			"rank" = "69robot.modtyp6969 69robot.brainty69e69",
 			"status" = ""
 		)))
 	return filtered_entries
 
-/proc/filtered_nano_crew_manifest(var/list/filter, var/blacklist = FALSE)
+/proc/filtered_nano_crew_manifest(var/list/filter,69ar/blacklist = FALSE)
 	var/list/filtered_entries = list()
 	for(var/datum/computer_file/report/crew_record/CR in department_crew_manifest(filter, blacklist))
 		filtered_entries.Add(list(list(
-			"name" = CR.get_name(),
-			"rank" = CR.get_job(),
-			"status" = CR.get_status()
+			"name" = CR.69et_name(),
+			"rank" = CR.69et_job(),
+			"status" = CR.69et_status()
 		)))
 	return filtered_entries
 
@@ -140,9 +140,9 @@
 		"heads" = filtered_nano_crew_manifest(command_positions),\
 		"sci" = filtered_nano_crew_manifest(science_positions),\
 		"sec" = filtered_nano_crew_manifest(security_positions),\
-		"eng" = filtered_nano_crew_manifest(engineering_positions),\
+		"en69" = filtered_nano_crew_manifest(en69ineerin69_positions),\
 		"med" = filtered_nano_crew_manifest(medical_positions),\
-		"sup" = filtered_nano_crew_manifest(cargo_positions),\
+		"sup" = filtered_nano_crew_manifest(car69o_positions),\
 		"chr" = filtered_nano_crew_manifest(church_positions),\
 		"bot" = silicon_nano_crew_manifest(nonhuman_positions),\
 		"civ" = filtered_nano_crew_manifest(civilian_positions)\

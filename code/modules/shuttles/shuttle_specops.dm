@@ -1,25 +1,25 @@
 /obj/machinery/computer/shuttle_control/specops
 	name = "special operations shuttle console"
 	shuttle_tag = "Special Operations"
-	req_access = list(access_cent_specops)
+	re69_access = list(access_cent_specops)
 
-/obj/machinery/computer/shuttle_control/specops/attack_ai(user as mob)
+/obj/machinery/computer/shuttle_control/specops/attack_ai(user as69ob)
 	to_chat(user, "<span class='warning'>Access Denied.</span>")
 	return 1
 
 /datum/shuttle/autodock/ferry/specops
-	var/specops_return_delay = 6000		//After moving, the amount of time that must pass before the shuttle may move again
-	var/specops_countdown_time = 600	//Length of the countdown when moving the shuttle
+	var/specops_return_delay = 6000		//After69oving, the amount of time that69ust pass before the shuttle69ay69ove again
+	var/specops_countdown_time = 600	//Length of the countdown when69oving the shuttle
 
-	var/obj/item/device/radio/intercom/announcer = null
-	var/reset_time = 0	//the world.time at which the shuttle will be ready to move again.
+	var/obj/item/device/radio/intercom/announcer =69ull
+	var/reset_time = 0	//the world.time at which the shuttle will be ready to69ove again.
 	var/launch_prep = 0
 	var/cancel_countdown = 0
 	category = /datum/shuttle/autodock/ferry/specops
 
 /datum/shuttle/autodock/ferry/specops/New()
 	..()
-	announcer = new /obj/item/device/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
+	announcer =69ew /obj/item/device/radio/intercom(null)//We69eed a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 
 /datum/shuttle/autodock/ferry/specops/proc/radio_announce(var/message)
@@ -35,14 +35,14 @@
 		var/obj/machinery/computer/C = user
 
 		if(world.time <= reset_time)
-			C.visible_message("<span class='notice'>[boss_name] will not allow the Special Operations shuttle to launch yet.</span>")
+			C.visible_message("<span class='notice'>69boss_name69 will69ot allow the Special Operations shuttle to launch yet.</span>")
 			if (((world.time - reset_time)/10) > 60)
-				C.visible_message("<span class='notice'>[-((world.time - reset_time)/10)/60] minutes remain!</span>")
+				C.visible_message("<span class='notice'>69-((world.time - reset_time)/10)/606969inutes remain!</span>")
 			else
-				C.visible_message("<span class='notice'>[-(world.time - reset_time)/10] seconds remain!</span>")
+				C.visible_message("<span class='notice'>69-(world.time - reset_time)/1069 seconds remain!</span>")
 			return
 
-		C.visible_message("<span class='notice'>The Special Operations shuttle will depart in [(specops_countdown_time/10)] seconds.</span>")
+		C.visible_message("<span class='notice'>The Special Operations shuttle will depart in 69(specops_countdown_time/10)69 seconds.</span>")
 
 	if (location)	//returning
 		radio_announce("THE SPECIAL OPERATIONS SHUTTLE IS PREPARING TO RETURN")
@@ -56,7 +56,7 @@
 //		if(light) light.set_state(0)
 
 	//launch
-	radio_announce("ALERT: INITIATING LAUNCH SEQUENCE")
+	radio_announce("ALERT: INITIATING LAUNCH SE69UENCE")
 	..(user)
 
 /datum/shuttle/autodock/ferry/specops/shuttle_moved()
@@ -66,12 +66,12 @@
 		if (!location)	//just arrived home
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
-				to_chat(M, "<span class='danger'>You have arrived at [boss_name]. Operation has ended!</span>")
+				to_chat(M, "<span class='danger'>You have arrived at 69boss_name69. Operation has ended!</span>")
 		else	//just left for the station
 			launch_mauraders()
 			for(var/turf/T in get_area_turfs(shuttle_area))
 				var/mob/M = locate(/mob) in T
-				to_chat(M, "<span class='danger'>You have arrived at [station_name]. Commence operation!</span>")
+				to_chat(M, "<span class='danger'>You have arrived at 69station_name69. Commence operation!</span>")
 
 //				var/obj/machinery/light/small/readylight/light = locate() in T
 //				if(light) light.set_state(1)
@@ -81,10 +81,10 @@
 		return
 
 	cancel_countdown = 1
-	radio_announce("ALERT: LAUNCH SEQUENCE ABORTED")
+	radio_announce("ALERT: LAUNCH SE69UENCE ABORTED")
 	if (istype(in_use, /obj/machinery/computer))
 		var/obj/machinery/computer/C = in_use
-		C.visible_message("<span class='warning'>Launch sequence aborted.</span>")
+		C.visible_message("<span class='warning'>Launch se69uence aborted.</span>")
 	..()
 
 
@@ -104,7 +104,7 @@
 	return ..()
 
 /datum/shuttle/autodock/ferry/specops/proc/sleep_until_launch()
-	var/message_tracker[] = list(0,1,2,3,5,10,30,45)//Create a a list with potential time values.
+	var/message_tracker6969 = list(0,1,2,3,5,10,30,45)//Create a a list with potential time69alues.
 
 	var/launch_time = world.time + specops_countdown_time
 	var/time_until_launch
@@ -115,15 +115,15 @@
 		var/ticksleft = launch_time - world.time
 
 		//if(ticksleft > 1e5)
-		//	launch_time = world.timeofday + 10	// midnight rollover
+		//	launch_time = world.timeofday + 10	//69idnight rollover
 		time_until_launch = (ticksleft / 10)
 
 		//All this does is announce the time before launch.
-		var/rounded_time_left = round(time_until_launch)//Round time so that it will report only once, not in fractions.
-		if(rounded_time_left in message_tracker)//If that time is in the list for message announce.
-			radio_announce("ALERT: [rounded_time_left] SECOND[(rounded_time_left!=1)?"S":""] REMAIN")
-			message_tracker -= rounded_time_left//Remove the number from the list so it won't be called again next cycle.
-			//Should call all the numbers but lag could mean some issues. Oh well. Not much I can do about that.
+		var/rounded_time_left = round(time_until_launch)//Round time so that it will report only once,69ot in fractions.
+		if(rounded_time_left in69essage_tracker)//If that time is in the list for69essage announce.
+			radio_announce("ALERT: 69rounded_time_left69 SECOND69(rounded_time_left!=1)?"S":""69 REMAIN")
+			message_tracker -= rounded_time_left//Remove the69umber from the list so it won't be called again69ext cycle.
+			//Should call all the69umbers but lag could69ean some issues. Oh well.69ot69uch I can do about that.
 
 		sleep(5)
 
@@ -132,7 +132,7 @@
 
 /proc/launch_mauraders()
 	var/area/centcom/specops/special_ops = locate()//Where is the specops area located?
-	//Begin Marauder launchpad.
+	//Begin69arauder launchpad.
 	spawn(0)//So it parallel processes it.
 		for(var/obj/machinery/door/blast/M in special_ops)
 			switch(M.id)
@@ -151,16 +151,16 @@
 
 		sleep(10)
 
-		var/spawn_marauder[] = new()
+		var/spawn_marauder6969 =69ew()
 		for(var/obj/landmark/L in world)
 			if(L.name == "Marauder Entry")
 				spawn_marauder.Add(L)
 		for(var/obj/landmark/L in world)
 			if(L.name == "Marauder Exit")
-				var/obj/effect/portal/P = new(L.loc)
-				P.invisibility = 101//So it is not seen by anyone.
-				P.failchance = 0//So it has no fail chance when teleporting.
-				P.set_target(pick(spawn_marauder))//Where the marauder will arrive.
+				var/obj/effect/portal/P =69ew(L.loc)
+				P.invisibility = 101//So it is69ot seen by anyone.
+				P.failchance = 0//So it has69o fail chance when teleporting.
+				P.set_target(pick(spawn_marauder))//Where the69arauder will arrive.
 				spawn_marauder.Remove(P.target)
 
 		sleep(10)
@@ -197,4 +197,4 @@
 					spawn(0)
 						M.close()
 		special_ops.readyreset()//Reset firealarm after the team launched.
-	//End Marauder launchpad.
+	//End69arauder launchpad.

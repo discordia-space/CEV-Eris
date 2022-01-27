@@ -10,19 +10,19 @@
 /obj/item/implant/chem/get_data()
 	var/data = {"
 		<b>Implant Specifications:</b><BR>
-		<b>Name:</b> Robust Corp MJ-420 Prisoner Management Implant<BR>
+		<b>Name:</b> Robust Corp69J-420 Prisoner69anagement Implant<BR>
 		<b>Life:</b> Deactivates upon death but remains within the body.<BR>
 		<b>Important Notes: Due to the system functioning off of nutrients in the implanted subject's body, the subject<BR>
 		will suffer from an increased appetite.</B><BR>
 		<HR>
 		<b>Implant Details:</b><BR>
-		<b>Function:</b> Contains a small capsule that can contain various chemicals. Upon receiving a specially encoded signal<BR>
+		<b>Function:</b> Contains a small capsule that can contain69arious chemicals. Upon receiving a specially encoded signal<BR>
 		the implant releases the chemicals directly into the blood stream.<BR>
 		<b>Special Features:</b>
-		<i>Micro-Capsule</i>- Can be loaded with any sort of chemical agent via the common syringe and can hold 50 units.<BR>
+		<i>Micro-Capsule</i>- Can be loaded with any sort of chemical agent69ia the common syringe and can hold 50 units.<BR>
 		Can only be loaded while still in its original case.<BR>
-		<b>Integrity:</b> Implant will last so long as the subject is alive. However, if the subject suffers from malnutrition,<BR>
-		the implant may become unstable and either pre-maturely inject the subject or simply break."}
+		<b>Integrity:</b> Implant will last so long as the subject is alive. However, if the subject suffers from69alnutrition,<BR>
+		the implant69ay become unstable and either pre-maturely inject the subject or simply break."}
 	return data
 
 
@@ -30,7 +30,7 @@
 	..()
 	create_reagents(50)
 
-/obj/item/implant/chem/trigger(emote, mob/living/source)
+/obj/item/implant/chem/trigger(emote,69ob/living/source)
 	if(emote == "deathgasp")
 		activate()
 
@@ -40,14 +40,14 @@
 	reagents.trans_to_mob(wearer, reagents.total_volume, CHEM_BLOOD)
 	to_chat(wearer, "You hear a faint *beep*.")
 	if(!src.reagents.total_volume)
-		to_chat(wearer, "You hear a faint click from your [part].")
+		to_chat(wearer, "You hear a faint click from your 69part69.")
 		spawn(0)
-			qdel(src)
+			69del(src)
 
 /obj/item/implant/chem/emp_act(severity)
 	if (malfunction)
 		return
-	malfunction = MALFUNCTION_TEMPORARY
+	malfunction =69ALFUNCTION_TEMPORARY
 
 	switch(severity)
 		if(1)
@@ -58,7 +58,7 @@
 				activate(5)
 
 	spawn(20)
-		malfunction = MALFUNCTION_NONE
+		malfunction =69ALFUNCTION_NONE
 
 
 /obj/item/implantcase/chem

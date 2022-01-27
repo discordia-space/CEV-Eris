@@ -1,35 +1,35 @@
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Docking Port Status:
+<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Doc69in69 69ort St69tus:
 		</div>
-		<div class="itemContent">
-			{{if data.docking_status == "docked"}}
-				<span class="good">DOCKED</span>
-			{{else data.docking_status == "docking"}}
-				<span class="average">DOCKING</span>
-			{{else data.docking_status == "undocking"}}
-				<span class="average">UNDOCKING</span>
-			{{else data.docking_status == "undocked"}}
-				<span class="idle">NOT IN USE</span>
+		<div cl69ss="itemContent">
+			{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+				<s6969n cl69ss="69ood">DOC69ED</s6969n>
+			{{else d69t69.doc69in69_st69tus == "doc69in69"}}
+				<s6969n cl69ss="69ver6969e">DOC69IN69</s6969n>
+			{{else d69t69.doc69in69_st69tus == "undoc69in69"}}
+				<s6969n cl69ss="69ver6969e">UNDOC69IN69</s6969n>
+			{{else d69t69.doc69in69_st69tus == "undoc69ed"}}
+				<s6969n cl69ss="idle">NOT IN USE</s6969n>
 			{{else}}
-				<span class="bad">ERROR</span>
+				<s6969n cl69ss="6969d">ERROR</s6969n>
 			{{/if}}
 		</div>
 	</div>
 </div>
 
-{{for data.airlocks}}
-	<div class="item" style="padding-top: 10px">
-		<div class="item">
-			<div class="itemLabel">
-				{{:value.name}}
+{{for d69t69.69irloc69s}}
+	<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				{{:v69lue.n69me}}
 			</div>
-			<div class="itemContent">
-				{{if value.override_enabled}}
-					<span class="bad">OVERRIDE ENABLED</span>
+			<div cl69ss="itemContent">
+				{{if6969lue.override_en6969led}}
+					<s6969n cl69ss="6969d">OVERRIDE EN6969LED</s6969n>
 				{{else}}
-					<span class="good">STATUS OK</span>
+					<s6969n cl69ss="69ood">ST69TUS O69</s6969n>
 				{{/if}}
 			</div>
 		</div>

@@ -21,23 +21,23 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 			continue
 
 		//ckey is before the first "-"
-		var/ckey = ckey(List[1])
+		var/ckey = ckey(List69169)
 		if(!ckey)
 			continue
 
 		//rank follows the first "-"
 		var/rank = ""
 		if(List.len >= 2)
-			rank = ckeyEx(List[2])
+			rank = ckeyEx(List69269)
 
 		//load permissions associated with this rank
-		var/rights = admin_ranks[rank]
+		var/rights = admin_ranks69rank69
 
 		//create the admin datum and store it for later use
 		var/datum/admins/D = new /datum/admins(rank, rights, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[ckey])
+		D.associate(directory69ckey69)
 
 
 // This proc is using only without database connection
@@ -60,14 +60,14 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 		if(!List.len)
 			continue
 
-		var/rank = ckeyEx(List[1])
+		var/rank = ckeyEx(List69169)
 		switch(rank)
 			if(null, "")
 				continue
 
 		var/rights = 0
 		for(var/i = 2, i <= List.len, i++)
-			switch(ckey(List[i]))
+			switch(ckey(List69i69))
 
 				if("@", "prev")
 					rights |= previous_rights
@@ -88,7 +88,7 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 				if("mentor")
 					rights |= R_MENTOR
 
-		admin_ranks[rank] = rights
+		admin_ranks69rank69 = rights
 		previous_rights = rights
 
 
@@ -130,18 +130,18 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 	var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, flags FROM players WHERE rank != 'player'")
 	query.Execute()
 	while(query.NextRow())
-		var/ckey = query.item[1]
-		var/rank = query.item[2]
-		var/flags = query.item[3]
+		var/ckey = query.item69169
+		var/rank = query.item69269
+		var/flags = query.item69369
 
 		if(istext(flags))
 			flags = text2num(flags)
 
-		// var/permissions = load_permissions(id) // Should be used only after permission db schema rework
+		//69ar/permissions = load_permissions(id) // Should be used only after permission db schema rework
 		var/datum/admins/D = new /datum/admins(rank, flags, ckey)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[ckey])
+		D.associate(directory69ckey69)
 
 	//Clear profile access
 	for(var/A in world.GetConfig("admin"))
@@ -156,25 +156,25 @@ var/list/admin_ranks = list() //list of all ranks with associated rights
 	if(!dbcon.IsConnected())
 		return flag
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT fun, server, debug, permissions, mentor, moderator, admin, host FROM permissions WHERE player_id = [player_id]")
+	var/DBQuery/query = dbcon.NewQuery("SELECT fun, server, debug, permissions,69entor,69oderator, admin, host FROM permissions WHERE player_id = 69player_id69")
 	if(!query.Execute())
 		return flag
 
 	var/list/permissions = list()
 	if(query.NextRow())
 		permissions = list(
-			"fun" = query.item[1],
-			"server" = query.item[2],
-			"debug" = query.item[3],
-			"permissions" = query.item[4],
-			"mentor" = query.item[5],
-			"moderator" = query.item[6],
-			"admin" = query.item[7],
-			"host" = query.item[8],
+			"fun" = query.item69169,
+			"server" = query.item69269,
+			"debug" = query.item69369,
+			"permissions" = query.item69469,
+			"mentor" = query.item69569,
+			"moderator" = query.item69669,
+			"admin" = query.item69769,
+			"host" = query.item69869,
 		)
 
 	for(var/key in permissions)
-		if(permissions[key])
-			flag |= admin_permissions[key]
+		if(permissions69key69)
+			flag |= admin_permissions69key69
 
 	return flag

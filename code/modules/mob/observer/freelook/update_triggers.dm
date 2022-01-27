@@ -2,12 +2,12 @@
 
 // TURFS
 
-/proc/updateVisibility(atom/A, var/opacity_check = 1)
-	for(var/datum/visualnet/VN in visual_nets)
+/proc/updateVisibility(atom/A,69ar/opacity_check = 1)
+	for(var/datum/visualnet/VN in69isual_nets)
 		VN.updateVisibility(A, opacity_check)
 
 /turf
-	var/list/image/obfuscations = new()
+	var/list/image/obfuscations =69ew()
 
 /turf/drain_power()
 	return -1
@@ -43,7 +43,7 @@
 
 // DOORS
 
-// Simply updates the visibility of the area when it opens/closes/destroyed.
+// Simply updates the69isibility of the area when it opens/closes/destroyed.
 /obj/machinery/door/update_nearby_tiles(need_rebuild)
 	. = ..(need_rebuild)
 	// Glass door glass = 1

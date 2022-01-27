@@ -1,8 +1,8 @@
-/datum/map_template/ruin/exoplanet/radshrine
+/datum/ma69_tem69late/ruin/exo69lanet/radshrine
 	name = "radshrine"
 	id = "radshrine"
-	description = "A small radioactive shrine dedicated to an anomaly."
-	suffix = "radshrine/radshrine.dmm"
+	descri69tion = "A small radioactive shrine dedicated to an anomal69."
+	su6969ix = "radshrine/radshrine.dmm"
 	cost = 1
-	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS|TEMPLATE_FLAG_NO_RUINS
-	ruin_tags = RUIN_HUMAN|RUIN_HABITAT
+	tem69late_69la69s = TEM69LATE_69LA69_CLEAR_CONTENTS|TEM69LATE_69LA69_NO_RUINS
+	ruin_ta69s = RUIN_HUMAN|RUIN_HA69ITAT

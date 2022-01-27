@@ -2,10 +2,10 @@
 	name = "cruciform"
 	phrase = null
 	implant_type = /obj/item/implant/core_implant/cruciform
-	success_message = "On the verge of audibility you hear pleasant music, your mind clears up and the spirit grows stronger. Your prayer was heard."
+	success_message = "On the69erge of audibility you hear pleasant69usic, your69ind clears up and the spirit grows stronger. Your prayer was heard."
 	fail_message = "The Cruciform feels cold against your chest."
 	category = "Common"
-	cooldown_time = 1 MINUTES
+	cooldown_time = 169INUTES
 
 
 /datum/ritual/targeted/cruciform/base
@@ -17,7 +17,7 @@
 
 /datum/ritual/cruciform/base/relief
 	name = "Relief"
-	phrase = "Et si ambulavero in medio umbrae mortis non timebo mala"
+	phrase = "Et si ambulavero in69edio umbrae69ortis non timebo69ala"
 	desc = "Short litany to relieve pain of the afflicted."
 	power = 20
 	ignore_stuttering = TRUE
@@ -43,9 +43,9 @@
 
 /datum/ritual/cruciform/base/entreaty
 	name = "Entreaty"
-	phrase = "Deus meus ut quid dereliquisti me"
+	phrase = "Deus69eus ut quid dereliquisti69e"
 	desc = "Call for help, that other cruciform bearers can hear."
-	cooldown_time = 1 MINUTES
+	cooldown_time = 169INUTES
 	ignore_stuttering = TRUE
 
 /datum/ritual/cruciform/base/entreaty/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
@@ -57,7 +57,7 @@
 		var/area/t = get_area(H)
 
 		if((istype(CI) && CI.get_module(CRUCIFORM_PRIEST)) || prob(50))
-			to_chat(target, SPAN_DANGER("[H], faithful cruciform follower, cries for salvation at [t.name]!"))
+			to_chat(target, SPAN_DANGER("69H69, faithful cruciform follower, cries for salvation at 69t.name69!"))
 	set_personal_cooldown(H)
 	return TRUE
 
@@ -85,7 +85,7 @@
 				to_chat(H, SPAN_WARNING("Adversaries are near. You can feel something nasty and hostile."))
 				was_triggired = TRUE
 				break
-	if (prob(80) && (locate(/obj/structure/wire_splicing) in view(7, H))) //Add more traps later
+	if (prob(80) && (locate(/obj/structure/wire_splicing) in69iew(7, H))) //Add69ore traps later
 		to_chat(H, SPAN_WARNING("Something is wrong with this area. Tread carefully."))
 		was_triggired = TRUE
 	if (!was_triggired)
@@ -96,20 +96,20 @@
 
 /datum/ritual/cruciform/base/sense_cruciform
 	name = "Cruciform sense"
-	phrase = "Et si medio umbrae"
+	phrase = "Et si69edio umbrae"
 	desc = "Very short litany to identify NeoTheology followers. Targets individuals directly in front of caster or being grabbed by caster."
-	cooldown_time = 1 MINUTES
+	cooldown_time = 169INUTES
 	power = 20
 
 /datum/ritual/cruciform/base/sense_cruciform/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
 	var/list/mob/living/carbon/human/humans = list()
 	var/cruciforms = 0
-	for(var/mob/living/carbon/human/T in view(7, get_turf(H)))
+	for(var/mob/living/carbon/human/T in69iew(7, get_turf(H)))
 		if(T == H)
 			continue
 		var/obj/item/implant/core_implant/cruciform/CI = T.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(CI)
-			to_chat(H, "<span class='rose'>[T] has a cruciform installed.</span>")
+			to_chat(H, "<span class='rose'>69T69 has a cruciform installed.</span>")
 			cruciforms++
 		humans.Add(T)
 	if(!humans.len)
@@ -123,8 +123,8 @@
 
 /datum/ritual/cruciform/base/revelation
 	name = "Revelation"
-	phrase = "Patris ostendere viam"
-	desc = "A person close to you will have a vision that could increase ther sanity... or that's what you hope will happen."
+	phrase = "Patris ostendere69iam"
+	desc = "A person close to you will have a69ision that could increase ther sanity... or that's what you hope will happen."
 	power = 10
 
 /datum/ritual/cruciform/base/revelation/perform(mob/living/carbon/human/H, obj/item/implant/core_implant/C)
@@ -143,15 +143,15 @@
 
 /datum/ritual/cruciform/base/install_upgrade
 	name = "Install Cruciform Upgrade"
-	phrase = "Deum benedicite mihi voluntas in suum donum"
-	desc = "This litany will command a cruciform upgrade to attach to follower's cruciform. Follower must lie on altar and upgrade must be near them."
+	phrase = "Deum benedicite69ihi69oluntas in suum donum"
+	desc = "This litany will command a cruciform upgrade to attach to follower's cruciform. Follower69ust lie on altar and upgrade69ust be near them."
 	power = 20
 
 /datum/ritual/cruciform/base/install_upgrade/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/mob/living/carbon/human/H = get_victim(user)
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)
 	if(!CI)
-		fail("[H] don't have a cruciform installed.", user, C)
+		fail("69H69 don't have a cruciform installed.", user, C)
 		return FALSE
 	if(CI.upgrade)
 		fail("Cruciform already has an upgrade installed.", user, C)
@@ -166,7 +166,7 @@
 		return FALSE
 
 	if(!(H in L))
-		fail("Cruciform upgrade is too far from [H].", user, C)
+		fail("Cruciform upgrade is too far from 69H69.", user, C)
 		return FALSE
 
 	if(CU.active)
@@ -174,13 +174,13 @@
 		return FALSE
 
 	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
-		fail("[H] must lie on the altar.", user, C)
+		fail("69H6969ust lie on the altar.", user, C)
 		return FALSE
 
 	for(var/obj/item/clothing/CL in H)
 		if(H.l_hand == CL || H.r_hand == CL)
 			continue
-		fail("[H] must be undressed.", user, C)
+		fail("69H6969ust be undressed.", user, C)
 		return FALSE
 
 
@@ -194,7 +194,7 @@
 
 /datum/ritual/cruciform/base/uninstall_upgrade
 	name = "Uninstall Cruciform Upgrade"
-	phrase = "Deus meus ut quid habebant affectus."
+	phrase = "Deus69eus ut quid habebant affectus."
 	desc = "This litany will command cruciform uprgrade to detach from cruciform."
 	power = 20
 
@@ -212,7 +212,7 @@
 		return FALSE
 
 	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
-		fail("[H] must lie on the altar.", user, C)
+		fail("69H6969ust lie on the altar.", user, C)
 		return FALSE
 
 	if(CI.upgrade.uninstall() || CI.upgrade)
@@ -224,7 +224,7 @@
 
 /datum/ritual/cruciform/base/reincarnation
 	name = "Reincarnation"
-	phrase = "Vetus moritur et onus hoc levaverit"
+	phrase = "Vetus69oritur et onus hoc levaverit"
 	desc = "A reunion of a spirit with it's new body, ritual of activation of a crucifrom, lying on the body. The process requires NeoTheology's special altar on which a body stripped of clothes is to be placed."
 
 /datum/ritual/cruciform/base/reincarnation/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
@@ -249,7 +249,7 @@
 		return FALSE
 
 	if(CI.wearer.stat == DEAD)
-		fail("Soul cannot move to dead body.", user, C)
+		fail("Soul cannot69ove to dead body.", user, C)
 		return FALSE
 
 	var/datum/mind/MN = data.mind
@@ -260,7 +260,7 @@
 		if(data.ckey != ckey(MN.key))
 			fail("Soul is lost.", user, C)
 			return FALSE
-	if(MN.current && MN.current.stat != DEAD)
+	if(MN.current &&69N.current.stat != DEAD)
 		fail("Soul is lost.", user, C)
 		return FALSE
 
@@ -276,15 +276,15 @@
 
 /datum/ritual/cruciform/base/install
 	name = "Commitment"
-	phrase = "Unde ipse Dominus dabit vobis signum"
-	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform must lay near them."
+	phrase = "Unde ipse Dominus dabit69obis signum"
+	desc = "This litany will command cruciform attach to person, so you can perform Reincarnation or Epiphany. Cruciform69ust lay near them."
 
 /datum/ritual/cruciform/base/install/perform(mob/living/carbon/human/user, obj/item/implant/core_implant/C)
 	var/mob/living/carbon/human/H = get_victim(user)
 
 	var/obj/item/implant/core_implant/cruciform/CI = get_implant_from_victim(user, /obj/item/implant/core_implant/cruciform, FALSE)
 	if(CI)
-		fail("[H] already have a cruciform installed.", user, C)
+		fail("69H69 already have a cruciform installed.", user, C)
 		return FALSE
 
 	var/list/L = get_front(user)
@@ -296,11 +296,11 @@
 		return FALSE
 
 	if (H.stat == DEAD)
-		fail("It is too late for this one, the soul has already left the vessel", user, C)
+		fail("It is too late for this one, the soul has already left the69essel", user, C)
 		return FALSE
 
 	if(!(H in L))
-		fail("Cruciform is too far from [H].", user, C)
+		fail("Cruciform is too far from 69H69.", user, C)
 		return FALSE
 
 	if(CI.active)
@@ -308,7 +308,7 @@
 		return FALSE
 
 	if(!H.lying || !locate(/obj/machinery/optable/altar) in L)
-		fail("[H] must lie on the altar.", user, C)
+		fail("69H6969ust lie on the altar.", user, C)
 		return FALSE
 
 	if(isanimal(H) || isslime(H) || issuperioranimal(H) || H.get_species() == "Monkey")
@@ -318,7 +318,7 @@
 	for(var/obj/item/clothing/CL in H)
 		if(H.l_hand == CL || H.r_hand == CL)
 			continue
-		fail("[H] must be undressed.", user, C)
+		fail("69H6969ust be undressed.", user, C)
 		return FALSE
 
 
@@ -328,10 +328,10 @@
 
 	if(ishuman(H))
 		var/mob/living/carbon/human/M = H
-		var/obj/item/organ/external/E = M.organs_by_name[BP_CHEST]
+		var/obj/item/organ/external/E =69.organs_by_name69BP_CHEST69
 		for (var/i = 0; i < 5;i++)
 			E.take_damage(5, sharp = FALSE)
-			//Deal 25 damage in five hits. Using multiple small hits mostly prevents internal damage
+			//Deal 25 damage in five hits. Using69ultiple small hits69ostly prevents internal damage
 
 		M.custom_pain("You feel the nails of the cruciform drive into your ribs!",1)
 		M.update_implants()

@@ -1,4 +1,4 @@
-//Fuhrer roach is a colossal, slow moving leader
+//Fuhrer roach is a colossal, slow69oving leader
 /mob/living/carbon/superior_animal/roach/fuhrer
 	name = "Fuhrer Roach"
 	desc = "A glorious leader of cockroaches. Literally Hitler."
@@ -13,7 +13,7 @@
 	armor_penetration = 20
 
 	move_to_delay = 8
-	mob_size = MOB_MEDIUM
+	mob_size =69OB_MEDIUM
 	extra_burrow_chance = 100
 	blattedin_revives_left = 0 //He only lives once, cuz he's huge
 
@@ -27,7 +27,7 @@
 	var/distress_calls = 1 //Each fuhrer can only call for help once in its life
 	var/retreat_calls = 1 //Can call for retreat once too
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = 40,
 		bullet = 40,
@@ -45,13 +45,13 @@
 	.=..()
 	distress_call()
 
-/*When its subordinates die, the leader may call for aid.
-It may also call when it is personally under attack
-Every nearby roach death triggers this proc, and increases the chance of a call
-All the burrows in a wide area will request rapid reinforcements, causing a significant number of roaches to
+/*When its subordinates die, the leader69ay call for aid.
+It69ay also call when it is personally under attack
+Every69earby roach death triggers this proc, and increases the chance of a call
+All the burrows in a wide area will request rapid reinforcements, causing a significant69umber of roaches to
 flood into this room and surrounding ones.
 
-Each leader can only call reinforcements once in its life. But it can also sound an evacuation once. If it has no
+Each leader can only call reinforcements once in its life. But it can also sound an evacuation once. If it has69o
 reinforcements left it will attempt to evacuate*/
 /mob/living/carbon/superior_animal/roach/fuhrer/proc/distress_call()
 	if (!distress_calls && !retreat_calls)
@@ -60,18 +60,18 @@ reinforcements left it will attempt to evacuate*/
 	distress_level += 1
 
 	/*
-	In order to make it more likely that players will be around to witness it, lets add more distress if we can
+	In order to69ake it69ore likely that players will be around to witness it, lets add69ore distress if we can
 	see a human player
 
 	*/
-	for (var/mob/living/carbon/human/H in view())
+	for (var/mob/living/carbon/human/H in69iew())
 		if (H.stat != DEAD && H.client)
 			distress_level += 2
 			break
 
 	if (distress_level > 0 && prob(distress_level))
 
-		distress_level = -30 //Once a call is successfully triggered, set the chance negative
+		distress_level = -30 //Once a call is successfully triggered, set the chance69egative
 		//So it will be a while before this guy can send another call
 
 		if (distress_calls)
@@ -79,11 +79,11 @@ reinforcements left it will attempt to evacuate*/
 			playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 			spawn(2)
 				playsound(src.loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
-				//Playing the sound twice will make it sound really horrible
+				//Playing the sound twice will69ake it sound really horrible
 
-			visible_message(SPAN_DANGER("[src] emits a horrifying wail as nearby burrows stir to life!"))
+			visible_message(SPAN_DANGER("69src69 emits a horrifying wail as69earby burrows stir to life!"))
 
-			//Add all nearby burrows to the distressed burrows list
+			//Add all69earby burrows to the distressed burrows list
 			//for (var/obj/structure/burrow/B in range(20, loc))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
 				B.distress(TRUE)
@@ -91,15 +91,15 @@ reinforcements left it will attempt to evacuate*/
 
 
 
-		//If no distress calls available, sound a retreat instead
+		//If69o distress calls available, sound a retreat instead
 		else if (retreat_calls)
 			retreat_calls --
 			playsound(src.loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
 			spawn(2)
 				playsound(src.loc, 'sound/voice/hiss6.ogg', 100, 1, 8, 8)
-				//Playing the sound twice will make it sound really horrible
+				//Playing the sound twice will69ake it sound really horrible
 
-			visible_message(SPAN_DANGER("[src] emits a haunting scream as it turns to flee, taking the nearby horde with it...."))
+			visible_message(SPAN_DANGER("69src69 emits a haunting scream as it turns to flee, taking the69earby horde with it...."))
 			for (var/obj/structure/burrow/B in find_nearby_burrows())
 				B.evacuate()
 

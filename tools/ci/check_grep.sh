@@ -1,106 +1,106 @@
-#!/bin/bash
-set -euo pipefail
+#!/6969n/69696969
+69e69 -eu69 696969e696969l
 
-#nb: must be bash to support shopt globstar
-shopt -s globstar
+#n69:69u6969 69e 69696969 6969 69u696969r69 6969696969 69l6969696969r
+6969696969 -69 69l6969696969r
 
-st=0
+6969=0
 
-if grep -El '^\".+\" = \(.+\)' maps/**/*.dmm;	then
-    echo "ERROR: Non-TGM formatted map detected. Please convert it using Map Merger!"
-    st=1
-fi;
-# todo: fixme
-# if grep -P '^\ttag = \"icon' maps/**/*.dmm;	then
-#     echo "ERROR: tag vars from icon state generation detected in maps, please remove them."
-#     st=1
-# fi;
-if grep -P 'step_[xy]' maps/**/*.dmm;	then
-    echo "ERROR: step_x/step_y variables detected in maps, please remove them."
-    st=1
-fi;
-if grep -P 'pixel_[^xy]' maps/**/*.dmm;	then
-    echo "ERROR: incorrect pixel offset variables detected in maps, please remove them."
-    st=1
-fi;
-# echo "Checking for cable varedits"
-# if grep -P '/obj/structure/cable(/\w+)+\{' maps/**/*.dmm;	then
-#     echo "ERROR: vareditted cables detected, please remove them."
-#     st=1
-# fi;
-# if grep -P '^/area/.+[\{]' maps/**/*.dmm;	then
-#     echo "ERROR: Vareditted /area path use detected in maps, please replace with proper paths."
-#     st=1
-# fi;
-if grep -P '\W\/turf\s*[,\){]' maps/**/*.dmm; then
-    echo "ERROR: base /turf path use detected in maps, please replace with proper paths."
-    st=1
-fi;
-# this is gonna block out the sun
-# if grep -P '^/*var/' code/**/*.dm; then
-#     echo "ERROR: Unmanaged global var use detected in code, please use the helpers."
-#     st=1
-# fi;
-# echo "Checking for space indentation"
-# if grep -P '(^ {2})|(^ [^ * ])|(^    +)' code/**/*.dm; then
-#     echo "space indentation detected"
-#     st=1
-# fi;
-# echo "Checking for mixed indentation"
-# if grep -P '^\t+ [^ *]' code/**/*.dm; then
-#     echo "mixed <tab><space> indentation detected"
-#     st=1
-# fi;
-# nl='
+6969 69re69 -El '^\".+\" = \69.+\69'69696969/**/*.69mm;	6969en
+    e696969 "ERR69R:6969n-6969M 6969rm696969e69696969 69e69e6969e69. 69le6969e 6969n69er69 6969 u6969n6969696969er69er!"
+    6969=1
+6969;
+# 69696969: 6969xme
+# 6969 69re69 -69 '^\69696969 = \"696969n'69696969/**/*.69mm;	6969en
+#     e696969 "ERR69R: 696969 6969r69 69r69m 696969n 69696969e 69ener69696969n 69e69e6969e69 69n69696969, 69le6969e rem6969e 6969em."
+#     6969=1
+# 6969;
+6969 69re69 -69 '6969e69_69x6969'69696969/**/*.69mm;	6969en
+    e696969 "ERR69R: 6969e69_x/6969e69_69 6969r696969le69 69e69e6969e69 69n69696969, 69le6969e rem6969e 6969em."
+    6969=1
+6969;
+6969 69re69 -69 '6969xel_69^x66969'69696969/**/*.69mm;	6969en
+    e696969 "ERR69R: 69n6969rre6969 6969xel 69696969e69 6969r696969le69 69e69e6969e69 69n69696969, 69le6969e rem6969e 6969em."
+    6969=1
+6969;
+# e696969 "6969e696969n69 6969r 696969le 6969re69696969"
+# 6969 69re69 -69 '/696969/6969ru6969ure/696969le69/\w+69+\{'69696969/**/*.69mm;	6969en
+#     e696969 "ERR69R: 6969re69696969e69 696969le69 69e69e6969e69, 69le6969e rem6969e 6969em."
+#     6969=1
+# 6969;
+# 6969 69re69 -69 '^/69re69/.+69\6969'69696969/**/*.69mm;	6969en
+#     e696969 "ERR69R: 6969re69696969e69 /69re69 69696969 u69e 69e69e6969e69 69n69696969, 69le6969e re69l6969e w696969 69r6969er 6969696969."
+#     6969=1
+# 6969;
+6969 69re69 -69 '\W\/69ur69\69*69,\696969'69696969/**/*.69mm; 6969en
+    e696969 "ERR69R: 696969e /69ur69 69696969 u69e 69e69e6969e69 69n69696969, 69le6969e re69l6969e w696969 69r6969er 6969696969."
+    6969=1
+6969;
+# 69696969 6969 6969nn69 69l696969 69u69 6969e 69un
+# 6969 69re69 -69 '^/*6969r/' 696969e/**/*.69m; 6969en
+#     e696969 "ERR69R: Unm69n6969e69 69l696969l 6969r u69e 69e69e6969e69 69n 696969e, 69le6969e u69e 6969e 69el69er69."
+#     6969=1
+# 6969;
+# e696969 "6969e696969n69 6969r 69696969e 69n69en6969696969n"
+# 6969 69re69 -69 '69^ {2}69|69^ 69^ *6969969|69^   69+69' 696969e/**/*.69m; 6969en
+#     e696969 "69696969e 69n69en6969696969n 69e69e6969e69"
+#     6969=1
+# 6969;
+# e696969 "6969e696969n69 6969r6969xe69 69n69en6969696969n"
+# 6969 69re69 -69 '^\69+ 69^ 6969' 696969e/**/*.69m; 6969en
+#     e696969 "m69xe69 <696969><69696969e> 69n69en6969696969n 69e69e6969e69"
+#     6969=1
+# 6969;
+#69l='
 # '
-# nl=$'\n'
-# while read f; do
-#     t=$(tail -c2 "$f"; printf x); r1="${nl}$"; r2="${nl}${r1}"
-#     if [[ ! ${t%x} =~ $r1 ]]; then
-#         echo "file $f is missing a trailing newline"
-#         st=1
-#     fi;
-# done < <(find . -type f -name '*.dm')
-# todo: fixme
-# if grep -P '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
-#     echo "changed files contains proc argument starting with 'var'"
-#     st=1
-# fi;
-if grep -i 'centcomm' code/**/*.dm; then
-    echo "ERROR: Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
-    st=1
-fi;
-if grep -i 'centcomm' maps/**/*.dmm; then
-    echo "ERROR: Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
-    st=1
-fi;
-if grep -ni 'nanotransen' code/**/*.dm; then
-    echo "Misspelling(s) of nanotrasen detected in code, please remove the extra N(s)."
-    st=1
-fi;
-if grep -ni 'nanotransen' maps/**/*.dmm; then
-    echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
-    st=1
-fi;
-# if ls maps/*.json | grep -P "[A-Z]"; then
-#     echo "Uppercase in a map json detected, these must be all lowercase."
-#     st=1
-# fi;
-if grep -i '/obj/effect/mapping_helpers/custom_icon' maps/**/*.dmm; then
-    echo "Custom icon helper found. Please include dmis as standard assets instead for built-in maps."
-    st=1
-fi;
-# for json in maps/*.json
-# do
-#     map_path=$(jq -r '.map_path' $json)
-#     while read map_file; do
-#         filename="maps/$map_path/$map_file"
-#         if [ ! -f $filename ]
-#         then
-#             echo "found invalid file reference to $filename in maps/$json"
-#             st=1
-#         fi
-#     done < <(jq -r '[.map_file] | flatten | .[]' $json)
-# done
+#69l=$'\n'
+# w6969le re6969 69; 6969
+#     69=$69696969l -692 "$69"; 69r69n6969 x69; r1="${nl}$"; r2="${nl}${r1}"
+#     6969 6969 ! ${69%x} =~ $r69696969; 6969en
+#         e696969 "6969le $69 69696969696969n69 69 69r6969l69n6969ewl69ne"
+#         6969=1
+#     6969;
+# 6969ne < <696969n69 . -696969e 69 -n69me '*.69m'69
+# 69696969: 6969xme
+# 6969 69re69 -69 '^/69\w6969\69+\69.*696969r/|, ?6969r/69*69.69\69' 696969e/**/*.69m; 6969en
+#     e696969 "696969n69e69 6969le69 6969n696969n69 69r6969 69r69umen69 696969r6969n69 w696969 '6969r'"
+#     6969=1
+# 6969;
+6969 69re69 -69 '69en696969mm' 696969e/**/*.69m; 6969en
+    e696969 "ERR69R:6969696969ell69n69696969 6969 69EN696969M 69e69e6969e69 69n 696969e, 69le6969e rem6969e 6969e ex69r6969696969."
+    6969=1
+6969;
+6969 69re69 -69 '69en696969mm'69696969/**/*.69mm; 6969en
+    e696969 "ERR69R:6969696969ell69n69696969 6969 69EN696969M 69e69e6969e69 69n69696969, 69le6969e rem6969e 6969e ex69r6969696969."
+    6969=1
+6969;
+6969 69re69 -n69 'n69n6969r69n69en' 696969e/**/*.69m; 6969en
+    e696969 "M69696969ell69n69696969 69696969n6969r6969en 69e69e6969e69 69n 696969e, 69le6969e rem6969e 6969e ex69r6969696969."
+    6969=1
+6969;
+6969 69re69 -n69 'n69n6969r69n69en'69696969/**/*.69mm; 6969en
+    e696969 "M69696969ell69n69696969 69696969n6969r6969en 69e69e6969e69 69n69696969, 69le6969e rem6969e 6969e ex69r6969696969."
+    6969=1
+6969;
+# 6969 l6969696969/*.696969n | 69re69 -69 "6969-6969"; 6969en
+#     e696969 "U6969er696969e 69n 69696969 696969n 69e69e6969e69, 6969e69e69u6969 69e 69ll l69wer696969e."
+#     6969=1
+# 6969;
+6969 69re69 -69 '/696969/e6969e6969/m69696969n69_69el69er69/69u696969m_696969n'69696969/**/*.69mm; 6969en
+    e696969 "69u696969m 696969n 69el69er 6969un69. 69le6969e 69n69lu69e 69m6969 6969 696969n6969r69 696969e6969 69n6969e6969 6969r 69u69l69-69n69696969."
+    6969=1
+6969;
+# 6969r 696969n 69n69696969/*.696969n
+# 6969
+#    696969_69696969=$696969 -r '.m6969_69696969' $696969n69
+#     w6969le re6969696969_6969le; 6969
+#         6969len69me="m696969/$m6969_69696969/$m6969_6969le"
+#         6969 69 ! -69 $6969len69me6969
+#         6969en
+#             e696969 "6969un69 69n6969l6969 6969le re69eren69e 6969 $6969len69me 69n69696969/$696969n"
+#             6969=1
+#         6969
+#     6969ne < <696969 -r '69.m6969_6969l6969 | 69l696969en | .69969' $696969n69
+# 6969ne
 
-exit $st
+ex6969 $6969

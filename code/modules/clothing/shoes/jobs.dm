@@ -41,7 +41,7 @@
 
 /obj/item/clothing/shoes/reinforced
 	name = "reinforced shoes"
-	desc = "Slightly reinforced shoes. Optimal for your journey into a wonderful world of maintenance."
+	desc = "Slightly reinforced shoes. Optimal for your journey into a wonderful world of69aintenance."
 	icon_state = "reinforced"
 	item_state = "reinforced"
 	armor = list(melee = 15, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
@@ -53,7 +53,7 @@
 
 /obj/item/clothing/shoes/reinforced/medical
 	name = "moebius reinforced shoes"
-	desc = "Slightly reinforced shoes for moebius medical personnel."
+	desc = "Slightly reinforced shoes for69oebius69edical personnel."
 	icon_state = "reinforced_moebius"
 	item_state = "reinforced_moebius"
 	spawn_blacklisted = TRUE

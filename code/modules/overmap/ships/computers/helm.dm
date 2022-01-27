@@ -1,4 +1,4 @@
-#define NAVIGATION_VIEW_RANGE 10
+#define69AVIGATION_VIEW_RANGE 10
 
 /obj/machinery/computer/helm
 	name = "helm control console"
@@ -17,24 +17,24 @@
 
 /obj/machinery/computer/helm/Initialize()
 	. = ..()
-	linked = map_sectors["[z]"]
+	linked =69ap_sectors69"69z69"69
 	get_known_sectors()
 	new /obj/effect/overmap_event/movable/comet()
 
 	if (isnull(linked))
-		error("There are no map_sectors on [src]'s z.")
+		error("There are69o69ap_sectors on 69src69's z.")
 		return
 	linked.check_link()
 
 /obj/machinery/computer/helm/proc/get_known_sectors()
 	var/area/overmap/map = locate() in world
-	for(var/obj/effect/overmap/sector/S in map)
+	for(var/obj/effect/overmap/sector/S in69ap)
 		if (S.known)
-			var/datum/data/record/R = new()
-			R.fields["name"] = S.name_stages[1]
-			R.fields["x"] = S.x
-			R.fields["y"] = S.y
-			known_sectors[S.name_stages[1]] = R
+			var/datum/data/record/R =69ew()
+			R.fields69"name"69 = S.name_stages69169
+			R.fields69"x"69 = S.x
+			R.fields69"y"69 = S.y
+			known_sectors69S.name_stages6916969 = R
 
 /obj/machinery/computer/helm/Process()
 	..()
@@ -60,7 +60,7 @@
 		linked.relaymove(user,direction)
 		return 1
 
-/obj/machinery/computer/helm/check_eye(var/mob/user as mob)
+/obj/machinery/computer/helm/check_eye(var/mob/user as69ob)
 	if (isAI(user))
 		user.unset_machine()
 		if (!manual_control)
@@ -80,64 +80,64 @@
 	if(!isAI(user))
 		user.set_machine(src)
 
-	if(linked && manual_control)
+	if(linked &&69anual_control)
 		user.reset_view(linked)
-		user.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
+		user.client.view = "692*NAVIGATION_VIEW_RANGE+169x692*NAVIGATION_VIEW_RANGE+169"
 
 	else if(!config.use_overmap && user?.client?.holder)
-		// Let the new developers know why the helm console is unresponsive
-		// (it's disabled by default on local server to make it start a bit faster)
+		// Let the69ew developers know why the helm console is unresponsive
+		// (it's disabled by default on local server to69ake it start a bit faster)
 		to_chat(user, "NOTE: overmap generation is disabled in server configuration.")
-		to_chat(user, "To use overmap, make sure that \"config.txt\" file is present in the server config folder and \"USE_OVERMAP\" is uncommented.")
+		to_chat(user, "To use overmap,69ake sure that \"config.txt\" file is present in the server config folder and \"USE_OVERMAP\" is uncommented.")
 
 	ui_interact(user)
 
-/obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/helm/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
 	if(!linked)
 		return
 
-	var/data[0]
+	var/data69069
 
 	var/turf/T = get_turf(linked)
 	var/obj/effect/overmap/sector/current_sector = locate() in T
 
-	data["sector"] = current_sector ? current_sector.name : "Deep Space"
-	data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
-	data["s_x"] = linked.x
-	data["s_y"] = linked.y
-	data["dest"] = dy && dx
-	data["d_x"] = dx
-	data["d_y"] = dy
-	data["speedlimit"] = speedlimit ? speedlimit : "None"
-	data["speed"] = linked.get_speed()
-	data["accel"] = linked.get_acceleration()
-	data["heading"] = linked.get_heading() ? dir2angle(linked.get_heading()) : 0
-	data["autopilot"] = autopilot
-	data["manual_control"] = manual_control
-	data["canburn"] = linked.can_burn()
-	data["canpulse"] = linked.can_pulse()
-	data["canscanpoi"] = linked.can_scan_poi()
+	data69"sector"69 = current_sector ? current_sector.name : "Deep Space"
+	data69"sector_info"69 = current_sector ? current_sector.desc : "Not Available"
+	data69"s_x"69 = linked.x
+	data69"s_y"69 = linked.y
+	data69"dest"69 = dy && dx
+	data69"d_x"69 = dx
+	data69"d_y"69 = dy
+	data69"speedlimit"69 = speedlimit ? speedlimit : "None"
+	data69"speed"69 = linked.get_speed()
+	data69"accel"69 = linked.get_acceleration()
+	data69"heading"69 = linked.get_heading() ? dir2angle(linked.get_heading()) : 0
+	data69"autopilot"69 = autopilot
+	data69"manual_control"69 =69anual_control
+	data69"canburn"69 = linked.can_burn()
+	data69"canpulse"69 = linked.can_pulse()
+	data69"canscanpoi"69 = linked.can_scan_poi()
 
 	if(linked.get_speed())
-		data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
+		data69"ETAnext"69 = "69round(linked.ETA()/10)69 seconds"
 	else
-		data["ETAnext"] = "N/A"
+		data69"ETAnext"69 = "N/A"
 
-	var/list/locations[0]
+	var/list/locations69069
 	for (var/key in known_sectors)
-		var/datum/data/record/R = known_sectors[key]
-		var/list/rdata[0]
-		rdata["name"] = R.fields["name"]
-		rdata["x"] = R.fields["x"]
-		rdata["y"] = R.fields["y"]
-		rdata["reference"] = "\ref[R]"
+		var/datum/data/record/R = known_sectors69key69
+		var/list/rdata69069
+		rdata69"name"69 = R.fields69"name"69
+		rdata69"x"69 = R.fields69"x"69
+		rdata69"y"69 = R.fields69"y"69
+		rdata69"reference"69 = "\ref69R69"
 		locations.Add(list(rdata))
 
-	data["locations"] = locations
+	data69"locations"69 = locations
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 380, 530)
+		ui =69ew(user, src, ui_key, "helm.tmpl", "69linked.name69 Helm Control", 380, 530)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
@@ -149,88 +149,88 @@
 	if (!linked)
 		return
 
-	if (href_list["add"])
-		var/datum/data/record/R = new()
-		var/sec_name = sanitize(input("Input naviation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text)
+	if (href_list69"add"69)
+		var/datum/data/record/R =69ew()
+		var/sec_name = sanitize(input("Input69aviation entry69ame", "New69avigation entry", "Sector #69known_sectors.len69") as text)
 		if(!CanInteract(usr,state))
 			return
 		if(!sec_name)
-			sec_name = "Sector #[known_sectors.len]"
-		R.fields["name"] = sec_name
+			sec_name = "Sector #69known_sectors.len69"
+		R.fields69"name"69 = sec_name
 		if(sec_name in known_sectors)
-			to_chat(usr, "<span class='warning'>Sector with that name already exists, please input a different name.</span>")
+			to_chat(usr, "<span class='warning'>Sector with that69ame already exists, please input a different69ame.</span>")
 			return
-		switch(href_list["add"])
+		switch(href_list69"add"69)
 			if("current")
-				R.fields["x"] = linked.x
-				R.fields["y"] = linked.y
+				R.fields69"x"69 = linked.x
+				R.fields69"y"69 = linked.y
 			if("new")
-				var/newx = input("Input new entry x coordinate", "Coordinate input", linked.x) as num
+				var/newx = input("Input69ew entry x coordinate", "Coordinate input", linked.x) as69um
 				if(!CanInteract(usr,state))
 					return
-				var/newy = input("Input new entry y coordinate", "Coordinate input", linked.y) as num
+				var/newy = input("Input69ew entry y coordinate", "Coordinate input", linked.y) as69um
 				if(!CanInteract(usr,state))
 					return
-				R.fields["x"] = CLAMP(newx, 1, world.maxx)
-				R.fields["y"] = CLAMP(newy, 1, world.maxy)
-		known_sectors[sec_name] = R
+				R.fields69"x"69 = CLAMP(newx, 1, world.maxx)
+				R.fields69"y"69 = CLAMP(newy, 1, world.maxy)
+		known_sectors69sec_name69 = R
 
-	if (href_list["remove"])
-		var/datum/data/record/R = locate(href_list["remove"])
+	if (href_list69"remove"69)
+		var/datum/data/record/R = locate(href_list69"remove"69)
 		if(R)
-			known_sectors.Remove(R.fields["name"])
+			known_sectors.Remove(R.fields69"name"69)
 			qdel(R)
 
-	if (href_list["setx"])
-		var/newx = input("Input new destiniation x coordinate", "Coordinate input", dx) as num|null
+	if (href_list69"setx"69)
+		var/newx = input("Input69ew destiniation x coordinate", "Coordinate input", dx) as69um|null
 		if(!CanInteract(usr,state))
 			return
 		if (newx)
 			dx = CLAMP(newx, 1, world.maxx)
 
-	if (href_list["sety"])
-		var/newy = input("Input new destiniation y coordinate", "Coordinate input", dy) as num|null
+	if (href_list69"sety"69)
+		var/newy = input("Input69ew destiniation y coordinate", "Coordinate input", dy) as69um|null
 		if(!CanInteract(usr,state))
 			return
 		if (newy)
 			dy = CLAMP(newy, 1, world.maxy)
 
-	if (href_list["x"] && href_list["y"])
-		dx = text2num(href_list["x"])
-		dy = text2num(href_list["y"])
+	if (href_list69"x"69 && href_list69"y"69)
+		dx = text2num(href_list69"x"69)
+		dy = text2num(href_list69"y"69)
 
-	if (href_list["reset"])
+	if (href_list69"reset"69)
 		dx = 0
 		dy = 0
 
-	if (href_list["speedlimit"])
-		var/newlimit = input("Input new speed limit for autopilot (0 to disable)", "Autopilot speed limit", speedlimit) as num|null
+	if (href_list69"speedlimit"69)
+		var/newlimit = input("Input69ew speed limit for autopilot (0 to disable)", "Autopilot speed limit", speedlimit) as69um|null
 		if(newlimit)
 			speedlimit = CLAMP(newlimit, 0, 100)
 
-	if (href_list["move"])
-		var/ndir = text2num(href_list["move"])
-		linked.relaymove(usr, ndir)
+	if (href_list69"move"69)
+		var/ndir = text2num(href_list69"move"69)
+		linked.relaymove(usr,69dir)
 
-	if (href_list["brake"])
+	if (href_list69"brake"69)
 		linked.decelerate()
 
-	if (href_list["apilot"])
+	if (href_list69"apilot"69)
 		autopilot = !autopilot
 
-	if (href_list["manual"])
+	if (href_list69"manual"69)
 		manual_control = !manual_control
 		if(manual_control)
 			usr.reset_view(linked)
-			usr.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
+			usr.client.view = "692*NAVIGATION_VIEW_RANGE+169x692*NAVIGATION_VIEW_RANGE+169"
 		else
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)
 
-	if (href_list["pulse"])
+	if (href_list69"pulse"69)
 		linked.pulse()
 
-	if (href_list["scanpoi"])
+	if (href_list69"scanpoi"69)
 		linked.scan_poi()
 
 	updateUsrDialog()
@@ -244,38 +244,38 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "helm"
 
-/obj/machinery/computer/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/computer/navigation/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
 	if(!linked)
 		return
 
-	var/data[0]
+	var/data69069
 
 
 	var/turf/T = get_turf(linked)
 	var/obj/effect/overmap/sector/current_sector = locate() in T
 
-	data["sector"] = current_sector ? current_sector.name : "Deep Space"
-	data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
-	data["s_x"] = linked.x
-	data["s_y"] = linked.y
-	data["speed"] = linked.get_speed()
-	data["accel"] = linked.get_acceleration()
-	data["heading"] = linked.get_heading() ? dir2angle(linked.get_heading()) : 0
-	data["viewing"] = viewing
+	data69"sector"69 = current_sector ? current_sector.name : "Deep Space"
+	data69"sector_info"69 = current_sector ? current_sector.desc : "Not Available"
+	data69"s_x"69 = linked.x
+	data69"s_y"69 = linked.y
+	data69"speed"69 = linked.get_speed()
+	data69"accel"69 = linked.get_acceleration()
+	data69"heading"69 = linked.get_heading() ? dir2angle(linked.get_heading()) : 0
+	data69"viewing"69 =69iewing
 
 	if(linked.get_speed())
-		data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
+		data69"ETAnext"69 = "69round(linked.ETA()/10)69 seconds"
 	else
-		data["ETAnext"] = "N/A"
+		data69"ETAnext"69 = "N/A"
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "nav.tmpl", "[linked.name] Navigation Screen", 380, 530)
+		ui =69ew(user, src, ui_key, "nav.tmpl", "69linked.name6969avigation Screen", 380, 530)
 		ui.set_initial_data(data)
 		ui.open()
 		ui.set_auto_update(1)
 
-/obj/machinery/computer/navigation/check_eye(var/mob/user as mob)
+/obj/machinery/computer/navigation/check_eye(var/mob/user as69ob)
 	if (isAI(user))
 		user.unset_machine()
 		if (!viewing)
@@ -288,7 +288,7 @@
 		return -1
 	return 0
 
-/obj/machinery/computer/navigation/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/navigation/attack_hand(var/mob/user as69ob)
 	if(..())
 		user.unset_machine()
 		viewing = 0
@@ -298,7 +298,7 @@
 		if (!isAI(user))
 			user.set_machine(src)
 		user.reset_view(linked)
-		user.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
+		user.client.view = "692*NAVIGATION_VIEW_RANGE+169x692*NAVIGATION_VIEW_RANGE+169"
 
 	ui_interact(user)
 
@@ -309,11 +309,11 @@
 	if (!linked)
 		return
 
-	if (href_list["viewing"])
+	if (href_list69"viewing"69)
 		viewing = !viewing
 		if(viewing)
 			usr.reset_view(linked)
-			usr.client.view = "[2*NAVIGATION_VIEW_RANGE+1]x[2*NAVIGATION_VIEW_RANGE+1]"
+			usr.client.view = "692*NAVIGATION_VIEW_RANGE+169x692*NAVIGATION_VIEW_RANGE+169"
 		else
 			if (isAI(usr))
 				usr.reset_view(usr.eyeobj)

@@ -1,26 +1,26 @@
 /obj/machinery/surveillance_pod
 	name = "E.Y.E. surveillance pod"
-	desc = "A man-sized pod filled with pitch black liquid."
-	icon = 'icons/obj/Cryogenic2.dmi'
+	desc = "A69an-sized pod filled with pitch black li69uid."
+	icon = 'icons/obj/Cryo69enic2.dmi'
 	icon_state = "cryopod"
 	density = TRUE
 	anchored = TRUE
 
-	var/mob/living/carbon/human/occupant
-	var/mob/observer/eye/pod/big_brother
-	var/datum/gas_mixture/fake_liquid
+	var/mob/livin69/carbon/human/occupant
+	var/mob/observer/eye/pod/bi69_brother
+	var/datum/69as_mixture/fake_li69uid
 
 	var/list/compatible_jumpsuits = list(
-	/obj/item/clothing/under/cyber,
-	/obj/item/clothing/under/netrunner
+	/obj/item/clothin69/under/cyber,
+	/obj/item/clothin69/under/netrunner
 	)
 
 	var/list/compatible_helmets = list(
-	/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle,
-	/obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle/armored
+	/obj/item/clothin69/head/armor/helmet/visor/cyberpunk69o6969le,
+	/obj/item/clothin69/head/armor/helmet/visor/cyberpunk69o6969le/armored
 	)
 
-//	var/list/compatible_glasses = list()
+//	var/list/compatible_69lasses = list()
 
 	var/HUDneed_element_to_keep = list(
 		"nutrition",
@@ -28,56 +28,56 @@
 		"body temperature",
 		"health",
 		"sanity",
-		"oxygen",
+		"oxy69en",
 		"fire",
 		"pressure",
 		"toxin",
 		"internal"
-		) // Don't even get me started on HUDneed. This thing is required for UI hiding to work
+		) // Don't even 69et69e started on HUDneed. This thin69 is re69uired for UI hidin69 to work
 
 
-/mob/observer/eye/pod // New child object to run create_UI() using it
+/mob/observer/eye/pod // New child object to run create_UI() usin69 it
 	acceleration = FALSE
 
 
 /obj/machinery/surveillance_pod/Initialize(mapload)
 	..()
-	big_brother = new(src)
-	big_brother.visualnet = cameranet
-	fake_liquid = new/datum/gas_mixture // Pod filled with liqid
-	fake_liquid.adjust_gas_temp("carbon_dioxide", 100, 300, 1) // But alas, there is no liquids in the code!
+	bi69_brother = new(src)
+	bi69_brother.visualnet = cameranet
+	fake_li69uid = new/datum/69as_mixture // Pod filled with li69id
+	fake_li69uid.adjust_69as_temp("carbon_dioxide", 100, 300, 1) // But alas, there is no li69uids in the code!
 	update_icon()
 
 
 /obj/machinery/surveillance_pod/return_air()
-	return fake_liquid // Safe temperature and pressure, but can't breathe without internals
+	return fake_li69uid // Safe temperature and pressure, but can't breathe without internals
 
 
 /obj/machinery/surveillance_pod/check_eye(mob/user)
-	return FALSE // Don't reset view to mob's location every second
+	return FALSE // Don't reset69iew to69ob's location every second
 
 
 /obj/machinery/surveillance_pod/proc/can_activate()
 	if(!occupant)
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Operator not found.'"))
+		audible_messa69e(SPAN_WARNIN69("69src69 beeps: 'ERROR: Operator not found.'"))
 		return FALSE
 
 	if(occupant.stat == DEAD)
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Operator's brain activity below required threshold.'"))
+		audible_messa69e(SPAN_WARNIN69("69src69 beeps: 'ERROR: Operator's brain activity below re69uired threshold.'"))
 		return FALSE
 
 	if(!occupant.client)
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Operator's brain activity below required threshold.'"))
+		audible_messa69e(SPAN_WARNIN69("69src69 beeps: 'ERROR: Operator's brain activity below re69uired threshold.'"))
 		return FALSE
 
 	if(!(occupant.w_uniform && (occupant.w_uniform.type in compatible_jumpsuits)))
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
-		to_chat(occupant, SPAN_WARNING("[src] beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
+		audible_messa69e(SPAN_WARNIN69("69src69 beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
+		to_chat(occupant, SPAN_WARNIN69("69src69 beeps: 'ERROR: Failed to establish connection with a cybersuit.'"))
 		return FALSE
 
 	if(!(occupant.head && (occupant.head.type in compatible_helmets)))
-		audible_message(SPAN_WARNING("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
-		to_chat(occupant, SPAN_WARNING("[src] beeps: 'ERROR: Failed to locate compatible visor.'"))
+		audible_messa69e(SPAN_WARNIN69("69src69 beeps: 'ERROR: Failed to locate compatible69isor.'"))
+		to_chat(occupant, SPAN_WARNIN69("69src69 beeps: 'ERROR: Failed to locate compatible69isor.'"))
 		return FALSE
 
 	if(stat & NOPOWER)
@@ -86,12 +86,12 @@
 	return TRUE
 
 
-/obj/machinery/surveillance_pod/proc/trigger(mob/user)
+/obj/machinery/surveillance_pod/proc/tri6969er(mob/user)
 	if(user.incapacitated())
 		return
 
 	if(occupant)
-		if(occupant.eyeobj == big_brother)
+		if(occupant.eyeobj == bi69_brother)
 			deactivate()
 		else
 			activate()
@@ -102,46 +102,46 @@
 	if(!can_activate())
 		return
 
-	for(var/datum/chunk/C in big_brother.visibleChunks)
-		C.remove(big_brother)
+	for(var/datum/chunk/C in bi69_brother.visibleChunks)
+		C.remove(bi69_brother)
 
-	big_brother.forceMove(src)
-	big_brother.owner = occupant
-	occupant.eyeobj = big_brother
+	bi69_brother.forceMove(src)
+	bi69_brother.owner = occupant
+	occupant.eyeobj = bi69_brother
 	occupant.EyeMove(0)
 
 	handle_occupant_UI(TRUE)
 
 
 /obj/machinery/surveillance_pod/proc/deactivate()
-	if(big_brother.owner)
-		for(var/datum/chunk/C in big_brother.visibleChunks)
-			C.remove(big_brother)
+	if(bi69_brother.owner)
+		for(var/datum/chunk/C in bi69_brother.visibleChunks)
+			C.remove(bi69_brother)
 
-		big_brother.owner.eyeobj = null
-		big_brother.owner.reset_view()
-		big_brother.owner = null
+		bi69_brother.owner.eyeobj = null
+		bi69_brother.owner.reset_view()
+		bi69_brother.owner = null
 		handle_occupant_UI(FALSE)
 
 
 /obj/machinery/surveillance_pod/update_icon()
 	if(occupant)
-		icon_state = "[initial(icon_state)]_1"
+		icon_state = "69initial(icon_state)69_1"
 	else
-		icon_state = "[initial(icon_state)]_0"
+		icon_state = "69initial(icon_state)69_0"
 
 
 /obj/machinery/surveillance_pod/attack_hand(mob/user)
-	trigger(user)
+	tri6969er(user)
 
 
 /obj/machinery/surveillance_pod/verb/eject()
-	set src in view(1)
-	set category = "Object"
+	set src in69iew(1)
+	set cate69ory = "Object"
 	set name = "Eject Occupant"
 
 	try_eject_occupant(usr)
-	add_fingerprint(usr)
+	add_fin69erprint(usr)
 	return
 
 
@@ -150,78 +150,78 @@
 
 
 /obj/machinery/surveillance_pod/verb/move_inside()
-	set src in view(1)
-	set category = "Object"
+	set src in69iew(1)
+	set cate69ory = "Object"
 	set name = "Enter Pod"
 
 	if(usr.incapacitated())
 		return
 
 	try_set_occupant(usr)
-	add_fingerprint(usr)
+	add_fin69erprint(usr)
 	return
 
 
-/obj/machinery/surveillance_pod/MouseDrop_T(mob/target, mob/user)
-	try_set_occupant(target, user)
-	add_fingerprint(user)
+/obj/machinery/surveillance_pod/MouseDrop_T(mob/tar69et,69ob/user)
+	try_set_occupant(tar69et, user)
+	add_fin69erprint(user)
 	return TRUE
 
 
-/obj/machinery/surveillance_pod/affect_grab(mob/user, mob/target)
-	try_set_occupant(target, user)
-	add_fingerprint(user)
+/obj/machinery/surveillance_pod/affect_69rab(mob/user,69ob/tar69et)
+	try_set_occupant(tar69et, user)
+	add_fin69erprint(user)
 	return TRUE
 
 
-/obj/machinery/surveillance_pod/proc/try_set_occupant(mob/target, mob/user)
-	if(!target)
+/obj/machinery/surveillance_pod/proc/try_set_occupant(mob/tar69et,69ob/user)
+	if(!tar69et)
 		return
 
 	if(!user)
-		user = target
+		user = tar69et
 
 	if(user.incapacitated())
 		return
 
 	if(occupant)
-		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+		to_chat(user, SPAN_WARNIN69("\The 69src69 is already occupied."))
 		return
 
-	if(!ishuman(target))
+	if(!ishuman(tar69et))
 		return
 
-	var/mob/living/carbon/human/T = target
+	var/mob/livin69/carbon/human/T = tar69et
 
 	if(T.abiotic(FALSE))
-		if(target == user)
-			to_chat(user, SPAN_WARNING("You can't fit in while holding [T.l_hand ? T.l_hand : T.r_hand]."))
+		if(tar69et == user)
+			to_chat(user, SPAN_WARNIN69("You can't fit in while holdin69 69T.l_hand ? T.l_hand : T.r_hand69."))
 		else
-			to_chat(user, SPAN_WARNING("[target] can't fit in while holding [T.l_hand ? T.l_hand : T.r_hand]."))
+			to_chat(user, SPAN_WARNIN69("69tar69et69 can't fit in while holdin69 69T.l_hand ? T.l_hand : T.r_hand69."))
 		return
 
 	if(T.wear_suit)
-		if(target == user)
-			to_chat(user, SPAN_WARNING("You can't fit in while wearing [T.wear_suit]."))
+		if(tar69et == user)
+			to_chat(user, SPAN_WARNIN69("You can't fit in while wearin69 69T.wear_suit69."))
 		else
-			to_chat(user, SPAN_WARNING("[target] can't fit in while wearing [T.wear_suit]."))
+			to_chat(user, SPAN_WARNIN69("69tar69et69 can't fit in while wearin69 69T.wear_suit69."))
 		return
 
-	if(target == user)
-		visible_message("\The [user] starts climbing into \the [src].")
+	if(tar69et == user)
+		visible_messa69e("\The 69user69 starts climbin69 into \the 69src69.")
 	else
-		visible_message("\The [user] starts putting [target] into \the [src].")
+		visible_messa69e("\The 69user69 starts puttin69 69tar69et69 into \the 69src69.")
 
-	if(!do_after(user, 20, src) || !Adjacent(target))
+	if(!do_after(user, 20, src) || !Adjacent(tar69et))
 		return
 
 	if(occupant)
-		to_chat(user, SPAN_WARNING("\The [src] is already occupied."))
+		to_chat(user, SPAN_WARNIN69("\The 69src69 is already occupied."))
 		return
 
-	target.forceMove(src)
-	target.set_machine(src)
-	occupant = target
+	tar69et.forceMove(src)
+	tar69et.set_machine(src)
+	occupant = tar69et
 	update_use_power(ACTIVE_POWER_USE)
 	update_icon()
 
@@ -234,7 +234,7 @@
 		return
 
 	if(user != occupant)
-		if(isghost(user))
+		if(is69host(user))
 			return
 
 	deactivate()
@@ -247,15 +247,15 @@
 
 /obj/machinery/surveillance_pod/Destroy()
 	if(occupant)
-		occupant.ghostize(FALSE)
-		occupant.gib()
+		occupant.69hostize(FALSE)
+		occupant.69ib()
 
-	qdel(fake_liquid)
-	qdel(big_brother)
+	69del(fake_li69uid)
+	69del(bi69_brother)
 	return ..()
 
 
-/obj/machinery/surveillance_pod/attackby(obj/item/I, mob/living/user)
+/obj/machinery/surveillance_pod/attackby(obj/item/I,69ob/livin69/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -267,44 +267,44 @@
 /obj/machinery/surveillance_pod/proc/handle_occupant_UI(hide_ui)
 	if(hide_ui)
 		for(var/obj/screen/inventory/IS in occupant.HUDinventory)
-			if(IS.hideflag)
+			if(IS.hidefla69)
 				IS.invisibility = 101
 				IS.handle_inventory_invisibility(IS, occupant)
 
 		for(var/obj/screen/S in occupant.HUDfrippery)
-			if(S.hideflag)
+			if(S.hidefla69)
 				S.invisibility = 101
 
 		for(var/i = 1 to occupant.HUDneed.len)
-			occupant.client.screen.Remove(occupant.HUDneed[occupant.HUDneed[i]])
+			occupant.client.screen.Remove(occupant.HUDneed69occupant.HUDneed69i6969)
 
 		for(var/i=1,i<=occupant.HUDneed.len,i++)
-			var/p = occupant.HUDneed[i]
+			var/p = occupant.HUDneed69i69
 			if(p in HUDneed_element_to_keep)
-				occupant.client.screen += occupant.HUDneed[p]
+				occupant.client.screen += occupant.HUDneed69p69
 
-		occupant.client.create_UI(big_brother.type)
+		occupant.client.create_UI(bi69_brother.type)
 
 	else
 		for(var/obj/screen/inventory/IS in occupant.HUDinventory)
-			if(IS.hideflag)
+			if(IS.hidefla69)
 				IS.invisibility = 0
 				IS.handle_inventory_invisibility(IS, occupant)
 
 		for(var/obj/screen/S in occupant.HUDfrippery)
-			if(S.hideflag)
+			if(S.hidefla69)
 				S.invisibility = 0
 
 		for(var/i=1, i<=occupant.HUDneed.len, i++)
-			var/p = occupant.HUDneed[i]
+			var/p = occupant.HUDneed69i69
 			if(!(p in HUDneed_element_to_keep))
-				occupant.client.screen += occupant.HUDneed[p]
+				occupant.client.screen += occupant.HUDneed69p69
 
 		occupant.client.destroy_UI()
 
 
-/obj/screen/inventory/proc/handle_inventory_invisibility(obj/screen/inventory/inv_elem, mob/parentmob)
-	var/mob/living/carbon/human/H = parentmob
+/obj/screen/inventory/proc/handle_inventory_invisibility(obj/screen/inventory/inv_elem,69ob/parentmob)
+	var/mob/livin69/carbon/human/H = parentmob
 	switch (inv_elem.slot_id)
 		if(slot_head)
 			if(H.head)       H.head.screen_loc       = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
@@ -314,10 +314,10 @@
 			if(H.l_ear)      H.l_ear.screen_loc      = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if(slot_r_ear)
 			if(H.r_ear)      H.r_ear.screen_loc      = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-		if(slot_gloves)
-			if(H.gloves)     H.gloves.screen_loc     = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
-		if(slot_glasses)
-			if(H.glasses)    H.glasses.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_69loves)
+			if(H.69loves)     H.69loves.screen_loc     = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
+		if(slot_69lasses)
+			if(H.69lasses)    H.69lasses.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if(slot_w_uniform)
 			if(H.w_uniform)  H.w_uniform.screen_loc  = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 		if(slot_wear_suit)
@@ -344,7 +344,7 @@
 			if(H.s_store)    H.s_store.screen_loc    = (inv_elem.invisibility == 101) ? null : inv_elem.screen_loc
 
 
-/mob/proc/acceleration_toogle()
+/mob/proc/acceleration_too69le()
 	if(!eyeobj)
 		return
 

@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/kovacs
 	name = "SA BR .20 \"Kovacs\""
 	desc = "The \"Kovacs\" is a refined battle rifle fit for taking down heavily armoured targets. \
-			This extremely efficient rifle design has gone into disuse over the years but still sees use by mercenaries. \
+			This extremely efficient rifle design has gone into disuse over the years but still sees use by69ercenaries. \
 			Uses .20 Rifle rounds."
 	icon = 'icons/obj/guns/projectile/kovacs.dmi'
 	icon_state = "kovacs"
@@ -11,10 +11,10 @@
 	caliber = CAL_SRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/srifle
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLASTIC = 12)
 	price_tag = 2000
 	fire_sound = 'sound/weapons/guns/fire/sniper_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
@@ -34,7 +34,7 @@
 	var/itemstring = ""
 
 	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "_mag": ""]"
+		iconstring += "69ammo_magazine? "_mag": ""69"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"

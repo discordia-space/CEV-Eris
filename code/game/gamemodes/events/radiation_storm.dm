@@ -1,7 +1,7 @@
 /*
-	Radiation storm is a really severe event that forces everyone to flee into maintenance or a similar
+	Radiation storm is a really severe event that forces everyone to flee into69aintenance or a similar
 	shielded area. Anyone caught outside a shielded area will recieve lethal doses of radiation,
-	and will die without medical attention
+	and will die without69edical attention
 */
 /datum/storyevent/radiation_storm
 	id = "radiation_storm"
@@ -28,7 +28,7 @@
 	//ic_name = "radiation"
 
 /datum/event/radiation_storm/announce()
-	command_announcement.Announce("High levels of radiation detected near the ship. Please evacuate into one of the shielded maintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
+	command_announcement.Announce("High levels of radiation detected near the ship. Please evacuate into one of the shielded69aintenance tunnels.", "Anomaly Alert", new_sound = 'sound/AI/radiation.ogg')
 
 /datum/event/radiation_storm/start()
 	make_maint_all_access()
@@ -51,7 +51,7 @@
 	else if(activeFor == leaveBelt)
 		for(var/datum/weather/rad_storm/R in SSweather.processing)
 			R.wind_down()
-		command_announcement.Announce("The ship has passed the radiation belt. Please report to medbay if you experience any unusual symptoms. Maintenance will lose all access again shortly.", "Anomaly Alert")
+		command_announcement.Announce("The ship has passed the radiation belt. Please report to69edbay if you experience any unusual symptoms.69aintenance will lose all access again shortly.", "Anomaly Alert")
 
 /datum/event/radiation_storm/proc/radiate()
 	for(var/mob/living/carbon/C in GLOB.living_mob_list)
@@ -70,9 +70,9 @@
 				H.apply_effect((rand(20,60)),IRRADIATE)
 				if (prob(max(0, 100 - H.getarmor(null, ARMOR_RAD))))
 					if (prob(75))
-						randmutb(H) // Applies bad mutation
+						randmutb(H) // Applies bad69utation
 					else
-						randmutg(H) // Applies good mutation
+						randmutg(H) // Applies good69utation
 					domutcheck(H,null,MUTCHK_FORCED)
 
 /datum/event/radiation_storm/end()

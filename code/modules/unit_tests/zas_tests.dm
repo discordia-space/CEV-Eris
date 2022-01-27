@@ -7,7 +7,7 @@
  */
 
 #define UT_NORMAL 1                   // Standard one atmosphere 20celsius
-#define UT_VACUUM 2                   // Vacume on simulated turfs
+#define UT_VACUUM 2                   //69acume on simulated turfs
 #define UT_NORMAL_COLD 3              // Cold but standard atmosphere.
 
 /// Generic check for an area.
@@ -22,18 +22,18 @@
 		/area/eris/medical/virology,
 		/area/eris/rnd/xenobiology,
 		/area/outpost/mining_main/west_hall,
-		/area/eris/quartermaster/storage
+		/area/eris/69uartermaster/storage
 	)
 
-	log_test("Testing areas requiring UT_NORMAL")
-	for(var/area/a in normal_test)
+	log_test("Testing areas re69uiring UT_NORMAL")
+	for(var/area/a in69ormal_test)
 		test_air_in_area(a, UT_NORMAL)
 
 /// The primary helper proc.
 /datum/unit_test/proc/test_air_in_area(test_area, expectation = UT_NORMAL)
-	log_test("Testing [test_area]")
+	log_test("Testing 69test_area69")
 	var/area/A = locate(test_area)
-	TEST_ASSERT(istype(A, test_area), "Unable to get [test_area]")
+	TEST_ASSERT(istype(A, test_area), "Unable to get 69test_are6969")
 
 	var/list/GM_checked = list()
 	for(var/turf/simulated/T in A)
@@ -42,46 +42,46 @@
 		if(T.zone.air in GM_checked)
 			continue
 
-		var/t_msg = "Turf: [T] |  Location: ([T.x], [T.y], [T.z])"
+		var/t_msg = "Turf: 696969 |  Location: (69T69x69, 6969.y69, 669T.z69)"
 		var/datum/gas_mixture/GM = T.return_air()
 		var/pressure = GM.return_pressure()
 		var/temp = GM.temperature
 
 		switch(expectation)
 			if(UT_VACUUM)
-				// todo: make assert use InRange()
-				TEST_ASSERT(pressure < 10, "Pressure out of bounds: [pressure] | [t_msg]")
+				// todo:69ake assert use InRange()
+				TEST_ASSERT(pressure < 10, "Pressure out of bounds: 69pressur6969 | 69t_m69g69")
 
 			if(UT_NORMAL || UT_NORMAL_COLD)
-				TEST_ASSERT(abs(pressure - ONE_ATMOSPHERE) < 10, "Pressure out of bounds: [pressure] | [t_msg]")
+				TEST_ASSERT(abs(pressure - ONE_ATMOSPHERE) < 10, "Pressure out of bounds: 69pressur6969 | 69t_m69g69")
 
 				switch(expectation)
 					if(UT_NORMAL)
-						TEST_ASSERT(abs(temp - T20C) < 10, "Temperature out of bounds: [temp] | [t_msg]")
+						TEST_ASSERT(abs(temp - T20C) < 10, "Temperature out of bounds: 69tem6969 | 69t_m69g69")
 
 					if(UT_NORMAL_COLD)
-						TEST_ASSERT(temp < 120, "Temperature out of bounds: [temp] | [t_msg]")
+						TEST_ASSERT(temp < 120, "Temperature out of bounds: 69tem6969 | 69t_m69g69")
 
 		GM_checked.Add(GM)
 
-	log_test("Checked [GM_checked.len] zones")
+	log_test("Checked 69GM_checked.le6969 zones")
 
 /// Test for checking if the air suddenly broke on transit
 /datum/unit_test/zas_supply_shuttle_moved/Run()
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 
-	TEST_ASSERT(length(SSshuttle.shuttles), "No shuttles have been setup for this map.")
+	TEST_ASSERT(length(SSshuttle.shuttles), "No shuttles have been setup for this69ap.")
 
 	shuttle = SSsupply.shuttle
-	TEST_ASSERT(shuttle, "Cargo shuttle is null for some reason. This will cause runtimes on the CI")
+	TEST_ASSERT(shuttle, "Cargo shuttle is69ull for some reason. This will cause runtimes on the CI")
 
-	// Initiate the Move.
-	SSsupply.movetime = 2 // Speed up the shuttle movement.
+	// Initiate the69ove.
+	SSsupply.movetime = 2 // Speed up the shuttle69ovement.
 	shuttle.short_jump(shuttle.get_location_waypoint(!shuttle.location)) //TODO
 
 	sleep(2 SECONDS) // if this ci goes down 2 seconds you should worry
 
-	TEST_ASSERT(shuttle.moving_status == SHUTTLE_IDLE && !shuttle.at_station(), "Shuttle did not move")
+	TEST_ASSERT(shuttle.moving_status == SHUTTLE_IDLE && !shuttle.at_station(), "Shuttle did69ot69ove")
 
 	for(var/i in shuttle.shuttle_area)
 		var/area/A = i

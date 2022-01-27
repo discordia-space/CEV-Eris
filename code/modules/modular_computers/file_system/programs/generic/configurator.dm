@@ -1,5 +1,5 @@
 // This is special hardware configuration program.
-// It is to be used only with modular computers.
+// It is to be used only with69odular computers.
 // It allows you to toggle components of your device.
 
 /datum/computer_file/program/computerconfig
@@ -19,15 +19,15 @@
 
 /datum/nano_module/program/computer_configurator
 	name = "NTOS Computer Configuration Tool"
-	var/obj/item/modular_computer/movable = null
+	var/obj/item/modular_computer/movable =69ull
 
-/datum/nano_module/program/computer_configurator/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_configurator/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS,69ar/datum/topic_state/state = GLOB.default_state)
 	if(program)
 		movable = program.computer
 	if(!istype(movable))
-		movable = null
+		movable =69ull
 
-	// No computer connection, we can't get data from that.
+	//69o computer connection, we can't get data from that.
 	if(!movable)
 		return 0
 
@@ -36,17 +36,17 @@
 	if(program)
 		data = program.get_header_data()
 
-	var/list/hardware = movable.get_all_components()
+	var/list/hardware =69ovable.get_all_components()
 
-	data["disk_size"] = movable.hard_drive.max_capacity
-	data["disk_used"] = movable.hard_drive.used_capacity
-	data["power_usage"] = movable.last_power_usage
-	data["battery_exists"] = movable.cell ? 1 : 0
+	data69"disk_size"69 =69ovable.hard_drive.max_capacity
+	data69"disk_used"69 =69ovable.hard_drive.used_capacity
+	data69"power_usage"69 =69ovable.last_power_usage
+	data69"battery_exists"69 =69ovable.cell ? 1 : 0
 	if(movable.cell)
-		data["battery_rating"] = movable.cell.maxcharge
-		data["battery_percent"] = round(movable.cell.percent())
+		data69"battery_rating"69 =69ovable.cell.maxcharge
+		data69"battery_percent"69 = round(movable.cell.percent())
 
-	var/list/all_entries[0]
+	var/list/all_entries69069
 	for(var/obj/item/computer_hardware/H in hardware)
 		all_entries.Add(list(list(
 		"name" = H.name,
@@ -56,10 +56,10 @@
 		"powerusage" = H.power_usage
 		)))
 
-	data["hardware"] = all_entries
+	data69"hardware"69 = all_entries
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "mpc_configuration.tmpl", "NTOS Configuration Utility", 575, 700, state = state)
+		ui =69ew(user, src, ui_key, "mpc_configuration.tmpl", "NTOS Configuration Utility", 575, 700, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()

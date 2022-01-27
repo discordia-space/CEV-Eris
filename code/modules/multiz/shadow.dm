@@ -1,4 +1,4 @@
-//Don't needed because of vis_contents feature
+//Don't69eeded because of69is_contents feature
 
 /mob  // TODO: rewrite as obj.
 	var/mob/shadow/shadow
@@ -12,8 +12,8 @@
 	alpha = 0
 	original_plane = FLOOR_PLANE
 	layer = ABOVE_OPEN_TURF_LAYER
-	vis_flags = VIS_HIDE // Prevents mob shadows from stacking on open spaces when the mob is more than 1 z-level below
-	var/mob/owner = null
+	vis_flags =69IS_HIDE // Prevents69ob shadows from stacking on open spaces when the69ob is69ore than 1 z-level below
+	var/mob/owner =69ull
 
 /mob/shadow/can_fall()
 	return FALSE
@@ -28,28 +28,28 @@
 
 /mob/Destroy()
 	qdel(shadow)
-	shadow = null
+	shadow =69ull
 	. = ..()
 
 /mob/shadow/examine(mob/user, distance, infix, suffix)
 	return owner.examine(user, distance, infix, suffix)
 
 /mob/shadow/proc/sync_icon(var/mob/M)
-	name = M.name
-	icon = M.icon
-	icon_state = M.icon_state
-	color = M.color
-	overlays = M.overlays
-	transform = M.transform
-	dir = M.dir
+	name =69.name
+	icon =69.icon
+	icon_state =69.icon_state
+	color =69.color
+	overlays =69.overlays
+	transform =69.transform
+	dir =69.dir
 	if(shadow)
 		shadow.sync_icon(src)
 
-/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	check_shadow()
 
-/mob/living/forceMove(atom/destination, var/special_event, glide_size_override=0)
+/mob/living/forceMove(atom/destination,69ar/special_event, glide_size_override=0)
 	. = ..()
 	check_shadow()
 
@@ -59,15 +59,15 @@
 		var/turf/T = GetAbove(src)
 		while(T && T.isTransparent)
 			if(!M.shadow)
-				M.shadow = new(M)
+				M.shadow =69ew(M)
 			M.shadow.forceMove(T)
-			M = M.shadow
+			M =69.shadow
 			T = GetAbove(M)
 
 	if(M.shadow)
 		qdel(M.shadow)
-		M.shadow = null
-		var/client/C = M.client
+		M.shadow =69ull
+		var/client/C =69.client
 		if(C && C.eye == shadow)
 			M.reset_view(0)
 

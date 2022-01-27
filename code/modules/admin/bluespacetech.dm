@@ -1,9 +1,9 @@
 /*
 // Bluespace Technician is a godmode avatar designed for debugging and admin actions
-// Their primary benefit is the ability to spawn in wherever you are, making it quick to get a human for your needs
-// They also have incorporeal flying movement if they choose, which is often the fastest way to get somewhere specific
-// They are mostly invincible, although godmode is a bit imperfect.
-// Most of their superhuman qualities can be toggled off if you need a normal human for testing biological functions
+// Their primary benefit is the ability to spawn in wherever you are,69aking it quick to get a human for your needs
+// They also have incorporeal flying69ovement if they choose, which is often the fastest way to get somewhere specific
+// They are69ostly invincible, although godmode is a bit imperfect.
+//69ost of their superhuman qualities can be toggled off if you need a normal human for testing biological functions
 */
 
 
@@ -35,7 +35,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		STAT_COG = 99
 	)
 	for(var/stat in stat_modifiers)
-		bst.stats.changeStat(stat, stat_modifiers[stat])
+		bst.stats.changeStat(stat, stat_modifiers69stat69)
 
 	//Items
 	bst.equip_to_slot_or_del(new /obj/item/clothing/under/assistantformal/bst(bst), slot_w_uniform)
@@ -62,7 +62,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	var/obj/item/card/id/bst/id = new/obj/item/card/id/bst(bst)
 	id.registered_name = bst.real_name
 	id.assignment = "Bluespace Technician"
-	id.name = "[id.assignment]"
+	id.name = "69id.assignment69"
 	bst.equip_to_slot_or_del(id, slot_wear_id)
 	bst.update_inv_wear_id()
 	bst.regenerate_icons()
@@ -89,7 +89,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	spawn(10)
 		bst_post_spawn(bst)
 
-	log_admin("Bluespace Tech Spawned: X:[bst.x] Y:[bst.y] Z:[bst.z] User:[src]")
+	log_admin("Bluespace Tech Spawned: X:69bst.x69 Y:69bst.y69 Z:69bst.z69 User:69src69")
 	return 1
 
 /client/proc/bst_post_spawn(mob/living/carbon/human/bst/bst)
@@ -106,7 +106,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	var/mob/original_body
 
 /mob/living/carbon/human/bst/can_inject(mob/user, error_msg, target_zone)
-	to_chat(user, span("alert", "The [src] disarms you before you can inject them."))
+	to_chat(user, span("alert", "The 69src69 disarms you before you can inject them."))
 	user.drop_item()
 	return FALSE
 
@@ -123,9 +123,9 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 		qdel(src)
 	if(key)
 		var/mob/observer/ghost/ghost = ghostize(TRUE)
-		ghost.name = "[ghost.key] BSTech"
-		ghost.real_name = "[ghost.key] BSTech"
-		ghost.voice_name = "[ghost.key] BSTech"
+		ghost.name = "69ghost.key69 BSTech"
+		ghost.real_name = "69ghost.key69 BSTech"
+		ghost.voice_name = "69ghost.key69 BSTech"
 		ghost.admin_ghosted = TRUE
 
 /mob/living/carbon/human/bst/verb/antigrav()
@@ -142,16 +142,16 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /mob/living/carbon/human/bst/verb/bstwalk()
 	set name = "Ruin Everything"
-	set desc = "Uses bluespace technology to phase through solid matter and move quickly."
+	set desc = "Uses bluespace technology to phase through solid69atter and69ove quickly."
 	set category = "BST"
 	set popup_menu = 0
 
 	if(!HasMovementHandler(/datum/movement_handler/mob/incorporeal))
-		to_chat(src, SPAN_NOTICE("You will now phase through solid matter."))
+		to_chat(src, SPAN_NOTICE("You will now phase through solid69atter."))
 		incorporeal_move = TRUE
 		ReplaceMovementHandler(/datum/movement_handler/mob/incorporeal)
 	else
-		to_chat(src, SPAN_NOTICE("You will no-longer phase through solid matter."))
+		to_chat(src, SPAN_NOTICE("You will no-longer phase through solid69atter."))
 		incorporeal_move = FALSE
 		RemoveMovementHandler(/datum/movement_handler/mob/incorporeal)
 
@@ -173,24 +173,24 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /mob/living/carbon/human/bst/verb/bstquit()
 	set name = "Teleport out"
-	set desc = "Activate bluespace to leave and return to your original mob (if you have one)."
+	set desc = "Activate bluespace to leave and return to your original69ob (if you have one)."
 	set category = "BST"
 
 	src.suicide()
 
 /mob/living/carbon/human/bst/verb/tgm()
 	set name = "Toggle Godmode"
-	set desc = "Enable or disable god mode. For testing things that require you to be vulnerable."
+	set desc = "Enable or disable god69ode. For testing things that require you to be69ulnerable."
 	set category = "BST"
 
 	status_flags ^= GODMODE
-	to_chat(src, SPAN_NOTICE("God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
+	to_chat(src, SPAN_NOTICE("God69ode is now 69status_flags & GODMODE ? "enabled" : "disabled"69"))
 
-	to_chat(src, span("notice", "God mode is now [status_flags & GODMODE ? "enabled" : "disabled"]"))
+	to_chat(src, span("notice", "God69ode is now 69status_flags & GODMODE ? "enabled" : "disabled"69"))
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////I T E M S/////////////////////////////////////////////////////////
+/////////////////////////////////I T E69 S/////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 /obj/item/storage/backpack/holding/bst
@@ -209,7 +209,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
+		to_chat(usr, span("alert", "Your hand seems to go right through the 69src69. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -233,14 +233,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
+		to_chat(usr, span("alert", "Your hand seems to go right through the 69src69. It's like it doesn't exist."))
 		return
 	else
 		..()
 
 /obj/item/clothing/gloves/color/white/bst
 	name = "bluespace technician's gloves"
-	desc = "A pair of modified gloves. The letters 'BST' are stamped on the side."
+	desc = "A pair of69odified gloves. The letters 'BST' are stamped on the side."
 	siemens_coefficient = 0
 	permeability_coefficient = 0
 	spawn_frequency = 0
@@ -249,22 +249,22 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
+		to_chat(usr, span("alert", "Your hand seems to go right through the 69src69. It's like it doesn't exist."))
 		return
 	else
 		..()
 
 /obj/item/clothing/glasses/sunglasses/bst
 	name = "bluespace technician's glasses"
-	desc = "A pair of modified sunglasses. The word 'BST' is stamped on the side."
+	desc = "A pair of69odified sunglasses. The word 'BST' is stamped on the side."
 	vision_flags = (SEE_TURFS|SEE_OBJS|SEE_MOBS)
 	see_invisible = SEE_INVISIBLE_NOLIGHTING
 	flash_protection = FLASH_PROTECTION_MAJOR
 	spawn_frequency = 0
 
 /obj/item/clothing/glasses/sunglasses/bst/verb/toggle_xray(mode in list("X-Ray without Lighting", "X-Ray with Lighting", "Normal"))
-	set name = "Change Vision Mode"
-	set desc = "Changes your glasses' vision mode."
+	set name = "Change69ision69ode"
+	set desc = "Changes your glasses'69ision69ode."
 	set category = "BST"
 	set src in usr
 
@@ -279,13 +279,13 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 			vision_flags = FALSE
 			see_invisible = -1
 
-	to_chat(usr, "<span class='notice'>\The [src]'s vision mode is now <b>[mode]</b>.</span>")
+	to_chat(usr, "<span class='notice'>\The 69src69's69ision69ode is now <b>69mode69</b>.</span>")
 
 /obj/item/clothing/glasses/sunglasses/bst/attack_hand()
 	if(!usr)
 		return
 	if(!isbst(usr))
-		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
+		to_chat(usr, span("alert", "Your hand seems to go right through the 69src69. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -301,7 +301,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
+		to_chat(usr, span("alert", "Your hand seems to go right through the 69src69. It's like it doesn't exist."))
 		return
 	else
 		..()
@@ -310,7 +310,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 
 /obj/item/card/id/bst
 	icon_state = "centcom"
-	desc = "An ID straight from Hansa. This one looks as though its very existence is a trade secret."
+	desc = "An ID straight from Hansa. This one looks as though its69ery existence is a trade secret."
 	spawn_frequency = 0
 
 /obj/item/card/id/bst/Initialize(mapload)
@@ -321,7 +321,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_dev_bst, R_ADMIN|R_DEBUG, TRUE)
 	if(!usr)
 		return
 	if(!isbst(usr))
-		to_chat(usr, span("alert", "Your hand seems to go right through the [src]. It's like it doesn't exist."))
+		to_chat(usr, span("alert", "Your hand seems to go right through the 69src69. It's like it doesn't exist."))
 		return
 	else
 		..()

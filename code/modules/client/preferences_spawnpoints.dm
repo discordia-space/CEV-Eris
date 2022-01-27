@@ -10,7 +10,7 @@
 	if (!istype(LM))
 		return
 
-	//Spawnpoints are unique by name, try to find one with a matching name first
+	//Spawnpoints are unique by name, try to find one with a69atching name first
 	var/datum/spawnpoint/S = get_spawn_point(LM.name, late, silenced)
 
 	//If not, we create it
@@ -22,17 +22,17 @@
 			S.restrict_job = LM2.restrict_job
 			S.disallow_job = LM2.disallow_job
 			S.message = LM2.message
-		GLOB.late_spawntypes[S.name] = S
+		GLOB.late_spawntypes69S.name69 = S
 	S.points |= get_turf(LM) //Add the landmark's turf as a point of reference
 
 
 /proc/get_spawn_point(name, late = FALSE)
 	if(late)
-		if(GLOB.late_spawntypes[name])
-			return GLOB.late_spawntypes[name]
+		if(GLOB.late_spawntypes69name69)
+			return GLOB.late_spawntypes69name69
 
-	else if(GLOB.spawntypes[name])
-		return GLOB.spawntypes[name]
+	else if(GLOB.spawntypes69name69)
+		return GLOB.spawntypes69name69
 
 
 
@@ -42,17 +42,17 @@
 	var/error = FALSE
 	var/datum/spawnpoint/SP
 	if(late)
-		if(GLOB.late_spawntypes[name])
+		if(GLOB.late_spawntypes69name69)
 			error = TRUE
 		else
 			SP = new newtype(name)
-			GLOB.late_spawntypes[name] = SP
+			GLOB.late_spawntypes69name69 = SP
 	else
-		if(GLOB.spawntypes[name])
+		if(GLOB.spawntypes69name69)
 			error = TRUE
 		else
 			SP = new newtype(name)
-			GLOB.spawntypes[name] = SP
+			GLOB.spawntypes69name69 = SP
 	if(error)
 		error("Trying to create existing spawnpoint.")
 	return SP
@@ -72,7 +72,7 @@
 	var/list/points = list() //List of turfs or atoms that represent where this spawn point "is". We will look for spawning turfs in a radius around it
 	var/list/turfs = list() //List of turfs to spawn on.
 	var/display_name    //Name used in preference setup.
-	var/always_visible = FALSE	// Whether this spawn point is always visible in selection, ignoring map-specific settings.
+	var/always_visible = FALSE	// Whether this spawn point is always69isible in selection, ignoring69ap-specific settings.
 	var/list/restrict_job = null
 	var/list/disallow_job = null
 	var/search_range = 4
@@ -118,22 +118,22 @@
 	//if(airstatus || radlevel > 0)
 	if(airstatus)
 		/*var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
-		You may die shortly after spawning. \
-		Spawn anyway? More information: [airstatus] Radiation: [radlevel] Bq", "Atmosphere warning", "Abort", "Spawn anyway")
+		You69ay die shortly after spawning. \
+		Spawn anyway?69ore information: 69airstatus69 Radiation: 69radlevel69 Bq", "Atmosphere warning", "Abort", "Spawn anyway")
 		*/
 		if (!confirm)
 			return FALSE
 		var/reply = alert(spawner, "Warning. Your selected spawn location seems to have unfavorable conditions. \
-		You may die shortly after spawning. \
-		Spawn anyway? Alternatively you can be sent to a different random spawnpoint. More information: [airstatus]", "Atmosphere warning", "Elsewhere", "Spawn anyway")
+		You69ay die shortly after spawning. \
+		Spawn anyway? Alternatively you can be sent to a different random spawnpoint.69ore information: 69airstatus69", "Atmosphere warning", "Elsewhere", "Spawn anyway")
 		if(reply == "Elsewhere")
 			return FALSE
 		else
 			// Let the staff know, in case the person complains about dying due to this later. They've been warned.
-			log_and_message_admins("User [spawner] spawned at spawn point with dangerous atmosphere.")
+			log_and_message_admins("User 69spawner69 spawned at spawn point with dangerous atmosphere.")
 	return TRUE
 
-// Put mob at one of spawn turfs
+// Put69ob at one of spawn turfs
 // return FALSE if player decline to spawn in not living-friendly environmental
 /datum/spawnpoint/proc/put_mob(mob/M, ignore_environment = FALSE, announce = TRUE)
 	var/list/free_turfs = get_free_turfs()
@@ -146,7 +146,7 @@
 
 	M.forceMove(spawn_turf)
 
-	// Moving wheelchair if they have one
+	//69oving wheelchair if they have one
 	if(M.buckled && istype(M.buckled, /obj/structure/bed/chair/wheelchair))
 		M.buckled.forceMove(M.loc)
 		M.buckled.set_dir(M.dir)
@@ -194,12 +194,12 @@
 		var/obj/machinery/cryopod/C = pick(cryopods)
 		C.set_occupant(M, FALSE)
 
-		//When spawning in cryo, you start off asleep for a few moments and wake up
+		//When spawning in cryo, you start off asleep for a few69oments and wake up
 		M.Paralyse(2)
 
-		//You can get yourself out of the cryopod, or it will auto-eject after one minute
+		//You can get yourself out of the cryopod, or it will auto-eject after one69inute
 		spawn(600)
-			if (C && C.occupant == M)
+			if (C && C.occupant ==69)
 				C.eject() 
 		return TRUE
 	return FALSE
@@ -225,7 +225,7 @@
 		else if (search_type == "range")
 			things += range(search_range, P)
 
-	//We have to search specifically for padded subtype, because the main bed type is used for a lot of things, including chairs
+	//We have to search specifically for padded subtype, because the69ain bed type is used for a lot of things, including chairs
 	for (var/obj/structure/bed/padded/C in things)
 		if (C.buckled_mob)
 			continue
@@ -251,10 +251,10 @@
 		M.forceMove(C.loc)
 		C.buckle_mob(M)
 
-		//When spawning in bed, you start off asleep for a moment
+		//When spawning in bed, you start off asleep for a69oment
 		M.Paralyse(2)
 
-		//Once you wake up, you can get yourself out of bed. I've made it real easy, just click basically anything
+		//Once you wake up, you can get yourself out of bed. I've69ade it real easy, just click basically anything
 
 		return TRUE
 	return FALSE

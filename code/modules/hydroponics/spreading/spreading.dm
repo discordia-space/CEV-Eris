@@ -1,5 +1,5 @@
 #define DEFAULT_SEED "glowshroom"
-#define VINE_GROWTH_STAGES 5
+#define69INE_GROWTH_STAGES 5
 
 
 
@@ -43,7 +43,7 @@
 	var/spread_chance = 40
 	var/spread_distance = 3
 	var/evolve_chance = 2
-	var/mature_time		//minimum maturation time
+	var/mature_time		//minimum69aturation time
 	var/last_tick = 0
 	var/obj/machinery/portable_atmospherics/hydroponics/soil/invisible/plant
 	var/spray_cooldown = FALSE
@@ -63,7 +63,7 @@
 /obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
+/obj/effect/plant/New(var/newloc,69ar/datum/seed/newseed,69ar/obj/effect/plant/newparent)
 	..()
 
 	if(!newparent)
@@ -72,14 +72,14 @@
 		parent = newparent
 
 	if(!plant_controller)
-		sleep(250) // ugly hack, should mean roundstart plants are fine.
+		sleep(250) // ugly hack, should69ean roundstart plants are fine.
 	if(!plant_controller)
-		to_chat(world, SPAN_DANGER("Plant controller does not exist and [src] requires it. Aborting."))
+		to_chat(world, SPAN_DANGER("Plant controller does not exist and 69src69 requires it. Aborting."))
 		qdel(src)
 		return
 
 	if(!istype(newseed))
-		newseed = plant_controller.seeds[DEFAULT_SEED]
+		newseed = plant_controller.seeds69DEFAULT_SEED69
 	seed = newseed
 	if(!seed)
 		qdel(src)
@@ -89,12 +89,12 @@
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
 	if(seed.get_trait(TRAIT_SPREAD)>=2)
 		layer = LOW_OBJ_LAYER
-		max_growth = VINE_GROWTH_STAGES
-		growth_threshold = max_health/VINE_GROWTH_STAGES
+		max_growth =69INE_GROWTH_STAGES
+		growth_threshold =69ax_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
-		growth_type = 2 // Vines by default.
+		growth_type = 2 //69ines by default.
 		if(seed.type == /datum/seed/mushroom/maintshroom)
-			growth_type = 0 // this is maintshroom
+			growth_type = 0 // this is69aintshroom
 			density = FALSE
 			GLOB.all_maintshrooms += src
 		else if(seed.get_trait(TRAIT_CARNIVOROUS) == 2)
@@ -103,24 +103,24 @@
 			if(seed.seed_noun == "nodes")
 				growth_type = 3 // Biomass
 			else
-				growth_type = 4 // Mold
+				growth_type = 4 //69old
 
 		if (growth_type != 4 && !(seed.get_trait(TRAIT_WALL_HUGGER)))
-			//Random rotation for vines
-			//Disabled for mold because it looks bad
-			//0 is in here several times to weight it a bit more towards normal
+			//Random rotation for69ines
+			//Disabled for69old because it looks bad
+			//0 is in here several times to weight it a bit69ore towards normal
 			var/rot = pick(list(0,0,0, 90, 180, -90))
-			var/matrix/M = matrix()
+			var/matrix/M =69atrix()
 			M.Turn(rot)
-			transform = M
+			transform =69
 	else
 		max_growth = seed.growth_stages
-		growth_threshold = max_health/seed.growth_stages
+		growth_threshold =69ax_health/seed.growth_stages
 
 	if(max_growth > 2 && prob(50))
-		max_growth-- //Ensure some variation in final sprite, makes the carpet of crap look less wonky.
+		max_growth-- //Ensure some69ariation in final sprite,69akes the carpet of crap look less wonky.
 
-	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent vines from maturing until at least a few seconds after they've been created.
+	mature_time = world.time + seed.get_trait(TRAIT_MATURATION) + 15 //prevent69ines from69aturing until at least a few seconds after they've been created.
 	spread_chance = seed.get_trait(TRAIT_POTENCY)
 	spread_distance = ((growth_type>0) ? round(spread_chance) : round(spread_chance*0.5))
 	update_icon()
@@ -137,9 +137,9 @@
 		plant_controller.add_plant(src)
 
 		// Some plants eat through plating.
-		if(islist(seed.chems) && !isnull(seed.chems["pacid"]))
+		if(islist(seed.chems) && !isnull(seed.chems69"pacid"69))
 			var/turf/T = get_turf(src)
-			//Lets make acid plants not cause random breaches
+			//Lets69ake acid plants not cause random breaches
 
 			//Check for external tiles around it
 			for (var/turf/U in range(T, 2))
@@ -147,7 +147,7 @@
 					near_external = TRUE
 					break
 
-			//If we're not near to any external tiles, then we can melt stuff
+			//If we're not near to any external tiles, then we can69elt stuff
 			if (!near_external)
 				T.ex_act(prob(80) ? 3 : 2)
 
@@ -173,32 +173,32 @@
 		error("growth_threshold is somehow 0, probably never got redefined. Qdeling to prevent repeat logs")
 		qdel(src)
 		return
-	var/growth = max(1,min(max_growth,round(health/growth_threshold)))
+	var/growth =69ax(1,min(max_growth,round(health/growth_threshold)))
 	var/at_fringe = dist3D(src,parent)
 	if(spread_distance > 5)
 		if(at_fringe >= (spread_distance-3))
 			max_growth--
 		if(at_fringe >= (spread_distance-2))
 			max_growth--
-	max_growth = max(1,max_growth)
+	max_growth =69ax(1,max_growth)
 	if(growth_type > 0)
 		switch(growth_type)
 			if(1)
 				icon_state = "worms"
 			if(2)
-				icon_state = "vines-[growth]"
+				icon_state = "vines-69growth69"
 			if(3)
-				icon_state = "mass-[growth]"
+				icon_state = "mass-69growth69"
 			if(4)
-				icon_state = "mold-[growth]"
+				icon_state = "mold-69growth69"
 	else
-		icon_state = "[seed.get_trait(TRAIT_PLANT_ICON)]-[growth]"
+		icon_state = "69seed.get_trait(TRAIT_PLANT_ICON)69-69growth69"
 
-	if(growth>2 && growth == max_growth)
+	if(growth>2 && growth ==69ax_growth)
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
 		if(seed.type != /datum/seed/mushroom/maintshroom)
 			set_opacity(TRUE)
-		if(islist(seed.chems) && !isnull(seed.chems["woodpulp"]))
+		if(islist(seed.chems) && !isnull(seed.chems69"woodpulp"69))
 			density = TRUE
 	else
 		layer = (seed && seed.force_layer) ? seed.force_layer : 5
@@ -214,10 +214,10 @@ var/list/global/cutoff_plant_icons = list()
 		return icon //This is not unlikely
 
 	//We retrieve things from this global list first, used as a cache to prevent repeating this expensive icon work
-	if (cutoff_plant_icons[icon_base])
-		return cutoff_plant_icons[icon_base]
+	if (cutoff_plant_icons69icon_base69)
+		return cutoff_plant_icons69icon_base69
 
-	//Ok it doesnt exist yet, lets make it
+	//Ok it doesnt exist yet, lets69ake it
 
 	//First we need an empty icon to hold the finished result
 	var/icon/I = new()
@@ -225,16 +225,16 @@ var/list/global/cutoff_plant_icons = list()
 	//We will loop through each of the five iconstates of a plant
 	for (var/i = 1; i <= 5; i++)
 		//For each state, we create an icon containing only that state
-		var/icon/J = new(icon, "[icon_base]-[i]")
+		var/icon/J = new(icon, "69icon_base69-69i69")
 
 		//We blend the blank icon with it with an offset that will chop 12 pixels off the bottom
 		J.Blend(new /icon('icons/obj/hydroponics_vines.dmi', "blank"),ICON_MULTIPLY, y=WALL_HUG_OFFSET-31)
 
-		//Finally we'll insert this new icon into the container we made
-		I.Insert(J, "[icon_base]-[i]")
+		//Finally we'll insert this new icon into the container we69ade
+		I.Insert(J, "69icon_base69-69i69")
 
-	//We're done, it's made, now store it
-	cutoff_plant_icons[icon_base] = I
+	//We're done, it's69ade, now store it
+	cutoff_plant_icons69icon_base69 = I
 
 	//And return it so we can use it immediately
 	return I
@@ -275,8 +275,8 @@ var/list/global/cutoff_plant_icons = list()
 			newDir = 1
 		else
 			wall_mount = get_step(loc, newDir)
-			var/matrix/M = matrix()
-			// should make the plant flush against the wall it's meant to be growing from.
+			var/matrix/M =69atrix()
+			// should69ake the plant flush against the wall it's69eant to be growing from.
 
 			//M.Translate(0,offset)
 
@@ -285,11 +285,11 @@ var/list/global/cutoff_plant_icons = list()
 					M.Turn(90)
 				if(NORTH)
 					M.Turn(180)
-					offset_to(wall_mount, WALL_HUG_OFFSET*0.5) //Due to perspective, there's more space to the north
-					//So plants that hug a north wall will be offset 50% more
+					offset_to(wall_mount, WALL_HUG_OFFSET*0.5) //Due to perspective, there's69ore space to the north
+					//So plants that hug a north wall will be offset 50%69ore
 				if(EAST)
 					M.Turn(270)
-			src.transform = M
+			src.transform =69
 
 			if (newDir == SOUTH)
 				//Lets cutoff part of the plant
@@ -312,7 +312,7 @@ var/list/global/cutoff_plant_icons = list()
 		update_icon()
 
 /obj/effect/plant/proc/is_mature()
-	return (health >= (max_health*0.8) && world.time > mature_time)
+	return (health >= (max_health*0.8) && world.time >69ature_time)
 
 
 /obj/effect/plant/examine()

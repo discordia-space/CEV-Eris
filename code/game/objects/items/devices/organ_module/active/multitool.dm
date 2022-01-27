@@ -1,6 +1,6 @@
 /obj/item/organ_module/active/multitool
-	name = "multitool embed module"
-	desc = "An augment designed to hold multiple tools for swift deployment."
+	name = "multitool embed69odule"
+	desc = "An augment designed to hold69ultiple tools for swift deployment."
 	verb_name = "Deploy tool"
 	icon_state = "multitool"
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
@@ -23,17 +23,17 @@
 		if(I in items)
 			H.drop_from_inventory(I, src)
 			H.visible_message(
-				SPAN_WARNING("[H] retract \his [I] into [E]."),
-				SPAN_NOTICE("You retract your [I] into [E].")
+				SPAN_WARNING("69H69 retract \his 69I69 into 69E69."),
+				SPAN_NOTICE("You retract your 69I69 into 69E69.")
 			)
 		else
-			to_chat(H, SPAN_WARNING("You must drop [I] before tool can be extend."))
+			to_chat(H, SPAN_WARNING("You69ust drop 69I69 before tool can be extend."))
 	else
 		var/obj/item = input(H, "Select item for deploy") as null|anything in src
 		if(!item || !(src.loc in H.organs) || H.incapacitated())
 			return
-		if(H.equip_to_slot_if_possible(item, target_hand))
+		if(H.e69uip_to_slot_if_possible(item, target_hand))
 			H.visible_message(
-				SPAN_WARNING("[H] extend \his [item] from [E]."),
-				SPAN_NOTICE("You extend your [item] from [E].")
+				SPAN_WARNING("69H69 extend \his 69item69 from 69E69."),
+				SPAN_NOTICE("You extend your 69item69 from 69E69.")
 			)

@@ -21,7 +21,7 @@
 
 /obj/item/clothing/head/hardhat/visor
 	name = "visored hard hat"
-	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight and visor, which may protect eyes."
+	desc = "A piece of headgear used in dangerous working conditions to protect the head. Comes with a built-in flashlight and69isor, which69ay protect eyes."
 	icon_state = "hardhat_yellow_visor"
 	body_parts_covered = HEAD|FACE|EYES
 	flags_inv = HIDEEYES

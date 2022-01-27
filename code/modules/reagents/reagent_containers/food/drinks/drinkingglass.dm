@@ -1,5 +1,5 @@
 /obj/item/reagent_containers/food/drinks/drinkingglass
-	name = MATERIAL_GLASS
+	name =69ATERIAL_GLASS
 	desc = "Your standard drinking glass."
 	icon_state = "glass"
 	filling_states = "50;100"
@@ -19,7 +19,7 @@
 	morf_glass = FALSE
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/mug
-	name = "glass mug"
+	name = "glass69ug"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_mug"
 	volume = 30
@@ -55,14 +55,14 @@
 
 	if(reagents?.total_volume)
 		var/datum/reagent/R = reagents.get_master_reagent()
-		if(R.glass_unique_appearance && morf_glass)
+		if(R.glass_uni69ue_appearance &&69orf_glass)
 			if(R.glass_icon_state)
 				icon_state = R.glass_icon_state
 			else
 				icon_state = "glass_brown"
 
 			if(R.glass_name)
-				name = "glass of [R.glass_name]"
+				name = "glass of 69R.glass_name69"
 			else
 				name = "glass of.. what?"
 
@@ -77,7 +77,7 @@
 				center_of_mass = list("x"=16, "y"=10)
 
 		else
-			var/mutable_appearance/filling = mutable_appearance('icons/obj/reagentfillings.dmi', "[icon_state]-[get_filling_state()]")
+			var/mutable_appearance/filling =69utable_appearance('icons/obj/reagentfillings.dmi', "69icon_state69-69get_filling_state()69")
 			filling.color = reagents.get_color()
 			add_overlay(filling)
 

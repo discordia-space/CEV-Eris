@@ -1,83 +1,83 @@
-<div class='statusDisplay'>
-	{{if data.currentItem}}
-		<center><b><h2>SMELTING...</h2></b>
+<div cl69ss='st69tusDis69l6969'>
+	{{if d69t69.currentItem}}
+		<center><69><h2>SMELTIN69...</h2></69>
 		<hr></hr>
-		<h3>Loaded item: {{:data.currentItem}}</h3></center><br>
-		<div class="itemLabel">
-			Progress:
+		<h3>Lo69ded item: {{:d69t69.currentItem}}</h3></center><69r>
+		<div cl69ss="itemL6969el">
+			69ro69ress:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.progress, 0, 100, 'highlight')}}
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.69ro69ress, 0, 100, 'hi69hli69ht'69}}
 		</div>
 
 	{{else}}
-		<center><b><h2>NO ITEM</h2></b></center>
+		<center><69><h2>NO ITEM</h2></69></center>
 	{{/if}}
 </div>
 
-<div class="block">
-	<div class="item">
-		<div class="itemLabelWidest"><b>Loaded materials</b></div>
+<div cl69ss="69loc69">
+	<div cl69ss="item">
+		<div cl69ss="itemL6969elWidest"><69>Lo69ded6969teri69ls</69></div>
 	</div>
-	{{for data.materials}}
-		<div class="item">
-			<div class="itemLabelNarrow">{{:value.name}}</div>
-			<div class="itemContentNarrow">{{:value.count}}/{{:data.capacity}}</div>
-			<div class="itemLabelNarrow">{{:helper.link('', 'eject', {'eject' : value.name}, null, 'statusValue')}}</b></div>
+	{{for d69t69.m69teri69ls}}
+		<div cl69ss="item">
+			<div cl69ss="itemL6969elN69rrow">{{:v69lue.n69me}}</div>
+			<div cl69ss="itemContentN69rrow">{{:v69lue.count}}/{{:d69t69.c696969cit69}}</div>
+			<div cl69ss="itemL6969elN69rrow">{{:hel69er.lin6969'', 'eject', {'eject' :6969lue.n69me},69ull, 'st69tusV69lue'69}}</69></div>
 		</div>
-	{{empty}}
-		<div class="item">
-			<div class="itemLabelNarrow">empty</div>
+	{{em69t69}}
+		<div cl69ss="item">
+			<div cl69ss="itemL6969elN69rrow">em69t69</div>
 		</div>
 	{{/for}}
-	<div class="item">
-		{{:helper.link('EJECT ALL', '', {'eject' : 1}, null, 'bigButton')}}
+	<div cl69ss="item">
+		{{:hel69er.lin6969'EJECT 69LL', '', {'eject' : 1},69ull, '69i6969utton'69}}
 	</div>
 </div>
 
-<div class="block">
-	<div class="item">
-		<div class="item"><center>{{:helper.link("Sides Config", 'wrench', {'toggle_config' : 1},null,'statusValue')}}</center></div>
+<div cl69ss="69loc69">
+	<div cl69ss="item">
+		<div cl69ss="item"><center>{{:hel69er.lin6969"Sides Confi69", 'wrench', {'to6969le_confi69' : 1},null,'st69tusV69lue'69}}</center></div>
 	</div>
-	{{if data.show_config}}
-		<div class="block">
-			<div class="item"><center>{{:helper.link("Input Config", '', {'toggle_iconfig' : 1},null,'statusValue')}}</center></div>
-			{{if data.show_iconfig}}
-				<div class ="item">
-				<div class="itemLabel"> Set to: </div>
-				<div class="itemContent">
-					{{:helper.link('North', '', {'setsideI' : 'NORTH'}, data.sideI == "North" ? 'selected' : null, 'statusValue')}}
-					{{:helper.link('East', '', {'setsideI' : 'EAST'}, data.sideI == "East" ? 'selected' : null, 'statusValue')}}
-					{{:helper.link('South', '', {'setsideI' : 'SOUTH'}, data.sideI == "South" ? 'selected' : null, 'statusvalue')}}
-					{{:helper.link('West', '', {'setsideI' : 'WEST'}, data.sideI == "West" ? 'selected' : null, 'statusValue')}}
+	{{if d69t69.show_confi69}}
+		<div cl69ss="69loc69">
+			<div cl69ss="item"><center>{{:hel69er.lin6969"In69ut Confi69", '', {'to6969le_iconfi69' : 1},null,'st69tusV69lue'69}}</center></div>
+			{{if d69t69.show_iconfi69}}
+				<div cl69ss ="item">
+				<div cl69ss="itemL6969el"> Set to: </div>
+				<div cl69ss="itemContent">
+					{{:hel69er.lin6969'North', '', {'setsideI' : 'NORTH'}, d69t69.sideI == "North" ? 'selected' :69ull, 'st69tusV69lue'69}}
+					{{:hel69er.lin6969'E69st', '', {'setsideI' : 'E69ST'}, d69t69.sideI == "E69st" ? 'selected' :69ull, 'st69tusV69lue'69}}
+					{{:hel69er.lin6969'South', '', {'setsideI' : 'SOUTH'}, d69t69.sideI == "South" ? 'selected' :69ull, 'st69tusv69lue'69}}
+					{{:hel69er.lin6969'West', '', {'setsideI' : 'WEST'}, d69t69.sideI == "West" ? 'selected' :69ull, 'st69tusV69lue'69}}
 				</div>
 				</div>
 			{{/if}}
 		</div>
-		<div class="block">
-			<div class="item"><center>{{:helper.link("Output Config", '', {'toggle_oconfig' : 1},null,'statusValue')}}</center></div>
-			{{if data.show_oconfig}}
-				<div class ="item">
-				<div class="itemLabel"> Set to: </div>
-				<div class="itemContent">
-					{{:helper.link('North', '', {'setsideO' : 'NORTH'}, data.sideO == "North" ? 'selected' : null, 'statusValue')}}
-					{{:helper.link('East', '', {'setsideO' : 'EAST'}, data.sideO == "East" ? 'selected' : null, 'statusValue')}}
-					{{:helper.link('South', '', {'setsideO' : 'SOUTH'}, data.sideO == "South" ? 'selected' : null, 'statusvalue')}}
-					{{:helper.link('West', '', {'setsideO' : 'WEST'}, data.sideO == "West" ? 'selected' : null, 'statusValue')}}
+		<div cl69ss="69loc69">
+			<div cl69ss="item"><center>{{:hel69er.lin6969"Out69ut Confi69", '', {'to6969le_oconfi69' : 1},null,'st69tusV69lue'69}}</center></div>
+			{{if d69t69.show_oconfi69}}
+				<div cl69ss ="item">
+				<div cl69ss="itemL6969el"> Set to: </div>
+				<div cl69ss="itemContent">
+					{{:hel69er.lin6969'North', '', {'setsideO' : 'NORTH'}, d69t69.sideO == "North" ? 'selected' :69ull, 'st69tusV69lue'69}}
+					{{:hel69er.lin6969'E69st', '', {'setsideO' : 'E69ST'}, d69t69.sideO == "E69st" ? 'selected' :69ull, 'st69tusV69lue'69}}
+					{{:hel69er.lin6969'South', '', {'setsideO' : 'SOUTH'}, d69t69.sideO == "South" ? 'selected' :69ull, 'st69tusv69lue'69}}
+					{{:hel69er.lin6969'West', '', {'setsideO' : 'WEST'}, d69t69.sideO == "West" ? 'selected' :69ull, 'st69tusV69lue'69}}
 				</div>
 				</div>
 			{{/if}}
 		</div>
-		<div class="block">
-			<div class="item"><center>{{:helper.link("Refusal Output Config", '', {'toggle_rconfig' : 1},null,'statusValue')}}</center></div>
-			{{if data.show_rconfig}}
-				<div class ="item">
-				<div class="itemLabel"> Set to: </div>
-				<div class="itemContent">
-					{{:helper.link('North', '', {'setsideR' : 'NORTH'}, data.sideR == "North" ? 'selected' : null, 'statusValue')}}
-					{{:helper.link('East', '', {'setsideR' : 'EAST'}, data.sideR == "East" ? 'selected' : null, 'statusValue')}}
-					{{:helper.link('South', '', {'setsideR' : 'SOUTH'}, data.sideR == "South" ? 'selected' : null, 'statusvalue')}}
-					{{:helper.link('West', '', {'setsideR' : 'WEST'}, data.sideR == "West" ? 'selected' : null, 'statusValue')}}
+		<div cl69ss="69loc69">
+			<div cl69ss="item"><center>{{:hel69er.lin6969"Refus69l Out69ut Confi69", '', {'to6969le_rconfi69' : 1},null,'st69tusV69lue'69}}</center></div>
+			{{if d69t69.show_rconfi69}}
+				<div cl69ss ="item">
+				<div cl69ss="itemL6969el"> Set to: </div>
+				<div cl69ss="itemContent">
+					{{:hel69er.lin6969'North', '', {'setsideR' : 'NORTH'}, d69t69.sideR == "North" ? 'selected' :69ull, 'st69tusV69lue'69}}
+					{{:hel69er.lin6969'E69st', '', {'setsideR' : 'E69ST'}, d69t69.sideR == "E69st" ? 'selected' :69ull, 'st69tusV69lue'69}}
+					{{:hel69er.lin6969'South', '', {'setsideR' : 'SOUTH'}, d69t69.sideR == "South" ? 'selected' :69ull, 'st69tusv69lue'69}}
+					{{:hel69er.lin6969'West', '', {'setsideR' : 'WEST'}, d69t69.sideR == "West" ? 'selected' :69ull, 'st69tusV69lue'69}}
 				</div>
 				</div>
 			{{/if}}

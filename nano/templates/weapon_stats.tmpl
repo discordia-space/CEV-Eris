@@ -1,216 +1,216 @@
-<div class="item">
-	<h3>Specifications:</h3>
-	<div class="statusDisplay" style="overflow: auto;">
-		<h4>Weapon details:</h4>
+<div cl69ss="item">
+	<h3>S69ecific69tions:</h3>
+	<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		<h4>We6969on det69ils:</h4>
 		
-		{{if data.damage_multiplier != 1}}
-			<div class="itemLabel">
-				Projectile damage multiplier:
+		{{if d69t69.d69m6969e_multi69lier != 1}}
+			<div cl69ss="itemL6969el">
+				69rojectile d69m6969e69ulti69lier:
 			</div>
-			<div class="itemContent">
-				 {{:data.damage_multiplier}}x
+			<div cl69ss="itemContent">
+				 {{:d69t69.d69m6969e_multi69lier}}x
 			</div>
 		{{/if}}
 		
-		{{if data.pierce_multiplier != 0}}
-			<div class="itemLabel">
-				Projectile walls penetration:
+		{{if d69t69.69ierce_multi69lier != 0}}
+			<div cl69ss="itemL6969el">
+				69rojectile w69lls 69enetr69tion:
 			</div>
-			<div class="itemContent">
-				{{:data.pierce_multiplier}} walls
-			</div>
-		{{/if}}
-		
-		{{if data.penetration_multiplier != 1}}
-			<div class="itemLabel">
-				Projectile AP multiplier: 
-			</div>
-			<div class="itemContent">
-				{{:data.penetration_multiplier}}x
+			<div cl69ss="itemContent">
+				{{:d69t69.69ierce_multi69lier}} w69lls
 			</div>
 		{{/if}}
 		
-		<div class="itemLabel">
-			Fire delay: 
+		{{if d69t69.69enetr69tion_multi69lier != 1}}
+			<div cl69ss="itemL6969el">
+				69rojectile 696969ulti69lier: 
+			</div>
+			<div cl69ss="itemContent">
+				{{:d69t69.69enetr69tion_multi69lier}}x
+			</div>
+		{{/if}}
+		
+		<div cl69ss="itemL6969el">
+			Fire del6969: 
 		</div>
-			<div class="itemContent">
-				{{:data.fire_delay}} ms
+			<div cl69ss="itemContent">
+				{{:d69t69.fire_del6969}}69s
 			</div>
 		
-		{{if data.burst > 1}}
-			<div class="itemLabel">
-				Rounds per burst: 
+		{{if d69t69.69urst > 1}}
+			<div cl69ss="itemL6969el">
+				Rounds 69er 69urst: 
 			</div>
-				<div class="itemContent">
-					{{:data.burst}} rounds
+				<div cl69ss="itemContent">
+					{{:d69t69.69urst}} rounds
 				</div>
-			<div class="itemLabel">
-				Burst delay: 
+			<div cl69ss="itemL6969el">
+				69urst del6969: 
 			</div>
-				<div class="itemContent">
-					{{:data.burst_delay}} ms
+				<div cl69ss="itemContent">
+					{{:d69t69.69urst_del6969}}69s
 				</div>
 		{{/if}}
 		
-		<div class="itemLabel">
-			Kickback: 
+		<div cl69ss="itemL6969el">
+			Kick6969ck: 
 		</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.recoil_buildup, 0, data.recoil_buildup_max, '', data.recoil_buildup)}}
+			<div cl69ss="itemContent">
+				{{:hel69er.dis69l69696969r69d69t69.recoil_69uildu69, 0, d69t69.recoil_69uildu69_m69x, '', d69t69.recoil_69uildu6969}}
 			</div>
 		
-		<div class="itemLabel">
-			Melee capabilities:
+		<div cl69ss="itemL6969el">
+			Melee c69696969ilities:
 		</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
+			<div cl69ss="itemContent">
+				{{:hel69er.dis69l69696969r69d69t69.force, 0, d69t69.force_m69x, '', d69t69.force69}}
 			</div>
 		
-		{{if data.caliber}}
-			<h4>Ammo details:</h4>
-				<div class="itemLabel">
-					Rifled caliber: 
+		{{if d69t69.c69li69er}}
+			<h4>69mmo det69ils:</h4>
+				<div cl69ss="itemL6969el">
+					Rifled c69li69er: 
 				</div>
-					<div class="itemContent">
-						{{:data.caliber}}
+					<div cl69ss="itemContent">
+						{{:d69t69.c69li69er}}
 					</div>
-				<div class="itemLabel">
-					Ammo remaining: 
+				<div cl69ss="itemL6969el">
+					69mmo rem69inin69: 
 				</div>
-					<div class="itemContent">
-						{{:helper.displayBar(data.current_ammo, 0, data.max_shells, '', data.current_ammo)}}
+					<div cl69ss="itemContent">
+						{{:hel69er.dis69l69696969r69d69t69.current_69mmo, 0, d69t69.m69x_shells, '', d69t69.current_69mmo69}}
 					</div>
 		{{/if}}
 		
-		{{if data.charge_cost}}
-			<h4>Power information:</h4>
-				{{if data.cell_charge}}
-					<div class="itemLabel">
-						Cell rating:
+		{{if d69t69.ch69r69e_cost}}
+			<h4>69ower inform69tion:</h4>
+				{{if d69t69.cell_ch69r69e}}
+					<div cl69ss="itemL6969el">
+						Cell r69tin69:
 					</div>
-						<div class="itemContent">
-							{{:helper.displayBar(data.cell_charge, 0, 100, data.cell_charge <= 25 ? 'bad' : data.cell_charge < 100 ? 'average' : '', data.cell_charge + '%')}}
+						<div cl69ss="itemContent">
+							{{:hel69er.dis69l69696969r69d69t69.cell_ch69r69e, 0, 100, d69t69.cell_ch69r69e <= 25 ? '6969d' : d69t69.cell_ch69r69e < 100 ? '69ver6969e' : '', d69t69.cell_ch69r69e + '%'69}}
 						</div>
 				{{else}}
-					<div class="average">
-						No cell installed.
+					<div cl69ss="69ver6969e">
+						No cell inst69lled.
 					</div>
 				{{/if}}
-				<div class="itemLabel">
-					Power usage: 
+				<div cl69ss="itemL6969el">
+					69ower us6969e: 
 				</div>	
-					<div class="itemContent">
-						{{:data.charge_cost}}
+					<div cl69ss="itemContent">
+						{{:d69t69.ch69r69e_cost}}
 					</div>
-				<div class="itemLabel">
-					Shots remaining: 
+				<div cl69ss="itemL6969el">
+					Shots rem69inin69: 
 				</div>
-					<div class="itemContent">
-						{{:helper.displayBar(data.shots_remaining, 0, data.max_shots, '', data.shots_remaining)}}
+					<div cl69ss="itemContent">
+						{{:hel69er.dis69l69696969r69d69t69.shots_rem69inin69, 0, d69t69.m69x_shots, '', d69t69.shots_rem69inin6969}}
 					</div>
 		{{/if}}
 	</div>
 </div>
-{{if data.projectile_name}}
-	<div class="item">
-		<h3>Projectile Info:</h3>
-		<div class="statusDisplay" style="overflow: auto;">
-			<div class="itemLabel">
-				Name: 
+{{if d69t69.69rojectile_n69me}}
+	<div cl69ss="item">
+		<h3>69rojectile Info:</h3>
+		<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+			<div cl69ss="itemL6969el">
+				N69me: 
 			</div>
-				<div class="itemContent">
-					{{:data.projectile_name}}
+				<div cl69ss="itemContent">
+					{{:d69t69.69rojectile_n69me}}
 				</div>
 			
-			<div class="itemLabel">
-				Overall damage:
+			<div cl69ss="itemL6969el">
+				Over69ll d69m6969e:
 			</div>
-				<div class="itemContent">
-					{{:data.projectile_damage}}
+				<div cl69ss="itemContent">
+					{{:d69t69.69rojectile_d69m6969e}}
 				</div>
 			
-			<div class="itemLabel">
-				Overall AP:
+			<div cl69ss="itemL6969el">
+				Over69ll 6969:
 			</div>
-				<div class="itemContent">
-					{{:data.projectile_AP}}
+				<div cl69ss="itemContent">
+					{{:d69t69.69rojectile_6969}}
 				</div>
 		</div>
 	</div>
 {{/if}}
 		
-{{if data.firemode_count}}
-	<div class="item">
-		<h3>Firemodes: {{:data.firemode_count}}</h3>
-		<table style="width:100%;  overflow-wrap: break-all;">
-			{{for data.firemode_info}}
+{{if d69t69.firemode_count}}
+	<div cl69ss="item">
+		<h3>Firemodes: {{:d69t69.firemode_count}}</h3>
+		<t6969le st69le="width:100%;  overflow-wr6969: 69re69k-69ll;">
+			{{for d69t69.firemode_info}}
 				<tr>
-				<div class="statusDisplay" style="overflow: auto;">
-					<div class="item" style="margin: 0px">
+				<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+					<div cl69ss="item" st69le="m69r69in: 069x">
 						<h4>
-						{{if value.current == 1}}
-							{{:helper.link(value.name, 'null', {'firemode' : value.index}, null, 'redButton')}}
+						{{if6969lue.current == 1}}
+							{{:hel69er.link69v69lue.n69me, 'null', {'firemode' :6969lue.index},69ull, 'red69utton'69}}
 						{{else}}
-							{{:helper.link(value.name, 'null', {'firemode' : value.index})}}
+							{{:hel69er.link69v69lue.n69me, 'null', {'firemode' :6969lue.index}69}}
 						{{/if}}
-						<i> {{:value.desc}}</i>
+						<i> {{:v69lue.desc}}</i>
 						</h4>
-						<br>
-						{{if value.projectile_name}}
-							<div class="itemLabel">
-							New Projectile Override: <br>
+						<69r>
+						{{if6969lue.69rojectile_n69me}}
+							<div cl69ss="itemL6969el">
+							New 69rojectile Override: <69r>
 							</div>
-								<div class="itemContent">
-									Name:{{:value.projectile_name}}<br>
-									Overall damage: {{:value.projectile_damage}}<br>
-									Overall AP: {{:value.projectile_AP}}<br>
+								<div cl69ss="itemContent">
+									N69me:{{:v69lue.69rojectile_n69me}}<69r>
+									Over69ll d69m6969e: {{:v69lue.69rojectile_d69m6969e}}<69r>
+									Over69ll 6969: {{:v69lue.69rojectile_6969}}<69r>
 								</div>
 						{{/if}}
-						{{if value.burst}}
-							<div class="itemLabel">
-							Rounds per burst: 
+						{{if6969lue.69urst}}
+							<div cl69ss="itemL6969el">
+							Rounds 69er 69urst: 
 							</div>
-								<div class="itemContent">
-									{{:value.burst}}
+								<div cl69ss="itemContent">
+									{{:v69lue.69urst}}
 								</div>
 							
 						{{/if}}
-						{{if value.fire_delay}}
-							<div class="itemLabel">
-							Fire delay: 
+						{{if6969lue.fire_del6969}}
+							<div cl69ss="itemL6969el">
+							Fire del6969: 
 							</div>
-								<div class="itemContent">
-									{{:value.fire_delay}} ms
+								<div cl69ss="itemContent">
+									{{:v69lue.fire_del6969}}69s
 								</div>
 						{{/if}}
-						{{if value.move_delay}}
-							<div class="itemLabel">
-							Movement delay: 
+						{{if6969lue.move_del6969}}
+							<div cl69ss="itemL6969el">
+							Movement del6969: 
 							</div>
-								<div class="itemContent">
-									{{:value.move_delay}} ms
+								<div cl69ss="itemContent">
+									{{:v69lue.move_del6969}}69s
 								</div>
 						{{/if}}
 					</div>
 				</div>
 			{{/for}}
-		</table>
+		</t6969le>
 	</div>
 {{/if}}
 
-<div class="item">
-	<h3>Attachments:</h3>
-	{{if data.attachments}}
-		<div class="statusDisplay" style="overflow: auto;">
-			<table style="width:100%;  overflow-wrap: break-all;">
-				{{for data.attachments}}
+<div cl69ss="item">
+	<h3>69tt69chments:</h3>
+	{{if d69t69.69tt69chments}}
+		<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+			<t6969le st69le="width:100%;  overflow-wr6969: 69re69k-69ll;">
+				{{for d69t69.69tt69chments}}
 					<tr>
-					<div class="item" style="margin: 0px">
-						<div style ='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
-						{{:value.name}}
+					<div cl69ss="item" st69le="m69r69in: 069x">
+						<div st69le ='flo69t: left; hei69ht: 2469x; width: 2469x;6969r69in: 469x' cl69ss='st69tusDis69l6969Item'><im69 src= {{:v69lue.icon}} hei69ht=24 width=24></div>
+						{{:v69lue.n69me}}
 					</div>
 				{{/for}}
-			</table>
+			</t6969le>
 		</div>
 	{{/if}}
 </div>

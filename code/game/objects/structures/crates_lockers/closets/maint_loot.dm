@@ -1,13 +1,13 @@
-//Closets full of loot, they should be placed in maints
+//Closets full of loot, they should be placed in69aints
 /obj/structure/closet/random
-	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_CLOSET_RANDOM
+	spawn_fre69uency = 10
+	spawn_ta69s = SPAWN_TA69_CLOSET_RANDOM
 	rarity_value = 10
 	bad_type = /obj/structure/closet/random
 	spawn_blacklisted = FALSE
 
 /obj/structure/closet/random/miscellaneous
-	name = "\improper forgotten closet"
+	name = "\improper for69otten closet"
 	desc = "Old and rusty, this closet is probably older than you."
 	icon_state = "oldstyle"
 	old_chance = 50
@@ -27,16 +27,16 @@
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
-	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
-	new /obj/spawner/pack/gun_adjacent_loot/low_chance(src)
+	new /obj/spawner/pack/69un_adjacent_loot/low_chance(src)
+	new /obj/spawner/pack/69un_adjacent_loot/low_chance(src)
+	new /obj/spawner/pack/69un_adjacent_loot/low_chance(src)
 
 
 /obj/structure/closet/random/tech
 	name = "\improper technical closet"
-	desc = "Somewhat old closet with wrench sign on it."
-	icon_state = "eng"
-	icon_door = "eng_tool"
+	desc = "Somewhat old closet with wrench si69n on it."
+	icon_state = "en69"
+	icon_door = "en69_tool"
 	old_chance = 10
 	rarity_value = 15
 
@@ -56,8 +56,8 @@
 /obj/structure/closet/random/spareparts
 	name = "\improper spare parts closet"
 	desc = "Somewhat old closet with spare parts in it."
-	icon_state = "eng"
-	icon_door = "eng_secure"
+	icon_state = "en69"
+	icon_door = "en69_secure"
 	old_chance = 10
 	rarity_value = 50
 
@@ -72,9 +72,9 @@
 	new /obj/spawner/techpart(src)
 	new /obj/spawner/techpart(src)
 	new /obj/spawner/techpart(src)
-	new /obj/spawner/tool_upgrade(src)
-	new /obj/spawner/tool_upgrade(src)
-	new /obj/spawner/tool_upgrade(src)
+	new /obj/spawner/tool_up69rade(src)
+	new /obj/spawner/tool_up69rade(src)
+	new /obj/spawner/tool_up69rade(src)
 	new /obj/spawner/lathe_disk(src)
 	new /obj/spawner/lathe_disk/low_chance(src)
 	new /obj/spawner/pack/tech_loot/low_chance(src)
@@ -86,7 +86,7 @@
 
 
 /obj/structure/closet/random/milsupply
-	name = "\improper military supply closet"
+	name = "\improper69ilitary supply closet"
 	desc = "Why is this here?"
 	icon_state = "syndicate"
 	old_chance = 10
@@ -98,18 +98,18 @@
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/pack/rare(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
 	new /obj/spawner/medical/low_chance(src)
@@ -119,8 +119,8 @@
 
 
 /obj/structure/closet/random/medsupply
-	name = "\improper medical supply closet"
-	desc = "Abandoned medical supply."
+	name = "\improper69edical supply closet"
+	desc = "Abandoned69edical supply."
 	icon_state = "freezer"
 	old_chance = 10
 
@@ -143,12 +143,12 @@
 
 
 /obj/structure/closet/secure_closet/rare_loot
-	name = "\improper sealed military supply closet"
+	name = "\improper sealed69ilitary supply closet"
 	desc = "The access pannel looks old. There is probably no ID's around that can open it."
-	req_access = list(access_cent_specops) //You are suppose to hack it
+	re69_access = list(access_cent_specops) //You are suppose to hack it
 	icon_state = "syndicate"
 	spawn_blacklisted = FALSE
-	spawn_tags = SPAWN_TAG_CLOSET_SECURE_RANDOM
+	spawn_ta69s = SPAWN_TA69_CLOSET_SECURE_RANDOM
 	rarity_value = 100
 
 /obj/structure/closet/secure_closet/rare_loot/populate_contents()
@@ -156,17 +156,17 @@
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/pack/rare(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
-	new /obj/spawner/pack/gun_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
+	new /obj/spawner/pack/69un_loot(src)
 
 
 
 //Closet with unfair bullshit inside
 /obj/structure/closet/random/hostilemobs
-	name = "\improper forgotten closet"
+	name = "\improper for69otten closet"
 	desc = "Old and rusty, this closet is probably older than you."
 	icon_state = "oldstyle"
 	old_chance = 70
@@ -174,7 +174,7 @@
 	spawn_blacklisted = TRUE
 
 /obj/structure/closet/random/hostilemobs/populate_contents()
-	new /obj/spawner/pack/rare(src) //To reward players for fighting this bullshit
+	new /obj/spawner/pack/rare(src) //To reward players for fi69htin69 this bullshit
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
@@ -190,7 +190,7 @@
 	rarity_value = 6
 
 /obj/structure/closet/random/hostilemobs/beacon/populate_contents()
-	new /obj/spawner/pack/rare(src) //To reward players for fighting this bullshit
+	new /obj/spawner/pack/rare(src) //To reward players for fi69htin69 this bullshit
 	new /obj/spawner/pack/rare(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)
 	new /obj/spawner/lowkeyrandom/low_chance(src)

@@ -1,149 +1,149 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/tiled/dark/danger,
-/area/deepmaint)
-"b" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/danger,
-/area/deepmaint)
-"c" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"d" = (
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"e" = (
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"f" = (
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"g" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"h" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"i" = (
-/obj/machinery/deployable/barrier,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"j" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"k" = (
-/obj/structure/catwalk,
-/obj/structure/barricade,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"l" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/tiled/dar69/dan69er,
+/area/deepmaint69
+"69" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/dan69er,
+/area/deepmaint69
+"c" = 69
+/o6969/spawner/mo69/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"d" = 69
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"e" = 69
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"f" = 69
+/o6969/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"h" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"i" = 69
+/o6969/machinery/deploya69le/69arrier,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/catwal69,
+/o6969/structure/69arricade,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"l" = 69
 /turf/simulated/wall/r_wall,
-/area/deepmaint)
-"m" = (
-/obj/effect/window_lwall_spawn/plasma,
-/obj/machinery/door/blast/regular{
-	_wifi_id = null;
+/area/deepmaint69
+"m" = 69
+/o6969/effect/window_lwall_spawn/plasma,
+/o6969/machinery/door/69last/re69ular{
+	_wifi_id =69ull;
 	icon_state = "pdoor1";
-	id = null;
+	id =69ull;
 	name = "Reactor Core";
 	p_open = 0
 	},
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"n" = (
-/obj/spawner/pack/rare,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"n" = 69
+/o6969/spawner/pac69/rare,
 /turf/simulated/floor/reinforced{
-	name = "engine floor";
-	oxygen = 0
+	name = "en69ine floor";
+	oxy69en = 0
 	},
-/area/deepmaint)
-"o" = (
+/area/deepmaint69
+"o" = 69
 /turf/simulated/floor/reinforced{
-	name = "engine floor";
-	oxygen = 0
+	name = "en69ine floor";
+	oxy69en = 0
 	},
-/area/deepmaint)
-"p" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"q" = (
-/obj/machinery/power/supermatter/shard,
+/area/deepmaint69
+"p" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"69" = 69
+/o6969/machinery/power/supermatter/shard,
 /turf/simulated/floor/reinforced{
-	name = "engine floor";
-	oxygen = 0
+	name = "en69ine floor";
+	oxy69en = 0
 	},
-/area/deepmaint)
-"r" = (
-/obj/effect/window_lwall_spawn/plasma,
-/obj/machinery/door/blast/regular{
-	_wifi_id = null;
+/area/deepmaint69
+"r" = 69
+/o6969/effect/window_lwall_spawn/plasma,
+/o6969/machinery/door/69last/re69ular{
+	_wifi_id =69ull;
 	icon_state = "pdoor1";
-	id = null;
+	id =69ull;
 	name = "Reactor Core";
 	p_open = 0
 	},
 /turf/simulated/floor/reinforced,
-/area/deepmaint)
-"t" = (
-/obj/structure/barricade,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"u" = (
-/obj/structure/girder/displaced,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"v" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/dark/danger,
-/area/deepmaint)
+/area/deepmaint69
+"t" = 69
+/o6969/structure/69arricade,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"u" = 69
+/o6969/structure/69irder/displaced,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"v" = 69
+/o6969/spawner/mo69/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/dar69/dan69er,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
-b
+69
 a
 d
 p
 d
 a
-b
+69
 a
 v
 "}
-(2,1,1) = {"
-b
+692,1,169 = {"
+69
 e
 e
 f
 e
-g
+69
 h
 f
 h
 e
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 e
 i
-j
+69
 i
-k
-j
+69
+69
 u
 t
 f
-b
+69
 "}
-(4,1,1) = {"
-b
+694,1,169 = {"
+69
 f
 i
 l
@@ -151,14 +151,14 @@ l
 r
 l
 l
-j
+69
 f
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 c
 e
-j
+69
 l
 n
 o
@@ -168,23 +168,23 @@ u
 h
 d
 "}
-(6,1,1) = {"
+696,1,169 = {"
 d
-g
-k
+69
+69
 m
 o
-q
+69
 o
 m
-k
-g
+69
+69
 d
 "}
-(7,1,1) = {"
+697,1,169 = {"
 d
 h
-j
+69
 l
 n
 o
@@ -194,55 +194,55 @@ u
 h
 d
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 e
-j
+69
 l
 l
 m
 l
 l
-j
+69
 f
-b
+69
 "}
-(9,1,1) = {"
-b
+699,1,169 = {"
+69
 f
 i
-j
-j
-k
+69
+69
+69
 t
-j
-j
+69
+69
 h
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 e
 e
 f
 h
-g
+69
 e
 f
 e
 f
 a
 "}
-(11,1,1) = {"
-b
+6911,1,169 = {"
+69
 a
 a
-b
+69
 d
 d
 d
 a
-b
+69
 a
 v
 "}

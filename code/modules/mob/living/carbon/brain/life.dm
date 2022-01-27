@@ -5,9 +5,9 @@
 	if (radiation)
 		if (radiation > 100)
 			radiation = 100
-			if(!container)//If it's not in an MMI
+			if(!container)//If it's69ot in an69MI
 				to_chat(src, "\red You feel weak.")
-			else//Fluff-wise, since the brain can't detect anything itself, the MMI handles thing like that
+			else//Fluff-wise, since the brain can't detect anything itself, the69MI handles thing like that
 				to_chat(src, "\red STATUS: CRITICAL AMOUNTS OF RADIATION DETECTED.")
 
 		switch(radiation)
@@ -50,7 +50,7 @@
 	if(stat==2)
 		bodytemperature += 0.1*(environment.temperature - bodytemperature)*environment_heat_capacity/(environment_heat_capacity + 270000)
 
-	//Account for massive pressure differences
+	//Account for69assive pressure differences
 
 	return //TODO: DEFERRED
 
@@ -58,13 +58,13 @@
 	if(status_flags & GODMODE) return
 
 	if(exposed_temperature > bodytemperature)
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1)
+		var/discomfort =69in( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1)
 		//adjustFireLoss(2.5*discomfort)
 		//adjustFireLoss(5*discomfort)
 		adjustFireLoss(20*discomfort)
 
 	else
-		var/discomfort = min( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1)
+		var/discomfort =69in( abs(exposed_temperature - bodytemperature)*(exposed_intensity)/2000000, 1)
 		//adjustFireLoss(2.5*discomfort)
 		adjustFireLoss(5*discomfort)
 
@@ -79,14 +79,14 @@
 	metabolism_effects.process()
 
 	if(CE_PAINKILLER in chem_effects)
-		analgesic = chem_effects[CE_PAINKILLER]
+		analgesic = chem_effects69CE_PAINKILLER69
 
-	confused = max(0, confused - 1)
+	confused =69ax(0, confused - 1)
 	// decrement dizziness counter, clamped to 0
 	if(resting)
-		dizziness = max(0, dizziness - 5)
+		dizziness =69ax(0, dizziness - 5)
 	else
-		dizziness = max(0, dizziness - 1)
+		dizziness =69ax(0, dizziness - 1)
 
 	updatehealth()
 
@@ -105,15 +105,15 @@
 			silent = 0
 			return 1
 
-		//Handling EMP effect in the Life(), it's made VERY simply, and has some additional effects handled elsewhere
-		if(emp_damage)			//This is pretty much a damage type only used by MMIs, dished out by the emp_act
+		//Handling EMP effect in the Life(), it's69ade69ERY simply, and has some additional effects handled elsewhere
+		if(emp_damage)			//This is pretty69uch a damage type only used by69MIs, dished out by the emp_act
 			if(!(container && istype(container, /obj/item/device/mmi)))
 				emp_damage = 0
 			else
-				emp_damage = round(emp_damage,1)//Let's have some nice numbers to work with
+				emp_damage = round(emp_damage,1)//Let's have some69ice69umbers to work with
 			switch(emp_damage)
 				if(31 to INFINITY)
-					emp_damage = 30//Let's not overdo it
+					emp_damage = 30//Let's69ot overdo it
 				if(21 to 30)//High level of EMP damage, unable to see, hear, or speak
 					eye_blind = 1
 					blinded = TRUE
@@ -121,7 +121,7 @@
 					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
 						emote("alarm")
-						to_chat(src, "\red Major electrical distruption detected: System rebooting.")
+						to_chat(src, "\red69ajor electrical distruption detected: System rebooting.")
 						alert = 1
 					if(prob(75))
 						emp_damage -= 1
@@ -132,12 +132,12 @@
 					ear_deaf = 0
 					silent = 0
 					emp_damage -= 1
-				if(11 to 19)//Moderate level of EMP damage, resulting in nearsightedness and ear damage
+				if(11 to 19)//Moderate level of EMP damage, resulting in69earsightedness and ear damage
 					eye_blurry = 1
 					ear_damage = 1
 					if(!alert)
 						emote("alert")
-						to_chat(src, "\red Primary systems are now online.")
+						to_chat(src, "\red Primary systems are69ow online.")
 						alert = 1
 					if(prob(50))
 						emp_damage -= 1
@@ -149,7 +149,7 @@
 				if(2 to 9)//Low level of EMP damage, has few effects(handled elsewhere)
 					if(!alert)
 						emote("notice")
-						to_chat(src, "\red System reboot nearly complete.")
+						to_chat(src, "\red System reboot69early complete.")
 						alert = 1
 					if(prob(25))
 						emp_damage -= 1
@@ -218,7 +218,7 @@
 			else
 				blind.alpha = 0
 
-				if (disabilities & NEARSIGHTED)
+				if (disabilities &69EARSIGHTED)
 					client.screen += global_hud.vimpaired
 
 				if (eye_blurry)
@@ -228,7 +228,7 @@
 					client.screen += global_hud.druggy*/
 
 		if (machine)
-			if (!( machine.check_eye(src) ))
+			if (!(69achine.check_eye(src) ))
 				reset_view(null)
 		else
 			if(client && !client.adminobs)

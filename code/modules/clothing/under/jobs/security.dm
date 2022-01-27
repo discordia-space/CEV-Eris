@@ -9,7 +9,7 @@
  * Security
  */
 /obj/item/clothing/under/rank/warden
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for more robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
+	desc = "It's69ade of a slightly sturdier69aterial than standard jumpsuits, to allow for69ore robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
 	name = "Gunnery Sergeant jumpsuit"
 	icon_state = "warden"
 	item_state = "r_suit"
@@ -17,7 +17,7 @@
 
 /obj/item/clothing/under/rank/warden/skirt
 	name = "Gunnery Sergeant jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for more robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
+	desc = "It's69ade of a slightly sturdier69aterial than standard jumpskirts, to allow for69ore robust protection. It has the words \"Gunnery Sergeant\" written on the shoulders."
 	icon_state = "warden_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -29,32 +29,32 @@
 
 /obj/item/clothing/under/rank/security
 	name = "Ironhammer Operative's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection."
+	desc = "It's69ade of a slightly sturdier69aterial than standard jumpsuits, to allow for robust protection."
 	icon_state = "security"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/security/turtleneck
 	name = "Ironhammer Operative's turtleneck"
-	desc = "Military style turtleneck, made of a slightly sturdier material than standard jumpsuits, to allow for robust protection"
+	desc = "Military style turtleneck,69ade of a slightly sturdier69aterial than standard jumpsuits, to allow for robust protection"
 	icon_state = "securityrturtle"
 
 /obj/item/clothing/under/rank/security/skirt
 	name = "Ironhammer Operative's jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection."
+	desc = "It's69ade of a slightly sturdier69aterial than standard jumpskirts, to allow for robust protection."
 	icon_state = "security_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
 /obj/item/clothing/under/rank/medspec
 	name = "Medical Specialist's jumpsuit"
-	desc = "It's made of a slightly sturdier material than standard jumpsuits, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
+	desc = "It's69ade of a slightly sturdier69aterial than standard jumpsuits, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
 	icon_state = "medspec"
 	item_state = "ba_suit"
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/under/rank/medspec/skirt
 	name = "Medical Specialist's jumpskirt"
-	desc = "It's made of a slightly sturdier material than standard jumpskirts, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
+	desc = "It's69ade of a slightly sturdier69aterial than standard jumpskirts, to allow for robust protection. It has the words \"Medical Specialist\" written on the shoulders."
 	icon_state = "medspec_skirt"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 
@@ -78,7 +78,7 @@
 /obj/item/clothing/under/rank/det/black
 	icon_state = "detective3"
 	//item_state = "sl_suit"
-	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
+	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal69est."
 
 /obj/item/clothing/head/det
 	name = "fedora"
@@ -133,7 +133,7 @@
  */
 /obj/item/clothing/under/rank/cadet
 	name = "Ironhammer Cadet's jumpskirt"
-	desc = "A sailor's uniform used for cadets in training, though more frequently in acts of hazing."
+	desc = "A sailor's uniform used for cadets in training, though69ore frequently in acts of hazing."
 	icon_state = "cadet"
 	item_state = "cadet"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS

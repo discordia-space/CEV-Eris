@@ -21,7 +21,7 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
+/obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D,69ar/obj/item/device/D2,69ar/mob/user)
 	return
 
 /obj/item/device/assembly_holder/proc/process_activation(var/obj/item/device/D)
@@ -30,7 +30,7 @@
 /obj/item/device/assembly_holder/proc/detached()
 	return
 
-/obj/item/device/assembly_holder/attach(var/obj/item/device/assembly/D, var/obj/item/device/assembly/D2, var/mob/user)
+/obj/item/device/assembly_holder/attach(var/obj/item/device/assembly/D,69ar/obj/item/device/assembly/D2,69ar/mob/user)
 	if(!(D.is_attachable() || D.is_attachable()))
 		return FALSE
 	user.remove_from_mob(D)
@@ -41,7 +41,7 @@
 	D2.loc = src
 	left_assembly = D
 	right_assembly = D2
-	name = "[D.name]-[D2.name] assembly"
+	name = "69D.name69-69D2.name69 assembly"
 	update_icon()
 	user.put_in_hands(src)
 	return TRUE
@@ -50,13 +50,13 @@
 /obj/item/device/assembly_holder/update_icon()
 	overlays.Cut()
 	if(left_assembly)
-		overlays += "[left_assembly.icon_state]_left"
+		overlays += "69left_assembly.icon_state69_left"
 		for(var/O in left_assembly.attached_overlays)
-			overlays += "[O]_l"
+			overlays += "69O69_l"
 	if(right_assembly)
-		src.overlays += "[right_assembly.icon_state]_right"
+		src.overlays += "69right_assembly.icon_state69_right"
 		for(var/O in right_assembly.attached_overlays)
-			overlays += "[O]_r"
+			overlays += "69O69_r"
 	if(master)
 		master.update_icon()
 
@@ -65,33 +65,33 @@
 	..(user)
 	if(in_range(src, user) || src.loc == user)
 		if(src.secured)
-			to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+			to_chat(user, SPAN_NOTICE("\The 69src69 is ready!"))
 		else
-			to_chat(user, SPAN_NOTICE("\The [src] can be attached!"))
+			to_chat(user, SPAN_NOTICE("\The 69src69 can be attached!"))
 
 
-/obj/item/device/assembly_holder/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/assembly_holder/HasProximity(atom/movable/AM as69ob|obj)
 	if(left_assembly)
 		left_assembly.HasProximity(AM)
 	if(right_assembly)
 		right_assembly.HasProximity(AM)
 
 
-/obj/item/device/assembly_holder/Crossed(atom/movable/AM as mob|obj)
+/obj/item/device/assembly_holder/Crossed(atom/movable/AM as69ob|obj)
 	if(left_assembly)
 		left_assembly.Crossed(AM)
 	if(right_assembly)
 		right_assembly.Crossed(AM)
 
 
-/obj/item/device/assembly_holder/on_found(mob/finder as mob)
+/obj/item/device/assembly_holder/on_found(mob/finder as69ob)
 	if(left_assembly)
 		left_assembly.on_found(finder)
 	if(right_assembly)
 		right_assembly.on_found(finder)
 
 
-/obj/item/device/assembly_holder/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/device/assembly_holder/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	if(left_assembly && right_assembly)
 		left_assembly.holder_movement()
@@ -104,29 +104,29 @@
 	..()
 
 
-/obj/item/device/assembly_holder/attackby(obj/item/I, mob/user)
+/obj/item/device/assembly_holder/attackby(obj/item/I,69ob/user)
 	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
 			if(!left_assembly || !right_assembly)
-				to_chat(user, SPAN_WARNING("Assembly part missing!"))
+				to_chat(user, SPAN_WARNING("Assembly part69issing!"))
 				return
 			left_assembly.toggle_secure()
 			right_assembly.toggle_secure()
 			secured = !secured
 			if(secured)
-				to_chat(user, SPAN_NOTICE("\The [src] is ready!"))
+				to_chat(user, SPAN_NOTICE("\The 69src69 is ready!"))
 			else
-				to_chat(user, SPAN_NOTICE("\The [src] can now be taken apart!"))
+				to_chat(user, SPAN_NOTICE("\The 69src69 can now be taken apart!"))
 			update_icon()
 			return
 	..()
 
 
-/obj/item/device/assembly_holder/attack_self(mob/user as mob)
+/obj/item/device/assembly_holder/attack_self(mob/user as69ob)
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!left_assembly || !right_assembly)
-			to_chat(user, SPAN_WARNING("Assembly part missing!"))
+			to_chat(user, SPAN_WARNING("Assembly part69issing!"))
 			return
 		if(istype(left_assembly,right_assembly.type))//If they are the same type it causes issues due to window code
 			switch(alert("Which side would you like to use?",,"Left","Right"))
@@ -152,10 +152,10 @@
 	return
 
 
-/obj/item/device/assembly_holder/process_activation(var/obj/D, var/normal = 1, var/special = 1)
+/obj/item/device/assembly_holder/process_activation(var/obj/D,69ar/normal = 1,69ar/special = 1)
 	if(!D)	return 0
 	if(!secured)
-		visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+		visible_message("\icon69src69 *beep* *beep*", "*beep* *beep*")
 	if(normal && right_assembly && left_assembly)
 		if(right_assembly != D)
 			right_assembly.pulsed(0)
@@ -165,11 +165,11 @@
 		master.receive_signal()
 
 
-/obj/item/device/assembly_holder/hear_talk(mob/living/M as mob, msg, verb, datum/language/speaking, speech_volume)
+/obj/item/device/assembly_holder/hear_talk(mob/living/M as69ob,69sg,69erb, datum/language/speaking, speech_volume)
 	if(right_assembly)
-		right_assembly.hear_talk(M, msg, verb, speaking, speech_volume)
+		right_assembly.hear_talk(M,69sg,69erb, speaking, speech_volume)
 	if(left_assembly)
-		left_assembly.hear_talk(M, msg, verb, speaking, speech_volume)
+		left_assembly.hear_talk(M,69sg,69erb, speaking, speech_volume)
 
 
 
@@ -192,7 +192,7 @@
 	right_assembly = ign
 	secured = 1
 	update_icon()
-	name = initial(name) + " ([tmr.time] secs)"
+	name = initial(name) + " (69tmr.time69 secs)"
 
 	loc.verbs += /obj/item/device/assembly_holder/timer_igniter/verb/configure
 
@@ -223,9 +223,9 @@
 			var/ntime = input("Enter desired time in seconds", "Time", "5") as num
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
-				name = initial(name) + "([tmr.time] secs)"
-				to_chat(usr, SPAN_NOTICE("Timer set to [tmr.time] seconds."))
+				name = initial(name) + "(69tmr.time69 secs)"
+				to_chat(usr, SPAN_NOTICE("Timer set to 69tmr.time69 seconds."))
 			else
-				to_chat(usr, "<span class='notice'>Timer can't be [ntime<=0?"negative":"more than 1000 seconds"].</span>")
+				to_chat(usr, "<span class='notice'>Timer can't be 69ntime<=0?"negative":"more than 1000 seconds"69.</span>")
 	else
-		to_chat(usr, "<span class='notice'>You cannot do this while [usr.stat?"unconscious/dead":"restrained"].</span>")
+		to_chat(usr, "<span class='notice'>You cannot do this while 69usr.stat?"unconscious/dead":"restrained"69.</span>")

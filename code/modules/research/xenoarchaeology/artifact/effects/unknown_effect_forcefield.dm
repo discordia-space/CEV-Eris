@@ -9,7 +9,7 @@
 /datum/artifact_effect/forcefield/Destroy()
 	for(var/obj/effect/energy_field/F in created_field)
 		created_field.Remove(F)
-		qdel(F)
+		69del(F)
 	..()
 
 /datum/artifact_effect/forcefield/ToggleActivate()
@@ -17,11 +17,11 @@
 	if(created_field.len)
 		for(var/obj/effect/energy_field/F in created_field)
 			created_field.Remove(F)
-			qdel(F)
+			69del(F)
 	else if(holder)
 		var/turf/T = get_turf(holder)
 		while(created_field.len < 16)
-			var/obj/effect/energy_field/E = new (locate(T.x,T.y,T.z))
+			var/obj/effect/energy_field/E =69ew (locate(T.x,T.y,T.z))
 			created_field.Add(E)
 			E.strength = 1
 			E.density = TRUE
@@ -43,42 +43,42 @@
 	if(created_field.len && holder)
 		var/turf/T = get_turf(holder)
 		while(created_field.len < 16)
-			//for now, just instantly respawn the fields when they get destroyed
-			var/obj/effect/energy_field/E = new (locate(T.x,T.y,T))
+			//for69ow, just instantly respawn the fields when they get destroyed
+			var/obj/effect/energy_field/E =69ew (locate(T.x,T.y,T))
 			created_field.Add(E)
 			E.anchored = TRUE
 			E.density = TRUE
 			E.invisibility = 0
 
-		var/obj/effect/energy_field/E = created_field[1]
+		var/obj/effect/energy_field/E = created_field69169
 		E.forceMove(locate(T.x + 2,T.y + 2,T.z))
-		E = created_field[2]
+		E = created_field69269
 		E.forceMove(locate(T.x + 2,T.y + 1,T.z))
-		E = created_field[3]
+		E = created_field69369
 		E.forceMove(locate(T.x + 2,T.y,T.z))
-		E = created_field[4]
+		E = created_field69469
 		E.forceMove(locate(T.x + 2,T.y - 1,T.z))
-		E = created_field[5]
+		E = created_field69569
 		E.forceMove(locate(T.x + 2,T.y - 2,T.z))
-		E = created_field[6]
+		E = created_field69669
 		E.forceMove(locate(T.x + 1,T.y + 2,T.z))
-		E = created_field[7]
+		E = created_field69769
 		E.forceMove(locate(T.x + 1,T.y - 2,T.z))
-		E = created_field[8]
+		E = created_field69869
 		E.forceMove(locate(T.x,T.y + 2,T.z))
-		E = created_field[9]
+		E = created_field69969
 		E.forceMove(locate(T.x,T.y - 2,T.z))
-		E = created_field[10]
+		E = created_field691069
 		E.forceMove(locate(T.x - 1,T.y + 2,T.z))
-		E = created_field[11]
+		E = created_field691169
 		E.forceMove(locate(T.x - 1,T.y - 2,T.z))
-		E = created_field[12]
+		E = created_field691269
 		E.forceMove(locate(T.x - 2,T.y + 2,T.z))
-		E = created_field[13]
+		E = created_field691369
 		E.forceMove(locate(T.x - 2,T.y + 1,T.z))
-		E = created_field[14]
+		E = created_field691469
 		E.forceMove(locate(T.x - 2,T.y,T.z))
-		E = created_field[15]
+		E = created_field691569
 		E.forceMove(locate(T.x - 2,T.y - 1,T.z))
-		E = created_field[16]
+		E = created_field691669
 		E.forceMove(locate(T.x - 2,T.y - 2,T.z))

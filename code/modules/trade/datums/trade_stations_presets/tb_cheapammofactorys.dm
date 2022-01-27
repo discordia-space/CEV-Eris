@@ -2,7 +2,7 @@
 	spawn_always = TRUE
 	markup = 0.4
 	name_pool = list(
-		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus'\nCheap ammunition! Almost free! If we don't have it, that means it doesn't exists or it is illegal enough!",
+		"ATB 'Zeus'" = "Ammunition Trade Beacon 'Zeus'\nCheap ammunition! Almost free! If we don't have it, that69eans it doesn't exists or it is illegal enough!",
 		"AFTB 'Hispa'" = "Ammunition Factory Trade Beacon 'Hispa'\nAll ammunition in existence is here! Buy all calibers, all types! We don't sell anything illegal and everything comes from us! Cheap as breathing!",
 	)
 	assortiment = list(

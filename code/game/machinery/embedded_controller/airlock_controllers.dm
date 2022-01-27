@@ -2,34 +2,34 @@
 /obj/machinery/embedded_controller/radio/airlock
 	// Setup parameters only
 	radio_filter = RADIO_AIRLOCK
-	var/tag_exterior_door
-	var/tag_interior_door
-	var/tag_airpump
-	var/tag_chamber_sensor
-	var/tag_exterior_sensor
-	var/tag_interior_sensor
-	var/tag_airlock_mech_sensor
-	var/tag_shuttle_mech_sensor
-	var/tag_secure = 0
+	var/ta69_exterior_door
+	var/ta69_interior_door
+	var/ta69_airpump
+	var/ta69_chamber_sensor
+	var/ta69_exterior_sensor
+	var/ta69_interior_sensor
+	var/ta69_airlock_mech_sensor
+	var/ta69_shuttle_mech_sensor
+	var/ta69_secure = 0
 
 /obj/machinery/embedded_controller/radio/airlock/New()
 	. = ..()
-	program = new/datum/computer/file/embedded_program/airlock(src)
+	pro69ram = new/datum/computer/file/embedded_pro69ram/airlock(src)
 
-//Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
+//Advanced airlock controller for when you want a69ore69ersatile airlock controller - useful for turnin69 simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller
 	name = "Advanced Airlock Controller"
 
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
 	data = list(
-		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
-		"external_pressure" = round(program.memory["external_sensor_pressure"]),
-		"internal_pressure" = round(program.memory["internal_sensor_pressure"]),
-		"processing" = program.memory["processing"],
-		"purge" = program.memory["purge"],
-		"secure" = program.memory["secure"]
+		"chamber_pressure" = round(pro69ram.memory69"chamber_sensor_pressure"69),
+		"external_pressure" = round(pro69ram.memory69"external_sensor_pressure"69),
+		"internal_pressure" = round(pro69ram.memory69"internal_sensor_pressure"69),
+		"processin69" = pro69ram.memory69"processin69"69,
+		"pur69e" = pro69ram.memory69"pur69e"69,
+		"secure" = pro69ram.memory69"secure"69
 	)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -45,32 +45,32 @@
 		return
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	src.add_fin69erprint(usr)
 
 	var/clean = FALSE
-	switch(href_list["command"])
-		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "purge", "secure")
+	switch(href_list69"command"69)
+		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "pur69e", "secure")
 			clean = TRUE
 
 	if(clean)
-		program.receive_user_command(href_list["command"])
+		pro69ram.receive_user_command(href_list69"command"69)
 
 	return 1
 
 
-//Airlock controller for airlock control - most airlocks on the station use this
+//Airlock controller for airlock control -69ost airlocks on the station use this
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller
 	name = "Airlock Controller"
-	tag_secure = 1
+	ta69_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
 	data = list(
-		"chamber_pressure" = round(program.memory["chamber_sensor_pressure"]),
-		"exterior_status" = program.memory["exterior_status"],
-		"interior_status" = program.memory["interior_status"],
-		"processing" = program.memory["processing"],
+		"chamber_pressure" = round(pro69ram.memory69"chamber_sensor_pressure"69),
+		"exterior_status" = pro69ram.memory69"exterior_status"69,
+		"interior_status" = pro69ram.memory69"interior_status"69,
+		"processin69" = pro69ram.memory69"processin69"69,
 	)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -86,44 +86,44 @@
 		return
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	src.add_fin69erprint(usr)
 
 	var/clean = 0
-	switch(href_list["command"])
+	switch(href_list69"command"69)
 		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort")
 			clean = TRUE
 
 	if(clean)
-		program.receive_user_command(href_list["command"])
-	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
+		pro69ram.receive_user_command(href_list69"command"69)
+	playsound(loc, 'sound/machines/machine_switch.o6969', 100, 1)
 	return 1
 
 
-//Access controller for door control - used in virology and the like
+//Access controller for door control - used in69irolo69y and the like
 /obj/machinery/embedded_controller/radio/airlock/access_controller
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "access_control_standby"
 
 	name = "Access Controller"
-	tag_secure = 1
+	ta69_secure = 1
 
 
 /obj/machinery/embedded_controller/radio/airlock/access_controller/update_icon()
-	if(on && program)
-		if(program.memory["processing"])
+	if(on && pro69ram)
+		if(pro69ram.memory69"processin69"69)
 			icon_state = "access_control_process"
 		else
 			icon_state = "access_control_standby"
 	else
 		icon_state = "access_control_off"
 
-/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/airlock/access_controller/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
 	data = list(
-		"exterior_status" = program.memory["exterior_status"],
-		"interior_status" = program.memory["interior_status"],
-		"processing" = program.memory["processing"]
+		"exterior_status" = pro69ram.memory69"exterior_status"69,
+		"interior_status" = pro69ram.memory69"interior_status"69,
+		"processin69" = pro69ram.memory69"processin69"69
 	)
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
@@ -139,20 +139,20 @@
 		return
 
 	usr.set_machine(src)
-	src.add_fingerprint(usr)
+	src.add_fin69erprint(usr)
 
 	var/clean = FALSE
-	switch(href_list["command"])
+	switch(href_list69"command"69)
 		if("cycle_ext_door", "cycle_int_door")
 			clean = TRUE
 		if("force_ext")
-			if(program.memory["interior_status"]["state"] == "closed")
+			if(pro69ram.memory69"interior_status"6969"state"69 == "closed")
 				clean = TRUE
 		if("force_int")
-			if(program.memory["exterior_status"]["state"] == "closed")
+			if(pro69ram.memory69"exterior_status"6969"state"69 == "closed")
 				clean = TRUE
 
 	if(clean)
-		program.receive_user_command(href_list["command"])
-	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
+		pro69ram.receive_user_command(href_list69"command"69)
+	playsound(loc, 'sound/machines/machine_switch.o6969', 100, 1)
 	return 1

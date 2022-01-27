@@ -16,7 +16,7 @@ var/datum/uplink/uplink = new()
 			items -= item
 			continue
 
-		items_assoc[item.type] = item
+		items_assoc69item.type69 = item
 
 		for(var/datum/uplink_category/category in categories)
 			if(item.category == category.type)
@@ -35,7 +35,7 @@ var/datum/uplink/uplink = new()
 /datum/uplink_item/item
 	var/path = null
 
-/datum/uplink_item/proc/buy(obj/item/device/uplink/U, mob/user)
+/datum/uplink_item/proc/buy(obj/item/device/uplink/U,69ob/user)
 	var/extra_args = extra_args(user)
 	if(!extra_args)
 		return
@@ -65,7 +65,7 @@ var/datum/uplink/uplink = new()
 	return can_view(U)
 
 /datum/uplink_item/proc/can_view(obj/item/device/uplink/U)
-	// Making the assumption that if no uplink was supplied, then we don't care about antag roles
+	//69aking the assumption that if no uplink was supplied, then we don't care about antag roles
 	if(!U || !antag_roles.len)
 		return 1
 	if(!U.uplink_owner)
@@ -88,7 +88,7 @@ var/datum/uplink/uplink = new()
 
 /datum/uplink_item/proc/purchase_log(obj/item/device/uplink/U)
 
-	U.purchase_log[src] = U.purchase_log[src] + 1
+	U.purchase_log69src69 = U.purchase_log69src69 + 1
 
 datum/uplink_item/dd_SortValue()
 	return cost(INFINITY)
@@ -98,14 +98,14 @@ datum/uplink_item/dd_SortValue()
 *	Physical Uplink Entries		*
 *                           	*
 ********************************/
-/datum/uplink_item/item/buy(obj/item/device/uplink/U, mob/user)
+/datum/uplink_item/item/buy(obj/item/device/uplink/U,69ob/user)
 	var/obj/item/I = ..()
 	if(!I)
 		return
 
 	if(istype(I, /list))
 		var/list/L = I
-		if(L.len) I = L[1]
+		if(L.len) I = L69169
 
 	if(istype(I))
 		user.put_in_hands(I)
@@ -128,7 +128,7 @@ datum/uplink_item/dd_SortValue()
 
 /datum/uplink_item/item/log_icon()
 	var/obj/I = path
-	return "\icon[I]"
+	return "\icon69I69"
 
 /********************************
 *                           	*
@@ -140,7 +140,7 @@ var/image/default_abstract_uplink_icon
 	if(!default_abstract_uplink_icon)
 		default_abstract_uplink_icon = image('icons/obj/pda.dmi', "pda-syn")
 
-	return "\icon[default_abstract_uplink_icon]"
+	return "\icon69default_abstract_uplink_icon69"
 
 /****************
 * Support procs *

@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(processing)
 	var/times_fired = src.times_fired
 
 	while(current_run.len)
-		var/datum/thing = current_run[1]
+		var/datum/thing = current_run69169
 		current_run.Cut(1, 2)
 		if(QDELETED(thing) || (call(thing, process_proc)(wait, times_fired, src) == PROCESS_KILL))
 			if(thing)
@@ -45,9 +45,9 @@ SUBSYSTEM_DEF(processing)
 		debug_original_process_proc	= process_proc
 		process_proc = /datum/proc/DebugSubsystemProcess
 
-	to_chat(usr, "[name] - Debug mode [debug_original_process_proc ? "en" : "dis"]abled")
+	to_chat(usr, "69name69 - Debug69ode 69debug_original_process_proc ? "en" : "dis"69abled")
 
-/datum/proc/DebugSubsystemProcess(var/wait, var/times_fired, var/datum/controller/subsystem/processing/subsystem)
+/datum/proc/DebugSubsystemProcess(var/wait,69ar/times_fired,69ar/datum/controller/subsystem/processing/subsystem)
 	subsystem.debug_last_thing = src
 	var/start_tick = world.time
 	var/start_tick_usage = world.tick_usage
@@ -56,6 +56,6 @@ SUBSYSTEM_DEF(processing)
 	var/tick_time = world.time - start_tick
 	var/tick_use_limit = world.tick_usage - start_tick_usage - 100 // Current tick use - starting tick use - 100% (a full tick excess)
 	if(tick_time > 0)
-		crash_with("[log_info_line(subsystem.debug_last_thing)] slept during processing. Spent [tick_time] tick\s.")
+		crash_with("69log_info_line(subsystem.debug_last_thing)69 slept during processing. Spent 69tick_time69 tick\s.")
 	if(tick_use_limit > 0)
-		crash_with("[log_info_line(subsystem.debug_last_thing)] took longer than a tick to process. Exceeded with [tick_use_limit]%")
+		crash_with("69log_info_line(subsystem.debug_last_thing)69 took longer than a tick to process. Exceeded with 69tick_use_limit69%")

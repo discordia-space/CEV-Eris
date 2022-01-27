@@ -19,7 +19,7 @@
 	name = "Grenades and Thrown Objects"
 
 /datum/uplink_category/visible_weapons
-	name = "Highly Visible and Dangerous Weapons"
+	name = "Highly69isible and Dangerous Weapons"
 
 /datum/uplink_category/stealthy_weapons
 	name = "Stealthy and Inconspicuous Weapons"
@@ -37,7 +37,7 @@
 	name = "Medical"
 
 /datum/uplink_category/hardsuit_modules
-	name = "Hardsuit Modules"
+	name = "Hardsuit69odules"
 
 /datum/uplink_category/services
 	name = "Services"

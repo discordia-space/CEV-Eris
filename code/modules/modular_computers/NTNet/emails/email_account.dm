@@ -28,9 +28,9 @@
 /datum/computer_file/data/email_account/proc/all_emails()
 	return (inbox | spam | deleted | outbox)
 
-/datum/computer_file/data/email_account/proc/send_mail(var/recipient_address, var/datum/computer_file/data/email_message/message, var/relayed = 0)
+/datum/computer_file/data/email_account/proc/send_mail(var/recipient_address,69ar/datum/computer_file/data/email_message/message,69ar/relayed = 0)
 	var/datum/computer_file/data/email_account/recipient
-	for(var/datum/computer_file/data/email_account/account in ntnet_global.email_accounts)
+	for(var/datum/computer_file/data/email_account/account in69tnet_global.email_accounts)
 		if(account.login == recipient_address)
 			recipient = account
 			break
@@ -42,15 +42,15 @@
 		return
 
 	outbox.Add(message)
-	ntnet_global.add_log_with_ids_check("EMAIL LOG: [login] -> [recipient.login] title: [message.title].")
+	ntnet_global.add_log_with_ids_check("EMAIL LOG: 69login69 -> 69recipient.login69 title: 69message.title69.")
 	return 1
 
-/datum/computer_file/data/email_account/proc/receive_mail(var/datum/computer_file/data/email_message/received_message, var/relayed)
+/datum/computer_file/data/email_account/proc/receive_mail(var/datum/computer_file/data/email_message/received_message,69ar/relayed)
 	received_message.set_timestamp()
 	if(!ntnet_global.intrusion_detection_enabled)
 		inbox.Add(received_message)
 		return 1
-	// Spam filters may occassionally let something through, or mark something as spam that isn't spam.
+	// Spam filters69ay occassionally let something through, or69ark something as spam that isn't spam.
 	var/mark_spam = FALSE
 	if(received_message.spam)
 		if(prob(98))
@@ -70,24 +70,24 @@
 
 	return 1
 
-// Address namespace (@internal-services.net) for email addresses with special purpose only!.
+// Address69amespace (@internal-services.net) for email addresses with special purpose only!.
 /datum/computer_file/data/email_account/service/
 	can_login = FALSE
 
 /datum/computer_file/data/email_account/service/broadcaster/
 	login = EMAIL_BROADCAST
 
-/datum/computer_file/data/email_account/service/broadcaster/receive_mail(var/datum/computer_file/data/email_message/received_message, var/relayed)
+/datum/computer_file/data/email_account/service/broadcaster/receive_mail(var/datum/computer_file/data/email_message/received_message,69ar/relayed)
 	if(!istype(received_message) || relayed)
 		return 0
 	// Possibly exploitable for user spamming so keep admins informed.
 	if(!received_message.spam)
-		log_and_message_admins("Broadcast email address used by [usr]. Message title: [received_message.title].")
+		log_and_message_admins("Broadcast email address used by 69usr69.69essage title: 69received_message.title69.")
 
 	spawn(0)
-		for(var/datum/computer_file/data/email_account/email_account in ntnet_global.email_accounts)
+		for(var/datum/computer_file/data/email_account/email_account in69tnet_global.email_accounts)
 			var/datum/computer_file/data/email_message/new_message = received_message.clone()
-			send_mail(email_account.login, new_message, 1)
+			send_mail(email_account.login,69ew_message, 1)
 			sleep(2)
 
 	return 1

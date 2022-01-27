@@ -8,7 +8,7 @@
 	icon_state = "spider_core"
 
 	health = 60
-	maxHealth = 60 //Same as post nerf blitz hp
+	maxHealth = 60 //Same as post69erf blitz hp
 
 	speed = -1
 	see_in_dark = 8
@@ -23,7 +23,7 @@
 	hunger_enabled = FALSE
 	pass_flags = PASSTABLE
 	universal_understand = 1
-	density = TRUE //Should be 0, but then these things would be a nightmare to kill.
+	density = TRUE //Should be 0, but then these things would be a69ightmare to kill.
 	faction = "spiders"
 
 /mob/living/simple_animal/spider_core/New()
@@ -33,24 +33,24 @@
 	verbs |= /mob/living/simple_animal/spider_core/proc/generate_body
 
 /mob/living/simple_animal/spider_core/death()
-	gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
+	gibs(loc,69ull, /obj/effect/gibspawner/generic, "#666600", "#666600")
 	qdel(src)
 	
 
 /mob/living/simple_animal/spider_core/proc/generate_body()
-	set name = "Build a Body"
-	set desc = "Build a new body for you to inhabit."
+	set69ame = "Build a Body"
+	set desc = "Build a69ew body for you to inhabit."
 	set category = "Abilities"
 
 	to_chat(src, SPAN_NOTICE("You start building a body"))
 
-	if(!do_after(src, 1 MINUTES, src))
-		to_chat(src, SPAN_NOTICE("The new body is not ready yet, it takes a minute to make one. You have to stand still."))
+	if(!do_after(src, 169INUTES, src))
+		to_chat(src, SPAN_NOTICE("The69ew body is69ot ready yet, it takes a69inute to69ake one. You have to stand still."))
 		return
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(loc)
-	visible_message(SPAN_DANGER("[src] morphs into a human body!"))
-	gibs(loc, null)
+	var/mob/living/carbon/human/H =69ew /mob/living/carbon/human(loc)
+	visible_message(SPAN_DANGER("69src6969orphs into a human body!"))
+	gibs(loc,69ull)
 	var/obj/item/organ/internal/carrion/core/core = locate(/obj/item/organ/internal/carrion/core) in contents
 	
 	var/list/powers_to_buy = list()
@@ -69,9 +69,9 @@
 		core.purchasedpowers.Cut()
 		if(!powerinstances.len)
 			for(var/P in powers)
-				powerinstances += new P()
+				powerinstances +=69ew P()
 
-		var/obj/item/organ/external/chest/chest = H.get_organ(BP_CHEST) // get_organ with no arguments defaults to BP_CHEST, but it makes it less readable
+		var/obj/item/organ/external/chest/chest = H.get_organ(BP_CHEST) // get_organ with69o arguments defaults to BP_CHEST, but it69akes it less readable
 		core.replaced(chest)
 		for(var/item in core.active_spiders)
 			var/obj/item/implant/carrion_spider/CS = item
@@ -82,6 +82,6 @@
 		for(var/CP in powers_to_buy)
 			core.purchasePower(CP, TRUE)
 
-		core.associated_spider = null
+		core.associated_spider =69ull
 
 	qdel(src)

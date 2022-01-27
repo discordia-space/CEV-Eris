@@ -13,7 +13,7 @@
 /obj/effect/spawner/maintshroom/proc/spawn_shroom()
 	// Skip the spawning if the burrow is in a well lit places.
 	var/turf/T = get_turf(src)
-	if(T.get_lumcount() > min_light_limit)
+	if(T.get_lumcount() >69in_light_limit)
 		return
 
 	new /obj/effect/plant(get_turf(src), new /datum/seed/mushroom/maintshroom)
@@ -23,10 +23,10 @@
 	.=..()
 	if (instant)
 		spawn_shroom()
-		return INITIALIZE_HINT_QDEL
+		return INITIALIZE_HINT_69DEL
 
-//New maintshroom spawner
-//Delay on spawning. The object may wait up to 2 hours before spawning the shrooms
+//New69aintshroom spawner
+//Delay on spawning. The object69ay wait up to 2 hours before spawning the shrooms
 /obj/effect/spawner/maintshroom/delayed
 	name = "maintshroom spawner delayed"
 	var/delaymax = 3 HOURS
@@ -52,9 +52,9 @@
 
 	// Skip the spawning if the burrow is in a well lit places.
 	var/turf/T = get_turf(B)
-	if(T.get_lumcount() > min_light_limit)
+	if(T.get_lumcount() >69in_light_limit)
 		return
 
 	new /obj/effect/plant(get_turf(B), new /datum/seed/mushroom/maintshroom)
 
-	qdel(src)
+	69del(src)

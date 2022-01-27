@@ -46,7 +46,7 @@
 	icon_state = "gamble_preview"
 	New()
 		material = get_material_by_name(MATERIAL_WOOD)
-		custom_appearance = custom_table_appearance["Gambling"] //gambling carpet
+		custom_appearance = custom_table_appearance69"Gambling"69 //gambling carpet
 		..()
 
 /obj/structure/table/glass
@@ -69,7 +69,7 @@
 	icon_state = "holo_preview"
 	color = "#EEEEEE"
 	New()
-		material = get_material_by_name("holo[MATERIAL_PLASTIC]")
+		material = get_material_by_name("holo69MATERIAL_PLASTI6969")
 		..()
 
 /obj/structure/table/holo_woodentable
@@ -82,7 +82,7 @@
 	icon_state = "bar_table_preview"
 	New()
 		material = get_material_by_name(MATERIAL_STEEL)
-		custom_appearance = custom_table_appearance["Bar - special"] //bar table
+		custom_appearance = custom_table_appearance69"Bar - special6969 //bar table
 		reinforced = get_material_by_name(MATERIAL_STEEL)
 		..()
 
@@ -90,7 +90,7 @@
 	icon_state = "onestar_preview"
 	New()
 		material = get_material_by_name(MATERIAL_STEEL)
-		custom_appearance = custom_table_appearance["OneStar"] //one star table
+		custom_appearance = custom_table_appearance69"OneStar6969 //one star table
 		reinforced = get_material_by_name(MATERIAL_STEEL)
 		name = "one star table"
 		..()

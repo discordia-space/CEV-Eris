@@ -13,11 +13,11 @@
 	robot = null
 	. = ..()
 
-// Use power while moving.
+// Use power while69oving.
 /datum/movement_handler/robot/use_power/DoMove()
 	var/datum/robot_component/actuator/A = robot.get_component("actuator")
 	if(!robot.cell_use_power(A.active_usage))
-		return MOVEMENT_HANDLED
+		return69OVEMENT_HANDLED
 
 /datum/movement_handler/robot/use_power/MayMove()
-	return robot.is_component_functioning("actuator") ? MOVEMENT_PROCEED : MOVEMENT_STOP
+	return robot.is_component_functioning("actuator") ?69OVEMENT_PROCEED :69OVEMENT_STOP

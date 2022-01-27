@@ -44,7 +44,7 @@
 /obj/machinery/compressor/New()
 	..()
 
-	gas_contained = new
+	gas_contained =69ew
 	inturf = get_step(src, dir)
 
 	spawn(5)
@@ -75,10 +75,10 @@
 	var/datum/gas_mixture/removed = inturf.remove_air(transfer_moles)
 	gas_contained.merge(removed)
 
-	rpm = max(0, rpm - (rpm*rpm)/COMPFRICTION)
+	rpm =69ax(0, rpm - (rpm*rpm)/COMPFRICTION)
 
 
-	if(starter && !(stat & NOPOWER))
+	if(starter && !(stat &69OPOWER))
 		use_power(2800)
 		if(rpm<1000)
 			rpmtarget = 1000
@@ -130,13 +130,13 @@
 
 	add_avail(lastgen)
 	var/newrpm = ((compressor.gas_contained.temperature) * compressor.gas_contained.total_moles)/4
-	newrpm = max(0, newrpm)
+	newrpm =69ax(0,69ewrpm)
 
-	if(!compressor.starter || newrpm > 1000)
-		compressor.rpmtarget = newrpm
+	if(!compressor.starter ||69ewrpm > 1000)
+		compressor.rpmtarget =69ewrpm
 
 	if(compressor.gas_contained.total_moles>0)
-		var/oamount = min(compressor.gas_contained.total_moles, (compressor.rpm+100)/35000*compressor.capacity)
+		var/oamount =69in(compressor.gas_contained.total_moles, (compressor.rpm+100)/35000*compressor.capacity)
 		var/datum/gas_mixture/removed = compressor.gas_contained.remove(oamount)
 		outturf.assume_air(removed)
 
@@ -144,15 +144,15 @@
 		overlays += image('icons/obj/pipes.dmi', "turb-o", FLY_LAYER)
 
 
-	for(var/mob/M in viewers(1, src))
-		if ((M.client && M.machine == src))
+	for(var/mob/M in69iewers(1, src))
+		if ((M.client &&69.machine == src))
 			src.interact(M)
 	AutoUpdateAI(src)
 
 /obj/machinery/power/turbine/interact(mob/user)
 
 	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!isAI(user)) )
-		user.machine = null
+		user.machine =69ull
 		user << browse(null, "window=turbine")
 		return
 
@@ -160,13 +160,13 @@
 
 	var/t = "<TT><B>Gas Turbine Generator</B><HR><PRE>"
 
-	t += "Generated power : [round(lastgen)] W<BR><BR>"
+	t += "Generated power : 69round(lastgen)69 W<BR><BR>"
 
-	t += "Turbine: [round(compressor.rpm)] RPM<BR>"
+	t += "Turbine: 69round(compressor.rpm)69 RPM<BR>"
 
-	t += "Starter: [ compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]"
+	t += "Starter: 69 compressor.starter ? "<A href='?src=\ref69src69;str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref69src69;str=1'>On</A>"69"
 
-	t += "</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "</PRE><HR><A href='?src=\ref69src69;close=1'>Close</A>"
 
 	t += "</TT>"
 	user << browse(t, "window=turbine")
@@ -183,22 +183,22 @@
 	if(!usr.IsAdvancedToolUser())
 		return
 	if(get_dist(src, usr) <= 1 || isAI(usr))
-		if( href_list["close"] )
+		if( href_list69"close"69 )
 			usr << browse(null, "window=turbine")
-			usr.machine = null
+			usr.machine =69ull
 			return
 
-		else if( href_list["str"] )
+		else if( href_list69"str"69 )
 			compressor.starter = !compressor.starter
 
 		spawn(0)
-			for(var/mob/M in viewers(1, src))
-				if ((M.client && M.machine == src))
+			for(var/mob/M in69iewers(1, src))
+				if ((M.client &&69.machine == src))
 					src.interact(M)
 
 	else
 		usr << browse(null, "window=turbine")
-		usr.machine = null
+		usr.machine =69ull
 
 	return
 
@@ -217,25 +217,25 @@
 		for(var/obj/machinery/compressor/C in GLOB.machines)
 			if(id == C.comp_id)
 				compressor = C
-		doors = new /list()
+		doors =69ew /list()
 		for(var/obj/machinery/door/blast/P in GLOB.all_doors)
 			if(P.id == id)
 				doors += P
 
 
-/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as mob)
+/obj/machinery/computer/turbine_computer/attack_hand(var/mob/user as69ob)
 	user.machine = src
 	var/dat
 	if(src.compressor)
 		dat += {"<BR><B>Gas turbine remote control system</B><HR>
-		\nTurbine status: [ src.compressor.starter ? "<A href='?src=\ref[src];str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref[src];str=1'>On</A>"]
+		\nTurbine status: 69 src.compressor.starter ? "<A href='?src=\ref69src69;str=1'>Off</A> <B>On</B>" : "<B>Off</B> <A href='?src=\ref69src69;str=1'>On</A>"69
 		\n<BR>
-		\nTurbine speed: [src.compressor.rpm]rpm<BR>
-		\nPower currently being generated: [src.compressor.turbine.lastgen]W<BR>
-		\nInternal gas temperature: [src.compressor.gas_contained.temperature]K<BR>
-		\nVent doors: [ src.door_status ? "<A href='?src=\ref[src];doors=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=\ref[src];doors=1'>Open</A>"]
-		\n</PRE><HR><A href='?src=\ref[src];view=1'>View</A>
-		\n</PRE><HR><A href='?src=\ref[src];close=1'>Close</A>
+		\nTurbine speed: 69src.compressor.rpm69rpm<BR>
+		\nPower currently being generated: 69src.compressor.turbine.lastgen69W<BR>
+		\nInternal gas temperature: 69src.compressor.gas_contained.temperature69K<BR>
+		\nVent doors: 69 src.door_status ? "<A href='?src=\ref69src69;doors=1'>Closed</A> <B>Open</B>" : "<B>Closed</B> <A href='?src=\ref69src69;doors=1'>Open</A>"69
+		\n</PRE><HR><A href='?src=\ref69src69;view=1'>View</A>
+		\n</PRE><HR><A href='?src=\ref69src69;close=1'>Close</A>
 		\n<BR>
 		\n"}
 	else
@@ -253,11 +253,11 @@
 
 	usr.machine = src
 
-	if( href_list["view"] )
+	if( href_list69"view"69 )
 		usr.client.eye = src.compressor
-	else if( href_list["str"] )
+	else if( href_list69"str"69 )
 		src.compressor.starter = !src.compressor.starter
-	else if (href_list["doors"])
+	else if (href_list69"doors"69)
 		for(var/obj/machinery/door/blast/D in src.doors)
 			if (door_status == 0)
 				spawn( 0 )
@@ -267,9 +267,9 @@
 				spawn( 0 )
 					D.close()
 					door_status = 0
-	else if( href_list["close"] )
+	else if( href_list69"close"69 )
 		usr << browse(null, "window=computer")
-		usr.machine = null
+		usr.machine =69ull
 		return
 
 	src.updateUsrDialog()

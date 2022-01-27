@@ -5,7 +5,7 @@
 
 /datum/design/research/item/part/AssembleDesignDesc()
 	if(!desc)
-		desc = "A stock part used in the construction of various devices."
+		desc = "A stock part used in the construction of69arious devices."
 
 /datum/design/research/item/part/basic_capacitor
 	build_path = /obj/item/stock_parts/capacitor
@@ -130,7 +130,7 @@
 // RPED
 /datum/design/research/item/part/RPED
 	name = "Rapid Part Exchange Device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
+	desc = "Special69echanical69odule69ade to store, sort, and apply standard69achine parts."
 	build_path = /obj/item/storage/part_replacer
 	sort_string = "CBAAA"
 

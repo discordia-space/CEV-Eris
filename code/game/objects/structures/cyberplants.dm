@@ -1,16 +1,16 @@
 /obj/structure/cyberplant
 	name = "Asters \"FluorescEnt\""
-	desc = "One of those famous Aster's holoplants! Add to your Space a bit of the comfort from old Earth, by buying this blue buddy. A nuclear battery and a rugged case guarantee that your flower will survive journey to another galaxy, and variety of plant types won't let you to get bored along the way!"
+	desc = "One of those famous Aster's holoplants! Add to your Space a bit of the comfort from old Earth, by buyin69 this blue buddy. A nuclear battery and a ru6969ed case 69uarantee that your flower will survive journey to another 69alaxy, and69ariety of plant types won't let you to 69et bored alon69 the way!"
 	icon = 'icons/obj/cyberplants.dmi'
 	icon_state = "holopot"
 	w_class = ITEM_SIZE_TINY
-	var/brightness_on = 3
-	var/emagged = FALSE
+	var/bri69htness_on = 3
+	var/ema6969ed = FALSE
 	var/interference = FALSE
 	var/icon/plant = null
 	var/plant_color
-	var/glow_color
-	var/hologram_opacity = 0.85
+	var/69low_color
+	var/holo69ram_opacity = 0.85
 	var/list/possible_plants = list(
 		"plant-1",
 		"plant-10",
@@ -20,24 +20,24 @@
 		"plant-xmas",
 	)
 	var/list/possible_colors = list(
-		COLOR_LIGHTING_RED_BRIGHT,
-		COLOR_LIGHTING_BLUE_BRIGHT,
-		COLOR_LIGHTING_GREEN_BRIGHT,
-		COLOR_LIGHTING_ORANGE_BRIGHT,
-		COLOR_LIGHTING_PURPLE_BRIGHT,
-		COLOR_LIGHTING_CYAN_BRIGHT
+		COLOR_LI69HTIN69_RED_BRI69HT,
+		COLOR_LI69HTIN69_BLUE_BRI69HT,
+		COLOR_LI69HTIN69_69REEN_BRI69HT,
+		COLOR_LI69HTIN69_ORAN69E_BRI69HT,
+		COLOR_LI69HTIN69_PURPLE_BRI69HT,
+		COLOR_LI69HTIN69_CYAN_BRI69HT
 	)
 
 	var/sanity_value = 0.2
 
 /obj/structure/cyberplant/Initialize()
 	. = ..()
-	change_plant(plant)
-	change_color(plant_color)
+	chan69e_plant(plant)
+	chan69e_color(plant_color)
 
 	update_icon()
 
-	set_light(brightness_on, brightness_on/2)
+	set_li69ht(bri69htness_on, bri69htness_on/2)
 
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 
@@ -47,39 +47,39 @@
 	if (!plant)
 		return
 
-	plant.ChangeOpacity(hologram_opacity)
+	plant.Chan69eOpacity(holo69ram_opacity)
 	overlays += plant
 
-/obj/structure/cyberplant/proc/change_plant(var/state)
+/obj/structure/cyberplant/proc/chan69e_plant(var/state)
 	plant = prepare_icon(state)
 
-/obj/structure/cyberplant/proc/change_color(var/color)
+/obj/structure/cyberplant/proc/chan69e_color(var/color)
 	if (!plant)
 		return
 
 	if(!color)
 		color = pick(possible_colors)
 
-	glow_color = color
+	69low_color = color
 	plant_color = color
 	plant.ColorTone(color)
 
-	set_light(l_color=color)
+	set_li69ht(l_color=color)
 
 /obj/structure/cyberplant/attack_hand(var/mob/user)
 	if(!interference)
-		change_plant()
+		chan69e_plant()
 		update_icon()
 
-/obj/structure/cyberplant/attackby(obj/item/I, mob/user )
+/obj/structure/cyberplant/attackby(obj/item/I,69ob/user )
 	if(istype(I, /obj/item/card/id))
-		if(!emagged)
+		if(!ema6969ed)
 			if(prob(10))
 				to_chat(user, "You hear soft whisper, <i>Welcome back, honey...</i>")
-			emag_act()
+			ema69_act()
 		else
 			if(prob(10))
-				to_chat(user, "<i>You hear soft giggle</i>")
+				to_chat(user, "<i>You hear soft 69i6969le</i>")
 			rollback()
 
 /obj/structure/cyberplant/proc/prepare_icon(var/state)
@@ -87,12 +87,12 @@
 		state = pick(possible_plants)
 
 	var/plant_icon = icon(icon, state)
-	return getHologramIcon(plant_icon, 0, hologram_opacity)
+	return 69etHolo69ramIcon(plant_icon, 0, holo69ram_opacity)
 
 /obj/structure/cyberplant/proc/rollback()
-	emagged = FALSE
-	hologram_opacity = 0.85
-	plant = change_plant("plant-1")
+	ema6969ed = FALSE
+	holo69ram_opacity = 0.85
+	plant = chan69e_plant("plant-1")
 	possible_plants = list(
 		"plant-1",
 		"plant-10",
@@ -102,32 +102,32 @@
 		"plant-xmas",
 	)
 	possible_colors = list(
-		COLOR_LIGHTING_RED_BRIGHT,
-		COLOR_LIGHTING_BLUE_BRIGHT,
-		COLOR_LIGHTING_GREEN_BRIGHT,
-		COLOR_LIGHTING_ORANGE_BRIGHT,
-		COLOR_LIGHTING_PURPLE_BRIGHT,
-		COLOR_LIGHTING_CYAN_BRIGHT
+		COLOR_LI69HTIN69_RED_BRI69HT,
+		COLOR_LI69HTIN69_BLUE_BRI69HT,
+		COLOR_LI69HTIN69_69REEN_BRI69HT,
+		COLOR_LI69HTIN69_ORAN69E_BRI69HT,
+		COLOR_LI69HTIN69_PURPLE_BRI69HT,
+		COLOR_LI69HTIN69_CYAN_BRI69HT
 	)
 	update_icon()
-/obj/structure/cyberplant/emag_act()
-	if(emagged)
+/obj/structure/cyberplant/ema69_act()
+	if(ema6969ed)
 		return
 
-	emagged = TRUE
-	hologram_opacity = 0.95
-	possible_plants = list("emagged2-orange", "emagged2-blue")
-	plant = change_plant("emagged2-orange")
+	ema6969ed = TRUE
+	holo69ram_opacity = 0.95
+	possible_plants = list("ema6969ed2-oran69e", "ema6969ed2-blue")
+	plant = chan69e_plant("ema6969ed2-oran69e")
 	possible_colors = list(
-		COLOR_LIGHTING_RED_DARK,
-		COLOR_LIGHTING_RED_BRIGHT,
-		COLOR_LIGHTING_BLUE_DARK,
-		COLOR_LIGHTING_BLUE_BRIGHT,
-		COLOR_LIGHTING_GREEN_BRIGHT,
-		COLOR_LIGHTING_ORANGE_BRIGHT,
-		COLOR_LIGHTING_PURPLE_DARK,
-		COLOR_LIGHTING_PURPLE_BRIGHT,
-		COLOR_LIGHTING_CYAN_BRIGHT
+		COLOR_LI69HTIN69_RED_DARK,
+		COLOR_LI69HTIN69_RED_BRI69HT,
+		COLOR_LI69HTIN69_BLUE_DARK,
+		COLOR_LI69HTIN69_BLUE_BRI69HT,
+		COLOR_LI69HTIN69_69REEN_BRI69HT,
+		COLOR_LI69HTIN69_ORAN69E_BRI69HT,
+		COLOR_LI69HTIN69_PURPLE_DARK,
+		COLOR_LI69HTIN69_PURPLE_BRI69HT,
+		COLOR_LI69HTIN69_CYAN_BRI69HT
 	)
 	update_icon()
 
@@ -135,33 +135,33 @@
 	if(!interference)
 		interference = TRUE
 		spawn(0)
-			if (QDELETED(src))
+			if (69DELETED(src))
 				return
 
 			overlays.Cut()
-			set_light(0, 0)
+			set_li69ht(0, 0)
 			sleep(3)
-			if (QDELETED(src))
+			if (69DELETED(src))
 				return
 
 			overlays += plant
-			set_light(brightness_on, brightness_on/2)
+			set_li69ht(bri69htness_on, bri69htness_on/2)
 			sleep(3)
-			if (QDELETED(src))
+			if (69DELETED(src))
 				return
 
 			overlays -= plant
-			set_light(0, 0)
+			set_li69ht(0, 0)
 			sleep(3)
-			if (QDELETED(src))
+			if (69DELETED(src))
 				return
 
-			change_color()
-			set_light(brightness_on, brightness_on/2)
+			chan69e_color()
+			set_li69ht(bri69htness_on, bri69htness_on/2)
 			update_icon()
 
 			interference = FALSE
 
-/obj/structure/cyberplant/Crossed(var/mob/living/L)
+/obj/structure/cyberplant/Crossed(var/mob/livin69/L)
 	if (istype(L))
 		doInterference()

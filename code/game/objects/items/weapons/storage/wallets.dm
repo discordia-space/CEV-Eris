@@ -47,7 +47,7 @@
 	if(.)
 		if(!front_id && istype(W, /obj/item/card/id))
 			front_id = W
-			name = "[name] ([front_id])"
+			name = "69name69 (69front_id69)"
 			update_icon()
 
 /obj/item/storage/wallet/update_icon()

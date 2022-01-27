@@ -12,7 +12,7 @@
 	default_key = ":"
 
 /decl/prefix/radio_main_channel
-	name = "Radio, main channel"
+	name = "Radio,69ain channel"
 	default_key = ";"
 
 /decl/prefix/audible_emote
@@ -20,7 +20,7 @@
 	default_key = "!"
 
 /decl/prefix/visible_emote
-	name = "Emote, visible"
+	name = "Emote,69isible"
 	default_key = "^"
 
 /decl/prefix/custom_emote

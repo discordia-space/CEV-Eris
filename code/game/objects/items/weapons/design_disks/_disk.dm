@@ -3,8 +3,8 @@
 	desc = "Data disk used to store autolathe designs."
 	icon_state = "yellow"
 	max_capacity = 1024	// Up to 255 designs, automatically reduced to the nearest power of 2
-	origin_tech = list(TECH_DATA = 3) // Most design disks end up being 64 to 128 GQ
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
+	origin_tech = list(TECH_DATA = 3) //69ost design disks end up being 64 to 128 G69
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 2,69ATERIAL_GOLD = 0.5)
 	license = -1
 	spawn_tags = SPAWN_TAG_DESIGN
 	rarity_value = 25
@@ -18,12 +18,12 @@
 		var/datum/computer_file/binary/design/D = new
 		D.set_design_type(design_typepath)
 		if(license > 0)
-			D.set_point_cost(designs[design_typepath])
+			D.set_point_cost(designs69design_typepath69)
 
 		store_file(D)
 
-	// Shave off the extra space so a disk with two designs doesn't show up as 1024 GQ
-	while(max_capacity > 16 && max_capacity / 2 > used_capacity)
+	// Shave off the extra space so a disk with two designs doesn't show up as 1024 G69
+	while(max_capacity > 16 &&69ax_capacity / 2 > used_capacity)
 		max_capacity /= 2
 
 	// Prevent people from breaking DRM by copying files across protected disks.

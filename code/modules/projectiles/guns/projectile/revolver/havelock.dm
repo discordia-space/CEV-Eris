@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/revolver/havelock
 	name = "FS REV .35 Auto \"Havelock\""
-	desc = "A cheap Frozen Star knock-off of a Smith & Wesson Model 10. Uses .35 Auto rounds."
+	desc = "A cheap Frozen Star knock-off of a Smith & Wesson69odel 10. Uses .35 Auto rounds."
 	icon = 'icons/obj/guns/projectile/havelock.dmi'
 	icon_state = "havelock"
 	drawChargeMeter = FALSE
@@ -11,7 +11,7 @@
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
 	magazine_type = /obj/item/ammo_magazine/slpistol
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_WOOD = 6)
+	matter = list(MATERIAL_PLASTEEL = 12,69ATERIAL_WOOD = 6)
 	price_tag = 600
 	damage_multiplier = 1.4 //because pistol round
 	penetration_multiplier = 1.4

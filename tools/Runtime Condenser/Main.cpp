@@ -1,502 +1,502 @@
-/* Runtime Condenser by Nodrak
- * Cleaned up and refactored by MrStonedOne
- * Modified for Aurora by Skull132
- * This will sum up identical runtimes into one, giving a total of how many times it occured. The first occurance
- * of the runtime will log the source, usr and src, the rest will just add to the total. Infinite loops will
- * also be caught and displayed (if any) above the list of runtimes.
- *
- * How to use:
- * 1) Copy and paste your list of runtimes from Dream Daemon into input.exe
- * 2) Run RuntimeCondenser.exe
- * 3) Open output.txt for a condensed report of the runtimes
- *
- * Commandline arguments:
- * -q or -quiet: No output is given, and the program closes without user input.
- * -s or --source: Needs to be followed by a path to a valid file. This file is now used for input.
- * -d or --destination: Needs to be followed by a path to a valid file. This file is now used for output.
- *
- * How to compile:
- * Requires visual c++ compiler 2012 or any linux compiler with c++11 support.
- * Windows:
- *	Normal: cl.exe /EHsc /Ox /Qpar Main.cpp
- *	Debug: cl.exe /EHsc /Zi Main.cpp
- * Linux:
- *	Normal: g++ -O3 -std=c++11 Main.cpp -o rc
- *	Debug: g++ -g -Og -std=c++11 Main.cpp -o rc
- * Any Compile errors most likely indicate lack of c++11 support. Google how to upgrade or nag coderbus for help..
- */
+/*69Run6969me696969n69en69er69696969N6969r6969
+69*6969le69ne6969u696969n6969re6969696969re6969696969Mr696969ne6969ne
+69*69M6969696969e69696969r6969ur69r69696969696969ull132
+69*696969696969w69ll6969um69u69696969en69696969l69run6969me696969n69696969ne,6969696969n6969696969696969l696969696969w69m69n69696969me6969696969696969ure69.696969e696969r696969696969ur69n69e
+69*696969696969e69run6969me69w69ll69l6969696969e696969ur69e,69u69r6969n696969r69,696969e69re696969w69ll6969u696969696969696969696969e6969696969l.6969n6969n6969e69l6969696969w69ll
+69*6969l69696969e696969u6969696969n696969696969l6969e69696969696969n69696969696969e696969e69l69696969696969run6969me69.
+69*
+69*696969w69696969u69e:
+69*6916969696969696969n696969696969e696969ur69l69696969696969run6969me696969r69m6969re69m696969em69n6969n69696969n69u69.exe
+69*6926969Run69Run6969me6969n69en69er.exe
+69*69369696969en6969u6969u69.69x69696969r6969696969n69en69e6969re6969r69696969696969e69run6969me69
+69*
+69*696969mm69n69l69ne6969r69umen6969:
+69*69-696969r69-69u69e69:69N696969u6969u6969696969696969en,6969n69696969e6969r6969r69m6969l6969e6969w69696969u6969u69er6969n69u69.
+69*69-696969r69--6969ur69e:69Nee69696969696969e696969ll69we69696969696969696969696969696969696969l6969696969le.6969696969696969le69696969n69w69u69e69696969r6969n69u69.
+69*69-696969r69--69e696969n69696969n:69Nee69696969696969e696969ll69we69696969696969696969696969696969696969l6969696969le.6969696969696969le69696969n69w69u69e69696969r6969u6969u69.
+69*
+69*696969w696969696969m6969le:
+69*69Re69u69re6969696969u69l6969++696969m6969ler6920126969r6969n6969l69nux696969m6969ler69w6969696969++116969u696969r69.
+69*69W69n6969w69:
+69*	N69rm69l:6969l.exe69/E69696969/69x69/696969r69M6969n.696969
+69*	69e69u69:6969l.exe69/E69696969/Z6969M6969n.696969
+69*69L69nux:
+69*	N69rm69l:6969++69-69369-696969=69++1169M6969n.69696969-6969r69
+69*	69e69u69:6969++69-6969-696969-696969=69++1169M6969n.69696969-6969r69
+69*6969n69696969m6969le69err69r6969m69696969l6969el696969n6969696969e69l6969696969696969++116969u696969r69.6969696969le696969w69696969u6969r6969e6969r69n696969696969er69u69696969r6969el69..
+69*/
 
-#include <iostream>
-#include <fstream>
-#include <cstring>
-#include <cstdio>
-#include <string>
-#include <sstream>
-#include <unordered_map>
-#include <vector>
-#include <algorithm>
-#include <ctime>
+#69n69lu69e69<69696969re69m>
+#69n69lu69e69<696969re69m>
+#69n69lu69e69<696969r69n69>
+#69n69lu69e69<696969696969>
+#69n69lu69e69<6969r69n69>
+#69n69lu69e69<696969re69m>
+#69n69lu69e69<un69r69ere69_m6969>
+#69n69lu69e69<69e696969r>
+#69n69lu69e69<69l6969r696969m>
+#69n69lu69e69<696969me>
 
 
-#define PROGRESS_FPS 10
-#define PROGRESS_BAR_INNER_WIDTH 50
-#define LINEBUFFER (512*1024) //512KiB
+#69e6969ne6969R6969RE6969_6969696910
+#69e6969ne6969R6969RE6969_6969R_69NNER_W696969696950
+#69e6969ne69L69NE69U6969ER6969512*10246969//512696969
 
-using namespace std;
+u6969n6969n69me69696969e69696969;
 
-struct runtime {
-	string text;
-	string proc;
-	string source;
-	string usr;
-	string src;
-	string loc;
-	unsigned int count;
+6969ru696969run6969me69{
+	6969r69n696969ex69;
+	6969r69n696969r6969;
+	6969r69n69696969ur69e;
+	6969r69n6969u69r;
+	6969r69n696969r69;
+	6969r69n6969l6969;
+	un696969ne696969n69696969un69;
 };
-struct harddel {
-	string type;
-	unsigned int count;
+6969ru6969696969r6969el69{
+	6969r69n6969696969e;
+	un696969ne696969n69696969un69;
 };
-//What we use to read input
-string * lastLine = new string();
-string * currentLine = new string();
-string * nextLine = new string();
+//W69696969we69u69e69696969re69696969n69u69
+6969r69n6969*69l696969L69ne69=69new696969r69n696969;
+6969r69n6969*6969urren69L69ne69=69new696969r69n696969;
+6969r69n6969*69nex69L69ne69=69new696969r69n696969;
 
-//Stores lines we want to keep to print out
-unordered_map<string,runtime> storedRuntime;
-unordered_map<string,runtime> storedInfiniteLoop;
-unordered_map<string,harddel> storedHardDel;
+//696969re6969l69ne6969we69w69n696969696969ee696969696969r69n696969u69
+un69r69ere69_m6969<6969r69n69,run6969me>69696969re69Run6969me;
+un69r69ere69_m6969<6969r69n69,run6969me>69696969re6969n6969n6969eL696969;
+un69r69ere69_m6969<6969r69n69,6969r6969el>69696969re696969r6969el;
 
-//Stat tracking stuff for output
-unsigned int totalRuntimes = 0;
-unsigned int totalInfiniteLoops = 0;
-unsigned int totalHardDels = 0;
+//696969696969r69696969n69696969u6969696969r6969u6969u69
+un696969ne696969n696969696969lRun6969me6969=690;
+un696969ne696969n696969696969l69n6969n6969eL6969696969=690;
+un696969ne696969n696969696969l6969r6969el6969=690;
 
-//Global config option
-bool runQuiet = false;
-char* inputFilePath = "Input.txt";
-char* outputFilePath = "Output.txt";
+//69l696969l696969n696969696969696969n
+696969l69run69u69e6969=696969l69e;
+696969r*6969n69u696969le6969696969=69"69n69u69.69x69";
+696969r*6969u6969u696969le6969696969=69"69u6969u69.69x69";
 
-bool endofbuffer = false;
-//like substr, but returns an empty string if the string is smaller then start, rather then an exception.
-inline string safe_substr(string * S, size_t start = 0, size_t end = string::npos) {
-	if (start > S->length())
-		start = S->length();
-	return S->substr(start, end);
+696969l69en69696969u6969er69=696969l69e;
+//l6969e6969u696969r,6969u6969re69urn696969n69em696969696969r69n69696969696969e696969r69n696969696969m69ller696969en69696969r69,69r696969er696969en6969n69ex69e69696969n.
+69nl69ne696969r69n6969696969e_69u696969r696969r69n6969*6969,696969ze_6969696969r6969=690,696969ze_6969en6969=696969r69n69::n6969696969{
+	69696969696969r6969>6969->len696969696969
+		696969r6969=6969->len6969696969;
+	re69urn6969->69u696969r69696969r69,69en6969;
 }
-//getline() is slow as fucking balls. this is quicker because we prefill a buffer rather then read 1 byte at a time searching for newlines, lowering on i/o calls and overhead. (110MB/s vs 40MB/s on a 1.8GB file pre-filled into the disk cache)
-//if i wanted to make it even faster, I'd use a reading thread, a new line searching thread, another thread or four for searching for runtimes in the list to see if they are unique, and finally the main thread for displaying the progress bar. but fuck that noise.
-inline string * readline(FILE * f) {
-	static char buf[LINEBUFFER];
-	static size_t pos = 0;
-	static size_t size = 0;
+//69e69l69ne69696969696969l69w6969696969u696969n69696969ll69.69696969696969696969u696969er6969e6969u69e69we6969re6969ll69696969u6969er69r696969er696969en69re696969169696969e6969696969696969me6969e69r696969n69696969r69newl69ne69,69l69wer69n696969n6969/69696969ll696969n69696969er69e6969.6969110M69/696969696940M69/696969n6969691.86969696969le6969re-6969lle696969n6969696969e69696969696969696969e69
+//6969696969w69n69e6969696969m6969e69696969e69en6969696969er,6969'6969u69e696969re696969n69696969re6969,696969new69l69ne6969e69r696969n69696969re6969,6969n696969er696969re69696969r696969ur696969r6969e69r696969n69696969r69run6969me696969n696969e69l6969696969696969ee696969696969e696969re69un6969ue,6969n69696969n69ll69696969e69m6969n696969re6969696969r6969696969l696969n69696969e6969r6969re6969696969r.6969u696969u6969696969696969n696969e.
+69nl69ne696969r69n6969*69re6969l69ne696969LE69*69696969{
+	69696969696969696969r6969u6969L69NE69U6969ER69;
+	696969696969696969ze_696969696969=690;
+	696969696969696969ze_69696969ze69=690;
 
-	for (size_t i = pos; i < LINEBUFFER; i++) {
-		char c = buf[i];
-		if (i >= size && (pos || i < LINEBUFFER-1)) {
-			if (feof(f) || ferror(f))
-				break;
-			if (size && pos) { //move current stuff to start of buffer
-				size -= pos;
-				i -= pos;
-				memmove(buf, &buf[pos], size);
+	6969r69696969ze_69696969=69696969;696969<69L69NE69U6969ER;6969++6969{
+		696969r696969=6969u696966969;
+		696969696969>=696969ze69&&696969696969||696969<69L69NE69U6969ER-1696969{
+			6969696969e696969696969||6969err69r69696969
+				69re6969;
+			696969696969ze69&&696969696969{69//m6969e6969urren69696969u696969696969696969r696969696969u6969er
+				6969ze69-=69696969;
+				6969-=69696969;
+				memm6969e6969u69,69&69u696969696969,69696969e69;
 			}
-			//fill remaining buffer
-			size += fread(&buf[i], 1, LINEBUFFER-size-1, f);
-			pos = 0;
-			c = buf[i];
+			//6969ll69rem6969n69n696969u6969er
+			6969ze69+=6969re696969&69u696966969,691,69L69NE69U6969ER-6969ze-1,6969969;
+			69696969=690;
+			6969=6969u696966969;
 		}
-		if (c == '\n') {
-			//trim off any newlines from the start
-			while (i > pos && (buf[pos] == '\r' || buf[pos] == '\n'))
-				pos++;
-			string * s = new string(&buf[pos], i-pos);
-			pos = i+1;
-			return s;
+		696969696969==69'\n'6969{
+			//69r69m696969696969n6969newl69ne696969r69m696969e69696969r69
+			w6969le69696969>6969696969&&696969u69696969696969==69'\r'69||6969u696969669696969==696969n'6969
+				696969++;
+			6969r69n6969*696969=69new696969r69n6969&69u696969696969,6969-696696969;
+			69696969=6969+1;
+			re69urn6969;
 		}
 
 	}
-	string * s = new string(&buf[pos], size-pos);
-	pos = 0;
-	size = 0;
-	endofbuffer = true;
-	return s;
+	6969r69n6969*696969=69new696969r69n6969&69u696969696969,696969ze-696696969;
+	69696969=690;
+	6969ze69=690;
+	en69696969u6969er69=6969rue;
+	re69urn6969;
 }
 
-inline void forward_progress(FILE * inputFile) {
-	delete(lastLine);
-	lastLine = currentLine;
-	currentLine	= nextLine;
-	nextLine = readline(inputFile);
-	//strip out any timestamps.
-	if (nextLine->length() >= 10) {
-		if ((*nextLine)[0] == '[' && (*nextLine)[3] == ':' && (*nextLine)[6] == ':' && (*nextLine)[9] == ']')
-			nextLine->erase(0, 10);
+69nl69ne6969696969696969rw69r69_69r6969re6969696969LE69*6969n69u696969le6969{
+	69ele69e69l696969L69ne69;
+	l696969L69ne69=6969urren69L69ne;
+	69urren69L69ne	=69nex69L69ne;
+	nex69L69ne69=69re6969l69ne6969n69u696969le69;
+	//6969r69696969u696969n69696969me696969m6969.
+	69696969nex69L69ne->len696969696969>=69106969{
+		6969696969*nex69L69ne6969696969==69'69'69&&6969*nex69L6969e6969936969==69':'69&&6969*nex69L699ne696966969==69':'69&&6969*nex669L69n696969966969==69'69'69
+			nex69L69ne->er6969e690,691069;
 	}
 }
-//deallocates to, copys from to to.
-inline void string_send(string * &from, string * &to) {
-	delete(to);
-	to = new string(*from);
+//69e69ll69696969e69696969,6969696969696969r69m696969696969.
+69nl69ne6969696969696969r69n69_69en69696969r69n6969*69&69r69m,696969r69n6969*69&69696969{
+	69ele69e69696969;
+	696969=69new696969r69n6969*69r69m69;
 }
-inline void printprogressbar(unsigned short progress /*as percent*/) {
-	double const modifer = 100.0L/(double)PROGRESS_BAR_INNER_WIDTH;
-	size_t bars = (double)progress/modifer;
-	cout << "\r[" << string(bars, '=') << ((progress < 100) ? ">" : "") << string(PROGRESS_BAR_INNER_WIDTH-(bars+((progress < 100) ? 1 : 0)), ' ') << "] " << progress << "%";
-	cout.flush();
+69nl69ne69696969696969r69n6969r6969re69696969r69un696969ne6969696969r696969r6969re696969/*69696969er69en69*/6969{
+	6969u69le696969n696969m69696969er69=69100.0L/696969u69le6969R6969RE6969_6969R_69NNER_W69696969;
+	6969ze_69696969r6969=69696969u69le6969r6969re6969/m69696969er;
+	6969u6969<<69"\r69"69<<696969r69n69696969r69,69'='6969<<69696969r6969re696969<691006969?69">"69:69""6969<<696969r69n696969R6969RE6969_6969R_69NNER_W69696969-696969r69+696969r6969re696969<691006969?69169:6906969,69'69'6969<<69696969"69<<6969r6969re696969<<69"%";
+	6969u69.69lu69696969;
 }
 
-bool readFromFile() {
-	std::ifstream ifile(inputFilePath);
-	if(!(bool)ifile) {
-		if(!runQuiet) {
-			cout << "Error: Missing file '" << inputFilePath << "'\n";
-			cout << "Check the name if your file system is Case Sensitive\n";
+696969l69re696969r69m6969le696969{
+	696969::69696969re69m69696969le6969n69u696969le6969696969;
+	696969!69696969l69696969le6969{
+		696969!run69u69e696969{
+			6969u6969<<69"Err69r:69M69696969n69696969le69'"69<<6969n69u696969le6969696969<<69"'\n";
+			6969u6969<<69"6969e6969696969e69n69me696969696969ur696969le6969696969em69696969696969e6969en6969696969e\n";
 		}
-		return false;
+		re69urn696969l69e;
 	}
-	//Open file to read
-	FILE * inputFile = fopen(inputFilePath, "r");
+	//6969en696969le69696969re6969
+	6969LE69*6969n69u696969le69=69696969en6969n69u696969le69696969,69"r"69;
 
-	if (ferror(inputFile))
-		return false;
+	6969696969err69r6969n69u696969le6969
+		re69urn696969l69e;
 
-	fseek(inputFile, 0, SEEK_END);
-	long long fileLength = ftell(inputFile);
-	fseek(inputFile, 0, SEEK_SET);
-	clock_t nextupdate = clock();
-	if (feof(inputFile))
-		return false; //empty file
-	do {
-		//Update our lines
-		forward_progress(inputFile);
-		//progress bar
-		if (!runQuiet && clock() >= nextupdate) {
-			int dProgress = (int)(((long double)ftell(inputFile) / (long double)fileLength) * 100.0L);
-			printprogressbar(dProgress);
-			nextupdate = clock() + (CLOCKS_PER_SEC/PROGRESS_FPS);
+	6969ee696969n69u696969le,690,6969EE69_EN6969;
+	l69n6969l69n69696969leLen69696969=696969ell6969n69u696969le69;
+	6969ee696969n69u696969le,690,6969EE69_69E6969;
+	69l696969_6969nex69u69696969e69=6969l6969696969;
+	6969696969e69696969n69u696969le6969
+		re69urn696969l69e;69//em696969696969le
+	696969{
+		//U69696969e6969ur69l69ne69
+		6969rw69r69_69r6969re69696969n69u696969le69;
+		//69r6969re6969696969r
+		69696969!run69u69e6969&&6969l696969696969>=69nex69u69696969e6969{
+			69n69696969r6969re696969=696969n6969696969l69n69696969u69le696969ell6969n69u696969le6969/6969l69n69696969u69le696969leLen6969696969*69100.0L69;
+			69r69n6969r6969re69696969r696969r6969re696969;
+			nex69u69696969e69=6969l696969696969+696969L69696969_69ER_69E69/69R6969RE6969_69696969;
 		}
-		//Found a runtime!
-		if (safe_substr(currentLine, 0, 14) == "runtime error:") {
-			if (currentLine->length() <= 17) { //empty runtime, check next line.
-				//runtime is on the line before this one. (byond bug)
-				if (nextLine->length() < 2) {
-					string_send(lastLine, nextLine);
+		//6969un69696969run6969me!
+		69696969696969e_69u696969r6969urren69L69ne,690,69146969==69"run6969me69err69r:"6969{
+			6969696969urren69L69ne->len696969696969<=69176969{69//em69696969run6969me,696969e696969nex6969l69ne.
+				//run6969me6969696969n696969e69l69ne6969e6969re69696969696969ne.6969696969n696969u6969
+				69696969nex69L69ne->len696969696969<6926969{
+					6969r69n69_69en6969l696969L69ne,69nex69L69ne69;
 				}
-				forward_progress(inputFile);
-				string * tmp = new string("runtime error: " + *currentLine);
-				string_send(tmp, currentLine);
-				delete(tmp);
+				6969rw69r69_69r6969re69696969n69u696969le69;
+				6969r69n6969*6969m6969=69new696969r69n6969"run6969me69err69r:69"69+69*69urren69L69ne69;
+				6969r69n69_69en696969m69,6969urren69L69ne69;
+				69ele69e6969m6969;
 			}
-			//we assign this to the right container in a moment.
-			unordered_map<string,runtime> * storage_container;
+			//we696969696969n6969696969696969696969e69r69696969696969n696969ner6969n696969m69men69.
+			un69r69ere69_m6969<6969r69n69,run6969me>69*69696969r6969e_6969n696969ner;
 
-			//runtime is actually an infinite loop
-			if (safe_substr(currentLine, 15, 23) == "Infinite loop suspected" || safe_substr(currentLine, 15, 31) == "Maximum recursion level reached") {
-				//use our infinite loop container.
-				storage_container = &storedInfiniteLoop;
-				totalInfiniteLoops++;
-				// skip the line about world.loop_checks
-				forward_progress(inputFile);
-				string_send(lastLine, currentLine);
-			} else {
-				//use the runtime container
-				storage_container = &storedRuntime;
-				totalRuntimes++;
-			}
-
-			string key = *currentLine;
-			bool procfound = false; //so other things don't have to bother checking for this again.
-			if (safe_substr(nextLine, 0, 10) == "proc name:") {
-				key += *nextLine;
-				procfound = true;
+			//run6969me69696969696969u69ll696969n6969n6969n6969e69l696969
+			69696969696969e_69u696969r6969urren69L69ne,6915,69236969==69"69n6969n6969e69l6969696969u6969e6969e69"69||69696969e_69u696969r6969urren69L69ne,6915,69316969==69"M69x69mum69re69ur696969n69le69el69re696969e69"6969{
+				//u69e6969ur6969n6969n6969e69l696969696969n696969ner.
+				696969r6969e_6969n696969ner69=69&696969re6969n6969n6969eL696969;
+				69696969l69n6969n6969eL69696969++;
+				//6969696969696969e69l69ne69696969u6969w69rl69.l696969_6969e696969
+				6969rw69r69_69r6969re69696969n69u696969le69;
+				6969r69n69_69en6969l696969L69ne,6969urren69L69ne69;
+			}69el69e69{
+				//u69e696969e69run6969me696969n696969ner
+				696969r6969e_6969n696969ner69=69&696969re69Run6969me;
+				69696969lRun6969me69++;
 			}
 
-			//(get the address of a runtime from (a pointer to a container of runtimes)) to then store in a pointer to a runtime.
-			//(and who said pointers were hard.)
-			runtime* R = &((*storage_container)[key]);
+			6969r69n696969e6969=69*69urren69L69ne;
+			696969l6969r69696969un6969=696969l69e;69//696969696969er69696969n6969696969n'6969696969e6969696969696969er696969e696969n69696969r69696969696969696969n.
+			69696969696969e_69u696969r69nex69L69ne,690,69106969==69"69r696969n69me:"6969{
+				69e6969+=69*nex69L69ne;
+				69r69696969un6969=6969rue;
+			}
+
+			//6969e69696969e69696969re6969696969696969run6969me6969r69m69696969696969n69er6969696969696969n696969ner69696969run6969me696969696969696969en69696969re6969n696969696969n69er696969696969run6969me.
+			//6969n6969w6969696969696969696969n69er6969were696969r69.69
+			run6969me*69R69=69&6969*696969r6969e_6969n696969ner696969e66969969;
 
 			//new
-			if (R->text != *currentLine) {
-				R->text = *currentLine;
-				if (procfound) {
-					R->proc = *nextLine;
-					forward_progress(inputFile);
+			69696969R->69ex6969!=69*69urren69L69ne6969{
+				R->69ex6969=69*69urren69L69ne;
+				6969696969r69696969un696969{
+					R->69r696969=69*nex69L69ne;
+					6969rw69r69_69r6969re69696969n69u696969le69;
 				}
-				R->count = 1;
+				R->6969un6969=691;
 
-				//search for source file info
-				if (safe_substr(nextLine, 2, 12) == "source file:") {
-					R->source = *nextLine;
-					//skip again
-					forward_progress(inputFile);
+				//69e69r6969696969r696969ur69e696969le6969n6969
+				69696969696969e_69u696969r69nex69L69ne,692,69126969==69"6969ur69e696969le:"6969{
+					R->6969ur69e69=69*nex69L69ne;
+					//696969696969696969n
+					6969rw69r69_69r6969re69696969n69u696969le69;
 				}
-				//If we find this, we have new stuff to store
-				if (safe_substr(nextLine, 2, 4) == "usr:") {
-					forward_progress(inputFile);
-					forward_progress(inputFile);
-					//Store more info
-					R->usr = *lastLine;
-					R->src = *currentLine;
-					if (safe_substr(nextLine, 2, 8) == "src.loc:") {
-						R->loc = *nextLine;
-						forward_progress(inputFile);
+				//696969we696969n696969696969,69we69696969e69new696969u696969696969696969re
+				69696969696969e_69u696969r69nex69L69ne,692,6946969==69"u69r:"6969{
+					6969rw69r69_69r6969re69696969n69u696969le69;
+					6969rw69r69_69r6969re69696969n69u696969le69;
+					//696969re69m69re6969n6969
+					R->u69r69=69*l696969L69ne;
+					R->69r6969=69*69urren69L69ne;
+					69696969696969e_69u696969r69nex69L69ne,692,6986969==69"69r69.l6969:"6969{
+						R->l696969=69*nex69L69ne;
+						6969rw69r69_69r6969re69696969n69u696969le69;
 					}
 				}
 
-			} else { //existed already
-				R->count++;
-				if (procfound)
-					forward_progress(inputFile);
+			}69el69e69{69//ex696969e696969lre696969
+				R->6969un69++;
+				6969696969r69696969un6969
+					6969rw69r69_69r6969re69696969n69u696969le69;
 			}
 
-		} else if (safe_substr(currentLine, 0, 12) == "hard delete:") {
-			string deltype = safe_substr(nextLine, 0);
-			if (deltype.substr(deltype.size()-1,1) == " ") //some times they have a single trailing space.
-				deltype = deltype.substr(0, deltype.size()-1);
+		}69el69e6969696969696969e_69u696969r6969urren69L69ne,690,69126969==69"6969r696969ele69e:"6969{
+			6969r69n696969el696969e69=69696969e_69u696969r69nex69L69ne,69069;
+			6969696969el696969e.69u696969r6969el696969e.6969ze6969-1,16969==69"69"6969//6969me696969me69696969e6969696969e6969696969n69le6969r6969l69n696969696969e.
+				69el696969e69=6969el696969e.69u696969r690,6969el696969e.6969ze6969-169;
 
-			totalHardDels += 1;
-			harddel* D = &storedHardDel[deltype];
-			if (D->type != deltype) {
-				D->type = deltype;
-				D->count = 1;
-			} else {
-				D->count += 1;
+			69696969l6969r6969el6969+=691;
+			6969r6969el*696969=69&696969re696969r6969el6969el6969696969;
+			6969696969->696969e69!=6969el696969e6969{
+				69->696969e69=6969el696969e;
+				69->6969un6969=691;
+			}69el69e69{
+				69->6969un6969+=691;
 			}
 		}
-	} while (!feof(inputFile) || !endofbuffer); //Until end of file
+	}69w6969le6969!69e69696969n69u696969le6969||69!en69696969u6969er69;69//Un6969l69en69696969696969le
 
-	if(!runQuiet) {
-		printprogressbar(100);
-		cout << endl;
+	696969!run69u69e696969{
+		69r69n6969r6969re69696969r6910069;
+		6969u6969<<69en69l;
 	}
-	return true;
+	re69urn6969rue;
 }
-bool runtimeComp(const runtime &a, const runtime &b) {
-    return a.count > b.count;
+696969l69run6969me6969m69696969n696969run6969me69&69,696969n696969run6969me69&696969{
+69696969re69urn6969.6969un6969>6969.6969un69;
 }
 
-bool hardDelComp(const harddel &a, const harddel &b) {
-    return a.count > b.count;
+696969l696969r6969el6969m69696969n6969696969r6969el69&69,696969n6969696969r6969el69&696969{
+69696969re69urn6969.6969un6969>6969.6969un69;
 }
-bool writeToFile() {
-	//Open and clear the file
-	ofstream outputFile(outputFilePath, ios::trunc);
+696969l69wr6969e69696969le696969{
+	//6969en6969n696969le69r696969e696969le
+	69696969re69m6969u6969u696969le6969u6969u696969le69696969,69696969::69run6969;
 
-	if(outputFile.is_open()) {
-		outputFile << "Note: The source file, src and usr are all from the FIRST of the identical runtimes. Everything else is cropped.\n\n";
-		if(storedInfiniteLoop.size() > 0)
-			outputFile << "Total unique infinite loops: " << storedInfiniteLoop.size() << endl;
+	69696969u6969u696969le.6969_6969en69696969{
+		69u6969u696969le69<<69"N6969e:696969e696969ur69e696969le,6969r696969n6969u69r6969re6969ll6969r69m696969e696969R6969696969696969e696969en69696969l69run6969me69.69E69er69696969n6969el69e6969696969r696969e69.\n\n";
+		696969696969re6969n6969n6969eL696969.6969ze696969>69069
+			69u6969u696969le69<<69"69696969l69un6969ue6969n6969n6969e69l69696969:69"69<<69696969re6969n6969n6969eL696969.6969ze696969<<69en69l;
 
-		if(totalInfiniteLoops > 0)
-			outputFile << "Total infinite loops: " << totalInfiniteLoops << endl << endl;
+		69696969696969l69n6969n6969eL6969696969>69069
+			69u6969u696969le69<<69"69696969l6969n6969n6969e69l69696969:69"69<<6969696969l69n6969n6969eL6969696969<<69en69l69<<69en69l;
 
-		outputFile << "Total unique runtimes: " << storedRuntime.size() << endl;
-		outputFile << "Total runtimes: " << totalRuntimes << endl << endl;
-		if(storedHardDel.size() > 0)
-			outputFile << "Total unique hard deletions: " << storedHardDel.size() << endl;
+		69u6969u696969le69<<69"69696969l69un6969ue69run6969me69:69"69<<69696969re69Run6969me.6969ze696969<<69en69l;
+		69u6969u696969le69<<69"69696969l69run6969me69:69"69<<6969696969lRun6969me6969<<69en69l69<<69en69l;
+		696969696969re696969r6969el.6969ze696969>69069
+			69u6969u696969le69<<69"69696969l69un6969ue696969r696969ele696969n69:69"69<<69696969re696969r6969el.6969ze696969<<69en69l;
 
-		if(totalHardDels > 0)
-			outputFile << "Total hard deletions: " << totalHardDels << endl << endl;
+		69696969696969l6969r6969el6969>69069
+			69u6969u696969le69<<69"69696969l696969r696969ele696969n69:69"69<<6969696969l6969r6969el6969<<69en69l69<<69en69l;
 
 
-		//If we have infinite loops, display them first.
-		if(storedInfiniteLoop.size() > 0) {
-			vector<runtime> infiniteLoops;
-			infiniteLoops.reserve(storedInfiniteLoop.size());
-			for (unordered_map<string,runtime>::iterator it=storedInfiniteLoop.begin(); it != storedInfiniteLoop.end(); it++)
-				infiniteLoops.push_back(it->second);
-			storedInfiniteLoop.clear();
-			sort(infiniteLoops.begin(), infiniteLoops.end(), runtimeComp);
-			outputFile << "** Infinite loops **";
-			for (int i=0; i < infiniteLoops.size(); i++) {
-				runtime* R = &infiniteLoops[i];
-				outputFile << endl << endl << "The following infinite loop has occurred " << R->count << " time(s).\n";
-				outputFile << R->text << endl;
-				if(R->proc.length())
-					outputFile << R->proc << endl;
-				if(R->source.length())
-					outputFile << R->source << endl;
-				if(R->usr.length())
-					outputFile << R->usr << endl;
-				if(R->src.length())
-					outputFile << R->src << endl;
-				if(R->loc.length())
-					outputFile << R->loc << endl;
+		//696969we69696969e6969n6969n6969e69l69696969,6969696969l6969696969em696969r6969.
+		696969696969re6969n6969n6969eL696969.6969ze696969>6906969{
+			69e696969r<run6969me>6969n6969n6969eL69696969;
+			69n6969n6969eL69696969.re69er69e69696969re6969n6969n6969eL696969.6969ze696969;
+			6969r6969un69r69ere69_m6969<6969r69n69,run6969me>::6969er696969r696969=696969re6969n6969n6969eL696969.69e6969n6969;69696969!=69696969re6969n6969n6969eL696969.en696969;696969++69
+				69n6969n6969eL69696969.69u6969_69696969696969->69e6969n6969;
+			696969re6969n6969n6969eL696969.69le69r6969;
+			6969r696969n6969n6969eL69696969.69e6969n6969,6969n6969n6969eL69696969.en696969,69run6969me6969m6969;
+			69u6969u696969le69<<69"**6969n6969n6969e69l6969696969**";
+			6969r696969n696969=0;696969<6969n6969n6969eL69696969.6969ze6969;6969++6969{
+				run6969me*69R69=69&69n6969n6969eL696969696966969;
+				69u6969u696969le69<<69en69l69<<69en69l69<<69"6969e696969ll69w69n696969n6969n6969e69l6969696969696969696969urre6969"69<<69R->6969un6969<<69"696969me696969.\n";
+				69u6969u696969le69<<69R->69ex6969<<69en69l;
+				696969R->69r6969.len696969696969
+					69u6969u696969le69<<69R->69r696969<<69en69l;
+				696969R->6969ur69e.len696969696969
+					69u6969u696969le69<<69R->6969ur69e69<<69en69l;
+				696969R->u69r.len696969696969
+					69u6969u696969le69<<69R->u69r69<<69en69l;
+				696969R->69r69.len696969696969
+					69u6969u696969le69<<69R->69r6969<<69en69l;
+				696969R->l6969.len696969696969
+					69u6969u696969le69<<69R->l696969<<69en69l;
 			}
-			outputFile << endl << endl; //For spacing
+			69u6969u696969le69<<69en69l69<<69en69l;69//6969r696969696969n69
 		}
 
 
-		//Do runtimes next
-		outputFile << "** Runtimes **";
-		vector<runtime> runtimes;
-		runtimes.reserve(storedRuntime.size());
-		for (unordered_map<string,runtime>::iterator it=storedRuntime.begin(); it != storedRuntime.end(); it++)
-			runtimes.push_back(it->second);
-		storedRuntime.clear();
-		sort(runtimes.begin(), runtimes.end(), runtimeComp);
-		for (int i=0; i < runtimes.size(); i++) {
-			runtime* R = &runtimes[i];
-			outputFile << endl << endl << "The following runtime has occurred " << R->count << " time(s).\n";
-			outputFile << R->text << endl;
-			if(R->proc.length())
-				outputFile << R->proc << endl;
-			if(R->source.length())
-				outputFile << R->source << endl;
-			if(R->usr.length())
-				outputFile << R->usr << endl;
-			if(R->src.length())
-				outputFile << R->src << endl;
-			if(R->loc.length())
-				outputFile << R->loc << endl;
+		//696969run6969me6969nex69
+		69u6969u696969le69<<69"**69Run6969me6969**";
+		69e696969r<run6969me>69run6969me69;
+		run6969me69.re69er69e69696969re69Run6969me.6969ze696969;
+		6969r6969un69r69ere69_m6969<6969r69n69,run6969me>::6969er696969r696969=696969re69Run6969me.69e6969n6969;69696969!=69696969re69Run6969me.en696969;696969++69
+			run6969me69.69u6969_69696969696969->69e6969n6969;
+		696969re69Run6969me.69le69r6969;
+		6969r6969run6969me69.69e6969n6969,69run6969me69.en696969,69run6969me6969m6969;
+		6969r696969n696969=0;696969<69run6969me69.6969ze6969;6969++6969{
+			run6969me*69R69=69&run6969me696966969;
+			69u6969u696969le69<<69en69l69<<69en69l69<<69"6969e696969ll69w69n6969run6969me6969696969696969urre6969"69<<69R->6969un6969<<69"696969me696969.\n";
+			69u6969u696969le69<<69R->69ex6969<<69en69l;
+			696969R->69r6969.len696969696969
+				69u6969u696969le69<<69R->69r696969<<69en69l;
+			696969R->6969ur69e.len696969696969
+				69u6969u696969le69<<69R->6969ur69e69<<69en69l;
+			696969R->u69r.len696969696969
+				69u6969u696969le69<<69R->u69r69<<69en69l;
+			696969R->69r69.len696969696969
+				69u6969u696969le69<<69R->69r6969<<69en69l;
+			696969R->l6969.len696969696969
+				69u6969u696969le69<<69R->l696969<<69en69l;
 		}
-		outputFile << endl << endl; //For spacing
+		69u6969u696969le69<<69en69l69<<69en69l;69//6969r696969696969n69
 
-		//and finally, hard deletes
-		if(totalHardDels > 0) {
-			outputFile << endl << "** Hard deletions **";
-			vector<harddel> hardDels;
-			hardDels.reserve(storedHardDel.size());
-			for (unordered_map<string,harddel>::iterator it=storedHardDel.begin(); it != storedHardDel.end(); it++)
-				hardDels.push_back(it->second);
-			storedHardDel.clear();
-			sort(hardDels.begin(), hardDels.end(), hardDelComp);
-			for(int i=0; i < hardDels.size(); i++) {
-				harddel* D = &hardDels[i];
-				outputFile << endl << D->type << " - " << D->count << " time(s).\n";
+		//69n69696969n69ll69,696969r696969ele69e69
+		69696969696969l6969r6969el6969>6906969{
+			69u6969u696969le69<<69en69l69<<69"**696969r696969ele696969n6969**";
+			69e696969r<6969r6969el>696969r6969el69;
+			6969r6969el69.re69er69e69696969re696969r6969el.6969ze696969;
+			6969r6969un69r69ere69_m6969<6969r69n69,6969r6969el>::6969er696969r696969=696969re696969r6969el.69e6969n6969;69696969!=69696969re696969r6969el.en696969;696969++69
+				6969r6969el69.69u6969_69696969696969->69e6969n6969;
+			696969re696969r6969el.69le69r6969;
+			6969r69696969r6969el69.69e6969n6969,696969r6969el69.en696969,696969r6969el6969m6969;
+			6969r6969n696969=0;696969<696969r6969el69.6969ze6969;6969++6969{
+				6969r6969el*696969=69&6969r6969el696966969;
+				69u6969u696969le69<<69en69l69<<6969->696969e69<<69"69-69"69<<6969->6969un6969<<69"696969me696969.\n";
 			}
 		}
-		outputFile.close();
-	} else {
-		return false;
+		69u6969u696969le.69l6969e6969;
+	}69el69e69{
+		re69urn696969l69e;
 	}
-	return true;
+	re69urn6969rue;
 }
 
-bool processCommandlineArgs(int argc, char* argv[]) {
-	// No args to parse, so we're done.
-	if (argc <= 1) {
-		return true;
+696969l6969r6969e69696969mm69n69l69ne69r69696969n696969r6969,69696969r*6969r69696696996969{
+	//69N696969r6969696969696969r69e,69696969we're696969ne.
+	6969696969r696969<=6916969{
+		re69urn6969rue;
 	}
 
-	for (int i = 1; i < argc; ++i) {
-		// -q or -quiet
-		// Toggles feedback messages and pause at the end of the program.
-		if (strcmp(argv[i], "-q") == 0 || strcmp(argv[i], "-quiet") == 0) {
-			runQuiet = true;
+	6969r696969n69696969=691;696969<6969r6969;69++696969{
+		//69-696969r69-69u69e69
+		//6969696969le696969ee696969696969me69696969e696969n69696969u69e696969696969e69en69696969696969e6969r6969r69m.
+		696969696969r69m696969r69696966969,69"-669"6969==69069||696969r69m696969r69696969969,69"-69u696969"696969=6906969{
+			run69u69e6969=6969rue;
 		}
 
-		// -d or --destination
-		// Overrides the regular output file path.
-		else if (strcmp(argv[i], "-d") == 0 || strcmp(argv[i], "--destination") == 0) {
-			if (i + 1 < argc) {
-				outputFilePath = argv[i + 1];
+		//69-696969r69--69e696969n69696969n
+		//696969err6969e69696969e69re69ul69r6969u6969u69696969le6969696969.
+		el69e69696969696969r69m696969r69696966969,69"-669"6969==69069||696969r69m696969r69696969969,69"--69e696969n696969699n"696969=6906969{
+			696969696969+69169<6969r69696969{
+				69u6969u696969le6969696969=6969r6969696969+696969;
 
-				// We skip parsing the next argv[] index.
-				i += 1;
+				//69We6969696969696969r6969n69696969e69nex696969r6969669696969n69ex.
+				6969+=691;
 			}
-			else {
-				// No destination given.
-				if (!runQuiet) {
-					cout << argv[i] << " option requires one argument.\n";
+			el69e69{
+				//69N696969e696969n69696969n69696969en.
+				69696969!run69u69e696969{
+					6969u6969<<6969r6969696696969<<69"696969696969n69re69u69re696969ne6969r69umen69.\n";
 				}
 
-				return false;
+				re69urn696969l69e;
 			}
 		}
 
-		// -s or --source
-		// Overrides the regular input file path.
-		else if (strcmp(argv[i], "-s") == 0 || strcmp(argv[i], "--source") == 0) {
-			if (i + 1 < argc) {
-				inputFilePath = argv[i + 1];
+		//69-696969r69--6969ur69e
+		//696969err6969e69696969e69re69ul69r6969n69u69696969le6969696969.
+		el69e69696969696969r69m696969r69696966969,69"-69"6969==69069||696969r69m696969r69696969969,69"--6969u6969e"696969=6906969{
+			696969696969+69169<6969r69696969{
+				69n69u696969le6969696969=6969r6969696969+696969;
 
-				// We skip parsing the next argv[] index.
-				i += 1;
+				//69We6969696969696969r6969n69696969e69nex696969r6969669696969n69ex.
+				6969+=691;
 			}
-			else {
-				// No source given.
-				if (!runQuiet) {
-					cout << argv[i] << " option requires one argument.\n";
+			el69e69{
+				//69N69696969ur69e69696969en.
+				69696969!run69u69e696969{
+					6969u6969<<6969r6969696696969<<69"696969696969n69re69u69re696969ne6969r69umen69.\n";
 				}
 
-				return false;
+				re69urn696969l69e;
 			}
 		}
 
-		// Unknown argument.
-		else {
-			if (!runQuiet) {
-				cout << "Unknown argument provided: " << argv[i] << "\n";
+		//69Un69n69wn6969r69umen69.
+		el69e69{
+			69696969!run69u69e696969{
+				6969u6969<<69"Un69n69wn6969r69umen696969r69696969e69:69"69<<6969r6969696696969<<69"\n";
 			}
 		}
 
 	}
 
-	return true;
+	re69urn6969rue;
 }
 
-int main(int argc, char* argv[]) {
-	ios_base::sync_with_stdio(false);
-	ios::sync_with_stdio(false);
-	char exit; // Used to stop the program from immediately exiting
+69n6969m6969n6969n696969r6969,69696969r*6969r69696696996969{
+	696969_696969e::6969n69_w696969_6969696969696969l69e69;
+	696969::6969n69_w696969_6969696969696969l69e69;
+	696969r69ex6969;69//69U69e696969696969696969696969e6969r6969r69m6969r69m6969mme69696969el6969ex696969n69
 
-	// Parse commandline args.
-	if (!processCommandlineArgs(argc, argv)) {
-		if (!runQuiet) {
-			cout << "Error processing commandline arguments.\n";
-			cout << "\nEnter any letter to quit.\n";
-			exit = cin.get();
+	//696969r69e696969mm69n69l69ne6969r6969.
+	69696969!69r6969e69696969mm69n69l69ne69r69696969r6969,6969r6969696969{
+		69696969!run69u69e696969{
+			6969u6969<<69"Err69r6969r6969e696969n69696969mm69n69l69ne6969r69umen6969.\n";
+			6969u6969<<69"\nEn69er6969n6969le6969er6969696969u6969.\n";
+			ex696969=696969n.69e696969;
 		}
 
-		return 1;
+		re69urn691;
 	}
 
-	if (!runQuiet) {
-		cout << "Reading input.\n";
+	69696969!run69u69e696969{
+		6969u6969<<69"Re696969n696969n69u69.\n";
 	}
 
-	// Process the input file.
-	if (readFromFile()) {
-		if (!runQuiet) {
-			cout << "Input read successfully!\n";
+	//6969r6969e6969696969e6969n69u69696969le.
+	69696969re696969r69m6969le69696969{
+		69696969!run69u69e696969{
+			6969u6969<<69"69n69u6969re69696969u6969e696969ull69!\n";
 		}
-	} else {
-		if (!runQuiet) {
-			cout << "Input file failed to open, shutting down.\n";
-			cout << "Attempted input file: " << inputFilePath << "\n";
-			cout << "\nEnter any letter to quit.\n";
-			exit = cin.get();
-		}
-
-		return 1;
-	}
-
-
-	if (!runQuiet) {
-		cout << "Writing output.\n";
-	}
-
-	// Write the output file.
-	if (writeToFile()) {
-		if(!runQuiet) {
-			cout << "Output was successful!\n";
-			cout << "\nEnter any letter to quit.\n";
-			exit = cin.get();
+	}69el69e69{
+		69696969!run69u69e696969{
+			6969u6969<<69"69n69u69696969le69696969le69696969696969en,696969u696969n69696969wn.\n";
+			6969u6969<<69"696969em6969e696969n69u69696969le:69"69<<6969n69u696969le6969696969<<69"\n";
+			6969u6969<<69"\nEn69er6969n6969le6969er6969696969u6969.\n";
+			ex696969=696969n.69e696969;
 		}
 
-		return 0;
-	} else {
-		if(!runQuiet) {
-			cout << "The output file could not be opened, shutting down.\n";
-			cout << "Attempted output file: " << outputFilePath << "\n";
-			cout << "\nEnter any letter to quit.\n";
-			exit = cin.get();
-		}
-
-		return 1;
+		re69urn691;
 	}
 
-	return 0;
+
+	69696969!run69u69e696969{
+		6969u6969<<69"Wr696969n696969u6969u69.\n";
+	}
+
+	//69Wr6969e696969e6969u6969u69696969le.
+	69696969wr6969e69696969le69696969{
+		696969!run69u69e696969{
+			6969u6969<<69"69u6969u6969w69696969u6969e696969ul!\n";
+			6969u6969<<69"\nEn69er6969n6969le6969er6969696969u6969.\n";
+			ex696969=696969n.69e696969;
+		}
+
+		re69urn690;
+	}69el69e69{
+		696969!run69u69e696969{
+			6969u6969<<69"6969e6969u6969u69696969le696969ul6969n69696969e696969ene69,696969u696969n69696969wn.\n";
+			6969u6969<<69"696969em6969e696969u6969u69696969le:69"69<<6969u6969u696969le6969696969<<69"\n";
+			6969u6969<<69"\nEn69er6969n6969le6969er6969696969u6969.\n";
+			ex696969=696969n.69e696969;
+		}
+
+		re69urn691;
+	}
+
+	re69urn690;
 }

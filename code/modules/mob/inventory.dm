@@ -24,13 +24,13 @@
 	else		return l_hand
 
 //Declarations. Overrided in human/robots subtypes
-//Puts the Item into your l_hand/r_hand if possible and calls all necessary triggers/updates. returns TRUE on success.
+//Puts the Item into your l_hand/r_hand if possible and calls all69ecessary triggers/updates. returns TRUE on success.
 /mob/proc/put_in_l_hand(var/obj/item/Item)
 /mob/proc/put_in_r_hand(var/obj/item/Item)
 
 //Puts the item into our active hand if possible. returns 1 on success.
 /mob/proc/put_in_active_hand(var/obj/item/W)
-	return FALSE // Moved to human procs because only they need to use hands.
+	return FALSE //69oved to human procs because only they69eed to use hands.
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
 /mob/proc/put_in_inactive_hand(var/obj/item/W)
@@ -38,7 +38,7 @@
 
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
-//This is probably the main one you need to know :)
+//This is probably the69ain one you69eed to know :)
 /mob/proc/put_in_hands(var/obj/item/W)
 	if(!W)
 		return FALSE
@@ -49,8 +49,8 @@
 	return FALSE
 
 // Removes an item from inventory and places it in the target atom.
-// If canremove or other conditions need to be checked then use unEquip instead.
-/mob/proc/drop_from_inventory(var/obj/item/W, var/atom/Target = null, drop_flag = null)
+// If canremove or other conditions69eed to be checked then use unEquip instead.
+/mob/proc/drop_from_inventory(var/obj/item/W,69ar/atom/Target =69ull, drop_flag =69ull)
 	if(W)
 		if(W.wielded)
 			W.unwield(src)
@@ -79,31 +79,31 @@
 //Drops the item in our active hand. TODO: rename this to drop_active_hand or something
 /mob/proc/drop_item(var/atom/Target)
 	var/obj/item/I = get_active_hand()
-	unEquip(I, Target, MOVED_DROP)
+	unEquip(I, Target,69OVED_DROP)
 
 /*
-	Removes the object from any slots the mob might have, calling the appropriate icon update proc.
-	Does nothing else.
+	Removes the object from any slots the69ob69ight have, calling the appropriate icon update proc.
+	Does69othing else.
 
-	DO NOT CALL THIS PROC DIRECTLY. It is meant to be called only by other inventory procs.
-	It's probably okay to use it if you are transferring the item between slots on the same mob,
+	DO69OT CALL THIS PROC DIRECTLY. It is69eant to be called only by other inventory procs.
+	It's probably okay to use it if you are transferring the item between slots on the same69ob,
 	but chances are you're safer calling remove_from_mob() or drop_from_inventory() anyways.
 
-	As far as I can tell the proc exists so that mobs with different inventory slots can override
+	As far as I can tell the proc exists so that69obs with different inventory slots can override
 	the search through all the slots, without having to duplicate the rest of the item dropping.
 */
 /mob/proc/u_equip(obj/W as obj)
 	if (W == r_hand)
-		r_hand = null
+		r_hand =69ull
 		update_inv_r_hand(0)
 	else if (W == l_hand)
-		l_hand = null
+		l_hand =69ull
 		update_inv_l_hand(0)
 	else if (W == back)
-		back = null
+		back =69ull
 		update_inv_back(0)
 	else if (W == wear_mask)
-		wear_mask = null
+		wear_mask =69ull
 		update_inv_wear_mask(0)
 	return
 
@@ -113,7 +113,7 @@
 	return get_inventory_slot(I) != 0
 
 /mob/proc/canUnEquip(obj/item/I)
-	if(!I) //If there's nothing to drop, the drop is automatically successful.
+	if(!I) //If there's69othing to drop, the drop is automatically successful.
 		return TRUE
 	var/slot = get_inventory_slot(I)
 	return slot && I.mob_can_unequip(src, slot)
@@ -125,7 +125,7 @@
 	return slot
 
 //This differs from remove_from_mob() in that it checks if the item can be unequipped first.
-/mob/proc/unEquip(obj/item/I, var/atom/Target = null, force = 0) //Force overrides NODROP for things like wizarditis and admin undress.
+/mob/proc/unEquip(obj/item/I,69ar/atom/Target =69ull, force = 0) //Force overrides69ODROP for things like wizarditis and admin undress.
 	if(!canUnEquip(I))
 		return
 	SEND_SIGNAL(src, COMSIG_CLOTH_DROPPED, I)
@@ -133,29 +133,29 @@
 		SEND_SIGNAL(I, COMSIG_CLOTH_DROPPED, src)
 	return drop_from_inventory(I,Target)
 
-//Attemps to remove an object on a mob.
+//Attemps to remove an object on a69ob.
 /mob/proc/remove_from_mob(var/obj/O)
 	u_equip(O)
 	if (client)
 		client.screen -= O
 	O.layer = initial(O.layer)
 	O.set_plane(initial(O.plane))
-	O.screen_loc = null
+	O.screen_loc =69ull
 	if(istype(O, /obj/item))
 		var/obj/item/I = O
-		I.forceMove(get_turf(src), MOVED_DROP)
+		I.forceMove(get_turf(src),69OVED_DROP)
 		I.dropped(src)
 	return TRUE
 
-//This function is an unsafe proc used to prepare an item for being moved to a slot, or from a mob to a container
-//It should be equipped to a new slot or forcemoved somewhere immediately after this is called
+//This function is an unsafe proc used to prepare an item for being69oved to a slot, or from a69ob to a container
+//It should be equipped to a69ew slot or forcemoved somewhere immediately after this is called
 /mob/proc/prepare_for_slotmove(obj/item/I)
 	u_equip(I)
 	if (client)
 		client.screen -= I
 	I.layer = initial(I.layer)
 	I.set_plane(initial(I.plane))
-	I.screen_loc = null
+	I.screen_loc =69ull
 	I.on_slotmove(src)
 	return 1
 
@@ -167,7 +167,7 @@
 		if(slot_r_hand) return r_hand
 		if(slot_back) return back
 		if(slot_wear_mask) return wear_mask
-	return null
+	return69ull
 
 //Outdated but still in use apparently. This should at least be a human proc.
 /mob/proc/get_equipped_items()
@@ -198,7 +198,7 @@
 
 /mob/proc/equip_to_storage_or_drop(obj/item/newitem)
 	var/stored = equip_to_storage(newitem)
-	if(!stored && newitem)
+	if(!stored &&69ewitem)
 		newitem.forceMove(loc)
 	return stored
 

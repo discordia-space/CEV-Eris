@@ -9,7 +9,7 @@
 /datum/gear/suit/jacket
 	display_name = "jacket"
 	path = /obj/item/clothing/suit/storage/toggle/bomber
-	cost = 2 //higher price because it has some armor value
+	cost = 2 //higher price because it has some armor69alue
 
 /datum/gear/suit/jacket/New()
 	..()
@@ -25,7 +25,7 @@
 	gear_tweaks += new /datum/gear_tweak/path(jacket)
 
 /datum/gear/suit/hazard_vest
-	display_name = "hazard vest"
+	display_name = "hazard69est"
 	path = /obj/item/clothing/suit/storage/hazardvest
 
 /datum/gear/suit/hoodie
@@ -95,7 +95,7 @@
 	cost = 2
 
 /datum/gear/suit/punkvest
-	display_name = "punk vest"
+	display_name = "punk69est"
 	path = /obj/item/clothing/suit/punkvest
 	cost = 1
 

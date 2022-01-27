@@ -1,4 +1,4 @@
-//like orange but only checks north/south/east/west for one step
+//like orange but only checks69orth/south/east/west for one step
 /proc/cardinalrange(center)
 	var/list/things = list()
 	for(var/direction in cardinal)
@@ -9,21 +9,21 @@
 
 /obj/machinery/am_shielding
 	name = "antimatter reactor section"
-	desc = "A device built using a plasma-based life-form with the ability to increase plasma's natural ability to react with neutrinos while reducing its combustibility."
+	desc = "A device built using a plasma-based life-form with the ability to increase plasma's69atural ability to react with69eutrinos while reducing its combustibility."
 
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "shield"
 	anchored = TRUE
 	density = TRUE
-	dir = NORTH
-	use_power = NO_POWER_USE//Living things generally dont use power
+	dir =69ORTH
+	use_power =69O_POWER_USE//Living things generally dont use power
 	idle_power_usage = 0
 	active_power_usage = 0
 
 	var/obj/machinery/power/am_control_unit/control_unit
-	var/processing = 0//To track if we are in the update list or not, we need to be when we are damaged and if we ever
+	var/processing = 0//To track if we are in the update list or69ot, we69eed to be when we are damaged and if we ever
 	var/stability = 100//If this gets low bad things tend to happen
-	var/efficiency = 1//How many cores this core counts for when doing power processing, plasma in the air and stability could affect this
+	var/efficiency = 1//How69any cores this core counts for when doing power processing, plasma in the air and stability could affect this
 
 
 /obj/machinery/am_shielding/New(loc)
@@ -49,7 +49,7 @@
 		if(AMS && AMS.control_unit && link_control(AMS.control_unit))
 			break
 
-	if(!control_unit)//No other guys nearby look for a control unit
+	if(!control_unit)//No other guys69earby look for a control unit
 		for(var/direction in cardinal)
 		for(var/obj/machinery/power/am_control_unit/AMC in cardinalrange(src))
 			if(AMC.add_shielding(src))
@@ -68,8 +68,8 @@
 /obj/machinery/am_shielding/Destroy()
 	if(control_unit)	control_unit.remove_shielding(src)
 	if(processing)	shutdown_core()
-	visible_message("\red The [src.name] melts!")
-	//Might want to have it leave a mess on the floor but no sprites for now
+	visible_message("\red The 69src.name6969elts!")
+	//Might want to have it leave a69ess on the floor but69o sprites for69ow
 	return ..()
 
 
@@ -85,7 +85,7 @@
 	return
 
 
-/obj/machinery/am_shielding/emp_act()//Immune due to not really much in the way of electronics.
+/obj/machinery/am_shielding/emp_act()//Immune due to69ot really69uch in the way of electronics.
 	return FALSE
 
 
@@ -111,8 +111,8 @@
 	overlays.Cut()
 	for(var/direction in alldirs)
 		var/machine = locate(/obj/machinery, get_step(loc, direction))
-		if((istype(machine, /obj/machinery/am_shielding) && machine:control_unit == control_unit)||(istype(machine, /obj/machinery/power/am_control_unit) && machine == control_unit))
-			overlays += "shield_[direction]"
+		if((istype(machine, /obj/machinery/am_shielding) &&69achine:control_unit == control_unit)||(istype(machine, /obj/machinery/power/am_control_unit) &&69achine == control_unit))
+			overlays += "shield_69direction69"
 
 	if(core_check())
 		overlays += "core"
@@ -120,7 +120,7 @@
 	else if(processing) shutdown_core()
 
 
-/obj/machinery/am_shielding/attackby(obj/item/W, mob/user)
+/obj/machinery/am_shielding/attackby(obj/item/W,69ob/user)
 	if(!istype(W) || !user) return
 	if(W.force > 10)
 		stability -= W.force/2
@@ -170,18 +170,18 @@
 		qdel(src)
 
 
-/obj/machinery/am_shielding/proc/recalc_efficiency(new_efficiency)//tbh still not 100% sure how I want to deal with efficiency so this is likely temp
+/obj/machinery/am_shielding/proc/recalc_efficiency(new_efficiency)//tbh still69ot 100% sure how I want to deal with efficiency so this is likely temp
 	if(!control_unit || !processing) return
 	if(stability < 50)
 		new_efficiency /= 2
 	control_unit.reported_core_efficiency += (new_efficiency - efficiency)
-	efficiency = new_efficiency
+	efficiency =69ew_efficiency
 
 
 
 /obj/item/device/am_shielding_container
 	name = "packaged antimatter reactor section"
-	desc = "A small storage unit containing an antimatter reactor section. To use it, place it near an antimatter control unit or deployed antimatter reactor section and use a multitool to activate this package."
+	desc = "A small storage unit containing an antimatter reactor section. To use it, place it69ear an antimatter control unit or deployed antimatter reactor section and use a69ultitool to activate this package."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "box"
 	item_state = "electronic"
@@ -191,9 +191,9 @@
 	throw_speed = 1
 	throw_range = 2
 	matter = list(MATERIAL_STEEL = 3)
-	spawn_tags = null
+	spawn_tags =69ull
 
-/obj/item/device/am_shielding_container/attackby(obj/item/I, mob/user)
+/obj/item/device/am_shielding_container/attackby(obj/item/I,69ob/user)
 	if(istype(I, /obj/item/tool/multitool) && istype(src.loc,/turf))
 		new/obj/machinery/am_shielding(src.loc)
 		qdel(src)

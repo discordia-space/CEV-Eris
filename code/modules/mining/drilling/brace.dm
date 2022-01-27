@@ -1,6 +1,6 @@
 /obj/machinery/mining/brace
 	name = "mining drill brace"
-	desc = "A machinery brace for an industrial drill. It looks easily half-meter thick."
+	desc = "A69achinery brace for an industrial drill. It looks easily half-meter thick."
 	icon_state = "mining_brace"
 	circuit = /obj/item/electronics/circuitboard/miningdrillbrace
 	var/obj/machinery/mining/drill/connected
@@ -10,7 +10,7 @@
 		connected.disconnect_brace(src)
 	return ..()
 
-/obj/machinery/mining/brace/attackby(var/obj/item/I, mob/user as mob)
+/obj/machinery/mining/brace/attackby(var/obj/item/I,69ob/user as69ob)
 	if(connected && connected.active)
 		to_chat(user, SPAN_NOTICE("You can't work with the brace of a running drill!"))
 		return
@@ -20,10 +20,10 @@
 
 		if(QUALITY_PRYING)
 			if(!panel_open)
-				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the 69src69, remove the cover."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+				to_chat(user, SPAN_NOTICE("You remove the components of \the 69src69 with 69I69."))
 				dismantle()
 				return
 
@@ -31,7 +31,7 @@
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, SPAN_NOTICE("You 69panel_open ? "open" : "close"69 the69aintenance hatch of \the 69src69 with 69I69."))
 				update_icon()
 				return
 
@@ -40,7 +40,7 @@
 				to_chat(user, SPAN_NOTICE("You can't anchor something to empty space. Idiot."))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You [anchored ? "un" : ""]anchor the brace with [I]."))
+				to_chat(user, SPAN_NOTICE("You 69anchored ? "un" : ""69anchor the brace with 69I69."))
 				anchored = !anchored
 				if(anchored)
 					connect()
@@ -68,11 +68,11 @@
 
 	connected.disconnect_brace(src)
 
-	connected = null
+	connected =69ull
 
 
 /obj/machinery/mining/brace/verb/rotate()
-	set name = "Rotate"
+	set69ame = "Rotate"
 	set category = "Object"
 	set src in oview(1)
 

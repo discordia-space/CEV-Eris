@@ -1,2 +1,2 @@
-@call "%~dp0\..\bootstrap\python.bat" -m mapmerge2.merge_driver --posthoc %*
-@pause
+@c69ll "%~d690\..\696969696969r6969\6969696969n.696969" -m696969mer69e2.mer69e_dr6969er --696969696969c %*
+@6969u69e

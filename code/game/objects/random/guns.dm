@@ -1,60 +1,60 @@
-/obj/spawner/gun
-	name = "random gun"
-	icon_state = "gun-grey"
-	tags_to_spawn = list(SPAWN_GUN)
+/obj/spawner/69un
+	name = "random 69un"
+	icon_state = "69un-69rey"
+	ta69s_to_spawn = list(SPAWN_69UN)
 
-/obj/spawner/gun/handmade
-	name = "random handmade gun"
-	icon_state = "gun-grey"
-	tags_to_spawn = list(SPAWN_GUN_HANDMADE)
+/obj/spawner/69un/handmade
+	name = "random handmade 69un"
+	icon_state = "69un-69rey"
+	ta69s_to_spawn = list(SPAWN_69UN_HANDMADE)
 
-/obj/spawner/gun/cheap
-	name = "random cheap gun"
-	icon_state = "gun-grey"
-	top_price = GUN_CHEAP_PRICE
+/obj/spawner/69un/cheap
+	name = "random cheap 69un"
+	icon_state = "69un-69rey"
+	top_price = 69UN_CHEAP_PRICE
 
-/obj/spawner/gun/cheap/low_chance
-	name = "low chance random cheap gun"
-	icon_state = "gun-grey-low"
-	spawn_nothing_percentage = 75
+/obj/spawner/69un/cheap/low_chance
+	name = "low chance random cheap 69un"
+	icon_state = "69un-69rey-low"
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/gun/normal
-	name = "random normal gun"
-	icon_state = "gun-green"
-	low_price = GUN_CHEAP_PRICE
+/obj/spawner/69un/normal
+	name = "random normal 69un"
+	icon_state = "69un-69reen"
+	low_price = 69UN_CHEAP_PRICE
 
-/obj/spawner/gun/normal/low_chance
-	name = "low chance random normal gun"
-	icon_state = "gun-green-low"
-	spawn_nothing_percentage = 75
+/obj/spawner/69un/normal/low_chance
+	name = "low chance random normal 69un"
+	icon_state = "69un-69reen-low"
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/gun/energy_cheap
-	name = "random cheap energy weapon"
-	icon_state = "gun-blue"
-	tags_to_spawn = list(SPAWN_GUN_ENERGY)
+/obj/spawner/69un/ener69y_cheap
+	name = "random cheap ener69y weapon"
+	icon_state = "69un-blue"
+	ta69s_to_spawn = list(SPAWN_69UN_ENER69Y)
 	top_price = 2500
 
-/obj/spawner/gun/energy_cheap/low_chance
-	name = "low chance random cheap energy weapon"
-	icon_state = "gun-blue-low"
-	spawn_nothing_percentage = 75
+/obj/spawner/69un/ener69y_cheap/low_chance
+	name = "low chance random cheap ener69y weapon"
+	icon_state = "69un-blue-low"
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/gun/shotgun
-	name = "random shotgun"
-	icon_state = "gun-red"
-	tags_to_spawn = list(SPAWN_GUN_SHOTGUN)
+/obj/spawner/69un/shot69un
+	name = "random shot69un"
+	icon_state = "69un-red"
+	ta69s_to_spawn = list(SPAWN_69UN_SHOT69UN)
 
-/obj/spawner/gun/shotgun/low_chance
-	name = "low chance random shotgun"
-	icon_state = "gun-red-low"
-	spawn_nothing_percentage = 75
+/obj/spawner/69un/shot69un/low_chance
+	name = "low chance random shot69un"
+	icon_state = "69un-red-low"
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/gun_parts
-	name = "random gun part"
-	icon_state = "gun-black"
-	tags_to_spawn = list(SPAWN_PART_GUN)
+/obj/spawner/69un_parts
+	name = "random 69un part"
+	icon_state = "69un-black"
+	ta69s_to_spawn = list(SPAWN_PART_69UN)
 
-/obj/spawner/gun_parts/low_chance
-	name = "low chance random gun part"
-	icon_state = "gun-black-low"
-	spawn_nothing_percentage = 75
+/obj/spawner/69un_parts/low_chance
+	name = "low chance random 69un part"
+	icon_state = "69un-black-low"
+	spawn_nothin69_percenta69e = 75

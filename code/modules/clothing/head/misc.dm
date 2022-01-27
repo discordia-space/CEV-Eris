@@ -42,7 +42,7 @@
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
-	desc = "These were once used by Plague doctors. They're pretty much useless."
+	desc = "These were once used by Plague doctors. They're pretty69uch useless."
 	icon_state = "plaguedoctor"
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
@@ -60,7 +60,7 @@
 
 /obj/item/clothing/head/nursehat
 	name = "nurse's hat"
-	desc = "It allows quick identification of trained medical personnel."
+	desc = "It allows quick identification of trained69edical personnel."
 	icon_state = "nursehat"
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
@@ -72,7 +72,7 @@
 		slot_r_hand_str = "syndicate-helm-black-red",
 		)
 	icon_state = "syndicate"
-	desc = "A plastic replica of a bloodthirsty mercenary's space helmet, you'll look just like a real murderous criminal operative in this! This is a toy, it is not made for use in space!"
+	desc = "A plastic replica of a bloodthirsty69ercenary's space helmet, you'll look just like a real69urderous criminal operative in this! This is a toy, it is not69ade for use in space!"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
@@ -90,7 +90,7 @@
 
 /obj/item/clothing/head/cardborg
 	name = "cardborg helmet"
-	desc = "A helmet made out of a box."
+	desc = "A helmet69ade out of a box."
 	icon_state = "cardborg_h"
 	item_state = "cardborg_h"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE
@@ -120,7 +120,7 @@
 
 /obj/item/clothing/head/flatcap
 	name = "flat cap"
-	desc = "A working man's cap."
+	desc = "A working69an's cap."
 	icon_state = "flat_cap"
 	item_state_slots = list(
 		slot_l_hand_str = "det_hat",
@@ -166,7 +166,7 @@
 /obj/item/clothing/head/beaverhat
 	name = "beaver hat"
 	icon_state = "beaver_hat"
-	desc = "Soft felt makes this hat both comfortable and elegant."
+	desc = "Soft felt69akes this hat both comfortable and elegant."
 	style = STYLE_HATHATHAT
 
 /obj/item/clothing/head/boaterhat
@@ -229,7 +229,7 @@
 		slot_l_hand_str = "xenos_helm",
 		slot_r_hand_str = "xenos_helm",
 		)
-	desc = "A helmet made out of chitinous alien hide."
+	desc = "A helmet69ade out of chitinous alien hide."
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	siemens_coefficient = 2
 	body_parts_covered = HEAD|FACE|EYES
@@ -237,7 +237,7 @@
 
 /obj/item/clothing/head/philosopher_wig
 	name = "natural philosopher's wig"
-	desc = "A stylish monstrosity unearthed from Earth's Renaissance period. With this most distinguish'd wig, you'll be ready for your next soiree!"
+	desc = "A stylish69onstrosity unearthed from Earth's Renaissance period. With this69ost distinguish'd wig, you'll be ready for your next soiree!"
 	icon_state = "philosopher_wig"
 	item_state_slots = list(
 		slot_l_hand_str = "pwig",
@@ -257,7 +257,7 @@
 
 /obj/item/clothing/head/gladiator
 	name = "gladiator helmet"
-	desc = "Ave, Imperator, morituri te salutant."
+	desc = "Ave, Imperator,69orituri te salutant."
 	icon_state = "gladiator"
 	item_flags = THICKMATERIAL
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|BLOCKHAIR
@@ -267,7 +267,7 @@
 
 /obj/item/clothing/head/beret/german
 	name = "Oberth Republic beret"
-	desc = "Brown beret with emblem. Material that it made of will protect against energy projectiles."
+	desc = "Brown beret with emblem.69aterial that it69ade of will protect against energy projectiles."
 	icon_state = "germanberet"
 	armor = list(
 		melee = 5,
@@ -287,7 +287,7 @@
 
 /obj/item/clothing/head/inhaler
 	name = "odd looking helmet"
-	desc = "A confusingly complex helmet. It is capable of protecting you so it's more useful than being a simple decoration."
+	desc = "A confusingly complex helmet. It is capable of protecting you so it's69ore useful than being a simple decoration."
 	icon_state = "inhaler"
 	item_state = "inhaler"
 	item_flags = THICKMATERIAL
@@ -307,7 +307,7 @@
 
 /obj/item/clothing/head/skull
 	name = "white skull"
-	desc = "This is actually a white plastic skull, don't expect much protection."
+	desc = "This is actually a white plastic skull, don't expect69uch protection."
 	icon_state = "skull-white"
 	item_state = "skull-white"
 	flags_inv = HIDEMASK|HIDEEARS|BLOCKHAIR
@@ -325,14 +325,14 @@
 
 /obj/item/clothing/head/skull/black
 	name = "black skull"
-	desc = "This is actually a black plastic skull, don't expect much protection."
+	desc = "This is actually a black plastic skull, don't expect69uch protection."
 	icon_state = "skull-black"
 	item_state = "skull-black"
 	price_tag = 300
 
 /obj/item/clothing/head/skull/drip
 	name = "golden skull"
-	desc = "This is actually a skull made of gold! How the hell did this show up here?"
+	desc = "This is actually a skull69ade of gold! How the hell did this show up here?"
 	icon_state = "skull-drip"
 	item_state = "skull-drip"
 	spawn_blacklisted = TRUE //its 10k, also decent armour

@@ -1,4 +1,4 @@
-//Prisoner containment sleeper: Ghosts become escaped prisoners and are advised to find a way out of the mess they've gotten themselves into.
+//Prisoner containment sleeper: Ghosts become escaped prisoners and are advised to find a way out of the69ess they've gotten themselves into.
 /obj/effect/mob_spawn/human/prisoner_transport
 	name = "prisoner containment sleeper"
 	desc = "A sleeper designed to put its occupant into a deep coma, unbreakable until the sleeper turns off. This one's glass is cracked and you can see a pale, sleeping face staring out."
@@ -20,14 +20,14 @@
 	)
 
 /obj/effect/mob_spawn/human/prisoner_transport/special(mob/living/L)
-	L.fully_replace_character_name(null,"IHP #PH-0[rand(111,999)]") //Ironhammer Prisoner #Prison Hulk-(numbers)
+	L.fully_replace_character_name(null,"IHP #PH-069rand(111,999)69") //Ironhammer Prisoner #Prison Hulk-(numbers)
 
 /obj/effect/mob_spawn/human/prisoner_transport/Initialize(mapload)
 	. = ..()
 	var/list/crimes = list("murder", "larceny", "embezzlement", "unionization", "dereliction of duty", "kidnapping", "gross incompetence", "grand theft", \
 	"worship of a forbidden deity", "interspecies relations", "mutiny")
-	flavour_text += "[pick(crimes)]. but regardless of that, it seems like your crime doesn't matter now. You don't know where you are, but you know that it's out to kill you, and you're not going \
-	to lose this opportunity. Find a way to get out of this mess and back to where you rightfully belong - your [pick("house", "apartment", "spaceship", "station")]. There should be a teleporter somewhere, if it's still intact."
+	flavour_text += "69pick(crimes)69. but regardless of that, it seems like your crime doesn't69atter now. You don't know where you are, but you know that it's out to kill you, and you're not going \
+	to lose this opportunity. Find a way to get out of this69ess and back to where you rightfully belong - your 69pick("house", "apartment", "spaceship", "station")69. There should be a teleporter somewhere, if it's still intact."
 
 /decl/hierarchy/outfit/escapedprisoner
 	name = "Escaped Prisoner"
@@ -46,7 +46,7 @@
 	outfit = /decl/hierarchy/outfit/scavenger
 	short_desc = "You're a scavenger, who barely even owns the clothes on your back and the rifle in your hands."
 	flavour_text = "It seems you've arrived. You're here to get the good stuff and skedaddle with your life intact. \
-	There may be others to cooperate with, but don't count on it. There aren't any cops this far out, and laws don't carry much truck around here."
+	There69ay be others to cooperate with, but don't count on it. There aren't any cops this far out, and laws don't carry69uch truck around here."
 	assignedrole = "Scavenger"
 	title = "Asters Comission Scavenger"
 

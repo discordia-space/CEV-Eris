@@ -1,33 +1,33 @@
-// Access check is of the type requires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
+// Access check is of the type re69uires one. These have been carefully selected to avoid allowing the janitor to see channels he shouldn't
 var/global/list/default_internal_channels = list(
-	num2text(PUB_FREQ) = list(),
-	num2text(AI_FREQ)  = list(access_synth),
-	num2text(COMM_FREQ)= list(access_heads),
-	num2text(ENG_FREQ) = list(access_engine_equip, access_atmospherics),
-	num2text(MED_FREQ) = list(access_medical_equip),
-	num2text(NT_FREQ) = list(access_nt_disciple),
-	num2text(MED_I_FREQ)=list(access_medical_equip),
-	num2text(SEC_FREQ) = list(access_security),
-	num2text(SEC_I_FREQ)=list(access_security),
-	num2text(SCI_FREQ) = list(access_tox,access_robotics,access_xenobiology),
-	num2text(SUP_FREQ) = list(access_cargo),
-	num2text(SRV_FREQ) = list(access_janitor, access_hydroponics)
+	num2text(PUB_FRE69) = list(),
+	num2text(AI_FRE69)  = list(access_synth),
+	num2text(COMM_FRE69)= list(access_heads),
+	num2text(ENG_FRE69) = list(access_engine_e69uip, access_atmospherics),
+	num2text(MED_FRE69) = list(access_medical_e69uip),
+	num2text(NT_FRE69) = list(access_nt_disciple),
+	num2text(MED_I_FRE69)=list(access_medical_e69uip),
+	num2text(SEC_FRE69) = list(access_security),
+	num2text(SEC_I_FRE69)=list(access_security),
+	num2text(SCI_FRE69) = list(access_tox,access_robotics,access_xenobiology),
+	num2text(SUP_FRE69) = list(access_cargo),
+	num2text(SRV_FRE69) = list(access_janitor, access_hydroponics)
 )
 
-var/global/list/unique_internal_channels = list(
-	num2text(DTH_FREQ) = list(access_cent_specops)
+var/global/list/uni69ue_internal_channels = list(
+	num2text(DTH_FRE69) = list(access_cent_specops)
 )
 
 var/global/list/default_medbay_channels = list(
-	num2text(PUB_FREQ) = list(),
-	num2text(MED_FREQ) = list(access_medical_equip),
-	num2text(MED_I_FREQ) = list(access_medical_equip)
+	num2text(PUB_FRE69) = list(),
+	num2text(MED_FRE69) = list(access_medical_e69uip),
+	num2text(MED_I_FRE69) = list(access_medical_e69uip)
 )
 
 /obj/item/device/radio
 	icon = 'icons/obj/radio.dmi'
 	name = "ship bounced radio"
-	suffix = "\[3\]"
+	suffix = "\693\69"
 	icon_state = "walkietalkie"
 	item_state = "walkietalkie"
 	flags = CONDUCT
@@ -36,13 +36,13 @@ var/global/list/default_medbay_channels = list(
 	throw_range = 9
 	w_class = ITEM_SIZE_SMALL
 
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 3,69ATERIAL_GLASS = 1)
 
 	var/on = TRUE // 0 for off
 	var/last_transmission
-	var/frequency = PUB_FREQ //common chat
-	var/contractor_frequency = 0 //tune to frequency to unlock contractor supplies
-	var/canhear_range = 3 // the range which mobs can hear this radio from
+	var/fre69uency = PUB_FRE69 //common chat
+	var/contractor_fre69uency = 0 //tune to fre69uency to unlock contractor supplies
+	var/canhear_range = 3 // the range which69obs can hear this radio from
 	var/datum/wires/radio/wires
 	var/b_stat = 0
 	var/broadcasting = 0
@@ -50,32 +50,32 @@ var/global/list/default_medbay_channels = list(
 	var/list/channels = list() //see communications.dm for full list. First channel is a "default" for :h
 	var/subspace_transmission = 0
 	var/syndie = 0//Holder to see if it's a syndicate encrypted radio
-	var/const/FREQ_LISTENING = 1
+	var/const/FRE69_LISTENING = 1
 	var/list/internal_channels
 
 /obj/item/device/radio
-	var/datum/radio_frequency/radio_connection
-	var/list/datum/radio_frequency/secure_radio_connections = new
+	var/datum/radio_fre69uency/radio_connection
+	var/list/datum/radio_fre69uency/secure_radio_connections = new
 
-/obj/item/device/radio/proc/set_frequency(new_frequency)
-	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = SSradio.add_object(src, frequency, RADIO_CHAT)
+/obj/item/device/radio/proc/set_fre69uency(new_fre69uency)
+	SSradio.remove_object(src, fre69uency)
+	fre69uency = new_fre69uency
+	radio_connection = SSradio.add_object(src, fre69uency, RADIO_CHAT)
 
 /obj/item/device/radio/New()
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
 	if(syndie)
-		internal_channels += unique_internal_channels.Copy()
+		internal_channels += uni69ue_internal_channels.Copy()
 	add_hearing()
 
 /obj/item/device/radio/Destroy()
 	remove_hearing()
-	QDEL_NULL(wires)
-	SSradio.remove_object(src, frequency)
+	69DEL_NULL(wires)
+	SSradio.remove_object(src, fre69uency)
 	for (var/ch_name in channels)
-		SSradio.remove_object(src, radiochannels[ch_name])
+		SSradio.remove_object(src, radiochannels69ch_name69)
 
 	return ..()
 
@@ -83,14 +83,14 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/Initialize()
 	. = ..()
 
-	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
-		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
-	set_frequency(frequency)
+	if(fre69uency < RADIO_LOW_FRE69 || fre69uency > RADIO_HIGH_FRE69)
+		fre69uency = sanitize_fre69uency(fre69uency, RADIO_LOW_FRE69, RADIO_HIGH_FRE69)
+	set_fre69uency(fre69uency)
 
 	for (var/ch_name in channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections69ch_name69 = SSradio.add_object(src, radiochannels69ch_name69,  RADIO_CHAT)
 
-/obj/item/device/radio/attack_self(mob/user as mob)
+/obj/item/device/radio/attack_self(mob/user as69ob)
 	user.set_machine(src)
 	add_fingerprint(user)
 	interact(user)
@@ -104,28 +104,28 @@ var/global/list/default_medbay_channels = list(
 
 	return ui_interact(user)
 
-/obj/item/device/radio/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/item/device/radio/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
-	data["mic_status"] = broadcasting
-	data["speaker"] = listening
-	data["freq"] = format_frequency(frequency)
-	data["rawfreq"] = num2text(frequency)
+	data69"mic_status"69 = broadcasting
+	data69"speaker"69 = listening
+	data69"fre69"69 = format_fre69uency(fre69uency)
+	data69"rawfre69"69 = num2text(fre69uency)
 
-	data["mic_cut"] = (wires.IsIndexCut(WIRE_TRANSMIT) || wires.IsIndexCut(WIRE_SIGNAL))
-	data["spk_cut"] = (wires.IsIndexCut(WIRE_RECEIVE) || wires.IsIndexCut(WIRE_SIGNAL))
+	data69"mic_cut"69 = (wires.IsIndexCut(WIRE_TRANSMIT) || wires.IsIndexCut(WIRE_SIGNAL))
+	data69"spk_cut"69 = (wires.IsIndexCut(WIRE_RECEIVE) || wires.IsIndexCut(WIRE_SIGNAL))
 
 	var/list/chanlist = list_channels(user)
 	if(islist(chanlist) && chanlist.len)
-		data["chan_list"] = chanlist
-		data["chan_list_len"] = chanlist.len
+		data69"chan_list"69 = chanlist
+		data69"chan_list_len"69 = chanlist.len
 
 	if(syndie)
-		data["useSyndMode"] = 1
+		data69"useSyndMode"69 = 1
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio_basic.tmpl", "69name69", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -133,38 +133,38 @@ var/global/list/default_medbay_channels = list(
 	return list_internal_channels(user)
 
 /obj/item/device/radio/proc/list_secure_channels(var/mob/user)
-	var/dat[0]
+	var/dat69069
 
 	for(var/ch_name in channels)
-		var/chan_stat = channels[ch_name]
-		var/listening = !!(chan_stat & FREQ_LISTENING) != 0
+		var/chan_stat = channels69ch_name69
+		var/listening = !!(chan_stat & FRE69_LISTENING) != 0
 
-		dat.Add(list(list("chan" = ch_name, "display_name" = ch_name, "secure_channel" = 1, "sec_channel_listen" = !listening, "chan_span" = frequency_span_class(radiochannels[ch_name]))))
+		dat.Add(list(list("chan" = ch_name, "display_name" = ch_name, "secure_channel" = 1, "sec_channel_listen" = !listening, "chan_span" = fre69uency_span_class(radiochannels69ch_name69))))
 
 	return dat
 
 /obj/item/device/radio/proc/list_internal_channels(var/mob/user)
-	var/dat[0]
+	var/dat69069
 	for(var/internal_chan in internal_channels)
 		if(has_channel_access(user, internal_chan))
-			dat.Add(list(list("chan" = internal_chan, "display_name" = get_frequency_name(text2num(internal_chan)), "chan_span" = frequency_span_class(text2num(internal_chan)))))
+			dat.Add(list(list("chan" = internal_chan, "display_name" = get_fre69uency_name(text2num(internal_chan)), "chan_span" = fre69uency_span_class(text2num(internal_chan)))))
 
 	return dat
 
-/obj/item/device/radio/proc/has_channel_access(var/mob/user, var/freq)
+/obj/item/device/radio/proc/has_channel_access(var/mob/user,69ar/fre69)
 	if(!user)
 		return 0
 
-	if(!(freq in internal_channels))
+	if(!(fre69 in internal_channels))
 		return 0
 
-	return user.has_internal_radio_channel_access(internal_channels[freq])
+	return user.has_internal_radio_channel_access(internal_channels69fre6969)
 
-/mob/proc/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/proc/has_internal_radio_channel_access(var/list/re69_one_accesses)
 	var/obj/item/card/id/I = GetIdCard()
-	return has_access(list(), req_one_accesses, I ? I.GetAccess() : list())
+	return has_access(list(), re69_one_accesses, I ? I.GetAccess() : list())
 
-/mob/observer/ghost/has_internal_radio_channel_access(var/list/req_one_accesses)
+/mob/observer/ghost/has_internal_radio_channel_access(var/list/re69_one_accesses)
 	return can_admin_interact()
 
 /obj/item/device/radio/proc/text_wires()
@@ -173,11 +173,11 @@ var/global/list/default_medbay_channels = list(
 	return
 
 
-/obj/item/device/radio/proc/text_sec_channel(var/chan_name, var/chan_stat)
-	var/list = !!(chan_stat&FREQ_LISTENING)!=0
+/obj/item/device/radio/proc/text_sec_channel(var/chan_name,69ar/chan_stat)
+	var/list = !!(chan_stat&FRE69_LISTENING)!=0
 	return {"
-			<B>[chan_name]</B><br>
-			Speaker: <A href='byond://?src=\ref[src];ch_name=[chan_name];listen=[!list]'>[list ? "Engaged" : "Disengaged"]</A><BR>
+			<B>69chan_name69</B><br>
+			Speaker: <A href='byond://?src=\ref69src69;ch_name=69chan_name69;listen=69!list69'>69list ? "Engaged" : "Disengaged"69</A><BR>
 			"}
 
 /obj/item/device/radio/proc/ToggleBroadcast()
@@ -196,54 +196,54 @@ var/global/list/default_medbay_channels = list(
 		return 1
 
 	usr.set_machine(src)
-	if (href_list["track"])
-		var/mob/target = locate(href_list["track"])
-		var/mob/living/silicon/ai/A = locate(href_list["track2"])
+	if (href_list69"track"69)
+		var/mob/target = locate(href_list69"track"69)
+		var/mob/living/silicon/ai/A = locate(href_list69"track2"69)
 		if(A && target)
 			A.ai_actual_track(target)
 		. = 1
 
-	else if (href_list["freq"])
-		var/new_frequency = (frequency + text2num(href_list["freq"]))
-		if ((new_frequency < PUBLIC_LOW_FREQ || new_frequency > PUBLIC_HIGH_FREQ))
-			new_frequency = sanitize_frequency(new_frequency)
-		set_frequency(new_frequency)
+	else if (href_list69"fre69"69)
+		var/new_fre69uency = (fre69uency + text2num(href_list69"fre69"69))
+		if ((new_fre69uency < PUBLIC_LOW_FRE69 || new_fre69uency > PUBLIC_HIGH_FRE69))
+			new_fre69uency = sanitize_fre69uency(new_fre69uency)
+		set_fre69uency(new_fre69uency)
 		if(hidden_uplink)
-			if(hidden_uplink.check_trigger(usr, frequency))
+			if(hidden_uplink.check_trigger(usr, fre69uency))
 				hidden_uplink.trigger(usr)
 				return
 		. = 1
-	else if (href_list["talk"])
+	else if (href_list69"talk"69)
 		ToggleBroadcast()
 		. = 1
-	else if (href_list["listen"])
-		var/chan_name = href_list["ch_name"]
+	else if (href_list69"listen"69)
+		var/chan_name = href_list69"ch_name"69
 		if (!chan_name)
 			ToggleReception()
 		else
-			if (channels[chan_name] & FREQ_LISTENING)
-				channels[chan_name] &= ~FREQ_LISTENING
+			if (channels69chan_name69 & FRE69_LISTENING)
+				channels69chan_name69 &= ~FRE69_LISTENING
 			else
-				channels[chan_name] |= FREQ_LISTENING
+				channels69chan_name69 |= FRE69_LISTENING
 		. = 1
-	else if(href_list["spec_freq"])
-		var freq = href_list["spec_freq"]
-		if(has_channel_access(usr, freq))
-			set_frequency(text2num(freq))
+	else if(href_list69"spec_fre69"69)
+		var fre69 = href_list69"spec_fre69"69
+		if(has_channel_access(usr, fre69))
+			set_fre69uency(text2num(fre69))
 		. = 1
-	if(href_list["nowindow"]) // here for pAIs, maybe others will want it, idk
+	if(href_list69"nowindow"69) // here for pAIs,69aybe others will want it, idk
 		return 1
 
 	if(.)
 		SSnano.update_uis(src)
 	playsound(loc, 'sound/machines/machine_switch.ogg', 100, 1)
 
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel) //BS12 EDIT
-	var/datum/radio_frequency/connection = null
+/obj/item/device/radio/proc/autosay(var/message,69ar/from,69ar/channel) //BS12 EDIT
+	var/datum/radio_fre69uency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-			channel = channels[1]
-		connection = secure_radio_connections[channel]
+			channel = channels69169
+		connection = secure_radio_connections69channel69
 	else
 		connection = radio_connection
 		channel = null
@@ -254,44 +254,44 @@ var/global/list/default_medbay_channels = list(
 
 	Broadcast_Message(connection, null,
 						0, "*garbled automated announcement*", src,
-						message, from, "Automated Announcement", from, "synthesized voice",
-						4, 0, list(0), connection.frequency, "states")
+						message, from, "Automated Announcement", from, "synthesized69oice",
+						4, 0, list(0), connection.fre69uency, "states")
 	return
 
-// Interprets the message mode when talking into a radio, possibly returning a connection datum
-/obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, message, message_mode)
+// Interprets the69essage69ode when talking into a radio, possibly returning a connection datum
+/obj/item/device/radio/proc/handle_message_mode(mob/living/M as69ob,69essage,69essage_mode)
 	// If a channel isn't specified, send to common.
-	if(!message_mode || message_mode == "headset")
+	if(!message_mode ||69essage_mode == "headset")
 		return radio_connection
 
 	// Otherwise, if a channel is specified, look for it.
 	if(channels && channels.len > 0)
 		if (message_mode == "department") // Department radio shortcut
-			message_mode = channels[1]
+			message_mode = channels69169
 
-		if (channels[message_mode]) // only broadcast if the channel is set on
-			return secure_radio_connections[message_mode]
+		if (channels69message_mode69) // only broadcast if the channel is set on
+			return secure_radio_connections69message_mode69
 
 	// If we were to send to a channel we don't have, drop it.
 	return null
 
-/obj/item/device/radio/talk_into(mob/living/M as mob, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/talk_into(mob/living/M as69ob,69essage, channel,69ar/verb = "says",69ar/datum/language/speaking = null,69ar/speech_volume)
 	if(!on) return 0 // the device has to be on
 	//  Fix for permacell radios, but kinda eh about actually fixing them.
 	if(!M || !message) return 0
 
 	//  Uncommenting this. To the above comment:
-	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just making radio wires useless. -Giacom
+	// 	The permacell radios aren't suppose to be able to transmit, this isn't a bug and this "fix" is just69aking radio wires useless. -Giacom
 	if(wires.IsIndexCut(WIRE_TRANSMIT)) // The device has to have all its wires and shit intact
 		return 0
 
 	if(!radio_connection)
-		set_frequency(frequency)
+		set_fre69uency(fre69uency)
 
-	/* Quick introduction:
-		This new radio system uses a very robust FTL signaling technology unoriginally
+	/* 69uick introduction:
+		This new radio system uses a69ery robust FTL signaling technology unoriginally
 		dubbed "subspace" which is somewhat similar to 'blue-space' but can't
-		actually transmit large mass. Headsets are the only radio devices capable
+		actually transmit large69ass. Headsets are the only radio devices capable
 		of sending subspace transmissions to the Communications Satellite.
 
 		A headset sends a signal to a subspace listener/reciever elsewhere in space,
@@ -300,7 +300,7 @@ var/global/list/default_medbay_channels = list(
 	*/
 
 	//#### Grab the connection datum ####//
-	var/datum/radio_frequency/connection = handle_message_mode(M, message, channel)
+	var/datum/radio_fre69uency/connection = handle_message_mode(M,69essage, channel)
 	if (!istype(connection))
 		return 0
 	if (!connection)
@@ -308,26 +308,26 @@ var/global/list/default_medbay_channels = list(
 
 	var/turf/position = get_turf(src)
 
-	//#### Tagging the signal with all appropriate identity values ####//
+	//#### Tagging the signal with all appropriate identity69alues ####//
 
-	// ||-- The mob's name identity --||
-	var/displayname = M.name	// grab the display name (name you get when you hover over someone's icon)
-	var/real_name = M.real_name // mob's real name
-	var/mobkey = "none" // player key associated with mob
-	var/voicemask = 0 // the speaker is wearing a voice mask
+	// ||-- The69ob's name identity --||
+	var/displayname =69.name	// grab the display name (name you get when you hover over someone's icon)
+	var/real_name =69.real_name //69ob's real name
+	var/mobkey = "none" // player key associated with69ob
+	var/voicemask = 0 // the speaker is wearing a69oice69ask
 	if(M.client)
-		mobkey = M.key // assign the mob's key
+		mobkey =69.key // assign the69ob's key
 
 
-	var/jobname // the mob's "job"
+	var/jobname // the69ob's "job"
 
 	// --- Human: use their actual job ---
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		jobname = H.get_assignment()
 
 	// --- Carbon Nonhuman ---
-	else if (iscarbon(M)) // Nonhuman carbon mob
+	else if (iscarbon(M)) // Nonhuman carbon69ob
 		jobname = "No id"
 
 	// --- AI ---
@@ -342,16 +342,16 @@ var/global/list/default_medbay_channels = list(
 	else if (istype(M, /mob/living/silicon/pai))
 		jobname = "Personal AI"
 
-	// --- Unidentifiable mob ---
+	// --- Unidentifiable69ob ---
 	else
 		jobname = "Unknown"
 
 
-	// --- Modifications to the mob's identity ---
+	// ---69odifications to the69ob's identity ---
 
-	// The mob is disguising their identity:
-	if (ishuman(M) && M.GetVoice() != real_name)
-		displayname = M.GetVoice()
+	// The69ob is disguising their identity:
+	if (ishuman(M) &&69.GetVoice() != real_name)
+		displayname =69.GetVoice()
 		jobname = "Unknown"
 		voicemask = 1
 	SEND_SIGNAL(src, COMSIG_MESSAGE_SENT)
@@ -366,38 +366,38 @@ var/global/list/default_medbay_channels = list(
 		signal.transmission_method = 2 // 2 would be a subspace transmission.
 									   // transmission_method could probably be enumerated through #define. Would be neater.
 
-		// --- Finally, tag the actual signal with the appropriate values ---
+		// --- Finally, tag the actual signal with the appropriate69alues ---
 		signal.data = list(
 		  // Identity-associated tags:
-			"mob" = M, // store a reference to the mob
-			"mobtype" = M.type, 	// the mob's type
-			"realname" = real_name, // the mob's real name
-			"name" = displayname,	// the mob's display name
-			"job" = jobname,		// the mob's job
-			"key" = mobkey,			// the mob's key
-			"vmessage" = pick(M.speak_emote), // the message to display if the voice wasn't understood
-			"vname" = M.voice_name, // the name to display if the voice wasn't understood
-			"vmask" = voicemask,	// 1 if the mob is using a voice gas mask
+			"mob" =69, // store a reference to the69ob
+			"mobtype" =69.type, 	// the69ob's type
+			"realname" = real_name, // the69ob's real name
+			"name" = displayname,	// the69ob's display name
+			"job" = jobname,		// the69ob's job
+			"key" =69obkey,			// the69ob's key
+			"vmessage" = pick(M.speak_emote), // the69essage to display if the69oice wasn't understood
+			"vname" =69.voice_name, // the name to display if the69oice wasn't understood
+			"vmask" =69oicemask,	// 1 if the69ob is using a69oice gas69ask
 
-			// We store things that would otherwise be kept in the actual mob
-			// so that they can be logged even AFTER the mob is deleted or something
+			// We store things that would otherwise be kept in the actual69ob
+			// so that they can be logged even AFTER the69ob is deleted or something
 
 		  // Other tags:
 			"compression" = rand(45,50), // compressed radio signal
-			"message" = message, // the actual sent message
+			"message" =69essage, // the actual sent69essage
 			"connection" = connection, // the radio connection to use
 			"radio" = src, // stores the radio used for transmission
-			"slow" = 0, // how much to sleep() before broadcasting - simulates net lag
+			"slow" = 0, // how69uch to sleep() before broadcasting - simulates net lag
 			"traffic" = 0, // dictates the total traffic sum that the signal went through
 			"type" = 0, // determines what type of radio input it is: normal broadcast
 			"server" = null, // the last server to log this signal
-			"reject" = 0,	// if nonzero, the signal will not be accepted by any broadcasting machinery
+			"reject" = 0,	// if nonzero, the signal will not be accepted by any broadcasting69achinery
 			"level" = position.z, // The source's z level
 			"language" = speaking,
-			"verb" = verb,
+			"verb" =69erb,
 			"speech_volume" = speech_volume
 		)
-		signal.frequency = connection.frequency // Quick frequency set
+		signal.fre69uency = connection.fre69uency // 69uick fre69uency set
 
 	  //#### Sending the signal to all subspace receivers ####//
 
@@ -409,7 +409,7 @@ var/global/list/default_medbay_channels = list(
 			R.receive_signal(signal)
 
 		// Receiving code can be located in Telecommunications.dm
-		return signal.data["done"] && (position.z in signal.data["level"])
+		return signal.data69"done"69 && (position.z in signal.data69"level"69)
 
 
   /* ###### Intercoms and station-bounced radios ###### */
@@ -429,18 +429,18 @@ var/global/list/default_medbay_channels = list(
 
 	signal.data = list(
 
-		"mob" = M, // store a reference to the mob
-		"mobtype" = M.type, 	// the mob's type
-		"realname" = real_name, // the mob's real name
-		"name" = displayname,	// the mob's display name
-		"job" = jobname,		// the mob's job
-		"key" = mobkey,			// the mob's key
-		"vmessage" = pick(M.speak_emote), // the message to display if the voice wasn't understood
-		"vname" = M.voice_name, // the name to display if the voice wasn't understood
-		"vmask" = voicemask,	// 1 if the mob is using a voice gas mas
+		"mob" =69, // store a reference to the69ob
+		"mobtype" =69.type, 	// the69ob's type
+		"realname" = real_name, // the69ob's real name
+		"name" = displayname,	// the69ob's display name
+		"job" = jobname,		// the69ob's job
+		"key" =69obkey,			// the69ob's key
+		"vmessage" = pick(M.speak_emote), // the69essage to display if the69oice wasn't understood
+		"vname" =69.voice_name, // the name to display if the69oice wasn't understood
+		"vmask" =69oicemask,	// 1 if the69ob is using a69oice gas69as
 
 		"compression" = 0, // uncompressed radio signal
-		"message" = message, // the actual sent message
+		"message" =69essage, // the actual sent69essage
 		"connection" = connection, // the radio connection to use
 		"radio" = src, // stores the radio used for transmission
 		"slow" = 0,
@@ -450,10 +450,10 @@ var/global/list/default_medbay_channels = list(
 		"reject" = 0,
 		"level" = position.z,
 		"language" = speaking,
-		"verb" = verb,
+		"verb" =69erb,
 		"speech_volume" = speech_volume
 	)
-	signal.frequency = connection.frequency // Quick frequency set
+	signal.fre69uency = connection.fre69uency // 69uick fre69uency set
 
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 		R.receive_signal(signal)
@@ -461,32 +461,32 @@ var/global/list/default_medbay_channels = list(
 
 	sleep(rand(10,25)) // wait a little...
 
-	if(signal.data["done"] && (position.z in signal.data["level"]))
+	if(signal.data69"done"69 && (position.z in signal.data69"level"69))
 		// we're done here.
 		return 1
 
-	// Oh my god; the comms are down or something because the signal hasn't been broadcasted yet in our level.
-	// Send a mundane broadcast with limited targets:
+	// Oh69y god; the comms are down or something because the signal hasn't been broadcasted yet in our level.
+	// Send a69undane broadcast with limited targets:
 
 	//THIS IS TEMPORARY. YEAH RIGHT. STATE OF SS13 DEVELOPMENT...
 	if(!connection)	return 0	//~Carn
 
-	return Broadcast_Message(connection, M, voicemask, pick(M.speak_emote),
-					  src, message, displayname, jobname, real_name, M.voice_name,
-					  filter_type, signal.data["compression"], list(position.z), connection.frequency,verb,speaking, speech_volume)
+	return Broadcast_Message(connection,69,69oicemask, pick(M.speak_emote),
+					  src,69essage, displayname, jobname, real_name,69.voice_name,
+					  filter_type, signal.data69"compression"69, list(position.z), connection.fre69uency,verb,speaking, speech_volume)
 
 
-/obj/item/device/radio/hear_talk(mob/M as mob, msg, var/verb = "says", var/datum/language/speaking = null, speech_volume)
+/obj/item/device/radio/hear_talk(mob/M as69ob,69sg,69ar/verb = "says",69ar/datum/language/speaking = null, speech_volume)
 
 	if (broadcasting)
-		if(get_dist(src, M) <= canhear_range)
-			talk_into(M, msg,null,verb,speaking, speech_volume)
+		if(get_dist(src,69) <= canhear_range)
+			talk_into(M,69sg,null,verb,speaking, speech_volume)
 
 
 /*
-/obj/item/device/radio/proc/accept_rad(obj/item/device/radio/R as obj, message)
+/obj/item/device/radio/proc/accept_rad(obj/item/device/radio/R as obj,69essage)
 
-	if ((R.frequency == frequency && message))
+	if ((R.fre69uency == fre69uency &&69essage))
 		return 1
 	else if
 
@@ -496,9 +496,9 @@ var/global/list/default_medbay_channels = list(
 */
 
 
-/obj/item/device/radio/proc/receive_range(freq, level)
-	// check if this radio can receive on the given frequency, and if so,
-	// what the range is in which mobs will hear the radio
+/obj/item/device/radio/proc/receive_range(fre69, level)
+	// check if this radio can receive on the given fre69uency, and if so,
+	// what the range is in which69obs will hear the radio
 	// returns: -1 if can't receive, range otherwise
 
 	if (wires.IsIndexCut(WIRE_RECEIVE))
@@ -509,21 +509,21 @@ var/global/list/default_medbay_channels = list(
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
 			return -1
-	if(freq in ANTAG_FREQS)
-		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+	if(fre69 in ANTAG_FRE69S)
+		if(!(src.syndie))//Checks to see if it's allowed on that fre69uency, based on the encryption keys
 			return -1
 	if (!on)
 		return -1
 
-	if (!freq) //recieved on main frequency
+	if (!fre69) //recieved on69ain fre69uency
 		if (!listening)
 			return -1
 	else
-		var/accept = (freq==frequency && listening)
+		var/accept = (fre69==fre69uency && listening)
 		if (!accept)
 			for (var/ch_name in channels)
-				var/datum/radio_frequency/RF = secure_radio_connections[ch_name]
-				if (RF.frequency==freq && (channels[ch_name]&FREQ_LISTENING))
+				var/datum/radio_fre69uency/RF = secure_radio_connections69ch_name69
+				if (RF.fre69uency==fre69 && (channels69ch_name69&FRE69_LISTENING))
 					accept = 1
 					break
 
@@ -531,9 +531,9 @@ var/global/list/default_medbay_channels = list(
 			return -1
 	return canhear_range
 
-/obj/item/device/radio/proc/send_hear(freq, level)
+/obj/item/device/radio/proc/send_hear(fre69, level)
 
-	var/range = receive_range(freq, level)
+	var/range = receive_range(fre69, level)
 	if(range > -1)
 		return get_mobs_or_objects_in_view(canhear_range, src)
 
@@ -542,12 +542,12 @@ var/global/list/default_medbay_channels = list(
 	. = ..()
 	if ((in_range(src, user) || loc == user))
 		if (b_stat)
-			user.show_message(SPAN_NOTICE("\The [src] can be attached and modified!"))
+			user.show_message(SPAN_NOTICE("\The 69src69 can be attached and69odified!"))
 		else
-			user.show_message(SPAN_NOTICE("\The [src] can not be modified or attached!"))
+			user.show_message(SPAN_NOTICE("\The 69src69 can not be69odified or attached!"))
 	return
 
-/obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/device/radio/attackby(obj/item/W as obj,69ob/user as69ob)
 	..()
 	user.set_machine(src)
 	if (!( istype(W, /obj/item/tool/screwdriver) ))
@@ -555,9 +555,9 @@ var/global/list/default_medbay_channels = list(
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
 		if (b_stat)
-			user.show_message(SPAN_NOTICE("\The [src] can now be attached and modified!"))
+			user.show_message(SPAN_NOTICE("\The 69src69 can now be attached and69odified!"))
 		else
-			user.show_message(SPAN_NOTICE("\The [src] can no longer be modified or attached!"))
+			user.show_message(SPAN_NOTICE("\The 69src69 can no longer be69odified or attached!"))
 		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)
@@ -568,20 +568,20 @@ var/global/list/default_medbay_channels = list(
 	broadcasting = 0
 	listening = 0
 	for (var/ch_name in channels)
-		channels[ch_name] = 0
+		channels69ch_name69 = 0
 	..()
 
 ///////////////////////////////
 //////////Borg Radios//////////
 ///////////////////////////////
-//Giving borgs their own radio to have some more room to work with -Sieve
+//Giving borgs their own radio to have some69ore room to work with -Sieve
 
 /obj/item/device/radio/borg
 	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
 	icon_state = "radio"
 	canhear_range = 0
 	subspace_transmission = 1
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 	var/mob/living/silicon/robot/myborg // Cyborg which owns this radio. Used for power checks
 	var/obj/item/device/encryptionkey/keyslot //Borg radios can handle a single encryption key
 	var/shut_up = 1
@@ -593,14 +593,14 @@ var/global/list/default_medbay_channels = list(
 /obj/item/device/radio/borg/list_channels(mob/user)
 	return list_secure_channels(user)
 
-/obj/item/device/radio/borg/talk_into(mob/living/M, message, channel, var/verb = "says", var/datum/language/speaking = null, var/speech_volume)
+/obj/item/device/radio/borg/talk_into(mob/living/M,69essage, channel,69ar/verb = "says",69ar/datum/language/speaking = null,69ar/speech_volume)
 	. = ..()
 	if (isrobot(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
-		var/datum/robot_component/C = R.components["radio"]
+		var/datum/robot_component/C = R.components69"radio"69
 		R.cell_use_power(C.active_usage)
 
-/obj/item/device/radio/borg/attackby(obj/item/W, mob/user)
+/obj/item/device/radio/borg/attackby(obj/item/W,69ob/user)
 	//..()
 	user.set_machine(src)
 	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
@@ -611,8 +611,8 @@ var/global/list/default_medbay_channels = list(
 
 
 			for(var/ch_name in channels)
-				SSradio.remove_object(src, radiochannels[ch_name])
-				secure_radio_connections[ch_name] = null
+				SSradio.remove_object(src, radiochannels69ch_name69)
+				secure_radio_connections69ch_name69 = null
 
 
 			if(keyslot)
@@ -651,27 +651,27 @@ var/global/list/default_medbay_channels = list(
 			if(ch_name in src.channels)
 				continue
 			src.channels += ch_name
-			src.channels[ch_name] += D.module.channels[ch_name]
+			src.channels69ch_name69 += D.module.channels69ch_name69
 	if(keyslot)
 		for(var/ch_name in keyslot.channels)
 			if(ch_name in src.channels)
 				continue
 			src.channels += ch_name
-			src.channels[ch_name] += keyslot.channels[ch_name]
+			src.channels69ch_name69 += keyslot.channels69ch_name69
 
 		if(keyslot.syndie)
 			src.syndie = 1
 
 	for (var/ch_name in src.channels)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections69ch_name69 = SSradio.add_object(src, radiochannels69ch_name69,  RADIO_CHAT)
 
 	return
 
 /obj/item/device/radio/borg/Topic(href, href_list)
 	if(..())
 		return 1
-	if (href_list["mode"])
-		var/enable_subspace_transmission = text2num(href_list["mode"])
+	if (href_list69"mode"69)
+		var/enable_subspace_transmission = text2num(href_list69"mode"69)
 		if(enable_subspace_transmission != subspace_transmission)
 			subspace_transmission = !subspace_transmission
 			if(subspace_transmission)
@@ -684,8 +684,8 @@ var/global/list/default_medbay_channels = list(
 			else
 				recalculateChannels()
 		. = 1
-	if (href_list["shutup"]) // Toggle loudspeaker mode, AKA everyone around you hearing your radio.
-		var/do_shut_up = text2num(href_list["shutup"])
+	if (href_list69"shutup"69) // Toggle loudspeaker69ode, AKA everyone around you hearing your radio.
+		var/do_shut_up = text2num(href_list69"shutup"69)
 		if(do_shut_up != shut_up)
 			shut_up = !shut_up
 			if(shut_up)
@@ -699,46 +699,46 @@ var/global/list/default_medbay_channels = list(
 	if(.)
 		SSnano.update_uis(src)
 
-/obj/item/device/radio/borg/interact(mob/user as mob)
+/obj/item/device/radio/borg/interact(mob/user as69ob)
 	if(!on)
 		return
 
 	. = ..()
 
-/obj/item/device/radio/borg/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/item/device/radio/borg/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
-	data["mic_status"] = broadcasting
-	data["speaker"] = listening
-	data["freq"] = format_frequency(frequency)
-	data["rawfreq"] = num2text(frequency)
+	data69"mic_status"69 = broadcasting
+	data69"speaker"69 = listening
+	data69"fre69"69 = format_fre69uency(fre69uency)
+	data69"rawfre69"69 = num2text(fre69uency)
 
 	var/list/chanlist = list_channels(user)
 	if(islist(chanlist) && chanlist.len)
-		data["chan_list"] = chanlist
-		data["chan_list_len"] = chanlist.len
+		data69"chan_list"69 = chanlist
+		data69"chan_list_len"69 = chanlist.len
 
 	if(syndie)
-		data["useSyndMode"] = 1
+		data69"useSyndMode"69 = 1
 
-	data["has_loudspeaker"] = 1
-	data["loudspeaker"] = !shut_up
-	data["has_subspace"] = 1
-	data["subspace"] = subspace_transmission
+	data69"has_loudspeaker"69 = 1
+	data69"loudspeaker"69 = !shut_up
+	data69"has_subspace"69 = 1
+	data69"subspace"69 = subspace_transmission
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "radio_basic.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "radio_basic.tmpl", "69name69", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
 /obj/item/device/radio/proc/config(op)
 	for (var/ch_name in channels)
-		SSradio.remove_object(src, radiochannels[ch_name])
+		SSradio.remove_object(src, radiochannels69ch_name69)
 	secure_radio_connections = new
 	channels = op
 	for (var/ch_name in op)
-		secure_radio_connections[ch_name] = SSradio.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+		secure_radio_connections69ch_name69 = SSradio.add_object(src, radiochannels69ch_name69,  RADIO_CHAT)
 	return
 
 /obj/item/device/radio/off
@@ -752,7 +752,7 @@ var/global/list/default_medbay_channels = list(
 	name = "phone"
 
 /obj/item/device/radio/phone/medbay
-	frequency = MED_I_FREQ
+	fre69uency =69ED_I_FRE69
 
 /obj/item/device/radio/phone/medbay/New()
 	..()
@@ -760,33 +760,33 @@ var/global/list/default_medbay_channels = list(
 
 /obj/item/device/radio/random_radio
 	name = "Random wave radio"
-	desc = "Radio that can pick up messages from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with mechanical aspect."
+	desc = "Radio that can pick up69essages from secure channels, but with small chance. Provides intel about hidden loot over time. It can be repaired by oddity with69echanical aspect."
 	icon = 'icons/obj/faction_item.dmi'
 	icon_state = "random_radio"
 	item_state = "random_radio"
 	slot_flags = FALSE
 	canhear_range = 4
 	var/random_hear = 20
-	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT Voice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
+	channels = list("Command" = 1, "Security" = 1, "Engineering" = 1, "NT69oice" = 1, "Science" = 1, "Medical" = 1, "Supply" = 1, "Service" = 1, "AI Private" = 1)
 	price_tag = 20000
 	origin_tech = list(TECH_DATA = 7, TECH_ENGINEERING = 7, TECH_COVERT = 7)
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 	spawn_blacklisted = TRUE
 	var/list/obj/item/oddity/used_oddity = list()
 	var/last_produce = 0
-	var/cooldown = 40 MINUTES
-	var/max_cooldown = 40 MINUTES
-	var/min_cooldown = 15 MINUTES
+	var/cooldown = 4069INUTES
+	var/max_cooldown = 4069INUTES
+	var/min_cooldown = 1569INUTES
 	w_class = ITEM_SIZE_BULKY
 
 /obj/item/device/radio/random_radio/New()
 	..()
-	GLOB.all_faction_items[src] = GLOB.department_guild
+	GLOB.all_faction_items69src69 = GLOB.department_guild
 	START_PROCESSING(SSobj, src)
 
 /obj/item/device/radio/random_radio/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	for(var/mob/living/carbon/human/H in viewers(get_turf(src)))
+	for(var/mob/living/carbon/human/H in69iewers(get_turf(src)))
 		SEND_SIGNAL(H, COMSIG_OBJ_FACTION_ITEM_DESTROY, src)
 	GLOB.all_faction_items -= src
 	GLOB.guild_faction_item_loss++
@@ -800,10 +800,10 @@ var/global/list/default_medbay_channels = list(
 		stash.select_location()
 		stash.spawn_stash()
 		var/obj/item/paper/stash_note = stash.spawn_note(get_turf(src))
-		visible_message(SPAN_NOTICE("[src] spits out a [stash_note]."))
+		visible_message(SPAN_NOTICE("69src69 spits out a 69stash_note69."))
 		last_produce = world.time
 
-/obj/item/device/radio/random_radio/receive_range(freq, level)
+/obj/item/device/radio/random_radio/receive_range(fre69, level)
 
 	if (wires.IsIndexCut(WIRE_RECEIVE))
 		return -1
@@ -813,8 +813,8 @@ var/global/list/default_medbay_channels = list(
 		var/turf/position = get_turf(src)
 		if(!position || !(position.z in level))
 			return -1
-	if(freq in ANTAG_FREQS)
-		if(!(src.syndie))//Checks to see if it's allowed on that frequency, based on the encryption keys
+	if(fre69 in ANTAG_FRE69S)
+		if(!(src.syndie))//Checks to see if it's allowed on that fre69uency, based on the encryption keys
 			return -1
 	if (!on)
 		return -1
@@ -828,12 +828,12 @@ var/global/list/default_medbay_channels = list(
 		syndie = TRUE
 		channels |= list("Mercenary" = 1)
 		playsound(loc, "sparks", 75, 1, -1)
-		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+		to_chat(user, SPAN_NOTICE("You use the cryptographic se69uencer on the 69name69."))
 	else
-		to_chat(user, SPAN_NOTICE("The [name] has already been emagged."))
+		to_chat(user, SPAN_NOTICE("The 69name69 has already been emagged."))
 		return NO_EMAG_ACT
 
-/obj/item/device/radio/random_radio/attackby(obj/item/W, mob/user, params)
+/obj/item/device/radio/random_radio/attackby(obj/item/W,69ob/user, params)
 	if(nt_sword_attack(W, user))
 		return FALSE
 	user.set_machine(src)
@@ -844,35 +844,35 @@ var/global/list/default_medbay_channels = list(
 			var/usefull = FALSE
 
 			if(random_hear >= 100)
-				to_chat(user, SPAN_WARNING("The [src] is in perfect condition."))
+				to_chat(user, SPAN_WARNING("The 69src69 is in perfect condition."))
 				return
 
-			to_chat(user, SPAN_NOTICE("You begin repairing [src] using [D]."))
+			to_chat(user, SPAN_NOTICE("You begin repairing 69src69 using 69D69."))
 
 			if(!do_after(user, 20 SECONDS, src))
-				to_chat(user, SPAN_WARNING("You've stopped repairing [src]."))
+				to_chat(user, SPAN_WARNING("You've stopped repairing 69src69."))
 				return
 
 			if(D in used_oddity)
-				to_chat(user, SPAN_WARNING("You've already used [D] to repair [src]!"))
+				to_chat(user, SPAN_WARNING("You've already used 69D69 to repair 69src69!"))
 				return
 
 			for(var/stat in D.oddity_stats)
 				if(stat == STAT_MEC)
-					var/increase = D.oddity_stats[stat] * 3
+					var/increase = D.oddity_stats69stat69 * 3
 					random_hear += increase
 					if(random_hear > 100)
 						random_hear = 100
-					cooldown -= (D.oddity_stats[stat]) MINUTES
-					if(cooldown < min_cooldown)
-						cooldown = min_cooldown
-					to_chat(user, SPAN_NOTICE("You make use of [D], and repaired [src] by [increase]%."))
+					cooldown -= (D.oddity_stats69stat69)69INUTES
+					if(cooldown <69in_cooldown)
+						cooldown =69in_cooldown
+					to_chat(user, SPAN_NOTICE("You69ake use of 69D69, and repaired 69src69 by 69increase69%."))
 					usefull = TRUE
 					used_oddity += D
 					return
 
 
 			if(!usefull)
-				to_chat(user, SPAN_WARNING("You cannot find any use of [D], maybe you need something related to mechanic to repair this?"))
+				to_chat(user, SPAN_WARNING("You cannot find any use of 69D69,69aybe you need something related to69echanic to repair this?"))
 		else
-			to_chat(user, SPAN_WARNING("The [D] is useless here. Try to find another one."))
+			to_chat(user, SPAN_WARNING("The 69D69 is useless here. Try to find another one."))

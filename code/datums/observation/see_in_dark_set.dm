@@ -1,10 +1,10 @@
 //	Observer Pattern Implementation: See In Dark Set
 //		Registration type: /mob
 //
-//		Raised when: A mob's see_in_dark value changes.
+//		Raised when: A69ob's see_in_dark69alue changes.
 //
 //		Arguments that the called proc should expect:
-//			/mob/sightee:  The mob that had its see_in_dark set
+//			/mob/sightee:  The69ob that had its see_in_dark set
 //			/old_see_in_dark: see_in_dark before the change
 //			/new_see_in_dark: see_in_dark after the change
 

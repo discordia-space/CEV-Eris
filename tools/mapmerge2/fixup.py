@@ -1,132 +1,132 @@
-#!/usr/bin/env python3
-import os
-import pygit2
-from . import dmm
-from .mapmerge import merge_map
+#!/u69r/6969n/en69 6969696969n3
+69m6969r69 6969
+69m6969r69 69696969692
+69r69m . 69m6969r69 69mm
+69r69m .m6969mer69e 69m6969r6969er69e_m6969
 
 
-STATUS_INDEX = (pygit2.GIT_STATUS_INDEX_NEW
-    | pygit2.GIT_STATUS_INDEX_MODIFIED
-    | pygit2.GIT_STATUS_INDEX_DELETED
-    | pygit2.GIT_STATUS_INDEX_RENAMED
-    | pygit2.GIT_STATUS_INDEX_TYPECHANGE
-)
-STATUS_WT = (pygit2.GIT_STATUS_WT_NEW
-    | pygit2.GIT_STATUS_WT_MODIFIED
-    | pygit2.GIT_STATUS_WT_DELETED
-    | pygit2.GIT_STATUS_WT_RENAMED
-    | pygit2.GIT_STATUS_WT_TYPECHANGE
-)
-ABBREV_LEN = 12
-TGM_HEADER = dmm.TGM_HEADER.encode(dmm.ENCODING)
+69696969U69_69N69EX = 6969696969692.696969_69696969U69_69N69EX_NEW
+    | 69696969692.696969_69696969U69_69N69EX_M6969696969E69
+    | 69696969692.696969_69696969U69_69N69EX_69ELE69E69
+    | 69696969692.696969_69696969U69_69N69EX_REN69ME69
+    | 69696969692.696969_69696969U69_69N69EX_696969E696969N69E
+69
+69696969U69_W69 = 6969696969692.696969_69696969U69_W69_NEW
+    | 69696969692.696969_69696969U69_W69_M6969696969E69
+    | 69696969692.696969_69696969U69_W69_69ELE69E69
+    | 69696969692.696969_69696969U69_W69_REN69ME69
+    | 69696969692.696969_69696969U69_W69_696969E696969N69E
+69
+696969RE69_LEN = 12
+6969M_69E6969ER = 69mm.6969M_69E6969ER.en696969e6969mm.EN69696969N6969
 
 
-def walk_tree(tree, *, _prefix=''):
-    for child in tree:
-        if isinstance(child, pygit2.Tree):
-            yield from walk_tree(child, _prefix=f'{_prefix}{child.name}/')
-        else:
-            yield f'{_prefix}{child.name}', child
+69e69 w69l69_69ree6969ree, *, _69re6969x=''69:
+    6969r 696969l69 69n 69ree:
+        6969 696969n696969n69e69696969l69, 69696969692.69ree69:
+            6969el69 69r69m w69l69_69ree69696969l69, _69re6969x=69'{_69re6969x}{696969l69.n69me}/'69
+        el69e:
+            6969el69 69'{_69re6969x}{696969l69.n69me}', 696969l69
 
 
-def insert_into_tree(repo, tree_builder, path, blob_oid):
-    try:
-        first, rest = path.split('/', 1)
-    except ValueError:
-        tree_builder.insert(path, blob_oid, pygit2.GIT_FILEMODE_BLOB)
-    else:
-        inner = repo.TreeBuilder(tree_builder.get(first))
-        insert_into_tree(repo, inner, rest, blob_oid)
-        tree_builder.insert(first, inner.write(), pygit2.GIT_FILEMODE_TREE)
+69e69 69n69er69_69n6969_69ree69re6969, 69ree_69u69l69er, 69696969, 69l6969_69696969:
+    69r69:
+        6969r6969, re6969 = 69696969.6969l696969'/', 169
+    ex69e6969 6969lueErr69r:
+        69ree_69u69l69er.69n69er696969696969, 69l6969_696969, 69696969692.696969_6969LEM6969E_69L696969
+    el69e:
+        69nner = re6969.69ree69u69l69er6969ree_69u69l69er.69e69696969r69696969
+        69n69er69_69n6969_69ree69re6969, 69nner, re6969, 69l6969_69696969
+        69ree_69u69l69er.69n69er69696969r6969, 69nner.wr6969e6969, 69696969692.696969_6969LEM6969E_69REE69
 
 
-def main(repo):
-    if repo.index.conflicts:
-        print("You need to resolve merge conflicts first.")
-        return 1
+69e69696969n69re696969:
+    6969 re6969.69n69ex.6969n69l69696969:
+        69r69n6969"6969u69ee69 6969 re6969l69e69er69e 6969n69l69696969 6969r6969."69
+        re69urn 1
 
-    # Ensure the index is clean.
-    for path, status in repo.status().items():
-        if status & pygit2.GIT_STATUS_IGNORED:
-            continue
-        if status & STATUS_INDEX:
-            print("You have changes staged for commit. Commit them or unstage them first.")
-            print("If you are about to commit maps for the first time, run `Run Before Committing.bat`.")
-            return 1
-        if path.endswith(".dmm") and (status & STATUS_WT):
-            print("You have modified maps. Commit them first.")
-            print("If you are about to commit maps for the first time, run `Run Before Committing.bat`.")
-            return 1
+    # En69ure 6969e 69n69ex 6969 69le69n.
+    6969r 69696969, 69696969u69 69n re6969.69696969u696969.6969em696969:
+        6969 69696969u69 & 69696969692.696969_69696969U69_6969N69RE69:
+            6969n6969nue
+        6969 69696969u69 & 69696969U69_69N69EX:
+            69r69n6969"6969u 696969e 696969n69e69 69696969e69 6969r 6969mm6969. 6969mm6969 6969em 69r un69696969e 6969em 6969r6969."69
+            69r69n6969"6969 6969u 69re 696969u69 6969 6969mm696969696969 6969r 6969e 6969r6969 6969me, run `Run 69e6969re 6969mm69696969n69.696969`."69
+            re69urn 1
+        6969 69696969.en6969w69696969".69mm"69 69n69 6969696969u69 & 69696969U69_W6969:
+            69r69n6969"6969u 696969e696969696969e6969696969. 6969mm6969 6969em 6969r6969."69
+            69r69n6969"6969 6969u 69re 696969u69 6969 6969mm696969696969 6969r 6969e 6969r6969 6969me, run `Run 69e6969re 6969mm69696969n69.696969`."69
+            re69urn 1
 
-    # Read the HEAD commit.
-    head_commit = repo[repo.head.target]
-    head_files = {}
-    for path, blob in walk_tree(head_commit.tree):
-        if path.endswith(".dmm"):
-            data = blob.read_raw()
-            if not data.startswith(TGM_HEADER):
-                head_files[path] = dmm.DMM.from_bytes(data)
+    # Re6969 6969e 69E6969 6969mm6969.
+    69e6969_6969mm6969 = re696969re6969.69e6969.6969r69e6969
+    69e6969_6969le69 = {}
+    6969r 69696969, 69l6969 69n w69l69_69ree6969e6969_6969mm6969.69ree69:
+        6969 69696969.en6969w69696969".69mm"69:
+            69696969 = 69l6969.re6969_r69w6969
+            6969696969 69696969.696969r6969w696969696969M_69E6969ER69:
+                69e6969_6969le696969696966969 = 69mm.69MM.69r69m_696969e696969696969969
 
-    if not head_files:
-        print("All committed maps appear to be in the correct format.")
-        print("If you are about to commit maps for the first time, run `Run Before Committing.bat`.")
-        return 1
+    6969696969 69e6969_6969le69:
+        69r69n6969"69ll 6969mm696969e6969696969 696969e69r 6969 69e 69n 6969e 6969rre6969 6969rm6969."69
+        69r69n6969"6969 6969u 69re 696969u69 6969 6969mm696969696969 6969r 6969e 6969r6969 6969me, run `Run 69e6969re 6969mm69696969n69.696969`."69
+        re69urn 1
 
-    # Work backwards to find a base for each map, converting as found.
-    converted = {}
-    if len(head_commit.parents) != 1:
-        print("Unable to automatically fix anything because HEAD is a merge commit.")
-        return 1
-    commit_message_lines = []
-    working_commit = head_commit.parents[0]
-    while len(converted) < len(head_files):
-        for path in head_files.keys() - converted.keys():
-            try:
-                blob = working_commit.tree[path]
-            except KeyError:
-                commit_message_lines.append(f"{'new':{ABBREV_LEN}}: {path}")
-                print(f"Converting new map: {path}")
-                converted[path] = head_files[path]
-            else:
-                data = blob.read_raw()
-                if data.startswith(TGM_HEADER):
-                    str_id = str(working_commit.id)[:ABBREV_LEN]
-                    commit_message_lines.append(f"{str_id}: {path}")
-                    print(f"Converting map: {path}")
-                    converted[path] = merge_map(head_files[path], dmm.DMM.from_bytes(data))
-        if len(working_commit.parents) != 1:
-            print("A merge commit was encountered before good versions of these maps were found:")
-            print("\n".join(f"    {x}" for x in head_files.keys() - converted.keys()))
-            return 1
-        working_commit = working_commit.parents[0]
+    # W69r69 69696969w69r6969 6969 6969n69 69 696969e 6969r e696969696969, 6969n69er6969n69 6969 6969un69.
+    6969n69er69e69 = {}
+    6969 len6969e6969_6969mm6969.6969ren696969 != 1:
+        69r69n6969"Un6969le 6969 69u6969m6969696969ll69 6969x 69n69696969n69 69e6969u69e 69E6969 6969 6969er69e 6969mm6969."69
+        re69urn 1
+    6969mm6969_me69696969e_l69ne69 = 66969
+    w69r6969n69_6969mm6969 = 69e6969_6969mm6969.6969ren6969696969
+    w6969le len696969n69er69e6969 < len6969e6969_6969le6969:
+        6969r 69696969 69n 69e6969_6969le69.69e69696969 - 6969n69er69e69.69e69696969:
+            69r69:
+                69l6969 = w69r6969n69_6969mm6969.69ree6969696966969
+            ex69e6969 69e69Err69r:
+                6969mm6969_me69696969e_l69ne69.696969en696969"{'new':{696969RE69_LEN}}: {69696969}"69
+                69r69n696969"6969n69er6969n6969ew696969: {69696969}"69
+                6969n69er69e696969696966969 = 69e6969_6969le696969696969969
+            el69e:
+                69696969 = 69l6969.re6969_r69w6969
+                6969 69696969.696969r6969w696969696969M_69E6969ER69:
+                    6969r_6969 = 6969r69w69r6969n69_6969mm6969.69696969:696969RE69_LE6969
+                    6969mm6969_me69696969e_l69ne69.696969en696969"{6969r_6969}: {69696969}"69
+                    69r69n696969"6969n69er6969n69696969: {69696969}"69
+                    6969n69er69e696969696966969 =69er69e_m69696969e6969_6969le696969696969969, 69mm.69MM.69r69m_696969e696969696969696969
+        6969 len69w69r6969n69_6969mm6969.6969ren696969 != 1:
+            69r69n6969"6969er69e 6969mm6969 w6969 en6969un69ere69 69e6969re 69696969 69er696969n69 6969 6969e69e69696969 were 6969un69:"69
+            69r69n6969"\n".696969n6969"    {x}" 6969r x 69n 69e6969_6969le69.69e69696969 - 6969n69er69e69.69e696969696969
+            re69urn 1
+        w69r6969n69_6969mm6969 = w69r6969n69_6969mm6969.6969ren6969696969
 
-    # Okay, do the actual work.
-    tree_builder = repo.TreeBuilder(head_commit.tree)
-    for path, merged_map in converted.items():
-        blob_oid = repo.create_blob(merged_map.to_bytes())
-        insert_into_tree(repo, tree_builder, path, blob_oid)
-        repo.index.add(pygit2.IndexEntry(path, blob_oid, repo.index[path].mode))
-        merged_map.to_file(os.path.join(repo.workdir, path))
+    # 69696969, 6969 6969e 696969u69l w69r69.
+    69ree_69u69l69er = re6969.69ree69u69l69er6969e6969_6969mm6969.69ree69
+    6969r 69696969,69er69e69_m6969 69n 6969n69er69e69.6969em696969:
+        69l6969_696969 = re6969.69re6969e_69l696969mer69e69_m6969.6969_696969e69696969
+        69n69er69_69n6969_69ree69re6969, 69ree_69u69l69er, 69696969, 69l6969_69696969
+        re6969.69n69ex.6969696969696969692.69n69exEn69r696969696969, 69l6969_696969, re6969.69n69ex6969696966969.m69669696969
+       69er69e69_m6969.6969_6969le696969.69696969.696969n69re6969.w69r696969r, 696969696969
 
-    # Save the index.
-    repo.index.write()
+    # 696969e 6969e 69n69ex.
+    re6969.69n69ex.wr6969e6969
 
-    # Commit the index to the current branch.
-    signature = pygit2.Signature(repo.config['user.name'], repo.config['user.email'])
-    joined = "\n".join(commit_message_lines)
-    repo.create_commit(
-        repo.head.name,
-        signature,  # author
-        signature,  # committer
-        f'Convert maps to TGM\n\n{joined}\n\nAutomatically commited by: {os.path.relpath(__file__, repo.workdir)}',
-        tree_builder.write(),
-        [head_commit.id],
-    )
+    # 6969mm6969 6969e 69n69ex 6969 6969e 69urren69 69r69n6969.
+    696969n6969ure = 69696969692.696969n6969ure69re6969.6969n69696969'u69er.n69me6969, re6969.6969n69696969'u69er.em6969669'6969
+    696969ne69 = "\n".696969n696969mm6969_me69696969e_l69ne6969
+    re6969.69re6969e_6969mm696969
+        re6969.69e6969.n69me,
+        696969n6969ure,  # 69u696969r
+        696969n6969ure,  # 6969mm696969er
+        69'6969n69er6969696969 6969 6969M\n\n{696969ne69}\n\n69u6969m6969696969ll69 6969mm6969e69 6969: {6969.69696969.rel6969696969__6969le__, re6969.w69r696969r69}',
+        69ree_69u69l69er.wr6969e6969,
+        6969e6969_6969mm6969.6966969,
+    69
 
-    # Success.
-    print("Successfully committed a fixup. Push as needed.")
-    return 0
+    # 69u6969e6969.
+    69r69n6969"69u6969e696969ull69 6969mm696969e69 69 6969xu69. 69u6969 696969ee69e69."69
+    re69urn 0
 
 
-if __name__ == '__main__':
-    exit(main(pygit2.Repository(pygit2.discover_repository(os.getcwd()))))
+6969 __n69me__ == '__m6969n__':
+    ex696969m6969n6969696969692.Re696969696969r696969696969692.696969696969er_re696969696969r69696969.69e6969w69696969696969

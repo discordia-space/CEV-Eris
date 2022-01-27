@@ -1,74 +1,74 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"b" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"c" = (
-/obj/structure/lattice,
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/mo69/livin69/simple_animal/hostile/carp,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"c" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"d" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"e" = (
+/area/template_noop69
+"d" = 69
+/o6969/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"e" = 69
 /turf/simulated/wall/r_wall,
-/area/template_noop)
-"f" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"g" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"h" = (
-/obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"x" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"O" = (
+/area/template_noop69
+"f" = 69
+/o6969/spawner/scrap/sparse,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"h" = 69
+/o6969/spawner/scrap/sparse/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"x" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"O" = 69
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 O
 O
-b
+69
 c
 x
 "}
-(2,1,1) = {"
+692,1,169 = {"
 c
 a
 d
 h
 d
 "}
-(3,1,1) = {"
-b
+693,1,169 = {"
+69
 f
 e
 c
 O
 "}
-(4,1,1) = {"
+694,1,169 = {"
 c
 c
-g
-g
+69
+69
 c
 "}
-(5,1,1) = {"
+695,1,169 = {"
 O
 O
 O
-b
+69
 x
 "}

@@ -18,7 +18,7 @@ var/list/exoplanet_map_data = list()
 	return ret
 
 /obj/map_data/exoplanet
-	name = "Exoplanet Map Data"
+	name = "Exoplanet69ap Data"
 	is_player_level = TRUE
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
@@ -29,21 +29,21 @@ var/list/exoplanet_map_data = list()
 /obj/map_data/exoplanet/New()
 	var/obj/map_data/exoplanet/E = src
 	exoplanet_map_data += E
-	name = "Exoplanet Map Data [exoplanet_map_data.len]"
+	name = "Exoplanet69ap Data 69exoplanet_map_data.len69"
 	..()
 
 
 GLOBAL_LIST_EMPTY(banned_ruin_ids)
 
-/proc/seedRuins(list/z_levels = null, budget = 0, whitelist = /area/space, list/potentialRuins, var/maxx = world.maxx, var/maxy = world.maxy)
+/proc/seedRuins(list/z_levels =69ull, budget = 0, whitelist = /area/space, list/potentialRuins,69ar/maxx = world.maxx,69ar/maxy = world.maxy)
 	if(!z_levels || !z_levels.len)
-		testing("No Z levels provided - Not generating ruins")
+		testing("No Z levels provided -69ot generating ruins")
 		return
 
 	for(var/zl in z_levels)
 		var/turf/T = locate(1, 1, zl)
 		if(!T)
-			testing("Z level [zl] does not exist - Not generating ruins")
+			testing("Z level 69zl69 does69ot exist -69ot generating ruins")
 			return
 
 	var/list/ruins = potentialRuins.Copy()
@@ -52,17 +52,17 @@ GLOBAL_LIST_EMPTY(banned_ruin_ids)
 		if(ruin.id in GLOB.banned_ruin_ids)
 			ruins -= ruin //remove all prohibited ids from the candidate list; used to forbit global duplicates.
 	var/list/spawned_ruins = list()
-//Each iteration needs to either place a ruin or strictly decrease either the budget or ruins.len (or break).
+//Each iteration69eeds to either place a ruin or strictly decrease either the budget or ruins.len (or break).
 	while(budget > 0)
 		// Pick a ruin
-		var/datum/map_template/ruin/ruin = null
+		var/datum/map_template/ruin/ruin =69ull
 		if(ruins && ruins.len)
 			ruin = pick(ruins)
 			if(ruin.cost > budget)
 				ruins -= ruin
 				continue //Too expensive, get rid of it and try again
 		else
-			log_world("Ruin loader had no ruins to pick from with [budget] left to spend.")
+			log_world("Ruin loader had69o ruins to pick from with 69budget69 left to spend.")
 			break
 		// Try to place it
 		var/sanity = 20
@@ -74,24 +74,24 @@ GLOBAL_LIST_EMPTY(banned_ruin_ids)
 			var/width_border = TRANSITIONEDGE + RUIN_MAP_EDGE_PAD + round(ruin.width / 2)
 			var/height_border = TRANSITIONEDGE + RUIN_MAP_EDGE_PAD + round(ruin.height / 2)
 			var/z_level = pick(z_levels)
-			if(width_border > maxx - width_border || height_border > maxx - height_border) // Too big and will never fit.
-				ruins -= ruin //So let's not even try anymore with this one.
+			if(width_border >69axx - width_border || height_border >69axx - height_border) // Too big and will69ever fit.
+				ruins -= ruin //So let's69ot even try anymore with this one.
 				break
 
-			var/turf/T = locate(rand(width_border, maxx - width_border), rand(height_border, maxy - height_border), z_level)
+			var/turf/T = locate(rand(width_border,69axx - width_border), rand(height_border,69axy - height_border), z_level)
 			var/valid = TRUE
 
 			for(var/turf/check in ruin.get_affected_turfs(T,1))
 				var/area/new_area = get_area(check)
 				if(!(istype(new_area, whitelist))) //check.turf_flags & TURF_FLAG_NORUINS
 					if(sanity == 0)
-						ruins -= ruin //It didn't fit, and we are out of sanity. Let's make sure not to keep trying the same one.
+						ruins -= ruin //It didn't fit, and we are out of sanity. Let's69ake sure69ot to keep trying the same one.
 					valid = FALSE
 					break //Let's try again
 
 			if(!valid)
 				continue
-			log_world("Ruin \"[ruin.name]\" placed at ([T.x], [T.y], [T.z])")
+			log_world("Ruin \"69ruin.name69\" placed at (69T.x69, 69T.y69, 69T.z69)")
 
 			load_ruin(T, ruin)
 			spawned_ruins += ruin
@@ -132,27 +132,27 @@ GLOBAL_LIST_EMPTY(banned_ruin_ids)
 
 /obj/effect/landmark/New()
 	..()
-	tag = "landmark*[name]"
+	tag = "landmark*69name69"
 
 
 /obj/effect/landmark/ruin
 	var/datum/map_template/ruin/ruin_template
 
-/obj/effect/landmark/ruin/New(loc, my_ruin_template)
-	name = "ruin_[sequential_id(/obj/effect/landmark/ruin)]"
+/obj/effect/landmark/ruin/New(loc,69y_ruin_template)
+	name = "ruin_69sequential_id(/obj/effect/landmark/ruin)69"
 	..(loc)
-	ruin_template = my_ruin_template
+	ruin_template =69y_ruin_template
 
 /obj/effect/landmark/ruin/Destroy()
-	ruin_template = null
+	ruin_template =69ull
 	. = ..()
 
 //Subtype that calls explosion on init to clear space for shuttles
 /obj/effect/landmark/ruin/automatic/clearing
 	var/radius = 0
 
-/obj/effect/landmark/ruin/automatic/clearing/New(loc, my_ruin_template, ruin_radius)
-	. = ..(loc, my_ruin_template)
+/obj/effect/landmark/ruin/automatic/clearing/New(loc,69y_ruin_template, ruin_radius)
+	. = ..(loc,69y_ruin_template)
 	radius = ruin_radius	
 
 /obj/effect/landmark/ruin/automatic/clearing/Initialize()

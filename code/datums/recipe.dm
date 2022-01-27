@@ -5,10 +5,10 @@
  * It exists not only for food.
  * supports both reagents and objects as prerequisites.
  * In order to use this system you have to define a deriative from /datum/recipe
- * * reagents are reagents. Acid, milc, booze, etc.
+ * * reagents are reagents. Acid,69ilc, booze, etc.
  * * items are objects. Fruits, tools, circuit boards.
  * * result is type to create as new object
- * * time is optional parameter, you shall use in in your machine,
+ * * time is optional parameter, you shall use in in your69achine,
      default /datum/recipe/ procs does not rely on this parameter.
  *
  *  Functions you need:
@@ -16,11 +16,11 @@
  *    Creates result inside container,
  *    deletes prerequisite reagents,
  *    transfers reagents from prerequisite objects,
- *    deletes all prerequisite objects (even not needed for recipe at the moment).
+ *    deletes all prerequisite objects (even not needed for recipe at the69oment).
  *
  *  /proc/select_recipe(list/datum/recipe/avaiable_recipes, obj/obj as obj, exact = 1)
  *    Wonderful function that select suitable recipe for you.
- *    obj is a machine (or magik hat) with prerequisites,
+ *    obj is a69achine (or69agik hat) with prerequisites,
  *    exact = 0 forces algorithm to ignore superfluous stuff.
  *
  *
@@ -41,8 +41,8 @@
 	. = 1
 	for (var/r_r in reagents)
 		var/aval_r_amnt = avail_reagents.get_reagent_amount(r_r)
-		if (!(abs(aval_r_amnt - reagents[r_r])<0.5)) //if NOT equals
-			if (aval_r_amnt>reagents[r_r])
+		if (!(abs(aval_r_amnt - reagents69r_r69)<0.5)) //if NOT equals
+			if (aval_r_amnt>reagents69r_r69)
 				. = 0
 			else
 				return -1
@@ -57,14 +57,14 @@
 		 // You should trust Copy().
 		checklist = fruit.Copy()
 		for(var/obj/item/reagent_containers/food/snacks/grown/G in container)
-			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist[G.seed.kitchen_tag]))
+			if(!G.seed || !G.seed.kitchen_tag || isnull(checklist69G.seed.kitchen_tag69))
 				continue
-			checklist[G.seed.kitchen_tag]--
+			checklist69G.seed.kitchen_tag69--
 		for(var/ktag in checklist)
-			if(!isnull(checklist[ktag]))
-				if(checklist[ktag] < 0)
+			if(!isnull(checklist69ktag69))
+				if(checklist69ktag69 < 0)
 					. = 0
-				else if(checklist[ktag] > 0)
+				else if(checklist69ktag69 > 0)
 					. = -1
 					break
 	return .
@@ -79,7 +79,7 @@
 				continue // Fruit is handled in check_fruit().
 			var/found = 0
 			for(var/i = 1; i < checklist.len+1; i++)
-				var/item_type = checklist[i]
+				var/item_type = checklist69i69
 				if (istype(O, item_type))
 					checklist.Cut(i, i+1)
 					found = 1
@@ -90,7 +90,7 @@
 			. = -1
 	return .
 
-//general version
+//general69ersion
 /datum/recipe/proc/make(var/obj/container as obj)
 	var/obj/result_obj = new result(container)
 	for (var/obj/O in (container.contents-result_obj))
@@ -102,7 +102,7 @@
 // food-related
 /datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
-		to_chat(world, SPAN_DANGER("Recipe [type] is defined without a result, please bug this."))
+		to_chat(world, SPAN_DANGER("Recipe 69type69 is defined without a result, please bug this."))
 		return
 	var/obj/result_obj = new result(container)
 	for (var/obj/O in (container.contents-result_obj))
@@ -114,7 +114,7 @@
 	container.reagents.clear_reagents()
 	return result_obj
 
-/proc/select_recipe(var/list/datum/recipe/avaiable_recipes, var/obj/obj as obj, var/exact)
+/proc/select_recipe(var/list/datum/recipe/avaiable_recipes,69ar/obj/obj as obj,69ar/exact)
 	var/list/datum/recipe/possible_recipes = new
 	var/target = exact ? 0 : 1
 	for (var/datum/recipe/recipe in avaiable_recipes)
@@ -124,10 +124,10 @@
 	if (possible_recipes.len==0)
 		return null
 	else if (possible_recipes.len==1)
-		return possible_recipes[1]
-	else //okay, let's select the most complicated recipe
+		return possible_recipes69169
+	else //okay, let's select the69ost complicated recipe
 		var/highest_count = 0
-		. = possible_recipes[1]
+		. = possible_recipes69169
 		for (var/datum/recipe/recipe in possible_recipes)
 			var/count = ((recipe.items)?(recipe.items.len):0) + ((recipe.reagents)?(recipe.reagents.len):0) + ((recipe.fruit)?(recipe.fruit.len):0)
 			if (count >= highest_count)

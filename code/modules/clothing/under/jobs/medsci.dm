@@ -16,7 +16,7 @@
 	)
 
 /obj/item/clothing/under/rank/scientist
-	desc = "It's made of a special fiber that provides minor protection against biohazards. It has markings that denote the wearer as a scientist."
+	desc = "It's69ade of a special fiber that provides69inor protection against biohazards. It has69arkings that denote the wearer as a scientist."
 	name = "moebius scientist's jumpsuit"
 	icon_state = "science"
 	item_state = "w_suit"
@@ -31,7 +31,7 @@
 	)
 
 /obj/item/clothing/under/rank/chemist
-	desc = "It's made of a special fiber that gives special protection against biohazards. It has a chemist rank stripe on it."
+	desc = "It's69ade of a special fiber that gives special protection against biohazards. It has a chemist rank stripe on it."
 	name = "moebius chemist's jumpsuit"
 	icon_state = "chemistry"
 	item_state = "chemistry"
@@ -46,10 +46,10 @@
 	)
 
 /*
- * Medical
+ *69edical
  */
 /obj/item/clothing/under/rank/moebius_biolab_officer
-	desc = "A jumpsuit worn by those with the experience to be \"Moebius Biolab Officer\". It provides minor biological protection."
+	desc = "A jumpsuit worn by those with the experience to be \"Moebius Biolab Officer\". It provides69inor biological protection."
 	name = "moebius biolab officer's jumpsuit"
 	icon_state = "cmo"
 	item_state = "cmo"
@@ -64,8 +64,8 @@
 	)
 
 /obj/item/clothing/under/rank/virologist
-	desc = "It's made of a special fiber that gives special protection against biohazards. It has a virologist rank stripe on it."
-	name = "moebius virologist's jumpsuit"
+	desc = "It's69ade of a special fiber that gives special protection against biohazards. It has a69irologist rank stripe on it."
+	name = "moebius69irologist's jumpsuit"
 	icon_state = "virology"
 	item_state = "w_suit"
 	permeability_coefficient = 0.50
@@ -79,7 +79,7 @@
 	)
 
 /obj/item/clothing/under/rank/medical
-	desc = "It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel."
+	desc = "It's69ade of a special fiber that provides69inor protection against biohazards. It has a cross on the chest denoting that the wearer is trained69edical personnel."
 	name = "moebius  doctor's jumpsuit"
 	icon_state = "medical"
 	item_state = "medical"
@@ -95,19 +95,19 @@
 
 /obj/item/clothing/under/rank/medical/blue
 	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in baby blue."
+	desc = "It's69ade of a special fiber that provides69inor protection against biohazards. This one is in baby blue."
 	icon_state = "scrubsblue"
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/medical/green
 	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in dark green."
+	desc = "It's69ade of a special fiber that provides69inor protection against biohazards. This one is in dark green."
 	icon_state = "scrubsgreen"
 	item_state = "scrubsgreen"
 
 /obj/item/clothing/under/rank/medical/purple
 	name = "medical scrubs"
-	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is in deep purple."
+	desc = "It's69ade of a special fiber that provides69inor protection against biohazards. This one is in deep purple."
 	icon_state = "scrubspurple"
 	item_state = "p_suit"
 
@@ -118,7 +118,7 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/paramedic
-	desc = "Jumpsuit of Moebius Medical paramedics. It's made with reinforced fiber to offer more protection for recovery operators."
+	desc = "Jumpsuit of69oebius69edical paramedics. It's69ade with reinforced fiber to offer69ore protection for recovery operators."
 	name = "moebius paramedic's jumpsuit"
 	icon_state = "paramedic"
 	item_state = "paramedic"

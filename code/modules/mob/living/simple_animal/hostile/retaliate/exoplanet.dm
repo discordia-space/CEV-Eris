@@ -12,10 +12,10 @@
 		for(var/weakref/W in prey)
 			var/mob/M = W.resolve()
 			if(M)
-				. += M
+				. +=69
 		return
 	if(hunger > 500) //time to look for some food
-		for(var/mob/living/L in view(src, dist))
+		for(var/mob/living/L in69iew(src, dist))
 			if(!attack_same && L.faction != faction)
 				prey |= weakref(L)
 
@@ -29,20 +29,20 @@
 	else
 		for(var/mob/living/simple_animal/S in range(src,1))
 			if(S.stat == DEAD)
-				visible_message("[src] consumes \the body of [S]!")
+				visible_message("69src69 consumes \the body of 69S69!")
 				var/turf/T = get_turf(S)
-				var/obj/item/remains/xeno/X = new(T)
-				X.desc += "These look like they belong to \a [S.name]."
-				hunger = max(0, hunger - 5*S.maxHealth)
+				var/obj/item/remains/xeno/X =69ew(T)
+				X.desc += "These look like they belong to \a 69S.name69."
+				hunger =69ax(0, hunger - 5*S.maxHealth)
 				if(prob(5))
 					S.gib()
 				else
 					qdel(S)
 
 /mob/living/simple_animal/proc/name_species()
-	set name = "Name Alien Species"
+	set69ame = "Name Alien Species"
 	set category = "Exploration"
-	set src in view()
+	set src in69iew()
 
 	if(!config.use_overmap)
 		return
@@ -51,13 +51,13 @@
 
 	for(var/obj/effect/overmap/sector/exoplanet/E)
 		if(src in E.animals)
-			var/newname = input("What do you want to name this species?", "Species naming", E.get_random_species_name()) as text|null
+			var/newname = input("What do you want to69ame this species?", "Species69aming", E.get_random_species_name()) as text|null
 			newname = sanitizeName(newname, allow_numbers = TRUE)
 			if(newname && CanInteract(usr, GLOB.conscious_state))
-				if(E.rename_species(type, newname))
-					to_chat(usr,"<span class='notice'>This species will be known from now on as '[newname]'.</span>")
+				if(E.rename_species(type,69ewname))
+					to_chat(usr,"<span class='notice'>This species will be known from69ow on as '69newname69'.</span>")
 				else
-					to_chat(usr,"<span class='warning'>This species has already been named!</span>")
+					to_chat(usr,"<span class='warning'>This species has already been69amed!</span>")
 			return
 /*
 /mob/living/simple_animal/hostile/retaliate/beast/samak
@@ -78,7 +78,7 @@
 	cold_damage_per_tick = 0
 	speak_chance = 5
 	speak = list("Hruuugh!","Hrunnph")
-	emote_see = list("paws the ground","shakes its mane","stomps")
+	emote_see = list("paws the ground","shakes its69ane","stomps")
 	emote_hear = list("snuffles")
 	natural_armor = list(
 		melee = ARMOR_MELEE_KNIVES
@@ -92,7 +92,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/beast/diyaab
 	name = "diyaab"
-	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
+	desc = "A small pack animal. Although omnivorous, it will hunt69eat on occasion."
 	faction = "diyaab"
 	icon_state = "diyaab"
 	icon_living = "diyaab"
@@ -110,11 +110,11 @@
 	speak = list("Awrr?","Aowrl!","Worrl")
 	emote_see = list("sniffs the air cautiously","looks around")
 	emote_hear = list("snuffles")
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 
 /mob/living/simple_animal/hostile/retaliate/beast/shantak
 	name = "shantak"
-	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
+	desc = "A piglike creature with a bright iridiscent69ane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
 	faction = "shantak"
 	icon_state = "shantak"
 	icon_living = "shantak"
@@ -130,22 +130,22 @@
 	cold_damage_per_tick = 0
 	speak_chance = 2
 	speak = list("Shuhn","Shrunnph?","Shunpf")
-	emote_see = list("scratches the ground","shakes out its mane","tinkles gently")
+	emote_see = list("scratches the ground","shakes out its69ane","tinkles gently")
 
 /mob/living/simple_animal/hostile/retaliate/beast/shantak/alt
-	desc = "A piglike creature with a long and graceful mane. Don't be fooled by its beauty."
+	desc = "A piglike creature with a long and graceful69ane. Don't be fooled by its beauty."
 	icon_state = "shantak-alt"
 	icon_living = "shantak-alt"
 	icon_dead = "shantak-alt_dead"
-	emote_see = list("scratches the ground","shakes out it's mane","rustles softly")
+	emote_see = list("scratches the ground","shakes out it's69ane","rustles softly")
 
 /mob/living/simple_animal/yithian
 	name = "yithian"
-	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
+	desc = "A friendly creature69aguely resembling an oversized snail without a shell."
 	icon_state = "yithian"
 	icon_living = "yithian"
 	icon_dead = "yithian_dead"
-	mob_size = MOB_TINY
+	mob_size =69OB_TINY
 
 /mob/living/simple_animal/tindalos
 	name = "tindalos"
@@ -153,7 +153,7 @@
 	icon_state = "tindalos"
 	icon_living = "tindalos"
 	icon_dead = "tindalos_dead"
-	mob_size = MOB_TINY
+	mob_size =69OB_TINY
 
 /mob/living/simple_animal/thinbug
 	name = "taki"
@@ -163,7 +163,7 @@
 	icon_dead = "thinbug_dead"
 	speak_chance = 1
 	emote_hear = list("scratches the ground","chitters")
-	mob_size = MOB_MINISCULE
+	mob_size =69OB_MINISCULE
 
 /mob/living/simple_animal/hostile/retaliate/royalcrab
 	name = "cragenoy"
@@ -180,7 +180,7 @@
 	melee_damage_upper = 5
 	attacktext = "pinched"
 	speak_chance = 1
-	emote_see = list("skitters","oozes liquid from its mouth", "scratches at the ground", "clicks its claws")
+	emote_see = list("skitters","oozes liquid from its69outh", "scratches at the ground", "clicks its claws")
 	natural_armor = list(
 		melee = ARMOR_MELEE_RESISTANT
 		)
@@ -191,7 +191,7 @@
 	icon_state = "char"
 	icon_living = "char"
 	icon_dead = "char_dead"
-	mob_size = MOB_LARGE
+	mob_size =69OB_LARGE
 	damtype = BURN
 	health = 45
 	maxHealth = 45
@@ -212,7 +212,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/beast/charbaby/attack_hand(mob/living/carbon/human/H)
 	. = ..()
-	reflect_unarmed_damage(H, BURN, "amorphous mass")
+	reflect_unarmed_damage(H, BURN, "amorphous69ass")
 
 /mob/living/simple_animal/hostile/retaliate/beast/charbaby/AttackingTarget()
 	. = ..()
@@ -223,7 +223,7 @@
 			L.IgniteMob()
 
 /mob/living/simple_animal/hostile/retaliate/beast/shantak/lava
-	desc = "A vaguely canine looking beast. It looks as though its fur is made of stone wool."
+	desc = "A69aguely canine looking beast. It looks as though its fur is69ade of stone wool."
 	icon_state = "lavadog"
 	icon_living = "lavadog"
 	icon_dead = "lavadog_dead"

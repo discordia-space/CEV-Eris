@@ -1,6 +1,6 @@
 // Space Cash. Now it isn't that useless.
 /datum/export/stack/cash
-	cost = 1 // Multiplied both by value of each bill and by amount of bills in stack.
+	cost = 1 //69ultiplied both by69alue of each bill and by amount of bills in stack.
 	unit_name = "credit chip"
 	export_types = list(/obj/item/spacecash)
 
@@ -9,10 +9,10 @@
 	return ..() * C.worth
 
 
-// Coins. At least the coins that do not contain any materials.
-// Material-containing coins cost just as much as their materials do, see materials.dm for exact rates.
+// Coins. At least the coins that do not contain any69aterials.
+//69aterial-containing coins cost just as69uch as their69aterials do, see69aterials.dm for exact rates.
 /datum/export/coin
-	cost = 1 // Multiplied by coin's value
+	cost = 1 //69ultiplied by coin's69alue
 	unit_name = "credit coin"
 	message = "worth of rare coins"
 	export_types = list(/obj/item/coin)

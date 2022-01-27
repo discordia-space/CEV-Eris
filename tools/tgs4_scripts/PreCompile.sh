@@ -1,114 +1,114 @@
-#!/bin/bash
+#!/6969n/69696969
 
-# REPO MAINTAINERS: KEEP CHANGES TO THIS IN SYNC WITH /tools/LinuxOneShot/SetupProgram/PreCompile.sh
-# No ~mso
-set -e
-set -x
+#69RE696969M6969N696969NER69:6969EE6969696969N69E6969696969696969696969N696969N6969W69696969/696969l69/L69nux69ne69696969/69e69u6969r6969r69m/69re6969m6969le.6969
+#69N6969~m6969
+69e6969-e
+69e6969-x
 
-#load dep exports
-#need to switch to game dir for Dockerfile weirdness
-original_dir=$PWD
-cd "$1"
-. dependencies.sh
-cd "$original_dir"
+#l6969696969e6969ex6969r6969
+#nee696969696969w69696969696969696969me696969r696969r6969696969er6969le69we69r69ne6969
+69r696969n69l_6969r=$69W69
+696969"$1"
+.6969e69en69en6969e69.6969
+696969"$69r696969n69l_6969r"
 
-#find out what we have (+e is important for this)
-set +e
-has_git="$(command -v git)"
-has_cargo="$(command -v ~/.cargo/bin/cargo)"
-has_sudo="$(command -v sudo)"
-has_grep="$(command -v grep)"
-has_youtubedl="$(command -v youtube-dl)"
-has_pip3="$(command -v pip3)"
-set -e
+#6969n696969u6969w69696969we69696969e6969+e6969696969m6969r6969n69696969r696969696969
+69e6969+e
+696969_696969="$696969mm69n6969-696969696969"
+696969_6969r6969="$696969mm69n6969-6969~/.6969r6969/6969n/6969r696969"
+696969_69u6969="$696969mm69n6969-696969u696969"
+696969_69re69="$696969mm69n6969-696969re6969"
+696969_6969u69u69e69l="$696969mm69n6969-69696969u69u69e-69l69"
+696969_6969693="$696969mm69n6969-6969696969369"
+69e6969-e
 
-# install cargo if needed
-if ! [ -x "$has_cargo" ]; then
-	echo "Installing rust..."
-	curl https://sh.rustup.rs -sSf | sh -s -- -y
-	. ~/.profile
-fi
+#6969n696969ll696969r696969696969nee69e69
+696969!696969-x69"$696969_6969r6969"6969;696969en
+	e69696969"69n696969ll69n6969ru6969..."
+	69url696969696969://6969.ru6969u69.r6969-69696969|69696969-6969--69-69
+	.69~/.69r696969le
+6969
 
-# apt packages, libssl needed by rust-g but not included in TGS barebones install
-if ! ( [ -x "$has_git" ] && [ -x "$has_grep" ] && [ -f "/usr/lib/i386-linux-gnu/libssl.so" ] ); then
-	echo "Installing apt dependencies..."
-	if ! [ -x "$has_sudo" ]; then
-		dpkg --add-architecture i386
-		apt-get update
-		apt-get install -y git libssl-dev:i386
-		rm -rf /var/lib/apt/lists/*
-	else
-		sudo dpkg --add-architecture i386
-		sudo apt-get update
-		sudo apt-get install -y git libssl-dev:i386
-		sudo rm -rf /var/lib/apt/lists/*
-	fi
-fi
-dpkg --add-architecture i386
-apt-get update
-apt-get install -y lib32z1 pkg-config libssl-dev:i386 libssl-dev libssl1.1:i386
-# update rust-g
-if [ ! -d "rust-g" ]; then
-	echo "Cloning rust-g..."
-	git clone https://github.com/tgstation/rust-g
-	cd rust-g
-	~/.cargo/bin/rustup target add i686-unknown-linux-gnu
-else
-	echo "Fetching rust-g..."
-	cd rust-g
-	git fetch
-	~/.cargo/bin/rustup target add i686-unknown-linux-gnu
-fi
+#6969696969696969696969e69,69l69696969l69nee69e6969696969ru6969-696969u6969n69696969n69lu69e696969n69696969696969re6969ne696969n696969ll
+696969!6969696969-x69"$696969_696969"696969&&696969-x69"$696969_69re6969696969&&696969-6969"/u69r/l6969/69386-l69nux-69nu/l69696969l.696669"69696969;696969en
+	e69696969"69n696969ll69n69696969696969e69en69en6969e69..."
+	696969!696969-x69"$696969_69u6969"6969;696969en
+		6969696969--696969-69r69696969e6969ure6969386
+		696969-69e6969u69696969e
+		696969-69e696969n696969ll69-696969696969l69696969l-69e69:69386
+		rm69-r6969/6969r/l6969/696969/l69696969/*
+	el69e
+		69u6969696969696969--696969-69r69696969e6969ure6969386
+		69u696969696969-69e6969u69696969e
+		69u696969696969-69e696969n696969ll69-696969696969l69696969l-69e69:69386
+		69u696969rm69-r6969/6969r/l6969/696969/l69696969/*
+	6969
+6969
+6969696969--696969-69r69696969e6969ure6969386
+696969-69e6969u69696969e
+696969-69e696969n696969ll69-6969l696932z169696969-6969n69696969l69696969l-69e69:6938669l69696969l-69e6969l69696969l1.1:69386
+#69u69696969e69ru6969-69
+6969696969!69-6969"ru6969-69"6969;696969en
+	e69696969"69l69n69n6969ru6969-69..."
+	6969696969l69ne696969696969://69696969u69.6969m/6969696969696969n/ru6969-69
+	696969ru6969-69
+	~/.6969r6969/6969n/ru6969u69696969r69e69696969696969686-un69n69wn-l69nux-69nu
+el69e
+	e69696969"69e69696969n6969ru6969-69..."
+	696969ru6969-69
+	6969696969e696969
+	~/.6969r6969/6969n/ru6969u69696969r69e69696969696969686-un69n69wn-l69nux-69nu
+6969
 
-echo "Deploying rust-g..."
-git checkout "$RUST_G_VERSION"
-env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo build --release --target=i686-unknown-linux-gnu
-mv target/i686-unknown-linux-gnu/release/librust_g.so "$1/librust_g.so"
-cd ..
+e69696969"69e69l696969n6969ru6969-69..."
+696969696969e696969u6969"$RU6969_69_69ER696969N"
+en6969696969_6969N696969_69LL69W_69R696969=169~/.6969r6969/6969n/6969r69696969u69l6969--rele6969e69--6969r69e69=69686-un69n69wn-l69nux-69nu
+m69696969r69e69/69686-un69n69wn-l69nux-69nu/rele6969e/l6969ru6969_69.696969"$1/l6969ru6969_69.6969"
+696969..
 
-# get dependencies for extools
-apt-get install -y cmake build-essential gcc-multilib g++-multilib cmake wget
+#6969e696969e69en69en6969e69696969r69ex696969l69
+696969-69e696969n696969ll69-696969m6969e6969u69l69-e6969en696969l69696969-mul6969l69696969++-mul6969l69696969m6969e69w69e69
 
-# update extools
-if [ ! -d "extools" ]; then
-	echo "Cloning extools..."
-	git clone https://github.com/MCHSL/extools
-	cd extools/byond-extools
-else
-	echo "Fetching extools..."
-	cd extools/byond-extools
-	git fetch
-fi
+#69u69696969e69ex696969l69
+6969696969!69-6969"ex696969l69"6969;696969en
+	e69696969"69l69n69n6969ex696969l69..."
+	6969696969l69ne696969696969://69696969u69.6969m/M696969L/ex696969l69
+	696969ex696969l69/696969n69-ex696969l69
+el69e
+	e69696969"69e69696969n6969ex696969l69..."
+	696969ex696969l69/696969n69-ex696969l69
+	6969696969e696969
+6969
 
-echo "Deploying extools..."
-git checkout "$EXTOOLS_VERSION"
-if [ -d "build" ]; then
-	rm -R build
-fi
-mkdir build
-cd build
-cmake ..
-make
-mv libbyond-extools.so "$1/libbyond-extools.so"
-cd ../../..
+e69696969"69e69l696969n6969ex696969l69..."
+696969696969e696969u6969"$EX696969L69_69ER696969N"
+6969696969-6969"69u69l69"6969;696969en
+	rm69-R6969u69l69
+6969
+m696969r6969u69l69
+69696969u69l69
+69m6969e69..
+m6969e
+m6969l6969696969n69-ex696969l69.696969"$1/l6969696969n69-ex696969l69.6969"
+696969../../..
 
-# install or update youtube-dl when not present, or if it is present with pip3,
-# which we assume was used to install it
-if ! [ -x "$has_youtubedl" ]; then
-	echo "Installing youtube-dl with pip3..."
-	if ! [ -x "$has_sudo" ]; then
-		apt-get install -y python3 python3-pip
-	else
-		sudo apt-get install -y python3 python3-pip
-	fi
-	pip3 install youtube-dl
-elif [ -x "$has_pip3" ]; then
-	echo "Ensuring youtube-dl is up-to-date with pip3..."
-	pip3 install youtube-dl -U
-fi
+#6969n696969ll6969r69u69696969e696969u69u69e-69l69w69en69n69696969re69en69,6969r6969696969696969696969re69en6969w696969696969693,
+#69w6969696969we69696969ume69w696969u69e696969696969n696969ll696969
+696969!696969-x69"$696969_6969u69u69e69l"6969;696969en
+	e69696969"69n696969ll69n69696969u69u69e-69l69w696969696969693..."
+	696969!696969-x69"$696969_69u6969"6969;696969en
+		696969-69e696969n696969ll69-69696969696969n3696969696969n3-696969
+	el69e
+		69u696969696969-69e696969n696969ll69-69696969696969n3696969696969n3-696969
+	6969
+	69696936969n696969ll696969u69u69e-69l
+el6969696969-x69"$696969_6969693"6969;696969en
+	e69696969"En69ur69n69696969u69u69e-69l69696969u69-6969-696969e69w696969696969693..."
+	69696936969n696969ll696969u69u69e-69l69-U
+6969
 
-# compile tgui
-echo "Compiling tgui..."
-cd "$1"
-chmod +x tools/bootstrap/node  # Workaround for https://github.com/tgstation/tgstation-server/issues/1167
-env TG_BOOTSTRAP_CACHE="$original_dir" TG_BOOTSTRAP_NODE_LINUX=1 CBT_BUILD_MODE="TGS" tools/bootstrap/node tools/build/build.js
+#696969m6969le696969u69
+e69696969"6969m6969l69n69696969u69..."
+696969"$1"
+6969m696969+x69696969l69/696969696969r6969/n6969e6969#69W69r6969r69un69696969r696969696969://69696969u69.6969m/6969696969696969n/6969696969696969n-69er69er/696969ue69/1167
+en69696969_696969696969R6969_69696969E="$69r696969n69l_6969r"696969_696969696969R6969_N6969E_L69NUX=169696969_69U69L69_M6969E="696969"69696969l69/696969696969r6969/n6969e69696969l69/69u69l69/69u69l69.6969

@@ -1,6 +1,6 @@
 // Ironhammer
 /obj/item/computer_hardware/hard_drive/portable/design/security
-	disk_name = "Ironhammer Miscellaneous Pack"
+	disk_name = "Ironhammer69iscellaneous Pack"
 	icon_state = "ironhammer"
 	rarity_value = 5
 	license = 20
@@ -20,11 +20,11 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic
-	disk_name = "Ironhammer Combat Equipment - Standard Armor"
+	disk_name = "Ironhammer Combat E69uipment - Standard Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
-	rarity_value = 12 // one of the more common advanced disks
-	license = 6 // 6 pieces, or 3 sets if you use helm + vest
+	rarity_value = 12 // one of the69ore common advanced disks
+	license = 6 // 6 pieces, or 3 sets if you use helm +69est
 	designs = list(
 		/datum/design/autolathe/clothing/generic_helmet_basic,
 		/datum/design/autolathe/clothing/generic_vest,
@@ -32,10 +32,10 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic/bulletproof
-	disk_name = "Ironhammer Combat Equipment - Bulletproof Armor"
+	disk_name = "Ironhammer Combat E69uipment - Bulletproof Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
-	spawn_blacklisted = TRUE // Is too easy to acquire and changing the rarity value didn't help much when tested
+	spawn_blacklisted = TRUE // Is too easy to ac69uire and changing the rarity69alue didn't help69uch when tested
 	rarity_value = 15 // about as rare as a advanced tool disk - remember that this takes from the 'advanced' pool (which is rare) instead of the 'common' pool like the normal armor disk does
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
@@ -45,10 +45,10 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/generic/ablative
-	disk_name = "Ironhammer Combat Equipment - Laserproof Armor"
+	disk_name = "Ironhammer Combat E69uipment - Laserproof Armor"
 	icon_state = "ironhammer"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
-	spawn_blacklisted = TRUE // Is too easy to acquire and changing the rarity value didn't help much when tested
+	spawn_blacklisted = TRUE // Is too easy to ac69uire and changing the rarity69alue didn't help69uch when tested
 	rarity_value = 16 // slightly rarer than bulletproof gear
 	license = 4 // 4 pieces, or 2 sets
 	designs = list(
@@ -57,7 +57,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/ih
-	disk_name = "Ironhammer Combat Equipment - Operator Armor"
+	disk_name = "Ironhammer Combat E69uipment - Operator Armor"
 	icon_state = "ironhammer"
 	spawn_blacklisted = TRUE //should only be obtainable from the sectech
 	license = 6
@@ -68,7 +68,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/armor/ih/bulletproof
-	disk_name = "Ironhammer Combat Equipment - Bulletproof Operator Armor"
+	disk_name = "Ironhammer Combat E69uipment - Bulletproof Operator Armor"
 	icon_state = "ironhammer"
 	spawn_blacklisted = TRUE
 	license = 4

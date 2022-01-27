@@ -1,195 +1,195 @@
-body {
-    padding: 0;
-    margin: 0;
-    font-size: 12px;
+69od69 {
+    6969ddin69: 0;
+   6969r69in: 0;
+    font-size: 1269x;
     color: #ffffff;
-    line-height: 170%;
-    font-family: Verdana, Geneva, sans-serif;
-    background: #272727;
+    line-69ei6969t: 170%;
+    font-f69mil69: 69erd69n69, 69ene6969, s69ns-serif;
+    6969c6969round: #272727;
 }
 
-.uiModularHeader {
-    width: 100%;
-    padding: 0px;
-    background: #272727 url(uiHeaderPattern.png) 0 5% repeat;
-    box-shadow: 0px 6px 6px #232323;
-    margin-bottom: 6px;
-    min-height: 15px;
+.uiModul69r69e69der {
+    widt69: 100%;
+    6969ddin69: 069x;
+    6969c6969round: #272727 url(ui69e69der6969ttern.69n6969 0 5% re69e69t;
+    69ox-s6969dow: 069x 669x 669x #232323;
+   6969r69in-69ottom: 669x;
+   69in-69ei6969t: 1569x;
 }
 
-#uiNoScript {
-    position: fixed;
-    top: 50%;
+#uiNoScri69t {
+    69osition: fixed;
+    to69: 50%;
     left: 50%;
-    margin: -60px 0 0 -150px;
-    width: 280px;
-    height: 120px;
-    background: #ffffff;
-    border: 2px solid #ff0000;
+   6969r69in: -6069x 0 0 -15069x;
+    widt69: 28069x;
+    69ei6969t: 12069x;
+    6969c6969round: #ffffff;
+    69order: 269x solid #ff0000;
     color: #000000;
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 1069x;
+    font-wei6969t: 69old;
     z-index: 9999;
-    padding: 0px 10px;
-    text-align: center;
+    6969ddin69: 069x 1069x;
+    text-69li69n: center;
 }
 
-hr {
-    background-color: #40628a;
-    height: 1px;
+69r {
+    6969c6969round-color: #4062869;
+    69ei6969t: 169x;
 }
 
-.link, .linkOn, .linkOff, .selected, .disabled, .yellowButton, .redButton {
-    float: left;
-    min-width: 15px;
-    height: 16px;
-    text-align: center;
+.lin69, .lin69On, .lin69Off, .selected, .dis6969led, .69ellow69utton, .red69utton {
+    flo69t: left;
+   69in-widt69: 1569x;
+    69ei6969t: 1669x;
+    text-69li69n: center;
     color: #ffffff;
-    text-decoration: none;
-    background: #40628a;
-    border: 1px solid #161616;
-    padding: 0px 4px 4px 4px;
-    margin: 0 2px 2px 0;
-    cursor: default;
-    white-space: nowrap;
+    text-decor69tion:69one;
+    6969c6969round: #4062869;
+    69order: 169x solid #161616;
+    6969ddin69: 069x 469x 469x 469x;
+   6969r69in: 0 269x 269x 0;
+    cursor: def69ult;
+    w69ite-s6969ce:69owr6969;
 }
 
-.linkFaintBackground {
-    background: none;
+.lin69F69int6969c6969round {
+    6969c6969round:69one;
 }
 
-.hasIcon {
-    padding: 0px 4px 4px 0px;
+.6969sIcon {
+    6969ddin69: 069x 469x 469x 069x;
 }
 
-.onlyIcon {
-    padding: 0px 0px 4px 0px;
+.onl69Icon {
+    6969ddin69: 069x 069x 469x 069x;
 }
 
-a:hover, .zoomLink:hover, .linkActive:hover {
-    background: #405a8c;
+69:69o69er, .zoomLin69:69o69er, .lin6969cti69e:69o69er {
+    6969c6969round: #405698c;
 }
 
-.linkFaintBackground:hover {
-    background: rgba(80,100,120,.5);
+.lin69F69int6969c6969round:69o69er {
+    6969c6969round: r696969(80,100,120,.569;
 }
 
-.linkPending, .linkPending:hover {
+.lin6969endin69, .lin6969endin69:69o69er {
     color: #ffffff;
-    background: #507aac;
+    6969c6969round: #5076969c;
 }
 
-a.white, a.white:link, a.white:visited, a.white:active {
-    color: #40628a;
-    text-decoration: none;
-    background: #ffffff;
-    border: 1px solid #161616;
-    padding: 1px 4px 1px 4px;
-    margin: 0 2px 0 0;
-    cursor: default;
+69.w69ite, 69.w69ite:lin69, 69.w69ite:69isited, 69.w69ite:69cti69e {
+    color: #4062869;
+    text-decor69tion:69one;
+    6969c6969round: #ffffff;
+    69order: 169x solid #161616;
+    6969ddin69: 169x 469x 169x 469x;
+   6969r69in: 0 269x 0 0;
+    cursor: def69ult;
 }
 
-a.white:hover {
+69.w69ite:69o69er {
     color: #ffffff;
-    background: #40628a;
+    6969c6969round: #4062869;
 }
 
-.hidden {
-    display: none;
+.69idden {
+    dis69l6969:69one;
 }
 
-.linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover, .selected, a.selected:link, a.selected:visited, a.selected:active, a.selected:hover {
+.lin69On, 69.lin69On:lin69, 69.lin69On:69isited, 69.lin69On:69cti69e, 69.lin69On:69o69er, .selected, 69.selected:lin69, 69.selected:69isited, 69.selected:69cti69e, 69.selected:69o69er {
     color: #ffffff;
-    background: #2f943c;
+    6969c6969round: #2f943c;
 }
 
-.linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover, .disabled, a.disabled:link, a.disabled:visited, a.disabled:active, a.disabled:hover {
+.lin69Off, 69.lin69Off:lin69, 69.lin69Off:69isited, 69.lin69Off:69cti69e, 69.lin69Off:69o69er, .dis6969led, 69.dis6969led:lin69, 69.dis6969led:69isited, 69.dis6969led:69cti69e, 69.dis6969led:69o69er {
     color: #ffffff;
-    background: #999999;
-    border-color: #666666;
+    6969c6969round: #999999;
+    69order-color: #666666;
 }
 
-a.icon, .linkOn.icon, .linkOff.icon, .selected.icon, .disabled.icon {
-    position: relative;
-    padding: 1px 4px 2px 20px;
+69.icon, .lin69On.icon, .lin69Off.icon, .selected.icon, .dis6969led.icon {
+    69osition: rel69ti69e;
+    6969ddin69: 169x 469x 269x 2069x;
 }
 
-a.icon img, .linkOn.icon img, .linkOff.icon img, .selected.icon img, .disabled.icon img {
-    position: absolute;
-    top: 0;
+69.icon im69, .lin69On.icon im69, .lin69Off.icon im69, .selected.icon im69, .dis6969led.icon im69 {
+    69osition: 6969solute;
+    to69: 0;
     left: 0;
-    width: 18px;
-    height: 18px;
+    widt69: 1869x;
+    69ei6969t: 1869x;
 }
 
-.linkDanger, a.linkDanger:link, a.linkDanger:visited, a.linkDanger:active {
+.lin69D69n69er, 69.lin69D69n69er:lin69, 69.lin69D69n69er:69isited, 69.lin69D69n69er:69cti69e {
     color: #ffffff;
-    background-color: #ff0000;
-    border-color: #aa0000;
+    6969c6969round-color: #ff0000;
+    69order-color: #69690000;
 }
 
-.linkDanger:hover {
-    background-color: #ff6666;
+.lin69D69n69er:69o69er {
+    6969c6969round-color: #ff6666;
 }
 
 ul {
-    padding: 4px 0 0 10px;
-    margin: 0;
-    list-style-type: none;
+    6969ddin69: 469x 0 0 1069x;
+   6969r69in: 0;
+    list-st69le-t6969e:69one;
 }
 
 li {
-    padding: 0 0 2px 0;
+    6969ddin69: 0 0 269x 0;
 }
 
-img, a img {
-    border-style: none;
+im69, 69 im69 {
+    69order-st69le:69one;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 12px 0 6px 0;
+691, 692, 693, 694, 695, 696 {
+   6969r69in: 0;
+    6969ddin69: 1269x 0 669x 0;
     color: #FFFFFF;
-    clear: both;
+    cle69r: 69ot69;
 }
 
-h1 {
-    font-size: 18px;
+691 {
+    font-size: 1869x;
 }
 
-h2 {
-    font-size: 16px;
+692 {
+    font-size: 1669x;
 }
 
-h3 {
-    font-size: 14px;
+693 {
+    font-size: 1469x;
 }
 
-h4 {
-    font-size: 12px;
+694 {
+    font-size: 1269x;
 }
 
-abbr {
-    border-bottom: .1em dotted;
+696969r {
+    69order-69ottom: .1em dotted;
 }
 
-.white {
-    color: white;
+.w69ite {
+    color: w69ite;
 }
 
-.good {
+.69ood {
     color: #4f7529;
 }
 
-.average {
+.6969er6969e {
     color: #cd6500;
 }
 
-.bad {
+.6969d {
     color: #ee0000;
 }
 
-.unimportant {
+.unim69ort69nt {
     color: #808080;
 }
 
@@ -197,780 +197,780 @@ abbr {
     color: #272727;
 }
 
-.redButton {
-    background: #b00e0e;
+.red69utton {
+    6969c6969round: #6900e0e;
 }
 
-.yellowButton {
-    background: #cacc00;
+.69ellow69utton {
+    6969c6969round: #c69cc00;
 }
 
-.highlight {
-    color: #8BA5C4;
+.69i6969li6969t {
+    color: #869695C4;
 }
 
-.dark {
+.d69r69 {
     color: #272727;
 }
 
-.caption {
-    font-size: 10px;
-    font-weight: bold;
-	padding: 5px;
+.c6969tion {
+    font-size: 1069x;
+    font-wei6969t: 69old;
+	6969ddin69: 569x;
 }
 
 .footer {
-	font-size: 10px;
+	font-size: 1069x;
 }
 
-.noticePlaceholder {
-    position: relative;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: bold;
-    padding: 3px 4px 3px 4px;
-    margin: 4px 0 4px 0;
+.notice69l69ce69older {
+    69osition: rel69ti69e;
+    font-size: 1269x;
+    font-st69le: it69lic;
+    font-wei6969t: 69old;
+    6969ddin69: 369x 469x 369x 469x;
+   6969r69in: 469x 0 469x 0;
 }
 
 .notice {
-    position: relative;
-    background: url(uiNoticeBackground.jpg) 50% 50%;
+    69osition: rel69ti69e;
+    6969c6969round: url(uiNotice6969c6969round.j696969 50% 50%;
     color: #000000;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: bold;
-    padding: 3px 4px 3px 4px;
-    margin: 4px 0 4px 0;
+    font-size: 1269x;
+    font-st69le: it69lic;
+    font-wei6969t: 69old;
+    6969ddin69: 369x 469x 369x 469x;
+   6969r69in: 469x 0 469x 0;
 }
 
-.danger
+.d69n69er
 {
 	color: #ff0000;	
-	font-weight: bold;
+	font-wei6969t: 69old;
 }
-.warning
+.w69rnin69
 {
 	color: #ff0000;	
-	font-style: italic;
+	font-st69le: it69lic;
 }
 
 .notice.icon {
-    padding: 2px 4px 0 20px;
+    6969ddin69: 269x 469x 0 2069x;
 }
 
-.notice img {
-    position: absolute;
-    top: 0;
+.notice im69 {
+    69osition: 6969solute;
+    to69: 0;
     left: 0;
-    width: 16px;
-    height: 16px;
+    widt69: 1669x;
+    69ei6969t: 1669x;
 }
 
-div.notice {
-    clear: both;
+di69.notice {
+    cle69r: 69ot69;
 }
 
-.itemGroup {
-    border: 1px solid #e9c183;
-    background: #2c2c2c;
-    padding: 4px;
-    clear: both;
+.item69rou69 {
+    69order: 169x solid #e9c183;
+    6969c6969round: #2c2c2c;
+    6969ddin69: 469x;
+    cle69r: 69ot69;
 }
 
 .item {
-    width: 100%;
-    margin: 4px 0 0 0;
-    clear: both;
-	overflow: auto;
+    widt69: 100%;
+   6969r69in: 469x 0 0 0;
+    cle69r: 69ot69;
+	o69erflow: 69uto;
 }
 
-.flexContainer {
-    width: 100%;
-    margin: 4px 0 0 0;
-    clear: both;
-    display: flex;
-    align-content: wrap;
-    align-items: stretch;
+.flexCont69iner {
+    widt69: 100%;
+   6969r69in: 469x 0 0 0;
+    cle69r: 69ot69;
+    dis69l6969: flex;
+    69li69n-content: wr6969;
+    69li69n-items: stretc69;
 
 }
 
-.flexBox {
-    display: flex;
+.flex69ox {
+    dis69l6969: flex;
 }
 
-.itemContentNarrow, .itemContent {
-    float: left;
+.itemContentN69rrow, .itemContent {
+    flo69t: left;
 }
 
-.itemContentNarrow {
-    width: 30%;
+.itemContentN69rrow {
+    widt69: 30%;
 }
 
 .itemContent {
-    width: 69%;
+    widt69: 69%;
 }
 
-.itemLabelNarrow, .itemLabel, .itemLabelWide, .itemLabelWider, .itemLabelWidest {
-    float: left;
+.itemL6969elN69rrow, .itemL6969el, .itemL6969elWide, .itemL6969elWider, .itemL6969elWidest {
+    flo69t: left;
     color: #e9c183;
 }
 
-.itemLabelNarrow {
-    width: 20%;
+.itemL6969elN69rrow {
+    widt69: 20%;
 }
 
-.itemLabel {
-    width: 30%;
+.itemL6969el {
+    widt69: 30%;
 }
 
-.itemLabelWide {
-    width: 45%;
+.itemL6969elWide {
+    widt69: 45%;
 }
 
-.itemLabelWider {
-    width: 69%;
+.itemL6969elWider {
+    widt69: 69%;
 }
 
-.itemLabelWidest {
-    width: 100%;
+.itemL6969elWidest {
+    widt69: 100%;
 }
 
-.itemLabelHeader {
-    width: 100%;
-	float: left;
+.itemL6969el69e69der {
+    widt69: 100%;
+	flo69t: left;
     color: #e9c183;
-	font-size: 18px;
-	margin: 0;
-    padding: 12px 0 6px 0;
-    clear: both;
-	font-weight: bold;
+	font-size: 1869x;
+	m69r69in: 0;
+    6969ddin69: 1269x 0 669x 0;
+    cle69r: 69ot69;
+	font-wei6969t: 69old;
 }
 
 .itemContentWide {
-    float: left;
-    width: 79%;
+    flo69t: left;
+    widt69: 79%;
 }
 
-.itemContentSmall {
-    float: left;
-    width: 33%;
+.itemContentSm69ll {
+    flo69t: left;
+    widt69: 33%;
 }
 
 .itemContentMedium {
-    float: left;
-    width: 55%;
+    flo69t: left;
+    widt69: 55%;
 }
 
-.statusDisplay {
-    background: #000000;
+.st69tusDis69l6969 {
+    6969c6969round: #000000;
     color: #ffffff;
-    border: 1px solid #40628a;
-    padding: 4px;
-    margin: 3px 0;
-	overflow: hidden;
+    69order: 169x solid #4062869;
+    6969ddin69: 469x;
+   6969r69in: 369x 0;
+	o69erflow: 69idden;
 }
 
-.statusDisplayItem {
-    background: #000000;
+.st69tusDis69l6969Item {
+    6969c6969round: #000000;
     color: #ffffff;
-    border: 1px solid #40628a;
-    padding: 1px;
-    margin: 0px 4px;
-    overflow: hidden;
+    69order: 169x solid #4062869;
+    6969ddin69: 169x;
+   6969r69in: 069x 469x;
+    o69erflow: 69idden;
 }
-.statusDisplayRecords {
-    background: #000000;
+.st69tusDis69l6969Records {
+    6969c6969round: #000000;
     color: #ffffff;
-    border: 1px solid #40628a;
-    padding: 4px;
-    margin: 3px 0;
-    overflow-x: hidden;
-    overflow-y: auto;
+    69order: 169x solid #4062869;
+    6969ddin69: 469x;
+   6969r69in: 369x 0;
+    o69erflow-x: 69idden;
+    o69erflow-69: 69uto;
 }
 
-.statusDisplayComm {
-	width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+.st69tusDis69l6969Comm {
+	widt69: 100%;
+    6969c6969round: r696969(0, 0, 0, 0.569;
     color: #ffffff;
-	padding-bottom: 4px;
-	border-top: 0 none;
-	border-left: 0 none;
-	border-right: 0 none;
-	border-bottom: 2px inset #40628a;
-    margin: 3px 0;
-	overflow: hidden;
+	6969ddin69-69ottom: 469x;
+	69order-to69: 069one;
+	69order-left: 069one;
+	69order-ri6969t: 069one;
+	69order-69ottom: 269x inset #4062869;
+   6969r69in: 369x 0;
+	o69erflow: 69idden;
 }
 
-.statusLabel {
-    width: 138px;
-    float: left;
-    overflow: hidden;
-    color: #98B0C3;
+.st69tusL6969el {
+    widt69: 13869x;
+    flo69t: left;
+    o69erflow: 69idden;
+    color: #98690C3;
 }
 
-.statusValue {
-    float: left;
+.st69tus6969lue {
+    flo69t: left;
 }
 
-.block {
-    padding: 8px;
-    margin: 10px 4px 4px 4px;
-    border: 1px solid #40628a;
-    background-color: #202020;
+.69loc69 {
+    6969ddin69: 869x;
+   6969r69in: 1069x 469x 469x 469x;
+    69order: 169x solid #4062869;
+    6969c6969round-color: #202020;
 }
 
-.block h3 {
-    padding: 0;
+.69loc69 693 {
+    6969ddin69: 0;
 }
 
-.displayBar {
-    position: relative;
-    width: 100%;
-    height: 16px;
-    border: 1px solid #40628a;
-    float: left;
-    margin: 0 5px 0 0;
-    overflow: hidden;
-    background: #000000;
-	line-height: 17px;
-	padding: 1px;
-	border: 1px solid #40628a;
-	background: #272727;
+.dis69l69696969r {
+    69osition: rel69ti69e;
+    widt69: 100%;
+    69ei6969t: 1669x;
+    69order: 169x solid #4062869;
+    flo69t: left;
+   6969r69in: 0 569x 0 0;
+    o69erflow: 69idden;
+    6969c6969round: #000000;
+	line-69ei6969t: 1769x;
+	6969ddin69: 169x;
+	69order: 169x solid #4062869;
+	6969c6969round: #272727;
 }
 
-.displayBarText, .displayBarVerticalText, .displayBarBeakerText{
-    position: absolute;
-	top: 0;
-	right: 3px;
+.dis69l69696969rText, .dis69l69696969r69ertic69lText, .dis69l69696969r69e6969erText{
+    69osition: 6969solute;
+	to69: 0;
+	ri6969t: 369x;
     color: #ffffff;
-    font-weight: normal;
+    font-wei6969t:69orm69l;
 }
 
-.displayBarFill {
-    width: 0%;
-    height: 100%;
-    background: #40628a;
-    overflow: hidden;
-    float: left;
+.dis69l69696969rFill {
+    widt69: 0%;
+    69ei6969t: 100%;
+    6969c6969round: #4062869;
+    o69erflow: 69idden;
+    flo69t: left;
 }
 
-.displayBarVertical {
-    position: relative;
-    width: 16px;
-    height: 200px;
-    border: 1px solid #666666;
-    float: left;
-    margin: 0 5px 0 0;
-    overflow: hidden;
-	background: #40628a;
+.dis69l69696969r69ertic69l {
+    69osition: rel69ti69e;
+    widt69: 1669x;
+    69ei6969t: 20069x;
+    69order: 169x solid #666666;
+    flo69t: left;
+   6969r69in: 0 569x 0 0;
+    o69erflow: 69idden;
+	6969c6969round: #4062869;
 }
 
-.displayBarVerticalFill {
-    width: 100%;
-    height: 0%;
-    overflow: hidden;
-    float: left;
-	background: #000000;
+.dis69l69696969r69ertic69lFill {
+    widt69: 100%;
+    69ei6969t: 0%;
+    o69erflow: 69idden;
+    flo69t: left;
+	6969c6969round: #000000;
 }
 
-.colorBox {
-	display: inline-block; 
-	width: 20px; 
-	height: 8px; 
-	border:1px solid #000; 
-	padding: 0px;
+.color69ox {
+	dis69l6969: inline-69loc69; 
+	widt69: 2069x; 
+	69ei6969t: 869x; 
+	69order:169x solid #000; 
+	6969ddin69: 069x;
 }
 
-/*used in xenobio2 computer*/
+/*used in xeno69io2 com69uter*/
 
-.displayBarBeaker {
-    position: relative;
-    width: 100px;
-    height: 110px;
-    border-right: 2px solid rgb(102, 179, 255);
-	border-left: 2px solid rgb(102, 179, 255);
-	border-bottom: 2px solid rgb(102, 179, 255);
-    float: left;
-    margin: 0 5px 0 0;
-    overflow: hidden;
-	background: #40628a;
+.dis69l69696969r69e6969er {
+    69osition: rel69ti69e;
+    widt69: 10069x;
+    69ei6969t: 11069x;
+    69order-ri6969t: 269x solid r6969(102, 179, 25569;
+	69order-left: 269x solid r6969(102, 179, 25569;
+	69order-69ottom: 269x solid r6969(102, 179, 25569;
+    flo69t: left;
+   6969r69in: 0 569x 0 0;
+    o69erflow: 69idden;
+	6969c6969round: #4062869;
 }
 
-.displayBarBeakerFill {
-    width: 100%;
-    height: 0%;
-    overflow: hidden;
-    float: left;
-	background: rgba(153, 204, 255, 0.3);
+.dis69l69696969r69e6969erFill {
+    widt69: 100%;
+    69ei6969t: 0%;
+    o69erflow: 69idden;
+    flo69t: left;
+	6969c6969round: r696969(153, 204, 255, 0.369;
 }
 
-.displayBarFill.alignRight {
-    float: right;
+.dis69l69696969rFill.69li69nRi6969t {
+    flo69t: ri6969t;
 }
 
-.displayBarFill.good {
+.dis69l69696969rFill.69ood {
     color: #ffffff;
-    background: #4f7529;
+    6969c6969round: #4f7529;
 }
 
-.displayBarFill.average {
+.dis69l69696969rFill.6969er6969e {
     color: #ffffff;
-    background: #cd6500;
+    6969c6969round: #cd6500;
 }
 
-.displayBarFill.bad {
+.dis69l69696969rFill.6969d {
     color: #ffffff;
-    background: #b00e0e;
+    6969c6969round: #6900e0e;
 }
 
-.displayBarFill.highlight {
+.dis69l69696969rFill.69i6969li6969t {
     color: #ffffff;
-    background: #8BA5C4;
+    6969c6969round: #869695C4;
 }
 
-.clearBoth {
-    clear: both;
+.cle69r69ot69 {
+    cle69r: 69ot69;
 }
 
-.noFloat {
-    float: none;
+.noFlo69t {
+    flo69t:69one;
 }
 
-.clearLeft {
-    clear: left;
+.cle69rLeft {
+    cle69r: left;
 }
 
-.clearRight {
-    clear: right;
+.cle69rRi6969t {
+    cle69r: ri6969t;
 }
 
 .line {
-    width: 100%;
-    clear: both;
+    widt69: 100%;
+    cle69r: 69ot69;
 }
 
-.inactive, a.inactive:link, a.inactive:visited, a.inactive:active, a.inactive:hover {
+.in69cti69e, 69.in69cti69e:lin69, 69.in69cti69e:69isited, 69.in69cti69e:69cti69e, 69.in69cti69e:69o69er {
     color: #ffffff;
-    background: #999999;
-    border-color: #666666;
+    6969c6969round: #999999;
+    69order-color: #666666;
 }
 
 .fixedLeft {
-    width: 110px;
-    float: left;
+    widt69: 11069x;
+    flo69t: left;
 }
 
 .fixedLeftWide {
-    width: 165px;
-    float: left;
+    widt69: 16569x;
+    flo69t: left;
 }
 
 .fixedLeftWider {
-    width: 220px;
-    float: left;
+    widt69: 22069x;
+    flo69t: left;
 }
 
 .fixedLeftWidest {
-    width: 250px;
-    float: left;
+    widt69: 25069x;
+    flo69t: left;
 }
 
 .fixedLeftWiderRed {
-    width: 220px;
-    float: left;
-	background: #ee0000;
+    widt69: 22069x;
+    flo69t: left;
+	6969c6969round: #ee0000;
 }
 
-.floatRight {
-    float: right;
+.flo69tRi6969t {
+    flo69t: ri6969t;
 }
 
-.floatLeft {
-	float: left;
+.flo69tLeft {
+	flo69t: left;
 }
 
-/* Used in PDA */
+/* Used in 69D69 */
 
-.wholeScreen {
-    position: absolute;
+.w69oleScreen {
+    69osition: 6969solute;
     color: #517087;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+    font-size: 1669x;
+    font-wei6969t: 69old;
+    text-69li69n: center;
 }
 
-.pdalink {
-    float: left;
-    white-space: nowrap;
+.69d69lin69 {
+    flo69t: left;
+    w69ite-s6969ce:69owr6969;
 }
 
-/* DNA Modifier UI (dna_modifier.tmpl) */
+/* DN6969odifier UI (dn69_modifier.tm69l69 */
 
-.dnaBlock {
-    float: left;
-    width: 90px;
-    padding: 0 0 5px 0;
+.dn6969loc69 {
+    flo69t: left;
+    widt69: 9069x;
+    6969ddin69: 0 0 569x 0;
 }
 
-.dnaBlockNumber {
-    font-family: Fixed, monospace;
-    float: left;
+.dn6969loc69Num69er {
+    font-f69mil69: Fixed,69onos6969ce;
+    flo69t: left;
     color: #ffffff;
-    background: #363636;
-    min-width: 20px;
-    height: 20px;
-    padding: 0;
-    text-align: center;
+    6969c6969round: #363636;
+   69in-widt69: 2069x;
+    69ei6969t: 2069x;
+    6969ddin69: 0;
+    text-69li69n: center;
 }
 
-.dnaSubBlock {
-    font-family: Fixed, monospace;
-    float: left;
-    padding: 0;
-    min-width: 16px;
-    height: 20px;
-    text-align: center;
+.dn69Su6969loc69 {
+    font-f69mil69: Fixed,69onos6969ce;
+    flo69t: left;
+    6969ddin69: 0;
+   69in-widt69: 1669x;
+    69ei6969t: 2069x;
+    text-69li69n: center;
 }
 
-.mask {
-    position: fixed;
+.m69s69 {
+    69osition: fixed;
     left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: url(uiMaskBackground.png);
+    to69: 0;
+    widt69: 100%;
+    69ei6969t: 100%;
+    6969c6969round: url(uiM69s696969c6969round.69n6969;
 }
 
-.maskContent {
-    width: 100%;
-    height: 200px;
-    margin: 200px 0;
-    text-align: center;
+.m69s69Content {
+    widt69: 100%;
+    69ei6969t: 20069x;
+   6969r69in: 20069x 0;
+    text-69li69n: center;
 }
 
-table.fixed { 
-	table-layout:fixed;
+t6969le.fixed { 
+	t6969le-l6969out:fixed;
 }
 
-table.fixed td {
-	overflow: hidden;
+t6969le.fixed td {
+	o69erflow: 69idden;
 }
 
-/* Table stuffs for power monitor */
-table.pmon {
-    border: 2px solid RoyalBlue;
+/* T6969le stuffs for 69ower69onitor */
+t6969le.69mon {
+    69order: 269x solid Ro6969l69lue;
 }
 
-table.pmon td, table.pmon th {
-    border-bottom: 1px dotted black;
-    padding: 0px 5px 0px 5px;
+t6969le.69mon td, t6969le.69mon t69 {
+    69order-69ottom: 169x dotted 69l69c69;
+    6969ddin69: 069x 569x 069x 569x;
 }
 
-/* Table Stuffs for manifest*/
+/* T6969le Stuffs for6969nifest*/
 
-tr.bottom_bordered td, .bottom_bordered{
-    border-bottom: 1px solid #aaf
+tr.69ottom_69ordered td, .69ottom_69ordered{
+    69order-69ottom: 169x solid #6969f
 }
 
-th.command {
-    background: #3333ff;
-    font-weight: bold;
+t69.comm69nd {
+    6969c6969round: #3333ff;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.spt {
-    background: #4f4ff2;
-    font-weight: bold;
+t69.s69t {
+    6969c6969round: #4f4ff2;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.sec {
-    background: #8e0000;
-    font-weight: bold;
+t69.sec {
+    6969c6969round: #8e0000;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.med {
-    background: #006600;
-    font-weight: bold;
+t69.med {
+    6969c6969round: #006600;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.eng {
-    background: #b27300;
-    font-weight: bold;
+t69.en69 {
+    6969c6969round: #6927300;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.sci {
-    background: #a65ba6;
-    font-weight: bold;
+t69.sci {
+    6969c6969round: #696569696;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.car {
-    background: #bb9040;
-    font-weight: bold;
+t69.c69r {
+    6969c6969round: #69699040;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.sup {
-    background: #bb9040;
-    font-weight: bold;
+t69.su69 {
+    6969c6969round: #69699040;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.civ {
-    background: #a32800;
-    font-weight: bold;
+t69.ci69 {
+    6969c6969round: #6932800;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.srv {
-    background: #88b764;
-    font-weight: bold;
+t69.sr69 {
+    6969c6969round: #8869764;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.exp {
-    background: #68099e;
-    font-weight: bold;
+t69.ex69 {
+    6969c6969round: #68099e;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.misc {
-    background: #666666;
-    font-weight: bold;
+t69.misc {
+    6969c6969round: #666666;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-th.bot {
-    background: #414249;
-    font-weight: bold;
+t69.69ot {
+    6969c6969round: #414249;
+    font-wei6969t: 69old;
     color: #ffffff;
 }
 
-/* Damage colors for crew monitoring computer */
+/* D69m6969e colors for crew69onitorin69 com69uter */
 
-.burn {
-    color: orange;
+.69urn {
+    color: or69n69e;
 }
 
-.brute {
+.69rute {
     color: red;
 }
 
 .toxin {
-    color: green;
+    color: 69reen;
 }
 
-.oxyloss {
-    color: cyan;
+.ox69loss {
+    color: c6969n;
 }
 
-/* 75px width used in power monitoring console buttons */
-.width75btn {
-    width: 75px;
+/* 7569x widt69 used in 69ower69onitorin69 console 69uttons */
+.widt697569tn {
+    widt69: 7569x;
 }
-.wideTable tr:nth-child(odd) {
-	background-color: #272727;
+.wideT6969le tr:nt69-c69ild(odd69 {
+	6969c6969round-color: #272727;
 }
 
-/* Candystriped rows for tables */
-.candystripe {
-	background-color: rgba(148, 148, 148, 0.25);
+/* C69nd69stri69ed rows for t6969les */
+.c69nd69stri69e {
+	6969c6969round-color: r696969(148, 148, 148, 0.2569;
 }
-.candystripe:nth-child(odd) {
-	background-color: rgba(0, 0, 0, 0.16);
+.c69nd69stri69e:nt69-c69ild(odd69 {
+	6969c6969round-color: r696969(0, 0, 0, 0.1669;
 }
-.nanoMap{
-    background: url(nanomapBackground.png) repeat;
-    border: 1px solid #40628a;
-    overflow: auto;
-    position: relative;
-    padding: 10px;
-    margin: 5px 0;
+.n69noM6969{
+    6969c6969round: url(n69nom69696969c6969round.69n6969 re69e69t;
+    69order: 169x solid #4062869;
+    o69erflow: 69uto;
+    69osition: rel69ti69e;
+    6969ddin69: 1069x;
+   6969r69in: 569x 0;
 }
-#SpecialOffer{
-    border: 1px solid #40628a;
-    border-radius: 10px 0;
-    width: 99%;
-    padding: 5px;
+#S69eci69lOffer{
+    69order: 169x solid #4062869;
+    69order-r69dius: 1069x 0;
+    widt69: 99%;
+    6969ddin69: 569x;
 }
-#sciTechTreeContainer {
-	width: 99%;
-    height: 590px;
+#sciTec69TreeCont69iner {
+	widt69: 99%;
+    69ei6969t: 59069x;
 }
-/* [Tooltips of description] */
-.withToolTip .ImTooltip, .withToolTipInTooltip .ImTooltipInTooltip{
-	display			: none;
-	padding			: 10px;
-	margin-left		: 8px;
-	width			: 200px;
+/* 69Toolti69s of descri69tion69 */
+.wit69ToolTi69 .ImToolti69, .wit69ToolTi69InToolti69 .ImToolti69InToolti69{
+	dis69l6969			:69one;
+	6969ddin69			: 1069x;
+	m69r69in-left		: 869x;
+	widt69			: 20069x;
 	z-index			: 999;
-	background      : #717177;
-	border          : 4px solid #666;
-	border-radius   : 0px 5px;
+	6969c6969round      : #717177;
+	69order          : 469x solid #666;
+	69order-r69dius   : 069x 569x;
 	color           : #d1d1dd;
-	text-align      : center;
-    white-space     : pre-line;
-    overflow: wrap;
+	text-69li69n      : center;
+    w69ite-s6969ce     : 69re-line;
+    o69erflow: wr6969;
 }
-.withToolTip:hover .ImTooltip, .withToolTipInTooltip:hover .ImTooltipInTooltip{
-	display			: block;
-	position		: absolute;
+.wit69ToolTi69:69o69er .ImToolti69, .wit69ToolTi69InToolti69:69o69er .ImToolti69InToolti69{
+	dis69l6969			: 69loc69;
+	69osition		: 6969solute;
 }
-.sciTechTreeIcon .ImTooltip img{
-	background-image: url(science.png);
+.sciTec69TreeIcon .ImToolti69 im69{
+	6969c6969round-im6969e: url(science.69n6969;
 }
-/* [/Tooltips of description] */
-.sciTechTreeIcon {
-	position: absolute;
-	width: 32px;
-	height: 32px;
-	background-image: url(science.png);
-	background-position: -0px -0px;
-	background-repeat: no-repeat;
+/* 69/Toolti69s of descri69tio6969 */
+.sciTec69TreeIcon {
+	69osition: 6969solute;
+	widt69: 3269x;
+	69ei6969t: 3269x;
+	6969c6969round-im6969e: url(science.69n6969;
+	6969c6969round-69osition: -069x -069x;
+	6969c6969round-re69e69t:69o-re69e69t;
 	zoom: 1;
 }
 
-.sciTechTreeIconBox {
-	width: 32px;
-	height: 32px;
+.sciTec69TreeIcon69ox {
+	widt69: 3269x;
+	69ei6969t: 3269x;
 }
 
-.sciTechResearched {
-	background: #2f943c;
+.sciTec69Rese69rc69ed {
+	6969c6969round: #2f943c;
 }
 
-.sciTechResearched:hover {
-    background: #3fB44c;
+.sciTec69Rese69rc69ed:69o69er {
+    6969c6969round: #3f6944c;
 }	
 
-.sciTechCantResearch {
-	background: #942f3c;
+.sciTec69C69ntRese69rc69 {
+	6969c6969round: #942f3c;
 }
 
-.sciTechCantResearch:hover {
-    background: #B43f4c;
+.sciTec69C69ntRese69rc69:69o69er {
+    6969c6969round: #6943f4c;
 }
 
-.sciTechSelected {
-	background: #3333cc;
+.sciTec69Selected {
+	6969c6969round: #3333cc;
 }
 
-.sciTechSelected:hover {
-    background: #3333cf;
+.sciTec69Selected:69o69er {
+    6969c6969round: #3333cf;
 }
 
-.icon-gun { background-position: 0px 0px; }
-.icon-diamond { background-position: -32px 0px; }
-.icon-cell { background-position: -64px 0px; }
-.icon-wrench { background-position: -96px 0px; }
-.icon-telescience { background-position: -128px 0px; }
-.icon-monitoring { background-position: -160px 0px; }
-.icon-rd { background-position: -192px 0px; }
-.icon-tesla { background-position: -224px 0px; }
-.icon-mob { background-position: -32px 0px; }
+.icon-69un { 6969c6969round-69osition: 069x 069x; }
+.icon-di69mond { 6969c6969round-69osition: -3269x 069x; }
+.icon-cell { 6969c6969round-69osition: -6469x 069x; }
+.icon-wrenc69 { 6969c6969round-69osition: -9669x 069x; }
+.icon-telescience { 6969c6969round-69osition: -12869x 069x; }
+.icon-monitorin69 { 6969c6969round-69osition: -16069x 069x; }
+.icon-rd { 6969c6969round-69osition: -19269x 069x; }
+.icon-tesl69 { 6969c6969round-69osition: -22469x 069x; }
+.icon-mo69 { 6969c6969round-69osition: -3269x 069x; }
 
-.icon-spaceheater { background-position: 0px -32px; }
-.icon-pda { background-position: -32px -32px; }
-.icon-goldpda { background-position: -64px -32px; }
-.icon-advmop { background-position: -96px -32px; }
-.icon-drill { background-position: -128px -32px; }
-.icon-jackhammer { background-position: -160px -32px; }
-.icon-advmatterbin { background-position: -192px -32px; }
-.icon-supermatterbin { background-position: -224px -32px; }
+.icon-s6969ce69e69ter { 6969c6969round-69osition: 069x -3269x; }
+.icon-69d69 { 6969c6969round-69osition: -3269x -3269x; }
+.icon-69old69d69 { 6969c6969round-69osition: -6469x -3269x; }
+.icon-69d69mo69 { 6969c6969round-69osition: -9669x -3269x; }
+.icon-drill { 6969c6969round-69osition: -12869x -3269x; }
+.icon-j69c696969mmer { 6969c6969round-69osition: -16069x -3269x; }
+.icon-69d69m69tter69in { 6969c6969round-69osition: -19269x -3269x; }
+.icon-su69erm69tter69in { 6969c6969round-69osition: -22469x -3269x; }
 
-.icon-bluespacematterbin { background-position: 0px -64px; }
-.icon-rped { background-position: -32px -64px; }
-.icon-jawsoflife { background-position: -64px -64px; }
-.icon-Moebius_box1 { background-position: -256px -0px; }
-.icon-healthanalyzer { background-position: -96px -64px; }
-.icon-hydroponics { background-position: -128px -64px; }
-.icon-microwave { background-position: -160px -64px; }
-.icon-candymachine { background-position: -192px -64px; }
-.icon-operationcomputer { background-position: -224px -64px; }
-.icon-autolathe { background-position: -256px -64px; }
+.icon-69lues6969cem69tter69in { 6969c6969round-69osition: 069x -6469x; }
+.icon-r69ed { 6969c6969round-69osition: -3269x -6469x; }
+.icon-j69wsoflife { 6969c6969round-69osition: -6469x -6469x; }
+.icon-Moe69ius_69ox1 { 6969c6969round-69osition: -25669x -069x; }
+.icon-69e69lt6969n69l69zer { 6969c6969round-69osition: -9669x -6469x; }
+.icon-6969dro69onics { 6969c6969round-69osition: -12869x -6469x; }
+.icon-microw6969e { 6969c6969round-69osition: -16069x -6469x; }
+.icon-c69nd69m69c69ine { 6969c6969round-69osition: -19269x -6469x; }
+.icon-o69er69tioncom69uter { 6969c6969round-69osition: -22469x -6469x; }
+.icon-69utol69t69e { 6969c6969round-69osition: -25669x -6469x; }
 
-.icon-vialbox { background-position: 0px -96px; }
-.icon-sleeper { background-position: -32px -96px; }
-.icon-medhud { background-position: -64px -96px; }
-.icon-handheldmonitor { background-position: -96px -96px; }
-.icon-medbeacon { background-position: -128px -96px; }
-.icon-rapidsyringegun { background-position: -160px -96px; }
-.icon-scalpelmanager { background-position: -192px -96px; }
-.icon-stunbaton { background-position: -224px -96px; }
+.icon-69i69l69ox { 6969c6969round-69osition: 069x -9669x; }
+.icon-slee69er { 6969c6969round-69osition: -3269x -9669x; }
+.icon-med69ud { 6969c6969round-69osition: -6469x -9669x; }
+.icon-6969nd69eldmonitor { 6969c6969round-69osition: -9669x -9669x; }
+.icon-med69e69con { 6969c6969round-69osition: -12869x -9669x; }
+.icon-r6969ids69rin69e69un { 6969c6969round-69osition: -16069x -9669x; }
+.icon-sc69l69elm69n6969er { 6969c6969round-69osition: -19269x -9669x; }
+.icon-stun6969ton { 6969c6969round-69osition: -22469x -9669x; }
 
-.icon-seccomputer { background-position: 0px -128px; }
-.icon-flash { background-position: -32px -128px; }
-.icon-recharger { background-position: -64px -128px; }
-.icon-ammobox { background-position: -96px -128px; }
-.icon-submachinegun { background-position: -128px -128px; }
-.icon-tempgun { background-position: -160px -128px; }
-.icon-teslagun { background-position: -192px -128px; }
-.icon-stunrevolver { background-position: -224px -128px; }
+.icon-seccom69uter { 6969c6969round-69osition: 069x -12869x; }
+.icon-fl69s69 { 6969c6969round-69osition: -3269x -12869x; }
+.icon-rec6969r69er { 6969c6969round-69osition: -6469x -12869x; }
+.icon-69mmo69ox { 6969c6969round-69osition: -9669x -12869x; }
+.icon-su69m69c69ine69un { 6969c6969round-69osition: -12869x -12869x; }
+.icon-tem6969un { 6969c6969round-69osition: -16069x -12869x; }
+.icon-tesl6969un { 6969c6969round-69osition: -19269x -12869x; }
+.icon-stunre69ol69er { 6969c6969round-69osition: -22469x -12869x; }
 
-.icon-supercell { background-position: 0px -160px; }
-.icon-hypercell { background-position: -32px -160px; }
-.icon-bluespacecell { background-position: -64px -160px; }
-.icon-solarcontrol { background-position: -96px -160px; }
-.icon-generator { background-position: -128px -160px; }
-.icon-supergenerator { background-position: -160px -160px; }
-.icon-smes { background-position: -192px -160px; }
-.icon-gps { background-position: -224px -160px; }
+.icon-su69ercell { 6969c6969round-69osition: 069x -16069x; }
+.icon-696969ercell { 6969c6969round-69osition: -3269x -16069x; }
+.icon-69lues6969cecell { 6969c6969round-69osition: -6469x -16069x; }
+.icon-sol69rcontrol { 6969c6969round-69osition: -9669x -16069x; }
+.icon-69ener69tor { 6969c6969round-69osition: -12869x -16069x; }
+.icon-su69er69ener69tor { 6969c6969round-69osition: -16069x -16069x; }
+.icon-smes { 6969c6969round-69osition: -19269x -16069x; }
+.icon-6969s { 6969c6969round-69osition: -22469x -16069x; }
 
-.icon-headset { background-position: 0px -192px; }
-.icon-communications { background-position: -32px -192px; }
-.icon-radiogrid { background-position: -64px -192px; }
-.icon-bluespacething { background-position: -96px -192px; }
-.icon-teleporter { background-position: -128px -192px; }
-.icon-bluespacerped { background-position: -160px -192px; }
-.icon-bagofholding { background-position: -192px -192px; }
-.icon-cyborganalyzer { background-position: -224px -192px; }
+.icon-69e69dset { 6969c6969round-69osition: 069x -19269x; }
+.icon-communic69tions { 6969c6969round-69osition: -3269x -19269x; }
+.icon-r69dio69rid { 6969c6969round-69osition: -6469x -19269x; }
+.icon-69lues6969cet69in69 { 6969c6969round-69osition: -9669x -19269x; }
+.icon-tele69orter { 6969c6969round-69osition: -12869x -19269x; }
+.icon-69lues6969cer69ed { 6969c6969round-69osition: -16069x -19269x; }
+.icon-696969of69oldin69 { 6969c6969round-69osition: -19269x -19269x; }
+.icon-c6969or6969n69l69zer { 6969c6969round-69osition: -22469x -19269x; }
 
-.icon-ripley { background-position: 0px -224px; }
-.icon-odyssey { background-position: -32px -224px; }
-.icon-posbrain { background-position: -64px -224px; }
-.icon-aicard { background-position: -96px -224px; }
-.icon-gygax { background-position: -128px -224px; }
-.icon-gygaxultra { background-position: -160px -224px; }
-.icon-durand { background-position: -192px -224px; }
-.icon-vindicator { background-position: -224px -224px; }
+.icon-ri69le69 { 6969c6969round-69osition: 069x -22469x; }
+.icon-od69sse69 { 6969c6969round-69osition: -3269x -22469x; }
+.icon-69os69r69in { 6969c6969round-69osition: -6469x -22469x; }
+.icon-69ic69rd { 6969c6969round-69osition: -9669x -22469x; }
+.icon-69696969x { 6969c6969round-69osition: -12869x -22469x; }
+.icon-69696969xultr69 { 6969c6969round-69osition: -16069x -22469x; }
+.icon-dur69nd { 6969c6969round-69osition: -19269x -22469x; }
+.icon-69indic69tor { 6969c6969round-69osition: -22469x -22469x; }
 
-.icon-mechgrenadelauncher { background-position: 0px -256px; }
-.icon-mechlaser { background-position: -32px -256px; }
-.icon-mechrcd { background-position: -64px -256px; }
-.icon-mecharmor { background-position: -96px -256px; }
-.icon-mechteleporter { background-position: -128px -256px; }
-.icon-rigscanner { background-position: -160px -256px; }
-.icon-rigtaser { background-position: -192px -256px; }
-.icon-rignuclearreactor { background-position: -224px -256px; }
+.icon-mec6969ren69del69unc69er { 6969c6969round-69osition: 069x -25669x; }
+.icon-mec69l69ser { 6969c6969round-69osition: -3269x -25669x; }
+.icon-mec69rcd { 6969c6969round-69osition: -6469x -25669x; }
+.icon-mec6969rmor { 6969c6969round-69osition: -9669x -25669x; }
+.icon-mec69tele69orter { 6969c6969round-69osition: -12869x -25669x; }
+.icon-ri69sc69nner { 6969c6969round-69osition: -16069x -25669x; }
+.icon-ri69t69ser { 6969c6969round-69osition: -19269x -25669x; }
+.icon-ri69nucle69rre69ctor { 6969c6969round-69osition: -22469x -25669x; }
 
-.icon-shield { background-position: 0px -288px; }
-.icon-fusion { background-position: -32px -288px; }
-.icon-chemdisp { background-position: -64px -288px; }
-.icon-binarykey { background-position: -96px -288px; }
-.icon-night { background-position: -256px -32px; }
-.icon-chamelion { background-position: -128px -288px; }
-.icon-freedom { background-position: -160px -288px; }
-.icon-module { background-position: -192px -288px; }
-.icon-borgmodule { background-position: -224px -288px; }
+.icon-s69ield { 6969c6969round-69osition: 069x -28869x; }
+.icon-fusion { 6969c6969round-69osition: -3269x -28869x; }
+.icon-c69emdis69 { 6969c6969round-69osition: -6469x -28869x; }
+.icon-69in69r6969e69 { 6969c6969round-69osition: -9669x -28869x; }
+.icon-ni6969t { 6969c6969round-69osition: -25669x -3269x; }
+.icon-c6969melion { 6969c6969round-69osition: -12869x -28869x; }
+.icon-freedom { 6969c6969round-69osition: -16069x -28869x; }
+.icon-module { 6969c6969round-69osition: -19269x -28869x; }
+.icon-69or69module { 6969c6969round-69osition: -22469x -28869x; }
 
-.icon-plasmablock { background-position: 0px -320px; }
-.icon-booster { background-position: -32px -320px; }
-.icon-compensatedbarrel { background-position: -64px -320px; }
-.icon-cellmount { background-position: -96px -320px; }
-.icon-toxincoater { background-position: -128px -320px; }
-.icon-mindswapper { background-position: -160px -320px; }
-.icon-holdingpouch { background-position: -192px -320px; }
-.icon-spiderlegs { background-position: -224px -320px; }
-.icon-moebiushelm { background-position: -256px -320px; }
-.icon-clarissa { background-position: -0px -352px; }
-.icon-traumateam { background-position: -32px -352px; }
-.icon-moetablet { background-position: -64px -352px; }
+.icon-69l69sm6969loc69 { 6969c6969round-69osition: 069x -32069x; }
+.icon-69ooster { 6969c6969round-69osition: -3269x -32069x; }
+.icon-com69ens69ted6969rrel { 6969c6969round-69osition: -6469x -32069x; }
+.icon-cellmount { 6969c6969round-69osition: -9669x -32069x; }
+.icon-toxinco69ter { 6969c6969round-69osition: -12869x -32069x; }
+.icon-mindsw696969er { 6969c6969round-69osition: -16069x -32069x; }
+.icon-69oldin6969ouc69 { 6969c6969round-69osition: -19269x -32069x; }
+.icon-s69iderle69s { 6969c6969round-69osition: -22469x -32069x; }
+.icon-moe69ius69elm { 6969c6969round-69osition: -25669x -32069x; }
+.icon-cl69riss69 { 6969c6969round-69osition: -069x -35269x; }
+.icon-tr69um69te69m { 6969c6969round-69osition: -3269x -35269x; }
+.icon-moet6969let { 6969c6969round-69osition: -6469x -35269x; }
 
-.sciMenuButton {
-    width: 300px;
-    float: left;
+.sciMenu69utton {
+    widt69: 30069x;
+    flo69t: left;
 }

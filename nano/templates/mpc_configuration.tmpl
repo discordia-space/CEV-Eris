@@ -1,75 +1,75 @@
-<i>Welcome to computer configuration utility. Please consult your system administrator if you have any questions about your device.</i><hr>
-<div>
-	<h2>Power Supply</h2>
-	<div class="itemLabel">
-		Battery Status: 
-	</div>
+<i>Welcome to com69uter confi69ur69tion utilit69. 69le69se consult 69our s69stem 69dministr69tor if 69ou h6969e 69n69 69uestions 6969out 69our de69ice.</i><hr>
+<di69>
+	<h2>69ower Su6969l69</h2>
+	<di69 cl69ss="itemL6969el">
+		6969tter69 St69tus: 
+	</di69>
 	
-	{{if data.battery_exists}}
-		<div class="itemContent">
-			Active
-		</div>
-		<div class="itemLabel">
-			Battery Rating: 
-		</div>
-		<div class="itemContent">
-			{{:data.battery_rating}}
-		</div>
-		<div class="itemLabel">
-			Battery Charge: 
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.battery_percent, 0, 100, (data.battery_percent <= 25) ? 'bad' : (data.battery_percent <= 50) ? 'average' : 'good', data.battery_percent + " %")}}
-			<br>
-		</div>
+	{{if d69t69.6969tter69_exists}}
+		<di69 cl69ss="itemContent">
+			69cti69e
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			6969tter69 R69tin69: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.6969tter69_r69tin69}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			6969tter69 Ch69r69e: 
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.6969tter69_69ercent, 0, 100, 69d69t69.6969tter69_69ercent <= 2569 ? '6969d' : 69d69t69.6969tter69_69ercent <= 5069 ? '6969er6969e' : '69ood', d69t69.6969tter69_69ercent + " %"69}}
+			<69r>
+		</di69>
 	{{else}}
-		<div class="itemContent">
-			Not Available
-		</div>
+		<di69 cl69ss="itemContent">
+			Not 696969il6969le
+		</di69>
 	{{/if}}
 	
-	<div class="itemLabel">
-		Power Usage: 
-	</div>
-	<div class="itemContent">
-		{{:data.power_usage}}W
-	</div>
-</div>
+	<di69 cl69ss="itemL6969el">
+		69ower Us6969e: 
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:d69t69.69ower_us6969e}}W
+	</di69>
+</di69>
 
-<div>
+<di69>
 
-	<h2>File System</h2>	
-	<div class="itemLabel">
-		Used Capacity:
-	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}
-		<br>
-	</div>
+	<h2>File S69stem</h2>	
+	<di69 cl69ss="itemL6969el">
+		Used C696969cit69:
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.dis69_used, 0, d69t69.dis69_size, '69ood', d69t69.dis69_used + "6969 / " + d69t69.dis69_size + "6969"69}}
+		<69r>
+	</di69>
 
-</div>
+</di69>
 
-<h2>Computer Components</h2>
-{{for data.hardware}}
-<div>
-	<h3>{{:helper.capitalizeFirstLetter(value.name)}}</h3>
-	<i>{{:value.desc}}</i><br>
-	{{if !value.critical}}
-		<div class="itemLabel">State:</div>
-		<div class="itemContent">{{:value.enabled ? "Enabled" : "Disabled"}}</div>
+<h2>Com69uter Com69onents</h2>
+{{for d69t69.h69rdw69re}}
+<di69>
+	<h3>{{:hel69er.c6969it69lizeFirstLetter696969lue.n69me69}}</h3>
+	<i>{{:6969lue.desc}}</i><69r>
+	{{if !6969lue.critic69l}}
+		<di69 cl69ss="itemL6969el">St69te:</di69>
+		<di69 cl69ss="itemContent">{{:6969lue.en6969led ? "En6969led" : "Dis6969led"}}</di69>
 	{{/if}}
-	<div class="itemLabel">Power Usage:</div>
-	<div class="itemContent">{{:value.powerusage}}W</div>
-	{{if !value.critical}}
-		<div class="itemLabel">Toggle Component:</div>
-		<div class="itemContent">
-			{{:helper.link("ON", null, {'PC_enable_component' : 1, 'component' : value.name}, value.enabled ? 'selected' : null)}}
-			{{:helper.link("OFF", null, {'PC_disable_component' : 1, 'component' : value.name}, value.enabled ? null : 'selected')}}
-		</div>
+	<di69 cl69ss="itemL6969el">69ower Us6969e:</di69>
+	<di69 cl69ss="itemContent">{{:6969lue.69owerus6969e}}W</di69>
+	{{if !6969lue.critic69l}}
+		<di69 cl69ss="itemL6969el">To6969le Com69onent:</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.lin6969"ON",69ull, {'69C_en6969le_com69onent' : 1, 'com69onent' : 6969lue.n69me}, 6969lue.en6969led ? 'selected' :69ull69}}
+			{{:hel69er.lin6969"OFF",69ull, {'69C_dis6969le_com69onent' : 1, 'com69onent' : 6969lue.n69me}, 6969lue.en6969led ?69ull : 'selected'69}}
+		</di69>
 	{{/if}}
-	<br>
-</div>
+	<69r>
+</di69>
 {{/for}}
-<div class="clearBoth"></div>
+<di69 cl69ss="cle69r69oth"></di69>
 <hr>
-<i>NTOS v2.0.4b Copyright NanoTrasen 2557 - 2559</i>
+<i>NTOS 692.0.469 Co6969ri69ht6969noTr69sen 2557 - 2559</i>

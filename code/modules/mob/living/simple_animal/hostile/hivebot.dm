@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/hivebot
 	name = "One Star Autonomous Drone"
-	desc = "Old machine of long time fallen empire. Looks like its just attack everything on sight."
+	desc = "Old69achine of long time fallen empire. Looks like its just attack everything on sight."
 	icon = 'icons/mob/hivebot.dmi'
 	icon_state = "melee"
 	icon_dead = "melee_broken"
@@ -37,9 +37,9 @@
 
 /mob/living/simple_animal/hostile/hivebot/death()
 	..()
-	visible_message("<b>[src]</b> blows apart!")
+	visible_message("<b>69src69</b> blows apart!")
 	new /obj/effect/decal/cleanable/blood/gibs/robot(src.loc)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)

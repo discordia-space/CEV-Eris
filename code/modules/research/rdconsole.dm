@@ -1,30 +1,30 @@
 /*
 Research and Development (R&D) Console
 
-This is the main work horse of the R&D system. It contains the menus/controls for the Destructive Analyzer, Protolathe, and Circuit
+This is the69ain work horse of the R&D system. It contains the69enus/controls for the Destructive Analyzer, Protolathe, and Circuit
 imprinter. It also contains the /datum/research holder which handles the local research database.
 
-Basic use: When it first is created, it will attempt to link up to related devices within 3 squares. It'll only link up if they
+Basic use: When it first is created, it will attempt to link up to related devices within 3 s69uares. It'll only link up if they
 aren't already linked to another console. Any consoles it cannot link up with (either because all of a certain type are already
-linked or there aren't any in range), you'll just not have access to that menu. In the settings menu, there are menu options that
-allow a player to attempt to re-sync with nearby consoles. You can also force it to disconnect from a specific console.
+linked or there aren't any in range), you'll just69ot have access to that69enu. In the settings69enu, there are69enu options that
+allow a player to attempt to re-sync with69earby consoles. You can also force it to disconnect from a specific console.
 
-The imprinting and construction menus do NOT require toxins access to access but all the other menus do. However, if you leave it
-on a menu, nothing is to stop the person from using the options on that menu (although they won't be able to change to a different
-one). You can also lock the console on the settings menu if you're feeling paranoid and you don't want anyone messing with it who
+The imprinting and construction69enus do69OT re69uire toxins access to access but all the other69enus do. However, if you leave it
+on a69enu,69othing is to stop the person from using the options on that69enu (although they won't be able to change to a different
+one). You can also lock the console on the settings69enu if you're feeling paranoid and you don't want anyone69essing with it who
 doesn't have toxins access.
 
 When a R&D console is destroyed or even partially disassembled, you lose all research data on it. However, there are two ways around
 this dire fate:
-- The easiest way is to go to the settings menu and select "Sync Database with Network." That causes it to upload
-it's data to every other device in the game. Each console has a "disconnect from network" option that'll will cause data base sync
-operations to skip that console. This is useful if you want to make a "public" R&D console or, for example, give the engineers
-a circuit imprinter with certain designs on it and don't want it accidentally updating. The downside of this method is that you have
-to have physical access to the other console to send data back. Note: An R&D console is on CentCom so if a random griffan happens to
+- The easiest way is to go to the settings69enu and select "Sync Database with69etwork." That causes it to upload
+it's data to every other device in the game. Each console has a "disconnect from69etwork" option that'll will cause data base sync
+operations to skip that console. This is useful if you want to69ake a "public" R&D console or, for example, give the engineers
+a circuit imprinter with certain designs on it and don't want it accidentally updating. The downside of this69ethod is that you have
+to have physical access to the other console to send data back.69ote: An R&D console is on CentCom so if a random griffan happens to
 cause a ton of data to be lost, an admin can go send it back.
-- The second method is with data disks. Each of these disks can hold multiple technology or design datum in
-it's entirety. You can then take the disk to any R&D console and upload it's data to it. This method is a lot more secure (since it
-won't update every console in existence) but it's more of a hassle to do. Also, the disks can be stolen.
+- The second69ethod is with data disks. Each of these disks can hold69ultiple technology or design datum in
+it's entirety. You can then take the disk to any R&D console and upload it's data to it. This69ethod is a lot69ore secure (since it
+won't update every console in existence) but it's69ore of a hassle to do. Also, the disks can be stolen.
 */
 
 #define SCREEN_MAIN "main"
@@ -44,19 +44,19 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	light_color = COLOR_LIGHTING_PURPLE_MACHINERY
 	circuit = /obj/item/electronics/circuitboard/rdconsole
 	var/datum/research/files								//Stores all the collected research data.
-	var/obj/item/computer_hardware/hard_drive/portable/disk = null	//Stores the data disk.
+	var/obj/item/computer_hardware/hard_drive/portable/disk =69ull	//Stores the data disk.
 
-	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy = null	//Linked Destructive Analyzer
-	var/obj/machinery/autolathe/rnd/protolathe/linked_lathe = null		//Linked Protolathe
-	var/obj/machinery/autolathe/rnd/imprinter/linked_imprinter = null	//Linked Circuit Imprinter
+	var/obj/machinery/r_n_d/destructive_analyzer/linked_destroy =69ull	//Linked Destructive Analyzer
+	var/obj/machinery/autolathe/rnd/protolathe/linked_lathe =69ull		//Linked Protolathe
+	var/obj/machinery/autolathe/rnd/imprinter/linked_imprinter =69ull	//Linked Circuit Imprinter
 
 	var/screen = SCREEN_MAIN	//Which screen is currently showing.
 	var/id     = 0			//ID of the computer (for server restrictions).
 	var/sync   = 1		//If sync = 0, it doesn't show up on Server Control Console
 	var/can_research = TRUE   //Is this console capable of researching
-	var/hacked = 0 // If this console has had its access requirements hacked or not.
+	var/hacked = 0 // If this console has had its access re69uirements hacked or69ot.
 
-	req_access = list(access_research_equipment) //Data and setting manipulation requires scientist access.
+	re69_access = list(access_research_e69uipment) //Data and setting69anipulation re69uires scientist access.
 
 	var/datum/tech/selected_tech_tree
 	var/datum/technology/selected_technology
@@ -95,40 +95,40 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 
 /obj/machinery/computer/rdconsole/Initialize()
 	. = ..()
-	files = new /datum/research(src) //Setup the research data holder.
+	files =69ew /datum/research(src) //Setup the research data holder.
 	SyncRDevices()
 
 /obj/machinery/computer/rdconsole/Destroy()
-	files = null
+	files =69ull
 	if(linked_destroy)
-		linked_destroy.linked_console = null
-		linked_destroy = null
+		linked_destroy.linked_console =69ull
+		linked_destroy =69ull
 	if(linked_lathe)
-		linked_lathe.linked_console = null
-		linked_destroy = null
+		linked_lathe.linked_console =69ull
+		linked_destroy =69ull
 	if(linked_imprinter)
-		linked_imprinter.linked_console = null
-		linked_destroy = null
+		linked_imprinter.linked_console =69ull
+		linked_destroy =69ull
 	return ..()
 
-/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj, var/mob/user as mob)
+/obj/machinery/computer/rdconsole/attackby(var/obj/item/D as obj,69ar/mob/user as69ob)
 	//Loading a disk into it.
 	if(istype(D, /obj/item/computer_hardware/hard_drive/portable))
 		if(disk)
-			to_chat(user, SPAN_NOTICE("A disk is already loaded into the machine."))
+			to_chat(user, SPAN_NOTICE("A disk is already loaded into the69achine."))
 			return
 
 		user.drop_item()
 		D.forceMove(src)
 		disk = D
-		to_chat(user, SPAN_NOTICE("You add \the [D] to the machine."))
+		to_chat(user, SPAN_NOTICE("You add \the 69D69 to the69achine."))
 	else if(istype(D, /obj/item/device/science_tool)) // Used when you want to upload autopsy/other scanned data to the console
 		var/research_points = files.experiments.read_science_tool(D)
 		if(research_points > 0)
-			to_chat(user, SPAN_NOTICE("[name] received [research_points] research points from uploaded data."))
+			to_chat(user, SPAN_NOTICE("69name69 received 69research_points69 research points from uploaded data."))
 			files.adjust_research_points(research_points)
 		else
-			to_chat(user, SPAN_NOTICE("There was no useful data inside [D.name]'s buffer."))
+			to_chat(user, SPAN_NOTICE("There was69o useful data inside 69D.name69's buffer."))
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -136,14 +136,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	SSnano.update_uis(src)
 	return
 
-/obj/machinery/computer/rdconsole/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/computer/rdconsole/emag_act(var/remaining_charges,69ar/mob/user)
 	if(!emagged)
 		playsound(loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = TRUE
 		to_chat(user, SPAN_NOTICE("You disable the security protocols."))
 		return TRUE
 
-/obj/machinery/computer/rdconsole/proc/reset_screen() // simply resets the screen to the main screen and updates the UIs
+/obj/machinery/computer/rdconsole/proc/reset_screen() // simply resets the screen to the69ain screen and updates the UIs
 	screen = SCREEN_MAIN
 	SSnano.update_uis(src)
 
@@ -152,16 +152,16 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	files.adjust_research_points(files.experiments.get_object_research_value(I))
 	files.experiments.do_research_object(I)
 	var/list/matter = I.get_matter()
-	if(linked_lathe && matter)
-		for(var/t in matter)
+	if(linked_lathe &&69atter)
+		for(var/t in69atter)
 			if(t in linked_lathe.unsuitable_materials)
 				continue
 
-			if(!linked_lathe.stored_material[t])
-				linked_lathe.stored_material[t] = 0
+			if(!linked_lathe.stored_material69t69)
+				linked_lathe.stored_material69t69 = 0
 
-			linked_lathe.stored_material[t] += matter[t] * linked_destroy.decon_mod
-			linked_lathe.stored_material[t] = min(linked_lathe.stored_material[t], linked_lathe.storage_capacity)
+			linked_lathe.stored_material69t69 +=69atter69t69 * linked_destroy.decon_mod
+			linked_lathe.stored_material69t69 =69in(linked_lathe.stored_material69t69, linked_lathe.storage_capacity)
 
 /obj/machinery/computer/rdconsole/Topic(href, href_list) // Oh boy here we go.
 	if(..())
@@ -173,153 +173,153 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(screen == SCREEN_IMPRINTER && linked_imprinter)
 		target_device = linked_imprinter
 
-	if(href_list["select_tech_tree"]) // User selected a tech tree.
-		var/datum/tech/tech_tree = locate(href_list["select_tech_tree"]) in files.researched_tech
+	if(href_list69"select_tech_tree"69) // User selected a tech tree.
+		var/datum/tech/tech_tree = locate(href_list69"select_tech_tree"69) in files.researched_tech
 		if(tech_tree && tech_tree.shown)
 			selected_tech_tree = tech_tree
-			selected_technology = null
-	if(href_list["select_technology"]) // User selected a technology node.
-		var/tech_node = locate(href_list["select_technology"]) in SSresearch.all_tech_nodes
+			selected_technology =69ull
+	if(href_list69"select_technology"69) // User selected a technology69ode.
+		var/tech_node = locate(href_list69"select_technology"69) in SSresearch.all_tech_nodes
 		if(tech_node)
 			selected_technology = tech_node
-	if(href_list["unlock_technology"]) // User attempts to unlock a technology node (Safeties are within UnlockTechnology)
-		var/tech_node = locate(href_list["unlock_technology"]) in SSresearch.all_tech_nodes
+	if(href_list69"unlock_technology"69) // User attempts to unlock a technology69ode (Safeties are within UnlockTechnology)
+		var/tech_node = locate(href_list69"unlock_technology"69) in SSresearch.all_tech_nodes
 		if(tech_node)
 			files.UnlockTechology(tech_node)
-	if(href_list["go_screen"]) // User is changing the screen.
-		var/where = href_list["go_screen"]
-		if(href_list["need_access"])
+	if(href_list69"go_screen"69) // User is changing the screen.
+		var/where = href_list69"go_screen"69
+		if(href_list69"need_access"69)
 			if(!allowed(usr) && !emagged)
 				to_chat(usr, SPAN_WARNING("Unauthorized access."))
 				return
 		screen = where
 		if(screen == SCREEN_PROTO || screen == SCREEN_IMPRINTER)
 			search_text = ""
-	if(href_list["eject_disk"]) // User is ejecting the disk.
+	if(href_list69"eject_disk"69) // User is ejecting the disk.
 		if(disk)
 			disk.forceMove(drop_location())
-			disk = null
-	if(href_list["delete_disk_file"]) // User is attempting to delete a file from the loaded disk.
+			disk =69ull
+	if(href_list69"delete_disk_file"69) // User is attempting to delete a file from the loaded disk.
 		if(disk)
-			var/datum/computer_file/file = locate(href_list["delete_disk_file"]) in disk.stored_files
+			var/datum/computer_file/file = locate(href_list69"delete_disk_file"69) in disk.stored_files
 			disk.remove_file(file)
 
-	if(href_list["download_disk_design"]) // User is attempting to download (disk->rdconsole) a design from the disk.
+	if(href_list69"download_disk_design"69) // User is attempting to download (disk->rdconsole) a design from the disk.
 		if(disk)
-			var/datum/computer_file/binary/design/file = locate(href_list["download_disk_design"]) in disk.stored_files
+			var/datum/computer_file/binary/design/file = locate(href_list69"download_disk_design"69) in disk.stored_files
 			if(file && !file.copy_protected)
 				files.AddDesign2Known(file.design)
 				griefProtection() //Update CentCom too
-	if(href_list["upload_disk_design"]) // User is attempting to upload (rdconsole->disk) a design to the disk.
+	if(href_list69"upload_disk_design"69) // User is attempting to upload (rdconsole->disk) a design to the disk.
 		if(disk)
-			var/datum/design/D = locate(href_list["upload_disk_design"]) in files.known_designs
+			var/datum/design/D = locate(href_list69"upload_disk_design"69) in files.known_designs
 			if(D)
 				disk.store_file(D.file.clone())
-	if(href_list["download_disk_node"]) // User is attempting to download (disk->rdconsole) a technology node from the disk.
+	if(href_list69"download_disk_node"69) // User is attempting to download (disk->rdconsole) a technology69ode from the disk.
 		if(disk)
-			var/datum/computer_file/binary/tech/file = locate(href_list["download_disk_node"]) in disk.stored_files
+			var/datum/computer_file/binary/tech/file = locate(href_list69"download_disk_node"69) in disk.stored_files
 			if(file)
 				files.UnlockTechology(file.node, TRUE)
 				griefProtection()
-	if(href_list["upload_disk_node"]) // User is attempting to upload (rdconsole->disk) a technology node to the disk.
+	if(href_list69"upload_disk_node"69) // User is attempting to upload (rdconsole->disk) a technology69ode to the disk.
 		if(disk)
-			var/datum/technology/T = locate(href_list["upload_disk_node"]) in files.researched_nodes
+			var/datum/technology/T = locate(href_list69"upload_disk_node"69) in files.researched_nodes
 			if(T)
-				var/datum/computer_file/binary/tech/tech_file = new
+				var/datum/computer_file/binary/tech/tech_file =69ew
 				tech_file.set_tech(T)
 				disk.store_file(tech_file)
-	if(href_list["download_disk_data"])
+	if(href_list69"download_disk_data"69)
 		if(disk)
-			var/datum/computer_file/file = locate(href_list["download_disk_data"]) in disk.stored_files
+			var/datum/computer_file/file = locate(href_list69"download_disk_data"69) in disk.stored_files
 			if(file)
 				files.load_file(file)
-	if(href_list["toggle_settings"]) // User wants to see the settings.
+	if(href_list69"toggle_settings"69) // User wants to see the settings.
 		if(allowed(usr) || emagged)
 			show_settings = !show_settings
 		else
 			to_chat(usr, SPAN_WARNING("Unauthorized access.</span>"))
-	if(href_list["toggle_link_menu"]) // User wants to see the device linkage menu.
+	if(href_list69"toggle_link_menu"69) // User wants to see the device linkage69enu.
 		if(allowed(usr) || emagged)
 			show_link_menu = !show_link_menu
 		else
 			to_chat(usr, SPAN_WARNING("Unauthorized access."))
-	if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected (after a 3 seconds delay).
+	if(href_list69"sync"69) //Sync the research holder with all the R&D consoles in the game that aren't sync protected (after a 3 seconds delay).
 		if(!sync)
-			to_chat(usr, SPAN_WARNING("You must connect to the network first!"))
+			to_chat(usr, SPAN_WARNING("You69ust connect to the69etwork first!"))
 		else
 			screen = SCREEN_WORKING
 			griefProtection() //Putting this here because I dont trust the sync process
 			addtimer(CALLBACK(src, .proc/sync_tech), 3 SECONDS)
-	if(href_list["togglesync"]) //Prevents the console from being synced by other consoles. Can still send data.
+	if(href_list69"togglesync"69) //Prevents the console from being synced by other consoles. Can still send data.
 		sync = !sync
-	if(href_list["select_category"]) // User is selecting a design category while in the protolathe/imprinter screen
-		var/what_cat = href_list["select_category"]
+	if(href_list69"select_category"69) // User is selecting a design category while in the protolathe/imprinter screen
+		var/what_cat = href_list69"select_category"69
 		if(screen == SCREEN_PROTO)
 			selected_protolathe_category = what_cat
 		if(screen == SCREEN_IMPRINTER)
 			selected_imprinter_category = what_cat
-	if(href_list["search"]) // User is searching for a specific design.
-		var/input = sanitizeSafe(input(usr, "Enter text to search", "Searching") as null|text, MAX_LNAME_LEN)
+	if(href_list69"search"69) // User is searching for a specific design.
+		var/input = sanitizeSafe(input(usr, "Enter text to search", "Searching") as69ull|text,69AX_LNAME_LEN)
 		search_text = input
 		if(screen == SCREEN_PROTO)
 			if(!search_text)
-				selected_protolathe_category = null
+				selected_protolathe_category =69ull
 			else
 				selected_protolathe_category = "Search Results"
 		if(screen == SCREEN_IMPRINTER)
 			if(!search_text)
-				selected_imprinter_category = null
+				selected_imprinter_category =69ull
 			else
 				selected_imprinter_category = "Search Results"
-	if(href_list["deconstruct"]) // User is deconstructing an item.
+	if(href_list69"deconstruct"69) // User is deconstructing an item.
 		if(linked_destroy)
 			if(linked_destroy.deconstruct_item())
 				screen = SCREEN_WORKING // Will be resetted by the linked_destroy.
-	if(href_list["eject_item"]) // User is ejecting an item from the linked_destroy.
+	if(href_list69"eject_item"69) // User is ejecting an item from the linked_destroy.
 		if(linked_destroy)
 			linked_destroy.eject_item()
 
-	if(href_list["build"])
-		var/amount = CLAMP(text2num(href_list["amount"]), 1, 10)
-		var/datum/design/being_built = locate(href_list["build"]) in files.known_designs
+	if(href_list69"build"69)
+		var/amount = CLAMP(text2num(href_list69"amount"69), 1, 10)
+		var/datum/design/being_built = locate(href_list69"build"69) in files.known_designs
 		if(being_built && target_device)
-			target_device.queue_design(being_built.file, amount)
-	if(href_list["clear_queue"]) // Clearing a queue
+			target_device.69ueue_design(being_built.file, amount)
+	if(href_list69"clear_69ueue"69) // Clearing a 69ueue
 		if(target_device)
-			target_device.clear_queue()
-	if(href_list["eject_sheet"]) // Removing material sheets
+			target_device.clear_69ueue()
+	if(href_list69"eject_sheet"69) // Removing69aterial sheets
 		if(target_device)
-			target_device.eject(href_list["eject_sheet"], text2num(href_list["amount"]))
+			target_device.eject(href_list69"eject_sheet"69, text2num(href_list69"amount"69))
 
-	if(href_list["find_device"]) // Connect with the local devices
+	if(href_list69"find_device"69) // Connect with the local devices
 		screen = SCREEN_WORKING
 		addtimer(CALLBACK(src, .proc/find_devices), 2 SECONDS)
-	if(href_list["disconnect"]) //The R&D console disconnects with a specific device.
-		switch(href_list["disconnect"])
+	if(href_list69"disconnect"69) //The R&D console disconnects with a specific device.
+		switch(href_list69"disconnect"69)
 			if("destroy")
-				linked_destroy.linked_console = null
-				linked_destroy = null
+				linked_destroy.linked_console =69ull
+				linked_destroy =69ull
 			if("lathe")
-				linked_lathe.linked_console = null
-				linked_lathe = null
+				linked_lathe.linked_console =69ull
+				linked_lathe =69ull
 			if("imprinter")
-				linked_imprinter.linked_console = null
-				linked_imprinter = null
-	if(href_list["reset"]) //Reset the R&D console's database.
+				linked_imprinter.linked_console =69ull
+				linked_imprinter =69ull
+	if(href_list69"reset"69) //Reset the R&D console's database.
 		griefProtection()
 		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			log_and_message_admins("reset the R&D console's database")
 			screen = SCREEN_WORKING
-			qdel(files)
-			files = new /datum/research(src)
+			69del(files)
+			files =69ew /datum/research(src)
 			addtimer(CALLBACK(src, .proc/reset_screen), 2 SECONDS)
-	if(href_list["lock"]) //Lock the console from use by anyone without tox access.
+	if(href_list69"lock"69) //Lock the console from use by anyone without tox access.
 		if(allowed(usr) || emagged)
 			screen = SCREEN_LOCKED
 		else
 			to_chat(usr, SPAN_WARNING("Unauthorized access."))
-	if(href_list["unlock"]) // Unlock
+	if(href_list69"unlock"69) // Unlock
 		if(allowed(usr) || emagged)
 			screen = SCREEN_MAIN
 		else
@@ -359,23 +359,23 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/can_build_temp
 
 				for(var/material in D.materials)
-					can_build_temp = target_machine.check_craftable_amount_by_material(D, material)
+					can_build_temp = target_machine.check_craftable_amount_by_material(D,69aterial)
 					if(can_build_temp < 1)
-						missing_materials += material
-					can_build = min(can_build, can_build_temp)
+						missing_materials +=69aterial
+					can_build =69in(can_build, can_build_temp)
 
 				for(var/chemical in D.chemicals)
 					can_build_temp = target_machine.check_craftable_amount_by_chemical(D, chemical)
 					if(can_build_temp < 1)
 						missing_chemicals += chemical
-					can_build = min(can_build, can_build_temp)
+					can_build =69in(can_build, can_build_temp)
 
 				designs_list += list(list(
 					"data" = D.ui_data(),
-					"id" = "\ref[D]",
+					"id" = "\ref69D69",
 					"can_create" = can_build,
-					"missing_materials" = missing_materials,
-					"missing_chemicals" = missing_chemicals
+					"missing_materials" =69issing_materials,
+					"missing_chemicals" =69issing_chemicals
 				))
 	return designs_list
 
@@ -385,27 +385,27 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	ui_interact(user)
 
 
-/obj/machinery/computer/rdconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null) // Here we go again
+/obj/machinery/computer/rdconsole/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui =69ull) // Here we go again
 	if((screen == SCREEN_PROTO && !linked_lathe) || (screen == SCREEN_IMPRINTER && !linked_imprinter))
 		screen = SCREEN_MAIN // Kick us from protolathe or imprinter screen if they were destroyed
 
 	var/list/data = list()
-	data["screen"] = screen
-	data["sync"] = sync
-	data["has_disk"] = !!disk
+	data69"screen"69 = screen
+	data69"sync"69 = sync
+	data69"has_disk"69 = !!disk
 	if(disk)
-		data["disk_size"] = disk.max_capacity
-		data["disk_used"] = disk.used_capacity
-		data["disk_read_only"] = disk.read_only
+		data69"disk_size"69 = disk.max_capacity
+		data69"disk_used"69 = disk.used_capacity
+		data69"disk_read_only"69 = disk.read_only
 
-	// Main screen needs info about tech levels
+	//69ain screen69eeds info about tech levels
 	if(!screen || screen == SCREEN_MAIN)
-		data["show_settings"] = show_settings
-		data["show_link_menu"] = show_link_menu
-		data["has_dest_analyzer"] = !!linked_destroy
-		data["has_protolathe"] = !!linked_lathe
-		data["has_circuit_imprinter"] = !!linked_imprinter
-		data["can_research"] = can_research
+		data69"show_settings"69 = show_settings
+		data69"show_link_menu"69 = show_link_menu
+		data69"has_dest_analyzer"69 = !!linked_destroy
+		data69"has_protolathe"69 = !!linked_lathe
+		data69"has_circuit_imprinter"69 = !!linked_imprinter
+		data69"can_research"69 = can_research
 
 		var/list/tech_tree_list = list()
 		for(var/tree in files.researched_tech)
@@ -414,13 +414,13 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				continue
 			var/list/tech_tree_data = list(
 				"id" =             tech_tree.type,
-				"name" =           "[tech_tree.name]",
-				"shortname" =      "[tech_tree.shortname]",
+				"name" =           "69tech_tree.name69",
+				"shortname" =      "69tech_tree.shortname69",
 				"level" =          tech_tree.level,
 				"maxlevel" =       tech_tree.max_level,
 			)
 			tech_tree_list += list(tech_tree_data)
-		data[SCREEN_TREES] = tech_tree_list
+		data69SCREEN_TREES69 = tech_tree_list
 
 		if(linked_destroy)
 			if(linked_destroy.loaded_item)
@@ -431,17 +431,17 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				var/list/item_data = list()
 
 				for(var/T in temp_tech)
-					var/tech_name = tech_names[T]
+					var/tech_name = tech_names69T69
 					if(!tech_name)
 						tech_name = T
 
 					item_data += list(list(
 						"id" =             T,
 						"name" =           tech_name,
-						"level" =          temp_tech[T],
+						"level" =          temp_tech69T69,
 					))
 
-				// This calculates how much research points we missed because we already researched items with such orig_tech levels
+				// This calculates how69uch research points we69issed because we already researched items with such orig_tech levels
 				var/tech_points_mod = files.experiments.get_object_research_value(linked_destroy.loaded_item) / files.experiments.get_object_research_value(linked_destroy.loaded_item, ignoreRepeat = TRUE)
 
 				var/list/destroy_list = list(
@@ -450,14 +450,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 					"item_tech_points" =      files.experiments.get_object_research_value(linked_destroy.loaded_item),
 					"item_tech_mod" =         round(tech_points_mod*100),
 				)
-				destroy_list["tech_data"] = item_data
+				destroy_list69"tech_data"69 = item_data
 
-				data["destroy_data"] = destroy_list
+				data69"destroy_data"69 = destroy_list
 			else
 				var/list/destroy_list = list(
 					"has_item" =             FALSE,
 				)
-				data["destroy_data"] = destroy_list
+				data69"destroy_data"69 = destroy_list
 
 	if(screen == SCREEN_DISK_DESIGNS)
 		if(disk)
@@ -465,28 +465,28 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			var/list/disk_design_files = disk.find_files_by_type(/datum/computer_file/binary/design)
 			for(var/f in disk_design_files)
 				var/datum/computer_file/binary/design/d_file = f
-				disk_designs += list(list("name" = d_file.design.name, "id" = "\ref[d_file]", "can_download" = !d_file.copy_protected))
-			data["disk_designs"] = disk_designs
+				disk_designs += list(list("name" = d_file.design.name, "id" = "\ref69d_file69", "can_download" = !d_file.copy_protected))
+			data69"disk_designs"69 = disk_designs
 			var/list/known_designs = list()
 			for(var/i in files.known_designs)
 				var/datum/design/D = i
 				if(!(D.starts_unlocked && !(D.build_type & (AUTOLATHE | BIOPRINTER))))
-					// doesn't make much sense to copy starting designs around, unless you can use them in lathes
-					known_designs += list(list("name" = D.name, "id" = "\ref[D]"))
-			data["known_designs"] = known_designs
+					// doesn't69ake69uch sense to copy starting designs around, unless you can use them in lathes
+					known_designs += list(list("name" = D.name, "id" = "\ref69D69"))
+			data69"known_designs"69 = known_designs
 	if(screen == SCREEN_DISK_TECH)
 		if(disk)
 			var/list/disk_tech_nodes = list()
 			var/list/disk_technology_files = disk.find_files_by_type(/datum/computer_file/binary/tech)
 			for(var/f in disk_technology_files)
 				var/datum/computer_file/binary/tech/tech_file = f
-				disk_tech_nodes += list(list("name" = tech_file.node.name, "id" = "\ref[tech_file]"))
-			data["disk_tech_nodes"] = disk_tech_nodes
+				disk_tech_nodes += list(list("name" = tech_file.node.name, "id" = "\ref69tech_file69"))
+			data69"disk_tech_nodes"69 = disk_tech_nodes
 			var/list/known_nodes = list()
 			for(var/i in files.researched_nodes)
 				var/datum/technology/T = i
-				known_nodes += list(list("name" = T.name, "id" = "\ref[T]"))
-			data["known_nodes"] = known_nodes
+				known_nodes += list(list("name" = T.name, "id" = "\ref69T69"))
+			data69"known_nodes"69 = known_nodes
 	if(screen == SCREEN_DISK_DATA)
 		if(disk)
 			var/list/disk_research_data = list()
@@ -496,8 +496,8 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				if(!files.is_research_file_type(f))
 					continue
 
-				disk_research_data += list(list("name" = "[data_file.filename].[data_file.filetype]", "id" = "\ref[data_file]", "can_download" = files.can_load_file(data_file)))
-			data["disk_research_data"] = disk_research_data
+				disk_research_data += list(list("name" = "69data_file.filename69.69data_file.filetype69", "id" = "\ref69data_file69", "can_download" = files.can_load_file(data_file)))
+			data69"disk_research_data"69 = disk_research_data
 	if(screen == SCREEN_PROTO || screen == SCREEN_IMPRINTER)
 		var/obj/machinery/autolathe/rnd/target_device
 		var/list/design_categories
@@ -513,32 +513,32 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			selected_category = selected_imprinter_category
 
 		if(target_device)
-			data["search_text"] = search_text
-			data["materials_data"] = target_device.materials_data()
+			data69"search_text"69 = search_text
+			data69"materials_data"69 = target_device.materials_data()
 
-			data["all_categories"] = design_categories
+			data69"all_categories"69 = design_categories
 			if(search_text)
-				data["all_categories"] = list("Search Results") + data["all_categories"]
+				data69"all_categories"69 = list("Search Results") + data69"all_categories"69
 
-			if((!selected_category || !(selected_category in data["all_categories"])) && design_categories.len)
-				selected_category = design_categories[1]
+			if((!selected_category || !(selected_category in data69"all_categories"69)) && design_categories.len)
+				selected_category = design_categories69169
 
 			if(selected_category)
-				data["selected_category"] = selected_category
-				data["possible_designs"] = get_possible_designs_data(target_device, selected_category)
+				data69"selected_category"69 = selected_category
+				data69"possible_designs"69 = get_possible_designs_data(target_device, selected_category)
 
 			if(target_device.current_file)
-				data["device_current"] = target_device.current_file.design.name
+				data69"device_current"69 = target_device.current_file.design.name
 
-			data["device_error"] = target_device.error
+			data69"device_error"69 = target_device.error
 
-			var/list/queue_list = list()
-			for(var/f in target_device.queue)
+			var/list/69ueue_list = list()
+			for(var/f in target_device.69ueue)
 				var/datum/computer_file/binary/design/file = f
-				queue_list += file.design.name
-			data["queue"] = queue_list
+				69ueue_list += file.design.name
+			data69"69ueue"69 = 69ueue_list
 
-	// All the info needed for displaying tech trees
+	// All the info69eeded for displaying tech trees
 	if(screen == SCREEN_TREES)
 		var/list/line_list = list()
 
@@ -548,39 +548,39 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			if(!tech_tree.shown)
 				continue
 			var/list/tech_tree_data = list(
-				"id" =             "\ref[tech_tree]",
-				"name" =           "[tech_tree.name]",
-				"shortname" =      "[tech_tree.shortname]",
+				"id" =             "\ref69tech_tree69",
+				"name" =           "69tech_tree.name69",
+				"shortname" =      "69tech_tree.shortname69",
 			)
 			tech_tree_list += list(tech_tree_data)
 
-		data["tech_trees"] = tech_tree_list
+		data69"tech_trees"69 = tech_tree_list
 
 		if(!selected_tech_tree)
-			selected_tech_tree = files.researched_tech[1]
+			selected_tech_tree = files.researched_tech69169
 
 		var/list/tech_list = list()
 		if(selected_tech_tree)
-			data["tech_tree_name"] = selected_tech_tree.name
-			data["tech_tree_desc"] = selected_tech_tree.desc
-			data["tech_tree_level"] = selected_tech_tree.level
+			data69"tech_tree_name"69 = selected_tech_tree.name
+			data69"tech_tree_desc"69 = selected_tech_tree.desc
+			data69"tech_tree_level"69 = selected_tech_tree.level
 
-			for(var/tech in SSresearch.all_tech_trees[selected_tech_tree.type])
+			for(var/tech in SSresearch.all_tech_trees69selected_tech_tree.type69)
 				var/datum/technology/tech_node = tech
 				var/list/tech_data = list(
-					"id" =             "\ref[tech_node]",
-					"name" =           "[tech_node.name]",
+					"id" =             "\ref69tech_node69",
+					"name" =           "69tech_node.name69",
 					"x" =              round(tech_node.x*100),
 					"y" =              round(tech_node.y*100),
-					"icon" =           "[tech_node.icon]",
-					"isresearched" =   "[files.IsResearched(tech_node)]",
-					"canresearch" =    "[files.CanResearch(tech_node)]",
-					"description" =		"[tech_node.desc]"
+					"icon" =           "69tech_node.icon69",
+					"isresearched" =   "69files.IsResearched(tech_node)69",
+					"canresearch" =    "69files.CanResearch(tech_node)69",
+					"description" =		"69tech_node.desc69"
 				)
 				tech_list += list(tech_data)
 
-				for(var/req_tech in tech_node.required_technologies)
-					var/datum/technology/other_tech = locate(req_tech) in SSresearch.all_tech_nodes
+				for(var/re69_tech in tech_node.re69uired_technologies)
+					var/datum/technology/other_tech = locate(re69_tech) in SSresearch.all_tech_nodes
 					if(other_tech && other_tech.tech_type == tech_node.tech_type)
 						var/line_x = (min(round(other_tech.x*100), round(tech_node.x*100)))
 						var/line_y = (min(round(other_tech.y*100), round(tech_node.y*100)))
@@ -604,41 +604,41 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						)
 						line_list += list(line_data)
 
-		data["techs"] = tech_list
-		data["lines"] = line_list
-		data["selected_tech_tree"] = "\ref[selected_tech_tree]"
-		data["research_points"] = files.research_points
+		data69"techs"69 = tech_list
+		data69"lines"69 = line_list
+		data69"selected_tech_tree"69 = "\ref69selected_tech_tree69"
+		data69"research_points"69 = files.research_points
 
-		data["selected_technology_id"] = ""
+		data69"selected_technology_id"69 = ""
 		if(selected_technology)
 			var/datum/technology/tech_node = selected_technology
 			var/list/technology_data = list(
 				"name" =           tech_node.name,
 				"desc" =           tech_node.desc,
-				"id" =             "\ref[tech_node]",
+				"id" =             "\ref69tech_node69",
 				"tech_type" =      tech_node.tech_type,
 				"cost" =           tech_node.cost,
 				"isresearched" =   files.IsResearched(tech_node),
 			)
-			data["selected_technology_id"] = "\ref[tech_node]"
+			data69"selected_technology_id"69 = "\ref69tech_node69"
 
-			var/list/requirement_list = list()
-			for(var/t in tech_node.required_tech_levels)
+			var/list/re69uirement_list = list()
+			for(var/t in tech_node.re69uired_tech_levels)
 				var/datum/tech/tree = locate(t) in files.researched_tech
-				var/level = tech_node.required_tech_levels[t]
-				var/list/req_data = list(
-					"text" =           "[tree.shortname] level [level]",
+				var/level = tech_node.re69uired_tech_levels69t69
+				var/list/re69_data = list(
+					"text" =           "69tree.shortname69 level 69level69",
 					"isgood" =         (tree.level >= level)
 				)
-				requirement_list += list(req_data)
-			for(var/t in tech_node.required_technologies)
+				re69uirement_list += list(re69_data)
+			for(var/t in tech_node.re69uired_technologies)
 				var/datum/technology/other_tech = locate(t) in SSresearch.all_tech_nodes
-				var/list/req_data = list(
-					"text" =           "[other_tech.name]",
+				var/list/re69_data = list(
+					"text" =           "69other_tech.name69",
 					"isgood" =         files.IsResearched(other_tech)
 				)
-				requirement_list += list(req_data)
-			technology_data["requirements"] = requirement_list
+				re69uirement_list += list(re69_data)
+			technology_data69"re69uirements"69 = re69uirement_list
 
 			var/list/unlock_list = list()
 			for(var/T in tech_node.unlocks_designs)
@@ -653,22 +653,22 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						build_types += "autolathe"
 					if(D.build_type & BIOPRINTER)
 						build_types += "bioprinter"
-					if(D.build_type & MECHFAB)
+					if(D.build_type &69ECHFAB)
 						build_types += "exosuit fabricator"
 					if(D.build_type & ORGAN_GROWER)
 						build_types += "organ grower"
 					var/list/unlock_data = list(
-						"text" =           "[D.name]",
+						"text" =           "69D.name69",
 						"build_types" =		english_list(build_types, "")
 					)
 					unlock_list += list(unlock_data)
-			technology_data["unlocks"] = unlock_list
+			technology_data69"unlocks"69 = unlock_list
 
-			data["selected_technology"] = technology_data
+			data69"selected_technology"69 = technology_data
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data)
 	if (!ui)
-		ui = new(user, src, ui_key, "rdconsole.tmpl", "R&D Console", 1000, 700)
+		ui =69ew(user, src, ui_key, "rdconsole.tmpl", "R&D Console", 1000, 700)
 
 		ui.set_initial_data(data)
 		ui.open()
@@ -677,7 +677,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/robotics
 	name = "Robotics R&D Console"
 	id = 2
-	req_access = list(access_robotics)
+	re69_access = list(access_robotics)
 
 /obj/machinery/computer/rdconsole/core
 	name = "Core R&D Console"

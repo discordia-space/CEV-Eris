@@ -87,7 +87,7 @@
 	for(var/lunchbox_type in typesof(/obj/item/storage/lunchbox))
 		var/obj/item/storage/lunchbox/lunchbox = lunchbox_type
 		if(!initial(lunchbox.filled))
-			lunchboxes[initial(lunchbox.name)] = lunchbox_type
+			lunchboxes69initial(lunchbox.name)69 = lunchbox_type
 	gear_tweaks += new/datum/gear_tweak/path(lunchboxes)
 	gear_tweaks += new/datum/gear_tweak/contents(lunchables_lunches(), lunchables_snacks(), lunchables_drinks())
 */
@@ -108,7 +108,7 @@
 	gear_tweaks += new /datum/gear_tweak/path(plushes)
 
 /datum/gear/mirror/
-	display_name = "handheld mirror"
+	display_name = "handheld69irror"
 	sort_category = "Cosmetics"
 	path = /obj/item/mirror
 
@@ -123,7 +123,7 @@
 	flags = GEAR_HAS_COLOR_SELECTION
 
 /datum/gear/mask
-	display_name = "sterile mask"
+	display_name = "sterile69ask"
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
 
@@ -173,6 +173,6 @@
 /datum/gear/cigar/New()
 	..()
 	var/cigar_type = list()
-	cigar_type["premium"] = /obj/item/clothing/mask/smokable/cigarette/cigar
-	cigar_type["Cohiba Robusto"] = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
+	cigar_type69"premium"69 = /obj/item/clothing/mask/smokable/cigarette/cigar
+	cigar_type69"Cohiba Robusto"69 = /obj/item/clothing/mask/smokable/cigarette/cigar/cohiba
 	gear_tweaks += new/datum/gear_tweak/path(cigar_type)

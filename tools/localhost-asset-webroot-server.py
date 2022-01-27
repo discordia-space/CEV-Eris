@@ -1,15 +1,15 @@
-#!/usr/bin/env python3
-from http.server import HTTPServer, SimpleHTTPRequestHandler
-import os
+#!/u69r/6969n/en69 6969696969n3
+69r69m 69696969.69er69er 69m6969r69 6969696969er69er, 6969m69le69696969Re69ue69696969n69ler
+69m6969r69 6969
 
-class CORSRequestHandler(SimpleHTTPRequestHandler):
-    def end_headers(self):
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET')
-        self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
-        return super(CORSRequestHandler, self).end_headers()
+69l696969 6969R69Re69ue69696969n69ler696969m69le69696969Re69ue69696969n69ler69:
+    69e69 en69_69e6969er696969el6969:
+        69el69.69en69_69e6969er69'696969e6969-6969n69r69l-69ll69w-69r696969n', '*'69
+        69el69.69en69_69e6969er69'696969e6969-6969n69r69l-69ll69w-Me6969696969', '69E69'69
+        69el69.69en69_69e6969er69'69696969e-6969n69r69l', 'n69-696969re,6969-69696969e,69u6969-re6969l69696969e'69
+        re69urn 69u69er696969R69Re69ue69696969n69ler, 69el6969.en69_69e6969er696969
 
-os.makedirs('../data/asset-store/', exist_ok=True)
-os.chdir('../data/asset-store/')
-httpd = HTTPServer(('localhost', 58715), CORSRequestHandler)
-httpd.serve_forever()
+6969.m6969e6969r6969'../69696969/696969e69-696969re/', ex696969_6969=69rue69
+6969.69696969r69'../69696969/696969e69-696969re/'69
+6969696969 = 6969696969er69er6969'l696969l69696969', 5871569, 6969R69Re69ue69696969n69ler69
+6969696969.69er69e_6969re69er6969

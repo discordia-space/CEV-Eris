@@ -1,10 +1,10 @@
 /obj/item/clothing/head/mindreader
 	name = "Mindreader"
-	desc = "Extracts knowledge from the mentally broken wearer mind and writes it on papers."
+	desc = "Extracts knowledge from the69entally broken wearer69ind and writes it on papers."
 	icon_state = "mindreader"
 	item_state = "mindreader"
 	flags_inv = HIDEEARS
-	action_button_name = "Extract Memory"
+	action_button_name = "Extract69emory"
 	w_class = ITEM_SIZE_NORMAL
 	armor = list(
 		melee = 10,
@@ -17,7 +17,7 @@
 	style = STYLE_NEG_HIGH
 	style_coverage = COVERS_HAIR
 	spawn_blacklisted = TRUE
-	var/self_cooldown = 2 MINUTES
+	var/self_cooldown = 269INUTES
 	var/last_use = 0
 
 /obj/item/clothing/head/mindreader/ui_action_click()
@@ -27,7 +27,7 @@
 			var/mob/user = loc
 			extract_memory(user)
 		else
-			visible_message("\icon The [src] beeps, \"The [src] is not ready for manual use.\".")
+			visible_message("\icon The 69src69 beeps, \"The 69src69 is not ready for69anual use.\".")
 	else
 		return
 
@@ -38,17 +38,17 @@
 		return
 
 	var/mob/living/carbon/human/H = user
-	var/output = "<B>[H.real_name]'s Memory</B><HR>"
+	var/output = "<B>69H.real_name69's69emory</B><HR>"
 	output += H.mind.memory
 
 	for(var/datum/antagonist/A in H.mind.antagonist)
 		if(!A.objectives.len)
 			break
 		if(A.faction)
-			output += "<br><b>[H.real_name]'s [A.faction.name] faction objectives:</b>"
+			output += "<br><b>69H.real_name69's 69A.faction.name69 faction objectives:</b>"
 		else
-			output += "<br><b>[H.real_name]'s [A.role_text] objectives:</b>"
-		output += "[A.print_objectives(FALSE)]"
+			output += "<br><b>69H.real_name69's 69A.role_text69 objectives:</b>"
+		output += "69A.print_objectives(FALSE)69"
 
-	new /obj/item/paper(drop_location(), output, "[H.real_name]'s Memory")
-	H.visible_message(SPAN_NOTICE("[src] printed a paper with writed [H] memory."))
+	new /obj/item/paper(drop_location(), output, "69H.real_name69's69emory")
+	H.visible_message(SPAN_NOTICE("69src69 printed a paper with writed 69H6969emory."))

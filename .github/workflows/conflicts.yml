@@ -1,13 +1,13 @@
-name: 'Check for merge conflicts'
+name: 'Check for69erge conflicts'
 on:
   push:
     branches:
-      - master
+      -69aster
 jobs:
   triage:
     runs-on: ubuntu-20.04
     steps:
-      - uses: mschilde/auto-label-merge-conflicts@2e8fcc76c6430272ec8bb64fb74ec1592156aa6a
+      - uses:69schilde/auto-label-merge-conflicts@2e8fcc76c6430272ec8bb64fb74ec1592156aa6a
         with:
           CONFLICT_LABEL_NAME: 'Merge Conflict'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

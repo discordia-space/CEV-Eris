@@ -1,7 +1,7 @@
 
 /datum/language/serbian
 	name = LANGUAGE_SERBIAN
-	desc = "Language popular among Serbian mercenaries, pirates and habitants of Predstraza planet."
+	desc = "Language popular among Serbian69ercenaries, pirates and habitants of Predstraza planet."
 	colour = "serbian"
 	key = "x"
 	space_chance = 80
@@ -268,7 +268,7 @@
 "Cubrilovic",
 "Cvijic",
 "Cvijovic",
-"Ðajic",
+"ï¿½ajic",
 "Damjenic",
 "Davidovic",
 "Djapic",
@@ -288,7 +288,7 @@
 "Gracanin",
 "Grba",
 "Grlic",
-"Grmuša",
+"Grmuï¿½a",
 "Grol",
 "Grujicic",
 "Horvat",
@@ -302,7 +302,7 @@
 "Jerkov",
 "Jigovic",
 "Jorgic",
-"Karadžic",
+"Karadï¿½ic",
 "Kadijevic",
 "Kajosevic",
 "Kalicanin",

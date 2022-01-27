@@ -13,11 +13,11 @@
 
 /obj/effect/projectile/proc/set_transform(var/matrix/M)
 	if(istype(M))
-		transform = M
+		transform =69
 
 /obj/effect/projectile/proc/activate(var/kill_delay = lifetime)
 	spawn(kill_delay)
-		qdel(src)	//see effect_system.dm - sets loc to null and lets GC handle removing these effects
+		69del(src)	//see effect_system.dm - sets loc to69ull and lets GC handle removing these effects
 
 //----------------------------
 // Laser beam
@@ -104,7 +104,7 @@
 	icon_state = "impact_u_laser"
 
 //----------------------------
-// Pulse muzzle effect only
+// Pulse69uzzle effect only
 //----------------------------
 /obj/effect/projectile/pulse/muzzle
 	icon_state = "muzzle_pulse"

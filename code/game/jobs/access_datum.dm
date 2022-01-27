@@ -5,7 +5,7 @@
 	var/access_type = ACCESS_TYPE_STATION
 
 /datum/access/dd_SortValue()
-	return "[access_type][desc]"
+	return "69access_type6969desc69"
 
 /*****************
 * Station access *
@@ -13,7 +13,7 @@
 /var/const/access_security = 1
 /datum/access/security
 	id = access_security
-	desc = "Security Equipment"
+	desc = "Security E69uipment"
 	region = ACCESS_REGION_SECURITY
 
 /var/const/access_brig = 2 // Brig timers and permabrig
@@ -40,7 +40,7 @@
 	desc = "Moebius General"
 	region = ACCESS_REGION_RESEARCH
 
-//same as above but the MBO can assign it
+//same as above but the69BO can assign it
 /datum/access/moebius_medical
 	id = access_moebius
 	desc = "Moebius General"
@@ -76,9 +76,9 @@
 	desc = "Engineering"
 	region = ACCESS_REGION_ENGINEERING
 
-/var/const/access_engine_equip = 11
-/datum/access/engine_equip
-	id = access_engine_equip
+/var/const/access_engine_e69uip = 11
+/datum/access/engine_e69uip
+	id = access_engine_e69uip
 	desc = "Engine Room"
 	region = ACCESS_REGION_ENGINEERING
 
@@ -255,7 +255,7 @@
 /var/const/access_merchant = 41
 /datum/access/merchant
 	id = access_merchant
-	desc = "Guild Merchant"
+	desc = "Guild69erchant"
 	region = ACCESS_REGION_SUPPLY
 
 /var/const/access_network = 42
@@ -311,7 +311,7 @@
 /var/const/access_heads_vault = 53
 /datum/access/heads_vault
 	id = access_heads_vault
-	desc = "Main Vault"
+	desc = "Main69ault"
 	region = ACCESS_REGION_COMMAND
 
 /var/const/access_mining_station = 54
@@ -344,7 +344,7 @@
 	desc = "Ironhammer Commander"
 	region = ACCESS_REGION_SECURITY
 
-/var/const/access_RC_announce = 59 //Request console announcements
+/var/const/access_RC_announce = 59 //Re69uest console announcements
 /datum/access/RC_announce
 	id = access_RC_announce
 	desc = "RC Announcements"
@@ -356,7 +356,7 @@
 	desc = "Keycode Auth. Device"
 	region = ACCESS_REGION_COMMAND
 
-/var/const/access_tcomsat = 61 // has access to the entire telecomms satellite / machinery
+/var/const/access_tcomsat = 61 // has access to the entire telecomms satellite /69achinery
 /datum/access/tcomsat
 	id = access_tcomsat
 	desc = "Telecommunications"
@@ -386,10 +386,10 @@
 	desc = "Xenoarchaeology"
 	region = ACCESS_REGION_RESEARCH
 
-/var/const/access_medical_equip = 66
-/datum/access/medical_equip
-	id = access_medical_equip
-	desc = "Medical Equipment"
+/var/const/access_medical_e69uip = 66
+/datum/access/medical_e69uip
+	id = access_medical_e69uip
+	desc = "Medical E69uipment"
 	region = ACCESS_REGION_MEDBAY
 
 /var/const/access_medspec = 67
@@ -439,10 +439,10 @@
 	desc = "NeoTheology Preacher"
 	region = ACCESS_REGION_CHURCH
 
-/var/const/access_nt_inquisitor = 75
-/datum/access/nt_inquisitor
-	id = access_nt_inquisitor
-	desc = "NeoTheology Inquisitor"
+/var/const/access_nt_in69uisitor = 75
+/datum/access/nt_in69uisitor
+	id = access_nt_in69uisitor
+	desc = "NeoTheology In69uisitor"
 	region = ACCESS_REGION_CHURCH
 
 /****************
@@ -517,7 +517,7 @@
 	desc = "Code White"
 	access_type = ACCESS_TYPE_CENTCOM
 
-/var/const/access_cent_living = 105//Living quarters.
+/var/const/access_cent_living = 105//Living 69uarters.
 /datum/access/cent_living
 	id = access_cent_living
 	desc = "Code Green"
@@ -546,9 +546,9 @@
 	id = access_cent_captain
 	desc = "Code Gold"
 	access_type = ACCESS_TYPE_CENTCOM
-/var/const/access_research_equipment = 110 //RnD Console Access
-/datum/access/research_equipment
-	id = access_research_equipment
+/var/const/access_research_e69uipment = 110 //RnD Console Access
+/datum/access/research_e69uipment
+	id = access_research_e69uipment
 	desc = "Research Console"
 	region = ACCESS_REGION_RESEARCH
 /***************
@@ -565,7 +565,7 @@
 	id = access_syndicate
 	access_type = ACCESS_TYPE_SYNDICATE
 /*******
-* Misc *
+*69isc *
 *******/
 /var/const/access_synth = 199
 /datum/access/synthetic

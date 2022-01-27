@@ -1,8 +1,8 @@
 /*
- * The 'fancy' path is for objects like donut boxes that show how many items are in the storage item on the sprite itself
+ * The 'fancy' path is for objects like donut boxes that show how69any items are in the storage item on the sprite itself
  * .. Sorry for the shitty path name, I couldnt think of a better one.
  *
- * WARNING: var/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
+ * WARNING:69ar/icon_type is used for both examine text and sprite name. Please look at the procs below and adjust your sprite names accordingly
  *		TODO: Cigarette boxes should be ported to this standard
  *
  * Contains:
@@ -21,11 +21,11 @@
 	max_storage_space = 8
 	bad_type = /obj/item/storage/fancy
 	var/icon_type = "donut"
-	var/item_obj				// It can take a path or a list, the populate_contents() must be added when using item_obj in order to work.
+	var/item_obj				// It can take a path or a list, the populate_contents()69ust be added when using item_obj in order to work.
 
 /obj/item/storage/fancy/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "[src.icon_type]box[total_contents]"
+	src.icon_state = "69src.icon_type69box69total_contents69"
 	return
 
 /obj/item/storage/fancy/examine(mob/user)
@@ -33,11 +33,11 @@
 		return
 
 	if(contents.len <= 0)
-		to_chat(user, "There are no [src.icon_type]s left in the box.")
+		to_chat(user, "There are no 69src.icon_type69s left in the box.")
 	else if(contents.len == 1)
-		to_chat(user, "There is one [src.icon_type] left in the box.")
+		to_chat(user, "There is one 69src.icon_type69 left in the box.")
 	else
-		to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
+		to_chat(user, "There are 69src.contents.len69 69src.icon_type69s in the box.")
 
 	return
 
@@ -127,7 +127,7 @@
 	for(var/obj/item/pen/crayon/crayon in contents)
 		overlays += image('icons/obj/crayons.dmi',crayon.colourName)
 
-/obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/fancy/crayons/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/pen/crayon))
 		switch(W:colourName)
 			if("mime")
@@ -143,7 +143,7 @@
 ////////////
 /obj/item/storage/fancy/cigarettes
 	name = "cigarette packet"
-	desc = "The most popular brand of Space Cigarettes, sponsors of the Space Olympics."
+	desc = "The69ost popular brand of Space Cigarettes, sponsors of the Space Olympics."
 	icon = 'icons/obj/cigarettes.dmi'
 	icon_state = "cigpacket"
 	item_state = "cigpacket"
@@ -184,13 +184,13 @@
 
 /obj/item/storage/fancy/cigarettes/update_icon()
 	if(open)
-		icon_state = "[initial(icon_state)][contents.len]"
+		icon_state = "69initial(icon_state)6969contents.len69"
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = "69initial(icon_state)69"
 
 /obj/item/storage/fancy/cigarettes/can_be_inserted(obj/item/W, stop_messages = 0)
 	if(!open)
-		to_chat(usr, SPAN_WARNING("Open [src] first!"))
+		to_chat(usr, SPAN_WARNING("Open 69src69 first!"))
 		return FALSE
 	return ..()
 
@@ -201,7 +201,7 @@
 		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	..()
 
-/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as69ob,69ob/living/carbon/user as69ob)
 	if(!ismob(M))
 		return
 
@@ -213,27 +213,27 @@
 			to_chat(user, SPAN_NOTICE("Looks like the packet is out of cigarettes."))
 			return
 
-		user.equip_to_slot_if_possible(cig, slot_wear_mask)
+		user.e69uip_to_slot_if_possible(cig, slot_wear_mask)
 	else
 		..()
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
 	name = "\improper DromedaryCo packet"
-	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death make a change?\""
+	desc = "A packet of six imported DromedaryCo cancer sticks. A label on the packaging reads, \"Wouldn't a slow death69ake a change?\""
 	icon_state = "Dpacket"
 	item_state = "Dpacket"
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/dromedaryco
 
 /obj/item/storage/fancy/cigarettes/killthroat
 	name = "\improper AcmeCo packet"
-	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the most amount of cancerous tumors."
+	desc = "A packet of six AcmeCo cigarettes. For those who somehow want to obtain the record for the69ost amount of cancerous tumors."
 	icon_state = "Bpacket"
 	item_state = "Bpacket" //Doesn't have an inhand state, but neither does dromedary, so, ya know..
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/killthroat
 
 /obj/item/storage/fancy/cigarettes/homeless
 	name = "\improper Nomads packet"
-	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is more extra hard"
+	desc = "A packet of six Nomads cigarettes. Nomads's Extra strong for when your life is69ore extra hard"
 	icon_state = "Cpacket"
 	item_state = "Cpacket"
 	item_obj = /obj/item/clothing/mask/smokable/cigarette/homeless
@@ -254,9 +254,9 @@
 
 /obj/item/storage/fancy/cigcartons/update_icon()
 	if(contents.len > 0)
-		icon_state = "[initial(icon_state)]1"
+		icon_state = "69initial(icon_state)691"
 	else
-		icon_state = "[initial(icon_state)]"
+		icon_state = "69initial(icon_state)69"
 
 /obj/item/storage/fancy/cigcartons/populate_contents()
 	for(var/i in 1 to storage_slots)
@@ -308,17 +308,17 @@
 	return 0
 
 
-/obj/item/storage/fancy/cigar/verb/quick_open_close(mob/user)
+/obj/item/storage/fancy/cigar/verb/69uick_open_close(mob/user)
 	set name = "Close cigar case"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 	if(!is_worn())
-		if(can_interact(user) == 1)	//can't use right click verbs inside bags so only need to check for ablity
+		if(can_interact(user) == 1)	//can't use right click69erbs inside bags so only need to check for ablity
 			return
 
 		open_close(user)
 	else
-		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
+		to_chat(user, SPAN_NOTICE("You cannot open \the 69src69 while it\'s e69uipped!"))
 
 /obj/item/storage/fancy/cigar/AltClick(mob/user)
 	if(!is_worn())
@@ -328,38 +328,38 @@
 			return
 
 		if(able == 2)
-			to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s in a container."))
+			to_chat(user, SPAN_NOTICE("You cannot open \the 69src69 while it\'s in a container."))
 			return
 
 		open_close(user)
 	else
-		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
+		to_chat(user, SPAN_NOTICE("You cannot open \the 69src69 while it\'s e69uipped!"))
 
 /obj/item/storage/fancy/cigar/proc/open_close(mob/living/carbon/human/H, user)
 	close_all()
 	if(!is_worn())
 		if(!open)
-			to_chat(user, SPAN_NOTICE("You open \the [src]."))
+			to_chat(user, SPAN_NOTICE("You open \the 69src69."))
 			w_class = ITEM_SIZE_SMALL
 			open = TRUE
 		else
-			to_chat(user, SPAN_NOTICE("You close \the [src]."))
+			to_chat(user, SPAN_NOTICE("You close \the 69src69."))
 			w_class = ITEM_SIZE_TINY
 			open = FALSE
 		playsound(loc, 'sound/machines/click.ogg', 100, 1)
 		update_icon()
 	else
-		to_chat(user, SPAN_NOTICE("You cannot open \the [src] while it\'s equipped!"))
+		to_chat(user, SPAN_NOTICE("You cannot open \the 69src69 while it\'s e69uipped!"))
 
-obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
+obj/item/storage/fancy/cigar/attackby(obj/item/W,69ob/user)
 	if(!open)
-		to_chat(user, SPAN_NOTICE("You try to access \the [src] but it\'s closed!"))
+		to_chat(user, SPAN_NOTICE("You try to access \the 69src69 but it\'s closed!"))
 		return
 	. = ..()
 
 /obj/item/storage/fancy/cigar/open(mob/user)
 	if(!open)
-		to_chat(user, SPAN_NOTICE("\The [src] is closed."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is closed."))
 		return
 
 	. = ..()
@@ -372,7 +372,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 
 /obj/item/storage/fancy/cigar/update_icon()
 	if(open)
-		icon_state = "[initial(icon_state)][contents.len]"
+		icon_state = "69initial(icon_state)6969contents.len69"
 	else
 		icon_state = "cigarcase"
 
@@ -383,7 +383,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 		..()
 
 /*
- * Vial Box
+ *69ial Box
  */
 
 /obj/item/storage/fancy/vials
@@ -400,7 +400,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 		new item_obj(src)
 
 /obj/item/storage/lockbox/vials
-	name = "secure vial storage box"
+	name = "secure69ial storage box"
 	desc = "A locked box for keeping things away from children."
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox0"
@@ -409,7 +409,7 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 	can_hold = list(/obj/item/reagent_containers/glass/beaker/vial)
 	max_storage_space = 12 //The sum of the w_classes of all the items in this storage item.
 	storage_slots = 6
-	req_access = list(access_virology)
+	re69_access = list(access_virology)
 
 /obj/item/storage/lockbox/vials/Initialize()
 	. = ..()
@@ -417,16 +417,16 @@ obj/item/storage/fancy/cigar/attackby(obj/item/W, mob/user)
 
 /obj/item/storage/lockbox/vials/update_icon(var/itemremoved = 0)
 	var/total_contents = src.contents.len - itemremoved
-	src.icon_state = "vialbox[total_contents]"
+	src.icon_state = "vialbox69total_contents69"
 	src.cut_overlays()
 	if (!broken)
-		overlays += image(icon, src, "led[locked]")
+		overlays += image(icon, src, "led69locked69")
 		if(locked)
 			overlays += image(icon, src, "cover")
 	else
 		overlays += image(icon, src, "ledb")
 	return
 
-/obj/item/storage/lockbox/vials/attackby(obj/item/W, mob/user)
+/obj/item/storage/lockbox/vials/attackby(obj/item/W,69ob/user)
 	..()
 	update_icon()

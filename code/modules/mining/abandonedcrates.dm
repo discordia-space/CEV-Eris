@@ -14,7 +14,7 @@
 
 	for(var/i in 1 to codelen)
 		code += pick(digits)
-		digits -= code[code.len]
+		digits -= code69code.len69
 
 	generate_loot()
 
@@ -59,7 +59,7 @@
 			new/obj/item/latexballon(src)
 		if(55 to 56)
 			var/newitem = pick(typesof(/obj/item/toy/prize) - /obj/item/toy/prize)
-			new newitem(src)
+			new69ewitem(src)
 		if(57 to 60)
 			new/obj/item/rig(src)
 		if(61 to 62)
@@ -69,12 +69,12 @@
 			var/t = rand(4,7)
 			for(var/i = 0, i < t, ++i)
 				var/newcoin = pick(/obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/silver, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/iron, /obj/item/coin/gold, /obj/item/coin/diamond, /obj/item/coin/plasma, /obj/item/coin/uranium, /obj/item/coin/platinum)
-				new newcoin(src)
+				new69ewcoin(src)
 		if(65 to 68)
 			var/t = rand(4,7)
 			for(var/i = 0, i < t, ++i)
 				var/newitem = pick(typesof(/obj/item/stock_parts) - /obj/item/stock_parts - /obj/item/stock_parts/subspace)
-				new newitem(src)
+				new69ewitem(src)
 		if(69 to 72)
 			new/obj/item/tool/pickaxe/drill(src)
 		if(73 to 74)
@@ -95,7 +95,7 @@
 			new/obj/item/tool/sword/katana(src)
 		if(92)
 			new/obj/item/dnainjector/xraymut(src) // Probably the least OP
-		if(93) // Why the hell not
+		if(93) // Why the hell69ot
 			new/obj/item/storage/backpack/clown(src)
 			new/obj/item/clothing/under/rank/clown(src)
 			new/obj/item/clothing/shoes/clown_shoes(src)
@@ -124,23 +124,23 @@
 		if(99 to 100)
 			new/obj/item/clothing/head/bearpelt(src)
 
-/obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
+/obj/structure/closet/crate/secure/loot/togglelock(mob/user as69ob)
 	if(!locked)
 		return
 
 	to_chat(user, SPAN_NOTICE("The crate is locked with a Deca-code lock."))
-	var/input = input(user, "Enter [codelen] digits.", "Deca-Code Lock", "") as text
+	var/input = input(user, "Enter 69codelen69 digits.", "Deca-Code Lock", "") as text
 	if(!Adjacent(user))
 		return
 
-	if(input == null || length(input) != codelen)
+	if(input ==69ull || length(input) != codelen)
 		to_chat(user, SPAN_NOTICE("You leave the crate alone."))
 	else if(check_input(input))
 		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 		playsound(user, 'sound/machines/lockreset.ogg', 50, 1)
 		set_locked(0)
 	else
-		visible_message(SPAN_WARNING("A red light on \the [src]'s control panel flashes briefly."))
+		visible_message(SPAN_WARNING("A red light on \the 69src69's control panel flashes briefly."))
 		attempts--
 		if (attempts == 0)
 			to_chat(user, SPAN_DANGER("The crate's anti-tamper system activates!"))
@@ -148,7 +148,7 @@
 			explosion(T, 0, 0, 1, 2)
 			qdel(src)
 
-/obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges, var/mob/user)
+/obj/structure/closet/crate/secure/loot/emag_act(var/remaining_charges,69ar/mob/user)
 	if (locked)
 		to_chat(user, SPAN_NOTICE("The crate unlocks!"))
 		locked = 0
@@ -162,28 +162,28 @@
 	for(var/i in 1 to codelen)
 		var/guesschar = copytext(input, i, i+1)
 		lastattempt += guesschar
-		if(guesschar != code[i])
+		if(guesschar != code69i69)
 			. = 0
 
-/obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj, mob/user as mob)
+/obj/structure/closet/crate/secure/loot/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(locked)
-		if (istype(W, /obj/item/tool/multitool)) // Greetings Urist McProfessor, how about a nice game of cows and bulls?
+		if (istype(W, /obj/item/tool/multitool)) // Greetings Urist69cProfessor, how about a69ice game of cows and bulls?
 			to_chat(user, SPAN_NOTICE("DECA-CODE LOCK ANALYSIS:"))
 			if (attempts == 1)
-				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the next failed access attempt."))
+				to_chat(user, SPAN_WARNING("* Anti-Tamper system will activate on the69ext failed access attempt."))
 			else
-				to_chat(user, SPAN_NOTICE("* Anti-Tamper system will activate after [src.attempts] failed access attempts."))
+				to_chat(user, SPAN_NOTICE("* Anti-Tamper system will activate after 69src.attempts69 failed access attempts."))
 			if(lastattempt.len)
 				var/bulls = 0
 				var/cows = 0
 
 				var/list/code_contents = code.Copy()
 				for(var/i in 1 to codelen)
-					if(lastattempt[i] == code[i])
+					if(lastattempt69i69 == code69i69)
 						++bulls
-					else if(lastattempt[i] in code_contents)
+					else if(lastattempt69i69 in code_contents)
 						++cows
-					code_contents -= lastattempt[i]
-				to_chat(user, SPAN_NOTICE("Last code attempt had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions."))
+					code_contents -= lastattempt69i69
+				to_chat(user, SPAN_NOTICE("Last code attempt had 69bulls69 correct digits at correct positions and 69cows69 correct digits at incorrect positions."))
 			return
 	..()

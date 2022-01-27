@@ -1,4 +1,4 @@
-//list used to cache empty zlevels to avoid nedless map bloat
+//list used to cache empty zlevels to avoid69edless69ap bloat
 var/list/cached_space = list()
 
 //Space stragglers go here
@@ -8,23 +8,23 @@ var/list/cached_space = list()
 	invisibility = 101
 	known = 0
 
-/obj/effect/overmap/sector/temporary/New(var/nx, var/ny, var/nz)
-	loc = locate(nx, ny, GLOB.maps_data.overmap_z)
-	x = nx
-	y = ny
-	map_z += nz
-	map_sectors["[nz]"] = src
-	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [nz].")
+/obj/effect/overmap/sector/temporary/New(var/nx,69ar/ny,69ar/nz)
+	loc = locate(nx,69y, GLOB.maps_data.overmap_z)
+	x =69x
+	y =69y
+	map_z +=69z
+	map_sectors69"69nz69"69 = src
+	testing("Temporary sector at 69x69,69y69 was created, corresponding zlevel is 69nz69.")
 
 /obj/effect/overmap/sector/temporary/Destroy()
-	map_sectors["[map_z]"] = null
-	testing("Temporary sector at [x],[y] was deleted.")
+	map_sectors69"69map_z69"69 =69ull
+	testing("Temporary sector at 69x69,69y69 was deleted.")
 	. = ..()
 
 /obj/effect/overmap/sector/temporary/proc/can_die(var/mob/observer)
-	testing("Checking if sector at [map_z[1]] can die.")
+	testing("Checking if sector at 69map_z6916969 can die.")
 	for(var/mob/M in GLOB.player_list)
-		if(M != observer && (M.z in map_z))
+		if(M != observer && (M.z in69ap_z))
 			testing("There are people on it.")
 			return 0
 	return 1
@@ -34,13 +34,13 @@ proc/get_deepspace(x,y)
 	if(istype(res))
 		return res
 	else if(cached_space.len)
-		res = cached_space[cached_space.len]
+		res = cached_space69cached_space.len69
 		cached_space -= res
 		res.x = x
 		res.y = y
 		return res
 	else
-		return new /obj/effect/overmap/sector/temporary(x, y, GLOB.maps_data.get_empty_zlevel())
+		return69ew /obj/effect/overmap/sector/temporary(x, y, GLOB.maps_data.get_empty_zlevel())
 
 /atom/movable/proc/lost_in_space()
 	for(var/atom/movable/AM in contents)
@@ -51,14 +51,14 @@ proc/get_deepspace(x,y)
 /mob/lost_in_space()
 	return isnull(client)
 
-proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
+proc/overmap_spacetravel(var/turf/space/T,69ar/atom/movable/A)
 	if (!T || !A)
 		return
 
 	if(istype(A, /mob/observer/eye/aiEye))
 		return
 
-	var/obj/effect/overmap/M = map_sectors["[T.z]"]
+	var/obj/effect/overmap/M =69ap_sectors69"69T.z69"69
 	if (!M)
 		return
 
@@ -87,12 +87,12 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 		ny = TRANSITIONEDGE + 2
 		nx = rand(TRANSITIONEDGE + 2, world.maxx - TRANSITIONEDGE - 2)
 
-	testing("[A] spacemoving from [M] ([M.x], [M.y]).")
+	testing("69A69 spacemoving from 69M69 (69M.x69, 69M.y69).")
 
 	var/turf/map = locate(M.x,M.y,GLOB.maps_data.overmap_z)
 	var/obj/effect/overmap/TM
-	for(var/obj/effect/overmap/O in map)
-		if(O != M && O.in_space && prob(50))
+	for(var/obj/effect/overmap/O in69ap)
+		if(O !=69 && O.in_space && prob(50))
 			TM = O
 			break
 	if(!TM)
@@ -108,10 +108,10 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 				D.pulling.forceMove(dest)
 
 	if(istype(M, /obj/effect/overmap/sector/temporary))
-		var/obj/effect/overmap/sector/temporary/source = M
+		var/obj/effect/overmap/sector/temporary/source =69
 		if (source.can_die())
-			testing("Caching [M] for future use")
-			source.loc = null
+			testing("Caching 69M69 for future use")
+			source.loc =69ull
 			cached_space += source
 
 /obj/effect/overmap/proc/get_skybox_representation()

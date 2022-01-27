@@ -18,6 +18,6 @@
 	desc = "An embedded shield designed to be inserted into an arm."
 	verb_name = "Deploy embedded shield"
 	icon_state = "armshield"
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5, MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLASTIC = 5,69ATERIAL_STEEL = 5)
 	allowed_organs = list(BP_R_ARM, BP_L_ARM)
 	holding_type = /obj/item/shield/buckler/energy/arm

@@ -15,14 +15,14 @@
 /obj/machinery/portable_atmospherics/New()
 	..()
 
-	air_contents.volume = volume
+	air_contents.volume =69olume
 	air_contents.temperature = T20C
 
 	return 1
 
 /obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
-	qdel(holding)
+	69del(air_contents)
+	69del(holding)
 	. = ..()
 
 /obj/machinery/portable_atmospherics/Initialize()
@@ -41,17 +41,17 @@
 		update_icon()
 
 /obj/machinery/portable_atmospherics/Destroy()
-	qdel(air_contents)
+	69del(air_contents)
 
 	. = ..()
 
 /obj/machinery/portable_atmospherics/proc/StandardAirMix()
 	return list(
-		"oxygen" = O2STANDARD * MolesForPressure(),
-		"nitrogen" = N2STANDARD *  MolesForPressure())
+		"oxygen" = O2STANDARD *69olesForPressure(),
+		"nitrogen" = N2STANDARD * 69olesForPressure())
 
 /obj/machinery/portable_atmospherics/proc/MolesForPressure(var/target_pressure = start_pressure)
-	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_EQUATION * air_contents.temperature)
+	return (target_pressure * air_contents.volume) / (R_IDEAL_GAS_E69UATION * air_contents.temperature)
 
 /obj/machinery/portable_atmospherics/update_icon()
 	return null
@@ -61,7 +61,7 @@
 	if(connected_port || !new_port || new_port.connected_device)
 		return 0
 
-	//Make sure are close enough for a valid connection
+	//Make sure are close enough for a69alid connection
 	if(new_port.loc != loc)
 		return 0
 
@@ -70,7 +70,7 @@
 	connected_port.connected_device = src
 	connected_port.on = TRUE //Activate port updates
 
-	anchored = TRUE //Prevent movement
+	anchored = TRUE //Prevent69ovement
 
 	//Actually enforce the air sharing
 	var/datum/pipe_network/network = connected_port.return_network(src)
@@ -103,7 +103,7 @@
 	if (network)
 		network.update = 1
 
-/obj/machinery/portable_atmospherics/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/portable_atmospherics/attackby(var/obj/item/I,69ar/mob/user)
 	if ((istype(I, /obj/item/tank) && !( src.destroyed )))
 		if (src.holding)
 			return
@@ -115,22 +115,22 @@
 		update_icon()
 		return
 
-	if(QUALITY_BOLT_TURNING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+	if(69UALITY_BOLT_TURNING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_BOLT_TURNING, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 			if(connected_port)
 				disconnect()
-				to_chat(user, SPAN_NOTICE("You disconnect \the [src] from the port."))
+				to_chat(user, SPAN_NOTICE("You disconnect \the 69src69 from the port."))
 				update_icon()
 				return
 			else
 				var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 				if(possible_port)
 					if(connect(possible_port))
-						to_chat(user, SPAN_NOTICE("You connect \the [src] to the port."))
+						to_chat(user, SPAN_NOTICE("You connect \the 69src69 to the port."))
 						update_icon()
 						return
 					else
-						to_chat(user, SPAN_NOTICE("\The [src] failed to connect to the port."))
+						to_chat(user, SPAN_NOTICE("\The 69src69 failed to connect to the port."))
 						return
 				else
 					to_chat(user, SPAN_NOTICE("Nothing happens."))
@@ -161,7 +161,7 @@
 		cell = null
 		update_icon()
 
-/obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
+/obj/machinery/portable_atmospherics/powered/attackby(obj/item/I,69ob/user)
 	if(istype(I, /obj/item/cell/large))
 		if(cell)
 			to_chat(user, "There is already a power cell installed.")
@@ -173,7 +173,7 @@
 		C.add_fingerprint(user)
 		src.cell = C
 		C.loc = src
-		user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and inserts [C]."), SPAN_NOTICE("You open the panel on [src] and insert [C]."))
+		user.visible_message(SPAN_NOTICE("69user69 opens the panel on 69src69 and inserts 69C69."), SPAN_NOTICE("You open the panel on 69src69 and insert 69C69."))
 		power_change()
 		return
 
@@ -188,15 +188,15 @@
 		update_icon()
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_SHOVELING, QUALITY_CUTTING, QUALITY_BOLT_TURNING), src)
+	var/tool_type = I.get_tool_type(user, list(69UALITY_SHOVELING, 69UALITY_CUTTING, 69UALITY_BOLT_TURNING), src)
 	switch(tool_type)
 
-		if(QUALITY_SCREW_DRIVING)
+		if(69UALITY_SCREW_DRIVING)
 			if(!cell)
 				to_chat(user, SPAN_WARNING("There is no power cell installed."))
 				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				user.visible_message(SPAN_NOTICE("[user] opens the panel on [src] and removes [cell]."), SPAN_NOTICE("You open the panel on [src] and remove [cell]."))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
+				user.visible_message(SPAN_NOTICE("69user69 opens the panel on 69src69 and removes 69cell69."), SPAN_NOTICE("You open the panel on 69src69 and remove 69cell69."))
 				cell.add_fingerprint(user)
 				cell.loc = src.loc
 				cell = null
@@ -204,22 +204,22 @@
 				return
 			return
 
-		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+		if(69UALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 				if(connected_port)
 					disconnect()
-					to_chat(user, SPAN_NOTICE("You disconnect \the [src] from the port."))
+					to_chat(user, SPAN_NOTICE("You disconnect \the 69src69 from the port."))
 					update_icon()
 					return
 				else
 					var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 					if(possible_port)
 						if(connect(possible_port))
-							to_chat(user, SPAN_NOTICE("You connect \the [src] to the port."))
+							to_chat(user, SPAN_NOTICE("You connect \the 69src69 to the port."))
 							update_icon()
 							return
 						else
-							to_chat(user, SPAN_NOTICE("\The [src] failed to connect to the port."))
+							to_chat(user, SPAN_NOTICE("\The 69src69 failed to connect to the port."))
 							return
 					else
 						to_chat(user, SPAN_NOTICE("Nothing happens."))
@@ -238,8 +238,8 @@
 	var/gases = ""
 	for(var/gas in air_contents.gas)
 		if(gases)
-			gases += ", [gas]"
+			gases += ", 69gas69"
 		else
 			gases = gas
-	log_admin("[usr] ([usr.ckey]) opened '[src.name]' containing [gases].")
-	message_admins("[usr] ([usr.ckey]) opened '[src.name]' containing [gases].")
+	log_admin("69usr69 (69usr.ckey69) opened '69src.name69' containing 69gases69.")
+	message_admins("69usr69 (69usr.ckey69) opened '69src.name69' containing 69gases69.")

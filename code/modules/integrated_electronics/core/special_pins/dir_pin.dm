@@ -3,18 +3,18 @@
 	name = "dir pin"
 
 /datum/integrated_io/dir/ask_for_pin_data(mob/user)
-	var/new_data = input("Please type in a valid dir number.  \
+	var/new_data = input("Please type in a69alid dir number.  \
 	Valid dirs are;\n\
-	North/Fore = [NORTH],\n\
-	South/Aft = [SOUTH],\n\
-	East/Starboard = [EAST],\n\
-	West/Port = [WEST],\n\
-	Northeast = [NORTHEAST],\n\
-	Northwest = [NORTHWEST],\n\
-	Southeast = [SOUTHEAST],\n\
-	Southwest = [SOUTHWEST]","[src] dir writing") as null|num
+	North/Fore = 69NORTH69,\n\
+	South/Aft = 69SOUTH69,\n\
+	East/Starboard = 69EAST69,\n\
+	West/Port = 69WEST69,\n\
+	Northeast = 69NORTHEAST69,\n\
+	Northwest = 69NORTHWEST69,\n\
+	Southeast = 69SOUTHEAST69,\n\
+	Southwest = 69SOUTHWEST69","69src69 dir writing") as null|num
 	if(isnum_safe(new_data) && holder.check_interactivity(user) )
-		to_chat(user, SPAN("notice", "You input [new_data] into the pin."))
+		to_chat(user, SPAN("notice", "You input 69new_data69 into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/dir/write_data_to_pin(new_data)
@@ -27,5 +27,5 @@
 
 /datum/integrated_io/dir/display_data(var/input)
 	if(!isnull(data))
-		return "([dir2text(data)])"
+		return "(69dir2text(data)69)"
 	return ..()

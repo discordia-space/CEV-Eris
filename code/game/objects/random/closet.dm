@@ -30,14 +30,14 @@
 	spawn_nothing_percentage = 60
 
 /obj/spawner/closet/maintloot
-	name = "random maint loot closet"
+	name = "random69aint loot closet"
 	icon_state = "closet-black"
 	tags_to_spawn = list(SPAWN_CLOSET_RANDOM)
 	exclusion_paths = list(/obj/structure/closet/random/hostilemobs/beacon)
 	allow_blacklist = TRUE
 
 /obj/spawner/closet/maintloot/low_chance
-	name = "low chance random maint loot closet"
+	name = "low chance random69aint loot closet"
 	icon_state = "closet-black-low"
 	spawn_nothing_percentage = 60
 

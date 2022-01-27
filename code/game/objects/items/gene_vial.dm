@@ -1,33 +1,33 @@
-/obj/item/gene_vial
+/obj/item/69ene_vial
 	name = "vial"
-	desc = "A vial with genetic material."
+	desc = "A69ial with 69enetic69aterial."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle16" //paceholder
 	var/empty = FALSE
-	matter = list(MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_69LASS = 1)
 	w_class = ITEM_SIZE_TINY
 
-/obj/item/gene_vial/attack(mob/M, mob/living/user, def_zone)
-	if(user != M || !istype(user))
+/obj/item/69ene_vial/attack(mob/M,69ob/livin69/user, def_zone)
+	if(user !=69 || !istype(user))
 		return ..()
 
 	if(empty)
-		to_chat(user, SPAN_WARNING("\The [src] is empty."))
+		to_chat(user, SPAN_WARNIN69("\The 69src69 is empty."))
 		return
 
-	var/mob/living/carbon/human/H = user
-	var/obj/item/organ/internal/carrion/core/C
+	var/mob/livin69/carbon/human/H = user
+	var/obj/item/or69an/internal/carrion/core/C
 	if(istype(H))
-		C = H.random_organ_by_process(BP_SPCORE)
-		var/obj/item/blocked = H.check_mouth_coverage()
+		C = H.random_or69an_by_process(BP_SPCORE)
+		var/obj/item/blocked = H.check_mouth_covera69e()
 		if(blocked)
-			to_chat(user, SPAN_WARNING("\The [blocked] is in the way!"))
+			to_chat(user, SPAN_WARNIN69("\The 69blocked69 is in the way!"))
 			return
 
-	to_chat(user, SPAN_NOTICE("You swallow the contents of \the [src]."))
+	to_chat(user, SPAN_NOTICE("You swallow the contents of \the 69src69."))
 
 	if(C)
-		C.geneticpoints += 5
+		C.69eneticpoints += 5
 	else
 		user.adjustToxLoss(40)
 

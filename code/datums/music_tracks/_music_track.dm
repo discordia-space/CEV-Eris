@@ -12,10 +12,10 @@
 
 /music_track/proc/play_to(var/listener)
 	to_chat(listener, "<span class='good'>Now Playing:</span>")
-	to_chat(listener, "<span class='good'>[title][artist ? " by [artist]" : ""][album ? " ([album])" : ""]</span>")
+	to_chat(listener, "<span class='good'>69title6969artist ? " by 69artist69" : ""6969album ? " (69album69)" : ""69</span>")
 	if(url)
 		to_chat(listener, url)
 
-	to_chat(listener, "<span class='good'>Licence: <a href='[licence.url]'>[licence.name]</a></span>")
-	sound_to(listener, sound(song, repeat = 1, wait = 0, volume = volume, channel = GLOB.lobby_sound_channel))
+	to_chat(listener, "<span class='good'>Licence: <a href='69licence.url69'>69licence.name69</a></span>")
+	sound_to(listener, sound(song, repeat = 1, wait = 0,69olume =69olume, channel = GLOB.lobby_sound_channel))
 

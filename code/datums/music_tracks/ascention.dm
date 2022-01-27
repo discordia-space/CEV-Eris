@@ -21,7 +21,7 @@
 
 /music_track/runner //Track 20
 	artist = "Duke Gneiss"
-	title = "The Runner in Motion"
+	title = "The Runner in69otion"
 	album = "Ascention"
 	song = 'sound/music/lobby/Duke_Gneiss-The_Runner_in_motion.ogg'
 	url = "https://soundcloud.com/dukegneiss/quantums-escape-plan"

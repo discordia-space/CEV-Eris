@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/mandella
 	name = "OR HG .25 CS \"Mandella\""
 	desc = "A rugged, robust operator handgun with inbuilt silencer. Chambered in rifle caseless ammunition, this time-tested handgun is \
-			your absolute choise if you need to take someone down silently, as it's deadly, produces no sound and leaves no traces. \
+			your absolute choise if you69eed to take someone down silently, as it's deadly, produces69o sound and leaves69o traces. \
 			Built to have enhanced armor penetration abilities. \
 			Uses .25 Caseless rounds."
 	icon = 'icons/obj/guns/projectile/mandella.dmi'
@@ -12,11 +12,11 @@
 	silenced = TRUE
 	fire_sound = 'sound/weapons/Gunshot_silenced.wav'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-	matter = list(MATERIAL_PLASTEEL = 12, MATERIAL_PLASTIC = 6)
+	matter = list(MATERIAL_PLASTEEL = 12,69ATERIAL_PLASTIC = 6)
 	price_tag = 1500
 	caliber = CAL_CLRIFLE
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/cspistol
 	damage_multiplier = 1.2
 	penetration_multiplier = 1.7

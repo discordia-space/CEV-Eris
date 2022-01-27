@@ -1,11 +1,11 @@
 /obj/item/clothing/head/space/void/excelsior
 	name = "Excelsior helmet"
-	desc = "A deceptively well armored space helmet. Ancient design, but advanced manufacturing."
+	desc = "A deceptively well armored space helmet. Ancient design, but advanced69anufacturing."
 	icon_state = "cosmo"
 	item_state = "cosmo"
 
-	//The excelsior armors cost small amounts of rare materials that they can teleport in.
-	//This means they can either build up materials over time, or make it go faster by scavenging rare mats
+	//The excelsior armors cost small amounts of rare69aterials that they can teleport in.
+	//This69eans they can either build up69aterials over time, or69ake it go faster by scavenging rare69ats
 	matter = list(
 		MATERIAL_PLASTIC = 20,
 		MATERIAL_GLASS = 10,
@@ -22,7 +22,7 @@
 	)
 	siemens_coefficient = 0
 	species_restricted = list(SPECIES_HUMAN)
-	//camera_networks = list(NETWORK_EXCELSIOR) //Todo future: Excelsior camera network and monitoring console
+	//camera_networks = list(NETWORK_EXCELSIOR) //Todo future: Excelsior camera network and69onitoring console
 	light_overlay = "helmet_light_green"
 	var/obj/item/clothing/glasses/hud/excelsior/hud
 	price_tag = 300
@@ -68,7 +68,7 @@
 
 /obj/item/clothing/suit/space/void/excelsior
 	name = "Excelsior armor"
-	desc = "An ancient space suit design, remade with advanced materials. Provides good protection, especially against energy discharges, while remaining surprisingly flexible."
+	desc = "An ancient space suit design, remade with advanced69aterials. Provides good protection, especially against energy discharges, while remaining surprisingly flexible."
 	icon_state = "soviet_skaf"
 	item_state = "soviet_skaf"
 	slowdown = 0.2
@@ -91,5 +91,5 @@
 	)
 	helmet = /obj/item/clothing/head/space/void/excelsior
 	spawn_blacklisted = TRUE
-	slowdown = MEDIUM_SLOWDOWN
+	slowdown =69EDIUM_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS

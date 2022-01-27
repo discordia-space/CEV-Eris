@@ -1,7 +1,7 @@
 
 // Basic transit tubes. Straight pieces, curved sections,
 //  and basic splits/joins (no routing logic).
-// Mappers: you can use "Generate Instances from Icon-states"
+//69appers: you can use "Generate Instances from Icon-states"
 //  to get the different pieces.
 /obj/structure/transit_tube
 	icon = 'icons/obj/pipes/transit_tube.dmi'
@@ -14,14 +14,14 @@
 	var/enter_delay = 1
 
 	// alldirs in global.dm is the same list of directions, but since
-	//  the specific order matters to get a usable icon_state, it is
+	//  the specific order69atters to get a usable icon_state, it is
 	//  copied here so that, in the unlikely case that alldirs is changed,
 	//  this continues to work.
 	var/global/list/tube_dir_list = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 
 
 // A place where tube pods stop, and people can get in or out.
-// Mappers: use "Generate Instances from Directions" for this
+//69appers: use "Generate Instances from Directions" for this
 //  one.
 /obj/structure/transit_tube/station
 	icon = 'icons/obj/pipes/transit_tube_station.dmi'
@@ -64,7 +64,7 @@ obj/structure/ex_act(severity)
 				AM.loc = loc
 				AM.ex_act(severity++)
 
-			qdel(src)
+			69del(src)
 			return
 		if(2)
 			if(prob(50))
@@ -72,7 +72,7 @@ obj/structure/ex_act(severity)
 					AM.loc = loc
 					AM.ex_act(severity++)
 
-				qdel(src)
+				69del(src)
 				return
 		if(3)
 			return
@@ -82,10 +82,10 @@ obj/structure/ex_act(severity)
 /obj/structure/transit_tube_pod/New(loc)
 	..(loc)
 
-	air_contents.adjust_multi("oxygen", MOLES_O2STANDARD * 2, "nitrogen", MOLES_N2STANDARD)
+	air_contents.adjust_multi("oxygen",69OLES_O2STANDARD * 2, "nitrogen",69OLES_N2STANDARD)
 	air_contents.temperature = T20C
 
-	// Give auto tubes time to align before trying to start moving
+	// Give auto tubes time to align before trying to start69oving
 	spawn(5)
 		follow_tube()
 
@@ -99,7 +99,7 @@ obj/structure/ex_act(severity)
 
 
 
-/obj/structure/transit_tube/Bumped(mob/AM as mob|obj)
+/obj/structure/transit_tube/Bumped(mob/AM as69ob|obj)
 	var/obj/structure/transit_tube/T = locate() in AM.loc
 	if(T)
 		to_chat(AM, SPAN_WARNING("The tube's support pylons block your way."))
@@ -114,7 +114,7 @@ obj/structure/ex_act(severity)
 
 
 
-/obj/structure/transit_tube/station/Bumped(mob/AM as mob|obj)
+/obj/structure/transit_tube/station/Bumped(mob/AM as69ob|obj)
 	if(!pod_moving && icon_state == "open" && ismob(AM))
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(pod.contents.len)
@@ -125,7 +125,7 @@ obj/structure/ex_act(severity)
 				return
 
 
-/obj/structure/transit_tube/station/attack_hand(mob/user as mob)
+/obj/structure/transit_tube/station/attack_hand(mob/user as69ob)
 	if(!pod_moving)
 		for(var/obj/structure/transit_tube_pod/pod in loc)
 			if(!pod.moving && (pod.dir in directions()))
@@ -222,7 +222,7 @@ obj/structure/ex_act(severity)
 
 
 // Returns a /list of directions this tube section can connect to.
-//  Tubes that have some sort of logic or changing direction might
+//  Tubes that have some sort of logic or changing direction69ight
 //  override it with additional logic.
 /obj/structure/transit_tube/proc/directions()
 	return tube_dirs
@@ -250,7 +250,7 @@ obj/structure/ex_act(severity)
 
 
 // Searches for an exit direction within 45 degrees of the
-//  specified dir. Returns that direction, or 0 if none match.
+//  specified dir. Returns that direction, or 0 if none69atch.
 /obj/structure/transit_tube/proc/get_exit(in_dir)
 	var/near_dir = 0
 	var/in_dir_cw = turn(in_dir, -45)
@@ -270,11 +270,11 @@ obj/structure/ex_act(severity)
 
 
 
-// Return how many BYOND ticks to wait before entering/exiting
-//  the tube section. Default action is to return the value of
-//  a var, which wouldn't need a proc, but it makes it possible
-//  for later tube types to interact in more interesting ways
-//  such as being very fast in one direction, but slow in others
+// Return how69any BYOND ticks to wait before entering/exiting
+//  the tube section. Default action is to return the69alue of
+//  a69ar, which wouldn't need a proc, but it69akes it possible
+//  for later tube types to interact in69ore interesting ways
+//  such as being69ery fast in one direction, but slow in others
 /obj/structure/transit_tube/proc/exit_delay(pod, to_dir)
 	return exit_delay
 
@@ -328,7 +328,7 @@ obj/structure/ex_act(severity)
 			last_delay = current_tube.enter_delay(src, next_dir)
 			sleep(last_delay)
 			set_dir(next_dir)
-			loc = next_loc // When moving from one tube to another, skip collision and such.
+			loc = next_loc // When69oving from one tube to another, skip collision and such.
 			density = current_tube.density
 
 			if(current_tube && current_tube.should_stop_pod(src, next_dir))
@@ -337,8 +337,8 @@ obj/structure/ex_act(severity)
 
 		density = TRUE
 
-		// If the pod is no longer in a tube, move in a line until stopped or slowed to a halt.
-		//  /turf/inertial_drift appears to only work on mobs, and re-implementing some of the
+		// If the pod is no longer in a tube,69ove in a line until stopped or slowed to a halt.
+		//  /turf/inertial_drift appears to only work on69obs, and re-implementing some of the
 		//  logic allows a gradual slowdown and eventual stop when passing over non-space turfs.
 		if(!current_tube && last_delay <= 10)
 			do
@@ -350,7 +350,7 @@ obj/structure/ex_act(severity)
 				if(last_delay > 10)
 					break
 
-			while(isturf(loc) && Move(get_step(loc, dir)))
+			while(isturf(loc) &&69ove(get_step(loc, dir)))
 
 		moving = 0
 
@@ -364,29 +364,29 @@ obj/structure/ex_act(severity)
 	return air_contents.remove(amount)
 
 // Called when a pod arrives at, and before a pod departs from a station,
-//  giving it a chance to mix its internal air supply with the turf it is
+//  giving it a chance to69ix its internal air supply with the turf it is
 //  currently on.
 /obj/structure/transit_tube_pod/proc/mix_air()
 	var/datum/gas_mixture/environment = loc.return_air()
 
-	//note that share_ratio assumes both gas mixes have the same volume,
-	//so if the volume is changed this may need to be changed as well.
+	//note that share_ratio assumes both gas69ixes have the same69olume,
+	//so if the69olume is changed this69ay need to be changed as well.
 	air_contents.share_ratio(environment, 1)
 
-// When the player moves, check if the pos is currently stopped at a station.
-//  if it is, check the direction. If the direction matches the direction of
-//  the station, try to exit. If the direction matches one of the station's
+// When the player69oves, check if the pos is currently stopped at a station.
+//  if it is, check the direction. If the direction69atches the direction of
+//  the station, try to exit. If the direction69atches one of the station's
 //  tube directions, launch the pod in that direction.
 /obj/structure/transit_tube_pod/relaymove(mob/mob, direction)
-	if(ismob(mob) && mob.client)
+	if(ismob(mob) &&69ob.client)
 		// If the pod is not in a tube at all, you can get out at any time.
 		if(!(locate(/obj/structure/transit_tube) in loc))
 			mob.loc = loc
 			mob.client.Move(get_step(loc, direction), direction)
 
 			//if(moving && istype(loc, /turf/space))
-				// Todo: If you get out of a moving pod in space, you should move as well.
-				//  Same direction as pod? Direcion you moved? Halfway between?
+				// Todo: If you get out of a69oving pod in space, you should69ove as well.
+				//  Same direction as pod? Direcion you69oved? Halfway between?
 
 		if(!moving)
 			for(var/obj/structure/transit_tube/station/station in loc)
@@ -414,13 +414,13 @@ obj/structure/ex_act(severity)
 
 
 // Parse the icon_state into a list of directions.
-// This means that mappers can use Dream Maker's built in
+// This69eans that69appers can use Dream69aker's built in
 //  "Generate Instances from Icon-states" option to get all
-//  variations. Additionally, as a separate proc, sub-types
-//  can handle it more intelligently.
+// 69ariations. Additionally, as a separate proc, sub-types
+//  can handle it69ore intelligently.
 /obj/structure/transit_tube/proc/init_dirs()
 	if(icon_state == "auto")
-		// Additional delay, for map loading.
+		// Additional delay, for69ap loading.
 		spawn(1)
 			init_dirs_automatic()
 
@@ -462,7 +462,7 @@ obj/structure/ex_act(severity)
 
 	tube_dirs = select_automatic_dirs(connected)
 
-	if(length(tube_dirs) == 2 && tube_dir_list.Find(tube_dirs[1]) > tube_dir_list.Find(tube_dirs[2]))
+	if(length(tube_dirs) == 2 && tube_dir_list.Find(tube_dirs69169) > tube_dir_list.Find(tube_dirs69269))
 		tube_dirs.Swap(1, 2)
 
 	generate_automatic_corners(tube_dirs)
@@ -472,26 +472,26 @@ obj/structure/ex_act(severity)
 
 // Given a list of directions, look a pair that forms a 180 or
 //  135 degree angle, and return a list containing the pair.
-//  If none exist, return list(connected[1], turn(connected[1], 180)
+//  If none exist, return list(connected69169, turn(connected69169, 180)
 /obj/structure/transit_tube/proc/select_automatic_dirs(connected)
 	if(length(connected) < 1)
 		return list()
 
 	for(var/i = 1, i <= length(connected), i++)
 		for(var/j = i + 1, j <= length(connected), j++)
-			var/d1 = connected[i]
-			var/d2 = connected[j]
+			var/d1 = connected69i69
+			var/d2 = connected69j69
 
 			if(d1 == turn(d2, 135) || d1 == turn(d2, 180) || d1 == turn(d2, 225))
 				return list(d1, d2)
 
-	return list(connected[1], turn(connected[1], 180))
+	return list(connected69169, turn(connected69169, 180))
 
 
 
 /obj/structure/transit_tube/proc/select_automatic_icon_state(directions)
 	if(length(directions) == 2)
-		icon_state = "[dir2text_short(directions[1])]-[dir2text_short(directions[2])]"
+		icon_state = "69dir2text_short(directions69169)69-69dir2text_short(directions69269)69"
 
 
 
@@ -515,7 +515,7 @@ obj/structure/ex_act(severity)
 
 // Generate a corner, if one doesn't exist for the direction on the turf.
 /obj/structure/transit_tube/proc/create_automatic_decorative_corner(location, direction)
-	var/state = "D-[dir2text_short(direction)]"
+	var/state = "D-69dir2text_short(direction)69"
 
 	for(var/obj/structure/transit_tube/tube in location)
 		if(tube.icon_state == state)
@@ -527,26 +527,26 @@ obj/structure/ex_act(severity)
 
 
 
-// Uses a list() to cache return values. Since they should
+// Uses a list() to cache return69alues. Since they should
 //  never be edited directly, all tubes with a certain
 //  icon_state can just reference the same list. In theory,
-//  reduces memory usage, and improves CPU cache usage.
-//  In reality, I don't know if that is quite how BYOND works,
+//  reduces69emory usage, and improves CPU cache usage.
+//  In reality, I don't know if that is 69uite how BYOND works,
 //  but it is probably safer to assume the existence of, and
 //  rely on, a sufficiently smart compiler/optimizer.
 /obj/structure/transit_tube/proc/parse_dirs(text)
 	var/global/list/direction_table = list()
 
 	if(text in direction_table)
-		return direction_table[text]
+		return direction_table69text69
 
 	var/list/split_text = splittext(text, "-")
 
 	// If the first token is D, the icon_state represents
 	//  a purely decorative tube, and doesn't actually
 	//  connect to anything.
-	if(split_text[1] == "D")
-		direction_table[text] = list()
+	if(split_text69169 == "D")
+		direction_table69text69 = list()
 		return null
 
 	var/list/directions = list()
@@ -557,7 +557,7 @@ obj/structure/ex_act(severity)
 		if(direction > 0)
 			directions += direction
 
-	direction_table[text] = directions
+	direction_table69text69 = directions
 	return directions
 
 

@@ -1,8 +1,8 @@
 //This is the generic parent class, which doesn't actually do anything.
 
 /obj/item/computer_hardware/scanner
-	name = "scanner module"
-	desc = "A generic scanner module. This one doesn't seem to do anything."
+	name = "scanner69odule"
+	desc = "A generic scanner69odule. This one doesn't seem to do anything."
 	power_usage = 5
 	var/active_power_usage = 4000
 	icon_state = "scanner"
@@ -12,7 +12,7 @@
 	var/driver_type = /datum/computer_file/program/scanner		// A program type that the scanner interfaces with and attempts to install on insertion.
 	var/datum/computer_file/program/scanner/driver		 		// A driver program which has been set up to interface with the scanner.
 	var/can_run_scan = 0	//Whether scans can be run from the program directly.
-	var/can_view_scan = 1	//Whether the scan output can be viewed in the program.
+	var/can_view_scan = 1	//Whether the scan output can be69iewed in the program.
 	var/can_save_scan = 1	//Whether the scan output can be saved to disk.
 
 /obj/item/computer_hardware/scanner/Destroy()
@@ -23,18 +23,18 @@
 	if(!driver_type || !device)
 		return 0
 	if(!device.hard_drive)
-		to_chat(user, "Driver installation for \the [src] failed: \the [device] lacks a hard drive.")
+		to_chat(user, "Driver installation for \the 69src69 failed: \the 69device69 lacks a hard drive.")
 		return 0
-	var/datum/computer_file/program/scanner/driver_file = new driver_type
+	var/datum/computer_file/program/scanner/driver_file =69ew driver_type
 	var/datum/computer_file/program/scanner/old_driver = device.hard_drive.find_file_by_name(driver_file.filename)
 	if(istype(old_driver))
-		to_chat(user, "Drivers found on \the [device]; \the [src] has been installed.")
+		to_chat(user, "Drivers found on \the 69device69; \the 69src69 has been installed.")
 		old_driver.connect_scanner()
 		return 1
 	if(!device.hard_drive.store_file(driver_file))
-		to_chat(user, "Driver installation for \the [src] failed: file could not be written to \the [device.hard_drive].")
+		to_chat(user, "Driver installation for \the 69src69 failed: file could69ot be written to \the 69device.hard_drive69.")
 		return 0
-	to_chat(user, "Driver software for \the [src] has been installed on \the [device].")
+	to_chat(user, "Driver software for \the 69src69 has been installed on \the 69device69.")
 	driver_file.computer = device
 	driver_file.connect_scanner()
 	return 1
@@ -43,7 +43,7 @@
 	if(driver)
 		driver.disconnect_scanner()
 	if(driver)	//In case the driver doesn't find it.
-		driver = null
+		driver =69ull
 
 /obj/item/computer_hardware/scanner/proc/run_scan(mob/user, datum/computer_file/program/scanner/program) //For scans done from the software.
 	if (!scan_power_use())

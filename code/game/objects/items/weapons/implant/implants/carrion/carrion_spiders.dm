@@ -30,19 +30,19 @@
 
 /obj/item/implant/carrion_spider/Process()
 	if(ready_to_attack && (last_stun_time <= world.time - 4 SECONDS))
-		for(var/mob/living/L in mobs_in_view(1, src))
+		for(var/mob/living/L in69obs_in_view(1, src))
 			if(istype(L, /mob/living/simple_animal) || istype(L, /mob/living/carbon))
 				if(is_carrion(L))
 					continue
 				install(L)
-				to_chat(owner_mob, SPAN_NOTICE("[src] infested [L]"))
+				to_chat(owner_mob, SPAN_NOTICE("69src69 infested 69L69"))
 				break
 
 /obj/item/implant/carrion_spider/on_uninstall()
 	..()
 	last_stun_time = world.time
 
-/obj/item/implant/carrion_spider/attackby(obj/item/I, mob/living/user, params) //Overrides implanter behaviour
+/obj/item/implant/carrion_spider/attackby(obj/item/I,69ob/living/user, params) //Overrides implanter behaviour
 	if(I.force >= WEAPON_FORCE_WEAK)
 		attack_animation(user)
 		die_from_attack()
@@ -52,25 +52,25 @@
 	die_from_attack()
 
 /obj/item/implant/carrion_spider/proc/die_from_attack()
-	visible_message(SPAN_WARNING("[src] explodes into a bloody mess"))
-	to_chat(owner_mob, SPAN_WARNING("You lost your connection with \the [src]"))
+	visible_message(SPAN_WARNING("69src69 explodes into a bloody69ess"))
+	to_chat(owner_mob, SPAN_WARNING("You lost your connection with \the 69src69"))
 	die()
 
 /obj/item/implant/carrion_spider/proc/die()
 	if(!wearer)
 		gibs(loc, null, /obj/effect/gibspawner/generic, "#666600", "#666600")
 
-	qdel(src)
+	69del(src)
 
-/obj/item/implant/carrion_spider/attack(mob/living/M, mob/living/user)
+/obj/item/implant/carrion_spider/attack(mob/living/M,69ob/living/user)
 	if(!(istype(M, /mob/living/simple_animal) || istype(M, /mob/living/carbon)))
 		to_chat(user, SPAN_WARNING("You can't implant spiders into robots."))
 		return
 	user.drop_item()
 	M.attack_hand(user)
-	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+	user.setClickCooldown(DEFAULT_69UICK_COOLDOWN)
 	if(install(M, user.targeted_organ, user))
-		to_chat(user, SPAN_NOTICE("You stealthily implant [M] with \the [src]"))
+		to_chat(user, SPAN_NOTICE("You stealthily implant 69M69 with \the 69src69"))
 
 /obj/item/implant/carrion_spider/attack_self(mob/user)
 	toggle_attack(user)
@@ -79,10 +79,10 @@
 /obj/item/implant/carrion_spider/proc/toggle_attack(mob/user)
 	if (ready_to_attack)
 		ready_to_attack = FALSE
-		to_chat(user, SPAN_NOTICE("\The [src] wont attack nearby creatures anymore."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 wont attack nearby creatures anymore."))
 	else
 		ready_to_attack = TRUE
-		to_chat(user, SPAN_NOTICE("\The [src] is ready to attack nearby creatures."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is ready to attack nearby creatures."))
 
 /obj/item/implant/carrion_spider/verb/hide_spider()
 	set name = "Hide"

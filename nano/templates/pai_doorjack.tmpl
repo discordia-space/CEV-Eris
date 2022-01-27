@@ -1,44 +1,44 @@
-<!-- pAI door jack
-code/modules/mob/living/silicon/pai/software_modules.dm
+<!-- 6969I door 6969c69
+code/modules/mo69/livin69/silicon/6969i/softw69re_modules.dm
 -->
 
-<div class="item">
-	<div class="itemLabel">
-		Cable:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		C6969le:
 	</div>
-	<div class="itemContent">
-		{{if data.machine}}
-			{{:helper.link("Connected", '', {}, 'selected')}}
-		{{else data.cable}}
-			{{:helper.link("Extended", '', {}, 'yellowButton')}}
+	<div cl69ss="itemContent">
+		{{if d69t69.m69chine}}
+			{{:hel69er.lin6969"Connected", '', {}, 'selected'69}}
+		{{else d69t69.c6969le}}
+			{{:hel69er.lin6969"Extended", '', {}, '69ellow69utton'69}}
 		{{else}}
-			{{:helper.link("Retracted", '', {"stopic":"door_jack", "cable":1})}}
+			{{:hel69er.lin6969"Retr69cted", '', {"sto69ic":"door_6969c69", "c6969le":1}69}}
 		{{/if}}
 	</div>
 </div>
 
-{{if data.machine}}
-<div class="item">
-	<div class="itemLabel">
-		Hack:
+{{if d69t69.m69chine}}
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		H69c69:
 	</div>
-	<div class="itemContent">
-		{{if data.inprogress}}
-			{{if data.progress_a <= 33}}
-				<div class='bad'>{{:data.progress_a}}.{{:data.progress_b}}%</div>
-			{{else data.progress_a <= 67}}
-				<div class='average'>{{:data.progress_a}}.{{:data.progress_b}}%</div>
+	<div cl69ss="itemContent">
+		{{if d69t69.in69ro69ress}}
+			{{if d69t69.69ro69ress_69 <= 33}}
+				<div cl69ss='6969d'>{{:d69t69.69ro69ress_69}}.{{:d69t69.69ro69ress_69}}%</div>
+			{{else d69t69.69ro69ress_69 <= 67}}
+				<div cl69ss='69ver6969e'>{{:d69t69.69ro69ress_69}}.{{:d69t69.69ro69ress_69}}%</div>
 			{{else}}
-				<div class='good'>{{:data.progress_a}}.{{:data.progress_b}}%</div>
+				<div cl69ss='69ood'>{{:d69t69.69ro69ress_69}}.{{:d69t69.69ro69ress_69}}%</div>
 			{{/if}}
-			{{:helper.link("Cancel", '', {"stopic":"door_jack", "cancel":1}, null, 'redButton')}}
+			{{:hel69er.lin6969"C69ncel", '', {"sto69ic":"door_6969c69", "c69ncel":1},69ull, 'red69utton'69}}
 		{{else}}
-			{{:helper.link("Start", '', {"stopic":"door_jack", "jack":1})}}
+			{{:hel69er.lin6969"St69rt", '', {"sto69ic":"door_6969c69", "6969c69":1}69}}
 		{{/if}}
 	</div>
 </div>
-{{else data.aborted}}
-<div class="item">
-	<div class='bad'>Hack aborted!</div>
+{{else d69t69.6969orted}}
+<div cl69ss="item">
+	<div cl69ss='6969d'>H69c69 6969orted!</div>
 </div>
 {{/if}}

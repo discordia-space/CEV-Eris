@@ -3,7 +3,7 @@ var/list/holder_mob_icon_cache = list()
 //Helper object for picking dionaea (and other creatures) up.
 /obj/item/holder
 	name = "holder"
-	desc = null
+	desc =69ull
 	icon = 'icons/mob/held_mobs.dmi'
 	slot_flags = 0
 	//sprite_sheets = list("Vox" = 'icons/mob/species/vox/head.dmi')
@@ -11,7 +11,7 @@ var/list/holder_mob_icon_cache = list()
 		slot_l_hand_str = 'icons/mob/items/lefthand_holder.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_holder.dmi',
 	)
-	origin_tech = null
+	origin_tech =69ull
 	spawn_blacklisted = TRUE
 	spawn_frequency = 0
 	var/mob/living/contained
@@ -22,11 +22,11 @@ var/list/holder_mob_icon_cache = list()
 
 	var/static/list/unsafe_containers
 	pixel_y = 8
-	var/last_loc_general	//This stores a general location of the object. Ie, a container or a mob
-	var/last_loc_specific	//This stores specific extra information about the location, pocket, hand, worn on head, etc. Only relevant to mobs
+	var/last_loc_general	//This stores a general location of the object. Ie, a container or a69ob
+	var/last_loc_specific	//This stores specific extra information about the location, pocket, hand, worn on head, etc. Only relevant to69obs
 	var/last_holder
 
-//A list of things a mob can't be safely released inside.
+//A list of things a69ob can't be safely released inside.
 /obj/item/holder/proc/setup_unsafe_list()
 	unsafe_containers = typecacheof(list(
 		/obj/item/storage,
@@ -45,12 +45,12 @@ var/list/holder_mob_icon_cache = list()
 	if (!item_state)
 		item_state = icon_state
 
-	//flags_inv |= ALWAYSDRAW //Part of contained sprites overhaul, not ported yet
+	//flags_inv |= ALWAYSDRAW //Part of contained sprites overhaul,69ot ported yet
 
 	START_PROCESSING(SSprocessing, src)
 
 /obj/item/holder/Destroy()
-	reagents = null
+	reagents =69ull
 	STOP_PROCESSING(SSprocessing, src)
 	if (contained)
 		release_mob(FALSE)
@@ -85,7 +85,7 @@ var/list/holder_mob_icon_cache = list()
 
 		return
 	if (isalive && contained.stat == DEAD)
-		held_death(1)//If we get here, it means the mob died sometime after we picked it up. We pass in 1 so that we can play its deathmessage
+		held_death(1)//If we get here, it69eans the69ob died sometime after we picked it up. We pass in 1 so that we can play its deathmessage
 
 
 //This function checks if the current location is safe to release inside
@@ -93,24 +93,24 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/proc/is_unsafe_container(atom/place)
 	return is_type_in_typecache(place, unsafe_containers)
 
-//Releases all mobs inside the holder, then deletes it.
+//Releases all69obs inside the holder, then deletes it.
 //is_unsafe_container should be checked before calling this
-//This function releases mobs into wherever the holder currently is. Its not safe to call from a lot of places
+//This function releases69obs into wherever the holder currently is. Its69ot safe to call from a lot of places
 //Use release_to_floor for a simple, safe release
 /obj/item/holder/proc/release_mob(var/des_self = TRUE)
 	for(var/mob/living/M in contents)
 		var/atom/movable/mob_container
-		mob_container = M
+		mob_container =69
 		mob_container.forceMove(src.loc)//if the holder was placed into a disposal, this should place the animal in the disposal
 		M.reset_view()
 		M.Released()
 
-	contained = null
+	contained =69ull
 	if(des_self)
 		qdel(src)
 
-//Similar to above function, but will not deposit things in any container, only directly on a turf.
-//Can be called safely anywhere. Notably on holders held or worn on a mob
+//Similar to above function, but will69ot deposit things in any container, only directly on a turf.
+//Can be called safely anywhere.69otably on holders held or worn on a69ob
 /obj/item/holder/proc/release_to_floor()
 	var/turf/T = get_turf(src)
 
@@ -119,11 +119,11 @@ var/list/holder_mob_icon_cache = list()
 		M.reset_view()
 		M.Released()
 
-	contained = null
+	contained =69ull
 
 	qdel(src)
 
-/obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/holder/attackby(obj/item/W as obj,69ob/user as69ob)
 	for(var/mob/M in src.contents)
 		M.attackby(W,user)
 
@@ -131,11 +131,11 @@ var/list/holder_mob_icon_cache = list()
 
 	///When an object is put into a container, drop fires twice.
 	//once with it on the floor, and then once in the container
-	//This conditional allows us to ignore that first one. Handling of mobs dropped on the floor is done in process
+	//This conditional allows us to ignore that first one. Handling of69obs dropped on the floor is done in process
 	if (istype(loc, /turf))
 		//Repeat this check
 		//If we're still on the turf a few frames later, then we have actually been dropped or thrown
-		//Release the mob accordingly
+		//Release the69ob accordingly
 		//addtimer(CALLBACK(src, .proc/post_drop), 3)
 		//TODO: Uncomment the above once addtimer is ported
 		spawn(3)
@@ -149,7 +149,7 @@ var/list/holder_mob_icon_cache = list()
 	if (isturf(loc))
 		release_mob()
 
-/obj/item/holder/equipped(var/mob/user, var/slot)
+/obj/item/holder/equipped(var/mob/user,69ar/slot)
 	..()
 	update_location(slot)
 
@@ -164,28 +164,28 @@ var/list/holder_mob_icon_cache = list()
 
 	if (contained && !(contained.stat & DEAD))
 		if (istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/carbon/human/H =69
 			switch(H.a_intent)
 				if(I_HELP)
-					H.visible_message("<span class='notice'>[H] pets [contained].</span>")
+					H.visible_message("<span class='notice'>69H69 pets 69contained69.</span>")
 
 				if(I_HURT)
 					contained.adjustBruteLoss(3)
-					H.visible_message("<span class='alert'>[H] crushes [contained].</span>")
+					H.visible_message("<span class='alert'>69H69 crushes 69contained69.</span>")
 	else
-		to_chat(M, "[contained] is dead.")
+		to_chat(M, "69contained69 is dead.")
 
 
-/obj/item/holder/show_message(var/message, var/m_type)
+/obj/item/holder/show_message(var/message,69ar/m_type)
 	for(var/mob/living/M in contents)
 		M.show_message(message,m_type)
 
-//Mob procs and vars for scooping up
+//Mob procs and69ars for scooping up
 /mob/living/var/holder_type
 
 
 /obj/item/holder/proc/held_death(var/show_deathmessage = 0)
-	//This function is called when the mob in the holder dies somehow.
+	//This function is called when the69ob in the holder dies somehow.
 	isalive = 0
 
 	if (icon_state_dead)
@@ -195,34 +195,34 @@ var/list/holder_mob_icon_cache = list()
 		desc = desc_dead
 
 	if (name_dead)
-		name = name_dead
+		name =69ame_dead
 
 	slot_flags = 0
-	if (show_deathmessage)//Since we've just crushed a creature in our hands, we want everyone nearby to know that it died
-		//We have to play it as a visible message on the grabber, because the normal death message played on the dying mob won't show if it's being held
+	if (show_deathmessage)//Since we've just crushed a creature in our hands, we want everyone69earby to know that it died
+		//We have to play it as a69isible69essage on the grabber, because the69ormal death69essage played on the dying69ob won't show if it's being held
 		var/mob/M = get_holding_mob()
 		if (M)
-			M.visible_message("<b>[contained.name]</b> dies.")
+			M.visible_message("<b>69contained.name69</b> dies.")
 	//update_icon()
 
 
-/mob/living/proc/get_scooped(var/mob/living/carbon/grabber, var/mob/user = null)
+/mob/living/proc/get_scooped(var/mob/living/carbon/grabber,69ar/mob/user =69ull)
 	if(!holder_type || buckled || pinned.len || !Adjacent(grabber))
 		return
 
 	if (user == src)
 		if (grabber.r_hand && grabber.l_hand)
-			to_chat(user, "<span class='warning'>They have no free hands!</span>")
+			to_chat(user, "<span class='warning'>They have69o free hands!</span>")
 			return
 	else if ((grabber.hand == 0 && grabber.r_hand) || (grabber.hand == 1 && grabber.l_hand))//Checking if the hand is full
 		to_chat(grabber, "<span class='warning'>Your hand is full!</span>")
 		return
 
-	src.verbs += /mob/living/proc/get_holder_location//This has to be before we move the mob into the holder
+	src.verbs += /mob/living/proc/get_holder_location//This has to be before we69ove the69ob into the holder
 
 
 	spawn(2)
-		var/obj/item/holder/H = new holder_type(loc)
+		var/obj/item/holder/H =69ew holder_type(loc)
 
 		var/old_loc = src.loc
 
@@ -232,7 +232,7 @@ var/list/holder_mob_icon_cache = list()
 		if (src.stat == DEAD)
 			H.held_death()//We've scooped up an animal that's already dead. use the proper dead icons
 		else
-			H.isalive = 1//We note that the mob is alive when picked up. If it dies later, we can know that its death happened while held, and play its deathmessage for it
+			H.isalive = 1//We69ote that the69ob is alive when picked up. If it dies later, we can know that its death happened while held, and play its deathmessage for it
 
 		var/success = 0
 		if (src == user)
@@ -245,23 +245,23 @@ var/list/holder_mob_icon_cache = list()
 			if (isturf(old_loc))
 				src.do_pickup_animation(grabber,old_loc)
 			if (user == src)
-				to_chat(grabber, "<span class='notice'>[src.name] climbs up onto you.</span>")
-				to_chat(src, "<span class='notice'>You climb up onto [grabber].</span>")
+				to_chat(grabber, "<span class='notice'>69src.name69 climbs up onto you.</span>")
+				to_chat(src, "<span class='notice'>You climb up onto 69grabber69.</span>")
 			else
-				to_chat(grabber, "<span class='notice'>You scoop up [src].</span>")
-				to_chat(src, "<span class='notice'>[grabber] scoops you up.</span>")
+				to_chat(grabber, "<span class='notice'>You scoop up 69src69.</span>")
+				to_chat(src, "<span class='notice'>69grabber69 scoops you up.</span>")
 
 			H.sync(src)
 
 		else
 			to_chat(user, "Failed, try again!")
-			//If the scooping up failed something must have gone wrong
+			//If the scooping up failed something69ust have gone wrong
 			H.release_mob()
 
 
 /mob/living/proc/get_holder_location()
 	set category = "Abilities"
-	set name = "Check held location"
+	set69ame = "Check held location"
 	set desc = "Find out where on their person, someone is holding you."
 
 	if (!usr.get_holding_mob())
@@ -273,7 +273,7 @@ var/list/holder_mob_icon_cache = list()
 		H.report_onmob_location(0, H.get_equip_slot(), src)
 
 /obj/item/holder/human
-	icon = null
+	icon =69ull
 	var/holder_icon = 'icons/mob/holder_complex.dmi'
 	var/list/generate_for_slots = list(slot_l_hand_str, slot_r_hand_str, slot_back_str)
 	slot_flags = SLOT_BACK
@@ -282,13 +282,13 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/proc/sync(var/mob/living/M)
 	dir = 2
 	overlays.Cut()
-	icon = M.icon
-	icon_state = M.icon_state
-	item_state = M.item_state
-	color = M.color
-	name = M.name
-	desc = M.desc
-	overlays |= M.overlays
+	icon =69.icon
+	icon_state =69.icon_state
+	item_state =69.item_state
+	color =69.color
+	name =69.name
+	desc =69.desc
+	overlays |=69.overlays
 	last_holder = loc
 	update_wear_icon()
 
@@ -305,8 +305,8 @@ var/list/holder_mob_icon_cache = list()
 
 
 
-//This function provides a verbose message describing where something is on a person. Intended for mobs in holders
-/obj/proc/report_onmob_location(var/justmoved, var/slot = null, var/mob/reportto)
+//This function provides a69erbose69essage describing where something is on a person. Intended for69obs in holders
+/obj/proc/report_onmob_location(var/justmoved,69ar/slot =69ull,69ar/mob/reportto)
 	var/mob/living/carbon/human/H//The person who the item is on
 	var/newlocation
 	var/preposition= ""
@@ -315,14 +315,14 @@ var/list/holder_mob_icon_cache = list()
 	if (!reportto)
 		return 0
 
-	if (istype(loc, /mob/living/carbon/human))//This function is for finding where we are on a human. not valid otherwise
+	if (istype(loc, /mob/living/carbon/human))//This function is for finding where we are on a human.69ot69alid otherwise
 		H = loc
 
 	else
 		H = get_holding_mob()
 
 
-	if (slot != null)
+	if (slot !=69ull)
 
 		if (slot_l_hand == slot)
 			if (justmoved)
@@ -402,7 +402,7 @@ var/list/holder_mob_icon_cache = list()
 			else if (slot_r_ear == slot)
 				preposition = "on"
 				action3 = "wears"
-				newlocation = "right shoulder"//Ill use ear slots for wearing mobs on the shoulder in future
+				newlocation = "right shoulder"//Ill use ear slots for wearing69obs on the shoulder in future
 			else if (slot_l_ear == slot)
 				preposition = "on"
 				action3 = "wears"
@@ -433,65 +433,65 @@ var/list/holder_mob_icon_cache = list()
 			preposition = "inside"
 
 	if (justmoved)
-		reportto.visible_message("<span class='notice'>[H] [action3] [reportto] [preposition] their [newlocation]</span>", "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>", "")
+		reportto.visible_message("<span class='notice'>69H69 69action369 69reportto69 69preposition69 their 69newlocation69</span>", "<span class='notice'>You are 69action69 69preposition69 69H69's 69newlocation69</span>", "")
 	else
-		to_chat(reportto, "<span class='notice'>You are [action] [preposition] [H]'s [newlocation]</span>")
+		to_chat(reportto, "<span class='notice'>You are 69action69 69preposition69 69H69's 69newlocation69</span>")
 
 
 
 /atom/proc/get_holding_mob()
-	//This function will return the mob which is holding this holder, or null if it's not held
-	//It recurses up the hierarchy out of containers until it reaches a mob, or a turf, or hits the limit
-	var/x = 0//As a safety, we'll crawl up a maximum of five layers
+	//This function will return the69ob which is holding this holder, or69ull if it's69ot held
+	//It recurses up the hierarchy out of containers until it reaches a69ob, or a turf, or hits the limit
+	var/x = 0//As a safety, we'll crawl up a69aximum of five layers
 	var/atom/A = src
 	while (x < 5)
 		x++
 		if (isnull(A))
-			return null
+			return69ull
 
 		A = A.loc
 		if (istype(A, /turf))
-			return null//We must be on a table or a floor, or maybe in a wall. Either way we're not held.
+			return69ull//We69ust be on a table or a floor, or69aybe in a wall. Either way we're69ot held.
 
 		if (ismob(A))
 			return A
-		//If none of the above are true, we must be inside a box or backpack or something. Keep recursing up.
+		//If69one of the above are true, we69ust be inside a box or backpack or something. Keep recursing up.
 
-	return null//If we get here, the holder must be buried many layers deep in nested containers. Shouldn't happen
+	return69ull//If we get here, the holder69ust be buried69any layers deep in69ested containers. Shouldn't happen
 
 
 //Mob specific holders.
-//w_class mainly determines whether they can fit in containers and pockets
+//w_class69ainly determines whether they can fit in containers and pockets
 
 
 
 /obj/item/holder/drone
 	name = "maintenance drone"
-	desc = "A small maintenance robot."
+	desc = "A small69aintenance robot."
 	icon_state = "drone"
 	item_state = "drone"
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_BULKY
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	//contained_sprite = 1 //Part of contained sprite overhaul,69ot yet ported
 
 /obj/item/holder/drone/heavy
 	name = "construction drone"
-	desc = "A really big maintenance robot."
+	desc = "A really big69aintenance robot."
 	icon_state = "constructiondrone"
 	item_state = "constructiondrone"
-	w_class = ITEM_SIZE_GARGANTUAN//You're not fitting this thing in a backpack
+	w_class = ITEM_SIZE_GARGANTUAN//You're69ot fitting this thing in a backpack
 
 
 /obj/item/holder/cat
 	name = "cat"
-	desc = "A cat. Meow."
+	desc = "A cat.69eow."
 	desc_dead = "A dead cat."
 	icon_state = "cat_tabby"
 	icon_state_dead = "cat_tabby_dead"
 	item_state = "cat"
-//Setting item state to cat saves on some duplication for the in-hand versions, but we cant use it for head.
-//Instead, the head versions are done by duplicating the cat
+//Setting item state to cat saves on some duplication for the in-hand69ersions, but we cant use it for head.
+//Instead, the head69ersions are done by duplicating the cat
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_NORMAL
 
@@ -517,14 +517,14 @@ var/list/holder_mob_icon_cache = list()
 	slot_flags = SLOT_HEAD
 	w_class = ITEM_SIZE_TINY
 	item_state = "penny"
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	//contained_sprite = 1 //Part of contained sprite overhaul,69ot yet ported
 
 
 /obj/item/holder/corgi
 	name = "corgi"
 	icon_state = "corgi"
 	item_state = "corgi"
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	//contained_sprite = 1 //Part of contained sprite overhaul,69ot yet ported
 	w_class = ITEM_SIZE_NORMAL
 
 /obj/item/holder/borer
@@ -536,25 +536,25 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/holder/monkey
 	name = "monkey"
-	desc = "A monkey. Ook."
+	desc = "A69onkey. Ook."
 	icon_state = "monkey"
 	item_state = "monkey"
 	slot_flags = SLOT_HEAD
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	//contained_sprite = 1 //Part of contained sprite overhaul,69ot yet ported
 	w_class = ITEM_SIZE_NORMAL
 
 
-//Holders for mice
+//Holders for69ice
 /obj/item/holder/mouse
 	name = "mouse"
 	desc = "A fuzzy little critter."
-	desc_dead = "It's filthy vermin, throw it in the trash."
+	desc_dead = "It's filthy69ermin, throw it in the trash."
 	icon = 'icons/mob/mouse.dmi'
 	icon_state = "mouse_brown_sleep"
 	item_state = "mouse_brown"
 	icon_state_dead = "mouse_brown_dead"
 	slot_flags = SLOT_EARS | SLOT_HEAD
-	//contained_sprite = 1 //Part of contained sprite overhaul, not yet ported
+	//contained_sprite = 1 //Part of contained sprite overhaul,69ot yet ported
 	origin_tech = list(TECH_BIO = 2)
 	w_class = ITEM_SIZE_TINY
 
@@ -576,10 +576,10 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/holder/GetIdCard()
 	for(var/mob/M in contents)
-		var/obj/item/I = M.GetIdCard()
+		var/obj/item/I =69.GetIdCard()
 		if(I)
 			return I
-	return null
+	return69ull
 
 /*
 //Lizards
@@ -598,7 +598,7 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/holder/chick
 	name = "chick"
 	desc = "A fluffy little chick, until it grows up."
-	desc_dead = "How could you do this? You monster!"
+	desc_dead = "How could you do this? You69onster!"
 	icon_state_dead = "chick_dead"
 	slot_flags = 0
 	icon_state = "chick"
@@ -630,9 +630,9 @@ var/list/holder_mob_icon_cache = list()
 
 //Mushroom
 /obj/item/holder/mushroom
-	name = "walking mushroom"
+	name = "walking69ushroom"
 	name_dead = "mushroom"
-	desc = "A massive mushroom... with legs?"
+	desc = "A69assive69ushroom... with legs?"
 	desc_dead = "Shame, he was a really fun-guy."	// HA
 	icon_state = "mushroom"
 	icon_state_dead = "mushroom_dead"
@@ -692,7 +692,7 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/holder/monkey/neaera
 	name = "neaera"
-	desc = "A neaera."
+	desc = "A69eaera."
 	icon_state = "neaera"
 	item_state = "neaera"
 	slot_flags = SLOT_HEAD
@@ -700,7 +700,7 @@ var/list/holder_mob_icon_cache = list()
 
 
 /obj/item/holder/diona
-	name = "diona nymph"
+	name = "diona69ymph"
 	desc = "A little plant critter."
 	desc_dead = "It used to be a little plant critter."
 	icon = 'icons/mob/diona.dmi'
@@ -711,14 +711,14 @@ var/list/holder_mob_icon_cache = list()
 	w_class = ITEM_SIZE_SMALL
 */
 
-//The block below is for resomi, not currently relevant
+//The block below is for resomi,69ot currently relevant
 /*
 /obj/item/holder/human/sync(var/mob/living/M)
 	cut_overlays()
 	// Generate appropriate on-mob icons.
-	var/mob/living/carbon/human/owner = M
+	var/mob/living/carbon/human/owner =69
 	if(!icon && istype(owner) && owner.species)
-		var/icon/I = new /icon()
+		var/icon/I =69ew /icon()
 
 		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)
 		var/hair_colour = rgb(owner.r_hair, owner.g_hair, owner.b_hair)
@@ -726,15 +726,15 @@ var/list/holder_mob_icon_cache = list()
 		var/species_name = lowertext(owner.species.get_bodytype())
 
 		for(var/cache_entry in generate_for_slots)
-			var/cache_key = "[owner.species]-[cache_entry]-[skin_colour]-[hair_colour]"
-			if(!holder_mob_icon_cache[cache_key])
+			var/cache_key = "69owner.species69-69cache_entry69-69skin_colour69-69hair_colour69"
+			if(!holder_mob_icon_cache69cache_key69)
 
 				// Generate individual icons.
-				var/icon/mob_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_base")
+				var/icon/mob_icon = icon(holder_icon, "69species_name69_holder_69cache_entry69_base")
 				mob_icon.Blend(skin_colour, ICON_ADD)
-				var/icon/hair_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_hair")
+				var/icon/hair_icon = icon(holder_icon, "69species_name69_holder_69cache_entry69_hair")
 				hair_icon.Blend(hair_colour, ICON_ADD)
-				var/icon/eyes_icon = icon(holder_icon, "[species_name]_holder_[cache_entry]_eyes")
+				var/icon/eyes_icon = icon(holder_icon, "69species_name69_holder_69cache_entry69_eyes")
 				eyes_icon.Blend(eye_colour, ICON_ADD)
 
 				// Blend them together.
@@ -742,18 +742,18 @@ var/list/holder_mob_icon_cache = list()
 				mob_icon.Blend(hair_icon, ICON_OVERLAY)
 
 				// Add to the cache.
-				holder_mob_icon_cache[cache_key] = mob_icon
+				holder_mob_icon_cache69cache_key69 =69ob_icon
 
 			var/newstate
 			switch (cache_entry)
 				if (slot_l_hand_str)
-					newstate = "[species_name]_lh"
+					newstate = "69species_name69_lh"
 				if (slot_r_hand_str)
-					newstate = "[species_name]_rh"
+					newstate = "69species_name69_rh"
 				if (slot_back_str)
-					newstate = "[species_name]_ba"
+					newstate = "69species_name69_ba"
 
-			I.Insert(holder_mob_icon_cache[cache_key], newstate)
+			I.Insert(holder_mob_icon_cache69cache_key69,69ewstate)
 
 
 		dir = 2
@@ -765,9 +765,9 @@ var/list/holder_mob_icon_cache = list()
 
 		contained_sprite = 1
 
-		color = M.color
-		name = M.name
-		desc = M.desc
+		color =69.color
+		name =69.name
+		desc =69.desc
 		copy_overlays(M)
 		update_wear_icon()
 

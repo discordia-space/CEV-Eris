@@ -1,14 +1,14 @@
 /mob/living/proc/handle_recoil(var/obj/item/gun/G)
 	deltimer(recoil_reduction_timer)
-	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not wielded.
+	if(G.one_hand_penalty) // If the gun has a two handed penalty and is69ot wielded.
 		if(!G.wielded)
 			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
 
-	var/debug_recoil = min(0.3, G.fire_delay)
+	var/debug_recoil =69in(0.3, G.fire_delay)
 	if(G.fire_delay == 0)
 		debug_recoil = 0.3
 	if(G.burst > 1)
-		debug_recoil = max(debug_recoil, G.burst_delay)
+		debug_recoil =69ax(debug_recoil, G.burst_delay)
 
 	add_recoil(G.recoil_buildup + debug_recoil) // DEBUG, remove the debug_recoil after testing is over!
 
@@ -16,7 +16,7 @@
 	deltimer(recoil_reduction_timer)
 	add_recoil(recoil_buildup)
 
-mob/proc/handle_movement_recoil() // Used in movement/mob.dm
+mob/proc/handle_movement_recoil() // Used in69ovement/mob.dm
 	return // Only the living have recoil
 
 /mob/living/handle_movement_recoil()
@@ -44,12 +44,12 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 
 	var/minimum = 1
 	var/scale = 0.9
-	var/limit = minimum / (1 - scale)
+	var/limit =69inimum / (1 - scale)
 
 	if(recoil >= limit)
 		recoil *= scale
-	else if(recoil < limit && recoil > minimum)
-		recoil -= minimum
+	else if(recoil < limit && recoil >69inimum)
+		recoil -=69inimum
 	else
 		recoil = 0
 
@@ -63,7 +63,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 		if(H.head)
 			offset += H.head.obscuration
 	offset = round(offset)
-	offset = min(offset, MAX_ACCURACY_OFFSET)
+	offset =69in(offset,69AX_ACCURACY_OFFSET)
 	return offset
 
 //Called after setting recoil
@@ -92,35 +92,35 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 	if(client)
 		client.mouse_pointer_icon = initial(client.mouse_pointer_icon)
 
-/proc/find_cursor_icon(var/icon_file, var/offset)
-	var/list/L = GLOB.cursor_icons[icon_file]
+/proc/find_cursor_icon(var/icon_file,69ar/offset)
+	var/list/L = GLOB.cursor_icons69icon_file69
 	if(L)
-		return L["[offset]"]
+		return L69"69offset69"69
 
-/proc/add_cursor_icon(var/icon/icon, var/icon_file, var/offset)
-	var/list/L = GLOB.cursor_icons[icon_file]
+/proc/add_cursor_icon(var/icon/icon,69ar/icon_file,69ar/offset)
+	var/list/L = GLOB.cursor_icons69icon_file69
 	if(!L)
-		GLOB.cursor_icons[icon_file] = list()
-		L = GLOB.cursor_icons[icon_file]
-	L["[offset]"] = icon
+		GLOB.cursor_icons69icon_file69 = list()
+		L = GLOB.cursor_icons69icon_file69
+	L69"69offset69"69 = icon
 
-/proc/make_cursor_icon(var/icon_file, var/offset)
+/proc/make_cursor_icon(var/icon_file,69ar/offset)
 	var/icon/base = icon('icons/effects/96x96.dmi')
 	var/icon/scaled = icon('icons/obj/gun_cursors/standard/standard.dmi') //Default cursor, cut into pieces according to their direction
 	base.Blend(scaled, ICON_OVERLAY, x = 32, y = 32)
 
 	for(var/dir in list(NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
-		var/icon/overlay = icon('icons/obj/gun_cursors/standard/standard.dmi', "[dir]")
+		var/icon/overlay = icon('icons/obj/gun_cursors/standard/standard.dmi', "69dir69")
 		var/pixel_y
 		var/pixel_x
-		if(dir & NORTH)
-			pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+		if(dir &69ORTH)
+			pixel_y = CLAMP(offset, -MAX_ACCURACY_OFFSET,69AX_ACCURACY_OFFSET)
 		if(dir & SOUTH)
-			pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+			pixel_y = CLAMP(-offset, -MAX_ACCURACY_OFFSET,69AX_ACCURACY_OFFSET)
 		if(dir & EAST)
-			pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+			pixel_x = CLAMP(offset, -MAX_ACCURACY_OFFSET,69AX_ACCURACY_OFFSET)
 		if(dir & WEST)
-			pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET, MAX_ACCURACY_OFFSET)
+			pixel_x = CLAMP(-offset, -MAX_ACCURACY_OFFSET,69AX_ACCURACY_OFFSET)
 		base.Blend(overlay, ICON_OVERLAY, x=32+pixel_x, y=32+pixel_y)
 	add_cursor_icon(base, 'icons/obj/gun_cursors/standard/standard.dmi', offset)
 	return base
@@ -128,7 +128,7 @@ mob/proc/handle_movement_recoil() // Used in movement/mob.dm
 /proc/send_all_cursor_icons(var/client/C)
 	var/list/cursor_icons = GLOB.cursor_icons
 	for(var/icon_file in cursor_icons)
-		var/list/icons = cursor_icons[icon_file]
+		var/list/icons = cursor_icons69icon_file69
 		for(var/offset in icons)
-			var/icon/I = icons[offset]
+			var/icon/I = icons69offset69
 			C << I

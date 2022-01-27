@@ -1,19 +1,19 @@
 // Switch this out to use a database at some point. Each ckey is
 // associated with a list of custom item datums. When the character
 // spawns, the list is checked and all appropriate datums are spawned.
-// See config/example/custom_items.txt for a more detailed overview
+// See config/example/custom_items.txt for a69ore detailed overview
 // of how the config system works.
 
 // CUSTOM ITEM ICONS:
-// Inventory icons must be in CUSTOM_ITEM_OBJ with state name [item_icon].
-// On-mob icons must be in CUSTOM_ITEM_MOB with state name [item_icon].
-// Inhands must be in CUSTOM_ITEM_MOB as [icon_state]_l and [icon_state]_r.
+// Inventory icons69ust be in CUSTOM_ITEM_OBJ with state name 69item_icon69.
+// On-mob icons69ust be in CUSTOM_ITEM_MOB with state name 69item_icon69.
+// Inhands69ust be in CUSTOM_ITEM_MOB as 69icon_state69_l and 69icon_state69_r.
 
-// Kits must have mech icons in CUSTOM_ITEM_OBJ under [kit_icon].
-// Broken must be [kit_icon]-broken and open must be [kit_icon]-open.
+// Kits69ust have69ech icons in CUSTOM_ITEM_OBJ under 69kit_icon69.
+// Broken69ust be 69kit_icon69-broken and open69ust be 69kit_icon69-open.
 
-// Kits must also have hardsuit icons in CUSTOM_ITEM_MOB as [kit_icon]_suit
-// and [kit_icon]_helmet, and in CUSTOM_ITEM_OBJ as [kit_icon].
+// Kits69ust also have hardsuit icons in CUSTOM_ITEM_MOB as 69kit_icon69_suit
+// and 69kit_icon69_helmet, and in CUSTOM_ITEM_OBJ as 69kit_icon69.
 
 /var/list/custom_items = list()
 
@@ -89,23 +89,23 @@
 	var/list/available_states = icon_states(CUSTOM_ITEM_MOB)
 
 	//If l_hand or r_hand are not present, preserve them using item_icons/item_state_slots
-	//Then use icon_override to make every other slot use the custom sprites by default.
-	//This has to be done before we touch any of item's vars
-	if(!("[item_icon]_l" in available_states))
-		new_item_state_slots[slot_l_hand_str] = get_state(item, slot_l_hand_str, "_l")
-		new_item_icons[slot_l_hand_str] = get_icon(item, slot_l_hand_str, 'icons/mob/items/lefthand.dmi')
-	if(!("[item_icon]_r" in available_states))
-		new_item_state_slots[slot_r_hand_str] = get_state(item, slot_r_hand_str, "_r")
-		new_item_icons[slot_r_hand_str] = get_icon(item, slot_r_hand_str, 'icons/mob/items/righthand.dmi')
+	//Then use icon_override to69ake every other slot use the custom sprites by default.
+	//This has to be done before we touch any of item's69ars
+	if(!("69item_icon69_l" in available_states))
+		new_item_state_slots69slot_l_hand_str69 = get_state(item, slot_l_hand_str, "_l")
+		new_item_icons69slot_l_hand_str69 = get_icon(item, slot_l_hand_str, 'icons/mob/items/lefthand.dmi')
+	if(!("69item_icon69_r" in available_states))
+		new_item_state_slots69slot_r_hand_str69 = get_state(item, slot_r_hand_str, "_r")
+		new_item_icons69slot_r_hand_str69 = get_icon(item, slot_r_hand_str, 'icons/mob/items/righthand.dmi')
 
 	item.item_state_slots = new_item_state_slots
 	item.item_icons = new_item_icons
 
-//this has to mirror the way update_inv_*_hand() selects the state
-/datum/custom_item/proc/get_state(var/obj/item/item, var/slot_str, var/hand_str)
+//this has to69irror the way update_inv_*_hand() selects the state
+/datum/custom_item/proc/get_state(var/obj/item/item,69ar/slot_str,69ar/hand_str)
 	var/t_state
-	if(item.item_state_slots && item.item_state_slots[slot_str])
-		t_state = item.item_state_slots[slot_str]
+	if(item.item_state_slots && item.item_state_slots69slot_str69)
+		t_state = item.item_state_slots69slot_str69
 	else if(item.item_state)
 		t_state = item.item_state
 	else
@@ -114,13 +114,13 @@
 		t_state += hand_str
 	return t_state
 
-//this has to mirror the way update_inv_*_hand() selects the icon
-/datum/custom_item/proc/get_icon(var/obj/item/item, var/slot_str, var/icon/hand_icon)
+//this has to69irror the way update_inv_*_hand() selects the icon
+/datum/custom_item/proc/get_icon(var/obj/item/item,69ar/slot_str,69ar/icon/hand_icon)
 	var/icon/t_icon
 	if(item.icon_override)
 		t_icon = item.icon_override
 	else if(item.item_icons && (slot_str in item.item_icons))
-		t_icon = item.item_icons[slot_str]
+		t_icon = item.item_icons69slot_str69
 	else
 		t_icon = hand_icon
 	return t_icon
@@ -137,9 +137,9 @@
 
 		if(findtext(line, "{", 1, 2) || findtext(line, "}", 1, 2)) // New block!
 			if(current_data && current_data.assoc_key)
-				if(!custom_items[current_data.assoc_key])
-					custom_items[current_data.assoc_key] = list()
-				var/list/L = custom_items[current_data.assoc_key]
+				if(!custom_items69current_data.assoc_key69)
+					custom_items69current_data.assoc_key69 = list()
+				var/list/L = custom_items69current_data.assoc_key69
 				L |= current_data
 			current_data = null
 
@@ -183,9 +183,9 @@
 				current_data.additional_data = field_data
 	return 1
 
-//gets the relevant list for the key from the listlist if it exists, check to make sure they are meant to have it and then calls the giving function
+//gets the relevant list for the key from the listlist if it exists, check to69ake sure they are69eant to have it and then calls the giving function
 /proc/equip_custom_items(mob/living/carbon/human/M)
-	var/list/key_list = custom_items[M.ckey]
+	var/list/key_list = custom_items69M.ckey69
 	if(!key_list || key_list.len < 1)
 		return
 
@@ -196,7 +196,7 @@
 			continue
 
 		// Check for required access.
-		var/obj/item/card/id/current_id = M.wear_id
+		var/obj/item/card/id/current_id =69.wear_id
 		if(citem.req_access && citem.req_access > 0)
 			if(!(istype(current_id) && (citem.req_access in current_id.access)))
 				continue
@@ -204,7 +204,7 @@
 		// Check for required job title.
 		if(citem.req_titles && citem.req_titles.len > 0)
 			var/has_title
-			var/current_title = M.mind.assigned_role
+			var/current_title =69.mind.assigned_role
 			for(var/title in citem.req_titles)
 				if(title == current_title)
 					has_title = 1
@@ -215,9 +215,9 @@
 		// ID cards and PDAs are applied directly to the existing object rather than spawned fresh.
 		var/obj/item/existing_item
 		if(citem.item_path == /obj/item/card/id && istype(current_id)) //Set earlier.
-			existing_item = M.wear_id
+			existing_item =69.wear_id
 		else if(citem.item_path == /obj/item/modular_computer/pda)
-			existing_item = locate(/obj/item/modular_computer/pda) in M.contents
+			existing_item = locate(/obj/item/modular_computer/pda) in69.contents
 
 		// Spawn and equip the item.
 		if(existing_item)
@@ -225,8 +225,8 @@
 		else
 			place_custom_item(M,citem)
 
-// Places the item on the target mob.
-/proc/place_custom_item(mob/living/carbon/human/M, var/datum/custom_item/citem)
+// Places the item on the target69ob.
+/proc/place_custom_item(mob/living/carbon/human/M,69ar/datum/custom_item/citem)
 
 	if(!citem) return
 	var/obj/item/newitem = citem.spawn_item()

@@ -1,4 +1,4 @@
-// These are basically USB data sticks and may be used to transfer files between devices
+// These are basically USB data sticks and69ay be used to transfer files between devices
 /obj/item/computer_hardware/hard_drive/portable
 	name = "data disk"
 	desc = "A removable disk used to store data."
@@ -11,7 +11,7 @@
 	max_capacity = 64
 	default_files = list()
 	origin_tech = list(TECH_DATA = 2)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.25)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 2,69ATERIAL_GOLD = 0.25)
 	price_tag = 25
 	var/disk_name
 	var/license = 0
@@ -21,7 +21,7 @@
 	icon_state = "yellow"
 	max_capacity = 16
 	origin_tech = list(TECH_DATA = 1)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 2)
 	price_tag = 10
 
 /obj/item/computer_hardware/hard_drive/portable/advanced
@@ -30,7 +30,7 @@
 	icon_state = "black"
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 0.5)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 2,69ATERIAL_GOLD = 0.5)
 	price_tag = 150
 
 
@@ -59,18 +59,18 @@
 	. = ..()
 	w_class = ITEM_SIZE_SMALL
 	if(disk_name)
-		SetName("[initial(name)] - '[disk_name]'")
+		SetName("69initial(name)69 - '69disk_name69'")
 
-/obj/item/computer_hardware/hard_drive/portable/attackby(obj/item/I, mob/user, params)
+/obj/item/computer_hardware/hard_drive/portable/attackby(obj/item/I,69ob/user, params)
 	if(istype(I, /obj/item/pen))
-		var/new_name = input(user, "What would you like to label the disk?", "Tape labeling") as null|text
+		var/new_name = input(user, "What would you like to label the disk?", "Tape labeling") as69ull|text
 		if(isnull(new_name)) return
 		new_name = sanitizeSafe(new_name)
 		if(new_name)
-			SetName("[initial(name)] - '[new_name]'")
-			to_chat(user, SPAN_NOTICE("You label the disk '[new_name]'."))
+			SetName("69initial(name)69 - '69new_name69'")
+			to_chat(user, SPAN_NOTICE("You label the disk '69new_name69'."))
 		else
-			SetName("[initial(name)]")
+			SetName("69initial(name)69")
 			to_chat(user, SPAN_NOTICE("You wipe off the label."))
 		return
 
@@ -78,7 +78,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/install_default_files()
 	if(disk_name)
-		var/datum/computer_file/data/text/D = new
+		var/datum/computer_file/data/text/D =69ew
 		D.filename = "DISK_NAME"
 		D.stored_data = disk_name
 
@@ -87,5 +87,5 @@
 
 /obj/item/computer_hardware/hard_drive/portable/ui_data()
 	var/list/data = ..()
-	data["license"] = license
+	data69"license"69 = license
 	return data

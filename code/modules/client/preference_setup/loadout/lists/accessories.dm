@@ -10,15 +10,15 @@
 /datum/gear/accessory/tie/New()
 	..()
 	var/ties = list()
-	ties["blue tie"] = /obj/item/clothing/accessory/blue
-	ties["red tie"] = /obj/item/clothing/accessory/red
-	ties["blue tie, clip"] = /obj/item/clothing/accessory/blue_clip
-	ties["red long tie"] = /obj/item/clothing/accessory/red_long
-	ties["black tie"] = /obj/item/clothing/accessory/black
-	ties["yellow tie"] = /obj/item/clothing/accessory/yellow
-	ties["navy tie"] = /obj/item/clothing/accessory/navy
-	ties["horrible tie"] = /obj/item/clothing/accessory/horrible
-	ties["brown tie"] = /obj/item/clothing/accessory/brown
+	ties69"blue tie"69 = /obj/item/clothing/accessory/blue
+	ties69"red tie"69 = /obj/item/clothing/accessory/red
+	ties69"blue tie, clip"69 = /obj/item/clothing/accessory/blue_clip
+	ties69"red long tie"69 = /obj/item/clothing/accessory/red_long
+	ties69"black tie"69 = /obj/item/clothing/accessory/black
+	ties69"yellow tie"69 = /obj/item/clothing/accessory/yellow
+	ties69"navy tie"69 = /obj/item/clothing/accessory/navy
+	ties69"horrible tie"69 = /obj/item/clothing/accessory/horrible
+	ties69"brown tie"69 = /obj/item/clothing/accessory/brown
 	gear_tweaks += new/datum/gear_tweak/path(ties)
 
 /datum/gear/accessory/tie_color
@@ -29,8 +29,8 @@
 /datum/gear/accessory/tie_color/New()
 	..()
 	var/ties = list()
-	ties["tie"] = /obj/item/clothing/accessory
-	ties["striped tie"] = /obj/item/clothing/accessory/long
+	ties69"tie"69 = /obj/item/clothing/accessory
+	ties69"striped tie"69 = /obj/item/clothing/accessory/long
 	gear_tweaks += new/datum/gear_tweak/path(ties)
 */
 /datum/gear/accessory
@@ -59,7 +59,7 @@
 	path = /obj/item/clothing/accessory/armband/hydro
 
 /datum/gear/accessory/medical
-	display_name = "armband, medical"
+	display_name = "armband,69edical"
 	path = /obj/item/clothing/accessory/armband/med
 	allowed_roles = list(JOBS_MEDICAL)
 

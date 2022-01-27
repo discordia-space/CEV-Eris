@@ -1,216 +1,216 @@
-#include "blacksite_small.dmm"
-#include "blacksite_medium.dmm"
-#include "blacksite_large.dmm"
+#include "blac69site_small.dmm"
+#include "blac69site_medium.dmm"
+#include "blac69site_lar69e.dmm"
 
 /////
-// Map data
+//69ap data
 /////
-/obj/map_data/blacksite
-	name = "Blacksite Level"
-	is_player_level = TRUE
+/ob69/map_data/blac69site
+	name = "Blac69site Level"
+	is_pla69er_level = TRUE
 	is_contact_level = TRUE
 	is_accessable_level = TRUE
 	is_sealed = TRUE
-	height = 1
+	hei69ht = 1
 
-/obj/map_data/blacksite/small
-	name = "Small Blacksite Level"
+/ob69/map_data/blac69site/small
+	name = "Small Blac69site Level"
 
-/obj/map_data/blacksite/medium
-	name = "Medium Blacksite Level"
+/ob69/map_data/blac69site/medium
+	name = "Medium Blac69site Level"
 
-/obj/map_data/blacksite/large
-	name = "Large Blacksite Level"
+/ob69/map_data/blac69site/lar69e
+	name = "Lar69e Blac69site Level"
 
 /////
-// Map templates
+//69ap templates
 /////
-/datum/map_template/blacksite
-	template_flags = 0
-	var/prefix = "maps/encounters/blacksite/blacksite_"
-	var/suffix = null
+/datum/map_template/blac69site
+	template_fla69s = 0
+	var/prefix = "maps/encounters/blac69site/blac69site_"
+	var/suffix =69ull
 
-/datum/map_template/blacksite/New()
-	mappath += (prefix + suffix)
-	..()
+/datum/map_template/blac69site/New(69
+	mappath += (prefix + suffix69
+	..(69
 
-/datum/map_template/blacksite/small
-	name = "blacksite_small"
-	id = "blacksite_small"
-	suffix = "small_chunk.dmm"
+/datum/map_template/blac69site/small
+	name = "blac69site_small"
+	id = "blac69site_small"
+	suffix = "small_chun69.dmm"
 
-/datum/map_template/blacksite/medium
-	name = "blacksite_medium"
-	id = "blacksite_medium"
-	suffix = "medium_chunk.dmm"
+/datum/map_template/blac69site/medium
+	name = "blac69site_medium"
+	id = "blac69site_medium"
+	suffix = "medium_chun69.dmm"
 
-/datum/map_template/blacksite/large
-	name = "blacksite_large"
-	id = "blacksite_large"
-	suffix = "large_chunk.dmm"
+/datum/map_template/blac69site/lar69e
+	name = "blac69site_lar69e"
+	id = "blac69site_lar69e"
+	suffix = "lar69e_chun69.dmm"
 
 /////
 // Overmap effects
 /////
-/obj/effect/overmap/sector/blacksite
-	name = "unknown spatial phenomenon"
-	desc = "An abandoned blacksite, carved inside an asteroid. Might be a hundred years old."
-	generic_waypoints = list(
-		"nav_blacksite_1",
-		"nav_blacksite_2"
-	)
-	known = 0
-	invisibility = 101
+/ob69/effect/overmap/sector/blac69site
+	name = "un69nown spatial phenomenon"
+	desc = "An abandoned blac69site, carved inside an asteroid.69i69ht be a hundred 69ears old."
+	69eneric_wa69points = list(
+		"nav_blac69site_1",
+		"nav_blac69site_2"
+	69
+	69nown = 0
+	invisibilit69 = 101
 
-	name_stages = list("abandoned blacksite", "unknown object", "unknown spatial phenomenon")
-	icon_stages = list("ring_destroyed", "object", "poi")
+	name_sta69es = list("abandoned blac69site", "un69nown ob69ect", "un69nown spatial phenomenon"69
+	icon_sta69es = list("rin69_destro69ed", "ob69ect", "poi"69
 
-/obj/effect/overmap/sector/blacksite/Initialize()
-	. = ..()
-	new /obj/effect/overmap_event/poi/blacksite(loc, src)
+/ob69/effect/overmap/sector/blac69site/Initialize(69
+	. = ..(69
+	new /ob69/effect/overmap_event/poi/blac69site(loc, src69
 
-/obj/effect/overmap/sector/blacksite/small
-	generic_waypoints = list(
-		"nav_blacksite_small_1",
-		"nav_blacksite_small_2"
-	)
+/ob69/effect/overmap/sector/blac69site/small
+	69eneric_wa69points = list(
+		"nav_blac69site_small_1",
+		"nav_blac69site_small_2"
+	69
 
-/obj/effect/overmap/sector/blacksite/medium
-	generic_waypoints = list(
-		"nav_blacksite_medium_1",
-		"nav_blacksite_medium_2"
-	)
+/ob69/effect/overmap/sector/blac69site/medium
+	69eneric_wa69points = list(
+		"nav_blac69site_medium_1",
+		"nav_blac69site_medium_2"
+	69
 
-/obj/effect/overmap/sector/blacksite/large
-	generic_waypoints = list(
-		"nav_blacksite_large_1",
-		"nav_blacksite_large_2"
-	)
+/ob69/effect/overmap/sector/blac69site/lar69e
+	69eneric_wa69points = list(
+		"nav_blac69site_lar69e_1",
+		"nav_blac69site_lar69e_2"
+	69
 
 /////
-// Shuttle landmarks
+// Shuttle landmar69s
 /////
-/obj/effect/shuttle_landmark/blacksite
-	name = "Abandoned Blacksite Navpoint"
-	icon_state = "shuttle-green"
+/ob69/effect/shuttle_landmar69/blac69site
+	name = "Abandoned Blac69site69avpoint"
+	icon_state = "shuttle-69reen"
 	base_turf = /turf/space
 	var/x_corner
-	var/y_corner
-	var/datum/map_template/chunk_template
+	var/69_corner
+	var/datum/map_template/chun69_template
 
-/obj/effect/shuttle_landmark/blacksite/trigger_landmark()
-	var/turf/T = get_turf(locate(x_corner, y_corner, z))  // Bottom left corner turf
-	load_chunk(T, chunk_template, SOUTH)  // Load chunk
+/ob69/effect/shuttle_landmar69/blac69site/tri6969er_landmar69(69
+	var/turf/T = 69et_turf(locate(x_corner, 69_corner, z6969  // Bottom left corner turf
+	load_chun69(T, chun69_template, SOUTH69  // Load chun69
 
-	// Wake up all mobs because roombas are spawning in stasis
-	for(var/mob/living/A in SSmobs.mob_living_by_zlevel[z])
-		spawn(1)
-			if(A)
+	// Wa69e up all69obs because roombas are spawnin69 in stasis
+	for(var/mob/livin69/A in SSmobs.mob_livin69_b69_zlevel69z6969
+		spawn(169
+			if(A69
 				A.stasis = FALSE
-				A.try_activate_ai()
+				A.tr69_activate_ai(69
 
-/obj/effect/shuttle_landmark/blacksite/small
+/ob69/effect/shuttle_landmar69/blac69site/small
 	x_corner = 44
-	y_corner = 78
+	69_corner = 78
 
-// Set chunk_template in Initialize and not New because otherwise it causes a map preloading
-// that runtimes because the shuttle_landmark is created before the SSmapping system is launched
-/obj/effect/shuttle_landmark/blacksite/small/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/small
+// Set chun69_template in Initialize and69ot69ew because otherwise it causes a69ap preloadin69
+// that runtimes because the shuttle_landmar69 is created before the SSmappin69 s69stem is launched
+/ob69/effect/shuttle_landmar69/blac69site/small/Initialize(69
+	..(69
+	chun69_template =69ew /datum/map_template/blac69site/small
 
-/obj/effect/shuttle_landmark/blacksite/medium
+/ob69/effect/shuttle_landmar69/blac69site/medium
 	x_corner = 83
-	y_corner = 80
+	69_corner = 80
 
-/obj/effect/shuttle_landmark/blacksite/medium/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/medium
+/ob69/effect/shuttle_landmar69/blac69site/medium/Initialize(69
+	..(69
+	chun69_template =69ew /datum/map_template/blac69site/medium
 
-/obj/effect/shuttle_landmark/blacksite/large
+/ob69/effect/shuttle_landmar69/blac69site/lar69e
 	x_corner = 83
-	y_corner = 80
+	69_corner = 80
 
-/obj/effect/shuttle_landmark/blacksite/large/Initialize()
-	..()
-	chunk_template = new /datum/map_template/blacksite/medium
+/ob69/effect/shuttle_landmar69/blac69site/lar69e/Initialize(69
+	..(69
+	chun69_template =69ew /datum/map_template/blac69site/medium
 
-// Navigation points for shuttle travel
-/obj/effect/shuttle_landmark/blacksite/small/nav1
-	name = "Abandoned Small Blacksite Navpoint #1"
-	landmark_tag = "nav_blacksite_small_1"
+//69avi69ation points for shuttle travel
+/ob69/effect/shuttle_landmar69/blac69site/small/nav1
+	name = "Abandoned Small Blac69site69avpoint #1"
+	landmar69_ta69 = "nav_blac69site_small_1"
 
-/obj/effect/shuttle_landmark/blacksite/small/nav2
-	name = "Abandoned Small Blacksite Navpoint #2"
-	landmark_tag = "nav_blacksite_small_2"
+/ob69/effect/shuttle_landmar69/blac69site/small/nav2
+	name = "Abandoned Small Blac69site69avpoint #2"
+	landmar69_ta69 = "nav_blac69site_small_2"
 
-/obj/effect/shuttle_landmark/blacksite/medium/nav1
-	name = "Abandoned Medium Blacksite Navpoint #1"
-	landmark_tag = "nav_blacksite_medium_1"
+/ob69/effect/shuttle_landmar69/blac69site/medium/nav1
+	name = "Abandoned69edium Blac69site69avpoint #1"
+	landmar69_ta69 = "nav_blac69site_medium_1"
 
-/obj/effect/shuttle_landmark/blacksite/medium/nav2
-	name = "Abandoned Medium Blacksite Navpoint #2"
-	landmark_tag = "nav_blacksite_medium_2"
+/ob69/effect/shuttle_landmar69/blac69site/medium/nav2
+	name = "Abandoned69edium Blac69site69avpoint #2"
+	landmar69_ta69 = "nav_blac69site_medium_2"
 
-/obj/effect/shuttle_landmark/blacksite/large/nav1
-	name = "Abandoned Large Blacksite Navpoint #1"
-	landmark_tag = "nav_blacksite_large_1"
+/ob69/effect/shuttle_landmar69/blac69site/lar69e/nav1
+	name = "Abandoned Lar69e Blac69site69avpoint #1"
+	landmar69_ta69 = "nav_blac69site_lar69e_1"
 
-/obj/effect/shuttle_landmark/blacksite/large/nav2
-	name = "Abandoned Large Blacksite Navpoint #2"
-	landmark_tag = "nav_blacksite_large_2"
+/ob69/effect/shuttle_landmar69/blac69site/lar69e/nav2
+	name = "Abandoned Lar69e Blac69site69avpoint #2"
+	landmar69_ta69 = "nav_blac69site_lar69e_2"
 
 /////
-// Custom paper notes
+// Custom paper69otes
 /////
-/obj/item/paper/blacksite/medium
-	name = "incident log"
-	spawn_blacklisted = TRUE
+/ob69/item/paper/blac69site/medium
+	name = "incident lo69"
+	spawn_blac69listed = TRUE
 
-/obj/item/paper/blacksite/medium/note01
+/ob69/item/paper/blac69site/medium/note01
 	info = "<B>Automated Situation Report</B><br> H+0:\
-	        <br> # Warning, contamination, 4 subjects breaked from their cells.\
-	        <br> # Warning, 10 guards failed to pacify subjects.\
-			<br> # Death report: 9 guards, 3 science personnel, 2 engineers, 1 office clerk.\
-			<br> # Bolting the prison door."
+	        <br> # Warnin69, contamination, 4 sub69ects brea69ed from their cells.\
+	        <br> # Warnin69, 10 69uards failed to pacif69 sub69ects.\
+			<br> # Death report: 9 69uards, 3 science personnel, 2 en69ineers, 1 office cler69.\
+			<br> # Boltin69 the prison door."
 
-/obj/item/paper/blacksite/medium/note02
+/ob69/item/paper/blac69site/medium/note02
 	info = "<B>Automated Situation Report</B><br> H+1:\
-	        <br> # Door is sustaining damage. Probability of successful containement under acceptable value.\
-	        <br> # Preparing for evacuation and ship conservation.\
-			<br> # Distress signal sent."
+	        <br> # Door is sustainin69 dama69e. Probabilit69 of successful containement under acceptable69alue.\
+	        <br> # Preparin69 for evacuation and ship conservation.\
+			<br> # Distress si69nal sent."
 
-/obj/item/paper/blacksite/medium/note03
+/ob69/item/paper/blac69site/medium/note03
 	info = "<B>Automated Situation Report</B><br> H+2:\
 	        <br> # Prison door has been breached.\
-	        <br> # 3 subjects entered through the door and are facing security robots.\
-			<br> # Warning, camera detected mutations out of the testing chamber.\
-			<br> # Security guard number 2 that participated in initial try of subjects pacification was wounded, but bleeding stopped and wounds sealed themselves.\
-			<br> # Battle report: 2 subjects eliminated, 5 security bots lost.\
-			<br> # Warning, a loose subject is heading to the office with 4 people inside.\
-			<br> # Bolting the office."
+	        <br> # 3 sub69ects entered throu69h the door and are facin69 securit69 robots.\
+			<br> # Warnin69, camera detected69utations out of the testin69 chamber.\
+			<br> # Securit69 69uard69umber 2 that participated in initial tr69 of sub69ects pacification was wounded, but bleedin69 stopped and wounds sealed themselves.\
+			<br> # Battle report: 2 sub69ects eliminated, 5 securit69 bots lost.\
+			<br> # Warnin69, a loose sub69ect is headin69 to the office with 4 people inside.\
+			<br> # Boltin69 the office."
 
-/obj/item/paper/blacksite/medium/note04
+/ob69/item/paper/blac69site/medium/note04
 	info = "<B>Automated Situation Report</B><br> H+3:\
-	        <br> # Warning: guard number 2 skin turned yellow, muscle tissue increased 1.5 times and he became aggressive.\
-			<br> # Bolting room and 2 medics and 1 scientist inside.\
-	        <br> # Warning. High risk of mutation leaving the ship out without control.\
-	        <br> # Beginning to consider lockdown protocol 731.\
-	        <br> # Evacuation preparation - low. Casualities - high. Mutation threat level - high. Chances of people escaping - low.\
-	        <br> # Activating protocol 731.\
-	        <br> # Bolting all doors.\
-	        <br> # Draining oxygen out of all rooms.\
-	        <br> # Locking down all lockers.\
-	        <br> # Activating additional security bots."
+	        <br> # Warnin69: 69uard69umber 2 s69in turned 69ellow,69uscle tissue increased 1.5 times and he became a6969ressive.\
+			<br> # Boltin69 room and 269edics and 1 scientist inside.\
+	        <br> # Warnin69. Hi69h ris69 of69utation leavin69 the ship out without control.\
+	        <br> # Be69innin69 to consider loc69down protocol 731.\
+	        <br> # Evacuation preparation - low. Casualities - hi69h.69utation threat level - hi69h. Chances of people escapin69 - low.\
+	        <br> # Activatin69 protocol 731.\
+	        <br> # Boltin69 all doors.\
+	        <br> # Drainin69 ox6969en out of all rooms.\
+	        <br> # Loc69in69 down all loc69ers.\
+	        <br> # Activatin69 additional securit69 bots."
 
-/obj/item/paper/blacksite/medium/note05
+/ob69/item/paper/blac69site/medium/note05
 	info = "<B>Automated Situation Report</B><br> H+4:\
-	        <br> # Subject is eliminated. Security guard eliminated. 2 security bots lost, 1 still active.\
-	        <br> # All possibly infected personnel eliminated.\
-	        <br> # Beginning clean up procedures."
+	        <br> # Sub69ect is eliminated. Securit69 69uard eliminated. 2 securit69 bots lost, 1 still active.\
+	        <br> # All possibl69 infected personnel eliminated.\
+	        <br> # Be69innin69 clean up procedures."
 
-/obj/item/paper/blacksite/medium/note06
+/ob69/item/paper/blac69site/medium/note06
 	info = "<B>Automated Situation Report</B><br> H+9:\
-	        <br> # Security bots burnt all corpses and cleaning bots cleaned up all the blood.\
-	        <br> # Activating sleeping mode. Minimal machinery and bot have for energy preservation.\
-	        <br> # Awaiting for OneStar security forces to come."
+	        <br> # Securit69 bots burnt all corpses and cleanin69 bots cleaned up all the blood.\
+	        <br> # Activatin69 sleepin6969ode.69inimal69achiner69 and bot have for ener6969 preservation.\
+	        <br> # Awaitin69 for OneStar securit69 forces to come."

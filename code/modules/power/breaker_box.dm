@@ -1,7 +1,7 @@
-// Updated version of old powerswitch by Atlantis
-// Has better texture, and is now considered electronic device
+// Updated69ersion of old powerswitch by Atlantis
+// Has better texture, and is69ow considered electronic device
 // AI has ability to toggle it in 5 seconds
-// Humans need 30 seconds (AI is faster when it comes to complex electronics)
+// Humans69eed 30 seconds (AI is faster when it comes to complex electronics)
 // Used for advanced grid control (read: Substations)
 
 /obj/machinery/power/breakerbox
@@ -28,13 +28,13 @@
 /obj/machinery/power/breakerbox/activated
 	icon_state = "bbox_on"
 
-	// Enabled on server startup. Used in substations to keep them in bypass mode.
+	// Enabled on server startup. Used in substations to keep them in bypass69ode.
 /obj/machinery/power/breakerbox/activated/Initialize()
 	. = ..()
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
-	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
+	to_chat(user, "Large69achine with heavy duty switching circuits used for advanced grid control")
 	if(on)
 		to_chat(user, "\green It seems to be online.")
 	else
@@ -53,7 +53,7 @@
 	to_chat(user, "\green Updating power settings..")
 	if(do_after(user, 50, src))
 		set_state(!on)
-		to_chat(user, "\green Update Completed. New setting:[on ? "on": "off"]")
+		to_chat(user, "\green Update Completed.69ew setting:69on ? "on": "off"69")
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
@@ -70,29 +70,29 @@
 		return
 
 	busy = 1
-	for(var/mob/O in viewers(user))
-		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
+	for(var/mob/O in69iewers(user))
+		O.show_message(text("\red 69user69 started reprogramming 69src69!"), 1)
 
 	if(do_after(user, 50,src))
 		set_state(!on)
 		user.visible_message(\
-		"<span class='notice'>[user.name] [on ? "enabled" : "disabled"] the breaker box!</span>",\
-		"<span class='notice'>You [on ? "enabled" : "disabled"] the breaker box!</span>")
+		"<span class='notice'>69user.name69 69on ? "enabled" : "disabled"69 the breaker box!</span>",\
+		"<span class='notice'>You 69on ? "enabled" : "disabled"69 the breaker box!</span>")
 		update_locked = 1
 		spawn(600)
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj,69ar/mob/user as69ob)
 	if(default_deconstruction(W, user))
 		return
 	if(default_part_replacement(W, user))
 		return
 	if(istype(W, /obj/item/tool/multitool))
-		var/newtag = input(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
+		var/newtag = input(user, "Enter69ew RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system") as text
 		if(newtag)
-			RCon_tag = newtag
-			to_chat(user, SPAN_NOTICE("You changed the RCON tag to: [newtag]"))
+			RCon_tag =69ewtag
+			to_chat(user, SPAN_NOTICE("You changed the RCON tag to: 69newtag69"))
 
 /obj/machinery/power/breakerbox/proc/set_state(var/state)
 	on = state
@@ -106,13 +106,13 @@
 					break
 
 		for(var/direction in connection_dirs)
-			var/obj/structure/cable/C = new/obj/structure/cable(src.loc)
+			var/obj/structure/cable/C =69ew/obj/structure/cable(src.loc)
 			C.d1 = 0
 			C.d2 = direction
-			C.icon_state = "[C.d1]-[C.d2]"
+			C.icon_state = "69C.d169-69C.d269"
 			C.breaker_box = src
 
-			var/datum/powernet/PN = new()
+			var/datum/powernet/PN =69ew()
 			PN.add_cable(C)
 
 			C.mergeConnectedNetworks(C.d2)

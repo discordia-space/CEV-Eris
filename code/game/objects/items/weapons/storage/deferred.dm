@@ -7,7 +7,7 @@
 	spawn_contents proc which is called the first time the box is opened or interacted with.
 
 	The key thing here is, these contents are not spawned at roundstart, only when a player actually needs them
-	And thusly, if no player ever does, then those items are not sitting around wasting memory and CPU time
+	And thusly, if no player ever does, then those items are not sitting around wasting69emory and CPU time
 
 	Most of the things in this file are intended for use by external antags, and are thus exceptionally powerful
 */
@@ -15,7 +15,7 @@
 
 /obj/item/storage/deferred
 	var/list/initial_contents = list() //List of stuff that will be in this box
-	//Can be used as an assoc list and allow you to enter a quantity as the value
+	//Can be used as an assoc list and allow you to enter a 69uantity as the69alue
 
 	var/contents_spawned = FALSE
 
@@ -33,9 +33,9 @@
 
 	contents_spawned = TRUE
 	for(var/a in initial_contents)
-		var/quantity = initial_contents[a] ? initial_contents[a] : 1
+		var/69uantity = initial_contents69a69 ? initial_contents69a69 : 1
 
-		for(var/i = 0; i < quantity; i++)
+		for(var/i = 0; i < 69uantity; i++)
 			new a(src)
 	expand_to_fit()
 
@@ -52,7 +52,7 @@
 	. = ..()
 
 
-/obj/item/storage/deferred/rations //DO this before merging
+/obj/item/storage/deferred/rations //DO this before69erging
 	name = "infantryman's rations kit"
 	icon_state = "irp_box"
 	item_state = "irp_box"
@@ -61,15 +61,15 @@
 
 
 /obj/item/storage/deferred/toolmod
-	name = "tool modifications kit"
-	desc = "A sturdy container full of contraptions, bits of material, components and add-ons for modifying tools."
+	name = "tool69odifications kit"
+	desc = "A sturdy container full of contraptions, bits of69aterial, components and add-ons for69odifying tools."
 	icon_state = "box_tools"
 	initial_contents = list(/obj/spawner/tool_upgrade = 12,
 	/obj/spawner/tool_upgrade/rare = 3)
 
 
 /obj/item/storage/deferred/pouches
-	name = "uniform modification kit"
+	name = "uniform69odification kit"
 	desc = "A box full of hard-wearing pouches designed for easy attachment to clothing and armor. Good for carrying extra ammo or tools in the field."
 	initial_contents = list(/obj/spawner/pouch = 8, /obj/item/storage/pouch/pistol_holster = 1)
 	//One guaranteed holster and plenty of randoms
@@ -86,9 +86,9 @@
 
 /obj/item/storage/deferred/music
 	name = "morale kit"
-	desc = "All that's required to unite nation, compacted within single box."
+	desc = "All that's re69uired to unite nation, compacted within single box."
 	icon_state = "box_serbian"
-	initial_contents = list(/obj/item/device/synthesized_instrument/trumpet = 1) //TODO: Add an accordian to this, sprites already made.
+	initial_contents = list(/obj/item/device/synthesized_instrument/trumpet = 1) //TODO: Add an accordian to this, sprites already69ade.
 
 /obj/item/storage/deferred/disks //for the beacon, cause we want it priced right and actually functional
 	name = "autolathe disk box"
@@ -125,8 +125,8 @@
 
 
 /obj/item/storage/deferred/meds
-	name = "combat medical kit"
-	desc = "Contains advanced medical treatments."
+	name = "combat69edical kit"
+	desc = "Contains advanced69edical treatments."
 	icon_state = "combat_medical_kit"
 	item_state = "combat_medical_kit"
 	initial_contents = list(/obj/item/storage/pill_bottle/bicaridine,
@@ -149,7 +149,7 @@
 
 /obj/item/storage/deferred/crate/tools
 	name = "tool storage box"
-	desc = "A moderately sized crate full of assorted tools."
+	desc = "A69oderately sized crate full of assorted tools."
 	icon_state = "serbcrate_deferred_brown"
 	initial_contents = list(/obj/spawner/tool = 13,
 	/obj/spawner/tool/advanced = 2)
@@ -157,7 +157,7 @@
 
 /obj/item/storage/deferred/crate/saw
 	name = "infantry support crate"
-	desc = "A crate containing two Pulemyot Kalashnikova light machine guns, and 640 rounds of .30 ammunition."
+	desc = "A crate containing two Pulemyot Kalashnikova light69achine guns, and 640 rounds of .30 ammunition."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/automatic/lmg/pk = 2,
 	/obj/item/ammo_magazine/lrifle/pk = 8)
@@ -165,21 +165,21 @@
 
 /obj/item/storage/deferred/crate/ak
 	name = "rifleman crate"
-	desc = "A crate containing six SA AK-47 rifles, and plenty of magazines."
+	desc = "A crate containing six SA AK-47 rifles, and plenty of69agazines."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/automatic/ak47/sa  = 6,
 	/obj/item/ammo_magazine/lrifle = 18)
 
 /obj/item/storage/deferred/crate/kovacs
-	name = "designated marksman crate"
-	desc = "A crate containing six \"Kovacs\" battle rifles, and plenty of mags."
+	name = "designated69arksman crate"
+	desc = "A crate containing six \"Kovacs\" battle rifles, and plenty of69ags."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/kovacs = 6,
 	/obj/item/ammo_magazine/srifle = 18)
 
 /obj/item/storage/deferred/crate/grenadier
 	name = "grenadier crate"
-	desc = "A crate containing one \"Lenar\" launcher, and copious quantities of hand-propelled explosive devices."
+	desc = "A crate containing one \"Lenar\" launcher, and copious 69uantities of hand-propelled explosive devices."
 	icon_state = "serbcrate_deferred_black"
 	initial_contents = list(/obj/item/grenade/explosive = 5,
 	/obj/item/grenade/frag = 14,
@@ -187,7 +187,7 @@
 	/obj/item/grenade/smokebomb = 8,
 	/obj/item/gun/projectile/shotgun/pump/grenade/lenar = 1)
 
-/obj/item/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect map
+/obj/item/storage/deferred/crate/antiarmor //change to demolitions, won't do now because will affect69ap
 	name = "demolitions crate"
 	icon_state = "serbcrate_deferred_black"
 	desc = "A crate containing one \"RPG-7\" launcher, and twelve 40mm PG-7VL warheads."
@@ -200,7 +200,7 @@
 	name = "breaching crate"
 	desc = "A crate of tools to deal with stationary hard targets, and remove obstacles."
 	icon_state = "serbcrate_deferred_brown"
-	initial_contents = list(/obj/item/plastique = 13,
+	initial_contents = list(/obj/item/plasti69ue = 13,
 	/obj/item/storage/pouch/tubular = 1,
 	/obj/item/hatton = 1,
 	/obj/item/hatton_magazine = 5,
@@ -216,7 +216,7 @@
 
 /obj/item/storage/deferred/crate/sidearm
 	name = "sidearm crate"
-	desc = "A crate containing six Makarov .35 pistols, 200 rounds of .35 ammunition, and six fixed-blade combat knives."
+	desc = "A crate containing six69akarov .35 pistols, 200 rounds of .35 ammunition, and six fixed-blade combat knives."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(/obj/item/gun/projectile/selfload/makarov = 6,
 	/obj/item/ammo_magazine/hpistol = 20,
@@ -234,14 +234,14 @@
 
 /obj/item/storage/deferred/crate/cells
 	name = "power cell bin"
-	desc = "A moderately sized crate full of various power cells."
+	desc = "A69oderately sized crate full of69arious power cells."
 	icon_state = "serbcrate_deferred_worn"
 	initial_contents = list(/obj/spawner/powercell = 16)
 
 
 /obj/item/storage/deferred/crate/alcohol
-	name = "liquor crate"
-	desc = "A moderately sized crate full of various alcoholic drinks."
+	name = "li69uor crate"
+	desc = "A69oderately sized crate full of69arious alcoholic drinks."
 	icon_state = "serbcrate_deferred_worn"
 	initial_contents = list(/obj/spawner/booze = 10,
 	/obj/spawner/booze/low_chance = 10,
@@ -249,7 +249,7 @@
 
 /obj/item/storage/deferred/crate/uniform_green
 	name = "green uniform kit"
-	desc = "A moderately sized crate full of clothes."
+	desc = "A69oderately sized crate full of clothes."
 	icon_state = "serbcrate_deferred_green"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
@@ -262,7 +262,7 @@
 
 /obj/item/storage/deferred/crate/uniform_brown
 	name = "brown uniform kit"
-	desc = "A moderately sized crate full of clothes."
+	desc = "A69oderately sized crate full of clothes."
 	icon_state = "serbcrate_deferred_brown"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/brown = 1,
@@ -275,7 +275,7 @@
 
 /obj/item/storage/deferred/crate/uniform_black
 	name = "black uniform kit"
-	desc = "A moderately sized crate full of clothes."
+	desc = "A69oderately sized crate full of clothes."
 	icon_state = "serbcrate_deferred_black"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit/black = 1,
@@ -288,7 +288,7 @@
 
 /obj/item/storage/deferred/crate/uniform_flak
 	name = "flak serbian uniform crate"
-	desc = "A moderately sized crate full of clothes."
+	desc = "A69oderately sized crate full of clothes."
 	icon_state = "serbcrate_deferred_worn"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
@@ -301,7 +301,7 @@
 
 /obj/item/storage/deferred/crate/uniform_light
 	name = "light armor kit"
-	desc = "A moderately sized crate full of clothes."
+	desc = "A69oderately sized crate full of clothes."
 	icon_state = "serbcrate_deferred_worn"
 	initial_contents = list(
 	/obj/item/clothing/under/serbiansuit = 1,
@@ -314,7 +314,7 @@
 
 /obj/item/storage/deferred/crate/german_uniform
 	name = "german uniform crate"
-	desc = "A moderately sized crate full of clothes."
+	desc = "A69oderately sized crate full of clothes."
 	icon_state = "germancrate_deferred"
 	initial_contents = list(
 	/obj/item/clothing/gloves/german = 1,

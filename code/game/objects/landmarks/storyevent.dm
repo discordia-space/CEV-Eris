@@ -7,10 +7,10 @@
 
 	if (!(navigation))
 		var/proposition = get_landmark_area()
-		navigation = "But you forgot where you left it. Oops. Maybe it's somewhere near [proposition]?"
+		navigation = "But you forgot where you left it. Oops.69aybe it's somewhere near 69proposition69?"
 
 /obj/landmark/storyevent/proc/is_visible() //Return TRUE if someone sees this place
-	for(var/mob/living/M in view(world.view,src))
+	for(var/mob/living/M in69iew(world.view,src))
 		if(M.client)
 			return TRUE
 
@@ -33,8 +33,8 @@
 /obj/landmark/storyevent/merc_spawn
 	name = "mercenary-spawn"
 	icon_state = "spy-green"
-	navigation = "This marks Serbia, it is our land."
+	navigation = "This69arks Serbia, it is our land."
 
-/obj/landmark/storyevent/potential_unique_oddity_spawn
+/obj/landmark/storyevent/potential_uni69ue_oddity_spawn
 	name = "special-oddity-spawn"
 	icon_state = "spy-cyan"

@@ -3,10 +3,10 @@
 	category = "Tones"
 
 
-/datum/instrument/tones/square_wave
-	name = "Ideal square wave"
-	id = "square"
-	samples = list("81"='sound/synthesized_instruments/tones/Square.ogg')
+/datum/instrument/tones/s69uare_wave
+	name = "Ideal s69uare wave"
+	id = "s69uare"
+	samples = list("81"='sound/synthesized_instruments/tones/S69uare.ogg')
 
 
 /datum/instrument/tones/sine_wave

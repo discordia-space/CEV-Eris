@@ -32,7 +32,7 @@
 	use_power(2)
 	if(contents.len)
 		for(var/atom/movable/A in contents)
-			var/obj/machinery/multistructure/bioreactor_part/platform/empty_platform = MS_bioreactor.get_unoccupied_platform()
+			var/obj/machinery/multistructure/bioreactor_part/platform/empty_platform =69S_bioreactor.get_unoccupied_platform()
 			if(empty_platform)
 				A.forceMove(get_step(src, dir_output))
 	else

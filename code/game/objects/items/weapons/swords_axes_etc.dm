@@ -21,7 +21,7 @@
 	force = WEAPON_FORCE_PAINFUL
 	structure_damage_factor = STRUCTURE_DAMAGE_BLUNT
 
-/obj/item/melee/classic_baton/attack(mob/M, mob/living/user)
+/obj/item/melee/classic_baton/attack(mob/M,69ob/living/user)
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, SPAN_WARNING("You club yourself over the head."))
 		user.Weaken(3 * force)
@@ -51,7 +51,7 @@
 	on = !on
 	if(on)
 		user.visible_message(
-			SPAN_WARNING("With a flick of their wrist, [user] extends their telescopic baton."),
+			SPAN_WARNING("With a flick of their wrist, 69user69 extends their telescopic baton."),
 			SPAN_WARNING("You extend the baton."),
 			"You hear an ominous click."
 		)
@@ -59,11 +59,11 @@
 		item_state = "telebaton_1"
 		update_wear_icon()
 		w_class = ITEM_SIZE_NORMAL
-		force = WEAPON_FORCE_PAINFUL//quite robust
+		force = WEAPON_FORCE_PAINFUL//69uite robust
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message(
-			SPAN_NOTICE("\The [user] collapses their telescopic baton."),
+			SPAN_NOTICE("\The 69user69 collapses their telescopic baton."),
 			SPAN_NOTICE("You collapse the baton."),
 			"You hear a click."
 		)
@@ -78,7 +78,7 @@
 	add_fingerprint(user)
 
 	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
-		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
+		overlays.Cut()//this69ight delete other item overlays as well but eeeeeeeh
 
 		var/icon/I = new /icon(src.icon, src.icon_state)
 		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
@@ -89,7 +89,7 @@
 
 	return
 
-/obj/item/melee/telebaton/attack(mob/target, mob/living/user)
+/obj/item/melee/telebaton/attack(mob/target,69ob/living/user)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
 			to_chat(user, SPAN_WARNING("You club yourself over the head."))

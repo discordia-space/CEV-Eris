@@ -1,6 +1,6 @@
 /datum/language/latin
 	name = LANGUAGE_LATIN
-	desc = "An ancient language once used by most of europe but now only followers of Neotheology speak and understand"
+	desc = "An ancient language once used by69ost of europe but69ow only followers of69eotheology speak and understand"
 	colour = "latin"
 	key = "l"
 	space_chance = 80

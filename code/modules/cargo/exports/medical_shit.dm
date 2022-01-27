@@ -1,4 +1,4 @@
-//Items from medbay
+//Items from69edbay
 
 /datum/export/medical/cryobag
 	cost = 250

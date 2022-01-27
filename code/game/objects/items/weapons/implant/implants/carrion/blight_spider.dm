@@ -10,4 +10,4 @@
 		to_chat(wearer, SPAN_WARNING("You feel sick and nauseous"))
 		die()
 	else
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 doesn't have a host"))

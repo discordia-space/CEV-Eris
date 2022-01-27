@@ -1,17 +1,17 @@
 /*
-	Pins both hold data for circuits, as well move data between them.  Some also cause circuits to do their function.  DATA_CHANNEL pins are the data holding/moving kind,
+	Pins both hold data for circuits, as well69ove data between them.  Some also cause circuits to do their function.  DATA_CHANNEL pins are the data holding/moving kind,
 where as PULSE_CHANNEL causes circuits to work() when their pulse hits them.
 
 
-A visualization of how pins work is below.  Imagine the below image involves an addition circuit.
+A69isualization of how pins work is below.  Imagine the below image involves an addition circuit.
 When the bottom pin, the activator, receives a pulse, all the numbers on the left (input) get added, and the answer goes on the right side (output).
 
 Inputs      Outputs
 
-A [2]\      /[8] result
-B [1]-\|++|/
-C [4]-/|++|
-D [1]/  ||
+A 69269\      /69869 result
+B 69169-\|++|/
+C 69469-/|++|
+D 69169/  ||
         ||
      Activator
 
@@ -21,17 +21,17 @@ D [1]/  ||
 /datum/integrated_io
 	var/name = "input/output"
 	var/obj/item/integrated_circuit/holder = null
-	var/weakref/data = null // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text may also occupy this.
+	var/weakref/data = null // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text69ay also occupy this.
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 
-/datum/integrated_io/New(var/newloc, var/name, var/data)
+/datum/integrated_io/New(var/newloc,69ar/name,69ar/data)
 	..()
 	src.name = name
 	src.data = data
 	holder = newloc
 	if(!istype(holder))
-		message_admins("ERROR: An integrated_io ([src.name]) spawned without a valid holder!  This is a bug.")
+		message_admins("ERROR: An integrated_io (69src.name69) spawned without a69alid holder!  This is a bug.")
 
 /datum/integrated_io/Destroy()
 	disconnect()
@@ -52,18 +52,18 @@ D [1]/  ||
 
 /datum/integrated_io/proc/display_data()
 	if(isnull(data))
-		return "(null)" // Empty data means nothing to show.
+		return "(null)" // Empty data69eans nothing to show.
 	if(istext(data))
-		return "(\"[data]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
+		return "(\"69data69\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
 	if(isweakref(data))
 		var/weakref/w = data
 		var/atom/A = w.resolve()
-		//return A ? "([A.name] \[Ref\])" : "(null)" // For refs, we want just the name displayed.
-		return A ? "(\ref[A] \[Ref\])" : "(null)"
-	return "([data])" // Nothing special needed for numbers or other stuff.
+		//return A ? "(69A.name69 \69Ref\69)" : "(null)" // For refs, we want just the name displayed.
+		return A ? "(\ref69A69 \69Ref\69)" : "(null)"
+	return "(69data69)" // Nothing special needed for numbers or other stuff.
 
 /datum/integrated_io/activate/display_data()
-	return "(\[pulse\])"
+	return "(\69pulse\69)"
 
 /datum/integrated_io/proc/display_pin_type()
 	return IC_FORMAT_ANY
@@ -102,7 +102,7 @@ D [1]/  ||
 
 /datum/integrated_io/proc/get_linked_to_desc()
 	if(linked.len)
-		return "the [english_list(linked)]"
+		return "the 69english_list(linked)69"
 	return "nothing"
 
 /datum/integrated_io/proc/disconnect()

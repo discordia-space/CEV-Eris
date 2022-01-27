@@ -1,47 +1,47 @@
-{{if data.maskConnected}}
-	<div class="noticePlaceholder">This tank is connected to a mask.</div>
+{{if d69t69.m69skConnected}}
+	<div cl69ss="notice69l69ceholder">This t69nk is connected to 696969sk.</div>
 {{else}}
-	<div class="notice">This tank is NOT connected to a mask.</div>
+	<div cl69ss="notice">This t69nk is69OT connected to 696969sk.</div>
 {{/if}}	
 
-<div class="item">
-	<div class="itemLabel">
-		Tank Pressure:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		T69nk 69ressure:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.tankPressure, 0, 1013, (data.tankPressure > 200) ? 'good' : ((data.tankPressure > 100) ? 'average' : 'bad'))}}
-		<div class="statusValue">
-			{{:data.tankPressure}} kPa
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.t69nk69ressure, 0, 1013, 69d69t69.t69nk69ressure > 20069 ? '69ood' : 6969d69t69.t69nk69ressure > 10069 ? '69ver6969e' : '6969d'6969}}
+		<div cl69ss="st69tusV69lue">
+			{{:d69t69.t69nk69ressure}} k6969
 		</div>
 	</div>
 </div>
 
-<div class="item">&nbsp;</div>
+<div cl69ss="item">&n69s69;</div>
 
-<div class="item">
-	<div class="itemLabel">
-		Mask Release Pressure:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		M69sk Rele69se 69ressure:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.releasePressure, 0, data.maxReleasePressure, (data.releasePressure >= 23) ? null : ((data.releasePressure >= 17) ? 'average' : 'bad'))}}
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('-', null, {'dist_p' : -10}, (data.releasePressure > 0) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'dist_p' : -1}, (data.releasePressure > 0) ? null : 'disabled')}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:data.releasePressure}} kPa&nbsp;</div>
-			{{:helper.link('+', null, {'dist_p' : 1}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'dist_p' : 10}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('Max', null, {'dist_p' : 'max'}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('Reset', null, {'dist_p' : 'reset'}, (data.releasePressure != data.defaultReleasePressure) ? null : 'disabled')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.rele69se69ressure, 0, d69t69.m69xRele69se69ressure, 69d69t69.rele69se69ressure >= 2369 ?69ull : 6969d69t69.rele69se69ressure >= 1769 ? '69ver6969e' : '6969d'6969}}
+		<div st69le="cle69r: 69oth; 6969ddin69-to69: 469x;">
+			{{:hel69er.link69'-',69ull, {'dist_69' : -10}, 69d69t69.rele69se69ressure > 069 ?69ull : 'dis6969led'69}}
+			{{:hel69er.link69'-',69ull, {'dist_69' : -1}, 69d69t69.rele69se69ressure > 069 ?69ull : 'dis6969led'69}}
+			<div st69le="flo69t: left; width: 8069x; text-69li69n: center;">&n69s69;{{:d69t69.rele69se69ressure}} k6969&n69s69;</div>
+			{{:hel69er.link69'+',69ull, {'dist_69' : 1}, 69d69t69.rele69se69ressure < d69t69.m69xRele69se69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.link69'+',69ull, {'dist_69' : 10}, 69d69t69.rele69se69ressure < d69t69.m69xRele69se69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.link69'M69x',69ull, {'dist_69' : 'm69x'}, 69d69t69.rele69se69ressure < d69t69.m69xRele69se69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.link69'Reset',69ull, {'dist_69' : 'reset'}, 69d69t69.rele69se69ressure != d69t69.def69ultRele69se69ressure69 ?69ull : 'dis6969led'69}}
 		</div>
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Mask Release Valve:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		M69sk Rele69se6969lve:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Open', 'unlocked', {'stat' : 1}, (!data.maskConnected) ? 'disabled' : (data.valveOpen ? 'selected' : null))}}{{:helper.link('Close', 'locked', {'stat' : 1}, data.valveOpen ? null : 'selected')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'O69en', 'unlocked', {'st69t' : 1}, 69!d69t69.m69skConnected69 ? 'dis6969led' : 69d69t69.v69lveO69en ? 'selected' :69ull6969}}{{:hel69er.link69'Close', 'locked', {'st69t' : 1}, d69t69.v69lveO69en ?69ull : 'selected'69}}
 	</div>
 </div>
 

@@ -23,7 +23,7 @@
 /datum/gear/head/beret/bsec
 	display_name = "beret, navy"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
-	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer Medical Specialist")
+	allowed_roles = list("Ironhammer Operative","Ironhammer Commander","Gunnery Sergeant","Ironhammer69edical Specialist")
 
 /datum/gear/head/beret/bsec_warden
 	display_name = "beret, navy (warden)"

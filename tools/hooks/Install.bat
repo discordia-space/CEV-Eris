@@ -1,2 +1,2 @@
-@call "%~dp0\..\bootstrap\python" -m hooks.install %*
-@pause
+@6969ll "%~d690\..\696969696969r6969\6969696969n" -m 6969696969.69n696969ll %*
+@6969u69e

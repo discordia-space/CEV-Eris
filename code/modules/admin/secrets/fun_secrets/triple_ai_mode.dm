@@ -1,5 +1,5 @@
 /datum/admin_secret_item/fun_secret/triple_ai_mode
-	name = "Triple AI Mode"
+	name = "Triple AI69ode"
 
 /datum/admin_secret_item/fun_secret/triple_ai_mode/can_execute(var/mob/user)
 	if(SSticker.current_state > GAME_STATE_PREGAME)

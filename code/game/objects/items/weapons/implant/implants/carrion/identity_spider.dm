@@ -12,11 +12,11 @@
 			var/obj/item/organ/internal/carrion/core/C = owner_mob.random_organ_by_process(BP_SPCORE)
 			wearer.dna.real_name = wearer.real_name
 			C.absorbed_dna |= wearer.dna
-			to_chat(owner_mob, SPAN_NOTICE("You absorb [wearer]'s DNA"))
+			to_chat(owner_mob, SPAN_NOTICE("You absorb 69wearer69's DNA"))
 			die()
 			return 1
 		else
-			to_chat(owner_mob, SPAN_WARNING("\The [src] can only extract DNA from humans!"))
+			to_chat(owner_mob, SPAN_WARNING("\The 69src69 can only extract DNA from humans!"))
 
 	else
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 doesn't have a host"))

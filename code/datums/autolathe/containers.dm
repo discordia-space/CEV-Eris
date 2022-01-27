@@ -1,85 +1,85 @@
-/datum/design/autolathe/container/drinkingglass
-	name = "drinking glass"
-	build_path = /obj/item/reagent_containers/food/drinks/drinkingglass
+/datum/desi69n/autolathe/container/drinkin6969lass
+	name = "drinkin69 69lass"
+	build_path = /obj/item/rea69ent_containers/food/drinks/drinkin6969lass
 
-/datum/design/autolathe/container/carafe
-	name = "glass pitcher"
-	build_path = /obj/item/reagent_containers/food/drinks/carafe
+/datum/desi69n/autolathe/container/carafe
+	name = "69lass pitcher"
+	build_path = /obj/item/rea69ent_containers/food/drinks/carafe
 
-/datum/design/autolathe/container/insulated_pitcher
+/datum/desi69n/autolathe/container/insulated_pitcher
 	name = "insulated pitcher"
-	build_path = /obj/item/reagent_containers/food/drinks/pitcher
+	build_path = /obj/item/rea69ent_containers/food/drinks/pitcher
 
-/datum/design/autolathe/container/bucket
+/datum/desi69n/autolathe/container/bucket
 	name = "bucket"
-	build_path = /obj/item/reagent_containers/glass/bucket
+	build_path = /obj/item/rea69ent_containers/69lass/bucket
 
-/datum/design/autolathe/container/beaker
-	name = "glass beaker"
-	build_path = /obj/item/reagent_containers/glass/beaker
+/datum/desi69n/autolathe/container/beaker
+	name = "69lass beaker"
+	build_path = /obj/item/rea69ent_containers/69lass/beaker
 
-/datum/design/autolathe/container/beaker_large
-	name = "large glass beaker"
-	build_path = /obj/item/reagent_containers/glass/beaker/large
+/datum/desi69n/autolathe/container/beaker_lar69e
+	name = "lar69e 69lass beaker"
+	build_path = /obj/item/rea69ent_containers/69lass/beaker/lar69e
 
-/datum/design/autolathe/container/mixingbowl
-	name = "mixing bowl"
-	build_path = /obj/item/reagent_containers/glass/beaker/bowl
+/datum/desi69n/autolathe/container/mixin69bowl
+	name = "mixin69 bowl"
+	build_path = /obj/item/rea69ent_containers/69lass/beaker/bowl
 
-/datum/design/autolathe/container/vial
-	name = "glass vial"
-	build_path = /obj/item/reagent_containers/glass/beaker/vial
+/datum/desi69n/autolathe/container/vial
+	name = "69lass69ial"
+	build_path = /obj/item/rea69ent_containers/69lass/beaker/vial
 
-/datum/design/autolathe/container/jar
+/datum/desi69n/autolathe/container/jar
 	name = "jar"
-	build_path = /obj/item/reagent_containers/food/drinks/jar
+	build_path = /obj/item/rea69ent_containers/food/drinks/jar
 
-/datum/design/autolathe/container/syringe
-	name = "syringe"
-	build_path = /obj/item/reagent_containers/syringe
-/datum/design/autolathe/container/syringe/large
-	name = "Large syringe"
-	build_path = /obj/item/reagent_containers/syringe/large
-/datum/design/autolathe/container/syringegun_ammo
-	name = "syringe gun cartridge"
-	build_path = /obj/item/syringe_cartridge
+/datum/desi69n/autolathe/container/syrin69e
+	name = "syrin69e"
+	build_path = /obj/item/rea69ent_containers/syrin69e
+/datum/desi69n/autolathe/container/syrin69e/lar69e
+	name = "Lar69e syrin69e"
+	build_path = /obj/item/rea69ent_containers/syrin69e/lar69e
+/datum/desi69n/autolathe/container/syrin69e69un_ammo
+	name = "syrin69e 69un cartrid69e"
+	build_path = /obj/item/syrin69e_cartrid69e
 
-/datum/design/autolathe/container/spray
+/datum/desi69n/autolathe/container/spray
 	name = "spray bottle"
-	build_path = /obj/item/reagent_containers/spray
+	build_path = /obj/item/rea69ent_containers/spray
 
-/datum/design/autolathe/container/pill_bottle
+/datum/desi69n/autolathe/container/pill_bottle
 	name = "pill bottle"
-	build_path = /obj/item/storage/pill_bottle
+	build_path = /obj/item/stora69e/pill_bottle
 
-/datum/design/autolathe/container/freezer
+/datum/desi69n/autolathe/container/freezer
 	name = "portable freezer"
-	build_path = /obj/item/storage/freezer
+	build_path = /obj/item/stora69e/freezer
 
-/datum/design/autolathe/container/freezer_medical
-	name = "organ freezer"
-	build_path = /obj/item/storage/freezer/medical
+/datum/desi69n/autolathe/container/freezer_medical
+	name = "or69an freezer"
+	build_path = /obj/item/stora69e/freezer/medical
 
-/datum/design/autolathe/container/ammocan_ih
+/datum/desi69n/autolathe/container/ammocan_ih
 	name = "IH Ammo Can"
-	build_path = /obj/item/storage/hcases/ammo/ih
+	build_path = /obj/item/stora69e/hcases/ammo/ih
 
-/datum/design/autolathe/container/ammocan_serb
+/datum/desi69n/autolathe/container/ammocan_serb
 	name = "Serbian Ammo Can"
-	build_path = /obj/item/storage/hcases/ammo/serb
+	build_path = /obj/item/stora69e/hcases/ammo/serb
 
-/datum/design/autolathe/container/ammocan_excel
+/datum/desi69n/autolathe/container/ammocan_excel
 	name = "Excel Ammo Can"
-	build_path = /obj/item/storage/hcases/ammo/excel
+	build_path = /obj/item/stora69e/hcases/ammo/excel
 
-/datum/design/autolathe/container/hcase_parts
+/datum/desi69n/autolathe/container/hcase_parts
 	name = "Parts Hardcase"
-	build_path = /obj/item/storage/hcases/parts
+	build_path = /obj/item/stora69e/hcases/parts
 
-/datum/design/autolathe/container/hcase_med
+/datum/desi69n/autolathe/container/hcase_med
 	name = "Parts Hardcase"
-	build_path = /obj/item/storage/hcases/med
+	build_path = /obj/item/stora69e/hcases/med
 
-/datum/design/autolathe/container/hcase_engi
+/datum/desi69n/autolathe/container/hcase_en69i
 	name = "Parts Hardcase"
-	build_path = /obj/item/storage/hcases/engi
+	build_path = /obj/item/stora69e/hcases/en69i

@@ -1,4 +1,4 @@
-#define MAX_FACTION_SCORE 1000
+#define69AX_FACTION_SCORE 1000
 
 //moebius
 GLOBAL_VAR_INIT(moebius_score, 0)
@@ -87,7 +87,7 @@ GLOBAL_VAR_INIT(guild_shared_gears, 0)
 GLOBAL_VAR_INIT(technomancer_score, 0)
 GLOBAL_VAR_INIT(initial_technomancer_score, 0)
 
-GLOBAL_VAR_INIT(area_powerloss, 0) // how many APCs have poor charge?
+GLOBAL_VAR_INIT(area_powerloss, 0) // how69any APCs have poor charge?
 GLOBAL_VAR_INIT(score_powerloss, 0)
 
 GLOBAL_VAR_INIT(area_fireloss, 0) //air/fire issues
@@ -119,7 +119,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		if(!M.current)
 			continue
 		if(M.current.stat == DEAD)
-			if(M.assigned_job && M.assigned_job.faction == "CEV Eris")
+			if(M.assigned_job &&69.assigned_job.faction == "CEV Eris")
 				if(M.assigned_job.department == DEPARTMENT_SECURITY)
 					GLOB.ironhammer_operative_dead++
 				if(!M.antagonist.len)
@@ -129,12 +129,12 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		else
 			if(M.antagonist.len)
 				var/area/A = get_area(M.current)
-				if(istype(A, /area/eris/security/prison) || istype(A, /area/eris/security/brig) || M.current.restrained())
+				if(istype(A, /area/eris/security/prison) || istype(A, /area/eris/security/brig) ||69.current.restrained())
 					GLOB.captured_or_dead_antags++
 				else if(isOnAdminLevel(M.current))
 					GLOB.ironhammer_escaped_antagonists++
-			else if(M.assigned_job && M.assigned_job.department == DEPARTMENT_GUILD && ishuman(M.current))
-				var/mob/living/carbon/human/H = M.current
+			else if(M.assigned_job &&69.assigned_job.department == DEPARTMENT_GUILD && ishuman(M.current))
+				var/mob/living/carbon/human/H =69.current
 				guild_fingerprints += H.get_full_print()
 
 	for(var/mob/living/L in (GLOB.player_list & GLOB.living_mob_list))
@@ -155,7 +155,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	var/min_charge = initial(HC.maxcharge) * 0.6
 
 	//calculate guild profits in a sane way
-	var/ending_balance = get_account_credits(department_accounts[DEPARTMENT_GUILD])
+	var/ending_balance = get_account_credits(department_accounts69DEPARTMENT_GUILD69)
 	var/datum/department/guild/guild_var = new/datum/department/guild
 	GLOB.supply_profit = ending_balance - guild_var.account_initial_balance
 
@@ -167,7 +167,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 			GLOB.area_powerloss++
 			continue
 		for(var/obj/item/cell/C in A.apc.contents)
-			if(C.charge < min_charge)
+			if(C.charge <69in_charge)
 				GLOB.area_powerloss++
 
 	var/smes_count = 0
@@ -187,7 +187,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		GLOB.field_radius += S.field_radius
 	GLOB.field_radius = CLAMP(GLOB.field_radius, 0, world.maxx)
 
-	//Technomancer Modifiers
+	//Technomancer69odifiers
 	if(GLOB.all_smes_powered)
 		GLOB.score_smes_powered = 350 //max = 350
 	GLOB.score_technomancer_objectives = GLOB.technomancer_objectives_completed * 25 //max: ~= 100
@@ -200,7 +200,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 	// NeoTheology score
 	var/list/dirt_areas = list()
-	//Check how much uncleaned mess is on the station
+	//Check how69uch uncleaned69ess is on the station
 	for(var/obj/effect/decal/cleanable/M in world)
 		if(!isStationLevel(M.z)) continue
 		var/area/A = get_area(M)
@@ -211,7 +211,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	GLOB.dirt_areas = dirt_areas.len
 
 
-	//NeoTheology Modifiers
+	//NeoTheology69odifiers
 	GLOB.score_neotheology_faction_item_loss -= GLOB.neotheology_faction_item_loss * 150 //300
 	GLOB.neotheology_objectives_score = GLOB.neotheology_objectives_completed * 25 // ~100
 	GLOB.score_mess -= GLOB.dirt_areas * 10 //~250
@@ -254,23 +254,23 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 		if(E.mind)
 			E.scorestats()
 
-/proc/get_color_score(msg, score, maxscore=MAX_FACTION_SCORE)
-	if(score >= maxscore*0.5)
-		return "<font color='green'>[msg]</font>"
-	return "<font color='red'>[msg]</font>"
+/proc/get_color_score(msg, score,69axscore=MAX_FACTION_SCORE)
+	if(score >=69axscore*0.5)
+		return "<font color='green'>69msg69</font>"
+	return "<font color='red'>69msg69</font>"
 
 /proc/to_score_color(nnum)
 	if(nnum > 0)
 		return green_text(nnum)
 	if(nnum < 0)
 		return red_text(nnum)
-	return "[nnum]"
+	return "69nnum69"
 
 /proc/green_text(msg)
-	return "<font color='green'>[msg]</font>"
+	return "<font color='green'>69msg69</font>"
 
 /proc/red_text(msg)
-	return "<font color='red'>[msg]</font>"
+	return "<font color='red'>69msg69</font>"
 
 /mob/proc/scorestats()
 	var/dat = "<b>Faction Scores</b><br><hr><br>"
@@ -278,69 +278,69 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	//ironhammer
 	dat += {"
 	<u>Ironhammer scores</u><br>
-	<b>Base score:</b> [green_text(GLOB.initial_ironhammer_score)]<br>
-	<b>Lost faction items:</b> [GLOB.ironhammer_faction_item_loss] ([to_score_color(GLOB.score_ironhammer_faction_item_loss)] Points)<br>
-	<b>Faction objectives completed:</b> [GLOB.ironhammer_objectives_completed] ([to_score_color(GLOB.ironhammer_objectives_score)] Points)<br>
-	<b>Antagonist contracts completed:</b> [GLOB.completed_antag_contracts] ([to_score_color(GLOB.score_antag_contracts)] Points)<br>
-	<b>Antagonists killed or captured:</b> [GLOB.captured_or_dead_antags] ([to_score_color(GLOB.captured_or_dead_antags_score)] Points)<br>
-	<b>Escaped Antagonists:</b> [GLOB.ironhammer_escaped_antagonists] ([to_score_color(GLOB.ironhammer_escaped_antagonists_score)] Points)<br>
-	<b>IH operatives killed:</b> [GLOB.ironhammer_operative_dead] ([to_score_color(GLOB.ironhammer_operative_dead_score)] Points)<br>
-	<b>Final Ironhammer score:</b> [get_color_score(GLOB.ironhammer_score, GLOB.ironhammer_score)] Points<br><br>
+	<b>Base score:</b> 69green_text(GLOB.initial_ironhammer_score)69<br>
+	<b>Lost faction items:</b> 69GLOB.ironhammer_faction_item_loss69 (69to_score_color(GLOB.score_ironhammer_faction_item_loss)69 Points)<br>
+	<b>Faction objectives completed:</b> 69GLOB.ironhammer_objectives_completed69 (69to_score_color(GLOB.ironhammer_objectives_score)69 Points)<br>
+	<b>Antagonist contracts completed:</b> 69GLOB.completed_antag_contracts69 (69to_score_color(GLOB.score_antag_contracts)69 Points)<br>
+	<b>Antagonists killed or captured:</b> 69GLOB.captured_or_dead_antags69 (69to_score_color(GLOB.captured_or_dead_antags_score)69 Points)<br>
+	<b>Escaped Antagonists:</b> 69GLOB.ironhammer_escaped_antagonists69 (69to_score_color(GLOB.ironhammer_escaped_antagonists_score)69 Points)<br>
+	<b>IH operatives killed:</b> 69GLOB.ironhammer_operative_dead69 (69to_score_color(GLOB.ironhammer_operative_dead_score)69 Points)<br>
+	<b>Final Ironhammer score:</b> 69get_color_score(GLOB.ironhammer_score, GLOB.ironhammer_score)69 Points<br><br>
 	"}
 
 	//moebius
 	dat += {"
 	<u>Moebius scores</u><br>
-	<b>Base score:</b> [green_text(GLOB.initial_moebius_score)]<br>
-	<b>Lost faction items:</b> [GLOB.moebius_faction_item_loss] ([to_score_color(GLOB.score_moebius_faction_item_loss)] Points)<br>
-	<b>Faction objectives completed:</b> [GLOB.moebius_objectives_completed] ([to_score_color(GLOB.moebius_objectives_score)] Points)<br>
-	<b>Dead crew:</b> [GLOB.crew_dead] ([to_score_color(GLOB.score_crew_dead)] Points)<br>
-	<b>Research points gained:</b> [GLOB.research_point_gained] ([to_score_color(GLOB.score_research_point_gained)] Points)<br>
-	<b>Autopsies performed:</b> [GLOB.moebius_autopsies_mobs.len] ([to_score_color(GLOB.score_moebius_autopsies_mobs)] Points)<br>
-	<b>Final Moebius score:</b> [get_color_score(GLOB.moebius_score, GLOB.moebius_score)] Points<br><br>
+	<b>Base score:</b> 69green_text(GLOB.initial_moebius_score)69<br>
+	<b>Lost faction items:</b> 69GLOB.moebius_faction_item_loss69 (69to_score_color(GLOB.score_moebius_faction_item_loss)69 Points)<br>
+	<b>Faction objectives completed:</b> 69GLOB.moebius_objectives_completed69 (69to_score_color(GLOB.moebius_objectives_score)69 Points)<br>
+	<b>Dead crew:</b> 69GLOB.crew_dead69 (69to_score_color(GLOB.score_crew_dead)69 Points)<br>
+	<b>Research points gained:</b> 69GLOB.research_point_gained69 (69to_score_color(GLOB.score_research_point_gained)69 Points)<br>
+	<b>Autopsies performed:</b> 69GLOB.moebius_autopsies_mobs.len69 (69to_score_color(GLOB.score_moebius_autopsies_mobs)69 Points)<br>
+	<b>Final69oebius score:</b> 69get_color_score(GLOB.moebius_score, GLOB.moebius_score)69 Points<br><br>
 	"}
 
 	//nt
 	dat += {"
 	<u>NeoTheology scores</u><br>
-	<b>Base score:</b> [green_text(GLOB.initial_neotheology_score)]<br>
-	<b>Lost faction items:</b> [GLOB.neotheology_faction_item_loss] ([to_score_color(GLOB.score_neotheology_faction_item_loss)] Points)<br>
-	<b>Faction objectives completed:</b> [GLOB.neotheology_objectives_completed] ([to_score_color(GLOB.neotheology_objectives_score)] Points)<br>
-	<b>Dirty areas:</b> [GLOB.dirt_areas] ([to_score_color(GLOB.score_mess)] Points)<br>
-	<b>Biomatter produced:</b> [GLOB.biomatter_neothecnology_amt] ([to_score_color(GLOB.biomatter_score)] Points)<br>
-	<b>Total of conversions:</b> [GLOB.new_neothecnology_convert] ([to_score_color(GLOB.new_neothecnology_convert_score)] Points)<br>
-	<b>Group rituals performed:</b> [GLOB.grup_ritual_performed] ([to_score_color(GLOB.grup_ritual_score)] Points)<br>
-	<b>Final Neotheology score:</b> [get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)] Points<br><br>
+	<b>Base score:</b> 69green_text(GLOB.initial_neotheology_score)69<br>
+	<b>Lost faction items:</b> 69GLOB.neotheology_faction_item_loss69 (69to_score_color(GLOB.score_neotheology_faction_item_loss)69 Points)<br>
+	<b>Faction objectives completed:</b> 69GLOB.neotheology_objectives_completed69 (69to_score_color(GLOB.neotheology_objectives_score)69 Points)<br>
+	<b>Dirty areas:</b> 69GLOB.dirt_areas69 (69to_score_color(GLOB.score_mess)69 Points)<br>
+	<b>Biomatter produced:</b> 69GLOB.biomatter_neothecnology_amt69 (69to_score_color(GLOB.biomatter_score)69 Points)<br>
+	<b>Total of conversions:</b> 69GLOB.new_neothecnology_convert69 (69to_score_color(GLOB.new_neothecnology_convert_score)69 Points)<br>
+	<b>Group rituals performed:</b> 69GLOB.grup_ritual_performed69 (69to_score_color(GLOB.grup_ritual_score)69 Points)<br>
+	<b>Final Neotheology score:</b> 69get_color_score(GLOB.neotheology_score, GLOB.neotheology_score)69 Points<br><br>
 	"}
 
 	//guild
 	dat += {"
 	<u>Guild scores</u><br>
-	<b>Base score:</b> [green_text(GLOB.initial_guild_score)]<br>
-	<b>Lost faction items:</b> [GLOB.guild_faction_item_loss] ([to_score_color(GLOB.score_guild_faction_item_loss)] Points)<br>
-	<b>Faction objectives completed:</b> [GLOB.guild_objectives_completed] ([to_score_color(GLOB.guild_objectives_score)] Points)<br>
-	<b>Profit profits:</b> [GLOB.supply_profit] ([to_score_color(GLOB.guild_profit_score)] Points)<br>
-	<b>Crew with items distributed by the Guild:</b> [GLOB.guild_shared_gears] ([to_score_color(GLOB.guild_shared_gears_score)] Points)<br>
-	<b>Final Guild score:</b> [get_color_score(GLOB.guild_score, GLOB.guild_score)] Points<br><br><br>
+	<b>Base score:</b> 69green_text(GLOB.initial_guild_score)69<br>
+	<b>Lost faction items:</b> 69GLOB.guild_faction_item_loss69 (69to_score_color(GLOB.score_guild_faction_item_loss)69 Points)<br>
+	<b>Faction objectives completed:</b> 69GLOB.guild_objectives_completed69 (69to_score_color(GLOB.guild_objectives_score)69 Points)<br>
+	<b>Profit profits:</b> 69GLOB.supply_profit69 (69to_score_color(GLOB.guild_profit_score)69 Points)<br>
+	<b>Crew with items distributed by the Guild:</b> 69GLOB.guild_shared_gears69 (69to_score_color(GLOB.guild_shared_gears_score)69 Points)<br>
+	<b>Final Guild score:</b> 69get_color_score(GLOB.guild_score, GLOB.guild_score)69 Points<br><br><br>
 	"}
 
 	//Technomancers
 	dat += {"
 	<u>Technomancers scores</u><br>
-	<b>Base score:</b> [green_text(GLOB.initial_technomancer_score)]<br>
-	<b>Faction objectives completed:</b> [GLOB.technomancer_objectives_completed] ([to_score_color(GLOB.score_technomancer_objectives)] Points)<br>
-	<b>All SMES Charged:</b> [GLOB.all_smes_powered ? "Yes" : "No"] ([to_score_color(GLOB.score_smes_powered)] Points)<br>
-	<b>Ship shield range:</b> [GLOB.field_radius] ([to_score_color(GLOB.score_ship_shield)] Points)<br>
-	<b>Lost faction items:</b> [GLOB.technomancer_faction_item_loss] ([to_score_color(GLOB.score_technomancer_faction_item_loss)] Points)<br>
-	<b>Unpowered areas:</b> [GLOB.area_powerloss] ([to_score_color(GLOB.score_powerloss)] Points)<br>
-	<b>Areas with atmospheric problems:</b> [GLOB.area_fireloss] ([to_score_color(GLOB.score_fireloss)] Points)<br>
-	<b>Final Technomancers score:</b> [get_color_score(GLOB.technomancer_score, GLOB.technomancer_score)] Points<br><br>
+	<b>Base score:</b> 69green_text(GLOB.initial_technomancer_score)69<br>
+	<b>Faction objectives completed:</b> 69GLOB.technomancer_objectives_completed69 (69to_score_color(GLOB.score_technomancer_objectives)69 Points)<br>
+	<b>All SMES Charged:</b> 69GLOB.all_smes_powered ? "Yes" : "No"69 (69to_score_color(GLOB.score_smes_powered)69 Points)<br>
+	<b>Ship shield range:</b> 69GLOB.field_radius69 (69to_score_color(GLOB.score_ship_shield)69 Points)<br>
+	<b>Lost faction items:</b> 69GLOB.technomancer_faction_item_loss69 (69to_score_color(GLOB.score_technomancer_faction_item_loss)69 Points)<br>
+	<b>Unpowered areas:</b> 69GLOB.area_powerloss69 (69to_score_color(GLOB.score_powerloss)69 Points)<br>
+	<b>Areas with atmospheric problems:</b> 69GLOB.area_fireloss69 (69to_score_color(GLOB.score_fireloss)69 Points)<br>
+	<b>Final Technomancers score:</b> 69get_color_score(GLOB.technomancer_score, GLOB.technomancer_score)69 Points<br><br>
 	"}
 
 	dat += "<br><hr>"
 	dat += "<b><u>Personal Score</u></b><br><hr>"
-	var/objectives_score = mind.individual_objectives_completed * 20
-	var/contracts_score = mind.contracts_completed * 20
+	var/objectives_score =69ind.individual_objectives_completed * 20
+	var/contracts_score =69ind.contracts_completed * 20
 	var/survive_score = 0
 	var/scaped_score = 0
 	if(client.survive)
@@ -352,25 +352,25 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 	var/max_personal_score = 1000
 
 	dat += {"
-	<b>Personal Objectives completed:</b> [mind.individual_objectives_completed] ([to_score_color(objectives_score)] Points)<br>
-	<b>Antagonist contracts completed:</b> [mind.contracts_completed] ([to_score_color(contracts_score)] Points)<br>
-	<b>Survive:</b> [client.survive ? "Yes" : "No"] ([to_score_color(survive_score)] Points)<br>
-	<b>Escape:</b> [client.escaped ? "Yes" : "No"] ([to_score_color(scaped_score)] Points)<br>
-	<b>Final personal score:</b> [get_color_score(final_score, final_score, max_personal_score)] Points<br><br>
+	<b>Personal Objectives completed:</b> 69mind.individual_objectives_completed69 (69to_score_color(objectives_score)69 Points)<br>
+	<b>Antagonist contracts completed:</b> 69mind.contracts_completed69 (69to_score_color(contracts_score)69 Points)<br>
+	<b>Survive:</b> 69client.survive ? "Yes" : "No"69 (69to_score_color(survive_score)69 Points)<br>
+	<b>Escape:</b> 69client.escaped ? "Yes" : "No"69 (69to_score_color(scaped_score)69 Points)<br>
+	<b>Final personal score:</b> 69get_color_score(final_score, final_score,69ax_personal_score)69 Points<br><br>
 	"}
 
 	if(is_scored_departmen())
 		final_score += get_faction_score()
-		max_personal_score += MAX_FACTION_SCORE
+		max_personal_score +=69AX_FACTION_SCORE
 
 	dat += "<br><hr>"
-	dat += "<b><u>Your total score is:</u></b> [get_color_score(final_score, final_score, max_personal_score)] Points<br>"
+	dat += "<b><u>Your total score is:</u></b> 69get_color_score(final_score, final_score,69ax_personal_score)69 Points<br>"
 
 	src << browse(dat, "window=roundstats;size=500x600")
 
 /mob/proc/get_faction_score()
-	if(mind && mind.assigned_job && mind.assigned_job.department)
-		if(mind.assigned_job.department == DEPARTMENT_MEDICAL || mind.assigned_job.department == DEPARTMENT_SCIENCE)
+	if(mind &&69ind.assigned_job &&69ind.assigned_job.department)
+		if(mind.assigned_job.department == DEPARTMENT_MEDICAL ||69ind.assigned_job.department == DEPARTMENT_SCIENCE)
 			return GLOB.moebius_score
 		else if(mind.assigned_job.department == DEPARTMENT_SECURITY)
 			return GLOB.ironhammer_score
@@ -383,7 +383,7 @@ GLOBAL_VAR_INIT(score_technomancer_faction_item_loss, 0)
 
 /mob/proc/is_scored_departmen()
 	. = FALSE
-	if(mind && mind.assigned_job && mind.assigned_job.department)
+	if(mind &&69ind.assigned_job &&69ind.assigned_job.department)
 		switch(mind.assigned_job.department)
 			if(DEPARTMENT_MEDICAL)
 				. = TRUE

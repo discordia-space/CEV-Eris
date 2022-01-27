@@ -1,24 +1,24 @@
 ///////////////////////////////////////////////////////////////
-//SS13 Optimized Map loader
+//SS13 Optimized69ap loader
 //////////////////////////////////////////////////////////////
 
 /*
-//global datum that will preload variables on atoms instanciation
+//global datum that will preload69ariables on atoms instanciation
 GLOBAL_VAR_INIT(use_preloader, FALSE)
-GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
+GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader,69ew)
 */
 
-//global datum that will preload variables on atoms instanciation
-var/global/dmm_suite/preloader/_preloader = new()
+//global datum that will preload69ariables on atoms instanciation
+var/global/dmm_suite/preloader/_preloader =69ew()
 var/global/use_preloader = FALSE
 
 /dmm_suite
-		// /"([a-zA-Z]+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"([a-zA-Z\n]*)"\}/g
-	var/static/regex/dmmRegex = new/regex({""(\[a-zA-Z]+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\[a-zA-Z\n]*)"\\}"}, "g")
-		// /^[\s\n]+"?|"?[\s\n]+$|^"|"$/g
-	var/static/regex/trimQuotesRegex = new/regex({"^\[\\s\n]+"?|"?\[\\s\n]+$|^"|"$"}, "g")
-		// /^[\s\n]+|[\s\n]+$/
-	var/static/regex/trimRegex = new/regex("^\[\\s\n]+|\[\\s\n]+$", "g")
+		// /"(69a-zA-Z69+)" = \(((?:.|\n)*?)\)\n(?!\t)|\((\d+),(\d+),(\d+)\) = \{"(69a-zA-Z\n69*)"\}/g
+	var/static/regex/dmmRegex =69ew/regex({""(\69a-zA-Z69+)" = \\(((?:.|\n)*?)\\)\n(?!\t)|\\((\\d+),(\\d+),(\\d+)\\) = \\{"(\69a-zA-Z\n69*)"\\}"}, "g")
+		// /^69\s\n69+"?|"?69\s\n69+$|^"|"$/g
+	var/static/regex/trimQuotesRegex =69ew/regex({"^\69\\s\n69+"?|"?\69\\s\n69+$|^"|"$"}, "g")
+		// /^69\s\n69+|69\s\n69+$/
+	var/static/regex/trimRegex =69ew/regex("^\69\\s\n69+|\69\\s\n69+$", "g")
 	var/static/list/modelCache = list()
 	var/static/space_key
 	#ifdef TESTING
@@ -26,33 +26,33 @@ var/global/use_preloader = FALSE
 	#endif
 
 /**
- * Construct the model map and control the loading process
+ * Construct the69odel69ap and control the loading process
  *
  * WORKING :
  *
- * 1) Makes an associative mapping of model_keys with model
+ * 1)69akes an associative69apping of69odel_keys with69odel
  *		e.g aa = /turf/unsimulated/wall{icon_state = "rock"}
- * 2) Read the map line by line, parsing the result (using parse_grid)
+ * 2) Read the69ap line by line, parsing the result (using parse_grid)
  *
  */
-/dmm_suite/load_map(dmm_file as file, x_offset as num, y_offset as num, z_offset as num, cropMap as num, measureOnly as num, no_changeturf as num, orientation as num)
+/dmm_suite/load_map(dmm_file as file, x_offset as69um, y_offset as69um, z_offset as69um, cropMap as69um,69easureOnly as69um,69o_changeturf as69um, orientation as69um)
 	//How I wish for RAII
 	if(!measureOnly)
 		Master.StartLoadingMap()
-	space_key = null
+	space_key =69ull
 	#ifdef TESTING
 	turfsSkipped = 0
 	#endif
-	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
+	. = load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap,69easureOnly,69o_changeturf, orientation)
 	#ifdef TESTING
 	if(turfsSkipped)
-		testing("Skipped loading [turfsSkipped] default turfs")
+		testing("Skipped loading 69turfsSkipped69 default turfs")
 	#endif
 	if(!measureOnly)
 		Master.StopLoadingMap()
 
-/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap, measureOnly, no_changeturf, orientation)
-	var/tfile = dmm_file//the map file we're creating
+/dmm_suite/proc/load_map_impl(dmm_file, x_offset, y_offset, z_offset, cropMap,69easureOnly,69o_changeturf, orientation)
+	var/tfile = dmm_file//the69ap file we're creating
 	if(isfile(tfile))
 		tfile = file2text(tfile)
 
@@ -63,7 +63,7 @@ var/global/use_preloader = FALSE
 	if(!z_offset)
 		z_offset = world.maxz + 1
 
-	// If it's not a single dir, default to north (Default orientation)
+	// If it's69ot a single dir, default to69orth (Default orientation)
 	if(!(orientation in cardinal))
 		orientation = SOUTH
 
@@ -76,9 +76,9 @@ var/global/use_preloader = FALSE
 		stored_index = dmmRegex.next
 
 		// "aa" = (/type{vars=blah})
-		if(dmmRegex.group[1]) // Model
-			var/key = dmmRegex.group[1]
-			if(grid_models[key]) // Duplicate model keys are ignored in DMMs
+		if(dmmRegex.group69169) //69odel
+			var/key = dmmRegex.group69169
+			if(grid_models69key69) // Duplicate69odel keys are ignored in DMMs
 				continue
 			if(key_len != length(key))
 				if(!key_len)
@@ -86,22 +86,22 @@ var/global/use_preloader = FALSE
 				else
 					throw EXCEPTION("Inconsistant key length in DMM")
 			if(!measureOnly)
-				grid_models[key] = dmmRegex.group[2]
+				grid_models69key69 = dmmRegex.group69269
 
 		// (1,1,1) = {"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"}
-		else if(dmmRegex.group[3]) // Coords
+		else if(dmmRegex.group69369) // Coords
 			if(!key_len)
-				testing("[dmmRegex.group[3]]")
-				throw EXCEPTION("Coords before model definition in DMM - [dmm_file]")
+				testing("69dmmRegex.group6936969")
+				throw EXCEPTION("Coords before69odel definition in DMM - 69dmm_file69")
 
-			var/xcrdStart = text2num(dmmRegex.group[3]) + x_offset - 1
+			var/xcrdStart = text2num(dmmRegex.group69369) + x_offset - 1
 			//position of the currently processed square
 			var/xcrd
-			var/ycrd = text2num(dmmRegex.group[4]) + y_offset - 1
-			var/zcrd = text2num(dmmRegex.group[5]) + z_offset - 1
+			var/ycrd = text2num(dmmRegex.group69469) + y_offset - 1
+			var/zcrd = text2num(dmmRegex.group69569) + z_offset - 1
 
 			if(orientation & (EAST | WEST)) //VOREStation edit we just have to pray the upstream spacebrains take into consideration before their refator is done.
-				xcrd = ycrd // temp variable
+				xcrd = ycrd // temp69ariable
 				ycrd = xcrdStart
 				xcrdStart = xcrd
 
@@ -110,38 +110,38 @@ var/global/use_preloader = FALSE
 				if(cropMap)
 					continue
 				else
-					while(world.maxz < zcrd) //create a new z_level if needed
+					while(world.maxz < zcrd) //create a69ew z_level if69eeded
 						world.incrementMaxZ()
 				if(!no_changeturf)
-					WARNING("Z-level expansion occurred without no_changeturf set, this may cause problems")
+					WARNING("Z-level expansion occurred without69o_changeturf set, this69ay cause problems")
 
-			bounds[MAP_MINX] = min(bounds[MAP_MINX], xcrdStart)
-			bounds[MAP_MINZ] = min(bounds[MAP_MINZ], zcrd)
-			bounds[MAP_MAXZ] = max(bounds[MAP_MAXZ], zcrd)
+			bounds69MAP_MINX69 =69in(bounds69MAP_MINX69, xcrdStart)
+			bounds69MAP_MINZ69 =69in(bounds69MAP_MINZ69, zcrd)
+			bounds69MAP_MAXZ69 =69ax(bounds69MAP_MAXZ69, zcrd)
 
-			var/list/gridLines = splittext(dmmRegex.group[6], "\n")
+			var/list/gridLines = splittext(dmmRegex.group69669, "\n")
 
 			var/leadingBlanks = 0
-			while(leadingBlanks < gridLines.len && gridLines[++leadingBlanks] == "")
+			while(leadingBlanks < gridLines.len && gridLines69++leadingBlanks69 == "")
 			if(leadingBlanks > 1)
 				gridLines.Cut(1, leadingBlanks) // Remove all leading blank lines.
 
 			if(!gridLines.len) // Skip it if only blank lines exist.
 				continue
 
-			if(gridLines.len && gridLines[gridLines.len] == "")
+			if(gridLines.len && gridLines69gridLines.len69 == "")
 				gridLines.Cut(gridLines.len) // Remove only one blank line at the end.
 
-			bounds[MAP_MINY] = min(bounds[MAP_MINY], ycrd)
-			if (orientation == SOUTH || orientation == NORTH) // Fix to avoid improper loading with EAST and WEST orientation
+			bounds69MAP_MINY69 =69in(bounds69MAP_MINY69, ycrd)
+			if (orientation == SOUTH || orientation ==69ORTH) // Fix to avoid improper loading with EAST and WEST orientation
 				ycrd += gridLines.len - 1 // Start at the top and work down
 
 			if(!cropMap && ycrd > world.maxy)
 				if(!measureOnly)
 					world.maxy = ycrd // Expand Y here.  X is expanded in the loop below
-				bounds[MAP_MAXY] = max(bounds[MAP_MAXY], ycrd)
+				bounds69MAP_MAXY69 =69ax(bounds69MAP_MAXY69, ycrd)
 			else
-				bounds[MAP_MAXY] = max(bounds[MAP_MAXY], min(ycrd, world.maxy))
+				bounds69MAP_MAXY69 =69ax(bounds69MAP_MAXY69,69in(ycrd, world.maxy))
 
 			var/maxx = xcrdStart
 
@@ -159,56 +159,56 @@ var/global/use_preloader = FALSE
 
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
-						line_keys[++line_keys.len] = model_key
+						line_keys69++line_keys.len69 =69odel_key
 						#ifdef TESTING
 					else
 						++turfsSkipped
 						#endif
 						CHECK_TICK
-					maxx = max(maxx, xcrd++)
-				key_list[++key_list.len] = line_keys
+					maxx =69ax(maxx, xcrd++)
+				key_list69++key_list.len69 = line_keys
 
 			// Rotate the list according to orientation
 			if(orientation != SOUTH)
-				var/num_cols = key_list[1].len
+				var/num_cols = key_list69169.len
 				var/num_rows = key_list.len
 				var/list/list/new_key_list = list()
 				// If it's rotated 180 degrees, the dimensions are the same
-				if(orientation == NORTH)
-					new_key_list.len = num_rows
-					for(var/i = 1 to new_key_list.len)
-						new_key_list[i] = list()
-						new_key_list[i].len = num_cols
+				if(orientation ==69ORTH)
+					new_key_list.len =69um_rows
+					for(var/i = 1 to69ew_key_list.len)
+						new_key_list69i69 = list()
+						new_key_list69i69.len =69um_cols
 				// Else, the dimensions are swapped
 				else
-					new_key_list.len = num_cols
-					for(var/i = 1 to new_key_list.len)
-						new_key_list[i] = list()
-						new_key_list[i].len = num_rows
+					new_key_list.len =69um_cols
+					for(var/i = 1 to69ew_key_list.len)
+						new_key_list69i69 = list()
+						new_key_list69i69.len =69um_rows
 
 				num_rows++ // Buffering against the base index of 1
 				num_cols++
-				// Populate the new list
-				for(var/i = 1 to new_key_list.len)
-					for(var/j = 1 to new_key_list[i].len)
+				// Populate the69ew list
+				for(var/i = 1 to69ew_key_list.len)
+					for(var/j = 1 to69ew_key_list69i69.len)
 						switch(orientation)
 							if(NORTH)
-								new_key_list[i][j] = key_list[num_rows - i][num_cols - j]
+								new_key_list69i6969j69 = key_list69num_rows - i6969num_cols - j69
 							if(EAST)
-								new_key_list[i][j] = key_list[num_rows - j][i]
+								new_key_list69i6969j69 = key_list69num_rows - j6969i69
 							if(WEST)
-								new_key_list[i][j] = key_list[j][num_cols - i]
+								new_key_list69i6969j69 = key_list69j6969num_cols - i69
 
-				key_list = new_key_list
+				key_list =69ew_key_list
 
 			if(measureOnly)
 				for(var/list/line in key_list)
-					maxx = max(maxx, line.len)
+					maxx =69ax(maxx, line.len)
 			else
 				for(var/i = 1 to key_list.len)
 					if(ycrd <= world.maxy && ycrd >= 1)
 						xcrd = xcrdStart
-						for(var/j = 1 to key_list[1].len)
+						for(var/j = 1 to key_list69169.len)
 							if(xcrd > world.maxx)
 								if(cropMap)
 									break
@@ -216,30 +216,30 @@ var/global/use_preloader = FALSE
 									world.maxx = xcrd
 
 							if(xcrd >= 1)
-								var/no_afterchange = no_changeturf || zexpansion
-								if(!no_afterchange || (key_list[i][j] != space_key))
-									if(!grid_models[key_list[i][j]])
-										throw EXCEPTION("Undefined model key in DMM: [dmm_file], [key_list[i][j]]")
-									parse_grid(grid_models[key_list[i][j]], key_list[i][j], xcrd, ycrd, zcrd, no_afterchange, orientation)
+								var/no_afterchange =69o_changeturf || zexpansion
+								if(!no_afterchange || (key_list69i6969j69 != space_key))
+									if(!grid_models69key_list69i6969j6969)
+										throw EXCEPTION("Undefined69odel key in DMM: 69dmm_file69, 69key_list69i6969j6969")
+									parse_grid(grid_models69key_list69i6969j6969, key_list69i6969j69, xcrd, ycrd, zcrd,69o_afterchange, orientation)
 								#ifdef TESTING
 								else
 									++turfsSkipped
 								#endif
 								CHECK_TICK
-							maxx = max(maxx, xcrd)
+							maxx =69ax(maxx, xcrd)
 							++xcrd
 					--ycrd
 
-			bounds[MAP_MAXX] = max(bounds[MAP_MAXX], cropMap ? min(maxx, world.maxx) : maxx)
+			bounds69MAP_MAXX69 =69ax(bounds69MAP_MAXX69, cropMap ?69in(maxx, world.maxx) :69axx)
 
 		CHECK_TICK
 
-	if(bounds[1] == 1.#INF) // Shouldn't need to check every item
-		return null
+	if(bounds69169 == 1.#INF) // Shouldn't69eed to check every item
+		return69ull
 	else
 	//	if(!measureOnly)
 	//		if(!no_changeturf)
-	//			for(var/t in block(locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]), locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ])))
+	//			for(var/t in block(locate(bounds69MAP_MINX69, bounds69MAP_MINY69, bounds69MAP_MINZ69), locate(bounds69MAP_MAXX69, bounds69MAP_MAXY69, bounds69MAP_MAXZ69)))
 	//				var/turf/T = t
 	//				//we do this after we load everything in. if we don't; we'll have weird atmos bugs regarding atmos adjacent turfs
 	//				T.post_change()
@@ -247,39 +247,39 @@ var/global/use_preloader = FALSE
 
 /**
  * Fill a given tile with its area/turf/objects/mobs
- * Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = "rock"}, /area/mine/explored)
+ *69ariable69odel is one full69ap line (e.g /turf/unsimulated/wall{icon_state = "rock"}, /area/mine/explored)
  *
  * WORKING :
  *
- * 1) Read the model string, member by member (delimiter is ',')
+ * 1) Read the69odel string,69ember by69ember (delimiter is ',')
  *
  * 2) Get the path of the atom and store it into a list
  *
- * 3) a) Check if the member has variables (text within '{' and '}')
+ * 3) a) Check if the69ember has69ariables (text within '{' and '}')
  *
- * 3) b) Construct an associative list with found variables, if any (the atom index in members is the same as its variables in members_attributes)
+ * 3) b) Construct an associative list with found69ariables, if any (the atom index in69embers is the same as its69ariables in69embers_attributes)
  *
- * 4) Instanciates the atom with its variables
+ * 4) Instanciates the atom with its69ariables
  *
  */
-/dmm_suite/proc/parse_grid(model as text, model_key as text, xcrd as num,ycrd as num,zcrd as num, no_changeturf as num, orientation as num)
+/dmm_suite/proc/parse_grid(model as text,69odel_key as text, xcrd as69um,ycrd as69um,zcrd as69um,69o_changeturf as69um, orientation as69um)
 	/*Method parse_grid()
 	- Accepts a text string containing a comma separated list of type paths of the
 		same construction as those contained in a .dmm file, and instantiates them.
 	*/
 
-	var/list/members //will contain all members (paths) in model (in our example : /turf/unsimulated/wall and /area/mine/explored)
-	var/list/members_attributes //will contain lists filled with corresponding variables, if any (in our example : list(icon_state = "rock") and list())
-	var/list/cached = modelCache[model]
+	var/list/members //will contain all69embers (paths) in69odel (in our example : /turf/unsimulated/wall and /area/mine/explored)
+	var/list/members_attributes //will contain lists filled with corresponding69ariables, if any (in our example : list(icon_state = "rock") and list())
+	var/list/cached =69odelCache69model69
 	var/index
 
 	if(cached)
-		members = cached[1]
-		members_attributes = cached[2]
+		members = cached69169
+		members_attributes = cached69269
 	else
 
 		/////////////////////////////////////////////////////////
-		//Constructing members and corresponding variables lists
+		//Constructing69embers and corresponding69ariables lists
 		////////////////////////////////////////////////////////
 
 		members = list()
@@ -290,123 +290,123 @@ var/global/use_preloader = FALSE
 		var/dpos
 
 		do
-			//finding next member (e.g /turf/unsimulated/wall{icon_state = "rock"} or /area/mine/explored)
-			dpos = find_next_delimiter_position(model, old_position, ",", "{", "}") //find next delimiter (comma here) that's not within {...}
+			//finding69ext69ember (e.g /turf/unsimulated/wall{icon_state = "rock"} or /area/mine/explored)
+			dpos = find_next_delimiter_position(model, old_position, ",", "{", "}") //find69ext delimiter (comma here) that's69ot within {...}
 
 			var/full_def = trim_text(copytext(model, old_position, dpos)) //full definition, e.g : /obj/foo/bar{variables=derp}
 			var/variables_start = findtext(full_def, "{")
-			var/atom_def = text2path(trim_text(copytext(full_def, 1, variables_start))) //path definition, e.g /obj/foo/bar
+			var/atom_def = text2path(trim_text(copytext(full_def, 1,69ariables_start))) //path definition, e.g /obj/foo/bar
 
 			if(dpos)
-				old_position = dpos + length(model[dpos])
+				old_position = dpos + length(model69dpos69)
 
-			if(!atom_def) // Skip the item if the path does not exist.  Fix your crap, mappers!
+			if(!atom_def) // Skip the item if the path does69ot exist.  Fix your crap,69appers!
 				continue
 			members.Add(atom_def)
 
-			//transform the variables in text format into a list (e.g {var1="derp"; var2; var3=7} => list(var1="derp", var2, var3=7))
+			//transform the69ariables in text format into a list (e.g {var1="derp";69ar2;69ar3=7} => list(var1="derp",69ar2,69ar3=7))
 			var/list/fields = list()
 
-			if(variables_start)//if there's any variable
-				full_def = copytext(full_def, variables_start + length(full_def[variables_start]), -length(copytext_char(full_def, -1))) //removing the last '}'
+			if(variables_start)//if there's any69ariable
+				full_def = copytext(full_def,69ariables_start + length(full_def69variables_start69), -length(copytext_char(full_def, -1))) //removing the last '}'
 				fields = readlist(full_def, ";", TRUE)
 				if(fields.len)
-					if(!trim(fields[fields.len]))
+					if(!trim(fields69fields.len69))
 						--fields.len
 					for(var/I in fields)
-						var/value = fields[I]
+						var/value = fields69I69
 						if(istext(value))
-							fields[I] = apply_text_macros(value)
+							fields69I69 = apply_text_macros(value)
 
 			// Rotate dir if orientation isn't south (default)
-			if(fields["dir"])
-				fields["dir"] = turn(fields["dir"], dir2angle(orientation) + 180)
+			if(fields69"dir"69)
+				fields69"dir"69 = turn(fields69"dir"69, dir2angle(orientation) + 180)
 			else
-				fields["dir"] = turn(SOUTH, dir2angle(orientation) + 180)
+				fields69"dir"69 = turn(SOUTH, dir2angle(orientation) + 180)
 
-			//then fill the members_attributes list with the corresponding variables
+			//then fill the69embers_attributes list with the corresponding69ariables
 			members_attributes.len++
-			members_attributes[index++] = fields
+			members_attributes69index++69 = fields
 
 			CHECK_TICK
 		while(dpos != 0)
 
 		//check and see if we can just skip this turf
 		//So you don't have to understand this horrid statement, we can do this if
-		// 1. no_changeturf is set
+		// 1.69o_changeturf is set
 		// 2. the space_key isn't set yet
-		// 3. there are exactly 2 members
-		// 4. with no attributes
-		// 5. and the members are world.turf and world.area
+		// 3. there are exactly 269embers
+		// 4. with69o attributes
+		// 5. and the69embers are world.turf and world.area
 		// Basically, if we find an entry like this: "XXX" = (/turf/default, /area/default)
 		// We can skip calling this proc every time we see XXX
-		if(no_changeturf && !space_key && members.len == 2 && members_attributes.len == 2 && length(members_attributes[1]) == 0 && length(members_attributes[2]) == 0 && (world.area in members) && (world.turf in members))
-			space_key = model_key
+		if(no_changeturf && !space_key &&69embers.len == 2 &&69embers_attributes.len == 2 && length(members_attributes69169) == 0 && length(members_attributes69269) == 0 && (world.area in69embers) && (world.turf in69embers))
+			space_key =69odel_key
 			return
 
 
-		modelCache[model] = list(members, members_attributes)
+		modelCache69model69 = list(members,69embers_attributes)
 
 
 	////////////////
 	//Instanciation
 	////////////////
 
-	//The next part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
+	//The69ext part of the code assumes there's ALWAYS an /area AND a /turf on a given tile
 	var/turf/crds = locate(xcrd,ycrd,zcrd)
 
-	//first instance the /area and remove it from the members list
-	index = members.len
-	if(members[index] != /area/template_noop)
+	//first instance the /area and remove it from the69embers list
+	index =69embers.len
+	if(members69index69 != /area/template_noop)
 		var/atom/instance
-		_preloader.setup(members_attributes[index])//preloader for assigning  set variables on atom creation
-		var/atype = members[index]
+		_preloader.setup(members_attributes69index69)//preloader for assigning  set69ariables on atom creation
+		var/atype =69embers69index69
 		for(var/area/A in all_areas)
 			if(A.type == atype)
 				instance = A
 				break
 		if(!instance)
-			instance = new atype(null)
+			instance =69ew atype(null)
 		if(crds)
 			instance.contents.Add(crds)
 
 		if(use_preloader && instance)
 			_preloader.load(instance)
 
-	//then instance the /turf and, if multiple tiles are presents, simulates the DMM underlays piling effect
+	//then instance the /turf and, if69ultiple tiles are presents, simulates the DMM underlays piling effect
 
 	var/first_turf_index = 1
-	while(!ispath(members[first_turf_index], /turf)) //find first /turf object in members
+	while(!ispath(members69first_turf_index69, /turf)) //find first /turf object in69embers
 		first_turf_index++
 
-	//turn off base new Initialization until the whole thing is loaded
+	//turn off base69ew Initialization until the whole thing is loaded
 	SSatoms.map_loader_begin()
 	//instanciate the first /turf
 	var/turf/T
-	if(members[first_turf_index] != /turf/template_noop)
-		T = instance_atom(members[first_turf_index],members_attributes[first_turf_index],crds,no_changeturf)
+	if(members69first_turf_index69 != /turf/template_noop)
+		T = instance_atom(members69first_turf_index69,members_attributes69first_turf_index69,crds,no_changeturf)
 
 	if(T)
 		//if others /turf are presents, simulates the underlays piling effect
 		index = first_turf_index + 1
-		while(index <= members.len - 1) // Last item is an /area
+		while(index <=69embers.len - 1) // Last item is an /area
 			var/underlay = T.appearance
-			T = instance_atom(members[index],members_attributes[index],crds,no_changeturf)//instance new turf
+			T = instance_atom(members69index69,members_attributes69index69,crds,no_changeturf)//instance69ew turf
 			T.underlays += underlay
 			index++
 
 	//finally instance all remainings objects/mobs
 	for(index in 1 to first_turf_index-1)
-		instance_atom(members[index],members_attributes[index],crds,no_changeturf)
-	//Restore initialization to the previous value
+		instance_atom(members69index69,members_attributes69index69,crds,no_changeturf)
+	//Restore initialization to the previous69alue
 	SSatoms.map_loader_stop()
 
 ////////////////
 //Helpers procs
 ////////////////
 
-//Instance an atom at (x,y,z) and gives it the variables in attributes
-/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds, no_changeturf)
+//Instance an atom at (x,y,z) and gives it the69ariables in attributes
+/dmm_suite/proc/instance_atom(path,list/attributes, turf/crds,69o_changeturf)
 	_preloader.setup(attributes, path)
 
 	if(crds)
@@ -415,10 +415,10 @@ var/global/use_preloader = FALSE
 		else
 			. = create_atom(path, crds)//first preloader pass
 
-	if(use_preloader && .)//second preloader pass, for those atoms that don't ..() in New()
+	if(use_preloader && .)//second preloader pass, for those atoms that don't ..() in69ew()
 		_preloader.load(.)
 
-	//custom CHECK_TICK here because we don't want things created while we're sleeping to not initialize
+	//custom CHECK_TICK here because we don't want things created while we're sleeping to69ot initialize
 	if(TICK_CHECK)
 		SSatoms.map_loader_stop()
 		stoplag()
@@ -426,10 +426,10 @@ var/global/use_preloader = FALSE
 
 /dmm_suite/proc/create_atom(path, crds)
 	set waitfor = FALSE
-	. = new path (crds)
+	. =69ew path (crds)
 
 //text trimming (both directions) helper proc
-//optionally removes quotes before and after the text (for variable name)
+//optionally removes quotes before and after the text (for69ariable69ame)
 /dmm_suite/proc/trim_text(what as text,trim_quotes=0)
 	if(trim_quotes)
 		return trimQuotesRegex.Replace(what, "")
@@ -437,26 +437,26 @@ var/global/use_preloader = FALSE
 		return trimRegex.Replace(what, "")
 
 
-//find the position of the next delimiter,skipping whatever is comprised between opening_escape and closing_escape
+//find the position of the69ext delimiter,skipping whatever is comprised between opening_escape and closing_escape
 //returns 0 if reached the last delimiter
-/dmm_suite/proc/find_next_delimiter_position(text as text,initial_position as num, delimiter=",",opening_escape="\"",closing_escape="\"")
+/dmm_suite/proc/find_next_delimiter_position(text as text,initial_position as69um, delimiter=",",opening_escape="\"",closing_escape="\"")
 	var/position = initial_position
 	var/next_delimiter = findtext(text,delimiter,position,0)
 	var/next_opening = findtext(text,opening_escape,position,0)
 
-	while((next_opening != 0) && (next_opening < next_delimiter))
+	while((next_opening != 0) && (next_opening <69ext_delimiter))
 		position = findtext(text,closing_escape,next_opening + 1,0)+1
 		next_delimiter = findtext(text,delimiter,position,0)
 		next_opening = findtext(text,opening_escape,position,0)
 
-	return next_delimiter
+	return69ext_delimiter
 
 
-//build a list from variables in text form (e.g {var1="derp"; var2; var3=7} => list(var1="derp", var2, var3=7))
-// text - variables in text form.  Not including surrounding {} or list()
+//build a list from69ariables in text form (e.g {var1="derp";69ar2;69ar3=7} => list(var1="derp",69ar2,69ar3=7))
+// text -69ariables in text form. 69ot including surrounding {} or list()
 // delimiter - Delimiter between list entries
-// keys_only_string - If true, text that looks like an associative list has its keys treated as var names,
-//                    otherwise they are parsed as valid associative list keys.
+// keys_only_string - If true, text that looks like an associative list has its keys treated as69ar69ames,
+//                    otherwise they are parsed as69alid associative list keys.
 //return the filled list
 /dmm_suite/proc/readlist(text as text, delimiter=",", keys_only_string = FALSE)
 
@@ -468,38 +468,38 @@ var/global/use_preloader = FALSE
 	var/old_position = 1
 
 	do
-		//find next delimiter that is not within  "..."
+		//find69ext delimiter that is69ot within  "..."
 		position = find_next_delimiter_position(text,old_position,delimiter)
 
-		//check if this is a simple variable (as in list(var1, var2)) or an associative one (as in list(var1="foo",var2=7))
+		//check if this is a simple69ariable (as in list(var1,69ar2)) or an associative one (as in list(var1="foo",var2=7))
 		var/equal_position = findtext(text,"=",old_position, position)
 
-		// part to the left of = (the key/var name), or the entire value. If treating it as a var name, strip quotes at the same time.
+		// part to the left of = (the key/var69ame), or the entire69alue. If treating it as a69ar69ame, strip quotes at the same time.
 		var/trim_left = trim_text(copytext(text,old_position,(equal_position ? equal_position : position)), keys_only_string)
 		if(position)
-			old_position = position + length(text[position])
+			old_position = position + length(text69position69)
 
 		var/trim_right = trim_left
-		if(equal_position)//associative var, so do the association
-			trim_right = trim_text(copytext(text, equal_position + length(text[equal_position]), position))//the content of the variable
-			if(!keys_only_string) // We also need to evaluate the key for the types it is permitted to be
+		if(equal_position)//associative69ar, so do the association
+			trim_right = trim_text(copytext(text, equal_position + length(text69equal_position69), position))//the content of the69ariable
+			if(!keys_only_string) // We also69eed to evaluate the key for the types it is permitted to be
 				if(findtext(trim_left,"\"",1,2)) //Check for string
 					trim_left = copytext(trim_left,2,findtext(trim_left,"\"",3,0))
-				else if(isnum(text2num(trim_left))) //Check for number
+				else if(isnum(text2num(trim_left))) //Check for69umber
 					trim_left = text2num(trim_left)
 				else if(ispath(text2path(trim_left))) //Check for path
 					trim_left = text2path(trim_left)
 
-		// Parse the value in trim_right
+		// Parse the69alue in trim_right
 		//Check for string
 		if(findtext(trim_right,"\"",1,2))
 			trim_right = copytext(trim_right,2,findtext(trim_right,"\"",3,0))
-		//Check for number
+		//Check for69umber
 		else if(isnum(text2num(trim_right)))
 			trim_right = text2num(trim_right)
-		//Check for null
+		//Check for69ull
 		else if(trim_right == "null")
-			trim_right = null
+			trim_right =69ull
 		//Check for list
 		else if(copytext(trim_right,1,5) == "list")
 			trim_right = readlist(copytext(trim_right,6,length(trim_right)))
@@ -510,9 +510,9 @@ var/global/use_preloader = FALSE
 		else if(ispath(text2path(trim_right)))
 			trim_right = text2path(trim_right)
 
-		// Now put the trim_right into the result.  Method by which we do so varies on if its assoc or not
+		//69ow put the trim_right into the result. 69ethod by which we do so69aries on if its assoc or69ot
 		if(equal_position)
-			to_return[trim_left] = trim_right
+			to_return69trim_left69 = trim_right
 		else
 			to_return += trim_right
 
@@ -541,10 +541,10 @@ var/global/use_preloader = FALSE
 
 /dmm_suite/preloader/proc/load(atom/what)
 	for(var/attribute in attributes)
-		var/value = attributes[attribute]
+		var/value = attributes69attribute69
 		if(islist(value))
 			value = deepCopyList(value)
-		what.vars[attribute] = value
+		what.vars69attribute69 =69alue
 	use_preloader = FALSE
 
 /area/template_noop

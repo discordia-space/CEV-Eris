@@ -1,20 +1,20 @@
 /*
-	Pins both hold data for circuits, as well move data between them.  Some also cause circuits to do their function.  DATA_CHANNEL pins are the data holding/moving kind,
+	Pins both hold data for circuits, as well69ove data between them.  Some also cause circuits to do their function.  DATA_CHANNEL pins are the data holding/moving kind,
 where as PULSE_CHANNEL causes circuits to work() when their pulse hits them.
-A visualization of how pins work is below.  Imagine the below image involves an addition circuit.
+A69isualization of how pins work is below.  Imagine the below image involves an addition circuit.
 When the bottom pin, the activator, receives a pulse, all the numbers on the left (input) get added, and the answer goes on the right side (output).
 Inputs      Outputs
-A [2]\      /[8] result
-B [1]-\|++|/
-C [4]-/|++|
-D [1]/  ||
+A 69269\      /69869 result
+B 69169-\|++|/
+C 69469-/|++|
+D 69169/  ||
         ||
      Activator
 */
 /datum/integrated_io
 	var/name = "input/output"
 	var/obj/item/integrated_circuit/holder
-	var/weakref/data  // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text may also occupy this.
+	var/weakref/data  // This is a weakref, to reduce typecasts.  Note that oftentimes numbers and text69ay also occupy this.
 	var/list/linked = list()
 	var/io_type = DATA_CHANNEL
 	var/pin_type			// IC_INPUT, IC_OUTPUT, IC_ACTIVATOR - used in saving assembly wiring
@@ -32,7 +32,7 @@ D [1]/  ||
 	holder = loc
 
 	if(!istype(holder))
-		message_admins("ERROR: An integrated_io ([name]) spawned without a valid holder!  This is a bug.")
+		message_admins("ERROR: An integrated_io (69name69) spawned without a69alid holder!  This is a bug.")
 
 /datum/integrated_io/Destroy()
 	disconnect_all()
@@ -49,24 +49,24 @@ D [1]/  ||
 
 /datum/integrated_io/proc/display_data(input)
 	if(isnull(input))
-		return "(null)" // Empty data means nothing to show.
+		return "(null)" // Empty data69eans nothing to show.
 
 	if(isnum_safe(input))
-		return "([num2text(input)])"
+		return "(69num2text(input)69)"
 
 	if(istext(input))
-		return "(\"[input]\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
+		return "(\"69input69\")" // Wraps the 'string' in escaped quotes, so that people know it's a 'string'.
 
 	if(islist(input))
 		var/list/my_list = input
-		var/result = "list\[[my_list.len]\]("
+		var/result = "list\6969my_list.len69\69("
 		if(my_list.len)
 			result += "<br>"
 			var/pos = 0
-			for(var/line in my_list)
-				result += "[display_data(line)]"
+			for(var/line in69y_list)
+				result += "69display_data(line)69"
 				pos++
-				if(pos != my_list.len)
+				if(pos !=69y_list.len)
 					result += ",<br>"
 			result += "<br>"
 		result += ")"
@@ -75,12 +75,12 @@ D [1]/  ||
 	if(isweakref(input))
 		var/weakref/w = input
 		var/atom/A = w.resolve()
-		return A ? "([A.name] \[Ref])" : "(null)" // For refs, we want just the name displayed.
+		return A ? "(69A.name69 \69Ref69)" : "(null)" // For refs, we want just the name displayed.
 
-	return "([input])" // Nothing special needed for numbers or other stuff.
+	return "(69input69)" // Nothing special needed for numbers or other stuff.
 
 /datum/integrated_io/activate/display_data()
-	return "(\[pulse\])"
+	return "(\69pulse\69)"
 
 /datum/integrated_io/proc/display_pin_type()
 	return IC_FORMAT_ANY
@@ -100,7 +100,7 @@ D [1]/  ||
 /datum/integrated_io/activate/scramble()
 	push_data()
 
-/datum/integrated_io/proc/handle_wire(datum/integrated_io/linked_pin, obj/item/tool, action, mob/living/user)
+/datum/integrated_io/proc/handle_wire(datum/integrated_io/linked_pin, obj/item/tool, action,69ob/living/user)
 	if(istype(tool, /obj/item/device/integrated_electronics/wirer))
 		var/obj/item/device/integrated_electronics/wirer/wirer = tool
 		if(linked_pin)
@@ -127,22 +127,22 @@ D [1]/  ||
 
 /datum/integrated_io/proc/push_data()
 	for(var/k in 1 to linked.len)
-		var/datum/integrated_io/io = linked[k]
+		var/datum/integrated_io/io = linked69k69
 		io.write_data_to_pin(data)
 
 /datum/integrated_io/activate/push_data()
 	for(var/k in 1 to linked.len)
-		var/datum/integrated_io/io = linked[k]
+		var/datum/integrated_io/io = linked69k69
 		SScircuit_components.queue_component(io.holder, TRUE, io.ord)
 
 /datum/integrated_io/proc/pull_data()
 	for(var/k in 1 to linked.len)
-		var/datum/integrated_io/io = linked[k]
+		var/datum/integrated_io/io = linked69k69
 		write_data_to_pin(io.data)
 
 /datum/integrated_io/proc/get_linked_to_desc()
 	if(linked.len)
-		return "the [english_list(linked)]"
+		return "the 69english_list(linked)69"
 	return "nothing"
 
 
@@ -160,26 +160,26 @@ D [1]/  ||
 	linked.Remove(pin)
 
 
-/datum/integrated_io/proc/ask_for_data_type(mob/user, var/default, var/list/allowed_data_types = list("string","number","null"))
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in allowed_data_types
+/datum/integrated_io/proc/ask_for_data_type(mob/user,69ar/default,69ar/list/allowed_data_types = list("string","number","null"))
+	var/type_to_use = input("Please choose a type to use.","69src69 type setting") as null|anything in allowed_data_types
 	if(!holder.check_interactivity(user))
 		return
 
 	var/new_data = null
 	switch(type_to_use)
 		if("string")
-			new_data = sanitize(input(user, "Now type in a string.", "[src] string writing", istext(default) ? default : null) as null|text, trim = 0)
+			new_data = sanitize(input(user, "Now type in a string.", "69src69 string writing", istext(default) ? default : null) as null|text, trim = 0)
 			if(istext(new_data) && holder.check_interactivity(user) )
 				to_chat(user, "<span class='notice'>You input "+new_data+" into the pin.</span>")
 				return new_data
 		if("number")
-			new_data = input("Now type in a number.","[src] number writing", isnum_safe(default) ? default : null) as null|num
+			new_data = input("Now type in a number.","69src69 number writing", isnum_safe(default) ? default : null) as null|num
 			if(isnum_safe(new_data) && holder.check_interactivity(user) )
-				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
+				to_chat(user, "<span class='notice'>You input 69new_data69 into the pin.</span>")
 				return new_data
 		if("null")
 			if(holder.check_interactivity(user))
-				to_chat(user, "<span class='notice'>You clear the pin's memory.</span>")
+				to_chat(user, "<span class='notice'>You clear the pin's69emory.</span>")
 				return new_data
 
 // Basically a null check
@@ -192,13 +192,13 @@ D [1]/  ||
 	write_data_to_pin(new_data)
 
 /datum/integrated_io/activate/ask_for_pin_data(mob/user) // This just pulses the pin.
-	holder.investigate_log(" was manually pulsed by [key_name(user)].", INVESTIGATE_CIRCUIT)
+	holder.investigate_log(" was69anually pulsed by 69key_name(user)69.", INVESTIGATE_CIRCUIT)
 	SScircuit_components.queue_component(holder, TRUE, ord, TRUE) //gnore_power = TRUE
-	to_chat(user, "<span class='notice'>You pulse \the [holder]'s [src] pin.</span>")
+	to_chat(user, "<span class='notice'>You pulse \the 69holder69's 69src69 pin.</span>")
 
 /datum/integrated_io/activate
 	name = "activation pin"
 	io_type = PULSE_CHANNEL
 
-/datum/integrated_io/activate/out // All this does is just make the UI say 'out' instead of 'in'
+/datum/integrated_io/activate/out // All this does is just69ake the UI say 'out' instead of 'in'
 	data = 1

@@ -1,7 +1,7 @@
 /datum/craft_step
 	var/reqed_type
 	var/reqed_quality
-	var/reqed_quality_level = 0//For tools, minimum threshold of a quality
+	var/reqed_quality_level = 0//For tools,69inimum threshold of a quality
 	var/building = FALSE //Prevents spamming one recipe requirement to finish the entire recipe
 	var/reqed_material
 	var/req_amount = 0
@@ -23,29 +23,29 @@
 		reqed_type = params
 	else if(istext(params))
 		reqed_quality = params
-		reqed_quality_level = 1 //A minimum value, will be set higher in a second
+		reqed_quality_level = 1 //A69inimum69alue, will be set higher in a second
 	else if(islist(params))
-		var/validator = params[1]
+		var/validator = params69169
 		if(ispath(validator))
-			reqed_type = validator
+			reqed_type =69alidator
 			req_amount = 1
 		else if(istext(validator))
 			if(validator == CRAFT_MATERIAL)
-				reqed_material = params[3]
+				reqed_material = params69369
 				max_params = 3
 			else
-				reqed_quality = validator
+				reqed_quality =69alidator
 
-		if(isnum(params[2])) //amount
+		if(isnum(params69269)) //amount
 			if(reqed_quality)
-				reqed_quality_level = params[2]
+				reqed_quality_level = params69269
 			else
-				req_amount = params[2]
+				req_amount = params69269
 
 		if("time" in params)
-			time = params["time"]
-		else if(params.len > max_params)
-			time = params[max_params+1]
+			time = params69"time"69
+		else if(params.len >69ax_params)
+			time = params69max_params+169
 		else if(parent)
 			time = parent.time
 
@@ -56,46 +56,46 @@
 			req_amount = 1
 
 	else if(reqed_quality)
-		tool_name = "tool with [reqed_quality] quality of [reqed_quality_level]"
+		tool_name = "tool with 69reqed_quality69 quality of 69reqed_quality_level69"
 
 	else if(reqed_material)
-		var/material/M = get_material_by_name("[reqed_material]")
-		tool_name = "units of [M.display_name]"
+		var/material/M = get_material_by_name("69reqed_material69")
+		tool_name = "units of 69M.display_name69"
 	make_desc()
 
 /datum/craft_step/proc/make_desc(obj/item/craft/C)
 	var/amt = req_amount
 	if(C && reqed_type && req_amount > 1)
 		if(!(C in craft_items))
-			craft_items[C] = req_amount
-		amt = craft_items[C]
+			craft_items69C69 = req_amount
+		amt = craft_items69C69
 
 	switch(amt)
 		if(0)
-			desc = "Apply [tool_name]"
+			desc = "Apply 69tool_name69"
 			start_msg = "%USER% starts use %ITEM% on %TARGET%"
 			end_msg = "%USER% applied %ITEM% to %TARGET%"
 		if(1)
 			if(reqed_material)
-				desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+				desc = "Attach 69amt69 69tool_name69 <img style='margin-bottom:-8px' src= 69sanitizeFileName("69material_stack_type(reqed_material)69.png")69 height=24 width=24>"
 			else
-				desc = "Attach [tool_name] <img style='margin-bottom:-8px' src= [sanitizeFileName("[reqed_type].png")] height=24 width=24>"
+				desc = "Attach 69tool_name69 <img style='margin-bottom:-8px' src= 69sanitizeFileName("69reqed_type69.png")69 height=24 width=24>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 		else
-			desc = "Attach [amt] [tool_name] <img style='margin-bottom:-8px' src= [reqed_type ? sanitizeFileName("[reqed_type].png") : sanitizeFileName("[material_stack_type(reqed_material)].png")] height=24 width=24>"
+			desc = "Attach 69amt69 69tool_name69 <img style='margin-bottom:-8px' src= 69reqed_type ? sanitizeFileName("69reqed_type69.png") : sanitizeFileName("69material_stack_type(reqed_material)69.png")69 height=24 width=24>"
 			start_msg = "%USER% starts attaching %ITEM% to %TARGET%"
 			end_msg = "%USER% attached %ITEM% to %TARGET%"
 
-/datum/craft_step/proc/announce_action(var/msg, mob/living/user, obj/item/tool, atom/target)
-	msg = replacetext(msg,"%USER%","[user]")
-	msg = replacetext(msg,"%ITEM%","\improper [tool]")
-	msg = replacetext(msg,"%TARGET%","\improper [target]")
+/datum/craft_step/proc/announce_action(var/msg,69ob/living/user, obj/item/tool, atom/target)
+	msg = replacetext(msg,"%USER%","69user69")
+	msg = replacetext(msg,"%ITEM%","\improper 69tool69")
+	msg = replacetext(msg,"%TARGET%","\improper 69target69")
 	user.visible_message(
 		msg
 	)
 
-/datum/craft_step/proc/apply(obj/item/I, mob/living/user, obj/item/craft/target, datum/craft_recipe/recipe)
+/datum/craft_step/proc/apply(obj/item/I,69ob/living/user, obj/item/craft/target, datum/craft_recipe/recipe)
 	if(building)
 		return
 	building = TRUE
@@ -104,27 +104,27 @@
 		if(istype(I, /obj/item/stack/material))
 			var/obj/item/stack/material/M = I
 			if(M.get_default_type() != reqed_material)
-				to_chat(user, SPAN_WARNING("Wrong material!"))
+				to_chat(user, SPAN_WARNING("Wrong69aterial!"))
 				building = FALSE
 				return
 		else
-			to_chat(user, SPAN_WARNING("This isn't a material stack!"))
+			to_chat(user, SPAN_WARNING("This isn't a69aterial stack!"))
 			building = FALSE
 			return
 
 	if(req_amount && istype(I, /obj/item/stack))
 		var/obj/item/stack/S = I
 		if(!S.can_use(req_amount))
-			to_chat(user, SPAN_WARNING("Not enough items in [I]"))
+			to_chat(user, SPAN_WARNING("Not enough items in 69I69"))
 			building = FALSE
 			return
 
-	var/new_time = time // for reqed_type or raw materials
+	var/new_time = time // for reqed_type or raw69aterials
 	if(reqed_type || !reqed_quality)
 		if(recipe.related_stats)
-			var/mastery_factor = min(user.stats.getAvgStat(recipe.related_stats)/STAT_LEVEL_PROF, 1) //we will assume that STAT_LEVEL_PROF is highest value of mastery
-			mastery_factor *= 0.66 //	we want cut no more than 2/3 of time
-			var/time_reduction_factor = max(0, 1 - mastery_factor)
+			var/mastery_factor =69in(user.stats.getAvgStat(recipe.related_stats)/STAT_LEVEL_PROF, 1) //we will assume that STAT_LEVEL_PROF is highest69alue of69astery
+			mastery_factor *= 0.66 //	we want cut no69ore than 2/3 of time
+			var/time_reduction_factor =69ax(0, 1 -69astery_factor)
 			new_time *= time_reduction_factor
 
 	if(reqed_type)
@@ -140,7 +140,7 @@
 		if(req_amount && istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(S.get_amount() < req_amount)
-				to_chat(user, SPAN_WARNING("Not enough items in [I]"))
+				to_chat(user, SPAN_WARNING("Not enough items in 69I69"))
 				building = FALSE
 				return
 
@@ -154,7 +154,7 @@
 	else if(reqed_quality)
 		var/q = I.get_tool_quality(reqed_quality)
 		if(!q)
-			to_chat(user, SPAN_WARNING("Wrong type of tool. You need a tool with [reqed_quality] quality"))
+			to_chat(user, SPAN_WARNING("Wrong type of tool. You need a tool with 69reqed_quality69 quality"))
 			building = FALSE
 			return
 		if(target)
@@ -165,7 +165,7 @@
 			return
 
 		if(q < reqed_quality_level)
-			to_chat(user, SPAN_WARNING("That tool is too crude for the task. You need a tool with [reqed_quality_level] [reqed_quality] quality. This tool only has [q] [reqed_quality]"))
+			to_chat(user, SPAN_WARNING("That tool is too crude for the task. You need a tool with 69reqed_quality_level69 69reqed_quality69 quality. This tool only has 69q69 69reqed_quality69"))
 			building = FALSE
 			return
 	else
@@ -186,17 +186,17 @@
 		if(istype(I, /obj/item/stack))
 			var/obj/item/stack/S = I
 			if(!S.use(req_amount))
-				to_chat(user, SPAN_WARNING("Not enough items in [S]. It has [S.get_amount()] units and we need [req_amount]"))
+				to_chat(user, SPAN_WARNING("Not enough items in 69S69. It has 69S.get_amount()69 units and we need 69req_amount69"))
 				building = FALSE
 				return FALSE
 		else if(reqed_type) //No deleting tools
 			if(target)
 				if(!(target in craft_items))
-					craft_items[target] = req_amount - 1
+					craft_items69target69 = req_amount - 1
 				else
-					craft_items[target]--
+					craft_items69target69--
 
-				if(craft_items[target] >= 1)
+				if(craft_items69target69 >= 1)
 					. = IN_PROGRESS
 
 			else if(req_amount > 1)
@@ -223,7 +223,7 @@
 	if(istype(belt))
 		items += belt.contents
 
-	//Robots can use their module items as tools or materials
+	//Robots can use their69odule items as tools or69aterials
 	//We will do a check later to prevent them from dropping their tools as consumed components
 	if(isrobot(user))
 		var/mob/living/silicon/robot/R = user
@@ -234,11 +234,11 @@
 		if(R.module_state_3)
 			items += R.module_state_3
 
-	//We will allow all items in a 3x3 area, centred on the tile infront, to be used as components or mats
-	//Tools must be held though
+	//We will allow all items in a 3x3 area, centred on the tile infront, to be used as components or69ats
+	//Tools69ust be held though
 	if(!reqed_quality)
 		var/turf/T = get_step(user, user.dir)
-		//Use atom/movable to account for the possiblity of recipes requiring live or dead mobs as ingredients
+		//Use atom/movable to account for the possiblity of recipes requiring live or dead69obs as ingredients
 		for (var/atom/movable/A in range(1, T))
 			if(!A.anchored)
 				items += A
@@ -250,7 +250,7 @@
 			if(!istype(I, reqed_type))
 				//not the right type
 				continue
-			//Okay, so we found something that matches
+			//Okay, so we found something that69atches
 			if(is_valid_to_consume(I, user))
 				return I
 
@@ -269,9 +269,9 @@
 				if(MA.material && (MA.material.name == reqed_material))
 					return I
 
-/datum/craft_step/proc/is_valid_to_consume(obj/item/I, mob/living/user)
+/datum/craft_step/proc/is_valid_to_consume(obj/item/I,69ob/living/user)
 	var/holder = I.get_holding_mob()
-	//Next we must check if we're actually allowed to submit it
+	//Next we69ust check if we're actually allowed to submit it
 	if(!holder)
 		//If the item is lying on a turf, it's fine
 		return I
@@ -282,7 +282,7 @@
 
 	//If we get here, the item is held by our user
 	if(I.loc != user)
-		//The item must be inside a container on their person, it's fine
+		//The item69ust be inside a container on their person, it's fine
 		return I
 
 	if(istype(I, /obj/item/stack))
@@ -297,6 +297,6 @@
 
 
 
-	//If we get here, then we found the item but it wasn't valid to use, sorry!
+	//If we get here, then we found the item but it wasn't69alid to use, sorry!
 
 	return FALSE

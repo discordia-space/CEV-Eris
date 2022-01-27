@@ -46,7 +46,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 
 /client/proc/callproc_targetpicked(hastarget, datum/target)
 
-	// this needs checking again here because VV's 'Call Proc' option directly calls this proc with the target datum
+	// this needs checking again here because69V's 'Call Proc' option directly calls this proc with the target datum
 	if(!check_rights(R_DEBUG)) return
 	if(config.debugparanoid && !check_rights(R_ADMIN)) return
 
@@ -60,7 +60,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 			to_chat(usr, "Your callproc target no longer exists.")
 			return
 		if(!hascall(target, procname))
-			to_chat(usr, "\The [target] has no call [procname]()")
+			to_chat(usr, "\The 69target69 has no call 69procname69()")
 			return
 
 	var/list/arguments = list()
@@ -71,7 +71,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 		if(hastarget && !target)
 			to_chat(usr, "Your callproc target no longer exists.")
 			return
-		switch(input("Type of [arguments.len+1]\th variable", "argument [arguments.len+1]") as null|anything in list(
+		switch(input("Type of 69arguments.len+169\th69ariable", "argument 69arguments.len+169") as null|anything in list(
 				"finished", "null", "text", "num", "type", "obj reference", "mob reference",
 				"area/turf reference", "icon", "file", "client", "mob's area", "marked datum"))
 			if(null)
@@ -84,43 +84,43 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 				current = null
 
 			if("text")
-				current = input("Enter text for [arguments.len+1]\th argument") as null|text
+				current = input("Enter text for 69arguments.len+169\th argument") as null|text
 				if(isnull(current)) return
 
 			if("num")
-				current = input("Enter number for [arguments.len+1]\th argument") as null|num
+				current = input("Enter number for 69arguments.len+169\th argument") as null|num
 				if(isnull(current)) return
 
 			if("type")
-				current = input("Select type for [arguments.len+1]\th argument") as null|anything in typesof(/obj, /mob, /area, /turf)
+				current = input("Select type for 69arguments.len+169\th argument") as null|anything in typesof(/obj, /mob, /area, /turf)
 				if(isnull(current)) return
 
 			if("obj reference")
-				current = input("Select object for [arguments.len+1]\th argument") as null|obj in world
+				current = input("Select object for 69arguments.len+169\th argument") as null|obj in world
 				if(isnull(current)) return
 
 			if("mob reference")
-				current = input("Select mob for [arguments.len+1]\th argument") as null|mob in world
+				current = input("Select69ob for 69arguments.len+169\th argument") as null|mob in world
 				if(isnull(current)) return
 
 			if("area/turf reference")
-				current = input("Select area/turf for [arguments.len+1]\th argument") as null|area|turf in world
+				current = input("Select area/turf for 69arguments.len+169\th argument") as null|area|turf in world
 				if(isnull(current)) return
 
 			if("icon")
-				current = input("Provide icon for [arguments.len+1]\th argument") as null|icon
+				current = input("Provide icon for 69arguments.len+169\th argument") as null|icon
 				if(isnull(current)) return
 
 			if("client")
-				current = input("Select client for [arguments.len+1]\th argument") as null|anything in clients
+				current = input("Select client for 69arguments.len+169\th argument") as null|anything in clients
 				if(isnull(current)) return
 
 			if("mob's area")
-				var/mob/M = input("Select mob to take area for [arguments.len+1]\th argument") as null|mob in world
+				var/mob/M = input("Select69ob to take area for 69arguments.len+169\th argument") as null|mob in world
 				if(!M) return
 				current = get_area(M)
 				if(!current)
-					switch(alert("\The [M] appears to not have an area; do you want to pass null instead?",, "Yes", "Cancel"))
+					switch(alert("\The 69M69 appears to not have an area; do you want to pass null instead?",, "Yes", "Cancel"))
 						if("Yes")
 							; // do nothing
 						if("Cancel")
@@ -129,7 +129,7 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 			if("marked datum")
 				current = holder.marked_datum()
 				if(!current)
-					switch(alert("You do not currently have a marked datum; do you want to pass null instead?",, "Yes", "Cancel"))
+					switch(alert("You do not currently have a69arked datum; do you want to pass null instead?",, "Yes", "Cancel"))
 						if("Yes")
 							; // do nothing
 						if("Cancel")
@@ -141,14 +141,14 @@ ADMIN_VERB_ADD(/client/proc/callproc_target, R_DEBUG, FALSE)
 		if(!target)
 			to_chat(usr, "Your callproc target no longer exists.")
 			return
-		log_admin("[key_name(src)] called [target]'s [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
+		log_admin("69key_name(src)69 called 69target69's 69procname69() with 69arguments.len ? "the arguments 69list2params(arguments)69" : "no arguments"69.")
 		if(arguments.len)
 			returnval = call(target, procname)(arglist(arguments))
 		else
 			returnval = call(target, procname)()
 	else
-		log_admin("[key_name(src)] called [procname]() with [arguments.len ? "the arguments [list2params(arguments)]" : "no arguments"].")
+		log_admin("69key_name(src)69 called 69procname69() with 69arguments.len ? "the arguments 69list2params(arguments)69" : "no arguments"69.")
 		returnval = call(procname)(arglist(arguments))
 
-	to_chat(usr, "<span class='info'>[procname]() returned: [isnull(returnval) ? "null" : returnval]</span>")
+	to_chat(usr, "<span class='info'>69procname69() returned: 69isnull(returnval) ? "null" : returnval69</span>")
 

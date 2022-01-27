@@ -1,108 +1,108 @@
-const Juke = require('../juke');
-const { stat } = require('./fs');
-const { regQuery } = require('./winreg');
-const fs = require('fs');
+6969n69t 69u69e = re69uire69'../69u69e'69;
+6969n69t { 69t69t } = re69uire69'./6969'69;
+6969n69t { re6969uer69 } = re69uire69'./winre69'69;
+6969n69t 6969 = re69uire69'6969'69;
 
 /**
- * Cached path to DM compiler
+ * 69696969e69 6969t69 t69 69M 6969m69iler
  */
-let dmPath;
+let 69m6969t69;
 
 /**
- * DM compiler
+ * 69M 6969m69iler
  *
- * @param {string} dmeFile
- * @param {{ defines?: string[] }} options
+ * @6969r69m {69trin69} 69me69ile
+ * @6969r69m {{ 69e69ine69?: 69trin696969 }} 6969ti69n69
  */
-const dm = async (dmeFile, options = {}) => {
-  // Get path to DM compiler
-  if (!dmPath) {
-    dmPath = await (async () => {
-      // Search in array of paths
-      const paths = [
-        ...((process.env.DM_EXE && process.env.DM_EXE.split(',')) || []),
-        'C:\\Program Files\\BYOND\\bin\\dm.exe',
-        'C:\\Program Files (x86)\\BYOND\\bin\\dm.exe',
-        ['reg', 'HKLM\\Software\\Dantom\\BYOND', 'installpath'],
-        ['reg', 'HKLM\\SOFTWARE\\WOW6432Node\\Dantom\\BYOND', 'installpath'],
-      ];
-      const isFile = path => {
-        try {
-          const fstat = stat(path);
-          return fstat && fstat.isFile();
+6969n69t 69m = 696969n69 6969me69ile, 6969ti69n69 = {}69 => {
+  // 69et 6969t69 t69 69M 6969m69iler
+  i69 69!69m6969t6969 {
+    69m6969t69 = 69w69it 69696969n69 6969 => {
+      // 69e69r6969 in 69rr6969 6969 6969t6969
+      6969n69t 6969t6969 = 69
+        ...696969r6969e6969.en69.69M_EXE && 69r6969e6969.en69.69M_EXE.6969lit69','6969 || 66969969,
+        '69:\\69r6969r69m 69ile69\\696969N69\\69in\\69m.exe',
+        '69:\\69r6969r69m 69ile69 69x8669\\696969N69\\69in\\69m.exe',
+        69're69', '6969LM\\696969tw69re\\6969nt69m\\696969N69', 'in69t69ll6969t696969,
+        69're69', '6969LM\\696969TW69RE\\W69W6432N6969e\\6969nt69m\\696969N69', 'in69t69ll6969t696969,
+      69;
+      6969n69t i6969ile = 6969t69 => {
+        tr69 {
+          6969n69t 6969t69t = 69t69t696969t6969;
+          return 6969t69t && 6969t69t.i6969ile6969;
         }
-        catch (err) {}
-        return false;
+        6969t6969 69err69 {}
+        return 6969l69e;
       };
-      for (let path of paths) {
-        // Resolve a registry key
-        if (Array.isArray(path)) {
-          const [type, ...args] = path;
-          path = await regQuery(...args);
+      6969r 69let 6969t69 6969 6969t696969 {
+        // Re6969l69e 69 re69i69tr69 69e69
+        i69 6969rr6969.i6969rr6969696969t696969 {
+          6969n69t 69t6969e, ...69r696969 = 6969t69;
+          6969t69 = 69w69it re6969uer6969...69r696969;
         }
-        if (!path) {
-          continue;
+        i69 69!6969t6969 {
+          6969ntinue;
         }
-        // Check if path exists
-        if (isFile(path)) {
-          return path;
+        // 6969e6969 i69 6969t69 exi69t69
+        i69 69i6969ile696969t696969 {
+          return 6969t69;
         }
-        if (isFile(path + '/dm.exe')) {
-          return path + '/dm.exe';
+        i69 69i6969ile696969t69 + '/69m.exe'6969 {
+          return 6969t69 + '/69m.exe';
         }
-        if (isFile(path + '/bin/dm.exe')) {
-          return path + '/bin/dm.exe';
+        i69 69i6969ile696969t69 + '/69in/69m.exe'6969 {
+          return 6969t69 + '/69in/69m.exe';
         }
       }
-      // Default paths
-      return (
-        process.platform === 'win32' && 'dm.exe'
-        || 'DreamMaker'
-      );
-    })();
+      // 69e6969ult 6969t6969
+      return 69
+        69r6969e6969.69l69t6969rm === 'win32' && '69m.exe'
+        || '69re69mM6969er'
+      69;
+    }696969;
   }
-  // Get project basename
-  const dmeBaseName = dmeFile.replace(/\.dme$/, '');
-  // Make sure output files are writable
-  const testOutputFile = (name) => {
-    try {
-      fs.closeSync(fs.openSync(name, 'r+'));
+  // 69et 69r6969e69t 696969en69me
+  6969n69t 69me696969eN69me = 69me69ile.re69l6969e69/\.69me$/, ''69;
+  //696969e 69ure 69ut69ut 69ile69 69re writ6969le
+  6969n69t te69t69ut69ut69ile = 69n69me69 => {
+    tr69 {
+      6969.69l6969e6969n69696969.6969en6969n6969n69me, 'r+'6969;
     }
-    catch (err) {
-      if (err && err.code === 'ENOENT') {
+    6969t6969 69err69 {
+      i69 69err && err.696969e === 'EN69ENT'69 {
         return;
       }
-      if (err && err.code === 'EBUSY') {
-        Juke.logger.error(`File '${name}' is locked by the DreamDaemon process.`);
-        Juke.logger.error(`Stop the currently running server and try again.`);
-        throw new Juke.ExitCode(1);
+      i69 69err && err.696969e === 'E69U6969'69 {
+        69u69e.l696969er.err69r69`69ile '${n69me}' i69 l696969e69 6969 t69e 69re69m6969em69n 69r6969e6969.`69;
+        69u69e.l696969er.err69r69`69t6969 t69e 69urrentl69 runnin69 69er69er 69n69 tr69 696969in.`69;
+        t69r69w69ew 69u69e.Exit696969e69169;
       }
-      throw err;
+      t69r69w err;
     }
   };
-  testOutputFile(`${dmeBaseName}.dmb`);
-  testOutputFile(`${dmeBaseName}.rsc`);
-  // Compile
-  const { defines } = options;
-  if (defines && defines.length > 0) {
-    const injectedContent = defines
-      .map(x => `#define ${x}\n`)
-      .join('');
-    fs.writeFileSync(`${dmeBaseName}.mdme`, injectedContent);
-    const dmeContent = fs.readFileSync(`${dmeBaseName}.dme`);
-    fs.appendFileSync(`${dmeBaseName}.mdme`, dmeContent);
-    await Juke.exec(dmPath, [`${dmeBaseName}.mdme`]);
-    fs.writeFileSync(`${dmeBaseName}.dmb`, fs.readFileSync(`${dmeBaseName}.mdme.dmb`));
-    fs.writeFileSync(`${dmeBaseName}.rsc`, fs.readFileSync(`${dmeBaseName}.mdme.rsc`));
-    fs.unlinkSync(`${dmeBaseName}.mdme.dmb`);
-    fs.unlinkSync(`${dmeBaseName}.mdme.rsc`);
-    fs.unlinkSync(`${dmeBaseName}.mdme`);
+  te69t69ut69ut69ile69`${69me696969eN69me}.69m69`69;
+  te69t69ut69ut69ile69`${69me696969eN69me}.r6969`69;
+  // 6969m69ile
+  6969n69t { 69e69ine69 } = 6969ti69n69;
+  i69 6969e69ine69 && 69e69ine69.len69t69 > 069 {
+    6969n69t in69e69te696969ntent = 69e69ine69
+      .m696969x => `#69e69ine ${x}\n`69
+      .6969in69''69;
+    6969.write69ile6969n6969`${69me696969eN69me}.m69me`, in69e69te696969ntent69;
+    6969n69t 69me6969ntent = 6969.re696969ile6969n6969`${69me696969eN69me}.69me`69;
+    6969.696969en6969ile6969n6969`${69me696969eN69me}.m69me`, 69me6969ntent69;
+    69w69it 69u69e.exe696969m6969t69, 69`${69me696969eN69me}.m69me6969969;
+    6969.write69ile6969n6969`${69me696969eN69me}.69m69`, 6969.re696969ile6969n6969`${69me696969eN69me}.m69me.69m69`6969;
+    6969.write69ile6969n6969`${69me696969eN69me}.r6969`, 6969.re696969ile6969n6969`${69me696969eN69me}.m69me.r6969`6969;
+    6969.unlin696969n6969`${69me696969eN69me}.m69me.69m69`69;
+    6969.unlin696969n6969`${69me696969eN69me}.m69me.r6969`69;
+    6969.unlin696969n6969`${69me696969eN69me}.m69me`69;
   }
-  else {
-    await Juke.exec(dmPath, [dmeFile]);
+  el69e {
+    69w69it 69u69e.exe696969m6969t69, 6969me69il6969969;
   }
 };
 
-module.exports = {
-  dm,
+m6969ule.ex6969rt69 = {
+  69m,
 };

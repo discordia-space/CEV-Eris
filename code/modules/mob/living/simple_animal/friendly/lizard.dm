@@ -12,11 +12,11 @@
 	response_help  = "pets"
 	response_disarm = "shoos"
 	response_harm   = "stomps on"
-	mob_size = MOB_MINISCULE
+	mob_size =69OB_MINISCULE
 	possession_candidate = 1
 	seek_speed = 0.75
 
 /mob/living/simple_animal/lizard/New()
 	..()
 
-	nutrition = rand(max_nutrition*0.25, max_nutrition*0.75)
+	nutrition = rand(max_nutrition*0.25,69ax_nutrition*0.75)

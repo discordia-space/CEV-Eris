@@ -5,7 +5,7 @@
 	if (HAS_TRANSFORMATION_MOVEMENT_HANDLER(src))
 		return
 
-	src.blinded = null
+	src.blinded =69ull
 
 	//Status updates, death etc.
 	clamp_values()
@@ -26,7 +26,7 @@
 			src.death_notified = TRUE
 	update_lying_buckled_and_verb_status()
 
-	for(var/mob/living/L in view(7)) //Sucks to put this here, but otherwise mobs will ignore them
+	for(var/mob/living/L in69iew(7)) //Sucks to put this here, but otherwise69obs will ignore them
 		L.try_activate_ai()
 
 /mob/living/silicon/robot/proc/clamp_values()
@@ -42,10 +42,10 @@
 
 /mob/living/silicon/robot/proc/use_power()
 	// Debug only
-	// world << "DEBUG: life.dm line 35: cyborg use_power() called at tick [controller_iteration]"
+	// world << "DEBUG: life.dm line 35: cyborg use_power() called at tick 69controller_iteration69"
 	used_power_this_tick = 0
 	for(var/V in components)
-		var/datum/robot_component/C = components[V]
+		var/datum/robot_component/C = components69V69
 		C.update_power_state()
 
 	if (cell && is_component_functioning("power cell") && src.cell.charge > 0)
@@ -58,16 +58,16 @@
 
 		if(lights_on)
 			if(intenselight)
-				cell_use_power(100)	// Upgraded light. Double intensity, much larger power usage.
+				cell_use_power(100)	// Upgraded light. Double intensity,69uch larger power usage.
 			else
-				cell_use_power(30) 	// 30W light. Normal lights would use ~15W, but increased for balance reasons.
+				cell_use_power(30) 	// 30W light.69ormal lights would use ~15W, but increased for balance reasons.
 
 		src.has_power = 1
 	else
 		if (src.has_power)
-			to_chat(src, "\red You are now running on emergency backup power.")
+			to_chat(src, "\red You are69ow running on emergency backup power.")
 		src.has_power = 0
-		if(lights_on) // Light is on but there is no power!
+		if(lights_on) // Light is on but there is69o power!
 			lights_on = 0
 			set_light(0)
 
@@ -109,7 +109,7 @@
 		else	//Not stunned.
 			src.stat = 0
 
-		confused = max(0, confused - 1)
+		confused =69ax(0, confused - 1)
 
 	else //Dead.
 		src.blinded = TRUE
@@ -124,7 +124,7 @@
 	if (src.ear_deaf > 0) src.ear_deaf--
 	if (src.ear_damage < 25)
 		src.ear_damage -= 0.05
-		src.ear_damage = max(src.ear_damage, 0)
+		src.ear_damage =69ax(src.ear_damage, 0)
 
 	src.density = !( src.lying )
 
@@ -135,11 +135,11 @@
 
 	if (src.eye_blurry > 0)
 		src.eye_blurry--
-		src.eye_blurry = max(0, src.eye_blurry)
+		src.eye_blurry =69ax(0, src.eye_blurry)
 
 	if (src.druggy > 0)
 		src.druggy--
-		src.druggy = max(0, src.druggy)
+		src.druggy =69ax(0, src.druggy)
 
 	if(radio)
 		if(!is_component_functioning("radio"))
@@ -157,7 +157,7 @@
 /mob/living/silicon/robot/handle_regular_hud_updates()
 
 	.=..()
-	if (!.)//Parent function will return zero if no client
+	if (!.)//Parent function will return zero if69o client
 		return
 
 
@@ -223,9 +223,9 @@
 			src.sight &= ~SEE_MOBS
 			src.sight &= ~SEE_TURFS
 			src.sight &= ~SEE_OBJS
-			src.see_in_dark = 8 			 // see_in_dark means you can FAINTLY see in the dark, humans have a range of 3 or so
-			src.see_invisible = SEE_INVISIBLE_LIVING // This is normal vision (25), setting it lower for normal vision means you don't "see" things like darkness since darkness
-								 // has a "invisible" value of 15
+			src.see_in_dark = 8 			 // see_in_dark69eans you can FAINTLY see in the dark, humans have a range of 3 or so
+			src.see_invisible = SEE_INVISIBLE_LIVING // This is69ormal69ision (25), setting it lower for69ormal69ision69eans you don't "see" things like darkness since darkness
+								 // has a "invisible"69alue of 15
 
 /mob/living/silicon/robot/update_dead_sight()
 	src.sight |= SEE_TURFS

@@ -3,13 +3,13 @@
 	name = "string pin"
 
 /datum/integrated_io/string/ask_for_pin_data(mob/user)
-	var/new_data = input(user, "Please type in a string.","[src] string writing")
-	new_data = sanitize(new_data, trim=0, max_length = MAX_PAPER_MESSAGE_LEN)
+	var/new_data = input(user, "Please type in a string.","69src69 string writing")
+	new_data = sanitize(new_data, trim=0,69ax_length =69AX_PAPER_MESSAGE_LEN)
 	if(holder.check_interactivity(user) )
 		if(!isnull(new_data) && istext(new_data))
 			to_chat(user, SPAN("warning", "Your input contains prohibited words."))
 			return
-		to_chat(user, SPAN("notice", "You input [new_data ? "[new_data]" : "NULL"] into the pin."))
+		to_chat(user, SPAN("notice", "You input 69new_data ? "69new_data69" : "NULL"69 into the pin."))
 		write_data_to_pin(new_data)
 
 /datum/integrated_io/string/write_data_to_pin(new_data)
@@ -17,7 +17,7 @@
 		data = new_data
 		holder.on_data_written()
 
-// This makes the text go "from this" to "#G&*!HD$%L"
+// This69akes the text go "from this" to "#G&*!HD$%L"
 /datum/integrated_io/string/scramble()
 	if(!is_valid())
 		return

@@ -1,7 +1,7 @@
 
 /*****************************************
 *
-* FUNCTION AND VAR DECLARATIONS
+* FUNCTION AND69AR DECLARATIONS
 *
 ******************************************/
 
@@ -13,8 +13,8 @@ window.onerror = function(msg, url, line, col, error) {
 		var extra = !col ? '' : ' | column: ' + col;
 		extra += !error ? '' : ' | error: ' + error;
 		extra += !navigator.userAgent ? '' : ' | user agent: ' + navigator.userAgent;
-		var debugLine = 'Error: ' + msg + ' | url: ' + url + ' | line: ' + line + extra;
-		window.location = '?_src_=chat&proc=debug&param[error]='+escaper(debugLine);
+		var debugLine = 'Error: ' +69sg + ' | url: ' + url + ' | line: ' + line + extra;
+		window.location = '?_src_=chat&proc=debug&param69error69='+escaper(debugLine);
 	}
 	return true;
 };
@@ -22,27 +22,27 @@ window.onerror = function(msg, url, line, col, error) {
 //Globals
 window.status = 'Output';
 var $messages, $subOptions, $subAudio, $selectedSub, $contextMenu;
-var last_messages = [];
+var last_messages = 6969;
 var opts = {
 	//General
-	'messageCount': 0, //A count...of messages...
-	'messageLimit': 2053, //A limit...for the messages...
+	'messageCount': 0, //A count...of69essages...
+	'messageLimit': 2053, //A limit...for the69essages...
 	'scrollSnapTolerance': 10, //If within x pixels of bottom
-	'clickTolerance': 10, //Keep focus if outside x pixels of mousedown position on mouseup
-	'imageRetryDelay': 50, //how long between attempts to reload images (in ms)
-	'imageRetryLimit': 50, //how many attempts should we make? 
+	'clickTolerance': 10, //Keep focus if outside x pixels of69ousedown position on69ouseup
+	'imageRetryDelay': 50, //how long between attempts to reload images (in69s)
+	'imageRetryLimit': 50, //how69any attempts should we69ake? 
 	'popups': 0, //Amount of popups opened ever
-	'wasd': false, //Is the user in wasd mode?
+	'wasd': false, //Is the user in wasd69ode?
 	'priorChatHeight': 0, //Thing for height-resizing detection
 	'restarting': false, //Is the round restarting?
 	'darkmode':false, //Are we using darkmode? If not WHY ARE YOU LIVING IN 2009???
 
-	//Options menu
-	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub menu
-	'suppressSubClose': false, //Whether or not we should be hiding the selected sub menu
-	'highlightTerms': [],
+	//Options69enu
+	'selectedSubLoop': null, //Contains the interval loop for closing the selected sub69enu
+	'suppressSubClose': false, //Whether or not we should be hiding the selected sub69enu
+	'highlightTerms': 6969,
 	'highlightLimit': 5,
-	'highlightColor': '#FFFF00', //The color of the highlighted message
+	'highlightColor': '#FFFF00', //The color of the highlighted69essage
 	'pingDisabled': false, //Has the user disabled the ping counter
 
 	//Ping display
@@ -51,7 +51,7 @@ var opts = {
 	'pingTime': 0, //Timestamp of when ping sent
 	'pongTime': 0, //Timestamp of when ping received
 	'noResponse': false, //Tracks the state of the previous ping request
-	'noResponseCount': 0, //How many failed pings?
+	'noResponseCount': 0, //How69any failed pings?
 
 	//Clicks
 	'mouseDownX': null,
@@ -60,14 +60,14 @@ var opts = {
 
 	//Client Connection Data
 	'clientDataLimit': 5,
-	'clientData': [],
+	'clientData': 6969,
 
-	//Admin music volume update
-	'volumeUpdateDelay': 5000, //Time from when the volume updates to data being sent to the server
-	'volumeUpdating': false, //True if volume update function set to fire
-	'updatedVolume': 0, //The volume level that is sent to the server
-	'musicStartAt': 0, //The position the music starts playing
-	'musicEndAt': 0, //The position the music... stops playing... if null, doesn't apply (so the music runs through)
+	//Admin69usic69olume update
+	'volumeUpdateDelay': 5000, //Time from when the69olume updates to data being sent to the server
+	'volumeUpdating': false, //True if69olume update function set to fire
+	'updatedVolume': 0, //The69olume level that is sent to the server
+	'musicStartAt': 0, //The position the69usic starts playing
+	'musicEndAt': 0, //The position the69usic... stops playing... if null, doesn't apply (so the69usic runs through)
 	
 	'defaultMusicVolume': 25,
 
@@ -77,8 +77,8 @@ var opts = {
 };
 var replaceRegexes = {};
 
-function clamp(val, min, max) {
-	return Math.max(min, Math.min(val, max))
+function clamp(val,69in,69ax) {
+	return69ath.max(min,69ath.min(val,69ax))
 }
 
 //Polyfill for fucking date now because of course IE8 and below don't support it
@@ -97,21 +97,21 @@ if (typeof String.prototype.trim !== 'function') {
 // Linkify the contents of a node, within its parent.
 function linkify(parent, insertBefore, text) {
 	var start = 0;
-	var match;
-	var regex = /(?:(?:https?:\/\/)|(?:www\.))(?:[^ ]*?\.[^ ]*?)+[-A-Za-z0-9+&@#\/%?=~_|$!:,.;()]+/ig;
+	var69atch;
+	var regex = /(?:(?:https?:\/\/)|(?:www\.))(?:69^ 69*?\.69^ 69*?)+69-A-Za-z0-9+&@#\/%?=~_|$!:,.;()69+/ig;
 	while ((match = regex.exec(text)) !== null) {
 		// add the unmatched text
-		parent.insertBefore(document.createTextNode(text.substring(start, match.index)), insertBefore);
+		parent.insertBefore(document.createTextNode(text.substring(start,69atch.index)), insertBefore);
 
-		var href = match[0];
-		if (!/^https?:\/\//i.test(match[0])) {
-			href = "http://" + match[0];
+		var href =69atch69069;
+		if (!/^https?:\/\//i.test(match69069)) {
+			href = "http://" +69atch69069;
 		}
 
 		// add the link
 		var link = document.createElement("a");
 		link.href = href;
-		link.textContent = match[0];
+		link.textContent =69atch69069;
 		parent.insertBefore(link, insertBefore);
 
 		start = regex.lastIndex;
@@ -128,7 +128,7 @@ function linkify_node(node) {
 	var children = node.childNodes;
 	// work backwards to avoid the risk of looping forever on our own output
 	for (var i = children.length - 1; i >= 0; --i) {
-		var child = children[i];
+		var child = children69i69;
 		if (child.nodeType == Node.TEXT_NODE) {
 			// text is to be linkified
 			linkify(node, child, child.textContent);
@@ -141,7 +141,7 @@ function linkify_node(node) {
 
 //Shit fucking piece of crap that doesn't work god fuckin damn it
 function linkify_fallback(text) {
-	var rex = /((?:<a|<iframe|<img)(?:.*?(?:src="|href=").*?))?(?:(?:https?:\/\/)|(?:www\.))+(?:[^ ]*?\.[^ ]*?)+[-A-Za-z0-9+&@#\/%?=~_|$!:,.;]+/ig;
+	var rex = /((?:<a|<iframe|<img)(?:.*?(?:src="|href=").*?))?(?:(?:https?:\/\/)|(?:www\.))+(?:69^ 69*?\.69^ 69*?)+69-A-Za-z0-9+&@#\/%?=~_|$!:,.;69+/ig;
 	return text.replace(rex, function ($0, $1) {
 		if(/^https?:\/\/.+/i.test($0)) {
 			return $1 ? $0: '<a href="'+$0+'">'+$0+'</a>';
@@ -153,10 +153,10 @@ function linkify_fallback(text) {
 }
 
 function byondDecode(message) {
-	// Basically we url_encode twice server side so we can manually read the encoded version and actually do UTF-8.
+	// Basically we url_encode twice server side so we can69anually read the encoded69ersion and actually do UTF-8.
 	// The replace for + is because FOR SOME REASON, BYOND replaces spaces with a + instead of %20, and a plus with %2b.
-	// Marvelous.
-	message = message.replace(/\+/g, "%20");
+	//69arvelous.
+	message =69essage.replace(/\+/g, "%20");
 	try { 
 		// This is a workaround for the above not always working when BYOND's shitty url encoding breaks. (byond bug id:2399401)
 		if (decodeURIComponent) {
@@ -167,19 +167,19 @@ function byondDecode(message) {
 	} catch (err) {
 		message = unescape(message);
 	}
-	return message;
+	return69essage;
 }
 
 function replaceRegex() {
-	var selectedRegex = replaceRegexes[$(this).attr('replaceRegex')];
+	var selectedRegex = replaceRegexes69$(this).attr('replaceRegex')69;
 	if (selectedRegex) {
-		var replacedText = $(this).html().replace(selectedRegex[0], selectedRegex[1]);
+		var replacedText = $(this).html().replace(selectedRegex69069, selectedRegex69169);
 		$(this).html(replacedText);
 	}
 	$(this).removeAttr('replaceRegex');
 }
 
-// Get a highlight markup span
+// Get a highlight69arkup span
 function createHighlightMarkup() {
 	var extra = '';
 	if (opts.highlightColor) {
@@ -188,9 +188,9 @@ function createHighlightMarkup() {
 	return '<span class="highlight"' + extra + '></span>';
 }
 
-// Get all child text nodes that match a regex pattern
+// Get all child text nodes that69atch a regex pattern
 function getTextNodes(elem, pattern) {
-	var result = $([]);
+	var result = $(6969);
 	$(elem).contents().each(function(idx, child) {
 		if (child.nodeType === 3 && /\S/.test(child.nodeValue) && pattern.test(child.nodeValue)) {
 			result = result.add(child);
@@ -202,7 +202,7 @@ function getTextNodes(elem, pattern) {
 	return result;
 }
 
-// Highlight all text terms matching the registered regex patterns
+// Highlight all text terms69atching the registered regex patterns
 function highlightTerms(el) {
 	var pattern = new RegExp("(" + opts.highlightTerms.join('|') + ")", 'gi');
 	var nodes = getTextNodes(el, pattern);
@@ -227,11 +227,11 @@ function highlightTerms(el) {
 			// Insert back into our element
 			if (pre.length == 0) {
 				var result = parent.prepend(toInsert);
-				pre = $(result[0].firstChild);
+				pre = $(result69069.firstChild);
 			}
 			else {
 				pre.after(toInsert);
-				pre = $(pre[0].nextSibling);
+				pre = $(pre69069.nextSibling);
 			}
 		});
 	});
@@ -253,9 +253,9 @@ function iconError(E) {
 	}, opts.imageRetryDelay);
 }
 
-//Send a message to the client
+//Send a69essage to the client
 function output(message, flag) {
-	if (typeof message === 'undefined') {
+	if (typeof69essage === 'undefined') {
 		return;
 	}
 	if (typeof flag === 'undefined') {
@@ -267,19 +267,19 @@ function output(message, flag) {
 
 	message = byondDecode(message).trim();
 
-	//The behemoth of filter-code (for Admin message filters)
+	//The behemoth of filter-code (for Admin69essage filters)
 	//Note: This is proooobably hella inefficient
 	var filteredOut = false;
-	if (opts.hasOwnProperty('showMessagesFilters') && !opts.showMessagesFilters['All'].show) {
-		//Get this filter type (defined by class on message)
-		var messageHtml = $.parseHTML(message),
+	if (opts.hasOwnProperty('showMessagesFilters') && !opts.showMessagesFilters69'All'69.show) {
+		//Get this filter type (defined by class on69essage)
+		var69essageHtml = $.parseHTML(message),
 			messageClasses;
 		if (opts.hasOwnProperty('filterHideAll') && opts.filterHideAll) {
 			var internal = false;
 			messageClasses = (!!$(messageHtml).attr('class') ? $(messageHtml).attr('class').split(/\s+/) : false);
 			if (messageClasses) {
-				for (var i = 0; i < messageClasses.length; i++) { //Every class
-					if (messageClasses[i] == 'internal') {
+				for (var i = 0; i <69essageClasses.length; i++) { //Every class
+					if (messageClasses69i69 == 'internal') {
 						internal = true;
 						break;
 					}
@@ -293,15 +293,15 @@ function output(message, flag) {
 			if (!!$(messageHtml).attr('class') || !!$(messageHtml).children().attr('class')) {
 				messageClasses = $(messageHtml).attr('class').split(/\s+/);
 				if (!!$(messageHtml).children().attr('class')) {
-					messageClasses = messageClasses.concat($(messageHtml).children().attr('class').split(/\s+/));
+					messageClasses =69essageClasses.concat($(messageHtml).children().attr('class').split(/\s+/));
 				}
 				var tempCount = 0;
-				for (var i = 0; i < messageClasses.length; i++) { //Every class
-					var thisClass = messageClasses[i];
-					$.each(opts.showMessagesFilters, function(key, val) { //Every filter
-						if (key !== 'All' && val.show === false && typeof val.match != 'undefined') {
-							for (var i = 0; i < val.match.length; i++) {
-								var matchClass = val.match[i];
+				for (var i = 0; i <69essageClasses.length; i++) { //Every class
+					var thisClass =69essageClasses69i69;
+					$.each(opts.showMessagesFilters, function(key,69al) { //Every filter
+						if (key !== 'All' &&69al.show === false && typeof69al.match != 'undefined') {
+							for (var i = 0; i <69al.match.length; i++) {
+								var69atchClass =69al.match69i69;
 								if (matchClass == thisClass) {
 									filteredOut = key;
 									break;
@@ -314,30 +314,30 @@ function output(message, flag) {
 					tempCount++;
 				}
 			} else {
-				if (!opts.showMessagesFilters['Misc'].show) {
+				if (!opts.showMessagesFilters69'Misc'69.show) {
 					filteredOut = 'Misc';
 				}
 			}
 		}
 	}
 
-	//Stuff we do along with appending a message
+	//Stuff we do along with appending a69essage
 	var atBottom = false;
 	if (!filteredOut) {
 		var bodyHeight = $('body').height();
-		var messagesHeight = $messages.outerHeight();
+		var69essagesHeight = $messages.outerHeight();
 		var scrollPos = $('body,html').scrollTop();
 
 		//Should we snap the output to the bottom?
-		if (bodyHeight + scrollPos >= messagesHeight - opts.scrollSnapTolerance) {
+		if (bodyHeight + scrollPos >=69essagesHeight - opts.scrollSnapTolerance) {
 			atBottom = true;
 			if ($('#newMessages').length) {
 				$('#newMessages').remove();
 			}
-		//If not, put the new messages box in
+		//If not, put the new69essages box in
 		} else {
 			if ($('#newMessages').length) {
-				var messages = $('#newMessages .number').text();
+				var69essages = $('#newMessages .number').text();
 				messages = parseInt(messages);
 				messages++;
 				$('#newMessages .number').text(messages);
@@ -352,17 +352,17 @@ function output(message, flag) {
 
 	opts.messageCount++;
 
-	//Pop the top message off if history limit reached
+	//Pop the top69essage off if history limit reached
 	if (opts.messageCount >= opts.messageLimit) {
 		$messages.children('div.entry:first-child').remove();
 		opts.messageCount--; //I guess the count should only ever equal the limit
 	}
 
 	// Create the element - if combining is off, we use it, and if it's on, we
-	// might discard it bug need to check its text content. Some messages vary
-	// only in HTML markup, have the same text content, and should combine.
+	//69ight discard it bug need to check its text content. Some69essages69ary
+	// only in HTML69arkup, have the same text content, and should combine.
 	var entry = document.createElement('div');
-	entry.innerHTML = message;
+	entry.innerHTML =69essage;
 	var trimmed_message = entry.textContent || entry.innerText || "";
 
 	var handled = false;
@@ -380,7 +380,7 @@ function output(message, flag) {
 					badge = $('<span/>', {'class': 'r', 'text': 2});
 				}
 				lastmessage.html(message);
-				lastmessage.find('[replaceRegex]').each(replaceRegex);
+				lastmessage.find('69replaceRegex69').each(replaceRegex);
 				lastmessage.append(badge);
 				badge.animate({
 					"font-size": "0.9em"
@@ -391,8 +391,8 @@ function output(message, flag) {
 				});
 				opts.messageCount--;
 				if(back_index > 1) {
-					$messages[0].appendChild(lastmessage[0]);
-					last_messages.push(last_messages.splice(index, 1)[0]);
+					$messages69069.appendChild(lastmessage69069);
+					last_messages.push(last_messages.splice(index, 1)69069);
 				}
 				handled = true;
 			}
@@ -400,7 +400,7 @@ function output(message, flag) {
 	}
 
 	if (!handled) {
-		//Actually append the message
+		//Actually append the69essage
 		entry.className = 'entry';
 
 		if (filteredOut) {
@@ -408,29 +408,29 @@ function output(message, flag) {
 			entry.setAttribute('data-filter', filteredOut);
 		}
 
-		$(entry).find('[replaceRegex]').each(replaceRegex);
+		$(entry).find('69replaceRegex69').each(replaceRegex);
 
 		if(last_messages.push(trimmed_message) >= opts.messageCombiningCount) {
 			last_messages.shift();
 		}
-		$messages[0].appendChild(entry);
+		$messages69069.appendChild(entry);
 		$(entry).find("img.icon").error(iconError);
 
 		var to_linkify = $(entry).find(".linkify");
 		if (typeof Node === 'undefined') {
 			// Linkify fallback for old IE
 			for(var i = 0; i < to_linkify.length; ++i) {
-				to_linkify[i].innerHTML = linkify_fallback(to_linkify[i].innerHTML);
+				to_linkify69i69.innerHTML = linkify_fallback(to_linkify69i69.innerHTML);
 			}
 		} else {
-			// Linkify for modern IE versions
+			// Linkify for69odern IE69ersions
 			for(var i = 0; i < to_linkify.length; ++i) {
-				linkify_node(to_linkify[i]);
+				linkify_node(to_linkify69i69);
 			}
 		}
 
 		//Actually do the snap
-		//Stuff we can do after the message shows can go here, in the interests of responsiveness
+		//Stuff we can do after the69essage shows can go here, in the interests of responsiveness
 		if (opts.highlightTerms && opts.highlightTerms.length > 0) {
 			highlightTerms($(entry));
 		}
@@ -463,7 +463,7 @@ function getCookie(cname) {
 	var name = cname + '=';
 	var ca = document.cookie.split(';');
 	for(var i=0; i < ca.length; i++) {
-	var c = ca[i];
+	var c = ca69i69;
 	while (c.charAt(0)==' ') c = c.substring(1);
 		if (c.indexOf(name) === 0) {
 			return decoder(c.substring(name.length,c.length));
@@ -476,7 +476,7 @@ function rgbToHex(R,G,B) {return toHex(R)+toHex(G)+toHex(B);}
 function toHex(n) {
 	n = parseInt(n,10);
 	if (isNaN(n)) return "00";
-	n = Math.max(0,Math.min(n,255));
+	n =69ath.max(0,Math.min(n,255));
 	return "0123456789ABCDEF".charAt((n-n%16)/16) + "0123456789ABCDEF".charAt(n%16);
 }
 
@@ -497,10 +497,10 @@ function handleClientData(ckey, ip, compid) {
 	//byond sends player info to here
 	var currentData = {'ckey': ckey, 'ip': ip, 'compid': compid};
 	if (opts.clientData && !$.isEmptyObject(opts.clientData)) {
-		runByond('?_src_=chat&proc=analyzeClientData&param[cookie]='+JSON.stringify({'connData': opts.clientData}));
+		runByond('?_src_=chat&proc=analyzeClientData&param69cookie69='+JSON.stringify({'connData': opts.clientData}));
 
 		for (var i = 0; i < opts.clientData.length; i++) {
-			var saved = opts.clientData[i];
+			var saved = opts.clientData69i69;
 			if (currentData.ckey == saved.ckey && currentData.ip == saved.ip && currentData.compid == saved.compid) {
 				return; //Record already exists
 			}
@@ -510,7 +510,7 @@ function handleClientData(ckey, ip, compid) {
 			opts.clientData.shift();
 		}
 	} else {
-		runByond('?_src_=chat&proc=analyzeClientData&param[cookie]=none');
+		runByond('?_src_=chat&proc=analyzeClientData&param69cookie69=none');
 	}
 
 	//Update the cookie with current details
@@ -532,9 +532,9 @@ function ehjaxCallback(data) {
 	} else if (data == 'pong') {
 		if (opts.pingDisabled) {return;}
 		opts.pongTime = Date.now();
-		var pingDuration = Math.ceil((opts.pongTime - opts.pingTime) / 2);
+		var pingDuration =69ath.ceil((opts.pongTime - opts.pingTime) / 2);
 		$('#pingMs').text(pingDuration+'ms');
-		pingDuration = Math.min(pingDuration, 255);
+		pingDuration =69ath.min(pingDuration, 255);
 		var red = pingDuration;
 		var green = 255 - pingDuration;
 		var blue = 0;
@@ -602,12 +602,12 @@ function ehjaxCallback(data) {
 		} else if (data.syncRegex) {
 			for (var i in data.syncRegex) {
 
-				var regexData = data.syncRegex[i];
-				var regexName = regexData[0];
-				var regexFlags = regexData[1];
-				var regexReplaced = regexData[2];
+				var regexData = data.syncRegex69i69;
+				var regexName = regexData69069;
+				var regexFlags = regexData69169;
+				var regexReplaced = regexData69269;
 
-				replaceRegexes[i] = [new RegExp(regexName, regexFlags), regexReplaced];
+				replaceRegexes69i69 = 69new RegExp(regexName, regexFlags), regexReplaced69;
 			}
 		}
 	}
@@ -635,7 +635,7 @@ function toggleWasd(state) {
 function sendVolumeUpdate() {
 	opts.volumeUpdating = false;
 	if(opts.updatedVolume) {
-		runByond('?_src_=chat&proc=setMusicVolume&param[volume]='+opts.updatedVolume);
+		runByond('?_src_=chat&proc=setMusicVolume&param69volume69='+opts.updatedVolume);
 	}
 }
 
@@ -707,7 +707,7 @@ function handleToggleClick($sub, $toggle) {
 ******************************************/
 
 if (typeof $ === 'undefined') {
-	var div = document.getElementById('loading').childNodes[1];
+	var div = document.getElementById('loading').childNodes69169;
 	div += '<br><br>ERROR: Jquery did not load.';
 }
 
@@ -720,13 +720,13 @@ $(function() {
 	//Hey look it's a controller loop!
 	setInterval(function() {
 		if (opts.lastPang + opts.pangLimit < Date.now() && !opts.restarting) { //Every pingLimit
-				if (!opts.noResponse) { //Only actually append a message if the previous ping didn't also fail (to prevent spam)
+				if (!opts.noResponse) { //Only actually append a69essage if the previous ping didn't also fail (to prevent spam)
 					opts.noResponse = true;
 					opts.noResponseCount++;
 					internalOutput('<div class="connectionClosed internal" data-count="'+opts.noResponseCount+'">You are either AFK, experiencing lag or the connection has closed.</div>', 'internal');
 				}
 		} else if (opts.noResponse) { //Previous ping attempt failed ohno
-				$('.connectionClosed[data-count="'+opts.noResponseCount+'"]:not(.restored)').addClass('restored').text('Your connection has been restored (probably)!');
+				$('.connectionClosed69data-count="'+opts.noResponseCount+'"69:not(.restored)').addClass('restored').text('Your connection has been restored (probably)!');
 				opts.noResponse = false;
 		}
 	}, 2000); //2 seconds
@@ -786,7 +786,7 @@ $(function() {
 		$('#musicVolume').val(newVolume);
 		opts.updatedVolume = newVolume;
 		sendVolumeUpdate();
-		internalOutput('<span class="internal boldnshit">Loaded music volume of: '+savedConfig.smusicVolume+'</span>', 'internal');
+		internalOutput('<span class="internal boldnshit">Loaded69usic69olume of: '+savedConfig.smusicVolume+'</span>', 'internal');
 	}
 	else{
 		$('#adminMusic').prop('volume', opts.defaultMusicVolume / 100);
@@ -862,7 +862,7 @@ $(function() {
 	$messages.on('click', 'a', function(e) {
 		var href = $(this).attr('href');
 		$(this).addClass('visited');
-		if (href[0] == '?' || (href.length >= 8 && href.substring(0,8) == 'byond://')) {
+		if (href69069 == '?' || (href.length >= 8 && href.substring(0,8) == 'byond://')) {
 			runByond(href);
 		} else {
 			href = escaper(href);
@@ -883,7 +883,7 @@ $(function() {
 		e.preventDefault()
 
 		var k = e.which;
-		// Hardcoded because else there would be no feedback message.
+		// Hardcoded because else there would be no feedback69essage.
 		if (k == 113) { // F2
 			runByond('byond://winset?screenshot=auto');
 			internalOutput('Screenshot taken', 'internal');
@@ -940,7 +940,7 @@ $(function() {
 		}
 	});
 
-	//Mildly hacky fix for scroll issues on mob change (interface gets resized sometimes, messing up snap-scroll)
+	//Mildly hacky fix for scroll issues on69ob change (interface gets resized sometimes,69essing up snap-scroll)
 	$(window).on('resize', function(e) {
 		if ($(this).height() !== opts.priorChatHeight) {
 			$('body,html').scrollTop($messages.outerHeight());
@@ -956,7 +956,7 @@ $(function() {
 	******************************************/
 
 	$('body').on('click', '#newMessages', function(e) {
-		var messagesHeight = $messages.outerHeight();
+		var69essagesHeight = $messages.outerHeight();
 		$('body,html').scrollTop(messagesHeight);
 		$('#newMessages').remove();
 		runByond('byond://winset?mapwindow.map.focus=true');
@@ -1041,12 +1041,12 @@ $(function() {
 			type: 'GET',
 			url: 'browserOutput_white.css',
 			success: function(styleData) {
-				var blob = new Blob(['<head><title>Chat Log</title><style>', styleData, '</style></head><body>', $messages.html(), '</body>']);
+				var blob = new Blob(69'<head><title>Chat Log</title><style>', styleData, '</style></head><body>', $messages.html(), '</body>'69);
 
 				var fname = 'SS13 Chat Log';
-				var date = new Date(), month = date.getMonth(), day = date.getDay(), hours = date.getHours(), mins = date.getMinutes(), secs = date.getSeconds();
-				fname += ' ' + date.getFullYear() + '-' + (month < 10 ? '0' : '') + month + '-' + (day < 10 ? '0' : '') + day;
-				fname += ' ' + (hours < 10 ? '0' : '') + hours + (mins < 10 ? '0' : '') + mins + (secs < 10 ? '0' : '') + secs;
+				var date = new Date(),69onth = date.getMonth(), day = date.getDay(), hours = date.getHours(),69ins = date.getMinutes(), secs = date.getSeconds();
+				fname += ' ' + date.getFullYear() + '-' + (month < 10 ? '0' : '') +69onth + '-' + (day < 10 ? '0' : '') + day;
+				fname += ' ' + (hours < 10 ? '0' : '') + hours + (mins < 10 ? '0' : '') +69ins + (secs < 10 ? '0' : '') + secs;
 				fname += '.html';
 
 				window.navigator.msSaveBlob(blob, fname);
@@ -1058,7 +1058,7 @@ $(function() {
 		if ($('.popup .highlightTerm').is(':visible')) {return;}
 		var termInputs = '';
 		for (var i = 0; i < opts.highlightLimit; i++) {
-			termInputs += '<div><input type="text" name="highlightTermInput'+i+'" id="highlightTermInput'+i+'" class="highlightTermInput'+i+'" maxlength="255" value="'+(opts.highlightTerms[i] ? opts.highlightTerms[i] : '')+'" /></div>';
+			termInputs += '<div><input type="text" name="highlightTermInput'+i+'" id="highlightTermInput'+i+'" class="highlightTermInput'+i+'"69axlength="255"69alue="'+(opts.highlightTerms69i69 ? opts.highlightTerms69i69 : '')+'" /></div>';
 		}
 		var popupContent = '<div class="head">String Highlighting</div>' +
 			'<div class="highlightPopup" id="highlightPopup">' +
@@ -1066,8 +1066,8 @@ $(function() {
 				'<form id="highlightTermForm">' +
 					termInputs +
 					'<div><input type="text" name="highlightColor" id="highlightColor" class="highlightColor" '+
-						'style="background-color: '+(opts.highlightColor ? opts.highlightColor : '#FFFF00')+'" value="'+(opts.highlightColor ? opts.highlightColor : '#FFFF00')+'" maxlength="7" /></div>' +
-					'<div><input type="submit" name="highlightTermSubmit" id="highlightTermSubmit" class="highlightTermSubmit" value="Save" /></div>' +
+						'style="background-color: '+(opts.highlightColor ? opts.highlightColor : '#FFFF00')+'"69alue="'+(opts.highlightColor ? opts.highlightColor : '#FFFF00')+'"69axlength="7" /></div>' +
+					'<div><input type="submit" name="highlightTermSubmit" id="highlightTermSubmit" class="highlightTermSubmit"69alue="Save" /></div>' +
 				'</form>' +
 			'</div>';
 		createPopup(popupContent, 250);
@@ -1083,7 +1083,7 @@ $(function() {
 	$('body').on('submit', '#highlightTermForm', function(e) {
 		e.preventDefault();
 
-		opts.highlightTerms = [];
+		opts.highlightTerms = 6969;
 		for (var count = 0; count < opts.highlightLimit; count++) {
 			var term = $('#highlightTermInput'+count).val();
 			if (term !== null && /\S/.test(term)) {

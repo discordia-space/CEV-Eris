@@ -1,35 +1,35 @@
-/datum/design/autolathe/cell/large
+/datum/desi69n/autolathe/cell/lar69e
 	name = "Asters \"Robustcell 1000L\""
-	build_path = /obj/item/cell/large
+	build_path = /obj/item/cell/lar69e
 
-/datum/design/autolathe/cell/large/high
+/datum/desi69n/autolathe/cell/lar69e/hi69h
 	name = "Asters \"Robustcell 5000L\""
-	build_path = /obj/item/cell/large/high
+	build_path = /obj/item/cell/lar69e/hi69h
 
-/datum/design/autolathe/cell/large/excelsior
+/datum/desi69n/autolathe/cell/lar69e/excelsior
 	name = "Excelsior \"Zarya 8000L\""
-	build_path = /obj/item/cell/large/excelsior
+	build_path = /obj/item/cell/lar69e/excelsior
 
-/datum/design/autolathe/cell/medium
+/datum/desi69n/autolathe/cell/medium
 	name = "Asters \"Robustcell 600M\""
 	build_path = /obj/item/cell/medium
 
-/datum/design/autolathe/cell/medium/high
+/datum/desi69n/autolathe/cell/medium/hi69h
 	name = "Asters \"Robustcell 800M\""
-	build_path = /obj/item/cell/medium/high
+	build_path = /obj/item/cell/medium/hi69h
 
-/datum/design/autolathe/cell/medium/excelsior
+/datum/desi69n/autolathe/cell/medium/excelsior
 	name = "Excelsior \"Zarya 800M\""
 	build_path = /obj/item/cell/medium/excelsior
 
-/datum/design/autolathe/cell/small
+/datum/desi69n/autolathe/cell/small
 	name = "Asters \"Robustcell 100S\""
 	build_path = /obj/item/cell/small
 
-/datum/design/autolathe/cell/small/high
+/datum/desi69n/autolathe/cell/small/hi69h
 	name = "Asters \"Robustcell 200S\""
-	build_path = /obj/item/cell/small/high
+	build_path = /obj/item/cell/small/hi69h
 
-/datum/design/autolathe/cell/small/excelsior
+/datum/desi69n/autolathe/cell/small/excelsior
 	name = "Excelsior \"Zarya 250S\""
 	build_path = /obj/item/cell/small/excelsior

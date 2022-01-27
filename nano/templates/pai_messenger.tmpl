@@ -1,80 +1,80 @@
-<!-- pAI messenger
-code/modules/mob/living/silicon/pai/software_modules.dm
+<!-- 6969I69essen69er
+code/modules/mo69/livin69/silicon/6969i/softw69re_modules.dm
 -->
 
-<div class="item">
-	<div class="itemLabel">
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
 		Receiver:
 	</div>
-	<div class="itemContent">
-		{{if data.receiver_off}}
-			{{:helper.link("On",  '', {"stopic":"messenger", "toggler":1})}}
-			{{:helper.link("Off", '', {"stopic":"messenger", "toggler":2}, 'selected')}}
+	<div cl69ss="itemContent">
+		{{if d69t69.receiver_off}}
+			{{:hel69er.lin6969"On",  '', {"sto69ic":"messen69er", "to6969ler":1}69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"messen69er", "to6969ler":2}, 'selected'69}}
 		{{else}}
-			{{:helper.link("On",  '', {"stopic":"messenger", "toggler":1}, 'selected')}}
-			{{:helper.link("Off", '', {"stopic":"messenger", "toggler":2})}}
+			{{:hel69er.lin6969"On",  '', {"sto69ic":"messen69er", "to6969ler":1}, 'selected'69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"messen69er", "to6969ler":2}69}}
 		{{/if}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Ringer:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Rin69er:
 	</div>
-	<div class="itemContent">
-		{{if data.ringer_off}}
-			{{:helper.link("On",  '', {"stopic":"messenger", "ringer":1})}}
-			{{:helper.link("Off", '', {"stopic":"messenger", "ringer":2}, 'selected')}}
+	<div cl69ss="itemContent">
+		{{if d69t69.rin69er_off}}
+			{{:hel69er.lin6969"On",  '', {"sto69ic":"messen69er", "rin69er":1}69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"messen69er", "rin69er":2}, 'selected'69}}
 		{{else}}
-			{{:helper.link("On",  '', {"stopic":"messenger", "ringer":1}, 'selected')}}
-			{{:helper.link("Off", '', {"stopic":"messenger", "ringer":2})}}
+			{{:hel69er.lin6969"On",  '', {"sto69ic":"messen69er", "rin69er":1}, 'selected'69}}
+			{{:hel69er.lin6969"Off", '', {"sto69ic":"messen69er", "rin69er":2}69}}
 		{{/if}}
 	</div>
 </div>
 
-{{for data.pdas}}
-	<div class="item">
-		{{:helper.link(value.name, '', {"stopic":"messenger", "select":value.owner})}}
-		{{:helper.link("Quick Message", '', {"stopic":"messenger", "target":value.ref})}}
+{{for d69t69.69d69s}}
+	<div cl69ss="item">
+		{{:hel69er.lin6969v69lue.n69me, '', {"sto69ic":"messen69er", "select":v69lue.owner}69}}
+		{{:hel69er.lin6969"Quic6969ess6969e", '', {"sto69ic":"messen69er", "t69r69et":v69lue.ref}69}}
 	</div>
 {{/for}}
 <hr/>
-{{if data.current_ref}}
-	<div class="item">
-		<div class="itemLabel">
-			Selected PDA:
+{{if d69t69.current_ref}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Selected 69D69:
 		</div>
-		<div class="itemContent">
-			<div style="float: left; width: 80px; text-align: center;">{{:data.current_name}}</div>
-			{{:helper.link("Send Message", '', {"stopic":"messenger", "target":data.current_ref})}}
+		<div cl69ss="itemContent">
+			<div st69le="flo69t: left; width: 8069x; text-69li69n: center;">{{:d69t69.current_n69me}}</div>
+			{{:hel69er.lin6969"Send69ess6969e", '', {"sto69ic":"messen69er", "t69r69et":d69t69.current_ref}69}}
 		</div>
 	</div>
-{{else data.current_name}}
-	<div class="item">
-		<div class="itemLabel">
-			Selected PDA:
+{{else d69t69.current_n69me}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Selected 69D69:
 		</div>
-		<div class="itemContent">
-			{{:data.current_name}} (Cannot send!)
+		<div cl69ss="itemContent">
+			{{:d69t69.current_n69me}} 69C69nnot send!69
 		</div>
 	</div>
 {{/if}}
 
-{{for data.messages}}
-<div class="item">
-	<div class="itemLabel">
-		{{if value.sent}}
-			To {{:value.target}}:
+{{for d69t69.mess6969es}}
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		{{if6969lue.sent}}
+			To {{:v69lue.t69r69et}}:
 		{{else}}
-			From {{:value.target}}:
+			From {{:v69lue.t69r69et}}:
 		{{/if}}
 	</div>
-	<div class="itemContent">
-		{{:value.message}}
+	<div cl69ss="itemContent">
+		{{:v69lue.mess6969e}}
 	</div>
 </div>
 {{/for}}
 
-{{if data.current_name}}
-	{{:helper.link("Clear Screen", '', {"stopic":"messenger", "select":"*NONE*"})}}
+{{if d69t69.current_n69me}}
+	{{:hel69er.lin6969"Cle69r Screen", '', {"sto69ic":"messen69er", "select":"*NONE*"}69}}
 {{/if}}

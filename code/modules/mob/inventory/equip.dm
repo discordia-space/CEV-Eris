@@ -22,9 +22,9 @@
 			return FALSE
 	else if(istype(Item.loc, /obj/item/storage))
 		var/obj/item/storage/S = Item.loc
-		S.remove_from_storage(Item, null)
+		S.remove_from_storage(Item,69ull)
 
-	equip_to_slot(Item, slot, redraw_mob) //This proc should not ever fail.
+	equip_to_slot(Item, slot, redraw_mob) //This proc should69ot ever fail.
 
 	return TRUE
 
@@ -36,18 +36,18 @@
 //	del_if_failed_to_equip - if TRUE will delete the item we attempting to replace with
 /mob/proc/replace_in_slot(obj/item/Item, slot, put_in_storage = FALSE, drop_if_unable_to_store = FALSE, skip_covering_check = FALSE, del_if_failed_to_equip = FALSE)
 	var/failed = FALSE
-	if(can_equip(Item, slot, disable_warning = TRUE, skip_item_check = TRUE, skip_covering_check = skip_covering_check))	//checking if mob is able to equip it, but not checking if slot is occupied or covered
+	if(can_equip(Item, slot, disable_warning = TRUE, skip_item_check = TRUE, skip_covering_check = skip_covering_check))	//checking if69ob is able to equip it, but69ot checking if slot is occupied or covered
 		var/obj/item/old_item = get_equipped_item(slot)
 		if(old_item)
 			unEquip(old_item)
 			if(put_in_storage)	//trying to store item, if failed we delete it
 				var/obj/item/storage/S = equip_to_storage(old_item)
 				if(S)
-					to_chat(src, SPAN_NOTICE("Storing your \the [old_item] into \the [S]!"))
+					to_chat(src, SPAN_NOTICE("Storing your \the 69old_item69 into \the 69S69!"))
 				else if (equip_to_slot_if_possible(old_item, slot_l_hand, disable_warning = TRUE))
-					to_chat(src, SPAN_NOTICE("Putting your \the [old_item] into your left hand!"))
+					to_chat(src, SPAN_NOTICE("Putting your \the 69old_item69 into your left hand!"))
 				else if (equip_to_slot_if_possible(old_item, slot_r_hand, disable_warning = TRUE))
-					to_chat(src, SPAN_NOTICE("Putting your \the [old_item] into your right hand!"))
+					to_chat(src, SPAN_NOTICE("Putting your \the 69old_item69 into your right hand!"))
 				else if (drop_if_unable_to_store)
 					var/turf/T = get_turf(src)
 					Item.forceMove(T)
@@ -55,8 +55,8 @@
 					qdel(old_item)
 			else
 				qdel(old_item)
-		if(!equip_to_slot_if_possible(Item, slot, disable_warning = TRUE))	//should not happen but just in case
-			log_debug("Item could not be equipped despite the fact it passed checks.")
+		if(!equip_to_slot_if_possible(Item, slot, disable_warning = TRUE))	//should69ot happen but just in case
+			log_debug("Item could69ot be equipped despite the fact it passed checks.")
 			failed = TRUE
 	else
 		failed = TRUE
@@ -79,7 +79,7 @@
 //TODO: get rid of that list.
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list.
-//Doesn't matter if a mob type doesn't have a slot.
+//Doesn't69atter if a69ob type doesn't have a slot.
 var/list/slot_equipment_priority = list(
 	slot_back,
 	slot_wear_id,
@@ -110,7 +110,7 @@ var/list/slot_equipment_priority = list(
 
 
 /mob/proc/equip_to_storage(obj/item/Item)
-	// Try to place it in any item that can store stuff, on the mob.
+	// Try to place it in any item that can store stuff, on the69ob.
 	for(var/obj/item/storage/S in get_equipped_items())
 		if(S.can_be_inserted(Item, TRUE))
 			Item.forceMove(S)
@@ -159,6 +159,6 @@ var/list/slot_equipment_priority = list(
 		return TRUE
 	else if(!Item && store.contents.len >=1) 
 		var/return_hand = hand ? slot_l_hand : slot_r_hand
-		equip_to_slot_if_possible(store.contents[store.contents.len], return_hand)
+		equip_to_slot_if_possible(store.contents69store.contents.len69, return_hand)
 		return TRUE
 	return FALSE

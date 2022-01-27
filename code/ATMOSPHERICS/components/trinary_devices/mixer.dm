@@ -4,20 +4,20 @@
 	density = FALSE
 	level = BELOW_PLATING_LEVEL
 
-	name = "Gas mixer"
+	name = "Gas69ixer"
 
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
-	power_rating = 3700	//This also doubles as a measure of how powerful the mixer is, in Watts. 3700 W ~ 5 HP
+	power_rating = 3700	//This also doubles as a69easure of how powerful the69ixer is, in Watts. 3700 W ~ 5 HP
 
 	var/set_flow_rate = ATMOS_DEFAULT_VOLUME_MIXER
 	var/list/mixing_inputs
 
-	//for mapping
+	//for69apping
 	var/node1_concentration = 0.5
 	var/node2_concentration = 0.5
 
-	//node 3 is the outlet, nodes 1 & 2 are intakes
+	//node 3 is the outlet,69odes 1 & 2 are intakes
 
 /obj/machinery/atmospherics/trinary/mixer/update_icon(var/safety = 0)
 	if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer))
@@ -29,11 +29,11 @@
 
 	if(!powered())
 		icon_state += "off"
-	else if(node2 && node3 && node1)
+	else if(node2 &&69ode3 &&69ode1)
 		icon_state += use_power ? "on" : "off"
 	else
 		icon_state += "off"
-		use_power = NO_POWER_USE
+		use_power =69O_POWER_USE
 
 /obj/machinery/atmospherics/trinary/mixer/update_underlays()
 	if(..())
@@ -43,16 +43,16 @@
 			return
 
 		if(istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			add_underlay(T, node1, turn(dir, -90))
+			add_underlay(T,69ode1, turn(dir, -90))
 		else
-			add_underlay(T, node1, turn(dir, -180))
+			add_underlay(T,69ode1, turn(dir, -180))
 
 		if(istype(src, /obj/machinery/atmospherics/trinary/mixer/m_mixer) || istype(src, /obj/machinery/atmospherics/trinary/mixer/t_mixer))
-			add_underlay(T, node2, turn(dir, 90))
+			add_underlay(T,69ode2, turn(dir, 90))
 		else
-			add_underlay(T, node2, turn(dir, -90))
+			add_underlay(T,69ode2, turn(dir, -90))
 
-		add_underlay(T, node3, dir)
+		add_underlay(T,69ode3, dir)
 
 /obj/machinery/atmospherics/trinary/mixer/hide(var/i)
 	update_underlays()
@@ -70,7 +70,7 @@
 	air3.volume = ATMOS_DEFAULT_VOLUME_MIXER * 1.5
 
 	if (!mixing_inputs)
-		mixing_inputs = list(src.air1 = node1_concentration, src.air2 = node2_concentration)
+		mixing_inputs = list(src.air1 =69ode1_concentration, src.air2 =69ode2_concentration)
 
 /obj/machinery/atmospherics/trinary/mixer/Process()
 	..()
@@ -81,17 +81,17 @@
 	if((stat & (NOPOWER|BROKEN)) || !use_power)
 		return
 
-	//Figure out the amount of moles to transfer
-	var/transfer_moles = (set_flow_rate*mixing_inputs[air1]/air1.volume)*air1.total_moles + (set_flow_rate*mixing_inputs[air1]/air2.volume)*air2.total_moles
+	//Figure out the amount of69oles to transfer
+	var/transfer_moles = (set_flow_rate*mixing_inputs69air169/air1.volume)*air1.total_moles + (set_flow_rate*mixing_inputs69air169/air2.volume)*air2.total_moles
 
 	var/power_draw = -1
-	if (transfer_moles > MINIMUM_MOLES_TO_FILTER)
-		power_draw = mix_gas(src, mixing_inputs, air3, transfer_moles, power_rating)
+	if (transfer_moles >69INIMUM_MOLES_TO_FILTER)
+		power_draw =69ix_gas(src,69ixing_inputs, air3, transfer_moles, power_rating)
 
-		if(network1 && mixing_inputs[air1])
+		if(network1 &&69ixing_inputs69air169)
 			network1.update = 1
 
-		if(network2 && mixing_inputs[air2])
+		if(network2 &&69ixing_inputs69air269)
 			network2.update = 1
 
 		if(network3)
@@ -103,25 +103,25 @@
 
 	return 1
 
-/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attackby(var/obj/item/I,69ar/mob/user as69ob)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it too exerted due to internal pressure."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, it too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the 69src69..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			SPAN_NOTICE("\The 69user69 unfastens \the 69src69."), \
+			SPAN_NOTICE("You have unfastened \the 69src69."), \
 			"You hear ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc,69ake_from=src)
 		qdel(src)
 
-/obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
+/obj/machinery/atmospherics/trinary/mixer/attack_hand(user as69ob)
 	if(..())
 		return
 	src.add_fingerprint(usr)
@@ -129,47 +129,47 @@
 		to_chat(user, SPAN_WARNING("Access denied."))
 		return
 	usr.set_machine(src)
-	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[use_power?"On":"Off"]</a><br>
+	var/dat = {"<b>Power: </b><a href='?src=\ref69src69;power=1'>69use_power?"On":"Off"69</a><br>
 				<b>Set Flow Rate Limit: </b>
-				[set_flow_rate]L/s | <a href='?src=\ref[src];set_press=1'>Change</a>
+				69set_flow_rate69L/s | <a href='?src=\ref69src69;set_press=1'>Change</a>
 				<br>
-				<b>Flow Rate: </b>[round(last_flow_rate, 0.1)]L/s
+				<b>Flow Rate: </b>69round(last_flow_rate, 0.1)69L/s
 				<br><hr>
 				<b>Node 1 Concentration:</b>
-				<a href='?src=\ref[src];node1_c=-0.1'><b>-</b></a>
-				<a href='?src=\ref[src];node1_c=-0.01'>-</a>
-				[mixing_inputs[air1]]([mixing_inputs[air1]*100]%)
-				<a href='?src=\ref[src];node1_c=0.01'><b>+</b></a>
-				<a href='?src=\ref[src];node1_c=0.1'>+</a>
+				<a href='?src=\ref69src69;node1_c=-0.1'><b>-</b></a>
+				<a href='?src=\ref69src69;node1_c=-0.01'>-</a>
+				69mixing_inputs69air16969(69mixing_inputs69air169*10069%)
+				<a href='?src=\ref69src69;node1_c=0.01'><b>+</b></a>
+				<a href='?src=\ref69src69;node1_c=0.1'>+</a>
 				<br>
 				<b>Node 2 Concentration:</b>
-				<a href='?src=\ref[src];node2_c=-0.1'><b>-</b></a>
-				<a href='?src=\ref[src];node2_c=-0.01'>-</a>
-				[mixing_inputs[air2]]([mixing_inputs[air2]*100]%)
-				<a href='?src=\ref[src];node2_c=0.01'><b>+</b></a>
-				<a href='?src=\ref[src];node2_c=0.1'>+</a>
+				<a href='?src=\ref69src69;node2_c=-0.1'><b>-</b></a>
+				<a href='?src=\ref69src69;node2_c=-0.01'>-</a>
+				69mixing_inputs69air26969(69mixing_inputs69air269*10069%)
+				<a href='?src=\ref69src69;node2_c=0.01'><b>+</b></a>
+				<a href='?src=\ref69src69;node2_c=0.1'>+</a>
 				"}
 
-	user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmo_mixer")
+	user << browse("<HEAD><TITLE>69src.name69 control</TITLE></HEAD><TT>69dat69</TT>", "window=atmo_mixer")
 	onclose(user, "atmo_mixer")
 	return
 
 /obj/machinery/atmospherics/trinary/mixer/Topic(href, href_list)
 	if(..()) return 1
-	if(href_list["power"])
+	if(href_list69"power"69)
 		use_power = !use_power
-	if(href_list["set_press"])
-		var/max_flow_rate = min(air1.volume, air2.volume)
-		var/new_flow_rate = input(usr, "Enter new flow rate limit (0-[max_flow_rate]L/s)", "Flow Rate Control", src.set_flow_rate) as num
-		src.set_flow_rate = max(0, min(max_flow_rate, new_flow_rate))
-	if(href_list["node1_c"])
-		var/value = text2num(href_list["node1_c"])
-		src.mixing_inputs[air1] = max(0, min(1, src.mixing_inputs[air1] + value))
-		src.mixing_inputs[air2] = 1 - mixing_inputs[air1]
-	if(href_list["node2_c"])
-		var/value = text2num(href_list["node2_c"])
-		src.mixing_inputs[air2] = max(0, min(1, src.mixing_inputs[air2] + value))
-		src.mixing_inputs[air1] = 1 - mixing_inputs[air2]
+	if(href_list69"set_press"69)
+		var/max_flow_rate =69in(air1.volume, air2.volume)
+		var/new_flow_rate = input(usr, "Enter69ew flow rate limit (0-69max_flow_rate69L/s)", "Flow Rate Control", src.set_flow_rate) as69um
+		src.set_flow_rate =69ax(0,69in(max_flow_rate,69ew_flow_rate))
+	if(href_list69"node1_c"69)
+		var/value = text2num(href_list69"node1_c"69)
+		src.mixing_inputs69air169 =69ax(0,69in(1, src.mixing_inputs69air169 +69alue))
+		src.mixing_inputs69air269 = 1 -69ixing_inputs69air169
+	if(href_list69"node2_c"69)
+		var/value = text2num(href_list69"node2_c"69)
+		src.mixing_inputs69air269 =69ax(0,69in(1, src.mixing_inputs69air269 +69alue))
+		src.mixing_inputs69air169 = 1 -69ixing_inputs69air269
 	src.update_icon()
 	src.updateUsrDialog()
 	return
@@ -180,7 +180,7 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer
 	dir = SOUTH
 	initialize_directions = SOUTH|EAST|WEST
 
-	//node 3 is the outlet, nodes 1 & 2 are intakes
+	//node 3 is the outlet,69odes 1 & 2 are intakes
 
 obj/machinery/atmospherics/trinary/mixer/t_mixer/New()
 	..()
@@ -196,23 +196,23 @@ obj/machinery/atmospherics/trinary/mixer/t_mixer/New()
 
 obj/machinery/atmospherics/trinary/mixer/t_mixer/atmos_init()
 	..()
-	if(node1 && node2 && node3) return
+	if(node1 &&69ode2 &&69ode3) return
 
 	var/node1_connect = turn(dir, -90)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode1_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode2_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node3_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode3_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node3 = target
 			break
@@ -226,7 +226,7 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|EAST
 
-	//node 3 is the outlet, nodes 1 & 2 are intakes
+	//node 3 is the outlet,69odes 1 & 2 are intakes
 
 obj/machinery/atmospherics/trinary/mixer/m_mixer/New()
 	..()
@@ -242,23 +242,23 @@ obj/machinery/atmospherics/trinary/mixer/m_mixer/New()
 
 obj/machinery/atmospherics/trinary/mixer/m_mixer/atmos_init()
 	..()
-	if(node1 && node2 && node3) return
+	if(node1 &&69ode2 &&69ode3) return
 
 	var/node1_connect = turn(dir, -180)
 	var/node2_connect = turn(dir, 90)
 	var/node3_connect = dir
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode1_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node1 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node2_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode2_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node2 = target
 			break
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node3_connect))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode3_connect))
 		if(target.initialize_directions & get_dir(target, src))
 			node3 = target
 			break

@@ -23,7 +23,7 @@
 /mob/living/carbon/superior_animal/golem
 	icon = 'icons/mob/golems.dmi'
 
-	mob_size = MOB_MEDIUM
+	mob_size =69OB_MEDIUM
 
 	//spawn_values
 	rarity_value = 37.5
@@ -39,7 +39,7 @@
 	speak_chance = 5
 
 	see_in_dark = 10
-	meat_type = null
+	meat_type =69ull
 	meat_amount = 0
 	stop_automated_movement_when_pulled = 0
 
@@ -72,16 +72,16 @@
 			stance = HOSTILE_STANCE_ATTACK
 
 /mob/living/carbon/superior_animal/golem/Destroy()
-	DD = null
+	DD =69ull
 	..()
 
-/mob/living/carbon/superior_animal/golem/death(gibbed, message = deathmessage)
+/mob/living/carbon/superior_animal/golem/death(gibbed,69essage = deathmessage)
 	..()
 
 	// Spawn ores
 	if(ore)
 		var/nb_ores = rand(3, 5)
-		for(var/i in 1 to nb_ores)
+		for(var/i in 1 to69b_ores)
 			new ore(loc)
 
 	// Poof

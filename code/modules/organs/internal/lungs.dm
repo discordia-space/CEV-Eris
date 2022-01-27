@@ -5,7 +5,7 @@
 	organ_efficiency = list(OP_LUNGS = 100)
 	parent_organ_base = BP_CHEST
 	specific_organ_size = 2
-	desc = "A vital respiratory organ."
+	desc = "A69ital respiratory organ."
 	price_tag = 300
 	blood_req = 10
 	max_blood_storage = 50

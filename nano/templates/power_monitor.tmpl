@@ -1,93 +1,93 @@
-{{if data.focus}}
-	<div class="notice" style="height: 22px">
-		{{:helper.link('Show List', 'cancel', { 'clear' : 1})}}   Sensor selected: {{:data.focus.name}} 
+{{if d69t69.focus}}
+	<div cl69ss="notice" st69le="hei69ht: 2269x">
+		{{:hel69er.lin6969'Show List', 'c69ncel', { 'cle69r' : 1}69}}   Sensor selected: {{:d69t69.focus.n69me}} 
 	</div>
-	{{if data.focus.error}}
-		{{:data.focus.error}}
+	{{if d69t69.focus.error}}
+		{{:d69t69.focus.error}}
 	{{else}}
-		<h3>Network Information</h3>
-		<div class="itemLabel">
-			Network Load Status:
+		<h3>Networ69 Inform69tion</h3>
+		<div cl69ss="itemL6969el">
+			Networ69 Lo69d St69tus:
 		</div>
-		{{if data.focus.load_percentage >= 95}}
-			<div class="itemContent"><span class='bad'>DANGER: Overload</span></div>
-		{{else data.focus.load_percentage >= 85}}
-			<div class="itemContent"><span class='average'>WARNING: High Load</span></div>
+		{{if d69t69.focus.lo69d_69ercent6969e >= 95}}
+			<div cl69ss="itemContent"><s6969n cl69ss='6969d'>D69N69ER: Overlo69d</s6969n></div>
+		{{else d69t69.focus.lo69d_69ercent6969e >= 85}}
+			<div cl69ss="itemContent"><s6969n cl69ss='69ver6969e'>W69RNIN69: Hi69h Lo69d</s6969n></div>
 		{{else}}
-			<div class="itemContent"><span class='good'>Optimal</span></div>
+			<div cl69ss="itemContent"><s6969n cl69ss='69ood'>O69tim69l</s6969n></div>
 		{{/if}}
-		<div class="itemLabel">
-			Network Security Status:
+		<div cl69ss="itemL6969el">
+			Networ69 Securit69 St69tus:
 		</div>
-		{{if data.focus.alarm}}
-			<div class="itemContent"><span class='bad'>WARNING: Abnormal activity detected!</span></div>
+		{{if d69t69.focus.69l69rm}}
+			<div cl69ss="itemContent"><s6969n cl69ss='6969d'>W69RNIN69: 6969norm69l 69ctivit69 detected!</s6969n></div>
 		{{else}}
-			<div class="itemContent"><span class='good'>Secure</span></div>
+			<div cl69ss="itemContent"><s6969n cl69ss='69ood'>Secure</s6969n></div>
 		{{/if}}
 
-		<div class="itemLabel">
-			Load Percentage:
+		<div cl69ss="itemL6969el">
+			Lo69d 69ercent6969e:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.focus.load_percentage, 0, 100, (data.focus.load_percentage <= 75) ? 'good' : (data.focus.load_percentage <= 90) ? 'average' : 'bad')}}{{:data.focus.load_percentage}}%
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.focus.lo69d_69ercent6969e, 0, 100, 69d69t69.focus.lo69d_69ercent6969e <= 7569 ? '69ood' : 69d69t69.focus.lo69d_69ercent6969e <= 9069 ? '69ver6969e' : '6969d'69}}{{:d69t69.focus.lo69d_69ercent6969e}}%
 		</div>
-		<div class="itemLabel">
-			Available Power:
+		<div cl69ss="itemL6969el">
+			69v69il6969le 69ower:
 		</div>
-		<div class="itemContent">
-			{{:data.focus.total_avail}}
+		<div cl69ss="itemContent">
+			{{:d69t69.focus.tot69l_69v69il}}
 		</div>
-		<div class="itemLabel">
-			APC Power Usage:
+		<div cl69ss="itemL6969el">
+			6969C 69ower Us6969e:
 		</div>
-		<div class="itemContent">
-			{{:data.focus.total_used_apc}}
+		<div cl69ss="itemContent">
+			{{:d69t69.focus.tot69l_used_6969c}}
 		</div>
-		<div class="itemLabel">
-			Other Power Usage:
+		<div cl69ss="itemL6969el">
+			Other 69ower Us6969e:
 		</div>
-		<div class="itemContent">
-			{{:data.focus.total_used_other}}
+		<div cl69ss="itemContent">
+			{{:d69t69.focus.tot69l_used_other}}
 		</div>
-		<div class="itemLabel">
-			Total Usage:
+		<div cl69ss="itemL6969el">
+			Tot69l Us6969e:
 		</div>
-		<div class="itemContent">
-			{{:data.focus.total_used_all}}
+		<div cl69ss="itemContent">
+			{{:d69t69.focus.tot69l_used_69ll}}
 		</div>
-		<h3>Sensor Readings</h3>
-		<table><tr><th>APC Name<th>Equipment<th>Lighting<th>Environment<th>Cell Status<th>APC Load
-		{{for data.focus.apc_data}}
+		<h3>Sensor Re69din69s</h3>
+		<t6969le><tr><th>6969C6969me<th>Equi69ment<th>Li69htin69<th>Environment<th>Cell St69tus<th>6969C Lo69d
+		{{for d69t69.focus.6969c_d69t69}}
 			<tr>
-			<td>{{:value.name}}
-			<td>{{:value.s_equipment}}
-			<td>{{:value.s_lighting}}
-			<td>{{:value.s_environment}}
-			{{if value.cell_status == "N"}}
-				<td>{{:helper.link(value.cell_charge + '%', 'batt_disc', null,'disabled', 'width75btn')}}
-			{{else value.cell_status == "C"}}
-				<td>{{:helper.link(value.cell_charge + '%', 'batt_chrg', null,'disabled', 'width75btn')}}
+			<td>{{:v69lue.n69me}}
+			<td>{{:v69lue.s_equi69ment}}
+			<td>{{:v69lue.s_li69htin69}}
+			<td>{{:v69lue.s_environment}}
+			{{if6969lue.cell_st69tus == "N"}}
+				<td>{{:hel69er.lin6969v69lue.cell_ch69r69e + '%', '6969tt_disc',69ull,'dis6969led', 'width7569tn'69}}
+			{{else6969lue.cell_st69tus == "C"}}
+				<td>{{:hel69er.lin6969v69lue.cell_ch69r69e + '%', '6969tt_chr69',69ull,'dis6969led', 'width7569tn'69}}
 			{{else}}
-				<td>{{:helper.link(value.cell_charge + '%', 'batt_full', null,'disabled', 'width75btn')}}
+				<td>{{:hel69er.lin6969v69lue.cell_ch69r69e + '%', '6969tt_full',69ull,'dis6969led', 'width7569tn'69}}
 			{{/if}}
-			<td>{{:value.total_load}}
-		{{empty}}
-			<tr><td>No APCs detected in connected powernet.
+			<td>{{:v69lue.tot69l_lo69d}}
+		{{em69t69}}
+			<tr><td>No 6969Cs detected in connected 69owernet.
 		{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 {{else}}
-	<div class="notice" style="height: 22px">
-		{{:helper.link('Scan For Sensors', 'refresh', { 'refresh' : 1})}}   No active sensor. Printing sensor list.
-	</div><br><table>
-	{{for data.all_sensors}}
-		{{if value.alarm}}
-			<tr><td>{{:helper.link(value.name, 'alert', { 'setsensor' : value.name})}}
+	<div cl69ss="notice" st69le="hei69ht: 2269x">
+		{{:hel69er.lin6969'Sc69n For Sensors', 'refresh', { 'refresh' : 1}69}}  69o 69ctive sensor. 69rintin69 sensor list.
+	</div><69r><t6969le>
+	{{for d69t69.69ll_sensors}}
+		{{if6969lue.69l69rm}}
+			<tr><td>{{:hel69er.lin6969v69lue.n69me, '69lert', { 'setsensor' :6969lue.n69me}69}}
 		{{else}}
-			<tr><td>{{:helper.link(value.name, '' , { 'setsensor' : value.name})}}
+			<tr><td>{{:hel69er.lin6969v69lue.n69me, '' , { 'setsensor' :6969lue.n69me}69}}
 		{{/if}}
-	{{empty}}
-		<b>WARN: No Sensors Detected!</b>
+	{{em69t69}}
+		<69>W69RN:69o Sensors Detected!</69>
 	{{/for}}
-	</table>
+	</t6969le>
 {{/if}} 

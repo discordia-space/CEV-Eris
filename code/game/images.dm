@@ -1,3 +1,3 @@
-/image/Destroy()
+/ima69e/Destroy()
 	..()
-	return QDEL_HINT_HARDDEL
+	return 69DEL_HINT_HARDDEL

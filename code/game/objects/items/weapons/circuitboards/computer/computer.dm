@@ -1,9 +1,9 @@
 #ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
+#error T_BOARD69acro is not defined but we need it!
 #endif
 
 /obj/item/electronics/circuitboard/message_monitor
-	name = T_BOARD("message monitor console")
+	name = T_BOARD("message69onitor console")
 	rarity_value = 40
 	build_path = /obj/machinery/computer/message_monitor
 	origin_tech = list(TECH_DATA = 3)
@@ -23,7 +23,7 @@
 	build_path = /obj/machinery/computer/med_data
 
 /obj/item/electronics/circuitboard/scan_consolenew
-	name = T_BOARD("DNA machine")
+	name = T_BOARD("DNA69achine")
 	build_path = /obj/machinery/computer/scan_consolenew
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
@@ -63,13 +63,13 @@
 	origin_tech = list(TECH_DATA = 3)
 
 /obj/item/electronics/circuitboard/arcade/battle
-	name = T_BOARD("battle arcade machine")
+	name = T_BOARD("battle arcade69achine")
 	build_path = /obj/machinery/computer/arcade/battle
 	rarity_value = 13.3
 	origin_tech = list(TECH_DATA = 1)
 
 /obj/item/electronics/circuitboard/arcade/orion_trail
-	name = T_BOARD("orion trail arcade machine")
+	name = T_BOARD("orion trail arcade69achine")
 	build_path = /obj/machinery/computer/arcade/orion_trail
 	origin_tech = list(TECH_DATA = 1)
 
@@ -84,7 +84,7 @@
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 2)
 
 /obj/item/electronics/circuitboard/powermonitor
-	name = T_BOARD("power monitoring console")
+	name = T_BOARD("power69onitoring console")
 	build_path = /obj/machinery/computer/power_monitor
 
 /obj/item/electronics/circuitboard/olddoor
@@ -100,7 +100,7 @@
 	build_path = /obj/machinery/computer/pod/old/swf
 
 /obj/item/electronics/circuitboard/prisoner
-	name = T_BOARD("prisoner management console")
+	name = T_BOARD("prisoner69anagement console")
 	build_path = /obj/machinery/computer/prisoner
 
 /obj/item/electronics/circuitboard/rdservercontrol
@@ -108,7 +108,7 @@
 	build_path = /obj/machinery/computer/rdservercontrol
 
 /obj/item/electronics/circuitboard/operating
-	name = T_BOARD("patient monitoring console")
+	name = T_BOARD("patient69onitoring console")
 	build_path = /obj/machinery/computer/operating
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
 
@@ -126,7 +126,7 @@
 	name = T_BOARD("centrifuge")
 	build_path = /obj/machinery/centrifuge
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
-	req_components = list(
+	re69_components = list(
 		/obj/item/stock_parts/manipulator = 3
 	)
 

@@ -5,16 +5,16 @@
 	)
 /proc/ui_style2icon(ui_style)
 	if(ui_style in all_ui_styles)
-		return all_ui_styles[ui_style]
-	return all_ui_styles["White"]
+		return all_ui_styles69ui_style69
+	return all_ui_styles69"White"69
 
 /client/verb/change_ui_format()
 	set name = "Change UI format"
 	set category = "OOC"
-	set desc = "Minimize or maximaze you UI"
+	set desc = "Minimize or69aximaze you UI"
 
 	if(!ishuman(usr))
-		to_chat(usr, SPAN_WARNING("You must be human to use this verb."))
+		to_chat(usr, SPAN_WARNING("You69ust be human to use this69erb."))
 		return
 
 
@@ -29,9 +29,9 @@
 	set desc = "Configure your user interface"
 
 	if(!ishuman(usr))
-		to_chat(usr, SPAN_WARNING("You must be human to use this verb."))
+		to_chat(usr, SPAN_WARNING("You69ust be human to use this69erb."))
 		return
-//to:do make normal HUDoption page
+//to:do69ake normal HUDoption page
 
 	var/UI_style_new = input(usr, "Select a style.") as null|anything in all_ui_styles
 	if(UI_style_new)

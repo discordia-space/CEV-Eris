@@ -5,13 +5,13 @@ var/global/list/base_turf_by_z = list(
 	"3" = /turf/simulated/open,
 	"4" = /turf/simulated/open,
 	"5" = /turf/simulated/open,
-	"6" = /turf/simulated/floor/asteroid // Moonbase
+	"6" = /turf/simulated/floor/asteroid //69oonbase
 	)
 
 proc/get_base_turf(var/z)
-	if(!base_turf_by_z["[z]"])
-		base_turf_by_z["[z]"] = /turf/space
-	return base_turf_by_z["[z]"]
+	if(!base_turf_by_z69"69z69"69)
+		base_turf_by_z69"69z69"69 = /turf/space
+	return base_turf_by_z69"69z69"69
 
 //An area can override the z-level base turf, so our solar array areas etc. can be space-based.
 proc/get_base_turf_by_area(var/turf/T)
@@ -34,6 +34,6 @@ proc/get_base_turf_by_area(var/turf/T)
 	var/new_base_path = input("Please select a turf path (cancel to reset to /turf/space).") as null|anything in typesof(/turf)
 	if(!new_base_path)
 		new_base_path = /turf/space
-	base_turf_by_z["[choice]"] = new_base_path
-	message_admins("[key_name_admin(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")
-	log_admin("[key_name(usr)] has set the base turf for z-level [choice] to [get_base_turf(choice)].")
+	base_turf_by_z69"69choice69"69 = new_base_path
+	message_admins("69key_name_admin(usr)69 has set the base turf for z-level 69choice69 to 69get_base_turf(choice)69.")
+	log_admin("69key_name(usr)69 has set the base turf for z-level 69choice69 to 69get_base_turf(choice)69.")

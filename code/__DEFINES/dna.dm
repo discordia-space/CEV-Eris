@@ -1,48 +1,48 @@
-// Bitflags for mutations.
+// Bitfla69s for69utations.
 #define STRUCDNASIZE 27
 #define   UNIDNASIZE 13
 
-// Generic mutations:
+// 69eneric69utations:
 #define TK              1
 #define COLD_RESISTANCE 2
 #define XRAY            3
 #define HULK            4
 #define CLUMSY          5
 #define HUSK            6
-#define NOCLONE         7
+#define69OCLONE         7
 #define LASER           8  // Harm intent - click anywhere to shoot lasers from eyes.
-#define HEAL            9 // Healing people with hands.
+#define HEAL            9 // Healin69 people with hands.
 
 #define SKELETON      29
 #define PLANT         30
 
-// Other Mutations:
-#define mNobreath      100 // No need to breathe.
-#define mRemote        101 // Remote viewing.
-#define mRegen         102 // Health regeneration.
-#define mRun           103 // No slowdown.
-#define mRemotetalk    104 // Remote talking.
-#define mMorph         105 // Hanging appearance.
-#define mBlend         106 // Nothing. (seriously nothing)
-#define mHallucination 107 // Hallucinations.
-#define mFingerprints  108 // No fingerprints.
-#define mShock         109 // Insulated hands.
-#define mSmallsize     110 // Table climbing.
+// Other69utations:
+#define69Nobreath      100 //69o69eed to breathe.
+#define69Remote        101 // Remote69iewin69.
+#define69Re69en         102 // Health re69eneration.
+#define69Run           103 //69o slowdown.
+#define69Remotetalk    104 // Remote talkin69.
+#define69Morph         105 // Han69in69 appearance.
+#define69Blend         106 //69othin69. (seriously69othin69)
+#define69Hallucination 107 // Hallucinations.
+#define69Fin69erprints  108 //69o fin69erprints.
+#define69Shock         109 // Insulated hands.
+#define69Smallsize     110 // Table climbin69.
 
 // disabilities
-#define NEARSIGHTED 0x1
+#define69EARSI69HTED 0x1
 #define EPILEPSY    0x2
-#define COUGHING    0x4
+#define COU69HIN69    0x4
 #define TOURETTES   0x8
-#define NERVOUS     0x10
+#define69ERVOUS     0x10
 
 // sdisabilities
 #define BLIND 0x1
-#define MUTE  0x2
+#define69UTE  0x2
 #define DEAF  0x4
 
-// The way blocks are handled badly needs a rewrite, this is horrible.
-// Too much of a project to handle at the moment, TODO for later.
+// The way blocks are handled badly69eeds a rewrite, this is horrible.
+// Too69uch of a project to handle at the69oment, TODO for later.
 var/BLINDBLOCK    = 0
 var/DEAFBLOCK     = 0
 var/HULKBLOCK     = 0
@@ -51,8 +51,8 @@ var/FIREBLOCK     = 0
 var/XRAYBLOCK     = 0
 var/CLUMSYBLOCK   = 0
 var/FAKEBLOCK     = 0
-var/COUGHBLOCK    = 0
-var/GLASSESBLOCK  = 0
+var/COU69HBLOCK    = 0
+var/69LASSESBLOCK  = 0
 var/EPILEPSYBLOCK = 0
 var/TWITCHBLOCK   = 0
 var/NERVOUSBLOCK  = 0
@@ -64,7 +64,7 @@ var/DIFFMUT  = 0
 var/HEADACHEBLOCK      = 0
 var/NOBREATHBLOCK      = 0
 var/REMOTEVIEWBLOCK    = 0
-var/REGENERATEBLOCK    = 0
+var/RE69ENERATEBLOCK    = 0
 var/INCREASERUNBLOCK   = 0
 var/REMOTETALKBLOCK    = 0
 var/MORPHBLOCK         = 0

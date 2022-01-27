@@ -1,5 +1,5 @@
 //--------------------------------------------
-// Gas filter - omni variant
+// Gas filter - omni69ariant
 //--------------------------------------------
 /obj/machinery/atmospherics/omni/filter
 	name = "omni gas filter"
@@ -61,14 +61,14 @@
 	if(!..())
 		return 0
 
-	var/datum/gas_mixture/output_air = output.air	//BYOND doesn't like referencing "output.air.return_pressure()" so we need to make a direct reference
+	var/datum/gas_mixture/output_air = output.air	//BYOND doesn't like referencing "output.air.return_pressure()" so we need to69ake a direct reference
 	var/datum/gas_mixture/input_air = input.air		// it's completely happy with them if they're in a loop though i.e. "P.air.return_pressure()"... *shrug*
 
-	//Figure out the amount of moles to transfer
+	//Figure out the amount of69oles to transfer
 	var/transfer_moles = (set_flow_rate/input_air.volume)*input_air.total_moles
 
 	var/power_draw = -1
-	if (transfer_moles > MINIMUM_MOLES_TO_FILTER)
+	if (transfer_moles >69INIMUM_MOLES_TO_FILTER)
 		power_draw = filter_gas_multi(src, filtering_outputs, input_air, output_air, transfer_moles, power_rating)
 
 	if (power_draw >= 0)
@@ -101,10 +101,10 @@
 /obj/machinery/atmospherics/omni/filter/ui_data()
 	var/list/data = new()
 
-	data["power"] = use_power
-	data["config"] = configuring
+	data69"power"69 = use_power
+	data69"config"69 = configuring
 
-	var/portData[0]
+	var/portData69069
 	for(var/datum/omni_port/P in ports)
 		if(!configuring && P.mode == 0)
 			continue
@@ -121,19 +121,19 @@
 				output = 1
 				filter = 0
 			if(ATM_O2 to ATM_N2O)
-				f_type = mode_send_switch(P.mode)
+				f_type =69ode_send_switch(P.mode)
 
-		portData[++portData.len] = list("dir" = dir_name(P.dir, capitalize = 1), \
+		portData69++portData.len69 = list("dir" = dir_name(P.dir, capitalize = 1), \
 										"input" = input, \
 										"output" = output, \
 										"filter" = filter, \
 										"f_type" = f_type)
 
 	if(portData.len)
-		data["ports"] = portData
+		data69"ports"69 = portData
 	if(output)
-		data["set_flow_rate"] = round(set_flow_rate*10)		//because nanoui can't handle rounded decimals.
-		data["last_flow_rate"] = round(last_flow_rate*10)
+		data69"set_flow_rate"69 = round(set_flow_rate*10)		//because nanoui can't handle rounded decimals.
+		data69"last_flow_rate"69 = round(last_flow_rate*10)
 
 	return data
 
@@ -154,31 +154,31 @@
 
 /obj/machinery/atmospherics/omni/filter/Topic(href, href_list)
 	if(..()) return 1
-	switch(href_list["command"])
+	switch(href_list69"command"69)
 		if("power")
 			if(!configuring)
 				use_power = !use_power
 			else
 				use_power = NO_POWER_USE
-			investigate_log("was [use_power ? "enabled" : "disabled"] by [key_name(usr)]", "atmos")
+			investigate_log("was 69use_power ? "enabled" : "disabled"69 by 69key_name(usr)69", "atmos")
 		if("configure")
 			configuring = !configuring
 			if(configuring)
 				use_power = NO_POWER_USE
 
-	//only allows config changes when in configuring mode ~otherwise you'll get weird pressure stuff going on
+	//only allows config changes when in configuring69ode ~otherwise you'll get weird pressure stuff going on
 	if(configuring && !use_power)
-		switch(href_list["command"])
+		switch(href_list69"command"69)
 			if("set_flow_rate")
-				var/new_flow_rate = input(usr, "Enter new flow rate limit (0-[max_flow_rate]L/s)", "Flow Rate Control", set_flow_rate) as num
-				set_flow_rate = between(0, new_flow_rate, max_flow_rate)
+				var/new_flow_rate = input(usr, "Enter new flow rate limit (0-69max_flow_rate69L/s)", "Flow Rate Control", set_flow_rate) as num
+				set_flow_rate = between(0, new_flow_rate,69ax_flow_rate)
 			if("switch_mode")
-				switch_mode(dir_flag(href_list["dir"]), mode_return_switch(href_list["mode"]))
+				switch_mode(dir_flag(href_list69"dir"69),69ode_return_switch(href_list69"mode"69))
 			if("switch_filter")
-				var/new_filter = input(usr, "Select filter mode:", "Change filter", href_list["mode"]) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Plasma", "Nitrous Oxide")
-				switch_filter(dir_flag(href_list["dir"]), mode_return_switch(new_filter))
-		if(href_list["command"])
-			investigate_log("had it's settings modified by [key_name(usr)]", "atmos")
+				var/new_filter = input(usr, "Select filter69ode:", "Change filter", href_list69"mode"69) in list("None", "Oxygen", "Nitrogen", "Carbon Dioxide", "Plasma", "Nitrous Oxide")
+				switch_filter(dir_flag(href_list69"dir"69),69ode_return_switch(new_filter))
+		if(href_list69"command"69)
+			investigate_log("had it's settings69odified by 69key_name(usr)69", "atmos")
 
 	update_icon()
 	SSnano.update_uis(src)
@@ -205,16 +205,16 @@
 		else
 			return null
 
-/obj/machinery/atmospherics/omni/filter/proc/switch_filter(var/dir, var/mode)
+/obj/machinery/atmospherics/omni/filter/proc/switch_filter(var/dir,69ar/mode)
 	//check they aren't trying to disable the input or output ~this can only happen if they hack the cached tmpl file
 	for(var/datum/omni_port/P in ports)
 		if(P.dir == dir)
 			if(P.mode == ATM_INPUT || P.mode == ATM_OUTPUT)
 				return
 
-	switch_mode(dir, mode)
+	switch_mode(dir,69ode)
 
-/obj/machinery/atmospherics/omni/filter/proc/switch_mode(var/port, var/mode)
+/obj/machinery/atmospherics/omni/filter/proc/switch_mode(var/port,69ar/mode)
 	if(mode == null || !port)
 		return
 	var/datum/omni_port/target_port = null
@@ -229,7 +229,7 @@
 	var/previous_mode = null
 	if(target_port)
 		previous_mode = target_port.mode
-		target_port.mode = mode
+		target_port.mode =69ode
 		if(target_port.mode != previous_mode)
 			handle_port_change(target_port)
 			rebuild_filtering_list()
@@ -239,7 +239,7 @@
 		return
 
 	for(var/datum/omni_port/P in other_ports)
-		if(P.mode == mode)
+		if(P.mode ==69ode)
 			var/old_mode = P.mode
 			P.mode = previous_mode
 			if(P.mode != old_mode)
@@ -250,9 +250,9 @@
 /obj/machinery/atmospherics/omni/filter/proc/rebuild_filtering_list()
 	filtering_outputs.Cut()
 	for(var/datum/omni_port/P in ports)
-		var/gasid = mode_to_gasid(P.mode)
+		var/gasid =69ode_to_gasid(P.mode)
 		if(gasid)
-			filtering_outputs[gasid] = P.air
+			filtering_outputs69gasid69 = P.air
 
 /obj/machinery/atmospherics/omni/filter/proc/handle_port_change(var/datum/omni_port/P)
 	switch(P.mode)

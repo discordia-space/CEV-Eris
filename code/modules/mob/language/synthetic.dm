@@ -17,38 +17,38 @@
 	if (!message)
 		return
 
-	var/message_start = "<i><span class='game say'>[name], <span class='name'>[speaker.name]</span>"
-	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
+	var/message_start = "<i><span class='game say'>69name69, <span class='name'>69speaker.name69</span>"
+	var/message_body = "<span class='message'>69speaker.say_quote(message)69, \"69message69\"</span></span></i>"
 
 	for (var/mob/M in GLOB.dead_mob_list)
 		if (isangel(M))
-			M.show_message("[message_start] [message_body]", 2)
-		if(!isnewplayer(M) && !isbrain(M)) //No meta-evesdropping
-			M.show_message("[message_start] ([ghost_follow_link(speaker, M)]) [message_body]", 2)
+			M.show_message("69message_start69 69message_body69", 2)
+		if(!isnewplayer(M) && !isbrain(M)) //No69eta-evesdropping
+			M.show_message("69message_start69 (69ghost_follow_link(speaker,69)69) 69message_body69", 2)
 
 	for (var/mob/living/S in GLOB.living_mob_list)
 
 		if(drone_only && !isdrone(S))
 			continue
 		else if(istype(S , /mob/living/silicon/ai))
-			message_start = "<i><span class='game say'>[name], <a href='byond://?src=\ref[S];track2=\ref[S];track=\ref[speaker];trackname=[html_encode(speaker.name)]'><span class='name'>[speaker.name]</span></a></span></i>"
+			message_start = "<i><span class='game say'>69name69, <a href='byond://?src=\ref69S69;track2=\ref69S69;track=\ref69speaker69;trackname=69html_encode(speaker.name)69'><span class='name'>69speaker.name69</span></a></span></i>"
 		else if (!S.binarycheck())
 			continue
 
-		S.show_message("[message_start] [message_body]", 2)
+		S.show_message("69message_start69 69message_body69", 2)
 
 	var/list/listening = hearers(1, src)
 	listening -= src
 
 	for (var/mob/living/M in listening)
-		if(issilicon(M) || M.binarycheck())
+		if(issilicon(M) ||69.binarycheck())
 			continue
-		M.show_message("<i><span class='game say'><span class='name'>synthesised voice</span> <span class='message'>beeps, \"beep beep beep\"</span></span></i>",2)
+		M.show_message("<i><span class='game say'><span class='name'>synthesised69oice</span> <span class='message'>beeps, \"beep beep beep\"</span></span></i>",2)
 
 	//robot binary xmitter component power usage
 	if (isrobot(speaker))
 		var/mob/living/silicon/robot/R = speaker
-		var/datum/robot_component/C = R.components["comms"]
+		var/datum/robot_component/C = R.components69"comms"69
 		R.cell_use_power(C.active_usage)
 
 /datum/language/binary/drone

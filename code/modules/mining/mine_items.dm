@@ -42,7 +42,7 @@
 	name = "lantern"
 	icon_state = "lantern"
 	item_state = "lantern"
-	desc = "A mining lantern."
+	desc = "A69ining lantern."
 	brightness_on = 4			// luminosity when on
 
 
@@ -51,10 +51,10 @@
 
 
 
-/**********************Mining car (Crate like thing, not the rail car)**************************/
+/**********************Mining car (Crate like thing,69ot the rail car)**************************/
 
 /obj/structure/closet/crate/miningcar
-	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
+	desc = "A69ining car. This one doesn't work on rails, but has to be dragged."
 	name = "Mining car (not for rails)"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "miningcar"
@@ -91,22 +91,22 @@
 	singular_name = "green flag"
 	icon_state = "greenflag"
 
-/obj/item/stack/flag/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/stack/flag/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(upright && istype(W,src.type))
 		src.attack_hand(user)
 	else
 		..()
 
-/obj/item/stack/flag/attack_hand(user as mob)
+/obj/item/stack/flag/attack_hand(user as69ob)
 	if(upright)
 		upright = 0
 		icon_state = base_state
 		anchored = FALSE
-		src.visible_message("<b>[user]</b> knocks down [src].")
+		src.visible_message("<b>69user69</b> knocks down 69src69.")
 	else
 		..()
 
-/obj/item/stack/flag/attack_self(mob/user as mob)
+/obj/item/stack/flag/attack_self(mob/user as69ob)
 
 	var/obj/item/stack/flag/F = locate() in get_turf(src)
 
@@ -119,11 +119,11 @@
 		to_chat(user, "There is already a flag here.")
 		return
 
-	var/obj/item/stack/flag/newflag = new src.type(T)
+	var/obj/item/stack/flag/newflag =69ew src.type(T)
 	newflag.amount = 1
 	newflag.upright = 1
 	anchored = TRUE
-	newflag.name = newflag.singular_name
-	newflag.icon_state = "[newflag.base_state]_open"
-	newflag.visible_message("<b>[user]</b> plants [newflag] firmly in the ground.")
+	newflag.name =69ewflag.singular_name
+	newflag.icon_state = "69newflag.base_state69_open"
+	newflag.visible_message("<b>69user69</b> plants 69newflag69 firmly in the ground.")
 	src.use(1)

@@ -48,16 +48,16 @@ var/list/_client_preferences_by_type
 		_client_preferences_by_key = list()
 		for(var/ct in get_client_preferences())
 			var/datum/client_preference/client_pref = ct
-			_client_preferences_by_key[client_pref.key] = client_pref
-	return _client_preferences_by_key[preference]
+			_client_preferences_by_key69client_pref.key69 = client_pref
+	return _client_preferences_by_key69preference69
 
 /proc/get_client_preference_by_type(var/preference)
 	if(!_client_preferences_by_type)
 		_client_preferences_by_type = list()
 		for(var/ct in get_client_preferences())
 			var/datum/client_preference/client_pref = ct
-			_client_preferences_by_type[client_pref.type] = client_pref
-	return _client_preferences_by_type[preference]
+			_client_preferences_by_type69client_pref.type69 = client_pref
+	return _client_preferences_by_type69preference69
 
 /datum/client_preference
 	var/description
@@ -69,12 +69,12 @@ var/list/_client_preferences_by_type
 	. = ..()
 
 	if(!default_value)
-		default_value = options[1]
+		default_value = options69169
 
 /datum/client_preference/proc/may_set(var/mob/preference_mob)
 	return TRUE
 
-/datum/client_preference/proc/changed(var/mob/preference_mob, var/new_value)
+/datum/client_preference/proc/changed(var/mob/preference_mob,69ar/new_value)
 	return
 
 /*********************
@@ -82,14 +82,14 @@ var/list/_client_preferences_by_type
 *********************/
 
 /datum/client_preference/play_admin_midis
-	description ="Play admin midis"
+	description ="Play admin69idis"
 	key = "SOUND_MIDI"
 
 /datum/client_preference/play_lobby_music
-	description ="Play lobby music"
+	description ="Play lobby69usic"
 	key = "SOUND_LOBBY"
 
-/datum/client_preference/play_lobby_music/changed(var/mob/preference_mob, var/new_value)
+/datum/client_preference/play_lobby_music/changed(var/mob/preference_mob,69ar/new_value)
 	if(new_value == GLOB.PREF_YES)
 		if(isnewplayer(preference_mob))
 			GLOB.lobbyScreen.play_music(preference_mob.client)
@@ -100,9 +100,9 @@ var/list/_client_preferences_by_type
 	description ="Play ambience"
 	key = "SOUND_AMBIENCE"
 
-/datum/client_preference/play_ambiance/changed(var/mob/preference_mob, var/new_value)
+/datum/client_preference/play_ambiance/changed(var/mob/preference_mob,69ar/new_value)
 	if(new_value == GLOB.PREF_NO)
-		sound_to(preference_mob, sound(null, repeat = 0, wait = 0, volume = 0, channel = GLOB.ambience_sound_channel))
+		sound_to(preference_mob, sound(null, repeat = 0, wait = 0,69olume = 0, channel = GLOB.ambience_sound_channel))
 
 /datum/client_preference/ghost_ears
 	description ="Ghost ears"
@@ -139,7 +139,7 @@ var/list/_client_preferences_by_type
 	key = "SHOW_TYPING"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
-/datum/client_preference/show_typing_indicator/changed(var/mob/preference_mob, var/new_value)
+/datum/client_preference/show_typing_indicator/changed(var/mob/preference_mob,69ar/new_value)
 	if(new_value == GLOB.PREF_HIDE)
 		QDEL_NULL(preference_mob.typing_indicator)
 
@@ -169,7 +169,7 @@ var/list/_client_preferences_by_type
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
 /datum/client_preference/floating_messages
-	description ="Floating chat messages"
+	description ="Floating chat69essages"
 	key = "FLOATING_CHAT"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 
@@ -185,7 +185,7 @@ var/list/_client_preferences_by_type
 	options = list(GLOB.PREF_OFF, GLOB.PREF_BASIC, GLOB.PREF_FULL)
 */
 /datum/client_preference/hardsuit_activation
-	description = "Hardsuit Module Activation Key"
+	description = "Hardsuit69odule Activation Key"
 	key = "HARDSUIT_ACTIVATION"
 	options = list(GLOB.PREF_MIDDLE_CLICK, GLOB.PREF_CTRL_CLICK, GLOB.PREF_ALT_CLICK, GLOB.PREF_CTRL_SHIFT_CLICK)
 /*
@@ -212,17 +212,17 @@ var/list/_client_preferences_by_type
 	key = "GUN_CURSOR"
 
 /datum/client_preference/play_jukebox
-	description ="Play jukebox music"
+	description ="Play jukebox69usic"
 	key = "SOUND_JUKEBOX"
 
-/datum/client_preference/play_jukebox/changed(var/mob/preference_mob, var/new_value)
+/datum/client_preference/play_jukebox/changed(var/mob/preference_mob,69ar/new_value)
 	if(new_value == GLOB.PREF_NO)
 		preference_mob.stop_all_music()
 	else
 		preference_mob.update_music()
 
 /datum/client_preference/stay_in_hotkey_mode
-	description = "Keep hotkeys on mob change"
+	description = "Keep hotkeys on69ob change"
 	key = "KEEP_HOTKEY_MODE"
 	default_value = GLOB.PREF_NO
 
@@ -259,7 +259,7 @@ var/list/_client_preferences_by_type
 ********************/
 
 /datum/client_preference/staff/show_attack_logs
-	description = "Attack Log Messages"
+	description = "Attack Log69essages"
 	key = "CHAT_ATTACKLOGS"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 	flags = R_ADMIN
@@ -270,7 +270,7 @@ var/list/_client_preferences_by_type
 ********************/
 
 /datum/client_preference/staff/show_debug_logs
-	description = "Debug Log Messages"
+	description = "Debug Log69essages"
 	key = "CHAT_DEBUGLOGS"
 	options = list(GLOB.PREF_SHOW, GLOB.PREF_HIDE)
 	default_value = GLOB.PREF_HIDE

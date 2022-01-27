@@ -1,85 +1,85 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"b" = (
-/obj/spawner/junk,
-/turf/template_noop,
-/area/template_noop)
-"d" = (
-/obj/spawner/oddities,
-/obj/spawner/junk,
-/turf/template_noop,
-/area/template_noop)
-"e" = (
-/obj/machinery/floodlight,
-/turf/template_noop,
-/area/template_noop)
-"f" = (
-/obj/machinery/mining/brace,
-/turf/template_noop,
-/area/template_noop)
-"g" = (
-/obj/structure/ore_box,
-/turf/template_noop,
-/area/template_noop)
-"j" = (
-/obj/spawner/tool,
-/turf/template_noop,
-/area/template_noop)
-"k" = (
-/obj/machinery/mining/drill,
-/turf/template_noop,
-/area/template_noop)
-"l" = (
-/turf/template_noop,
-/area/template_noop)
-"n" = (
-/obj/spawner/booze,
-/turf/template_noop,
-/area/template_noop)
-"s" = (
-/obj/spawner/oddities,
-/turf/template_noop,
-/area/template_noop)
-"y" = (
-/obj/spawner/cloth/head,
-/turf/template_noop,
-/area/template_noop)
-"H" = (
-/obj/spawner/powercell,
-/turf/template_noop,
-/area/template_noop)
-"O" = (
-/obj/spawner/toolbox,
-/turf/template_noop,
-/area/template_noop)
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"69" = 69
+/o6969/spawner/69un69,
+/tur69/template_noop,
+/area/template_noop69
+"d" = 69
+/o6969/spawner/oddities,
+/o6969/spawner/69un69,
+/tur69/template_noop,
+/area/template_noop69
+"e" = 69
+/o6969/machiner69/69loodli69ht,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/machiner69/minin69/69race,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/structure/ore_69ox,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/tool,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/machiner69/minin69/drill,
+/tur69/template_noop,
+/area/template_noop69
+"l" = 69
+/tur69/template_noop,
+/area/template_noop69
+"n" = 69
+/o6969/spawner/69ooze,
+/tur69/template_noop,
+/area/template_noop69
+"s" = 69
+/o6969/spawner/oddities,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/cloth/head,
+/tur69/template_noop,
+/area/template_noop69
+"H" = 69
+/o6969/spawner/powercell,
+/tur69/template_noop,
+/area/template_noop69
+"O" = 69
+/o6969/spawner/tool69ox,
+/tur69/template_noop,
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 l
-b
+69
 l
 l
-j
+69
 l
 l
 "}
-(2,1,1) = {"
+692,1,169 = {"
 l
 l
-f
+69
 l
-b
+69
 n
 l
 "}
-(3,1,1) = {"
-b
+693,1,169 = {"
+69
 d
-g
+69
 l
-k
+69
 l
 O
 "}
-(4,1,1) = {"
+694,1,169 = {"
 l
 l
 l
@@ -88,29 +88,29 @@ l
 l
 l
 "}
-(5,1,1) = {"
+695,1,169 = {"
 l
 e
-b
+69
 l
 l
-b
+69
 l
 "}
-(6,1,1) = {"
+696,1,169 = {"
 l
 H
-b
+69
 l
-j
-b
-y
+69
+69
+69
 "}
-(7,1,1) = {"
+697,1,169 = {"
 l
 l
 l
-b
+69
 l
 l
 l

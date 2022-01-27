@@ -2,38 +2,38 @@
 		The way datum/mind stuff works has been changed a lot.
 		Minds now represent IC characters rather than following a client around constantly.
 
-	Guidelines for using minds properly:
+	Guidelines for using69inds properly:
 
-	-	Never mind.transfer_to(ghost). The var/current and var/original of a mind must always be of type mob/living!
+	-	Never69ind.transfer_to(ghost). The69ar/current and69ar/original of a69ind69ust always be of type69ob/living!
 		ghost.mind is however used as a reference to the ghost's corpse
 
-	-	When creating a new mob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
-		the existing mind of the old mob should be transfered to the new mob like so:
+	-	When creating a new69ob for an existing IC character (e.g. cloning a dead guy or borging a brain of a human)
+		the existing69ind of the old69ob should be transfered to the new69ob like so:
 
 			mind.transfer_to(new_mob)
 
-	-	You must not assign key= or ckey= after transfer_to() since the transfer_to transfers the client for you.
-		By setting key or ckey explicitly after transfering the mind with transfer_to you will cause bugs like DCing
+	-	You69ust not assign key= or ckey= after transfer_to() since the transfer_to transfers the client for you.
+		By setting key or ckey explicitly after transfering the69ind with transfer_to you will cause bugs like DCing
 		the player.
 
-	-	IMPORTANT NOTE 2, if you want a player to become a ghost, use mob.ghostize() It does all the hard work for you.
+	-	IMPORTANT NOTE 2, if you want a player to become a ghost, use69ob.ghostize() It does all the hard work for you.
 
-	-	When creating a new mob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
+	-	When creating a new69ob which will be a new IC character (e.g. putting a shade in a construct or randomly selecting
 		a ghost to become a xeno during an event). Simply assign the key or ckey like you've always done.
-[]['
+696969'
 			new_mob.key = key
 
-		The Login proc will handle making a new mob for that mobtype (including setting up stuff like mind.name). Simple!
-		However if you want that mind to have any special properties like being a contractor etc you will have to do that
+		The Login proc will handle69aking a new69ob for that69obtype (including setting up stuff like69ind.name). Simple!
+		However if you want that69ind to have any special properties like being a contractor etc you will have to do that
 		yourself.
 
 */
 
 /datum/mind
 	var/key
-	var/name				//replaces mob/var/original_name
+	var/name				//replaces69ob/var/original_name
 	var/mob/living/current
-	var/mob/living/original	//TODO: remove.not used in any meaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle minds.
+	var/mob/living/original	//TODO: remove.not used in any69eaningful way ~Carn. First I'll need to tweak the way silicon-mobs handle69inds.
 	var/active = FALSE
 
 
@@ -47,12 +47,12 @@
 	var/datum/job/assigned_job
 
 
-	var/has_been_rev = FALSE	//Tracks if this mind has been a rev or not
+	var/has_been_rev = FALSE	//Tracks if this69ind has been a rev or not
 
 
 	var/rev_cooldown = 0
 
-	// the world.time since the mob has been brigged, or -1 if not at all
+	// the world.time since the69ob has been brigged, or -1 if not at all
 	var/brigged_since = -1
 
 	//put this here for easier tracking ingame
@@ -67,9 +67,9 @@
 
 	var/list/knownCraftRecipes = list()
 	/*
-		The world time when this mind was last in a mob, controlled by a client which did something.
-		Only updated once per minute, set by the inactivity subsystem
-		If this is 0, the mind has never had a cliented mob
+		The world time when this69ind was last in a69ob, controlled by a client which did something.
+		Only updated once per69inute, set by the inactivity subsystem
+		If this is 0, the69ind has never had a cliented69ob
 	*/
 
 	var/creation_time = 0 //World time when this datum was New'd. Useful to tell how long since a character spawned
@@ -81,8 +81,8 @@
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
 	if(!istype(new_character))
-		log_world("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
-	if(current)					//remove ourself from our old body's mind variable
+		log_world("## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non69ob/living69ob. Please inform Carn")
+	if(current)					//remove ourself from our old body's69ind69ariable
 		current.mind = null
 
 		SSnano.user_transferred(current, new_character) // transfer active NanoUI instances to new user
@@ -90,7 +90,7 @@
 		if(current.client)
 			current.client.destroy_UI()
 
-	if(new_character.mind)		//remove any mind currently in our new body's mind variable
+	if(new_character.mind)		//remove any69ind currently in our new body's69ind69ariable
 		new_character.mind.current = null
 
 	current = new_character		//link ourself to our new body
@@ -103,12 +103,12 @@
 	if(new_character.client)
 		new_character.client.create_UI(new_character.type)
 		if(new_character.client.get_preference_value(/datum/client_preference/stay_in_hotkey_mode) == GLOB.PREF_YES)
-			winset(new_character.client, null, "mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0")
+			winset(new_character.client, null, "mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true69apwindow.map.focus=true input.background-color=#F0F0F0")
 			if(istype(new_character, /mob/living/silicon/robot))
 				winset(new_character.client, null, "mainwindow.macro=borgmacro")
 
 /datum/mind/proc/store_memory(new_text)
-	memory += "[new_text]<BR>"
+	memory += "69new_text69<BR>"
 
 /datum/mind/proc/print_individualobjectives()
 	var/output
@@ -117,7 +117,7 @@
 		var/obj_count = 1
 		var/la_explanation
 		for(var/datum/individual_objective/objective in individual_objectives)
-			output += "<br><b>#[obj_count] [objective.name][objective.limited_antag ? " [objective.show_la]" : ""]</B>: [objective.get_description()]</b>"
+			output += "<br><b>#69obj_count69 69objective.name6969objective.limited_antag ? " 69objective.show_la69" : ""69</B>: 69objective.get_description()69</b>"
 			obj_count++
 			if(objective.limited_antag)
 				la_explanation = objective.la_explanation
@@ -127,17 +127,17 @@
 	return output
 
 /datum/mind/proc/show_memory(mob/recipient)
-	var/output = "<B>[current.real_name]'s Memory</B><HR>"
-	output += memory
+	var/output = "<B>69current.real_name69's69emory</B><HR>"
+	output +=69emory
 
 	for(var/datum/antagonist/A in antagonist)
 		if(!A.objectives.len)
 			break
 		if(A.faction)
-			output += "<br><b>Your [A.faction.name] faction objectives:</b>"
+			output += "<br><b>Your 69A.faction.name69 faction objectives:</b>"
 		else
-			output += "<br><b>Your [A.role_text] objectives:</b>"
-		output += "[A.print_objectives(FALSE)]"
+			output += "<br><b>Your 69A.role_text69 objectives:</b>"
+		output += "69A.print_objectives(FALSE)69"
 	output += print_individualobjectives()
 	recipient << browse(output, "window=memory")
 
@@ -146,49 +146,49 @@
 		alert("Not before round-start!", "Alert")
 		return
 
-	var/out = "<B>[name]</B>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
-	out += "Mind currently owned by key: [key] [active?"(synced)":"(not synced)"]<br>"
-	out += "Assigned role: [assigned_role]. <a href='?src=\ref[src];role_edit=1'>Edit</a><br>"
+	var/out = "<B>69name69</B>69(current&&(current.real_name!=name))?" (as 69current.real_name69)":""69<br>"
+	out += "Mind currently owned by key: 69key69 69active?"(synced)":"(not synced)"69<br>"
+	out += "Assigned role: 69assigned_role69. <a href='?src=\ref69src69;role_edit=1'>Edit</a><br>"
 	out += "<hr>"
 	out += "Special roles:<br><table>"
 
 	out += "<b>Make_antagonist: </b><br>"
 	for(var/A in GLOB.all_antag_selectable_types)
-		var/datum/antagonist/antag = GLOB.all_antag_selectable_types[A]
-		var/antag_name = (antag.bantype in GLOB.all_antag_selectable_types) ? antag.bantype : "<font color='red'>[antag.bantype]</font>"
-		out += "<a href='?src=\ref[src];add_antagonist=[antag.bantype]'>[antag_name]</a><br>"
+		var/datum/antagonist/antag = GLOB.all_antag_selectable_types69A69
+		var/antag_name = (antag.bantype in GLOB.all_antag_selectable_types) ? antag.bantype : "<font color='red'>69antag.bantype69</font>"
+		out += "<a href='?src=\ref69src69;add_antagonist=69antag.bantype69'>69antag_name69</a><br>"
 	out += "<br>"
 
 	for(var/datum/antagonist/antag in antagonist)
-		out += "<br><b>[antag.role_text]</b> <a href='?src=\ref[antag]'>\[EDIT\]</a> <a href='?src=\ref[antag];remove_antagonist=1'>\[DEL\]</a>"
+		out += "<br><b>69antag.role_text69</b> <a href='?src=\ref69antag69'>\69EDIT\69</a> <a href='?src=\ref69antag69;remove_antagonist=1'>\69DEL\69</a>"
 	out += "</table><hr>"
-	out += "<br>[memory]"
+	out += "<br>69memory69"
 
 	out += print_individualobjectives()
 
-	out += "<br><a href='?src=\ref[src];edit_memory=1'>"
-	usr << browse(out, "window=edit_memory[src]")
+	out += "<br><a href='?src=\ref69src69;edit_memory=1'>"
+	usr << browse(out, "window=edit_memory69src69")
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(href_list["add_antagonist"])
-		var/datum/antagonist/antag = GLOB.all_antag_types[href_list["add_antagonist"]]
+	if(href_list69"add_antagonist"69)
+		var/datum/antagonist/antag = GLOB.all_antag_types69href_list69"add_antagonist"6969
 		if(antag)
 			var/ok = FALSE
 			if(antag.outer && active)
-				var/answer = alert("[antag.role_text] is an outer antagonist. [name] will be taken from the current mob and spawned as antagonist. Continue?","Confirmation", "No","Yes")
+				var/answer = alert("69antag.role_text69 is an outer antagonist. 69name69 will be taken from the current69ob and spawned as antagonist. Continue?","Confirmation", "No","Yes")
 				ok = (answer == "Yes")
 			else
-				var/answer = alert("Are you sure you want to make [name] the [antag.role_text]","Confirmation","No","Yes")
+				var/answer = alert("Are you sure you want to69ake 69name69 the 69antag.role_text69","Confirmation","No","Yes")
 				ok = (answer == "Yes")
 
 			if(!ok)
 				return
 
 			if(antag.outer)
-				//Outer antags are created from ghosts, we must make a ghost first
+				//Outer antags are created from ghosts, we69ust69ake a ghost first
 				var/mob/observer/ghost/ghost = current.ghostize(FALSE)
 				antag.create_from_ghost(ghost, announce = FALSE)
 				qdel(current) //Delete our old body
@@ -196,11 +196,11 @@
 
 			else
 				if(antag.create_antagonist(src))
-					log_admin("[key_name_admin(usr)] made [key_name(src)] into a [antag.role_text].")
+					log_admin("69key_name_admin(usr)6969ade 69key_name(src)69 into a 69antag.role_text69.")
 				else
-					to_chat(usr, SPAN_WARNING("[src] could not be made into a [antag.role_text]!"))
+					to_chat(usr, SPAN_WARNING("69src69 could not be69ade into a 69antag.role_text69!"))
 
-	else if(href_list["role_edit"])
+	else if(href_list69"role_edit"69)
 		var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in GLOB.joblist
 		if (!new_role) return
 		var/datum/job/job = SSjob.GetJob(new_role)
@@ -208,14 +208,14 @@
 			assigned_role = job.title
 			role_alt_title = new_role
 
-	else if(href_list["memory_edit"])
-		var/new_memo = sanitize(input("Write new memory", "Memory", memory) as null|message)
+	else if(href_list69"memory_edit"69)
+		var/new_memo = sanitize(input("Write new69emory", "Memory",69emory) as null|message)
 		if (isnull(new_memo)) return
 		memory = new_memo
 
-	else if(href_list["silicon"])
+	else if(href_list69"silicon"69)
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
-		switch(href_list["silicon"])
+		switch(href_list69"silicon"69)
 
 			if("unemag")
 				var/mob/living/silicon/robot/R = current
@@ -232,7 +232,7 @@
 					else if(R.module_state_3 == R.module.emag)
 						R.module_state_3 = null
 						R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [R].")
+					log_admin("69key_name_admin(usr)69 has unemag'ed 69R69.")
 
 			if("unemagcyborgs")
 				if (isAI(current))
@@ -251,23 +251,23 @@
 							else if(R.module_state_3 == R.module.emag)
 								R.module_state_3 = null
 								R.contents -= R.module.emag
-					log_admin("[key_name_admin(usr)] has unemag'ed [ai]'s Cyborgs.")
+					log_admin("69key_name_admin(usr)69 has unemag'ed 69ai69's Cyborgs.")
 
-	else if(href_list["common"])
-		switch(href_list["common"])
+	else if(href_list69"common"69)
+		switch(href_list69"common"69)
 			if("undress")
 				for(var/obj/item/W in current)
 					current.drop_from_inventory(W)
 			if("takeuplink")
 				take_uplink()
-				memory = null//Remove any memory they may have had.
+				memory = null//Remove any69emory they69ay have had.
 			if("crystals")
 				if (usr.client.holder.rights & R_FUN)
 					var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
 					var/crystals
 					if (suplink)
 						crystals = suplink.uses
-					crystals = input("Amount of telecrystals for [key]", "Operative uplink", crystals) as null|num
+					crystals = input("Amount of telecrystals for 69key69", "Operative uplink", crystals) as null|num
 					if (!isnull(crystals))
 						if (suplink)
 							suplink.uses = crystals
@@ -287,7 +287,7 @@
 		qdel(H)
 
 
-// check whether this mind's mob has been brigged for the given duration
+// check whether this69ind's69ob has been brigged for the given duration
 // have to call this periodically for the duration to work properly
 /datum/mind/proc/is_brigged(duration)
 	var/turf/T = current.loc
@@ -322,7 +322,7 @@
 
 //Antagonist role check
 /mob/living/proc/check_special_role(role)
-	return role && mind && player_is_antag_id(mind, role)
+	return role &&69ind && player_is_antag_id(mind, role)
 
 //Initialisation procs
 /mob/living/proc/mind_initialize()
@@ -331,7 +331,7 @@
 	else
 		mind = new /datum/mind(key)
 		mind.original = src
-		SSticker.minds += mind
+		SSticker.minds +=69ind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src
 
@@ -373,21 +373,21 @@
 
 /datum/mind/proc/manifest_status(var/datum/computer_file/report/crew_record/CR)
 	var/inactive_time = world.time - last_activity
-	if (inactive_time >= 60 MINUTES)
+	if (inactive_time >= 6069INUTES)
 		return null //The server hasn't seen us alive in an hour.
-		//We will not show on the manifest at all
+		//We will not show on the69anifest at all
 
-	//Ok we're definitely going to show on the manifest, lets see if any status is set for us in the records
+	//Ok we're definitely going to show on the69anifest, lets see if any status is set for us in the records
 	var/status = CR.get_status()
 	.=status //We'll return the status as a fallback
 
 	//If the records have a specific status set, we'll return that
-	//Active is the default state, it means nothing else has specifically been set.
+	//Active is the default state, it69eans nothing else has specifically been set.
 	if (status != "Active")
 		return
 
 
-	//Ok the records say active, that means nothing.
-	//In that case we'll show as inactive if the mob has been inactive longer than 15 minutes
-	if (inactive_time >= 15 MINUTES)
+	//Ok the records say active, that69eans nothing.
+	//In that case we'll show as inactive if the69ob has been inactive longer than 1569inutes
+	if (inactive_time >= 1569INUTES)
 		return "Inactive"

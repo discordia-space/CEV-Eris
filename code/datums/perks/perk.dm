@@ -1,9 +1,9 @@
 /**
   * The root perk datum. All perks inherit properties from this one.
   *
-  * A perk is basically a talent that livings may have. This talent could be something like damage reduction, or some other passive benefit.
+  * A perk is basically a talent that livings69ay have. This talent could be something like damage reduction, or some other passive benefit.
   * Some jobs have perks that are assigned to the human during role assignment.
-  * Perks can be assigned or removed. To handle this, use the mob stats datum, with the helper procs addPerk, removePerk and getPerk.
+  * Perks can be assigned or removed. To handle this, use the69ob stats datum, with the helper procs addPerk, removePerk and getPerk.
   * The static effects are given in assign, and removed in remove.
   * Perks are stored in a list within a stat_holder datum.
   */
@@ -19,8 +19,8 @@
 
 /datum/perk/Destroy()
 	if(holder)
-		holder.update_client_colour() //Handle the activation of the colourblindness on the mob.
-		to_chat(holder, SPAN_NOTICE("[lose_text]"))
+		holder.update_client_colour() //Handle the activation of the colourblindness on the69ob.
+		to_chat(holder, SPAN_NOTICE("69lose_text69"))
 	holder = null
 	return ..()
 
@@ -38,7 +38,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	holder = H
 	RegisterSignal(holder, COMSIG_MOB_LIFE, .proc/on_process)
-	to_chat(holder, SPAN_NOTICE("[gain_text]"))
+	to_chat(holder, SPAN_NOTICE("69gain_text69"))
 
 /// Proc called when the perk is removed from a human. Obviously, in your perks, you should call parent as the last thing you do, since it deletes the perk itself.
 /datum/perk/proc/remove()
@@ -51,7 +51,7 @@
 		return FALSE
 	return TRUE
 
-/* Uncomment this when  more shared abilities are
+/* Uncomment this when 69ore shared abilities are
 /datum/perk/proc/check_shared_abilities(list/ability_bitflags)
 	var/accumulated_bitflags = 0
 	for(var/bitflag in ability_bitflags)

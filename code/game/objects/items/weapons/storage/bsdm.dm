@@ -1,6 +1,6 @@
 /obj/item/storage/bsdm
 	name = "\improper BSDM unit"
-	desc = "A Blue Space Direct Mail unit, commonly used by corporate infiltrators. \
+	desc = "A Blue Space Direct69ail unit, commonly used by corporate infiltrators. \
 			Once activated, teleports a small distance away into space and sends a signal for a recovery probe to pick it up."
 	icon_state = "bsdm"
 	item_state = "bsdm"
@@ -13,7 +13,7 @@
 	var/datum/mind/owner
 
 /obj/item/storage/bsdm/proc/can_launch()
-	return owner && (locate(/area/space) in view(get_turf(src)))
+	return owner && (locate(/area/space) in69iew(get_turf(src)))
 
 /obj/item/storage/bsdm/attack_self(mob/user)
 	ui_interact(user)
@@ -24,15 +24,15 @@
 /obj/item/storage/bsdm/ui_data(mob/user)
 	var/list/list/data = list()
 
-	data["can_launch"] = can_launch()
-	data["owner"] = owner ? owner.name : "no one"
-	data["is_owner"] = owner && (owner == user.mind)
-	data["contracts"] = list()
+	data69"can_launch"69 = can_launch()
+	data69"owner"69 = owner ? owner.name : "no one"
+	data69"is_owner"69 = owner && (owner == user.mind)
+	data69"contracts"69 = list()
 
 	for(var/datum/antag_contract/item/C in GLOB.various_antag_contracts)
 		if(C.completed || !C.check(src))
 			continue
-		data["contracts"].Add(list(list(
+		data69"contracts"69.Add(list(list(
 			"name" = C.name,
 			"desc" = C.desc,
 			"reward" = C.reward
@@ -45,7 +45,7 @@
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
-		ui = new(user, src, ui_key, "bsdm.tmpl", "[name]", 400, 430)
+		ui = new(user, src, ui_key, "bsdm.tmpl", "69name69", 400, 430)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -53,7 +53,7 @@
 	if(..())
 		return 1
 
-	if(href_list["launch"])
+	if(href_list69"launch"69)
 		if(!can_launch())
 			return
 
@@ -61,13 +61,13 @@
 			if(C.completed)
 				continue
 			C.on_container(src)
-		QDEL_CLEAR_LIST(contents)
+		69DEL_CLEAR_LIST(contents)
 		if(del_on_send)
 			if(ismob(loc))
-				to_chat(loc, SPAN_NOTICE("[src] flick_lights away in a brief flash of light."))
-			qdel(src)
+				to_chat(loc, SPAN_NOTICE("69src69 flick_lights away in a brief flash of light."))
+			69del(src)
 
-	else if(href_list["owner"])
+	else if(href_list69"owner"69)
 		owner = usr.mind
 		. = 1
 
@@ -77,7 +77,7 @@
 /obj/item/storage/bsdm/permanent
 	del_on_send = FALSE
 
-/obj/item/storage/bsdm/permanent/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/bsdm/permanent/attackby(obj/item/W as obj,69ob/user as69ob)
 	..()
 
 	if(istype(W, /obj/item/reagent_containers/syringe/blitzshell))
@@ -86,5 +86,5 @@
 			var/trans
 			var/obj/item/reagent_containers/glass/beaker/vial/vial_blitzshell = new /obj/item/reagent_containers/glass/beaker/vial(src)
 			trans = syringe_blitzshell.reagents.trans_to(vial_blitzshell, syringe_blitzshell.reagents.total_volume)
-			to_chat(user ,SPAN_NOTICE("You transfer [trans] units of the solution from [syringe_blitzshell] to [src]"))
+			to_chat(user ,SPAN_NOTICE("You transfer 69trans69 units of the solution from 69syringe_blitzshell69 to 69src69"))
 			return handle_item_insertion(vial_blitzshell)

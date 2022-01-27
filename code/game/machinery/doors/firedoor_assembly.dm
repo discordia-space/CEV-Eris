@@ -1,5 +1,5 @@
 obj/structure/firedoor_assembly
-	name = "\improper emergency shutter assembly"
+	name = "\improper emer69ency shutter assembly"
 	desc = "It can save lives."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_construction"
@@ -14,39 +14,39 @@ obj/structure/firedoor_assembly/update_icon()
 	else
 		icon_state = "door_construction"
 
-obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
+obj/structure/firedoor_assembly/attackby(obj/item/I,69ob/user)
 
-	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
+	var/list/usable_69ualities = list(69UALITY_BOLT_TURNIN69)
 	if(!anchored)
-		usable_qualities.Add(QUALITY_WELDING)
+		usable_69ualities.Add(69UALITY_WELDIN69)
 	if(wired)
-		usable_qualities.Add(QUALITY_WIRE_CUTTING)
+		usable_69ualities.Add(69UALITY_WIRE_CUTTIN69)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.69et_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
 
-		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-				user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
-									  "You have [anchored ? "" : "un" ]secured \the [src]!")
+		if(69UALITY_BOLT_TURNIN69)
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+				user.visible_messa69e("<span class='warnin69'>69user69 has 69anchored ? "" : "un" 69secured \the 69src69!</span>",
+									  "You have 69anchored ? "" : "un" 69secured \the 69src69!")
 				anchored = !anchored
 				update_icon()
 				return
 			return
 
-		if(QUALITY_WELDING)
+		if(69UALITY_WELDIN69)
 			if(!anchored)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] has dissassembled \the [src]."),
-										"You have dissassembled \the [src].")
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+					user.visible_messa69e(SPAN_WARNIN69("69user69 has dissassembled \the 69src69."),
+										"You have dissassembled \the 69src69.")
 					new /obj/item/stack/material/steel(src.loc, 2)
-					qdel(src)
+					69del(src)
 					return
 			return
 
-		if(QUALITY_WIRE_CUTTING)
+		if(69UALITY_WIRE_CUTTIN69)
 			if(wired)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 					to_chat(user, SPAN_NOTICE("You cut the wires!"))
 					new/obj/item/stack/cable_coil(src.loc, 1)
 					wired = 0
@@ -58,25 +58,25 @@ obj/structure/firedoor_assembly/attackby(obj/item/I, mob/user)
 
 	if(istype(I, /obj/item/stack/cable_coil) && !wired && anchored)
 		var/obj/item/stack/cable_coil/cable = I
-		if (cable.get_amount() < 1)
-			to_chat(user, SPAN_WARNING("You need one length of coil to wire \the [src]."))
+		if (cable.69et_amount() < 1)
+			to_chat(user, SPAN_WARNIN69("You need one len69th of coil to wire \the 69src69."))
 			return
-		user.visible_message("[user] wires \the [src].", "You start to wire \the [src].")
+		user.visible_messa69e("69user69 wires \the 69src69.", "You start to wire \the 69src69.")
 		if(do_after(user, 40, src) && !wired && anchored)
 			if (cable.use(1))
 				wired = 1
-				to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+				to_chat(user, SPAN_NOTICE("You wire \the 69src69."))
 
 	else if(istype(I, /obj/item/electronics/airalarm) && wired)
 		if(anchored)
-			playsound(src.loc, 'sound/items/Deconstruct.ogg', 50, 1)
-			user.visible_message(SPAN_WARNING("[user] has inserted a circuit into \the [src]!"),
-								  "You have inserted the circuit into \the [src]!")
+			playsound(src.loc, 'sound/items/Deconstruct.o6969', 50, 1)
+			user.visible_messa69e(SPAN_WARNIN69("69user69 has inserted a circuit into \the 69src69!"),
+								  "You have inserted the circuit into \the 69src69!")
 			new /obj/machinery/door/firedoor(src.loc)
-			qdel(I)
-			qdel(src)
+			69del(I)
+			69del(src)
 		else
-			to_chat(user, SPAN_WARNING("You must secure \the [src] first!"))
+			to_chat(user, SPAN_WARNIN69("You69ust secure \the 69src69 first!"))
 
 	else
 		..(I, user)

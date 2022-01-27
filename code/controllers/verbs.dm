@@ -1,6 +1,6 @@
 //TODO: rewrite and standardise all controller datums to the datum/controller type
-//TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff)
-//		- MC done
+//TODO: allow all controllers to be deleted for clean restarts (see WIP69aster controller stuff)
+//		-69C done
 //		- lighting done
 
 
@@ -10,10 +10,10 @@ ADMIN_VERB_ADD(/client/proc/debug_antagonist_template, R_DEBUG, null)
 	set name = "Debug Antagonist"
 	set desc = "Debug an antagonist template."
 
-	var/datum/antagonist/antag = GLOB.all_antag_types[antag_type]
+	var/datum/antagonist/antag = GLOB.all_antag_types69antag_type69
 	if(antag)
 		usr.client.debug_variables(antag)
-		message_admins("Admin [key_name_admin(usr)] is debugging the [antag.role_text] template.")
+		message_admins("Admin 69key_name_admin(usr)69 is debugging the 69antag.role_text69 template.")
 
 
 ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
@@ -23,7 +23,7 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 	)
 	set category = "Debug"
 	set name = "Debug Controller"
-	set desc = "Debug the various periodic loop controllers for the game (be careful!)"
+	set desc = "Debug the69arious periodic loop controllers for the game (be careful!)"
 
 	if(!holder)	return
 	switch(controller)
@@ -45,5 +45,5 @@ ADMIN_VERB_ADD(/client/proc/debug_controller, R_DEBUG, null)
 		if("Observation")
 			debug_variables(GLOB.all_observable_events)
 
-	message_admins("Admin [key_name_admin(usr)] is debugging the [controller] controller.")
+	message_admins("Admin 69key_name_admin(usr)69 is debugging the 69controller69 controller.")
 	return

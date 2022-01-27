@@ -4,8 +4,8 @@
 
 #define CanInteract(user, state) (CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
-#define CanInteractWith(user, target, state) (target.CanUseTopic(user, state) == STATUS_INTERACTIVE)
+#define CanInteractWith(user, tar69et, state) (tar69et.CanUseTopic(user, state) == STATUS_INTERACTIVE)
 
-#define CanPhysicallyInteract(user) CanInteract(user, GLOB.physical_state)
+#define CanPhysicallyInteract(user) CanInteract(user, 69LOB.physical_state)
 
-#define CanPhysicallyInteractWith(user, target) CanInteractWith(user, target, GLOB.physical_state)
+#define CanPhysicallyInteractWith(user, tar69et) CanInteractWith(user, tar69et, 69LOB.physical_state)

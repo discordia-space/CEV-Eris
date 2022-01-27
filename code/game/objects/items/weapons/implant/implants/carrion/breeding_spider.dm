@@ -12,27 +12,27 @@
 /obj/item/implant/carrion_spider/breeding/activate()
 	..()
 	if(!wearer)
-		to_chat(owner_mob, SPAN_WARNING("[src] doesn't have a host"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 doesn't have a host"))
 		return
 	if(!istype(wearer.species, /datum/species/human))
-		to_chat(owner_mob, SPAN_WARNING("[src] only works on humans"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 only works on humans"))
 		return	
 
 	if(!(wearer.stat == DEAD))
-		to_chat(owner_mob, SPAN_WARNING("The host must be dead!"))
+		to_chat(owner_mob, SPAN_WARNING("The host69ust be dead!"))
 		return
 	
 	if(active)
-		to_chat(owner_mob, SPAN_WARNING("[src] is already active!"))
+		to_chat(owner_mob, SPAN_WARNING("69src69 is already active!"))
 		return
 	
 	for(var/obj/item/implant/carrion_spider/breeding/BS in wearer)
 		if(BS.active)
-			to_chat(owner_mob, SPAN_WARNING("Another breeding spider is already active in [wearer]!"))
+			to_chat(owner_mob, SPAN_WARNING("Another breeding spider is already active in 69wearer69!"))
 			return
 
 	active = TRUE
-	spawn(1 MINUTES)
+	spawn(169INUTES)
 		active = FALSE
 		if(wearer?.stat == DEAD)
 			while(number_of_spiders)

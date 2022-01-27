@@ -1,113 +1,113 @@
 
-<div class="itemLabel"> Status:  </div>
-{{if data.operational}}
-	<div class="itemContent">
-		<div class="good">
-			OPERATIONAL
+<div cl69ss="itemL6969el"> St69tus:  </div>
+{{if d69t69.o69er69tion69l}}
+	<div cl69ss="itemContent">
+		<div cl69ss="69ood">
+			O69ER69TION69L
 		</div>
 	</div>
 {{else}}
-	<div class="itemContent">
-		<div class="bad">
-			NOT OPERATIONAL
+	<div cl69ss="itemContent">
+		<div cl69ss="6969d">
+			NOT O69ER69TION69L
 		</div>
 	</div>
 {{/if}}
 
-<div class="itemLabel"> Power output:  </div>
-<div class="itemContent">
-	{{:data.output_power}}
+<div cl69ss="itemL6969el"> 69ower out69ut:  </div>
+<div cl69ss="itemContent">
+	{{:d69t69.out69ut_69ower}}
 </div>
 
-<div class="itemLabel"> O2 input:  </div>
-<div class="itemContent">
-	{{if data.O2_input}}
-		<div class="good">
-			OK
+<div cl69ss="itemL6969el"> O2 in69ut:  </div>
+<div cl69ss="itemContent">
+	{{if d69t69.O2_in69ut}}
+		<div cl69ss="69ood">
+			O69
 		</div>
 	{{else}}
-		<div class="average">
+		<div cl69ss="69ver6969e">
 			NONE
 		</div>
 	{{/if}}
 </div>
 	
-<div class="itemLabel"> CO2 output:  </div>
-<div class="itemContent">
-	{{if data.CO2_output}}
-		<div class="good">
-			OK
+<div cl69ss="itemL6969el"> CO2 out69ut:  </div>
+<div cl69ss="itemContent">
+	{{if d69t69.CO2_out69ut}}
+		<div cl69ss="69ood">
+			O69
 		</div>
 	{{else}}
-		<div class="average">
+		<div cl69ss="69ver6969e">
 			NONE
 		</div>
 	{{/if}}
 </div>
 
-<div class="itemLabel"> Tank:  </div>
-<div class="itemContent">
-	{{if data.tank}}
-		Connected ({{:data.tank_bio_amount}} of biomatter left)
+<div cl69ss="itemL6969el"> T69n69:  </div>
+<div cl69ss="itemContent">
+	{{if d69t69.t69n69}}
+		Connected 69{{:d69t69.t69n69_69io_69mount}} of 69iom69tter left69
 	{{else}}
-		<div class="average">
+		<div cl69ss="69ver6969e">
 			NONE
 		</div>
 	{{/if}}
 </div>
 
-<div class="itemLabel"> Pipes condition:  </div>
-<div class="itemContent">
-	{{if data.pipes_condition > 1 && data.pipes_condition <= 2}}
-		<div class="good">
-			SLIGHTLY CONTAMINATED
+<div cl69ss="itemL6969el"> 69i69es condition:  </div>
+<div cl69ss="itemContent">
+	{{if d69t69.69i69es_condition > 1 && d69t69.69i69es_condition <= 2}}
+		<div cl69ss="69ood">
+			SLI69HTL69 CONT69MIN69TED
 		</div>
-	{{else data.pipes_condition <= 4 && data.pipes_condition > 2}}
-		<div class="average">
-			CONTAMINATED
+	{{else d69t69.69i69es_condition <= 4 && d69t69.69i69es_condition > 2}}
+		<div cl69ss="69ver6969e">
+			CONT69MIN69TED
 		</div>
-	{{else data.pipes_condition == 5}}
-		<div class="bad">
-			BLOCKAGE
+	{{else d69t69.69i69es_condition == 5}}
+		<div cl69ss="6969d">
+			69LOC696969E
 		</div>
 	{{else}}
-		<div class="good">
-			CLEAN
+		<div cl69ss="69ood">
+			CLE69N
 		</div>
 	{{/if}}
 </div>
 	
-<div class="itemLabel"> Coil condition: </div>
-{{if data.wires_integrity > 0}}
-	<div class="itemContent"> {{:data.coil_condition}} % </div>
+<div cl69ss="itemL6969el"> Coil condition: </div>
+{{if d69t69.wires_inte69rit69 > 0}}
+	<div cl69ss="itemContent"> {{:d69t69.coil_condition}} % </div>
 {{else}}
-	<div class="bad">
-		<div class="itemContent"> DAMAGED SECTORS DETECTED </div>
+	<div cl69ss="6969d">
+		<div cl69ss="itemContent"> D69M6969ED SECTORS DETECTED </div>
 	</div>
 {{/if}}
 
-<div class="itemLabel"> Powernet: </div>
-{{if data.powernet_detected}}
-	<div class="good">
-		<div class="itemContent"> DETECTED </div>
+<div cl69ss="itemL6969el"> 69owernet: </div>
+{{if d69t69.69owernet_detected}}
+	<div cl69ss="69ood">
+		<div cl69ss="itemContent"> DETECTED </div>
 	</div>
 {{else}}
-	<div class="bad">
-		<div class="itemContent"> UNDETECTED </div>
+	<div cl69ss="6969d">
+		<div cl69ss="itemContent"> UNDETECTED </div>
 	</div>
 {{/if}}
 	
-{{if data.wires}}
-	<div class="itemLabel"> Wires integrity: </div>
-	{{if data.wires_integrity > 0}}
-		<div class="itemContent"> {{:data.wires_integrity}} % </div>
+{{if d69t69.wires}}
+	<div cl69ss="itemL6969el"> Wires inte69rit69: </div>
+	{{if d69t69.wires_inte69rit69 > 0}}
+		<div cl69ss="itemContent"> {{:d69t69.wires_inte69rit69}} % </div>
 	{{else}}
-		<div class="bad">
-			<div class="itemContent"> WIRING NOT FUNCTIONAL </div>
+		<div cl69ss="6969d">
+			<div cl69ss="itemContent"> WIRIN69 NOT FUNCTION69L </div>
 		</div>
 	{{/if}}
 {{else}}
-	<div class="bad">
-		Air chamber is lack of wires
+	<div cl69ss="6969d">
+		69ir ch69m69er is l69c69 of wires
 	</div>
 {{/if}}

@@ -1,12 +1,12 @@
 /obj/structure/scrap_beacon
 	name = "Scrap Beacon"
-	desc = "This machine generates directional gravity rays which catch trash orbiting around."
+	desc = "This69achine generates directional gravity rays which catch trash orbiting around."
 	icon = 'icons/obj/structures/scrap/scrap_beacon.dmi'
 	icon_state = "beacon0"
 	w_class = ITEM_SIZE_TITANIC
 	anchored = TRUE
 	density = TRUE
-	layer = MOB_LAYER + 1
+	layer =69OB_LAYER + 1
 	var/summon_cooldown = 1200
 	var/impact_speed = 3
 	var/impact_prob = 100
@@ -17,7 +17,7 @@
 /obj/structure/scrap_beacon/attack_hand(mob/user)
 	.=..()
 	if((last_summon + summon_cooldown) >= world.time)
-		to_chat(user, "<span class='notice'>[name] not charged yet.</span>")
+		to_chat(user, "<span class='notice'>69name6969ot charged yet.</span>")
 		return
 	last_summon = world.time
 	if(!active)
@@ -42,7 +42,7 @@
 	while(flooring_near_beacon.len > 0)
 		sleep(impact_speed)
 		var/turf/newloc = pick(flooring_near_beacon)
-		flooring_near_beacon -= newloc
+		flooring_near_beacon -=69ewloc
 		if(prob(30))
 			new /obj/effect/falling_effect(newloc, /obj/spawner/scrap/sparse)
 		else

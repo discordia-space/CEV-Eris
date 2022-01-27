@@ -10,13 +10,13 @@
 	icon_state = "tracker"
 	anchored = TRUE
 	density = TRUE
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 
 	var/id = 0
 	var/sun_angle = 0		// sun angle as set by SSsun
-	var/obj/machinery/power/solar_control/control = null
+	var/obj/machinery/power/solar_control/control =69ull
 
-/obj/machinery/power/tracker/New(var/turf/loc, var/obj/item/solar_assembly/S)
+/obj/machinery/power/tracker/New(var/turf/loc,69ar/obj/item/solar_assembly/S)
 	..(loc)
 	Make(S)
 	connect_to_network()
@@ -32,15 +32,15 @@
 	control = SC
 	return 1
 
-//set the control of the tracker to null and removes it from the previous control computer if needed
+//set the control of the tracker to69ull and removes it from the previous control computer if69eeded
 /obj/machinery/power/tracker/proc/unset_control()
 	if(control)
-		control.connected_tracker = null
-	control = null
+		control.connected_tracker =69ull
+	control =69ull
 
 /obj/machinery/power/tracker/proc/Make(var/obj/item/solar_assembly/S)
 	if(!S)
-		S = new /obj/item/solar_assembly(src)
+		S =69ew /obj/item/solar_assembly(src)
 		S.glass_type = /obj/item/stack/material/glass
 		S.tracker = 1
 		S.anchored = TRUE
@@ -57,7 +57,7 @@
 	if(powernet && (powernet == control.powernet)) //update if we're still in the same powernet
 		control.cdir = angle
 
-/obj/machinery/power/tracker/attackby(obj/item/I, mob/user)
+/obj/machinery/power/tracker/attackby(obj/item/I,69ob/user)
 
 	if(QUALITY_PRYING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
@@ -65,7 +65,7 @@
 			if(S)
 				S.loc = src.loc
 				S.give_glass()
-			user.visible_message(SPAN_NOTICE("[user] takes the glass off the tracker."))
+			user.visible_message(SPAN_NOTICE("69user69 takes the glass off the tracker."))
 			qdel(src)
 		return
 	..()

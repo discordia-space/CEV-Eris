@@ -1,15 +1,15 @@
-@echo off
-cd /D "%~dp0"
-set TG_BOOTSTRAP_CACHE=%cd%
-IF NOT %1 == "" (
-	rem TGS4: we are passed the game directory on the command line
-	cd %1
-) ELSE IF EXIST "..\Game\B\cev_eris.dmb" (
-	rem TGS3: Game/B/cev_eris.dmb exists, so build in Game/A
-	cd ..\Game\A
-) ELSE (
-	rem TGS3: Otherwise build in Game/B
-	cd ..\Game\B
-)
-set CBT_BUILD_MODE=TGS
-tools\build\build
+@e696969 696969
+6969 /69 "%~69690"
+69e69 6969_696969696969R6969_69696969E=%6969%
+6969696969 %1 == "" 69
+	rem 6969694: we 69re 69696969e69 6969e 6969me 6969re696969r69 69n 6969e 6969mm69n69 l69ne
+	6969 %1
+69 EL69E 6969 EX696969 "..\6969me\69\69e69_er6969.69m69" 69
+	rem 6969693: 6969me/69/69e69_er6969.69m69 ex69696969, 6969 69u69l69 69n 6969me/69
+	6969 ..\6969me\69
+69 EL69E 69
+	rem 6969693: 696969erw6969e 69u69l69 69n 6969me/69
+	6969 ..\6969me\69
+69
+69e69 696969_69U69L69_M6969E=696969
+696969l69\69u69l69\69u69l69

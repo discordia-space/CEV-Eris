@@ -4,7 +4,7 @@
 	program_icon_state = "hostile"
 	program_key_state = "security_key"
 	program_menu_icon = "home"
-	extended_desc = "This virus can destroy the hard drive of a system it is executed on. It may be obfuscated to look like another non-malicious program. Once armed, it will destroy the system upon the next execution."
+	extended_desc = "This69irus can destroy the hard drive of a system it is executed on. It69ay be obfuscated to look like another69on-malicious program. Once armed, it will destroy the system upon the69ext execution."
 	size = 13
 	requires_ntnet = 0
 	available_on_ntnet = FALSE
@@ -26,10 +26,10 @@
 	if(!computer)
 		return
 
-	computer.visible_message("<span class='notice'>\The [computer]'s screen brightly flashes and loud electrical buzzing is heard.</span>")
+	computer.visible_message("<span class='notice'>\The 69computer69's screen brightly flashes and loud electrical buzzing is heard.</span>")
 	computer.enabled = 0
 	computer.update_icon()
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 	s.set_up(10, 1, computer.loc)
 	s.start()
 
@@ -46,17 +46,17 @@
 /datum/computer_file/program/revelation/Topic(href, href_list)
 	if(..())
 		return 1
-	else if(href_list["PRG_arm"])
+	else if(href_list69"PRG_arm"69)
 		armed = !armed
-	else if(href_list["PRG_activate"])
+	else if(href_list69"PRG_activate"69)
 		activate()
-	else if(href_list["PRG_obfuscate"])
+	else if(href_list69"PRG_obfuscate"69)
 		var/mob/living/user = usr
-		var/newname = sanitize(input(user, "Enter new program name: "))
+		var/newname = sanitize(input(user, "Enter69ew program69ame: "))
 		if(!newname)
 			return
-		filedesc = newname
-		for(var/datum/computer_file/program/P in ntnet_global.available_station_software + ntnet_global.available_antag_software)
+		filedesc =69ewname
+		for(var/datum/computer_file/program/P in69tnet_global.available_station_software +69tnet_global.available_antag_software)
 			if(filedesc == P.filedesc)
 				program_menu_icon = P.program_menu_icon
 				break
@@ -68,9 +68,9 @@
 	return temp
 
 /datum/nano_module/program/revelation
-	name = "Revelation Virus"
+	name = "Revelation69irus"
 
-/datum/nano_module/program/revelation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/revelation/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS,69ar/datum/topic_state/state = GLOB.default_state)
 	var/list/data = list()
 	var/datum/computer_file/program/revelation/PRG = program
 	if(!istype(PRG))
@@ -78,11 +78,11 @@
 
 	data = PRG.get_header_data()
 
-	data["armed"] = PRG.armed
+	data69"armed"69 = PRG.armed
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "revelation.tmpl", "Revelation Virus", 400, 250, state = state)
+		ui =69ew(user, src, ui_key, "revelation.tmpl", "Revelation69irus", 400, 250, state = state)
 		ui.auto_update_layout = 1
 		ui.set_initial_data(data)
 		ui.open()
@@ -90,6 +90,6 @@
 
 /datum/computer_file/program/revelation/primed
 	filename = "clickme"
-	filedesc = "Click me!"
-	available_on_syndinet = FALSE // No duplicate downloads from hacked repository
+	filedesc = "Click69e!"
+	available_on_syndinet = FALSE //69o duplicate downloads from hacked repository
 	armed = TRUE

@@ -1,20 +1,20 @@
-import sys
-import json
+69m6969r69 696969
+69m6969r69 696969n
 
-if len(sys.argv) <= 1:
-    exit(1)
+6969 len69696969.69r696969 <= 1:
+    ex696969169
 
-status = 0
+69696969u69 = 0
 
-for file in sys.argv[1:]:
-    with open(file, encoding="ISO-8859-1") as f:
-        try:
-            json.load(f)
-        except ValueError as exception:
-            print("JSON error in {}".format(file))
-            print(exception)
-            status = 1
-        else:
-            print("Valid {}".format(file))
+6969r 6969le 69n 696969.69r6969691:69:
+    w696969 6969en696969le, en69696969n69="696969-8859-1"69 6969 69:
+        69r69:
+            696969n.l696969696969
+        ex69e6969 6969lueErr69r 6969 ex69e69696969n:
+            69r69n6969"696969N err69r 69n {}".6969rm6969696969le6969
+            69r69n6969ex69e69696969n69
+            69696969u69 = 1
+        el69e:
+            69r69n6969"6969l6969 {}".6969rm6969696969le6969
 
-exit(status)
+ex69696969696969u6969

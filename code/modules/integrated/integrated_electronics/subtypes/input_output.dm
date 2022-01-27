@@ -11,7 +11,7 @@
 
 /obj/item/integrated_circuit/input/button
 	name = "button"
-	desc = "This tiny button must do something, right?"
+	desc = "This tiny button69ust do something, right?"
 	icon_state = "button"
 	complexity = 1
 	can_be_asked_input = 1
@@ -20,8 +20,8 @@
 	activators = list("\<PULSE OUT\> on pressed")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
-	to_chat(user, SPAN_NOTICE("You press the button labeled '[src.name]'."))
+/obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit69isleading name for this specific use.
+	to_chat(user, SPAN_NOTICE("You press the button labeled '69src.name69'."))
 	activate_pin(1)
 
 /obj/item/integrated_circuit/input/toggle_button
@@ -39,7 +39,7 @@
 	set_pin_data(IC_OUTPUT, 1, !get_pin_data(IC_OUTPUT, 1))
 	push_data()
 	activate_pin(1)
-	to_chat(user, "<span class='notice'>You toggle the button labeled '[src.name]' [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"].</span>")
+	to_chat(user, "<span class='notice'>You toggle the button labeled '69src.name69' 69get_pin_data(IC_OUTPUT, 1) ? "on" : "off"69.</span>")
 
 /obj/item/integrated_circuit/input/numberpad
 	name = "number pad"
@@ -80,12 +80,12 @@
 		activate_pin(1)
 
 /obj/item/integrated_circuit/input/med_scanner
-	name = "integrated medical analyser"
-	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is."
+	name = "integrated69edical analyser"
+	desc = "A69ery small69ersion of the common69edical analyser.  This allows the69achine to know how healthy someone is."
 	icon_state = "medscan"
 	complexity = 4
 	inputs = list("\<REF\> target")
-	outputs = list("\<NUM\> total health %", "\<NUM\> total missing health")
+	outputs = list("\<NUM\> total health %", "\<NUM\> total69issing health")
 	activators = list("\<PULSE IN\> scan", "\<PULSE OUT\> on scanned")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
@@ -100,21 +100,21 @@
 		var/missing_health = H.getMaxHealth() - H.health
 
 		set_pin_data(IC_OUTPUT, 1, total_health)
-		set_pin_data(IC_OUTPUT, 2, missing_health)
+		set_pin_data(IC_OUTPUT, 2,69issing_health)
 
 	push_data()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/adv_med_scanner
-	name = "integrated advanced medical analyser"
-	desc = "A very small version of the common medical analyser.  This allows the machine to know how healthy someone is.  \
-	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
+	name = "integrated advanced69edical analyser"
+	desc = "A69ery small69ersion of the common69edical analyser.  This allows the69achine to know how healthy someone is.  \
+	This type is69uch69ore precise, allowing the69achine to know69uch69ore about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
 	inputs = list("\<REF\> target")
 	outputs = list(
 		"\<NUM\> total health %",
-		"\<NUM\> total missing health",
+		"\<NUM\> total69issing health",
 		"\<NUM\> brute damage",
 		"\<NUM\> burn damage",
 		"\<NUM\> tox damage",
@@ -135,7 +135,7 @@
 		var/missing_health = H.getMaxHealth() - H.health
 
 		set_pin_data(IC_OUTPUT, 1, total_health)
-		set_pin_data(IC_OUTPUT, 2, missing_health)
+		set_pin_data(IC_OUTPUT, 2,69issing_health)
 		set_pin_data(IC_OUTPUT, 3, H.getBruteLoss())
 		set_pin_data(IC_OUTPUT, 4, H.getFireLoss())
 		set_pin_data(IC_OUTPUT, 5, H.getToxLoss())
@@ -148,7 +148,7 @@
 /obj/item/integrated_circuit/input/local_locator
 	name = "local locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon.  This type only locates something \
-	that is holding the machine containing it."
+	that is holding the69achine containing it."
 	inputs = list()
 	outputs = list("located ref")
 	activators = list("locate")
@@ -156,7 +156,7 @@
 	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/input/local_locator/do_work()
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	O.data = null
 	if(assembly)
 		if(istype(assembly.loc, /mob/living)) // Now check if someone's holding us.
@@ -167,9 +167,9 @@
 /obj/item/integrated_circuit/input/adjacent_locator
 	name = "adjacent locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon.  This type only locates something \
-	that is standing a meter away from the machine."
-	extended_desc = "The first pin requires a ref to a kind of object that you want the locator to acquire.  This means that it will \
-	give refs to nearby objects that are similar.  If more than one valid object is found nearby, it will choose one of them at \
+	that is standing a69eter away from the69achine."
+	extended_desc = "The first pin requires a ref to a kind of object that you want the locator to acquire.  This69eans that it will \
+	give refs to nearby objects that are similar.  If69ore than one69alid object is found nearby, it will choose one of them at \
 	random."
 	inputs = list("desired type ref")
 	outputs = list("located ref")
@@ -178,8 +178,8 @@
 	power_draw_per_use = 30
 
 /obj/item/integrated_circuit/input/adjacent_locator/do_work()
-	var/datum/integrated_io/I = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/I = inputs69169
+	var/datum/integrated_io/O = outputs69169
 	O.data = null
 
 	if(!isweakref(I.data))
@@ -247,7 +247,7 @@
 	var/datum/signal/signal = new()
 	signal.source = src
 	signal.encryption = code
-	signal.data["message"] = "ACTIVATE"
+	signal.data69"message"69 = "ACTIVATE"
 	radio_connection.post_signal(src, signal)
 	activate_pin(2)
 
@@ -278,14 +278,14 @@
 		return
 
 	for(var/mob/O in hearers(1, location))
-		O.show_message("\icon[src] *beep* *beep*", 3, "*beep* *beep*", 2)
+		O.show_message("\icon69src69 *beep* *beep*", 3, "*beep* *beep*", 2)
 
 /obj/item/integrated_circuit/input/EPv2
 	name = "\improper EPv2 circuit"
-	desc = "Enables the sending and receiving of messages on the Exonet with the EPv2 protocol."
+	desc = "Enables the sending and receiving of69essages on the Exonet with the EPv2 protocol."
 	extended_desc = "An EPv2 address is a string with the format of XXXX:XXXX:XXXX:XXXX.  Data can be send or received using the \
-	second pin on each side, with additonal data reserved for the third pin.  When a message is received, the second activaiton pin \
-	will pulse whatever's connected to it.  Pulsing the first activation pin will send a message."
+	second pin on each side, with additonal data reserved for the third pin.  When a69essage is received, the second activaiton pin \
+	will pulse whatever's connected to it.  Pulsing the first activation pin will send a69essage."
 	icon_state = "signal"
 	complexity = 4
 	inputs = list("\<TEXT\> target EPv2 address", "\<TEXT\> data to send", "\<TEXT\> secondary text")
@@ -304,8 +304,8 @@
 /obj/item/integrated_circuit/input/EPv2/New()
 	..()
 	exonet = new(src)
-	exonet.make_address("EPv2_circuit-\ref[src]")
-	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
+	exonet.make_address("EPv2_circuit-\ref69src69")
+	desc += "<br>This circuit's EPv2 address is: 69exonet.address69"
 
 /obj/item/integrated_circuit/input/EPv2/Destroy()
 	if(exonet)
@@ -320,20 +320,20 @@
 	var/text = get_pin_data(IC_INPUT, 3)
 
 	if(target_address && istext(target_address))
-		exonet.send_message(target_address, message, text)
+		exonet.send_message(target_address,69essage, text)
 
-/obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
+/obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom,69ar/origin_address,69ar/message,69ar/text)
 	set_pin_data(IC_OUTPUT, 1, origin_address)
-	set_pin_data(IC_OUTPUT, 2, message)
+	set_pin_data(IC_OUTPUT, 2,69essage)
 	set_pin_data(IC_OUTPUT, 3, text)
 
 	push_data()
 	activate_pin(2)
 */
-//This circuit gives information on where the machine is.
+//This circuit gives information on where the69achine is.
 /obj/item/integrated_circuit/input/gps
 	name = "global positioning system"
-	desc = "This allows you to easily know the position of a machine containing this device."
+	desc = "This allows you to easily know the position of a69achine containing this device."
 	extended_desc = "The GPS's coordinates it gives is absolute, not relative."
 	icon_state = "gps"
 	complexity = 4
@@ -360,15 +360,15 @@
 
 /obj/item/integrated_circuit/input/microphone
 	name = "microphone"
-	desc = "Useful for spying on people or for voice activated machines."
-	extended_desc = "This will automatically translate most languages it hears to Galactic Common.  \
+	desc = "Useful for spying on people or for69oice activated69achines."
+	extended_desc = "This will automatically translate69ost languages it hears to Galactic Common.  \
 	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
 	is only triggered if it hears someone speaking a language other than Galactic Common."
 	icon_state = "recorder"
 	complexity = 8
 	inputs = list()
-	outputs = list("\<TEXT\> speaker", "\<TEXT\> message")
-	activators = list("\<PULSE OUT\> on message received", "\<PULSE OUT\> on translation")
+	outputs = list("\<TEXT\> speaker", "\<TEXT\>69essage")
+	activators = list("\<PULSE OUT\> on69essage received", "\<PULSE OUT\> on translation")
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
@@ -380,16 +380,16 @@
 	remove_hearing()
 	return ..()
 
-/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null, speech_volume)
+/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M,69sg,69ar/verb="says", datum/language/speaking=null, speech_volume)
 	var/translated = FALSE
-	if(M && msg)
+	if(M &&69sg)
 		if(speaking)
 			if(!speaking.machine_understands)
 				msg = speaking.scramble(msg)
 			if(!istype(speaking, /datum/language/common))
 				translated = TRUE
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
+		set_pin_data(IC_OUTPUT, 1,69.GetVoice())
+		set_pin_data(IC_OUTPUT, 2,69sg)
 
 	push_data()
 	activate_pin(1)
@@ -400,8 +400,8 @@
 
 /obj/item/integrated_circuit/input/sensor
 	name = "sensor"
-	desc = "Scans and obtains a reference for any objects or persons near you.  All you need to do is shove the machine in their face."
-	extended_desc = "If 'ignore storage' pin is set to 1, the sensor will disregard scanning various storage containers such as backpacks."
+	desc = "Scans and obtains a reference for any objects or persons near you.  All you need to do is shove the69achine in their face."
+	extended_desc = "If 'ignore storage' pin is set to 1, the sensor will disregard scanning69arious storage containers such as backpacks."
 	icon_state = "recorder"
 	complexity = 12
 	inputs = list("\<NUM\> ignore storage" = 1)
@@ -426,7 +426,7 @@
 
 /obj/item/integrated_circuit/output/screen
 	name = "small screen"
-	desc = "This small screen can display a single piece of data, when the machine is examined closely."
+	desc = "This small screen can display a single piece of data, when the69achine is examined closely."
 	icon_state = "screen"
 	inputs = list("\<TEXT/NUM\> displayed data")
 	outputs = list()
@@ -442,14 +442,14 @@
 	stuff_to_display = null
 
 /obj/item/integrated_circuit/output/screen/any_examine(mob/user)
-	to_chat(user, "There is a little screen labeled '[name]', which displays [stuff_to_display ? "'[stuff_to_display]'" : "nothing"].")
+	to_chat(user, "There is a little screen labeled '69name69', which displays 69stuff_to_display ? "'69stuff_to_display69'" : "nothing"69.")
 
 /obj/item/integrated_circuit/output/screen/do_work()
-	var/datum/integrated_io/I = inputs[1]
+	var/datum/integrated_io/I = inputs69169
 	if(isweakref(I.data))
 		var/datum/d = I.data_as_type(/datum)
 		if(d)
-			stuff_to_display = "[d]"
+			stuff_to_display = "69d69"
 	else
 		stuff_to_display = I.data
 
@@ -464,7 +464,7 @@
 	var/list/nearby_things = range(0, get_turf(src))
 	for(var/mob/M in nearby_things)
 		var/obj/O = assembly ? assembly : src
-		to_chat(M, SPAN_NOTICE("\icon[O] [stuff_to_display]"))
+		to_chat(M, SPAN_NOTICE("\icon69O69 69stuff_to_display69"))
 
 /obj/item/integrated_circuit/output/screen/large
 	name = "large screen"
@@ -475,7 +475,7 @@
 /obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
 	var/obj/O = assembly ? loc : assembly
-	O.visible_message(SPAN_NOTICE("\icon[O] [stuff_to_display]"))
+	O.visible_message(SPAN_NOTICE("\icon69O69 69stuff_to_display69"))
 
 /obj/item/integrated_circuit/output/light
 	name = "light"
@@ -524,7 +524,7 @@
 
 /obj/item/integrated_circuit/output/light/advanced
 	name = "advanced light"
-	desc = "This light can turn on and off on command, in any color, and in various brightness levels."
+	desc = "This light can turn on and off on command, in any color, and in69arious brightness levels."
 	icon_state = "light_adv"
 	complexity = 8
 	inputs = list(
@@ -542,13 +542,13 @@
 
 /obj/item/integrated_circuit/output/sound
 	name = "speaker circuit"
-	desc = "A miniature speaker is attached to this component."
+	desc = "A69iniature speaker is attached to this component."
 	icon_state = "speaker"
 	complexity = 8
 	cooldown_per_use = 4 SECONDS
 	inputs = list(
 		"\<TEXT\> sound ID",
-		"\<NUM\> volume",
+		"\<NUM\>69olume",
 		"\<NUM\> frequency"
 	)
 	outputs = list()
@@ -558,8 +558,8 @@
 
 /obj/item/integrated_circuit/output/text_to_speech
 	name = "text-to-speech circuit"
-	desc = "A miniature speaker is attached to this component."
-	extended_desc = "This unit is more advanced than the plain speaker circuit, able to transpose any valid text to speech."
+	desc = "A69iniature speaker is attached to this component."
+	extended_desc = "This unit is69ore advanced than the plain speaker circuit, able to transpose any69alid text to speech."
 	icon_state = "speaker"
 	complexity = 12
 	cooldown_per_use = 4 SECONDS
@@ -570,37 +570,37 @@
 	power_draw_per_use = 60
 
 /obj/item/integrated_circuit/output/text_to_speech/do_work()
-	var/datum/integrated_io/text = inputs[1]
+	var/datum/integrated_io/text = inputs69169
 	if(istext(text.data))
 		var/obj/O = assembly ? loc : assembly
-		audible_message("\icon[O] \The [O.name] states, \"[text.data]\"")
+		audible_message("\icon69O69 \The 69O.name69 states, \"69text.data69\"")
 
 /obj/item/integrated_circuit/output/sound/New()
 	..()
 	extended_desc = list()
 	extended_desc += "The first input pin determines which sound is used. The choices are; "
 	extended_desc += jointext(sounds, ", ")
-	extended_desc += ". The second pin determines the volume of sound that is played"
-	extended_desc += ", and the third determines if the frequency of the sound will vary with each activation."
+	extended_desc += ". The second pin determines the69olume of sound that is played"
+	extended_desc += ", and the third determines if the frequency of the sound will69ary with each activation."
 	extended_desc = jointext(extended_desc, null)
 
 /obj/item/integrated_circuit/output/sound/do_work()
-	var/datum/integrated_io/ID = inputs[1]
-	var/datum/integrated_io/vol = inputs[2]
-	var/datum/integrated_io/frequency = inputs[3]
+	var/datum/integrated_io/ID = inputs69169
+	var/datum/integrated_io/vol = inputs69269
+	var/datum/integrated_io/frequency = inputs69369
 	if(istext(ID.data) && isnum(vol.data) && isnum(frequency.data))
-		var/selected_sound = sounds[ID.data]
+		var/selected_sound = sounds69ID.data69
 		if(!selected_sound)
 			return
 		vol.data = CLAMP(vol.data, 0, 100)
 		frequency.data = round(CLAMP(frequency.data, 0, 1))
-		playsound(get_turf(src), selected_sound, vol.data, frequency.data, -1)
+		playsound(get_turf(src), selected_sound,69ol.data, frequency.data, -1)
 
 /obj/item/integrated_circuit/output/sound/beeper
 	name = "beeper circuit"
-	desc = "A miniature speaker is attached to this component.  This is often used in the construction of motherboards, which use \
-	the speaker to tell the user if something goes very wrong when booting up.  It can also do other similar synthetic sounds such \
-	as buzzing, pinging, chiming, and more."
+	desc = "A69iniature speaker is attached to this component.  This is often used in the construction of69otherboards, which use \
+	the speaker to tell the user if something goes69ery wrong when booting up.  It can also do other similar synthetic sounds such \
+	as buzzing, pinging, chiming, and69ore."
 	sounds = list(
 		"beep"			= 'sound/machines/twobeep.ogg',
 		"chime"			= 'sound/machines/chime.ogg',
@@ -615,7 +615,7 @@
 
 /obj/item/integrated_circuit/output/sound/beepsky
 	name = "securitron sound circuit"
-	desc = "A miniature speaker is attached to this component.  Considered by some to be the essential component for a securitron."
+	desc = "A69iniature speaker is attached to this component.  Considered by some to be the essential component for a securitron."
 	sounds = list(
 		"creep"			= 'sound/voice/bcreep.ogg',
 		"criminal"		= 'sound/voice/bcriminal.ogg',
@@ -631,7 +631,7 @@
 
 /obj/item/integrated_circuit/output/video_camera
 	name = "video camera circuit"
-	desc = "This small camera allows a remote viewer to see what it sees."
+	desc = "This small camera allows a remote69iewer to see what it sees."
 	extended_desc = "The camera is linked to the Research camera network."
 	icon_state = "video_camera"
 	w_class = ITEM_SIZE_SMALL
@@ -662,8 +662,8 @@
 
 /obj/item/integrated_circuit/output/video_camera/on_data_written()
 	if(camera)
-		var/datum/integrated_io/cam_name = inputs[1]
-		var/datum/integrated_io/cam_active = inputs[2]
+		var/datum/integrated_io/cam_name = inputs69169
+		var/datum/integrated_io/cam_active = inputs69269
 		if(istext(cam_name.data))
 			camera.c_tag = cam_name.data
 		if(isnum(cam_active.data))
@@ -672,13 +672,13 @@
 /obj/item/integrated_circuit/output/video_camera/power_fail()
 	if(camera)
 		set_camera_status(0)
-		var/datum/integrated_io/cam_active = inputs[2]
+		var/datum/integrated_io/cam_active = inputs69269
 		cam_active.data = FALSE
 
 /obj/item/integrated_circuit/output/led
 	name = "light-emitting diode"
 	desc = "This a LED that is lit whenever there is TRUE-equivalent data on its input."
-	extended_desc = "TRUE-equivalent values are: Non-empty strings, non-zero numbers, and valid refs."
+	extended_desc = "TRUE-equivalent69alues are: Non-empty strings, non-zero numbers, and69alid refs."
 	complexity = 0.1
 	icon_state = "led"
 	inputs = list("lit")
@@ -701,10 +701,10 @@
 	// Doing all this work just to have a color-blind friendly output.
 	text_output += "There is "
 	if(name == initial_name)
-		text_output += "\an [name]"
+		text_output += "\an 69name69"
 	else
-		text_output += "\an ["\improper[initial_name]"] labeled '[name]'"
-	text_output += " which is currently [get_pin_data(IC_INPUT, 1) ? "lit <font color=[led_color]>�</font>" : "unlit."]"
+		text_output += "\an 69"\improper69initial_name69"69 labeled '69name69'"
+	text_output += " which is currently 69get_pin_data(IC_INPUT, 1) ? "lit <font color=69led_color69>�</font>" : "unlit."69"
 	user << jointext(text_output,null)
 
 /obj/item/integrated_circuit/output/led/red

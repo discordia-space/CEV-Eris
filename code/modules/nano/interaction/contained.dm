@@ -1,9 +1,9 @@
 /*
-	This state checks if user is somewhere within src_object, as well as the default NanoUI interaction.
+	This state checks if user is somewhere within src_object, as well as the default69anoUI interaction.
 */
-GLOBAL_DATUM_INIT(contained_state, /datum/topic_state/contained_state, new)
+GLOBAL_DATUM_INIT(contained_state, /datum/topic_state/contained_state,69ew)
 
-/datum/topic_state/contained_state/can_use_topic(var/atom/src_object, var/mob/user)
+/datum/topic_state/contained_state/can_use_topic(var/atom/src_object,69ar/mob/user)
 	if(!src_object.contains(user))
 		return STATUS_CLOSE
 

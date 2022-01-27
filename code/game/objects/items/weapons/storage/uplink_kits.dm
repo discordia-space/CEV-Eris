@@ -30,8 +30,8 @@
 			new /obj/item/gun/projectile/revolver(src)
 			new /obj/item/ammo_magazine/slmagnum(src)
 			new /obj/item/card/emag(src)
-			new /obj/item/plastique(src)
-			new /obj/item/plastique(src)
+			new /obj/item/plasti69ue(src)
+			new /obj/item/plasti69ue(src)
 			return
 
 		if("murder")
@@ -74,7 +74,7 @@
 
 /obj/item/storage/box/syndie_kit
 	name = "box"
-	desc = "A sleek, sturdy box. This one is using state of the art folding to hold more inside!"
+	desc = "A sleek, sturdy box. This one is using state of the art folding to hold69ore inside!"
 	max_storage_space = DEFAULT_NORMAL_STORAGE //bigger so they hold their gear!
 	icon_state = "box_of_doom"
 	illustration = "writing_of_doom"
@@ -97,14 +97,14 @@
 
 /obj/item/storage/box/syndie_kit/imp_explosive
 	name = "box (E)"
-	desc = "A box with explosive implant inside. When you use it on yours enemy, you can choose three ways to use it: destroy limb, destroy your enemy or make a small explosion. Activation by phrase you choose too. One use."
+	desc = "A box with explosive implant inside. When you use it on yours enemy, you can choose three ways to use it: destroy limb, destroy your enemy or69ake a small explosion. Activation by phrase you choose too. One use."
 
 /obj/item/storage/box/syndie_kit/imp_explosive/populate_contents()
 	new /obj/item/implanter/explosive(src)
 
 /obj/item/storage/box/syndie_kit/imp_spying
 	name = "box (S)"
-	desc = "A box with spying implanter inside. Implant your contract target with it and wait 1 minute for the confirmation."
+	desc = "A box with spying implanter inside. Implant your contract target with it and wait 169inute for the confirmation."
 
 /obj/item/storage/box/syndie_kit/imp_spying/populate_contents()
 	new /obj/item/implanter/spying(src)
@@ -121,7 +121,7 @@
 	U3.passive_gain = 0
 
 /obj/item/storage/box/syndie_kit/space
-	name = "boxed voidsuit"
+	name = "boxed69oidsuit"
 
 /obj/item/storage/box/syndie_kit/space/populate_contents()
 	new /obj/item/clothing/suit/space/void/merc/boxed(src)
@@ -129,7 +129,7 @@
 
 /obj/item/storage/box/syndie_kit/chameleon
 	name = "chameleon kit"
-	desc = "Comes with all the clothes you need to impersonate most people.  Acting lessons sold seperately."
+	desc = "Comes with all the clothes you need to impersonate69ost people.  Acting lessons sold seperately."
 
 /obj/item/storage/box/syndie_kit/chameleon/populate_contents()
 	new /obj/item/clothing/under/chameleon(src)
@@ -156,7 +156,7 @@
 
 /obj/item/storage/box/syndie_kit/spy
 	name = "spy kit"
-	desc = "For when you want to conduct voyeurism from afar."
+	desc = "For when you want to conduct69oyeurism from afar."
 
 /obj/item/storage/box/syndie_kit/spy/populate_contents()
 	new /obj/item/device/spy_bug(src)
@@ -172,7 +172,7 @@
 // Guns
 /obj/item/storage/box/syndie_kit/dartgun
 	name  = "dartgun kit"
-	desc = "Just like a mosquito bite."
+	desc = "Just like a69os69uito bite."
 
 /obj/item/storage/box/syndie_kit/dartgun/populate_contents()
 	new /obj/item/gun/projectile/dartgun(src)
@@ -181,7 +181,7 @@
 
 /obj/item/storage/box/syndie_kit/pistol
 	name = "smooth operator"
-	desc = ".25 Caseless handgun with a single magazine and pocket holster for easy consealment."
+	desc = ".25 Caseless handgun with a single69agazine and pocket holster for easy consealment."
 
 /obj/item/storage/box/syndie_kit/pistol/populate_contents()
 	new /obj/item/gun/projectile/mandella(src)
@@ -216,7 +216,7 @@
 
 /obj/item/storage/box/syndie_kit/pug
 	name = "Pug box"
-	desc = "Pug kit with one M12 buckshot mag"
+	desc = "Pug kit with one6912 buckshot69ag"
 	icon_state = "box_of_doom_big"
 	w_class = ITEM_SIZE_HUGE
 
@@ -250,7 +250,7 @@
 
 /obj/item/storage/box/syndie_kit/cigarette
 	name = "\improper Tricky smokes"
-	desc = "Comes with the following brands of cigarettes, in this order: 2xFlash, 2xSmoke, 1xMindBreaker, 1xTricordrazine. Avoid mixing them up."
+	desc = "Comes with the following brands of cigarettes, in this order: 2xFlash, 2xSmoke, 1xMindBreaker, 1xTricordrazine. Avoid69ixing them up."
 
 /obj/item/storage/box/syndie_kit/cigarette/populate_contents()
 	var/obj/item/storage/fancy/cigarettes/pack
@@ -273,7 +273,7 @@
 	pack = new /obj/item/storage/fancy/cigarettes(src)
 	// Dylovene. Going with 1.5 rather than 1.6666666...
 	fill_cigarre_package(pack, list("potassium" = 1.5, "nitrogen" = 1.5, "silicon" = 1.5))
-	// Mindbreaker
+	//69indbreaker
 	fill_cigarre_package(pack, list("silicon" = 4.5))
 
 	pack.desc += " 'MB' has been scribbled on it."
@@ -284,12 +284,12 @@
 
 	new /obj/item/flame/lighter/zippo(src)
 
-/proc/fill_cigarre_package(var/obj/item/storage/fancy/cigarettes/C, var/list/reagents)
+/proc/fill_cigarre_package(var/obj/item/storage/fancy/cigarettes/C,69ar/list/reagents)
 	for(var/reagent in reagents)
-		C.reagents.add_reagent(reagent, reagents[reagent] * C.storage_slots)
+		C.reagents.add_reagent(reagent, reagents69reagent69 * C.storage_slots)
 
 /obj/item/storage/box/syndie_kit/ewar_voice
-	name = "Electrowarfare and Voice Synthesiser kit"
+	name = "Electrowarfare and69oice Synthesiser kit"
 	desc = "Kit for confounding organic and synthetic entities alike."
 
 /obj/item/storage/box/syndie_kit/ewar_voice/populate_contents()

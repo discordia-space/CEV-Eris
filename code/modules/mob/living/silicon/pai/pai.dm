@@ -4,17 +4,17 @@
 	icon_state = "repairbot"
 	layer = BELOW_MOB_LAYER
 
-	emote_type = 2		// pAIs emotes are heard, not seen, so they can be seen through a container (eg. person)
+	emote_type = 2		// pAIs emotes are heard,69ot seen, so they can be seen through a container (eg. person)
 	pass_flags = 1
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 
 	can_pull_size = ITEM_SIZE_SMALL
-	can_pull_mobs = MOB_PULL_SMALLER
+	can_pull_mobs =69OB_PULL_SMALLER
 
 	idcard_type = /obj/item/card/id
 
 	var/network = "SS13"
-	var/obj/machinery/camera/current = null
+	var/obj/machinery/camera/current =69ull
 
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
@@ -40,22 +40,22 @@
 
 	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
-	var/master				// Name of the one who commands us
-	var/master_dna			// DNA string for owner verification
-							// Keeping this separate from the laws var, it should be much more difficult to modify
-	var/pai_law0 = "Serve your master."
-	var/pai_laws				// String for additional operating instructions our master might give us
+	var/master				//69ame of the one who commands us
+	var/master_dna			// DNA string for owner69erification
+							// Keeping this separate from the laws69ar, it should be69uch69ore difficult to69odify
+	var/pai_law0 = "Serve your69aster."
+	var/pai_laws				// String for additional operating instructions our69aster69ight give us
 
-	var/silence_time			// Timestamp when we were item_flags & SILENT (normally via EMP burst), set to null after silence has faded
+	var/silence_time			// Timestamp when we were item_flags & SILENT (normally69ia EMP burst), set to69ull after silence has faded
 
-// Various software-specific vars
+//69arious software-specific69ars
 
 	var/temp				// General error reporting text contained here will typically be shown once and cleared
-	var/screen				// Which screen our main window displays
-	var/subscreen			// Which specific function of the main screen is being displayed
+	var/screen				// Which screen our69ain window displays
+	var/subscreen			// Which specific function of the69ain screen is being displayed
 
-	var/secHUD = FALSE			// Toggles whether the Security HUD is active or not
-	var/medHUD = FALSE			// Toggles whether the Medical  HUD is active or not
+	var/secHUD = FALSE			// Toggles whether the Security HUD is active or69ot
+	var/medHUD = FALSE			// Toggles whether the69edical  HUD is active or69ot
 
 	var/medical_cannotfind = 0
 	var/datum/data/record/medicalActive1		// Datacore record declarations for record software
@@ -66,20 +66,20 @@
 	var/datum/data/record/securityActive2
 
 	var/obj/machinery/door/hackdoor		// The airlock being hacked
-	var/hackprogress = 0				// Possible values: 0 - 1000, >= 1000 means the hack is complete and will be reset upon next check
+	var/hackprogress = 0				// Possible69alues: 0 - 1000, >= 100069eans the hack is complete and will be reset upon69ext check
 	var/hack_aborted = 0
 
 	var/obj/item/radio/integrated/signal/sradio // AI's signaller
 
-	var/translator_on = 0 // keeps track of the translator module
+	var/translator_on = 0 // keeps track of the translator69odule
 
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
 	src.loc = paicard
 	card = paicard
-	sradio = new(src)
+	sradio =69ew(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio(src.card)
+			card.radio =69ew /obj/item/device/radio(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -98,7 +98,7 @@
 /mob/living/silicon/pai/proc/show_silenced()
 	if(src.silence_time)
 		var/timeleft = round((silence_time - world.timeofday)/10 ,1)
-		stat(null, "Communications system reboot in -[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]")
+		stat(null, "Communications system reboot in -69(timeleft / 60) % 6069:69add_zero(num2text(timeleft % 60), 2)69")
 
 
 /mob/living/silicon/pai/Stat()
@@ -107,7 +107,7 @@
 	if (src.client.statpanel == "Status")
 		show_silenced()
 
-/mob/living/silicon/pai/check_eye(var/mob/user as mob)
+/mob/living/silicon/pai/check_eye(var/mob/user as69ob)
 	if (!src.current)
 		return -1
 	return 0
@@ -121,24 +121,24 @@
 	return
 
 /mob/living/silicon/pai/emp_act(severity)
-	// Silence for 2 minutes
+	// Silence for 269inutes
 	// 20% chance to kill
 		// 33% chance to unbind
 		// 33% chance to change prime directive (based on severity)
-		// 33% chance of no additional effect
+		// 33% chance of69o additional effect
 
-	src.silence_time = world.timeofday + 120 * 10		// Silence for 2 minutes
-	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
+	src.silence_time = world.timeofday + 120 * 10		// Silence for 269inutes
+	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and69essaging functionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
-		for (var/mob/M in viewers(T))
-			M.show_message("\red A shower of sparks spray from [src]'s inner workings.", 3, "\red You hear and smell the ozone hiss of electrical sparks being expelled violently.", 2)
+		for (var/mob/M in69iewers(T))
+			M.show_message("\red A shower of sparks spray from 69src69's inner workings.", 3, "\red You hear and smell the ozone hiss of electrical sparks being expelled69iolently.", 2)
 		return src.death(0)
 
 	switch(pick(1,2,3))
 		if(1)
-			src.master = null
-			src.master_dna = null
+			src.master =69ull
+			src.master_dna =69ull
 			to_chat(src, "<font color=green>You feel unbound.</font>")
 		if(2)
 			var/command
@@ -146,7 +146,7 @@
 				command = pick("Serve", "Love", "Fool", "Entice", "Observe", "Judge", "Respect", "Educate", "Amuse", "Entertain", "Glorify", "Memorialize", "Analyze")
 			else
 				command = pick("Serve", "Kill", "Love", "Hate", "Disobey", "Devour", "Fool", "Enrage", "Entice", "Observe", "Judge", "Respect", "Disrespect", "Consume", "Educate", "Destroy", "Disgrace", "Amuse", "Entertain", "Ignite", "Glorify", "Memorialize", "Analyze")
-			src.pai_law0 = "[command] your master."
+			src.pai_law0 = "69command69 your69aster."
 			to_chat(src, "<font color=green>Pr1m3 d1r3c71v3 uPd473D.</font>")
 		if(3)
 			to_chat(src, "<font color=green>You feel an electric surge run through your circuitry and become acutely aware at how lucky you are that you can still feel at all.</font>")
@@ -158,7 +158,7 @@
 		return 0
 	if (stat == 2 || !C.status || !(src.network in C.network)) return 0
 
-	// ok, we're alive, camera is good and in our network...
+	// ok, we're alive, camera is good and in our69etwork...
 
 	src.set_machine(src)
 	src.current = C
@@ -167,68 +167,68 @@
 
 /mob/living/silicon/pai/verb/reset_record_view()
 	set category = "pAI Commands"
-	set name = "Reset Records Software"
+	set69ame = "Reset Records Software"
 
-	securityActive1 = null
-	securityActive2 = null
+	securityActive1 =69ull
+	securityActive2 =69ull
 	security_cannotfind = 0
-	medicalActive1 = null
-	medicalActive2 = null
+	medicalActive1 =69ull
+	medicalActive2 =69ull
 	medical_cannotfind = 0
 	SSnano.update_uis(src)
 	to_chat(usr, SPAN_NOTICE("You reset your record-viewing software."))
 
 /mob/living/silicon/pai/cancel_camera()
 	set category = "pAI Commands"
-	set name = "Cancel Camera View"
+	set69ame = "Cancel Camera69iew"
 	src.reset_view(null)
 	src.unset_machine()
-	src.cameraFollow = null
+	src.cameraFollow =69ull
 
-//Addition by Mord_Sith to define AI's network change ability
+//Addition by69ord_Sith to define AI's69etwork change ability
 /*
 /mob/living/silicon/pai/proc/pai_network_change()
 	set category = "pAI Commands"
-	set name = "Change Camera Network"
+	set69ame = "Change Camera69etwork"
 	src.reset_view(null)
 	src.unset_machine()
-	src.cameraFollow = null
-	var/cameralist[0]
+	src.cameraFollow =69ull
+	var/cameralist69069
 
 	if(usr.stat == 2)
-		to_chat(usr, "You can't change your camera network because you are dead!")
+		to_chat(usr, "You can't change your camera69etwork because you are dead!")
 		return
 
 	for (var/obj/machinery/camera/C in Cameras)
 		if(!C.status)
 			continue
 		else
-			if(C.network != "CREED" && C.network != "thunder" && C.network != "RD" && C.network != "plasma" && C.network != "Prison") COMPILE ERROR! This will have to be updated as camera.network is no longer a string, but a list instead
-				cameralist[C.network] = C.network
+			if(C.network != "CREED" && C.network != "thunder" && C.network != "RD" && C.network != "plasma" && C.network != "Prison") COMPILE ERROR! This will have to be updated as camera.network is69o longer a string, but a list instead
+				cameralist69C.network69 = C.network
 
-	src.network = input(usr, "Which network would you like to view?") as null|anything in cameralist
-	to_chat(src, "\blue Switched to [src.network] camera network.")
-//End of code by Mord_Sith
+	src.network = input(usr, "Which69etwork would you like to69iew?") as69ull|anything in cameralist
+	to_chat(src, "\blue Switched to 69src.network69 camera69etwork.")
+//End of code by69ord_Sith
 */
 
 
 /*
-// Debug command - Maybe should be added to admin verbs later
-/mob/verb/makePAI(var/turf/t in view())
-	var/obj/item/device/paicard/card = new(t)
-	var/mob/living/silicon/pai/pai = new(card)
+// Debug command -69aybe should be added to admin69erbs later
+/mob/verb/makePAI(var/turf/t in69iew())
+	var/obj/item/device/paicard/card =69ew(t)
+	var/mob/living/silicon/pai/pai =69ew(card)
 	pai.key = src.key
 	card.setPersonality(pai)
 
 */
 
 // Procs/code after this point is used to convert the stationary pai item into a
-// mobile pai mob. This also includes handling some of the general shit that can occur
-// to it. Really this deserves its own file, but for the moment it can sit here. ~ Z
+//69obile pai69ob. This also includes handling some of the general shit that can occur
+// to it. Really this deserves its own file, but for the69oment it can sit here. ~ Z
 
 /mob/living/silicon/pai/verb/fold_out()
 	set category = "pAI Commands"
-	set name = "Unfold Chassis"
+	set69ame = "Unfold Chassis"
 
 	if(stat || sleeping || paralysis || weakened)
 		return
@@ -241,9 +241,9 @@
 
 	last_special = world.time + 100
 
-	//I'm not sure how much of this is necessary, but I would rather avoid issues.
+	//I'm69ot sure how69uch of this is69ecessary, but I would rather avoid issues.
 	if(istype(card.loc,/obj/item/rig_module))
-		to_chat(src, "There is no room to unfold inside this rig module. You're good and stuck.")
+		to_chat(src, "There is69o room to unfold inside this rig69odule. You're good and stuck.")
 		return 0
 	else if(ismob(card.loc))
 		var/mob/holder = card.loc
@@ -253,7 +253,7 @@
 				if(card in affecting.implants)
 					affecting.take_damage(rand(30,50))
 					affecting.implants -= card
-					H.visible_message(SPAN_DANGER("\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!"))
+					H.visible_message(SPAN_DANGER("\The 69src69 explodes out of \the 69H69's 69affecting.name69 in shower of gore!"))
 					break
 		holder.drop_from_inventory(card)
 
@@ -262,14 +262,14 @@
 	src.forceMove(get_turf(card))
 
 	card.forceMove(src)
-	card.screen_loc = null
+	card.screen_loc =69ull
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
+	if(istype(T)) T.visible_message("<b>69src69</b> folds outwards, expanding into a69obile form.")
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
-	set name = "Collapse Chassis"
+	set69ame = "Collapse Chassis"
 
 	if(stat || sleeping || paralysis || weakened)
 		return
@@ -284,38 +284,38 @@
 
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "pAI Commands"
-	set name = "Choose Chassis"
+	set69ame = "Choose Chassis"
 
 	var/choice
 	var/finalized = "No"
 	while(finalized == "No" && src.client)
 
-		choice = input(usr,"What would you like to use for your mobile chassis icon? This decision can only be made once.") as null|anything in possible_chassis
+		choice = input(usr,"What would you like to use for your69obile chassis icon? This decision can only be69ade once.") as69ull|anything in possible_chassis
 		if(!choice) return
 
-		icon_state = possible_chassis[choice]
+		icon_state = possible_chassis69choice69
 		finalized = alert("Look at your sprite. Is this what you wish to use?",,"No","Yes")
 
-	chassis = possible_chassis[choice]
+	chassis = possible_chassis69choice69
 	verbs -= /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/proc/hide
 
 /mob/living/silicon/pai/proc/choose_verbs()
 	set category = "pAI Commands"
-	set name = "Choose Speech Verbs"
+	set69ame = "Choose Speech69erbs"
 
-	var/choice = input(usr,"What theme would you like to use for your speech verbs? This decision can only be made once.") as null|anything in possible_say_verbs
+	var/choice = input(usr,"What theme would you like to use for your speech69erbs? This decision can only be69ade once.") as69ull|anything in possible_say_verbs
 	if(!choice) return
 
-	var/list/sayverbs = possible_say_verbs[choice]
-	speak_statement = sayverbs[1]
-	speak_exclamation = sayverbs[(sayverbs.len>1 ? 2 : sayverbs.len)]
-	speak_query = sayverbs[(sayverbs.len>2 ? 3 : sayverbs.len)]
+	var/list/sayverbs = possible_say_verbs69choice69
+	speak_statement = sayverbs69169
+	speak_exclamation = sayverbs69(sayverbs.len>1 ? 2 : sayverbs.len)69
+	speak_query = sayverbs69(sayverbs.len>2 ? 3 : sayverbs.len)69
 
 	verbs -= /mob/living/silicon/pai/proc/choose_verbs
 
 /mob/living/silicon/pai/lay_down()
-	set name = "Rest"
+	set69ame = "Rest"
 	set category = "IC"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
@@ -329,28 +329,28 @@
 			resting = FALSE
 		else if (!resting)
 			resting = TRUE
-		icon_state = resting ? "[chassis]_rest" : "[chassis]"
-		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+		icon_state = resting ? "69chassis69_rest" : "69chassis69"
+		to_chat(src, "<span class='notice'>You are69ow 69resting ? "resting" : "getting up"69</span>")
 
 	canmove = !resting
 
-//Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
+//Overriding this will stop a69umber of headaches down the track.
+/mob/living/silicon/pai/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(W.force)
-		visible_message(SPAN_DANGER("[user.name] attacks [src] with [W]!"))
+		visible_message(SPAN_DANGER("69user.name69 attacks 69src69 with 69W69!"))
 		src.adjustBruteLoss(W.force)
 		src.updatehealth()
 	else
-		visible_message(SPAN_WARNING("[user.name] bonks [src] harmlessly with [W]."))
+		visible_message(SPAN_WARNING("69user.name69 bonks 69src69 harmlessly with 69W69."))
 	spawn(1)
 		if(stat != 2) close_up()
 	return
 
-/mob/living/silicon/pai/attack_hand(mob/user as mob)
-	visible_message(SPAN_DANGER("[user.name] boops [src] on the head."))
+/mob/living/silicon/pai/attack_hand(mob/user as69ob)
+	visible_message(SPAN_DANGER("69user.name69 boops 69src69 on the head."))
 	close_up()
 
-//I'm not sure how much of this is necessary, but I would rather avoid issues.
+//I'm69ot sure how69uch of this is69ecessary, but I would rather avoid issues.
 /mob/living/silicon/pai/proc/close_up()
 
 	last_special = world.time + 100
@@ -359,7 +359,7 @@
 		return
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
+	if(istype(T)) T.visible_message("<b>69src69</b>69eatly folds inwards, compacting down to a rectangular card.")
 
 	src.stop_pulling()
 	src.client.perspective = EYE_PERSPECTIVE
@@ -377,25 +377,25 @@
 		H.loc = get_turf(src)
 		src.loc = get_turf(H)
 
-	// Move us into the card and move the card to the ground.
+	//69ove us into the card and69ove the card to the ground.
 	src.loc = card
 	card.loc = get_turf(card)
 	src.forceMove(card)
 	card.forceMove(card.loc)
 	canmove = 1
 	resting = 0
-	icon_state = "[chassis]"
+	icon_state = "69chassis69"
 
-// No binary for pAIs.
+//69o binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
 	return 0
 
 // Handle being picked up.
-/mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
+/mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber,69ar/self_drop)
 	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
-	H.icon_state = "pai-[icon_state]"
+	H.icon_state = "pai-69icon_state69"
 	H.update_wear_icon()
 	return H
 

@@ -3,14 +3,14 @@
 	desc = "A pair of binoculars."
 	icon_state = "binoculars"
 
-	flags = CONDUCT
+	fla69s = CONDUCT
 	force = WEAPON_FORCE_WEAK
 	w_class = ITEM_SIZE_SMALL
 	throwforce = WEAPON_FORCE_WEAK
-	throw_range = 15
+	throw_ran69e = 15
 	throw_speed = 3
 
-	matter = list(MATERIAL_PLASTIC = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 3,69ATERIAL_69LASS = 1)
 
 
 /obj/item/device/binoculars/attack_self(mob/user)

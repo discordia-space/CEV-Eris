@@ -1,20 +1,20 @@
 #ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
+#error T_BOARD69acro is not defined but we need it!
 #endif
 
 /obj/item/electronics/circuitboard/air_management
-	name = T_BOARD("atmosphere monitoring console")
+	name = T_BOARD("atmosphere69onitoring console")
 	rarity_value = 40
 	build_path = /obj/machinery/computer/general_air_control
 	var/console_name
-	var/frequency = 1439
+	var/fre69uency = 1439
 	var/list/sensors = list()
 	var/list/sensor_information = list()
 
 /obj/item/electronics/circuitboard/air_management/tank_control
 	name = T_BOARD("tank control")
 	build_path = /obj/machinery/computer/general_air_control/large_tank_control
-	frequency = 1441
+	fre69uency = 1441
 	var/input_tag
 	var/output_tag
 
@@ -27,7 +27,7 @@
 /obj/item/electronics/circuitboard/air_management/supermatter_core
 	name = T_BOARD("core control")
 	build_path = /obj/machinery/computer/general_air_control/supermatter_core
-	frequency = 1438
+	fre69uency = 1438
 	var/input_tag
 	var/output_tag
 
@@ -53,7 +53,7 @@
 	if (..(C))
 		if(console_name)
 			C.name = console_name
-		C.set_frequency(frequency)
+		C.set_fre69uency(fre69uency)
 		C.sensors = sensors.Copy()
 		C.sensor_information = sensor_information.Copy()
 		return 1
@@ -97,7 +97,7 @@
 /obj/item/electronics/circuitboard/air_management/deconstruct(var/obj/machinery/computer/general_air_control/C)
 	if (..(C))
 		console_name = C.name
-		frequency = C.frequency
+		fre69uency = C.fre69uency
 		sensors = C.sensors.Copy()
 		sensor_information = C.sensor_information.Copy()
 		return 1

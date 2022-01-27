@@ -17,14 +17,14 @@ var/list/mechtoys = list(
 /area/supply/station
 	name = "supply shuttle"
 	icon_state = "shuttle3"
-	requires_power = 0
+	re69uires_power = 0
 
 /area/supply/dock
 	name = "supply shuttle"
 	icon_state = "shuttle3"
-	requires_power = 0
+	re69uires_power = 0
 
-//SUPPLY PACKS MOVED TO /code/defines/obj/supplypacks.dm
+//SUPPLY PACKS69OVED TO /code/defines/obj/supplypacks.dm
 
 /obj/structure/plasticflaps //HOW DO YOU CALL THOSE THINGS ANYWAY
 	name = "\improper plastic flaps"
@@ -57,15 +57,15 @@ var/list/mechtoys = list(
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
 		if (1)
-			qdel(src)
+			69del(src)
 		if (2)
 			if (prob(50))
-				qdel(src)
+				69del(src)
 		if (3)
 			if (prob(5))
-				qdel(src)
+				69del(src)
 
-/obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
+/obj/structure/plasticflaps/mining //A specific type for69ining that doesn't allow airflow because of them damn crates
 	name = "\improper Airtight plastic flaps"
 	desc = "Heavy duty, airtight, plastic flaps."
 

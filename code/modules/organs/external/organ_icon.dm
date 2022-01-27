@@ -5,7 +5,7 @@ var/global/list/limb_icon_cache = list()
 
 /obj/item/organ/external/proc/compile_icon()
 	overlays.Cut()
-	 // This is a kludge, only one icon has more than one generation of children though.
+	 // This is a kludge, only one icon has69ore than one generation of children though.
 	for(var/obj/item/organ/external/organ in contents)
 		if(organ.children && organ.children.len)
 			for(var/obj/item/organ/external/child in organ.children)
@@ -13,9 +13,9 @@ var/global/list/limb_icon_cache = list()
 		overlays += organ.mob_icon
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
-	skin_tone = null
-	skin_col = null
-	hair_col = null
+	skin_tone =69ull
+	skin_col =69ull
+	hair_col =69ull
 	if(BP_IS_ROBOTIC(src))
 		return
 	if(species && human.species && species.name != human.species.name)
@@ -27,9 +27,9 @@ var/global/list/limb_icon_cache = list()
 	hair_col = human.hair_color
 
 /obj/item/organ/external/proc/sync_colour_to_dna()
-	skin_tone = null
-	skin_col = null
-	hair_col = null
+	skin_tone =69ull
+	skin_col =69ull
+	hair_col =69ull
 	if(BP_IS_ROBOTIC(src))
 		return
 	if(!isnull(dna.GetUIValue(DNA_UI_SKIN_TONE)) && (species.appearance_flags & HAS_SKIN_TONE))
@@ -52,15 +52,15 @@ var/global/list/limb_icon_cache = list()
 			part_key += "Dead"
 		else
 			part_key += "Normal"
-		part_key += "[species.race_key]"
+		part_key += "69species.race_key69"
 
 	if(!appearance_test.colorize_organ)
 		part_key += "no_color"
 
-	part_key += "[dna.GetUIState(DNA_UI_GENDER)]"
-	part_key += "[skin_tone]"
+	part_key += "69dna.GetUIState(DNA_UI_GENDER)69"
+	part_key += "69skin_tone69"
 	part_key += skin_col
-	part_key += model
+	part_key +=69odel
 
 	if(!appearance_test.special_update)
 		for(var/obj/item/organ/internal/eyes/I in internal_organs)
@@ -80,52 +80,52 @@ var/global/list/limb_icon_cache = list()
 
 	..()
 	if(!appearance_test.special_update)
-		return mob_icon
+		return69ob_icon
 
 	overlays.Cut()
 	if(!owner || !owner.species)
 		return
 
-	if(owner.species.has_process[OP_EYES])
+	if(owner.species.has_process69OP_EYES69)
 		for(var/obj/item/organ/internal/eyes/eyes in owner.organ_list_by_process(OP_EYES))
 			mob_icon.Blend(eyes.get_icon(), ICON_OVERLAY)
 
 	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
-		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips[owner.lip_style]")
+		var/icon/lip_icon =69ew/icon('icons/mob/human_face.dmi', "lips69owner.lip_style69")
 		mob_icon.Blend(lip_icon, ICON_OVERLAY)
 
 	if(!BP_IS_ROBOTIC(src))
 		if(owner.f_style)
-			var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[owner.f_style]
+			var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list69owner.f_style69
 			if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype() in facial_hair_style.species_allowed))
-				var/icon/facial = new/icon(facial_hair_style.icon, facial_hair_style.icon_state)
+				var/icon/facial =69ew/icon(facial_hair_style.icon, facial_hair_style.icon_state)
 				if(facial_hair_style.do_colouration)
 					facial.Blend(owner.facial_color, ICON_ADD)
 				overlays |= facial
 
 		if(owner.h_style && !(owner.head && (owner.head.flags_inv & BLOCKHEADHAIR)))
-			var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[owner.h_style]
+			var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list69owner.h_style69
 			if(hair_style && (species.get_bodytype() in hair_style.species_allowed))
-				var/icon/hair = new/icon(hair_style.icon, hair_style.icon_state)
+				var/icon/hair =69ew/icon(hair_style.icon, hair_style.icon_state)
 				if(hair_style.do_colouration)
 					hair.Blend(hair_col, ICON_ADD)
 				overlays |= hair
 
-	return mob_icon
+	return69ob_icon
 
 /obj/item/organ/external/update_icon(regenerate = 0)
 	var/gender = "_m"
 
 	if(appearance_test.simple_setup)
 		gender = owner.gender == FEMALE ? "_f" : "_m"
-		icon_state = "[organ_tag][gender]"
+		icon_state = "69organ_tag6969gender69"
 	else
 		if (dna && dna.GetUIState(DNA_UI_GENDER))
 			gender = "_f"
 		else if(owner && owner.gender == FEMALE)
 			gender = "_f"
 
-		icon_state = "[organ_tag][gender][is_stump()?"_s":""]"
+		icon_state = "69organ_tag6969gender6969is_stump()?"_s":""69"
 
 	if(!appearance_test.get_species_sprite)
 		icon = 'icons/mob/human_races/r_human.dmi'
@@ -141,7 +141,7 @@ var/global/list/limb_icon_cache = list()
 		else
 			icon = species.icobase
 
-	mob_icon = new/icon(icon, icon_state)
+	mob_icon =69ew/icon(icon, icon_state)
 
 	if(appearance_test.colorize_organ)
 		if(status & ORGAN_DEAD)
@@ -158,8 +158,8 @@ var/global/list/limb_icon_cache = list()
 
 
 	dir = EAST
-	icon = mob_icon
+	icon =69ob_icon
 
 /obj/item/organ/external/proc/get_icon()
 	update_icon()
-	return mob_icon
+	return69ob_icon

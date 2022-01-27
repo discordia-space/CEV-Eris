@@ -17,7 +17,7 @@
 		/mob/living/simple_animal/hostile/carp/pike,
 		/mob/living/simple_animal/hostile/hivebot,
 		/mob/living/simple_animal/hostile/viscerator,
-		/mob/living/simple_animal/hostile/viscerator)//duplicates to rig chances towards spawning more weaker enemies, but in favour of generally spawning more enemies
+		/mob/living/simple_animal/hostile/viscerator)//duplicates to rig chances towards spawning69ore weaker enemies, but in favour of generally spawning69ore enemies
 	var/turfs_around = list()
 	var/victims_to_teleport = list()
 	var/obj/crawler/spawnpoint/target
@@ -79,19 +79,19 @@
 			monsoon_coefficient = (rand(5, 30)/10)
 
 	ticks_before_next_summon = rand(10, 20)
-	var/mobs_to_spawn = rand(min_mobs, max_mobs)
+	var/mobs_to_spawn = rand(min_mobs,69ax_mobs)
 	while(mobs_to_spawn)
 		var/mobchoice = pick(mobgenlist)
-		var/mob/living/simple_animal/newmob = new mobchoice(pick(turfs_around))
+		var/mob/living/simple_animal/newmob = new69obchoice(pick(turfs_around))
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 		sparks.set_up(3, 0, get_turf(newmob.loc))
 		sparks.start()
 		newmob.faction = "asteroid_belt" //so they won't just kill each other
-		if(prob(10 * monsoon_coefficient)) //elite mobs, rare, but more annoying
+		if(prob(10 *69onsoon_coefficient)) //elite69obs, rare, but69ore annoying
 			newmob.maxHealth = newmob.maxHealth * 1.2
 			newmob.health = newmob.maxHealth
 			newmob.color = "green"
-		else if(prob(10 * monsoon_coefficient))
+		else if(prob(10 *69onsoon_coefficient))
 			newmob.harm_intent_damage = newmob.harm_intent_damage * 1.5
 			newmob.melee_damage_lower = newmob.melee_damage_lower * 1.5
 			newmob.melee_damage_upper = newmob.melee_damage_upper * 1.5
@@ -106,7 +106,7 @@
 	for(var/mob/living/simple_animal/SA in range(8, src))//So wounded people won't fucking die when returning
 		SA.adjustBruteLoss(50)
 
-	for(var/mob/living/carbon/human/H in range(8, src))//Only human mobs are allowed, otherwise you'd end up with a fuckton of carps in the dungeon
+	for(var/mob/living/carbon/human/H in range(8, src))//Only human69obs are allowed, otherwise you'd end up with a fuckton of carps in the dungeon
 		victims_to_teleport += H
 
 	for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
@@ -115,8 +115,8 @@
 	for(var/mob/living/exosuit/E in range(8, src))//And exosuits too
 		victims_to_teleport += E
 
-	for(var/mob/living/M in victims_to_teleport)
-		go_to_bluespace(get_turf(src), 3, FALSE, M, get_turf(target))
+	for(var/mob/living/M in69ictims_to_teleport)
+		go_to_bluespace(get_turf(src), 3, FALSE,69, get_turf(target))
 
 	new /obj/structure/scrap_spawner/science/large(src.loc)
 
@@ -171,7 +171,7 @@
 
 	playsound(src.loc, 'sound/weapons/flash.ogg', 100, 1)
 
-	for (var/mob/living/O in viewers(src, null))
+	for (var/mob/living/O in69iewers(src, null))
 		if (get_dist(src, O) > 8)
 			continue
 
@@ -186,14 +186,14 @@
 				return
 			if(eye_efficiency < 50 && prob(100 - eye_efficiency  + 20))
 				if (O.HUDtech.Find("flash"))
-					flick("e_flash", O.HUDtech["flash"])
+					flick("e_flash", O.HUDtech69"flash"69)
 
 		else
 			if(!O.blinded)
 				if (istype(O,/mob/living/silicon/ai))
 					return
 				if (O.HUDtech.Find("flash"))
-					flick("flash", O.HUDtech["flash"])
+					flick("flash", O.HUDtech69"flash"69)
 		O.Weaken(flash_time)
 
 		sleep(1)
@@ -201,7 +201,7 @@
 
 /obj/rogue/telebeacon
 	name = "ancient beacon"
-	desc = "A metallic pylon, covered in rust. It seems still operational."
+	desc = "A69etallic pylon, covered in rust. It seems still operational."
 	icon = 'icons/obj/bluespace_beacon.dmi'
 	icon_state = "beacon_off"
 	var/victims_to_teleport = list()
@@ -231,7 +231,7 @@
 	else if(active)
 		to_chat(user, "You reach out and touch the beacon. A strange feeling envelops you.")
 
-		for(var/mob/living/carbon/human/H in range(8, src))//Only human mobs are allowed, otherwise you'd end up with a fuckton of cockroaches in space
+		for(var/mob/living/carbon/human/H in range(8, src))//Only human69obs are allowed, otherwise you'd end up with a fuckton of cockroaches in space
 			victims_to_teleport += H
 
 		for(var/mob/living/silicon/robot/R in range(8, src))//Borgs too
@@ -239,8 +239,8 @@
 
 		for(var/obj/structure/closet/C in range(8, src))//Clostes as well, for transport and storage
 			victims_to_teleport += C
-		for(var/atom/movable/M in victims_to_teleport)
-			go_to_bluespace(get_turf(src), 3, FALSE, M, get_turf(target))
+		for(var/atom/movable/M in69ictims_to_teleport)
+			go_to_bluespace(get_turf(src), 3, FALSE,69, get_turf(target))
 			sleep(1)
 			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 			sparks.set_up(3, 0, get_turf(loc))
@@ -249,7 +249,7 @@
 
 /obj/rogue/telebeacon/return_beacon
 	name = "ancient return beacon"
-	desc = "A metallic pylon, covered in rust. It seems still operational. Barely."
+	desc = "A69etallic pylon, covered in rust. It seems still operational. Barely."
 
 
 /obj/rogue/telebeacon/return_beacon/attack_hand(mob/user)

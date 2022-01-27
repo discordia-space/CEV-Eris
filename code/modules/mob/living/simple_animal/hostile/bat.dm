@@ -36,18 +36,18 @@
 	faction = "scarybat"
 	var/mob/living/owner
 
-/mob/living/simple_animal/hostile/scarybat/New(loc, mob/living/L as mob)
+/mob/living/simple_animal/hostile/scarybat/New(loc,69ob/living/L as69ob)
 	..()
 	if(istype(L))
 		owner = L
 
 /mob/living/simple_animal/hostile/scarybat/allow_spacemove()
-	return ..()	//No drifting in space for space carp!	//original comments do not steal
+	return ..()	//No drifting in space for space carp!	//original comments do69ot steal
 
 /mob/living/simple_animal/hostile/scarybat/FindTarget()
 	. = ..()
 	if(.)
-		emote("flutters towards [.]")
+		emote("flutters towards 69.69")
 
 /mob/living/simple_animal/hostile/scarybat/Found(var/atom/A)//This is here as a potential override to pick a specific target if available
 	if(istype(A) && A == owner)
@@ -60,7 +60,7 @@
 	if(istype(L))
 		if(prob(15))
 			L.Stun(1)
-			L.visible_message(SPAN_DANGER("\the [src] scares \the [L]!"))
+			L.visible_message(SPAN_DANGER("\the 69src69 scares \the 69L69!"))
 
 /mob/living/simple_animal/hostile/scarybat/cult
 	faction = "cult"

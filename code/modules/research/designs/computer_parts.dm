@@ -1,4 +1,4 @@
-// Modular computer components
+//69odular computer components
 /datum/design/research/item/computer_part
 	build_type = AUTOLATHE | PROTOLATHE
 	category = CAT_MODCOMP
@@ -52,7 +52,7 @@
 	starts_unlocked = TRUE
 
 
-// Network cards
+//69etwork cards
 /datum/design/research/item/computer_part/netcard
 	build_type = IMPRINTER
 

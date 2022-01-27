@@ -1,10 +1,10 @@
 /*
-	Wormholes is an uncommon moderate event which spawns several connected pairs of wormholes around the
-	ship.These wormholes are semi-stable and will last for a significant quantity of time. Anywhere from
-	a few minutes to several hours, effectively permanantly connecting areas.
+	Wormholes is an uncommon69oderate event which spawns several connected pairs of wormholes around the
+	ship.These wormholes are semi-stable and will last for a significant 69uantity of time. Anywhere from
+	a few69inutes to several hours, effectively permanantly connecting areas.
 
-	This may require engineering to wall them off, or ironhammer to guard them, to prevent unauthorised access
-	If conveniently placed,they may also offer new, rapid transit routes around the ship
+	This69ay re69uire engineering to wall them off, or ironhammer to guard them, to prevent unauthorised access
+	If conveniently placed,they69ay also offer new, rapid transit routes around the ship
 */
 /datum/storyevent/wormholes
 	id = "wormholes"
@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////
 /datum/event/wormholes
 	//The duration ranges from fairly long, to basically forever
-	var/min_duration = 5 MINUTES
+	var/min_duration = 569INUTES
 	var/max_duration = 3 HOURS
 
 	var/number_of_wormholes
@@ -30,7 +30,7 @@
 	for (var/i = 1; i <= number_of_wormholes*2; i++)
 		var/area/A
 		if (prob(15))
-			//15% chance to allow maintenance areas in the search
+			//15% chance to allow69aintenance areas in the search
 			A = random_ship_area(TRUE, FALSE)
 		else
 			A = random_ship_area(TRUE, TRUE)
@@ -49,5 +49,5 @@
 	for (var/i = 1; i <= number_of_wormholes; i++)
 		var/turf/enter = pick_n_take(wormhole_tiles)
 		var/turf/exit = pick_n_take(wormhole_tiles)
-		new /obj/effect/portal/wormhole(enter, rand(min_duration, max_duration),exit)
+		new /obj/effect/portal/wormhole(enter, rand(min_duration,69ax_duration),exit)
 

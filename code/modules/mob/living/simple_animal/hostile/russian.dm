@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/russian
 	name = "russian"
-	desc = "For the Motherland!"
+	desc = "For the69otherland!"
 	icon_state = "russianmelee"
 	icon_dead = "russian_dead" //TODO: that icon doesn't exist
 	icon_gib = "syndicate_gib"

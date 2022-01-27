@@ -16,7 +16,7 @@ var/global/obj/machinery/power/eotp/eotp
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-	var/list/rewards = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF, MATERIAL_REWARD, ENERGY_REWARD)
+	var/list/rewards = list(ARMAMENTS, ALERT, INSPIRATION, ODDITY, STAT_BUFF,69ATERIAL_REWARD, ENERGY_REWARD)
 	var/list/current_rewards
 
 	var/list/materials = list(/obj/item/stack/material/gold = 60,
@@ -38,9 +38,9 @@ var/global/obj/machinery/power/eotp/eotp
 
 	var/stat_buff_power = 10
 
-	var/power_cooldown = 1 MINUTES
+	var/power_cooldown = 169INUTES
 	var/last_power_update = 0
-	var/rescan_cooldown = 10 MINUTES
+	var/rescan_cooldown = 1069INUTES
 	var/last_rescan = 0
 
 /obj/machinery/power/eotp/New()
@@ -54,8 +54,8 @@ var/global/obj/machinery/power/eotp/eotp
 		var/mob/living/carbon/human/H = user
 		var/obj/item/implant/core_implant/I = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(I && I.active && I.wearer)
-			var/comment = "Power level: [power]/[max_power]."
-			comment += "\nObservation level: [observation]/[max_observation]."
+			var/comment = "Power level: 69power69/69max_power69."
+			comment += "\nObservation level: 69observation69/69max_observation69."
 			to_chat(user, SPAN_NOTICE(comment))
 
 /obj/machinery/power/eotp/Process()
@@ -95,11 +95,11 @@ var/global/obj/machinery/power/eotp/eotp
 	return observation
 
 /obj/machinery/power/eotp/proc/updateObservation()
-	if(observation > max_observation)
-		observation = max_observation
+	if(observation >69ax_observation)
+		observation =69ax_observation
 
-	if(observation < min_observation)
-		observation = min_observation
+	if(observation <69in_observation)
+		observation =69in_observation
 
 /obj/machinery/power/eotp/proc/updatePower()
 	power_gaine = initial(power_gaine) + (observation / 100)
@@ -108,8 +108,8 @@ var/global/obj/machinery/power/eotp/eotp
 		power += power_gaine
 		last_power_update = world.time
 
-	if(power >= max_power)
-		power -= max_power
+	if(power >=69ax_power)
+		power -=69ax_power
 		power_release()
 
 /obj/machinery/power/eotp/proc/disk_reward_update()
@@ -129,7 +129,7 @@ var/global/obj/machinery/power/eotp/eotp
 		var/reward_disk = pick(disk_types)
 		disk_types -= reward_disk
 		var/obj/item/_item = new reward_disk(get_turf(src))
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		visible_message(SPAN_NOTICE("The 69_item.name69 appers out of bluespace near the 69src69!"))
 
 	else if(type_release == ALERT)
 
@@ -158,7 +158,7 @@ var/global/obj/machinery/power/eotp/eotp
 				preacher = pick(disciples)
 
 			if(preacher)
-				to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in [antagonist_area].")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
+				to_chat(preacher, SPAN_DANGER("You feel an evil presence lurking in 69antagonist_area69.")) // will say 'you feel an evil presence lurking in the Kitchen' or whatever
 
 	else if(type_release == INSPIRATION)
 		for(var/mob/living/carbon/human/H in disciples)
@@ -168,29 +168,29 @@ var/global/obj/machinery/power/eotp/eotp
 	else if(type_release == ODDITY)
 		var/oddity_reward = pick(subtypesof(/obj/item/oddity/nt))
 		var/obj/item/_item = new oddity_reward(get_turf(src))
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		visible_message(SPAN_NOTICE("The 69_item.name69 appers out of bluespace near the 69src69!"))
 
 	else if(type_release == STAT_BUFF)
 		var/random_stat = pick(ALL_STATS)
 		for(var/mob/living/carbon/human/H in disciples)
 			if(H.stats)
-				to_chat(H, SPAN_NOTICE("You feel the gaze of [src] pierce your mind, body, and soul. You are enlightened, and gain deeper knowledge in [random_stat]; however, you can already feel this newfound knowledge beginning to slip away.."))
-				H.stats.addTempStat(random_stat, stat_buff_power, 20 MINUTES, "Eye_of_the_Protector")
+				to_chat(H, SPAN_NOTICE("You feel the gaze of 69src69 pierce your69ind, body, and soul. You are enlightened, and gain deeper knowledge in 69random_stat69; however, you can already feel this newfound knowledge beginning to slip away.."))
+				H.stats.addTempStat(random_stat, stat_buff_power, 2069INUTES, "Eye_of_the_Protector")
 
-	else if(type_release == MATERIAL_REWARD)
+	else if(type_release ==69ATERIAL_REWARD)
 		var/materials_reward = pick(materials)
-		var/reward_min_amount = materials[materials_reward]
-		var/obj/item/stack/material/_item = new materials_reward(get_turf(src))
+		var/reward_min_amount =69aterials69materials_reward69
+		var/obj/item/stack/material/_item = new69aterials_reward(get_turf(src))
 		_item.amount = rand(reward_min_amount, _item.max_amount)
-		visible_message(SPAN_NOTICE("The [_item.name] appers out of bluespace near the [src]!"))
+		visible_message(SPAN_NOTICE("The 69_item.name69 appers out of bluespace near the 69src69!"))
 
 	else if(type_release == ENERGY_REWARD)
 		for(var/mob/living/carbon/human/H in disciples)
 			var/obj/item/implant/core_implant/cruciform/C = H.get_core_implant(/obj/item/implant/core_implant/cruciform)
 			C.power_regen += initial(C.power_regen)
-			to_chat(H, SPAN_NOTICE("Your cruciform vibrates."))
+			to_chat(H, SPAN_NOTICE("Your cruciform69ibrates."))
 
 	for(var/disciple in disciples)
-		to_chat(disciple, SPAN_NOTICE("A miracle has occured at the [src]! May the Angels live forever!"))
+		to_chat(disciple, SPAN_NOTICE("A69iracle has occured at the 69src69!69ay the Angels live forever!"))
 
 	GLOB.miracle_points++

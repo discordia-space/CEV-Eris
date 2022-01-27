@@ -5,22 +5,22 @@
 */
 /*
 	Below this comment is a pinnacle of sorcery unearthed from ancient era of byond.
-	Proceed with caution, for you may not comprehed whatever the fuck this is.
+	Proceed with caution, for you69ay not comprehed whatever the fuck this is.
 	I sure don't. Original code by http://www.byond.com/members/Jp
-	Adapted for Eris and more modern byond versions by me.
-	Quite a bit was modified/removed/re-done.
-	Pathing was made strict/all objects here are subtype of obj/procedural.
+	Adapted for Eris and69ore69odern byond69ersions by69e.
+	Quite a bit was69odified/removed/re-done.
+	Pathing was69ade strict/all objects here are subtype of obj/procedural.
 
-- Nestor/drexample (full permission to bug me if you have questions or code suggestions)
+- Nestor/drexample (full permission to bug69e if you have questions or code suggestions)
 */
 /obj/procedural/jp_DungeonGenerator
 
-	var/turf/corner1 //One corner of the rectangle the algorithm is allowed to modify
-	var/turf/corner2 //The other corner of the rectangle the algorithm is allowed to modify
+	var/turf/corner1 //One corner of the rectangle the algorithm is allowed to69odify
+	var/turf/corner2 //The other corner of the rectangle the algorithm is allowed to69odify
 
-	var/list/allowedRooms //The list of rooms the algorithm may place
+	var/list/allowedRooms //The list of rooms the algorithm69ay place
 
-	var/doAccurateRoomPlacementCheck = FALSE //Whether the algorithm should just use AABB collision detection between rooms, or use the slower version with no false positives
+	var/doAccurateRoomPlacementCheck = FALSE //Whether the algorithm should just use AABB collision detection between rooms, or use the slower69ersion with no false positives
 	var/usePreexistingRegions = FALSE //Whether the algorithm should find any already extant open regions in the area it is working on, and incorporate them into the dungeon being generated
 
 	var/floortype //The type used for open floors placed in corridors
@@ -29,12 +29,12 @@
 	var/numRooms //The upper limit of the number of 'rooms' placed in the dungeon. NOT GUARANTEED TO BE REACHED
 	var/numExtraPaths //The upper limit on the number of extra paths placed beyond those required to ensure connectivity. NOT GUARANTEED TO BE REACHED
 	var/maximumIterations = 120 //The number of do-nothing iterations before the generator gives up with an error.
-	var/roomMinSize //The minimum 'size' passed to rooms.
-	var/roomMaxSize //The maximum 'size' passed to rooms.
-	var/maxPathLength //The absolute maximum length paths are allowed to be.
-	var/minPathLength //The absolute minimum length paths are allowed to be.
-	var/minLongPathLength //The absolute minimum length of a long path
-	var/pathEndChance //The chance of terminating a path when it's found a valid endpoint, as a percentage
+	var/roomMinSize //The69inimum 'size' passed to rooms.
+	var/roomMaxSize //The69aximum 'size' passed to rooms.
+	var/maxPathLength //The absolute69aximum length paths are allowed to be.
+	var/minPathLength //The absolute69inimum length paths are allowed to be.
+	var/minLongPathLength //The absolute69inimum length of a long path
+	var/pathEndChance //The chance of terminating a path when it's found a69alid endpoint, as a percentage
 	var/longPathChance //The chance that any given path will be designated 'long'
 	var/pathWidth = 2 //The default width of paths connecting the rooms
 	var/lightSpawnChance = 0 //Chance to spawn a light during path generation
@@ -45,15 +45,15 @@
 
 	var/list/path_turfs = list()
 
-	var/out_numRooms //The number of rooms the generator managed to place
-	var/out_numPaths //The total number of paths the generator managed to place. This includes those required for reachability as well as 'extra' paths, as well as all long paths.
-	var/out_numLongPaths //The number of long paths the generator managed to place. This includes those required for reachability, as well as 'extra' paths.
-	var/out_error //0 if no error, positive value if a fatal error occured, negative value if something potentially bad but not fatal happened
-	var/out_time //How long it took, in ms. May be negative if the generator runs 'over' midnight that is, starts in one day, ends in another.
+	var/out_numRooms //The number of rooms the generator69anaged to place
+	var/out_numPaths //The total number of paths the generator69anaged to place. This includes those required for reachability as well as 'extra' paths, as well as all long paths.
+	var/out_numLongPaths //The number of long paths the generator69anaged to place. This includes those required for reachability, as well as 'extra' paths.
+	var/out_error //0 if no error, positive69alue if a fatal error occured, negative69alue if something potentially bad but not fatal happened
+	var/out_time //How long it took, in69s.69ay be negative if the generator runs 'over'69idnight that is, starts in one day, ends in another.
 	var/out_seed //What seed was used to power the RNG for the dungeon.
 	var/obj/procedural/jp_DungeonRegion/out_region //The jp_DungeonRegion object that we were left with after all the rooms were connected
 
-	var/list/obj/procedural/jp_DungeonRoom/out_rooms //A list containing all the jp_DungeonRoom datums placed on the map
+	var/list/obj/procedural/jp_DungeonRoom/out_rooms //A list containing all the jp_DungeonRoom datums placed on the69ap
 
 
 	var/const/ERROR_NO_ROOMS = 1 //The allowed-rooms list is empty or bad.
@@ -62,21 +62,21 @@
 	var/const/ERROR_NO_FLOORTYPE = 4 //The type used for floors wasn't specified
 	var/const/ERROR_NUMROOMS_BAD = 5 //The number of rooms to draw was a bad number
 	var/const/ERROR_NUMEXTRAPATHS_BAD = 6 //The number of extra paths to draw was a bad number
-	var/const/ERROR_ROOM_SIZE_BAD = 7 //The specified room sizes (either max or min) include a bad number
-	var/const/ERROR_PATH_LENGTH_BAD = 8 //The specified path lengths (either max or min) include a bad number
+	var/const/ERROR_ROOM_SIZE_BAD = 7 //The specified room sizes (either69ax or69in) include a bad number
+	var/const/ERROR_PATH_LENGTH_BAD = 8 //The specified path lengths (either69ax or69in) include a bad number
 	var/const/ERROR_PATHENDCHANCE_BAD = 9 //The pathend chance is a bad number
 	var/const/ERROR_LONGPATHCHANCE_BAD = 10 //The chance of getting a long path was a bad number
 
-	var/const/ERROR_MAX_ITERATIONS_ROOMS = -1 //Parameters were fine, but maximum iterations was reached while placing rooms. This is not necessarily a fatal error condition - it just means not all the rooms you specified may have been placed. This error may be masked by errors further along in the process.
-	var/const/ERROR_MAX_ITERATIONS_CONNECTIVITY = 11 //Parameters were fine, but maximum iterations was reached while ensuring connectivity. If you get this error, there are /no/ guarantees about reachability - indeed, you may end up with a dungeon where no room is reachable from any other room.
-	var/const/ERROR_MAX_ITERATIONS_EXTRAPATHS = -2 //Parameters were fine, but maximum iterations was reached while placing extra paths after connectivity was ensured. The dungeon should be fine, all the rooms should be reachable, but it may be less interesting. Or you may just have asked to place too many extra paths.
+	var/const/ERROR_MAX_ITERATIONS_ROOMS = -1 //Parameters were fine, but69aximum iterations was reached while placing rooms. This is not necessarily a fatal error condition - it just69eans not all the rooms you specified69ay have been placed. This error69ay be69asked by errors further along in the process.
+	var/const/ERROR_MAX_ITERATIONS_CONNECTIVITY = 11 //Parameters were fine, but69aximum iterations was reached while ensuring connectivity. If you get this error, there are /no/ guarantees about reachability - indeed, you69ay end up with a dungeon where no room is reachable from any other room.
+	var/const/ERROR_MAX_ITERATIONS_EXTRAPATHS = -2 //Parameters were fine, but69aximum iterations was reached while placing extra paths after connectivity was ensured. The dungeon should be fine, all the rooms should be reachable, but it69ay be less interesting. Or you69ay just have asked to place too69any extra paths.
 
 	var/const/ERROR_NO_SUBMAPS = 12 //Everything was fine, but you forgot to include submaps for rooms that try to load them.
 
 
 	/***********************************************************************************
-	 *	Internal procedures. Might be useful if you're writing a /jp_DungeonRoom datum.*
-	 *	Probably not useful if you just want to make a simple dungeon				   *
+	 *	Internal procedures.69ight be useful if you're writing a /jp_DungeonRoom datum.*
+	 *	Probably not useful if you just want to69ake a simple dungeon				   *
 	 ***********************************************************************************/
 
 /obj/procedural/jp_DungeonGenerator/proc/updateWallConnections()
@@ -85,11 +85,11 @@
 
 /*
 	Returns a list of turfs adjacent to the turf 't'. The definition of 'adjacent'
-	may depend on various properties set - at the moment, it is limited to the turfs
+	may depend on69arious properties set - at the69oment, it is limited to the turfs
 	in the four cardinal directions.
 */
 /obj/procedural/jp_DungeonGenerator/proc/getAdjacent(turf/t)
-	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
+	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the69ap
 	.=list()
 	var/k = get_step(t,NORTH)
 	if(k).+=k
@@ -107,8 +107,8 @@
 
 */
 
-/obj/procedural/jp_DungeonGenerator/proc/getAdjacentFurther(turf/t, var/num = 1)
-	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the map
+/obj/procedural/jp_DungeonGenerator/proc/getAdjacentFurther(turf/t,69ar/num = 1)
+	//Doesn't just go list(get_step(blah blah), get_step(blah blah) etc. because that could return null if on the border of the69ap
 	.=list()
 	var/counter = num
 	var/k
@@ -186,12 +186,12 @@
 /obj/procedural/jp_DungeonGenerator/proc/initializeSubmaps()
 	var/datum/map_template/init_template = new /datum/map_template/deepmaint_template/room
 	var/list/bounds = list(1.#INF, 1.#INF, 1.#INF, -1.#INF, -1.#INF, -1.#INF)
-	bounds[MAP_MINX] = 1
-	bounds[MAP_MINY] = world.maxy
-	bounds[MAP_MINZ] = (get_turf(loc)).z
-	bounds[MAP_MAXX] = world.maxx
-	bounds[MAP_MAXY] = 1
-	bounds[MAP_MAXZ] = (get_turf(loc)).z
+	bounds69MAP_MINX69 = 1
+	bounds69MAP_MINY69 = world.maxy
+	bounds69MAP_MINZ69 = (get_turf(loc)).z
+	bounds69MAP_MAXX69 = world.maxx
+	bounds69MAP_MAXY69 = 1
+	bounds69MAP_MAXZ69 = (get_turf(loc)).z
 	init_template.initTemplateBounds(bounds)
 
 
@@ -218,19 +218,19 @@
 /obj/procedural/jp_DungeonGenerator/proc/errString(e)
 	switch(e)
 		if(0) return "No error"
-		if(ERROR_NO_ROOMS) return "The allowedRooms list was either empty, or an illegal value"
+		if(ERROR_NO_ROOMS) return "The allowedRooms list was either empty, or an illegal69alue"
 		if(ERROR_BAD_AREA) return "The area that the generator is allowed to work on was either empty, or crossed a z-level"
 		if(ERROR_NO_WALLTYPE) return "The types that are walls were either not specified, or weren't a typepath or list of typepaths"
 		if(ERROR_NO_FLOORTYPE) return "The type used for floors either wasn't specified, or wasn't a typepath"
 		if(ERROR_NUMROOMS_BAD) return "The number of rooms to place was either negative, or not an integer"
 		if(ERROR_NUMEXTRAPATHS_BAD) return "The number of extra paths to place was either negative, or not an integer"
-		if(ERROR_ROOM_SIZE_BAD) return "One of the minimum and maximum room sizes was negative, or not an integer. Alternatively, the minimum room size was larger than the maximum room size"
-		if(ERROR_PATH_LENGTH_BAD) return "One of the path-length parameters was negative, or not an integer. Alternatively, either minimum path length or minimum long path length was larger than maximum path length"
+		if(ERROR_ROOM_SIZE_BAD) return "One of the69inimum and69aximum room sizes was negative, or not an integer. Alternatively, the69inimum room size was larger than the69aximum room size"
+		if(ERROR_PATH_LENGTH_BAD) return "One of the path-length parameters was negative, or not an integer. Alternatively, either69inimum path length or69inimum long path length was larger than69aximum path length"
 		if(ERROR_PATHENDCHANCE_BAD) return "The pathend chance was either less than 0 or greater than 100"
 		if(ERROR_LONGPATHCHANCE_BAD) return "The long-path chance was either less than 0, or greater than 100"
-		if(ERROR_MAX_ITERATIONS_ROOMS) return "Maximum iterations was reached while placing rooms on the map. The number of rooms you specified may not have been placed. The dungeon should still be usable"
-		if(ERROR_MAX_ITERATIONS_CONNECTIVITY) return "Maximum iterations was reached while ensuring connectivity. No guarantees can be made about reachability. This dungeon is likely unusable"
-		if(ERROR_MAX_ITERATIONS_EXTRAPATHS) return "Maximum iterations was reached while placing extra paths. The number of extra paths you specified may not have been placed. The dungeon should still be usable"
+		if(ERROR_MAX_ITERATIONS_ROOMS) return "Maximum iterations was reached while placing rooms on the69ap. The number of rooms you specified69ay not have been placed. The dungeon should still be usable"
+		if(ERROR_MAX_ITERATIONS_CONNECTIVITY) return "Maximum iterations was reached while ensuring connectivity. No guarantees can be69ade about reachability. This dungeon is likely unusable"
+		if(ERROR_MAX_ITERATIONS_EXTRAPATHS) return "Maximum iterations was reached while placing extra paths. The number of extra paths you specified69ay not have been placed. The dungeon should still be usable"
 		if(ERROR_NO_SUBMAPS) return "No submaps were provided for room types that require to load them."
 
 /*
@@ -269,53 +269,53 @@
 	return numExtraPaths
 
 	/*
-		Sets the maximum number of do-nothing loops that can occur in a row before the
+		Sets the69aximum number of do-nothing loops that can occur in a row before the
 		generator gives up and does something else.
 	*/
 /obj/procedural/jp_DungeonGenerator/proc/setMaximumIterations(i)
 	maximumIterations = i
 
 	/*
-		Gets the maximum number of do-nothing loops that can occur in a row
+		Gets the69aximum number of do-nothing loops that can occur in a row
 	*/
 /obj/procedural/jp_DungeonGenerator/proc/getMaximumIterations()
-	return maximumIterations
+	return69aximumIterations
 
 	/*
-		Sets and gets the maximum and minimum sizes used for rooms placed on the dungeon.
-		m must be a positive integer.
+		Sets and gets the69aximum and69inimum sizes used for rooms placed on the dungeon.
+		m69ust be a positive integer.
 	*/
 /obj/procedural/jp_DungeonGenerator/proc/setRoomMinSize(m, typepath="")
-	roomMinSize = m
+	roomMinSize =69
 /obj/procedural/jp_DungeonGenerator/proc/getRoomMinSize(typepath="")
 	return roomMinSize
 /obj/procedural/jp_DungeonGenerator/proc/setRoomMaxSize(m, typepath="")
-	roomMaxSize = m
+	roomMaxSize =69
 /obj/procedural/jp_DungeonGenerator/proc/getRoomMaxSize(typepath="")
 	return roomMaxSize
 
 
 /*
-	Sets and gets the maximum and minimum lengths used for paths drawn between rooms
+	Sets and gets the69aximum and69inimum lengths used for paths drawn between rooms
 	in the dungeon, including 'long' paths (Which are required to be of a certain length)
-	m must be a positive integer.
+	m69ust be a positive integer.
 */
 /obj/procedural/jp_DungeonGenerator/proc/setMaxPathLength(m)
-	maxPathLength = m
+	maxPathLength =69
 /obj/procedural/jp_DungeonGenerator/proc/setMinPathLength(m)
-	minPathLength = m
+	minPathLength =69
 /obj/procedural/jp_DungeonGenerator/proc/setMinLongPathLength(m)
-	minLongPathLength = m
+	minLongPathLength =69
 /obj/procedural/jp_DungeonGenerator/proc/getMaxPathLength()
-	return maxPathLength
+	return69axPathLength
 /obj/procedural/jp_DungeonGenerator/proc/getMinPathLength()
-	return minPathLength
+	return69inPathLength
 /obj/procedural/jp_DungeonGenerator/proc/getMinLongPathLength()
-	return minLongPathLength
+	return69inLongPathLength
 
 /*
 	Sets and gets the chance of a path ending when it finds a suitable end turf.
-	c must be a number between 0 and 100, inclusive
+	c69ust be a number between 0 and 100, inclusive
 */
 /obj/procedural/jp_DungeonGenerator/proc/setPathEndChance(c)
 	pathEndChance = c
@@ -324,7 +324,7 @@
 
 /*
 	Sets and gets the chance of a path being designated a 'long' path, which has
-	a different minimum length to a regular path. c must be a number between 0
+	a different69inimum length to a regular path. c69ust be a number between 0
 	and 100, inclusive.
 */
 /obj/procedural/jp_DungeonGenerator/proc/setLongPathChance(c)
@@ -354,7 +354,7 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/getMinX()
 	if(!corner1||!corner2) return null
-	return min(corner1.x, corner2.x)
+	return69in(corner1.x, corner2.x)
 
 /*
 	Returns the largest x-value that the generator is allowed to touch
@@ -362,7 +362,7 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/getMaxX()
 	if(!corner1||!corner2) return null
-	return max(corner1.x, corner2.x)
+	return69ax(corner1.x, corner2.x)
 
 /*
 	Returns the smallest y-value that the generator is allowed to touch.
@@ -370,7 +370,7 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/getMinY()
 	if(!corner1||!corner2) return null
-	return min(corner1.y, corner2.y)
+	return69in(corner1.y, corner2.y)
 
 /*
 	Returns the largest y-value that the generator is allowed to touch
@@ -378,7 +378,7 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/getMaxY()
 	if(!corner1||!corner2) return null
-	return max(corner1.y, corner2.y)
+	return69ax(corner1.y, corner2.y)
 
 /*
 	Returns the Z-level that the generator operates on
@@ -394,26 +394,26 @@
 */
 /obj/procedural/jp_DungeonGenerator/proc/setAllowedRooms(list/l)
 	allowedRooms = list()
-	for(var/k in l)	allowedRooms["[k]"] = new /obj/procedural/jp_DungeonRoomEntry/(k)
+	for(var/k in l)	allowedRooms69"69k69"69 = new /obj/procedural/jp_DungeonRoomEntry/(k)
 
 /*
 	Adds the type 'r' to the list of allowed jp_DungeonRooms. Will create
 	the list if it doesn't exist yet.
 */
-/obj/procedural/jp_DungeonGenerator/proc/addAllowedRoom(r, maxsize=-1, minsize=-1, required=-1, maxnum=-1)
+/obj/procedural/jp_DungeonGenerator/proc/addAllowedRoom(r,69axsize=-1,69insize=-1, required=-1,69axnum=-1)
 	if(!allowedRooms) allowedRooms = list()
-	allowedRooms["[r]"] = new /obj/procedural/jp_DungeonRoomEntry/(r, maxsize, minsize, required, maxnum)
+	allowedRooms69"69r69"69 = new /obj/procedural/jp_DungeonRoomEntry/(r,69axsize,69insize, required,69axnum)
 
 /*
 	Removes the type 'r' from the list of allowed jp_DungeonRooms. Will create
 	the list if it doesn't exist yet.
 */
 /obj/procedural/jp_DungeonGenerator/proc/removeAllowedRoom(r)
-	allowedRooms["[r]"] = null
+	allowedRooms69"69r69"69 = null
 	if(!allowedRooms || !allowedRooms.len) allowedRooms = null
 
 /*
-	Returns the list of allowed jp_DungeonRooms. This may be null, if the list is empty
+	Returns the list of allowed jp_DungeonRooms. This69ay be null, if the list is empty
 */
 /obj/procedural/jp_DungeonGenerator/proc/getAllowedRooms()
 	if(!allowedRooms) return null
@@ -428,7 +428,7 @@
 	doAccurateRoomPlacementCheck = b
 
 /*
-	Gets the current value of the accurate room placement check
+	Gets the current69alue of the accurate room placement check
 */
 /obj/procedural/jp_DungeonGenerator/proc/getDoAccurateRoomPlacementCheck()
 	return doAccurateRoomPlacementCheck
@@ -441,7 +441,7 @@
 	usePreexistingRegions = b
 
 /*
-	Gets the current value of the use-preexisting-regions check
+	Gets the current69alue of the use-preexisting-regions check
 */
 /obj/procedural/jp_DungeonGenerator/proc/getUsePreexistingRegions()
 	return usePreexistingRegions
@@ -483,7 +483,7 @@
 	walltype-=w
 
 /*
-	Gets the types considered walls. This may be null, a typepath, or a list of typepaths
+	Gets the types considered walls. This69ay be null, a typepath, or a list of typepaths
 */
 /obj/procedural/jp_DungeonGenerator/proc/getWallType()
 	return walltype
@@ -492,13 +492,13 @@
 /obj/procedural/jp_DungeonGenerator/proc/getNeighboringRegions(var/list/R)
 	var/list/regs = list()
 	if(R.len == 1)
-		regs += R[1]
-		regs += R[1]
+		regs += R69169
+		regs += R69169
 		return regs
 	var/obj/procedural/jp_DungeonRegion/r1 = pick(R)
 	regs += r1
 	var/obj/procedural/jp_DungeonRegion/r2 = null
-	var/r_distance = 127 // At this time, get_dist() never returns a value greater than 127 - thank you, byond, very cool.
+	var/r_distance = 127 // At this time, get_dist() never returns a69alue greater than 127 - thank you, byond,69ery cool.
 	for(var/obj/procedural/jp_DungeonRegion/region in R)
 		if(r1 == region)
 			continue
@@ -520,17 +520,17 @@
 
 /*
 	Actually goes out on a limb and generates the dungeon. This procedure runs in the
-	background, because it's very slow. The various out_ variables will be updated after
+	background, because it's69ery slow. The69arious out_69ariables will be updated after
 	the generator has finished running. I suggest spawn()ing off the call to the generator.
 
 	After this procedure finishes executing, you should have a beautiful shiny dungeon,
 	with all rooms reachable from all other rooms. If you don't, first check the parameters
 	you've passed to the generator - if you've set the number of rooms to 0, or haven't set
-	it, you may not get the results you expect. If the parameters you've passed seem fine,
-	and you've written your own /jp_DungeonRoom object, it might be a good idea to check whether'
-	or not you meet all the assumptions my code makes about jp_DungeonRoom objects. There should
-	be a reasonably complete list in the helpfile. If that doesn't help you out, contact me in
-	some way - you may have found a bug, or an assumption I haven't documented, or I can show
+	it, you69ay not get the results you expect. If the parameters you've passed seem fine,
+	and you've written your own /jp_DungeonRoom object, it69ight be a good idea to check whether'
+	or not you69eet all the assumptions69y code69akes about jp_DungeonRoom objects. There should
+	be a reasonably complete list in the helpfile. If that doesn't help you out, contact69e in
+	some way - you69ay have found a bug, or an assumption I haven't documented, or I can show
 	you where you've gone wrong.
 */
 /obj/procedural/jp_DungeonGenerator/proc/generate(seed=null)
@@ -569,12 +569,12 @@
 
 
 	z = corner1.z
-	minx = min(corner1.x, corner2.x) + roomMaxSize + 1
-	maxx = max(corner1.x, corner2.x) - roomMaxSize - 1
-	miny = min(corner1.y, corner2.y) + roomMaxSize + 1
-	maxy = max(corner1.y, corner2.y) - roomMaxSize - 1
+	minx =69in(corner1.x, corner2.x) + roomMaxSize + 1
+	maxx =69ax(corner1.x, corner2.x) - roomMaxSize - 1
+	miny =69in(corner1.y, corner2.y) + roomMaxSize + 1
+	maxy =69ax(corner1.y, corner2.y) - roomMaxSize - 1
 
-	if(minx>maxx || miny>maxy)
+	if(minx>maxx ||69iny>maxy)
 		out_error = ERROR_BAD_AREA
 		return
 
@@ -584,7 +584,7 @@
 			if(!iswall(t)) if(!(t in examined)) rooms+=regionCreate(t)
 
 	for(var/k in allowedRooms)
-		nextentry = allowedRooms[k]
+		nextentry = allowedRooms69k69
 		if(nextentry.required>0) required+=nextentry
 
 	var/rooms_placed = 0
@@ -593,11 +593,11 @@
 			out_error=ERROR_MAX_ITERATIONS_ROOMS
 			break
 
-		nextloc = locate(rand(minx, maxx), rand(miny, maxy), z)
+		nextloc = locate(rand(minx,69axx), rand(miny,69axy), z)
 
-		if(!required.len) nextentry = allowedRooms[pick(allowedRooms)]
+		if(!required.len) nextentry = allowedRooms69pick(allowedRooms)69
 		else
-			nextentry = required[1]
+			nextentry = required69169
 			if(nextentry.count>=nextentry.required)
 				required-=nextentry
 				continue
@@ -652,8 +652,8 @@
 			break
 		numits++
 		var/list/neighbors = getNeighboringRegions(regions)
-		region1 = neighbors[1]
-		region2 = neighbors[2]
+		region1 = neighbors69169
+		region2 = neighbors69269
 
 		if(region1==region2)
 			if(regions.len>1)
@@ -714,7 +714,7 @@
  *	The remaining procedures are seriously internal, and I strongly suggest not    *
  *  touching them unless you're certain you know what you're doing. That includes  *
  *  calling them, unless you've figured out what the side-effects and assumptions  *
- *  of the procedure are. These may not work except in the context of a generate() *
+ *  of the procedure are. These69ay not work except in the context of a generate() *
  *  call.
  ***********************************************************************************/
 
@@ -732,7 +732,7 @@
 	var/list/next = list(t)
 
 	while(next.len>=1)
-		var/turf/nt = next[next.len]
+		var/turf/nt = next69next.len69
 
 		next-=nt
 		examined+=nt
@@ -741,20 +741,20 @@
 			border+=nt
 			continue
 
-		if(nt.x<minx) minx=nt.x
-		if(nt.x>maxx) maxx=nt.x
-		if(nt.y<miny) miny=nt.y
-		if(nt.y>maxy) maxy=nt.y
+		if(nt.x<minx)69inx=nt.x
+		if(nt.x>maxx)69axx=nt.x
+		if(nt.y<miny)69iny=nt.y
+		if(nt.y>maxy)69axy=nt.y
 		if(!nt.density)
 			turfs+=nt
 			for(var/turf/t2 in getAdjacent(nt))	if(!((t2 in border) || (t2 in turfs))) next+=t2
 		else
 			walls+=nt
 
-	size = max(maxy-miny, maxx-minx)
+	size =69ax(maxy-miny,69axx-minx)
 	size/=2
 	size = round(size+0.4, 1)
-	centre = locate(minx+size, miny+size, getZ())
+	centre = locate(minx+size,69iny+size, getZ())
 
 	r = new /obj/procedural/jp_DungeonRoom/preexist(size, centre, src)
 	r.setBorder(border)
@@ -766,7 +766,7 @@
 /*
 	Checks if two jp_DungeonRooms are too close to each other
 */
-/obj/procedural/jp_DungeonGenerator/proc/intersects(var/obj/procedural/jp_DungeonRoom/newroom, var/list/obj/procedural/jp_DungeonRoom/rooms)
+/obj/procedural/jp_DungeonGenerator/proc/intersects(var/obj/procedural/jp_DungeonRoom/newroom,69ar/list/obj/procedural/jp_DungeonRoom/rooms)
 	for(var/obj/procedural/jp_DungeonRoom/r in rooms)
 		. = newroom.getSize() + r.getSize() + 2
 		if((. > abs(newroom.getX() - r.getX())) && (. > abs(newroom.getY() - r.getY())))
@@ -818,7 +818,7 @@
 	Returns an X by X square of turfs with initial turf being in bottom right
 */
 
-/obj/procedural/jp_DungeonGenerator/proc/GetSquare(var/turf/T, var/side_size = 2)
+/obj/procedural/jp_DungeonGenerator/proc/GetSquare(var/turf/T,69ar/side_size = 2)
 	var/list/square_turfs = list()
 	for(var/turf/N in block(T,locate(T.x + side_size - 1, T.y + side_size - 1, T.z)))
 		square_turfs += N
@@ -827,18 +827,18 @@
 /*
 	Constructs a path between two jp_DungeonRegions.
 */
-/obj/procedural/jp_DungeonGenerator/proc/getPath(var/obj/procedural/jp_DungeonRegion/region1, var/obj/procedural/jp_DungeonRegion/region2)
+/obj/procedural/jp_DungeonGenerator/proc/getPath(var/obj/procedural/jp_DungeonRegion/region1,69ar/obj/procedural/jp_DungeonRegion/region2)
 	set background = 1
 	//We pick our start on the border of our first room
 	var/turf/start = pick(region1.getBorder())
 	var/turf/end
 	var/long = FALSE
-	var/minlength = minPathLength
+	var/minlength =69inPathLength
 	if(prob(longPathChance))
 		minlength=minLongPathLength
 		long = TRUE
 
-	//We exclude all other border turfs of other rooms, minus our targets, and where we start
+	//We exclude all other border turfs of other rooms,69inus our targets, and where we start
 	var/list/borders=list()
 	borders.Add(border_turfs)
 	borders.Remove(region2.getBorder())
@@ -848,10 +848,10 @@
 	var/list/turf/previous = list()
 	var/list/turf/done = list(start)
 	var/list/turf/next = getAdjacent(start)
-	var/list/turf/cost = list("\ref[start]"=0)
+	var/list/turf/cost = list("\ref69start69"=0)
 
 	if(minlength<=0)
-		if(start in region2.getBorder()) //We've somehow managed to link the two rooms in a single turf
+		if(start in region2.getBorder()) //We've somehow69anaged to link the two rooms in a single turf
 			out_numPaths++
 			if(long) out_numLongPaths++
 			end = start
@@ -860,31 +860,31 @@
 	next-=borders
 	for(var/turf/t in next)
 		if(!iswall(t)) next-=t
-		previous["\ref[t]"] = start
-		cost["\ref[t]"]=1
+		previous69"\ref69t69"69 = start
+		cost69"\ref69t69"69=1
 
 	if(!next.len) return list() //We've somehow found a route that can not be continued.
 	var/check_tick_in = 3
 	while(1)
 		check_tick_in = check_tick_in - 1
 		var/turf/min
-		var/mincost = maxPathLength
+		var/mincost =69axPathLength
 
 		for(var/turf/t in next)
-			if((cost["\ref[t]"]<mincost) || (cost["\ref[t]"]==mincost && prob(50)))
+			if((cost69"\ref69t69"69<mincost) || (cost69"\ref69t69"69==mincost && prob(50)))
 				min = t
-				mincost=cost["\ref[t]"]
+				mincost=cost69"\ref69t69"69
 
-		if(!min) return list() //We've managed to outgrow our cost
+		if(!min) return list() //We've69anaged to outgrow our cost
 
-		done += min
-		next -= min
+		done +=69in
+		next -=69in
 
 		if(min in region2.getBorder()) //We've reached our destination
 			if(mincost>minlength && prob(pathEndChance))
 				out_numPaths++
 				if(long) out_numLongPaths++
-				end = min
+				end =69in
 				break
 			else
 				continue
@@ -899,22 +899,22 @@
 				continue
 			if(!(t in done) && !(t in next))
 				next+=t
-				previous["\ref[t]"] = min
-				cost["\ref[t]"] = mincost+1
+				previous69"\ref69t69"69 =69in
+				cost69"\ref69t69"69 =69incost+1
 
 		if(!check_tick_in)
 			check_tick_in = 3
 			CHECK_TICK
 	return retPath(end, previous, pathWidth, start, end)
 
-/obj/procedural/jp_DungeonGenerator/proc/retPath(var/list/end, var/list/previous, var/pathWidth, var/turf/start, var/turf/end)
+/obj/procedural/jp_DungeonGenerator/proc/retPath(var/list/end,69ar/list/previous,69ar/pathWidth,69ar/turf/start,69ar/turf/end)
 	var/list/ret = list()
 	ret += GetSquare(end, pathWidth)
 	var/turf/last = end
 	while(1)
 		if(last==start) break
-		ret+= GetSquare(previous["\ref[last]"], pathWidth)
-		last=previous["\ref[last]"]
+		ret+= GetSquare(previous69"\ref69last69"69, pathWidth)
+		last=previous69"\ref69last69"69
 
 	return ret
 
@@ -957,7 +957,7 @@
 		out_error = ERROR_ROOM_SIZE_BAD
 		return 0
 
-	if(minPathLength>maxPathLength || minLongPathLength>maxPathLength || minPathLength<0 || maxPathLength<0 || minLongPathLength<0 || round(minPathLength)!=minPathLength || round(maxPathLength)!=maxPathLength || round(minLongPathLength)!=minLongPathLength)
+	if(minPathLength>maxPathLength ||69inLongPathLength>maxPathLength ||69inPathLength<0 ||69axPathLength<0 ||69inLongPathLength<0 || round(minPathLength)!=minPathLength || round(maxPathLength)!=maxPathLength || round(minLongPathLength)!=minLongPathLength)
 		out_error = ERROR_PATH_LENGTH_BAD
 		return 0
 
@@ -973,29 +973,29 @@
 
 /*
 Seriously internal. No touching, unless you really know what you're doing. It's highly
-unlikely that you'll need to modify this
+unlikely that you'll need to69odify this
 */
 /obj/procedural/jp_DungeonRoomEntry
 
 	var/roomtype //The typepath of the room this is an entry for
-	var/maxsize //The maximum size of the room. -1 for default.
-	var/minsize //The minimum size of the room. -1 for default
+	var/maxsize //The69aximum size of the room. -1 for default.
+	var/minsize //The69inimum size of the room. -1 for default
 
-	var/required //The number of rooms of this type that must be placed in the dungeon. 0 for no requirement.
-	var/maxnum //The maximum number of rooms of this type that can be placed in the dungeon. -1 for no limit
-	var/count //The number of rooms that have been placed. Used to ensure compliance with maxnum.
+	var/required //The number of rooms of this type that69ust be placed in the dungeon. 0 for no requirement.
+	var/maxnum //The69aximum number of rooms of this type that can be placed in the dungeon. -1 for no limit
+	var/count //The number of rooms that have been placed. Used to ensure compliance with69axnum.
 
-/obj/procedural/jp_DungeonRoomEntry/New(roomtype_n, maxsize_n=-1, minsize_n=-1, required_n=-1, maxnum_n=-1)
+/obj/procedural/jp_DungeonRoomEntry/New(roomtype_n,69axsize_n=-1,69insize_n=-1, required_n=-1,69axnum_n=-1)
 	roomtype = roomtype_n
-	maxsize = maxsize_n
-	minsize = minsize_n
+	maxsize =69axsize_n
+	minsize =69insize_n
 	required = required_n
-	maxnum = maxnum_n
+	maxnum =69axnum_n
 
 /*
 This object is used to represent a 'region' in the dungeon - a set of contiguous floor turfs,
 along with the walls that border them. This object is used extensively by the generator, and
-has several assumptions embedded in it - think carefully before making changes
+has several assumptions embedded in it - think carefully before69aking changes
 */
 /obj/procedural/jp_DungeonRegion
 	var/obj/procedural/jp_DungeonGenerator/gen //A reference to the jp_DungeonGenerator using us
@@ -1044,29 +1044,29 @@ Make a new jp_DungeonRegion, and set its reference to its generator object
 /*
 These objects are used to represent a 'room' - a distinct part of the dungeon
 that is placed at the start, and then linked together. You will quite likely
-want to create new jp_DungeonRooms. Consult the helpfile for more information
+want to create new jp_DungeonRooms. Consult the helpfile for69ore information
 */
 /obj/procedural/jp_DungeonRoom
 	var/turf/centre //The centrepoint of the room
-	var/size //The size of the room. IMPORTANT: ROOMS MAY NOT TOUCH TURFS OUTSIDE range(centre, size). TURFS INSIDE range(centre,size) MAY BE DEALT WITH AS YOU WILL
+	var/size //The size of the room. IMPORTANT: ROOMS69AY NOT TOUCH TURFS OUTSIDE range(centre, size). TURFS INSIDE range(centre,size)69AY BE DEALT WITH AS YOU WILL
 	var/obj/procedural/jp_DungeonGenerator/gen //A reference to the generator using this room
 
 	var/datum/map_template/my_map = null //The submap for this room
 	var/list/turfs = list() //The list of turfs in this room. That should include internal walls.
-	var/list/border = list() //The list of walls bordering this room. Anything in this list could be knocked down in order to make a path into the room
-	var/list/walls = list() //The list of walls bordering the room that aren't used for connections into the room. Should include every wall turf next to a floor turf. May include turfs up to range(centre, size+1)
+	var/list/border = list() //The list of walls bordering this room. Anything in this list could be knocked down in order to69ake a path into the room
+	var/list/walls = list() //The list of walls bordering the room that aren't used for connections into the room. Should include every wall turf next to a floor turf.69ay include turfs up to range(centre, size+1)
 	var/list/multiborder = list() //Only used by rooms that have disjoint sets of borders. A list of lists of turfs. The sub-lists are treated like the border turf list
 /*
 Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 */
-/obj/procedural/jp_DungeonRoom/New(s, turf/c, var/obj/procedural/jp_DungeonGenerator/g)
+/obj/procedural/jp_DungeonRoom/New(s, turf/c,69ar/obj/procedural/jp_DungeonGenerator/g)
 	size = s
 	centre = c
 	gen = g
 
 
 /*
-	Get various pieces of information about the centrepoint of this room
+	Get69arious pieces of information about the centrepoint of this room
 */
 /obj/procedural/jp_DungeonRoom/proc/getCentre()
 	return centre
@@ -1085,8 +1085,8 @@ Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 
 /*
 	Actually place the room on the dungeon. place() is one of the few procedures allowed
-	to actually modify turfs in the dungeon - do NOT change turfs outside of place() or
-	finalise(). This is called /before/ paths are placed, and may be called /before/ any
+	to actually69odify turfs in the dungeon - do NOT change turfs outside of place() or
+	finalise(). This is called /before/ paths are placed, and69ay be called /before/ any
 	other rooms are placed. If you would like to pretty the room up after basic dungeon
 	geometry is done and dusted, use 'finalise()'
 */
@@ -1096,7 +1096,7 @@ Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 /*
 	Called on every room after everything has been generated. Use it to pretty up the
 	room, or what-have-you. finalise() is the only other jp_DungeonRoom procedure that
-	is allowed to modify turfs in the dungeon.
+	is allowed to69odify turfs in the dungeon.
 */
 /obj/procedural/jp_DungeonRoom/proc/finalise()
 	return
@@ -1114,7 +1114,7 @@ Make a new jp_DungeonRoom, size 's', centre 'c', generator 'g'
 	return turfs
 
 /obj/procedural/jp_DungeonRoom/proc/getMultiborder()
-	return multiborder
+	return69ultiborder
 
 /obj/procedural/jp_DungeonRoom/proc/getWalls()
 	return walls
@@ -1179,7 +1179,7 @@ to the floor that return true from iswall().
 			if(iswall(t2) && !(t2 in border))
 				border += t2
 
-	border -= getCorners() //If the path width is more than 1, the corner and path connection looks really ugly
+	border -= getCorners() //If the path width is69ore than 1, the corner and path connection looks really ugly
 
 /obj/procedural/jp_DungeonRoom/preexist/square/place()
 	for(var/turf/t in turfs)
@@ -1274,7 +1274,7 @@ the arms of the plus sign - there are only four.
 
 /obj/procedural/jp_DungeonRoom/preexist/square/submap/finalise()
 	if(border.len < 1)
-		testing("ROOM [my_map.name] HAS NO BORDERS! at [centre.x], [centre.y]!")
+		testing("ROOM 69my_map.name69 HAS NO BORDERS! at 69centre.x69, 69centre.y69!")
 	if(my_map)
 		my_map.load(centre, centered = TRUE, orientation = SOUTH, post_init = 1)
 	else

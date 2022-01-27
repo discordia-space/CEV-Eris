@@ -1,4 +1,4 @@
-// Stolen en masse from N3X15 of /vg/station with much gratitude.
+// Stolen en69asse from N3X15 of /vg/station with69uch gratitude.
 
 // The idea is to have 4 bits for coming and 4 for going.
 #define TRACKS_COMING_NORTH 1
@@ -72,7 +72,7 @@ var/global/list/image/fluidtrack_cache=list()
 	* @param goingdir Direction tracks are going to (or 0).
 	* @param bloodcolor Color of the blood when wet.
 	*/
-	proc/AddTracks(var/list/DNA, var/comingdir, var/goingdir, var/bloodcolor="#A10808")
+	proc/AddTracks(var/list/DNA,69ar/comingdir,69ar/goingdir,69ar/bloodcolor="#A10808")
 		var/updated=0
 		// Shift our goingdir 4 spaces to the left so it's in the GOING bitblock.
 		var/realgoing=goingdir<<4
@@ -93,15 +93,15 @@ var/global/list/image/fluidtrack_cache=list()
 			if(comingdir&b)
 				// If not wet or not set
 				if(dirs&b)
-					var/sid=setdirs["[b]"]
-					track=stack[sid]
+					var/sid=setdirs69"69b69"69
+					track=stack69sid69
 					if(track.wet==t && track.basecolor==bloodcolor)
 						continue
 					// Remove existing stack entry
 					stack.Remove(track)
 				track=new /datum/fluidtrack(b,bloodcolor,t)
 				stack.Add(track)
-				setdirs["[b]"]=stack.Find(track)
+				setdirs69"69b69"69=stack.Find(track)
 				updatedtracks |= b
 				updated=1
 
@@ -110,15 +110,15 @@ var/global/list/image/fluidtrack_cache=list()
 			if(realgoing&b)
 				// If not wet or not set
 				if(dirs&b)
-					var/sid=setdirs["[b]"]
-					track=stack[sid]
+					var/sid=setdirs69"69b69"69
+					track=stack69sid69
 					if(track.wet==t && track.basecolor==bloodcolor)
 						continue
 					// Remove existing stack entry
 					stack.Remove(track)
 				track=new /datum/fluidtrack(b,bloodcolor,t)
 				stack.Add(track)
-				setdirs["[b]"]=stack.Find(track)
+				setdirs69"69b69"69=stack.Find(track)
 				updatedtracks |= b
 				updated=1
 
@@ -135,7 +135,7 @@ var/global/list/image/fluidtrack_cache=list()
 
 		// Update ONLY the overlays that have changed.
 		for(var/datum/fluidtrack/track in stack)
-			var/stack_idx=setdirs["[track.direction]"]
+			var/stack_idx=setdirs69"69track.direction69"69
 			var/state=coming_state
 			truedir=track.direction
 			if(truedir&240) // Check if we're in the GOING block
@@ -149,9 +149,9 @@ var/global/list/image/fluidtrack_cache=list()
 
 			track.fresh=0
 			track.overlay=I
-			stack[stack_idx]=track
+			stack69stack_idx69=track
 			overlays += I
-		updatedtracks=0 // Clear our memory of updated tracks.
+		updatedtracks=0 // Clear our69emory of updated tracks.
 
 /obj/effect/decal/cleanable/blood/tracks/footprints
 	name = "wet footprints"

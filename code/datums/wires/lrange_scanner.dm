@@ -8,9 +8,9 @@
 		new /datum/wire_description(SCANNER_WIRE_NOTHING, "Failsafe")
 	)
 
-var/const/SCANNER_WIRE_POWER = 1			// Cut to disable power input into the scanner. Pulse does nothing. Mend to restore.
-var/const/SCANNER_WIRE_CONTROL = 4		// Cut to lock most scanner controls. Mend to unlock them. Pulse does nothing.
-var/const/SCANNER_WIRE_AICONTROL = 8		// Cut to disable AI control. Mend to restore.
+var/const/SCANNER_WIRE_POWER = 1			// Cut to disable power input into the scanner. Pulse does nothing.69end to restore.
+var/const/SCANNER_WIRE_CONTROL = 4		// Cut to lock69ost scanner controls.69end to unlock them. Pulse does nothing.
+var/const/SCANNER_WIRE_AICONTROL = 8		// Cut to disable AI control.69end to restore.
 var/const/SCANNER_WIRE_NOTHING = 16		// A blank wire that doesn't have any specific function
 
 /datum/wires/long_range_scanner/CanUse()
@@ -19,7 +19,7 @@ var/const/SCANNER_WIRE_NOTHING = 16		// A blank wire that doesn't have any speci
 		return 1
 	return 0
 
-/datum/wires/long_range_scanner/UpdateCut(index, mended)
+/datum/wires/long_range_scanner/UpdateCut(index,69ended)
 	var/obj/machinery/power/long_range_scanner/S = holder
 	switch(index)
 		if(SCANNER_WIRE_POWER)

@@ -10,7 +10,7 @@
 
 /obj/item/contraband/poster
 	name = "rolled-up poster"
-	desc = "The poster comes with its own automatic adhesive mechanism, for easy pinning to any vertical surface."
+	desc = "The poster comes with its own automatic adhesive69echanism, for easy pinning to any69ertical surface."
 	icon_state = "rolled_poster"
 	var/serial_number = 0
 	var/ruined = 0
@@ -19,7 +19,7 @@
 	bad_type = /obj/item/contraband/poster
 	spawn_tags = SPAWN_ITEM_CONTRABAND
 
-/obj/item/contraband/poster/New(turf/loc, var/datum/poster/new_design = null)
+/obj/item/contraband/poster/New(turf/loc,69ar/datum/poster/new_design = null)
 	if(!new_design)
 		design = pick(GLOB.poster_designs)
 	else
@@ -56,23 +56,23 @@
 		if("Yes")
 			if(!Adjacent(user))
 				return
-			visible_message(SPAN_WARNING("[user] rips [src] in a single, decisive motion!") )
+			visible_message(SPAN_WARNING("69user69 rips 69src69 in a single, decisive69otion!") )
 			playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
 			ruined = 1
 			icon = initial(icon)
 			icon_state = "poster_ripped"
 			name = "ripped poster"
-			desc = "You can't make out anything from the poster's original print. It's ruined."
+			desc = "You can't69ake out anything from the poster's original print. It's ruined."
 			add_fingerprint(user)
 		if("No")
 			return
 
-/obj/item/contraband/poster/attackby(obj/item/W, mob/user)
+/obj/item/contraband/poster/attackby(obj/item/W,69ob/user)
 	if(istype(W, /obj/item/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 100, 1)
 		if(ruined)
 			to_chat(user, SPAN_NOTICE("You remove the remnants of the poster."))
-			qdel(src)
+			69del(src)
 		else
 			roll_and_drop()
 			to_chat(user, SPAN_NOTICE("You carefully remove the poster from the wall."))
@@ -88,11 +88,11 @@
 
 
 //Places the poster on a wall
-/obj/item/contraband/poster/afterattack(var/turf/simulated/wall/W, var/mob/user, var/adjacent, var/clickparams)
+/obj/item/contraband/poster/afterattack(var/turf/simulated/wall/W,69ar/mob/user,69ar/adjacent,69ar/clickparams)
 	if (!adjacent)
 		return
 
-	//must place on a wall and user must not be inside a closet/whatever
+	//must place on a wall and user69ust not be inside a closet/whatever
 	if (!istype(W) || !W.Adjacent(user))
 		to_chat(user, SPAN_WARNING("You can't place this here!"))
 		return
@@ -103,7 +103,7 @@
 	if (placement_dir in cardinal)
 		new_loc = user.loc
 	else
-		placement_dir = reverse_dir[placement_dir]
+		placement_dir = reverse_dir69placement_dir69
 		for(var/t_dir in cardinal)
 			if(!(t_dir & placement_dir)) continue
 			if(iswall(get_step(W, t_dir)))
@@ -141,7 +141,7 @@
 		design.set_design(src)
 
 /datum/poster
-	// Name suffix. Poster - [name]
+	// Name suffix. Poster - 69name69
 	var/name=""
 	// Description suffix
 	var/desc=""
@@ -149,7 +149,7 @@
 	var/icon = 'icons/obj/contraband.dmi'
 
 /datum/poster/proc/set_design(var/obj/item/contraband/poster/P)
-	P.name = "poster - [name]"
+	P.name = "poster - 69name69"
 	P.desc = desc
 	P.icon_state = icon_state
 	P.icon = icon

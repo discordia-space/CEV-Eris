@@ -1,1903 +1,1903 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/turf/template_noop,
-/area/template_noop)
-"ab" = (
-/obj/effect/damagedfloor,
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/cryo)
-"ac" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/cockpit)
-"ad" = (
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/cockpit)
-"ae" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "scraplock";
-	name = "External Blast Doors";
-	opacity = 0
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"a69" = 69
+/o6969/e6969ect/dama69ed69loor,
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/cr69o69
+"ac" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"ad" = 69
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"ae" = 69
+/o6969/machiner69/door/69last/re69ular{
+	densit69 = 0;
+	icon_state = "69door0";
+	id = "scra69loc69";
+	name = "External 69last Doors";
+	o69acit69 = 0
 	},
-/obj/machinery/door/firedoor,
-/obj/effect/damagedfloor,
-/turf/simulated/floor,
-/area/map_template/ecship/cockpit)
-"af" = (
-/obj/item/modular_computer/console/preset/command,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cockpit)
-"ag" = (
-/obj/structure/girder,
-/turf/template_noop,
-/area/template_noop)
-"ah" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"ai" = (
-/obj/effect/damagedfloor,
-/obj/structure/lattice,
-/turf/template_noop,
-/area/template_noop)
-"ak" = (
-/obj/structure/table/standard,
-/obj/item/device/radio,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cockpit)
-"al" = (
-/obj/structure/table/standard,
-/obj/machinery/button/remote/blast_door{
-	id = "scraplock";
-	name = "External Lockdown"
+/o6969/machiner69/door/69iredoor,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"a69" = 69
+/o6969/item/modular_com69uter/console/69reset/command,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"a69" = 69
+/o6969/structure/69irder,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"ah" = 69
+/o6969/structure/lattice,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"ai" = 69
+/o6969/e6969ect/dama69ed69loor,
+/o6969/structure/lattice,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"a69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/device/radio,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"al" = 69
+/o6969/structure/ta69le/standard,
+/o6969/machiner69/69utton/remote/69last_door{
+	id = "scra69loc69";
+	name = "External Loc69down"
 	},
-/obj/machinery/light{
+/o6969/machiner69/li69ht{
 	dir = 4;
-	icon_state = "tube1"
+	icon_state = "tu69e1"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-4";
 	dir = 1;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cockpit)
-"am" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"am" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 4;
-	layer = 2.4;
+	la69er = 2.4;
 	level = 2
 	},
-/obj/machinery/alarm/low{
+/o6969/machiner69/alarm/low{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cockpit)
-"an" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"an" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cockpit)
-"ao" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular,
-/turf/simulated/floor,
-/area/map_template/ecship/science)
-"ap" = (
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cockpit)
-"aq" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/crew)
-"ar" = (
-/obj/machinery/door/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"ao" = 69
+/o6969/machiner69/door/69iredoor,
+/o6969/machiner69/door/69last/re69ular,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/science69
+"a69" = 69
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"a69" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/crew69
+"ar" = 69
+/o6969/machiner69/door/airloc69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/lowpressure,
-/area/map_template/ecship/cockpit)
-"as" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/cryo)
-"at" = (
-/obj/structure/lattice,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/cryo)
-"au" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/low69ressure,
+/area/ma69_tem69late/ecshi69/coc6969it69
+"as" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/cr69o69
+"at" = 69
+/o6969/structure/lattice,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/cr69o69
+"au" = 69
+/o6969/machiner69/li69ht{
 	dir = 4;
-	icon_state = "tube1"
+	icon_state = "tu69e1"
 	},
-/obj/structure/table/glass,
-/obj/item/disk/astrodata,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"av" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
+/o6969/structure/ta69le/69lass,
+/o6969/item/dis69/astrodata,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"av" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aw" = (
-/obj/structure/sign/atmosplaque{
-	pixel_y = 32
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aw" = 69
+/o6969/structure/si69n/atmos69la69ue{
+	69ixel_69 = 32
 	},
-/obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"ax" = (
-/obj/machinery/suit_storage_unit/standard_unit,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"ay" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/o6969/machiner69/suit_stora69e_unit/standard_unit,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"ax" = 69
+/o6969/machiner69/suit_stora69e_unit/standard_unit,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"a69" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 8
 	},
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_x = -32
+/o6969/structure/closet/wall_mounted/emcloset{
+	69ixel_x = -32
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"az" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"az" = 69
+/o6969/structure/shuttle/en69ine/69ro69ulsion{
+	icon_state = "69ro69ulsion";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/map_template/ecship/cryo)
-"aA" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/science)
-"aB" = (
-/obj/structure/lattice,
-/turf/template_noop,
-/area/map_template/ecship/science)
-"aC" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aA" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/science69
+"a69" = 69
+/o6969/structure/lattice,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/science69
+"aC" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 4;
-	layer = 2.4;
+	la69er = 2.4;
 	level = 2
 	},
-/obj/item/stool/padded,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aD" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/item/stool/69added,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aD" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/scru6969ers{
 	dir = 8
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/item/reagent_containers/food/drinks/coffee{
-	desc = "Old cup of coffee. Very cold.  ";
-	name = "Old Robust Coffee"
+/o6969/item/rea69ent_containers/69ood/drin69s/co6969ee{
+	desc = "Old cu69 o69 co6969ee.69er69 cold.  ";
+	name = "Old Ro69ust Co6969ee"
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aE" = (
-/obj/machinery/cryopod/broken,
-/obj/machinery/light/small{
-	icon_state = "bulb1";
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aE" = 69
+/o6969/machiner69/cr69o69od/69ro69en,
+/o6969/machiner69/li69ht/small{
+	icon_state = "69ul691";
 	dir = 1
 	},
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_y = 32
+/o6969/structure/closet/wall_mounted/emcloset{
+	69ixel_69 = 32
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"aF" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"a69" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aG" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"a69" = 69
+/o6969/machiner69/li69ht{
 	dir = 4;
-	icon_state = "tube1"
+	icon_state = "tu69e1"
 	},
-/obj/item/stool/padded,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aH" = (
-/obj/machinery/cryopod/broken,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"aJ" = (
-/obj/structure/table/glass,
-/obj/item/ecletters,
-/obj/item/paper/ecrashlog,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"aK" = (
-/obj/structure/shuttle/engine/propulsion{
+/o6969/item/stool/69added,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aH" = 69
+/o6969/machiner69/cr69o69od/69ro69en,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"a69" = 69
+/o6969/structure/ta69le/69lass,
+/o6969/item/ecletters,
+/o6969/item/69a69er/ecrashlo69,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"a69" = 69
+/o6969/structure/shuttle/en69ine/69ro69ulsion{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/map_template/ecship/science)
-"aL" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "scraplock";
-	name = "External Blast Doors";
-	opacity = 0
+/tur69/simulated/69loor/69latin69,
+/area/ma69_tem69late/ecshi69/science69
+"aL" = 69
+/o6969/machiner69/door/69last/re69ular{
+	densit69 = 0;
+	icon_state = "69door0";
+	id = "scra69loc69";
+	name = "External 69last Doors";
+	o69acit69 = 0
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor,
-/area/map_template/ecship/crew)
-"aM" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/obj/structure/railing{
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/crew69
+"aM" = 69
+/o6969/structure/rea69ent_dis69ensers/water_cooler,
+/o6969/structure/railin69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aN" = (
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aN" = 69
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aO" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/item/deck/cards,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aP" = (
-/obj/structure/closet/crate/freezer/rations,
-/obj/structure/railing{
+/o6969/item/dec69/cards,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"a69" = 69
+/o6969/structure/closet/crate/69reezer/rations,
+/o6969/structure/railin69{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aQ" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"a69" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/item/stool/padded,
-/obj/machinery/alarm/low{
+/o6969/item/stool/69added,
+/o6969/machiner69/alarm/low{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"aR" = (
-/obj/structure/curtain/open/shower{
-	pixel_y = 16
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"aR" = 69
+/o6969/structure/curtain/o69en/shower{
+	69ixel_69 = 16
 	},
-/obj/structure/curtain/open/shower,
-/obj/structure/toilet,
-/obj/machinery/light/small{
-	icon_state = "bulb1";
+/o6969/structure/curtain/o69en/shower,
+/o6969/structure/toilet,
+/o6969/machiner69/li69ht/small{
+	icon_state = "69ul691";
 	dir = 8
 	},
-/obj/structure/closet/wall_mounted/emcloset,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/cryo)
-"aS" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/light/small{
-	brightness_color = "#aa2733"
+/o6969/structure/closet/wall_mounted/emcloset,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aS" = 69
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/machiner69/li69ht/small{
+	69ri69htness_color = "#aa2733"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/cryo)
-"aT" = (
-/obj/structure/sign/atmosplaque{
-	pixel_x = -26
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aT" = 69
+/o6969/structure/si69n/atmos69la69ue{
+	69ixel_x = -26
 	},
-/obj/spawner/closet/wardrobe,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"aU" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"aV" = (
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"aW" = (
-/obj/machinery/cryopod/broken,
-/obj/machinery/light/small{
-	icon_state = "bulb1";
+/o6969/s69awner/closet/wardro69e,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aU" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aV" = 69
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aW" = 69
+/o6969/machiner69/cr69o69od/69ro69en,
+/o6969/machiner69/li69ht/small{
+	icon_state = "69ul691";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"aX" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"aX" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 8
 	},
-/obj/structure/table/glass,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"aY" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/monkeycubes,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"aZ" = (
-/obj/structure/table/glass,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"ba" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"a69" = 69
+/o6969/structure/ta69le/69lass,
+/o6969/item/stora69e/69ox/mon69e69cu69es,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"aZ" = 69
+/o6969/structure/ta69le/69lass,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69a" = 69
+/o6969/machiner69/door/airloc69/external,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/cryo)
-"bb" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/blast/regular{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/cr69o69
+"6969" = 69
+/o6969/machiner69/door/69iredoor,
+/o6969/machiner69/door/69last/re69ular{
 	dir = 4;
-	id = "fusion_observation"
+	id = "69usion_o69servation"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/science)
-"bc" = (
-/obj/item/soap,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/science69
+"69c" = 69
+/o6969/item/soa69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/cryo)
-"bd" = (
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"be" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69d" = 69
+/o6969/structure/ta69le/standard,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69e" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/cryo)
-"bf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/cr69o69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bg" = (
-/obj/structure/sink{
-	pixel_y = -14
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"6969" = 69
+/o6969/structure/sin69{
+	69ixel_69 = -14
 	},
-/obj/structure/curtain/open/shower,
-/obj/structure/curtain/open/shower{
+/o6969/structure/curtain/o69en/shower,
+/o6969/structure/curtain/o69en/shower{
 	icon_state = "shower";
 	dir = 1
 	},
-/obj/structure/cable,
-/obj/machinery/alarm/low{
+/o6969/structure/ca69le,
+/o6969/machiner69/alarm/low{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/obj/machinery/power/apc{
-	pixel_y = -28
+/o6969/machiner69/69ower/a69c{
+	69ixel_69 = -28
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/cryo)
-"bh" = (
-/obj/structure/sink{
-	pixel_y = -14
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69h" = 69
+/o6969/structure/sin69{
+	69ixel_69 = -14
 	},
-/obj/structure/curtain/open/shower,
-/obj/structure/curtain/open/shower{
+/o6969/structure/curtain/o69en/shower,
+/o6969/structure/curtain/o69en/shower{
 	icon_state = "shower";
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/cryo)
-"bi" = (
-/obj/structure/catwalk,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"bj" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69i" = 69
+/o6969/structure/catwal69,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"6969" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/item/stool/padded,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bk" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/o6969/item/stool/69added,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	icon_state = "1-4";
 	dir = 8
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"bl" = (
-/obj/machinery/door/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"69l" = 69
+/o6969/machiner69/door/airloc69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"bm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69m" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"bn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69n" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"bo" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69o" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/crew)
-"bp" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"6969" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/item/remains/xeno,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bq" = (
-/obj/machinery/cryopod/broken,
-/obj/machinery/light/small,
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_y = -32
+/o6969/item/remains/xeno,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"6969" = 69
+/o6969/machiner69/cr69o69od/69ro69en,
+/o6969/machiner69/li69ht/small,
+/o6969/structure/closet/wall_mounted/emcloset{
+	69ixel_69 = -32
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"br" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bs" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69r" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69s" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/machinery/optable,
-/mob/living/carbon/superior_animal/giant_spider/hunter,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bt" = (
-/obj/structure/reagent_dispensers/watertank,
-/obj/item/reagent_containers/glass/bucket,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bu" = (
-/obj/structure/railing{
+/o6969/machiner69/o69ta69le,
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider/hunter,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69t" = 69
+/o6969/structure/rea69ent_dis69ensers/watertan69,
+/o6969/item/rea69ent_containers/69lass/69uc69et,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69u" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/structure/closet/secure_closet/personal/agrolyte,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bw" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/o6969/structure/closet/secure_closet/69ersonal/a69rol69te,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69w" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"bx" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"69x" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"by" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 8
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/item/board,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bz" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/o6969/item/69oard,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69z" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 8
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bA" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69A" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/machinery/power/apc{
-	icon_state = "apc0";
+/o6969/machiner69/69ower/a69c{
+	icon_state = "a69c0";
 	dir = 4;
-	pixel_x = 28
+	69ixel_x = 28
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-4";
 	dir = 1;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bB" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old4w/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/mani69old4w/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/item/stool/padded,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bC" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/item/stool/69added,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69C" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 10
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"bD" = (
-/obj/spawner/closet/wardrobe,
-/obj/machinery/alarm/low{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"69D" = 69
+/o6969/s69awner/closet/wardro69e,
+/o6969/machiner69/alarm/low{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"bE" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"69E" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"bF" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"6969" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/machinery/door/window/southright,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bG" = (
-/obj/structure/window/reinforced{
+/o6969/machiner69/door/window/southri69ht,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"6969" = 69
+/o6969/structure/window/rein69orced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 2;
 	health = 1e+007
 	},
-/mob/living/carbon/superior_animal/giant_spider,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bH" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bI" = (
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bK" = (
-/obj/structure/railing{
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69H" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69I" = 69
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"6969" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/machinery/vending/hydronutrients{
-	categories = 3
+/o6969/machiner69/vendin69/h69dronutrients{
+	cate69ories = 3
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bL" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69L" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 9
 	},
-/obj/structure/curtain/open/shower{
-	pixel_y = 16
+/o6969/structure/curtain/o69en/shower{
+	69ixel_69 = 16
 	},
-/obj/structure/curtain/open/shower,
-/obj/structure/sign/nosmoking_2{
-	pixel_x = -26
+/o6969/structure/curtain/o69en/shower,
+/o6969/structure/si69n/nosmo69in69_2{
+	69ixel_x = -26
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bM" = (
-/obj/effect/floor_decal/industrial/warning{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69M" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/machinery/light/small{
-	icon_state = "bulb1";
+/o6969/machiner69/li69ht/small{
+	icon_state = "69ul691";
 	dir = 1
 	},
-/obj/structure/curtain/open/shower{
-	pixel_y = 16
+/o6969/structure/curtain/o69en/shower{
+	69ixel_69 = 16
 	},
-/obj/structure/curtain/open/shower,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bN" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/structure/curtain/o69en/shower,
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69N" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 5
 	},
-/obj/structure/curtain/open/shower{
-	pixel_y = 16
+/o6969/structure/curtain/o69en/shower{
+	69ixel_69 = 16
 	},
-/obj/structure/curtain/open/shower,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bO" = (
-/obj/structure/sign/science,
-/turf/simulated/wall/titanium,
-/area/map_template/ecship/science)
-"bP" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/structure/curtain/o69en/shower,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69O" = 69
+/o6969/structure/si69n/science,
+/tur69/simulated/wall/titanium,
+/area/ma69_tem69late/ecshi69/science69
+"6969" = 69
+/o6969/machiner69/door/airloc69/external,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/crew)
-"bQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/crew69
+"6969" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bR" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69R" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bS" = (
-/obj/structure/bed,
-/obj/structure/curtain/open/bed,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bT" = (
-/obj/structure/bed,
-/obj/structure/curtain/open/bed,
-/obj/machinery/light,
-/turf/simulated/floor/tiled/airless,
-/area/map_template/ecship/crew)
-"bV" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69S" = 69
+/o6969/structure/69ed,
+/o6969/structure/curtain/o69en/69ed,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69T" = 69
+/o6969/structure/69ed,
+/o6969/structure/curtain/o69en/69ed,
+/o6969/machiner69/li69ht,
+/tur69/simulated/69loor/tiled/airless,
+/area/ma69_tem69late/ecshi69/crew69
+"69V" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"bW" = (
-/obj/structure/railing{
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"69W" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bX" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69X" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"bY" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	icon_state = "2-8"
 	},
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"bZ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"69Z" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/mani69old/hidden/su6969l69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"ca" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"ca" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/item/tool/scalpel{
-	pixel_y = 12
+/o6969/item/tool/scal69el{
+	69ixel_69 = 12
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cc" = (
-/obj/machinery/door/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cc" = 69
+/o6969/machiner69/door/airloc69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cd" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cd" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cf" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cg" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/machiner69/door/airloc69/external,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/science)
-"ch" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/light/small{
-	brightness_color = "#aa2733"
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/science69
+"ch" = 69
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/machiner69/li69ht/small{
+	69ri69htness_color = "#aa2733"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69{
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/science)
-"ci" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/science69
+"ci" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"cj" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"ck" = (
-/obj/structure/shuttle/engine/propulsion{
-	icon_state = "propulsion";
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"c69" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"c69" = 69
+/o6969/structure/shuttle/en69ine/69ro69ulsion{
+	icon_state = "69ro69ulsion";
 	dir = 8
 	},
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/cryo)
-"cl" = (
-/obj/structure/railing{
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/cr69o69
+"cl" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/obj/machinery/door/window/northleft,
-/mob/living/carbon/superior_animal/giant_spider/nurse,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cm" = (
-/obj/structure/window/reinforced{
+/o6969/machiner69/door/window/northle69t,
+/mo69/livin69/car69on/su69erior_animal/69iant_s69ider/nurse,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cm" = 69
+/o6969/structure/window/rein69orced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/portable_atmospherics/hydroponics{
-	closed_system = 1;
-	name = "isolation tray"
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cn" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics{
+	closed_s69stem = 1;
+	name = "isolation tra69"
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"co" = (
-/obj/machinery/portable_atmospherics/hydroponics{
-	closed_system = 1;
-	name = "isolation tray"
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"co" = 69
+/o6969/machiner69/69orta69le_atmos69herics/h69dro69onics{
+	closed_s69stem = 1;
+	name = "isolation tra69"
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cq" = (
-/obj/structure/sign/nosmoking_2{
-	pixel_x = 26
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/structure/si69n/nosmo69in69_2{
+	69ixel_x = 26
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/machinery/botany/extractor,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cr" = (
-/obj/effect/floor_decal/industrial/warning{
+/o6969/machiner69/69otan69/extractor,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cr" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
 	dir = 10
 	},
-/obj/structure/closet/l3closet,
-/obj/machinery/alarm/low{
+/o6969/structure/closet/l3closet,
+/o6969/machiner69/alarm/low{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cs" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/structure/closet/l3closet,
-/obj/structure/fireaxecabinet{
-	pixel_y = -32
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cs" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69,
+/o6969/structure/closet/l3closet,
+/o6969/structure/69ireaxeca69inet{
+	69ixel_69 = -32
 	},
-/obj/machinery/light/small,
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/o6969/machiner69/li69ht/small,
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"ct" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"ct" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 6
 	},
-/obj/structure/closet/l3closet,
-/obj/structure/cable,
-/obj/machinery/power/apc{
-	icon_state = "apc0";
+/o6969/structure/closet/l3closet,
+/o6969/structure/ca69le,
+/o6969/machiner69/69ower/a69c{
+	icon_state = "a69c0";
 	dir = 4;
-	pixel_y = -28
+	69ixel_69 = -28
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cu" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/lowpressure,
-/area/map_template/ecship/crew)
-"cv" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cu" = 69
+/o6969/machiner69/door/airloc69,
+/tur69/simulated/69loor/tiled/low69ressure,
+/area/ma69_tem69late/ecshi69/crew69
+"cv" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/o6969/structure/window/rein69orced,
+/o6969/structure/window/rein69orced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cw" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cw" = 69
+/o6969/structure/window/rein69orced,
+/o6969/structure/window/rein69orced{
 	dir = 4
 	},
-/obj/item/remains/xeno,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cx" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/o6969/item/remains/xeno,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cx" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 1;
-	layer = 2.4;
+	la69er = 2.4;
 	level = 2
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cy" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cz" = (
-/obj/item/stool/padded,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cA" = (
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cz" = 69
+/o6969/item/stool/69added,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cA" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/machinery/alarm/low{
+/o6969/machiner69/alarm/low{
 	dir = 8;
 	icon_state = "alarm0";
-	pixel_x = 24
+	69ixel_x = 24
 	},
-/obj/machinery/botany/editor,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cB" = (
-/turf/simulated/wall/titanium,
-/area/map_template/ecship/science)
-"cC" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor,
-/area/map_template/ecship/crew)
-"cF" = (
-/obj/machinery/smartfridge{
-	density = 0;
-	pixel_x = 0;
-	pixel_y = 0
+/o6969/machiner69/69otan69/editor,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/tur69/simulated/wall/titanium,
+/area/ma69_tem69late/ecshi69/science69
+"cC" = 69
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/crew69
+"c69" = 69
+/o6969/machiner69/smart69rid69e{
+	densit69 = 0;
+	69ixel_x = 0;
+	69ixel_69 = 0
 	},
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cG" = (
-/obj/machinery/light{
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"c69" = 69
+/o6969/machiner69/li69ht{
 	dir = 4;
-	icon_state = "tube1"
+	icon_state = "tu69e1"
 	},
-/obj/machinery/seed_extractor,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"cH" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engineering)
-"cI" = (
-/obj/machinery/door/airlock,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/o6969/machiner69/seed_extractor,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"cH" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cI" = 69
+/o6969/machiner69/door/airloc69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/lowpressure,
-/area/map_template/ecship/engineering)
-"cJ" = (
-/obj/structure/closet/secure_closet/engineering_welding,
-/obj/structure/railing{
+/tur69/simulated/69loor/tiled/low69ressure,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"c69" = 69
+/o6969/structure/closet/secure_closet/en69ineerin69_weldin69,
+/o6969/structure/railin69{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cK" = (
-/obj/structure/reagent_dispensers/fueltank,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"c69" = 69
+/o6969/structure/rea69ent_dis69ensers/69ueltan69,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cL" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cM" = (
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cM" = 69
+/o6969/structure/ca69le{
 	icon_state = "0-4";
 	dir = 1;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/obj/machinery/power/apc{
-	icon_state = "apc0";
+/o6969/machiner69/69ower/a69c{
+	icon_state = "a69c0";
 	dir = 1;
-	pixel_y = 28
+	69ixel_69 = 28
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cN" = (
-/obj/structure/railing{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cN" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/item/modular_computer/console/preset/engineering,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cO" = (
-/obj/machinery/atmospherics/pipe/simple/visible/red{
+/o6969/item/modular_com69uter/console/69reset/en69ineerin69,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cO" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/red{
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/machinery/alarm/low{
+/o6969/machiner69/alarm/low{
 	dir = 4;
 	icon_state = "alarm0";
-	pixel_x = -24
+	69ixel_x = -24
 	},
-/obj/machinery/meter,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cP" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
+/o6969/machiner69/meter,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/universal{
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cQ" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"c69" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/visi69le/scru6969ers,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cR" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cR" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cS" = (
-/obj/item/stool/padded,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cT" = (
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cU" = (
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cS" = 69
+/o6969/item/stool/69added,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cT" = 69
+/o6969/machiner69/69orta69le_atmos69herics/canister/air,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cU" = 69
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cV" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cW" = (
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cW" = 69
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cX" = (
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cX" = 69
+/o6969/structure/ca69le{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cY" = (
-/obj/machinery/light{
-	icon_state = "tube1";
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"c69" = 69
+/o6969/machiner69/li69ht{
+	icon_state = "tu69e1";
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/visible/cyan{
+/o6969/machiner69/atmos69herics/69i69e/mani69old/visi69le/c69an{
 	dir = 4
 	},
-/obj/structure/closet/wall_mounted/emcloset{
-	pixel_x = -32
+/o6969/structure/closet/wall_mounted/emcloset{
+	69ixel_x = -32
 	},
-/obj/machinery/meter,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"cZ" = (
-/obj/machinery/atmospherics/pipe/manifold/visible/supply,
-/obj/structure/cable{
+/o6969/machiner69/meter,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"cZ" = 69
+/o6969/machiner69/atmos69herics/69i69e/mani69old/visi69le/su6969l69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"da" = (
-/obj/machinery/atmospherics/unary/vent_pump/low{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"da" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low{
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"db" = (
-/obj/machinery/light{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/machiner69/li69ht{
 	dir = 4;
-	icon_state = "tube1"
+	icon_state = "tu69e1"
 	},
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dc" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/o6969/machiner69/69ower/smes/69uilda69le,
+/o6969/structure/ca69le,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dc" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dd" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "scraplock";
-	name = "External Blast Doors";
-	opacity = 0
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dd" = 69
+/o6969/machiner69/door/69last/re69ular{
+	densit69 = 0;
+	icon_state = "69door0";
+	id = "scra69loc69";
+	name = "External 69last Doors";
+	o69acit69 = 0
 	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"de" = (
-/obj/machinery/suit_storage_unit/engineering,
-/obj/machinery/light/small{
-	brightness_color = "#aa2733";
-	icon_state = "bulb1";
+/o6969/machiner69/door/69iredoor,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"de" = 69
+/o6969/machiner69/suit_stora69e_unit/en69ineerin69,
+/o6969/machiner69/li69ht/small{
+	69ri69htness_color = "#aa2733";
+	icon_state = "69ul691";
 	dir = 8
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"df" = (
-/obj/machinery/suit_storage_unit/engineering,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dg" = (
-/obj/structure/sign/vacuum{
-	icon_state = "space_old_crash"
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/machiner69/suit_stora69e_unit/en69ineerin69,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/structure/si69n/vacuum{
+	icon_state = "s69ace_old_crash"
 	},
-/turf/simulated/wall/titanium,
-/area/map_template/ecship/engineering)
-"dh" = (
-/obj/structure/railing{
+/tur69/simulated/wall/titanium,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dh" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/machinery/atmospherics/binary/pump/on{
+/o6969/machiner69/atmos69herics/69inar69/69um69/on{
 	dir = 1;
-	target_pressure = 200
+	tar69et_69ressure = 200
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"di" = (
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"di" = 69
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dj" = (
-/obj/structure/railing{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/machinery/power/terminal{
+/o6969/machiner69/69ower/terminal{
 	icon_state = "term";
 	dir = 1
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d2 = 2;
 	icon_state = "0-2";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dk" = (
-/obj/machinery/suit_storage_unit/engineering,
-/obj/machinery/light/small{
-	brightness_color = "#aa2733";
-	icon_state = "bulb1";
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/machiner69/suit_stora69e_unit/en69ineerin69,
+/o6969/machiner69/li69ht/small{
+	69ri69htness_color = "#aa2733";
+	icon_state = "69ul691";
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dl" = (
-/obj/structure/catwalk,
-/obj/structure/railing,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dm" = (
-/obj/structure/catwalk,
-/obj/structure/railing,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dl" = 69
+/o6969/structure/catwal69,
+/o6969/structure/railin69,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dm" = 69
+/o6969/structure/catwal69,
+/o6969/structure/railin69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dn" = (
-/obj/machinery/door/airlock/external,
-/obj/structure/cable{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dn" = 69
+/o6969/machiner69/door/airloc69/external,
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"do" = (
-/obj/structure/railing{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"do" = 69
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dp" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 8
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 5
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dq" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dr" = (
-/obj/structure/bed/chair,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dr" = 69
+/o6969/structure/69ed/chair,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"ds" = (
-/obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"ds" = 69
+/o6969/e6969ect/69loor_decal/industrial/warnin69{
+	icon_state = "warnin69";
 	dir = 4
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/machinery/atmospherics/valve/open{
-	icon_state = "map_valve1";
+/o6969/machiner69/atmos69herics/valve/o69en{
+	icon_state = "ma69_valve1";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8";
-	pixel_y = 0
+	69ixel_69 = 0
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dt" = (
-/obj/machinery/door/airlock/external,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dt" = 69
+/o6969/machiner69/door/airloc69/external,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"du" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"du" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dv" = (
-/obj/structure/catwalk,
-/obj/structure/railing,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dv" = 69
+/o6969/structure/catwal69,
+/o6969/structure/railin69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dw" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dw" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 9
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dx" = (
-/obj/structure/catwalk,
-/obj/effect/damagedfloor,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dy" = (
-/obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dx" = 69
+/o6969/structure/catwal69,
+/o6969/e6969ect/dama69ed69loor,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"d69" = 69
+/o6969/machiner69/69ower/solar,
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "0-2";
 	dir = 4;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dz" = (
-/obj/structure/catwalk,
-/obj/structure/railing,
-/obj/structure/cable{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dz" = 69
+/o6969/structure/catwal69,
+/o6969/structure/railin69,
+/o6969/structure/ca69le{
 	icon_state = "0-2";
 	dir = 4;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dA" = (
-/obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dA" = 69
+/o6969/machiner69/69ower/solar,
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dB" = (
-/obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"d69" = 69
+/o6969/machiner69/69ower/solar,
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dE" = (
-/obj/structure/table/standard,
-/obj/machinery/button/ignition{
-	id = "sev_engine";
-	pixel_x = -5
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dE" = 69
+/o6969/structure/ta69le/standard,
+/o6969/machiner69/69utton/i69nition{
+	id = "sev_en69ine";
+	69ixel_x = -5
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dF" = (
-/obj/machinery/computer/area_atmos{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/machiner69/com69uter/area_atmos{
 	name = "O2 Sensor"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dG" = (
-/obj/structure/catwalk,
-/obj/structure/cable{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"d69" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ca69le{
 	icon_state = "1-2";
 	dir = 4
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dH" = (
-/obj/machinery/power/solar,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/structure/cable{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dH" = 69
+/o6969/machiner69/69ower/solar,
+/o6969/e6969ect/69loor_decal/industrial/outline/69ellow,
+/o6969/structure/ca69le{
 	icon_state = "0-2";
 	dir = 4;
-	pixel_y = 0;
+	69ixel_69 = 0;
 	d1 = 16;
 	d2 = 0
 	},
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dI" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dI" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dJ" = (
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "scraplock";
-	name = "External Blast Doors";
-	opacity = 0
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"d69" = 69
+/o6969/machiner69/door/69last/re69ular{
+	densit69 = 0;
+	icon_state = "69door0";
+	id = "scra69loc69";
+	name = "External 69last Doors";
+	o69acit69 = 0
 	},
-/obj/machinery/door/firedoor,
-/obj/structure/cable{
+/o6969/machiner69/door/69iredoor,
+/o6969/structure/ca69le{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"dL" = (
-/obj/structure/catwalk,
-/obj/machinery/power/tracker,
-/obj/structure/cable,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"dO" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"dL" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/69ower/trac69er,
+/o6969/structure/ca69le,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dO" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/structure/cable{
+/o6969/structure/ca69le{
 	icon_state = "1-4";
 	dir = 4
 	},
-/obj/effect/damagedfloor,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dR" = (
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engine)
-"dS" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/obj/effect/damagedfloor,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dT" = (
-/obj/machinery/air_sensor{
-	id_tag = "sev_hydrogen"
+/o6969/e6969ect/dama69ed69loor,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dR" = 69
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dS" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dT" = 69
+/o6969/machiner69/air_sensor{
+	id_ta69 = "sev_h69dro69en"
 	},
-/turf/simulated/floor/reinforced,
-/area/map_template/ecship/engine)
-"dU" = (
-/obj/machinery/air_sensor{
-	id_tag = "sev_oxygen"
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dU" = 69
+/o6969/machiner69/air_sensor{
+	id_ta69 = "sev_ox6969en"
 	},
-/turf/simulated/floor/reinforced,
-/area/map_template/ecship/engine)
-"dV" = (
-/turf/simulated/floor/reinforced,
-/area/map_template/ecship/engine)
-"dW" = (
-/obj/structure/sign/signnew/flammables{
-	name = "\improper HYDROGEN"
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dV" = 69
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dW" = 69
+/o6969/structure/si69n/si69nnew/69lamma69les{
+	name = "\im69ro69er H69DRO69EN"
 	},
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engine)
-"dX" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ine69
+"dX" = 69
+/o6969/structure/catwal69,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 5
 	},
-/obj/effect/damagedfloor,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"dY" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"d69" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"dZ" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/binary/passive_gate{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"dZ" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69inar69/69assive_69ate{
 	dir = 8
 	},
-/turf/template_noop,
-/area/template_noop)
-"ea" = (
-/obj/structure/sign/atmos_o2{
-	name = "\improper OXYGEN"
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"ea" = 69
+/o6969/structure/si69n/atmos_o2{
+	name = "\im69ro69er OX6969EN"
 	},
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engine)
-"eb" = (
-/obj/machinery/atmospherics/unary/vent_pump/engine{
-	icon_state = "map_vent";
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ine69
+"e69" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/en69ine{
+	icon_state = "ma69_vent";
 	dir = 8;
-	use_power = 1;
-	pump_direction = 0;
-	external_pressure_bound = 4000;
-	external_pressure_bound_default = 4000
+	use_69ower = 1;
+	69um69_direction = 0;
+	external_69ressure_69ound = 4000;
+	external_69ressure_69ound_de69ault = 4000
 	},
-/turf/simulated/floor/reinforced,
-/area/map_template/ecship/engine)
-"ed" = (
-/obj/machinery/atmospherics/unary/vent_pump/engine{
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/ecshi69/en69ine69
+"ed" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/en69ine{
 	dir = 4;
-	external_pressure_bound = 4000;
-	external_pressure_bound_default = 4000;
-	icon_state = "map_vent";
-	pump_direction = 0;
-	use_power = 1
+	external_69ressure_69ound = 4000;
+	external_69ressure_69ound_de69ault = 4000;
+	icon_state = "ma69_vent";
+	69um69_direction = 0;
+	use_69ower = 1
 	},
-/turf/simulated/floor/reinforced,
-/area/map_template/ecship/engine)
-"ee" = (
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/tur69/simulated/69loor/rein69orced,
+/area/ma69_tem69late/ecshi69/en69ine69
+"ee" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/69ellow{
 	icon_state = "intact";
 	dir = 4
 	},
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engine)
-"ef" = (
-/obj/machinery/atmospherics/valve{
-	icon_state = "map_valve0";
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ine69
+"e69" = 69
+/o6969/machiner69/atmos69herics/valve{
+	icon_state = "ma69_valve0";
 	dir = 4
 	},
-/turf/simulated/floor,
-/area/map_template/ecship/engine)
-"eg" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/binary/passive_gate{
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ine69
+"e69" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69inar69/69assive_69ate{
 	dir = 4
 	},
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"eh" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow{
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"eh" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/69ellow{
 	dir = 10
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"ei" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
-"ej" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"ei" = 69
+/o6969/structure/catwal69,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
+"e69" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	icon_state = "intact";
 	dir = 6
 	},
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"ek" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/binary/passive_gate{
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"e69" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69inar69/69assive_69ate{
 	dir = 8
 	},
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"el" = (
-/obj/machinery/atmospherics/valve/open{
-	icon_state = "map_valve1";
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"el" = 69
+/o6969/machiner69/atmos69herics/valve/o69en{
+	icon_state = "ma69_valve1";
 	dir = 4
 	},
-/turf/template_noop,
-/area/map_template/ecship/engine)
-"em" = (
-/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+/tur69/tem69late_noo69,
+/area/ma69_tem69late/ecshi69/en69ine69
+"em" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an{
 	dir = 4;
 	icon_state = "intact"
 	},
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engine)
-"en" = (
-/obj/structure/sign/fire{
-	pixel_y = 0
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ine69
+"en" = 69
+/o6969/structure/si69n/69ire{
+	69ixel_69 = 0
 	},
-/turf/simulated/wall/r_wall,
-/area/map_template/ecship/engine)
-"eo" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/turf/template_noop,
-/area/template_noop)
-"ep" = (
-/obj/structure/lattice,
-/obj/machinery/atmospherics/pipe/simple/visible/cyan,
-/turf/template_noop,
-/area/template_noop)
-"kP" = (
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/cryo)
-"mD" = (
-/obj/structure/lattice,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"qB" = (
-/obj/structure/girder,
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"sf" = (
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor,
-/area/map_template/ecship/engineering)
-"NM" = (
-/obj/effect/damagedfloor,
-/turf/template_noop,
-/area/template_noop)
-"SX" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/device/scanner/xenobio,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"UQ" = (
-/obj/machinery/atmospherics/portables_connector{
+/tur69/simulated/wall/r_wall,
+/area/ma69_tem69late/ecshi69/en69ine69
+"eo" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/69ellow,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"e69" = 69
+/o6969/structure/lattice,
+/o6969/machiner69/atmos69herics/69i69e/sim69le/visi69le/c69an,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"6969" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/sla69er,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/cr69o69
+"mD" = 69
+/o6969/structure/lattice,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"6969" = 69
+/o6969/structure/69irder,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"s69" = 69
+/mo69/livin69/sim69le_animal/hostile/room69a/sla69er,
+/tur69/simulated/69loor,
+/area/ma69_tem69late/ecshi69/en69ineerin6969
+"NM" = 69
+/o6969/e6969ect/dama69ed69loor,
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"SX" = 69
+/o6969/machiner69/atmos69herics/unar69/vent_scru6969er/on,
+/o6969/item/device/scanner/xeno69io,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"U69" = 69
+/o6969/machiner69/atmos69herics/69orta69les_connector{
 	dir = 1
 	},
-/turf/template_noop,
-/area/template_noop)
-"Vy" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/tool/saw/circular,
-/turf/simulated/floor/tiled/white/lowpressure,
-/area/map_template/ecship/science)
-"YW" = (
-/obj/structure/catwalk,
-/obj/effect/damagedfloor,
-/turf/simulated/floor/airless,
-/area/map_template/ecship/engine)
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"V69" = 69
+/o6969/machiner69/atmos69herics/69i69e/sim69le/hidden/scru6969ers,
+/o6969/item/tool/saw/circular,
+/tur69/simulated/69loor/tiled/white/low69ressure,
+/area/ma69_tem69late/ecshi69/science69
+"69W" = 69
+/o6969/structure/catwal69,
+/o6969/e6969ect/dama69ed69loor,
+/tur69/simulated/69loor/airless,
+/area/ma69_tem69late/ecshi69/en69ine69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
@@ -1908,9 +1908,9 @@ aa
 aa
 aA
 aA
-aB
+a69
 aA
-aB
+a69
 aA
 aA
 aA
@@ -1933,7 +1933,7 @@ aa
 aa
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 aa
 aa
 aa
@@ -1946,7 +1946,7 @@ aA
 aA
 aA
 aA
-bb
+6969
 aA
 aA
 aA
@@ -1969,7 +1969,7 @@ aa
 aa
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 aa
 aa
 aa
@@ -1977,17 +1977,17 @@ aa
 aa
 aa
 aa
-aB
+a69
 aA
 aA
-bp
-bF
-bW
+6969
+6969
+69W
 cl
 cv
 aA
 aA
-aB
+a69
 aa
 aa
 aa
@@ -2005,7 +2005,7 @@ aa
 aa
 aa
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
 aa
 aa
@@ -2017,8 +2017,8 @@ aA
 aA
 aX
 cm
-bG
-bI
+6969
+69I
 cm
 cw
 aX
@@ -2041,7 +2041,7 @@ aa
 aa
 aa
 "}
-(5,1,1) = {"
+695,1,169 = {"
 aa
 aa
 aa
@@ -2051,10 +2051,10 @@ aa
 aa
 aA
 aA
-aY
-br
-Vy
-bX
+a69
+69r
+V69
+69X
 cn
 cx
 co
@@ -2077,7 +2077,7 @@ aa
 aa
 aa
 "}
-(6,1,1) = {"
+696,1,169 = {"
 aa
 aa
 aa
@@ -2085,17 +2085,17 @@ aa
 aa
 aa
 aa
-aB
+a69
 ao
 aZ
-aJ
-bI
-bs
+a69
+69I
+69s
 co
-bI
+69I
 co
 ao
-aB
+a69
 aa
 aa
 aa
@@ -2113,7 +2113,7 @@ aa
 aa
 aa
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
 aa
 aa
@@ -2125,11 +2125,11 @@ aA
 aA
 aZ
 SX
-bH
-bZ
-cp
-cy
-cF
+69H
+69Z
+c69
+c69
+c69
 aA
 aA
 NM
@@ -2149,7 +2149,7 @@ dH
 aa
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 aa
 aa
 aa
@@ -2160,32 +2160,32 @@ NM
 aA
 aA
 au
-bt
-bI
+69t
+69I
 ca
-bI
+69I
 cz
-cG
+c69
 aA
 aA
 NM
 NM
 NM
 NM
-dy
-dy
-dy
-dy
-dy
-dy
-dy
-dy
-dy
-dy
-dy
+d69
+d69
+d69
+d69
+d69
+d69
+d69
+d69
+d69
+d69
+d69
 aa
 "}
-(9,1,1) = {"
+699,1,169 = {"
 aa
 aa
 aa
@@ -2196,10 +2196,10 @@ NM
 aA
 aA
 aA
-bu
-bK
-cb
-cq
+69u
+6969
+c69
+c69
 cA
 aA
 aA
@@ -2207,7 +2207,7 @@ aA
 NM
 NM
 NM
-bk
+6969
 ci
 dc
 dc
@@ -2221,7 +2221,7 @@ dc
 dc
 dL
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 aa
 aa
 aa
@@ -2230,7 +2230,7 @@ aa
 NM
 NM
 NM
-aK
+a69
 aA
 aA
 aA
@@ -2238,12 +2238,12 @@ cc
 aA
 aA
 aA
-aK
+a69
 NM
 NM
 NM
 NM
-bw
+69w
 dA
 dA
 dA
@@ -2257,7 +2257,7 @@ dA
 dA
 aa
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 aa
 aa
 aa
@@ -2269,7 +2269,7 @@ NM
 NM
 NM
 aA
-bL
+69L
 cd
 cr
 aA
@@ -2279,25 +2279,25 @@ NM
 NM
 NM
 NM
-bw
-dB
-dB
+69w
+d69
+d69
 aa
 aa
-dB
+d69
 aa
 ah
 aa
 aa
-dB
+d69
 aa
 aa
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 aa
 ac
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2305,17 +2305,17 @@ NM
 NM
 NM
 aA
-bM
-bZ
+69M
+69Z
 cs
-cB
+c69
 NM
 NM
 NM
 NM
 NM
 NM
-bw
+69w
 NM
 aa
 aa
@@ -2329,11 +2329,11 @@ aa
 aa
 aa
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 aa
 ac
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2341,8 +2341,8 @@ NM
 NM
 NM
 aA
-bN
-cf
+69N
+c69
 ct
 aA
 NM
@@ -2351,7 +2351,7 @@ NM
 NM
 NM
 NM
-bw
+69w
 NM
 aa
 aa
@@ -2365,11 +2365,11 @@ aa
 aa
 aa
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 aa
 aa
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2377,8 +2377,8 @@ NM
 NM
 NM
 aA
-bO
-cg
+69O
+c69
 aA
 aA
 NM
@@ -2387,7 +2387,7 @@ NM
 NM
 NM
 NM
-bw
+69w
 NM
 NM
 aa
@@ -2401,7 +2401,7 @@ dR
 aa
 aa
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 ac
 ac
 ac
@@ -2422,10 +2422,10 @@ NM
 NM
 NM
 NM
-bi
-bw
-bi
-bi
+69i
+69w
+69i
+69i
 NM
 dR
 dR
@@ -2437,11 +2437,11 @@ dR
 dR
 aa
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 ac
 ac
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2473,7 +2473,7 @@ dV
 dR
 aa
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 aa
 ac
 ac
@@ -2509,7 +2509,7 @@ dR
 dR
 aa
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 ac
 ac
 ac
@@ -2530,7 +2530,7 @@ NM
 cH
 cH
 cH
-df
+d69
 do
 cH
 dl
@@ -2545,17 +2545,17 @@ dR
 aa
 aa
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 ac
 ac
 ac
 ac
 ac
-aq
-aq
-aq
+a69
+a69
+a69
 aL
-aq
+a69
 ai
 ai
 NM
@@ -2566,7 +2566,7 @@ cH
 cH
 cH
 cH
-dg
+d69
 dn
 cH
 dl
@@ -2574,14 +2574,14 @@ dx
 NM
 aa
 ah
-ef
+e69
 ah
 aa
 aa
 aa
 aa
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 ad
 ad
 ac
@@ -2589,71 +2589,71 @@ ac
 ac
 ac
 ax
-ay
+a69
 aM
-aQ
+a69
 ai
 ai
 ai
 NM
 NM
 cH
-cJ
+c69
 cO
 cT
-cY
+c69
 dh
-dp
+d69
 cH
 cH
 dz
 NM
 NM
 mD
-eg
+e69
 ah
 aa
 aa
 aa
 aa
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 ad
 ad
 ad
-ak
+a69
 am
 ac
 ax
 aC
 aN
-bd
-bx
-bo
-bS
-aq
-aq
+69d
+69x
+69o
+69S
+a69
+a69
 cH
-cK
-cP
+c69
+c69
 cU
-cP
-sf
-dq
+c69
+s69
+d69
 cU
 dd
-dG
+d69
 mD
 mD
 mD
 eh
 eo
-UQ
+U69
 aa
 aa
 aa
 "}
-(22,1,1) = {"
+6922,1,169 = {"
 ad
 ad
 ad
@@ -2663,69 +2663,69 @@ ar
 av
 aD
 aO
-bf
-by
-bB
-bf
+6969
+6969
+6969
+6969
 cu
 cC
 cI
 cL
-cQ
+c69
 cV
 cZ
 di
 dr
 dE
-dJ
+d69
 dO
 dS
 dS
 dX
-YW
+69W
 ei
 ah
 ah
 aa
 aa
 "}
-(23,1,1) = {"
+6923,1,169 = {"
 ad
 ae
-af
+a69
 al
-ap
+a69
 ac
 aw
-aF
+a69
 aN
-bd
-bz
-bQ
-bS
-aq
-aq
+69d
+69z
+6969
+69S
+a69
+a69
 cH
 cM
 cR
 cW
 da
 cU
-dq
-dF
+d69
+d69
 dd
 dI
 mD
 mD
-dY
-ej
-ep
+d69
+e69
+e69
 aa
 aa
 aa
 aa
 "}
-(24,1,1) = {"
+6924,1,169 = {"
 ac
 ac
 ac
@@ -2733,56 +2733,56 @@ ac
 ac
 ac
 ax
-aG
-aP
-bj
-bA
-bR
-bT
-aq
+a69
+a69
+6969
+69A
+69R
+69T
+a69
 NM
 cH
 cN
 cS
 cX
-db
-dj
+d69
+d69
 ds
 cH
 cH
 dv
 NM
 NM
-dY
-ek
+d69
+e69
 ah
 aa
 aa
 aa
 ah
 "}
-(25,1,1) = {"
+6925,1,169 = {"
 ac
 ac
 ac
 ac
-ap
-aq
-aq
-aq
+a69
+a69
+a69
+a69
 aL
-aq
-aq
-bP
-aq
-aq
+a69
+a69
+6969
+a69
+a69
 NM
 cH
 cH
 cH
 cH
 cH
-dg
+d69
 dt
 cH
 dm
@@ -2797,7 +2797,7 @@ aa
 aa
 aa
 "}
-(26,1,1) = {"
+6926,1,169 = {"
 ac
 ac
 ac
@@ -2818,7 +2818,7 @@ NM
 cH
 cH
 cH
-df
+d69
 du
 cH
 dv
@@ -2833,7 +2833,7 @@ aa
 aa
 aa
 "}
-(27,1,1) = {"
+6927,1,169 = {"
 ac
 ac
 ac
@@ -2854,22 +2854,22 @@ NM
 NM
 cH
 cH
-dk
+d69
 du
 cH
 dv
 aa
 dR
 dR
-eb
-eb
+e69
+e69
 dV
 aa
 aa
 aa
 aa
 "}
-(28,1,1) = {"
+6928,1,169 = {"
 ac
 ac
 ac
@@ -2905,11 +2905,11 @@ dV
 aa
 aa
 "}
-(29,1,1) = {"
+6929,1,169 = {"
 aa
 ac
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2926,9 +2926,9 @@ NM
 NM
 NM
 NM
-bi
-bC
-cj
+69i
+69C
+c69
 dw
 aa
 dR
@@ -2941,11 +2941,11 @@ dR
 dR
 aa
 "}
-(30,1,1) = {"
+6930,1,169 = {"
 aa
 ac
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2963,7 +2963,7 @@ NM
 NM
 NM
 NM
-bV
+69V
 aa
 aa
 aa
@@ -2977,11 +2977,11 @@ dR
 aa
 aa
 "}
-(31,1,1) = {"
+6931,1,169 = {"
 aa
 aa
 ac
-qB
+6969
 NM
 NM
 NM
@@ -2989,7 +2989,7 @@ NM
 NM
 as
 as
-ba
+69a
 as
 as
 NM
@@ -2999,7 +2999,7 @@ NM
 NM
 NM
 NM
-bV
+69V
 aa
 aa
 aa
@@ -3013,7 +3013,7 @@ aa
 aa
 aa
 "}
-(32,1,1) = {"
+6932,1,169 = {"
 aa
 aa
 ac
@@ -3025,8 +3025,8 @@ NM
 NM
 as
 aR
-bc
-bg
+69c
+6969
 as
 NM
 NM
@@ -3035,7 +3035,7 @@ NM
 NM
 NM
 aa
-bV
+69V
 aa
 aa
 aa
@@ -3049,11 +3049,11 @@ aa
 aa
 aa
 "}
-(33,1,1) = {"
+6933,1,169 = {"
 aa
 aa
 ac
-qB
+6969
 NM
 NM
 NM
@@ -3061,8 +3061,8 @@ NM
 NM
 NM
 NM
-be
-bh
+69e
+69h
 as
 NM
 NM
@@ -3071,7 +3071,7 @@ NM
 NM
 NM
 aa
-bV
+69V
 aa
 aa
 aa
@@ -3085,21 +3085,21 @@ aa
 aa
 aa
 "}
-(34,1,1) = {"
+6934,1,169 = {"
 aa
 aa
 aa
 mD
 NM
-ab
+a69
 az
 as
 as
-bl
+69l
 as
 as
-ck
-ab
+c69
+a69
 NM
 NM
 NM
@@ -3107,35 +3107,35 @@ NM
 NM
 aa
 aa
-bV
+69V
 aa
 aa
 aa
-dy
-dy
-dy
-dy
-dy
+d69
+d69
+d69
+d69
+d69
 ah
 aa
-dy
+d69
 aa
 "}
-(35,1,1) = {"
+6935,1,169 = {"
 aa
 aa
 aa
-ag
-qB
-ab
+a69
+6969
+a69
 as
 as
 aT
-bm
-bD
+69m
+69D
 as
 as
-ab
+a69
 NM
 NM
 NM
@@ -3143,7 +3143,7 @@ NM
 aa
 aa
 aa
-bY
+6969
 dc
 dc
 dc
@@ -3157,7 +3157,7 @@ dc
 dc
 dL
 "}
-(36,1,1) = {"
+6936,1,169 = {"
 aa
 aa
 aa
@@ -3167,11 +3167,11 @@ at
 as
 aE
 aU
-bn
-bE
-bq
+69n
+69E
+6969
 as
-ab
+a69
 NM
 NM
 aa
@@ -3193,21 +3193,21 @@ dA
 dA
 aa
 "}
-(37,1,1) = {"
+6937,1,169 = {"
 aa
 aa
 aa
 aa
 aa
-ab
+a69
 as
 aH
 aV
-kP
+6969
 aV
 aH
 as
-ab
+a69
 aa
 aa
 aa
@@ -3217,19 +3217,19 @@ aa
 aa
 aa
 aa
-dB
-dB
-dB
+d69
+d69
+d69
 aa
 ah
 aa
-dB
-dB
-dB
-dB
+d69
+d69
+d69
+d69
 aa
 "}
-(38,1,1) = {"
+6938,1,169 = {"
 aa
 aa
 aa
@@ -3265,7 +3265,7 @@ aa
 aa
 aa
 "}
-(39,1,1) = {"
+6939,1,169 = {"
 aa
 aa
 aa
@@ -3279,7 +3279,7 @@ as
 as
 as
 as
-ab
+a69
 aa
 aa
 aa
@@ -3301,20 +3301,20 @@ aa
 aa
 aa
 "}
-(40,1,1) = {"
+6940,1,169 = {"
 aa
 aa
 aa
 aa
 aa
 aa
-ab
+a69
 at
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
 aa
 aa
 aa

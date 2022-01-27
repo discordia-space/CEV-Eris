@@ -5,7 +5,7 @@
 	var/genesource = ""
 	var/genesource_uid = 0
 	var/genetype    // Label used when applying trait.
-	var/list/values // Values to copy into the target seed datum.
+	var/list/values //69alues to copy into the target seed datum.
 
 /datum/computer_file/binary/plantgene/clone()
 	var/datum/computer_file/binary/plantgene/F = ..()
@@ -17,7 +17,7 @@
 	return F
 
 /datum/computer_file/binary/plantgene/proc/update_name()
-	filename = "PL_GENE_[plant_controller.gene_tag_masks[genetype]]_[genesource_uid]"
+	filename = "PL_GENE_69plant_controller.gene_tag_masks69genetype6969_69genesource_uid69"
 
 /datum/computer_file/binary/plantgene/ui_data()
 	var/list/data = list(
@@ -26,7 +26,7 @@
 		"strain" = genesource_uid,
 		"tag" = genetype,
 		"size" = size,
-		"mask" = plant_controller.gene_tag_masks[genetype]
+		"mask" = plant_controller.gene_tag_masks69genetype69
 	)
 	return data
 
@@ -34,16 +34,16 @@
 	//Tracking.
 	var/uid                        // Unique identifier.
 	var/name                       // Index for global list.
-	var/seed_name                  // Plant name for seed packet.
+	var/seed_name                  // Plant69ame for seed packet.
 	var/seed_noun = "seeds"        // Descriptor for packet.
-	var/display_name               // Prettier name.
-	var/roundstart                 // If set, seed will not display variety number.
+	var/display_name               // Prettier69ame.
+	var/roundstart                 // If set, seed will69ot display69ariety69umber.
 	var/mysterious                 // Only used for the random seed packets.
-	var/can_self_harvest = 0       // Mostly used for living mobs.
-	var/growth_stages = 0          // Number of stages the plant passes through before it is mature.
-	var/list/traits = list()       // Initialized in New()
-	var/list/mutants               // Possible predefined mutant varieties, if any.
-	var/list/chems                 // Chemicals that plant produces in products/injects into victim.
+	var/can_self_harvest = 0       //69ostly used for living69obs.
+	var/growth_stages = 0          //69umber of stages the plant passes through before it is69ature.
+	var/list/traits = list()       // Initialized in69ew()
+	var/list/mutants               // Possible predefined69utant69arieties, if any.
+	var/list/chems                 // Chemicals that plant produces in products/injects into69ictim.
 	var/list/consume_gasses        // The plant will absorb these gasses during its life.
 	var/list/exude_gasses          // The plant will exude these gasses during its life.
 	var/kitchen_tag                // Used by the reagent grinder.
@@ -54,18 +54,18 @@
 
 /datum/seed/New()
 
-	set_trait(TRAIT_IMMUTABLE,            0)            // If set, plant will never mutate. If -1, plant is highly mutable.
+	set_trait(TRAIT_IMMUTABLE,            0)            // If set, plant will69ever69utate. If -1, plant is highly69utable.
 	set_trait(TRAIT_HARVEST_REPEAT,       0)            // If 1, this plant will fruit repeatedly.
-	set_trait(TRAIT_PRODUCES_POWER,       0)            // Can be used to make a battery.
+	set_trait(TRAIT_PRODUCES_POWER,       0)            // Can be used to69ake a battery.
 	set_trait(TRAIT_JUICY,                0)            // When thrown, causes a splatter decal.
 	set_trait(TRAIT_EXPLOSIVE,            0)            // When thrown, acts as a grenade.
-	set_trait(TRAIT_CARNIVOROUS,          0)            // 0 = none, 1 = eat pests in tray, 2 = eat living things  (when a vine).
-	set_trait(TRAIT_PARASITE,             0)            // 0 = no, 1 = gain health from weed level.
+	set_trait(TRAIT_CARNIVOROUS,          0)            // 0 =69one, 1 = eat pests in tray, 2 = eat living things  (when a69ine).
+	set_trait(TRAIT_PARASITE,             0)            // 0 =69o, 1 = gain health from weed level.
 	set_trait(TRAIT_STINGS,               0)            // Can cause damage/inject reagents when thrown or handled.
 	set_trait(TRAIT_YIELD,                0)            // Amount of product.
-	set_trait(TRAIT_SPREAD,               0)            // 0 limits plant to tray, 1 = creepers, 2 = vines.
+	set_trait(TRAIT_SPREAD,               0)            // 0 limits plant to tray, 1 = creepers, 2 =69ines.
 	set_trait(TRAIT_WALL_HUGGER,          0)            // If 1, plant grows on walls as well as floors. Only useful if Spread is set
-	set_trait(TRAIT_MATURATION,           0)            // Time taken before the plant is mature.
+	set_trait(TRAIT_MATURATION,           0)            // Time taken before the plant is69ature.
 	set_trait(TRAIT_PRODUCTION,           0)            // Time before harvesting can be undertaken again.
 	set_trait(TRAIT_TELEPORTING,          0)            // Uses the bluespace tomato effect.
 	set_trait(TRAIT_BIOLUM,               0)            // Plant is bioluminescent.
@@ -74,11 +74,11 @@
 	set_trait(TRAIT_PLANT_ICON,           0)            // Icon to use for the plant growing in the tray.
 	set_trait(TRAIT_PRODUCT_COLOUR,       0)            // Colour to apply to product icon.
 	set_trait(TRAIT_BIOLUM_COLOUR,        0)            // The colour of the plant's radiance.
-	set_trait(TRAIT_CHEM_SPRAYER,         0)			// The ability to spray its chemicals on movement.
-	set_trait(TRAIT_POTENCY,              1)            // General purpose plant strength value.
+	set_trait(TRAIT_CHEM_SPRAYER,         0)			// The ability to spray its chemicals on69ovement.
+	set_trait(TRAIT_POTENCY,              1)            // General purpose plant strength69alue.
 	set_trait(TRAIT_REQUIRES_NUTRIENTS,   1)            // The plant can starve.
 	set_trait(TRAIT_REQUIRES_WATER,       1)            // The plant can become dehydrated.
-	set_trait(TRAIT_WATER_CONSUMPTION,    3)            // Plant drinks this much per tick.
+	set_trait(TRAIT_WATER_CONSUMPTION,    3)            // Plant drinks this69uch per tick.
 	set_trait(TRAIT_LIGHT_TOLERANCE,      3)            // Departure from ideal that is survivable.
 	set_trait(TRAIT_TOXINS_TOLERANCE,     5)            // Resistance to poison.
 	set_trait(TRAIT_PEST_TOLERANCE,       5)            // Threshold for pests to impact health.
@@ -86,10 +86,10 @@
 	set_trait(TRAIT_IDEAL_LIGHT,          5)            // Preferred light level in luminosity.
 	set_trait(TRAIT_HEAT_TOLERANCE,       20)           // Departure from ideal that is survivable.
 	set_trait(TRAIT_LOWKPA_TOLERANCE,     25)           // Low pressure capacity.
-	set_trait(TRAIT_ENDURANCE,            100)          // Maximum plant HP when growing.
+	set_trait(TRAIT_ENDURANCE,            100)          //69aximum plant HP when growing.
 	set_trait(TRAIT_HIGHKPA_TOLERANCE,    200)          // High pressure capacity.
 	set_trait(TRAIT_IDEAL_HEAT,           293)          // Preferred temperature in Kelvin.
-	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)         // Plant eats this much per tick.
+	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)         // Plant eats this69uch per tick.
 	set_trait(TRAIT_PLANT_COLOUR,         "#46B543")    // Colour of the plant icon.
 	set_trait(TRAIT_BOOSTED_GROWTH,       1)            // Rate of plant aging process for growth.
 
@@ -98,16 +98,16 @@
 		update_growth_stages()
 
 /datum/seed/proc/get_trait(trait)
-	return traits["[trait]"]
+	return traits69"69trait69"69
 
 /datum/seed/proc/get_trash_type()
 	return trash_type
 
 /datum/seed/proc/set_trait(trait,nval,ubound,lbound, degrade)
-	if(!isnull(degrade)) nval *= degrade
-	if(!isnull(ubound))  nval = min(nval,ubound)
-	if(!isnull(lbound))  nval = max(nval,lbound)
-	traits["[trait]"] =  nval
+	if(!isnull(degrade))69val *= degrade
+	if(!isnull(ubound)) 69val =69in(nval,ubound)
+	if(!isnull(lbound)) 69val =69ax(nval,lbound)
+	traits69"69trait69"69 = 69val
 
 /datum/seed/proc/create_spores(turf/T)
 	if(!T)
@@ -117,13 +117,13 @@
 	if(!T)
 		return
 
-	var/datum/reagents/R = new/datum/reagents(100)
+	var/datum/reagents/R =69ew/datum/reagents(100)
 	if(chems.len)
 		for(var/rid in chems)
-			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/3))
+			var/injecting =69in(5,max(1,get_trait(TRAIT_POTENCY)/3))
 			R.add_reagent(rid,injecting)
 
-	var/datum/effect/effect/system/smoke_spread/chem/spores/S = new(name)
+	var/datum/effect/effect/system/smoke_spread/chem/spores/S =69ew(name)
 	S.attach(T)
 	S.set_up(R, round(get_trait(TRAIT_POTENCY)/4), 0, T)
 	S.start()
@@ -152,15 +152,15 @@
 	if(get_trait(TRAIT_CARNIVOROUS))
 		if(get_trait(TRAIT_CARNIVOROUS) == 2)
 			if(affecting)
-				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns pierce your [affecting.name] greedily!"))
+				to_chat(target, SPAN_DANGER("\The 69fruit69's thorns pierce your 69affecting.name69 greedily!"))
 			else
-				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns pierce your flesh greedily!"))
+				to_chat(target, SPAN_DANGER("\The 69fruit69's thorns pierce your flesh greedily!"))
 			damage = get_trait(TRAIT_POTENCY)/2
 		else
 			if(affecting)
-				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns dig deeply into your [affecting.name]!"))
+				to_chat(target, SPAN_DANGER("\The 69fruit69's thorns dig deeply into your 69affecting.name69!"))
 			else
-				to_chat(target, SPAN_DANGER("\The [fruit]'s thorns dig deeply into your flesh!"))
+				to_chat(target, SPAN_DANGER("\The 69fruit69's thorns dig deeply into your flesh!"))
 			damage = get_trait(TRAIT_POTENCY)/5
 	else
 		return
@@ -188,17 +188,17 @@
 
 		if(!body_coverage)
 			return
-		to_chat(target, SPAN_DANGER("You are stung by \the [fruit]!"))
+		to_chat(target, SPAN_DANGER("You are stung by \the 69fruit69!"))
 		for(var/rid in chems)
-			var/injecting = min(5,max(1,get_trait(TRAIT_POTENCY)/5))
+			var/injecting =69in(5,max(1,get_trait(TRAIT_POTENCY)/5))
 			target.reagents.add_reagent(rid,injecting)
 
 //Splatter a turf.
 /datum/seed/proc/splatter(turf/T,obj/item/thrown)
 	if(splat_type && !(locate(/obj/effect/plant) in T))
-		var/obj/effect/plant/splat = new splat_type(T, src)
+		var/obj/effect/plant/splat =69ew splat_type(T, src)
 		if(!istype(splat)) // Plants handle their own stuff.
-			splat.name = "[thrown.name] [pick("smear","smudge","splatter")]"
+			splat.name = "69thrown.name69 69pick("smear","smudge","splatter")69"
 			if(get_trait(TRAIT_BIOLUM))
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
@@ -213,14 +213,14 @@
 			if(!M.reagents)
 				continue
 			var/body_coverage = HEAD|FACE|EYES|UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-			for(var/obj/item/clothing/clothes in M)
-				if(M.l_hand == clothes || M.r_hand == clothes)
+			for(var/obj/item/clothing/clothes in69)
+				if(M.l_hand == clothes ||69.r_hand == clothes)
 					continue
 				body_coverage &= ~(clothes.body_parts_covered)
 			if(!body_coverage)
 				continue
-			var/datum/reagents/R = M.reagents
-			var/mob/living/carbon/human/H = M
+			var/datum/reagents/R =69.reagents
+			var/mob/living/carbon/human/H =69
 			if(istype(H))
 				R = H.touching
 			if(istype(R))
@@ -237,7 +237,7 @@
 
 		create_spores(origin_turf)
 
-		var/flood_dist = min(10,max(1,get_trait(TRAIT_POTENCY)/15))
+		var/flood_dist =69in(10,max(1,get_trait(TRAIT_POTENCY)/15))
 		var/list/open_turfs = list()
 		var/list/closed_turfs = list()
 		var/list/valid_turfs = list()
@@ -255,7 +255,7 @@
 				if(!neighbor || (neighbor in closed_turfs) || (neighbor in open_turfs))
 					continue
 				if(neighbor.density || get_dist(neighbor,origin_turf) > flood_dist || istype(neighbor,/turf/space))
-					closed_turfs |= neighbor
+					closed_turfs |=69eighbor
 					continue
 				// Check for windows.
 				var/no_los
@@ -268,16 +268,16 @@
 				if(!no_los && !origin_turf.Enter(neighbor))
 					no_los = 1
 				if(no_los)
-					closed_turfs |= neighbor
+					closed_turfs |=69eighbor
 					continue
-				open_turfs |= neighbor
+				open_turfs |=69eighbor
 
-		for(var/turf/T in valid_turfs)
+		for(var/turf/T in69alid_turfs)
 			for(var/mob/living/M in T.contents)
 				apply_special_effect(M)
 			splatter(T,thrown)
 		if(origin_turf)
-			origin_turf.visible_message(SPAN_DANGER("The [thrown.name] explodes!"))
+			origin_turf.visible_message(SPAN_DANGER("The 69thrown.name69 explodes!"))
 		qdel(thrown)
 		return
 
@@ -291,7 +291,7 @@
 	if(get_trait(TRAIT_JUICY) && splatted)
 		splatter(origin_turf,thrown)
 		if(origin_turf)
-			origin_turf.visible_message(SPAN_DANGER("The [thrown.name] splatters against [target]!"))
+			origin_turf.visible_message(SPAN_DANGER("The 69thrown.name69 splatters against 69target69!"))
 		qdel(thrown)
 
 /datum/seed/proc/handle_environment(turf/current_turf, datum/gas_mixture/environment, light_supplied, check_only)
@@ -301,15 +301,15 @@
 	if(consume_gasses && consume_gasses.len)
 		var/missing_gas = 0
 		for(var/gas in consume_gasses)
-			if(environment && environment.gas && environment.gas[gas] && \
-			 environment.gas[gas] >= consume_gasses[gas])
+			if(environment && environment.gas && environment.gas69gas69 && \
+			 environment.gas69gas69 >= consume_gasses69gas69)
 				if(!check_only)
-					environment.adjust_gas(gas,-consume_gasses[gas],1)
+					environment.adjust_gas(gas,-consume_gasses69gas69,1)
 			else
 				missing_gas++
 
 		if(missing_gas > 0)
-			health_change += missing_gas * HYDRO_SPEED_MULTIPLIER
+			health_change +=69issing_gas * HYDRO_SPEED_MULTIPLIER
 
 	// Process it.
 	var/pressure = environment.return_pressure()
@@ -322,7 +322,7 @@
 	// Handle gas production.
 	if(exude_gasses && exude_gasses.len && !check_only)
 		for(var/gas in exude_gasses)
-			environment.adjust_gas(gas, max(1,round((exude_gasses[gas]*(get_trait(TRAIT_POTENCY)/5))/exude_gasses.len)))
+			environment.adjust_gas(gas,69ax(1,round((exude_gasses69gas69*(get_trait(TRAIT_POTENCY)/5))/exude_gasses.len)))
 
 	//Handle temperature change.
 	if(get_trait(TRAIT_ALTER_TEMP) != 0 && !check_only)
@@ -331,7 +331,7 @@
 			var/datum/gas_mixture/removed = environment.remove(0.25 * environment.total_moles)
 			if(removed)
 				var/heat_transfer = abs(removed.get_thermal_energy_change(target_temp))
-				heat_transfer = min(heat_transfer,abs(get_trait(TRAIT_ALTER_TEMP) * 10000))
+				heat_transfer =69in(heat_transfer,abs(get_trait(TRAIT_ALTER_TEMP) * 10000))
 				removed.add_thermal_energy((get_trait(TRAIT_ALTER_TEMP) > 0 ? 1 : -1) * heat_transfer)
 			environment.merge(removed)
 
@@ -368,12 +368,12 @@
 
 	return impact
 
-//Creates a random seed. MAKE SURE THE LINE HAS DIVERGED BEFORE THIS IS CALLED.
+//Creates a random seed.69AKE SURE THE LINE HAS DIVERGED BEFORE THIS IS CALLED.
 /datum/seed/proc/randomize()
 
 	roundstart = 0
-	seed_name = "strange plant"     // TODO: name generator.
-	display_name = "strange plants" // TODO: name generator.
+	seed_name = "strange plant"     // TODO:69ame generator.
+	display_name = "strange plants" // TODO:69ame generator.
 	mysterious = 1
 	seed_noun = pick("spores","nodes","cuttings","seeds")
 
@@ -407,16 +407,16 @@
 	if(prob(5))
 		consume_gasses = list()
 		var/gas = pick("oxygen","nitrogen","plasma","carbon_dioxide")
-		consume_gasses[gas] = rand(3,9)
+		consume_gasses69gas69 = rand(3,9)
 
 	if(prob(5))
 		exude_gasses = list()
 		var/gas = pick("oxygen","nitrogen","plasma","carbon_dioxide")
-		exude_gasses[gas] = rand(3,9)
+		exude_gasses69gas69 = rand(3,9)
 
 	chems = list()
 	if(prob(80))
-		chems["nutriment"] = list(rand(1,10),rand(10,20))
+		chems69"nutriment"69 = list(rand(1,10),rand(10,20))
 
 	var/additional_chems = rand(0,5)
 
@@ -465,8 +465,8 @@
 			if(!possible_chems.len)
 				break
 			var/new_chem = pick(possible_chems)
-			possible_chems -= new_chem
-			chems[new_chem] = list(rand(1,10),rand(10,20))
+			possible_chems -=69ew_chem
+			chems69new_chem69 = list(rand(1,10),rand(10,20))
 
 	if(prob(90))
 		set_trait(TRAIT_REQUIRES_NUTRIENTS,1)
@@ -530,7 +530,7 @@
 
 	if(!degree || get_trait(TRAIT_IMMUTABLE) > 0) return
 
-	source_turf.visible_message(SPAN_NOTICE("\The [display_name] quivers!"))
+	source_turf.visible_message(SPAN_NOTICE("\The 69display_name69 quivers!"))
 
 	//This looks like shit, but it's a lot easier to read/change this way.
 	var/total_mutations = rand(1,1+degree)
@@ -538,7 +538,7 @@
 		switch(rand(0,11))
 			if(0) //Plant cancer!
 				set_trait(TRAIT_ENDURANCE,get_trait(TRAIT_ENDURANCE)-rand(10,20),null,0)
-				source_turf.visible_message(SPAN_DANGER("\The [display_name] withers rapidly!"))
+				source_turf.visible_message(SPAN_DANGER("\The 69display_name69 withers rapidly!"))
 			if(1)
 				set_trait(TRAIT_NUTRIENT_CONSUMPTION,get_trait(TRAIT_NUTRIENT_CONSUMPTION)+rand(-(degree*0.1),(degree*0.1)),5,0)
 				set_trait(TRAIT_WATER_CONSUMPTION,   get_trait(TRAIT_WATER_CONSUMPTION)   +rand(-degree,degree),50,0)
@@ -560,7 +560,7 @@
 				if(prob(degree*5))
 					set_trait(TRAIT_CARNIVOROUS,     get_trait(TRAIT_CARNIVOROUS)+rand(-degree,degree),2, 0)
 					if(get_trait(TRAIT_CARNIVOROUS))
-						source_turf.visible_message(SPAN_NOTICE("\The [display_name] shudders hungrily."))
+						source_turf.visible_message(SPAN_NOTICE("\The 69display_name69 shudders hungrily."))
 			if(6)
 				set_trait(TRAIT_WEED_TOLERANCE,      get_trait(TRAIT_WEED_TOLERANCE)+(rand(-2,2)*degree),10, 0)
 				if(prob(degree*5))
@@ -574,7 +574,7 @@
 				set_trait(TRAIT_POTENCY,             get_trait(TRAIT_POTENCY)+(rand(-20,20)*degree),200, 0)
 				if(prob(degree*5))
 					set_trait(TRAIT_SPREAD,          get_trait(TRAIT_SPREAD)+rand(-1,1),2, 0)
-					source_turf.visible_message(SPAN_NOTICE("\The [display_name] spasms visibly, shifting in the tray."))
+					source_turf.visible_message(SPAN_NOTICE("\The 69display_name69 spasms69isibly, shifting in the tray."))
 			if(9)
 				set_trait(TRAIT_MATURATION,          get_trait(TRAIT_MATURATION)+(rand(-1,1)*degree),30, 0)
 				if(prob(degree*5))
@@ -583,12 +583,12 @@
 				if(prob(degree*2))
 					set_trait(TRAIT_BIOLUM,         !get_trait(TRAIT_BIOLUM))
 					if(get_trait(TRAIT_BIOLUM))
-						source_turf.visible_message(SPAN_NOTICE("\The [display_name] begins to glow!"))
+						source_turf.visible_message(SPAN_NOTICE("\The 69display_name69 begins to glow!"))
 						if(prob(degree*2))
 							set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
-							source_turf.visible_message("<span class='notice'>\The [display_name]'s glow </span><font color='[get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
+							source_turf.visible_message("<span class='notice'>\The 69display_name69's glow </span><font color='69get_trait(TRAIT_BIOLUM_COLOUR)69'>changes colour</font>!")
 					else
-						source_turf.visible_message(SPAN_NOTICE("\The [display_name]'s glow dims..."))
+						source_turf.visible_message(SPAN_NOTICE("\The 69display_name69's glow dims..."))
 			if(11)
 				set_trait(TRAIT_TELEPORTING,1)
 
@@ -600,7 +600,7 @@
 	if(!gene || !gene.values || get_trait(TRAIT_IMMUTABLE) > 0) return
 
 	// Splicing products has some detrimental effects on yield and lifespan.
-	// We handle this before we do the rest of the looping, as normal traits don't really include lists.
+	// We handle this before we do the rest of the looping, as69ormal traits don't really include lists.
 	switch(gene.genetype)
 		if(GENE_BIOCHEMISTRY)
 			for(var/trait in list(TRAIT_YIELD, TRAIT_ENDURANCE))
@@ -608,67 +608,67 @@
 
 			if(!chems) chems = list()
 
-			var/list/gene_value = gene.values["[TRAIT_CHEMS]"]
+			var/list/gene_value = gene.values69"69TRAIT_CHEMS69"69
 			for(var/rid in gene_value)
 
-				var/list/gene_chem = gene_value[rid]
+				var/list/gene_chem = gene_value69rid69
 
-				if(!chems[rid])
-					chems[rid] = gene_chem.Copy()
+				if(!chems69rid69)
+					chems69rid69 = gene_chem.Copy()
 					continue
 
 				for(var/i=1;i<=gene_chem.len;i++)
 
-					if(isnull(gene_chem[i])) gene_chem[i] = 0
+					if(isnull(gene_chem69i69)) gene_chem69i69 = 0
 
-					if(chems[rid][i])
-						chems[rid][i] = max(1,round((gene_chem[i] + chems[rid][i])/2))
+					if(chems69rid6969i69)
+						chems69rid6969i69 =69ax(1,round((gene_chem69i69 + chems69rid6969i69)/2))
 					else
-						chems[rid][i] = gene_chem[i]
+						chems69rid6969i69 = gene_chem69i69
 
-			var/list/new_gasses = gene.values["[TRAIT_EXUDE_GASSES]"]
+			var/list/new_gasses = gene.values69"69TRAIT_EXUDE_GASSES69"69
 			if(islist(new_gasses))
 				if(!exude_gasses) exude_gasses = list()
-				exude_gasses |= new_gasses
+				exude_gasses |=69ew_gasses
 				for(var/gas in exude_gasses)
-					exude_gasses[gas] = max(1,round(exude_gasses[gas]*0.8))
+					exude_gasses69gas69 =69ax(1,round(exude_gasses69gas69*0.8))
 
-			gene.values["[TRAIT_EXUDE_GASSES]"] = null
-			gene.values["[TRAIT_CHEMS]"] = null
+			gene.values69"69TRAIT_EXUDE_GASSES69"69 =69ull
+			gene.values69"69TRAIT_CHEMS69"69 =69ull
 
 		if(GENE_DIET)
-			var/list/new_gasses = gene.values["[TRAIT_CONSUME_GASSES]"]
-			consume_gasses |= new_gasses
-			gene.values["[TRAIT_CONSUME_GASSES]"] = null
+			var/list/new_gasses = gene.values69"69TRAIT_CONSUME_GASSES69"69
+			consume_gasses |=69ew_gasses
+			gene.values69"69TRAIT_CONSUME_GASSES69"69 =69ull
 		if(GENE_METABOLISM)
-			has_mob_product = gene.values["mob_product"]
-			gene.values["mob_product"] = null
+			has_mob_product = gene.values69"mob_product"69
+			gene.values69"mob_product"69 =69ull
 
 	for(var/trait in gene.values)
-		set_trait(trait,gene.values["[trait]"])
+		set_trait(trait,gene.values69"69trait69"69)
 
 	update_growth_stages()
 
-//Returns a list of the desired trait values.
+//Returns a list of the desired trait69alues.
 /datum/seed/proc/get_gene(genetype)
 	if(!genetype)
-		return null
+		return69ull
 
 	var/list/traits_to_copy
-	var/datum/computer_file/binary/plantgene/P = new()
+	var/datum/computer_file/binary/plantgene/P =69ew()
 	P.genetype = genetype
 	P.genesource_uid = uid
-	P.genesource = "[display_name]"
+	P.genesource = "69display_name69"
 	if(!roundstart)
-		P.genesource += " (variety #[uid])"
+		P.genesource += " (variety #69uid69)"
 	P.update_name()
 
 	P.values = list()
 
 	switch(genetype)
 		if(GENE_BIOCHEMISTRY)
-			P.values["[TRAIT_CHEMS]"] =        chems
-			P.values["[TRAIT_EXUDE_GASSES]"] = exude_gasses
+			P.values69"69TRAIT_CHEMS69"69 =        chems
+			P.values69"69TRAIT_EXUDE_GASSES69"69 = exude_gasses
 			traits_to_copy = list(TRAIT_POTENCY)
 		if(GENE_OUTPUT)
 			traits_to_copy = list(TRAIT_PRODUCES_POWER,TRAIT_BIOLUM)
@@ -677,12 +677,12 @@
 		if(GENE_HARDINESS)
 			traits_to_copy = list(TRAIT_TOXINS_TOLERANCE,TRAIT_PEST_TOLERANCE,TRAIT_WEED_TOLERANCE,TRAIT_ENDURANCE)
 		if(GENE_METABOLISM)
-			P.values["mob_product"] = has_mob_product
+			P.values69"mob_product"69 = has_mob_product
 			traits_to_copy = list(TRAIT_REQUIRES_NUTRIENTS,TRAIT_REQUIRES_WATER,TRAIT_ALTER_TEMP)
 		if(GENE_VIGOUR)
 			traits_to_copy = list(TRAIT_PRODUCTION,TRAIT_MATURATION,TRAIT_YIELD,TRAIT_SPREAD,TRAIT_WALL_HUGGER)
 		if(GENE_DIET)
-			P.values["[TRAIT_CONSUME_GASSES]"] = consume_gasses
+			P.values69"69TRAIT_CONSUME_GASSES69"69 = consume_gasses
 			traits_to_copy = list(TRAIT_CARNIVOROUS,TRAIT_PARASITE,TRAIT_NUTRIENT_CONSUMPTION,TRAIT_WATER_CONSUMPTION)
 		if(GENE_ENVIRONMENT)
 			traits_to_copy = list(TRAIT_IDEAL_HEAT,TRAIT_IDEAL_LIGHT,TRAIT_LIGHT_TOLERANCE)
@@ -696,7 +696,7 @@
 			traits_to_copy = list(TRAIT_TELEPORTING)
 
 	for(var/trait in traits_to_copy)
-		P.values["[trait]"] = get_trait(trait)
+		P.values69"69trait69"69 = get_trait(trait)
 	return P
 
 //Place the plant products at the feet of the user.
@@ -708,7 +708,7 @@
 	if(!force_amount && get_trait(TRAIT_YIELD) == 0 && !harvest_sample)
 		if(istype(user)) to_chat(user, SPAN_DANGER("You fail to harvest anything useful."))
 	else
-		if(istype(user)) to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
+		if(istype(user)) to_chat(user, "You 69harvest_sample ? "take a sample" : "harvest"69 from the 69display_name69.")
 
 		// Users with green thumb perk gain sanity when harvesting plants
 		if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/greenthumb) && !harvest_sample)
@@ -716,15 +716,15 @@
 			if(H.sanity)
 				H.sanity.changeLevel(2.5)
 
-		//This may be a new line. Update the global if it is.
+		//This69ay be a69ew line. Update the global if it is.
 		if(name == "new line" || !(name in plant_controller.seeds))
 			uid = plant_controller.seeds.len + 1
-			name = "[uid]"
-			plant_controller.seeds[name] = src
+			name = "69uid69"
+			plant_controller.seeds69name69 = src
 
 		if(harvest_sample)
-			var/obj/item/seeds/seeds = new(get_turf(user))
-			seeds.seed_type = name
+			var/obj/item/seeds/seeds =69ew(get_turf(user))
+			seeds.seed_type =69ame
 			seeds.update_seed()
 			return
 
@@ -740,15 +740,15 @@
 					total_yield = get_trait(TRAIT_YIELD) + rand(yield_mod)
 				if(prob(user.stats.getStat(STAT_BIO)))
 					total_yield += 1
-					to_chat(user, SPAN_NOTICE("You have managed to harvest more!"))
-				total_yield = max(1,total_yield)
+					to_chat(user, SPAN_NOTICE("You have69anaged to harvest69ore!"))
+				total_yield =69ax(1,total_yield)
 
 		for(var/i = 0;i<total_yield;i++)
 			var/obj/item/product
 			if(has_mob_product)
-				product = new has_mob_product(get_turf(user),name)
+				product =69ew has_mob_product(get_turf(user),name)
 			else
-				product = new /obj/item/reagent_containers/food/snacks/grown(get_turf(user),name)
+				product =69ew /obj/item/reagent_containers/food/snacks/grown(get_turf(user),name)
 			if(get_trait(TRAIT_PRODUCT_COLOUR))
 				if(!ismob(product))
 					product.color = get_trait(TRAIT_PRODUCT_COLOUR)
@@ -766,22 +766,22 @@
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
 				product.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
 
-			//Handle spawning in living, mobile products.
+			//Handle spawning in living,69obile products.
 			if(isliving(product))
-				product.visible_message(SPAN_NOTICE("The pod disgorges [product]!"))
+				product.visible_message(SPAN_NOTICE("The pod disgorges 69product69!"))
 				if(istype(product,/mob/living/simple_animal/mushroom)) // Gross.
 					var/mob/living/simple_animal/mushroom/mush = product
 					mush.seed = src
 
-// When the seed in this machine mutates/is modified, the tray seed value
-// is set to a new datum copied from the original. This datum won't actually
+// When the seed in this69achine69utates/is69odified, the tray seed69alue
+// is set to a69ew datum copied from the original. This datum won't actually
 // be put into the global datum list until the product is harvested, though.
 /datum/seed/proc/diverge(modified)
 
 	if(get_trait(TRAIT_IMMUTABLE) > 0) return
 
 	//Set up some basic information.
-	var/datum/seed/new_seed = new
+	var/datum/seed/new_seed =69ew
 	new_seed.name =            "new line"
 	new_seed.uid =              0
 	new_seed.roundstart =       0
@@ -790,20 +790,20 @@
 	new_seed.trash_type =       trash_type
 	new_seed.has_mob_product =  has_mob_product
 	//Copy over everything else.
-	if(mutants)        new_seed.mutants = mutants.Copy()
-	if(chems)          new_seed.chems = chems.Copy()
-	if(consume_gasses) new_seed.consume_gasses = consume_gasses.Copy()
-	if(exude_gasses)   new_seed.exude_gasses = exude_gasses.Copy()
+	if(mutants)       69ew_seed.mutants =69utants.Copy()
+	if(chems)         69ew_seed.chems = chems.Copy()
+	if(consume_gasses)69ew_seed.consume_gasses = consume_gasses.Copy()
+	if(exude_gasses)  69ew_seed.exude_gasses = exude_gasses.Copy()
 
-	new_seed.seed_name =            "[(roundstart ? "[(modified ? "modified" : "mutant")] " : "")][seed_name]"
-	new_seed.display_name =         "[(roundstart ? "[(modified ? "modified" : "mutant")] " : "")][display_name]"
+	new_seed.seed_name =            "69(roundstart ? "69(modified ? "modified" : "mutant")69 " : "")6969seed_name69"
+	new_seed.display_name =         "69(roundstart ? "69(modified ? "modified" : "mutant")69 " : "")6969display_name69"
 	new_seed.seed_noun =            seed_noun
 	new_seed.traits = traits.Copy()
 	new_seed.update_growth_stages()
-	return new_seed
+	return69ew_seed
 
 /datum/seed/proc/update_growth_stages()
 	if(get_trait(TRAIT_PLANT_ICON))
-		growth_stages = plant_controller.plant_sprites[get_trait(TRAIT_PLANT_ICON)]
+		growth_stages = plant_controller.plant_sprites69get_trait(TRAIT_PLANT_ICON)69
 	else
-		growth_stages = plant_controller.plant_sprites[get_trait("bush1")]
+		growth_stages = plant_controller.plant_sprites69get_trait("bush1")69

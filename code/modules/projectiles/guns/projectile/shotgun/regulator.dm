@@ -1,14 +1,14 @@
 /obj/item/gun/projectile/shotgun/pump/regulator
 	name = "NT SG \"Regulator 1000\""
-	desc = "Designed for close quarters combat, the Regulator is widely regarded as a weapon of choice for repelling boarders. \
-			Some may say that it's too old, but it actually proved itself useful. Can hold up to 7 shells in tube magazine."
+	desc = "Designed for close 69uarters combat, the Regulator is widely regarded as a weapon of choice for repelling boarders. \
+			Some69ay say that it's too old, but it actually proved itself useful. Can hold up to 7 shells in tube69agazine."
 	icon = 'icons/obj/guns/projectile/regulator.dmi'
 	icon_state = "regulator"
 	item_state = "regulator"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2)
-	max_shells = 7 //less ammo and regular recoil, decided not to give 1.2 because Gladstone would be anyhow better in this case
+	max_shells = 7 //less ammo and regular recoil, decided69ot to give 1.2 because Gladstone would be anyhow better in this case
 	ammo_type = /obj/item/ammo_casing/shotgun
-	matter = list(MATERIAL_PLASTEEL = 25, MATERIAL_PLASTIC = 12)
+	matter = list(MATERIAL_PLASTEEL = 25,69ATERIAL_PLASTIC = 12)
 	price_tag = 2000
 	damage_multiplier = 1.15
 	penetration_multiplier = 0.9

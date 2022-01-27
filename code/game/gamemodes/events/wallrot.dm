@@ -1,9 +1,9 @@
 /*
 	Wall rot causes a corrosive fungus to grow on walls,wearing them down until they eventually become
-	weak enough to break with bare hands. This can be useful to people trying to get more access around
-	the ship, or to break into sensitive areas. Or even to escape maintenance pits
+	weak enough to break with bare hands. This can be useful to people trying to get69ore access around
+	the ship, or to break into sensitive areas. Or even to escape69aintenance pits
 
-	It is not marked negative due to this possible advantage
+	It is not69arked negative due to this possible advantage
 */
 /datum/storyevent/wallrot
 	id = "wallrot"
@@ -21,7 +21,7 @@
 	endWhen = announceWhen + 1
 
 /datum/event/wallrot/announce()
-	command_announcement.Announce("Harmful fungi detected on ship. ship structures may be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
+	command_announcement.Announce("Harmful fungi detected on ship. ship structures69ay be contaminated.", "Biohazard Alert", new_sound = pick('sound/AI/fungi.ogg', 'sound/AI/funguy.ogg', 'sound/AI/fun_guy.ogg', 'sound/AI/fun_gi.ogg'))
 
 /datum/event/wallrot/start()
 	set waitfor = FALSE
@@ -34,12 +34,12 @@
 		if(istype(candidate, /turf/simulated/wall))
 			center = candidate //If necessary we'll settle for any wall
 			var/area/A = get_area(center)
-			if (!istype(A, /area/eris/maintenance)) //But ideally we want a wall that's not in maintenance, so players are likely to see it
-				//We'll keep going til we find a wall that isnt in maint
+			if (!istype(A, /area/eris/maintenance)) //But ideally we want a wall that's not in69aintenance, so players are likely to see it
+				//We'll keep going til we find a wall that isnt in69aint
 				break
 
 	if(center)
-		// Make sure at least one piece of wall rots!
+		//69ake sure at least one piece of wall rots!
 		center.rot()
 
 		// Have a chance to rot lots of other walls.
@@ -54,7 +54,7 @@
 				if(rotcount >= actual_severity)
 					break
 
-		message_admins("Wallrot has spread from ([jumplink(center)])", 0, 1)
+		message_admins("Wallrot has spread from (69jumplink(center)69)", 0, 1)
 
 
 	else

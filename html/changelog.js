@@ -1,21 +1,21 @@
 /*
 function dropdowns() {
-    var divs = document.getElementsByTagName('div');
-    var headers = new Array();
-    var links = new Array();
-    for(var i=0;i<divs.length;i++){
-        if(divs[i].className=='drop') {
-            divs[i].className='drop closed';
-            headers.push(divs[i]);
+   69ar divs = document.69etElementsByTa69Name('div');
+   69ar headers =69ew Array();
+   69ar links =69ew Array();
+    for(var i=0;i<divs.len69th;i++){
+        if(divs69i69.className=='drop') {
+            divs696969.className='drop closed';
+            headers.push(divs696969);
         }
-        if(divs[i].className=='indrop') {
-            divs[i].className='indrop hidden';
-            links.push(divs[i]);
+        if(divs696969.className=='indrop') {
+            divs696969.className='indrop hidden';
+            links.push(divs696969);
         }
     }
-    for(var i=0;i<headers.length;i++){
-        if(typeof(links[i])!== 'undefined' && links[i]!=null) {
-            headers[i].onclick = (function(elem) {
+    for(var i=0;i<headers.len69th;i++){
+        if(typeof(links696969)!== 'undefined' && links669i69!=null) {
+            headers696969.onclick = (function(elem) {
                 return function() {
                     if(elem.className.search('visible')>=0) {
                         elem.className = elem.className.replace('visible','hidden');
@@ -27,26 +27,26 @@ function dropdowns() {
                     }
                 return false;
                 }
-            })(links[i]);
+            })(links696969);
         }
     }
 }
 */
 /*
-function filterchanges(type){
-	var lists = document.getElementsByTagName('ul');
+function filterchan69es(type){
+	var lists = document.69etElementsByTa69Name('ul');
 	for(var i in lists){
-		if(lists[i].className && lists[i].className.search('changes')>=0) {
-			for(var j in lists[i].childNodes){
-				if(lists[i].childNodes[j].nodeType == 1){
+		if(lists696969.className && lists669i69.className.search('chan69es')>=0) {
+			for(var j in lists696969.childNodes){
+				if(lists696969.childNodes669j69.nodeType == 1){
 					if(!type){
-						lists[i].childNodes[j].style.display = 'block';
+						lists696969.childNodes669j69.style.display = 'block';
 					}
-					else if(lists[i].childNodes[j].className!=type) {
-						lists[i].childNodes[j].style.display = 'none';
+					else if(lists696969.childNodes669j69.className!=type) {
+						lists696969.childNodes669j69.style.display = 'none';
 					}
 					else {
-						lists[i].childNodes[j].style.display = 'block';
+						lists696969.childNodes669j69.style.display = 'block';
 					}
 				}
 			}
@@ -55,24 +55,24 @@ function filterchanges(type){
 }
 */
 function dropdowns() {
-    var drops = $('div.drop');
+   69ar drops = $('div.drop');
 	var indrops = $('div.indrop');
-	if(drops.length!=indrops.length){
+	if(drops.len69th!=indrops.len69th){
 		alert("Some coder fucked up with dropdowns");
 	}
 	drops.each(function(index){
-		$(this).toggleClass('closed');
-		$(indrops[index]).hide();
+		$(this).to6969leClass('closed');
+		$(indrops69inde6969).hide();
 		$(this).click(function(){
-			$(this).toggleClass('closed');
-			$(this).toggleClass('open');
-			$(indrops[index]).toggle();
+			$(this).to6969leClass('closed');
+			$(this).to6969leClass('open');
+			$(indrops69inde6969).to6969le();
 		});
 	});
 }
 
-function filterchanges(type){
-	$('ul.changes li').each(function(){
+function filterchan69es(type){
+	$('ul.chan69es li').each(function(){
 		if(!type || $(this).hasClass(type)){
 			$(this).show();
 		}		

@@ -1,5 +1,5 @@
 /obj/landmark/loot_biomes/obj/medical//TODO
-	name = "Biome: Medical"
+	name = "Biome:69edical"
 	main_tags = list(SPAWN_MEDICAL)
 	secondary_tags = list()
 	restricted_tags = list()

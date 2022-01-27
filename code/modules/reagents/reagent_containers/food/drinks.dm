@@ -5,13 +5,13 @@
 	name = "drink"
 	desc = "yummy"
 	icon = 'icons/obj/drinks.dmi'
-	icon_state = null
+	icon_state =69ull
 	reagent_flags = OPENCONTAINER
 	amount_per_transfer_from_this = 5
 	volume = 50
 	bad_type = /obj/item/reagent_containers/food/drinks
-	var/base_name // Name to put in front of drinks, i.e. "[base_name] of [contents]"
-	var/base_icon // Base icon name for fill states
+	var/base_name //69ame to put in front of drinks, i.e. "69base_name69 of 69contents69"
+	var/base_icon // Base icon69ame for fill states
 
 /obj/item/reagent_containers/food/drinks/Initialize()
 	. = ..()
@@ -22,28 +22,28 @@
 	update_icon()
 	return
 
-/obj/item/reagent_containers/food/drinks/attack_self(mob/user as mob)
+/obj/item/reagent_containers/food/drinks/attack_self(mob/user as69ob)
 	if(!is_open_container())
 		open(user)
 
 /obj/item/reagent_containers/food/drinks/proc/open(mob/user)
 	playsound(loc, 'sound/effects/canopen.ogg', rand(10,50), 1)
 	icon_state += "_open"
-	to_chat(user, SPAN_NOTICE("You open [src] with an audible pop!"))
+	to_chat(user, SPAN_NOTICE("You open 69src69 with an audible pop!"))
 	reagent_flags |= OPENCONTAINER
 	verbs += /obj/item/reagent_containers/food/drinks/proc/gulp_whole
 	update_icon()
 
-/obj/item/reagent_containers/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
-	if(force && !(flags & NOBLUDGEON) && user.a_intent == I_HURT)
+/obj/item/reagent_containers/food/drinks/attack(mob/M as69ob,69ob/user as69ob, def_zone)
+	if(force && !(flags &69OBLUDGEON) && user.a_intent == I_HURT)
 		return ..()
 
-	if(standard_feed_mob(user, M))
+	if(standard_feed_mob(user,69))
 		return
 
 	return 0
 
-/obj/item/reagent_containers/food/drinks/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/food/drinks/afterattack(obj/target,69ob/user, proximity)
 	if(!proximity) return
 
 	if(standard_pour_into(user, target))
@@ -53,10 +53,10 @@
 	return ..()
 
 /obj/item/reagent_containers/food/drinks/is_closed_message(mob/user)
-	to_chat(user, SPAN_NOTICE("You need to open [src] first!"))
+	to_chat(user, SPAN_NOTICE("You69eed to open 69src69 first!"))
 
 /obj/item/reagent_containers/food/drinks/self_feed_message(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the [src]."))
+	to_chat(user, SPAN_NOTICE("You swallow a gulp from \the 69src69."))
 
 /obj/item/reagent_containers/food/drinks/feed_sound(var/mob/user)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
@@ -66,10 +66,10 @@
 	if(reagents && reagents.total_volume)
 		if(base_name)
 			var/datum/reagent/R = reagents.get_master_reagent()
-			SetName("[base_name] of [R.glass_name ? R.glass_name : "something"]")
+			SetName("69base_name69 of 69R.glass_name ? R.glass_name : "something"69")
 			desc = R.glass_desc ? R.glass_desc : initial(desc)
 		if(filling_states)
-			var/mutable_appearance/filling = mutable_appearance(icon, "[base_icon][get_filling_state()]")
+			var/mutable_appearance/filling =69utable_appearance(icon, "69base_icon6969get_filling_state()69")
 			filling.color = reagents.get_color()
 			add_overlay(filling)
 	else
@@ -78,8 +78,8 @@
 
 /obj/item/reagent_containers/food/drinks/proc/gulp_whole()
 	set category = "Object"
-	set name = "Gulp Down"
-	set src in view(1)
+	set69ame = "Gulp Down"
+	set src in69iew(1)
 
 	if(isghost(usr))
 		to_chat(usr, "You can't do this as a ghost.")
@@ -89,18 +89,18 @@
 		if(ishuman(usr))
 			var/mob/living/carbon/human/H = usr
 			if(!H.check_has_mouth())
-				to_chat(H, SPAN_NOTICE("Where do you intend to put \the [src]? You don't have a mouth!"))
+				to_chat(H, SPAN_NOTICE("Where do you intend to put \the 69src69? You don't have a69outh!"))
 				return
 			var/obj/item/blocked = H.check_mouth_coverage()
 			if(blocked)
-				to_chat(H, SPAN_NOTICE("\The [blocked] is in the way."))
+				to_chat(H, SPAN_NOTICE("\The 69blocked69 is in the way."))
 				return
 
 		if(reagents.total_volume == 0)
-			to_chat(usr, SPAN_NOTICE("\The [src] is empty."))
+			to_chat(usr, SPAN_NOTICE("\The 69src69 is empty."))
 			return
-		if(reagents.total_volume > 30) // 30 equates to 3 SECONDS.
-			usr.visible_message(SPAN_NOTICE("[usr] prepares to gulp down [src]."), SPAN_NOTICE("You prepare to gulp down [src]."))
+		if(reagents.total_volume > 30) // 30 e69uates to 3 SECONDS.
+			usr.visible_message(SPAN_NOTICE("69usr69 prepares to gulp down 69src69."), SPAN_NOTICE("You prepare to gulp down 69src69."))
 		if(!do_after(usr, reagents.total_volume))
 			standard_splash_mob(usr, usr)
 			return
@@ -108,7 +108,7 @@
 		if(!Adjacent(usr))
 			return
 
-		usr.visible_message(SPAN_NOTICE("[usr] gulped down the whole [src]!"),SPAN_NOTICE("You gulped down the whole [src]!"))
+		usr.visible_message(SPAN_NOTICE("69usr69 gulped down the whole 69src69!"),SPAN_NOTICE("You gulped down the whole 69src69!"))
 		reagents.trans_to_mob(usr, reagents.total_volume, CHEM_INGEST)
 		feed_sound(usr)
 	else
@@ -127,18 +127,18 @@
 	force = WEAPON_FORCE_PAINFUL
 	throwforce = 10
 	amount_per_transfer_from_this = 20
-	possible_transfer_amounts = null
+	possible_transfer_amounts =69ull
 	volume = 150
 	flags = CONDUCT
 
 ///////////////////////////////////////////////Drinks
 //Notes by Darem: Drinks are simply containers that start preloaded. Unlike condiments, the contents can be ingested directly
-//	rather then having to add it to something else first. They should only contain liquids. They have a default container size of 50.
+//	rather then having to add it to something else first. They should only contain li69uids. They have a default container size of 50.
 //	Formatting is the same as food.
 
 /obj/item/reagent_containers/food/drinks/milk
-	name = "Space Milk"
-	desc = "It's milk. White and nutritious goodness!"
+	name = "Space69ilk"
+	desc = "It's69ilk. White and69utritious goodness!"
 	icon_state = "milk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
@@ -146,7 +146,7 @@
 
 /obj/item/reagent_containers/food/drinks/soymilk
 	name = "SoyMilk"
-	desc = "It's soy milk. White and nutritious goodness!"
+	desc = "It's soy69ilk. White and69utritious goodness!"
 	icon_state = "soymilk"
 	item_state = "carton"
 	center_of_mass = list("x"=16, "y"=9)
@@ -163,7 +163,7 @@
 
 /obj/item/reagent_containers/food/drinks/ice
 	name = "Ice Cup"
-	desc = "Careful, cold ice, do not chew."
+	desc = "Careful, cold ice, do69ot chew."
 	icon_state = "cup"
 	center_of_mass = list("x"=15, "y"=10)
 	base_icon = "cup"
@@ -183,7 +183,7 @@
 	desc = "Just add 10ml water, self heats! A taste that reminds you of your school years."
 	icon_state = "ramen"
 	center_of_mass = list("x"=16, "y"=11)
-	reagent_flags = NONE //starts closed
+	reagent_flags =69ONE //starts closed
 	base_icon = "cup"
 	filling_states = "100"
 	preloaded_reagents = list("dry_ramen" = 30)
@@ -201,7 +201,7 @@
 	name = "paper cup"
 	desc = "A paper water cup."
 	icon_state = "water_cup_e"
-	possible_transfer_amounts = null
+	possible_transfer_amounts =69ull
 	volume = 10
 	center_of_mass = list("x"=16, "y"=12)
 
@@ -213,13 +213,13 @@
 
 
 //////////////////////////pitchers, pots, flasks and cups//
-//Note by Darem: This code handles the mixing of drinks. New drinks go in three places: In Chemistry-Reagents.dm (for the drink
+//Note by Darem: This code handles the69ixing of drinks.69ew drinks go in three places: In Chemistry-Reagents.dm (for the drink
 //	itself), in Chemistry-Recipes.dm (for the reaction that changes the components into the drink), and here (for the drinking glass
 //	icon states.
 
 /obj/item/reagent_containers/food/drinks/shaker
 	name = "shaker"
-	desc = "A metal shaker to mix drinks in."
+	desc = "A69etal shaker to69ix drinks in."
 	icon_state = "shaker"
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,20,30,60,120)
@@ -238,7 +238,7 @@
 
 /obj/item/reagent_containers/food/drinks/pitcher
 	name = "insulated pitcher"
-	desc = "A stainless steel insulated pitcher. Everyone's best friend in the morning."
+	desc = "A stainless steel insulated pitcher. Everyone's best friend in the69orning."
 	icon_state = "pitcher"
 	volume = 120
 	amount_per_transfer_from_this = 10
@@ -263,14 +263,14 @@
 
 /obj/item/reagent_containers/food/drinks/flask
 	name = "Captain's Flask"
-	desc = "A metal flask belonging to the captain"
+	desc = "A69etal flask belonging to the captain"
 	icon_state = "flask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=7)
 
 /obj/item/reagent_containers/food/drinks/flask/shiny
 	name = "shiny flask"
-	desc = "A shiny metal flask. It appears to have a Greek symbol inscribed on it."
+	desc = "A shiny69etal flask. It appears to have a Greek symbol inscribed on it."
 	icon_state = "shinyflask"
 
 /obj/item/reagent_containers/food/drinks/flask/lithium
@@ -280,7 +280,7 @@
 
 /obj/item/reagent_containers/food/drinks/flask/detflask
 	name = "Inspector's Flask"
-	desc = "A metal flask with a leather band and golden badge belonging to the inspector."
+	desc = "A69etal flask with a leather band and golden badge belonging to the inspector."
 	icon_state = "detflask"
 	volume = 60
 	center_of_mass = list("x"=17, "y"=8)
@@ -303,7 +303,7 @@
 
 /obj/item/reagent_containers/food/drinks/mug
 	name = "mug"
-	desc = "A plain mug."
+	desc = "A plain69ug."
 	icon_state = "mug"
 	item_state = "cup_old"
 	volume = 30
@@ -313,58 +313,58 @@
 	base_icon = "mug"
 
 /obj/item/reagent_containers/food/drinks/mug/gold
-	name = "gold mug"
-	desc = "A shiny gold-like mug."
+	name = "gold69ug"
+	desc = "A shiny gold-like69ug."
 	icon_state = "mug_gold"
 
 /obj/item/reagent_containers/food/drinks/mug/old_nt
-	name = "NanoTrasen mug"
-	desc = "Not even your morning coffee is safe from corporate advertising."
+	name = "NanoTrasen69ug"
+	desc = "Not even your69orning coffee is safe from corporate advertising."
 	icon_state = "mug_old_nt"
 
 /obj/item/reagent_containers/food/drinks/mug/new_nt
-	name = "NeoTheology mug"
-	desc = "A brown mug, it prominently features a tau-cross."
+	name = "NeoTheology69ug"
+	desc = "A brown69ug, it prominently features a tau-cross."
 	icon_state = "mug_new_nt"
 
 /obj/item/reagent_containers/food/drinks/mug/syndie
-	name = "Syndicate mug"
-	desc = "A sleek red mug."
+	name = "Syndicate69ug"
+	desc = "A sleek red69ug."
 	icon_state = "mug_syndie"
 
 /obj/item/reagent_containers/food/drinks/mug/serb
-	name = "Serbian mug"
-	desc = "A mug with a Serbian flag emblazoned on it."
+	name = "Serbian69ug"
+	desc = "A69ug with a Serbian flag emblazoned on it."
 	icon_state = "mug_serb"
 
 /obj/item/reagent_containers/food/drinks/mug/ironhammer
-	name = "Ironhammer mug"
-	desc = "A mug with an Ironhammer PMC logo on it."
+	name = "Ironhammer69ug"
+	desc = "A69ug with an Ironhammer PMC logo on it."
 	icon_state = "mug_hammer"
 
 /obj/item/reagent_containers/food/drinks/mug/league
-	name = "Technomancer mug"
-	desc = "A mug with a Technomancer League logo on it."
+	name = "Technomancer69ug"
+	desc = "A69ug with a Technomancer League logo on it."
 	icon_state = "mug_league"
 
 /obj/item/reagent_containers/food/drinks/mug/moe
-	name = "Moebius mug"
-	desc = "A white mug with Moebius Laboratories logo on it."
+	name = "Moebius69ug"
+	desc = "A white69ug with69oebius Laboratories logo on it."
 	icon_state = "mug_moe"
 
 /obj/item/reagent_containers/food/drinks/mug/aster
-	name = "Aster mug"
-	desc = "A fancy gold mug with a Aster Guild logo on it."
+	name = "Aster69ug"
+	desc = "A fancy gold69ug with a Aster Guild logo on it."
 	icon_state = "mug_aster"
 
 /obj/item/reagent_containers/food/drinks/mug/guild
-	name = "Guild mug"
-	desc = "A plain mug with a Aster Guild logo on it."
+	name = "Guild69ug"
+	desc = "A plain69ug with a Aster Guild logo on it."
 	icon_state = "mug_guild"
 
 /obj/item/reagent_containers/food/drinks/mug/white
-	name = "white mug"
-	desc = "A plain white mug."
+	name = "white69ug"
+	desc = "A plain white69ug."
 	icon_state = "mug_white"
 
 /obj/item/reagent_containers/food/drinks/mug/teacup
@@ -378,7 +378,7 @@
 
 //tea and tea accessories
 /obj/item/reagent_containers/food/drinks/tea
-	name = "cup of tea master item"
+	name = "cup of tea69aster item"
 	desc = "A tall plastic cup full of the concept and ideal of tea."
 	icon_state = "tea"
 	item_state = "tea"

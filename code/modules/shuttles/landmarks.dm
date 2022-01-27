@@ -1,4 +1,4 @@
-//making this separate from /obj/landmark until that mess can be dealt with
+//making this separate from /obj/landmark until that69ess can be dealt with
 /obj/effect/shuttle_landmark
 	name = "Nav Point"
 	icon = 'icons/misc/landmarks.dmi'
@@ -13,7 +13,7 @@
 	//ID of the controller on the shuttle
 	var/datum/computer/file/embedded_program/docking/docking_controller
 
-	//ID of controller used for this landmark for docks with multiple ones.
+	//ID of controller used for this landmark for docks with69ultiple ones.
 	var/list/special_dock_targets
 
 	var/dock_target
@@ -38,7 +38,7 @@
 			base_turf = T.type
 	else
 		base_area = locate(base_area || world.area)
-	name = name + " ([x],[y])"
+	name =69ame + " (69x69,69y69)"
 
 /obj/effect/shuttle_landmark/Initialize()
 	. = ..()
@@ -47,7 +47,7 @@
 			var/docking_tag = docking_controller
 			docking_controller = locate(docking_tag)
 			if(!istype(docking_controller))
-				admin_notice("Could not find docking controller for shuttle waypoint '[name]', docking tag was '[docking_tag]'.")
+				admin_notice("Could69ot find docking controller for shuttle waypoint '69nam6969', docking tag was '69docking_t69g69'.")
 		SSshuttle.register_landmark(tag, src)
 
 /obj/effect/shuttle_landmark/proc/is_valid(var/datum/shuttle/shuttle)
@@ -65,9 +65,9 @@
 
 /obj/effect/shuttle_landmark/proc/check_collision(var/list/turf_translation)
 	for(var/source in turf_translation)
-		var/turf/target = turf_translation[source]
+		var/turf/target = turf_translation69sourc6969
 		if(!target)
-			return TRUE //collides with edge of map
+			return TRUE //collides with edge of69ap
 		if(target.loc != base_area)
 			return TRUE //collides with another area
 		if(target.density)
@@ -85,20 +85,20 @@
 	autoset = 1
 
 /obj/effect/shuttle_landmark/automatic/Initialize()
-	tag = landmark_tag+"-[x]-[y]"
+	tag = landmark_tag+"-696969-669y69"
 	. = ..()
 	base_area = get_area(src)
 	if(!config.use_overmap)
 		return
-	add_to_sector(map_sectors["[z]"])
+	add_to_sector(map_sectors69"669z69"69)
 
-/obj/effect/shuttle_landmark/automatic/proc/add_to_sector(var/obj/effect/overmap/O, var/tag_only)
+/obj/effect/shuttle_landmark/automatic/proc/add_to_sector(var/obj/effect/overmap/O,69ar/tag_only)
 	if(!istype(O))
 		return
 	if(shuttle_restricted)
-		if(!O.restricted_waypoints[shuttle_restricted])
-			O.restricted_waypoints[shuttle_restricted] = list()
-		O.restricted_waypoints[shuttle_restricted] += tag_only ? tag : src
+		if(!O.restricted_waypoints69shuttle_restricte6969)
+			O.restricted_waypoints69shuttle_restricte6969 = list()
+		O.restricted_waypoints69shuttle_restricte6969 += tag_only ? tag : src
 	else
 		O.generic_waypoints += tag_only ? tag : src
 
@@ -116,18 +116,18 @@
 		if(T.density)
 			T.ChangeTurf(get_base_turf_by_area(T))
 	for(var/obj/effect/mineral/M in range(radius, src))
-		qdel(M)
+		69del(M)
 
 /obj/item/device/spaceflare
 	name = "bluespace flare"
-	desc = "Burst transmitter used to broadcast all needed information for shuttle navigation systems. Has a flare attached for marking the spot where you probably shouldn't be standing."
+	desc = "Burst transmitter used to broadcast all69eeded information for shuttle69avigation systems. Has a flare attached for69arking the spot where you probably shouldn't be standing."
 	icon_state = "bluflare"
 	light_color = COLOR_LIGHTING_BLUE_MACHINERY
 	var/active
 
 /obj/item/device/spaceflare/attack_self(var/mob/user)
 	if(!active)
-		visible_message("<span class='notice'>[user] pulls the cord, activating the [src].</span>")
+		visible_message("<span class='notice'>69use6969 pulls the cord, activating the 69s69c69.</span>")
 		activate()
 
 /obj/item/device/spaceflare/proc/activate()
@@ -135,8 +135,8 @@
 		return
 	active = 1
 	var/turf/T = get_turf(src)
-	var/obj/effect/shuttle_landmark/automatic/mark = new(T)
-	mark.name = "Beacon signal ([T.x],[T.y])"
+	var/obj/effect/shuttle_landmark/automatic/mark =69ew(T)
+	mark.name = "Beacon signal (69T.6969,69T69y69)"
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src,T)
@@ -154,7 +154,7 @@
 	for(var/target_turf in target_turfs)
 		var/turf/target = target_turf
 		if(!target)
-			return TRUE //collides with edge of map
+			return TRUE //collides with edge of69ap
 		if(target.loc != target_area)
 			return TRUE //collides with another area
 		if(target.density)

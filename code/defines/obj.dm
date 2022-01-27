@@ -4,10 +4,10 @@
 	anchored = TRUE
 	density = TRUE
 
-	attackby(obj/item/W as obj, mob/user as mob)
+	attackby(obj/item/W as obj,69ob/user as69ob)
 		return attack_hand(user)
 
-	attack_hand(mob/user as mob)
+	attack_hand(mob/user as69ob)
 		switch(alert("Travel back to ss13?", , "Yes", "No"))
 			if("Yes")
 				if(!Adjacent(user))
@@ -77,7 +77,7 @@
 	anchored = TRUE
 	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
 
-/obj/item/mouse_drag_pointer = MOUSE_ACTIVE_POINTER
+/obj/item/mouse_drag_pointer =69OUSE_ACTIVE_POINTER
 
 /obj/item/beach_ball
 	icon = 'icons/misc/beach.dmi'
@@ -93,7 +93,7 @@
 	throw_range = 20
 	flags = CONDUCT
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	afterattack(atom/target as69ob|obj|turf|area,69ob/user as69ob)
 		user.drop_item()
 		src.throw_at(target, throw_range, throw_speed, user)
 

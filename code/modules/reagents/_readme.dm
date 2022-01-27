@@ -2,19 +2,19 @@
 NOTE: IF YOU UPDATE THE REAGENT-SYSTEM, ALSO UPDATE THIS README.
 
 Structure: ///////////////////          //////////////////////////
-		   // Mob or object // -------> // Reagents var (datum) // 	    Is a reference to the datum that holds the reagents.
+		   //69ob or object // -------> // Reagents69ar (datum) // 	    Is a reference to the datum that holds the reagents.
 		   ///////////////////          //////////////////////////
 		   			|				    			 |
-    The object that holds everything.   			 V
-		   							      reagent_list var (list)   	A List of datums, each datum is a reagent.
+    The object that holds everything.   			69
+		   							      reagent_list69ar (list)   	A List of datums, each datum is a reagent.
 
 		   							      |          |          |
-		   							      V          V          V
+		   							     69         69         69
 
-		   							         reagents (datums)	    	Reagents. I.e. Water , antitoxins or mercury.
+		   							         reagents (datums)	    	Reagents. I.e. Water , antitoxins or69ercury.
 
 
-Random important notes:
+Random important69otes:
 
 	An objects on_reagent_change will be called every time the objects reagents change.
 	Useful if you want to update the objects icon etc.
@@ -22,17 +22,17 @@ Random important notes:
 About the Holder:
 
 	The holder (reagents datum) is the datum that holds a list of all reagents
-	currently in the object.It also has all the procs needed to manipulate reagents
+	currently in the object.It also has all the procs69eeded to69anipulate reagents
 
 	Vars:
 		list/datum/reagent/reagent_list
 			List of reagent datums.
 
 		total_volume
-			Total volume of all reagents.
+			Total69olume of all reagents.
 
 		maximum_volume
-			Maximum volume.
+			Maximum69olume.
 
 		atom/my_atom
 			Reference to the object that contains this.
@@ -40,56 +40,56 @@ About the Holder:
 	Procs:
 
 		get_free_space()
-			Returns the remaining free volume in the holder.
+			Returns the remaining free69olume in the holder.
 
 		get_master_reagent()
-			Returns the reference to the reagent with the largest volume
+			Returns the reference to the reagent with the largest69olume
 
 		get_master_reagent_name()
-			Ditto, but returns the name.
+			Ditto, but returns the69ame.
 
 		get_master_reagent_id()
 			Ditto, but returns ID.
 
 		update_total()
-			Updates total volume, called automatically.
+			Updates total69olume, called automatically.
 
 		handle_reactions()
 			Checks reagents and triggers any reactions that happen. Usually called automatically.
 
-		add_reagent(var/id, var/amount, var/data = null, var/safety = 0)
-			Adds [amount] units of [id] reagent. [data] will be passed to reagent's mix_data() or initialize_data(). If [safety] is 0, handle_reactions() will be called. Returns 1 if successful, 0 otherwise.
+		add_reagent(var/id,69ar/amount,69ar/data =69ull,69ar/safety = 0)
+			Adds 69amount69 units of 69id69 reagent. 69data69 will be passed to reagent's69ix_data() or initialize_data(). If 69safety69 is 0, handle_reactions() will be called. Returns 1 if successful, 0 otherwise.
 
-		remove_reagent(var/id, var/amount, var/safety = 0)
+		remove_reagent(var/id,69ar/amount,69ar/safety = 0)
 			Ditto, but removes reagent. Returns 1 if successful, 0 otherwise.
 
 		del_reagent(var/id)
 			Removes all of the reagent.
 
-		has_reagent(var/id, var/amount = 0)
-			Checks if holder has at least [amount] of [id] reagent. Returns 1 if the reagent is found and volume is above [amount]. Returns 0 otherwise.
+		has_reagent(var/id,69ar/amount = 0)
+			Checks if holder has at least 69amount69 of 69id69 reagent. Returns 1 if the reagent is found and69olume is above 69amount69. Returns 0 otherwise.
 
 		clear_reagents()
 			Removes all reagents.
 
 		get_reagent_amount(var/id)
-			Returns reagent volume. Returns 0 if reagent is not found.
+			Returns reagent69olume. Returns 0 if reagent is69ot found.
 
 		get_data(var/id)
 			Returns get_data() of the reagent.
 
 		get_reagents()
-			Returns a string containing all reagent ids and volumes, e.g. "carbon(4),nittrogen(5)".
+			Returns a string containing all reagent ids and69olumes, e.g. "carbon(4),nittrogen(5)".
 
 		remove_any(var/amount = 1)
-			Removes up to [amount] of reagents from [src]. Returns actual amount removed.
+			Removes up to 69amount69 of reagents from 69src69. Returns actual amount removed.
 
-		trans_to_holder(var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-			Transfers [amount] reagents from [src] to [target], multiplying them by [multiplier]. Returns actual amount removed from [src] (not amount transferred to [target]). If [copy] is 1, copies reagents instead.
+		trans_to_holder(var/datum/reagents/target,69ar/amount = 1,69ar/multiplier = 1,69ar/copy = 0)
+			Transfers 69amount69 reagents from 69src69 to 69target69,69ultiplying them by 69multiplier69. Returns actual amount removed from 69src69 (not amount transferred to 69target69). If 69copy69 is 1, copies reagents instead.
 
 		touch(var/atom/target)
 			When applying reagents to an atom externally, touch() is called to trigger any on-touch effects of the reagent.
-			This does not handle transferring reagents to things.
+			This does69ot handle transferring reagents to things.
 			For example, splashing someone with water will get them wet and extinguish them if they are on fire,
 			even if they are wearing an impermeable suit that prevents the reagents from contacting the skin.
 			Basically just defers to touch_mob(target), touch_turf(target), or touch_obj(target), depending on target's type.
@@ -104,35 +104,35 @@ About the Holder:
 		touch_obj(var/obj/target)
 			Calls each reagent's touch_obj(target).
 
-		trans_to(var/atom/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
+		trans_to(var/atom/target,69ar/amount = 1,69ar/multiplier = 1,69ar/copy = 0)
 			The general proc for applying reagents to things externally (as opposed to directly injected into the contents). 
 			It first calls touch, then the appropriate trans_to_*() or splash_mob().
 			If for some reason you want touch effects to be bypassed (e.g. injecting stuff directly into a reagent container or person), call the appropriate trans_to_*() proc.
 			
-			Calls touch() before checking the type of [target], calling splash_mob(target, amount), trans_to_turf(target, amount, multiplier, copy), or trans_to_obj(target, amount, multiplier, copy).
+			Calls touch() before checking the type of 69target69, calling splash_mob(target, amount), trans_to_turf(target, amount,69ultiplier, copy), or trans_to_obj(target, amount,69ultiplier, copy).
 
-		trans_id_to(var/atom/target, var/id, var/amount = 1)
-			Transfers [amount] of [id] to [target]. Returns amount transferred.
+		trans_id_to(var/atom/target,69ar/id,69ar/amount = 1)
+			Transfers 69amount69 of 69id69 to 69target69. Returns amount transferred.
 
-		splash_mob(var/mob/target, var/amount = 1, var/clothes = 1)
-			Checks mob's clothing if [clothes] is 1 and transfers [amount] reagents to mob's skin.
+		splash_mob(var/mob/target,69ar/amount = 1,69ar/clothes = 1)
+			Checks69ob's clothing if 69clothes69 is 1 and transfers 69amount69 reagents to69ob's skin.
 			Don't call this directly. Call apply_to() instead.
 
-		trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0)
-			Transfers [amount] reagents to the mob's appropriate holder, depending on [type]. Ignores protection.
+		trans_to_mob(var/mob/target,69ar/amount = 1,69ar/type = CHEM_BLOOD,69ar/multiplier = 1,69ar/copy = 0)
+			Transfers 69amount69 reagents to the69ob's appropriate holder, depending on 69type69. Ignores protection.
 
-		trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-			Turfs don't currently have any reagents. Puts [amount] reagents into a temporary holder, calls touch_turf(target) from it, and deletes it.
+		trans_to_turf(var/turf/target,69ar/amount = 1,69ar/multiplier = 1,69ar/copy = 0)
+			Turfs don't currently have any reagents. Puts 69amount69 reagents into a temporary holder, calls touch_turf(target) from it, and deletes it.
 
-		trans_to_obj(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0)
-			If target has reagents, transfers [amount] to it. Otherwise, same as trans_to_turf().
+		trans_to_obj(var/turf/target,69ar/amount = 1,69ar/multiplier = 1,69ar/copy = 0)
+			If target has reagents, transfers 69amount69 to it. Otherwise, same as trans_to_turf().
 
 		atom/proc/create_reagents(var/max_vol)
-			Creates a new reagent datum.
+			Creates a69ew reagent datum.
 
 About Reagents:
 
-	Reagents are all the things you can mix and fille in bottles etc. This can be anything from
+	Reagents are all the things you can69ix and fille in bottles etc. This can be anything from
 	rejuvs over water to... iron.
 
 	Vars:
@@ -141,7 +141,7 @@ About Reagents:
 			Name that shows up in-game.
 
 		id
-			ID that is used for internal tracking. MUST BE UNIQUE.
+			ID that is used for internal tracking.69UST BE UNI69UE.
 
 		description
 			Description that shows up in-game.
@@ -150,43 +150,43 @@ About Reagents:
 			Reference to holder.
 
 		reagent_state
-			Could be GAS, LIQUID, or SOLID. Affects nothing. Reserved for future use.
+			Could be GAS, LI69UID, or SOLID. Affects69othing. Reserved for future use.
 
 		list/data
-			Use varies by reagent. Custom variable. For example, blood stores blood group and viruses.
+			Use69aries by reagent. Custom69ariable. For example, blood stores blood group and69iruses.
 
 		volume
-			Current volume.
+			Current69olume.
 
 		metabolism
-			How quickly reagent is processed in mob's bloodstream; by default aslo affects ingest and touch metabolism.
+			How 69uickly reagent is processed in69ob's bloodstream; by default aslo affects ingest and touch69etabolism.
 
 		ingest_met
-			How quickly reagent is processed when ingested; [metabolism] is used if zero.
+			How 69uickly reagent is processed when ingested; 69metabolism69 is used if zero.
 
 		touch_met
 			Ditto when touching.
 
 		dose
-			How much of the reagent has been processed, limited by [max_dose]. Used for reagents with varying effects (e.g. ethanol or rezadone) and overdosing.
+			How69uch of the reagent has been processed, limited by 69max_dose69. Used for reagents with69arying effects (e.g. ethanol or rezadone) and overdosing.
 
 		max_dose
-			Maximum amount of reagent that has ever been in a mob. Exists so dose won't grow infinitely when small amounts of reagent are added over time.
+			Maximum amount of reagent that has ever been in a69ob. Exists so dose won't grow infinitely when small amounts of reagent are added over time.
 
 		overdose
-			If [dose] is bigger than [overdose], overdose() proc is called every tick.
+			If 69dose69 is bigger than 69overdose69, overdose() proc is called every tick.
 
 		scannable
-			If set to 1, will show up on health analyzers by name.
+			If set to 1, will show up on health analyzers by69ame.
 
 		affects_dead
 			If set to 1, will affect dead players. Used by Adminordrazine.
 
 		glass_icon_state
-			Used by drinks. icon_state of the glass when this reagent is the master reagent.
+			Used by drinks. icon_state of the glass when this reagent is the69aster reagent.
 
 		glass_name
-			Ditto for glass name.
+			Ditto for glass69ame.
 
 		glass_desc
 			Ditto for glass desciption.
@@ -198,15 +198,15 @@ About Reagents:
 			"#RRGGBB" or "#RRGGBBAA" where A is alpha channel.
 
 		color_weight
-			How much reagent affects color of holder. Used by paint.
+			How69uch reagent affects color of holder. Used by paint.
 
 	Procs:
 
 		remove_self(var/amount)
-			Removes [amount] of itself.
+			Removes 69amount69 of itself.
 
 		touch_mob(var/mob/M)
-			Called when reagent is in another holder and not splashing the mob. Can be used with noncarbons.
+			Called when reagent is in another holder and69ot splashing the69ob. Can be used with69oncarbons.
 
 		touch_obj(var/obj/O)
 			How reagent reacts with objects.
@@ -214,34 +214,34 @@ About Reagents:
 		touch_turf(var/turf/T)
 			How reagent reacts with turfs.
 
-		on_mob_life(var/mob/living/carbon/M, var/alien, var/location)
-			Makes necessary checks and calls one of affect procs.
+		on_mob_life(var/mob/living/carbon/M,69ar/alien,69ar/location)
+			Makes69ecessary checks and calls one of affect procs.
 
-		affect_blood(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
-			How reagent affects mob when injected. [removed] is the amount of reagent that has been removed this tick. [alien] is the mob's reagent flag.
+		affect_blood(var/mob/living/carbon/M,69ar/alien,69ar/effect_multiplier)
+			How reagent affects69ob when injected. 69removed69 is the amount of reagent that has been removed this tick. 69alien69 is the69ob's reagent flag.
 
-		affect_ingest(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+		affect_ingest(var/mob/living/carbon/M,69ar/alien,69ar/effect_multiplier)
 			Ditto, ingested. Defaults to affect_blood with halved dose.
 
-		affect_touch(var/mob/living/carbon/M, var/alien, var/effect_multiplier)
+		affect_touch(var/mob/living/carbon/M,69ar/alien,69ar/effect_multiplier)
 			Ditto, touching.
 
-		overdose(var/mob/living/carbon/M, var/alien)
-			Called when dose is above overdose. Defaults to M.adjustToxLoss(REM).
+		overdose(var/mob/living/carbon/M,69ar/alien)
+			Called when dose is above overdose. Defaults to69.adjustToxLoss(REM).
 
 		initialize_data(var/newdata)
-			Called when reagent is created. Defaults to setting [data] to [newdata].
+			Called when reagent is created. Defaults to setting 69data69 to 69newdata69.
 
-		mix_data(var/newdata, var/newamount)
-			Called when [newamount] of reagent with [newdata] data is added to the current reagent. Used by paint.
+		mix_data(var/newdata,69ar/newamount)
+			Called when 69newamount69 of reagent with 69newdata69 data is added to the current reagent. Used by paint.
 
 		get_data()
 			Returns data. Can be overriden.
 
 About Recipes:
 
-	Recipes are simple datums that contain a list of required reagents and a result.
-	They also have a proc that is called when the recipe is matched.
+	Recipes are simple datums that contain a list of re69uired reagents and a result.
+	They also have a proc that is called when the recipe is69atched.
 
 	Vars:
 
@@ -249,16 +249,16 @@ About Recipes:
 			Name of the reaction, currently unused.
 
 		id
-			ID of the reaction, must be unique.
+			ID of the reaction,69ust be uni69ue.
 
 		result
-			ID of the resulting reagent. Can be null.
+			ID of the resulting reagent. Can be69ull.
 
-		list/required_reagents
-			Reagents that are required for the reaction and are used up during it.
+		list/re69uired_reagents
+			Reagents that are re69uired for the reaction and are used up during it.
 
 		list/catalysts
-			Ditto, but not used up.
+			Ditto, but69ot used up.
 
 		list/inhibitors
 			Opposite, prevent the reaction from happening.
@@ -267,14 +267,14 @@ About Recipes:
 			Amount of resulting reagent.
 
 		mix_message
-			Message that is shown to mobs when reaction happens.
+			Message that is shown to69obs when reaction happens.
 
 	Procs:
 
 		can_happen(var/datum/reagents/holder)
-			Customizable. If it returns 0, reaction will not happen. Defaults to always returning 1. Used by slime core reactions.
+			Customizable. If it returns 0, reaction will69ot happen. Defaults to always returning 1. Used by slime core reactions.
 
-		on_reaction(var/datum/reagents/holder, var/created_volume)
+		on_reaction(var/datum/reagents/holder,69ar/created_volume)
 			Called when reaction happens. Used by explosives.
 
 		send_data(var/datum/reagents/T)
@@ -282,24 +282,24 @@ About Recipes:
 
 About the Tools:
 
-	By default, all atom have a reagents var - but its empty. if you want to use an object for the chem.
-	system you'll need to add something like this in its new proc:
+	By default, all atom have a reagents69ar - but its empty. if you want to use an object for the chem.
+	system you'll69eed to add something like this in its69ew proc:
 
 		atom/proc/create_reagents(var/max_volume)
 
 	Other important stuff:
 
-		amount_per_transfer_from_this var
-			This var is mostly used by beakers and bottles.
-			It simply tells us how much to transfer when
+		amount_per_transfer_from_this69ar
+			This69ar is69ostly used by beakers and bottles.
+			It simply tells us how69uch to transfer when
 			'pouring' our reagents into something else.
 
 		atom/proc/is_open_container()
 			Checks atom/var/flags & OPENCONTAINER.
 			If this returns 1 , you can use syringes, beakers etc
-			to manipulate the contents of this object.
-			If it's 0, you'll need to write your own custom reagent
-			transfer code since you will not be able to use the standard
-			tools to manipulate it.
+			to69anipulate the contents of this object.
+			If it's 0, you'll69eed to write your own custom reagent
+			transfer code since you will69ot be able to use the standard
+			tools to69anipulate it.
 
 */

@@ -12,7 +12,7 @@
 	if (new_dynamic_lighting == dynamic_lighting)
 		return FALSE
 
-	dynamic_lighting = new_dynamic_lighting
+	dynamic_lighting =69ew_dynamic_lighting
 
 	if (new_dynamic_lighting)
 		for (var/turf/T in world)

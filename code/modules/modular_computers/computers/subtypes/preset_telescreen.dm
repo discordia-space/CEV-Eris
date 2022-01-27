@@ -1,9 +1,9 @@
 /obj/item/modular_computer/telescreen/preset/install_default_hardware()
 	..()
-	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
-	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
-	hard_drive = new/obj/item/computer_hardware/hard_drive(src)
-	network_card = new/obj/item/computer_hardware/network_card(src)
+	processor_unit =69ew/obj/item/computer_hardware/processor_unit(src)
+	tesla_link =69ew/obj/item/computer_hardware/tesla_link(src)
+	hard_drive =69ew/obj/item/computer_hardware/hard_drive(src)
+	network_card =69ew/obj/item/computer_hardware/network_card(src)
 
 /obj/item/modular_computer/telescreen/preset/generic/install_default_programs()
 	..()

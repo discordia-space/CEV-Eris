@@ -1,5 +1,5 @@
-#define MODE_RECEIVE 0
-#define MODE_TRANSMIT 1
+#define69ODE_RECEIVE 0
+#define69ODE_TRANSMIT 1
 
 /obj/item/bluespace_harpoon
 	name = "NT BSD \"Harpoon\""
@@ -11,11 +11,11 @@
 	throw_range = 20
 	origin_tech = list(TECH_BLUESPACE = 5)
 	price_tag = 4000
-	matter = list(MATERIAL_SILVER = 10, MATERIAL_GOLD = 5, MATERIAL_PLASMA = 20, MATERIAL_PLASTIC = 20)
+	matter = list(MATERIAL_SILVER = 10,69ATERIAL_GOLD = 5,69ATERIAL_PLASMA = 20,69ATERIAL_PLASTIC = 20)
 	spawn_blacklisted = TRUE
 	var/entropy_value = 2
-	var/mode = MODE_TRANSMIT
-	var/transforming = FALSE	// mode changing takes some time
+	var/mode =69ODE_TRANSMIT
+	var/transforming = FALSE	//69ode changing takes some time
 	var/offset_chance = 5		//chance to teleport things in wrong place
 	var/teleport_offset = 8		//radius of wrong place
 	var/obj/item/cell/cell
@@ -37,10 +37,10 @@
 		cell = null
 		update_icon()
 
-/obj/item/bluespace_harpoon/afterattack(atom/A, mob/user)
+/obj/item/bluespace_harpoon/afterattack(atom/A,69ob/user)
 	if(get_dist(A, user) > range)
 		return ..()
-	if(!(A in view(user)))
+	if(!(A in69iew(user)))
 		return ..()
 	if(istype(A, /obj/item/storage/))
 		return ..()
@@ -63,18 +63,18 @@
 		if(do_after(user, 4 SECONDS - user.stats.getMult(STAT_COG, STAT_LEVEL_GODLIKE/20, src)))
 			Using = FALSE
 			if(!cell || !cell.checked_use(100))
-				to_chat(user, SPAN_WARNING("\The [src]'s battery is dead or missing."))
+				to_chat(user, SPAN_WARNING("\The 69src69's battery is dead or69issing."))
 				return
 			if(!user || !A || user.machine)
 				return
 			if(transforming)
-				to_chat(user, SPAN_WARNING("You can't fire \the [src] while it is transforming!"))
+				to_chat(user, SPAN_WARNING("You can't fire \the 69src69 while it is transforming!"))
 				return
 
 			playsound(user, 'sound/weapons/wave.ogg', 60, 1)
 
-			user.visible_message(SPAN_WARNING("\The [user] fires \the [src]!"))
-			to_chat(user,SPAN_WARNING("You fire \the [src]"))
+			user.visible_message(SPAN_WARNING("\The 69user69 fires \the 69src69!"))
+			to_chat(user,SPAN_WARNING("You fire \the 69src69"))
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(4, 1, A)
 			s.start()
@@ -85,7 +85,7 @@
 				if(MODE_RECEIVE)
 					teleport(AtomTurf, UserTurf)
 		else
-			to_chat(user, SPAN_WARNING("Error, do not move!"))
+			to_chat(user, SPAN_WARNING("Error, do not69ove!"))
 			Using = FALSE
 	else
 		to_chat(user, SPAN_WARNING("Error, single destination only!"))
@@ -101,35 +101,35 @@
 			else
 				go_to_bluespace(source, entropy_value, TRUE, AM, target)
 
-/obj/item/bluespace_harpoon/attack_self(mob/living/user as mob)
+/obj/item/bluespace_harpoon/attack_self(mob/living/user as69ob)
 	return change_fire_mode(user)
 
 /obj/item/bluespace_harpoon/verb/change_fire_mode(mob/user)
-	set name = "Change fire mode"
+	set name = "Change fire69ode"
 	set category = "Object"
 	set src in oview(1)
 	if(transforming)
 		return
 	mode = !mode
 	transforming = TRUE
-	to_chat(user, SPAN_NOTICE("You change [src] mode to [mode ? "transmiting" : "receiving"]."))
+	to_chat(user, SPAN_NOTICE("You change 69src6969ode to 69mode ? "transmiting" : "receiving"69."))
 	update_icon()
-	flick("harpoon-[mode]-change", src)
+	flick("harpoon-69mode69-change", src)
 	spawn(13)	//Average length of transforming animation
 		transforming = FALSE
 
 /obj/item/bluespace_harpoon/update_icon()
-	icon_state = "harpoon-[mode]"
+	icon_state = "harpoon-69mode69"
 
-/obj/item/bluespace_harpoon/examine(var/mob/user, var/dist = -1)
+/obj/item/bluespace_harpoon/examine(var/mob/user,69ar/dist = -1)
 	..(user, dist)
-	to_chat(user, SPAN_NOTICE("Mode set to [mode ? "transmiting" : "receiving"]."))
+	to_chat(user, SPAN_NOTICE("Mode set to 69mode ? "transmiting" : "receiving"69."))
 
 /obj/item/bluespace_harpoon/MouseDrop(over_object)
 	if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
 		cell = null
 
-/obj/item/bluespace_harpoon/attackby(obj/item/C, mob/living/user)
+/obj/item/bluespace_harpoon/attackby(obj/item/C,69ob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 
@@ -164,13 +164,13 @@
 	return loc.get_cell()
 
 /obj/item/bluespace_harpoon/mounted/update_icon()
-	icon_state = "harpoon-mounted-[mode]"
+	icon_state = "harpoon-mounted-69mode69"
 
 /obj/item/bluespace_harpoon/mounted/blitz
 	name = "OR BSD \"Blauerraumharpune\""
-	desc = "Reverse engineered version of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
+	desc = "Reverse engineered69ersion of harpoon developed by old Nanotrasen, remounted for robotic use only by Oberth Republic."
 	icon_state = "harpoon-mounted-blitz-1"
 	spawn_tags = null
 
 /obj/item/bluespace_harpoon/mounted/blitz/update_icon()
-	icon_state = "harpoon-mounted-blitz-[mode]"
+	icon_state = "harpoon-mounted-blitz-69mode69"

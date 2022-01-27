@@ -1,88 +1,88 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/lattice,
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"d" = (
+/area/template_noop69
+"d" = 69
 /turf/simulated/wall/r_wall,
-/area/template_noop)
-"e" = (
-/obj/structure/railing,
-/obj/structure/lattice,
+/area/template_noop69
+"e" = 69
+/o6969/structure/railin69,
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"f" = (
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"g" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"h" = (
-/obj/structure/railing{
+/area/template_noop69
+"f" = 69
+/o6969/spawner/69un69food/rotten,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"h" = 69
+/o6969/structure/railin69{
 	dir = 8;
-	tag = "icon-railing0 (WEST)"
+	ta69 = "icon-railin690 69WEST69"
 	},
 /turf/template_noop,
-/area/template_noop)
-"i" = (
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"j" = (
-/obj/structure/lattice,
-/obj/structure/railing{
+/area/template_noop69
+"i" = 69
+/o6969/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69" = 69
+/o6969/structure/lattice,
+/o6969/structure/railin69{
 	dir = 8;
-	tag = "icon-railing0 (WEST)"
+	ta69 = "icon-railin690 69WEST69"
 	},
 /turf/template_noop,
-/area/template_noop)
-"r" = (
+/area/template_noop69
+"r" = 69
 /turf/template_noop,
-/area/template_noop)
-"w" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"x" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"F" = (
-/obj/structure/lattice,
-/obj/structure/railing,
+/area/template_noop69
+"w" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"x" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"F" = 69
+/o6969/structure/lattice,
+/o6969/structure/railin69,
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 r
 F
 x
 w
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 F
 f
 d
 x
 "}
-(3,1,1) = {"
+693,1,169 = {"
 r
 e
-g
+69
 i
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 a
 h
-j
+69
 x
 "}
-(5,1,1) = {"
+695,1,169 = {"
 w
 a
 r

@@ -6,8 +6,8 @@
 	mechanical = 0
 	tray_light = 0
 
-/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/I, var/mob/user)
-	//You cant move soil with wrench
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/I,69ar/mob/user)
+	//You cant69ove soil with wrench
 	if((QUALITY_BOLT_TURNING in I.tool_qualities) && ((istype(I, /obj/item/tank) && !( src.destroyed ))))
 		..()
 		return
@@ -23,7 +23,7 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/CanPass()
 	return 1
 
-// Holder for vine plants.
+// Holder for69ine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.
 // Hence using a blank icon.
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible
@@ -62,7 +62,7 @@
 	..()
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Destroy()
-	// Check if we're masking a decal that needs to be visible again.
+	// Check if we're69asking a decal that needs to be69isible again.
 	for(var/obj/effect/plant/plant in get_turf(src))
 		if(plant.invisibility == INVISIBILITY_MAXIMUM)
 			plant.invisibility = initial(plant.invisibility)

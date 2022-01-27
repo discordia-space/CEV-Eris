@@ -1,5 +1,5 @@
 /music_track/elevator
-	artist = "Kevin MacLeod"
+	artist = "Kevin69acLeod"
 	title = "Local Forecast (Elevator)"
 	song = 'sound/music/elevatormusic.ogg'
 	licence = /decl/licence/cc_by_3_0

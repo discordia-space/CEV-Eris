@@ -10,7 +10,7 @@
 	path = /obj/item/storage/box/syndie_kit/imp_freedom
 
 /datum/uplink_item/item/implants/imp_compress
-	name = "Compressed Matter Implant"
+	name = "Compressed69atter Implant"
 	item_cost = 4
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/box/syndie_kit/imp_compress
@@ -41,7 +41,7 @@
 /datum/uplink_item/item/implants/imp_uplink/New()
 	..()
 	item_cost = round(DEFAULT_TELECRYSTAL_AMOUNT / 2)
-	desc = "Contains [round((DEFAULT_TELECRYSTAL_AMOUNT / 2) * 0.8)] Telecrystal\s"
+	desc = "Contains 69round((DEFAULT_TELECRYSTAL_AMOUNT / 2) * 0.8)69 Telecrystal\s"
 
 /datum/uplink_item/item/implants/energy_blade
 	name = "Internal Energy Armblade Implant"

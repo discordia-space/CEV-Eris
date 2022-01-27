@@ -1,25 +1,25 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-// Mulebot - carries crates around for Quartermaster
-// Navigates via floor navbeacons
-// Remote Controlled from QM's PDA
+//69ulebot - carries crates around for 69uartermaster
+// Navigates69ia floor navbeacons
+// Remote Controlled from 69M's PDA
 
 
 /obj/machinery/bot/mulebot
 	name = "Mulebot"
-	desc = "A Multiple Utility Load Effector bot."
+	desc = "A69ultiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	layer = MOB_LAYER
+	layer =69OB_LAYER
 	density = TRUE
 	anchored = TRUE
 	animate_movement=1
-	health = 150 //yeah, it's tougher than ed209 because it is a big metal box with wheels --rastaf0
+	health = 150 //yeah, it's tougher than ed209 because it is a big69etal box with wheels --rastaf0
 	maxhealth = 150
 	fire_dam_coeff = 0.7
 	brute_dam_coeff = 0.5
 	var/atom/movable/load = null		// the loaded crate (usually)
-	var/beacon_freq = 1400
-	var/control_freq = BOT_FREQ
+	var/beacon_fre69 = 1400
+	var/control_fre69 = BOT_FRE69
 
 	suffix = ""
 
@@ -28,12 +28,12 @@
 	var/new_destination = ""	// pending new destination (waiting for beacon response)
 	var/destination = ""		// destination description
 	var/home_destination = "" 	// tag of home beacon
-	req_access = list(access_cargo) // added robotics access so assembly line drop-off works properly -veyveyr //I don't think so, Tim. You need to add it to the MULE's hidden robot ID card. -NEO
-	var/path[] = new()
+	re69_access = list(access_cargo) // added robotics access so assembly line drop-off works properly -veyveyr //I don't think so, Tim. You need to add it to the69ULE's hidden robot ID card. -NEO
+	var/path6969 = new()
 
 	var/mode = 0		//0 = idle/ready
 						//1 = loading/unloading
-						//2 = moving to deliver
+						//2 =69oving to deliver
 						//3 = returning to home
 						//4 = blocked
 						//5 = computing navigation
@@ -62,23 +62,23 @@
 	botcard.access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_merchant, access_mining, access_mining_station)
 	cell = new /obj/item/cell/large/high(src)
 
-	spawn(5)	// must wait for map loading to finish
-		SSradio.add_object(src, control_freq, filter = RADIO_MULEBOT)
-		SSradio.add_object(src, beacon_freq, filter = RADIO_NAVBEACONS)
+	spawn(5)	//69ust wait for69ap loading to finish
+		SSradio.add_object(src, control_fre69, filter = RADIO_MULEBOT)
+		SSradio.add_object(src, beacon_fre69, filter = RADIO_NAVBEACONS)
 
 		var/count = 0
 		for(var/obj/machinery/bot/mulebot/other in world)
 			count++
 		if(!suffix)
-			suffix = "#[count]"
-		name = "Mulebot ([suffix])"
+			suffix = "#69count69"
+		name = "Mulebot (69suffix69)"
 
 /obj/machinery/bot/mulebot/Destroy()
 	unload(0)
-	qdel(wires)
+	69del(wires)
 	wires = null
-	SSradio.remove_object(src,beacon_freq)
-	SSradio.remove_object(src,control_freq)
+	SSradio.remove_object(src,beacon_fre69)
+	SSradio.remove_object(src,control_fre69)
 	return ..()
 
 /obj/machinery/bot/mulebot/get_cell()
@@ -95,7 +95,7 @@
 // screwdriver: open/close hatch
 // cell: insert it
 // other: chance to knock rider off bot
-/obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/bot/mulebot/attackby(var/obj/item/I,69ar/mob/user)
 	if(istype(I,/obj/item/cell/large) && open && !cell)
 		var/obj/item/cell/large/C = I
 		user.drop_item()
@@ -104,43 +104,43 @@
 		updateDialog()
 	else if(istype(I,/obj/item/tool/screwdriver))
 		if(locked)
-			to_chat(user, SPAN_NOTICE("The maintenance hatch cannot be opened or closed while the controls are locked."))
+			to_chat(user, SPAN_NOTICE("The69aintenance hatch cannot be opened or closed while the controls are locked."))
 			return
 
 		open = !open
 		if(open)
-			src.visible_message("[user] opens the maintenance hatch of [src]", SPAN_NOTICE("You open [src]'s maintenance hatch."))
+			src.visible_message("69user69 opens the69aintenance hatch of 69src69", SPAN_NOTICE("You open 69src69's69aintenance hatch."))
 			on = FALSE
 			icon_state="mulebot-hatch"
 		else
-			src.visible_message("[user] closes the maintenance hatch of [src]", SPAN_NOTICE("You close [src]'s maintenance hatch."))
+			src.visible_message("69user69 closes the69aintenance hatch of 69src69", SPAN_NOTICE("You close 69src69's69aintenance hatch."))
 			icon_state = "mulebot0"
 
 		updateDialog()
 	else if (istype(I, /obj/item/tool/wrench))
-		if (src.health < maxhealth)
-			src.health = min(maxhealth, src.health+25)
+		if (src.health <69axhealth)
+			src.health =69in(maxhealth, src.health+25)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 			user.visible_message(
-				SPAN_NOTICE("\The [user] repairs \the [src]!"),
-				SPAN_NOTICE("You repair \the [src]!")
+				SPAN_NOTICE("\The 69user69 repairs \the 69src69!"),
+				SPAN_NOTICE("You repair \the 69src69!")
 			)
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair!"))
+			to_chat(user, SPAN_NOTICE("69src69 does not need a repair!"))
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1+I.force * 2))
 			unload(0)
-			user.visible_message(SPAN_WARNING("[user] knocks [load] off [src] with \the [I]!"), SPAN_WARNING("You knock [load] off [src] with \the [I]!"))
+			user.visible_message(SPAN_WARNING("69user69 knocks 69load69 off 69src69 with \the 69I69!"), SPAN_WARNING("You knock 69load69 off 69src69 with \the 69I69!"))
 		else
-			to_chat(user, "You hit [src] with \the [I] but to no effect.")
+			to_chat(user, "You hit 69src69 with \the 69I69 but to no effect.")
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	else
 		..()
 	return
 
-/obj/machinery/bot/mulebot/emag_act(var/remaining_charges, var/user)
+/obj/machinery/bot/mulebot/emag_act(var/remaining_charges,69ar/user)
 	locked = !locked
-	to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
+	to_chat(user, "<span class='notice'>You 69locked ? "lock" : "unlock"69 the69ulebot's controls!</span>")
 	flick("mulebot-emagged", src)
 	playsound(src.loc, 'sound/effects/sparks1.ogg', 100, 0)
 	return 1
@@ -161,7 +161,7 @@
 	if(prob(50) && !isnull(load))
 		unload(0)
 	if(prob(25))
-		src.visible_message(SPAN_WARNING("Something shorts out inside [src]!"))
+		src.visible_message(SPAN_WARNING("Something shorts out inside 69src69!"))
 		var/index = 1<< (rand(0,9))
 		if(wires & index)
 			wires &= ~index
@@ -181,11 +181,11 @@
 	user.set_machine(src)
 	interact(user, 0)
 
-/obj/machinery/bot/mulebot/interact(var/mob/user, var/ai=0)
+/obj/machinery/bot/mulebot/interact(var/mob/user,69ar/ai=0)
 	var/dat
-	dat += "<TT><B>Multiple Utility Load Effector Mk. III</B></TT><BR><BR>"
-	dat += "ID: [suffix]<BR>"
-	dat += "Power: [on ? "On" : "Off"]<BR>"
+	dat += "<TT><B>Multiple Utility Load Effector69k. III</B></TT><BR><BR>"
+	dat += "ID: 69suffix69<BR>"
+	dat += "Power: 69on ? "On" : "Off"69<BR>"
 
 	if(!open)
 
@@ -207,43 +207,43 @@
 				dat += "Unable to locate destination"
 
 
-		dat += "<BR>Current Load: [load ? load.name : "<i>none</i>"]<BR>"
-		dat += "Destination: [!destination ? "<i>none</i>" : destination]<BR>"
-		dat += "Power level: [cell ? cell.percent() : 0]%<BR>"
+		dat += "<BR>Current Load: 69load ? load.name : "<i>none</i>"69<BR>"
+		dat += "Destination: 69!destination ? "<i>none</i>" : destination69<BR>"
+		dat += "Power level: 69cell ? cell.percent() : 069%<BR>"
 
 		if(locked && !ai)
-			dat += "<HR>Controls are locked <A href='byond://?src=\ref[src];op=unlock'><I>(unlock)</I></A>"
+			dat += "<HR>Controls are locked <A href='byond://?src=\ref69src69;op=unlock'><I>(unlock)</I></A>"
 		else
-			dat += "<HR>Controls are unlocked <A href='byond://?src=\ref[src];op=lock'><I>(lock)</I></A><BR><BR>"
+			dat += "<HR>Controls are unlocked <A href='byond://?src=\ref69src69;op=lock'><I>(lock)</I></A><BR><BR>"
 
-			dat += "<A href='byond://?src=\ref[src];op=power'>Toggle Power</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=stop'>Stop</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=go'>Proceed</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=home'>Return to Home</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=destination'>Set Destination</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=setid'>Set Bot ID</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=sethome'>Set Home</A><BR>"
-			dat += "<A href='byond://?src=\ref[src];op=autoret'>Toggle Auto Return Home</A> ([auto_return ? "On":"Off"])<BR>"
-			dat += "<A href='byond://?src=\ref[src];op=autopick'>Toggle Auto Pickup Crate</A> ([auto_pickup ? "On":"Off"])<BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=power'>Toggle Power</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=stop'>Stop</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=go'>Proceed</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=home'>Return to Home</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=destination'>Set Destination</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=setid'>Set Bot ID</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=sethome'>Set Home</A><BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=autoret'>Toggle Auto Return Home</A> (69auto_return ? "On":"Off"69)<BR>"
+			dat += "<A href='byond://?src=\ref69src69;op=autopick'>Toggle Auto Pickup Crate</A> (69auto_pickup ? "On":"Off"69)<BR>"
 
 			if(load)
-				dat += "<A href='byond://?src=\ref[src];op=unload'>Unload Now</A><BR>"
-			dat += "<HR>The maintenance hatch is closed.<BR>"
+				dat += "<A href='byond://?src=\ref69src69;op=unload'>Unload Now</A><BR>"
+			dat += "<HR>The69aintenance hatch is closed.<BR>"
 
 	else
 		if(!ai)
-			dat += "The maintenance hatch is open.<BR><BR>"
+			dat += "The69aintenance hatch is open.<BR><BR>"
 			dat += "Power cell: "
 			if(cell)
-				dat += "<A href='byond://?src=\ref[src];op=cellremove'>Installed</A><BR>"
+				dat += "<A href='byond://?src=\ref69src69;op=cellremove'>Installed</A><BR>"
 			else
-				dat += "<A href='byond://?src=\ref[src];op=cellinsert'>Removed</A><BR>"
+				dat += "<A href='byond://?src=\ref69src69;op=cellinsert'>Removed</A><BR>"
 
 			dat += wires.GetInteractWindow(user)
 		else
-			dat += "The bot is in maintenance mode and cannot be controlled.<BR>"
+			dat += "The bot is in69aintenance69ode and cannot be controlled.<BR>"
 
-	user << browse("<HEAD><TITLE>Mulebot [suffix ? "([suffix])" : ""]</TITLE></HEAD>[dat]", "window=mulebot;size=350x500")
+	user << browse("<HEAD><TITLE>Mulebot 69suffix ? "(69suffix69)" : ""69</TITLE></HEAD>69dat69", "window=mulebot;size=350x500")
 	onclose(user, "mulebot")
 	return
 
@@ -255,7 +255,7 @@
 	if ((in_range(src, usr) && istype(src.loc, /turf)) || (issilicon(usr)))
 		usr.set_machine(src)
 
-		switch(href_list["op"])
+		switch(href_list69"op"69)
 			if("lock", "unlock")
 				if(src.allowed(usr))
 					locked = !locked
@@ -268,11 +268,11 @@
 					turn_off()
 				else if (cell && !open)
 					if (!turn_on())
-						to_chat(usr, SPAN_WARNING("You can't switch on [src]."))
+						to_chat(usr, SPAN_WARNING("You can't switch on 69src69."))
 						return
 				else
 					return
-				visible_message("[usr] switches [on ? "on" : "off"] [src].")
+				visible_message("69usr69 switches 69on ? "on" : "off"69 69src69.")
 				updateDialog()
 
 
@@ -283,7 +283,7 @@
 					cell.add_fingerprint(usr)
 					cell = null
 
-					usr.visible_message(SPAN_NOTICE("[usr] removes the power cell from [src]."), SPAN_NOTICE("You remove the power cell from [src]."))
+					usr.visible_message(SPAN_NOTICE("69usr69 removes the power cell from 69src69."), SPAN_NOTICE("You remove the power cell from 69src69."))
 					updateDialog()
 
 			if("cellinsert")
@@ -295,7 +295,7 @@
 						C.loc = src
 						C.add_fingerprint(usr)
 
-						usr.visible_message(SPAN_NOTICE("[usr] inserts a power cell into [src]."), SPAN_NOTICE("You insert the power cell into [src]."))
+						usr.visible_message(SPAN_NOTICE("69usr69 inserts a power cell into 69src69."), SPAN_NOTICE("You insert the power cell into 69src69."))
 						updateDialog()
 
 
@@ -310,7 +310,7 @@
 					updateDialog()
 
 			if("home")
-				if(mode == 0 || mode == 2)
+				if(mode == 0 ||69ode == 2)
 					start_home()
 					updateDialog()
 
@@ -321,7 +321,7 @@
 				for(var/obj/machinery/navbeacon/N in navbeacons)
 					beaconlist.Add(N.location)
 				if(beaconlist.len)
-					new_dest = input("Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", destination) in beaconlist
+					new_dest = input("Select new destination tag", "Mulebot 69suffix ? "(69suffix69)" : ""69", destination) in beaconlist
 				else
 					alert("No destination beacons available.")
 				refresh=1
@@ -331,23 +331,23 @@
 
 			if("setid")
 				refresh=0
-				var/new_id = sanitize(input("Enter new bot ID", "Mulebot [suffix ? "([suffix])" : ""]", suffix) as text|null, MAX_NAME_LEN)
+				var/new_id = sanitize(input("Enter new bot ID", "Mulebot 69suffix ? "(69suffix69)" : ""69", suffix) as text|null,69AX_NAME_LEN)
 				refresh=1
 				if(new_id)
 					suffix = new_id
-					name = "Mulebot ([suffix])"
+					name = "Mulebot (69suffix69)"
 					updateDialog()
 
 			if("sethome")
 				refresh=0
-				var/new_home = input("Enter new home tag", "Mulebot [suffix ? "([suffix])" : ""]", home_destination) as text|null
+				var/new_home = input("Enter new home tag", "Mulebot 69suffix ? "(69suffix69)" : ""69", home_destination) as text|null
 				refresh=1
 				if(new_home)
 					home_destination = new_home
 					updateDialog()
 
 			if("unload")
-				if(load && mode !=1)
+				if(load &&69ode !=1)
 					if(loc == target)
 						unload(loaddir)
 					else
@@ -376,10 +376,10 @@
 /obj/machinery/bot/mulebot/proc/has_power()
 	return !open && cell && cell.charge>0 && wires.HasPower()
 
-// mousedrop a crate to load the bot
+//69ousedrop a crate to load the bot
 // can load anything if emagged
 
-/obj/machinery/bot/mulebot/MouseDrop_T(var/atom/movable/C, mob/user)
+/obj/machinery/bot/mulebot/MouseDrop_T(var/atom/movable/C,69ob/user)
 
 	if(user.stat)
 		return
@@ -396,11 +396,11 @@
 // called to load a crate
 /obj/machinery/bot/mulebot/proc/load(var/atom/movable/C)
 	if(wires.LoadCheck() && !istype(C,/obj/structure/closet/crate))
-		src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
+		src.visible_message("69src6969akes a sighing buzz.", "You hear an electronic buzzing sound.")
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return		// if not emagged, only allow crates to be loaded
 
-	//I'm sure someone will come along and ask why this is here... well people were dragging screen items onto the mule, and that was not cool.
+	//I'm sure someone will come along and ask why this is here... well people were dragging screen items onto the69ule, and that was not cool.
 	//So this is a simple fix that only allows a selection of item types to be considered. Further narrowing-down is below.
 	if(!istype(C,/obj/item) && !istype(C,/obj/machinery) && !istype(C,/obj/structure) && !ismob(C))
 		return
@@ -421,7 +421,7 @@
 
 	C.loc = src.loc
 	sleep(2)
-	if(C.loc != src.loc) //To prevent you from going onto more thano ne bot.
+	if(C.loc != src.loc) //To prevent you from going onto69ore thano ne bot.
 		return
 	C.loc = src
 	load = C
@@ -456,7 +456,7 @@
 	if(ismob(load))
 		var/mob/M = load
 		if(M.client)
-			M.client.perspective = MOB_PERSPECTIVE
+			M.client.perspective =69OB_PERSPECTIVE
 			M.client.eye = src
 
 
@@ -472,7 +472,7 @@
 
 	// in case non-load items end up in contents, dump every else too
 	// this seems to happen sometimes due to race conditions
-	// with items dropping as mobs are loaded
+	// with items dropping as69obs are loaded
 
 	for(var/atom/movable/AM in src)
 		if(AM == cell || AM == botcard) continue
@@ -483,7 +483,7 @@
 		if(ismob(AM))
 			var/mob/M = AM
 			if(M.client)
-				M.client.perspective = MOB_PERSPECTIVE
+				M.client.perspective =69OB_PERSPECTIVE
 				M.client.eye = src
 	mode = 0
 
@@ -494,7 +494,7 @@
 		return
 	if(on)
 		var/speed = (wires.Motor1() ? 1:0) + (wires.Motor2() ? 2:0)
-		//world << "speed: [speed]"
+		//world << "speed: 69speed69"
 		switch(speed)
 			if(0)
 				// do nothing
@@ -518,7 +518,7 @@
 	if(refresh) updateDialog()
 
 /obj/machinery/bot/mulebot/proc/process_bot()
-	//if(mode) world << "Mode: [mode]"
+	//if(mode) world << "Mode: 69mode69"
 	switch(mode)
 		if(0)		// idle
 			icon_state = "mulebot0"
@@ -531,9 +531,9 @@
 				at_target()
 				return
 
-			else if(path.len > 0 && target)		// valid path
+			else if(path.len > 0 && target)		//69alid path
 
-				var/turf/next = path[1]
+				var/turf/next = path69169
 				reached_target = 0
 				if(next == loc)
 					path -= next
@@ -541,7 +541,7 @@
 
 
 				if(istype( next, /turf/simulated))
-					//world << "at ([x],[y]) moving to ([next.x],[next.y])"
+					//world << "at (69x69,69y69)69oving to (69next.x69,69next.y69)"
 
 
 					if(bloodiness)
@@ -560,10 +560,10 @@
 
 
 
-					var/moved = step_towards(src, next)	// attempt to move
+					var/moved = step_towards(src, next)	// attempt to69ove
 					if(cell) cell.use(1)
-					if(moved)	// successful move
-						//world << "Successful move."
+					if(moved)	// successful69ove
+						//world << "Successful69ove."
 						blockcount = 0
 						path -= loc
 
@@ -577,34 +577,34 @@
 						else
 							mode = 2
 
-					else		// failed to move
+					else		// failed to69ove
 
-						//world << "Unable to move."
+						//world << "Unable to69ove."
 
 
 
 						blockcount++
 						mode = 4
 						if(blockcount == 3)
-							src.visible_message("[src] makes an annoyed buzzing sound", "You hear an electronic buzzing sound.")
+							src.visible_message("69src6969akes an annoyed buzzing sound", "You hear an electronic buzzing sound.")
 							playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
 
 						if(blockcount > 5)	// attempt 5 times before recomputing
 							// find new path excluding blocked turf
-							src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
+							src.visible_message("69src6969akes a sighing buzz.", "You hear an electronic buzzing sound.")
 							playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 
 							spawn(2)
 								calc_path(next)
 								if(path.len > 0)
-									src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
+									src.visible_message("69src6969akes a delighted ping!", "You hear a ping.")
 									playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
 								mode = 4
 							mode =6
 							return
 						return
 				else
-					src.visible_message("[src] makes an annoyed buzzing sound", "You hear an electronic buzzing sound.")
+					src.visible_message("69src6969akes an annoyed buzzing sound", "You hear an electronic buzzing sound.")
 					playsound(src.loc, 'sound/machines/buzz-two.ogg', 50, 0)
 					//world << "Bad turf."
 					mode = 5
@@ -624,11 +624,11 @@
 				if(path.len > 0)
 					blockcount = 0
 					mode = 4
-					src.visible_message("[src] makes a delighted ping!", "You hear a ping.")
+					src.visible_message("69src6969akes a delighted ping!", "You hear a ping.")
 					playsound(src.loc, 'sound/machines/ping.ogg', 50, 0)
 
 				else
-					src.visible_message("[src] makes a sighing buzz.", "You hear an electronic buzzing sound.")
+					src.visible_message("69src6969akes a sighing buzz.", "You hear an electronic buzzing sound.")
 					playsound(src.loc, 'sound/machines/buzz-sigh.ogg', 50, 0)
 
 					mode = 7
@@ -648,34 +648,34 @@
 
 
 // sets the current destination
-// signals all beacons matching the delivery code
+// signals all beacons69atching the delivery code
 // beacons will return a signal giving their locations
 /obj/machinery/bot/mulebot/proc/set_destination(var/new_dest)
 	spawn(0)
 		new_destination = new_dest
-		post_signal(beacon_freq, "findbeacon", "delivery")
+		post_signal(beacon_fre69, "findbeacon", "delivery")
 		updateDialog()
 
-// starts bot moving to current destination
+// starts bot69oving to current destination
 /obj/machinery/bot/mulebot/proc/start()
 	if(destination == home_destination)
 		mode = 3
 	else
 		mode = 2
-	icon_state = "mulebot[wires.MobAvoid()]"
+	icon_state = "mulebot69wires.MobAvoid()69"
 
-// starts bot moving to home
-// sends a beacon query to find
+// starts bot69oving to home
+// sends a beacon 69uery to find
 /obj/machinery/bot/mulebot/proc/start_home()
 	spawn(0)
 		set_destination(home_destination)
 		mode = 4
-	icon_state = "mulebot[wires.MobAvoid()]"
+	icon_state = "mulebot69wires.MobAvoid()69"
 
 // called when bot reaches current target
 /obj/machinery/bot/mulebot/proc/at_target()
 	if(!reached_target)
-		src.visible_message("[src] makes a chiming sound!", "You hear a chime.")
+		src.visible_message("69src6969akes a chiming sound!", "You hear a chime.")
 		playsound(src.loc, 'sound/machines/chime.ogg', 50, 0)
 		reached_target = 1
 
@@ -709,23 +709,23 @@
 
 // called when bot bumps into anything
 /obj/machinery/bot/mulebot/Bump(var/atom/obs)
-	if(!wires.MobAvoid())		//usually just bumps, but if avoidance disabled knock over mobs
+	if(!wires.MobAvoid())		//usually just bumps, but if avoidance disabled knock over69obs
 		var/mob/M = obs
 		if(ismob(M))
 			if(isrobot(M))
-				src.visible_message(SPAN_WARNING("[src] bumps into [M]!"))
+				src.visible_message(SPAN_WARNING("69src69 bumps into 69M69!"))
 			else
-				src.visible_message(SPAN_WARNING("[src] knocks over [M]!"))
+				src.visible_message(SPAN_WARNING("69src69 knocks over 69M69!"))
 				M.stop_pulling()
 				M.Stun(8)
 				M.Weaken(5)
 				M.lying = 1
 	..()
 
-// called from mob/living/carbon/human/Crossed()
-// when mulebot is in the same loc
+// called from69ob/living/carbon/human/Crossed()
+// when69ulebot is in the same loc
 /obj/machinery/bot/mulebot/proc/RunOver(var/mob/living/carbon/human/H)
-	src.visible_message(SPAN_WARNING("[src] drives over [H]!"))
+	src.visible_message(SPAN_WARNING("69src69 drives over 69H69!"))
 	playsound(src.loc, 'sound/effects/splat.ogg', 50, 1)
 
 	var/damage = rand(5,15)
@@ -739,7 +739,7 @@
 	blood_splatter(src,H,1)
 	bloodiness += 4
 
-// player on mulebot attempted to move
+// player on69ulebot attempted to69ove
 /obj/machinery/bot/mulebot/relaymove(var/mob/user)
 	if(user.stat)
 		return
@@ -755,13 +755,13 @@
 	if(!on)
 		return
 
-	var/recv = signal.data["command"]
+	var/recv = signal.data69"command"69
 	// process all-bot input
 	if(recv=="bot_status" && wires.RemoteRX())
 		send_status()
 
 
-	recv = signal.data["command [suffix]"]
+	recv = signal.data69"command 69suffix69"69
 	if(wires.RemoteRX())
 		// process control input
 		switch(recv)
@@ -774,7 +774,7 @@
 				return
 
 			if("target")
-				set_destination(signal.data["destination"] )
+				set_destination(signal.data69"destination"69 )
 				return
 
 			if("unload")
@@ -793,44 +793,44 @@
 				return
 
 			if("autoret")
-				auto_return = text2num(signal.data["value"])
+				auto_return = text2num(signal.data69"value"69)
 				return
 
 			if("autopick")
-				auto_pickup = text2num(signal.data["value"])
+				auto_pickup = text2num(signal.data69"value"69)
 				return
 
 	// receive response from beacon
-	recv = signal.data["beacon"]
+	recv = signal.data69"beacon"69
 	if(wires.BeaconRX())
-		if(recv == new_destination)	// if the recvd beacon location matches the set destination
+		if(recv == new_destination)	// if the recvd beacon location69atches the set destination
 									// the we will navigate there
 			destination = new_destination
 			target = signal.source.loc
-			var/direction = signal.data["dir"]	// this will be the load/unload dir
+			var/direction = signal.data69"dir"69	// this will be the load/unload dir
 			if(direction)
 				loaddir = text2num(direction)
 			else
 				loaddir = 0
-			icon_state = "mulebot[wires.MobAvoid()]"
+			icon_state = "mulebot69wires.MobAvoid()69"
 			calc_path()
 			updateDialog()
 
 // send a radio signal with a single data key/value pair
-/obj/machinery/bot/mulebot/proc/post_signal(var/freq, var/key, var/value)
-	post_signal_multiple(freq, list("[key]" = value) )
+/obj/machinery/bot/mulebot/proc/post_signal(var/fre69,69ar/key,69ar/value)
+	post_signal_multiple(fre69, list("69key69" =69alue) )
 
-// send a radio signal with multiple data key/values
-/obj/machinery/bot/mulebot/proc/post_signal_multiple(var/freq, var/list/keyval)
+// send a radio signal with69ultiple data key/values
+/obj/machinery/bot/mulebot/proc/post_signal_multiple(var/fre69,69ar/list/keyval)
 
-	if(freq == beacon_freq && !wires.BeaconRX())
+	if(fre69 == beacon_fre69 && !wires.BeaconRX())
 		return
-	if(freq == control_freq && !wires.RemoteTX())
+	if(fre69 == control_fre69 && !wires.RemoteTX())
 		return
 
-	var/datum/radio_frequency/frequency = SSradio.return_frequency(freq)
+	var/datum/radio_fre69uency/fre69uency = SSradio.return_fre69uency(fre69)
 
-	if(!frequency) return
+	if(!fre69uency) return
 
 
 
@@ -838,23 +838,23 @@
 	signal.source = src
 	signal.transmission_method = 1
 	//for(var/key in keyval)
-	//	signal.data[key] = keyval[key]
+	//	signal.data69key69 = keyval69key69
 	signal.data = keyval
-		//world << "sent [key],[keyval[key]] on [freq]"
-	if (signal.data["findbeacon"])
-		frequency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
-	else if (signal.data["type"] == "mulebot")
-		frequency.post_signal(src, signal, filter = RADIO_MULEBOT)
+		//world << "sent 69key69,69keyval69key6969 on 69fre6969"
+	if (signal.data69"findbeacon"69)
+		fre69uency.post_signal(src, signal, filter = RADIO_NAVBEACONS)
+	else if (signal.data69"type"69 == "mulebot")
+		fre69uency.post_signal(src, signal, filter = RADIO_MULEBOT)
 	else
-		frequency.post_signal(src, signal)
+		fre69uency.post_signal(src, signal)
 
 // signals bot status etc. to controller
 /obj/machinery/bot/mulebot/proc/send_status()
 	var/list/kv = list(
 		"type" = "mulebot",
 		"name" = suffix,
-		"loca" = (loc ? loc.loc : "Unknown"),	// somehow loc can be null and cause a runtime - Quarxink
-		"mode" = mode,
+		"loca" = (loc ? loc.loc : "Unknown"),	// somehow loc can be null and cause a runtime - 69uarxink
+		"mode" =69ode,
 		"powr" = (cell ? cell.percent() : 0),
 		"dest" = destination,
 		"home" = home_destination,
@@ -862,7 +862,7 @@
 		"retn" = auto_return,
 		"pick" = auto_pickup,
 	)
-	post_signal_multiple(control_freq, kv)
+	post_signal_multiple(control_fre69, kv)
 
 /obj/machinery/bot/mulebot/emp_act(severity)
 	if (cell)
@@ -873,7 +873,7 @@
 
 
 /obj/machinery/bot/mulebot/explode()
-	src.visible_message(SPAN_DANGER("[src] blows apart!"), 1)
+	src.visible_message(SPAN_DANGER("69src69 blows apart!"), 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/device/assembly/prox_sensor(Tsec)
@@ -891,4 +891,4 @@
 
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	unload(0)
-	qdel(src)
+	69del(src)

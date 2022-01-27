@@ -2,7 +2,7 @@
 #define EFFECT_TOUCH 0
 #define EFFECT_AURA 1
 #define EFFECT_PULSE 2
-#define MAX_EFFECT 2
+#define69AX_EFFECT 2
 
 #define TRIGGER_TOUCH 0
 #define TRIGGER_WATER 1
@@ -17,7 +17,7 @@
 #define TRIGGER_OXY 10
 #define TRIGGER_CO2 11
 #define TRIGGER_NITRO 12
-#define MAX_TRIGGER 12
+#define69AX_TRIGGER 12
 
 /obj/machinery/artifact
 	name = "alien artifact"
@@ -27,7 +27,7 @@
 	var/icon_num = 0
 	density = TRUE
 	spawn_blacklisted = TRUE
-	spawn_frequency = 9
+	spawn_fre69uency = 9
 	var/datum/artifact_effect/my_effect
 	var/datum/artifact_effect/secondary_effect
 	var/being_used = 0
@@ -35,26 +35,26 @@
 /obj/machinery/artifact/New()
 	..()
 
-	//setup primary effect - these are the main ones (mixed)
+	//setup primary effect - these are the69ain ones (mixed)
 	var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
-	my_effect = new effecttype(src)
+	my_effect =69ew effecttype(src)
 
-	//75% chance to have a secondary stealthy (and mostly bad) effect
+	//75% chance to have a secondary stealthy (and69ostly bad) effect
 	if(prob(75))
 		effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
-		secondary_effect = new effecttype(src)
+		secondary_effect =69ew effecttype(src)
 		if(prob(75))
 			secondary_effect.ToggleActivate(0)
 
 	icon_num = rand(0,13)
-	icon_state = "ano[icon_num]0"
+	icon_state = "ano69icon_num690"
 	if(icon_num == 7 || icon_num == 8)
 		name = "large alien crystal"
 		desc = pick("It shines faintly as it catches the light.",\
 		"It appears to have a faint inner glow.",\
 		"It seems to draw you inward as you look it at.",\
 		"Something twinkles faintly as you look at it.",\
-		"It's mesmerizing to behold.")
+		"It's69esmerizing to behold.")
 		if(prob(75))
 			my_effect.trigger = TRIGGER_ENERGY
 	else if(icon_num == 1 || icon_num == 6)
@@ -66,7 +66,7 @@
 		if(prob(75))
 			my_effect.trigger = TRIGGER_TOUCH
 	else if(icon_num == 2 || icon_num == 3 || icon_num == 4)
-		desc = "A large alien device, there appear to be vents in the side."
+		desc = "A large alien device, there appear to be69ents in the side."
 		if(prob(75))
 			my_effect.trigger = rand(7,12)
 	else if(icon_num == 10 || icon_num == 12)
@@ -77,7 +77,7 @@
 /obj/machinery/artifact/Process()
 
 	var/turf/L = loc
-	if(isnull(L) || !istype(L)) 	// We're inside a container or on null turf, either way stop processing effects
+	if(isnull(L) || !istype(L)) 	// We're inside a container or on69ull turf, either way stop processing effects
 		return
 
 	if(my_effect)
@@ -95,7 +95,7 @@
 	var/trigger_oxy = 0
 	var/trigger_co2 = 0
 	var/trigger_nitro = 0
-	if( (my_effect.trigger >= TRIGGER_HEAT && my_effect.trigger <= TRIGGER_NITRO) || (my_effect.trigger >= TRIGGER_HEAT && my_effect.trigger <= TRIGGER_NITRO) )
+	if( (my_effect.trigger >= TRIGGER_HEAT &&69y_effect.trigger <= TRIGGER_NITRO) || (my_effect.trigger >= TRIGGER_HEAT &&69y_effect.trigger <= TRIGGER_NITRO) )
 		var/turf/T = get_turf(src)
 		var/datum/gas_mixture/env = T.return_air()
 		if(env)
@@ -104,13 +104,13 @@
 			else if(env.temperature > 375)
 				trigger_hot = 1
 
-			if(env.gas["plasma"] >= 10)
+			if(env.gas69"plasma"69 >= 10)
 				trigger_plasma = 1
-			if(env.gas["oxygen"] >= 10)
+			if(env.gas69"oxygen"69 >= 10)
 				trigger_oxy = 1
-			if(env.gas["carbon_dioxide"] >= 10)
+			if(env.gas69"carbon_dioxide"69 >= 10)
 				trigger_co2 = 1
-			if(env.gas["nitrogen"] >= 10)
+			if(env.gas69"nitrogen"69 >= 10)
 				trigger_nitro = 1
 
 	//COLD ACTIVATION
@@ -120,7 +120,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_COLD && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 	else
-		if(my_effect.trigger == TRIGGER_COLD && my_effect.activated)
+		if(my_effect.trigger == TRIGGER_COLD &&69y_effect.activated)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_COLD && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
@@ -132,7 +132,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 	else
-		if(my_effect.trigger == TRIGGER_HEAT && my_effect.activated)
+		if(my_effect.trigger == TRIGGER_HEAT &&69y_effect.activated)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
@@ -144,7 +144,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_PLASMA && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 	else
-		if(my_effect.trigger == TRIGGER_PLASMA && my_effect.activated)
+		if(my_effect.trigger == TRIGGER_PLASMA &&69y_effect.activated)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_PLASMA && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
@@ -156,7 +156,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_OXY && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 	else
-		if(my_effect.trigger == TRIGGER_OXY && my_effect.activated)
+		if(my_effect.trigger == TRIGGER_OXY &&69y_effect.activated)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_OXY && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
@@ -168,7 +168,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_CO2 && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 	else
-		if(my_effect.trigger == TRIGGER_CO2 && my_effect.activated)
+		if(my_effect.trigger == TRIGGER_CO2 &&69y_effect.activated)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_CO2 && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
@@ -180,26 +180,26 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_NITRO && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 	else
-		if(my_effect.trigger == TRIGGER_NITRO && my_effect.activated)
+		if(my_effect.trigger == TRIGGER_NITRO &&69y_effect.activated)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_NITRO && !secondary_effect.activated)
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/attack_hand(var/mob/user as mob)
+/obj/machinery/artifact/attack_hand(var/mob/user as69ob)
 	if (get_dist(user, src) > 1)
-		to_chat(user, "\red You can't reach [src] from here.")
+		to_chat(user, "\red You can't reach 69src69 from here.")
 		return
 	if(ishuman(user) && user:gloves)
-		to_chat(user, "<b>You touch [src]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].")
+		to_chat(user, "<b>You touch 69src69</b> with your gloved hands, 69pick("but69othing of69ote happens","but69othing happens","but69othing interesting happens","but you69otice69othing different","but69othing seems to have happened")69.")
 		return
 
 	src.add_fingerprint(user)
 
 	if(my_effect.trigger == TRIGGER_TOUCH)
-		to_chat(user, "<b>You touch [src].</b>")
+		to_chat(user, "<b>You touch 69src69.</b>")
 		my_effect.ToggleActivate()
 	else
-		to_chat(user, "<b>You touch [src],</b> [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].")
+		to_chat(user, "<b>You touch 69src69,</b> 69pick("but69othing of69ote happens","but69othing happens","but69othing interesting happens","but you69otice69othing different","but69othing seems to have happened")69.")
 
 	if(prob(25) && secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH)
 		secondary_effect.ToggleActivate(0)
@@ -210,7 +210,7 @@
 	if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated)
 		secondary_effect.DoEffectTouch(user)
 
-/obj/machinery/artifact/attackby(obj/item/W, mob/living/user)
+/obj/machinery/artifact/attackby(obj/item/W,69ob/living/user)
 	if (istype(W, /obj/item/reagent_containers))
 		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
 			if(my_effect.trigger == TRIGGER_WATER)
@@ -242,7 +242,7 @@
 			secondary_effect.ToggleActivate(0)
 
 	else if (istype(W,/obj/item/flame) && W:lit ||\
-			W.get_tool_type(user, list(QUALITY_WELDING), src))
+			W.get_tool_type(user, list(69UALITY_WELDING), src))
 		if(my_effect.trigger == TRIGGER_HEAT)
 			my_effect.ToggleActivate()
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && prob(25))
@@ -254,7 +254,7 @@
 		if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
 			secondary_effect.ToggleActivate(0)
 
-/obj/machinery/artifact/Bumped(M as mob|obj)
+/obj/machinery/artifact/Bumped(M as69ob|obj)
 	..()
 	if(isobj(M))
 		if(M:throwforce >= 10)
@@ -280,7 +280,7 @@
 			warn = 1
 
 		if(warn)
-			to_chat(M, "<b>You accidentally touch [src].</b>")
+			to_chat(M, "<b>You accidentally touch 69src69.</b>")
 	..()
 
 /obj/machinery/artifact/bullet_act(var/obj/item/projectile/P)
@@ -300,23 +300,23 @@
 
 /obj/machinery/artifact/ex_act(severity)
 	switch(severity)
-		if(1) qdel(src)
+		if(1) 69del(src)
 		if(2)
 			if (prob(50))
-				qdel(src)
+				69del(src)
 			else
-				if(my_effect.trigger == TRIGGER_FORCE || my_effect.trigger == TRIGGER_HEAT)
+				if(my_effect.trigger == TRIGGER_FORCE ||69y_effect.trigger == TRIGGER_HEAT)
 					my_effect.ToggleActivate()
 				if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
 					secondary_effect.ToggleActivate(0)
 		if(3)
-			if (my_effect.trigger == TRIGGER_FORCE || my_effect.trigger == TRIGGER_HEAT)
+			if (my_effect.trigger == TRIGGER_FORCE ||69y_effect.trigger == TRIGGER_HEAT)
 				my_effect.ToggleActivate()
 			if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
 				secondary_effect.ToggleActivate(0)
 	return
 
-/obj/machinery/artifact/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/machinery/artifact/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	if(my_effect)
 		my_effect.UpdateMove()

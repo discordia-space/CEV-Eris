@@ -1,151 +1,151 @@
-/datum/design/autolathe/tool/crowbar
+/datum/desi69n/autolathe/tool/crowbar
 	build_path = /obj/item/tool/crowbar
 
-/datum/design/autolathe/tool/crowbar_onestar
+/datum/desi69n/autolathe/tool/crowbar_onestar
 	name = "one star crowbar"
 	build_path = /obj/item/tool/crowbar/onestar
 
-/datum/design/autolathe/tool/multitool
+/datum/desi69n/autolathe/tool/multitool
 	build_path = /obj/item/tool/multitool
 
-/datum/design/autolathe/tool/weldertool
-	name = "welding tool"
-	build_path = /obj/item/tool/weldingtool
+/datum/desi69n/autolathe/tool/weldertool
+	name = "weldin69 tool"
+	build_path = /obj/item/tool/weldin69tool
 
-/datum/design/autolathe/tool/weldertool_adv
-	name = "advanced welding tool"
-	build_path = /obj/item/tool/weldingtool/advanced
+/datum/desi69n/autolathe/tool/weldertool_adv
+	name = "advanced weldin69 tool"
+	build_path = /obj/item/tool/weldin69tool/advanced
 
-/datum/design/autolathe/tool/weldertool_onestar
-	name = "one star welding tool"
-	build_path = /obj/item/tool/weldingtool/onestar
+/datum/desi69n/autolathe/tool/weldertool_onestar
+	name = "one star weldin69 tool"
+	build_path = /obj/item/tool/weldin69tool/onestar
 
-/datum/design/autolathe/tool/weldermask
-	build_path = /obj/item/clothing/head/welding
+/datum/desi69n/autolathe/tool/weldermask
+	build_path = /obj/item/clothin69/head/weldin69
 
-/datum/design/autolathe/tool/weldinggoggles
-	build_path = /obj/item/clothing/glasses/welding
+/datum/desi69n/autolathe/tool/weldin6969o6969les
+	build_path = /obj/item/clothin69/69lasses/weldin69
 
-/datum/design/autolathe/tool/screwdriver
+/datum/desi69n/autolathe/tool/screwdriver
 	build_path = /obj/item/tool/screwdriver
 
-/datum/design/autolathe/tool/electric_screwdriver
+/datum/desi69n/autolathe/tool/electric_screwdriver
 	build_path = /obj/item/tool/screwdriver/electric
 
-/datum/design/autolathe/tool/combi_driver
+/datum/desi69n/autolathe/tool/combi_driver
 	build_path = /obj/item/tool/screwdriver/combi_driver
 
-/datum/design/autolathe/tool/combi_driver_onestar
+/datum/desi69n/autolathe/tool/combi_driver_onestar
 	name = "one star combi driver"
 	build_path = /obj/item/tool/screwdriver/combi_driver/onestar
 
-/datum/design/autolathe/tool/wirecutters
+/datum/desi69n/autolathe/tool/wirecutters
 	build_path = /obj/item/tool/wirecutters
 
-/datum/design/autolathe/tool/pliers
+/datum/desi69n/autolathe/tool/pliers
 	build_path = /obj/item/tool/wirecutters/pliers
 
-/datum/design/autolathe/tool/ducttape
+/datum/desi69n/autolathe/tool/ducttape
 	name = "roll of duct tape"
 	build_path = /obj/item/tool/tape_roll
 
-/datum/design/autolathe/tool/armature_cutter
+/datum/desi69n/autolathe/tool/armature_cutter
 	build_path = /obj/item/tool/wirecutters/armature
 
-/datum/design/autolathe/tool/wrench
+/datum/desi69n/autolathe/tool/wrench
 	build_path = /obj/item/tool/wrench
 
-/datum/design/autolathe/tool/hammer
+/datum/desi69n/autolathe/tool/hammer
 	build_path = /obj/item/tool/hammer
 
-/datum/design/autolathe/tool/powered_hammer
+/datum/desi69n/autolathe/tool/powered_hammer
 	build_path = /obj/item/tool/hammer/powered_hammer
 
-/datum/design/autolathe/tool/big_wrench
-	build_path = /obj/item/tool/wrench/big_wrench
+/datum/desi69n/autolathe/tool/bi69_wrench
+	build_path = /obj/item/tool/wrench/bi69_wrench
 
-/datum/design/autolathe/tool/pickaxe
+/datum/desi69n/autolathe/tool/pickaxe
 	build_path = /obj/item/tool/pickaxe
 
-/datum/design/autolathe/tool/jackhammer_onestar
+/datum/desi69n/autolathe/tool/jackhammer_onestar
 	name = "one star jackhammer"
 	build_path = /obj/item/tool/pickaxe/jackhammer/onestar
 
-/datum/design/autolathe/tool/drill_onestar
+/datum/desi69n/autolathe/tool/drill_onestar
 	name = "one star drill"
 	build_path = /obj/item/tool/pickaxe/drill/onestar
 
-/datum/design/autolathe/tool/pickaxe_excavation
+/datum/desi69n/autolathe/tool/pickaxe_excavation
 	name = "excavation pick"
 	build_path = /obj/item/tool/pickaxe/excavation
 
-/datum/design/autolathe/tool/knife
+/datum/desi69n/autolathe/tool/knife
 	name = "kitchen knife"
 	build_path = /obj/item/tool/knife
 
-/datum/design/autolathe/tool/tacknife
+/datum/desi69n/autolathe/tool/tacknife
 	name = "tactical knife"
 	build_path = /obj/item/tool/knife/tacknife
 
-/datum/design/autolathe/tool/hatchet
+/datum/desi69n/autolathe/tool/hatchet
 	build_path = /obj/item/tool/hatchet
 
-/datum/design/autolathe/tool/minihoe
+/datum/desi69n/autolathe/tool/minihoe
 	build_path = /obj/item/tool/minihoe
 
-/datum/design/autolathe/tool/shovel
+/datum/desi69n/autolathe/tool/shovel
 	build_path = /obj/item/tool/shovel
 
-/datum/design/autolathe/tool/spade
+/datum/desi69n/autolathe/tool/spade
 	build_path = /obj/item/tool/shovel/spade
 
-/datum/design/autolathe/tool/shovel/power
+/datum/desi69n/autolathe/tool/shovel/power
 	build_path = /obj/item/tool/shovel/power
 
-/datum/design/autolathe/tool/mop
-	name = "janitor's mop"
+/datum/desi69n/autolathe/tool/mop
+	name = "janitor's69op"
 	build_path = /obj/item/mop
 
-/datum/design/autolathe/tool/scalpel
+/datum/desi69n/autolathe/tool/scalpel
 	build_path = /obj/item/tool/scalpel
 
-/datum/design/autolathe/tool/saw
+/datum/desi69n/autolathe/tool/saw
 	build_path = /obj/item/tool/saw
 
-/datum/design/autolathe/tool/circularsaw
+/datum/desi69n/autolathe/tool/circularsaw
 	build_path = /obj/item/tool/saw/circular
 
-/datum/design/autolathe/tool/advanced_circularsaw
+/datum/desi69n/autolathe/tool/advanced_circularsaw
 	build_path = /obj/item/tool/saw/circular/advanced
 
-/datum/design/autolathe/tool/chainsaw
+/datum/desi69n/autolathe/tool/chainsaw
 	build_path = /obj/item/tool/saw/chain
 
-/datum/design/autolathe/tool/hypersaw
+/datum/desi69n/autolathe/tool/hypersaw
 	build_path = /obj/item/tool/saw/hyper
 
-/datum/design/autolathe/tool/surgicaldrill
-	build_path = /obj/item/tool/surgicaldrill
+/datum/desi69n/autolathe/tool/sur69icaldrill
+	build_path = /obj/item/tool/sur69icaldrill
 
-/datum/design/autolathe/tool/retractor
+/datum/desi69n/autolathe/tool/retractor
 	build_path = /obj/item/tool/retractor
 
-/datum/design/autolathe/tool/cautery
+/datum/desi69n/autolathe/tool/cautery
 	build_path = /obj/item/tool/cautery
 
-/datum/design/autolathe/tool/bonesetter
+/datum/desi69n/autolathe/tool/bonesetter
 	build_path = /obj/item/tool/bonesetter
 
-/datum/design/autolathe/tool/hemostat
+/datum/desi69n/autolathe/tool/hemostat
 	build_path = /obj/item/tool/hemostat
 
-/datum/design/autolathe/tool/rcd
+/datum/desi69n/autolathe/tool/rcd
 	name = "rapid construction device"
 	build_path = /obj/item/rcd
 
-/datum/design/autolathe/tool/pneumatic_crowbar
+/datum/desi69n/autolathe/tool/pneumatic_crowbar
 	build_path = /obj/item/tool/crowbar/pneumatic
 
-/datum/design/autolathe/tool/rpd
-	name = "rapid piping device"
+/datum/desi69n/autolathe/tool/rpd
+	name = "rapid pipin69 device"
 	build_path = /obj/item/rpd

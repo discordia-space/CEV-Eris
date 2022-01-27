@@ -10,7 +10,7 @@
  */
 /obj/item/storage/firstaid
 	name = "first-aid kit"
-	desc = "An emergency medical kit for those serious boo-boos."
+	desc = "An emergency69edical kit for those serious boo-boos."
 	icon_state = "firstaid"
 	throw_speed = 2
 	throw_range = 8
@@ -24,7 +24,7 @@
 
 /obj/item/storage/firstaid/fire
 	name = "fire first-aid kit"
-	desc = "An emergency medical kit for when the toxins lab <i>-spontaneously-</i> burns down."
+	desc = "An emergency69edical kit for when the toxins lab <i>-spontaneously-</i> burns down."
 	icon_state = "ointment"
 	item_state = "firstaid-ointment"
 	rarity_value = 15
@@ -102,7 +102,7 @@
 
 /obj/item/storage/firstaid/adv
 	name = "advanced first-aid kit"
-	desc = "Contains advanced medical treatments."
+	desc = "Contains advanced69edical treatments."
 	icon_state = "advfirstaid"
 	item_state = "firstaid-advanced"
 	rarity_value = 30
@@ -120,8 +120,8 @@
 	new /obj/item/device/scanner/health(src)
 
 /obj/item/storage/firstaid/combat
-	name = "combat medical kit"
-	desc = "Contains advanced medical treatments."
+	name = "combat69edical kit"
+	desc = "Contains advanced69edical treatments."
 	icon_state = "bezerk"
 	item_state = "firstaid-advanced"
 	rarity_value = 100
@@ -189,8 +189,8 @@
 	make_exact_fit()
 
 /obj/item/storage/firstaid/nt
-	name = "NeoTheologian Medkit"
-	desc = "A medkit filled with a set of high-end trauma kits and anti-toxins."
+	name = "NeoTheologian69edkit"
+	desc = "A69edkit filled with a set of high-end trauma kits and anti-toxins."
 	icon_state = "nt_kit"
 	item_state = "nt_kit"
 	matter = list(MATERIAL_BIOMATTER = 10)
@@ -209,11 +209,11 @@
 
 /obj/item/storage/firstaid/nt/update_icon()
 	if(!contents.len)
-		icon_state = "[initial(icon_state)]_empty"
-		item_state = "[initial(item_state)]_empty"
+		icon_state = "69initial(icon_state)69_empty"
+		item_state = "69initial(item_state)69_empty"
 	else
-		icon_state = "[initial(icon_state)]"
-		item_state = "[initial(item_state)]"
+		icon_state = "69initial(icon_state)69"
+		item_state = "69initial(item_state)69"
 	..()
 
 /*
@@ -221,7 +221,7 @@
  */
 /obj/item/storage/pill_bottle
 	name = "pill bottle"
-	desc = "An airtight container for storing medication."
+	desc = "An airtight container for storing69edication."
 	icon_state = "pill_canister"
 	icon = 'icons/obj/chemical.dmi'
 	item_state = "contsolid"
@@ -230,7 +230,7 @@
 		/obj/item/dice,
 		/obj/item/paper
 		)
-	allow_quick_gather = TRUE
+	allow_69uick_gather = TRUE
 	use_to_pickup = TRUE
 	use_sound = null
 	matter = list(MATERIAL_PLASTIC = 1)
@@ -306,7 +306,7 @@
 
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "bottle of Spaceacillin pills"
-	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
+	desc = "A theta-lactam antibiotic. Effective against69any diseases likely to be encountered in space."
 	pill_type = /obj/item/reagent_containers/pill/spaceacillin
 
 /obj/item/storage/pill_bottle/spaceacillin/populate_contents()
@@ -325,7 +325,7 @@
 
 /obj/item/storage/pill_bottle/citalopram
 	name = "bottle of Citalopram pills"
-	desc = "Contains pills used to stabilize a patient's mood."
+	desc = "Contains pills used to stabilize a patient's69ood."
 	pill_type = /obj/item/reagent_containers/pill/citalopram
 
 /obj/item/storage/pill_bottle/citalopram/populate_contents()
@@ -354,7 +354,7 @@
 		new pill_type(src)
 
 /obj/item/storage/pill_bottle/meralyne
-	name = "bottle of Meralyne pills"
+	name = "bottle of69eralyne pills"
 	desc = "Contains pills used to heal physical harm."
 	pill_type = /obj/item/reagent_containers/pill/meralyne
 	rarity_value = 20
@@ -372,7 +372,7 @@
 	icon_state = "freezer"
 	item_state = "medicalpack"
 	max_w_class = ITEM_SIZE_NORMAL
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 2)
 	can_hold = list(/obj/item/organ, /obj/item/reagent_containers/food, /obj/item/reagent_containers/glass)
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	use_to_pickup = TRUE
@@ -393,5 +393,5 @@
 	name = "organ freezer"
 	icon_state = "freezer_red"
 	item_state = "medicalpack"
-	matter = list(MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_PLASTEEL = 1,69ATERIAL_PLASTIC = 2)
 	max_storage_space = DEFAULT_NORMAL_STORAGE * 1.25

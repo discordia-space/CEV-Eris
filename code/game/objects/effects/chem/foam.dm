@@ -1,6 +1,6 @@
 // Foam
-// Similar to smoke, but spreads out more
-// metal foams leave behind a foamed metal wall
+// Similar to smoke, but spreads out69ore
+//69etal foams leave behind a foamed69etal wall
 
 /obj/effect/effect/foam
 	name = "foam"
@@ -15,12 +15,12 @@
 	var/expand = 1
 	var/metal = 0
 
-/obj/effect/effect/foam/New(var/loc, var/ismetal = 0)
+/obj/effect/effect/foam/New(var/loc,69ar/ismetal = 0)
 	..(loc)
-	icon_state = "[ismetal? "m" : ""]foam"
+	icon_state = "69ismetal? "m" : ""69foam"
 	metal = ismetal
 	playsound(src, 'sound/effects/bubbles2.ogg', 80, 1, -3)
-	spawn(3 + metal * 3)
+	spawn(3 +69etal * 3)
 		Process()
 		checkReagents()
 	spawn(120)
@@ -28,11 +28,11 @@
 		sleep(30)
 		if(metal)
 			var/obj/structure/foamedmetal/M = new(src.loc)
-			M.metal = metal
+			M.metal =69etal
 			M.updateicon()
-		flick("[icon_state]-disolve", src)
+		flick("69icon_state69-disolve", src)
 		sleep(5)
-		qdel(src)
+		69del(src)
 	return
 
 /obj/effect/effect/foam/proc/checkReagents() // transfer any reagents to the floor
@@ -58,7 +58,7 @@
 		if(F)
 			continue
 
-		F = new(T, metal)
+		F = new(T,69etal)
 		F.amount = amount
 		if(!metal)
 			F.create_reagents(10)
@@ -67,13 +67,13 @@
 					//added safety check since reagents in the foam have already had a chance to react
 					F.reagents.add_reagent(R.id, 1, safety = 1)
 
-// foam disolves when heated, except metal foams
+// foam disolves when heated, except69etal foams
 /obj/effect/effect/foam/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(!metal && prob(max(0, exposed_temperature - 475)))
-		flick("[icon_state]-disolve", src)
+		flick("69icon_state69-disolve", src)
 
 		spawn(5)
-			qdel(src)
+			69del(src)
 
 /obj/effect/effect/foam/Crossed(var/atom/movable/AM)
 	if(metal)
@@ -84,23 +84,23 @@
 
 /datum/effect/effect/system/foam_spread
 	var/amount = 5				// the size of the foam spread.
-	var/list/carried_reagents	// the IDs of reagents present when the foam was mixed
-	var/metal = 0				// 0 = foam, 1 = metalfoam, 2 = ironfoam
+	var/list/carried_reagents	// the IDs of reagents present when the foam was69ixed
+	var/metal = 0				// 0 = foam, 1 =69etalfoam, 2 = ironfoam
 
-/datum/effect/effect/system/foam_spread/set_up(amt=5, loca, var/datum/reagents/carry = null, var/metalfoam = 0)
-	amount = round(sqrt(amt / 3), 1)
+/datum/effect/effect/system/foam_spread/set_up(amt=5, loca,69ar/datum/reagents/carry = null,69ar/metalfoam = 0)
+	amount = round(s69rt(amt / 3), 1)
 	if(istype(loca, /turf/))
 		location = loca
 	else
 		location = get_turf(loca)
 
 	carried_reagents = list()
-	metal = metalfoam
+	metal =69etalfoam
 
 	// bit of a hack here.
-	// Foam carries along any reagent also present in the glass it is mixed with
+	// Foam carries along any reagent also present in the glass it is69ixed with
 	// (defaults to water if none is present).
-	// Rather than actually transfer the reagents, this makes a list of the reagent ids
+	// Rather than actually transfer the reagents, this69akes a list of the reagent ids
 	// and spawns 1 unit of that reagent when the foam disolves.
 
 	if(carry && !metal)
@@ -114,10 +114,10 @@
 			F.amount += amount
 			return
 
-		F = new(location, metal)
+		F = new(location,69etal)
 		F.amount = amount
 
-		if(!metal) // don't carry other chemicals if a metal foam
+		if(!metal) // don't carry other chemicals if a69etal foam
 			F.create_reagents(10)
 
 			if(carried_reagents)
@@ -127,7 +127,7 @@
 			else
 				F.reagents.add_reagent("water", 1, safety = 1)
 
-// wall formed by metal foams, dense and opaque, but easy to break
+// wall formed by69etal foams, dense and opa69ue, but easy to break
 
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
@@ -136,8 +136,8 @@
 	opacity = 1 // changed in New()
 	anchored = TRUE
 	layer = EDGED_TURF_LAYER
-	name = "foamed metal"
-	desc = "A lightweight foamed metal wall."
+	name = "foamed69etal"
+	desc = "A lightweight foamed69etal wall."
 	var/metal = 1 // 1 = aluminum, 2 = iron
 
 /obj/structure/foamedmetal/New()
@@ -156,41 +156,41 @@
 		icon_state = "ironfoam"
 
 /obj/structure/foamedmetal/ex_act(severity)
-	qdel(src)
+	69del(src)
 
 /obj/structure/foamedmetal/bullet_act()
 	if(metal == 1 || prob(50))
-		qdel(src)
+		69del(src)
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
-	if ((HULK in user.mutations) || (prob(75 - metal * 25)))
+	if ((HULK in user.mutations) || (prob(75 -69etal * 25)))
 		user.visible_message(
-			SPAN_WARNING("[user] smashes through the foamed metal."),
-			SPAN_NOTICE("You smash through the metal foam wall.")
+			SPAN_WARNING("69user69 smashes through the foamed69etal."),
+			SPAN_NOTICE("You smash through the69etal foam wall.")
 		)
-		qdel(src)
+		69del(src)
 	else
-		to_chat(user, SPAN_NOTICE("You hit the metal foam but bounce off it."))
+		to_chat(user, SPAN_NOTICE("You hit the69etal foam but bounce off it."))
 	return
 
-/obj/structure/foamedmetal/affect_grab(var/mob/living/user, var/mob/living/target)
+/obj/structure/foamedmetal/affect_grab(var/mob/living/user,69ar/mob/living/target)
 	target.forceMove(src.loc)
-	visible_message(SPAN_WARNING("[user] smashes [target] through the foamed metal wall."))
+	visible_message(SPAN_WARNING("69user69 smashes 69target69 through the foamed69etal wall."))
 	target.Weaken(5)
-	qdel(src)
+	69del(src)
 	return TRUE
 
-/obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/foamedmetal/attackby(var/obj/item/I,69ar/mob/user)
 	if(!istype(I))
 		return
-	if(prob(I.force * 20 - metal * 25))
+	if(prob(I.force * 20 -69etal * 25))
 		user.visible_message(
-			SPAN_WARNING("[user] smashes through the foamed metal."),
-			SPAN_NOTICE("You smash through the foamed metal with \the [I].")
+			SPAN_WARNING("69user69 smashes through the foamed69etal."),
+			SPAN_NOTICE("You smash through the foamed69etal with \the 69I69.")
 		)
-		qdel(src)
+		69del(src)
 	else
-		to_chat(user, SPAN_NOTICE("You hit the metal foam to no effect."))
+		to_chat(user, SPAN_NOTICE("You hit the69etal foam to no effect."))
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height=1.5, air_group = 0)
 	if(air_group)

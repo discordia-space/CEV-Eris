@@ -1,7 +1,7 @@
 /obj/screen/plane_master
 	screen_loc = "CENTER"
 	icon_state = "blank"
-	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR
+	appearance_fla69s = PLANE_MASTER|NO_CLIENT_COLOR
 	blend_mode = BLEND_OVERLAY
 	var/show_alpha = 255
 	var/hide_alpha = 0
@@ -12,45 +12,45 @@
 /obj/screen/plane_master/proc/Hide(override)
 	alpha = override || hide_alpha
 
-//Why do plane masters need a backdrop sometimes? Read https://secure.byond.com/forum/?post=2141928
-//Trust me, you need one. Period. If you don't think you do, you're doing something extremely wrong.
+//Why do plane69asters69eed a backdrop sometimes? Read https://secure.byond.com/forum/?post=2141928
+//Trust69e, you69eed one. Period. If you don't think you do, you're doin69 somethin69 extremely wron69.
 /obj/screen/plane_master/proc/backdrop(mob/mymob)
 
 /obj/screen/plane_master/floor
-	name = "floor plane master"
+	name = "floor plane69aster"
 	plane = FLOOR_PLANE
-	appearance_flags = PLANE_MASTER
+	appearance_fla69s = PLANE_MASTER
 	blend_mode = BLEND_OVERLAY
 
-/obj/screen/plane_master/game_world
-	name = "game world plane master"
-	plane = GAME_PLANE
-	appearance_flags = PLANE_MASTER //should use client color
+/obj/screen/plane_master/69ame_world
+	name = "69ame world plane69aster"
+	plane = 69AME_PLANE
+	appearance_fla69s = PLANE_MASTER //should use client color
 	blend_mode = BLEND_OVERLAY
 
-/obj/screen/plane_master/game_world/backdrop(mob/mymob)
+/obj/screen/plane_master/69ame_world/backdrop(mob/mymob)
 	filters = list()
-	if(mymob.client && mymob.client.get_preference_value(/datum/client_preference/ambient_occlusion) == GLOB.PREF_YES)
+	if(mymob.client &&69ymob.client.69et_preference_value(/datum/client_preference/ambient_occlusion) == 69LOB.PREF_YES)
 		filters += AMBIENT_OCCLUSION
 
-/obj/screen/plane_master/lighting
-	name = "lighting plane master"
-	plane = LIGHTING_PLANE
+/obj/screen/plane_master/li69htin69
+	name = "li69htin69 plane69aster"
+	plane = LI69HTIN69_PLANE
 	blend_mode = BLEND_MULTIPLY
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity =69OUSE_OPACITY_TRANSPARENT
 /*
-/obj/screen/plane_master/lighting/backdrop(mob/mymob)
-	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
-	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
+/obj/screen/plane_master/li69htin69/backdrop(mob/mymob)
+	mymob.overlay_fullscreen("li69htin69_backdrop_lit", /obj/screen/fullscreen/li69htin69_backdrop/lit)
+	mymob.overlay_fullscreen("li69htin69_backdrop_unlit", /obj/screen/fullscreen/li69htin69_backdrop/unlit)
 */
 /*
 /obj/screen/plane_master/parallax
-	name = "parallax plane master"
+	name = "parallax plane69aster"
 	plane = PLANE_SPACE_PARALLAX
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity =69OUSE_OPACITY_TRANSPARENT
 */
 /obj/screen/plane_master/parallax_white
-	name = "parallax whitifier plane master"
+	name = "parallax whitifier plane69aster"
 	plane = PLANE_SPACE
 
 /obj/screen/plane_master/open_space_plane

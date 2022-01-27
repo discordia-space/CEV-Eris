@@ -1,4 +1,4 @@
-//device to take core samples from mineral turfs - used for various types of analysis
+//device to take core samples from69ineral turfs - used for69arious types of analysis
 
 /obj/item/storage/box/samplebags
 	name = "sample bag box"
@@ -8,7 +8,7 @@
 
 /obj/item/storage/box/samplebags/populate_contents()
 	for(var/i in 1 to initial_amount)
-		var/obj/item/evidencebag/S = new(src)
+		var/obj/item/evidencebag/S =69ew(src)
 		S.name = "sample bag"
 		S.desc = "a bag for holding research samples."
 
@@ -29,20 +29,20 @@
 
 /obj/item/device/core_sampler/examine(mob/user)
 	if(..(user, 2))
-		to_chat(user, "\blue Used to extract geological core samples - this one is [sampled_turf ? "full" : "empty"], and has [num_stored_bags] bag[num_stored_bags != 1 ? "s" : ""] remaining.")
+		to_chat(user, "\blue Used to extract geological core samples - this one is 69sampled_turf ? "full" : "empty"69, and has 69num_stored_bags69 bag69num_stored_bags != 1 ? "s" : ""69 remaining.")
 
-/obj/item/device/core_sampler/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/device/core_sampler/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/evidencebag))
 		if(num_stored_bags < 10)
-			qdel(W)
+			69del(W)
 			num_stored_bags += 1
-			to_chat(user, "\blue You insert the [W] into the core sampler.")
+			to_chat(user, "\blue You insert the 69W69 into the core sampler.")
 		else
-			to_chat(user, "\red The core sampler can not fit any more bags!")
+			to_chat(user, "\red The core sampler can69ot fit any69ore bags!")
 	else
 		return ..()
 
-/obj/item/device/core_sampler/proc/sample_item(var/item_to_sample, var/mob/user as mob)
+/obj/item/device/core_sampler/proc/sample_item(var/item_to_sample,69ar/mob/user as69ob)
 	var/datum/geosample/geo_data
 	if(istype(item_to_sample, /turf/simulated/mineral))
 		var/turf/simulated/mineral/T = item_to_sample
@@ -58,8 +58,8 @@
 		else if(num_stored_bags < 1)
 			to_chat(user, "\red The core sampler is out of sample bags!")
 		else
-			//create a new sample bag which we'll fill with rock samples
-			filled_bag = new /obj/item/evidencebag(src)
+			//create a69ew sample bag which we'll fill with rock samples
+			filled_bag =69ew /obj/item/evidencebag(src)
 			filled_bag.name = "sample bag"
 			filled_bag.desc = "a bag for holding research samples."
 
@@ -67,7 +67,7 @@
 			num_stored_bags--
 
 			//put in a rock sliver
-			var/obj/item/rocksliver/R = new()
+			var/obj/item/rocksliver/R =69ew()
 			R.geological_data = geo_data
 			R.loc = filled_bag
 
@@ -78,9 +78,9 @@
 			filled_bag.overlays += "evidence"
 			filled_bag.w_class = ITEM_SIZE_TINY
 
-			to_chat(user, "\blue You take a core sample of the [item_to_sample].")
+			to_chat(user, "\blue You take a core sample of the 69item_to_sample69.")
 	else
-		to_chat(user, "\red You are unable to take a sample of [item_to_sample].")
+		to_chat(user, "\red You are unable to take a sample of 69item_to_sample69.")
 
 /obj/item/device/core_sampler/attack_self()
 	if(filled_bag)
@@ -88,10 +88,10 @@
 		var/success = 0
 		if(ismob(loc))
 			var/mob/M = loc
-			success = M.put_in_inactive_hand(filled_bag)
+			success =69.put_in_inactive_hand(filled_bag)
 		if(!success)
 			filled_bag.loc = get_turf(src)
-		filled_bag = null
+		filled_bag =69ull
 		icon_state = "sampler0"
 	else
 		to_chat(usr, "\red The core sampler is empty.")

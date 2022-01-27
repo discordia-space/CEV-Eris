@@ -79,15 +79,15 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 				if(!burrow.obelisk_around)
 					burrow.obelisk_around = any2ref(src)
 
-	var/list/affected_mobs = SSmobs.mob_living_by_zlevel[(get_turf(src)).z]
+	var/list/affected_mobs = SSmobs.mob_living_by_zlevel69(get_turf(src)).z69
 
-	var/to_fire = max_targets
+	var/to_fire =69ax_targets
 	for(var/mob/living/A in affected_mobs)
 		if(!(get_dist(src, A) <= area_radius))
 			continue
 		if(istype(A, /mob/living/carbon/superior_animal))
 			var/mob/living/carbon/superior_animal/animal = A
-			if(animal.stat != DEAD) //got roach, spider, maybe bear
+			if(animal.stat != DEAD) //got roach, spider,69aybe bear
 				animal.take_overall_damage(damage)
 				if(animal.stat == DEAD)
 					eotp.addObservation(5)
@@ -117,9 +117,9 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 		H.stats.removePerk(/datum/perk/active_sanityboost)
 	currently_affected -= no_longer_affected
 	for(var/mob/living/carbon/human/mob in affected)
-		var/obj/item/implant/core_implant/I = mob.get_core_implant(/obj/item/implant/core_implant/cruciform)
+		var/obj/item/implant/core_implant/I =69ob.get_core_implant(/obj/item/implant/core_implant/cruciform)
 		if(!(mob in eotp.scanned))
-			eotp.scanned |= mob
+			eotp.scanned |=69ob
 			if(I && I.active && I.wearer)
 				eotp.addObservation(20)
 			else if(is_carrion(mob))
@@ -127,16 +127,16 @@ GLOBAL_LIST_EMPTY(all_obelisk)
 			else
 				eotp.addObservation(10)
 		if(I && I.active && I.wearer)
-			if(!(mob in currently_affected)) // the mob just entered the range of the obelisk
+			if(!(mob in currently_affected)) // the69ob just entered the range of the obelisk
 				mob.stats.addPerk(/datum/perk/active_sanityboost)
-				currently_affected += mob
+				currently_affected +=69ob
 			I.restore_power(I.power_regen*2)
-			for(var/r_tag in mob.personal_ritual_cooldowns)
-				mob.personal_ritual_cooldowns[r_tag] -= nt_buff_cd
+			for(var/r_tag in69ob.personal_ritual_cooldowns)
+				mob.personal_ritual_cooldowns69r_tag69 -= nt_buff_cd
 
 			got_neoteo = TRUE
 	return got_neoteo
 
 
 /obj/machinery/power/nt_obelisk/update_icon()
-	icon_state = "nt_obelisk[active?"_on":""]"
+	icon_state = "nt_obelisk69active?"_on":""69"

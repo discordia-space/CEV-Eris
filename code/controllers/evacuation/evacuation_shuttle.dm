@@ -7,8 +7,8 @@
 	evac_called =   new(0, new_sound = sound('sound/AI/shuttlecalled.ogg'))
 	evac_recalled = new(0, new_sound = sound('sound/AI/shuttlerecalled.ogg'))
 
-	emergency_prep_additional_delay = 0 MINUTES
-	transfer_prep_additional_delay = 0 MINUTES
+	emergency_prep_additional_delay = 069INUTES
+	transfer_prep_additional_delay = 069INUTES
 
 	evacuation_options = list(
 		EVAC_OPT_CALL_SHUTTLE = new /datum/evacuation_option/call_shuttle(),
@@ -52,7 +52,7 @@
 			if (pod.arming_controller)
 				pod.arming_controller.arm()
 
-/datum/evacuation_controller/shuttle/call_evacuation(var/mob/user, var/_emergency_evac, var/forced, var/skip_announce, var/autotransfer)
+/datum/evacuation_controller/shuttle/call_evacuation(var/mob/user,69ar/_emergency_evac,69ar/forced,69ar/skip_announce,69ar/autotransfer)
 	if(..())
 		autopilot = 1
 		shuttle_launch_time = evac_no_return
@@ -110,9 +110,9 @@
 	if (!shuttle.location)
 		return list()
 	if (is_idle())
-		return list(evacuation_options[EVAC_OPT_CALL_SHUTTLE])
+		return list(evacuation_options69EVAC_OPT_CALL_SHUTTLE69)
 	else
-		return list(evacuation_options[EVAC_OPT_RECALL_SHUTTLE])
+		return list(evacuation_options69EVAC_OPT_RECALL_SHUTTLE69)
 
 /datum/evacuation_option/call_shuttle
 	option_text = "Call emergency shuttle"

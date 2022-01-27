@@ -15,7 +15,7 @@
 	var/chance_tele_to_eat = 25
 	var/chance_tele_to_random = 10
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = 0,
 		bullet = 0,
@@ -46,7 +46,7 @@
 		do_teleport(src, target, 1)
 		playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
 
-/mob/living/carbon/superior_animal/roach/bluespace/attackby(obj/item/W, mob/user, params)
+/mob/living/carbon/superior_animal/roach/bluespace/attackby(obj/item/W,69ob/user, params)
 	if(prob(change_tele_to_mob))
 		var/source = src
 		if(target_mob)

@@ -14,5 +14,5 @@
 	GLOB.human_mob_list -= src
 	delete_inventory()
 
-/mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname, var/newname)
-	..(newname = "[newname] (mannequin)")
+/mob/living/carbon/human/dummy/mannequin/fully_replace_character_name(var/oldname,69ar/newname)
+	..(newname = "69newname69 (mannequin)")

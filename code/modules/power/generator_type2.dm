@@ -4,7 +4,7 @@
 	icon_state = "teg"
 	anchored = TRUE
 	density = TRUE
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 
 	var/obj/machinery/atmospherics/unary/generator_input/input1
 	var/obj/machinery/atmospherics/unary/generator_input/input2
@@ -31,7 +31,7 @@
 		overlays.Cut()
 
 		if(lastgenlev != 0)
-			overlays += image('icons/obj/power.dmi', "teg-op[lastgenlev]")
+			overlays += image('icons/obj/power.dmi', "teg-op69lastgenlev69")
 
 #define GENRATE 800		// generator output coefficient from Q
 
@@ -69,7 +69,7 @@
 			hot_air.temperature = hot_air.temperature - energy_transfer/hot_air_heat_capacity
 			cold_air.temperature = cold_air.temperature + heat/cold_air_heat_capacity
 
-			//world << "POWER: [lastgen] W generated at [efficiency*100]% efficiency and sinks sizes [cold_air_heat_capacity], [hot_air_heat_capacity]"
+			//world << "POWER: 69lastgen69 W generated at 69efficiency*10069% efficiency and sinks sizes 69cold_air_heat_capacity69, 69hot_air_heat_capacity69"
 
 			if(input1.network)
 				input1.network.update = 1
@@ -80,7 +80,7 @@
 			add_avail(lastgen)
 	// update icon overlays only if displayed level has changed
 
-	var/genlev = max(0, min( round(11*lastgen / 100000), 11))
+	var/genlev =69ax(0,69in( round(11*lastgen / 100000), 11))
 	if(genlev != lastgenlev)
 		lastgenlev = genlev
 		updateicon()
@@ -104,17 +104,17 @@
 
 	var/t = "<PRE><B>Thermo-Electric Generator</B><HR>"
 
-	t += "Output : [round(lastgen)] W<BR><BR>"
+	t += "Output : 69round(lastgen)69 W<BR><BR>"
 
 	t += "<B>Cold loop</B><BR>"
-	t += "Temperature: [round(input1.air_contents.temperature, 0.1)] K<BR>"
-	t += "Pressure: [round(input1.air_contents.return_pressure(), 0.1)] kPa<BR>"
+	t += "Temperature: 69round(input1.air_contents.temperature, 0.1)69 K<BR>"
+	t += "Pressure: 69round(input1.air_contents.return_pressure(), 0.1)69 kPa<BR>"
 
 	t += "<B>Hot loop</B><BR>"
-	t += "Temperature: [round(input2.air_contents.temperature, 0.1)] K<BR>"
-	t += "Pressure: [round(input2.air_contents.return_pressure(), 0.1)] kPa<BR>"
+	t += "Temperature: 69round(input2.air_contents.temperature, 0.1)69 K<BR>"
+	t += "Pressure: 69round(input2.air_contents.return_pressure(), 0.1)69 kPa<BR>"
 
-	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
+	t += "<BR><HR><A href='?src=\ref69src69;close=1'>Close</A>"
 
 	t += "</PRE>"
 	user << browse(t, "window=teg;size=460x300")
@@ -125,7 +125,7 @@
 /obj/machinery/power/generator_type2/Topic(href, href_list)
 	..()
 
-	if( href_list["close"] )
+	if( href_list69"close"69 )
 		usr << browse(null, "window=teg")
 		usr.unset_machine()
 		return 0

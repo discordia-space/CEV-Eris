@@ -23,13 +23,13 @@ ADMIN_VERB_ADD(/client/proc/edit_admin_permissions, R_PERMISSIONS, FALSE)
 		<body onload='selectTextField();updateSearch();'>
 		<div id='main'><table id='searchable' cellspacing='0'>
 		<tr class='title'>
-		<th style='width:125px;text-align:right;'>CKEY <a class='small' href='?src=\ref[src];editrights=add'>\[+\]</a></th>
+		<th style='width:125px;text-align:right;'>CKEY <a class='small' href='?src=\ref69src69;editrights=add'>\69+\69</a></th>
 		<th style='width:125px;'>RANK</th><th style='width:100%;'>PERMISSIONS</th>
 		</tr>
 		"}
 
 	for(var/admin_ckey in admin_datums)
-		var/datum/admins/D = admin_datums[admin_ckey]
+		var/datum/admins/D = admin_datums69admin_ckey69
 		if(!D)
 			continue
 		var/rank = D.rank ? D.rank : "*none*"
@@ -38,20 +38,20 @@ ADMIN_VERB_ADD(/client/proc/edit_admin_permissions, R_PERMISSIONS, FALSE)
 			rights = "*none*"
 
 		output += "<tr>"
-		output += "<td style='text-align:right;'>[admin_ckey] <a class='small' href='?src=\ref[src];editrights=remove;ckey=[admin_ckey]'>\[-\]</a></td>"
-		output += "<td><a href='?src=\ref[src];editrights=rank;ckey=[admin_ckey]'>[rank]</a></td>"
-		output += "<td><a class='small' href='?src=\ref[src];editrights=permissions;ckey=[admin_ckey]'>[rights]</a></td>"
+		output += "<td style='text-align:right;'>69admin_ckey69 <a class='small' href='?src=\ref69src69;editrights=remove;ckey=69admin_ckey69'>\69-\69</a></td>"
+		output += "<td><a href='?src=\ref69src69;editrights=rank;ckey=69admin_ckey69'>69rank69</a></td>"
+		output += "<td><a class='small' href='?src=\ref69src69;editrights=permissions;ckey=69admin_ckey69'>69rights69</a></td>"
 		output += "</tr>"
 
 	output += {"
 		</table></div>
-		<div id='top'><b>Search:</b> <input type='text' id='filter' value='' style='width:70%;' onkeyup='updateSearch();'></div>
+		<div id='top'><b>Search:</b> <input type='text' id='filter'69alue='' style='width:70%;' onkeyup='updateSearch();'></div>
 		</body>
 		</html>"}
 
 	usr << browse(output,"window=editrights;size=600x500")
 
-/datum/admins/proc/log_admin_rank_modification(var/admin_ckey, var/new_rank)
+/datum/admins/proc/log_admin_rank_modification(var/admin_ckey,69ar/new_rank)
 	if(config.admin_legacy_system)
 		return
 
@@ -79,7 +79,7 @@ ADMIN_VERB_ADD(/client/proc/edit_admin_permissions, R_PERMISSIONS, FALSE)
 	if(!istext(admin_ckey) || !istext(new_rank))
 		return
 
-	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey FROM players WHERE ckey = '[admin_ckey]' AND rank != 'player'")
+	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey FROM players WHERE ckey = '69admin_ckey69' AND rank != 'player'")
 	select_query.Execute()
 
 	var/new_admin = TRUE
@@ -87,19 +87,19 @@ ADMIN_VERB_ADD(/client/proc/edit_admin_permissions, R_PERMISSIONS, FALSE)
 		new_admin = FALSE
 
 	if(new_admin)
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '[new_rank]' WHERE ckey = '[admin_ckey]'")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '69new_rank69' WHERE ckey = '69admin_ckey69'")
 		insert_query.Execute()
-		message_admins("[key_name_admin(usr)] made [key_name_admin(admin_ckey)] an admin with the rank [new_rank]")
-		log_admin("[key_name(usr)] made [key_name(admin_ckey)] an admin with the rank [new_rank]")
+		message_admins("69key_name_admin(usr)6969ade 69key_name_admin(admin_ckey)69 an admin with the rank 69new_rank69")
+		log_admin("69key_name(usr)6969ade 69key_name(admin_ckey)69 an admin with the rank 69new_rank69")
 		to_chat(usr, SPAN_NOTICE("New admin added."))
 	else
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '[new_rank]' WHERE ckey = '[admin_ckey]'")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET rank = '69new_rank69' WHERE ckey = '69admin_ckey69'")
 		insert_query.Execute()
-		message_admins("[key_name_admin(usr)] changed [key_name_admin(admin_ckey)] admin rank to [new_rank]")
-		log_admin("[key_name(usr)] changed [key_name(admin_ckey)] admin rank to [new_rank]")
+		message_admins("69key_name_admin(usr)69 changed 69key_name_admin(admin_ckey)69 admin rank to 69new_rank69")
+		log_admin("69key_name(usr)69 changed 69key_name(admin_ckey)69 admin rank to 69new_rank69")
 		to_chat(usr, SPAN_NOTICE("Admin rank changed."))
 
-/datum/admins/proc/log_admin_permission_modification(var/admin_ckey, var/new_permission, var/nominal)
+/datum/admins/proc/log_admin_permission_modification(var/admin_ckey,69ar/new_permission,69ar/nominal)
 	if(config.admin_legacy_system)
 		return
 
@@ -129,23 +129,23 @@ ADMIN_VERB_ADD(/client/proc/edit_admin_permissions, R_PERMISSIONS, FALSE)
 	if(!istext(admin_ckey) || !isnum(new_permission))
 		return
 
-	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey, flags FROM players WHERE ckey = '[admin_ckey]'")
+	var/DBQuery/select_query = dbcon.NewQuery("SELECT ckey, flags FROM players WHERE ckey = '69admin_ckey69'")
 	select_query.Execute()
 	if(!select_query.NextRow())
-		to_chat(usr, SPAN_WARNING("Permissions edit for [admin_ckey] failed on retrieving related database record."))
+		to_chat(usr, SPAN_WARNING("Permissions edit for 69admin_ckey69 failed on retrieving related database record."))
 		return
 
-	var/admin_rights = text2num(select_query.item[2])
+	var/admin_rights = text2num(select_query.item69269)
 
 	if(admin_rights & new_permission) //This admin already has this permission, so we are removing it.
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = [admin_rights & ~new_permission] WHERE ckey = '[admin_ckey]'")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = 69admin_rights & ~new_permission69 WHERE ckey = '69admin_ckey69'")
 		insert_query.Execute()
-		message_admins("[key_name_admin(usr)] removed the [nominal] permission of [admin_ckey]")
-		log_admin("[key_name(usr)] removed the [nominal] permission of [admin_ckey]")
+		message_admins("69key_name_admin(usr)69 removed the 69nominal69 permission of 69admin_ckey69")
+		log_admin("69key_name(usr)69 removed the 69nominal69 permission of 69admin_ckey69")
 		to_chat(usr, SPAN_NOTICE("Permission removed."))
 	else //This admin doesn't have this permission, so we are adding it.
-		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = '[admin_rights | new_permission]' WHERE ckey = '[admin_ckey]'")
+		var/DBQuery/insert_query = dbcon.NewQuery("UPDATE players SET flags = '69admin_rights | new_permission69' WHERE ckey = '69admin_ckey69'")
 		insert_query.Execute()
-		message_admins("[key_name_admin(usr)] added the [nominal] permission of [admin_ckey]")
-		log_admin("[key_name(usr)] added the [nominal] permission of [admin_ckey]")
+		message_admins("69key_name_admin(usr)69 added the 69nominal69 permission of 69admin_ckey69")
+		log_admin("69key_name(usr)69 added the 69nominal69 permission of 69admin_ckey69")
 		to_chat(usr, SPAN_NOTICE("Permission added."))

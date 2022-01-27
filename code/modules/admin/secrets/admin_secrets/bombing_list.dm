@@ -8,5 +8,5 @@
 
 	var/dat = "<B>Bombing List</B>"
 	for(var/l in bombers)
-		dat += text("[l]<BR>")
+		dat += text("69l69<BR>")
 	user << browse(dat, "window=bombers")

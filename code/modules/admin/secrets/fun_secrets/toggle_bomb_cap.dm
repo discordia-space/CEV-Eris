@@ -14,8 +14,8 @@
 		if(28)	max_explosion_range = 56
 		if(56)	max_explosion_range = 128
 		if(128)	max_explosion_range = 14
-	var/range_dev = max_explosion_range *0.25
-	var/range_high = max_explosion_range *0.5
-	var/range_low = max_explosion_range
-	message_admins(SPAN_DANGER("[key_name_admin(user)] changed the bomb cap to [range_dev], [range_high], [range_low]"), 1)
-	log_admin("[key_name_admin(user)] changed the bomb cap to [max_explosion_range]")
+	var/range_dev =69ax_explosion_range *0.25
+	var/range_high =69ax_explosion_range *0.5
+	var/range_low =69ax_explosion_range
+	message_admins(SPAN_DANGER("69key_name_admin(user)69 changed the bomb cap to 69range_dev69, 69range_high69, 69range_low69"), 1)
+	log_admin("69key_name_admin(user)69 changed the bomb cap to 69max_explosion_range69")

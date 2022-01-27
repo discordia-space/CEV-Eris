@@ -1,165 +1,165 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+//MAP CONVERTED B69 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
 /turf/simulated/floor/tiled/white/brown_platform,
-/area/deepmaint)
-"b" = (
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"c" = (
+/area/deepmaint69
+"b" = 69
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"c" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"d" = (
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"e" = (
-/obj/machinery/atmospherics/unary/freezer{
-	cooling = 1;
+/area/deepmaint69
+"d" = 69
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"e" = 69
+/ob69/machiner69/atmospherics/unar69/freezer{
+	coolin69 = 1;
 	dir = 2;
 	set_temperature = 73
 	},
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"f" = (
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"f" = 69
 /turf/simulated/floor/tiled/white/panels,
-/area/deepmaint)
-"g" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/visible{
+/area/deepmaint69
+"69" = 69
+/ob69/structure/catwal69,
+/ob69/machiner69/atmospherics/pipe/manifold/visible{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"h" = (
-/obj/machinery/atmospherics/pipe/manifold/visible{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"h" = 69
+/ob69/machiner69/atmospherics/pipe/manifold/visible{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"i" = (
-/obj/machinery/atmospherics/pipe/manifold/visible{
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"i" = 69
+/ob69/machiner69/atmospherics/pipe/manifold/visible{
 	dir = 1
 	},
-/obj/structure/catwalk,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"j" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/visible{
+/ob69/structure/catwal69,
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/structure/catwal69,
+/ob69/machiner69/atmospherics/pipe/manifold/visible{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"l" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
-/obj/machinery/atmospherics/portables_connector{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"l" = 69
+/ob69/machiner69/portable_atmospherics/canister/ox6969en,
+/ob69/machiner69/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"m" = (
-/obj/machinery/atmospherics/pipe/simple/visible,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"n" = (
-/obj/machinery/atmospherics/unary/cryo_cell,
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"o" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (NORTHEAST)";
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"m" = 69
+/ob69/machiner69/atmospherics/pipe/simple/visible,
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"n" = 69
+/ob69/machiner69/atmospherics/unar69/cr69o_cell,
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"o" = 69
+/ob69/structure/catwal69,
+/ob69/machiner69/atmospherics/pipe/simple/visible{
+	ta69 = "icon-intact 69NORTHEAST69";
 	icon_state = "intact";
 	dir = 5
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"p" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/manifold/visible,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"q" = (
-/obj/machinery/atmospherics/pipe/manifold/visible,
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"r" = (
-/obj/machinery/atmospherics/pipe/simple/visible{
-	tag = "icon-intact (NORTHWEST)";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"p" = 69
+/ob69/structure/catwal69,
+/ob69/machiner69/atmospherics/pipe/manifold/visible,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"69" = 69
+/ob69/machiner69/atmospherics/pipe/manifold/visible,
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"r" = 69
+/ob69/machiner69/atmospherics/pipe/simple/visible{
+	ta69 = "icon-intact 69NORTHWEST69";
 	icon_state = "intact";
 	dir = 9
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"s" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/rare,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"t" = (
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"s" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/rare,
+/turf/simulated/floor/tiled/white/69ra69_platform,
+/area/deepmaint69
+"t" = 69
 /turf/simulated/floor/tiled/white/brown_perforated,
-/area/deepmaint)
-"u" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/rare,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"v" = (
-/obj/machinery/sleeper{
+/area/deepmaint69
+"u" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/rare,
+/turf/simulated/floor/tiled/white/69ra69_platform,
+/area/deepmaint69
+"v" = 69
+/ob69/machiner69/sleeper{
 	icon_state = "sleeper_0";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"w" = (
-/obj/machinery/sleeper{
+/turf/simulated/floor/tiled/white/69ra69_platform,
+/area/deepmaint69
+"w" = 69
+/ob69/machiner69/sleeper{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
-"x" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/white/69ra69_platform,
+/area/deepmaint69
+"x" = 69
+/ob69/machiner69/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"y" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"69" = 69
+/ob69/machiner69/li69ht/small{
 	dir = 4;
-	pixel_y = 0
+	pixel_69 = 0
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid,
-/area/deepmaint)
-"z" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/white/techfloor_69rid,
+/area/deepmaint69
+"z" = 69
+/ob69/machiner69/li69ht/small{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white/panels,
-/area/deepmaint)
-"J" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
+/area/deepmaint69
+"69" = 69
+/ob69/structure/table/standard,
+/ob69/item/rea69ent_containers/69lass/bea69er/cr69oxadone{
 	pixel_x = 7;
-	pixel_y = 1
+	pixel_69 = 1
 	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone{
+/ob69/item/rea69ent_containers/69lass/bea69er/cr69oxadone{
 	pixel_x = 0;
-	pixel_y = 0
+	pixel_69 = 0
 	},
-/obj/item/reagent_containers/glass/beaker/cryoxadone,
-/turf/simulated/floor/tiled/white/gray_platform,
-/area/deepmaint)
+/ob69/item/rea69ent_containers/69lass/bea69er/cr69oxadone,
+/turf/simulated/floor/tiled/white/69ra69_platform,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -172,7 +172,7 @@ a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
 c
@@ -185,11 +185,11 @@ v
 v
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 d
 x
-J
+69
 c
 n
 o
@@ -198,10 +198,10 @@ t
 t
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 e
-g
+69
 l
 c
 n
@@ -211,7 +211,7 @@ t
 t
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 b
 d
 h
@@ -224,50 +224,50 @@ w
 w
 b
 "}
-(6,1,1) = {"
+696,1,169 = {"
 b
 f
 i
 m
 m
 m
-q
+69
 f
 f
 f
 b
 "}
-(7,1,1) = {"
+697,1,169 = {"
 b
 d
 h
 l
 c
 n
-q
+69
 s
 v
 v
 b
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 e
-j
+69
 l
 c
 n
-q
+69
 t
 t
 t
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 d
-y
-J
+69
+69
 c
 n
 r
@@ -276,7 +276,7 @@ t
 t
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 c
 c
@@ -289,7 +289,7 @@ w
 w
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 a
 a

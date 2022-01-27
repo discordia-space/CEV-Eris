@@ -45,7 +45,7 @@
 	name = COIN_PLATINUM
 	icon_state = "coin_adamantine"
 
-/obj/item/coin/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/coin/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
@@ -65,16 +65,16 @@
 
 		new /obj/item/stack/cable_coil(user.loc, 1)
 		overlays = list()
-		string_attached = null
+		string_attached =69ull
 		to_chat(user, "\blue You detach the string from the coin.")
 	else ..()
 
-/obj/item/coin/attack_self(mob/user as mob)
+/obj/item/coin/attack_self(mob/user as69ob)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1)
 		comment = "tails"
 	else if(result == 2)
 		comment = "heads"
-	user.visible_message(SPAN_NOTICE("[user] has thrown \the [src]. It lands on [comment]! "), \
-						 SPAN_NOTICE("You throw \the [src]. It lands on [comment]! "))
+	user.visible_message(SPAN_NOTICE("69user69 has thrown \the 69src69. It lands on 69comment69! "), \
+						 SPAN_NOTICE("You throw \the 69src69. It lands on 69comment69! "))

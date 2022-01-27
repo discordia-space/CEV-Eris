@@ -1,6 +1,6 @@
 //////////////////////////////
 // Landmarks for asteroid positioning
-// Just makes the placement more safe/sane
+// Just69akes the placement69ore safe/sane
 //////////////////////////////
 
 /obj/asteroid_spawner

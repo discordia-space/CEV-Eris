@@ -1,8 +1,8 @@
-/mob/living/carbon/human/emote(var/act,var/m_type=1,var/message = null)
-	var/param = null
+/mob/living/carbon/human/emote(var/act,var/m_type=1,var/message =69ull)
+	var/param =69ull
 
-	if (findtext(act, "-", 1, null))
-		var/t1 = findtext(act, "-", 1, null)
+	if (findtext(act, "-", 1,69ull))
+		var/t1 = findtext(act, "-", 1,69ull)
 		param = copytext(act, t1 + 1, length(act) + 1)
 		act = copytext(act, 1, t1)
 
@@ -37,17 +37,17 @@
 
 		if ("bow")
 			if (!src.buckled)
-				var/M = null
+				var/M =69ull
 				if (param)
-					for (var/mob/A in view(null, null))
+					for (var/mob/A in69iew(null,69ull))
 						if (param == A.name)
 							M = A
 							break
 				if (!M)
-					param = null
+					param =69ull
 
 				if (param)
-					message = "bows to [param]."
+					message = "bows to 69param69."
 				else
 					message = "bows."
 			m_type = 1
@@ -56,7 +56,7 @@
 			var/input = sanitize(input("Choose an emote to display.") as text|null)
 			if (!input)
 				return
-			var/input2 = input("Is this a visible or hearable emote?") in list("Visible","Hearable")
+			var/input2 = input("Is this a69isible or hearable emote?") in list("Visible","Hearable")
 			if (input2 == "Visible")
 				m_type = 1
 			else if (input2 == "Hearable")
@@ -64,18 +64,18 @@
 					return
 				m_type = 2
 			else
-				alert("Unable to use this emote, must be either hearable or visible.")
+				alert("Unable to use this emote,69ust be either hearable or69isible.")
 				return
-			return custom_emote(m_type, message)
+			return custom_emote(m_type,69essage)
 
 		if ("me")
 
-			//if(silent && silent > 0 && findtext(message,"\"",1, null) > 0)
-			//	return //This check does not work and I have no idea why, I'm leaving it in for reference.
+			//if(silent && silent > 0 && findtext(message,"\"",1,69ull) > 0)
+			//	return //This check does69ot work and I have69o idea why, I'm leaving it in for reference.
 
 			if (src.client)
-				if (client.prefs.muted & MUTE_IC)
-					to_chat(src, "\red You cannot send IC messages (muted).")
+				if (client.prefs.muted &69UTE_IC)
+					to_chat(src, "\red You cannot send IC69essages (muted).")
 					return
 				if (src.client.handle_spam_prevention(message,MUTE_IC))
 					return
@@ -83,7 +83,7 @@
 				return
 			if(!(message))
 				return
-			return custom_emote(m_type, message)
+			return custom_emote(m_type,69essage)
 
 		if("pain")
 			if(!message)
@@ -98,31 +98,31 @@
 
 		if ("salute")
 			if (!src.buckled)
-				var/M = null
+				var/M =69ull
 				if (param)
-					for (var/mob/A in view(null, null))
+					for (var/mob/A in69iew(null,69ull))
 						if (param == A.name)
 							M = A
 							break
 				if (!M)
-					param = null
+					param =69ull
 
 				if (param)
-					message = "salutes to [param]."
+					message = "salutes to 69param69."
 				else
 					message = "salutes."
 			m_type = 1
 
 		if ("choke")
 			if(miming)
-				message = "clutches [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] throat desperately!"
+				message = "clutches 69get_visible_gender() ==69ALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"69 throat desperately!"
 				m_type = 1
 			else
 				if (!muzzled)
 					message = "chokes!"
 					m_type = 2
 				else
-					message = "makes a strong noise."
+					message = "makes a strong69oise."
 					m_type = 2
 
 		if ("clap")
@@ -133,14 +133,14 @@
 					m_type = 1
 		if ("flap")
 			if (!src.restrained())
-				message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings."
+				message = "flaps 69get_visible_gender() ==69ALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"69 wings."
 				m_type = 2
 				if(miming)
 					m_type = 1
 
 		if ("aflap")
 			if (!src.restrained())
-				message = "flaps [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] wings ANGRILY!"
+				message = "flaps 69get_visible_gender() ==69ALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"69 wings ANGRILY!"
 				m_type = 2
 				if(miming)
 					m_type = 1
@@ -162,11 +162,11 @@
 					message = "chuckles."
 					m_type = 2
 				else
-					message = "makes a noise."
+					message = "makes a69oise."
 					m_type = 2
 
 		if ("twitch")
-			message = "twitches violently."
+			message = "twitches69iolently."
 			m_type = 1
 
 		if ("twitch_s")
@@ -177,7 +177,7 @@
 			message = "faints."
 			if(src.sleeping)
 				return //Can't faint while asleep
-			src.sleeping += 10 //Short-short nap
+			src.sleeping += 10 //Short-short69ap
 			m_type = 1
 
 		if ("cough")
@@ -189,7 +189,7 @@
 					message = "coughs!"
 					m_type = 2
 				else
-					message = "makes a strong noise."
+					message = "makes a strong69oise."
 					m_type = 2
 
 		if ("frown")
@@ -217,15 +217,15 @@
 					message = "gasps!"
 					m_type = 2
 				else
-					message = "makes a weak noise."
+					message = "makes a weak69oise."
 					m_type = 2
 			cloud_emote = "cloud-gasp"
 
 		if ("deathgasp")
 			if(stats.getPerk(PERK_TERRIBLE_FATE))
-				message = "their inert body emits a strange sensation and a cold invades your body. Their screams before dying recount in your mind."
+				message = "their inert body emits a strange sensation and a cold invades your body. Their screams before dying recount in your69ind."
 			else
-				message = "[species.death_message]"
+				message = "69species.death_message69"
 			m_type = 1
 
 		if ("giggle")
@@ -237,52 +237,52 @@
 					message = "giggles."
 					m_type = 2
 				else
-					message = "makes a noise."
+					message = "makes a69oise."
 					m_type = 2
 
 		if ("glare")
-			var/M = null
+			var/M =69ull
 			if (param)
-				for (var/mob/A in view(null, null))
+				for (var/mob/A in69iew(null,69ull))
 					if (param == A.name)
 						M = A
 						break
 			if (!M)
-				param = null
+				param =69ull
 
 			if (param)
-				message = "glares at [param]."
+				message = "glares at 69param69."
 			else
 				message = "glares."
 
 		if ("stare")
-			var/M = null
+			var/M =69ull
 			if (param)
-				for (var/mob/A in view(null, null))
+				for (var/mob/A in69iew(null,69ull))
 					if (param == A.name)
 						M = A
 						break
 			if (!M)
-				param = null
+				param =69ull
 
 			if (param)
-				message = "stares at [param]."
+				message = "stares at 69param69."
 			else
 				message = "stares."
 
 		if ("look")
-			var/M = null
+			var/M =69ull
 			if (param)
-				for (var/mob/A in view(null, null))
+				for (var/mob/A in69iew(null,69ull))
 					if (param == A.name)
 						M = A
 						break
 
 			if (!M)
-				param = null
+				param =69ull
 
 			if (param)
-				message = "looks at [param]."
+				message = "looks at 69param69."
 			else
 				message = "looks."
 			m_type = 1
@@ -300,7 +300,7 @@
 					message = "cries."
 					m_type = 2
 				else
-					message = "makes a weak noise. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "frown" : "frowns"]."
+					message = "makes a weak69oise. 69get_visible_gender() ==69ALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"69 69get_visible_gender() ==69EUTER ? "frown" : "frowns"69."
 					m_type = 2
 
 		if ("sigh")
@@ -312,7 +312,7 @@
 					message = "sighs."
 					m_type = 2
 				else
-					message = "makes a weak noise."
+					message = "makes a weak69oise."
 					m_type = 2
 
 		if ("laugh")
@@ -324,7 +324,7 @@
 					message = "laughs."
 					m_type = 2
 				else
-					message = "makes a noise."
+					message = "makes a69oise."
 					m_type = 2
 
 		if ("mumble")
@@ -341,7 +341,7 @@
 				message = "grumbles!"
 				m_type = 2
 			else
-				message = "makes a noise."
+				message = "makes a69oise."
 				m_type = 2
 
 		if ("groan")
@@ -353,12 +353,12 @@
 					message = "groans!"
 					m_type = 2
 				else
-					message = "makes a loud noise."
+					message = "makes a loud69oise."
 					m_type = 2
 
 		if ("moan")
 			if(miming)
-				message = "appears to moan!"
+				message = "appears to69oan!"
 				m_type = 1
 			else
 				message = "moans!"
@@ -369,20 +369,20 @@
 			if (param)
 				M = param
 			if (!M)
-				param = null
+				param =69ull
 			else
 				if(miming)
-					message = "takes a drag from a cigarette and blows \"[M]\" out in smoke."
+					message = "takes a drag from a cigarette and blows \"69M69\" out in smoke."
 					m_type = 1
 				else
-					message = "says, \"[M], please. He had a family.\" [src.name] takes a drag from a cigarette and blows his name out in smoke."
+					message = "says, \"69M69, please. He had a family.\" 69src.name69 takes a drag from a cigarette and blows his69ame out in smoke."
 					m_type = 2
 
 		if ("point")
 			if (!src.restrained())
-				var/mob/M = null
+				var/mob/M =69ull
 				if (param)
-					for (var/atom/A as mob|obj|turf|area in view(null, null))
+					for (var/atom/A as69ob|obj|turf|area in69iew(null,69ull))
 						if (param == A.name)
 							M = A
 							break
@@ -393,7 +393,7 @@
 					pointed(M)
 
 				if (M)
-					message = "points to [M]."
+					message = "points to 69M69."
 				else
 			m_type = 1
 
@@ -403,7 +403,7 @@
 			m_type = 1
 
 		if("shake")
-			message = "shakes [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] head."
+			message = "shakes 69get_visible_gender() ==69ALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"69 head."
 			m_type = 1
 
 		if ("shrug")
@@ -415,9 +415,9 @@
 				var/t1 = round(text2num(param))
 				if (isnum(t1))
 					if (t1 <= 5 && (!src.r_hand || !src.l_hand))
-						message = "raises [t1] finger\s."
+						message = "raises 69t169 finger\s."
 					else if (t1 <= 10 && (!src.r_hand && !src.l_hand))
-						message = "raises [t1] finger\s."
+						message = "raises 69t169 finger\s."
 			m_type = 1
 
 		if ("smile")
@@ -447,7 +447,7 @@
 					message = "sneezes."
 					m_type = 2
 				else
-					message = "makes a strange noise."
+					message = "makes a strange69oise."
 					m_type = 2
 
 		if ("sniff")
@@ -465,7 +465,7 @@
 					message = "snores."
 					m_type = 2
 				else
-					message = "makes a noise."
+					message = "makes a69oise."
 					m_type = 2
 
 		if ("whimper")
@@ -477,7 +477,7 @@
 					message = "whimpers."
 					m_type = 2
 				else
-					message = "makes a weak noise."
+					message = "makes a weak69oise."
 					m_type = 2
 
 		if ("wink")
@@ -501,51 +501,51 @@
 		if("hug")
 			m_type = 1
 			if (!src.restrained())
-				var/M = null
+				var/M =69ull
 				if (param)
-					for (var/mob/A in view(1, null))
+					for (var/mob/A in69iew(1,69ull))
 						if (param == A.name)
 							M = A
 							break
 				if (M == src)
-					M = null
+					M =69ull
 
 				if (M)
-					message = "hugs [M]."
+					message = "hugs 69M69."
 				else
-					message = "hugs [get_visible_gender() == MALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"]."
+					message = "hugs 69get_visible_gender() ==69ALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"69."
 
 		if ("handshake")
 			m_type = 1
 			if (!src.restrained() && !src.r_hand)
-				var/mob/M = null
+				var/mob/M =69ull
 				if (param)
-					for (var/mob/A in view(1, null))
+					for (var/mob/A in69iew(1,69ull))
 						if (param == A.name)
 							M = A
 							break
 				if (M == src)
-					M = null
+					M =69ull
 
 				if (M)
 					if (M.canmove && !M.r_hand && !M.restrained())
-						message = "shakes hands with [M]."
+						message = "shakes hands with 69M69."
 					else
-						message = "holds out [get_visible_gender() == MALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"] hand to [M]."
+						message = "holds out 69get_visible_gender() ==69ALE ? "his" : get_visible_gender() == FEMALE ? "her" : "their"69 hand to 69M69."
 
 		if("dap")
 			m_type = 1
 			if (!src.restrained())
-				var/M = null
+				var/M =69ull
 				if (param)
-					for (var/mob/A in view(1, null))
+					for (var/mob/A in69iew(1,69ull))
 						if (param == A.name)
 							M = A
 							break
 				if (M)
-					message = "gives daps to [M]."
+					message = "gives daps to 69M69."
 				else
-					message = "sadly can't find anybody to give daps to, and daps [get_visible_gender() == MALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"]. Shameful."
+					message = "sadly can't find anybody to give daps to, and daps 69get_visible_gender() ==69ALE ? "himself" : get_visible_gender() == FEMALE ? "herself" : "themselves"69. Shameful."
 
 		if ("scream")
 			if (miming)
@@ -556,27 +556,27 @@
 					message = "screams!"
 					m_type = 2
 				else
-					message = "makes a very loud noise."
+					message = "makes a69ery loud69oise."
 					m_type = 2
 			cloud_emote = "cloud-scream"
 
 		if ("help")
 			to_chat(src, {"blink, blink_r, blush, bow-(none)/mob, burp, choke, chuckle, clap, collapse, cough,
 cry, custom, deathgasp, drool, eyebrow, frown, gasp, giggle, groan, grumble, handshake, hug-(none)/mob, glare-(none)/mob,
-grin, laugh, look-(none)/mob, moan, mumble, nod, pale, point-atom, raise, salute, shake, shiver, shrug,
+grin, laugh, look-(none)/mob,69oan,69umble,69od, pale, point-atom, raise, salute, shake, shiver, shrug,
 sigh, signal-#1-10, smile, sneeze, sniff, snore, stare-(none)/mob, tremble, twitch, twitch_s, whimper,
 wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 
 		else
-			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list.")
+			to_chat(src, "\blue Unusable emote '69act69'. Say *help for a list.")
 
 
 
 
 
 	if (message)
-		log_emote("[name]/[key] : [message]")
-		custom_emote(m_type, message)
+		log_emote("69name69/69key69 : 69message69")
+		custom_emote(m_type,69essage)
 
 	if(cloud_emote)
 		var/image/emote_bubble = image('icons/mob/emote.dmi', src, cloud_emote, ABOVE_MOB_LAYER)
@@ -585,11 +585,11 @@ wink, yawn, swish, sway/wag, fastsway/qwag, stopsway/swag"})
 
 
 /mob/living/carbon/human/verb/pose()
-	set name = "Set Pose"
+	set69ame = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"
 
 	if(suppress_communication)
 		return FALSE
 
-	pose =  sanitize(input(usr, "This is [src]. [get_visible_gender() == MALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"] [get_visible_gender() == NEUTER ? "are" : "is"]...", "Pose", null)  as text)
+	pose =  sanitize(input(usr, "This is 69src69. 69get_visible_gender() ==69ALE ? "He" : get_visible_gender() == FEMALE ? "She" : "They"69 69get_visible_gender() ==69EUTER ? "are" : "is"69...", "Pose",69ull)  as text)

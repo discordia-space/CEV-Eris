@@ -1,6 +1,6 @@
 // GOD'S EYE
 //
-// A mob that used in inquisitor's god's eye ritual
+// A69ob that used in inquisitor's god's eye ritual
 
 /mob/observer/eye/god
 	name = "God's eye"
@@ -9,7 +9,7 @@
 	var/owner_loc
 	var/mob/living/target
 
-/mob/observer/eye/god/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/observer/eye/god/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	if(owner_mob)
 		owner_mob.reset_view(null)
 		qdel(src)

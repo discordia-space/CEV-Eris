@@ -1,89 +1,89 @@
 <!-- 
-Title: Cryo Cell Status UI 
-Used In File(s): \code\game\machinery\cryo.dm
+Title: Cr69o Cell St69tus UI 
+Used In File69s69: \code\6969me\m69c69iner69\cr69o.dm
  -->
-<h3>Cryo Cell Status</h3>
+<693>Cr69o Cell St69tus</693>
 
-<div class="statusDisplay">
-	{{if !data.hasOccupant}}
-		<div class="line">Cell Unoccupied</div>
+<di69 cl69ss="st69tusDispl6969">
+	{{if !d69t69.6969sOccup69nt}}
+		<di69 cl69ss="line">Cell Unoccupied</di69>
 	{{else}}
-		<div class="line">
-			{{:data.occupant.name}}&nbsp;=>&nbsp;
-			{{if data.occupant.stat == 0}}
-				<span class="good">Conscious</span>
-			{{else data.occupant.stat == 1}}
-				<span class="average">Unconscious</span>
+		<di69 cl69ss="line">
+			{{:d69t69.occup69nt.n69me}}&n69sp;=>&n69sp;
+			{{if d69t69.occup69nt.st69t == 0}}
+				<sp69n cl69ss="69ood">Conscious</sp69n>
+			{{else d69t69.occup69nt.st69t == 1}}
+				<sp69n cl69ss="6969er6969e">Unconscious</sp69n>
 			{{else}}
-				<span class="bad">DEAD</span>
+				<sp69n cl69ss="6969d">DE69D</sp69n>
 			{{/if}}
-		</div>
+		</di69>
 	
-		{{if data.occupant.stat < 2}}
-			<div class="line">
-				<div class="statusLabel">Health:</div>
-				{{:helper.displayBar(data.occupant.health, 0, data.occupant.maxHealth, data.occupant.health >= 0 ? 'good' : 'average', helper.round(data.occupant.health))}}
-			</div>
+		{{if d69t69.occup69nt.st69t < 2}}
+			<di69 cl69ss="line">
+				<di69 cl69ss="st69tusL6969el">69e69lt69:</di69>
+				{{:69elper.displ69696969r69d69t69.occup69nt.69e69lt69, 0, d69t69.occup69nt.m69x69e69lt69, d69t69.occup69nt.69e69lt69 >= 0 ? '69ood' : '6969er6969e', 69elper.round69d69t69.occup69nt.69e69lt696969}}
+			</di69>
 		
-			<div class="line">
-				<div class="statusLabel">=&gt; Brute Damage:</div>
-				{{:helper.displayBar(data.occupant.bruteLoss, 0, data.occupant.maxHealth, 'bad', helper.round(data.occupant.bruteLoss))}}
-			</div>
+			<di69 cl69ss="line">
+				<di69 cl69ss="st69tusL6969el">=&69t; 69rute D69m6969e:</di69>
+				{{:69elper.displ69696969r69d69t69.occup69nt.69ruteLoss, 0, d69t69.occup69nt.m69x69e69lt69, '6969d', 69elper.round69d69t69.occup69nt.69ruteLoss6969}}
+			</di69>
 		
-			<div class="line">
-				<div class="statusLabel">=&gt; Resp. Damage:</div>
-				{{:helper.displayBar(data.occupant.oxyLoss, 0, data.occupant.maxHealth, 'bad', helper.round(data.occupant.oxyLoss))}}
-			</div>
+			<di69 cl69ss="line">
+				<di69 cl69ss="st69tusL6969el">=&69t; Resp. D69m6969e:</di69>
+				{{:69elper.displ69696969r69d69t69.occup69nt.ox69Loss, 0, d69t69.occup69nt.m69x69e69lt69, '6969d', 69elper.round69d69t69.occup69nt.ox69Loss6969}}
+			</di69>
 		
-			<div class="line">
-				<div class="statusLabel">=&gt; Toxin Damage:</div>
-				{{:helper.displayBar(data.occupant.toxLoss, 0, data.occupant.maxHealth, 'bad', helper.round(data.occupant.toxLoss))}}
-			</div>
+			<di69 cl69ss="line">
+				<di69 cl69ss="st69tusL6969el">=&69t; Toxin D69m6969e:</di69>
+				{{:69elper.displ69696969r69d69t69.occup69nt.toxLoss, 0, d69t69.occup69nt.m69x69e69lt69, '6969d', 69elper.round69d69t69.occup69nt.toxLoss6969}}
+			</di69>
 		
-			<div class="line">
-				<div class="statusLabel">=&gt; Burn Severity:</div>
-				{{:helper.displayBar(data.occupant.fireLoss, 0, data.occupant.maxHealth, 'bad', helper.round(data.occupant.fireLoss))}}
-			</div>
+			<di69 cl69ss="line">
+				<di69 cl69ss="st69tusL6969el">=&69t; 69urn Se69erit69:</di69>
+				{{:69elper.displ69696969r69d69t69.occup69nt.fireLoss, 0, d69t69.occup69nt.m69x69e69lt69, '6969d', 69elper.round69d69t69.occup69nt.fireLoss6969}}
+			</di69>
 		{{/if}}
 	{{/if}}
-	<hr>
-	<div class="line">
-		<div class="statusLabel">Cell Temperature:</div><div class="statusValue">
-			<span class="{{:data.cellTemperatureStatus}}">{{:data.cellTemperature}} K</span>
-		</div>
-	</div>
-</div>
+	<69r>
+	<di69 cl69ss="line">
+		<di69 cl69ss="st69tusL6969el">Cell Temper69ture:</di69><di69 cl69ss="st69tus6969lue">
+			<sp69n cl69ss="{{:d69t69.cellTemper69tureSt69tus}}">{{:d69t69.cellTemper69ture}} 69</sp69n>
+		</di69>
+	</di69>
+</di69>
 
-<h3>Cryo Cell Operation</h3>
-<div class="item">
-	<div class="itemLabel">
-		Cryo Cell Status:
-	</div>
-	<div class="itemContent" style="width: 40%;">
-		{{:helper.link('On', 'power', {'switchOn' : 1}, data.isOperating ? 'selected' : null)}}{{:helper.link('Off', 'close', {'switchOff' : 1}, data.isOperating ? null : 'selected')}}
-	</div>
-	<div class="itemContent" style="width: 26%;">
-		{{:helper.link('Eject Occupant', 'arrowreturnthick-1-s', {'ejectOccupant' : 1}, data.hasOccupant ? null : 'disabled')}}
-	</div>
-</div>
-<div class="item">&nbsp;</div>
-<div class="item">
-	<div class="itemLabel">
-		Beaker:
-	</div>
-	<div class="itemContent" style="width: 40%;">
-		{{if data.isBeakerLoaded}}		
-			{{:data.beakerLabel ? data.beakerLabel : '<span class="average">No label</span>'}}<br>
-			{{if data.beakerVolume}}
-				<span class="highlight">{{:data.beakerVolume}} units remaining</span><br>
+<693>Cr69o Cell Oper69tion</693>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		Cr69o Cell St69tus:
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 40%;">
+		{{:69elper.lin6969'On', 'power', {'switc69On' : 1}, d69t69.isOper69tin69 ? 'selected' :69ull69}}{{:69elper.lin6969'Off', 'close', {'switc69Off' : 1}, d69t69.isOper69tin69 ?69ull : 'selected'69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 26%;">
+		{{:69elper.lin6969'E69ect Occup69nt', '69rrowreturnt69ic69-1-s', {'e69ectOccup69nt' : 1}, d69t69.6969sOccup69nt ?69ull : 'dis6969led'69}}
+	</di69>
+</di69>
+<di69 cl69ss="item">&n69sp;</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">
+		69e6969er:
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 40%;">
+		{{if d69t69.is69e6969erLo69ded}}		
+			{{:d69t69.69e6969erL6969el ? d69t69.69e6969erL6969el : '<sp69n cl69ss="6969er6969e">No l6969el</sp69n>'}}<69r>
+			{{if d69t69.69e6969er69olume}}
+				<sp69n cl69ss="69i6969li6969t">{{:d69t69.69e6969er69olume}} units rem69inin69</sp69n><69r>
 			{{else}}
-				<span class="bad">Beaker is empty</span>
+				<sp69n cl69ss="6969d">69e6969er is empt69</sp69n>
 			{{/if}}
 		{{else}}
-			<span class="average"><i>No beaker loaded</i></span>
+			<sp69n cl69ss="6969er6969e"><i>No 69e6969er lo69ded</i></sp69n>
 		{{/if}}
-	</div>
-	<div class="itemContent" style="width: 26%;">
-		{{:helper.link('Eject Beaker', 'eject', {'ejectBeaker' : 1}, data.isBeakerLoaded ? null : 'disabled')}}
-	</div>
-</div>
+	</di69>
+	<di69 cl69ss="itemContent" st69le="widt69: 26%;">
+		{{:69elper.lin6969'E69ect 69e6969er', 'e69ect', {'e69ect69e6969er' : 1}, d69t69.is69e6969erLo69ded ?69ull : 'dis6969led'69}}
+	</di69>
+</di69>

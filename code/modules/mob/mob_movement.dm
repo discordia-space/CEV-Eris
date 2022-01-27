@@ -1,11 +1,11 @@
 /client/Move(n, direction)
 	if(!mob)
-		return // Moved here to avoid nullrefs below
-	return mob.SelfMove(direction)
+		return //69oved here to avoid69ullrefs below
+	return69ob.SelfMove(direction)
 
 /mob/proc/SelfMove(var/direction)
-	if(DoMove(direction, src) & MOVEMENT_HANDLED)
-		return TRUE // Doesn't necessarily mean the mob physically moved
+	if(DoMove(direction, src) &69OVEMENT_HANDLED)
+		return TRUE // Doesn't69ecessarily69ean the69ob physically69oved
 
 
 /mob
@@ -21,8 +21,8 @@
 	if(air_group || (height==0)) return 1
 
 	if(ismob(mover))
-		var/mob/moving_mob = mover
-		if ((other_mobs && moving_mob.other_mobs))
+		var/mob/moving_mob =69over
+		if ((other_mobs &&69oving_mob.other_mobs))
 			return 1
 		return (!mover.density || !density || lying)
 	else
@@ -58,17 +58,17 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				to_chat(usr, SPAN_WARNING("This mob type cannot throw items."))
+				to_chat(usr, SPAN_WARNING("This69ob type cannot throw items."))
 			return
 		if(NORTHWEST)
 			mob.hotkey_drop()
 
 /mob/proc/hotkey_drop()
-	to_chat(usr, SPAN_WARNING("This mob type cannot drop items."))
+	to_chat(usr, SPAN_WARNING("This69ob type cannot drop items."))
 
 /mob/living/carbon/hotkey_drop()
 	if(!get_active_hand())
-		to_chat(usr, SPAN_WARNING("You have nothing to drop in your hand."))
+		to_chat(usr, SPAN_WARNING("You have69othing to drop in your hand."))
 	if (!isturf(loc))
 		return
 	else
@@ -79,7 +79,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, SPAN_NOTICE("You are not pulling anything."))
+		to_chat(usr, SPAN_NOTICE("You are69ot pulling anything."))
 		return
 	usr.stop_pulling()
 
@@ -87,7 +87,7 @@
 	set hidden = 1
 
 	if(isrobot(mob))
-		var/mob/living/silicon/robot/R = mob
+		var/mob/living/silicon/robot/R =69ob
 		R.cycle_modules()
 	else
 		mob.swap_hand()
@@ -114,17 +114,17 @@
 
 /client/verb/drop_item()
 	set hidden = 1
-	if(!isrobot(mob) && mob.stat == CONSCIOUS && isturf(mob.loc))
-		return mob.drop_item()
+	if(!isrobot(mob) &&69ob.stat == CONSCIOUS && isturf(mob.loc))
+		return69ob.drop_item()
 	return
 
 
-//Called from space movement handler
-//Return true for safe movement
-//Return -1 for movement with possibility of slipping
-//Return false for no movement
+//Called from space69ovement handler
+//Return true for safe69ovement
+//Return -1 for69ovement with possibility of slipping
+//Return false for69o69ovement
 /mob/proc/allow_spacemove()
-	//First up, check for magboots or other gripping capability
+	//First up, check for69agboots or other gripping capability
 	//If we have some, then check the ground under us
 	if (incorporeal_move)
 		return TRUE
@@ -143,8 +143,8 @@
 		return 1
 	return 0
 
-//Checks if a mob has solid ground to stand on
-//If there's no gravity then there's no up or down so naturally you can't stand on anything.
+//Checks if a69ob has solid ground to stand on
+//If there's69o gravity then there's69o up or down so69aturally you can't stand on anything.
 //For the same reason lattices in space don't count - those are things you grip, presumably.
 /mob/proc/check_gravity()
 	if(istype(loc, /turf/space))
@@ -158,7 +158,7 @@
 
 
 //This proc specifically checks the floor under us. Both floor turfs and walkable objects like catwalk
-//This proc is only called if we have grip, ie magboots
+//This proc is only called if we have grip, ie69agboots
 /mob/proc/check_solid_ground()
 	if (istype(loc, /turf/simulated))
 		if(istype(loc, /turf/simulated/open))
@@ -177,7 +177,7 @@
 //It checks all the adjacent tiles
 /mob/proc/check_dense_object()
 
-	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //we only care for non-space turfs
+	for(var/turf/simulated/T in RANGE_TURFS(1,src)) //we only care for69on-space turfs
 		if(T.density)	//walls work when you're adjacent
 			return TRUE
 
@@ -198,32 +198,32 @@
 		return 0
 	return prob_slip
 
-#define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);
+#define DO_MOVE(this_dir)69ar/final_dir = turn(this_dir, -dir2angle(dir));69ove(get_step(mob, final_dir), final_dir);
 
 /client/verb/moveup()
-	set name = ".moveup"
+	set69ame = ".moveup"
 	set instant = 1
 	DO_MOVE(NORTH)
 
 /client/verb/movedown()
-	set name = ".movedown"
+	set69ame = ".movedown"
 	set instant = 1
 	DO_MOVE(SOUTH)
 
 /client/verb/moveright()
-	set name = ".moveright"
+	set69ame = ".moveright"
 	set instant = 1
 	DO_MOVE(EAST)
 
 /client/verb/moveleft()
-	set name = ".moveleft"
+	set69ame = ".moveleft"
 	set instant = 1
 	DO_MOVE(WEST)
 
 #undef DO_MOVE
 
-//This is an atom proc for the sake of vehicles and mechas
-//Attempts to return the expected total time in deciseconds, between this atom making moves
+//This is an atom proc for the sake of69ehicles and69echas
+//Attempts to return the expected total time in deciseconds, between this atom69aking69oves
 //TODO: Fix this shit
 /atom/movable/proc/total_movement_delay()
 	return 0
@@ -237,7 +237,7 @@
 		delay += 1
 	else
 		delay += 7
-	delay += movement_delay()
+	delay +=69ovement_delay()
 
 	if (speed_factor && speed_factor != 1)
 		delay /= speed_factor

@@ -1,45 +1,45 @@
 /client/verb/who()
-	set name = "Who"
-	set category = "OOC"
+	set69ame = "Who"
+	set cate69ory = "OOC"
 
-	var/msg = "<b>Current Players:</b>\n"
+	var/ms69 = "<b>Current Players:</b>\n"
 
 	var/list/Lines = list()
 
-	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
+	if(holder && (R_ADMIN & holder.ri69hts || R_MOD & holder.ri69hts))
 		for(var/client/C in clients)
-			var/entry = "\t[C.key]"
+			var/entry = "\t69C.key69"
 			if(C.holder && C.holder.fakekey)
-				entry += " <i>(as [C.holder.fakekey])</i>"
-			if(SSticker.current_state == GAME_STATE_PREGAME)
-				entry += " - Ready as [C.prefs.real_name]"
+				entry += " <i>(as 69C.holder.fakekey69)</i>"
+			if(SSticker.current_state == 69AME_STATE_PRE69AME)
+				entry += " - Ready as 69C.prefs.real_name69"
 			else
-				entry += " - Playing as [C.mob.real_name]"
-			if (!istype(C.mob, /mob/new_player)) // /mob/new_player has no stat (happens if client is a new player)
+				entry += " - Playin69 as 69C.mob.real_name69"
+			if (!istype(C.mob, /mob/new_player)) // /mob/new_player has69o stat (happens if client is a69ew player)
 				switch(C.mob.stat)
 					if(UNCONSCIOUS)
-						entry += " - <font color='darkgray'><b>Unconscious</b></font>"
+						entry += " - <font color='dark69ray'><b>Unconscious</b></font>"
 					if(DEAD)
-						if(isghost(C.mob))
-							var/mob/observer/ghost/O = C.mob
+						if(is69host(C.mob))
+							var/mob/observer/69host/O = C.mob
 							if(O.started_as_observer)
-								entry += " - <font color='gray'>Observing</font>"
+								entry += " - <font color='69ray'>Observin69</font>"
 							else
 								entry += " - <font color='black'><b>DEAD</b></font>"
 						else
 							entry += " - <font color='black'><b>DEAD</b></font>"
 			else
-				entry += " - <font color='gray'>In Lobby</font>"
-			if(is_limited_antag(C.mob))
-				entry += " - <b><font color='red'>Limited Antagonist</font></b>"
+				entry += " - <font color='69ray'>In Lobby</font>"
+			if(is_limited_anta69(C.mob))
+				entry += " - <b><font color='red'>Limited Anta69onist</font></b>"
 
 			else if(is_special_character(C.mob))
-				entry += " - <b><font color='red'>Antagonist</font></b>"
+				entry += " - <b><font color='red'>Anta69onist</font></b>"
 
 			if(C.is_afk())
-				entry += " (AFK - [C.inactivity2text()])"
+				entry += " (AFK - 69C.inactivity2text()69)"
 
-			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref69C.mob69'>?</A>)"
 			Lines += entry
 	else
 		for(var/client/C in clients)
@@ -49,95 +49,95 @@
 				Lines += C.key
 
 	for(var/line in sortList(Lines))
-		msg += "[line]\n"
+		ms69 += "69line69\n"
 
-	msg += "<b>Total Players: [length(Lines)]</b>"
-	to_chat(src, msg)
+	ms69 += "<b>Total Players: 69len69th(Lines)69</b>"
+	to_chat(src,69s69)
 
 /client/verb/adminwho()
-	set category = "Admin"
-	set name = "Adminwho"
+	set cate69ory = "Admin"
+	set69ame = "Adminwho"
 
-	var/msg = ""
-	var/modmsg = ""
-	var/mentmsg = ""
+	var/ms69 = ""
+	var/modms69 = ""
+	var/mentms69 = ""
 	var/num_mods_online = 0
 	var/num_admins_online = 0
 	var/num_mentors_online = 0
 	if(holder)
 		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!(R_MOD & C.holder.rights) && !(R_MENTOR & C.holder.rights)))	//Used to determine who shows up in admin rows
+			if(R_ADMIN & C.holder.ri69hts || (!(R_MOD & C.holder.ri69hts) && !(R_MENTOR & C.holder.ri69hts)))	//Used to determine who shows up in admin rows
 
-				if(C.holder.fakekey && (!(R_ADMIN & holder.rights) && !(R_MOD & holder.rights)))		//Mentors can't see stealthmins
+				if(C.holder.fakekey && (!(R_ADMIN & holder.ri69hts) && !(R_MOD & holder.ri69hts)))		//Mentors can't see stealthmins
 					continue
 
-				msg += "\t[C] is a [C.holder.rank]"
+				ms69 += "\t69C69 is a 69C.holder.rank69"
 
 				if(C.holder.fakekey)
-					msg += " <i>(as [C.holder.fakekey])</i>"
+					ms69 += " <i>(as 69C.holder.fakekey69)</i>"
 
 				if(isobserver(C.mob))
-					msg += " - Observing"
+					ms69 += " - Observin69"
 				else if(isnewplayer(C.mob))
-					msg += " - Lobby"
+					ms69 += " - Lobby"
 				else
-					msg += " - Playing"
+					ms69 += " - Playin69"
 
 				if(C.is_afk())
-					msg += " (AFK - [C.inactivity2text()])"
-				msg += "\n"
+					ms69 += " (AFK - 69C.inactivity2text()69)"
+				ms69 += "\n"
 
 				num_admins_online++
-			else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
-				modmsg += "\t[C] is a [C.holder.rank]"
+			else if(R_MOD & C.holder.ri69hts)				//Who shows up in69od/mentor rows.
+				modms69 += "\t69C69 is a 69C.holder.rank69"
 
 				if(isobserver(C.mob))
-					modmsg += " - Observing"
+					modms69 += " - Observin69"
 				else if(isnewplayer(C.mob))
-					modmsg += " - Lobby"
+					modms69 += " - Lobby"
 				else
-					modmsg += " - Playing"
+					modms69 += " - Playin69"
 
 				if(C.is_afk())
-					modmsg += " (AFK - [C.inactivity2text()])"
-				modmsg += "\n"
+					modms69 += " (AFK - 69C.inactivity2text()69)"
+				modms69 += "\n"
 				num_mods_online++
 
-			else if(R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]"
+			else if(R_MENTOR & C.holder.ri69hts)
+				mentms69 += "\t69C69 is a 69C.holder.rank69"
 				if(isobserver(C.mob))
-					mentmsg += " - Observing"
+					mentms69 += " - Observin69"
 				else if(isnewplayer(C.mob))
-					mentmsg += " - Lobby"
+					mentms69 += " - Lobby"
 				else
-					mentmsg += " - Playing"
+					mentms69 += " - Playin69"
 
 				if(C.is_afk())
-					mentmsg += " (AFK - [C.inactivity2text()])"
-				mentmsg += "\n"
+					mentms69 += " (AFK - 69C.inactivity2text()69)"
+				mentms69 += "\n"
 				num_mentors_online++
 
 	else
 		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!(R_MOD & C.holder.rights) && !(R_MENTOR & C.holder.rights)))
+			if(R_ADMIN & C.holder.ri69hts || (!(R_MOD & C.holder.ri69hts) && !(R_MENTOR & C.holder.ri69hts)))
 				if(!C.holder.fakekey)
-					msg += "\t[C] is a [C.holder.rank]\n"
+					ms69 += "\t69C69 is a 69C.holder.rank69\n"
 					num_admins_online++
-			else if (R_MOD & C.holder.rights)
-				modmsg += "\t[C] is a [C.holder.rank]\n"
+			else if (R_MOD & C.holder.ri69hts)
+				modms69 += "\t69C69 is a 69C.holder.rank69\n"
 				num_mods_online++
-			else if (R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]\n"
+			else if (R_MENTOR & C.holder.ri69hts)
+				mentms69 += "\t69C69 is a 69C.holder.rank69\n"
 				num_mentors_online++
 
-	if(config.admin_irc)
-		to_chat(src, "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>")
-	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
+	if(confi69.admin_irc)
+		to_chat(src, "<span class='info'>Adminhelps are also sent to IRC. If69o admins are available in 69ame try anyway and an admin on IRC69ay see it and respond.</span>")
+	ms69 = "<b>Current Admins (69num_admins_online69):</b>\n" +69s69
 
-	if(config.show_mods)
-		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg
+	if(confi69.show_mods)
+		ms69 += "\n<b> Current69oderators (69num_mods_online69):</b>\n" +69odms69
 
-	if(config.show_mentors)
-		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg
+	if(confi69.show_mentors)
+		ms69 += "\n<b> Current69entors (69num_mentors_online69):</b>\n" +69entms69
 
-	to_chat(src, msg)
+	to_chat(src,69s69)

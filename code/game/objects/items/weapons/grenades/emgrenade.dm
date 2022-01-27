@@ -9,21 +9,21 @@
 	..()
 	if(empulse(src, 4, 10))
 		icon_state = "emp_off"
-		desc = "[initial(desc)] It has already been used."
+		desc = "69initial(desc)69 It has already been used."
 	return
 
 /obj/item/grenade/empgrenade/low_yield
 	name = "FS EMPG \"Frye\" - C"
-	desc = "A weaker variant of the \"Frye\" emp grenade, with lesser radius."
+	desc = "A weaker69ariant of the \"Frye\" emp grenade, with lesser radius."
 	icon_state = "lyemp"
 	item_state = "empgrenade"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
 
-/obj/item/grenade/empgrenade/low_yield/prime() // Inheritance is a fuck . this made low yields as effective as normal.
+/obj/item/grenade/empgrenade/low_yield/prime() // Inheritance is a fuck . this69ade low yields as effective as normal.
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
 	if(empulse(src, 4, 1))
 		icon_state = "emp_off"
-		desc = "[initial(desc)] It has already been used."
+		desc = "69initial(desc)69 It has already been used."
 	return

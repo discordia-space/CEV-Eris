@@ -11,14 +11,14 @@ SUBSYSTEM_DEF(chat)
 /datum/controller/subsystem/chat/fire()
 	for(var/i in payload)
 		var/client/C = i
-		C << output(payload[C], "browseroutput:output")
+		C << output(payload69C69, "browseroutput:output")
 		payload -= C
 
 		if(MC_TICK_CHECK)
 			return
 
 
-/datum/controller/subsystem/chat/proc/queue(target, message, handle_whitespace = TRUE, trailing_newline = TRUE)
+/datum/controller/subsystem/chat/proc/queue(target,69essage, handle_whitespace = TRUE, trailing_newline = TRUE)
 	if(!target || !message)
 		return
 
@@ -28,22 +28,22 @@ SUBSYSTEM_DEF(chat)
 	if(target == world)
 		target = clients
 
-	//Some macros remain in the string even after parsing and fuck up the eventual output
-	var/original_message = message
+	//Some69acros remain in the string even after parsing and fuck up the eventual output
+	var/original_message =69essage
 	message = replacetext(message, "\improper", "")
 	message = replacetext(message, "\proper", "")
 	if(handle_whitespace)
 		message = replacetext(message, "\n", "<br>")
-		message = replacetext(message, "\t", "[GLOB.TAB][GLOB.TAB]")
+		message = replacetext(message, "\t", "69GLOB.TAB6969GLOB.TAB69")
 	if (trailing_newline)
 		message += "<br>"
 
-	//Replace expanded \icon macro with icon2html
+	//Replace expanded \icon69acro with icon2html
 	//regex/Replace with a proc won't work here because icon2html takes target as an argument and there is no way to pass it to the replacement proc
 	//not even hacks with reassigning usr work
-	var/regex/i = new(@/<IMG CLASS=icon SRC=(\[[^]]+])(?: ICONSTATE='([^']+)')?>/, "g")
+	var/regex/i = new(@/<IMG CLASS=icon SRC=(\6969^6969+69)(?: ICONSTATE='(69^'69+)')?>/, "g")
 	while(i.Find(message))
-		message = copytext(message,1,i.index)+icon2html(locate(i.group[1]), target, icon_state=i.group[2])+copytext(message,i.next)
+		message = copytext(message,1,i.index)+icon2html(locate(i.group69169), target, icon_state=i.group69269)+copytext(message,i.next)
 
 	message = \
 		symbols_to_unicode(
@@ -71,11 +71,11 @@ SUBSYSTEM_DEF(chat)
 			if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
 				continue
 
-			if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
-				C.chatOutput.messageQueue += message
+			if(!C.chatOutput.loaded) //Client still loading, put their69essages in a queue
+				C.chatOutput.messageQueue +=69essage
 				continue
 
-			payload[C] += twiceEncoded
+			payload69C69 += twiceEncoded
 
 	else
 		var/client/C = CLIENT_FROM_VAR(target) //Grab us a client if possible
@@ -89,8 +89,8 @@ SUBSYSTEM_DEF(chat)
 		if(!C?.chatOutput || C.chatOutput.broken) //A player who hasn't updated his skin file.
 			return
 
-		if(!C.chatOutput.loaded) //Client still loading, put their messages in a queue
-			C.chatOutput.messageQueue += message
+		if(!C.chatOutput.loaded) //Client still loading, put their69essages in a queue
+			C.chatOutput.messageQueue +=69essage
 			return
 
-		payload[C] += twiceEncoded
+		payload69C69 += twiceEncoded

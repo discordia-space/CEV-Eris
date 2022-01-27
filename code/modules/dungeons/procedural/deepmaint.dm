@@ -1,6 +1,6 @@
 /*
-	For the sake of dungeon generator being modular and not tied exclusively to deepmaint,
-	most of the objects and modifications required exclusively for it will be kept here.
+	For the sake of dungeon generator being69odular and not tied exclusively to deepmaint,
+	most of the objects and69odifications required exclusively for it will be kept here.
 */
 
 var/global/list/free_deepmaint_ladders = list()
@@ -41,14 +41,14 @@ var/global/list/big_deepmaint_room_templates = list()
 	return (free_deepmaint_ladders.len)
 
 /obj/procedural/jp_DungeonGenerator/deepmaint
-	name = "Deep Maintenance Procedural Generator"
+	name = "Deep69aintenance Procedural Generator"
 /*
 	Finds a line of walls adjacent to the line of turfs given
 */
 
 /obj/procedural/jp_DungeonGenerator/deepmaint/proc/checkForWalls(var/list/line)
-	var/turf/t1 = line[1]
-	var/turf/t2 = line[2]
+	var/turf/t1 = line69169
+	var/turf/t2 = line69269
 	var/direction = get_dir(t1, t2)
 	var/list/walls = list()
 	for(var/turf/A in getAdjacent(t1))
@@ -81,7 +81,7 @@ var/global/list/big_deepmaint_room_templates = list()
 	while(ladders_to_place > 0)
 		if(numRooms > 1)
 			if(done_rooms.len == out_rooms.len)
-				testing("Deepmaint generator went through all rooms, but couldn't place all ladders! Ladders left - [ladders_to_place]")
+				testing("Deepmaint generator went through all rooms, but couldn't place all ladders! Ladders left - 69ladders_to_place69")
 				break
 		var/obj/procedural/jp_DungeonRoom/picked_room = pick(out_rooms)
 		if(picked_room in done_rooms)
@@ -92,7 +92,7 @@ var/global/list/big_deepmaint_room_templates = list()
 			if (F.is_wall)
 				continue
 
-			if (F.contents.len > 1) //There's a lot of things rangine from tables to mechs or closets that can be on the chosen turf, so we'll ignore all turfs that have something aside lighting overlay
+			if (F.contents.len > 1) //There's a lot of things rangine from tables to69echs or closets that can be on the chosen turf, so we'll ignore all turfs that have something aside lighting overlay
 				continue
 
 
@@ -100,12 +100,12 @@ var/global/list/big_deepmaint_room_templates = list()
 			if (turf_is_external(F))
 				continue
 
-			//To be valid, the floor needs to have a wall in a cardinal direction
+			//To be69alid, the floor needs to have a wall in a cardinal direction
 			for (var/d in cardinal)
 				var/turf/T = get_step(F, d)
 				if (T.is_wall)
 					//Its got a wall!
-					viable_turfs[F] = T //We put this floor and its wall into the possible turfs list
+					viable_turfs69F69 = T //We put this floor and its wall into the possible turfs list
 					break
 
 		if(viable_turfs.len == 0)
@@ -121,7 +121,7 @@ var/global/list/big_deepmaint_room_templates = list()
 
 
 /*
-	Exactly what it says in the procname - makes a niche
+	Exactly what it says in the procname -69akes a niche
 */
 
 /obj/procedural/jp_DungeonGenerator/deepmaint/proc/makeNiche(var/turf/T)
@@ -160,7 +160,7 @@ var/global/list/big_deepmaint_room_templates = list()
 		return FALSE
 
 /obj/procedural/jp_DungeonGenerator/deepmaint/proc/findNicheTurfs(var/list/turfs)
-    var/list/L = list()
+   69ar/list/L = list()
     for(var/turf/F in turfs)
         if(F.is_wall || !(F in path_turfs))
             if(L.len < 3)
@@ -190,25 +190,25 @@ var/global/list/big_deepmaint_room_templates = list()
 		new /obj/spawner/traps(N)
 	for(var/turf/T in path_turfs)
 		if(prob(30))
-			new /obj/effect/decal/cleanable/dirt(T) //Wanted to put rust on the floors in deep maint, but by god, the overlay looks like ASS
+			new /obj/effect/decal/cleanable/dirt(T) //Wanted to put rust on the floors in deep69aint, but by god, the overlay looks like ASS
 
 
 
 /obj/procedural/dungenerator/deepmaint
-	name = "Deep Maint Gen"
+	name = "Deep69aint Gen"
 
 
 /obj/procedural/dungenerator/deepmaint/New()
 	while(1)
 		if(Master.current_runlevel)
-			populateDeepMaintMapLists() //It's not a hook because mapping subsystem has to intialize first
+			populateDeepMaintMapLists() //It's not a hook because69apping subsystem has to intialize first
 			break
 		else
 			sleep(150)
 	spawn()
 		var/start = REALTIMEOFDAY
 		var/obj/procedural/jp_DungeonGenerator/deepmaint/generate = new /obj/procedural/jp_DungeonGenerator/deepmaint(src)
-		testing("Beginning procedural generation of [name] -  Z-level [z].")
+		testing("Beginning procedural generation of 69name69 -  Z-level 69z69.")
 		generate.name = name
 		generate.setArea(locate(50, 50, z), locate(110, 110, z))
 		generate.setWallType(/turf/simulated/wall)
@@ -246,5 +246,5 @@ var/global/list/big_deepmaint_room_templates = list()
 		generate.generate()
 		generate.populateCorridors()
 		generate.makeLadders()
-		testing("Finished procedural generation of [name]. [generate.errString(generate.out_error)] -  Z-level [z], in [(REALTIMEOFDAY - start) / 10] seconds.")
+		testing("Finished procedural generation of 69name69. 69generate.errString(generate.out_error)69 -  Z-level 69z69, in 69(REALTIMEOFDAY - start) / 1069 seconds.")
 

@@ -1,23 +1,23 @@
 /mob/living/carbon/superior_animal/golem/silver
 	name = "silver golem"
-	desc = "A moving pile of rocks with silver specks in it."
+	desc = "A69oving pile of rocks with silver specks in it."
 	icon_state = "golem_silver"
 	icon_living = "golem_silver"
 
-	// Health related variables
+	// Health related69ariables
 	maxHealth = GOLEM_HEALTH_LOW
 	health = GOLEM_HEALTH_LOW
 
-	// Movement related variables
+	//69ovement related69ariables
 	move_to_delay = GOLEM_SPEED_HIGH
 	turns_per_move = 5
 
-	// Damage related variables
+	// Damage related69ariables
 	melee_damage_lower = GOLEM_DMG_MED
 	melee_damage_upper = GOLEM_DMG_HIGH
 	melee_sharp = TRUE
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = GOLEM_ARMOR_MED,
 		bullet = GOLEM_ARMOR_LOW,
@@ -27,5 +27,5 @@
 		rad = 0
 	)
 
-	// Loot related variables
+	// Loot related69ariables
 	ore = /obj/item/ore/silver

@@ -1,21 +1,21 @@
 /datum/design/research/item/powercell
-	build_type = AUTOLATHE | PROTOLATHE | MECHFAB
+	build_type = AUTOLATHE | PROTOLATHE |69ECHFAB
 	category = CAT_POWER
 
 /datum/design/research/item/powercell/AssembleDesignDesc()
 	if(build_path)
 		var/obj/item/cell/C = build_path
-		desc = "Allows the construction of [initial(C.autorecharging) ? "microreactor" : "power"] cells that can hold [initial(C.maxcharge)] units of energy."
+		desc = "Allows the construction of 69initial(C.autorecharging) ? "microreactor" : "power"69 cells that can hold 69initial(C.maxcharge)69 units of energy."
 
 /datum/design/research/item/powercell/large/basic
 	name = "Moebius \"Power-Geyser 2000L\""
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/cell/large/moebius
 	sort_string = "DAAAA"
 
 /datum/design/research/item/powercell/large/high
 	name = "Moebius \"Power-Geyser 7000L\""
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/cell/large/moebius/high
 	sort_string = "DAAAB"
 
@@ -31,13 +31,13 @@
 
 /datum/design/research/item/powercell/medium/basic
 	name = "Moebius \"Power-Geyser 700M\""
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/cell/medium/moebius
 	sort_string = "DAAAF"
 
 /datum/design/research/item/powercell/medium/high
 	name = "Moebius \"Power-Geyser 900M\""
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/cell/medium/moebius/high
 	sort_string = "DAAAI"
 
@@ -53,13 +53,13 @@
 
 /datum/design/research/item/powercell/small/basic
 	name = "Moebius \"Power-Geyser 120S\""
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/cell/small/moebius
-	sort_string = "DAAAQ"
+	sort_string = "DAAA69"
 
 /datum/design/research/item/powercell/small/high
 	name = "Moebius \"Power-Geyser 250S\""
-	build_type = PROTOLATHE | MECHFAB
+	build_type = PROTOLATHE |69ECHFAB
 	build_path = /obj/item/cell/small/moebius/high
 	sort_string = "DAAAV"
 

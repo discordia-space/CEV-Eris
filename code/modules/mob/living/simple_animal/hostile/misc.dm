@@ -17,14 +17,14 @@
 	cold_damage_per_tick = 0
 	speak_chance = 5
 	speak = list("Hruuugh!","Hrunnph")
-	emote_see = list("paws the ground","shakes its mane","stomps")
+	emote_see = list("paws the ground","shakes its69ane","stomps")
 	emote_hear = list("snuffles")
 	mob_size = 10
 	resistance = 8
 
 /mob/living/simple_animal/hostile/diyaab
 	name = "diyaab"
-	desc = "A small pack animal. Although omnivorous, it will hunt meat on occasion."
+	desc = "A small pack animal. Although omnivorous, it will hunt69eat on occasion."
 	faction = "diyaab"
 	icon_state = "diyaab"
 	icon_living = "diyaab"
@@ -48,7 +48,7 @@
 
 /mob/living/simple_animal/hostile/shantak
 	name = "shantak"
-	desc = "A piglike creature with a bright iridiscent mane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
+	desc = "A piglike creature with a bright iridiscent69ane that sparkles as though lit by an inner light. Don't be fooled by its beauty though."
 	faction = "shantak"
 	icon_state = "shantak"
 	icon_living = "shantak"
@@ -64,13 +64,13 @@
 	cold_damage_per_tick = 0
 	speak_chance = 5
 	speak = list("Shuhn","Shrunnph?","Shunpf")
-	emote_see = list("scratches the ground","shakes out it's mane","tinkles gently")
+	emote_see = list("scratches the ground","shakes out it's69ane","tinkles gently")
 	mob_size = 5
 	resistance = 3
 
 /mob/living/simple_animal/yithian
 	name = "yithian"
-	desc = "A friendly creature vaguely resembling an oversized snail without a shell."
+	desc = "A friendly creature69aguely resembling an oversized snail without a shell."
 	icon_state = "yithian"
 	icon_living = "yithian"
 	icon_dead = "yithian_dead"

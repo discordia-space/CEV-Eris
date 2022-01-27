@@ -2,13 +2,13 @@
 /*
 	apply_damage(a,b,c)
 	args
-	a:damage - How much damage to take
+	a:damage - How69uch damage to take
 	b:damage_type - What type of damage to take, brute, burn
 	c:def_zone - Where to take the damage if its brute or burn
 	Returns
 	standard 0 if fail
 */
-/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/sharp = FALSE, var/edge = FALSE, var/used_weapon = null)
+/mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE,69ar/def_zone =69ull,69ar/sharp = FALSE,69ar/edge = FALSE,69ar/used_weapon =69ull)
 	activate_ai()
 	switch(damagetype)
 
@@ -16,7 +16,7 @@
 			adjustBruteLoss(damage)
 
 		if(BURN)
-			if(COLD_RESISTANCE in mutations)
+			if(COLD_RESISTANCE in69utations)
 				damage = 0
 			adjustFireLoss(damage)
 
@@ -38,7 +38,7 @@
 	return TRUE
 
 
-/mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null)
+/mob/living/proc/apply_damages(var/brute = 0,69ar/burn = 0,69ar/tox = 0,69ar/oxy = 0,69ar/clone = 0,69ar/halloss = 0,69ar/def_zone =69ull)
 	activate_ai()
 	if(brute)	apply_damage(brute, BRUTE, def_zone)
 	if(burn)	apply_damage(burn, BURN, def_zone)
@@ -51,7 +51,7 @@
 
 
 
-/mob/living/proc/apply_effect(var/effect = 0, var/effecttype = STUN, var/armor_value = 0, var/check_protection = 1)
+/mob/living/proc/apply_effect(var/effect = 0,69ar/effecttype = STUN,69ar/armor_value = 0,69ar/check_protection = 1)
 	activate_ai()
 
 	if(!effect)
@@ -70,21 +70,21 @@
 			Paralyse(effect)
 		if(IRRADIATE)
 			var/rad_protection = check_protection ? getarmor(null, ARMOR_RAD) / 100 : 0
-			radiation += max((1 - rad_protection) * effect, 0)//Rads auto check armor
+			radiation +=69ax((1 - rad_protection) * effect, 0)//Rads auto check armor
 		if(STUTTER)
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
-				stuttering = max(stuttering,(effect))
+				stuttering =69ax(stuttering,(effect))
 		if(EYE_BLUR)
-			eye_blurry = max(eye_blurry,(effect))
+			eye_blurry =69ax(eye_blurry,(effect))
 		if(DROWSY)
-			drowsyness = max(drowsyness,(effect))
+			drowsyness =69ax(drowsyness,(effect))
 
 	updatehealth()
 
 	return TRUE
 
 
-/mob/living/proc/apply_effects(var/stun = 0, var/weaken = 0, var/paralyze = 0, var/irradiate = 0, var/stutter = 0, var/eyeblur = 0, var/drowsy = 0, var/agony = 0, var/armor_value = 0)
+/mob/living/proc/apply_effects(var/stun = 0,69ar/weaken = 0,69ar/paralyze = 0,69ar/irradiate = 0,69ar/stutter = 0,69ar/eyeblur = 0,69ar/drowsy = 0,69ar/agony = 0,69ar/armor_value = 0)
 	activate_ai()
 	if(stun)		apply_effect(stun, STUN, armor_value)
 	if(weaken)		apply_effect(weaken, WEAKEN, armor_value)
@@ -97,13 +97,13 @@
 
 
 // heal ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/heal_organ_damage(var/brute, var/burn, var/additionally_brute_percent = 0, var/additionaly_burn_percent = 0)
+/mob/living/proc/heal_organ_damage(var/brute,69ar/burn,69ar/additionally_brute_percent = 0,69ar/additionaly_burn_percent = 0)
 	adjustBruteLoss(-(brute + getBruteLoss()/100 * additionally_brute_percent))
 	adjustFireLoss(-(burn + getFireLoss()/100 * additionaly_burn_percent))
 	src.updatehealth()
 
 // damage ONE external organ, organ gets randomly selected from damaged ones.
-/mob/living/proc/take_organ_damage(var/brute, var/burn, var/emp=0)
+/mob/living/proc/take_organ_damage(var/brute,69ar/burn,69ar/emp=0)
 	activate_ai()
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
@@ -111,14 +111,14 @@
 	adjustFireLoss(burn)
 	src.updatehealth()
 
-// heal MANY external organs, in random order
-/mob/living/proc/heal_overall_damage(var/brute, var/burn)
+// heal69ANY external organs, in random order
+/mob/living/proc/heal_overall_damage(var/brute,69ar/burn)
 	adjustBruteLoss(-brute)
 	adjustFireLoss(-burn)
 	src.updatehealth()
 
-// damage MANY external organs, in random order
-/mob/living/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+// damage69ANY external organs, in random order
+/mob/living/take_overall_damage(var/brute,69ar/burn,69ar/used_weapon =69ull)
 	if(status_flags & GODMODE)
 		return FALSE	//godmode
 	adjustBruteLoss(brute)
@@ -126,16 +126,16 @@
 	src.updatehealth()
 
 
-/mob/living/get_fall_damage(var/turf/from, var/turf/dest)
+/mob/living/get_fall_damage(var/turf/from,69ar/turf/dest)
 	activate_ai()
-	var/damage = min(15, maxHealth*0.4)
+	var/damage =69in(15,69axHealth*0.4)
 
-	//If damage is multiplied by the number of floors you fall simultaneously
+	//If damage is69ultiplied by the69umber of floors you fall simultaneously
 	if (from && dest)
 		damage *= abs(from.z - dest.z)+1
 	return damage
 
-/mob/living/fall_impact(var/turf/from, var/turf/dest)
+/mob/living/fall_impact(var/turf/from,69ar/turf/dest)
 	activate_ai()
 	var/damage = get_fall_damage(from, dest)
 	if (damage > 0)

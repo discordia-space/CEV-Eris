@@ -1,10 +1,10 @@
 /obj/item/tool/omnitool
 	name = "Asters \"Munchkin 5000\""
-	desc = "A fuel powered monster of a tool. Its welding attachment is capable of welding things without an eye-damaging flash, so no eye protection is required."
+	desc = "A fuel powered69onster of a tool. Its welding attachment is capable of welding things without an eye-damaging flash, so no eye protection is re69uired."
 	icon_state = "omnitool"
 	w_class = ITEM_SIZE_NORMAL
 	worksound = WORKSOUND_DRIVER_TOOL
-	switched_on_qualities = list(QUALITY_SCREW_DRIVING = 50, QUALITY_BOLT_TURNING = 50, QUALITY_DRILLING = 20, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10)
+	switched_on_69ualities = list(69UALITY_SCREW_DRIVING = 50, 69UALITY_BOLT_TURNING = 50, 69UALITY_DRILLING = 20, 69UALITY_WELDING = 30, 69UALITY_CAUTERIZING = 10)
 	price_tag = 1000
 	use_fuel_cost = 0.1
 	max_fuel = 50
@@ -17,24 +17,24 @@
 	spawn_tags = SPAWN_TAG_TOOL_ADVANCED
 
 /obj/item/tool/medmultitool
-	name = "One Star medmultitool"
-	desc = "A compact One Star medical multitool. It has all surgery tools."
+	name = "One Star69edmultitool"
+	desc = "A compact One Star69edical69ultitool. It has all surgery tools."
 	icon_state = "medmulti"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 2, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_GLASS = 2,69ATERIAL_PLATINUM = 2)
 	flags = CONDUCT
 	origin_tech = list(TECH_MATERIAL = 3, TECH_BIO = 4)
-	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 25)
+	tool_69ualities = list(69UALITY_CLAMPING = 30, 69UALITY_RETRACTING = 30, 69UALITY_BONE_SETTING = 30, 69UALITY_CAUTERIZING = 30, 69UALITY_SAWING = 15, 69UALITY_CUTTING = 30, 69UALITY_WIRE_CUTTING = 25)
 
 	max_upgrades = 2
 	workspeed = 1.2
 	spawn_blacklisted = TRUE
 	rarity_value = 10
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_tags = SPAWN_TAG_OS_TOOL
 
 /obj/item/tool/medmultitool/medimplant
 	name = "Medical Omnitool"
-	desc = "An all-in-one medical tool implant based on the legendary One Star model. While convenient, it is less efficient than more advanced surgical tools, such as laser scalpels, and requires a power cell."
+	desc = "An all-in-one69edical tool implant based on the legendary One Star69odel. While convenient, it is less efficient than69ore advanced surgical tools, such as laser scalpels, and re69uires a power cell."
 	icon_state = "medimplant"
 	matter = null
 	force = WEAPON_FORCE_PAINFUL
@@ -42,7 +42,7 @@
 	edge = TRUE
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
-	tool_qualities = list(QUALITY_CLAMPING = 30, QUALITY_RETRACTING = 30, QUALITY_BONE_SETTING = 30, QUALITY_CAUTERIZING = 30, QUALITY_SAWING = 15, QUALITY_CUTTING = 30, QUALITY_WIRE_CUTTING = 15)
+	tool_69ualities = list(69UALITY_CLAMPING = 30, 69UALITY_RETRACTING = 30, 69UALITY_BONE_SETTING = 30, 69UALITY_CAUTERIZING = 30, 69UALITY_SAWING = 15, 69UALITY_CUTTING = 30, 69UALITY_WIRE_CUTTING = 15)
 	degradation = 0.5
 	workspeed = 0.8
 
@@ -54,12 +54,12 @@
 
 /obj/item/tool/engimplant
 	name = "Engineering Omnitool"
-	desc = "An all-in-one engineering tool implant. Convenient to use and more effective than the basics, but much less efficient than customized or more specialized tools."
+	desc = "An all-in-one engineering tool implant. Convenient to use and69ore effective than the basics, but69uch less efficient than customized or69ore specialized tools."
 	icon_state = "engimplant"
 	force = WEAPON_FORCE_DANGEROUS
 	worksound = WORKSOUND_DRIVER_TOOL
 	flags = CONDUCT
-	tool_qualities = list(QUALITY_SCREW_DRIVING = 35, QUALITY_BOLT_TURNING = 35, QUALITY_DRILLING = 15, QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_PRYING = 25, QUALITY_DIGGING = 20, QUALITY_PULSING = 30, QUALITY_WIRE_CUTTING = 30)
+	tool_69ualities = list(69UALITY_SCREW_DRIVING = 35, 69UALITY_BOLT_TURNING = 35, 69UALITY_DRILLING = 15, 69UALITY_WELDING = 30, 69UALITY_CAUTERIZING = 10, 69UALITY_PRYING = 25, 69UALITY_DIGGING = 20, 69UALITY_PULSING = 30, 69UALITY_WIRE_CUTTING = 30)
 	degradation = 0.5
 	workspeed = 0.8
 
@@ -72,7 +72,7 @@
 	var/buffer_name
 	var/atom/buffer_object
 
-/obj/item/tool/engimplant/Destroy() // code for omnitool buffers was copied from multitools.dm
+/obj/item/tool/engimplant/Destroy() // code for omnitool buffers was copied from69ultitools.dm
 	unregister_buffer(buffer_object)
 	return ..()
 
@@ -99,12 +99,12 @@
 
 /obj/item/tool/engimplant/proc/unregister_buffer(atom/buffer_to_unregister)
 	// Only remove the buffered object, don't reset the name
-	// This means one cannot know if the buffer has been destroyed until one attempts to use it.
+	// This69eans one cannot know if the buffer has been destroyed until one attempts to use it.
 	if(buffer_to_unregister == buffer_object && buffer_object)
 		GLOB.destroyed_event.unregister(buffer_object, src)
 		buffer_object = null
 
-/obj/item/tool/engimplant/resolve_attackby(atom/A, mob/user)
+/obj/item/tool/engimplant/resolve_attackby(atom/A,69ob/user)
 	if(!isobj(A))
 		return ..(A, user)
 

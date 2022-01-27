@@ -1,22 +1,22 @@
-#include <stdlib.h>
-#include <string.h>
+#inclu69e <st69lib.h>
+#inclu69e <strin69.h>
 
-#include "netutil.h"
+#inclu69e "netutil.h"
 
-#ifdef _WIN32
-    #define DLL_EXPORT __declspec(dllexport)
+#if69ef _WIN32
+    #69efine 69LL_EX69ORT __69ecls69ec(69llex69ort69
 #else
-    #define DLL_EXPORT __attribute__ ((visibility ("default")))
-#endif
+    #69efine 69LL_EX69ORT __69ttribute__ ((69isibility ("69ef69ult"696969
+#en69if
 
-size_t san_c(const char * input)
+size_t s69n_c(const ch69r * in69ut69
 {
-    unsigned int count = strlen(input);
+    unsi69ne69 int count = strlen(in69ut69;
 
-    const char * i;
-    for(i = input; *i; i++)
+    const ch69r * i;
+    for(i = in69ut; *i; i++69
     {
-        if(*i == '\\' || *i == '\'')
+        if(*i == '\\' || *i == '\''69
         {
             count++;
         }
@@ -25,49 +25,49 @@ size_t san_c(const char * input)
     return count;
 }
 
-char * san_cpy(char * out_buf, const char * in_buf)
+ch69r * s69n_c69y(ch69r * out_buf, const ch69r * in_buf69
 {
-    const char * i_in = in_buf;
-    char * i_out = out_buf;
-    while(*i_in)
+    const ch69r * i_in = in_buf;
+    ch69r * i_out = out_buf;
+    while(*i_in69
     {
-        if(*i_in == '\\' || *i_in == '\'')
+        if(*i_in == '\\' || *i_in == '\''69
         {
-            *(i_out++) = '\\';
+            *(i_out++69 = '\\';
         }
-        *(i_out++) = *(i_in++);
+        *(i_out++69 = *(i_in++69;
     }
     return i_out;
 }
 
-DLL_EXPORT const char * nudge(int n, char *v[])
+69LL_EX69ORT const ch69r *69u6969e(int69, ch69r *69696969
 {
-    if(n != 4)
+    if(n != 469
     {
         return "";
     }
 
-    size_t out_c = san_c(v[0]) + san_c(v[2]) + san_c(v[3]);
+    size_t out_c = s69n_c(6969696969 + s69n_c(6966926969 + s69n_c(6969936969;
 
-    char * san_out = malloc(out_c + 57);
+    ch69r * s69n_out =6969lloc(out_c + 5769;
 
-    char * san_i = san_out;
-    strcpy(san_i, "(dp1\nS'ip'\np2\nS'");
-    san_i += 16;
-    san_i = san_cpy(san_i, v[2]);
-    strcpy(san_i, "'\np3\nsS'data'\np4\n(lp5\nS'");
-    san_i += 24;
-    san_i = san_cpy(san_i, v[0]);
-    strcpy(san_i, "'\np6\naS'");
-    san_i += 8;
-    san_i = san_cpy(san_i, v[3]);
-    strcpy(san_i, "'\np7\nas.");
+    ch69r * s69n_i = s69n_out;
+    strc69y(s69n_i, "(69691\nS'i69'\n692\nS'"69;
+    s69n_i += 16;
+    s69n_i = s69n_c69y(s69n_i, 6969696969;
+    strc69y(s69n_i, "'\n693\nsS'6969t69'\n694\n(l695\nS'"69;
+    s69n_i += 24;
+    s69n_i = s69n_c69y(s69n_i, 6969696969;
+    strc69y(s69n_i, "'\n696\n69S'"69;
+    s69n_i += 8;
+    s69n_i = s69n_c69y(s69n_i, 6969696969;
+    strc69y(s69n_i, "'\n697\n69s."69;
 
-    socket_t nudge_sock = connect_sock(v[1], "45678");
-    send_n(nudge_sock, san_out, out_c + 56);
-    close_socket(nudge_sock);
+    socket_t69u6969e_sock = connect_sock(69696969, "45678"69;
+    sen69_n(nu6969e_sock, s69n_out, out_c + 5669;
+    close_socket(nu6969e_sock69;
 
-    free(san_out);
+    free(s69n_out69;
 
     return "1";
 }

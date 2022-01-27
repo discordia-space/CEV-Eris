@@ -16,8 +16,8 @@
 		var/mob/living/L = target
 		shake_camera(L, 1, 1, 0.5)
 
-/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance, miss_modifier)
-	if(damage_types[BRUTE] > 20 && prob(damage_types[BRUTE]*penetrating))
+/obj/item/projectile/bullet/attack_mob(var/mob/living/target_mob, distance,69iss_modifier)
+	if(damage_types69BRUTE69 > 20 && prob(damage_types69BRUTE69*penetrating))
 		mob_passthrough_check = 1
 	else
 		var/obj/item/grab/G = locate() in target_mob
@@ -28,7 +28,7 @@
 	return ..()
 
 /obj/item/projectile/bullet/can_embed()
-	//prevent embedding if the projectile is passing through the mob
+	//prevent embedding if the projectile is passing through the69ob
 	if(mob_passthrough_check)
 		return FALSE
 	return ..()
@@ -38,7 +38,7 @@
 
 	if(istype(A, /mob/living/exosuit))
 		return 1 //exosuits have their own penetration handling
-	var/damage = damage_types[BRUTE]
+	var/damage = damage_types69BRUTE69
 	if(ismob(A))
 		if(!mob_passthrough_check)
 			return 0
@@ -60,7 +60,7 @@
 	else if(istype(A, /obj/structure/girder))
 		chance = 100
 	else if(istype(A, /obj/structure/low_wall))
-		chance = round(penetrating * armor_penetration * 2 / 150 * 180) // hardcoded, value is same as steel wall, will have to be changed once low walls have integrity
+		chance = round(penetrating * armor_penetration * 2 / 150 * 180) // hardcoded,69alue is same as steel wall, will have to be changed once low walls have integrity
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
 		chance = round(penetrating * armor_penetration * 2 / T.maxhealth * 180)
@@ -71,15 +71,15 @@
 		chance = armor_penetration * penetrating
 
 	if(prob(chance))
-		var/maintainedVelocity = min(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover velocity, capped at 90%
-		armor_penetration *= maintainedVelocity
+		var/maintainedVelocity =69in(max(20, chance), 90) / 100 //the chance to penetrate is used to calculate leftover69elocity, capped at 90%
+		armor_penetration *=69aintainedVelocity
 		for(var/i in damage_types)
-			damage_types[i] *= maintainedVelocity
-		step_delay = min(step_delay / maintainedVelocity, step_delay / 2)
+			damage_types69i69 *=69aintainedVelocity
+		step_delay =69in(step_delay /69aintainedVelocity, step_delay / 2)
 
 		if(A.opacity || istype(A, /obj/item/shield))
-			//display a message so that people on the other side aren't so confused
-			A.visible_message(SPAN_WARNING("\The [src] pierces through \the [A]!"))
+			//display a69essage so that people on the other side aren't so confused
+			A.visible_message(SPAN_WARNING("\The 69src69 pierces through \the 69A69!"))
 			playsound(A.loc, 'sound/weapons/shield/shieldpen.ogg', 50, 1)
 		return 1
 
@@ -87,18 +87,18 @@
 
 //For projectiles that actually represent clouds of projectiles
 /obj/item/projectile/bullet/pellet
-	name = "shrapnel" //'shrapnel' sounds more dangerous (i.e. cooler) than 'pellet'
+	name = "shrapnel" //'shrapnel' sounds69ore dangerous (i.e. cooler) than 'pellet'
 	damage_types = list(BRUTE = 15)
-	//icon_state = "bullet" //TODO: would be nice to have it's own icon state
+	//icon_state = "bullet" //TODO: would be69ice to have it's own icon state
 	var/pellets = 4			//number of pellets
-	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a non-integer.
-	var/base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
-	var/spread_step = 10	//higher means the pellets spread more across body parts with distance
+	var/range_step = 2		//projectile will lose a fragment each time it travels this distance. Can be a69on-integer.
+	var/base_spread = 90	//lower69eans the pellets spread69ore across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
+	var/spread_step = 10	//higher69eans the pellets spread69ore across body parts with distance
 	var/pellet_to_knockback_ratio = 0
 
 /obj/item/projectile/bullet/pellet/Bumped()
 	. = ..()
-	bumped = 0 //can hit all mobs in a tile. pellets is decremented inside attack_mob so this should be fine.
+	bumped = 0 //can hit all69obs in a tile. pellets is decremented inside attack_mob so this should be fine.
 
 /obj/item/projectile/bullet/pellet/proc/get_pellets(var/distance)
 	var/pellet_loss = round((distance - 1)/range_step) //pellets lost due to distance
@@ -107,18 +107,18 @@
 		return 0
 	return ROUND_PROB(remaining)
 
-/obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier)
+/obj/item/projectile/bullet/pellet/attack_mob(var/mob/living/target_mob,69ar/distance,69ar/miss_modifier)
 
 
 	var/total_pellets = get_pellets(distance)
 	if (total_pellets <= 0)
 		return 1
-	var/spread = max(base_spread - (spread_step*distance), 0)
+	var/spread =69ax(base_spread - (spread_step*distance), 0)
 
-	//shrapnel explosions miss prone mobs with a chance that increases with distance
+	//shrapnel explosions69iss prone69obs with a chance that increases with distance
 	var/prone_chance = 0
 	if(!base_spread)
-		prone_chance = max(spread_step*(distance - 2), 0)
+		prone_chance =69ax(spread_step*(distance - 2), 0)
 
 	var/hits = 0
 	for (var/i in 1 to total_pellets)
@@ -131,7 +131,7 @@
 		if (..()) hits++
 		def_zone = old_zone //restore the original zone the projectile was aimed at
 
-	pellets -= hits //each hit reduces the number of pellets left
+	pellets -= hits //each hit reduces the69umber of pellets left
 	if(pellet_to_knockback_ratio)
 		var/knockback_calc = round(hits / pellet_to_knockback_ratio)
 		if(knockback_calc)
@@ -146,12 +146,12 @@
 	var/distance = get_dist(loc, starting)
 	return ..() * get_pellets(distance)
 
-/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/projectile/bullet/pellet/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 
-	//If this is a shrapnel explosion, allow mobs that are prone to get hit, too
+	//If this is a shrapnel explosion, allow69obs that are prone to get hit, too
 	if(. && !base_spread && isturf(loc))
 		for(var/mob/living/M in loc)
-			if(M.lying || !M.CanPass(src, loc)) //Bump if lying or if we would normally Bump.
-				if(Bump(M)) //Bump will make sure we don't hit a mob multiple times
+			if(M.lying || !M.CanPass(src, loc)) //Bump if lying or if we would69ormally Bump.
+				if(Bump(M)) //Bump will69ake sure we don't hit a69ob69ultiple times
 					return

@@ -1,8 +1,8 @@
 /proc/get_static_icon(icon/A, safety=1)
-	var/icon/flat_icon = safety ? A : new(A)
+	var/icon/flat_icon = safety ? A :69ew(A)
 	flat_icon.Blend(rgb(255,255,255))
 	flat_icon.BecomeAlphaMask()
-	var/icon/static_icon = new/icon('icons/effects/cameravis.dmi', "static_base")
+	var/icon/static_icon =69ew/icon('icons/effects/cameravis.dmi', "static_base")
 	static_icon.AddAlphaMask(flat_icon)
 	return static_icon
 

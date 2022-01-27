@@ -3,21 +3,21 @@
 ****************************************************/
 
 /mob/living/carbon
-	var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
+	var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do69ot transfer other chems here.
 
 /mob/living/carbon/human
-	var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
+	var/var/pale = 0          // Should affect how69ob sprite is drawn, but currently doesn't.
 
-//Initializes blood vessels
+//Initializes blood69essels
 /mob/living/carbon/human/proc/make_blood()
 
 	if(vessel)
 		return
 
-	vessel = new/datum/reagents(species.blood_volume)
+	vessel =69ew/datum/reagents(species.blood_volume)
 	vessel.my_atom = src
 
-	if(species && species.flags & NO_BLOOD) //We want the var for safety but we can do without the actual blood.
+	if(species && species.flags &69O_BLOOD) //We want the69ar for safety but we can do without the actual blood.
 		return
 
 	vessel.add_reagent("blood",species.blood_volume)
@@ -26,30 +26,30 @@
 
 /mob/living/carbon/proc/get_blood_data()
 	var/data = list()
-	data["donor"] = weakref(src)
-	if (!data["virus2"])
-		data["virus2"] = list()
-	data["virus2"] |= virus_copylist(virus2)
-	data["viruses"] = null
-	data["antibodies"] = antibodies
-	data["blood_DNA"] = dna.unique_enzymes
-	data["blood_type"] = dna.b_type
-	data["species"] = species.name
+	data69"donor"69 = weakref(src)
+	if (!data69"virus2"69)
+		data69"virus2"69 = list()
+	data69"virus2"69 |=69irus_copylist(virus2)
+	data69"viruses"69 =69ull
+	data69"antibodies"69 = antibodies
+	data69"blood_DNA"69 = dna.unique_enzymes
+	data69"blood_type"69 = dna.b_type
+	data69"species"69 = species.name
 	var/list/temp_chem = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
-		temp_chem[R.type] = R.volume
-	data["trace_chem"] = temp_chem
-	data["blood_colour"] = species.blood_color
-	data["resistances"] = null
-	data["carrion"] = is_carrion(src)
+		temp_chem69R.type69 = R.volume
+	data69"trace_chem"69 = temp_chem
+	data69"blood_colour"69 = species.blood_color
+	data69"resistances"69 =69ull
+	data69"carrion"69 = is_carrion(src)
 	return data
 
 //Resets blood data
 /mob/living/carbon/human/proc/fixblood()
-	for(var/datum/reagent/organic/blood/B in vessel.reagent_list)
+	for(var/datum/reagent/organic/blood/B in69essel.reagent_list)
 		if(B.id == "blood")
 			var/data = list("donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.blood_color,"blood_type"=dna.b_type,	\
-							"resistances"=null,"trace_chem"=null, "virus2" = null, "antibodies" = list())
+							"resistances"=null,"trace_chem"=null, "virus2" =69ull, "antibodies" = list())
 			B.initialize_data(data)
 
 // Takes care blood loss and regeneration
@@ -57,7 +57,7 @@
 	if(in_stasis)
 		return
 
-	if(!species.has_process[OP_HEART])
+	if(!species.has_process69OP_HEART69)
 		return
 
 
@@ -74,25 +74,25 @@
 			if(W.bleeding())
 				if(W.internal)
 					var/removed = W.damage/75
-					if(chem_effects[CE_BLOODCLOT])
-						removed *= 1 - chem_effects[CE_BLOODCLOT]
+					if(chem_effects69CE_BLOODCLOT69)
+						removed *= 1 - chem_effects69CE_BLOODCLOT69
 					vessel.remove_reagent("blood", temp.wound_update_accuracy * removed)
 					if(prob(1 * temp.wound_update_accuracy))
-						custom_pain("You feel a stabbing pain in your [temp]!",1)
+						custom_pain("You feel a stabbing pain in your 69temp69!",1)
 				else
 					blood_max += W.damage * WOUND_BLEED_MULTIPLIER
 		if (temp.open)
 			blood_max += OPEN_ORGAN_BLEED_AMOUNT  //Yer stomach is cut open
 
 	// bloodclotting slows bleeding
-	if(chem_effects[CE_BLOODCLOT])
-		blood_max *=  1 - chem_effects[CE_BLOODCLOT]
+	if(chem_effects69CE_BLOODCLOT69)
+		blood_max *=  1 - chem_effects69CE_BLOODCLOT69
 	drip_blood(blood_max)
 
-//Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/drip_blood(var/amt as num)
+//Makes a blood drop, leaking amt units of blood from the69ob
+/mob/living/carbon/human/drip_blood(var/amt as69um)
 
-	if(species && species.flags & NO_BLOOD) //TODO: Make drips come from the reagents instead.
+	if(species && species.flags &69O_BLOOD) //TODO:69ake drips come from the reagents instead.
 		return
 
 	if(!amt)
@@ -105,9 +105,9 @@
 				BLOOD TRANSFERS
 ****************************************************/
 
-//Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, var/amount)
-	var/datum/reagent/B = new /datum/reagent/organic/blood
+//Gets blood from69ob to the container, preserving all data in it.
+/mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container,69ar/amount)
+	var/datum/reagent/B =69ew /datum/reagent/organic/blood
 	B.holder = container
 	B.volume = amount
 
@@ -116,38 +116,38 @@
 
 	return B
 
-//For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, var/amount)
+//For humans, blood does69ot appear from blue, it comes from69essels.
+/mob/living/carbon/human/take_blood(obj/item/reagent_containers/container,69ar/amount)
 
-	if(species && species.flags & NO_BLOOD)
-		return null
+	if(species && species.flags &69O_BLOOD)
+		return69ull
 
 	if(vessel.get_reagent_amount("blood") < amount)
-		return null
+		return69ull
 
 	. = ..()
 	vessel.remove_reagent("blood",amount) // Removes blood if human
 
-//Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(var/datum/reagent/organic/blood/injected, var/amount)
+//Transfers blood from container ot69essels
+/mob/living/carbon/proc/inject_blood(var/datum/reagent/organic/blood/injected,69ar/amount)
 	if (!injected || !istype(injected))
 		return
-	var/list/sniffles = virus_copylist(injected.data["virus2"])
+	var/list/sniffles =69irus_copylist(injected.data69"virus2"69)
 	for(var/ID in sniffles)
-		var/datum/disease2/disease/sniffle = sniffles[ID]
+		var/datum/disease2/disease/sniffle = sniffles69ID69
 		infect_virus2(src,sniffle,1)
-	if (injected.data["antibodies"] && prob(5))
-		antibodies |= injected.data["antibodies"]
+	if (injected.data69"antibodies"69 && prob(5))
+		antibodies |= injected.data69"antibodies"69
 	var/list/chems = list()
-	chems = params2list(injected.data["trace_chem"])
+	chems = params2list(injected.data69"trace_chem"69)
 	for(var/C in chems)
-		src.reagents.add_reagent(C, (text2num(chems[C]) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
+		src.reagents.add_reagent(C, (text2num(chems69C69) / species.blood_volume) * amount)//adds trace chemicals to owner's blood
 	reagents.update_total()
 
-//Transfers blood from reagents to vessel, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(var/datum/reagent/organic/blood/injected, var/amount)
+//Transfers blood from reagents to69essel, respecting blood types compatability.
+/mob/living/carbon/human/inject_blood(var/datum/reagent/organic/blood/injected,69ar/amount)
 
-	if(species.flags & NO_BLOOD)
+	if(species.flags &69O_BLOOD)
 		reagents.add_reagent("blood", amount, injected.data)
 		reagents.update_total()
 		return
@@ -156,7 +156,7 @@
 
 	if (!injected || !our)
 		return
-	if(blood_incompatible(injected.data["blood_type"],our.data["blood_type"],injected.data["species"],our.data["species"]) )
+	if(blood_incompatible(injected.data69"blood_type"69,our.data69"blood_type"69,injected.data69"species"69,our.data69"species"69) )
 		reagents.add_reagent("toxin",amount * 0.5)
 		reagents.update_total()
 	else
@@ -166,11 +166,11 @@
 
 //Gets human's own blood.
 /mob/living/carbon/proc/get_blood()
-	var/datum/reagent/organic/blood/res = locate() in vessel.reagent_list //Grab some blood
-	if(res) // Make sure there's some blood at all
-		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
-			for(var/datum/reagent/organic/blood/D in vessel.reagent_list)
-				if(D.data["donor"] == src)
+	var/datum/reagent/organic/blood/res = locate() in69essel.reagent_list //Grab some blood
+	if(res) //69ake sure there's some blood at all
+		if(res.data69"donor"69 != src) //If it's69ot theirs, then we look for theirs
+			for(var/datum/reagent/organic/blood/D in69essel.reagent_list)
+				if(D.data69"donor"69 == src)
 					return D
 	return res
 
@@ -205,91 +205,91 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 
 	if(ishuman(source))
 		var/mob/living/carbon/human/M = source
-		source = M.get_blood()
+		source =69.get_blood()
 
 	// Are we dripping or splattering?
 	var/list/drips = list()
-	// Only a certain number of drips (or one large splatter) can be on a given turf.
+	// Only a certain69umber of drips (or one large splatter) can be on a given turf.
 	for(var/obj/effect/decal/cleanable/blood/drip/drop in T)
 		drips |= drop.drips
 		qdel(drop)
 	if(!large && drips.len < 3)
 		decal_type = /obj/effect/decal/cleanable/blood/drip
 
-	// Find a blood decal or create a new one.
+	// Find a blood decal or create a69ew one.
 	B = locate(decal_type) in T
 	if(!B)
-		B = new decal_type(T)
+		B =69ew decal_type(T)
 
 	var/obj/effect/decal/cleanable/blood/drip/drop = B
 	if(istype(drop) && drips && drips.len && !large)
 		drop.overlays |= drips
 		drop.drips |= drips
 
-	// If there's no data to copy, call it quits here.
+	// If there's69o data to copy, call it quits here.
 	if(!source)
 		return B
 
 	// Update appearance.
-	if(source.data["blood_colour"])
-		B.basecolor = source.data["blood_colour"]
+	if(source.data69"blood_colour"69)
+		B.basecolor = source.data69"blood_colour"69
 		B.update_icon()
 
 	// Update blood information.
-	if(source.data["blood_DNA"])
+	if(source.data69"blood_DNA"69)
 		B.blood_DNA = list()
-		if(source.data["blood_type"])
-			B.blood_DNA[source.data["blood_DNA"]] = source.data["blood_type"]
+		if(source.data69"blood_type"69)
+			B.blood_DNA69source.data69"blood_DNA"6969 = source.data69"blood_type"69
 		else
-			B.blood_DNA[source.data["blood_DNA"]] = "O+"
+			B.blood_DNA69source.data69"blood_DNA"6969 = "O+"
 
-	// Update virus information.
-	if(source.data["virus2"])
-		B.virus2 = virus_copylist(source.data["virus2"])
+	// Update69irus information.
+	if(source.data69"virus2"69)
+		B.virus2 =69irus_copylist(source.data69"virus2"69)
 
 	B.fluorescent  = 0
 	B.invisibility = 0
 	return B
 
-//Percentage of maximum blood volume.
+//Percentage of69aximum blood69olume.
 /mob/living/carbon/proc/get_blood_volume()
 	return 100
 
 /mob/living/carbon/human/get_blood_volume()
 	return round((vessel.get_reagent_amount("blood")/species.blood_volume)*100)
 
-//Get fluffy numbers
+//Get fluffy69umbers
 /mob/living/carbon/human/proc/get_blood_pressure()
 	if(status_flags & FAKEDEATH)
-		return "[FLOOR(120+rand(-5,5), 1)*0.25]/[FLOOR(80+rand(-5,5)*0.25, 1)]"
+		return "69FLOOR(120+rand(-5,5), 1)*0.2569/69FLOOR(80+rand(-5,5)*0.25, 1)69"
 	var/blood_result = get_blood_circulation()
-	return "[FLOOR((120+rand(-5,5))*(blood_result/100), 1)]/[FLOOR((80+rand(-5,5))*(blood_result/100), 1)]"
+	return "69FLOOR((120+rand(-5,5))*(blood_result/100), 1)69/69FLOOR((80+rand(-5,5))*(blood_result/100), 1)69"
 
-//Percentage of maximum blood volume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately matters for brain
+//Percentage of69aximum blood69olume, affected by the condition of circulation organs, affected by the oxygen loss. What ultimately69atters for brain
 /mob/living/carbon/proc/get_blood_oxygenation()
 	return 100
 
 /mob/living/carbon/human/get_blood_oxygenation()
 	var/blood_volume = get_blood_circulation()
-	if(is_asystole()) // Heart is missing or isn't beating and we're not breathing (hardcrit)
-		return min(blood_volume, total_blood_req)
+	if(is_asystole()) // Heart is69issing or isn't beating and we're69ot breathing (hardcrit)
+		return69in(blood_volume, total_blood_req)
 
 	if(!need_breathe())
 		return blood_volume
 	else
 		blood_volume = 100
 
-	var/blood_volume_mod = max(0, 1 - getOxyLoss()/(species.total_health/2))
+	var/blood_volume_mod =69ax(0, 1 - getOxyLoss()/(species.total_health/2))
 	var/oxygenated_mult = 0
-	if(chem_effects[CE_OXYGENATED] == 1) // Dexalin.
+	if(chem_effects69CE_OXYGENATED69 == 1) // Dexalin.
 		oxygenated_mult = 0.5
-	else if(chem_effects[CE_OXYGENATED] >= 2) // Dexplus.
+	else if(chem_effects69CE_OXYGENATED69 >= 2) // Dexplus.
 		oxygenated_mult = 0.8
 	blood_volume_mod = blood_volume_mod + oxygenated_mult - (blood_volume_mod * oxygenated_mult)
 	blood_volume = blood_volume * blood_volume_mod
-	return min(blood_volume, 100)
+	return69in(blood_volume, 100)
 
-//Percentage of maximum blood volume, affected by the condition of circulation organs
+//Percentage of69aximum blood69olume, affected by the condition of circulation organs
 /mob/living/carbon/proc/get_blood_circulation()
 	return 100
 
@@ -315,17 +315,17 @@ proc/blood_splatter(var/target,var/datum/reagent/organic/blood/source,var/large)
 				pulse_mod *= 1.1
 			if(PULSE_2FAST, PULSE_THREADY)
 				pulse_mod *= 1.25
-		blood_volume *= max(0.3, (heart_efficiency / 100)) * pulse_mod
+		blood_volume *=69ax(0.3, (heart_efficiency / 100)) * pulse_mod
 
-	if(!open_check && chem_effects[CE_BLOODCLOT])
-		blood_volume *= max(0, 1-chem_effects[CE_BLOODCLOT])
+	if(!open_check && chem_effects69CE_BLOODCLOT69)
+		blood_volume *=69ax(0, 1-chem_effects69CE_BLOODCLOT69)
 
-	return min(blood_volume, 100)
+	return69in(blood_volume, 100)
 
 /mob/living/carbon/human/proc/regenerate_blood(var/amount)
 	amount *= (species.blood_volume / SPECIES_BLOOD_DEFAULT)
-	var/blood_volume_raw = vessel.get_reagent_amount("blood")
-	amount = max(0,min(amount, species.blood_volume - blood_volume_raw))
+	var/blood_volume_raw =69essel.get_reagent_amount("blood")
+	amount =69ax(0,min(amount, species.blood_volume - blood_volume_raw))
 	if(amount)
 		vessel.add_reagent("blood", amount, get_blood_data())
 	return amount

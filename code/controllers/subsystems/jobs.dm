@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(job)
 		if(job.faction != faction)
 			continue
 		occupations += job
-		occupations_by_name[job.title] = job
+		occupations_by_name69job.title69 = job
 
 	if(!occupations.len)
 		to_chat(world, SPAN_WARNING("Error setting up jobs, no job datums found!"))
@@ -42,10 +42,10 @@ SUBSYSTEM_DEF(job)
 	return TRUE
 
 /datum/controller/subsystem/job/proc/GetJob(rank)
-	return rank && occupations_by_name[rank]
+	return rank && occupations_by_name69rank69
 
 /datum/controller/subsystem/job/proc/AssignRole(mob/new_player/player, rank, latejoin = FALSE)
-	Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
+	Debug("Running AR, Player: 69player69, Rank: 69rank69, LJ: 69latejoin69")
 	if(player && player.mind && rank)
 		var/datum/job/job = GetJob(rank)
 		if(!job)
@@ -59,13 +59,13 @@ SUBSYSTEM_DEF(job)
 		if(!latejoin)
 			position_limit = job.spawn_positions
 		if((job.current_positions < position_limit) || position_limit == -1)
-			Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
+			Debug("Player: 69player69 is now Rank: 69rank69, JCP:69job.current_positions69, JPL:69position_limit69")
 			player.mind.assigned_role = rank
 			player.mind.assigned_job = job
 			unassigned -= player
 			job.current_positions++
 			return TRUE
-	Debug("AR has failed, Player: [player], Rank: [rank]")
+	Debug("AR has failed, Player: 69player69, Rank: 69rank69")
 	return FALSE
 
 /datum/controller/subsystem/job/proc/FreeRole(rank)	//making additional slot on the fly
@@ -76,25 +76,25 @@ SUBSYSTEM_DEF(job)
 	return FALSE
 
 /datum/controller/subsystem/job/proc/FindOccupationCandidates(datum/job/job, level, flag)
-	Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
+	Debug("Running FOC, Job: 69job69, Level: 69level69, Flag: 69flag69")
 	var/list/candidates = list()
 	for(var/mob/new_player/player in unassigned)
 		if(jobban_isbanned(player, job.title))
-			Debug("FOC isbanned failed, Player: [player]")
+			Debug("FOC isbanned failed, Player: 69player69")
 			continue
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
-			Debug("FOC character not old enough, Player: [player]")
+			Debug("FOC character not old enough, Player: 69player69")
 			continue
 		if(flag && !(flag in player.client.prefs.be_special_role))
-			Debug("FOC flag failed, Player: [player], Flag: [flag], ")
+			Debug("FOC flag failed, Player: 69player69, Flag: 69flag69, ")
 			continue
 		if(player.client.prefs.CorrectLevel(job,level))
-			Debug("FOC pass, Player: [player], Level:[level]")
+			Debug("FOC pass, Player: 69player69, Level:69level69")
 			candidates += player
 	return candidates
 
 /datum/controller/subsystem/job/proc/GiveRandomJob(mob/new_player/player)
-	Debug("GRJ Giving random job, Player: [player]")
+	Debug("GRJ Giving random job, Player: 69player69")
 	for(var/datum/job/job in shuffle(occupations))
 		if(!job)
 			continue
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(job)
 			continue
 
 		if(jobban_isbanned(player, job.title))
-			Debug("GRJ isbanned failed, Player: [player], Job: [job.title]")
+			Debug("GRJ isbanned failed, Player: 69player69, Job: 69job.title69")
 			continue
 
 		var/datum/category_item/setup_option/core_implant/I = player.client.prefs.get_option("Core implant")
@@ -120,7 +120,7 @@ SUBSYSTEM_DEF(job)
 		if(job.department == DEPARTMENT_CHURCH && istype(I.implant_type,/obj/item/implant/core_implant/cruciform))
 			continue
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-			Debug("GRJ Random job given, Player: [player], Job: [job]")
+			Debug("GRJ Random job given, Player: 69player69, Job: 69job69")
 			AssignRole(player, job.title)
 			unassigned -= player
 			break
@@ -152,25 +152,25 @@ SUBSYSTEM_DEF(job)
 				// Log-out during round-start? What a bad boy, no head position for you!
 				if(!V.client)
 					continue
-				var/age = V.client.prefs.age
+				var/age =69.client.prefs.age
 
 				if(age < job.minimum_character_age) // Nope.
 					continue
 
 				switch(age)
 					if(job.minimum_character_age to (job.minimum_character_age+10))
-						weightedCandidates[V] = 3 // Still a bit young.
+						weightedCandidates69V69 = 3 // Still a bit young.
 					if((job.minimum_character_age+10) to (job.ideal_character_age-10))
-						weightedCandidates[V] = 6 // Better.
+						weightedCandidates69V69 = 6 // Better.
 					if((job.ideal_character_age-10) to (job.ideal_character_age+10))
-						weightedCandidates[V] = 10 // Great.
+						weightedCandidates69V69 = 10 // Great.
 					if((job.ideal_character_age+10) to (job.ideal_character_age+20))
-						weightedCandidates[V] = 6 // Still good.
+						weightedCandidates69V69 = 6 // Still good.
 					if((job.ideal_character_age+20) to INFINITY)
-						weightedCandidates[V] = 3 // Geezer.
+						weightedCandidates69V69 = 3 // Geezer.
 					else
 						// If there's ABSOLUTELY NOBODY ELSE
-						if(candidates.len == 1) weightedCandidates[V] = 1
+						if(candidates.len == 1) weightedCandidates69V69 = 1
 
 
 			var/mob/new_player/candidate = pickweight(weightedCandidates)
@@ -193,8 +193,8 @@ SUBSYSTEM_DEF(job)
 
 
 /** Proc DivideOccupations
- *  fills var "assigned_role" for all ready players.
- *  This proc must not have any side effect besides of modifying "assigned_role".
+ *  fills69ar "assigned_role" for all ready players.
+ *  This proc69ust not have any side effect besides of69odifying "assigned_role".
  **/
 /datum/controller/subsystem/job/proc/DivideOccupations()
 	//Setup new player list and get the jobs list
@@ -213,7 +213,7 @@ SUBSYSTEM_DEF(job)
 		if(player.ready && player.mind && !player.mind.assigned_role)
 			unassigned += player
 
-	Debug("DO, Len: [unassigned.len]")
+	Debug("DO, Len: 69unassigned.len69")
 	if(unassigned.len == 0)
 		return FALSE
 
@@ -226,9 +226,9 @@ SUBSYSTEM_DEF(job)
 	Debug("DO, Running Assistant Check 1")
 	var/datum/job/assist = new DEFAULT_JOB_TYPE ()
 	var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
-	Debug("AC1, Candidates: [assistant_candidates.len]")
+	Debug("AC1, Candidates: 69assistant_candidates.len69")
 	for(var/mob/new_player/player in assistant_candidates)
-		Debug("AC1 pass, Player: [player]")
+		Debug("AC1 pass, Player: 69player69")
 		AssignRole(player, ASSISTANT_TITLE)
 		assistant_candidates -= player
 	Debug("DO, AC1 end")
@@ -243,12 +243,12 @@ SUBSYSTEM_DEF(job)
 
 
 	// New job giving system by Donkie
-	// This will cause lots of more loops, but since it's only done once it shouldn't really matter much at all.
-	// Hopefully this will add more randomness and fairness to job giving.
+	// This will cause lots of69ore loops, but since it's only done once it shouldn't really69atter69uch at all.
+	// Hopefully this will add69ore randomness and fairness to job giving.
 
 	// Loop through all levels from high to low
 	var/list/shuffledoccupations = shuffle(occupations)
-	// var/list/disabled_jobs = SSticker.mode.disabled_jobs  // So we can use .Find down below without a colon.
+	//69ar/list/disabled_jobs = SSticker.mode.disabled_jobs  // So we can use .Find down below without a colon.
 	for(var/level = 1 to 3)
 		//Check the head jobs first each level
 		CheckHeadPositions(level)
@@ -257,12 +257,12 @@ SUBSYSTEM_DEF(job)
 		for(var/mob/new_player/player in unassigned)
 
 			// Loop through all jobs
-			for(var/datum/job/job in shuffledoccupations) // SHUFFLE ME BABY
+			for(var/datum/job/job in shuffledoccupations) // SHUFFLE69E BABY
 				/*if(!job || SSticker.mode.disabled_jobs.Find(job.title) )
 					continue
 				*/
 				if(jobban_isbanned(player, job.title))
-					Debug("DO isbanned failed, Player: [player], Job:[job.title]")
+					Debug("DO isbanned failed, Player: 69player69, Job:69job.title69")
 					continue
 
 				// If the player wants that job on this level, then try give it to him.
@@ -270,13 +270,13 @@ SUBSYSTEM_DEF(job)
 
 					// If the job isn't filled
 					if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-						Debug("DO pass, Player: [player], Level:[level], Job:[job.title]")
+						Debug("DO pass, Player: 69player69, Level:69level69, Job:69job.title69")
 						AssignRole(player, job.title)
 						unassigned -= player
 						break
 
 	// Hand out random jobs to the people who didn't get any in the last check
-	// Also makes sure that they got their preference correct
+	// Also69akes sure that they got their preference correct
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == GET_RANDOM_JOB)
 			GiveRandomJob(player)
@@ -288,7 +288,7 @@ SUBSYSTEM_DEF(job)
 	// For those who wanted to be assistant if their preferences were filled, here you go.
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
-			Debug("AC2 Assistant located, Player: [player]")
+			Debug("AC2 Assistant located, Player: 69player69")
 			AssignRole(player, ASSISTANT_TITLE)
 
 	//For ones returning to lobby
@@ -313,7 +313,7 @@ SUBSYSTEM_DEF(job)
 		H.job = rank
 
 		//Equip custom gear loadout.
-		//var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
+		//var/list/custom_equip_slots = list() //If69ore than one item takes the same slot, all after the first one spawn in storage.
 		//var/list/custom_equip_leftovers = list()
 
 		//Equip job items and language stuff
@@ -324,7 +324,7 @@ SUBSYSTEM_DEF(job)
 		//loadout items.
 		if(spawn_in_storage)
 			for(var/datum/gear/G in spawn_in_storage)
-				G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()[G.display_name])
+				G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()69G.display_name69)
 
 		job.add_stats(H, flavor)
 		job.add_additiional_language(H)
@@ -336,25 +336,25 @@ SUBSYSTEM_DEF(job)
 
 		if(spawn_in_storage)
 			for(var/datum/gear/G in spawn_in_storage)
-				G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()[G.display_name])
+				G.spawn_in_storage_or_drop(H, H.client.prefs.Gear()69G.display_name69)
 
 		// EMAIL GENERATION
 		if(rank != "Robot" && rank != "AI")		//These guys get their emails later.
 			ntnet_global.create_email(H, H.real_name, pick(GLOB.maps_data.usable_email_tlds))
 
 	else
-		to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
+		to_chat(H, "Your job is 69rank69 and the game just can't handle it! Please report this bug to an administrator.")
 
 	// If they're head, give them the account info for their department
 	if(H.mind && (job.head_position || job.department_account_access))
 		var/remembered_info = ""
-		var/datum/money_account/department_account = department_accounts[job.department]
+		var/datum/money_account/department_account = department_accounts69job.department69
 		if(department_account)
-			remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-			remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-			remembered_info += "<b>Your department's account funds are:</b> [department_account.money][CREDS]<br>"
+			remembered_info += "<b>Your department's account number is:</b> #69department_account.account_number69<br>"
+			remembered_info += "<b>Your department's account pin is:</b> 69department_account.remote_access_pin69<br>"
+			remembered_info += "<b>Your department's account funds are:</b> 69department_account.money6969CREDS69<br>"
 		if(job.head_position)
-			remembered_info += "<b>Your part of nuke code:</b> [SSticker.get_next_nuke_code_part()]<br>"
+			remembered_info += "<b>Your part of nuke code:</b> 69SSticker.get_next_nuke_code_part()69<br>"
 			department_account.owner_name = H.real_name //Register them as the point of contact for this account
 
 		H.mind.store_memory(remembered_info)
@@ -370,8 +370,8 @@ SUBSYSTEM_DEF(job)
 			if("AI")
 				return H
 			if("Captain")
-				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, Captain [H.real_name] on deck!", new_sound=announce_sound)
+				var/sound/announce_sound = (SSticker.current_state <= GAME_STATE_SETTING_UP)? null : sound('sound/misc/boatswain.ogg',69olume=20)
+				captain_announcement.Announce("All hands, Captain 69H.real_name69 on deck!", new_sound=announce_sound)
 
 	if(istype(H)) //give humans wheelchairs, if they need them.
 		var/obj/item/organ/external/l_leg = H.get_organ(BP_L_LEG)
@@ -384,15 +384,15 @@ SUBSYSTEM_DEF(job)
 			W.buckled_mob = H
 			W.add_fingerprint(H)
 
-	to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
+	to_chat(H, "<B>You are 69job.total_positions == 1 ? "the" : "a"69 69alt_title ? alt_title : rank69.</B>")
 
 	if(job.supervisors)
-		to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
+		to_chat(H, "<b>As the 69alt_title ? alt_title : rank69 you answer directly to 69job.supervisors69. Special circumstances69ay change this.</b>")
 
 	if(job.req_admin_notify)
-		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
+		to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins69ia adminhelp.</b>")
 
-	//Gives glasses to the vision impaired
+	//Gives glasses to the69ision impaired
 	if(H.disabilities & NEARSIGHTED)
 		var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
 		if(equipped != 1)
@@ -415,7 +415,7 @@ SUBSYSTEM_DEF(job)
 	BITSET(H.hud_updateflag, SPECIALROLE_HUD)
 	return H
 
-/proc/EquipCustomLoadout(var/mob/living/carbon/human/H, var/datum/job/job)
+/proc/EquipCustomLoadout(var/mob/living/carbon/human/H,69ar/datum/job/job)
 	if(!H || !H.client)
 		return
 
@@ -424,7 +424,7 @@ SUBSYSTEM_DEF(job)
 	var/list/loadout_taken_slots = list()
 	if(H.client.prefs.Gear() && job.loadout_allowed)
 		for(var/thing in H.client.prefs.Gear())
-			var/datum/gear/G = gear_datums[thing]
+			var/datum/gear/G = gear_datums69thing69
 			if(G)
 				var/permitted = 1
 				if(permitted)
@@ -440,10 +440,10 @@ SUBSYSTEM_DEF(job)
 					permitted = 0
 
 				if(!permitted)
-					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with [thing]!</span>")
+					to_chat(H, "<span class='warning'>Your current job or whitelist status does not permit you to spawn with 69thing69!</span>")
 					continue
 
-				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()[G.display_name]))
+				if(!G.slot || G.slot == slot_accessory_buffer || (G.slot in loadout_taken_slots) || !G.spawn_on_mob(H, H.client.prefs.Gear()69G.display_name69))
 					spawn_in_storage.Add(G)
 				else
 					loadout_taken_slots.Add(G.slot)
@@ -474,7 +474,7 @@ SUBSYSTEM_DEF(job)
 		else
 			continue
 
-		if(name && value)
+		if(name &&69alue)
 			var/datum/job/J = GetJob(name)
 			if(!J)	continue
 			J.total_positions = text2num(value)
@@ -486,7 +486,7 @@ SUBSYSTEM_DEF(job)
 
 /datum/controller/subsystem/job/proc/HandleFeedbackGathering()
 	for(var/datum/job/job in occupations)
-		var/tmp_str = "|[job.title]|"
+		var/tmp_str = "|69job.title69|"
 
 		var/level1 = 0 //high
 		var/level2 = 0 //medium
@@ -508,7 +508,7 @@ SUBSYSTEM_DEF(job)
 				level3++
 			else level4++ //not selected
 
-		tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
+		tmp_str += "HIGH=69level169|MEDIUM=69level269|LOW=69level369|NEVER=69level469|BANNED=69level569|YOUNG=69level669|-"
 
 
 /**
@@ -518,7 +518,7 @@ SUBSYSTEM_DEF(job)
  *  preference is not set, or the preference is not appropriate for the rank, in
  *  which case a fallback will be selected.
  */
-/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C, var/rank, late = FALSE)
+/datum/controller/subsystem/job/proc/get_spawnpoint_for(var/client/C,69ar/rank, late = FALSE)
 
 	if(!C)
 		CRASH("Null client passed to get_spawnpoint_for() proc!")
@@ -536,12 +536,12 @@ SUBSYSTEM_DEF(job)
 			SP = get_spawn_point(pref_spawn, late = TRUE)
 		else
 			SP = get_spawn_point(GLOB.maps_data.default_spawn, late = TRUE)
-			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference menu."))
+			to_chat(H, SPAN_WARNING("You have not selected spawnpoint in preference69enu."))
 	else
 		SP = get_spawn_point(rank)
 
 	//Test the default spawn we just got
-	//Feeding true to the report var here will allow the user to choose to spawn anyway
+	//Feeding true to the report69ar here will allow the user to choose to spawn anyway
 	if (SP && SP.can_spawn(H, rank, TRUE))
 		return SP
 
@@ -549,7 +549,7 @@ SUBSYSTEM_DEF(job)
 		//The above didn't work, okay lets start testing spawnpoints at random until we find a place we can spawn
 		//Todo: Add in pref options to specify an ordered priority list for spawning locations
 		var/list/spawns = get_late_spawntypes()
-		var/list/possibilities = spawns.Copy() //The above proc returns a pointer to the list, we need to copy it so we dont modify the original
+		var/list/possibilities = spawns.Copy() //The above proc returns a pointer to the list, we need to copy it so we dont69odify the original
 		if (istype(SP))
 			possibilities -= SP.name //Lets subtract the one we already tested
 		SP = null
@@ -557,13 +557,13 @@ SUBSYSTEM_DEF(job)
 		while (possibilities.len)
 			//Randomly pick things from our shortlist
 			var/spawn_name = pick(possibilities)
-			SP = possibilities[spawn_name]
+			SP = possibilities69spawn_name69
 			possibilities -= spawn_name //Then remove them from that list of course
 
 			if(SP.can_spawn(H, rank))
 				return SP
 			else
-				to_chat(H, SPAN_WARNING("Unable to spawn you at [SP.name].")) // you will be assigned default one which is \"[SP.display_name]\"."
+				to_chat(H, SPAN_WARNING("Unable to spawn you at 69SP.name69.")) // you will be assigned default one which is \"69SP.display_name69\"."
 
 	// No spawn point? Something is fucked.
 	// Pick the default one.
@@ -573,7 +573,7 @@ SUBSYSTEM_DEF(job)
 	// Still no spawn point? Return the first spawn point on the list.
 	if(!SP)
 		var/list/possibilities = get_late_spawntypes()
-		SP = possibilities[possibilities[1]]
+		SP = possibilities69possibilities6916969
 
 	return SP
 

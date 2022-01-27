@@ -73,7 +73,7 @@
 
 //Manipulators
 /datum/design/research/item/mechfab/exosuit/manipulators
-	category = "Exosuit Manipulators"
+	category = "Exosuit69anipulators"
 
 /datum/design/research/item/mechfab/exosuit/manipulators/cheap
 	build_path = /obj/item/mech_component/manipulators/cheap
@@ -104,8 +104,8 @@
 /datum/design/research/item/mechfab/exosuit/propulsion/heavy
 	build_path = /obj/item/mech_component/propulsion/heavy
 
-/datum/design/research/item/mechfab/exosuit/propulsion/quad
-	build_path = /obj/item/mech_component/propulsion/quad
+/datum/design/research/item/mechfab/exosuit/propulsion/69uad
+	build_path = /obj/item/mech_component/propulsion/69uad
 
 /datum/design/research/item/mechfab/exosuit/propulsion/tracks
 	build_path = /obj/item/mech_component/propulsion/tracks

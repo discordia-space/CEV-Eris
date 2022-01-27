@@ -3,7 +3,7 @@
 	result = /obj/structure/girder
 	time = WORKTIME_NORMAL
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 5,69ATERIAL_STEEL)
 	)
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	related_stats = list(STAT_MEC)
@@ -13,7 +13,7 @@
 	result = /obj/structure/girder/low
 	time = WORKTIME_FAST
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 3,69ATERIAL_STEEL)
 	)
 	related_stats = list(STAT_MEC)
 
@@ -33,7 +33,7 @@
 	result = /obj/item/stack/rods
 	time = 0
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL)
 	)
 	flags = CRAFT_BATCH
 	related_stats = list(STAT_COG)
@@ -42,7 +42,7 @@
 	name = "box"
 	result = /obj/item/storage/box
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_CARDBOARD)
 	)
 	related_stats = list(STAT_COG)
 
@@ -50,7 +50,7 @@
 	name = "bone braces"
 	result = /obj/item/bone_brace
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 3,69ATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 20, 50),
 		list(QUALITY_WIRE_CUTTING, 10, 120)
 	)
@@ -60,7 +60,7 @@
 	name = "plastic bag"
 	result = /obj/item/storage/bag/plastic
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_PLASTIC)
 	)
 	related_stats = list(STAT_COG)
 
@@ -68,7 +68,7 @@
 	name = "blood pack"
 	result = /obj/item/reagent_containers/blood/empty
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_PLASTIC)
 	)
 	related_stats = list(STAT_COG)
 
@@ -76,7 +76,7 @@
 	name = "ashtray"
 	result = /obj/item/material/ashtray
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL)
 	)
 	related_stats = list(STAT_COG)
 
@@ -84,7 +84,7 @@
 	name = "beehive assembly"
 	result = /obj/item/beehive_assembly
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_WOOD)
+		list(CRAFT_MATERIAL, 10,69ATERIAL_WOOD)
 	)
 	related_stats = list(STAT_MEC)
 
@@ -92,7 +92,7 @@
 	name = "beehive frame"
 	result = /obj/item/honey_frame
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_WOOD)
 	)
 	related_stats = list(STAT_MEC)
 
@@ -101,7 +101,7 @@
 	result = /obj/machinery/portable_atmospherics/canister/empty
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 10,69ATERIAL_STEEL)
 	)
 	related_stats = list(STAT_MEC)
 
@@ -110,7 +110,7 @@
 	result = /obj/item/cannonframe
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 10,69ATERIAL_STEEL)
 	)
 	related_stats = list(STAT_MEC)
 
@@ -118,7 +118,7 @@
 	name = "grey folder"
 	result = /obj/item/folder
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_CARDBOARD)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_CARDBOARD)
 	)
 	related_stats = list(STAT_COG)
 
@@ -154,8 +154,8 @@
 	name = "cheap hand-tele"
 	result = /obj/item/hand_tele/handmade
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTIC, "time" = 30),
-		list(CRAFT_MATERIAL, 2, MATERIAL_GLASS, "time" = 10),
+		list(CRAFT_MATERIAL, 6,69ATERIAL_PLASTIC, "time" = 30),
+		list(CRAFT_MATERIAL, 2,69ATERIAL_GLASS, "time" = 10),
 		list(/obj/item/electronics/circuitboard, 1, "time" = 20),
 		list(/obj/item/stock_parts/subspace/crystal, 1),
 		list(/obj/item/stock_parts/capacitor, 1),
@@ -168,13 +168,13 @@
 	name = "dinner tray"
 	result = /obj/item/tray
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL, "time" = 40),
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL, "time" = 40),
 		list(QUALITY_WIRE_CUTTING, 10, 120)
 	)
 	related_stats = list(STAT_COG)
 
 
-//You build a frame from rods, add metal shelves, plastic wheels and handles
+//You build a frame from rods, add69etal shelves, plastic wheels and handles
 /datum/craft_recipe/janicart
 	name = "janitorial cart"
 	result = /obj/structure/janitorialcart
@@ -182,29 +182,29 @@
 	steps = list(
 		list(/obj/item/stack/rods, 20),
 		list(QUALITY_SCREW_DRIVING, 10, 60),
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL, "time" = 40),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_STEEL, "time" = 40),
 		list(QUALITY_BOLT_TURNING, 10, 60),
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTIC, "time" = 40),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_PLASTIC, "time" = 40),
 		list(QUALITY_BOLT_TURNING, 10, 60)
 	)
 	related_stats = list(STAT_COG)
 
 
-//Cut variously sized bits of plastic down to size, tape them together, and then use a welder to melt gaps
+//Cut69ariously sized bits of plastic down to size, tape them together, and then use a welder to69elt gaps
 //It just works!
 /datum/craft_recipe/mopbucket
 	name = "mop bucket"
 	result = /obj/structure/mopbucket
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	steps = list(
-		list(CRAFT_MATERIAL, 15, MATERIAL_PLASTIC, "time" = 40),
+		list(CRAFT_MATERIAL, 15,69ATERIAL_PLASTIC, "time" = 40),
 		list(QUALITY_SEALING, 10, 60),
 		list(QUALITY_WELDING, 10, 60)
 	)
 	related_stats = list(STAT_COG)
 
 
-//You get some article of clothing and shred it with a blade to make a mophead. Add in some metal rods for a handle
+//You get some article of clothing and shred it with a blade to69ake a69ophead. Add in some69etal rods for a handle
 /datum/craft_recipe/mop
 	name = "mop"
 	result = /obj/item/mop
@@ -216,14 +216,14 @@
 	)
 	related_stats = list(STAT_COG)
 
-//Make a drill bit with some material and a welder! So you won't need to print a whole new exosuit drill when your head snaps.
+//Make a drill bit with some69aterial and a welder! So you won't need to print a whole new exosuit drill when your head snaps.
 
 /datum/craft_recipe/drill_head
 	name = "steel drill head"
 	result = /obj/item/material/drill_head
 	time = WORKTIME_NORMAL
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_STEEL, "time" = 30),
+		list(CRAFT_MATERIAL, 6,69ATERIAL_STEEL, "time" = 30),
 		list(QUALITY_WELDING, 10, 60)
 	)
 	related_stats = list(STAT_MEC)
@@ -232,7 +232,7 @@
 	name = "plasteel drill head"
 	result = /obj/item/material/drill_head/plasteel
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_PLASTEEL, "time" = 30),
+		list(CRAFT_MATERIAL, 6,69ATERIAL_PLASTEEL, "time" = 30),
 		list(QUALITY_WELDING, 10, 60)
 	)
 
@@ -241,7 +241,7 @@
 	name = "diamond drill head"
 	result = /obj/item/material/drill_head/diamond
 	steps = list(
-		list(CRAFT_MATERIAL, 6, MATERIAL_DIAMOND, "time" = 30),
+		list(CRAFT_MATERIAL, 6,69ATERIAL_DIAMOND, "time" = 30),
 		list(QUALITY_WELDING, 10, 60)
 	)
 
@@ -250,7 +250,7 @@
 	name = "Smoking pipe"
 	result = /obj/item/clothing/mask/smokable/pipe
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_WOOD, "time" = 0),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_WOOD, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10)
 	)
 	related_stats = list(STAT_COG)
@@ -258,7 +258,7 @@
 	name = "Makeshift prosthetic left leg"
 	result = /obj/item/organ/external/robotic/makeshift/l_leg
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_STEEL, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_WELDING, 10, 10),
 		list(/obj/item/stack/cable_coil, 5, "time" = 0),
@@ -277,7 +277,7 @@
 	name = "Makeshift prosthetic left arm"
 	result = /obj/item/organ/external/robotic/makeshift/l_arm
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_STEEL, "time" = 0),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_STEEL, "time" = 0),
 		list(QUALITY_CUTTING, 10, 10),
 		list(QUALITY_WELDING, 10, 10),
 		list(/obj/item/stack/cable_coil, 5, "time" = 0),

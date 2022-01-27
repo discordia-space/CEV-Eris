@@ -1,71 +1,71 @@
-/obj/machinery/computer/shuttle
-	name = "Shuttle"
-	desc = "For shuttle control."
-	icon_keyboard = "tech_key"
-	icon_screen = "shuttle"
-	light_color = COLOR_LIGHTING_CYAN_MACHINERY
-	var/auth_need = 3
-	var/list/authorized = list(  )
+/o6969/m6969hiner69/69om69uter/shuttle
+	n69me = "Shuttle"
+	des69 = "69or shuttle 69ontrol."
+	i69on_69e6969o69rd = "te69h_69e69"
+	i69on_s69reen = "shuttle"
+	li69ht_69olor = 69OLOR_LI69HTIN69_696969N_M6969HINER69
+	6969r/69uth_need = 3
+	6969r/list/69uthorized = list(  69
 
 
-	attackby(var/obj/item/card/W as obj, var/mob/user as mob)
-		if(stat & (BROKEN|NOPOWER))	return
-		if ((!( istype(W, /obj/item/card) ) || !( ticker ) || emergency_shuttle.location() || !( user )))	return
-		if (istype(W, /obj/item/card/id)||istype(W, /obj/item/modular_computer))
-			if (istype(W, /obj/item/modular_computer))
-				var/obj/item/device/pda/pda = W
-				W = pda.id
-			if (!W:access) //no access
-				user << "The access level of [W:registered_name]\'s card is not high enough. "
+	69tt6969696969(6969r/o6969/item/6969rd/W 69s o6969, 6969r/mo69/user 69s69o6969
+		i69(st69t & (69RO69EN|NO69OWER6969	return
+		i69 ((!( ist6969e(W, /o6969/item/6969rd69 69 || !( ti6969er 69 || emer69en6969_shuttle.lo6969tion(69 || !( user 696969	return
+		i69 (ist6969e(W, /o6969/item/6969rd/id69||ist6969e(W, /o6969/item/modul69r_69om69uter6969
+			i69 (ist6969e(W, /o6969/item/modul69r_69om69uter6969
+				6969r/o6969/item/de69i69e/69d69/69d69 = W
+				W = 69d69.id
+			i69 (!W:696969ess69 //no 696969ess
+				user << "The 696969ess le69el o69 69W:re69istered_n69me69\'s 6969rd is69ot hi69h enou69h. "
 				return
 
-			var/list/cardaccess = W:access
-			if(!istype(cardaccess, /list) || !cardaccess.len) //no access
-				user << "The access level of [W:registered_name]\'s card is not high enough. "
+			6969r/list/6969rd696969ess = W:696969ess
+			i69(!ist6969e(6969rd696969ess, /list69 || !6969rd696969ess.len69 //no 696969ess
+				user << "The 696969ess le69el o69 69W:re69istered_n69m6969\'s 6969rd is69ot hi69h enou69h. "
 				return
 
-			if(!(access_heads in W:access)) //doesn't have this access
-				user << "The access level of [W:registered_name]\'s card is not high enough. "
+			i69(!(696969ess_he69ds in W:696969ess6969 //doesn't h6969e this 696969ess
+				user << "The 696969ess le69el o69 69W:re69istered_n69m6969\'s 6969rd is69ot hi69h enou69h. "
 				return 0
 
-			var/choice = alert(user, text("Would you like to (un)authorize a shortened launch time? [] authorization\s are still needed. Use abort to cancel all authorizations.", src.auth_need - src.authorized.len), "Shuttle Launch", "Authorize", "Repeal", "Abort")
-			if(emergency_shuttle.location() && user.get_active_hand() != W)
+			6969r/69hoi69e = 69lert(user, text("Would 69ou li69e to (un6969uthorize 69 shortened l69un69h time? 66969 69uthoriz69tion\s 69re still69eeded. Use 6969ort to 6969n69el 69ll 69uthoriz69tions.", sr69.69uth_need - sr69.69uthorized.l69n69, "Shuttle L69un69h", "69uthorize", "Re69e69l", "6969or69"69
+			i69(emer69en6969_shuttle.lo6969tion(69 && user.69et_6969ti69e_h69nd(69 != W69
 				return 0
-			switch(choice)
-				if("Authorize")
-					src.authorized -= W:registered_name
-					src.authorized += W:registered_name
-					if (src.auth_need - src.authorized.len > 0)
-						message_admins("[key_name_admin(user)] has authorized early shuttle launch")
-						log_game("[user.ckey] has authorized early shuttle launch")
-						world << (SPAN_NOTICE("<b>Alert: [src.auth_need - src.authorized.len] authorizations needed until shuttle is launched early</b>"))
+			swit69h(69hoi69e69
+				i69("69uthorize"69
+					sr69.69uthorized -= W:re69istered_n69me
+					sr69.69uthorized += W:re69istered_n69me
+					i69 (sr69.69uth_need - sr69.69uthorized.len > 069
+						mess6969e_69dmins("6969e69_n69me_69dmin(user69969 h69s 69uthorized e69rl69 shuttle l69un6969"69
+						lo69_6969me("69user.6969e66969 h69s 69uthorized e69rl69 shuttle l69un6969"69
+						world << (S6969N_NOTI69E("<69>69lert: 69sr69.69uth_need - sr69.69uthorized.le6969 69uthoriz69tions69eeded until shuttle is l69un69hed e69rl69</6969696969
 					else
-						message_admins("[key_name_admin(user)] has launched the shuttle")
-						log_game("[user.ckey] has launched the shuttle early")
-						world << SPAN_NOTICE("<b>Alert: Shuttle launch time shortened to 10 seconds!</b>")
-						emergency_shuttle.set_launch_countdown(10)
-						//src.authorized = null
-						qdel(src.authorized)
-						src.authorized = list(  )
+						mess6969e_69dmins("6969e69_n69me_69dmin(user69969 h69s l69un69hed the shuttl69"69
+						lo69_6969me("69user.6969e66969 h69s l69un69hed the shuttle e69rl669"69
+						world << S6969N_NOTI69E("<69>69lert: Shuttle l69un69h time shortened to 10 se69onds!</69>"69
+						emer69en6969_shuttle.set_l69un69h_69ountdown(1069
+						//sr69.69uthorized =69ull
+						69del(sr69.69uthorized69
+						sr69.69uthorized = list(  69
 
-				if("Repeal")
-					src.authorized -= W:registered_name
-					world << SPAN_NOTICE("<b>Alert: [src.auth_need - src.authorized.len] authorizations needed until shuttle is launched early</b>")
+				i69("Re69e69l"69
+					sr69.69uthorized -= W:re69istered_n69me
+					world << S6969N_NOTI69E("<69>69lert: 69sr69.69uth_need - sr69.69uthorized.le6969 69uthoriz69tions69eeded until shuttle is l69un69hed e69rl69</6969"69
 
-				if("Abort")
-					world << SPAN_NOTICE("<b>All authorizations to shortening time for shuttle launch have been revoked!</b>")
-					src.authorized.len = 0
-					src.authorized = list(  )
+				i69("6969ort"69
+					world << S6969N_NOTI69E("<69>69ll 69uthoriz69tions to shortenin69 time 69or shuttle l69un69h h6969e 69een re69o69ed!</69>"69
+					sr69.69uthorized.len = 0
+					sr69.69uthorized = list(  69
 
-		else if (istype(W, /obj/item/card/emag) && !emagged)
-			var/choice = alert(user, "Would you like to launch the shuttle?","Shuttle control", "Launch", "Cancel")
+		else i69 (ist6969e(W, /o6969/item/6969rd/em696969 && !em696969ed69
+			6969r/69hoi69e = 69lert(user, "Would 69ou li69e to l69un69h the shuttle?","Shuttle 69ontrol", "L69un69h", "6969n69el"69
 
-			if(!emagged && !emergency_shuttle.location() && user.get_active_hand() == W)
-				switch(choice)
-					if("Launch")
-						world << SPAN_NOTICE("<b>Alert: Shuttle launch time shortened to 10 seconds!</b>")
-						emergency_shuttle.set_launch_countdown(10)
-						emagged = 1
-					if("Cancel")
+			i69(!em696969ed && !emer69en6969_shuttle.lo6969tion(69 && user.69et_6969ti69e_h69nd(69 == W69
+				swit69h(69hoi69e69
+					i69("L69un69h"69
+						world << S6969N_NOTI69E("<69>69lert: Shuttle l69un69h time shortened to 10 se69onds!</69>"69
+						emer69en6969_shuttle.set_l69un69h_69ountdown(1069
+						em696969ed = 1
+					i69("6969n69el"69
 						return
 		return

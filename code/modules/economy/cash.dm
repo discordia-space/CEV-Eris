@@ -20,7 +20,7 @@
 	access = access_crate_cash
 	var/worth = 0
 
-/obj/item/spacecash/attackby(obj/item/W, mob/user)
+/obj/item/spacecash/attackby(obj/item/W,69ob/user)
 	if(istype(W, /obj/item/spacecash))
 		if(istype(W, /obj/item/spacecash/ewallet))
 			return FALSE
@@ -41,12 +41,12 @@
 			h_user.drop_from_inventory(src)
 			h_user.drop_from_inventory(bundle)
 			h_user.put_in_hands(bundle)
-		to_chat(user, SPAN_NOTICE("You add [src.worth] credits worth of money to the bundles.<br>It holds [bundle.worth] credits now."))
+		to_chat(user, SPAN_NOTICE("You add 69src.worth69 credits worth of69oney to the bundles.<br>It holds 69bundle.worth69 credits now."))
 		qdel(src)
 
 /obj/item/spacecash/Destroy()
 	. = ..()
-	worth = 0		// Prevents money from be duplicated anytime.
+	worth = 0		// Prevents69oney from be duplicated anytime.
 
 /obj/item/spacecash/bundle
 	name = "pile of credits"
@@ -63,25 +63,25 @@
 		while(sum >= i && num < 50)
 			sum -= i
 			num++
-			var/image/banknote = image('icons/obj/items.dmi', "spacecash[i]")
-			var/matrix/M = matrix()
+			var/image/banknote = image('icons/obj/items.dmi', "spacecash69i69")
+			var/matrix/M =69atrix()
 			M.Translate(rand(-6, 6), rand(-4, 8))
-			banknote.transform = M
+			banknote.transform =69
 			src.overlays += banknote
-	if(num == 0) // Less than one credit, let's just make it look like 1 for ease
+	if(num == 0) // Less than one credit, let's just69ake it look like 1 for ease
 		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
-		var/matrix/M = matrix()
+		var/matrix/M =69atrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
-		banknote.transform = M
+		banknote.transform =69
 		src.overlays += banknote
-	src.desc = "They are worth [worth] credits."
+	src.desc = "They are worth 69worth69 credits."
 	if(worth in denominations)
-		src.name = "[worth] credit"
+		src.name = "69worth69 credit"
 	else
 		src.name = "pile of credits"
 
 /obj/item/spacecash/bundle/attack_self()
-	var/amount = input(usr, "How many credits do you want to take? (0 to [src.worth])", "Take Money", 20) as num
+	var/amount = input(usr, "How69any credits do you want to take? (0 to 69src.worth69)", "Take69oney", 20) as num
 	amount = round(CLAMP(amount, 0, src.worth))
 	if(amount==0) return 0
 	else if(!Adjacent(usr))
@@ -94,7 +94,7 @@
 		usr.drop_from_inventory(src)
 		qdel(src)
 	if(amount in list(1000,500,200,100,50,20,5,1))
-		var/cashtype = text2path("/obj/item/spacecash/bundle/c[amount]")
+		var/cashtype = text2path("/obj/item/spacecash/bundle/c69amount69")
 		var/obj/cash = new cashtype (usr.loc)
 		usr.put_in_hands(cash)
 	else
@@ -107,14 +107,14 @@
 	. = ..()
 	AddComponent(/datum/component/inspiration, CALLBACK(src, .proc/return_stats))
 
-/// Returns a list to use with inspirations. It can be empty if there's not enough money in the bundle. Important side-effects: converts worth to points, thus reducing worth.
+/// Returns a list to use with inspirations. It can be empty if there's not enough69oney in the bundle. Important side-effects: converts worth to points, thus reducing worth.
 /obj/item/spacecash/bundle/proc/return_stats()
 	RETURN_TYPE(/list)
-	var/points = min(worth/CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
+	var/points =69in(worth/CASH_PER_STAT, 10) // capped at 10 points per bundle, costs 50k
 	var/list/stats = list()
-	// Distribute points evenly with random statistics. Just skips the loop if there's not enough money in the bundle, resulting in an empty list.
+	// Distribute points evenly with random statistics. Just skips the loop if there's not enough69oney in the bundle, resulting in an empty list.
 	while(points > 0)
-		stats[pick(ALL_STATS)] += 1 // Picks a random stat, if not present it adds it with a value of 1, else it increases the value by 1
+		stats69pick(ALL_STATS)69 += 1 // Picks a random stat, if not present it adds it with a69alue of 1, else it increases the69alue by 1
 		points--
 	worth -= points*CASH_PER_STAT
 	update_icon()
@@ -170,14 +170,14 @@
 	desc = "It's worth 500 credits."
 	worth = 500
 
-// exists here specifically for vagabond since they do not have bank accounts and used to have around 800 credits.
+// exists here specifically for69agabond since they do not have bank accounts and used to have around 800 credits.
 /obj/item/spacecash/bundle/vagabond
 	name = "pile of credits"
 	icon_state = "spacecash500"
 
 /obj/item/spacecash/bundle/vagabond/Initialize()
 	var/rand_amount = rand(700,900)
-	desc = "They are worth [rand_amount] credits."
+	desc = "They are worth 69rand_amount69 credits."
 	worth = rand_amount
 	. = ..()
 
@@ -187,9 +187,9 @@
 	desc = "It's worth 1000 credits."
 	worth = 1000
 
-proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user)
+proc/spawn_money(var/sum, spawnloc,69ob/living/carbon/human/human_user)
 	if(sum in list(1000,500,200,100,50,20,10,1))
-		var/cash_type = text2path("/obj/item/spacecash/bundle/c[sum]")
+		var/cash_type = text2path("/obj/item/spacecash/bundle/c69sum69")
 		var/obj/cash = new cash_type (usr.loc)
 		if(ishuman(human_user) && !human_user.get_active_hand())
 			human_user.put_in_hands(cash)
@@ -204,12 +204,12 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user)
 /obj/item/spacecash/ewallet
 	name = "Charge card"
 	icon_state = "efundcard"
-	desc = "A card that holds an amount of money."
-	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
+	desc = "A card that holds an amount of69oney."
+	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a69alid name on transactions.
 
 /obj/item/spacecash/ewallet/examine(mob/user)
 	..(user)
-	if(!(user in view(2)) && user!=src.loc) return
-	to_chat(user, "\blue Charge card's owner: [src.owner_name]. Credits remaining: [src.worth].")
+	if(!(user in69iew(2)) && user!=src.loc) return
+	to_chat(user, "\blue Charge card's owner: 69src.owner_name69. Credits remaining: 69src.worth69.")
 
 #undef CASH_PER_STAT

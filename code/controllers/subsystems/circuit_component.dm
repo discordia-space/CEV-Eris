@@ -1,4 +1,4 @@
-// This SS manages circuit components; there is another SS that handles power use and init.
+// This SS69anages circuit components; there is another SS that handles power use and init.
 
 SUBSYSTEM_DEF(circuit_components)
 	name = "Circuit Components"
@@ -10,17 +10,17 @@ SUBSYSTEM_DEF(circuit_components)
 	var/position = 1                                 // Helper index to order newly activated components properly
 
 /datum/controller/subsystem/circuit_components/stat_entry()
-	..("C:[queued_components.len]")
+	..("C:69queued_components.len69")
 
 /datum/controller/subsystem/circuit_components/fire(resumed = FALSE)
-	if(paused_ticks >= 10) // The likeliest fail mode, due to the fast tick rate, is that it can never clear the full queue, running resumed every tick and accumulating a backlog.
+	if(paused_ticks >= 10) // The likeliest fail69ode, due to the fast tick rate, is that it can never clear the full queue, running resumed every tick and accumulating a backlog.
 		log_and_message_admins(SPAN_DANGER("Alert. Integrated Circuit Components Subsystem report <b>LEVEL ONE DEFCON</b>, automatically attempt to avoid server lags by disabling IC."))
 		suspend()          // As this SS deals with optional and potentially abusable content, it will autodisable if overtaxing the server.
 		return
 
 	var/list/queued_components = src.queued_components
 	while(length(queued_components))
-		var/list/entry = queued_components[queued_components.len]
+		var/list/entry = queued_components69queued_components.len69
 		position = queued_components.len
 		queued_components.len--
 		if(!length(entry))
@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(circuit_components)
 				break
 			continue
 
-		var/obj/item/integrated_circuit/circuit = entry[1]
+		var/obj/item/integrated_circuit/circuit = entry69169
 		entry.Cut(1,2)
 		if(QDELETED(circuit))
 			if(MC_TICK_CHECK)
@@ -49,7 +49,7 @@ SUBSYSTEM_DEF(circuit_components)
 	..()
 	log_and_message_admins("Circuit component processing has been enabled.")
 
-// Store the entries like this so that components can be queued multiple times at once.
+// Store the entries like this so that components can be queued69ultiple times at once.
 // With immediate set, will generally imitate the order of the call stack if execution happened directly.
 // With immediate off, you go to the bottom of the pile.
 /datum/controller/subsystem/circuit_components/proc/queue_component(obj/item/integrated_circuit/circuit, immediate = TRUE)
@@ -66,8 +66,8 @@ SUBSYSTEM_DEF(circuit_components)
 /datum/controller/subsystem/circuit_components/proc/dequeue_component(obj/item/integrated_circuit/circuit)
 	var/i = 1
 	while(i <= length(queued_components)) // Either i increases or length decreases on every iteration.
-		var/list/entry = queued_components[i]
-		if(length(entry) && entry[1] == circuit)
+		var/list/entry = queued_components69i69
+		if(length(entry) && entry69169 == circuit)
 			queued_components.Cut(i, i+1)
 			if(position > i)
 				position--

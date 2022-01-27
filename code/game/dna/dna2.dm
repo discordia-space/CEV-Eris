@@ -4,7 +4,7 @@
 * @author N3X15 <nexisentertainment@gmail.com>
 */
 
-// What each index means:
+// What each index69eans:
 #define DNA_OFF_LOWERBOUND 0
 #define DNA_OFF_UPPERBOUND 1
 #define DNA_ON_LOWERBOUND  2
@@ -16,7 +16,7 @@
 #define DNA_HARDER_BOUNDS  list(1,3049,3050,4095)
 #define DNA_HARD_BOUNDS    list(1,3490,3500,4095)
 
-// UI Indices (can change to mutblock style, if desired)
+// UI Indices (can change to69utblock style, if desired)
 #define DNA_UI_HAIR_R      1
 #define DNA_UI_HAIR_G      2
 #define DNA_UI_HAIR_B      3
@@ -41,22 +41,22 @@
 //#define DNA_SE_LENGTH 50 // Was STRUCDNASIZE, size 27. 15 new blocks added = 42, plus room to grow.
 
 
-// Defines which values mean "on" or "off".
-//  This is to make some of the more OP superpowers a larger PITA to activate,
-//  and to tell our new DNA datum which values to set in order to turn something
+// Defines which69alues69ean "on" or "off".
+//  This is to69ake some of the69ore OP superpowers a larger PITA to activate,
+//  and to tell our new DNA datum which69alues to set in order to turn something
 //  on or off.
-var/global/list/dna_activity_bounds[DNA_SE_LENGTH]
+var/global/list/dna_activity_bounds69DNA_SE_LENGTH69
 
-// Used to determine what each block means (admin hax and species stuff on /vg/, mostly)
-var/global/list/assigned_blocks[DNA_SE_LENGTH]
+// Used to determine what each block69eans (admin hax and species stuff on /vg/,69ostly)
+var/global/list/assigned_blocks69DNA_SE_LENGTH69
 
-var/global/list/datum/dna/gene/dna_genes[0]
+var/global/list/datum/dna/gene/dna_genes69069
 
 /////////////////
 // GENE DEFINES
 /////////////////
 // Skip checking if it's already active.
-// Used for genes that check for value rather than a binary on/off.
+// Used for genes that check for69alue rather than a binary on/off.
 #define GENE_ALWAYS_ACTIVATE 1
 
 /datum/dna
@@ -64,41 +64,41 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	// DO NOT FUCK WITH THESE OR BYOND WILL EAT YOUR FACE
 	var/uni_identity="" // Encoded UI
 	var/struc_enzymes="" // Encoded SE
-	var/unique_enzymes="" // MD5 of player name
+	var/uni69ue_enzymes="" //69D5 of player name
 
 	// Internal dirtiness checks
 	var/dirtyUI=0
 	var/dirtySE=0
 
 	// Okay to read, but you're an idiot if you do.
-	// BLOCK = VALUE
-	var/list/SE[DNA_SE_LENGTH]
-	var/list/UI[DNA_UI_LENGTH]
+	// BLOCK =69ALUE
+	var/list/SE69DNA_SE_LENGTH69
+	var/list/UI69DNA_UI_LENGTH69
 
 	// From old dna.
-	var/b_type = "A+"  // Should probably change to an integer => string map but I'm lazy.
+	var/b_type = "A+"  // Should probably change to an integer => string69ap but I'm lazy.
 	var/real_name          // Stores the real name of the person who originally got this dna datum. Used primarily for carrions,
 
 	// New stuff
 	var/species = SPECIES_HUMAN
 
-// Make a copy of this strand.
+//69ake a copy of this strand.
 // USE THIS WHEN COPYING STUFF OR YOU'LL GET CORRUPTION!
 /datum/dna/proc/Clone()
 	var/datum/dna/new_dna = new()
-	new_dna.unique_enzymes=unique_enzymes
+	new_dna.uni69ue_enzymes=uni69ue_enzymes
 	new_dna.b_type=b_type
 	new_dna.real_name=real_name
 	new_dna.species=species
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
-		new_dna.SE[b]=SE[b]
+		new_dna.SE69b69=SE69b69
 		if(b<=DNA_UI_LENGTH)
-			new_dna.UI[b]=UI[b]
+			new_dna.UI69b69=UI69b69
 	new_dna.UpdateUI()
 	new_dna.UpdateSE()
 	return new_dna
 ///////////////////////////////////////
-// UNIQUE IDENTITY
+// UNI69UE IDENTITY
 ///////////////////////////////////////
 
 // Create random UI.
@@ -108,7 +108,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 			if(DNA_UI_SKIN_TONE)
 				SetUIValueRange(DNA_UI_SKIN_TONE,rand(1,220),220,1) // Otherwise, it gets fucked
 			else
-				UI[i]=rand(0,4095)
+				UI69i69=rand(0,4095)
 	if(!defer)
 		UpdateUI()
 
@@ -142,7 +142,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetUIValueRange(DNA_UI_SKIN_G,    GetGreenPart(character.skin_color),    255,    1)
 	SetUIValueRange(DNA_UI_SKIN_B,    GetBluePart(character.skin_color),    255,    1)
 
-	SetUIValueRange(DNA_UI_SKIN_TONE, 35-character.s_tone, 220,    1) // Value can be negative.
+	SetUIValueRange(DNA_UI_SKIN_TONE, 35-character.s_tone, 220,    1) //69alue can be negative.
 
 	SetUIState(DNA_UI_GENDER,         character.gender!=MALE,        1)
 
@@ -151,42 +151,42 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	UpdateUI()
 
-// Set a DNA UI block's raw value.
+// Set a DNA UI block's raw69alue.
 /datum/dna/proc/SetUIValue(var/block,var/value,var/defer=0)
 	if (block<=0) return
 	ASSERT(value>0)
 	ASSERT(value<=4095)
-	UI[block]=value
+	UI69block69=value
 	dirtyUI=1
 	if(!defer)
 		UpdateUI()
 
-// Get a DNA UI block's raw value.
+// Get a DNA UI block's raw69alue.
 /datum/dna/proc/GetUIValue(var/block)
 	if (block<=0) return 0
-	return UI[block]
+	return UI69block69
 
-// Set a DNA UI block's value, given a value and a max possible value.
-// Used in hair and facial styles (value being the index and maxvalue being the len of the hairstyle list)
+// Set a DNA UI block's69alue, given a69alue and a69ax possible69alue.
+// Used in hair and facial styles (value being the index and69axvalue being the len of the hairstyle list)
 /datum/dna/proc/SetUIValueRange(var/block,var/value,var/maxvalue,var/defer=0)
 	if (block<=0) return
-	if (value==0) value = 1   // FIXME: hair/beard/eye RGB values if they are 0 are not set, this is a work around we'll encode it in the DNA to be 1 instead.
+	if (value==0)69alue = 1   // FIXME: hair/beard/eye RGB69alues if they are 0 are not set, this is a work around we'll encode it in the DNA to be 1 instead.
 	ASSERT(maxvalue<=4095)
-	var/range = (4095 / maxvalue)
+	var/range = (4095 /69axvalue)
 	if(value)
 		SetUIValue(block,round(value * range),defer)
 
-// Getter version of above.
+// Getter69ersion of above.
 /datum/dna/proc/GetUIValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
 	var/value = GetUIValue(block)
 	return round(1 +(value / 4096)*maxvalue)
 
 // Is the UI gene "on" or "off"?
-// For UI, this is simply a check of if the value is > 2050.
+// For UI, this is simply a check of if the69alue is > 2050.
 /datum/dna/proc/GetUIState(var/block)
 	if (block<=0) return
-	return UI[block] > 2050
+	return UI69block69 > 2050
 
 
 // Set UI gene "on" (1) or "off" (0)
@@ -205,7 +205,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Do not use this unless you absolutely have to.
 // Set a block from a hex string.  This is inefficient.  If you can, use SetUIValue().
-// Used in DNA modifiers.
+// Used in DNA69odifiers.
 /datum/dna/proc/SetUIBlock(var/block,var/value,var/defer=0)
 	if (block<=0) return
 	return SetUIValue(block,hex2num(value),defer)
@@ -216,8 +216,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Do not use this unless you absolutely have to.
 // Set a block from a hex string.  This is inefficient.  If you can, use SetUIValue().
-// Used in DNA modifiers.
-/datum/dna/proc/SetUISubBlock(var/block,var/subBlock, var/newSubBlock, var/defer=0)
+// Used in DNA69odifiers.
+/datum/dna/proc/SetUISubBlock(var/block,var/subBlock,69ar/newSubBlock,69ar/defer=0)
 	if (block<=0) return
 	var/oldBlock=GetUIBlock(block)
 	var/newBlock=""
@@ -238,31 +238,31 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		SetSEValue(i,rand(1,1024),1)
 	UpdateSE()
 
-// Set a DNA SE block's raw value.
+// Set a DNA SE block's raw69alue.
 /datum/dna/proc/SetSEValue(var/block,var/value,var/defer=0)
 	if (block<=0) return
 	ASSERT(value>=0)
 	ASSERT(value<=4095)
-	SE[block]=value
+	SE69block69=value
 	dirtySE=1
 	if(!defer)
 		UpdateSE()
 
-// Get a DNA SE block's raw value.
+// Get a DNA SE block's raw69alue.
 /datum/dna/proc/GetSEValue(var/block)
 	if (block<=0) return 0
-	return SE[block]
+	return SE69block69
 
-// Set a DNA SE block's value, given a value and a max possible value.
-// Might be used for species?
+// Set a DNA SE block's69alue, given a69alue and a69ax possible69alue.
+//69ight be used for species?
 /datum/dna/proc/SetSEValueRange(var/block,var/value,var/maxvalue)
 	if (block<=0) return
 	ASSERT(maxvalue<=4095)
-	var/range = round(4095 / maxvalue)
+	var/range = round(4095 /69axvalue)
 	if(value)
-		SetSEValue(block, value * range - rand(1,range-1))
+		SetSEValue(block,69alue * range - rand(1,range-1))
 
-// Getter version of above.
+// Getter69ersion of above.
 /datum/dna/proc/GetSEValueRange(var/block,var/maxvalue)
 	if (block<=0) return 0
 	var/value = GetSEValue(block)
@@ -273,7 +273,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	if (block<=0) return 0
 	var/list/BOUNDS=GetDNABounds(block)
 	var/value=GetSEValue(block)
-	return (value > BOUNDS[DNA_ON_LOWERBOUND])
+	return (value > BOUNDS69DNA_ON_LOWERBOUND69)
 
 // Set a block "on" or "off".
 /datum/dna/proc/SetSEState(var/block,var/on,var/defer=0)
@@ -281,9 +281,9 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/list/BOUNDS=GetDNABounds(block)
 	var/val
 	if(on)
-		val=rand(BOUNDS[DNA_ON_LOWERBOUND],BOUNDS[DNA_ON_UPPERBOUND])
+		val=rand(BOUNDS69DNA_ON_LOWERBOUND69,BOUNDS69DNA_ON_UPPERBOUND69)
 	else
-		val=rand(1,BOUNDS[DNA_OFF_UPPERBOUND])
+		val=rand(1,BOUNDS69DNA_OFF_UPPERBOUND69)
 	SetSEValue(block,val,defer)
 
 // Get hex-encoded SE block.
@@ -292,11 +292,11 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Do not use this unless you absolutely have to.
 // Set a block from a hex string.  This is inefficient.  If you can, use SetUIValue().
-// Used in DNA modifiers.
+// Used in DNA69odifiers.
 /datum/dna/proc/SetSEBlock(var/block,var/value,var/defer=0)
 	if (block<=0) return
 	var/nval=hex2num(value)
-	//testing("SetSEBlock([block],[value],[defer]): [value] -> [nval]")
+	//testing("SetSEBlock(69block69,69value69,69defer69): 69value69 -> 69nval69")
 	return SetSEValue(block,nval,defer)
 
 /datum/dna/proc/GetSESubBlock(var/block,var/subBlock)
@@ -304,8 +304,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 // Do not use this unless you absolutely have to.
 // Set a sub-block from a hex character.  This is inefficient.  If you can, use SetUIValue().
-// Used in DNA modifiers.
-/datum/dna/proc/SetSESubBlock(var/block,var/subBlock, var/newSubBlock, var/defer=0)
+// Used in DNA69odifiers.
+/datum/dna/proc/SetSESubBlock(var/block,var/subBlock,69ar/newSubBlock,69ar/defer=0)
 	if (block<=0) return
 	var/oldBlock=GetSEBlock(block)
 	var/newBlock=""
@@ -314,7 +314,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 			newBlock+=newSubBlock
 		else
 			newBlock+=copytext(oldBlock,i,i+1)
-	//testing("SetSESubBlock([block],[subBlock],[newSubBlock],[defer]): [oldBlock] -> [newBlock]")
+	//testing("SetSESubBlock(69block69,69subBlock69,69newSubBlock69,69defer69): 69oldBlock69 -> 69newBlock69")
 	SetSEBlock(block,newBlock,defer)
 
 
@@ -325,7 +325,7 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	src.uni_identity=""
 	for(var/block in UI)
 		uni_identity += EncodeDNABlock(block)
-	//testing("New UI: [uni_identity]")
+	//testing("New UI: 69uni_identity69")
 	dirtyUI=0
 
 /datum/dna/proc/UpdateSE()
@@ -333,8 +333,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	struc_enzymes=""
 	for(var/block in SE)
 		struc_enzymes += EncodeDNABlock(block)
-	//testing("Old SE: [oldse]")
-	//testing("New SE: [struc_enzymes]")
+	//testing("Old SE: 69oldse69")
+	//testing("New SE: 69struc_enzymes69")
 	dirtySE=0
 
 // BACK-COMPAT!
@@ -347,8 +347,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 		if(length(struc_enzymes)!= 3*DNA_SE_LENGTH)
 			ResetSE()
 
-		if(length(unique_enzymes) != 32)
-			unique_enzymes = md5(character.real_name)
+		if(length(uni69ue_enzymes) != 32)
+			uni69ue_enzymes =69d5(character.real_name)
 	else
 		if(length(uni_identity) != 3*DNA_UI_LENGTH)
 			uni_identity = "00600200A00E0110148FC01300B0095BD7FD3F4"
@@ -362,5 +362,5 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	ResetSE()
 
-	unique_enzymes = md5(character.real_name)
-	reg_dna[unique_enzymes] = character.real_name
+	uni69ue_enzymes =69d5(character.real_name)
+	reg_dna69uni69ue_enzymes69 = character.real_name

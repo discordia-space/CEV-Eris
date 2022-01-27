@@ -5,7 +5,7 @@
 	item_state = "bgloves"
 	action_button_name = "Toggle Power Glove"
 	price_tag = 500
-	style = STYLE_NEG_HIGH // very powergame much unstylish
+	style = STYLE_NEG_HIGH //69ery powergame69uch unstylish
 	var/stunforce = 0
 	var/agonyforce = 30
 	var/status = FALSE		//whether the thing is on or not
@@ -55,25 +55,25 @@
 		return
 
 	if(cell)
-		to_chat(user, SPAN_NOTICE("Power Glove is [round(cell.percent())]% charged."))
+		to_chat(user, SPAN_NOTICE("Power Glove is 69round(cell.percent())69% charged."))
 	else
 		to_chat(user, SPAN_WARNING("Power Glove does not have a power source installed."))
 
 /obj/item/clothing/gloves/stungloves/attack_self(mob/user)
 	if(cell && cell.check_charge(hitcost))
 		status = !status
-		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
+		to_chat(user, "<span class='notice'>69src69 is now 69status ? "on" : "off"69.</span>")
 		playsound(loc, "sparks", 75, 1, -1)
 		update_icon()
 	else
 		status = FALSE
 		if(!cell)
-			to_chat(user, SPAN_WARNING("[src] does not have a power source!"))
+			to_chat(user, SPAN_WARNING("69src69 does not have a power source!"))
 		else
-			to_chat(user, SPAN_WARNING("[src] is out of charge."))
+			to_chat(user, SPAN_WARNING("69src69 is out of charge."))
 	add_fingerprint(user)
 
-/obj/item/clothing/gloves/stungloves/Touch(mob/living/L, var/proximity)
+/obj/item/clothing/gloves/stungloves/Touch(mob/living/L,69ar/proximity)
 	if(!status)
 		return FALSE
 	if(!istype(L) || !proximity)
@@ -91,16 +91,16 @@
 
 	//stun effects
 	if(affecting)
-		L.visible_message(SPAN_DANGER("[L] has been punched in the [affecting.name] with [src] by [user]!"))
+		L.visible_message(SPAN_DANGER("69L69 has been punched in the 69affecting.name69 with 69src69 by 69user69!"))
 	else
-		L.visible_message(SPAN_DANGER("[L] has been punched with [src] by [user]!"))
+		L.visible_message(SPAN_DANGER("69L69 has been punched with 69src69 by 69user69!"))
 	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 
 	if(deductcharge(hitcost))
 		L.stun_effect_act(stun, agony, user.targeted_organ, src)
-		msg_admin_attack("[key_name(user)] stunned [key_name(L)] with the [src].")
-		user.attack_log += "\[[time_stamp()]\] <font color='red'>Stunned [key_name(L)] with [src]</font>"
-		L.attack_log += "\[[time_stamp()]\] <font color='orange'>Was stunned by [key_name(L)] with [src]</font>"
+		msg_admin_attack("69key_name(user)69 stunned 69key_name(L)69 with the 69src69.")
+		user.attack_log += "\6969time_stamp()69\69 <font color='red'>Stunned 69key_name(L)69 with 69src69</font>"
+		L.attack_log += "\6969time_stamp()69\69 <font color='orange'>Was stunned by 69key_name(L)69 with 69src69</font>"
 
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
@@ -118,7 +118,7 @@
 		status = FALSE
 		update_icon()
 
-/obj/item/clothing/gloves/stungloves/attackby(obj/item/C, mob/living/user)
+/obj/item/clothing/gloves/stungloves/attackby(obj/item/C,69ob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 		update_icon()

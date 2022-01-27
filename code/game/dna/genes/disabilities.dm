@@ -1,7 +1,7 @@
 /////////////////////
 // DISABILITY GENES
 //
-// These activate either a mutation, disability, or sdisability.
+// These activate either a69utation, disability, or sdisability.
 //
 // Gene is always activated.
 /////////////////////
@@ -9,7 +9,7 @@
 /datum/dna/gene/disability
 	name="DISABILITY"
 
-	// Mutation to give (or 0)
+	//69utation to give (or 0)
 	var/mutation=0
 
 	// Disability to give (or 0)
@@ -18,7 +18,7 @@
 	// SDisability to give (or 0)
 	var/sdisability=0
 
-	// Activation message
+	// Activation69essage
 	var/activation_message=""
 
 	// Yay, you're no longer growing 3 arms
@@ -27,34 +27,34 @@
 /datum/dna/gene/disability/can_activate(var/mob/M,var/flags)
 	return 1 // Always set!
 
-/datum/dna/gene/disability/activate(var/mob/M, var/connected, var/flags)
-	if(mutation && !(mutation in M.mutations))
+/datum/dna/gene/disability/activate(var/mob/M,69ar/connected,69ar/flags)
+	if(mutation && !(mutation in69.mutations))
 		M.mutations.Add(mutation)
 	if(disability)
 		M.disabilities|=disability
 	if(sdisability)
 		M.sdisabilities|=sdisability
 	if(activation_message)
-		to_chat(M, SPAN_WARNING("[activation_message]"))
+		to_chat(M, SPAN_WARNING("69activation_message69"))
 	else
-		testing("[name] has no activation message.")
+		testing("69name69 has no activation69essage.")
 
-/datum/dna/gene/disability/deactivate(var/mob/M, var/connected, var/flags)
-	if(mutation && (mutation in M.mutations))
+/datum/dna/gene/disability/deactivate(var/mob/M,69ar/connected,69ar/flags)
+	if(mutation && (mutation in69.mutations))
 		M.mutations.Remove(mutation)
 	if(disability)
 		M.disabilities &= (~disability)
 	if(sdisability)
 		M.sdisabilities &= (~sdisability)
 	if(deactivation_message)
-		to_chat(M, SPAN_WARNING("[deactivation_message]"))
+		to_chat(M, SPAN_WARNING("69deactivation_message69"))
 	else
-		testing("[name] has no deactivation message.")
+		testing("69name69 has no deactivation69essage.")
 
-// Note: Doesn't seem to do squat, at the moment.
+// Note: Doesn't seem to do s69uat, at the69oment.
 /datum/dna/gene/disability/hallucinate
 	name="Hallucinate"
-	activation_message="Your mind says 'Hello'."
+	activation_message="Your69ind says 'Hello'."
 	mutation=mHallucination
 
 	New()
@@ -110,13 +110,13 @@
 
 /datum/dna/gene/disability/deaf
 	name="Deafness"
-	activation_message="It's kinda quiet."
+	activation_message="It's kinda 69uiet."
 	sdisability=DEAF
 
 	New()
 		block=DEAFBLOCK
 
-	activate(var/mob/M, var/connected, var/flags)
+	activate(var/mob/M,69ar/connected,69ar/flags)
 		..(M,connected,flags)
 		M.ear_deaf = 1
 

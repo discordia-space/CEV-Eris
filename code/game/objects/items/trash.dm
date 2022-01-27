@@ -1,5 +1,5 @@
 //Items labled as 'trash' for the trash bag.
-//TODO: Make this an item var or something...
+//TODO:69ake this an item69ar or something...
 
 /obj/item/trash
 	name = "trash"
@@ -10,7 +10,7 @@
 	spawn_tags = SPAWN_TAG_JUNK
 	matter = list(MATERIAL_PLASTIC = 1)
 
-/obj/item/trash/attack(mob/M, mob/living/user)
+/obj/item/trash/attack(mob/M,69ob/living/user)
 	return
 
 
@@ -66,9 +66,9 @@
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
 
-/obj/item/trash/liquidfood
-	name = "\improper \"LiquidFood\" ration"
-	icon_state = "liquidfood"
+/obj/item/trash/li69uidfood
+	name = "\improper \"Li69uidFood\" ration"
+	icon_state = "li69uidfood"
 
 /obj/item/trash/tastybread
 	name = "bread tube"

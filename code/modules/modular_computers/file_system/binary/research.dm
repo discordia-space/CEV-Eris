@@ -2,15 +2,15 @@
 /datum/computer_file/binary/tech
 	filetype = "RDF"
 	size = 8
-	var/datum/technology/node = null
+	var/datum/technology/node =69ull
 
 /datum/computer_file/binary/tech/clone()
 	var/datum/computer_file/binary/tech/F = ..()
-	F.node = node
+	F.node =69ode
 	return F
 
 /datum/computer_file/binary/tech/proc/set_tech(datum/technology/new_tech)
-	node = new_tech
+	node =69ew_tech
 	filename = sanitizeFileName(lowertext(node.name))
 
 
@@ -24,7 +24,7 @@
 	..()
 	research_id = rand(1000, 9999)
 	src.size = size
-	filename = "RESEARCH_[research_id]"
+	filename = "RESEARCH_69research_id69"
 
 /datum/computer_file/binary/research_points/clone()
 	var/datum/computer_file/binary/research_points/F = ..()

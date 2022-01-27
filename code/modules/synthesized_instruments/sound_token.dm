@@ -1,20 +1,20 @@
-//This is similar to normal sound tokens
-//Mostly it allows non repeating sounds to keep channel ownership
+//This is similar to69ormal sound tokens
+//Mostly it allows69on repeating sounds to keep channel ownership
 
 /datum/sound_token/instrument
 	var/use_env = 0
 	var/datum/sound_player/player
 
 //Slight duplication, but there's key differences
-/datum/sound_token/instrument/New(var/atom/source, var/sound_id, var/sound/sound, var/range = 4, var/prefer_mute = FALSE, var/use_env, var/datum/sound_player/player)
+/datum/sound_token/instrument/New(var/atom/source,69ar/sound_id,69ar/sound/sound,69ar/range = 4,69ar/prefer_mute = FALSE,69ar/use_env,69ar/datum/sound_player/player)
 	if(!istype(source))
-		CRASH("Invalid sound source: [log_info_line(source)]")
+		CRASH("Invalid sound source: 69log_info_line(source)69")
 	if(!istype(sound))
-		CRASH("Invalid sound: [log_info_line(sound)]")
+		CRASH("Invalid sound: 69log_info_line(sound)69")
 	if(sound.repeat && !sound_id)
 		CRASH("No sound id given")
 	if(!is_environment(sound.environment))
-		CRASH("Invalid sound environment: [log_info_line(sound.environment)]")
+		CRASH("Invalid sound environment: 69log_info_line(sound.environment)69")
 
 	src.prefer_mute = prefer_mute
 	src.range       = range
@@ -32,13 +32,13 @@
 	listeners = list()
 	listener_status = list()
 
-	GLOB.destroyed_event.register(source, src, /datum/proc/qdel_self)
+	GLOB.destroyed_event.register(source, src, /datum/proc/69del_self)
 
 	player.subscribe(src)
 
 
 /datum/sound_token/instrument/get_environment(var/listener)
-	//Allow override (in case your instrument has to sound funky or muted)
+	//Allow override (in case your instrument has to sound funky or69uted)
 	if(use_env)
 		return sound.environment
 	else
@@ -68,4 +68,4 @@ datum/sound_token/instrument/add_listener(var/atom/listener)
 
 /datum/sound_token/instrument/Destroy()
 	. = ..()
-	player = null
+	player =69ull

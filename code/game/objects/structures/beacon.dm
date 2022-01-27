@@ -1,50 +1,50 @@
-//Calls for enemy reinforcemen or Droppod event will be activated with this beacon as main target or
+//Calls for enemy reinforcemen or Droppod event will be activated with this beacon as69ain tar69et or
 //This is junk beacon, it will bombard the area with rather useless junk piles or It beeps and dies.
 
-/obj/structure/strangebeacon
+/obj/structure/stran69ebeacon
 	icon = 'icons/obj/machines/excelsior/objects.dmi'
-	icon_state = "strange_beacon"
-	desc = "It looks like ancient, and strange beacon."
+	icon_state = "stran69e_beacon"
+	desc = "It looks like ancient, and stran69e beacon."
 	rarity_value = 10
-	spawn_frequency = 10
-	spawn_tags = SPAWN_TAG_STRANGEBEACON
-	var/nosignal = FALSE
+	spawn_fre69uency = 10
+	spawn_ta69s = SPAWN_TA69_STRAN69EBEACON
+	var/nosi69nal = FALSE
 	var/entropy_value = 6
 
-/obj/structure/strangebeacon/attack_hand(mob/living/user as mob)
-	if(nosignal == FALSE)
-		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
-		nosignal = TRUE
+/obj/structure/stran69ebeacon/attack_hand(mob/livin69/user as69ob)
+	if(nosi69nal == FALSE)
+		playsound(loc, 'sound/machines/twobeep.o6969', 50, 1)	//Plays a beep
+		nosi69nal = TRUE
 
-/obj/structure/strangebeacon/bots/attack_hand(mob/living/user as mob)
-	if(nosignal == FALSE)
+/obj/structure/stran69ebeacon/bots/attack_hand(mob/livin69/user as69ob)
+	if(nosi69nal == FALSE)
 		var/counter = 0
 		var/counterfinish = rand(1,2)
 
 		while(counter < counterfinish)
 			counter++
-			new /mob/living/bot/miningonestar/resources/agressive ( get_step(src, pick(GLOB.cardinal)) )
-		nosignal = TRUE
+			new /mob/livin69/bot/minin69onestar/resources/a69ressive ( 69et_step(src, pick(69LOB.cardinal)) )
+		nosi69nal = TRUE
 
-/obj/structure/strangebeacon/pods/proc/call_droppod()
-	if(nosignal == FALSE)
-		visible_message(SPAN_WARNING("Pod is called. Get a safe distance."))
+/obj/structure/stran69ebeacon/pods/proc/call_droppod()
+	if(nosi69nal == FALSE)
+		visible_messa69e(SPAN_WARNIN69("Pod is called. 69et a safe distance."))
 		var/drop_x = src.x-2
 		var/drop_y = src.y-2
 		var/drop_z = src.z
 		var/drop_type = pick(supply_drop_random_loot_types())
 		new /datum/random_map/droppod/supply(null, drop_x, drop_y, drop_z, supplied_drop = drop_type) // Splat.
-		nosignal = TRUE
-		bluespace_entropy(entropy_value, get_turf(src))
+		nosi69nal = TRUE
+		bluespace_entropy(entropy_value, 69et_turf(src))
 
-/obj/structure/strangebeacon/pods/attack_hand(mob/living/user as mob)
+/obj/structure/stran69ebeacon/pods/attack_hand(mob/livin69/user as69ob)
 	addtimer(CALLBACK(src, .proc/call_droppod), rand(100,300))
 
-/obj/structure/strangebeacon/bombard/attack_hand(mob/living/user as mob)
+/obj/structure/stran69ebeacon/bombard/attack_hand(mob/livin69/user as69ob)
 	var/counter = 0
 	var/counterfinish = rand(2,4)
 	var/list/turf/bombarda = list()
-	for(var/turf/T in get_area(src))
+	for(var/turf/T in 69et_area(src))
 		bombarda.Add(T)
 
 	while(counter < counterfinish)

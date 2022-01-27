@@ -1,6 +1,6 @@
 /datum/trade_station/suit_up
 	name_pool = list(
-		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!':\n\"Suits, voidsuits and more for you, traveler!\""
+		"ATB 'Suit Up!'" = "Aster's Trade Beacon 'Suit Up!':\n\"Suits,69oidsuits and69ore for you, traveler!\""
 	)
 	start_discovered = TRUE
 	spawn_always = TRUE

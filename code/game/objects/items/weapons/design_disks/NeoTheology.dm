@@ -1,6 +1,6 @@
 // NeoTheology
 
-// Foodstuffs, fertilizers, medical and cleaning utilities
+// Foodstuffs, fertilizers,69edical and cleaning utilities
 /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter
 	disk_name = "NeoTheology Bioprinter Products and Utilities"
 	icon_state = "neotheology"
@@ -102,7 +102,7 @@
    		/datum/design/autolathe/device/headset_church
 	)
 
-// Kinda like the regular product NT disk, minus the grenades, soap and the cleaner carbine. Should spawn in public access bioprinters if they get added by any chance.
+// Kinda like the regular product NT disk,69inus the grenades, soap and the cleaner carbine. Should spawn in public access bioprinters if they get added by any chance.
 /obj/item/computer_hardware/hard_drive/portable/design/nt_bioprinter_public
 	disk_name = "NeoTheology Bioprinter Pack"
 	icon_state = "neotheology"
@@ -134,7 +134,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/crusader
-	disk_name = "NeoTheology Armory - Neotheology Armor and Voidsuits"
+	disk_name = "NeoTheology Armory - Neotheology Armor and69oidsuits"
 	icon_state = "neotheology"
 	designs = list(
 		/datum/design/autolathe/nt/helmet/crusader,
@@ -149,14 +149,14 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt
-	disk_name = "NeoTheology Armory - NeoTheology Medkit"
+	disk_name = "NeoTheology Armory - NeoTheology69edkit"
 	icon_state = "neotheology"
 	designs = list(
 		/datum/design/autolathe/firstaid/nt
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/melee
-	disk_name = "NeoTheology Armory - Basic Melee Weapons"
+	disk_name = "NeoTheology Armory - Basic69elee Weapons"
 	icon_state = "neotheology"
 	designs = list(
 		/datum/design/autolathe/nt/sword/nt_sword,
@@ -167,7 +167,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/nt/advancedmelee
-	disk_name = "NeoTheology Armory - Advanced Melee Weapons"
+	disk_name = "NeoTheology Armory - Advanced69elee Weapons"
 	icon_state = "neotheology"
 	designs = list(
 		/datum/design/bioprinter/storage/sheath,
@@ -249,13 +249,13 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_valkyrie
-	disk_name = "NeoTheology Armory - Valkyrie Energy Rifle"
+	disk_name = "NeoTheology Armory -69alkyrie Energy Rifle"
 	icon_state = "neotheology"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 50
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/sniperrifle = 3, //"NT MER \"Valkyrie\""
+		/datum/design/autolathe/gun/sniperrifle = 3, //"NT69ER \"Valkyrie\""
 		/datum/design/autolathe/cell/medium/high,
 	)
 
@@ -303,7 +303,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/nt_mk58
-	disk_name = "NeoTheology Armory - .35 MK58 Handgun Pack"
+	disk_name = "NeoTheology Armory - .3569K58 Handgun Pack"
 	icon_state = "neotheology"
 	rarity_value = 9
 	license = 12

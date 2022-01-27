@@ -1,943 +1,943 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+//MAP CON69ERTED BY dmm2t69m.py THIS HEADER COMMENT PRE69ENTS RECON69ERSION, DO69OT REMO69E
 "af" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/dense,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "ak" = (
-/obj/spawner/scrap/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "am" = (
-/obj/spawner/material/building,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/material/buildin69,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "aA" = (
-/obj/structure/sign/faction/one_star{
+/ob69/structure/si69n/faction/one_star{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "aD" = (
-/obj/structure/inflatable/door,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/inflatable/door,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "aH" = (
-/obj/structure/closet/onestar/tier2,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/closet/onestar/tier2,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "aL" = (
-/obj/structure/bed/padded,
-/obj/item/bedsheet/medical,
-/obj/spawner/medical,
-/obj/machinery/light_construct,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
-"bv" = (
-/obj/structure/sign/department/medbay{
+/ob69/structure/bed/padded,
+/ob69/item/bedsheet/medical,
+/ob69/spawner/medical,
+/ob69/machinery/li69ht_construct,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
+"b69" = (
+/ob69/structure/si69n/department/medbay{
 	pixel_x = 32
 	},
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "bH" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "bS" = (
-/obj/structure/barricade,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/barricade,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "cm" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/spawner/scrap/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/low_chance,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "cp" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "cu" = (
-/obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/closet/onestar/tier3,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "cP" = (
-/obj/spawner/junk/low_chance,
+/ob69/spawner/69unk/low_chance,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "cX" = (
-/obj/structure/sign/faction/one_star{
+/ob69/structure/si69n/faction/one_star{
 	pixel_y = -32
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"dj" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"d69" = (
+/ob69/spawner/scrap/dense,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "dr" = (
-/obj/structure/bed/chair/custom/onestar/red{
+/ob69/structure/bed/chair/custom/onestar/red{
 	dir = 4
 	},
-/obj/item/tool/sword/katana,
-/obj/item/remains,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/item/tool/sword/katana,
+/ob69/item/remains,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "ds" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/mob/li69in69/simple_animal/hostile/roomba/69un_ba,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "dN" = (
-/obj/structure/bed/chair/custom/onestar/red{
+/ob69/structure/bed/chair/custom/onestar/red{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "et" = (
 /turf/simulated/wall/untinted/onestar,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "eH" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"fv" = (
-/obj/structure/table/onestar,
-/obj/item/clothing/accessory/medal/nobel_science,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"gH" = (
-/obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"f69" = (
+/ob69/structure/table/onestar,
+/ob69/item/clothin69/accessory/medal/nobel_science,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"69H" = (
+/ob69/structure/sal69a69eable/os/data,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "hh" = (
-/obj/machinery/door/airlock/sandstone{
+/ob69/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "hn" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
-"hq" = (
-/obj/item/material/shard,
-/obj/item/material/shard,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
-"hG" = (
-/obj/structure/table/onestar,
-/obj/machinery/door/window/southright,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
+"h69" = (
+/ob69/item/material/shard,
+/ob69/item/material/shard,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
+"h69" = (
+/ob69/structure/table/onestar,
+/ob69/machinery/door/window/southri69ht,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "hW" = (
-/obj/structure/lattice,
+/ob69/structure/lattice,
 /turf/template_noop,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "ic" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "ip" = (
-/obj/structure/medical_stand,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/medical_stand,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "iy" = (
-/obj/structure/sink{
+/ob69/structure/sink{
 	dir = 8;
 	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "iD" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "iR" = (
-/obj/spawner/techpart,
+/ob69/spawner/techpart,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
-"jj" = (
-/obj/structure/sign/derelict3{
+/area/outpost/blacksite/small69
+"6969" = (
+/ob69/structure/si69n/derelict3{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
-"jw" = (
-/obj/structure/window/reinforced,
-/obj/structure/bed/chair/office/dark{
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
+"69w" = (
+/ob69/structure/window/reinforced,
+/ob69/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"jA" = (
-/obj/structure/table/onestar,
-/obj/spawner/junkfood/rotten,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69A" = (
+/ob69/structure/table/onestar,
+/ob69/spawner/69unkfood/rotten,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
-"jJ" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
-"kj" = (
-/obj/machinery/door/window/northright{
+/area/outpost/blacksite/small69
+"6969" = (
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
+"k69" = (
+/ob69/machinery/door/window/northri69ht{
 	dir = 2
 	},
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/spawner/scrap/low_chance,
+/ob69/spawner/scrap/low_chance,
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "kl" = (
-/obj/structure/table/onestar,
+/ob69/structure/table/onestar,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "kA" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "li" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/normal,
+/ob69/structure/table/rack,
+/ob69/spawner/69un/normal,
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
-"lq" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
+"l69" = (
+/ob69/spawner/scrap/dense,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "lE" = (
-/obj/structure/window/reinforced,
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/window/reinforced,
+/ob69/spawner/69unk,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "lM" = (
-/obj/machinery/light_construct{
+/ob69/machinery/li69ht_construct{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "lZ" = (
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "mo" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/normal,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/rack,
+/ob69/spawner/69un/normal,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "mO" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "nl" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "ns" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/item/pen/blue,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/ob69/item/pen/blue,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "nw" = (
-/obj/structure/window/reinforced,
-/obj/effect/floor_decal/industrial/warning{
+/ob69/structure/window/reinforced,
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "nI" = (
-/obj/machinery/door/airlock/sandstone{
+/ob69/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
-"nJ" = (
-/obj/structure/table/rack,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
+"n69" = (
+/ob69/structure/table/rack,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "oM" = (
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "oU" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
+/ob69/effect/window_lwall_spawn/smartspawn/onestar,
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "po" = (
-/obj/structure/bed,
-/obj/item/bedsheet/brown,
+/ob69/structure/bed,
+/ob69/item/bedsheet/brown,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "pw" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/item/remains/human,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "pT" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/remains/human,
-/obj/spawner/gun/cheap,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"qm" = (
-/obj/structure/bed/chair/custom/onestar{
+/ob69/item/remains/human,
+/ob69/spawner/69un/cheap,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69m" = (
+/ob69/structure/bed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
-"qp" = (
-/obj/structure/largecrate,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
+"69p" = (
+/ob69/structure/lar69ecrate,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "rw" = (
-/obj/item/remains/human,
-/obj/item/tool/knife/shiv,
+/ob69/item/remains/human,
+/ob69/item/tool/knife/shi69,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "rx" = (
-/obj/structure/closet/onestar/tier3,
+/ob69/structure/closet/onestar/tier3,
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "ry" = (
-/obj/machinery/body_scanconsole,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/machinery/body_scanconsole,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "rH" = (
-/obj/structure/sign/derelict1{
+/ob69/structure/si69n/derelict1{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "rI" = (
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "rM" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/mob/li69in69/simple_animal/hostile/roomba/69un_ba,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "rZ" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/item/remains/human,
-/obj/item/clothing/accessory/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"sj" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
+/ob69/item/remains/human,
+/ob69/item/clothin69/accessory/red,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"s69" = (
+/mob/li69in69/simple_animal/hostile/roomba/69un_ba,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "ss" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "st" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/ob69/item/de69ice/li69htin69/to6969leable/lamp,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "sM" = (
-/obj/spawner/junk,
-/obj/spawner/scrap/sparse,
+/ob69/spawner/69unk,
+/ob69/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
-"sQ" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
+"s69" = (
+/ob69/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "sU" = (
-/obj/structure/table/onestar{
+/ob69/structure/table/onestar{
 	flipped = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"tq" = (
-/obj/structure/window/reinforced{
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"t69" = (
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "tD" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/item/clothing/accessory/locket,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/ob69/item/clothin69/accessory/locket,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "ut" = (
-/obj/spawner/junkfood/rotten,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unkfood/rotten,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "uA" = (
-/obj/structure/undies_wardrobe,
+/ob69/structure/undies_wardrobe,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
-"vi" = (
-/obj/structure/salvageable/os/console_broken,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"vl" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
-"vq" = (
-/obj/structure/window/reinforced{
+/area/outpost/blacksite/small69
+"69i" = (
+/ob69/structure/sal69a69eable/os/console_broken,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"69l" = (
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
+"6969" = (
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"vO" = (
-/obj/structure/closet/onestar/tier3,
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69O" = (
+/ob69/structure/closet/onestar/tier3,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "wu" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "wy" = (
-/obj/item/remains/human,
-/obj/item/clothing/accessory/horrible,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/item/remains/human,
+/ob69/item/clothin69/accessory/horrible,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "xa" = (
 /turf/simulated/mineral,
-/area/template_noop)
+/area/template_noop69
 "xw" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "xD" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/ob69/item/modular_computer/laptop/preset/custom_loadout/cheap,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "xF" = (
-/obj/structure/sign/derelict2{
+/ob69/structure/si69n/derelict2{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "xS" = (
-/obj/structure/table/onestar,
-/obj/item/device/lighting/toggleable/lamp/green,
+/ob69/structure/table/onestar,
+/ob69/item/de69ice/li69htin69/to6969leable/lamp/69reen,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "yb" = (
-/obj/structure/bed/chair/custom/onestar/red{
+/ob69/structure/bed/chair/custom/onestar/red{
 	dir = 1
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "yc" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "yB" = (
-/obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/medical_lowcost,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "yK" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/item/stamp/chameleon,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"yQ" = (
-/obj/machinery/door/airlock/vault/bolted,
+/ob69/structure/table/onestar,
+/ob69/item/stamp/chameleon,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"y69" = (
+/ob69/machinery/door/airlock/69ault/bolted,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "zU" = (
-/obj/structure/inflatable/wall,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/inflatable/wall,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "zZ" = (
-/obj/machinery/door/airlock/sandstone{
+/ob69/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "An" = (
-/obj/machinery/door/window/northright{
+/ob69/machinery/door/window/northri69ht{
 	dir = 2
 	},
-/obj/effect/floor_decal/industrial/warning{
+/ob69/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "At" = (
-/obj/structure/medical_stand,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"AG" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/obj/item/clothing/accessory/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/medical_stand,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"A69" = (
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/ob69/item/clothin69/accessory/red,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "AS" = (
-/obj/structure/salvageable/os/computer,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/sal69a69eable/os/computer,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "AY" = (
-/obj/structure/bed/chair/custom/onestar/red,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/bed/chair/custom/onestar/red,
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "AZ" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "BT" = (
-/obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/sal69a69eable/os/ser69er,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "Co" = (
-/obj/item/bodybag,
-/obj/item/reagent_containers/glass/bottle/antitoxin{
+/ob69/item/bodyba69,
+/ob69/item/rea69ent_containers/69lass/bottle/antitoxin{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/glass/bottle/inaprovaline{
+/ob69/item/rea69ent_containers/69lass/bottle/inapro69aline{
 	pixel_x = 4;
 	pixel_y = 7
 	},
-/obj/item/reagent_containers/syringe,
-/obj/item/reagent_containers/syringe/spaceacillin,
-/obj/item/reagent_containers/syringe/spaceacillin,
-/obj/structure/table/onestar,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/item/rea69ent_containers/syrin69e,
+/ob69/item/rea69ent_containers/syrin69e/spaceacillin,
+/ob69/item/rea69ent_containers/syrin69e/spaceacillin,
+/ob69/structure/table/onestar,
+/ob69/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "Cw" = (
-/obj/structure/grille/broken,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/69rille/broken,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "Cz" = (
-/obj/structure/toilet{
+/ob69/structure/toilet{
 	dir = 8
 	},
-/obj/machinery/light{
+/ob69/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/lowkeyrandom,
+/ob69/spawner/lowkeyrandom,
 /turf/simulated/floor/tiled/cafe/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "CY" = (
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "DU" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Ea" = (
-/obj/spawner/scrap/sparse/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/sparse/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "EP" = (
-/obj/spawner/junk/low_chance,
+/ob69/spawner/69unk/low_chance,
 /turf/template_noop,
-/area/template_noop)
-"Fj" = (
-/obj/structure/window/basic,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/area/template_noop69
+"F69" = (
+/ob69/structure/window/basic,
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Fp" = (
-/obj/structure/sign/faction/one_star_old{
+/ob69/structure/si69n/faction/one_star_old{
 	pixel_y = -32
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "Fs" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
-"Gu" = (
-/obj/spawner/junk/low_chance,
-/obj/structure/sign/derelict3{
+/ob69/spawner/scrap/sparse,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
+"69u" = (
+/ob69/spawner/69unk/low_chance,
+/ob69/structure/si69n/derelict3{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"GH" = (
-/obj/spawner/scrap/low_chance,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69H" = (
+/ob69/spawner/scrap/low_chance,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "Hw" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "HP" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/obj/item/pen/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/ob69/item/pen/red,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "HY" = (
-/obj/spawner/gun_parts/low_chance,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69un_parts/low_chance,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "Ib" = (
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "Ii" = (
-/obj/structure/sign/faction/one_star{
+/ob69/structure/si69n/faction/one_star{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "In" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "IF" = (
-/obj/machinery/bodyscanner,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/machinery/bodyscanner,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "IK" = (
-/obj/structure/lattice,
-/obj/spawner/junkfood/rotten,
+/ob69/structure/lattice,
+/ob69/spawner/69unkfood/rotten,
 /turf/template_noop,
-/area/template_noop)
-"Jp" = (
-/obj/structure/window/reinforced{
+/area/template_noop69
+"69p" = (
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/obj/item/pen,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"Jq" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/ob69/item/pen,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"6969" = (
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"JB" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"JN" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"KG" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69B" = (
+/ob69/spawner/69unk/low_chance,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69N" = (
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"K69" = (
+/ob69/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "KX" = (
-/obj/spawner/scrap/low_chance,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/low_chance,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Lm" = (
-/obj/structure/table/onestar,
-/obj/item/tool/screwdriver/combi_driver/onestar,
-/obj/item/tool/crowbar/onestar,
-/obj/spawner/prothesis_one_star,
-/obj/spawner/prothesis_one_star,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/ob69/item/tool/screwdri69er/combi_dri69er/onestar,
+/ob69/item/tool/crowbar/onestar,
+/ob69/spawner/prothesis_one_star,
+/ob69/spawner/prothesis_one_star,
+/ob69/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "LO" = (
-/obj/machinery/light_construct{
+/ob69/machinery/li69ht_construct{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "LU" = (
-/obj/spawner/mob/roomba,
-/obj/structure/sign/faction/one_star_old{
+/ob69/spawner/mob/roomba,
+/ob69/structure/si69n/faction/one_star_old{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "Md" = (
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unkfood/rotten/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "Ms" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/mob/li69in69/simple_animal/hostile/roomba/69un_ba,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "Mx" = (
-/obj/structure/salvageable/os/implant_container,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/sal69a69eable/os/implant_container,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "MP" = (
-/obj/machinery/door/airlock/sandstone{
+/ob69/machinery/door/airlock/sandstone{
 	name = "OneStar Airlock"
 	},
 /turf/simulated/floor/tiled/derelict/airless,
-/area/outpost/blacksite/small)
-"MQ" = (
-/obj/spawner/mob/roomba,
+/area/outpost/blacksite/small69
+"M69" = (
+/ob69/spawner/mob/roomba,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "Nl" = (
-/obj/structure/window/basic,
-/obj/structure/bed/chair/custom/onestar/red,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/window/basic,
+/ob69/structure/bed/chair/custom/onestar/red,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "NB" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "NO" = (
-/obj/spawner/scrap/sparse,
+/ob69/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/cafe/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "Od" = (
-/obj/spawner/pack/machine,
+/ob69/spawner/pack/machine,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
-"Ov" = (
-/obj/structure/window/reinforced,
-/obj/structure/bed/chair/office/dark{
+/area/outpost/blacksite/small69
+"O69" = (
+/ob69/structure/window/reinforced,
+/ob69/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "OY" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/item/remains/human,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/item/remains/human,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Pb" = (
-/obj/spawner/scrap/low_chance,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/low_chance,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "Pl" = (
-/obj/spawner/scrap/dense,
+/ob69/spawner/scrap/dense,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "Pm" = (
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "Pp" = (
-/obj/structure/lattice,
+/ob69/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
+/area/template_noop69
 "PZ" = (
-/obj/structure/sign/derelict1{
+/ob69/structure/si69n/derelict1{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"Qm" = (
-/obj/machinery/light_construct{
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"69m" = (
+/ob69/machinery/li69ht_construct{
 	dir = 8
 	},
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"Qq" = (
-/obj/structure/bed,
+/mob/li69in69/simple_animal/hostile/roomba/69un_ba,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"6969" = (
+/ob69/structure/bed,
 /turf/simulated/floor/tiled/dark/brown_platform/airless,
-/area/outpost/blacksite/small)
-"QU" = (
-/obj/spawner/junk,
+/area/outpost/blacksite/small69
+"69U" = (
+/ob69/spawner/69unk,
 /turf/simulated/floor/tiled/cafe/airless,
-/area/outpost/blacksite/small)
-"Rj" = (
-/obj/machinery/optable,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
+"R69" = (
+/ob69/machinery/optable,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Ry" = (
-/obj/structure/sign/faction/one_star_old{
+/ob69/structure/si69n/faction/one_star_old{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "Rz" = (
-/obj/spawner/medical_lowcost,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/medical_lowcost,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "RE" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
 "RL" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Sf" = (
-/obj/structure/table/onestar,
-/obj/structure/window/basic,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/ob69/structure/window/basic,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "SA" = (
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
 "Tc" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/mob/roomba,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Tm" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/item/pen/crayon,
-/obj/item/pen/crayon/blue,
-/obj/item/pen/crayon/mime,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"Uj" = (
-/obj/structure/closet/secure_closet/medicine,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/table/onestar,
+/ob69/item/pen/crayon,
+/ob69/item/pen/crayon/blue,
+/ob69/item/pen/crayon/mime,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"U69" = (
+/ob69/structure/closet/secure_closet/medicine,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 "Ul" = (
-/obj/structure/grille,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
-"Uq" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/structure/69rille,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
+"U69" = (
+/ob69/spawner/69unk,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "Ux" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/table/onestar,
-/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"VB" = (
-/obj/structure/satellite/science,
-/turf/simulated/floor/plating/under/airless,
-/area/outpost/blacksite/small)
-"VM" = (
-/obj/structure/window/reinforced,
-/obj/structure/table/onestar,
-/obj/item/pen/blue,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"VN" = (
-/obj/structure/window/reinforced{
+/ob69/structure/table/onestar,
+/ob69/item/modular_computer/laptop/preset/custom_loadout/cheap,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69B" = (
+/ob69/structure/satellite/science,
+/turf/simulated/floor/platin69/under/airless,
+/area/outpost/blacksite/small69
+"69M" = (
+/ob69/structure/window/reinforced,
+/ob69/structure/table/onestar,
+/ob69/item/pen/blue,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"69N" = (
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/bed/chair/office/dark{
+/ob69/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "Ww" = (
-/obj/machinery/light/floor,
+/ob69/machinery/li69ht/floor,
 /turf/simulated/floor/wood/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "XL" = (
-/obj/structure/window/reinforced{
+/ob69/structure/window/reinforced{
 	dir = 4
 	},
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/spawner/69unk,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
 "XM" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "YC" = (
-/obj/structure/table/onestar,
-/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/outpost/blacksite/small)
-"YV" = (
-/obj/item/roller{
+/ob69/structure/table/onestar,
+/ob69/item/modular_computer/laptop/preset/custom_loadout/cheap,
+/turf/simulated/floor/tiled/derelict/white_bi69_ed69es/airless,
+/area/outpost/blacksite/small69
+"Y69" = (
+/ob69/item/roller{
 	pixel_y = 8
 	},
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/blood/OMinus,
-/obj/item/reagent_containers/syringe/spaceacillin,
-/obj/structure/table/onestar,
-/obj/spawner/medical,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/outpost/blacksite/small)
+/ob69/item/rea69ent_containers/blood/OMinus,
+/ob69/item/rea69ent_containers/blood/OMinus,
+/ob69/item/rea69ent_containers/syrin69e/spaceacillin,
+/ob69/structure/table/onestar,
+/ob69/spawner/medical,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/outpost/blacksite/small69
 "Zu" = (
-/obj/structure/sink{
+/ob69/structure/sink{
 	dir = 8;
 	pixel_x = -11
 	},
-/obj/structure/mirror{
+/ob69/structure/mirror{
 	dir = 8;
 	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/cafe/airless,
-/area/outpost/blacksite/small)
+/area/outpost/blacksite/small69
 "ZF" = (
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/outpost/blacksite/small)
-"ZQ" = (
-/obj/structure/sign/faction/one_star{
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/outpost/blacksite/small69
+"Z69" = (
+/ob69/structure/si69n/faction/one_star{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/outpost/blacksite/small)
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/outpost/blacksite/small69
 
-(1,1,1) = {"
+(1,1,169 = {"
 CY
 CY
 CY
@@ -983,7 +983,7 @@ lZ
 xa
 xa
 "}
-(2,1,1) = {"
+(2,1,169 = {"
 CY
 CY
 CY
@@ -1029,7 +1029,7 @@ lZ
 xa
 xa
 "}
-(3,1,1) = {"
+(3,1,169 = {"
 CY
 CY
 CY
@@ -1049,7 +1049,7 @@ SA
 iD
 iD
 iD
-JB
+69B
 AZ
 CY
 CY
@@ -1075,7 +1075,7 @@ AZ
 xa
 xa
 "}
-(4,1,1) = {"
+(4,1,169 = {"
 CY
 CY
 CY
@@ -1091,11 +1091,11 @@ CY
 CY
 CY
 lZ
-JB
+69B
 iD
-JB
+69B
 iD
-KG
+K69
 lZ
 CY
 CY
@@ -1121,7 +1121,7 @@ Pp
 xa
 CY
 "}
-(5,1,1) = {"
+(5,1,169 = {"
 CY
 CY
 CY
@@ -1167,7 +1167,7 @@ Pp
 CY
 CY
 "}
-(6,1,1) = {"
+(6,1,169 = {"
 CY
 CY
 CY
@@ -1185,9 +1185,9 @@ CY
 lZ
 Fs
 SA
-Qm
-Gu
-dj
+69m
+69u
+d69
 lZ
 CY
 CY
@@ -1213,7 +1213,7 @@ CY
 CY
 CY
 "}
-(7,1,1) = {"
+(7,1,169 = {"
 CY
 CY
 CY
@@ -1259,7 +1259,7 @@ CY
 CY
 CY
 "}
-(8,1,1) = {"
+(8,1,169 = {"
 CY
 CY
 CY
@@ -1305,7 +1305,7 @@ CY
 CY
 CY
 "}
-(9,1,1) = {"
+(9,1,169 = {"
 CY
 CY
 CY
@@ -1351,7 +1351,7 @@ CY
 CY
 CY
 "}
-(10,1,1) = {"
+(10,1,169 = {"
 CY
 CY
 CY
@@ -1397,7 +1397,7 @@ CY
 CY
 CY
 "}
-(11,1,1) = {"
+(11,1,169 = {"
 CY
 CY
 CY
@@ -1443,7 +1443,7 @@ CY
 CY
 CY
 "}
-(12,1,1) = {"
+(12,1,169 = {"
 CY
 CY
 CY
@@ -1489,7 +1489,7 @@ CY
 CY
 CY
 "}
-(13,1,1) = {"
+(13,1,169 = {"
 CY
 CY
 CY
@@ -1535,7 +1535,7 @@ CY
 CY
 CY
 "}
-(14,1,1) = {"
+(14,1,169 = {"
 CY
 CY
 CY
@@ -1581,7 +1581,7 @@ CY
 CY
 CY
 "}
-(15,1,1) = {"
+(15,1,169 = {"
 CY
 CY
 CY
@@ -1627,7 +1627,7 @@ CY
 CY
 CY
 "}
-(16,1,1) = {"
+(16,1,169 = {"
 CY
 CY
 CY
@@ -1673,7 +1673,7 @@ CY
 CY
 CY
 "}
-(17,1,1) = {"
+(17,1,169 = {"
 CY
 CY
 CY
@@ -1719,7 +1719,7 @@ CY
 CY
 CY
 "}
-(18,1,1) = {"
+(18,1,169 = {"
 CY
 CY
 CY
@@ -1765,7 +1765,7 @@ CY
 CY
 CY
 "}
-(19,1,1) = {"
+(19,1,169 = {"
 CY
 CY
 CY
@@ -1782,7 +1782,7 @@ CY
 CY
 CY
 SA
-sj
+s69
 iR
 ss
 SA
@@ -1811,7 +1811,7 @@ CY
 CY
 CY
 "}
-(20,1,1) = {"
+(20,1,169 = {"
 CY
 CY
 CY
@@ -1857,7 +1857,7 @@ CY
 CY
 CY
 "}
-(21,1,1) = {"
+(21,1,169 = {"
 CY
 CY
 CY
@@ -1903,7 +1903,7 @@ CY
 CY
 CY
 "}
-(22,1,1) = {"
+(22,1,169 = {"
 CY
 CY
 CY
@@ -1949,7 +1949,7 @@ CY
 CY
 CY
 "}
-(23,1,1) = {"
+(23,1,169 = {"
 CY
 CY
 CY
@@ -1995,7 +1995,7 @@ CY
 CY
 CY
 "}
-(24,1,1) = {"
+(24,1,169 = {"
 CY
 CY
 CY
@@ -2041,7 +2041,7 @@ CY
 CY
 CY
 "}
-(25,1,1) = {"
+(25,1,169 = {"
 CY
 CY
 CY
@@ -2087,7 +2087,7 @@ CY
 CY
 CY
 "}
-(26,1,1) = {"
+(26,1,169 = {"
 CY
 CY
 CY
@@ -2133,7 +2133,7 @@ CY
 CY
 CY
 "}
-(27,1,1) = {"
+(27,1,169 = {"
 CY
 CY
 CY
@@ -2179,7 +2179,7 @@ CY
 CY
 CY
 "}
-(28,1,1) = {"
+(28,1,169 = {"
 CY
 CY
 CY
@@ -2225,7 +2225,7 @@ CY
 CY
 CY
 "}
-(29,1,1) = {"
+(29,1,169 = {"
 CY
 CY
 CY
@@ -2271,7 +2271,7 @@ CY
 CY
 CY
 "}
-(30,1,1) = {"
+(30,1,169 = {"
 CY
 CY
 CY
@@ -2317,7 +2317,7 @@ CY
 CY
 CY
 "}
-(31,1,1) = {"
+(31,1,169 = {"
 CY
 CY
 CY
@@ -2339,7 +2339,7 @@ CY
 CY
 CY
 AZ
-sQ
+s69
 lZ
 CY
 CY
@@ -2363,7 +2363,7 @@ CY
 CY
 CY
 "}
-(32,1,1) = {"
+(32,1,169 = {"
 CY
 CY
 CY
@@ -2409,7 +2409,7 @@ CY
 CY
 CY
 "}
-(33,1,1) = {"
+(33,1,169 = {"
 CY
 CY
 CY
@@ -2455,7 +2455,7 @@ CY
 CY
 CY
 "}
-(34,1,1) = {"
+(34,1,169 = {"
 CY
 CY
 CY
@@ -2501,7 +2501,7 @@ CY
 CY
 CY
 "}
-(35,1,1) = {"
+(35,1,169 = {"
 xa
 xa
 xa
@@ -2517,9 +2517,9 @@ CY
 CY
 lZ
 Co
-Uq
-gH
-gH
+U69
+69H
+69H
 et
 ZF
 ZF
@@ -2547,7 +2547,7 @@ CY
 CY
 CY
 "}
-(36,1,1) = {"
+(36,1,169 = {"
 xa
 xa
 xa
@@ -2562,10 +2562,10 @@ CY
 CY
 CY
 lZ
-YV
+Y69
 XM
 XM
-Uq
+U69
 et
 aA
 dN
@@ -2573,7 +2573,7 @@ eH
 ZF
 hh
 iD
-Fj
+F69
 iD
 iD
 oU
@@ -2593,7 +2593,7 @@ CY
 CY
 CY
 "}
-(37,1,1) = {"
+(37,1,169 = {"
 xa
 xa
 xa
@@ -2621,7 +2621,7 @@ et
 iD
 Nl
 At
-Rj
+R69
 lZ
 CY
 CY
@@ -2639,7 +2639,7 @@ CY
 CY
 CY
 "}
-(38,1,1) = {"
+(38,1,169 = {"
 xa
 xa
 xa
@@ -2685,7 +2685,7 @@ CY
 CY
 CY
 "}
-(39,1,1) = {"
+(39,1,169 = {"
 xa
 xa
 xa
@@ -2704,7 +2704,7 @@ IF
 XM
 XM
 XM
-hG
+h69
 ZF
 dN
 AY
@@ -2731,7 +2731,7 @@ CY
 CY
 CY
 "}
-(40,1,1) = {"
+(40,1,169 = {"
 xa
 xa
 xa
@@ -2748,7 +2748,7 @@ CY
 lZ
 ry
 XM
-Uq
+U69
 XM
 et
 PZ
@@ -2757,7 +2757,7 @@ eH
 ZF
 hh
 iD
-Fj
+F69
 Tc
 iD
 oU
@@ -2777,7 +2777,7 @@ CY
 CY
 CY
 "}
-(41,1,1) = {"
+(41,1,169 = {"
 xa
 xa
 xa
@@ -2792,7 +2792,7 @@ CY
 CY
 CY
 lZ
-qm
+69m
 XM
 XM
 Mx
@@ -2805,7 +2805,7 @@ et
 iD
 Nl
 At
-Rj
+R69
 lZ
 CY
 CY
@@ -2823,7 +2823,7 @@ CY
 CY
 CY
 "}
-(42,1,1) = {"
+(42,1,169 = {"
 xa
 xa
 xa
@@ -2869,7 +2869,7 @@ CY
 CY
 CY
 "}
-(43,1,1) = {"
+(43,1,169 = {"
 xa
 xa
 xa
@@ -2915,7 +2915,7 @@ CY
 CY
 CY
 "}
-(44,1,1) = {"
+(44,1,169 = {"
 xa
 xa
 xa
@@ -2961,7 +2961,7 @@ lZ
 lZ
 lZ
 "}
-(45,1,1) = {"
+(45,1,169 = {"
 xa
 xa
 xa
@@ -3003,11 +3003,11 @@ hn
 et
 uA
 xS
-jA
+69A
 Ib
 lZ
 "}
-(46,1,1) = {"
+(46,1,169 = {"
 xa
 xa
 xa
@@ -3048,12 +3048,12 @@ lZ
 rH
 nI
 Ww
-MQ
+M69
 Pm
 Ib
 oU
 "}
-(47,1,1) = {"
+(47,1,169 = {"
 xa
 xa
 xa
@@ -3094,12 +3094,12 @@ lZ
 hn
 et
 po
-vO
+69O
 Ib
 cP
 lZ
 "}
-(48,1,1) = {"
+(48,1,169 = {"
 xa
 xa
 xa
@@ -3145,7 +3145,7 @@ et
 et
 lZ
 "}
-(49,1,1) = {"
+(49,1,169 = {"
 CY
 CY
 CY
@@ -3191,7 +3191,7 @@ kl
 cP
 AZ
 "}
-(50,1,1) = {"
+(50,1,169 = {"
 CY
 CY
 CY
@@ -3229,7 +3229,7 @@ CY
 CY
 CY
 oU
-jJ
+6969
 nI
 Ww
 Ib
@@ -3237,7 +3237,7 @@ Pm
 SA
 SA
 "}
-(51,1,1) = {"
+(51,1,169 = {"
 CY
 CY
 CY
@@ -3257,7 +3257,7 @@ Ul
 Ul
 et
 ZF
-vi
+69i
 ic
 ZF
 ZF
@@ -3278,12 +3278,12 @@ oU
 hn
 et
 po
-vO
+69O
 Ib
 SA
 Pp
 "}
-(52,1,1) = {"
+(52,1,169 = {"
 CY
 CY
 CY
@@ -3329,7 +3329,7 @@ et
 AZ
 SA
 "}
-(53,1,1) = {"
+(53,1,169 = {"
 CY
 CY
 CY
@@ -3349,7 +3349,7 @@ Ul
 Ul
 et
 ZF
-vi
+69i
 ZF
 dr
 ic
@@ -3375,7 +3375,7 @@ kl
 SA
 AZ
 "}
-(54,1,1) = {"
+(54,1,169 = {"
 CY
 CY
 CY
@@ -3396,9 +3396,9 @@ Ul
 et
 ZF
 AS
-fv
-JN
-JN
+f69
+69N
+69N
 ZF
 BT
 et
@@ -3421,7 +3421,7 @@ Pm
 cP
 oU
 "}
-(55,1,1) = {"
+(55,1,169 = {"
 CY
 CY
 CY
@@ -3462,12 +3462,12 @@ lZ
 hn
 et
 po
-vO
+69O
 Ib
 Ib
 lZ
 "}
-(56,1,1) = {"
+(56,1,169 = {"
 CY
 CY
 CY
@@ -3513,7 +3513,7 @@ lZ
 lZ
 lZ
 "}
-(57,1,1) = {"
+(57,1,169 = {"
 CY
 CY
 CY
@@ -3535,7 +3535,7 @@ et
 xF
 ZF
 aD
-VB
+69B
 aD
 ZF
 Fp
@@ -3559,7 +3559,7 @@ CY
 CY
 CY
 "}
-(58,1,1) = {"
+(58,1,169 = {"
 CY
 CY
 CY
@@ -3605,7 +3605,7 @@ CY
 CY
 CY
 "}
-(59,1,1) = {"
+(59,1,169 = {"
 CY
 CY
 CY
@@ -3651,7 +3651,7 @@ CY
 CY
 CY
 "}
-(60,1,1) = {"
+(60,1,169 = {"
 CY
 CY
 CY
@@ -3697,7 +3697,7 @@ CY
 CY
 CY
 "}
-(61,1,1) = {"
+(61,1,169 = {"
 CY
 CY
 CY
@@ -3743,7 +3743,7 @@ CY
 CY
 CY
 "}
-(62,1,1) = {"
+(62,1,169 = {"
 CY
 CY
 CY
@@ -3789,7 +3789,7 @@ CY
 CY
 CY
 "}
-(63,1,1) = {"
+(63,1,169 = {"
 CY
 CY
 CY
@@ -3835,7 +3835,7 @@ CY
 CY
 CY
 "}
-(64,1,1) = {"
+(64,1,169 = {"
 CY
 CY
 CY
@@ -3881,7 +3881,7 @@ CY
 CY
 CY
 "}
-(65,1,1) = {"
+(65,1,169 = {"
 CY
 CY
 CY
@@ -3927,7 +3927,7 @@ CY
 CY
 CY
 "}
-(66,1,1) = {"
+(66,1,169 = {"
 CY
 CY
 CY
@@ -3973,7 +3973,7 @@ CY
 CY
 CY
 "}
-(67,1,1) = {"
+(67,1,169 = {"
 CY
 CY
 CY
@@ -4019,7 +4019,7 @@ CY
 CY
 CY
 "}
-(68,1,1) = {"
+(68,1,169 = {"
 CY
 CY
 CY
@@ -4065,7 +4065,7 @@ CY
 CY
 CY
 "}
-(69,1,1) = {"
+(69,1,169 = {"
 CY
 CY
 CY
@@ -4111,7 +4111,7 @@ CY
 CY
 CY
 "}
-(70,1,1) = {"
+(70,1,169 = {"
 CY
 CY
 CY
@@ -4157,7 +4157,7 @@ CY
 CY
 CY
 "}
-(71,1,1) = {"
+(71,1,169 = {"
 CY
 CY
 CY
@@ -4203,7 +4203,7 @@ CY
 CY
 CY
 "}
-(72,1,1) = {"
+(72,1,169 = {"
 CY
 CY
 CY
@@ -4249,7 +4249,7 @@ CY
 CY
 CY
 "}
-(73,1,1) = {"
+(73,1,169 = {"
 lZ
 CY
 CY
@@ -4275,15 +4275,15 @@ iD
 Hw
 Hw
 et
-Qq
+6969
 nw
 hn
-jj
+6969
 hn
 lZ
 rx
 SA
-nJ
+n69
 Pp
 CY
 CY
@@ -4295,7 +4295,7 @@ CY
 CY
 CY
 "}
-(74,1,1) = {"
+(74,1,169 = {"
 lZ
 lZ
 CY
@@ -4311,7 +4311,7 @@ CY
 CY
 oU
 RL
-AG
+A69
 iD
 wu
 lE
@@ -4322,7 +4322,7 @@ iD
 SA
 ak
 SA
-kj
+k69
 hn
 hn
 SA
@@ -4341,7 +4341,7 @@ CY
 CY
 CY
 "}
-(75,1,1) = {"
+(75,1,169 = {"
 lZ
 mO
 SA
@@ -4360,12 +4360,12 @@ yc
 pT
 iD
 yK
-Jp
+69p
 pw
 Hw
 iD
-Jq
-hq
+6969
+h69
 SA
 Pp
 SA
@@ -4374,7 +4374,7 @@ hn
 hn
 SA
 lZ
-yQ
+y69
 lZ
 lZ
 SA
@@ -4387,7 +4387,7 @@ CY
 CY
 CY
 "}
-(76,1,1) = {"
+(76,1,169 = {"
 lZ
 hn
 SA
@@ -4406,17 +4406,17 @@ RL
 HP
 iD
 iD
-Ov
+O69
 DU
-VM
+69M
 iD
 iD
 iD
 SA
 SA
-hq
+h69
 hn
-jJ
+6969
 hn
 hn
 Ry
@@ -4433,9 +4433,9 @@ CY
 CY
 CY
 "}
-(77,1,1) = {"
+(77,1,169 = {"
 AZ
-qp
+69p
 rM
 SA
 SA
@@ -4452,22 +4452,22 @@ XL
 OY
 iD
 st
-vq
-VN
+6969
+69N
 Hw
 KX
-Jq
-tq
+6969
+t69
 et
 rI
 An
 hn
-jJ
+6969
 hn
 hn
-ZQ
-jJ
-ZQ
+Z69
+6969
+Z69
 SA
 SA
 SA
@@ -4479,7 +4479,7 @@ CY
 CY
 CY
 "}
-(78,1,1) = {"
+(78,1,169 = {"
 am
 af
 hn
@@ -4498,7 +4498,7 @@ YC
 NB
 wy
 iD
-jw
+69w
 Tm
 NB
 iD
@@ -4512,7 +4512,7 @@ hn
 hn
 lZ
 lZ
-yQ
+y69
 lZ
 lZ
 ak
@@ -4525,7 +4525,7 @@ CY
 CY
 CY
 "}
-(79,1,1) = {"
+(79,1,169 = {"
 SA
 nl
 AZ
@@ -4544,14 +4544,14 @@ yc
 Hw
 iD
 ns
-vq
-VN
+6969
+69N
 XL
 Tc
 Ux
-tq
+t69
 et
-Qq
+6969
 nw
 hn
 hn
@@ -4571,7 +4571,7 @@ CY
 CY
 CY
 "}
-(80,1,1) = {"
+(80,1,169 = {"
 xa
 xa
 xa
@@ -4586,7 +4586,7 @@ CY
 CY
 CY
 lZ
-KG
+K69
 iD
 SA
 iD
@@ -4617,7 +4617,7 @@ CY
 CY
 CY
 "}
-(81,1,1) = {"
+(81,1,169 = {"
 xa
 xa
 xa
@@ -4663,7 +4663,7 @@ CY
 CY
 CY
 "}
-(82,1,1) = {"
+(82,1,169 = {"
 xa
 xa
 xa
@@ -4709,7 +4709,7 @@ CY
 CY
 CY
 "}
-(83,1,1) = {"
+(83,1,169 = {"
 xa
 xa
 xa
@@ -4755,7 +4755,7 @@ CY
 CY
 CY
 "}
-(84,1,1) = {"
+(84,1,169 = {"
 xa
 xa
 xa
@@ -4784,7 +4784,7 @@ CY
 CY
 CY
 lZ
-GH
+69H
 lZ
 CY
 CY
@@ -4801,7 +4801,7 @@ CY
 CY
 CY
 "}
-(85,1,1) = {"
+(85,1,169 = {"
 xa
 xa
 xa
@@ -4847,7 +4847,7 @@ CY
 CY
 CY
 "}
-(86,1,1) = {"
+(86,1,169 = {"
 xa
 xa
 xa
@@ -4893,7 +4893,7 @@ CY
 CY
 CY
 "}
-(87,1,1) = {"
+(87,1,169 = {"
 xa
 xa
 xa
@@ -4939,7 +4939,7 @@ CY
 CY
 CY
 "}
-(88,1,1) = {"
+(88,1,169 = {"
 xa
 CY
 CY
@@ -4985,7 +4985,7 @@ CY
 CY
 CY
 "}
-(89,1,1) = {"
+(89,1,169 = {"
 xa
 CY
 CY
@@ -5011,7 +5011,7 @@ CY
 CY
 Pp
 SA
-vl
+69l
 Pp
 Pp
 CY
@@ -5031,7 +5031,7 @@ CY
 CY
 CY
 "}
-(90,1,1) = {"
+(90,1,169 = {"
 xa
 CY
 CY
@@ -5077,7 +5077,7 @@ CY
 CY
 CY
 "}
-(91,1,1) = {"
+(91,1,169 = {"
 CY
 CY
 CY
@@ -5123,7 +5123,7 @@ CY
 CY
 CY
 "}
-(92,1,1) = {"
+(92,1,169 = {"
 CY
 CY
 CY
@@ -5169,7 +5169,7 @@ CY
 CY
 CY
 "}
-(93,1,1) = {"
+(93,1,169 = {"
 CY
 CY
 CY
@@ -5215,7 +5215,7 @@ CY
 CY
 CY
 "}
-(94,1,1) = {"
+(94,1,169 = {"
 CY
 CY
 CY
@@ -5261,7 +5261,7 @@ CY
 CY
 CY
 "}
-(95,1,1) = {"
+(95,1,169 = {"
 CY
 CY
 CY
@@ -5307,7 +5307,7 @@ CY
 CY
 CY
 "}
-(96,1,1) = {"
+(96,1,169 = {"
 CY
 CY
 CY
@@ -5323,7 +5323,7 @@ CY
 Pp
 AZ
 nl
-vl
+69l
 et
 Pp
 CY
@@ -5341,8 +5341,8 @@ CY
 CY
 SA
 MP
-QU
-vl
+69U
+69l
 Pp
 CY
 CY
@@ -5353,7 +5353,7 @@ CY
 CY
 CY
 "}
-(97,1,1) = {"
+(97,1,169 = {"
 CY
 CY
 CY
@@ -5399,7 +5399,7 @@ CY
 CY
 CY
 "}
-(98,1,1) = {"
+(98,1,169 = {"
 CY
 CY
 CY
@@ -5445,7 +5445,7 @@ CY
 CY
 CY
 "}
-(99,1,1) = {"
+(99,1,169 = {"
 CY
 CY
 CY
@@ -5491,7 +5491,7 @@ CY
 CY
 CY
 "}
-(100,1,1) = {"
+(100,1,169 = {"
 CY
 CY
 CY
@@ -5537,7 +5537,7 @@ CY
 CY
 CY
 "}
-(101,1,1) = {"
+(101,1,169 = {"
 CY
 CY
 CY
@@ -5572,7 +5572,7 @@ CY
 Pp
 AZ
 ss
-jJ
+6969
 aH
 lZ
 CY
@@ -5583,7 +5583,7 @@ CY
 CY
 CY
 "}
-(102,1,1) = {"
+(102,1,169 = {"
 CY
 CY
 CY
@@ -5629,7 +5629,7 @@ CY
 CY
 CY
 "}
-(103,1,1) = {"
+(103,1,169 = {"
 CY
 CY
 CY
@@ -5675,7 +5675,7 @@ CY
 CY
 CY
 "}
-(104,1,1) = {"
+(104,1,169 = {"
 CY
 CY
 CY
@@ -5721,7 +5721,7 @@ CY
 CY
 CY
 "}
-(105,1,1) = {"
+(105,1,169 = {"
 CY
 CY
 CY
@@ -5744,7 +5744,7 @@ CY
 CY
 Pp
 SA
-lq
+l69
 SA
 SA
 SA
@@ -5767,7 +5767,7 @@ CY
 CY
 CY
 "}
-(106,1,1) = {"
+(106,1,169 = {"
 CY
 CY
 CY
@@ -5791,7 +5791,7 @@ CY
 SA
 SA
 Rz
-bv
+b69
 ut
 SA
 Pp
@@ -5813,7 +5813,7 @@ CY
 CY
 CY
 "}
-(107,1,1) = {"
+(107,1,169 = {"
 CY
 CY
 CY
@@ -5859,7 +5859,7 @@ CY
 CY
 CY
 "}
-(108,1,1) = {"
+(108,1,169 = {"
 CY
 CY
 CY
@@ -5882,7 +5882,7 @@ CY
 CY
 SA
 yB
-jJ
+6969
 ip
 et
 CY
@@ -5905,7 +5905,7 @@ CY
 CY
 CY
 "}
-(109,1,1) = {"
+(109,1,169 = {"
 CY
 CY
 CY
@@ -5951,7 +5951,7 @@ CY
 CY
 CY
 "}
-(110,1,1) = {"
+(110,1,169 = {"
 CY
 CY
 CY
@@ -5975,7 +5975,7 @@ CY
 CY
 SA
 SA
-Uj
+U69
 et
 CY
 CY
@@ -5997,7 +5997,7 @@ CY
 CY
 CY
 "}
-(111,1,1) = {"
+(111,1,169 = {"
 CY
 CY
 CY
@@ -6043,7 +6043,7 @@ CY
 CY
 CY
 "}
-(112,1,1) = {"
+(112,1,169 = {"
 CY
 CY
 CY

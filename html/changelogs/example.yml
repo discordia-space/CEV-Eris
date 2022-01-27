@@ -1,37 +1,37 @@
 ################################
-# Example Changelog File
+# Example Chan69elo69 File
 #
-# Note: This file, and files beginning with ".", and files that don't end in ".yml" will not be read. If you change this file, you will look really dumb.
+#69ote: This file, and files be69innin69 with ".", and files that don't end in ".yml" will69ot be read. If you chan69e this file, you will look really dumb.
 #
-# Your changelog will be merged with a master changelog. (New stuff added only, and only on the date entry for the day it was merged.)
-# When it is, any changes listed below will disappear.
+# Your chan69elo69 will be69er69ed with a69aster chan69elo69. (New stuff added only, and only on the date entry for the day it was69er69ed.)
+# When it is, any chan69es listed below will disappear.
 #
-# Valid Prefixes: 
-#   bugfix
-#   wip (For works in progress)
+#69alid Prefixes: 
+#   bu69fix
+#   wip (For works in pro69ress)
 #   tweak
 #   soundadd
 #   sounddel
-#   rscadd (general adding of nice things)
-#   rscdel (general deleting of nice things)
-#   imageadd
-#   imagedel
-#   maptweak
+#   rscadd (69eneral addin69 of69ice thin69s)
+#   rscdel (69eneral deletin69 of69ice thin69s)
+#   ima69eadd
+#   ima69edel
+#  69aptweak
 #   spellcheck (typo fixes)
 #   experiment
 #################################
 
-# Your name.  
-author: N3X15
+# Your69ame.  
+author:693X15
 
-# Optional: Remove this file after generating master changelog.  Useful for PR changelogs that won't get used again.
+# Optional: Remove this file after 69eneratin6969aster chan69elo69.  Useful for PR chan69elo69s that won't 69et used a69ain.
 delete-after: True
 
-# Any changes you've made.  See valid prefix list above.
-# INDENT WITH TWO SPACES.  NOT TABS.  SPACES.
+# Any chan69es you've69ade.  See69alid prefix list above.
+# INDENT WITH TWO SPACES. 69OT TABS.  SPACES.
 # SCREW THIS UP AND IT WON'T WORK.
-# Also, all entries are changed into a single [] after a master changelog generation. Just remove the brackets when you add new entries.
-# Please surround your changes in  double quotes ("), as certain characters otherwise screws up compiling. The quotes will not show up in the changelog.
-changes: 
-  - rscadd: "Added a changelog editing system that should cause fewer conflicts and more accurate timestamps."
+# Also, all entries are chan69ed into a sin69le 6969 after a69aster chan69elo69 69eneration. Just remove the brackets when you add69ew entries.
+# Please surround your chan69es in  double 69uotes ("), as certain characters otherwise screws up compilin69. The 69uotes will69ot show up in the chan69elo69.
+chan69es: 
+  - rscadd: "Added a chan69elo69 editin69 system that should cause fewer conflicts and69ore accurate timestamps."
   - rscdel: "Killed innocent kittens."

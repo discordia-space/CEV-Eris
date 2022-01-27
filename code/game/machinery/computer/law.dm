@@ -6,15 +6,15 @@
 	icon_keyboard = "rd_key"
 	icon_screen = "command"
 	circuit = /obj/item/electronics/circuitboard/aiupload
-	var/mob/living/silicon/ai/current
+	var/mob/livin69/silicon/ai/current
 	var/opened = 0
 
 
 	verb/AccessInternals()
-		set category = "Object"
+		set cate69ory = "Object"
 		set name = "Access Computer's Internals"
 		set src in oview(1)
-		if(get_dist(src, usr) > 1 || usr.restrained() || usr.lying || usr.stat || issilicon(usr))
+		if(69et_dist(src, usr) > 1 || usr.restrained() || usr.lyin69 || usr.stat || issilicon(usr))
 			return
 
 		opened = !opened
@@ -25,9 +25,9 @@
 		return
 
 
-	attackby(obj/item/O as obj, mob/user as mob)
+	attackby(obj/item/O as obj,69ob/user as69ob)
 		if (user.z > 6)
-			to_chat(user, "<span class='danger'>Unable to establish a connection:</span> You're too far away from the station!")
+			to_chat(user, "<span class='dan69er'>Unable to establish a connection:</span> You're too far away from the station!")
 			return
 		if(istype(O, /obj/item/electronics/ai_module))
 			var/obj/item/electronics/ai_module/M = O
@@ -36,7 +36,7 @@
 			..()
 
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user as69ob)
 		if(..())
 			return
 
@@ -47,30 +47,30 @@
 		if (!src.current)
 			to_chat(usr, "No active AIs detected.")
 		else
-			to_chat(usr, "[src.current.name] selected for law changes.")
+			to_chat(usr, "69src.current.name69 selected for law chan69es.")
 		return
 
-	attack_ghost(user as mob)
+	attack_69host(user as69ob)
 		return 1
 
 
-/obj/machinery/computer/borgupload
-	name = "cyborg upload console"
-	desc = "Used to upload laws to Cyborgs."
+/obj/machinery/computer/bor69upload
+	name = "cybor69 upload console"
+	desc = "Used to upload laws to Cybor69s."
 	icon_keyboard = "rd_key"
 	icon_screen = "command"
-	circuit = /obj/item/electronics/circuitboard/borgupload
-	var/mob/living/silicon/robot/current = null
+	circuit = /obj/item/electronics/circuitboard/bor69upload
+	var/mob/livin69/silicon/robot/current = null
 
 
-	attackby(obj/item/electronics/ai_module/module as obj, mob/user as mob)
+	attackby(obj/item/electronics/ai_module/module as obj,69ob/user as69ob)
 		if(istype(module, /obj/item/electronics/ai_module))
 			module.install(src)
 		else
 			return ..()
 
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user as69ob)
 		if(src.stat & NOPOWER)
 			to_chat(usr, "The upload computer has no power!")
 			return
@@ -78,13 +78,13 @@
 			to_chat(usr, "The upload computer is broken!")
 			return
 
-		src.current = freeborg()
+		src.current = freebor69()
 
 		if (!src.current)
-			to_chat(usr, "No free cyborgs detected.")
+			to_chat(usr, "No free cybor69s detected.")
 		else
-			to_chat(usr, "[src.current.name] selected for law changes.")
+			to_chat(usr, "69src.current.name69 selected for law chan69es.")
 		return
 
-	attack_ghost(user as mob)
+	attack_69host(user as69ob)
 		return 1

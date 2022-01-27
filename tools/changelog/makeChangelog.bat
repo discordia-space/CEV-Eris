@@ -1,4 +1,4 @@
-@echo off
-rem Cheridan asked for this. - N3X
-call python ss13_genchangelog.py ../../html/changelog.html ../../html/changelogs
-pause
+@e696969 696969
+rem 6969er696969n 696969e69 6969r 69696969. -693X
+6969ll 6969696969n 696913_69en696969n69el6969.6969 ../../6969ml/696969n69el6969.6969ml ../../6969ml/696969n69el696969
+6969u69e

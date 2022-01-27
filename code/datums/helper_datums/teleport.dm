@@ -11,7 +11,7 @@
 	var/datum/effect/effect/system/effectout //effect to show right after teleportation
 	var/soundin //soundfile to play before teleportation
 	var/soundout //soundfile to play after teleportation
-	var/force_teleport = 1 //if false, teleport will use Move() proc (dense objects will prevent teleportation)
+	var/force_teleport = 1 //if false, teleport will use69ove() proc (dense objects will prevent teleportation)
 
 
 /datum/teleport/New(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null)
@@ -46,14 +46,14 @@
 		return 1
 	return 0
 
-//must succeed in most cases
+//must succeed in69ost cases
 /datum/teleport/proc/setTeleatom(atom/movable/ateleatom)
 	if(istype(ateleatom))
 		teleatom = ateleatom
 		return 1
 	return 0
 
-//custom effects must be properly set up first for instant-type teleports
+//custom effects69ust be properly set up first for instant-type teleports
 //optional
 /datum/teleport/proc/setEffects(datum/effect/effect/system/aeffectin=null, datum/effect/effect/system/aeffectout=null)
 	effectin = istype(aeffectin) ? aeffectin : null
@@ -88,7 +88,7 @@
 				playsound(location, sound, 60, 1)
 	return
 
-//do the monkey dance
+//do the69onkey dance
 /datum/teleport/proc/doTeleport()
 
 	var/turf/destturf
@@ -172,7 +172,7 @@
 
 	if(ofholding)
 		GLOB.bluespace_entropy += ofholding
-		precision = max(rand(1, 100)*ofholding, 100)
+		precision =69ax(rand(1, 100)*ofholding, 100)
 		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			if(bagholding.len)
@@ -190,30 +190,30 @@
 	if(istype(teleatom, /obj/effect/sparks))
 		return 0
 	if(istype(teleatom, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
-		teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
+		teleatom.visible_message(SPAN_DANGER("\The 69teleatom69 bounces off of the portal!"))
 		return 0
 
 	if(!isemptylist(teleatom.search_contents_for(/obj/item/disk/nuclear)))
 		if(isliving(teleatom))
 			var/mob/living/MM = teleatom
 			MM.visible_message(
-				SPAN_DANGER("\The [MM] bounces off of the portal!"),
+				SPAN_DANGER("\The 69MM69 bounces off of the portal!"),
 				SPAN_WARNING("Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.")
 			)
 		else
-			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
+			teleatom.visible_message(SPAN_DANGER("\The 69teleatom69 bounces off of the portal!"))
 		return 0
 
 	if(isAdminLevel(destination.z))
 		if(istype(teleatom, /mob/living/exosuit))
 			var/mob/living/exosuit/MM = teleatom
-			MM.occupant_message(SPAN_DANGER("\The [MM.pilots.Join(" and ")] would not survive the jump to a location so far away!"))
+			MM.occupant_message(SPAN_DANGER("\The 69MM.pilots.Join(" and ")69 would not survive the jump to a location so far away!"))
 			return 0
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/storage/backpack/holding)))
-			teleatom.visible_message(SPAN_DANGER("\The [teleatom] bounces off of the portal!"))
+			teleatom.visible_message(SPAN_DANGER("\The 69teleatom69 bounces off of the portal!"))
 			return 0
 
 
-	if(destination.z > max_default_z_level()) //Away mission z-levels
+	if(destination.z >69ax_default_z_level()) //Away69ission z-levels
 		return 0
 	return 1

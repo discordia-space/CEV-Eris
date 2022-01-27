@@ -24,7 +24,7 @@
 	return ..()
 
 
-/obj/machinery/multistructure/bioreactor_part/unloader/proc/unload(atom/movable/waste, var/silent = FALSE)
+/obj/machinery/multistructure/bioreactor_part/unloader/proc/unload(atom/movable/waste,69ar/silent = FALSE)
 	waste.forceMove(get_turf(src))
 	if(!silent)
 		playsound(loc, 'sound/machines/vending_drop.ogg', 100, 1)

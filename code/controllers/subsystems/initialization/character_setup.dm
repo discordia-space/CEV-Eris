@@ -12,17 +12,17 @@ SUBSYSTEM_DEF(character_setup)
 	setup_options = new
 
 	while(prefs_awaiting_setup.len)
-		var/datum/preferences/prefs = prefs_awaiting_setup[prefs_awaiting_setup.len]
+		var/datum/preferences/prefs = prefs_awaiting_setup69prefs_awaiting_setup.len69
 		prefs_awaiting_setup.len--
 		prefs.setup()
 
 	for(var/d in preferences_datums)
 		var/datum/preferences/prefs = d
 		if(istype(prefs) && !prefs.path)
-			error("Prefs failed to setup (SS): [prefs.client_ckey]")
+			error("Prefs failed to setup (SS): 69prefs.client_ckey69")
 			prefs.setup()
 
-	// Start playing music for clients
+	// Start playing69usic for clients
 	for(var/client/C in clients)
 		GLOB.lobbyScreen.play_music(C)
 

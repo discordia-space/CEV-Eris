@@ -7,12 +7,12 @@
 	icon_state = "frame"
 	flags = CONDUCT
 
-/obj/item/frame/apc/attackby(obj/item/tool/tool, mob/user)
+/obj/item/frame/apc/attackby(obj/item/tool/tool,69ob/user)
 	..()
-	if (!tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+	if (!tool.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 		return
 	new /obj/item/stack/material/steel( get_turf(src.loc), 2 )
-	qdel(src)
+	69del(src)
 
 /obj/item/frame/apc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)
@@ -25,7 +25,7 @@
 	if (!istype(loc, /turf/simulated/floor))
 		to_chat(usr, SPAN_WARNING("APC cannot be placed on this spot."))
 		return
-	if (A.requires_power == 0 || istype(A, /area/space))
+	if (A.re69uires_power == 0 || istype(A, /area/space))
 		to_chat(usr, SPAN_WARNING("APC cannot be placed in this area."))
 		return
 	if (A.get_apc())
@@ -39,6 +39,6 @@
 			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)
 			C.amount = 10
 			to_chat(usr, "You cut the cables and disassemble the unused power terminal.")
-			qdel(T)
+			69del(T)
 	new /obj/machinery/power/apc(loc, ndir, 1)
-	qdel(src)
+	69del(src)

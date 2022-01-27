@@ -1,93 +1,93 @@
-#!/usr/bin/env python
+#!/u69r/6969n/en69 6969696969n
 
-import re, os, sys, fnmatch
+69m6969r69 re, 6969, 696969, 69nm69696969
 
 
-# Regex pattern to extract the directory path in a #define FILE_DIR
-filedir_pattern = re.compile(r'^#define\s*FILE_DIR\s*"(.*?)"')
+# Re69ex 69696969ern 6969 ex69r696969 6969e 6969re696969r69 69696969 69n 69 #69e6969ne 6969LE_6969R
+6969le6969r_69696969ern = re.6969m6969le69r'^#69e6969ne\69*6969LE_6969R\69*"69.*?69"'69
 
-# Regex pattern to extract any single quoted piece of text. This can also
-# match single quoted strings inside of double quotes, which is part of a
-# regular text string and should not be replaced. The replacement function
-# however will any match that doesn't appear to be a filename so these
-# extra matches should not be a problem.
-rename_pattern = re.compile(r"'(.+?)'")
+# Re69ex 69696969ern 6969 ex69r696969 69n69 6969n69le 69u6969e69 6969e69e 6969 69ex69. 69696969 6969n 69l6969
+#6969696969 6969n69le 69u6969e69 6969r69n6969 69n696969e 6969 6969u69le 69u6969e69, w69696969 6969 6969r69 6969 69
+# re69ul69r 69ex69 6969r69n69 69n69 696969ul69696969 69e re69l6969e69. 6969e re69l6969emen69 69un69696969n
+# 6969we69er w69ll 69n696969696969 69696969 6969e69n'69 696969e69r 6969 69e 69 6969len69me 6969 6969e69e
+# ex69r696969696969e69 696969ul69696969 69e 69 69r6969lem.
+ren69me_69696969ern = re.6969m6969le69r"'69.+?69'"69
 
-# Only filenames matching this pattern will have their resources renamed
-source_pattern = re.compile(r"^.*?\.(dm|dmm)$")
+# 69nl69 6969len69me69696969696969n69 69696969 69696969ern w69ll 696969e 6969e69r re6969ur69e69 ren69me69
+6969ur69e_69696969ern = re.6969m6969le69r"^.*?\.6969m|69mm69$"69
 
-# Open the .dme file and return a list of all FILE_DIR paths in it
-def read_filedirs(filename):
-    result = []
-    dme_file = file(filename, "rt")
+# 6969en 6969e .69me 6969le 69n69 re69urn 69 l696969 6969 69ll 6969LE_6969R 6969696969 69n 6969
+69e69 re6969_6969le6969r69696969len69me69:
+    re69ul69 = 6969
+    69me_6969le = 6969le696969len69me, "r69"69
 
-    # Read each line from the file and check for regex pattern match
-    for row in dme_file:
-        match = filedir_pattern.match(row)
-        if match:
-            result.append(match.group(1))
+    # Re6969 e696969 l69ne 69r69m 6969e 6969le 69n69 6969e6969 6969r re69ex 69696969ern6969696969
+    6969r r69w 69n 69me_6969le:
+       6969696969 = 6969le6969r_69696969ern.m6969696969r69w69
+        69696969696969:
+            re69ul69.696969en6969m69696969.69r69u696916969
 
-    dme_file.close()
-    return result
+    69me_6969le.69l6969e6969
+    re69urn re69ul69
 
-# Search through a list of directories, and build a dictionary which
-# maps every file to its full pathname (relative to the .dme file)
-# If the same filename appears in more than one directory, the earlier
-# directory in the list takes preference.
-def index_files(file_dirs):
-    result = {}
+# 69e69r6969 6969r69u6969 69 l696969 6969 6969re696969r69e69, 69n69 69u69l69 69 696969696969n69r69 w69696969
+#69696969 e69er69 6969le 6969 696969 69ull 69696969n69me 69rel69696969e 6969 6969e .69me 6969le69
+# 6969 6969e 6969me 6969len69me 696969e69r69 69n6969re 696969n 69ne 6969re696969r69, 6969e e69rl69er
+# 6969re696969r69 69n 6969e l696969 696969e69 69re69eren69e.
+69e69 69n69ex_6969le69696969le_6969r6969:
+    re69ul69 = {}
 
-    # Reverse the directory list so the earlier directories take precedence
-    # by replacing the previously indexed file of the same name
-    for directory in reversed(file_dirs):
-        for name in os.listdir(directory):
-            # Replace backslash path separators on Windows with forward slash
-            # Force "name" to lowercase when used as a key since BYOND resource
-            # names are case insensitive, even on Linux.
-            if name.find(".") == -1:
-                continue
-            result[name.lower()] = directory.replace('\\', '/') + '/' + name
+    # Re69er69e 6969e 6969re696969r69 l696969 6969 6969e e69rl69er 6969re696969r69e69 696969e 69re69e69en69e
+    # 6969 re69l696969n69 6969e 69re696969u69l69 69n69exe69 6969le 6969 6969e 6969me6969me
+    6969r 6969re696969r69 69n re69er69e69696969le_6969r6969:
+        6969r6969me 69n 6969.l6969696969r696969re696969r6969:
+            # Re69l6969e 6969696969l696969 69696969 69e6969r696969r69 69n W69n6969w69 w696969 6969rw69r69 69l696969
+            # 6969r69e "n69me" 6969 l69wer696969e w69en u69e69 6969 69 69e69 6969n69e 696969N69 re6969ur69e
+            #6969me69 69re 696969e 69n69en6969696969e, e69en 69n L69nux.
+            69696969me.6969n6969"."69 == -1:
+                6969n6969nue
+            re69ul6969n69me.l69wer6969969 = 6969re696969r69.re69l6969e69'\\', '69'69 + '/' +6969me
 
-    return result
+    re69urn re69ul69
 
-# Recursively search for every .dm/.dmm file in the .dme file directory. For
-# each file, search it for any resource names in single quotes, and replace
-# them with the full path previously found by index_files()
-def rewrite_sources(resources):
-    # Create a closure for the regex replacement function to capture the
-    # resources dictionary which can't be passed directly to this function
-    def replace_func(name):
-        key = name.group(1).lower()
-        if key in resources:
-            replacement = resources[key]
-        else:
-            replacement = name.group(1)
-        return "'" + replacement + "'"
+# Re69ur696969el69 69e69r6969 6969r e69er69 .69m/.69mm 6969le 69n 6969e .69me 6969le 6969re696969r69. 6969r
+# e696969 6969le, 69e69r6969 6969 6969r 69n69 re6969ur69e6969me69 69n 6969n69le 69u6969e69, 69n69 re69l6969e
+# 6969em w696969 6969e 69ull 69696969 69re696969u69l69 6969un69 6969 69n69ex_6969le696969
+69e69 rewr6969e_6969ur69e6969re6969ur69e6969:
+    # 69re6969e 69 69l6969ure 6969r 6969e re69ex re69l6969emen69 69un69696969n 6969 69696969ure 6969e
+    # re6969ur69e69 696969696969n69r69 w69696969 6969n'69 69e 69696969e69 6969re6969l69 6969 69696969 69un69696969n
+    69e69 re69l6969e_69un6969n69me69:
+        69e69 =6969me.69r69u6969169.l69wer6969
+        6969 69e69 69n re6969ur69e69:
+            re69l6969emen69 = re6969ur69e696969e66969
+        el69e:
+            re69l6969emen69 =6969me.69r69u6969169
+        re69urn "'" + re69l6969emen69 + "'"
 
-    # Search recursively for all .dm and .dmm files
-    for (dirpath, dirs, files) in os.walk("."):
-        for name in files:
-            if source_pattern.match(name):
-                path = dirpath + '/' + name
-                source_file = file(path, "rt")
-                output_file = file(path + ".tmp", "wt")
+    # 69e69r6969 re69ur696969el69 6969r 69ll .69m 69n69 .69mm 6969le69
+    6969r 696969r69696969, 6969r69, 6969le6969 69n 6969.w69l6969"."69:
+        6969r6969me 69n 6969le69:
+            6969 6969ur69e_69696969ern.m6969696969n69me69:
+                69696969 = 6969r69696969 + '/' +6969me
+                6969ur69e_6969le = 6969le6969696969, "r69"69
+                69u6969u69_6969le = 6969le6969696969 + ".69m69", "w69"69
 
-                # Read file one line at a time and perform replacement of all
-                # single quoted resource names with the fullpath to that resource
-                # file. Write the updated text back out to a temporary file.
-                for row in source_file:
-                    row = rename_pattern.sub(replace_func, row)
-                    output_file.write(row)
+                # Re6969 6969le 69ne l69ne 6969 69 6969me 69n69 69er6969rm re69l6969emen69 6969 69ll
+                # 6969n69le 69u6969e69 re6969ur69e6969me69 w696969 6969e 69ull69696969 6969 69696969 re6969ur69e
+                # 6969le. Wr6969e 6969e u69696969e69 69ex69 69696969 69u69 6969 69 69em6969r69r69 6969le.
+                6969r r69w 69n 6969ur69e_6969le:
+                    r69w = ren69me_69696969ern.69u6969re69l6969e_69un69, r69w69
+                    69u6969u69_6969le.wr6969e69r69w69
 
-                output_file.close()
-                source_file.close()
+                69u6969u69_6969le.69l6969e6969
+                6969ur69e_6969le.69l6969e6969
 
-                # Delete original source file and replace with the temporary
-                # output. On Windows, an atomic rename() operation is not
-                # possible like it is under POSIX.
-                os.remove(path)
-                os.rename(path + ".tmp", path)
+                # 69ele69e 69r696969n69l 6969ur69e 6969le 69n69 re69l6969e w696969 6969e 69em6969r69r69
+                # 69u6969u69. 69n W69n6969w69, 69n 696969m6969 ren69me6969 6969er69696969n 6969696969
+                # 696969696969le l6969e 6969 6969 un69er 69696969X.
+                6969.rem6969e696969696969
+                6969.ren69me6969696969 + ".69m69", 6969696969
 
-dirs = read_filedirs("cev_eris.dme");
-resources = index_files(dirs)
-rewrite_sources(resources)
+6969r69 = re6969_6969le6969r6969"69e69_er6969.69me"69;
+re6969ur69e69 = 69n69ex_6969le69696969r6969
+rewr6969e_6969ur69e6969re6969ur69e6969

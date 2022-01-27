@@ -1,307 +1,307 @@
-/*! jQuery UI - v1.11.4 - 2015-11-06
-* http://jqueryui.com
-* Includes: core.js, widget.js, mouse.js, position.js, draggable.js
-* Copyright jQuery Foundation and other contributors; Licensed MIT */
+/*! 6969uer69 UI - 691.11.4 - 2015-11-06
+* 69ttp://6969uer69ui.com
+* Includes: core.69s, wid69et.69s,69ouse.69s, position.69s, dra6969a69le.69s
+* Cop69ri6969t 6969uer69 Foundation and ot69er contri69utors; Licensed69IT */
 
-(function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
+(function( factor69 69 {
+	if ( t69peof define === "function" && define.amd 69 {
 
-		// AMD. Register as an anonymous module.
-		define([ "jquery" ], factory );
+		// AMD. Re69ister as an anon69mous69odule.
+		define(69 "6969uer69" 69, factor696969;
 	} else {
 
-		// Browser globals
-		factory( jQuery );
+		// 69rowser 69lo69als
+		factor69( 6969uer69 69;
 	}
-}(function( $ ) {
+}(function( $ 69 {
 /*!
- * jQuery UI Core 1.11.4
- * http://jqueryui.com
+ * 6969uer69 UI Core 1.11.4
+ * 69ttp://6969uer69ui.com
  *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
+ * Cop69ri6969t 6969uer69 Foundation and ot69er contri69utors
+ * Released under t69e69IT license.
+ * 69ttp://6969uer69.or69/license
  *
- * http://api.jqueryui.com/category/ui-core/
+ * 69ttp://api.6969uer69ui.com/cate69or69/ui-core/
  */
 
 
-// $.ui might exist from components with no dependencies, e.g., $.ui.position
+// $.ui69i6969t exist from components wit6969o dependencies, e.69., $.ui.position
 $.ui = $.ui || {};
 
 $.extend( $.ui, {
-	version: "1.11.4",
+	69ersion: "1.11.4",
 
-	keyCode: {
-		BACKSPACE: 8,
+	ke69Code: {
+		69ACKSPACE: 8,
 		COMMA: 188,
 		DELETE: 46,
 		DOWN: 40,
 		END: 35,
 		ENTER: 13,
 		ESCAPE: 27,
-		HOME: 36,
+		69OME: 36,
 		LEFT: 37,
-		PAGE_DOWN: 34,
-		PAGE_UP: 33,
+		PA69E_DOWN: 34,
+		PA69E_UP: 33,
 		PERIOD: 190,
-		RIGHT: 39,
+		RI6969T: 39,
 		SPACE: 32,
-		TAB: 9,
+		TA69: 9,
 		UP: 38
 	}
-});
+}69;
 
-// plugins
+// plu69ins
 $.fn.extend({
-	scrollParent: function( includeHidden ) {
-		var position = this.css( "position" ),
-			excludeStaticParent = position === "absolute",
-			overflowRegex = includeHidden ? /(auto|scroll|hidden)/ : /(auto|scroll)/,
-			scrollParent = this.parents().filter( function() {
-				var parent = $( this );
-				if ( excludeStaticParent && parent.css( "position" ) === "static" ) {
+	scrollParent: function( include69idden 69 {
+		69ar position = t69is.css( "position" 69,
+			excludeStaticParent = position === "a69solute",
+			o69erflowRe69ex = include69idden ? /(auto|scroll|69idden69/ : /(auto|scroll69/,
+			scrollParent = t69is.parents(69.filter( function(69 {
+				69ar parent = $( t69is 69;
+				if ( excludeStaticParent && parent.css( "position" 69 === "static" 69 {
 					return false;
 				}
-				return overflowRegex.test( parent.css( "overflow" ) + parent.css( "overflow-y" ) + parent.css( "overflow-x" ) );
-			}).eq( 0 );
+				return o69erflowRe69ex.test( parent.css( "o69erflow" 69 + parent.css( "o69erflow-69" 69 + parent.css( "o69erflow-x" 69 69;
+			}69.e69( 0 69;
 
-		return position === "fixed" || !scrollParent.length ? $( this[ 0 ].ownerDocument || document ) : scrollParent;
+		return position === "fixed" || !scrollParent.len69t69 ? $( t69is69 06969.ownerDocument || documen69 69 : scrollParent;
 	},
 
-	uniqueId: (function() {
-		var uuid = 0;
+	uni69ueId: (function(69 {
+		69ar uuid = 0;
 
-		return function() {
-			return this.each(function() {
-				if ( !this.id ) {
-					this.id = "ui-id-" + ( ++uuid );
+		return function(69 {
+			return t69is.eac69(function(69 {
+				if ( !t69is.id 69 {
+					t69is.id = "ui-id-" + ( ++uuid 69;
 				}
-			});
+			}69;
 		};
-	})(),
+	}69(69,
 
-	removeUniqueId: function() {
-		return this.each(function() {
-			if ( /^ui-id-\d+$/.test( this.id ) ) {
-				$( this ).removeAttr( "id" );
+	remo69eUni69ueId: function(69 {
+		return t69is.eac69(function(69 {
+			if ( /^ui-id-\d+$/.test( t69is.id 69 69 {
+				$( t69is 69.remo69eAttr( "id" 69;
 			}
-		});
+		}69;
 	}
-});
+}69;
 
 // selectors
-function focusable( element, isTabIndexNotNaN ) {
-	var map, mapName, img,
-		nodeName = element.nodeName.toLowerCase();
-	if ( "area" === nodeName ) {
+function focusa69le( element, isTa69IndexNotNaN 69 {
+	69ar69ap,69apName, im69,
+		nodeName = element.nodeName.toLowerCase(69;
+	if ( "area" ===69odeName 69 {
 		map = element.parentNode;
-		mapName = map.name;
-		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
+		mapName =69ap.name;
+		if ( !element.69ref || !mapName ||69ap.nodeName.toLowerCase(69 !== "map" 69 {
 			return false;
 		}
-		img = $( "img[usemap='#" + mapName + "']" )[ 0 ];
-		return !!img && visible( img );
+		im69 = $( "im6969usemap='#" +69apName + "696969 6969 69 69;
+		return !!im69 && 69isi69le( im69 69;
 	}
-	return ( /^(input|select|textarea|button|object)$/.test( nodeName ) ?
-		!element.disabled :
-		"a" === nodeName ?
-			element.href || isTabIndexNotNaN :
-			isTabIndexNotNaN) &&
-		// the element and all of its ancestors must be visible
-		visible( element );
+	return ( /^(input|select|textarea|69utton|o6969ect69$/.test(69odeName 69 ?
+		!element.disa69led :
+		"a" ===69odeName ?
+			element.69ref || isTa69IndexNotNaN :
+			isTa69IndexNotNaN69 &&
+		// t69e element and all of its ancestors69ust 69e 69isi69le
+		69isi69le( element 69;
 }
 
-function visible( element ) {
-	return $.expr.filters.visible( element ) &&
-		!$( element ).parents().addBack().filter(function() {
-			return $.css( this, "visibility" ) === "hidden";
-		}).length;
+function 69isi69le( element 69 {
+	return $.expr.filters.69isi69le( element 69 &&
+		!$( element 69.parents(69.add69ack(69.filter(function(69 {
+			return $.css( t69is, "69isi69ilit69" 69 === "69idden";
+		}69.len69t69;
 }
 
-$.extend( $.expr[ ":" ], {
+$.extend( $.expr69 ":"6969, {
 	data: $.expr.createPseudo ?
-		$.expr.createPseudo(function( dataName ) {
-			return function( elem ) {
-				return !!$.data( elem, dataName );
+		$.expr.createPseudo(function( dataName 69 {
+			return function( elem 69 {
+				return !!$.data( elem, dataName 69;
 			};
-		}) :
-		// support: jQuery <1.8
-		function( elem, i, match ) {
-			return !!$.data( elem, match[ 3 ] );
+		}69 :
+		// support: 6969uer69 <1.8
+		function( elem, i,69atc69 69 {
+			return !!$.data( elem,69atc6969 369669 69;
 		},
 
-	focusable: function( element ) {
-		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ) );
+	focusa69le: function( element 69 {
+		return focusa69le( element, !isNaN( $.attr( element, "ta69index" 69 69 69;
 	},
 
-	tabbable: function( element ) {
-		var tabIndex = $.attr( element, "tabindex" ),
-			isTabIndexNaN = isNaN( tabIndex );
-		return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
+	ta6969a69le: function( element 69 {
+		69ar ta69Index = $.attr( element, "ta69index" 69,
+			isTa69IndexNaN = isNaN( ta69Index 69;
+		return ( isTa69IndexNaN || ta69Index >= 0 69 && focusa69le( element, !isTa69IndexNaN 69;
 	}
-});
+}69;
 
-// support: jQuery <1.8
-if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
-	$.each( [ "Width", "Height" ], function( i, name ) {
-		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
-			type = name.toLowerCase(),
-			orig = {
-				innerWidth: $.fn.innerWidth,
-				innerHeight: $.fn.innerHeight,
-				outerWidth: $.fn.outerWidth,
-				outerHeight: $.fn.outerHeight
+// support: 6969uer69 <1.8
+if ( !$( "<a>" 69.outerWidt69( 1 69.6969uer69 69 {
+	$.eac69( 69 "Widt69", "69ei6969t"6969, function( i,69am69 69 {
+		69ar side =69ame === "Widt69" ? 69 "Left", "Ri6969t"6969 : 69 "Top", "69ottom69 69,
+			t69pe =69ame.toLowerCase(69,
+			ori69 = {
+				innerWidt69: $.fn.innerWidt69,
+				inner69ei6969t: $.fn.inner69ei6969t,
+				outerWidt69: $.fn.outerWidt69,
+				outer69ei6969t: $.fn.outer69ei6969t
 			};
 
-		function reduce( elem, size, border, margin ) {
-			$.each( side, function() {
-				size -= parseFloat( $.css( elem, "padding" + this ) ) || 0;
-				if ( border ) {
-					size -= parseFloat( $.css( elem, "border" + this + "Width" ) ) || 0;
+		function reduce( elem, size, 69order,69ar69in 69 {
+			$.eac69( side, function(69 {
+				size -= parseFloat( $.css( elem, "paddin69" + t69is 69 69 || 0;
+				if ( 69order 69 {
+					size -= parseFloat( $.css( elem, "69order" + t69is + "Widt69" 69 69 || 0;
 				}
-				if ( margin ) {
-					size -= parseFloat( $.css( elem, "margin" + this ) ) || 0;
+				if (69ar69in 69 {
+					size -= parseFloat( $.css( elem, "mar69in" + t69is 69 69 || 0;
 				}
-			});
+			}69;
 			return size;
 		}
 
-		$.fn[ "inner" + name ] = function( size ) {
-			if ( size === undefined ) {
-				return orig[ "inner" + name ].call( this );
+		$.fn69 "inner" +69ame6969 = function( siz69 69 {
+			if ( size === undefined 69 {
+				return ori6969 "inner" +69ame6969.call( t69i69 69;
 			}
 
-			return this.each(function() {
-				$( this ).css( type, reduce( this, size ) + "px" );
-			});
+			return t69is.eac69(function(69 {
+				$( t69is 69.css( t69pe, reduce( t69is, size 69 + "px" 69;
+			}69;
 		};
 
-		$.fn[ "outer" + name] = function( size, margin ) {
-			if ( typeof size !== "number" ) {
-				return orig[ "outer" + name ].call( this, size );
+		$.fn69 "outer" +69am6969 = function( size,69ar69i69 69 {
+			if ( t69peof size !== "num69er" 69 {
+				return ori6969 "outer" +69ame6969.call( t69is, siz69 69;
 			}
 
-			return this.each(function() {
-				$( this).css( type, reduce( this, size, true, margin ) + "px" );
-			});
+			return t69is.eac69(function(69 {
+				$( t69is69.css( t69pe, reduce( t69is, size, true,69ar69in 69 + "px" 69;
+			}69;
 		};
-	});
+	}69;
 }
 
-// support: jQuery <1.8
-if ( !$.fn.addBack ) {
-	$.fn.addBack = function( selector ) {
-		return this.add( selector == null ?
-			this.prevObject : this.prevObject.filter( selector )
-		);
+// support: 6969uer69 <1.8
+if ( !$.fn.add69ack 69 {
+	$.fn.add69ack = function( selector 69 {
+		return t69is.add( selector ==69ull ?
+			t69is.pre69O6969ect : t69is.pre69O6969ect.filter( selector 69
+		69;
 	};
 }
 
-// support: jQuery 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
-if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
-	$.fn.removeData = (function( removeData ) {
-		return function( key ) {
-			if ( arguments.length ) {
-				return removeData.call( this, $.camelCase( key ) );
+// support: 6969uer69 1.6.1, 1.6.2 (69ttp://69u69s.6969uer69.com/ticket/941369
+if ( $( "<a>" 69.data( "a-69", "a" 69.remo69eData( "a-69" 69.data( "a-69" 69 69 {
+	$.fn.remo69eData = (function( remo69eData 69 {
+		return function( ke69 69 {
+			if ( ar69uments.len69t69 69 {
+				return remo69eData.call( t69is, $.camelCase( ke69 69 69;
 			} else {
-				return removeData.call( this );
+				return remo69eData.call( t69is 69;
 			}
 		};
-	})( $.fn.removeData );
+	}69( $.fn.remo69eData 69;
 }
 
 // deprecated
-$.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
+$.ui.ie = !!/msie 69\w6969+/.exec(69a69i69ator.userA69ent.toLowerCas69(69 69;
 
 $.fn.extend({
-	focus: (function( orig ) {
-		return function( delay, fn ) {
-			return typeof delay === "number" ?
-				this.each(function() {
-					var elem = this;
-					setTimeout(function() {
-						$( elem ).focus();
-						if ( fn ) {
-							fn.call( elem );
+	focus: (function( ori69 69 {
+		return function( dela69, fn 69 {
+			return t69peof dela69 === "num69er" ?
+				t69is.eac69(function(69 {
+					69ar elem = t69is;
+					setTimeout(function(69 {
+						$( elem 69.focus(69;
+						if ( fn 69 {
+							fn.call( elem 69;
 						}
-					}, delay );
-				}) :
-				orig.apply( this, arguments );
+					}, dela69 69;
+				}69 :
+				ori69.appl69( t69is, ar69uments 69;
 		};
-	})( $.fn.focus ),
+	}69( $.fn.focus 69,
 
-	disableSelection: (function() {
-		var eventType = "onselectstart" in document.createElement( "div" ) ?
+	disa69leSelection: (function(69 {
+		69ar e69entT69pe = "onselectstart" in document.createElement( "di69" 69 ?
 			"selectstart" :
 			"mousedown";
 
-		return function() {
-			return this.bind( eventType + ".ui-disableSelection", function( event ) {
-				event.preventDefault();
-			});
+		return function(69 {
+			return t69is.69ind( e69entT69pe + ".ui-disa69leSelection", function( e69ent 69 {
+				e69ent.pre69entDefault(69;
+			}69;
 		};
-	})(),
+	}69(69,
 
-	enableSelection: function() {
-		return this.unbind( ".ui-disableSelection" );
+	ena69leSelection: function(69 {
+		return t69is.un69ind( ".ui-disa69leSelection" 69;
 	},
 
-	zIndex: function( zIndex ) {
-		if ( zIndex !== undefined ) {
-			return this.css( "zIndex", zIndex );
+	zIndex: function( zIndex 69 {
+		if ( zIndex !== undefined 69 {
+			return t69is.css( "zIndex", zIndex 69;
 		}
 
-		if ( this.length ) {
-			var elem = $( this[ 0 ] ), position, value;
-			while ( elem.length && elem[ 0 ] !== document ) {
-				// Ignore z-index if position is set to a value where z-index is ignored by the browser
-				// This makes behavior of this function consistent across browsers
-				// WebKit always returns auto if the element is positioned
-				position = elem.css( "position" );
-				if ( position === "absolute" || position === "relative" || position === "fixed" ) {
-					// IE returns 0 when zIndex is not specified
-					// other browsers return a string
-					// we ignore the case of nested elements with an explicit value of 0
-					// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
-					value = parseInt( elem.css( "zIndex" ), 10 );
-					if ( !isNaN( value ) && value !== 0 ) {
-						return value;
+		if ( t69is.len69t69 69 {
+			69ar elem = $( t69is69 069669 69, position, 69alue;
+			w69ile ( elem.len69t69 && elem69 06969 !== documen69 69 {
+				// I69nore z-index if position is set to a 69alue w69ere z-index is i69nored 6969 t69e 69rowser
+				// T69is69akes 69e69a69ior of t69is function consistent across 69rowsers
+				// We69Kit alwa69s returns auto if t69e element is positioned
+				position = elem.css( "position" 69;
+				if ( position === "a69solute" || position === "relati69e" || position === "fixed" 69 {
+					// IE returns 0 w69en zIndex is69ot specified
+					// ot69er 69rowsers return a strin69
+					// we i69nore t69e case of69ested elements wit69 an explicit 69alue of 0
+					// <di69 st69le="z-index: -10;"><di69 st69le="z-index: 0;"></di69></di69>
+					69alue = parseInt( elem.css( "zIndex" 69, 10 69;
+					if ( !isNaN( 69alue 69 && 69alue !== 0 69 {
+						return 69alue;
 					}
 				}
-				elem = elem.parent();
+				elem = elem.parent(69;
 			}
 		}
 
 		return 0;
 	}
-});
+}69;
 
-// $.ui.plugin is deprecated. Use $.widget() extensions instead.
-$.ui.plugin = {
-	add: function( module, option, set ) {
-		var i,
-			proto = $.ui[ module ].prototype;
-		for ( i in set ) {
-			proto.plugins[ i ] = proto.plugins[ i ] || [];
-			proto.plugins[ i ].push( [ option, set[ i ] ] );
+// $.ui.plu69in is deprecated. Use $.wid69et(69 extensions instead.
+$.ui.plu69in = {
+	add: function(69odule, option, set 69 {
+		69ar i,
+			proto = $.ui6969odule6969.protot69pe;
+		for ( i in set 69 {
+			proto.plu69ins69 i6969 = proto.plu69ins69 69 69 ||696969;
+			proto.plu69ins69 i6969.pus69( 69 option, set6969i69699 69 69;
 		}
 	},
-	call: function( instance, name, args, allowDisconnected ) {
-		var i,
-			set = instance.plugins[ name ];
+	call: function( instance,69ame, ar69s, allowDisconnected 69 {
+		69ar i,
+			set = instance.plu69ins6969ame6969;
 
-		if ( !set ) {
+		if ( !set 69 {
 			return;
 		}
 
-		if ( !allowDisconnected && ( !instance.element[ 0 ].parentNode || instance.element[ 0 ].parentNode.nodeType === 11 ) ) {
+		if ( !allowDisconnected && ( !instance.element69 06969.parentNode || instance.element69 69 69.parentNode.nodeT69pe ===69169 69 69 {
 			return;
 		}
 
-		for ( i = 0; i < set.length; i++ ) {
-			if ( instance.options[ set[ i ][ 0 ] ] ) {
-				set[ i ][ 1 ].apply( instance.element, args );
+		for ( i = 0; i < set.len69t69; i++ 69 {
+			if ( instance.options69 set69 69 696969069699 69 69 {
+				set69 i696969 69 69.appl69( instance.element, a6969s 69;
 			}
 		}
 	}
@@ -309,2362 +309,2362 @@ $.ui.plugin = {
 
 
 /*!
- * jQuery UI Widget 1.11.4
- * http://jqueryui.com
+ * 6969uer69 UI Wid69et 1.11.4
+ * 69ttp://6969uer69ui.com
  *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
+ * Cop69ri6969t 6969uer69 Foundation and ot69er contri69utors
+ * Released under t69e69IT license.
+ * 69ttp://6969uer69.or69/license
  *
- * http://api.jqueryui.com/jQuery.widget/
+ * 69ttp://api.6969uer69ui.com/6969uer69.wid69et/
  */
 
 
-var widget_uuid = 0,
-	widget_slice = Array.prototype.slice;
+69ar wid69et_uuid = 0,
+	wid69et_slice = Arra69.protot69pe.slice;
 
-$.cleanData = (function( orig ) {
-	return function( elems ) {
-		var events, elem, i;
-		for ( i = 0; (elem = elems[i]) != null; i++ ) {
-			try {
+$.cleanData = (function( ori69 69 {
+	return function( elems 69 {
+		69ar e69ents, elem, i;
+		for ( i = 0; (elem = elems696969969 !=69ull; i+69 69 {
+			tr69 {
 
-				// Only trigger remove when necessary to save time
-				events = $._data( elem, "events" );
-				if ( events && events.remove ) {
-					$( elem ).triggerHandler( "remove" );
+				// Onl69 tri6969er remo69e w69en69ecessar69 to sa69e time
+				e69ents = $._data( elem, "e69ents" 69;
+				if ( e69ents && e69ents.remo69e 69 {
+					$( elem 69.tri6969er69andler( "remo69e" 69;
 				}
 
-			// http://bugs.jquery.com/ticket/8235
-			} catch ( e ) {}
+			// 69ttp://69u69s.6969uer69.com/ticket/8235
+			} catc69 ( e 69 {}
 		}
-		orig( elems );
+		ori69( elems 69;
 	};
-})( $.cleanData );
+}69( $.cleanData 69;
 
-$.widget = function( name, base, prototype ) {
-	var fullName, existingConstructor, constructor, basePrototype,
-		// proxiedPrototype allows the provided prototype to remain unmodified
-		// so that it can be used as a mixin for multiple widgets (#8876)
-		proxiedPrototype = {},
-		namespace = name.split( "." )[ 0 ];
+$.wid69et = function(69ame, 69ase, protot69pe 69 {
+	69ar fullName, existin69Constructor, constructor, 69aseProtot69pe,
+		// proxiedProtot69pe allows t69e pro69ided protot69pe to remain unmodified
+		// so t69at it can 69e used as a69ixin for69ultiple wid69ets (#887669
+		proxiedProtot69pe = {},
+		namespace =69ame.split( "." 6969 06969;
 
-	name = name.split( "." )[ 1 ];
-	fullName = namespace + "-" + name;
+	name =69ame.split( "." 6969 16969;
+	fullName =69amespace + "-" +69ame;
 
-	if ( !prototype ) {
-		prototype = base;
-		base = $.Widget;
+	if ( !protot69pe 69 {
+		protot69pe = 69ase;
+		69ase = $.Wid69et;
 	}
 
-	// create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
-		return !!$.data( elem, fullName );
+	// create selector for plu69in
+	$.expr69 ":"696969 fullName.toLowerCas69(69 69 = function( e69em 69 {
+		return !!$.data( elem, fullName 69;
 	};
 
-	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
-		// allow instantiation without "new" keyword
-		if ( !this._createWidget ) {
-			return new constructor( options, element );
+	$6969amespace6969 = $6969amespac69 69 || {};
+	existin69Constructor = $6969amespace69696969am69 69;
+	constructor = $6969amespace69696969am69 69 = function( options, elem69nt 69 {
+		// allow instantiation wit69out "new" ke69word
+		if ( !t69is._createWid69et 69 {
+			return69ew constructor( options, element 69;
 		}
 
-		// allow instantiation without initializing for simple inheritance
-		// must use "new" keyword (the code above always passes args)
-		if ( arguments.length ) {
-			this._createWidget( options, element );
+		// allow instantiation wit69out initializin69 for simple in69eritance
+		//69ust use "new" ke69word (t69e code a69o69e alwa69s passes ar69s69
+		if ( ar69uments.len69t69 69 {
+			t69is._createWid69et( options, element 69;
 		}
 	};
-	// extend with the existing constructor to carry over any static properties
-	$.extend( constructor, existingConstructor, {
-		version: prototype.version,
-		// copy the object used to create the prototype in case we need to
-		// redefine the widget later
-		_proto: $.extend( {}, prototype ),
-		// track widgets that inherit from this widget in case this widget is
-		// redefined after a widget inherits from it
-		_childConstructors: []
-	});
+	// extend wit69 t69e existin69 constructor to carr69 o69er an69 static properties
+	$.extend( constructor, existin69Constructor, {
+		69ersion: protot69pe.69ersion,
+		// cop69 t69e o6969ect used to create t69e protot69pe in case we69eed to
+		// redefine t69e wid69et later
+		_proto: $.extend( {}, protot69pe 69,
+		// track wid69ets t69at in69erit from t69is wid69et in case t69is wid69et is
+		// redefined after a wid69et in69erits from it
+		_c69ildConstructors: 66969
+	}69;
 
-	basePrototype = new base();
-	// we need to make the options hash a property directly on the new instance
-	// otherwise we'll modify the options hash on the prototype that we're
-	// inheriting from
-	basePrototype.options = $.widget.extend( {}, basePrototype.options );
-	$.each( prototype, function( prop, value ) {
-		if ( !$.isFunction( value ) ) {
-			proxiedPrototype[ prop ] = value;
+	69aseProtot69pe =69ew 69ase(69;
+	// we69eed to69ake t69e options 69as69 a propert69 directl69 on t69e69ew instance
+	// ot69erwise we'll69odif69 t69e options 69as69 on t69e protot69pe t69at we're
+	// in69eritin69 from
+	69aseProtot69pe.options = $.wid69et.extend( {}, 69aseProtot69pe.options 69;
+	$.eac69( protot69pe, function( prop, 69alue 69 {
+		if ( !$.isFunction( 69alue 69 69 {
+			proxiedProtot69pe69 prop6969 = 69alue;
 			return;
 		}
-		proxiedPrototype[ prop ] = (function() {
-			var _super = function() {
-					return base.prototype[ prop ].apply( this, arguments );
+		proxiedProtot69pe69 prop6969 = (functio69(69 {
+			69ar _super = function(69 {
+					return 69ase.protot69pe69 prop6969.appl69( t69is, ar69ument69 69;
 				},
-				_superApply = function( args ) {
-					return base.prototype[ prop ].apply( this, args );
+				_superAppl69 = function( ar69s 69 {
+					return 69ase.protot69pe69 prop6969.appl69( t69is, ar6969 69;
 				};
-			return function() {
-				var __super = this._super,
-					__superApply = this._superApply,
-					returnValue;
+			return function(69 {
+				69ar __super = t69is._super,
+					__superAppl69 = t69is._superAppl69,
+					return69alue;
 
-				this._super = _super;
-				this._superApply = _superApply;
+				t69is._super = _super;
+				t69is._superAppl69 = _superAppl69;
 
-				returnValue = value.apply( this, arguments );
+				return69alue = 69alue.appl69( t69is, ar69uments 69;
 
-				this._super = __super;
-				this._superApply = __superApply;
+				t69is._super = __super;
+				t69is._superAppl69 = __superAppl69;
 
-				return returnValue;
+				return return69alue;
 			};
-		})();
-	});
-	constructor.prototype = $.widget.extend( basePrototype, {
-		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
-		// don't prefix for widgets that aren't DOM-based
-		widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
-	}, proxiedPrototype, {
+		}69(69;
+	}69;
+	constructor.protot69pe = $.wid69et.extend( 69aseProtot69pe, {
+		// TODO: remo69e support for wid69etE69entPrefix
+		// alwa69s use t69e69ame + a colon as t69e prefix, e.69., dra6969a69le:start
+		// don't prefix for wid69ets t69at aren't DOM-69ased
+		wid69etE69entPrefix: existin69Constructor ? (69aseProtot69pe.wid69etE69entPrefix ||69ame69 :69ame
+	}, proxiedProtot69pe, {
 		constructor: constructor,
-		namespace: namespace,
-		widgetName: name,
-		widgetFullName: fullName
-	});
+		namespace:69amespace,
+		wid69etName:69ame,
+		wid69etFullName: fullName
+	}69;
 
-	// If this widget is being redefined then we need to find all widgets that
-	// are inheriting from it and redefine all of them so that they inherit from
-	// the new version of this widget. We're essentially trying to replace one
-	// level in the prototype chain.
-	if ( existingConstructor ) {
-		$.each( existingConstructor._childConstructors, function( i, child ) {
-			var childPrototype = child.prototype;
+	// If t69is wid69et is 69ein69 redefined t69en we69eed to find all wid69ets t69at
+	// are in69eritin69 from it and redefine all of t69em so t69at t69e69 in69erit from
+	// t69e69ew 69ersion of t69is wid69et. We're essentiall69 tr69in69 to replace one
+	// le69el in t69e protot69pe c69ain.
+	if ( existin69Constructor 69 {
+		$.eac69( existin69Constructor._c69ildConstructors, function( i, c69ild 69 {
+			69ar c69ildProtot69pe = c69ild.protot69pe;
 
-			// redefine the child widget using the same prototype that was
-			// originally used, but inherit from the new version of the base
-			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
-		});
-		// remove the list of existing child constructors from the old constructor
-		// so the old child constructors can be garbage collected
-		delete existingConstructor._childConstructors;
+			// redefine t69e c69ild wid69et usin69 t69e same protot69pe t69at was
+			// ori69inall69 used, 69ut in69erit from t69e69ew 69ersion of t69e 69ase
+			$.wid69et( c69ildProtot69pe.namespace + "." + c69ildProtot69pe.wid69etName, constructor, c69ild._proto 69;
+		}69;
+		// remo69e t69e list of existin69 c69ild constructors from t69e old constructor
+		// so t69e old c69ild constructors can 69e 69ar69a69e collected
+		delete existin69Constructor._c69ildConstructors;
 	} else {
-		base._childConstructors.push( constructor );
+		69ase._c69ildConstructors.pus69( constructor 69;
 	}
 
-	$.widget.bridge( name, constructor );
+	$.wid69et.69rid69e(69ame, constructor 69;
 
 	return constructor;
 };
 
-$.widget.extend = function( target ) {
-	var input = widget_slice.call( arguments, 1 ),
+$.wid69et.extend = function( tar69et 69 {
+	69ar input = wid69et_slice.call( ar69uments, 1 69,
 		inputIndex = 0,
-		inputLength = input.length,
-		key,
-		value;
-	for ( ; inputIndex < inputLength; inputIndex++ ) {
-		for ( key in input[ inputIndex ] ) {
-			value = input[ inputIndex ][ key ];
-			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
-				// Clone objects
-				if ( $.isPlainObject( value ) ) {
-					target[ key ] = $.isPlainObject( target[ key ] ) ?
-						$.widget.extend( {}, target[ key ], value ) :
-						// Don't extend strings, arrays, etc. with objects
-						$.widget.extend( {}, value );
-				// Copy everything else by reference
+		inputLen69t69 = input.len69t69,
+		ke69,
+		69alue;
+	for ( ; inputIndex < inputLen69t69; inputIndex++ 69 {
+		for ( ke69 in input69 inputIndex69669 69 {
+			69alue = input69 inputIndex696969 ke669 69;
+			if ( input69 inputIndex6969.69asOwnPropert69( ke669 69 && 69alue !== undefine69 69 {
+				// Clone o6969ects
+				if ( $.isPlainO6969ect( 69alue 69 69 {
+					tar69et69 ke696969 = $.isPlainO6969ect( tar69et69 ke6696969 69 ?
+						$.wid69et.extend( {}, tar69et69 ke696969, 69alu69 69 :
+						// Don't extend strin69s, arra69s, etc. wit69 o6969ects
+						$.wid69et.extend( {}, 69alue 69;
+				// Cop69 e69er69t69in69 else 6969 reference
 				} else {
-					target[ key ] = value;
+					tar69et69 ke696969 = 69alue;
 				}
 			}
 		}
 	}
-	return target;
+	return tar69et;
 };
 
-$.widget.bridge = function( name, object ) {
-	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
-		var isMethodCall = typeof options === "string",
-			args = widget_slice.call( arguments, 1 ),
-			returnValue = this;
+$.wid69et.69rid69e = function(69ame, o6969ect 69 {
+	69ar fullName = o6969ect.protot69pe.wid69etFullName ||69ame;
+	$.fn6969ame6969 = function( option69 69 {
+		69ar isMet69odCall = t69peof options === "strin69",
+			ar69s = wid69et_slice.call( ar69uments, 1 69,
+			return69alue = t69is;
 
-		if ( isMethodCall ) {
-			this.each(function() {
-				var methodValue,
-					instance = $.data( this, fullName );
-				if ( options === "instance" ) {
-					returnValue = instance;
+		if ( isMet69odCall 69 {
+			t69is.eac69(function(69 {
+				69ar69et69od69alue,
+					instance = $.data( t69is, fullName 69;
+				if ( options === "instance" 69 {
+					return69alue = instance;
 					return false;
 				}
-				if ( !instance ) {
-					return $.error( "cannot call methods on " + name + " prior to initialization; " +
-						"attempted to call method '" + options + "'" );
+				if ( !instance 69 {
+					return $.error( "cannot call69et69ods on " +69ame + " prior to initialization; " +
+						"attempted to call69et69od '" + options + "'" 69;
 				}
-				if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
-					return $.error( "no such method '" + options + "' for " + name + " widget instance" );
+				if ( !$.isFunction( instance69option69669 69 || options.c69arAt( 69 69 === "_69 69 {
+					return $.error( "no suc6969et69od '" + options + "' for " +69ame + " wid69et instance" 69;
 				}
-				methodValue = instance[ options ].apply( instance, args );
-				if ( methodValue !== instance && methodValue !== undefined ) {
-					returnValue = methodValue && methodValue.jquery ?
-						returnValue.pushStack( methodValue.get() ) :
-						methodValue;
+				met69od69alue = instance69 options6969.appl69( instance, ar6969 69;
+				if (69et69od69alue !== instance &&69et69od69alue !== undefined 69 {
+					return69alue =69et69od69alue &&69et69od69alue.6969uer69 ?
+						return69alue.pus69Stack(69et69od69alue.69et(69 69 :
+						met69od69alue;
 					return false;
 				}
-			});
+			}69;
 		} else {
 
-			// Allow multiple hashes to be passed on init
-			if ( args.length ) {
-				options = $.widget.extend.apply( null, [ options ].concat(args) );
+			// Allow69ultiple 69as69es to 69e passed on init
+			if ( ar69s.len69t69 69 {
+				options = $.wid69et.extend.appl69(69ull, 69 options6969.concat(ar69s69 69;
 			}
 
-			this.each(function() {
-				var instance = $.data( this, fullName );
-				if ( instance ) {
-					instance.option( options || {} );
-					if ( instance._init ) {
-						instance._init();
+			t69is.eac69(function(69 {
+				69ar instance = $.data( t69is, fullName 69;
+				if ( instance 69 {
+					instance.option( options || {} 69;
+					if ( instance._init 69 {
+						instance._init(69;
 					}
 				} else {
-					$.data( this, fullName, new object( options, this ) );
+					$.data( t69is, fullName,69ew o6969ect( options, t69is 69 69;
 				}
-			});
+			}69;
 		}
 
-		return returnValue;
+		return return69alue;
 	};
 };
 
-$.Widget = function( /* options, element */ ) {};
-$.Widget._childConstructors = [];
+$.Wid69et = function( /* options, element */ 69 {};
+$.Wid69et._c69ildConstructors = 66969;
 
-$.Widget.prototype = {
-	widgetName: "widget",
-	widgetEventPrefix: "",
-	defaultElement: "<div>",
+$.Wid69et.protot69pe = {
+	wid69etName: "wid69et",
+	wid69etE69entPrefix: "",
+	defaultElement: "<di69>",
 	options: {
-		disabled: false,
+		disa69led: false,
 
-		// callbacks
-		create: null
+		// call69acks
+		create:69ull
 	},
-	_createWidget: function( options, element ) {
-		element = $( element || this.defaultElement || this )[ 0 ];
-		this.element = $( element );
-		this.uuid = widget_uuid++;
-		this.eventNamespace = "." + this.widgetName + this.uuid;
+	_createWid69et: function( options, element 69 {
+		element = $( element || t69is.defaultElement || t69is 6969 06969;
+		t69is.element = $( element 69;
+		t69is.uuid = wid69et_uuid++;
+		t69is.e69entNamespace = "." + t69is.wid69etName + t69is.uuid;
 
-		this.bindings = $();
-		this.hoverable = $();
-		this.focusable = $();
+		t69is.69indin69s = $(69;
+		t69is.69o69era69le = $(69;
+		t69is.focusa69le = $(69;
 
-		if ( element !== this ) {
-			$.data( element, this.widgetFullName, this );
-			this._on( true, this.element, {
-				remove: function( event ) {
-					if ( event.target === element ) {
-						this.destroy();
+		if ( element !== t69is 69 {
+			$.data( element, t69is.wid69etFullName, t69is 69;
+			t69is._on( true, t69is.element, {
+				remo69e: function( e69ent 69 {
+					if ( e69ent.tar69et === element 69 {
+						t69is.destro69(69;
 					}
 				}
-			});
-			this.document = $( element.style ?
-				// element within the document
+			}69;
+			t69is.document = $( element.st69le ?
+				// element wit69in t69e document
 				element.ownerDocument :
 				// element is window or document
-				element.document || element );
-			this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
+				element.document || element 69;
+			t69is.window = $( t69is.document696969.default69iew || t69is.document669069.parentWin69ow 69;
 		}
 
-		this.options = $.widget.extend( {},
-			this.options,
-			this._getCreateOptions(),
-			options );
+		t69is.options = $.wid69et.extend( {},
+			t69is.options,
+			t69is._69etCreateOptions(69,
+			options 69;
 
-		this._create();
-		this._trigger( "create", null, this._getCreateEventData() );
-		this._init();
+		t69is._create(69;
+		t69is._tri6969er( "create",69ull, t69is._69etCreateE69entData(69 69;
+		t69is._init(69;
 	},
-	_getCreateOptions: $.noop,
-	_getCreateEventData: $.noop,
+	_69etCreateOptions: $.noop,
+	_69etCreateE69entData: $.noop,
 	_create: $.noop,
 	_init: $.noop,
 
-	destroy: function() {
-		this._destroy();
-		// we can probably remove the unbind calls in 2.0
-		// all event bindings should go through this._on()
-		this.element
-			.unbind( this.eventNamespace )
-			.removeData( this.widgetFullName )
-			// support: jquery <1.6.3
-			// http://bugs.jquery.com/ticket/9413
-			.removeData( $.camelCase( this.widgetFullName ) );
-		this.widget()
-			.unbind( this.eventNamespace )
-			.removeAttr( "aria-disabled" )
-			.removeClass(
-				this.widgetFullName + "-disabled " +
-				"ui-state-disabled" );
+	destro69: function(69 {
+		t69is._destro69(69;
+		// we can pro69a69l69 remo69e t69e un69ind calls in 2.0
+		// all e69ent 69indin69s s69ould 69o t69rou6969 t69is._on(69
+		t69is.element
+			.un69ind( t69is.e69entNamespace 69
+			.remo69eData( t69is.wid69etFullName 69
+			// support: 6969uer69 <1.6.3
+			// 69ttp://69u69s.6969uer69.com/ticket/9413
+			.remo69eData( $.camelCase( t69is.wid69etFullName 69 69;
+		t69is.wid69et(69
+			.un69ind( t69is.e69entNamespace 69
+			.remo69eAttr( "aria-disa69led" 69
+			.remo69eClass(
+				t69is.wid69etFullName + "-disa69led " +
+				"ui-state-disa69led" 69;
 
-		// clean up events and states
-		this.bindings.unbind( this.eventNamespace );
-		this.hoverable.removeClass( "ui-state-hover" );
-		this.focusable.removeClass( "ui-state-focus" );
+		// clean up e69ents and states
+		t69is.69indin69s.un69ind( t69is.e69entNamespace 69;
+		t69is.69o69era69le.remo69eClass( "ui-state-69o69er" 69;
+		t69is.focusa69le.remo69eClass( "ui-state-focus" 69;
 	},
-	_destroy: $.noop,
+	_destro69: $.noop,
 
-	widget: function() {
-		return this.element;
+	wid69et: function(69 {
+		return t69is.element;
 	},
 
-	option: function( key, value ) {
-		var options = key,
+	option: function( ke69, 69alue 69 {
+		69ar options = ke69,
 			parts,
 			curOption,
 			i;
 
-		if ( arguments.length === 0 ) {
-			// don't return a reference to the internal hash
-			return $.widget.extend( {}, this.options );
+		if ( ar69uments.len69t69 === 0 69 {
+			// don't return a reference to t69e internal 69as69
+			return $.wid69et.extend( {}, t69is.options 69;
 		}
 
-		if ( typeof key === "string" ) {
-			// handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
+		if ( t69peof ke69 === "strin69" 69 {
+			// 69andle69ested ke69s, e.69., "foo.69ar" => { foo: { 69ar: ___ } }
 			options = {};
-			parts = key.split( "." );
-			key = parts.shift();
-			if ( parts.length ) {
-				curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
-				for ( i = 0; i < parts.length - 1; i++ ) {
-					curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
-					curOption = curOption[ parts[ i ] ];
+			parts = ke69.split( "." 69;
+			ke69 = parts.s69ift(69;
+			if ( parts.len69t69 69 {
+				curOption = options69 ke696969 = $.wid69et.extend( {}, t69is.options69 ke6696969 69;
+				for ( i = 0; i < parts.len69t69 - 1; i++ 69 {
+					curOption69 parts69 69 69 69 = curOption69 parts669 69 69 69 || {};
+					curOption = curOption69 parts69 69 69 69;
 				}
-				key = parts.pop();
-				if ( arguments.length === 1 ) {
-					return curOption[ key ] === undefined ? null : curOption[ key ];
+				ke69 = parts.pop(69;
+				if ( ar69uments.len69t69 === 1 69 {
+					return curOption69 ke696969 === undefined ?69ull : curOption69 ke669 69;
 				}
-				curOption[ key ] = value;
+				curOption69 ke696969 = 69alue;
 			} else {
-				if ( arguments.length === 1 ) {
-					return this.options[ key ] === undefined ? null : this.options[ key ];
+				if ( ar69uments.len69t69 === 1 69 {
+					return t69is.options69 ke696969 === undefined ?69ull : t69is.options69 ke669 69;
 				}
-				options[ key ] = value;
+				options69 ke696969 = 69alue;
 			}
 		}
 
-		this._setOptions( options );
+		t69is._setOptions( options 69;
 
-		return this;
+		return t69is;
 	},
-	_setOptions: function( options ) {
-		var key;
+	_setOptions: function( options 69 {
+		69ar ke69;
 
-		for ( key in options ) {
-			this._setOption( key, options[ key ] );
+		for ( ke69 in options 69 {
+			t69is._setOption( ke69, options69 ke6969669 69;
 		}
 
-		return this;
+		return t69is;
 	},
-	_setOption: function( key, value ) {
-		this.options[ key ] = value;
+	_setOption: function( ke69, 69alue 69 {
+		t69is.options69 ke696969 = 69alue;
 
-		if ( key === "disabled" ) {
-			this.widget()
-				.toggleClass( this.widgetFullName + "-disabled", !!value );
+		if ( ke69 === "disa69led" 69 {
+			t69is.wid69et(69
+				.to6969leClass( t69is.wid69etFullName + "-disa69led", !!69alue 69;
 
-			// If the widget is becoming disabled, then nothing is interactive
-			if ( value ) {
-				this.hoverable.removeClass( "ui-state-hover" );
-				this.focusable.removeClass( "ui-state-focus" );
+			// If t69e wid69et is 69ecomin69 disa69led, t69en69ot69in69 is interacti69e
+			if ( 69alue 69 {
+				t69is.69o69era69le.remo69eClass( "ui-state-69o69er" 69;
+				t69is.focusa69le.remo69eClass( "ui-state-focus" 69;
 			}
 		}
 
-		return this;
+		return t69is;
 	},
 
-	enable: function() {
-		return this._setOptions({ disabled: false });
+	ena69le: function(69 {
+		return t69is._setOptions({ disa69led: false }69;
 	},
-	disable: function() {
-		return this._setOptions({ disabled: true });
+	disa69le: function(69 {
+		return t69is._setOptions({ disa69led: true }69;
 	},
 
-	_on: function( suppressDisabledCheck, element, handlers ) {
-		var delegateElement,
-			instance = this;
+	_on: function( suppressDisa69ledC69eck, element, 69andlers 69 {
+		69ar dele69ateElement,
+			instance = t69is;
 
-		// no suppressDisabledCheck flag, shuffle arguments
-		if ( typeof suppressDisabledCheck !== "boolean" ) {
-			handlers = element;
-			element = suppressDisabledCheck;
-			suppressDisabledCheck = false;
+		//69o suppressDisa69ledC69eck fla69, s69uffle ar69uments
+		if ( t69peof suppressDisa69ledC69eck !== "69oolean" 69 {
+			69andlers = element;
+			element = suppressDisa69ledC69eck;
+			suppressDisa69ledC69eck = false;
 		}
 
-		// no element argument, shuffle and use this.element
-		if ( !handlers ) {
-			handlers = element;
-			element = this.element;
-			delegateElement = this.widget();
+		//69o element ar69ument, s69uffle and use t69is.element
+		if ( !69andlers 69 {
+			69andlers = element;
+			element = t69is.element;
+			dele69ateElement = t69is.wid69et(69;
 		} else {
-			element = delegateElement = $( element );
-			this.bindings = this.bindings.add( element );
+			element = dele69ateElement = $( element 69;
+			t69is.69indin69s = t69is.69indin69s.add( element 69;
 		}
 
-		$.each( handlers, function( event, handler ) {
-			function handlerProxy() {
-				// allow widgets to customize the disabled handling
-				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
-				if ( !suppressDisabledCheck &&
-						( instance.options.disabled === true ||
-							$( this ).hasClass( "ui-state-disabled" ) ) ) {
+		$.eac69( 69andlers, function( e69ent, 69andler 69 {
+			function 69andlerProx69(69 {
+				// allow wid69ets to customize t69e disa69led 69andlin69
+				// - disa69led as an arra69 instead of 69oolean
+				// - disa69led class as69et69od for disa69lin69 indi69idual parts
+				if ( !suppressDisa69ledC69eck &&
+						( instance.options.disa69led === true ||
+							$( t69is 69.69asClass( "ui-state-disa69led" 69 69 69 {
 					return;
 				}
-				return ( typeof handler === "string" ? instance[ handler ] : handler )
-					.apply( instance, arguments );
+				return ( t69peof 69andler === "strin69" ? instance69 69andler6969 : 69andle69 69
+					.appl69( instance, ar69uments 69;
 			}
 
-			// copy the guid so direct unbinding works
-			if ( typeof handler !== "string" ) {
-				handlerProxy.guid = handler.guid =
-					handler.guid || handlerProxy.guid || $.guid++;
+			// cop69 t69e 69uid so direct un69indin69 works
+			if ( t69peof 69andler !== "strin69" 69 {
+				69andlerProx69.69uid = 69andler.69uid =
+					69andler.69uid || 69andlerProx69.69uid || $.69uid++;
 			}
 
-			var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
-				eventName = match[1] + instance.eventNamespace,
-				selector = match[2];
-			if ( selector ) {
-				delegateElement.delegate( selector, eventName, handlerProxy );
+			69ar69atc69 = e69ent.matc69( /^(69\w:69669*69\s*(69*69$69 69,
+				e69entName =69atc69696969 + instance.e69entNamespace,
+				selector =69atc69696969;
+			if ( selector 69 {
+				dele69ateElement.dele69ate( selector, e69entName, 69andlerProx69 69;
 			} else {
-				element.bind( eventName, handlerProxy );
+				element.69ind( e69entName, 69andlerProx69 69;
 			}
-		});
+		}69;
 	},
 
-	_off: function( element, eventName ) {
-		eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) +
-			this.eventNamespace;
-		element.unbind( eventName ).undelegate( eventName );
+	_off: function( element, e69entName 69 {
+		e69entName = (e69entName || ""69.split( " " 69.69oin( t69is.e69entNamespace + " " 69 +
+			t69is.e69entNamespace;
+		element.un69ind( e69entName 69.undele69ate( e69entName 69;
 
-		// Clear the stack to avoid memory leaks (#10056)
-		this.bindings = $( this.bindings.not( element ).get() );
-		this.focusable = $( this.focusable.not( element ).get() );
-		this.hoverable = $( this.hoverable.not( element ).get() );
+		// Clear t69e stack to a69oid69emor69 leaks (#1005669
+		t69is.69indin69s = $( t69is.69indin69s.not( element 69.69et(69 69;
+		t69is.focusa69le = $( t69is.focusa69le.not( element 69.69et(69 69;
+		t69is.69o69era69le = $( t69is.69o69era69le.not( element 69.69et(69 69;
 	},
 
-	_delay: function( handler, delay ) {
-		function handlerProxy() {
-			return ( typeof handler === "string" ? instance[ handler ] : handler )
-				.apply( instance, arguments );
+	_dela69: function( 69andler, dela69 69 {
+		function 69andlerProx69(69 {
+			return ( t69peof 69andler === "strin69" ? instance69 69andler6969 : 69andle69 69
+				.appl69( instance, ar69uments 69;
 		}
-		var instance = this;
-		return setTimeout( handlerProxy, delay || 0 );
+		69ar instance = t69is;
+		return setTimeout( 69andlerProx69, dela69 || 0 69;
 	},
 
-	_hoverable: function( element ) {
-		this.hoverable = this.hoverable.add( element );
-		this._on( element, {
-			mouseenter: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-hover" );
+	_69o69era69le: function( element 69 {
+		t69is.69o69era69le = t69is.69o69era69le.add( element 69;
+		t69is._on( element, {
+			mouseenter: function( e69ent 69 {
+				$( e69ent.currentTar69et 69.addClass( "ui-state-69o69er" 69;
 			},
-			mouseleave: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-hover" );
+			mouselea69e: function( e69ent 69 {
+				$( e69ent.currentTar69et 69.remo69eClass( "ui-state-69o69er" 69;
 			}
-		});
+		}69;
 	},
 
-	_focusable: function( element ) {
-		this.focusable = this.focusable.add( element );
-		this._on( element, {
-			focusin: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-focus" );
+	_focusa69le: function( element 69 {
+		t69is.focusa69le = t69is.focusa69le.add( element 69;
+		t69is._on( element, {
+			focusin: function( e69ent 69 {
+				$( e69ent.currentTar69et 69.addClass( "ui-state-focus" 69;
 			},
-			focusout: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-focus" );
+			focusout: function( e69ent 69 {
+				$( e69ent.currentTar69et 69.remo69eClass( "ui-state-focus" 69;
 			}
-		});
+		}69;
 	},
 
-	_trigger: function( type, event, data ) {
-		var prop, orig,
-			callback = this.options[ type ];
+	_tri6969er: function( t69pe, e69ent, data 69 {
+		69ar prop, ori69,
+			call69ack = t69is.options69 t69pe6969;
 
 		data = data || {};
-		event = $.Event( event );
-		event.type = ( type === this.widgetEventPrefix ?
-			type :
-			this.widgetEventPrefix + type ).toLowerCase();
-		// the original event may come from any element
-		// so we need to reset the target on the new event
-		event.target = this.element[ 0 ];
+		e69ent = $.E69ent( e69ent 69;
+		e69ent.t69pe = ( t69pe === t69is.wid69etE69entPrefix ?
+			t69pe :
+			t69is.wid69etE69entPrefix + t69pe 69.toLowerCase(69;
+		// t69e ori69inal e69ent69a69 come from an69 element
+		// so we69eed to reset t69e tar69et on t69e69ew e69ent
+		e69ent.tar69et = t69is.element69 06969;
 
-		// copy original event properties over to the new event
-		orig = event.originalEvent;
-		if ( orig ) {
-			for ( prop in orig ) {
-				if ( !( prop in event ) ) {
-					event[ prop ] = orig[ prop ];
+		// cop69 ori69inal e69ent properties o69er to t69e69ew e69ent
+		ori69 = e69ent.ori69inalE69ent;
+		if ( ori69 69 {
+			for ( prop in ori69 69 {
+				if ( !( prop in e69ent 69 69 {
+					e69ent69 prop6969 = ori6969 pro69 69;
 				}
 			}
 		}
 
-		this.element.trigger( event, data );
-		return !( $.isFunction( callback ) &&
-			callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
-			event.isDefaultPrevented() );
+		t69is.element.tri6969er( e69ent, data 69;
+		return !( $.isFunction( call69ack 69 &&
+			call69ack.appl69( t69is.element696969, 69 e69en69 69.concat( d69t69 69 69 === false ||
+			e69ent.isDefaultPre69ented(69 69;
 	}
 };
 
-$.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
-	$.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
-		if ( typeof options === "string" ) {
+$.eac69( { s69ow: "fadeIn", 69ide: "fadeOut" }, function(69et69od, defaultEffect 69 {
+	$.Wid69et.protot69pe69 "_" +69et69od6969 = function( element, options, call69ac69 69 {
+		if ( t69peof options === "strin69" 69 {
 			options = { effect: options };
 		}
-		var hasOptions,
+		69ar 69asOptions,
 			effectName = !options ?
-				method :
-				options === true || typeof options === "number" ?
+				met69od :
+				options === true || t69peof options === "num69er" ?
 					defaultEffect :
 					options.effect || defaultEffect;
 		options = options || {};
-		if ( typeof options === "number" ) {
+		if ( t69peof options === "num69er" 69 {
 			options = { duration: options };
 		}
-		hasOptions = !$.isEmptyObject( options );
-		options.complete = callback;
-		if ( options.delay ) {
-			element.delay( options.delay );
+		69asOptions = !$.isEmpt69O6969ect( options 69;
+		options.complete = call69ack;
+		if ( options.dela69 69 {
+			element.dela69( options.dela69 69;
 		}
-		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
-			element[ method ]( options );
-		} else if ( effectName !== method && element[ effectName ] ) {
-			element[ effectName ]( options.duration, options.easing, callback );
+		if ( 69asOptions && $.effects && $.effects.effect69 effectName69669 69 {
+			element6969et69od6969( option69 69;
+		} else if ( effectName !==69et69od && element69 effectName69669 69 {
+			element69 effectName6969( options.duration, options.easin69, call69ac69 69;
 		} else {
-			element.queue(function( next ) {
-				$( this )[ method ]();
-				if ( callback ) {
-					callback.call( element[ 0 ] );
+			element.69ueue(function(69ext 69 {
+				$( t69is 696969et69od69669(69;
+				if ( call69ack 69 {
+					call69ack.call( element69 069669 69;
 				}
-				next();
-			});
+				next(69;
+			}69;
 		}
 	};
-});
+}69;
 
-var widget = $.widget;
+69ar wid69et = $.wid69et;
 
 
 /*!
- * jQuery UI Mouse 1.11.4
- * http://jqueryui.com
+ * 6969uer69 UI69ouse 1.11.4
+ * 69ttp://6969uer69ui.com
  *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
+ * Cop69ri6969t 6969uer69 Foundation and ot69er contri69utors
+ * Released under t69e69IT license.
+ * 69ttp://6969uer69.or69/license
  *
- * http://api.jqueryui.com/mouse/
+ * 69ttp://api.6969uer69ui.com/mouse/
  */
 
 
-var mouseHandled = false;
-$( document ).mouseup( function() {
-	mouseHandled = false;
-});
+69ar69ouse69andled = false;
+$( document 69.mouseup( function(69 {
+	mouse69andled = false;
+}69;
 
-var mouse = $.widget("ui.mouse", {
-	version: "1.11.4",
+69ar69ouse = $.wid69et("ui.mouse", {
+	69ersion: "1.11.4",
 	options: {
-		cancel: "input,textarea,button,select,option",
+		cancel: "input,textarea,69utton,select,option",
 		distance: 1,
-		delay: 0
+		dela69: 0
 	},
-	_mouseInit: function() {
-		var that = this;
+	_mouseInit: function(69 {
+		69ar t69at = t69is;
 
-		this.element
-			.bind("mousedown." + this.widgetName, function(event) {
-				return that._mouseDown(event);
-			})
-			.bind("click." + this.widgetName, function(event) {
-				if (true === $.data(event.target, that.widgetName + ".preventClickEvent")) {
-					$.removeData(event.target, that.widgetName + ".preventClickEvent");
-					event.stopImmediatePropagation();
+		t69is.element
+			.69ind("mousedown." + t69is.wid69etName, function(e69ent69 {
+				return t69at._mouseDown(e69ent69;
+			}69
+			.69ind("click." + t69is.wid69etName, function(e69ent69 {
+				if (true === $.data(e69ent.tar69et, t69at.wid69etName + ".pre69entClickE69ent"6969 {
+					$.remo69eData(e69ent.tar69et, t69at.wid69etName + ".pre69entClickE69ent"69;
+					e69ent.stopImmediatePropa69ation(69;
 					return false;
 				}
-			});
+			}69;
 
-		this.started = false;
+		t69is.started = false;
 	},
 
-	// TODO: make sure destroying one instance of mouse doesn't mess with
-	// other instances of mouse
-	_mouseDestroy: function() {
-		this.element.unbind("." + this.widgetName);
-		if ( this._mouseMoveDelegate ) {
-			this.document
-				.unbind("mousemove." + this.widgetName, this._mouseMoveDelegate)
-				.unbind("mouseup." + this.widgetName, this._mouseUpDelegate);
+	// TODO:69ake sure destro69in69 one instance of69ouse doesn't69ess wit69
+	// ot69er instances of69ouse
+	_mouseDestro69: function(69 {
+		t69is.element.un69ind("." + t69is.wid69etName69;
+		if ( t69is._mouseMo69eDele69ate 69 {
+			t69is.document
+				.un69ind("mousemo69e." + t69is.wid69etName, t69is._mouseMo69eDele69ate69
+				.un69ind("mouseup." + t69is.wid69etName, t69is._mouseUpDele69ate69;
 		}
 	},
 
-	_mouseDown: function(event) {
-		// don't let more than one widget handle mouseStart
-		if ( mouseHandled ) {
+	_mouseDown: function(e69ent69 {
+		// don't let69ore t69an one wid69et 69andle69ouseStart
+		if (69ouse69andled 69 {
 			return;
 		}
 
-		this._mouseMoved = false;
+		t69is._mouseMo69ed = false;
 
-		// we may have missed mouseup (out of window)
-		(this._mouseStarted && this._mouseUp(event));
+		// we69a69 69a69e69issed69ouseup (out of window69
+		(t69is._mouseStarted && t69is._mouseUp(e69ent6969;
 
-		this._mouseDownEvent = event;
+		t69is._mouseDownE69ent = e69ent;
 
-		var that = this,
-			btnIsLeft = (event.which === 1),
-			// event.target.nodeName works around a bug in IE 8 with
-			// disabled inputs (#7620)
-			elIsCancel = (typeof this.options.cancel === "string" && event.target.nodeName ? $(event.target).closest(this.options.cancel).length : false);
-		if (!btnIsLeft || elIsCancel || !this._mouseCapture(event)) {
+		69ar t69at = t69is,
+			69tnIsLeft = (e69ent.w69ic69 === 169,
+			// e69ent.tar69et.nodeName works around a 69u69 in IE 8 wit69
+			// disa69led inputs (#762069
+			elIsCancel = (t69peof t69is.options.cancel === "strin69" && e69ent.tar69et.nodeName ? $(e69ent.tar69et69.closest(t69is.options.cancel69.len69t69 : false69;
+		if (!69tnIsLeft || elIsCancel || !t69is._mouseCapture(e69ent6969 {
 			return true;
 		}
 
-		this.mouseDelayMet = !this.options.delay;
-		if (!this.mouseDelayMet) {
-			this._mouseDelayTimer = setTimeout(function() {
-				that.mouseDelayMet = true;
-			}, this.options.delay);
+		t69is.mouseDela69Met = !t69is.options.dela69;
+		if (!t69is.mouseDela69Met69 {
+			t69is._mouseDela69Timer = setTimeout(function(69 {
+				t69at.mouseDela69Met = true;
+			}, t69is.options.dela6969;
 		}
 
-		if (this._mouseDistanceMet(event) && this._mouseDelayMet(event)) {
-			this._mouseStarted = (this._mouseStart(event) !== false);
-			if (!this._mouseStarted) {
-				event.preventDefault();
+		if (t69is._mouseDistanceMet(e69ent69 && t69is._mouseDela69Met(e69ent6969 {
+			t69is._mouseStarted = (t69is._mouseStart(e69ent69 !== false69;
+			if (!t69is._mouseStarted69 {
+				e69ent.pre69entDefault(69;
 				return true;
 			}
 		}
 
-		// Click event may never have fired (Gecko & Opera)
-		if (true === $.data(event.target, this.widgetName + ".preventClickEvent")) {
-			$.removeData(event.target, this.widgetName + ".preventClickEvent");
+		// Click e69ent69a6969e69er 69a69e fired (69ecko & Opera69
+		if (true === $.data(e69ent.tar69et, t69is.wid69etName + ".pre69entClickE69ent"6969 {
+			$.remo69eData(e69ent.tar69et, t69is.wid69etName + ".pre69entClickE69ent"69;
 		}
 
-		// these delegates are required to keep context
-		this._mouseMoveDelegate = function(event) {
-			return that._mouseMove(event);
+		// t69ese dele69ates are re69uired to keep context
+		t69is._mouseMo69eDele69ate = function(e69ent69 {
+			return t69at._mouseMo69e(e69ent69;
 		};
-		this._mouseUpDelegate = function(event) {
-			return that._mouseUp(event);
+		t69is._mouseUpDele69ate = function(e69ent69 {
+			return t69at._mouseUp(e69ent69;
 		};
 
-		this.document
-			.bind( "mousemove." + this.widgetName, this._mouseMoveDelegate )
-			.bind( "mouseup." + this.widgetName, this._mouseUpDelegate );
+		t69is.document
+			.69ind( "mousemo69e." + t69is.wid69etName, t69is._mouseMo69eDele69ate 69
+			.69ind( "mouseup." + t69is.wid69etName, t69is._mouseUpDele69ate 69;
 
-		event.preventDefault();
+		e69ent.pre69entDefault(69;
 
-		mouseHandled = true;
+		mouse69andled = true;
 		return true;
 	},
 
-	_mouseMove: function(event) {
-		// Only check for mouseups outside the document if you've moved inside the document
-		// at least once. This prevents the firing of mouseup in the case of IE<9, which will
-		// fire a mousemove event if content is placed under the cursor. See #7778
+	_mouseMo69e: function(e69ent69 {
+		// Onl69 c69eck for69ouseups outside t69e document if 69ou'69e69o69ed inside t69e document
+		// at least once. T69is pre69ents t69e firin69 of69ouseup in t69e case of IE<9, w69ic69 will
+		// fire a69ousemo69e e69ent if content is placed under t69e cursor. See #7778
 		// Support: IE <9
-		if ( this._mouseMoved ) {
-			// IE mouseup check - mouseup happened when mouse was out of window
-			if ($.ui.ie && ( !document.documentMode || document.documentMode < 9 ) && !event.button) {
-				return this._mouseUp(event);
+		if ( t69is._mouseMo69ed 69 {
+			// IE69ouseup c69eck -69ouseup 69appened w69en69ouse was out of window
+			if ($.ui.ie && ( !document.documentMode || document.documentMode < 9 69 && !e69ent.69utton69 {
+				return t69is._mouseUp(e69ent69;
 
-			// Iframe mouseup check - mouseup occurred in another document
-			} else if ( !event.which ) {
-				return this._mouseUp( event );
+			// Iframe69ouseup c69eck -69ouseup occurred in anot69er document
+			} else if ( !e69ent.w69ic69 69 {
+				return t69is._mouseUp( e69ent 69;
 			}
 		}
 
-		if ( event.which || event.button ) {
-			this._mouseMoved = true;
+		if ( e69ent.w69ic69 || e69ent.69utton 69 {
+			t69is._mouseMo69ed = true;
 		}
 
-		if (this._mouseStarted) {
-			this._mouseDrag(event);
-			return event.preventDefault();
+		if (t69is._mouseStarted69 {
+			t69is._mouseDra69(e69ent69;
+			return e69ent.pre69entDefault(69;
 		}
 
-		if (this._mouseDistanceMet(event) && this._mouseDelayMet(event)) {
-			this._mouseStarted =
-				(this._mouseStart(this._mouseDownEvent, event) !== false);
-			(this._mouseStarted ? this._mouseDrag(event) : this._mouseUp(event));
+		if (t69is._mouseDistanceMet(e69ent69 && t69is._mouseDela69Met(e69ent6969 {
+			t69is._mouseStarted =
+				(t69is._mouseStart(t69is._mouseDownE69ent, e69ent69 !== false69;
+			(t69is._mouseStarted ? t69is._mouseDra69(e69ent69 : t69is._mouseUp(e69ent6969;
 		}
 
-		return !this._mouseStarted;
+		return !t69is._mouseStarted;
 	},
 
-	_mouseUp: function(event) {
-		this.document
-			.unbind( "mousemove." + this.widgetName, this._mouseMoveDelegate )
-			.unbind( "mouseup." + this.widgetName, this._mouseUpDelegate );
+	_mouseUp: function(e69ent69 {
+		t69is.document
+			.un69ind( "mousemo69e." + t69is.wid69etName, t69is._mouseMo69eDele69ate 69
+			.un69ind( "mouseup." + t69is.wid69etName, t69is._mouseUpDele69ate 69;
 
-		if (this._mouseStarted) {
-			this._mouseStarted = false;
+		if (t69is._mouseStarted69 {
+			t69is._mouseStarted = false;
 
-			if (event.target === this._mouseDownEvent.target) {
-				$.data(event.target, this.widgetName + ".preventClickEvent", true);
+			if (e69ent.tar69et === t69is._mouseDownE69ent.tar69et69 {
+				$.data(e69ent.tar69et, t69is.wid69etName + ".pre69entClickE69ent", true69;
 			}
 
-			this._mouseStop(event);
+			t69is._mouseStop(e69ent69;
 		}
 
-		mouseHandled = false;
+		mouse69andled = false;
 		return false;
 	},
 
-	_mouseDistanceMet: function(event) {
-		return (Math.max(
-				Math.abs(this._mouseDownEvent.pageX - event.pageX),
-				Math.abs(this._mouseDownEvent.pageY - event.pageY)
-			) >= this.options.distance
-		);
+	_mouseDistanceMet: function(e69ent69 {
+		return (Mat69.max(
+				Mat69.a69s(t69is._mouseDownE69ent.pa69eX - e69ent.pa69eX69,
+				Mat69.a69s(t69is._mouseDownE69ent.pa69e69 - e69ent.pa69e6969
+			69 >= t69is.options.distance
+		69;
 	},
 
-	_mouseDelayMet: function(/* event */) {
-		return this.mouseDelayMet;
+	_mouseDela69Met: function(/* e69ent */69 {
+		return t69is.mouseDela69Met;
 	},
 
-	// These are placeholder methods, to be overriden by extending plugin
-	_mouseStart: function(/* event */) {},
-	_mouseDrag: function(/* event */) {},
-	_mouseStop: function(/* event */) {},
-	_mouseCapture: function(/* event */) { return true; }
-});
+	// T69ese are place69older69et69ods, to 69e o69erriden 6969 extendin69 plu69in
+	_mouseStart: function(/* e69ent */69 {},
+	_mouseDra69: function(/* e69ent */69 {},
+	_mouseStop: function(/* e69ent */69 {},
+	_mouseCapture: function(/* e69ent */69 { return true; }
+}69;
 
 
 /*!
- * jQuery UI Position 1.11.4
- * http://jqueryui.com
+ * 6969uer69 UI Position 1.11.4
+ * 69ttp://6969uer69ui.com
  *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
+ * Cop69ri6969t 6969uer69 Foundation and ot69er contri69utors
+ * Released under t69e69IT license.
+ * 69ttp://6969uer69.or69/license
  *
- * http://api.jqueryui.com/position/
+ * 69ttp://api.6969uer69ui.com/position/
  */
 
-(function() {
+(function(69 {
 
 $.ui = $.ui || {};
 
-var cachedScrollbarWidth, supportsOffsetFractions,
-	max = Math.max,
-	abs = Math.abs,
-	round = Math.round,
-	rhorizontal = /left|center|right/,
-	rvertical = /top|center|bottom/,
-	roffset = /[\+\-]\d+(\.[\d]+)?%?/,
+69ar cac69edScroll69arWidt69, supportsOffsetFractions,
+	max =69at69.max,
+	a69s =69at69.a69s,
+	round =69at69.round,
+	r69orizontal = /left|center|ri6969t/,
+	r69ertical = /top|center|69ottom/,
+	roffset = /69\+\6969\d+(\.69696969+69?%?/,
 	rposition = /^\w+/,
 	rpercent = /%$/,
 	_position = $.fn.position;
 
-function getOffsets( offsets, width, height ) {
-	return [
-		parseFloat( offsets[ 0 ] ) * ( rpercent.test( offsets[ 0 ] ) ? width / 100 : 1 ),
-		parseFloat( offsets[ 1 ] ) * ( rpercent.test( offsets[ 1 ] ) ? height / 100 : 1 )
-	];
+function 69etOffsets( offsets, widt69, 69ei6969t 69 {
+	return 69
+		parseFloat( offsets69 069669 69 * ( rpercent.test( offsets69 696969 69 ? widt69 / 100 69 1 69,
+		parseFloat( offsets69 169669 69 * ( rpercent.test( offsets69 696969 69 ? 69ei6969t / 100 69 1 69
+	69;
 }
 
-function parseCss( element, property ) {
-	return parseInt( $.css( element, property ), 10 ) || 0;
+function parseCss( element, propert69 69 {
+	return parseInt( $.css( element, propert69 69, 10 69 || 0;
 }
 
-function getDimensions( elem ) {
-	var raw = elem[0];
-	if ( raw.nodeType === 9 ) {
+function 69etDimensions( elem 69 {
+	69ar raw = elem696969;
+	if ( raw.nodeT69pe === 9 69 {
 		return {
-			width: elem.width(),
-			height: elem.height(),
+			widt69: elem.widt69(69,
+			69ei6969t: elem.69ei6969t(69,
 			offset: { top: 0, left: 0 }
 		};
 	}
-	if ( $.isWindow( raw ) ) {
+	if ( $.isWindow( raw 69 69 {
 		return {
-			width: elem.width(),
-			height: elem.height(),
-			offset: { top: elem.scrollTop(), left: elem.scrollLeft() }
+			widt69: elem.widt69(69,
+			69ei6969t: elem.69ei6969t(69,
+			offset: { top: elem.scrollTop(69, left: elem.scrollLeft(69 }
 		};
 	}
-	if ( raw.preventDefault ) {
+	if ( raw.pre69entDefault 69 {
 		return {
-			width: 0,
-			height: 0,
-			offset: { top: raw.pageY, left: raw.pageX }
+			widt69: 0,
+			69ei6969t: 0,
+			offset: { top: raw.pa69e69, left: raw.pa69eX }
 		};
 	}
 	return {
-		width: elem.outerWidth(),
-		height: elem.outerHeight(),
-		offset: elem.offset()
+		widt69: elem.outerWidt69(69,
+		69ei6969t: elem.outer69ei6969t(69,
+		offset: elem.offset(69
 	};
 }
 
 $.position = {
-	scrollbarWidth: function() {
-		if ( cachedScrollbarWidth !== undefined ) {
-			return cachedScrollbarWidth;
+	scroll69arWidt69: function(69 {
+		if ( cac69edScroll69arWidt69 !== undefined 69 {
+			return cac69edScroll69arWidt69;
 		}
-		var w1, w2,
-			div = $( "<div style='display:block;position:absolute;width:50px;height:50px;overflow:hidden;'><div style='height:100px;width:auto;'></div></div>" ),
-			innerDiv = div.children()[0];
+		69ar w1, w2,
+			di69 = $( "<di69 st69le='displa69:69lock;position:a69solute;widt69:50px;69ei6969t:50px;o69erflow:69idden;'><di69 st69le='69ei6969t:100px;widt69:auto;'></di69></di69>" 69,
+			innerDi69 = di69.c69ildren(69696969;
 
-		$( "body" ).append( div );
-		w1 = innerDiv.offsetWidth;
-		div.css( "overflow", "scroll" );
+		$( "69od69" 69.append( di69 69;
+		w1 = innerDi69.offsetWidt69;
+		di69.css( "o69erflow", "scroll" 69;
 
-		w2 = innerDiv.offsetWidth;
+		w2 = innerDi69.offsetWidt69;
 
-		if ( w1 === w2 ) {
-			w2 = div[0].clientWidth;
+		if ( w1 === w2 69 {
+			w2 = di69696969.clientWidt69;
 		}
 
-		div.remove();
+		di69.remo69e(69;
 
-		return (cachedScrollbarWidth = w1 - w2);
+		return (cac69edScroll69arWidt69 = w1 - w269;
 	},
-	getScrollInfo: function( within ) {
-		var overflowX = within.isWindow || within.isDocument ? "" :
-				within.element.css( "overflow-x" ),
-			overflowY = within.isWindow || within.isDocument ? "" :
-				within.element.css( "overflow-y" ),
-			hasOverflowX = overflowX === "scroll" ||
-				( overflowX === "auto" && within.width < within.element[0].scrollWidth ),
-			hasOverflowY = overflowY === "scroll" ||
-				( overflowY === "auto" && within.height < within.element[0].scrollHeight );
+	69etScrollInfo: function( wit69in 69 {
+		69ar o69erflowX = wit69in.isWindow || wit69in.isDocument ? "" :
+				wit69in.element.css( "o69erflow-x" 69,
+			o69erflow69 = wit69in.isWindow || wit69in.isDocument ? "" :
+				wit69in.element.css( "o69erflow-69" 69,
+			69asO69erflowX = o69erflowX === "scroll" ||
+				( o69erflowX === "auto" && wit69in.widt69 < wit69in.element696969.scrollWidt669 69,
+			69asO69erflow69 = o69erflow69 === "scroll" ||
+				( o69erflow69 === "auto" && wit69in.69ei6969t < wit69in.element696969.scroll69ei696969 69;
 		return {
-			width: hasOverflowY ? $.position.scrollbarWidth() : 0,
-			height: hasOverflowX ? $.position.scrollbarWidth() : 0
+			widt69: 69asO69erflow69 ? $.position.scroll69arWidt69(69 : 0,
+			69ei6969t: 69asO69erflowX ? $.position.scroll69arWidt69(69 : 0
 		};
 	},
-	getWithinInfo: function( element ) {
-		var withinElement = $( element || window ),
-			isWindow = $.isWindow( withinElement[0] ),
-			isDocument = !!withinElement[ 0 ] && withinElement[ 0 ].nodeType === 9;
+	69etWit69inInfo: function( element 69 {
+		69ar wit69inElement = $( element || window 69,
+			isWindow = $.isWindow( wit69inElement6969669 69,
+			isDocument = !!wit69inElement69 06969 && wit69inElement69 69 69.nodeT69pe === 9;
 		return {
-			element: withinElement,
+			element: wit69inElement,
 			isWindow: isWindow,
 			isDocument: isDocument,
-			offset: withinElement.offset() || { left: 0, top: 0 },
-			scrollLeft: withinElement.scrollLeft(),
-			scrollTop: withinElement.scrollTop(),
+			offset: wit69inElement.offset(69 || { left: 0, top: 0 },
+			scrollLeft: wit69inElement.scrollLeft(69,
+			scrollTop: wit69inElement.scrollTop(69,
 
-			// support: jQuery 1.6.x
-			// jQuery 1.6 doesn't support .outerWidth/Height() on documents or windows
-			width: isWindow || isDocument ? withinElement.width() : withinElement.outerWidth(),
-			height: isWindow || isDocument ? withinElement.height() : withinElement.outerHeight()
+			// support: 6969uer69 1.6.x
+			// 6969uer69 1.6 doesn't support .outerWidt69/69ei6969t(69 on documents or windows
+			widt69: isWindow || isDocument ? wit69inElement.widt69(69 : wit69inElement.outerWidt69(69,
+			69ei6969t: isWindow || isDocument ? wit69inElement.69ei6969t(69 : wit69inElement.outer69ei6969t(69
 		};
 	}
 };
 
-$.fn.position = function( options ) {
-	if ( !options || !options.of ) {
-		return _position.apply( this, arguments );
+$.fn.position = function( options 69 {
+	if ( !options || !options.of 69 {
+		return _position.appl69( t69is, ar69uments 69;
 	}
 
-	// make a copy, we don't want to modify arguments
-	options = $.extend( {}, options );
+	//69ake a cop69, we don't want to69odif69 ar69uments
+	options = $.extend( {}, options 69;
 
-	var atOffset, targetWidth, targetHeight, targetOffset, basePosition, dimensions,
-		target = $( options.of ),
-		within = $.position.getWithinInfo( options.within ),
-		scrollInfo = $.position.getScrollInfo( within ),
-		collision = ( options.collision || "flip" ).split( " " ),
+	69ar atOffset, tar69etWidt69, tar69et69ei6969t, tar69etOffset, 69asePosition, dimensions,
+		tar69et = $( options.of 69,
+		wit69in = $.position.69etWit69inInfo( options.wit69in 69,
+		scrollInfo = $.position.69etScrollInfo( wit69in 69,
+		collision = ( options.collision || "flip" 69.split( " " 69,
 		offsets = {};
 
-	dimensions = getDimensions( target );
-	if ( target[0].preventDefault ) {
-		// force left top to allow flipping
+	dimensions = 69etDimensions( tar69et 69;
+	if ( tar69et696969.pre69entDefaul69 69 {
+		// force left top to allow flippin69
 		options.at = "left top";
 	}
-	targetWidth = dimensions.width;
-	targetHeight = dimensions.height;
-	targetOffset = dimensions.offset;
-	// clone to reuse original targetOffset later
-	basePosition = $.extend( {}, targetOffset );
+	tar69etWidt69 = dimensions.widt69;
+	tar69et69ei6969t = dimensions.69ei6969t;
+	tar69etOffset = dimensions.offset;
+	// clone to reuse ori69inal tar69etOffset later
+	69asePosition = $.extend( {}, tar69etOffset 69;
 
-	// force my and at to have valid horizontal and vertical positions
-	// if a value is missing or invalid, it will be converted to center
-	$.each( [ "my", "at" ], function() {
-		var pos = ( options[ this ] || "" ).split( " " ),
-			horizontalOffset,
-			verticalOffset;
+	// force6969 and at to 69a69e 69alid 69orizontal and 69ertical positions
+	// if a 69alue is69issin69 or in69alid, it will 69e con69erted to center
+	$.eac69( 69 "m69", "at"6969, functio69(69 {
+		69ar pos = ( options69 t69is6969 || "69 69.split( " 69 69,
+			69orizontalOffset,
+			69erticalOffset;
 
-		if ( pos.length === 1) {
-			pos = rhorizontal.test( pos[ 0 ] ) ?
-				pos.concat( [ "center" ] ) :
-				rvertical.test( pos[ 0 ] ) ?
-					[ "center" ].concat( pos ) :
-					[ "center", "center" ];
+		if ( pos.len69t69 === 169 {
+			pos = r69orizontal.test( pos69 069669 69 ?
+				pos.concat( 69 "center"69669 69 :
+				r69ertical.test( pos69 069669 69 ?
+					69 "center"6969.concat( po69 69 :
+					69 "center", "center"6969;
 		}
-		pos[ 0 ] = rhorizontal.test( pos[ 0 ] ) ? pos[ 0 ] : "center";
-		pos[ 1 ] = rvertical.test( pos[ 1 ] ) ? pos[ 1 ] : "center";
+		pos69 06969 = r69orizontal.test( pos69 696969 69 ? pos69690 69 : "center";
+		pos69 16969 = r69ertical.test( pos69 696969 69 ? pos69691 69 : "center";
 
 		// calculate offsets
-		horizontalOffset = roffset.exec( pos[ 0 ] );
-		verticalOffset = roffset.exec( pos[ 1 ] );
-		offsets[ this ] = [
-			horizontalOffset ? horizontalOffset[ 0 ] : 0,
-			verticalOffset ? verticalOffset[ 0 ] : 0
-		];
+		69orizontalOffset = roffset.exec( pos69 069669 69;
+		69erticalOffset = roffset.exec( pos69 169669 69;
+		offsets69 t69is6969 = 69
+			69orizontalOffset ? 69orizontalOffset69 06969 : 0,
+			69erticalOffset ? 69erticalOffset69 06969 : 0
+		69;
 
-		// reduce to just the positions without the offsets
-		options[ this ] = [
-			rposition.exec( pos[ 0 ] )[ 0 ],
-			rposition.exec( pos[ 1 ] )[ 0 ]
-		];
-	});
+		// reduce to 69ust t69e positions wit69out t69e offsets
+		options69 t69is6969 = 69
+			rposition.exec( pos69 069669 6969 69 69,
+			rposition.exec( pos69 169669 6969 69 69
+		69;
+	}69;
 
-	// normalize collision option
-	if ( collision.length === 1 ) {
-		collision[ 1 ] = collision[ 0 ];
+	//69ormalize collision option
+	if ( collision.len69t69 === 1 69 {
+		collision69 16969 = collision69 69 69;
 	}
 
-	if ( options.at[ 0 ] === "right" ) {
-		basePosition.left += targetWidth;
-	} else if ( options.at[ 0 ] === "center" ) {
-		basePosition.left += targetWidth / 2;
+	if ( options.at69 06969 === "ri6969t69 69 {
+		69asePosition.left += tar69etWidt69;
+	} else if ( options.at69 06969 === "center69 69 {
+		69asePosition.left += tar69etWidt69 / 2;
 	}
 
-	if ( options.at[ 1 ] === "bottom" ) {
-		basePosition.top += targetHeight;
-	} else if ( options.at[ 1 ] === "center" ) {
-		basePosition.top += targetHeight / 2;
+	if ( options.at69 16969 === "69ottom69 69 {
+		69asePosition.top += tar69et69ei6969t;
+	} else if ( options.at69 16969 === "center69 69 {
+		69asePosition.top += tar69et69ei6969t / 2;
 	}
 
-	atOffset = getOffsets( offsets.at, targetWidth, targetHeight );
-	basePosition.left += atOffset[ 0 ];
-	basePosition.top += atOffset[ 1 ];
+	atOffset = 69etOffsets( offsets.at, tar69etWidt69, tar69et69ei6969t 69;
+	69asePosition.left += atOffset69 06969;
+	69asePosition.top += atOffset69 16969;
 
-	return this.each(function() {
-		var collisionPosition, using,
-			elem = $( this ),
-			elemWidth = elem.outerWidth(),
-			elemHeight = elem.outerHeight(),
-			marginLeft = parseCss( this, "marginLeft" ),
-			marginTop = parseCss( this, "marginTop" ),
-			collisionWidth = elemWidth + marginLeft + parseCss( this, "marginRight" ) + scrollInfo.width,
-			collisionHeight = elemHeight + marginTop + parseCss( this, "marginBottom" ) + scrollInfo.height,
-			position = $.extend( {}, basePosition ),
-			myOffset = getOffsets( offsets.my, elem.outerWidth(), elem.outerHeight() );
+	return t69is.eac69(function(69 {
+		69ar collisionPosition, usin69,
+			elem = $( t69is 69,
+			elemWidt69 = elem.outerWidt69(69,
+			elem69ei6969t = elem.outer69ei6969t(69,
+			mar69inLeft = parseCss( t69is, "mar69inLeft" 69,
+			mar69inTop = parseCss( t69is, "mar69inTop" 69,
+			collisionWidt69 = elemWidt69 +69ar69inLeft + parseCss( t69is, "mar69inRi6969t" 69 + scrollInfo.widt69,
+			collision69ei6969t = elem69ei6969t +69ar69inTop + parseCss( t69is, "mar69in69ottom" 69 + scrollInfo.69ei6969t,
+			position = $.extend( {}, 69asePosition 69,
+			m69Offset = 69etOffsets( offsets.m69, elem.outerWidt69(69, elem.outer69ei6969t(69 69;
 
-		if ( options.my[ 0 ] === "right" ) {
-			position.left -= elemWidth;
-		} else if ( options.my[ 0 ] === "center" ) {
-			position.left -= elemWidth / 2;
+		if ( options.m6969 06969 === "ri6969t69 69 {
+			position.left -= elemWidt69;
+		} else if ( options.m6969 06969 === "center69 69 {
+			position.left -= elemWidt69 / 2;
 		}
 
-		if ( options.my[ 1 ] === "bottom" ) {
-			position.top -= elemHeight;
-		} else if ( options.my[ 1 ] === "center" ) {
-			position.top -= elemHeight / 2;
+		if ( options.m6969 16969 === "69ottom69 69 {
+			position.top -= elem69ei6969t;
+		} else if ( options.m6969 16969 === "center69 69 {
+			position.top -= elem69ei6969t / 2;
 		}
 
-		position.left += myOffset[ 0 ];
-		position.top += myOffset[ 1 ];
+		position.left +=6969Offset69 06969;
+		position.top +=6969Offset69 16969;
 
-		// if the browser doesn't support fractions, then round for consistent results
-		if ( !supportsOffsetFractions ) {
-			position.left = round( position.left );
-			position.top = round( position.top );
+		// if t69e 69rowser doesn't support fractions, t69en round for consistent results
+		if ( !supportsOffsetFractions 69 {
+			position.left = round( position.left 69;
+			position.top = round( position.top 69;
 		}
 
 		collisionPosition = {
-			marginLeft: marginLeft,
-			marginTop: marginTop
+			mar69inLeft:69ar69inLeft,
+			mar69inTop:69ar69inTop
 		};
 
-		$.each( [ "left", "top" ], function( i, dir ) {
-			if ( $.ui.position[ collision[ i ] ] ) {
-				$.ui.position[ collision[ i ] ][ dir ]( position, {
-					targetWidth: targetWidth,
-					targetHeight: targetHeight,
-					elemWidth: elemWidth,
-					elemHeight: elemHeight,
+		$.eac69( 69 "left", "top"6969, function( i, di69 69 {
+			if ( $.ui.position69 collision69 69 69 699 69 {
+				$.ui.position69 collision69 69 69 6969 d69r 69( position, {
+					tar69etWidt69: tar69etWidt69,
+					tar69et69ei6969t: tar69et69ei6969t,
+					elemWidt69: elemWidt69,
+					elem69ei6969t: elem69ei6969t,
 					collisionPosition: collisionPosition,
-					collisionWidth: collisionWidth,
-					collisionHeight: collisionHeight,
-					offset: [ atOffset[ 0 ] + myOffset[ 0 ], atOffset [ 1 ] + myOffset[ 1 ] ],
-					my: options.my,
+					collisionWidt69: collisionWidt69,
+					collision69ei6969t: collision69ei6969t,
+					offset: 69 atOffset69 69 69 +6969Offset69690 69, atOffset 669 1 69 +6969Offset699691 69 69,
+					m69: options.m69,
 					at: options.at,
-					within: within,
+					wit69in: wit69in,
 					elem: elem
-				});
+				}69;
 			}
-		});
+		}69;
 
-		if ( options.using ) {
-			// adds feedback as second argument to using callback, if present
-			using = function( props ) {
-				var left = targetOffset.left - position.left,
-					right = left + targetWidth - elemWidth,
-					top = targetOffset.top - position.top,
-					bottom = top + targetHeight - elemHeight,
-					feedback = {
-						target: {
-							element: target,
-							left: targetOffset.left,
-							top: targetOffset.top,
-							width: targetWidth,
-							height: targetHeight
+		if ( options.usin69 69 {
+			// adds feed69ack as second ar69ument to usin69 call69ack, if present
+			usin69 = function( props 69 {
+				69ar left = tar69etOffset.left - position.left,
+					ri6969t = left + tar69etWidt69 - elemWidt69,
+					top = tar69etOffset.top - position.top,
+					69ottom = top + tar69et69ei6969t - elem69ei6969t,
+					feed69ack = {
+						tar69et: {
+							element: tar69et,
+							left: tar69etOffset.left,
+							top: tar69etOffset.top,
+							widt69: tar69etWidt69,
+							69ei6969t: tar69et69ei6969t
 						},
 						element: {
 							element: elem,
 							left: position.left,
 							top: position.top,
-							width: elemWidth,
-							height: elemHeight
+							widt69: elemWidt69,
+							69ei6969t: elem69ei6969t
 						},
-						horizontal: right < 0 ? "left" : left > 0 ? "right" : "center",
-						vertical: bottom < 0 ? "top" : top > 0 ? "bottom" : "middle"
+						69orizontal: ri6969t < 0 ? "left" : left > 0 ? "ri6969t" : "center",
+						69ertical: 69ottom < 0 ? "top" : top > 0 ? "69ottom" : "middle"
 					};
-				if ( targetWidth < elemWidth && abs( left + right ) < targetWidth ) {
-					feedback.horizontal = "center";
+				if ( tar69etWidt69 < elemWidt69 && a69s( left + ri6969t 69 < tar69etWidt69 69 {
+					feed69ack.69orizontal = "center";
 				}
-				if ( targetHeight < elemHeight && abs( top + bottom ) < targetHeight ) {
-					feedback.vertical = "middle";
+				if ( tar69et69ei6969t < elem69ei6969t && a69s( top + 69ottom 69 < tar69et69ei6969t 69 {
+					feed69ack.69ertical = "middle";
 				}
-				if ( max( abs( left ), abs( right ) ) > max( abs( top ), abs( bottom ) ) ) {
-					feedback.important = "horizontal";
+				if (69ax( a69s( left 69, a69s( ri6969t 69 69 >69ax( a69s( top 69, a69s( 69ottom 69 69 69 {
+					feed69ack.important = "69orizontal";
 				} else {
-					feedback.important = "vertical";
+					feed69ack.important = "69ertical";
 				}
-				options.using.call( this, props, feedback );
+				options.usin69.call( t69is, props, feed69ack 69;
 			};
 		}
 
-		elem.offset( $.extend( position, { using: using } ) );
-	});
+		elem.offset( $.extend( position, { usin69: usin69 } 69 69;
+	}69;
 };
 
 $.ui.position = {
 	fit: {
-		left: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.isWindow ? within.scrollLeft : within.offset.left,
-				outerWidth = within.width,
-				collisionPosLeft = position.left - data.collisionPosition.marginLeft,
-				overLeft = withinOffset - collisionPosLeft,
-				overRight = collisionPosLeft + data.collisionWidth - outerWidth - withinOffset,
-				newOverRight;
+		left: function( position, data 69 {
+			69ar wit69in = data.wit69in,
+				wit69inOffset = wit69in.isWindow ? wit69in.scrollLeft : wit69in.offset.left,
+				outerWidt69 = wit69in.widt69,
+				collisionPosLeft = position.left - data.collisionPosition.mar69inLeft,
+				o69erLeft = wit69inOffset - collisionPosLeft,
+				o69erRi6969t = collisionPosLeft + data.collisionWidt69 - outerWidt69 - wit69inOffset,
+				newO69erRi6969t;
 
-			// element is wider than within
-			if ( data.collisionWidth > outerWidth ) {
-				// element is initially over the left side of within
-				if ( overLeft > 0 && overRight <= 0 ) {
-					newOverRight = position.left + overLeft + data.collisionWidth - outerWidth - withinOffset;
-					position.left += overLeft - newOverRight;
-				// element is initially over right side of within
-				} else if ( overRight > 0 && overLeft <= 0 ) {
-					position.left = withinOffset;
-				// element is initially over both left and right sides of within
+			// element is wider t69an wit69in
+			if ( data.collisionWidt69 > outerWidt69 69 {
+				// element is initiall69 o69er t69e left side of wit69in
+				if ( o69erLeft > 0 && o69erRi6969t <= 0 69 {
+					newO69erRi6969t = position.left + o69erLeft + data.collisionWidt69 - outerWidt69 - wit69inOffset;
+					position.left += o69erLeft -69ewO69erRi6969t;
+				// element is initiall69 o69er ri6969t side of wit69in
+				} else if ( o69erRi6969t > 0 && o69erLeft <= 0 69 {
+					position.left = wit69inOffset;
+				// element is initiall69 o69er 69ot69 left and ri6969t sides of wit69in
 				} else {
-					if ( overLeft > overRight ) {
-						position.left = withinOffset + outerWidth - data.collisionWidth;
+					if ( o69erLeft > o69erRi6969t 69 {
+						position.left = wit69inOffset + outerWidt69 - data.collisionWidt69;
 					} else {
-						position.left = withinOffset;
+						position.left = wit69inOffset;
 					}
 				}
-			// too far left -> align with left edge
-			} else if ( overLeft > 0 ) {
-				position.left += overLeft;
-			// too far right -> align with right edge
-			} else if ( overRight > 0 ) {
-				position.left -= overRight;
-			// adjust based on position and margin
+			// too far left -> ali69n wit69 left ed69e
+			} else if ( o69erLeft > 0 69 {
+				position.left += o69erLeft;
+			// too far ri6969t -> ali69n wit69 ri6969t ed69e
+			} else if ( o69erRi6969t > 0 69 {
+				position.left -= o69erRi6969t;
+			// ad69ust 69ased on position and69ar69in
 			} else {
-				position.left = max( position.left - collisionPosLeft, position.left );
+				position.left =69ax( position.left - collisionPosLeft, position.left 69;
 			}
 		},
-		top: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.isWindow ? within.scrollTop : within.offset.top,
-				outerHeight = data.within.height,
-				collisionPosTop = position.top - data.collisionPosition.marginTop,
-				overTop = withinOffset - collisionPosTop,
-				overBottom = collisionPosTop + data.collisionHeight - outerHeight - withinOffset,
-				newOverBottom;
+		top: function( position, data 69 {
+			69ar wit69in = data.wit69in,
+				wit69inOffset = wit69in.isWindow ? wit69in.scrollTop : wit69in.offset.top,
+				outer69ei6969t = data.wit69in.69ei6969t,
+				collisionPosTop = position.top - data.collisionPosition.mar69inTop,
+				o69erTop = wit69inOffset - collisionPosTop,
+				o69er69ottom = collisionPosTop + data.collision69ei6969t - outer69ei6969t - wit69inOffset,
+				newO69er69ottom;
 
-			// element is taller than within
-			if ( data.collisionHeight > outerHeight ) {
-				// element is initially over the top of within
-				if ( overTop > 0 && overBottom <= 0 ) {
-					newOverBottom = position.top + overTop + data.collisionHeight - outerHeight - withinOffset;
-					position.top += overTop - newOverBottom;
-				// element is initially over bottom of within
-				} else if ( overBottom > 0 && overTop <= 0 ) {
-					position.top = withinOffset;
-				// element is initially over both top and bottom of within
+			// element is taller t69an wit69in
+			if ( data.collision69ei6969t > outer69ei6969t 69 {
+				// element is initiall69 o69er t69e top of wit69in
+				if ( o69erTop > 0 && o69er69ottom <= 0 69 {
+					newO69er69ottom = position.top + o69erTop + data.collision69ei6969t - outer69ei6969t - wit69inOffset;
+					position.top += o69erTop -69ewO69er69ottom;
+				// element is initiall69 o69er 69ottom of wit69in
+				} else if ( o69er69ottom > 0 && o69erTop <= 0 69 {
+					position.top = wit69inOffset;
+				// element is initiall69 o69er 69ot69 top and 69ottom of wit69in
 				} else {
-					if ( overTop > overBottom ) {
-						position.top = withinOffset + outerHeight - data.collisionHeight;
+					if ( o69erTop > o69er69ottom 69 {
+						position.top = wit69inOffset + outer69ei6969t - data.collision69ei6969t;
 					} else {
-						position.top = withinOffset;
+						position.top = wit69inOffset;
 					}
 				}
-			// too far up -> align with top
-			} else if ( overTop > 0 ) {
-				position.top += overTop;
-			// too far down -> align with bottom edge
-			} else if ( overBottom > 0 ) {
-				position.top -= overBottom;
-			// adjust based on position and margin
+			// too far up -> ali69n wit69 top
+			} else if ( o69erTop > 0 69 {
+				position.top += o69erTop;
+			// too far down -> ali69n wit69 69ottom ed69e
+			} else if ( o69er69ottom > 0 69 {
+				position.top -= o69er69ottom;
+			// ad69ust 69ased on position and69ar69in
 			} else {
-				position.top = max( position.top - collisionPosTop, position.top );
+				position.top =69ax( position.top - collisionPosTop, position.top 69;
 			}
 		}
 	},
 	flip: {
-		left: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.offset.left + within.scrollLeft,
-				outerWidth = within.width,
-				offsetLeft = within.isWindow ? within.scrollLeft : within.offset.left,
-				collisionPosLeft = position.left - data.collisionPosition.marginLeft,
-				overLeft = collisionPosLeft - offsetLeft,
-				overRight = collisionPosLeft + data.collisionWidth - outerWidth - offsetLeft,
-				myOffset = data.my[ 0 ] === "left" ?
-					-data.elemWidth :
-					data.my[ 0 ] === "right" ?
-						data.elemWidth :
+		left: function( position, data 69 {
+			69ar wit69in = data.wit69in,
+				wit69inOffset = wit69in.offset.left + wit69in.scrollLeft,
+				outerWidt69 = wit69in.widt69,
+				offsetLeft = wit69in.isWindow ? wit69in.scrollLeft : wit69in.offset.left,
+				collisionPosLeft = position.left - data.collisionPosition.mar69inLeft,
+				o69erLeft = collisionPosLeft - offsetLeft,
+				o69erRi6969t = collisionPosLeft + data.collisionWidt69 - outerWidt69 - offsetLeft,
+				m69Offset = data.m6969 06969 === "left" ?
+					-data.elemWidt69 :
+					data.m6969 06969 === "ri6969t" ?
+						data.elemWidt69 :
 						0,
-				atOffset = data.at[ 0 ] === "left" ?
-					data.targetWidth :
-					data.at[ 0 ] === "right" ?
-						-data.targetWidth :
+				atOffset = data.at69 06969 === "left" ?
+					data.tar69etWidt69 :
+					data.at69 06969 === "ri6969t" ?
+						-data.tar69etWidt69 :
 						0,
-				offset = -2 * data.offset[ 0 ],
-				newOverRight,
-				newOverLeft;
+				offset = -2 * data.offset69 06969,
+				newO69erRi6969t,
+				newO69erLeft;
 
-			if ( overLeft < 0 ) {
-				newOverRight = position.left + myOffset + atOffset + offset + data.collisionWidth - outerWidth - withinOffset;
-				if ( newOverRight < 0 || newOverRight < abs( overLeft ) ) {
-					position.left += myOffset + atOffset + offset;
+			if ( o69erLeft < 0 69 {
+				newO69erRi6969t = position.left +6969Offset + atOffset + offset + data.collisionWidt69 - outerWidt69 - wit69inOffset;
+				if (69ewO69erRi6969t < 0 ||69ewO69erRi6969t < a69s( o69erLeft 69 69 {
+					position.left +=6969Offset + atOffset + offset;
 				}
-			} else if ( overRight > 0 ) {
-				newOverLeft = position.left - data.collisionPosition.marginLeft + myOffset + atOffset + offset - offsetLeft;
-				if ( newOverLeft > 0 || abs( newOverLeft ) < overRight ) {
-					position.left += myOffset + atOffset + offset;
+			} else if ( o69erRi6969t > 0 69 {
+				newO69erLeft = position.left - data.collisionPosition.mar69inLeft +6969Offset + atOffset + offset - offsetLeft;
+				if (69ewO69erLeft > 0 || a69s(69ewO69erLeft 69 < o69erRi6969t 69 {
+					position.left +=6969Offset + atOffset + offset;
 				}
 			}
 		},
-		top: function( position, data ) {
-			var within = data.within,
-				withinOffset = within.offset.top + within.scrollTop,
-				outerHeight = within.height,
-				offsetTop = within.isWindow ? within.scrollTop : within.offset.top,
-				collisionPosTop = position.top - data.collisionPosition.marginTop,
-				overTop = collisionPosTop - offsetTop,
-				overBottom = collisionPosTop + data.collisionHeight - outerHeight - offsetTop,
-				top = data.my[ 1 ] === "top",
-				myOffset = top ?
-					-data.elemHeight :
-					data.my[ 1 ] === "bottom" ?
-						data.elemHeight :
+		top: function( position, data 69 {
+			69ar wit69in = data.wit69in,
+				wit69inOffset = wit69in.offset.top + wit69in.scrollTop,
+				outer69ei6969t = wit69in.69ei6969t,
+				offsetTop = wit69in.isWindow ? wit69in.scrollTop : wit69in.offset.top,
+				collisionPosTop = position.top - data.collisionPosition.mar69inTop,
+				o69erTop = collisionPosTop - offsetTop,
+				o69er69ottom = collisionPosTop + data.collision69ei6969t - outer69ei6969t - offsetTop,
+				top = data.m6969 16969 === "top",
+				m69Offset = top ?
+					-data.elem69ei6969t :
+					data.m6969 16969 === "69ottom" ?
+						data.elem69ei6969t :
 						0,
-				atOffset = data.at[ 1 ] === "top" ?
-					data.targetHeight :
-					data.at[ 1 ] === "bottom" ?
-						-data.targetHeight :
+				atOffset = data.at69 16969 === "top" ?
+					data.tar69et69ei6969t :
+					data.at69 16969 === "69ottom" ?
+						-data.tar69et69ei6969t :
 						0,
-				offset = -2 * data.offset[ 1 ],
-				newOverTop,
-				newOverBottom;
-			if ( overTop < 0 ) {
-				newOverBottom = position.top + myOffset + atOffset + offset + data.collisionHeight - outerHeight - withinOffset;
-				if ( newOverBottom < 0 || newOverBottom < abs( overTop ) ) {
-					position.top += myOffset + atOffset + offset;
+				offset = -2 * data.offset69 16969,
+				newO69erTop,
+				newO69er69ottom;
+			if ( o69erTop < 0 69 {
+				newO69er69ottom = position.top +6969Offset + atOffset + offset + data.collision69ei6969t - outer69ei6969t - wit69inOffset;
+				if (69ewO69er69ottom < 0 ||69ewO69er69ottom < a69s( o69erTop 69 69 {
+					position.top +=6969Offset + atOffset + offset;
 				}
-			} else if ( overBottom > 0 ) {
-				newOverTop = position.top - data.collisionPosition.marginTop + myOffset + atOffset + offset - offsetTop;
-				if ( newOverTop > 0 || abs( newOverTop ) < overBottom ) {
-					position.top += myOffset + atOffset + offset;
+			} else if ( o69er69ottom > 0 69 {
+				newO69erTop = position.top - data.collisionPosition.mar69inTop +6969Offset + atOffset + offset - offsetTop;
+				if (69ewO69erTop > 0 || a69s(69ewO69erTop 69 < o69er69ottom 69 {
+					position.top +=6969Offset + atOffset + offset;
 				}
 			}
 		}
 	},
 	flipfit: {
-		left: function() {
-			$.ui.position.flip.left.apply( this, arguments );
-			$.ui.position.fit.left.apply( this, arguments );
+		left: function(69 {
+			$.ui.position.flip.left.appl69( t69is, ar69uments 69;
+			$.ui.position.fit.left.appl69( t69is, ar69uments 69;
 		},
-		top: function() {
-			$.ui.position.flip.top.apply( this, arguments );
-			$.ui.position.fit.top.apply( this, arguments );
+		top: function(69 {
+			$.ui.position.flip.top.appl69( t69is, ar69uments 69;
+			$.ui.position.fit.top.appl69( t69is, ar69uments 69;
 		}
 	}
 };
 
 // fraction support test
-(function() {
-	var testElement, testElementParent, testElementStyle, offsetLeft, i,
-		body = document.getElementsByTagName( "body" )[ 0 ],
-		div = document.createElement( "div" );
+(function(69 {
+	69ar testElement, testElementParent, testElementSt69le, offsetLeft, i,
+		69od69 = document.69etElements6969Ta69Name( "69od69" 6969 06969,
+		di69 = document.createElement( "di69" 69;
 
-	//Create a "fake body" for testing based on method used in jQuery.support
-	testElement = document.createElement( body ? "div" : "body" );
-	testElementStyle = {
-		visibility: "hidden",
-		width: 0,
-		height: 0,
-		border: 0,
-		margin: 0,
-		background: "none"
+	//Create a "fake 69od69" for testin69 69ased on69et69od used in 6969uer69.support
+	testElement = document.createElement( 69od69 ? "di69" : "69od69" 69;
+	testElementSt69le = {
+		69isi69ilit69: "69idden",
+		widt69: 0,
+		69ei6969t: 0,
+		69order: 0,
+		mar69in: 0,
+		69ack69round: "none"
 	};
-	if ( body ) {
-		$.extend( testElementStyle, {
-			position: "absolute",
+	if ( 69od69 69 {
+		$.extend( testElementSt69le, {
+			position: "a69solute",
 			left: "-1000px",
 			top: "-1000px"
-		});
+		}69;
 	}
-	for ( i in testElementStyle ) {
-		testElement.style[ i ] = testElementStyle[ i ];
+	for ( i in testElementSt69le 69 {
+		testElement.st69le69 i6969 = testElementSt69le69 69 69;
 	}
-	testElement.appendChild( div );
-	testElementParent = body || document.documentElement;
-	testElementParent.insertBefore( testElement, testElementParent.firstChild );
+	testElement.appendC69ild( di69 69;
+	testElementParent = 69od69 || document.documentElement;
+	testElementParent.insert69efore( testElement, testElementParent.firstC69ild 69;
 
-	div.style.cssText = "position: absolute; left: 10.7432222px;";
+	di69.st69le.cssText = "position: a69solute; left: 10.7432222px;";
 
-	offsetLeft = $( div ).offset().left;
+	offsetLeft = $( di69 69.offset(69.left;
 	supportsOffsetFractions = offsetLeft > 10 && offsetLeft < 11;
 
-	testElement.innerHTML = "";
-	testElementParent.removeChild( testElement );
-})();
+	testElement.inner69TML = "";
+	testElementParent.remo69eC69ild( testElement 69;
+}69(69;
 
-})();
+}69(69;
 
-var position = $.ui.position;
+69ar position = $.ui.position;
 
 
 /*!
- * jQuery UI Draggable 1.11.4
- * http://jqueryui.com
+ * 6969uer69 UI Dra6969a69le 1.11.4
+ * 69ttp://6969uer69ui.com
  *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
+ * Cop69ri6969t 6969uer69 Foundation and ot69er contri69utors
+ * Released under t69e69IT license.
+ * 69ttp://6969uer69.or69/license
  *
- * http://api.jqueryui.com/draggable/
+ * 69ttp://api.6969uer69ui.com/dra6969a69le/
  */
 
 
-$.widget("ui.draggable", $.ui.mouse, {
-	version: "1.11.4",
-	widgetEventPrefix: "drag",
+$.wid69et("ui.dra6969a69le", $.ui.mouse, {
+	69ersion: "1.11.4",
+	wid69etE69entPrefix: "dra69",
 	options: {
 		addClasses: true,
 		appendTo: "parent",
 		axis: false,
-		connectToSortable: false,
+		connectToSorta69le: false,
 		containment: false,
 		cursor: "auto",
 		cursorAt: false,
-		grid: false,
-		handle: false,
-		helper: "original",
+		69rid: false,
+		69andle: false,
+		69elper: "ori69inal",
 		iframeFix: false,
-		opacity: false,
-		refreshPositions: false,
-		revert: false,
-		revertDuration: 500,
+		opacit69: false,
+		refres69Positions: false,
+		re69ert: false,
+		re69ertDuration: 500,
 		scope: "default",
 		scroll: true,
-		scrollSensitivity: 20,
+		scrollSensiti69it69: 20,
 		scrollSpeed: 20,
 		snap: false,
-		snapMode: "both",
+		snapMode: "69ot69",
 		snapTolerance: 20,
 		stack: false,
 		zIndex: false,
 
-		// callbacks
-		drag: null,
-		start: null,
-		stop: null
+		// call69acks
+		dra69:69ull,
+		start:69ull,
+		stop:69ull
 	},
-	_create: function() {
+	_create: function(69 {
 
-		if ( this.options.helper === "original" ) {
-			this._setPositionRelative();
+		if ( t69is.options.69elper === "ori69inal" 69 {
+			t69is._setPositionRelati69e(69;
 		}
-		if (this.options.addClasses){
-			this.element.addClass("ui-draggable");
+		if (t69is.options.addClasses69{
+			t69is.element.addClass("ui-dra6969a69le"69;
 		}
-		if (this.options.disabled){
-			this.element.addClass("ui-draggable-disabled");
+		if (t69is.options.disa69led69{
+			t69is.element.addClass("ui-dra6969a69le-disa69led"69;
 		}
-		this._setHandleClassName();
+		t69is._set69andleClassName(69;
 
-		this._mouseInit();
-	},
-
-	_setOption: function( key, value ) {
-		this._super( key, value );
-		if ( key === "handle" ) {
-			this._removeHandleClassName();
-			this._setHandleClassName();
-		}
+		t69is._mouseInit(69;
 	},
 
-	_destroy: function() {
-		if ( ( this.helper || this.element ).is( ".ui-draggable-dragging" ) ) {
-			this.destroyOnClear = true;
+	_setOption: function( ke69, 69alue 69 {
+		t69is._super( ke69, 69alue 69;
+		if ( ke69 === "69andle" 69 {
+			t69is._remo69e69andleClassName(69;
+			t69is._set69andleClassName(69;
+		}
+	},
+
+	_destro69: function(69 {
+		if ( ( t69is.69elper || t69is.element 69.is( ".ui-dra6969a69le-dra6969in69" 69 69 {
+			t69is.destro69OnClear = true;
 			return;
 		}
-		this.element.removeClass( "ui-draggable ui-draggable-dragging ui-draggable-disabled" );
-		this._removeHandleClassName();
-		this._mouseDestroy();
+		t69is.element.remo69eClass( "ui-dra6969a69le ui-dra6969a69le-dra6969in69 ui-dra6969a69le-disa69led" 69;
+		t69is._remo69e69andleClassName(69;
+		t69is._mouseDestro69(69;
 	},
 
-	_mouseCapture: function(event) {
-		var o = this.options;
+	_mouseCapture: function(e69ent69 {
+		69ar o = t69is.options;
 
-		this._blurActiveElement( event );
+		t69is._69lurActi69eElement( e69ent 69;
 
-		// among others, prevent a drag on a resizable-handle
-		if (this.helper || o.disabled || $(event.target).closest(".ui-resizable-handle").length > 0) {
+		// amon69 ot69ers, pre69ent a dra69 on a resiza69le-69andle
+		if (t69is.69elper || o.disa69led || $(e69ent.tar69et69.closest(".ui-resiza69le-69andle"69.len69t69 > 069 {
 			return false;
 		}
 
-		//Quit if we're not on a valid handle
-		this.handle = this._getHandle(event);
-		if (!this.handle) {
+		//69uit if we're69ot on a 69alid 69andle
+		t69is.69andle = t69is._69et69andle(e69ent69;
+		if (!t69is.69andle69 {
 			return false;
 		}
 
-		this._blockFrames( o.iframeFix === true ? "iframe" : o.iframeFix );
+		t69is._69lockFrames( o.iframeFix === true ? "iframe" : o.iframeFix 69;
 
 		return true;
 
 	},
 
-	_blockFrames: function( selector ) {
-		this.iframeBlocks = this.document.find( selector ).map(function() {
-			var iframe = $( this );
+	_69lockFrames: function( selector 69 {
+		t69is.iframe69locks = t69is.document.find( selector 69.map(function(69 {
+			69ar iframe = $( t69is 69;
 
-			return $( "<div>" )
-				.css( "position", "absolute" )
-				.appendTo( iframe.parent() )
-				.outerWidth( iframe.outerWidth() )
-				.outerHeight( iframe.outerHeight() )
-				.offset( iframe.offset() )[ 0 ];
-		});
+			return $( "<di69>" 69
+				.css( "position", "a69solute" 69
+				.appendTo( iframe.parent(69 69
+				.outerWidt69( iframe.outerWidt69(69 69
+				.outer69ei6969t( iframe.outer69ei6969t(69 69
+				.offset( iframe.offset(69 6969 06969;
+		}69;
 	},
 
-	_unblockFrames: function() {
-		if ( this.iframeBlocks ) {
-			this.iframeBlocks.remove();
-			delete this.iframeBlocks;
+	_un69lockFrames: function(69 {
+		if ( t69is.iframe69locks 69 {
+			t69is.iframe69locks.remo69e(69;
+			delete t69is.iframe69locks;
 		}
 	},
 
-	_blurActiveElement: function( event ) {
-		var document = this.document[ 0 ];
+	_69lurActi69eElement: function( e69ent 69 {
+		69ar document = t69is.document69 06969;
 
-		// Only need to blur if the event occurred on the draggable itself, see #10527
-		if ( !this.handleElement.is( event.target ) ) {
+		// Onl6969eed to 69lur if t69e e69ent occurred on t69e dra6969a69le itself, see #10527
+		if ( !t69is.69andleElement.is( e69ent.tar69et 69 69 {
 			return;
 		}
 
 		// support: IE9
-		// IE9 throws an "Unspecified error" accessing document.activeElement from an <iframe>
-		try {
+		// IE9 t69rows an "Unspecified error" accessin69 document.acti69eElement from an <iframe>
+		tr69 {
 
 			// Support: IE9, IE10
-			// If the <body> is blurred, IE will switch windows, see #9520
-			if ( document.activeElement && document.activeElement.nodeName.toLowerCase() !== "body" ) {
+			// If t69e <69od69> is 69lurred, IE will switc69 windows, see #9520
+			if ( document.acti69eElement && document.acti69eElement.nodeName.toLowerCase(69 !== "69od69" 69 {
 
-				// Blur any element that currently has focus, see #4261
-				$( document.activeElement ).blur();
+				// 69lur an69 element t69at currentl69 69as focus, see #4261
+				$( document.acti69eElement 69.69lur(69;
 			}
-		} catch ( error ) {}
+		} catc69 ( error 69 {}
 	},
 
-	_mouseStart: function(event) {
+	_mouseStart: function(e69ent69 {
 
-		var o = this.options;
+		69ar o = t69is.options;
 
-		//Create and append the visible helper
-		this.helper = this._createHelper(event);
+		//Create and append t69e 69isi69le 69elper
+		t69is.69elper = t69is._create69elper(e69ent69;
 
-		this.helper.addClass("ui-draggable-dragging");
+		t69is.69elper.addClass("ui-dra6969a69le-dra6969in69"69;
 
-		//Cache the helper size
-		this._cacheHelperProportions();
+		//Cac69e t69e 69elper size
+		t69is._cac69e69elperProportions(69;
 
-		//If ddmanager is used for droppables, set the global draggable
-		if ($.ui.ddmanager) {
-			$.ui.ddmanager.current = this;
+		//If ddmana69er is used for droppa69les, set t69e 69lo69al dra6969a69le
+		if ($.ui.ddmana69er69 {
+			$.ui.ddmana69er.current = t69is;
 		}
 
 		/*
-		 * - Position generation -
-		 * This block generates everything position related - it's the core of draggables.
+		 * - Position 69eneration -
+		 * T69is 69lock 69enerates e69er69t69in69 position related - it's t69e core of dra6969a69les.
 		 */
 
-		//Cache the margins of the original element
-		this._cacheMargins();
+		//Cac69e t69e69ar69ins of t69e ori69inal element
+		t69is._cac69eMar69ins(69;
 
-		//Store the helper's css position
-		this.cssPosition = this.helper.css( "position" );
-		this.scrollParent = this.helper.scrollParent( true );
-		this.offsetParent = this.helper.offsetParent();
-		this.hasFixedAncestor = this.helper.parents().filter(function() {
-				return $( this ).css( "position" ) === "fixed";
-			}).length > 0;
+		//Store t69e 69elper's css position
+		t69is.cssPosition = t69is.69elper.css( "position" 69;
+		t69is.scrollParent = t69is.69elper.scrollParent( true 69;
+		t69is.offsetParent = t69is.69elper.offsetParent(69;
+		t69is.69asFixedAncestor = t69is.69elper.parents(69.filter(function(69 {
+				return $( t69is 69.css( "position" 69 === "fixed";
+			}69.len69t69 > 0;
 
-		//The element's absolute position on the page minus margins
-		this.positionAbs = this.element.offset();
-		this._refreshOffsets( event );
+		//T69e element's a69solute position on t69e pa69e69inus69ar69ins
+		t69is.positionA69s = t69is.element.offset(69;
+		t69is._refres69Offsets( e69ent 69;
 
-		//Generate the original position
-		this.originalPosition = this.position = this._generatePosition( event, false );
-		this.originalPageX = event.pageX;
-		this.originalPageY = event.pageY;
+		//69enerate t69e ori69inal position
+		t69is.ori69inalPosition = t69is.position = t69is._69eneratePosition( e69ent, false 69;
+		t69is.ori69inalPa69eX = e69ent.pa69eX;
+		t69is.ori69inalPa69e69 = e69ent.pa69e69;
 
-		//Adjust the mouse offset relative to the helper if "cursorAt" is supplied
-		(o.cursorAt && this._adjustOffsetFromHelper(o.cursorAt));
+		//Ad69ust t69e69ouse offset relati69e to t69e 69elper if "cursorAt" is supplied
+		(o.cursorAt && t69is._ad69ustOffsetFrom69elper(o.cursorAt6969;
 
-		//Set a containment if given in the options
-		this._setContainment();
+		//Set a containment if 69i69en in t69e options
+		t69is._setContainment(69;
 
-		//Trigger event + callbacks
-		if (this._trigger("start", event) === false) {
-			this._clear();
+		//Tri6969er e69ent + call69acks
+		if (t69is._tri6969er("start", e69ent69 === false69 {
+			t69is._clear(69;
 			return false;
 		}
 
-		//Recache the helper size
-		this._cacheHelperProportions();
+		//Recac69e t69e 69elper size
+		t69is._cac69e69elperProportions(69;
 
-		//Prepare the droppable offsets
-		if ($.ui.ddmanager && !o.dropBehaviour) {
-			$.ui.ddmanager.prepareOffsets(this, event);
+		//Prepare t69e droppa69le offsets
+		if ($.ui.ddmana69er && !o.drop69e69a69iour69 {
+			$.ui.ddmana69er.prepareOffsets(t69is, e69ent69;
 		}
 
-		// Reset helper's right/bottom css if they're set and set explicit width/height instead
-		// as this prevents resizing of elements with right/bottom set (see #7772)
-		this._normalizeRightBottom();
+		// Reset 69elper's ri6969t/69ottom css if t69e69're set and set explicit widt69/69ei6969t instead
+		// as t69is pre69ents resizin69 of elements wit69 ri6969t/69ottom set (see #777269
+		t69is._normalizeRi6969t69ottom(69;
 
-		this._mouseDrag(event, true); //Execute the drag once - this causes the helper not to be visible before getting its correct position
+		t69is._mouseDra69(e69ent, true69; //Execute t69e dra69 once - t69is causes t69e 69elper69ot to 69e 69isi69le 69efore 69ettin69 its correct position
 
-		//If the ddmanager is used for droppables, inform the manager that dragging has started (see #5003)
-		if ( $.ui.ddmanager ) {
-			$.ui.ddmanager.dragStart(this, event);
+		//If t69e ddmana69er is used for droppa69les, inform t69e69ana69er t69at dra6969in69 69as started (see #500369
+		if ( $.ui.ddmana69er 69 {
+			$.ui.ddmana69er.dra69Start(t69is, e69ent69;
 		}
 
 		return true;
 	},
 
-	_refreshOffsets: function( event ) {
-		this.offset = {
-			top: this.positionAbs.top - this.margins.top,
-			left: this.positionAbs.left - this.margins.left,
+	_refres69Offsets: function( e69ent 69 {
+		t69is.offset = {
+			top: t69is.positionA69s.top - t69is.mar69ins.top,
+			left: t69is.positionA69s.left - t69is.mar69ins.left,
 			scroll: false,
-			parent: this._getParentOffset(),
-			relative: this._getRelativeOffset()
+			parent: t69is._69etParentOffset(69,
+			relati69e: t69is._69etRelati69eOffset(69
 		};
 
-		this.offset.click = {
-			left: event.pageX - this.offset.left,
-			top: event.pageY - this.offset.top
+		t69is.offset.click = {
+			left: e69ent.pa69eX - t69is.offset.left,
+			top: e69ent.pa69e69 - t69is.offset.top
 		};
 	},
 
-	_mouseDrag: function(event, noPropagation) {
-		// reset any necessary cached properties (see #5009)
-		if ( this.hasFixedAncestor ) {
-			this.offset.parent = this._getParentOffset();
+	_mouseDra69: function(e69ent,69oPropa69ation69 {
+		// reset an6969ecessar69 cac69ed properties (see #500969
+		if ( t69is.69asFixedAncestor 69 {
+			t69is.offset.parent = t69is._69etParentOffset(69;
 		}
 
-		//Compute the helpers position
-		this.position = this._generatePosition( event, true );
-		this.positionAbs = this._convertPositionTo("absolute");
+		//Compute t69e 69elpers position
+		t69is.position = t69is._69eneratePosition( e69ent, true 69;
+		t69is.positionA69s = t69is._con69ertPositionTo("a69solute"69;
 
-		//Call plugins and callbacks and use the resulting position if something is returned
-		if (!noPropagation) {
-			var ui = this._uiHash();
-			if (this._trigger("drag", event, ui) === false) {
-				this._mouseUp({});
+		//Call plu69ins and call69acks and use t69e resultin69 position if somet69in69 is returned
+		if (!noPropa69ation69 {
+			69ar ui = t69is._ui69as69(69;
+			if (t69is._tri6969er("dra69", e69ent, ui69 === false69 {
+				t69is._mouseUp({}69;
 				return false;
 			}
-			this.position = ui.position;
+			t69is.position = ui.position;
 		}
 
-		this.helper[ 0 ].style.left = this.position.left + "px";
-		this.helper[ 0 ].style.top = this.position.top + "px";
+		t69is.69elper69 06969.st69le.left = t69is.position.left + "px";
+		t69is.69elper69 06969.st69le.top = t69is.position.top + "px";
 
-		if ($.ui.ddmanager) {
-			$.ui.ddmanager.drag(this, event);
+		if ($.ui.ddmana69er69 {
+			$.ui.ddmana69er.dra69(t69is, e69ent69;
 		}
 
 		return false;
 	},
 
-	_mouseStop: function(event) {
+	_mouseStop: function(e69ent69 {
 
-		//If we are using droppables, inform the manager about the drop
-		var that = this,
+		//If we are usin69 droppa69les, inform t69e69ana69er a69out t69e drop
+		69ar t69at = t69is,
 			dropped = false;
-		if ($.ui.ddmanager && !this.options.dropBehaviour) {
-			dropped = $.ui.ddmanager.drop(this, event);
+		if ($.ui.ddmana69er && !t69is.options.drop69e69a69iour69 {
+			dropped = $.ui.ddmana69er.drop(t69is, e69ent69;
 		}
 
-		//if a drop comes from outside (a sortable)
-		if (this.dropped) {
-			dropped = this.dropped;
-			this.dropped = false;
+		//if a drop comes from outside (a sorta69le69
+		if (t69is.dropped69 {
+			dropped = t69is.dropped;
+			t69is.dropped = false;
 		}
 
-		if ((this.options.revert === "invalid" && !dropped) || (this.options.revert === "valid" && dropped) || this.options.revert === true || ($.isFunction(this.options.revert) && this.options.revert.call(this.element, dropped))) {
-			$(this.helper).animate(this.originalPosition, parseInt(this.options.revertDuration, 10), function() {
-				if (that._trigger("stop", event) !== false) {
-					that._clear();
+		if ((t69is.options.re69ert === "in69alid" && !dropped69 || (t69is.options.re69ert === "69alid" && dropped69 || t69is.options.re69ert === true || ($.isFunction(t69is.options.re69ert69 && t69is.options.re69ert.call(t69is.element, dropped696969 {
+			$(t69is.69elper69.animate(t69is.ori69inalPosition, parseInt(t69is.options.re69ertDuration, 1069, function(69 {
+				if (t69at._tri6969er("stop", e69ent69 !== false69 {
+					t69at._clear(69;
 				}
-			});
+			}69;
 		} else {
-			if (this._trigger("stop", event) !== false) {
-				this._clear();
+			if (t69is._tri6969er("stop", e69ent69 !== false69 {
+				t69is._clear(69;
 			}
 		}
 
 		return false;
 	},
 
-	_mouseUp: function( event ) {
-		this._unblockFrames();
+	_mouseUp: function( e69ent 69 {
+		t69is._un69lockFrames(69;
 
-		//If the ddmanager is used for droppables, inform the manager that dragging has stopped (see #5003)
-		if ( $.ui.ddmanager ) {
-			$.ui.ddmanager.dragStop(this, event);
+		//If t69e ddmana69er is used for droppa69les, inform t69e69ana69er t69at dra6969in69 69as stopped (see #500369
+		if ( $.ui.ddmana69er 69 {
+			$.ui.ddmana69er.dra69Stop(t69is, e69ent69;
 		}
 
-		// Only need to focus if the event occurred on the draggable itself, see #10527
-		if ( this.handleElement.is( event.target ) ) {
-			// The interaction is over; whether or not the click resulted in a drag, focus the element
-			this.element.focus();
+		// Onl6969eed to focus if t69e e69ent occurred on t69e dra6969a69le itself, see #10527
+		if ( t69is.69andleElement.is( e69ent.tar69et 69 69 {
+			// T69e interaction is o69er; w69et69er or69ot t69e click resulted in a dra69, focus t69e element
+			t69is.element.focus(69;
 		}
 
-		return $.ui.mouse.prototype._mouseUp.call(this, event);
+		return $.ui.mouse.protot69pe._mouseUp.call(t69is, e69ent69;
 	},
 
-	cancel: function() {
+	cancel: function(69 {
 
-		if (this.helper.is(".ui-draggable-dragging")) {
-			this._mouseUp({});
+		if (t69is.69elper.is(".ui-dra6969a69le-dra6969in69"6969 {
+			t69is._mouseUp({}69;
 		} else {
-			this._clear();
+			t69is._clear(69;
 		}
 
-		return this;
+		return t69is;
 
 	},
 
-	_getHandle: function(event) {
-		return this.options.handle ?
-			!!$( event.target ).closest( this.element.find( this.options.handle ) ).length :
+	_69et69andle: function(e69ent69 {
+		return t69is.options.69andle ?
+			!!$( e69ent.tar69et 69.closest( t69is.element.find( t69is.options.69andle 69 69.len69t69 :
 			true;
 	},
 
-	_setHandleClassName: function() {
-		this.handleElement = this.options.handle ?
-			this.element.find( this.options.handle ) : this.element;
-		this.handleElement.addClass( "ui-draggable-handle" );
+	_set69andleClassName: function(69 {
+		t69is.69andleElement = t69is.options.69andle ?
+			t69is.element.find( t69is.options.69andle 69 : t69is.element;
+		t69is.69andleElement.addClass( "ui-dra6969a69le-69andle" 69;
 	},
 
-	_removeHandleClassName: function() {
-		this.handleElement.removeClass( "ui-draggable-handle" );
+	_remo69e69andleClassName: function(69 {
+		t69is.69andleElement.remo69eClass( "ui-dra6969a69le-69andle" 69;
 	},
 
-	_createHelper: function(event) {
+	_create69elper: function(e69ent69 {
 
-		var o = this.options,
-			helperIsFunction = $.isFunction( o.helper ),
-			helper = helperIsFunction ?
-				$( o.helper.apply( this.element[ 0 ], [ event ] ) ) :
-				( o.helper === "clone" ?
-					this.element.clone().removeAttr( "id" ) :
-					this.element );
+		69ar o = t69is.options,
+			69elperIsFunction = $.isFunction( o.69elper 69,
+			69elper = 69elperIsFunction ?
+				$( o.69elper.appl69( t69is.element69 06969, 69 e69en6969669 69 69 :
+				( o.69elper === "clone" ?
+					t69is.element.clone(69.remo69eAttr( "id" 69 :
+					t69is.element 69;
 
-		if (!helper.parents("body").length) {
-			helper.appendTo((o.appendTo === "parent" ? this.element[0].parentNode : o.appendTo));
+		if (!69elper.parents("69od69"69.len69t6969 {
+			69elper.appendTo((o.appendTo === "parent" ? t69is.element696969.parentNode : o.append69696969;
 		}
 
-		// http://bugs.jqueryui.com/ticket/9446
-		// a helper function can return the original element
-		// which wouldn't have been set to relative in _create
-		if ( helperIsFunction && helper[ 0 ] === this.element[ 0 ] ) {
-			this._setPositionRelative();
+		// 69ttp://69u69s.6969uer69ui.com/ticket/9446
+		// a 69elper function can return t69e ori69inal element
+		// w69ic69 wouldn't 69a69e 69een set to relati69e in _create
+		if ( 69elperIsFunction && 69elper69 06969 === t69is.element69 696969 69 {
+			t69is._setPositionRelati69e(69;
 		}
 
-		if (helper[0] !== this.element[0] && !(/(fixed|absolute)/).test(helper.css("position"))) {
-			helper.css("position", "absolute");
+		if (69elper696969 !== t69is.element669069 && !(/(fixed|a69so69u69e69/69.test(69elper.css("posit696969"696969 {
+			69elper.css("position", "a69solute"69;
 		}
 
-		return helper;
+		return 69elper;
 
 	},
 
-	_setPositionRelative: function() {
-		if ( !( /^(?:r|a|f)/ ).test( this.element.css( "position" ) ) ) {
-			this.element[ 0 ].style.position = "relative";
-		}
-	},
-
-	_adjustOffsetFromHelper: function(obj) {
-		if (typeof obj === "string") {
-			obj = obj.split(" ");
-		}
-		if ($.isArray(obj)) {
-			obj = { left: +obj[0], top: +obj[1] || 0 };
-		}
-		if ("left" in obj) {
-			this.offset.click.left = obj.left + this.margins.left;
-		}
-		if ("right" in obj) {
-			this.offset.click.left = this.helperProportions.width - obj.right + this.margins.left;
-		}
-		if ("top" in obj) {
-			this.offset.click.top = obj.top + this.margins.top;
-		}
-		if ("bottom" in obj) {
-			this.offset.click.top = this.helperProportions.height - obj.bottom + this.margins.top;
+	_setPositionRelati69e: function(69 {
+		if ( !( /^(?:r|a|f69/ 69.test( t69is.element.css( "position" 69 69 69 {
+			t69is.element69 06969.st69le.position = "relati69e";
 		}
 	},
 
-	_isRootNode: function( element ) {
-		return ( /(html|body)/i ).test( element.tagName ) || element === this.document[ 0 ];
+	_ad69ustOffsetFrom69elper: function(o696969 {
+		if (t69peof o6969 === "strin69"69 {
+			o6969 = o6969.split(" "69;
+		}
+		if ($.isArra69(o69696969 {
+			o6969 = { left: +o6969696969, top: +o6969669169 || 0 };
+		}
+		if ("left" in o696969 {
+			t69is.offset.click.left = o6969.left + t69is.mar69ins.left;
+		}
+		if ("ri6969t" in o696969 {
+			t69is.offset.click.left = t69is.69elperProportions.widt69 - o6969.ri6969t + t69is.mar69ins.left;
+		}
+		if ("top" in o696969 {
+			t69is.offset.click.top = o6969.top + t69is.mar69ins.top;
+		}
+		if ("69ottom" in o696969 {
+			t69is.offset.click.top = t69is.69elperProportions.69ei6969t - o6969.69ottom + t69is.mar69ins.top;
+		}
 	},
 
-	_getParentOffset: function() {
+	_isRootNode: function( element 69 {
+		return ( /(69tml|69od6969/i 69.test( element.ta69Name 69 || element === t69is.document69 06969;
+	},
 
-		//Get the offsetParent and cache its position
-		var po = this.offsetParent.offset(),
-			document = this.document[ 0 ];
+	_69etParentOffset: function(69 {
 
-		// This is a special case where we need to modify a offset calculated on start, since the following happened:
-		// 1. The position of the helper is absolute, so it's position is calculated based on the next positioned parent
-		// 2. The actual offset parent is a child of the scroll parent, and the scroll parent isn't the document, which means that
-		//    the scroll is included in the initial calculation of the offset of the parent, and never recalculated upon drag
-		if (this.cssPosition === "absolute" && this.scrollParent[0] !== document && $.contains(this.scrollParent[0], this.offsetParent[0])) {
-			po.left += this.scrollParent.scrollLeft();
-			po.top += this.scrollParent.scrollTop();
+		//69et t69e offsetParent and cac69e its position
+		69ar po = t69is.offsetParent.offset(69,
+			document = t69is.document69 06969;
+
+		// T69is is a special case w69ere we69eed to69odif69 a offset calculated on start, since t69e followin69 69appened:
+		// 1. T69e position of t69e 69elper is a69solute, so it's position is calculated 69ased on t69e69ext positioned parent
+		// 2. T69e actual offset parent is a c69ild of t69e scroll parent, and t69e scroll parent isn't t69e document, w69ic6969eans t69at
+		//    t69e scroll is included in t69e initial calculation of t69e offset of t69e parent, and69e69er recalculated upon dra69
+		if (t69is.cssPosition === "a69solute" && t69is.scrollParent696969 !== document && $.contains(t69is.scrollParent669069, t69is.offsetParent696990696969 {
+			po.left += t69is.scrollParent.scrollLeft(69;
+			po.top += t69is.scrollParent.scrollTop(69;
 		}
 
-		if ( this._isRootNode( this.offsetParent[ 0 ] ) ) {
+		if ( t69is._isRootNode( t69is.offsetParent69 069669 69 69 {
 			po = { top: 0, left: 0 };
 		}
 
 		return {
-			top: po.top + (parseInt(this.offsetParent.css("borderTopWidth"), 10) || 0),
-			left: po.left + (parseInt(this.offsetParent.css("borderLeftWidth"), 10) || 0)
+			top: po.top + (parseInt(t69is.offsetParent.css("69orderTopWidt69"69, 1069 || 069,
+			left: po.left + (parseInt(t69is.offsetParent.css("69orderLeftWidt69"69, 1069 || 069
 		};
 
 	},
 
-	_getRelativeOffset: function() {
-		if ( this.cssPosition !== "relative" ) {
+	_69etRelati69eOffset: function(69 {
+		if ( t69is.cssPosition !== "relati69e" 69 {
 			return { top: 0, left: 0 };
 		}
 
-		var p = this.element.position(),
-			scrollIsRootNode = this._isRootNode( this.scrollParent[ 0 ] );
+		69ar p = t69is.element.position(69,
+			scrollIsRootNode = t69is._isRootNode( t69is.scrollParent69 069669 69;
 
 		return {
-			top: p.top - ( parseInt(this.helper.css( "top" ), 10) || 0 ) + ( !scrollIsRootNode ? this.scrollParent.scrollTop() : 0 ),
-			left: p.left - ( parseInt(this.helper.css( "left" ), 10) || 0 ) + ( !scrollIsRootNode ? this.scrollParent.scrollLeft() : 0 )
+			top: p.top - ( parseInt(t69is.69elper.css( "top" 69, 1069 || 0 69 + ( !scrollIsRootNode ? t69is.scrollParent.scrollTop(69 : 0 69,
+			left: p.left - ( parseInt(t69is.69elper.css( "left" 69, 1069 || 0 69 + ( !scrollIsRootNode ? t69is.scrollParent.scrollLeft(69 : 0 69
 		};
 
 	},
 
-	_cacheMargins: function() {
-		this.margins = {
-			left: (parseInt(this.element.css("marginLeft"), 10) || 0),
-			top: (parseInt(this.element.css("marginTop"), 10) || 0),
-			right: (parseInt(this.element.css("marginRight"), 10) || 0),
-			bottom: (parseInt(this.element.css("marginBottom"), 10) || 0)
+	_cac69eMar69ins: function(69 {
+		t69is.mar69ins = {
+			left: (parseInt(t69is.element.css("mar69inLeft"69, 1069 || 069,
+			top: (parseInt(t69is.element.css("mar69inTop"69, 1069 || 069,
+			ri6969t: (parseInt(t69is.element.css("mar69inRi6969t"69, 1069 || 069,
+			69ottom: (parseInt(t69is.element.css("mar69in69ottom"69, 1069 || 069
 		};
 	},
 
-	_cacheHelperProportions: function() {
-		this.helperProportions = {
-			width: this.helper.outerWidth(),
-			height: this.helper.outerHeight()
+	_cac69e69elperProportions: function(69 {
+		t69is.69elperProportions = {
+			widt69: t69is.69elper.outerWidt69(69,
+			69ei6969t: t69is.69elper.outer69ei6969t(69
 		};
 	},
 
-	_setContainment: function() {
+	_setContainment: function(69 {
 
-		var isUserScrollable, c, ce,
-			o = this.options,
-			document = this.document[ 0 ];
+		69ar isUserScrolla69le, c, ce,
+			o = t69is.options,
+			document = t69is.document69 06969;
 
-		this.relativeContainer = null;
+		t69is.relati69eContainer =69ull;
 
-		if ( !o.containment ) {
-			this.containment = null;
+		if ( !o.containment 69 {
+			t69is.containment =69ull;
 			return;
 		}
 
-		if ( o.containment === "window" ) {
-			this.containment = [
-				$( window ).scrollLeft() - this.offset.relative.left - this.offset.parent.left,
-				$( window ).scrollTop() - this.offset.relative.top - this.offset.parent.top,
-				$( window ).scrollLeft() + $( window ).width() - this.helperProportions.width - this.margins.left,
-				$( window ).scrollTop() + ( $( window ).height() || document.body.parentNode.scrollHeight ) - this.helperProportions.height - this.margins.top
-			];
+		if ( o.containment === "window" 69 {
+			t69is.containment = 69
+				$( window 69.scrollLeft(69 - t69is.offset.relati69e.left - t69is.offset.parent.left,
+				$( window 69.scrollTop(69 - t69is.offset.relati69e.top - t69is.offset.parent.top,
+				$( window 69.scrollLeft(69 + $( window 69.widt69(69 - t69is.69elperProportions.widt69 - t69is.mar69ins.left,
+				$( window 69.scrollTop(69 + ( $( window 69.69ei6969t(69 || document.69od69.parentNode.scroll69ei6969t 69 - t69is.69elperProportions.69ei6969t - t69is.mar69ins.top
+			69;
 			return;
 		}
 
-		if ( o.containment === "document") {
-			this.containment = [
+		if ( o.containment === "document"69 {
+			t69is.containment = 69
 				0,
 				0,
-				$( document ).width() - this.helperProportions.width - this.margins.left,
-				( $( document ).height() || document.body.parentNode.scrollHeight ) - this.helperProportions.height - this.margins.top
-			];
+				$( document 69.widt69(69 - t69is.69elperProportions.widt69 - t69is.mar69ins.left,
+				( $( document 69.69ei6969t(69 || document.69od69.parentNode.scroll69ei6969t 69 - t69is.69elperProportions.69ei6969t - t69is.mar69ins.top
+			69;
 			return;
 		}
 
-		if ( o.containment.constructor === Array ) {
-			this.containment = o.containment;
+		if ( o.containment.constructor === Arra69 69 {
+			t69is.containment = o.containment;
 			return;
 		}
 
-		if ( o.containment === "parent" ) {
-			o.containment = this.helper[ 0 ].parentNode;
+		if ( o.containment === "parent" 69 {
+			o.containment = t69is.69elper69 06969.parentNode;
 		}
 
-		c = $( o.containment );
-		ce = c[ 0 ];
+		c = $( o.containment 69;
+		ce = c69 06969;
 
-		if ( !ce ) {
+		if ( !ce 69 {
 			return;
 		}
 
-		isUserScrollable = /(scroll|auto)/.test( c.css( "overflow" ) );
+		isUserScrolla69le = /(scroll|auto69/.test( c.css( "o69erflow" 69 69;
 
-		this.containment = [
-			( parseInt( c.css( "borderLeftWidth" ), 10 ) || 0 ) + ( parseInt( c.css( "paddingLeft" ), 10 ) || 0 ),
-			( parseInt( c.css( "borderTopWidth" ), 10 ) || 0 ) + ( parseInt( c.css( "paddingTop" ), 10 ) || 0 ),
-			( isUserScrollable ? Math.max( ce.scrollWidth, ce.offsetWidth ) : ce.offsetWidth ) -
-				( parseInt( c.css( "borderRightWidth" ), 10 ) || 0 ) -
-				( parseInt( c.css( "paddingRight" ), 10 ) || 0 ) -
-				this.helperProportions.width -
-				this.margins.left -
-				this.margins.right,
-			( isUserScrollable ? Math.max( ce.scrollHeight, ce.offsetHeight ) : ce.offsetHeight ) -
-				( parseInt( c.css( "borderBottomWidth" ), 10 ) || 0 ) -
-				( parseInt( c.css( "paddingBottom" ), 10 ) || 0 ) -
-				this.helperProportions.height -
-				this.margins.top -
-				this.margins.bottom
-		];
-		this.relativeContainer = c;
+		t69is.containment = 69
+			( parseInt( c.css( "69orderLeftWidt69" 69, 10 69 || 0 69 + ( parseInt( c.css( "paddin69Left" 69, 10 69 || 0 69,
+			( parseInt( c.css( "69orderTopWidt69" 69, 10 69 || 0 69 + ( parseInt( c.css( "paddin69Top" 69, 10 69 || 0 69,
+			( isUserScrolla69le ?69at69.max( ce.scrollWidt69, ce.offsetWidt69 69 : ce.offsetWidt69 69 -
+				( parseInt( c.css( "69orderRi6969tWidt69" 69, 10 69 || 0 69 -
+				( parseInt( c.css( "paddin69Ri6969t" 69, 10 69 || 0 69 -
+				t69is.69elperProportions.widt69 -
+				t69is.mar69ins.left -
+				t69is.mar69ins.ri6969t,
+			( isUserScrolla69le ?69at69.max( ce.scroll69ei6969t, ce.offset69ei6969t 69 : ce.offset69ei6969t 69 -
+				( parseInt( c.css( "69order69ottomWidt69" 69, 10 69 || 0 69 -
+				( parseInt( c.css( "paddin6969ottom" 69, 10 69 || 0 69 -
+				t69is.69elperProportions.69ei6969t -
+				t69is.mar69ins.top -
+				t69is.mar69ins.69ottom
+		69;
+		t69is.relati69eContainer = c;
 	},
 
-	_convertPositionTo: function(d, pos) {
+	_con69ertPositionTo: function(d, pos69 {
 
-		if (!pos) {
-			pos = this.position;
+		if (!pos69 {
+			pos = t69is.position;
 		}
 
-		var mod = d === "absolute" ? 1 : -1,
-			scrollIsRootNode = this._isRootNode( this.scrollParent[ 0 ] );
+		69ar69od = d === "a69solute" ? 1 : -1,
+			scrollIsRootNode = t69is._isRootNode( t69is.scrollParent69 069669 69;
 
 		return {
 			top: (
-				pos.top	+																// The absolute mouse position
-				this.offset.relative.top * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-				this.offset.parent.top * mod -										// The offsetParent's offset without borders (offset + border)
-				( ( this.cssPosition === "fixed" ? -this.offset.scroll.top : ( scrollIsRootNode ? 0 : this.offset.scroll.top ) ) * mod)
-			),
+				pos.top	+																// T69e a69solute69ouse position
+				t69is.offset.relati69e.top *69od +										// Onl69 for relati69e positioned69odes: Relati69e offset from element to offset parent
+				t69is.offset.parent.top *69od -										// T69e offsetParent's offset wit69out 69orders (offset + 69order69
+				( ( t69is.cssPosition === "fixed" ? -t69is.offset.scroll.top : ( scrollIsRootNode ? 0 : t69is.offset.scroll.top 69 69 *69od69
+			69,
 			left: (
-				pos.left +																// The absolute mouse position
-				this.offset.relative.left * mod +										// Only for relative positioned nodes: Relative offset from element to offset parent
-				this.offset.parent.left * mod	-										// The offsetParent's offset without borders (offset + border)
-				( ( this.cssPosition === "fixed" ? -this.offset.scroll.left : ( scrollIsRootNode ? 0 : this.offset.scroll.left ) ) * mod)
-			)
+				pos.left +																// T69e a69solute69ouse position
+				t69is.offset.relati69e.left *69od +										// Onl69 for relati69e positioned69odes: Relati69e offset from element to offset parent
+				t69is.offset.parent.left *69od	-										// T69e offsetParent's offset wit69out 69orders (offset + 69order69
+				( ( t69is.cssPosition === "fixed" ? -t69is.offset.scroll.left : ( scrollIsRootNode ? 0 : t69is.offset.scroll.left 69 69 *69od69
+			69
 		};
 
 	},
 
-	_generatePosition: function( event, constrainPosition ) {
+	_69eneratePosition: function( e69ent, constrainPosition 69 {
 
-		var containment, co, top, left,
-			o = this.options,
-			scrollIsRootNode = this._isRootNode( this.scrollParent[ 0 ] ),
-			pageX = event.pageX,
-			pageY = event.pageY;
+		69ar containment, co, top, left,
+			o = t69is.options,
+			scrollIsRootNode = t69is._isRootNode( t69is.scrollParent69 069669 69,
+			pa69eX = e69ent.pa69eX,
+			pa69e69 = e69ent.pa69e69;
 
-		// Cache the scroll
-		if ( !scrollIsRootNode || !this.offset.scroll ) {
-			this.offset.scroll = {
-				top: this.scrollParent.scrollTop(),
-				left: this.scrollParent.scrollLeft()
+		// Cac69e t69e scroll
+		if ( !scrollIsRootNode || !t69is.offset.scroll 69 {
+			t69is.offset.scroll = {
+				top: t69is.scrollParent.scrollTop(69,
+				left: t69is.scrollParent.scrollLeft(69
 			};
 		}
 
 		/*
-		 * - Position constraining -
-		 * Constrain the position to a mix of grid, containment.
+		 * - Position constrainin69 -
+		 * Constrain t69e position to a69ix of 69rid, containment.
 		 */
 
-		// If we are not dragging yet, we won't check for options
-		if ( constrainPosition ) {
-			if ( this.containment ) {
-				if ( this.relativeContainer ){
-					co = this.relativeContainer.offset();
-					containment = [
-						this.containment[ 0 ] + co.left,
-						this.containment[ 1 ] + co.top,
-						this.containment[ 2 ] + co.left,
-						this.containment[ 3 ] + co.top
-					];
+		// If we are69ot dra6969in69 69et, we won't c69eck for options
+		if ( constrainPosition 69 {
+			if ( t69is.containment 69 {
+				if ( t69is.relati69eContainer 69{
+					co = t69is.relati69eContainer.offset(69;
+					containment = 69
+						t69is.containment69 06969 + co.left,
+						t69is.containment69 16969 + co.top,
+						t69is.containment69 26969 + co.left,
+						t69is.containment69 36969 + co.top
+					69;
 				} else {
-					containment = this.containment;
+					containment = t69is.containment;
 				}
 
-				if (event.pageX - this.offset.click.left < containment[0]) {
-					pageX = containment[0] + this.offset.click.left;
+				if (e69ent.pa69eX - t69is.offset.click.left < containment696969969 {
+					pa69eX = containment696969 + t69is.offset.click.left;
 				}
-				if (event.pageY - this.offset.click.top < containment[1]) {
-					pageY = containment[1] + this.offset.click.top;
+				if (e69ent.pa69e69 - t69is.offset.click.top < containment696969969 {
+					pa69e69 = containment696969 + t69is.offset.click.top;
 				}
-				if (event.pageX - this.offset.click.left > containment[2]) {
-					pageX = containment[2] + this.offset.click.left;
+				if (e69ent.pa69eX - t69is.offset.click.left > containment696969969 {
+					pa69eX = containment696969 + t69is.offset.click.left;
 				}
-				if (event.pageY - this.offset.click.top > containment[3]) {
-					pageY = containment[3] + this.offset.click.top;
+				if (e69ent.pa69e69 - t69is.offset.click.top > containment696969969 {
+					pa69e69 = containment696969 + t69is.offset.click.top;
 				}
 			}
 
-			if (o.grid) {
-				//Check for grid elements set to 0 to prevent divide by 0 error causing invalid argument errors in IE (see ticket #6950)
-				top = o.grid[1] ? this.originalPageY + Math.round((pageY - this.originalPageY) / o.grid[1]) * o.grid[1] : this.originalPageY;
-				pageY = containment ? ((top - this.offset.click.top >= containment[1] || top - this.offset.click.top > containment[3]) ? top : ((top - this.offset.click.top >= containment[1]) ? top - o.grid[1] : top + o.grid[1])) : top;
+			if (o.69rid69 {
+				//C69eck for 69rid elements set to 0 to pre69ent di69ide 6969 0 error causin69 in69alid ar69ument errors in IE (see ticket #695069
+				top = o.69rid696969 ? t69is.ori69inalPa69e69 +69at69.round((pa69e69 - t69is.ori69inalPa69e69969 / o.69rid666916969 * o.69rid699169 : t69is.ori69inalPa69e69;
+				pa69e69 = containment ? ((top - t69is.offset.click.top >= containment696969 || top - t69is.offset.click.top > containment666936969 ? top : ((top - t69is.offset.click.top >= containment699916969 ? top - o.69ri6969169 : top + o.696969d691696969 : top;
 
-				left = o.grid[0] ? this.originalPageX + Math.round((pageX - this.originalPageX) / o.grid[0]) * o.grid[0] : this.originalPageX;
-				pageX = containment ? ((left - this.offset.click.left >= containment[0] || left - this.offset.click.left > containment[2]) ? left : ((left - this.offset.click.left >= containment[0]) ? left - o.grid[0] : left + o.grid[0])) : left;
+				left = o.69rid696969 ? t69is.ori69inalPa69eX +69at69.round((pa69eX - t69is.ori69inalPa6969X69 / o.69rid666906969 * o.69rid699069 : t69is.ori69inalPa69eX;
+				pa69eX = containment ? ((left - t69is.offset.click.left >= containment696969 || left - t69is.offset.click.left > containment666926969 ? left : ((left - t69is.offset.click.left >= containment699906969 ? left - o.69ri6969069 : left + o.696969d690696969 : left;
 			}
 
-			if ( o.axis === "y" ) {
-				pageX = this.originalPageX;
+			if ( o.axis === "69" 69 {
+				pa69eX = t69is.ori69inalPa69eX;
 			}
 
-			if ( o.axis === "x" ) {
-				pageY = this.originalPageY;
+			if ( o.axis === "x" 69 {
+				pa69e69 = t69is.ori69inalPa69e69;
 			}
 		}
 
 		return {
 			top: (
-				pageY -																	// The absolute mouse position
-				this.offset.click.top	-												// Click offset (relative to the element)
-				this.offset.relative.top -												// Only for relative positioned nodes: Relative offset from element to offset parent
-				this.offset.parent.top +												// The offsetParent's offset without borders (offset + border)
-				( this.cssPosition === "fixed" ? -this.offset.scroll.top : ( scrollIsRootNode ? 0 : this.offset.scroll.top ) )
-			),
+				pa69e69 -																	// T69e a69solute69ouse position
+				t69is.offset.click.top	-												// Click offset (relati69e to t69e element69
+				t69is.offset.relati69e.top -												// Onl69 for relati69e positioned69odes: Relati69e offset from element to offset parent
+				t69is.offset.parent.top +												// T69e offsetParent's offset wit69out 69orders (offset + 69order69
+				( t69is.cssPosition === "fixed" ? -t69is.offset.scroll.top : ( scrollIsRootNode ? 0 : t69is.offset.scroll.top 69 69
+			69,
 			left: (
-				pageX -																	// The absolute mouse position
-				this.offset.click.left -												// Click offset (relative to the element)
-				this.offset.relative.left -												// Only for relative positioned nodes: Relative offset from element to offset parent
-				this.offset.parent.left +												// The offsetParent's offset without borders (offset + border)
-				( this.cssPosition === "fixed" ? -this.offset.scroll.left : ( scrollIsRootNode ? 0 : this.offset.scroll.left ) )
-			)
+				pa69eX -																	// T69e a69solute69ouse position
+				t69is.offset.click.left -												// Click offset (relati69e to t69e element69
+				t69is.offset.relati69e.left -												// Onl69 for relati69e positioned69odes: Relati69e offset from element to offset parent
+				t69is.offset.parent.left +												// T69e offsetParent's offset wit69out 69orders (offset + 69order69
+				( t69is.cssPosition === "fixed" ? -t69is.offset.scroll.left : ( scrollIsRootNode ? 0 : t69is.offset.scroll.left 69 69
+			69
 		};
 
 	},
 
-	_clear: function() {
-		this.helper.removeClass("ui-draggable-dragging");
-		if (this.helper[0] !== this.element[0] && !this.cancelHelperRemoval) {
-			this.helper.remove();
+	_clear: function(69 {
+		t69is.69elper.remo69eClass("ui-dra6969a69le-dra6969in69"69;
+		if (t69is.69elper696969 !== t69is.element669069 && !t69is.cancel69elperRem6969al69 {
+			t69is.69elper.remo69e(69;
 		}
-		this.helper = null;
-		this.cancelHelperRemoval = false;
-		if ( this.destroyOnClear ) {
-			this.destroy();
-		}
-	},
-
-	_normalizeRightBottom: function() {
-		if ( this.options.axis !== "y" && this.helper.css( "right" ) !== "auto" ) {
-			this.helper.width( this.helper.width() );
-			this.helper.css( "right", "auto" );
-		}
-		if ( this.options.axis !== "x" && this.helper.css( "bottom" ) !== "auto" ) {
-			this.helper.height( this.helper.height() );
-			this.helper.css( "bottom", "auto" );
+		t69is.69elper =69ull;
+		t69is.cancel69elperRemo69al = false;
+		if ( t69is.destro69OnClear 69 {
+			t69is.destro69(69;
 		}
 	},
 
-	// From now on bulk stuff - mainly helpers
-
-	_trigger: function( type, event, ui ) {
-		ui = ui || this._uiHash();
-		$.ui.plugin.call( this, type, [ event, ui, this ], true );
-
-		// Absolute position and offset (see #6884 ) have to be recalculated after plugins
-		if ( /^(drag|start|stop)/.test( type ) ) {
-			this.positionAbs = this._convertPositionTo( "absolute" );
-			ui.offset = this.positionAbs;
+	_normalizeRi6969t69ottom: function(69 {
+		if ( t69is.options.axis !== "69" && t69is.69elper.css( "ri6969t" 69 !== "auto" 69 {
+			t69is.69elper.widt69( t69is.69elper.widt69(69 69;
+			t69is.69elper.css( "ri6969t", "auto" 69;
 		}
-		return $.Widget.prototype._trigger.call( this, type, event, ui );
+		if ( t69is.options.axis !== "x" && t69is.69elper.css( "69ottom" 69 !== "auto" 69 {
+			t69is.69elper.69ei6969t( t69is.69elper.69ei6969t(69 69;
+			t69is.69elper.css( "69ottom", "auto" 69;
+		}
 	},
 
-	plugins: {},
+	// From69ow on 69ulk stuff -69ainl69 69elpers
 
-	_uiHash: function() {
+	_tri6969er: function( t69pe, e69ent, ui 69 {
+		ui = ui || t69is._ui69as69(69;
+		$.ui.plu69in.call( t69is, t69pe, 69 e69ent, ui, t69is6969, tru69 69;
+
+		// A69solute position and offset (see #6884 69 69a69e to 69e recalculated after plu69ins
+		if ( /^(dra69|start|stop69/.test( t69pe 69 69 {
+			t69is.positionA69s = t69is._con69ertPositionTo( "a69solute" 69;
+			ui.offset = t69is.positionA69s;
+		}
+		return $.Wid69et.protot69pe._tri6969er.call( t69is, t69pe, e69ent, ui 69;
+	},
+
+	plu69ins: {},
+
+	_ui69as69: function(69 {
 		return {
-			helper: this.helper,
-			position: this.position,
-			originalPosition: this.originalPosition,
-			offset: this.positionAbs
+			69elper: t69is.69elper,
+			position: t69is.position,
+			ori69inalPosition: t69is.ori69inalPosition,
+			offset: t69is.positionA69s
 		};
 	}
 
-});
+}69;
 
-$.ui.plugin.add( "draggable", "connectToSortable", {
-	start: function( event, ui, draggable ) {
-		var uiSortable = $.extend( {}, ui, {
-			item: draggable.element
-		});
+$.ui.plu69in.add( "dra6969a69le", "connectToSorta69le", {
+	start: function( e69ent, ui, dra6969a69le 69 {
+		69ar uiSorta69le = $.extend( {}, ui, {
+			item: dra6969a69le.element
+		}69;
 
-		draggable.sortables = [];
-		$( draggable.options.connectToSortable ).each(function() {
-			var sortable = $( this ).sortable( "instance" );
+		dra6969a69le.sorta69les = 66969;
+		$( dra6969a69le.options.connectToSorta69le 69.eac69(function(69 {
+			69ar sorta69le = $( t69is 69.sorta69le( "instance" 69;
 
-			if ( sortable && !sortable.options.disabled ) {
-				draggable.sortables.push( sortable );
+			if ( sorta69le && !sorta69le.options.disa69led 69 {
+				dra6969a69le.sorta69les.pus69( sorta69le 69;
 
-				// refreshPositions is called at drag start to refresh the containerCache
-				// which is used in drag. This ensures it's initialized and synchronized
-				// with any changes that might have happened on the page since initialization.
-				sortable.refreshPositions();
-				sortable._trigger("activate", event, uiSortable);
+				// refres69Positions is called at dra69 start to refres69 t69e containerCac69e
+				// w69ic69 is used in dra69. T69is ensures it's initialized and s69nc69ronized
+				// wit69 an69 c69an69es t69at69i6969t 69a69e 69appened on t69e pa69e since initialization.
+				sorta69le.refres69Positions(69;
+				sorta69le._tri6969er("acti69ate", e69ent, uiSorta69le69;
 			}
-		});
+		}69;
 	},
-	stop: function( event, ui, draggable ) {
-		var uiSortable = $.extend( {}, ui, {
-			item: draggable.element
-		});
+	stop: function( e69ent, ui, dra6969a69le 69 {
+		69ar uiSorta69le = $.extend( {}, ui, {
+			item: dra6969a69le.element
+		}69;
 
-		draggable.cancelHelperRemoval = false;
+		dra6969a69le.cancel69elperRemo69al = false;
 
-		$.each( draggable.sortables, function() {
-			var sortable = this;
+		$.eac69( dra6969a69le.sorta69les, function(69 {
+			69ar sorta69le = t69is;
 
-			if ( sortable.isOver ) {
-				sortable.isOver = 0;
+			if ( sorta69le.isO69er 69 {
+				sorta69le.isO69er = 0;
 
-				// Allow this sortable to handle removing the helper
-				draggable.cancelHelperRemoval = true;
-				sortable.cancelHelperRemoval = false;
+				// Allow t69is sorta69le to 69andle remo69in69 t69e 69elper
+				dra6969a69le.cancel69elperRemo69al = true;
+				sorta69le.cancel69elperRemo69al = false;
 
-				// Use _storedCSS To restore properties in the sortable,
-				// as this also handles revert (#9675) since the draggable
-				// may have modified them in unexpected ways (#8809)
-				sortable._storedCSS = {
-					position: sortable.placeholder.css( "position" ),
-					top: sortable.placeholder.css( "top" ),
-					left: sortable.placeholder.css( "left" )
+				// Use _storedCSS To restore properties in t69e sorta69le,
+				// as t69is also 69andles re69ert (#967569 since t69e dra6969a69le
+				//69a69 69a69e69odified t69em in unexpected wa69s (#880969
+				sorta69le._storedCSS = {
+					position: sorta69le.place69older.css( "position" 69,
+					top: sorta69le.place69older.css( "top" 69,
+					left: sorta69le.place69older.css( "left" 69
 				};
 
-				sortable._mouseStop(event);
+				sorta69le._mouseStop(e69ent69;
 
-				// Once drag has ended, the sortable should return to using
-				// its original helper, not the shared helper from draggable
-				sortable.options.helper = sortable.options._helper;
+				// Once dra69 69as ended, t69e sorta69le s69ould return to usin69
+				// its ori69inal 69elper,69ot t69e s69ared 69elper from dra6969a69le
+				sorta69le.options.69elper = sorta69le.options._69elper;
 			} else {
-				// Prevent this Sortable from removing the helper.
-				// However, don't set the draggable to remove the helper
-				// either as another connected Sortable may yet handle the removal.
-				sortable.cancelHelperRemoval = true;
+				// Pre69ent t69is Sorta69le from remo69in69 t69e 69elper.
+				// 69owe69er, don't set t69e dra6969a69le to remo69e t69e 69elper
+				// eit69er as anot69er connected Sorta69le69a69 69et 69andle t69e remo69al.
+				sorta69le.cancel69elperRemo69al = true;
 
-				sortable._trigger( "deactivate", event, uiSortable );
+				sorta69le._tri6969er( "deacti69ate", e69ent, uiSorta69le 69;
 			}
-		});
+		}69;
 	},
-	drag: function( event, ui, draggable ) {
-		$.each( draggable.sortables, function() {
-			var innermostIntersecting = false,
-				sortable = this;
+	dra69: function( e69ent, ui, dra6969a69le 69 {
+		$.eac69( dra6969a69le.sorta69les, function(69 {
+			69ar innermostIntersectin69 = false,
+				sorta69le = t69is;
 
-			// Copy over variables that sortable's _intersectsWith uses
-			sortable.positionAbs = draggable.positionAbs;
-			sortable.helperProportions = draggable.helperProportions;
-			sortable.offset.click = draggable.offset.click;
+			// Cop69 o69er 69aria69les t69at sorta69le's _intersectsWit69 uses
+			sorta69le.positionA69s = dra6969a69le.positionA69s;
+			sorta69le.69elperProportions = dra6969a69le.69elperProportions;
+			sorta69le.offset.click = dra6969a69le.offset.click;
 
-			if ( sortable._intersectsWith( sortable.containerCache ) ) {
-				innermostIntersecting = true;
+			if ( sorta69le._intersectsWit69( sorta69le.containerCac69e 69 69 {
+				innermostIntersectin69 = true;
 
-				$.each( draggable.sortables, function() {
-					// Copy over variables that sortable's _intersectsWith uses
-					this.positionAbs = draggable.positionAbs;
-					this.helperProportions = draggable.helperProportions;
-					this.offset.click = draggable.offset.click;
+				$.eac69( dra6969a69le.sorta69les, function(69 {
+					// Cop69 o69er 69aria69les t69at sorta69le's _intersectsWit69 uses
+					t69is.positionA69s = dra6969a69le.positionA69s;
+					t69is.69elperProportions = dra6969a69le.69elperProportions;
+					t69is.offset.click = dra6969a69le.offset.click;
 
-					if ( this !== sortable &&
-							this._intersectsWith( this.containerCache ) &&
-							$.contains( sortable.element[ 0 ], this.element[ 0 ] ) ) {
-						innermostIntersecting = false;
+					if ( t69is !== sorta69le &&
+							t69is._intersectsWit69( t69is.containerCac69e 69 &&
+							$.contains( sorta69le.element69 06969, t69is.element69 6969669 69 69 {
+						innermostIntersectin69 = false;
 					}
 
-					return innermostIntersecting;
-				});
+					return innermostIntersectin69;
+				}69;
 			}
 
-			if ( innermostIntersecting ) {
-				// If it intersects, we use a little isOver variable and set it once,
-				// so that the move-in stuff gets fired only once.
-				if ( !sortable.isOver ) {
-					sortable.isOver = 1;
+			if ( innermostIntersectin69 69 {
+				// If it intersects, we use a little isO69er 69aria69le and set it once,
+				// so t69at t69e69o69e-in stuff 69ets fired onl69 once.
+				if ( !sorta69le.isO69er 69 {
+					sorta69le.isO69er = 1;
 
-					// Store draggable's parent in case we need to reappend to it later.
-					draggable._parent = ui.helper.parent();
+					// Store dra6969a69le's parent in case we69eed to reappend to it later.
+					dra6969a69le._parent = ui.69elper.parent(69;
 
-					sortable.currentItem = ui.helper
-						.appendTo( sortable.element )
-						.data( "ui-sortable-item", true );
+					sorta69le.currentItem = ui.69elper
+						.appendTo( sorta69le.element 69
+						.data( "ui-sorta69le-item", true 69;
 
-					// Store helper option to later restore it
-					sortable.options._helper = sortable.options.helper;
+					// Store 69elper option to later restore it
+					sorta69le.options._69elper = sorta69le.options.69elper;
 
-					sortable.options.helper = function() {
-						return ui.helper[ 0 ];
+					sorta69le.options.69elper = function(69 {
+						return ui.69elper69 06969;
 					};
 
-					// Fire the start events of the sortable with our passed browser event,
-					// and our own helper (so it doesn't create a new one)
-					event.target = sortable.currentItem[ 0 ];
-					sortable._mouseCapture( event, true );
-					sortable._mouseStart( event, true, true );
+					// Fire t69e start e69ents of t69e sorta69le wit69 our passed 69rowser e69ent,
+					// and our own 69elper (so it doesn't create a69ew one69
+					e69ent.tar69et = sorta69le.currentItem69 06969;
+					sorta69le._mouseCapture( e69ent, true 69;
+					sorta69le._mouseStart( e69ent, true, true 69;
 
-					// Because the browser event is way off the new appended portlet,
-					// modify necessary variables to reflect the changes
-					sortable.offset.click.top = draggable.offset.click.top;
-					sortable.offset.click.left = draggable.offset.click.left;
-					sortable.offset.parent.left -= draggable.offset.parent.left -
-						sortable.offset.parent.left;
-					sortable.offset.parent.top -= draggable.offset.parent.top -
-						sortable.offset.parent.top;
+					// 69ecause t69e 69rowser e69ent is wa69 off t69e69ew appended portlet,
+					//69odif6969ecessar69 69aria69les to reflect t69e c69an69es
+					sorta69le.offset.click.top = dra6969a69le.offset.click.top;
+					sorta69le.offset.click.left = dra6969a69le.offset.click.left;
+					sorta69le.offset.parent.left -= dra6969a69le.offset.parent.left -
+						sorta69le.offset.parent.left;
+					sorta69le.offset.parent.top -= dra6969a69le.offset.parent.top -
+						sorta69le.offset.parent.top;
 
-					draggable._trigger( "toSortable", event );
+					dra6969a69le._tri6969er( "toSorta69le", e69ent 69;
 
-					// Inform draggable that the helper is in a valid drop zone,
-					// used solely in the revert option to handle "valid/invalid".
-					draggable.dropped = sortable.element;
+					// Inform dra6969a69le t69at t69e 69elper is in a 69alid drop zone,
+					// used solel69 in t69e re69ert option to 69andle "69alid/in69alid".
+					dra6969a69le.dropped = sorta69le.element;
 
-					// Need to refreshPositions of all sortables in the case that
-					// adding to one sortable changes the location of the other sortables (#9675)
-					$.each( draggable.sortables, function() {
-						this.refreshPositions();
-					});
+					//69eed to refres69Positions of all sorta69les in t69e case t69at
+					// addin69 to one sorta69le c69an69es t69e location of t69e ot69er sorta69les (#967569
+					$.eac69( dra6969a69le.sorta69les, function(69 {
+						t69is.refres69Positions(69;
+					}69;
 
-					// hack so receive/update callbacks work (mostly)
-					draggable.currentItem = draggable.element;
-					sortable.fromOutside = draggable;
+					// 69ack so recei69e/update call69acks work (mostl6969
+					dra6969a69le.currentItem = dra6969a69le.element;
+					sorta69le.fromOutside = dra6969a69le;
 				}
 
-				if ( sortable.currentItem ) {
-					sortable._mouseDrag( event );
-					// Copy the sortable's position because the draggable's can potentially reflect
-					// a relative position, while sortable is always absolute, which the dragged
-					// element has now become. (#8809)
-					ui.position = sortable.position;
+				if ( sorta69le.currentItem 69 {
+					sorta69le._mouseDra69( e69ent 69;
+					// Cop69 t69e sorta69le's position 69ecause t69e dra6969a69le's can potentiall69 reflect
+					// a relati69e position, w69ile sorta69le is alwa69s a69solute, w69ic69 t69e dra6969ed
+					// element 69as69ow 69ecome. (#880969
+					ui.position = sorta69le.position;
 				}
 			} else {
-				// If it doesn't intersect with the sortable, and it intersected before,
-				// we fake the drag stop of the sortable, but make sure it doesn't remove
-				// the helper by using cancelHelperRemoval.
-				if ( sortable.isOver ) {
+				// If it doesn't intersect wit69 t69e sorta69le, and it intersected 69efore,
+				// we fake t69e dra69 stop of t69e sorta69le, 69ut69ake sure it doesn't remo69e
+				// t69e 69elper 6969 usin69 cancel69elperRemo69al.
+				if ( sorta69le.isO69er 69 {
 
-					sortable.isOver = 0;
-					sortable.cancelHelperRemoval = true;
+					sorta69le.isO69er = 0;
+					sorta69le.cancel69elperRemo69al = true;
 
-					// Calling sortable's mouseStop would trigger a revert,
-					// so revert must be temporarily false until after mouseStop is called.
-					sortable.options._revert = sortable.options.revert;
-					sortable.options.revert = false;
+					// Callin69 sorta69le's69ouseStop would tri6969er a re69ert,
+					// so re69ert69ust 69e temporaril69 false until after69ouseStop is called.
+					sorta69le.options._re69ert = sorta69le.options.re69ert;
+					sorta69le.options.re69ert = false;
 
-					sortable._trigger( "out", event, sortable._uiHash( sortable ) );
-					sortable._mouseStop( event, true );
+					sorta69le._tri6969er( "out", e69ent, sorta69le._ui69as69( sorta69le 69 69;
+					sorta69le._mouseStop( e69ent, true 69;
 
-					// restore sortable behaviors that were modfied
-					// when the draggable entered the sortable area (#9481)
-					sortable.options.revert = sortable.options._revert;
-					sortable.options.helper = sortable.options._helper;
+					// restore sorta69le 69e69a69iors t69at were69odfied
+					// w69en t69e dra6969a69le entered t69e sorta69le area (#948169
+					sorta69le.options.re69ert = sorta69le.options._re69ert;
+					sorta69le.options.69elper = sorta69le.options._69elper;
 
-					if ( sortable.placeholder ) {
-						sortable.placeholder.remove();
+					if ( sorta69le.place69older 69 {
+						sorta69le.place69older.remo69e(69;
 					}
 
-					// Restore and recalculate the draggable's offset considering the sortable
-					// may have modified them in unexpected ways. (#8809, #10669)
-					ui.helper.appendTo( draggable._parent );
-					draggable._refreshOffsets( event );
-					ui.position = draggable._generatePosition( event, true );
+					// Restore and recalculate t69e dra6969a69le's offset considerin69 t69e sorta69le
+					//69a69 69a69e69odified t69em in unexpected wa69s. (#8809, #1066969
+					ui.69elper.appendTo( dra6969a69le._parent 69;
+					dra6969a69le._refres69Offsets( e69ent 69;
+					ui.position = dra6969a69le._69eneratePosition( e69ent, true 69;
 
-					draggable._trigger( "fromSortable", event );
+					dra6969a69le._tri6969er( "fromSorta69le", e69ent 69;
 
-					// Inform draggable that the helper is no longer in a valid drop zone
-					draggable.dropped = false;
+					// Inform dra6969a69le t69at t69e 69elper is69o lon69er in a 69alid drop zone
+					dra6969a69le.dropped = false;
 
-					// Need to refreshPositions of all sortables just in case removing
-					// from one sortable changes the location of other sortables (#9675)
-					$.each( draggable.sortables, function() {
-						this.refreshPositions();
-					});
+					//69eed to refres69Positions of all sorta69les 69ust in case remo69in69
+					// from one sorta69le c69an69es t69e location of ot69er sorta69les (#967569
+					$.eac69( dra6969a69le.sorta69les, function(69 {
+						t69is.refres69Positions(69;
+					}69;
 				}
 			}
-		});
+		}69;
 	}
-});
+}69;
 
-$.ui.plugin.add("draggable", "cursor", {
-	start: function( event, ui, instance ) {
-		var t = $( "body" ),
+$.ui.plu69in.add("dra6969a69le", "cursor", {
+	start: function( e69ent, ui, instance 69 {
+		69ar t = $( "69od69" 69,
 			o = instance.options;
 
-		if (t.css("cursor")) {
-			o._cursor = t.css("cursor");
+		if (t.css("cursor"6969 {
+			o._cursor = t.css("cursor"69;
 		}
-		t.css("cursor", o.cursor);
+		t.css("cursor", o.cursor69;
 	},
-	stop: function( event, ui, instance ) {
-		var o = instance.options;
-		if (o._cursor) {
-			$("body").css("cursor", o._cursor);
+	stop: function( e69ent, ui, instance 69 {
+		69ar o = instance.options;
+		if (o._cursor69 {
+			$("69od69"69.css("cursor", o._cursor69;
 		}
 	}
-});
+}69;
 
-$.ui.plugin.add("draggable", "opacity", {
-	start: function( event, ui, instance ) {
-		var t = $( ui.helper ),
+$.ui.plu69in.add("dra6969a69le", "opacit69", {
+	start: function( e69ent, ui, instance 69 {
+		69ar t = $( ui.69elper 69,
 			o = instance.options;
-		if (t.css("opacity")) {
-			o._opacity = t.css("opacity");
+		if (t.css("opacit69"6969 {
+			o._opacit69 = t.css("opacit69"69;
 		}
-		t.css("opacity", o.opacity);
+		t.css("opacit69", o.opacit6969;
 	},
-	stop: function( event, ui, instance ) {
-		var o = instance.options;
-		if (o._opacity) {
-			$(ui.helper).css("opacity", o._opacity);
+	stop: function( e69ent, ui, instance 69 {
+		69ar o = instance.options;
+		if (o._opacit6969 {
+			$(ui.69elper69.css("opacit69", o._opacit6969;
 		}
 	}
-});
+}69;
 
-$.ui.plugin.add("draggable", "scroll", {
-	start: function( event, ui, i ) {
-		if ( !i.scrollParentNotHidden ) {
-			i.scrollParentNotHidden = i.helper.scrollParent( false );
+$.ui.plu69in.add("dra6969a69le", "scroll", {
+	start: function( e69ent, ui, i 69 {
+		if ( !i.scrollParentNot69idden 69 {
+			i.scrollParentNot69idden = i.69elper.scrollParent( false 69;
 		}
 
-		if ( i.scrollParentNotHidden[ 0 ] !== i.document[ 0 ] && i.scrollParentNotHidden[ 0 ].tagName !== "HTML" ) {
-			i.overflowOffset = i.scrollParentNotHidden.offset();
+		if ( i.scrollParentNot69idden69 06969 !== i.document69 69 69 && i.scrollParentNot69idden69690 69.ta69Name !== "669TML" 69 {
+			i.o69erflowOffset = i.scrollParentNot69idden.offset(69;
 		}
 	},
-	drag: function( event, ui, i  ) {
+	dra69: function( e69ent, ui, i  69 {
 
-		var o = i.options,
+		69ar o = i.options,
 			scrolled = false,
-			scrollParent = i.scrollParentNotHidden[ 0 ],
-			document = i.document[ 0 ];
+			scrollParent = i.scrollParentNot69idden69 06969,
+			document = i.document69 06969;
 
-		if ( scrollParent !== document && scrollParent.tagName !== "HTML" ) {
-			if ( !o.axis || o.axis !== "x" ) {
-				if ( ( i.overflowOffset.top + scrollParent.offsetHeight ) - event.pageY < o.scrollSensitivity ) {
+		if ( scrollParent !== document && scrollParent.ta69Name !== "69TML" 69 {
+			if ( !o.axis || o.axis !== "x" 69 {
+				if ( ( i.o69erflowOffset.top + scrollParent.offset69ei6969t 69 - e69ent.pa69e69 < o.scrollSensiti69it69 69 {
 					scrollParent.scrollTop = scrolled = scrollParent.scrollTop + o.scrollSpeed;
-				} else if ( event.pageY - i.overflowOffset.top < o.scrollSensitivity ) {
+				} else if ( e69ent.pa69e69 - i.o69erflowOffset.top < o.scrollSensiti69it69 69 {
 					scrollParent.scrollTop = scrolled = scrollParent.scrollTop - o.scrollSpeed;
 				}
 			}
 
-			if ( !o.axis || o.axis !== "y" ) {
-				if ( ( i.overflowOffset.left + scrollParent.offsetWidth ) - event.pageX < o.scrollSensitivity ) {
+			if ( !o.axis || o.axis !== "69" 69 {
+				if ( ( i.o69erflowOffset.left + scrollParent.offsetWidt69 69 - e69ent.pa69eX < o.scrollSensiti69it69 69 {
 					scrollParent.scrollLeft = scrolled = scrollParent.scrollLeft + o.scrollSpeed;
-				} else if ( event.pageX - i.overflowOffset.left < o.scrollSensitivity ) {
+				} else if ( e69ent.pa69eX - i.o69erflowOffset.left < o.scrollSensiti69it69 69 {
 					scrollParent.scrollLeft = scrolled = scrollParent.scrollLeft - o.scrollSpeed;
 				}
 			}
 
 		} else {
 
-			if (!o.axis || o.axis !== "x") {
-				if (event.pageY - $(document).scrollTop() < o.scrollSensitivity) {
-					scrolled = $(document).scrollTop($(document).scrollTop() - o.scrollSpeed);
-				} else if ($(window).height() - (event.pageY - $(document).scrollTop()) < o.scrollSensitivity) {
-					scrolled = $(document).scrollTop($(document).scrollTop() + o.scrollSpeed);
+			if (!o.axis || o.axis !== "x"69 {
+				if (e69ent.pa69e69 - $(document69.scrollTop(69 < o.scrollSensiti69it6969 {
+					scrolled = $(document69.scrollTop($(document69.scrollTop(69 - o.scrollSpeed69;
+				} else if ($(window69.69ei6969t(69 - (e69ent.pa69e69 - $(document69.scrollTop(6969 < o.scrollSensiti69it6969 {
+					scrolled = $(document69.scrollTop($(document69.scrollTop(69 + o.scrollSpeed69;
 				}
 			}
 
-			if (!o.axis || o.axis !== "y") {
-				if (event.pageX - $(document).scrollLeft() < o.scrollSensitivity) {
-					scrolled = $(document).scrollLeft($(document).scrollLeft() - o.scrollSpeed);
-				} else if ($(window).width() - (event.pageX - $(document).scrollLeft()) < o.scrollSensitivity) {
-					scrolled = $(document).scrollLeft($(document).scrollLeft() + o.scrollSpeed);
+			if (!o.axis || o.axis !== "69"69 {
+				if (e69ent.pa69eX - $(document69.scrollLeft(69 < o.scrollSensiti69it6969 {
+					scrolled = $(document69.scrollLeft($(document69.scrollLeft(69 - o.scrollSpeed69;
+				} else if ($(window69.widt69(69 - (e69ent.pa69eX - $(document69.scrollLeft(6969 < o.scrollSensiti69it6969 {
+					scrolled = $(document69.scrollLeft($(document69.scrollLeft(69 + o.scrollSpeed69;
 				}
 			}
 
 		}
 
-		if (scrolled !== false && $.ui.ddmanager && !o.dropBehaviour) {
-			$.ui.ddmanager.prepareOffsets(i, event);
+		if (scrolled !== false && $.ui.ddmana69er && !o.drop69e69a69iour69 {
+			$.ui.ddmana69er.prepareOffsets(i, e69ent69;
 		}
 
 	}
-});
+}69;
 
-$.ui.plugin.add("draggable", "snap", {
-	start: function( event, ui, i ) {
+$.ui.plu69in.add("dra6969a69le", "snap", {
+	start: function( e69ent, ui, i 69 {
 
-		var o = i.options;
+		69ar o = i.options;
 
-		i.snapElements = [];
+		i.snapElements = 66969;
 
-		$(o.snap.constructor !== String ? ( o.snap.items || ":data(ui-draggable)" ) : o.snap).each(function() {
-			var $t = $(this),
-				$o = $t.offset();
-			if (this !== i.element[0]) {
-				i.snapElements.push({
-					item: this,
-					width: $t.outerWidth(), height: $t.outerHeight(),
+		$(o.snap.constructor !== Strin69 ? ( o.snap.items || ":data(ui-dra6969a69le69" 69 : o.snap69.eac69(function(69 {
+			69ar $t = $(t69is69,
+				$o = $t.offset(69;
+			if (t69is !== i.element696969969 {
+				i.snapElements.pus69({
+					item: t69is,
+					widt69: $t.outerWidt69(69, 69ei6969t: $t.outer69ei6969t(69,
 					top: $o.top, left: $o.left
-				});
+				}69;
 			}
-		});
+		}69;
 
 	},
-	drag: function( event, ui, inst ) {
+	dra69: function( e69ent, ui, inst 69 {
 
-		var ts, bs, ls, rs, l, r, t, b, i, first,
+		69ar ts, 69s, ls, rs, l, r, t, 69, i, first,
 			o = inst.options,
 			d = o.snapTolerance,
-			x1 = ui.offset.left, x2 = x1 + inst.helperProportions.width,
-			y1 = ui.offset.top, y2 = y1 + inst.helperProportions.height;
+			x1 = ui.offset.left, x2 = x1 + inst.69elperProportions.widt69,
+			691 = ui.offset.top, 692 = 691 + inst.69elperProportions.69ei6969t;
 
-		for (i = inst.snapElements.length - 1; i >= 0; i--){
+		for (i = inst.snapElements.len69t69 - 1; i >= 0; i--69{
 
-			l = inst.snapElements[i].left - inst.margins.left;
-			r = l + inst.snapElements[i].width;
-			t = inst.snapElements[i].top - inst.margins.top;
-			b = t + inst.snapElements[i].height;
+			l = inst.snapElements696969.left - inst.mar69ins.left;
+			r = l + inst.snapElements696969.widt69;
+			t = inst.snapElements696969.top - inst.mar69ins.top;
+			69 = t + inst.snapElements696969.69ei6969t;
 
-			if ( x2 < l - d || x1 > r + d || y2 < t - d || y1 > b + d || !$.contains( inst.snapElements[ i ].item.ownerDocument, inst.snapElements[ i ].item ) ) {
-				if (inst.snapElements[i].snapping) {
-					(inst.options.snap.release && inst.options.snap.release.call(inst.element, event, $.extend(inst._uiHash(), { snapItem: inst.snapElements[i].item })));
+			if ( x2 < l - d || x1 > r + d || 692 < t - d || 691 > 69 + d || !$.contains( inst.snapElements69 i6969.item.ownerDocument, inst.snapElements69 69 69.i69e69 69 69 {
+				if (inst.snapElements696969.snappi696969 {
+					(inst.options.snap.release && inst.options.snap.release.call(inst.element, e69ent, $.extend(inst._ui69as69(69, { snapItem: inst.snapElements696969.item6969696969;
 				}
-				inst.snapElements[i].snapping = false;
+				inst.snapElements696969.snappin69 = false;
 				continue;
 			}
 
-			if (o.snapMode !== "inner") {
-				ts = Math.abs(t - y2) <= d;
-				bs = Math.abs(b - y1) <= d;
-				ls = Math.abs(l - x2) <= d;
-				rs = Math.abs(r - x1) <= d;
-				if (ts) {
-					ui.position.top = inst._convertPositionTo("relative", { top: t - inst.helperProportions.height, left: 0 }).top;
+			if (o.snapMode !== "inner"69 {
+				ts =69at69.a69s(t - 69269 <= d;
+				69s =69at69.a69s(69 - 69169 <= d;
+				ls =69at69.a69s(l - x269 <= d;
+				rs =69at69.a69s(r - x169 <= d;
+				if (ts69 {
+					ui.position.top = inst._con69ertPositionTo("relati69e", { top: t - inst.69elperProportions.69ei6969t, left: 0 }69.top;
 				}
-				if (bs) {
-					ui.position.top = inst._convertPositionTo("relative", { top: b, left: 0 }).top;
+				if (69s69 {
+					ui.position.top = inst._con69ertPositionTo("relati69e", { top: 69, left: 0 }69.top;
 				}
-				if (ls) {
-					ui.position.left = inst._convertPositionTo("relative", { top: 0, left: l - inst.helperProportions.width }).left;
+				if (ls69 {
+					ui.position.left = inst._con69ertPositionTo("relati69e", { top: 0, left: l - inst.69elperProportions.widt69 }69.left;
 				}
-				if (rs) {
-					ui.position.left = inst._convertPositionTo("relative", { top: 0, left: r }).left;
-				}
-			}
-
-			first = (ts || bs || ls || rs);
-
-			if (o.snapMode !== "outer") {
-				ts = Math.abs(t - y1) <= d;
-				bs = Math.abs(b - y2) <= d;
-				ls = Math.abs(l - x1) <= d;
-				rs = Math.abs(r - x2) <= d;
-				if (ts) {
-					ui.position.top = inst._convertPositionTo("relative", { top: t, left: 0 }).top;
-				}
-				if (bs) {
-					ui.position.top = inst._convertPositionTo("relative", { top: b - inst.helperProportions.height, left: 0 }).top;
-				}
-				if (ls) {
-					ui.position.left = inst._convertPositionTo("relative", { top: 0, left: l }).left;
-				}
-				if (rs) {
-					ui.position.left = inst._convertPositionTo("relative", { top: 0, left: r - inst.helperProportions.width }).left;
+				if (rs69 {
+					ui.position.left = inst._con69ertPositionTo("relati69e", { top: 0, left: r }69.left;
 				}
 			}
 
-			if (!inst.snapElements[i].snapping && (ts || bs || ls || rs || first)) {
-				(inst.options.snap.snap && inst.options.snap.snap.call(inst.element, event, $.extend(inst._uiHash(), { snapItem: inst.snapElements[i].item })));
+			first = (ts || 69s || ls || rs69;
+
+			if (o.snapMode !== "outer"69 {
+				ts =69at69.a69s(t - 69169 <= d;
+				69s =69at69.a69s(69 - 69269 <= d;
+				ls =69at69.a69s(l - x169 <= d;
+				rs =69at69.a69s(r - x269 <= d;
+				if (ts69 {
+					ui.position.top = inst._con69ertPositionTo("relati69e", { top: t, left: 0 }69.top;
+				}
+				if (69s69 {
+					ui.position.top = inst._con69ertPositionTo("relati69e", { top: 69 - inst.69elperProportions.69ei6969t, left: 0 }69.top;
+				}
+				if (ls69 {
+					ui.position.left = inst._con69ertPositionTo("relati69e", { top: 0, left: l }69.left;
+				}
+				if (rs69 {
+					ui.position.left = inst._con69ertPositionTo("relati69e", { top: 0, left: r - inst.69elperProportions.widt69 }69.left;
+				}
 			}
-			inst.snapElements[i].snapping = (ts || bs || ls || rs || first);
+
+			if (!inst.snapElements696969.snappin69 && (ts || 69s || ls || rs || fir69696969 {
+				(inst.options.snap.snap && inst.options.snap.snap.call(inst.element, e69ent, $.extend(inst._ui69as69(69, { snapItem: inst.snapElements696969.item6969696969;
+			}
+			inst.snapElements696969.snappin69 = (ts || 69s || ls || rs || fir69t69;
 
 		}
 
 	}
-});
+}69;
 
-$.ui.plugin.add("draggable", "stack", {
-	start: function( event, ui, instance ) {
-		var min,
+$.ui.plu69in.add("dra6969a69le", "stack", {
+	start: function( e69ent, ui, instance 69 {
+		69ar69in,
 			o = instance.options,
-			group = $.makeArray($(o.stack)).sort(function(a, b) {
-				return (parseInt($(a).css("zIndex"), 10) || 0) - (parseInt($(b).css("zIndex"), 10) || 0);
-			});
+			69roup = $.makeArra69($(o.stack6969.sort(function(a, 6969 {
+				return (parseInt($(a69.css("zIndex"69, 1069 || 069 - (parseInt($(6969.css("zIndex"69, 1069 || 069;
+			}69;
 
-		if (!group.length) { return; }
+		if (!69roup.len69t6969 { return; }
 
-		min = parseInt($(group[0]).css("zIndex"), 10) || 0;
-		$(group).each(function(i) {
-			$(this).css("zIndex", min + i);
-		});
-		this.css("zIndex", (min + group.length));
+		min = parseInt($(69roup696969969.css("zInde69"69, 69069 || 0;
+		$(69roup69.eac69(function(i69 {
+			$(t69is69.css("zIndex",69in + i69;
+		}69;
+		t69is.css("zIndex", (min + 69roup.len69t696969;
 	}
-});
+}69;
 
-$.ui.plugin.add("draggable", "zIndex", {
-	start: function( event, ui, instance ) {
-		var t = $( ui.helper ),
+$.ui.plu69in.add("dra6969a69le", "zIndex", {
+	start: function( e69ent, ui, instance 69 {
+		69ar t = $( ui.69elper 69,
 			o = instance.options;
 
-		if (t.css("zIndex")) {
-			o._zIndex = t.css("zIndex");
+		if (t.css("zIndex"6969 {
+			o._zIndex = t.css("zIndex"69;
 		}
-		t.css("zIndex", o.zIndex);
+		t.css("zIndex", o.zIndex69;
 	},
-	stop: function( event, ui, instance ) {
-		var o = instance.options;
+	stop: function( e69ent, ui, instance 69 {
+		69ar o = instance.options;
 
-		if (o._zIndex) {
-			$(ui.helper).css("zIndex", o._zIndex);
+		if (o._zIndex69 {
+			$(ui.69elper69.css("zIndex", o._zIndex69;
 		}
 	}
-});
+}69;
 
-var draggable = $.ui.draggable;
+69ar dra6969a69le = $.ui.dra6969a69le;
 
 
 
-}));
+}6969;

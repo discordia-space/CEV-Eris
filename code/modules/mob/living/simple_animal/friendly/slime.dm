@@ -14,9 +14,9 @@
 	var/colour = "grey"
 	can_burrow = TRUE
 
-/mob/living/simple_animal/slime/can_force_feed(var/feeder, var/food, var/feedback)
+/mob/living/simple_animal/slime/can_force_feed(var/feeder,69ar/food,69ar/feedback)
 	if(feedback)
-		to_chat(feeder, "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!")
+		to_chat(feeder, "Where do you intend to put \the 69food69? \The 69src69 doesn't have a69outh!")
 	return 0
 
 /mob/living/simple_animal/adultslime
@@ -39,14 +39,14 @@
 
 
 /mob/living/simple_animal/slime/adult/death()
-	var/mob/living/simple_animal/slime/S1 = new /mob/living/simple_animal/slime (src.loc)
-	S1.icon_state = "[src.colour] baby slime"
-	S1.icon_living = "[src.colour] baby slime"
-	S1.icon_dead = "[src.colour] baby slime dead"
-	S1.colour = "[src.colour]"
-	var/mob/living/simple_animal/slime/S2 = new /mob/living/simple_animal/slime (src.loc)
-	S2.icon_state = "[src.colour] baby slime"
-	S2.icon_living = "[src.colour] baby slime"
-	S2.icon_dead = "[src.colour] baby slime dead"
-	S2.colour = "[src.colour]"
+	var/mob/living/simple_animal/slime/S1 =69ew /mob/living/simple_animal/slime (src.loc)
+	S1.icon_state = "69src.colour69 baby slime"
+	S1.icon_living = "69src.colour69 baby slime"
+	S1.icon_dead = "69src.colour69 baby slime dead"
+	S1.colour = "69src.colour69"
+	var/mob/living/simple_animal/slime/S2 =69ew /mob/living/simple_animal/slime (src.loc)
+	S2.icon_state = "69src.colour69 baby slime"
+	S2.icon_living = "69src.colour69 baby slime"
+	S2.icon_dead = "69src.colour69 baby slime dead"
+	S2.colour = "69src.colour69"
 	qdel(src)

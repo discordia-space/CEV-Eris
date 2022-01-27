@@ -1,5 +1,5 @@
 //Biomatter compressor
-//This machine converts liquid biomatter to solid one(sheets)
+//This69achine converts liquid biomatter to solid one(sheets)
 //Working with this also required bio protection cloths
 
 #define BIOMATTER_PER_SHEET 		1
@@ -8,7 +8,7 @@
 
 /obj/machinery/biomatter_solidifier
 	name = "biomatter solidifier"
-	desc = "A Neotheology machine that converts liquid biomatter into the solid."
+	desc = "A Neotheology69achine that converts liquid biomatter into the solid."
 	icon = 'icons/obj/machines/simple_nt_machines.dmi'
 	icon_state = "solidifier"
 	density = TRUE
@@ -48,15 +48,15 @@
 					abort("Insufficient amount of biomatter.")
 					return
 			if(container && container.reagents.has_reagent(MATERIAL_BIOMATTER, BIOMATTER_PER_SHEET))
-				var/quantity = min(reagents.get_free_space(), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
-				container.reagents.trans_id_to(src, MATERIAL_BIOMATTER, quantity, TRUE)
+				var/quantity =69in(reagents.get_free_space(), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
+				container.reagents.trans_id_to(src,69ATERIAL_BIOMATTER, quantity, TRUE)
 		if(reagents.get_reagent_amount(MATERIAL_BIOMATTER) >= BIOMATTER_PER_SHEET)
 			process_biomatter()
 		else
 			abort("Insufficient amount of biomatter.")
 
 /obj/machinery/biomatter_solidifier/proc/process_biomatter()
-	var/quantity = min(reagents.get_reagent_amount(MATERIAL_BIOMATTER), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
+	var/quantity =69in(reagents.get_reagent_amount(MATERIAL_BIOMATTER), BIOMATTER_PER_SHEET*BIOMATTER_SHEETS_PER_TIME)
 	reagents.remove_reagent(MATERIAL_BIOMATTER, quantity)
 
 	while(quantity > 0)
@@ -84,9 +84,9 @@
 			current_stack = new(loc)
 			quantity -= 1 * BIOMATTER_PER_SHEET
 
-/obj/machinery/biomatter_solidifier/MouseDrop_T(obj/structure/reagent_dispensers/biomatter/tank, mob/user)
+/obj/machinery/biomatter_solidifier/MouseDrop_T(obj/structure/reagent_dispensers/biomatter/tank,69ob/user)
 	if(get_dir(loc, tank.loc) != port_dir)
-		to_chat(user, SPAN_WARNING("Doesn't connect. Port direction located at [dir2text(port_dir)] side of [src]"))
+		to_chat(user, SPAN_WARNING("Doesn't connect. Port direction located at 69dir2text(port_dir)69 side of 69src69"))
 		return
 	if(!container)
 		if(tank.set_anchored(TRUE))
@@ -102,7 +102,7 @@
 				if(EAST)
 					container.pixel_x -= CONTAINER_PIXEL_OFFSET
 			playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-			to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
+			to_chat(user, SPAN_NOTICE("You attached 69tank69 to 69src69."))
 		else
 			to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 		toxin_attack(user)
@@ -112,7 +112,7 @@
 		container.pixel_y = initial(container.pixel_y)
 		container.pixel_x = initial(container.pixel_x)
 		playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
-		to_chat(user, SPAN_NOTICE("You dettached [tank] from [src]."))
+		to_chat(user, SPAN_NOTICE("You dettached 69tank69 from 69src69."))
 		container = null
 		toxin_attack(user)
 	else
@@ -124,7 +124,7 @@
 	if(world.time >= last_time_used + 2 SECONDS)
 		last_time_used = world.time
 		active = !active
-		to_chat(user, SPAN_NOTICE("You [active ? "turn [src] on" : "turn [src] off"]."))
+		to_chat(user, SPAN_NOTICE("You 69active ? "turn 69src69 on" : "turn 69src69 off"69."))
 		playsound(src, 'sound/machines/click.ogg', 80, 1)
 		update_icon()
 

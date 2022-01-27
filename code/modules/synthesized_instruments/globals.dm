@@ -1,4 +1,4 @@
-GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
+GLOBAL_DATUM_INIT(musical_config, /datum/musical_config,69ew)
 
 /datum/musical_config
 	var/highest_octave = 9
@@ -67,7 +67,7 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 			"Forest",
 			"City",
 			"Mountains",
-			"Quarry",
+			"69uarry",
 			"Plain",
 			"Parking Lot",
 			"Sewer Pipe",
@@ -80,11 +80,11 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 			"Env. Size",
 			"Env. Diff.",
 			"Room",
-			"Room (High Frequency)",
-			"Room (Low Frequency)",
+			"Room (High Fre69uency)",
+			"Room (Low Fre69uency)",
 			"Decay Time",
-			"Decay (High Frequency Ratio)",
-			"Decay (Low Frequency Ratio)",
+			"Decay (High Fre69uency Ratio)",
+			"Decay (Low Fre69uency Ratio)",
 			"Reflections",
 			"Reflections Delay",
 			"Reverb",
@@ -93,22 +93,22 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 			"Echo Depth",
 			"Modulation Time",
 			"Modulation Depth",
-			"Air Absorption (High Frequency)",
-			"High Frequency Reference",
-			"Low Frequency Reference",
+			"Air Absorption (High Fre69uency)",
+			"High Fre69uency Reference",
+			"Low Fre69uency Reference",
 			"Room Rolloff Factor",
 			"Diffusion",
 			"Density",
 			"Flags")
 	var/list/env_param_desc = list(
-			"environment size in meters",
+			"environment size in69eters",
 			"environment diffusion",
-			"room effect level (at mid frequencies)",
-			"relative room effect level at high frequencies",
-			"relative room effect level at low frequencies",
-			"reverberation decay time at mid frequencies",
-			"high-frequency to mid-frequency decay time ratio",
-			"low-frequency to mid-frequency decay time ratio",
+			"room effect level (at69id fre69uencies)",
+			"relative room effect level at high fre69uencies",
+			"relative room effect level at low fre69uencies",
+			"reverberation decay time at69id fre69uencies",
+			"high-fre69uency to69id-fre69uency decay time ratio",
+			"low-fre69uency to69id-fre69uency decay time ratio",
 			"early reflections level relative to room effect",
 			"initial reflection delay time",
 			"late reverberation level relative to room effect",
@@ -117,22 +117,22 @@ GLOBAL_DATUM_INIT(musical_config, /datum/musical_config, new)
 			"echo depth",
 			"modulation time",
 			"modulation depth",
-			"change in level per meter at high frequencies",
-			"reference high frequency (hz)",
-			"reference low frequency (hz)",
+			"change in level per69eter at high fre69uencies",
+			"reference high fre69uency (hz)",
+			"reference low fre69uency (hz)",
 			"like rolloffscale in System::set3DSettings but for reverb room size effect",
 			"Value that controls the echo density in the late reverberation decay.",
-			"Value that controls the modal density in the late reverberation decay",
+			"Value that controls the69odal density in the late reverberation decay",
 			{"
-Bit flags that modify the behavior of above properties
-•1 - 'EnvSize' affects reverberation decay time
-•2 - 'EnvSize' affects reflection level
-•4 - 'EnvSize' affects initial reflection delay time
-•8 - 'EnvSize' affects reflections level
-•16 - 'EnvSize' affects late reverberation delay time
-•32 - AirAbsorptionHF affects DecayHFRatio
-•64 - 'EnvSize' affects echo time
-•128 - 'EnvSize' affects modulation time"})
+Bit flags that69odify the behavior of above properties
+ï¿½1 - 'EnvSize' affects reverberation decay time
+ï¿½2 - 'EnvSize' affects reflection level
+ï¿½4 - 'EnvSize' affects initial reflection delay time
+ï¿½8 - 'EnvSize' affects reflections level
+ï¿½16 - 'EnvSize' affects late reverberation delay time
+ï¿½32 - AirAbsorptionHF affects DecayHFRatio
+ï¿½64 - 'EnvSize' affects echo time
+ï¿½128 - 'EnvSize' affects69odulation time"})
 
 	var/list/echo_default = list(0, 0, 0, 0, 0, 0.0, 0, 0.25, 1.5, 1.0, 0, 1.0, 0, 0.0, 0.0, 0.0, 1.0, 7)
 	var/list/list/echo_params_bounds = list(
@@ -156,61 +156,61 @@ Bit flags that modify the behavior of above properties
 			list(0, 16, 0))
 	var/list/echo_param_names = list(
 			"Direct",
-			"Direct (High Frequency)",
+			"Direct (High Fre69uency)",
 			"Room",
-			"Room (High Frequency)",
+			"Room (High Fre69uency)",
 			"Obstruction",
-			"Obstruction (Low Frequency Ratio)",
+			"Obstruction (Low Fre69uency Ratio)",
 			"Occlusion",
-			"Occlusion (Low Frequency Ratio)",
+			"Occlusion (Low Fre69uency Ratio)",
 			"Occlusion (Room Ratio)",
 			"Occlusion (Direct Ratio)",
 			"Exclusion",
-			"Exclusion (Low Frequency Ratio)",
-			"Outside Volume (High Frequency)",
+			"Exclusion (Low Fre69uency Ratio)",
+			"Outside69olume (High Fre69uency)",
 			"Doppler Factor",
 			"Rolloff Factor",
 			"Room Rolloff Factor",
 			"Air Absorption Factor",
 			"Flags")
 	var/list/echo_param_desc = list(
-			"direct path level (at low and mid frequencies)",
-			"relative direct path level at high frequencies ",
-			"room effect level (at low and mid frequencies)",
-			"relative room effect level at high frequencies",
-			"main obstruction control (attenuation at high frequencies)",
-			"obstruction low-frequency level re. main control",
-			"main occlusion control (attenuation at high frequencies)",
-			"occlusion low-frequency level re. main control",
+			"direct path level (at low and69id fre69uencies)",
+			"relative direct path level at high fre69uencies ",
+			"room effect level (at low and69id fre69uencies)",
+			"relative room effect level at high fre69uencies",
+			"main obstruction control (attenuation at high fre69uencies)",
+			"obstruction low-fre69uency level re.69ain control",
+			"main occlusion control (attenuation at high fre69uencies)",
+			"occlusion low-fre69uency level re.69ain control",
 			"relative occlusion control for room effect",
 			"relative occlusion control for direct path",
-			"main exlusion control (attenuation at high frequencies)",
-			"exclusion low-frequency level re. main control",
-			"outside sound cone level at high frequencies",
+			"main exlusion control (attenuation at high fre69uencies)",
+			"exclusion low-fre69uency level re.69ain control",
+			"outside sound cone level at high fre69uencies",
 			"like DS3D flDopplerFactor but per source",
 			"like DS3D flRolloffFactor but per source",
 			"like DS3D flRolloffFactor but for room effect",
-			"multiplies AirAbsorptionHF member of environment reverb properties.",
+			"multiplies AirAbsorptionHF69ember of environment reverb properties.",
 			{"
-			Bit flags that modify the behavior of properties•1 - Automatic setting of 'Direct' due to distance from listener
-			•2 - Automatic setting of 'Room' due to distance from listener
-			•4 - Automatic setting of 'RoomHF' due to distance from listener"})
+			Bit flags that69odify the behavior of propertiesï¿½1 - Automatic setting of 'Direct' due to distance from listener
+			ï¿½2 - Automatic setting of 'Room' due to distance from listener
+			ï¿½4 - Automatic setting of 'RoomHF' due to distance from listener"})
 
-	var/list/n2t_int = list() // Instead of num2text it is used for faster access in n2t
-	var/list/nn2no = list(0,2,4,5,7,9,11) // Maps note num onto note offset
+	var/list/n2t_int = list() // Instead of69um2text it is used for faster access in692t
+	var/list/nn2no = list(0,2,4,5,7,9,11) //69aps69ote69um onto69ote offset
 
 
 
-/datum/musical_config/proc/n2t(key) // Used instead of num2text for faster access in sample_map
+/datum/musical_config/proc/n2t(key) // Used instead of69um2text for faster access in sample_map
 	if (!src.n2t_int.len)
 		for (var/i=1, i<=127, i++)
-			src.n2t_int += num2text(i)
+			src.n2t_int +=69um2text(i)
 
 	if (key==0)
 		return "0" // Fuck you BYOND
 	if (!isnum(key) || key < 0 || key>127 || round(key) != key)
-		CRASH("n2t argument must be an integer from 0 to 127")
-	return src.n2t_int[key]
+		CRASH("n2t argument69ust be an integer from 0 to 127")
+	return src.n2t_int69key69
 
 
 /datum/musical_config/proc/environment_to_id(environment)
@@ -221,16 +221,16 @@ Bit flags that modify the behavior of above properties
 
 /datum/musical_config/proc/id_to_environment(id)
 	if (id >= -1 && id <= 26)
-		return src.all_environments[id+2]
+		return src.all_environments69id+6969
 	return "None"
 
 
 /datum/musical_config/proc/index_to_id(index)
-	return max(min(index-2, 26), -1)
+	return69ax(min(index-2, 26), -1)
 
 
 /datum/musical_config/proc/is_custom_env(id)
-	return id_to_environment(id) == src.all_environments[28]
+	return id_to_environment(id) == src.all_environments6926969
 
 
 /datum/sample_pair

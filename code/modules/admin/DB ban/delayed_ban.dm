@@ -24,7 +24,7 @@ GLOBAL_LIST_EMPTY(delayed_bans)
 	banned_by_id = _banned_by_id
 
 /datum/delayed_ban/proc/execute()
-	var/DBQuery/query_insert = dbcon.NewQuery({"INSERT INTO bans (target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id) VALUES ([target_id], Now(), '[server]', '[bantype_str]', '[reason]', '[job]', [(duration)?"[duration]":"0"], Now() + INTERVAL [(duration>0) ? duration : 0] MINUTE, '[computerid]', NULL, [banned_by_id])"})
+	var/DBQuery/query_insert = dbcon.NewQuery({"INSERT INTO bans (target_id, time, server, type, reason, job, duration, expiration_time, cid, ip, banned_by_id)69ALUES (69target_id69, Now(), '69server69', '69bantype_str69', '69reason69', '69job69', 69(duration)?"69duration69":"0"69, Now() + INTERVAL 69(duration>0) ? duration : 06969INUTE, '69computerid69', NULL, 69banned_by_id69)"})
 	query_insert.Execute()
 
 /hook/roundend/proc/explode()

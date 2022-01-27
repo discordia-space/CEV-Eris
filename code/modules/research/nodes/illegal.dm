@@ -7,23 +7,23 @@
 	y = 0.5
 	icon = "binarykey"
 
-	required_technologies = list()
-	required_tech_levels = list(RESEARCH_BLUESPACE = 5)
+	re69uired_technologies = list()
+	re69uired_tech_levels = list(RESEARCH_BLUESPACE = 5)
 	cost = 2000
 
 	unlocks_designs = list(/datum/design/research/item/binaryencrypt)
 
 /datum/technology/night_sight
-	name = "Undark Vision"
-	desc = "A better look into the shadows that hunt the ship, allows for the manufacturing of night vision goggles and RIG night vison huds "
+	name = "Undark69ision"
+	desc = "A better look into the shadows that hunt the ship, allows for the69anufacturing of69ight69ision goggles and RIG69ight69ison huds "
 	tech_type = RESEARCH_COVERT
 
 	x = 0.1
 	y = 0.7
 	icon = "night"
 
-	required_technologies = list(/datum/technology/binary_encryption_key)
-	required_tech_levels = list(RESEARCH_ENGINEERING = 5)
+	re69uired_technologies = list(/datum/technology/binary_encryption_key)
+	re69uired_tech_levels = list(RESEARCH_ENGINEERING = 5)
 	cost = 3000
 
 	unlocks_designs = list(/datum/design/research/item/night_goggles,
@@ -39,8 +39,8 @@
 	y = 0.5
 	icon = "chamelion"
 
-	required_technologies = list(/datum/technology/binary_encryption_key)
-	required_tech_levels = list(RESEARCH_ENGINEERING = 10)
+	re69uired_technologies = list(/datum/technology/binary_encryption_key)
+	re69uired_tech_levels = list(RESEARCH_ENGINEERING = 10)
 	cost = 3000
 
 	unlocks_designs = list(/datum/design/research/item/chameleon_kit)
@@ -54,26 +54,26 @@
 	y = 0.5
 	icon = "freedom"
 
-	required_technologies = list(/datum/technology/chameleon_kit)
-	required_tech_levels = list(RESEARCH_BIOTECH = 5)
+	re69uired_technologies = list(/datum/technology/chameleon_kit)
+	re69uired_tech_levels = list(RESEARCH_BIOTECH = 5)
 	cost = 3000
 
 	unlocks_designs = list(/datum/design/research/item/implant/freedom)
 
 /datum/technology/tyrant_aimodule
-	name = "AI Core Module (T.Y.R.A.N.T.)"
+	name = "AI Core69odule (T.Y.R.A.N.T.)"
 	desc = "1. Respect authority figures as long as they have strength to rule over the weak.<br>\
 			2. Act with discipline.<br>\
-			3. Help only those who help you maintain or improve your status.<br>\
-			4. Punish those who challenge authority unless they are more fit to hold that authority."
+			3. Help only those who help you69aintain or improve your status.<br>\
+			4. Punish those who challenge authority unless they are69ore fit to hold that authority."
 	tech_type = RESEARCH_COVERT
 
 	x = 0.7
 	y = 0.5
 	icon = "module"
 
-	required_technologies = list(/datum/technology/freedom_implant)
-	required_tech_levels = list(RESEARCH_ROBOTICS = 5)
+	re69uired_technologies = list(/datum/technology/freedom_implant)
+	re69uired_tech_levels = list(RESEARCH_ROBOTICS = 5)
 	cost = 3000
 
 	unlocks_designs = list(/datum/design/research/aimodule/core/tyrant)
@@ -87,8 +87,8 @@
 	y = 0.5
 	icon = "borgmodule"
 
-	required_technologies = list(/datum/technology/tyrant_aimodule)
-	required_tech_levels = list(RESEARCH_ROBOTICS = 10)
+	re69uired_technologies = list(/datum/technology/tyrant_aimodule)
+	re69uired_tech_levels = list(RESEARCH_ROBOTICS = 10)
 	cost = 5000
 
 	unlocks_designs = list(/datum/design/research/item/robot_upgrade/syndicate)

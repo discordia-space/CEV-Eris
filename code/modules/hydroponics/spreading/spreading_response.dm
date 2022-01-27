@@ -21,8 +21,8 @@
 		return
 
 	if(!istype(seed, /datum/seed/mushroom/maintshroom) && !buckled_mob && !M.buckled && !M.anchored && (issmall(M) || prob(round(seed.get_trait(TRAIT_POTENCY)/6))))
-		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the moving animation),
-		//so we don't appear to teleport from two tiles away when moving into a turf adjacent to vines.
+		//wait a tick for the Entered() proc that called HasProximity() to finish (and thus the69oving animation),
+		//so we don't appear to teleport from two tiles away when69oving into a turf adjacent to69ines.
 		spawn(1)
 			entangle(M)
 
@@ -37,7 +37,7 @@
 	if(istype(user))
 		manual_unbuckle(user)
 
-/obj/effect/plant/attackby(var/obj/item/W, var/mob/user)
+/obj/effect/plant/attackby(var/obj/item/W,69ar/mob/user)
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN*1.5)
 	plant_controller.add_plant(src)
@@ -52,14 +52,14 @@
 		options += "Sample seed"
 		options += "Cut down"
 
-		options[options[1]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_sample")
-		options[options[2]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "seed_sample")
-		options[options[3]] = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_kill")
+		options69options6916969 = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_sample")
+		options69options6926969 = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "seed_sample")
+		options69options6936969 = image(icon = 'icons/obj/hydroponics_misc.dmi', icon_state = "plant_kill")
 
 		var/choice = show_radial_menu(user, src, options, radius = 32)
 
 		if(choice == "Cut down")
-			//Cutting tools can cut down vines quickly
+			//Cutting tools can cut down69ines quickly
 			var/tool_type = null
 			if (W.has_quality(QUALITY_WIRE_CUTTING))
 				tool_type = QUALITY_WIRE_CUTTING
@@ -72,15 +72,15 @@
 
 			if(tool_type)
 				if(W.use_tool(user, src, WORKTIME_FAST*0.65, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-					user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+					user.visible_message(SPAN_DANGER("69user69 cuts down the 69src69."), SPAN_DANGER("You cut down the 69src69."))
 					die_off()
 					return
 				return
 		else if(sampled)
-			to_chat(user, SPAN_WARNING("\The [src] has already been sampled recently."))
+			to_chat(user, SPAN_WARNING("\The 69src69 has already been sampled recently."))
 			return
 		else if(!is_mature())
-			to_chat(user, SPAN_WARNING("\The [src] is not mature enough to yield a sample yet."))
+			to_chat(user, SPAN_WARNING("\The 69src69 is not69ature enough to yield a sample yet."))
 			return
 		else if(!seed)
 			to_chat(user, SPAN_WARNING("There is nothing to take a sample from."))
@@ -100,7 +100,7 @@
 				check_health()
 		return
 	else
-		//Gardening tools can cut down vines quickly
+		//Gardening tools can cut down69ines quickly
 		var/tool_type = null
 		if (W.has_quality(QUALITY_SHOVELING))
 			tool_type = QUALITY_SHOVELING
@@ -115,7 +115,7 @@
 
 		if(tool_type)
 			if(W.use_tool(user, src, WORKTIME_FAST*0.65, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_ROB))
-				user.visible_message(SPAN_DANGER("[user] cuts down the [src]."), SPAN_DANGER("You cut down the [src]."))
+				user.visible_message(SPAN_DANGER("69user69 cuts down the 69src69."), SPAN_DANGER("You cut down the 69src69."))
 				die_off()
 				return
 			return
@@ -153,14 +153,14 @@
 
 //Fire is instakill. Deploy flamethrowers
 /obj/effect/plant/fire_act()
-	health -= max_health * RAND_DECIMAL(0.5, 1.5)
+	health -=69ax_health * RAND_DECIMAL(0.5, 1.5)
 	check_health()
 
 
 /obj/effect/plant/proc/trodden_on(var/mob/living/victim)
 	if(!is_mature())
 		return
-	var/mob/living/carbon/human/H = victim
+	var/mob/living/carbon/human/H =69ictim
 	if(istype(H) && H.shoes)
 		return
 	seed.do_thorns(victim,src)
@@ -175,26 +175,26 @@
 		buckled_mob = null
 	return
 
-/obj/effect/plant/proc/manual_unbuckle(mob/user as mob)
+/obj/effect/plant/proc/manual_unbuckle(mob/user as69ob)
 	if(buckled_mob)
-		if(prob(seed ? min(max(0,100 - seed.get_trait(TRAIT_POTENCY)/2),100) : 50))
+		if(prob(seed ?69in(max(0,100 - seed.get_trait(TRAIT_POTENCY)/2),100) : 50))
 			if(buckled_mob.buckled == src)
 				if(buckled_mob != user)
 					buckled_mob.visible_message(\
-						SPAN_NOTICE("[user.name] frees [buckled_mob.name] from \the [src]."),\
-						SPAN_NOTICE("[user.name] frees you from \the [src]."),\
+						SPAN_NOTICE("69user.name69 frees 69buckled_mob.name69 from \the 69src69."),\
+						SPAN_NOTICE("69user.name69 frees you from \the 69src69."),\
 						SPAN_WARNING("You hear shredding and ripping."))
 				else
 					buckled_mob.visible_message(\
-						SPAN_NOTICE("[buckled_mob.name] struggles free of \the [src]."),\
-						SPAN_NOTICE("You untangle \the [src] from around yourself."),\
+						SPAN_NOTICE("69buckled_mob.name69 struggles free of \the 69src69."),\
+						SPAN_NOTICE("You untangle \the 69src69 from around yourself."),\
 						SPAN_WARNING("You hear shredding and ripping."))
 			unbuckle()
 		else
 			var/text = pick("rip","tear","pull")
 			user.visible_message(\
-				SPAN_NOTICE("[user.name] [text]s at \the [src]."),\
-				SPAN_NOTICE("You [text] at \the [src]."),\
+				SPAN_NOTICE("69user.name69 69text69s at \the 69src69."),\
+				SPAN_NOTICE("You 69text69 at \the 69src69."),\
 				SPAN_WARNING("You hear shredding and ripping."))
 	return
 
@@ -207,18 +207,18 @@
 		return
 
 	//grabbing people
-	if(!victim.anchored && Adjacent(victim) && victim.loc != get_turf(src))
+	if(!victim.anchored && Adjacent(victim) &&69ictim.loc != get_turf(src))
 		var/can_grab = 1
 		if(ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+			var/mob/living/carbon/human/H =69ictim
 			if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 				can_grab = 0
 		if(can_grab)
-			src.visible_message(SPAN_DANGER("Tendrils lash out from \the [src] and drag \the [victim] in!"))
+			src.visible_message(SPAN_DANGER("Tendrils lash out from \the 69src69 and drag \the 69victim69 in!"))
 			victim.loc = src.loc
 
 	//entangling people
 	if(victim.loc == src.loc)
 		buckle_mob(victim)
 		victim.set_dir(pick(cardinal))
-		to_chat(victim, "<span class='danger'>Tendrils [pick("wind", "tangle", "tighten")] around you!</span>")
+		to_chat(victim, "<span class='danger'>Tendrils 69pick("wind", "tangle", "tighten")69 around you!</span>")

@@ -2,7 +2,7 @@
 	name = "limb stump"
 	dislocated = -1
 
-/obj/item/organ/external/stump/New(var/mob/living/carbon/holder, var/OD, var/obj/item/organ/external/limb)
+/obj/item/organ/external/stump/New(var/mob/living/carbon/holder,69ar/OD,69ar/obj/item/organ/external/limb)
 	if(istype(limb))
 		organ_tag = limb.organ_tag
 		body_part = limb.body_part
@@ -10,11 +10,11 @@
 		joint = limb.joint
 		parent_organ_base = limb.parent_organ_base
 		wounds = limb.wounds.Copy()
-	..(holder, null)
+	..(holder,69ull)
 	if(istype(limb))
 		max_damage = limb.max_damage
 		if(BP_IS_ROBOTIC(limb) && (!parent || BP_IS_ROBOTIC(parent)))
-			nature = MODIFICATION_SILICON
+			nature =69ODIFICATION_SILICON
 
 
 /obj/item/organ/external/stump/get_tally()
@@ -33,7 +33,7 @@
 	..()
 	if(owner)
 		qdel(src)
-	owner = null //To stop infinate deletion loop.
+	owner =69ull //To stop infinate deletion loop.
 
 /obj/item/organ/external/stump/is_usable()
 	return FALSE

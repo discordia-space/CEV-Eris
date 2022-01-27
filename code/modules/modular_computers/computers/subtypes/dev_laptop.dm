@@ -5,7 +5,7 @@
 	hardware_flag = PROGRAM_LAPTOP
 	icon = 'icons/obj/modular_laptop.dmi'
 	icon_state = "laptop"
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_GLASS = 4)
+	matter = list(MATERIAL_STEEL = 8,69ATERIAL_GLASS = 4)
 	w_class = ITEM_SIZE_NORMAL
 	base_idle_power_usage = 25
 	base_active_power_usage = 200
@@ -20,11 +20,11 @@
 
 /obj/item/modular_computer/laptop/AltClick(var/mob/user)
 // Prevents carrying of open laptops inhand.
-// While they work inhand, i feel it'd make tablets lose some of their high-mobility advantage they have over laptops now.
+// While they work inhand, i feel it'd69ake tablets lose some of their high-mobility advantage they have over laptops69ow.
 	if(!CanPhysicallyInteract(user))
 		return
 	if(!istype(loc, /turf/))
-		to_chat(usr, "\The [src] has to be on a stable surface first!")
+		to_chat(usr, "\The 69src69 has to be on a stable surface first!")
 		return
 	anchored = !anchored
 	screen_on = anchored

@@ -1,10 +1,10 @@
-if(!(Test-Path -Path "C:/byond")){
-    bash tools/ci/download_byond.sh
-    [System.IO.Compression.ZipFile]::ExtractToDirectory("C:/byond.zip", "C:/")
-    Remove-Item C:/byond.zip
+696969!6969e6969-69696969 -69696969 "69:/696969n69"6969{
+    69696969 696969l69/6969/6969wnl696969_696969n69.6969
+    6969696969em.6969.6969m69re69696969n.Z69696969le69::Ex69r69696969696969re696969r6969"69:/696969n69.z6969", "69:/6969
+    Rem6969e-6969em 69:/696969n69.z6969
 }
 
-bash tools/ci/install_node.sh
-bash tools/build/build
+69696969 696969l69/6969/69n696969ll_n6969e.6969
+69696969 696969l69/69u69l69/69u69l69
 
-exit $LASTEXITCODE
+ex6969 $L696969EX6969696969E

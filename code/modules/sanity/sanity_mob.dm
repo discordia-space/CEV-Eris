@@ -4,17 +4,17 @@
 
 #define SANITY_VIEW_DAMAGE_MOD 0.4
 
-// Damage received from unpleasant stuff in view
-#define SANITY_DAMAGE_VIEW(damage, vig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
+// Damage received from unpleasant stuff in69iew
+#define SANITY_DAMAGE_VIEW(damage,69ig, dist) ((damage) * SANITY_VIEW_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX) * (1 - (dist)/15))
 
 // Damage received from body damage
-#define SANITY_DAMAGE_HURT(damage, vig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
+#define SANITY_DAMAGE_HURT(damage,69ig) (min((damage) / 5 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX), 60))
 
 // Damage received from shock
-#define SANITY_DAMAGE_SHOCK(shock, vig) ((shock) / 50 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX))
+#define SANITY_DAMAGE_SHOCK(shock,69ig) ((shock) / 50 * SANITY_DAMAGE_MOD * (1.2 - (vig) / STAT_LEVEL_MAX))
 
 // Damage received from psy effects
-#define SANITY_DAMAGE_PSY(damage, vig) (damage * SANITY_DAMAGE_MOD * (2 - (vig) / STAT_LEVEL_MAX))
+#define SANITY_DAMAGE_PSY(damage,69ig) (damage * SANITY_DAMAGE_MOD * (2 - (vig) / STAT_LEVEL_MAX))
 
 // Damage received from seeing someone die
 #define SANITY_DAMAGE_DEATH(vig) (10 * SANITY_DAMAGE_MOD * (1 - (vig) / STAT_LEVEL_MAX))
@@ -23,7 +23,7 @@
 #define SANITY_GAIN_SAY 1
 
 #define SANITY_COOLDOWN_SAY rand(30 SECONDS, 45 SECONDS)
-#define SANITY_COOLDOWN_BREAKDOWN rand(7 MINUTES, 10 MINUTES)
+#define SANITY_COOLDOWN_BREAKDOWN rand(769INUTES, 1069INUTES)
 
 #define SANITY_CHANGE_FADEOFF(level_change) (level_change * 0.75)
 
@@ -68,7 +68,7 @@
 	var/negative_prob = 30
 
 	var/view_damage_threshold = 20
-	var/environment_cap_coeff = 1 //How much we are affected by environmental cognitohazards. Multiplies the above threshold
+	var/environment_cap_coeff = 1 //How69uch we are affected by environmental cognitohazards.69ultiplies the above threshold
 
 	var/say_time = 0
 	var/breakdown_time = 0
@@ -80,29 +80,29 @@
 
 	var/eat_time_message = 0
 
-	var/life_tick_modifier = 2	//How often is the onLife() triggered and by how much are the effects multiplied
+	var/life_tick_modifier = 2	//How often is the onLife() triggered and by how69uch are the effects69ultiplied
 
 /datum/sanity/New(mob/living/carbon/human/H)
 	owner = H
-	level = max_level
+	level =69ax_level
 	insight = rand(0, 30)
 	RegisterSignal(owner, COMSIG_MOB_LIFE, .proc/onLife)
 	RegisterSignal(owner, COMSIG_HUMAN_SAY, .proc/onSay)
 
 /datum/sanity/proc/give_insight(value)
-	var/new_value = value
+	var/new_value =69alue
 	if(value > 0)
-		new_value = max(0, value * insight_gain_multiplier)
-	insight = min(insight + new_value, max_insight)
+		new_value =69ax(0,69alue * insight_gain_multiplier)
+	insight =69in(insight +69ew_value,69ax_insight)
 
 /datum/sanity/proc/give_resting(value)
-	resting = min(resting + value, max_resting)
+	resting =69in(resting +69alue,69ax_resting)
 
 /datum/sanity/proc/give_insight_rest(value)
-	var/new_value = value
+	var/new_value =69alue
 	if(value > 0)
-		new_value = max(0, value * insight_rest_gain_multiplier)
-	insight_rest += new_value
+		new_value =69ax(0,69alue * insight_rest_gain_multiplier)
+	insight_rest +=69ew_value
 
 /datum/sanity/proc/onLife()
 	handle_breakdowns()
@@ -115,7 +115,7 @@
 	if(!(owner.sdisabilities & BLIND) && !owner.blinded)
 		affect += handle_area()
 		affect -= handle_view()
-	changeLevel(max(affect  * life_tick_modifier, min((view_damage_threshold*environment_cap_coeff) - level, 0)))
+	changeLevel(max(affect  * life_tick_modifier,69in((view_damage_threshold*environment_cap_coeff) - level, 0)))
 	handle_Insight()
 	handle_level()
 	SEND_SIGNAL(owner, COMSIG_HUMAN_SANITY, level)
@@ -123,24 +123,24 @@
 /datum/sanity/proc/handle_view()
 	. = 0
 	activate_mobs_in_range(owner, SANITY_MOB_DISTANCE_ACTIVATION)
-	if(sanity_invulnerability)//Sorry, but that needed to be added here :C
+	if(sanity_invulnerability)//Sorry, but that69eeded to be added here :C
 		return
 	var/vig = owner.stats.getStat(STAT_VIG)
-	for(var/atom/A in view(owner.client ? owner.client : owner))
-		if(A.sanity_damage) //If this thing is not nice to behold
-			. += SANITY_DAMAGE_VIEW(A.sanity_damage, vig, get_dist(owner, A))
+	for(var/atom/A in69iew(owner.client ? owner.client : owner))
+		if(A.sanity_damage) //If this thing is69ot69ice to behold
+			. += SANITY_DAMAGE_VIEW(A.sanity_damage,69ig, get_dist(owner, A))
 
-		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react negatively to people in distress
+		if(owner.stats.getPerk(PERK_MORALIST) && ishuman(A)) //Moralists react69egatively to people in distress
 			var/mob/living/carbon/human/H = A
 			if(H.sanity.level < 30 || H.health < 50)
-				. += SANITY_DAMAGE_VIEW(0.1, vig, get_dist(owner, A))
+				. += SANITY_DAMAGE_VIEW(0.1,69ig, get_dist(owner, A))
 
 
 /datum/sanity/proc/handle_area()
 	var/area/my_area = get_area(owner)
 	if(!my_area)
 		return 0
-	. = my_area.sanity.affect
+	. =69y_area.sanity.affect
 	if(. < 0)
 		. *= owner.stats.getStat(STAT_VIG) / STAT_LEVEL_MAX
 
@@ -153,32 +153,32 @@
 	var/moralist_factor = 1
 	var/style_factor = owner.get_style_factor()
 	if(owner.stats.getPerk(PERK_MORALIST))
-		for(var/mob/living/carbon/human/H in view(owner))
+		for(var/mob/living/carbon/human/H in69iew(owner))
 			if(H.sanity.level > 60)
 				moralist_factor += 0.02
-	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier * moralist_factor * style_factor * life_tick_modifier)
-	while(resting < max_resting && insight >= 100)
+	give_insight(INSIGHT_GAIN(level_change) * insight_passive_gain_multiplier *69oralist_factor * style_factor * life_tick_modifier)
+	while(resting <69ax_resting && insight >= 100)
 		give_resting(1)
 		if(owner.stats.getPerk(PERK_ARTIST))
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to make art. You cannot gain more insight before you do."]"))
+			to_chat(owner, SPAN_NOTICE("You have gained insight.69resting ?69ull : "69ow you69eed to69ake art. You cannot gain69ore insight before you do."69"))
 		else
-			to_chat(owner, SPAN_NOTICE("You have gained insight.[resting ? null : " Now you need to rest and rethink your life choices."]"))
+			to_chat(owner, SPAN_NOTICE("You have gained insight.69resting ?69ull : "69ow you69eed to rest and rethink your life choices."69"))
 			pick_desires()
 			insight -= 100
 		owner.playsound_local(get_turf(owner), 'sound/sanity/psychochimes.ogg', 100)
 
-	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	var/obj/screen/sanity/hud = owner.HUDneed69"sanity"69
 	hud?.update_icon()
 
 /datum/sanity/proc/handle_level()
 	level_change = SANITY_CHANGE_FADEOFF(level_change)
 
 	if(level < 40 && world.time >= spook_time)
-		spook_time = world.time + rand(1 MINUTES, 8 MINUTES) - (40 - level) * 1 SECONDS //Each missing sanity point below 40 decreases cooldown by a second
+		spook_time = world.time + rand(169INUTES, 869INUTES) - (40 - level) * 1 SECONDS //Each69issing sanity point below 40 decreases cooldown by a second
 
 		var/static/list/effects_40 = list(
 			.proc/effect_emote = 25,
-			.proc/effect_quote = 50
+			.proc/effect_69uote = 50
 		)
 		var/static/list/effects_30 = effects_40 + list(
 			.proc/effect_sound = 1,
@@ -225,7 +225,7 @@
 /datum/sanity/proc/print_desires()
 	if(!resting)
 		return
-	to_chat(owner, SPAN_NOTICE("You desire [english_list(desires)]."))
+	to_chat(owner, SPAN_NOTICE("You desire 69english_list(desires)69."))
 
 /datum/sanity/proc/add_rest(type, amount)
 	if(!(type in desires))
@@ -243,7 +243,7 @@
 		LAZYAPLUS(stat_change, pick(ALL_STATS), 1)
 
 	for(var/stat in stat_change)
-		owner.stats.changeStat(stat, stat_change[stat])
+		owner.stats.changeStat(stat, stat_change69stat69)
 
 	if(!owner.stats.getPerk(PERK_ARTIST))
 		INVOKE_ASYNC(src, .proc/oddity_stat_up, resting)
@@ -259,22 +259,22 @@
 /datum/sanity/proc/oddity_stat_up(multiplier)
 	var/list/inspiration_items = list()
 	for(var/obj/item/I in owner.get_contents())
-		if(is_type_in_list(I, valid_inspirations) && I.GetComponent(/datum/component/inspiration))
+		if(is_type_in_list(I,69alid_inspirations) && I.GetComponent(/datum/component/inspiration))
 			inspiration_items += I
 	if(inspiration_items.len)
-		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items[1]
+		var/obj/item/O = inspiration_items.len > 1 ? owner.client ? input(owner, "Select something to use as inspiration", "Level up") in inspiration_items : pick(inspiration_items) : inspiration_items69169
 		if(!O)
 			return
-		GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a valid inspiration, it should have this component. If not, runtime
+		GET_COMPONENT_FROM(I, /datum/component/inspiration, O) // If it's a69alid inspiration, it should have this component. If69ot, runtime
 		var/list/L = I.calculate_statistics()
 		for(var/stat in L)
-			var/stat_up = L[stat] * multiplier
-			to_chat(owner, SPAN_NOTICE("Your [stat] stat goes up by [stat_up]"))
+			var/stat_up = L69stat69 *69ultiplier
+			to_chat(owner, SPAN_NOTICE("Your 69stat69 stat goes up by 69stat_up69"))
 			owner.stats.changeStat(stat, stat_up)
 		if(I.perk)
 			if(owner.stats.addPerk(I.perk))
-				I.perk = null
-		for(var/mob/living/carbon/human/H in viewers(owner))
+				I.perk =69ull
+		for(var/mob/living/carbon/human/H in69iewers(owner))
 			SEND_SIGNAL(H, COMSIG_HUMAN_ODDITY_LEVEL_UP, owner, O)
 
 /datum/sanity/proc/onDamage(amount)
@@ -290,9 +290,9 @@
 			var/effect_prob = rand(1, 100)
 			switch(effect_prob)
 				if(1 to 25)
-					M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate Nihilist")
+					M.stats.addTempStat(STAT_COG, 5, INFINITY, "Fate69ihilist")
 				if(25 to 50)
-					M.stats.removeTempStat(STAT_COG, "Fate Nihilist")
+					M.stats.removeTempStat(STAT_COG, "Fate69ihilist")
 				if(50 to 75)
 					penalty *= -1
 				if(75 to 100)
@@ -305,15 +305,15 @@
 /datum/sanity/proc/onShock(amount)
 	changeLevel(-SANITY_DAMAGE_SHOCK(amount, owner.stats.getStat(STAT_VIG)))
 
-/datum/sanity/proc/onDrug(datum/reagent/drug/R, multiplier)
-	changeLevel(R.sanity_gain * multiplier)
+/datum/sanity/proc/onDrug(datum/reagent/drug/R,69ultiplier)
+	changeLevel(R.sanity_gain *69ultiplier)
 	if(resting)
-		add_rest(INSIGHT_DESIRE_DRUGS, 4 * multiplier)
+		add_rest(INSIGHT_DESIRE_DRUGS, 4 *69ultiplier)
 
-/datum/sanity/proc/onToxin(datum/reagent/toxin/R, multiplier)
-	changeLevel(-R.sanityloss * multiplier)
+/datum/sanity/proc/onToxin(datum/reagent/toxin/R,69ultiplier)
+	changeLevel(-R.sanityloss *69ultiplier)
 
-/datum/sanity/proc/onReagent(datum/reagent/E, multiplier)
+/datum/sanity/proc/onReagent(datum/reagent/E,69ultiplier)
 	var/sanity_gain = E.sanity_gain_ingest
 	if(E.id == "ethanol")
 		sanity_gain /= 5
@@ -321,27 +321,27 @@
 		var/datum/reagent/alcohol/fine_drink = E
 		if (fine_drink.strength <= 20)
 			sanity_gain *= (5 - (fine_drink.strength / 5))
-	changeLevel(sanity_gain * multiplier)
+	changeLevel(sanity_gain *69ultiplier)
 	if(resting && E.taste_tag.len)
 		for(var/taste_tag in E.taste_tag)
 			if(multiplier <= 1 )
-				add_rest(taste_tag, 4 * 1/E.taste_tag.len)  //just so it got somme effect of things with small multipliers
+				add_rest(taste_tag, 4 * 1/E.taste_tag.len)  //just so it got somme effect of things with small69ultipliers
 			else
-				add_rest(taste_tag, 4 * multiplier/E.taste_tag.len)
+				add_rest(taste_tag, 4 *69ultiplier/E.taste_tag.len)
 
 /datum/sanity/proc/onEat(obj/item/reagent_containers/food/snacks/snack, snack_sanity_gain, snack_sanity_message)
 	if(world.time > eat_time_message && snack_sanity_message)
 		eat_time_message = world.time + EAT_COOLDOWN_MESSAGE
-		to_chat(owner, "[snack_sanity_message]")
+		to_chat(owner, "69snack_sanity_message69")
 	changeLevel(snack_sanity_gain)
 	if(snack.cooked && resting && snack.taste_tag.len)
 		for(var/taste in snack.taste_tag)
 			add_rest(taste, snack_sanity_gain * 50/snack.taste_tag.len)
 
 /datum/sanity/proc/onSmoke(obj/item/clothing/mask/smokable/S)
-	changeLevel(SANITY_GAIN_SMOKE * S.quality_multiplier)
+	changeLevel(SANITY_GAIN_SMOKE * S.69uality_multiplier)
 	if(resting)
-		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.quality_multiplier)
+		add_rest(INSIGHT_DESIRE_SMOKING, 0.4 * S.69uality_multiplier)
 
 /datum/sanity/proc/onSay()
 	if(world.time < say_time)
@@ -366,23 +366,23 @@
 	updateLevel(amount)
 
 /datum/sanity/proc/updateLevel(new_level)
-	new_level = CLAMP(new_level, 0, max_level)
+	new_level = CLAMP(new_level, 0,69ax_level)
 	level_change += abs(new_level - level)
-	level = new_level
+	level =69ew_level
 	if(level == 0 && world.time >= breakdown_time)
 		breakdown()
-	var/obj/screen/sanity/hud = owner.HUDneed["sanity"]
+	var/obj/screen/sanity/hud = owner.HUDneed69"sanity"69
 	hud?.update_icon()
 
 /datum/sanity/proc/breakdown(var/positive_breakdown = FALSE)
 	breakdown_time = world.time + SANITY_COOLDOWN_BREAKDOWN
 
 	for(var/obj/item/device/mind_fryer/M in GLOB.active_mind_fryers)
-		if(get_turf(M) in view(get_turf(owner)))
+		if(get_turf(M) in69iew(get_turf(owner)))
 			M.reg_break(owner)
 
 	for(var/obj/item/implant/carrion_spider/mindboil/S in GLOB.active_mindboil_spiders)
-		if(get_turf(S) in view(get_turf(owner)))
+		if(get_turf(S) in69iew(get_turf(owner)))
 			S.reg_break(owner)
 
 	var/list/possible_results
@@ -398,16 +398,16 @@
 
 	while(possible_results.len)
 		var/breakdown_type = pick(possible_results)
-		var/datum/breakdown/B = new breakdown_type(src)
+		var/datum/breakdown/B =69ew breakdown_type(src)
 
 		if(!B.can_occur())
 			possible_results -= breakdown_type
-			qdel(B)
+			69del(B)
 			continue
 
 		if(B.occur())
 			breakdowns += B
-			for(var/mob/living/carbon/human/H in viewers(owner))
+			for(var/mob/living/carbon/human/H in69iewers(owner))
 				SEND_SIGNAL(H, COMSIG_HUMAN_BREAKDOWN, owner, B)
 		return
 

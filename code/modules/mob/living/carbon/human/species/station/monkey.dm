@@ -8,18 +8,18 @@
 	damage_overlays = 'icons/mob/human_races/masks/dam_monkey.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_monkey.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
-	language = null
+	language =69ull
 	default_language = LANGUAGE_MONKEY
 	greater_form = SPECIES_HUMAN
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 	has_fine_manipulation = 0
-	show_ssd = null
+	show_ssd =69ull
 
 	eyes = "blank_eyes"
 
 	gibbed_anim = "gibbed-m"
 	dusted_anim = "dust-m"
-	death_message = "lets out a faint chimper as it collapses and stops moving..."
+	death_message = "lets out a faint chimper as it collapses and stops69oving..."
 	tail = "chimptail"
 
 	unarmed_types = list(/datum/unarmed_attack/bite, /datum/unarmed_attack/claws)
@@ -35,19 +35,19 @@
 
 	spawn_flags = IS_RESTRICTED
 
-	bump_flag = MONKEY
-	swap_flags = MONKEY|SLIME|SIMPLE_ANIMAL
-	push_flags = MONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
+	bump_flag =69ONKEY
+	swap_flags =69ONKEY|SLIME|SIMPLE_ANIMAL
+	push_flags =69ONKEY|SLIME|SIMPLE_ANIMAL|ALIEN
 
 	pass_flags = PASSTABLE
 	holder_type = /obj/item/holder
 /datum/species/monkey/handle_npc(var/mob/living/carbon/human/H)
 	if(H.stat != CONSCIOUS)
 		return
-	if(prob(33) && H.canmove && isturf(H.loc) && !H.pulledby) //won't move if being pulled
+	if(prob(33) && H.canmove && isturf(H.loc) && !H.pulledby) //won't69ove if being pulled
 		step(H, pick(cardinal))
 	if(prob(1))
 		H.emote(pick("scratch","jump","roll","tail"))
 
 /datum/species/monkey/get_random_name()
-	return "[lowertext(name)] ([rand(100,999)])"
+	return "69lowertext(name)69 (69rand(100,999)69)"

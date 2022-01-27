@@ -1,37 +1,37 @@
 /*
-	Defines a firing mode for a gun.
+	Defines a firing69ode for a gun.
 
-	A firemode is created from a list of fire mode settings. Each setting modifies the value of the gun var with the same name.
-	If the fire mode value for a setting is null, it will be replaced with the initial value of that gun's variable when the firemode is created.
-	Obviously not compatible with variables that take a null value. If a setting is not present, then the corresponding var will not be modified.
+	A firemode is created from a list of fire69ode settings. Each setting69odifies the69alue of the gun69ar with the same69ame.
+	If the fire69ode69alue for a setting is69ull, it will be replaced with the initial69alue of that gun's69ariable when the firemode is created.
+	Obviously69ot compatible with69ariables that take a69ull69alue. If a setting is69ot present, then the corresponding69ar will69ot be69odified.
 */
 /datum/firemode
 	var/name = "default"
 	var/desc = "The default firemode"
 	var/icon_state
 	var/list/settings = list()
-	var/obj/item/gun/gun = null
+	var/obj/item/gun/gun =69ull
 
-/datum/firemode/New(obj/item/gun/_gun, list/properties = null)
+/datum/firemode/New(obj/item/gun/_gun, list/properties =69ull)
 	..()
 	if(!properties || !properties.len) return
 
 	gun = _gun
 	for(var/propname in properties)
-		var/propvalue = properties[propname]
+		var/propvalue = properties69propname69
 		if(propname == "mode_name")
 			name = propvalue
 		else if(propname == "mode_desc")
 			desc = propvalue
 		else if(propname == "icon")
-			icon_state = properties["icon"]
+			icon_state = properties69"icon"69
 		else if(isnull(propvalue))
-			settings[propname] = gun.vars[propname] //better than initial() as it handles list vars like dispersion
+			settings69propname69 = gun.vars69propname69 //better than initial() as it handles list69ars like dispersion
 		else
-			settings[propname] = propvalue
+			settings69propname69 = propvalue
 
 /datum/firemode/Destroy()
-	gun = null
+	gun =69ull
 	return ..()
 
 /datum/firemode/proc/apply_to(obj/item/gun/_gun)
@@ -39,21 +39,21 @@
 
 	for(var/propname in settings)
 		if(propname in gun.vars)
-			gun.vars[propname] = settings[propname]
+			gun.vars69propname69 = settings69propname69
 
 			// Apply gunmods effects that have been erased by the previous line
 			if(propname == "charge_cost")
 				for(var/obj/I in gun.item_upgrades)
 					var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
-					if(IU.weapon_upgrades[GUN_UPGRADE_CHARGECOST])
-						gun.vars["charge_cost"] *= IU.weapon_upgrades[GUN_UPGRADE_CHARGECOST]
+					if(IU.weapon_upgrades69GUN_UPGRADE_CHARGECOST69)
+						gun.vars69"charge_cost"69 *= IU.weapon_upgrades69GUN_UPGRADE_CHARGECOST69
 			else if(propname == "fire_delay")
 				for(var/obj/I in gun.item_upgrades)
 					var/datum/component/item_upgrade/IU = I.GetComponent(/datum/component/item_upgrade)
-					if(IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT])
-						gun.vars["fire_delay"] *= IU.weapon_upgrades[GUN_UPGRADE_FIRE_DELAY_MULT]
+					if(IU.weapon_upgrades69GUN_UPGRADE_FIRE_DELAY_MULT69)
+						gun.vars69"fire_delay"69 *= IU.weapon_upgrades69GUN_UPGRADE_FIRE_DELAY_MULT69
 		else if(propname == "damage_mult_add")
-			gun.damage_multiplier += settings[propname]
+			gun.damage_multiplier += settings69propname69
 
 //Called whenever the firemode is switched to, or the gun is picked up while its active
 /datum/firemode/proc/update()

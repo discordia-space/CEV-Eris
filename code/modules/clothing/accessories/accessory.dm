@@ -8,7 +8,7 @@
 	w_class = ITEM_SIZE_SMALL
 	bad_type = /obj/item/clothing/accessory
 	var/slot = "decor"
-	var/obj/item/clothing/has_suit		//the suit the tie may be attached to
+	var/obj/item/clothing/has_suit		//the suit the tie69ay be attached to
 	var/image/inv_overlay	//overlay used when attached to clothing.
 	var/image/mob_overlay
 	var/overlay_state
@@ -24,33 +24,33 @@
 		if(!mob_overlay)
 			get_mob_overlay()
 
-		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
+		var/tmp_icon_state = "69overlay_state? "69overlay_state69" : "69icon_state69"69"
 		if(icon_override)
-			if("[tmp_icon_state]_tie" in icon_states(icon_override))
-				tmp_icon_state = "[tmp_icon_state]_tie"
-		inv_overlay = image(icon = mob_overlay.icon, icon_state = tmp_icon_state, dir = SOUTH)
+			if("69tmp_icon_state69_tie" in icon_states(icon_override))
+				tmp_icon_state = "69tmp_icon_state69_tie"
+		inv_overlay = image(icon =69ob_overlay.icon, icon_state = tmp_icon_state, dir = SOUTH)
 	return inv_overlay
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
 	if(!mob_overlay)
-		var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
+		var/tmp_icon_state = "69overlay_state? "69overlay_state69" : "69icon_state69"69"
 		if(icon_override)
-			if("[tmp_icon_state]_mob" in icon_states(icon_override))
-				tmp_icon_state = "[tmp_icon_state]_mob"
-			mob_overlay = image("icon" = icon_override, "icon_state" = "[tmp_icon_state]")
+			if("69tmp_icon_state69_mob" in icon_states(icon_override))
+				tmp_icon_state = "69tmp_icon_state69_mob"
+			mob_overlay = image("icon" = icon_override, "icon_state" = "69tmp_icon_state69")
 		else
-			mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "[tmp_icon_state]")
-	return mob_overlay
+			mob_overlay = image("icon" = INV_ACCESSORIES_DEF_ICON, "icon_state" = "69tmp_icon_state69")
+	return69ob_overlay
 
 //when user attached an accessory to S
-/obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S, var/mob/user)
+/obj/item/clothing/accessory/proc/on_attached(var/obj/item/clothing/S,69ar/mob/user)
 	if(!istype(S))
 		return
 	has_suit = S
 	loc = has_suit
 	has_suit.overlays += get_inv_overlay()
 
-	to_chat(user, SPAN_NOTICE("You attach \the [src] to \the [has_suit]."))
+	to_chat(user, SPAN_NOTICE("You attach \the 69src69 to \the 69has_suit69."))
 	src.add_fingerprint(user)
 
 /obj/item/clothing/accessory/proc/on_removed(var/mob/user)
@@ -65,11 +65,11 @@
 		src.forceMove(get_turf(src))
 
 //default attackby behaviour
-/obj/item/clothing/accessory/attackby(obj/item/I, mob/user)
+/obj/item/clothing/accessory/attackby(obj/item/I,69ob/user)
 	..()
 
 //default attack_hand behaviour
-/obj/item/clothing/accessory/attack_hand(mob/user as mob)
+/obj/item/clothing/accessory/attack_hand(mob/user as69ob)
 	if(has_suit)
 		return	//we aren't an object on the ground so don't call parent
 	..()
@@ -89,10 +89,10 @@
 
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
-	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."
+	desc = "An outdated69edical apparatus for listening to the sounds of the human body. It also69akes you look like you know what you're doing."
 	icon_state = "stethoscope"
 
-/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M,69ob/living/user)
 	// TODO: baymed, rework this to use something like get_heartbeat()
 	if(ishuman(M) && isliving(user))
 		if(user.a_intent == I_HELP)
@@ -106,8 +106,8 @@
 				var/sound = "heartbeat"
 				var/sound_strength = "cannot hear"
 				var/heartbeat = 0
-				if(M.species && M.species.has_process[OP_HEART])
-					var/obj/item/organ/internal/heart/heart = M.random_organ_by_process(OP_HEART)
+				if(M.species &&69.species.has_process69OP_HEART69)
+					var/obj/item/organ/internal/heart/heart =69.random_organ_by_process(OP_HEART)
 					if(heart && !BP_IS_ROBOTIC(heart))
 						heartbeat = 1
 				if(M.stat == DEAD || (M.status_flags&FAKEDEATH))
@@ -119,18 +119,18 @@
 							sound_strength = "hear"
 							sound = "no heartbeat"
 							if(heartbeat)
-								var/obj/item/organ/internal/heart/heart = M.random_organ_by_process(OP_HEART)
+								var/obj/item/organ/internal/heart/heart =69.random_organ_by_process(OP_HEART)
 								if(!heart)
 									return
-								if(heart.is_bruised() || M.getOxyLoss() > 50)
-									sound = "[pick("odd noises in","weak")] heartbeat"
+								if(heart.is_bruised() ||69.getOxyLoss() > 50)
+									sound = "69pick("odd noises in","weak")69 heartbeat"
 								else
 									sound = "healthy heartbeat"
 
-							if(!(M.organ_list_by_process(OP_LUNGS).len) || M.losebreath)
+							if(!(M.organ_list_by_process(OP_LUNGS).len) ||69.losebreath)
 								sound += " and no respiration"
-							else if(M.is_lung_ruptured() || M.getOxyLoss() > 50)
-								sound += " and [pick("wheezing","gurgling")] sounds"
+							else if(M.is_lung_ruptured() ||69.getOxyLoss() > 50)
+								sound += " and 69pick("wheezing","gurgling")69 sounds"
 							else
 								sound += " and healthy respiration"
 						if(BP_EYES, BP_MOUTH)
@@ -141,61 +141,61 @@
 								sound_strength = "hear a weak"
 								sound = "pulse"
 
-				user.visible_message("[user] places [src] against [M]'s [body_part] and listens attentively.", "You place [src] against [their] [body_part]. You [sound_strength] [sound].")
+				user.visible_message("69user69 places 69src69 against 69M69's 69body_part69 and listens attentively.", "You place 69src69 against 69their69 69body_part69. You 69sound_strength69 69sound69.")
 	return ..(M,user)
 
 
 //Medals
 /obj/item/clothing/accessory/medal
-	name = "bronze medal"
-	desc = "A bronze medal."
+	name = "bronze69edal"
+	desc = "A bronze69edal."
 	icon_state = "bronze"
 	price_tag = 250
 
 /obj/item/clothing/accessory/medal/conduct
-	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is most basic award on offer. It is often awarded by a captain to a member of their crew."
+	name = "distinguished conduct69edal"
+	desc = "A bronze69edal awarded for distinguished conduct. Whilst a great honor, this is69ost basic award on offer. It is often awarded by a captain to a69ember of their crew."
 
 /obj/item/clothing/accessory/medal/bronze_heart
-	name = "bronze heart medal"
-	desc = "A bronze heart-shaped medal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
+	name = "bronze heart69edal"
+	desc = "A bronze heart-shaped69edal awarded for sacrifice. It is often awarded posthumously or for severe injury in the line of duty."
 	icon_state = "bronze_heart"
 
 /obj/item/clothing/accessory/medal/nobel_science
 	name = "nobel sciences award"
-	desc = "A bronze medal which represents significant contributions to the field of science or engineering."
+	desc = "A bronze69edal which represents significant contributions to the field of science or engineering."
 
 /obj/item/clothing/accessory/medal/silver
-	name = "silver medal"
-	desc = "A silver medal."
+	name = "silver69edal"
+	desc = "A silver69edal."
 	icon_state = "silver"
 	price_tag = 500
 
 /obj/item/clothing/accessory/medal/silver/valor
-	name = "medal of valor"
-	desc = "A silver medal awarded for acts of exceptional valor."
+	name = "medal of69alor"
+	desc = "A silver69edal awarded for acts of exceptional69alor."
 
 /obj/item/clothing/accessory/medal/silver/security
 	name = "robust security award"
 	desc = "An award for distinguished combat and sacrifice in defence of corporate commercial interests. Often awarded to security staff."
 
 /obj/item/clothing/accessory/medal/gold
-	name = "gold medal"
-	desc = "A prestigious golden medal."
+	name = "gold69edal"
+	desc = "A prestigious golden69edal."
 	icon_state = "gold"
 	price_tag = 1000
 
 /obj/item/clothing/accessory/medal/gold/captain
 	name = "medal of captaincy"
-	desc = "A golden medal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain, and their undisputable authority over their crew."
+	desc = "A golden69edal awarded exclusively to those promoted to the rank of captain. It signifies the codified responsibilities of a captain, and their undisputable authority over their crew."
 
 /obj/item/clothing/accessory/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by company officials. To recieve such a medal is the highest honor and as such, very few exist. This medal is almost never awarded to anybody but commanders."
+	desc = "An extremely rare golden69edal awarded only by company officials. To recieve such a69edal is the highest honor and as such,69ery few exist. This69edal is almost never awarded to anybody but commanders."
 
 /obj/item/clothing/accessory/armor
 	name = "armor plates"
-	desc = "Plates from an armored vest, now usable to reinforce clothes."
+	desc = "Plates from an armored69est, now usable to reinforce clothes."
 	slot = "armor"
 	icon_state = "armor"
 	w_class = ITEM_SIZE_NORMAL
@@ -225,7 +225,7 @@
 
 /obj/item/clothing/accessory/armor/bullet
 	name = "bulletproof armor plates"
-	desc = "Plates from a bulletproof vest, now usable to reinforce clothes."
+	desc = "Plates from a bulletproof69est, now usable to reinforce clothes."
 	icon_state = "armor_bullet"
 	armor = list(
 		melee = 20,
@@ -240,7 +240,7 @@
 		MATERIAL_PLASTEEL = 3,
 	)
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
 /obj/item/clothing/accessory/armor/platecarrier
 	name = "platecarrier armor plates"
@@ -272,8 +272,8 @@
 		bio = 0,
 		rad = 0
 	)
-	slowdown = MEDIUM_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
+	slowdown =69EDIUM_SLOWDOWN
+	stiffness =69EDIUM_STIFFNESS
 
 /obj/item/clothing/accessory/armor/laser
 	name = "ablative armor plates"

@@ -20,7 +20,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		TECH_COVERT = 5000,
 	)
 
-	// So we don't give points for researching non-artifact item
+	// So we don't give points for researching69on-artifact item
 	var/static/list/artifact_types = list(
 		/obj/machinery/auto_cloner,
 		/obj/machinery/power/supermatter,
@@ -38,10 +38,10 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 	// Special point amount for autopsy weapons
 	var/static/list/special_weapons = list(
-		"large organic needle" = 10000,
+		"large organic69eedle" = 10000,
 		"Hulk Foot" = 10000,
 		"Explosive blast" = 5000,
-		"Electronics meltdown" = 4000,
+		"Electronics69eltdown" = 4000,
 		"Low Pressure" = 3000,
 		"Facepalm" = 2000,
 	)
@@ -57,10 +57,10 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	)
 
 /*
-/datum/experiment_data/proc/ConvertReqString2List(list/source_list)
+/datum/experiment_data/proc/ConvertRe69String2List(list/source_list)
 	var/list/temp_list = params2list(source_list)
 	for(var/O in temp_list)
-		temp_list[O] = text2num(temp_list[O])
+		temp_list69O69 = text2num(temp_list69O69)
 	return temp_list
 */
 // TODO: unify this with do_research_object?
@@ -71,19 +71,19 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/is_board = istype(I, /obj/item/electronics/circuitboard)
 
 	for(var/T in temp_tech)
-		if(tech_points[T])
+		if(tech_points69T69)
 			if(ignoreRepeat)
-				item_tech_points += temp_tech[T] * tech_points[T]
+				item_tech_points += temp_tech69T69 * tech_points69T69
 			else
-				if(saved_tech_levels[T] && (temp_tech[T] in saved_tech_levels[T])) // You only get a fraction of points if you researched items with this level already
-					if(!is_board) // Boards are cheap to make so we don't give any points for repeats
-						item_tech_points += temp_tech[T] * tech_points[T] * 0.1
+				if(saved_tech_levels69T69 && (temp_tech69T69 in saved_tech_levels69T69)) // You only get a fraction of points if you researched items with this level already
+					if(!is_board) // Boards are cheap to69ake so we don't give any points for repeats
+						item_tech_points += temp_tech69T69 * tech_points69T69 * 0.1
 				else
-					item_tech_points += temp_tech[T] * tech_points[T]
+					item_tech_points += temp_tech69T69 * tech_points69T69
 					has_new_tech = TRUE
 
 	if(!ignoreRepeat && !has_new_tech) // We are deconstucting the same items, cut the reward really hard
-		item_tech_points = min(item_tech_points, 400)
+		item_tech_points =69in(item_tech_points, 400)
 
 	return round(item_tech_points)
 
@@ -91,11 +91,11 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	var/list/temp_tech = I.origin_tech
 
 	for(var/T in temp_tech)
-		if(!saved_tech_levels[T])
-			saved_tech_levels[T] = list()
+		if(!saved_tech_levels69T69)
+			saved_tech_levels69T69 = list()
 
-		if(!(temp_tech[T] in saved_tech_levels[T]))
-			saved_tech_levels[T] += temp_tech[T]
+		if(!(temp_tech69T69 in saved_tech_levels69T69))
+			saved_tech_levels69T69 += temp_tech69T69
 
 
 
@@ -107,18 +107,18 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		if(!(weapon in saved_autopsy_weapons))
 			saved_autopsy_weapons += weapon
 
-			if(special_weapons[weapon])
-				points += special_weapons[weapon]
+			if(special_weapons69weapon69)
+				points += special_weapons69weapon69
 			else
 				points += AUTOPSY_WEAPON_PAMT
 
 	for(var/list/artifact in I.scanned_artifacts)
-		if(!(artifact["type"] in artifact_types)) // useless
+		if(!(artifact69"type"69 in artifact_types)) // useless
 			continue
 
 		var/already_scanned = FALSE
 		for(var/list/our_artifact in saved_artifacts)
-			if(our_artifact["type"] == artifact["type"] && our_artifact["first_effect"] == artifact["first_effect"] && our_artifact["second_effect"] == artifact["second_effect"])
+			if(our_artifact69"type"69 == artifact69"type"69 && our_artifact69"first_effect"69 == artifact69"first_effect"69 && our_artifact69"second_effect"69 == artifact69"second_effect"69)
 				already_scanned = TRUE
 				break
 
@@ -127,14 +127,14 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 			saved_artifacts += list(artifact)
 
 	for(var/symptom in I.scanned_symptoms)
-		if(saved_symptoms[symptom])
+		if(saved_symptoms69symptom69)
 			continue
 
-		var/level = I.scanned_symptoms[symptom]
-		if(level_to_points[level])
-			points += level_to_points[level]
+		var/level = I.scanned_symptoms69symptom69
+		if(level_to_points69level69)
+			points += level_to_points69level69
 
-		saved_symptoms[symptom] = level
+		saved_symptoms69symptom69 = level
 
 	for(var/core in I.scanned_slimecores)
 		if(core in saved_slimecores)
@@ -142,7 +142,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 		var/reward = 1000
 		if(core in core_points)
-			reward = core_points[core]
+			reward = core_points69core69
 		points += reward
 		saved_slimecores += core
 
@@ -151,10 +151,10 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 /datum/experiment_data/proc/merge_with(datum/experiment_data/O)
 	for(var/tech in O.saved_tech_levels)
-		if(!saved_tech_levels[tech])
-			saved_tech_levels[tech] = list()
+		if(!saved_tech_levels69tech69)
+			saved_tech_levels69tech69 = list()
 
-		saved_tech_levels[tech] |= O.saved_tech_levels[tech]
+		saved_tech_levels69tech69 |= O.saved_tech_levels69tech69
 
 	for(var/weapon in O.saved_autopsy_weapons)
 		saved_autopsy_weapons |= weapon
@@ -162,22 +162,22 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	for(var/list/artifact in O.saved_artifacts)
 		var/has_artifact = FALSE
 		for(var/list/our_artifact in saved_artifacts)
-			if(our_artifact["type"] == artifact["type"] && our_artifact["first_effect"] == artifact["first_effect"] && our_artifact["second_effect"] == artifact["second_effect"])
+			if(our_artifact69"type"69 == artifact69"type"69 && our_artifact69"first_effect"69 == artifact69"first_effect"69 && our_artifact69"second_effect"69 == artifact69"second_effect"69)
 				has_artifact = TRUE
 				break
 		if(!has_artifact)
 			saved_artifacts += list(artifact)
 
 	for(var/symptom in O.saved_symptoms)
-		saved_symptoms[symptom] = O.saved_symptoms[symptom]
+		saved_symptoms69symptom69 = O.saved_symptoms69symptom69
 
 	for(var/core in O.saved_slimecores)
 		saved_slimecores |= core
 
-	saved_best_explosion = max(saved_best_explosion, O.saved_best_explosion)
+	saved_best_explosion =69ax(saved_best_explosion, O.saved_best_explosion)
 
 
-// Grants research points when explosion happens nearby
+// Grants research points when explosion happens69earby
 /obj/item/device/radio/beacon/explosion_watcher
 	name = "Kinetic Energy Scanner"
 	desc = "Scans the level of kinetic energy from explosions"
@@ -202,8 +202,8 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		if(RD.id == 1) // only core gets the science
 			var/saved_power_level = RD.files.experiments.saved_best_explosion
 
-			var/added_power = max(0, power - saved_power_level)
-			var/already_earned_power = min(saved_power_level, power)
+			var/added_power =69ax(0, power - saved_power_level)
+			var/already_earned_power =69in(saved_power_level, power)
 
 			calculated_research_points = added_power * 1000 + already_earned_power * 200
 
@@ -213,16 +213,16 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 			RD.files.adjust_research_points(calculated_research_points)
 
 	if(calculated_research_points > 0)
-		autosay("Detected explosion with power level [power], received [calculated_research_points] research points", name ,"Science")
+		autosay("Detected explosion with power level 69power69, received 69calculated_research_points69 research points",69ame ,"Science")
 	else
-		autosay("Detected explosion with power level [power], R&D console is missing or broken", name ,"Science")
+		autosay("Detected explosion with power level 69power69, R&D console is69issing or broken",69ame ,"Science")
 
-// Universal tool to get research points from autopsy reports, virus info reports, archeology reports, slime cores
+// Universal tool to get research points from autopsy reports,69irus info reports, archeology reports, slime cores
 /obj/item/device/science_tool
 	name = "science tool"
 	icon_state = "science"
 	item_state = "sciencetool"
-	desc = "A hand-held device capable of extracting usefull data from various sources, such as paper reports and slime cores."
+	desc = "A hand-held device capable of extracting usefull data from69arious sources, such as paper reports and slime cores."
 	flags = CONDUCT
 	slot_flags = SLOT_BELT
 	throwforce = 3
@@ -232,7 +232,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1, TECH_BIO = 1)
 	spawn_tags = SPAWN_TAG_DIVICE_SCIENCE
-	spawn_frequency = 5
+	spawn_fre69uency = 5
 	rarity_value = 8
 
 	var/datum/experiment_data/experiments
@@ -244,12 +244,12 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 /obj/item/device/science_tool/Initialize()
 	. = ..()
-	experiments = new
+	experiments =69ew
 
-/obj/item/device/science_tool/attack(mob/living/M, mob/living/user)
+/obj/item/device/science_tool/attack(mob/living/M,69ob/living/user)
 	return
 
-/obj/item/device/science_tool/afterattack(obj/O, mob/living/user)
+/obj/item/device/science_tool/afterattack(obj/O,69ob/living/user)
 	var/scanneddata = 0
 
 	if(istype(O,/obj/item/paper/autopsy_report))
@@ -263,8 +263,8 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 		var/obj/item/paper/artifact_info/report = O
 		if(report.artifact_type)
 			for(var/list/artifact in scanned_artifacts)
-				if(artifact["type"] == report.artifact_type && artifact["first_effect"] == report.artifact_first_effect && artifact["second_effect"] == report.artifact_second_effect)
-					to_chat(user, SPAN_NOTICE("[src] already has data about this artifact report"))
+				if(artifact69"type"69 == report.artifact_type && artifact69"first_effect"69 == report.artifact_first_effect && artifact69"second_effect"69 == report.artifact_second_effect)
+					to_chat(user, SPAN_NOTICE("69src69 already has data about this artifact report"))
 					return
 
 			scanned_artifacts += list(list(
@@ -277,9 +277,9 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 	if(istype(O, /obj/item/paper/virus_report))
 		var/obj/item/paper/virus_report/report = O
 		for(var/symptom in report.symptoms)
-			if(!scanned_symptoms[symptom])
+			if(!scanned_symptoms69symptom69)
 				scanneddata += 1
-				scanned_symptoms[symptom] = report.symptoms[symptom]
+				scanned_symptoms69symptom69 = report.symptoms69symptom69
 	if(istype(O, /obj/item/slime_extract))
 		if(!(O.type in scanned_slimecores))
 			scanned_slimecores += O.type
@@ -287,13 +287,13 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 	if(scanneddata > 0)
 		datablocks += scanneddata
-		to_chat(user, SPAN_NOTICE("[src] received [scanneddata] data block[scanneddata>1?"s":""] from scanning [O]"))
+		to_chat(user, SPAN_NOTICE("69src69 received 69scanneddata69 data block69scanneddata>1?"s":""69 from scanning 69O69"))
 	else if(istype(O, /obj/item))
 		var/science_value = experiments.get_object_research_value(O)
 		if(science_value > 0)
-			to_chat(user, SPAN_NOTICE("Estimated research value of [O.name] is [science_value]"))
+			to_chat(user, SPAN_NOTICE("Estimated research69alue of 69O.name69 is 69science_value69"))
 		else
-			to_chat(user, SPAN_NOTICE("[O] has no research value"))
+			to_chat(user, SPAN_NOTICE("69O69 has69o research69alue"))
 
 /obj/item/device/science_tool/proc/clear_data()
 	scanned_autopsy_weapons = list()
@@ -304,31 +304,31 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 /obj/item/computer_hardware/hard_drive/portable/research_points/proc/get_title()
 	var/list/verb_ion = list("exploration", "development", "refinement", "investigation", "analysis", "improvement", "emulation", "simulation", "construction", "evaluation", "deployment", "synthesis", "visualization")
-	var/list/prefixes = list("","[pick(verb_ion)]: ")
-	var/list/suffixes = list("using [pick(verb_ion)]","with [pick(verb_ion)]")
-	var/list/subjects = list("proprioception", "implants", "null space", "AI", "neural networks", "drones", "cyborgs", "human thought", "materiel", "materials", "microgravity", "artificial gravity", "MMIs", "brain death", "system shock", "SSD", "memory transcription", "closed intranets", "internal networks", "bluespace fault tolerance", "bluespace translocation", "firewalls", "ICE", "symmetric encryption", "NTNet", "low-light ecosystems", "algorithms", "systems", "ionospheric anomalies", "mass hallucinations", "human experimentation")
+	var/list/prefixes = list("","69pick(verb_ion)69: ")
+	var/list/suffixes = list("using 69pick(verb_ion)69","with 69pick(verb_ion)69")
+	var/list/subjects = list("proprioception", "implants", "null space", "AI", "neural69etworks", "drones", "cyborgs", "human thought", "materiel", "materials", "microgravity", "artificial gravity", "MMIs", "brain death", "system shock", "SSD", "memory transcription", "closed intranets", "internal69etworks", "bluespace fault tolerance", "bluespace translocation", "firewalls", "ICE", "symmetric encryption", "NTNet", "low-light ecosystems", "algorithms", "systems", "ionospheric anomalies", "mass hallucinations", "human experimentation")
 	var/list/impact = list("impact of", "effect of", "influence of")
 	var/list/verb_ing = list("harnessing", "enabling", "exploring", "controlling", "developing", "refining", "investigating", "improving", "analyzing", "constructing", "simulating", "evaluating", "emulating", "deploying", "synthesizing", "visualizing", "studying")
 	var/list/buzzword_nouns = list("wetware", "technology", "nanotechnology", "communication", "algorithms", "theory", "methodologies", "information", "models", "archetypes", "configurations", "modalities", "symmetries", "epistemologies", "gradients", "plots", "matrices", "manifolds", "methods")
-	var/list/buzzword_adjs = list("n-dimensional", "anomalistic", "parallel", "noisy", "discrete", "exhaustive", "randomized", "pipelined", "critical", "heuristic", "bluespace", "high-throughput", "peer-to-peer", "game-theoretic", "knowledge-based", "relational", "compact", "ubiquitous", "linear-time", "fuzzy", "embedded", "constant-time", "client-server", "efficient", "reliable", "replicated", "low-energy", "omniscient", "wireless", "modular", "autonomous", "introspective", "distributed", "flexible", "extensible", "amphibious", "metamorphic", "ambimorphic", "permutable", "adaptive", "self-learning", "trainable", "smart", "classical", "atomic", "event-driven", "read-write", "encrypted", "highly-available", "secure", "interposable", "cacheable", "perfect", "electronic", "pervasive", "large-scale", "multimodal", "authenticated", "interactive", "heterogeneous", "homogeneous", "collaborative", "concurrent", "probabilistic", "mobile", "semantic", "real-time", "cooperative", "decentralized", "scalable", "certifiable", "robust", "signed", "virtual", "lossless", "psychoacoustic", "empathic", "optimal", "stable", "unstable", "symbiotic", "stochastic", "Monte Carlo", "pseudorandom")
-	var/buzzword_adj_multi = "[pick(buzzword_adjs)], [pick(buzzword_adjs)]"
+	var/list/buzzword_adjs = list("n-dimensional", "anomalistic", "parallel", "noisy", "discrete", "exhaustive", "randomized", "pipelined", "critical", "heuristic", "bluespace", "high-throughput", "peer-to-peer", "game-theoretic", "knowledge-based", "relational", "compact", "ubi69uitous", "linear-time", "fuzzy", "embedded", "constant-time", "client-server", "efficient", "reliable", "replicated", "low-energy", "omniscient", "wireless", "modular", "autonomous", "introspective", "distributed", "flexible", "extensible", "amphibious", "metamorphic", "ambimorphic", "permutable", "adaptive", "self-learning", "trainable", "smart", "classical", "atomic", "event-driven", "read-write", "encrypted", "highly-available", "secure", "interposable", "cacheable", "perfect", "electronic", "pervasive", "large-scale", "multimodal", "authenticated", "interactive", "heterogeneous", "homogeneous", "collaborative", "concurrent", "probabilistic", "mobile", "semantic", "real-time", "cooperative", "decentralized", "scalable", "certifiable", "robust", "signed", "virtual", "lossless", "psychoacoustic", "empathic", "optimal", "stable", "unstable", "symbiotic", "stochastic", "Monte Carlo", "pseudorandom")
+	var/buzzword_adj_multi = "69pick(buzzword_adjs)69, 69pick(buzzword_adjs)69"
 	var/list/fields = list("cyanocommunication", "cyanotranslocation", "population control", "psychoanalysis", "networking", "operating systems", "programming languages", "theory", "algorithms", "chaos theory", "artificial intelligence", "machine learning", "robotics", "electrical engineering", "cyborg engineering", "drone fabrication", "cryptography", "cryptanalysis", "cyberinformatics", "steganography", "software engineering", "information control", "memetics")
 	var/list/compare = list("comparing", "contrasting", "the relationship between", pick(verb_ing))
 	var/list/status = list("ethical", "unethical", "harmful", "desirable", "detrimental", "practical", "effective", "beneficial", "crucial", "instrumental")
-	var/list/titles = list("[pick(prefixes)][pick(verb_ion)] of [pick(subjects)]",
-							"on the [pick(verb_ion)] of [pick(subjects)]",
-							"a [pick(verb_ion)] of [pick(subjects)] [pick(suffixes)]",
-							"[pick(subjects)] [pick("","no longer ")]considered [pick(status)] in [pick("","[pick(buzzword_adjs)] ")][pick(fields)]",
-							"deconstructing [pick(subjects)] [pick(suffixes)]",
-							"decoupling [pick(subjects)] from [pick(subjects)] in [pick(subjects)]",
-							"[pick(prefixes)]a methodology for the [pick(verb_ion)] of [pick(subjects)]",
-							"a case [pick("for", "against")] [pick(subjects)]",
-							"[pick(verb_ing)] [pick(subjects)] using [pick(buzzword_adjs)] [pick(buzzword_nouns)]",
-							"[pick(verb_ing)] [pick(subjects)] and [pick(subjects)] [pick(suffixes)]",
-							"[pick(prefixes)][buzzword_adj_multi] [pick(buzzword_nouns)]",
-							"[pick(compare)] [pick(subjects)] and [pick(subjects)] [pick(suffixes)]",
-							"the [pick(impact)] [pick(buzzword_adjs)] [pick(buzzword_nouns)] on [pick("","[pick(buzzword_adjs)] ")][pick(fields)]",
-							"[buzzword_adj_multi] [pick(buzzword_nouns)] for [pick(subjects)]")
+	var/list/titles = list("69pick(prefixes)6969pick(verb_ion)69 of 69pick(subjects)69",
+							"on the 69pick(verb_ion)69 of 69pick(subjects)69",
+							"a 69pick(verb_ion)69 of 69pick(subjects)69 69pick(suffixes)69",
+							"69pick(subjects)69 69pick("","no longer ")69considered 69pick(status)69 in 69pick("","69pick(buzzword_adjs)69 ")6969pick(fields)69",
+							"deconstructing 69pick(subjects)69 69pick(suffixes)69",
+							"decoupling 69pick(subjects)69 from 69pick(subjects)69 in 69pick(subjects)69",
+							"69pick(prefixes)69a69ethodology for the 69pick(verb_ion)69 of 69pick(subjects)69",
+							"a case 69pick("for", "against")69 69pick(subjects)69",
+							"69pick(verb_ing)69 69pick(subjects)69 using 69pick(buzzword_adjs)69 69pick(buzzword_nouns)69",
+							"69pick(verb_ing)69 69pick(subjects)69 and 69pick(subjects)69 69pick(suffixes)69",
+							"69pick(prefixes)6969buzzword_adj_multi69 69pick(buzzword_nouns)69",
+							"69pick(compare)69 69pick(subjects)69 and 69pick(subjects)69 69pick(suffixes)69",
+							"the 69pick(impact)69 69pick(buzzword_adjs)69 69pick(buzzword_nouns)69 on 69pick("","69pick(buzzword_adjs)69 ")6969pick(fields)69",
+							"69buzzword_adj_multi69 69pick(buzzword_nouns)69 for 69pick(subjects)69")
 	return capitalize(pick(titles))
 /obj/item/computer_hardware/hard_drive/portable/research_points
 	desc = "A removable disk used to store large amounts of research data."
@@ -344,7 +344,7 @@ GLOBAL_LIST_EMPTY(explosion_watcher_list)
 
 /obj/item/computer_hardware/hard_drive/portable/research_points/install_default_files()
 	..()
-	var/datum/computer_file/binary/research_points/F = new(size = rand(min_points / 1000, max_points / 1000))
+	var/datum/computer_file/binary/research_points/F =69ew(size = rand(min_points / 1000,69ax_points / 1000))
 	store_file(F)
 
 /obj/item/computer_hardware/hard_drive/portable/research_points/rare

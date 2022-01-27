@@ -28,9 +28,9 @@ SUBSYSTEM_DEF(economy)
 
 	// Departments pay to departments first
 	for(var/i in department_accounts)
-		var/datum/money_account/A = department_accounts[i]
-		var/datum/department/D = GLOB.all_departments[A.department_id]
-		var/datum/department/ED = GLOB.all_departments[D.funding_source]
+		var/datum/money_account/A = department_accounts69i69
+		var/datum/department/D = GLOB.all_departments69A.department_id69
+		var/datum/department/ED = GLOB.all_departments69D.funding_source69
 
 		if(!A.employer)
 			continue
@@ -66,8 +66,8 @@ SUBSYSTEM_DEF(economy)
 		if(amount_to_pay <= 0)
 			continue
 
-		var/datum/department/ED = GLOB.all_departments[A.employer]
-		var/datum/money_account/EA = department_accounts[ED.id]
+		var/datum/department/ED = GLOB.all_departments69A.employer69
+		var/datum/money_account/EA = department_accounts69ED.id69
 		var/datum/computer_file/report/crew_record/R = get_crewmember_record(A.owner_name)
 
 		if(amount_to_pay <= EA.money)
@@ -76,16 +76,16 @@ SUBSYSTEM_DEF(economy)
 			ED.total_debt -= A.debt
 			A.debt = 0
 			if(R)
-				payroll_mail_account_holder(R, "[ED.name] account", amount_to_pay)
+				payroll_mail_account_holder(R, "69ED.name69 account", amount_to_pay)
 		else
 			A.debt += A.wage
 			ED.total_debt += A.wage
 			// payroll_mail_where_is_my_money
 
-	// Mail commanding officers and politely ask "Where's the fucking money, shithead?"
+	//69ail commanding officers and politely ask "Where's the fucking69oney, shithead?"
 	for(var/i in GLOB.all_departments)
-		var/datum/department/D = GLOB.all_departments[i]
-		var/datum/money_account/A = department_accounts[D.id]
+		var/datum/department/D = GLOB.all_departments69i69
+		var/datum/money_account/A = department_accounts69D.id69
 		if(D.total_debt && A)
 			var/ownername = A.owner_name
 			if(ownername)
@@ -94,28 +94,28 @@ SUBSYSTEM_DEF(economy)
 					payroll_failure_mail(R, A, D.total_debt)
 
 	total_paid = paid_internal + paid_external
-	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned [total_paid] credits, including [paid_external] credits from external sources.\n Please contact your Department Heads in case of errors or missing payments.", "Dispensation")
+	command_announcement.Announce("Hourly crew wages have been paid, please check your email for details. In total the crew of CEV Eris have earned 69total_paid69 credits, including 69paid_external69 credits from external sources.\n Please contact your Department Heads in case of errors or69issing payments.", "Dispensation")
 
 
 //Sent to a head of staff when their department account fails to pay out wages
-/proc/payroll_failure_mail(var/datum/computer_file/report/crew_record/R, var/datum/money_account/fail_account, var/amount)
+/proc/payroll_failure_mail(var/datum/computer_file/report/crew_record/R,69ar/datum/money_account/fail_account,69ar/amount)
 	var/address = R.get_email()
 
 	var/datum/computer_file/data/email_message/message = new()
 	message.title = "Payment Processing Error"
 
-	message.stored_data = "Warning: Automated payroll processing has failed for account \"[fail_account.get_name()]\"\n\n \
-	The pending balance to pay out is [amount][CREDITS]\n \
+	message.stored_data = "Warning: Automated payroll processing has failed for account \"69fail_account.get_name()69\"\n\n \
+	The pending balance to pay out is 69amount6969CREDITS69\n \
 	Crewmembers who should be paid from this account have not been paid. \n\n \
-	The pending payments will roll over and another attempt will be made in one hour. Please ensure the account balance is corrected\n"
+	The pending payments will roll over and another attempt will be69ade in one hour. Please ensure the account balance is corrected\n"
 
 	message.source = payroll_mailer.login
-	if(!payroll_mailer.send_mail(address, message))
+	if(!payroll_mailer.send_mail(address,69essage))
 		return FALSE
 	return TRUE
 
 
-/proc/payroll_mail_account_holder(var/datum/computer_file/report/crew_record/R, var/sender, var/amount)
+/proc/payroll_mail_account_holder(var/datum/computer_file/report/crew_record/R,69ar/sender,69ar/amount)
 	//In future, this will be expanded to include a report on penalties, bonuses and taxes that affected your wages
 
 	var/address = R.get_email()
@@ -124,12 +124,12 @@ SUBSYSTEM_DEF(economy)
 	message.title = "You have recieved funds"
 
 	message.stored_data = "You have recieved a payment\n\n \
-	From: [sender]\n \
+	From: 69sender69\n \
 	Reason: Regular Wages\n\n \
 	----------------------------\n \
-	Balance: [amount][CREDITS] \n\n"
+	Balance: 69amount6969CREDITS69 \n\n"
 
 	message.source = payroll_mailer.login
-	if(!payroll_mailer.send_mail(address, message))
+	if(!payroll_mailer.send_mail(address,69essage))
 		return FALSE
 	return TRUE

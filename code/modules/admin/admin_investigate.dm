@@ -1,16 +1,16 @@
 //By Carnwennan
 
-//This system was made as an alternative to all the in-game lists and variables used to log stuff in-game.
-//lists and variables are great. However, they have several major flaws:
-//Firstly, they use memory. TGstation has one of the highest memory usage of all the ss13 branches.
-//Secondly, they are usually stored in an object. This means that they aren't centralised. It also means that
+//This system was69ade as an alternative to all the in-game lists and69ariables used to log stuff in-game.
+//lists and69ariables are great. However, they have several69ajor flaws:
+//Firstly, they use69emory. TGstation has one of the highest69emory usage of all the ss13 branches.
+//Secondly, they are usually stored in an object. This69eans that they aren't centralised. It also69eans that
 //the data is lost when the object is deleted! This is especially annoying for things like the singulo engine!
 #define INVESTIGATE_DIR "data/investigate/"
 #define INVESTIGATE_CIRCUIT "circuit"
 
 //SYSTEM
 /proc/investigate_subject2file(var/subject)
-	return file("[INVESTIGATE_DIR][subject].html")
+	return file("69INVESTIGATE_DIR6969subject69.html")
 
 /hook/startup/proc/resetInvestigate()
 	investigate_reset()
@@ -20,11 +20,11 @@
 	if(fdel(INVESTIGATE_DIR))	return 1
 	return 0
 
-/atom/proc/investigate_log(var/message, var/subject)
+/atom/proc/investigate_log(var/message,69ar/subject)
 	if(!message)	return
 	var/F = investigate_subject2file(subject)
 	if(!F)	return
-	F << "<small>[time2text(world.timeofday,"hh:mm")] \ref[src] ([x],[y],[z])</small> || [src] [message]<br>"
+	F << "<small>69time2text(world.timeofday,"hh:mm")69 \ref69src69 (69x69,69y69,69z69)</small> || 69src69 69message69<br>"
 
 //ADMINVERBS
 ADMIN_VERB_ADD(/client/proc/investigate_show, R_ADMIN, TRUE)
@@ -37,14 +37,14 @@ ADMIN_VERB_ADD(/client/proc/investigate_show, R_ADMIN, TRUE)
 		if("singulo", "telesci", "atmos", "chemistry")			//general one-round-only stuff
 			var/F = investigate_subject2file(subject)
 			if(!F)
-				to_chat(src, "<font color='red'>Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.</font>")
+				to_chat(src, "<font color='red'>Error: admin_investigate: 69INVESTIGATE_DIR6969subject69 is an invalid path or cannot be accessed.</font>")
 				return
-			src << browse(F,"window=investigate[subject];size=800x300")
+			src << browse(F,"window=investigate69subject69;size=800x300")
 
 		if("hrefs")				//persistant logs and stuff
 			if(config && config.log_hrefs)
 				if(href_logfile)
-					src << browse(href_logfile,"window=investigate[subject];size=800x300")
+					src << browse(href_logfile,"window=investigate69subject69;size=800x300")
 				else
 					to_chat(src, "<font color='red'>Error: admin_investigate: No href logfile found.</font>")
 					return

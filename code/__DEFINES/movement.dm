@@ -1,13 +1,13 @@
-#define MOVE_DELAY_MIN 1 // Absolute minimum of movement delay - cannot be lowered further by any means
-#define MOVE_DELAY_BASE 1.1
-#define MOVE_DELAY_VENTCRAWL MOVE_DELAY_BASE //Ventcrawling has a static speed for all mobs
+#define69OVE_DELAY_MIN 1 // Absolute69inimum of69ovement delay - cannot be lowered further by any69eans
+#define69OVE_DELAY_BASE 1.1
+#define69OVE_DELAY_VENTCRAWL69OVE_DELAY_BASE //Ventcrawlin69 has a static speed for all69obs
 
-//Glidesize
-#define FRACTIONAL_GLIDESIZES 1
-#ifdef FRACTIONAL_GLIDESIZES
-#define DELAY2GLIDESIZE(delay) (world.icon_size / max(CEILING(delay / world.tick_lag, 1), 1))
+//69lidesize
+#define FRACTIONAL_69LIDESIZES 1
+#ifdef FRACTIONAL_69LIDESIZES
+#define DELAY269LIDESIZE(delay) (world.icon_size /69ax(CEILIN69(delay / world.tick_la69, 1), 1))
 #else
-#define DELAY2GLIDESIZE(delay) (CEILING(world.icon_size / max(CEILING(delay / world.tick_lag, 1), 1)))
+#define DELAY269LIDESIZE(delay) (CEILIN69(world.icon_size /69ax(CEILIN69(delay / world.tick_la69, 1), 1)))
 #endif
 
 
@@ -19,10 +19,10 @@
 #define DEL_TRANSFORMATION_MOVEMENT_HANDLER(X) X.RemoveMovementHandler(/datum/movement_handler/mob/transformation)
 
 
-// Quick and deliberate movements are not necessarily mutually exclusive
-#define MOVE_INTENT_DELIBERATE 0x0001
-#define MOVE_INTENT_EXERTIVE   0x0002
-#define MOVE_INTENT_QUICK      0x0004
+// 69uick and deliberate69ovements are69ot69ecessarily69utually exclusive
+#define69OVE_INTENT_DELIBERATE 0x0001
+#define69OVE_INTENT_EXERTIVE   0x0002
+#define69OVE_INTENT_69UICK      0x0004
 
-#define MOVING_DELIBERATELY(X) (X.move_intent.flags & MOVE_INTENT_DELIBERATE)
-#define MOVING_QUICKLY(X) (X.move_intent.flags & MOVE_INTENT_QUICK)
+#define69OVIN69_DELIBERATELY(X) (X.move_intent.fla69s &69OVE_INTENT_DELIBERATE)
+#define69OVIN69_69UICKLY(X) (X.move_intent.fla69s &69OVE_INTENT_69UICK)

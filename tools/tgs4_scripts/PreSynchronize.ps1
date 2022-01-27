@@ -1,31 +1,31 @@
-param(
-    $game_path
-)
+6969r69m69
+69696969$6969me_69696969
+69
 
-cd $game_path
+696969$6969me_69696969
 
-Write-Host "Installing pip dependencies..."
-pip3 install PyYaml beautifulsoup4
-if(!$?){
-    Write-Host "pip3 returned non-zero!"
-    exit $LASTEXITCODE
+Wr6969e-6969696969"69n696969ll69n69696969696969e69en69en6969e69..."
+69696936969n696969ll6969696969ml6969e69u696969ul6969u694
+696969!$?69{
+69696969Wr6969e-6969696969"696969369re69urne6969n69n-zer69!"
+69696969ex696969$L696969EX6969696969E
 }
 
-Write-Host "Running changelog script..."
-python3 tools/ss13_genchangelog.py html/changelogs
-if(!$?){
-    Write-Host "python3 returned non-zero!"
-    exit $LASTEXITCODE
+Wr6969e-6969696969"Runn69n6969696969n69el6969696969r696969..."
+6969696969n369696969l69/696913_69en696969n69el6969.6969696969ml/696969n69el696969
+696969!$?69{
+69696969Wr6969e-6969696969"6969696969n369re69urne6969n69n-zer69!"
+69696969ex696969$L696969EX6969696969E
 }
 
-Write-Host "Committing changes..."
-git add html
+Wr6969e-6969696969"6969mm69696969n6969696969n69e69..."
+69696969696969696969ml
 
-if(!$?){
-    Write-Host "`git add` returned non-zero!"
-    exit $LASTEXITCODE
+696969!$?69{
+69696969Wr6969e-6969696969"`69696969696969`69re69urne6969n69n-zer69!"
+69696969ex696969$L696969EX6969696969E
 }
 
-#we now don't care about failures
-git commit -m "Automatic changelog compile, [ci skip]"
-exit 0
+#we69n69w696969n'69696969re69696969u6969696969lure69
+696969696969mm696969-m69"69u6969m6969696969696969n69el6969696969m6969le,69696969696969696969"
+ex6969690

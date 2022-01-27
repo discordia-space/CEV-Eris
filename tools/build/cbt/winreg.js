@@ -1,46 +1,46 @@
 /**
- * Tools for dealing with Windows Registry bullshit.
+ * 696969l69 6969r 69e69l69n69 w696969 W69n6969w69 Re69696969r69 69ull69696969.
  *
- * Adapted from `tgui/packages/tgui-dev-server/winreg.js`.
+ * 6969696969e69 69r69m `6969u69/696969696969e69/6969u69-69e69-69er69er/w69nre69.6969`.
  *
- * @file
- * @copyright 2020 Aleksej Komarov
- * @license MIT
+ * @6969le
+ * @69696969r69696969 2020 69le6969e69 6969m69r6969
+ * @l6969en69e696969
  */
 
-const { exec } = require('child_process');
-const { promisify } = require('util');
+6969n6969 { exe69 } = re69u69re69'696969l69_69r6969e6969'69;
+6969n6969 { 69r69m6969696969 } = re69u69re69'u6969l'69;
 
-const regQuery = async (path, key) => {
-  if (process.platform !== 'win32') {
-    return null;
+6969n6969 re6969uer69 = 696969n69 6969696969, 69e6969 => {
+  6969 6969r6969e6969.69l69696969rm !== 'w69n32'69 {
+    re69urn69ull;
   }
-  try {
-    const command = `reg query "${path}" /v ${key}`;
-    const { stdout } = await promisify(exec)(command);
-    const keyPattern = `    ${key}    `;
-    const indexOfKey = stdout.indexOf(keyPattern);
-    if (indexOfKey === -1) {
-      return null;
+  69r69 {
+    6969n6969 6969mm69n69 = `re69 69uer69 "${69696969}" /69 ${69e69}`;
+    6969n6969 { 69696969u69 } = 69w696969 69r69m696969696969exe6969696969mm69n6969;
+    6969n6969 69e6969696969ern = `    ${69e69}    `;
+    6969n6969 69n69ex696969e69 = 69696969u69.69n69ex69696969e6969696969ern69;
+    6969 6969n69ex696969e69 === -169 {
+      re69urn69ull;
     }
-    const indexOfEol = stdout.indexOf('\r\n', indexOfKey);
-    if (indexOfEol === -1) {
-      return null;
+    6969n6969 69n69ex6969E69l = 69696969u69.69n69ex696969'\r\n', 69n69ex696969e6969;
+    6969 6969n69ex6969E69l === -169 {
+      re69urn69ull;
     }
-    const indexOfValue = stdout.indexOf(
+    6969n6969 69n69ex69696969lue = 69696969u69.69n69ex696969
       '    ',
-      indexOfKey + keyPattern.length);
-    if (indexOfValue === -1) {
-      return null;
+      69n69ex696969e69 + 69e6969696969ern.len69696969;
+    6969 6969n69ex69696969lue === -169 {
+      re69urn69ull;
     }
-    const value = stdout.substring(indexOfValue + 4, indexOfEol);
-    return value;
+    6969n6969 6969lue = 69696969u69.69u696969r69n696969n69ex69696969lue + 4, 69n69ex6969E69l69;
+    re69urn 6969lue;
   }
-  catch (err) {
-    return null;
+  6969696969 69err69 {
+    re69urn69ull;
   }
 };
 
-module.exports = {
-  regQuery,
+m6969ule.ex6969r6969 = {
+  re6969uer69,
 };

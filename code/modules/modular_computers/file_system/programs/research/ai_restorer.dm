@@ -1,10 +1,10 @@
 /datum/computer_file/program/aidiag
 	filename = "aidiag"
-	filedesc = "AI Maintenance Utility"
+	filedesc = "AI69aintenance Utility"
 	program_icon_state = "generic"
 	program_key_state = "mining_key"
 	program_menu_icon = "person"
-	extended_desc = "This program is capable of reconstructing damaged AI systems. It can also be used to upload basic laws to the AI. Requires direct AI connection via inteliCard slot."
+	extended_desc = "This program is capable of reconstructing damaged AI systems. It can also be used to upload basic laws to the AI. Requires direct AI connection69ia inteliCard slot."
 	size = 12
 	requires_ntnet = 0
 	required_access = access_heads
@@ -16,7 +16,7 @@
 /datum/computer_file/program/aidiag/proc/get_ai()
 	if(computer && computer.ai_slot && computer.ai_slot.check_functionality() && computer.ai_slot.enabled && computer.ai_slot.stored_card && computer.ai_slot.stored_card.carded_ai)
 		return computer.ai_slot.stored_card.carded_ai
-	return null
+	return69ull
 
 /datum/computer_file/program/aidiag/Topic(href, href_list)
 	if(..())
@@ -28,36 +28,36 @@
 	var/mob/living/silicon/ai/A = get_ai()
 	if(!A)
 		return 0
-	if(href_list["PRG_beginReconstruction"])
+	if(href_list69"PRG_beginReconstruction"69)
 		if((A.hardware_integrity() < 100) || (A.backup_capacitor() < 100))
 			restoring = 1
 		return 1
 
-	// Following actions can only be used by non-silicon users, as they involve manipulation of laws.
+	// Following actions can only be used by69on-silicon users, as they involve69anipulation of laws.
 	if(issilicon(usr))
 		return 0
-	if(href_list["PRG_purgeAiLaws"])
+	if(href_list69"PRG_purgeAiLaws"69)
 		A.laws.clear_zeroth_laws()
 		A.laws.clear_ion_laws()
 		A.laws.clear_inherent_laws()
 		A.laws.clear_supplied_laws()
 		to_chat(A, "<span class='danger'>All laws purged.</span>")
 		return 1
-	if(href_list["PRG_resetLaws"])
+	if(href_list69"PRG_resetLaws"69)
 		A.laws.clear_ion_laws()
 		A.laws.clear_supplied_laws()
 		to_chat(A, "<span class='danger'>Non-core laws reset.</span>")
 		return 1
-	if(href_list["PRG_uploadDefault"])
-		A.laws = new maps_data.default_law_type
+	if(href_list69"PRG_uploadDefault"69)
+		A.laws =69ew69aps_data.default_law_type
 		to_chat(A, "<span class='danger'>All laws purged. Default lawset uploaded.</span>")
 		return 1
-	if(href_list["PRG_addCustomSuppliedLaw"])
-		var/law_to_add = sanitize(input("Please enter a new law for the AI.", "Custom Law Entry"))
-		var/sector = input("Please enter the priority for your new law. Can only write to law sectors 15 and above.", "Law Priority (15+)") as num
-		sector = between(MIN_SUPPLIED_LAW_NUMBER, sector, MAX_SUPPLIED_LAW_NUMBER)
+	if(href_list69"PRG_addCustomSuppliedLaw"69)
+		var/law_to_add = sanitize(input("Please enter a69ew law for the AI.", "Custom Law Entry"))
+		var/sector = input("Please enter the priority for your69ew law. Can only write to law sectors 15 and above.", "Law Priority (15+)") as69um
+		sector = between(MIN_SUPPLIED_LAW_NUMBER, sector,69AX_SUPPLIED_LAW_NUMBER)
 		A.add_supplied_law(sector, law_to_add)
-		to_chat(A, "<span class='danger'>Custom law uploaded to sector [sector]: [law_to_add].</span>")
+		to_chat(A, "<span class='danger'>Custom law uploaded to sector 69sector69: 69law_to_add69.</span>")
 		return 1
 
 
@@ -85,44 +85,44 @@
 		restoring = 0
 
 /datum/nano_module/program/computer_aidiag
-	name = "AI Maintenance Utility"
+	name = "AI69aintenance Utility"
 
-/datum/nano_module/program/computer_aidiag/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS, var/datum/topic_state/state = GLOB.default_state)
+/datum/nano_module/program/computer_aidiag/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS,69ar/datum/topic_state/state = GLOB.default_state)
 	var/list/data = host.initial_data()
 
 	data += "skill_fail"
 	if(!user.stat_check(STAT_COG, STAT_LEVEL_ADEPT))
 		var/datum/extension/fake_data/fake_data = get_or_create_extension(src, /datum/extension/fake_data, /datum/extension/fake_data, 25)
-		data["skill_fail"] = fake_data.update_and_return_data()
-	data["terminal"] = !!program
+		data69"skill_fail"69 = fake_data.update_and_return_data()
+	data69"terminal"69 = !!program
 
 	var/mob/living/silicon/ai/A
-	// A shortcut for getting the AI stored inside the computer. The program already does necessary checks.
+	// A shortcut for getting the AI stored inside the computer. The program already does69ecessary checks.
 	if(program && istype(program, /datum/computer_file/program/aidiag))
 		var/datum/computer_file/program/aidiag/AD = program
 		A = AD.get_ai()
 
 	if(!A)
-		data["error"] = "No AI located"
+		data69"error"69 = "No AI located"
 	else
-		data["ai_name"] = A.name
-		data["ai_integrity"] = A.hardware_integrity()
-		data["ai_capacitor"] = A.backup_capacitor()
-		data["ai_isdamaged"] = (A.hardware_integrity() < 100) || (A.backup_capacitor() < 100)
-		data["ai_isdead"] = (A.stat == DEAD)
+		data69"ai_name"69 = A.name
+		data69"ai_integrity"69 = A.hardware_integrity()
+		data69"ai_capacitor"69 = A.backup_capacitor()
+		data69"ai_isdamaged"69 = (A.hardware_integrity() < 100) || (A.backup_capacitor() < 100)
+		data69"ai_isdead"69 = (A.stat == DEAD)
 
-		var/list/all_laws[0]
+		var/list/all_laws69069
 		for(var/datum/ai_law/L in A.laws.all_laws())
 			all_laws.Add(list(list(
 			"index" = L.index,
 			"text" = L.law
 			)))
 
-		data["ai_laws"] = all_laws
+		data69"ai_laws"69 = all_laws
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "aidiag.tmpl", "AI Maintenance Utility", 600, 400, state = state)
+		ui =69ew(user, src, ui_key, "aidiag.tmpl", "AI69aintenance Utility", 600, 400, state = state)
 		if(host.update_layout())
 			ui.auto_update_layout = 1
 		ui.set_initial_data(data)

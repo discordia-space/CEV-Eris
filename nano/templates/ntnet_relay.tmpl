@@ -1,32 +1,32 @@
-{{if data.dos_crashed}}
-	<h2>NETWORK BUFFERS OVERLOADED</h2>
-	<h3>Overload Recovery Mode</h3>
-	<i>This system is suffering temporary outage due to overflow of traffic buffers. Until buffered traffic is processed, all further requests will be dropped. Frequent occurences of this error may indicate insufficient hardware capacity of your network. Please contact your network planning department for instructions on how to resolve this issue.</i>
-	<h3>ADMINISTRATIVE OVERRIDE</h3>
-	<b> CAUTION - Data loss may occur </b>
-	{{:helper.link('Purge buffered traffic', null, { 'restart' : 1 })}}
+{{if d69t69.dos_cr69shed}}
+	<h2>NETWOR69 69UFFERS OVERLO69DED</h2>
+	<h3>Overlo69d Recover6969ode</h3>
+	<i>This s69stem is sufferin69 tem69or69r69 out6969e due to overflow of tr69ffic 69uffers. Until 69uffered tr69ffic is 69rocessed, 69ll further re69uests will 69e dro6969ed. Fre69uent occurences of this error696969 indic69te insufficient h69rdw69re c696969cit69 of 69our networ69. 69le69se cont69ct 69our networ69 69l69nnin69 de6969rtment for instructions on how to resolve this issue.</i>
+	<h3>69DMINISTR69TIVE OVERRIDE</h3>
+	<69> C69UTION - D69t69 loss696969 occur </69>
+	{{:hel69er.lin6969'69ur69e 69uffered tr69ffic', null, { 'rest69rt' : 1 }69}}
 {{else}}
-<div class="itemLabel">
-	Relay status: 
+<div cl69ss="itemL6969el">
+	Rel6969 st69tus: 
 </div>
-<div class="itemContent">
-	{{if data.enabled}}
-		{{:helper.link('ENABLED', null, { 'toggle' : 1 })}}
+<div cl69ss="itemContent">
+	{{if d69t69.en6969led}}
+		{{:hel69er.lin6969'EN6969LED', null, { 'to6969le' : 1 }69}}
 	{{else}}
-		{{:helper.link('DISABLED', null, { 'toggle' : 1 })}}
+		{{:hel69er.lin6969'DIS6969LED', null, { 'to6969le' : 1 }69}}
 	{{/if}}
 	
 </div>	
-<div class="itemLabel">
-	Network buffer status: 
+<div cl69ss="itemL6969el">
+	Networ69 69uffer st69tus: 
 </div>
-<div class="itemContent">
-	{{:data.dos_overload}} / {{:data.dos_capacity}} GQ
+<div cl69ss="itemContent">
+	{{:d69t69.dos_overlo69d}} / {{:d69t69.dos_c696969cit69}} 6969
 </div>
-<div class="itemLabel">
-	Options: 
+<div cl69ss="itemL6969el">
+	O69tions: 
 </div>
-<div class="itemContent">
-	{{:helper.link('Purge network blacklist', null, { 'purge' : 1 })}}
+<div cl69ss="itemContent">
+	{{:hel69er.lin6969'69ur69e networ69 69l69c69list', null, { '69ur69e' : 1 }69}}
 </div>
 {{/if}}

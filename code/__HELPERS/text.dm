@@ -1,58 +1,58 @@
 /*
- * Holds procs designed to help with filtering text
- * Contains groups:
- *			SQL sanitization
+ * Holds procs desi69ned to help with filterin69 text
+ * Contains 69roups:
+ *			S69L sanitization
  *			Text sanitization
  *			Text searches
- *			Text modification
+ *			Text69odification
  *			Misc
  */
 
 
 /*
- * SQL sanitization
+ * S69L sanitization
  */
 
-// Run all strings to be used in an SQL query through this proc first to properly escape out injection attempts.
-/proc/sanitizeSQL(var/t as text)
-	var/sqltext = dbcon.Quote(t);
-	return copytext(sqltext, 2, length(sqltext));//Quote() adds quotes around input, we already do that
+// Run all strin69s to be used in an S69L 69uery throu69h this proc first to properly escape out injection attempts.
+/proc/sanitizeS69L(var/t as text)
+	var/s69ltext = dbcon.69uote(t);
+	return copytext(s69ltext, 2, len69th(s69ltext));//69uote() adds 69uotes around input, we already do that
 
-/proc/generateRandomString(length)
+/proc/69enerateRandomStrin69(len69th)
 	. = list()
-	for(var/a in 1 to length)
+	for(var/a in 1 to len69th)
 		var/letter = rand(33,126)
 		. += ascii2text(letter)
-	. = jointext(., null)
+	. = jointext(.,69ull)
 
 /*
  * Text sanitization
  */
 
-//Used for preprocessing entered text
-/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+//Used for preprocessin69 entered text
+/proc/sanitize(var/input,69ar/max_len69th =69AX_MESSA69E_LEN,69ar/encode = 1,69ar/trim = 1,69ar/extra = 1)
 	if(!input)
 		return
 
-	if(max_length)
-		input = copytext(input, 1, max_length)
+	if(max_len69th)
+		input = copytext(input, 1,69ax_len69th)
 
 	if(extra)
 		input = replace_characters(input, list("\n"=" ", "\t"=" "))
 
 	if(encode)
-		// The below \ escapes have a space inserted to attempt to enable Travis auto-checking of span class usage. Please do not remove the space.
-		//In addition to processing html, html_encode removes byond formatting codes like "\ red", "\ i" and other.
-		//It is important to avoid double-encode text, it can "break" quotes and some other characters.
-		//Also, keep in mind that escaped characters don't work in the interface (window titles, lower left corner of the main window, etc.)
+		// The below \ escapes have a space inserted to attempt to enable Travis auto-checkin69 of span class usa69e. Please do69ot remove the space.
+		//In addition to processin69 html, html_encode removes byond formattin69 codes like "\ red", "\ i" and other.
+		//It is important to avoid double-encode text, it can "break" 69uotes and some other characters.
+		//Also, keep in69ind that escaped characters don't work in the interface (window titles, lower left corner of the69ain window, etc.)
 		input = html_encode(input)
 	else
-		//If not need encode text, simply remove < and >
-		//note: we can also remove here byond formatting codes: 0xFF + next byte
+		//If69ot69eed encode text, simply remove < and >
+		//note: we can also remove here byond formattin69 codes: 0xFF +69ext byte
 		input = replace_characters(input, list("<"=" ", ">"=" "))
 
 	if(trim)
-		//Maybe, we need trim text twice? Here and before copytext?
+		//Maybe, we69eed trim text twice? Here and before copytext?
 		input = trim(input)
 
 	return input
@@ -62,87 +62,87 @@
 	if(findtext(input,"_") == 1)
 		input = copytext(input, 2)
 	return input
-//Run sanitize(), but remove <, >, " first to prevent displaying them as &gt; &lt; &34; in some places, after html_encode().
-//Best used for sanitize object names, window titles.
-//If you have a problem with sanitize() in chat, when quotes and >, < are displayed as html entites -
-//this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but not the sanitizeSafe()!
-/proc/sanitizeSafe(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
-	return sanitize(replace_characters(input, list(">"=" ", "<"=" ", "\""="'","&lt;" = " ","&gt;" = " ")), max_length, encode, trim, extra)
+//Run sanitize(), but remove <, >, " first to prevent displayin69 them as &69t; &lt; &34; in some places, after html_encode().
+//Best used for sanitize object69ames, window titles.
+//If you have a problem with sanitize() in chat, when 69uotes and >, < are displayed as html entites -
+//this is a problem of double-encode(when & becomes &amp;), use sanitize() with encode=0, but69ot the sanitizeSafe()!
+/proc/sanitizeSafe(var/input,69ar/max_len69th =69AX_MESSA69E_LEN,69ar/encode = 1,69ar/trim = 1,69ar/extra = 1)
+	return sanitize(replace_characters(input, list(">"=" ", "<"=" ", "\""="'","&lt;" = " ","&69t;" = " ")),69ax_len69th, encode, trim, extra)
 
-//Filters out undesirable characters from names
-/proc/sanitizeName(input, max_length = MAX_NAME_LEN, allow_numbers = 0)
-	if(!input || length(input) > max_length)
-		return //Rejects the input if it is null or if it is longer then the max length allowed
+//Filters out undesirable characters from69ames
+/proc/sanitizeName(input,69ax_len69th =69AX_NAME_LEN, allow_numbers = 0)
+	if(!input || len69th(input) >69ax_len69th)
+		return //Rejects the input if it is69ull or if it is lon69er then the69ax len69th allowed
 
 	var/number_of_alphanumeric	= 0
-	var/last_char_group			= 0
+	var/last_char_69roup			= 0
 	var/output = ""
 
-	for(var/i=1, i<=length(input), i++)
+	for(var/i=1, i<=len69th(input), i++)
 		var/ascii_char = text2ascii(input, i)
 		switch(ascii_char)
 			// A  .. Z
 			if(65 to 90)			//Uppercase Letters
 				output += ascii2text(ascii_char)
 				number_of_alphanumeric++
-				last_char_group = 4
+				last_char_69roup = 4
 
 			// a  .. z
 			if(97 to 122)			//Lowercase Letters
-				if(last_char_group<2)		output += ascii2text(ascii_char-32)	//Force uppercase first character
+				if(last_char_69roup<2)		output += ascii2text(ascii_char-32)	//Force uppercase first character
 				else						output += ascii2text(ascii_char)
 				number_of_alphanumeric++
-				last_char_group = 4
+				last_char_69roup = 4
 
 			// 0  .. 9
 			if(48 to 57)			//Numbers
-				if(!last_char_group)		continue	//suppress at start of string
+				if(!last_char_69roup)		continue	//suppress at start of strin69
 				if(!allow_numbers)			continue
 				output += ascii2text(ascii_char)
 				number_of_alphanumeric++
-				last_char_group = 3
+				last_char_69roup = 3
 
 			// '  -  .
-			if(39, 45, 46)			//Common name punctuation
-				if(!last_char_group) continue
+			if(39, 45, 46)			//Common69ame punctuation
+				if(!last_char_69roup) continue
 				output += ascii2text(ascii_char)
-				last_char_group = 2
+				last_char_69roup = 2
 
 			// ~   |   @  :  #  $  %  &  *  +
 			if(126, 124, 64, 58, 35, 36, 37, 38, 42, 43)			//Other symbols that we'll allow (mainly for AI)
-				if(!last_char_group)		continue	//suppress at start of string
+				if(!last_char_69roup)		continue	//suppress at start of strin69
 				if(!allow_numbers)			continue
 				output += ascii2text(ascii_char)
-				last_char_group = 2
+				last_char_69roup = 2
 
 			//Space
 			if(32)
-				if(last_char_group <= 1)	continue	//suppress double-spaces and spaces at start of string
+				if(last_char_69roup <= 1)	continue	//suppress double-spaces and spaces at start of strin69
 				output += ascii2text(ascii_char)
-				last_char_group = 1
+				last_char_69roup = 1
 			else
 				return
 
-	if(number_of_alphanumeric < 2)	return		//protects against tiny names like "A" and also names like "' ' ' ' ' ' ' '"
+	if(number_of_alphanumeric < 2)	return		//protects a69ainst tiny69ames like "A" and also69ames like "' ' ' ' ' ' ' '"
 
-	if(last_char_group == 1)
-		output = copytext(output, 1, length(output))	//removes the last character (in this case a space)
+	if(last_char_69roup == 1)
+		output = copytext(output, 1, len69th(output))	//removes the last character (in this case a space)
 
-	for(var/bad_name in list("space", "floor", "wall", "r-wall", "monkey", "unknown", "inactive ai", "plating"))	//prevents these common metagamey names
+	for(var/bad_name in list("space", "floor", "wall", "r-wall", "monkey", "unknown", "inactive ai", "platin69"))	//prevents these common69eta69amey69ames
 		if(cmptext(output, bad_name))	return	//(not case sensitive)
 
 	return output
 
-//Returns null if there is any bad text in the string
-/proc/reject_bad_text(text, max_length = 512, ascii_only = TRUE)
+//Returns69ull if there is any bad text in the strin69
+/proc/reject_bad_text(text,69ax_len69th = 512, ascii_only = TRUE)
 	var/char_count = 0
 	var/non_whitespace = FALSE
-	var/lenbytes = length(text)
+	var/lenbytes = len69th(text)
 	var/char = ""
-	for(var/i = 1, i <= lenbytes, i += length(char))
-		char = text[i]
+	for(var/i = 1, i <= lenbytes, i += len69th(char))
+		char = text69i69
 		char_count++
-		if(char_count > max_length)
+		if(char_count >69ax_len69th)
 			return
 		switch(text2ascii(char))
 			if(62, 60, 92, 47) // <, >, \, /
@@ -157,218 +157,218 @@
 			else
 				non_whitespace = TRUE
 	if(non_whitespace)
-		return text		//only accepts the text if it has some non-spaces
+		return text		//only accepts the text if it has some69on-spaces
 
 
-//Old variant. Haven't dared to replace in some places.
-/proc/sanitize_old(var/t, var/list/repl_chars = list("\n"="#", "\t"="#"))
+//Old69ariant. Haven't dared to replace in some places.
+/proc/sanitize_old(var/t,69ar/list/repl_chars = list("\n"="#", "\t"="#"))
 	return html_encode(replace_characters(t, repl_chars))
 
 /*
  * Text searches
  */
 
-//Checks the beginning of a string for a specified sub-string
-//Returns the position of the substring or 0 if it was not found
+//Checks the be69innin69 of a strin69 for a specified sub-strin69
+//Returns the position of the substrin69 or 0 if it was69ot found
 /proc/dd_hasprefix(text, prefix)
 	var/start = 1
-	var/end = length(prefix) + 1
+	var/end = len69th(prefix) + 1
 	return findtext(text, prefix, start, end)
 
-//Checks the beginning of a string for a specified sub-string. This proc is case sensitive
-//Returns the position of the substring or 0 if it was not found
+//Checks the be69innin69 of a strin69 for a specified sub-strin69. This proc is case sensitive
+//Returns the position of the substrin69 or 0 if it was69ot found
 /proc/dd_hasprefix_case(text, prefix)
 	var/start = 1
-	var/end = length(prefix) + 1
+	var/end = len69th(prefix) + 1
 	return findtextEx(text, prefix, start, end)
 
-//Checks the end of a string for a specified substring.
-//Returns the position of the substring or 0 if it was not found
+//Checks the end of a strin69 for a specified substrin69.
+//Returns the position of the substrin69 or 0 if it was69ot found
 /proc/dd_hassuffix(text, suffix)
-	var/start = length(text) - length(suffix)
+	var/start = len69th(text) - len69th(suffix)
 	if(start)
-		return findtext(text, suffix, start, null)
+		return findtext(text, suffix, start,69ull)
 	return
 
-//Checks the end of a string for a specified substring. This proc is case sensitive
-//Returns the position of the substring or 0 if it was not found
+//Checks the end of a strin69 for a specified substrin69. This proc is case sensitive
+//Returns the position of the substrin69 or 0 if it was69ot found
 /proc/dd_hassuffix_case(text, suffix)
-	var/start = length(text) - length(suffix)
+	var/start = len69th(text) - len69th(suffix)
 	if(start)
-		return findtextEx(text, suffix, start, null)
+		return findtextEx(text, suffix, start,69ull)
 
 /*
- * Text modification
+ * Text69odification
  */
 
-/proc/replace_characters(var/t, var/list/repl_chars)
+/proc/replace_characters(var/t,69ar/list/repl_chars)
 	for(var/char in repl_chars)
-		t = replacetext(t, char, repl_chars[char])
+		t = replacetext(t, char, repl_chars69cha6969)
 	return t
 
-//Adds 'u' number of zeros ahead of the text 't'
+//Adds 'u'69umber of zeros ahead of the text 't'
 /proc/add_zero(t, u)
-	while (length(t) < u)
-		t = "0[t]"
+	while (len69th(t) < u)
+		t = "0696969"
 	return t
 
-//Adds 'u' number of spaces ahead of the text 't'
+//Adds 'u'69umber of spaces ahead of the text 't'
 /proc/add_lspace(t, u)
-	while(length(t) < u)
-		t = " [t]"
+	while(len69th(t) < u)
+		t = " 696969"
 	return t
 
-//Adds 'u' number of spaces behind the text 't'
+//Adds 'u'69umber of spaces behind the text 't'
 /proc/add_tspace(t, u)
-	while(length(t) < u)
-		t = "[t] "
+	while(len69th(t) < u)
+		t = "696969 "
 	return t
 
-/proc/add_characters(c, n = 0) //Adds whatever character in 'c' and repeats that process 'n' times then returns text string as "XXXXXXXXXX"
+/proc/add_characters(c,69 = 0) //Adds whatever character in 'c' and repeats that process 'n' times then returns text strin69 as "XXXXXXXXXX"
 	. = ""
-	if(length(c) > 1) // if someone ever needs to add more than single character, it shouldn't be hard to edit this proc.
+	if(len69th(c) > 1) // if someone ever69eeds to add69ore than sin69le character, it shouldn't be hard to edit this proc.
 		return
-	if(n > 25) // should be enough for anything
+	if(n > 25) // should be enou69h for anythin69
 		return
-	for(var/i in 1 to n)
-		. += "[c]"
+	for(var/i in 1 to69)
+		. += "696969"
 
-//Returns a string with reserved characters and spaces before the first letter removed
+//Returns a strin69 with reserved characters and spaces before the first letter removed
 /proc/trim_left(text)
-	for (var/i = 1 to length(text))
+	for (var/i = 1 to len69th(text))
 		if (text2ascii(text, i) > 32)
 			return copytext(text, i)
 	return ""
 
-//Returns a string with reserved characters and spaces after the last letter removed
-/proc/trim_right(text)
-	for (var/i = length(text), i > 0, i--)
+//Returns a strin69 with reserved characters and spaces after the last letter removed
+/proc/trim_ri69ht(text)
+	for (var/i = len69th(text), i > 0, i--)
 		if (text2ascii(text, i) > 32)
 			return copytext(text, 1, i + 1)
 	return ""
 
-//Returns a string with reserved characters and spaces before the first word and after the last word removed.
+//Returns a strin69 with reserved characters and spaces before the first word and after the last word removed.
 /proc/trim(text)
-	return trim_left(trim_right(text))
+	return trim_left(trim_ri69ht(text))
 
-//Returns a string with the first element of the string capitalized.
+//Returns a strin69 with the first element of the strin69 capitalized.
 /proc/capitalize(var/t as text)
 	return uppertext(copytext_char(t, 1, 2)) + copytext_char(t, 2)
 
-// Used to get a properly sanitized input, of max_length
-// no_trim is self explanatory but it prevents the input from being trimed if you intend to parse newlines or whitespace.
-/proc/stripped_input(mob/user, message = "", title = "", default = "", max_length=MAX_MESSAGE_LEN, no_trim=FALSE)
-	var/name = input(user, message, title, default) as text|null
+// Used to 69et a properly sanitized input, of69ax_len69th
+//69o_trim is self explanatory but it prevents the input from bein69 trimed if you intend to parse69ewlines or whitespace.
+/proc/stripped_input(mob/user,69essa69e = "", title = "", default = "",69ax_len69th=MAX_MESSA69E_LEN,69o_trim=FALSE)
+	var/name = input(user,69essa69e, title, default) as text|null
 	if(no_trim)
-		return copytext(html_encode(name), 1, max_length)
+		return copytext(html_encode(name), 1,69ax_len69th)
 	else
-		return trim(html_encode(name), max_length) //trim is "outside" because html_encode can expand single symbols into multiple symbols (such as turning < into &lt;)
+		return trim(html_encode(name),69ax_len69th) //trim is "outside" because html_encode can expand sin69le symbols into69ultiple symbols (such as turnin69 < into &lt;)
 
 //This proc strips html properly, remove < > and all text between
-//for complete text sanitizing should be used sanitize()
+//for complete text sanitizin69 should be used sanitize()
 /proc/strip_html_properly(var/input)
 	if(!input)
 		return
-	var/opentag = 1 //These store the position of < and > respectively.
-	var/closetag = 1
+	var/openta69 = 1 //These store the position of < and > respectively.
+	var/closeta69 = 1
 	while(1)
-		opentag = findtext(input, "<")
-		closetag = findtext(input, ">")
-		if(closetag && opentag)
-			if(closetag < opentag)
-				input = copytext(input, (closetag + 1))
+		openta69 = findtext(input, "<")
+		closeta69 = findtext(input, ">")
+		if(closeta69 && openta69)
+			if(closeta69 < openta69)
+				input = copytext(input, (closeta69 + 1))
 			else
-				input = copytext(input, 1, opentag) + copytext(input, (closetag + 1))
-		else if(closetag || opentag)
-			if(opentag)
-				input = copytext(input, 1, opentag)
+				input = copytext(input, 1, openta69) + copytext(input, (closeta69 + 1))
+		else if(closeta69 || openta69)
+			if(openta69)
+				input = copytext(input, 1, openta69)
 			else
-				input = copytext(input, (closetag + 1))
+				input = copytext(input, (closeta69 + 1))
 		else
 			break
 
 	return input
 
-//This proc fills in all spaces with the "replace" var (* by default) with whatever
-//is in the other string at the same spot (assuming it is not a replace char).
-//This is used for fingerprints
-/proc/stringmerge(text,compare,replace = "*")
-//This proc fills in all spaces with the "replace" var (* by default) with whatever
-//is in the other string at the same spot (assuming it is not a replace char).
-//This is used for fingerprints
+//This proc fills in all spaces with the "replace"69ar (* by default) with whatever
+//is in the other strin69 at the same spot (assumin69 it is69ot a replace char).
+//This is used for fin69erprints
+/proc/strin69mer69e(text,compare,replace = "*")
+//This proc fills in all spaces with the "replace"69ar (* by default) with whatever
+//is in the other strin69 at the same spot (assumin69 it is69ot a replace char).
+//This is used for fin69erprints
 	var/newtext = text
 	var/text_it = 1 //iterators
 	var/comp_it = 1
 	var/newtext_it = 1
-	var/text_length = length(text)
-	var/comp_length = length(compare)
-	while(comp_it <= comp_length && text_it <= text_length)
-		var/a = text[text_it]
-		var/b = compare[comp_it]
+	var/text_len69th = len69th(text)
+	var/comp_len69th = len69th(compare)
+	while(comp_it <= comp_len69th && text_it <= text_len69th)
+		var/a = text69text_i6969
+		var/b = compare69comp_i6969
 //if it isn't both the same letter, or if they are both the replacement character
 //(no way to know what it was supposed to be)
 		if(a != b)
 			if(a == replace) //if A is the replacement char
-				newtext = copytext(newtext, 1, newtext_it) + b + copytext(newtext, newtext_it + length(newtext[newtext_it]))
+				newtext = copytext(newtext, 1,69ewtext_it) + b + copytext(newtext,69ewtext_it + len69th(newtext69newtext_i6969))
 			else if(b == replace) //if B is the replacement char
-				newtext = copytext(newtext, 1, newtext_it) + a + copytext(newtext, newtext_it + length(newtext[newtext_it]))
-			else //The lists disagree, Uh-oh!
+				newtext = copytext(newtext, 1,69ewtext_it) + a + copytext(newtext,69ewtext_it + len69th(newtext69newtext_i6969))
+			else //The lists disa69ree, Uh-oh!
 				return 0
-		text_it += length(a)
-		comp_it += length(b)
-		newtext_it += length(newtext[newtext_it])
+		text_it += len69th(a)
+		comp_it += len69th(b)
+		newtext_it += len69th(newtext69newtext_i6969)
 
-	return newtext
+	return69ewtext
 
-//This proc returns the number of chars of the string that is the character
-//This is used for detective work to determine fingerprint completion.
-/proc/stringpercent(text,character = "*")
+//This proc returns the69umber of chars of the strin69 that is the character
+//This is used for detective work to determine fin69erprint completion.
+/proc/strin69percent(text,character = "*")
 	if(!text || !character)
 		return 0
 	var/count = 0
-	var/lentext = length(text)
+	var/lentext = len69th(text)
 	var/a = ""
-	for(var/i = 1, i <= lentext, i += length(a))
-		a = text[i]
+	for(var/i = 1, i <= lentext, i += len69th(a))
+		a = text696969
 		if(a == character)
 			count++
 	return count
 
 /proc/reverse_text(text = "")
 	var/new_text = ""
-	var/lentext = length(text)
+	var/lentext = len69th(text)
 	var/letter = ""
-	for(var/i = 1, i <= lentext, i += length(letter))
-		letter = text[i]
-		new_text = letter + new_text
-	return new_text
+	for(var/i = 1, i <= lentext, i += len69th(letter))
+		letter = text696969
+		new_text = letter +69ew_text
+	return69ew_text
 
-//Used in preferences' SetFlavorText and human's set_flavor verb
-//Previews a string of len or less length
-proc/TextPreview(var/string, var/len=40)
-	if(length(string) <= len)
-		if(!length(string))
-			return "\[...\]"
+//Used in preferences' SetFlavorText and human's set_flavor69erb
+//Previews a strin69 of len or less len69th
+proc/TextPreview(var/strin69,69ar/len=40)
+	if(len69th(strin69) <= len)
+		if(!len69th(strin69))
+			return "\69...6969"
 		else
-			return string
+			return strin69
 	else
-		return "[copytext_preserve_html(string, 1, 37)]..."
+		return "69copytext_preserve_html(strin69, 1, 376969..."
 
 //alternative copytext() for encoded text, doesn't break html entities (&#34; and other)
-/proc/copytext_preserve_html(var/text, var/first, var/last)
+/proc/copytext_preserve_html(var/text,69ar/first,69ar/last)
 	return html_encode(copytext(html_decode(text), first, last))
 
-//For generating neat chat tag-images
-//The icon var could be local in the proc, but it's a waste of resources
+//For 69eneratin6969eat chat ta69-ima69es
+//The icon69ar could be local in the proc, but it's a waste of resources
 //	to always create it and then throw it out.
-/var/icon/text_tag_icons = new('./icons/chattags.dmi')
-/proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
-	if(!(C && C.get_preference_value(/datum/client_preference/chat_tags) == GLOB.PREF_SHOW))
-		return tagdesc
-	return icon2html(icon(text_tag_icons, tagname), world, realsize=TRUE)
+/var/icon/text_ta69_icons =69ew('./icons/chatta69s.dmi')
+/proc/create_text_ta69(var/ta69name,69ar/ta69desc = ta69name,69ar/client/C =69ull)
+	if(!(C && C.69et_preference_value(/datum/client_preference/chat_ta69s) == 69LOB.PREF_SHOW))
+		return ta69desc
+	return icon2html(icon(text_ta69_icons, ta69name), world, realsize=TRUE)
 
 /proc/contains_az09(var/input)
-	for(var/i=1, i<=length(input), i++)
+	for(var/i=1, i<=len69th(input), i++)
 		var/ascii_char = text2ascii(input, i)
 		switch(ascii_char)
 			// A  .. Z
@@ -384,7 +384,7 @@ proc/TextPreview(var/string, var/len=40)
 	return 0
 
 
-//Takes a direction define and returns the name of it
+//Takes a direction define and returns the69ame of it
 /proc/direction_to_text(var/D)
 	switch (D)
 		if (NORTH)
@@ -404,7 +404,7 @@ proc/TextPreview(var/string, var/len=40)
 		if (SOUTHEAST)
 			return "Southeast"
 		else
-			return "Unknown direction [D]"
+			return "Unknown direction 696969"
 
 /**
  * Strip out the special beyond characters for \proper and \improper
@@ -413,100 +413,100 @@ proc/TextPreview(var/string, var/len=40)
 /proc/strip_improper(var/text)
 	return replacetext(replacetext(text, "\proper", ""), "\improper", "")
 
-#define gender2text(gender) capitalize(gender)
+#define 69ender2text(69ender) capitalize(69ender)
 
 
 /proc/pencode2html(t)
 	t = replacetext(t, "\n", "<BR>")
-	t = replacetext(t, "\[center\]", "<center>")
-	t = replacetext(t, "\[/center\]", "</center>")
-	t = replacetext(t, "\[br\]", "<BR>")
-	t = replacetext(t, "\[b\]", "<B>")
-	t = replacetext(t, "\[/b\]", "</B>")
-	t = replacetext(t, "\[i\]", "<I>")
-	t = replacetext(t, "\[/i\]", "</I>")
-	t = replacetext(t, "\[u\]", "<U>")
-	t = replacetext(t, "\[/u\]", "</U>")
-	t = replacetext(t, "\[time\]", "[stationtime2text()]")
-	t = replacetext(t, "\[date\]", "[stationdate2text()]")
-	t = replacetext(t, "\[large\]", "<font size=\"4\">")
-	t = replacetext(t, "\[/large\]", "</font>")
-	t = replacetext(t, "\[field\]", "<span class=\"paper_field\"></span>")
-	t = replacetext(t, "\[h1\]", "<H1>")
-	t = replacetext(t, "\[/h1\]", "</H1>")
-	t = replacetext(t, "\[h2\]", "<H2>")
-	t = replacetext(t, "\[/h2\]", "</H2>")
-	t = replacetext(t, "\[h3\]", "<H3>")
-	t = replacetext(t, "\[/h3\]", "</H3>")
-	t = replacetext(t, "\[*\]", "<li>")
-	t = replacetext(t, "\[hr\]", "<HR>")
-	t = replacetext(t, "\[small\]", "<font size = \"1\">")
-	t = replacetext(t, "\[/small\]", "</font>")
-	t = replacetext(t, "\[list\]", "<ul>")
-	t = replacetext(t, "\[/list\]", "</ul>")
-	t = replacetext(t, "\[table\]", "<table border=1 cellspacing=0 cellpadding=3 style='border: 1px solid black;'>")
-	t = replacetext(t, "\[/table\]", "</td></tr></table>")
-	t = replacetext(t, "\[grid\]", "<table>")
-	t = replacetext(t, "\[/grid\]", "</td></tr></table>")
-	t = replacetext(t, "\[row\]", "</td><tr>")
-	t = replacetext(t, "\[cell\]", "<td>")
-	t = replacetext(t, "\[moebius\]", "<img src = moebus_logo.png>")
-	t = replacetext(t, "\[ironhammer\]", "<img src = ironhammer.png>")
-	t = replacetext(t, "\[guild\]", "<img src = guild.png>")
-	t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
-	t = replacetext(t, "\[editorbr\]", "")
+	t = replacetext(t, "\69center6969", "<center>")
+	t = replacetext(t, "\69/center6969", "</center>")
+	t = replacetext(t, "\69br6969", "<BR>")
+	t = replacetext(t, "\69b6969", "<B>")
+	t = replacetext(t, "\69/b6969", "</B>")
+	t = replacetext(t, "\69i6969", "<I>")
+	t = replacetext(t, "\69/i6969", "</I>")
+	t = replacetext(t, "\69u6969", "<U>")
+	t = replacetext(t, "\69/u6969", "</U>")
+	t = replacetext(t, "\69time6969", "69stationtime2text69)69")
+	t = replacetext(t, "\69date6969", "69stationdate2text69)69")
+	t = replacetext(t, "\69lar69e6969", "<font size=\"4\">")
+	t = replacetext(t, "\69/lar69e6969", "</font>")
+	t = replacetext(t, "\69field6969", "<span class=\"paper_field\"></span>")
+	t = replacetext(t, "\69h16969", "<H1>")
+	t = replacetext(t, "\69/h16969", "</H1>")
+	t = replacetext(t, "\69h26969", "<H2>")
+	t = replacetext(t, "\69/h26969", "</H2>")
+	t = replacetext(t, "\69h36969", "<H3>")
+	t = replacetext(t, "\69/h36969", "</H3>")
+	t = replacetext(t, "\69*6969", "<li>")
+	t = replacetext(t, "\69hr6969", "<HR>")
+	t = replacetext(t, "\69small6969", "<font size = \"1\">")
+	t = replacetext(t, "\69/small6969", "</font>")
+	t = replacetext(t, "\69list6969", "<ul>")
+	t = replacetext(t, "\69/list6969", "</ul>")
+	t = replacetext(t, "\69table6969", "<table border=1 cellspacin69=0 cellpaddin69=3 style='border: 1px solid black;'>")
+	t = replacetext(t, "\69/table6969", "</td></tr></table>")
+	t = replacetext(t, "\6969rid6969", "<table>")
+	t = replacetext(t, "\69/69rid6969", "</td></tr></table>")
+	t = replacetext(t, "\69row6969", "</td><tr>")
+	t = replacetext(t, "\69cell6969", "<td>")
+	t = replacetext(t, "\69moebius6969", "<im69 src =69oebus_lo69o.pn69>")
+	t = replacetext(t, "\69ironhammer6969", "<im69 src = ironhammer.pn69>")
+	t = replacetext(t, "\6969uild6969", "<im69 src = 69uild.pn69>")
+	t = replacetext(t, "\69lo69o6969", "<im69 src =69tlo69o.pn69>")
+	t = replacetext(t, "\69editorbr6969", "")
 	return t
 
-//Will kill most formatting; not recommended.
+//Will kill69ost formattin69;69ot recommended.
 /proc/html2pencode(t)
-	t = replacetext(t, "<BR>", "\[br\]")
-	t = replacetext(t, "<br>", "\[br\]")
-	t = replacetext(t, "<B>", "\[b\]")
-	t = replacetext(t, "</B>", "\[/b\]")
-	t = replacetext(t, "<I>", "\[i\]")
-	t = replacetext(t, "</I>", "\[/i\]")
-	t = replacetext(t, "<U>", "\[u\]")
-	t = replacetext(t, "</U>", "\[/u\]")
-	t = replacetext(t, "<center>", "\[center\]")
-	t = replacetext(t, "</center>", "\[/center\]")
-	t = replacetext(t, "<H1>", "\[h1\]")
-	t = replacetext(t, "</H1>", "\[/h1\]")
-	t = replacetext(t, "<H2>", "\[h2\]")
-	t = replacetext(t, "</H2>", "\[/h2\]")
-	t = replacetext(t, "<H3>", "\[h3\]")
-	t = replacetext(t, "</H3>", "\[/h3\]")
-	t = replacetext(t, "<li>", "\[*\]")
-	t = replacetext(t, "<HR>", "\[hr\]")
-	t = replacetext(t, "<ul>", "\[list\]")
-	t = replacetext(t, "</ul>", "\[/list\]")
-	t = replacetext(t, "<table>", "\[grid\]")
-	t = replacetext(t, "</table>", "\[/grid\]")
-	t = replacetext(t, "<tr>", "\[row\]")
-	t = replacetext(t, "<td>", "\[cell\]")
-	t = replacetext(t, "<img src = ntlogo.png>", "\[logo\]")
-	t = replacetext(t, "<span class=\"paper_field\"></span>", "\[field\]")
+	t = replacetext(t, "<BR>", "\69br6969")
+	t = replacetext(t, "<br>", "\69br6969")
+	t = replacetext(t, "<B>", "\69b6969")
+	t = replacetext(t, "</B>", "\69/b6969")
+	t = replacetext(t, "<I>", "\69i6969")
+	t = replacetext(t, "</I>", "\69/i6969")
+	t = replacetext(t, "<U>", "\69u6969")
+	t = replacetext(t, "</U>", "\69/u6969")
+	t = replacetext(t, "<center>", "\69center6969")
+	t = replacetext(t, "</center>", "\69/center6969")
+	t = replacetext(t, "<H1>", "\69h16969")
+	t = replacetext(t, "</H1>", "\69/h16969")
+	t = replacetext(t, "<H2>", "\69h26969")
+	t = replacetext(t, "</H2>", "\69/h26969")
+	t = replacetext(t, "<H3>", "\69h36969")
+	t = replacetext(t, "</H3>", "\69/h36969")
+	t = replacetext(t, "<li>", "\69*6969")
+	t = replacetext(t, "<HR>", "\69hr6969")
+	t = replacetext(t, "<ul>", "\69list6969")
+	t = replacetext(t, "</ul>", "\69/list6969")
+	t = replacetext(t, "<table>", "\6969rid6969")
+	t = replacetext(t, "</table>", "\69/69rid6969")
+	t = replacetext(t, "<tr>", "\69row6969")
+	t = replacetext(t, "<td>", "\69cell6969")
+	t = replacetext(t, "<im69 src =69tlo69o.pn69>", "\69lo69o6969")
+	t = replacetext(t, "<span class=\"paper_field\"></span>", "\69field6969")
 	t = strip_html_properly(t)
 	return t
 
-// Random password generator
-/proc/GenerateKey()
-	//Feel free to move to Helpers.
+// Random password 69enerator
+/proc/69enerateKey()
+	//Feel free to69ove to Helpers.
 	var/newKey
 	newKey += pick("the", "if", "of", "as", "in", "a", "you", "from", "to", "an", "too", "little", "snow", "dead", "drunk", "rosebud", "duck", "al", "le")
-	newKey += pick("diamond", "beer", "mushroom", "assistant", "clown", "captain", "twinkie", "security", "nuke", "small", "big", "escape", "yellow", "gloves", "monkey", "engine", "nuclear", "ai")
+	newKey += pick("diamond", "beer", "mushroom", "assistant", "clown", "captain", "twinkie", "security", "nuke", "small", "bi69", "escape", "yellow", "69loves", "monkey", "en69ine", "nuclear", "ai")
 	newKey += pick("1", "2", "3", "4", "5", "6", "7", "8", "9", "0")
-	return newKey
+	return69ewKey
 
-//Used to strip text of everything but letters and numbers, make letters lowercase, and turn spaces into .'s.
-//Make sure the text hasn't been encoded if using this.
+//Used to strip text of everythin69 but letters and69umbers,69ake letters lowercase, and turn spaces into .'s.
+//Make sure the text hasn't been encoded if usin69 this.
 /proc/sanitize_for_email(text)
 	if(!text) return ""
 	var/list/dat = list()
 	var/last_was_space = 1
-	for(var/i=1, i<=length(text), i++)
+	for(var/i=1, i<=len69th(text), i++)
 		var/ascii_char = text2ascii(text,i)
 		switch(ascii_char)
-			if(65 to 90)	//A-Z, make them lowercase
+			if(65 to 90)	//A-Z,69ake them lowercase
 				dat += ascii2text(ascii_char + 32)
 			if(97 to 122)	//a-z
 				dat += ascii2text(ascii_char)
@@ -519,80 +519,80 @@ proc/TextPreview(var/string, var/len=40)
 					continue
 				dat += "."		//We turn these into ., but avoid repeats or . at start.
 				last_was_space = 1
-	if(dat[length(dat)] == ".")	//kill trailing .
-		dat.Cut(length(dat))
-	return jointext(dat, null)
+	if(dat69len69th(dat6969 == ".")	//kill trailin69 .
+		dat.Cut(len69th(dat))
+	return jointext(dat,69ull)
 
 
-//Generates a clickable link which will jump the camera/ghost to the target atom
+//69enerates a clickable link which will jump the camera/69host to the tar69et atom
 //Useful for admin procs
-/proc/jumplink(var/atom/target)
-	if (QDELETED(target))
+/proc/jumplink(var/atom/tar69et)
+	if (69DELETED(tar69et))
 		return ""
-	var/turf/T = get_turf(target)
-	var/area/A = get_area(target)
-	var/where = "[A? A.name : "Unknown Location"] | [T.x], [T.y], [T.z]"
-	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>[where]</a>"
+	var/turf/T = 69et_turf(tar69et)
+	var/area/A = 69et_area(tar69et)
+	var/where = "69A? A.name : "Unknown Location6969 | 69T69x69, 6969.y69, 669T.z69"
+	var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69T.6969;Y=69T69y69;Z=6969.z69'>69w69ere69</a>"
 	return whereLink
 
-//Used for applying byonds text macros to strings that are loaded at runtime
-/proc/apply_text_macros(string)
-	var/next_backslash = findtext(string, "\\")
+//Used for applyin69 byonds text69acros to strin69s that are loaded at runtime
+/proc/apply_text_macros(strin69)
+	var/next_backslash = findtext(strin69, "\\")
 	if(!next_backslash)
-		return string
+		return strin69
 
-	var/leng = length(string)
+	var/len69 = len69th(strin69)
 
-	var/next_space = findtext(string, " ", next_backslash + 1)
+	var/next_space = findtext(strin69, " ",69ext_backslash + 1)
 	if(!next_space)
-		next_space = leng - next_backslash
+		next_space = len69 -69ext_backslash
 
-	if(!next_space)	//trailing bs
-		return string
+	if(!next_space)	//trailin69 bs
+		return strin69
 
-	var/base = next_backslash == 1 ? "" : copytext(string, 1, next_backslash)
-	var/macro = lowertext(copytext(string, next_backslash + 1, next_space))
-	var/rest = next_backslash > leng ? "" : copytext(string, next_space + 1)
+	var/base =69ext_backslash == 1 ? "" : copytext(strin69, 1,69ext_backslash)
+	var/macro = lowertext(copytext(strin69,69ext_backslash + 1,69ext_space))
+	var/rest =69ext_backslash > len69 ? "" : copytext(strin69,69ext_space + 1)
 
 	//See http://www.byond.com/docs/ref/info.html#/DM/text/macros
 	switch(macro)
-		//prefixes/agnostic
+		//prefixes/a69nostic
 		if("the")
-			rest = text("\the []", rest)
+			rest = text("\the 66969", rest)
 		if("a")
-			rest = text("\a []", rest)
+			rest = text("\a 66969", rest)
 		if("an")
-			rest = text("\an []", rest)
+			rest = text("\an 66969", rest)
 		if("proper")
-			rest = text("\proper []", rest)
+			rest = text("\proper 66969", rest)
 		if("improper")
-			rest = text("\improper []", rest)
+			rest = text("\improper 66969", rest)
 		if("roman")
-			rest = text("\roman []", rest)
+			rest = text("\roman 66969", rest)
 		//postfixes
 		if("th")
-			base = text("[]\th", rest)
+			base = text("66969\th", rest)
 		if("s")
-			base = text("[]\s", rest)
+			base = text("66969\s", rest)
 		if("he")
-			base = text("[]\he", rest)
+			base = text("66969\he", rest)
 		if("she")
-			base = text("[]\she", rest)
+			base = text("66969\she", rest)
 		if("his")
-			base = text("[]\his", rest)
+			base = text("66969\his", rest)
 		if("himself")
-			base = text("[]\himself", rest)
+			base = text("66969\himself", rest)
 		if("herself")
-			base = text("[]\herself", rest)
+			base = text("66969\herself", rest)
 		if("hers")
-			base = text("[]\hers", rest)
+			base = text("66969\hers", rest)
 
 	. = base
 	if(rest)
 		. += .(rest)
 
 
-/proc/repeat_string(times, string="")
+/proc/repeat_strin69(times, strin69="")
 	. = ""
 	for(var/i=1, i<=times, i++)
-		. += string
+		. += strin69

@@ -2,26 +2,26 @@
 * NeoTheology: Religious items *
 *******************************/
 /*
-Intended for inquisitors and maybe future crusaders
+Intended for inquisitors and69aybe future crusaders
 A small pool of thematically appropriate religious items that are generally cheaper than conventional equivilants
 */
 
 
-//Lets make sure only appropriately ranked NT Church members can see this category
+//Lets69ake sure only appropriately ranked NT Church69embers can see this category
 //We do this by setting canview conditions on the individual items like this.
 //These are checked by the category, and also in other places
 /datum/uplink_item/item/neotheology/can_view(obj/item/device/uplink/U)
 	if (!U || !U.uplink_owner || !U.uplink_owner.current)
 		return FALSE
 
-	//Get the mob and their cruciform implant
+	//Get the69ob and their cruciform implant
 	var/mob/living/L = U.uplink_owner.current
 	var/obj/item/implant/core_implant/cruciform/C = L.get_core_implant(/obj/item/implant/core_implant/cruciform)
 
 	if (!C)
 		return FALSE
 
-	//Now lets check that cruciform for modules that indicate rank
+	//Now lets check that cruciform for69odules that indicate rank
 
 	//Inquisitor is okay
 	if (C.get_module(CRUCIFORM_INQUISITOR))
@@ -119,6 +119,6 @@ A small pool of thematically appropriate religious items that are generally chea
 
 /datum/uplink_item/item/neotheology/sniper
 	item_cost = 13
-	name = "NT MER \"Valkyrie\""
+	name = "NT69ER \"Valkyrie\""
 	path = /obj/item/gun/energy/sniperrifle
 

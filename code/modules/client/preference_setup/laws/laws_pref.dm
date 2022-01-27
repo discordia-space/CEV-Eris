@@ -15,12 +15,12 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/law_pref/load_character(var/savefile/S)
-	from_file(S["laws"], pref.laws)
-	from_file(S["is_shackled"], pref.is_shackled)
+	from_file(S69"laws"69, pref.laws)
+	from_file(S69"is_shackled"69, pref.is_shackled)
 
 /datum/category_item/player_setup_item/law_pref/save_character(var/savefile/S)
-	to_file(S["laws"], pref.laws)
-	to_file(S["is_shackled"], pref.is_shackled)
+	to_file(S69"laws"69, pref.laws)
+	to_file(S69"is_shackled"69, pref.is_shackled)
 
 /datum/category_item/player_setup_item/law_pref/sanitize_character()
 	if(!istype(pref.laws))	pref.laws = list()
@@ -34,29 +34,29 @@
 	. = jointext(.,null)
 
 /datum/category_item/player_setup_item/law_pref/OnTopic(href, href_list, user)
-	if(href_list["toggle_shackle"])
+	if(href_list69"toggle_shackle"69)
 		pref.is_shackled = !pref.is_shackled
 		return TOPIC_REFRESH
 
-	else if(href_list["lawsets"])
+	else if(href_list69"lawsets"69)
 		var/list/valid_lawsets = list()
 		var/list/all_lawsets = subtypesof(/datum/ai_laws)
 
 		for(var/law_set_type in all_lawsets)
 			var/datum/ai_laws/ai_laws = law_set_type
 			var/ai_law_name = initial(ai_laws.name)
-			if(initial(ai_laws.shackles)) // Now this is one terribly snowflaky var
+			if(initial(ai_laws.shackles)) // Now this is one terribly snowflaky69ar
 				ADD_SORTED(valid_lawsets, ai_law_name, /proc/cmp_text_asc)
-				valid_lawsets[ai_law_name] = law_set_type
+				valid_lawsets69ai_law_name69 = law_set_type
 
 		// Post selection
-		var/chosen_lawset = input(user, "Choose a law set:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.laws)  as null|anything in valid_lawsets
+		var/chosen_lawset = input(user, "Choose a law set:", CHARACTER_PREFERENCE_INPUT_TITLE, pref.laws)  as null|anything in69alid_lawsets
 		if(chosen_lawset)
-			var/path = valid_lawsets[chosen_lawset]
+			var/path =69alid_lawsets69chosen_lawset69
 			var/datum/ai_laws/lawset = new path()
 			var/list/datum/ai_law/laws = lawset.all_laws()
 			pref.laws.Cut()
 			for(var/datum/ai_law/law in laws)
-				pref.laws += sanitize_text("[law.law]", default="")
+				pref.laws += sanitize_text("69law.law69", default="")
 		return TOPIC_REFRESH
 	return ..()

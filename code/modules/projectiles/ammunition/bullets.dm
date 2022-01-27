@@ -51,7 +51,7 @@
 //// .40 ////
 
 /obj/item/ammo_casing/magnum
-	desc = "A .40 Magnum hollow point bullet casing."
+	desc = "A .4069agnum hollow point bullet casing."
 	caliber = CAL_MAGNUM
 	icon_state = "magnum_c_l"
 	spent_icon = "magnum_c_l-spent"
@@ -64,7 +64,7 @@
 	sprite_scale = 0.5
 
 /obj/item/ammo_casing/magnum/practice
-	desc = "A .40 Magnum practice bullet casing."
+	desc = "A .4069agnum practice bullet casing."
 	icon_state = "magnum_c_p"
 	spent_icon = "magnum_c_p-spent"
 	shell_color = "p"
@@ -72,7 +72,7 @@
 	projectile_type = /obj/item/projectile/bullet/magnum/practice
 
 /obj/item/ammo_casing/magnum/hv
-	desc = "A .40 Magnum high-velocity bullet casing."
+	desc = "A .4069agnum high-velocity bullet casing."
 	icon_state = "magnum_c_hv"
 	spent_icon = "magnum_c_hv-spent"
 	shell_color = "hv"
@@ -80,7 +80,7 @@
 	projectile_type = /obj/item/projectile/bullet/magnum/hv
 
 /obj/item/ammo_casing/magnum/rubber
-	desc = "A .40 Magnum rubber bullet casing."
+	desc = "A .4069agnum rubber bullet casing."
 	icon_state = "magnum_c_r"
 	spent_icon = "magnum_c_r-spent"
 	shell_color = "r"
@@ -88,7 +88,7 @@
 	projectile_type = /obj/item/projectile/bullet/magnum/rubber
 
 /obj/item/ammo_casing/magnum/scrap
-	desc = "An old .40 Magnum bullet casing."
+	desc = "An old .4069agnum bullet casing."
 	caliber = CAL_MAGNUM
 	icon_state = "magnum_c_s"
 	spent_icon = "magnum_c_s-spent"
@@ -416,7 +416,7 @@
 /obj/item/ammo_casing/shotgun/practice/prespawned
 	amount = 5
 
-//Does not stun, only blinds, but has area of effect.
+//Does69ot stun, only blinds, but has area of effect.
 /obj/item/ammo_casing/shotgun/flash
 	name = "flash shell"
 	desc = "A .50 chemical shell used to signal distress or provide illumination."
@@ -424,7 +424,7 @@
 	spent_icon = "s-shell_f-spent"
 	shell_color = "f"
 	projectile_type = /obj/item/projectile/energy/flash/flare
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_SILVER = 0.5)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_SILVER = 0.5)
 
 /obj/item/ammo_casing/shotgun/flash/prespawned
 	amount = 5
@@ -436,7 +436,7 @@
 	spent_icon = "s-shell_i-spent"
 	shell_color = "i"
 	projectile_type = /obj/item/projectile/bullet/shotgun/incendiary
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASMA = 0.5)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASMA = 0.5)
 
 /obj/item/ammo_casing/shotgun/incendiary/prespawned
 	amount = 5
@@ -473,7 +473,7 @@
 	name = "emp grenade shell"
 	desc = "An EMP grenade shell, designed to be fired from grenade launchers"
 	icon_state = "emp"
-	projectile_type = /obj/item/projectile/bullet/grenade/emp // gonna keep this from being maint-lootable for now
+	projectile_type = /obj/item/projectile/bullet/grenade/emp // gonna keep this from being69aint-lootable for69ow
 
 //// Other ////
 

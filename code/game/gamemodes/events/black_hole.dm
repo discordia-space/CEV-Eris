@@ -1,6 +1,6 @@
 /*
 	This file is included but not used, there is no black hole event yet.
-	Maybe in future when i can think of a fun and interesting way to make an event out of it
+	Maybe in future when i can think of a fun and interesting way to69ake an event out of it
 */
 
 /obj/effect/bhole
@@ -21,14 +21,14 @@
 	while(src)
 
 		if(!isturf(loc))
-			qdel(src)
+			69del(src)
 			return
 
 		//DESTROYING STUFF AT THE EPICENTER
 		for(var/mob/living/M in orange(1,src))
-			qdel(M)
+			69del(M)
 		for(var/obj/O in orange(1,src))
-			qdel(O)
+			69del(O)
 		var/base_turf = get_base_turf_by_area(src)
 		for(var/turf/simulated/ST in RANGE_TURFS(1,src))
 			if(ST.type == base_turf)
@@ -63,9 +63,9 @@
 			step(src,pick(alldirs))
 			src.anchored = TRUE
 
-/obj/effect/bhole/proc/grav(var/r, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
-	if(!isturf(loc))	//blackhole cannot be contained inside anything. Weird stuff might happen
-		qdel(src)
+/obj/effect/bhole/proc/grav(var/r,69ar/ex_act_force,69ar/pull_chance,69ar/turf_removal_chance)
+	if(!isturf(loc))	//blackhole cannot be contained inside anything. Weird stuff69ight happen
+		69del(src)
 		return
 	for(var/t = -r, t < r, t++)
 		affect_coord(x+t, y-r, ex_act_force, pull_chance, turf_removal_chance)
@@ -74,12 +74,12 @@
 		affect_coord(x-r, y-t, ex_act_force, pull_chance, turf_removal_chance)
 	return
 
-/obj/effect/bhole/proc/affect_coord(var/x, var/y, var/ex_act_force, var/pull_chance, var/turf_removal_chance)
+/obj/effect/bhole/proc/affect_coord(var/x,69ar/y,69ar/ex_act_force,69ar/pull_chance,69ar/turf_removal_chance)
 	//Get turf at coordinate
 	var/turf/T = locate(x, y, z)
 	if(isnull(T))	return
 
-	//Pulling and/or ex_act-ing movable atoms in that turf
+	//Pulling and/or ex_act-ing69ovable atoms in that turf
 	if( prob(pull_chance) )
 		for(var/obj/O in T.contents)
 			if(O.anchored)

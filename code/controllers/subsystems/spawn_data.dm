@@ -7,7 +7,7 @@ SUBSYSTEM_DEF(spawn_data)
 	var/list/all_accompanying_obj_by_path = list()
 
 /datum/controller/subsystem/spawn_data/Recover()
-	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
+	flags |= SS_NO_INIT //69ake extra sure we don't initialize twice.
 
 /datum/controller/subsystem/spawn_data/Initialize(timeofday)
 	generate_data()

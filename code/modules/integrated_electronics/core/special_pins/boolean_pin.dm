@@ -3,9 +3,9 @@
 	name = "boolean pin"
 	data = FALSE
 
-/datum/integrated_io/boolean/ask_for_pin_data(mob/user) // 'Ask' is a bit misleading, acts more like a toggle.
+/datum/integrated_io/boolean/ask_for_pin_data(mob/user) // 'Ask' is a bit69isleading, acts69ore like a toggle.
 	var/new_data = !data
-	to_chat(user, SPAN("notice", "You switch the data bit to [new_data ? "TRUE" : "FALSE"]."))
+	to_chat(user, SPAN("notice", "You switch the data bit to 69new_data ? "TRUE" : "FALSE"69."))
 	write_data_to_pin(new_data)
 
 /datum/integrated_io/boolean/write_data_to_pin(new_data)

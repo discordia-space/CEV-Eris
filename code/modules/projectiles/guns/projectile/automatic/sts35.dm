@@ -1,7 +1,7 @@
 /obj/item/gun/projectile/automatic/sts35
 	name = "OR SDF \"STS-35\""
-	desc = "The rugged STS-35 is a durable automatic weapon, made by Oberth Republic Self Defence Force. \
-			Extremely efficient rifle design that was put in service right before collapse of the Republic, this weapon can be found almost anywhere in the galaxy by now. \
+	desc = "The rugged STS-35 is a durable automatic weapon,69ade by Oberth Republic Self Defence Force. \
+			Extremely efficient rifle design that was put in service right before collapse of the Republic, this weapon can be found almost anywhere in the galaxy by69ow. \
 			Uses .30 Rifle rounds."
 	icon = 'icons/obj/guns/projectile/sts.dmi'
 	icon_state = "sts"
@@ -11,10 +11,10 @@
 	caliber = CAL_LRIFLE
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 1)
 	slot_flags = SLOT_BACK
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/lrifle
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 12)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLASTIC = 12)
 	price_tag = 3300
 	fire_sound = 'sound/weapons/guns/fire/ltrifle_fire.ogg'
 	unload_sound = 'sound/weapons/guns/interact/ltrifle_magout.ogg'
@@ -40,7 +40,7 @@
 	var/itemstring = ""
 
 	if (ammo_magazine)
-		iconstring += "[ammo_magazine? "_mag[ammo_magazine.max_ammo]": ""]"
+		iconstring += "69ammo_magazine? "_mag69ammo_magazine.max_ammo69": ""69"
 
 	if (!ammo_magazine || !length(ammo_magazine.stored_ammo))
 		iconstring += "_slide"

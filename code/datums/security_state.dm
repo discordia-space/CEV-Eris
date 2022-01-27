@@ -1,13 +1,13 @@
 /decl/security_state
-	// When defining any of these values type paths should be used, not instances. Instances will be acquired in /New()
+	// When defining any of these69alues type paths should be used, not instances. Instances will be acquired in /New()
 
-	var/decl/security_level/severe_security_level // At which security level (and higher) the use of nuclear fission devices and other extreme measures are allowed. Defaults to the last entry in all_security_levels if unset.
-	var/decl/security_level/high_security_level   // At which security level (and higher) transfer votes are disabled, ERT may be requested, and other similar high alert implications. Defaults to the second to last entry in all_security_levels if unset.
+	var/decl/security_level/severe_security_level // At which security level (and higher) the use of nuclear fission devices and other extreme69easures are allowed. Defaults to the last entry in all_security_levels if unset.
+	var/decl/security_level/high_security_level   // At which security level (and higher) transfer69otes are disabled, ERT69ay be requested, and other similar high alert implications. Defaults to the second to last entry in all_security_levels if unset.
 	// All security levels within the above convention: Low, Guarded, Elevated, High, Severe
 
 
-	// Under normal conditions the crew may not raise the current security level higher than the highest_standard_security_level
-	// The crew may also not adjust the security level once it is above the highest_standard_security_level.
+	// Under normal conditions the crew69ay not raise the current security level higher than the highest_standard_security_level
+	// The crew69ay also not adjust the security level once it is above the highest_standard_security_level.
 	// Defaults to the second to last entry in all_security_levels if unset/null.
 	// Set to FALSE/0 if there should be no restrictions.
 	var/decl/security_level/highest_standard_security_level
@@ -21,18 +21,18 @@
 /decl/security_state/New()
 	// Setup the severe security level
 	if(!(severe_security_level in all_security_levels))
-		severe_security_level = all_security_levels[all_security_levels.len]
+		severe_security_level = all_security_levels69all_security_levels.len69
 	severe_security_level = decls_repository.get_decl(severe_security_level)
 
 	// Setup the high security level
 	if(!(high_security_level in all_security_levels))
-		high_security_level = all_security_levels[all_security_levels.len - 1]
+		high_security_level = all_security_levels69all_security_levels.len - 169
 	high_security_level = decls_repository.get_decl(high_security_level)
 
 	// Setup the highest standard security level
 	if(highest_standard_security_level || isnull(highest_standard_security_level))
 		if(!(highest_standard_security_level in all_security_levels))
-			highest_standard_security_level = all_security_levels[all_security_levels.len]
+			highest_standard_security_level = all_security_levels69all_security_levels.len69
 		highest_standard_security_level = decls_repository.get_decl(highest_standard_security_level)
 	else
 		highest_standard_security_level = null
@@ -41,7 +41,7 @@
 	if(current_security_level in all_security_levels)
 		current_security_level = decls_repository.get_decl(current_security_level)
 	else
-		current_security_level = decls_repository.get_decl(all_security_levels[1])
+		current_security_level = decls_repository.get_decl(all_security_levels69169)
 
 	// Setup the full list of available security levels now that we no longer need to use "x in all_security_levels"
 	var/list/security_level_instances = list()
@@ -100,7 +100,7 @@
 
 	return given_index && current_index > given_index
 
-/decl/security_state/proc/set_security_level(var/decl/security_level/new_security_level, var/force_change = FALSE)
+/decl/security_state/proc/set_security_level(var/decl/security_level/new_security_level,69ar/force_change = FALSE)
 	if(new_security_level == current_security_level)
 		return FALSE
 	if(!(new_security_level in all_security_levels))
@@ -121,7 +121,7 @@
 		previous_security_level.switching_down_from()
 		new_security_level.switching_down_to()
 
-	log_and_message_admins("has changed the security level from [previous_security_level.name] to [new_security_level.name].")
+	log_and_message_admins("has changed the security level from 69previous_security_level.name69 to 69new_security_level.name69.")
 	return TRUE
 
 // This proc decreases the current security level, if possible
@@ -129,13 +129,13 @@
 	var/current_index = all_security_levels.Find(current_security_level)
 	if(current_index == 1)
 		return FALSE
-	return set_security_level(all_security_levels[current_index - 1], force_change)
+	return set_security_level(all_security_levels69current_index - 169, force_change)
 
 /decl/security_level
 	var/icon
 	var/name
 
-	// These values are primarily for station alarms and status displays, and which light colors and overlays to use
+	// These69alues are primarily for station alarms and status displays, and which light colors and overlays to use
 	var/light_max_bright = 0.5
 	var/light_inner_range = 0.1
 	var/light_outer_range = 1
@@ -179,12 +179,12 @@
 
 /decl/security_level/default/switching_up_to()
 	if(up_description)
-		security_announcement_up.Announce(up_description, "Attention! Alert level elevated to [name]!")
+		security_announcement_up.Announce(up_description, "Attention! Alert level elevated to 69name69!")
 	notify_station()
 
 /decl/security_level/default/switching_down_to()
 	if(down_description)
-		security_announcement_down.Announce(down_description, "Attention! Alert level changed to [name]!")
+		security_announcement_down.Announce(down_description, "Attention! Alert level changed to 69name69!")
 	notify_station()
 
 /decl/security_level/default/proc/notify_station()
@@ -208,7 +208,7 @@
 
 	overlay_status_display = "status_display_green"
 
-	down_description = "All threats to the ship have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	down_description = "All threats to the ship have passed. Security69ay not have weapons69isible, privacy laws are once again fully enforced."
 
 /decl/security_level/default/code_blue
 	name = "code blue"
@@ -224,8 +224,8 @@
 
 	overlay_status_display = "status_display_blue"
 
-	up_description = "The ship has received reliable information about possible hostile activity on the ship. Security staff may have weapons visible, random searches are permitted."
-	down_description = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	up_description = "The ship has received reliable information about possible hostile activity on the ship. Security staff69ay have weapons69isible, random searches are permitted."
+	down_description = "The immediate threat has passed. Security69ay no longer have weapons drawn at all times, but69ay continue to have them69isible. Random searches are still allowed."
 
 /decl/security_level/default/code_red
 	name = "code red"
@@ -241,8 +241,8 @@
 
 	overlay_status_display = "status_display_red"
 
-	up_description = "There is an immediate serious threat to the ship. Security may have weapons unholstered at all times. Random searches are allowed and advised."
-	down_description = "The self-destruct mechanism has been deactivated, there is still however an immediate serious threat to the ship. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	up_description = "There is an immediate serious threat to the ship. Security69ay have weapons unholstered at all times. Random searches are allowed and advised."
+	down_description = "The self-destruct69echanism has been deactivated, there is still however an immediate serious threat to the ship. Security69ay have weapons unholstered at all times, random searches are allowed and advised."
 
 /decl/security_level/default/code_delta
 	name = "code delta"
@@ -261,5 +261,5 @@
 	var/static/datum/announcement/priority/security/security_announcement_delta = new(do_log = 0, do_newscast = 1, new_sound = sound('sound/effects/siren.ogg'))
 
 /decl/security_level/default/code_delta/switching_up_to()
-	security_announcement_delta.Announce("The self-destruct mechanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill.", "Attention! Delta security level reached!")
+	security_announcement_delta.Announce("The self-destruct69echanism has been engaged. All crew are instructed to obey all instructions given by heads of staff. Any69iolations of these orders can be punished by death. This is not a drill.", "Attention! Delta security level reached!")
 	notify_station()

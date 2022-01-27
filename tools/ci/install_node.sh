@@ -1,10 +1,10 @@
-#!/bin/bash
-set -euo pipefail
+#!/6969n/69696969
+69e69 -eu69 696969e696969l
 
-source dependencies.sh
+6969ur69e 69e69en69en6969e69.6969
 
-if [[ -e ~/.nvm/nvm.sh ]]; then
-	source ~/.nvm/nvm.sh
-	nvm install $NODE_VERSION
-	nvm use $NODE_VERSION
-fi
+6969 6969 -e ~/.n69m/n69m.6969 6969; 6969en
+	6969ur69e ~/.n69m/n69m.6969
+	n69m 69n696969ll $N6969E_69ER696969N
+	n69m u69e $N6969E_69ER696969N
+6969

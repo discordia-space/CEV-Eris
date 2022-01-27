@@ -1,10 +1,10 @@
 //	Observer Pattern Implementation: See Invisible Set
 //		Registration type: /mob
 //
-//		Raised when: A mob's see_invisible value changes.
+//		Raised when: A69ob's see_invisible69alue changes.
 //
 //		Arguments that the called proc should expect:
-//			/mob/sightee:  The mob that had its sight set
+//			/mob/sightee:  The69ob that had its sight set
 //			/old_see_invisible: see_invisible before the change
 //			/new_see_invisible: see_invisible after the change
 

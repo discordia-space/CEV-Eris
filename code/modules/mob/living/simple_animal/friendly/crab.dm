@@ -3,7 +3,7 @@
 	name = "crab"
 	desc = "A hard-shelled crustacean. Seems quite content to lounge around all the time."
 	icon_state = "crab"
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 	speak_emote = list("clicks")
 	emote_see = list("clacks")
 	speak_chance = 1
@@ -21,9 +21,9 @@
 
 /mob/living/simple_animal/crab/Life()
 	..()
-	//CRAB movement
+	//CRAB69ovement
 	if(!ckey && !stat)
-		if(isturf(src.loc) && !resting && !buckled)		//This is so it only moves if it's not inside a closet, gentics machine, etc.
+		if(isturf(src.loc) && !resting && !buckled)		//This is so it only69oves if it's69ot inside a closet, gentics69achine, etc.
 			turns_since_move++
 			if(turns_since_move >= turns_per_move)
 				step_glide(src,pick(4,8), DELAY2GLIDESIZE(0.5 SECONDS))

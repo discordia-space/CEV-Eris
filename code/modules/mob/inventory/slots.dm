@@ -21,38 +21,38 @@
 	if(update_proc)
 		call(owner, update_proc)(redraw)
 
-/datum/inventory_slot/proc/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/proc/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	if(req_item_in_slot && !owner.get_equipped_item(req_item_in_slot))
 		if(!disable_warning)
-			to_chat(owner, SPAN_WARNING("You need something you can attach this [I] to."))
+			to_chat(owner, SPAN_WARNING("You69eed something you can attach this 69I69 to."))
 		return FALSE
 
 	if(req_organ)
 		if(islist(req_organ))
 			var/found_organ = FALSE
 			for(var/organ in req_organ)
-				if(owner.has_organ(organ, req_organ[organ]))
+				if(owner.has_organ(organ, req_organ69organ69))
 					found_organ = TRUE
 					break
 			if(!found_organ)
 				if(!disable_warning)
-					to_chat(owner, SPAN_WARNING("You can' equip this [I]!"))
+					to_chat(owner, SPAN_WARNING("You can' equip this 69I69!"))
 				return FALSE
 		else
 			if(!owner.has_organ(req_organ))
 				if(!disable_warning)
-					to_chat(owner, SPAN_WARNING("You have nothing you can thear this [I] on."))
+					to_chat(owner, SPAN_WARNING("You have69othing you can thear this 69I69 on."))
 				return FALSE
 
 	if(req_type && istype(I, req_type))
 		return TRUE
 	else if(req_slot_flags && (req_slot_flags & I.slot_flags))
 		return TRUE
-	else if(max_w_class && (I.w_class <= max_w_class))
+	else if(max_w_class && (I.w_class <=69ax_w_class))
 		return TRUE
 
 	if(!disable_warning)
-		to_chat(owner, SPAN_WARNING("You can't wear [I] in your [name] slot"))
+		to_chat(owner, SPAN_WARNING("You can't wear 69I69 in your 69name69 slot"))
 
 	return FALSE
 
@@ -77,7 +77,7 @@
 	req_type = /obj/item/handcuffs
 	update_proc = /mob/proc/update_inv_handcuffed
 
-/datum/inventory_slot/handcuffs/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/handcuffs/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	if(..())
 		// We should check all organs here
 		for(var/organ in req_organ)
@@ -96,7 +96,7 @@
 /datum/inventory_slot/hand
 	req_type = /obj/item
 
-/datum/inventory_slot/hand/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/hand/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 //	if(owner.lying && I.canremove)
 //		if(!disable_warning)
 //			to_chat(owner, SPAN_WARNING("You can't hold items while lying"))
@@ -134,7 +134,7 @@
 	req_slot_flags = SLOT_EARS|SLOT_TWOEARS
 	update_proc = /mob/proc/update_inv_ears
 
-/datum/inventory_slot/ear/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/ear/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_TWOEARS)
 		var/slot_other_ear = (id == slot_l_ear)? slot_r_ear : slot_l_ear
 		return !owner.get_equipped_item(slot_other_ear)
@@ -199,10 +199,10 @@
 	max_w_class = ITEM_SIZE_SMALL
 	update_proc = /mob/proc/update_inv_pockets
 
-/datum/inventory_slot/store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/store/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	if(I.slot_flags & SLOT_DENYPOCKET)
 		if(!disable_warning)
-			to_chat(owner, SPAN_WARNING("[I] can't be holded by your [name]."))
+			to_chat(owner, SPAN_WARNING("69I69 can't be holded by your 69name69."))
 		return FALSE
 	if(istype(I, /obj/item/storage/pouch)) // Pouches are basically equipped over the suit, they just take up pockets.
 		return TRUE
@@ -224,29 +224,29 @@
 	req_item_in_slot = slot_wear_suit
 	update_proc = /mob/proc/update_inv_s_store
 
-/datum/inventory_slot/suit_store/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/suit_store/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	var/obj/item/wear_suit = owner.get_equipped_item(slot_wear_suit)
 	if(!wear_suit)
 		if(!disable_warning)
-			to_chat(owner, SPAN_WARNING("You need some suit to wear items in [name]."))
+			to_chat(owner, SPAN_WARNING("You69eed some suit to wear items in 69name69."))
 		return FALSE
 	if(!wear_suit.allowed)
 		if(!disable_warning)
-			to_chat(owner, SPAN_WARNING("You can't attach anything to that [wear_suit]."))
+			to_chat(owner, SPAN_WARNING("You can't attach anything to that 69wear_suit69."))
 		return FALSE
 	if( !is_type_in_list(I, wear_suit.allowed + list(/obj/item/modular_computer/pda, /obj/item/pen)) )
 		if(!disable_warning)
-			to_chat(owner, SPAN_WARNING("You can't attach [I] to that [wear_suit]."))
+			to_chat(owner, SPAN_WARNING("You can't attach 69I69 to that 69wear_suit69."))
 		return FALSE
 	return TRUE
 
 
-//Special virtual slots. Here for backcompability.
+//Special69irtual slots. Here for backcompability.
 /datum/inventory_slot/in_backpack
 	name = "Slot in backpack"
 	id = slot_in_backpack
 
-/datum/inventory_slot/in_backpack/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/in_backpack/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	var/obj/item/storage/back = owner.get_equipped_item(slot_back)
 	return istype(back) && back.can_be_inserted(src,1)
 
@@ -256,17 +256,17 @@
 	id = slot_accessory_buffer
 	req_type = /obj/item/clothing/accessory
 
-/datum/inventory_slot/accessory/can_equip(obj/item/I, mob/living/carbon/human/owner, disable_warning)
+/datum/inventory_slot/accessory/can_equip(obj/item/I,69ob/living/carbon/human/owner, disable_warning)
 	if(!istype(I, req_type))
 		return FALSE
 	var/obj/item/clothing/under/uniform = owner.get_equipped_item(slot_w_uniform)
 	if(!uniform)
 		if(!disable_warning)
-			to_chat(src, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
+			to_chat(src, SPAN_WARNING("You69eed a jumpsuit before you can attach this 69name69."))
 		return FALSE
 	if(uniform.accessories.len && !uniform.can_attach_accessory(src))
 		if (!disable_warning)
-			to_chat(src, SPAN_WARNING("You already have an accessory of this type attached to your [uniform]."))
+			to_chat(src, SPAN_WARNING("You already have an accessory of this type attached to your 69uniform69."))
 		return FALSE
 	return TRUE
 

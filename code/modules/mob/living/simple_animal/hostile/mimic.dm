@@ -38,14 +38,14 @@
 /mob/living/simple_animal/hostile/mimic/FindTarget()
 	. = ..()
 	if(.)
-		visible_emote("growls at [.]")
+		visible_emote("growls at 69.69")
 
 /mob/living/simple_animal/hostile/mimic/death()
 	..()
 	qdel(src)
 
 //
-// Crate Mimic
+// Crate69imic
 //
 
 
@@ -67,14 +67,14 @@
 /mob/living/simple_animal/hostile/mimic/crate/DestroySurroundings()
 	..()
 	if(prob(90))
-		icon_state = "[initial(icon_state)]open"
+		icon_state = "69initial(icon_state)69open"
 	else
 		icon_state = initial(icon_state)
 
 /mob/living/simple_animal/hostile/mimic/crate/ListTargets()
 	if(attempt_open)
 		return ..()
-	return view(src, 1)
+	return69iew(src, 1)
 
 /mob/living/simple_animal/hostile/mimic/crate/FindTarget()
 	. = ..()
@@ -88,7 +88,7 @@
 
 /mob/living/simple_animal/hostile/mimic/crate/proc/trigger()
 	if(!attempt_open)
-		visible_message("<b>[src]</b> starts to move!")
+		visible_message("<b>69src69</b> starts to69ove!")
 		attempt_open = 1
 
 /mob/living/simple_animal/hostile/mimic/crate/adjustBruteLoss(var/damage)
@@ -105,7 +105,7 @@
 
 /mob/living/simple_animal/hostile/mimic/crate/death()
 
-	var/obj/structure/closet/crate/C = new(get_turf(src))
+	var/obj/structure/closet/crate/C =69ew(get_turf(src))
 	// Put loot in crate
 	for(var/obj/O in src)
 		O.loc = C
@@ -117,10 +117,10 @@
 	if(istype(L))
 		if(prob(15))
 			L.Weaken(2)
-			L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
+			L.visible_message(SPAN_DANGER("\the 69src69 knocks down \the 69L69!"))
 
 //
-// Copy Mimic
+// Copy69imic
 //
 
 var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/cable, /obj/structure/window, /obj/item/projectile/animate)
@@ -129,11 +129,11 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 
 	health = 100
 	maxHealth = 100
-	var/mob/living/creator = null // the creator
+	var/mob/living/creator =69ull // the creator
 	var/destroy_objects = 0
 	var/knockdown_people = 0
 
-/mob/living/simple_animal/hostile/mimic/copy/New(loc, var/obj/copy, var/mob/living/creator)
+/mob/living/simple_animal/hostile/mimic/copy/New(loc,69ar/obj/copy,69ar/mob/living/creator)
 	..(loc)
 	CopyObject(copy, creator)
 
@@ -148,7 +148,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	. = ..()
 	return . - creator
 
-/mob/living/simple_animal/hostile/mimic/copy/proc/CopyObject(var/obj/O, var/mob/living/creator)
+/mob/living/simple_animal/hostile/mimic/copy/proc/CopyObject(var/obj/O,69ar/mob/living/creator)
 
 	if((istype(O, /obj/item) || istype(O, /obj/structure)) && !is_type_in_list(O, protected_objects))
 
@@ -176,7 +176,7 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		maxHealth = health
 		if(creator)
 			src.creator = creator
-			faction = "\ref[creator]" // very unique
+			faction = "\ref69creator69" //69ery unique
 		return 1
 	return
 
@@ -191,4 +191,4 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 		if(istype(L))
 			if(prob(15))
 				L.Weaken(1)
-				L.visible_message(SPAN_DANGER("\the [src] knocks down \the [L]!"))
+				L.visible_message(SPAN_DANGER("\the 69src69 knocks down \the 69L69!"))

@@ -20,10 +20,10 @@
 	var/ref
 
 /weakref/New(datum/D)
-	ref = "\ref[D]"
+	ref = "\ref69D69"
 
 /weakref/Destroy()
-	// A weakref datum should not be manually destroyed as it is a shared resource,
+	// A weakref datum should not be69anually destroyed as it is a shared resource,
 	//  rather it should be automatically collected by the BYOND GC when all references are gone.
 	return QDEL_HINT_IWILLGC
 

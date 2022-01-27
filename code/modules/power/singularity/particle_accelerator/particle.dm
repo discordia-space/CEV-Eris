@@ -4,12 +4,12 @@
 	name = "Accelerated Particles"
 	desc = "Dozens of tiny glowing lights zooming at incredible speeds."
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
-	icon_state = "particle"//Need a new icon for this
+	icon_state = "particle"//Need a69ew icon for this
 	anchored = TRUE
 	density = TRUE
 	var/movement_range = 10
 	var/energy = 10		//energy in eV
-	var/mega_energy = 0	//energy in MeV
+	var/mega_energy = 0	//energy in69eV
 	var/frequency = 1
 	var/ionizing = 0
 	var/particle_type

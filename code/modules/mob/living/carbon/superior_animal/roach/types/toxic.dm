@@ -20,7 +20,7 @@
 	acceptableTargetDistance = 5
 	kept_distance = 3
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = 0,
 		bullet = 20,
@@ -30,16 +30,16 @@
 		rad = 100
 	)
 
-/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/toxic/UnarmedAttack(atom/A,69ar/proximity)
 	. = ..()
 	if(prob(25))
 		if(isliving(A))
 			var/mob/living/L = A
-			var/damage = rand(melee_damage_lower, melee_damage_upper)
+			var/damage = rand(melee_damage_lower,69elee_damage_upper)
 			L.apply_effect(40, IRRADIATE)
 			L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 			playsound(src, 'sound/voice/insect_battle_screeching.ogg', 30, 1, -3)
-			L.visible_message(SPAN_DANGER("\the [src] globs up some glowing bile all over \the [L]!"))
+			L.visible_message(SPAN_DANGER("\the 69src69 globs up some glowing bile all over \the 69L69!"))
 
 /obj/item/projectile/roach_spit
 	name = "Glowing bile"
@@ -57,7 +57,7 @@
 		var/damage = rand(3, 7)
 		L.damage_through_armor(damage, TOX, attack_flag = ARMOR_BIO)
 
-/obj/item/projectile/roach_spit/attack_mob(mob/living/target_mob, distance, miss_modifier=0)
+/obj/item/projectile/roach_spit/attack_mob(mob/living/target_mob, distance,69iss_modifier=0)
 	if (isroach(target_mob))
 		return FALSE // so these pass through roaches
 	..()

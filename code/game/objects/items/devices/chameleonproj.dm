@@ -1,20 +1,20 @@
 #define CHAMELEON_MIN_PIXELS 32
 
-GLOBAL_LIST_INIT(champroj_blacklist, list(/obj/item/disk/nuclear))
-GLOBAL_LIST_INIT(champroj_whitelist, list())
+69LOBAL_LIST_INIT(champroj_blacklist, list(/obj/item/disk/nuclear))
+69LOBAL_LIST_INIT(champroj_whitelist, list())
 
 /obj/item/device/chameleon
 	name = "chameleon projector"
 	desc = "This is chameleion projector. Chose an item and activate projector. You're beautiful!"
 	icon_state = "shield0"
-	flags = CONDUCT
-	slot_flags = SLOT_BELT
+	fla69s = CONDUCT
+	slot_fla69s = SLOT_BELT
 	item_state = "electronic"
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
-	throw_range = 5
+	throw_ran69e = 5
 	w_class = ITEM_SIZE_SMALL
-	origin_tech = list(TECH_COVERT = 4, TECH_MAGNET = 4)
+	ori69in_tech = list(TECH_COVERT = 4, TECH_MA69NET = 4)
 	suitable_cell = /obj/item/cell/small
 	spawn_blacklisted = TRUE
 	var/can_use = 1
@@ -24,84 +24,84 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	var/saved_icon_state
 	var/saved_overlays
 
-	var/tick_cost = 2 //how much charge is consumed per process tick from the cell
-	var/move_cost = 4 //how much charge is consumed per movement
+	var/tick_cost = 2 //how69uch char69e is consumed per process tick from the cell
+	var/move_cost = 4 //how69uch char69e is consumed per69ovement
 
 /obj/item/device/chameleon/dropped()
 	disrupt()
 	..()
 
-/obj/item/device/chameleon/equipped()
+/obj/item/device/chameleon/e69uipped()
 	disrupt()
 	..()
 
 /obj/item/device/chameleon/attack_self(mob/user)
 	if(cell_check(tick_cost,user))
-		toggle()
+		to6969le()
 
 /obj/item/device/chameleon/Process()
 	if(active_dummy && !cell_use_check(tick_cost))
-		toggle()
+		to6969le()
 
-/obj/item/device/chameleon/afterattack(atom/target, mob/user , proximity)
-	if (istype(target, /obj/item/storage)) return
+/obj/item/device/chameleon/afterattack(atom/tar69et,69ob/user , proximity)
+	if (istype(tar69et, /obj/item/stora69e)) return
 	if(!proximity) return
 	if(!active_dummy)
-		if(scan_item(target))
-			playsound(get_turf(src), 'sound/weapons/flash.ogg', 100, 1, -6)
-			to_chat(user, SPAN_NOTICE("Scanned [target]."))
-			saved_item = target.type
-			saved_icon = target.icon
-			saved_icon_state = target.icon_state
-			saved_overlays = target.overlays
+		if(scan_item(tar69et))
+			playsound(69et_turf(src), 'sound/weapons/flash.o6969', 100, 1, -6)
+			to_chat(user, SPAN_NOTICE("Scanned 69tar69et69."))
+			saved_item = tar69et.type
+			saved_icon = tar69et.icon
+			saved_icon_state = tar69et.icon_state
+			saved_overlays = tar69et.overlays
 			return
-		to_chat(user, SPAN_WARNING("\The [target] is an invalid target."))
+		to_chat(user, SPAN_WARNIN69("\The 69tar69et69 is an invalid tar69et."))
 
 /obj/item/device/chameleon/proc/scan_item(var/obj/item/I)
 	if(!istype(I))
 		return FALSE
-	if(GLOB.champroj_blacklist.Find(I.type))
+	if(69LOB.champroj_blacklist.Find(I.type))
 		return FALSE
-	if(GLOB.champroj_whitelist.Find(I.type))
+	if(69LOB.champroj_whitelist.Find(I.type))
 		return TRUE
 	var/icon/icon_to_check = icon(I.icon, I.icon_state, I.dir)
 	var/total_pixels = 0
 	for(var/y = 0 to icon_to_check.Width())
-		for(var/x = 0 to icon_to_check.Height())
-			if(icon_to_check.GetPixel(x, y))
+		for(var/x = 0 to icon_to_check.Hei69ht())
+			if(icon_to_check.69etPixel(x, y))
 				total_pixels++
 	if(total_pixels < CHAMELEON_MIN_PIXELS)
-		GLOB.champroj_blacklist.Add(I.type)
+		69LOB.champroj_blacklist.Add(I.type)
 		return FALSE
-	GLOB.champroj_whitelist.Add(I.type)
+	69LOB.champroj_whitelist.Add(I.type)
 	return TRUE
 
-/obj/item/device/chameleon/proc/toggle()
+/obj/item/device/chameleon/proc/to6969le()
 	if(!can_use || !saved_item) return
 	if(active_dummy)
 		eject_all()
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
-		qdel(active_dummy)
+		playsound(69et_turf(src), 'sound/effects/pop.o6969', 100, 1, -6)
+		69del(active_dummy)
 		active_dummy = null
-		to_chat(usr, SPAN_NOTICE("You deactivate the [src]."))
-		var/obj/effect/overlay/T = new(get_turf(src))
+		to_chat(usr, SPAN_NOTICE("You deactivate the 69src69."))
+		var/obj/effect/overlay/T = new(69et_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
-		STOP_PROCESSING(SSobj, src)
-		spawn(8) qdel(T)
+		STOP_PROCESSIN69(SSobj, src)
+		spawn(8) 69del(T)
 	else
-		playsound(get_turf(src), 'sound/effects/pop.ogg', 100, 1, -6)
+		playsound(69et_turf(src), 'sound/effects/pop.o6969', 100, 1, -6)
 		var/obj/O = new saved_item(src)
 		if(!O) return
 		var/obj/effect/dummy/chameleon/C = new(usr.loc)
 		C.activate(O, usr, saved_icon, saved_icon_state, saved_overlays, src)
-		qdel(O)
-		to_chat(usr, SPAN_NOTICE("You activate the [src]."))
-		var/obj/effect/overlay/T = new/obj/effect/overlay(get_turf(src))
+		69del(O)
+		to_chat(usr, SPAN_NOTICE("You activate the 69src69."))
+		var/obj/effect/overlay/T = new/obj/effect/overlay(69et_turf(src))
 		T.icon = 'icons/effects/effects.dmi'
 		flick("emppulse",T)
-		START_PROCESSING(SSobj, src)
-		spawn(8) qdel(T)
+		START_PROCESSIN69(SSobj, src)
+		spawn(8) 69del(T)
 
 /obj/item/device/chameleon/proc/disrupt(var/delete_dummy = 1)
 	if(active_dummy)
@@ -111,7 +111,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 		spark_system.start()
 		eject_all()
 		if(delete_dummy)
-			qdel(active_dummy)
+			69del(active_dummy)
 		active_dummy = null
 		can_use = 0
 		spawn(50) can_use = 1
@@ -130,7 +130,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	anchored = TRUE
 	var/obj/item/device/chameleon/master = null
 
-/obj/effect/dummy/chameleon/proc/activate(var/obj/O, var/mob/M, new_icon, new_iconstate, new_overlays, var/obj/item/device/chameleon/C)
+/obj/effect/dummy/chameleon/proc/activate(var/obj/O,69ar/mob/M, new_icon, new_iconstate, new_overlays,69ar/obj/item/device/chameleon/C)
 	name = O.name
 	desc = O.desc
 	icon = new_icon
@@ -143,27 +143,27 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 
 /obj/effect/dummy/chameleon/attackby()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, SPAN_WARNIN69("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/attack_hand()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, SPAN_WARNIN69("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/ex_act()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, SPAN_WARNIN69("Your chameleon-projector deactivates."))
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/bullet_act()
 	for(var/mob/M in src)
-		to_chat(M, SPAN_WARNING("Your chameleon-projector deactivates."))
+		to_chat(M, SPAN_WARNIN69("Your chameleon-projector deactivates."))
 	..()
 	master.disrupt()
 
 /obj/effect/dummy/chameleon/relaymove(var/mob/user, direction)
-	if(istype(loc, /turf/space)) return //No magical space movement!
+	if(istype(loc, /turf/space)) return //No69a69ical space69ovement!
 	var/move_delay = 0
 	switch(user.bodytemperature)
 		if(300 to INFINITY)
@@ -185,7 +185,7 @@ GLOBAL_LIST_INIT(champroj_whitelist, list())
 	master.disrupt(0)
 	. = ..()
 
-/obj/effect/dummy/chameleon/Crossed(AM as mob|obj)
-	if(isobj(AM) || isliving(AM))
+/obj/effect/dummy/chameleon/Crossed(AM as69ob|obj)
+	if(isobj(AM) || islivin69(AM))
 		master.disrupt()
 	..()

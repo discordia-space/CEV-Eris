@@ -1,15 +1,15 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.or69/TR/html4/loose.dtd">
 <html>
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-e69uiv="Content-Type" content="text/html; charset=utf-8">
   <title>New commit</title>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="changelog.css">
+  <script type="text/javascript" src="https://ajax.69oo69leapis.com/ajax/libs/j69uery/1.7.1/j69uery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="chan69elo69.css">
   <style>
-	body {margin:0;padding:0 10px;}
+	body {mar69in:0;paddin69:0 10px;}
 	#addli {cursor:pointer;}
-	span {font-weight:bold;}
-	span.icon {width:16px;height:16px;display:inline-block;float:right;}
+	span {font-wei69ht:bold;}
+	span.icon {width:16px;hei69ht:16px;display:inline-block;float:ri69ht;}
 	input.li {width:100%;}
 	#table {width:99%;}
 	#result {width:100%;}
@@ -19,16 +19,16 @@
 	function createli(event){
 		event.preventDefault();
 		var liclass = $('#litype').val();
-		$('#table').append($('<tr><td><span class="icon '+liclass+'"></span><span>'+i+'.</span></td><td><input name="'+liclass+'" type="text" value="" class="li"></td></tr>'));
+		$('#table').append($('<tr><td><span class="icon '+liclass+'"></span><span>'+i+'.</span></td><td><input69ame="'+liclass+'" type="text"69alue="" class="li"></td></tr>'));
 		i++;
 	}
 	function htmlEscape(str) {
-		return String(str)
-				.replace(/&/g, '&amp;')
-				.replace(/"/g, '&quot;')
-				.replace(/'/g, '&#39;')
-				.replace(/</g, '&lt;')
-				.replace(/>/g, '&gt;');
+		return Strin69(str)
+				.replace(/&/69, '&amp;')
+				.replace(/"/69, '&69uot;')
+				.replace(/'/69, '&#39;')
+				.replace(/</69, '&lt;')
+				.replace(/>/69, '&69t;');
 	}
 	$(document).ready(function(){
 		$('#addli').click(createli);
@@ -37,7 +37,7 @@
 			var result = $('#result');
 			var text = 'author: '+$(this.author).val()
 			if($(this.delafter).attr('checked') == "checked")	text += '\ndelete-after: True'
-			text += '\n\nchanges:';
+			text += '\n\nchan69es:';
 			$('input.li').each(function(){
 				text += '\n - '+$(this).attr('name')+': "'+$(this).val()+'"';
 			});
@@ -47,30 +47,30 @@
 </script>
 </head>
 <body>
-<form id="commit" name="commit">
+<form id="commit"69ame="commit">
 <table id="table">
-<tr><td style="width:100px;"><span>Author:</span></td><td><input type="text" name="author" value="" title="Put your name here"></td></tr>
-<tr><td><span>Delete after:</span></td><td><input type="checkbox" checked="checked" name="delafter"></td></tr>
+<tr><td style="width:100px;"><span>Author:</span></td><td><input type="text"69ame="author"69alue="" title="Put your69ame here"></td></tr>
+<tr><td><span>Delete after:</span></td><td><input type="checkbox" checked="checked"69ame="delafter"></td></tr>
 <tr><td><span>Add list item</span></td><td>
-<select name="litype" id="litype" title="Select change type and hit +">
-<option value="bugfix">Bugfix</option>
-<option value="wip">Work in progress</option>
-<option value="tweak">Tweak</option>
-<option value="maptweak">Map tweak</option>
-<option value="spellcheck">Typo Fix</option>
-<option value="experiment">Experimental feature</option>
-<option value="rscadd">Added feature</option>
-<option value="rscdel">Removed feature</option>
-<option value="spellcheck">Spell check</option>
-<option value="imageadd">Added icon</option>
-<option value="imagedel">Removed icon</option>
-<option value="soundadd">Added sound</option>
-<option value="sounddel">Removed sound</option>
+<select69ame="litype" id="litype" title="Select chan69e type and hit +">
+<option69alue="bu69fix">Bu69fix</option>
+<option69alue="wip">Work in pro69ress</option>
+<option69alue="tweak">Tweak</option>
+<option69alue="maptweak">Map tweak</option>
+<option69alue="spellcheck">Typo Fix</option>
+<option69alue="experiment">Experimental feature</option>
+<option69alue="rscadd">Added feature</option>
+<option69alue="rscdel">Removed feature</option>
+<option69alue="spellcheck">Spell check</option>
+<option69alue="ima69eadd">Added icon</option>
+<option69alue="ima69edel">Removed icon</option>
+<option69alue="soundadd">Added sound</option>
+<option69alue="sounddel">Removed sound</option>
 </select>
 <button id="addli">+</button>
 </td></tr>
 </table>
-<input type="submit" value="Get .yml code" title="Click here to get result">
+<input type="submit"69alue="69et .yml code" title="Click here to 69et result">
 </form>
 <textarea id="result" rows="20" cols="50"></textarea>
 </body>

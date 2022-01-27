@@ -1,12 +1,12 @@
 /obj/item/clothing/mask/breath
-	desc = "A close-fitting mask that can be connected to an air supply."
-	name = "breath mask"
+	desc = "A close-fitting69ask that can be connected to an air supply."
+	name = "breath69ask"
 	icon_state = "breath"
 	item_state = "breath"
 	item_flags = AIRTIGHT|FLEXIBLEMATERIAL
 	body_parts_covered = FACE
 	w_class = ITEM_SIZE_SMALL
-	action_button_name = "Adjust mask"
+	action_button_name = "Adjust69ask"
 	gas_transfer_coefficient = 0.10
 	permeability_coefficient = 0.50
 	var/hanging = 0
@@ -21,13 +21,13 @@
 			body_parts_covered = body_parts_covered & ~FACE
 			item_flags = item_flags & ~AIRTIGHT
 			icon_state = "breathdown"
-			to_chat(user, "Your mask is now hanging on your neck.")
+			to_chat(user, "Your69ask is now hanging on your neck.")
 		else
 			gas_transfer_coefficient = initial(gas_transfer_coefficient)
 			body_parts_covered = initial(body_parts_covered)
 			item_flags = initial(item_flags)
 			icon_state = initial(icon_state)
-			to_chat(user, "You pull the mask up to cover your face.")
+			to_chat(user, "You pull the69ask up to cover your face.")
 		update_wear_icon()
 
 /obj/item/clothing/mask/breath/attack_self(mob/user)
@@ -35,14 +35,14 @@
 
 /obj/item/clothing/mask/breath/verb/toggle()
 		set category = "Object"
-		set name = "Adjust mask"
+		set name = "Adjust69ask"
 		set src in usr
 
 		adjust_mask(usr)
 
 /obj/item/clothing/mask/breath/medical
-	desc = "A close-fitting sterile mask that can be connected to an air supply."
-	name = "medical mask"
+	desc = "A close-fitting sterile69ask that can be connected to an air supply."
+	name = "medical69ask"
 	icon_state = "medical"
 	item_state = "medical"
 	permeability_coefficient = 0.01

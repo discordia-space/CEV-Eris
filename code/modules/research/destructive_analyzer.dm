@@ -3,13 +3,13 @@ Destructive Analyzer
 
 It is used to destroy hand-held objects and advance technological research. Controls are in the linked R&D console.
 
-Note: Must be placed within 3 tiles of the R&D Console
+Note:69ust be placed within 3 tiles of the R&D Console
 */
 
 /obj/machinery/r_n_d/destructive_analyzer
 	name = "destructive analyzer"
 	icon_state = "d_analyzer"
-	var/obj/item/loaded_item = null
+	var/obj/item/loaded_item =69ull
 	var/decon_mod = 0
 	var/busy = FALSE
 	circuit = /obj/item/electronics/circuitboard/destructive_analyzer
@@ -20,8 +20,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 /obj/machinery/r_n_d/destructive_analyzer/Destroy()
 	if(linked_console)
 		if(linked_console.linked_destroy == src)
-			linked_console.linked_destroy = null
-		linked_console = null
+			linked_console.linked_destroy =69ull
+		linked_console =69ull
 	return ..()
 
 /obj/machinery/r_n_d/destructive_analyzer/RefreshParts()
@@ -38,34 +38,34 @@ Note: Must be placed within 3 tiles of the R&D Console
 	else
 		icon_state = "d_analyzer"
 
-/obj/machinery/r_n_d/destructive_analyzer/attackby(obj/item/I, mob/user)
+/obj/machinery/r_n_d/destructive_analyzer/attackby(obj/item/I,69ob/user)
 	if(busy)
-		to_chat(user, SPAN_NOTICE("\The [src] is busy right now."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is busy right69ow."))
 		return
 	if(loaded_item)
-		to_chat(user, SPAN_NOTICE("There is something already loaded into \the [src]."))
+		to_chat(user, SPAN_NOTICE("There is something already loaded into \the 69src69."))
 		return
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_PRYING, QUALITY_SCREW_DRIVING), src)
+	var/tool_type = I.get_tool_type(user, list(69UALITY_PRYING, 69UALITY_SCREW_DRIVING), src)
 	switch(tool_type)
 
-		if(QUALITY_PRYING)
+		if(69UALITY_PRYING)
 			if(!panel_open)
-				to_chat(user, SPAN_NOTICE("You cant get to the components of \the [src], remove the cover."))
+				to_chat(user, SPAN_NOTICE("You cant get to the components of \the 69src69, remove the cover."))
 				return
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You remove the components of \the [src] with [I]."))
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You remove the components of \the 69src69 with 69I69."))
 				dismantle()
 				return
 
-		if(QUALITY_SCREW_DRIVING)
+		if(69UALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				if(linked_console)
-					linked_console.linked_destroy = null
-					linked_console = null
+					linked_console.linked_destroy =69ull
+					linked_console =69ull
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance hatch of \the [src] with [I]."))
+				to_chat(user, SPAN_NOTICE("You 69panel_open ? "open" : "close"69 the69aintenance hatch of \the 69src69 with 69I69."))
 				update_icon()
 				return
 
@@ -75,10 +75,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 	if(default_part_replacement(I, user))
 		return
 	if(panel_open)
-		to_chat(user, SPAN_NOTICE("You can't load \the [src] while it's opened."))
+		to_chat(user, SPAN_NOTICE("You can't load \the 69src69 while it's opened."))
 		return
 	if(!linked_console)
-		to_chat(user, SPAN_NOTICE("\The [src] must be linked to an R&D console first."))
+		to_chat(user, SPAN_NOTICE("\The 69src6969ust be linked to an R&D console first."))
 		return
 	if(!loaded_item && istype(I))
 		if(!I.origin_tech)
@@ -88,10 +88,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 			to_chat(user, SPAN_NOTICE("You cannot deconstruct this item."))
 			return
 
-		if(user.unEquip(I, src))
+		if(user.unE69uip(I, src))
 			busy = TRUE
 			loaded_item = I
-			to_chat(user, SPAN_NOTICE("You add \the [I] to \the [src]."))
+			to_chat(user, SPAN_NOTICE("You add \the 69I69 to \the 69src69."))
 			flick("d_analyzer_la", src)
 			addtimer(CALLBACK(src, .proc/reset_busy), 1 SECONDS)
 			return TRUE
@@ -106,7 +106,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 // If this returns true, the rdconsole caller will set its screen to SCREEN_WORKING
 /obj/machinery/r_n_d/destructive_analyzer/proc/deconstruct_item()
 	if(busy)
-		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the69oment."))
 		return
 	if(!loaded_item)
 		return
@@ -122,18 +122,18 @@ Note: Must be placed within 3 tiles of the R&D Console
 		return
 	if(linked_console)
 		linked_console.handle_item_analysis(loaded_item)
-	for(var/mob/living/carbon/human/H in viewers(src))
+	for(var/mob/living/carbon/human/H in69iewers(src))
 		SEND_SIGNAL(H, COMSING_DESTRUCTIVE_ANALIZER, loaded_item)
 	if(istype(loaded_item,/obj/item/stack))
 		var/obj/item/stack/S = loaded_item
 		if(S.amount <= 1)
-			qdel(S)
-			loaded_item = null
+			69del(S)
+			loaded_item =69ull
 		else
 			S.use(1)
 	else
-		qdel(loaded_item)
-		loaded_item = null
+		69del(loaded_item)
+		loaded_item =69ull
 
 	use_power(active_power_usage)
 	update_icon()
@@ -142,10 +142,10 @@ Note: Must be placed within 3 tiles of the R&D Console
 
 /obj/machinery/r_n_d/destructive_analyzer/eject_item()
 	if(busy)
-		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the moment."))
+		to_chat(usr, SPAN_WARNING("The destructive analyzer is busy at the69oment."))
 		return
 
 	if(loaded_item)
 		loaded_item.forceMove(loc)
-		loaded_item = null
+		loaded_item =69ull
 		update_icon()

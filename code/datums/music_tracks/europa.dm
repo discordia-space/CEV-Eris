@@ -6,7 +6,7 @@
 	url = "freemusicarchive.org/music/Chronox_2/Voyager/Chronox_-_02_-_In_Orbit"
 
 /music_track/martiancowboy
-	artist = "Kevin MacLeod"
+	artist = "Kevin69acLeod"
 	title = "Martian Cowboy"
 	song = 'sound/music/europa/Martian Cowboy.ogg'
 	licence = /decl/licence/cc_by_3_0

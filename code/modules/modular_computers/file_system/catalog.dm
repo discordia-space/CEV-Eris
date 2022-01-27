@@ -1,12 +1,12 @@
 /*
-	important notes
+	important69otes
 	catalogs are handled in /datum/nano_module, check there
 	important procs are:
 		browse_catalog_entry()
 		browse_catalog()
 		refresh_catalog_browsing()
 
-	TODO: add access level that will show more info
+	TODO: add access level that will show69ore info
 */
 
 GLOBAL_LIST_EMPTY(catalogs)
@@ -15,7 +15,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /hook/startup/proc/createCatalogs()
 	// Reagents
 	for(var/V in GLOB.chemical_reagents_list)
-		var/datum/reagent/D = GLOB.chemical_reagents_list[V]
+		var/datum/reagent/D = GLOB.chemical_reagents_list69V69
 		if(D.appear_in_default_catalog)
 			create_catalog_entry(D, CATALOG_REAGENTS)
 			create_catalog_entry(D, CATALOG_ALL)
@@ -25,7 +25,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 				create_catalog_entry(D, CATALOG_CHEMISTRY)
 	// second run to add decompose results
 	for(var/V in GLOB.chemical_reagents_list)
-		var/datum/reagent/D = GLOB.chemical_reagents_list[V]
+		var/datum/reagent/D = GLOB.chemical_reagents_list69V69
 		if(D.heating_products && D.heating_point)
 			for(var/id in D.heating_products)
 				var/datum/catalog_entry/reagent/E = get_catalog_entry(get_reagent_type_by_id(id))
@@ -38,33 +38,33 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 				if(E)
 					E.add_decomposition_from(D.type)
 
-	var/datum/catalog/C = GLOB.catalogs[CATALOG_REAGENTS]
+	var/datum/catalog/C = GLOB.catalogs69CATALOG_REAGENTS69
 	C.associated_template = "catalog_list_reagents.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	C = GLOB.catalogs[CATALOG_CHEMISTRY]
+	C = GLOB.catalogs69CATALOG_CHEMISTRY69
 	C.associated_template = "catalog_list_reagents.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_chem)
-	C = GLOB.catalogs[CATALOG_DRINKS]
+	C = GLOB.catalogs69CATALOG_DRINKS69
 	C.associated_template = "catalog_list_drinks.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
-	C = GLOB.catalogs[CATALOG_ALL]
+	C = GLOB.catalogs69CATALOG_ALL69
 	C.associated_template = "catalog_list_general.tmpl"
 	C.entry_list = sortTim(C.entry_list, /proc/cmp_catalog_entry_asc)
 	return 1
 
-/proc/create_catalog_entry(var/datum/thing, var/catalog_id)
-	if(catalog_id && !GLOB.catalogs[catalog_id])
-		GLOB.catalogs[catalog_id] = new /datum/catalog(catalog_id)
-	if(!GLOB.all_catalog_entries_by_type[thing.type])
+/proc/create_catalog_entry(var/datum/thing,69ar/catalog_id)
+	if(catalog_id && !GLOB.catalogs69catalog_id69)
+		GLOB.catalogs69catalog_id69 =69ew /datum/catalog(catalog_id)
+	if(!GLOB.all_catalog_entries_by_type69thing.type69)
 		if(istype(thing, /datum/reagent))
 			if(istype(thing, /datum/reagent/drink) || (istype(thing, /datum/reagent/alcohol) && thing.type != /datum/reagent/alcohol))
-				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/drink(thing)
+				GLOB.all_catalog_entries_by_type69thing.type69 =69ew /datum/catalog_entry/drink(thing)
 			else
-				GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/reagent(thing)
+				GLOB.all_catalog_entries_by_type69thing.type69 =69ew /datum/catalog_entry/reagent(thing)
 		else if(istype(thing, /atom))
-			GLOB.all_catalog_entries_by_type[thing.type] = new /datum/catalog_entry/atom(thing)
+			GLOB.all_catalog_entries_by_type69thing.type69 =69ew /datum/catalog_entry/atom(thing)
 		else
-			var/list/element = GLOB.catalogs[catalog_id]
+			var/list/element = GLOB.catalogs69catalog_id69
 			if(!element.len)
 				qdel(element)
 				GLOB.catalogs.Remove(catalog_id)
@@ -72,17 +72,17 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			error("Unsupported type passed to /proc/create_catalog_entry()")
 			return FALSE
 		if(catalog_id)
-			var/datum/catalog/C = GLOB.catalogs[catalog_id]
-			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
+			var/datum/catalog/C = GLOB.catalogs69catalog_id69
+			C.add_entry(GLOB.all_catalog_entries_by_type69thing.type69)
 	else if(catalog_id)
-		var/datum/catalog/C = GLOB.catalogs[catalog_id]
-		if(!C.entry_list.Find(GLOB.all_catalog_entries_by_type[thing.type]))
-			C.add_entry(GLOB.all_catalog_entries_by_type[thing.type])
+		var/datum/catalog/C = GLOB.catalogs69catalog_id69
+		if(!C.entry_list.Find(GLOB.all_catalog_entries_by_type69thing.type69))
+			C.add_entry(GLOB.all_catalog_entries_by_type69thing.type69)
 	return TRUE
 
 /proc/get_catalog_entry(var/type)
-	if(GLOB.all_catalog_entries_by_type[type])
-		return GLOB.all_catalog_entries_by_type[type]
+	if(GLOB.all_catalog_entries_by_type69type69)
+		return GLOB.all_catalog_entries_by_type69type69
 
 /datum/catalog
 	var/id
@@ -105,13 +105,13 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog/proc/remove_entry(var/datum/catalog_entry/entry)
 	entry_list.Remove(entry)
 
-/datum/catalog/ui_data(mob/user, ui_key = "main", var/search_value)
+/datum/catalog/ui_data(mob/user, ui_key = "main",69ar/search_value)
 	var/list/data = list()
 	var/list/entries_data = list()
 	for(var/datum/catalog_entry/E in entry_list)
 		if(!search_value || E.search_value(search_value))
 			entries_data.Add(list(E.catalog_ui_data(user, ui_key)))
-	data["entries"] = entries_data
+	data69"entries"69 = entries_data
 	return data
 
 /datum/catalog_entry
@@ -123,18 +123,18 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/thing_nature 	// reagent/weapon/device/etc.
 
 /datum/catalog_entry/New(var/datum/V)
-	thing_type = V.type
+	thing_type =69.type
 
 /datum/catalog_entry/proc/search_value(var/value)
-	if(findtext(title, value))
+	if(findtext(title,69alue))
 		return TRUE
-	if(findtext(thing_nature, value))
+	if(findtext(thing_nature,69alue))
 		return TRUE
 
 /datum/catalog_entry/ui_data(mob/user, ui_key = "main")
 	var/list/data = list()
-	data["id"] = thing_type
-	data["thing_nature"] = thing_nature
+	data69"id"69 = thing_type
+	data69"thing_nature"69 = thing_nature
 
 	return data
 
@@ -142,11 +142,11 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 // usually this is shorter ui_data
 /datum/catalog_entry/proc/catalog_ui_data(mob/user, ui_key = "main")
 	var/list/data = list()
-	data["id"] = thing_type
-	data["name"] = title
-	data["thing_nature"] = thing_nature
+	data69"id"69 = thing_type
+	data69"name"69 = title
+	data69"thing_nature"69 = thing_nature
 	if(image_path)
-		data["image"] = image_path
+		data69"image"69 = image_path
 	return data
 
 /datum/catalog_entry/reagent
@@ -173,7 +173,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog_entry/reagent/search_value(var/value)
 	if(..())
 		return TRUE
-	if(findtext(reagent_type, value))
+	if(findtext(reagent_type,69alue))
 		return TRUE
 
 /datum/catalog_entry/reagent/proc/add_decomposition_from(var/reagent_type)
@@ -194,88 +194,88 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 /datum/catalog_entry/reagent/New(datum/reagent/V)
 	if(!istype(V))
-		error("wrong usage of [src.type]")
+		error("wrong usage of 69src.type69")
 		qdel(src)
 		return
 	..()
 	// SPECIFICTS
-	title = V.name
+	title =69.name
 	thing_nature = "Reagent"
-	reagent_type = V.reagent_type
-	reagent_state = V.reagent_state == SOLID ? "Solid" : V.reagent_state == LIQUID ? "Liquid" : "Gas"
-	metabolism_blood = V.metabolism
+	reagent_type =69.reagent_type
+	reagent_state =69.reagent_state == SOLID ? "Solid" :69.reagent_state == LIQUID ? "Liquid" : "Gas"
+	metabolism_blood =69.metabolism
 	if(V.ingest_met)
-		metabolism_stomach = V.ingest_met
-	nerve_system_accumulations = V.nerve_system_accumulations
-	if(V.heating_products && V.heating_point)
+		metabolism_stomach =69.ingest_met
+	nerve_system_accumulations =69.nerve_system_accumulations
+	if(V.heating_products &&69.heating_point)
 		var/list/dat = list()
-		dat["types"] = list()
-		for(var/id in V.heating_products)
-			dat["types"] += get_reagent_type_by_id(id)
+		dat69"types"69 = list()
+		for(var/id in69.heating_products)
+			dat69"types"69 += get_reagent_type_by_id(id)
 		heating_decompose = dat
-		heating_point = V.heating_point
+		heating_point =69.heating_point
 
-	if(V.chilling_products && V.chilling_point)
+	if(V.chilling_products &&69.chilling_point)
 		var/list/dat = list()
-		dat["types"] = list()
-		for(var/id in V.chilling_products)
-			dat["types"] += get_reagent_type_by_id(id)
+		dat69"types"69 = list()
+		for(var/id in69.chilling_products)
+			dat69"types"69 += get_reagent_type_by_id(id)
 		chilling_decompose = dat
-		chilling_point = V.chilling_point
+		chilling_point =69.chilling_point
 
-	scannable = V.scannable
-	overdose = V.overdose ? V.overdose : null
-	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
+	scannable =69.scannable
+	overdose =69.overdose ?69.overdose :69ull
+	var/list/recipes = GLOB.chemical_reactions_list_by_result69V.id69
 	if(recipes)
 		recipe_data = list()
 		for(var/datum/chemical_reaction/R in recipes)
 			recipe_data += list(R.ui_data())
-	var/list/used_in = GLOB.chemical_reactions_list[V.id]
+	var/list/used_in = GLOB.chemical_reactions_list69V.id69
 	if(used_in)
 		for(var/datum/chemical_reaction/R in used_in)
 			if(R.result)
 				add_can_be_used_in(get_reagent_type_by_id(R.result))
 	// DESCRIPTION
-	description = V.description
-	taste = "Has [V.taste_mult > 1 ? "strong" : V.taste_mult < 1 ? "weak" : ""] taste of [V.taste_description]."
-	color = "[V.color]"
-	if(V.addiction_threshold || V.addiction_chance)
-		addiction_chance = V.addiction_threshold ? "high" : V.addiction_chance <= 10 ? "Low" : V.addiction_chance <= 25 ? "Moderate" : "High"
-		addiction_threshold = V.addiction_threshold
+	description =69.description
+	taste = "Has 69V.taste_mult > 1 ? "strong" :69.taste_mult < 1 ? "weak" : ""69 taste of 69V.taste_description69."
+	color = "69V.color69"
+	if(V.addiction_threshold ||69.addiction_chance)
+		addiction_chance =69.addiction_threshold ? "high" :69.addiction_chance <= 10 ? "Low" :69.addiction_chance <= 25 ? "Moderate" : "High"
+		addiction_threshold =69.addiction_threshold
 
 /datum/catalog_entry/reagent/catalog_ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
-	data["reagent_state"] = reagent_state
-	data["reagent_type"] = reagent_type
+	data69"reagent_state"69 = reagent_state
+	data69"reagent_type"69 = reagent_type
 	return data
 
 /datum/catalog_entry/reagent/ui_data(mob/user, ui_key = "main")
 	var/list/data = ..()
 
 	// SPECIFICTS
-	data["name"] = title
-	data["reagent_type"] = reagent_type
-	data["reagent_state"] = reagent_state
-	data["metabolism_blood"] = metabolism_blood
-	data["metabolism_stomach"] = metabolism_stomach
-	data["nsa"] = nerve_system_accumulations
-	data["heating_decompose"] = heating_decompose
-	data["heating_point"] = heating_point
-	data["chilling_decompose"] = chilling_decompose
-	data["chilling_point"] = chilling_point
-	data["scannable"] = scannable
-	data["overdose"] = overdose
-	data["result_of_decomposition_in"] = result_of_decomposition_in
-	data["can_be_used_in"] = can_be_used_in
+	data69"name"69 = title
+	data69"reagent_type"69 = reagent_type
+	data69"reagent_state"69 = reagent_state
+	data69"metabolism_blood"69 =69etabolism_blood
+	data69"metabolism_stomach"69 =69etabolism_stomach
+	data69"nsa"69 =69erve_system_accumulations
+	data69"heating_decompose"69 = heating_decompose
+	data69"heating_point"69 = heating_point
+	data69"chilling_decompose"69 = chilling_decompose
+	data69"chilling_point"69 = chilling_point
+	data69"scannable"69 = scannable
+	data69"overdose"69 = overdose
+	data69"result_of_decomposition_in"69 = result_of_decomposition_in
+	data69"can_be_used_in"69 = can_be_used_in
 
-	data["recipe_data"] = recipe_data
+	data69"recipe_data"69 = recipe_data
 
 	// DESCRIPTION
-	data["description"] = description
-	data["taste"] = taste
-	data["color"] = color
-	data["addiction_chance"] = addiction_chance
-	data["addiction_threshold"] = addiction_threshold
+	data69"description"69 = description
+	data69"taste"69 = taste
+	data69"color"69 = color
+	data69"addiction_chance"69 = addiction_chance
+	data69"addiction_threshold"69 = addiction_threshold
 
 	return data
 
@@ -284,12 +284,12 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 
 /datum/catalog_entry/atom/New(var/atom/V)
 	if(!istype(V))
-		error("wrong usage of [src.type]")
+		error("wrong usage of 69src.type69")
 		qdel(src)
 		return
 	..()
-	title = V.name
-	description = V.desc
+	title =69.name
+	description =69.desc
 	thing_nature = "Atom"
 	image_path = getAtomCacheFilename(V)
 
@@ -298,11 +298,11 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/data = ..()
 
 	// SPECIFICTS
-	data["name"] = title
-	data["entry_image_path"] = image_path
+	data69"name"69 = title
+	data69"entry_image_path"69 = image_path
 
 	// DESCRIPTION
-	data["description"] = description
+	data69"description"69 = description
 	return data
 
 
@@ -318,24 +318,24 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 /datum/catalog_entry/drink/search_value(var/value)
 	if(..())
 		return TRUE
-	if(findtext(strength, value))
+	if(findtext(strength,69alue))
 		return TRUE
 	for(var/i in taste_tag)
-		if(findtext(i, value))
+		if(findtext(i,69alue))
 			return TRUE
 
 /datum/catalog_entry/drink/New(var/datum/reagent/V)
 	if(!istype(V))
-		error("wrong usage of [src.type]")
+		error("wrong usage of 69src.type69")
 		qdel(src)
 		return
 	..()
-	title = V.name
-	description = V.description
+	title =69.name
+	description =69.description
 
-	taste = "Has [V.taste_mult > 1 ? "strong" : V.taste_mult < 1 ? "weak" : ""] taste of [V.taste_description]."
+	taste = "Has 69V.taste_mult > 1 ? "strong" :69.taste_mult < 1 ? "weak" : ""69 taste of 69V.taste_description69."
 	if(istype(V, /datum/reagent/drink))
-		var/datum/reagent/drink/D = V
+		var/datum/reagent/drink/D =69
 		if(D.adj_temp)
 			temperature = D.adj_temp > 0 ? "Warm" : "Cold"
 		if(D.nutrition)
@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 		thing_nature = "Drink"
 
 	else if(istype(V, /datum/reagent/alcohol))
-		var/datum/reagent/alcohol/E = V
+		var/datum/reagent/alcohol/E =69
 		if(E.adj_temp)
 			temperature = E.adj_temp > 0 ? "Warm" : "Cold"
 		if(E.nutriment_factor)
@@ -354,7 +354,7 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 			taste_tag = list()
 			for(var/tastes in E.taste_tag)
 				taste_tag += tastes
-	var/list/recipes = GLOB.chemical_reactions_list_by_result[V.id]
+	var/list/recipes = GLOB.chemical_reactions_list_by_result69V.id69
 	if(recipes)
 		recipe_data = list()
 		for(var/datum/chemical_reaction/R in recipes)
@@ -364,17 +364,17 @@ GLOBAL_LIST_EMPTY(all_catalog_entries_by_type)
 	var/list/data = ..()
 
 	// SPECIFICTS
-	data["name"] = title
-	data["entry_image_path"] = image_path
+	data69"name"69 = title
+	data69"entry_image_path"69 = image_path
 
-	data["temperature"] = temperature
-	data["nutrition"] = nutrition
-	data["taste"] = taste
-	data["strength"] = strength
-	data["recipe_data"] = recipe_data
-	data["taste_tag"] = taste_tag
+	data69"temperature"69 = temperature
+	data69"nutrition"69 =69utrition
+	data69"taste"69 = taste
+	data69"strength"69 = strength
+	data69"recipe_data"69 = recipe_data
+	data69"taste_tag"69 = taste_tag
 
 
 	// DESCRIPTION
-	data["description"] = description
+	data69"description"69 = description
 	return data

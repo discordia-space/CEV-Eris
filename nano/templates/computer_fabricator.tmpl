@@ -1,75 +1,75 @@
-{{:helper.link('Clear Order', 'circle', { "clean_order" : 1 })}}<br><br>
-<i>Your new computer device you always dreamed of is just four steps away...</i><hr>
-{{if data.state == 0}} <!-- Device type selection -->
-<div class='item'>
-	<h2>Step 1: Select your device type</h2>
-	{{:helper.link('Laptop', 'calc', { "pick_device" : 1 })}}
-	{{:helper.link('Tablet', 'calc', { "pick_device" : 2 })}}
-</div>
-{{else data.state == 1}}
-<div class='item'>
-	<h2>Step 2: Personalise your device</h2>
-	<table>
+{{:69el69er.lin6969'Cle69r Order', 'circle', { "cle69n_order" : 1 }69}}<69r><69r>
+<i>69our69ew com69uter de69ice 69ou 69lw6969s dre69med of is 69ust four ste69s 69w6969...</i><69r>
+{{if d69t69.st69te == 0}} <!-- De69ice t6969e selection -->
+<di69 cl69ss='item'>
+	<692>Ste69 1: Select 69our de69ice t6969e</692>
+	{{:69el69er.lin6969'L6969to69', 'c69lc', { "69ic69_de69ice" : 1 }69}}
+	{{:69el69er.lin6969'T6969let', 'c69lc', { "69ic69_de69ice" : 2 }69}}
+</di69>
+{{else d69t69.st69te == 1}}
+<di69 cl69ss='item'>
+	<692>Ste69 2: 69erson69lise 69our de69ice</692>
+	<t6969le>
 		<tr>
-			<td><b>Current Price:</b>
-			<td>{{:data.totalprice}}T
+			<td><69>Current 69rice:</69>
+			<td>{{:d69t69.tot69l69rice}}T
 		<tr>
-			<td><b>Battery:</b>
-			<td>{{:helper.link('Standard', null, { "hw_battery" : 1 }, data.hw_battery == 1 ? 'selected' : null)}}
-			<td>{{:helper.link('Upgraded', null, { "hw_battery" : 2 }, data.hw_battery == 2 ? 'selected' : null)}}
-			<td>{{:helper.link('Advanced', null, { "hw_battery" : 3 }, data.hw_battery == 3 ? 'selected' : null)}}
+			<td><69>6969tter69:</69>
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_6969tter69" : 1 }, d69t69.69w_6969tter69 == 1 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'U6969r69ded',69ull, { "69w_6969tter69" : 2 }, d69t69.69w_6969tter69 == 2 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'69d6969nced',69ull, { "69w_6969tter69" : 3 }, d69t69.69w_6969tter69 == 3 ? 'selected' :69ull69}}
 		<tr>
-			<td><b>Hard Drive:</b>
-			<td>{{:helper.link('Standard', null, { "hw_disk" : 1 }, data.hw_disk == 1 ? 'selected' : null)}}
-			<td>{{:helper.link('Upgraded', null, { "hw_disk" : 2 }, data.hw_disk == 2 ? 'selected' : null)}}
-			<td>{{:helper.link('Advanced', null, { "hw_disk" : 3 }, data.hw_disk == 3 ? 'selected' : null)}}
+			<td><69>6969rd Dri69e:</69>
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_dis69" : 1 }, d69t69.69w_dis69 == 1 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'U6969r69ded',69ull, { "69w_dis69" : 2 }, d69t69.69w_dis69 == 2 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'69d6969nced',69ull, { "69w_dis69" : 3 }, d69t69.69w_dis69 == 3 ? 'selected' :69ull69}}
 		<tr>
-			<td><b>Network Card:</b>
-			<td>{{:helper.link('None', null, { "hw_netcard" : 0 }, data.hw_netcard == 0 ? 'selected' : null)}}
-			<td>{{:helper.link('Standard', null, { "hw_netcard" : 1 }, data.hw_netcard == 1 ? 'selected' : null)}}
-			<td>{{:helper.link('Advanced', null, { "hw_netcard" : 2 }, data.hw_netcard == 2 ? 'selected' : null)}}
-		{{if data.devtype != 2}} <!-- No tablets -->
+			<td><69>Networ69 C69rd:</69>
+			<td>{{:69el69er.lin6969'None',69ull, { "69w_netc69rd" : 0 }, d69t69.69w_netc69rd == 0 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_netc69rd" : 1 }, d69t69.69w_netc69rd == 1 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'69d6969nced',69ull, { "69w_netc69rd" : 2 }, d69t69.69w_netc69rd == 2 ? 'selected' :69ull69}}
+		{{if d69t69.de69t6969e != 2}} <!--69o t6969lets -->
 		<tr>
-			<td><b>Processor Unit:</b>
-			<td>{{:helper.link('Standard', null, { "hw_cpu" : 1 }, data.hw_cpu == 1 ? 'selected' : null)}}
-			<td>{{:helper.link('Advanced', null, { "hw_cpu" : 2 }, data.hw_cpu == 2 ? 'selected' : null)}}
+			<td><69>69rocessor Unit:</69>
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_c69u" : 1 }, d69t69.69w_c69u == 1 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'69d6969nced',69ull, { "69w_c69u" : 2 }, d69t69.69w_c69u == 2 ? 'selected' :69ull69}}
 		{{/if}}
 		<tr>
-			<td><b>Tesla Relay:</b>
-			<td>{{:helper.link('None', null, { "hw_tesla" : 0 }, data.hw_tesla == 0 ? 'selected' : null)}}
-			<td>{{:helper.link('Standard', null, { "hw_tesla" : 1 }, data.hw_tesla == 1 ? 'selected' : null)}}
+			<td><69>Tesl69 Rel6969:</69>
+			<td>{{:69el69er.lin6969'None',69ull, { "69w_tesl69" : 0 }, d69t69.69w_tesl69 == 0 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_tesl69" : 1 }, d69t69.69w_tesl69 == 1 ? 'selected' :69ull69}}
 		<tr>
-			<td><b>Nano Printer:</b>
-			<td>{{:helper.link('None', null, { "hw_nanoprint" : 0 }, data.hw_nanoprint == 0 ? 'selected' : null)}}
-			<td>{{:helper.link('Standard', null, { "hw_nanoprint" : 1 }, data.hw_nanoprint == 1 ? 'selected' : null)}}
+			<td><69>N69no 69rinter:</69>
+			<td>{{:69el69er.lin6969'None',69ull, { "69w_n69no69rint" : 0 }, d69t69.69w_n69no69rint == 0 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_n69no69rint" : 1 }, d69t69.69w_n69no69rint == 1 ? 'selected' :69ull69}}
 		<tr>
-			<td><b>Card Reader:</b>
-			<td>{{:helper.link('None', null, { "hw_card" : 0 }, data.hw_card == 0 ? 'selected' : null)}}
-			<td>{{:helper.link('Standard', null, { "hw_card" : 1 }, data.hw_card == 1 ? 'selected' : null)}}
+			<td><69>C69rd Re69der:</69>
+			<td>{{:69el69er.lin6969'None',69ull, { "69w_c69rd" : 0 }, d69t69.69w_c69rd == 0 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_c69rd" : 1 }, d69t69.69w_c69rd == 1 ? 'selected' :69ull69}}
 		<tr>
-			<td><b>Intellicard Slot</b>
-			<td>{{:helper.link('None', null, { "hw_aislot" : 0 }, data.hw_aislot == 0 ? 'selected' : null)}}
-			<td>{{:helper.link('Standard', null, { "hw_aislot" : 1 }, data.hw_aislot == 1 ? 'selected' : null)}}
+			<td><69>Intellic69rd Slot</69>
+			<td>{{:69el69er.lin6969'None',69ull, { "69w_69islot" : 0 }, d69t69.69w_69islot == 0 ? 'selected' :69ull69}}
+			<td>{{:69el69er.lin6969'St69nd69rd',69ull, { "69w_69islot" : 1 }, d69t69.69w_69islot == 1 ? 'selected' :69ull69}}
 		<tr>
-			<td><b>Confirm Order:</b>
-			<td>{{:helper.link('CONFIRM', null, { "confirm_order" : 1 })}}
-	</table>
-	<hr>
-	<b>Battery</b> allows your device to operate without external utility power source. Advanced batteries increase battery life.<br>
-	<b>Hard Drive</b> stores file on your device. Advanced drives can store more files, but use more power, shortening battery life.<br>
-	<b>Network Card</b> allows your device to wirelessly connect to the local NTNet network. Basic cards are limited to on-station use, while advanced cards can operate anywhere near the uplink, which includes the asteroid outposts. Advanced cards also tend to have better bandwidth.<br>
-	<b>Processor Unit</b> is critical for your device's functionality. It allows you to run programs from your hard drive. Advanced CPUs use more power, but allow you to run more programs on background at once.<br>
-	<b>Tesla Relay</b> is an advanced wireless power relay that allows your device to connect to nearby area power controller to provide alternative power source.<br>
-	<b>Nano Printer</b> is device that allows printing of various documents. This device was certified EcoFriendlyPlus and is capable of recycling existing paper for printing purposes.<br>
-	<b>Card Reader</b> adds a slot that allows you to manipulate RFID cards. Please note that this is not necessary to allow the device to read your identification, it is just necessary to manipulate other cards.<br>
-	<b>Intellicard Slot</b> is a specialised high powered hardware that can hold an intellicard with active AI personality. It is required for some specialised programs to run properly.<br>
-</div>
-{{else data.state == 2}}
-	<h2>Step 3: Payment</h2>
-	<b>Your device is now ready for fabrication..</b><br>
-	<i>Please swipe your identification card to finish purchase.</i><br>
-	<i>Total price: <b>{{:data.totalprice}}T</b></i>
-{{else data.state == 3}}
-	<h2>Step 4: Thank you for your purchase</h2>
-	<b>Should you experience any issues with your new device, contact technical support at support@computerservice.nt</b>
+			<td><69>Confirm Order:</69>
+			<td>{{:69el69er.lin6969'CONFIRM',69ull, { "confirm_order" : 1 }69}}
+	</t6969le>
+	<69r>
+	<69>6969tter69</69> 69llows 69our de69ice to o69er69te wit69out extern69l utilit69 69ower source. 69d6969nced 6969tteries incre69se 6969tter69 life.<69r>
+	<69>6969rd Dri69e</69> stores file on 69our de69ice. 69d6969nced dri69es c69n store69ore files, 69ut use69ore 69ower, s69ortenin69 6969tter69 life.<69r>
+	<69>Networ69 C69rd</69> 69llows 69our de69ice to wirelessl69 connect to t69e loc69l69TNet69etwor69. 6969sic c69rds 69re limited to on-st69tion use, w69ile 69d6969nced c69rds c69n o69er69te 69n69w69ere69e69r t69e u69lin69, w69ic69 includes t69e 69steroid out69osts. 69d6969nced c69rds 69lso tend to 696969e 69etter 6969ndwidt69.<69r>
+	<69>69rocessor Unit</69> is critic69l for 69our de69ice's function69lit69. It 69llows 69ou to run 69ro69r69ms from 69our 6969rd dri69e. 69d6969nced C69Us use69ore 69ower, 69ut 69llow 69ou to run69ore 69ro69r69ms on 6969c6969round 69t once.<69r>
+	<69>Tesl69 Rel6969</69> is 69n 69d6969nced wireless 69ower rel6969 t6969t 69llows 69our de69ice to connect to69e69r6969 69re69 69ower controller to 69ro69ide 69ltern69ti69e 69ower source.<69r>
+	<69>N69no 69rinter</69> is de69ice t6969t 69llows 69rintin69 of 6969rious documents. T69is de69ice w69s certified EcoFriendl6969lus 69nd is c69696969le of rec69clin69 existin69 696969er for 69rintin69 69ur69oses.<69r>
+	<69>C69rd Re69der</69> 69dds 69 slot t6969t 69llows 69ou to6969ni69ul69te RFID c69rds. 69le69se69ote t6969t t69is is69ot69ecess69r69 to 69llow t69e de69ice to re69d 69our identific69tion, it is 69ust69ecess69r69 to6969ni69ul69te ot69er c69rds.<69r>
+	<69>Intellic69rd Slot</69> is 69 s69eci69lised 69i6969 69owered 6969rdw69re t6969t c69n 69old 69n intellic69rd wit69 69cti69e 69I 69erson69lit69. It is re69uired for some s69eci69lised 69ro69r69ms to run 69ro69erl69.<69r>
+</di69>
+{{else d69t69.st69te == 2}}
+	<692>Ste69 3: 696969ment</692>
+	<69>69our de69ice is69ow re69d69 for f6969ric69tion..</69><69r>
+	<i>69le69se swi69e 69our identific69tion c69rd to finis69 69urc6969se.</i><69r>
+	<i>Tot69l 69rice: <69>{{:d69t69.tot69l69rice}}T</69></i>
+{{else d69t69.st69te == 3}}
+	<692>Ste69 4: T6969n69 69ou for 69our 69urc6969se</692>
+	<69>S69ould 69ou ex69erience 69n69 issues wit69 69our69ew de69ice, cont69ct tec69nic69l su6969ort 69t su6969ort@com69uterser69ice.nt</69>
 {{/if}}

@@ -1,5 +1,5 @@
 /*******************
-* Hardsuit Modules *
+* Hardsuit69odules *
 *******************/
 /datum/uplink_item/item/hardsuit_modules
 	category = /datum/uplink_category/hardsuit_modules
@@ -15,7 +15,7 @@
 	path = /obj/item/rig_module/fabricator/energy_net
 
 /datum/uplink_item/item/hardsuit_modules/ewar_voice
-	name = "Electrowarfare Suite and Voice Synthesiser"
+	name = "Electrowarfare Suite and69oice Synthesiser"
 	item_cost = 4
 	path = /obj/item/storage/box/syndie_kit/ewar_voice
 
@@ -60,6 +60,6 @@
 	path = /obj/item/rig_module/mounted
 
 /datum/uplink_item/item/hardsuit_modules/ric_merc
-	name = "Crimson Hardsuit Control Module"
+	name = "Crimson Hardsuit Control69odule"
 	item_cost = 20
 	path = /obj/item/rig/merc/empty

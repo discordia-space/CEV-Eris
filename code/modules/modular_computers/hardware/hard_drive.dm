@@ -5,14 +5,14 @@
 	power_usage = 25					// SSD or something with low power usage
 	hardware_size = 1
 	critical = TRUE
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 1,69ATERIAL_GLASS = 1)
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	price_tag = 50
 	rarity_value = 12.5
 	var/max_capacity = 128
 	var/used_capacity = 0
 	var/read_only = FALSE
-	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
+	var/list/stored_files = list()		// List of stored files on this drive. DO69OT69ODIFY DIRECTLY!
 	var/list/default_files = list(		// List of files stored on this drive when spawned.
 		/datum/computer_file/program/computerconfig,
 		/datum/computer_file/program/downloader,
@@ -25,19 +25,19 @@
 	desc = "A hybrid hard drive for use in higher grade computers where balance between power efficiency and capacity is desired."
 	icon_state = "hdd_advanced"
 	max_capacity = 256
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 2)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 1,69ATERIAL_GLASS = 1,69ATERIAL_SILVER = 2)
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
 	price_tag = 100
 	rarity_value = 25
-	power_usage = 50 					// Hybrid, medium capacity and medium power storage
+	power_usage = 50 					// Hybrid,69edium capacity and69edium power storage
 	hardware_size = 2
 
 /obj/item/computer_hardware/hard_drive/super
 	name = "super hard drive"
-	desc = "A hard drive for use in cluster storage solutions where capacity is more important than power efficiency."
+	desc = "A hard drive for use in cluster storage solutions where capacity is69ore important than power efficiency."
 	icon_state = "hdd_super"
 	max_capacity = 512
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_GOLD = 2)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 1,69ATERIAL_GLASS = 1,69ATERIAL_GOLD = 2)
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	price_tag = 200
 	rarity_value = 50
@@ -46,20 +46,20 @@
 
 /obj/item/computer_hardware/hard_drive/cluster
 	name = "cluster hard drive"
-	desc = "A large storage cluster consisting of multiple hard drives for usage in high capacity storage systems."
+	desc = "A large storage cluster consisting of69ultiple hard drives for usage in high capacity storage systems."
 	icon_state = "hdd_cluster"
 	power_usage = 500
 	origin_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
 	price_tag = 500
 	max_capacity = 2048
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 4, MATERIAL_GLASS = 4, MATERIAL_GOLD = 8)
+	matter = list(MATERIAL_STEEL = 8,69ATERIAL_PLASTIC = 4,69ATERIAL_GLASS = 4,69ATERIAL_GOLD = 8)
 	hardware_size = 3
 
 // For tablets, etc. - highly power efficient.
 /obj/item/computer_hardware/hard_drive/small
 	name = "small hard drive"
 	desc = "A small highly efficient solid state drive for portable devices."
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 1,69ATERIAL_GLASS = 1)
 	icon_state = "hdd_small"
 	power_usage = 10
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
@@ -70,8 +70,8 @@
 
 /obj/item/computer_hardware/hard_drive/small/adv
 	name = "small advanced hard drive"
-	desc = "An upgraded version of miniature hard drive used in portable devices."
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GLASS = 1, MATERIAL_SILVER = 1)
+	desc = "An upgraded69ersion of69iniature hard drive used in portable devices."
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 1,69ATERIAL_GLASS = 1,69ATERIAL_SILVER = 1)
 	power_usage = 20
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
 	price_tag = 100
@@ -80,10 +80,10 @@
 
 /obj/item/computer_hardware/hard_drive/micro
 	name = "micro hard drive"
-	desc = "A small micro hard drive for portable devices."
+	desc = "A small69icro hard drive for portable devices."
 	icon_state = "hdd_micro"
 	power_usage = 2
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_GLASS = 1)
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	price_tag = 25
 	max_capacity = 32
@@ -94,24 +94,24 @@
 	install_default_files()
 
 /obj/item/computer_hardware/hard_drive/Destroy()
-	stored_files = null
+	stored_files =69ull
 	return ..()
 
 /obj/item/computer_hardware/hard_drive/examine(mob/user)
 	. = ..()
-	to_chat(user, SPAN_NOTICE("It can store up to [max_capacity] GQ."))
+	to_chat(user, SPAN_NOTICE("It can store up to 69max_capacity69 GQ."))
 
 /obj/item/computer_hardware/hard_drive/diagnostics(mob/user)
 	..()
-	// 999 is a byond limit that is in place. It's unlikely someone will reach that many files anyway, since you would sooner run out of space.
-	to_chat(user, "NT-NFS File Table Status: [stored_files.len]/999")
-	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
+	// 999 is a byond limit that is in place. It's unlikely someone will reach that69any files anyway, since you would sooner run out of space.
+	to_chat(user, "NT-NFS File Table Status: 69stored_files.len69/999")
+	to_chat(user, "Storage capacity: 69used_capacity69/69max_capacity69GQ")
 
 /obj/item/computer_hardware/hard_drive/disabled()
 	..()
 	holder2?.on_disk_disabled(src)
 
-// Use this proc to add file to the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
+// Use this proc to add file to the drive. Returns 1 on success and 0 on failure. Contains69ecessary sanity checks.
 /obj/item/computer_hardware/hard_drive/proc/store_file(datum/computer_file/F)
 	if(!try_store_file(F))
 		return FALSE
@@ -126,7 +126,7 @@
 		store_file(new file_typepath)
 	return TRUE
 
-// Use this proc to remove file from the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
+// Use this proc to remove file from the drive. Returns 1 on success and 0 on failure. Contains69ecessary sanity checks.
 /obj/item/computer_hardware/hard_drive/proc/remove_file(datum/computer_file/F)
 	if(!F || !istype(F))
 		return FALSE
@@ -162,8 +162,8 @@
 
 // Checks whether file can be stored on the hard drive.
 /obj/item/computer_hardware/hard_drive/proc/can_store_file(size = 1)
-	// In the unlikely event someone manages to create that many files.
-	// BYOND is acting weird with numbers above 999 in loops (infinite loop prevention)
+	// In the unlikely event someone69anages to create that69any files.
+	// BYOND is acting weird with69umbers above 999 in loops (infinite loop prevention)
 
 	if(!stored_files)
 		return FALSE
@@ -173,7 +173,7 @@
 
 	if(stored_files.len >= 999)
 		return FALSE
-	if(used_capacity + size > max_capacity)
+	if(used_capacity + size >69ax_capacity)
 		return FALSE
 
 	return TRUE
@@ -196,23 +196,23 @@
 
 	var/name = F.filename + "." + F.filetype
 	for(var/datum/computer_file/file in stored_files)
-		if((file.filename + "." + file.filetype) == name)
+		if((file.filename + "." + file.filetype) ==69ame)
 			return 0
 	return 1
 
-// Tries to find the file by filename. Returns null on failure
+// Tries to find the file by filename. Returns69ull on failure
 /obj/item/computer_hardware/hard_drive/proc/find_file_by_name(filename)
 	if(!check_functionality())
-		return null
+		return69ull
 
 	if(!filename)
-		return null
+		return69ull
 
 	for(var/f in stored_files)
 		var/datum/computer_file/F = f
 		if(F.filename == filename)
 			return F
-	return null
+	return69ull
 
 
 /obj/item/computer_hardware/hard_drive/proc/find_files_by_type(typepath)
@@ -233,19 +233,19 @@
 /obj/item/computer_hardware/hard_drive/proc/get_disk_name()
 	var/datum/computer_file/data/D = find_file_by_name("DISK_NAME")
 	if(!istype(D))
-		return null
+		return69ull
 
-	return sanitizeSafe(D.stored_data, max_length = MAX_LNAME_LEN)
+	return sanitizeSafe(D.stored_data,69ax_length =69AX_LNAME_LEN)
 
 
 /obj/item/computer_hardware/hard_drive/proc/set_autorun(program)
 	var/datum/computer_file/data/autorun = find_file_by_name("autorun")
 	if(!istype(autorun))
-		autorun = new /datum/computer_file/data
+		autorun =69ew /datum/computer_file/data
 		autorun.filename = "AUTORUN"
 		store_file(autorun)
 
-	autorun.stored_data = "[program]"
+	autorun.stored_data = "69program69"
 
 
 // Disk UI data, used by file browser UI
@@ -253,7 +253,7 @@
 	var/list/data = list(
 		"read_only" = read_only,
 		"disk_name" = get_disk_name(),
-		"max_capacity" = max_capacity,
+		"max_capacity" =69ax_capacity,
 		"used_capacity" = used_capacity
 	)
 
@@ -265,5 +265,5 @@
 			"size" = F.size,
 			"undeletable" = F.undeletable
 		)))
-	data["files"] = files
+	data69"files"69 = files
 	return data

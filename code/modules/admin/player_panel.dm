@@ -4,7 +4,7 @@
 		return
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
 
-	//javascript, the part that does most of the work~
+	//javascript, the part that does69ost of the work~
 	dat += {"
 
 		<head>
@@ -19,7 +19,7 @@
 					var filter = filter_text.value.toLowerCase();
 
 					if(complete_list != null && complete_list != ""){
-						var mtbl = document.getElementById("maintable_data_archive");
+						var69tbl = document.getElementById("maintable_data_archive");
 						mtbl.innerHTML = complete_list;
 					}
 
@@ -27,20 +27,20 @@
 						return;
 					}else{
 
-						var maintable_data = document.getElementById('maintable_data');
-						var ltr = maintable_data.getElementsByTagName("tr");
-						for ( var i = 0; i < ltr.length; ++i )
+						var69aintable_data = document.getElementById('maintable_data');
+						var ltr =69aintable_data.getElementsByTagName("tr");
+						for (69ar i = 0; i < ltr.length; ++i )
 						{
 							try{
-								var tr = ltr\[i\];
+								var tr = ltr\69i\69;
 								if(tr.getAttribute("id").indexOf("data") != 0){
 									continue;
 								}
 								var ltd = tr.getElementsByTagName("td");
-								var td = ltd\[0\];
+								var td = ltd\690\69;
 								var lsearch = td.getElementsByTagName("b");
-								var search = lsearch\[0\];
-								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
+								var search = lsearch\690\69;
+								//var inner_span = li.getElementsByTagName("span")\691\69 //Should only ever contain one element.
 								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
 								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
@@ -75,18 +75,18 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<a href='?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
-					body += "<a href='?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
+					body += "<a href='?src=\ref69src69;adminplayeropts="+ref+"'>PP</a> - "
+					body += "<a href='?src=\ref69src69;notes=show;mob="+ref+"'>N</a> - "
 					body += "<a href='?_src_=vars;Vars="+ref+"'>VV</a> - "
-					body += "<a href='?src=\ref[src];contractor="+ref+"'>TP</a> - "
-					body += "<a href='?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
-					body += "<a href='?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='?src=\ref[src];manup="+ref+"'>MAN_UP</a> - "
-					body += "<a href='?src=\ref[src];viewlogs="+ref+"'>LOGS</a> - "
-					body += "<a href='?src=\ref[src];paralyze="+ref+"'>PARA</a> - "
-					body += "<a href='?src=\ref[src];adminobservejump="+ref+"'>JMP</a><br>"
+					body += "<a href='?src=\ref69src69;contractor="+ref+"'>TP</a> - "
+					body += "<a href='?src=\ref69usr69;priv_msg=\ref"+ref+"'>PM</a> - "
+					body += "<a href='?src=\ref69src69;subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='?src=\ref69src69;manup="+ref+"'>MAN_UP</a> - "
+					body += "<a href='?src=\ref69src69;viewlogs="+ref+"'>LOGS</a> - "
+					body += "<a href='?src=\ref69src69;paralyze="+ref+"'>PARA</a> - "
+					body += "<a href='?src=\ref69src69;adminobservejump="+ref+"'>JMP</a><br>"
 					if(antagonist > 1)
-						body += "<font size='2'><a href='?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
+						body += "<font size='2'><a href='?src=\ref69src69;check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
 					else if(antagonist > 0)
 						body += "<font size='2'><font color='red'><b>Limited Antagonist</b></font></font>";
 					body += "</td></tr></table>";
@@ -98,7 +98,7 @@
 				function clearAll(){
 					var spans = document.getElementsByTagName('span');
 					for(var i = 0; i < spans.length; i++){
-						var span = spans\[i\];
+						var span = spans\69i\69;
 
 						var id = span.getAttribute("id");
 
@@ -108,7 +108,7 @@
 						var pass = 1;
 
 						for(var j = 0; j < locked_tabs.length; j++){
-							if(locked_tabs\[j\]==id){
+							if(locked_tabs\69j\69==id){
 								pass = 0;
 								break;
 							}
@@ -137,7 +137,7 @@
 
 					var pass = 1;
 					for(var j = 0; j < locked_tabs.length; j++){
-						if(locked_tabs\[j\]==id){
+						if(locked_tabs\69j\69==id){
 							pass = 0;
 							break;
 						}
@@ -161,7 +161,7 @@
 					var index = 0;
 					var pass = 0;
 					for(var j = 0; j < locked_tabs.length; j++){
-						if(locked_tabs\[j\]==id){
+						if(locked_tabs\69j\69==id){
 							pass = 1;
 							index = j;
 							break;
@@ -169,7 +169,7 @@
 					}
 					if(!pass)
 						return;
-					locked_tabs\[index\] = "";
+					locked_tabs\69index\69 = "";
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "";
 					//var link = document.getElementById(link_id);
@@ -198,13 +198,13 @@
 			<tr id='title_tr'>
 				<td align='center'>
 					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='?src=\ref[src];check_antagonist=1'>Storyteller Panel</a>
+					Hover over a line to see69ore information - <a href='?src=\ref69src69;check_antagonist=1'>Storyteller Panel</a>
 					<p>
 				</td>
 			</tr>
 			<tr id='search_tr'>
 				<td align='center'>
-					<b>Search:</b> <input type='text' id='filter' value='' style='width:300px;'>
+					<b>Search:</b> <input type='text' id='filter'69alue='' style='width:300px;'>
 				</td>
 			</tr>
 	</table>
@@ -218,7 +218,7 @@
 
 	var/list/mobs = sortmobs()
 	var/i = 1
-	for(var/mob/M in mobs)
+	for(var/mob/M in69obs)
 		if(M.ckey)
 
 			var/color = "#e6e6e6"
@@ -232,7 +232,7 @@
 
 				if(iscarbon(M)) //Carbon stuff
 					if(ishuman(M))
-						var/mob/living/carbon/human/H = M
+						var/mob/living/carbon/human/H =69
 						M_job = H.job
 					else if(isslime(M))
 						M_job = "slime"
@@ -266,38 +266,38 @@
 			else if(isghost(M))
 				M_job = "Ghost"
 			else
-				M_job = "Unknown ([M.type])"
+				M_job = "Unknown (69M.type69)"
 
 			M_job = replacetext(M_job, "'", "")
 			M_job = replacetext(M_job, "\"", "")
 			M_job = replacetext(M_job, "\\", "")
 
-			var/M_name = M.name
+			var/M_name =69.name
 			M_name = replacetext(M_name, "'", "")
 			M_name = replacetext(M_name, "\"", "")
 			M_name = replacetext(M_name, "\\", "")
-			var/M_rname = M.real_name
+			var/M_rname =69.real_name
 			M_rname = replacetext(M_rname, "'", "")
 			M_rname = replacetext(M_rname, "\"", "")
 			M_rname = replacetext(M_rname, "\\", "")
 
-			var/M_key = M.key
+			var/M_key =69.key
 			M_key = replacetext(M_key, "'", "")
 			M_key = replacetext(M_key, "\"", "")
 			M_key = replacetext(M_key, "\\", "")
 
-			//output for each mob
+			//output for each69ob
 			dat += {"
 
-				<tr id='data[i]' name='[i]' onClick="addToLocked('item[i]','data[i]','notice_span[i]')">
-					<td align='center' bgcolor='[color]'>
-						<span id='notice_span[i]'></span>
-						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
+				<tr id='data69i69' name='69i69' onClick="addToLocked('item69i69','data69i69','notice_span69i69')">
+					<td align='center' bgcolor='69color69'>
+						<span id='notice_span69i69'></span>
+						<a id='link69i69'
+						onmouseover='expand("item69i69","69M_job69","69M_name69","69M_rname69","--unused--","69M_key69","69M.lastKnownIP69",69is_antagonist69,"\ref69M69")'
 						>
-						<span id='search[i]'><b>[M_name] - [M_rname] - [M_key] ([M_job])</b></span>
+						<span id='search69i69'><b>69M_name69 - 69M_rname69 - 69M_key69 (69M_job69)</b></span>
 						</a>
-						<br><span id='item[i]'></span>
+						<br><span id='item69i69'></span>
 					</td>
 				</tr>
 
@@ -312,8 +312,8 @@
 		</span>
 
 		<script type='text/javascript'>
-			var maintable = document.getElementById("maintable_data_archive");
-			var complete_list = maintable.innerHTML;
+			var69aintable = document.getElementById("maintable_data_archive");
+			var complete_list =69aintable.innerHTML;
 		</script>
 	</body></html>
 	"}

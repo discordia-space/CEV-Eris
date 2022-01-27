@@ -4,10 +4,10 @@ README:
 The global_iterator datum is supposed to provide a simple and robust way to
 create some constantly "looping" processes with ability to stop and restart them at will.
 Generally, the only thing you want to play with (meaning, redefine) is the process() proc.
-It must contain all the things you want done.
+It69ust contain all the things you want done.
 
 Control functions:
-	new - used to create datum. First argument (optional) - var list(to use in process() proc) as list,
+	new - used to create datum. First argument (optional) -69ar list(to use in process() proc) as list,
 	second (optional) - autostart control.
 	If autostart == TRUE, the loop will be started immediately after datum creation.
 
@@ -33,18 +33,18 @@ Misc functions:
 	get_last_exec_time_as_text() - Returns the time of last iteration as text
 
 
-Control vars:
+Control69ars:
 
 	delay - 	delay between iterations
 
 	check_for_null - if equals TRUE, on each iteration the supplied arguments will be checked for nulls.
-	If some varible equals null (and null only), the loop is stopped.
-	Usefull, if some var unexpectedly becomes null - due to object deletion, for example.
-	Of course, you can also check the variables inside process() proc to prevent runtime errors.
+	If some69arible equals null (and null only), the loop is stopped.
+	Usefull, if some69ar unexpectedly becomes null - due to object deletion, for example.
+	Of course, you can also check the69ariables inside process() proc to prevent runtime errors.
 
-Data storage vars:
+Data storage69ars:
 
-	result - stores the value returned by process() proc
+	result - stores the69alue returned by process() proc
 */
 
 /datum/global_iterator
@@ -60,7 +60,7 @@ Data storage vars:
 	New(list/arguments=null, autostart=1)
 		delay = delay>0?(delay):1
 		if(forbid_garbage) //prevents garbage collection with tag != null
-			tag = "\ref[src]"
+			tag = "\ref69src69"
 		set_process_args(arguments)
 		if(autostart)
 			start()
@@ -86,11 +86,11 @@ Data storage vars:
 		if(arguments)
 			if(!set_process_args(arguments))
 				return 0
-		if(!state_check()) //the main loop is sleeping, wait for it to terminate.
+		if(!state_check()) //the69ain loop is sleeping, wait for it to terminate.
 			return
 		control_switch = 1
 		spawn()
-			state = main()
+			state =69ain()
 		return 1
 
 	proc/stop()
@@ -106,7 +106,7 @@ Data storage vars:
 		while(state)
 			sleep(1)
 			if(++lag>10)
-				CRASH("The global_iterator loop \ref[src] failed to terminate in designated timeframe. This may be caused by server lagging.")
+				CRASH("The global_iterator loop \ref69src69 failed to terminate in designated timeframe. This69ay be caused by server lagging.")
 		return 1
 
 	Process()
@@ -123,7 +123,7 @@ Data storage vars:
 
 	proc/set_delay(new_delay)
 		if(isnum(new_delay))
-			delay = max(1, round(new_delay))
+			delay =69ax(1, round(new_delay))
 			return 1
 		else
 			return 0
@@ -139,7 +139,7 @@ Data storage vars:
 			arg_list = arguments
 			return 1
 		else
-//			world << SPAN_DANGER("Invalid arguments supplied for [src.type], ref = \ref[src]")
+//			world << SPAN_DANGER("Invalid arguments supplied for 69src.type69, ref = \ref69src69")
 			return 0
 
 	proc/toggle_null_checks()

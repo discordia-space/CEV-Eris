@@ -6,15 +6,15 @@
 *	* on_turf_entered  - The proc to call when a turf has been entered. The object which entered the turf is supplied.
 *		NOTE: The holder itself will call this proc if its turf changes, even if it enters a turf that isn't seen.
 *	* on_turfs_changed - The proc to call if the turfs being listened to have changed. The previous and new list of seen turfs is supplied.
-*	* range            - The effective range of the proximity detector. Small values strongly recommended. Can be changed later by calling set_range()
-*	* proximity_flags  - Various minor special cases, see the PROXIMITY_* flags below.
+*	* range            - The effective range of the proximity detector. Small69alues strongly recommended. Can be changed later by calling set_range()
+*	* proximity_flags  -69arious69inor special cases, see the PROXIMITY_* flags below.
 *	* proc_owner       - Optional. holder used if unset. The owner instance of the procs supplied above.
 *
 * Call register_turfs() to begin listening to relevant turfs.
 * Call unregister_turfs() to stop listening. No argument is required.
 */
 
-var/const/PROXIMITY_EXCLUDE_HOLDER_TURF = 1 // When acquiring turfs to monitor, excludes the turf the holder itself is currently in.
+var/const/PROXIMITY_EXCLUDE_HOLDER_TURF = 1 // When acquiring turfs to69onitor, excludes the turf the holder itself is currently in.
 
 /datum/proximity_trigger
 	var/atom/holder
@@ -35,11 +35,11 @@ var/const/PROXIMITY_EXCLUDE_HOLDER_TURF = 1 // When acquiring turfs to monitor, 
 /datum/proximity_trigger/square
 	turf_selection = /decl/turf_selection/square
 
-/datum/proximity_trigger/New(var/holder, var/on_turf_entered, var/on_turfs_changed, var/range = 2, var/proximity_flags = 0, var/proc_owner)
+/datum/proximity_trigger/New(var/holder,69ar/on_turf_entered,69ar/on_turfs_changed,69ar/range = 2,69ar/proximity_flags = 0,69ar/proc_owner)
 	..()
 
 	if(!ispath(turf_selection, /decl/turf_selection))
-		CRASH("Invalid turf selection type set: [turf_selection]")
+		CRASH("Invalid turf selection type set: 69turf_selection69")
 	turf_selection = decls_repository.get_decl(turf_selection)
 
 	src.holder = holder
@@ -73,7 +73,7 @@ var/const/PROXIMITY_EXCLUDE_HOLDER_TURF = 1 // When acquiring turfs to monitor, 
 /datum/proximity_trigger/proc/register_turfs()
 	if(ismovable(holder))
 		GLOB.moved_event.register(holder, src, /datum/proximity_trigger/proc/on_holder_moved)
-	GLOB.dir_set_event.register(holder, src, /datum/proximity_trigger/proc/register_turfs) // Changing direction might alter the relevant turfs
+	GLOB.dir_set_event.register(holder, src, /datum/proximity_trigger/proc/register_turfs) // Changing direction69ight alter the relevant turfs
 
 	var/list/new_turfs = acquire_relevant_turfs()
 	if(listequal(turfs_in_range, new_turfs))
@@ -116,7 +116,7 @@ var/const/PROXIMITY_EXCLUDE_HOLDER_TURF = 1 // When acquiring turfs to monitor, 
 
 	seen_turfs_ = new_seen_turfs_
 
-/datum/proximity_trigger/proc/on_holder_moved(var/holder, var/old_loc, var/new_loc)
+/datum/proximity_trigger/proc/on_holder_moved(var/holder,69ar/old_loc,69ar/new_loc)
 	var/old_turf = get_turf(old_loc)
 	var/new_turf = get_turf(new_loc)
 	if(old_turf == new_turf)
@@ -124,8 +124,8 @@ var/const/PROXIMITY_EXCLUDE_HOLDER_TURF = 1 // When acquiring turfs to monitor, 
 	call(proc_owner, on_turf_entered)(holder)
 	register_turfs()
 
-/datum/proximity_trigger/proc/on_turf_entered(var/turf/T, var/atom/enterer)
-	if(enterer == holder) // We have an explicit call for holder, in case it moved somewhere we're not listening to.
+/datum/proximity_trigger/proc/on_turf_entered(var/turf/T,69ar/atom/enterer)
+	if(enterer == holder) // We have an explicit call for holder, in case it69oved somewhere we're not listening to.
 		return
 	if(enterer.opacity)
 		on_turf_visibility_changed()

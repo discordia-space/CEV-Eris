@@ -1,5 +1,5 @@
 /obj/item/clothing/glasses/powered/night
-	name = "Night Vision Goggles"
+	name = "Night69ision Goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "night"
 	item_state = "glasses"
@@ -16,7 +16,7 @@
 	overlay = global_hud.nvg
 
 /obj/item/clothing/glasses/powered/bullet_proof_ironhammer
-	name = "Night Vision Goggles"
+	name = "Night69ision Goggles"
 	desc = "You can totally see in the dark now!"
 	icon_state = "bulletproof_ironhammer_goggles"
 	off_state = "bulletproof_ironhammer_goggles"

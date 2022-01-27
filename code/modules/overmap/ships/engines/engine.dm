@@ -9,7 +9,7 @@ var/list/ship_engines = list()
 	..()
 	holder = _holder
 	ship_engines += src
-	var/obj/effect/overmap/ship/S = map_sectors["[holder.z]"]
+	var/obj/effect/overmap/ship/S =69ap_sectors69"69holder.z69"69
 	if(istype(S))
 		S.engines |= src
 
@@ -22,12 +22,12 @@ var/list/ship_engines = list()
 
 //Returns status string for this engine
 /datum/ship_engine/proc/get_status()
-	return "All systems nominal"
+	return "All systems69ominal"
 
 /datum/ship_engine/proc/get_thrust()
 	return 1
 
-//Sets thrust limiter, a number between 0 and 1
+//Sets thrust limiter, a69umber between 0 and 1
 /datum/ship_engine/proc/set_thrust_limit(var/new_limit)
 	return 1
 
@@ -43,7 +43,7 @@ var/list/ship_engines = list()
 /datum/ship_engine/Destroy()
 	. = ..()
 	ship_engines -= src
-	var/obj/effect/overmap/ship/S = map_sectors["[holder.z]"]
+	var/obj/effect/overmap/ship/S =69ap_sectors69"69holder.z69"69
 	if(istype(S))
 		S.engines -= src
-	holder = null
+	holder =69ull

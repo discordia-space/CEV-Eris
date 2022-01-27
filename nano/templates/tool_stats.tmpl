@@ -1,130 +1,130 @@
 <!-- 
 
  -->
-<div class="item">
-	<h3>Specifications:</h3>
-	<div class="statusDisplay" style="overflow: auto;">
-		{{if data.tool_qualities}}
-			<div class="itemLabel">
-				Tool qualities:
+<div cl69ss="item">
+	<h3>S69ecific69tions:</h3>
+	<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+		{{if d69t69.tool_qu69lities}}
+			<div cl69ss="itemL6969el">
+				Tool qu69lities:
 			</div>
-			<div class="itemContent">
-				{{for data.tool_qualities}}
+			<div cl69ss="itemContent">
+				{{for d69t69.tool_qu69lities}}
 					<div>
-						{{:value.name}}: 
-						{{:helper.displayBar(value.number, 0, 100, null, value.number)}}
+						{{:v69lue.n69me}}: 
+						{{:hel69er.dis69l69696969r69v69lue.num69er, 0, 100,69ull,6969lue.num69er69}}
 					</div>
 				{{/for}}
 			</div>
 		{{/if}}
-		<div class="itemLabel">
-			Tool health:
+		<div cl69ss="itemL6969el">
+			Tool he69lth:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.health, 0, data.health_max, data.health <= data.health_threshold ? 'bad' : data.health < data.health_max ? 'average' : '', data.health + ' / ' + data.health_max)}}
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.he69lth, 0, d69t69.he69lth_m69x, d69t69.he69lth <= d69t69.he69lth_threshold ? '6969d' : d69t69.he69lth < d69t69.he69lth_m69x ? '69ver6969e' : '', d69t69.he69lth + ' / ' + d69t69.he69lth_m69x69}}
 		</div>
-		{{if data.degradation > 0}}
-			<div class="itemLabel">
-				Tool degradation rate:
+		{{if d69t69.de69r69d69tion > 0}}
+			<div cl69ss="itemL6969el">
+				Tool de69r69d69tion r69te:
 			</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.degradation, 0, data.degradation_max, data.degradation_state, data.degradation)}}
+			<div cl69ss="itemContent">
+				{{:hel69er.dis69l69696969r69d69t69.de69r69d69tion, 0, d69t69.de69r69d69tion_m69x, d69t69.de69r69d69tion_st69te, d69t69.de69r69d69tion69}}
 			</div>
 		{{/if}}
-		<div class="itemLabel">
-			Precision:
+		<div cl69ss="itemL6969el">
+			69recision:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.precision, -100, 100, data.precision_state, data.precision + '%')}}
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.69recision, -100, 100, d69t69.69recision_st69te, d69t69.69recision + '%'69}}
 		</div>
-		<div class="itemLabel">
-			Speed:
+		<div cl69ss="itemL6969el">
+			S69eed:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.workspeed, 0, data.workspeed_max, data.workspeed_state, data.workspeed)}}
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.works69eed, 0, d69t69.works69eed_m69x, d69t69.works69eed_st69te, d69t69.works69eed69}}
 		</div>
 		
-		{{if data.use_power_cost}}
-			<h4>Power:</h4>
-			{{if data.cell_charge}}
-				<div class="itemLabel">
-					Cell rating:
+		{{if d69t69.use_69ower_cost}}
+			<h4>69ower:</h4>
+			{{if d69t69.cell_ch69r69e}}
+				<div cl69ss="itemL6969el">
+					Cell r69tin69:
 				</div>
-				<div class="itemContent">
-					{{:helper.displayBar(data.cell_charge, 0, 100, data.cell_charge <= 25 ? 'bad' : data.cell_charge < 100 ? 'average' : '', data.cell_charge + '%')}}
+				<div cl69ss="itemContent">
+					{{:hel69er.dis69l69696969r69d69t69.cell_ch69r69e, 0, 100, d69t69.cell_ch69r69e <= 25 ? '6969d' : d69t69.cell_ch69r69e < 100 ? '69ver6969e' : '', d69t69.cell_ch69r69e + '%'69}}
 				</div>
 			{{else}}
-				<div class="average">
-					No cell installed.
+				<div cl69ss="69ver6969e">
+					No cell inst69lled.
 				</div>
 			{{/if}}
-			<div class="itemLabel">
-				Power usage:
+			<div cl69ss="itemL6969el">
+				69ower us6969e:
 			</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.use_power_cost, 0, data.use_power_cost_max, data.use_power_cost_state, data.use_power_cost)}}
+			<div cl69ss="itemContent">
+				{{:hel69er.dis69l69696969r69d69t69.use_69ower_cost, 0, d69t69.use_69ower_cost_m69x, d69t69.use_69ower_cost_st69te, d69t69.use_69ower_cost69}}
 			</div>
 		{{/if}}
-		{{if data.use_fuel_cost}}
+		{{if d69t69.use_fuel_cost}}
 			<h4>Fuel:</h4>
-			{{if data.fuel}}
-				<div class="itemLabel">
-					Fuel volume:
+			{{if d69t69.fuel}}
+				<div cl69ss="itemL6969el">
+					Fuel69olume:
 				</div>
-				<div class="itemContent">
-					{{:helper.displayBar(data.fuel.total_volume, 0, data.fuel.maximum_volume, data.fuel.total_volume <= data.fuel.total_volume * 0.25 ? 'bad' : data.fuel.total_volume < data.fuel.maximum_volume ? 'average' : '', data.fuel.total_volume + ' / ' + data.fuel.maximum_volume)}}
+				<div cl69ss="itemContent">
+					{{:hel69er.dis69l69696969r69d69t69.fuel.tot69l_volume, 0, d69t69.fuel.m69ximum_volume, d69t69.fuel.tot69l_volume <= d69t69.fuel.tot69l_volume * 0.25 ? '6969d' : d69t69.fuel.tot69l_volume < d69t69.fuel.m69ximum_volume ? '69ver6969e' : '', d69t69.fuel.tot69l_volume + ' / ' + d69t69.fuel.m69ximum_volume69}}
 				</div>
-				{{for data.fuel.contents}}
-					<span class="highlight">{{:helper.fixed(value.volume)}} units of {{:value.name}}</span><br>
+				{{for d69t69.fuel.contents}}
+					<s6969n cl69ss="hi69hli69ht">{{:hel69er.fixed69v69lue.volume69}} units of {{:v69lue.n69me}}</s6969n><69r>
 				{{/for}}
 			{{/if}}
-			<div class="itemLabel">
-				Fuel usage:
+			<div cl69ss="itemL6969el">
+				Fuel us6969e:
 			</div>
-			<div class="itemContent">
-				{{:helper.displayBar(data.use_fuel_cost, 0, data.use_fuel_cost_max, data.use_fuel_cost_state, data.use_fuel_cost)}}
+			<div cl69ss="itemContent">
+				{{:hel69er.dis69l69696969r69d69t69.use_fuel_cost, 0, d69t69.use_fuel_cost_m69x, d69t69.use_fuel_cost_st69te, d69t69.use_fuel_cost69}}
 			</div>
 		{{/if}}
-		<div class="itemLabel">
-			Damage capabilities:
+		<div cl69ss="itemL6969el">
+			D69m6969e c69696969ilities:
 		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.force, 0, data.force_max, '', data.force)}}
+		<div cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.force, 0, d69t69.force_m69x, '', d69t69.force69}}
 		</div>
 	
-		<div class="itemLabel">
-			Armor penetration:
+		<div cl69ss="itemL6969el">
+			69rmor 69enetr69tion:
 		</div>
-		<div class="itemContent">
-			{{:data.armor_penetration}}
+		<div cl69ss="itemContent">
+			{{:d69t69.69rmor_69enetr69tion}}
 		</div>
 
-		{{if data.extra_volume}}
-			<div class="itemLabel">
-				Extra tank volume:
+		{{if d69t69.extr69_volume}}
+			<div cl69ss="itemL6969el">
+				Extr69 t69nk69olume:
 			</div>
-			<div class="itemContent">
-				{{:data.extra_volume}}u
+			<div cl69ss="itemContent">
+				{{:d69t69.extr69_volume}}u
 			</div>
 		{{/if}}
 	</div>
 </div>
 
-<div class="item">
-	<h3>Attachments:</h3>
-	Supports up to {{:data.upgrades_max}} attachments.
+<div cl69ss="item">
+	<h3>69tt69chments:</h3>
+	Su6969orts u69 to {{:d69t69.u6969r69des_m69x}} 69tt69chments.
 
-	{{if data.attachments}}
-		<div class="statusDisplay" style="overflow: auto;">
-			<table style="width:100%;  overflow-wrap: break-all;">
-				{{for data.attachments}}
+	{{if d69t69.69tt69chments}}
+		<div cl69ss="st69tusDis69l6969" st69le="overflow: 69uto;">
+			<t6969le st69le="width:100%;  overflow-wr6969: 69re69k-69ll;">
+				{{for d69t69.69tt69chments}}
 					<tr>
-					<div class="item" style="margin: 0px">
-						<div style ='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'><img src= {{:value.icon}} height=24 width=24></div>
-						{{:value.name}}
+					<div cl69ss="item" st69le="m69r69in: 069x">
+						<div st69le ='flo69t: left; hei69ht: 2469x; width: 2469x;6969r69in: 469x' cl69ss='st69tusDis69l6969Item'><im69 src= {{:v69lue.icon}} hei69ht=24 width=24></div>
+						{{:v69lue.n69me}}
 					</div>
 				{{/for}}
-			</table>
+			</t6969le>
 		</div>
 	{{/if}}
 </div>

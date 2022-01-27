@@ -10,13 +10,13 @@
 		return
 
 	var/list/all_subtypes = list()
-	all_subtypes[type] = src
+	all_subtypes69type69 = src
 	for(var/subtype in subtypesof(type))
-		all_subtypes[subtype] = new subtype(FALSE)
+		all_subtypes69subtype69 = new subtype(FALSE)
 
 	for(var/subtype in (all_subtypes - type))
-		var/decl/hierarchy/subtype_instance = all_subtypes[subtype]
-		var/decl/hierarchy/subtype_parent = all_subtypes[subtype_instance.parent_type]
+		var/decl/hierarchy/subtype_instance = all_subtypes69subtype69
+		var/decl/hierarchy/subtype_parent = all_subtypes69subtype_instance.parent_type69
 		subtype_instance.parent = subtype_parent
 		dd_insertObjectList(subtype_parent.children, subtype_instance)
 

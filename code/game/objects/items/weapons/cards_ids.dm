@@ -35,7 +35,7 @@
 	set src in usr
 
 	if (t)
-		src.name = text("data disk- '[]'", t)
+		src.name = text("data disk- '6969'", t)
 	else
 		src.name = "data disk"
 	src.add_fingerprint(usr)
@@ -56,23 +56,23 @@
  */
 
 /obj/item/card/emag_broken
-	desc = "A card with a magnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
-	name = "broken cryptographic sequencer"
+	desc = "A card with a69agnetic strip attached to some circuitry. It looks too busted to be used for anything but salvage."
+	name = "broken cryptographic se69uencer"
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_COVERT = 2)
-	matter = list(MATERIAL_SILVER = 1, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_SILVER = 1,69ATERIAL_PLASTIC = 1)
 
 /obj/item/card/emag
-	desc = "A card with a magnetic strip attached to some circuitry."
-	name = "cryptographic sequencer"
+	desc = "A card with a69agnetic strip attached to some circuitry."
+	name = "cryptographic se69uencer"
 	icon_state = "emag"
 	item_state = "card-id"
 	origin_tech = list(TECH_MAGNET = 2, TECH_COVERT = 2)
 	var/uses = 10
 
 var/const/NO_EMAG_ACT = -50
-/obj/item/card/emag/resolve_attackby(atom/A, mob/user)
+/obj/item/card/emag/resolve_attackby(atom/A,69ob/user)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses == NO_EMAG_ACT)
 		return ..(A, user)
@@ -80,14 +80,14 @@ var/const/NO_EMAG_ACT = -50
 	uses -= used_uses
 	A.add_fingerprint(user)
 	if(used_uses)
-		log_and_message_admins("emagged \an [A].")
+		log_and_message_admins("emagged \an 69A69.")
 
 	if(uses<1)
-		user.visible_message(SPAN_WARNING("\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent."))
+		user.visible_message(SPAN_WARNING("\The 69src69 fizzles and sparks - it seems it's been used once too often, and is now spent."))
 		user.drop_item()
 		var/obj/item/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
-		qdel(src)
+		69del(src)
 
 	return 1
 
@@ -103,11 +103,11 @@ var/const/NO_EMAG_ACT = -50
 	var/list/associated_email_login = list("login" = "", "password" = "")
 	var/associated_account_number = 0
 
-	var/age = "\[UNSET\]"
-	var/blood_type = "\[UNSET\]"
-	var/dna_hash = "\[UNSET\]"
-	var/fingerprint_hash = "\[UNSET\]"
-	var/sex = "\[UNSET\]"
+	var/age = "\69UNSET\69"
+	var/blood_type = "\69UNSET\69"
+	var/dna_hash = "\69UNSET\69"
+	var/fingerprint_hash = "\69UNSET\69"
+	var/sex = "\69UNSET\69"
 	var/icon/front
 	var/icon/side
 
@@ -124,17 +124,17 @@ var/const/NO_EMAG_ACT = -50
 	if(in_range(usr, src))
 		show(usr)
 		to_chat(usr, desc)
-		to_chat(usr, text("\icon[] []: The current assignment on the card is [].", src, src.name, src.assignment))
-		to_chat(usr, "The blood type on the card is [blood_type].")
-		to_chat(usr, "The DNA hash on the card is [dna_hash].")
-		to_chat(usr, "The fingerprint hash on the card is [fingerprint_hash].")
+		to_chat(usr, text("\icon6969 6969: The current assignment on the card is 6969.", src, src.name, src.assignment))
+		to_chat(usr, "The blood type on the card is 69blood_type69.")
+		to_chat(usr, "The DNA hash on the card is 69dna_hash69.")
+		to_chat(usr, "The fingerprint hash on the card is 69fingerprint_hash69.")
 	else
 		to_chat(usr, SPAN_WARNING("It is too far away."))
 
 /obj/item/card/id/proc/prevent_tracking()
 	return 0
 
-/obj/item/card/id/proc/show(mob/user as mob)
+/obj/item/card/id/proc/show(mob/user as69ob)
 	if(front && side)
 		user << browse_rsc(front, "front.png")
 		user << browse_rsc(side, "side.png")
@@ -145,7 +145,7 @@ var/const/NO_EMAG_ACT = -50
 	return
 
 /obj/item/card/id/proc/update_name()
-	name = "[src.registered_name]'s ID Card ([src.assignment])"
+	name = "69src.registered_name69's ID Card (69src.assignment69)"
 
 /obj/item/card/id/proc/set_id_photo(var/mob/M)
 	front = getFlatIcon(M, SOUTH, always_use_defdir = 1)
@@ -159,8 +159,8 @@ var/const/NO_EMAG_ACT = -50
 
 	if(dna)
 		id_card.blood_type		= dna.b_type
-		id_card.dna_hash		= dna.unique_enzymes
-		id_card.fingerprint_hash= md5(dna.uni_identity)
+		id_card.dna_hash		= dna.uni69ue_enzymes
+		id_card.fingerprint_hash=69d5(dna.uni_identity)
 	id_card.update_name()
 
 /mob/living/carbon/human/set_id_info(var/obj/item/card/id/id_card)
@@ -169,21 +169,21 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/card/id/proc/dat()
 	var/dat = ("<table><tr><td>")
-	dat += text("Name: []</A><BR>", registered_name)
-	dat += text("Sex: []</A><BR>\n", sex)
-	dat += text("Age: []</A><BR>\n", age)
-	dat += text("Rank: []</A><BR>\n", assignment)
-	dat += text("Fingerprint: []</A><BR>\n", fingerprint_hash)
-	dat += text("Blood Type: []<BR>\n", blood_type)
-	dat += text("DNA Hash: []<BR><BR>\n", dna_hash)
+	dat += text("Name: 6969</A><BR>", registered_name)
+	dat += text("Sex: 6969</A><BR>\n", sex)
+	dat += text("Age: 6969</A><BR>\n", age)
+	dat += text("Rank: 6969</A><BR>\n", assignment)
+	dat += text("Fingerprint: 6969</A><BR>\n", fingerprint_hash)
+	dat += text("Blood Type: 6969<BR>\n", blood_type)
+	dat += text("DNA Hash: 6969<BR><BR>\n", dna_hash)
 	if(front && side)
-		dat +="<td align = center valign = top>Photo:<br><img src=front.png height=80 width=80 border=4><img src=side.png height=80 width=80 border=4></td>"
+		dat +="<td align = center69align = top>Photo:<br><img src=front.png height=80 width=80 border=4><img src=side.png height=80 width=80 border=4></td>"
 	dat += "</tr></table>"
 	return dat
 
-/obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("\The [user] shows you: \icon[src] [src.name]. The assignment on the card: [src.assignment]",\
-		"You flash your ID card: \icon[src] [src.name]. The assignment on the card: [src.assignment]")
+/obj/item/card/id/attack_self(mob/user as69ob)
+	user.visible_message("\The 69user69 shows you: \icon69src69 69src.name69. The assignment on the card: 69src.assignment69",\
+		"You flash your ID card: \icon69src69 69src.name69. The assignment on the card: 69src.assignment69")
 
 	src.add_fingerprint(user)
 	return
@@ -204,7 +204,7 @@ var/const/NO_EMAG_ACT = -50
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
 	desc = "The spare ID of the High Lord himself."
-	icon_state = MATERIAL_GOLD
+	icon_state =69ATERIAL_GOLD
 	item_state = "gold_id"
 	registered_name = "Captain"
 	assignment = "Captain"
@@ -216,7 +216,7 @@ var/const/NO_EMAG_ACT = -50
 
 /obj/item/card/id/synthetic
 	name = "\improper Synthetic ID"
-	desc = "Access module for NanoTrasen Synthetics"
+	desc = "Access69odule for NanoTrasen Synthetics"
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Synthetic"
@@ -250,7 +250,7 @@ var/const/NO_EMAG_ACT = -50
 		..()
 
 /obj/item/card/id/gold
-	icon_state = MATERIAL_GOLD
+	icon_state =69ATERIAL_GOLD
 	item_state = "gold_id"
 
 /obj/item/card/id/sci

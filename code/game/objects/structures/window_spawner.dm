@@ -1,4 +1,4 @@
-// Ported from Haine and WrongEnd with much gratitude!
+// Ported from Haine and WrongEnd with69uch gratitude!
 /* ._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._. */
 /*-=-=-=-=-=-=-=-=-=-=-=-=-=WHAT-EVER=-=-=-=-=-=-=-=-=-=-=-=-=-*/
 /* '~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~'-._.-'~' */
@@ -38,13 +38,13 @@
 		if(activated)
 			return
 		activate()
-		return INITIALIZE_HINT_QDEL
+		return INITIALIZE_HINT_69DEL
 	else
 		if(activated)
 			return
 		activate()
 		spawn(10)
-			qdel(src)
+			69del(src)
 
 
 /obj/effect/window_lwall_spawn/proc/handle_window_spawn(var/obj/structure/window/W)

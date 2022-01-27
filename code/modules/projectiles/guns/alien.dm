@@ -1,14 +1,14 @@
 /obj/item/gun/launcher/spikethrower
 
 	name = "spike thrower"
-	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
+	desc = "A69icious alien projectile weapon. Parts of it 69uiver gelatinously, as though the thing is insectile and alive."
 
 	release_force = 30
 	icon = 'icons/obj/guns/launcher.dmi'
 	icon_state = "spikethrower3" //TODO??
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 	item_state = "spikethrower"
-	fire_sound_text = "a strange noise"
+	fire_sound_text = "a strange69oise"
 	fire_sound = 'sound/weapons/bladeslice.ogg'
 
 	var/last_regen = 0
@@ -26,21 +26,21 @@
 	. = ..()
 
 /obj/item/gun/launcher/spikethrower/Process()
-	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
+	if(spikes <69ax_spikes && world.time > last_regen + spike_gen_time)
 		spikes++
 		last_regen = world.time
 		update_icon()
 
 /obj/item/gun/launcher/spikethrower/examine(mob/user)
 	..(user)
-	to_chat(user, "It has [spikes] spike\s remaining.")
+	to_chat(user, "It has 69spikes69 spike\s remaining.")
 
 /obj/item/gun/launcher/spikethrower/update_icon()
-	icon_state = "spikethrower[spikes]"
+	icon_state = "spikethrower69spikes69"
 
 /obj/item/gun/launcher/spikethrower/special_check(user)
 	if(ishuman(user))
-		to_chat(user, SPAN_WARNING("\The [src] does not respond to you!"))
+		to_chat(user, SPAN_WARNING("\The 69src69 does69ot respond to you!"))
 		return 0
 	return ..()
 
@@ -48,6 +48,6 @@
 	return
 
 /obj/item/gun/launcher/spikethrower/consume_next_projectile()
-	if(spikes < 1) return null
+	if(spikes < 1) return69ull
 	spikes--
-	return new /obj/item/spike(src)
+	return69ew /obj/item/spike(src)

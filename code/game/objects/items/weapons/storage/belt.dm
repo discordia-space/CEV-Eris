@@ -1,13 +1,13 @@
 /obj/item/storage/belt
 	name = "belt"
-	desc = "Can hold various things."
+	desc = "Can hold69arious things."
 	icon = 'icons/inventory/belt/icon.dmi'
 	icon_state = "utility"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_NORMAL
 	max_storage_space = DEFAULT_NORMAL_STORAGE
 	slot_flags = SLOT_BELT
-	matter = list(MATERIAL_BIOMATTER = 4, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_BIOMATTER = 4,69ATERIAL_PLASTIC = 5)
 	attack_verb = list("whipped", "lashed", "disciplined")
 	bad_type = /obj/item/storage/belt
 	rarity_value = 10
@@ -25,7 +25,7 @@
 	set category = "Object"
 
 	if(show_above_suit == -1)
-		to_chat(usr, SPAN_NOTICE("\The [src] cannot be worn above your suit!"))
+		to_chat(usr, SPAN_NOTICE("\The 69src69 cannot be worn above your suit!"))
 		return
 	show_above_suit = !show_above_suit
 	update_icon()
@@ -38,7 +38,7 @@
 
 /obj/item/storage/belt/utility
 	name = "tool belt"
-	desc = "Can hold various tools."
+	desc = "Can hold69arious tools."
 	icon_state = "utility"
 	spawn_tags = SPAWN_TAG_BELT_UTILITY
 	can_hold = list(
@@ -96,7 +96,7 @@
 
 /obj/item/storage/belt/medical
 	name = "medical belt"
-	desc = "Can hold various medical equipment."
+	desc = "Can hold69arious69edical e69uipment."
 	icon_state = "medicalbelt"
 	item_state = "medical"
 	can_hold = list(
@@ -149,7 +149,7 @@
 
 /obj/item/storage/belt/tactical
 	name = "tactical belt"
-	desc = "Can hold various military and security equipment."
+	desc = "Can hold69arious69ilitary and security e69uipment."
 	icon_state = "tactical"
 	rarity_value = 20
 	can_hold = list(
@@ -186,7 +186,7 @@
 
 /obj/item/storage/belt/tactical/neotheology
 	name = "neotheologian tactical belt"
-	desc = "Can hold various military and security equipment."
+	desc = "Can hold69arious69ilitary and security e69uipment."
 	icon_state = "tactical_neotheology"
 	rarity_value = 40
 	can_hold_extra = list(
@@ -219,7 +219,7 @@
 	storage_slots = 14
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.25
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_GOLD = 6, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 3)
+	matter = list(MATERIAL_STEEL = 6,69ATERIAL_GOLD = 6,69ATERIAL_DIAMOND = 2,69ATERIAL_URANIUM = 3)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	spawn_blacklisted = TRUE
 

@@ -11,8 +11,8 @@
 
 	var/range = 25
 
-	//Simple variable to prevent me from doing attack_hand in both this and the child computer
-	var/zone = "This computer is working on a wireless range, the range is currently limited to 25 meters."
+	//Simple69ariable to prevent69e from doing attack_hand in both this and the child computer
+	var/zone = "This computer is working on a wireless range, the range is currently limited to 2569eters."
 
 	New()
 		..()
@@ -20,10 +20,10 @@
 		spawn(10)
 			scanscrubbers()
 
-	attack_ai(var/mob/user as mob)
+	attack_ai(var/mob/user as69ob)
 		return src.attack_hand(user)
 
-	attack_hand(var/mob/user as mob)
+	attack_hand(var/mob/user as69ob)
 		if(..(user))
 			return
 		src.add_fingerprint(usr)
@@ -67,30 +67,30 @@
 			</head>
 			<body>
 				<center><h1>Area Air Control</h1></center>
-				<font color="red">[status]</font><br>
-				<a href="?src=\ref[src];scan=1">Scan</a>
+				<font color="red">69status69</font><br>
+				<a href="?src=\ref69src69;scan=1">Scan</a>
 				<table border="1" width="90%">"}
 		for(var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber in connectedscrubbers)
 			dat += {"
 					<tr>
 						<td>
-							[scrubber.name]<br>
-							Pressure: [round(scrubber.air_contents.return_pressure(), 0.01)] kPa<br>
-							Flow Rate: [round(scrubber.last_flow_rate,0.1)] L/s<br>
+							69scrubber.name69<br>
+							Pressure: 69round(scrubber.air_contents.return_pressure(), 0.01)69 kPa<br>
+							Flow Rate: 69round(scrubber.last_flow_rate,0.1)69 L/s<br>
 						</td>
 						<td width="150">
-							<a class="green" href="?src=\ref[src];scrub=\ref[scrubber];toggle=1">Turn On</a>
-							<a class="red" href="?src=\ref[src];scrub=\ref[scrubber];toggle=0">Turn Off</a><br>
-							Load: [round(scrubber.last_power_draw)] W
+							<a class="green" href="?src=\ref69src69;scrub=\ref69scrubber69;toggle=1">Turn On</a>
+							<a class="red" href="?src=\ref69src69;scrub=\ref69scrubber69;toggle=0">Turn Off</a><br>
+							Load: 69round(scrubber.last_power_draw)69 W
 						</td>
 					</tr>"}
 
 		dat += {"
 				</table><br>
-				<i>[zone]</i>
+				<i>69zone69</i>
 			</body>
 		</html>"}
-		user << browse("[dat]", "window=miningshuttle;size=400x400")
+		user << browse("69dat69", "window=miningshuttle;size=400x400")
 		status = ""
 
 	Topic(href, href_list)
@@ -100,10 +100,10 @@
 		src.add_fingerprint(usr)
 
 
-		if(href_list["scan"])
+		if(href_list69"scan"69)
 			scanscrubbers()
-		else if(href_list["toggle"])
-			var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber = locate(href_list["scrub"])
+		else if(href_list69"toggle"69)
+			var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber = locate(href_list69"scrub"69)
 
 			if(!validscrubber(scrubber))
 				spawn(20)
@@ -112,10 +112,10 @@
 					src.updateUsrDialog()
 				return
 
-			scrubber.on = text2num(href_list["toggle"])
+			scrubber.on = text2num(href_list69"toggle"69)
 			scrubber.update_icon()
 
-	proc/validscrubber( var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber as obj )
+	proc/validscrubber(69ar/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber as obj )
 		if(!isobj(scrubber) || get_dist(scrubber.loc, src.loc) > src.range || scrubber.loc.z != src.loc.z)
 			return 0
 
@@ -139,12 +139,12 @@
 /obj/machinery/computer/area_atmos/area
 	zone = "This computer is working in a wired network limited to this area."
 
-	validscrubber( var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber as obj )
+	validscrubber(69ar/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber as obj )
 		if(!isobj(scrubber))
 			return 0
 
 		/*
-		wow this is stupid, someone help me
+		wow this is stupid, someone help69e
 		*/
 		var/turf/T_src = get_turf(src)
 		if(!T_src.loc) return 0

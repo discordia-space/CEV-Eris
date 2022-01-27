@@ -7,51 +7,51 @@
 	var/exposedwires = 0
 	var/wires = 3
 	/*
-	Bitflag,	1=checkID
+	Bitfla69,	1=checkID
 				2=Network Access
 	*/
 
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 2
-	active_power_usage = 4
+	idle_power_usa69e = 2
+	active_power_usa69e = 4
 
-/obj/machinery/button/remote/attack_ai(mob/user as mob)
+/obj/machinery/button/remote/attack_ai(mob/user as69ob)
 	if(wires & 2)
 		return attack_hand(user)
 	else
 		to_chat(user, "Error, no route to host.")
 
-/obj/machinery/button/remote/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/button/remote/attackby(obj/item/W,69ob/user as69ob)
 	return attack_hand(user)
 
-/obj/machinery/button/remote/emag_act(var/remaining_charges, var/mob/user)
-	if(req_access.len || req_one_access.len)
-		req_access = list()
-		req_one_access = list()
+/obj/machinery/button/remote/ema69_act(var/remainin69_char69es,69ar/mob/user)
+	if(re69_access.len || re69_one_access.len)
+		re69_access = list()
+		re69_one_access = list()
 		playsound(src.loc, "sparks", 100, 1)
 		return 1
 
-/obj/machinery/button/remote/attack_hand(mob/user as mob)
+/obj/machinery/button/remote/attack_hand(mob/user as69ob)
 	if(..())
 		return 1
 
 	if(!allowed(user) && (wires & 1))
-		to_chat(user, SPAN_WARNING("Access Denied"))
+		to_chat(user, SPAN_WARNIN69("Access Denied"))
 		flick("doorctrl-denied",src)
 		return
 
 	use_power(5)
 	icon_state = "doorctrl1"
 	desiredstate = !desiredstate
-	trigger(user)
+	tri6969er(user)
 	spawn(15)
 		update_icon()
 
-/obj/machinery/button/remote/proc/trigger()
+/obj/machinery/button/remote/proc/tri6969er()
 	return
 
-/obj/machinery/button/remote/power_change()
+/obj/machinery/button/remote/power_chan69e()
 	..()
 	update_icon()
 
@@ -78,16 +78,16 @@
 
 	var/specialfunctions = 1
 	/*
-	Bitflag, 	1= open
+	Bitfla69, 	1= open
 				2= idscan,
 				4= bolts
 				8= shock
 				16= door safties
 	*/
 
-/obj/machinery/button/remote/airlock/trigger()
-	for(var/obj/machinery/door/airlock/D in GLOB.all_doors)
-		if(D.id_tag == id)
+/obj/machinery/button/remote/airlock/tri6969er()
+	for(var/obj/machinery/door/airlock/D in 69LOB.all_doors)
+		if(D.id_ta69 == id)
 			if(specialfunctions & OPEN)
 				if(D.density)
 					spawn(0)
@@ -129,8 +129,8 @@
 	name = "remote blast door-control"
 	desc = "It controls blast doors, remotely."
 
-/obj/machinery/button/remote/blast_door/trigger()
-	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
+/obj/machinery/button/remote/blast_door/tri6969er()
+	for(var/obj/machinery/door/blast/M in 69LOB.all_doors)
 		if(M.id == id)
 			if(M.density)
 				spawn(0)
@@ -147,25 +147,25 @@
 	desc = "It controls blast doors, remotely. But need id_card with access to it."
 	icon_state = "doorid0"
 
-/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/W, mob/user as mob)
+/obj/machinery/button/remote/blast_door/id_card/attackby(obj/item/W,69ob/user as69ob)
 	if(istype(W, /obj/item/card/id))
 		var/obj/item/card/id/id_card = W
-		if(has_access(req_access, list(), id_card.access))
+		if(has_access(re69_access, list(), id_card.access))
 			use_power(5)
 			icon_state = "doorid1"
 			desiredstate = !desiredstate
-			trigger(user)
+			tri6969er(user)
 			spawn(15)
 				update_icon()
 		else
-			to_chat(user, SPAN_WARNING("Access Denied"))
+			to_chat(user, SPAN_WARNIN69("Access Denied"))
 			flick("doorid-denied",src)
 	else
-		to_chat(user, SPAN_WARNING("You need a id card to operate."))
+		to_chat(user, SPAN_WARNIN69("You need a id card to operate."))
 		flick("doorid-denied",src)
 
-/obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as mob)
-	to_chat(user, SPAN_WARNING("You need a id card to operate."))
+/obj/machinery/button/remote/blast_door/id_card/attack_hand(mob/user as69ob)
+	to_chat(user, SPAN_WARNIN69("You need a id card to operate."))
 	flick("doorid-denied",src)
 
 /obj/machinery/button/remote/blast_door/id_card/update_icon()
@@ -181,8 +181,8 @@
 	name = "remote emitter control"
 	desc = "It controls emitters, remotely."
 
-/obj/machinery/button/remote/emitter/trigger(mob/user as mob)
-	for(var/obj/machinery/power/emitter/E in GLOB.machines)
+/obj/machinery/button/remote/emitter/tri6969er(mob/user as69ob)
+	for(var/obj/machinery/power/emitter/E in 69LOB.machines)
 		if(E.id == id)
 			spawn(0)
 				E.activate(user)
@@ -193,14 +193,14 @@
 */
 /obj/machinery/button/remote/driver
 	name = "mass driver button"
-	desc = "A remote control switch for a mass driver."
+	desc = "A remote control switch for a69ass driver."
 	icon_state = "launcher0"
 
-/obj/machinery/button/remote/driver/trigger(mob/user as mob)
+/obj/machinery/button/remote/driver/tri6969er(mob/user as69ob)
 	active = 1
 	update_icon()
 
-	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
+	for(var/obj/machinery/door/blast/M in 69LOB.all_doors)
 		if(M.id == id)
 			spawn(0)
 				M.open()
@@ -208,13 +208,13 @@
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in GLOB.machines)
+	for(var/obj/machinery/mass_driver/M in 69LOB.machines)
 		if(M.id == id)
 			M.drive()
 
 	sleep(50)
 
-	for(var/obj/machinery/door/blast/M in GLOB.all_doors)
+	for(var/obj/machinery/door/blast/M in 69LOB.all_doors)
 		if(M.id == id)
 			spawn(0)
 				M.close()

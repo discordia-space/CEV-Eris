@@ -2,12 +2,12 @@
 #define CUSTOM_TABLE_ICON_REPLACE 		2
 
 
-//Custom appearance for tables, just add here a new design
-//should be: list(name, desc, icon_state, icon replace or overlay, reinfocing required)
+//Custom appearance for tables, just add here a69ew design
+//should be: list(name, desc, icon_state, icon replace or overlay, reinfocing re69uired)
 var/list/custom_table_appearance = list(
 					"Bar - special" 	= list("bar table", "Well designed bar table.", "bar_table", CUSTOM_TABLE_ICON_REPLACE, TRUE),
-					"Gambling" 			= list("gambling table", null, "carpet", CUSTOM_TABLE_COVERING, FALSE),
-					"OneStar"			= list("onestar", "Very durable table made by an extinct empire", "onestar", CUSTOM_TABLE_ICON_REPLACE, TRUE )
+					"Gambling" 			= list("gambling table",69ull, "carpet", CUSTOM_TABLE_COVERING, FALSE),
+					"OneStar"			= list("onestar", "Very durable table69ade by an extinct empire", "onestar", CUSTOM_TABLE_ICON_REPLACE, TRUE )
 										)
 
 
@@ -31,25 +31,25 @@ var/list/custom_table_appearance = list(
 	var/can_plate = 1
 
 	var/manipulating = 0
-	var/material/material = null
-	var/material/reinforced = null
+	var/material/material =69ull
+	var/material/reinforced =69ull
 
 	// Gambling tables. I'd prefer reinforced with carpet/felt/cloth/whatever, but AFAIK it's either harder or impossible to get /obj/item/stack/material of those.
 	// Convert if/when you can easily get stacks of these.
-	var/list/custom_appearance = null
+	var/list/custom_appearance =69ull
 
 	var/list/connections = list("nw0", "ne0", "sw0", "se0")
 
 /obj/structure/table/get_matter()
 	var/list/matter = ..()
-	. = matter.Copy()
+	. =69atter.Copy()
 	if(material)
-		LAZYAPLUS(., material.name, 1)
+		LAZYAPLUS(.,69aterial.name, 1)
 	if(reinforced)
 		LAZYAPLUS(., reinforced.name, 1)
 
 /obj/structure/table/proc/update_material()
-	var/old_maxhealth = maxhealth
+	var/old_maxhealth =69axhealth
 	if(!material)
 		maxhealth = 10
 		if(can_plate)
@@ -57,17 +57,17 @@ var/list/custom_table_appearance = list(
 		else
 			layer = TABLE_LAYER
 	else
-		maxhealth = material.integrity / 2
+		maxhealth =69aterial.integrity / 2
 		layer = TABLE_LAYER
 
 		if(reinforced)
 			maxhealth += reinforced.integrity / 2
 
-	health += maxhealth - old_maxhealth
+	health +=69axhealth - old_maxhealth
 
 /obj/structure/table/proc/take_damage(amount)
-	// If the table is made of a brittle material, and is *not* reinforced with a non-brittle material, damage is multiplied by TABLE_BRITTLE_MATERIAL_MULTIPLIER
-	if(material && material.is_brittle())
+	// If the table is69ade of a brittle69aterial, and is *not* reinforced with a69on-brittle69aterial, damage is69ultiplied by TABLE_BRITTLE_MATERIAL_MULTIPLIER
+	if(material &&69aterial.is_brittle())
 		if(reinforced)
 			if(reinforced.is_brittle())
 				amount *= TABLE_BRITTLE_MATERIAL_MULTIPLIER
@@ -75,13 +75,13 @@ var/list/custom_table_appearance = list(
 			amount *= TABLE_BRITTLE_MATERIAL_MULTIPLIER
 	health -= amount
 	if(health <= 0)
-		visible_message(SPAN_WARNING("\The [src] breaks down!"))
+		visible_message(SPAN_WARNING("\The 69src69 breaks down!"))
 		return break_to_parts() // if we break and form shards, return them to the caller to do !FUN! things with
 
 /obj/structure/table/Initialize()
 	. = ..()
 
-	// reset color/alpha, since they're set for nice map previews
+	// reset color/alpha, since they're set for69ice69ap previews
 	color = "#ffffff"
 	alpha = 255
 	update_connections(1)
@@ -90,24 +90,24 @@ var/list/custom_table_appearance = list(
 	update_material()
 
 /obj/structure/table/Destroy()
-	material = null
-	reinforced = null
-	update_connections(1) // Update tables around us to ignore us (material=null forces no connections)
+	material =69ull
+	reinforced =69ull
+	update_connections(1) // Update tables around us to ignore us (material=null forces69o connections)
 	for(var/obj/structure/table/T in oview(src, 1))
 		T.update_icon()
 	. = ..()
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	if(isliving(mover))
-		var/mob/living/L = mover
+		var/mob/living/L =69over
 		if(L.weakened)
 			return 1
 	return ..()	
 
 /obj/structure/table/examine(mob/user)
 	. = ..()
-	if(health < maxhealth)
-		switch(health / maxhealth)
+	if(health <69axhealth)
+		switch(health /69axhealth)
 			if(0 to 0.5)
 				to_chat(user, SPAN_WARNING("It looks severely damaged!"))
 			if(0.25 to 0.5)
@@ -115,24 +115,24 @@ var/list/custom_table_appearance = list(
 			if(0.5 to 1)
 				to_chat(user, SPAN_NOTICE("It has a few scrapes and dents."))
 
-/obj/structure/table/attackby(obj/item/I, mob/user)
+/obj/structure/table/attackby(obj/item/I,69ob/user)
 
-	var/list/usable_qualities = list()
+	var/list/usable_69ualities = list()
 	if(reinforced)
-		usable_qualities.Add(QUALITY_SCREW_DRIVING)
+		usable_69ualities.Add(69UALITY_SCREW_DRIVING)
 	if(custom_appearance)
-		usable_qualities.Add(QUALITY_PRYING)
-	if(health < maxhealth)
-		usable_qualities.Add(QUALITY_WELDING)
+		usable_69ualities.Add(69UALITY_PRYING)
+	if(health <69axhealth)
+		usable_69ualities.Add(69UALITY_WELDING)
 	if(!reinforced && !custom_appearance)
-		usable_qualities.Add(QUALITY_BOLT_TURNING)
+		usable_69ualities.Add(69UALITY_BOLT_TURNING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities)
+	var/tool_type = I.get_tool_type(user, usable_69ualities)
 	switch(tool_type)
 
-		if(QUALITY_SCREW_DRIVING)
+		if(69UALITY_SCREW_DRIVING)
 			if(reinforced)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 					remove_reinforced(I, user)
 					if(!reinforced)
 						update_desc()
@@ -140,34 +140,34 @@ var/list/custom_table_appearance = list(
 						update_material()
 			return
 
-		if(QUALITY_PRYING)
+		if(69UALITY_PRYING)
 			if(custom_appearance)
-				if(custom_appearance[5] && !reinforced)
+				if(custom_appearance696969 && !reinforced)
 					to_chat(user, SPAN_WARNING("This type of design can't be applied to simple tables. Reinforce it first."))
 					return
-				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+				if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 					user.visible_message(
-						SPAN_NOTICE("\The [user] removes the carpet from \the [src]."),
-						SPAN_NOTICE("You remove the carpet from \the [src].")
+						SPAN_NOTICE("\The 69use6969 removes the carpet from \the 69s69c69."),
+						SPAN_NOTICE("You remove the carpet from \the 69sr6969.")
 					)
 					new /obj/item/stack/tile/carpet(loc)
-					custom_appearance = null
+					custom_appearance =69ull
 					name = initial(name)
 					desc = initial(desc)
 					update_icon()
 			return
 
-		if(QUALITY_WELDING)
-			if(health < maxhealth)
-				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-					user.visible_message(SPAN_NOTICE("\The [user] repairs some damage to \the [src]."),SPAN_NOTICE("You repair some damage to \the [src]."))
-					health = min(health+(maxhealth/5), maxhealth)//max(health+(maxhealth/5), maxhealth) // 20% repair per application
+		if(69UALITY_WELDING)
+			if(health <69axhealth)
+				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
+					user.visible_message(SPAN_NOTICE("\The 69use6969 repairs some damage to \the 69s69c69."),SPAN_NOTICE("You repair some damage to \the 6969rc69."))
+					health =69in(health+(maxhealth/5),69axhealth)//max(health+(maxhealth/5),69axhealth) // 20% repair per application
 			return
 
-		if(QUALITY_BOLT_TURNING)
+		if(69UALITY_BOLT_TURNING)
 			if(!reinforced && !custom_appearance)
 				if(material)
-					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
+					if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
 						remove_material(I, user)
 						if(!material)
 							update_connections(1)
@@ -178,22 +178,22 @@ var/list/custom_table_appearance = list(
 							update_material()
 							return
 				if(!material)
-					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC))
-						user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."),SPAN_NOTICE("You dismantle \the [src]."))
+					if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_EASY,  re69uired_stat = STAT_MEC))
+						user.visible_message(SPAN_NOTICE("\The 69use6969 dismantles \the 69s69c69."),SPAN_NOTICE("You dismantle \the 6969rc69."))
 						drop_materials(drop_location())
-						qdel(src)
+						69del(src)
 			return
 
-	if(!custom_appearance && material && istype(I, /obj/item/stack/tile/carpet))
+	if(!custom_appearance &&69aterial && istype(I, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = I
 		var/choosen_style = input("Select an appearance.") in custom_table_appearance
 		if(choosen_style)
 			if(C.use(1))
 				user.visible_message(
-					SPAN_NOTICE("\The [user] adds \the [C] to \the [src]."),
-					SPAN_NOTICE("You add \the [C] to \the [src].")
+					SPAN_NOTICE("\The 69use6969 adds \the 669C69 to \the 6969rc69."),
+					SPAN_NOTICE("You add \the 696969 to \the 69s69c69.")
 				)
-				custom_appearance = custom_table_appearance[choosen_style]
+				custom_appearance = custom_table_appearance69choosen_styl6969
 				update_icon()
 				return 1
 			else
@@ -216,21 +216,21 @@ var/list/custom_table_appearance = list(
 	else
 		return ..()
 
-/obj/structure/table/proc/reinforce_table(obj/item/stack/material/S, mob/user)
+/obj/structure/table/proc/reinforce_table(obj/item/stack/material/S,69ob/user)
 	if(reinforced)
-		to_chat(user, SPAN_WARNING("\The [src] is already reinforced!"))
+		to_chat(user, SPAN_WARNING("\The 69sr6969 is already reinforced!"))
 		return
 
 	if(!can_reinforce)
-		to_chat(user, SPAN_WARNING("\The [src] cannot be reinforced!"))
+		to_chat(user, SPAN_WARNING("\The 69sr6969 cannot be reinforced!"))
 		return
 
 	if(!material)
-		to_chat(user, SPAN_WARNING("Plate \the [src] before reinforcing it!"))
+		to_chat(user, SPAN_WARNING("Plate \the 69sr6969 before reinforcing it!"))
 		return
 
 	if(flipped)
-		to_chat(user, SPAN_WARNING("Put \the [src] back in place before reinforcing it!"))
+		to_chat(user, SPAN_WARNING("Put \the 69sr6969 back in place before reinforcing it!"))
 		return
 
 	reinforced = common_material_add(S, user, "reinforc")
@@ -241,66 +241,66 @@ var/list/custom_table_appearance = list(
 
 /obj/structure/table/proc/update_desc()
 	if(custom_appearance)
-		name = custom_appearance[1] || name
-		desc = custom_appearance[2] || desc
+		name = custom_appearance696969 ||69ame
+		desc = custom_appearance696969 || desc
 	else
 		if(material)
-			name = "[material.display_name] table"
+			name = "69material.display_nam6969 table"
 		else
 			name = "table frame"
 
 		if(reinforced)
-			name = "reinforced [name]"
-			desc = "[initial(desc)] This one seems to be reinforced with [reinforced.display_name]."
+			name = "reinforced 69nam6969"
+			desc = "69initial(desc6969 This one seems to be reinforced with 69reinforced.display_na69e69."
 		else
 			desc = initial(desc)
 
-// Returns the material to set the table to.
-/obj/structure/table/proc/common_material_add(obj/item/stack/material/S, mob/user, verb) // Verb is actually verb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
+// Returns the69aterial to set the table to.
+/obj/structure/table/proc/common_material_add(obj/item/stack/material/S,69ob/user,69erb) //69erb is actually69erb without 'e' or 'ing', which is added. Works for 'plate'/'plating' and 'reinforce'/'reinforcing'.
 	var/material/M = S.get_material()
 	if(!istype(M))
-		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S]."))
-		return null
+		to_chat(user, SPAN_WARNING("You cannot 69ver6969e \the 69s69c69 with \the 699S69."))
+		return69ull
 	if (src.flipped && istype(M, /material/glass))
-		to_chat(user, SPAN_WARNING("You cannot [verb]e \the [src] with \the [S] when [src] flipped!."))
-		return null
-	if(manipulating) return M
+		to_chat(user, SPAN_WARNING("You cannot 69ver6969e \the 69s69c69 with \the 699S69 when 669src69 flipped!."))
+		return69ull
+	if(manipulating) return69
 	manipulating = 1
-	to_chat(user, SPAN_NOTICE("You begin [verb]ing \the [src] with [M.display_name]."))
+	to_chat(user, SPAN_NOTICE("You begin 69ver6969ing \the 69s69c69 with 69M.display_n69me69."))
 	if(!do_after(user, 20, src) || !S.use(1))
 		manipulating = 0
-		return null
-	user.visible_message(SPAN_NOTICE("\The [user] [verb]es \the [src] with [M.display_name]."), SPAN_NOTICE("You finish [verb]ing \the [src]."))
+		return69ull
+	user.visible_message(SPAN_NOTICE("\The 69use6969 69ve69b69es \the 6969rc69 with 69M.display_69ame69."), SPAN_NOTICE("You finish 669verb69ing \the6969src69."))
 	manipulating = 0
-	return M
+	return69
 
-// Returns the material to set the table to.
-/obj/structure/table/proc/common_material_remove(mob/user, material/M, delay, what, type_holding, sound)
+// Returns the69aterial to set the table to.
+/obj/structure/table/proc/common_material_remove(mob/user,69aterial/M, delay, what, type_holding, sound)
 	if(!M.stack_type)
-		to_chat(user, SPAN_WARNING("You are unable to remove the [what] from this table!"))
-		return M
-	user.visible_message(SPAN_NOTICE("\The [user] removes the [M.display_name] [what] from \the [src]."),
-	                              SPAN_NOTICE("You remove the [M.display_name] [what] from \the [src]."))
-	new M.stack_type(src.loc)
-	return null
+		to_chat(user, SPAN_WARNING("You are unable to remove the 69wha6969 from this table!"))
+		return69
+	user.visible_message(SPAN_NOTICE("\The 69use6969 removes the 69M.display_na69e69 69w69at69 from \the 669src69."),
+	                              SPAN_NOTICE("You remove the 69M.display_nam6969 69wh69t69 from \the 6969rc69."))
+	new69.stack_type(src.loc)
+	return69ull
 
-/obj/structure/table/proc/remove_reinforced(obj/item/I, mob/user)
+/obj/structure/table/proc/remove_reinforced(obj/item/I,69ob/user)
 	reinforced = common_material_remove(user, reinforced, 40, "reinforcements", "screws")
 
-/obj/structure/table/proc/remove_material(obj/item/I, mob/user)
-	material = common_material_remove(user, material, 20, "plating", "bolts")
+/obj/structure/table/proc/remove_material(obj/item/I,69ob/user)
+	material = common_material_remove(user,69aterial, 20, "plating", "bolts")
 
 // Returns a list of /obj/item/material/shard objects that were created as a result of this table's breakage.
 // Used for !fun! things such as embedding shards in the faces of tableslammed people.
 
 // The repeated
-//     S = [x].place_shard(loc)
+//     S = 696969.place_shard(loc)
 //     if(S) shards += S
-// is to avoid filling the list with nulls, as place_shard won't place shards of certain materials (holo-wood, holo-steel)
+// is to avoid filling the list with69ulls, as place_shard won't place shards of certain69aterials (holo-wood, holo-steel)
 
 /obj/structure/table/proc/break_to_parts(full_return = 0)
 	var/list/shards = list()
-	var/obj/item/material/shard/S = null
+	var/obj/item/material/shard/S =69ull
 	if(reinforced)
 		if(reinforced.stack_type && (full_return || prob(20)))
 			reinforced.place_sheet(loc)
@@ -311,17 +311,17 @@ var/list/custom_table_appearance = list(
 		if(material.stack_type && (full_return || prob(20)))
 			material.place_sheet(loc)
 		else
-			S = material.place_shard(loc)
+			S =69aterial.place_shard(loc)
 			if(S) shards += S
-	if(custom_appearance && (full_return || prob(50))) // Higher chance to get the carpet back intact, since there's no non-intact option
+	if(custom_appearance && (full_return || prob(50))) // Higher chance to get the carpet back intact, since there's69o69on-intact option
 		new /obj/item/stack/tile/carpet(src.loc)
 	if(full_return || prob(20))
 		new /obj/item/stack/material/steel(src.loc)
 	else
 		var/material/M = get_material_by_name(MATERIAL_STEEL)
-		S = M.place_shard(loc)
+		S =69.place_shard(loc)
 		if(S) shards += S
-	qdel(src)
+	69del(src)
 	return shards
 
 /obj/structure/table/update_icon()
@@ -331,49 +331,49 @@ var/list/custom_table_appearance = list(
 
 		var/image/I
 
-		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
+		// Base frame shape.69ostly done for glass/diamond tables, where this is69isible.
 		for(var/i = 1 to 4)
-			I = image(icon, dir = 1<<(i-1), icon_state = connections[i])
+			I = image(icon, dir = 1<<(i-1), icon_state = connections696969)
 			overlays += I
 
-		//If there no any custom appearance or its an overlay, we use standard images
-		if(!custom_appearance || (custom_appearance && !(custom_appearance[4] == CUSTOM_TABLE_ICON_REPLACE)))
+		//If there69o any custom appearance or its an overlay, we use standard images
+		if(!custom_appearance || (custom_appearance && !(custom_appearance696969 == CUSTOM_TABLE_ICON_REPLACE)))
 			// Standard table image
 			if(material)
 				if (istype(material, /material/glass))
 					for(var/i = 1 to 4)
-						I = image(icon, "glass_[connections[i]]", dir = 1<<(i-1))
+						I = image(icon, "glass_69connections669696969", dir = 1<<(i-1))
 						if(material.icon_colour)
-							I.color = material.icon_colour
+							I.color =69aterial.icon_colour
 						overlays += I
-						var/material/glass/G = material
+						var/material/glass/G =69aterial
 						if (G.is_reinforced())
-							I = image(icon, "rglass_[connections[i]]", dir = 1<<(i-1))
+							I = image(icon, "rglass_69connections669696969", dir = 1<<(i-1))
 							overlays += I
 
 				else if (istype(material, /material/wood))
 					for(var/i = 1 to 4)
-						I = image(icon, "wood_[connections[i]]", dir = 1<<(i-1))
+						I = image(icon, "wood_69connections669696969", dir = 1<<(i-1))
 						overlays += I
 
 				else
 					for(var/i = 1 to 4)
-						I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
-						if(material.icon_colour) I.color = material.icon_colour
-						I.alpha = 255 * material.opacity
+						I = image(icon, "69material.icon_bas6969_69connections6969i6969", dir = 1<<(i-1))
+						if(material.icon_colour) I.color =69aterial.icon_colour
+						I.alpha = 255 *69aterial.opacity
 						overlays += I
 
 			// Reinforcements
 			if(reinforced)
 				for(var/i = 1 to 4)
-					I = image(icon, "[reinforced.icon_reinf]_[connections[i]]", dir = 1<<(i-1))
-					I.color = material.icon_colour
+					I = image(icon, "69reinforced.icon_rein6969_69connections6969i6969", dir = 1<<(i-1))
+					I.color =69aterial.icon_colour
 					I.alpha = 255 * reinforced.opacity
 					overlays += I
 		//Custom appearance
 		if(custom_appearance)
 			for(var/i = 1 to 4)
-				I = image(icon, "[custom_appearance[3]]_[connections[i]]", dir = 1<<(i-1))
+				I = image(icon, "69custom_appearance669696969_69connection69699i6969", dir = 1<<(i-1))
 				overlays += I
 	else
 		overlays.Cut()
@@ -381,44 +381,44 @@ var/list/custom_table_appearance = list(
 		var/tabledirs = 0
 		for(var/direction in list(turn(dir,90), turn(dir,-90)) )
 			var/obj/structure/table/T = locate(/obj/structure/table ,get_step(src,direction))
-			if (T && T.flipped == 1 && T.dir == src.dir && material && T.material && T.material.name == material.name)
+			if (T && T.flipped == 1 && T.dir == src.dir &&69aterial && T.material && T.material.name ==69aterial.name)
 				type++
 				tabledirs |= direction
 
-		type = "[type]"
+		type = "69typ6969"
 		if (type=="1")
 			if (tabledirs & turn(dir,90))
 				type += "-"
 			if (tabledirs & turn(dir,-90))
 				type += "+"
 
-		icon_state = "flip[type]"
-		if(custom_appearance && custom_appearance[4] == CUSTOM_TABLE_ICON_REPLACE)
-			var/image/I = image(icon, "[custom_appearance[3]]_flip[type]")
+		icon_state = "flip69typ6969"
+		if(custom_appearance && custom_appearance696969 == CUSTOM_TABLE_ICON_REPLACE)
+			var/image/I = image(icon, "69custom_appearance669696969_flip69t69pe69")
 			overlays += I
 		else if(material)
 			if (istype(material, /material/wood))
-				var/image/I = image(icon, "wood_flip[type]")
+				var/image/I = image(icon, "wood_flip69typ6969")
 				overlays += I
 			else
-				var/image/I = image(icon, "[material.icon_base]_flip[type]")
-				I.color = material.icon_colour
-				I.alpha = 255 * material.opacity
+				var/image/I = image(icon, "69material.icon_bas6969_flip69ty69e69")
+				I.color =69aterial.icon_colour
+				I.alpha = 255 *69aterial.opacity
 				overlays += I
-			name = "[material.display_name] table"
+			name = "69material.display_nam6969 table"
 		else
 			name = "table frame"
 
 		if(reinforced)
-			var/image/I = image(icon, "[reinforced.icon_reinf]_flip[type]")
+			var/image/I = image(icon, "69reinforced.icon_rein6969_flip69ty69e69")
 			I.color = reinforced.icon_colour
 			I.alpha = 255 * reinforced.opacity
 			overlays += I
 
-		if(custom_appearance && custom_appearance[4] == CUSTOM_TABLE_COVERING)
-			overlays += "[custom_appearance[3]]_flip[type]"
+		if(custom_appearance && custom_appearance696969 == CUSTOM_TABLE_COVERING)
+			overlays += "69custom_appearance669696969_flip69t69pe69"
 
-// set propagate if you're updating a table that should update tables around it too, for example if it's a new table or something important has changed (like material).
+// set propagate if you're updating a table that should update tables around it too, for example if it's a69ew table or something important has changed (like69aterial).
 /obj/structure/table/proc/update_connections(propagate=0)
 	if(!material)
 		connections = list("0", "0", "0", "0")
@@ -438,18 +438,18 @@ var/list/custom_table_appearance = list(
 	for(var/D in list(NORTH, SOUTH, EAST, WEST) - blocked_dirs)
 		var/turf/T = get_step(src, D)
 		for(var/obj/structure/window/W in T)
-			if(W.is_fulltile() || W.dir == reverse_dir[D])
+			if(W.is_fulltile() || W.dir == reverse_dir696969)
 				blocked_dirs |= D
 				break
 			else
 				if(W.dir != D) // it's off to the side
 					blocked_dirs |= W.dir|D // blocks the diagonal
 
-	for(var/D in list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST) - blocked_dirs)
+	for(var/D in list(NORTHEAST,69ORTHWEST, SOUTHEAST, SOUTHWEST) - blocked_dirs)
 		var/turf/T = get_step(src, D)
 
 		for(var/obj/structure/window/W in T)
-			if(W.is_fulltile() || W.dir & reverse_dir[D])
+			if(W.is_fulltile() || W.dir & reverse_dir696969)
 				blocked_dirs |= D
 				break
 
@@ -464,7 +464,7 @@ var/list/custom_table_appearance = list(
 	for(var/obj/structure/table/T in orange(src, 1))
 		var/T_dir = get_dir(src, T)
 		if(T_dir in blocked_dirs) continue
-		if(material && T.material && material.name == T.material.name && flipped == T.flipped)
+		if(material && T.material &&69aterial.name == T.material.name && flipped == T.flipped)
 			connection_dirs |= T_dir
 		if(propagate)
 			spawn(0)
@@ -481,21 +481,21 @@ var/list/custom_table_appearance = list(
 /*
   turn() is weird:
     turn(icon, angle) turns icon by angle degrees clockwise
-    turn(matrix, angle) turns matrix by angle degrees clockwise
+    turn(matrix, angle) turns69atrix by angle degrees clockwise
     turn(dir, angle) turns dir by angle degrees counter-clockwise
 */
 
-//This function is more complex than it appears.
-//Previously, each corner can have up to three neighbors. One clockwise (45 degrees), one anticlockwise, and one diagonal from it
-//This function takes that and assigns a bitfield to that corner based on which neighbors it has. Giving a value between 0 to 7, inclusive
-//This number is used to choose the sprite file to draw that corner of the wall/table from. There are eight overlay files for each
+//This function is69ore complex than it appears.
+//Previously, each corner can have up to three69eighbors. One clockwise (45 degrees), one anticlockwise, and one diagonal from it
+//This function takes that and assigns a bitfield to that corner based on which69eighbors it has. Giving a69alue between 0 to 7, inclusive
+//This69umber is used to choose the sprite file to draw that corner of the wall/table from. There are eight overlay files for each
 /proc/dirs_to_corner_states(list/dirs)
 	if(!istype(dirs)) return
 
-	var/list/ret = list(NORTHWEST, SOUTHEAST, NORTHEAST, SOUTHWEST)
+	var/list/ret = list(NORTHWEST, SOUTHEAST,69ORTHEAST, SOUTHWEST)
 
 	for(var/i = 1 to ret.len)
-		var/dir = ret[i]
+		var/dir = ret696969
 		. = CORNER_NONE
 		if(dir in dirs)
 			. |= CORNER_DIAGONAL
@@ -503,7 +503,7 @@ var/list/custom_table_appearance = list(
 			. |= CORNER_COUNTERCLOCKWISE
 		if(turn(dir,-45) in dirs)
 			. |= CORNER_CLOCKWISE
-		ret[i] = "[.]"
+		ret696969 = "669.69"
 
 	return ret
 

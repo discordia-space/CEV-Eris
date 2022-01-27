@@ -2,28 +2,28 @@
 	var/name
 	var/list/HUDneed //for "active" elements (health)
 //	var/list/HUDprocess = list()
-	var/list/slot_data //inventory stuff (for mob variable HUDinventory)
+	var/list/slot_data //inventory stuff (for69ob69ariable HUDinventory)
 	var/icon/icon = null //what dmi we use
-	var/list/HUDfrippery //for nice view
+	var/list/HUDfrippery //for nice69iew
 	var/list/HUDoverlays //tech stuff (flash overlay, pain overlay, etc.)
 //	var/Xbags
 //	var/Ybags
 	var/list/StorageData //for storage bags
 	var/list/IconUnderlays //underlays data for HUD objects
-	var/MinStyleFlag = FALSE //that HUD style have compact version?
+	var/MinStyleFlag = FALSE //that HUD style have compact69ersion?
 
-	// plane master / openspace overlay vars
+	// plane69aster / openspace overlay69ars
 	var/old_z
-	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/obj/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "69plane69" = object
 	var/list/obj/screen/openspace_overlay/openspace_overlays = list()
 
 /datum/hud/proc/updatePlaneMasters(mob/mymob)
 	if(!mymob || !mymob.client)
 		return
 
-	var/atom/player = mymob
+	var/atom/player =69ymob
 	if(mymob.client.virtual_eye)
-		player = mymob.client.virtual_eye
+		player =69ymob.client.virtual_eye
 
 	var/turf/T = get_turf(player)
 	if(!T)
@@ -36,17 +36,17 @@
 
 	old_z = z
 
-	var/datum/level_data/LD = z_levels[z]
+	var/datum/level_data/LD = z_levels69z69
 
 	for(var/pmaster in plane_masters)
-		var/obj/screen/plane_master/instance = plane_masters[pmaster]
+		var/obj/screen/plane_master/instance = plane_masters69pmaster69
 		mymob.client.screen -= instance
 		qdel(instance)
 
 	plane_masters.Cut()
 
 	for(var/over in openspace_overlays)
-		var/obj/screen/openspace_overlay/instance = openspace_overlays[over]
+		var/obj/screen/openspace_overlay/instance = openspace_overlays69over69
 		mymob.client.screen -= instance
 		qdel(instance)
 
@@ -59,11 +59,11 @@
 	var/local_z = z-(LD.original_level-1)
 	for(var/zi in 1 to local_z)
 		for(var/mytype in subtypesof(/obj/screen/plane_master))
-			var/obj/screen/plane_master/instance = new mytype()
+			var/obj/screen/plane_master/instance = new69ytype()
 
 			instance.plane = calculate_plane(zi,instance.plane)
 
-			plane_masters["[zi]-[mytype]"] = instance
+			plane_masters69"69zi69-69mytype69"69 = instance
 			mymob.client.screen += instance
 			instance.backdrop(mymob)
 
@@ -73,8 +73,8 @@
 
 				var/obj/screen/openspace_overlay/oover = new
 				oover.plane = calculate_plane(zi,pl)
-				oover.alpha = min(255,zdiff*50 + 30)
-				openspace_overlays["[zi]-[oover.plane]"] = oover
+				oover.alpha =69in(255,zdiff*50 + 30)
+				openspace_overlays69"69zi69-69oover.plane69"69 = oover
 				mymob.client.screen += oover
 
 
@@ -132,7 +132,7 @@
 	"rest"               = list("type" = /obj/screen/rest,              "loc" = "EAST,BOTTOM+1",      "minloc" = "RIGHT-1,2",    "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back17-1"),
 	"move intent"        = list("type" = /obj/screen/mov_intent,        "loc" = "EAST,BOTTOM",        "minloc" = "RIGHT-1,1",    "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back1"),
 	"implant bionics"    = list("type" = /obj/screen/implant_bionics,   "loc" = "EAST-2,BOTTOM-1",    "minloc" = "12,1",         "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back13"),
-	"craft menu"         = list("type" = /obj/screen/craft_menu,        "loc" = "EAST-2:16,BOTTOM",   "minloc" = "12:16,1",      "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back13"),
+	"craft69enu"         = list("type" = /obj/screen/craft_menu,        "loc" = "EAST-2:16,BOTTOM",   "minloc" = "12:16,1",      "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back13"),
 	"wield"              = list("type" = /obj/screen/wield,             "loc" = "EAST-2:16,BOTTOM+1", "minloc" = "12:16,2",      "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back13"),
 	"intent"             = list("type" = /obj/screen/intent,            "loc" = "EAST-1,BOTTOM",      "minloc" = "13,1",         "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back1"),
 	"damage zone"        = list("type" = /obj/screen/zone_sel,          "loc" = "EAST+1,BOTTOM",      "minloc" = "RIGHT,1",      "hideflag" = TOGGLE_BOTTOM_FLAG, "background" = "back1"),
@@ -220,7 +220,7 @@
 	)
 
 	for (var/p in IconUnderlays)
-		var/image/I = IconUnderlays[p]
+		var/image/I = IconUnderlays69p69
 		I.alpha = 200
 
 

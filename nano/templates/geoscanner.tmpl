@@ -1,176 +1,176 @@
 <!-- 
-Title: Radiometric Scanner UI 
-Used In File(s): \code\modules\research\xenoarchaeology\machinery\geosample_scanner.dm
+Title: R69diometric Sc69nner UI 
+Used In File69s69: \code\modules\rese69rch\xeno69rch69eolo6969\m69chiner69\69eos69m69le_sc69nner.dm
  -->
  
-<h3>Machine Status</h3>
-<div class="item">
-	<div class="itemContent" style="width: 20%;">
-		{{:helper.link(data.scanning ? 'Halt Scan' : 'Begin Scan', 'signal-diag', {'scanItem' : 1}, null)}}
-	</div>
-	<div class="itemContent" style="width: 20%;">
-		{{:helper.link('Eject item', 'eject', {'ejectItem' : 1}, (data.scanned_item && !data.scanning) ? null : 'disabled')}}
-	</div>
-</div>
+<h3>M69chine St69tus</h3>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemContent" st69le="width: 20%;">
+		{{:hel69er.lin6969d69t69.sc69nnin69 ? 'H69lt Sc69n' : '69e69in Sc69n', 'si69n69l-di6969', {'sc69nItem' : 1},69ull69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 20%;">
+		{{:hel69er.lin6969'E69ect item', 'e69ect', {'e69ectItem' : 1}, 69d69t69.sc69nned_item && !d69t69.sc69nnin6969 ?69ull : 'dis6969led'69}}
+	</di69>
+</di69>
 
-<div class="statusDisplay">
-	<div class="line">
-		<div class="statusLabel">Item:</div>
-		<div class="statusValue">
-			{{if data.scanned_item}}
-				<span class="good">{{:data.scanned_item}}</span>
+<di69 cl69ss="st69tusDis69l6969">
+	<di69 cl69ss="line">
+		<di69 cl69ss="st69tusL6969el">Item:</di69>
+		<di69 cl69ss="st69tus6969lue">
+			{{if d69t69.sc69nned_item}}
+				<s6969n cl69ss="69ood">{{:d69t69.sc69nned_item}}</s6969n>
 			{{else}}
-				<span class="bad">No item inserted</span>
+				<s6969n cl69ss="6969d">No item inserted</s6969n>
 			{{/if}}
-		</div>
-	</div>
-	<div class="line">
-		<div class="statusLabel">Heuristic analysis:</div>
-		<div class="statusValue">
-			{{if data.scanned_item_desc}}
-				<span class="average">{{:data.scanned_item_desc}}</span>
+		</di69>
+	</di69>
+	<di69 cl69ss="line">
+		<di69 cl69ss="st69tusL6969el">Heuristic 69n69l69sis:</di69>
+		<di69 cl69ss="st69tus6969lue">
+			{{if d69t69.sc69nned_item_desc}}
+				<s6969n cl69ss="6969er6969e">{{:d69t69.sc69nned_item_desc}}</s6969n>
 			{{/if}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>
 
-<h3>Scanner</h3>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Scan progress:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.scan_progress, 0, 100, 'good', data.scan_progress + " %")}}
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.scan_progress >= 100}}
-			<span class="notice" style="width: 100%;">Scan completed successfully.</span>
+<h3>Sc69nner</h3>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Sc69n 69ro69ress:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.sc69n_69ro69ress, 0, 100, '69ood', d69t69.sc69n_69ro69ress + " %"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{if d69t69.sc69n_69ro69ress >= 100}}
+			<s6969n cl69ss="notice" st69le="width: 100%;">Sc69n com69leted successfull69.</s6969n>
 		{{/if}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Vacuum seal integrity:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.scanner_seal_integrity, 0, 100, ((data.scanner_seal_integrity < 66) ? ((data.scanner_seal_integrity < 33) ? 'bad' : 'average') : 'good'), data.scanner_seal_integrity + " %")}}
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.scanner_seal_integrity < 25}}
-			<span class="notice">Warning! Vacuum seal breach will result in scan failure!</span>
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">6969cuum se69l inte69rit69:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.sc69nner_se69l_inte69rit69, 0, 100, 6969d69t69.sc69nner_se69l_inte69rit69 < 6669 ? 6969d69t69.sc69nner_se69l_inte69rit69 < 3369 ? '6969d' : '6969er6969e'69 : '69ood'69, d69t69.sc69nner_se69l_inte69rit69 + " %"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{if d69t69.sc69nner_se69l_inte69rit69 < 25}}
+			<s6969n cl69ss="notice">W69rnin69! 6969cuum se69l 69re69ch will result in sc69n f69ilure!</s6969n>
 		{{/if}}
-	</div>
-</div>
+	</di69>
+</di69>
 
-<h3>MASER</h3>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">MASER Efficiency:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.maser_efficiency, 1, 100, ((data.maser_efficiency < 66) ? ((data.maser_efficiency) < 33 ? 'bad' : 'average') : 'good'), data.maser_efficiency + " %")}}
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.maser_efficiency < 50}}
-			<span class="notice">Match wavelengths to progress the scan.</span>
+<h3>M69SER</h3>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">M69SER Efficienc69:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.m69ser_efficienc69, 1, 100, 6969d69t69.m69ser_efficienc69 < 6669 ? 6969d69t69.m69ser_efficienc6969 < 33 ? '6969d' : '6969er6969e'69 : '69ood'69, d69t69.m69ser_efficienc69 + " %"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{if d69t69.m69ser_efficienc69 < 50}}
+			<s6969n cl69ss="notice">M69tch w6969elen69ths to 69ro69ress the sc69n.</s6969n>
 		{{/if}}
-	</div>
+	</di69>
 
-</div>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Optimal Wavelength:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.optimal_wavelength, 1, 10000, 'good', data.optimal_wavelength + " MHz")}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Current Wavelength:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.maser_wavelength, 1, 10000, 'good', data.maser_wavelength + " MHz")}}
-	</div>
-	<div class="itemContent" style="text-align:left; width: 22%;">
-		{{:helper.link('-2 GHz', null, {'maserWavelength' : -2}, null)}}
-		{{:helper.link('-1 GHz', null, {'maserWavelength' : -1}, null)}}
-		{{:helper.link('-0.5 GHz', null, {'maserWavelength' : -0.5}, null)}}
-	</div>
-	<div class="itemContent" style="text-align:right; width: 22%;">
-		{{:helper.link('+0.5 GHz', null, {'maserWavelength' : 0.5}, null)}}
-		{{:helper.link('+1 GHz', null, {'maserWavelength' : 1}, null)}}
-		{{:helper.link('+2 GHz', null, {'maserWavelength' : 2}, null)}}
-	</div>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">O69tim69l W6969elen69th:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.o69tim69l_w6969elen69th, 1, 10000, '69ood', d69t69.o69tim69l_w6969elen69th + "69Hz"69}}
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Current W6969elen69th:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.m69ser_w6969elen69th, 1, 10000, '69ood', d69t69.m69ser_w6969elen69th + "69Hz"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="text-69li69n:left; width: 22%;">
+		{{:hel69er.lin6969'-2 69Hz',69ull, {'m69serW6969elen69th' : -2},69ull69}}
+		{{:hel69er.lin6969'-1 69Hz',69ull, {'m69serW6969elen69th' : -1},69ull69}}
+		{{:hel69er.lin6969'-0.5 69Hz',69ull, {'m69serW6969elen69th' : -0.5},69ull69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="text-69li69n:ri69ht; width: 22%;">
+		{{:hel69er.lin6969'+0.5 69Hz',69ull, {'m69serW6969elen69th' : 0.5},69ull69}}
+		{{:hel69er.lin6969'+1 69Hz',69ull, {'m69serW6969elen69th' : 1},69ull69}}
+		{{:hel69er.lin6969'+2 69Hz',69ull, {'m69serW6969elen69th' : 2},69ull69}}
+	</di69>
 
-</div>
+</di69>
 
-<h3>Environment / Internal</h3>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Centrifuge speed:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.scanner_rpm, 0, 1000, 'good', data.scanner_rpm + " RPM")}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Internal temperature:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.scanner_temperature, 0, 1273, (data.scanner_temperature > 250 ? (data.scanner_temperature > 1000 ? 'bad' : 'average') : 'good'), data.scanner_temperature + " K")}}
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.scanner_temperature > 1000}}
-			<span class="notice" style="width: 100%;">Warning! Exceeding 1200K will result in scan failure!</span>
+<h3>En69ironment / Intern69l</h3>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Centrifu69e s69eed:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.sc69nner_r69m, 0, 1000, '69ood', d69t69.sc69nner_r69m + " R69M"69}}
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Intern69l tem69er69ture:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:hel69er.dis69l69696969r69d69t69.sc69nner_temper69ture, 0, 1273, 69d69t69.sc69nner_temper69ture > 250 ? 69d69t69.sc69nner_temper69ture > 1000 ? '6969d' : '6969er6969e'69 : '69ood'69, d69t69.sc69nner_temper69ture + " 69"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{if d69t69.sc69nner_temper69ture > 1000}}
+			<sp69n cl69ss="notice" st69le="width: 100%;">W69rnin69! Exceedin69 120069 will result in sc69n f69ilure!</sp69n>
 		{{/if}}
-	</div>
-</div>
+	</di69>
+</di69>
 
-<h3>Radiation</h3>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Ambient radiation:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.radiation, 0, 100, ((data.radiation > 15) ? ((data.radiation > 65) ? 'bad' : 'average') : 'good'), data.radiation + " mSv")}}<br>
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{:helper.link(data.rad_shield_on ? 'Disable Radiation Shielding' : 'Enable Radiation Shielding', 'radiation', {'toggle_rad_shield' : 1}, null)}}
-		{{if data.rad_shield_on}}
-			<span class="notice" style="width: 100%;">Shield blocking scanner.</span>
+<h3>R69di69tion</h3>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">69m69ient r69di69tion:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:helper.displ69696969r69d69t69.r69di69tion, 0, 100, 6969d69t69.r69di69tion > 1569 ? 6969d69t69.r69di69tion > 6569 ? '6969d' : '6969er6969e'69 : '69ood'69, d69t69.r69di69tion + "69S69"69}}<69r>
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{:helper.lin6969d69t69.r69d_shield_on ? 'Dis6969le R69di69tion Shieldin69' : 'En6969le R69di69tion Shieldin69', 'r69di69tion', {'to6969le_r69d_shield' : 1},69ull69}}
+		{{if d69t69.r69d_shield_on}}
+			<sp69n cl69ss="notice" st69le="width: 100%;">Shield 69loc69in69 sc69nner.</sp69n>
 		{{/if}}
-	</div>
-</div>
+	</di69>
+</di69>
 
-<h3>Cooling</h3>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Coolant remaining:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.unused_coolant_per, 0, 100, ((data.unused_coolant_per < 66) ? ((data.unused_coolant_per < 33) ? 'bad' : 'average') : 'good'), data.unused_coolant_abs + " u")}}
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.unused_coolant_per < 20}}
-			<span class="notice" style="width: 100%;">Warning! Coolant stocks low!</span>
+<h3>Coolin69</h3>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Cool69nt rem69inin69:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:helper.displ69696969r69d69t69.unused_cool69nt_per, 0, 100, 6969d69t69.unused_cool69nt_per < 6669 ? 6969d69t69.unused_cool69nt_per < 3369 ? '6969d' : '6969er6969e'69 : '69ood'69, d69t69.unused_cool69nt_6969s + " u"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{if d69t69.unused_cool69nt_per < 20}}
+			<sp69n cl69ss="notice" st69le="width: 100%;">W69rnin69! Cool69nt stoc69s low!</sp69n>
 		{{/if}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Coolant flow rate:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.coolant_usage_rate, 0, 10, 'good', data.coolant_usage_rate + " u/s")}}
-	</div>
-	<div class="itemContent" style="text-align:left; width: 22%;">
-		{{:helper.link('Min u/s', null, {'coolantRate' : -10}, null)}}
-		{{:helper.link('-3 u/s', null, {'coolantRate' : -3}, null)}}
-		{{:helper.link('-1 u/s', null, {'coolantRate' : -1}, null)}}
-	</div>
-	<div class="itemContent" style="text-align:right; width: 22%;">
-		{{:helper.link('+1 u/s', null, {'coolantRate' : 1}, null)}}
-		{{:helper.link('+3 u/s', null, {'coolantRate' : 3}, null)}}
-		{{:helper.link('Max u/s', null, {'coolantRate' : 10}, null)}}
-	</div>
-</div>
-<div class="item">
-	<div class="itemLabel" style="width: 21%;">Coolant purity:</div>
-	<div class="itemContent" style="width: 35%;">
-		{{:helper.displayBar(data.coolant_purity, 0, 100, ((data.coolant_purity < 66) ? ((data.coolant_purity < 33) ? 'bad' : 'average') : 'good'), data.coolant_purity + " %")}}
-	</div>
-	<div class="itemContent" style="width: 44%;">
-		{{if data.coolant_purity < 0.5}}
-			<span class="notice" style="width: 100%;">Warning! Check coolant for contaminants!</span>
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Cool69nt flow r69te:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:helper.displ69696969r69d69t69.cool69nt_us6969e_r69te, 0, 10, '69ood', d69t69.cool69nt_us6969e_r69te + " u/s"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="text-69li69n:left; width: 22%;">
+		{{:helper.lin6969'Min u/s',69ull, {'cool69ntR69te' : -10},69ull69}}
+		{{:helper.lin6969'-3 u/s',69ull, {'cool69ntR69te' : -3},69ull69}}
+		{{:helper.lin6969'-1 u/s',69ull, {'cool69ntR69te' : -1},69ull69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="text-69li69n:ri69ht; width: 22%;">
+		{{:helper.lin6969'+1 u/s',69ull, {'cool69ntR69te' : 1},69ull69}}
+		{{:helper.lin6969'+3 u/s',69ull, {'cool69ntR69te' : 3},69ull69}}
+		{{:helper.lin6969'M69x u/s',69ull, {'cool69ntR69te' : 10},69ull69}}
+	</di69>
+</di69>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el" st69le="width: 21%;">Cool69nt purit69:</di69>
+	<di69 cl69ss="itemContent" st69le="width: 35%;">
+		{{:helper.displ69696969r69d69t69.cool69nt_purit69, 0, 100, 6969d69t69.cool69nt_purit69 < 6669 ? 6969d69t69.cool69nt_purit69 < 3369 ? '6969d' : '6969er6969e'69 : '69ood'69, d69t69.cool69nt_purit69 + " %"69}}
+	</di69>
+	<di69 cl69ss="itemContent" st69le="width: 44%;">
+		{{if d69t69.cool69nt_purit69 < 0.5}}
+			<sp69n cl69ss="notice" st69le="width: 100%;">W69rnin69! Chec69 cool69nt for cont69min69nts!</sp69n>
 		{{/if}}
-	</div>
-</div>
+	</di69>
+</di69>
 
-<h3>Latest Results</h3>
-<div class="statusDisplay">
-	<div class="line">
-		<span class="highlight">{{:data.last_scan_data}}</span>
-	</div>
-</div>
+<h3>L69test Results</h3>
+<di69 cl69ss="st69tusDispl6969">
+	<di69 cl69ss="line">
+		<sp69n cl69ss="hi69hli69ht">{{:d69t69.l69st_sc69n_d69t69}}</sp69n>
+	</di69>
+</di69>

@@ -1,12 +1,12 @@
 // PRESETS
-var/global/list/station_networks = list(
+var/69lobal/list/station_networks = list(
 	NETWORK_FIRST_SECTION,
 	NETWORK_SECOND_SECTION,
 	NETWORK_THIRD_SECTION,
 	NETWORK_FOURTH_SECTION,
 	NETWORK_COMMAND,
-	NETWORK_ENGINE,
-	NETWORK_ENGINEERING,
+	NETWORK_EN69INE,
+	NETWORK_EN69INEERIN69,
 	NETWORK_CEV_ERIS,
 	NETWORK_MEDICAL,
 	NETWORK_MINE,
@@ -16,9 +16,9 @@ var/global/list/station_networks = list(
 	NETWORK_SECURITY
 )
 
-var/global/list/engineering_networks = list(
-	NETWORK_ENGINE,
-	NETWORK_ENGINEERING,
+var/69lobal/list/en69ineerin69_networks = list(
+	NETWORK_EN69INE,
+	NETWORK_EN69INEERIN69,
 	"Atmosphere Alarms",
 	"Fire Alarms",
 	"Power Alarms"
@@ -42,16 +42,16 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/network/command
 	network = list(NETWORK_COMMAND)
 
-/obj/machinery/camera/network/engine
-	network = list(NETWORK_ENGINE)
+/obj/machinery/camera/network/en69ine
+	network = list(NETWORK_EN69INE)
 
-/obj/machinery/camera/network/engineering
-	network = list(NETWORK_ENGINEERING)
+/obj/machinery/camera/network/en69ineerin69
+	network = list(NETWORK_EN69INEERIN69)
 
 /obj/machinery/camera/network/cev_eris
 	network = list(NETWORK_CEV_ERIS)
 
-/obj/machinery/camera/network/mining
+/obj/machinery/camera/network/minin69
 	network = list(NETWORK_MINE)
 
 /obj/machinery/camera/network/prison
@@ -79,7 +79,7 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/emp_proof/New()
 	..()
-	upgradeEmpProof()
+	up69radeEmpProof()
 
 // X-RAY
 
@@ -97,18 +97,18 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/xray/New()
 	..()
-	upgradeXRay()
+	up69radeXRay()
 
-// MOTION
+//69OTION
 
 /obj/machinery/camera/motion/New()
 	..()
-	upgradeMotion()
+	up69radeMotion()
 
 /obj/machinery/camera/motion/security
 	network = list(NETWORK_SECURITY)
 
-// ALL UPGRADES
+// ALL UP69RADES
 
 
 /obj/machinery/camera/all/command
@@ -116,48 +116,48 @@ var/global/list/engineering_networks = list(
 
 /obj/machinery/camera/all/New()
 	..()
-	upgradeEmpProof()
-	upgradeXRay()
-	upgradeMotion()
+	up69radeEmpProof()
+	up69radeXRay()
+	up69radeMotion()
 
 // CHECKS
 
 /obj/machinery/camera/proc/isEmpProof()
-	var/O = locate(/obj/item/stack/material/osmium) in assembly.upgrades
+	var/O = locate(/obj/item/stack/material/osmium) in assembly.up69rades
 	return O
 
 /obj/machinery/camera/proc/isXRay()
-	var/obj/item/stock_parts/scanning_module/O = locate(/obj/item/stock_parts/scanning_module) in assembly.upgrades
-	if (O && O.rating >= 2)
+	var/obj/item/stock_parts/scannin69_module/O = locate(/obj/item/stock_parts/scannin69_module) in assembly.up69rades
+	if (O && O.ratin69 >= 2)
 		return O
 	return null
 
 /obj/machinery/camera/proc/isMotion()
-	var/O = locate(/obj/item/device/assembly/prox_sensor) in assembly.upgrades
+	var/O = locate(/obj/item/device/assembly/prox_sensor) in assembly.up69rades
 	return O
 
-// UPGRADE PROCS
+// UP69RADE PROCS
 
-/obj/machinery/camera/proc/upgradeEmpProof()
-	assembly.upgrades.Add(new /obj/item/stack/material/osmium(assembly))
-	setPowerUsage()
-	update_coverage()
+/obj/machinery/camera/proc/up69radeEmpProof()
+	assembly.up69rades.Add(new /obj/item/stack/material/osmium(assembly))
+	setPowerUsa69e()
+	update_covera69e()
 
-/obj/machinery/camera/proc/upgradeXRay()
-	assembly.upgrades.Add(new /obj/item/stock_parts/scanning_module/adv(assembly))
-	setPowerUsage()
-	update_coverage()
+/obj/machinery/camera/proc/up69radeXRay()
+	assembly.up69rades.Add(new /obj/item/stock_parts/scannin69_module/adv(assembly))
+	setPowerUsa69e()
+	update_covera69e()
 
-/obj/machinery/camera/proc/upgradeMotion()
-	assembly.upgrades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
-	setPowerUsage()
-	START_PROCESSING(SSmachines, src)
-	update_coverage()
+/obj/machinery/camera/proc/up69radeMotion()
+	assembly.up69rades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
+	setPowerUsa69e()
+	START_PROCESSIN69(SSmachines, src)
+	update_covera69e()
 
-/obj/machinery/camera/proc/setPowerUsage()
+/obj/machinery/camera/proc/setPowerUsa69e()
 	var/mult = 1
 	if (isXRay())
 		mult++
 	if (isMotion())
 		mult++
-	active_power_usage = mult*initial(active_power_usage)
+	active_power_usa69e =69ult*initial(active_power_usa69e)

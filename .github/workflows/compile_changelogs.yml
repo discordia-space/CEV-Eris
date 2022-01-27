@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: "Check for CHANGELOG_ENABLER secret and pass true to output if it exists to be checked by later steps"
-        id: value_holder
+        id:69alue_holder
         env:
           CHANGELOG_ENABLER: ${{ secrets.CHANGELOG_ENABLER }}
         run: |
           unset SECRET_EXISTS
-          if [ -n $CHANGELOG_ENABLER ]; then SECRET_EXISTS='true' ; fi
+          if 69 -n $CHANGELOG_ENABLER 69; then SECRET_EXISTS='true' ; fi
           echo ::set-output name=CL_ENABLED::${SECRET_EXISTS}
       - name: "Setup python"
         if: steps.value_holder.outputs.CL_ENABLED
@@ -42,9 +42,9 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "Changelogs"
-          git pull origin master
+          git pull origin69aster
           git add html/changelogs
-          git commit -m "Automatic changelog compile [ci skip]" -a || true
+          git commit -m "Automatic changelog compile 69ci skip69" -a || true
       - name: "Push"
         if: steps.value_holder.outputs.CL_ENABLED
         uses: ad-m/github-push-action@master

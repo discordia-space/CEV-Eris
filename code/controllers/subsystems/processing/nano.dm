@@ -9,8 +9,8 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key and try to update it with data
   *
-  * @param user /mob The mob who opened/owns the ui
-  * @param src_object /obj|/mob The obj or mob which the ui belongs to
+  * @param user /mob The69ob who opened/owns the ui
+  * @param src_object /obj|/mob The obj or69ob which the ui belongs to
   * @param ui_key string A string key used for the ui
   * @param ui /datum/nanoui An existing instance of the ui (can be null)
   * @param data list The data to be passed to the ui, if it exists
@@ -43,18 +43,18 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Get an open /nanoui ui for the current user, src_object and ui_key
   *
-  * @param user /mob The mob who opened/owns the ui
-  * @param src_object /obj|/mob The obj or mob which the ui belongs to
+  * @param user /mob The69ob who opened/owns the ui
+  * @param src_object /obj|/mob The obj or69ob which the ui belongs to
   * @param ui_key string A string key used for the ui
   *
   * @return /nanoui Returns the found ui, or null if none exists
   */
 /datum/controller/subsystem/processing/nano/proc/get_open_ui(mob/user, src_object, ui_key)
-	var/src_object_key = "\ref[src_object]"
-	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui_key])
+	var/src_object_key = "\ref69src_object69"
+	if (!open_uis69src_object_key69 || !open_uis69src_object_key6969ui_key69)
 		return
 
-	for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for (var/datum/nanoui/ui in open_uis69src_object_key6969ui_key69)
 		if (ui.user == user)
 			// This fixes the UI being broken when it's registred as open on serverside, but is actually closed on client.
 			// We check if the UI is actually open on client, and force it to re-open if it isn't.
@@ -66,18 +66,18 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Update all /nanoui uis attached to src_object
   *
-  * @param src_object /obj|/mob The obj or mob which the uis are attached to
+  * @param src_object /obj|/mob The obj or69ob which the uis are attached to
   *
   * @return int The number of uis updated
   */
 /datum/controller/subsystem/processing/nano/proc/update_uis(src_object)
 	. = 0
-	var/src_object_key = "\ref[src_object]"
-	if (!open_uis[src_object_key])
+	var/src_object_key = "\ref69src_object69"
+	if (!open_uis69src_object_key69)
 		return
 
-	for (var/ui_key in open_uis[src_object_key])
-		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
+	for (var/ui_key in open_uis69src_object_key69)
+		for (var/datum/nanoui/ui in open_uis69src_object_key6969ui_key69)
 			if(ui.src_object && ui.user && ui.src_object.nano_host())
 				ui.try_update(1)
 				.++
@@ -87,27 +87,27 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Close all /nanoui uis attached to src_object
   *
-  * @param src_object /obj|/mob The obj or mob which the uis are attached to
+  * @param src_object /obj|/mob The obj or69ob which the uis are attached to
   *
   * @return int The number of uis close
   */
 /datum/controller/subsystem/processing/nano/proc/close_uis(src_object)
 	. = 0
-	var/src_object_key = "\ref[src_object]"
-	if (!open_uis[src_object_key])
+	var/src_object_key = "\ref69src_object69"
+	if (!open_uis69src_object_key69)
 		return
 
-	for (var/ui_key in open_uis[src_object_key])
-		for (var/datum/nanoui/ui in open_uis[src_object_key][ui_key])
-			ui.close() // If it's missing src_object or user, we want to close it even more.
+	for (var/ui_key in open_uis69src_object_key69)
+		for (var/datum/nanoui/ui in open_uis69src_object_key6969ui_key69)
+			ui.close() // If it's69issing src_object or user, we want to close it even69ore.
 			.++
 
  /**
   * Update /nanoui uis belonging to user
   *
-  * @param user /mob The mob who owns the uis
+  * @param user /mob The69ob who owns the uis
   * @param src_object /obj|/mob If src_object is provided, only update uis which are attached to src_object (optional)
-  * @param ui_key string If ui_key is provided, only update uis with a matching ui_key (optional)
+  * @param ui_key string If ui_key is provided, only update uis with a69atching ui_key (optional)
   *
   * @return int The number of uis updated
   */
@@ -124,9 +124,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
  /**
   * Close /nanoui uis belonging to user
   *
-  * @param user /mob The mob who owns the uis
+  * @param user /mob The69ob who owns the uis
   * @param src_object /obj|/mob If src_object is provided, only close uis which are attached to src_object (optional)
-  * @param ui_key string If ui_key is provided, only close uis with a matching ui_key (optional)
+  * @param ui_key string If ui_key is provided, only close uis with a69atching ui_key (optional)
   *
   * @return int The number of uis closed
   */
@@ -149,9 +149,9 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * @return nothing
   */
 /datum/controller/subsystem/processing/nano/proc/ui_opened(datum/nanoui/ui)
-	var/src_object_key = "\ref[ui.src_object]"
-	LAZYINITLIST(open_uis[src_object_key])
-	LAZYOR(open_uis[src_object_key][ui.ui_key], ui)
+	var/src_object_key = "\ref69ui.src_object69"
+	LAZYINITLIST(open_uis69src_object_key69)
+	LAZYOR(open_uis69src_object_key6969ui.ui_key69, ui)
 	LAZYOR(ui.user.open_uis, ui)
 	START_PROCESSING(SSnano, ui)
 
@@ -164,17 +164,17 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * @return int 0 if no ui was removed, 1 if removed successfully
   */
 /datum/controller/subsystem/processing/nano/proc/ui_closed(var/datum/nanoui/ui)
-	var/src_object_key = "\ref[ui.src_object]"
-	if (!open_uis[src_object_key] || !open_uis[src_object_key][ui.ui_key])
+	var/src_object_key = "\ref69ui.src_object69"
+	if (!open_uis69src_object_key69 || !open_uis69src_object_key6969ui.ui_key69)
 		return 0 // wasn't open
 
 	STOP_PROCESSING(SSnano, ui)
 	if(ui.user)	// Sanity check in case a user has been deleted (say a blown up borg watching the alarm interface)
 		LAZYREMOVE(ui.user.open_uis, ui)
-	open_uis[src_object_key][ui.ui_key] -= ui
-	if(!length(open_uis[src_object_key][ui.ui_key]))
-		open_uis[src_object_key] -= ui.ui_key
-		if(!length(open_uis[src_object_key]))
+	open_uis69src_object_key6969ui.ui_key69 -= ui
+	if(!length(open_uis69src_object_key6969ui.ui_key69))
+		open_uis69src_object_key69 -= ui.ui_key
+		if(!length(open_uis69src_object_key69))
 			open_uis -= src_object_key
 	return 1
 
@@ -182,7 +182,7 @@ PROCESSING_SUBSYSTEM_DEF(nano)
   * This is called on user logout
   * Closes/clears all uis attached to the user's /mob
   *
-  * @param user /mob The user's mob
+  * @param user /mob The user's69ob
   *
   * @return nothing
   */
@@ -190,15 +190,15 @@ PROCESSING_SUBSYSTEM_DEF(nano)
 	return close_user_uis(user)
 
  /**
-  * This is called when a player transfers from one mob to another
-  * Transfers all open UIs to the new mob
+  * This is called when a player transfers from one69ob to another
+  * Transfers all open UIs to the new69ob
   *
-  * @param oldMob /mob The user's old mob
-  * @param newMob /mob The user's new mob
+  * @param oldMob /mob The user's old69ob
+  * @param newMob /mob The user's new69ob
   *
   * @return nothing
   */
-/datum/controller/subsystem/processing/nano/proc/user_transferred(mob/oldMob, mob/newMob)
+/datum/controller/subsystem/processing/nano/proc/user_transferred(mob/oldMob,69ob/newMob)
 	if (!oldMob || !oldMob.open_uis)
 		return 0 // has no open uis
 

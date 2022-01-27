@@ -1,7 +1,7 @@
 //Biomatter tank
 //Here we store our biomatter. This part consists of two things:
 //Biomatter tank platform - it's a rail and pipes under it
-//And our tank. It can be moved from one position to another
+//And our tank. It can be69oved from one position to another
 //Also tank have to positions. To port and default
 //When it's at to port position, we pipes will be opened and somebody can clean it up
 //Tank can be connected to portable canister (reagent_dispenser), but in this position, bioreactor can't process things
@@ -49,7 +49,7 @@
 		if(DIRT_LVL_LOW)
 			to_chat(user, SPAN_NOTICE("Pipes are weared a bit, it's slightly dirty. You see a signs of biomass inside these pipes."))
 		if(DIRT_LVL_MEDIUM)
-			to_chat(user, SPAN_WARNING("It's very dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up."))
+			to_chat(user, SPAN_WARNING("It's69ery dirty. Solid biomass block atleast half of space inside the pipes. Better to clean it up."))
 		if(DIRT_LVL_HIGH)
 			to_chat(user, SPAN_WARNING("You see a high amount of biomass. Pipes are fully blocked. You need to clean this first if you want bioreactor to work."))
 		else
@@ -59,7 +59,7 @@
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/update_icon()
 	overlays.Cut()
 	if(pipes_cleanness <= 90)
-		overlays += "[icon_state]-dirty_[get_dirtiness_level()]"
+		overlays += "69icon_state69-dirty_69get_dirtiness_level()69"
 
 
 /obj/machinery/multistructure/bioreactor_part/biotank_platform/Process()
@@ -69,10 +69,10 @@
 		biotank.reagents.trans_to_holder(biotank.canister.reagents, 10)
 
 
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/attackby(var/obj/item/I,69ar/mob/user)
 	if(istype(I, /obj/item/mop))
 		var/dirtiness_lvl = get_dirtiness_level()
-		to_chat(user, SPAN_NOTICE("You begin cleaning pipes with [I]... O-of, what a smell!"))
+		to_chat(user, SPAN_NOTICE("You begin cleaning pipes with 69I69... O-of, what a smell!"))
 		if(do_after(user, CLEANING_TIME * dirtiness_lvl, src))
 			to_chat(user, SPAN_NOTICE("You cleaned up the pipes."))
 			pipes_cleanness = initial(pipes_cleanness)
@@ -93,14 +93,14 @@
 	GLOB.biomatter_neothecnology_amt += new_amount
 
 
-//Pipe wearout. Wearout var - is amount of 'dirt' that will be applied to our pipes
+//Pipe wearout. Wearout69ar - is amount of 'dirt' that will be applied to our pipes
 //Warning, when you apply wearout, there is only a chance that it will be applied. Use forced to avoid this check
-/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/pipes_wearout(var/wearout, var/forced = FALSE)
+/obj/machinery/multistructure/bioreactor_part/biotank_platform/proc/pipes_wearout(var/wearout,69ar/forced = FALSE)
 	if(forced || prob(WEAROUT_CHANCE))
 		pipes_cleanness -= wearout
 	if(pipes_cleanness <= 0)
 		pipes_cleanness = 0
-		for(var/obj/machinery/multistructure/bioreactor_part/platform/P in MS_bioreactor.platforms)
+		for(var/obj/machinery/multistructure/bioreactor_part/platform/P in69S_bioreactor.platforms)
 			spill_biomass(P.loc)
 	update_icon()
 
@@ -163,16 +163,16 @@
 	if(!platform.pipes_opened)
 		animate(src, pixel_y = to_port_position, 12, easing = CUBIC_EASING)
 		platform.pipes_opened = TRUE
-		to_chat(user, SPAN_NOTICE("You move [src] directly to the port. Platform pipes now opened."))
+		to_chat(user, SPAN_NOTICE("You69ove 69src69 directly to the port. Platform pipes now opened."))
 		playsound(loc, 'sound/machines/Custom_blastdooropen.ogg', 100, 1)
 	else
 		animate(src, pixel_y = default_position, 12, easing = CUBIC_EASING)
 		platform.pipes_opened = FALSE
-		to_chat(user, SPAN_NOTICE("You move [src] back to it's default location. Platform pipes are closed."))
+		to_chat(user, SPAN_NOTICE("You69ove 69src69 back to it's default location. Platform pipes are closed."))
 		playsound(loc, 'sound/machines/Custom_blastdoorclose.ogg', 100, 1)
 
 
-/obj/structure/biomatter_tank/attackby(obj/item/I, mob/user)
+/obj/structure/biomatter_tank/attackby(obj/item/I,69ob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING), src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
@@ -190,7 +190,7 @@
 				else
 					set_canister = set_canister(possible_canister)
 				if(set_canister)
-					to_chat(user, SPAN_NOTICE("You [canister ? "connect [canister] to" : "disconnect [canister] from"] [src]."))
+					to_chat(user, SPAN_NOTICE("You 69canister ? "connect 69canister69 to" : "disconnect 69canister69 from"69 69src69."))
 					toxin_attack(user, rand(5, 15))
 			if(!set_canister)
 				to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))

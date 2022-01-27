@@ -28,26 +28,26 @@
 
 /obj/effect/acid/proc/tick()
 	if(!target)
-		qdel(src)
+		69del(src)
 
 	ticks++
 	if(ticks >= target_strength)
-		target.visible_message("<span class='alium'>\The [target] collapses under its own weight into a puddle of goop and undigested debris!</span>")
+		target.visible_message("<span class='alium'>\The 69target69 collapses under its own weight into a puddle of goop and undigested debris!</span>")
 		if(istype(target, /turf/simulated/wall)) // I hate turf code.
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(1)
 		else
-			qdel(target)
-		qdel(src)
+			69del(target)
+		69del(src)
 		return
 
 	switch(target_strength - ticks)
 		if(6)
-			visible_message("<span class='alium'>\The [src.target] is holding up against the acid!</span>")
+			visible_message("<span class='alium'>\The 69src.target69 is holding up against the acid!</span>")
 		if(4)
-			visible_message("<span class='alium'>\The [src.target]\s structure is being melted by the acid!</span>")
+			visible_message("<span class='alium'>\The 69src.target69\s structure is being69elted by the acid!</span>")
 		if(2)
-			visible_message("<span class='alium'>\The [src.target] is struggling to withstand the acid!</span>")
+			visible_message("<span class='alium'>\The 69src.target69 is struggling to withstand the acid!</span>")
 		if(0 to 1)
-			visible_message("<span class='alium'>\The [src.target] begins to crumble under the acid!</span>")
+			visible_message("<span class='alium'>\The 69src.target69 begins to crumble under the acid!</span>")
 	spawn(rand(150, 200)) tick()

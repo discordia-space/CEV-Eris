@@ -1,48 +1,48 @@
-/obj/spawner/rig
-	name = "random rig suit"
+/obj/spawner/ri69
+	name = "random ri69 suit"
 	icon_state = "armor-blue"
 	has_postspawn = FALSE
-	tags_to_spawn = list(SPAWN_RIG)
+	ta69s_to_spawn = list(SPAWN_RI69)
 
-/obj/spawner/rig/damaged
-	name = "random damaged rig suit"
+/obj/spawner/ri69/dama69ed
+	name = "random dama69ed ri69 suit"
 	icon_state = "armor-red"
 	has_postspawn = TRUE
 
-/obj/spawner/rig/post_spawn(list/spawns)
-	for (var/obj/item/rig/module in spawns)
+/obj/spawner/ri69/post_spawn(list/spawns)
+	for (var/obj/item/ri69/module in spawns)
 		var/cnd = rand(40,80)
 		module.lose_modules(cnd)
-		module.misconfigure(cnd)
-		module.sabotage_tank()
+		module.misconfi69ure(cnd)
+		module.sabota69e_tank()
 
-/obj/spawner/rig/low_chance
-	name = "low chance random rig suit"
+/obj/spawner/ri69/low_chance
+	name = "low chance random ri69 suit"
 	icon_state = "armor-blue-low"
-	spawn_nothing_percentage = 75
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/rig/damaged/low_chance
-	name = "low chance random rig suit"
+/obj/spawner/ri69/dama69ed/low_chance
+	name = "low chance random ri69 suit"
 	icon_state = "armor-red-low"
-	spawn_nothing_percentage = 75
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/rig_module
-	name = "random hardsuit module"
-	icon_state = "box-orange"
-	tags_to_spawn = list(SPAWN_RIG_MODULE)
+/obj/spawner/ri69_module
+	name = "random hardsuit69odule"
+	icon_state = "box-oran69e"
+	ta69s_to_spawn = list(SPAWN_RI69_MODULE)
 
-/obj/spawner/rig_module/low_chance
-	name = "low chance random hardsuit module"
-	icon_state = "box-orange-low"
-	spawn_nothing_percentage = 75
+/obj/spawner/ri69_module/low_chance
+	name = "low chance random hardsuit69odule"
+	icon_state = "box-oran69e-low"
+	spawn_nothin69_percenta69e = 75
 
-/obj/spawner/rig_module/rare
-	name = "random rare hardsuit module"
+/obj/spawner/ri69_module/rare
+	name = "random rare hardsuit69odule"
 	icon_state = "box-red"
-	tags_to_spawn = list(SPAWN_RIG_MODULE)
-	restricted_tags = list(SPAWN_RIG_MODULE_COMMON)
+	ta69s_to_spawn = list(SPAWN_RI69_MODULE)
+	restricted_ta69s = list(SPAWN_RI69_MODULE_COMMON)
 
-/obj/spawner/rig_module/rare/low_chance
-	name = "low chance random rare hardsuit module"
+/obj/spawner/ri69_module/rare/low_chance
+	name = "low chance random rare hardsuit69odule"
 	icon_state = "box-red-low"
-	spawn_nothing_percentage = 75
+	spawn_nothin69_percenta69e = 75

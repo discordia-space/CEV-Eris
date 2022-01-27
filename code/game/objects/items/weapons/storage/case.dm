@@ -4,7 +4,7 @@
 	w_class = ITEM_SIZE_HUGE
 	var/opened = FALSE //Checking opened case or not
 
-/obj/item/storage/case/attack_hand(mob/user as mob)
+/obj/item/storage/case/attack_hand(mob/user as69ob)
 
 	if ((loc != user) && opened)
 		open(user)
@@ -22,13 +22,13 @@
 		return
 	..()
 
-/obj/item/storage/case/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/case/attackby(obj/item/W as obj,69ob/user as69ob)
 	update_icon()
 	..()
 
 /obj/item/storage/case/AltClick()
 	if(!istype(loc, /turf/))
-		to_chat(usr, "\The [src] has to be on a stable surface first!")
+		to_chat(usr, "\The 69src69 has to be on a stable surface first!")
 		return
 
 	else
@@ -68,4 +68,4 @@
 	if(opened)
 		cut_overlays()
 		for(var/obj/item/reagent_containers/food/snacks/donut/stat_buff/D in contents)
-			overlays += image('icons/obj/food.dmi', "[D.overlay_state]")
+			overlays += image('icons/obj/food.dmi', "69D.overlay_state69")

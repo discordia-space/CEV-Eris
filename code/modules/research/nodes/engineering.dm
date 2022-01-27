@@ -1,4 +1,4 @@
-// TO ADD: vendor design
+// TO ADD:69endor design
 /datum/technology/basic_engineering
 	name = "Basic Engineering"
 	desc = "Basic enginering designs and circuits."
@@ -8,8 +8,8 @@
 	y = 0.5
 	icon = "wrench"
 
-	required_technologies = list()
-	required_tech_levels = list()
+	re69uired_technologies = list()
+	re69uired_tech_levels = list()
 	cost = 0
 
 	unlocks_designs = list(	/datum/design/research/item/science_tool,
@@ -26,15 +26,15 @@
 
 /datum/technology/monitoring
 	name = "Monitoring"
-	desc = "Connection to vesel atmos system."
+	desc = "Connection to69esel atmos system."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.2
 	y = 0.7
 	icon = "monitoring"
 
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_engineering)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(/datum/design/research/circuit/atmosalerts, /datum/design/research/circuit/air_management)
@@ -49,8 +49,8 @@
 	y = 0.8
 	icon = "spaceheater"
 
-	required_technologies = list(/datum/technology/monitoring)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/monitoring)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(/datum/design/research/circuit/gas_heater, /datum/design/research/circuit/gas_cooler)
@@ -58,15 +58,15 @@
 // TO ADD: idcardconsole
 /datum/technology/adv_replication
 	name = "Advanced Replication"
-	desc = "RnD machines and consoles."
+	desc = "RnD69achines and consoles."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
 	y = 0.7
 	icon = "rd"
 
-	required_technologies = list(/datum/technology/monitoring)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/monitoring)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(	/datum/design/research/circuit/rdconsole,
@@ -77,18 +77,18 @@
 							/datum/design/research/circuit/circuit_imprinter
 						)
 
-// Make this its own tech tree?
+//69ake this its own tech tree?
 /datum/technology/modular_components
 	name = "Advanced PC hardware"
-	desc = "Advanced components for modular computers."
+	desc = "Advanced components for69odular computers."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.3
 	y = 0.8
 	icon = "pda"
 
-	required_technologies = list(/datum/technology/adv_replication)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_replication)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(
@@ -105,7 +105,7 @@
 		/datum/design/research/item/computer_part/cpu/super/small
 		)
 
-// Make this its own tech tree?
+//69ake this its own tech tree?
 /datum/technology/custom_circuits
 	name = "Custom Circuits"
 	desc = "Integral Ciruits"
@@ -115,8 +115,8 @@
 	y = 0.8
 	icon = "tesla"
 
-	required_technologies = list(/datum/technology/adv_replication)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_replication)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(
@@ -142,8 +142,8 @@
 	y = 0.9
 	icon = "tesla"
 
-	required_technologies = list(/datum/technology/custom_circuits)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/custom_circuits)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(/datum/design/research/item/custom_circuit_assembly/advanced_designs)
@@ -157,13 +157,13 @@
 	y = 0.9
 	icon = "tesla"
 
-	required_technologies = list(/datum/technology/custom_circuits_advanced)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/custom_circuits_advanced)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(/datum/design/research/item/custom_circuit_assembly/cloning)
 
-/* No tesla engine?
+/*69o tesla engine?
 /datum/technology/tesla
 	name = "Tesla"
 	desc = "Tesla"
@@ -173,8 +173,8 @@
 	y = 0.2
 	icon = "tesla"
 
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_engineering)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list("tesla_coil", "grounding_rod")
@@ -190,16 +190,16 @@
 	y = 0.6
 	icon = "advmop"
 
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_engineering)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(/datum/design/research/circuit/ordercomp, /datum/design/research/circuit/supplycomp)
 
 //TOOLS BRANCH
-// TO ADD: ore_redemption, mining_equipment_vendor, mining_fabricator?
+// TO ADD: ore_redemption,69ining_e69uipment_vendor,69ining_fabricator?
 /datum/technology/basic_mining
-	name = "Basic Mining"
+	name = "Basic69ining"
 	desc = "Mining handdrill technology."
 	tech_type = RESEARCH_ENGINEERING
 
@@ -207,15 +207,15 @@
 	y = 0.4
 	icon = "drill"
 
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_engineering)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(/datum/design/research/item/weapon/mining/drill)
 
 
 /datum/technology/advanced_mining
-	name = "Advanced Mining"
+	name = "Advanced69ining"
 	desc = "Static drill, improved handrill."
 	tech_type = RESEARCH_ENGINEERING
 
@@ -223,8 +223,8 @@
 	y = 0.4
 	icon = "jackhammer"
 
-	required_technologies = list(/datum/technology/basic_mining)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_mining)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/research/circuit/miningdrill,
@@ -243,10 +243,10 @@
 	y = 0.4
 	icon = "jawsoflife"
 
-	required_technologies = list(	/datum/technology/super_adv_engineering,
+	re69uired_technologies = list(	/datum/technology/super_adv_engineering,
 									/datum/technology/advanced_mining
 								)
-	required_tech_levels = list()
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(	/datum/design/autolathe/tool/pneumatic_crowbar,
@@ -255,15 +255,15 @@
 
 /datum/technology/improved_tools
 	name = "Improved-Advanced Tools"
-	desc = "Fast matter deconstruction technology."
+	desc = "Fast69atter deconstruction technology."
 	tech_type = RESEARCH_ENGINEERING
 
 	x = 0.6
 	y = 0.5
 	icon = "Moebius_box1"
 
-	required_technologies = list(/datum/technology/adv_tools)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_tools)
+	re69uired_tech_levels = list()
 	cost = 1200
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/hatton,
@@ -279,8 +279,8 @@
 	y = 0.5
 	icon = "plasmablock"
 
-	required_technologies = list(/datum/technology/adv_tools)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_tools)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/stick,
@@ -300,8 +300,8 @@
 	y = 0.5
 	icon = "booster"
 
-	required_technologies = list(/datum/technology/adv_tools)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_tools)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/ergonomicgrip,
@@ -325,8 +325,8 @@
 	y = 0.3
 	icon = "compensatedbarrel"
 
-	required_technologies = list(/datum/technology/adv_tools)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_tools)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/laserguide,
@@ -346,8 +346,8 @@
 	y = 0.3
 	icon = "cellmount"
 
-	required_technologies = list(/datum/technology/adv_tools)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_tools)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(	/datum/design/research/item/weapon/toolmod/cellmount,
@@ -368,11 +368,11 @@
 	y = 0.6
 	icon = "pda"
 
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_engineering)
+	re69uired_tech_levels = list()
 	cost = 500
 
-	unlocks_designs = list("pda", "cart_basic", "cart_engineering", "cart_atmos", "cart_medical", "cart_chemistry", "cart_security", "cart_janitor", "cart_science", "cart_quartermaster")
+	unlocks_designs = list("pda", "cart_basic", "cart_engineering", "cart_atmos", "cart_medical", "cart_chemistry", "cart_security", "cart_janitor", "cart_science", "cart_69uartermaster")
 
 /datum/technology/adv_handheld
 	name = "Advanced Handheld"
@@ -383,8 +383,8 @@
 	y = 0.6
 	icon = "goldpda"
 
-	required_technologies = list(/datum/technology/basic_handheld)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_handheld)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list("cart_hop", "cart_hos", "cart_ce", "cart_cmo", "cart_rd", "cart_captain")
@@ -398,8 +398,8 @@
 	y = 0.2
 	icon = "advmatterbin"
 
-	required_technologies = list(/datum/technology/basic_engineering)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_engineering)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(/datum/design/research/item/part/high_micro_laser, /datum/design/research/item/part/adv_matter_bin)
@@ -413,8 +413,8 @@
 	y = 0.2
 	icon = "supermatterbin"
 
-	required_technologies = list(/datum/technology/adv_parts)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/adv_parts)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(/datum/design/research/item/part/ultra_micro_laser, /datum/design/research/item/part/super_matter_bin, /datum/design/research/item/medical/nanopaste)
@@ -428,8 +428,8 @@
 	y = 0.3
 	icon = "rped"
 
-	required_technologies = list(/datum/technology/ultra_parts)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/ultra_parts)
+	re69uired_tech_levels = list()
 	cost = 1500
 
 	unlocks_designs = list(/datum/design/research/item/part/RPED, /datum/design/research/circuit/secure_airlock, /datum/design/research/item/part/rocket)
@@ -444,11 +444,11 @@
 	y = 0.5
 	icon = "bluespacematterbin"
 
-	required_technologies = list(/datum/technology/ultra_parts)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/ultra_parts)
+	re69uired_tech_levels = list()
 	cost = 2500
 
-	unlocks_designs = list("quadultra_micro_laser", "bluespace_matter_bin")
+	unlocks_designs = list("69uadultra_micro_laser", "bluespace_matter_bin")
 */
 
 

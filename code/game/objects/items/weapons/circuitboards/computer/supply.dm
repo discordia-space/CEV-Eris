@@ -1,5 +1,5 @@
 #ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
+#error T_BOARD69acro is not defined but we need it!
 #endif
 
 /obj/item/electronics/circuitboard/supplycomp
@@ -16,7 +16,7 @@
 	if (..(SC))
 		contraband_enabled = SC.can_order_contraband
 
-/obj/item/electronics/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/electronics/circuitboard/supplycomp/attackby(obj/item/I as obj,69ob/user as69ob)
 	if(istype(I,/obj/item/tool/multitool))
 		var/catastasis = src.contraband_enabled
 		var/opposite_catastasis
@@ -27,7 +27,7 @@
 			opposite_catastasis = "BROAD"
 			catastasis = "STANDARD"
 
-		switch( alert("Current receiver spectrum is set to: [catastasis]","Multitool-Circuitboard interface","Switch to [opposite_catastasis]","Cancel") )
+		switch( alert("Current receiver spectrum is set to: 69catastasis69","Multitool-Circuitboard interface","Switch to 69opposite_catastasis69","Cancel") )
 		//switch( alert("Current receiver spectrum is set to: " {(src.contraband_enabled) ? ("BROAD") : ("STANDARD")} , "Multitool-Circuitboard interface" , "Switch to " {(src.contraband_enabled) ? ("STANDARD") : ("BROAD")}, "Cancel") )
 			if("Switch to STANDARD","Switch to BROAD")
 				src.contraband_enabled = !src.contraband_enabled

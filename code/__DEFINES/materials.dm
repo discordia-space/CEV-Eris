@@ -1,43 +1,43 @@
-//Material stacks names defines
+//Material stacks69ames defines
 
-#define MATERIAL_STEEL "steel"
-#define MATERIAL_GLASS "glass"
-#define MATERIAL_RGLASS "rglass"
-#define MATERIAL_PLASMAGLASS "borosilicate glass"
-#define MATERIAL_RPLASMAGLASS "reinforced borosilicate glass"
-#define MATERIAL_SILVER "silver"
-#define MATERIAL_GOLD "gold"
-#define MATERIAL_PLASMA "plasma"
-#define MATERIAL_URANIUM "uranium"
-#define MATERIAL_DIAMOND "diamond"
-#define MATERIAL_PLASTIC "plastic"
-#define MATERIAL_IRON "iron"
-#define MATERIAL_CARDBOARD "cardboard"
-#define MATERIAL_CLOTH "cloth"
-#define MATERIAL_LEATHER "leather"
-#define MATERIAL_MARBLE "marble"
-#define MATERIAL_MHYDROGEN "mhydrogen"
-#define MATERIAL_OSMIUM "osmium"
-#define MATERIAL_PLASTEEL "plasteel"
-#define MATERIAL_TITANIUM "titanium"
-#define MATERIAL_PLATINUM "platinum"
-#define MATERIAL_SANDSTONE "sandstone"
-#define MATERIAL_TRITIUM "tritium"
-#define MATERIAL_WOOD "wood"
-#define MATERIAL_XENOCHITIN "chitin"
-#define MATERIAL_VOXALLOY "voxalloy"
-#define MATERIAL_CARPET "carpet"
-#define MATERIAL_BIOMATTER "biomatter"
-#define MATERIAL_COMPRESSED "compressed matter"
+#define69ATERIAL_STEEL "steel"
+#define69ATERIAL_69LASS "69lass"
+#define69ATERIAL_R69LASS "r69lass"
+#define69ATERIAL_PLASMA69LASS "borosilicate 69lass"
+#define69ATERIAL_RPLASMA69LASS "reinforced borosilicate 69lass"
+#define69ATERIAL_SILVER "silver"
+#define69ATERIAL_69OLD "69old"
+#define69ATERIAL_PLASMA "plasma"
+#define69ATERIAL_URANIUM "uranium"
+#define69ATERIAL_DIAMOND "diamond"
+#define69ATERIAL_PLASTIC "plastic"
+#define69ATERIAL_IRON "iron"
+#define69ATERIAL_CARDBOARD "cardboard"
+#define69ATERIAL_CLOTH "cloth"
+#define69ATERIAL_LEATHER "leather"
+#define69ATERIAL_MARBLE "marble"
+#define69ATERIAL_MHYDRO69EN "mhydro69en"
+#define69ATERIAL_OSMIUM "osmium"
+#define69ATERIAL_PLASTEEL "plasteel"
+#define69ATERIAL_TITANIUM "titanium"
+#define69ATERIAL_PLATINUM "platinum"
+#define69ATERIAL_SANDSTONE "sandstone"
+#define69ATERIAL_TRITIUM "tritium"
+#define69ATERIAL_WOOD "wood"
+#define69ATERIAL_XENOCHITIN "chitin"
+#define69ATERIAL_VOXALLOY "voxalloy"
+#define69ATERIAL_CARPET "carpet"
+#define69ATERIAL_BIOMATTER "biomatter"
+#define69ATERIAL_COMPRESSED "compressed69atter"
 
-#define MATERIAL_LIST list(\
+#define69ATERIAL_LIST list(\
 	MATERIAL_STEEL,\
-	MATERIAL_GLASS,\
-	MATERIAL_RGLASS,\
-	MATERIAL_PLASMAGLASS,\
-	MATERIAL_RPLASMAGLASS,\
+	MATERIAL_69LASS,\
+	MATERIAL_R69LASS,\
+	MATERIAL_PLASMA69LASS,\
+	MATERIAL_RPLASMA69LASS,\
 	MATERIAL_SILVER,\
-	MATERIAL_GOLD,\
+	MATERIAL_69OLD,\
 	MATERIAL_PLASMA,\
 	MATERIAL_URANIUM,\
 	MATERIAL_DIAMOND,\
@@ -47,7 +47,7 @@
 	MATERIAL_CLOTH,\
 	MATERIAL_LEATHER,\
 	MATERIAL_MARBLE,\
-	MATERIAL_MHYDROGEN,\
+	MATERIAL_MHYDRO69EN,\
 	MATERIAL_OSMIUM,\
 	MATERIAL_PLASTEEL,\
 	MATERIAL_TITANIUM,\
@@ -62,5 +62,5 @@
 	MATERIAL_COMPRESSED)
 
 #define PLASTEEL_COLOUR "#8e9799"
-//Color to exactly match concept art #b0bcbe
-//I made it slightly darker than that, because the original color was too bright and causes eyestrain imo
+//Color to exactly69atch concept art #b0bcbe
+//I69ade it sli69htly darker than that, because the ori69inal color was too bri69ht and causes eyestrain imo

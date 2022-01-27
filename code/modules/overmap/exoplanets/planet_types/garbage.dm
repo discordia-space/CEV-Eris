@@ -7,7 +7,7 @@
 	ruin_tags_whitelist = RUIN_ALIEN|RUIN_NATURAL|RUIN_WRECK
 	plant_colors = list("#efdd6f","#7b4a12","#e49135","#ba6222","#5c755e","#120309")
 	surface_color = "#a5a18b"
-	water_color = null
+	water_color =69ull
 
 
 /obj/effect/overmap/sector/exoplanet/garbage/generate_atmosphere()
@@ -48,27 +48,27 @@
 	//megafauna_types = list(/mob/living/simple_animal/hostile/hivebot/mega)
 	var/fallout = 0
 
-/datum/random_map/noise/exoplanet/garbage/New(var/seed, var/tx, var/ty, var/tz, var/tlx, var/tly, var/do_not_apply, var/do_not_announce, var/never_be_priority = 0)
+/datum/random_map/noise/exoplanet/garbage/New(var/seed,69ar/tx,69ar/ty,69ar/tz,69ar/tlx,69ar/tly,69ar/do_not_apply,69ar/do_not_announce,69ar/never_be_priority = 0)
 	if(prob(60))
 		fallout = rand(10, 37.5)
 	..()
 
-/datum/random_map/noise/exoplanet/garbage/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/exoplanet/garbage/get_additional_spawns(var/value,69ar/turf/T)
 	..()
 /*	if(is_edge_turf(T))
 		return
-	var/v = noise2value(value)
+	var/v =69oise2value(value)
 	if(v > 5)
 		new/obj/structure/rubble/house(T)
 	else
 		if(prob(2))
 			new/obj/structure/rubble/war(T)
-			var/datum/radiation_source/S = new(T, 2*fallout, FALSE)
+			var/datum/radiation_source/S =69ew(T, 2*fallout, FALSE)
 			S.range = 4
 			SSradiation.add_source(S)
 			T.set_light(0.4, 1, 2, l_color = PIPE_COLOR_GREEN)
 		if(prob(0.02))
-			var/datum/artifact_find/A = new()
+			var/datum/artifact_find/A =69ew()
 			new A.artifact_find_type(T)
 			qdel(A)*/
 
@@ -76,12 +76,12 @@
 	..()
 /*	var/turf/T = locate(origin_x,origin_y,origin_z)
 	if(T)
-		var/datum/radiation_source/S = new(T, fallout, FALSE)
+		var/datum/radiation_source/S =69ew(T, fallout, FALSE)
 		S.range = limit_x
 		SSradiation.add_source(S)*/
 
 /datum/random_map/noise/exoplanet/garbage/get_appropriate_path(var/value)
-	var/v = noise2value(value)
+	var/v =69oise2value(value)
 	if(v > 6)
 		return /turf/simulated/floor/exoplanet/concrete
 	return land_type
@@ -92,7 +92,7 @@
 
 /turf/simulated/floor/exoplanet/concrete
 	name = "concrete"
-	desc = "Stone-like artificial material."
+	desc = "Stone-like artificial69aterial."
 	icon = 'icons/turf/flooring/misc.dmi'
 	icon_state = "concrete"
 

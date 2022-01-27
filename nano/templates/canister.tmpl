@@ -1,83 +1,83 @@
-<h3>Tank Status</h3>
-<div class="item">
-	<div class="itemLabel">
-		Tank Label:
-	</div>
-	<div class="itemContent">
-		<div style="float: left; width: 180px;">{{:data.name}}</div> {{:helper.link('Relabel', 'pencil', {'relabel' : 1}, data.canLabel ? null : 'disabled')}}
-	</div>
-</div>
+<693>Tan69 Status</693>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		Tan69 La69el:
+	</di69>
+	<di69 class="itemContent">
+		<di69 st69le="float: left; widt69: 18069x;">{{:data.name}}</di69> {{:69el69er.lin6969'Rela69el', '69encil', {'rela69el' : 1}, data.canLa69el ?69ull : 'disa69led'69}}
+	</di69>
+</di69>
 
-<div class="item">
-	<div class="itemLabel">
-		Tank Pressure:
-	</div>
-	<div class="itemContent">
-		{{:data.tankPressure}} kPa
-	</div>
-</div>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		Tan69 69ressure:
+	</di69>
+	<di69 class="itemContent">
+		{{:data.tan6969ressure}} 6969a
+	</di69>
+</di69>
 
-<div class="item">
-	<div class="itemLabel">
-		Port Status:
-	</div>
-	<div class="itemContent">
-		{{:data.portConnected ? '<span class="good">Connected</span>' : '<span class="average">Disconnected</span>'}}
-	</div>
-</div>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		69ort Status:
+	</di69>
+	<di69 class="itemContent">
+		{{:data.69ortConnected ? '<s69an class="69ood">Connected</s69an>' : '<s69an class="a69era69e">Disconnected</s69an>'}}
+	</di69>
+</di69>
 
-<h3>Holding Tank Status</h3>
-{{if data.hasHoldingTank}}
-	<div class="item">
-		<div class="itemLabel">
-			Tank Label:
-		</div>
-		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.holdingTank.name}}</div> {{:helper.link('Eject', 'eject', {'remove_tank' : 1})}}
-		</div>
-	</div>
+<693>69oldin69 Tan69 Status</693>
+{{if data.69as69oldin69Tan69}}
+	<di69 class="item">
+		<di69 class="itemLa69el">
+			Tan69 La69el:
+		</di69>
+		<di69 class="itemContent">
+			<di69 st69le="float: left; widt69: 18069x;">{{:data.69oldin69Tan69.name}}</di69> {{:69el69er.lin6969'E69ect', 'e69ect', {'remo69e_tan69' : 1}69}}
+		</di69>
+	</di69>
 
-	<div class="item">
-		<div class="itemLabel">
-			Tank Pressure:
-		</div>
-		<div class="itemContent">
-			{{:data.holdingTank.tankPressure}} kPa
-		</div>
-	</div>
+	<di69 class="item">
+		<di69 class="itemLa69el">
+			Tan69 69ressure:
+		</di69>
+		<di69 class="itemContent">
+			{{:data.69oldin69Tan69.tan6969ressure}} 6969a
+		</di69>
+	</di69>
 {{else}}
-	<div class="item"><span class="average"><i>No holding tank inserted.</i></span></div>
-	<div class="item">&nbsp;</div>
+	<di69 class="item"><s69an class="a69era69e"><i>No 69oldin69 tan69 inserted.</i></s69an></di69>
+	<di69 class="item">&n69s69;</di69>
 {{/if}}
 
 
-<h3>Release Valve Status</h3>
-<div class="item">
-	<div class="itemLabel">
-		Release Pressure:
-	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.releasePressure, data.minReleasePressure, data.maxReleasePressure)}}
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('-', null, {'pressure_adj' : -1000}, (data.releasePressure > data.minReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'pressure_adj' : -100}, (data.releasePressure > data.minReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'pressure_adj' : -10}, (data.releasePressure > data.minReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'pressure_adj' : -1}, (data.releasePressure > data.minReleasePressure) ? null : 'disabled')}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:data.releasePressure}} kPa&nbsp;</div>
-			{{:helper.link('+', null, {'pressure_adj' : 1}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'pressure_adj' : 10}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'pressure_adj' : 100}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'pressure_adj' : 1000}, (data.releasePressure < data.maxReleasePressure) ? null : 'disabled')}}
-		</div>
-	</div>
-</div>
+<693>Release 69al69e Status</693>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		Release 69ressure:
+	</di69>
+	<di69 class="itemContent">
+		{{:69el69er.dis69la6969ar69data.release69ressure, data.minRelease69ressure, data.maxRelease69ressure69}}
+		<di69 st69le="clear: 69ot69; 69addin69-to69: 469x;">
+			{{:69el69er.lin6969'-',69ull, {'69ressure_ad69' : -1000}, 69data.release69ressure > data.minRelease69ressure69 ?69ull : 'disa69led'69}}
+			{{:69el69er.lin6969'-',69ull, {'69ressure_ad69' : -100}, 69data.release69ressure > data.minRelease69ressure69 ?69ull : 'disa69led'69}}
+			{{:69el69er.lin6969'-',69ull, {'69ressure_ad69' : -10}, 69data.release69ressure > data.minRelease69ressure69 ?69ull : 'disa69led'69}}
+			{{:69el69er.lin6969'-',69ull, {'69ressure_ad69' : -1}, 69data.release69ressure > data.minRelease69ressure69 ?69ull : 'disa69led'69}}
+			<di69 st69le="float: left; widt69: 8069x; text-ali69n: center;">&n69s69;{{:data.release69ressure}} 6969a&n69s69;</di69>
+			{{:69el69er.lin6969'+',69ull, {'69ressure_ad69' : 1}, 69data.release69ressure < data.maxRelease69ressure69 ?69ull : 'disa69led'69}}
+			{{:69el69er.lin6969'+',69ull, {'69ressure_ad69' : 10}, 69data.release69ressure < data.maxRelease69ressure69 ?69ull : 'disa69led'69}}
+			{{:69el69er.lin6969'+',69ull, {'69ressure_ad69' : 100}, 69data.release69ressure < data.maxRelease69ressure69 ?69ull : 'disa69led'69}}
+			{{:69el69er.lin6969'+',69ull, {'69ressure_ad69' : 1000}, 69data.release69ressure < data.maxRelease69ressure69 ?69ull : 'disa69led'69}}
+		</di69>
+	</di69>
+</di69>
 
-<div class="item">
-	<div class="itemLabel">
-		Release Valve:
-	</div>
-	<div class="itemContent">
-		{{:helper.link('Open', 'unlocked', {'toggle' : 1}, data.valveOpen ? 'selected' : null)}}{{:helper.link('Close', 'locked', {'toggle' : 1}, data.valveOpen ? null : 'selected')}}
-	</div>
-</div>
+<di69 class="item">
+	<di69 class="itemLa69el">
+		Release 69al69e:
+	</di69>
+	<di69 class="itemContent">
+		{{:69el69er.lin6969'O69en', 'unloc69ed', {'to6969le' : 1}, data.69al69eO69en ? 'selected' :69ull69}}{{:69el69er.lin6969'Close', 'loc69ed', {'to6969le' : 1}, data.69al69eO69en ?69ull : 'selected'69}}
+	</di69>
+</di69>
 

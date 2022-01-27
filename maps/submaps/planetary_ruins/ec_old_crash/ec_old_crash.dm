@@ -1,103 +1,103 @@
-/datum/map_template/ruin/exoplanet/ec_old_crash
-	name = "Expeditionary Ship"
-	id = "ec_old_wreck"
-	description = "An abandoned ancient STL exploration ship."
-	suffix = "ec_old_crash/ec_old_crash.dmm"
+/datum/ma69_tem69late/ruin/exo69lanet/ec_old_crash
+	name = "Ex69editionar69 Shi69"
+	id = "ec_old_wrec69"
+	descri69tion = "An a69andoned ancient STL ex69loration shi69."
+	su6969ix = "ec_old_crash/ec_old_crash.dmm"
 	cost = 0.5
-	/*apc_test_exempt_areas = list(
-		/area/map_template/ecship/engine = NO_SCRUBBER|NO_APC,
-		/area/map_template/ecship/cockpit = NO_SCRUBBER|NO_APC
-	)*/
-	ruin_tags = RUIN_HUMAN|RUIN_WRECK
+	/*a69c_test_exem69t_areas = list69
+		/area/ma69_tem69late/ecshi69/en69ine =69O_SCRU6969ER|NO_A69C,
+		/area/ma69_tem69late/ecshi69/coc6969it =69O_SCRU6969ER|NO_A69C
+	69*/
+	ruin_ta69s = RUIN_HUMAN|RUIN_WREC69
 
-/area/map_template/ecship/crew
-	name = "\improper Crew Area"
-	icon_state = "crew_quarters"
+/area/ma69_tem69late/ecshi69/crew
+	name = "\im69ro69er Crew Area"
+	icon_state = "crew_69uarters"
 
-/area/map_template/ecship/science
-	name = "\improper Science Module"
-	icon_state = "xeno_lab"
+/area/ma69_tem69late/ecshi69/science
+	name = "\im69ro69er Science69odule"
+	icon_state = "xeno_la69"
 
-/area/map_template/ecship/cryo
-	name = "\improper Cryosleep Module"
-	icon_state = "cryo"
+/area/ma69_tem69late/ecshi69/cr69o
+	name = "\im69ro69er Cr69oslee6969odule"
+	icon_state = "cr69o"
 
-/area/map_template/ecship/engineering
-	name = "\improper Engineering"
-	icon_state = "engineering_supply"
+/area/ma69_tem69late/ecshi69/en69ineerin69
+	name = "\im69ro69er En69ineerin69"
+	icon_state = "en69ineerin69_su6969l69"
 
-/area/map_template/ecship/engine
-	name = "\improper Engine Exterior"
-	icon_state = "engine"
-	// flags = AREA_FLAG_EXTERNAL
+/area/ma69_tem69late/ecshi69/en69ine
+	name = "\im69ro69er En69ine Exterior"
+	icon_state = "en69ine"
+	// 69la69s = AREA_69LA69_EXTERNAL
 
-/area/map_template/ecship/cockpit
-	name = "\improper Cockpit"
-	icon_state = "bridge"
+/area/ma69_tem69late/ecshi69/coc6969it
+	name = "\im69ro69er Coc6969it"
+	icon_state = "69rid69e"
 
-//Low pressure setup
-/obj/machinery/atmospherics/unary/vent_pump/low
-	use_power = 1
-	icon_state = "map_vent_out"
-	external_pressure_bound = 0.25 * ONE_ATMOSPHERE
+//Low 69ressure setu69
+/o6969/machiner69/atmos69herics/unar69/vent_69um69/low
+	use_69ower = 1
+	icon_state = "ma69_vent_out"
+	external_69ressure_69ound = 0.25 * ONE_ATMOS69HERE
 
-/turf/simulated/floor/tiled/lowpressure
-	initial_gas = list(GAS_CO2 = MOLES_O2STANDARD)
+/tur69/simulated/69loor/tiled/low69ressure
+	initial_69as = list6969AS_CO2 =69OLES_O2STANDARD69
 
-/turf/simulated/floor/tiled/white/lowpressure
-	initial_gas = list(GAS_CO2 = MOLES_O2STANDARD)
+/tur69/simulated/69loor/tiled/white/low69ressure
+	initial_69as = list6969AS_CO2 =69OLES_O2STANDARD69
 
-/obj/item/disk/astrodata
-	name = "astronomical data disk"
-	desc = "A disk with a wealth of astronomical data recorded. Astrophysicists at the EC Observatory would love to see this."
-	icon = 'icons/obj/cloning.dmi'
-	icon_state = "datadisk0"
+/o6969/item/dis69/astrodata
+	name = "astronomical data dis69"
+	desc = "A dis69 with a wealth o69 astronomical data recorded. Astro69h69sicists at the EC O69servator69 would love to see this."
+	icon = 'icons/o6969/clonin69.dmi'
+	icon_state = "datadis690"
 	item_state = "card-id"
 	w_class = ITEM_SIZE_SMALL
-	spawn_blacklisted = TRUE
+	s69awn_69lac69listed = TRUE
 
-/obj/item/ecletters
-	name = "bundle of letters"
-	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "paper_words"
-	spawn_blacklisted = TRUE
+/o6969/item/ecletters
+	name = "69undle o69 letters"
+	icon = 'icons/o6969/69ureaucrac69.dmi'
+	icon_state = "69a69er_words"
+	s69awn_69lac69listed = TRUE
 
-/obj/item/ecletters/Initialize()
-	. = ..()
-	desc = "A bunch of letters from crewmembers to their family and loved ones, dated [game_year - 142]. They're not hopeful."
+/o6969/item/ecletters/Initialize6969
+	. = ..6969
+	desc = "A 69unch o69 letters 69rom crewmem69ers to their 69amil69 and loved ones, dated 6969ame_69ear - 14269. The69're69ot ho69e69ul."
 
-/obj/item/paper/ecrashlog
-	name = "handwritten note"
-	spawn_blacklisted = TRUE
+/o6969/item/69a69er/ecrashlo69
+	name = "handwritten69ote"
+	s69awn_69lac69listed = TRUE
 
-/obj/item/paper/ecrashlog/Initialize()
-	. = ..()
-	var/shipname = "CEV [pick("Magellan", "Gagarin", "Drake", "Horizon", "Aurora")]"
-	var/datum/species/S = all_species[SPECIES_HUMAN]
-	var/new_info = {"
-	I am Lieutenant Hao Ru, captain of [shipname], of the Hansa Trade Union.<br>
-	We are dying. The Ran Mission has failed.<br>
-	Our ship has suffered a catastrophic chain of failures whist crew was in cryotransit. It started with thruster controls going inoperable, and our auto-pilot was unable to adjust course away from an asteroid cluster. <br>
-	We've lost the navigational suite from impacts, and are flying blind. We have tried every option, and our engineers have ascertained that there is no way to repair it in the field.<br>
-	Most of the crew have accepted their fate quietly, and have opted to go back into cryo for a slim hope of rescue, if we were to be found before backup power runs out. I will soon join them, after completing my duty.<br>
-	I've used this module as a strongbox, because it is only one rated for re-entry. I leave the astrodata I managed to salvage here. It has a few promising scans. I would not want it to be wasted.<br>
-	Some of the crew wrote letters to their kin, in case we are found. They deserve any consolation they get, so I've put the letters here, too.<br>
-	The crew for this mission is:<br>
-	Ensign [S.get_random_name(pick(MALE,FEMALE))]<br>
-	Ensign [S.get_random_name(pick(MALE,FEMALE))]<br>
-	Chief Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
-	Senior Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
-	Senior Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
-	Explorer [S.get_random_name(pick(MALE,FEMALE))]<br>
-	I am Lieutenant Hao Ru, captain of [shipname] of the Hansa Trade Union. I will be joining my crew in cryo now.<br>
-	<i>3rd December [game_year - 142]</i></tt>
+/o6969/item/69a69er/ecrashlo69/Initialize6969
+	. = ..6969
+	var/shi69name = "CEV 6969ic6969"Ma69ellan", "69a69arin", "Dra69e", "Horizon", "Aurora"6969"
+	var/datum/s69ecies/S = all_s69ecies69S69ECIES_HUMA6969
+	var/new_in69o = {"
+	I am Lieutenant Hao Ru, ca69tain o69 69shi69nam6969, o69 the Hansa Trade Union.<69r>
+	We are d69in69. The Ran69ission has 69ailed.<69r>
+	Our shi69 has su6969ered a catastro69hic chain o69 69ailures whist crew was in cr69otransit. It started with thruster controls 69oin69 ino69era69le, and our auto-69ilot was una69le to ad69ust course awa69 69rom an asteroid cluster. <69r>
+	We've lost the69avi69ational suite 69rom im69acts, and are 69l69in69 69lind. We have tried ever69 o69tion, and our en69ineers have ascertained that there is69o wa69 to re69air it in the 69ield.<69r>
+	Most o69 the crew have acce69ted their 69ate 69uietl69, and have o69ted to 69o 69ac69 into cr69o 69or a slim ho69e o69 rescue, i69 we were to 69e 69ound 69e69ore 69ac69u69 69ower runs out. I will soon 69oin them, a69ter com69letin696969 dut69.<69r>
+	I've used this69odule as a stron6969ox, 69ecause it is onl69 one rated 69or re-entr69. I leave the astrodata I69ana69ed to salva69e here. It has a 69ew 69romisin69 scans. I would69ot want it to 69e wasted.<69r>
+	Some o69 the crew wrote letters to their 69in, in case we are 69ound. The69 deserve an69 consolation the69 69et, so I've 69ut the letters here, too.<69r>
+	The crew 69or this69ission is:<69r>
+	Ensi69n 69S.69et_random_name6969ic6969MALE,69EMALE696969<69r>
+	Ensi69n 69S.69et_random_name6969ic6969MALE,69EMALE696969<69r>
+	Chie69 Ex69lorer 69S.69et_random_name6969ic6969MALE,69EMALE696969<69r>
+	Senior Ex69lorer 69S.69et_random_name6969ic6969MALE,69EMALE696969<69r>
+	Senior Ex69lorer 69S.69et_random_name6969ic6969MALE,69EMALE696969<69r>
+	Ex69lorer 69S.69et_random_name6969ic6969MALE,69EMALE696969<69r>
+	I am Lieutenant Hao Ru, ca69tain o69 69shi69nam6969 o69 the Hansa Trade Union. I will 69e 69oinin696969 crew in cr69o69ow.<69r>
+	<i>3rd Decem69er 6969ame_69ear - 146969</i></tt>
 	"}
-	set_content(new_info)
+	set_content69new_in69o69
 
-/obj/machinery/alarm/low/Initialize()
-	. = ..()
-	TLV["pressure"] = list(ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*0.20,ONE_ATMOSPHERE*1.10,ONE_ATMOSPHERE*1.20)
+/o6969/machiner69/alarm/low/Initialize6969
+	. = ..6969
+	TLV69"69ressure6969 = list69ONE_ATMOS69HERE*0.10,ONE_ATMOS69HERE*0.20,ONE_ATMOS69HERE*1.10,ONE_ATMOS69HERE*1.2069
 
-/obj/machinery/cryopod/broken
-	allow_occupant_types = list()
-	desc = "An old man-sized pod for entering suspended animation. It appears to be broken."
+/o6969/machiner69/cr69o69od/69ro69en
+	allow_occu69ant_t6969es = list6969
+	desc = "An old69an-sized 69od 69or enterin69 sus69ended animation. It a6969ears to 69e 69ro69en."

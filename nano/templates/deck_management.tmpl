@@ -1,282 +1,282 @@
-<div class='notice'>
-	You 
-	{{if !data.default_access}}
-		do not 
+<di69 cl69ss='notice'>
+	69ou 
+	{{if !d69t69.def69ult_69ccess}}
+		do69ot 
 	{{/if}}
-	have program access.
-</div>
-{{if data.default_access}}<!--Suppressed indentation.-->
-{{if data.prog_state == 1}}<!--DECK_HOME-->
-	<h2>Shuttles:</h2>
-	{{for data.shuttles}}
-		<h3>{{:value.name}}</h3>
-		{{if value.mission}}
-			<div class='item'>		
-				<div class='itemLabel'>
-					Current Mission:
-				</div>
-				<div class='itemContent'>
-					{{:value.mission_name}}
-				</div>
-			</div>
-			<div class='item'>		
-				<div class='itemLabel'>
-					Mission Status:
-				</div>
-				<div class='itemContent'>
-					{{:value.status}}
-				</div>
-			</div>
-			<div class='item'>		
-				<div class='itemLabel'>
-					Departure Time:
-				</div>
-				<div class='itemContent'>
-					{{:value.departure}}
-				</div>
-			</div>
+	696969e pro69r69m 69ccess.
+</di69>
+{{if d69t69.def69ult_69ccess}}<!--Suppressed indent69tion.-->
+{{if d69t69.pro69_st69te == 1}}<!--DEC69_69OME-->
+	<692>S69uttles:</692>
+	{{for d69t69.s69uttles}}
+		<693>{{:6969lue.n69me}}</693>
+		{{if 6969lue.mission}}
+			<di69 cl69ss='item'>		
+				<di69 cl69ss='itemL6969el'>
+					Current69ission:
+				</di69>
+				<di69 cl69ss='itemContent'>
+					{{:6969lue.mission_n69me}}
+				</di69>
+			</di69>
+			<di69 cl69ss='item'>		
+				<di69 cl69ss='itemL6969el'>
+					Mission St69tus:
+				</di69>
+				<di69 cl69ss='itemContent'>
+					{{:6969lue.st69tus}}
+				</di69>
+			</di69>
+			<di69 cl69ss='item'>		
+				<di69 cl69ss='itemL6969el'>
+					Dep69rture Time:
+				</di69>
+				<di69 cl69ss='itemContent'>
+					{{:6969lue.dep69rture}}
+				</di69>
+			</di69>
 		{{else}}
-			<div class='item'>		
-				<div class='itemLabel'>
-					Current Mission:
-				</div>
-				<div class='itemContent'>
-					None Planned.
-				</div>
-			</div>
+			<di69 cl69ss='item'>		
+				<di69 cl69ss='itemL6969el'>
+					Current69ission:
+				</di69>
+				<di69 cl69ss='itemContent'>
+					None Pl69nned.
+				</di69>
+			</di69>
 		{{/if}}
-		<div class='item'>
-			<div class='itemLabel'>
-				Actions:
-			</div>
-			<div class='itemContent'>
-				{{:helper.link('Create Mission', null, {'new_mission' : value.name}, value.access ? null : 'disabled')}}
-				{{:helper.link('View Mission Details', null, {'details' : 1, 'shuttle' : value.name, 'mission' : value.mission_ID}, value.mission ? null : 'disabled')}}
-				{{:helper.link('View All Missions', null, {'history' : value.name}, null)}}
-			</div>
-		</div>
-		<div class='item'>
-			<div class='itemLabel'>
-				Flight Plan:
-			</div>
-			<div class='itemContent'>
-				{{:helper.link('Create Flight Plan', null, {'report' : 1, 'flight_plan' : 1, 'shuttle' : value.name, 'mission' : value.mission_ID}, (value.access && !value.flight_plan && value.mission) ? null : 'disabled')}}
-				{{:helper.link('Edit Flight Plan', null, {'report' : 1, 'flight_plan' : 1, 'shuttle' : value.name, 'mission' : value.mission_ID}, (value.access && value.flight_plan && value.mission) ? null : 'disabled')}}
-			</div>
-		</div>
-	{{empty}}
-		<h2>There are no shuttles in the system.</h2>
+		<di69 cl69ss='item'>
+			<di69 cl69ss='itemL6969el'>
+				69ctions:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:69elper.lin6969'Cre69te69ission',69ull, {'new_mission' : 6969lue.n69me}, 6969lue.69ccess ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'69iew69ission Det69ils',69ull, {'det69ils' : 1, 's69uttle' : 6969lue.n69me, 'mission' : 6969lue.mission_ID}, 6969lue.mission ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'69iew 69ll69issions',69ull, {'69istor69' : 6969lue.n69me},69ull69}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>
+			<di69 cl69ss='itemL6969el'>
+				Fli6969t Pl69n:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:69elper.lin6969'Cre69te Fli6969t Pl69n',69ull, {'report' : 1, 'fli6969t_pl69n' : 1, 's69uttle' : 6969lue.n69me, 'mission' : 6969lue.mission_ID}, 696969lue.69ccess && !6969lue.fli6969t_pl69n && 6969lue.mission69 ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Edit Fli6969t Pl69n',69ull, {'report' : 1, 'fli6969t_pl69n' : 1, 's69uttle' : 6969lue.n69me, 'mission' : 6969lue.mission_ID}, 696969lue.69ccess && 6969lue.fli6969t_pl69n && 6969lue.mission69 ?69ull : 'dis6969led'69}}
+			</di69>
+		</di69>
+	{{empt69}}
+		<692>T69ere 69re69o s69uttles in t69e s69stem.</692>
 	{{/for}}
-{{else data.prog_state == 2}}<!--DECK_ALL_MISSIONS-->
-	<div class='item'>
-		{{:helper.link('Home', null, {'home' : 1}, null)}}
-		{{:helper.link('Create Mission', null, {'new_mission' : data.shuttle_name}, data.shuttle_access ? null : 'disabled')}}
-	</div>
-	<h2>Shuttle: {{:data.shuttle_name}}<br><center>Mission History</center></h2>
-	{{for data.mission_data}}
-		<h3>{{:value.name}}{{if value.is_current}} (ACTIVE MISSION){{/if}}</h3>
-		<div class='item'>		
-			<div class='itemLabel'>
-				Mission Status:
-			</div>
-			<div class='itemContent'>
-				{{:value.status}}
-			</div>
-		</div>
-		<div class='item'>		
-			<div class='itemLabel'>
-				Departure Time:
-			</div>
-			<div class='itemContent'>
-				{{:value.departure}}
-			</div>
-		</div>
-		<div class='item'>		
-			<div class='itemLabel'>
+{{else d69t69.pro69_st69te == 2}}<!--DEC69_69LL_MISSIONS-->
+	<di69 cl69ss='item'>
+		{{:69elper.lin6969'69ome',69ull, {'69ome' : 1},69ull69}}
+		{{:69elper.lin6969'Cre69te69ission',69ull, {'new_mission' : d69t69.s69uttle_n69me}, d69t69.s69uttle_69ccess ?69ull : 'dis6969led'69}}
+	</di69>
+	<692>S69uttle: {{:d69t69.s69uttle_n69me}}<69r><center>Mission 69istor69</center></692>
+	{{for d69t69.mission_d69t69}}
+		<693>{{:6969lue.n69me}}{{if 6969lue.is_current}} 6969CTI69E69ISSION69{{/if}}</693>
+		<di69 cl69ss='item'>		
+			<di69 cl69ss='itemL6969el'>
+				Mission St69tus:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:6969lue.st69tus}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>		
+			<di69 cl69ss='itemL6969el'>
+				Dep69rture Time:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:6969lue.dep69rture}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>		
+			<di69 cl69ss='itemL6969el'>
 				Return Time:
-			</div>
-			<div class='itemContent'>
-				{{:value.return}}
-			</div>
-		</div>
-		<div class='item'>
-			{{:helper.link('View Mission Details', null, {'details' : 1, 'shuttle' : data.shuttle_name, 'mission' : value.ID}, null)}}
-		</div>
-	{{empty}}
-		<h3>No past missions logged.</h3>
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:6969lue.return}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>
+			{{:69elper.lin6969'69iew69ission Det69ils',69ull, {'det69ils' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : 6969lue.ID},69ull69}}
+		</di69>
+	{{empt69}}
+		<693>No p69st69issions lo6969ed.</693>
 	{{/for}}
-	<h2><center>Scheduled Missions</center></h2>
-	{{for data.queued_data}}
-		<h3>{{:value.name}}{{if value.is_current}} (ACTIVE MISSION){{/if}}</h3>
-		<div class='item'>		
-			<div class='itemLabel'>
-				Mission Status:
-			</div>
-			<div class='itemContent'>
-				{{:value.status}}
-			</div>
-		</div>
-		<div class='item'>		
-			<div class='itemLabel'>
-				Departure Time:
-			</div>
-			<div class='itemContent'>
-				{{:value.departure}}
-			</div>
-		</div>
-		<div class='item'>		
-			<div class='itemLabel'>
+	<692><center>Sc69eduled69issions</center></692>
+	{{for d69t69.69ueued_d69t69}}
+		<693>{{:6969lue.n69me}}{{if 6969lue.is_current}} 6969CTI69E69ISSION69{{/if}}</693>
+		<di69 cl69ss='item'>		
+			<di69 cl69ss='itemL6969el'>
+				Mission St69tus:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:6969lue.st69tus}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>		
+			<di69 cl69ss='itemL6969el'>
+				Dep69rture Time:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:6969lue.dep69rture}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>		
+			<di69 cl69ss='itemL6969el'>
 				Return Time:
-			</div>
-			<div class='itemContent'>
-				{{:value.return}}
-			</div>
-		</div>
-		<div class='item'>
-			{{:helper.link('View Mission Details', null, {'details' : 1, 'shuttle' : data.shuttle_name, 'mission' : value.ID}, null)}}
-			{{:helper.link('','triangle-1-n', {'modify' : 'move_up', 'shuttle' : data.shuttle_name, 'mission' : value.ID}, data.shuttle_access ? null : 'disabled')}}
-			{{:helper.link('','triangle-1-s', {'modify' : 'move_down', 'shuttle' : data.shuttle_name, 'mission' : value.ID}, data.shuttle_access ? null : 'disabled')}}
-		</div>
-	{{empty}}
-		<h3>No missions scheduled.</h3>
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:6969lue.return}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>
+			{{:69elper.lin6969'69iew69ission Det69ils',69ull, {'det69ils' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : 6969lue.ID},69ull69}}
+			{{:69elper.lin6969'','tri69n69le-1-n', {'modif69' : 'mo69e_up', 's69uttle' : d69t69.s69uttle_n69me, 'mission' : 6969lue.ID}, d69t69.s69uttle_69ccess ?69ull : 'dis6969led'69}}
+			{{:69elper.lin6969'','tri69n69le-1-s', {'modif69' : 'mo69e_down', 's69uttle' : d69t69.s69uttle_n69me, 'mission' : 6969lue.ID}, d69t69.s69uttle_69ccess ?69ull : 'dis6969led'69}}
+		</di69>
+	{{empt69}}
+		<693>No69issions sc69eduled.</693>
 	{{/for}}
-{{else data.prog_state == 3}}<!--DECK_MISSION_DETAILS-->
-	<div class='item'>
-		{{:helper.link('Home', null, {'home' : 1}, null)}}
-		{{:helper.link('All Missions', null, {'history' : data.shuttle_name}, null)}}
-	</div>
-	<h2>Shuttle: {{:data.shuttle_name}}<br><center>Mission: {{:data.mission_data.name}}{{if data.mission_data.is_current}} (ACTIVE MISSION){{/if}}</center></h2>
-	<div class='item'>		
-		<div class='itemLabel'>
-			Mission Status:
-		</div>
-		<div class='itemContent'>
-			{{:data.mission_data.status}}
-		</div>
-	</div>
-	<div class='item'>		
-		<div class='itemLabel'>
-			Departure Time:
-		</div>
-		<div class='itemContent'>
-			{{:data.mission_data.departure}}
-		</div>
-	</div>
-	<div class='item'>		
-		<div class='itemLabel'>
+{{else d69t69.pro69_st69te == 3}}<!--DEC69_MISSION_DET69ILS-->
+	<di69 cl69ss='item'>
+		{{:69elper.lin6969'69ome',69ull, {'69ome' : 1},69ull69}}
+		{{:69elper.lin6969'69ll69issions',69ull, {'69istor69' : d69t69.s69uttle_n69me},69ull69}}
+	</di69>
+	<692>S69uttle: {{:d69t69.s69uttle_n69me}}<69r><center>Mission: {{:d69t69.mission_d69t69.n69me}}{{if d69t69.mission_d69t69.is_current}} 6969CTI69E69ISSION69{{/if}}</center></692>
+	<di69 cl69ss='item'>		
+		<di69 cl69ss='itemL6969el'>
+			Mission St69tus:
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.mission_d69t69.st69tus}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>		
+		<di69 cl69ss='itemL6969el'>
+			Dep69rture Time:
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.mission_d69t69.dep69rture}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>		
+		<di69 cl69ss='itemL6969el'>
 			Return Time:
-		</div>
-		<div class='itemContent'>
-			{{:data.mission_data.return}}
-		</div>
-	</div>
-	<div class='item'>
-		<div class='itemLabel'>
-			Flight Plan:
-		</div>
-		{{if data.flight_plan}}
-			<div class='itemContent'>
-				Submitted by {{:data.flight_plan.creator}}.
-			</div>
-	</div>
-			{{for data.flight_plan.fields}}
-				{{if !value.ignore_value}}
-					<div class='item'>
-						<div class='itemLabel'>
-							{{:value.name}}: 
-						</div>
-						<div class="itemContent">
-							{{if value.needs_big_box}}
-							<div class='block'>
-								{{:value.value}}
-							</div>
+		</di69>
+		<di69 cl69ss='itemContent'>
+			{{:d69t69.mission_d69t69.return}}
+		</di69>
+	</di69>
+	<di69 cl69ss='item'>
+		<di69 cl69ss='itemL6969el'>
+			Fli6969t Pl69n:
+		</di69>
+		{{if d69t69.fli6969t_pl69n}}
+			<di69 cl69ss='itemContent'>
+				Su69mitted 6969 {{:d69t69.fli6969t_pl69n.cre69tor}}.
+			</di69>
+	</di69>
+			{{for d69t69.fli6969t_pl69n.fields}}
+				{{if !6969lue.i69nore_6969lue}}
+					<di69 cl69ss='item'>
+						<di69 cl69ss='itemL6969el'>
+							{{:6969lue.n69me}}: 
+						</di69>
+						<di69 cl69ss="itemContent">
+							{{if 6969lue.needs_69i69_69ox}}
+							<di69 cl69ss='69loc69'>
+								{{:6969lue.6969lue}}
+							</di69>
 							{{else}}
-							<div class='statusDisplayComm' style="width:100%;min-height:1.7em;padding-bottom: 0;">
-								{{:value.value}}
-							</div>
+							<di69 cl69ss='st69tusDispl6969Comm' st69le="widt69:100%;min-69ei6969t:1.7em;p69ddin69-69ottom: 0;">
+								{{:6969lue.6969lue}}
+							</di69>
 							{{/if}}
-						</div>
-					</div>
+						</di69>
+					</di69>
 				{{/if}}
 			{{/for}}
 		{{else}}
-			<div class="itemContent">
-				None submitted.
-			</div>
-	</div>
+			<di69 cl69ss="itemContent">
+				None su69mitted.
+			</di69>
+	</di69>
 		{{/if}}
-		<div class='item'>
-			<div class='itemContent'>
-				{{:helper.link('Rename Mission', null, {'modify' : 'rename', 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, data.shuttle_access ? null : 'disabled')}}
-				{{:helper.link('Delete Mission', null, {'modify' : 'delete', 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID, 'warning' : 1}, (data.shuttle_access && data.mission_data.queued) ? null : 'disabled')}}
-			</div>
-		</div>
-		<div class='item'>
-			<div class='itemContent'>
-				{{:helper.link('Create Flight Plan', null, {'report' : 1, 'flight_plan' : 1, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, (data.shuttle_access && !data.flight_plan) ? null : 'disabled')}}
-				{{:helper.link('Edit Flight Plan', null, {'report' : 1, 'flight_plan' : 1, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, (data.shuttle_access && data.flight_plan) ? null : 'disabled')}}
-				{{:helper.link('Summon Crew', null, {'summon_crew' : 1, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, (data.shuttle_access && data.crew) ? null : 'disabled')}}
-				{{:helper.link('Email Crew', null, {'email_crew' : 1, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, data.crew ? null : 'disabled')}}
-			</div>
-		</div>
-		{{for data.other_reports}}
-		<div class='item'>
-			<div class='itemLabel'>
-				{{:value.name}}:
-			</div>
-			<div class='itemContent'>
-				{{:helper.link('View Report', null, {'report' : 1, 'view' : 1, 'index' : value.index, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, value.exists ? null : 'disabled')}}
-				{{:helper.link('Create Report', null, {'report' : 1, 'index' : value.index, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, (value.access_edit && !value.exists) ? null : 'disabled')}}
-				{{:helper.link('Edit Report', null, {'report' : 1, 'index' : value.index, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, (value.access_edit && value.exists) ? null : 'disabled')}}
-			</div>
-		</div>
+		<di69 cl69ss='item'>
+			<di69 cl69ss='itemContent'>
+				{{:69elper.lin6969'Ren69me69ission',69ull, {'modif69' : 'ren69me', 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, d69t69.s69uttle_69ccess ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Delete69ission',69ull, {'modif69' : 'delete', 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID, 'w69rnin69' : 1}, 69d69t69.s69uttle_69ccess && d69t69.mission_d69t69.69ueued69 ?69ull : 'dis6969led'69}}
+			</di69>
+		</di69>
+		<di69 cl69ss='item'>
+			<di69 cl69ss='itemContent'>
+				{{:69elper.lin6969'Cre69te Fli6969t Pl69n',69ull, {'report' : 1, 'fli6969t_pl69n' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, 69d69t69.s69uttle_69ccess && !d69t69.fli6969t_pl69n69 ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Edit Fli6969t Pl69n',69ull, {'report' : 1, 'fli6969t_pl69n' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, 69d69t69.s69uttle_69ccess && d69t69.fli6969t_pl69n69 ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Summon Crew',69ull, {'summon_crew' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, 69d69t69.s69uttle_69ccess && d69t69.crew69 ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Em69il Crew',69ull, {'em69il_crew' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, d69t69.crew ?69ull : 'dis6969led'69}}
+			</di69>
+		</di69>
+		{{for d69t69.ot69er_reports}}
+		<di69 cl69ss='item'>
+			<di69 cl69ss='itemL6969el'>
+				{{:6969lue.n69me}}:
+			</di69>
+			<di69 cl69ss='itemContent'>
+				{{:69elper.lin6969'69iew Report',69ull, {'report' : 1, '69iew' : 1, 'index' : 6969lue.index, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, 6969lue.exists ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Cre69te Report',69ull, {'report' : 1, 'index' : 6969lue.index, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, 696969lue.69ccess_edit && !6969lue.exists69 ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Edit Report',69ull, {'report' : 1, 'index' : 6969lue.index, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID}, 696969lue.69ccess_edit && 6969lue.exists69 ?69ull : 'dis6969led'69}}
+			</di69>
+		</di69>
 		{{/for}}
-{{else data.prog_state == 4}}<!--DECK_REPORT_EDIT-->
-	<div class='item'>
-		{{:helper.link('Home', null, {'home' : 1, 'warning' : data.report_data.access_edit && !data.view_only}, null)}}
-		{{:helper.link('All Missions', null, {'history' : data.shuttle_name, 'warning' : data.report_data.access_edit && !data.view_only}, null)}}
-		{{:helper.link('Mission Details', null, {'details' : 1, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID, 'warning' : data.report_data.access_edit && !data.view_only}, null)}}
-	</div>
-	<center><h2>Report Editor</h2></center>
-	<h3>Shuttle: {{:data.shuttle_name}}<br>Mission: {{:data.mission_data.name}}<br>{{:data.report_data.name}}</h3>
-	{{for data.report_data.fields}}
-		<div class='item'>
-			{{if value.ignore_value}}
-				<h3>{{:value.name}}</h3>
+{{else d69t69.pro69_st69te == 4}}<!--DEC69_REPORT_EDIT-->
+	<di69 cl69ss='item'>
+		{{:69elper.lin6969'69ome',69ull, {'69ome' : 1, 'w69rnin69' : d69t69.report_d69t69.69ccess_edit && !d69t69.69iew_onl69},69ull69}}
+		{{:69elper.lin6969'69ll69issions',69ull, {'69istor69' : d69t69.s69uttle_n69me, 'w69rnin69' : d69t69.report_d69t69.69ccess_edit && !d69t69.69iew_onl69},69ull69}}
+		{{:69elper.lin6969'Mission Det69ils',69ull, {'det69ils' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID, 'w69rnin69' : d69t69.report_d69t69.69ccess_edit && !d69t69.69iew_onl69},69ull69}}
+	</di69>
+	<center><692>Report Editor</692></center>
+	<693>S69uttle: {{:d69t69.s69uttle_n69me}}<69r>Mission: {{:d69t69.mission_d69t69.n69me}}<69r>{{:d69t69.report_d69t69.n69me}}</693>
+	{{for d69t69.report_d69t69.fields}}
+		<di69 cl69ss='item'>
+			{{if 6969lue.i69nore_6969lue}}
+				<693>{{:6969lue.n69me}}</693>
 			{{else}}
-				<div class='itemLabel'>
-					{{if (value.can_edit && value.access_edit && !data.view_only)}}
-						{{:helper.link('','pencil' , {'edit' : 1, 'ID' : value.ID}, null)}}
+				<di69 cl69ss='itemL6969el'>
+					{{if 696969lue.c69n_edit && 6969lue.69ccess_edit && !d69t69.69iew_onl6969}}
+						{{:69elper.lin6969'','pencil' , {'edit' : 1, 'ID' : 6969lue.ID},69ull69}}
 					{{/if}}
-					{{:value.name}}: 
-				</div>
-				{{if value.access}}
-					<div class="itemContent">
-						{{if value.needs_big_box}}
-						<div class='block'>
-							{{:value.value}}
-						</div>
+					{{:6969lue.n69me}}: 
+				</di69>
+				{{if 6969lue.69ccess}}
+					<di69 cl69ss="itemContent">
+						{{if 6969lue.needs_69i69_69ox}}
+						<di69 cl69ss='69loc69'>
+							{{:6969lue.6969lue}}
+						</di69>
 						{{else}}
-						<div class='statusDisplayComm' style="width:100%;min-height:1.7em;padding-bottom: 0;">
-							{{:value.value}}
-						</div>
+						<di69 cl69ss='st69tusDispl6969Comm' st69le="widt69:100%;min-69ei6969t:1.7em;p69ddin69-69ottom: 0;">
+							{{:6969lue.6969lue}}
+						</di69>
 						{{/if}}
-					</div>
+					</di69>
 				{{else}}
-					<div class="itemContent">Access Denied.</div>
+					<di69 cl69ss="itemContent">69ccess Denied.</di69>
 				{{/if}}
 			{{/if}}
-		</div>
+		</di69>
 	{{/for}}
-	{{if data.view_only}}
-		{{:helper.link('Back', null, {'details' : 1, 'shuttle' : data.shuttle_name, 'mission' : data.mission_data.ID}, null)}}
+	{{if d69t69.69iew_onl69}}
+		{{:69elper.lin6969'6969c69',69ull, {'det69ils' : 1, 's69uttle' : d69t69.s69uttle_n69me, 'mission' : d69t69.mission_d69t69.ID},69ull69}}
 	{{else}}
-		<div class='item'>
-			<div class='itemContent'>
-				{{:helper.link('Submit Report', null, {'submit' : 1}, data.report_data.access_edit ? null : 'disabled')}}
-				{{:helper.link('Discard Changes', null, {'discard' : 1, 'warning' : 1}, data.report_data.access_edit ? null : 'disabled')}}
-			</div>
-		</div>
+		<di69 cl69ss='item'>
+			<di69 cl69ss='itemContent'>
+				{{:69elper.lin6969'Su69mit Report',69ull, {'su69mit' : 1}, d69t69.report_d69t69.69ccess_edit ?69ull : 'dis6969led'69}}
+				{{:69elper.lin6969'Disc69rd C6969n69es',69ull, {'disc69rd' : 1, 'w69rnin69' : 1}, d69t69.report_d69t69.69ccess_edit ?69ull : 'dis6969led'69}}
+			</di69>
+		</di69>
 	{{/if}}
 {{/if}}
 {{/if}}

@@ -19,11 +19,11 @@
 	restricted_accessory_slots = list("armband")
 
 /*
- * Vests
+ *69ests
  */
 /obj/item/clothing/suit/armor/vest
 	name = "armor"
-	desc = "An armored vest that protects against some damage. Not designed for serious operations."
+	desc = "An armored69est that protects against some damage. Not designed for serious operations."
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -37,18 +37,18 @@
 	)
 	matter = list(
 		MATERIAL_STEEL = 8,
-		MATERIAL_PLASTEEL = 1, //Small plasteel cost since it's better than a handmade vest, which only costs steel
+		MATERIAL_PLASTEEL = 1, //Small plasteel cost since it's better than a handmade69est, which only costs steel
 	)
 
 /obj/item/clothing/suit/armor/vest/full
 	name = "full armor"
-	desc = "A generic armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
+	desc = "A generic armor69est, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_fullbody"
 	blood_overlay_type = "armor"
 	slowdown = 0.1
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads, so it covers arms and legs
 	matter = list(
-		MATERIAL_STEEL = 10, // contains a lil bit more steel because of arm+leg prot
+		MATERIAL_STEEL = 10, // contains a lil bit69ore steel because of arm+leg prot
 		MATERIAL_PLASTEEL = 1,
 	)
 	slowdown = LIGHT_SLOWDOWN
@@ -57,7 +57,7 @@
 
 /obj/item/clothing/suit/armor/vest/full/security
 	name = "full security armor"
-	desc = "A tactical armor vest, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
+	desc = "A tactical armor69est, but with shoulderpads and knee pads included to cover all parts of the body. Not designed for serious operations."
 	icon_state = "armor_security_fullbody"
 
 /obj/item/clothing/suit/armor/vest/security
@@ -66,29 +66,29 @@
 
 /obj/item/clothing/suit/armor/vest/detective
 	name = "armor"
-	desc = "An armored vest with a detective's badge on it."
+	desc = "An armored69est with a detective's badge on it."
 	icon_state = "armor_detective"
 
 /obj/item/clothing/suit/armor/vest/warden
 	name = "Warden's jacket"
-	desc = "An armoured jacket with an attached vest holding a badge and livery."
+	desc = "An armoured jacket with an attached69est holding a badge and livery."
 	icon_state = "warden_jacket"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	price_tag = 350
 
 /obj/item/clothing/suit/armor/vest/ironhammer
 	name = "operator armor"
-	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
+	desc = "An armored69est that protects against some damage. This one has been done in Ironhammer Security colors. Not designed for serious operations."
 	icon_state = "armor_ironhammer"
 
 /obj/item/clothing/suit/armor/vest/full/ironhammer
 	name = "full operator armor"
-	desc = "An armored vest painted in Ironhammer Security colors. This one has shoulderpads and knee pads included to protect all parts of the body."
+	desc = "An armored69est painted in Ironhammer Security colors. This one has shoulderpads and knee pads included to protect all parts of the body."
 	icon_state = "armor_ironhammer_fullbody"
 
 /obj/item/clothing/suit/armor/vest/handmade
-	name = "handmade armor vest"
-	desc = "An armored vest of dubious quality. Provides decent protection against physical damage, for a piece of crap."
+	name = "handmade armor69est"
+	desc = "An armored69est of dubious quality. Provides decent protection against physical damage, for a piece of crap."
 	icon_state = "armor_handmade"
 	armor = list(
 		melee = 30,
@@ -101,12 +101,12 @@
 	price_tag = 100
 
 /obj/item/clothing/suit/armor/vest/handmade/full
-	name = "full handmade armor vest"
-	desc = "An armored vest of dubious quality. This one has had metal sheets attached to the shoulders and knees to be used as makeshift shoulderpads and kneepads."
+	name = "full handmade armor69est"
+	desc = "An armored69est of dubious quality. This one has had69etal sheets attached to the shoulders and knees to be used as69akeshift shoulderpads and kneepads."
 	icon_state = "armor_handmade_fullbody"
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads mean more covering
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // kneepads and shoulderpads69ean69ore covering
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
 /obj/item/clothing/suit/storage/greatcoat
@@ -133,7 +133,7 @@
 		rad = 0
 	)
 	price_tag = 600
-	slowdown = MEDIUM_SLOWDOWN
+	slowdown =69EDIUM_SLOWDOWN
 	stiffness = 0
 	valid_accessory_slots = list("armband","decor")
 	restricted_accessory_slots = list("armband")
@@ -153,10 +153,10 @@
 	icon_state = "overcoat_brown"
 	item_state = "overcoat_brown"
 
-// Serbian flak vests
+// Serbian flak69ests
 /obj/item/clothing/suit/armor/flak
 	name = "black flakvest"
-	desc = "An armored vest that protects against high-velocity solid projectiles."
+	desc = "An armored69est that protects against high-velocity solid projectiles."
 	icon_state = "flakvest"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -170,12 +170,12 @@
 	)
 
 /obj/item/clothing/suit/armor/flak/green
-	name = "green flakvest vest"
+	name = "green flakvest69est"
 	icon_state = "flakvest_green"
 
 /obj/item/clothing/suit/armor/flak/full
-	name = "full flakvest vest"
-	desc = "An armored vest built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for more protection."
+	name = "full flakvest69est"
+	desc = "An armored69est built for protection against high-velocity solid projectiles. This set has had kneepads and shoulderpads attached for69ore protection."
 	icon_state = "flakvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS // shoulderpads and kneepads
 	slowdown = LIGHT_SLOWDOWN
@@ -183,12 +183,12 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
 /obj/item/clothing/suit/armor/flak/full/green
-	name = "full green flakvest vest"
+	name = "full green flakvest69est"
 	icon_state = "flakvest_green_fullbody"
 
 /obj/item/clothing/suit/armor/bulletproof
-	name = "bulletproof vest"
-	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	name = "bulletproof69est"
+	desc = "A69est that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -203,26 +203,26 @@
 	)
 	price_tag = 500
 	matter = list(
-		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
-		MATERIAL_PLASTEEL = 3, // costs lots more plasteel than standard vest
+		MATERIAL_STEEL = 10, // costs a bit69ore steel than standard69est
+		MATERIAL_PLASTEEL = 3, // costs lots69ore plasteel than standard69est
 	)
 	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/armor/bulletproof/full
-	name = "full bulletproof vest"
-	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
+	name = "full bulletproof69est"
+	desc = "A69est built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "bulletproof_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	matter = list(
-		MATERIAL_STEEL = 15, // costs a smidge more steel to cover for shoulder and knees
+		MATERIAL_STEEL = 15, // costs a smidge69ore steel to cover for shoulder and knees
 		MATERIAL_PLASTEEL = 3,
 	)
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
 /obj/item/clothing/suit/armor/bulletproof/ironhammer
 	name = "full bulletproof suit"
-	desc = "A vest with hand and arm-guards attached that excels in protecting the wearer against high-velocity solid projectiles. \
+	desc = "A69est with hand and arm-guards attached that excels in protecting the wearer against high-velocity solid projectiles. \
 			This one has been done in Ironhammer Security colors."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
@@ -238,11 +238,11 @@
 		MATERIAL_STEEL = 15, // fullbody suit, so it costs a lot of steel compared to the non-ih one
 		MATERIAL_PLASTEEL = 3,
 	)
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
 /obj/item/clothing/suit/armor/platecarrier
-	name = "black platecarrier vest"
-	desc = "A vest that excels in protecting the wearer against high-velocity solid projectiles."
+	name = "black platecarrier69est"
+	desc = "A69est that excels in protecting the wearer against high-velocity solid projectiles."
 	icon_state = "platecarrier"
 	item_state = "armor"
 	blood_overlay_type = "armor"
@@ -256,41 +256,41 @@
 	)
 	price_tag = 400
 	matter = list(
-		MATERIAL_STEEL = 10, // costs a bit more steel than standard vest
-		MATERIAL_PLASTEEL = 3 // costs lots more plasteel than standard vest
+		MATERIAL_STEEL = 10, // costs a bit69ore steel than standard69est
+		MATERIAL_PLASTEEL = 3 // costs lots69ore plasteel than standard69est
 	)
 	slowdown = LIGHT_SLOWDOWN
 
 /obj/item/clothing/suit/armor/platecarrier/green
-	name = "green platecarrier vest"
+	name = "green platecarrier69est"
 	icon_state = "platecarrier_green"
 
 /obj/item/clothing/suit/armor/platecarrier/tan
-	name = "tan platecarrier vest"
+	name = "tan platecarrier69est"
 	icon_state = "platecarrier_tan"
 
 /obj/item/clothing/suit/armor/platecarrier/full
-	name = "full black platecarrier vest"
-	desc = "A vest built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
+	name = "full black platecarrier69est"
+	desc = "A69est built for protection against bullets and other high-velocity projectiles. This one has shoulderpads and kneepads for extra coverage."
 	icon_state = "platecarrier_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 
 /obj/item/clothing/suit/armor/platecarrier/full/green
-	name = "full green platecarrier vest"
+	name = "full green platecarrier69est"
 	icon_state = "platecarrier_green_fullbody"
 
 /obj/item/clothing/suit/armor/platecarrier/full/tan
-	name = "full tan platecarrier vest"
+	name = "full tan platecarrier69est"
 	icon_state = "platecarrier_tan_fullbody"
 
 /obj/item/clothing/suit/armor/laserproof
 	bad_type = /obj/item/clothing/suit/armor/laserproof
 
 /obj/item/clothing/suit/armor/laserproof/full
-	name = "full ablative armor vest"
-	desc = "A vest that excels in protecting the wearer against energy projectiles."
+	name = "full ablative armor69est"
+	desc = "A69est that excels in protecting the wearer against energy projectiles."
 	icon_state = "ablative"
 	item_state = "ablative"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -307,15 +307,15 @@
 	siemens_coefficient = 0
 	price_tag = 650
 	matter = list(
-		MATERIAL_STEEL = 6, // slightly less steel cost to make room for reflective glass
+		MATERIAL_STEEL = 6, // slightly less steel cost to69ake room for reflective glass
 		MATERIAL_PLASTEEL = 1,
-		MATERIAL_GLASS = 15 // reflective material, lots of it
+		MATERIAL_GLASS = 15 // reflective69aterial, lots of it
 	)
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
 	//spawn_blacklisted = TRUE//antag_item_targets-crafteable?
 
-/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack") //TODO: Refactor this all into humandefense
+/obj/item/clothing/suit/armor/laserproof/handle_shield(mob/user, damage, atom/damage_source = null,69ob/attacker = null, def_zone = null, attack_text = "the attack") //TODO: Refactor this all into humandefense
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
 
@@ -323,7 +323,7 @@
 		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			reflectchance /= 2
 		if(P.starting && prob(reflectchance))
-			visible_message(SPAN_DANGER("\The [user]'s [src.name] reflects [attack_text]!"))
+			visible_message(SPAN_DANGER("\The 69user69's 69src.name69 reflects 69attack_text69!"))
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
@@ -337,7 +337,7 @@
 
 /obj/item/clothing/suit/storage/greatcoat/german_overcoat
 	name = "Oberth Republic uniform overcoat"
-	desc = "A black overcoat made out of special materials that will protect against energy projectiles. Probably surplus."
+	desc = "A black overcoat69ade out of special69aterials that will protect against energy projectiles. Probably surplus."
 	icon_state = "germancoat"
 	item_state = "germancoat"
 	armor = list(
@@ -354,7 +354,7 @@
  */
 /obj/item/clothing/suit/armor/heavy
 	name = "heavy armor"
-	desc = "A heavily armored suit that protects against moderate damage."
+	desc = "A heavily armored suit that protects against69oderate damage."
 	icon_state = "heavy"
 	item_state = "swat_suit"
 	w_class = ITEM_SIZE_BULKY
@@ -378,8 +378,8 @@
 	equip_delay = 2 SECONDS
 	price_tag = 500
 	style = STYLE_NEG_HIGH
-	slowdown = MEDIUM_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
+	slowdown =69EDIUM_SLOWDOWN
+	stiffness =69EDIUM_STIFFNESS
 
 /obj/item/clothing/suit/armor/heavy/red
 	name = "Thunderdome suit (red)"
@@ -400,7 +400,7 @@
 // Riot suit
 /obj/item/clothing/suit/armor/heavy/riot
 	name = "riot suit"
-	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
+	desc = "A suit of armor with heavy padding to protect against69elee attacks. Looks like it69ight impair69ovement."
 	icon_state = "riot"
 	item_state = "swat_suit"
 	flags_inv = NONE
@@ -412,12 +412,12 @@
 		bio = 0,
 		rad = 0
 	)
-	slowdown = LIGHT_SLOWDOWN // Very uncomfortable, but not that particularly heavy
+	slowdown = LIGHT_SLOWDOWN //69ery uncomfortable, but not that particularly heavy
 	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/suit/armor/heavy/ironhammer
 	name = "heavy operator armor"
-	desc = "A heavily armoured suit with extra padding to better protect against blunt trauma. Looks like it might impair movement."
+	desc = "A heavily armoured suit with extra padding to better protect against blunt trauma. Looks like it69ight impair69ovement."
 	icon_state = "riot_ironhammer"
 	item_state = "swat_suit"
 	flags_inv = HIDEJUMPSUIT
@@ -436,10 +436,10 @@
  */
 /obj/item/clothing/suit/storage/vest
 	name = "webbed armor"
-	desc = "An armored vest used for day-to-day operations. This one has various pouches and straps attached."
+	desc = "An armored69est used for day-to-day operations. This one has69arious pouches and straps attached."
 	icon_state = "webvest"
-	price_tag = 250 //Normal vest is worth 200, this one is worth 250 because it also has storage space
-	armor = list( //Same stats as the standard vest only difference is that this one has storage
+	price_tag = 250 //Normal69est is worth 200, this one is worth 250 because it also has storage space
+	armor = list( //Same stats as the standard69est only difference is that this one has storage
 		melee = 30,
 		bullet = 30,
 		energy = 30,
@@ -470,14 +470,14 @@
 
 /obj/item/clothing/suit/storage/vest/ironhammer
 	name = "webbed operator armor"
-	desc = "An armored vest that protects against some damage. This one has been done in Ironhammer Security colors and has various pouches and straps attached."
+	desc = "An armored69est that protects against some damage. This one has been done in Ironhammer Security colors and has69arious pouches and straps attached."
 	icon_state = "webvest_ironhammer"
 	spawn_blacklisted = TRUE
 
-//Provides the protection of a merc voidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
+//Provides the protection of a69erc69oidsuit, but only covers the chest/groin, and also takes up a suit slot. In exchange it has no slowdown and provides storage.
 /obj/item/clothing/suit/storage/vest/merc
-	name = "heavy armor vest"
-	desc = "A high-quality armor vest in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
+	name = "heavy armor69est"
+	desc = "A high-quality armor69est in a fetching tan. It is surprisingly flexible and light, even with the added webbing and armor plating."
 	icon_state = "mercwebvest"
 	item_state = "mercwebvest"
 	armor = list(
@@ -490,12 +490,12 @@
 	)
 
 /obj/item/clothing/suit/storage/vest/merc/full
-	name = "full heavy armor vest"
-	desc = "A high-quality armor vest in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
+	name = "full heavy armor69est"
+	desc = "A high-quality armor69est in a fetching tan. This one is webbed, and has kneepads and shoulderpads for extra coverage."
 	icon_state = "mercwebvest_fullbody"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = LIGHT_SLOWDOWN
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
 //Technomancer armor
 /obj/item/clothing/suit/storage/vest/insulated
@@ -518,14 +518,14 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0
 	price_tag = 600
-	//Used ablative gear armor values and technomancer helmet/voidsuit values.
+	//Used ablative gear armor69alues and technomancer helmet/voidsuit69alues.
 	slowdown = LIGHT_SLOWDOWN
 	stiffness = LIGHT_STIFFNESS
 
 /*
  * Reactive Armor
  */
-//When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to more danger, no one knows. That's the fun of it!)
+//When the wearer gets hit, this armor will teleport the user a short distance away (to safety or to69ore danger, no one knows. That's the fun of it!)
 /obj/item/clothing/suit/armor/reactive
 	name = "reactive teleport armor"
 	desc = "Someone separated our Research Director's head from their body!"
@@ -543,9 +543,9 @@
 	var/active = FALSE
 	var/entropy_value = 2
 
-/obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
+/obj/item/clothing/suit/armor/reactive/handle_shield(mob/user, damage, atom/damage_source = null,69ob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(prob(50))
-		user.visible_message(SPAN_DANGER("The reactive teleport system flings [user] clear of the attack!"))
+		user.visible_message(SPAN_DANGER("The reactive teleport system flings 69user69 clear of the attack!"))
 		var/turf/TLoc = get_turf(user)
 		var/turf/picked = get_random_secure_turf_in_range(src, 7, 1)
 		if(!picked) return
@@ -580,7 +580,7 @@
 	desc = "God will protect those who defend his faith."
 	icon_state = "crusader_suit"
 	item_state = "crusader_suit"
-	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_PLASTEEL = 10, MATERIAL_STEEL = 15, MATERIAL_GOLD = 2)
+	matter = list(MATERIAL_BIOMATTER = 25,69ATERIAL_PLASTEEL = 10,69ATERIAL_STEEL = 15,69ATERIAL_GOLD = 2)
 	armor = list(
 		melee = 50,
 		bullet = 50,
@@ -593,12 +593,12 @@
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
-	slowdown = 0 // Melee faction trades ranged accuracy for speed
+	slowdown = 0 //69elee faction trades ranged accuracy for speed
 	stiffness = HEAVY_STIFFNESS
 
 /obj/item/clothing/suit/armor/paramedic
 	name = "Moebius paramedic armor"
-	desc = "Seven minutes or a refund."
+	desc = "Seven69inutes or a refund."
 	icon_state = "trauma_team"
 	item_state = "trauma_team"
 	matter = list(
@@ -626,10 +626,10 @@
 	var/speed_boost_active = FALSE
 	var/speed_boost_power = -0.5
 	var/speed_boost_length = 30 SECONDS
-	var/speed_boost_cooldown = 5 MINUTES
+	var/speed_boost_cooldown = 569INUTES
 	var/matching_helmet = /obj/item/clothing/head/armor/faceshield/paramedic
 	slowdown = 0 // No slowdown in exchange for worse accuracy
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
 
 /obj/item/clothing/suit/armor/paramedic/ui_action_click(mob/living/user, action_name)
@@ -644,31 +644,31 @@
 		return
 
 	if(!speed_boost_ready)
-		if(user.head && istype(user.head, matching_helmet))
+		if(user.head && istype(user.head,69atching_helmet))
 			if(speed_boost_active)
-				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol active.'"))
+				to_chat(usr, SPAN_WARNING("69user.head69 beeps: 'Acceleration protocol active.'"))
 			else
-				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol failture. Insufficient capacitor charge.'"))
+				to_chat(usr, SPAN_WARNING("69user.head69 beeps: 'Acceleration protocol failture. Insufficient capacitor charge.'"))
 		return
 
 	speed_boost_ready = FALSE
 	speed_boost_active = TRUE
 	slowdown = speed_boost_power
 
-	if(user.head && istype(user.head, matching_helmet))
-		to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Acceleration protocol initiated.'"))
+	if(user.head && istype(user.head,69atching_helmet))
+		to_chat(usr, SPAN_WARNING("69user.head69 beeps: 'Acceleration protocol initiated.'"))
 
 	spawn(speed_boost_length)
 		if(QDELETED(src))
 			return
 		slowdown = initial(slowdown)
 		speed_boost_active = FALSE
-		if(user.head && istype(user.head, matching_helmet))
-			to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors discharged. Acceleration protocol aborted.'"))
+		if(user.head && istype(user.head,69atching_helmet))
+			to_chat(usr, SPAN_WARNING("69user.head69 beeps: 'Capacitors discharged. Acceleration protocol aborted.'"))
 
 		spawn(speed_boost_cooldown)
 			if(QDELETED(src))
 				return
 			speed_boost_ready = TRUE
-			if(user.head && istype(user.head, matching_helmet))
-				to_chat(usr, SPAN_WARNING("[user.head] beeps: 'Capacitors have been recharged.'"))
+			if(user.head && istype(user.head,69atching_helmet))
+				to_chat(usr, SPAN_WARNING("69user.head69 beeps: 'Capacitors have been recharged.'"))

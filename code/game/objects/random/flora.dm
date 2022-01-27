@@ -2,9 +2,9 @@
 	name = "random flora"
 	icon_state = "nature-purple"
 	alpha = 128
-	tags_to_spawn = list(SPAWN_FLORA)
+	ta69s_to_spawn = list(SPAWN_FLORA)
 
 /obj/spawner/flora/low_chance
 	name = "low chance random flora"
 	icon_state = "nature-purple-low"
-	spawn_nothing_percentage = 83
+	spawn_nothin69_percenta69e = 83

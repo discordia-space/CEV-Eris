@@ -3,7 +3,7 @@
 	hierarchy_type = /decl/hierarchy/outfit/job/cargo
 
 /decl/hierarchy/outfit/job/cargo/merchant
-	name = OUTFIT_JOB_NAME("Guild Merchant")
+	name = OUTFIT_JOB_NAME("Guild69erchant")
 	uniform = /obj/item/clothing/under/rank/cargotech
 	shoes = /obj/item/clothing/shoes/color/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -21,7 +21,7 @@
 	pda_type = /obj/item/modular_computer/pda/cargo
 
 /decl/hierarchy/outfit/job/cargo/mining
-	name = OUTFIT_JOB_NAME("Guild Miner")
+	name = OUTFIT_JOB_NAME("Guild69iner")
 	uniform = /obj/item/clothing/under/rank/miner
 	pda_type = /obj/item/modular_computer/pda/moebius/science
 	belt = /obj/item/storage/belt/utility
@@ -33,7 +33,7 @@
 	BACKPACK_OVERRIDE_ENGINEERING
 
 /decl/hierarchy/outfit/job/cargo/mining/void
-	name = OUTFIT_JOB_NAME("Guild Miner - Voidsuit")
+	name = OUTFIT_JOB_NAME("Guild69iner -69oidsuit")
 	mask = /obj/item/clothing/mask/breath
 	suit = /obj/item/clothing/suit/space/void/mining
 
@@ -58,8 +58,8 @@
 
 /decl/hierarchy/outfit/job/cargo/artist/clown/New()
 	..()
-	backpack_overrides[/decl/backpack_outfit/backpack] = /obj/item/storage/backpack/clown
-	backpack_overrides[/decl/backpack_outfit/satchel] = /obj/item/storage/backpack/satchel/leather
+	backpack_overrides69/decl/backpack_outfit/backpack69 = /obj/item/storage/backpack/clown
+	backpack_overrides69/decl/backpack_outfit/satchel69 = /obj/item/storage/backpack/satchel/leather
 
 
 /decl/hierarchy/outfit/job/cargo/artist/clown/post_equip(var/mob/living/carbon/human/H)

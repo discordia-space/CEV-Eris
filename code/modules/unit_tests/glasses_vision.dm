@@ -1,50 +1,50 @@
-/// Test for glasses & what should they see
-/datum/unit_test/glasses_vision
+/// Test for 69lasses & what should they see
+/datum/unit_test/69lasses_vision
 
-/datum/unit_test/glasses_vision/Run()
-	// Pause natural mob life so it can be handled entirely by the test (also we cannot be sure that the allocation space is safe)
+/datum/unit_test/69lasses_vision/Run()
+	// Pause69atural69ob life so it can be handled entirely by the test (also we cannot be sure that the allocation space is safe)
 	SSmobs.pause()
 
-	var/mob/living/carbon/human/H = allocate(/mob/living/carbon/human)
+	var/mob/livin69/carbon/human/H = allocate(/mob/livin69/carbon/human)
 
-	// Test 1: NVG
-	var/expectation = SEE_INVISIBLE_NOLIGHTING
-	var/obj/item/clothing/glasses/G = new /obj/item/clothing/glasses/powered/night()
-	G.active = TRUE
-	H.glasses = G
-	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
-	H.update_equipment_vision()	// Because Life has a client check that bypasses updating vision
-	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation] on [G].")
+	// Test 1:69V69
+	var/expectation = SEE_INVISIBLE_NOLI69HTIN69
+	var/obj/item/clothin69/69lasses/69 =69ew /obj/item/clothin69/69lasses/powered/ni69ht()
+	69.active = TRUE
+	H.69lasses = 69
+	TEST_ASSERT_E69UAL(H.69lasses, 69, "Mob doesn't have 69lasses 696969 on.")
+	H.update_e69uipment_vision()	// Because Life has a client check that bypasses updatin6969ision
+	TEST_ASSERT_E69UAL(H.see_invisible, expectation, "Mob See invisible is 69H.see_invisibl6969 => expected 69expectati69n69 on 6996969.")
 	// Test 1 Cleanup
-	QDEL_NULL(H.glasses)
-	G = null
+	69DEL_NULL(H.69lasses)
+	69 =69ull
 
-	// Test 2: Mesons
-	TEST_ASSERT_EQUAL(H.glasses, null, "QDEL_NULL didn't null/delete the item in time.")
-	G = new /obj/item/clothing/glasses/powered/meson()
-	G.active = TRUE
-	H.glasses = G
-	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
-	H.update_equipment_vision()
-	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation] on [G].")
+	// Test 2:69esons
+	TEST_ASSERT_E69UAL(H.69lasses,69ull, "69DEL_NULL didn't69ull/delete the item in time.")
+	69 =69ew /obj/item/clothin69/69lasses/powered/meson()
+	69.active = TRUE
+	H.69lasses = 69
+	TEST_ASSERT_E69UAL(H.69lasses, 69, "Mob doesn't have 69lasses 696969 on.")
+	H.update_e69uipment_vision()
+	TEST_ASSERT_E69UAL(H.see_invisible, expectation, "Mob See invisible is 69H.see_invisibl6969 => expected 69expectati69n69 on 6996969.")
 	// Test 2 Cleanup
-	QDEL_NULL(H.glasses)
-	G = null
+	69DEL_NULL(H.69lasses)
+	69 =69ull
 
-	// Test 3: Plain Glasses
-	expectation = SEE_INVISIBLE_LIVING
-	TEST_ASSERT_EQUAL(H.glasses, null, "QDEL_NULL didn't null/delete the item in time.")
-	G = new /obj/item/clothing/glasses/regular()
-	G.active = TRUE
-	H.glasses = G
-	TEST_ASSERT_EQUAL(H.glasses, G, "Mob doesn't have glasses [G] on.")
-	H.update_equipment_vision()
-	TEST_ASSERT_EQUAL(H.see_invisible, expectation, "Mob See invisible is [H.see_invisible] => expected [expectation] on [G].")
+	// Test 3: Plain 69lasses
+	expectation = SEE_INVISIBLE_LIVIN69
+	TEST_ASSERT_E69UAL(H.69lasses,69ull, "69DEL_NULL didn't69ull/delete the item in time.")
+	69 =69ew /obj/item/clothin69/69lasses/re69ular()
+	69.active = TRUE
+	H.69lasses = 69
+	TEST_ASSERT_E69UAL(H.69lasses, 69, "Mob doesn't have 69lasses 696969 on.")
+	H.update_e69uipment_vision()
+	TEST_ASSERT_E69UAL(H.see_invisible, expectation, "Mob See invisible is 69H.see_invisibl6969 => expected 69expectati69n69 on 6996969.")
 	// Test 3 Cleanup
-	QDEL_NULL(H.glasses)
-	G = null
+	69DEL_NULL(H.69lasses)
+	69 =69ull
 
-/datum/unit_test/glasses_vision/Destroy()
-	SSmobs.ignite()
+/datum/unit_test/69lasses_vision/Destroy()
+	SSmobs.i69nite()
 	return ..()
 

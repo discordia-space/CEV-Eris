@@ -1,6 +1,6 @@
 /obj/effect/overmap/sector/exoplanet/desert
 	planet_type = "desert"
-	desc = "An arid exoplanet with sparse biological resources but rich mineral deposits underground."
+	desc = "An arid exoplanet with sparse biological resources but rich69ineral deposits underground."
 	//color = "#d6cca4"
 	planetary_area = /area/exoplanet/desert
 	rock_colors = list(COLOR_BEIGE, COLOR_PALE_YELLOW, COLOR_GRAY80, COLOR_BROWN)
@@ -8,7 +8,7 @@
 	planet_colors = list(PIPE_COLOR_YELLOW, COLOR_AMBER)
 	map_generators = list(/datum/random_map/noise/exoplanet/desert, /datum/random_map/noise/ore/rich)
 	surface_color = "#d6cca4"
-	water_color = null
+	water_color =69ull
 
 
 /obj/effect/overmap/sector/exoplanet/desert/generate_atmosphere()
@@ -18,7 +18,7 @@
 		if(habitability_class <= HABITABILITY_OKAY)
 			var/datum/species/human/H = /datum/species/human
 			limit = initial(H.heat_level_1) - rand(1,10)
-		atmosphere.temperature = min(T20C + rand(20, 100), limit)
+		atmosphere.temperature =69in(T20C + rand(20, 100), limit)
 		atmosphere.update_values()
 
 /obj/effect/overmap/sector/exoplanet/desert/adapt_seed(var/datum/seed/S)
@@ -45,13 +45,13 @@
 	//fauna_types = list(/mob/living/simple_animal/thinbug, /mob/living/simple_animal/tindalos, /mob/living/simple_animal/hostile/voxslug, /mob/living/simple_animal/hostile/antlion)
 	//megafauna_types = list(/mob/living/simple_animal/hostile/antlion/mega)
 
-/datum/random_map/noise/exoplanet/desert/get_additional_spawns(var/value, var/turf/T)
+/datum/random_map/noise/exoplanet/desert/get_additional_spawns(var/value,69ar/turf/T)
 	..()
 	if(is_edge_turf(T))
 		return
-	var/v = noise2value(value)
+	var/v =69oise2value(value)
 	if(v > 6)
-		T.icon_state = "desert[v-1]"
+		T.icon_state = "desert69v-169"
 		if(prob(10))
 			new/obj/structure/quicksand(T)
 
@@ -65,7 +65,7 @@
 	footstep_type = /decl/footsteps/sand
 
 /turf/simulated/floor/exoplanet/desert/New()
-	icon_state = "desert[rand(0,4)]"
+	icon_state = "desert69rand(0,4)69"
 	..()
 
 /turf/simulated/floor/exoplanet/desert/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -86,26 +86,26 @@
 	var/busy
 
 /obj/structure/quicksand/New()
-	icon_state = "intact[rand(0,2)]"
+	icon_state = "intact69rand(0,2)69"
 	..()
 
 /obj/structure/quicksand/user_unbuckle_mob(mob/user)
 	if(buckled_mob && !user.stat && !user.restrained())
 		if(busy)
-			to_chat(user, "<span class='wanoticerning'>[buckled_mob] is already getting out, be patient.</span>")
+			to_chat(user, "<span class='wanoticerning'>69buckled_mob69 is already getting out, be patient.</span>")
 			return
 		var/delay = 60
 		if(user == buckled_mob)
 			delay *=2
 			user.visible_message(
-				"<span class='notice'>\The [user] tries to climb out of \the [src].</span>",
-				"<span class='notice'>You begin to pull yourself out of \the [src].</span>",
+				"<span class='notice'>\The 69user69 tries to climb out of \the 69src69.</span>",
+				"<span class='notice'>You begin to pull yourself out of \the 69src69.</span>",
 				"<span class='notice'>You hear water sloushing.</span>"
 				)
 		else
 			user.visible_message(
-				"<span class='notice'>\The [user] begins pulling \the [buckled_mob] out of \the [src].</span>",
-				"<span class='notice'>You begin to pull \the [buckled_mob] out of \the [src].</span>",
+				"<span class='notice'>\The 69user69 begins pulling \the 69buckled_mob69 out of \the 69src69.</span>",
+				"<span class='notice'>You begin to pull \the 69buckled_mob69 out of \the 69src69.</span>",
 				"<span class='notice'>You hear water sloushing.</span>"
 				)
 		busy = 1
@@ -115,9 +115,9 @@
 				if(prob(80))
 					to_chat(user, "<span class='warning'>You slip and fail to get out!</span>")
 					return
-				user.visible_message("<span class='notice'>\The [buckled_mob] pulls himself out of \the [src].</span>")
+				user.visible_message("<span class='notice'>\The 69buckled_mob69 pulls himself out of \the 69src69.</span>")
 			else
-				user.visible_message("<span class='notice'>\The [buckled_mob] has been freed from \the [src] by \the [user].</span>")
+				user.visible_message("<span class='notice'>\The 69buckled_mob69 has been freed from \the 69src69 by \the 69user69.</span>")
 			unbuckle_mob()
 		else
 			busy = 0
@@ -148,11 +148,11 @@
 		return
 	visible_message("<span class='warning'>The upper crust breaks, exposing treacherous quicksands underneath!</span>")
 	name = "quicksand"
-	desc = "There is no candy at the bottom."
+	desc = "There is69o candy at the bottom."
 	exposed = 1
 	update_icon()
 
-/obj/structure/quicksand/attackby(obj/item/W, mob/user)
+/obj/structure/quicksand/attackby(obj/item/W,69ob/user)
 	if(!exposed && W.force)
 		expose()
 	else
@@ -166,4 +166,4 @@
 		buckle_mob(L)
 		if(!exposed)
 			expose()
-		to_chat(L, SPAN_DANGER("You fall into \the [src]!"))
+		to_chat(L, SPAN_DANGER("You fall into \the 69src69!"))

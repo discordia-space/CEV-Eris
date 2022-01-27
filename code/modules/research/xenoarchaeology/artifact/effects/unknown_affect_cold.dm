@@ -1,5 +1,5 @@
 
-//inverse of /datum/artifact_effect/heat, the two effects split up for neatness' sake
+//inverse of /datum/artifact_effect/heat, the two effects split up for69eatness' sake
 /datum/artifact_effect/cold
 	effecttype = "cold"
 	var/target_temp
@@ -15,7 +15,7 @@
 		to_chat(user, "\blue A chill passes up your spine!")
 		var/datum/gas_mixture/env = holder.loc.return_air()
 		if(env)
-			env.temperature = max(env.temperature - rand(5,50), 0)
+			env.temperature =69ax(env.temperature - rand(5,50), 0)
 
 /datum/artifact_effect/cold/DoEffectAura()
 	if(holder)

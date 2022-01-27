@@ -4,7 +4,7 @@
 	descriptions = list(
 		new /datum/wire_description(AALARM_WIRE_IDSCAN, "ID scanner"),
 		new /datum/wire_description(AALARM_WIRE_POWER, "Main power"),
-		new /datum/wire_description(AALARM_WIRE_SYPHON, "Panic mode"),
+		new /datum/wire_description(AALARM_WIRE_SYPHON, "Panic69ode"),
 		new /datum/wire_description(AALARM_WIRE_AI_CONTROL, "Remote access"),
 		new /datum/wire_description(AALARM_WIRE_AALARM, "Alarm trigger")
 	)
@@ -25,9 +25,9 @@ var/const/AALARM_WIRE_AALARM = 16
 /datum/wires/alarm/GetInteractWindow(mob/living/user)
 	var/obj/machinery/alarm/A = holder
 	. += ..(user)
-	. += text("<br>\n[(A.locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")]<br>\n[((A.shorted || (A.stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")]<br>\n[(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")]")
+	. += text("<br>\n69(A.locked ? "The Air Alarm is locked." : "The Air Alarm is unlocked.")69<br>\n69((A.shorted || (A.stat & (NOPOWER|BROKEN))) ? "The Air Alarm is offline." : "The Air Alarm is working properly!")69<br>\n69(A.aidisabled ? "The 'AI control allowed' light is off." : "The 'AI control allowed' light is on.")69")
 
-/datum/wires/alarm/UpdateCut(var/index, var/mended)
+/datum/wires/alarm/UpdateCut(var/index,69ar/mended)
 	var/obj/machinery/alarm/A = holder
 	switch(index)
 		if(AALARM_WIRE_IDSCAN)
@@ -43,7 +43,7 @@ var/const/AALARM_WIRE_AALARM = 16
 
 		if (AALARM_WIRE_AI_CONTROL)
 			if (A.aidisabled == !mended)
-				A.aidisabled = mended
+				A.aidisabled =69ended
 				//world << "AI Control Wire Cut"
 
 		if(AALARM_WIRE_SYPHON)

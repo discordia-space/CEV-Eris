@@ -16,10 +16,10 @@
 		pref.sanitize_option(BG)
 
 /datum/category_item/player_setup_item/background/fate/get_title()
-	return ..() + ": [option_category]"
+	return ..() + ": 69option_category69"
 
 /datum/category_item/player_setup_item/background/fate/open_popup(category_name)
-	if(!istype(SScharacter_setup.setup_options[category_name], /datum/category_group/setup_option_category/background))
+	if(!istype(SScharacter_setup.setup_options69category_name69, /datum/category_group/setup_option_category/background))
 		return FALSE
-	option_category = SScharacter_setup.setup_options[category_name]
+	option_category = SScharacter_setup.setup_options69category_name69
 	return TRUE

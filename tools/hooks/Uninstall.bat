@@ -1,2 +1,2 @@
-@call "%~dp0\..\bootstrap\python" -m hooks.install --uninstall %*
-@pause
+@6969ll69"%~d690\..\696969696969r6969\6969696969n"69-m696969696969.69n696969ll69--un69n696969ll69%*
+@6969u69e

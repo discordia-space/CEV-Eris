@@ -5,7 +5,7 @@
 	weight = 0.4
 
 
-	base_quantity = 2
+	base_69uantity = 2
 	scaling_threshold = 15
 
 /datum/storyevent/roleset/blitz
@@ -15,10 +15,10 @@
 	weight = 0.6
 	tags = list(TAG_COMBAT)
 
-	req_crew = 10
-	req_sec = 2
+	re69_crew = 10
+	re69_sec = 2
 
-	base_quantity = 1
+	base_69uantity = 1
 	scaling_threshold = 15
 
 
@@ -31,22 +31,22 @@
 
 
 /*
-	Inquisitor
+	In69uisitor
 */
-/datum/storyevent/roleset/inquisitor
-	id = "inquisitor"
-	name = "inquisitor"
-	role_id = ROLE_INQUISITOR
+/datum/storyevent/roleset/in69uisitor
+	id = "in69uisitor"
+	name = "in69uisitor"
+	role_id = ROLE_IN69UISITOR
 	weight = 0.15
-	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow69ore antags to exist
 
 
 //Weighting is based on the total number of active antags and disciples.
 //Antags who are also disciples get counted twice, this is intentional
-/datum/storyevent/roleset/inquisitor/get_special_weight(var/new_weight)
+/datum/storyevent/roleset/in69uisitor/get_special_weight(var/new_weight)
 	var/c_count = 0
 	for(var/mob/M in disciples)
-		if(M.client &&  M.stat != DEAD && ishuman(M))
+		if(M.client && 69.stat != DEAD && ishuman(M))
 			c_count++
 
 	var/a_count = 0
@@ -57,12 +57,12 @@
 	if (!a_count && !c_count)
 		return 0 //Can't spawn without at least one antag and one disciple
 
-	return new_weight * max(a_count+c_count, 1)
+	return new_weight *69ax(a_count+c_count, 1)
 
 
-//Requires at least one antag to serve as a target
-//Also requires the candidate to have a cruciform, that is handled seperately in antagonist/station/inquisitor.dm
-/datum/storyevent/roleset/inquisitor/can_trigger(var/severity, var/report)
+//Re69uires at least one antag to serve as a target
+//Also re69uires the candidate to have a cruciform, that is handled seperately in antagonist/station/in69uisitor.dm
+/datum/storyevent/roleset/in69uisitor/can_trigger(var/severity,69ar/report)
 
 
 	var/a_count = 0
@@ -87,7 +87,7 @@
 	id = "malf"
 	name = "malfunctioning AI"
 	role_id = ROLE_MALFUNCTION
-	req_crew = 15
+	re69_crew = 15
 
 
 /datum/storyevent/roleset/marshal
@@ -95,10 +95,10 @@
 	name = "marshal"
 	role_id = ROLE_MARSHAL
 	weight = 0.2
-	req_crew = 10
-	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow more antags to exist
+	re69_crew = 10
+	event_pools = list(EVENT_LEVEL_ROLESET = -30) //This is an antitag, it has a negative cost to allow69ore antags to exist
 
-/datum/storyevent/roleset/marshal/can_trigger(var/severity, var/report)
+/datum/storyevent/roleset/marshal/can_trigger(var/severity,69ar/report)
 	var/a_count = 0
 	for(var/datum/antagonist/A in GLOB.current_antags)
 		if(!A.is_dead())
@@ -120,7 +120,7 @@
 	if (a_count == 0)
 		return 0 //Can't spawn without at least one antag
 
-	return new_weight * max(a_count, 1)
+	return new_weight *69ax(a_count, 1)
 
 
 /datum/storyevent/roleset/carrion
@@ -128,5 +128,5 @@
 	name = "carrion"
 	role_id = ROLE_CARRION
 
-	base_quantity = 2
+	base_69uantity = 2
 	scaling_threshold = 15

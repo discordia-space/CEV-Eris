@@ -12,14 +12,14 @@
 		<b>Life:</b> Five days.<BR>
 		<b>Important Notes:</b> <font color='red'>Illegal</font><BR>
 		<HR>
-		<b>Implant Details:</b> Subjects injected with implant can activate a massive injection of adrenalin.<BR>
-		<b>Function:</b> Contains nanobots to stimulate body to mass-produce Adrenalin.<BR>
-		<b>Special Features:</b> Will prevent and cure most forms of brainwashing.<BR>
+		<b>Implant Details:</b> Subjects injected with implant can activate a69assive injection of adrenalin.<BR>
+		<b>Function:</b> Contains nanobots to stimulate body to69ass-produce Adrenalin.<BR>
+		<b>Special Features:</b> Will prevent and cure69ost forms of brainwashing.<BR>
 		<b>Integrity:</b> Implant can only be used three times before the nanobots are depleted."}
 	return data
 
 
-/obj/item/implant/adrenalin/trigger(emote, mob/living/source)
+/obj/item/implant/adrenalin/trigger(emote,69ob/living/source)
 	if (uses < 1)
 		return
 	if (emote == "pale")

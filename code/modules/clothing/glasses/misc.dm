@@ -24,18 +24,18 @@
 
 /obj/item/clothing/glasses/regular/scanners
 	name = "Scanning Goggles"
-	desc = "A very oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
+	desc = "A69ery oddly shaped pair of goggles with bits of wire poking out the sides. A soft humming sound emanates from it."
 	icon_state = "uzenwa_sissra_1"
 
 /obj/item/clothing/glasses/regular/goggles
 	name = "Green Goggles"
-	desc = "A very oddly shaped pair of green goggles with bits of wire poking out the sides. This is the future!"
+	desc = "A69ery oddly shaped pair of green goggles with bits of wire poking out the sides. This is the future!"
 	icon_state = "green_goggles"
 	item_state = "green_goggles"
 
 /obj/item/clothing/glasses/regular/goggles/black
 	name = "Black Goggles"
-	desc = "A very oddly shaped pair of black goggles with bits of wire poking out the sides. This is the future!"
+	desc = "A69ery oddly shaped pair of black goggles with bits of wire poking out the sides. This is the future!"
 	icon_state = "black_goggles"
 	item_state = "black_goggles"
 
@@ -46,7 +46,7 @@
 	item_state = "hipster_glasses"
 
 /obj/item/clothing/glasses/threedglasses
-	desc = "A long time ago, people used these glasses to makes images from screens threedimensional."
+	desc = "A long time ago, people used these glasses to69akes images from screens threedimensional."
 	name = "3D glasses"
 	icon_state = "3d"
 	item_state = "3d"
@@ -60,7 +60,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/glasses/sunglasses
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks69any flashes."
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
@@ -88,7 +88,7 @@
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/big
-	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
+	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks69any flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 

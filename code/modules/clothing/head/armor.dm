@@ -39,18 +39,18 @@
 	)
 
 /obj/item/clothing/head/armor/helmet/visor
-	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed visor to protect the eyes."
+	desc = "Standard Security gear. Protects the head from impacts. Has a permanently affixed69isor to protect the eyes."
 	icon_state = "helmet_visor"
 	body_parts_covered = HEAD | EARS | EYES
 	matter = list(
 		MATERIAL_STEEL = 5,
 		MATERIAL_PLASTEEL = 1,
-		MATERIAL_GLASS = 2 // costs some glass cause of the visor and the included eye protection
+		MATERIAL_GLASS = 2 // costs some glass cause of the69isor and the included eye protection
 	)
 
 /obj/item/clothing/head/armor/helmet/merchelm
 	name = "Heavy Armour Helmet"
-	desc = "A high-quality helmet in a fetching tan. Very durable"
+	desc = "A high-quality helmet in a fetching tan.69ery durable"
 	icon_state = "merchelm"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
@@ -68,14 +68,14 @@
 
 /obj/item/clothing/head/armor/helmet/dermal
 	name = "Dermal Armour Patch"
-	desc = "You're not quite sure how you manage to take it on and off, but it implants nicely in your head."
+	desc = "You're not quite sure how you69anage to take it on and off, but it implants nicely in your head."
 	icon_state = "dermal"
 	body_parts_covered = HEAD
 	flags_inv = NONE
 
 /obj/item/clothing/head/armor/helmet/ironhammer
 	name = "operator helmet"
-	desc = "Ironhammer Security gear. Protects the head from impacts, and the lack of a visor ensures an unhindered aim."
+	desc = "Ironhammer Security gear. Protects the head from impacts, and the lack of a69isor ensures an unhindered aim."
 	icon_state = "helmet_ironhammer"
 	flags_inv = BLOCKHEADHAIR|HIDEEARS
 
@@ -95,7 +95,7 @@
 		bomb = 20,
 		bio = 0,
 		rad = 30
-	)//Mix between hardhat.dm armor values, helmet armor values in armor.dm, and armor values for TM void helmet in station.dm.
+	)//Mix between hardhat.dm armor69alues, helmet armor69alues in armor.dm, and armor69alues for TM69oid helmet in station.dm.
 	flash_protection = FLASH_PROTECTION_MAJOR
 	price_tag = 500
 	style_coverage = COVERS_WHOLE_HEAD
@@ -106,7 +106,7 @@
 
 /obj/item/clothing/head/armor/helmet/technomancer_old
 	name = "reinforced technomancer helmet"
-	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight. The welder-proof visor hinders aim."
+	desc = "Technomancer League's ballistic helmet. Comes with a built-in flashlight. The welder-proof69isor hinders aim."
 	icon_state = "technohelmet_old"
 	body_parts_covered = HEAD|EARS|EYES|FACE
 	item_flags = THICKMATERIAL
@@ -122,12 +122,12 @@
 		rad = 0
 	)
 	flash_protection = FLASH_PROTECTION_MAJOR
-	obscuration = MEDIUM_OBSCURATION
+	obscuration =69EDIUM_OBSCURATION
 	price_tag = 500
 
 /obj/item/clothing/head/armor/helmet/handmade
 	name = "handmade combat helmet"
-	desc = "It looks like it was made from a bucket and some steel. Uncomfortable and heavy but better than nothing."
+	desc = "It looks like it was69ade from a bucket and some steel. Uncomfortable and heavy but better than nothing."
 	icon_state = "helmet_handmade"
 	armor = list(
 		melee = 35,
@@ -149,7 +149,7 @@
 
 /obj/item/clothing/head/armor/bulletproof
 	name = "bulletproof helmet"
-	desc = "A bulletproof helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent."
+	desc = "A bulletproof helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a69inor extent."
 	icon_state = "bulletproof"
 	body_parts_covered = HEAD | EARS | EYES | FACE
 	armor = list(
@@ -166,19 +166,19 @@
 	matter = list(
 		MATERIAL_STEEL = 8,
 		MATERIAL_PLASTEEL = 2, //Higher plasteel cost since it's booletproof
-		MATERIAL_GLASS = 3 //For the visor parts
+		MATERIAL_GLASS = 3 //For the69isor parts
 	)
 	obscuration = LIGHT_OBSCURATION
 	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg //currently junk-only
 	name = "tactical ballistic helmet"
-	desc = "A bulletproof security helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent. \
+	desc = "A bulletproof security helmet that excels in protecting the wearer against traditional projectile weaponry and explosives to a69inor extent. \
 			Comes with inbuilt nightvision HUD."
 	icon_state = "bulletproof_ironhammer"
 	body_parts_covered = HEAD | EARS
 	flags_inv = NONE
-	action_button_name = "Toggle Night Vision"
+	action_button_name = "Toggle Night69ision"
 	var/obj/item/clothing/glasses/powered/bullet_proof_ironhammer/hud
 	var/last_toggle = 0
 	var/toggle_delay = 2 SECONDS
@@ -196,7 +196,7 @@
 
 
 /obj/item/clothing/head/armor/bulletproof/ironhammer_nvg/verb/toggle()
-	set name = "Toggle Night Vision HUD"
+	set name = "Toggle Night69ision HUD"
 	set desc = "Allows you to see in the dark."
 	set category = "Object"
 	var/mob/user = loc
@@ -206,7 +206,7 @@
 		return
 	if(hud in src)
 		if(user.equip_to_slot_if_possible(hud, slot_glasses) && world.time > last_toggle)
-			to_chat(user, "You flip down [src] night vision goggles with a high-pitched whine.")
+			to_chat(user, "You flip down 69src69 night69ision goggles with a high-pitched whine.")
 			last_toggle = world.time + toggle_delay
 			hud.toggle(user, TRUE)
 			update_icon()
@@ -218,7 +218,7 @@
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
 			hud.toggle(user, TRUE)
-			to_chat(user, "You flip up [src] night vision goggles, turning them off.")
+			to_chat(user, "You flip up 69src69 night69ision goggles, turning them off.")
 			hud.forceMove(src)
 		else
 			to_chat(user, "You can't pull off the goggles so fast!")
@@ -231,7 +231,7 @@
 		if(ismob(hud.loc))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			to_chat(hud_loc, "[hud] automaticly retract in [src].")
+			to_chat(hud_loc, "69hud69 automaticly retract in 69src69.")
 		hud.forceMove(src)
 		update_icon()
 
@@ -284,18 +284,18 @@
 	matter = list(
 		MATERIAL_STEEL = 4, // slightly less steel cost
 		MATERIAL_PLASTEEL = 1,
-		MATERIAL_GLASS = 10 // glass is reflective yo, make it cost a lot of it - also, visor
+		MATERIAL_GLASS = 10 // glass is reflective yo,69ake it cost a lot of it - also,69isor
 	)
 	style_coverage = COVERS_WHOLE_HEAD
 
 // toggleable face guard
 /obj/item/clothing/head/armor/faceshield
-	//We cant just use the armor var to store the original since initial(armor) will return a null pointer
+	//We cant just use the armor69ar to store the original since initial(armor) will return a null pointer
 	var/list/armor_up = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	var/list/armor_down = list(melee = 0, bullet = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 	var/tint_down = TINT_LOW
-	var/obscuration_down = MEDIUM_OBSCURATION
+	var/obscuration_down =69EDIUM_OBSCURATION
 	flags_inv = HIDEEARS
 	var/flags_inv_down = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
@@ -316,7 +316,7 @@
 	item_flags = THICKMATERIAL | COVER_PREVENT_MANIPULATION
 	price_tag = 150
 	matter = list(
-		MATERIAL_STEEL = 6, // more covered by helmet
+		MATERIAL_STEEL = 6, //69ore covered by helmet
 		MATERIAL_PLASTEEL = 2,
 		MATERIAL_GLASS = 6,
 	)
@@ -329,9 +329,9 @@
 	toggle()
 
 /obj/item/clothing/head/armor/faceshield/update_icon()
-	icon_state = up ? "[initial(icon_state)]_up" : initial(icon_state)
+	icon_state = up ? "69initial(icon_state)69_up" : initial(icon_state)
 
-//I wanted to name it set_up() but some how I thought that would be misleading
+//I wanted to name it set_up() but some how I thought that would be69isleading
 /obj/item/clothing/head/armor/faceshield/proc/set_is_up(is_up)
 	up = is_up
 	if(up)
@@ -352,7 +352,7 @@
 		style_coverage = COVERS_WHOLE_HEAD
 
 	update_icon()
-	update_wear_icon()	//update our mob overlays
+	update_wear_icon()	//update our69ob overlays
 
 /obj/item/clothing/head/armor/faceshield/verb/toggle()
 	set category = "Object"
@@ -363,9 +363,9 @@
 		src.set_is_up(!src.up)
 
 		if(src.up)
-			to_chat(usr, "You push the [src] up out of your face.")
+			to_chat(usr, "You push the 69src69 up out of your face.")
 		else
-			to_chat(usr, "You flip the [src] down to protect your face.")
+			to_chat(usr, "You flip the 69src69 down to protect your face.")
 
 		usr.update_action_buttons()
 
@@ -419,13 +419,13 @@
 		return
 	if(hud in src)
 		if(user.equip_to_slot_if_possible(hud, slot_glasses))
-			to_chat(user, "You enable security hud on [src].")
+			to_chat(user, "You enable security hud on 69src69.")
 			update_icon()
 	else
 		if(ismob(hud.loc))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			to_chat(user, "You disable security hud on [src].")
+			to_chat(user, "You disable security hud on 69src69.")
 		hud.forceMove(src)
 		update_icon()
 	usr.update_action_buttons()
@@ -436,7 +436,7 @@
 		if(ismob(hud.loc))
 			var/mob/hud_loc = hud.loc
 			hud_loc.drop_from_inventory(hud, src)
-			to_chat(hud_loc, "[hud] automaticly retract in [src].")
+			to_chat(hud_loc, "69hud69 automaticly retract in 69src69.")
 		hud.forceMove(src)
 		update_icon()
 
@@ -456,7 +456,7 @@
 	name = "steelpot helmet"
 	desc = "A titanium helmet of serbian origin. Still widely used despite being discontinued."
 	icon_state = "steelpot"
-	armor = list(melee = 40, bullet = 35, energy = 0, bomb = 30, bio = 0, rad = 0) // slightly buffed IHS helmet minus energy resistance
+	armor = list(melee = 40, bullet = 35, energy = 0, bomb = 30, bio = 0, rad = 0) // slightly buffed IHS helmet69inus energy resistance
 	flags_inv = BLOCKHEADHAIR
 	body_parts_covered = HEAD|EARS
 	siemens_coefficient = 1
@@ -478,21 +478,21 @@
 
 /obj/item/clothing/head/armor/faceshield/altyn/maska
 	name = "maska helmet"
-	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I must kill.\""
+	desc = "\"I do not know who I am, I don\'t know why I\'m here. All I know is that I69ust kill.\""
 	icon_state = "maska"
 	armor_down = list(melee = 55, bullet = 55, energy = 0, bomb = 45, bio = 0, rad = 0) // best what you can get, unless you face lasers
 
 /obj/item/clothing/head/armor/faceshield/altyn/maska/tripoloski
-	name = "striped maska helmet"
-	desc = "Someone has painted a Maska in the Gopnik style."
+	name = "striped69aska helmet"
+	desc = "Someone has painted a69aska in the Gopnik style."
 	icon_state = "altyn_tripoloski"
 
 /obj/item/clothing/head/armor/helmet/visor/cyberpunkgoggle
 	name = "\improper Type-34C Semi-Enclosed Headwear"
-	desc = "Civilian model of a popular helmet used by certain law enforcement agencies. It does not have any armor plating, but has a neo-laminated fabric lining."
+	desc = "Civilian69odel of a popular helmet used by certain law enforcement agencies. It does not have any armor plating, but has a neo-laminated fabric lining."
 	icon_state = "cyberpunkgoggle"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
-	siemens_coefficient = 0.9	//More conductive than most helmets
+	siemens_coefficient = 0.9	//More conductive than69ost helmets
 	armor = list(
 		melee = 5,
 		bullet = 20,
@@ -521,7 +521,7 @@
 	icon_state = "crusader_hemet"
 	item_state = "crusader_hemet"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
-	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 5, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_BIOMATTER = 15,69ATERIAL_PLASTEEL = 5,69ATERIAL_STEEL = 5,69ATERIAL_GOLD = 1)
 	armor = list(
 		melee = 70,
 		bullet = 50,
@@ -532,7 +532,7 @@
 	)
 	unacidable = TRUE
 	spawn_blacklisted = TRUE
-	obscuration = MEDIUM_OBSCURATION // May God guide your aim
+	obscuration =69EDIUM_OBSCURATION //69ay God guide your aim
 	style_coverage = COVERS_WHOLE_HEAD
 
 /obj/item/clothing/head/armor/helmet/tanker
@@ -565,7 +565,7 @@
 
 /obj/item/clothing/head/armor/faceshield/paramedic
 	name = "Moebius paramedic helmet"
-	desc = "Seven minutes or a refund."
+	desc = "Seven69inutes or a refund."
 	icon_state = "trauma_team"
 	item_state = "trauma_team"
 	flags_inv = HIDEEARS|BLOCKHAIR
@@ -648,13 +648,13 @@
 
 	if(crewmembers.len)
 		for(var/i = 1, i <= crewmembers.len, i++)
-			var/list/entry = crewmembers[i]
-			if(entry["alert"] && !entry["muted"])
-				if(entry["name"] in crewmembers_recently_reported)
+			var/list/entry = crewmembers69i69
+			if(entry69"alert"69 && !entry69"muted"69)
+				if(entry69"name"69 in crewmembers_recently_reported)
 					continue
-				crewmembers_recently_reported += entry["name"]
-				schedule_memory_cleanup(entry["name"])
-				to_chat(user, SPAN_WARNING("[src] beeps: '[entry["name"]]'s on-suit sensors broadcast an emergency signal. Access monitoring software for details.'"))
+				crewmembers_recently_reported += entry69"name"69
+				schedule_memory_cleanup(entry69"name"69)
+				to_chat(user, SPAN_WARNING("69src69 beeps: '69entry69"name"6969's on-suit sensors broadcast an emergency signal. Access69onitoring software for details.'"))
 
 	schedule_scan()
 
@@ -669,10 +669,10 @@
 	set src in usr
 
 	if(speaker_enabled)
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications disabled.'"))
+		to_chat(usr, SPAN_WARNING("69src69 beeps: 'Notifications disabled.'"))
 		speaker_enabled = FALSE
 	else
-		to_chat(usr, SPAN_WARNING("[src] beeps: 'Notifications enabled.'"))
+		to_chat(usr, SPAN_WARNING("69src69 beeps: 'Notifications enabled.'"))
 		speaker_enabled = TRUE
 		report_health_alerts()
 		schedule_scan()

@@ -1,5 +1,5 @@
 // Disposal pipe construction
-// This is the pipe that you drag around, not the attached ones.
+// This is the pipe that you drag around,69ot the attached ones.
 
 /obj/structure/disposalconstruct
 
@@ -48,7 +48,7 @@
 		if(PIPE_TYPE_TRUNK)
 			base_state = "pipe-t"
 			pipe_dir = dir
-		 // disposal bin has only one dir, thus we don't need to care about setting it
+		 // disposal bin has only one dir, thus we don't69eed to care about setting it
 		if(PIPE_TYPE_BIN)
 			if(anchored)
 				base_state = "disposal"
@@ -88,7 +88,7 @@
 ///// Z-Level stuff
 	if(!(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE, PIPE_TYPE_UP, PIPE_TYPE_DOWN, PIPE_TYPE_TAGGER, PIPE_TYPE_TAGGER_PART)))
 ///// Z-Level stuff
-		icon_state = "con[base_state]"
+		icon_state = "con69base_state69"
 	else
 		icon_state = base_state
 
@@ -99,23 +99,23 @@
 			//otherwise burying half-finished pipes under floors causes them to half-fade
 
 	// hide called by levelupdate if turf intact status changes
-	// change visibility status and force update of icon
+	// change69isibility status and force update of icon
 /obj/structure/disposalconstruct/hide(var/intact)
 	invisibility = (intact && level == BELOW_PLATING_LEVEL) ? 101 : 0	// hide if floor is intact
 	update()
 
 
-	// flip and rotate verbs
+	// flip and rotate69erbs
 /obj/structure/disposalconstruct/verb/rotate()
 	set category = "Object"
-	set name = "Rotate Pipe"
-	set src in view(1)
+	set69ame = "Rotate Pipe"
+	set src in69iew(1)
 
 	if(usr.stat)
 		return
 
 	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before rotating it.")
+		to_chat(usr, "You69ust unfasten the pipe before rotating it.")
 		return
 
 	set_dir(turn(dir, -90))
@@ -123,13 +123,13 @@
 
 /obj/structure/disposalconstruct/verb/flip()
 	set category = "Object"
-	set name = "Flip Pipe"
-	set src in view(1)
+	set69ame = "Flip Pipe"
+	set src in69iew(1)
 	if(usr.stat)
 		return
 
 	if(anchored)
-		to_chat(usr, "You must unfasten the pipe before flipping it.")
+		to_chat(usr, "You69ust unfasten the pipe before flipping it.")
 		return
 
 	set_dir(turn(dir, 180))
@@ -194,7 +194,7 @@
 	// wrench: (un)anchor
 	// weldingtool: convert to real pipe
 
-/obj/structure/disposalconstruct/attackby(var/obj/item/I, var/mob/user)
+/obj/structure/disposalconstruct/attackby(var/obj/item/I,69ar/mob/user)
 	var/nice_type = "pipe"
 	var/is_pipe = FALSE // Indicates if we should change the level of this pipe
 	src.add_fingerprint(user)
@@ -226,26 +226,26 @@
 
 	var/turf/T = src.loc
 	if(!T.is_plating())
-		to_chat(user, "You can only attach the [nice_type] if the floor plating is removed.")
+		to_chat(user, "You can only attach the 69nice_type69 if the floor plating is removed.")
 		return
 
 	var/obj/structure/disposalpipe/CP = locate() in T
 
-	var/list/usable_qualities = list(QUALITY_BOLT_TURNING)
+	var/list/usable_69ualities = list(69UALITY_BOLT_TURNING)
 	if(anchored)
-		usable_qualities.Add(QUALITY_WELDING)
+		usable_69ualities.Add(69UALITY_WELDING)
 
-	var/tool_type = I.get_tool_type(user, usable_qualities, src)
+	var/tool_type = I.get_tool_type(user, usable_69ualities, src)
 	switch(tool_type)
 
-		if(QUALITY_BOLT_TURNING)
+		if(69UALITY_BOLT_TURNING)
 			if(pipe_type in list(PIPE_TYPE_BIN, PIPE_TYPE_OUTLET, PIPE_TYPE_INTAKE))
 				if(CP) // There's something there
 					if(!istype(CP,/obj/structure/disposalpipe/trunk))
-						to_chat(user, "The [nice_type] requires a trunk underneath it in order to work.")
+						to_chat(user, "The 69nice_type69 re69uires a trunk underneath it in order to work.")
 						return
-				else // Nothing under, fuck.
-					to_chat(user, "The [nice_type] requires a trunk underneath it in order to work.")
+				else //69othing under, fuck.
+					to_chat(user, "The 69nice_type69 re69uires a trunk underneath it in order to work.")
 					return
 
 			if(CP)
@@ -254,10 +254,10 @@
 				if(istype(CP, /obj/structure/disposalpipe/broken))
 					pdir = CP.dir
 				if(pdir & pipe_dir)
-					to_chat(user, "There is already a [nice_type] at that location.")
+					to_chat(user, "There is already a 69nice_type69 at that location.")
 					return
 
-			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
+			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
 				if(anchored)
 					anchored = FALSE
 					if(is_pipe)
@@ -265,7 +265,7 @@
 						density = FALSE
 					else
 						density = TRUE
-					to_chat(user, "You detach the [nice_type] from the underfloor.")
+					to_chat(user, "You detach the 69nice_type69 from the underfloor.")
 					return
 				else
 					anchored = TRUE
@@ -274,18 +274,18 @@
 						density = FALSE
 					else
 						density = TRUE // We don't want disposal bins or outlets to go density 0
-					to_chat(user, "You attach the [nice_type] to the underfloor.")
+					to_chat(user, "You attach the 69nice_type69 to the underfloor.")
 					return
 			return
 
-		if(QUALITY_WELDING)
+		if(69UALITY_WELDING)
 			if(anchored)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-					to_chat(user, "The [nice_type] has been welded in place!")
-					update() // TODO: Make this neat
+					to_chat(user, "The 69nice_type69 has been welded in place!")
+					update() // TODO:69ake this69eat
 					if(is_pipe) // Pipe
 						var/pipetype = dpipetype()
-						var/obj/structure/disposalpipe/P = new pipetype(src.loc)
+						var/obj/structure/disposalpipe/P =69ew pipetype(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.base_icon_state = base_state
 						P.set_dir(dir)
@@ -301,13 +301,13 @@
 							SortP.updatename()
 
 					else if(pipe_type == PIPE_TYPE_BIN) // Disposal bin
-						var/obj/machinery/disposal/P = new /obj/machinery/disposal(src.loc)
+						var/obj/machinery/disposal/P =69ew /obj/machinery/disposal(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.mode = 0 // start with pump off
 
 					else if(pipe_type == PIPE_TYPE_OUTLET) // Disposal outlet
 
-						var/obj/structure/disposaloutlet/P = new /obj/structure/disposaloutlet(src.loc)
+						var/obj/structure/disposaloutlet/P =69ew /obj/structure/disposaloutlet(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.set_dir(dir)
 						var/obj/structure/disposalpipe/trunk/Trunk = CP
@@ -315,11 +315,11 @@
 
 					else if(pipe_type == PIPE_TYPE_INTAKE) // Disposal outlet
 
-						var/obj/machinery/disposal/deliveryChute/P = new /obj/machinery/disposal/deliveryChute(src.loc)
+						var/obj/machinery/disposal/deliveryChute/P =69ew /obj/machinery/disposal/deliveryChute(src.loc)
 						src.transfer_fingerprints_to(P)
 						P.set_dir(dir)
 
-					qdel(src)
+					69del(src)
 					return
 			return
 

@@ -4,7 +4,7 @@
 /datum/objective/brig/find_target()
 	..()
 	if(target && target.current)
-		explanation_text = "Have [target.current.real_name], the [target.assigned_role] brigged for 10 minutes."
+		explanation_text = "Have 69target.current.real_name69, the 69target.assigned_role69 brigged for 1069inutes."
 	else
 		explanation_text = "Free Objective"
 	return target
@@ -19,7 +19,7 @@
 	if(target && target.current)
 		if(target.current.stat == DEAD)
 			return FALSE
-		// Make the actual required time a bit shorter than the official time
+		//69ake the actual required time a bit shorter than the official time
 		if(target.is_brigged(10 * 60 * 5))
 			already_completed = TRUE
 			return TRUE

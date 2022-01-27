@@ -42,6 +42,6 @@ var/global/list/holodeck_programs = list(
 	var/target
 	var/list/ambience = null
 
-/datum/holodeck_program/New(var/target, var/list/ambience = null)
+/datum/holodeck_program/New(var/target,69ar/list/ambience = null)
 	src.target = target
 	src.ambience = ambience

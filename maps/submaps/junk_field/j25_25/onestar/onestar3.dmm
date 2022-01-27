@@ -1,366 +1,366 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
 /turf/template_noop,
-/area/template_noop)
-"ab" = (
-/obj/structure/lattice,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"ac" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"ad" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"ae" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"af" = (
-/obj/spawner/junk,
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"ag" = (
+/area/template_noop69
+"ac" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"ad" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"ae" = 69
+/o6969/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"af" = 69
+/o6969/spawner/69un69,
+/mo69/livin69/simple_animal/hostile/room69a/slayer,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"a69" = 69
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/template_noop)
-"ah" = (
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/template_noop)
-"ai" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aj" = (
-/obj/structure/sign/derelict3,
+/area/template_noop69
+"ah" = 69
+/turf/simulated/floor/tiled/derelict/white_69i69_ed69es/airless,
+/area/template_noop69
+"ai" = 69
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/si69n/derelict3,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/template_noop)
-"ak" = (
-/obj/machinery/door/airlock/sandstone{
-	name = "OneStar Airlock"
+/area/template_noop69
+"a69" = 69
+/o6969/machinery/door/airloc69/sandstone{
+	name = "OneStar Airloc69"
 	},
 /turf/simulated/floor/tiled/derelict/airless,
-/area/template_noop)
-"al" = (
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"an" = (
-/obj/structure/closet/onestar,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"ao" = (
-/obj/structure/bed/chair/custom/onestar,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"ap" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_big_edges/airless,
-/area/template_noop)
-"aq" = (
-/obj/structure/sign/derelict1,
+/area/template_noop69
+"al" = 69
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"an" = 69
+/o6969/structure/closet/onestar,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"ao" = 69
+/o6969/structure/69ed/chair/custom/onestar,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"ap" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/derelict/white_69i69_ed69es/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/si69n/derelict1,
 /turf/simulated/wall/untinted/onestar,
-/area/template_noop)
-"as" = (
-/obj/structure/sign/derelict2,
+/area/template_noop69
+"as" = 69
+/o6969/structure/si69n/derelict2,
 /turf/simulated/wall/untinted/onestar,
-/area/template_noop)
-"au" = (
-/obj/effect/window_lwall_spawn/smartspawn/onestar,
-/turf/simulated/floor/tiled/dark/brown_perforated/airless,
-/area/template_noop)
-"av" = (
-/obj/structure/closet/onestar/tier2/mineral,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aw" = (
-/obj/item/remains,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"ax" = (
-/obj/structure/salvageable/os/computer,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"ay" = (
-/obj/structure/salvageable/os/console_broken,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"az" = (
-/obj/structure/salvageable/os/console,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aA" = (
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	locked = 1
+/area/template_noop69
+"au" = 69
+/o6969/effect/window_lwall_spawn/smartspawn/onestar,
+/turf/simulated/floor/tiled/dar69/69rown_perforated/airless,
+/area/template_noop69
+"av" = 69
+/o6969/structure/closet/onestar/tier2/mineral,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"aw" = 69
+/o6969/item/remains,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"ax" = 69
+/o6969/structure/salva69ea69le/os/computer,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"ay" = 69
+/o6969/structure/salva69ea69le/os/console_69ro69en,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"az" = 69
+/o6969/structure/salva69ea69le/os/console,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"aA" = 69
+/o6969/machinery/door/airloc69/external{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"aB" = (
-/obj/structure/bed/chair/custom/onestar/red{
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/69ed/chair/custom/onestar/red{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aC" = (
-/obj/structure/closet/onestar/tier1/mineral/empty,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aD" = (
-/obj/effect/floor_decal/industrial/loading,
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	locked = 1
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"aC" = 69
+/o6969/structure/closet/onestar/tier1/mineral/empty,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"aD" = 69
+/o6969/effect/floor_decal/industrial/loadin69,
+/o6969/machinery/door/airloc69/external{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"aE" = (
-/obj/effect/floor_decal/industrial/loading{
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"aE" = 69
+/o6969/effect/floor_decal/industrial/loadin69{
 	dir = 1
 	},
-/obj/machinery/door/airlock/external{
-	icon_state = "door_locked";
-	locked = 1
+/o6969/machinery/door/airloc69/external{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"aF" = (
-/obj/structure/salvageable/os/machine,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aG" = (
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"aF" = 69
+/o6969/structure/salva69ea69le/os/machine,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"a69" = 69
 /turf/simulated/wall/untinted/onestar,
-/area/template_noop)
-"aH" = (
-/obj/structure/salvageable/os/data,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aI" = (
-/obj/structure/catwalk,
-/obj/structure/ore_box,
+/area/template_noop69
+"aH" = 69
+/o6969/structure/salva69ea69le/os/data,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"aI" = 69
+/o6969/structure/catwal69,
+/o6969/structure/ore_69ox,
 /turf/template_noop,
-/area/template_noop)
-"aJ" = (
-/obj/structure/catwalk,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/catwal69,
 /turf/template_noop,
-/area/template_noop)
-"aK" = (
-/obj/structure/lattice,
-/obj/item/storage/bag/ore,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/lattice,
+/o6969/item/stora69e/69a69/ore,
 /turf/template_noop,
-/area/template_noop)
-"aL" = (
+/area/template_noop69
+"aL" = 69
 /turf/simulated/mineral,
-/area/template_noop)
-"aM" = (
-/obj/structure/railing{
+/area/template_noop69
+"aM" = 69
+/o6969/structure/railin69{
 	dir = 1
 	},
 /turf/template_noop,
-/area/template_noop)
-"aN" = (
-/obj/structure/railing{
+/area/template_noop69
+"aN" = 69
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 4
 	},
 /turf/template_noop,
-/area/template_noop)
-"aO" = (
-/obj/structure/railing{
+/area/template_noop69
+"aO" = 69
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/structure/inflatable/wall,
+/o6969/structure/inflata69le/wall,
 /turf/template_noop,
-/area/template_noop)
-"aP" = (
-/obj/structure/railing{
+/area/template_noop69
+"aP" = 69
+/o6969/structure/railin69{
 	dir = 1
 	},
-/obj/structure/inflatable/wall,
+/o6969/structure/inflata69le/wall,
 /turf/template_noop,
-/area/template_noop)
-"aQ" = (
-/obj/structure/inflatable/wall,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/inflata69le/wall,
 /turf/template_noop,
-/area/template_noop)
-"aR" = (
-/obj/structure/salvageable/os/server,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"aS" = (
-/obj/structure/railing{
+/area/template_noop69
+"aR" = 69
+/o6969/structure/salva69ea69le/os/server,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"aS" = 69
+/o6969/structure/railin69{
 	dir = 4
 	},
-/obj/structure/inflatable/wall,
+/o6969/structure/inflata69le/wall,
 /turf/template_noop,
-/area/template_noop)
-"aT" = (
-/obj/structure/catwalk,
-/obj/structure/inflatable/door,
+/area/template_noop69
+"aT" = 69
+/o6969/structure/catwal69,
+/o6969/structure/inflata69le/door,
 /turf/template_noop,
-/area/template_noop)
-"aU" = (
-/obj/structure/railing{
+/area/template_noop69
+"aU" = 69
+/o6969/structure/railin69{
 	dir = 8
 	},
-/obj/structure/inflatable/wall,
+/o6969/structure/inflata69le/wall,
 /turf/template_noop,
-/area/template_noop)
-"aV" = (
+/area/template_noop69
+"aV" = 69
 /turf/simulated/mineral/random,
-/area/template_noop)
-"aW" = (
-/obj/structure/inflatable/door,
+/area/template_noop69
+"aW" = 69
+/o6969/structure/inflata69le/door,
 /turf/template_noop,
-/area/template_noop)
-"aX" = (
-/obj/structure/sign/directions/medical{
+/area/template_noop69
+"aX" = 69
+/o6969/structure/si69n/directions/medical{
 	dir = 1;
 	icon_state = "direction_med"
 	},
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/template_noop)
-"aY" = (
-/obj/structure/sign/directions/evac{
+/area/template_noop69
+"aY" = 69
+/o6969/structure/si69n/directions/evac{
 	dir = 8;
 	icon_state = "direction_evac"
 	},
-/obj/structure/sign/directions/engineering{
+/o6969/structure/si69n/directions/en69ineerin69{
 	dir = 8;
-	icon_state = "direction_eng";
+	icon_state = "direction_en69";
 	pixel_y = 10
 	},
 /turf/simulated/wall/untinted/onestar,
-/area/template_noop)
-"aZ" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"ba" = (
-/obj/spawner/structures/os,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"bb" = (
-/obj/item/gun/projectile/handmade_pistol,
-/obj/item/ammo_casing/pistol/scrap,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"bc" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"bd" = (
-/obj/machinery/door/airlock/centcom{
-	icon_state = "door_locked";
-	locked = 1
+/area/template_noop69
+"aZ" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"69a" = 69
+/o6969/spawner/structures/os,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/item/69un/pro69ectile/handmade_pistol,
+/o6969/item/ammo_casin69/pistol/scrap,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"69c" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"69d" = 69
+/o6969/machinery/door/airloc69/centcom{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges/airless,
-/area/template_noop)
-"be" = (
-/obj/machinery/door/airlock/centcom{
-	icon_state = "door_locked";
-	locked = 1
+/turf/simulated/floor/tiled/derelict/white_small_ed69es/airless,
+/area/template_noop69
+"69e" = 69
+/o6969/machinery/door/airloc69/centcom{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"bf" = (
-/obj/item/remains,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"bg" = (
-/obj/machinery/door/airlock/centcom{
-	icon_state = "door_locked";
-	locked = 1
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"69f" = 69
+/o6969/item/remains,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/machinery/door/airloc69/centcom{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"bh" = (
-/obj/spawner/structures/os,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"bi" = (
-/obj/item/storage/bag/ore,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"bj" = (
-/obj/structure/catwalk,
-/obj/item/storage/bag/ore,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"69h" = 69
+/o6969/spawner/structures/os,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"69i" = 69
+/o6969/item/stora69e/69a69/ore,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/catwal69,
+/o6969/item/stora69e/69a69/ore,
 /turf/template_noop,
-/area/template_noop)
-"bk" = (
-/obj/structure/inflatable/door,
-/obj/structure/catwalk,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/inflata69le/door,
+/o6969/structure/catwal69,
 /turf/template_noop,
-/area/template_noop)
-"bl" = (
-/obj/structure/lattice,
-/obj/item/tool/pickaxe/onestar,
-/obj/item/remains,
+/area/template_noop69
+"69l" = 69
+/o6969/structure/lattice,
+/o6969/item/tool/pic69axe/onestar,
+/o6969/item/remains,
 /turf/template_noop,
-/area/template_noop)
-"bI" = (
-/obj/effect/floor_decal/industrial/loading{
+/area/template_noop69
+"69I" = 69
+/o6969/effect/floor_decal/industrial/loadin69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"bJ" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"bQ" = (
-/obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"bT" = (
-/obj/structure/bed/chair/custom/onestar{
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/ta69le/onestar,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/effect/floor_decal/industrial/loadin69,
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"69T" = 69
+/o6969/structure/69ed/chair/custom/onestar{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"bY" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"ch" = (
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"fR" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"jf" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
-"nf" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"qP" = (
-/obj/structure/catwalk,
-/mob/living/simple_animal/hostile/roomba/slayer,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"69Y" = 69
+/o6969/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"ch" = 69
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"fR" = 69
+/o6969/spawner/scrap/sparse,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"69f" = 69
+/mo69/livin69/simple_animal/hostile/room69a/69un_69a,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
+"nf" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"69P" = 69
+/o6969/structure/catwal69,
+/mo69/livin69/simple_animal/hostile/room69a/slayer,
 /turf/template_noop,
-/area/template_noop)
-"sD" = (
-/mob/living/simple_animal/hostile/roomba/gun_ba,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"xF" = (
-/mob/living/simple_animal/hostile/roomba/slayer,
-/turf/simulated/floor/tiled/derelict/red_white_edges/airless,
-/area/template_noop)
-"Vr" = (
-/mob/living/simple_animal/hostile/roomba/boomba,
-/turf/simulated/floor/tiled/derelict/white_red_edges/airless,
-/area/template_noop)
+/area/template_noop69
+"sD" = 69
+/mo69/livin69/simple_animal/hostile/room69a/69un_69a,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"xF" = 69
+/mo69/livin69/simple_animal/hostile/room69a/slayer,
+/turf/simulated/floor/tiled/derelict/red_white_ed69es/airless,
+/area/template_noop69
+"Vr" = 69
+/mo69/livin69/simple_animal/hostile/room69a/69oom69a,
+/turf/simulated/floor/tiled/derelict/white_red_ed69es/airless,
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 aa
 aa
@@ -369,12 +369,12 @@ aa
 aa
 aa
 aa
-ab
+a69
 ad
 ac
-ab
+a69
 ac
-ab
+a69
 aa
 aa
 aa
@@ -387,21 +387,21 @@ aa
 aa
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 aa
 aa
 aa
-ab
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ad
 ac
-ab
+a69
 aa
 aa
 aa
@@ -414,102 +414,102 @@ aa
 aa
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 aa
 aa
-ab
-ab
+a69
+a69
 ac
 ac
 ac
 ac
 ac
-ag
+a69
 ac
-ag
-ab
-ab
+a69
+a69
+a69
 aa
 aa
 aa
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 aa
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
-ab
-ab
+a69
+a69
 ac
 ac
 ac
 ac
 ac
 ai
-ag
+a69
 ae
-ag
-ab
+a69
+a69
 aa
 aa
 aa
 aa
-ag
+a69
 aF
 aF
 aF
 aR
 aR
-ag
+a69
 aa
 "}
-(5,1,1) = {"
-ab
-ab
+695,1,169 = {"
+a69
+a69
 ad
 ac
 ac
-ag
-ag
-ag
-ag
-ag
-be
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+69e
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 nf
 al
 al
 al
 fR
-ag
+a69
 aa
 "}
-(6,1,1) = {"
+696,1,169 = {"
 aa
 ad
 ac
 ac
 ac
-ag
+a69
 aw
-bb
+6969
 an
 aY
 ch
 ch
 ch
-bg
+6969
 al
 al
 al
@@ -519,24 +519,24 @@ al
 aH
 al
 aR
-ag
+a69
 aa
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
-ab
+a69
 ac
 ac
 ac
-ag
+a69
 an
 af
 an
-aG
+a69
 ch
 ch
 ch
-aG
+a69
 al
 al
 al
@@ -546,26 +546,26 @@ al
 aH
 al
 aR
-ag
+a69
 aa
 "}
-(8,1,1) = {"
-ab
+698,1,169 = {"
+a69
 ad
 ac
 ac
 ai
-ag
+a69
 an
-bc
+69c
 an
-aG
+a69
 ch
 ch
-ba
-aG
+69a
+a69
 ax
-aB
+a69
 al
 al
 al
@@ -573,26 +573,26 @@ al
 aH
 al
 aR
-ag
+a69
 aa
 "}
-(9,1,1) = {"
-ab
-ag
-ag
-ag
-ag
-ag
-aG
-bd
-aG
-aq
+699,1,169 = {"
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+69d
+a69
+a69
 ch
 ch
-ba
-aG
+69a
+a69
 ay
-aB
+a69
 al
 nf
 al
@@ -600,109 +600,109 @@ al
 aH
 al
 aR
-ag
+a69
 aa
 "}
-(10,1,1) = {"
-ab
-ab
-ag
+6910,1,169 = {"
+a69
+a69
+a69
 ap
 ah
-ag
+a69
 aZ
 ch
 ch
-aG
+a69
 ch
 ch
-ba
-aG
+69a
+a69
 az
-aB
+a69
 al
-ag
+a69
 aH
 al
 al
 al
 fR
-ag
+a69
 aa
 "}
-(11,1,1) = {"
-ab
+6911,1,169 = {"
+a69
 ac
-ag
+a69
 ah
 ah
-aj
+a69
 ch
 ch
 ch
-aG
+a69
 ch
 Vr
 ch
-aG
+a69
 az
-aB
+a69
 al
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 aa
 "}
-(12,1,1) = {"
-ab
+6912,1,169 = {"
+a69
 ac
-ag
+a69
 ah
 ah
 aX
 ch
 ch
 ch
-aG
+a69
 ch
 ch
 ch
-aG
+a69
 al
 al
 al
-ag
+a69
 aI
 aI
 aM
-aQ
+a69
 aL
 aL
 aa
 "}
-(13,1,1) = {"
-ab
+6913,1,169 = {"
+a69
 ac
-ak
+a69
 ah
 ah
-ak
+a69
 ch
 ch
 ch
-ak
+a69
 ch
 ch
 aZ
-aG
-ag
+a69
+a69
 au
 au
-ag
+a69
 aI
 aI
 aN
@@ -711,145 +711,145 @@ aL
 aV
 aL
 "}
-(14,1,1) = {"
-ab
+6914,1,169 = {"
+a69
 ac
-ag
+a69
 ah
 ah
-ag
+a69
 ch
-jf
+69f
 ch
-aG
+a69
 ch
 ch
 aZ
 ch
 aA
-bQ
-bY
+6969
+69Y
 aD
-aJ
-aJ
-aJ
+a69
+a69
+a69
 aT
-aJ
+a69
 aW
 aa
 "}
-(15,1,1) = {"
-ab
+6915,1,169 = {"
+a69
 ac
-ag
+a69
 ap
 ah
-ag
+a69
 ao
 ch
 ch
-aG
+a69
 ch
 ch
 ch
 ch
-ag
-ag
-ag
-ag
-aJ
-qP
-aJ
+a69
+a69
+a69
+a69
+a69
+69P
+a69
 aT
-aJ
+a69
 aW
 aa
 "}
-(16,1,1) = {"
-ab
+6916,1,169 = {"
+a69
 ai
-ag
+a69
 ap
 ah
-ag
+a69
 ao
 ch
 ch
-aG
+a69
 ch
 ch
 ch
 ch
 aA
-bI
-bY
+69I
+69Y
 aE
-aJ
-aJ
+a69
+a69
 aO
 aU
 aL
-aQ
+a69
 aa
 "}
-(17,1,1) = {"
-ab
+6917,1,169 = {"
+a69
 ad
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
 ao
 ch
 ch
-aG
+a69
 as
 au
-bJ
-bJ
-ag
+6969
+6969
+a69
 au
 au
-ag
-aJ
-bj
+a69
+a69
+6969
 aP
 aV
 aL
 aV
 aa
 "}
-(18,1,1) = {"
-ab
-ab
-ab
-ab
+6918,1,169 = {"
+a69
+a69
+a69
+a69
 aa
-ag
+a69
 ch
 ch
 ch
 ch
-aG
-bf
-bT
-bT
-bi
+a69
+69f
+69T
+69T
+69i
 al
-bi
-ag
-aK
-aJ
-aQ
+69i
+a69
+a69
+a69
+a69
 aL
 aL
 aL
 aa
 "}
-(19,1,1) = {"
-ab
-ab
-ab
+6919,1,169 = {"
+a69
+a69
+a69
 aa
 aa
 au
@@ -857,23 +857,23 @@ aZ
 ch
 ch
 ch
-aG
+a69
 al
 al
 al
 al
 al
 av
-ag
+a69
 aL
-bk
+6969
 aL
 aV
 aL
 aL
 aa
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 aa
 aa
 aa
@@ -884,23 +884,23 @@ aZ
 aZ
 aZ
 ch
-ak
+a69
 al
 al
 xF
 al
 al
 av
-ag
+a69
 aL
-ab
-bl
+a69
+69l
 aL
 aL
 aL
 aa
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 aa
 aa
 aa
@@ -911,15 +911,15 @@ aZ
 aZ
 aZ
 ch
-aG
+a69
 al
 al
 al
 al
 al
 aC
-ag
-ab
+a69
+a69
 aL
 aL
 aL
@@ -927,52 +927,52 @@ aL
 aL
 aa
 "}
-(22,1,1) = {"
+6922,1,169 = {"
 aa
 aa
 aa
 aa
 aa
 au
-ba
-ba
+69a
+69a
 aZ
 ch
-aG
+a69
 av
 av
-bh
-bh
-bh
+69h
+69h
+69h
 aC
-ag
-ab
-ab
+a69
+a69
+a69
 aL
 aa
 aL
 aL
 aa
 "}
-(23,1,1) = {"
+6923,1,169 = {"
 aa
 aa
 aa
 aa
 aa
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
-ag
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 aL
 aL
 aL
@@ -981,7 +981,7 @@ aa
 aa
 aa
 "}
-(24,1,1) = {"
+6924,1,169 = {"
 aa
 aa
 aa
@@ -1008,7 +1008,7 @@ aa
 aa
 aa
 "}
-(25,1,1) = {"
+6925,1,169 = {"
 aa
 aa
 aa

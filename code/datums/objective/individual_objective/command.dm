@@ -1,7 +1,7 @@
 /datum/individual_objective/beyond
 	name = "A Particular Spot"
 	req_department = list(DEPARTMENT_COMMAND)
-	units_requested = 5 MINUTES
+	units_requested = 569INUTES
 	based_time = TRUE
 	var/obj/effect/overmap/ship/linked
 	var/x
@@ -19,8 +19,8 @@
 	x = rand(2, GLOB.maps_data.overmap_size-1)
 	y = rand(2, GLOB.maps_data.overmap_size-1)
 	linked = (locate(/obj/effect/overmap/ship/eris) in GLOB.ships)
-	desc = "There is a mark made on your old star chart. You do not remember why you did it but your curiosity wont let you sleep.  \
-			Move [linked] to coordinates [x], [y] for [unit2time(units_requested)]."
+	desc = "There is a69ark69ade on your old star chart. You do not remember why you did it but your curiosity wont let you sleep.  \
+			Move 69linked69 to coordinates 69x69, 69y69 for 69unit2time(units_requested)69."
 	timer = world.time
 	RegisterSignal(linked, COMSIG_SHIP_STILL, .proc/task_completed)
 

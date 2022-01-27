@@ -9,6 +9,6 @@
 	dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
 	for(var/mob/living/carbon/human/H in SSmobs.mob_list)
 		if(H.dna && H.ckey)
-			dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.b_type]</td></tr>"
+			dat += "<tr><td>69H69</td><td>69H.dna.unique_enzymes69</td><td>69H.b_type69</td></tr>"
 	dat += "</table>"
 	user << browse(dat, "window=DNA;size=440x410")

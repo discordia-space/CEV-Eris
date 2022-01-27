@@ -5,7 +5,7 @@
 	var/timeleft = get_eta()
 	if(timeleft < 0)
 		return ""
-	return "[is_on_cooldown() ? "Returning" : (is_arriving() ? "ETA" : "ETD")] [add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
+	return "69is_on_cooldown() ? "Returning" : (is_arriving() ? "ETA" : "ETD")69 69add_zero(num2text((timeleft / 60) % 60),2)69:69add_zero(num2text(timeleft % 60), 2)69"
 
 /datum/evacuation_controller/proc/has_eta()
 	return (state == EVAC_PREPPING || state == EVAC_LAUNCHING || state == EVAC_IN_TRANSIT || state == EVAC_COOLDOWN)

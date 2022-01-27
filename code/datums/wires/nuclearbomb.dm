@@ -18,9 +18,9 @@ var/const/NUCLEARBOMB_WIRE_SAFETY		= 4
 /datum/wires/nuclearbomb/GetInteractWindow(mob/living/user)
 	var/obj/machinery/nuclearbomb/N = holder
 	. += ..(user)
-	. += "<BR>The device is [N.timing ? "shaking!" : "still."]<BR>"
-	. += "The device is is [N.safety ? "quiet" : "whirring"].<BR>"
-	. += "The lights are [N.lighthack ? "static" : "functional"].<BR>"
+	. += "<BR>The device is 69N.timing ? "shaking!" : "still."69<BR>"
+	. += "The device is is 69N.safety ? "quiet" : "whirring"69.<BR>"
+	. += "The lights are 69N.lighthack ? "static" : "functional"69.<BR>"
 
 /datum/wires/nuclearbomb/UpdatePulsed(var/index)
 	var/obj/machinery/nuclearbomb/N = holder
@@ -41,16 +41,16 @@ var/const/NUCLEARBOMB_WIRE_SAFETY		= 4
 			spawn(100)
 				N.safety = !N.safety
 				if(N.safety == 1)
-					N.visible_message(SPAN_NOTICE("\The [N] quiets down."))
+					N.visible_message(SPAN_NOTICE("\The 69N69 quiets down."))
 					N.secure_device()
 				else
-					N.visible_message(SPAN_NOTICE("\The [N] emits a quiet whirling noise!"))
+					N.visible_message(SPAN_NOTICE("\The 69N69 emits a quiet whirling noise!"))
 
-/datum/wires/nuclearbomb/UpdateCut(var/index, var/mended)
+/datum/wires/nuclearbomb/UpdateCut(var/index,69ar/mended)
 	var/obj/machinery/nuclearbomb/N = holder
 	switch(index)
 		if(NUCLEARBOMB_WIRE_SAFETY)
-			N.safety = mended
+			N.safety =69ended
 			if(N.timing)
 				spawn
 					log_and_message_admins("cut a nuclear bomb's timing wire, causing it to explode.")

@@ -10,7 +10,7 @@
 	var/tmp/atom/BeamSource
 	New()
 		..()
-		spawn(10) qdel(src)
+		spawn(10) 69del(src)
 
 /obj/effect/overlay/pulse
 	icon = 'icons/effects/effects.dmi'
@@ -20,11 +20,11 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/effect/overlay/pulse/New(loc, var/lifetime = 10)
+/obj/effect/overlay/pulse/New(loc,69ar/lifetime = 10)
 	..(loc)
 	set_dir(pick(cardinal))
 	spawn(lifetime)
-		qdel(src)
+		69del(src)
 
 /obj/effect/overlay/pulse/heatwave
 	icon_state = "sparks"
@@ -75,11 +75,11 @@
 	if(randomdir)
 		dir = pick(GLOB.cardinal)
 
-	flick("[icon_state]", src) //Because we might be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
+	flick("69icon_state69", src) //Because we69ight be pulling it from a pool, flick whatever icon it uses so it starts at the start of the icon's animation.
 
 	..()
 	spawn(duration)
-		qdel(src)
+		69del(src)
 
 
 /obj/effect/overlay/temp/dir_setting/bloodsplatter
@@ -94,9 +94,9 @@
 	if(blood_color)
 		color = blood_color
 	if(set_dir in GLOB.cornerdirs)
-		icon_state = "[splatter_type][pick(1, 2, 6)]"
+		icon_state = "69splatter_type6969pick(1, 2, 6)69"
 	else
-		icon_state = "[splatter_type][pick(3, 4, 5)]"
+		icon_state = "69splatter_type6969pick(3, 4, 5)69"
 	..()
 	var/target_pixel_x = 0
 	var/target_pixel_y = 0

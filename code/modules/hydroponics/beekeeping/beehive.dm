@@ -18,9 +18,9 @@
 	if(closed)
 		overlays += "lid"
 	if(frames)
-		overlays += "empty[frames]"
+		overlays += "empty69frames69"
 	if(honeycombs >= 100)
-		overlays += "full[round(honeycombs / 100)]"
+		overlays += "full69round(honeycombs / 100)69"
 	if(!smoked)
 		switch(bee_count)
 			if(1 to 40)
@@ -35,37 +35,37 @@
 	if(!closed)
 		to_chat(user, "The lid is open.")
 
-/obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/beehive/attackby(var/obj/item/I,69ar/mob/user)
 	if(istype(I, /obj/item/tool/crowbar))
 		closed = !closed
-		user.visible_message("<span class='notice'>\The [user] [closed ? "closes" : "opens"] \the [src].</span>", "<span class='notice'>You [closed ? "close" : "open"] \the [src].</span>")
+		user.visible_message("<span class='notice'>\The 69user69 69closed ? "closes" : "opens"69 \the 69src69.</span>", "<span class='notice'>You 69closed ? "close" : "open"69 \the 69src69.</span>")
 		update_icon()
 		return
 	else if(istype(I, /obj/item/tool/wrench))
 		anchored = !anchored
-		user.visible_message("<span class='notice'>\The [user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		user.visible_message("<span class='notice'>\The 69user69 69anchored ? "wrenches" : "unwrenches"69 \the 69src69.</span>", "<span class='notice'>You 69anchored ? "wrench" : "unwrench"69 \the 69src69.</span>")
 		return
 	else if(istype(I, /obj/item/bee_smoker))
 		if(closed)
-			to_chat(user, SPAN_NOTICE("You need to open \the [src] with a crowbar before smoking the bees."))
+			to_chat(user, SPAN_NOTICE("You need to open \the 69src69 with a crowbar before smoking the bees."))
 			return
-		user.visible_message(SPAN_NOTICE("\The [user] smokes the bees in \the [src]."), SPAN_NOTICE("You smoke the bees in \the [src]."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 smokes the bees in \the 69src69."), SPAN_NOTICE("You smoke the bees in \the 69src69."))
 		smoked = 30
 		update_icon()
 		return
 	else if(istype(I, /obj/item/honey_frame))
 		if(closed)
-			to_chat(user, SPAN_NOTICE("You need to open \the [src] with a crowbar before inserting \the [I]."))
+			to_chat(user, SPAN_NOTICE("You need to open \the 69src69 with a crowbar before inserting \the 69I69."))
 			return
-		if(frames >= maxFrames)
+		if(frames >=69axFrames)
 			to_chat(user, SPAN_NOTICE("There is no place for an another frame."))
 			return
 		var/obj/item/honey_frame/H = I
 		if(H.honey)
-			to_chat(user, SPAN_NOTICE("\The [I] is full with beeswax and honey, empty it in the extractor first."))
+			to_chat(user, SPAN_NOTICE("\The 69I69 is full with beeswax and honey, empty it in the extractor first."))
 			return
 		++frames
-		user.visible_message(SPAN_NOTICE("\The [user] loads \the [I] into \the [src]."), SPAN_NOTICE("You load \the [I] into \the [src]."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 loads \the 69I69 into \the 69src69."), SPAN_NOTICE("You load \the 69I69 into \the 69src69."))
 		update_icon()
 		user.drop_from_inventory(I)
 		qdel(I)
@@ -73,35 +73,35 @@
 	else if(istype(I, /obj/item/bee_pack))
 		var/obj/item/bee_pack/B = I
 		if(B.full && bee_count)
-			to_chat(user, SPAN_NOTICE("\The [src] already has bees inside."))
+			to_chat(user, SPAN_NOTICE("\The 69src69 already has bees inside."))
 			return
 		if(!B.full && bee_count < 90)
-			to_chat(user, SPAN_NOTICE("\The [src] is not ready to split."))
+			to_chat(user, SPAN_NOTICE("\The 69src69 is not ready to split."))
 			return
 		if(!B.full && !smoked)
-			to_chat(user, SPAN_NOTICE("Smoke \the [src] first!"))
+			to_chat(user, SPAN_NOTICE("Smoke \the 69src69 first!"))
 			return
 		if(closed)
-			to_chat(user, SPAN_NOTICE("You need to open \the [src] with a crowbar before moving the bees."))
+			to_chat(user, SPAN_NOTICE("You need to open \the 69src69 with a crowbar before69oving the bees."))
 			return
 		if(B.full)
-			user.visible_message(SPAN_NOTICE("\The [user] puts the queen and the bees from \the [I] into \the [src]."), SPAN_NOTICE("You put the queen and the bees from \the [I] into \the [src]."))
+			user.visible_message(SPAN_NOTICE("\The 69user69 puts the queen and the bees from \the 69I69 into \the 69src69."), SPAN_NOTICE("You put the queen and the bees from \the 69I69 into \the 69src69."))
 			bee_count = 20
 			B.empty()
 		else
-			user.visible_message(SPAN_NOTICE("\The [user] puts bees and larvae from \the [src] into \the [I]."), SPAN_NOTICE("You put bees and larvae from \the [src] into \the [I]."))
+			user.visible_message(SPAN_NOTICE("\The 69user69 puts bees and larvae from \the 69src69 into \the 69I69."), SPAN_NOTICE("You put bees and larvae from \the 69src69 into \the 69I69."))
 			bee_count /= 2
 			B.fill()
 		update_icon()
 		return
 	else if(istype(I, /obj/item/tool/screwdriver))
 		if(bee_count)
-			to_chat(user, SPAN_NOTICE("You can't dismantle \the [src] with these bees inside."))
+			to_chat(user, SPAN_NOTICE("You can't dismantle \the 69src69 with these bees inside."))
 			return
-		to_chat(user, SPAN_NOTICE("You start dismantling \the [src]..."))
+		to_chat(user, SPAN_NOTICE("You start dismantling \the 69src69..."))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 30, src))
-			user.visible_message(SPAN_NOTICE("\The [user] dismantles \the [src]."), SPAN_NOTICE("You dismantle \the [src]."))
+			user.visible_message(SPAN_NOTICE("\The 69user69 dismantles \the 69src69."), SPAN_NOTICE("You dismantle \the 69src69."))
 			new /obj/item/beehive_assembly(loc)
 			qdel(src)
 		return
@@ -114,7 +114,7 @@
 		if(!smoked && bee_count)
 			to_chat(user, SPAN_NOTICE("The bees won't let you take the honeycombs out like this, smoke them first."))
 			return
-		user.visible_message(SPAN_NOTICE("\The [user] starts taking the honeycombs out of \the [src]."), SPAN_NOTICE("You start taking the honeycombs out of \the [src]..."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 starts taking the honeycombs out of \the 69src69."), SPAN_NOTICE("You start taking the honeycombs out of \the 69src69..."))
 		while(honeycombs >= 100 && do_after(user, 30, src))
 			new /obj/item/honey_frame/filled(loc)
 			honeycombs -= 100
@@ -128,24 +128,24 @@
 	if(closed && !smoked && bee_count)
 		pollinate_flowers()
 		update_icon()
-	smoked = max(0, smoked - 1)
+	smoked =69ax(0, smoked - 1)
 	if(!smoked && bee_count)
-		bee_count = min(bee_count * 1.005, 100)
+		bee_count =69in(bee_count * 1.005, 100)
 		update_icon()
 
 /obj/machinery/beehive/proc/pollinate_flowers()
 	var/coef = bee_count / 100
 	var/trays = 0
-	for(var/obj/machinery/portable_atmospherics/hydroponics/H in view(7, src))
+	for(var/obj/machinery/portable_atmospherics/hydroponics/H in69iew(7, src))
 		if(H.seed && !H.dead)
 			H.health += 0.05 * coef
 			H.yield_mod += 0.005 * coef
 			++trays
-	honeycombs = min(honeycombs + 0.1 * coef * min(trays, 5), frames * 100)
+	honeycombs =69in(honeycombs + 0.1 * coef *69in(trays, 5), frames * 100)
 
 /obj/machinery/honey_extractor
 	name = "honey extractor"
-	desc = "A machine used to turn honeycombs on the frame into honey and wax."
+	desc = "A69achine used to turn honeycombs on the frame into honey and wax."
 	density = TRUE
 	anchored = TRUE
 	icon = 'icons/obj/virology.dmi'
@@ -155,18 +155,18 @@
 	var/processing = 0
 	var/honey = 0
 
-/obj/machinery/honey_extractor/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/honey_extractor/attackby(var/obj/item/I,69ar/mob/user)
 	if(default_deconstruction(I, user))
 		return
 	if(processing)
-		to_chat(user, SPAN_NOTICE("\The [src] is currently spinning, wait until it's finished."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is currently spinning, wait until it's finished."))
 		return
 	else if(istype(I, /obj/item/honey_frame))
 		var/obj/item/honey_frame/H = I
 		if(!H.honey)
-			to_chat(user, SPAN_NOTICE("\The [H] is empty, put it into a beehive."))
+			to_chat(user, SPAN_NOTICE("\The 69H69 is empty, put it into a beehive."))
 			return
-		user.visible_message(SPAN_NOTICE("\The [user] loads \the [H] into \the [src] and turns it on."), SPAN_NOTICE("You load \the [H] into \the [src] and turn it on."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 loads \the 69H69 into \the 69src69 and turns it on."), SPAN_NOTICE("You load \the 69H69 into \the 69src69 and turn it on."))
 		processing = H.honey
 		icon_state = "centrifuge_moving"
 		qdel(H)
@@ -178,13 +178,13 @@
 			icon_state = "centrifuge"
 	else if(istype(I, /obj/item/reagent_containers/glass))
 		if(!honey)
-			to_chat(user, SPAN_NOTICE("There is no honey in \the [src]."))
+			to_chat(user, SPAN_NOTICE("There is no honey in \the 69src69."))
 			return
 		var/obj/item/reagent_containers/glass/G = I
-		var/transferred = min(G.reagents.maximum_volume - G.reagents.total_volume, honey)
+		var/transferred =69in(G.reagents.maximum_volume - G.reagents.total_volume, honey)
 		G.reagents.add_reagent("honey", transferred)
 		honey -= transferred
-		user.visible_message(SPAN_NOTICE("\The [user] collects honey from \the [src] into \the [G]."), SPAN_NOTICE("You collect [transferred] units of honey from \the [src] into \the [G]."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 collects honey from \the 69src69 into \the 69G69."), SPAN_NOTICE("You collect 69transferred69 units of honey from \the 69src69 into \the 69G69."))
 		return 1
 
 /obj/item/bee_smoker
@@ -219,9 +219,9 @@
 	icon_state = "apiary"
 
 /obj/item/beehive_assembly/attack_self(var/mob/user)
-	to_chat(user, SPAN_NOTICE("You start assembling \the [src]..."))
+	to_chat(user, SPAN_NOTICE("You start assembling \the 69src69..."))
 	if(do_after(user, 30, src))
-		user.visible_message(SPAN_NOTICE("\The [user] constructs a beehive."), SPAN_NOTICE("You construct a beehive."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 constructs a beehive."), SPAN_NOTICE("You construct a beehive."))
 		new /obj/machinery/beehive(get_turf(user))
 		user.drop_from_inventory(src)
 		qdel(src)
@@ -230,7 +230,7 @@
 /obj/item/stack/wax
 	name = "wax"
 	singular_name = "wax piece"
-	desc = "Soft substance produced by bees. Used to make candles."
+	desc = "Soft substance produced by bees. Used to69ake candles."
 	icon = 'icons/obj/beekeeping.dmi'
 	icon_state = "wax"
 
@@ -256,7 +256,7 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 /obj/item/bee_pack/proc/empty()
 	full = 0
 	name = "empty bee pack"
-	desc = "A stasis pack for moving bees. It's empty."
+	desc = "A stasis pack for69oving bees. It's empty."
 	overlays.Cut()
 	overlays += "beepack-empty"
 

@@ -26,14 +26,14 @@
 	icon_state = "store"
 
 /obj/screen/silicon/store/Click()
-	var/mob/living/silicon/robot/R = parentmob
+	var/mob/livin69/silicon/robot/R = parentmob
 	if(R.module)
-		R.uneq_active()
+		R.une69_active()
 		R.update_robot_modules_display()
 		for (var/obj/screen/inv in parentmob.HUDinventory)
 			inv.update_icon()
 	else
-		to_chat(R, "You haven't selected a module yet.")
+		to_chat(R, "You haven't selected a69odule yet.")
 	return TRUE
 
 
@@ -41,9 +41,9 @@
 	name = "moduleNo"
 	icon_state = "inv1"
 	var/module_num
-	var/icon/underlay_icon = new ('icons/mob/screen1_robot.dmi', "inv_active")
+	var/icon/underlay_icon =69ew ('icons/mob/screen1_robot.dmi', "inv_active")
 
-/obj/screen/silicon/module/New(_name = "unnamed", _screen_loc = "7,7", _icon , _icon_state, mob/living/_parentmob, _module_num)
+/obj/screen/silicon/module/New(_name = "unnamed", _screen_loc = "7,7", _icon , _icon_state,69ob/livin69/_parentmob, _module_num)
 //	..(_name, _screen_loc, _parentmob)
 	src.parentmob = _parentmob
 	src.name = _name
@@ -57,7 +57,7 @@
 
 /obj/screen/silicon/module/update_icon()
 	underlays.Cut()
-	var/mob/living/silicon/robot/R = parentmob
+	var/mob/livin69/silicon/robot/R = parentmob
 	if(!R.module_active(module_num)) return
 	switch(module_num)
 		if(1)
@@ -76,43 +76,43 @@
 
 /obj/screen/silicon/module/Click()
 	if (isrobot(parentmob))
-		var/mob/living/silicon/robot/R = parentmob
-		R.toggle_module(module_num)
+		var/mob/livin69/silicon/robot/R = parentmob
+		R.to6969le_module(module_num)
 		return TRUE
-	log_debug("[parentmob] have type [parentmob.type], but try use /obj/screen/silicon/module/Click() from [src]")
+	lo69_debu69("69parentmob69 have type 69parentmob.type69, but try use /obj/screen/silicon/module/Click() from 69src69")
 	return TRUE
 
 /obj/screen/silicon/cell
 	name = "cell"
-	icon_state = "charge0"
-	process_flag = TRUE
+	icon_state = "char69e0"
+	process_fla69 = TRUE
 
 /obj/screen/silicon/cell/Process()
 	update_icon()
 
 /obj/screen/silicon/cell/update_icon()
-	var/mob/living/silicon/robot/R = parentmob
+	var/mob/livin69/silicon/robot/R = parentmob
 	if (R.cell)
-		var/cellcharge = R.cell.charge/R.cell.maxcharge
-		switch(cellcharge)
+		var/cellchar69e = R.cell.char69e/R.cell.maxchar69e
+		switch(cellchar69e)
 			if(0.75 to INFINITY)
-				icon_state = "charge4"
+				icon_state = "char69e4"
 			if(0.5 to 0.75)
-				icon_state = "charge3"
+				icon_state = "char69e3"
 			if(0.25 to 0.5)
-				icon_state = "charge2"
+				icon_state = "char69e2"
 			if(0 to 0.25)
-				icon_state = "charge1"
+				icon_state = "char69e1"
 			else
-				icon_state = "charge0"
+				icon_state = "char69e0"
 	else
-		icon_state = "charge-empty"
+		icon_state = "char69e-empty"
 
-/obj/screen/health/cyborg/Process()
+/obj/screen/health/cybor69/Process()
 	update_icon()
 	return
 
-/obj/screen/health/cyborg/update_icon()
+/obj/screen/health/cybor69/update_icon()
 	if (parentmob.stat != 2)
 		if(isdrone(parentmob))
 			switch(parentmob.health)
@@ -156,16 +156,16 @@
 
 /obj/screen/silicon/module_select/Click()
 	if(isrobot(parentmob))
-		var/mob/living/silicon/robot/R = parentmob
+		var/mob/livin69/silicon/robot/R = parentmob
 		if(R.module)
-			R.toggle_show_robot_modules()
+			R.to6969le_show_robot_modules()
 			return TRUE
 		R.pick_module()
 		update_icon()
 	return TRUE
 
 /obj/screen/silicon/module_select/update_icon()
-	var/mob/living/silicon/robot/R = parentmob
+	var/mob/livin69/silicon/robot/R = parentmob
 	icon_state = lowertext(R.modtype)
 
 /obj/screen/silicon/inventory
@@ -174,34 +174,34 @@
 
 /obj/screen/silicon/inventory/Click()
 	if(isrobot(parentmob))
-		var/mob/living/silicon/robot/R = parentmob
+		var/mob/livin69/silicon/robot/R = parentmob
 		if(R.module)
-			R.toggle_show_robot_modules()
+			R.to6969le_show_robot_modules()
 		else
-			to_chat(R, "You haven't selected a module yet.")
+			to_chat(R, "You haven't selected a69odule yet.")
 
 	return TRUE
 
 
 
 
-/obj/screen/silicon/glasses_overlay
-	icon = null
-	name = "glasses"
+/obj/screen/silicon/69lasses_overlay
+	icon =69ull
+	name = "69lasses"
 	screen_loc = "1,1"
 	mouse_opacity = 0
-	process_flag = TRUE
+	process_fla69 = TRUE
 	layer = 17 //The black screen overlay sets layer to 18 to display it, this one has to be just on top.
 
 
-/obj/screen/silicon/glasses_overlay/Process()
+/obj/screen/silicon/69lasses_overlay/Process()
 	update_icon()
 	return
 
-/obj/screen/silicon/glasses_overlay/update_icon()
+/obj/screen/silicon/69lasses_overlay/update_icon()
 	overlays.Cut()
-	var/mob/living/silicon/robot/R = parentmob
-	for (var/obj/item/borg/sight/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
+	var/mob/livin69/silicon/robot/R = parentmob
+	for (var/obj/item/bor69/si69ht/S in list(R.module_state_1, R.module_state_2, R.module_state_3))
 		if(S.overlay)
 			overlays |= S.overlay
 
@@ -215,11 +215,11 @@
 	update_icon()
 
 /obj/screen/silicon/pull/Click()
-	usr.stop_pulling()
+	usr.stop_pullin69()
 	update_icon()
 
 /obj/screen/silicon/pull/update_icon()
-	if (parentmob.pulling)
+	if (parentmob.pullin69)
 		icon_state = "robotpull1"
 	else
 		icon_state = "robotpull0"

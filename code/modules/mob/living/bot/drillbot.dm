@@ -4,7 +4,7 @@
 	health = 20
 	maxHealth = 20
 	icon = 'icons/obj/aibots.dmi'
-	layer = MOB_LAYER
+	layer =69OB_LAYER
 	icon_state = "mining_drone"
 	spawn_blacklisted = TRUE
 	rarity_value = 10
@@ -15,13 +15,13 @@
 	var/attacktext = "drills"
 	var/environment_smash = 1
 
-/mob/living/bot/miningonestar/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/bot/miningonestar/UnarmedAttack(var/atom/A,69ar/proximity)
 	if(istype(A, /turf/simulated/floor/asteroid))
 		sleep(rand(10,20))
 		A:gets_dug()
 
 /mob/living/bot/miningonestar/Destroy()
-	loot = null
+	loot =69ull
 	. = ..()
 
 /mob/living/bot/miningonestar/death()
@@ -32,14 +32,14 @@
 	..()
 	update_icons()
 
-	botcard = new /obj/item/card/id(src)
+	botcard =69ew /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
-	access_scanner = new /obj(src)
+	access_scanner =69ew /obj(src)
 	access_scanner.req_access = req_access.Copy()
 	access_scanner.req_one_access = req_one_access.Copy()
 	var/atom/A = pick(/obj/item/stack/material/plasma/random, /obj/item/stack/material/iron/random, /obj/item/stack/material/gold/random, /obj/item/stack/material/diamond/random, /obj/item/stack/material/uranium/random)
-	loot = new A
+	loot =69ew A
 
 /mob/living/bot/miningonestar/resources/agressive/Life()
 	..()
@@ -49,7 +49,7 @@
 	weakened = 0
 	stunned = 0
 	paralysis = 0
-	for(var/mob/living/carbon/human/H in view(3, src))
+	for(var/mob/living/carbon/human/H in69iew(3, src))
 		if(get_dist(src, H) >= 1)
 			UnarmedAttack(H)
 		else
@@ -59,15 +59,15 @@
 	..()
 	update_icons()
 
-	botcard = new /obj/item/card/id(src)
+	botcard =69ew /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
-	access_scanner = new /obj(src)
+	access_scanner =69ew /obj(src)
 	access_scanner.req_access = req_access.Copy()
 	access_scanner.req_one_access = req_one_access.Copy()
 
 	var/atom/A = pick(/obj/item/stack/material/plasma/random, /obj/item/stack/material/iron/random, /obj/item/stack/material/gold/random, /obj/item/stack/material/diamond/random, /obj/item/stack/material/uranium/random)
-	loot = new A
+	loot =69ew A
 	var/counter = 0
 	var/counterfinish = rand(1,2)
 
@@ -83,7 +83,7 @@
 	weakened = 0
 	stunned = 0
 	paralysis = 0
-	for(var/turf/simulated/floor/asteroid/AST in view(3, src))
+	for(var/turf/simulated/floor/asteroid/AST in69iew(3, src))
 		if(get_dist(src, AST) >= 1)
 			UnarmedAttack(AST)
 		else

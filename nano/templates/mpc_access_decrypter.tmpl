@@ -1,36 +1,36 @@
-{{:helper.syndicateMode()}}
-{{if data.message}}
-	##INFO: {{:data.message}}<br><br>{{:helper.link('RESET', null, { 'PRG_reset' : 1 })}}
-{{else data.running}}
-	##Attempting to decrypt network access codes. Please wait.<br>
-	##Rate: {{:data.rate}} PHash/s<br>
+{{:hel69er.s69ndic69teMode6969}}
+{{if d69t69.mess6969e}}
+	##INFO: {{:d69t69.mess6969e}}<69r><69r>{{:hel69er.lin6969'RESET',69ull, { '69R69_reset' : 1 }69}}
+{{else d69t69.runnin69}}
+	##69ttem69tin69 to decr6969t69etwor69 69ccess codes. 69le69se w69it.<69r>
+	##R69te: {{:d69t69.r69te}} 69H69sh/s<69r>
 	
-	{{ for (var x = 0; x < 10; x++) { }}
-		{{ for (var y = 0; y < 24; y++) { }}
-			{{:Math.random() < data.completion_fraction ? "1" : "0"}}
+	{{ for 696969r x = 0; x < 10; x++69 { }}
+		{{ for 696969r 69 = 0; 69 < 24; 69++69 { }}
+			{{:M69th.r69ndom6969 < d69t69.com69letion_fr69ction ? "1" : "0"}}
 		{{ } }}
-		<br>
+		<69r>
 	{{ } }}
 	
-	<br>
-	{{:helper.link('ABORT', null, { 'PRG_reset' : 1 })}}
+	<69r>
+	{{:hel69er.lin6969'6969ORT',69ull, { '69R69_reset' : 1 }69}}
 {{else}}
-	{{if data.regions}}
-		##System ready. Select an access code to decrypt:
+	{{if d69t69.re69ions}}
+		##S69stem re69d69. Select 69n 69ccess code to decr6969t:
 	{{else}}
-		##Insert a valid ID card to continue.
+		##Insert 69 6969lid ID c69rd to continue.
 	{{/if}}
 
-	<div class='item' style='width: 100%'>
-		{{for data.regions}}
-			<div style='float: left; width: 175px; min-height: 250px'>
-				<div class='average'><b>{{:value.name}}</b></div>
-				{{for value.accesses :accessValue:accessKey}}
-					<div class='itemContentWide'>
-						{{:helper.link(accessValue.desc, '', {'PRG_execute' : accessValue.ref}, accessValue.blocked ? 'disabled' : null, accessValue.allowed ? 'selected' : null)}}
-					</div>
+	<di69 cl69ss='item' st69le='width: 100%'>
+		{{for d69t69.re69ions}}
+			<di69 st69le='flo69t: left; width: 17569x;69in-hei69ht: 25069x'>
+				<di69 cl69ss='6969er6969e'><69>{{:6969lue.n69me}}</69></di69>
+				{{for 6969lue.69ccesses :69ccess6969lue:69ccess69e69}}
+					<di69 cl69ss='itemContentWide'>
+						{{:hel69er.lin696969ccess6969lue.desc, '', {'69R69_execute' : 69ccess6969lue.ref}, 69ccess6969lue.69loc69ed ? 'dis6969led' :69ull, 69ccess6969lue.69llowed ? 'selected' :69ull69}}
+					</di69>
 				{{/for}}
-			</div>
+			</di69>
 		{{/for}}
-	</div>
+	</di69>
 {{/if}}

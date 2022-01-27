@@ -1,100 +1,100 @@
-<h3>Pump Status</h3>
-<div class="item">
-	<div class="itemLabel">
-		Tank Pressure:
+<h3>69um69 St69tus</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		T69n69 69ressure:
 	</div>
-	<div class="itemContent">
-		{{:data.tankPressure}} kPa
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Port Status:
-	</div>
-	<div class="itemContent">
-		{{:data.portConnected ? '<span class="good">Connected</span>' : '<span class="average">Disconnected</span>'}}
+	<div cl69ss="itemContent">
+		{{:d69t69.t69n6969ressure}} 696969
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Load:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		69ort St69tus:
 	</div>
-	<div class="itemContent">
-		{{:data.powerDraw}} W
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Cell Charge:
-	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.cellCharge, 0, data.cellMaxCharge)}}
+	<div cl69ss="itemContent">
+		{{:d69t69.69ortConnected ? '<s6969n cl69ss="69ood">Connected</s6969n>' : '<s6969n cl69ss="69ver6969e">Disconnected</s6969n>'}}
 	</div>
 </div>
 
-<h3>Holding Tank Status</h3>
-{{if data.hasHoldingTank}}
-	<div class="item">
-		<div class="itemLabel">
-			Tank Label:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Lo69d:
+	</div>
+	<div cl69ss="itemContent">
+		{{:d69t69.69owerDr69w}} W
+	</div>
+</div>
+
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Cell Ch69r69e:
+	</div>
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.cellCh69r69e, 0, d69t69.cellM69xCh69r69e69}}
+	</div>
+</div>
+
+<h3>Holdin69 T69n69 St69tus</h3>
+{{if d69t69.h69sHoldin69T69n69}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			T69n69 L6969el:
 		</div>
-		<div class="itemContent">
-			<div style="float: left; width: 180px;">{{:data.holdingTank.name}}</div> {{:helper.link('Eject', 'eject', {'remove_tank' : 1})}}
+		<div cl69ss="itemContent">
+			<div st69le="flo69t: left; width: 18069x;">{{:d69t69.holdin69T69n69.n69me}}</div> {{:hel69er.lin6969'E69ect', 'e69ect', {'remove_t69n69' : 1}69}}
 		</div>
 	</div>
 
-	<div class="item">
-		<div class="itemLabel">
-			Tank Pressure:
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			T69n69 69ressure:
 		</div>
-		<div class="itemContent">
-			{{:data.holdingTank.tankPressure}} kPa
+		<div cl69ss="itemContent">
+			{{:d69t69.holdin69T69n69.t69n6969ressure}} 696969
 		</div>
 	</div>
 {{else}}
-	<div class="item"><span class="average"><i>No holding tank inserted.</i></span></div>
-	<div class="item">&nbsp;</div>
+	<div cl69ss="item"><s6969n cl69ss="69ver6969e"><i>No holdin69 t69n69 inserted.</i></s6969n></div>
+	<div cl69ss="item">&n69s69;</div>
 {{/if}}
 
 
-<h3>Power Regulator Status</h3>
-<div class="item">
-	<div class="itemLabel">
-		Target Pressure:
+<h3>69ower Re69ul69tor St69tus</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		T69r69et 69ressure:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.targetpressure, data.minpressure, data.maxpressure)}}
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('-', null, {'pressure_adj' : -1000}, (data.targetpressure > data.minpressure) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'pressure_adj' : -100}, (data.targetpressure > data.minpressure) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'pressure_adj' : -10}, (data.targetpressure > data.minpressure) ? null : 'disabled')}}
-			{{:helper.link('-', null, {'pressure_adj' : -1}, (data.targetpressure > data.minpressure) ? null : 'disabled')}}
-			<div style="float: left; width: 80px; text-align: center;">&nbsp;{{:data.targetpressure}} kPa&nbsp;</div>
-			{{:helper.link('+', null, {'pressure_adj' : 1}, (data.targetpressure < data.maxpressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'pressure_adj' : 10}, (data.targetpressure < data.maxpressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'pressure_adj' : 100}, (data.targetpressure < data.maxpressure) ? null : 'disabled')}}
-			{{:helper.link('+', null, {'pressure_adj' : 1000}, (data.targetpressure < data.maxpressure) ? null : 'disabled')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.t69r69et69ressure, d69t69.min69ressure, d69t69.m69x69ressure69}}
+		<div st69le="cle69r: 69oth; 6969ddin69-to69: 469x;">
+			{{:hel69er.lin6969'-',69ull, {'69ressure_69d69' : -1000}, 69d69t69.t69r69et69ressure > d69t69.min69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'-',69ull, {'69ressure_69d69' : -100}, 69d69t69.t69r69et69ressure > d69t69.min69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'-',69ull, {'69ressure_69d69' : -10}, 69d69t69.t69r69et69ressure > d69t69.min69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'-',69ull, {'69ressure_69d69' : -1}, 69d69t69.t69r69et69ressure > d69t69.min69ressure69 ?69ull : 'dis6969led'69}}
+			<div st69le="flo69t: left; width: 8069x; text-69li69n: center;">&n69s69;{{:d69t69.t69r69et69ressure}} 696969&n69s69;</div>
+			{{:hel69er.lin6969'+',69ull, {'69ressure_69d69' : 1}, 69d69t69.t69r69et69ressure < d69t69.m69x69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'+',69ull, {'69ressure_69d69' : 10}, 69d69t69.t69r69et69ressure < d69t69.m69x69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'+',69ull, {'69ressure_69d69' : 100}, 69d69t69.t69r69et69ressure < d69t69.m69x69ressure69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'+',69ull, {'69ressure_69d69' : 1000}, 69d69t69.t69r69et69ressure < d69t69.m69x69ressure69 ?69ull : 'dis6969led'69}}
 		</div>
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Power Switch:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		69ower Switch:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('On', 'unlocked', {'power' : 1}, data.on ? 'selected' : null)}} {{:helper.link('Off', 'locked', {'power' : 1}, data.on ? null : 'selected')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'On', 'unloc69ed', {'69ower' : 1}, d69t69.on ? 'selected' :69ull69}} {{:hel69er.lin6969'Off', 'loc69ed', {'69ower' : 1}, d69t69.on ?69ull : 'selected'69}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Pump Direction:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		69um69 Direction:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Out', 'arrowreturn-1-e', {'direction' : 1}, data.pump_dir ? 'selected' : null)}} {{:helper.link('In', 'arrowreturn-1-w', {'direction' : 1}, data.pump_dir ? null : 'selected')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'Out', '69rrowreturn-1-e', {'direction' : 1}, d69t69.69um69_dir ? 'selected' :69ull69}} {{:hel69er.lin6969'In', '69rrowreturn-1-w', {'direction' : 1}, d69t69.69um69_dir ?69ull : 'selected'69}}
 	</div>
 </div>

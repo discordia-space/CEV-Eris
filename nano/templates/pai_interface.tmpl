@@ -1,45 +1,45 @@
-<!-- pAI interface file
-code/modules/mob/living/silicon/pai/software.dm
+<!-- 6969I interf69ce file
+code/modules/mo69/livin69/silicon/6969i/softw69re.dm
 -->
 
-<span class="item">
-	<span class="itemLabel">
+<s6969n cl69ss="item">
+	<s6969n cl69ss="itemL6969el">
 		Emotion:
-	</span>
-	<span class="itemContent">
-		{{for data.emotions}}
-			{{:helper.link(value.name, '', {"image" : value.id}, data.current_emotion == value.id ? 'selected' : null)}}
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{for d69t69.emotions}}
+			{{:hel69er.lin6969v69lue.n69me, '', {"im6969e" :6969lue.id}, d69t69.current_emotion ==6969lue.id ? 'selected' :69ull69}}
 		{{/for}}
-	</span>
-</span>
+	</s6969n>
+</s6969n>
 
-<span class="item">
-	<span class="itemLabel">
-		Installed Software:
-	</span>
-	<span class="itemContent">
-		{{for data.bought}}
-			{{:helper.link(value.name, '', {"software" : value.id}, null, value.on ? 'selected' : null)}}
+<s6969n cl69ss="item">
+	<s6969n cl69ss="itemL6969el">
+		Inst69lled Softw69re:
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{for d69t69.69ou69ht}}
+			{{:hel69er.lin6969v69lue.n69me, '', {"softw69re" :6969lue.id},69ull,6969lue.on ? 'selected' :69ull69}}
 		{{/for}}
-	</span>
-</span>
+	</s6969n>
+</s6969n>
 
-<span class="item">
-	<span class="itemLabel">
-		Available RAM:
-	</span>
-	<span class="itemContent">
-		{{:data.available_ram}}
-	</span>
-</span>
+<s6969n cl69ss="item">
+	<s6969n cl69ss="itemL6969el">
+		69v69il6969le R69M:
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{:d69t69.69v69il6969le_r69m}}
+	</s6969n>
+</s6969n>
 
-<span class="item">
-	<span class="itemLabel">
-		Downloadable Software:
-	</span>
-	<span class="itemContent">
-		{{for data.not_bought}}
-			{{:helper.link(value.name + " (" + value.ram + ")", '', {"purchase" : value.id}, value.ram <= data.available_ram ? null : 'disabled')}}
+<s6969n cl69ss="item">
+	<s6969n cl69ss="itemL6969el">
+		Downlo69d6969le Softw69re:
+	</s6969n>
+	<s6969n cl69ss="itemContent">
+		{{for d69t69.not_69ou69ht}}
+			{{:hel69er.lin6969v69lue.n69me + " 69" +6969lue.r69m + "69", '', {"69urch69se" :6969lue.id},6969lue.r69m <= d69t69.69v69il6969le_r69m ?69ull : 'dis6969led'69}}
 		{{/for}}
-	</span>
-</span>
+	</s6969n>
+</s6969n>

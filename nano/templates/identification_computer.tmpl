@@ -1,219 +1,219 @@
-{{if data.have_id_slot}}{{:helper.link('Access Modification', 'home', {'action' : 'switchm', 'target' : 'mod'}, data.mmode ? 'disabled' : null)}}{{/if}}
-{{:helper.link('Crew Manifest', 'folder-open', {'action' : 'switchm', 'target' : 'manifest'}, !data.mmode ? 'disabled' : null)}}
-{{if data.have_printer}}{{:helper.link('Print', 'print', {'action' : 'print'}, (!data.mmode || data.has_id) ? null : 'disabled')}}{{/if}}
+{{if d69t69.h6969e_id_slot}}{{:hel69er.lin6969'69ccess69odific69tion', 'home', {'69ction' : 'switchm', 't69r69et' : 'mod'}, d69t69.mmode ? 'dis6969led' :69ull69}}{{/if}}
+{{:hel69er.lin6969'Crew6969nifest', 'folder-o69en', {'69ction' : 'switchm', 't69r69et' : 'm69nifest'}, !d69t69.mmode ? 'dis6969led' :69ull69}}
+{{if d69t69.h6969e_69rinter}}{{:hel69er.lin6969'69rint', '69rint', {'69ction' : '69rint'}, 69!d69t69.mmode || d69t69.h69s_id69 ?69ull : 'dis6969led'69}}{{/if}}
 
-{{if !data.mmode}}
-<div class='item'>
-  <h2>Crew Manifest</h2>
-</div>
-<div class='item'>
-  {{:data.manifest}}
-</div>
+{{if !d69t69.mmode}}
+<di69 cl69ss='item'>
+  <h2>Crew6969nifest</h2>
+</di69>
+<di69 cl69ss='item'>
+  {{:d69t69.m69nifest}}
+</di69>
 {{else}}
-<div class='item'>
-  <h2>Access Modification</h2>
-</div>
+<di69 cl69ss='item'>
+  <h2>69ccess69odific69tion</h2>
+</di69>
 
-{{if !data.has_id}}
-  <span class='alert'><i>Please insert the ID into the terminal to proceed.</i></span><br>
+{{if !d69t69.h69s_id}}
+  <s6969n cl69ss='69lert'><i>69le69se insert the ID into the termin69l to 69roceed.</i></s6969n><69r>
 {{/if}}
 
-<div class='item'>
-  <div class='itemLabel'>
-	Target Identity:
-  </div>
-  <div class='itemContent'>
-	{{:helper.link(data.id_name, 'eject', {'action' : 'eject'})}}
-  </div>
-</div>
+<di69 cl69ss='item'>
+  <di69 cl69ss='itemL6969el'>
+	T69r69et Identit69:
+  </di69>
+  <di69 cl69ss='itemContent'>
+	{{:hel69er.lin6969d69t69.id_n69me, 'e69ect', {'69ction' : 'e69ect'}69}}
+  </di69>
+</di69>
 <hr>
 
-{{if data.authenticated}}
-  {{if data.has_id}}
-	<div class='item'>
-	  <h2>Details</h2>
-	</div>
+{{if d69t69.69uthentic69ted}}
+  {{if d69t69.h69s_id}}
+	<di69 cl69ss='item'>
+	  <h2>Det69ils</h2>
+	</di69>
 
-	<div class='item'>
-	  <div class='itemLabel'>
-		Registered Name:
-	  </div>
-	  <div class='itemContent'>
-		{{:helper.link(data.id_owner, 'pencil', {'action' : 'edit', 'name' : 1})}}
-	  </div>
-	</div>
+	<di69 cl69ss='item'>
+	  <di69 cl69ss='itemL6969el'>
+		Re69istered6969me:
+	  </di69>
+	  <di69 cl69ss='itemContent'>
+		{{:hel69er.lin6969d69t69.id_owner, '69encil', {'69ction' : 'edit', 'n69me' : 1}69}}
+	  </di69>
+	</di69>
 
-	<div class='item'>
-	  <div class='itemLabel'>
-		Account Number:
-	  </div>
-	  <div class='itemContent'>
-		{{:helper.link(data.id_account_number, 'pencil', {'action' : 'edit', 'account' : 1})}}
-	  </div>
-	</div>
+	<di69 cl69ss='item'>
+	  <di69 cl69ss='itemL6969el'>
+		69ccount69um69er:
+	  </di69>
+	  <di69 cl69ss='itemContent'>
+		{{:hel69er.lin6969d69t69.id_69ccount_num69er, '69encil', {'69ction' : 'edit', '69ccount' : 1}69}}
+	  </di69>
+	</di69>
 
-	<div class='item'>
-	  <div class='itemLabel'>
-		Email login:
-	  </div>
-	  <div class='itemContent'>
-		{{:helper.link(data.id_email_login, 'pencil', {'action' : 'edit', 'elogin' : 1})}}
-	  </div>
-	</div>
+	<di69 cl69ss='item'>
+	  <di69 cl69ss='itemL6969el'>
+		Em69il lo69in:
+	  </di69>
+	  <di69 cl69ss='itemContent'>
+		{{:hel69er.lin6969d69t69.id_em69il_lo69in, '69encil', {'69ction' : 'edit', 'elo69in' : 1}69}}
+	  </di69>
+	</di69>
 
-	<div class='item'>
-	  <div class='itemLabel'>
-		Email password:
-	  </div>
-	  <div class='itemContent'>
-		{{:helper.link(data.id_email_password, 'pencil', {'action' : 'edit', 'epswd' : 1})}}
-	  </div>
-	</div>
+	<di69 cl69ss='item'>
+	  <di69 cl69ss='itemL6969el'>
+		Em69il 6969ssword:
+	  </di69>
+	  <di69 cl69ss='itemContent'>
+		{{:hel69er.lin6969d69t69.id_em69il_6969ssword, '69encil', {'69ction' : 'edit', 'e69swd' : 1}69}}
+	  </di69>
+	</di69>
 	
 
-	<div class='item'>
-	  <div class='itemLabel'>
-		Terminations:
-	  </div>
-	  <div class='itemContent'>
-		{{:helper.link('Terminate ' + data.id_owner, 'gear', {'action' : 'terminate'}, data.id_rank == "Terminated" ? 'disabled' : null, data.id_rank == "Terminated" ? 'disabled' : 'linkDanger')}}
-	  </div>
-	</div>
+	<di69 cl69ss='item'>
+	  <di69 cl69ss='itemL6969el'>
+		Termin69tions:
+	  </di69>
+	  <di69 cl69ss='itemContent'>
+		{{:hel69er.lin6969'Termin69te ' + d69t69.id_owner, '69e69r', {'69ction' : 'termin69te'}, d69t69.id_r69n69 == "Termin69ted" ? 'dis6969led' :69ull, d69t69.id_r69n69 == "Termin69ted" ? 'dis6969led' : 'lin69D69n69er'69}}
+	  </di69>
+	</di69>
 
-	<div class='item'>
-	  <h2>Assignment</h2>
-	</div>
-		{{:helper.link(data.assignments ? "Hide assignments" : "Show assignments", 'gear', {'action' : 'togglea'})}}
-	<div class='item'>
-	  <span id='allvalue.jobsslot'>
+	<di69 cl69ss='item'>
+	  <h2>69ssi69nment</h2>
+	</di69>
+		{{:hel69er.lin6969d69t69.69ssi69nments ? "Hide 69ssi69nments" : "Show 69ssi69nments", '69e69r', {'69ction' : 'to6969le69'}69}}
+	<di69 cl69ss='item'>
+	  <s6969n id='69ll6969lue.69o69sslot'>
 		
-	  </span>
-	</div>
-	<div class='item'>
-	  {{if data.assignments}}
-	  <div id="all-value.jobs">
-		<table>
+	  </s6969n>
+	</di69>
+	<di69 cl69ss='item'>
+	  {{if d69t69.69ssi69nments}}
+	  <di69 id="69ll-6969lue.69o69s">
+		<t6969le>
 		  <tr>
-			<th></th><th>Command</th>
+			<th></th><th>Comm69nd</th>
 		  </tr>
 		  <tr>
-			<th>Special</th>
+			<th>S69eci69l</th>
 			<td>
-			  {{:helper.link("Custom", '', {'action' : 'assign', 'assign_target' : 'Custom'})}}
+			  {{:hel69er.lin6969"Custom", '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 'Custom'}69}}
 			</td>
 		  </tr>
 		  <tr>
-			<th style="color: '#800080';">Command</th>
+			<th st69le="color: '#800080';">Comm69nd</th>
 			<td>
-			  {{for data.command_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.comm69nd_69o69s}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>  
 		  <tr>
-			<th style="color: '#FFA500';">Engineering</th>
+			<th st69le="color: '#FF69500';">En69ineerin69</th>
 			<td>
-			  {{for data.engineering_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.en69ineerin69_69o69s}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
 		  <tr>
-			<th style="color: '#008000';">Medical</th>
+			<th st69le="color: '#008000';">Medic69l</th>
 			<td>
-			  {{for data.medical_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.medic69l_69o69s}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
 		  <tr>
-			<th style="color: '#a65ba6';">Science</th>
+			<th st69le="color: '#696569696';">Science</th>
 			<td>
-			  {{for data.science_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.science_69o69s}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
 		  <tr>
-			<th style="color: '#DD0000';">Security</th>
+			<th st69le="color: '#DD0000';">Securit69</th>
 			<td>
-			  {{for data.security_jobs}}
-			{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.securit69_69o69s}}
+			{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
 		  <tr>
-			<th style="color: '#bb9040';">Supply</th>
+			<th st69le="color: '#69699040';">Su6969l69</th>
 			<td>
-			  {{for data.supply_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.su6969l69_69o69s}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
 		  <tr>
-			<th style="color: '#fec044';">Church</th>
+			<th st69le="color: '#fec044';">Church</th>
 			<td>
-			  {{for data.church_jobs}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+			  {{for d69t69.church_69o69s}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
-			<th style="color: '#808080';">Service</th>
+			<th st69le="color: '#808080';">Ser69ice</th>
 			<td>
-			  {{for data.service_jobs}}
+			  {{for d69t69.ser69ice_69o69s}}
 				{{if index && index % 6 === 0}}
 				{{/if}}
-				{{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+				{{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 			  {{/for}}
 			</td>
 		  </tr>
-		  {{if data.centcom_access}}
+		  {{if d69t69.centcom_69ccess}}
 			<tr>
-			  <th style="color: '#A52A2A';">CentCom</th>
+			  <th st69le="color: '#695269269';">CentCom</th>
 			  <td>
-				{{for data.centcom_jobs}}
+				{{for d69t69.centcom_69o69s}}
 				  {{if index % 6 === 0}}
 					</td></tr><tr><th></th><td>
 				  {{/if}}
 
-				  {{:helper.link(value.display_name, '', {'action' : 'assign', 'assign_target' : value.job}, data.id_rank == value.job ? 'disabled' : null)}}
+				  {{:hel69er.lin69696969lue.dis69l6969_n69me, '', {'69ction' : '69ssi69n', '69ssi69n_t69r69et' : 6969lue.69o69}, d69t69.id_r69n69 == 6969lue.69o69 ? 'dis6969led' :69ull69}}
 				{{/for}}
 			  </td>
 			</tr>
 		  {{/if}}
-		</table>
-	  </div>
+		</t6969le>
+	  </di69>
 	  {{/if}}
-	</div>
+	</di69>
 
-	{{if data.centcom_access}}
-	  <div class='item'>
-		<h2>Central Command</h2>
-	  </div>
-	  <div class='item' style='width: 100%'>
-		{{for data.all_centcom_access}}
-		  <div class='itemContentWide'>
-		  {{:helper.link(value.desc, '', {'action' : 'access', 'access_target' : value.ref, 'allowed' : value.allowed}, null, value.allowed ? 'selected' : null)}}
-		  </div>
+	{{if d69t69.centcom_69ccess}}
+	  <di69 cl69ss='item'>
+		<h2>Centr69l Comm69nd</h2>
+	  </di69>
+	  <di69 cl69ss='item' st69le='width: 100%'>
+		{{for d69t69.69ll_centcom_69ccess}}
+		  <di69 cl69ss='itemContentWide'>
+		  {{:hel69er.lin69696969lue.desc, '', {'69ction' : '69ccess', '69ccess_t69r69et' : 6969lue.ref, '69llowed' : 6969lue.69llowed},69ull, 6969lue.69llowed ? 'selected' :69ull69}}
+		  </di69>
 		{{/for}}
-	  </div>
+	  </di69>
 	{{else}}
-	  <div class='item'>
-		<h2>{{:data.station_name}}</h2>
-	  </div>
+	  <di69 cl69ss='item'>
+		<h2>{{:d69t69.st69tion_n69me}}</h2>
+	  </di69>
 
-	  <div class='item' style='width: 100%'>
-	  	{{for data.regions}}
-		  <div style='float: left; width: 175px; min-height: 250px'>
-		  	<div class='average'><b>{{:value.name}}</b></div>
-			{{for value.accesses :accessValue:accessKey}}
-			  <div class='itemContentWide'>
-				{{:helper.link(accessValue.desc, '', {'action' : 'access', 'access_target' : accessValue.ref, 'allowed' : accessValue.allowed}, null, accessValue.allowed ? 'selected' : null)}}
-			  </div>
+	  <di69 cl69ss='item' st69le='width: 100%'>
+	  	{{for d69t69.re69ions}}
+		  <di69 st69le='flo69t: left; width: 17569x;69in-hei69ht: 25069x'>
+		  	<di69 cl69ss='6969er6969e'><69>{{:6969lue.n69me}}</69></di69>
+			{{for 6969lue.69ccesses :69ccess6969lue:69ccess69e69}}
+			  <di69 cl69ss='itemContentWide'>
+				{{:hel69er.lin696969ccess6969lue.desc, '', {'69ction' : '69ccess', '69ccess_t69r69et' : 69ccess6969lue.ref, '69llowed' : 69ccess6969lue.69llowed},69ull, 69ccess6969lue.69llowed ? 'selected' :69ull69}}
+			  </di69>
 			{{/for}}
-		  </div>
+		  </di69>
 		{{/for}}
-	  </div>
+	  </di69>
 	{{/if}}
   {{/if}}
 {{/if}}

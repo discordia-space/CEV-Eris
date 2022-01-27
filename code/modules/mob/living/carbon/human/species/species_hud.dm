@@ -1,18 +1,18 @@
 /datum/hud_data
 
-	var/list/equip_slots = list() // Checked by mob_can_equip().
+	var/list/equip_slots = list() // Checked by69ob_can_equip().
 	var/list/ProcessHUD = list(
 		"health","nutrition","body temperature","pressure","toxin","oxygen","fire","internal","sanity","neural system accumulation",
 		"throw","pull","resist","drop","look up","rest", "wield", //"jump",
-		"move intent","intent","damage zone","craft menu",
+		"move intent","intent","damage zone","craft69enu",
 		"equip","swap hand","left arm bionics","right arm bionics","toggle inventory"
 	)
 	var/icon              // If set, overrides ui_style.
 	//var/has_a_intent = 1  // Set to draw intent box.
-	//var/has_m_intent = 1  // Set to draw move intent box.
+	//var/has_m_intent = 1  // Set to draw69ove intent box.
 	//var/has_warnings = 1  // Set to draw environment warnings.
 	//var/has_pressure = 1  // Draw the pressure indicator.
-	//var/has_nutrition = 1 // Draw the nutrition indicator.
+	//var/has_nutrition = 1 // Draw the69utrition indicator.
 	//var/has_bodytemp = 1  // Draw the bodytemp indicator.
 	var/has_hands = 1     // Set to draw hands.
 	//var/has_drop = 1      // Set to draw drop button.
@@ -43,7 +43,7 @@
 /datum/hud_data/New()
 	..()
 	for(var/slot in gear)
-		equip_slots |= gear[slot]
+		equip_slots |= gear69slot69
 
 	if(has_hands)
 //		equip_slots |= slot_l_hand

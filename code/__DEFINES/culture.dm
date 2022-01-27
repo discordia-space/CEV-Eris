@@ -1,26 +1,26 @@
-#define TAG_CULTURE   "culture"
-#define TAG_HOMEWORLD "home_system"
-#define TAG_FACTION   "faction"
-#define TAG_RELIGION  "religion"
+#define TA69_CULTURE   "culture"
+#define TA69_HOMEWORLD "home_system"
+#define TA69_FACTION   "faction"
+#define TA69_RELI69ION  "reli69ion"
 
-#define ALL_CULTURAL_TAGS list( \
-	TAG_CULTURE =   "Culture", \
-	TAG_HOMEWORLD = "Residence", \
-	TAG_FACTION =   "Faction", \
-	TAG_RELIGION =  "Beliefs" \
+#define ALL_CULTURAL_TA69S list( \
+	TA69_CULTURE =   "Culture", \
+	TA69_HOMEWORLD = "Residence", \
+	TA69_FACTION =   "Faction", \
+	TA69_RELI69ION =  "Beliefs" \
 	)
 
 // Cultural IDs.
-#define FACTION_SOL_CENTRAL    "Sol Central Government"
-#define FACTION_INDIE_CONFED  "Gilgamesh Colonial Confederation"
+#define FACTION_SOL_CENTRAL    "Sol Central 69overnment"
+#define FACTION_INDIE_CONFED  "69il69amesh Colonial Confederation"
 #define FACTION_NANOTRASEN     "NanoTrasen"
 #define FACTION_FREETRADE      "Free Trade Union"
 #define FACTION_HEPHAESTUS     "Hephaestus Industries"
-#define FACTION_XYNERGY        "Xynergy"
-#define FACTION_FLEET          "SCG Fleet"
+#define FACTION_XYNER69Y        "Xyner69y"
+#define FACTION_FLEET          "SC69 Fleet"
 #define FACTION_EXPEDITIONARY  "Expeditionary Corps"
 #define FACTION_PCRC           "Proxima Centauri Risk Control"
-#define FACTION_CORPORATE       "Expeditionary Corps Organisation"
+#define FACTION_CORPORATE       "Expeditionary Corps Or69anisation"
 #define FACTION_DAIS           "Deimos Advanced Information Systems"
 #define FACTION_OTHER          "Other Faction"
 #define FACTION_TEST_SUBJECTS  "Test Subjects"
@@ -38,18 +38,18 @@
 #define HOME_SYSTEM_TERSTEN    "Tersten"
 #define HOME_SYSTEM_LORRIMAN   "Lorriman"
 #define HOME_SYSTEM_CINU       "Cinu"
-#define HOME_SYSTEM_YUKLID     "Yuklid V"
+#define HOME_SYSTEM_YUKLID     "Yuklid69"
 #define HOME_SYSTEM_LORDANIA   "Lordania"
-#define HOME_SYSTEM_KINGSTON   "Kingston"
-#define HOME_SYSTEM_GAIA       "Gaia"
-#define HOME_SYSTEM_MAGNITKA   "Magnitka"
+#define HOME_SYSTEM_KIN69STON   "Kin69ston"
+#define HOME_SYSTEM_69AIA       "69aia"
+#define HOME_SYSTEM_MA69NITKA   "Ma69nitka"
 #define HOME_SYSTEM_STATELESS  "Stateless"
 #define HOME_SYSTEM_OTHER      "Other System"
 #define HOME_SYSTEM_DEEP_SPACE "Deep Space"
 
 #define CULTURE_OTHER          "Other Culture"
 #define CULTURE_HUMAN          "Humankind"
-#define CULTURE_HUMAN_VATGROWN "Nonborn"
+#define CULTURE_HUMAN_VAT69ROWN "Nonborn"
 #define CULTURE_HUMAN_MARTIAN  "Martian, Surfacer"
 #define CULTURE_HUMAN_MARSTUN  "Martian, Tunneller"
 #define CULTURE_HUMAN_LUNAPOOR "Luna, Lower Class"
@@ -64,51 +64,51 @@
 #define CULTURE_HUMAN_SPAFRO   "Spacer, Frontier Systems"
 #define CULTURE_HUMAN_CONFED   "Terran"
 #define CULTURE_HUMAN_OTHER    "Other, Humanity"
-#define CULTURE_STARLIGHT      "Starlit Realms"
+#define CULTURE_STARLI69HT      "Starlit Realms"
 #define CULTURE_MONKEY         "Monkey Business"
 #define CULTURE_FARWA          "Farwa Business"
 #define CULTURE_NEARA          "Neara Business"
 #define CULTURE_STOK           "Stok Business"
 #define CULTURE_ALIUM          "Mysterious Aliens"
 #define CULTURE_CULTIST        "Blood Cult"
-#define RELIGION_OTHER         "Other Religion"
-#define RELIGION_JUDAISM       "Judaism"
-#define RELIGION_HINDUISM      "Hinduism"
-#define RELIGION_BUDDHISM      "Buddhism"
-#define RELIGION_SIKHISM       "Sikhism"
-#define RELIGION_JAINISM       "Jainism"
-#define RELIGION_ISLAM         "Islam"
-#define RELIGION_CHRISTIANITY  "Christianity"
-#define RELIGION_BAHAI_FAITH   "Baha'i Faith"
-#define RELIGION_AGNOSTICISM   "Agnosticism"
-#define RELIGION_DEISM         "Deism"
-#define RELIGION_ATHEISM       "Atheism"
-#define RELIGION_THELEMA       "Thelema"
-#define RELIGION_SPIRITUALISM  "Spiritualism"
-#define RELIGION_SHINTO        "Shinto"
-#define RELIGION_TAOISM        "Taoism"
+#define RELI69ION_OTHER         "Other Reli69ion"
+#define RELI69ION_JUDAISM       "Judaism"
+#define RELI69ION_HINDUISM      "Hinduism"
+#define RELI69ION_BUDDHISM      "Buddhism"
+#define RELI69ION_SIKHISM       "Sikhism"
+#define RELI69ION_JAINISM       "Jainism"
+#define RELI69ION_ISLAM         "Islam"
+#define RELI69ION_CHRISTIANITY  "Christianity"
+#define RELI69ION_BAHAI_FAITH   "Baha'i Faith"
+#define RELI69ION_A69NOSTICISM   "A69nosticism"
+#define RELI69ION_DEISM         "Deism"
+#define RELI69ION_ATHEISM       "Atheism"
+#define RELI69ION_THELEMA       "Thelema"
+#define RELI69ION_SPIRITUALISM  "Spiritualism"
+#define RELI69ION_SHINTO        "Shinto"
+#define RELI69ION_TAOISM        "Taoism"
 
 // Skrellian cultures.
-#define CULTURE_SKRELL_QERR     "Qerr-Katish"
+#define CULTURE_SKRELL_69ERR     "69err-Katish"
 #define CULTURE_SKRELL_MALISH   "Malish-Katish"
 #define CULTURE_SKRELL_KANIN    "Kanin-Katish"
 #define CULTURE_SKRELL_TALUM    "Talum-Katish"
 #define CULTURE_SKRELL_RASKINTA "Raskinta-Katish"
 
-#define HOME_SYSTEM_QERRBALAK  "Qerrbalak"
+#define HOME_SYSTEM_69ERRBALAK  "69errbalak"
 #define HOME_SYSTEM_TALAMIRA "Talamira"
 #define HOME_SYSTEM_ROASORA "Roa'sora"
-#define HOME_SYSTEM_MITORQI "Mi'tor'qi"
+#define HOME_SYSTEM_MITOR69I "Mi'tor'69i"
 #define HOME_SYSTEM_SKRELLSPACE "Skrell Space"
 
-#define FACTION_SKRELL_QERRVOAL "Qerr'voal"
-#define FACTION_SKRELL_QALAOA "Qala'oa"
+#define FACTION_SKRELL_69ERRVOAL "69err'voal"
+#define FACTION_SKRELL_69ALAOA "69ala'oa"
 #define FACTION_SKRELL_YIITALANA "Yii'talana"
-#define FACTION_SKRELL_KRRIGLI "Krri'gli"
-#define FACTION_SKRELL_QONPRRI "Qon'prri"
+#define FACTION_SKRELL_KRRI69LI "Krri'69li"
+#define FACTION_SKRELL_69ONPRRI "69on'prri"
 
 // Adherent cultures.
-#define CULTURE_ADHERENT             "The Vigil"
+#define CULTURE_ADHERENT             "The69i69il"
 
 #define HOME_SYSTEM_ADHERENT         "Canon"
 #define HOME_SYSTEM_ADHERENT_MOURNER "Monument World"
@@ -117,9 +117,9 @@
 #define FACTION_ADHERENT_LOYALISTS   "Loyalists"
 #define FACTION_ADHERENT_SEPARATISTS "Seperatists"
 
-// Vox cultures.
+//69ox cultures.
 #define CULTURE_VOX_ARKSHIP    "Arkship Crew"
-#define CULTURE_VOX_SALVAGER   "Salvager Crew"
+#define CULTURE_VOX_SALVA69ER   "Salva69er Crew"
 #define CULTURE_VOX_RAIDER     "Raider Crew"
 
 #define HOME_SYSTEM_VOX_ARK    "Ark-Dweller"
@@ -130,10 +130,10 @@
 #define FACTION_VOX_CREW       "Ark Labourer"
 #define FACTION_VOX_APEX       "Apex Servant"
 
-#define RELIGION_VOX           "Auralis Reverence"
+#define RELI69ION_VOX           "Auralis Reverence"
 
 // IPC cultures.
-#define CULTURE_POSITRONICS    "Union Member"
+#define CULTURE_POSITRONICS    "Union69ember"
 
 #define HOME_SYSTEM_ROOT       "Root"
 
@@ -142,7 +142,7 @@
 // Diona cultures.
 #define CULTURE_DIONA          "Diona Chorus"
 
-#define HOME_SYSTEM_DIONAEA    "Epsilon Ursae Minoris"
+#define HOME_SYSTEM_DIONAEA    "Epsilon Ursae69inoris"
 
 // Serpentid cultures.
 #define CULTURE_SERPENTID      "Serpentid Labourer"
@@ -150,9 +150,9 @@
 #define HOME_SYSTEM_SERPENTIDS "Tau-Wilo"
 
 // Unathi cultures.
-#define CULTURE_UNATHI              "Moghes Hegemony"
+#define CULTURE_UNATHI              "Mo69hes He69emony"
 
-#define HOME_SYSTEM_MOGHES          "Moghes"
+#define HOME_SYSTEM_MO69HES          "Mo69hes"
 
 #define FACTION_UNATHI_POLAR        "Polar Clans"
 #define FACTION_UNATHI_DESERT       "Desert Clans"
@@ -161,26 +161,26 @@
 #define FACTION_UNATHI_SALT_SWAMP   "Salt Swamp Clans"
 #define FACTION_UNATHI_YEOSA		"Yeosa Clans"
 
-#define RELIGION_UNATHI_STRATAGEM    "Grand Stratagem"
-#define RELIGION_UNATHI_PRECURSOR    "Precursor"
-#define RELIGION_UNATHI_VINE         "Hand of the Vine"
-#define RELIGION_UNATHI_LIGHTS       "The Fruitful Lights"
+#define RELI69ION_UNATHI_STRATA69EM    "69rand Strata69em"
+#define RELI69ION_UNATHI_PRECURSOR    "Precursor"
+#define RELI69ION_UNATHI_VINE         "Hand of the69ine"
+#define RELI69ION_UNATHI_LI69HTS       "The Fruitful Li69hts"
 
-// Nabber grades.
-#define CULTURE_NABBER_CMINUS "Grade C-"
-#define CULTURE_NABBER_C      "Grade C"
-#define CULTURE_NABBER_CPLUS  "Grade C+"
-#define CULTURE_NABBER_BMINUS "Grade B-"
-#define CULTURE_NABBER_B      "Grade B"
-#define CULTURE_NABBER_BPLUS  "Grade B+"
-#define CULTURE_NABBER_AMINUS "Grade A-"
-#define CULTURE_NABBER_A      "Grade A"
-#define CULTURE_NABBER_APLUS  "Grade A+"
+//69abber 69rades.
+#define CULTURE_NABBER_CMINUS "69rade C-"
+#define CULTURE_NABBER_C      "69rade C"
+#define CULTURE_NABBER_CPLUS  "69rade C+"
+#define CULTURE_NABBER_BMINUS "69rade B-"
+#define CULTURE_NABBER_B      "69rade B"
+#define CULTURE_NABBER_BPLUS  "69rade B+"
+#define CULTURE_NABBER_AMINUS "69rade A-"
+#define CULTURE_NABBER_A      "69rade A"
+#define CULTURE_NABBER_APLUS  "69rade A+"
 
 // Ascent culture.
 #define CULTURE_ASCENT           "The Ascent"
 #define HOME_SYSTEM_KHARMAANI    "Core"
-#define FACTION_ASCENT_GYNE      "Ascent Gyne"
+#define FACTION_ASCENT_69YNE      "Ascent 69yne"
 #define FACTION_ASCENT_ALATE     "Ascent Alate"
 #define FACTION_ASCENT_SERPENTID "Ascent Serpentid"
-#define RELIGION_KHARMAANI       "Nest-Lineage Veneration"
+#define RELI69ION_KHARMAANI       "Nest-Linea69e69eneration"

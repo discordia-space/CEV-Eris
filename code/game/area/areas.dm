@@ -1,5 +1,5 @@
 #define STARTUP_STAGE 1
-#define MAIN_STAGE 2
+#define69AIN_STAGE 2
 #define WIND_DOWN_STAGE 3
 #define END_STAGE 4
 //weather defines
@@ -11,7 +11,7 @@
 	var/global/global_uid = 0
 	var/uid
 	var/tmp/camera_id = 0 // For automatic c_tag setting
-	//Keeping this on the default plane, GAME_PLANE, will make area overlays fail to render on FLOOR_PLANE.
+	//Keeping this on the default plane, GAME_PLANE, will69ake area overlays fail to render on FLOOR_PLANE.
 	plane = BLACKNESS_PLANE
 	layer = AREA_LAYER
 	var/ship_area = FALSE
@@ -29,7 +29,7 @@
 	uid = ++global_uid
 	all_areas += src
 	if (ship_area)
-		ship_areas[src] = TRUE //Adds ourselves to the list of all ship areas
+		ship_areas69src69 = TRUE //Adds ourselves to the list of all ship areas
 
 	if(!requires_power)
 		power_light = 0
@@ -46,7 +46,7 @@
 		power_light = 0
 		power_equip = 0
 		power_environ = 0
-	power_change()		// all machines set to current power level, also updates lighting icon
+	power_change()		// all69achines set to current power level, also updates lighting icon
 
 
 /area/proc/get_cameras()
@@ -56,9 +56,9 @@
 	return cameras
 
 /area/proc/get_camera_tag(var/obj/machinery/camera/C)
-	return "[name] #[camera_id++]"
+	return "69name69 #69camera_id++69"
 
-/area/proc/atmosalert(danger_level, var/alarm_source)
+/area/proc/atmosalert(danger_level,69ar/alarm_source)
 	if (danger_level == 0)
 		atmosphere_alarm.clearAlarm(src, alarm_source)
 	else
@@ -67,7 +67,7 @@
 	//Check all the alarms before lowering atmosalm. Raising is perfectly fine.
 	for (var/obj/machinery/alarm/AA in src)
 		if (!(AA.stat & (NOPOWER|BROKEN)) && !AA.shorted && AA.report_danger_level)
-			danger_level = max(danger_level, AA.danger_level)
+			danger_level =69ax(danger_level, AA.danger_level)
 
 	if(danger_level != atmosalm)
 		if (danger_level < 1 && atmosalm >= 1)
@@ -150,7 +150,7 @@
 
 	var/weather_icon
 	for(var/V in SSweather.processing)
-		var/datum/weather/W = V
+		var/datum/weather/W =69
 		if(W.stage != END_STAGE && (src in get_areas(/area)))
 			W.update_areas()
 			weather_icon = TRUE
@@ -210,7 +210,7 @@
 
 // called when power status changes
 /area/proc/power_change()
-	for(var/obj/machinery/M in src)	// for each machine in the area
+	for(var/obj/machinery/M in src)	// for each69achine in the area
 		M.power_change()			// reverify power status (to update icons etc.)
 	SEND_SIGNAL(src, COMSIG_AREA_APC_POWER_CHANGE)
 	if (fire || eject || party)
@@ -232,11 +232,11 @@
 /area/proc/addStaticPower(value, powerchannel)
 	switch(powerchannel)
 		if(STATIC_EQUIP)
-			static_equip += value
+			static_equip +=69alue
 		if(STATIC_LIGHT)
-			static_light += value
+			static_light +=69alue
 		if(STATIC_ENVIRON)
-			static_environ += value
+			static_environ +=69alue
 
 /area/proc/removeStaticPower(value, powerchannel)
 	addStaticPower(-value, powerchannel)
@@ -246,7 +246,7 @@
 	used_light = 0
 	used_environ = 0
 
-/area/proc/use_power(var/amount, var/chan)
+/area/proc/use_power(var/amount,69ar/chan)
 	switch(chan)
 		if(STATIC_EQUIP)
 			used_equip += amount
@@ -278,7 +278,7 @@ var/list/mob/living/forced_ambiance_list = new
 	play_ambience(L)
 
 /area/proc/play_ambience(var/mob/living/L)
-    // Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
+    // Ambience goes down here --69ake sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.client && L.get_preference_value(/datum/client_preference/play_ambiance) == GLOB.PREF_YES))    return
 
 	var/client/CL = L.client
@@ -290,7 +290,7 @@ var/list/mob/living/forced_ambiance_list = new
 			else
 				var/new_ambience = pick(pick(forced_ambience))
 				CL.ambience_playing = new_ambience
-				sound_to(L, sound(new_ambience, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
+				sound_to(L, sound(new_ambience, repeat = 1, wait = 0,69olume = 30, channel = GLOB.ambience_sound_channel))
 				return 1
 		if(CL.ambience_playing in ambience)
 			return 1
@@ -299,13 +299,13 @@ var/list/mob/living/forced_ambiance_list = new
 		if(world.time >= L.client.played + 600)
 			var/sound = pick(ambience)
 			CL.ambience_playing = sound
-			sound_to(L, sound(sound, repeat = 0, wait = 0, volume = 10, channel = GLOB.ambience_sound_channel))
+			sound_to(L, sound(sound, repeat = 0, wait = 0,69olume = 10, channel = GLOB.ambience_sound_channel))
 			L.client.played = world.time
 			return 1
 	else
 		var/sound = 'sound/ambience/shipambience.ogg'
 		CL.ambience_playing = sound
-		sound_to(L, sound(sound, repeat = 1, wait = 0, volume = 30, channel = GLOB.ambience_sound_channel))
+		sound_to(L, sound(sound, repeat = 1, wait = 0,69olume = 30, channel = GLOB.ambience_sound_channel))
 
 
 //Figures out what gravity should be and sets it appropriately
@@ -336,7 +336,7 @@ var/list/mob/living/forced_ambiance_list = new
 		M.update_floating()
 
 //This thunk should probably not be an area proc.
-//TODO: Make it a mob proc
+//TODO:69ake it a69ob proc
 /area/proc/thunk(mob)
 	if(istype(get_turf(mob), /turf/space)) // Can't fall onto nothing.
 		return
@@ -347,7 +347,7 @@ var/list/mob/living/forced_ambiance_list = new
 		return
 
 	if(istype(mob,/mob/living/carbon/human/))
-		var/mob/living/carbon/human/H = mob
+		var/mob/living/carbon/human/H =69ob
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
 		if(H.stats.getPerk(PERK_ASS_OF_CONCRETE))
@@ -358,7 +358,7 @@ var/list/mob/living/forced_ambiance_list = new
 		else
 			H.AdjustStunned(1)
 			H.AdjustWeakened(1)
-		to_chat(mob, SPAN_NOTICE("The sudden appearance of gravity makes you fall to the floor!"))
+		to_chat(mob, SPAN_NOTICE("The sudden appearance of gravity69akes you fall to the floor!"))
 
 /area/proc/prison_break()
 	var/obj/machinery/power/apc/theAPC = get_apc()
@@ -394,7 +394,7 @@ var/list/mob/living/forced_ambiance_list = new
 /area/proc/set_ship_area()
 	if (!ship_area)
 		ship_area = TRUE
-		ship_areas[src] = TRUE
+		ship_areas69src69 = TRUE
 
 /area/AllowDrop()
 	CRASH("Bad op: area/AllowDrop() called")
@@ -403,9 +403,9 @@ var/list/mob/living/forced_ambiance_list = new
 	CRASH("Bad op: area/drop_location() called")
 
 
-// Changes the area of T to A. Do not do this manually.
+// Changes the area of T to A. Do not do this69anually.
 // Area is expected to be a non-null instance.
-/proc/ChangeArea(var/turf/T, var/area/A)
+/proc/ChangeArea(var/turf/T,69ar/area/A)
 	if(!istype(A))
 		CRASH("Area change attempt failed: invalid area supplied.")
 	var/area/old_area = get_area(T)
@@ -418,4 +418,4 @@ var/list/mob/living/forced_ambiance_list = new
 			old_area.Exited(AM, A)  // Note: this _will_ raise exited events.
 	A.Entered(T, old_area)
 	for(var/atom/movable/AM in T)
-		A.Entered(AM, old_area) // Note: this will _not_ raise moved or entered events. If you change this, you must also change everything which uses them.
+		A.Entered(AM, old_area) // Note: this will _not_ raise69oved or entered events. If you change this, you69ust also change everything which uses them.

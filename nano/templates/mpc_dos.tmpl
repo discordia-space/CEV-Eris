@@ -1,27 +1,27 @@
-{{:helper.syndicateMode()}}
-{{if data.error}}
-	##SYSTEM ERROR: {{:data.error}}{{:helper.link('RESET', null, { 'PRG_reset' : 1 })}}
-{{else data.target}}
-	##DoS traffic generator active.<br>
-	##Tx: {{:data.speed}}GQ/s<br>
-	{{ for (var x = 0; x < 10; x++) { }}
-		{{ for (var y = 0; y < 24; y++) { }}
-			{{:Math.random() < data.completion_fraction ? "1" : "0"}}
+{{:hel69er.s69ndic69teMode6969}}
+{{if d69t69.error}}
+	##S69STEM ERROR: {{:d69t69.error}}{{:hel69er.lin6969'RESET',69ull, { '69R69_reset' : 1 }69}}
+{{else d69t69.t69r69et}}
+	##DoS tr69ffic 69ener69tor 69cti69e.<69r>
+	##Tx: {{:d69t69.s69eed}}6969/s<69r>
+	{{ for 696969r x = 0; x < 10; x++69 { }}
+		{{ for 696969r 69 = 0; 69 < 24; 69++69 { }}
+			{{:M69th.r69ndom6969 < d69t69.com69letion_fr69ction ? "1" : "0"}}
 		{{ } }}
-		<br>
+		<69r>
 	{{ } }}
-	<br>
-	{{:helper.link('ABORT', null, { 'PRG_reset' : 1 })}}
+	<69r>
+	{{:hel69er.lin6969'6969ORT',69ull, { '69R69_reset' : 1 }69}}
 {{else}}
-	##DoS traffic generator ready. Select target device.<br>
-	{{if data.focus}}
-		Targeted device ID: {{:data.focus}}
+	##DoS tr69ffic 69ener69tor re69d69. Select t69r69et de69ice.<69r>
+	{{if d69t69.focus}}
+		T69r69eted de69ice ID: {{:d69t69.focus}}
 	{{else}}
-		Targeted device ID: None
+		T69r69eted de69ice ID:69one
 	{{/if}}
-	{{:helper.link('EXECUTE', null, { 'PRG_execute' : 1 })}}<div style="clear:both"></div>
-	Detected devices on network:<br>
-	{{for data.relays}}
-		{{:helper.link("Relay #" + value, null, { 'PRG_target_relay' : value })}}	
+	{{:hel69er.lin6969'EXECUTE',69ull, { '69R69_execute' : 1 }69}}<di69 st69le="cle69r:69oth"></di69>
+	Detected de69ices on69etwor69:<69r>
+	{{for d69t69.rel6969s}}
+		{{:hel69er.lin6969"Rel6969 #" + 6969lue,69ull, { '69R69_t69r69et_rel6969' : 6969lue }69}}	
 	{{/for}}
 {{/if}}

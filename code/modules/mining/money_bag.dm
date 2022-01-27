@@ -9,7 +9,7 @@
 	throwforce = 2
 	w_class = ITEM_SIZE_BULKY
 
-/obj/item/moneybag/attack_hand(user as mob)
+/obj/item/moneybag/attack_hand(user as69ob)
 	if (!is_held())
 		return ..()
 	var/amt_gold = 0
@@ -33,42 +33,42 @@
 		if (istype(C,/obj/item/coin/uranium))
 			amt_uranium++;
 
-	var/dat = text("<b>The contents of the moneybag reveal...</b><br>")
+	var/dat = text("<b>The contents of the69oneybag reveal...</b><br>")
 	if (amt_gold)
-		dat += text("Gold coins: [amt_gold] <A href='?src=\ref[src];remove=gold'>Remove one</A><br>")
+		dat += text("Gold coins: 69amt_gold69 <A href='?src=\ref69src69;remove=gold'>Remove one</A><br>")
 	if (amt_silver)
-		dat += text("Silver coins: [amt_silver] <A href='?src=\ref[src];remove=silver'>Remove one</A><br>")
+		dat += text("Silver coins: 69amt_silver69 <A href='?src=\ref69src69;remove=silver'>Remove one</A><br>")
 	if (amt_iron)
-		dat += text("Metal coins: [amt_iron] <A href='?src=\ref[src];remove=iron'>Remove one</A><br>")
+		dat += text("Metal coins: 69amt_iron69 <A href='?src=\ref69src69;remove=iron'>Remove one</A><br>")
 	if (amt_diamond)
-		dat += text("Diamond coins: [amt_diamond] <A href='?src=\ref[src];remove=diamond'>Remove one</A><br>")
+		dat += text("Diamond coins: 69amt_diamond69 <A href='?src=\ref69src69;remove=diamond'>Remove one</A><br>")
 	if (amt_plasma)
-		dat += text("Plasma coins: [amt_plasma] <A href='?src=\ref[src];remove=plasma'>Remove one</A><br>")
+		dat += text("Plasma coins: 69amt_plasma69 <A href='?src=\ref69src69;remove=plasma'>Remove one</A><br>")
 	if (amt_uranium)
-		dat += text("Uranium coins: [amt_uranium] <A href='?src=\ref[src];remove=uranium'>Remove one</A><br>")
-	user << browse("[dat]", "window=moneybag")
+		dat += text("Uranium coins: 69amt_uranium69 <A href='?src=\ref69src69;remove=uranium'>Remove one</A><br>")
+	user << browse("69dat69", "window=moneybag")
 
-/obj/item/moneybag/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/moneybag/attackby(obj/item/W as obj,69ob/user as69ob)
 	..()
 	if (istype(W, /obj/item/coin))
 		var/obj/item/coin/C = W
-		to_chat(user, "\blue You add the [C.name] into the bag.")
+		to_chat(user, "\blue You add the 69C.name69 into the bag.")
 		usr.drop_item()
 		contents += C
 	if (istype(W, /obj/item/moneybag))
 		var/obj/item/moneybag/C = W
 		for (var/obj/O in C.contents)
 			contents += O;
-		to_chat(user, "\blue You empty the [C.name] into the bag.")
+		to_chat(user, "\blue You empty the 69C.name69 into the bag.")
 	return
 
 /obj/item/moneybag/Topic(href, href_list)
 	if(..())
 		return 1
 	usr.set_machine(src)
-	if(href_list["remove"])
+	if(href_list69"remove"69)
 		var/obj/item/coin/COIN
-		switch(href_list["remove"])
+		switch(href_list69"remove"69)
 			if(MATERIAL_GOLD)
 				COIN = locate(/obj/item/coin/gold,src.contents)
 			if(MATERIAL_SILVER)

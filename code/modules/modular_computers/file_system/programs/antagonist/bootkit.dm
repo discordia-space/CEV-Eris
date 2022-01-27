@@ -2,7 +2,7 @@
 	filename = "bootkit"
 	filedesc = "Bootkit Installer"
 	program_menu_icon = "unlocked"
-	extended_desc = "Grants access to a remote software repository to any PC it runs on. The only way to remove this access is to replace PC's mainboard."
+	extended_desc = "Grants access to a remote software repository to any PC it runs on. The only way to remove this access is to replace PC's69ainboard."
 	size = 4
 	usage_flags = PROGRAM_ALL
 	available_on_ntnet = FALSE

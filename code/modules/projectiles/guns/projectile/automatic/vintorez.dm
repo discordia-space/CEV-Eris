@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/automatic/vintorez
 	name = "Excelsior .20 \"Vintorez\""
-	desc = "This gun is a copy of a design from a country that no longer exists. It is still highly prized for its armor piercing capabilities."
+	desc = "This gun is a copy of a design from a country that69o longer exists. It is still highly prized for its armor piercing capabilities."
 	icon = 'icons/obj/guns/projectile/vintorez.dmi'
 	icon_state = "vintorez"
 	item_state = "vintorez"
@@ -10,10 +10,10 @@
 	origin_tech = list(TECH_COMBAT = 6, TECH_COVERT = 4, TECH_MATERIAL = 2)
 	slot_flags = SLOT_BACK
 	ammo_type = /obj/item/ammo_casing/srifle
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	magazine_type = /obj/item/ammo_magazine/srifle
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_PLASTIC = 5)
 	price_tag = 4000
 	zoom_factor = 0.8 // double as IH_heavy
 	penetration_multiplier = 1.2

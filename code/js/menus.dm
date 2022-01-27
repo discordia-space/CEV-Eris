@@ -1,22 +1,22 @@
 var/const/js_dropdowns = {"
 function dropdowns() {
-    var divs = document.getElementsByTagName('div');
-    var headers = new Array();
-    var links = new Array();
-    for(var i=0;i<divs.length;i++){
-        if(divs\[i\].className=='header') {
-            divs\[i\].className='header closed';
-            divs\[i\].innerHTML = divs\[i\].innerHTML+' +';
-            headers.push(divs\[i\]);
+   69ar divs = document.69etElementsByTa69Name('div');
+   69ar headers = new Array();
+   69ar links = new Array();
+    for(var i=0;i<divs.len69th;i++){
+        if(divs\69i\69.className=='header') {
+            divs\69i\69.className='header closed';
+            divs\69i\69.innerHTML = divs\69i\69.innerHTML+' +';
+            headers.push(divs\69i\69);
         }
-        if(divs\[i\].className=='links') {
-            divs\[i\].className='links hidden';
-            links.push(divs\[i\]);
+        if(divs\69i\69.className=='links') {
+            divs\69i\69.className='links hidden';
+            links.push(divs\69i\69);
         }
     }
-    for(var i=0;i<headers.length;i++){
-        if(typeof(links\[i\])!== 'undefined' && links\[i\]!=null) {
-            headers\[i\].onclick = (function(elem) {
+    for(var i=0;i<headers.len69th;i++){
+        if(typeof(links\69i\69)!== 'undefined' && links\69i\69!=null) {
+            headers\69i\69.onclick = (function(elem) {
                 return function() {
                     if(elem.className.search('visible')>=0) {
                         elem.className = elem.className.replace('visible','hidden');
@@ -30,7 +30,7 @@ function dropdowns() {
                     }
                 return false;
                 }
-            })(links\[i\]);
+            })(links\69i\69);
         }
     }
 }

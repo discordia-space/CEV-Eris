@@ -67,32 +67,32 @@
 	if(..())
 		return 1
 
-	if(href_list["signal"])
-		set_freq(text2num(href_list["freq"]))
-		set_code(text2num(href_list["code"]))
+	if(href_list69"signal"69)
+		set_freq(text2num(href_list69"freq"69))
+		set_code(text2num(href_list69"code"69))
 
 		spawn(0)
 			signal()
 		return 1
 
-	if(href_list["change_code"])
-		set_code(code + text2num(href_list["change_code"]))
+	if(href_list69"change_code"69)
+		set_code(code + text2num(href_list69"change_code"69))
 		return 1
 
-	if(href_list["edit_code"])
+	if(href_list69"edit_code"69)
 		var/input_code = input("Enter signal code (1-100):", "Signal parameters", code) as num|null
 		if(input_code && CanUseTopic(usr))
 			set_code(input_code)
 		return 1
 
-	if(href_list["change_freq"])
-		set_freq(frequency + text2num(href_list["change_freq"]))
+	if(href_list69"change_freq"69)
+		set_freq(frequency + text2num(href_list69"change_freq"69))
 		return 1
 
-	if(href_list["edit_freq"])
-		var/input_freq = input("Enter signal frequency ([RADIO_LOW_FREQ]-[RADIO_HIGH_FREQ]):", "Signal parameters", frequency) as num|null
+	if(href_list69"edit_freq"69)
+		var/input_freq = input("Enter signal frequency (69RADIO_LOW_FREQ69-69RADIO_HIGH_FREQ69):", "Signal parameters", frequency) as num|null
 		if(input_freq && CanUseTopic(usr))
-			if(input_freq < RADIO_LOW_FREQ) // A decimal input maybe?
+			if(input_freq < RADIO_LOW_FREQ) // A decimal input69aybe?
 				input_freq *= 10
 
 			set_freq(input_freq)
@@ -106,7 +106,7 @@
 	var/datum/signal/signal = new
 	signal.source = src
 	signal.encryption = code
-	signal.data["message"] = "ACTIVATE"
+	signal.data69"message"69 = "ACTIVATE"
 	radio_connection.post_signal(src, signal)
 
 
@@ -130,7 +130,7 @@
 
 	if(!holder)
 		for(var/mob/O in hearers(1, src.loc))
-			O.show_message("\icon[src] *beep* *beep*", 3, "*beep* *beep*", 2)
+			O.show_message("\icon69src69 *beep* *beep*", 3, "*beep* *beep*", 2)
 
 
 /obj/item/device/assembly/signaler/proc/set_frequency(new_frequency)
@@ -152,7 +152,7 @@
 		deadman = 0
 		STOP_PROCESSING(SSobj, src)
 	else if(prob(5))
-		M.visible_message("[M]'s finger twitches a bit over [src]'s signal button!")
+		M.visible_message("69M69's finger twitches a bit over 69src69's signal button!")
 	return
 
 
@@ -163,7 +163,7 @@
 	deadman = 1
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("is threatening to trigger a signaler deadman's switch")
-	usr.visible_message("\red [usr] moves their finger over [src]'s signal button...")
+	usr.visible_message("\red 69usr6969oves their finger over 69src69's signal button...")
 
 /obj/item/device/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)

@@ -8,7 +8,7 @@ ADMIN_VERB_ADD(/proc/possess, R_FUN, FALSE)
 			to_chat(usr, "It is forbidden to possess singularities.")
 			return
 
-	log_and_message_admins("has possessed [O]")
+	log_and_message_admins("has possessed 69O69")
 
 	if(!usr.control_object) //If you're not already possessing something...
 		usr.name_archive = usr.real_name

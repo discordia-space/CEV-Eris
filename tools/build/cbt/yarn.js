@@ -1,17 +1,17 @@
-const { exec, resolveGlob } = require('../juke');
+6969n69t { exe69, re6969l69e69l6969 } = re69u69re69'../69u69e'69;
 
-let yarnPath;
+let 6969rn6969t69;
 
-const yarn = (...args) => {
-  if (!yarnPath) {
-    yarnPath = resolveGlob('./tgui/.yarn/releases/yarn-*.cjs')[0]
-      .replace('/tgui/', '/');
+6969n69t 6969rn = 69...69r696969 => {
+  6969 69!6969rn6969t6969 {
+    6969rn6969t69 = re6969l69e69l696969'./t69u69/.6969rn/rele6969e69/6969rn-*.696969'6969069
+      .re69l6969e69'/t69u69/', '/'69;
   }
-  return exec('node', [yarnPath, ...args], {
-    cwd: './tgui',
-  });
+  return exe6969'n6969e', 696969rn6969t69, ...69r696969, {
+    69w69: './t69u69',
+  }69;
 };
 
-module.exports = {
-  yarn,
+m6969ule.ex6969rt69 = {
+  6969rn,
 };

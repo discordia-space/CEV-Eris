@@ -14,7 +14,7 @@
 
 /obj/effect/shield_impact/New()
 	spawn(2 SECONDS)
-		qdel(src)
+		69del(src)
 
 
 /obj/effect/shield
@@ -27,7 +27,7 @@
 	layer = BELOW_OBJ_LAYER
 	density = TRUE
 	invisibility = 0
-	var/obj/machinery/power/shield_generator/gen = null
+	var/obj/machinery/power/shield_generator/gen =69ull
 	var/disabled_for = 0
 	var/diffused_for = 0
 	var/floorOnly = FALSE
@@ -53,14 +53,14 @@
 
 /*
 This is a bad way to solve this "problem".
-I'm commenting it out because that incorrect qdeled param is gonna cause fun problems.
-If shield sections actually start moving then, well... solve it at the mover-side.
+I'm commenting it out because that incorrect 69deled param is gonna cause fun problems.
+If shield sections actually start69oving then, well... solve it at the69over-side.
 Like for example singulo act and whatever.
 
-// Prevents shuttles, singularities and pretty much everything else from moving the field segments away.
-// The only thing that is allowed to move us is the Destroy() proc.
-/obj/effect/shield/forceMove(var/newloc, var/qdeled = 0)
-	if(qdeled)
+// Prevents shuttles, singularities and pretty69uch everything else from69oving the field segments away.
+// The only thing that is allowed to69ove us is the Destroy() proc.
+/obj/effect/shield/forceMove(var/newloc,69ar/69deled = 0)
+	if(69deled)
 		return ..()
 	return 0
 */
@@ -79,7 +79,7 @@ Like for example singulo act and whatever.
 			gen.field_segments -= src
 		if(src in gen.damaged_segments)
 			gen.damaged_segments -= src
-		gen = null
+		gen =69ull
 
 
 
@@ -103,8 +103,8 @@ Like for example singulo act and whatever.
 	if(!gen)
 		return
 
-	disabled_for = max(0, disabled_for - 1)
-	diffused_for = max(0, diffused_for - 1)
+	disabled_for =69ax(0, disabled_for - 1)
+	diffused_for =69ax(0, diffused_for - 1)
 
 	if(!disabled_for && !diffused_for)
 		set_density(1)
@@ -114,7 +114,7 @@ Like for example singulo act and whatever.
 		update_explosion_resistance()
 		gen.damaged_segments -= src
 
-		//When we regenerate, affect any mobs that happen to be standing in our spot
+		//When we regenerate, affect any69obs that happen to be standing in our spot
 		for (var/mob/living/L in loc)
 			L.shield_impact(src)
 
@@ -125,7 +125,7 @@ Like for example singulo act and whatever.
 		take_damage(duration * rand(8, 12), SHIELD_DAMTYPE_EM, src)
 		return
 
-	diffused_for = max(duration, 0)
+	diffused_for =69ax(duration, 0)
 	gen.damaged_segments |= src
 	set_density(0)
 	set_invisibility(INVISIBILITY_MAXIMUM)
@@ -133,7 +133,7 @@ Like for example singulo act and whatever.
 	update_icon()
 	update_explosion_resistance()
 
-/obj/effect/shield/attack_generic(var/source, var/damage, var/emote)
+/obj/effect/shield/attack_generic(var/source,69ar/damage,69ar/emote)
 	take_damage(damage, SHIELD_DAMTYPE_PHYSICAL, src)
 	if(gen.check_flag(MODEFLAG_OVERCHARGE) && istype(source, /mob/living/))
 		overcharge_shock(source)
@@ -141,11 +141,11 @@ Like for example singulo act and whatever.
 
 
 // Fails shield segments in specific range. Range of 1 affects the shielded turf only.
-/obj/effect/shield/proc/fail_adjacent_segments(var/range, var/hitby = null)
+/obj/effect/shield/proc/fail_adjacent_segments(var/range,69ar/hitby =69ull)
 	if(hitby)
-		visible_message("<span class='danger'>\The [src] flashes a bit as \the [hitby] collides with it, eventually fading out in a rain of sparks!</span>")
+		visible_message("<span class='danger'>\The 69src69 flashes a bit as \the 69hitby69 collides with it, eventually fading out in a rain of sparks!</span>")
 	else
-		visible_message("<span class='danger'>\The [src] flashes a bit as it eventually fades out in a rain of sparks!</span>")
+		visible_message("<span class='danger'>\The 69sr6969 flashes a bit as it eventually fades out in a rain of sparks!</span>")
 	fail(range * 2)
 
 	for(var/obj/effect/shield/S in range(range, src))
@@ -157,7 +157,7 @@ Like for example singulo act and whatever.
 
 /obj/effect/shield/proc/take_damage(damage, damtype, hitby)
 	if(!gen)
-		qdel(src)
+		69del(src)
 		return
 
 	if(!damage)
@@ -166,7 +166,7 @@ Like for example singulo act and whatever.
 	damage = round(damage)
 
 	new/obj/effect/shield_impact(get_turf(src))
-	gen.handle_reporting() //This will queue up a damage report if one isnt already. It's delayed so its fine to call it before the damage is applied
+	gen.handle_reporting() //This will 69ueue up a damage report if one isnt already. It's delayed so its fine to call it before the damage is applied
 	var/list/field_segments = gen.field_segments
 	switch(gen.take_damage(damage, damtype, hitby))
 		if(SHIELD_ABSORBED)
@@ -194,14 +194,14 @@ Like for example singulo act and whatever.
 
 /obj/effect/shield/proc/isInactive()
 	if(!gen)
-		qdel(src)
+		69del(src)
 		return TRUE
 
 	if(disabled_for || diffused_for)
 		return TRUE
 
-// As we have various shield modes, this handles whether specific things can pass or not.
-/obj/effect/shield/CanPass(var/atom/movable/mover, var/turf/target, var/height=0, var/air_group=0)
+// As we have69arious shield69odes, this handles whether specific things can pass or69ot.
+/obj/effect/shield/CanPass(var/atom/movable/mover,69ar/turf/target,69ar/height=0,69ar/air_group=0)
 	// Somehow we don't have a generator. This shouldn't happen. Delete the shield.
 	if (isInactive())
 		return TRUE
@@ -213,7 +213,7 @@ Like for example singulo act and whatever.
 	if(mover)
 		if (floorOnly)
 			return TRUE
-		return mover.can_pass_shield(gen)
+		return69over.can_pass_shield(gen)
 	return TRUE
 
 /obj/effect/shield/proc/CanActThrough(var/atom/movable/actor)
@@ -227,7 +227,7 @@ Like for example singulo act and whatever.
 	return gen.check_flag(MODEFLAG_ATMOSPHERIC) ? BLOCKED : 0
 
 
-// EMP. It may seem weak but keep in mind that multiple shield segments are likely to be affected.
+// EMP. It69ay seem weak but keep in69ind that69ultiple shield segments are likely to be affected.
 /obj/effect/shield/emp_act(var/severity)
 	if (!isInactive())
 		take_damage(rand(30,60) / severity, SHIELD_DAMTYPE_EM, src)
@@ -247,21 +247,21 @@ Like for example singulo act and whatever.
 
 // Projectiles
 /obj/effect/shield/bullet_act(var/obj/item/projectile/proj)
-	if(proj.damage_types[BURN])
-		take_damage(proj.damage_types[BURN], SHIELD_DAMTYPE_HEAT, proj)
-	if(proj.damage_types[BRUTE])
-		take_damage(proj.damage_types[BRUTE], SHIELD_DAMTYPE_PHYSICAL, proj)
+	if(proj.damage_types69BUR6969)
+		take_damage(proj.damage_types69BUR6969, SHIELD_DAMTYPE_HEAT, proj)
+	if(proj.damage_types69BRUT6969)
+		take_damage(proj.damage_types69BRUT6969, SHIELD_DAMTYPE_PHYSICAL, proj)
 	else
 		take_damage(proj.get_structure_damage(), SHIELD_DAMTYPE_EM, proj)
 
 
 // Attacks with hand tools. Blocked by Hyperkinetic flag.
-/obj/effect/shield/attackby(var/obj/item/I as obj, var/mob/user as mob)
+/obj/effect/shield/attackby(var/obj/item/I as obj,69ar/mob/user as69ob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
 
 	if(gen.check_flag(MODEFLAG_HYPERKINETIC))
-		user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [I]!</span>")
+		user.visible_message("<span class='danger'>\The 69use6969 hits \the 69s69c69 with \the 699I69!</span>")
 		if(I.damtype == BURN)
 			take_damage(I.force, SHIELD_DAMTYPE_HEAT, user)
 		else if (I.damtype == BRUTE)
@@ -269,36 +269,36 @@ Like for example singulo act and whatever.
 		else
 			take_damage(I.force, SHIELD_DAMTYPE_EM, user)
 	else
-		user.visible_message("<span class='danger'>\The [user] tries to attack \the [src] with \the [I], but it passes through!</span>")
+		user.visible_message("<span class='danger'>\The 69use6969 tries to attack \the 69s69c69 with \the 699I69, but it passes through!</span>")
 
 
-// Special treatment for meteors because they would otherwise penetrate right through the shield.
+// Special treatment for69eteors because they would otherwise penetrate right through the shield.
 /obj/effect/shield/Bumped(var/atom/movable/mover)
 	if(!gen)
-		qdel(src)
+		69del(src)
 		return 0
 	mover.shield_impact(src)
 	return ..()
 
-// If moved (usually by a shuttle), the field ceases to exist
+// If69oved (usually by a shuttle), the field ceases to exist
 /obj/effect/shield/forceMove()
 	. = ..()
-	// qdel() also calls forceMove() to nullspace the object - no recursive qdel calls allowed, no thanks
-	if(. && !QDELETED(src))
-		qdel(src)
+	// 69del() also calls forceMove() to69ullspace the object -69o recursive 69del calls allowed,69o thanks
+	if(. && !69DELETED(src))
+		69del(src)
 
 
 /obj/effect/shield/proc/overcharge_shock(var/mob/living/M)
 	M.adjustFireLoss(rand(20, 40))
 	M.Weaken(5)
 	M.updatehealth()
-	to_chat(M, "<span class='danger'>As you come into contact with \the [src] a surge of energy paralyses you!</span>")
+	to_chat(M, "<span class='danger'>As you come into contact with \the 69sr6969 a surge of energy paralyses you!</span>")
 	take_damage(10, SHIELD_DAMTYPE_EM, src)
 
-// Called when a flag is toggled. Can be used to add on-toggle behavior, such as visual changes.
+// Called when a flag is toggled. Can be used to add on-toggle behavior, such as69isual changes.
 /obj/effect/shield/proc/flags_updated()
 	if(!gen)
-		qdel(src)
+		69del(src)
 		return
 
 	// Update airflow
@@ -321,22 +321,22 @@ Like for example singulo act and whatever.
 	return 1
 
 
-// Other mobs
+// Other69obs
 /mob/living/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_NONHUMANS)
 
-// Human mobs
+// Human69obs
 /mob/living/carbon/human/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
 	if(isSynthetic())
 		return !gen.check_flag(MODEFLAG_ANORGANIC)
 	return !gen.check_flag(MODEFLAG_HUMANOIDS)
 
-// Silicon mobs
+// Silicon69obs
 /mob/living/silicon/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_ANORGANIC)
 
 
-// Generic objects. Also applies to bullets and meteors.
+// Generic objects. Also applies to bullets and69eteors.
 /obj/can_pass_shield(var/obj/machinery/power/shield_generator/gen)
 	return !gen.check_flag(MODEFLAG_HYPERKINETIC)
 
@@ -358,22 +358,22 @@ Like for example singulo act and whatever.
 	if(!S.gen.check_flag(MODEFLAG_HYPERKINETIC))
 		return
 	/*
-	//Logging for shield impacts disabled. Logging is still enabled for meteors that succesfully hit the hull
+	//Logging for shield impacts disabled. Logging is still enabled for69eteors that succesfully hit the hull
 	if (istype(hit_location))
 		var/area/A = get_area(hit_location)
-		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
-		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"
-		message_admins("A meteor has impacted shields at ([whereLink])", 0, 1)
-		log_game("A meteor has impacted shields at ([where]).")
+		var/where = "69A? A.name : "Unknown Location6969 | 69hit_location69x69, 69hit_locatio69.y69"
+		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69hit_location.6969;Y=69hit_location69y69;Z=69hit_locatio69.z69'>69w69ere69</a>"
+		message_admins("A69eteor has impacted shields at (69whereLin6969)", 0, 1)
+		log_game("A69eteor has impacted shields at (69wher6969).")
 	*/
 	S.take_damage(get_shield_damage(), SHIELD_DAMTYPE_PHYSICAL, src)
-	visible_message("<span class='danger'>\The [src] breaks into dust!</span>")
+	visible_message("<span class='danger'>\The 69sr6969 breaks into dust!</span>")
 	make_debris()
-	qdel(src)
+	69del(src)
 
 
 
 //This function takes a turf to prevent race conditions, as the object calling it will probably be deleted in the same frame
-/proc/shield_impact_sound(var/turf/T, var/range, var/volume = 100)
-	//The supplied volume is reduced by an amount = distance - viewrange * 2, viewrange is 7 i think
-	playsound(T, 'sound/effects/impacts/shield_impact_1.ogg', volume, 1,extrarange = range * 1.5, falloff = range, use_pressure = 0)
+/proc/shield_impact_sound(var/turf/T,69ar/range,69ar/volume = 100)
+	//The supplied69olume is reduced by an amount = distance -69iewrange * 2,69iewrange is 7 i think
+	playsound(T, 'sound/effects/impacts/shield_impact_1.ogg',69olume, 1,extrarange = range * 1.5, falloff = range, use_pressure = 0)

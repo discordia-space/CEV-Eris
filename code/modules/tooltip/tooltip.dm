@@ -1,18 +1,18 @@
 /*
-Tooltips v1.1 - 22/10/15
-Developed by Wire (#goonstation on irc.synirc.net)
-- Added support for screen_loc pixel offsets. Should work. Maybe.
-- Added init function to more efficiently send base vars
+Tooltips691.1 - 22/10/15
+Developed by Wire (#69oonstation on irc.synirc.net)
+- Added support for screen_loc pixel offsets. Should work.69aybe.
+- Added init function to69ore efficiently send base69ars
 
-Configuration:
+Confi69uration:
 - Set control to the correct skin element (remember to actually place the skin element)
 - Set file to the correct path for the .html file (remember to actually place the html file)
-- Attach the datum to the user client on login, e.g.
+- Attach the datum to the user client on lo69in, e.69.
 	/client/New()
-		src.tooltips = new /datum/tooltip(src)
+		src.tooltips =69ew /datum/tooltip(src)
 
-Usage:
-- Define mouse event procs on your (probably HUD) object and simply call the show and hide procs respectively:
+Usa69e:
+- Define69ouse event procs on your (probably HUD) object and simply call the show and hide procs respectively:
 	/obj/screen/hud
 		MouseEntered(location, control, params)
 			usr.client.tooltip.show(params, title = src.name, content = src.desc)
@@ -21,89 +21,89 @@ Usage:
 			usr.client.tooltip.hide()
 
 Customization:
-- Theming can be done by passing the theme var to show() and using css in the html file to change the look
+- Themin69 can be done by passin69 the theme69ar to show() and usin69 css in the html file to chan69e the look
 - For your convenience some pre-made themes are included
 
 Notes:
-- You may have noticed 90% of the work is done via javascript on the client. Gotta save those cycles man.
-- This is entirely untested in any other codebase besides goonstation so I have no idea if it will port nicely. Good luck!
-	- After testing and discussion (Wire, Remie, MrPerson, AnturK) ToolTips are ok and work for /tg/station13
+- You69ay have69oticed 90% of the work is done69ia javascript on the client. 69otta save those cycles69an.
+- This is entirely untested in any other codebase besides 69oonstation so I have69o idea if it will port69icely. 69ood luck!
+	- After testin69 and discussion (Wire, Remie,69rPerson, AnturK) ToolTips are ok and work for /t69/station13
 */
 
 
 /datum/tooltip
 	var/client/owner
 	var/control = "mainwindow.tooltip"
-	var/showing = FALSE
-	var/queueHide = 0
+	var/showin69 = FALSE
+	var/69ueueHide = 0
 	var/init = 0
 
 
 /datum/tooltip/New(client/C)
 	if (C)
 		owner = C
-		owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
+		owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=69control69")
 
 	..()
 
 
-/datum/tooltip/proc/show(atom/movable/thing, params = null, title = null, content = null, theme = "midnight", special = "none")
-	if (!thing || !params || (!title && !content) || !owner || !isnum(world.icon_size))
+/datum/tooltip/proc/show(atom/movable/thin69, params =69ull, title =69ull, content =69ull, theme = "midni69ht", special = "none")
+	if (!thin69 || !params || (!title && !content) || !owner || !isnum(world.icon_size))
 		return FALSE
 	if (!init)
-		//Initialize some vars
+		//Initialize some69ars
 		init = 1
-		owner << output(list2params(list(world.icon_size, control)), "[control]:tooltip.init")
+		owner << output(list2params(list(world.icon_size, control)), "69contro6969:tooltip.init")
 
-	showing = TRUE
+	showin69 = TRUE
 
 	if (title && content)
-		title = "<h1>[title]</h1>"
-		content = "<p>[content]</p>"
+		title = "<h1>69titl6969</h1>"
+		content = "<p>69conten6969</p>"
 	else if (title && !content)
-		title = "<p>[title]</p>"
+		title = "<p>69titl6969</p>"
 	else if (!title && content)
-		content = "<p>[content]</p>"
+		content = "<p>69conten6969</p>"
 
-	// Strip macros from item names
+	// Strip69acros from item69ames
 	title = replacetext(title, "\proper", "")
 	title = replacetext(title, "\improper", "")
 
 	//Make our dumb param object
-	params = {"{ "cursor": "[params]", "screenLoc": "[thing.screen_loc]" }"}
+	params = {"{ "cursor": "69param6969", "screenLoc": "69thin69.screen_l69c69" }"}
 
 	//Send stuff to the tooltip
-	var/view_size = getviewsize(owner.view)
-	owner << output(list2params(list(params, view_size[1] , view_size[2], "[title][content]", theme, special)), "[control]:tooltip.update")
+	var/view_size = 69etviewsize(owner.view)
+	owner << output(list2params(list(params,69iew_size696969 ,69iew_size669269, "69ti69le6969con69ent69", theme, special)), "69co69trol69:tooltip.update")
 
-	//If a hide() was hit while we were showing, run hide() again to avoid stuck tooltips
-	showing = FALSE
-	if (queueHide)
+	//If a hide() was hit while we were showin69, run hide() a69ain to avoid stuck tooltips
+	showin69 = FALSE
+	if (69ueueHide)
 		hide()
 
 	return TRUE
 
 
 /datum/tooltip/proc/hide()
-	if (queueHide)
+	if (69ueueHide)
 		addtimer(CALLBACK(src, .proc/do_hide), 1)
 	else
 		do_hide()
 
-	queueHide = showing ? TRUE : FALSE
+	69ueueHide = showin69 ? TRUE : FALSE
 
 	return TRUE
 
 /datum/tooltip/proc/do_hide()
 	winshow(owner, control, FALSE)
 
-/* TG SPECIFIC CODE */
+/* T69 SPECIFIC CODE */
 
 
 //Open a tooltip for user, at a location based on params
-//Theme is a CSS class in tooltip.html, by default this wrapper chooses a CSS class based on the user's UI_style (Midnight, Plasmafire, Retro, etc)
+//Theme is a CSS class in tooltip.html, by default this wrapper chooses a CSS class based on the user's UI_style (Midni69ht, Plasmafire, Retro, etc)
 //Includes sanity.checks
-/proc/openToolTip(mob/user = null, atom/movable/tip_src = null, params = null,title = "",content = "",theme = "")
+/proc/openToolTip(mob/user =69ull, atom/movable/tip_src =69ull, params =69ull,title = "",content = "",theme = "")
 	if(istype(user))
 		if(user.client && user.client.tooltips)
 			user.client.tooltips.show(tip_src, params,title,content)

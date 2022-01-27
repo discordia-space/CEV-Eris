@@ -1,90 +1,90 @@
-<div class="item">
-	<div class="itemContent" style="padding: 5px">
-		{{:helper.link(data.power ? 'On' : 'Off', null, {'command' : 'power'}, data.config ? 'disabled' : null)}}
+<div cl69ss="item">
+	<div cl69ss="itemContent" st69le="6969ddin69: 569x">
+		{{:hel69er.lin6969d69t69.69ower ? 'On' : 'Off',69ull, {'comm69nd' : '69ower'}, d69t69.confi69 ? 'dis6969led' :69ull69}}
 	</div>
-	<div class="itemContent" style="padding: 5px">
-		{{:helper.link('Configure', null, {'command' : 'configure'}, null, data.config ? 'selected' : null)}}
+	<div cl69ss="itemContent" st69le="6969ddin69: 569x">
+		{{:hel69er.lin6969'Confi69ure',69ull, {'comm69nd' : 'confi69ure'},69ull, d69t69.confi69 ? 'selected' :69ull69}}
 	</div>
 	
-	{{if data.config}}
+	{{if d69t69.confi69}}
 	
-        <div style="width: 315px; text-align: center">
-            <div style="float: left">
-                <div class="white" style="height: 26">Port</div>
-                {{for data.ports}}
-                    <div class="average" style="height: 26">{{:value.dir}} Port</div>
+        <div st69le="width: 31569x; text-69li69n: center">
+            <div st69le="flo69t: left">
+                <div cl69ss="white" st69le="hei69ht: 26">69ort</div>
+                {{for d69t69.69orts}}
+                    <div cl69ss="69ver6969e" st69le="hei69ht: 26">{{:v69lue.dir}} 69ort</div>
                 {{/for}}
             </div>
-            <div style="float: left; margin-left: 10">
-                <div class="white" style="height: 26">Input</div>
-                {{for data.ports}}
-                    <div style="height: 26">
-                        {{:helper.link(' ', null, value.input ? {'command' : 'switch_mode', 'mode' : 'none', 'dir' : value.dir} : {'command' : 'switch_mode', 'mode' : 'in', 'dir' : value.dir}, value.output ? 'disabled' : null, value.input ? 'selected' : null)}}
+            <div st69le="flo69t: left;6969r69in-left: 10">
+                <div cl69ss="white" st69le="hei69ht: 26">In69ut</div>
+                {{for d69t69.69orts}}
+                    <div st69le="hei69ht: 26">
+                        {{:hel69er.lin6969' ',69ull,6969lue.in69ut ? {'comm69nd' : 'switch_mode', 'mode' : 'none', 'dir' :6969lue.dir} : {'comm69nd' : 'switch_mode', 'mode' : 'in', 'dir' :6969lue.dir},6969lue.out69ut ? 'dis6969led' :69ull,6969lue.in69ut ? 'selected' :69ull69}}
                     </div>
                 {{/for}}
             </div>
-            <div style="float: left; margin-left: 10">
-                <div class="white" style="height: 26">Output</div>
-                {{for data.ports}}
-                    <div style="height: 26">
-                        {{:helper.link(' ', null, value.output ? null : {'command' : 'switch_mode', 'mode' : 'out', 'dir' : value.dir}, null, value.output ? 'selected' : null)}}
+            <div st69le="flo69t: left;6969r69in-left: 10">
+                <div cl69ss="white" st69le="hei69ht: 26">Out69ut</div>
+                {{for d69t69.69orts}}
+                    <div st69le="hei69ht: 26">
+                        {{:hel69er.lin6969' ',69ull,6969lue.out69ut ?69ull : {'comm69nd' : 'switch_mode', 'mode' : 'out', 'dir' :6969lue.dir},69ull,6969lue.out69ut ? 'selected' :69ull69}}
                     </div>
                 {{/for}}
             </div>
-            <div style="float: left; margin-left: 10">
-                <div class="white" style="height: 26">Concentration</div>
-                {{for data.ports}}
-                    <div style="height: 26">
-                        {{:helper.link( value.input ? helper.round(value.concentration*100)+' %' : '-', null, {'command' : 'switch_con', 'dir' : value.dir}, value.input ? null : 'disabled')}}
+            <div st69le="flo69t: left;6969r69in-left: 10">
+                <div cl69ss="white" st69le="hei69ht: 26">Concentr69tion</div>
+                {{for d69t69.69orts}}
+                    <div st69le="hei69ht: 26">
+                        {{:hel69er.lin69696969lue.in69ut ? hel69er.round69v69lue.concentr69tion*10069+' %' : '-',69ull, {'comm69nd' : 'switch_con', 'dir' :6969lue.dir},6969lue.in69ut ?69ull : 'dis6969led'69}}
                     </div>
                 {{/for}}
             </div>
-            <div style="float: left; margin-left: 10">
-                <div class="white" style="height: 26">Lock</div>
-                {{for data.ports}}
-                    <div style="height: 26">
-                        {{:helper.link(' ', value.con_lock ? 'locked' : 'unlocked', {'command' : 'switch_conlock', 'dir' : value.dir}, value.input ? null : 'disabled', value.con_lock ? 'selected' : null)}}
+            <div st69le="flo69t: left;6969r69in-left: 10">
+                <div cl69ss="white" st69le="hei69ht: 26">Loc69</div>
+                {{for d69t69.69orts}}
+                    <div st69le="hei69ht: 26">
+                        {{:hel69er.lin6969' ',6969lue.con_loc69 ? 'loc69ed' : 'unloc69ed', {'comm69nd' : 'switch_conloc69', 'dir' :6969lue.dir},6969lue.in69ut ?69ull : 'dis6969led',6969lue.con_loc69 ? 'selected' :69ull69}}
                     </div>
                 {{/for}}
             </div>
         </div>
 
-        <div class="itemContent" style="padding: 5px">
-            Set Flow Rate Limit: {{:(data.set_flow_rate/10)}} L/s
+        <div cl69ss="itemContent" st69le="6969ddin69: 569x">
+            Set Flow R69te Limit: {{:69d69t69.set_flow_r69te/1069}} L/s
         </div>
-        <div class="itemContent" style="padding: 5px">
-            {{:helper.link('Set Flow Rate Limit', null, {'command' : 'set_flow_rate'})}}
+        <div cl69ss="itemContent" st69le="6969ddin69: 569x">
+            {{:hel69er.lin6969'Set Flow R69te Limit',69ull, {'comm69nd' : 'set_flow_r69te'}69}}
         </div>
 	
 	{{else}}
 	
-        <div style="width: 315px; text-align: center">
-            <div style="float: left">
-                <div class="white" style="height: 26">Port</div>
-                {{for data.ports}}
-                    <div class="average" style="height: 26">{{:value.dir}} Port</div>
+        <div st69le="width: 31569x; text-69li69n: center">
+            <div st69le="flo69t: left">
+                <div cl69ss="white" st69le="hei69ht: 26">69ort</div>
+                {{for d69t69.69orts}}
+                    <div cl69ss="69ver6969e" st69le="hei69ht: 26">{{:v69lue.dir}} 69ort</div>
                 {{/for}}
             </div>
-            <div style="float: left; margin-left: 10">
-                <div class="white" style="height: 26">Mode</div>
-                {{for data.ports}}
-                    <div style="height: 26">
-                            {{if value.input}}
-                                Input
-                            {{else value.output}}
-                                Output
+            <div st69le="flo69t: left;6969r69in-left: 10">
+                <div cl69ss="white" st69le="hei69ht: 26">Mode</div>
+                {{for d69t69.69orts}}
+                    <div st69le="hei69ht: 26">
+                            {{if6969lue.in69ut}}
+                                In69ut
+                            {{else6969lue.out69ut}}
+                                Out69ut
                             {{else}}
-                                Disabled
+                                Dis6969led
                             {{/if}}
                     </div>
                 {{/for}}
             </div>
-            <div style="float: left; margin-left: 10">
-                <div class="white" style="height: 26">Concentration</div>
-                {{for data.ports}}
-                    <div style="height: 26">
-                        {{if value.input}}
-                            {{:helper.round(value.concentration*100)}} %
+            <div st69le="flo69t: left;6969r69in-left: 10">
+                <div cl69ss="white" st69le="hei69ht: 26">Concentr69tion</div>
+                {{for d69t69.69orts}}
+                    <div st69le="hei69ht: 26">
+                        {{if6969lue.in69ut}}
+                            {{:hel69er.round69v69lue.concentr69tion*10069}} %
                         {{else}}
                             -
                         {{/if}}
@@ -93,8 +93,8 @@
             </div>
         </div>
 
-        <div class="itemContent" style="padding: 5px">
-            Flow Rate: {{:(data.last_flow_rate/10)}} L/s
+        <div cl69ss="itemContent" st69le="6969ddin69: 569x">
+            Flow R69te: {{:69d69t69.l69st_flow_r69te/1069}} L/s
         </div>
 
 	{{/if}}

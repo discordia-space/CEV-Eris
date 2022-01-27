@@ -7,18 +7,18 @@
 	var/obj/item/locked
 	var/id
 	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
-						 //Setting this to 1 will set src.locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
+						 //Settin69 this to 1 will set src.locked to null after a player enters the portal and will not allow hand-teles to open portals to that location.
 	var/obj/machinery/teleport/station/mstation
 	var/obj/machinery/teleport/hub/mhub
 
 /obj/machinery/teleport/hub
 	name = "Teleporter Hub"
-	desc = "It's the hub of a teleporting machine."
+	desc = "It's the hub of a teleportin6969achine."
 	icon_state = "tele0"
 	var/accurate = 0
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
-	active_power_usage = 2000
+	idle_power_usa69e = 10
+	active_power_usa69e = 2000
 	circuit = /obj/item/electronics/circuitboard/teleporterhub
 	var/obj/machinery/computer/teleporter/mconsole
 	var/obj/machinery/teleport/station/mstation
@@ -26,34 +26,34 @@
 
 /obj/machinery/teleport/station
 	name = "Teleporter Station"
-	desc = "It's the teleporter engagement/testfire station." 
+	desc = "It's the teleporter en69a69ement/testfire station." 
 	icon_state = "controller"
 	var/active = 0
-	var/engaged = 0
+	var/en69a69ed = 0
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
-	active_power_usage = 2000
+	idle_power_usa69e = 10
+	active_power_usa69e = 2000
 	circuit = /obj/item/electronics/circuitboard/teleporterstation
 	var/obj/machinery/teleport/hub/mhub
 	var/obj/machinery/computer/teleporter/mconsole
 
 /obj/machinery/computer/teleporter/New()
-	src.id = "[rand(1000, 9999)]"
+	src.id = "69rand(1000, 9999)69"
 	..()
 	underlays.Cut()
-	underlays += image('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
+	underlays += ima69e('icons/obj/stationobjs.dmi', icon_state = "telecomp-wires")
 	return
 
-/obj/machinery/computer/teleporter/proc/LinkTogether()
+/obj/machinery/computer/teleporter/proc/LinkTo69ether()
 	var/obj/machinery/teleport/station/station
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
-		station = locate(/obj/machinery/teleport/station, get_step(src, dir))
+		station = locate(/obj/machinery/teleport/station, 69et_step(src, dir))
 		if(!isnull(station))
 			break
 	var/obj/machinery/teleport/hub/hub
 	if(station)
 		for(var/dir in list(NORTH,EAST,SOUTH,WEST))
-			hub = locate(/obj/machinery/teleport/hub, get_step(station, dir))
+			hub = locate(/obj/machinery/teleport/hub, 69et_step(station, dir))
 			if(!isnull(hub))
 				break
 	if(hub)
@@ -73,16 +73,16 @@
 /obj/machinery/teleport/station/proc/LinkUpwards()
 	var/obj/machinery/computer/teleporter/teleporter
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
-		teleporter = locate(/obj/machinery/computer/teleporter, get_step(src, dir))
+		teleporter = locate(/obj/machinery/computer/teleporter, 69et_step(src, dir))
 		if(!isnull(teleporter))
 			break
 	if(istype(teleporter))
-		teleporter.LinkTogether()
+		teleporter.LinkTo69ether()
 
 /obj/machinery/teleport/hub/proc/LinkUpwards()
 	var/obj/machinery/teleport/station/station
 	for(var/dir in list(NORTH,EAST,SOUTH,WEST))
-		station = locate(/obj/machinery/teleport/station, get_step(src, dir))
+		station = locate(/obj/machinery/teleport/station, 69et_step(src, dir))
 		if(!isnull(station))
 			break
 	if(istype(station))
@@ -90,7 +90,7 @@
 
 /obj/machinery/computer/teleporter/Initialize()
 	. = ..()
-	src.LinkTogether()
+	src.LinkTo69ether()
 
 /obj/machinery/teleport/hub/Initialize()
 	. = ..()
@@ -103,8 +103,8 @@
 
 /obj/machinery/teleport/hub/on_deconstruction()
 	if(mstation)
-		if(mstation.engaged)
-			mstation.disengage()
+		if(mstation.en69a69ed)
+			mstation.disen69a69e()
 		mstation.mhub = null
 	if(mconsole)
 		mconsole.mhub = null
@@ -113,8 +113,8 @@
 	
 
 /obj/machinery/teleport/station/on_deconstruction()
-	if(engaged)
-		disengage()
+	if(en69a69ed)
+		disen69a69e()
 	if(mhub)
 		mhub.mstation = null
 	if(mconsole)
@@ -123,21 +123,21 @@
 
 /obj/machinery/computer/teleporter/on_deconstruction()
 	if(mstation)
-		if(mstation.engaged)
-			mstation.disengage()
+		if(mstation.en69a69ed)
+			mstation.disen69a69e()
 		mstation.mconsole = null
 	if(mhub)
 		mhub.mconsole = null
 	. = ..()
 		
 
-/obj/machinery/teleport/hub/attackby(obj/item/I, mob/user, params)
+/obj/machinery/teleport/hub/attackby(obj/item/I,69ob/user, params)
 	if(default_deconstruction(I, user))
 		return
 	if(default_part_replacement(I, user))
 		return
 
-/obj/machinery/teleport/station/attackby(obj/item/I, mob/user, params)
+/obj/machinery/teleport/station/attackby(obj/item/I,69ob/user, params)
 	if(default_deconstruction(I, user))
 		return
 	if(default_part_replacement(I, user))
@@ -145,7 +145,7 @@
 	src.attack_hand()
 
 
-/obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user)
+/obj/machinery/computer/teleporter/attackby(I as obj,69ob/livin69/user)
 	if(istype(I, /obj/item/card/data/))
 		var/obj/item/card/data/C = I
 		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
@@ -153,39 +153,39 @@
 
 		var/obj/L = null
 
-		for(var/obj/landmark/sloc in GLOB.landmarks_list)
+		for(var/obj/landmark/sloc in 69LOB.landmarks_list)
 			if(sloc.name != C.data) continue
-			if(locate(/mob/living) in sloc.loc) continue
+			if(locate(/mob/livin69) in sloc.loc) continue
 			L = sloc
 			break
 
 		if(!L)
-			L = locate("landmark*[C.data]") // use old stype
+			L = locate("landmark*69C.data69") // use old stype
 
 
 		if(istype(L, /obj/landmark/) && istype(L.loc, /turf))
-			to_chat(usr, "You insert the coordinates into the machine.")
-			to_chat(usr, "A message flashes across the screen reminding the traveller that the nuclear authentication disk is to remain on the ship at all times.")
+			to_chat(usr, "You insert the coordinates into the69achine.")
+			to_chat(usr, "A69essa69e flashes across the screen remindin69 the traveller that the nuclear authentication disk is to remain on the ship at all times.")
 			user.drop_item()
-			qdel(I)
+			69del(I)
 
 			if(C.data == "Clown Land")
 				//whoops
 				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_WARNING("Incoming bluespace portal detected, unable to lock in."), 2)
+					O.show_messa69e(SPAN_WARNIN69("Incomin69 bluespace portal detected, unable to lock in."), 2)
 
-				for(var/obj/machinery/teleport/hub/H in range(1))
+				for(var/obj/machinery/teleport/hub/H in ran69e(1))
 					var/amount = rand(2,5)
 					for(var/i=0;i<amount;i++)
-						new /mob/living/simple_animal/hostile/carp(get_turf(H))
+						new /mob/livin69/simple_animal/hostile/carp(69et_turf(H))
 				//
 			else
 				for(var/mob/O in hearers(src, null))
-					O.show_message(SPAN_NOTICE("Portal locked in"), 2)
+					O.show_messa69e(SPAN_NOTICE("Portal locked in"), 2)
 				src.locked = L
 				one_time_use = 1
 
-			src.add_fingerprint(usr)
+			src.add_fin69erprint(usr)
 	else
 		..()
 
@@ -194,29 +194,29 @@
 /obj/machinery/teleport/station/attack_ai()
 	src.attack_hand()
 
-/obj/machinery/computer/teleporter/attack_hand(user as mob)
+/obj/machinery/computer/teleporter/attack_hand(user as69ob)
 	if(..()) return
 
-	/* Ghosts can't use this one because it's a direct selection */
+	/* 69hosts can't use this one because it's a direct selection */
 	if(isobserver(user)) return
 
 	var/list/L = list()
 	var/list/areaindex = list()
 
 	for(var/obj/item/device/radio/beacon/R in world)
-		var/turf/T = get_turf(R)
+		var/turf/T = 69et_turf(R)
 		if (!T)
 			continue
 		if(!isPlayerLevel(T.z))
 			continue
 		var/tmpname = T.loc.name
-		if(areaindex[tmpname])
-			tmpname = "[tmpname] ([++areaindex[tmpname]])"
+		if(areaindex69tmpname69)
+			tmpname = "69tmpname69 (69++areaindex69tmpname6969)"
 		else
-			areaindex[tmpname] = 1
-		L[tmpname] = R
+			areaindex69tmpname69 = 1
+		L69tmpname69 = R
 
-	for (var/obj/item/implant/tracking/I in world)
+	for (var/obj/item/implant/trackin69/I in world)
 		if (!I.implanted || !ismob(I.loc))
 			continue
 		else
@@ -224,35 +224,35 @@
 			if (M.stat == 2)
 				if (M.timeofdeath + 6000 < world.time)
 					continue
-			var/turf/T = get_turf(M)
+			var/turf/T = 69et_turf(M)
 			if(T)	continue
 			if(T.z == 6)	continue
-			var/tmpname = M.real_name
-			if(areaindex[tmpname])
-				tmpname = "[tmpname] ([++areaindex[tmpname]])"
+			var/tmpname =69.real_name
+			if(areaindex69tmpname69)
+				tmpname = "69tmpname69 (69++areaindex69tmpname6969)"
 			else
-				areaindex[tmpname] = 1
-			L[tmpname] = I
+				areaindex69tmpname69 = 1
+			L69tmpname69 = I
 
-	var/desc = input("Please select a location to lock in.", "Locking Computer") in L|null
+	var/desc = input("Please select a location to lock in.", "Lockin69 Computer") in L|null
 	if(!desc)
 		return
-	if(get_dist(src, usr) > 1 && !issilicon(usr))
+	if(69et_dist(src, usr) > 1 && !issilicon(usr))
 		return
 
-	src.locked = L[desc]
+	src.locked = L69desc69
 	for(var/mob/O in hearers(src, null))
-		O.show_message(SPAN_NOTICE("Portal locked in."), 2)
-	src.add_fingerprint(usr)
+		O.show_messa69e(SPAN_NOTICE("Portal locked in."), 2)
+	src.add_fin69erprint(usr)
 	return
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
-	set category = "Object"
+	set cate69ory = "Object"
 	set name = "Set teleporter ID"
 	set src in oview(1)
-	set desc = "ID Tag:"
+	set desc = "ID Ta69:"
 
-	if(stat & (NOPOWER|BROKEN) || !isliving(usr))
+	if(stat & (NOPOWER|BROKEN) || !islivin69(usr))
 		return
 	if (t)
 		src.id = t
@@ -279,25 +279,25 @@
 	underlays.Cut()
 	underlays += "tele-wires"
 
-/obj/machinery/teleport/hub/Bumped(M as mob|obj)
+/obj/machinery/teleport/hub/Bumped(M as69ob|obj)
 	spawn()
 		if (src.icon_state == "tele1")
 			teleport(M)
 			use_power(5000)
 	return
 
-/obj/machinery/teleport/hub/proc/teleport(atom/movable/M as mob|obj)
+/obj/machinery/teleport/hub/proc/teleport(atom/movable/M as69ob|obj)
 	if (!mconsole)
 		return
 	if (!mconsole.locked)
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_WARNING("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate matrix."))
+			O.show_messa69e(SPAN_WARNIN69("Failure: Cannot authenticate locked on coordinates. Please reinstate coordinate69atrix."))
 		return
 	if (istype(M, /atom/movable))
 		if(prob(5) && !accurate) //oh dear a problem, put em in deep space
-			go_to_bluespace(get_turf(src), entropy_value, FALSE, M, locate(rand((2*TRANSITIONEDGE), world.maxx - (2*TRANSITIONEDGE)), rand((2*TRANSITIONEDGE), world.maxy - (2*TRANSITIONEDGE)), 3), 2)
+			69o_to_bluespace(69et_turf(src), entropy_value, FALSE,69, locate(rand((2*TRANSITIONED69E), world.maxx - (2*TRANSITIONED69E)), rand((2*TRANSITIONED69E), world.maxy - (2*TRANSITIONED69E)), 3), 2)
 		else
-			go_to_bluespace(get_turf(src), entropy_value, FALSE, M, mconsole.locked) //dead-on precision
+			69o_to_bluespace(69et_turf(src), entropy_value, FALSE,69,69console.locked) //dead-on precision
 
 		if(mconsole.one_time_use) //Make one-time-use cards only usable one time!
 			mconsole.one_time_use = 0
@@ -308,8 +308,8 @@
 		s.start()
 		accurate = 1
 		for(var/mob/B in hearers(src, null))
-			B.show_message(SPAN_NOTICE("Test fire completed."))
-		spawn(3000) if(src) accurate = 0 //Accurate teleporting for 5 minutes
+			B.show_messa69e(SPAN_NOTICE("Test fire completed."))
+		spawn(3000) if(src) accurate = 0 //Accurate teleportin69 for 569inutes
 	return
 
 
@@ -323,64 +323,64 @@
 	src.attack_hand()
 
 /obj/machinery/teleport/station/attack_hand()
-	if(engaged)
-		src.disengage()
+	if(en69a69ed)
+		src.disen69a69e()
 	else
-		src.engage()
+		src.en69a69e()
 
-/obj/machinery/teleport/station/proc/engage()
+/obj/machinery/teleport/station/proc/en69a69e()
 	if(stat & (BROKEN|NOPOWER))
 		return
 	if (mhub)
-		src.engaged = 1
+		src.en69a69ed = 1
 		mhub.icon_state = "tele1"
 		use_power(5000)
 		update_use_power(2)
 		mhub.update_use_power(2)
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Teleporter engaged!"), 2)
-	src.add_fingerprint(usr)
+			O.show_messa69e(SPAN_NOTICE("Teleporter en69a69ed!"), 2)
+	src.add_fin69erprint(usr)
 	
 	return
 
-/obj/machinery/teleport/station/proc/disengage()
+/obj/machinery/teleport/station/proc/disen69a69e()
 	if(stat & (BROKEN|NOPOWER))
 		return
 
 	if (mhub)
-		src.engaged = 0
+		src.en69a69ed = 0
 		mhub.icon_state = "tele0"
 		mhub.accurate = 0
 		mhub.update_use_power(1)
 		update_use_power(1)
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Teleporter disengaged!"), 2)
-	src.add_fingerprint(usr)
+			O.show_messa69e(SPAN_NOTICE("Teleporter disen69a69ed!"), 2)
+	src.add_fin69erprint(usr)
 	
 	return
 
 /obj/machinery/teleport/station/verb/testfire()
 	set name = "Test Fire Teleporter"
-	set category = "Object"
+	set cate69ory = "Object"
 	set src in oview(1)
 
-	if(stat & (BROKEN|NOPOWER) || !isliving(usr))
+	if(stat & (BROKEN|NOPOWER) || !islivin69(usr))
 		return
 
 	if (mhub && !active)
 		active = 1
 		for(var/mob/O in hearers(src, null))
-			O.show_message(SPAN_NOTICE("Test firing!"), 2)
+			O.show_messa69e(SPAN_NOTICE("Test firin69!"), 2)
 		mhub.teleport()
 		use_power(5000)
 
 		spawn(30)
 			active=0
 
-	src.add_fingerprint(usr)
+	src.add_fin69erprint(usr)
 	return
 
-/obj/machinery/teleport/station/power_change()
+/obj/machinery/teleport/station/power_chan69e()
 	..()
 	if(stat & NOPOWER)
 		icon_state = "controller-p"
@@ -392,11 +392,11 @@
 
 
 /obj/effect/laser/Bump()
-	src.range--
+	src.ran69e--
 	return
 
-/obj/effect/laser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, glide_size_override = 0)
-	src.range--
+/obj/effect/laser/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, 69lide_size_override = 0)
+	src.ran69e--
 	return ..()
 
 /atom/proc/laserhit(L as obj)

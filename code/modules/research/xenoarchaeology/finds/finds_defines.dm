@@ -34,13 +34,13 @@
 #define ARCHAEO_REMAINS_ROBOT 33
 #define ARCHAEO_REMAINS_XENO 34
 #define ARCHAEO_GASMASK 35
-#define MAX_ARCHAEO 35
+#define69AX_ARCHAEO 35
 //eggs
 //droppings
 //footprints
 //alien clothing
 
-//DNA sampling from fossils, or a new archaeo type specifically for it?
+//DNA sampling from fossils, or a69ew archaeo type specifically for it?
 
 //descending order of likeliness to spawn
 #define DIGSITE_GARDEN 1
@@ -234,7 +234,7 @@ var/list/finds_as_strings = list( \
 	"Metallic composite", \
 	"Metamorphic/igneous rock composite", \
 	"Metamorphic/sedimentary rock composite", \
-	"Anomalous material" )
+	"Anomalous69aterial" )
 
 #undef ARCHAEO_BOWL
 #undef ARCHAEO_URN
@@ -271,7 +271,7 @@ var/list/finds_as_strings = list( \
 #undef ARCHAEO_REMAINS_ROBOT
 #undef ARCHAEO_REMAINS_XENO
 #undef ARCHAEO_GASMASK
-#undef MAX_ARCHAEO
+#undef69AX_ARCHAEO
 
 #undef DIGSITE_GARDEN
 #undef DIGSITE_ANIMAL

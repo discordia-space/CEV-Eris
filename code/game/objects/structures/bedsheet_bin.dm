@@ -6,14 +6,14 @@ LINEN BINS
 
 /obj/item/bedsheet
 	name = "bedsheet"
-	desc = "A surprisingly soft linen bedsheet."
+	desc = "A surprisin69ly soft linen bedsheet."
 	icon = 'icons/obj/bedsheets.dmi'
 	icon_state = "sheet"
 	item_state = "bedsheet"
 	layer = 4
 	throwforce = WEAPON_FORCE_HARMLESS
 	throw_speed = 1
-	throw_range = 2
+	throw_ran69e = 2
 	w_class = ITEM_SIZE_NORMAL
 	var/rolled = FALSE
 	var/folded = FALSE
@@ -24,36 +24,36 @@ LINEN BINS
 	folded = nfolded
 	update_icon()
 
-/obj/item/bedsheet/afterattack(atom/A, mob/user)
-	if(!user || user.incapacitated() || !user.Adjacent(A) || istype(A, /obj/structure/bedsheetbin) || istype(A, /obj/item/storage/))
+/obj/item/bedsheet/afterattack(atom/A,69ob/user)
+	if(!user || user.incapacitated() || !user.Adjacent(A) || istype(A, /obj/structure/bedsheetbin) || istype(A, /obj/item/stora69e/))
 		return
-	if(toggle_fold(user))
+	if(to6969le_fold(user))
 		user.drop_item()
-		forceMove(get_turf(A))
-		add_fingerprint(user)
+		forceMove(69et_turf(A))
+		add_fin69erprint(user)
 		return
 
-/obj/item/bedsheet/proc/toggle_roll(mob/living/user, no_message = FALSE)
+/obj/item/bedsheet/proc/to6969le_roll(mob/livin69/user, no_messa69e = FALSE)
 	if(!user)
 		return FALSE
 	if(inuse)
-		to_chat(user, "Someone already using \the [src]")
+		to_chat(user, "Someone already usin69 \the 69src69")
 		return FALSE
 	inuse = TRUE
-	if (do_after(user, 6, src, incapacitation_flags = INCAPACITATION_UNCONSCIOUS))
+	if (do_after(user, 6, src, incapacitation_fla69s = INCAPACITATION_UNCONSCIOUS))
 		if(user.loc != loc)
 			user.do_attack_animation(src)
-		playsound(get_turf(loc), "rustle", 15, 1, -5)
-		if(!no_message)
-			user.visible_message(
-				SPAN_NOTICE("\The [user] [rolled ? "unrolled" : "rolled"] \the [src]."),
-				SPAN_NOTICE("You [rolled ? "unrolled" : "rolled"] \the [src].")
+		playsound(69et_turf(loc), "rustle", 15, 1, -5)
+		if(!no_messa69e)
+			user.visible_messa69e(
+				SPAN_NOTICE("\The 69user69 69rolled ? "unrolled" : "rolled"69 \the 69src69."),
+				SPAN_NOTICE("You 69rolled ? "unrolled" : "rolled"69 \the 69src69.")
 			)
 		if(!rolled)
 			rolled = TRUE
 		else
 			rolled = FALSE
-			if(!user.resting && get_turf(src) == get_turf(user))
+			if(!user.restin69 && 69et_turf(src) == 69et_turf(user))
 				user.lay_down()
 		inuse = FALSE
 		update_icon()
@@ -61,22 +61,22 @@ LINEN BINS
 	inuse = FALSE
 	return FALSE
 
-/obj/item/bedsheet/proc/toggle_fold(mob/user, no_message=FALSE)
+/obj/item/bedsheet/proc/to6969le_fold(mob/user, no_messa69e=FALSE)
 	if(!user)
 		return FALSE
 	if(inuse)
-		to_chat(user, "Someone already using \the [src]")
+		to_chat(user, "Someone already usin69 \the 69src69")
 		return FALSE
 	inuse = TRUE
 	if (do_after(user, 25, src))
 		rolled = FALSE
 		if(user.loc != loc)
 			user.do_attack_animation(src)
-		playsound(get_turf(loc), "rustle", 15, 1, -5)
-		if(!no_message)
-			user.visible_message(
-				SPAN_NOTICE("\The [user] [folded ? "unfolded" : "folded"] \the [src]."),
-				SPAN_NOTICE("You [folded ? "unfolded" : "folded"] \the [src].")
+		playsound(69et_turf(loc), "rustle", 15, 1, -5)
+		if(!no_messa69e)
+			user.visible_messa69e(
+				SPAN_NOTICE("\The 69user69 69folded ? "unfolded" : "folded"69 \the 69src69."),
+				SPAN_NOTICE("You 69folded ? "unfolded" : "folded"69 \the 69src69.")
 			)
 		if(!folded)
 			folded = TRUE
@@ -93,37 +93,37 @@ LINEN BINS
 
 /obj/item/bedsheet/verb/fold_verb()
 	set name = "Fold bedsheet"
-	set category = "Object"
-	set src in view(1)
+	set cate69ory = "Object"
+	set src in69iew(1)
 
 	if(ismob(loc))
-		to_chat(usr, "Drop \the [src] first.")
+		to_chat(usr, "Drop \the 69src69 first.")
 	else if(ishuman(usr))
-		toggle_fold(usr)
+		to6969le_fold(usr)
 
 /obj/item/bedsheet/verb/roll_verb()
 	set name = "Roll bedsheet"
-	set category = "Object"
-	set src in view(1)
+	set cate69ory = "Object"
+	set src in69iew(1)
 
 	if(folded)
-		to_chat(usr, "Unfold \the [src] first.")
+		to_chat(usr, "Unfold \the 69src69 first.")
 	else if(ismob(loc))
-		to_chat(usr, "Drop \the [src] first.")
+		to_chat(usr, "Drop \the 69src69 first.")
 	else if(ishuman(usr))
-		toggle_roll(usr)
+		to6969le_roll(usr)
 
-/obj/item/bedsheet/attackby(obj/item/I, mob/user)
+/obj/item/bedsheet/attackby(obj/item/I,69ob/user)
 	if(is_sharp(I))
-		user.visible_message(
-			SPAN_NOTICE("\The [user] begins cutting up \the [src] with \a [I]."),
-			SPAN_NOTICE("You begin cutting up \the [src] with \the [I].")
+		user.visible_messa69e(
+			SPAN_NOTICE("\The 69user69 be69ins cuttin69 up \the 69src69 with \a 69I69."),
+			SPAN_NOTICE("You be69in cuttin69 up \the 69src69 with \the 69I69.")
 		)
 		if(do_after(user, 50, src))
-			to_chat(user, SPAN_NOTICE("You cut \the [src] into pieces!"))
+			to_chat(user, SPAN_NOTICE("You cut \the 69src69 into pieces!"))
 			for(var/i in 1 to rand(2,5))
-				new /obj/item/reagent_containers/glass/rag(get_turf(src))
-			qdel(src)
+				new /obj/item/rea69ent_containers/69lass/ra69(69et_turf(src))
+			69del(src)
 		return
 	..()
 
@@ -131,10 +131,10 @@ LINEN BINS
 	if(!user || user.incapacitated(INCAPACITATION_UNCONSCIOUS))
 		return
 	if(!folded)
-		toggle_roll(user)
+		to6969le_roll(user)
 	else
 		.=..()
-	add_fingerprint(user)
+	add_fin69erprint(user)
 
 /obj/item/bedsheet/MouseDrop(over_object, src_location, over_location)
 	..()
@@ -142,7 +142,7 @@ LINEN BINS
 		if(!ishuman(over_object))
 			return
 		if(!folded)
-			toggle_fold(usr)
+			to6969le_fold(usr)
 		if(folded)
 			pickup(usr)
 
@@ -157,11 +157,11 @@ LINEN BINS
 /obj/item/bedsheet/blue
 	icon_state = "sheetblue"
 
-/obj/item/bedsheet/green
-	icon_state = "sheetgreen"
+/obj/item/bedsheet/69reen
+	icon_state = "sheet69reen"
 
-/obj/item/bedsheet/orange
-	icon_state = "sheetorange"
+/obj/item/bedsheet/oran69e
+	icon_state = "sheetoran69e"
 
 /obj/item/bedsheet/purple
 	icon_state = "sheetpurple"
@@ -223,7 +223,7 @@ LINEN BINS
 	if(amount == 1)
 		to_chat(user, "There is one bed sheet in the bin.")
 		return
-	to_chat(user, "There are [amount] bed sheets in the bin.")
+	to_chat(user, "There are 69amount69 bed sheets in the bin.")
 
 
 /obj/structure/bedsheetbin/update_icon()
@@ -233,19 +233,19 @@ LINEN BINS
 		else				icon_state = "linenbin-full"
 
 
-/obj/structure/bedsheetbin/attackby(obj/item/I, mob/user)
+/obj/structure/bedsheetbin/attackby(obj/item/I,69ob/user)
 	if(istype(I, /obj/item/bedsheet))
 		user.drop_item()
 		I.loc = src
 		sheets.Add(I)
 		amount++
-		to_chat(user, SPAN_NOTICE("You put [I] in [src]."))
-	//make sure there's sheets to hide it among, make sure nothing else is hidden in there.
+		to_chat(user, SPAN_NOTICE("You put 69I69 in 69src69."))
+	//make sure there's sheets to hide it amon69,69ake sure nothin69 else is hidden in there.
 	else if(amount && !hidden && I.w_class < ITEM_SIZE_BULKY)
 		user.drop_item()
 		I.loc = src
 		hidden = I
-		to_chat(user, SPAN_NOTICE("You hide [I] among the sheets."))
+		to_chat(user, SPAN_NOTICE("You hide 69I69 amon69 the sheets."))
 
 /obj/structure/bedsheetbin/attack_hand(mob/user)
 	if(amount >= 1)
@@ -253,7 +253,7 @@ LINEN BINS
 
 		var/obj/item/bedsheet/B
 		if(sheets.len > 0)
-			B = sheets[sheets.len]
+			B = sheets69sheets.len69
 			sheets.Remove(B)
 
 		else
@@ -261,15 +261,15 @@ LINEN BINS
 		B.loc = user.loc
 
 		user.put_in_hands(B)
-		to_chat(user, SPAN_NOTICE("You take [B] out of [src]."))
+		to_chat(user, SPAN_NOTICE("You take 69B69 out of 69src69."))
 
 		if(hidden)
 			hidden.loc = user.loc
-			to_chat(user, SPAN_NOTICE("[hidden] falls out of [B]!"))
+			to_chat(user, SPAN_NOTICE("69hidden69 falls out of 69B69!"))
 			hidden = null
 
 
-	add_fingerprint(user)
+	add_fin69erprint(user)
 
 /obj/structure/bedsheetbin/attack_tk(mob/user)
 	if(amount >= 1)
@@ -277,14 +277,14 @@ LINEN BINS
 
 		var/obj/item/bedsheet/B
 		if(sheets.len > 0)
-			B = sheets[sheets.len]
+			B = sheets69sheets.len69
 			sheets.Remove(B)
 
 		else
 			B = new /obj/item/bedsheet(loc, TRUE)
 
 		B.loc = loc
-		to_chat(user, SPAN_NOTICE("You telekinetically remove [B] from [src]."))
+		to_chat(user, SPAN_NOTICE("You telekinetically remove 69B69 from 69src69."))
 		update_icon()
 
 		if(hidden)
@@ -292,4 +292,4 @@ LINEN BINS
 			hidden = null
 
 
-	add_fingerprint(user)
+	add_fin69erprint(user)

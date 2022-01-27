@@ -3,19 +3,19 @@
 	build_path = /obj/machinery/recycler
 	board_type = "machine"
 	origin_tech = list(TECH_ENGINEERING = 3)
-	req_components = list(
+	re69_components = list(
 		/obj/item/stock_parts/manipulator = 1
 	)
 
 /obj/machinery/recycler
 	name = "recycler"
-	desc = "A large crushing machine which is used to grind lumps of trash down; there are lights on the side of it."
+	desc = "A large crushing69achine which is used to grind lumps of trash down; there are lights on the side of it."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "grinder-o0"
 	layer = ABOVE_MOB_LAYER // Overhead
 	anchored = TRUE
 	density = TRUE
-	var/safety_mode = FALSE // Temporality stops the machine if it detects a mob
+	var/safety_mode = FALSE // Temporality stops the69achine if it detects a69ob
 	var/grinding = FALSE
 	var/icon_name = "grinder-o"
 	var/blood = FALSE
@@ -26,31 +26,31 @@
 	// On us
 	. = ..()
 	component_parts = list()
-	component_parts += new /obj/item/electronics/circuitboard/recycler(null)
-	component_parts += new /obj/item/stock_parts/manipulator(null)
+	component_parts +=69ew /obj/item/electronics/circuitboard/recycler(null)
+	component_parts +=69ew /obj/item/stock_parts/manipulator(null)
 	RefreshParts()
 	update_icon()
 
 /obj/machinery/recycler/RefreshParts()
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		chance_to_recycle = 25 * M.rating //% of materials salvaged
-	chance_to_recycle = min(100, chance_to_recycle)
+		chance_to_recycle = 25 *69.rating //% of69aterials salvaged
+	chance_to_recycle =69in(100, chance_to_recycle)
 
 /obj/machinery/recycler/examine(mob/user)
 	.=..()
-	to_chat(user, "The power light is [(stat & NOPOWER) ? "off" : "on"].")
-	to_chat(user, "The safety-mode light is [safety_mode ? "on" : "off"].")
-	to_chat(user, "The safety-sensors status light is [emagged ? "off" : "on"].")
+	to_chat(user, "The power light is 69(stat &69OPOWER) ? "off" : "on"69.")
+	to_chat(user, "The safety-mode light is 69safety_mode ? "on" : "off"69.")
+	to_chat(user, "The safety-sensors status light is 69emagged ? "off" : "on"69.")
 
 /obj/machinery/recycler/power_change()
 	.=..()
 	update_icon()
 
 
-/obj/machinery/recycler/attackby(obj/item/I, mob/user, params)
+/obj/machinery/recycler/attackby(obj/item/I,69ob/user, params)
 	if(istype(I, /obj/item/card/emag))
 		emag_act(user)
-		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
+		user.setClickCooldown(DEFAULT_69UICK_COOLDOWN)
 
 	if(default_deconstruction(I, user))
 		return
@@ -67,14 +67,14 @@
 			safety_mode = FALSE
 			update_icon()
 		playsound(loc, "sparks", 75, 1, -1)
-		to_chat(user, SPAN_NOTICE("You use the cryptographic sequencer on the [name]."))
+		to_chat(user, SPAN_NOTICE("You use the cryptographic se69uencer on the 69name69."))
 
 /obj/machinery/recycler/update_icon()
 	.=..()
 	var/is_powered = !(stat & (BROKEN|NOPOWER))
 	if(safety_mode)
 		is_powered = FALSE
-	icon_state = icon_name + "[is_powered]" + "[(blood ? "bld" : "")]" // add the blood tag at the end
+	icon_state = icon_name + "69is_powered69" + "69(blood ? "bld" : "")69" // add the blood tag at the end
 
 // This is purely for admin possession !FUN!.
 /obj/machinery/recycler/Bump(atom/movable/AM)
@@ -115,7 +115,7 @@
 		chance_mod = 5
 	if(prob(chance_to_recycle / chance_mod))
 		new /obj/item/stack/refined_scrap(loc)
-	qdel(I)
+	69del(I)
 
 /obj/machinery/recycler/proc/stop(mob/living/L)
 	set waitfor = FALSE
@@ -139,7 +139,7 @@
 		L.emote("scream", , , 1)
 
 	var/gib = TRUE
-	// By default, the emagged recycler will gib all non-carbons. (human simple animal mobs don't count)
+	// By default, the emagged recycler will gib all69on-carbons. (human simple animal69obs don't count)
 	if(iscarbon(L))
 		gib = FALSE
 		if(L.stat == CONSCIOUS)
@@ -150,15 +150,15 @@
 		blood = TRUE
 		update_icon()
 
-	// Remove and recycle the equipped items.
-	for(var/obj/item/I in L.get_equipped_items())
-		if(L.unEquip(I))
+	// Remove and recycle the e69uipped items.
+	for(var/obj/item/I in L.get_e69uipped_items())
+		if(L.unE69uip(I))
 			recycle(I, 0)
 
 	// Instantly lie down, also go unconscious from the pain, before you die.
 	L.Paralyse(5)
 	L.anchored = TRUE
-	// For admin fun, var edit emagged to 2.
+	// For admin fun,69ar edit emagged to 2.
 	if(gib || emagged == 2)
 		L.gib()
 		playsound(loc, 'sound/effects/splat.ogg', 50, 1)

@@ -5,9 +5,9 @@
 	name = "floor"
 	icon = 'icons/turf/flooring/tiles.dmi'
 	icon_state = "steel"
-	initial_flooring = null
+	initial_flooring =69ull
 
-/turf/simulated/floor/fixed/attackby(var/obj/item/C, var/mob/user)
+/turf/simulated/floor/fixed/attackby(var/obj/item/C,69ar/mob/user)
 	if(istype(C, /obj/item/stack) && !istype(C, /obj/item/stack/cable_coil))
 		return
 	return ..()

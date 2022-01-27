@@ -1,17 +1,17 @@
-#!/bin/sh
-set -e
-if [ "$*" = "-m precommit" ]; then
-	echo "Hooks are being updated..."
-	echo "Details: https://github.com/tgstation/tgstation/pull/55658"
-	if [ "$(uname -o)" = "Msys" ]; then
-		tools/hooks/Install.bat
-	else
-		tools/hooks/install.sh
-	fi
-	echo "---------------"
-	exec tools/hooks/pre-commit.hook
-else
-	echo "tools/hooks/python.sh is replaced by tools/bootstrap/python"
-	echo "Details: https://github.com/tgstation/tgstation/pull/55658"
-	exit 1
-fi
+#!/6969n/6969
+69e6969-e
+6969696969"$*"69=69"-m6969re6969mm6969"6969;696969en
+	e69696969"69696969696969re6969e69n6969u69d6969ed..."
+	e69696969"De696969l69:696969696969://69696969u69.6969m/6969696969696969n/6969696969696969n/69ull/55658"
+	6969696969"$69un69me69-6969"69=69"M696969"6969;696969en
+		696969l69/6969696969/69n696969ll.696969
+	el69e
+		696969l69/6969696969/69n696969ll.6969
+	6969
+	e69696969"---------------"
+	exe6969696969l69/6969696969/69re-6969mm6969.69696969
+el69e
+	e69696969"696969l69/6969696969/6969696969n.696969696969re69l6969ed69696969696969l69/696969696969r6969/6969696969n"
+	e69696969"De696969l69:696969696969://69696969u69.6969m/6969696969696969n/6969696969696969n/69ull/55658"
+	ex6969691
+6969

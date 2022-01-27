@@ -50,10 +50,10 @@
 	price_tag = 100
 	style = STYLE_NONE
 
-//Plague Dr mask can be found in clothing/masks/gasmask.dm
+//Plague Dr69ask can be found in clothing/masks/gasmask.dm
 /obj/item/clothing/suit/bio_suit/plaguedoctorsuit
 	name = "Plague doctor suit"
-	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against viruses."
+	desc = "It protected doctors from the Black Death, back then. You bet your arse it's gonna help you against69iruses."
 	icon_state = "plaguedoctor"
 	item_state = "bio_suit"
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL

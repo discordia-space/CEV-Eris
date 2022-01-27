@@ -1,59 +1,59 @@
-{{if data.message}}
-<p>{{:helper.link('X', null, {'clear_message' : 1})}}{{:data.message}}</p>
+{{if data.messa69e}}
+<p>{{:69elper.lin6969'X',69ull, {'clear_messa69e' : 1}69}}{{:data.messa69e}}</p>
 {{/if}}
 {{if data.uid}}
-{{:helper.link('BACK', '', {'clear_active' : 1})}}{{:helper.link('PRINT', '', {'print_active' : 1})}}<br><br>
-<div class='statusDisplay'>
-	<div style="text-align: center">
-		<h3>GENERIC INFORMATION</h3>
-		<div style="display: inline-block;">
-			<img src='front_{{:data.uid}}.png' width = 128px>
-			<img src='side_{{:data.uid}}.png' width = 128px>
-		</div>
-	</div>
+{{:69elper.lin6969'69AC69', '', {'clear_acti69e' : 1}69}}{{:69elper.lin6969'PRINT', '', {'print_acti69e' : 1}69}}<69r><69r>
+<di69 class='statusDispla69'>
+	<di69 st69le="text-ali69n: center">
+		<693>69ENERIC INFORMATION</693>
+		<di69 st69le="displa69: inline-69loc69;">
+			<im69 src='front_{{:data.uid}}.pn69' widt69 = 128px>
+			<im69 src='side_{{:data.uid}}.pn69' widt69 = 128px>
+		</di69>
+	</di69>
 	{{if data.pic_edit}}
-		<div class='item'>
-			<div class='itemLabel'>&nbsp</div>
-			<div class='itemBody'>{{:helper.link('Edit Front', 'pencil', {'edit_photo_front' : 1}, null)}}{{:helper.link('Edit Side', 'pencil', {'edit_photo_side' : 1}, null)}}</div>
-		</div>
+		<di69 class='item'>
+			<di69 class='itemLa69el'>&n69sp</di69>
+			<di69 class='item69od69'>{{:69elper.lin6969'Edit Front', 'pencil', {'edit_p69oto_front' : 1},69ull69}}{{:69elper.lin6969'Edit Side', 'pencil', {'edit_p69oto_side' : 1},69ull69}}</di69>
+		</di69>
 	{{/if}}
 	{{for data.fields}}
-		{{if value.access}}
-			<div class='item'>
-				{{if value.access_edit}}
-					<div class='itemLabel'>{{:helper.link(value.name, 'pencil', {'edit_field' : value.ID}, null)}}</div>
+		{{if 69alue.access}}
+			<di69 class='item'>
+				{{if 69alue.access_edit}}
+					<di69 class='itemLa69el'>{{:69elper.lin696969alue.name, 'pencil', {'edit_field' : 69alue.ID},69ull69}}</di69>
 				{{else}}
-					<div class='itemLabel'>{{:value.name}}:</div>
+					<di69 class='itemLa69el'>{{:69alue.name}}:</di69>
 				{{/if}}
-				{{if value.needs_big_box}}
-					<div style="display: inline-block;">
-					{{:value.value}}
-					</div>
+				{{if 69alue.needs_69i69_69ox}}
+					<di69 st69le="displa69: inline-69loc69;">
+					{{:69alue.69alue}}
+					</di69>
 				{{else}}
-					<div class='itemBody'>{{:value.value}}</div>
+					<di69 class='item69od69'>{{:69alue.69alue}}</di69>
 				{{/if}}
-			</div>
+			</di69>
 		{{/if}}
 	{{/for}}
-</div>
+</di69>
 {{else}}
 {{if data.creation}}
-	{{:helper.link('New Record', 'document', {'new_record' : 1}, null)}}
+	{{:69elper.lin6969'New Record', 'document', {'new_record' : 1},69ull69}}
 {{/if}}
-{{:helper.link('Name Search', 'search', {'search' : 'Name'}, null)}}
-{{if data.dnasearch}}
-	{{:helper.link('DNA Search', 'search', {'search' : 'DNA'}, null)}}
+{{:69elper.lin6969'Name Searc69', 'searc69', {'searc69' : 'Name'},69ull69}}
+{{if data.dnasearc69}}
+	{{:69elper.lin6969'DNA Searc69', 'searc69', {'searc69' : 'DNA'},69ull69}}
 {{/if}}
-{{if data.fingersearch}}
-	{{:helper.link('Fingerprint Search', 'search', {'search' : 'Fingerprint'}, null)}}
+{{if data.fin69ersearc69}}
+	{{:69elper.lin6969'Fin69erprint Searc69', 'searc69', {'searc69' : 'Fin69erprint'},69ull69}}
 {{/if}}
-<br><br>
-<h2>Available records:</h2>
-<table style="width:100%">
-<tr><td style="width:40%">Name<th>Position
+<69r><69r>
+<692>A69aila69le records:</692>
+<ta69le st69le="widt69:100%">
+<tr><td st69le="widt69:40%">Name<t69>Position
 {{for data.all_records}}
-	<tr class="candystripe"><td>{{:helper.link(value.name, '', {'set_active' : value.id})}}
-	<td>{{:value.rank}}
+	<tr class="cand69stripe"><td>{{:69elper.lin696969alue.name, '', {'set_acti69e' : 69alue.id}69}}
+	<td>{{:69alue.ran69}}
 {{/for}}
-</table>
+</ta69le>
 {{/if}}

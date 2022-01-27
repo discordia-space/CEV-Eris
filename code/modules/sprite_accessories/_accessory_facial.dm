@@ -8,31 +8,31 @@
 
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/human_races/species/human/facial.dmi'
-	gender = MALE // barf (unless you're a dorf, dorfs dig chix /w beards :P)
+	gender =69ALE // barf (unless you're a dorf, dorfs dig chix /w beards :P)
 
 /datum/sprite_accessory/facial_hair/shaved
 	name = "Shaved"
 	icon_state = "shaved"
-	gender = NEUTER
+	gender =69EUTER
 
 /datum/sprite_accessory/facial_hair/watson
-	name = "Watson Mustache"
+	name = "Watson69ustache"
 	icon_state = "watson"
 
 /datum/sprite_accessory/facial_hair/hogan
-	name = "Hulk Hogan Mustache"
+	name = "Hulk Hogan69ustache"
 	icon_state = "hogan" //-Neek
 
 /datum/sprite_accessory/facial_hair/vandyke
-	name = "Van Dyke Mustache"
+	name = "Van Dyke69ustache"
 	icon_state = "vandyke"
 
 /datum/sprite_accessory/facial_hair/chaplin
-	name = "Square Mustache"
+	name = "S69uare69ustache"
 	icon_state = "chaplin"
 
 /datum/sprite_accessory/facial_hair/selleck
-	name = "Selleck Mustache"
+	name = "Selleck69ustache"
 	icon_state = "selleck"
 
 /datum/sprite_accessory/facial_hair/neckbeard
@@ -88,7 +88,7 @@
 	icon_state = "3oclock"
 
 /datum/sprite_accessory/facial_hair/threeOclockstache
-	name = "3 O'clock Shadow and Moustache"
+	name = "3 O'clock Shadow and69oustache"
 	icon_state = "3oclockmoustache"
 
 /datum/sprite_accessory/facial_hair/fiveOclock
@@ -96,7 +96,7 @@
 	icon_state = "5oclock"
 
 /datum/sprite_accessory/facial_hair/fiveOclockstache
-	name = "5 O'clock Shadow and Moustache"
+	name = "5 O'clock Shadow and69oustache"
 	icon_state = "5oclockmoustache"
 
 /datum/sprite_accessory/facial_hair/sevenOclock
@@ -104,7 +104,7 @@
 	icon_state = "7oclock"
 
 /datum/sprite_accessory/facial_hair/sevenOclockstache
-	name = "7 O'clock Shadow and Moustache"
+	name = "7 O'clock Shadow and69oustache"
 	icon_state = "7oclockmoustache"
 
 /datum/sprite_accessory/facial_hair/mutton
@@ -112,9 +112,9 @@
 	icon_state = "mutton"
 
 /datum/sprite_accessory/facial_hair/muttonmu
-	name = "Mutton Chops and Moustache"
+	name = "Mutton Chops and69oustache"
 	icon_state = "muttonmu"
 
 /datum/sprite_accessory/facial_hair/walrus
-	name = "Walrus Moustache"
+	name = "Walrus69oustache"
 	icon_state = "walrus"

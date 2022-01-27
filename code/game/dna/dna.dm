@@ -1,10 +1,10 @@
 /////////////////////////// DNA DATUM
 /datum/dna
-	var/unique_enzymes
+	var/uni69ue_enzymes
 	var/struc_enzymes
 	var/uni_identity
 	var/b_type = "A+"
-	var/mutantrace  //The type of mutant race the player is if applicable (i.e. potato-man)
+	var/mutantrace  //The type of69utant race the player is if applicable (i.e. potato-man)
 	var/real_name //Stores the real name of the person who originally got this dna datum. Used primarely for carrions,
 
 /datum/dna/proc/check_integrity(var/mob/living/carbon/human/character)
@@ -46,7 +46,7 @@
 
 			var/gender
 
-			if (character.gender == MALE)
+			if (character.gender ==69ALE)
 				gender = add_zero2(num2hex((rand(1,(2050+BLOCKADD))),1), 3)
 			else
 				gender = add_zero2(num2hex((rand((2051+BLOCKADD),4094)),1), 3)
@@ -61,9 +61,9 @@
 			for(var/i = 1, i <= STRUCDNASIZE, i++)
 				mutstring += add_zero2(num2hex(rand(1,1024)),3)
 
-			struc_enzymes = mutstring
-		if(length(unique_enzymes) != 32)
-			unique_enzymes = md5(character.real_name)
+			struc_enzymes =69utstring
+		if(length(uni69ue_enzymes) != 32)
+			uni69ue_enzymes =69d5(character.real_name)
 	else
 		if(length(uni_identity) != 39) uni_identity = "00600200A00E0110148FC01300B0095BD7FD3F4"
 		if(length(struc_enzymes)!= 3*STRUCDNASIZE) struc_enzymes = "43359156756131E13763334D1C369012032164D4FE4CD61544B6C03F251B6C60A42821D26BA3B0FD6"
@@ -104,7 +104,7 @@
 
 	var/gender
 
-	if (character.gender == MALE)
+	if (character.gender ==69ALE)
 		gender = add_zero2(num2hex((rand(1,(2050+BLOCKADD))),1), 3)
 	else
 		gender = add_zero2(num2hex((rand((2051+BLOCKADD),4094)),1), 3)
@@ -120,9 +120,9 @@
 		mutstring += add_zero2(num2hex(rand(1,1024)),3)
 
 
-	struc_enzymes = mutstring
+	struc_enzymes =69utstring
 
-	unique_enzymes = md5(character.real_name)
-	reg_dna[unique_enzymes] = character.real_name
+	uni69ue_enzymes =69d5(character.real_name)
+	reg_dna69uni69ue_enzymes69 = character.real_name
 
 /////////////////////////// DNA DATUM

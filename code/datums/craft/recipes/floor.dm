@@ -1,7 +1,7 @@
 /datum/craft_recipe/floor
 	category = "Tiles"
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL),
 	)
 	flags = CRAFT_BATCH
 	time = 1 //Crafting individual tiles is fast
@@ -11,14 +11,14 @@
 	name = "wood floor tile"
 	result = /obj/item/stack/tile/wood
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_WOOD)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_WOOD)
 	)
 
 /datum/craft_recipe/floor/classic/cafe
 	name = "cafe floor tile"
 	result = /obj/item/stack/tile/floor/cafe
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_PLASTIC)
 	)
 
 
@@ -26,31 +26,31 @@
 	name = "maint floor tile"
 	result = /obj/item/stack/tile/floor/techmaint
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL)
 	)
 
 
 /datum/craft_recipe/floor/classic/techmaint_perforated
-	name = "perforated maint floor tile"
+	name = "perforated69aint floor tile"
 	result = /obj/item/stack/tile/floor/techmaint/perforated
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL)
 	)
 
 
 /datum/craft_recipe/floor/classic/techmaint_panels
-	name = "panels maint floor tile"
+	name = "panels69aint floor tile"
 	result = /obj/item/stack/tile/floor/techmaint/panels
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL)
 	)
 
 
 /datum/craft_recipe/floor/classic/techmaint_cargo
-	name = "cargo maint floor tile"
+	name = "cargo69aint floor tile"
 	result = /obj/item/stack/tile/floor/techmaint/cargo
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL)
 	)
 
 
@@ -69,7 +69,7 @@
 
 
 /datum/craft_recipe/floor/steel/techfloor_grid
-	name = "steel techfloor tile with vents"
+	name = "steel techfloor tile with69ents"
 	result = /obj/item/stack/tile/floor/steel/techfloor_grid
 
 
@@ -124,12 +124,12 @@
 
 
 /datum/craft_recipe/floor/steel/violetcorener
-	name = "steel violet corener tile"
+	name = "steel69iolet corener tile"
 	result = /obj/item/stack/tile/floor/steel/violetcorener
 
 
 /datum/craft_recipe/floor/steel/monofloor
-	name = "steel monofloor tile"
+	name = "steel69onofloor tile"
 	result = /obj/item/stack/tile/floor/steel/monofloor
 
 
@@ -154,7 +154,7 @@
 	name = "regular white floor tile"
 	result = /obj/item/stack/tile/floor/white
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_PLASTIC)
+		list(CRAFT_MATERIAL, 1,69ATERIAL_PLASTIC)
 	)
 
 /datum/craft_recipe/floor/white/panels
@@ -166,7 +166,7 @@
 	result = /obj/item/stack/tile/floor/white/techfloor
 
 /datum/craft_recipe/floor/white/techfloor_grid
-	name = "white techfloor tile with vents"
+	name = "white techfloor tile with69ents"
 	result = /obj/item/stack/tile/floor/white/techfloor_grid
 
 /datum/craft_recipe/floor/white/brown_perforated
@@ -210,11 +210,11 @@
 	result = /obj/item/stack/tile/floor/white/cyancorner
 
 /datum/craft_recipe/floor/white/violetcorener
-	name = "white violet corener tile"
+	name = "white69iolet corener tile"
 	result = /obj/item/stack/tile/floor/white/violetcorener
 
 /datum/craft_recipe/floor/white/monofloor
-	name = "white monofloor tile"
+	name = "white69onofloor tile"
 	result = /obj/item/stack/tile/floor/white/monofloor
 
 
@@ -236,7 +236,7 @@
 
 
 /datum/craft_recipe/floor/dark/techfloor_grid
-	name = "dark techfloor tile with vents"
+	name = "dark techfloor tile with69ents"
 	result = /obj/item/stack/tile/floor/dark/techfloor_grid
 
 
@@ -291,12 +291,12 @@
 
 
 /datum/craft_recipe/floor/dark/violetcorener
-	name = "dark violet corener tile"
+	name = "dark69iolet corener tile"
 	result = /obj/item/stack/tile/floor/dark/violetcorener
 
 
 /datum/craft_recipe/floor/dark/monofloor
-	name = "dark monofloor tile"
+	name = "dark69onofloor tile"
 	result = /obj/item/stack/tile/floor/dark/monofloor
 
 
@@ -304,8 +304,8 @@
 	name = "light tile"
 	result = /obj/machinery/floor_light
 	steps = list(
-		list(CRAFT_MATERIAL, 3, MATERIAL_GLASS, "time" = 30),
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL, "time" = 10),
+		list(CRAFT_MATERIAL, 3,69ATERIAL_GLASS, "time" = 30),
+		list(CRAFT_MATERIAL, 2,69ATERIAL_STEEL, "time" = 10),
 		list(QUALITY_SCREW_DRIVING, 10, 80),
 		list(/obj/item/stack/cable_coil, 5, "time" = 20),
 		list(QUALITY_PULSING, 30, 80)

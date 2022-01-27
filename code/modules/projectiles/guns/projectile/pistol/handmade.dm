@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/handmade_pistol
 	name = "handmade pistol"
-	desc = "Looks unreliable. May blow up in your hands. Due to a strange design, this one can be reload only after shot. Or with the use of a screwdriver."
+	desc = "Looks unreliable.69ay blow up in your hands. Due to a strange design, this one can be reload only after shot. Or with the use of a screwdriver."
 	icon = 'icons/obj/guns/projectile/hm_pistol.dmi'
 	icon_state = "hm_pistol"
 	item_state = "pistol"
@@ -10,12 +10,12 @@
 	can_dual = TRUE
 	load_method = SINGLE_CASING
 	max_shells = 1
-	matter = list(MATERIAL_STEEL = 5, MATERIAL_WOOD = 5)
+	matter = list(MATERIAL_STEEL = 5,69ATERIAL_WOOD = 5)
 	gun_parts = list(/obj/item/stack/material/steel = 2)
 	ammo_type = /obj/item/ammo_casing/magnum
 	damage_multiplier = 1.36
 	recoil_buildup = 15
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 	spawn_blacklisted = FALSE
 	spawn_tags = SPAWN_TAG_GUN_HANDMADE
 	var/chamber_open = FALSE
@@ -28,32 +28,32 @@
 
 /obj/item/gun/projectile/handmade_pistol/special_check(mob/user)
 	if(jammed)
-		to_chat(user, SPAN_WARNING("[src] is jammed!"))
+		to_chat(user, SPAN_WARNING("69src69 is jammed!"))
 		return 0
 	else
 		if(loaded.len && prob(jam_chance)) //you know, when you try to shot and "aaaaawwwww fuk"
 			jammed = TRUE
 			playsound(src.loc, 'sound/weapons/guns/interact/hpistol_cock.ogg', 70, 1)
-			to_chat(user, SPAN_DANGER("[src] is jammed!"))
+			to_chat(user, SPAN_DANGER("69src69 is jammed!"))
 			return 0
 	return ..()
 
-/obj/item/gun/projectile/handmade_pistol/attackby(obj/item/W, mob/user)
-	if(QUALITY_SCREW_DRIVING in W.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to rechamber \the [src]."))
-		if(chamber_open && W.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
+/obj/item/gun/projectile/handmade_pistol/attackby(obj/item/W,69ob/user)
+	if(69UALITY_SCREW_DRIVING in W.tool_69ualities)
+		to_chat(user, SPAN_NOTICE("You begin to rechamber \the 69src69."))
+		if(chamber_open && W.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_SCREW_DRIVING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
 			if(caliber == CAL_MAGNUM)
 				caliber = CAL_PISTOL
 				fire_sound = 'sound/weapons/guns/fire/pistol_fire.ogg'
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .35 Caliber."))
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the 69src69 to .35 Caliber."))
 			else if(caliber == CAL_PISTOL)
 				caliber = CAL_CLRIFLE
 				fire_sound = 'sound/weapons/guns/fire/m41_shoot.ogg'
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .25 Caseless."))
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the 69src69 to .25 Caseless."))
 			else if(caliber == CAL_CLRIFLE)
 				caliber = CAL_MAGNUM
 				fire_sound = 'sound/weapons/guns/fire/hpistol_fire.ogg'
-				to_chat(user, SPAN_WARNING("You successfully rechamber \the [src] to .40 Magnum."))
+				to_chat(user, SPAN_WARNING("You successfully rechamber \the 69src69 to .4069agnum."))
 		else
 			to_chat(user, SPAN_WARNING("You cannot rechamber a closed firearm!"))
 			return
@@ -69,10 +69,10 @@
 	..()
 	open_chamber()
 
-/obj/item/gun/projectile/handmade_pistol/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/handmade_pistol/load_ammo(var/obj/item/A,69ob/user)
 	if(istype(A, /obj/item/ammo_casing))
 		if(!chamber_open)
-			to_chat(user, SPAN_WARNING("You need to open chamber first."))
+			to_chat(user, SPAN_WARNING("You69eed to open chamber first."))
 			return
 		..()
 		chamber_open = FALSE
@@ -88,7 +88,7 @@
 	icon_state = "hm_pistol_open"
 	playsound(src.loc, 'sound/weapons/guns/interact/batrifle_magout.ogg', 65, 1)
 	if(loaded.len)
-		var/obj/item/ammo_casing/our_bullet = loaded[1]
+		var/obj/item/ammo_casing/our_bullet = loaded69169
 		our_bullet.loc = get_turf(src)
 		loaded -= our_bullet
-		chambered = null
+		chambered =69ull

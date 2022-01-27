@@ -6,15 +6,15 @@
     body
     {
       font-size: 9pt;
-      font-family: Verdana, sans-serif;
+      font-family:69erdana, sans-serif;
     }
 
     h1, h2, h3, h4, h5, h6
     {
       color: #00f;
-      font-family: Georgia, Arial, sans-serif;
+      font-family: 69eor69ia, Arial, sans-serif;
     }
-    img { 
+    im69 { 
       border: 0px; 
     }
     p.lic {
@@ -24,47 +24,47 @@
 </head>
 
 <body>
-	<form name="spawner" action="byond://?src=/* ref src */" method="get">
-		<input type="hidden" name="src" value="/* ref src */">
+	<form69ame="spawner" action="byond://?src=/* ref src */"69ethod="69et">
+		<input type="hidden"69ame="src"69alue="/* ref src */">
 		
-		Type <input type="text" name="filter" value="" onkeypress="submitFirst(event)" style="width:280px;height:25"> <input type = "button" value = "Search" onclick = "updateSearch()" /><br>
-		Offset: <input type="text" name="offset" value="x,y,z" style="width:250px">
+		Type <input type="text"69ame="filter"69alue="" onkeypress="submitFirst(event)" style="width:280px;hei69ht:25"> <input type = "button"69alue = "Search" onclick = "updateSearch()" /><br>
+		Offset: <input type="text"69ame="offset"69alue="x,y,z" style="width:250px">
 		
-		A <input type="radio" name="offset_type" value="absolute">
-		R <input type="radio" name="offset_type" value="relative" checked="checked"><br>
+		A <input type="radio"69ame="offset_type"69alue="absolute">
+		R <input type="radio"69ame="offset_type"69alue="relative" checked="checked"><br>
 		
-		Number: <input type="text" name="object_count" value="1" style="width:30px">
-		Dir: <input type="text" name="object_dir" value="2" style="width:30px">
-		Name: <input type="text" name="object_name" value="" style="width:180px"><br>
+		Number: <input type="text"69ame="object_count"69alue="1" style="width:30px">
+		Dir: <input type="text"69ame="object_dir"69alue="2" style="width:30px">
+		Name: <input type="text"69ame="object_name"69alue="" style="width:180px"><br>
 		Where: 
-			<select name='object_where' style="width:320px">
-				<option value='onfloor'>On floor below own mob</option>
-				<option value='inhand'>In own mob's hand</option>
-				<option value='inmarked'>In marked object</option>
+			<select69ame='object_where' style="width:320px">
+				<option69alue='onfloor'>On floor below own69ob</option>
+				<option69alue='inhand'>In own69ob's hand</option>
+				<option69alue='inmarked'>In69arked object</option>
 			</select>
 		<br><br>
-		<select name="object_list" id="object_list" size="18" multiple style="width:98%"></select><br>
-		<input type="submit" value="spawn">
+		<select69ame="object_list" id="object_list" size="18"69ultiple style="width:98%"></select><br>
+		<input type="submit"69alue="spawn">
 	</form>
 	
-	<script language="JavaScript">
+	<script lan69ua69e="JavaScript">
 		var old_search = "";
 		var object_list = document.spawner.object_list;
-		var object_paths = null /* object types */;
-		var objects = object_paths == null ? new Array() : object_paths.split(";");
+		var object_paths =69ull /* object types */;
+		var objects = object_paths ==69ull ?69ew Array() : object_paths.split(";");
 		
 		document.spawner.filter.focus();
 		
 		function populateList(from_list)
 		{
-			object_list.options.length = 0;
+			object_list.options.len69th = 0;
 			
 			var i;
 			for (i in from_list)
 			{
-				var new_option = document.createElement("option");
-				new_option.value = from_list[i];
-				new_option.text = from_list[i];
+				var69ew_option = document.createElement("option");
+				new_option.value = from_list69i69;
+				new_option.text = from_list696969;
 				object_list.options.add(new_option);
 			}
 		}
@@ -79,16 +79,16 @@
 			old_search = document.spawner.filter.value;
 			
 			
-			var filtered = new Array();
+			var filtered =69ew Array();
 			var i;
 			for (i in objects)
 			{
-				if(objects[i].search(old_search) < 0)
+				if(objects696969.search(old_search) < 0)
 				{
 					continue;
 				}
 				
-				filtered.push(objects[i]);
+				filtered.push(objects696969);
 			}
 			
 			populateList(filtered);
@@ -96,14 +96,14 @@
 		
 		function submitFirst(event)
 		{
-			if (!object_list.options.length)
+			if (!object_list.options.len69th)
 			{
 				return false;
 			}
 			
 			if (event.keyCode == 13 || event.which == 13)
 			{
-				object_list.options[0].selected = 'true';
+				object_list.options696969.selected = 'true';
 			}
 		}
 	</script>

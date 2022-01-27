@@ -1,10 +1,10 @@
 /////////////Standard/////////////
 /obj/item/ammo_magazine/pistol
-	name = "standard magazine (.35 Auto)"
+	name = "standard69agazine (.35 Auto)"
 	icon_state = "pistol"
 	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
@@ -33,11 +33,11 @@
 
 /////////////HighCap/////////////
 /obj/item/ammo_magazine/hpistol
-	name = "highcap magazine (.35 Auto)"
+	name = "highcap69agazine (.35 Auto)"
 	icon_state = "hpistol"
 	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_H_PISTOL
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_H_PISTOL
 	matter = list(MATERIAL_STEEL = 3)
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
@@ -63,11 +63,11 @@
 /////////////.35 SMG/////////////
 
 /obj/item/ammo_magazine/smg
-	name = "smg magazine (.35 Auto)"
+	name = "smg69agazine (.35 Auto)"
 	icon_state = "smg"
 	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_SMG
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_SMG
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_PISTOL
 	ammo_type = /obj/item/ammo_casing/pistol
@@ -94,11 +94,11 @@
 /////////////.40 SMG/////////////
 
 /obj/item/ammo_magazine/msmg
-	name = "smg magazine (.40 Magnum)"
+	name = "smg69agazine (.4069agnum)"
 	icon_state = "msmg"
 	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_SMG
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_SMG
 	matter = list(MATERIAL_STEEL = 5)
 	caliber = CAL_MAGNUM
 	ammo_type = /obj/item/ammo_casing/magnum
@@ -124,10 +124,10 @@
 ///////////// .40 pistol ///////////
 
 /obj/item/ammo_magazine/magnum
-	name = "magazine (.40 Magnum)"
+	name = "magazine (.4069agnum)"
 	icon_state = "magnum"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	ammo_mag = "mag_cl40m"
 	ammo_type = /obj/item/ammo_casing/magnum
 	matter = list(MATERIAL_STEEL = 4)
@@ -142,11 +142,11 @@
 
 /obj/item/ammo_magazine/magnum/practice
 	ammo_type = /obj/item/ammo_casing/magnum/practice
-	spawn_tags = null
+	spawn_tags =69ull
 
 /obj/item/ammo_magazine/magnum/hv
 	ammo_type = /obj/item/ammo_casing/magnum/hv
-	spawn_tags = null
+	spawn_tags =69ull
 
 /obj/item/ammo_magazine/magnum/rubber
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
@@ -163,8 +163,8 @@
 	name = "magazine (.20 Rifle)"
 	icon_state = "srifle"
 	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	caliber = CAL_SRIFLE
 	matter = list(MATERIAL_STEEL = 6)
 	ammo_type = /obj/item/ammo_casing/srifle
@@ -196,13 +196,13 @@
 ////////// .25 RIFLE ///////////
 
 /obj/item/ammo_magazine/c10x24
-	name = "box magazine (.25 caseless)"
+	name = "box69agazine (.25 caseless)"
 	icon_state = "10x24"
 	modular_sprites = FALSE
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	caliber = CAL_CLRIFLE
-	matter = list(MATERIAL_STEEL = 8, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 8,69ATERIAL_PLASTIC = 1)
 	ammo_type = /obj/item/ammo_casing/clrifle
 	max_ammo = 99
 	ammo_states = list(25, 50, 75, 99)
@@ -210,8 +210,8 @@
 /obj/item/ammo_magazine/ihclrifle
 	name = "magazine (.25 Caseless Rifle)"
 	icon_state = "ihclrifle"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_IH
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_IH
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_CLRIFLE
@@ -225,11 +225,11 @@
 
 /obj/item/ammo_magazine/ihclrifle/practice
 	ammo_type = /obj/item/ammo_casing/clrifle/practice
-	spawn_frequency = 5
+	spawn_fre69uency = 5
 
 /obj/item/ammo_magazine/ihclrifle/hv
 	ammo_type = /obj/item/ammo_casing/clrifle/hv
-	spawn_tags = null
+	spawn_tags =69ull
 
 /obj/item/ammo_magazine/ihclrifle/rubber
 	ammo_type = /obj/item/ammo_casing/clrifle/rubber
@@ -241,10 +241,10 @@
 ////////// .25 PISTOL //////////
 
 /obj/item/ammo_magazine/cspistol
-	name = "pistol magazine (.25 Caseless Rifle)"
+	name = "pistol69agazine (.25 Caseless Rifle)"
 	icon_state = "cspistol"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	ammo_type = /obj/item/ammo_casing/clrifle
 	matter = list(MATERIAL_STEEL = 4)
 	caliber = CAL_CLRIFLE
@@ -266,10 +266,10 @@
 ///////// .30 RIFLE ///////////
 
 /obj/item/ammo_magazine/lrifle
-	name = "long magazine (.30 Rifle)"
+	name = "long69agazine (.30 Rifle)"
 	icon_state = "lrifle"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 5)
 	ammo_type = /obj/item/ammo_casing/lrifle
@@ -277,12 +277,12 @@
 	ammo_states = list(30)
 
 /obj/item/ammo_magazine/lrifle/pk
-	name = "LMG munitions box (.30 Rifle)"
+	name = "LMG69unitions box (.30 Rifle)"
 	icon_state = "pk_box"
 	modular_sprites = FALSE
 	origin_tech = list(TECH_COMBAT = 2)
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_BOX
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_BOX
 	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 8)
 	ammo_type = /obj/item/ammo_casing/lrifle
@@ -290,10 +290,10 @@
 	w_class = ITEM_SIZE_NORMAL
 	ammo_states = list(15, 30, 50, 79, 80)
 
-//Magazine type for the mech PK, you shouldn't see this
+//Magazine type for the69ech PK, you shouldn't see this
 
 /obj/item/ammo_magazine/lrifle/pk/mech
-	name = "LMG munitions box (.30 Rifle, Exosuit)"
+	name = "LMG69unitions box (.30 Rifle, Exosuit)"
 	matter = list()
 	spawn_blacklisted = TRUE
 	bad_type = /obj/item/ammo_magazine/lrifle/pk/mech
@@ -318,10 +318,10 @@
 	spawn_tags = SPAWN_AMMO_COMMON
 
 /obj/item/ammo_magazine/maxim
-	name = "pan magazine (.30 Rifle)"
+	name = "pan69agazine (.30 Rifle)"
 	icon_state = "maxim"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_PAN
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_PAN
 	caliber = CAL_LRIFLE
 	matter = list(MATERIAL_STEEL = 10)
 	ammo_type = /obj/item/ammo_casing/lrifle
@@ -367,7 +367,7 @@
 //////// .40 SPEEDLOADERS //////////
 
 /obj/item/ammo_magazine/slmagnum
-	name = "speed loader (.40 Magnum)"
+	name = "speed loader (.4069agnum)"
 	icon = 'icons/obj/ammo_speed.dmi'
 	icon_state = "slmagnum"
 	caliber = CAL_MAGNUM
@@ -383,11 +383,11 @@
 
 /obj/item/ammo_magazine/slmagnum/practice
 	ammo_type = /obj/item/ammo_casing/magnum/practice
-	spawn_tags = null
+	spawn_tags =69ull
 
 /obj/item/ammo_magazine/slmagnum/highvelocity
 	ammo_type = /obj/item/ammo_casing/magnum/hv
-	spawn_tags = null
+	spawn_tags =69ull
 
 /obj/item/ammo_magazine/slmagnum/rubber
 	ammo_type = /obj/item/ammo_casing/magnum/rubber
@@ -429,7 +429,7 @@
 	var/count = 0
 	for(var/obj/item/ammo_casing/AC in stored_ammo)
 		count++
-		overlays += "stripper_[AC.shell_color]-[count]"
+		overlays += "stripper_69AC.shell_color69-69count69"
 
 /obj/item/ammo_magazine/slsrifle/Initialize()
 	. = ..()
@@ -461,11 +461,11 @@
 	ammo_states = list(1, 2, 3, 4, 5, 6)
 
 /obj/item/ammo_magazine/a75
-	name = "ammo magazine (.70 Gyro)"
+	name = "ammo69agazine (.70 Gyro)"
 	icon_state = "gyropistol"
 	icon = 'icons/obj/ammo_mags.dmi'
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	caliber = CAL_70
 	ammo_type = /obj/item/ammo_casing/a75
 	max_ammo = 4
@@ -481,8 +481,8 @@
 /obj/item/ammo_magazine/m12
 	name = "ammo drum (.50)"
 	icon_state = "m12"
-	mag_type = MAGAZINE
-	mag_well = MAG_WELL_RIFLE
+	mag_type =69AGAZINE
+	mag_well =69AG_WELL_RIFLE
 	caliber = CAL_SHOTGUN
 	ammo_type = /obj/item/ammo_casing/shotgun
 	matter = list(MATERIAL_STEEL = 6)
@@ -504,8 +504,8 @@
 	cut_overlays()
 
 	if(stored_ammo.len)
-		var/obj/item/ammo_casing/LS = stored_ammo[1]
-		overlays += "m12_shell_[LS.shell_color]" // Last shell is sticking out
+		var/obj/item/ammo_casing/LS = stored_ammo69169
+		overlays += "m12_shell_69LS.shell_color69" // Last shell is sticking out
 
 /obj/item/ammo_magazine/m12/Initialize()
 	. = ..()

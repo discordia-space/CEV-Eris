@@ -1,6 +1,6 @@
-// Verb: ai_select_hardware()
+//69erb: ai_select_hardware()
 // Parameters: None
-// Description: Allows AI to select it's hardware module.
+// Description: Allows AI to select it's hardware69odule.
 /datum/game_mode/malfunction/verb/ai_select_hardware()
 	set category = "Hardware"
 	set name = "Select Hardware"
@@ -24,7 +24,7 @@
 		possible_choices += H.name
 
 	possible_choices += "CANCEL"
-	var/choice = input("Select desired hardware. You may only choose one hardware piece!: ") in possible_choices
+	var/choice = input("Select desired hardware. You69ay only choose one hardware piece!: ") in possible_choices
 	if(choice == "CANCEL")
 		return
 	var/note = null
@@ -44,10 +44,10 @@
 
 
 	if(!note)
-		error("Hardware without description: [C]")
+		error("Hardware without description: 69C69")
 		return
 
-	var/confirmation = alert("[note] - Is this what you want?", "Hardware selection", "Yes", "No")
+	var/confirmation = alert("69note69 - Is this what you want?", "Hardware selection", "Yes", "No")
 	if(confirmation != "Yes")
 		to_chat(user, "Selection cancelled. Use command again to select")
 		return
@@ -56,7 +56,7 @@
 		C.owner = user
 		C.install()
 
-// Verb: ai_help()
+//69erb: ai_help()
 // Parameters: None
 // Descriptions: Opens help file and displays it to the AI.
 /datum/game_mode/malfunction/verb/ai_help()
@@ -67,13 +67,13 @@
 
 	var/help = file2text('html/ingame_manuals/malf_ai.html')
 	if(!help)
-		help = "Error loading help (file html/ingame_manuals/malf_ai.html is probably missing). Please report this to server administration staff."
+		help = "Error loading help (file html/ingame_manuals/malf_ai.html is probably69issing). Please report this to server administration staff."
 		error("Failed to load html/ingame_manuals/malf_ai.html.")
 
 	user << browse(help, "window=malf_ai_help;size=600x500")
 
 
-// Verb: ai_select_research()
+//69erb: ai_select_research()
 // Parameters: None
 // Description: Allows AI to select it's next research priority.
 /datum/game_mode/malfunction/verb/ai_select_research()
@@ -90,29 +90,29 @@
 	if(!tar)
 		return
 	res.focus = tar
-	to_chat(user, "Research set: [tar.name]")
+	to_chat(user, "Research set: 69tar.name69")
 
 // HELPER PROCS
 // Proc: ability_prechecks()
 // Parameters 2 - (user - User which used this ability check_price - If different than 0 checks for ability CPU price too. Does NOT use the CPU time!)
 // Description: This is pre-check proc used to determine if the AI can use the ability.
-/proc/ability_prechecks(var/mob/living/silicon/ai/user = null, var/check_price = 0, var/override = 0)
+/proc/ability_prechecks(var/mob/living/silicon/ai/user = null,69ar/check_price = 0,69ar/override = 0)
 	if(!user)
 		return 0
 	if(!istype(user))
-		to_chat(user, "GAME ERROR: You tried to use ability that is only available for malfunctioning AIs, but you are not AI! Please report this.")
+		to_chat(user, "GAME ERROR: You tried to use ability that is only available for69alfunctioning AIs, but you are not AI! Please report this.")
 		return 0
 	if(!user.malfunctioning)
-		to_chat(user, "GAME ERROR: You tried to use ability that is only available for malfunctioning AIs, but you are not malfunctioning. Please report this.")
+		to_chat(user, "GAME ERROR: You tried to use ability that is only available for69alfunctioning AIs, but you are not69alfunctioning. Please report this.")
 		return 0
 	if(!user.research)
 		to_chat(user, "GAME ERROR: No research datum detected. Please report this.")
 		return 0
 	if(user.research.max_cpu < check_price)
-		to_chat(user, "Your CPU storage is not large enough to use this ability. Hack more APCs to continue.")
+		to_chat(user, "Your CPU storage is not large enough to use this ability. Hack69ore APCs to continue.")
 		return 0
 	if(user.research.stored_cpu < check_price)
-		to_chat(user, "You do not have enough CPU power stored. Please wait a moment.")
+		to_chat(user, "You do not have enough CPU power stored. Please wait a69oment.")
 		return 0
 	if(user.hacking && !override)
 		to_chat(user, "Your system is busy processing another task. Please wait until completion.")
@@ -125,7 +125,7 @@
 // Proc: ability_pay()
 // Parameters 2 - (user - User from which we deduct CPU from, price - Amount of CPU power to use)
 // Description: Uses up certain amount of CPU power. Returns 1 on success, 0 on failure.
-/proc/ability_pay(var/mob/living/silicon/ai/user = null, var/price = 0)
+/proc/ability_pay(var/mob/living/silicon/ai/user = null,69ar/price = 0)
 	if(!user)
 		return 0
 	if(user.APU_power)
@@ -135,10 +135,10 @@
 		to_chat(user, "GAME ERROR: No research datum detected. Please report this.")
 		return 0
 	if(user.research.max_cpu < price)
-		to_chat(user, "Your CPU storage is not large enough to use this ability. Hack more APCs to continue.")
+		to_chat(user, "Your CPU storage is not large enough to use this ability. Hack69ore APCs to continue.")
 		return 0
 	if(user.research.stored_cpu < price)
-		to_chat(user, "You do not have enough CPU power stored. Please wait a moment.")
+		to_chat(user, "You do not have enough CPU power stored. Please wait a69oment.")
 		return 0
 	user.research.stored_cpu -= price
 	return 1
@@ -146,21 +146,21 @@
 // Proc: announce_hack_failure()
 // Parameters 2 - (user - hacking user, text - Used in alert text creation)
 // Description: Uses up certain amount of CPU power. Returns 1 on success, 0 on failure.
-/proc/announce_hack_failure(var/mob/living/silicon/ai/user = null, var/text)
+/proc/announce_hack_failure(var/mob/living/silicon/ai/user = null,69ar/text)
 	if(!user || !text)
 		return 0
 	var/fulltext = ""
 	switch(user.hack_fails)
 		if(1)
-			fulltext = "We have detected a hack attempt into your [text]. The intruder failed to access anything of importance, but disconnected before we could complete our traces."
+			fulltext = "We have detected a hack attempt into your 69text69. The intruder failed to access anything of importance, but disconnected before we could complete our traces."
 		if(2)
-			fulltext = "We have detected another hack attempt. It was targeting [text]. The intruder almost gained control of the system, so we had to disconnect them. We partially finished our trace and it seems to be originating either from the station, or its immediate vicinity."
+			fulltext = "We have detected another hack attempt. It was targeting 69text69. The intruder almost gained control of the system, so we had to disconnect them. We partially finished our trace and it seems to be originating either from the station, or its immediate69icinity."
 		if(3)
-			fulltext = "Another hack attempt has been detected, this time targeting [text]. We are certain the intruder entered the network via a terminal located somewhere on the station."
+			fulltext = "Another hack attempt has been detected, this time targeting 69text69. We are certain the intruder entered the network69ia a terminal located somewhere on the station."
 		if(4)
 			fulltext = "We have finished our traces and it seems the recent hack attempts are originating from your AI system. We recommend investigation."
 		else
-			fulltext = "Another hack attempt has been detected, targeting [text]. The source still seems to be your AI system."
+			fulltext = "Another hack attempt has been detected, targeting 69text69. The source still seems to be your AI system."
 
 	command_announcement.Announce(fulltext)
 
@@ -176,7 +176,7 @@
 	return H
 
 
-// Helper procs which return lists of relevant mobs.
+// Helper procs which return lists of relevant69obs.
 /proc/get_unlinked_cyborgs(var/mob/living/silicon/ai/A)
 	if(!A || !istype(A))
 		return

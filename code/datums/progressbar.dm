@@ -28,8 +28,8 @@
 		client = user.client
 
 	LAZYINITLIST(user.progressbars)
-	LAZYINITLIST(user.progressbars[bar.loc])
-	var/list/bars = user.progressbars[bar.loc]
+	LAZYINITLIST(user.progressbars69bar.loc69)
+	var/list/bars = user.progressbars69bar.loc69
 	bars.Add(src)
 	listindex = bars.len
 	animate(bar, pixel_y = 32 + (PROGRESSBAR_HEIGHT * (listindex - 1)), alpha = 255, time = 5, easing = SINE_EASING)
@@ -45,7 +45,7 @@
 			user.client.images += bar
 
 	progress = CLAMP(progress, 0, goal)
-	bar.icon_state = "prog_bar_[round(((progress / goal) * 100), 5)]"
+	bar.icon_state = "prog_bar_69round(((progress / goal) * 100), 5)69"
 	if(!shown && user.get_preference_value(/datum/client_preference/show_progress_bar) == GLOB.PREF_SHOW)
 		user.client.images += bar
 		shown = 1
@@ -56,12 +56,12 @@
 	animate(bar, pixel_y = shiftheight, time = 5, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
-	for(var/I in user.progressbars[bar.loc])
+	for(var/I in user.progressbars69bar.loc69)
 		var/datum/progressbar/P = I
 		if(P != src && P.listindex > listindex)
 			P.shiftDown()
 
-	var/list/bars = user.progressbars[bar.loc]
+	var/list/bars = user.progressbars69bar.loc69
 	bars.Remove(src)
 	if(!bars.len)
 		LAZYREMOVE(user.progressbars, bar.loc)

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cleaner"
 	item_state = "cleaner"
-	flags = NOBLUDGEON
+	flags =69OBLUDGEON
 	reagent_flags = OPENCONTAINER
 	slot_flags = SLOT_BELT
 	throwforce = 3
@@ -13,7 +13,7 @@
 	throw_range = 10
 	amount_per_transfer_from_this = 10
 	unacidable = TRUE //plastic
-	possible_transfer_amounts = list(5,10) //Set to null instead of list, if there is only one.
+	possible_transfer_amounts = list(5,10) //Set to69ull instead of list, if there is only one.
 	matter = list(MATERIAL_PLASTIC = 2)
 	volume = 250
 	var/spray_size = 3
@@ -23,7 +23,7 @@
 	. = ..()
 	src.verbs -= /obj/item/reagent_containers/verb/set_APTFT
 
-/obj/item/reagent_containers/spray/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/spray/afterattack(atom/A as69ob|obj,69ob/user as69ob, proximity)
 	if(proximity)
 		if(standard_dispenser_refill(user, A))
 			return
@@ -35,7 +35,7 @@
 		return ..()
 
 	if(reagents.total_volume < amount_per_transfer_from_this)
-		to_chat(user, SPAN_NOTICE("\The [src] is empty!"))
+		to_chat(user, SPAN_NOTICE("\The 69src69 is empty!"))
 		return
 
 	Spray_at(A, user, proximity)
@@ -45,23 +45,23 @@
 	user.setClickCooldown(4)
 
 	if(reagents.has_reagent("sacid"))
-		message_admins("[key_name_admin(user)] fired sulphuric acid from \a [src].")
-		log_game("[key_name(user)] fired sulphuric acid from \a [src].")
+		message_admins("69key_name_admin(user)69 fired sulphuric acid from \a 69src69.")
+		log_game("69key_name(user)69 fired sulphuric acid from \a 69src69.")
 	if(reagents.has_reagent("pacid"))
-		message_admins("[key_name_admin(user)] fired Polyacid from \a [src].")
-		log_game("[key_name(user)] fired Polyacid from \a [src].")
+		message_admins("69key_name_admin(user)69 fired Polyacid from \a 69src69.")
+		log_game("69key_name(user)69 fired Polyacid from \a 69src69.")
 	if(reagents.has_reagent("lube"))
-		message_admins("[key_name_admin(user)] fired Space lube from \a [src].")
-		log_game("[key_name(user)] fired Space lube from \a [src].")
+		message_admins("69key_name_admin(user)69 fired Space lube from \a 69src69.")
+		log_game("69key_name(user)69 fired Space lube from \a 69src69.")
 	return
 
-/obj/item/reagent_containers/spray/proc/Spray_at(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/spray/proc/Spray_at(atom/A as69ob|obj,69ob/user as69ob, proximity)
 	if (A.density && proximity)
-		A.visible_message("[usr] sprays [A] with [src].")
+		A.visible_message("69usr69 sprays 69A69 with 69src69.")
 		reagents.splash(A, amount_per_transfer_from_this)
 	else
 		spawn(0)
-			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+			var/obj/effect/effect/water/chempuff/D =69ew/obj/effect/effect/water/chempuff(get_turf(src))
 			var/turf/my_target = get_turf(A)
 			D.create_reagents(amount_per_transfer_from_this)
 			if(!src)
@@ -74,30 +74,30 @@
 /obj/item/reagent_containers/spray/attack_self(var/mob/user)
 	if(!possible_transfer_amounts)
 		return
-	amount_per_transfer_from_this = next_list_item(amount_per_transfer_from_this, possible_transfer_amounts)
-	spray_size = next_list_item(spray_size, spray_sizes)
-	to_chat(user, SPAN_NOTICE("You adjusted the pressure nozzle. You'll now use [amount_per_transfer_from_this] units per spray."))
+	amount_per_transfer_from_this =69ext_list_item(amount_per_transfer_from_this, possible_transfer_amounts)
+	spray_size =69ext_list_item(spray_size, spray_sizes)
+	to_chat(user, SPAN_NOTICE("You adjusted the pressure69ozzle. You'll69ow use 69amount_per_transfer_from_this69 units per spray."))
 
 /obj/item/reagent_containers/spray/examine(mob/user)
 	if(..(user, 0) && loc == user)
-		to_chat(user, "[round(reagents.total_volume)] units left.")
+		to_chat(user, "69round(reagents.total_volume)69 units left.")
 
 /obj/item/reagent_containers/spray/verb/empty()
 
-	set name = "Empty Spray Bottle"
+	set69ame = "Empty Spray Bottle"
 	set category = "Object"
 	set src in usr
 
 	if (alert(usr, "Are you sure you want to empty that?", "Empty Bottle:", "Yes", "No") != "Yes")
 		return
 	if(isturf(usr.loc))
-		to_chat(usr, SPAN_NOTICE("You empty \the [src] onto the floor."))
+		to_chat(usr, SPAN_NOTICE("You empty \the 69src69 onto the floor."))
 		reagents.splash(usr.loc, reagents.total_volume)
 
 //space cleaner
 /obj/item/reagent_containers/spray/cleaner
 	name = "space cleaner"
-	desc = "BLAM!-brand non-foaming space cleaner!"
+	desc = "BLAM!-brand69on-foaming space cleaner!"
 	preloaded_reagents = list("cleaner" = 250)
 
 /obj/item/reagent_containers/spray/cleaner/drone
@@ -111,11 +111,11 @@
 
 /obj/item/reagent_containers/spray/pepper
 	name = "pepperspray"
-	desc = "Manufactured by UhangInc, used to blind and down an opponent quickly."
+	desc = "Manufactured by UhangInc, used to blind and down an opponent 69uickly."
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "pepperspray"
 	item_state = "pepperspray"
-	possible_transfer_amounts = null
+	possible_transfer_amounts =69ull
 	price_tag = 300
 	volume = 40
 	var/safety = 1
@@ -123,13 +123,13 @@
 
 /obj/item/reagent_containers/spray/pepper/examine(mob/user)
 	if(..(user, 1))
-		to_chat(user, "The safety is [safety ? "on" : "off"].")
+		to_chat(user, "The safety is 69safety ? "on" : "off"69.")
 
 /obj/item/reagent_containers/spray/pepper/attack_self(var/mob/user)
 	safety = !safety
-	to_chat(usr, "<span class = 'notice'>You switch the safety [safety ? "on" : "off"].</span>")
+	to_chat(usr, "<span class = 'notice'>You switch the safety 69safety ? "on" : "off"69.</span>")
 
-/obj/item/reagent_containers/spray/pepper/Spray_at(atom/A as mob|obj)
+/obj/item/reagent_containers/spray/pepper/Spray_at(atom/A as69ob|obj)
 	if(safety)
 		to_chat(usr, "<span class = 'warning'>The safety is on!</span>")
 		return
@@ -153,12 +153,12 @@
 	item_state = "chemsprayer"
 	throwforce = 3
 	w_class = ITEM_SIZE_NORMAL
-	matter = list(MATERIAL_STEEL = 20, MATERIAL_PLASTIC = 4)
-	possible_transfer_amounts = null
+	matter = list(MATERIAL_STEEL = 20,69ATERIAL_PLASTIC = 4)
+	possible_transfer_amounts =69ull
 	volume = 600
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
 
-/obj/item/reagent_containers/spray/chemsprayer/Spray_at(atom/A as mob|obj)
+/obj/item/reagent_containers/spray/chemsprayer/Spray_at(atom/A as69ob|obj)
 	var/direction = get_dir(src, A)
 	var/turf/T = get_turf(A)
 	var/turf/T1 = get_step(T,turn(direction, 90))
@@ -168,8 +168,8 @@
 	for(var/a = 1 to 3)
 		spawn(0)
 			if(reagents.total_volume < 1) break
-			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
-			var/turf/my_target = the_targets[a]
+			var/obj/effect/effect/water/chempuff/D =69ew/obj/effect/effect/water/chempuff(get_turf(src))
+			var/turf/my_target = the_targets69a69
 			D.create_reagents(amount_per_transfer_from_this)
 			if(!src)
 				return
@@ -187,7 +187,7 @@
 	volume = 100
 	preloaded_reagents = list("plantbgone" = 100)
 
-/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
+/obj/item/reagent_containers/spray/plantbgone/afterattack(atom/A as69ob|obj,69ob/user as69ob, proximity)
 	if(!proximity) return
 
 	if(istype(A, /obj/effect/blob)) // blob damage in blob code

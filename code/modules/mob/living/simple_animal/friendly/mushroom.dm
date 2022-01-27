@@ -1,8 +1,8 @@
 /mob/living/simple_animal/mushroom
-	name = "walking mushroom"
-	desc = "A massive mushroom... with legs?"
+	name = "walking69ushroom"
+	desc = "A69assive69ushroom... with legs?"
 	icon_state = "mushroom"
-	mob_size = MOB_SMALL
+	mob_size =69OB_SMALL
 	speak_chance = 0
 	turns_per_move = 1
 	maxHealth = 5
@@ -23,7 +23,7 @@
 
 /mob/living/simple_animal/mushroom/verb/spawn_spores()
 
-	set name = "Explode"
+	set69ame = "Explode"
 	set category = "Abilities"
 	set desc = "Spread your spores!"
 	set src = usr
@@ -36,8 +36,8 @@
 		to_chat(usr, SPAN_DANGER("You are sterile!"))
 		return
 
-	if(world.time < harvest_time + min_explode_time)
-		to_chat(usr, SPAN_DANGER("You are not mature enough for that."))
+	if(world.time < harvest_time +69in_explode_time)
+		to_chat(usr, SPAN_DANGER("You are69ot69ature enough for that."))
 		return
 
 	spore_explode()
@@ -51,7 +51,7 @@
 /mob/living/simple_animal/mushroom/proc/spore_explode()
 	if(!seed)
 		return
-	if(world.time < harvest_time + min_explode_time)
+	if(world.time < harvest_time +69in_explode_time)
 		return
 	for(var/turf/simulated/target_turf in orange(1,src))
 		if(prob(60) && !target_turf.density && src.Adjacent(target_turf))

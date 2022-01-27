@@ -14,7 +14,7 @@ ADMIN_VERB_ADD(/client/proc/panicbunker, R_ADMIN, FALSE)
 
 	config.panic_bunker = (!config.panic_bunker)
 
-	log_and_message_admins("[key_name(usr)] has toggled the Panic Bunker, it is now [(config.panic_bunker?"on":"off")].")
+	log_and_message_admins("69key_name(usr)69 has toggled the Panic Bunker, it is now 69(config.panic_bunker?"on":"off")69.")
 	if (config.panic_bunker && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The database is not connected! Panic bunker will not work until the connection is reestablished.")
 
@@ -28,8 +28,8 @@ ADMIN_VERB_ADD(/client/proc/addbunkerbypass, R_ADMIN, FALSE)
 		return
 
 	GLOB.PB_bypass |= ckey(ckeytobypass)
-	log_admin("[key_name(usr)] has added [ckeytobypass] to the current round's bunker bypass list.")
-	message_admins("[key_name_admin(usr)] has added [ckeytobypass] to the current round's bunker bypass list.")
+	log_admin("69key_name(usr)69 has added 69ckeytobypass69 to the current round's bunker bypass list.")
+	message_admins("69key_name_admin(usr)69 has added 69ckeytobypass69 to the current round's bunker bypass list.")
 
 ADMIN_VERB_ADD(/client/proc/revokebunkerbypass, R_ADMIN, FALSE)
 /client/proc/revokebunkerbypass(ckeytobypass as text)
@@ -41,8 +41,8 @@ ADMIN_VERB_ADD(/client/proc/revokebunkerbypass, R_ADMIN, FALSE)
 		return
 
 	GLOB.PB_bypass -= ckey(ckeytobypass)
-	log_admin("[key_name(usr)] has removed [ckeytobypass] from the current round's bunker bypass list.")
-	message_admins("[key_name_admin(usr)] has removed [ckeytobypass] from the current round's bunker bypass list.")
+	log_admin("69key_name(usr)69 has removed 69ckeytobypass69 from the current round's bunker bypass list.")
+	message_admins("69key_name_admin(usr)69 has removed 69ckeytobypass69 from the current round's bunker bypass list.")
 
 ADMIN_VERB_ADD(/client/proc/paranoia_logging, R_ADMIN, FALSE)
 /client/proc/paranoia_logging()
@@ -54,7 +54,7 @@ ADMIN_VERB_ADD(/client/proc/paranoia_logging, R_ADMIN, FALSE)
 
 	config.paranoia_logging = (!config.paranoia_logging)
 
-	log_and_message_admins("[key_name(usr)] has toggled Paranoia Logging, it is now [(config.paranoia_logging?"on":"off")].")
+	log_and_message_admins("69key_name(usr)69 has toggled Paranoia Logging, it is now 69(config.paranoia_logging?"on":"off")69.")
 	if (config.paranoia_logging && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The database is not connected! Paranoia logging will not be able to give 'player age' (time since first connection) warnings, only Byond account warnings.")
 
@@ -68,14 +68,14 @@ ADMIN_VERB_ADD(/client/proc/ip_reputation, R_ADMIN, FALSE)
 
 	config.ip_reputation = (!config.ip_reputation)
 
-	log_and_message_admins("[key_name(usr)] has toggled IP reputation checks, it is now [(config.ip_reputation?"on":"off")].")
+	log_and_message_admins("69key_name(usr)69 has toggled IP reputation checks, it is now 69(config.ip_reputation?"on":"off")69.")
 	if (config.ip_reputation && (!dbcon || !dbcon.IsConnected()))
 		message_admins("The database is not connected! IP reputation logging will not be able to allow existing players to bypass the reputation checks (if that is enabled).")
 
 ADMIN_VERB_ADD(/client/proc/toggle_vpn_white, R_ADMIN, FALSE)
 /client/proc/toggle_vpn_white(var/ckey as text)
 	set category = "Server"
-	set name = "Whitelist ckey from VPN Checks"
+	set name = "Whitelist ckey from69PN Checks"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -84,12 +84,12 @@ ADMIN_VERB_ADD(/client/proc/toggle_vpn_white, R_ADMIN, FALSE)
 		to_chat(usr,"The database is not connected!")
 		return
 
-	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '[sanitizeSQL(ckey)]'")
+	var/DBQuery/query = dbcon.NewQuery("SELECT id FROM players WHERE ckey = '69sanitizeSQL(ckey)69'")
 	query.Execute()
 	if(query.NextRow())
-		var/temp_id = query.item[1]
-		log_and_message_admins("[key_name(usr)] has toggled VPN checks for [ckey].")
-		query = dbcon.NewQuery("UPDATE players SET VPN_check_white = !VPN_check_white WHERE id = '[temp_id]'")
+		var/temp_id = query.item69169
+		log_and_message_admins("69key_name(usr)69 has toggled69PN checks for 69ckey69.")
+		query = dbcon.NewQuery("UPDATE players SET69PN_check_white = !VPN_check_white WHERE id = '69temp_id69'")
 		query.Execute()
 	else
-		to_chat(usr,"Player [ckey] not found!")
+		to_chat(usr,"Player 69ckey69 not found!")

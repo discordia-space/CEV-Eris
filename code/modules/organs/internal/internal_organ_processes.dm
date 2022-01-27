@@ -20,7 +20,7 @@
 	carrion_process()
 
 /mob/living/carbon/human/proc/get_organ_efficiency(process_define)
-	var/list/process_list = internal_organs_by_efficiency[process_define]
+	var/list/process_list = internal_organs_by_efficiency69process_define69
 	var/effective_efficiency = 0
 	if(process_list && process_list.len)
 		for(var/organ in process_list)
@@ -57,7 +57,7 @@
 	var/datum/reagents/metabolism/BLOOD_METABOLISM = get_metabolism_handler(CHEM_BLOOD)
 	var/kidneys_efficiency = get_organ_efficiency(OP_KIDNEYS)
 	//If your kidneys aren't working, your body's going to have a hard time cleaning your blood.
-	if(chem_effects[CE_ANTITOX])
+	if(chem_effects69CE_ANTITOX69)
 		if(kidneys_efficiency < BRUISED_2_EFFICIENCY)
 			if(prob(5) && BLOOD_METABOLISM.get_reagent_amount("potassium") < 5)
 				BLOOD_METABOLISM.add_reagent("potassium", REM*5)
@@ -72,23 +72,23 @@
 	var/liver_efficiency = get_organ_efficiency(OP_LIVER)
 	var/obj/item/organ/internal/liver = random_organ_by_process(OP_LIVER)
 
-	if(chem_effects[CE_ANTITOX])
-		liver_efficiency += chem_effects[CE_ANTITOX] * 33
-	// If you're not filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
+	if(chem_effects69CE_ANTITOX69)
+		liver_efficiency += chem_effects69CE_ANTITOX69 * 33
+	// If you're69ot filtering well, you're in trouble. Ammonia buildup to toxic levels and damage from alcohol
 	if(liver_efficiency < 66)
-		if(chem_effects[CE_ALCOHOL])
-			adjustToxLoss(0.5 * max(2 - (liver_efficiency * 0.01), 0) * (chem_effects[CE_ALCOHOL_TOXIC] + 0.5 * chem_effects[CE_ALCOHOL]))
-	else if(!chem_effects[CE_ALCOHOL] && !chem_effects[CE_TOXIN] && !radiation) // Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxloss.
+		if(chem_effects69CE_ALCOHOL69)
+			adjustToxLoss(0.5 *69ax(2 - (liver_efficiency * 0.01), 0) * (chem_effects69CE_ALCOHOL_TOXIC69 + 0.5 * chem_effects69CE_ALCOHOL69))
+	else if(!chem_effects69CE_ALCOHOL69 && !chem_effects69CE_TOXIN69 && !radiation) // Heal a bit if69eeded and we're69ot busy. This allows recovery from low amounts of toxloss.
 		// this will filter some toxins out of owners body
 		adjustToxLoss(-(liver_efficiency * 0.001))
 
-	if(chem_effects[CE_ALCOHOL_TOXIC])
-		liver.take_damage(chem_effects[CE_ALCOHOL_TOXIC], prob(90)) // Chance to warn them
+	if(chem_effects69CE_ALCOHOL_TOXIC69)
+		liver.take_damage(chem_effects69CE_ALCOHOL_TOXIC69, prob(90)) // Chance to warn them
 
 	//Blood regeneration if there is some space
-	regenerate_blood(0.1 + chem_effects[CE_BLOODRESTORE])
+	regenerate_blood(0.1 + chem_effects69CE_BLOODRESTORE69)
 
-	// Blood loss or liver damage make you lose nutriments
+	// Blood loss or liver damage69ake you lose69utriments
 	var/blood_volume = get_blood_volume()
 	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || (liver_efficiency < BRUISED_2_EFFICIENCY))
 		if(nutrition >= 300)
@@ -104,34 +104,34 @@
 /mob/living/carbon/human/proc/handle_pulse()
 	var/roboheartcheck = TRUE //Check if all hearts are robotic
 	for(var/obj/item/organ/internal/heart in organ_list_by_process(OP_HEART))
-		if(!(heart.nature == MODIFICATION_SILICON || heart.nature == MODIFICATION_LIFELIKE))
+		if(!(heart.nature ==69ODIFICATION_SILICON || heart.nature ==69ODIFICATION_LIFELIKE))
 			roboheartcheck = FALSE
 			break
 
 	if(stat == DEAD || roboheartcheck)
-		pulse = PULSE_NONE	//that's it, you're dead (or your metal heart is), nothing can influence your pulse
+		pulse = PULSE_NONE	//that's it, you're dead (or your69etal heart is),69othing can influence your pulse
 		return
 	if(life_tick % 5 == 0)//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
 		pulse = PULSE_NORM
 
-		if(round(vessel.get_reagent_amount("blood")) <= total_blood_req + BLOOD_VOLUME_BAD_MODIFIER)	//how much blood do we have
+		if(round(vessel.get_reagent_amount("blood")) <= total_blood_req + BLOOD_VOLUME_BAD_MODIFIER)	//how69uch blood do we have
 			pulse  = PULSE_THREADY	//not enough :(
 
-		if(status_flags & FAKEDEATH || chem_effects[CE_NOPULSE])
-			pulse = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by meds
+		if(status_flags & FAKEDEATH || chem_effects69CE_NOPULSE69)
+			pulse = PULSE_NONE		//pretend that we're dead. unlike actual death, can be inflienced by69eds
 
-		pulse = CLAMP(pulse + chem_effects[CE_PULSE], PULSE_SLOW, PULSE_2FAST)
+		pulse = CLAMP(pulse + chem_effects69CE_PULSE69, PULSE_SLOW, PULSE_2FAST)
 
 /mob/living/carbon/human/proc/handle_heart_blood()
 	var/heart_efficiency = get_organ_efficiency(OP_HEART)
-	if(stat == DEAD || bodytemperature <= 170)	//Dead or cryosleep people do not pump the blood.
+	if(stat == DEAD || bodytemperature <= 170)	//Dead or cryosleep people do69ot pump the blood.
 		return
 
-	var/blood_volume_raw = vessel.get_reagent_amount("blood")
+	var/blood_volume_raw =69essel.get_reagent_amount("blood")
 	var/blood_volume = round((blood_volume_raw/species.blood_volume)*100) // Percentage.
 
 
-	// Damaged heart virtually reduces the blood volume, as the blood isn't being pumped properly anymore.
+	// Damaged heart69irtually reduces the blood69olume, as the blood isn't being pumped properly anymore.
 	if(heart_efficiency <= 100)	//flat scaling up to 100
 		blood_volume *= heart_efficiency / 100
 	else	//half scaling at over 100
@@ -151,18 +151,18 @@
 		adjustOxyLoss(2)
 		adjustToxLoss(1)
 		if(prob(15))
-			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel extremely 69pick("dizzy","woosey","faint")69"))
 
 	else if(blood_volume < blood_okay)
-		eye_blurry = max(eye_blurry,6)
+		eye_blurry =69ax(eye_blurry,6)
 		adjustOxyLoss(1)
 		if(prob(15))
 			Weaken(rand(1,3))
-			to_chat(src, SPAN_WARNING("You feel extremely [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel extremely 69pick("dizzy","woosey","faint")69"))
 
 	else if(blood_volume < blood_safe)
 		if(prob(1))
-			to_chat(src, SPAN_WARNING("You feel [pick("dizzy","woosey","faint")]"))
+			to_chat(src, SPAN_WARNING("You feel 69pick("dizzy","woosey","faint")69"))
 		if(getOxyLoss() < 10)
 			adjustOxyLoss(1)
 
@@ -172,11 +172,11 @@
 	//Blood regeneration if there is some space
 	if(blood_volume_raw < species.blood_volume)
 		var/datum/reagent/organic/blood/B = get_blood(vessel)
-		B.volume += 0.1 // regenerate blood VERY slowly
+		B.volume += 0.1 // regenerate blood69ERY slowly
 		if(CE_BLOODRESTORE in chem_effects)
-			B.volume += chem_effects[CE_BLOODRESTORE]
+			B.volume += chem_effects69CE_BLOODRESTORE69
 
-	// Blood loss or heart damage make you lose nutriments
+	// Blood loss or heart damage69ake you lose69utriments
 	if(blood_volume < total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER || heart_efficiency < BRUISED_2_EFFICIENCY)
 		if(nutrition >= 300)
 			nutrition -= 10
@@ -193,7 +193,7 @@
 	if(internal_oxygen < total_oxygen_req)
 		if(prob(1))
 			Weaken(1.5 SECONDS)
-			visible_message(SPAN_WARNING("[src] falls to the ground and starts hyperventilating!."), SPAN_DANGER("AIR! I NEED MORE AIR!"))
+			visible_message(SPAN_WARNING("69src69 falls to the ground and starts hyperventilating!."), SPAN_DANGER("AIR! I69EED69ORE AIR!"))
 			var/i
 			for(i = 1; i <= 5; i++)	//gasps 5 times
 				spawn(i)
@@ -209,7 +209,7 @@
 
 		if(prob(15))
 			var/heavy_spot = pick("chest", "skin", "brain")
-			to_chat(src, SPAN_WARNING("Your [heavy_spot] feels too heavy for your body"))
+			to_chat(src, SPAN_WARNING("Your 69heavy_spot69 feels too heavy for your body"))
 
 	if(internal_oxygen < (total_oxygen_req / 10))
 		if(prob(20))
@@ -217,7 +217,7 @@
 
 /mob/living/carbon/human/proc/stomach_process()
 	var/stomach_efficiency = get_organ_efficiency(OP_STOMACH)
-	max_nutrition = MOB_BASE_MAX_HUNGER * (stomach_efficiency / 100)
+	max_nutrition =69OB_BASE_MAX_HUNGER * (stomach_efficiency / 100)
 	if(nutrition > 0 && stat != 2)
 		if(stomach_efficiency <= 0)
 			nutrition = 0
@@ -233,17 +233,17 @@
 
 /mob/living/carbon/human/var/carrion_stored_chemicals = 0
 /mob/living/carbon/human/var/carrion_hunger = 0
-/mob/living/carbon/human/var/carrion_last_hunger = -2 MINUTES
+/mob/living/carbon/human/var/carrion_last_hunger = -269INUTES
 /mob/living/carbon/human/proc/carrion_process()
 	var/vessel_efficiency = get_organ_efficiency(OP_CHEMICALS)
 	var/maw_efficiency = get_organ_efficiency(OP_MAW)
 	if(vessel_efficiency)
-		carrion_stored_chemicals = min(carrion_stored_chemicals + (0.01 * vessel_efficiency), 0.5 * vessel_efficiency)
+		carrion_stored_chemicals =69in(carrion_stored_chemicals + (0.01 *69essel_efficiency), 0.5 *69essel_efficiency)
 
-	if((maw_efficiency > 1 )&& (world.time > (carrion_last_hunger + 2 MINUTES)))
+	if((maw_efficiency > 1 )&& (world.time > (carrion_last_hunger + 269INUTES)))
 		var/max_hunger = round(10 * (maw_efficiency / 100))
-		if(carrion_hunger < max_hunger)
-			carrion_hunger = min(carrion_hunger + (round(1* (maw_efficiency / 100))), max_hunger)
+		if(carrion_hunger <69ax_hunger)
+			carrion_hunger =69in(carrion_hunger + (round(1* (maw_efficiency / 100))),69ax_hunger)
 		else
 			to_chat(src, SPAN_WARNING("Your hunger is restless!"))
 		carrion_last_hunger = world.time

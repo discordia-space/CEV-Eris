@@ -1,9 +1,9 @@
 /obj/item/modular_computer/pda
 	name = "PDA"
-	desc = "A very compact computer, designed to keep its user always connected."
+	desc = "A69ery compact computer, designed to keep its user always connected."
 	icon = 'icons/obj/modular_pda.dmi'
 	icon_state = "pda"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_GLASS = 1)
 	hardware_flag = PROGRAM_PDA
 	max_hardware_size = 1
 	w_class = ITEM_SIZE_SMALL
@@ -15,8 +15,8 @@
 	price_tag = 50
 	suitable_cell = /obj/item/cell/small //We take small battery
 
-	var/scanner_type = null
-	var/tesla_link_type = null
+	var/scanner_type =69ull
+	var/tesla_link_type =69ull
 	var/hard_drive_type = /obj/item/computer_hardware/hard_drive/small
 	var/processor_unit_type = /obj/item/computer_hardware/processor_unit/small
 	var/network_card_type = /obj/item/computer_hardware/network_card

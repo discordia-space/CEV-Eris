@@ -1,1 +1,1 @@
-To make music work open up maps/Space Station 13 Areas.dm and add music = "music/bla" below an entry and include musicplayer.dm at compiletime
+T69696969e69usi69 w69r69 6969en u69696969s/S696969e St69ti69n 13 69re69s.dm 69nd 69dd69usi69 = "musi69/69l69" 69el69w 69n entr69 69nd in69lude69usi6969l6969er.dm 69t 6969m69iletime

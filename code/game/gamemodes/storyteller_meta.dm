@@ -1,7 +1,7 @@
 //This file contains things - usually global things - which persist between storyteller changes
 
-//Global list of all storyevents. This tracks things like how many times each has been called
-//It should persist so that storyteller changes don't reset how many calls have happened for each event
+//Global list of all storyevents. This tracks things like how69any times each has been called
+//It should persist so that storyteller changes don't reset how69any calls have happened for each event
 var/global/list/storyevents
 
 //A list of lists, which holds all events that have been scheduled but not fired yet
@@ -25,7 +25,7 @@ var/global/list/scheduled_events = list()
 //This is a global thing so that scheduled events won't get lost in a storyteller change
 /proc/fire_event(var/datum/storyevent/C, event_type)
 	if(!C.can_trigger(event_type))
-		//Something has changed, it was valid before but not now
+		//Something has changed, it was69alid before but not now
 		//This shouldnt happen often
 		//We will refund its cost and abort
 		C.cancel(event_type, 0)

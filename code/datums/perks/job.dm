@@ -1,6 +1,6 @@
 /datum/perk/survivor
 	name = "Survivor"
-	desc = "After seeing the death of many acquaintances and friends, witnessing death doesn't shock you as much as before. \
+	desc = "After seeing the death of69any acquaintances and friends, witnessing death doesn't shock you as69uch as before. \
 			Halves sanity loss from seeing people die."
 	icon_state = "survivor" // https://game-icons.net/1x1/lorc/one-eyed.html
 
@@ -16,7 +16,7 @@
 
 /datum/perk/job/artist
 	name = "Artist"
-	desc = "You have a lot of expertise in making works of art. You gain 150% insight from all sources but can only level \
+	desc = "You have a lot of expertise in69aking works of art. You gain 150% insight from all sources but can only level \
 			up by creating works of art."
 	icon_state = "paintbrush" // https://game-icons.net/1x1/delapouite/paint-brush.html
 	var/old_max_insight = INFINITY
@@ -43,7 +43,7 @@
 
 /datum/perk/selfmedicated
 	name = "Self-medicated"
-	desc = "You have very shoddy handwriting. This lets you write prescriptions to yourself! \
+	desc = "You have69ery shoddy handwriting. This lets you write prescriptions to yourself! \
 			Your total NSA is increased and chance to gain an addiction decreased."
 	icon_state = "selfmedicated" // https://game-icons.net/1x1/lorc/overdose.html
 
@@ -61,8 +61,8 @@
 
 /datum/perk/selfmedicated/chemist
 	name = "Chemical-junkie"
-	desc = "You know what the atoms around you react to and in what way they do. You are used to making organic substitutes and pumping them into yourself in the name of science! \
-			You get 10 more NSA points and a quarter more NSA ontop than a normal person. Your chance of getting addicted is also reduced to half and you can also see all reagents in beakers."
+	desc = "You know what the atoms around you react to and in what way they do. You are used to69aking organic substitutes and pumping them into yourself in the name of science! \
+			You get 1069ore NSA points and a quarter69ore NSA ontop than a normal person. Your chance of getting addicted is also reduced to half and you can also see all reagents in beakers."
 	perk_shared_ability = PERK_SHARED_SEE_REAGENTS
 
 /datum/perk/selfmedicated/chemist/assign(mob/living/carbon/human/H)
@@ -79,7 +79,7 @@
 
 /datum/perk/vagabond
 	name = "Vagabond"
-	desc = "You're used to see the worst sight the world has to offer. Your mind feels more resistant. \
+	desc = "You're used to see the worst sight the world has to offer. Your69ind feels69ore resistant. \
 			This perk reduces the total sanity damage you can take from what is happening around you."
 	icon_state = "vagabond" // https://game-icons.net/1x1/lorc/eye-shield.html
 
@@ -95,8 +95,8 @@
 
 /datum/perk/merchant
 	name = "Merchant"
-	desc = "Money is what matters for you, and it's so powerful it lets you improve your skills. \
-			This perk lets you use money for leveling up. The credits need to be in your backpack."
+	desc = "Money is what69atters for you, and it's so powerful it lets you improve your skills. \
+			This perk lets you use69oney for leveling up. The credits need to be in your backpack."
 	icon_state = "merchant" // https://game-icons.net/1x1/lorc/cash.html and https://game-icons.net/1x1/delapouite/graduate-cap.html slapped on https://game-icons.net/1x1/lorc/trade.html
 
 /datum/perk/merchant/assign(mob/living/carbon/human/H)
@@ -114,10 +114,10 @@
 #define CHOICE_STASHPAPER "stashpaper" //stash location paper
 #define CHOICE_RAREOBJ "rareobj" // Rare loot object
 
-// ALERT: This perk has no removal method. Mostly because 3 out of 4 choices give knowledge to the player in the form of text, that would be pointless to remove.
+// ALERT: This perk has no removal69ethod.69ostly because 3 out of 4 choices give knowledge to the player in the form of text, that would be pointless to remove.
 /datum/perk/deep_connection
 	name = "Deep connection"
-	desc = "With the help of your numerous trustworthy contacts, you manage to collect some useful information. \
+	desc = "With the help of your numerous trustworthy contacts, you69anage to collect some useful information. \
 			Provides you with 1 of 4 boons: Language, Contractor Contract, a stash location or a special item in a box."
 	icon_state = "deepconnection" // https://game-icons.net/1x1/quoting/card-pickup.html
 
@@ -135,8 +135,8 @@
 			choices += CHOICE_STASHPAPER
 	// Let's see if an additional language is feasible. If the user has them all already somehow, we aren't gonna choose this.
 	var/list/valid_languages = list(LANGUAGE_CYRILLIC, LANGUAGE_SERBIAN, LANGUAGE_GERMAN, LANGUAGE_NEOHONGO, LANGUAGE_LATIN) // Not static, because we're gonna remove languages already known by the user
-	for(var/l in valid_languages)
-		var/datum/language/L = all_languages[l]
+	for(var/l in69alid_languages)
+		var/datum/language/L = all_languages69l69
 		if(L in holder.languages)
 			valid_languages -= l
 	if(valid_languages.len)
@@ -146,7 +146,7 @@
 		if(CHOICE_LANG)
 			var/language = pick(valid_languages)
 			holder.add_language(language)
-			desc += " In particular, you happen to know [language]."
+			desc += " In particular, you happen to know 69language69."
 		if(CHOICE_TCONTRACT)
 			var/datum/antag_contract/A = pick(GLOB.various_antag_contracts)
 			desc += " You feel like you remembered something important."
@@ -157,7 +157,7 @@
 			var/obj/item/paper/stash_note = stash.spawn_note()
 			holder.equip_to_storage_or_drop(stash_note)
 		if(CHOICE_RAREOBJ)
-			desc += " You managed to smuggle a rare item aboard."
+			desc += " You69anaged to smuggle a rare item aboard."
 			var/obj/O = pickweight(RANDOM_RARE_ITEM - /obj/item/stash_spawner)
 			var/obj/item/storage/box/B = new
 			new O(B) // Spawn the random spawner in the box, so that the resulting random item will be within the box
@@ -170,7 +170,7 @@
 
 /datum/perk/sanityboost
 	name = "True Faith"
-	desc = "When near an obelisk, you feel your mind at ease. Your sanity regeneration is boosted."
+	desc = "When near an obelisk, you feel your69ind at ease. Your sanity regeneration is boosted."
 	icon_state = "sanityboost" // https://game-icons.net/1x1/lorc/templar-eye.html
 
 /datum/perk/active_sanityboost
@@ -187,10 +187,10 @@
 		holder.sanity.sanity_passive_gain_multiplier /= 1.5
 	..()
 
-/// Basically a marker perk. If the user has this perk, another will be given in certain conditions.
+/// Basically a69arker perk. If the user has this perk, another will be given in certain conditions.
 /datum/perk/inspiration
 	name = "Exotic Inspiration"
-	desc = "Boosts your Cognition and Mechanical stats any time you imbibe any alcohol."
+	desc = "Boosts your Cognition and69echanical stats any time you imbibe any alcohol."
 	icon_state = "drinking" // https://game-icons.net/1x1/delapouite/drinking.html
 
 /datum/perk/active_inspiration
@@ -216,7 +216,7 @@
 
 /datum/perk/neat
 	name = "Neat"
-	desc = "You're used to see blood and filth in all its forms. Your motto: a clean ship is the first step to enlightenment. \
+	desc = "You're used to see blood and filth in all its forms. Your69otto: a clean ship is the first step to enlightenment. \
 			This perk reduces the total sanity damage you can take from what is happening around you. \
 			You can regain sanity by cleaning."
 	icon_state = "neat" // https://game-icons.net/1x1/delapouite/broom.html
@@ -245,7 +245,7 @@
 
 /datum/perk/job/club
 	name = "Raising the bar"
-	desc = "You know how to mix drinks and change lives. People near you recover sanity."
+	desc = "You know how to69ix drinks and change lives. People near you recover sanity."
 	icon_state = "inspiration"
 
 /datum/perk/job/club/assign(mob/living/carbon/human/H)

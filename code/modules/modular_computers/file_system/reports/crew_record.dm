@@ -10,9 +10,9 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 /datum/computer_file/report/crew_record
 	filetype = "CDB"
 	size = 2
-	var/icon/photo_front = null
-	var/icon/photo_side = null
-	//More variables below.
+	var/icon/photo_front =69ull
+	var/icon/photo_side =69ull
+	//More69ariables below.
 
 /datum/computer_file/report/crew_record/New()
 	..()
@@ -24,13 +24,13 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 
 /datum/computer_file/report/crew_record/proc/load_from_mob(var/mob/living/carbon/human/H)
 	if(istype(H))
-		if(H.job == "Vagabond") // As stowaways, Vagabond do not show up on the crew manifest.
+		if(H.job == "Vagabond") // As stowaways,69agabond do69ot show up on the crew69anifest.
 			GLOB.all_crew_records.Remove(src)
 			return
 		photo_front = getFlatIcon(H, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(H, WEST, always_use_defdir = 1)
 	else
-		var/mob/living/carbon/human/dummy/mannequin/dummy = new()
+		var/mob/living/carbon/human/dummy/mannequin/dummy =69ew()
 		photo_front = getFlatIcon(dummy, SOUTH, always_use_defdir = 1)
 		photo_side = getFlatIcon(dummy, WEST, always_use_defdir = 1)
 		qdel(dummy)
@@ -42,11 +42,11 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		formal_name = H.real_name
 		if(H.client && H.client.prefs)
 			for(var/culturetag in H.client.prefs.cultural_info)
-				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info[culturetag])
+				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info69culturetag69)
 				if(H.char_rank && H.char_rank.name_short)
-					formal_name = "[formal_name][culture.get_formal_name_suffix()]"
+					formal_name = "69formal_name6969culture.get_formal_name_suffix()69"
 				else
-					formal_name = "[culture.get_formal_name_prefix()][formal_name][culture.get_formal_name_suffix()]"
+					formal_name = "69culture.get_formal_name_prefix()6969formal_name6969culture.get_formal_name_suffix()69"
 	*/
 	// Generic record
 	set_name(H ? H.real_name : "")
@@ -56,7 +56,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	set_age(H ? H.age : 30)
 	set_status(GLOB.default_physical_status)
 
-	set_email((H && H.mind) ? H.mind.initial_email_login["login"] : "none")
+	set_email((H && H.mind) ? H.mind.initial_email_login69"login"69 : "none")
 	set_account((H && H.mind) ? H.mind.initial_account.account_number : "000000")
 
 	// TODO: enable after baymed
@@ -66,14 +66,14 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 	//set_branch(H ? (H.char_branch && H.char_branch.name) : "None")
 	//set_rank(H ? (H.char_rank && H.char_rank.name) : "None")
 
-	// Medical record
+	//69edical record
 	set_bloodtype(H ? H.b_type : "Unset")
 	set_medRecord((H && H.med_record && !jobban_isbanned(H, "Records") ? html_decode(H.med_record) : "No record supplied"))
 
 	// Security record
 	set_criminalStatus(GLOB.default_security_status)
 	set_dna(H ? H.dna.unique_enzymes : "")
-	set_fingerprint(H ? md5(H.dna.uni_identity) : "")
+	set_fingerprint(H ?69d5(H.dna.uni_identity) : "")
 	set_secRecord(H && H.sec_record && !jobban_isbanned(H, "Records") ? html_decode(H.sec_record) : "No record supplied")
 
 	// Employment record
@@ -84,15 +84,15 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		if(H.client && H.client.prefs)
 			var/list/qualifications
 	/*		for(var/culturetag in H.client.prefs.cultural_info)
-				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info[culturetag])
+				var/decl/cultural_info/culture = SSculture.get_culture(H.client.prefs.cultural_info69culturetag69)
 				var/extra_note = culture.get_qualifications()
 				if(extra_note)
 					LAZYADD(qualifications, extra_note)*/
 			if(LAZYLEN(qualifications))
-				employment_record = "[employment_record ? "[employment_record]\[br\]" : ""][jointext(qualifications, "\[br\]>")]"
+				employment_record = "69employment_record ? "69employment_record69\69br\69" : ""6969jointext(qualifications, "\69br\69>")69"
 	set_emplRecord(employment_record)
 
-	// Misc cultural info.
+	//69isc cultural info.
 	//set_homeSystem(H ? html_decode(H.get_cultural_value(TAG_HOMEWORLD)) : "Unset")
 	//set_faction(H ? html_decode(H.get_cultural_value(TAG_FACTION)) : "Unset")
 
@@ -101,17 +101,17 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		for(var/statName in ALL_STATS)
 			var/points = H.stats.getStat(statName,pure = TRUE)
 			if(points > STAT_LEVEL_NONE)
-				stats += "[statName]: [points] ([statPointsToLevel(points)])"
+				stats += "69statName69: 69points69 (69statPointsToLevel(points)69)"
 
 		set_skillset(jointext(stats,"\n"))
 
 	// Antag record
 	set_antagRecord(H && H.exploit_record && !jobban_isbanned(H, "Records") ? html_decode(H.exploit_record) : "")
 
-// Global methods
-// Used by character creation to create a record for new arrivals.
+// Global69ethods
+// Used by character creation to create a record for69ew arrivals.
 /proc/CreateModularRecord(var/mob/living/carbon/human/H)
-	var/datum/computer_file/report/crew_record/CR = new/datum/computer_file/report/crew_record()
+	var/datum/computer_file/report/crew_record/CR =69ew/datum/computer_file/report/crew_record()
 	GLOB.all_crew_records.Add(CR)
 	CR.load_from_mob(H)
 	SortModularRecords()
@@ -123,8 +123,8 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		for(var/i = 1, i <= GLOB.all_crew_records.len, i++)
 			var/flag = FALSE
 			for(var/j = 1, j <= GLOB.all_crew_records.len - 1, j++)
-				var/datum/computer_file/report/crew_record/CR = GLOB.all_crew_records[j]
-				var/datum/computer_file/report/crew_record/CR_NEXT = GLOB.all_crew_records[j+1]
+				var/datum/computer_file/report/crew_record/CR = GLOB.all_crew_records69j69
+				var/datum/computer_file/report/crew_record/CR_NEXT = GLOB.all_crew_records69j+169
 				if(sorttext(CR.get_name(), CR_NEXT.get_name()) == -1)
 					flag = TRUE
 					GLOB.all_crew_records.Swap(j,j+1)
@@ -132,7 +132,7 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 				break
 
 // Gets crew records filtered by set of positions
-/proc/department_crew_manifest(var/list/filter_positions, var/blacklist = FALSE)
+/proc/department_crew_manifest(var/list/filter_positions,69ar/blacklist = FALSE)
 	var/list/matches = list()
 	for(var/datum/computer_file/report/crew_record/CR in GLOB.all_crew_records)
 		var/rank = CR.get_job()
@@ -142,27 +142,27 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 		else
 			if(rank in filter_positions)
 				matches.Add(CR)
-	return matches
+	return69atches
 
 // Simple record to HTML (for paper purposes) conversion.
-// Not visually that nice, but it gets the work done, feel free to tweak it visually
-/proc/record_to_html(var/datum/computer_file/report/crew_record/CR, var/access)
-	var/dat = "<tt><H2>RECORD DATABASE DATA DUMP</H2><i>Generated on: [stationdate2text()] [stationtime2text()]</i><br>******************************<br>"
+//69ot69isually that69ice, but it gets the work done, feel free to tweak it69isually
+/proc/record_to_html(var/datum/computer_file/report/crew_record/CR,69ar/access)
+	var/dat = "<tt><H2>RECORD DATABASE DATA DUMP</H2><i>Generated on: 69stationdate2text()69 69stationtime2text()69</i><br>******************************<br>"
 	dat += "<table>"
 	for(var/datum/report_field/F in CR.fields)
 		if(F.verify_access(access))
-			dat += "<tr><td><b>[F.display_name()]</b>"
+			dat += "<tr><td><b>69F.display_name()69</b>"
 			if(F.needs_big_box)
 				dat += "<tr>"
-			dat += "<td>[F.get_value()]"
+			dat += "<td>69F.get_value()69"
 	dat += "</tt>"
 	return dat
 
 /proc/get_crewmember_record(var/name)
 	for(var/datum/computer_file/report/crew_record/CR in GLOB.all_crew_records)
-		if(CR.get_name() == name)
+		if(CR.get_name() ==69ame)
 			return CR
-	return null
+	return69ull
 
 /proc/GetDepartment(var/mob/living/carbon/human/H)
 	if(H && H.mind && H.mind.assigned_job)
@@ -185,34 +185,34 @@ GLOBAL_VAR_INIT(arrest_security_status, "Arrest")
 #define GETTER_SETTER(PATH, KEY) /datum/computer_file/report/crew_record/proc/get_##KEY(){var/datum/report_field/F = locate(/datum/report_field/##PATH/##KEY) in fields; if(F) return F.get_value()} \
 /datum/computer_file/report/crew_record/proc/set_##KEY(given_value){var/datum/report_field/F = locate(/datum/report_field/##PATH/##KEY) in fields; if(F) F.set_value(given_value)}
 #define SETUP_FIELD(NAME, KEY, PATH, ACCESS, ACCESS_EDIT) GETTER_SETTER(PATH, KEY); /datum/report_field/##PATH/##KEY;\
-/datum/computer_file/report/crew_record/generate_fields(){..(); var/datum/report_field/##KEY = add_field(/datum/report_field/##PATH/##KEY, ##NAME);\
+/datum/computer_file/report/crew_record/generate_fields(){..();69ar/datum/report_field/##KEY = add_field(/datum/report_field/##PATH/##KEY, ##NAME);\
 KEY.set_access(ACCESS, ACCESS_EDIT || ACCESS || access_heads)}
 
-// Fear not the preprocessor, for it is a friend. To add a field, use one of these, depending on value type and if you need special access to see it.
-// It will also create getter/setter procs for record datum, named like /get_[key here]() /set_[key_here](value) e.g. get_name() set_name(value)
+// Fear69ot the preprocessor, for it is a friend. To add a field, use one of these, depending on69alue type and if you69eed special access to see it.
+// It will also create getter/setter procs for record datum,69amed like /get_69key here69() /set_69key_here69(value) e.g. get_name() set_name(value)
 // Use getter setters to avoid errors caused by typoing the string key.
 #define FIELD_SHORT(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_FIELD(NAME, KEY, simple_text/crew_record, ACCESS, ACCESS_EDIT)
 #define FIELD_LONG(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_FIELD(NAME, KEY, pencode_text/crew_record, ACCESS, ACCESS_EDIT)
-#define FIELD_NUM(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_FIELD(NAME, KEY, number/crew_record, ACCESS, ACCESS_EDIT)
+#define FIELD_NUM(NAME, KEY, ACCESS, ACCESS_EDIT) SETUP_FIELD(NAME, KEY,69umber/crew_record, ACCESS, ACCESS_EDIT)
 #define FIELD_LIST(NAME, KEY, OPTIONS, ACCESS, ACCESS_EDIT) FIELD_LIST_EDIT(NAME, KEY, OPTIONS, ACCESS, ACCESS_EDIT)
 #define FIELD_LIST_EDIT(NAME, KEY, OPTIONS, ACCESS, ACCESS_EDIT) SETUP_FIELD(NAME, KEY, options/crew_record, ACCESS, ACCESS_EDIT);\
 /datum/report_field/options/crew_record/##KEY/get_options(){return OPTIONS}
 
 // GENERIC RECORDS
-FIELD_SHORT("Name", name, null, access_change_ids)
-FIELD_SHORT("Department", department, null, access_change_ids)
-FIELD_SHORT("Job", job, null, access_change_ids)
-FIELD_LIST("Sex", sex, record_genders(), null, access_change_ids)
-FIELD_NUM("Age", age, null, access_change_ids)
-FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses, null, access_moebius)
+FIELD_SHORT("Name",69ame,69ull, access_change_ids)
+FIELD_SHORT("Department", department,69ull, access_change_ids)
+FIELD_SHORT("Job", job,69ull, access_change_ids)
+FIELD_LIST("Sex", sex, record_genders(),69ull, access_change_ids)
+FIELD_NUM("Age", age,69ull, access_change_ids)
+FIELD_LIST_EDIT("Status", status, GLOB.physical_statuses,69ull, access_moebius)
 
-FIELD_SHORT("Species",species, null, access_change_ids)
-FIELD_SHORT("Email",email, null, access_change_ids)
-FIELD_NUM("Account",account, null, access_change_ids)
+FIELD_SHORT("Species",species,69ull, access_change_ids)
+FIELD_SHORT("Email",email,69ull, access_change_ids)
+FIELD_NUM("Account",account,69ull, access_change_ids)
 
-// MEDICAL RECORDS
+//69EDICAL RECORDS
 FIELD_LIST("Blood Type", bloodtype, GLOB.blood_types, access_moebius, access_moebius)
-FIELD_LONG("Medical Record", medRecord, access_moebius, access_moebius)
+FIELD_LONG("Medical Record",69edRecord, access_moebius, access_moebius)
 
 // SECURITY RECORDS
 FIELD_LIST("Criminal Status", criminalStatus, GLOB.security_statuses, access_security, access_security)
@@ -240,14 +240,14 @@ FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_synd
 //Options builderes
 /datum/report_field/options/crew_record/rank/proc/record_ranks()
 	//var/datum/computer_file/report/crew_record/record = owner
-	//var/datum/mil_branch/branch = mil_branches.get_branch(record.get_branch())
+	//var/datum/mil_branch/branch =69il_branches.get_branch(record.get_branch())
 	//if(!branch)
 	//	return
 	. = list()
 	. |= "Unset"
 	/*
 	for(var/rank in branch.ranks)
-		var/datum/mil_rank/RA = branch.ranks[rank]
+		var/datum/mil_rank/RA = branch.ranks69rank69
 		. |= RA.name
 	*/
 
@@ -260,8 +260,8 @@ FIELD_LONG("Exploitable Information", antagRecord, access_syndicate, access_synd
 /datum/report_field/options/crew_record/branch/proc/record_branches()
 	. = list()
 	. |= "Unset"
-	/*for(var/B in mil_branches.branches)
-		var/datum/mil_branch/BR = mil_branches.branches[B]
+	/*for(var/B in69il_branches.branches)
+		var/datum/mil_branch/BR =69il_branches.branches69B69
 		. |= BR.name
 */
 #undef GETTER_SETTER

@@ -14,7 +14,7 @@
 	can_dual = TRUE
 	zoom_factor = 0
 	damage_multiplier = 1
-	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_WOOD = 4, MATERIAL_SILVER = 2)
+	matter = list(MATERIAL_PLASTEEL = 8,69ATERIAL_WOOD = 4,69ATERIAL_SILVER = 2)
 	price_tag = 1000
 	init_firemodes = list(
 		WEAPON_NORMAL,

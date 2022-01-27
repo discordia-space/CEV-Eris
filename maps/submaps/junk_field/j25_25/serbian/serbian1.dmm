@@ -1,1516 +1,1516 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aw" = (
-/obj/spawner/scrap/sparse,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aH" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aJ" = (
-/obj/structure/closet,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/shoes/magboots/merc,
-/obj/item/clothing/shoes/magboots/merc,
-/obj/item/clothing/shoes/magboots/merc,
-/obj/item/clothing/shoes/magboots/merc,
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aw" = 69
+/o6969/spawner/scrap/sparse,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aH" = 69
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/closet,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"aK" = (
-/obj/structure/closet/secure_closet/freezer/kitchen{
-	req_access = list(150)
+/area/template_noop69
+"a69" = 69
+/o6969/structure/closet/secure_closet/freezer/69itchen{
+	re69_access = list6915069
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"bi" = (
+/area/template_noop69
+"69i" = 69
 /turf/template_noop,
-/area/template_noop)
-"by" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/hos,
+/o6969/item/rea69ent_containers/food/drin69s/69ottle/vod69a,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"bB" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bG" = (
-/obj/spawner/lowkeyrandom,
-/obj/machinery/light{
+/area/template_noop69
+"6969" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/spawner/low69e69random,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"cW" = (
-/obj/structure/closet,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/shoes/magboots/merc,
-/obj/item/clothing/shoes/magboots/merc,
-/obj/item/clothing/shoes/magboots/merc,
+/area/template_noop69
+"cW" = 69
+/o6969/structure/closet,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"du" = (
-/obj/machinery/shower{
+/area/template_noop69
+"du" = 69
+/o6969/machiner69/shower{
 	dir = 1
 	},
-/obj/structure/curtain/open/shower,
+/o6969/structure/curtain/open/shower,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"dI" = (
-/obj/structure/table/standard,
-/obj/item/deck/cards,
+/area/template_noop69
+"dI" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/dec69/cards,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"dN" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"dU" = (
-/obj/spawner/junkfood/rotten,
-/obj/machinery/light{
+/area/template_noop69
+"dN" = 69
+/o6969/spawner/69un69,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"dU" = 69
+/o6969/spawner/69un69food/rotten,
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"eg" = (
-/obj/item/storage/deferred/crate/alcohol,
-/obj/machinery/light{
+/area/template_noop69
+"e69" = 69
+/o6969/item/stora69e/deferred/crate/alcohol,
+/o6969/machiner69/li69ht{
 	dir = 4
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"eo" = (
-/obj/item/stool,
-/obj/effect/decal/cleanable/vomit,
+/area/template_noop69
+"eo" = 69
+/o6969/item/stool,
+/o6969/effect/decal/cleana69le/vomit,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"fb" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
+/area/template_noop69
+"f69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/rea69ent_containers/food/drin69s/69ottle/vod69a{
 	pixel_x = 5;
-	pixel_y = 17
+	pixel_69 = 17
 	},
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
+/o6969/item/rea69ent_containers/food/drin69s/69ottle/vod69a{
 	pixel_x = 6;
-	pixel_y = 7
+	pixel_69 = 7
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/o6969/item/rea69ent_containers/food/drin69s/drin69in6969lass{
 	pixel_x = -5;
-	pixel_y = 1
+	pixel_69 = 1
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/o6969/item/rea69ent_containers/food/drin69s/drin69in6969lass{
 	pixel_x = -5;
-	pixel_y = 15
+	pixel_69 = 15
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"fM" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/food/snacks/mint,
-/obj/item/reagent_containers/food/condiment/saltshaker{
+/area/template_noop69
+"fM" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/rea69ent_containers/food/snac69s/mint,
+/o6969/item/rea69ent_containers/food/condiment/saltsha69er{
 	pixel_x = -3
 	},
-/obj/item/reagent_containers/food/condiment/peppermill{
+/o6969/item/rea69ent_containers/food/condiment/peppermill{
 	pixel_x = 3
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"gN" = (
-/obj/structure/shuttle/engine/propulsion{
+/area/template_noop69
+"69N" = 69
+/o6969/structure/shuttle/en69ine/propulsion{
 	icon_state = "propulsion_l"
 	},
 /turf/template_noop,
-/area/template_noop)
-"ip" = (
-/obj/spawner/scrap/dense,
+/area/template_noop69
+"ip" = 69
+/o6969/spawner/scrap/dense,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"iw" = (
-/obj/machinery/light,
+/area/template_noop69
+"iw" = 69
+/o6969/machiner69/li69ht,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"iY" = (
-/obj/structure/table/standard,
-/obj/item/packageWrap,
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
+/area/template_noop69
+"i69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/pac69a69eWrap,
+/o6969/item/rea69ent_containers/food/condiment/enz69me{
+	la69er = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	layer = 5
+/o6969/item/rea69ent_containers/food/condiment/enz69me{
+	la69er = 5
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"js" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
-/obj/spawner/booze/low_chance,
+/area/template_noop69
+"69s" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/hos,
+/o6969/spawner/69ooze/low_chance,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"jP" = (
-/obj/structure/table/rack,
-/obj/item/storage/deferred/crate/tools,
+/area/template_noop69
+"69P" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/stora69e/deferred/crate/tools,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"kc" = (
-/mob/living/simple_animal/hostile/bear,
+/area/template_noop69
+"69c" = 69
+/mo69/livin69/simple_animal/hostile/69ear,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"kl" = (
-/obj/machinery/shower{
-	pixel_y = 32
+/area/template_noop69
+"69l" = 69
+/o6969/machiner69/shower{
+	pixel_69 = 32
 	},
-/obj/structure/window/basic{
+/o6969/structure/window/69asic{
 	dir = 8
 	},
-/obj/structure/curtain/open/shower,
+/o6969/structure/curtain/open/shower,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"kx" = (
-/obj/structure/table/rack,
-/obj/spawner/junk,
+/area/template_noop69
+"69x" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69un69,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"kO" = (
-/obj/structure/table/standard,
-/obj/item/storage/box/drinkingglasses{
+/area/template_noop69
+"69O" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/stora69e/69ox/drin69in6969lasses{
 	pixel_x = 1;
-	pixel_y = 4
+	pixel_69 = 4
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"kW" = (
-/turf/simulated/floor/tiled/white/techfloor_grid/airless,
-/area/template_noop)
-"lA" = (
-/obj/machinery/microwave{
+/area/template_noop69
+"69W" = 69
+/turf/simulated/floor/tiled/white/techfloor_69rid/airless,
+/area/template_noop69
+"lA" = 69
+/o6969/machiner69/microwave{
 	pixel_x = -1;
-	pixel_y = 8
+	pixel_69 = 8
 	},
-/obj/structure/table/standard,
-/obj/machinery/light{
+/o6969/structure/ta69le/standard,
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"lO" = (
+/area/template_noop69
+"lO" = 69
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"mZ" = (
-/obj/structure/closet/emcloset,
+/area/template_noop69
+"mZ" = 69
+/o6969/structure/closet/emcloset,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"nu" = (
-/obj/structure/table/rack,
-/obj/machinery/light{
+/area/template_noop69
+"nu" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
-/obj/spawner/gun/cheap,
+/o6969/spawner/69un/cheap,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"oL" = (
-/obj/structure/closet,
-/obj/item/tool/pickaxe/diamonddrill,
-/obj/item/tool/pickaxe/diamonddrill,
-/obj/item/storage/backpack/military,
+/area/template_noop69
+"oL" = 69
+/o6969/structure/closet,
+/o6969/item/tool/pic69axe/diamonddrill,
+/o6969/item/tool/pic69axe/diamonddrill,
+/o6969/item/stora69e/69ac69pac69/militar69,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"oX" = (
-/obj/spawner/junkfood/rotten,
-/obj/machinery/light{
+/area/template_noop69
+"oX" = 69
+/o6969/spawner/69un69food/rotten,
+/o6969/machiner69/li69ht{
 	dir = 4
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"qa" = (
-/obj/structure/window/basic{
+/area/template_noop69
+"69a" = 69
+/o6969/structure/window/69asic{
 	dir = 8
 	},
-/obj/machinery/shower{
+/o6969/machiner69/shower{
 	dir = 1
 	},
-/obj/structure/curtain/open/shower,
+/o6969/structure/curtain/open/shower,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"qA" = (
-/obj/structure/closet,
-/obj/item/clothing/mask/balaclava/tactical,
-/obj/item/clothing/mask/balaclava/tactical,
-/obj/item/clothing/mask/balaclava/tactical,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"qL" = (
-/obj/item/modular_computer/console,
+/area/template_noop69
+"69A" = 69
+/o6969/structure/closet,
+/o6969/item/clothin69/mas69/69alaclava/tactical,
+/o6969/item/clothin69/mas69/69alaclava/tactical,
+/o6969/item/clothin69/mas69/69alaclava/tactical,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69L" = 69
+/o6969/item/modular_computer/console,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"qX" = (
-/obj/machinery/door/airlock/maintenance_interior,
+/area/template_noop69
+"69X" = 69
+/o6969/machiner69/door/airloc69/maintenance_interior,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"rd" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
-/obj/item/clothing/head/ushanka,
+/area/template_noop69
+"rd" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/hos,
+/o6969/item/clothin69/head/ushan69a,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"ru" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced/crescent{
+/area/template_noop69
+"ru" = 69
+/o6969/structure/shuttle/en69ine/heater,
+/o6969/structure/window/reinforced/crescent{
 	dir = 1
 	},
 /turf/simulated/floor/airless,
-/area/template_noop)
-"rL" = (
-/obj/item/reagent_containers/food/drinks/bottle/vodka{
+/area/template_noop69
+"rL" = 69
+/o6969/item/rea69ent_containers/food/drin69s/69ottle/vod69a{
 	pixel_x = 3;
-	pixel_y = 12
+	pixel_69 = 12
 	},
-/obj/item/reagent_containers/food/drinks/bottle/wine{
+/o6969/item/rea69ent_containers/food/drin69s/69ottle/wine{
 	pixel_x = -1;
-	pixel_y = 8
+	pixel_69 = 8
 	},
-/obj/structure/table/standard,
+/o6969/structure/ta69le/standard,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"sg" = (
-/obj/structure/closet,
-/obj/spawner/ammo,
-/obj/spawner/ammo,
-/obj/spawner/ammo,
-/obj/machinery/light{
+/area/template_noop69
+"s69" = 69
+/o6969/structure/closet,
+/o6969/spawner/ammo,
+/o6969/spawner/ammo,
+/o6969/spawner/ammo,
+/o6969/machiner69/li69ht{
 	dir = 1
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"ss" = (
-/obj/structure/table/rack,
-/obj/item/storage/deferred/meds,
+/area/template_noop69
+"ss" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/stora69e/deferred/meds,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"sN" = (
-/obj/structure/bed/chair{
+/area/template_noop69
+"sN" = 69
+/o6969/structure/69ed/chair{
 	dir = 1
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"tv" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/shotgun/low_chance,
+/area/template_noop69
+"tv" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69un/shot69un/low_chance,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"tK" = (
-/obj/item/remains/human,
-/obj/item/clothing/shoes/magboots/merc,
-/obj/item/clothing/under/turtleneck,
-/obj/item/clothing/head/ushanka,
+/area/template_noop69
+"t69" = 69
+/o6969/item/remains/human,
+/o6969/item/clothin69/shoes/ma6969oots/merc,
+/o6969/item/clothin69/under/turtlenec69,
+/o6969/item/clothin69/head/ushan69a,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"um" = (
-/obj/item/stool,
+/area/template_noop69
+"um" = 69
+/o6969/item/stool,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"vt" = (
-/obj/machinery/portable_atmospherics/canister/plasma,
+/area/template_noop69
+"vt" = 69
+/o6969/machiner69/porta69le_atmospherics/canister/plasma,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"vz" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker{
+/area/template_noop69
+"vz" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/rea69ent_containers/69lass/69ea69er{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/glass/beaker{
+/o6969/item/rea69ent_containers/69lass/69ea69er{
 	pixel_x = 5
 	},
-/obj/machinery/light,
-/obj/item/material/kitchen/rollingpin,
+/o6969/machiner69/li69ht,
+/o6969/item/material/69itchen/rollin69pin,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"wR" = (
-/obj/structure/table/rack,
-/obj/item/storage/belt/tactical,
-/obj/item/storage/pouch/medium_generic,
+/area/template_noop69
+"wR" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/item/stora69e/69elt/tactical,
+/o6969/item/stora69e/pouch/medium_69eneric,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"wU" = (
-/obj/machinery/door/airlock/maintenance_interior{
-	icon_state = "door_locked";
-	locked = 1
+/area/template_noop69
+"wU" = 69
+/o6969/machiner69/door/airloc69/maintenance_interior{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"wX" = (
-/obj/structure/table/standard,
-/obj/item/folder/cyan,
+/area/template_noop69
+"wX" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/folder/c69an,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"xN" = (
-/obj/spawner/soda/low_chance,
+/area/template_noop69
+"xN" = 69
+/o6969/spawner/soda/low_chance,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"yJ" = (
-/obj/item/stool,
-/obj/spawner/booze/low_chance,
+/area/template_noop69
+"6969" = 69
+/o6969/item/stool,
+/o6969/spawner/69ooze/low_chance,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"zg" = (
-/obj/structure/table/standard,
+/area/template_noop69
+"z69" = 69
+/o6969/structure/ta69le/standard,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"zJ" = (
-/obj/item/stool,
-/obj/spawner/junkfood/rotten,
+/area/template_noop69
+"z69" = 69
+/o6969/item/stool,
+/o6969/spawner/69un69food/rotten,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"zM" = (
-/obj/structure/table/standard,
-/obj/spawner/booze/low_chance,
+/area/template_noop69
+"zM" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/69ooze/low_chance,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"zT" = (
-/obj/structure/shuttle/engine/propulsion,
+/area/template_noop69
+"zT" = 69
+/o6969/structure/shuttle/en69ine/propulsion,
 /turf/template_noop,
-/area/template_noop)
-"As" = (
-/obj/item/stool,
+/area/template_noop69
+"As" = 69
+/o6969/item/stool,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"Bq" = (
-/obj/structure/toilet{
+/area/template_noop69
+"6969" = 69
+/o6969/structure/toilet{
 	dir = 8
 	},
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"Bv" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
-/obj/item/clothing/under/serbiansuit/brown,
+/area/template_noop69
+"69v" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/hos,
+/o6969/item/clothin69/under/ser69iansuit/69rown,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"Bz" = (
-/obj/item/stool,
-/obj/spawner/booze/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"BQ" = (
-/obj/structure/table/standard,
+/area/template_noop69
+"69z" = 69
+/o6969/item/stool,
+/o6969/spawner/69ooze/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/ta69le/standard,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"CY" = (
-/obj/machinery/light,
+/area/template_noop69
+"C69" = 69
+/o6969/machiner69/li69ht,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Di" = (
-/obj/structure/closet/firecloset,
+/area/template_noop69
+"Di" = 69
+/o6969/structure/closet/firecloset,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"DP" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
+/area/template_noop69
+"DP" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/hos,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"Ee" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin,
-/obj/item/pen,
+/area/template_noop69
+"Ee" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/paper_69in,
+/o6969/item/pen,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Eg" = (
-/obj/machinery/door/airlock/maintenance_interior,
+/area/template_noop69
+"E69" = 69
+/o6969/machiner69/door/airloc69/maintenance_interior,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Eo" = (
-/obj/structure/bed,
-/obj/item/bedsheet/hos,
-/obj/item/clothing/under/serbiansuit,
+/area/template_noop69
+"Eo" = 69
+/o6969/structure/69ed,
+/o6969/item/69edsheet/hos,
+/o6969/item/clothin69/under/ser69iansuit,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"EL" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"Fj" = (
-/obj/structure/closet/secure_closet/freezer/fridge,
+/area/template_noop69
+"EL" = 69
+/o6969/machiner69/door/firedoor,
+/o6969/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"F69" = 69
+/o6969/structure/closet/secure_closet/freezer/frid69e,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"FH" = (
-/mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/tiled/white/techfloor_grid/airless,
-/area/template_noop)
-"FS" = (
+/area/template_noop69
+"FH" = 69
+/mo69/livin69/simple_animal/hostile/69ear,
+/turf/simulated/floor/tiled/white/techfloor_69rid/airless,
+/area/template_noop69
+"FS" = 69
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"Ga" = (
-/obj/machinery/shower{
-	pixel_y = 32
+/area/template_noop69
+"69a" = 69
+/o6969/machiner69/shower{
+	pixel_69 = 32
 	},
-/obj/item/soap/deluxe,
-/obj/structure/curtain/open/shower,
+/o6969/item/soap/deluxe,
+/o6969/structure/curtain/open/shower,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"Hn" = (
-/obj/structure/lattice,
+/area/template_noop69
+"Hn" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"Ib" = (
-/mob/living/simple_animal/hostile/bear,
+/area/template_noop69
+"I69" = 69
+/mo69/livin69/simple_animal/hostile/69ear,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"IG" = (
-/mob/living/simple_animal/hostile/bear,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"Jp" = (
-/obj/spawner/junkfood/rotten,
+/area/template_noop69
+"I69" = 69
+/mo69/livin69/simple_animal/hostile/69ear,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69p" = 69
+/o6969/spawner/69un69food/rotten,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"Km" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"La" = (
-/obj/machinery/light{
+/area/template_noop69
+"69m" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"La" = 69
+/o6969/machiner69/li69ht{
 	dir = 4
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Mb" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
+/area/template_noop69
+"M69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/device/li69htin69/to6969lea69le/lamp,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"Nt" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 26
+/area/template_noop69
+"Nt" = 69
+/o6969/structure/sin69/69itchen{
+	pixel_69 = 26
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"Ou" = (
-/obj/structure/table/standard,
-/obj/machinery/reagentgrinder/portable,
+/area/template_noop69
+"Ou" = 69
+/o6969/structure/ta69le/standard,
+/o6969/machiner69/rea69ent69rinder/porta69le,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"Pa" = (
-/obj/structure/table/standard,
-/obj/machinery/chemical_dispenser/soda{
+/area/template_noop69
+"Pa" = 69
+/o6969/structure/ta69le/standard,
+/o6969/machiner69/chemical_dispenser/soda{
 	pixel_x = 2;
-	pixel_y = 6
+	pixel_69 = 6
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"Pp" = (
-/obj/machinery/portable_atmospherics/canister/oxygen,
+/area/template_noop69
+"Pp" = 69
+/o6969/machiner69/porta69le_atmospherics/canister/ox6969en,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"PH" = (
-/obj/machinery/shower{
-	pixel_y = 32
+/area/template_noop69
+"PH" = 69
+/o6969/machiner69/shower{
+	pixel_69 = 32
 	},
-/obj/structure/curtain/open/shower,
+/o6969/structure/curtain/open/shower,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"PN" = (
-/obj/structure/table/standard,
-/obj/item/deck/cards,
+/area/template_noop69
+"PN" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/dec69/cards,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"PO" = (
-/obj/spawner/junk,
+/area/template_noop69
+"PO" = 69
+/o6969/spawner/69un69,
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"Rh" = (
-/obj/structure/mirror/antag{
+/area/template_noop69
+"Rh" = 69
+/o6969/structure/mirror/anta69{
 	pixel_x = -28
 	},
-/obj/structure/sink{
+/o6969/structure/sin69{
 	dir = 8;
-	icon_state = "sink";
+	icon_state = "sin69";
 	pixel_x = -12;
-	pixel_y = 2
+	pixel_69 = 2
 	},
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"RC" = (
-/obj/spawner/junk,
-/obj/machinery/light{
+/area/template_noop69
+"RC" = 69
+/o6969/spawner/69un69,
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"So" = (
-/obj/structure/urinal{
-	pixel_y = 32
+/area/template_noop69
+"So" = 69
+/o6969/structure/urinal{
+	pixel_69 = 32
 	},
 /turf/unsimulated/floor/airless{
 	dir = 2;
 	icon_state = "freezerfloor"
 	},
-/area/template_noop)
-"Sy" = (
-/obj/machinery/light{
+/area/template_noop69
+"S69" = 69
+/o6969/machiner69/li69ht{
 	dir = 8
 	},
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Vq" = (
-/obj/machinery/light{
+/area/template_noop69
+"V69" = 69
+/o6969/machiner69/li69ht{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/white/techfloor_grid/airless,
-/area/template_noop)
-"Vt" = (
-/obj/spawner/junk,
+/turf/simulated/floor/tiled/white/techfloor_69rid/airless,
+/area/template_noop69
+"Vt" = 69
+/o6969/spawner/69un69,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"VJ" = (
+/area/template_noop69
+"V69" = 69
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"Wj" = (
-/obj/spawner/junk,
+/area/template_noop69
+"W69" = 69
+/o6969/spawner/69un69,
 /turf/unsimulated/floor/airless{
 	icon_state = "white"
 	},
-/area/template_noop)
-"WC" = (
-/obj/machinery/light_construct{
+/area/template_noop69
+"WC" = 69
+/o6969/machiner69/li69ht_construct{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"WH" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"WH" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/device/li69htin69/to6969lea69le/lamp,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Xm" = (
-/obj/structure/shuttle/engine/propulsion{
+/area/template_noop69
+"Xm" = 69
+/o6969/structure/shuttle/en69ine/propulsion{
 	icon_state = "propulsion_r"
 	},
 /turf/template_noop,
-/area/template_noop)
-"Xv" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"Yj" = (
-/obj/structure/table/standard,
-/obj/item/storage/deferred/rations,
-/obj/machinery/light,
+/area/template_noop69
+"Xv" = 69
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/stora69e/deferred/rations,
+/o6969/machiner69/li69ht,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"Yp" = (
-/obj/item/stool,
-/obj/spawner/junkfood/rotten,
+/area/template_noop69
+"69p" = 69
+/o6969/item/stool,
+/o6969/spawner/69un69food/rotten,
 /turf/unsimulated/floor/airless{
 	icon_state = "lino"
 	},
-/area/template_noop)
-"YW" = (
+/area/template_noop69
+"69W" = 69
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"YZ" = (
+/area/template_noop69
+"69Z" = 69
 /turf/simulated/wall/r_wall,
-/area/template_noop)
-"Zt" = (
-/obj/structure/table/rack,
-/obj/spawner/gun/cheap,
+/area/template_noop69
+"Zt" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69un/cheap,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
-"ZY" = (
-/mob/living/simple_animal/hostile/bear,
+/area/template_noop69
+"Z69" = 69
+/mo69/livin69/simple_animal/hostile/69ear,
 /turf/unsimulated/floor/airless{
 	icon_state = "cult";
-	name = "plating"
+	name = "platin69"
 	},
-/area/template_noop)
+/area/template_noop69
 
-(1,1,1) = {"
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
+691,1,169 = {"
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
 "}
-(2,1,1) = {"
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-YZ
-YZ
-YZ
-YZ
-bi
-bi
+692,1,169 = {"
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69Z
+69Z
+69Z
+69Z
+69i
+69i
 "}
-(3,1,1) = {"
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-YZ
-YZ
+693,1,169 = {"
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69Z
+69Z
 Ee
 WH
 ru
-gN
-bi
+69N
+69i
 "}
-(4,1,1) = {"
-bi
+694,1,169 = {"
+69i
 Hn
-YZ
-YZ
-YZ
+69Z
+69Z
+69Z
 EL
-YZ
-YZ
-Km
+69Z
+69Z
+69m
 Hn
-bi
-bi
+69i
+69i
 Hn
 Hn
-Km
-YZ
-YZ
+69m
+69Z
+69Z
 EL
-YZ
-qL
+69Z
+69L
 sN
-YW
+69W
 ru
 zT
-bi
+69i
 "}
-(5,1,1) = {"
-bi
-bB
-Eg
+695,1,169 = {"
+69i
+6969
+E69
 Vt
-YW
-YW
+69W
+69W
 La
 ip
-bB
-bB
+6969
+6969
 Hn
 Hn
 aw
-IG
-bB
-YW
+I69
+6969
+69W
 La
-YW
-Eg
-YW
+69W
+E69
+69W
 oX
-ZY
+Z69
 ru
-gN
-bi
+69N
+69i
 "}
-(6,1,1) = {"
+696,1,169 = {"
 Hn
-Km
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-Km
-Eg
-Km
-Eg
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
+69m
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
+69m
+E69
+69m
+E69
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
 Pp
 ru
 zT
-bi
+69i
 "}
-(7,1,1) = {"
-bi
+697,1,169 = {"
+69i
 Hn
-YZ
-aJ
-VJ
-Yp
+69Z
+a69
+V69
+69p
 PN
 As
-YZ
-kx
-YW
-YW
-YW
+69Z
+69x
+69W
+69W
+69W
 mZ
-YZ
-Fj
+69Z
+F69
 lA
-BQ
+6969
 rL
-kO
-YZ
+69O
+69Z
 vt
 ru
 Xm
-bi
+69i
 "}
-(8,1,1) = {"
-bi
+698,1,169 = {"
+69i
 aw
-YZ
-Mb
-VJ
-VJ
-VJ
+69Z
+M69
+V69
+V69
+V69
 iw
-YZ
+69Z
 nu
-YW
-YW
-YW
-YW
-YZ
-Jp
-Jp
-tK
+69W
+69W
+69W
+69W
+69Z
+69p
+69p
+t69
 xN
 fM
-YZ
-YZ
-YZ
-bi
-bi
+69Z
+69Z
+69Z
+69i
+69i
 "}
-(9,1,1) = {"
-bi
+699,1,169 = {"
+69i
 Hn
-YZ
-by
-VJ
-kc
-VJ
-js
-YZ
+69Z
+6969
+V69
+69c
+V69
+69s
+69Z
 wR
-ZY
+Z69
 um
-zJ
+z69
 um
-YZ
+69Z
 Nt
-Ib
-Wj
+I69
+W69
 xN
-iY
-YZ
-YZ
+i69
+69Z
+69Z
 Hn
-bi
-bi
+69i
+69i
 "}
-(10,1,1) = {"
-bi
-bi
-YZ
+6910,1,169 = {"
+69i
+69i
+69Z
 DP
-VJ
-VJ
-VJ
+V69
+V69
+V69
 DP
-YZ
+69Z
 oL
-YW
+69W
 wX
-zg
-Yj
-YZ
+z69
+6969
+69Z
 Ou
 FS
 FS
 FS
 vz
-YZ
-bi
+69Z
+69i
 Hn
-bi
-bi
+69i
+69i
 "}
-(11,1,1) = {"
-bi
+6911,1,169 = {"
+69i
 Hn
-YZ
+69Z
 DP
-VJ
-VJ
-VJ
+V69
+V69
+V69
 rd
-YZ
-qA
-bB
-Bz
+69Z
+69A
+6969
+69z
 um
-yJ
-YZ
+6969
+69Z
 Pa
 FS
 FS
-eg
-aK
-YZ
+e69
+a69
+69Z
 Hn
 Hn
-bi
-bi
+69i
+69i
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 Hn
-Km
-YZ
-YZ
-YZ
-Eg
-YZ
-YZ
-Km
+69m
+69Z
+69Z
+69Z
+E69
+69Z
+69Z
+69m
 Hn
 Hn
-bB
-bB
-YW
-YZ
-YZ
-YZ
+6969
+6969
+69W
+69Z
+69Z
+69Z
 wU
-YZ
-YZ
-Km
+69Z
+69Z
+69m
 Hn
-bi
-bi
-bi
+69i
+69i
+69i
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 Hn
-bB
-Eg
-YW
-Sy
-YW
+6969
+E69
+69W
+S69
+69W
 Vt
-YW
-Eg
+69W
+E69
 Xv
 Hn
 Hn
-bB
+6969
 Vt
-Eg
-ZY
-Sy
-YW
+E69
+Z69
+S69
+69W
 Vt
-bB
+6969
 Hn
-bi
-bi
-bi
-bi
+69i
+69i
+69i
+69i
 "}
-(14,1,1) = {"
-Km
-YZ
-YZ
-YZ
-YZ
-Eg
-YZ
-YZ
-YZ
-bB
-bB
-bB
-bB
-YW
-YZ
-YZ
-YZ
-Eg
-YZ
-Km
-bB
+6914,1,169 = {"
+69m
+69Z
+69Z
+69Z
+69Z
+E69
+69Z
+69Z
+69Z
+6969
+6969
+6969
+6969
+69W
+69Z
+69Z
+69Z
+E69
+69Z
+69m
+6969
 Hn
-bi
-bi
-bi
+69i
+69i
+69i
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 Hn
 aH
-YZ
+69Z
 DP
-bB
+6969
 Hn
-bB
+6969
 Eo
-YZ
-sg
-ZY
+69Z
+s69
+Z69
 um
-yJ
+6969
 um
-YZ
+69Z
 So
 RC
 lO
 Rh
-bB
-Km
+6969
+69m
 Hn
 Hn
-bi
-bi
+69i
+69i
 "}
-(16,1,1) = {"
-bi
+6916,1,169 = {"
+69i
 Hn
-YZ
-Bv
-bB
-bi
+69Z
+69v
+6969
+69i
 Hn
 DP
-YZ
-jP
-YW
-zg
+69Z
+69P
+69W
+z69
 dI
 zM
-YZ
+69Z
 So
 lO
 lO
 PO
 lO
-YZ
-bi
+69Z
+69i
 Hn
-bi
-bi
+69i
+69i
 "}
-(17,1,1) = {"
-bi
-bi
-YZ
+6917,1,169 = {"
+69i
+69i
+69Z
 DP
-bB
-bi
-bB
-js
-YZ
+6969
+69i
+6969
+69s
+69Z
 ss
-YW
-zJ
+69W
+z69
 um
 um
-YZ
-kl
-kW
-qa
-YZ
-qX
-YZ
-YZ
+69Z
+69l
+69W
+69a
+69Z
+69X
+69Z
+69Z
 Hn
-bi
-bi
+69i
+69i
 "}
-(18,1,1) = {"
-bi
-bi
-YZ
-Mb
-VJ
-bB
-kc
+6918,1,169 = {"
+69i
+69i
+69Z
+M69
+V69
+6969
+69c
 iw
-YZ
+69Z
 Zt
-YW
-YW
-YW
-CY
-YZ
-Ga
+69W
+69W
+69W
+C69
+69Z
+69a
 FH
 du
-YZ
-bG
-YZ
-YZ
-YZ
-bi
-bi
+69Z
+6969
+69Z
+69Z
+69Z
+69i
+69i
 "}
-(19,1,1) = {"
-bi
+6919,1,169 = {"
+69i
 Hn
-YZ
+69Z
 cW
-VJ
+V69
 eo
-fb
+f69
 eo
-YZ
+69Z
 tv
-YW
-YW
-YW
+69W
+69W
+69W
 Di
-YZ
+69Z
 PH
-Vq
+V69
 du
-YZ
-Bq
-YZ
+69Z
+6969
+69Z
 vt
 ru
-gN
-bi
+69N
+69i
 "}
-(20,1,1) = {"
-bi
-Km
-YZ
-YZ
-Km
-Km
-Km
-YZ
-YZ
-YZ
-Eg
-YZ
-Eg
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
-YZ
+6920,1,169 = {"
+69i
+69m
+69Z
+69Z
+69m
+69m
+69m
+69Z
+69Z
+69Z
+E69
+69Z
+E69
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
+69Z
 Pp
 ru
 zT
-bi
+69i
 "}
-(21,1,1) = {"
-bi
-bB
-Eg
+6921,1,169 = {"
+69i
+6969
+E69
 aw
 dN
 Hn
 Hn
-bB
-bB
-YW
-YW
-Sy
-YW
-ZY
-bB
-bB
+6969
+6969
+69W
+69W
+S69
+69W
+Z69
+6969
+6969
 WC
-YW
-Eg
-YW
+69W
+E69
+69W
 dU
-YW
+69W
 ru
-gN
-bi
+69N
+69i
 "}
-(22,1,1) = {"
-bi
+6922,1,169 = {"
+69i
 Hn
-YZ
-YZ
-YZ
+69Z
+69Z
+69Z
 Hn
-bi
+69i
 Hn
-Km
+69m
 EL
-YZ
-YZ
-YZ
+69Z
+69Z
+69Z
 EL
-Km
+69m
 Hn
-Km
+69m
 EL
-YZ
-qL
+69Z
+69L
 sN
-YW
+69W
 ru
 zT
-bi
+69i
 "}
-(23,1,1) = {"
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-YZ
-YZ
+6923,1,169 = {"
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69Z
+69Z
 wX
 WH
 ru
 Xm
-bi
+69i
 "}
-(24,1,1) = {"
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-YZ
-YZ
-YZ
-YZ
-bi
-bi
+6924,1,169 = {"
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69Z
+69Z
+69Z
+69Z
+69i
+69i
 "}
-(25,1,1) = {"
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
-bi
+6925,1,169 = {"
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
+69i
 "}

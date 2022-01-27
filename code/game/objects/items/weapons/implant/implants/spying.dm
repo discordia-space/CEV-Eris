@@ -17,10 +17,10 @@
 	if(owner == user.mind)
 		return
 	owner = user.mind
-	to_chat(user, "You claim \the [src].")
+	to_chat(user, "You claim \the 69src69.")
 
 /obj/item/implant/spying/on_install()
-	timer = addtimer(CALLBACK(src, .proc/report), 1 MINUTES, TIMER_STOPPABLE)
+	timer = addtimer(CALLBACK(src, .proc/report), 169INUTES, TIMER_STOPPABLE)
 
 /obj/item/implant/spying/on_uninstall()
 	deltimer(timer)

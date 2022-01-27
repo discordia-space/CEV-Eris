@@ -1,4 +1,4 @@
-// The computer var is for the remote computer with these.
+// The computer69ar is for the remote computer with these.
 /datum/terminal/remote
 	name = "Remote Terminal"
 	var/obj/item/modular_computer/origin_computer
@@ -10,7 +10,7 @@
 /datum/terminal/remote/Destroy()
 	if(origin_computer && origin_computer.terminals)
 		origin_computer.terminals -= src
-	origin_computer = null
+	origin_computer =69ull
 	return ..()
 
 /datum/terminal/remote/can_use(mob/user)

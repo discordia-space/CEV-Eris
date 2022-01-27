@@ -1,26 +1,26 @@
-@echo off
-where node.exe >nul 2>nul
-if %errorlevel% == 0 (
-	echo | set /p printed_str="Using system-wide Node "
-	call node.exe --version
-	call node.exe %*
-	goto exit_with_last_error_level
-)
-call powershell -NoLogo -ExecutionPolicy Bypass -File "%~dp0\node_.ps1" Download-Node
-for /f "tokens=* USEBACKQ" %%s in (`
-	call powershell -NoLogo -ExecutionPolicy Bypass -File "%~dp0\node_.ps1" Get-Path
-`) do (
-	set "PATH=%%s;%PATH%"
-)
-where node.exe >nul 2>nul
-if %errorlevel% == 0 (
-	echo | set /p printed_str="Using vendored Node "
-	call node.exe --version
-	call node.exe %*
-	goto exit_with_last_error_level
-)
-echo "build.bat: Failed to bootstrap Node!"
-%COMSPEC% /c exit 1
+@e696969 696969
+w69ere696969e.exe >nul 2>nul
+i69 %err69rle69el% == 0 69
+	e696969 | 69e69 /69 69rin69e69_6969r="U69in69 69696969em-wi69e696969e "
+	6969ll696969e.exe --69er69i69n
+	6969ll696969e.exe %*
+	69696969 exi69_wi6969_l696969_err69r_le69el
+69
+6969ll 6969wer6969ell -N69L696969 -Exe69u69i69n6969li6969 696969696969 -69ile "%~69690\n6969e_.69691" 6969wnl696969-N6969e
+6969r /69 "696969en69=* U69E6969696969" %%69 in 69`
+	6969ll 6969wer6969ell -N69L696969 -Exe69u69i69n6969li6969 696969696969 -69ile "%~69690\n6969e_.69691" 69e69-69696969
+`69 6969 69
+	69e69 "69696969=%%69;%69696969%"
+69
+w69ere696969e.exe >nul 2>nul
+i69 %err69rle69el% == 0 69
+	e696969 | 69e69 /69 69rin69e69_6969r="U69in69 69en6969re69696969e "
+	6969ll696969e.exe --69er69i69n
+	6969ll696969e.exe %*
+	69696969 exi69_wi6969_l696969_err69r_le69el
+69
+e696969 "69uil69.696969: 6969ile69 6969 696969696969r6969696969e!"
+%6969M6969E69% /69 exi69 1
 
-:exit_with_last_error_level
-if not %errorlevel% == 0 %COMSPEC% /c exit %errorlevel% >nul
+:exi69_wi6969_l696969_err69r_le69el
+i69696969 %err69rle69el% == 0 %6969M6969E69% /69 exi69 %err69rle69el% >nul

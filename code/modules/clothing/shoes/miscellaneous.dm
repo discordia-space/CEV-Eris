@@ -1,4 +1,4 @@
-//No-slip module for shoes
+//No-slip69odule for shoes
 /obj/item/noslipmodule
 	name = "no slip sole"
 	desc = "Attach it to your shoe."
@@ -31,7 +31,7 @@
 	siemens_coefficient = 0
 
 /obj/item/clothing/shoes/sandal/marisa
-	desc = "A pair of magic, black shoes."
+	desc = "A pair of69agic, black shoes."
 	name = "magic shoes"
 	icon_state = "black"
 	body_parts_covered = LEGS
@@ -53,7 +53,7 @@
 	if(running)
 		if(footstep >= 2)
 			footstep = 0
-			playsound(src, "clownstep", 50, 1) // this will get annoying very fast.
+			playsound(src, "clownstep", 50, 1) // this will get annoying69ery fast.
 		else
 			footstep++
 	else
@@ -123,7 +123,7 @@
 
 /obj/item/clothing/shoes/jackboots/longboot
 	name = "long boots"
-	desc = "A pair of stylish vertically long boots."
+	desc = "A pair of stylish69ertically long boots."
 	icon_state = "longboots"
 	item_state = "longboots"
 	style = STYLE_HIGH

@@ -14,7 +14,7 @@
 	throwforce = WEAPON_FORCE_NORMAL
 	w_class = ITEM_SIZE_SMALL
 
-	//spawn values
+	//spawn69alues
 	bad_type = /obj/item/tool
 	spawn_tags = SPAWN_TAG_TOOL
 
@@ -27,7 +27,7 @@
 	var/sparks_on_use = FALSE	//Set to TRUE if you want to have sparks on each use of a tool
 	var/eye_hazard = FALSE	//Set to TRUE should damage users eyes if they without eye protection
 
-	var/use_power_cost = 0	//For tool system, determinze how much power tool will drain from cells, 0 means no cell needed
+	var/use_power_cost = 0	//For tool system, determinze how69uch power tool will drain from cells, 069eans no cell needed
 	var/obj/item/cell/cell
 	var/suitable_cell	//Dont forget to edit this for a tool, if you want in to consume cells
 	var/passive_power_cost = 1 //Energy consumed per process tick while active
@@ -36,7 +36,7 @@
 	var/passive_fuel_cost = 0.03 //Fuel consumed per process tick while active
 	var/max_fuel = 0
 
-	var/mode = NOMODE //For various tool icon updates.
+	var/mode = NOMODE //For69arious tool icon updates.
 
 	//Third type of resource, stock. A tool that uses physical objects (or itself) in order to work
 	//Currently used for tape roll
@@ -52,16 +52,16 @@
 	max_health = 1000
 	var/degradation = 0.8 //If nonzero, the health of the tool decreases by this amount after each tool operation
 	var/health_threshold  = 40 // threshold in percent on which tool health stops dropping
-	var/lastNearBreakMessage = 0 // used to show messages that tool is about to break
+	var/lastNearBreakMessage = 0 // used to show69essages that tool is about to break
 	var/isBroken = FALSE
 
 
 	var/toggleable = FALSE	//Determines if it can be switched ON or OFF, for example, if you need a tool that will consume power/fuel upon turning it ON only. Such as welder.
-	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes vars, its for procs only.
-	var/switched_on_qualities	//This var will REPLACE tool_qualities when tool will be toggled on.
+	var/switched_on = FALSE	//Curent status of tool. Dont edit this in subtypes69ars, its for procs only.
+	var/switched_on_69ualities	//This69ar will REPLACE tool_69ualities when tool will be toggled on.
 	var/switched_on_force
 	var/switched_on_hitsound
-	var/switched_off_qualities	//This var will REPLACE tool_qualities when tool will be toggled off. So its possible for tool to have diferent qualities both for ON and OFF state.
+	var/switched_off_69ualities	//This69ar will REPLACE tool_69ualities when tool will be toggled off. So its possible for tool to have diferent 69ualities both for ON and OFF state.
 	var/create_hot_spot = FALSE	 //Set this TRUE to ignite plasma on turf with tool upon activation
 	var/glow_color	//Set color of glow upon activation, or leave it null if you dont want any light
 	var/last_tooluse = 0 //When the tool was last used for a tool operation. This is set both at the start of an operation, and after the doafter call
@@ -69,7 +69,7 @@
 	//Vars for tool upgrades
 	var/precision = 0	//Subtracted from failure rates
 	var/workspeed = 1	//Worktimes are divided by this
-	var/extra_bulk = 0 	//Extra physicial volume added by certain mods
+	var/extra_bulk = 0 	//Extra physicial69olume added by certain69ods
 	var/list/prefixes = list()
 
 /******************************
@@ -83,13 +83,13 @@
 
 	if(use_fuel_cost)
 		create_reagents(max_fuel)
-		reagents.add_reagent("fuel", max_fuel)
+		reagents.add_reagent("fuel",69ax_fuel)
 
 	if(use_stock_cost)
-		stock = max_stock
+		stock =69ax_stock
 
 	if(max_health)
-		health = max_health
+		health =69ax_health
 
 	update_icon()
 	return
@@ -102,7 +102,7 @@
 
 //Fuel and cell spawn
 /obj/item/tool/Created()
-	QDEL_NULL(cell)
+	69DEL_NULL(cell)
 	if(use_fuel_cost)
 		consume_fuel(get_fuel())
 
@@ -114,7 +114,7 @@
 	return ..()
 
 /obj/item/tool/proc/adjustToolHealth(amount, user)
-	health = min(max_health, max(max_health * (health_threshold/100), health + amount))
+	health =69in(max_health,69ax(max_health * (health_threshold/100), health + amount))
 	if(!isBroken && health == 0)
 		breakTool()
 		isBroken = TRUE
@@ -155,14 +155,14 @@
 /obj/item/tool/get_cell()
 	return cell
 
-/obj/item/tool/attackby(obj/item/C, mob/living/user)
+/obj/item/tool/attackby(obj/item/C,69ob/living/user)
 	if(istype(C, suitable_cell) && !cell && insert_item(C, user))
 		src.cell = C
 		update_icon()
 		return
 
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken."))
 		return
 	.=..()
 
@@ -170,7 +170,7 @@
 //Turning it on/off
 /obj/item/tool/attack_self(mob/user)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken."))
 		return
 	if(toggleable)
 		if (switched_on)
@@ -185,53 +185,53 @@
 /obj/item/tool/ui_data(mob/user)
 	var/list/data = list()
 
-	if(tool_qualities)
-		data["tool_qualities"] = list()
-		for(var/name in tool_qualities)
-			data["tool_qualities"] += list(list("name" = capitalize(name), "number" = tool_qualities[name]))
+	if(tool_69ualities)
+		data69"tool_69ualities"69 = list()
+		for(var/name in tool_69ualities)
+			data69"tool_69ualities"69 += list(list("name" = capitalize(name), "number" = tool_69ualities69name69))
 
-	data["precision"] = precision
-	data["precision_state"] = precision > 0 ? "good" : precision < 0 ? "bad" : ""
+	data69"precision"69 = precision
+	data69"precision_state"69 = precision > 0 ? "good" : precision < 0 ? "bad" : ""
 
-	data["workspeed"] = workspeed
-	data["workspeed_state"] = initial(workspeed) < workspeed ? "good" : initial(workspeed) > workspeed ? "bad" : ""
-	data["workspeed_max"] = initial(workspeed) * 20
+	data69"workspeed"69 = workspeed
+	data69"workspeed_state"69 = initial(workspeed) < workspeed ? "good" : initial(workspeed) > workspeed ? "bad" : ""
+	data69"workspeed_max"69 = initial(workspeed) * 20
 
-	data["degradation"] = degradation
-	data["degradation_state"] = initial(degradation) > degradation ? "good" : initial(degradation) < degradation ? "bad" : ""
-	data["degradation_max"] = initial(degradation) * 10
+	data69"degradation"69 = degradation
+	data69"degradation_state"69 = initial(degradation) > degradation ? "good" : initial(degradation) < degradation ? "bad" : ""
+	data69"degradation_max"69 = initial(degradation) * 10
 
 	if(use_power_cost)
-		data["cell_charge"] = cell ? cell.percent() : null
-		data["use_power_cost"] = use_power_cost
-		data["use_power_cost_state"] = initial(use_power_cost) > use_power_cost ? "good" : initial(use_power_cost) < use_power_cost ? "bad" : ""
-		data["use_power_cost_max"] = initial(use_power_cost) * 10
+		data69"cell_charge"69 = cell ? cell.percent() : null
+		data69"use_power_cost"69 = use_power_cost
+		data69"use_power_cost_state"69 = initial(use_power_cost) > use_power_cost ? "good" : initial(use_power_cost) < use_power_cost ? "bad" : ""
+		data69"use_power_cost_max"69 = initial(use_power_cost) * 10
 
 	if(use_fuel_cost)
-		data["fuel"] = reagents ? reagents.ui_data() : null
-		data["max_fuel"] = max_fuel
-		data["use_fuel_cost"] = use_fuel_cost
-		data["use_fuel_cost_state"] = initial(use_fuel_cost) > use_fuel_cost ? "good" : initial(use_fuel_cost) < use_fuel_cost ? "bad" : ""
-		data["use_fuel_cost_max"] = initial(use_fuel_cost) * 10
+		data69"fuel"69 = reagents ? reagents.ui_data() : null
+		data69"max_fuel"69 =69ax_fuel
+		data69"use_fuel_cost"69 = use_fuel_cost
+		data69"use_fuel_cost_state"69 = initial(use_fuel_cost) > use_fuel_cost ? "good" : initial(use_fuel_cost) < use_fuel_cost ? "bad" : ""
+		data69"use_fuel_cost_max"69 = initial(use_fuel_cost) * 10
 
-	data["health"] = health
-	data["health_max"] = max_health
-	data["health_threshold"] = health_threshold
+	data69"health"69 = health
+	data69"health_max"69 =69ax_health
+	data69"health_threshold"69 = health_threshold
 
-	data["force"] = force
-	data["force_max"] = initial(force) * 10
+	data69"force"69 = force
+	data69"force_max"69 = initial(force) * 10
 
-	data["armor_penetration"] = armor_penetration
+	data69"armor_penetration"69 = armor_penetration
 
-	data["extra_volume"] = extra_bulk
+	data69"extra_volume"69 = extra_bulk
 
-	data["upgrades_max"] = max_upgrades
+	data69"upgrades_max"69 =69ax_upgrades
 
 	// it could be done with catalog using one line but whatever
 	if(item_upgrades.len)
-		data["attachments"] = list()
+		data69"attachments"69 = list()
 		for(var/atom/A in item_upgrades)
-			data["attachments"] += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
+			data69"attachments"69 += list(list("name" = A.name, "icon" = getAtomCacheFilename(A)))
 
 	return data
 
@@ -251,7 +251,7 @@
 	if(..())
 		return 1
 
-//Damaged tools are worth less matter for recycling
+//Damaged tools are worth less69atter for recycling
 /obj/item/tool/get_matter()
 	if (!matter || !matter.len || !degradation)
 		return ..()
@@ -260,10 +260,10 @@
 	if (health <= 20)
 		return null
 
-	var/list/tm = matter.Copy()
-	//Every point of damage reduces matter by 2% of total
+	var/list/tm =69atter.Copy()
+	//Every point of damage reduces69atter by 2% of total
 	for (var/mat in tm)
-		tm[mat] *= health / max_health
+		tm69mat69 *= health /69ax_health
 
 	return tm
 
@@ -276,13 +276,13 @@
 
 //Simple form ideal for basic use. That proc will return TRUE only when everything was done right, and FALSE if something went wrong, ot user was unlucky.
 //Editionaly, handle_failure proc will be called for a critical failure roll.
-/obj/item/proc/use_tool(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
+/obj/item/proc/use_tool(mob/living/user, atom/target, base_time, re69uired_69uality, fail_chance, re69uired_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 	var/obj/item/tool/T
 	if(istool(src))
 		T = src
 		T.tool_in_use = TRUE
 
-	var/result = use_tool_extended(user, target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier, forced_sound)
+	var/result = use_tool_extended(user, target, base_time, re69uired_69uality, fail_chance, re69uired_stat, instant_finish_tier, forced_sound)
 
 	if (T)
 		T.tool_in_use = FALSE
@@ -291,20 +291,20 @@
 		if(TOOL_USE_CANCEL)
 			return FALSE
 		if(TOOL_USE_FAIL)
-			handle_failure(user, target, required_stat = required_stat, required_quality = required_quality)	//We call it here because extended proc mean to be used only when you need to handle tool fail by yourself
+			handle_failure(user, target, re69uired_stat = re69uired_stat, re69uired_69uality = re69uired_69uality)	//We call it here because extended proc69ean to be used only when you need to handle tool fail by yourself
 			return FALSE
 		if(TOOL_USE_SUCCESS)
 			return TRUE
 
 //Use this proc if you want to handle all types of failure yourself. It used in surgery, for example, to deal damage to patient.
-/obj/item/proc/use_tool_extended(mob/living/user, atom/target, base_time, required_quality, fail_chance, required_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
+/obj/item/proc/use_tool_extended(mob/living/user, atom/target, base_time, re69uired_69uality, fail_chance, re69uired_stat, instant_finish_tier = 110, forced_sound = null, sound_repeat = 2.5 SECONDS)
 
 	var/obj/item/tool/T
 	if(istool(src))
 		T = src
 		T.last_tooluse = world.time
 
-	if(!has_quality(required_quality))
+	if(!has_69uality(re69uired_69uality))
 		return TOOL_USE_CANCEL
 
 	if (is_hot() >= HEAT_MOBIGNITE_THRESHOLD)
@@ -313,7 +313,7 @@
 			L.IgniteMob()
 
 	if(target.used_now)
-		to_chat(user, SPAN_WARNING("[target.name] is used by someone. Wait for them to finish."))
+		to_chat(user, SPAN_WARNING("69target.name69 is used by someone. Wait for them to finish."))
 		return TOOL_USE_CANCEL
 
 
@@ -332,27 +332,27 @@
 	//Precalculate worktime here
 	var/time_to_finish = 0
 	if (base_time)
-		if(islist(required_stat))
-			time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getMaxStat(required_stat)
+		if(islist(re69uired_stat))
+			time_to_finish = base_time - get_tool_69uality(re69uired_69uality) - user.stats.getMaxStat(re69uired_stat)
 		else
-			time_to_finish = base_time - get_tool_quality(required_quality) - user.stats.getStat(required_stat)
+			time_to_finish = base_time - get_tool_69uality(re69uired_69uality) - user.stats.getStat(re69uired_stat)
 
-		//Workspeed var, can be improved by upgrades
+		//Workspeed69ar, can be improved by upgrades
 		if (T && T.workspeed > 0)
 			time_to_finish /= T.workspeed
-		// the worse tool condition - the more time required
+		// the worse tool condition - the69ore time re69uired
 		if(T && T.degradation)
-			// so basically we adding time based on percent of missing health multiplied by ADDITIONAL_TIME_LOWHEALTH for easier balancing
+			// so basically we adding time based on percent of69issing health69ultiplied by ADDITIONAL_TIME_LOWHEALTH for easier balancing
 			time_to_finish = time_to_finish + (time_to_finish/100 * (ADDITIONAL_TIME_LOWHEALTH * (1 -(T.health/T.max_health))))
 
-	if((instant_finish_tier < get_tool_quality(required_quality)) || time_to_finish < 0)
+	if((instant_finish_tier < get_tool_69uality(re69uired_69uality)) || time_to_finish < 0)
 		time_to_finish = 0
 
 	if(T && !T.check_tool_effects(user, time_to_finish))
 		return TOOL_USE_CANCEL
 
 	//Repeating sound code!
-	//A datum/repeating_sound is a little object we can use to make a sound repeat a few times
+	//A datum/repeating_sound is a little object we can use to69ake a sound repeat a few times
 	var/datum/repeating_sound/toolsound = null
 	if(forced_sound != NO_WORKSOUND)
 		var/volume = 70
@@ -375,9 +375,9 @@
 
 		if (sound_repeat && time_to_finish)
 			//It will repeat roughly every 2.5 seconds until our tool finishes
-			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile, volume, 1, extrarange)
+			toolsound = new/datum/repeating_sound(sound_repeat,time_to_finish,0.15, src, soundfile,69olume, 1, extrarange)
 		else
-			playsound(src.loc, soundfile, volume, 1, extrarange)
+			playsound(src.loc, soundfile,69olume, 1, extrarange)
 
 	//The we handle the doafter for the tool usage
 	if(time_to_finish)
@@ -414,9 +414,9 @@
 		toolsound = null
 
 	var/stat_modifer = 0
-	if(required_stat)
-		stat_modifer = user.stats.getStat(required_stat)
-	fail_chance = fail_chance - get_tool_quality(required_quality) - stat_modifer
+	if(re69uired_stat)
+		stat_modifer = user.stats.getStat(re69uired_stat)
+	fail_chance = fail_chance - get_tool_69uality(re69uired_69uality) - stat_modifer
 
 	// handle tool breaking
 	if(T && T.health == 0)
@@ -424,31 +424,31 @@
 		return TOOL_USE_FAIL
 	else if(T && !T.health_threshold)
 		if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_BASIC && T.health < T.max_health/100 * 5)// tool health is < 5%
-			if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
+			if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 169inute
 				T.lastNearBreakMessage = world.time
-				to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
+				to_chat(user, SPAN_DANGER("Your 69src.name69 is about to fall apart."))
 		else if(user.stats.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT && T.health < T.max_health/100 * 15) // tool health is < 15%
-			if(T.lastNearBreakMessage > world.time + 300 SECONDS) // once in 5 minutes
+			if(T.lastNearBreakMessage > world.time + 300 SECONDS) // once in 569inutes
 				T.lastNearBreakMessage = world.time
-				to_chat(user, SPAN_WARNING("Some parts in your [src.name] are reeling."))
+				to_chat(user, SPAN_WARNING("Some parts in your 69src.name69 are reeling."))
 		else
 			//lets give peasants a chance
 			if(T.health < T.max_health/100 * 5 && prob(10))// tool health is < 5% and chance a 10% to notice
-				if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 1 minute
+				if(T.lastNearBreakMessage > world.time + 60 SECONDS) // once in 169inute
 					T.lastNearBreakMessage = world.time
-					to_chat(user, SPAN_DANGER("Your [src.name] is about to fall apart."))
+					to_chat(user, SPAN_DANGER("Your 69src.name69 is about to fall apart."))
 
 	//precision reduce failure rates
 	if (T)
 		fail_chance -= T.precision
 
-	fail_chance = round(fail_chance) // Stops <1% failure chance tasks from faling. Also makes falure chance in failure message look less weird.
+	fail_chance = round(fail_chance) // Stops <1% failure chance tasks from faling. Also69akes falure chance in failure69essage look less weird.
 
 	if (fail_chance < 0)
 		fail_chance = 0
 
 	if (fail_chance >= 100)
-		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! Considering your skills and this tool, it is impossible."))
+		to_chat(user, SPAN_WARNING("You failed to finish your task with 69src.name69! Considering your skills and this tool, it is impossible."))
 		return TOOL_USE_FAIL
 	if(prob(fail_chance))
 		var/chanceMessage = "near imposible"
@@ -462,14 +462,14 @@
 			chanceMessage = "small"
 		else if(fail_chance < 95)
 			chanceMessage = "tiny"
-		to_chat(user, SPAN_WARNING("You failed to finish your task with [src.name]! There was a [chanceMessage] chance to succeed."))
+		to_chat(user, SPAN_WARNING("You failed to finish your task with 69src.name69! There was a 69chanceMessage69 chance to succeed."))
 		return TOOL_USE_FAIL
 
 	return TOOL_USE_SUCCESS
 
 /obj/item/tool/proc/breakTool(mob/user)
 	if(user)
-		to_chat(user, SPAN_DANGER("Your [src] broke!"))
+		to_chat(user, SPAN_DANGER("Your 69src69 broke!"))
 		new /obj/item/material/shard/shrapnel(user.loc)
 	else
 		new /obj/item/material/shard/shrapnel(get_turf(src))
@@ -484,45 +484,45 @@
 	/* Tool Failure */
 *******************************/
 
-//Critical failure rolls. If you use use_tool_extended, you might want to call that proc as well.
-/obj/item/proc/handle_failure(mob/living/user, atom/target, required_stat, required_quality)
+//Critical failure rolls. If you use use_tool_extended, you69ight want to call that proc as well.
+/obj/item/proc/handle_failure(mob/living/user, atom/target, re69uired_stat, re69uired_69uality)
 	var/obj/item/tool/T
 	if(istool(src))
 		T = src
 
 	var/crit_fail_chance = 25
 
-	if(required_stat)
-		crit_fail_chance = crit_fail_chance - user.stats.getStat(required_stat)
+	if(re69uired_stat)
+		crit_fail_chance = crit_fail_chance - user.stats.getStat(re69uired_stat)
 
 	if (crit_fail_chance <= 0)
 		return
 
-	//This list initially contains the fail types that are always valid, even for robots
+	//This list initially contains the fail types that are always69alid, even for robots
 	var/list/failtypes = list()
 
 	if(T && T.use_fuel_cost)
 		//Robots can do this one too
-		failtypes["burn"] = 0.5
+		failtypes69"burn"69 = 0.5
 
 	if(canremove)
-		failtypes["throw"] = 1
+		failtypes69"throw"69 = 1
 
 		if(T && T.degradation)
-			failtypes["damage"] = 2.5
+			failtypes69"damage"69 = 2.5
 
 	if(user)
-		failtypes["slip"] = 2
-		failtypes["swing"] = 1
+		failtypes69"slip"69 = 2
+		failtypes69"swing"69 = 1
 		if(ishuman(user))
 			if(canremove)
-				failtypes["drop"] = 2
+				failtypes69"drop"69 = 2
 			if (sharp)
-				failtypes["stab"] = 1
+				failtypes69"stab"69 = 1
 
 			//This one is limited to humans only since robots often can't remove/replace their device cells
 			if(locate(/obj/item/cell) in contents)
-				failtypes["overload"] = 0.5
+				failtypes69"overload"69 = 0.5
 
 	if(prob(crit_fail_chance))
 		var/fail_type = pickweight(failtypes)
@@ -531,14 +531,14 @@
 			//Damage the tool
 			if("damage")
 				if(user)
-					to_chat(user, SPAN_DANGER("Your hand slips and you damage [src] a bit."))
+					to_chat(user, SPAN_DANGER("Your hand slips and you damage 69src69 a bit."))
 				if(T)
 					T.adjustToolHealth(-(30 * T.degradation), user) //Failing incurs 30 uses worth of damage
 				return
 			//Drop the tool on the floor
 			if("drop")
 				if(user)
-					to_chat(user, SPAN_DANGER("You drop [src] on the floor."))
+					to_chat(user, SPAN_DANGER("You drop 69src69 on the floor."))
 					user.drop_from_inventory(src)
 				else if(istype(loc, /obj/machinery/door/airlock))
 					var/obj/machinery/door/airlock/AD = loc
@@ -550,7 +550,7 @@
 			//Hit yourself
 			if("slip")
 				var/mob/living/carbon/human/H = user
-				to_chat(user, SPAN_DANGER("Your hand slips while working with [src]!"))
+				to_chat(user, SPAN_DANGER("Your hand slips while working with 69src69!"))
 				attack(H, H, H.get_holding_hand(src))
 				return
 
@@ -565,7 +565,7 @@
 				var/newtarget = pick(targets)
 				var/mob/living/carbon/human/H = user
 
-				to_chat(user, SPAN_DANGER("Your hand slips and you hit [target] with [src]!"))
+				to_chat(user, SPAN_DANGER("Your hand slips and you hit 69target69 with 69src69!"))
 				spawn()
 					H.ClickOn(newtarget)
 				return
@@ -575,8 +575,8 @@
 				if(user)
 					var/mob/living/carbon/human/H = user
 					var/throw_target = pick(RANGE_TURFS(6, user))
-					to_chat(user, SPAN_DANGER("Your [src] flies away!"))
-					H.unEquip(src)
+					to_chat(user, SPAN_DANGER("Your 69src69 flies away!"))
+					H.unE69uip(src)
 					throw_at(throw_target, src.throw_range, src.throw_speed, H)
 					return
 				if(istype(loc, /obj/machinery/door/airlock))
@@ -591,13 +591,13 @@
 			//Stab yourself in the hand so hard your tool embeds
 			if("stab")
 				var/mob/living/carbon/human/H = user
-				to_chat(user, SPAN_DANGER("You accidentally stuck [src] in your hand!"))
+				to_chat(user, SPAN_DANGER("You accidentally stuck 69src69 in your hand!"))
 				H.get_organ(H.get_holding_hand(src)).embed(src)
 				return
 
 			//The fuel in the tool ignites and sets you aflame
 			if("burn")
-				to_chat(user, SPAN_DANGER("You ignite the fuel of the [src]!"))
+				to_chat(user, SPAN_DANGER("You ignite the fuel of the 69src69!"))
 				var/fuel = T.get_fuel()
 				T.consume_fuel(fuel)
 				user.adjust_fire_stacks(fuel/10)
@@ -616,7 +616,7 @@
 
 
 				if(user)
-					to_chat(user, SPAN_DANGER("You overload the cell in the [src]!"))
+					to_chat(user, SPAN_DANGER("You overload the cell in the 69src69!"))
 				C.explode()
 				if (T)
 					T.cell = null
@@ -631,48 +631,48 @@
 /******************************
 	/* Data and Checking */
 *******************************/
-/obj/item/proc/has_quality(quality_id)
-	return !quality_id || (quality_id in tool_qualities)
+/obj/item/proc/has_69uality(69uality_id)
+	return !69uality_id || (69uality_id in tool_69ualities)
 
-//A special version of the above that also checks the switched on list
-//As a result, it checks what qualities the tool is ever capable of having, not just those it has right now
-/obj/item/tool/proc/ever_has_quality(quality_id)
-	.=has_quality(quality_id)
+//A special69ersion of the above that also checks the switched on list
+//As a result, it checks what 69ualities the tool is ever capable of having, not just those it has right now
+/obj/item/tool/proc/ever_has_69uality(69uality_id)
+	.=has_69uality(69uality_id)
 	if (!.)
-		if (quality_id in switched_on_qualities)
+		if (69uality_id in switched_on_69ualities)
 			return TRUE
 
-/obj/item/proc/get_tool_quality(quality_id)
-	if (tool_qualities && tool_qualities.len)
-		return tool_qualities[quality_id]
+/obj/item/proc/get_tool_69uality(69uality_id)
+	if (tool_69ualities && tool_69ualities.len)
+		return tool_69ualities6969uality_id69
 	return null
 
-//We are cheking if our item got required qualities. If we require several qualities, and item posses more than one of those, we ask user to choose how that item should be used
-/obj/item/proc/get_tool_type(mob/living/user, list/required_qualities, atom/use_on, datum/callback/CB)
-	if(!tool_qualities) //This is not a tool, or does not have tool qualities
+//We are cheking if our item got re69uired 69ualities. If we re69uire several 69ualities, and item posses69ore than one of those, we ask user to choose how that item should be used
+/obj/item/proc/get_tool_type(mob/living/user, list/re69uired_69ualities, atom/use_on, datum/callback/CB)
+	if(!tool_69ualities) //This is not a tool, or does not have tool 69ualities
 		return
 
-	var/list/L = required_qualities & tool_qualities
+	var/list/L = re69uired_69ualities & tool_69ualities
 
 	if(L.len)
 		if(L.len == 1)
-			return L[1]
+			return L69169
 		for(var/i in L)
-			L[i] = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
-		return show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, require_near = TRUE, custom_check = CB)
+			L69i69 = image(icon = 'icons/mob/radial/tools.dmi', icon_state = i)
+		return show_radial_menu(user, use_on ? use_on : user, L, tooltips = TRUE, re69uire_near = TRUE, custom_check = CB)
 
 /obj/item/tool/proc/turn_on(mob/user)
 	if(use_power_cost)
 		if(!cell)
-			to_chat(user, SPAN_WARNING("\The [src] has no cell!"))
+			to_chat(user, SPAN_WARNING("\The 69src69 has no cell!"))
 			return FALSE
 		if(cell.charge < use_power_cost)
-			to_chat(user, SPAN_WARNING("\The [src] does not have enough power!"))
+			to_chat(user, SPAN_WARNING("\The 69src69 does not have enough power!"))
 			return FALSE
 	if(user)
-		to_chat(user, SPAN_NOTICE("\The [src] turns on."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 turns on."))
 	switched_on = TRUE
-	tool_qualities = switched_on_qualities
+	tool_69ualities = switched_on_69ualities
 	if(switched_on_hitsound)
 		hitsound = switched_on_hitsound
 	if (!isnull(switched_on_force))
@@ -688,10 +688,10 @@
 
 /obj/item/tool/proc/turn_off(mob/user)
 	if(user)
-		to_chat(user, SPAN_NOTICE("\The [src] turns off."))
+		to_chat(user, SPAN_NOTICE("\The 69src69 turns off."))
 	switched_on = FALSE
 	STOP_PROCESSING(SSobj, src)
-	tool_qualities = switched_off_qualities
+	tool_69ualities = switched_off_69ualities
 	hitsound = initial(hitsound)
 	force = initial(force)
 	if(glow_color)
@@ -713,18 +713,18 @@
 	return
 
 /obj/item/tool/consume_resources(timespent, user)
-	//We will always use a minimum of 0.5 second worth of resources
+	//We will always use a69inimum of 0.5 second worth of resources
 	if (timespent < 5)
 		timespent = 5
 
 	if(use_power_cost)
 		if (!cell?.checked_use(use_power_cost*timespent))
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, SPAN_WARNING("69src69 battery is dead or69issing."))
 			return FALSE
 
 	if(use_fuel_cost)
 		if(!consume_fuel(use_fuel_cost*timespent))
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_NOTICE("You need69ore welding fuel to complete this task."))
 			return FALSE
 
 	if(use_stock_cost)
@@ -738,21 +738,21 @@
 		adjustToolHealth(-degradation, user)
 
 //Power and fuel drain, sparks spawn
-/obj/item/tool/proc/check_tool_effects(var/mob/living/user, var/time)
+/obj/item/tool/proc/check_tool_effects(var/mob/living/user,69ar/time)
 
 	if(use_power_cost)
 		if(!cell || !cell.check_charge(use_power_cost*time))
-			to_chat(user, SPAN_WARNING("[src] battery is dead or missing."))
+			to_chat(user, SPAN_WARNING("69src69 battery is dead or69issing."))
 			return FALSE
 
 	if(use_fuel_cost)
 		if(get_fuel() < (use_fuel_cost*time))
-			to_chat(user, SPAN_NOTICE("You need more welding fuel to complete this task."))
+			to_chat(user, SPAN_NOTICE("You need69ore welding fuel to complete this task."))
 			return FALSE
 
 	if (use_stock_cost)
 		if(stock < (use_stock_cost*time))
-			to_chat(user, SPAN_NOTICE("There is not enough left in [src] to complete this task."))
+			to_chat(user, SPAN_NOTICE("There is not enough left in 69src69 to complete this task."))
 			return FALSE
 
 	if(eye_hazard)
@@ -771,8 +771,8 @@
 	return ( reagents ? reagents.get_reagent_amount("fuel") : 0 )
 
 /obj/item/tool/proc/consume_fuel(var/volume)
-	if (get_fuel() >= volume)
-		reagents.remove_reagent("fuel", volume)
+	if (get_fuel() >=69olume)
+		reagents.remove_reagent("fuel",69olume)
 		return TRUE
 	return FALSE
 
@@ -784,14 +784,14 @@
 		stock = 0
 
 	if (delete_when_empty && stock <= 0)
-		qdel(src)
+		69del(src)
 
 
 /***************************
 	Tool Upgrades
 ****************************/
 /obj/item/tool/refresh_upgrades()
-//First of all, lets reset any var that could possibly be altered by an upgrade
+//First of all, lets reset any69ar that could possibly be altered by an upgrade
 	degradation = initial(degradation)
 	workspeed = initial(workspeed)
 	precision = initial(precision)
@@ -813,17 +813,17 @@
 	sharp = initial(sharp)
 	prefixes = list()
 
-	//Now lets have each upgrade reapply its modifications
+	//Now lets have each upgrade reapply its69odifications
 	SEND_SIGNAL(src, COMSIG_APPVAL, src)
 
 	for (var/prefix in prefixes)
-		name = "[prefix] [name]"
+		name = "69prefix69 69name69"
 
-	health_threshold = max(0, health_threshold)
+	health_threshold =69ax(0, health_threshold)
 
-	//Set the fuel volume, incase any mods altered our max fuel
+	//Set the fuel69olume, incase any69ods altered our69ax fuel
 	if (reagents)
-		reagents.maximum_volume = max_fuel
+		reagents.maximum_volume =69ax_fuel
 	SSnano.update_uis(src)
 
 
@@ -835,20 +835,20 @@
 		if(!cell)
 			to_chat(user, SPAN_WARNING("There is no cell inside to power the tool"))
 		else
-			to_chat(user, "The charge meter reads [round(cell.percent())]%.")
+			to_chat(user, "The charge69eter reads 69round(cell.percent())69%.")
 
 	if(use_fuel_cost)
-		to_chat(user, text("\icon[] [] contains []/[] units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
+		to_chat(user, text("\icon6969 6969 contains 6969/6969 units of fuel!", src, src.name, get_fuel(),src.max_fuel ))
 
 	if (use_stock_cost)
-		to_chat(user, SPAN_NOTICE("it has [stock] / [max_stock] units remaining."))
+		to_chat(user, SPAN_NOTICE("it has 69stock69 / 69max_stock69 units remaining."))
 
-	//Display a bunch of stats but only if they're nondefault values
+	//Display a bunch of stats but only if they're nondefault69alues
 	if (precision != 0)
-		to_chat(user, "Precision: [SPAN_NOTICE("[precision]")]")
+		to_chat(user, "Precision: 69SPAN_NOTICE("69precision69")69")
 
 	if (workspeed != 1)
-		to_chat(user, "Work Speed: [SPAN_NOTICE("[workspeed*100]%")]")
+		to_chat(user, "Work Speed: 69SPAN_NOTICE("69workspeed*10069%")69")
 
 	if (item_upgrades.len)
 		to_chat(user, "It has the following upgrades installed:")
@@ -856,38 +856,38 @@
 			to_chat(user, SPAN_NOTICE(TU.name))
 
 	if (health)
-		if (health > max_health * 0.95)
+		if (health >69ax_health * 0.95)
 			return
-		else if (health > max_health * 0.80)
+		else if (health >69ax_health * 0.80)
 			to_chat(user, "It has a few light scratches.")
-		else if (health > max_health * 0.40)
-			to_chat(user, SPAN_NOTICE("It shows minor signs of stress and wear."))
-		else if (health > max_health * 0.20)
+		else if (health >69ax_health * 0.40)
+			to_chat(user, SPAN_NOTICE("It shows69inor signs of stress and wear."))
+		else if (health >69ax_health * 0.20)
 			to_chat(user, SPAN_WARNING("It looks a bit cracked and worn."))
-		else if (health > max_health * 0.10)
+		else if (health >69ax_health * 0.10)
 			to_chat(user, SPAN_WARNING("Whatever use this tool once had is fading fast."))
-		else if (health > max_health * 0.05)
+		else if (health >69ax_health * 0.05)
 			to_chat(user, SPAN_WARNING("Attempting to use this thing as a tool is probably not going to work out well."))
 		else
 			to_chat(user, SPAN_DANGER("It's falling apart. This is one slip away from just being a pile of assorted trash."))
 
 //Recharge the fuel at fueltank, also explode if switched on
-/obj/item/tool/afterattack(obj/O, mob/user, proximity)
+/obj/item/tool/afterattack(obj/O,69ob/user, proximity)
 	// i assume tape cant be broken
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken."))
 		return
 	if(use_fuel_cost)
 		if(!proximity) return
-		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && !has_quality(QUALITY_WELDING))
-			O.reagents.trans_to_obj(src, max_fuel)
-			to_chat(user, SPAN_NOTICE("[src] refueled"))
+		if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && !has_69uality(69UALITY_WELDING))
+			O.reagents.trans_to_obj(src,69ax_fuel)
+			to_chat(user, SPAN_NOTICE("69src69 refueled"))
 			playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
-		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && has_quality(QUALITY_WELDING))
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-			to_chat(user, SPAN_DANGER("You begin welding on the [O] and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done."))
+		else if ((istype(O, /obj/structure/reagent_dispensers/fueltank) || istype(O, /obj/item/weldpack)) && get_dist(src,O) <= 1 && has_69uality(69UALITY_WELDING))
+			message_admins("69key_name_admin(user)69 triggered a fueltank explosion with a welding tool.")
+			log_game("69key_name(user)69 triggered a fueltank explosion with a welding tool.")
+			to_chat(user, SPAN_DANGER("You begin welding on the 69O69 and with a69oment of lucidity you realize, this69ight not have been the smartest thing you've ever done."))
 			var/obj/structure/reagent_dispensers/fueltank/tank = O
 			tank.explode()
 			return
@@ -899,14 +899,14 @@
 			if (istype(location, /turf))
 				location.hotspot_expose(700, 50, 1)
 
-	if (has_quality(QUALITY_ADHESIVE) && proximity)
+	if (has_69uality(69UALITY_ADHESIVE) && proximity)
 		//Tape can be used to repair other tools
 		if (istool(O))
 			var/obj/item/tool/T = O
 			if (T.health)
-				user.visible_message(SPAN_NOTICE("[user] begins repairing \the [O] with the [src]!"))
+				user.visible_message(SPAN_NOTICE("69user69 begins repairing \the 69O69 with the 69src69!"))
 				//Toolception!
-				if(use_tool(user, T, 60, QUALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
+				if(use_tool(user, T, 60, 69UALITY_ADHESIVE, FAILCHANCE_EASY, STAT_MEC))
 					T.adjustToolHealth(T.max_health * 0.8 + (user.stats.getStat(STAT_MEC)/2)/100, user)
 					if(user.stats.getStat(STAT_MEC) > STAT_LEVEL_BASIC/2)
 						to_chat(user, SPAN_NOTICE("You knowledge in tools helped you repair it better."))
@@ -922,19 +922,19 @@
 	return ..()
 
 //Triggers degradation and resource use upon attacks
-/obj/item/tool/resolve_attackby(atom/A, mob/user, params)
+/obj/item/tool/resolve_attackby(atom/A,69ob/user, params)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken."))
 		return
 	.=..()
-	//If the parent return value is true, then there won't be an attackby
+	//If the parent return69alue is true, then there won't be an attackby
 	//If there will be an attackby, we'll handle it there
 	//Checking the last tooluse time prevents consuming twice for a tool action
 	if (. && loc == user && (!(flags & NOBLUDGEON)) && (world.time - last_tooluse) > 2)
 		consume_resources(5,user)
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
-//Note: This should probably be moved to mob
+//Note: This should probably be69oved to69ob
 /obj/item/tool/proc/eyecheck(var/mob/user)
 	if(!iscarbon(user))
 		return TRUE
@@ -956,7 +956,7 @@
 				if(E.damage > 10)
 					E.damage += rand(4,10)
 			if(FLASH_PROTECTION_REDUCED)
-				to_chat(H, SPAN_DANGER("Your equipment intensify the welder's glow. Your eyes itch and burn severely."))
+				to_chat(H, SPAN_DANGER("Your e69uipment intensify the welder's glow. Your eyes itch and burn severely."))
 				H.eye_blurry += rand(12,20)
 				E.damage += rand(12, 16)
 		if(safety<FLASH_PROTECTION_MAJOR)
@@ -964,18 +964,18 @@
 				to_chat(user, SPAN_WARNING("Your eyes are really starting to hurt. This can't be good for you!"))
 
 
-/obj/item/tool/attack(mob/living/M, mob/living/user, var/target_zone)
+/obj/item/tool/attack(mob/living/M,69ob/living/user,69ar/target_zone)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken."))
 		return
 	if ((user.a_intent == I_HELP) && ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/S = H.organs_by_name[user.targeted_organ]
+		var/mob/living/carbon/human/H =69
+		var/obj/item/organ/external/S = H.organs_by_name69user.targeted_organ69
 
 		if (!istype(S) || !BP_IS_ROBOTIC(S))
 			return ..()
 
-		if (get_tool_type(user, list(QUALITY_WELDING), H)) //Prosthetic repair
+		if (get_tool_type(user, list(69UALITY_WELDING), H)) //Prosthetic repair
 			if (S.brute_dam)
 				if (S.brute_dam < ROBOLIMB_SELF_REPAIR_CAP)
 					for(var/datum/wound/W in S.wounds)
@@ -983,14 +983,14 @@
 							return
 						if(W.damtype_sanitize() != BRUTE)
 							continue
-						if(!use_tool(user, M, W.damage/5, QUALITY_WELDING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-							to_chat(user, SPAN_NOTICE("You must stand still to repair \the [S]."))
+						if(!use_tool(user,69, W.damage/5, 69UALITY_WELDING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
+							to_chat(user, SPAN_NOTICE("You69ust stand still to repair \the 69S69."))
 							break
 						W.heal_damage(CLAMP(user.stats.getStat(STAT_MEC)/2.5, 5, 15))
-						to_chat(user, SPAN_NOTICE("You patch some wounds on \the [S]."))
+						to_chat(user, SPAN_NOTICE("You patch some wounds on \the 69S69."))
 					S.update_damages()
 					if(S.brute_dam)
-						to_chat(user, SPAN_WARNING("\The [S] still needs further repair."))
+						to_chat(user, SPAN_WARNING("\The 69S69 still needs further repair."))
 					return
 				else if (S.open != 2)
 					to_chat(user, SPAN_DANGER("The damage is far too severe to patch over externally."))
@@ -1005,23 +1005,23 @@
 	cut_overlays()
 
 	if(switched_on && toggleable)
-		overlays += "[icon_state]_on"
+		overlays += "69icon_state69_on"
 
 	if(use_power_cost)
 		var/ratio = 0
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= use_power_cost)
 			ratio = cell.charge / cell.maxcharge
-			ratio = max(round(ratio, 0.25) * 100, 25)
-			overlays += "[icon_state]-[ratio]"
+			ratio =69ax(round(ratio, 0.25) * 100, 25)
+			overlays += "69icon_state69-69ratio69"
 
 	if(use_fuel_cost)
 		var/ratio = 0
 		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
 		if(get_fuel() >= use_fuel_cost)
-			ratio = get_fuel() / max_fuel
-			ratio = max(round(ratio, 0.25) * 100, 25)
-			overlays += "[icon_state]-[ratio]"
+			ratio = get_fuel() /69ax_fuel
+			ratio =69ax(round(ratio, 0.25) * 100, 25)
+			overlays += "69icon_state69-69ratio69"
 
 	if(ismob(loc))
 		var/tooloverlay
@@ -1037,7 +1037,7 @@
 ****************************/
 
 //Used by adhesive tools to stick an item to stuff
-/obj/item/tool/proc/stick(var/obj/item/target, var/mob/user)
+/obj/item/tool/proc/stick(var/obj/item/target,69ar/mob/user)
 	return
 
 
@@ -1046,23 +1046,23 @@
 	icon_state = "omnitool"
 	item_state = "omnitool"
 	spawn_tags = null
-	tool_qualities = list(QUALITY_BOLT_TURNING = 100,
-							QUALITY_PRYING = 100,
-							QUALITY_WELDING = 100,
-							QUALITY_SCREW_DRIVING = 100,
-							QUALITY_CLAMPING = 100,
-							QUALITY_CAUTERIZING = 100,
-							QUALITY_WIRE_CUTTING = 100,
-							QUALITY_RETRACTING = 100,
-							QUALITY_DRILLING = 100,
-							QUALITY_SAWING = 100,
-							QUALITY_VEIN_FIXING = 100,
-							QUALITY_BONE_SETTING = 100,
-							QUALITY_BONE_FIXING = 100,
-							QUALITY_SHOVELING = 100,
-							QUALITY_DIGGING = 100,
-							QUALITY_EXCAVATION = 100,
-							QUALITY_CUTTING = 100)
+	tool_69ualities = list(69UALITY_BOLT_TURNING = 100,
+							69UALITY_PRYING = 100,
+							69UALITY_WELDING = 100,
+							69UALITY_SCREW_DRIVING = 100,
+							69UALITY_CLAMPING = 100,
+							69UALITY_CAUTERIZING = 100,
+							69UALITY_WIRE_CUTTING = 100,
+							69UALITY_RETRACTING = 100,
+							69UALITY_DRILLING = 100,
+							69UALITY_SAWING = 100,
+							69UALITY_VEIN_FIXING = 100,
+							69UALITY_BONE_SETTING = 100,
+							69UALITY_BONE_FIXING = 100,
+							69UALITY_SHOVELING = 100,
+							69UALITY_DIGGING = 100,
+							69UALITY_EXCAVATION = 100,
+							69UALITY_CUTTING = 100)
 
 #undef ADDITIONAL_TIME_LOWHEALTH
 

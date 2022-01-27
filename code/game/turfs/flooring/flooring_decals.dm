@@ -1,6 +1,6 @@
 // These are objects that destroy themselves and add themselves to the
 // decal list of the floor under them. Use them rather than distinct icon_states
-// when mapping in interesting floor designs.
+// when69apping in interesting floor designs.
 var/list/floor_decals = list()
 
 /obj/effect/floor_decal
@@ -11,7 +11,7 @@ var/list/floor_decals = list()
 	var/supplied_dir
 	var/variants_amount
 
-/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour, var/newappearance)
+/obj/effect/floor_decal/New(var/newloc,69ar/newdir,69ar/newcolour,69ar/newappearance)
 	supplied_dir = newdir
 	if(newcolour) color = newcolour
 	if(newappearance) appearance = newappearance
@@ -20,28 +20,28 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/Initialize()
 	..()
 
-	//Some decals could have a variety of base sprites
+	//Some decals could have a69ariety of base sprites
 	if(variants_amount)
-		icon_state = "[initial(icon_state)][rand(0,variants_amount)]"
+		icon_state = "69initial(icon_state)6969rand(0,variants_amount)69"
 
 	if(supplied_dir) set_dir(supplied_dir)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor))
-		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[plane]-[layer]"
-		if(!floor_decals[cache_key])
+		var/cache_key = "69alpha69-69color69-69dir69-69icon_state69-69plane69-69layer69"
+		if(!floor_decals69cache_key69)
 			var/image/I = image(icon = src.icon, icon_state = src.icon_state, dir = src.dir)
 			I.layer = TURF_PLATING_DECAL_LAYER
 			I.color = src.color
 			I.alpha = src.alpha
 			I.plane = src.plane
-			floor_decals[cache_key] = I
+			floor_decals69cache_key69 = I
 		if(!T.decals) T.decals = list()
-		T.decals |= floor_decals[cache_key]
-		T.overlays |= floor_decals[cache_key]
-	return INITIALIZE_HINT_QDEL
+		T.decals |= floor_decals69cache_key69
+		T.overlays |= floor_decals69cache_key69
+	return INITIALIZE_HINT_69DEL
 
 /obj/effect/floor_decal/reset
-	name = "reset marker"
+	name = "reset69arker"
 
 /obj/effect/floor_decal/reset/Initialize()
 	..()
@@ -49,7 +49,7 @@ var/list/floor_decals = list()
 	if(T.decals && T.decals.len)
 		T.decals.Cut()
 		T.update_icon()
-	return INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_69DEL
 
 
 /obj/effect/floor_decal/spline/plain
@@ -70,7 +70,7 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/spline/fancy/wood/cee
 	icon_state = "spline_fancy_cee"
 
-/obj/effect/floor_decal/spline/fancy/wood/three_quarters
+/obj/effect/floor_decal/spline/fancy/wood/three_69uarters
 	icon_state = "spline_fancy_full"
 
 /obj/effect/floor_decal/industrial/warning
@@ -108,7 +108,7 @@ var/list/floor_decals = list()
 	icon_state = "warningcorner_dust"
 
 /obj/effect/floor_decal/industrial/hatch
-	name = "hatched marking"
+	name = "hatched69arking"
 	icon_state = "delivery"
 
 /obj/effect/floor_decal/industrial/hatch/yellow
@@ -134,9 +134,9 @@ var/list/floor_decals = list()
 	name = "loading area"
 	icon_state = "loadingarea"
 
-/obj/effect/floor_decal/plaque
-	name = "plaque"
-	icon_state = "plaque"
+/obj/effect/floor_decal/pla69ue
+	name = "pla69ue"
+	icon_state = "pla69ue"
 
 /obj/effect/floor_decal/carpet
 	name = "carpet"
@@ -158,7 +158,7 @@ var/list/floor_decals = list()
 	icon_state = "asteroid0"
 
 /obj/effect/floor_decal/asteroid/New()
-	icon_state = "asteroid[rand(0,9)]"
+	icon_state = "asteroid69rand(0,9)69"
 	..()
 
 /obj/effect/floor_decal/chapel
@@ -229,40 +229,40 @@ var/list/floor_decals = list()
 	name = "L16"
 	icon_state = "L16"
 
-/obj/effect/floor_decal/fact_plaque
-	name = "plaque"
-	icon_state = "plaque"
+/obj/effect/floor_decal/fact_pla69ue
+	name = "pla69ue"
+	icon_state = "pla69ue"
 
-/obj/effect/floor_decal/fact_plaque/med1
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/med1
+	name = "pla69ue"
 	icon_state = "moebius_med1"
 
-/obj/effect/floor_decal/fact_plaque/med2
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/med2
+	name = "pla69ue"
 	icon_state = "moebius_med2"
 
-/obj/effect/floor_decal/fact_plaque/med3
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/med3
+	name = "pla69ue"
 	icon_state = "moebius_med3"
 
-/obj/effect/floor_decal/fact_plaque/med4
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/med4
+	name = "pla69ue"
 	icon_state = "moebius_med4"
 
-/obj/effect/floor_decal/fact_plaque/rnd1
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/rnd1
+	name = "pla69ue"
 	icon_state = "moebius_rnd1"
 
-/obj/effect/floor_decal/fact_plaque/rnd2
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/rnd2
+	name = "pla69ue"
 	icon_state = "moebius_rnd2"
 
-/obj/effect/floor_decal/fact_plaque/rnd3
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/rnd3
+	name = "pla69ue"
 	icon_state = "moebius_rnd3"
 
-/obj/effect/floor_decal/fact_plaque/rnd4
-	name = "plaque"
+/obj/effect/floor_decal/fact_pla69ue/rnd4
+	name = "pla69ue"
 	icon_state = "moebius_rnd4"
 
 /obj/effect/floor_decal/sign

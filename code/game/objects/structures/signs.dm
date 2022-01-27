@@ -9,20 +9,20 @@
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 			return
 		if(2)
-			qdel(src)
+			69del(src)
 			return
 		if(3)
-			qdel(src)
+			69del(src)
 			return
 		else
 	return
 
-/obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
+/obj/structure/sign/attackby(obj/item/tool as obj,69ob/user as69ob)	//deconstruction
 	if(istype(tool, /obj/item/tool/screwdriver) && !istype(src, /obj/structure/sign/double))
-		to_chat(user, "You unfasten the sign with your [tool].")
+		to_chat(user, "You unfasten the sign with your 69tool69.")
 		var/obj/item/sign/S = new(src.loc)
 		S.name = name
 		S.desc = desc
@@ -30,7 +30,7 @@
 		//var/icon/I = icon('icons/obj/decals.dmi', icon_state)
 		//S.icon = I.Scale(24, 24)
 		S.sign_state = icon_state
-		qdel(src)
+		69del(src)
 	else ..()
 
 /obj/item/sign
@@ -40,7 +40,7 @@
 	w_class = ITEM_SIZE_NORMAL		//big
 	var/sign_state = ""
 
-/obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
+/obj/item/sign/attackby(obj/item/tool as obj,69ob/user as69ob)	//construction
 	if(istype(tool, /obj/item/tool/screwdriver) && isturf(user.loc))
 		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
 		if(direction == "Cancel") return
@@ -58,12 +58,12 @@
 		S.name = name
 		S.desc = desc
 		S.icon_state = sign_state
-		to_chat(user, "You fasten \the [S] with your [tool].")
-		qdel(src)
+		to_chat(user, "You fasten \the 69S69 with your 69tool69.")
+		69del(src)
 	else ..()
 
 /obj/structure/sign/double/map
-	name = "station map"
+	name = "station69ap"
 	desc = "A framed picture of the station."
 
 /obj/structure/sign/double/map/left
@@ -83,8 +83,8 @@
 	icon_state = "bio"
 
 /obj/structure/sign/electricshock
-	name = "\improper HIGH VOLTAGE"
-	desc = "A warning sign which reads 'HIGH VOLTAGE'."
+	name = "\improper HIGH69OLTAGE"
+	desc = "A warning sign which reads 'HIGH69OLTAGE'."
 	icon_state = "shock"
 
 /obj/structure/sign/examroom
@@ -93,8 +93,8 @@
 	icon_state = "examroom"
 
 /obj/structure/sign/vacuum
-	name = "\improper HARD VACUUM AHEAD"
-	desc = "A warning sign which reads 'HARD VACUUM AHEAD'."
+	name = "\improper HARD69ACUUM AHEAD"
+	desc = "A warning sign which reads 'HARD69ACUUM AHEAD'."
 	icon_state = "space"
 
 /obj/structure/sign/deathsposal
@@ -124,32 +124,32 @@
 
 /obj/structure/sign/redcross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "The Intergalactic symbol of69edical institutions. You'll probably get help here."
 	icon_state = "redcross"
 
 /obj/structure/sign/greencross
 	name = "medbay"
-	desc = "The Intergalactic symbol of Medical institutions. You'll probably get help here."
+	desc = "The Intergalactic symbol of69edical institutions. You'll probably get help here."
 	icon_state = "greencross"
 
-/obj/structure/sign/goldenplaque
-	name = "The Most Robust Men Award for Robustness"
-	desc = "To be Robust is not an action or a way of life, but a mental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust my friends."
-	icon_state = "goldenplaque"
+/obj/structure/sign/goldenpla69ue
+	name = "The69ost Robust69en Award for Robustness"
+	desc = "To be Robust is not an action or a way of life, but a69ental state. Only those with the force of Will strong enough to act during a crisis, saving friend from foe, are truly Robust. Stay Robust69y friends."
+	icon_state = "goldenpla69ue"
 
-/obj/structure/sign/kiddieplaque
-	name = "\improper AI developers plaque"
+/obj/structure/sign/kiddiepla69ue
+	name = "\improper AI developers pla69ue"
 	desc = "Next to the extremely long list of names and job titles, there is a drawing of a little child. The child appears to be retarded. Beneath the image, someone has scratched the word \"PACKETS\""
-	icon_state = "kiddieplaque"
+	icon_state = "kiddiepla69ue"
 
-/obj/structure/sign/atmosplaque
-	name = "\improper FEA atmospherics division plaque"
-	desc = "This plaque commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle men who have died in its hands."
-	icon_state = "atmosplaque"
+/obj/structure/sign/atmospla69ue
+	name = "\improper FEA atmospherics division pla69ue"
+	desc = "This pla69ue commemorates the fall of the Atmos FEA division. For all the charred, dizzy, and brittle69en who have died in its hands."
+	icon_state = "atmospla69ue"
 
 /obj/structure/sign/double/maltesefalcon	//The sign is 64x32, so it needs two tiles. ;3
-	name = "The Maltese Falcon"
-	desc = "The Maltese Falcon, Space Bar and Grill."
+	name = "The69altese Falcon"
+	desc = "The69altese Falcon, Space Bar and Grill."
 
 /obj/structure/sign/double/maltesefalcon/left
 	icon_state = "maltesefalcon-left"
@@ -157,7 +157,7 @@
 /obj/structure/sign/double/maltesefalcon/right
 	icon_state = "maltesefalcon-right"
 
-/obj/structure/sign/science			//These 3 have multiple types, just var-edit the icon_state to whatever one you want on the map
+/obj/structure/sign/science			//These 3 have69ultiple types, just69ar-edit the icon_state to whatever one you want on the69ap
 	name = "\improper SCIENCE!"
 	desc = "A warning sign which reads 'SCIENCE!'."
 	icon_state = "science1"
@@ -193,8 +193,8 @@
 	icon_state = "direction_sec"
 
 /obj/structure/sign/directions/medical
-	name = "\improper Medical Bay"
-	desc = "A direction sign, pointing out which way the Medical Bay is."
+	name = "\improper69edical Bay"
+	desc = "A direction sign, pointing out which way the69edical Bay is."
 	icon_state = "direction_med"
 
 /obj/structure/sign/directions/evac
@@ -281,7 +281,7 @@
 
 /obj/structure/sign/nanotrasen
 	name = "\improper NanoTrasen"
-	desc = "An old metal sign which reads 'NanoTrasen'."
+	desc = "An old69etal sign which reads 'NanoTrasen'."
 	icon_state = "NT"
 
 /obj/structure/sign/signnew/biohazard
@@ -316,7 +316,7 @@
 
 /obj/structure/sign/signnew/magnetics
 	name = "MAGNETIC FIELD HAZARD"
-	desc = "Warning: Extremely powerful magnetic fields present in this area!"
+	desc = "Warning: Extremely powerful69agnetic fields present in this area!"
 	icon_state = "magnetics"
 
 /obj/structure/sign/signnew/opticals
@@ -336,7 +336,7 @@
 
 /obj/structure/sign/signnew/electrical
 	name = "ELECTRICAL HAZARD"
-	desc = "Warning: Electrical hazards! Wear protective equipment."
+	desc = "Warning: Electrical hazards! Wear protective e69uipment."
 	icon_state = "electrical"
 
 /obj/structure/sign/signnew/cryogenics
@@ -356,7 +356,7 @@
 
 /obj/structure/sign/signnew/memetic
 	name = "MEMETIC HAZARD"
-	desc = "Warning: Memetic hazard, wear meson goggles!"
+	desc = "Warning:69emetic hazard, wear69eson goggles!"
 	icon_state = "memetic"
 
 //Eris departments
@@ -540,12 +540,12 @@
 
 /obj/structure/sign/faction/frozenstar
 	name = "Frozen Star"
-	desc = "The most popular weapon manufacturer in the Hansa Trade Union."
+	desc = "The69ost popular weapon69anufacturer in the Hansa Trade Union."
 	icon_state = "frozenstar"
 
 /obj/structure/sign/faction/moebius
 	name = "Moebius Laboratories"
-	desc = "Shady pharmaceutical and prosthetic manufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
+	desc = "Shady pharmaceutical and prosthetic69anufacturer. Few outsiders know what happens behind the doors of their labs, and whoever knows does not live a long life."
 	icon_state = "moebius"
 
 /obj/structure/sign/faction/neotheology
@@ -568,7 +568,7 @@
 
 /obj/structure/sign/faction/astersguild
 	name = "Asters Guild"
-	desc = "Asters Guild - monopolists of far space transportation."
+	desc = "Asters Guild -69onopolists of far space transportation."
 	icon_state = "astersguild"
 
 /obj/structure/sign/faction/technomancers
@@ -578,12 +578,12 @@
 
 /obj/structure/sign/faction/excelsior
 	name = "EXCELSIOR"
-	desc = "EXCELSIOR is a union of communist mining communities with no respect to any private property."
+	desc = "EXCELSIOR is a union of communist69ining communities with no respect to any private property."
 	icon_state = "excelsior"
 
 /obj/structure/sign/faction/excelsior_old
 	name = "EXCELSIOR"
-	desc = "EXCELSIOR is a union of communist mining communities with no respect to any private property."
+	desc = "EXCELSIOR is a union of communist69ining communities with no respect to any private property."
 	icon_state = "excelsior-old"
 
 /obj/structure/sign/derelict1

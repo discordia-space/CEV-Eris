@@ -40,10 +40,10 @@
 /datum/event/meteor_wave/announce()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("Meteors have been detected on collision course with the ship. ETA 3 minutes until impact. Crew are advised to raise shields and stay away from the outer hull", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			command_announcement.Announce("Meteors have been detected on collision course with the ship. ETA 369inutes until impact. Crew are advised to raise shields and stay away from the outer hull", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
 
 		else
-			command_announcement.Announce("Meteors have been detected on collision course with the ship.ETA 3 minutes until impact.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
+			command_announcement.Announce("Meteors have been detected on collision course with the ship.ETA 369inutes until impact.", "Meteor Alert", new_sound = 'sound/AI/meteors.ogg')
 
 /datum/event/meteor_wave/tick()
 	if(activeFor >= next_meteor)
@@ -56,18 +56,18 @@
 /datum/event/meteor_wave/end()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			command_announcement.Announce("The ship has cleared the meteor storm.", "Meteor Alert")
+			command_announcement.Announce("The ship has cleared the69eteor storm.", "Meteor Alert")
 		else
-			command_announcement.Announce("The ship has cleared the meteor shower", "Meteor Alert")
+			command_announcement.Announce("The ship has cleared the69eteor shower", "Meteor Alert")
 
 /datum/event/meteor_wave/proc/get_meteors()
 	switch(severity)
 		if(EVENT_LEVEL_MAJOR)
-			return meteors_cataclysm
+			return69eteors_cataclysm
 		if(EVENT_LEVEL_MODERATE)
-			return meteors_catastrophic
+			return69eteors_catastrophic
 		else
-			return meteors_normal
+			return69eteors_normal
 
 
 /datum/event/meteor_wave/overmap
@@ -95,23 +95,23 @@
 */
 
 /datum/event/meteor_wave/overmap/tick()
-	if(victim && !victim.is_still()) //Meteors mostly fly in your face
-		start_side = prob(90) ? victim.fore_dir : pick(cardinal)
+	if(victim && !victim.is_still()) //Meteors69ostly fly in your face
+		start_side = prob(90) ?69ictim.fore_dir : pick(cardinal)
 	else if (prob(90))
-		return //If you're not moving you wont get hit muc
+		return //If you're not69oving you wont get hit69uc
 	..()
 
 
 
-/var/const/meteor_wave_delay = 1 MINUTES //minimum wait between waves in tenths of seconds
+/var/const/meteor_wave_delay = 169INUTES //minimum wait between waves in tenths of seconds
 //set to at least 100 unless you want evarr ruining every round
 
-//Meteor groups, used for various random events and the Meteor gamemode.
+//Meteor groups, used for69arious random events and the69eteor gamemode.
 
-// Dust, used by space dust event and during earliest stages of meteor mode.
+// Dust, used by space dust event and during earliest stages of69eteor69ode.
 /var/list/meteors_dust = list(/obj/effect/meteor/dust)
 
-// Standard meteors, used during early stages of the meteor gamemode.
+// Standard69eteors, used during early stages of the69eteor gamemode.
 /var/list/meteors_normal = list(\
 		/obj/effect/meteor/medium=8,\
 		/obj/effect/meteor/dust=3,\
@@ -122,7 +122,7 @@
 		/obj/effect/meteor/silver=1\
 		)
 
-// Threatening meteors, used during the meteor gamemode.
+// Threatening69eteors, used during the69eteor gamemode.
 /var/list/meteors_threatening = list(\
 		/obj/effect/meteor/big=10,\
 		/obj/effect/meteor/medium=5,\
@@ -133,7 +133,7 @@
 		/obj/effect/meteor/emp=3\
 		)
 
-// Catastrophic meteors, pretty dangerous without shields and used during the meteor gamemode.
+// Catastrophic69eteors, pretty dangerous without shields and used during the69eteor gamemode.
 /var/list/meteors_catastrophic = list(\
 		/obj/effect/meteor/big=75,\
 		/obj/effect/meteor/flaming=10,\
@@ -145,7 +145,7 @@
 		/obj/effect/meteor/tunguska=1\
 		)
 
-// Armageddon meteors, very dangerous, and currently used only during the meteor gamemode.
+// Armageddon69eteors,69ery dangerous, and currently used only during the69eteor gamemode.
 /var/list/meteors_armageddon = list(\
 		/obj/effect/meteor/big=25,\
 		/obj/effect/meteor/flaming=10,\
@@ -157,7 +157,7 @@
 		/obj/effect/meteor/silver=2\
 		)
 
-// Cataclysm meteor selection. Very very dangerous and effective even against shields. Used in late game meteor gamemode only.
+// Cataclysm69eteor selection.69ery69ery dangerous and effective even against shields. Used in late game69eteor gamemode only.
 /var/list/meteors_cataclysm = list(\
 		/obj/effect/meteor/big=40,\
 		/obj/effect/meteor/emp=20,\
@@ -174,9 +174,9 @@
 //Meteor spawning global procs
 ///////////////////////////////
 
-/proc/spawn_meteors(var/number = 1, var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteors(var/number = 1,69ar/list/meteortypes,69ar/startSide,69ar/zlevel)
 	for(var/i = 0; i < number; i++)
-		//If no target zlevel is specified, then we'll throw each meteor at an individually randomly selected ship zlevel
+		//If no target zlevel is specified, then we'll throw each69eteor at an individually randomly selected ship zlevel
 		var/target_level
 		if (zlevel)
 			target_level = zlevel
@@ -184,14 +184,14 @@
 			target_level = pick(GLOB.maps_data.station_levels)
 		spawn_meteor(meteortypes, startSide, target_level)
 
-/proc/spawn_meteor(var/list/meteortypes, var/startSide, var/zlevel)
+/proc/spawn_meteor(var/list/meteortypes,69ar/startSide,69ar/zlevel)
 	var/turf/pickedstart = spaceDebrisStartLoc(startSide, zlevel)
 	var/turf/pickedgoal = spaceDebrisFinishLoc(startSide, zlevel)
 	var/Me = pickweight(meteortypes)
-	var/obj/effect/meteor/M = new Me(pickedstart)
+	var/obj/effect/meteor/M = new69e(pickedstart)
 	M.dest = pickedgoal
 	spawn(0)
-		walk_towards(M, M.dest, 1)
+		walk_towards(M,69.dest, 1)
 	return
 
 /proc/spaceDebrisStartLoc(startSide, Z)
@@ -302,11 +302,11 @@
 
 
 ///////////////////////
-//The meteor effect
+//The69eteor effect
 //////////////////////
 
 /obj/effect/meteor
-	name = "the concept of meteor"
+	name = "the concept of69eteor"
 	desc = "You should probably run instead of gawking at this."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "small"
@@ -323,25 +323,25 @@
 
 	var/move_count = 0
 
-	var/turf/hit_location //used for reporting hit locations. The meteor may be deleted and its location nulled by report time
+	var/turf/hit_location //used for reporting hit locations. The69eteor69ay be deleted and its location nulled by report time
 
 /obj/effect/meteor/proc/get_shield_damage()
-	return max(((max(hits, 2)) * (heavy + 1) * rand(100, 140)) / hitpwr , 0)
+	return69ax(((max(hits, 2)) * (heavy + 1) * rand(100, 140)) / hitpwr , 0)
 
 /obj/effect/meteor/New()
 	..()
 	z_original = z
 
 
-/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
-	. = ..() //process movement...
+/obj/effect/meteor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
+	. = ..() //process69ovement...
 	move_count++
 	if(loc == dest)
-		qdel(src)
+		69del(src)
 
 /obj/effect/meteor/touch_map_edge()
 	if(move_count > TRANSITIONEDGE)
-		qdel(src)
+		69del(src)
 
 /obj/effect/meteor/Destroy()
 	walk(src,0) //this cancels the walk_towards() proc
@@ -352,11 +352,11 @@
 	SpinAnimation()
 
 /obj/effect/meteor/Bump(atom/A)
-	hit_location = get_turf(src) //We always cache the last hit location before doing anything that might result in deleting the meteor
+	hit_location = get_turf(src) //We always cache the last hit location before doing anything that69ight result in deleting the69eteor
 	..()
-	if(A && !QDELETED(src))	// Prevents explosions and other effects when we were deleted by whatever we Bumped() - currently used by shields.
+	if(A && !69DELETED(src))	// Prevents explosions and other effects when we were deleted by whatever we Bumped() - currently used by shields.
 		ram_turf(get_turf(A))
-		get_hit() //should only get hit once per move attempt
+		get_hit() //should only get hit once per69ove attempt
 
 /obj/effect/meteor/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
 	return istype(mover, /obj/effect/meteor) ? 1 : ..()
@@ -378,33 +378,33 @@
 	if(hits <= 0)
 		make_debris()
 		meteor_effect()
-		qdel(src)
+		69del(src)
 
 /obj/effect/meteor/ex_act()
 	return
 
-/obj/effect/meteor/attackby(obj/item/W as obj, mob/user as mob, params)
-	var/tool_type = W.get_tool_type(user, list(QUALITY_DIGGING, QUALITY_EXCAVATION), src)
-	if(tool_type & QUALITY_DIGGING | QUALITY_EXCAVATION)
-		if(W.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY,  required_stat = STAT_ROB))
-			qdel(src)
+/obj/effect/meteor/attackby(obj/item/W as obj,69ob/user as69ob, params)
+	var/tool_type = W.get_tool_type(user, list(69UALITY_DIGGING, 69UALITY_EXCAVATION), src)
+	if(tool_type & 69UALITY_DIGGING | 69UALITY_EXCAVATION)
+		if(W.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY,  re69uired_stat = STAT_ROB))
+			69del(src)
 			return
 	..()
 
 /obj/effect/meteor/proc/make_debris()
 	for(var/throws = dropamt, throws > 0, throws--)
-		var/obj/item/O = new meteordrop(get_turf(src))
+		var/obj/item/O = new69eteordrop(get_turf(src))
 		O.throw_at(dest, 5, 10)
 
 /obj/effect/meteor/proc/meteor_effect()
-	//Logging. A meteor impact sends a message to admins with a clickable link.
+	//Logging. A69eteor impact sends a69essage to admins with a clickable link.
 	//This allows them to jump over and see what happened, its tremendously interesting
 	if (istype(hit_location))
 		var/area/A = get_area(hit_location)
-		var/where = "[A? A.name : "Unknown Location"] | [hit_location.x], [hit_location.y]"
-		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[hit_location.x];Y=[hit_location.y];Z=[hit_location.z]'>[where]</a>"
-		message_admins("A meteor has impacted at ([whereLink])", 0, 1)
-		log_game("A meteor has impacted at ([where]).")
+		var/where = "69A? A.name : "Unknown Location"69 | 69hit_location.x69, 69hit_location.y69"
+		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69hit_location.x69;Y=69hit_location.y69;Z=69hit_location.z69'>69where69</a>"
+		message_admins("A69eteor has impacted at (69whereLink69)", 0, 1)
+		log_game("A69eteor has impacted at (69where69).")
 
 	if(heavy)
 		for(var/mob/M in GLOB.player_list)
@@ -440,7 +440,7 @@
 
 //Large-sized
 /obj/effect/meteor/big
-	name = "large meteor"
+	name = "large69eteor"
 	icon_state = "large"
 	hits = 6
 	heavy = 1
@@ -450,9 +450,9 @@
 	..()
 	explosion(src.loc, 1, 2, 3, 4, 0)
 
-//Flaming meteor
+//Flaming69eteor
 /obj/effect/meteor/flaming
-	name = "flaming meteor"
+	name = "flaming69eteor"
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
@@ -462,9 +462,9 @@
 	..()
 	explosion(src.loc, 1, 2, 3, 4, 0, 0, 5)
 
-//Radiation meteor
+//Radiation69eteor
 /obj/effect/meteor/irradiated
-	name = "glowing meteor"
+	name = "glowing69eteor"
 	icon_state = "glowing"
 	heavy = 1
 	meteordrop = /obj/item/ore/uranium
@@ -476,19 +476,19 @@
 	//SSradiation.radiate(src, 50) //TODO: Port bay radiation system
 
 /obj/effect/meteor/golden
-	name = "golden meteor"
+	name = "golden69eteor"
 	icon_state = "glowing"
 	desc = "Shiny! But also deadly."
 	meteordrop = /obj/item/ore/gold
 
 /obj/effect/meteor/silver
-	name = "silver meteor"
+	name = "silver69eteor"
 	icon_state = "glowing_blue"
 	desc = "Shiny! But also deadly."
 	meteordrop = /obj/item/ore/silver
 
 /obj/effect/meteor/emp
-	name = "conducting meteor"
+	name = "conducting69eteor"
 	icon_state = "glowing_blue"
 	desc = "Hide your floppies!"
 	meteordrop = /obj/item/ore/osmium
@@ -505,19 +505,19 @@
 
 //Station buster Tunguska
 /obj/effect/meteor/tunguska
-	name = "tunguska meteor"
+	name = "tunguska69eteor"
 	icon_state = "flaming"
-	desc = "Your life briefly passes before your eyes the moment you lay them on this monstrosity."
+	desc = "Your life briefly passes before your eyes the69oment you lay them on this69onstrosity."
 	hits = 10
 	hitpwr = 1
 	heavy = 1
-	meteordrop = /obj/item/ore/diamond	// Probably means why it penetrates the hull so easily before exploding.
+	meteordrop = /obj/item/ore/diamond	// Probably69eans why it penetrates the hull so easily before exploding.
 
 /obj/effect/meteor/tunguska/meteor_effect()
 	..()
 	explosion(src.loc, 3, 6, 9, 20, 0)
 
-// This is the final solution against shields - a single impact can bring down most shield generators.
+// This is the final solution against shields - a single impact can bring down69ost shield generators.
 /obj/effect/meteor/supermatter
 	name = "supermatter shard"
 	desc = "Oh god, what will be next..?"

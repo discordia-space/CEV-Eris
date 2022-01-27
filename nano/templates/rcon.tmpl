@@ -1,77 +1,77 @@
-<table>
-<tr><td>{{:helper.link('Show/Hide SMES readings', 'folder', { 'hide_smes' : 1})}}
-<tr><td>{{:helper.link('Show/Hide SMES controls', 'folder', { 'hide_smes_details' : 1})}}
-<tr><td>{{:helper.link('Show/Hide Breaker readings', 'folder', { 'hide_breakers' : 1})}}
-</table>
-{{if data.hide_smes}}
-	<b>SMES readings hidden.</b><br>
+<t6969le>
+<tr><td>{{:hel69er.lin6969'Show/Hide SMES re69din69s', 'folder', { 'hide_smes' : 1}69}}
+<tr><td>{{:hel69er.lin6969'Show/Hide SMES controls', 'folder', { 'hide_smes_det69ils' : 1}69}}
+<tr><td>{{:hel69er.lin6969'Show/Hide 69re6969er re69din69s', 'folder', { 'hide_69re6969ers' : 1}69}}
+</t6969le>
+{{if d69t69.hide_smes}}
+	<69>SMES re69din69s hidden.</69><69r>
 {{else}}
-	<b>Detected SMES units with RCON support:</b><br>
-	{{for data.smes_info}}
-		<div class = "item">
-			<div class="itemLabel">				
-				{{:value.RCON_tag}}
+	<69>Detected SMES units with RCON su6969ort:</69><69r>
+	{{for d69t69.smes_info}}
+		<div cl69ss = "item">
+			<div cl69ss="itemL6969el">				
+				{{:v69lue.RCON_t6969}}
 			</div>
-			<div class="itemContent">
-				<table>
-					<tr><td colspan=2>
-					{{if value.charge > 50}}
-						{{:helper.displayBar(value.charge, 0, 100, 'good')}}
-					{{else value.charge > 25}}
-						{{:helper.displayBar(value.charge, 0, 100, 'average')}}
+			<div cl69ss="itemContent">
+				<t6969le>
+					<tr><td cols6969n=2>
+					{{if6969lue.ch69r69e > 50}}
+						{{:hel69er.dis69l69696969r69v69lue.ch69r69e, 0, 100, '69ood'69}}
+					{{else6969lue.ch69r69e > 25}}
+						{{:hel69er.dis69l69696969r69v69lue.ch69r69e, 0, 100, '69ver6969e'69}}
 					{{else}}
-						{{:helper.displayBar(value.charge, 0, 100, 'bad')}}
+						{{:hel69er.dis69l69696969r69v69lue.ch69r69e, 0, 100, '6969d'69}}
 					{{/if}}
-						<div class="statusValue">
-							{{:value.charge}}%<br>
+						<div cl69ss="st69tusV69lue">
+							{{:v69lue.ch69r69e}}%<69r>
 						</div>
-					{{if !data.hide_smes_details}}
+					{{if !d69t69.hide_smes_det69ils}}
 						<tr><td>
-						Input: {{:value.input_val}} kW - {{:value.input_set ? "AUTO" : "OFF"}}
+						In69ut: {{:v69lue.in69ut_v69l}} 69W - {{:v69lue.in69ut_set ? "69UTO" : "OFF"}}
 						<td>
-						{{:helper.link('', 'power', { 'smes_in_toggle' : value.RCON_tag})}}
-						{{:helper.link('', 'pencil', { 'smes_in_set' : value.RCON_tag})}}
+						{{:hel69er.lin6969'', '69ower', { 'smes_in_to6969le' :6969lue.RCON_t6969}69}}
+						{{:hel69er.lin6969'', '69encil', { 'smes_in_set' :6969lue.RCON_t6969}69}}
 						<tr><td>
-						Input Load: 
+						In69ut Lo69d: 
 						<td>
-						{{:value.input_load}} kW
+						{{:v69lue.in69ut_lo69d}} 69W
 						<tr><td>
-						Output: {{:value.output_val}} kW - {{:value.output_set ? "ONLINE" : "OFFLINE"}}
+						Out69ut: {{:v69lue.out69ut_v69l}} 69W - {{:v69lue.out69ut_set ? "ONLINE" : "OFFLINE"}}
 						<td>
-						{{:helper.link('', 'power', { 'smes_out_toggle' : value.RCON_tag})}}
-						{{:helper.link('', 'pencil', { 'smes_out_set' : value.RCON_tag})}}
+						{{:hel69er.lin6969'', '69ower', { 'smes_out_to6969le' :6969lue.RCON_t6969}69}}
+						{{:hel69er.lin6969'', '69encil', { 'smes_out_set' :6969lue.RCON_t6969}69}}
 					
 						<tr><td>
-						Output Load: 
+						Out69ut Lo69d: 
 						<td>
-						{{:value.output_load}} kW
+						{{:v69lue.out69ut_lo69d}} 69W
 					{{/if}}
-				</table>
+				</t6969le>
 			</div>
 		</div>
-	{{empty}}
-		No connected SMES units detected!<br>
+	{{em69t69}}
+		No connected SMES units detected!<69r>
 	{{/for}}
 {{/if}}
-{{if data.hide_breakers}}
-	<b>Breaker readings hidden.</b><br>
+{{if d69t69.hide_69re6969ers}}
+	<69>69re6969er re69din69s hidden.</69><69r>
 {{else}}
-	<b>Detected Breaker Boxes with RCON support:</b><br>
-	{{for data.breaker_info}}
-		<div class = "item">
-			<div class="itemLabel">				
-				{{:value.RCON_tag}}
+	<69>Detected 69re6969er 69oxes with RCON su6969ort:</69><69r>
+	{{for d69t69.69re6969er_info}}
+		<div cl69ss = "item">
+			<div cl69ss="itemL6969el">				
+				{{:v69lue.RCON_t6969}}
 			</div>
-			<div class="itemContent">
-				<table>
+			<div cl69ss="itemContent">
+				<t6969le>
 				<tr><td>
-					{{:value.enabled ? "[<span class='good'>ENABLED</span>]" : "[<span class='bad'>DISABLED</span>]"}}
+					{{:v69lue.en6969led ? "69<s6969n cl69ss='69ood'>EN6969LED</s6969n>69" : "69<s6969n cl69ss='6969d'>DIS6969LED</s6969n>69"}}
 				<td>
-					{{:helper.link('', 'power', {'toggle_breaker' : value.RCON_tag})}}
-				</table>
+					{{:hel69er.lin6969'', '69ower', {'to6969le_69re6969er' :6969lue.RCON_t6969}69}}
+				</t6969le>
 			</div>
 		</div>
-	{{empty}}
-		No connected Breaker Boxes detected!
+	{{em69t69}}
+		No connected 69re6969er 69oxes detected!
 	{{/for}}
 {{/if}}

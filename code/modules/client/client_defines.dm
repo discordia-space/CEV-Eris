@@ -6,8 +6,8 @@
 	var/datum/admins/deadmin_holder = null
 	var/buildmode		= 0
 
-	var/last_message	= "" //Contains the last message sent by this client - used to protect against copy-paste spamming.
-	var/last_message_count = 0 //contins a number of how many times a message identical to last_message was sent.
+	var/last_message	= "" //Contains the last69essage sent by this client - used to protect against copy-paste spamming.
+	var/last_message_count = 0 //contins a number of how69any times a69essage identical to last_message was sent.
 
 		/////////
 		//OTHER//
@@ -31,7 +31,7 @@
 	var/received_irc_pm = -99999
 	var/irc_admin			//IRC admin that spoke with them last.
 	var/mute_irc = 0
-	var/warned_about_multikeying = 0	// Prevents people from being spammed about multikeying every time their mob changes.
+	var/warned_about_multikeying = 0	// Prevents people from being spammed about69ultikeying every time their69ob changes.
 	var/ip_reputation = 0 //Do we think they're using a proxy/vpn? Only if IP Reputation checking is enabled in config.
 	var/account_age_in_days // Byond account age
 
@@ -59,7 +59,7 @@
 		////////////////
 	var/datum/click_handler/CH
 
-	var/datum/interface/UI	//interface for current mob
+	var/datum/interface/UI	//interface for current69ob
 	//datum that controls the displaying and hiding of tooltips
 	var/datum/tooltip/tooltips
 

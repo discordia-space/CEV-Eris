@@ -12,58 +12,58 @@
 	var/number_of_pins = 1
 
 /obj/item/integrated_circuit/memory/Initialize()
-	for(var/i = 1 to number_of_pins)
-		inputs["input [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
-		outputs["output [i]"] = IC_PINTYPE_ANY
-	complexity = number_of_pins
+	for(var/i = 1 to69umber_of_pins)
+		inputs69"input 69i69"69 = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
+		outputs69"output 69i69"69 = IC_PINTYPE_ANY
+	complexity =69umber_of_pins
 	. = ..()
 
 /obj/item/integrated_circuit/memory/examine(mob/user)
 	. = ..()
 	var/i
 	for(i = 1, i <= outputs.len, i++)
-		var/datum/integrated_io/O = outputs[i]
+		var/datum/integrated_io/O = outputs69i69
 		var/data = "nothing"
 		if(isweakref(O.data))
 			var/datum/d = O.data_as_type(/datum)
 			if(d)
-				data = "[d]"
+				data = "69d69"
 		else if(!isnull(O.data))
 			data = O.data
-		to_chat(user, "\The [src] has [data] saved to address [i].")
+		to_chat(user, "\The 69src69 has 69data69 saved to address 69i69.")
 
 /obj/item/integrated_circuit/memory/do_work()
 	for(var/i = 1 to inputs.len)
-		var/datum/integrated_io/I = inputs[i]
-		var/datum/integrated_io/O = outputs[i]
+		var/datum/integrated_io/I = inputs69i69
+		var/datum/integrated_io/O = outputs69i69
 		O.data = I.data
 		O.push_data()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/memory/tiny
-	name = "small memory circuit"
+	name = "small69emory circuit"
 	desc = "This circuit can store two pieces of data."
 	icon_state = "memory4"
 	power_draw_per_use = 2
 	number_of_pins = 2
 
 /obj/item/integrated_circuit/memory/medium
-	name = "medium memory circuit"
+	name = "medium69emory circuit"
 	desc = "This circuit can store four pieces of data."
 	icon_state = "memory4"
 	power_draw_per_use = 2
 	number_of_pins = 4
 
 /obj/item/integrated_circuit/memory/large
-	name = "large memory circuit"
+	name = "large69emory circuit"
 	desc = "This big circuit can store eight pieces of data."
 	icon_state = "memory8"
 	power_draw_per_use = 4
 	number_of_pins = 8
 
 /obj/item/integrated_circuit/memory/huge
-	name = "large memory stick"
-	desc = "This stick of memory can store up up to sixteen pieces of data."
+	name = "large69emory stick"
+	desc = "This stick of69emory can store up up to sixteen pieces of data."
 	icon_state = "memory16"
 	w_class = ITEM_SIZE_SMALL
 	spawn_flags = IC_SPAWN_RESEARCH
@@ -82,58 +82,58 @@
 	number_of_pins = 0
 
 /obj/item/integrated_circuit/memory/constant/do_work()
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	O.push_data()
 
 /obj/item/integrated_circuit/memory/constant/emp_act()
 	for(var/i in 1 to activators.len)
-		var/datum/integrated_io/activate/A = activators[i]
+		var/datum/integrated_io/activate/A = activators69i69
 		A.scramble()
 
 /obj/item/integrated_circuit/memory/constant/save_special()
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	if(istext(O.data) || isnum_safe(O.data))
 		return O.data
 
 /obj/item/integrated_circuit/memory/constant/load_special(special_data)
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	if(istext(special_data) || isnum_safe(special_data))
 		O.data = special_data
 
 /obj/item/integrated_circuit/memory/constant/attack_self(mob/user)
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	if(!user.IsAdvancedToolUser())
 		return
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
+	var/type_to_use = input("Please choose a type to use.","69src69 type setting") as69ull|anything in list("string","number","ref", "null")
 
-	var/new_data = null
+	var/new_data =69ull
 	switch(type_to_use)
 		if("string")
 			accepting_refs = FALSE
-			new_data = input("Now type in a string.","[src] string writing") as null|text
+			new_data = input("Now type in a string.","69src69 string writing") as69ull|text
 			if(istext(new_data) && user.IsAdvancedToolUser())
-				O.data = new_data
-				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data(O.data)].</span>")
+				O.data =69ew_data
+				to_chat(user, "<span class='notice'>You set \the 69src69's69emory to 69O.display_data(O.data)69.</span>")
 		if("number")
 			accepting_refs = FALSE
-			new_data = input("Now type in a number.","[src] number writing") as null|num
+			new_data = input("Now type in a69umber.","69src6969umber writing") as69ull|num
 			if(isnum_safe(new_data) && user.IsAdvancedToolUser())
-				O.data = new_data
-				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data(O.data)].</span>")
+				O.data =69ew_data
+				to_chat(user, "<span class='notice'>You set \the 69src69's69emory to 69O.display_data(O.data)69.</span>")
 		if("ref")
 			accepting_refs = TRUE
-			to_chat(user, "<span class='notice'>You turn \the [src]'s ref scanner on.  Slide it across \
-			an object for a ref of that object to save it in memory.</span>")
+			to_chat(user, "<span class='notice'>You turn \the 69src69's ref scanner on.  Slide it across \
+			an object for a ref of that object to save it in69emory.</span>")
 		if("null")
-			O.data = null
-			to_chat(user, "<span class='notice'>You set \the [src]'s memory to absolutely nothing.</span>")
+			O.data =69ull
+			to_chat(user, "<span class='notice'>You set \the 69src69's69emory to absolutely69othing.</span>")
 
-/obj/item/integrated_circuit/memory/constant/afterattack(atom/target, mob/living/user, proximity)
+/obj/item/integrated_circuit/memory/constant/afterattack(atom/target,69ob/living/user, proximity)
 	. = ..()
 	if(accepting_refs && proximity)
-		var/datum/integrated_io/O = outputs[1]
+		var/datum/integrated_io/O = outputs69169
 		O.data = weakref(target)
-		visible_message("<span class='notice'>[user] slides \a [src]'s over \the [target].</span>")
-		to_chat(user, "<span class='notice'>You set \the [src]'s memory to a reference to [O.display_data(O.data)].  The ref scanner is \
+		visible_message("<span class='notice'>69user69 slides \a 69src69's over \the 69target69.</span>")
+		to_chat(user, "<span class='notice'>You set \the 69src69's69emory to a reference to 69O.display_data(O.data)69.  The ref scanner is \
 		now off.</span>")
 		accepting_refs = FALSE

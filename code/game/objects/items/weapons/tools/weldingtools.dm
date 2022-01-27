@@ -10,7 +10,7 @@
 	worksound = WORKSOUND_WELDING
 	matter = list(MATERIAL_STEEL = 5)
 	origin_tech = list(TECH_ENGINEERING = 1)
-	switched_on_qualities = list(QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
+	switched_on_69ualities = list(69UALITY_WELDING = 30, 69UALITY_CAUTERIZING = 10, 69UALITY_WIRE_CUTTING = 10)
 	switched_on_hitsound = 'sound/items/Welder.ogg'
 
 	sparks_on_use = TRUE
@@ -46,14 +46,14 @@
 
 /obj/item/tool/weldingtool/improvised
 	name = "jury-rigged torch"
-	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool mods."
+	desc = "An assembly of pipes attached to a little gas tank. Serves capably as a welder, though a bit risky. Can be improved greatly with large amount of tool69ods."
 	icon_state = "ghettowelder"
 	item_state = "ghettowelder"
 	switched_on_force = WEAPON_FORCE_PAINFUL * 0.8
 	max_fuel = 15
-	switched_on_qualities = list(QUALITY_WELDING = 15, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
+	switched_on_69ualities = list(69UALITY_WELDING = 15, 69UALITY_CAUTERIZING = 10, 69UALITY_WIRE_CUTTING = 10)
 	degradation = 1.5
-	max_upgrades = 5 //all makeshift tools get more mods to make them actually viable for mid-late game
+	max_upgrades = 5 //all69akeshift tools get69ore69ods to69ake them actually69iable for69id-late game
 	rarity_value = 4
 	spawn_tags = SPAWN_TAG_JUNKTOOL
 
@@ -68,9 +68,9 @@
 	icon_state = "adv_welder"
 	item_state = "adv_welder"
 	glow_color = COLOR_BLUE_LIGHT
-	switched_on_qualities = list(QUALITY_WELDING = 40, QUALITY_CAUTERIZING = 15, QUALITY_WIRE_CUTTING = 15)
+	switched_on_69ualities = list(69UALITY_WELDING = 40, 69UALITY_CAUTERIZING = 15, 69UALITY_WIRE_CUTTING = 15)
 	max_fuel = 40
-	switched_on_force = WEAPON_FORCE_PAINFUL * 1.15 //Slightly more powerful, not much more so
+	switched_on_force = WEAPON_FORCE_PAINFUL * 1.15 //Slightly69ore powerful, not69uch69ore so
 	heat = 3773
 	degradation = 0.7
 	max_upgrades = 4
@@ -79,12 +79,12 @@
 
 /obj/item/tool/weldingtool/onestar
 	name = "One Star welding tool"
-	desc = "An old and legendary One Star welding tool. Very powerful and reliable, but its compact design causes it to suffer from a lack of both fuel storage and efficiency."
+	desc = "An old and legendary One Star welding tool.69ery powerful and reliable, but its compact design causes it to suffer from a lack of both fuel storage and efficiency."
 	icon_state = "one_star_welder"
 	item_state = "welder"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLATINUM = 2)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_PLATINUM = 2)
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_MATERIAL = 3)
-	switched_on_qualities = list(QUALITY_WELDING = 30, QUALITY_CAUTERIZING = 10, QUALITY_WIRE_CUTTING = 10)
+	switched_on_69ualities = list(69UALITY_WELDING = 30, 69UALITY_CAUTERIZING = 10, 69UALITY_WIRE_CUTTING = 10)
 	glow_color = COLOR_RED_LIGHT
 	use_fuel_cost = 0.15
 	max_fuel = 20
@@ -103,8 +103,8 @@
 	desc = "A welding tool with numerous growths on it, the fuel tank is bloated. Doubt you will be able to use it for anything other than welding."
 	glow_color = COLOR_LIME
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 4, TECH_BIO = 2)
-	matter = list(MATERIAL_STEEL = 7, MATERIAL_BIOMATTER = 3)
-	switched_on_qualities = list(QUALITY_WELDING = 50)
+	matter = list(MATERIAL_STEEL = 7,69ATERIAL_BIOMATTER = 3)
+	switched_on_69ualities = list(69UALITY_WELDING = 50)
 	use_fuel_cost = 0.2
 	max_fuel = 60
 	max_upgrades = 4

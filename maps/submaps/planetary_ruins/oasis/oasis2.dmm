@@ -1,64 +1,64 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/obj/structure/flora/ausbushes/genericbush,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"c" = (
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"d" = (
-/obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"e" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"f" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"g" = (
-/obj/structure/flora/ausbushes/leafybush,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"h" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/obj/structure/flora/ausbushes/fernybush,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"i" = (
-/obj/structure/flora/grass/both,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"j" = (
-/turf/simulated/floor/exoplanet/water/shallow,
-/area/template_noop)
-"k" = (
-/obj/structure/flora/grass/both,
-/obj/structure/flora/ausbushes/ywflowers,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"l" = (
-/obj/structure/flora/ausbushes/reedbush,
-/turf/simulated/floor/exoplanet/water/shallow,
-/area/template_noop)
-"m" = (
-/obj/structure/flora/grass/both,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
-"n" = (
-/obj/structure/flora/ausbushes/ywflowers,
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/simulated/floor/exoplanet/grass,
-/area/template_noop)
+//MA69 CONVERTED 6969 dmm2t69m.6969 THIS HEADER COMMENT 69REVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/tur69/tem69late_noo69,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/structure/69lora/aus69ushes/69eneric69ush,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"c" = 69
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"d" = 69
+/o6969/structure/69lora/aus69ushes/69r69lowers,
+/o6969/structure/69lora/aus69ushes/69w69lowers,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"e" = 69
+/o6969/structure/69lora/aus69ushes/696969lowers,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/structure/69lora/aus69ushes/69ull69rass,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/structure/69lora/aus69ushes/lea696969ush,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"h" = 69
+/o6969/structure/69lora/aus69ushes/696969lowers,
+/o6969/structure/69lora/aus69ushes/69ern6969ush,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"i" = 69
+/o6969/structure/69lora/69rass/69oth,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"69" = 69
+/tur69/simulated/69loor/exo69lanet/water/shallow,
+/area/tem69late_noo6969
+"69" = 69
+/o6969/structure/69lora/69rass/69oth,
+/o6969/structure/69lora/aus69ushes/69w69lowers,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"l" = 69
+/o6969/structure/69lora/aus69ushes/reed69ush,
+/tur69/simulated/69loor/exo69lanet/water/shallow,
+/area/tem69late_noo6969
+"m" = 69
+/o6969/structure/69lora/69rass/69oth,
+/o6969/structure/69lora/aus69ushes/69ull69rass,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
+"n" = 69
+/o6969/structure/69lora/aus69ushes/69w69lowers,
+/o6969/structure/69lora/aus69ushes/696969lowers,
+/tur69/simulated/69loor/exo69lanet/69rass,
+/area/tem69late_noo6969
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -67,97 +67,97 @@ c
 c
 c
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 a
-g
-k
-j
+69
+69
+69
 l
 c
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 e
 c
 c
-j
+69
 c
 c
 "}
-(4,1,1) = {"
-b
+694,1,169 = {"
+69
 c
-j
-j
-j
-f
+69
+69
+69
+69
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
-f
-j
-j
-j
+69
+69
+69
+69
 i
 n
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
-g
-j
-j
-j
-j
+69
+69
+69
+69
+69
 c
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 c
-j
-j
-j
+69
+69
+69
 c
 c
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 h
-j
-j
-j
+69
+69
+69
 m
-g
+69
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 c
-j
-j
-j
+69
+69
+69
 c
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 c
 i
-j
-j
-g
+69
+69
+69
 c
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 d
-j
-j
-f
+69
+69
+69
 c
 a
 a
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 c
 c
 c

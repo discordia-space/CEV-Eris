@@ -11,7 +11,7 @@
 	slot_flags = SLOT_BELT|SLOT_MASK
 	var/active = 0
 	var/det_time = 40
-	var/variance = 0 //How much the fuse time varies up or down. Punishes cooking with makeshift nades, proper ones should have 0
+	var/variance = 0 //How69uch the fuse time69aries up or down. Punishes cooking with69akeshift nades, proper ones should have 0
 
 /obj/item/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
@@ -27,17 +27,17 @@
 /obj/item/grenade/examine(mob/user)
 	if(..(user, 0))
 		if(det_time > 1)
-			to_chat(user, "The timer is set to [det_time/10] seconds.")
+			to_chat(user, "The timer is set to 69det_time/1069 seconds.")
 			return
 		if(det_time == null)
 			return
-		to_chat(user, "\The [src] is set for instant detonation.")
+		to_chat(user, "\The 69src69 is set for instant detonation.")
 
 
-/obj/item/grenade/attack_self(mob/user as mob)
+/obj/item/grenade/attack_self(mob/user as69ob)
 	if(!active)
 		if(clown_check(user))
-			to_chat(user, SPAN_WARNING("You prime \the [name]! [det_time/10] seconds!"))
+			to_chat(user, SPAN_WARNING("You prime \the 69name69! 69det_time/1069 seconds!"))
 
 			activate(user)
 			add_fingerprint(user)
@@ -47,13 +47,13 @@
 	return
 
 
-/obj/item/grenade/proc/activate(mob/user as mob)
+/obj/item/grenade/proc/activate(mob/user as69ob)
 	if(active)
 		return
 
 	if(user)
-		log_and_message_admins("primed \a [src]")
-		user.attack_log += "\[[time_stamp()]\] <font color='red'>primed \a [src]</font>"
+		log_and_message_admins("primed \a 69src69")
+		user.attack_log += "\6969time_stamp()69\69 <font color='red'>primed \a 69src69</font>"
 
 	icon_state = initial(icon_state) + "_active"
 	active = 1
@@ -68,26 +68,26 @@
 		return
 
 
-/obj/item/grenade/proc/prime(mob/user as mob)
+/obj/item/grenade/proc/prime(mob/user as69ob)
 	var/turf/T = get_turf(src)
 	if(T)
 		T.hotspot_expose(700,125)
 		user.hud_used.updatePlaneMasters(user)
 
 
-/obj/item/grenade/attackby(obj/item/I, mob/user as mob)
-	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_COG))
+/obj/item/grenade/attackby(obj/item/I,69ob/user as69ob)
+	if(69UALITY_SCREW_DRIVING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, 69UALITY_SCREW_DRIVING, FAILCHANCE_EASY, re69uired_stat = STAT_COG))
 			switch(det_time)
 				if (1)
 					det_time = 30
-					to_chat(user, SPAN_NOTICE("You set the [name] for 3 second detonation time."))
+					to_chat(user, SPAN_NOTICE("You set the 69name69 for 3 second detonation time."))
 				if (30)
 					det_time = 40
-					to_chat(user, SPAN_NOTICE("You set the [name] for 4 second detonation time."))
+					to_chat(user, SPAN_NOTICE("You set the 69name69 for 4 second detonation time."))
 				if (40)
 					det_time = 1
-					to_chat(user, SPAN_NOTICE("You set the [name] for instant detonation."))
+					to_chat(user, SPAN_NOTICE("You set the 69name69 for instant detonation."))
 			add_fingerprint(user)
 	..()
 	return

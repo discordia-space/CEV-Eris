@@ -1,8 +1,8 @@
 /datum/map_template/ruin/exoplanet/drill_site
 	name = "drill site"
 	id = "drill_site"
-	description = "A small, abandoned mining drill operation."
-	suffix = "drill_site/drill_site.dmm"
+	description = "A small, a69andoned69inin69 drill operation."
+	su6969ix = "drill_site/drill_site.dmm"
 	cost = 0.5
-	template_flags = TEMPLATE_FLAG_CLEAR_CONTENTS|TEMPLATE_FLAG_NO_RUINS
-	ruin_tags = RUIN_HUMAN
+	template_69la69s = TEMPLATE_69LA69_CLEAR_CONTENTS|TEMPLATE_69LA69_NO_RUINS
+	ruin_ta69s = RUIN_HUMAN

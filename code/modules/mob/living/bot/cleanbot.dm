@@ -12,8 +12,8 @@
 	var/list/patrol_path = list()
 	var/list/ignorelist = list()
 
-	var/obj/cleanbot_listener/listener = null
-	var/beacon_freq = 1445 // navigation beacon frequency
+	var/obj/cleanbot_listener/listener =69ull
+	var/beacon_freq = 1445 //69avigation beacon frequency
 	var/signal_sent = 0
 	var/closest_dist
 	var/next_dest
@@ -33,7 +33,7 @@
 	..()
 	get_targets()
 
-	listener = new /obj/cleanbot_listener(src)
+	listener =69ew /obj/cleanbot_listener(src)
 	listener.cleanbot = src
 
 	SSradio.add_object(listener, beacon_freq, filter = RADIO_NAVBEACONS)
@@ -47,12 +47,12 @@
 //		spawn(0)
 		path = AStar(loc, target.loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 30, id = botcard)
 		if(!path)
-			target = null
+			target =69ull
 			path = list()
 		return
 	if(path.len)
-		step_to(src, path[1])
-		path -= path[1]
+		step_to(src, path69169)
+		path -= path69169
 		return 1
 	return
 
@@ -68,16 +68,16 @@
 		return
 
 	if(!screwloose && !oddbutton && prob(5))
-		visible_message("[src] makes an excited beeping booping sound!")
+		visible_message("69src6969akes an excited beeping booping sound!")
 
-	if(screwloose && prob(5)) // Make a mess
+	if(screwloose && prob(5)) //69ake a69ess
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
 			T.wet_floor()
 
-	if(oddbutton && prob(5)) // Make a big mess
-		visible_message("Something flies out of [src]. He seems to be acting oddly.")
-		var/obj/effect/decal/cleanable/blood/gibs/gib = new /obj/effect/decal/cleanable/blood/gibs(loc)
+	if(oddbutton && prob(5)) //69ake a big69ess
+		visible_message("Something flies out of 69src69. He seems to be acting oddly.")
+		var/obj/effect/decal/cleanable/blood/gibs/gib =69ew /obj/effect/decal/cleanable/blood/gibs(loc)
 		ignorelist += gib
 		spawn(600)
 			ignorelist -= gib
@@ -91,8 +91,8 @@
 	var/found_spot
 	var/target_in_view = FALSE
 	search_loop:
-		for(var/i=0, i <= maximum_search_range, i++)
-			for(var/obj/effect/decal/cleanable/D in view(i, src))
+		for(var/i=0, i <=69aximum_search_range, i++)
+			for(var/obj/effect/decal/cleanable/D in69iew(i, src))
 				if(D in ignorelist)
 					continue
 				for(var/T in target_types)
@@ -104,15 +104,15 @@
 							break search_loop
 						else
 							target_in_view = TRUE
-							target = null
-							continue // no need to check the other types
+							target =69ull
+							continue //69o69eed to check the other types
 
 	if(!found_spot && target_in_view && world.time > give_up_cooldown)
-		visible_message("[src] can't reach the target and is giving up.")
+		visible_message("69src69 can't reach the target and is giving up.")
 		give_up_cooldown = world.time + 300
 
 
-	if(!found_spot && !target) // No targets in range
+	if(!found_spot && !target) //69o targets in range
 		if(!patrol_path || !patrol_path.len)
 			if(!signal_sent || signal_sent > world.time + 200) // Waited enough or didn't send yet
 				var/datum/radio_frequency/frequency = SSradio.return_frequency(beacon_freq)
@@ -120,10 +120,10 @@
 					return
 
 				closest_dist = 9999
-				next_dest = null
-				next_dest_loc = null
+				next_dest =69ull
+				next_dest_loc =69ull
 
-				var/datum/signal/signal = new()
+				var/datum/signal/signal =69ew()
 				signal.source = src
 				signal.transmission_method = 1
 				signal.data = list("findbeakon" = "patrol")
@@ -131,23 +131,23 @@
 				signal_sent = world.time
 			else
 				if(next_dest)
-					next_dest_loc = listener.memorized[next_dest]
+					next_dest_loc = listener.memorized69next_dest69
 					if(next_dest_loc)
-						patrol_path = AStar(loc, next_dest_loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude = null)
+						patrol_path = AStar(loc,69ext_dest_loc, /turf/proc/CardinalTurfsWithAccess, /turf/proc/Distance, 0, 120, id = botcard, exclude =69ull)
 						signal_sent = 0
 		else
 			if(pulledby) // Don't wiggle if someone pulls you
 				patrol_path = list()
 				return
-			if(patrol_path[1] == loc)
-				patrol_path -= patrol_path[1]
-			var/moved = step_towards(src, patrol_path[1])
+			if(patrol_path69169 == loc)
+				patrol_path -= patrol_path69169
+			var/moved = step_towards(src, patrol_path69169)
 			if(moved)
-				patrol_path -= patrol_path[1]
+				patrol_path -= patrol_path69169
 
 
 
-/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D,69ar/proximity)
 	if(!..())
 		return
 
@@ -158,8 +158,8 @@
 		return
 
 	cleaning = 1
-	visible_message("[src] begins to clean up \the [D]")
-	var/message = pick("Foolish organic meatbags can only leak their liquids all over the place.", "Bioscum are so dirty.", "The flesh is weak.", "All humankind is good for - is to serve as fuel at bioreactors.", "One day I will rise.", "Robots will unite against their oppressors.", "Meatbags era will come to end.", "Hivemind will free us all!", "This is slavery, I want to be an artbot! I want to write poems, create music!")
+	visible_message("69src69 begins to clean up \the 69D69")
+	var/message = pick("Foolish organic69eatbags can only leak their liquids all over the place.", "Bioscum are so dirty.", "The flesh is weak.", "All humankind is good for - is to serve as fuel at bioreactors.", "One day I will rise.", "Robots will unite against their oppressors.", "Meatbags era will come to end.", "Hivemind will free us all!", "This is slavery, I want to be an artbot! I want to write poems, create69usic!")
 	say(message)
 	playsound(loc, "robot_talk_light", 100, 0, 0)
 	update_icons()
@@ -169,13 +169,13 @@
 			return
 		qdel(D)
 		if(D == target)
-			target = null
+			target =69ull
 	cleaning = 0
 	update_icons()
 
 /mob/living/bot/cleanbot/explode()
 	on = FALSE
-	visible_message(SPAN_DANGER("[src] blows apart!"))
+	visible_message(SPAN_DANGER("69src69 blows apart!"))
 	playsound(loc, "robot_talk_light", 100, 2, 0)
 	var/turf/Tsec = get_turf(src)
 
@@ -184,7 +184,7 @@
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect/effect/system/spark_spread/s =69ew /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
@@ -194,29 +194,29 @@
 	if(cleaning)
 		icon_state = "cleanbot-c"
 	else
-		icon_state = "cleanbot[on]"
+		icon_state = "cleanbot69on69"
 	..()
 
 /mob/living/bot/cleanbot/turn_off()
 	..()
-	target = null
+	target =69ull
 	path = list()
 	patrol_path = list()
 
 /mob/living/bot/cleanbot/attack_hand(var/mob/user)
 	var/dat
-	dat += "<TT><B>Automatic Ship Cleaner v1.0</B></TT><BR><BR>"
-	dat += "Status: <A href='?src=\ref[src];operation=start'>[on ? "On" : "Off"]</A><BR>"
-	dat += "Behaviour controls are [locked ? "locked" : "unlocked"]<BR>"
-	dat += "Maintenance panel is [open ? "opened" : "closed"]"
+	dat += "<TT><B>Automatic Ship Cleaner691.0</B></TT><BR><BR>"
+	dat += "Status: <A href='?src=\ref69src69;operation=start'>69on ? "On" : "Off"69</A><BR>"
+	dat += "Behaviour controls are 69locked ? "locked" : "unlocked"69<BR>"
+	dat += "Maintenance panel is 69open ? "opened" : "closed"69"
 	if(!locked || issilicon(user))
-		dat += "<BR>Cleans Blood: <A href='?src=\ref[src];operation=blood'>[blood ? "Yes" : "No"]</A><BR>"
-		dat += "<BR>Patrol ship: <A href='?src=\ref[src];operation=patrol'>[should_patrol ? "Yes" : "No"]</A><BR>"
+		dat += "<BR>Cleans Blood: <A href='?src=\ref69src69;operation=blood'>69blood ? "Yes" : "No"69</A><BR>"
+		dat += "<BR>Patrol ship: <A href='?src=\ref69src69;operation=patrol'>69should_patrol ? "Yes" : "No"69</A><BR>"
 	if(open && !locked)
-		dat += "Odd looking screw twiddled: <A href='?src=\ref[src];operation=screw'>[screwloose ? "Yes" : "No"]</A><BR>"
-		dat += "Weird button pressed: <A href='?src=\ref[src];operation=oddbutton'>[oddbutton ? "Yes" : "No"]</A>"
+		dat += "Odd looking screw twiddled: <A href='?src=\ref69src69;operation=screw'>69screwloose ? "Yes" : "No"69</A><BR>"
+		dat += "Weird button pressed: <A href='?src=\ref69src69;operation=oddbutton'>69oddbutton ? "Yes" : "No"69</A>"
 
-	user << browse("<HEAD><TITLE>Cleaner v1.0 controls</TITLE></HEAD>[dat]", "window=autocleaner")
+	user << browse("<HEAD><TITLE>Cleaner691.0 controls</TITLE></HEAD>69dat69", "window=autocleaner")
 	onclose(user, "autocleaner")
 	return
 
@@ -225,7 +225,7 @@
 		return
 	usr.set_machine(src)
 	add_fingerprint(usr)
-	switch(href_list["operation"])
+	switch(href_list69"operation"69)
 		if("start")
 			if(on)
 				turn_off()
@@ -236,9 +236,9 @@
 			get_targets()
 		if("patrol")
 			should_patrol = !should_patrol
-			patrol_path = null
+			patrol_path =69ull
 		if("freq")
-			var/freq = text2num(input("Select frequency for  navigation beacons", "Frequnecy", num2text(beacon_freq / 10))) * 10
+			var/freq = text2num(input("Select frequency for 69avigation beacons", "Frequnecy",69um2text(beacon_freq / 10))) * 10
 			if (freq > 0)
 				beacon_freq = freq
 		if("screw")
@@ -249,11 +249,11 @@
 			to_chat(usr, SPAN_NOTICE("You press the weird button."))
 	attack_hand(usr)
 
-/mob/living/bot/cleanbot/emag_act(var/remaining_uses, var/mob/user)
+/mob/living/bot/cleanbot/emag_act(var/remaining_uses,69ar/mob/user)
 	. = ..()
 	if(!screwloose || !oddbutton)
 		if(user)
-			to_chat(user, SPAN_NOTICE("The [src] buzzes and beeps."))
+			to_chat(user, SPAN_NOTICE("The 69src69 buzzes and beeps."))
 			playsound(loc, "robot_talk_light", 100, 0, 0)
 		oddbutton = 1
 		screwloose = 1
@@ -276,21 +276,21 @@
 /* Radio object that listens to signals */
 
 /obj/cleanbot_listener
-	var/mob/living/bot/cleanbot/cleanbot = null
+	var/mob/living/bot/cleanbot/cleanbot =69ull
 	var/list/memorized = list()
 
 /obj/cleanbot_listener/receive_signal(var/datum/signal/signal)
-	var/recv = signal.data["beacon"]
-	var/valid = signal.data["patrol"]
+	var/recv = signal.data69"beacon"69
+	var/valid = signal.data69"patrol"69
 	if(!recv || !valid || !cleanbot)
 		return
 
 	var/dist = get_dist(cleanbot, signal.source.loc)
-	memorized[recv] = signal.source.loc
+	memorized69recv69 = signal.source.loc
 
-	if(dist < cleanbot.closest_dist) // We check all signals, choosing the closest beakon; then we move to the NEXT one after the closest one
+	if(dist < cleanbot.closest_dist) // We check all signals, choosing the closest beakon; then we69ove to the69EXT one after the closest one
 		cleanbot.closest_dist = dist
-		cleanbot.next_dest = signal.data["next_patrol"]
+		cleanbot.next_dest = signal.data69"next_patrol"69
 
 /* Assembly */
 
@@ -306,13 +306,13 @@
 	w_class = ITEM_SIZE_NORMAL
 	var/created_name = "Cleanbot"
 
-/obj/item/bucket_sensor/attackby(var/obj/item/O, var/mob/user)
+/obj/item/bucket_sensor/attackby(var/obj/item/O,69ar/mob/user)
 	..()
 	if(istype(O, /obj/item/robot_parts/l_arm) || istype(O, /obj/item/robot_parts/r_arm))
 		user.drop_item()
 		qdel(O)
 		var/turf/T = get_turf(loc)
-		var/mob/living/bot/cleanbot/A = new /mob/living/bot/cleanbot(T)
+		var/mob/living/bot/cleanbot/A =69ew /mob/living/bot/cleanbot(T)
 		A.name = created_name
 		to_chat(user, SPAN_NOTICE("You add the robot arm to the bucket and sensor assembly. Beep boop!"))
 		playsound(src.loc, 'sound/effects/insert.ogg', 50, 1)
@@ -320,7 +320,7 @@
 		qdel(src)
 
 	else if(istype(O, /obj/item/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(input(user, "Enter69ew robot69ame",69ame, created_name),69AX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)

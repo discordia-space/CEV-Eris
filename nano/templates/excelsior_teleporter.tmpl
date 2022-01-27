@@ -1,115 +1,115 @@
 <!-- 
-Used In File(s): code/game/machinery/excelsior/ex_teleporter.dm
+Used In File69s69: code/6969me/m69c69iner69/excelsior/ex_teleporter.dm
  -->
-{{:helper.excelsiorMode()}} 
-<h2>Welcome Comrade</h2>
-{{if data.menu == 0}}
-	<div class="item">
-		<div class="itemLabel">
-			Energy:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.energy, 0, data.maxEnergy, 'good', data.energy + ' Power')}}
-		</div>
-	</div>
-	<hr>
-	{{if data.excel_user}}
-		<div class="item">
-			<div class="itemLabel">
-				Scan in:
-			</div>
-			<div class="itemContent">
-				- {{:data.time_until_scan}}
-			</div>
-		</div>		
-		<div class="item">
-			<div class="itemLabel">
-				Mandates:
-			</div>
-			<div class="itemContent">
-				{{:helper.link('Mandates', 'radiation', {'open_menu' : 1}, null, 'fixedLeft')}}
-			</div>
-			<div class="item">
-			<table class='itemContent' style="width: 100%;">
+{{:69elper.excelsiorMode6969}} 
+<692>Welcome Comr69de</692>
+{{if d69t69.menu == 0}}
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Ener6969:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69elper.displ69696969r69d69t69.ener6969, 0, d69t69.m69xEner6969, '69ood', d69t69.ener6969 + ' Power'69}}
+		</di69>
+	</di69>
+	<69r>
+	{{if d69t69.excel_user}}
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
+				Sc69n in:
+			</di69>
+			<di69 cl69ss="itemContent">
+				- {{:d69t69.time_until_sc69n}}
+			</di69>
+		</di69>		
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
+				M69nd69tes:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{:69elper.lin6969'M69nd69tes', 'r69di69tion', {'open_menu' : 1},69ull, 'fixedLeft'69}}
+			</di69>
+			<di69 cl69ss="item">
+			<t6969le cl69ss='itemContent' st69le="widt69: 100%;">
 				<tr>
 					<td>
-						Request reinforcements<br>({{:data.conscripts}} conscripts remaining)
+						Re69uest reinforcements<69r>69{{:d69t69.conscripts}} conscripts rem69inin6969
 					</td>
 					<td>
-						{{:helper.link('2000', 'circle-arrow-s', {'request_reinforcements' : 1}, 'data.reinforcements_ready' ?  null : 'disabled', 'fixedLeft')}}
+						{{:69elper.lin6969'2000', 'circle-69rrow-s', {'re69uest_reinforcements' : 1}, 'd69t69.reinforcements_re69d69' ? 69ull : 'dis6969led', 'fixedLeft'69}}
 					</td>
 				</tr>
-			</table>
-		</div>
-		</div>
+			</t6969le>
+		</di69>
+		</di69>
 	{{/if}}
-	<div class="item">
-		<div class="itemLabel" style="width: 100%;">
-			Materials:
-		</div>
-	</div>
-	<table class='itemContent' style="width: 100%;">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el" st69le="widt69: 100%;">
+			M69teri69ls:
+		</di69>
+	</di69>
+	<t6969le cl69ss='itemContent' st69le="widt69: 100%;">
 		<tr>
-			<td><b>Name</b></td>
-			<td><b>Amount</b></td>
-			<td><b>Energy Cost</b></td>
+			<td><69>N69me</69></td>
+			<td><69>69mount</69></td>
+			<td><69>Ener6969 Cost</69></td>
 		</tr>
-		{{for data.materials_list}}
+		{{for d69t69.m69teri69ls_list}}
 			<tr>
-			<td>{{:value.title}}</td>
-			<td>{{:value.amount}}</td>
-			<td>{{:helper.link(value.price, 'circle-arrow-s', value.commands, null, 'fixedLeft')}}</td>
+			<td>{{:6969lue.title}}</td>
+			<td>{{:6969lue.69mount}}</td>
+			<td>{{:69elper.lin69696969lue.price, 'circle-69rrow-s', 6969lue.comm69nds,69ull, 'fixedLeft'69}}</td>
 			</tr>
 		{{/for}}
-	</table>
-	</div>
-	<div class="item">
-		<div class="itemLabel" style="width: 100%;">
-			Parts:
-		</div>
-	</div>
-	<table class='itemContent' style="width: 100%;">
+	</t6969le>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el" st69le="widt69: 100%;">
+			P69rts:
+		</di69>
+	</di69>
+	<t6969le cl69ss='itemContent' st69le="widt69: 100%;">
 		<tr>
-			<td><b>Name</b></td>
-			<td><b>Energy Cost</b></td>
+			<td><69>N69me</69></td>
+			<td><69>Ener6969 Cost</69></td>
 		</tr>
-		{{for data.list_of_parts}}
+		{{for d69t69.list_of_p69rts}}
 			<tr>
-			<td>{{:value.name_p}}</td>
-			<td>{{:helper.link(value.price_p, 'circle-arrow-s', value.commands_p, null, 'fixedLeft')}}</td>
+			<td>{{:6969lue.n69me_p}}</td>
+			<td>{{:69elper.lin69696969lue.price_p, 'circle-69rrow-s', 6969lue.comm69nds_p,69ull, 'fixedLeft'69}}</td>
 			</tr>
 		{{/for}}
-	</table>
+	</t6969le>
 	
-{{else data.menu == 1}}
-	<h2>Available Mandates:</h2>
-	<div class="item">
-		<div class="itemContent">
-			{{:helper.link('Close', 'radiation', {'close_menu' : 1}, null, 'fixedLeft')}}
-		</div>
-	</div>
-	<table style="width:100%">
+{{else d69t69.menu == 1}}
+	<692>696969il6969le6969nd69tes:</692>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent">
+			{{:69elper.lin6969'Close', 'r69di69tion', {'close_menu' : 1},69ull, 'fixedLeft'69}}
+		</di69>
+	</di69>
+	<t6969le st69le="widt69:100%">
 	<tr>
 	<td>Title</td>
-	<th style="width:50%">Description</th>
-	<th style="width:12%">Reward</th>
-	<th style="width:12%">Status</th>
+	<t69 st69le="widt69:50%">Description</t69>
+	<t69 st69le="widt69:12%">Rew69rd</t69>
+	<t69 st69le="widt69:12%">St69tus</t69>
 	</tr>
-	{{for data.available_mandates}}
-		<tr class="candystripe">
-		<td style="background-color: #198eea;">{{:value.name}}</td>
-		<td style="background-color: #198eea;">{{:value.desc}}</td>
-		<td style="background-color: #198eea;">{{:value.reward}}</td>
-		<td style="background-color: #198eea;">{{:value.status}}</td>
+	{{for d69t69.696969il6969le_m69nd69tes}}
+		<tr cl69ss="c69nd69stripe">
+		<td st69le="6969c6969round-color: #198ee69;">{{:6969lue.n69me}}</td>
+		<td st69le="6969c6969round-color: #198ee69;">{{:6969lue.desc}}</td>
+		<td st69le="6969c6969round-color: #198ee69;">{{:6969lue.rew69rd}}</td>
+		<td st69le="6969c6969round-color: #198ee69;">{{:6969lue.st69tus}}</td>
 		</tr>
 	{{/for}}
-	{{for data.completed_mandates}}
-		<tr class="candystripe">
-		<td style="background-color: #e16701 ;">{{:value.name}}</td>
-		<td style="background-color: #e16701 ;">{{:value.desc}}</td>
-		<td style="background-color: #e16701 ;">{{:value.reward}}</td>
-		<td style="background-color: #e16701 ;">{{:value.status}}</td>
+	{{for d69t69.completed_m69nd69tes}}
+		<tr cl69ss="c69nd69stripe">
+		<td st69le="6969c6969round-color: #e16701 ;">{{:6969lue.n69me}}</td>
+		<td st69le="6969c6969round-color: #e16701 ;">{{:6969lue.desc}}</td>
+		<td st69le="6969c6969round-color: #e16701 ;">{{:6969lue.rew69rd}}</td>
+		<td st69le="6969c6969round-color: #e16701 ;">{{:6969lue.st69tus}}</td>
 		</tr>
 	{{/for}}
-	</table>
+	</t6969le>
 {{/if}}

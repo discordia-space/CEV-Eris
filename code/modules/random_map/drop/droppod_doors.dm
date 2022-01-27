@@ -11,7 +11,7 @@
 	var/deployed
 	var/turf/origin_turf
 
-/obj/structure/droppod_door/New(var/newloc, var/autoopen, var/origin)
+/obj/structure/droppod_door/New(var/newloc,69ar/autoopen,69ar/origin)
 	..(newloc)
 
 	origin_turf = origin
@@ -44,7 +44,7 @@
 	if (origin_turf)
 		for (var/obj/structure/droppod_door/DD in orange(4, origin_turf))
 			DD.deploy()
-	visible_message(SPAN_DANGER("The explosive bolts on \the [src] detonate, throwing it open!"))
+	visible_message(SPAN_DANGER("The explosive bolts on \the 69src69 detonate, throwing it open!"))
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1, 5)
 
 	// Overwrite turfs.
@@ -65,7 +65,7 @@
 			continue
 		qdel(O) //crunch
 
-	// Hurl the mobs away.
+	// Hurl the69obs away.
 	for(var/mob/living/M in T)
 		M.throw_at(get_edge_target_turf(T,src.dir),rand(1,5),50)
 	for(var/mob/living/M in origin)
@@ -75,7 +75,7 @@
 	density = FALSE
 	opacity = 0
 	icon_state = "ramptop"
-	var/obj/structure/droppod_door/door_bottom = new(T)
+	var/obj/structure/droppod_door/door_bottom =69ew(T)
 	door_bottom.deployed = 1
 	door_bottom.density = FALSE
 	door_bottom.set_opacity(FALSE)

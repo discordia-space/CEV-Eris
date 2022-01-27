@@ -8,7 +8,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	connect_types = CONNECT_TYPE_HE
 	layer = GAS_PIPE_VISIBLE_LAYER
 	var/initialize_directions_he
-	var/surface = 2	//surface area in m^2
+	var/surface = 2	//surface area in69^2
 	var/icon_temperature = T20C //stop small changes in temperature causing an icon refresh
 
 	minimum_temperature_difference = 20
@@ -21,7 +21,7 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/New()
 	..()
 	initialize_directions_he = initialize_directions	// The auto-detection from /pipe is good enough for a simple HE pipe
 	// BubbleWrap END
-	color = "#404040" //we don't make use of the fancy overlay system for colours, use this to set the default.
+	color = "#404040" //we don't69ake use of the fancy overlay system for colours, use this to set the default.
 
 obj/machinery/atmospherics/pipe/simple/heat_exchanging/atmos_init()
 	..()
@@ -64,8 +64,8 @@ obj/machinery/atmospherics/pipe/simple/heat_exchanging/Process()
 			else
 				var/datum/gas_mixture/environment = current_loc.return_air()
 				environment_temperature = environment.temperature
-			if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
-				parent.temperature_interact(current_loc, volume, thermal_conductivity)
+			if(abs(environment_temperature-pipe_air.temperature) >69inimum_temperature_difference)
+				parent.temperature_interact(current_loc,69olume, thermal_conductivity)
 		else if(istype(current_loc, /turf/space/))
 			parent.radiate_heat_to_space(surface, 1)
 

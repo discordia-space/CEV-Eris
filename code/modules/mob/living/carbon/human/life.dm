@@ -1,6 +1,6 @@
 //NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
-#define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
-#define HUMAN_CRIT_MAX_OXYLOSS ( 2 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
+#define HUMAN_MAX_OXYLOSS 1 //Defines how69uch oxyloss humans can get per tick. A tile with69o air at all (such as space) applies this69alue, otherwise it's a percentage of it.
+#define HUMAN_CRIT_MAX_OXYLOSS ( 2 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 569inute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
 
 #define HEAT_DAMAGE_LEVEL_1 2 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 4 //Amount of damage applied when your body temperature passes the 400K point
@@ -35,7 +35,7 @@
 	var/in_stasis = FALSE
 	var/stasis_timeofdeath = 0
 	var/pulse = PULSE_NORM
-	var/global/list/overlays_cache = null
+	var/global/list/overlays_cache =69ull
 	var/dodge_time = 0 // will be set to timeofgame on dodging
 
 /mob/living/carbon/human/Life()
@@ -54,9 +54,9 @@
 	// update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
 
-	// This is not an ideal place for this but it will do for now.
+	// This is69ot an ideal place for this but it will do for69ow.
 	if(wearing_rig && wearing_rig.offline)
-		wearing_rig = null
+		wearing_rig =69ull
 
 	. = ..()
 
@@ -65,7 +65,7 @@
 
 	voice = GetVoice()
 
-	//No need to update all of these procs if the guy is dead.
+	//No69eed to update all of these procs if the guy is dead.
 	if(. && !in_stasis)
 
 		//Organs and blood
@@ -86,7 +86,7 @@
 				confidence = TRUE
 			regen_slickness()
 
-		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this, needs to feel smother in the UI
+		if(life_tick % 2)	//Upadated every 2 life ticks, lots of for loops in this,69eeds to feel smother in the UI
 			for(var/obj/item/organ/external/E in organs)
 				E.update_limb_efficiency()
 			total_blood_req = 0
@@ -98,7 +98,7 @@
 				total_blood_req += I.blood_req
 				total_oxygen_req += I.oxygen_req
 				total_nutriment_req += (I.nutriment_req / 1000)
-			total_oxygen_req = min(total_oxygen_req, 100)
+			total_oxygen_req =69in(total_oxygen_req, 100)
 
 		if(!client)
 			species.handle_npc(src)
@@ -106,11 +106,11 @@
 	if(!handle_some_updates())
 		return											//We go ahead and process them 5 times for HUD images and other stuff though.
 
-	//Update our name based on whether our face is obscured/disfigured
+	//Update our69ame based on whether our face is obscured/disfigured
 	name = get_visible_name()
 
 /mob/living/carbon/human/proc/handle_some_updates()
-	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk mobs spawned like the clowns on the clown shuttle
+	if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > 6000))	//We are long dead, or we're junk69obs spawned like the clowns on the clown shuttle
 		return FALSE
 	return TRUE
 
@@ -118,12 +118,12 @@
 	if(!in_stasis)
 		..()
 
-// Calculate how vulnerable the human is to under- and overpressure.
+// Calculate how69ulnerable the human is to under- and overpressure.
 // Returns 0 (equals 0 %) if sealed in an undamaged suit, 1 if unprotected (equals 100%).
-// Suitdamage can modifiy this in 10% steps.
+// Suitdamage can69odifiy this in 10% steps.
 /mob/living/carbon/human/proc/get_pressure_weakness()
 
-	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
+	var/pressure_adjustment_coefficient = 1 // Assume69o protection at first.
 
 	if(wear_suit && (wear_suit.item_flags & STOPPRESSUREDAMAGE) && head && (head.item_flags & STOPPRESSUREDAMAGE)) // Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
@@ -134,11 +134,11 @@
 			if(S.can_breach && S.damage)
 				pressure_adjustment_coefficient += S.damage * 0.1
 
-	pressure_adjustment_coefficient = min(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
+	pressure_adjustment_coefficient =69in(1,max(pressure_adjustment_coefficient,0)) // So it isn't less than 0 or larger than 1.
 
 	return pressure_adjustment_coefficient
 
-// Calculate how much of the enviroment pressure-difference affects the human.
+// Calculate how69uch of the enviroment pressure-difference affects the human.
 /mob/living/carbon/human/calculate_affecting_pressure(var/pressure)
 	var/pressure_difference
 
@@ -153,13 +153,13 @@
 		pressure_difference = 0
 
 	else
-		// Otherwise calculate how much of that absolute pressure difference affects us, can be 0 to 1 (equals 0% to 100%).
+		// Otherwise calculate how69uch of that absolute pressure difference affects us, can be 0 to 1 (equals 0% to 100%).
 		// This is our relative difference.
 		pressure_difference *= get_pressure_weakness()
 
 	// The difference is always positive to avoid extra calculations.
 	// Apply the relative difference on a standard atmosphere to get the final result.
-	// The return value will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
+	// The return69alue will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
 	if(pressure < ONE_ATMOSPHERE)
 		return ONE_ATMOSPHERE - pressure_difference
 	else
@@ -170,13 +170,13 @@
 	//Vision
 	var/obj/item/organ/vision
 	if(species.vision_organ)
-		vision = random_organ_by_process(species.vision_organ)	//You can't really have 2 vision organs that see at the same time, so this is emulated by switching between the eyes.
+		vision = random_organ_by_process(species.vision_organ)	//You can't really have 269ision organs that see at the same time, so this is emulated by switching between the eyes.
 
-	if(!species.vision_organ) // Presumably if a species has no vision organs, they see via some other means.
+	if(!species.vision_organ) // Presumably if a species has69o69ision organs, they see69ia some other69eans.
 		eye_blind = 0
 		blinded = FALSE
 		eye_blurry = 0
-	else if(!vision || (vision && vision.is_broken()))   // Vision organs cut out or broken? Permablind.
+	else if(!vision || (vision &&69ision.is_broken()))   //69ision organs cut out or broken? Permablind.
 		eye_blind = 1
 		blinded = TRUE
 		eye_blurry = 1
@@ -184,15 +184,15 @@
 		//blindness
 		if(!(sdisabilities & BLIND))
 			if(equipment_tint_total >= TINT_BLIND)	// Covered eyes, heal faster
-				eye_blurry = max(eye_blurry-2, 0)
+				eye_blurry =69ax(eye_blurry-2, 0)
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && paralysis < 1))
 			to_chat(src, "\red You have a seizure!")
-			for(var/mob/O in viewers(src, null))
+			for(var/mob/O in69iewers(src,69ull))
 				if(O == src)
 					continue
-				O.show_message(text(SPAN_DANGER("[src] starts having a seizure!")), 1)
+				O.show_message(text(SPAN_DANGER("69src69 starts having a seizure!")), 1)
 			Paralyse(10)
 			make_jittery(1000)
 	if (disabilities & COUGHING)
@@ -210,19 +210,19 @@
 					if(1)
 						emote("twitch")
 					if(2 to 3)
-						say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")]")
+						say("69prob(50) ? ";" : ""6969pick("SHIT", "PISS", "FUCK", "CUNT", "COCKSUCKER", "MOTHERFUCKER", "TITS")69")
 				make_jittery(100)
 				return
-	if (disabilities & NERVOUS)
+	if (disabilities &69ERVOUS)
 		speech_problem_flag = 1
 		if (prob(10))
-			stuttering = max(10, stuttering)
+			stuttering =69ax(10, stuttering)
 
 	if(stat != DEAD)
 		var/rn = rand(0, 200)
 		if(getBrainLoss() >= 5)
 			if(0 <= rn && rn <= 3)
-				custom_pain("Your head feels numb and painful.")
+				custom_pain("Your head feels69umb and painful.")
 		if(getBrainLoss() >= 15)
 			if(4 <= rn && rn <= 6) if(eye_blurry <= 0)
 				to_chat(src, SPAN_WARNING("It becomes hard to see for some reason."))
@@ -247,11 +247,11 @@
 		return
 
 	if(getFireLoss())
-		if((COLD_RESISTANCE in mutations) || (prob(1)))
+		if((COLD_RESISTANCE in69utations) || (prob(1)))
 			heal_organ_damage(0,1)
 
 	// DNA2 - Gene processing.
-	// The HULK stuff that was here is now in the hulk gene.
+	// The HULK stuff that was here is69ow in the hulk gene.
 	for(var/datum/dna/gene/gene in dna_genes)
 		if(!gene.block)
 			continue
@@ -312,9 +312,9 @@
 
 /mob/living/carbon/human/handle_post_breath(datum/gas_mixture/breath)
 	..()
-	//spread some viruses while we are at it
-	if(breath && virus2.len > 0 && prob(10))
-		for(var/mob/living/carbon/M in view(1,src))
+	//spread some69iruses while we are at it
+	if(breath &&69irus2.len > 0 && prob(10))
+		for(var/mob/living/carbon/M in69iew(1,src))
 			src.spread_disease_to(M)
 
 
@@ -328,14 +328,14 @@
 				rig_supply = rig.air_supply
 
 		if (!rig_supply && (!contents.Find(internal) || !((wear_mask && (wear_mask.item_flags & AIRTIGHT)) || (head && (head.item_flags & AIRTIGHT)))))
-			internal = null
+			internal =69ull
 
 		if(internal)
 			return internal.remove_air_volume(volume_needed)
 		else if(HUDneed.Find("internal"))
-			var/obj/screen/HUDelm = HUDneed["internal"]
+			var/obj/screen/HUDelm = HUDneed69"internal"69
 			HUDelm.update_icon()
-	return null
+	return69ull
 
 /mob/living/carbon/human/get_breath_modulo()
 	var/breath_modulo_total
@@ -349,7 +349,7 @@
 	if(status_flags & GODMODE)
 		return
 
-	//check if we actually need to process breath
+	//check if we actually69eed to process breath
 	if(!breath || (breath.total_moles == 0))
 		failed_last_breath = 1
 		if(prob(20))
@@ -359,7 +359,7 @@
 		else
 			adjustOxyLoss(HUMAN_CRIT_MAX_OXYLOSS)
 
-		oxygen_alert = max(oxygen_alert, 1)
+		oxygen_alert =69ax(oxygen_alert, 1)
 		return 0
 
 	if(get_organ_efficiency(OP_LUNGS) > 1)
@@ -371,7 +371,7 @@
 /mob/living/carbon/human/proc/handle_breath_lungs(datum/gas_mixture/breath)
 	if(!breath)
 		return FALSE
-	//vars - feel free to modulate if you want more effects that are not gained with efficiency
+	//vars - feel free to69odulate if you want69ore effects that are69ot gained with efficiency
 	var/breath_type = species.breath_type ? species.breath_type : "oxygen"
 	var/poison_type = species.poison_type ? species.poison_type : "plasma"
 	var/exhale_type = species.exhale_type ? species.exhale_type : 0
@@ -385,8 +385,8 @@
 
 	var/lung_efficiency = get_organ_efficiency(OP_LUNGS)
 
-	var/safe_pressure_min = min_breath_pressure // Minimum safe partial pressure of breathable gas in kPa
-	// Lung damage increases the minimum safe pressure.
+	var/safe_pressure_min =69in_breath_pressure //69inimum safe partial pressure of breathable gas in kPa
+	// Lung damage increases the69inimum safe pressure.
 	if(lung_efficiency < 50)
 		safe_pressure_min *= 1.5
 	else if(lung_efficiency < 80)
@@ -397,15 +397,15 @@
 	var/failed_inhale = 0
 	var/failed_exhale = 0
 
-	var/inhaling = breath.gas[breath_type]
-	var/poison = breath.gas[poison_type]
-	var/exhaling = exhale_type ? breath.gas[exhale_type] : 0
+	var/inhaling = breath.gas69breath_type69
+	var/poison = breath.gas69poison_type69
+	var/exhaling = exhale_type ? breath.gas69exhale_type69 : 0
 
 	var/inhale_pp = (inhaling/breath.total_moles)*breath_pressure
 	var/toxins_pp = (poison/breath.total_moles)*breath_pressure
 	var/exhaled_pp = (exhaling/breath.total_moles)*breath_pressure
 
-	// Not enough to breathe
+	//69ot enough to breathe
 	if(inhale_pp < safe_pressure_min)
 		if(prob(20))
 			emote("gasp")
@@ -422,7 +422,7 @@
 
 	if(exhale_type)
 		breath.adjust_gas_temp(exhale_type, inhaled_gas_used, bodytemperature, update = 0) //update afterwards
-		// Too much exhaled gas in the air
+		// Too69uch exhaled gas in the air
 		var/word
 		var/warn_prob
 		var/oxyloss
@@ -448,32 +448,32 @@
 			co2_alert = 0
 
 		if(!co2_alert && word && prob(warn_prob))
-			to_chat(src, SPAN_WARNING("You feel [word]."))
+			to_chat(src, SPAN_WARNING("You feel 69word69."))
 			adjustOxyLoss(oxyloss)
 			co2_alert = alert
 
-	// Too much poison in the air.
+	// Too69uch poison in the air.
 
 	if(toxins_pp > safe_toxins_max)
 		var/ratio = (poison/safe_toxins_max) * 10
-		reagents.add_reagent("toxin", CLAMP(ratio, MIN_TOXIN_DAMAGE, MAX_TOXIN_DAMAGE))
+		reagents.add_reagent("toxin", CLAMP(ratio,69IN_TOXIN_DAMAGE,69AX_TOXIN_DAMAGE))
 		breath.adjust_gas(poison_type, -poison/6, update = 0) //update after
 		plasma_alert = 1
 	else
 		plasma_alert = 0
 
 	// If there's some other shit in the air lets deal with it here.
-	if(breath.gas["sleeping_agent"])
-		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
-		if(SA_pp > SA_para_min)		// Enough to make us paralysed for a bit
+	if(breath.gas69"sleeping_agent"69)
+		var/SA_pp = (breath.gas69"sleeping_agent"69 / breath.total_moles) * breath_pressure
+		if(SA_pp > SA_para_min)		// Enough to69ake us paralysed for a bit
 			Paralyse(3)	// 3 gives them one second to wake up and run away a bit!
-			if(SA_pp > SA_sleep_min)	// Enough to make us sleep as well
+			if(SA_pp > SA_sleep_min)	// Enough to69ake us sleep as well
 				Sleeping(5)
 		else if(SA_pp > 0.15)	// There is sleeping gas in their lungs, but only a little, so give them a bit of a warning
 			if(prob(20))
 				emote(pick("giggle", "laugh"))
 
-		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
+		breath.adjust_gas("sleeping_agent", -breath.gas69"sleeping_agent"69/6, update = 0) //update after
 
 	// Were we able to breathe?
 	var/failed_breath = failed_inhale || failed_exhale
@@ -489,7 +489,7 @@
 	if(!species)
 		return
 	// Hot air hurts :( :(
-	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
+	if((breath.temperature < species.cold_level_1 || breath.temperature > species.heat_level_1) && !(COLD_RESISTANCE in69utations))
 		var/damage = 0
 		if(breath.temperature <= species.cold_level_1)
 			if(prob(20))
@@ -523,16 +523,16 @@
 		//breathing in hot/cold air also heats/cools you a bit
 		var/temp_adj = breath.temperature - bodytemperature
 		if (temp_adj < 0)
-			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+			temp_adj /= (BODYTEMP_COLD_DIVISOR * 5)	//don't raise temperature as69uch as if we were directly exposed
 		else
-			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as much as if we were directly exposed
+			temp_adj /= (BODYTEMP_HEAT_DIVISOR * 5)	//don't raise temperature as69uch as if we were directly exposed
 
 		var/relative_density = breath.total_moles / (MOLES_CELLSTANDARD * BREATH_PERCENTAGE)
 		temp_adj *= relative_density
 
 		if (temp_adj > BODYTEMP_HEATING_MAX) temp_adj = BODYTEMP_HEATING_MAX
 		if (temp_adj < BODYTEMP_COOLING_MAX) temp_adj = BODYTEMP_COOLING_MAX
-		//world << "Breath: [breath.temperature], [src]: [bodytemperature], Adjusting: [temp_adj]"
+		//world << "Breath: 69breath.temperature69, 69src69: 69bodytemperature69, Adjusting: 69temp_adj69"
 		bodytemperature += temp_adj
 
 	else if(breath.temperature >= species.heat_discomfort_level)
@@ -554,7 +554,7 @@
 
 	//Check for contaminants before anything else because we don't want to skip it.
 	for(var/g in environment.gas)
-		if(gas_data.flags[g] & XGM_GAS_CONTAMINANT && environment.gas[g] > gas_data.overlay_limit[g] + 1)
+		if(gas_data.flags69g69 & XGM_GAS_CONTAMINANT && environment.gas69g69 > gas_data.overlay_limit69g69 + 1)
 			pl_effects()
 			break
 
@@ -569,36 +569,36 @@
 		var/loc_temp = T0C
 		if(istype(loc, /mob/living/exosuit))
 			var/mob/living/exosuit/M = loc
-			loc_temp =  M.return_temperature()
+			loc_temp = 69.return_temperature()
 		else if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 			var/obj/machinery/atmospherics/unary/cryo_cell/M = loc
-			loc_temp = M.air_contents.temperature
+			loc_temp =69.air_contents.temperature
 		else
 			loc_temp = environment.temperature
 
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			pressure_alert = 0
-			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
+			return // Temperatures are within69ormal ranges, fuck all this processing. ~Ccomp
 
 		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection (convection)
 		var/temp_adj = 0
 		if(loc_temp < bodytemperature)			//Place is colder than we are
-			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			var/thermal_protection = get_cold_protection(loc_temp) //This returns a 0 - 169alue, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
-				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be negative
+				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_COLD_DIVISOR)	//this will be69egative
 		else if (loc_temp > bodytemperature)			//Place is hotter than we are
-			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 1 value, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
+			var/thermal_protection = get_heat_protection(loc_temp) //This returns a 0 - 169alue, which corresponds to the percentage of protection based on what you're wearing and what you're exposed to.
 			if(thermal_protection < 1)
 				temp_adj = (1-thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
-		//Use heat transfer as proportional to the gas density. However, we only care about the relative density vs standard 101 kPa/20 C air. Therefore we can use mole ratios
-		var/relative_density = environment.total_moles / MOLES_CELLSTANDARD
+		//Use heat transfer as proportional to the gas density. However, we only care about the relative density69s standard 101 kPa/20 C air. Therefore we can use69ole ratios
+		var/relative_density = environment.total_moles /69OLES_CELLSTANDARD
 		bodytemperature += between(BODYTEMP_COOLING_MAX, temp_adj*relative_density, BODYTEMP_HEATING_MAX)
 
-	// +/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
+	// +/- 50 degrees from 310.15K is the 'safe' zone, where69o damage is dealt.
 	if(bodytemperature >= species.heat_level_1)
 		//Body temperature is too hot.
-		fire_alert = max(fire_alert, FIRE_ALERT_COLD)
+		fire_alert =69ax(fire_alert, FIRE_ALERT_COLD)
 		if(status_flags & GODMODE)	return 1	//godmode
 		var/burn_dam = 0
 		switch(bodytemperature)
@@ -609,10 +609,10 @@
 			if(species.heat_level_3 to INFINITY)
 				burn_dam = HEAT_DAMAGE_LEVEL_3
 		take_overall_damage(burn=burn_dam, used_weapon = "High Body Temperature")
-		fire_alert = max(fire_alert, FIRE_ALERT_HOT)
+		fire_alert =69ax(fire_alert, FIRE_ALERT_HOT)
 
 	else if(bodytemperature <= species.cold_level_1)
-		fire_alert = max(fire_alert, FIRE_ALERT_COLD)
+		fire_alert =69ax(fire_alert, FIRE_ALERT_COLD)
 		if(status_flags & GODMODE)	return 1	//godmode
 
 		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
@@ -625,14 +625,14 @@
 				if(species.cold_level_2 to species.cold_level_1)
 					burn_dam = COLD_DAMAGE_LEVEL_3
 			take_overall_damage(burn=burn_dam, used_weapon = "Low Body Temperature")
-			fire_alert = max(fire_alert, FIRE_ALERT_COLD)
+			fire_alert =69ax(fire_alert, FIRE_ALERT_COLD)
 
-	// Account for massive pressure differences.  Done by Polymorph
-	// Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
+	// Account for69assive pressure differences.  Done by Polymorph
+	//69ade it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph69ow has an axe sticking from his head for his previous hardcoded69onsense!
 	if(status_flags & GODMODE)	return 1	//godmode
 
 	if(adjusted_pressure >= species.hazard_high_pressure)
-		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
+		var/pressure_damage =69in( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT ,69AX_HIGH_PRESSURE_DAMAGE)
 		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
 		pressure_alert = 2
 	else if(adjusted_pressure >= species.warning_high_pressure)
@@ -642,10 +642,10 @@
 	else if(adjusted_pressure >= species.hazard_low_pressure)
 		pressure_alert = -1
 	else
-		if( !(COLD_RESISTANCE in mutations))
+		if( !(COLD_RESISTANCE in69utations))
 			take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
-			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
-				adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
+			if(getOxyLoss() < 55) // 11 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a69inute
+				adjustOxyLoss(4)  // 16 OxyLoss per 4 ticks when69o internals present; unconsciousness in 13 ticks, roughly twenty seconds
 			pressure_alert = -2
 		else
 			pressure_alert = -1
@@ -656,7 +656,7 @@
 /mob/living/carbon/human/proc/adjust_body_temperature(current, loc_temp, boost)
 	var/temperature = current
 	var/difference = abs(current-loc_temp)	//get difference
-	var/increments// = difference/10			//find how many increments apart they are
+	var/increments// = difference/10			//find how69any increments apart they are
 	if(difference > 50)
 		increments = difference/5
 	else
@@ -664,49 +664,49 @@
 	var/change = increments*boost	// Get the amount to change by (x per increment)
 	var/temp_change
 	if(current < loc_temp)
-		temperature = min(loc_temp, temperature+change)
+		temperature =69in(loc_temp, temperature+change)
 	else if(current > loc_temp)
-		temperature = max(loc_temp, temperature-change)
+		temperature =69ax(loc_temp, temperature-change)
 	temp_change = (temperature - current)
 	return temp_change
 */
 
 /mob/living/carbon/human/proc/stabilize_body_temperature()
-	if (species.passive_temp_gain) // We produce heat naturally.
+	if (species.passive_temp_gain) // We produce heat69aturally.
 		bodytemperature += species.passive_temp_gain
-	if (species.body_temperature == null)
-		return //this species doesn't have metabolic thermoregulation
+	if (species.body_temperature ==69ull)
+		return //this species doesn't have69etabolic thermoregulation
 
 	var/body_temperature_difference = species.body_temperature - bodytemperature
 
 	if (abs(body_temperature_difference) < 0.5)
 		return //fuck this precision
 	if (on_fire)
-		return //too busy for pesky metabolic regulation
+		return //too busy for pesky69etabolic regulation
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
-		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
+		if(nutrition >= 2) //If we are69ery,69ery cold we'll use up quite a bit of69utriment to heat us up.
 			adjustNutrition(-2)
-		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
-		//world << "Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
-//				log_debug("Cold. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
+		var/recovery_amt =69ax((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
+		//world << "Cold. Difference = 69body_temperature_difference69. Recovering 69recovery_amt69"
+//				log_debug("Cold. Difference = 69body_temperature_difference69. Recovering 69recovery_amt69")
 		bodytemperature += recovery_amt
 	else if(species.cold_level_1 <= bodytemperature && bodytemperature <= species.heat_level_1)
 		var/recovery_amt = body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
-		//world << "Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
-//				log_debug("Norm. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
+		//world << "Norm. Difference = 69body_temperature_difference69. Recovering 69recovery_amt69"
+//				log_debug("Norm. Difference = 69body_temperature_difference69. Recovering 69recovery_amt69")
 		bodytemperature += recovery_amt
 	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
-		//We totally need a sweat system cause it totally makes sense...~
-		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with negative numbers
-		//world << "Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]"
-//				log_debug("Hot. Difference = [body_temperature_difference]. Recovering [recovery_amt]")
+		//We totally69eed a sweat system cause it totally69akes sense...~
+		var/recovery_amt =69in((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM)	//We're dealing with69egative69umbers
+		//world << "Hot. Difference = 69body_temperature_difference69. Recovering 69recovery_amt69"
+//				log_debug("Hot. Difference = 69body_temperature_difference69. Recovering 69recovery_amt69")
 		bodytemperature += recovery_amt
 
-	//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
+	//This proc returns a69umber69ade up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 	. = 0
-	//Handle normal clothing
+	//Handle69ormal clothing
 	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if(C)
 			if(C.max_heat_protection_temperature && C.max_heat_protection_temperature >= temperature)
@@ -715,7 +715,7 @@
 //See proc/get_heat_protection_flags(temperature) for the description of this proc.
 /mob/living/carbon/human/proc/get_cold_protection_flags(temperature)
 	. = 0
-	//Handle normal clothing
+	//Handle69ormal clothing
 	for(var/obj/item/clothing/C in list(head,wear_suit,w_uniform,shoes,gloves,wear_mask))
 		if(C)
 			if(C.min_cold_protection_temperature && C.min_cold_protection_temperature <= temperature)
@@ -726,10 +726,10 @@
 	return get_thermal_protection(thermal_protection_flags)
 
 /mob/living/carbon/human/get_cold_protection(temperature)
-	if(COLD_RESISTANCE in mutations)
+	if(COLD_RESISTANCE in69utations)
 		return 1 //Fully protected from the cold.
 
-	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
+	temperature =69ax(temperature, 2.7) //There is an occasional bug where the temperature is69iscalculated in ares with a small amount of gas on them, so this is69ecessary to ensure that that bug does69ot affect this calculation. Space's temperature is 2.7K and69ost suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_cold_protection_flags(temperature)
 	return get_thermal_protection(thermal_protection_flags)
 
@@ -750,7 +750,7 @@
 			. += THERMAL_PROTECTION_ARM_LEFT
 		if(flags & ARM_RIGHT)
 			. += THERMAL_PROTECTION_ARM_RIGHT
-	return min(1,.)
+	return69in(1,.)
 
 /mob/living/carbon/human/handle_chemicals_in_body()
 	if(in_stasis)
@@ -766,7 +766,7 @@
 		metabolism_effects.process()
 
 		if(CE_PAINKILLER in chem_effects)
-			analgesic = chem_effects[CE_PAINKILLER]
+			analgesic = chem_effects69CE_PAINKILLER69
 		if(!(CE_ALCOHOL in chem_effects))
 			if(stats.getPerk(/datum/perk/inspiration))
 				stats.removePerk(/datum/perk/active_inspiration)
@@ -776,7 +776,7 @@
 		var/total_plasmaloss = 0
 		for(var/obj/item/I in src)
 			if(I.contaminated)
-				total_plasmaloss += vsc.plc.CONTAMINATION_LOSS
+				total_plasmaloss +=69sc.plc.CONTAMINATION_LOSS
 		if(!(status_flags & GODMODE)) adjustToxLoss(total_plasmaloss)
 
 	if(status_flags & GODMODE)	return 0	//godmode
@@ -814,7 +814,7 @@
 	else				//ALIVE. LIGHTS ARE ON
 		updatehealth()	//TODO
 
-		if(species.has_process[BP_BRAIN] && !has_brain()) //No brain = death
+		if(species.has_process69BP_BRAIN69 && !has_brain()) //No brain = death
 			death()
 			blinded = TRUE
 			silent = 0
@@ -833,7 +833,7 @@
 				silent = 0
 				return 1
 
-		//UNCONSCIOUS. NO-ONE IS HOME
+		//UNCONSCIOUS.69O-ONE IS HOME
 		if(getOxyLoss() > (species.total_health/2))
 			Paralyse(3)
 
@@ -852,7 +852,7 @@
 			speech_problem_flag = 1
 			handle_dreams()
 			if (mind)
-				//Are they SSD? If so we'll keep them asleep but work off some of that sleep var in case of stoxin or similar.
+				//Are they SSD? If so we'll keep them asleep but work off some of that sleep69ar in case of stoxin or similar.
 				if(client || sleeping > 3)
 					AdjustSleeping(-1)
 			if( prob(2) && health)
@@ -871,23 +871,23 @@
 
 		//Ears
 		if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-			ear_deaf = max(ear_deaf, 1)
+			ear_deaf =69ax(ear_deaf, 1)
 		else if(ear_deaf)			//deafness, heals slowly over time
 			adjustEarDamage(0,-1)
 		else if(istype(l_ear, /obj/item/clothing/ears/earmuffs) || istype(r_ear, /obj/item/clothing/ears/earmuffs))	//resting your ears with earmuffs heals ear damage faster
 			adjustEarDamage(-0.15)
-			ear_deaf = max(ear_deaf, 1)
-		else if(ear_damage < 25)	//ear damage heals slowly under this threshold. otherwise you'll need earmuffs
+			ear_deaf =69ax(ear_deaf, 1)
+		else if(ear_damage < 25)	//ear damage heals slowly under this threshold. otherwise you'll69eed earmuffs
 			adjustEarDamage(-0.05)
 
 		//Resting
 		if(resting)
-			dizziness = max(0, dizziness - 15)
-			jitteriness = max(0, jitteriness - 15)
+			dizziness =69ax(0, dizziness - 15)
+			jitteriness =69ax(0, jitteriness - 15)
 			adjustHalLoss(-3)
 		else
-			dizziness = max(0, dizziness - 3)
-			jitteriness = max(0, jitteriness - 3)
+			dizziness =69ax(0, dizziness - 3)
+			jitteriness =69ax(0, jitteriness - 3)
 			adjustHalLoss(-1)
 
 		//Other
@@ -895,12 +895,12 @@
 
 		if (drowsyness)
 			drowsyness--
-			eye_blurry = max(2, eye_blurry)
+			eye_blurry =69ax(2, eye_blurry)
 			if (prob(5))
 				sleeping += 1
 				Paralyse(5)
 
-		confused = max(0, confused - 1)
+		confused =69ax(0, confused - 1)
 
 		// If you're dirty, your gloves will become dirty, too.
 		if(gloves && germ_level > gloves.germ_level && prob(10))
@@ -916,34 +916,34 @@
 	if(!overlays_cache)
 		overlays_cache = list()
 		overlays_cache.len = 23
-		overlays_cache[1] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage1")
-		overlays_cache[2] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage2")
-		overlays_cache[3] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage3")
-		overlays_cache[4] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage4")
-		overlays_cache[5] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage5")
-		overlays_cache[6] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage6")
-		overlays_cache[7] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage7")
-		overlays_cache[8] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage8")
-		overlays_cache[9] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage9")
-		overlays_cache[10] = image('icons/mob/screen1_full.dmi', "icon_state" = "passage10")
-		overlays_cache[11] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay1")
-		overlays_cache[12] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay2")
-		overlays_cache[13] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay3")
-		overlays_cache[14] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay4")
-		overlays_cache[15] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay5")
-		overlays_cache[16] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay6")
-		overlays_cache[17] = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay7")
-		overlays_cache[18] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay1")
-		overlays_cache[19] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay2")
-		overlays_cache[20] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay3")
-		overlays_cache[21] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay4")
-		overlays_cache[22] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
-		overlays_cache[23] = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
+		overlays_cache69169 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage1")
+		overlays_cache69269 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage2")
+		overlays_cache69369 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage3")
+		overlays_cache69469 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage4")
+		overlays_cache69569 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage5")
+		overlays_cache69669 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage6")
+		overlays_cache69769 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage7")
+		overlays_cache69869 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage8")
+		overlays_cache69969 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage9")
+		overlays_cache691069 = image('icons/mob/screen1_full.dmi', "icon_state" = "passage10")
+		overlays_cache691169 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay1")
+		overlays_cache691269 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay2")
+		overlays_cache691369 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay3")
+		overlays_cache691469 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay4")
+		overlays_cache691569 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay5")
+		overlays_cache691669 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay6")
+		overlays_cache691769 = image('icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay7")
+		overlays_cache691869 = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay1")
+		overlays_cache691969 = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay2")
+		overlays_cache692069 = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay3")
+		overlays_cache692169 = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay4")
+		overlays_cache692269 = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
+		overlays_cache692369 = image('icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
 
-	if(hud_updateflag) // update our mob's hud overlays, AKA what others see flaoting above our head
+	if(hud_updateflag) // update our69ob's hud overlays, AKA what others see flaoting above our head
 		handle_hud_list()
 
-	// now handle what we see on our screen
+	//69ow handle what we see on our screen
 
 	var/obj/item/implant/core_implant/cruciform/C = get_core_implant(/obj/item/implant/core_implant/cruciform)
 	if(C)
@@ -962,7 +962,7 @@
 
 	// Puke if toxloss is too high
 	if(!stat)
-		if (getToxLoss() >= 45 && nutrition > 20)
+		if (getToxLoss() >= 45 &&69utrition > 20)
 			vomit()
 
 	//0.1% chance of playing a scary sound to someone who's in complete darkness
@@ -974,36 +974,36 @@
 /*
 	Called by life(), instead of having the individual hud items update icons each tick and check for status changes
 	we only set those statuses and icons upon changes.  Then those HUD items will simply add those pre-made images.
-	This proc below is only called when those HUD elements need to change as determined by the mobs hud_updateflag.
+	This proc below is only called when those HUD elements69eed to change as determined by the69obs hud_updateflag.
 */
 
 
 /mob/living/carbon/human/proc/handle_hud_list()
 	if (BITTEST(hud_updateflag, HEALTH_HUD))
-		var/image/holder = hud_list[HEALTH_HUD]
+		var/image/holder = hud_list69HEALTH_HUD69
 		if(stat == DEAD)
 			holder.icon_state = "hudhealth-100" 	// X_X
 		else
 			var/percentage_health = RoundHealth((health-HEALTH_THRESHOLD_CRIT)/(maxHealth-HEALTH_THRESHOLD_CRIT)*100)
-			holder.icon_state = "hud[percentage_health]"
-		hud_list[HEALTH_HUD] = holder
+			holder.icon_state = "hud69percentage_health69"
+		hud_list69HEALTH_HUD69 = holder
 
 	if (BITTEST(hud_updateflag, LIFE_HUD))
-		var/image/holder = hud_list[LIFE_HUD]
+		var/image/holder = hud_list69LIFE_HUD69
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
 		else
 			holder.icon_state = "hudhealthy"
-		hud_list[LIFE_HUD] = holder
+		hud_list69LIFE_HUD69 = holder
 
 	if (BITTEST(hud_updateflag, STATUS_HUD))
 		var/foundVirus = 0
-		for (var/ID in virus2)
-			if (ID in virusDB)
+		for (var/ID in69irus2)
+			if (ID in69irusDB)
 				foundVirus = 1
 				break
 
-		var/image/holder = hud_list[STATUS_HUD]
+		var/image/holder = hud_list69STATUS_HUD69
 		if(stat == DEAD)
 			holder.icon_state = "huddead"
 		else if(foundVirus)
@@ -1017,7 +1017,7 @@
 		else
 			holder.icon_state = "hudhealthy"
 
-		var/image/holder2 = hud_list[STATUS_HUD_OOC]
+		var/image/holder2 = hud_list69STATUS_HUD_OOC69
 		if(stat == DEAD)
 			holder2.icon_state = "huddead"
 		else if(has_brain_worms())
@@ -1027,25 +1027,25 @@
 		else
 			holder2.icon_state = "hudhealthy"
 
-		hud_list[STATUS_HUD] = holder
-		hud_list[STATUS_HUD_OOC] = holder2
+		hud_list69STATUS_HUD69 = holder
+		hud_list69STATUS_HUD_OOC69 = holder2
 
 	if (BITTEST(hud_updateflag, ID_HUD))
-		var/image/holder = hud_list[ID_HUD]
+		var/image/holder = hud_list69ID_HUD69
 		if(wear_id)
 			var/obj/item/card/id/I = wear_id.GetIdCard()
 			if(I)
-				holder.icon_state = "hud[ckey(I.GetJobName())]"
+				holder.icon_state = "hud69ckey(I.GetJobName())69"
 			else
 				holder.icon_state = "hudunknown"
 		else
 			holder.icon_state = "hudunknown"
 
 
-		hud_list[ID_HUD] = holder
+		hud_list69ID_HUD69 = holder
 
 	if (BITTEST(hud_updateflag, WANTED_HUD))
-		var/image/holder = hud_list[WANTED_HUD]
+		var/image/holder = hud_list69WANTED_HUD69
 		holder.icon_state = "hudblank"
 		var/perpname = get_id_name(name)
 
@@ -1060,12 +1060,12 @@
 					holder.icon_state = "hudparolled"
 				if("Released")
 					holder.icon_state = "hudreleased"
-		hud_list[WANTED_HUD] = holder
+		hud_list69WANTED_HUD69 = holder
 
 	if (BITTEST(hud_updateflag,  IMPCHEM_HUD) || BITTEST(hud_updateflag, IMPTRACK_HUD))
 
-		var/image/holder1 = hud_list[IMPTRACK_HUD]
-		var/image/holder2 = hud_list[IMPCHEM_HUD]
+		var/image/holder1 = hud_list69IMPTRACK_HUD69
+		var/image/holder2 = hud_list69IMPCHEM_HUD69
 
 		holder1.icon_state = "hudblank"
 		holder2.icon_state = "hudblank"
@@ -1077,26 +1077,26 @@
 				if(istype(I,/obj/item/implant/chem))
 					holder2.icon_state = "hud_imp_chem"
 
-		hud_list[IMPTRACK_HUD] = holder1
-		hud_list[IMPCHEM_HUD]  = holder2
+		hud_list69IMPTRACK_HUD69 = holder1
+		hud_list69IMPCHEM_HUD69  = holder2
 
 	if (BITTEST(hud_updateflag, SPECIALROLE_HUD))
-		var/image/holder = hud_list[SPECIALROLE_HUD]
+		var/image/holder = hud_list69SPECIALROLE_HUD69
 		holder.icon_state = "hudblank"
-		if(mind && mind.antagonist.len != 0)
-			var/datum/antagonist/antag = mind.antagonist[1]	//only display the first antagonist role
-			if(hud_icon_reference[antag.role_text])
-				holder.icon_state = hud_icon_reference[antag.role_text]
+		if(mind &&69ind.antagonist.len != 0)
+			var/datum/antagonist/antag =69ind.antagonist69169	//only display the first antagonist role
+			if(hud_icon_reference69antag.role_text69)
+				holder.icon_state = hud_icon_reference69antag.role_text69
 			else
 				holder.icon_state = "hudsyndicate"
-			hud_list[SPECIALROLE_HUD] = holder
+			hud_list69SPECIALROLE_HUD69 = holder
 
 	if (BITTEST(hud_updateflag, EXCELSIOR_HUD))
-		var/image/holder = hud_list[EXCELSIOR_HUD]
+		var/image/holder = hud_list69EXCELSIOR_HUD69
 		holder.icon_state = "hudblank"
 		if(is_excelsior(src))
 			holder.icon_state = "hudexcelsior"
-		hud_list[EXCELSIOR_HUD] = holder
+		hud_list69EXCELSIOR_HUD69 = holder
 
 	hud_updateflag = 0
 
@@ -1111,7 +1111,7 @@
 	return slurring
 
 /mob/living/carbon/human/handle_stunned()
-	if(species.flags & NO_PAIN)
+	if(species.flags &69O_PAIN)
 		stunned = 0
 		return 0
 	if(..())
@@ -1143,11 +1143,11 @@
 	if(client)
 		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.lightMask, global_hud.nvg, global_hud.thermal, global_hud.meson, global_hud.science)
 	if(machine)
-		var/viewflags = machine.check_eye(src)
+		var/viewflags =69achine.check_eye(src)
 		if(viewflags < 0)
 			reset_view(null, 0)
 		else if(viewflags)
-			sight |= viewflags
+			sight |=69iewflags
 	else if(eyeobj)
 		if(eyeobj.owner != src)
 			reset_view(null)
@@ -1161,11 +1161,11 @@
 			isRemoteObserve = TRUE
 		else if(client.eye && istype(client.eye,/obj/structure/multiz))
 			isRemoteObserve = TRUE
-		else if(((mRemote in mutations) || remoteviewer) && remoteview_target)
+		else if(((mRemote in69utations) || remoteviewer) && remoteview_target)
 			if(remoteview_target.stat == CONSCIOUS)
 				isRemoteObserve = TRUE
 		if(!isRemoteObserve && client && !client.adminobs)
-			remoteview_target = null
+			remoteview_target =69ull
 			reset_view(null, FALSE)
 
 	update_equipment_vision()
@@ -1175,16 +1175,16 @@
 	..()
 	if(stat == DEAD)
 		return
-	if(XRAY in mutations)
+	if(XRAY in69utations)
 		sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 
 /mob/living/carbon/human/proc/regen_slickness(var/source_modifier = 1)
 	var/slick = TRUE
-	if (slickness == style*10) // is slickness at the maximum?
+	if (slickness == style*10) // is slickness at the69aximum?
 		slick = FALSE
-	slickness = max(min(slickness + 1 * source_modifier * style, style*10), 0)
-	if (slick && slickness == style*10 && style > 0) // if slickness was not at the maximum and now is
-		to_chat(src, SPAN_NOTICE("You feel slick!")) // notify of slickness entering maximum
+	slickness =69ax(min(slickness + 1 * source_modifier * style, style*10), 0)
+	if (slick && slickness == style*10 && style > 0) // if slickness was69ot at the69aximum and69ow is
+		to_chat(src, SPAN_NOTICE("You feel slick!")) //69otify of slickness entering69aximum
 
 /mob/living/carbon/human/proc/EnterStasis()
 	in_stasis = TRUE

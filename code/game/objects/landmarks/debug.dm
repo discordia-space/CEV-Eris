@@ -3,7 +3,7 @@
 
 /obj/landmark/debug/all_reagents/New()
 	for(var/id in GLOB.chemical_reagents_list)
-		var/datum/reagent/R = GLOB.chemical_reagents_list[id]
+		var/datum/reagent/R = GLOB.chemical_reagents_list69id69
 		var/obj/item/reagent_containers/glass/beaker/large/B = new /obj/item/reagent_containers/glass/beaker/large(src.loc)
 		B.name = R.name
 		B.reagents.add_reagent(id, B.volume, null, TRUE)

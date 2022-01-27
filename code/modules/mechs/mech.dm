@@ -1,7 +1,7 @@
 // Big stompy robots.
 /mob/living/exosuit
 	name = "exosuit"
-	desc = "A powerful machine piloted from a cockpit, but worn like a suit of armour."
+	desc = "A powerful69achine piloted from a cockpit, but worn like a suit of armour."
 	density = TRUE
 	opacity = TRUE
 //	anchored = TRUE
@@ -9,7 +9,7 @@
 	default_pixel_y = 0
 	status_flags = PASSEMOTES
 	a_intent = I_HURT
-	mob_size = MOB_GIGANTIC
+	mob_size =69OB_GIGANTIC
 	can_be_fed = 0
 	defaultHUD = "exosuits"
 	bad_type = /mob/living/exosuit
@@ -31,11 +31,11 @@
 	var/list/saved_access = list()
 	var/sync_access = 1
 
-	// Mob currently piloting the exosuit.
+	//69ob currently piloting the exosuit.
 	var/list/pilots
 	var/list/pilot_overlays
 
-	// Visible external components. Not strictly accurately named for non-humanoid machines (submarines) but w/e
+	//69isible external components.69ot strictly accurately69amed for69on-humanoid69achines (submarines) but w/e
 	var/obj/item/mech_component/manipulators/arms
 	var/obj/item/mech_component/propulsion/legs
 	var/obj/item/mech_component/sensors/head
@@ -44,46 +44,46 @@
 	// Invisible components.
 	var/datum/effect/effect/system/spark_spread/sparks
 
-	// Equipment tracking vars.
+	// E69uipment tracking69ars.
 	var/obj/item/selected_system
 	var/selected_hardpoint
 	var/list/hardpoints = list()
 	var/hardpoints_locked
 	var/maintenance_protocols
 
-	// Material
-	var/material/material = MATERIAL_STEEL
+	//69aterial
+	var/material/material =69ATERIAL_STEEL
 
-	// Cockpit access vars.
+	// Cockpit access69ars.
 	var/hatch_closed = FALSE
 	var/hatch_locked = FALSE
 
 	//Air!
 	var/use_air = FALSE
 
-	// Strafing - Is the mech currently strafing?
+	// Strafing - Is the69ech currently strafing?
 	var/strafing = FALSE
 
 /mob/living/exosuit/proc/occupant_message(msg as text)
 	for(var/mob/i in pilots)
-		to_chat(i, msg)
+		to_chat(i,69sg)
 
 /*
 /mob/living/exosuit/is_flooded()
 	. = (body && body.pilot_coverage >= 100 && hatch_closed) ? FALSE : ..()
 */
-/mob/living/exosuit/Initialize(mapload, var/obj/structure/heavy_vehicle_frame/source_frame)
+/mob/living/exosuit/Initialize(mapload,69ar/obj/structure/heavy_vehicle_frame/source_frame)
 	. = ..()
-	material = get_material_by_name("[material]")
-	if(!access_card) access_card = new (src)
+	material = get_material_by_name("69material69")
+	if(!access_card) access_card =69ew (src)
 
 	pixel_x = default_pixel_x
 	pixel_y = default_pixel_y
-	sparks = new(src)
+	sparks =69ew(src)
 
 	// Grab all the supplied components.
 	if(source_frame)
-		if(source_frame.set_name) name = source_frame.set_name
+		if(source_frame.set_name)69ame = source_frame.set_name
 		if(source_frame.arms)
 			source_frame.arms.forceMove(src)
 			arms = source_frame.arms
@@ -96,7 +96,7 @@
 		if(source_frame.body)
 			source_frame.body.forceMove(src)
 			body = source_frame.body
-		if(source_frame.material) material = source_frame.material
+		if(source_frame.material)69aterial = source_frame.material
 
 	updatehealth()
 
@@ -107,13 +107,13 @@
 			LAZYADD(component_descriptions, comp.exosuit_desc_string)
 		if(LAZYLEN(comp.has_hardpoints))
 			for(var/hardpoint in comp.has_hardpoints)
-				hardpoints[hardpoint] = null
+				hardpoints69hardpoint69 =69ull
 
 	if(head && head.radio)
-		radio = new(src)
+		radio =69ew(src)
 
 	if(LAZYLEN(component_descriptions))
-		desc = "[desc] It has been built with [english_list(component_descriptions)]."
+		desc = "69desc69 It has been built with 69english_list(component_descriptions)69."
 
 	// Create HUD.
 	create_HUD()
@@ -121,23 +121,23 @@
 
 /mob/living/exosuit/Destroy()
 
-	selected_system = null
+	selected_system =69ull
 
 	for(var/mob/living/Pilot in pilots)
 		eject(Pilot)
-	pilots = null
+	pilots =69ull
 
 	for(var/thing in HUDneed)
-		qdel(HUDneed[thing])
+		69del(HUDneed69thing69)
 	HUDneed.Cut()
 
 	for(var/hardpoint in hardpoints)
-		qdel(hardpoints[hardpoint])
+		69del(hardpoints69hardpoint69)
 	hardpoints.Cut()
 
-	QDEL_NULL(access_card)
-	QDEL_NULL(arms)
-	QDEL_NULL(legs)
+	69DEL_NULL(access_card)
+	69DEL_NULL(arms)
+	69DEL_NULL(legs)
 	QDEL_NULL(head)
 	QDEL_NULL(body)
 
@@ -152,14 +152,14 @@
 	. = ..()
 	if(.)
 		if(LAZYLEN(pilots) && (!hatch_closed || body.pilot_coverage < 100 || body.transparent_cabin))
-			to_chat(user, "It is being piloted by [english_list(pilots, nothing_text = "nobody")].")
+			to_chat(user, "It is being piloted by 69english_list(pilots,69othing_text = "nobody")69.")
 		if(hardpoints.len)
 			to_chat(user, "It has the following hardpoints:")
 			for(var/hardpoint in hardpoints)
-				var/obj/item/I = hardpoints[hardpoint]
-				to_chat(user, "- [hardpoint]: [istype(I) ? "[I]" : "nothing"].")
+				var/obj/item/I = hardpoints69hardpoint69
+				to_chat(user, "- 69hardpoint69: 69istype(I) ? "69I69" : "nothing"69.")
 		else
-			to_chat(user, "It has no visible hardpoints.")
+			to_chat(user, "It has69o69isible hardpoints.")
 
 		for(var/obj/item/mech_component/thing in list(arms, legs, head, body))
 			if(!thing)
@@ -174,9 +174,9 @@
 					damage_string = "badly damaged"
 				if(MECH_COMPONENT_DAMAGE_DAMAGED_TOTAL)
 					damage_string = "almost destroyed"
-			to_chat(user, "Its [thing.name] [thing.gender == PLURAL ? "are" : "is"] [damage_string].")
+			to_chat(user, "Its 69thing.name69 69thing.gender == PLURAL ? "are" : "is"69 69damage_string69.")
 
-		material ? to_chat(user, "Its frame is reinforced with [material].") : null
+		material ? to_chat(user, "Its frame is reinforced with 69material69.") :69ull
 
 /mob/living/exosuit/return_air()
 	if(src && loc)
@@ -200,4 +200,4 @@
 
 /mob/living/exosuit/get_mob()
 	if(length(pilots))
-		return pilots[1]
+		return pilots69169

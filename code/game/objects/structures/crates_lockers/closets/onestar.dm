@@ -4,12 +4,12 @@
 /obj/structure/closet/onestar
 	spawn_blacklisted = TRUE
 	bad_type = /obj/structure/closet/onestar
-	spawn_tags = SPAWN_TAG_CLOSET_OS
+	spawn_ta69s = SPAWN_TA69_CLOSET_OS
 
 // Tier 1
 /obj/structure/closet/onestar/tier1
-	name = "\improper OneStar forgotten closet"
-	desc = "An old OneStar closet. Doesn't seem like it contains anything worthwhile. Probably."
+	name = "\improper OneStar for69otten closet"
+	desc = "An old OneStar closet. Doesn't seem like it contains anythin69 worthwhile. Probably."
 	icon_state = "lootcloset"
 
 /obj/structure/closet/onestar/tier1/populate_contents()
@@ -26,12 +26,12 @@
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
 
 // Tier 2
 /obj/structure/closet/onestar/tier2
-	name = "\improper OneStar forgotten closet"
-	desc = "An old OneStar closet. Looks like there might be some decent stuff inside."
+	name = "\improper OneStar for69otten closet"
+	desc = "An old OneStar closet. Looks like there69i69ht be some decent stuff inside."
 	icon_state = "lootcloset1"
 
 /obj/structure/closet/onestar/tier2/populate_contents()
@@ -48,12 +48,12 @@
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
 
 // Tier 3
 /obj/structure/closet/onestar/tier3
-	name = "\improper OneStar forgotten closet"
-	desc = "An old OneStar closet. Might contain something very valuable, or so you hope."
+	name = "\improper OneStar for69otten closet"
+	desc = "An old OneStar closet.69i69ht contain somethin6969ery69aluable, or so you hope."
 	icon_state = "lootcloset2"
 
 /obj/structure/closet/onestar/tier3/populate_contents()
@@ -71,7 +71,7 @@
 	new /obj/spawner/pack/tech_loot/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
 	new /obj/spawner/pack/cloth/low_chance(src)
-	new /obj/spawner/pack/gun_loot/low_chance(src)
+	new /obj/spawner/pack/69un_loot/low_chance(src)
 	new /obj/spawner/tool/advanced/onestar/low_chance(src)
 
 
@@ -80,7 +80,7 @@
 ////Normal
 //Tier 1
 /obj/structure/closet/onestar/tier1/normal
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "lootcloset"
 	old_chance = 70
 
@@ -90,7 +90,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/normal
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "lootcloset1"
 	old_chance = 30
 
@@ -100,7 +100,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/normal
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "lootcloset2"
 	old_chance = 10
 
@@ -112,7 +112,7 @@
 ////Special
 //Tier 1
 /obj/structure/closet/onestar/tier1/special
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "special_lootcloset"
 	old_chance = 70
 
@@ -127,7 +127,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/special
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "special_lootcloset1"
 	old_chance = 30
 
@@ -142,7 +142,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/special
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "special_lootcloset2"
 	old_chance = 10
 
@@ -158,7 +158,7 @@
 ////Mineral
 //Tier 1
 /obj/structure/closet/onestar/tier1/mineral
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "mineral_lootcloset"
 	old_chance = 70
 
@@ -173,7 +173,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/mineral
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "mineral_lootcloset1"
 	old_chance = 30
 
@@ -188,7 +188,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/mineral
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "mineral_lootcloset2"
 	old_chance = 10
 
@@ -204,7 +204,7 @@
 ////Medical
 //Tier 1
 /obj/structure/closet/onestar/tier1/medical
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "medical_lootcloset"
 	old_chance = 70
 
@@ -219,7 +219,7 @@
 
 //Tier 2
 /obj/structure/closet/onestar/tier2/medical
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "medical_lootcloset1"
 	old_chance = 30
 
@@ -234,7 +234,7 @@
 
 //Tier 3
 /obj/structure/closet/onestar/tier3/medical
-	name = "\improper OneStar forgotten closet"
+	name = "\improper OneStar for69otten closet"
 	icon_state = "medical_lootcloset2"
 	old_chance = 10
 

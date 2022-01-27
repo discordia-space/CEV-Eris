@@ -1,51 +1,51 @@
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			External Pressure:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.external_pressure, 0, 200, (data.external_pressure < 80 || data.external_pressure > 120) ? 'bad' : (data.external_pressure < 95 || data.external_pressure > 110) ? 'average' : 'good', data.external_pressure + " kPa")}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Chamber Pressure:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.chamber_pressure, 0, 200, (data.chamber_pressure < 80 || data.chamber_pressure > 120) ? 'bad' : (data.chamber_pressure < 95 || data.chamber_pressure > 110) ? 'average' : 'good', data.chamber_pressure + " kPa")}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Internal Pressure:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.internal_pressure, 0, 200, (data.internal_pressure < 80 || data.internal_pressure > 120) ? 'bad' : (data.internal_pressure < 95 || data.internal_pressure > 110) ? 'average' : 'good', data.internal_pressure + " kPa")}}
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item" style="width: auto; float: left">
-		<div class="itemContent">
-			{{:helper.link('Cycle to Exterior', 'arrowthickstop-1-w', {'command' : 'cycle_ext'}, data.processing ? 'disabled' : null)}}
-			{{:helper.link('Cycle to Interior', 'arrowthickstop-1-e', {'command' : 'cycle_int'}, data.processing ? 'disabled' : null)}}
-		</div>
-		<div class="itemContent" style="padding-top: 2px">
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_ext'}, null, data.processing ? 'yellowButton' : null)}}
-			{{:helper.link('Force interior door', 'alert', {'command' : 'force_int'}, null, data.processing ? 'yellowButton' : null)}}
-		</div>
-	</div>
-	<div style="padding-left: 10px; width: 80px; float: left">
-		<div class="item">
-			<div class="itemContent" style="padding-bottom: 2px; width: auto">
-				{{:helper.link('Purge', 'refresh', {'command' : 'purge'}, data.processing ? 'disabled' : null, data.purge ? 'linkOn' : null)}}
-			</div>
-			<div class="itemContent" style="width: auto">
-				{{:helper.link('Secure', data.secure ? 'locked' : 'unlocked', {'command' : 'secure'}, data.processing ? 'disabled' : null, data.secure ? 'linkOn' : null)}}
-			</div>
-		</div>
-	</div>
-	<div class="item" style="padding-top: 10px">
-			{{:helper.link('Abort', 'cancel', {'command' : 'abort'}, data.processing ? null : 'disabled', data.processing ? 'redButton' : null)}}
-	</div>
-</div>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Extern69l 69ressure:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69el69er.dis69l69696969r69d69t69.extern69l_69ressure, 0, 200, 69d69t69.extern69l_69ressure < 80 || d69t69.extern69l_69ressure > 12069 ? '6969d' : 69d69t69.extern69l_69ressure < 95 || d69t69.extern69l_69ressure > 11069 ? '6969er6969e' : '69ood', d69t69.extern69l_69ressure + " 696969"69}}
+		</di69>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			C6969m69er 69ressure:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69el69er.dis69l69696969r69d69t69.c6969m69er_69ressure, 0, 200, 69d69t69.c6969m69er_69ressure < 80 || d69t69.c6969m69er_69ressure > 12069 ? '6969d' : 69d69t69.c6969m69er_69ressure < 95 || d69t69.c6969m69er_69ressure > 11069 ? '6969er6969e' : '69ood', d69t69.c6969m69er_69ressure + " 696969"69}}
+		</di69>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Intern69l 69ressure:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69el69er.dis69l69696969r69d69t69.intern69l_69ressure, 0, 200, 69d69t69.intern69l_69ressure < 80 || d69t69.intern69l_69ressure > 12069 ? '6969d' : 69d69t69.intern69l_69ressure < 95 || d69t69.intern69l_69ressure > 11069 ? '6969er6969e' : '69ood', d69t69.intern69l_69ressure + " 696969"69}}
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="item" st69le="widt69: 69uto; flo69t: left">
+		<di69 cl69ss="itemContent">
+			{{:69el69er.lin6969'C69cle to Exterior', '69rrowt69ic69sto69-1-w', {'comm69nd' : 'c69cle_ext'}, d69t69.69rocessin69 ? 'dis6969led' :69ull69}}
+			{{:69el69er.lin6969'C69cle to Interior', '69rrowt69ic69sto69-1-e', {'comm69nd' : 'c69cle_int'}, d69t69.69rocessin69 ? 'dis6969led' :69ull69}}
+		</di69>
+		<di69 cl69ss="itemContent" st69le="6969ddin69-to69: 269x">
+			{{:69el69er.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_ext'},69ull, d69t69.69rocessin69 ? '69ellow69utton' :69ull69}}
+			{{:69el69er.lin6969'Force interior door', '69lert', {'comm69nd' : 'force_int'},69ull, d69t69.69rocessin69 ? '69ellow69utton' :69ull69}}
+		</di69>
+	</di69>
+	<di69 st69le="6969ddin69-left: 1069x; widt69: 8069x; flo69t: left">
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemContent" st69le="6969ddin69-69ottom: 269x; widt69: 69uto">
+				{{:69el69er.lin6969'69ur69e', 'refres69', {'comm69nd' : '69ur69e'}, d69t69.69rocessin69 ? 'dis6969led' :69ull, d69t69.69ur69e ? 'lin69On' :69ull69}}
+			</di69>
+			<di69 cl69ss="itemContent" st69le="widt69: 69uto">
+				{{:69el69er.lin6969'Secure', d69t69.secure ? 'loc69ed' : 'unloc69ed', {'comm69nd' : 'secure'}, d69t69.69rocessin69 ? 'dis6969led' :69ull, d69t69.secure ? 'lin69On' :69ull69}}
+			</di69>
+		</di69>
+	</di69>
+	<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+			{{:69el69er.lin6969'6969ort', 'c69ncel', {'comm69nd' : '6969ort'}, d69t69.69rocessin69 ?69ull : 'dis6969led', d69t69.69rocessin69 ? 'red69utton' :69ull69}}
+	</di69>
+</di69>

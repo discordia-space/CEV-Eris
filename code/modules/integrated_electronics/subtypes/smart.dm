@@ -4,7 +4,7 @@
 /obj/item/integrated_circuit/smart/basic_pathfinder
 	name = "basic pathfinder"
 	desc = "This complex circuit is able to determine what direction a given target is."
-	extended_desc = "This circuit uses a miniturized integrated camera to determine where the target is. If the machine \
+	extended_desc = "This circuit uses a69initurized integrated camera to determine where the target is. If the69achine \
 	cannot see the target, it will not be able to calculate the correct direction."
 	icon_state = "numberpad"
 	complexity = 5
@@ -15,7 +15,7 @@
 	power_draw_per_use = 40
 
 /obj/item/integrated_circuit/smart/basic_pathfinder/do_work()
-	var/datum/integrated_io/I = inputs[1]
+	var/datum/integrated_io/I = inputs69169
 	set_pin_data(IC_OUTPUT, 1, null)
 	if(!isweakref(I.data))
 		activate_pin(3)
@@ -24,7 +24,7 @@
 	if(!A)
 		activate_pin(3)
 		return
-	if(!(A in view(get_turf(src))))
+	if(!(A in69iew(get_turf(src))))
 		push_data()
 		activate_pin(3)
 		return // Can't see the target.
@@ -39,7 +39,7 @@
 /obj/item/integrated_circuit/smart/coord_basic_pathfinder
 	name = "coordinate pathfinder"
 	desc = "This complex circuit is able to determine what direction a given target is."
-	extended_desc = "This circuit uses absolute coordinates to determine where the target is. If the machine \
+	extended_desc = "This circuit uses absolute coordinates to determine where the target is. If the69achine \
 	cannot see the target, it will not be able to calculate the correct direction. \
 	This circuit will only work while inside an assembly."
 	icon_state = "numberpad"
@@ -76,7 +76,7 @@
 	name = "advanced pathfinder"
 	desc = "This circuit uses a complex processor for long-range pathfinding."
 	extended_desc = "This circuit uses absolute coordinates to find its target. A path will be generated to the target, taking obstacles into account, \
-	and pathing around any instances of said input. The passkey provided from a card reader is used to calculate a valid path through airlocks."
+	and pathing around any instances of said input. The passkey provided from a card reader is used to calculate a69alid path through airlocks."
 	icon_state = "numberpad"
 	complexity = 40
 	cooldown_per_use = 5 SECONDS
@@ -102,26 +102,26 @@
 		activate_pin(3)
 		return
 	else
-		var/list/Xn[length(P)]
-		var/list/Yn[length(P)]
+		var/list/Xn69length(P)69
+		var/list/Yn69length(P)69
 		var/turf/T
 		for(var/i = 1, i <= length(P), i++)
-			T=P[i]
-			Xn[i] = T.x
-			Yn[i] = T.y
+			T=P69i69
+			Xn69i69 = T.x
+			Yn69i69 = T.y
 		set_pin_data(IC_OUTPUT, 1, Xn)
 		set_pin_data(IC_OUTPUT, 2, Yn)
 		push_data()
 		activate_pin(2)
 
-// mob changes
+//69ob changes
 /mob/living/var/check_bot_self = FALSE
 
-// - MMI Tank - //
+// -69MI Tank - //
 /obj/item/integrated_circuit/input/mmi_tank
 	name = "man-machine interface tank"
-	desc = "This circuit is just a jar filled with an artificial liquid mimicking the cerebrospinal fluid."
-	extended_desc = "This jar can hold 1 man-machine interface and let it take control of some basic functions of the assembly."
+	desc = "This circuit is just a jar filled with an artificial liquid69imicking the cerebrospinal fluid."
+	extended_desc = "This jar can hold 169an-machine interface and let it take control of some basic functions of the assembly."
 	complexity = 29
 	outputs = list(
 		"man-machine interface" = IC_PINTYPE_REF,
@@ -147,7 +147,7 @@
 
 	var/obj/item/device/mmi/installed_brain
 
-/obj/item/integrated_circuit/input/mmi_tank/attackby(obj/item/device/mmi/O, mob/user)
+/obj/item/integrated_circuit/input/mmi_tank/attackby(obj/item/device/mmi/O,69ob/user)
 	if(!istype(O,/obj/item/device/mmi))
 		to_chat(user,SPAN("warning", "You can't put that inside."))
 		return
@@ -158,14 +158,14 @@
 	O.forceMove(src)
 	installed_brain = O
 	can_be_asked_input = FALSE
-	to_chat(user, SPAN("notice", "You gently place \the man-machine interface inside the tank."))
-	to_chat(O, SPAN("notice", "You are slowly being placed inside the man-machine-interface tank."))
+	to_chat(user, SPAN("notice", "You gently place \the69an-machine interface inside the tank."))
+	to_chat(O, SPAN("notice", "You are slowly being placed inside the69an-machine-interface tank."))
 	set_pin_data(IC_OUTPUT, 1, O)
 
 /obj/item/integrated_circuit/input/mmi_tank/attack_self(mob/user)
 	if(installed_brain)
 		RemoveBrain()
-		to_chat(user, SPAN("notice", "You slowly lift [installed_brain] out of the MMI tank."))
+		to_chat(user, SPAN("notice", "You slowly lift 69installed_brain69 out of the69MI tank."))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_brain = null
 		push_data()
@@ -209,13 +209,13 @@
 	brainholder.set_pin_data(IC_OUTPUT, 3, A)
 	var/list/modifiers = params2list(params)
 
-	if(modifiers["shift"])
+	if(modifiers69"shift"69)
 		brainholder.do_work(7)
 		return
-	if(modifiers["alt"])
+	if(modifiers69"alt"69)
 		brainholder.do_work(8)
 		return
-	if(modifiers["ctrl"])
+	if(modifiers69"ctrl"69)
 		brainholder.do_work(9)
 		return
 
@@ -237,7 +237,7 @@
 /obj/item/integrated_circuit/input/pAI_connector
 	name = "pAI connector circuit"
 	desc = "This circuit lets you fit in a personal artificial intelligence to give it some form of control over the bot."
-	extended_desc = "You can wire various functions to it."
+	extended_desc = "You can wire69arious functions to it."
 	complexity = 29
 	outputs = list(
 		"personal artificial intelligence" = IC_PINTYPE_REF,
@@ -264,7 +264,7 @@
 
 	var/obj/item/device/paicard/installed_pai
 
-/obj/item/integrated_circuit/input/pAI_connector/attackby(obj/item/device/paicard/O, mob/user)
+/obj/item/integrated_circuit/input/pAI_connector/attackby(obj/item/device/paicard/O,69ob/user)
 	if(!istype(O,/obj/item/device/paicard))
 		to_chat(user,SPAN("warning", "You can't put that inside."))
 		return
@@ -275,14 +275,14 @@
 	O.forceMove(src)
 	installed_pai = O
 	can_be_asked_input = FALSE
-	to_chat(user, SPAN("notice", "You slowly connect the circuit's pins to the [installed_pai]."))
+	to_chat(user, SPAN("notice", "You slowly connect the circuit's pins to the 69installed_pai69."))
 	to_chat(O, SPAN("notice", "You are slowly being connected to the pAI connector."))
 	set_pin_data(IC_OUTPUT, 1, O)
 
 /obj/item/integrated_circuit/input/pAI_connector/attack_self(mob/user)
 	if(installed_pai)
 		RemovepAI()
-		to_chat(user, SPAN("notice", "You slowly disconnect the circuit's pins from the [installed_pai]."))
+		to_chat(user, SPAN("notice", "You slowly disconnect the circuit's pins from the 69installed_pai69."))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_pai = null
 		push_data()
@@ -330,16 +330,16 @@
 	paiholder.set_pin_data(IC_OUTPUT, 3, A)
 	var/list/modifiers = params2list(params)
 
-	if(modifiers["shift"] && modifiers["ctrl"])
+	if(modifiers69"shift"69 &&69odifiers69"ctrl"69)
 		paiholder.do_work(10)
 		return
-	if(modifiers["shift"])
+	if(modifiers69"shift"69)
 		paiholder.do_work(7)
 		return
-	if(modifiers["alt"])
+	if(modifiers69"alt"69)
 		paiholder.do_work(8)
 		return
-	if(modifiers["ctrl"])
+	if(modifiers69"ctrl"69)
 		paiholder.do_work(9)
 		return
 
@@ -361,7 +361,7 @@
 /obj/item/integrated_circuit/input/AI_connector
 	name = "AI connector circuit"
 	desc = "This circuit lets you fit in a carded artificial intelligence to give it some form of control over the bot."
-	extended_desc = "This jar can hold 1 man-machine interface and let it take control of some basic functions of the assembly."
+	extended_desc = "This jar can hold 169an-machine interface and let it take control of some basic functions of the assembly."
 	complexity = 29
 	outputs = list(
 		"carded artificial intelligence" = IC_PINTYPE_REF,
@@ -387,7 +387,7 @@
 
 	var/obj/item/device/aicard/installed_brain
 
-/obj/item/integrated_circuit/input/AI_connector/attackby(obj/item/device/aicard/O, mob/user)
+/obj/item/integrated_circuit/input/AI_connector/attackby(obj/item/device/aicard/O,69ob/user)
 	if(!istype(O,/obj/item/device/aicard))
 		to_chat(user,SPAN("warning", "You can't put that inside."))
 		return
@@ -398,14 +398,14 @@
 	O.forceMove(src)
 	installed_brain = O
 	can_be_asked_input = FALSE
-	to_chat(user, SPAN("notice", "You gently place \the man-machine interface inside the tank."))
-	to_chat(O, SPAN("notice", "You are slowly being placed inside the man-machine-interface tank."))
+	to_chat(user, SPAN("notice", "You gently place \the69an-machine interface inside the tank."))
+	to_chat(O, SPAN("notice", "You are slowly being placed inside the69an-machine-interface tank."))
 	set_pin_data(IC_OUTPUT, 1, O)
 
 /obj/item/integrated_circuit/input/AI_connector/attack_self(mob/user)
 	if(installed_brain)
 		RemoveBrain()
-		to_chat(user, SPAN("notice", "You slowly lift [installed_brain] out of the MMI tank."))
+		to_chat(user, SPAN("notice", "You slowly lift 69installed_brain69 out of the69MI tank."))
 		playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 		installed_brain = null
 		push_data()
@@ -449,13 +449,13 @@
 	brainholder.set_pin_data(IC_OUTPUT, 3, A)
 	var/list/modifiers = params2list(params)
 
-	if(modifiers["shift"])
+	if(modifiers69"shift"69)
 		brainholder.do_work(7)
 		return
-	if(modifiers["alt"])
+	if(modifiers69"alt"69)
 		brainholder.do_work(8)
 		return
-	if(modifiers["ctrl"])
+	if(modifiers69"ctrl"69)
 		brainholder.do_work(9)
 		return
 

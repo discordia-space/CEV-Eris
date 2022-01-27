@@ -30,28 +30,28 @@
 		overlays += "folder_paper"
 	return
 
-/obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/folder/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/paper_bundle))
 		user.drop_item()
 		W.loc = src
 		playsound(src,'sound/effects/Paper_Shake.ogg',40,1)
-		to_chat(user, SPAN_NOTICE("You put the [W] into \the [src]."))
+		to_chat(user, SPAN_NOTICE("You put the 69W69 into \the 69src69."))
 		update_icon()
 	else if(istype(W, /obj/item/pen))
-		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)
+		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling",69ull)  as text,69AX_NAME_LEN)
 		if((loc == usr && usr.stat == 0))
-			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
+			name = "folder69(n_name ? text("- '69n_name69'") :69ull)69"
 	return
 
-/obj/item/folder/attack_self(mob/user as mob)
-	var/dat = "<title>[name]</title>"
+/obj/item/folder/attack_self(mob/user as69ob)
+	var/dat = "<title>69name69</title>"
 
 	for(var/obj/item/paper/P in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+		dat += "<A href='?src=\ref69src69;remove=\ref69P69'>Remove</A> <A href='?src=\ref69src69;rename=\ref69P69'>Rename</A> - <A href='?src=\ref69src69;read=\ref69P69'>69P.name69</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+		dat += "<A href='?src=\ref69src69;remove=\ref69Ph69'>Remove</A> <A href='?src=\ref69src69;rename=\ref69Ph69'>Rename</A> - <A href='?src=\ref69src69;look=\ref69Ph69'>69Ph.name69</A><BR>"
 	for(var/obj/item/paper_bundle/Pb in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
+		dat += "<A href='?src=\ref69src69;remove=\ref69Pb69'>Remove</A> <A href='?src=\ref69src69;rename=\ref69Pb69'>Rename</A> - <A href='?src=\ref69src69;browse=\ref69Pb69'>69Pb.name69</A><BR>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
@@ -64,34 +64,34 @@
 
 	if(src.loc == usr)
 
-		if(href_list["remove"])
-			var/obj/item/P = locate(href_list["remove"])
+		if(href_list69"remove"69)
+			var/obj/item/P = locate(href_list69"remove"69)
 			if(P && (P.loc == src) && istype(P))
 				P.loc = usr.loc
 				playsound(src,'sound/effects/Paper_Remove.ogg',40,1)
 				usr.put_in_hands(P)
 
-		else if(href_list["read"])
-			var/obj/item/paper/P = locate(href_list["read"])
+		else if(href_list69"read"69)
+			var/obj/item/paper/P = locate(href_list69"read"69)
 			playsound(src,'sound/effects/Paper_Shake.ogg',40,1)
 			if(P && (P.loc == src) && istype(P))
 				if(!(ishuman(usr) || isghost(usr) || issilicon(usr)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
+					usr << browse("<HTML><HEAD><TITLE>69P.name69</TITLE></HEAD><BODY>69stars(P.info)6969P.stamps69</BODY></HTML>", "window=69P.name69")
+					onclose(usr, "69P.name69")
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
-					onclose(usr, "[P.name]")
-		else if(href_list["look"])
-			var/obj/item/photo/P = locate(href_list["look"])
+					usr << browse("<HTML><HEAD><TITLE>69P.name69</TITLE></HEAD><BODY>69P.info6969P.stamps69</BODY></HTML>", "window=69P.name69")
+					onclose(usr, "69P.name69")
+		else if(href_list69"look"69)
+			var/obj/item/photo/P = locate(href_list69"look"69)
 			if(P && (P.loc == src) && istype(P))
 				P.show(usr)
-		else if(href_list["browse"])
-			var/obj/item/paper_bundle/P = locate(href_list["browse"])
+		else if(href_list69"browse"69)
+			var/obj/item/paper_bundle/P = locate(href_list69"browse"69)
 			if(P && (P.loc == src) && istype(P))
 				P.attack_self(usr)
-				onclose(usr, "[P.name]")
-		else if(href_list["rename"])
-			var/obj/item/O = locate(href_list["rename"])
+				onclose(usr, "69P.name69")
+		else if(href_list69"rename"69)
+			var/obj/item/O = locate(href_list69"rename"69)
 
 			if(O && (O.loc == src))
 				if(istype(O, /obj/item/paper))

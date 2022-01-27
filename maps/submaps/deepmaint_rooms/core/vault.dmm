@@ -1,785 +1,785 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
+//MAP CONVERTED BY dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"ab" = (
+/area/deepmaint69
+"ab" = 69
 /turf/simulated/wall/r_wall,
-/area/deepmaint)
-"ac" = (
+/area/deepmaint69
+"ac" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"ad" = (
-/obj/machinery/door/airlock/glass,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"ae" = (
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"af" = (
-/obj/spawner/junk,
+/area/deepmaint69
+"ad" = 69
+/ob69/machinery/door/airloc69/69lass,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"ae" = 69
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"af" = 69
+/ob69/spawner/69un69,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"ag" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"ah" = (
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"ai" = (
-/obj/machinery/light,
+/area/deepmaint69
+"a69" = 69
+/ob69/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"ah" = 69
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"ai" = 69
+/ob69/machinery/li69ht,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"aj" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/area/deepmaint69
+"a69" = 69
+/ob69/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"ak" = (
-/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/disposalpipe/se69ment,
 /turf/simulated/wall,
-/area/deepmaint)
-"al" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"am" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"an" = (
-/obj/machinery/door/airlock/vault{
-	icon_state = "door_locked";
-	locked = 1
+/area/deepmaint69
+"al" = 69
+/ob69/spawner/pac69/machine,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"am" = 69
+/ob69/structure/catwal69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"an" = 69
+/ob69/machinery/door/airloc69/vault{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"ao" = (
-/obj/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"ao" = 69
+/ob69/spawner/traps/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"ap" = (
-/obj/spawner/mob/biome_spawner_mob,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"aq" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/area/deepmaint69
+"ap" = 69
+/ob69/spawner/mob/biome_spawner_mob,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ar" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"as" = (
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ar" = 69
+/ob69/machinery/door/firedoor,
+/ob69/effect/window_lwall_spawn/reinforced,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"as" = 69
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"at" = (
-/obj/machinery/door/airlock/glass,
-/obj/structure/girder,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"au" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/area/deepmaint69
+"at" = 69
+/ob69/machinery/door/airloc69/69lass,
+/ob69/structure/69irder,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"au" = 69
+/ob69/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"av" = (
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"av" = 69
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"aw" = (
+/area/deepmaint69
+"aw" = 69
 /turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"ax" = (
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"ay" = (
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"ax" = 69
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"ay" = 69
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"az" = (
-/obj/item/modular_computer/console/preset/security/records,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"aA" = (
-/obj/structure/bed/chair{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"az" = 69
+/ob69/item/modular_computer/console/preset/security/records,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"aA" = 69
+/ob69/structure/bed/chair{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"aB" = (
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"aB" = 69
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aC" = (
-/obj/structure/table/reinforced,
-/obj/machinery/door/window/brigdoor/northright{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aC" = 69
+/ob69/structure/table/reinforced,
+/ob69/machinery/door/window/bri69door/northri69ht{
 	dir = 8;
-	req_access = null
+	re69_access =69ull
 	},
-/obj/machinery/door/window{
+/ob69/machinery/door/window{
 	dir = 4;
-	name = "Security Checkpoint";
-	req_access = list(1)
+	name = "Security Chec69point";
+	re69_access = list69169
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid,
-/area/deepmaint)
-"aD" = (
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"aE" = (
-/obj/item/modular_computer/console/preset/command{
+/turf/simulated/floor/tiled/steel/techfloor_69rid,
+/area/deepmaint69
+"aD" = 69
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"aE" = 69
+/ob69/item/modular_computer/console/preset/command{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"aF" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/white/cargo,
-/area/deepmaint)
-"aG" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"aF" = 69
+/ob69/machinery/door/airloc69,
+/turf/simulated/floor/tiled/white/car69o,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aH" = (
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aH" = 69
 /turf/simulated/floor/carpet/turcarpet,
-/area/deepmaint)
-"aI" = (
-/obj/structure/catwalk,
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"aI" = 69
+/ob69/structure/catwal69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aJ" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"a69" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aK" = (
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aL" = (
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/disposalpipe/se69ment,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aL" = 69
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
 /turf/simulated/wall,
-/area/deepmaint)
-"aM" = (
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"aM" = 69
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aN" = (
-/obj/machinery/washing_machine,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aO" = (
-/obj/structure/table/standard,
-/obj/structure/bedsheetbin,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aP" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aN" = 69
+/ob69/machinery/washin69_machine,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aO" = 69
+/ob69/structure/table/standard,
+/ob69/structure/bedsheetbin,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aP" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aQ" = (
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"a69" = 69
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aR" = (
-/obj/structure/railing,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aR" = 69
+/ob69/structure/railin69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aS" = (
-/obj/structure/catwalk,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aS" = 69
+/ob69/structure/catwal69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 1
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aT" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aT" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 8
-	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aU" = (
-/obj/machinery/vending/tool,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"aV" = (
-/obj/structure/disposalpipe/segment{
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"aW" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aX" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth/low_chance,
-/obj/spawner/pack/cloth/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"aY" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/reinforced,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aU" = 69
+/ob69/machinery/vendin69/tool,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"aV" = 69
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"aZ" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"aW" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aX" = 69
+/ob69/structure/table/standard,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth/low_chance,
+/ob69/spawner/pac69/cloth/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"aY" = 69
+/ob69/machinery/door/firedoor,
+/ob69/effect/window_lwall_spawn/reinforced,
+/ob69/structure/disposalpipe/se69ment{
+	icon_state = "pipe-s";
+	dir = 8
+	},
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"aZ" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/traps/low_chance,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ba" = (
-/obj/machinery/vending/assist,
-/obj/machinery/light{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ba" = 69
+/ob69/machinery/vendin69/assist,
+/ob69/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"bb" = (
-/obj/machinery/light{
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"bb" = 69
+/ob69/machinery/li69ht{
 	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"bc" = (
-/obj/machinery/light{
+/area/deepmaint69
+"bc" = 69
+/ob69/machinery/li69ht{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"bd" = (
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"bd" = 69
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"be" = (
-/obj/structure/table/rack,
-/obj/spawner/science,
-/obj/spawner/science,
-/obj/spawner/science,
-/obj/spawner/science/low_chance,
-/obj/spawner/science/low_chance,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bg" = (
-/obj/machinery/nuclearbomb,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bh" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bi" = (
-/obj/structure/table/rack,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare,
-/obj/spawner/material/resources/rare/low_chance,
-/obj/spawner/material/resources/rare/low_chance,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bj" = (
-/obj/machinery/vending/engineering,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"bk" = (
-/obj/machinery/light{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"be" = 69
+/ob69/structure/table/rac69,
+/ob69/spawner/science,
+/ob69/spawner/science,
+/ob69/spawner/science,
+/ob69/spawner/science/low_chance,
+/ob69/spawner/science/low_chance,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"b69" = 69
+/ob69/machinery/nuclearbomb,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"bh" = 69
+/ob69/structure/table/rac69,
+/ob69/spawner/pac69/rare,
+/ob69/spawner/pac69/rare,
+/ob69/spawner/pac69/rare,
+/ob69/spawner/pac69/rare/low_chance,
+/ob69/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"bi" = 69
+/ob69/structure/table/rac69,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare,
+/ob69/spawner/material/resources/rare/low_chance,
+/ob69/spawner/material/resources/rare/low_chance,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"b69" = 69
+/ob69/machinery/vendin69/en69ineerin69,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"b69" = 69
+/ob69/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bl" = (
-/obj/machinery/light{
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"bl" = 69
+/ob69/machinery/li69ht{
 	icon_state = "tube1";
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bm" = (
-/obj/machinery/vending/powermat,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"bn" = (
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"bm" = 69
+/ob69/machinery/vendin69/powermat,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"bn" = 69
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bp" = (
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/gun_loot,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"bq" = (
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bp" = 69
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/69un_loot,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"b69" = 69
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"br" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"br" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"bs" = (
-/obj/spawner/traps/low_chance,
+/area/deepmaint69
+"bs" = 69
+/ob69/spawner/traps/low_chance,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"bt" = (
-/obj/spawner/junk,
+/area/deepmaint69
+"bt" = 69
+/ob69/spawner/69un69,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"bu" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"bu" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/traps/low_chance,
+/ob69/structure/disposalpipe/se69ment{
 	dir = 1;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bv" = (
-/obj/structure/catwalk,
-/obj/structure/table/rack/shelf,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bw" = (
-/obj/structure/girder,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bv" = 69
+/ob69/structure/catwal69,
+/ob69/structure/table/rac69/shelf,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot,
+/ob69/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bw" = 69
+/ob69/structure/69irder,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"bx" = (
-/obj/structure/girder,
-/obj/structure/girder,
+/area/deepmaint69
+"bx" = 69
+/ob69/structure/69irder,
+/ob69/structure/69irder,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"by" = (
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"by" = 69
+/ob69/structure/disposalpipe/se69ment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bz" = (
-/obj/structure/catwalk,
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bz" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bA" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/obj/structure/disposalpipe/junction{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bA" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/traps/low_chance,
+/ob69/structure/disposalpipe/69unction{
 	dir = 8;
-	icon_state = "pipe-j2"
+	icon_state = "pipe-692"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bB" = (
-/obj/machinery/door/airlock/glass,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"bC" = (
-/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bB" = 69
+/ob69/machinery/door/airloc69/69lass,
+/ob69/structure/disposalpipe/se69ment,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"bC" = 69
+/ob69/structure/disposalpipe/se69ment,
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"bD" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/area/deepmaint69
+"bD" = 69
+/ob69/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"bE" = (
-/obj/structure/catwalk,
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bF" = (
-/obj/machinery/chem_master/condimaster,
-/obj/machinery/light{
+/ob69/structure/disposalpipe/se69ment,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"bE" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bF" = 69
+/ob69/machinery/chem_master/condimaster,
+/ob69/machinery/li69ht{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"bG" = (
-/obj/structure/table/standard,
-/obj/machinery/microwave{
+/area/deepmaint69
+"b69" = 69
+/ob69/structure/table/standard,
+/ob69/machinery/microwave{
 	pixel_x = -3;
 	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"bH" = (
-/obj/structure/table/reinforced,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
-/obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"bI" = (
-/obj/item/device/radio/intercom{
+/area/deepmaint69
+"bH" = 69
+/ob69/structure/table/reinforced,
+/ob69/spawner/pac69/69un_loot/low_chance,
+/ob69/spawner/pac69/69un_loot/low_chance,
+/ob69/spawner/pac69/69un_loot/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"bI" = 69
+/ob69/item/device/radio/intercom{
 	dir = 2;
 	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"bJ" = (
+/area/deepmaint69
+"b69" = 69
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"bK" = (
-/obj/structure/table/standard,
+/area/deepmaint69
+"b69" = 69
+/ob69/structure/table/standard,
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"bL" = (
-/obj/machinery/light{
+/area/deepmaint69
+"bL" = 69
+/ob69/machinery/li69ht{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"bM" = (
-/obj/structure/bed/chair/office/dark{
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"bM" = 69
+/ob69/structure/bed/chair/office/dar69{
 	dir = 4
 	},
-/obj/item/remains/human,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/cloth,
-/obj/spawner/pack/gun_loot,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"bN" = (
-/obj/structure/bed/chair{
+/ob69/item/remains/human,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/cloth,
+/ob69/spawner/pac69/69un_loot,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"bN" = 69
+/ob69/structure/bed/chair{
 	dir = 8
 	},
-/obj/machinery/light{
+/ob69/machinery/li69ht{
 	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"bO" = (
-/obj/spawner/junk,
-/turf/simulated/floor/tiled/dark/techfloor_grid,
-/area/deepmaint)
-"bP" = (
-/obj/structure/catwalk,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bR" = (
-/obj/structure/table/reinforced,
-/obj/spawner/pack/rare/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"bS" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
+/area/deepmaint69
+"bO" = 69
+/ob69/spawner/69un69,
+/turf/simulated/floor/tiled/dar69/techfloor_69rid,
+/area/deepmaint69
+"bP" = 69
+/ob69/structure/catwal69,
+/ob69/structure/disposalpipe/se69ment,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bR" = 69
+/ob69/structure/table/reinforced,
+/ob69/spawner/pac69/rare/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"bS" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
 /turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"bT" = (
-/obj/structure/table/rack,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
-/obj/spawner/rations/low_chance,
-/obj/machinery/light,
+/area/deepmaint69
+"bT" = 69
+/ob69/structure/table/rac69,
+/ob69/spawner/rations,
+/ob69/spawner/rations,
+/ob69/spawner/rations,
+/ob69/spawner/rations/low_chance,
+/ob69/spawner/rations/low_chance,
+/ob69/spawner/rations/low_chance,
+/ob69/machinery/li69ht,
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"bV" = (
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"bW" = (
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"bX" = (
-/obj/machinery/light{
+/area/deepmaint69
+"bV" = 69
+/ob69/spawner/traps/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"bW" = 69
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"bX" = 69
+/ob69/machinery/li69ht{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/brown_perforated,
-/area/deepmaint)
-"bY" = (
-/obj/structure/disposalpipe/junction{
+/area/deepmaint69
+"bY" = 69
+/ob69/structure/disposalpipe/69unction{
 	dir = 2;
 	icon_state = "pipe-y"
 	},
-/turf/simulated/floor/tiled/dark/monofloor,
-/area/deepmaint)
-"bZ" = (
-/obj/machinery/door/airlock/vault{
-	icon_state = "door_locked";
-	locked = 1
+/turf/simulated/floor/tiled/dar69/monofloor,
+/area/deepmaint69
+"bZ" = 69
+/ob69/machinery/door/airloc69/vault{
+	icon_state = "door_loc69ed";
+	loc69ed = 1
 	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/dark/cargo,
-/area/deepmaint)
-"ca" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cb" = (
-/obj/structure/catwalk,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden,
-/obj/structure/disposalpipe/junction{
-	tag = "icon-pipe-y (EAST)";
+/ob69/structure/disposalpipe/se69ment,
+/turf/simulated/floor/tiled/dar69/car69o,
+/area/deepmaint69
+"ca" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/traps/low_chance,
+/ob69/structure/disposalpipe/se69ment,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"cb" = 69
+/ob69/structure/catwal69,
+/ob69/machinery/atmospherics/pipe/manifold4w/hidden,
+/ob69/structure/disposalpipe/69unction{
+	ta69 = "icon-pipe-y 69EAST69";
 	icon_state = "pipe-y";
 	dir = 4
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cc" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/spawner/pack/rare,
-/obj/spawner/pack/rare,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"cc" = 69
+/ob69/structure/closet/secure_closet/personal,
+/ob69/spawner/pac69/rare,
+/ob69/spawner/pac69/rare,
 /turf/simulated/floor/carpet/turcarpet,
-/area/deepmaint)
-"cd" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/area/deepmaint69
+"cd" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ce" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (WEST)";
-	icon_state = "railing0";
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ce" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69WEST69";
+	icon_state = "railin690";
 	dir = 8
 	},
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cf" = (
-/obj/structure/catwalk,
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cg" = (
-/obj/structure/bed/padded,
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"cf" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"c69" = 69
+/ob69/structure/bed/padded,
 /turf/simulated/floor/carpet/turcarpet,
-/area/deepmaint)
-"ch" = (
-/obj/structure/table/woodentable,
-/obj/item/device/lighting/toggleable/lamp/green,
+/area/deepmaint69
+"ch" = 69
+/ob69/structure/table/woodentable,
+/ob69/item/device/li69htin69/to6969leable/lamp/69reen,
 /turf/simulated/floor/carpet/turcarpet,
-/area/deepmaint)
-"ci" = (
-/obj/spawner/junk,
-/obj/spawner/junk,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cj" = (
-/obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"ck" = (
-/obj/machinery/vending/snack,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"cl" = (
-/obj/machinery/vending/cigarette,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"cm" = (
-/obj/machinery/vending/cola,
-/turf/simulated/floor/tiled/steel/cargo,
-/area/deepmaint)
-"cn" = (
-/obj/machinery/light{
+/area/deepmaint69
+"ci" = 69
+/ob69/spawner/69un69,
+/ob69/spawner/69un69,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"c69" = 69
+/ob69/machinery/vendin69/coffee,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"c69" = 69
+/ob69/machinery/vendin69/snac69,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"cl" = 69
+/ob69/machinery/vendin69/ci69arette,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"cm" = 69
+/ob69/machinery/vendin69/cola,
+/turf/simulated/floor/tiled/steel/car69o,
+/area/deepmaint69
+"cn" = 69
+/ob69/machinery/li69ht{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"co" = (
-/obj/structure/catwalk,
-/obj/structure/disposalpipe/segment{
+/area/deepmaint69
+"co" = 69
+/ob69/structure/catwal69,
+/ob69/structure/disposalpipe/se69ment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cp" = (
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"cp" = 69
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 8
 	},
 /turf/simulated/wall/r_wall,
-/area/deepmaint)
-"cq" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (NORTH)";
-	icon_state = "railing0";
+/area/deepmaint69
+"c69" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69NORTH69";
+	icon_state = "railin690";
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment{
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cr" = (
-/obj/structure/railing{
-	tag = "icon-railing0 (EAST)";
-	icon_state = "railing0";
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"cr" = 69
+/ob69/structure/railin69{
+	ta69 = "icon-railin690 69EAST69";
+	icon_state = "railin690";
 	dir = 4
 	},
-/obj/spawner/junk,
-/obj/structure/disposalpipe/segment{
+/ob69/spawner/69un69,
+/ob69/structure/disposalpipe/se69ment{
 	icon_state = "pipe-s";
 	dir = 8
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"cs" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/obj/structure/disposalpipe/segment{
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"cs" = 69
+/ob69/structure/catwal69,
+/ob69/spawner/traps/low_chance,
+/ob69/structure/disposalpipe/se69ment{
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ct" = (
-/obj/structure/disposalpipe/segment,
-/obj/landmark/loot_biomes/mob/roach{
-	range = 10
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ct" = 69
+/ob69/structure/disposalpipe/se69ment,
+/ob69/landmar69/loot_biomes/mob/roach{
+	ran69e = 10
 	},
 /turf/simulated/floor/tiled/steel,
-/area/deepmaint)
-"cu" = (
-/obj/spawner/mob/biome_spawner_mob/low_chance,
-/turf/simulated/floor/plating/under,
-/area/deepmaint)
-"ls" = (
-/obj/structure/table/rack,
-/obj/item/pinpointer/nukeop,
-/turf/simulated/floor/tiled/dark/techfloor,
-/area/deepmaint)
-"vo" = (
-/obj/structure/table/standard,
-/obj/item/reagent_containers/glass/beaker{
+/area/deepmaint69
+"cu" = 69
+/ob69/spawner/mob/biome_spawner_mob/low_chance,
+/turf/simulated/floor/platin69/under,
+/area/deepmaint69
+"ls" = 69
+/ob69/structure/table/rac69,
+/ob69/item/pinpointer/nu69eop,
+/turf/simulated/floor/tiled/dar69/techfloor,
+/area/deepmaint69
+"vo" = 69
+/ob69/structure/table/standard,
+/ob69/item/rea69ent_containers/69lass/bea69er{
 	pixel_x = 5
 	},
-/obj/item/reagent_containers/glass/beaker{
+/ob69/item/rea69ent_containers/69lass/bea69er{
 	pixel_x = 5
 	},
-/obj/item/material/kitchen/rollingpin,
+/ob69/item/material/69itchen/rollin69pin,
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
-"MK" = (
-/obj/structure/table/standard,
-/obj/item/packageWrap,
-/obj/item/reagent_containers/food/condiment/enzyme{
+/area/deepmaint69
+"M69" = 69
+/ob69/structure/table/standard,
+/ob69/item/pac69a69eWrap,
+/ob69/item/rea69ent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/reagent_containers/food/condiment/enzyme{
+/ob69/item/rea69ent_containers/food/condiment/enzyme{
 	layer = 5
 	},
 /turf/simulated/floor/tiled/cafe,
-/area/deepmaint)
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 aa
 as
 aa
@@ -802,7 +802,7 @@ af
 aa
 aa
 "}
-(2,1,1) = {"
+692,1,169 = {"
 aa
 aI
 ac
@@ -825,7 +825,7 @@ ab
 ab
 aa
 "}
-(3,1,1) = {"
+693,1,169 = {"
 af
 aI
 ac
@@ -844,11 +844,11 @@ av
 aF
 bX
 aH
-cg
+c69
 ab
 aa
 "}
-(4,1,1) = {"
+694,1,169 = {"
 aa
 aI
 ac
@@ -861,8 +861,8 @@ bt
 bw
 ab
 bF
-bJ
-bJ
+b69
+b69
 bT
 ab
 aw
@@ -871,7 +871,7 @@ ch
 ab
 aa
 "}
-(5,1,1) = {"
+695,1,169 = {"
 aa
 aI
 ac
@@ -883,18 +883,18 @@ ab
 ab
 ab
 ab
-bG
-bK
+b69
+b69
 vo
-MK
+M69
 ab
-aj
+a69
 cp
 ab
 ab
 aa
 "}
-(6,1,1) = {"
+696,1,169 = {"
 ai
 aL
 ab
@@ -912,17 +912,17 @@ ab
 ab
 ab
 am
-cq
+c69
 ab
-cj
+c69
 af
 "}
-(7,1,1) = {"
+697,1,169 = {"
 aa
 aI
 ab
 bn
-aK
+a69
 aP
 aM
 aR
@@ -933,14 +933,14 @@ ax
 bL
 ax
 bV
-aj
+a69
 am
-cq
+c69
 ab
-ck
+c69
 aa
 "}
-(8,1,1) = {"
+698,1,169 = {"
 ao
 aI
 ab
@@ -957,20 +957,20 @@ ax
 bR
 ab
 ab
-aq
+a69
 aV
 ab
 ab
 ao
 "}
-(9,1,1) = {"
+699,1,169 = {"
 aa
 aI
 ab
 aB
 ab
 be
-bk
+b69
 ah
 ab
 aV
@@ -986,7 +986,7 @@ bW
 ab
 aa
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 aa
 aI
 ab
@@ -998,24 +998,24 @@ ap
 ab
 aY
 ab
-ag
+a69
 aC
-ag
+a69
 ab
-aG
+a69
 cd
 cr
-aG
+a69
 ab
 aa
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 br
 aZ
 ab
-aJ
+a69
 ab
-bg
+b69
 ah
 bp
 an
@@ -1032,11 +1032,11 @@ am
 ad
 aa
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 aa
 aI
 ab
-aJ
+a69
 ab
 bh
 ah
@@ -1048,14 +1048,14 @@ bI
 br
 aa
 ab
-aq
+a69
 aT
 ce
-aq
+a69
 ab
 cn
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 aa
 aI
 ab
@@ -1078,7 +1078,7 @@ ci
 ab
 aa
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 aa
 bz
 ab
@@ -1101,16 +1101,16 @@ ab
 ab
 aa
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 af
 aI
 ab
-bq
+b69
 aM
 aM
-aQ
+a69
 aM
-aQ
+a69
 by
 ab
 al
@@ -1124,7 +1124,7 @@ ab
 cl
 aa
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 ai
 aL
 ab
@@ -1147,13 +1147,13 @@ ab
 cm
 br
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 aa
 aI
 ac
 aU
 ba
-bj
+b69
 bm
 ab
 ab
@@ -1170,7 +1170,7 @@ ab
 ab
 aa
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 aa
 bA
 bB
@@ -1190,10 +1190,10 @@ bP
 co
 am
 am
-aj
+a69
 aa
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 aa
 aI
 ac
@@ -1201,7 +1201,7 @@ aW
 aW
 aW
 aW
-ak
+a69
 bv
 bv
 bE
@@ -1213,16 +1213,16 @@ am
 bE
 bv
 bv
-ak
+a69
 aa
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 br
 aI
 ac
 ac
-ag
-ag
+a69
+a69
 ac
 ac
 ac
@@ -1239,7 +1239,7 @@ ac
 ac
 aa
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 af
 as
 aa

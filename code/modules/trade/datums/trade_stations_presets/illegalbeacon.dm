@@ -1,5 +1,5 @@
 /datum/trade_station/illegaltrader
-	name_pool = list("NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automatized message. \"Hey, Buddie. Interested in our legal goods?")
+	name_pool = list("NSTB 'Arau'" = "Null-Space Trade Beacon 'Arau'. The Trade Beacon is sending an automatized69essage. \"Hey, Buddie. Interested in our legal goods?")
 	spawn_probability = 5
 	spawn_cost = 2
 	markup = 2

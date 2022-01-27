@@ -15,7 +15,7 @@
 		if(initial(category.name))
 			category = new category(src)
 			categories += category
-			categories_by_name[category.name] = category
+			categories_by_name69category.name69 = category
 	categories = dd_sortedObjectList(categories)
 
 /datum/category_collection/Destroy()
@@ -24,11 +24,11 @@
 	categories.Cut()
 	return ..()
 
-/datum/category_collection/proc/operator[](idx)
-	return categories_by_name[idx]
+/datum/category_collection/proc/operator6969(idx)
+	return categories_by_name69idx69
 
-/datum/category_collection/proc/operator[]=(idx, B)
-	categories_by_name[idx] = B
+/datum/category_collection/proc/operator6969=(idx, B)
+	categories_by_name69idx69 = B
 
 /******************
 * Category Groups *
@@ -51,7 +51,7 @@
 		if(initial(item.name))
 			item = new item(src)
 			items += item
-			items_by_name[item.name] = item
+			items_by_name69item.name69 = item
 
 	// For whatever reason dd_insertObjectList(items, item) doesn't insert in the correct order
 	// If you change this, confirm that character setup doesn't become completely unordered.
@@ -67,11 +67,11 @@
 datum/category_group/dd_SortValue()
 	return name
 
-/datum/category_group/proc/operator[](idx)
-	return items_by_name[idx]
+/datum/category_group/proc/operator6969(idx)
+	return items_by_name69idx69
 
-/datum/category_group/proc/operator[]=(idx, B)
-	items_by_name[idx] = B
+/datum/category_group/proc/operator6969=(idx, B)
+	items_by_name69idx69 = B
 
 
 /*****************

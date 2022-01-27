@@ -1,5 +1,5 @@
 SUBSYSTEM_DEF(event)
-	name = "Event Manager"
+	name = "Event69anager"
 	wait = 2 SECONDS
 	priority = SS_PRIORITY_EVENT
 
@@ -39,7 +39,7 @@ SUBSYSTEM_DEF(event)
 		pos = EVENT_LEVEL_MUNDANE
 
 	while (processing_events.len)
-		var/datum/event/E = processing_events[processing_events.len]
+		var/datum/event/E = processing_events69processing_events.len69
 		processing_events.len--
 
 		E.Process()
@@ -51,15 +51,15 @@ SUBSYSTEM_DEF(event)
 /datum/controller/subsystem/event/proc/event_complete(datum/event/E)
 	active_events -= E
 
-	if(!E.storyevent || !E.severity)	// datum/event is used here and there for random reasons, maintaining "backwards compatibility"
-		log_debug("Event of '[E.type]' with missing meta-data has completed.")
+	if(!E.storyevent || !E.severity)	// datum/event is used here and there for random reasons,69aintaining "backwards compatibility"
+		log_debug("Event of '69E.type69' with69issing69eta-data has completed.")
 		return
 
 	finished_events += E
 
 
 
-	log_debug("Event '[name]' has completed at [stationtime2text()].")
+	log_debug("Event '69name69' has completed at 69stationtime2text()69.")
 
 /datum/controller/subsystem/event/proc/RoundEnd()
 	if(!report_at_round_end)
@@ -70,16 +70,16 @@ SUBSYSTEM_DEF(event)
 		var/datum/storyevent/SE = E.storyevent
 		if(!SE || SE.name == "Nothing")
 			continue
-		var/message = "'[SE.name]' began at [worldtime2stationtime(E.startedAt)] "
+		var/message = "'69SE.name69' began at 69worldtime2stationtime(E.startedAt)69 "
 		if(E.isRunning)
 			message += "and is still running."
 		else
-			if(E.endedAt - E.startedAt > MinutesToTicks(5)) // Only mention end time if the entire duration was more than 5 minutes
-				message += "and ended at [worldtime2stationtime(E.endedAt)]."
+			if(E.endedAt - E.startedAt >69inutesToTicks(5)) // Only69ention end time if the entire duration was69ore than 569inutes
+				message += "and ended at 69worldtime2stationtime(E.endedAt)69."
 			else
 				message += "and ran to completion."
 
-		to_chat(world, message)
+		to_chat(world,69essage)
 
 /datum/controller/subsystem/event/stat_entry()
-	..("E:[active_events.len]")
+	..("E:69active_events.len69")

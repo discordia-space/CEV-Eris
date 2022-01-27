@@ -6,16 +6,16 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 
 	if(Debug2)
 		Debug2 = 0
-		message_admins("[key_name(src)] toggled debugging off.")
-		log_admin("[key_name(src)] toggled debugging off.")
+		message_admins("69key_name(src)69 toggled debugging off.")
+		log_admin("69key_name(src)69 toggled debugging off.")
 	else
 		Debug2 = 1
-		message_admins("[key_name(src)] toggled debugging on.")
-		log_admin("[key_name(src)] toggled debugging on.")
+		message_admins("69key_name(src)69 toggled debugging on.")
+		log_admin("69key_name(src)69 toggled debugging on.")
 
 
 
-// callproc moved to code/modules/admin/callproc
+// callproc69oved to code/modules/admin/callproc
 
 
 /client/proc/Cell()
@@ -23,18 +23,18 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	set name = "Cell"
 	if(!mob)
 		return
-	var/turf/T = mob.loc
+	var/turf/T =69ob.loc
 
 	if (!istype(T, /turf))
 		return
 
 	var/datum/gas_mixture/env = T.return_air()
 
-	var/t = "\blue Coordinates: [T.x],[T.y],[T.z]\n"
-	t += "\red Temperature: [env.temperature]\n"
-	t += "\red Pressure: [env.return_pressure()]kPa\n"
+	var/t = "\blue Coordinates: 69T.x69,69T.y69,69T.z69\n"
+	t += "\red Temperature: 69env.temperature69\n"
+	t += "\red Pressure: 69env.return_pressure()69kPa\n"
 	for(var/g in env.gas)
-		t += "\blue [g]: [env.gas[g]] / [env.gas[g] * R_IDEAL_GAS_EQUATION * env.temperature / env.volume]kPa\n"
+		t += "\blue 69g69: 69env.gas69g6969 / 69env.gas69g69 * R_IDEAL_GAS_EQUATION * env.temperature / env.volume69kPa\n"
 
 	usr.show_message(t, 1)
 
@@ -44,25 +44,25 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	set name = "Make Robot"
 
 	if(ishuman(M))
-		log_admin("[key_name(src)] has robotized [M.key].")
+		log_admin("69key_name(src)69 has robotized 69M.key69.")
 		M.Robotize()
 
 	else
-		alert("Invalid mob")
+		alert("Invalid69ob")
 
 /client/proc/cmd_admin_animalize(var/mob/M in SSmobs.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
 	if(!M)
-		alert("That mob doesn't seem to exist, close the panel and try again.")
+		alert("That69ob doesn't seem to exist, close the panel and try again.")
 		return
 
 	if(isnewplayer(M))
-		alert("The mob must not be a new_player.")
+		alert("The69ob69ust not be a new_player.")
 		return
 
-	log_admin("[key_name(src)] has animalized [M.key].")
+	log_admin("69key_name(src)69 has animalized 69M.key69.")
 	spawn(10)
 		M.Animalize()
 
@@ -80,7 +80,7 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	if(!choice)
 		return 0
 	if(!isghost(choice))
-		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
+		var/confirm = input("69choice.key69 isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
 		if(confirm != "Yes")
 			return 0
 	var/obj/item/device/paicard/card = new(T)
@@ -99,30 +99,30 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 	set name = "Make slime"
 
 	if(ishuman(M))
-		log_admin("[key_name(src)] has slimeized [M.key].")
+		log_admin("69key_name(src)69 has slimeized 69M.key69.")
 		spawn(10)
 			M.slimeize()
 
-		log_admin("[key_name(usr)] made [key_name(M)] into a slime.")
-		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into a slime.", 1)
+		log_admin("69key_name(usr)6969ade 69key_name(M)69 into a slime.")
+		message_admins("\blue 69key_name_admin(usr)6969ade 69key_name(M)69 into a slime.", 1)
 	else
-		alert("Invalid mob")
+		alert("Invalid69ob")
 
 /*
 /client/proc/cmd_admin_monkeyize(var/mob/M in SSmobs.mob_list)
 	set category = "Fun"
-	set name = "Make Monkey"
+	set name = "Make69onkey"
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
-		var/mob/living/carbon/human/target = M
-		log_admin("[key_name(src)] is attempting to monkeyize [M.key].")
+		var/mob/living/carbon/human/target =69
+		log_admin("69key_name(src)69 is attempting to69onkeyize 69M.key69.")
 		spawn(10)
 			target.monkeyize()
 	else
-		alert("Invalid mob")
+		alert("Invalid69ob")
 
 /client/proc/cmd_admin_changelinginize(var/mob/M in SSmobs.mob_list)
 	set category = "Fun"
@@ -132,75 +132,75 @@ ADMIN_VERB_ADD(/client/proc/Debug2, R_DEBUG, FALSE)
 		alert("Wait until the game starts")
 		return
 	if(ishuman(M))
-		log_admin("[key_name(src)] has made [M.key] a changeling.")
+		log_admin("69key_name(src)69 has69ade 69M.key69 a changeling.")
 		spawn(10)
-			M.absorbed_dna[M.real_name] = M.dna.Clone()
+			M.absorbed_dna69M.real_name69 =69.dna.Clone()
 			M.make_changeling()
 			if(M.mind)
 				M.mind.special_role = "Changeling"
 	else
-		alert("Invalid mob")
+		alert("Invalid69ob")
 */
 /*
 /client/proc/cmd_admin_abominize(var/mob/M in SSmobs.mob_list)
 	set category = null
 	set name = "Make Abomination"
 
-	to_chat(usr, "Ruby Mode disabled. Command aborted.")
+	to_chat(usr, "Ruby69ode disabled. Command aborted.")
 	return
 	if(!ticker)
 		alert("Wait until the game starts.")
 		return
 	if(ishuman(M))
-		log_admin("[key_name(src)] has made [M.key] an abomination.")
+		log_admin("69key_name(src)69 has69ade 69M.key69 an abomination.")
 
 	//	spawn(10)
 	//		M.make_abomination()
 
 */
 /*
-/client/proc/make_cultist(var/mob/M in SSmobs.mob_list) // -- TLE, modified by Urist
+/client/proc/make_cultist(var/mob/M in SSmobs.mob_list) // -- TLE,69odified by Urist
 	set category = "Fun"
 	set name = "Make Cultist"
 	set desc = "Makes target a cultist"
-	if(!cultwords["travel"])
+	if(!cultwords69"travel"69)
 		runerandom()
 	if(M)
 		if(M.mind in ticker.mode.cult)
 			return
 		else
 			if(alert("Spawn that person a tome?",,"Yes","No")=="Yes")
-				to_chat(M, "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie. A tome, a message from your new master, appears on the ground.")
+				to_chat(M, "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie. A tome, a69essage from your new69aster, appears on the ground.")
 				new /obj/item/book/tome(M.loc)
 			else
 				to_chat(M, "\red You catch a glimpse of the Realm of Nar-Sie, The Geometer of Blood. You now see how flimsy the world is, you see that it should be open to the knowledge of Nar-Sie.")
 			var/glimpse=pick("1","2","3","4","5","6","7","8")
 			switch(glimpse)
 				if("1")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["travel"]] is travel...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"travel"6969 is travel...")
 				if("2")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["blood"]] is blood...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"blood"6969 is blood...")
 				if("3")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["join"]] is join...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"join"6969 is join...")
 				if("4")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["hell"]] is Hell...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"hell"6969 is Hell...")
 				if("5")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["destroy"]] is destroy...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"destroy"6969 is destroy...")
 				if("6")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["technology"]] is technology...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"technology"6969 is technology...")
 				if("7")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["self"]] is self...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"self"6969 is self...")
 				if("8")
-					to_chat(M, "\red You remembered one thing from the glimpse... [cultwords["see"]] is see...")
+					to_chat(M, "\red You remembered one thing from the glimpse... 69cultwords69"see"6969 is see...")
 
 			if(M.mind)
 				M.mind.special_role = "Cultist"
-				ticker.mode.cult += M.mind
-			to_chat(src, "Made [M] a cultist.")
+				ticker.mode.cult +=69.mind
+			to_chat(src, "Made 69M69 a cultist.")
 */
 
 
-//TODO: merge the vievars version into this or something maybe mayhaps
+//TODO:69erge the69ievars69ersion into this or something69aybe69ayhaps
 ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
@@ -213,8 +213,8 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_del_all, R_ADMIN|R_DEBUG, FALSE)
 		for(var/atom/O in world)
 			if(istype(O, hsbitem))
 				qdel(O)
-		log_admin("[key_name(src)] has deleted all instances of [hsbitem].")
-		message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem].", 0)
+		log_admin("69key_name(src)69 has deleted all instances of 69hsbitem69.")
+		message_admins("69key_name_admin(src)69 has deleted all instances of 69hsbitem69.", 0)
 
 ADMIN_VERB_ADD(/client/proc/cmd_display_del_log, R_ADMIN|R_DEBUG, FALSE)
 /client/proc/cmd_display_del_log()
@@ -225,21 +225,21 @@ ADMIN_VERB_ADD(/client/proc/cmd_display_del_log, R_ADMIN|R_DEBUG, FALSE)
 	var/list/dellog = list("<B>List of things that have gone through qdel this round</B><BR><BR><ol>")
 	sortTim(SSgarbage.items, cmp=/proc/cmp_qdel_item_time, associative = TRUE)
 	for(var/path in SSgarbage.items)
-		var/datum/qdel_item/I = SSgarbage.items[path]
-		dellog += "<li><u>[path]</u><ul>"
+		var/datum/qdel_item/I = SSgarbage.items69path69
+		dellog += "<li><u>69path69</u><ul>"
 		if (I.failures)
-			dellog += "<li>Failures: [I.failures]</li>"
-		dellog += "<li>qdel() Count: [I.qdels]</li>"
-		dellog += "<li>Destroy() Cost: [I.destroy_time]ms</li>"
+			dellog += "<li>Failures: 69I.failures69</li>"
+		dellog += "<li>qdel() Count: 69I.qdels69</li>"
+		dellog += "<li>Destroy() Cost: 69I.destroy_time69ms</li>"
 		if (I.hard_deletes)
-			dellog += "<li>Total Hard Deletes [I.hard_deletes]</li>"
-			dellog += "<li>Time Spent Hard Deleting: [I.hard_delete_time]ms</li>"
+			dellog += "<li>Total Hard Deletes 69I.hard_deletes69</li>"
+			dellog += "<li>Time Spent Hard Deleting: 69I.hard_delete_time69ms</li>"
 		if (I.slept_destroy)
-			dellog += "<li>Sleeps: [I.slept_destroy]</li>"
+			dellog += "<li>Sleeps: 69I.slept_destroy69</li>"
 		if (I.no_respect_force)
-			dellog += "<li>Ignored force: [I.no_respect_force]</li>"
+			dellog += "<li>Ignored force: 69I.no_respect_force69</li>"
 		if (I.no_hint)
-			dellog += "<li>No hint: [I.no_hint]</li>"
+			dellog += "<li>No hint: 69I.no_hint69</li>"
 		dellog += "</ul></li>"
 
 	dellog += "</ol>"
@@ -251,15 +251,15 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 	set category = "Debug"
 	set name = "Make Powernets"
 	SSmachines.makepowernets()
-	log_admin("[key_name(src)] has remade the powernet. makepowernets() called.")
-	message_admins("[key_name_admin(src)] has remade the powernets. makepowernets() called.", 0)
+	log_admin("69key_name(src)69 has remade the powernet.69akepowernets() called.")
+	message_admins("69key_name_admin(src)69 has remade the powernets.69akepowernets() called.", 0)
 
 /client/proc/cmd_admin_grantfullaccess(var/mob/M in SSmobs.mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		var/obj/item/card/id/id = H.GetIdCard()
 		if(id)
 			id.icon_state = "gold"
@@ -270,14 +270,14 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 			new_id.access = get_all_accesses()
 			new_id.registered_name = H.real_name
 			new_id.assignment = "Captain"
-			new_id.name = "[new_id.registered_name]'s ID Card ([new_id.assignment])"
+			new_id.name = "69new_id.registered_name69's ID Card (69new_id.assignment69)"
 			H.equip_to_slot_or_del(new_id, slot_wear_id)
 			H.update_inv_wear_id()
 	else
-		alert("Invalid mob")
+		alert("Invalid69ob")
 
-	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
+	log_admin("69key_name(src)69 has granted 69M.key69 full access.")
+	message_admins("\blue 69key_name_admin(usr)69 has granted 69M.key69 full access.", 1)
 
 /client/proc/cmd_assume_direct_control(var/mob/M in SSmobs.mob_list)
 	set category = "Admin"
@@ -286,13 +286,13 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 
 	if(!check_rights(R_DEBUG|R_ADMIN))	return
 	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
+		if(alert("This69ob is being controlled by 69M.ckey69. Are you sure you wish to assume control of it? 69M.ckey69 will be69ade a ghost.",,"Yes","No") != "Yes")
 			return
 		else
 			var/mob/observer/ghost/ghost = new/mob/observer/ghost(M,1)
-			ghost.ckey = M.ckey
-	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
-	log_admin("[key_name(usr)] assumed direct control of [M].")
+			ghost.ckey =69.ckey
+	message_admins("\blue 69key_name_admin(usr)69 assumed direct control of 69M69.", 1)
+	log_admin("69key_name(usr)69 assumed direct control of 69M69.")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
 	if(isghost(adminmob))
@@ -366,31 +366,31 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_make_powernets, R_DEBUG, FALSE)
 
 	to_chat(world, "<b>AREAS WITHOUT AN APC:</b>")
 	for(var/areatype in areas_without_APC)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 	to_chat(world, "<b>AREAS WITHOUT AN AIR ALARM:</b>")
 	for(var/areatype in areas_without_air_alarm)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 	to_chat(world, "<b>AREAS WITHOUT A REQUEST CONSOLE:</b>")
 	for(var/areatype in areas_without_RC)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 	to_chat(world, "<b>AREAS WITHOUT ANY LIGHTS:</b>")
 	for(var/areatype in areas_without_light)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 	to_chat(world, "<b>AREAS WITHOUT A LIGHT SWITCH:</b>")
 	for(var/areatype in areas_without_LS)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 	to_chat(world, "<b>AREAS WITHOUT ANY INTERCOMS:</b>")
 	for(var/areatype in areas_without_intercom)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 	to_chat(world, "<b>AREAS WITHOUT ANY CAMERAS:</b>")
 	for(var/areatype in areas_without_camera)
-		to_chat(world, "* [areatype]")
+		to_chat(world, "* 69areatype69")
 
 
 ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
@@ -398,11 +398,11 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 	set category = "Fun"
 	set name = "Select equipment"
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select equipment.") as null|anything in GLOB.human_mob_list
+	var/mob/living/carbon/human/M = input("Select69ob.", "Select equipment.") as null|anything in GLOB.human_mob_list
 	if(!M) return
 
 	var/list/dresspacks = outfits()
-	var/decl/hierarchy/outfit/dresscode = input("Select dress for [M]", "Robust quick dress shop") as null|anything in dresspacks
+	var/decl/hierarchy/outfit/dresscode = input("Select dress for 69M69", "Robust quick dress shop") as null|anything in dresspacks
 	if (isnull(dresscode))
 		return
 
@@ -411,7 +411,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 /client/proc/startSinglo()
 	set category = "Debug"
 	set name = "Start Singularity"
-	set desc = "Sets up the singularity and all machines to get power flowing through the station"
+	set desc = "Sets up the singularity and all69achines to get power flowing through the station"
 
 	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
 		return
@@ -446,7 +446,7 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 		if(Rad.anchored)
 			if(!Rad.P)
 				var/obj/item/tank/plasma/Plasma = new/obj/item/tank/plasma(Rad)
-				Plasma.air_contents.gas["plasma"] = 70
+				Plasma.air_contents.gas69"plasma"69 = 70
 				Rad.drainratio = 0
 				Rad.P = Plasma
 				Plasma.loc = Rad
@@ -462,19 +462,19 @@ ADMIN_VERB_ADD(/client/proc/cmd_admin_dress, R_FUN, FALSE)
 ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 /client/proc/cmd_debug_mob_lists()
 	set category = "Debug"
-	set name = "Debug Mob Lists"
+	set name = "Debug69ob Lists"
 	set desc = "For when you just gotta know"
 
-	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
+	switch(input("Which list?") in list("Players","Admins","Mobs","Living69obs","Dead69obs", "Clients"))
 		if("Players")
 			to_chat(usr, jointext(GLOB.player_list,","))
 		if("Admins")
 			to_chat(usr, jointext(admins,","))
 		if("Mobs")
 			to_chat(usr, jointext(SSmobs.mob_list,","))
-		if("Living Mobs")
+		if("Living69obs")
 			to_chat(usr, jointext(GLOB.living_mob_list,","))
-		if("Dead Mobs")
+		if("Dead69obs")
 			to_chat(usr, jointext(GLOB.dead_mob_list,","))
 		if("Clients")
 			to_chat(usr, jointext(clients,","))
@@ -485,18 +485,18 @@ ADMIN_VERB_ADD(/client/proc/cmd_debug_mob_lists, R_DEBUG, FALSE)
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.update_mutations()
-		var/state="[M.dna.GetSEState(block)?"on":"off"]"
-		var/blockname=assigned_blocks[block]
-		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
-		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
+		var/state="69M.dna.GetSEState(block)?"on":"off"69"
+		var/blockname=assigned_blocks69block69
+		message_admins("69key_name_admin(src)69 has toggled 69M.key69's 69blockname69 block 69state69!")
+		log_admin("69key_name(src)69 has toggled 69M.key69's 69blockname69 block 69state69!")
 	else
-		alert("Invalid mob")
+		alert("Invalid69ob")
 
 ADMIN_VERB_ADD(/client/proc/view_runtimes, R_DEBUG, FALSE)
 /client/proc/view_runtimes()
 	set category = "Debug"
 	set name = "View Runtimes"
-	set desc = "Open the Runtime Viewer"
+	set desc = "Open the Runtime69iewer"
 	error_cache.showTo(usr)
 
 
@@ -518,10 +518,10 @@ ADMIN_VERB_ADD(/client/proc/spawn_disciple, R_DEBUG, FALSE)
 ADMIN_VERB_ADD(/client/proc/delete_npcs, R_DEBUG, FALSE)
 /client/proc/delete_npcs()
 	set category = "Debug"
-	set name = "Delete NPC mobs"
-	set desc = "Deletes every mob that isn't a player"
+	set name = "Delete NPC69obs"
+	set desc = "Deletes every69ob that isn't a player"
 
-	if(alert("Are you sure you want to delete all nonplayer mobs?",,"Yes", "No") == "No")
+	if(alert("Are you sure you want to delete all nonplayer69obs?",,"Yes", "No") == "No")
 		return
 
 	var/total = 0
@@ -530,4 +530,4 @@ ADMIN_VERB_ADD(/client/proc/delete_npcs, R_DEBUG, FALSE)
 			continue
 		qdel(L)
 		total++
-	to_chat(world, "Deleted [total] mobs")
+	to_chat(world, "Deleted 69total6969obs")

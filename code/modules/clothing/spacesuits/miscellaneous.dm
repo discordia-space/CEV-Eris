@@ -1,7 +1,7 @@
 //Space santa outfit suit
 /obj/item/clothing/head/space/santahat
 	name = "Santa's hat"
-	desc = "Ho ho ho. Merrry X-mas!"
+	desc = "Ho ho ho.69errry X-mas!"
 	icon_state = "santahat"
 	item_state = "santahat"
 	item_flags = STOPPRESSUREDAMAGE
@@ -22,7 +22,7 @@
 	name = "emergency space helmet"
 	icon_state = "emergencyhelm"
 	item_state = "syndi_helm_erm"	//currently not working somehow
-	desc = "A simple helmet with a built in light, smells like mothballs."
+	desc = "A simple helmet with a built in light, smells like69othballs."
 	light_overlay = "helmet_light_syndi_soft"
 	flash_protection = FLASH_PROTECTION_NONE
 

@@ -1,8 +1,8 @@
 //----------------------------------------
 //
 //   Return a copy of the provided icon,
-//  after calling MapColors on it. The
-//  color values are linearily interpolated
+//  after calling69apColors on it. The
+//  color69alues are linearily interpolated
 //  between the pairs provided, based on
 //  the ratio argument.
 //
@@ -33,34 +33,34 @@
 //----------------------------------------
 //
 //   Extension of the above that takes a
-//  list of lists of color values, rather
+//  list of lists of color69alues, rather
 //  than a large number of arguments.
 //
 //----------------------------------------
 
 /proc/MapColors_interpolate_list(icon/I, ratio, list/colors)
-	var/list/c[10]
+	var/list/c691069
 
-	//Provide default values for any missing colors (without altering the original list
+	//Provide default69alues for any69issing colors (without altering the original list
 	for(var/i = 1, i <= 10, i++)
-		c[i] = list(0, 0, 0, (i == 7 || i == 8)? 255 : 0)
+		c69i69 = list(0, 0, 0, (i == 7 || i == 8)? 255 : 0)
 
-		if(istype(colors[i], /list))
+		if(istype(colors69i69, /list))
 			for(var/j = 1, j <= 4, j++)
-				if(j <= length(colors[i]) && isnum(colors[i][j]))
-					c[i][j] = colors[i][j]
+				if(j <= length(colors69i69) && isnum(colors69i6969j69))
+					c69i6969j69 = colors69i6969j69
 
-	return MapColors_interpolate(I, ratio,
-		 colors[ 1][1], colors[ 1][2], colors[ 1][3], colors[ 1][4], // Red 1
-		 colors[ 2][1], colors[ 2][2], colors[ 2][3], colors[ 2][4], // Red 2
-		 colors[ 3][1], colors[ 3][2], colors[ 3][3], colors[ 3][4], // Green 1
-		 colors[ 4][1], colors[ 4][2], colors[ 4][3], colors[ 4][4], // Green 2
-		 colors[ 5][1], colors[ 5][2], colors[ 5][3], colors[ 5][4], // Blue 1
-		 colors[ 6][1], colors[ 6][2], colors[ 6][3], colors[ 6][4], // Blue 2
-		 colors[ 7][1], colors[ 7][2], colors[ 7][3], colors[ 7][4], // Alpha 1
-		 colors[ 8][1], colors[ 8][2], colors[ 8][3], colors[ 8][4], // Alpha 2
-		 colors[ 9][1], colors[ 9][2], colors[ 9][3], colors[ 9][4], // Added 1
-		 colors[10][1], colors[10][2], colors[10][3], colors[10][4]) // Added 2
+	return69apColors_interpolate(I, ratio,
+		 colors69 16969169, colors69 16969269, colors69 16969369, colors69 16969469, // Red 1
+		 colors69 26969169, colors69 26969269, colors69 26969369, colors69 26969469, // Red 2
+		 colors69 36969169, colors69 36969269, colors69 36969369, colors69 36969469, // Green 1
+		 colors69 46969169, colors69 46969269, colors69 46969369, colors69 46969469, // Green 2
+		 colors69 56969169, colors69 56969269, colors69 56969369, colors69 56969469, // Blue 1
+		 colors69 66969169, colors69 66969269, colors69 66969369, colors69 66969469, // Blue 2
+		 colors69 76969169, colors69 76969269, colors69 76969369, colors69 76969469, // Alpha 1
+		 colors69 86969169, colors69 86969269, colors69 86969369, colors69 86969469, // Alpha 2
+		 colors69 96969169, colors69 96969269, colors69 96969369, colors69 96969469, // Added 1
+		 colors69106969169, colors69106969269, colors69106969369, colors69106969469) // Added 2
 
 
 
@@ -69,12 +69,12 @@
 //----------------------------------------
 //
 //   Take the source image, and return an animated
-//  version, that transitions between the provided
-//  color mappings, according to the provided
+// 69ersion, that transitions between the provided
+//  color69appings, according to the provided
 //  pattern.
 //
 //   Colors should be in a format suitable for
-//  MapColors_interpolate_list, and frames should
+// 69apColors_interpolate_list, and frames should
 //  be a list of 'frames', where each frame is itself
 //  a list, element 1 being the ratio of the first
 //  color to the second, and element 2 being how
@@ -87,8 +87,8 @@
 	var/frame_num = 1
 
 	for(var/frame in frames)
-		var/icon/I = MapColors_interpolate_list(icon, frame[1], colors)
-		out.Insert(I, "", 2, frame_num++, 0, frame[2])
+		var/icon/I =69apColors_interpolate_list(icon, frame69169, colors)
+		out.Insert(I, "", 2, frame_num++, 0, frame69269)
 
 	return out
 

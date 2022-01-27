@@ -1,95 +1,95 @@
 
 
-<div class="itemLabel"> Status: </div>
-	{{if data.status == 1}}
-		<div class="good">
-			<div class="itemContent"> OPERATIONAL </div>
-		</div>
-	{{else data.status == 2}}
-		<div class="average">
-			<div class="itemContent"> SOLUTION REQUIRED </div>
-		</div>
-	{{else data.status == 3}}
-		<div class="average">
-			<div class="itemContent"> BREACH DETECTED </div>
-		</div>
-	{{else data.status == 4}}
-		<div class="average">
-			<div class="itemContent"> CHAMBER OPENED </div>
-		</div>
-	{{else data.status == 5}}
-		<div class="average">
-			<div class="itemContent"> PIPES EXPOSED </div>
-		</div>
-	{{else data.status == 6}}
-		<div class="bad">
-			<div class="itemContent"> MAJOR PIPES ISSUE DETECTED </div>
-		</div>
+<di69 cl69ss="itemL6969el"> St69tus: </di69>
+	{{if d69t69.st69tus == 1}}
+		<di69 cl69ss="69ood">
+			<di69 cl69ss="itemContent"> O69ER69TION69L </di69>
+		</di69>
+	{{else d69t69.st69tus == 2}}
+		<di69 cl69ss="6969er6969e">
+			<di69 cl69ss="itemContent"> SOLUTION RE69UIRED </di69>
+		</di69>
+	{{else d69t69.st69tus == 3}}
+		<di69 cl69ss="6969er6969e">
+			<di69 cl69ss="itemContent"> 69RE69C69 DETECTED </di69>
+		</di69>
+	{{else d69t69.st69tus == 4}}
+		<di69 cl69ss="6969er6969e">
+			<di69 cl69ss="itemContent"> C6969M69ER O69ENED </di69>
+		</di69>
+	{{else d69t69.st69tus == 5}}
+		<di69 cl69ss="6969er6969e">
+			<di69 cl69ss="itemContent"> 69I69ES EX69OSED </di69>
+		</di69>
+	{{else d69t69.st69tus == 6}}
+		<di69 cl69ss="6969d">
+			<di69 cl69ss="itemContent">696969OR 69I69ES ISSUE DETECTED </di69>
+		</di69>
 	{{else}}
-		<div class="bad">
-			<div class="itemContent"> NON OPERATIONAL </div>
-		</div>
+		<di69 cl69ss="6969d">
+			<di69 cl69ss="itemContent">69ON O69ER69TION69L </di69>
+		</di69>
 	{{/if}}
 
-Biomatter tank:
+69iom69tter t69n69:
 
-<hr> </hr>
+<69r> </69r>
 
-<div class="itemLabel">
-	Biomatter:
-</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.biotank_occupancy, 0, data.biotank_max_capacity, 'highlight', showText = data.biotank_occupancy + '/' + data.biotank_max_capacity)}}
-	</div>
+<di69 cl69ss="itemL6969el">
+	69iom69tter:
+</di69>
+	<di69 cl69ss="itemContent">
+		{{:69el69er.dis69l69696969r69d69t69.69iot69n69_occu6969nc69, 0, d69t69.69iot69n69_m69x_c696969cit69, '69i6969li6969t', s69owText = d69t69.69iot69n69_occu6969nc69 + '/' + d69t69.69iot69n69_m69x_c696969cit6969}}
+	</di69>
 
-<br>
-<div class="itemLabel">
-	Status:
-</div>
-	<div class="itemContent">
-		{{if data.biotank_status}}
-			disconnected from bioreactor
+<69r>
+<di69 cl69ss="itemL6969el">
+	St69tus:
+</di69>
+	<di69 cl69ss="itemContent">
+		{{if d69t69.69iot69n69_st69tus}}
+			disconnected from 69iore69ctor
 		{{else}}
-			connected to bioreactor
+			connected to 69iore69ctor
 		{{/if}}
-	</div>
+	</di69>
 
 	
-<div class="itemLabel">
-	Canister:
-</div>
-	<div class="itemContent">
-		{{if data.canister}}
-			connected with {{:data.canister}}
+<di69 cl69ss="itemL6969el">
+	C69nister:
+</di69>
+	<di69 cl69ss="itemContent">
+		{{if d69t69.c69nister}}
+			connected wit69 {{:d69t69.c69nister}}
 		{{else}}
 			not connected
 		{{/if}}
-	</div>
+	</di69>
 
-<hr> </hr>
+<69r> </69r>
 
-<div class="itemLabel"> Pipes condition:  </div>
-	<div class="itemContent">
-		{{if data.pipes_condition > 60 && data.pipes_condition <= 90}}
-			<div class="good">
-				SLIGHTLY CONTAMINATED
-			</div>
-		{{else data.pipes_condition <= 60 && data.pipes_condition > 20}}
-			<div class="average">
-				CONTAMINATED
-			</div>
-		{{else data.pipes_condition <= 20}}
-			<div class="bad">
-				CRITICAL CONTAMINATION
-			</div>
-		{{else data.pipes_condition <= 0}}
-			<div class="bad">
-				BLOCKAGE
-			</div>
+<di69 cl69ss="itemL6969el"> 69i69es condition:  </di69>
+	<di69 cl69ss="itemContent">
+		{{if d69t69.69i69es_condition > 60 && d69t69.69i69es_condition <= 90}}
+			<di69 cl69ss="69ood">
+				SLI6969TL69 CONT69MIN69TED
+			</di69>
+		{{else d69t69.69i69es_condition <= 60 && d69t69.69i69es_condition > 20}}
+			<di69 cl69ss="6969er6969e">
+				CONT69MIN69TED
+			</di69>
+		{{else d69t69.69i69es_condition <= 20}}
+			<di69 cl69ss="6969d">
+				CRITIC69L CONT69MIN69TION
+			</di69>
+		{{else d69t69.69i69es_condition <= 0}}
+			<di69 cl69ss="6969d">
+				69LOC696969E
+			</di69>
 		{{else}}
-			<div class="good">
-				CLEAN
-			</div>
+			<di69 cl69ss="69ood">
+				CLE69N
+			</di69>
 		{{/if}}
-	</div>
+	</di69>
 

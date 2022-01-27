@@ -5,7 +5,7 @@
 	category = /datum/uplink_category/telecrystals
 	desc = "Acquire the uplink crystals in pure form."
 
-/datum/uplink_item/item/telecrystal/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/item/telecrystal/get_goods(var/obj/item/device/uplink/U,69ar/loc)
 	return new /obj/item/stack/telecrystal(loc, cost(U.uses))
 
 /datum/uplink_item/item/telecrystal/one
@@ -28,4 +28,4 @@
 	name = "Telecrystals - Empty Uplink"
 
 /datum/uplink_item/item/telecrystal/all/cost(var/telecrystals)
-	return max(1, telecrystals)
+	return69ax(1, telecrystals)

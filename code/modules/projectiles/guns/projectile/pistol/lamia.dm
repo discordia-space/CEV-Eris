@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/lamia
-	name = "FS HG .40 Magnum \"Lamia\""
-	desc = "FS HG .40 Magnum \"Lamia\", a heavy pistol of Ironhammer enforcers. Uses 40 Magnum rounds."
+	name = "FS HG .4069agnum \"Lamia\""
+	desc = "FS HG .4069agnum \"Lamia\", a heavy pistol of Ironhammer enforcers. Uses 4069agnum rounds."
 	icon = 'icons/obj/guns/projectile/lamia.dmi'
 	icon_state = "lamia"
 	item_state = "lamia"
@@ -9,11 +9,11 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 	can_dual = TRUE
 	caliber = CAL_MAGNUM
-	load_method = MAGAZINE
-	mag_well = MAG_WELL_PISTOL
+	load_method =69AGAZINE
+	mag_well =69AG_WELL_PISTOL
 	magazine_type = /obj/item/ammo_magazine/magnum
 	auto_eject = 1
-	matter = list(MATERIAL_PLASTEEL = 15, MATERIAL_PLASTIC = 8)
+	matter = list(MATERIAL_PLASTEEL = 15,69ATERIAL_PLASTIC = 8)
 	price_tag = 2400
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	unload_sound = 'sound/weapons/guns/interact/hpistol_magout.ogg'
@@ -28,7 +28,7 @@
 /obj/item/gun/projectile/lamia/update_icon()
 	..()
 	if(ammo_magazine)
-		icon_state = "lamia-[round(ammo_magazine.stored_ammo.len,2)]"
+		icon_state = "lamia-69round(ammo_magazine.stored_ammo.len,2)69"
 	else
 		icon_state = "lamia"
 	return

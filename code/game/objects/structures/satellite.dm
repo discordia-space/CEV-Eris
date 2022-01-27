@@ -3,7 +3,7 @@
 	icon_state = "sputnik"
 	desc = "It looks like ancient satellite."
 	rarity_value = 10
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_tags = SPAWN_TAG_SATELITE
 	var/cooldown = FALSE
 

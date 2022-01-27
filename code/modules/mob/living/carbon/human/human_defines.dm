@@ -1,5 +1,5 @@
 /mob/living/carbon/human
-	//first and last name
+	//first and last69ame
 	var/first_name
 	var/last_name
 
@@ -19,11 +19,11 @@
 	//Skin colour
 	var/skin_color = "#000000"
 
-	var/size_multiplier = 1 //multiplier for the mob's icon size
-	var/damage_multiplier = 1 //multiplies melee combat damage
+	var/size_multiplier = 1 //multiplier for the69ob's icon size
+	var/damage_multiplier = 1 //multiplies69elee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
 
-	var/lip_style	//no lipstick by default- arguably misleading, as it could be used for general makeup
+	var/lip_style	//no lipstick by default- arguably69isleading, as it could be used for general69akeup
 
 	var/age = 30		//Player's age (pure fluff)
 	var/b_type = "A+"	//Player's bloodtype
@@ -50,34 +50,34 @@
 	var/icon/stand_icon
 	var/icon/lying_icon
 
-	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
+	var/voice = ""	//Instead of69ew say code calling GetVoice() over and over and over, we're just going to ask this69ariable, which gets updated in Life()
 
 	var/speech_problem_flag = 0
 
-	var/miming //Toggle for the mime's abilities.
-	var/special_voice = "" // For changing our voice. Used by a symptom.
+	var/miming //Toggle for the69ime's abilities.
+	var/special_voice = "" // For changing our69oice. Used by a symptom.
 
-	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
+	var/last_dam = -1	//Used for determining if we69eed to process all organs or just some or even69one.
 	var/list/bad_external_organs = list()// organs we check until they are good.
 
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target
-	var/remoteviewer = FALSE //Acts as an override for remoteview_target viewing, see human/life.dm: handle_vision()
+	var/remoteviewer = FALSE //Acts as an override for remoteview_target69iewing, see human/life.dm: handle_vision()
 	var/hand_blood_color
 
 	var/gunshot_residue
-	var/pulling_punches // Are you trying not to hurt your opponent?
+	var/pulling_punches // Are you trying69ot to hurt your opponent?
 
 	mob_bump_flag = HUMAN
 	mob_push_flags = ~HEAVY
 	mob_swap_flags = ~HEAVY
 
 	var/flash_protection = 0				// Total level of flash protection
-	var/equipment_tint_total = 0			// Total level of visualy impairing items
-	var/equipment_darkness_modifier			// Darkvision modifier from equipped items
-	var/equipment_vision_flags				// Extra vision flags from equipped items
-	var/equipment_see_invis					// Max see invibility level granted by equipped items
+	var/equipment_tint_total = 0			// Total level of69isualy impairing items
+	var/equipment_darkness_modifier			// Darkvision69odifier from equipped items
+	var/equipment_vision_flags				// Extra69ision flags from equipped items
+	var/equipment_see_invis					//69ax see invibility level granted by equipped items
 	var/equipment_prescription				// Eye prescription granted by equipped items
 	var/list/equipment_overlays = list()	// Extra overlays from equipped items
 
@@ -86,16 +86,16 @@
 	var/gen_record = ""
 	var/exploit_record = ""
 
-	var/stance_damage = 0 //Whether this mob's ability to stand has been affected
+	var/stance_damage = 0 //Whether this69ob's ability to stand has been affected
 	var/identifying_gender // In case the human identifies as another gender than it's biological
 	mob_classification = CLASSIFICATION_ORGANIC | CLASSIFICATION_HUMANOID
 
 	var/datum/sanity/sanity
 
 	var/style = 0
-	var/max_style = MAX_HUMAN_STYLE
+	var/max_style =69AX_HUMAN_STYLE
 	var/slickness = 0 // used for stylish dodging stuff, capped at style * 10
-	var/confidence = TRUE // needed to notify player when slickness passively regens
+	var/confidence = TRUE //69eeded to69otify player when slickness passively regens
 
 	var/shock_resist = 0 // Resistance to paincrit
 

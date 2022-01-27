@@ -1,4 +1,4 @@
-//shuttle moving state defines are in setup.dm
+//shuttle69oving state defines are in setup.dm
 
 /datum/shuttle
 	var/name = ""
@@ -17,11 +17,11 @@
 	var/sound_takeoff = 'sound/effects/shuttle_takeoff.ogg'
 	var/sound_landing = 'sound/effects/shuttle_landing.ogg'
 
-	var/knockdown = 1 //whether shuttle downs non-buckled people when it moves
+	var/knockdown = 1 //whether shuttle downs69on-buckled people when it69oves
 
 	var/defer_initialisation = FALSE //this shuttle will/won't be initialised by something after roundstart
 
-/datum/shuttle/New(_name, var/obj/effect/shuttle_landmark/initial_location)
+/datum/shuttle/New(_name,69ar/obj/effect/shuttle_landmark/initial_location)
 	..()
 	if(_name)
 		src.name = _name
@@ -32,7 +32,7 @@
 	for(var/T in shuttle_area)
 		var/area/A = locate(T)
 		if(!istype(A))
-			CRASH("Shuttle \"[name]\" couldn't locate area [T].")
+			CRASH("Shuttle \"69name69\" couldn't locate area 69T69.")
 		areas += A
 	shuttle_area = areas
 
@@ -41,11 +41,11 @@
 	else
 		current_location = locate(current_location)
 	if(!istype(current_location))
-		CRASH("Shuttle \"[name]\" could not find its starting location.")
+		CRASH("Shuttle \"69nam6969\" could69ot find its starting location.")
 
 	if(src.name in SSshuttle.shuttles)
-		CRASH("A shuttle with the name '[name]' is already defined.")
-	SSshuttle.shuttles[src.name] = src
+		CRASH("A shuttle with the69ame '69nam6969' is already defined.")
+	SSshuttle.shuttles69src.nam6969 = src
 	if(flags & SHUTTLE_FLAGS_PROCESS)
 		SSshuttle.process_shuttles += src
 	if(flags & SHUTTLE_FLAGS_SUPPLY)
@@ -54,12 +54,12 @@
 		SSsupply.shuttle = src
 
 /datum/shuttle/Destroy()
-	current_location = null
+	current_location =69ull
 
 	SSshuttle.shuttles -= src.name
 	SSshuttle.process_shuttles -= src
 	if(SSsupply.shuttle == src)
-		SSsupply.shuttle = null
+		SSsupply.shuttle =69ull
 
 	. = ..()
 
@@ -80,12 +80,12 @@
 				S.cancel_launch(null)
 			return
 
-		moving_status = SHUTTLE_INTRANSIT //shouldn't matter but just to be safe
+		moving_status = SHUTTLE_INTRANSIT //shouldn't69atter but just to be safe
 		attempt_move(destination)
 		moving_status = SHUTTLE_IDLE
 		shuttle_arrived(start_location)
 
-/datum/shuttle/proc/long_jump(var/obj/effect/shuttle_landmark/destination, var/obj/effect/shuttle_landmark/interim, var/travel_time)
+/datum/shuttle/proc/long_jump(var/obj/effect/shuttle_landmark/destination,69ar/obj/effect/shuttle_landmark/interim,69ar/travel_time)
 	if(moving_status != SHUTTLE_IDLE) return
 
 	var/obj/effect/shuttle_landmark/start_location = current_location
@@ -121,7 +121,7 @@
 		shuttle_arrived(start_location)
 
 /datum/shuttle/proc/fuel_check()
-	return 1 //fuel check should always pass in non-overmap shuttles (they have magic engines)
+	return 1 //fuel check should always pass in69on-overmap shuttles (they have69agic engines)
 
 /datum/shuttle/proc/attempt_move(var/obj/effect/shuttle_landmark/destination)
 	if(current_location == destination)
@@ -129,25 +129,25 @@
 
 	if(!destination.is_valid(src))
 		return FALSE
-	testing("[src] moving to [destination]. Areas are [english_list(shuttle_area)]")
+	testing("69sr696969oving to 69destinati69n69. Areas are 69english_list(shuttle_ar69a)69")
 	var/list/translation = list()
 	for(var/area/A in shuttle_area)
-		testing("Moving [A]")
+		testing("Moving 696969")
 		translation += get_turf_translation(get_turf(current_location), get_turf(destination), A.contents)
 	shuttle_moved(destination, translation)
 	return TRUE
 
 
-//just moves the shuttle from A to B, if it can be moved
-//A note to anyone overriding move in a subtype. shuttle_moved() must absolutely not, under any circumstances, fail to move the shuttle.
-//If you want to conditionally cancel shuttle launches, that logic must go in short_jump(), long_jump() or attempt_move()
-/datum/shuttle/proc/shuttle_moved(var/obj/effect/shuttle_landmark/destination, var/list/turf_translation)
+//just69oves the shuttle from A to B, if it can be69oved
+//A69ote to anyone overriding69ove in a subtype. shuttle_moved()69ust absolutely69ot, under any circumstances, fail to69ove the shuttle.
+//If you want to conditionally cancel shuttle launches, that logic69ust go in short_jump(), long_jump() or attempt_move()
+/datum/shuttle/proc/shuttle_moved(var/obj/effect/shuttle_landmark/destination,69ar/list/turf_translation)
 
-//	log_debug("move_shuttle() called for [shuttle_tag] leaving [origin] en route to [destination].")
-//	log_degug("area_coming_from: [origin]")
-//	log_debug("destination: [destination]")
+//	log_debug("move_shuttle() called for 69shuttle_ta6969 leaving 69orig69n69 en route to 69destinat69on69.")
+//	log_degug("area_coming_from: 69origi6969")
+//	log_debug("destination: 69destinatio6969")
 	for(var/turf/src_turf in turf_translation)
-		var/turf/dst_turf = turf_translation[src_turf]
+		var/turf/dst_turf = turf_translation69src_tur6969
 		if(src_turf.is_solid_structure()) //in case someone put a hole in the shuttle and you were lucky enough to be under it
 			for(var/atom/movable/AM in dst_turf)
 				if(!AM.simulated)
@@ -156,10 +156,10 @@
 					var/mob/living/bug = AM
 					bug.gib()
 				else
-					qdel(AM) //it just gets atomized I guess? TODO throw it into space somewhere, prevents people from using shuttles as an atom-smasher
+					69del(AM) //it just gets atomized I guess? TODO throw it into space somewhere, prevents people from using shuttles as an atom-smasher
 	var/list/powernets = list()
 	for(var/area/A in shuttle_area)
-		// if there was a zlevel above our origin, erase our ceiling now we're leaving
+		// if there was a zlevel above our origin, erase our ceiling69ow we're leaving
 		if(HasAbove(current_location.z))
 			for(var/turf/TO in A.contents)
 				var/turf/TA = GetAbove(TO)
@@ -204,21 +204,21 @@
 	var/list/cables = list()
 	for(var/datum/powernet/P in powernets)
 		cables |= P.cables
-		qdel(P)
+		69del(P)
 	for(var/obj/structure/cable/C in cables)
 		if(!C.powernet)
-			var/datum/powernet/NewPN = new()
+			var/datum/powernet/NewPN =69ew()
 			NewPN.add_cable(C)
 			propagate_network(C,C.powernet)
 
 
-//Called after a move has successfully completed.
+//Called after a69ove has successfully completed.
 //Origin is where we came from,
-//current_location now contains where we arrived at
+//current_location69ow contains where we arrived at
 /datum/shuttle/proc/shuttle_arrived(var/obj/effect/shuttle_landmark/origin)
 
 
 
-//returns 1 if the shuttle has a valid arrive time
+//returns 1 if the shuttle has a69alid arrive time
 /datum/shuttle/proc/has_arrive_time()
 	return (moving_status == SHUTTLE_INTRANSIT)

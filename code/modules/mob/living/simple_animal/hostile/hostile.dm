@@ -2,7 +2,7 @@
 #define ENVIRONMENT_SMASH_STRUCTURES	(1<<0) 	//crates, lockers, ect
 #define ENVIRONMENT_SMASH_WALLS			(1<<1)  //walls
 #define ENVIRONMENT_SMASH_RWALLS		(1<<2)	//rwalls
-var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST, SOUTHEAST)
+var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST,69ORTHWEST,69ORTHEAST, SOUTHEAST)
 
 /mob/living/simple_animal/hostile
 	faction = "hostile"
@@ -24,16 +24,16 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	var/fire_verb = "fires"
 	a_intent = I_HURT
 	can_burrow = TRUE
-	hunger_enabled = 0//Until automated eating mechanics are enabled, disable hunger for hostile mobs
-	var/minimum_distance = 1 //Minimum approach distance, so ranged mobs chase targets down, but still keep their distance set in tiles
-	var/atom/targets_from = null //all range/attack/etc. calculations should be done from this atom, defaults to the mob itself, useful for Vehicles and such
-	var/vision_range = 9 //How big of an area to search for targets in, a vision of 9 attempts to find targets as soon as they walk into screen view
-	var/aggro_vision_range = 9 //If a mob is aggro, we search in this radius. Defaults to 9 to keep in line with original simple mob aggro radius
-	var/approaching_target = FALSE //We should dodge now
+	hunger_enabled = 0//Until automated eating69echanics are enabled, disable hunger for hostile69obs
+	var/minimum_distance = 1 //Minimum approach distance, so ranged69obs chase targets down, but still keep their distance set in tiles
+	var/atom/targets_from =69ull //all range/attack/etc. calculations should be done from this atom, defaults to the69ob itself, useful for69ehicles and such
+	var/vision_range = 9 //How big of an area to search for targets in, a69ision of 9 attempts to find targets as soon as they walk into screen69iew
+	var/aggro_vision_range = 9 //If a69ob is aggro, we search in this radius. Defaults to 9 to keep in line with original simple69ob aggro radius
+	var/approaching_target = FALSE //We should dodge69ow
 	sanity_damage = 0.1
 
 /mob/living/simple_animal/hostile/proc/FindTarget()
-	var/atom/T = null
+	var/atom/T =69ull
 	stop_automated_movement = 0
 	for(var/atom/A in ListTargets(vision_range))
 
@@ -78,7 +78,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 				OpenFire(target_mob)
 			else
 				set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-				walk_to(src, target_mob, 1, move_to_delay)
+				walk_to(src, target_mob, 1,69ove_to_delay)
 			if(ranged && istype(src, /mob/living/simple_animal/hostile/megafauna))
 				var/mob/living/simple_animal/hostile/megafauna/megafauna = src
 				sleep(rand(megafauna.megafauna_min_cooldown,megafauna.megafauna_max_cooldown))
@@ -86,20 +86,20 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 					if(prob(rand(15,25)))
 						stance = HOSTILE_STANCE_ATTACKING
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-						walk_to(src, target_mob, 1, move_to_delay)
+						walk_to(src, target_mob, 1,69ove_to_delay)
 					else
 						OpenFire(target_mob)
 				else
 					if(prob(45))
 						stance = HOSTILE_STANCE_ATTACKING
 						set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-						walk_to(src, target_mob, 1, move_to_delay)
+						walk_to(src, target_mob, 1,69ove_to_delay)
 					else
 						OpenFire(target_mob)
 		else
 			stance = HOSTILE_STANCE_ATTACKING
 			set_glide_size(DELAY2GLIDESIZE(move_to_delay))
-			walk_to(src, target_mob, 1, move_to_delay)
+			walk_to(src, target_mob, 1,69ove_to_delay)
 	return 0
 
 /mob/living/simple_animal/hostile/proc/DestroyPathToTarget()
@@ -107,17 +107,17 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 		EscapeConfinement()
 		var/dir_to_target = get_dir(targets_from, target_mob)
 		var/dir_list = list()
-		if(dir_to_target in mydirs) //it's diagonal, so we need two directions to hit
-			for(var/direction in mydirs)
+		if(dir_to_target in69ydirs) //it's diagonal, so we69eed two directions to hit
+			for(var/direction in69ydirs)
 				if(direction & dir_to_target)
 					dir_list += direction
 		else
 			dir_list += dir_to_target
-		for(var/direction in dir_list) //now we hit all of the directions we got in this fashion, since it's the only directions we should actually need
+		for(var/direction in dir_list) //now we hit all of the directions we got in this fashion, since it's the only directions we should actually69eed
 			DestroyObjectsInDirection(direction)
 
 /mob/living/simple_animal/hostile/proc/EscapeConfinement()
-	if(!isturf(targets_from.loc) && targets_from.loc != null)//Did someone put us in something?
+	if(!isturf(targets_from.loc) && targets_from.loc !=69ull)//Did someone put us in something?
 		var/atom/A = targets_from.loc
 		UnarmedAttack(A)//Bang on it till we get out
 
@@ -157,7 +157,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	if(istype(target_mob,/mob/living/exosuit))
 		var/mob/living/exosuit/M = target_mob
 		M.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
-		return M
+		return69
 	if(istype(target_mob,/obj/machinery/bot))
 		var/obj/machinery/bot/B = target_mob
 		B.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
@@ -165,7 +165,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 /mob/living/simple_animal/hostile/proc/LoseTarget()
 	stance = HOSTILE_STANCE_IDLE
-	target_mob = null
+	target_mob =69ull
 	walk(src, 0)
 
 /mob/living/simple_animal/hostile/proc/LostTarget()
@@ -177,8 +177,8 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 	var/list/L = hearers(src, dist)
 
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)
-		if (M.z == z && get_dist(src, M) <= dist)
-			L += M
+		if (M.z == z && get_dist(src,69) <= dist)
+			L +=69
 
 	return L
 
@@ -209,7 +209,7 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 
 /mob/living/simple_animal/hostile/proc/OpenFire(target_mob)
 	var/target = target_mob
-	visible_message("\red <b>[src]</b> [fire_verb] at [target]!", 1)
+	visible_message("\red <b>69src69</b> 69fire_verb69 at 69target69!", 1)
 
 	if(rapid)
 		spawn(1)
@@ -230,14 +230,14 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 			new casingtype
 
 	stance = HOSTILE_STANCE_IDLE
-	target_mob = null
+	target_mob =69ull
 	return
 
-/mob/living/simple_animal/hostile/proc/Shoot(var/target, var/start, var/user, var/bullet = 0)
+/mob/living/simple_animal/hostile/proc/Shoot(var/target,69ar/start,69ar/user,69ar/bullet = 0)
 	if(target == start)
 		return
 
-	var/obj/item/projectile/A = new projectiletype(user:loc)
+	var/obj/item/projectile/A =69ew projectiletype(user:loc)
 	playsound(user, projectilesound, 100, 1)
 	if(!A)	return
 	var/def_zone = get_exposed_defense_zone(target)
@@ -257,17 +257,17 @@ var/list/mydirs = list(NORTH, SOUTH, EAST, WEST, SOUTHWEST, NORTHWEST, NORTHEAST
 				qdel(obstacle)
 
 	if(prob(break_stuff_probability))
-		for(var/dir in cardinal) // North, South, East, West
+		for(var/dir in cardinal) //69orth, South, East, West
 			for(var/obj/machinery/obstacle in get_step(src, dir))
-				if((obstacle.dir == reverse_dir[dir])) // So that windows get smashed in the right order
+				if((obstacle.dir == reverse_dir69dir69)) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			for(var/turf/simulated/wall/obstacle in get_step(src, dir))
-				if((obstacle.dir == reverse_dir[dir])) // So that windows get smashed in the right order
+				if((obstacle.dir == reverse_dir69dir69)) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			for(var/obj/structure/window/obstacle in get_step(src, dir))
-				if((obstacle.dir == reverse_dir[dir]) || obstacle.is_fulltile()) // So that windows get smashed in the right order
+				if((obstacle.dir == reverse_dir69dir69) || obstacle.is_fulltile()) // So that windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 			var/obj/structure/obstacle = locate(/obj/structure, get_step(src, dir))

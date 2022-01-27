@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/roach/nanite
 	name = "Kraftwerk Roach"
-	desc = "A deformed mess of a roach that is covered in metallic outcrops and formations. It seems to have a production center on its thorax."
+	desc = "A deformed69ess of a roach that is covered in69etallic outcrops and formations. It seems to have a production center on its thorax."
 	icon_state = "naniteroach"
 
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk
@@ -12,8 +12,8 @@
 	melee_damage_lower = 2
 	melee_damage_upper = 4 //He's a ranged roach
 
-	breath_required_type = NONE
-	breath_poison_type = NONE
+	breath_required_type =69ONE
+	breath_poison_type =69ONE
 	min_breath_required_type = 0
 	min_breath_poison_type = 0
 
@@ -26,7 +26,7 @@
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = 20,
 		bullet = 20,
@@ -36,35 +36,35 @@
 		rad = 100
 	)
 
-/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
+/mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A,69ar/proximity)
 	. = ..()
 
 	if(isliving(A))
 		var/mob/living/L = A
-		if(istype(L) && prob(25) && nanite_swarms.len < max_swarms)
+		if(istype(L) && prob(25) &&69anite_swarms.len <69ax_swarms)
 			var/sound/screech = pick('sound/machines/robots/robot_talk_light1.ogg','sound/machines/robots/robot_talk_light2.ogg','sound/machines/robots/robot_talk_heavy4.ogg')
 			playsound(src, screech, 30, 1, -3)
-			var/mob/living/simple_animal/hostile/naniteswarm/M = new /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src)
+			var/mob/living/simple_animal/hostile/naniteswarm/M =69ew /mob/living/simple_animal/hostile/naniteswarm(get_turf(src), src)
 			nanite_swarms.Add(M)
 			M.friends += src.friends
 			say("10101010011100010101")
 
 /mob/living/carbon/superior_animal/roach/nanite/death()
-	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in nanite_swarms)
+	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in69anite_swarms)
 		nanite_swarms.Remove(NS)
 		NS.gib()
 	..()
 
 /mob/living/carbon/superior_animal/roach/nanite/Destroy()
-	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in nanite_swarms)
+	for(var/mob/living/simple_animal/hostile/naniteswarm/NS in69anite_swarms)
 		nanite_swarms.Remove(NS)
 		NS.gib()
 	.=..()
 
 
 /mob/living/simple_animal/hostile/naniteswarm
-	name = "nanite infested miniroach cluster"
-	desc = "A swarm of disgusting locusts infested with nanomachines."
+	name = "nanite infested69iniroach cluster"
+	desc = "A swarm of disgusting locusts infested with69anomachines."
 	icon = 'icons/mob/critter.dmi'
 	icon_state = "naniteroach"
 	icon_living = "naniteroach"
@@ -90,9 +90,9 @@
 
 	var/mob/living/carbon/superior_animal/roach/nanite/parent
 
-/mob/living/simple_animal/hostile/naniteswarm/New(loc, var/nuparent)
+/mob/living/simple_animal/hostile/naniteswarm/New(loc,69ar/nuparent)
 	..()
-	parent = nuparent
+	parent =69uparent
 
 /mob/living/simple_animal/hostile/naniteswarm/death()
 	..()
@@ -104,5 +104,5 @@
 /mob/living/simple_animal/hostile/naniteswarm/Destroy()
 	if(parent)
 		parent.nanite_swarms.Remove(src)
-		parent = null
+		parent =69ull
 	.=..()

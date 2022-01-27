@@ -52,9 +52,9 @@
 
 /obj/item/implant/core_implant/proc/update_rituals()
 	known_rituals = list()
-	for(var/datum/core_module/rituals/M in modules)
+	for(var/datum/core_module/rituals/M in69odules)
 		if(istype(src,M.implant_type))
-			for(var/R in M.module_rituals)
+			for(var/R in69.module_rituals)
 				known_rituals |= R
 
 /obj/item/implant/core_implant/proc/add_ritual_verbs()
@@ -92,7 +92,7 @@
 
 	var/area/A = get_area(src)
 	if(istype(loc, /obj/machinery/neotheology))
-		address = "[loc.name] in [strip_improper(A.name)]"
+		address = "69loc.name69 in 69strip_improper(A.name)69"
 		return
 
 	address = null
@@ -102,44 +102,44 @@
 		return list()
 
 	var/list/L = access.Copy()
-	for(var/m in modules)
-		var/datum/core_module/M = m
-		L |= M.GetAccess()
+	for(var/m in69odules)
+		var/datum/core_module/M =69
+		L |=69.GetAccess()
 	return L
 
 /obj/item/implant/core_implant/on_uninstall()
-	for(var/datum/core_module/M in modules)
+	for(var/datum/core_module/M in69odules)
 		M.on_implant_uninstall()
 
-/obj/item/implant/core_implant/hear_talk(mob/living/carbon/human/H, message, verb, datum/language/speaking, speech_volume, message_pre_problems)
+/obj/item/implant/core_implant/hear_talk(mob/living/carbon/human/H,69essage,69erb, datum/language/speaking, speech_volume,69essage_pre_problems)
 	var/group_ritual_leader = FALSE
 	for(var/datum/core_module/group_ritual/GR in src.modules)
-		GR.hear(H, message)
+		GR.hear(H,69essage)
 		group_ritual_leader = TRUE
 
 	if(wearer != H)
 		if(H.get_core_implant() && !group_ritual_leader)
-			addtimer(CALLBACK(src, .proc/hear_other, H, message), 0) // let H's own implant hear first
+			addtimer(CALLBACK(src, .proc/hear_other, H,69essage), 0) // let H's own implant hear first
 	else
 		for(var/RT in known_rituals)
-			var/datum/ritual/R = GLOB.all_rituals[RT]
-			var/ture_message = message
+			var/datum/ritual/R = GLOB.all_rituals69RT69
+			var/ture_message =69essage
 			if(R.ignore_stuttering)
-				ture_message = message_pre_problems
+				ture_message =69essage_pre_problems
 			if(R.compare(ture_message))
 				if(R.power > src.power)
-					to_chat(H, SPAN_DANGER("Not enough energy for the [R.name]."))
+					to_chat(H, SPAN_DANGER("Not enough energy for the 69R.name69."))
 					return
 				if(!R.is_allowed(src))
-					to_chat(H, SPAN_DANGER("You are not allowed to perform [R.name]."))
+					to_chat(H, SPAN_DANGER("You are not allowed to perform 69R.name69."))
 					return
 				R.activate(H, src, R.get_targets(ture_message))
 				return
 
-/obj/item/implant/core_implant/proc/hear_other(mob/living/carbon/human/H, message)
+/obj/item/implant/core_implant/proc/hear_other(mob/living/carbon/human/H,69essage)
 	var/datum/core_module/group_ritual/GR = H.get_core_implant().get_module(/datum/core_module/group_ritual)
 	if(GR?.ritual.name in known_rituals)
-		if(message == GR.phrases[1])
+		if(message == GR.phrases69169)
 			if(do_after(wearer, length(message)*0.25))
 				if(GR)
 					GR.ritual.set_personal_cooldown(wearer)
@@ -147,10 +147,10 @@
 
 
 /obj/item/implant/core_implant/proc/use_power(var/value)
-	power = max(0, power - value)
+	power =69ax(0, power -69alue)
 
 /obj/item/implant/core_implant/proc/restore_power(var/value)
-	power = min(max_power, power + value)
+	power =69in(max_power, power +69alue)
 
 /obj/item/implant/core_implant/proc/auto_restore_power()
 	restore_power(power_regen)
@@ -168,7 +168,7 @@
 /obj/item/implant/core_implant/proc/get_module(var/m_type)
 	if(!ispath(m_type))
 		return
-	for(var/datum/core_module/CM in modules)
+	for(var/datum/core_module/CM in69odules)
 		if(istype(CM,m_type))
 			return CM
 	process_modules()
@@ -181,7 +181,7 @@
 		return FALSE
 
 	if(CM.unique)
-		for(var/datum/core_module/EM in modules)
+		for(var/datum/core_module/EM in69odules)
 			if(EM.type == CM.type)
 				return FALSE
 
@@ -203,16 +203,16 @@
 /obj/item/implant/core_implant/proc/remove_modules(var/m_type)
 	if(!ispath(m_type))
 		return
-	for(var/datum/core_module/CM in modules)
+	for(var/datum/core_module/CM in69odules)
 		if(istype(CM,m_type))
 			remove_module(CM)
 
 /obj/item/implant/core_implant/proc/install_default_modules_by_job(datum/job/J)
 	for(var/module_type in J.core_upgrades)
-		add_module(new module_type)
+		add_module(new69odule_type)
 
 /obj/item/implant/core_implant/proc/process_modules()
-	for(var/datum/core_module/CM in modules)
+	for(var/datum/core_module/CM in69odules)
 		if(CM.time > 0 && CM.install_time + CM.time <= world.time)
 			CM.uninstall()
 

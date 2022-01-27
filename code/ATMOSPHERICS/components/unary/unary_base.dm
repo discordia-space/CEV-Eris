@@ -9,30 +9,30 @@
 	New()
 		..()
 		initialize_directions = dir
-		air_contents = new
+		air_contents =69ew
 
 		air_contents.volume = 200
 
-// Housekeeping and pipe network stuff below
+// Housekeeping and pipe69etwork stuff below
 	network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-		if(reference == node1)
-			network = new_network
+		if(reference ==69ode1)
+			network =69ew_network
 
 		if(new_network.normal_members.Find(src))
 			return 0
 
 		new_network.normal_members += src
 
-		return null
+		return69ull
 
 	Destroy()
-		loc = null
+		loc =69ull
 
 		if(node1)
 			node1.disconnect(src)
 			qdel(network)
 
-		node1 = null
+		node1 =69ull
 
 		. = ..()
 
@@ -41,7 +41,7 @@
 
 		var/node1_connect = dir
 
-		for(var/obj/machinery/atmospherics/target in get_step(src, node1_connect))
+		for(var/obj/machinery/atmospherics/target in get_step(src,69ode1_connect))
 			if(target.initialize_directions & get_dir(target, src))
 				if (check_connect_types(target, src))
 					node1 = target
@@ -51,8 +51,8 @@
 		update_underlays()
 
 	build_network()
-		if(!network && node1)
-			network = new /datum/pipe_network()
+		if(!network &&69ode1)
+			network =69ew /datum/pipe_network()
 			network.normal_members += src
 			network.build_network(node1, src)
 
@@ -61,13 +61,13 @@
 		build_network()
 
 		if(reference==node1 || reference == src)
-			return network
+			return69etwork
 
-		return null
+		return69ull
 
 	reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 		if(network == old_network)
-			network = new_network
+			network =69ew_network
 
 		return 1
 
@@ -82,9 +82,9 @@
 	disconnect(obj/machinery/atmospherics/reference)
 		if(reference==node1)
 			qdel(network)
-			node1 = null
+			node1 =69ull
 
 		update_icon()
 		update_underlays()
 
-		return null
+		return69ull

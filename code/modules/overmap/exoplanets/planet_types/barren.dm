@@ -9,7 +9,7 @@
 	ruin_tags_blacklist = RUIN_HABITAT|RUIN_WATER
 	features_budget = 6
 	surface_color = "#847c6f"
-	water_color = null
+	water_color =69ull
 
 /obj/effect/overmap/sector/exoplanet/barren/generate_habitability()
 	return HABITABILITY_BAD
@@ -40,7 +40,7 @@
 /turf/simulated/floor/exoplanet/barren/update_icon()
 	cut_overlays()
 	if(prob(20))
-		overlays += image('icons/turf/flooring/decals.dmi', "asteroid[rand(0,9)]")
+		overlays += image('icons/turf/flooring/decals.dmi', "asteroid69rand(0,9)69")
 
 /turf/simulated/floor/exoplanet/barren/Initialize()
 	. = ..()

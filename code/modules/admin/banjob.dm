@@ -1,19 +1,19 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 var/jobban_runonce			// Updates legacy bans with new info
-var/jobban_keylist[0]		//to store the keys & ranks
+var/jobban_keylist69069		//to store the keys & ranks
 
 /proc/jobban_fullban(mob/M, rank, reason)
 	if (!M || !M.key) return
-	jobban_keylist.Add(text("[M.ckey] - [rank] ## [reason]"))
+	jobban_keylist.Add(text("69M.ckey69 - 69rank69 ## 69reason69"))
 	jobban_savebanfile()
 
 /proc/jobban_client_fullban(ckey, rank)
 	if (!ckey || !rank) return
-	jobban_keylist.Add(text("[ckey] - [rank]"))
+	jobban_keylist.Add(text("69ckey69 - 69rank69"))
 	jobban_savebanfile()
 
-//returns a reason if M is banned from rank, returns 0 otherwise
+//returns a reason if69 is banned from rank, returns 0 otherwise
 /proc/jobban_isbanned(mob/M, rank)
 	if(M && rank)
 		/*
@@ -27,7 +27,7 @@ var/jobban_keylist[0]		//to store the keys & ranks
 				return "Whitelisted Job"
 
 		for (var/s in jobban_keylist)
-			if( findtext(s,"[M.ckey] - [rank]") == 1 )
+			if( findtext(s,"69M.ckey69 - 69rank69") == 1 )
 				var/startpos = findtext(s, "## ")+3
 				if(startpos && startpos<length(s))
 					var/text = copytext(s, startpos, 0)
@@ -58,9 +58,9 @@ DEBUG
 /proc/jobban_loadbanfile()
 	if(config.ban_legacy_system)
 		var/savefile/S=new("data/job_full.ban")
-		S["keys[0]"] >> jobban_keylist
+		S69"keys69069"69 >> jobban_keylist
 		log_admin("Loading jobban_rank")
-		S["runonce"] >> jobban_runonce
+		S69"runonce"69 >> jobban_runonce
 
 		if (!length(jobban_keylist))
 			jobban_keylist=list()
@@ -78,13 +78,13 @@ DEBUG
 		perma_query.Execute()
 
 		while(perma_query.NextRow())
-			var/id = perma_query.item[1]
-			var/job = perma_query.item[2]
-			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = '[id]'")
+			var/id = perma_query.item69169
+			var/job = perma_query.item69269
+			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = '69id69'")
 			get_ckey.Execute()
 			if(get_ckey.NextRow())
-				var/ckey = get_ckey.item[1]
-				jobban_keylist.Add("[ckey] - [job]")
+				var/ckey = get_ckey.item69169
+				jobban_keylist.Add("69ckey69 - 69job69")
 
 
 
@@ -93,22 +93,22 @@ DEBUG
 		query.Execute()
 
 		while(query.NextRow())
-			var/id = query.item[1]
-			var/job = query.item[2]
-			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = '[id]'")
+			var/id = query.item69169
+			var/job = query.item69269
+			var/DBQuery/get_ckey = dbcon.NewQuery("SELECT ckey from players WHERE id = '69id69'")
 			get_ckey.Execute()
 			if(get_ckey.NextRow())
-				var/ckey = get_ckey.item[1]
-				jobban_keylist.Add("[ckey] - [job]")
+				var/ckey = get_ckey.item69169
+				jobban_keylist.Add("69ckey69 - 69job69")
 
 
 
 /proc/jobban_savebanfile()
 	var/savefile/S=new("data/job_full.ban")
-	S["keys[0]"] << jobban_keylist
+	S69"keys69069"69 << jobban_keylist
 
 /proc/jobban_unban(mob/M, rank)
-	jobban_remove("[M.ckey] - [rank]")
+	jobban_remove("69M.ckey69 - 69rank69")
 	jobban_savebanfile()
 
 
@@ -118,8 +118,8 @@ DEBUG
 
 /proc/jobban_remove(X)
 	for (var/i = 1; i <= length(jobban_keylist); i++)
-		if( findtext(jobban_keylist[i], "[X]") )
-			jobban_keylist.Remove(jobban_keylist[i])
+		if( findtext(jobban_keylist69i69, "69X69") )
+			jobban_keylist.Remove(jobban_keylist69i69)
 			jobban_savebanfile()
 			return 1
 	return 0

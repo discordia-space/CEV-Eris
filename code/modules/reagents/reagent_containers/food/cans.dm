@@ -1,7 +1,7 @@
 /obj/item/reagent_containers/food/drinks/cans
 	volume = 40 //just over one and a half cups
 	amount_per_transfer_from_this = 5
-	reagent_flags = NONE //starts closed
+	reagent_flags =69ONE //starts closed
 	spawn_tags = SPAWN_TAG_DRINK_SODA
 	bad_type = /obj/item/reagent_containers/food/drinks/cans
 
@@ -22,7 +22,7 @@
 	preloaded_reagents = list("water" = 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind
-	name = "\improper Space Mountain Wind"
+	name = "\improper Space69ountain Wind"
 	desc = "Blows right through you like a gust of space wind."
 	icon_state = "space_mountain_wind"
 	center_of_mass = list("x"=16, "y"=10)
@@ -30,28 +30,28 @@
 
 /obj/item/reagent_containers/food/drinks/cans/thirteenloko
 	name = "\improper Thirteen Loko"
-	desc = "The MBO has advised crew members that consumption of Thirteen Loko may result in seizures, blindness, drunkeness, or even death. Please Drink Responsibly."
+	desc = "The69BO has advised crew69embers that consumption of Thirteen Loko69ay result in seizures, blindness, drunkeness, or even death. Please Drink Responsibly."
 	icon_state = "thirteen_loko"
 	center_of_mass = list("x"=16, "y"=8)
 	preloaded_reagents = list("thirteenloko" = 30)
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	name = "\improper Dr. Gibb"
-	desc = "A delicious mixture of 42 different flavors."
+	desc = "A delicious69ixture of 42 different flavors."
 	icon_state = "dr_gibb"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("dr_gibb" = 30)
 
 /obj/item/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"
-	desc = "The taste of a star in liquid form. And, a bit of tuna...?"
+	desc = "The taste of a star in li69uid form. And, a bit of tuna...?"
 	icon_state = "starkist"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("brownstar" = 30)
 
 /obj/item/reagent_containers/food/drinks/cans/space_up
 	name = "\improper Space-Up"
-	desc = "Tastes like a hull breach in your mouth."
+	desc = "Tastes like a hull breach in your69outh."
 	icon_state = "space-up"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("space_up" = 30)
@@ -64,7 +64,7 @@
 	preloaded_reagents = list("lemon_lime" = 30)
 
 /obj/item/reagent_containers/food/drinks/cans/iced_tea
-	name = "\improper Vrisk Serket Iced Tea"
+	name = "\improper69risk Serket Iced Tea"
 	desc = "That sweet, refreshing southern earthy flavor. That's where it's from, right? South Earth?"
 	icon_state = "ice_tea_can"
 	center_of_mass = list("x"=16, "y"=10)
@@ -79,14 +79,14 @@
 
 /obj/item/reagent_containers/food/drinks/cans/tonic
 	name = "\improper T-Borg's Tonic Water"
-	desc = "Quinine tastes funny, but at least it'll keep that Space Malaria away."
+	desc = "69uinine tastes funny, but at least it'll keep that Space69alaria away."
 	icon_state = "tonic"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("tonic" = 50)
 
 /obj/item/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
-	desc = "A can of soda water. Still water's more refreshing cousin."
+	desc = "A can of soda water. Still water's69ore refreshing cousin."
 	icon_state = "sodawater"
 	center_of_mass = list("x"=16, "y"=10)
 	preloaded_reagents = list("sodawater" = 50)

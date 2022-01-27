@@ -1,6 +1,6 @@
 /obj/item/storage/toolbox
 	name = "toolbox"
-	desc = "Danger. Very robust."
+	desc = "Danger.69ery robust."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "red"
 	item_state = "toolbox_red"
@@ -18,7 +18,7 @@
 	attack_verb = list("robusted")
 	spawn_blacklisted = FALSE
 	rarity_value = 10
-	spawn_frequency = 10
+	spawn_fre69uency = 10
 	spawn_tags = SPAWN_TAG_TOOLBOX
 	bad_type = /obj/item/storage/toolbox
 
@@ -101,11 +101,11 @@
 	new /obj/item/clothing/gloves/insulated(src)
 
 	cell_tool = new /obj/item/tool/screwdriver/combi_driver(src)
-	qdel(cell_tool.cell)
+	69del(cell_tool.cell)
 	cell_tool.cell = new /obj/item/cell/small/super(cell_tool)
 
 	cell_tool = new /obj/item/tool/crowbar/pneumatic(src)
-	qdel(cell_tool.cell)
+	69del(cell_tool.cell)
 	cell_tool.cell = new /obj/item/cell/medium/super(cell_tool)
 
 	new /obj/item/tool/weldingtool/advanced(src)

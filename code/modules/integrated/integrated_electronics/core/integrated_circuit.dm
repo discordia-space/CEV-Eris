@@ -1,10 +1,10 @@
 /*
-	Integrated circuits are essentially modular machines.  Each circuit has a specific function, and combining them inside Electronic Assemblies allows
-a creative player the means to solve many problems.  Circuits are held inside an electronic assembly, and are wired using special tools.
+	Integrated circuits are essentially69odular69achines.  Each circuit has a specific function, and combining them inside Electronic Assemblies allows
+a creative player the69eans to solve69any problems.  Circuits are held inside an electronic assembly, and are wired using special tools.
 */
 
 /obj/item/integrated_circuit
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_STEEL = 1)
+	matter = list(MATERIAL_PLASTIC = 1,69ATERIAL_STEEL = 1)
 	matter_reagents = list("silicon" = 5)
 
 /obj/item/integrated_circuit/examine(mob/user)
@@ -15,16 +15,16 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 // This should be used when someone is examining while the case is opened.
 /obj/item/integrated_circuit/proc/internal_examine(mob/user)
-	to_chat(user, "This board has [inputs.len] input pin\s, [outputs.len] output pin\s and [activators.len] activation pin\s.")
+	to_chat(user, "This board has 69inputs.len69 input pin\s, 69outputs.len69 output pin\s and 69activators.len69 activation pin\s.")
 	for(var/datum/integrated_io/input/I in inputs)
 		if(I.linked.len)
-			to_chat(user, "The '[I]' is connected to [I.get_linked_to_desc()].")
+			to_chat(user, "The '69I69' is connected to 69I.get_linked_to_desc()69.")
 	for(var/datum/integrated_io/output/O in outputs)
 		if(O.linked.len)
-			to_chat(user, "The '[O]' is connected to [O.get_linked_to_desc()].")
+			to_chat(user, "The '69O69' is connected to 69O.get_linked_to_desc()69.")
 	for(var/datum/integrated_io/activate/A in activators)
 		if(A.linked.len)
-			to_chat(user, "The '[A]' is connected to [A.get_linked_to_desc()].")
+			to_chat(user, "The '69A69' is connected to 69A.get_linked_to_desc()69.")
 	any_examine(user)
 	interact(user)
 
@@ -72,9 +72,9 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(!CanInteract(M,GLOB.physical_state))
 		return
 
-	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
+	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name) as null|text,69AX_NAME_LEN)
 	if(src && input && CanInteract(M,GLOB.physical_state))
-		to_chat(M, SPAN_NOTICE("The circuit '[src.name]' is now labeled '[input]'."))
+		to_chat(M, SPAN_NOTICE("The circuit '69src.name69' is now labeled '69input69'."))
 		name = input
 
 /obj/item/integrated_circuit/interact(mob/user)
@@ -84,29 +84,29 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	var/window_height = 350
 	var/window_width = 600
 
-	//var/table_edge_width = "[(window_width - window_width * 0.1) / 4]px"
-	//var/table_middle_width = "[(window_width - window_width * 0.1) - (table_edge_width * 2)]px"
+	//var/table_edge_width = "69(window_width - window_width * 0.1) / 469px"
+	//var/table_middle_width = "69(window_width - window_width * 0.1) - (table_edge_width * 2)69px"
 	var/table_edge_width = "30%"
 	var/table_middle_width = "40%"
 
 	var/HTML = list()
-	HTML += "<html><head><title>[src.name]</title></head><body>"
+	HTML += "<html><head><title>69src.name69</title></head><body>"
 	HTML += "<div align='center'>"
 	HTML += "<table border='1' style='undefined;table-layout: fixed; width: 80%'>"
 
-	HTML += "<br><a href='?src=\ref[src];'>\[Refresh\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];rename=1'>\[Rename\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];scan=1'>\[Scan with Debugger\]</a>  |  "
-	HTML += "<a href='?src=\ref[src];remove=1'>\[Remove\]</a><br>"
+	HTML += "<br><a href='?src=\ref69src69;'>\69Refresh\69</a>  |  "
+	HTML += "<a href='?src=\ref69src69;rename=1'>\69Rename\69</a>  |  "
+	HTML += "<a href='?src=\ref69src69;scan=1'>\69Scan with Debugger\69</a>  |  "
+	HTML += "<a href='?src=\ref69src69;remove=1'>\69Remove\69</a><br>"
 
 	HTML += "<colgroup>"
-	HTML += "<col style='width: [table_edge_width]'>"
-	HTML += "<col style='width: [table_middle_width]'>"
-	HTML += "<col style='width: [table_edge_width]'>"
+	HTML += "<col style='width: 69table_edge_width69'>"
+	HTML += "<col style='width: 69table_middle_width69'>"
+	HTML += "<col style='width: 69table_edge_width69'>"
 	HTML += "</colgroup>"
 
 	var/column_width = 3
-	var/row_height = max(inputs.len, outputs.len, 1)
+	var/row_height =69ax(inputs.len, outputs.len, 1)
 
 	for(var/i = 1 to row_height)
 		HTML += "<tr>"
@@ -119,20 +119,20 @@ a creative player the means to solve many problems.  Circuits are held inside an
 					io = get_pin_ref(IC_INPUT, i)
 					if(io)
 						if(io.linked.len)
-							words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]><b>[io.name] [io.display_data()]</b></a><br>"
+							words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69><b>69io.name69 69io.display_data()69</b></a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src=\ref[linked.holder];examine=1;>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>\6969linked.name69\69</a> \
+								@ <a href=?src=\ref69linked.holder69;examine=1;>69linked.holder69</a><br>"
 						else
-							words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>[io.name] [io.display_data()]</a><br>"
+							words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>69io.name69 69io.display_data()69</a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src=\ref[linked.holder];examine=1;>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>\6969linked.name69\69</a> \
+								@ <a href=?src=\ref69linked.holder69;examine=1;>69linked.holder69</a><br>"
 						if(outputs.len > inputs.len)
 							height = 1
 				if(2)
 					if(i == 1)
-						words += "[src.name]<br><br>[src.desc]"
+						words += "69src.name69<br><br>69src.desc69"
 						height = row_height
 					else
 						continue
@@ -140,64 +140,64 @@ a creative player the means to solve many problems.  Circuits are held inside an
 					io = get_pin_ref(IC_OUTPUT, i)
 					if(io)
 						if(io.linked.len)
-							words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]><b>[io.name] [io.display_data()]</b></a><br>"
+							words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69><b>69io.name69 69io.display_data()69</b></a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src=\ref[linked.holder];examine=1;user=\ref[user]>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>\6969linked.name69\69</a> \
+								@ <a href=?src=\ref69linked.holder69;examine=1;user=\ref69user69>69linked.holder69</a><br>"
 						else
-							words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>[io.name] [io.display_data()]</a><br>"
+							words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>69io.name69 69io.display_data()69</a><br>"
 							for(var/datum/integrated_io/linked in io.linked)
-								words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>\[[linked.name]\]</a> \
-								@ <a href=?src=\ref[linked.holder];examine=1;>[linked.holder]</a><br>"
+								words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>\6969linked.name69\69</a> \
+								@ <a href=?src=\ref69linked.holder69;examine=1;>69linked.holder69</a><br>"
 						if(inputs.len > outputs.len)
 							height = 1
-			HTML += "<td align='center' rowspan='[height]'>[jointext(words, null)]</td>"
+			HTML += "<td align='center' rowspan='69height69'>69jointext(words, null)69</td>"
 		HTML += "</tr>"
 
 	for(var/activator in activators)
 		var/datum/integrated_io/io = activator
 		var/words = list()
 		if(io.linked.len)
-			words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]><font color='FF0000'><b>[io.name]</b></font></a><br>"
+			words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69><font color='FF0000'><b>69io.name69</b></font></a><br>"
 			for(var/datum/integrated_io/linked in io.linked)
-				words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>\[[linked.name]\]</a> \
-				@ <a href=?src[src];examine=1;user=\ref[user]>[linked.holder]</a><br>"
+				words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>\6969linked.name69\69</a> \
+				@ <a href=?src69src69;examine=1;user=\ref69user69>69linked.holder69</a><br>"
 		else
-			words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]><font color='FF0000'>[io.name]</font></a><br>"
+			words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69><font color='FF0000'>69io.name69</font></a><br>"
 			for(var/datum/integrated_io/linked in io.linked)
-				words += "<a href=?src=\ref[src];wire=1;pin=\ref[io]>\[[linked.name]\]</a> \
-				@ <a href=?src=\ref[linked.holder];examine=1;>[linked.holder]</a><br>"
+				words += "<a href=?src=\ref69src69;wire=1;pin=\ref69io69>\6969linked.name69\69</a> \
+				@ <a href=?src=\ref69linked.holder69;examine=1;>69linked.holder69</a><br>"
 		HTML += "<tr>"
-		HTML += "<td colspan='3' align='center'>[jointext(words, null)]</td>"
+		HTML += "<td colspan='3' align='center'>69jointext(words, null)69</td>"
 		HTML += "</tr>"
 
 	HTML += "</table>"
 	HTML += "</div>"
 
 	if(autopulse != -1)
-		HTML += "<br><font color='33CC33'>Meta Variables;</font>"
-		HTML += "<br><font color='33CC33'><a href='?src=\ref[src];autopulse=1'>\[Autopulse\]</a> = <b>[autopulse ? "ON" : "OFF"]</b></font>"
+		HTML += "<br><font color='33CC33'>Meta69ariables;</font>"
+		HTML += "<br><font color='33CC33'><a href='?src=\ref69src69;autopulse=1'>\69Autopulse\69</a> = <b>69autopulse ? "ON" : "OFF"69</b></font>"
 		HTML += "<br>"
 
-	HTML += "<br><font color='0000AA'>Complexity: [complexity]</font>"
+	HTML += "<br><font color='0000AA'>Complexity: 69complexity69</font>"
 	if(power_draw_idle)
-		HTML += "<br><font color='0000AA'>Power Draw: [power_draw_idle] W (Idle)</font>"
+		HTML += "<br><font color='0000AA'>Power Draw: 69power_draw_idle69 W (Idle)</font>"
 	if(power_draw_per_use)
-		HTML += "<br><font color='0000AA'>Power Draw: [power_draw_per_use] W (Active)</font>" // Borgcode says that powercells' checked_use() takes joules as input.
-	HTML += "<br><font color='0000AA'>[extended_desc]</font>"
+		HTML += "<br><font color='0000AA'>Power Draw: 69power_draw_per_use69 W (Active)</font>" // Borgcode says that powercells' checked_use() takes joules as input.
+	HTML += "<br><font color='0000AA'>69extended_desc69</font>"
 
 	HTML += "</body></html>"
-	user << browse(jointext(HTML, null), "window=circuit-\ref[src];size=[window_width]x[window_height];border=1;can_resize=1;can_close=1;can_minimize=1")
+	user << browse(jointext(HTML, null), "window=circuit-\ref69src69;size=69window_width69x69window_height69;border=1;can_resize=1;can_close=1;can_minimize=1")
 
-	onclose(user, "circuit-\ref[src]")
+	onclose(user, "circuit-\ref69src69")
 
 /obj/item/integrated_circuit/Topic(href, href_list, state =GLOB.physical_state)
 	if(..())
 		return 1
-	var/pin = locate(href_list["pin"]) in inputs + outputs + activators
+	var/pin = locate(href_list69"pin"69) in inputs + outputs + activators
 
 	var/obj/held_item = usr.get_active_hand()
-	if(href_list["wire"])
+	if(href_list69"wire"69)
 		if(istype(held_item, /obj/item/device/electronics/integrated/wirer))
 			var/obj/item/device/electronics/integrated/wirer/wirer = held_item
 			if(pin)
@@ -210,13 +210,13 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		else
 			to_chat(usr, SPAN_WARNING("You can't do a whole lot without the proper tools."))
 
-	if(href_list["examine"])
+	if(href_list69"examine"69)
 		examine(usr)
 
-	if(href_list["rename"])
+	if(href_list69"rename"69)
 		rename_component(usr)
 
-	if(href_list["scan"])
+	if(href_list69"scan"69)
 		if(istype(held_item, /obj/item/device/electronics/integrated/debugger))
 			var/obj/item/device/electronics/integrated/debugger/D = held_item
 			if(D.accepting_refs)
@@ -224,23 +224,23 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			else
 				to_chat(usr, SPAN_WARNING("The Debugger's 'ref scanner' needs to be on."))
 		else
-			to_chat(usr, SPAN_WARNING("You need a Debugger set to 'ref' mode to do that."))
+			to_chat(usr, SPAN_WARNING("You need a Debugger set to 'ref'69ode to do that."))
 
-	if(href_list["autopulse"])
+	if(href_list69"autopulse"69)
 		if(autopulse != -1)
 			autopulse = !autopulse
 
-	if(href_list["remove"])
+	if(href_list69"remove"69)
 		if(istype(held_item, /obj/item/tool/screwdriver))
 			if(!removable)
-				to_chat(usr, SPAN_WARNING("\The [src] seems to be permanently attached to the case."))
+				to_chat(usr, SPAN_WARNING("\The 69src69 seems to be permanently attached to the case."))
 				return
 			disconnect_all()
 			var/turf/T = get_turf(src)
 			forceMove(T)
 			assembly = null
 			playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-			to_chat(usr, SPAN_NOTICE("You pop \the [src] out of the case, and slide it out."))
+			to_chat(usr, SPAN_NOTICE("You pop \the 69src69 out of the case, and slide it out."))
 		else
 			to_chat(usr, SPAN_WARNING("You need a screwdriver to remove components."))
 		var/obj/item/device/electronic_assembly/ea = loc

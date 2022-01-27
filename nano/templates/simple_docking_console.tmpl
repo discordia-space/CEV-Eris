@@ -1,98 +1,98 @@
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Docking Port Status:
+<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Doc69in69 69ort St69tus:
 		</div>
-		<div class="itemContent">
-			{{if data.docking_status == "docked"}}
-				{{if !data.override_enabled}}
-					<span class="good">DOCKED</span>
+		<div cl69ss="itemContent">
+			{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+				{{if !d69t69.override_en6969led}}
+					<s6969n cl69ss="69ood">DOC69ED</s6969n>
 				{{else}}
-					<span class="bad">DOCKED-OVERRIDE ENABLED</span>
+					<s6969n cl69ss="6969d">DOC69ED-OVERRIDE EN6969LED</s6969n>
 				{{/if}}
-			{{else data.docking_status == "docking"}}
-				{{if !data.override_enabled}}
-					<span class="average">DOCKING</span>
+			{{else d69t69.doc69in69_st69tus == "doc69in69"}}
+				{{if !d69t69.override_en6969led}}
+					<s6969n cl69ss="69ver6969e">DOC69IN69</s6969n>
 				{{else}}
-					<span class="bad">DOCKING-OVERRIDE ENABLED</span>
+					<s6969n cl69ss="6969d">DOC69IN69-OVERRIDE EN6969LED</s6969n>
 				{{/if}}
-			{{else data.docking_status == "undocking"}}
-				{{if !data.override_enabled}}
-					<span class="average">UNDOCKING</span>
+			{{else d69t69.doc69in69_st69tus == "undoc69in69"}}
+				{{if !d69t69.override_en6969led}}
+					<s6969n cl69ss="69ver6969e">UNDOC69IN69</s6969n>
 				{{else}}
-					<span class="bad">UNDOCKING-OVERRIDE ENABLED</span>
+					<s6969n cl69ss="6969d">UNDOC69IN69-OVERRIDE EN6969LED</s6969n>
 				{{/if}}
-			{{else data.docking_status == "undocked"}}
-				{{if !data.override_enabled}}
-					<span class="idle">NOT IN USE</span>
+			{{else d69t69.doc69in69_st69tus == "undoc69ed"}}
+				{{if !d69t69.override_en6969led}}
+					<s6969n cl69ss="idle">NOT IN USE</s6969n>
 				{{else}}
-					<span class="bad" style="float:left">OVERRIDE ENABLED</span>
+					<s6969n cl69ss="6969d" st69le="flo69t:left">OVERRIDE EN6969LED</s6969n>
 				{{/if}}
 			{{else}}
-				<span class="bad">ERROR</span>
+				<s6969n cl69ss="6969d">ERROR</s6969n>
 			{{/if}}
 		</div>
 	</div>
 </div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Docking Hatch:
+<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Doc69in69 H69tch:
 		</div>
-		<div class="itemContent">
-			{{if data.docking_status == "docked"}}
-				{{if data.door_state == "open"}}
-					<span class="good">OPEN</span>
-				{{else data.door_state == "closed"}}
-					<span class="good">CLOSED</span>
+		<div cl69ss="itemContent">
+			{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+				{{if d69t69.door_st69te == "o69en"}}
+					<s6969n cl69ss="69ood">O69EN</s6969n>
+				{{else d69t69.door_st69te == "closed"}}
+					<s6969n cl69ss="69ood">CLOSED</s6969n>
 				{{else}}
-					<span class="bad">ERROR</span>
+					<s6969n cl69ss="6969d">ERROR</s6969n>
 				{{/if}}
-			{{else data.docking_status == "docking"}}
-				{{if data.door_state == "open"}}
-					<span class="good">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="good">UNSECURED</span>
+			{{else d69t69.doc69in69_st69tus == "doc69in69"}}
+				{{if d69t69.door_st69te == "o69en"}}
+					<s6969n cl69ss="69ood">O69EN</s6969n>
+				{{else d69t69.door_st69te == "closed" && d69t69.door_loc69 == "loc69ed"}}
+					<s6969n cl69ss="69ood">SECURED</s6969n>
+				{{else d69t69.door_st69te == "closed" && d69t69.door_loc69 == "unloc69ed"}}
+					<s6969n cl69ss="69ood">UNSECURED</s6969n>
 				{{else}}
-					<span class="bad">ERROR</span>
+					<s6969n cl69ss="6969d">ERROR</s6969n>
 				{{/if}}
-			{{else data.docking_status == "undocking"}}
-				{{if data.door_state == "open"}}
-					<span class="average">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="average">UNSECURED</span>
+			{{else d69t69.doc69in69_st69tus == "undoc69in69"}}
+				{{if d69t69.door_st69te == "o69en"}}
+					<s6969n cl69ss="69ver6969e">O69EN</s6969n>
+				{{else d69t69.door_st69te == "closed" && d69t69.door_loc69 == "loc69ed"}}
+					<s6969n cl69ss="69ood">SECURED</s6969n>
+				{{else d69t69.door_st69te == "closed" && d69t69.door_loc69 == "unloc69ed"}}
+					<s6969n cl69ss="69ver6969e">UNSECURED</s6969n>
 				{{else}}
-					<span class="bad">ERROR</span>
+					<s6969n cl69ss="6969d">ERROR</s6969n>
 				{{/if}}
-			{{else data.docking_status == "undocked"}}
-				{{if data.door_state == "open"}}
-					<span class="bad">OPEN</span>
-				{{else data.door_state == "closed" && data.door_lock == "locked"}}
-					<span class="good">SECURED</span>
-				{{else data.door_state == "closed" && data.door_lock == "unlocked"}}
-					<span class="bad">UNSECURED</span>
+			{{else d69t69.doc69in69_st69tus == "undoc69ed"}}
+				{{if d69t69.door_st69te == "o69en"}}
+					<s6969n cl69ss="6969d">O69EN</s6969n>
+				{{else d69t69.door_st69te == "closed" && d69t69.door_loc69 == "loc69ed"}}
+					<s6969n cl69ss="69ood">SECURED</s6969n>
+				{{else d69t69.door_st69te == "closed" && d69t69.door_loc69 == "unloc69ed"}}
+					<s6969n cl69ss="6969d">UNSECURED</s6969n>
 				{{else}}
-					<span class="bad">ERROR</span>
+					<s6969n cl69ss="6969d">ERROR</s6969n>
 				{{/if}}
 			{{else}}
-				<span class="bad">ERROR</span>
+				<s6969n cl69ss="6969d">ERROR</s6969n>
 			{{/if}}
 		</div>
 	</div>
 </div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-		{{if data.docking_status == "docked"}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, data.override_enabled ? null : 'disabled', null)}}
-			{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : null)}}
+<div cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<div cl69ss="item">
+		<div cl69ss="itemContent" st69le="6969ddin69-to69: 269x; width: 100%">
+		{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+			{{:hel69er.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_door'}, d69t69.override_en6969led ?69ull : 'dis6969led',69ull69}}
+			{{:hel69er.lin6969'Override', '69lert', {'comm69nd' : 'to6969le_override'},69ull, d69t69.override_en6969led ? 'red69utton' :69ull69}}
 		{{else}}
-			{{:helper.link('Force exterior door', 'alert', {'command' : 'force_door'}, data.override_enabled ? null : 'disabled', data.override_enabled ? 'redButton' : null)}}
-			{{:helper.link('Override', 'alert', {'command' : 'toggle_override'}, null, data.override_enabled ? 'redButton' : 'yellowButton')}}
+			{{:hel69er.lin6969'Force exterior door', '69lert', {'comm69nd' : 'force_door'}, d69t69.override_en6969led ?69ull : 'dis6969led', d69t69.override_en6969led ? 'red69utton' :69ull69}}
+			{{:hel69er.lin6969'Override', '69lert', {'comm69nd' : 'to6969le_override'},69ull, d69t69.override_en6969led ? 'red69utton' : '69ellow69utton'69}}
 		{{/if}}
 		</div>
 	</div>

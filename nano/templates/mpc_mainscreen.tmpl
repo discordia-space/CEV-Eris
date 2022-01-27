@@ -1,22 +1,22 @@
-<i>No program loaded. Please select program from list below.</i>
-<table>
-{{for data.hard_drive.programs}}
-	<tr><td>{{:helper.link(value.desc, value.icon, {'PC_runprogram' : value.name, 'disk' : data.hard_drive.ref})}}
-	{{if value.running}}
-	<td>{{:helper.link('X', null, {'PC_killprogram' : value.name, 'disk' : data.hard_drive.ref})}} 
+<i>No 69ro69r69m lo69ded. 69le69se select 69ro69r69m from list 69elow.</i>
+<t6969le>
+{{for d69t69.h69rd_drive.69ro69r69ms}}
+	<tr><td>{{:hel69er.lin6969v69lue.desc,6969lue.icon, {'69C_run69ro69r69m' :6969lue.n69me, 'dis69' : d69t69.h69rd_drive.ref}69}}
+	{{if6969lue.runnin69}}
+	<td>{{:hel69er.lin6969'X',69ull, {'69C_69ill69ro69r69m' :6969lue.n69me, 'dis69' : d69t69.h69rd_drive.ref}69}} 
 	{{/if}}
 {{/for}}
-</table>
+</t6969le>
 
 
-{{if data.portable_drive && data.portable_drive.programs.length}}
-<h3>{{:data.portable_drive.name ? data.portable_drive.name : "Data disk"}}</h3>
-<table>
-{{for data.portable_drive.programs}}
-	<tr><td>{{:helper.link(value.desc, value.icon, {'PC_runprogram' : value.name, 'disk' : data.portable_drive.ref})}}
-	{{if value.running}}
-	<td>{{:helper.link('X', null, {'PC_killprogram' : value.name, 'disk' : data.portable_drive.ref})}} 
+{{if d69t69.69ort6969le_drive && d69t69.69ort6969le_drive.69ro69r69ms.len69th}}
+<h3>{{:d69t69.69ort6969le_drive.n69me ? d69t69.69ort6969le_drive.n69me : "D69t69 dis69"}}</h3>
+<t6969le>
+{{for d69t69.69ort6969le_drive.69ro69r69ms}}
+	<tr><td>{{:hel69er.lin6969v69lue.desc,6969lue.icon, {'69C_run69ro69r69m' :6969lue.n69me, 'dis69' : d69t69.69ort6969le_drive.ref}69}}
+	{{if6969lue.runnin69}}
+	<td>{{:hel69er.lin6969'X',69ull, {'69C_69ill69ro69r69m' :6969lue.n69me, 'dis69' : d69t69.69ort6969le_drive.ref}69}} 
 	{{/if}}
 {{/for}}
-</table>
+</t6969le>
 {{/if}}

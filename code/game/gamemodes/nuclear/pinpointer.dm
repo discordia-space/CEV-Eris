@@ -8,7 +8,7 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_GLASS = 1)
 	//spawn_blacklisted = TRUE//antag_item_targets??
 	var/obj/item/disk/nuclear/the_disk
 	var/obj/item/disk/nuclear/slot
@@ -29,7 +29,7 @@
 		icon_state = "pinoff"
 		to_chat(usr, SPAN_NOTICE("You deactivate the pinpointer"))
 
-/obj/item/pinpointer/attackby(obj/item/I, mob/user, params)
+/obj/item/pinpointer/attackby(obj/item/I,69ob/user, params)
 	if (!slot && istype(I, /obj/item/disk/nuclear))
 		usr.drop_item()
 		I.loc = src
@@ -104,10 +104,10 @@
 /obj/item/pinpointer/examine(mob/user)
 	..(user)
 	if(slot)
-		to_chat(user, "Nuclear disk is loaded inside [src].")
+		to_chat(user, "Nuclear disk is loaded inside 69src69.")
 	for(var/obj/machinery/nuclearbomb/bomb in world)
 		if(bomb.timing)
-			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: [bomb.timeleft]"))
+			to_chat(user, SPAN_WARNING("Extreme danger.  Arming signal detected.   Time remaining: 69bomb.timeleft69"))
 
 /obj/item/pinpointer/Destroy()
 	active = FALSE
@@ -116,8 +116,8 @@
 /obj/item/pinpointer/advpinpointer
 	name = "Advanced Pinpointer"
 	icon = 'icons/obj/device.dmi'
-	desc = "A larger version of the normal pinpointer, this unit features a helpful quantum entanglement detection system to locate various objects that do not broadcast a locator signal."
-	var/mode = 0  // Mode 0 locates disk, mode 1 locates coordinates.
+	desc = "A larger69ersion of the normal pinpointer, this unit features a helpful 69uantum entanglement detection system to locate69arious objects that do not broadcast a locator signal."
+	var/mode = 0  //69ode 0 locates disk,69ode 1 locates coordinates.
 	var/turf/location
 	var/obj/target
 
@@ -175,30 +175,30 @@
 
 /obj/item/pinpointer/advpinpointer/verb/toggle_mode()
 	set category = "Object"
-	set name = "Toggle Pinpointer Mode"
-	set src in view(1)
+	set name = "Toggle Pinpointer69ode"
+	set src in69iew(1)
 
 	active = FALSE
 	icon_state = "pinoff"
 	target = null
 	location = null
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
+	switch(alert("Please select the69ode you want to put the pinpointer in.", "Pinpointer69ode Select", "Location", "Disk Recovery", "Other Signature"))
 		if("Location")
 			mode = 1
 
 			var/locationx = input(usr, "Please input the x coordinate to search for.", "Location?" , "") as num
-			if(!locationx || !(usr in view(1,src)))
+			if(!locationx || !(usr in69iew(1,src)))
 				return
 			var/locationy = input(usr, "Please input the y coordinate to search for.", "Location?" , "") as num
-			if(!locationy || !(usr in view(1,src)))
+			if(!locationy || !(usr in69iew(1,src)))
 				return
 
 			var/turf/Z = get_turf(src)
 
 			location = locate(locationx,locationy,Z.z)
 
-			to_chat(usr, "You set the pinpointer to locate [locationx],[locationy]")
+			to_chat(usr, "You set the pinpointer to locate 69locationx69,69locationy69")
 
 
 			return attack_self()
@@ -209,18 +209,18 @@
 
 		if("Other Signature")
 			mode = 2
-			switch(alert("Search for item signature or DNA fragment?" , "Signature Mode Select" , "" , "Item" , "DNA"))
+			switch(alert("Search for item signature or DNA fragment?" , "Signature69ode Select" , "" , "Item" , "DNA"))
 				if("Item")
 					var/datum/objective/steal/itemlist
 					itemlist = itemlist // To supress a 'variable defined but not used' error.
-					var/targetitem = input("Select item to search for.", "Item Mode Select","") as null|anything in itemlist.possible_items
+					var/targetitem = input("Select item to search for.", "Item69ode Select","") as null|anything in itemlist.possible_items
 					if(!targetitem)
 						return
-					target=locate(itemlist.possible_items[targetitem])
+					target=locate(itemlist.possible_items69targetitem69)
 					if(!target)
-						to_chat(usr, SPAN_WARNING("Failed to locate [targetitem]!"))
+						to_chat(usr, SPAN_WARNING("Failed to locate 69targetitem69!"))
 						return
-					to_chat(usr, SPAN_NOTICE("You set the pinpointer to locate [targetitem]"))
+					to_chat(usr, SPAN_NOTICE("You set the pinpointer to locate 69targetitem69"))
 				if("DNA")
 					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
@@ -228,8 +228,8 @@
 					for(var/mob/living/carbon/M in SSmobs.mob_list)
 						if(!M.dna)
 							continue
-						if(M.dna.unique_enzymes == DNAstring)
-							target = M
+						if(M.dna.uni69ue_enzymes == DNAstring)
+							target =69
 							break
 
 			return attack_self()
@@ -241,10 +241,10 @@
 
 
 /obj/item/pinpointer/nukeop
-	var/mode = 0	//Mode 0 locates disk, mode 1 locates the shuttle
+	var/mode = 0	//Mode 0 locates disk,69ode 1 locates the shuttle
 	var/obj/machinery/computer/shuttle_control/multi/mercenary/home
 
-/obj/item/pinpointer/nukeop/attack_self(mob/user as mob)
+/obj/item/pinpointer/nukeop/attack_self(mob/user as69ob)
 	if(!active)
 		active = TRUE
 		if(!mode)
@@ -261,14 +261,14 @@
 
 /obj/item/pinpointer/nukeop/workdisk()
 	if(!active) return
-	if(mode)		//Check in case the mode changes while operating
+	if(mode)		//Check in case the69ode changes while operating
 		worklocation()
 		return
 	if(bomb_set)	//If the bomb is set, lead to the shuttle
 		mode = 1	//Ensures worklocation() continues to work
 		worklocation()
 		playsound(loc, 'sound/machines/twobeep.ogg', 50, 1)	//Plays a beep
-		visible_message("Shuttle Locator active.")			//Lets the mob holding it know that the mode has changed
+		visible_message("Shuttle Locator active.")			//Lets the69ob holding it know that the69ode has changed
 		return		//Get outta here
 	if(!the_disk)
 		the_disk = locate()

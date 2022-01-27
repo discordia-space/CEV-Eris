@@ -3,7 +3,7 @@
 /obj/item
 	var/wielded = FALSE //Whether or not it's wielded.
 	var/wieldsound = 'sound/weapons/thudswoosh.ogg' //Generic sound. Replace it with a special one if you have one.
-	var/unwieldsound //If you want it to make a sound when you unwield, put one here.
+	var/unwieldsound //If you want it to69ake a sound when you unwield, put one here.
 	var/wielded_icon //The item state used when it's wielded. Guns are snowflakey and have their own shit for this. This is for non guns.
 	var/force_wielded_multiplier = 0 //If you have a specific force for it being unwielded. If for whatever reason you don't want to use the original force of the weapon.
 
@@ -27,14 +27,14 @@
 	if(sf)
 		name = copytext(name,1,sf)
 	else //something went wrong
-		name = "[initial(name)]"//Returns name from compile-time instead of name with changes that've happened since
+		name = "69initial(name)69"//Returns name from compile-time instead of name with changes that've happened since
 	update_unwield_icon()
 	update_icon()
 	if(user)
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
 
-	user.visible_message(SPAN_WARNING("[user] lets go of their other hand."))
+	user.visible_message(SPAN_WARNING("69user69 lets go of their other hand."))
 	if(unwieldsound)
 		playsound(loc, unwieldsound, 50, 1)
 	var/obj/item/twohanded/offhand/O = user.get_inactive_hand()
@@ -53,21 +53,21 @@
 	wielded = TRUE
 	if(force_wielded_multiplier)
 		force = force * force_wielded_multiplier
-	else //This will give items wielded 30% more damage. This is balanced by the fact you cannot use your other hand.
+	else //This will give items wielded 30%69ore damage. This is balanced by the fact you cannot use your other hand.
 		force = (force * 1.3) //Items that do 0 damage will still do 0 damage though.
-	var/original_name = name //Else using [initial(name)] for the name of object returns compile-time name without any changes that've happened to the object's name
-	name = "[name] (Wielded)"
+	var/original_name = name //Else using 69initial(name)69 for the name of object returns compile-time name without any changes that've happened to the object's name
+	name = "69name69 (Wielded)"
 	update_wield_icon()
 	update_icon()//Legacy
 	if(user)
 		user.update_inv_r_hand()
 		user.update_inv_l_hand()
-	user.visible_message(SPAN_WARNING("[user] grabs \the [original_name] with both hands."))
+	user.visible_message(SPAN_WARNING("69user69 grabs \the 69original_name69 with both hands."))
 	if(wieldsound)
 		playsound(loc, wieldsound, 50, 1)
 	var/obj/item/twohanded/offhand/O = new(user) ////Let's reserve his other hand~
-	O.name = "[name] - offhand"
-	O.desc = "Your second grip on \the [name]"
+	O.name = "69name69 - offhand"
+	O.desc = "Your second grip on \the 69name69"
 	user.put_in_inactive_hand(O)
 	return
 
@@ -77,7 +77,7 @@
 
 /obj/item/proc/update_unwield_icon()//That way it doesn't interupt any other special icon_states.
 	if(!wielded && wielded_icon)
-		item_state = "[initial(item_state)]"
+		item_state = "69initial(item_state)69"
 
 //For general weapons.
 /obj/item/proc/attempt_wield(mob/user)
@@ -86,7 +86,7 @@
 	else //Trying to wield it
 		wield(user)
 
-//Checks if the item is being held by a mob, and if so, updates the held icons
+//Checks if the item is being held by a69ob, and if so, updates the held icons
 /obj/item/proc/update_twohanding()
 	update_held_icon()
 
@@ -110,8 +110,8 @@
 	//would check is_broken() and is_malfunctioning() here too but is_malfunctioning()
 	//is probabilistic so we can't do that and it would be unfair to just check one.
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/hand = H.organs_by_name[check_hand]
+		var/mob/living/carbon/human/H =69
+		var/obj/item/organ/external/hand = H.organs_by_name69check_hand69
 		if(istype(hand) && hand.is_usable())
 			return TRUE
 	return FALSE
@@ -130,14 +130,14 @@
 
 /obj/item/twohanded/offhand/unwield()
 	wielded = FALSE
-	if(!QDELETED(src))
-		qdel(src)
+	if(!69DELETED(src))
+		69del(src)
 
 /obj/item/twohanded/offhand/wield()
 	if(wielded)//Only delete if we're wielded
 		wielded = FALSE
-		if(!QDELETED(src))
-			qdel(src)
+		if(!69DELETED(src))
+			69del(src)
 
 /obj/item/twohanded/offhand/dropped(mob/living/user)
 	..()
@@ -147,8 +147,8 @@
 		I.unwield(user)
 	if(II)
 		II.unwield(user)
-	if(!QDELETED(src))
-		qdel(src)
+	if(!69DELETED(src))
+		69del(src)
 
 
 /mob/living/verb/wield_hotkey()//For the hotkeys. Not sure where this should be put. But it pertains to two-handing so *shrug*.

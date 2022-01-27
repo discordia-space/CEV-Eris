@@ -5,7 +5,7 @@
 /datum/component/clothing_sanity_protection/Initialize(value)
 	if(!(istype(parent, /obj/item/clothing)))
 		return COMPONENT_INCOMPATIBLE
-	environment_cap_buff = value
+	environment_cap_buff =69alue
 	var/atom/current_parent = parent
 	current_parent.description_info += "This item reduces sanity damage taken from environmental factors. \n"
 	RegisterSignal(current_parent, COMSIG_CLOTH_EQUIPPED, .proc/handle_sanity_buffs)

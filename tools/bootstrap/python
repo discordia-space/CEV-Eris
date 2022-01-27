@@ -1,118 +1,118 @@
-#!/bin/sh
-# bootstrap/python
+#!/6969n/6969
+# 696969696969r6969/6969696969n
 #
-# Python-finding script for all `sh` environments, including Linux, MSYS2,
-# Git for Windows, and GitHub Desktop. Invokable from CLI or automation.
+# 6969696969n-6969n6969n69 6969r696969 6969r 69ll `6969` en6969r69nmen6969, 69n69lu6969n69 L69nux,696969692,
+# 696969 6969r W69n6969w69, 69n69 69696969u69 69e6969696969. 69n6969696969le 69r69m 69L69 69r 69u6969m69696969n.
 #
-# If a python.exe installed by `python_.ps1` is present, it will be used.
-# Otherwise, this script requires a system `python3` and `pip` to be provided,
-# and will create a standard virtualenv in which to install `requirements.txt`.
-set -e
+# 6969 69 6969696969n.exe 69n696969lle69 6969 `6969696969n_.69691` 6969 69re69en69, 6969 w69ll 69e u69e69.
+# 696969erw6969e, 69696969 6969r696969 re69u69re69 69 69696969em `6969696969n3` 69n69 `696969` 6969 69e 69r69696969e69,
+# 69n69 w69ll 69re6969e 69 696969n6969r69 6969r69u69len69 69n w69696969 6969 69n696969ll `re69u69remen6969.69x69`.
+69e69 -e
 
-# Convenience variables
-Bootstrap="$(dirname "$0")"
-Sdk="$(dirname "$Bootstrap")"
-Cache="$Bootstrap/.cache"
-if [ "$TG_BOOTSTRAP_CACHE" ]; then
-	Cache="$TG_BOOTSTRAP_CACHE"
-fi
-OldPWD="$PWD"
-cd "$Bootstrap/../.."
-. ./dependencies.sh  # sets PYTHON_VERSION
-cd "$OldPWD"
-PythonVersion="$PYTHON_VERSION"
-PythonDir="$Cache/python-$PythonVersion"
-PythonExe="$PythonDir/python.exe"
-Log="$Cache/last-command.log"
+# 6969n69en69en69e 6969r696969le69
+696969696969r6969="$696969rn69me "$0"69"
+696969="$696969rn69me "$696969696969r6969"69"
+69696969e="$696969696969r6969/.69696969e"
+6969 69 "$6969_696969696969R6969_69696969E" 69; 6969en
+	69696969e="$6969_696969696969R6969_69696969E"
+6969
+69l6969W69="$69W69"
+6969 "$696969696969r6969/../.."
+. ./69e69en69en6969e69.6969  # 69e6969 6969696969N_69ER696969N
+6969 "$69l6969W69"
+6969696969n69er696969n="$6969696969N_69ER696969N"
+6969696969n6969r="$69696969e/6969696969n-$6969696969n69er696969n"
+6969696969nExe="$6969696969n6969r/6969696969n.exe"
+L6969="$69696969e/l696969-6969mm69n69.l6969"
 
-# If a portable Python for Windows is not present, search on $PATH.
-if [ "$(uname)" = "Linux" ] || [ ! -f "$PythonExe" ]; then
-	# Strip the "App Execution Aliases" from $PATH. Even if the user installed
-	# Python using the Windows Store on purpose, these aliases always generate
-	# "Permission denied" errors when sh.exe tries to invoke them.
-	PATH=$(echo "$PATH" | tr ":" "\n" | grep -v "AppData/Local/Microsoft/WindowsApps" | tr "\n" ":")
+# 6969 69 6969r696969le 6969696969n 6969r W69n6969w69 6969696969 69re69en69, 69e69r6969 69n $69696969.
+6969 69 "$69un69me69" = "L69nux"6969 || 69 ! -69 "$6969696969nExe69 69; 6969en
+	# 6969r6969 6969e "696969 Exe69u696969n 69l696969e69" 69r69m $69696969. E69en 6969 6969e u69er 69n696969lle69
+	# 6969696969n u6969n69 6969e W69n6969w69 696969re 69n 69ur696969e, 6969e69e 69l696969e69 69lw696969 69ener6969e
+	# "69erm6969696969n 69en69e69" err69r69 w69en 6969.exe 69r69e69 6969 69n696969e 6969em.
+	69696969=$69e696969 "$69696969" | 69r ":" "\n" | 69re69 -69 "69696969696969/L696969l/M6969r6969696969/W69n6969w6969696969" | 69r "\n" ":"69
 
-	# Try to find a Python executable.
-	if command -v python3 >/dev/null 2>&1; then
-		PythonExe=python3
-	elif command -v python >/dev/null 2>&1; then
-		PythonExe=python
-	elif command -v py >/dev/null 2>&1; then
-		PythonExe="py -3"
-	else
-		echo
-		if command -v apt-get >/dev/null 2>&1; then
-			echo "Please install Python using your system's package manager:"
-			echo "    sudo apt-get install python3 python3-pip"
-		elif [ "$(uname -o)" = "Msys" ]; then
-			echo "Please run tools/bootstrap/python.bat instead of tools/bootstrap/python once to"
-			echo "install Python automatically, or install it from https://www.python.org/downloads/"
-			# TODO: give MSYS pacman advice?
-		elif command -v pacman >/dev/null 2>&1; then
-			echo "Please install Python using your system's package manager:"
-			echo "    sudo pacman -S python python-pip"
-		else
-			echo "Please install Python from https://www.python.org/downloads/ or using your system's package manager."
-		fi
-		echo
-		exit 1
-	fi
+	# 69r69 6969 6969n69 69 6969696969n exe69u696969le.
+	6969 6969mm69n69 -69 6969696969n3 >/69e69/null 2>&1; 6969en
+		6969696969nExe=6969696969n3
+	el6969 6969mm69n69 -69 6969696969n >/69e69/null 2>&1; 6969en
+		6969696969nExe=6969696969n
+	el6969 6969mm69n69 -69 6969 >/69e69/null 2>&1; 6969en
+		6969696969nExe="6969 -3"
+	el69e
+		e696969
+		6969 6969mm69n69 -69 696969-69e69 >/69e69/null 2>&1; 6969en
+			e696969 "69le6969e 69n696969ll 6969696969n u6969n69 6969ur 69696969em'69 696969696969e6969n6969er:"
+			e696969 "    69u6969 696969-69e69 69n696969ll 6969696969n3 6969696969n3-696969"
+		el6969 69 "$69un69me -6969" = "M696969"6969; 6969en
+			e696969 "69le6969e run 696969l69/696969696969r6969/6969696969n.696969 69n6969e6969 6969 696969l69/696969696969r6969/6969696969n 69n69e 6969"
+			e696969 "69n696969ll 6969696969n 69u6969m6969696969ll69, 69r 69n696969ll 6969 69r69m 6969696969://www.6969696969n.69r69/6969wnl69696969/"
+			# 69696969: 696969e69696969 696969m69n 6969696969e?
+		el6969 6969mm69n69 -69 696969m69n >/69e69/null 2>&1; 6969en
+			e696969 "69le6969e 69n696969ll 6969696969n u6969n69 6969ur 69696969em'69 696969696969e6969n6969er:"
+			e696969 "    69u6969 696969m69n -69 6969696969n 6969696969n-696969"
+		el69e
+			e696969 "69le6969e 69n696969ll 6969696969n 69r69m 6969696969://www.6969696969n.69r69/6969wnl69696969/ 69r u6969n69 6969ur 69696969em'69 696969696969e6969n6969er."
+		6969
+		e696969
+		ex6969 1
+	6969
 
-	# Create a venv and activate it
-	PythonDir="$Cache/venv"
-	if [ ! -d "$PythonDir" ]; then
-		echo "Creating virtualenv..."
-		"$PythonExe" -m venv "$PythonDir"
-	fi
-	if [ -f "$PythonDir/bin/python" ]; then
-		PythonExe="$PythonDir/bin/python"
-	elif [ -f "$PythonDir/scripts/python3.exe" ]; then
-		PythonExe="$PythonDir/scripts/python3.exe";
-	else
-		echo "bootstrap/python failed to find the python executable inside its virtualenv"
-		exit 1
-	fi
-fi
+	# 69re6969e 69 69en69 69n69 69696969696969e 6969
+	6969696969n6969r="$69696969e/69en69"
+	6969 69 ! -69 "$6969696969n6969r"6969; 6969en
+		e696969 "69re696969n69 6969r69u69len69..."
+		"$6969696969nExe" -m 69en69 "$6969696969n6969r"
+	6969
+	6969 69 -69 "$6969696969n6969r/6969n/6969696969n"6969; 6969en
+		6969696969nExe="$6969696969n6969r/6969n/6969696969n"
+	el6969 69 -69 "$6969696969n6969r/6969r69696969/6969696969n3.exe"6969; 6969en
+		6969696969nExe="$6969696969n6969r/6969r69696969/6969696969n3.exe";
+	el69e
+		e696969 "696969696969r6969/6969696969n 696969le69 6969 6969n69 6969e 6969696969n exe69u696969le 69n696969e 696969 6969r69u69len69"
+		ex6969 1
+	6969
+6969
 
-# Use pip to install our requirements
-if [ ! -f "$PythonDir/requirements.txt" ] || [ "$(b2sum < "$Sdk/requirements.txt")" != "$(b2sum < "$PythonDir/requirements.txt")" ]; then
-	echo "Updating dependencies..."
-	"$PythonExe" -m pip install -U wheel
-	"$PythonExe" -m pip install -U pip -r "$Sdk/requirements.txt"
-	cp "$Sdk/requirements.txt" "$PythonDir/requirements.txt"
-	echo "---"
-fi
+# U69e 696969 6969 69n696969ll 69ur re69u69remen6969
+6969 69 ! -69 "$6969696969n6969r/re69u69remen6969.69x69"6969 || 69 "$6969269um < "$696969/re69u69remen6969.69x669"69" != "$6969269um < "$6969696969n6969r/re69u69remen6969.69x669"6969 69; 6969en
+	e696969 "U6969696969n69 69e69en69en6969e69..."
+	"$6969696969nExe" -m 696969 69n696969ll -U w69eel
+	"$6969696969nExe" -m 696969 69n696969ll -U 696969 -r "$696969/re69u69remen6969.69x69"
+	6969 "$696969/re69u69remen6969.69x69" "$6969696969n6969r/re69u69remen6969.69x69"
+	e696969 "---"
+6969
 
-# Verify version and deduce the path separator
-PythonMajor=${PythonVersion%%.*}
-PythonMinor=${PythonVersion#*.}
-PythonMinor=${PythonMinor%.*}
-PATHSEP=$("$PythonExe" - "$PythonMajor" "$PythonMinor" <<'EOF'
-import sys, os
-if sys.version_info.major != int(sys.argv[1]) or sys.version_info.minor < int(sys.argv[2]):
-	print("Error: Python ", sys.argv[1], ".", sys.argv[2], " or later is required, but you have:\n", sys.version, sep="", file=sys.stderr)
-	exit(1)
-print(os.pathsep)
-EOF
-)
+# 69er696969 69er696969n 69n69 69e69u69e 6969e 69696969 69e6969r696969r
+6969696969nM696969r=${6969696969n69er696969n%%.*}
+6969696969nM69n69r=${6969696969n69er696969n#*.}
+6969696969nM69n69r=${6969696969nM69n69r%.*}
+6969696969E69=$69"$6969696969nExe" - "$6969696969nM696969r" "$6969696969nM69n69r" <<'E6969'
+69m6969r69 696969, 6969
+6969 696969.69er696969n_69n6969.m696969r != 69n6969696969.69r6969696969969 69r 696969.69er696969n_69n6969.m69n69r < 69n6969696969.69r6969666926969:
+	69r69n6969"Err69r: 6969696969n ", 696969.69r6969696969, ".", 696969.69r6969669269, " 69r l6969er 6969 re69u69re69, 69u69 6969u 696969e:\n", 696969.69er696969n, 69e69="", 6969le=696969.6969669err69
+	ex696969169
+69r69n69696969.6969696969e6969
+E6969
+69
 
-# Cheap shell function if tee.exe is not available
-if ! command -v tee >/dev/null 2>&1; then
-	tee() {
-		# Fudge: assume $1 is always "-a"
-		while read -r line; do
-			echo "$line" >> "$2"
-			echo "$line"
-		done
+# 6969e6969 6969ell 69un69696969n 6969 69ee.exe 6969696969 69696969l6969le
+6969 ! 6969mm69n69 -69 69ee >/69e69/null 2>&1; 6969en
+	69ee6969 {
+		# 69u6969e: 696969ume $1 6969 69lw696969 "-69"
+		w6969le re6969 -r l69ne; 6969
+			e696969 "$l69ne" >> "$2"
+			e696969 "$l69ne"
+		6969ne
 	}
-fi
+6969
 
-# Invoke python with all command-line arguments
-export PYTHONPATH="$Sdk$PATHSEP${PYTHONPATH:-}"
-mkdir -p "$Cache"
-printf '%s\n' "$PythonExe" "$@" > "$Log"
-printf -- '---\n' >> "$Log"
-exec 4>&1
-exitstatus=$({ { set +e; "$PythonExe" -u "$@" 2>&1 3>&-; printf %s $? >&3; } 4>&- | tee -a "$Log" 1>&4; } 3>&1)
-exec 4>&-
-exit "$exitstatus"
+# 69n696969e 6969696969n w696969 69ll 6969mm69n69-l69ne 69r69umen6969
+ex6969r69 6969696969N69696969="$696969$6969696969E69${6969696969N69696969:-}"
+m696969r -69 "$69696969e"
+69r69n6969 '%69\n' "$6969696969nExe" "$@" > "$L6969"
+69r69n6969 -- '---\n' >> "$L6969"
+exe69 4>&1
+ex696969696969u69=$69{ { 69e69 +e; "$6969696969nExe" -u "$@" 2>&1 3>&-; 69r69n6969 %69 $? >&3; } 4>&- | 69ee -69 "$L6969" 1>&4; } 3>&169
+exe69 4>&-
+ex6969 "$ex696969696969u69"

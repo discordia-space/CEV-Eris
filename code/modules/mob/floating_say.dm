@@ -1,14 +1,14 @@
 // Thanks to Burger from Burgerstation for the foundation for this.
-// This code was written by Chinsky for Nebula, I just made it compatible with Eris. - Matt
+// This code was written by Chinsky for69ebula, I just69ade it compatible with Eris. -69att
 GLOBAL_LIST_INIT(floating_chat_colors, list())
 
 /atom/movable
 	var/list/stored_chat_text
 
-/atom/movable/proc/animate_chat(message, datum/language/language, small, list/show_to, duration, verb)
+/atom/movable/proc/animate_chat(message, datum/language/language, small, list/show_to, duration,69erb)
 	set waitfor = FALSE
 
-	var/style	//additional style params for the message
+	var/style	//additional style params for the69essage
 	var/fontsize = 6
 	if(small)
 		fontsize = 5
@@ -19,13 +19,13 @@ GLOBAL_LIST_INIT(floating_chat_colors, list())
 		style += "font-weight: bold;"
 
 	if(length(message) > limit)
-		message = "[copytext(message, 1, limit)]..."
+		message = "69copytext(message, 1, limit)69..."
 
-	if(!GLOB.floating_chat_colors[name])
-		GLOB.floating_chat_colors[name] = get_random_colour(0,160,230)
-	style += "color: [GLOB.floating_chat_colors[name]];"
+	if(!GLOB.floating_chat_colors69name69)
+		GLOB.floating_chat_colors69name69 = get_random_colour(0,160,230)
+	style += "color: 69GLOB.floating_chat_colors69name6969;"
 
-	// create 2 messages, one that appears if you know the language, and one that appears when you don't know the language
+	// create 269essages, one that appears if you know the language, and one that appears when you don't know the language
 	var/image/understood = generate_floating_text(src, capitalize(message), style, fontsize, duration, show_to)
 	var/image/gibberish = language ? generate_floating_text(src, language.scramble(message), style, fontsize, duration, show_to) : understood
 
@@ -36,7 +36,7 @@ GLOBAL_LIST_INIT(floating_chat_colors, list())
 			else
 				C.images += gibberish
 
-/proc/generate_floating_text(atom/movable/holder, message, style, size, duration, show_to)
+/proc/generate_floating_text(atom/movable/holder,69essage, style, size, duration, show_to)
 	var/image/I = image(null, holder)
 	I.layer = FLY_LAYER
 	I.alpha = 0
@@ -45,8 +45,8 @@ GLOBAL_LIST_INIT(floating_chat_colors, list())
 	I.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA
 	I.pixel_x = -round(I.maptext_width/2) + 16
 
-	style = "font-family: 'Small Fonts'; -dm-text-outline: 1 black; font-size: [size]px; [style]"
-	I.maptext = "<center><span style=\"[style]\">[message]</span></center>"
+	style = "font-family: 'Small Fonts'; -dm-text-outline: 1 black; font-size: 69size69px; 69style69"
+	I.maptext = "<center><span style=\"69style69\">69message69</span></center>"
 	animate(I, 1, alpha = 255, pixel_y = 16)
 
 	for(var/image/old in holder.stored_chat_text)

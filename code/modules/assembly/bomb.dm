@@ -24,7 +24,7 @@
 		overlays += bombassembly.overlays
 		overlays += "bomb_assembly"
 
-/obj/item/device/onetankbomb/attackby(obj/item/I, mob/user)
+/obj/item/device/onetankbomb/attackby(obj/item/I,69ob/user)
 
 	add_fingerprint(user)
 
@@ -33,7 +33,7 @@
 
 		if(QUALITY_BOLT_TURNING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
-				to_chat(user, SPAN_NOTICE("You disassemble [src]."))
+				to_chat(user, SPAN_NOTICE("You disassemble 69src69."))
 
 				bombassembly.loc = user.loc
 				bombassembly.master = null
@@ -50,13 +50,13 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_VERY_EASY))
 				if(!welded)
 					welded = TRUE
-					bombers += "[key_name(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
-					message_admins("[key_name_admin(user)] welded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]")
-					to_chat(user, SPAN_NOTICE("A pressure hole has been bored to [bombtank] valve. \The [bombtank] can now be ignited."))
+					bombers += "69key_name(user)69 welded a single tank bomb. Temp: 69bombtank.air_contents.temperature-T0C69"
+					message_admins("69key_name_admin(user)69 welded a single tank bomb. Temp: 69bombtank.air_contents.temperature-T0C69")
+					to_chat(user, SPAN_NOTICE("A pressure hole has been bored to 69bombtank6969alve. \The 69bombtank69 can now be ignited."))
 					return
 				else
 					welded = FALSE
-					bombers += "[key_name(user)] unwelded a single tank bomb. Temp: [bombtank.air_contents.temperature-T0C]"
+					bombers += "69key_name(user)69 unwelded a single tank bomb. Temp: 69bombtank.air_contents.temperature-T0C69"
 					to_chat(user, SPAN_NOTICE("The hole has been closed."))
 					return
 			return
@@ -67,22 +67,22 @@
 
 	..()
 
-/obj/item/device/onetankbomb/attack_self(mob/user as mob) //pressing the bomb accesses its assembly
+/obj/item/device/onetankbomb/attack_self(mob/user as69ob) //pressing the bomb accesses its assembly
 	bombassembly.attack_self(user, 1)
 	add_fingerprint(user)
 	return
 
-/obj/item/device/onetankbomb/receive_signal()	//This is mainly called by the sensor through sense() to the holder, and from the holder to here.
-	visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+/obj/item/device/onetankbomb/receive_signal()	//This is69ainly called by the sensor through sense() to the holder, and from the holder to here.
+	visible_message("\icon69src69 *beep* *beep*", "*beep* *beep*")
 	sleep(10)
 	if(!src)
 		return
 	if(welded)
-		bombtank.ignite()	//if its not a dud, boom (or not boom if you made shitty mix) the ignite proc is below, in this file
+		bombtank.ignite()	//if its not a dud, boom (or not boom if you69ade shitty69ix) the ignite proc is below, in this file
 	else
 		bombtank.release()
 
-/obj/item/device/onetankbomb/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/onetankbomb/HasProximity(atom/movable/AM as69ob|obj)
 	if(bombassembly)
 		bombassembly.HasProximity(AM)
 
@@ -113,7 +113,7 @@
 	return
 
 /obj/item/tank/proc/ignite()	//This happens when a bomb is told to explode
-	var/fuel_moles = air_contents.gas["plasma"] + air_contents.gas["oxygen"] / 6
+	var/fuel_moles = air_contents.gas69"plasma"69 + air_contents.gas69"oxygen"69 / 6
 	var/strength = 1
 
 	var/turf/ground_zero = get_turf(loc)

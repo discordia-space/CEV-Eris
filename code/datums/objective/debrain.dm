@@ -1,12 +1,12 @@
 /datum/objective/debrain
 
 /datum/objective/debrain/get_panel_entry()
-	var/target = src.target ? "[src.target.current.real_name], the [src.target.assigned_role]" : "no_target"
-	return "Steal the brain of <a href='?src=\ref[src];switch_target=1'>[target]</a>."
+	var/target = src.target ? "69src.target.current.real_name69, the 69src.target.assigned_role69" : "no_target"
+	return "Steal the brain of <a href='?src=\ref69src69;switch_target=1'>69target69</a>."
 
 /datum/objective/debrain/update_explanation()
 	if(target && target.current)
-		explanation_text = "Steal the brain of [target.current.real_name]."
+		explanation_text = "Steal the brain of 69target.current.real_name69."
 	else
 		explanation_text = "Target has not arrived today. Did he know that I would come?"
 

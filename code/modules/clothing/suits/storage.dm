@@ -25,7 +25,7 @@
 		return TRUE
 	..(over_object)
 
-/obj/item/clothing/suit/storage/attackby(obj/item/W, mob/user)
+/obj/item/clothing/suit/storage/attackby(obj/item/W,69ob/user)
 	..()
 	pockets.attackby(W, user)
 
@@ -45,14 +45,14 @@
 		if(!usr.canmove || usr.stat || usr.restrained())
 			return 0
 
-		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a message to the user
+		if(icon_state == icon_open) //Will check whether icon state is currently set to the "open" or "closed" state and switch it around with a69essage to the user
 			icon_state = icon_closed
 			to_chat(usr, "You button up the coat.")
 		else if(icon_state == icon_closed)
 			icon_state = icon_open
 			to_chat(usr, "You unbutton the coat.")
 		else //in case some goofy admin switches icon states around without switching the icon_open or icon_closed
-			to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+			to_chat(usr, "You attempt to button-up the69elcro on your 69src69, before promptly realising how silly you are.")
 			return
 		update_wear_icon()	//so our overlays update
 
@@ -74,7 +74,7 @@
 //Makeshift chest rig.
 /obj/item/clothing/suit/storage/vest/chestrig
 	name = "makeshift chest rig"
-	desc = "A makeshift chest rig made for carrying some stuff. Can carry four small items. Has little protective value.."
+	desc = "A69akeshift chest rig69ade for carrying some stuff. Can carry four small items. Has little protective69alue.."
 	icon_state = "mchestrig"
 	item_state = "mchestrig"
 	armor = list(

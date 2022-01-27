@@ -7,15 +7,15 @@
 	flash_protection += C.flash_protection; \
 	equipment_tint_total += C.tint;
 
-/mob/living/carbon/human/can_eat(var/food, var/feedback = 1)
+/mob/living/carbon/human/can_eat(var/food,69ar/feedback = 1)
 	var/list/status = can_eat_status()
-	if(status[1] == HUMAN_EATING_NO_ISSUE)
+	if(status69169 == HUMAN_EATING_NO_ISSUE)
 		return 1
 	if(feedback)
-		if(status[1] == HUMAN_EATING_NO_MOUTH)
-			to_chat(src, "Where do you intend to put \the [food]? You don't have a mouth!")
-		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			to_chat(src, SPAN_WARNING("\The [status[2]] is in the way!"))
+		if(status69169 == HUMAN_EATING_NO_MOUTH)
+			to_chat(src, "Where do you intend to put \the 69food69? You don't have a69outh!")
+		else if(status69169 == HUMAN_EATING_BLOCKED_MOUTH)
+			to_chat(src, SPAN_WARNING("\The 69status6926969 is in the way!"))
 	return 0
 
 /mob/living/carbon/human/can_see_reagents()
@@ -33,15 +33,15 @@
 	*/
 	return FALSE
 
-/mob/living/carbon/human/can_force_feed(var/feeder, var/food, var/feedback = 1)
+/mob/living/carbon/human/can_force_feed(var/feeder,69ar/food,69ar/feedback = 1)
 	var/list/status = can_eat_status()
-	if(status[1] == HUMAN_EATING_NO_ISSUE)
+	if(status69169 == HUMAN_EATING_NO_ISSUE)
 		return 1
 	if(feedback)
-		if(status[1] == HUMAN_EATING_NO_MOUTH)
-			to_chat(feeder, "Where do you intend to put \the [food]? \The [src] doesn't have a mouth!")
-		else if(status[1] == HUMAN_EATING_BLOCKED_MOUTH)
-			to_chat(feeder, SPAN_WARNING("\The [status[2]] is in the way!"))
+		if(status69169 == HUMAN_EATING_NO_MOUTH)
+			to_chat(feeder, "Where do you intend to put \the 69food69? \The 69src69 doesn't have a69outh!")
+		else if(status69169 == HUMAN_EATING_BLOCKED_MOUTH)
+			to_chat(feeder, SPAN_WARNING("\The 69status6926969 is in the way!"))
 	return 0
 
 /mob/living/carbon/human/proc/can_eat_status()
@@ -76,7 +76,7 @@
 	if(istype(using_scope,/obj/item/gun))
 		process_scope(using_scope)
 
-/mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G, var/forceactive)
+/mob/living/carbon/human/proc/process_glasses(obj/item/clothing/glasses/G,69ar/forceactive)
 	if(G && (G.active || forceactive))
 		equipment_darkness_modifier += G.darkness_view
 		equipment_vision_flags |= G.vision_flags
@@ -84,11 +84,11 @@
 //		if(G.overlay)
 //			equipment_overlays |= G.overlay
 //		if (src.HUDtech.Find("glassesoverlay"))//i process that ocerlay
-//			var/obj/screen/glasses_overlay/GO = src.HUDtech["glassesoverlay"]
+//			var/obj/screen/glasses_overlay/GO = src.HUDtech69"glassesoverlay"69
 //			GO.update_icon()
 		if(G.see_invisible >= 0)
 			if(equipment_see_invis)
-				equipment_see_invis = min(equipment_see_invis, G.see_invisible)
+				equipment_see_invis =69in(equipment_see_invis, G.see_invisible)
 			else
 				equipment_see_invis = G.see_invisible
 
@@ -119,6 +119,6 @@
 	equipment_vision_flags |= A.vision_flags
 	if(A.see_invisible_gun >= 0)
 		if(equipment_see_invis)
-			equipment_see_invis = min(equipment_see_invis, A.see_invisible_gun)
+			equipment_see_invis =69in(equipment_see_invis, A.see_invisible_gun)
 		else
 			equipment_see_invis = A.see_invisible_gun

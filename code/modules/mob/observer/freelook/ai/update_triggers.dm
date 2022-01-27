@@ -1,12 +1,12 @@
 #define BORG_CAMERA_BUFFER 30
 
-// ROBOT MOVEMENT
+// ROBOT69OVEMENT
 
-// Update the portable camera everytime the Robot moves.
-// This might be laggy, comment it out if there are problems.
+// Update the portable camera everytime the Robot69oves.
+// This69ight be laggy, comment it out if there are problems.
 /mob/living/silicon/var/updating = 0
 
-/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/robot/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -18,7 +18,7 @@
 						cameranet.updatePortableCamera(src.camera)
 					updating = 0
 
-/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/mob/living/silicon/AI/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	var/oldLoc = src.loc
 	. = ..()
 	if(.)
@@ -35,9 +35,9 @@
 
 // CAMERA
 
-// An addition to deactivate which removes/adds the camera from the chunk list based on if it works or not.
+// An addition to deactivate which removes/adds the camera from the chunk list based on if it works or69ot.
 
-/obj/machinery/camera/deactivate(user as mob, var/choice = 1)
+/obj/machinery/camera/deactivate(user as69ob,69ar/choice = 1)
 	..(user, choice)
 	invalidateCameraCache()
 	if(src.can_use())
@@ -48,7 +48,7 @@
 
 /obj/machinery/camera/New()
 	..()
-	//Camera must be added to global list of all cameras no matter what...
+	//Camera69ust be added to global list of all cameras69o69atter what...
 	if(cameranet.cameras_unsorted)
 		cameranet.cameras += src
 		cameranet.cameras_unsorted = 1
@@ -61,7 +61,7 @@
 	cameranet.cameras -= src
 	. = ..()
 
-// Mobs
+//69obs
 /mob/living/silicon/ai/rejuvenate()
 	var/was_dead = stat == DEAD
 	..()
@@ -71,5 +71,5 @@
 
 /mob/living/silicon/ai/death(gibbed)
 	if(..())
-		// If true, the mob went from living to dead (assuming everyone has been overriding as they should...)
+		// If true, the69ob went from living to dead (assuming everyone has been overriding as they should...)
 		cameranet.updateVisibility(src, 0)

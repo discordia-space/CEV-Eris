@@ -10,11 +10,11 @@
 	order_cost = cost
 
 	if(prob(MANIFEST_ERROR_CHANCE))
-		errors |= MANIFEST_ERROR_NAME
+		errors |=69ANIFEST_ERROR_NAME
 	if(prob(MANIFEST_ERROR_CHANCE))
-		errors |= MANIFEST_ERROR_CONTENTS
+		errors |=69ANIFEST_ERROR_CONTENTS
 	if(prob(MANIFEST_ERROR_CHANCE))
-		errors |= MANIFEST_ERROR_ITEM
+		errors |=69ANIFEST_ERROR_ITEM
 
 /obj/item/paper/manifest/proc/is_approved()
 	return stamped && stamped.len && !is_denied()
@@ -38,44 +38,44 @@
 	src.orderer_ckey = orderer_ckey
 	src.reason = reason
 
-/datum/supply_order/proc/generateRequisition(turf/T)
-	var/obj/item/paper/reqform = new(T)
+/datum/supply_order/proc/generateRe69uisition(turf/T)
+	var/obj/item/paper/re69form = new(T)
 
-	reqform.name = "requisition form - #[id] ([object.name])"
-	reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
-	reqform.info += "Order #[id]<br>"
-	reqform.info += "Item: [object.name]<br>"
-	reqform.info += "Access Restrictions: [get_access_desc(object.access)]<br>"
-	reqform.info += "Requested by: [orderer]<br>"
-	reqform.info += "Rank: [orderer_rank]<br>"
-	reqform.info += "Contents:<br>"
-	reqform.info += object.true_manifest
+	re69form.name = "re69uisition form - #69id69 (69object.name69)"
+	re69form.info += "<h3>69station_name()69 Supply Re69uisition Form</h3><hr>"
+	re69form.info += "Order #69id69<br>"
+	re69form.info += "Item: 69object.name69<br>"
+	re69form.info += "Access Restrictions: 69get_access_desc(object.access)69<br>"
+	re69form.info += "Re69uested by: 69orderer69<br>"
+	re69form.info += "Rank: 69orderer_rank69<br>"
+	re69form.info += "Contents:<br>"
+	re69form.info += object.true_manifest
 	if(reason)
-		reqform.info += "Reason: [reason]<br>"
-	reqform.info += "<hr>"
-	reqform.info += "STAMP BELOW TO APPROVE THIS REQUISITION:<br>"
+		re69form.info += "Reason: 69reason69<br>"
+	re69form.info += "<hr>"
+	re69form.info += "STAMP BELOW TO APPROVE THIS RE69UISITION:<br>"
 
-	reqform.update_icon()
-	return reqform
+	re69form.update_icon()
+	return re69form
 
 /datum/supply_order/proc/generateManifest(obj/structure/closet/crate/C)
 	var/obj/item/paper/manifest/P = new(C, id, object.cost)
 
-	P.name = "shipping manifest - #[id] ([object.name])"
-	P.info += "<h2>Shipping Manifest</h2>"
+	P.name = "shipping69anifest - #69id69 (69object.name69)"
+	P.info += "<h2>Shipping69anifest</h2>"
 	P.info += "<hr/>"
-	P.info += "Order #[id]<br/>"
-	P.info += "Destination: [station_name()]<br/>"
-	P.info += "Item: [object.name]<br/>"
+	P.info += "Order #69id69<br/>"
+	P.info += "Destination: 69station_name()69<br/>"
+	P.info += "Item: 69object.name69<br/>"
 	P.info += "Contents: <br/>"
 	P.info += "<ul>"
 	for(var/atom/movable/AM in C.contents - P)
-		if((P.errors & MANIFEST_ERROR_CONTENTS))
+		if((P.errors &69ANIFEST_ERROR_CONTENTS))
 			if(prob(50))
-				P.info += "<li>[AM.name]</li>"
+				P.info += "<li>69AM.name69</li>"
 			else
 				continue
-		P.info += "<li>[AM.name]</li>"
+		P.info += "<li>69AM.name69</li>"
 	P.info += "</ul>"
 	P.info += "<h4>Stamp below to confirm receipt of goods:</h4>"
 
@@ -90,11 +90,11 @@
 	var/obj/structure/closet/crate/C = object.generate(T)
 	var/obj/item/paper/manifest/M = generateManifest(C)
 
-	if(M.errors & MANIFEST_ERROR_ITEM)
+	if(M.errors &69ANIFEST_ERROR_ITEM)
 		if(istype(C, /obj/structure/closet/crate/secure) || istype(C, /obj/structure/closet/crate/large))
 			M.errors &= ~MANIFEST_ERROR_ITEM
 		else
-			var/lost = max(round(C.contents.len / 10), 1)
+			var/lost =69ax(round(C.contents.len / 10), 1)
 			while(--lost >= 0)
-				qdel(pick(C.contents))
+				69del(pick(C.contents))
 	return C

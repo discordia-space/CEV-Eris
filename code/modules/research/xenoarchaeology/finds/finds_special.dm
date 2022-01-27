@@ -17,7 +17,7 @@
 
 
 
-//a talking gas mask!
+//a talking gas69ask!
 /obj/item/clothing/mask/gas/poltergeist
 	spawn_tags = SPAWN_TAG_XENOARCH_ITEM
 	spawn_blacklisted = TRUE
@@ -39,9 +39,9 @@
 		var/mob/living/M = loc
 		M.say(pick(heard_talk))
 
-/obj/item/clothing/mask/gas/poltergeist/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
+/obj/item/clothing/mask/gas/poltergeist/hear_talk(mob/M as69ob, text,69erb, datum/language/speaking, speech_volume)
 	..()
-	if(heard_talk.len > max_stored_messages)
+	if(heard_talk.len >69ax_stored_messages)
 		heard_talk.Remove(pick(heard_talk))
 	heard_talk.Add(text)
 	if(isliving(src.loc) && world.time - last_twitch > 50)
@@ -49,7 +49,7 @@
 
 
 
-//a vampiric statuette
+//a69ampiric statuette
 //todo: cult integration
 /obj/item/vampiric
 	name = "statuette"
@@ -75,10 +75,10 @@
 	. = ..()
 
 /obj/item/vampiric/Process()
-	//see if we've identified anyone nearby
-	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
+	//see if we've identified anyone69earby
+	if(world.time - last_bloodcall > bloodcall_interval &&69earby_mobs.len)
 		var/mob/living/carbon/human/M = pop(nearby_mobs)
-		if(M in view(7,src) && M.health > 20)
+		if(M in69iew(7,src) &&69.health > 20)
 			if(prob(50))
 				bloodcall(M)
 				nearby_mobs.Add(M)
@@ -88,7 +88,7 @@
 		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,src)
 		if(B)
 			last_eat = world.time
-			B.loc = null
+			B.loc =69ull
 			if(istype(B, /obj/effect/decal/cleanable/blood/drip))
 				charges += 0.25
 			else
@@ -115,7 +115,7 @@
 
 	if(charges >= 0.1)
 		if(prob(5))
-			src.visible_message("\red \icon[src] [src]'s eyes glow ruby red for a moment!")
+			src.visible_message("\red \icon69src69 69src69's eyes glow ruby red for a69oment!")
 			charges -= 0.1
 
 	//check on our shadow wights
@@ -124,7 +124,7 @@
 		if(wight_check_index > shadow_wights.len)
 			wight_check_index = 1
 
-		var/obj/effect/shadow_wight/W = shadow_wights[wight_check_index]
+		var/obj/effect/shadow_wight/W = shadow_wights69wight_check_index69
 		if(isnull(W))
 			shadow_wights.Remove(wight_check_index)
 		else if(isnull(W.loc))
@@ -132,9 +132,9 @@
 		else if(get_dist(W, src) > 10)
 			shadow_wights.Remove(wight_check_index)
 
-/obj/item/vampiric/hear_talk(mob/M as mob, text, verb, datum/language/speaking, speech_volume)
+/obj/item/vampiric/hear_talk(mob/M as69ob, text,69erb, datum/language/speaking, speech_volume)
 	..()
-	if(world.time - last_bloodcall >= bloodcall_interval && (M in view(7, src)))
+	if(world.time - last_bloodcall >= bloodcall_interval && (M in69iew(7, src)))
 		bloodcall(M)
 
 /obj/item/vampiric/proc/bloodcall(var/mob/living/carbon/human/M)
@@ -145,11 +145,11 @@
 
 		var/target = pick(M.organs_by_name)
 		M.apply_damage(rand(5, 10), BRUTE, target)
-		to_chat(M, "\red The skin on your [parse_zone(target)] feels like it's ripping apart, and a stream of blood flies out.")
-		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
+		to_chat(M, "\red The skin on your 69parse_zone(target)69 feels like it's ripping apart, and a stream of blood flies out.")
+		var/obj/effect/decal/cleanable/blood/splatter/animated/B =69ew(M.loc)
 		B.target_turf = pick(range(1, src))
 		B.blood_DNA = list()
-		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
+		B.blood_DNA69M.dna.uni69ue_enzymes69 =69.dna.b_type
 		M.vessel.remove_reagent("blood",rand(25,50))
 
 //animated blood 2 SPOOKY
@@ -166,18 +166,18 @@
 	if(target_turf && src.loc != target_turf)
 		step_towards(src,target_turf)
 		if(src.loc == loc_last_process)
-			target_turf = null
+			target_turf =69ull
 		loc_last_process = src.loc
 
 		//leave some drips behind
 		if(prob(50))
-			var/obj/effect/decal/cleanable/blood/drip/D = new(src.loc)
+			var/obj/effect/decal/cleanable/blood/drip/D =69ew(src.loc)
 			D.blood_DNA = src.blood_DNA.Copy()
 			if(prob(50))
-				D = new(src.loc)
+				D =69ew(src.loc)
 				D.blood_DNA = src.blood_DNA.Copy()
 				if(prob(50))
-					D = new(src.loc)
+					D =69ew(src.loc)
 					D.blood_DNA = src.blood_DNA.Copy()
 	else
 		..()
@@ -210,8 +210,8 @@
 			'sound/hallucinations/turn_around1.ogg',\
 			'sound/hallucinations/turn_around2.ogg',\
 			), 50, 1, -3)
-			M.sleeping = max(M.sleeping,rand(5,10))
-			src.loc = null
+			M.sleeping =69ax(M.sleeping,rand(5,10))
+			src.loc =69ull
 	else
 		STOP_PROCESSING(SSobj, src)
 

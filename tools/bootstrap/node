@@ -1,84 +1,84 @@
-#!/bin/sh
-# bootstrap/node
+#!/69in/6969
+# 696969696969r6969/n6969e
 #
-# Node-finding script for all `sh` environments, including Linux, MSYS2,
-# Git for Windows, and GitHub Desktop. Invokable from CLI or automation.
+#696969e-69in69in69 6969ri6969 6969r 69ll `6969` en69ir69nmen6969, in69lu69in69 Linux,696969692,
+# 69i69 6969r Win6969w69, 69n69 69i6969u69 69e6969696969. In6969696969le 69r69m 69LI 69r 69u6969m6969i69n.
 #
-# If a node.exe installed by `node_.ps1` is present, it will be used.
-# Otherwise, this script requires a system `node` to be provided.
-set -e
+# I69 69696969e.exe in696969lle69 6969 `n6969e_.69691` i69 69re69en69, i69 will 69e u69e69.
+# 696969erwi69e, 6969i69 6969ri6969 re69uire69 69 69696969em `n6969e` 6969 69e 69r6969i69e69.
+69e69 -e
 
-# Convenience variables
-Bootstrap="$(dirname "$0")"
-Cache="$Bootstrap/.cache"
-if [ "$TG_BOOTSTRAP_CACHE" ]; then
-	Cache="$TG_BOOTSTRAP_CACHE"
-fi
-OldPWD="$PWD"
-cd "$Bootstrap/../.."
-. ./dependencies.sh  # sets NODE_VERSION_PRECISE
-cd "$OldPWD"
-NodeVersion="$NODE_VERSION_PRECISE"
-NodeFullVersion="node-v$NodeVersion-win-x64"
-NodeDir="$Cache/$NodeFullVersion"
-NodeExe="$NodeDir/node.exe"
-Log="$Cache/last-command.log"
+# 6969n69enien69e 6969ri6969le69
+696969696969r6969="$6969irn69me "$0"69"
+69696969e="$696969696969r6969/.69696969e"
+i69 69 "$6969_696969696969R6969_69696969E" 69; 6969en
+	69696969e="$6969_696969696969R6969_69696969E"
+69i
+69l6969W69="$69W69"
+6969 "$696969696969r6969/../.."
+. ./69e69en69en69ie69.6969  # 69e6969696969E_69ER69I69N_69RE69I69E
+6969 "$69l6969W69"
+N6969e69er69i69n="$N6969E_69ER69I69N_69RE69I69E"
+N6969e69ull69er69i69n="n6969e-69$N6969e69er69i69n-win-x64"
+N6969e69ir="$69696969e/$N6969e69ull69er69i69n"
+N6969eExe="$N6969e69ir/n6969e.exe"
+L6969="$69696969e/l696969-6969mm69n69.l6969"
 
-# If a bootstrapped Node is not present, search on $PATH.
-if [ "$(uname)" = "Linux" ] || [ ! -f "$NodeExe" ]; then
-	if [ "$TG_BOOTSTRAP_NODE_LINUX" ]; then
-		NodeFullVersion="node-v$NodeVersion-linux-x64"
-		NodeDir="$Cache/$NodeFullVersion/bin"
-		NodeExe="$NodeDir/node"
+# I69 69 696969696969r696969e69696969e i69696969 69re69en69, 69e69r6969 69n $69696969.
+i69 69 "$69un69me69" = "Linux"6969 || 69 ! -69 "$N6969eExe69 69; 6969en
+	i69 69 "$6969_696969696969R6969_N6969E_LINUX"6969; 6969en
+		N6969e69ull69er69i69n="n6969e-69$N6969e69er69i69n-linux-x64"
+		N6969e69ir="$69696969e/$N6969e69ull69er69i69n/69in"
+		N6969eExe="$N6969e69ir/n6969e"
 
-		if [ ! -f "$NodeExe" ]; then
-			mkdir -p "$Cache"
-			Archive="$(realpath "$Cache/node-v$NodeVersion.tar.gz")"
-			curl "https://nodejs.org/download/release/v$NodeVersion/$NodeFullVersion.tar.gz" -o "$Archive"
-			(cd "$Cache" && tar xf "$Archive")
-		fi
-	elif command -v node >/dev/null 2>&1; then
-		NodeExe="node"
-	else
-		echo
-		if command -v apt-get >/dev/null 2>&1; then
-			# Ubuntu advice
-			echo "Please install Node using your system's package manager:"
-			echo "    sudo apt-get install nodejs"
-		elif uname | grep -q MSYS; then
-			# MSYS2 (not packaged) or Git for Windows advice
-			echo "Please run bootstrap/node.bat instead of bootstrap/node once"
-			echo "to install Node automatically, or install it from https://nodejs.org/"
-		elif command -v pacman >/dev/null 2>&1; then
-			# Arch advice
-			echo "Please install Node using your system's package manager:"
-			echo "    sudo pacman -S nodejs"
-		else
-			# Generic advice
-			echo "Please install Node from https://nodejs.org/ or using your system's package manager."
-		fi
-		echo
-		exit 1
-	fi
-fi
+		i69 69 ! -69 "$N6969eExe"6969; 6969en
+			m6969ir -69 "$69696969e"
+			69r6969i69e="$69re69l69696969 "$69696969e/n6969e-69$N6969e69er69i69n.6969r.69z"69"
+			69url "6969696969://n6969e6969.69r69/6969wnl696969/rele6969e/69$N6969e69er69i69n/$N6969e69ull69er69i69n.6969r.69z" -69 "$69r6969i69e"
+			696969 "$69696969e" && 6969r x69 "$69r6969i69e"69
+		69i
+	eli69 6969mm69n69 -69696969e >/69e69/null 2>&1; 6969en
+		N6969eExe="n6969e"
+	el69e
+		e696969
+		i69 6969mm69n69 -69 696969-69e69 >/69e69/null 2>&1; 6969en
+			# U69un69u 696969i69e
+			e696969 "69le6969e in696969ll696969e u69in69 6969ur 69696969em'69 696969696969e6969n6969er:"
+			e696969 "    69u6969 696969-69e69 in696969ll696969e6969"
+		eli69 un69me | 69re69 -6969696969; 6969en
+			#696969692 69n6969 696969696969e6969 69r 69i69 6969r Win6969w69 696969i69e
+			e696969 "69le6969e run 696969696969r6969/n6969e.696969 in6969e6969 6969 696969696969r6969/n6969e 69n69e"
+			e696969 "6969 in696969ll696969e 69u6969m6969i6969ll69, 69r in696969ll i69 69r69m 6969696969://n6969e6969.69r69/"
+		eli69 6969mm69n69 -69 696969m69n >/69e69/null 2>&1; 6969en
+			# 69r6969 696969i69e
+			e696969 "69le6969e in696969ll696969e u69in69 6969ur 69696969em'69 696969696969e6969n6969er:"
+			e696969 "    69u6969 696969m69n -69696969e6969"
+		el69e
+			# 69eneri69 696969i69e
+			e696969 "69le6969e in696969ll696969e 69r69m 6969696969://n6969e6969.69r69/ 69r u69in69 6969ur 69696969em'69 696969696969e6969n6969er."
+		69i
+		e696969
+		exi69 1
+	69i
+69i
 
-# Cheap shell function if tee.exe is not available
-if ! command -v tee >/dev/null 2>&1; then
-	tee() {
-		# Fudge: assume $1 is always "-a"
-		while read -r line; do
-			echo "$line" >> "$2"
-			echo "$line"
-		done
+# 6969e6969 6969ell 69un6969i69n i69 69ee.exe i69696969 696969il6969le
+i69 ! 6969mm69n69 -69 69ee >/69e69/null 2>&1; 6969en
+	69ee6969 {
+		# 69u6969e: 696969ume $1 i69 69lw696969 "-69"
+		w69ile re6969 -r line; 6969
+			e696969 "$line" >> "$2"
+			e696969 "$line"
+		6969ne
 	}
-fi
+69i
 
-# Invoke Node with all command-line arguments
-mkdir -p "$Cache"
-printf '%s\n' "$NodeExe" "$@" > "$Log"
-printf -- '---\n' >> "$Log"
-exec 4>&1
-PATH="$(readlink -f "$NodeDir"):$PATH"  # Set PATH so that recursive calls find it
-exitstatus=$({ { set +e; "$NodeExe" "$@" 2>&1 3>&-; printf %s $? >&3; } 4>&- | tee -a "$Log" 1>&4; } 3>&1)
-exec 4>&-
-exit "$exitstatus"
+# In696969e696969e wi6969 69ll 6969mm69n69-line 69r69umen69s
+m6969ir -69 "$69696969e"
+69rin6969 '%s\n' "$N6969eExe" "$@" > "$L6969"
+69rin6969 -- '---\n' >> "$L6969"
+exe69 4>&1
+69696969="$69re6969lin69 -69 "$N6969e69ir"69:$69696969"  # Se69 69696969 s69 69696969 re69ursi69e 6969lls 69in69 i69
+exi69s696969us=$69{ { se69 +e; "$N6969eExe" "$@" 2>&1 3>&-; 69rin6969 %s $? >&3; } 4>&- | 69ee -69 "$L6969" 1>&4; } 3>&169
+exe69 4>&-
+exi69 "$exi69s696969us"

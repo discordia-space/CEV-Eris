@@ -1,6 +1,6 @@
 /obj/item/storage/pouch
 	name = "pouch"
-	desc = "Can hold various things."
+	desc = "Can hold69arious things."
 	icon = 'icons/inventory/pockets/icon.dmi'
 	//icon_state = "pouch" //TODO
 	//item_state = "pouch" //TODO
@@ -21,15 +21,15 @@
 
 /obj/item/storage/pouch/verb/toggle_slide()
 	set name = "Toggle Slide"
-	set desc = "Toggle the behavior of last item in [src] \"sliding\" into your hand."
+	set desc = "Toggle the behavior of last item in 69src69 \"sliding\" into your hand."
 	set category = "Object"
 
 	sliding_behavior = !sliding_behavior
-	to_chat(usr, SPAN_NOTICE("Items will now [sliding_behavior ? "" : "not"] slide out of [src]"))
+	to_chat(usr, SPAN_NOTICE("Items will now 69sliding_behavior ? "" : "not"69 slide out of 69src69"))
 
 /obj/item/storage/pouch/attack_hand(mob/living/carbon/human/user)
 	if(sliding_behavior && contents.len && (src in user))
-		var/obj/item/I = contents[contents.len]
+		var/obj/item/I = contents69contents.len69
 		if(istype(I))
 			hide_from(usr)
 			var/turf/T = get_turf(user)
@@ -44,7 +44,7 @@
 	desc = "Can hold anything in it, but only about once."
 	icon_state = "small_generic"
 	item_state = "small_generic"
-	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 3)
+	matter = list(MATERIAL_BIOMATTER = 9,69ATERIAL_STEEL = 3)
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE * 0.5
 	max_w_class = ITEM_SIZE_SMALL
@@ -55,7 +55,7 @@
 	desc = "Can hold anything in it, but only about twice."
 	icon_state = "medium_generic"
 	item_state = "medium_generic"
-	matter = list(MATERIAL_BIOMATTER = 24, MATERIAL_STEEL = 6 )
+	matter = list(MATERIAL_BIOMATTER = 24,69ATERIAL_STEEL = 6 )
 	storage_slots = null //Uses generic capacity
 	max_storage_space = DEFAULT_SMALL_STORAGE
 	max_w_class = ITEM_SIZE_NORMAL
@@ -63,10 +63,10 @@
 
 /obj/item/storage/pouch/large_generic
 	name = "large generic pouch"
-	desc = "A mini satchel. Can hold a fair bit, but it won't fit in your pocket"
+	desc = "A69ini satchel. Can hold a fair bit, but it won't fit in your pocket"
 	icon_state = "large_generic"
 	item_state = "large_generic"
-	matter = list(MATERIAL_BIOMATTER = 39, MATERIAL_STEEL = 9 )
+	matter = list(MATERIAL_BIOMATTER = 39,69ATERIAL_STEEL = 9 )
 	w_class = ITEM_SIZE_NORMAL
 	slot_flags = SLOT_BELT | SLOT_DENYPOCKET
 	storage_slots = null //Uses generic capacity
@@ -76,10 +76,10 @@
 
 /obj/item/storage/pouch/medical_supply
 	name = "medical supply pouch"
-	desc = "Can hold medical equipment. But only about three pieces of it."
+	desc = "Can hold69edical e69uipment. But only about three pieces of it."
 	icon_state = "medical_supply"
 	item_state = "medical_supply"
-	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	matter = list(MATERIAL_BIOMATTER = 9,69ATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 4
@@ -107,7 +107,7 @@
 	desc = "Can hold small engineering tools. But only about three pieces of them."
 	icon_state = "engineering_tool"
 	item_state = "engineering_tool"
-	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	matter = list(MATERIAL_BIOMATTER = 9,69ATERIAL_STEEL = 1 )
 	rarity_value = 20
 
 	storage_slots = 3
@@ -137,10 +137,10 @@
 
 /obj/item/storage/pouch/engineering_supply
 	name = "engineering supply pouch"
-	desc = "Can hold engineering equipment. 12 pieces of hardware, cells, rods or cables."
+	desc = "Can hold engineering e69uipment. 12 pieces of hardware, cells, rods or cables."
 	icon_state = "engineering_supply"
 	item_state = "engineering_supply"
-	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	matter = list(MATERIAL_BIOMATTER = 9,69ATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 12
@@ -163,11 +163,11 @@
 		)
 
 /obj/item/storage/pouch/engineering_material
-	name = "engineering material pouch"
+	name = "engineering69aterial pouch"
 	desc = "Can hold sheets, rods and cable coil."
 	icon_state = "engineering_material"
 	item_state = "engineering_material"
-	matter = list(MATERIAL_BIOMATTER = 9, MATERIAL_STEEL = 1 )
+	matter = list(MATERIAL_BIOMATTER = 9,69ATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 2
@@ -183,10 +183,10 @@
 
 /obj/item/storage/pouch/ammo
 	name = "ammo pouch"
-	desc = "Can hold ammo magazines and bullets, not the boxes though."
+	desc = "Can hold ammo69agazines and bullets, not the boxes though."
 	icon_state = "ammo"
 	item_state = "ammo"
-	matter = list(MATERIAL_BIOMATTER = 19, MATERIAL_STEEL = 1 )
+	matter = list(MATERIAL_BIOMATTER = 19,69ATERIAL_STEEL = 1 )
 	rarity_value = 33
 
 	storage_slots = 6
@@ -203,7 +203,7 @@
 	desc = "Can hold five cylindrical and small items, including but not limiting to flares, glowsticks, syringes and even hatton tubes or rockets."
 	icon_state = "flare"
 	item_state = "flare"
-	matter = list(MATERIAL_BIOMATTER = 14, MATERIAL_STEEL = 1 )
+	matter = list(MATERIAL_BIOMATTER = 14,69ATERIAL_STEEL = 1 )
 	rarity_value = 14
 
 	storage_slots = 5
@@ -226,7 +226,7 @@
 
 /obj/item/storage/pouch/tubular/vial
 	name = "vial pouch"
-	desc = "Can hold about ten vials. Rebranding!"
+	desc = "Can hold about ten69ials. Rebranding!"
 
 	storage_slots = 10
 
@@ -244,7 +244,7 @@
 	..()
 	cut_overlays()
 	if(contents.len)
-		overlays += image('icons/inventory/pockets/icon.dmi', "flare_[contents.len]")
+		overlays += image('icons/inventory/pockets/icon.dmi', "flare_69contents.len69")
 
 /obj/item/storage/pouch/pistol_holster
 	name = "pistol holster"
@@ -295,7 +295,7 @@
 
 /obj/item/storage/pouch/baton_holster
 	name = "baton sheath"
-	desc = "Can hold a baton, or indeed most weapon shafts."
+	desc = "Can hold a baton, or indeed69ost weapon shafts."
 	icon_state = "baton_holster"
 	item_state = "baton_holster"
 	rarity_value = 33
@@ -318,13 +318,13 @@
 
 /obj/item/storage/pouch/holding
 	name = "pouch of holding"
-	desc = "If your pockets are not large enough to store all your belongings, you may want to use this high-tech pouch that opens into a localized pocket of bluespace (pun intended)."
+	desc = "If your pockets are not large enough to store all your belongings, you69ay want to use this high-tech pouch that opens into a localized pocket of bluespace (pun intended)."
 	icon_state = "holdingpouch"
 	item_state = "holdingpouch"
 	storage_slots = 7
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_GOLD = 5, MATERIAL_DIAMOND = 2, MATERIAL_URANIUM = 2)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_GOLD = 5,69ATERIAL_DIAMOND = 2,69ATERIAL_URANIUM = 2)
 	origin_tech = list(TECH_BLUESPACE = 4)
 	spawn_blacklisted = TRUE
 

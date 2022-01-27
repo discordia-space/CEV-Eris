@@ -24,10 +24,10 @@
 	var/image/skybox_image
 
 	var/list/actors = list() //things that appear in engravings on xenoarch finds.
-	var/list/species = list() //list of names to use for simple animals
+	var/list/species = list() //list of69ames to use for simple animals
 
 	var/repopulating = 0
-	var/repopulate_types = list() // animals which have died that may come back
+	var/repopulate_types = list() // animals which have died that69ay come back
 
 	var/list/possible_themes = list(/datum/exoplanet_theme/mountains,/datum/exoplanet_theme)
 	var/list/themes = list()
@@ -57,31 +57,31 @@
 		else
 			habitability_class = HABITABILITY_BAD
 
-/obj/effect/overmap/sector/exoplanet/New(nloc, max_x, max_y)
+/obj/effect/overmap/sector/exoplanet/New(nloc,69ax_x,69ax_y)
 	if(!config.use_overmap)
 		return
 
-	maxx = max_x ? max_x : world.maxx
-	maxy = max_y ? max_y : world.maxy
-	planetary_area = new planetary_area()
+	maxx =69ax_x ?69ax_x : world.maxx
+	maxy =69ax_y ?69ax_y : world.maxy
+	planetary_area =69ew planetary_area()
 
-	name_stages[1] = "[generate_planet_name()], \a [planet_type] " + name_stages[1]
-	icon_stages[1] = planet_type
+	name_stages69169 = "69generate_planet_name()69, \a 69planet_type69 " +69ame_stages69169
+	icon_stages69169 = planet_type
 
 	world.maxz++
 	map_z += world.maxz
 	forceMove(locate(1,1,world.maxz))
 
-	// Update size of mob_living_by_zlevel to store the mobs in the new zlevel
+	// Update size of69ob_living_by_zlevel to store the69obs in the69ew zlevel
 	while(SSmobs.mob_living_by_zlevel.len < world.maxz)
 		SSmobs.mob_living_by_zlevel.len++
-		SSmobs.mob_living_by_zlevel[SSmobs.mob_living_by_zlevel.len] = list()
+		SSmobs.mob_living_by_zlevel69SSmobs.mob_living_by_zlevel.len69 = list()
 
 	new /obj/map_data/exoplanet(src)
 
 	if(LAZYLEN(possible_themes))
 		var/datum/exoplanet_theme/T = pick(possible_themes)
-		themes += new T
+		themes +=69ew T
 
 	for(var/T in subtypesof(/datum/map_template/ruin/exoplanet))
 		var/datum/map_template/ruin/exoplanet/ruin = T
@@ -89,7 +89,7 @@
 			continue
 		if(ruin_tags_blacklist & initial(ruin.ruin_tags))
 			continue
-		possible_features += new ruin
+		possible_features +=69ew ruin
 
 	..()
 
@@ -101,22 +101,22 @@
 	generate_landing(2)
 	update_biome()
 	generate_planet_image()
-	for(var/turf/simulated/floor/exoplanet/T in block(locate(1,1, map_z[map_z.len]), locate(maxx, maxy, map_z[map_z.len])))
+	for(var/turf/simulated/floor/exoplanet/T in block(locate(1,1,69ap_z69map_z.len69), locate(maxx,69axy,69ap_z69map_z.len69)))
 		planet_turfs += T
 	START_PROCESSING(SSobj, src)
 	update_lighting()
 
-//attempt at more consistent history generation for xenoarch finds.
+//attempt at69ore consistent history generation for xenoarch finds.
 /obj/effect/overmap/sector/exoplanet/proc/get_engravings()
 	if(!actors.len)
 		actors += pick("alien humanoid","an amorphic blob","a short, hairy being","a rodent-like creature","a robot","a primate","a reptilian alien","an unidentifiable object","a statue","a starship","unusual devices","a structure")
 		actors += pick("alien humanoids","amorphic blobs","short, hairy beings","rodent-like creatures","robots","primates","reptilian aliens")
 
-	var/engravings = "[actors[1]] \
-	[pick("surrounded by","being held aloft by","being struck by","being examined by","communicating with")] \
-	[actors[2]]"
+	var/engravings = "69actors6916969 \
+	69pick("surrounded by","being held aloft by","being struck by","being examined by","communicating with")69 \
+	69actors6926969"
 	if(prob(50))
-		engravings += ", [pick("they seem to be enjoying themselves","they seem extremely angry","they look pensive","they are making gestures of supplication","the scene is one of subtle horror","the scene conveys a sense of desperation","the scene is completely bizarre")]"
+		engravings += ", 69pick("they seem to be enjoying themselves","they seem extremely angry","they look pensive","they are69aking gestures of supplication","the scene is one of subtle horror","the scene conveys a sense of desperation","the scene is completely bizarre")69"
 	engravings += "."
 	return engravings
 
@@ -124,40 +124,40 @@
 	if(animals.len < 0.5*max_animal_count && !repopulating)
 		repopulating = 1
 		max_animal_count = round(max_animal_count * 0.5)
-	for(var/zlevel in map_z)
+	for(var/zlevel in69ap_z)
 		if(repopulating)
 			for(var/i = 1 to round(max_animal_count - animals.len))
 				if(prob(10))
 					var/turf/simulated/T = pick_area_turf(planetary_area, list(/proc/not_turf_contains_dense_objects))
 					var/mob_type = pick(repopulate_types)
-					var/mob/S = new mob_type(T)
+					var/mob/S =69ew69ob_type(T)
 					animals += S
 					GLOB.death_event.register(S, src, /obj/effect/overmap/sector/exoplanet/proc/remove_animal)
 					GLOB.destroyed_event.register(S, src, /obj/effect/overmap/sector/exoplanet/proc/remove_animal)
 					adapt_animal(S)
-			if(animals.len >= max_animal_count)
+			if(animals.len >=69ax_animal_count)
 				repopulating = 0
 
 		if(!atmosphere)
 			continue
 		var/zone/Z
-		for(var/i = 1 to maxx)
+		for(var/i = 1 to69axx)
 			var/turf/simulated/T = locate(i, 2, zlevel)
-			if(istype(T) && T.zone && T.zone.contents.len > (maxx*maxy*0.25)) //if it's a zone quarter of zlevel, good enough odds it's planetary main one
+			if(istype(T) && T.zone && T.zone.contents.len > (maxx*maxy*0.25)) //if it's a zone quarter of zlevel, good enough odds it's planetary69ain one
 				Z = T.zone
 				break
 		if(Z && !Z.fire_tiles.len && !atmosphere.compare(Z.air)) //let fire die out first if there is one
-			var/datum/gas_mixture/daddy = new() //make a fake 'planet' zone gas
+			var/datum/gas_mixture/daddy =69ew() //make a fake 'planet' zone gas
 			daddy.copy_from(atmosphere)
 			daddy.group_multiplier = Z.air.group_multiplier
 			Z.air.equalize(daddy)
 
 
 /obj/effect/overmap/sector/exoplanet/proc/remove_animal(var/mob/M)
-	animals -= M
+	animals -=69
 	GLOB.death_event.unregister(M, src)
 	GLOB.destroyed_event.unregister(M, src)
-	repopulate_types |= M.type
+	repopulate_types |=69.type
 
 /obj/effect/overmap/sector/exoplanet/proc/generate_map()
 	var/list/grasscolors = plant_colors.Copy()
@@ -167,24 +167,24 @@
 
 	for(var/datum/exoplanet_theme/T in themes)
 		T.before_map_generation(src)
-	for(var/zlevel in map_z)
+	for(var/zlevel in69ap_z)
 		var/list/edges
-		edges += block(locate(1, 1, zlevel), locate(TRANSITIONEDGE, maxy, zlevel))
-		edges |= block(locate(maxx-TRANSITIONEDGE, 1, zlevel),locate(maxx, maxy, zlevel))
+		edges += block(locate(1, 1, zlevel), locate(TRANSITIONEDGE,69axy, zlevel))
+		edges |= block(locate(maxx-TRANSITIONEDGE, 1, zlevel),locate(maxx,69axy, zlevel))
 		edges |= block(locate(1, 1, zlevel), locate(maxx, TRANSITIONEDGE, zlevel))
-		edges |= block(locate(1, maxy-TRANSITIONEDGE, zlevel),locate(maxx, maxy, zlevel))
+		edges |= block(locate(1,69axy-TRANSITIONEDGE, zlevel),locate(maxx,69axy, zlevel))
 		for(var/turf/T in edges)
 			T.ChangeTurf(/turf/simulated/planet_edge)
 		var/padding = TRANSITIONEDGE
-		for(var/map_type in map_generators)
+		for(var/map_type in69ap_generators)
 			if(ispath(map_type, /datum/random_map/noise/exoplanet))
-				var/datum/random_map/noise/exoplanet/RM = new map_type(null,padding,padding,zlevel,maxx-padding,maxy-padding,0,1,1,planetary_area, plant_colors)
+				var/datum/random_map/noise/exoplanet/RM =69ew69ap_type(null,padding,padding,zlevel,maxx-padding,maxy-padding,0,1,1,planetary_area, plant_colors)
 				get_biostuff(RM)
 			else
-				new map_type(null,1,1,zlevel,maxx,maxy,0,1,1)
+				new69ap_type(null,1,1,zlevel,maxx,maxy,0,1,1)
 
 /obj/effect/overmap/sector/exoplanet/proc/generate_features()
-	spawned_features = seedRuins(map_z, features_budget, /area/exoplanet, possible_features, maxx, maxy)
+	spawned_features = seedRuins(map_z, features_budget, /area/exoplanet, possible_features,69axx,69axy)
 	return
 
 /obj/effect/overmap/sector/exoplanet/proc/get_biostuff(var/datum/random_map/noise/exoplanet/random_map)
@@ -194,7 +194,7 @@
 	if(random_map.big_flora_types)
 		seeds += random_map.big_flora_types
 	for(var/mob/living/simple_animal/A in GLOB.living_mob_list)
-		if(A.z in map_z)
+		if(A.z in69ap_z)
 			animals += A
 			GLOB.death_event.register(A, src, /obj/effect/overmap/sector/exoplanet/proc/remove_animal)
 			GLOB.destroyed_event.register(A, src, /obj/effect/overmap/sector/exoplanet/proc/remove_animal)
@@ -221,20 +221,20 @@
 		if(S.consume_gasses)
 			S.consume_gasses = list(pick(atmosphere.gas)) // ensure that if the plant consumes a gas, the atmosphere will have it
 		for(var/g in atmosphere.gas)
-			if(gas_data.flags[g] & XGM_GAS_CONTAMINANT)
+			if(gas_data.flags69g69 & XGM_GAS_CONTAMINANT)
 				S.set_trait(TRAIT_TOXINS_TOLERANCE, rand(10,15))
 	if(prob(50))
 		var/chem_type = SSchemistry.get_random_chem(TRUE, atmosphere ? atmosphere.temperature : T0C)
 		if(chem_type)
-			var/nutriment = S.chems["nutriment"]
+			var/nutriment = S.chems69"nutriment"69
 			S.chems.Cut()
-			S.chems["nutriment"] = nutriment
-			S.chems[chem_type] = list(rand(1,10),rand(10,20))
+			S.chems69"nutriment"69 =69utriment
+			S.chems69chem_type69 = list(rand(1,10),rand(10,20))
 
 /obj/effect/overmap/sector/exoplanet/proc/adapt_animal(var/mob/living/simple_animal/A)
-	if(species[A.type])
-		A.SetName(species[A.type])
-		A.real_name = species[A.type]
+	if(species69A.type69)
+		A.SetName(species69A.type69)
+		A.real_name = species69A.type69
 	else
 		A.SetName("alien creature")
 		A.real_name = "alien creature"
@@ -243,10 +243,10 @@
 		//Set up gases for living things
 		if(!LAZYLEN(breathgas))
 			var/list/goodgases = gas_data.gases.Copy()
-			var/gasnum = min(rand(1,3), goodgases.len)
+			var/gasnum =69in(rand(1,3), goodgases.len)
 			for(var/i = 1 to gasnum)
 				var/gas = pick(goodgases)
-				breathgas[gas] = round(0.4*goodgases[gas], 0.1)
+				breathgas69gas69 = round(0.4*goodgases69gas69, 0.1)
 				goodgases -= gas
 		if(!badgas)
 			var/list/badgases = gas_data.gases.Copy()
@@ -260,42 +260,42 @@
 			A.min_gas = breathgas.Copy()
 		if(A.max_gas)
 			A.max_gas = list()
-			A.max_gas[badgas] = 5
+			A.max_gas69badgas69 = 5
 	else
-		A.min_gas = null
-		A.max_gas = null*/
+		A.min_gas =69ull
+		A.max_gas =69ull*/
 
 /obj/effect/overmap/sector/exoplanet/proc/get_random_species_name()
 	return pick("nol","shan","can","fel","xor")+pick("a","e","o","t","ar")+pick("ian","oid","ac","ese","inian","rd")
 
-/obj/effect/overmap/sector/exoplanet/proc/rename_species(var/species_type, var/newname, var/force = FALSE)
-	if(species[species_type] && !force)
+/obj/effect/overmap/sector/exoplanet/proc/rename_species(var/species_type,69ar/newname,69ar/force = FALSE)
+	if(species69species_type69 && !force)
 		return FALSE
 
-	species[species_type] = newname
-	log_and_message_admins("renamed [species_type] to [newname]")
+	species69species_type69 =69ewname
+	log_and_message_admins("renamed 69species_type69 to 69newname69")
 	for(var/mob/living/simple_animal/A in animals)
 		if(istype(A,species_type))
 			A.SetName(newname)
-			A.real_name = newname
+			A.real_name =69ewname
 			A.verbs -= /mob/living/simple_animal/proc/name_species
 	return TRUE
 
-//Tries to generate num landmarks, but avoids repeats.
+//Tries to generate69um landmarks, but avoids repeats.
 /obj/effect/overmap/sector/exoplanet/proc/generate_landing(num = 1)
 	var/places = list()
 	var/attempts = 10*num
 	var/new_type = landmark_type
 /*	testing(maxx)
 	testing(maxy)
-	testing(map_z[0])
+	testing(map_z69069)
 	testing(map_z.len)*/
 	while(num)
 		attempts--
-		var/turf/T = locate(rand(20, maxx-20), rand(20, maxy - 10),map_z[map_z.len])
+		var/turf/T = locate(rand(20,69axx-20), rand(20,69axy - 10),map_z69map_z.len69)
 		if(!T || (T in places)) // Two landmarks on one turf is forbidden as the landmark code doesn't work with it.
 			continue
-		if(attempts >= 0) // While we have the patience, try to find better spawn points. If out of patience, put them down wherever, so long as there are no repeats.
+		if(attempts >= 0) // While we have the patience, try to find better spawn points. If out of patience, put them down wherever, so long as there are69o repeats.
 			var/valid = 1
 			var/list/block_to_check = block(locate(T.x - 10, T.y - 10, T.z), locate(T.x + 10, T.y + 10, T.z))
 			for(var/turf/check in block_to_check)
@@ -305,7 +305,7 @@
 			if(attempts >= 10)
 				if(check_collision(T.loc, block_to_check)) //While we have lots of patience, ensure landability
 					valid = 0
-			else //Running out of patience, but would rather not clear ruins, so switch to clearing landmarks and bypass landability check
+			else //Running out of patience, but would rather69ot clear ruins, so switch to clearing landmarks and bypass landability check
 				new_type = /obj/effect/shuttle_landmark/automatic/clearing
 
 			if(!valid)
@@ -313,47 +313,47 @@
 
 		num--
 		places += T
-		new new_type(T)
+		new69ew_type(T)
 
 /obj/effect/overmap/sector/exoplanet/proc/generate_atmosphere()
-	atmosphere = new
+	atmosphere =69ew
 	if(habitability_class == HABITABILITY_IDEAL)
-		atmosphere.adjust_gas("oxygen", MOLES_O2STANDARD, 0)
-		atmosphere.adjust_gas("nitrogen", MOLES_N2STANDARD)
+		atmosphere.adjust_gas("oxygen",69OLES_O2STANDARD, 0)
+		atmosphere.adjust_gas("nitrogen",69OLES_N2STANDARD)
 	else //let the fuckery commence
 		var/list/newgases = gas_data.gases.Copy()
 		newgases -= "plasma"
 
-		var/total_moles = MOLES_CELLSTANDARD * rand(80,120)/100
+		var/total_moles =69OLES_CELLSTANDARD * rand(80,120)/100
 		var/badflag = 0
 
 		//Breathable planet
 		if(habitability_class == HABITABILITY_OKAY)
-			atmosphere.gas["oxygen"] += MOLES_O2STANDARD
-			total_moles -= MOLES_O2STANDARD
+			atmosphere.gas69"oxygen"69 +=69OLES_O2STANDARD
+			total_moles -=69OLES_O2STANDARD
 			badflag = XGM_GAS_FUEL|XGM_GAS_CONTAMINANT
 
 		var/gasnum = rand(1,4)
 		var/i = 1
 		var/sanity = prob(99.9)
-		while(i <= gasnum && total_moles && newgases.len)
+		while(i <= gasnum && total_moles &&69ewgases.len)
 			if(badflag && sanity)
-				for(var/g in newgases)
-					if(gas_data.flags[g] & badflag)
+				for(var/g in69ewgases)
+					if(gas_data.flags69g69 & badflag)
 						newgases -= g
 			var/ng = pick_n_take(newgases)	//pick a gas
-			if(sanity) //make sure atmosphere is not flammable... always
-				if(gas_data.flags[ng] & XGM_GAS_OXIDIZER)
+			if(sanity) //make sure atmosphere is69ot flammable... always
+				if(gas_data.flags69ng69 & XGM_GAS_OXIDIZER)
 					badflag |= XGM_GAS_FUEL
-				if(gas_data.flags[ng] & XGM_GAS_FUEL)
+				if(gas_data.flags69ng69 & XGM_GAS_FUEL)
 					badflag |= XGM_GAS_OXIDIZER
 				sanity = 0
 
 			var/part = total_moles * rand(3,80)/100 //allocate percentage to it
-			if(i == gasnum || !newgases.len) //if it's last gas, let it have all remaining moles
+			if(i == gasnum || !newgases.len) //if it's last gas, let it have all remaining69oles
 				part = total_moles
-			atmosphere.gas[ng] += part
-			total_moles = max(total_moles - part, 0)
+			atmosphere.gas69ng69 += part
+			total_moles =69ax(total_moles - part, 0)
 			i++
 
 /obj/effect/overmap/sector/exoplanet/get_skybox_representation()
@@ -372,7 +372,7 @@
 	for(var/datum/exoplanet_theme/theme in themes)
 		skybox_image.overlays += theme.get_planet_image_extra()
 
-	if(water_color) //TODO: move water levels out of randommap into exoplanet
+	if(water_color) //TODO:69ove water levels out of randommap into exoplanet
 		var/image/water = image('icons/skybox/planet.dmi', "water")
 		water.color = water_color
 		water.appearance_flags = PIXEL_SCALE
@@ -423,10 +423,10 @@
 	if(planet_colors.len)
 		colors = planet_colors
 	/*for(var/g in atmosphere.gas)
-		if(gas_data.tile_overlay_color[g])
-			colors += gas_data.tile_overlay_color[g]*/
+		if(gas_data.tile_overlay_color69g69)
+			colors += gas_data.tile_overlay_color69g69*/
 	if(colors.len)
-		return MixColors(colors)
+		return69ixColors(colors)
 
 /obj/effect/overmap/sector/exoplanet/proc/update_lighting()
 	if(!lightlevel)
@@ -434,9 +434,9 @@
 	var/list/sunlit_corners = list()
 	var/new_brightness = lightlevel
 	var/new_color = get_atmosphere_color()
-	var/lum_r = new_brightness * GetRedPart  (new_color) / 255
-	var/lum_g = new_brightness * GetGreenPart(new_color) / 255
-	var/lum_b = new_brightness * GetBluePart (new_color) / 255
+	var/lum_r =69ew_brightness * GetRedPart  (new_color) / 255
+	var/lum_g =69ew_brightness * GetGreenPart(new_color) / 255
+	var/lum_b =69ew_brightness * GetBluePart (new_color) / 255
 	var/static/update_gen = -1 // Used to prevent double-processing corners. Otherwise would happen when looping over adjacent turfs.
 	for(var/turf/simulated/floor/exoplanet/T in planet_turfs)
 		if(!T.lighting_corners_initialised)

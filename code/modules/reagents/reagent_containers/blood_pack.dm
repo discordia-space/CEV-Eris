@@ -44,22 +44,22 @@
 			has_blood = TRUE
 
 	if(!has_blood)
-		var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state][get_filling_state()]")
+		var/mutable_appearance/filling =69utable_appearance(icon, "69icon_state6969get_filling_state()69")
 		filling.color = reagents.get_color()
 		add_overlay(filling)
 	else
-		var/mutable_appearance/filling = mutable_appearance(icon, "[icon_state]-blood[get_filling_state()]")
+		var/mutable_appearance/filling =69utable_appearance(icon, "69icon_state69-blood69get_filling_state()69")
 		add_overlay(filling)
 
 /obj/item/reagent_containers/blood/proc/update_name()
 	var/list/data = reagents.get_data("blood")
 	if(data)
-		blood_type = data["blood_type"]
-		name = "blood pack ([blood_type])"
+		blood_type = data69"blood_type"69
+		name = "blood pack (69blood_type69)"
 	else
 		name = "blood pack"
 
-#define bloodtypeandpackname(bloodtype) name = "blood pack ("+bloodtype+")"; blood_type = bloodtype;
+#define bloodtypeandpackname(bloodtype)69ame = "blood pack ("+bloodtype+")"; blood_type = bloodtype;
 /obj/item/reagent_containers/blood/APlus
 	bloodtypeandpackname("A+")
 

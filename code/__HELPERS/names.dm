@@ -3,16 +3,16 @@ var/command_name
 	if (command_name)
 		return command_name
 
-	var/name = "[boss_name]"
+	var/name = "69boss_name69"
 
-	command_name = name
-	return name
+	command_name =69ame
+	return69ame
 
-/proc/change_command_name(var/name)
+/proc/chan69e_command_name(var/name)
 
-	command_name = name
+	command_name =69ame
 
-	return name
+	return69ame
 
 /proc/system_name()
 	return "Nyx"
@@ -26,50 +26,50 @@ var/command_name
 
 	//Rare: Pre-Prefix
 	if (prob(10))
-		name = pick("Imperium", "Heretical", "Cuban", "Psychic", "Elegant", "Common", "Uncommon", "Rare", "Unique", "Houseruled", "Religious", "Atheist", "Traditional", "Houseruled", "Mad", "Super", "Ultra", "Secret", "Top Secret", "Deep", "Death", "Zybourne", "Central", "Main", "Government", "Uoi", "Fat", "Automated", "Experimental", "Augmented")
-		station_name = name + " "
+		name = pick("Imperium", "Heretical", "Cuban", "Psychic", "Ele69ant", "Common", "Uncommon", "Rare", "Uni69ue", "Houseruled", "Reli69ious", "Atheist", "Traditional", "Houseruled", "Mad", "Super", "Ultra", "Secret", "Top Secret", "Deep", "Death", "Zybourne", "Central", "Main", "69overnment", "Uoi", "Fat", "Automated", "Experimental", "Au69mented")
+		station_name =69ame + " "
 
 	// Prefix
 	switch(Holiday)
-		//get normal name
+		//69et69ormal69ame
 		if(null, "", 0)
-			name = pick("", "Stanford", "Dorf", "Alium", "Prefix", "Clowning", "Aegis", "Ishimura", "Scaredy", "Death-World", "Mime", "Honk", "Rogue", "MacRagge", "Ultrameens", "Safety", "Paranoia", "Explosive", "Neckbear", "Donk", "Muppet", "North", "West", "East", "South", "Slant-ways", "Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", "Unidentified", "Immoral", "Carp", "Ork", "Pete", "Control", "Nettle", "Aspie", "Class", "Crab", "Fist", "Corrogated", "Skeleton", "Race", "Fatguy", "Gentleman", "Capitalist", "Communist", "Bear", "Beard", "Derp", "Space", "Spess", "Star", "Moon", "System", "Mining", "Neckbeard", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Transport", "Delivery", "Extraplanetary", "Orbital", "Correctional", "Robot", "Hats", "Pizza")
+			name = pick("", "Stanford", "Dorf", "Alium", "Prefix", "Clownin69", "Ae69is", "Ishimura", "Scaredy", "Death-World", "Mime", "Honk", "Ro69ue", "MacRa6969e", "Ultrameens", "Safety", "Paranoia", "Explosive", "Neckbear", "Donk", "Muppet", "North", "West", "East", "South", "Slant-ways", "Widdershins", "Rimward", "Expensive", "Procreatory", "Imperial", "Unidentified", "Immoral", "Carp", "Ork", "Pete", "Control", "Nettle", "Aspie", "Class", "Crab", "Fist", "Corro69ated", "Skeleton", "Race", "Fat69uy", "69entleman", "Capitalist", "Communist", "Bear", "Beard", "Derp", "Space", "Spess", "Star", "Moon", "System", "Minin69", "Neckbeard", "Research", "Supply", "Military", "Orbital", "Battle", "Science", "Asteroid", "Home", "Production", "Transport", "Delivery", "Extraplanetary", "Orbital", "Correctional", "Robot", "Hats", "Pizza")
 			if(name)
-				station_name += name + " "
+				station_name +=69ame + " "
 
-		//For special days like christmas, easter, new-years etc ~Carn
+		//For special days like christmas, easter,69ew-years etc ~Carn
 		if("Friday the 13th")
 			name = pick("Mike", "Friday", "Evil", "Myers", "Murder", "Deathly", "Stabby")
-			station_name += name + " "
+			station_name +=69ame + " "
 			random = 13
 		else
-			//get the first word of the Holiday and use that
+			//69et the first word of the Holiday and use that
 			var/i = findtext(Holiday, " ", 1, 0)
 			name = copytext(Holiday, 1, i)
-			station_name += name + " "
+			station_name +=69ame + " "
 
 	// Suffix
-	name = pick("Station", "Fortress", "Frontier", "Suffix", "Death-trap", "Space-hulk", "Lab", "Hazard", "Spess Junk", "Fishery", "No-Moon", "Tomb", "Crypt", "Hut", "Monkey", "Bomb", "Trade Post", "Fortress", "Village", "Town", "City", "Edition", "Hive", "Complex", "Base", "Facility", "Depot", "Outpost", "Installation", "Drydock", "Observatory", "Array", "Relay", "Monitor", "Platform", "Construct", "Hangar", "Prison", "Center", "Port", "Waystation", "Factory", "Waypoint", "Stopover", "Hub", "HQ", "Office", "Object", "Fortification", "Colony", "Planet-Cracker", "Roost", "Fat Camp")
-	station_name += name + " "
+	name = pick("Station", "Fortress", "Frontier", "Suffix", "Death-trap", "Space-hulk", "Lab", "Hazard", "Spess Junk", "Fishery", "No-Moon", "Tomb", "Crypt", "Hut", "Monkey", "Bomb", "Trade Post", "Fortress", "Villa69e", "Town", "City", "Edition", "Hive", "Complex", "Base", "Facility", "Depot", "Outpost", "Installation", "Drydock", "Observatory", "Array", "Relay", "Monitor", "Platform", "Construct", "Han69ar", "Prison", "Center", "Port", "Waystation", "Factory", "Waypoint", "Stopover", "Hub", "H69", "Office", "Object", "Fortification", "Colony", "Planet-Cracker", "Roost", "Fat Camp")
+	station_name +=69ame + " "
 
-	// ID Number
+	// ID69umber
 	switch(random)
 		if(1)
-			station_name += "[rand(1, 99)]"
+			station_name += "69rand(1, 996969"
 		if(2)
-			station_name += pick("Alpha", "Beta", "Gamma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Sigma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Omega")
+			station_name += pick("Alpha", "Beta", "69amma", "Delta", "Epsilon", "Zeta", "Eta", "Theta", "Iota", "Kappa", "Lambda", "Mu", "Nu", "Xi", "Omicron", "Pi", "Rho", "Si69ma", "Tau", "Upsilon", "Phi", "Chi", "Psi", "Ome69a")
 		if(3)
 			station_name += pick("II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV", "XVI", "XVII", "XVIII", "XIX", "XX")
 		if(4)
-			station_name += pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "Quebec", "Romeo", "Sierra", "Tango", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu")
+			station_name += pick("Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "69olf", "Hotel", "India", "Juliet", "Kilo", "Lima", "Mike", "November", "Oscar", "Papa", "69uebec", "Romeo", "Sierra", "Tan69o", "Uniform", "Victor", "Whiskey", "X-ray", "Yankee", "Zulu")
 		if(5)
-			station_name += pick("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen")
+			station_name += pick("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Ei69ht", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Ei69hteen", "Nineteen")
 		if(13)
 			station_name += pick("13", "XIII", "Thirteen")
 
 
-	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+	if (confi69 && confi69.server_name)
+		world.name = "69confi69.server_nam6969: 69na69e69"
 	else
 		world.name = station_name
 
@@ -77,16 +77,16 @@ var/command_name
 
 /proc/world_name(var/name)
 
-	station_name = name
+	station_name =69ame
 
-	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+	if (confi69 && confi69.server_name)
+		world.name = "69confi69.server_nam6969: 69na69e69"
 	else
-		world.name = name
+		world.name =69ame
 
-	return name
+	return69ame
 
-var/syndicate_name = null
+var/syndicate_name =69ull
 /proc/syndicate_name()
 	if (syndicate_name)
 		return syndicate_name
@@ -94,7 +94,7 @@ var/syndicate_name = null
 	var/name = ""
 
 	// Prefix
-	name += pick("Clandestine", "Prima", "Blue", "Zero-G", "Max", "Blasto", "Waffle", "North", "Omni", "Newton", "Cyber", "Bonk", "Gene", "Gib")
+	name += pick("Clandestine", "Prima", "Blue", "Zero-69", "Max", "Blasto", "Waffle", "North", "Omni", "Newton", "Cyber", "Bonk", "69ene", "69ib")
 
 	// Suffix
 	if (prob(80))
@@ -102,7 +102,7 @@ var/syndicate_name = null
 
 		// Full
 		if (prob(60))
-			name += pick("Syndicate", "Consortium", "Collective", "Corporation", "Group", "Holdings", "Biotech", "Industries", "Systems", "Products", "Chemicals", "Enterprises", "Family", "Creations", "International", "Intergalactic", "Interplanetary", "Foundation", "Positronics", "Hive")
+			name += pick("Syndicate", "Consortium", "Collective", "Corporation", "69roup", "Holdin69s", "Biotech", "Industries", "Systems", "Products", "Chemicals", "Enterprises", "Family", "Creations", "International", "Inter69alactic", "Interplanetary", "Foundation", "Positronics", "Hive")
 		// Broken
 		else
 			name += pick("Syndi", "Corp", "Bio", "System", "Prod", "Chem", "Inter", "Hive")
@@ -111,86 +111,86 @@ var/syndicate_name = null
 	// Small
 	else
 		name += pick("-", "*", "")
-		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "Gen", "Star", "Dyne", "Code", "Hive")
+		name += pick("Tech", "Sun", "Co", "Tek", "X", "Inc", "69en", "Star", "Dyne", "Code", "Hive")
 
-	syndicate_name = name
-	return name
+	syndicate_name =69ame
+	return69ame
 
 
-//Contractors and contractor silicons will get these. Revs will not.
+//Contractors and contractor silicons will 69et these. Revs will69ot.
 var/syndicate_code_phrase//Code phrase for contractors.
 var/syndicate_code_response//Code response for contractors.
 
 	/*
 	Should be expanded.
 	How this works:
-	Instead of "I'm looking for James Smith, " the contractor would say "James Smith" as part of a conversation.
-	Another contractor may then respond with: "They enjoy running through the void-filled vacuum of the derelict."
+	Instead of "I'm lookin69 for James Smith, " the contractor would say "James Smith" as part of a conversation.
+	Another contractor69ay then respond with: "They enjoy runnin69 throu69h the69oid-filled69acuum of the derelict."
 	The phrase should then have the words: James Smith.
-	The response should then have the words: run, void, and derelict.
+	The response should then have the words: run,69oid, and derelict.
 	This way assures that the code is suited to the conversation and is unpredicatable.
 	Obviously, some people will be better at this than others but in theory, everyone should be able to do it and it only enhances roleplay.
-	Can probably be done through "{ }" but I don't really see the practical benefit.
+	Can probably be done throu69h "{ }" but I don't really see the practical benefit.
 	One example of an earlier system is commented below.
 	-N
 	*/
 
-/proc/generate_code_phrase()//Proc is used for phrase and response in ticker.dm
+/proc/69enerate_code_phrase()//Proc is used for phrase and response in ticker.dm
 
 	var/code_phrase = ""//What is returned when the proc finishes.
-	var/words = pick(//How many words there will be. Minimum of two. 2, 4 and 5 have a lesser chance of being selected. 3 is the most likely.
+	var/words = pick(//How69any words there will be.69inimum of two. 2, 4 and 5 have a lesser chance of bein69 selected. 3 is the69ost likely.
 		50; 2,
 		200; 3,
 		50; 4,
 		25; 5
 	)
 
-	var/safety[] = list(1, 2, 3)//Tells the proc which options to remove later on.
-	var/nouns[] = list("love", "hate", "anger", "peace", "pride", "sympathy", "bravery", "loyalty", "honesty", "integrity", "compassion", "charity", "success", "courage", "deceit", "skill", "beauty", "brilliance", "pain", "misery", "beliefs", "dreams", "justice", "truth", "faith", "liberty", "knowledge", "thought", "information", "culture", "trust", "dedication", "progress", "education", "hospitality", "leisure", "trouble", "friendships", "relaxation")
-	var/drinks[] = list("vodka and tonic", "gin fizz", "bahama mama", "manhattan", "black Russian", "whiskey soda", "long island tea", "margarita", "Irish coffee", " manly dwarf", "Irish cream", "doctor's delight", "Beepksy Smash", "tequilla sunrise", "brave bull", "gargle blaster", "bloody mary", "whiskey cola", "white Russian", "vodka martini", "martini", "Cuba libre", "kahlua", "vodka", "wine", "moonshine")
-	var/locations[] = SSmapping.teleportlocs.len ? SSmapping.teleportlocs : drinks//if null, defaults to drinks instead.
+	var/safety66969 = list(1, 2, 3)//Tells the proc which options to remove later on.
+	var/nouns66969 = list("love", "hate", "an69er", "peace", "pride", "sympathy", "bravery", "loyalty", "honesty", "inte69rity", "compassion", "charity", "success", "coura69e", "deceit", "skill", "beauty", "brilliance", "pain", "misery", "beliefs", "dreams", "justice", "truth", "faith", "liberty", "knowled69e", "thou69ht", "information", "culture", "trust", "dedication", "pro69ress", "education", "hospitality", "leisure", "trouble", "friendships", "relaxation")
+	var/drinks66969 = list("vodka and tonic", "69in fizz", "bahama69ama", "manhattan", "black Russian", "whiskey soda", "lon69 island tea", "mar69arita", "Irish coffee", "69anly dwarf", "Irish cream", "doctor's deli69ht", "Beepksy Smash", "te69uilla sunrise", "brave bull", "69ar69le blaster", "bloody69ary", "whiskey cola", "white Russian", "vodka69artini", "martini", "Cuba libre", "kahlua", "vodka", "wine", "moonshine")
+	var/locations66969 = SSmappin69.teleportlocs.len ? SSmappin69.teleportlocs : drinks//if69ull, defaults to drinks instead.
 
-	var/names[] = list()
-	for(var/datum/data/record/t in data_core.general)//Picks from crew manifest.
-		names += t.fields["name"]
+	var/names66969 = list()
+	for(var/datum/data/record/t in data_core.69eneral)//Picks from crew69anifest.
+		names += t.fields69"name6969
 
-	var/maxwords = words//Extra var to check for duplicates.
+	var/maxwords = words//Extra69ar to check for duplicates.
 
 	for(words, words>0, words--)//Randomly picks from one of the choices below.
 
-		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remaining and choice 1 or 2 have not been selected.
+		if(words==1&&(1 in safety)&&(2 in safety))//If there is only one word remainin69 and choice 1 or 2 have69ot been selected.
 			safety = list(pick(1, 2))//Select choice 1 or 2.
-		else if(words==1&&maxwords==2)//Else if there is only one word remaining (and there were two originally), and 1 or 2 were chosen,
+		else if(words==1&&maxwords==2)//Else if there is only one word remainin69 (and there were two ori69inally), and 1 or 2 were chosen,
 			safety = list(3)//Default to list 3
 
 		switch(pick(safety))//Chance based on the safety list.
-			if(1)//1 and 2 can only be selected once each to prevent more than two specific names/places/etc.
-				switch(rand(1, 2))//Mainly to add more options later.
+			if(1)//1 and 2 can only be selected once each to prevent69ore than two specific69ames/places/etc.
+				switch(rand(1, 2))//Mainly to add69ore options later.
 					if(1)
 						if(names.len&&prob(70))
 							code_phrase += pick(names)
 						else
-							code_phrase += pick(pick(GLOB.first_names_male, GLOB.first_names_female))
+							code_phrase += pick(pick(69LOB.first_names_male, 69LOB.first_names_female))
 							code_phrase += " "
-							code_phrase += pick(GLOB.last_names)
+							code_phrase += pick(69LOB.last_names)
 					if(2)
-						code_phrase += pick(GLOB.joblist)//Returns a job.
+						code_phrase += pick(69LOB.joblist)//Returns a job.
 				safety -= 1
 			if(2)
-				switch(rand(1, 2))//Places or things.
+				switch(rand(1, 2))//Places or thin69s.
 					if(1)
 						code_phrase += pick(drinks)
 					if(2)
 						code_phrase += pick(locations)
 				safety -= 2
 			if(3)
-				switch(rand(1, 3))//Nouns, adjectives, verbs. Can be selected more than once.
+				switch(rand(1, 3))//Nouns, adjectives,69erbs. Can be selected69ore than once.
 					if(1)
 						code_phrase += pick(nouns)
 					if(2)
-						code_phrase += pick(GLOB.adjectives)
+						code_phrase += pick(69LOB.adjectives)
 					if(3)
-						code_phrase += pick(GLOB.verbs)
+						code_phrase += pick(69LOB.verbs)
 		if(words==1)
 			code_phrase += "."
 		else
@@ -200,5 +200,5 @@ var/syndicate_code_response//Code response for contractors.
 
 
 
-/proc/generate_planet_name()
-	return "[capitalize(pick(GLOB.last_names))]-[pick(GLOB.greek_letters)]"
+/proc/69enerate_planet_name()
+	return "69capitalize(pick(69LOB.last_names)6969-69pick(69LOB.69reek_letter69)69"

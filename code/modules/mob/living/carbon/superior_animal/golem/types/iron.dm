@@ -1,22 +1,22 @@
 /mob/living/carbon/superior_animal/golem/iron
 	name = "iron golem"
-	desc = "A moving pile of rocks with iron specks in it."
+	desc = "A69oving pile of rocks with iron specks in it."
 	icon_state = "golem_iron"
 	icon_living = "golem_iron"
 
-	// Health related variables
+	// Health related69ariables
 	maxHealth = GOLEM_HEALTH_HIGH
 	health = GOLEM_HEALTH_HIGH
 
-	// Movement related variables
+	//69ovement related69ariables
 	move_to_delay = GOLEM_SPEED_SLUG
 	turns_per_move = 5
 
-	// Damage related variables
+	// Damage related69ariables
 	melee_damage_lower = GOLEM_DMG_FEEBLE
 	melee_damage_upper = GOLEM_DMG_LOW
 
-	// Armor related variables
+	// Armor related69ariables
 	armor = list(
 		melee = GOLEM_ARMOR_HIGH,
 		bullet = GOLEM_ARMOR_HIGH,
@@ -26,5 +26,5 @@
 		rad = 0
 	)
 
-	// Loot related variables
+	// Loot related69ariables
 	ore = /obj/item/ore/iron

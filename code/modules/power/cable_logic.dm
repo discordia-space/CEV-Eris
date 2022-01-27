@@ -1,6 +1,6 @@
 #define LOGIC_HIGH 5
 
-//Indicators only have one input and no outputs
+//Indicators only have one input and69o outputs
 /obj/machinery/logic/indicator
 	//Input is searched from the 'dir' direction
 	var/obj/structure/cable/input
@@ -19,7 +19,7 @@
 					input = C
 					return 1
 
-	return 0	//If it gets to here, it means no suitable wire to link to was found.
+	return 0	//If it gets to here, it69eans69o suitable wire to link to was found.
 
 /obj/machinery/logic/indicator/bulb
 	icon = 'icons/obj/lighting.dmi'
@@ -41,7 +41,7 @@
 
 
 
-//Sensors only have one output and no inputs
+//Sensors only have one output and69o inputs
 /obj/machinery/logic/sensor
 	//Output is searched from the 'dir' direction
 	var/obj/structure/cable/output
@@ -59,7 +59,7 @@
 					output = C
 					return 1
 
-	return 0	//If it gets to here, it means no suitable wire to link to was found.
+	return 0	//If it gets to here, it69eans69o suitable wire to link to was found.
 
 //Constant high generator. This will continue to send a signal of LOGIC_HIGH as long as it exists.
 /obj/machinery/logic/sensor/constant_high
@@ -74,7 +74,7 @@
 	if(!pn_output)
 		return
 
-	pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)
+	pn_output.newavail =69ax(pn_output.avail, LOGIC_HIGH)
 
 
 
@@ -111,7 +111,7 @@
 				if(C.d1 == inv_dir || C.d2 == inv_dir)
 					output = C
 
-	return 0	//On the process() call, where everything is still being searched for, it returns 0. It will return 1 on the next process() call.
+	return 0	//On the process() call, where everything is still being searched for, it returns 0. It will return 1 on the69ext process() call.
 
 //NOT GATE
 /obj/machinery/logic/oneinput/not/process()
@@ -128,7 +128,7 @@
 		return
 
 	if( !(pn_input.avail >= LOGIC_HIGH))
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail =69ax(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -182,7 +182,7 @@
 				if(C.d1 == inv_dir || C.d2 == inv_dir)
 					output = C
 
-	return 0	//On the process() call, where everything is still being searched for, it returns 0. It will return 1 on the next process() call.
+	return 0	//On the process() call, where everything is still being searched for, it returns 0. It will return 1 on the69ext process() call.
 
 //AND GATE
 /obj/machinery/logic/twoinput/and/process()
@@ -200,7 +200,7 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) && (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail =69ax(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -220,7 +220,7 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) || (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail =69ax(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -240,7 +240,7 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) != (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail =69ax(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
@@ -260,11 +260,11 @@
 		return
 
 	if( (pn_input1.avail >= LOGIC_HIGH) == (pn_input2.avail >= LOGIC_HIGH) )
-		pn_output.newavail = max(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
+		pn_output.newavail =69ax(pn_output.avail, LOGIC_HIGH)	//Set the output avilable power to 5 or whatever it was before.
 	else
 		pn_output.draw_power(LOGIC_HIGH)		//Otherwise increase the load to 5
 
-#define RELAY_POWER_TRANSFER 2000	//How much power a relay transfers through.
+#define RELAY_POWER_TRANSFER 2000	//How69uch power a relay transfers through.
 
 //RELAY - input1 governs the flow from input2 to output
 /obj/machinery/logic/twoinput/relay/process()

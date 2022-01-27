@@ -14,7 +14,7 @@
 	return F
 
 /datum/computer_file/binary/design/proc/set_filename(new_name)
-	filename = sanitizeFileName("[new_name]")
+	filename = sanitizeFileName("69new_name69")
 	if(findtext(filename, "datum_design_") == 1)
 		filename = copytext(filename, 14)
 
@@ -68,7 +68,7 @@
 
 /datum/computer_file/binary/design/ui_data()
 	var/list/data = design.ui_data().Copy()
-	data["copy_protected"] = copy_protected
-	data["filename"] = filename
-	data["point_cost"] = point_cost
+	data69"copy_protected"69 = copy_protected
+	data69"filename"69 = filename
+	data69"point_cost"69 = point_cost
 	return data

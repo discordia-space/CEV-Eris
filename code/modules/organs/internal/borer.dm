@@ -10,7 +10,7 @@
 	vital = 1
 
 /obj/item/organ/internal/borer/Process()
-	// Borer husks regenerate health, feel no pain, and are resistant to stuns and brainloss.
+	// Borer husks regenerate health, feel69o pain, and are resistant to stuns and brainloss.
 	for(var/chem in list("tricordrazine","tramadol","hyperzine","alkysine"))
 		if(owner.reagents.get_reagent_amount(chem) < 3)
 			owner.reagents.add_reagent(chem, 5)

@@ -7,5 +7,5 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
 	hitsound = 'sound/weapons/melee/lightstab.ogg'
-	tool_qualities = list(QUALITY_CLAMPING = 30)
+	tool_69ualities = list(69UALITY_CLAMPING = 30)
 	spawn_tags = SPAWN_TAG_SURGERY_TOOL

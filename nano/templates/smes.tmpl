@@ -1,97 +1,97 @@
-{{if data.failTime}}
-<div class='notice'>
-	<b><h3>SYSTEM FAILURE</h3></b>
-	<i>I/O regulators malfunction detected! Waiting for system reboot...</i><br>
-	Automatic reboot in {{:data.failTime}} seconds...
-	{{:helper.link('Reboot Now', 'refresh', {'reboot' : 1})}}<br><br><br>
+{{if d69t69.f69ilTime}}
+<div cl69ss='notice'>
+	<69><h3>S69STEM F69ILURE</h3></69>
+	<i>I/O re69ul69tors6969lfunction detected! W69itin69 for s69stem re69oot...</i><69r>
+	69utom69tic re69oot in {{:d69t69.f69ilTime}} seconds...
+	{{:hel69er.lin6969'Re69oot69ow', 'refresh', {'re69oot' : 1}69}}<69r><69r><69r>
 </div>
 {{else}}
-<div class="item">
-	<div class="itemLabel">
-		Stored Capacity:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Stored C696969cit69:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.storedCapacity, 0, 100, data.charging ? 'good' : 'average')}}
-		<div class="statusValue">
-			{{:helper.round(data.storedCapacity)}}%
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.storedC696969cit69, 0, 100, d69t69.ch69r69in69 ? '69ood' : '69ver6969e'69}}
+		<div cl69ss="st69tusV69lue">
+			{{:hel69er.round69d69t69.storedC696969cit6969}}%
 		</div>
 	</div>
 </div>
 
-<h3>Input Management</h3>
-<div class="item">
-	<div class="itemLabel">
-		Charge Mode:
+<h3>In69ut6969n6969ement</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Ch69r69e69ode:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Auto', 'refresh', {'cmode' : 1}, data.chargeMode ? 'selected' : null)}}{{:helper.link('Off', 'close', {'cmode' : 1}, data.chargeMode ? null : 'selected')}}
-		&nbsp;
-		{{if data.charging == 2}}
-			[<span class='good'>Charging</span>]
-		{{else data.charging == 1}}
-			[<span class='average'>Partially Charging</span>]
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'69uto', 'refresh', {'cmode' : 1}, d69t69.ch69r69eMode ? 'selected' :69ull69}}{{:hel69er.lin6969'Off', 'close', {'cmode' : 1}, d69t69.ch69r69eMode ?69ull : 'selected'69}}
+		&n69s69;
+		{{if d69t69.ch69r69in69 == 2}}
+			69<s6969n cl69ss='69ood'>Ch69r69in69</s6969n>69
+		{{else d69t69.ch69r69in69 == 1}}
+			69<s6969n cl69ss='69ver6969e'>6969rti69ll69 Ch69r69in69</s6969n6969
 		{{else}}
-			[<span class='bad'>Not Charging</span>]
+			69<s6969n cl69ss='6969d'>Not Ch69r69in69</s6969n6969
 		{{/if}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Input Level:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		In69ut Level:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.chargeLevel, 0, data.chargeMax)}}
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('MIN', null, {'input' : 'min'}, (data.chargeLevel > 0) ? null : 'disabled')}}
-			{{:helper.link('SET', null, {'input' : 'set'}, null)}}			
-			{{:helper.link('MAX', null, {'input' : 'max'}, (data.chargeLevel < data.chargeMax) ? null : 'disabled')}}
-			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:data.chargeLevel}} W&nbsp;</div>
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.ch69r69eLevel, 0, d69t69.ch69r69eM69x69}}
+		<div st69le="cle69r: 69oth; 6969ddin69-to69: 469x;">
+			{{:hel69er.lin6969'MIN',69ull, {'in69ut' : 'min'}, 69d69t69.ch69r69eLevel > 069 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'SET',69ull, {'in69ut' : 'set'},69ull69}}			
+			{{:hel69er.lin6969'M69X',69ull, {'in69ut' : 'm69x'}, 69d69t69.ch69r69eLevel < d69t69.ch69r69eM69x69 ?69ull : 'dis6969led'69}}
+			<div st69le="flo69t: left; width: 10069x; text-69li69n: center;">&n69s69;{{:d69t69.ch69r69eLevel}} W&n69s69;</div>
 		</div>
 	</div>
 </div>
 
-<h3>Output Management</h3>
-<div class="item">
-	<div class="itemLabel">
-		Output Status:
+<h3>Out69ut6969n6969ement</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Out69ut St69tus:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Online', 'power', {'online' : 1}, data.outputOnline ? 'selected' : null)}}{{:helper.link('Offline', 'close', {'online' : 1}, data.outputOnline ? null : 'selected')}}
-		&nbsp;
-		{{if data.outputting == 2}}
-			[<span class='good'>Outputting</span>]
-		{{else data.outputting == 1}}
-			[<span class='average'>Disconnected or No Charge</span>]
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'Online', '69ower', {'online' : 1}, d69t69.out69utOnline ? 'selected' :69ull69}}{{:hel69er.lin6969'Offline', 'close', {'online' : 1}, d69t69.out69utOnline ?69ull : 'selected'69}}
+		&n69s69;
+		{{if d69t69.out69uttin69 == 2}}
+			69<s6969n cl69ss='69ood'>Out69uttin69</s6969n6969
+		{{else d69t69.out69uttin69 == 1}}
+			69<s6969n cl69ss='69ver6969e'>Disconnected or69o Ch69r69e</s6969n6969
 		{{else}}
-			[<span class='bad'>Not Outputting</span>]
+			69<s6969n cl69ss='6969d'>Not Out69uttin69</s6969n6969
 		{{/if}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Output Level:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Out69ut Level:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.outputLevel, 0, data.outputMax)}}
-		<div style="clear: both; padding-top: 4px;">
-			{{:helper.link('MIN', null, {'output' : 'min'}, (data.outputLevel > 0) ? null : 'disabled')}}
-			{{:helper.link('SET', null, {'output' : 'set'}, null)}}			
-			{{:helper.link('MAX', null, {'output' : 'max'}, (data.outputLevel < data.outputMax) ? null : 'disabled')}}
-			<div style="float: left; width: 100px; text-align: center;">&nbsp;{{:data.outputLevel}} W&nbsp;</div>			
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.out69utLevel, 0, d69t69.out69utM69x69}}
+		<div st69le="cle69r: 69oth; 6969ddin69-to69: 469x;">
+			{{:hel69er.lin6969'MIN',69ull, {'out69ut' : 'min'}, 69d69t69.out69utLevel > 069 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'SET',69ull, {'out69ut' : 'set'},69ull69}}			
+			{{:hel69er.lin6969'M69X',69ull, {'out69ut' : 'm69x'}, 69d69t69.out69utLevel < d69t69.out69utM69x69 ?69ull : 'dis6969led'69}}
+			<div st69le="flo69t: left; width: 10069x; text-69li69n: center;">&n69s69;{{:d69t69.out69utLevel}} W&n69s69;</div>			
 		</div>
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Output Load:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Out69ut Lo69d:
 	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.outputLoad, 0, data.outputMax, (data.outputLoad < data.outputLevel) ? 'good' : 'average')}}
-		<div class="statusValue">
-			{{:data.outputLoad}} W
+	<div cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.out69utLo69d, 0, d69t69.out69utM69x, 69d69t69.out69utLo69d < d69t69.out69utLevel69 ? '69ood' : '69ver6969e'69}}
+		<div cl69ss="st69tusV69lue">
+			{{:d69t69.out69utLo69d}} W
 		</div>
 	</div>
 </div>

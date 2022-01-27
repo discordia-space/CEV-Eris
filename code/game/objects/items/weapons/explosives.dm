@@ -1,6 +1,6 @@
-/obj/item/plastique
+/obj/item/plasti69ue
 	name = "plastic explosive"
-	desc = "Used to make holes in specific areas without too much extra hole."
+	desc = "Used to69ake holes in specific areas without too69uch extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "plastic-explosive0"
@@ -14,34 +14,34 @@
 	var/open_panel = 0
 	var/image_overlay
 
-/obj/item/plastique/New()
+/obj/item/plasti69ue/New()
 	wires = new(src)
 	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
 	..()
 
-/obj/item/plastique/Destroy()
-	qdel(wires)
+/obj/item/plasti69ue/Destroy()
+	69del(wires)
 	wires = null
 	return ..()
 
-/obj/item/plastique/attackby(obj/item/I, mob/user)
-	if(QUALITY_SCREW_DRIVING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_SCREW_DRIVING, FAILCHANCE_EASY, required_stat = STAT_MEC))
+/obj/item/plasti69ue/attackby(obj/item/I,69ob/user)
+	if(69UALITY_SCREW_DRIVING in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_SCREW_DRIVING, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
 			open_panel = !open_panel
-			to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
+			to_chat(user, "<span class='notice'>You 69open_panel ? "open" : "close"69 the wire panel.</span>")
 	else if(istool(I))
 		wires.Interact(user)
 	else
 		..()
 
-/obj/item/plastique/attack_self(mob/user as mob)
+/obj/item/plasti69ue/attack_self(mob/user as69ob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(user.get_active_hand() == src)
 		newtime = CLAMP(newtime, 10, 60000)
 		timer = newtime
-		to_chat(user, "Timer set for [timer] seconds.")
+		to_chat(user, "Timer set for 69timer69 seconds.")
 
-/obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
+/obj/item/plasti69ue/afterattack(atom/movable/target,69ob/user, flag)
 	if (!flag)
 		return
 	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/under))
@@ -55,21 +55,21 @@
 		loc = null
 
 		if (ismob(target))
-			add_logs(user, target, "planted [name] on")
-			user.visible_message(SPAN_DANGER("[user.name] finished planting the explosive on [target.name]!"))
-			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
-			log_game("[key_name(user)] planted [src.name] on [key_name(target)] with [timer] second fuse")
+			add_logs(user, target, "planted 69name69 on")
+			user.visible_message(SPAN_DANGER("69user.name69 finished planting the explosive on 69target.name69!"))
+			message_admins("69key_name(user, user.client)69(<A HREF='?_src_=holder;adminmoreinfo=\ref69user69'>?</A>) planted 69src.name69 on 69key_name(target)69(<A HREF='?_src_=holder;adminmoreinfo=\ref69target69'>?</A>) with 69timer69 second fuse",0,1)
+			log_game("69key_name(user)69 planted 69src.name69 on 69key_name(target)69 with 69timer69 second fuse")
 
 		else
-			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
-			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
+			message_admins("69key_name(user, user.client)69(<A HREF='?_src_=holder;adminmoreinfo=\ref69user69'>?</A>) planted 69src.name69 on 69target.name69 at (69target.x69,69target.y69,69target.z69 - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=69target.x69;Y=69target.y69;Z=69target.z69'>JMP</a>) with 69timer69 second fuse",0,1)
+			log_game("69key_name(user)69 planted 69src.name69 on 69target.name69 at (69target.x69,69target.y69,69target.z69) with 69timer69 second fuse")
 
 		target.overlays += image_overlay
-		to_chat(user, "Bomb has been planted. Timer is counting down from [timer].")
+		to_chat(user, "Bomb has been planted. Timer is counting down from 69timer69.")
 		spawn(timer*10)
 			explode(get_turf(target))
 
-/obj/item/plastique/proc/explode(location)
+/obj/item/plasti69ue/proc/explode(location)
 	if(!target)
 		target = get_atom_on_turf(src)
 	if(!target)
@@ -82,17 +82,17 @@
 			var/turf/simulated/wall/W = target
 			W.dismantle_wall(1)
 		else if(isliving(target))
-			target.ex_act(2) // c4 can't gib mobs anymore.
+			target.ex_act(2) // c4 can't gib69obs anymore.
 		else
 			target.ex_act(1)
 
 	//Girders are a pain, just delete em
 	for (var/obj/structure/girder/G in loc)
-		qdel(G)
+		69del(G)
 
 	if(target)
 		target.overlays -= image_overlay
-	qdel(src)
+	69del(src)
 
-/obj/item/plastique/attack(mob/M, mob/user, def_zone)
+/obj/item/plasti69ue/attack(mob/M,69ob/user, def_zone)
 	return

@@ -1,22 +1,22 @@
-/* Holograms!
+/* Holo69rams!
  * Contains:
  *		Holopad
- *		Hologram
+ *		Holo69ram
  *		Other stuff
  */
 
 /*
-Revised. Original based on space ninja hologram code. Which is also mine. /N
+Revised. Ori69inal based on space ninja holo69ram code. Which is also69ine. /N
 How it works:
-AI clicks on holopad in camera view. View centers on holopad.
-AI clicks again on the holopad to display a hologram. Hologram stays as long as AI is looking at the pad and it (the hologram) is in range of the pad.
-AI can use the directional keys to move the hologram around, provided the above conditions are met and the AI in question is the holopad's master.
-Only one AI may project from a holopad at any given time.
-AI may cancel the hologram at any time by clicking on the holopad once more.
+AI clicks on holopad in camera69iew.69iew centers on holopad.
+AI clicks a69ain on the holopad to display a holo69ram. Holo69ram stays as lon69 as AI is lookin69 at the pad and it (the holo69ram) is in ran69e of the pad.
+AI can use the directional keys to69ove the holo69ram around, provided the above conditions are69et and the AI in 69uestion is the holopad's69aster.
+Only one AI69ay project from a holopad at any 69iven time.
+AI69ay cancel the holo69ram at any time by clickin69 on the holopad once69ore.
 
-Possible to do for anyone motivated enough:
-	Give an AI variable for different hologram icons.
-	Itegrate EMP effect to disable the unit.
+Possible to do for anyone69otivated enou69h:
+	69ive an AI69ariable for different holo69ram icons.
+	Ite69rate EMP effect to disable the unit.
 */
 
 
@@ -24,371 +24,371 @@ Possible to do for anyone motivated enough:
  * Holopad
  */
 
-#define HOLOPAD_PASSIVE_POWER_USAGE 1
-#define HOLOGRAM_POWER_USAGE 2
-#define RANGE_BASED 4
+#define HOLOPAD_PASSIVE_POWER_USA69E 1
+#define HOLO69RAM_POWER_USA69E 2
+#define RAN69E_BASED 4
 #define AREA_BASED 6
 
-var/const/HOLOPAD_MODE = RANGE_BASED
+var/const/HOLOPAD_MODE = RAN69E_BASED
 
-/obj/machinery/hologram/holopad
+/obj/machinery/holo69ram/holopad
 	name = "\improper AI holopad"
-	desc = "A floor-mounted device for projecting holographic images."
+	desc = "A floor-mounted device for projectin69 holo69raphic ima69es."
 	icon_state = "holopad0"
 
 	plane = FLOOR_PLANE
 	layer = LOW_OBJ_LAYER
 
-	var/power_per_hologram = 500 //per usage per hologram
-	idle_power_usage = 5
+	var/power_per_holo69ram = 500 //per usa69e per holo69ram
+	idle_power_usa69e = 5
 	use_power = IDLE_POWER_USE
 
-	var/list/mob/living/silicon/ai/masters = new() //List of AIs that use the holopad
-	var/last_request = 0 //to prevent request spam. ~Carn
-	var/holo_range = 5 // Change to change how far the AI can move away from the holopad before deactivating.
+	var/list/mob/livin69/silicon/ai/masters = new() //List of AIs that use the holopad
+	var/last_re69uest = 0 //to prevent re69uest spam. ~Carn
+	var/holo_ran69e = 5 // Chan69e to chan69e how far the AI can69ove away from the holopad before deactivatin69.
 
-	var/incoming_connection = 0
-	var/mob/living/caller_id
-	var/obj/machinery/hologram/holopad/sourcepad
-	var/obj/machinery/hologram/holopad/targetpad
-	var/last_message
+	var/incomin69_connection = 0
+	var/mob/livin69/caller_id
+	var/obj/machinery/holo69ram/holopad/sourcepad
+	var/obj/machinery/holo69ram/holopad/tar69etpad
+	var/last_messa69e
 
-/obj/machinery/hologram/holopad/New()
+/obj/machinery/holo69ram/holopad/New()
 	..()
-	desc = "A floor-mounted device for projecting holographic images. Its ID is '[loc.loc]'"
-	add_hearing()
+	desc = "A floor-mounted device for projectin69 holo69raphic ima69es. Its ID is '69loc.loc69'"
+	add_hearin69()
 
-/obj/machinery/hologram/holopad/Destroy()
-	remove_hearing()
+/obj/machinery/holo69ram/holopad/Destroy()
+	remove_hearin69()
 	. = ..()
 
-/obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
+/obj/machinery/holo69ram/holopad/attack_hand(var/mob/livin69/carbon/human/user) //Carn: Holo69ram re69uests.
 	if(!istype(user))
 		return
-	if(incoming_connection && caller_id)
-		visible_message("The pad hums quietly as it establishes a connection.")
+	if(incomin69_connection && caller_id)
+		visible_messa69e("The pad hums 69uietly as it establishes a connection.")
 		if(caller_id.loc!=sourcepad.loc)
-			visible_message("The pad flashes an error message. The caller has left their holopad.")
+			visible_messa69e("The pad flashes an error69essa69e. The caller has left their holopad.")
 			return
 		take_call(user)
 		return
-	else if(caller_id && !incoming_connection)
-		audible_message("Severing connection to distant holopad.")
+	else if(caller_id && !incomin69_connection)
+		audible_messa69e("Severin69 connection to distant holopad.")
 		end_call(user)
 		return
-	switch(alert(user,"Would you like to request an AI's presence or establish communications with another pad?", "Holopad","AI","Holocomms","Cancel"))
+	switch(alert(user,"Would you like to re69uest an AI's presence or establish communications with another pad?", "Holopad","AI","Holocomms","Cancel"))
 		if("AI")
-			if(last_request + 200 < world.time) //don't spam the AI with requests you jerk!
-				last_request = world.time
-				to_chat(user, SPAN_NOTICE("You request an AI's presence."))
-				var/area/area = get_area(src)
-				for(var/mob/living/silicon/ai/AI in GLOB.living_mob_list)
+			if(last_re69uest + 200 < world.time) //don't spam the AI with re69uests you jerk!
+				last_re69uest = world.time
+				to_chat(user, SPAN_NOTICE("You re69uest an AI's presence."))
+				var/area/area = 69et_area(src)
+				for(var/mob/livin69/silicon/ai/AI in 69LOB.livin69_mob_list)
 					if(!AI.client)	continue
-					to_chat(AI, "<span class='info'>Your presence is requested at <a href='?src=\ref[AI];jumptoholopad=\ref[src]'>\the [area]</a>.</span>")
+					to_chat(AI, "<span class='info'>Your presence is re69uested at <a href='?src=\ref69AI69;jumptoholopad=\ref69src69'>\the 69area69</a>.</span>")
 			else
-				to_chat(user, SPAN_NOTICE("A request for AI presence was already sent recently."))
+				to_chat(user, SPAN_NOTICE("A re69uest for AI presence was already sent recently."))
 		if("Holocomms")
 			if(user.loc != src.loc)
 				to_chat(user, "<span class='info'>Please step unto the holopad.</span>")
 				return
-			if(last_request + 200 < world.time) //don't spam other people with requests either, you jerk!
-				last_request = world.time
+			if(last_re69uest + 200 < world.time) //don't spam other people with re69uests either, you jerk!
+				last_re69uest = world.time
 				var/list/holopadlist = list()
-				for(var/obj/machinery/hologram/holopad/H in GLOB.machines)
+				for(var/obj/machinery/holo69ram/holopad/H in 69LOB.machines)
 					if(isStationLevel(H.z) && H.operable())
-						holopadlist["[H.loc.loc.name]"] = H	//Define a list and fill it with the area of every holopad in the world
+						holopadlist69"69H.loc.loc.name69"69 = H	//Define a list and fill it with the area of every holopad in the world
 				holopadlist = sortAssoc(holopadlist)
-				var/temppad = input(user, "Which holopad would you like to contact?", "holopad list") as null|anything in holopadlist
-				targetpad = holopadlist["[temppad]"]
-				if(targetpad==src)
-					to_chat(user, "<span class='info'>Using such sophisticated technology, just to talk to yourself seems a bit silly.</span>")
+				var/temppad = input(user, "Which holopad would you like to contact?", "holopad list") as null|anythin69 in holopadlist
+				tar69etpad = holopadlist69"69temppad69"69
+				if(tar69etpad==src)
+					to_chat(user, "<span class='info'>Usin69 such sophisticated technolo69y, just to talk to yourself seems a bit silly.</span>")
 					return
-				if(targetpad && targetpad.caller_id)
-					to_chat(user, "<span class='info'>The pad flashes a busy sign. Maybe you should try again later..</span>")
+				if(tar69etpad && tar69etpad.caller_id)
+					to_chat(user, "<span class='info'>The pad flashes a busy si69n.69aybe you should try a69ain later..</span>")
 					return
-				if(targetpad)
-					make_call(targetpad, user)
+				if(tar69etpad)
+					make_call(tar69etpad, user)
 			else
-				to_chat(user, SPAN_NOTICE("A request for holographic communication was already sent recently."))
+				to_chat(user, SPAN_NOTICE("A re69uest for holo69raphic communication was already sent recently."))
 
 
-/obj/machinery/hologram/holopad/proc/make_call(var/obj/machinery/hologram/holopad/targetpad, var/mob/living/carbon/user)
-	targetpad.last_request = world.time
-	targetpad.sourcepad = src //This marks the holopad you are making the call from
-	targetpad.caller_id = user //This marks you as the caller
-	targetpad.incoming_connection = 1
-	playsound(targetpad.loc, 'sound/machines/chime.ogg', 25, 5)
-	targetpad.icon_state = "holopad1"
-	targetpad.audible_message("<b>\The [src]</b> announces, \"Incoming communications request from [targetpad.sourcepad.loc.loc].\"")
-	to_chat(user, SPAN_NOTICE("Trying to establish a connection to the holopad in [targetpad.loc.loc]... Please await confirmation from recipient."))
+/obj/machinery/holo69ram/holopad/proc/make_call(var/obj/machinery/holo69ram/holopad/tar69etpad,69ar/mob/livin69/carbon/user)
+	tar69etpad.last_re69uest = world.time
+	tar69etpad.sourcepad = src //This69arks the holopad you are69akin69 the call from
+	tar69etpad.caller_id = user //This69arks you as the caller
+	tar69etpad.incomin69_connection = 1
+	playsound(tar69etpad.loc, 'sound/machines/chime.o6969', 25, 5)
+	tar69etpad.icon_state = "holopad1"
+	tar69etpad.audible_messa69e("<b>\The 69src69</b> announces, \"Incomin69 communications re69uest from 69tar69etpad.sourcepad.loc.loc69.\"")
+	to_chat(user, SPAN_NOTICE("Tryin69 to establish a connection to the holopad in 69tar69etpad.loc.loc69... Please await confirmation from recipient."))
 
 
-/obj/machinery/hologram/holopad/proc/take_call(mob/living/carbon/user)
-	incoming_connection = 0
+/obj/machinery/holo69ram/holopad/proc/take_call(mob/livin69/carbon/user)
+	incomin69_connection = 0
 	caller_id.machine = sourcepad
 	caller_id.reset_view(src)
-	if(!masters[caller_id])//If there is no hologram, possibly make one.
+	if(!masters69caller_id69)//If there is no holo69ram, possibly69ake one.
 		activate_holocall(caller_id)
-	log_admin("[key_name(caller_id)] just established a holopad connection from [sourcepad.loc.loc] to [src.loc.loc]")
+	lo69_admin("69key_name(caller_id)69 just established a holopad connection from 69sourcepad.loc.loc69 to 69src.loc.loc69")
 
-/obj/machinery/hologram/holopad/proc/end_call(mob/living/carbon/user)
+/obj/machinery/holo69ram/holopad/proc/end_call(mob/livin69/carbon/user)
 	if(!caller_id)
 		return
 	caller_id.unset_machine()
 	caller_id.reset_view() //Send the caller back to his body
-	clear_holo(0, caller_id) // destroy the hologram
+	clear_holo(0, caller_id) // destroy the holo69ram
 	caller_id = null
 
-/obj/machinery/hologram/holopad/check_eye(mob/user)
+/obj/machinery/holo69ram/holopad/check_eye(mob/user)
 	return 0
 
-/obj/machinery/hologram/holopad/attack_ai(mob/living/silicon/ai/user)
+/obj/machinery/holo69ram/holopad/attack_ai(mob/livin69/silicon/ai/user)
 	if (!istype(user))
 		return
-	/*There are pretty much only three ways to interact here.
-	I don't need to check for client since they're clicking on an object.
-	This may change in the future but for now will suffice.*/
+	/*There are pretty69uch only three ways to interact here.
+	I don't need to check for client since they're clickin69 on an object.
+	This69ay chan69e in the future but for now will suffice.*/
 	if(user.eyeobj && (user.eyeobj.loc != src.loc))//Set client eye on the object if it's not already.
-		user.eyeobj.setLoc(get_turf(src))
-	else if(!masters[user])//If there is no hologram, possibly make one.
+		user.eyeobj.setLoc(69et_turf(src))
+	else if(!masters69user69)//If there is no holo69ram, possibly69ake one.
 		activate_holo(user)
-	else//If there is a hologram, remove it.
+	else//If there is a holo69ram, remove it.
 		clear_holo(user)
 	return
 
-/obj/machinery/hologram/holopad/proc/activate_holo(mob/living/silicon/ai/user)
+/obj/machinery/holo69ram/holopad/proc/activate_holo(mob/livin69/silicon/ai/user)
 	if(!(stat & NOPOWER) && user.eyeobj.loc == src.loc)//If the projector has power and client eye is on it
 		if (user.holo)
-			to_chat(user, "<span class='danger'>ERROR:</span> Image feed in progress.")
+			to_chat(user, "<span class='dan69er'>ERROR:</span> Ima69e feed in pro69ress.")
 			return
-		src.visible_message("A holographic image of [user] flicks to life right before your eyes!")
+		src.visible_messa69e("A holo69raphic ima69e of 69user69 flicks to life ri69ht before your eyes!")
 		create_holo(user)//Create one.
 	else
-		to_chat(user, "<span class='danger'>ERROR:</span> Unable to project hologram.")
+		to_chat(user, "<span class='dan69er'>ERROR:</span> Unable to project holo69ram.")
 	return
 
-/obj/machinery/hologram/holopad/proc/activate_holocall(mob/living/carbon/caller_id)
+/obj/machinery/holo69ram/holopad/proc/activate_holocall(mob/livin69/carbon/caller_id)
 	if(caller_id)
-		src.visible_message("A holographic image of [caller_id] flicks to life right before your eyes!")
+		src.visible_messa69e("A holo69raphic ima69e of 69caller_id69 flicks to life ri69ht before your eyes!")
 		create_holo(0,caller_id)//Create one.
 	else
-		to_chat(caller_id, "<span class='danger'>ERROR:</span> Unable to project hologram.")
+		to_chat(caller_id, "<span class='dan69er'>ERROR:</span> Unable to project holo69ram.")
 	return
 
-/*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
+/*This is the proc for special two-way communication between AI and holopad/people talkin69 near holopad.
 For the other part of the code, check silicon say.dm. Particularly robot talk.*/
-/obj/machinery/hologram/holopad/hear_talk(mob/living/M, text, verb, datum/language/speaking, speech_volume)
+/obj/machinery/holo69ram/holopad/hear_talk(mob/livin69/M, text,69erb, datum/lan69ua69e/speakin69, speech_volume)
 	if(M)
-		for(var/mob/living/silicon/ai/master in masters)
-			if(M == master)
+		for(var/mob/livin69/silicon/ai/master in69asters)
+			if(M ==69aster)
 				return
-			if(!master.say_understands(M, speaking))//The AI will be able to understand most mobs talking through the holopad.
-				if(speaking)
-					text = speaking.scramble(text)
+			if(!master.say_understands(M, speakin69))//The AI will be able to understand69ost69obs talkin69 throu69h the holopad.
+				if(speakin69)
+					text = speakin69.scramble(text)
 				else
 					text = stars(text)
-			var/name_used = M.GetVoice()
-			//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
+			var/name_used =69.69etVoice()
+			//This communication is imperfect because the holopad "filters"69oices and is only desi69ned to connect to the69aster only.
 			var/rendered
-			if(speaking)
-				rendered = "<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span></i>"
+			if(speakin69)
+				rendered = "<i><span class='69ame say'>Holopad received, <span class='name'>69name_used69</span> 69speakin69.format_messa69e(text,69erb)69</span></i>"
 			else
-				rendered = "<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [verb], <span class='message'>\"[text]\"</span></span></i>"
-			master.show_message(rendered, 2)
-	var/name_used = M.GetVoice()
-	if(targetpad) //If this is the pad you're making the call from
-		var/message = "<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span></i>"
-		targetpad.audible_message(message)
-		targetpad.last_message = message
-	if(sourcepad) //If this is a pad receiving a call
-		if(name_used==caller_id||text==last_message||findtext(text, "Holopad received")) //prevent echoes
+				rendered = "<i><span class='69ame say'>Holopad received, <span class='name'>69name_used69</span> 69verb69, <span class='messa69e'>\"69text69\"</span></span></i>"
+			master.show_messa69e(rendered, 2)
+	var/name_used =69.69etVoice()
+	if(tar69etpad) //If this is the pad you're69akin69 the call from
+		var/messa69e = "<i><span class='69ame say'>Holopad received, <span class='name'>69name_used69</span> 69speakin69.format_messa69e(text,69erb)69</span></i>"
+		tar69etpad.audible_messa69e(messa69e)
+		tar69etpad.last_messa69e =69essa69e
+	if(sourcepad) //If this is a pad receivin69 a call
+		if(name_used==caller_id||text==last_messa69e||findtext(text, "Holopad received")) //prevent echoes
 			return
-		sourcepad.audible_message("<i><span class='game say'>Holopad received, <span class='name'>[name_used]</span> [speaking.format_message(text, verb)]</span></i>")
+		sourcepad.audible_messa69e("<i><span class='69ame say'>Holopad received, <span class='name'>69name_used69</span> 69speakin69.format_messa69e(text,69erb)69</span></i>")
 
-/obj/machinery/hologram/holopad/see_emote(mob/living/M, text)
+/obj/machinery/holo69ram/holopad/see_emote(mob/livin69/M, text)
 	if(M)
-		for(var/mob/living/silicon/ai/master in masters)
-			//var/name_used = M.GetVoice()
-			var/rendered = "<i><span class='game say'>Holopad received, <span class='message'>[text]</span></span></i>"
-			//The lack of name_used is needed, because message already contains a name.  This is needed for simple mobs to emote properly.
-			master.show_message(rendered, 2)
-		for(var/mob/living/carbon/master in masters)
-			//var/name_used = M.GetVoice()
-			var/rendered = "<i><span class='game say'>Holopad received, <span class='message'>[text]</span></span></i>"
-			//The lack of name_used is needed, because message already contains a name.  This is needed for simple mobs to emote properly.
-			master.show_message(rendered, 2)
-		if(targetpad)
-			targetpad.visible_message("<i><span class='message'>[text]</span></i>")
+		for(var/mob/livin69/silicon/ai/master in69asters)
+			//var/name_used =69.69etVoice()
+			var/rendered = "<i><span class='69ame say'>Holopad received, <span class='messa69e'>69text69</span></span></i>"
+			//The lack of name_used is needed, because69essa69e already contains a name.  This is needed for simple69obs to emote properly.
+			master.show_messa69e(rendered, 2)
+		for(var/mob/livin69/carbon/master in69asters)
+			//var/name_used =69.69etVoice()
+			var/rendered = "<i><span class='69ame say'>Holopad received, <span class='messa69e'>69text69</span></span></i>"
+			//The lack of name_used is needed, because69essa69e already contains a name.  This is needed for simple69obs to emote properly.
+			master.show_messa69e(rendered, 2)
+		if(tar69etpad)
+			tar69etpad.visible_messa69e("<i><span class='messa69e'>69text69</span></i>")
 
-/obj/machinery/hologram/holopad/show_message(msg, type, alt, alt_type)
-	for(var/mob/living/silicon/ai/master in masters)
-		var/rendered = "<i><span class='game say'>The holographic image of <span class='message'>[msg]</span></span></i>"
-		master.show_message(rendered, type)
-	if(findtext(msg, "Holopad received,"))
+/obj/machinery/holo69ram/holopad/show_messa69e(ms69, type, alt, alt_type)
+	for(var/mob/livin69/silicon/ai/master in69asters)
+		var/rendered = "<i><span class='69ame say'>The holo69raphic ima69e of <span class='messa69e'>69ms6969</span></span></i>"
+		master.show_messa69e(rendered, type)
+	if(findtext(ms69, "Holopad received,"))
 		return
-	for(var/mob/living/carbon/master in masters)
-		var/rendered = "<i><span class='game say'>The holographic image of <span class='message'>[msg]</span></span></i>"
-		master.show_message(rendered, type)
-	if(targetpad)
-		for(var/mob/living/carbon/master in view(targetpad))
-			var/rendered = "<i><span class='game say'>The holographic image of <span class='message'>[msg]</span></span></i>"
-			master.show_message(rendered, type)
+	for(var/mob/livin69/carbon/master in69asters)
+		var/rendered = "<i><span class='69ame say'>The holo69raphic ima69e of <span class='messa69e'>69ms6969</span></span></i>"
+		master.show_messa69e(rendered, type)
+	if(tar69etpad)
+		for(var/mob/livin69/carbon/master in69iew(tar69etpad))
+			var/rendered = "<i><span class='69ame say'>The holo69raphic ima69e of <span class='messa69e'>69ms6969</span></span></i>"
+			master.show_messa69e(rendered, type)
 
-/obj/machinery/hologram/holopad/proc/create_holo(mob/living/silicon/ai/A, mob/living/carbon/caller_id, turf/T = loc)
-	var/obj/effect/overlay/hologram = new(T)//Spawn a blank effect at the location.
+/obj/machinery/holo69ram/holopad/proc/create_holo(mob/livin69/silicon/ai/A,69ob/livin69/carbon/caller_id, turf/T = loc)
+	var/obj/effect/overlay/holo69ram = new(T)//Spawn a blank effect at the location.
 	if(caller_id)
 		var/icon/tempicon = new
 		for(var/datum/data/record/t in data_core.locked)
-			if(t.fields["name"]==caller_id.name)
-				tempicon = t.fields["image"]
-		hologram.overlays += getHologramIcon(icon(tempicon)) // Add the callers image as an overlay to keep coloration!
+			if(t.fields69"name"69==caller_id.name)
+				tempicon = t.fields69"ima69e"69
+		holo69ram.overlays += 69etHolo69ramIcon(icon(tempicon)) // Add the callers ima69e as an overlay to keep coloration!
 	else
-		hologram.overlays += A.holo_icon // Add the AI's configured holo Icon
-	hologram.mouse_opacity = 0//So you can't click on it.
-	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
-	hologram.anchored = TRUE//So space wind cannot drag it.
+		holo69ram.overlays += A.holo_icon // Add the AI's confi69ured holo Icon
+	holo69ram.mouse_opacity = 0//So you can't click on it.
+	holo69ram.layer = FLY_LAYER//Above all the other objects/mobs. Or the69ast69ajority of them.
+	holo69ram.anchored = TRUE//So space wind cannot dra69 it.
 	if(caller_id)
-		hologram.name = "[caller_id.name] (Hologram)"
-		hologram.loc = get_step(src, loc)
-		masters[caller_id] = hologram
+		holo69ram.name = "69caller_id.name69 (Holo69ram)"
+		holo69ram.loc = 69et_step(src, loc)
+		masters69caller_id69 = holo69ram
 	else
-		hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
+		holo69ram.name = "69A.name69 (Holo69ram)"//If someone decides to ri69ht click.
 		A.holo = src
-		masters[A] = hologram
-	hologram.set_light(2, 2, "#00CCFF")	//hologram lighting
-	hologram.color = color //painted holopad gives coloured holograms
-	set_light(2, 2, COLOR_LIGHTING_BLUE_BRIGHT)			//pad lighting
+		masters69A69 = holo69ram
+	holo69ram.set_li69ht(2, 2, "#00CCFF")	//holo69ram li69htin69
+	holo69ram.color = color //painted holopad 69ives coloured holo69rams
+	set_li69ht(2, 2, COLOR_LI69HTIN69_BLUE_BRI69HT)			//pad li69htin69
 	icon_state = "holopad1"
 	return 1
 
-/obj/machinery/hologram/holopad/proc/clear_holo(mob/living/silicon/ai/user, mob/living/carbon/caller_id)
+/obj/machinery/holo69ram/holopad/proc/clear_holo(mob/livin69/silicon/ai/user,69ob/livin69/carbon/caller_id)
 	if(user)
-		qdel(masters[user])//Get rid of user's hologram
+		69del(masters69user69)//69et rid of user's holo69ram
 		user.holo = null
 		masters -= user //Discard AI from the list of those who use holopad
 	if(caller_id)
-		qdel(masters[caller_id])//Get rid of user's hologram
+		69del(masters69caller_id69)//69et rid of user's holo69ram
 		masters -= caller_id //Discard the caller from the list of those who use holopad
 	if (!masters.len)//If no users left
-		set_light(0)			//pad lighting (hologram lighting will be handled automatically since its owner was deleted)
+		set_li69ht(0)			//pad li69htin69 (holo69ram li69htin69 will be handled automatically since its owner was deleted)
 		icon_state = "holopad0"
 		if(sourcepad)
-			sourcepad.targetpad = null
+			sourcepad.tar69etpad = null
 			sourcepad = null
 			caller_id = null
 	return 1
 
 
-/obj/machinery/hologram/holopad/Process()
-	for (var/mob/living/silicon/ai/master in masters)
-		var/active_ai = (master && !master.incapacitated() && master.client && master.eyeobj)//If there is an AI with an eye attached, it's not incapacitated, and it has a client
+/obj/machinery/holo69ram/holopad/Process()
+	for (var/mob/livin69/silicon/ai/master in69asters)
+		var/active_ai = (master && !master.incapacitated() &&69aster.client &&69aster.eyeobj)//If there is an AI with an eye attached, it's not incapacitated, and it has a client
 		if((stat & NOPOWER) || !active_ai)
 			clear_holo(master)
 			continue
 
-		if(!(masters[master] in view(src)))
+		if(!(masters69master69 in69iew(src)))
 			clear_holo(master)
 			continue
 
-		use_power(power_per_hologram)
-	if(last_request + 200 < world.time && incoming_connection==1)
+		use_power(power_per_holo69ram)
+	if(last_re69uest + 200 < world.time && incomin69_connection==1)
 		if(sourcepad)
-			sourcepad.audible_message("<i><span class='game say'>The holopad connection timed out</span></i>")
-		incoming_connection = 0
+			sourcepad.audible_messa69e("<i><span class='69ame say'>The holopad connection timed out</span></i>")
+		incomin69_connection = 0
 		end_call()
 	if (caller_id&&sourcepad)
 		if(caller_id.loc!=sourcepad.loc)
-			to_chat(sourcepad.caller_id, "Severing connection to distant holopad.")
+			to_chat(sourcepad.caller_id, "Severin69 connection to distant holopad.")
 			end_call()
-			audible_message("The connection has been terminated by the caller.")
+			audible_messa69e("The connection has been terminated by the caller.")
 	return 1
 
-/obj/machinery/hologram/holopad/proc/move_hologram(mob/living/silicon/ai/user)
-	if(masters[user])
-		step_to(masters[user], user.eyeobj) // So it turns.
-		var/obj/effect/overlay/H = masters[user]
-		H.forceMove(get_turf(user.eyeobj))
-		masters[user] = H
+/obj/machinery/holo69ram/holopad/proc/move_holo69ram(mob/livin69/silicon/ai/user)
+	if(masters69user69)
+		step_to(masters69user69, user.eyeobj) // So it turns.
+		var/obj/effect/overlay/H =69asters69user69
+		H.forceMove(69et_turf(user.eyeobj))
+		masters69user69 = H
 
-		if(!(H in view(src)))
+		if(!(H in69iew(src)))
 			clear_holo(user)
 			return 0
 
-		if((HOLOPAD_MODE == RANGE_BASED && (get_dist(user.eyeobj, src) > holo_range)))
+		if((HOLOPAD_MODE == RAN69E_BASED && (69et_dist(user.eyeobj, src) > holo_ran69e)))
 			clear_holo(user)
 
 		if(HOLOPAD_MODE == AREA_BASED)
-			var/area/holo_area = get_area(src)
-			var/area/hologram_area = get_area(H)
-			if(hologram_area != holo_area)
+			var/area/holo_area = 69et_area(src)
+			var/area/holo69ram_area = 69et_area(H)
+			if(holo69ram_area != holo_area)
 				clear_holo(user)
 	return 1
 
 
-/obj/machinery/hologram/holopad/proc/set_dir_hologram(new_dir, mob/living/silicon/ai/user)
-	if(masters[user])
-		var/obj/effect/overlay/hologram = masters[user]
-		hologram.dir = new_dir
+/obj/machinery/holo69ram/holopad/proc/set_dir_holo69ram(new_dir,69ob/livin69/silicon/ai/user)
+	if(masters69user69)
+		var/obj/effect/overlay/holo69ram =69asters69user69
+		holo69ram.dir = new_dir
 
 
 
 /*
- * Hologram
+ * Holo69ram
  */
 
-/obj/machinery/hologram
+/obj/machinery/holo69ram
 	anchored = TRUE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 5
-	active_power_usage = 100
+	idle_power_usa69e = 5
+	active_power_usa69e = 100
 
 //Destruction procs.
-/obj/machinery/hologram/ex_act(severity)
+/obj/machinery/holo69ram/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 		if(2)
 			if (prob(50))
-				qdel(src)
+				69del(src)
 		if(3)
 			if (prob(5))
-				qdel(src)
+				69del(src)
 	return
 
-/obj/machinery/hologram/holopad/Destroy()
-	for (var/mob/living/master in masters)
+/obj/machinery/holo69ram/holopad/Destroy()
+	for (var/mob/livin69/master in69asters)
 		clear_holo(master)
 	. = ..()
 
 /*
-Holographic project of everything else.
-/mob/verb/hologram_test()
-	set name = "Hologram Debug New"
-	set category = "CURRENT DEBUG"
-	var/obj/effect/overlay/hologram = new(loc)//Spawn a blank effect at the location.
-	var/icon/flat_icon = icon(getFlatIcon(src,0))//Need to make sure it's a new icon so the old one is not reused.
-	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
-	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
+Holo69raphic project of everythin69 else.
+/mob/verb/holo69ram_test()
+	set name = "Holo69ram Debu69 New"
+	set cate69ory = "CURRENT DEBU69"
+	var/obj/effect/overlay/holo69ram = new(loc)//Spawn a blank effect at the location.
+	var/icon/flat_icon = icon(69etFlatIcon(src,0))//Need to69ake sure it's a new icon so the old one is not reused.
+	flat_icon.ColorTone(r69b(125,180,225))//Let's69ake it bluish.
+	flat_icon.Chan69eOpacity(0.5)//Make it half transparent.
 	var/input = input("Select what icon state to use in effect.",,"")
 	if(input)
-		var/icon/alpha_mask = new('icons/effects/effects.dmi', "[input]")
-		flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.
-		hologram.icon = flat_icon
-		log_debug("Your icon should appear now.")
+		var/icon/alpha_mask = new('icons/effects/effects.dmi', "69input69")
+		flat_icon.AddAlphaMask(alpha_mask)//Finally, let's69ix in a distortion effect.
+		holo69ram.icon = flat_icon
+		lo69_debu69("Your icon should appear now.")
 	return
 */
 
 /*
  * Other Stuff: Is this even used?
  */
-/obj/machinery/hologram/projector
-	name = "hologram projector"
-	desc = "It makes a hologram appear...with magnets or something..."
+/obj/machinery/holo69ram/projector
+	name = "holo69ram projector"
+	desc = "It69akes a holo69ram appear...with69a69nets or somethin69..."
 	icon = 'icons/obj/stationobjs.dmi'
-	icon_state = "hologram0"
+	icon_state = "holo69ram0"
 
 
-#undef RANGE_BASED
+#undef RAN69E_BASED
 #undef AREA_BASED
-#undef HOLOPAD_PASSIVE_POWER_USAGE
-#undef HOLOGRAM_POWER_USAGE
+#undef HOLOPAD_PASSIVE_POWER_USA69E
+#undef HOLO69RAM_POWER_USA69E

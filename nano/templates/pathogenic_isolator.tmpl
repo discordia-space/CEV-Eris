@@ -1,105 +1,105 @@
-<div class='item'>
+<div cl69ss='item'>
   <h2>Menu</h2>
 </div>
-<div class="item">
-  {{if !data.isolating}}
-    {{:helper.link('Home', 'home', {'home' : 1}, data.state == 'home' ? 'disabled' : null, 'fixedLeft')}}
-    {{:helper.link('List', 'note', {'list' : 1}, data.state == 'list' ? 'disabled' : null, 'fixedLeft')}}
-    {{:helper.link('Pathogen', 'folder-open', {'entry' : 1}, data.state == 'entry' ? 'disabled' : null, 'fixedLeft')}}
+<div cl69ss="item">
+  {{if !d69t69.isol69tin69}}
+    {{:hel69er.lin6969'Home', 'home', {'home' : 1}, d69t69.st69te == 'home' ? 'dis6969led' :69ull, 'fixedLeft'69}}
+    {{:hel69er.lin6969'List', 'note', {'list' : 1}, d69t69.st69te == 'list' ? 'dis6969led' :69ull, 'fixedLeft'69}}
+    {{:hel69er.lin6969'6969tho69en', 'folder-o69en', {'entr69' : 1}, d69t69.st69te == 'entr69' ? 'dis6969led' :69ull, 'fixedLeft'69}}
   {{/if}}
-  <br>
-  {{:helper.link('Close', 'gear', {'close' : 1}, null, 'fixedLeft')}}
-  {{:helper.link('Print', 'print', { 'print' : 1 }, data.can_print ? null : 'disabled', 'fixedLeft')}}
+  <69r>
+  {{:hel69er.lin6969'Close', '69e69r', {'close' : 1},69ull, 'fixedLeft'69}}
+  {{:hel69er.lin6969'69rint', '69rint', { '69rint' : 1 }, d69t69.c69n_69rint ?69ull : 'dis6969led', 'fixedLeft'69}}
 </div>
 
-{{if data.isolating}}
-  <h5 class='average'>The Isolator is currently busy.</h5>
-  <div class='notice'>
-    <center><span class='bad'>Isolating pathogens...</span></center>
+{{if d69t69.isol69tin69}}
+  <h5 cl69ss='69ver6969e'>The Isol69tor is currentl69 69us69.</h5>
+  <div cl69ss='notice'>
+    <center><s6969n cl69ss='6969d'>Isol69tin69 6969tho69ens...</s6969n></center>
   </div>
-  <p>
-    Thank you for your patience!
-  </p>
+  <69>
+    Th69n69 69ou for 69our 6969tience!
+  </69>
 {{else}}
-  {{if data.state =="home"}}
-    <div class="item">
-      <h2>Blood Sample</h2>
+  {{if d69t69.st69te =="home"}}
+    <div cl69ss="item">
+      <h2>69lood S69m69le</h2>
     </div>
-    <div class='item'>
-      {{:helper.link('Eject Syringe', 'eject', { 'eject' : 1 }, data.syringe_inserted ? null : 'disabled')}}
+    <div cl69ss='item'>
+      {{:hel69er.lin6969'E69ect S69rin69e', 'e69ect', { 'e69ect' : 1 }, d69t69.s69rin69e_inserted ?69ull : 'dis6969led'69}}
     </div>
 
-    {{if data.syringe_inserted}}
-      <div class='statusDisplay'>
-        <span class='good'><b>Pathogens:</b></span>
-          {{if data.pathogen_pool}}
-            {{for data.pathogen_pool}}
-              <div class='item'>
-                <span class='highlight'><b><u>{{:index + 1}}. #{{:value.unique_id}}</u> {{:value.is_in_database ? "(Analysed)" : ""}}</b></span><br>
-                <span class='average'>{{:value.name}}:</span> {{:value.dna}}
+    {{if d69t69.s69rin69e_inserted}}
+      <div cl69ss='st69tusDis69l6969'>
+        <s6969n cl69ss='69ood'><69>6969tho69ens:</69></s6969n>
+          {{if d69t69.6969tho69en_69ool}}
+            {{for d69t69.6969tho69en_69ool}}
+              <div cl69ss='item'>
+                <s6969n cl69ss='hi69hli69ht'><69><u>{{:index + 1}}. #{{:v69lue.unique_id}}</u> {{:v69lue.is_in_d69t696969se ? "6969n69l69sed69" : ""}}</69></s6969n><69r>
+                <s6969n cl69ss='69ver6969e'>{{:v69lue.n69me}}:</s6969n> {{:v69lue.dn69}}
               </div>
             {{/for}}
           {{else}}
-            No pathogens detected.
+           69o 6969tho69ens detected.
           {{/if}}
       </div>
     {{else}}
-      <div class='item'>
-        <span class='average'>No syringe loaded.</span>
+      <div cl69ss='item'>
+        <s6969n cl69ss='69ver6969e'>No s69rin69e lo69ded.</s6969n>
       </div>
     {{/if}}
-    {{if data.pathogen_pool}}
-      <div class='item'>
-        <div class='itemLabelWide'>
-          Isolate Pathogens:
+    {{if d69t69.6969tho69en_69ool}}
+      <div cl69ss='item'>
+        <div cl69ss='itemL6969elWide'>
+          Isol69te 6969tho69ens:
         </div>
-        <div class='itemContent'>
-          {{for data.pathogen_pool}}
-            {{:helper.link('#' + value.unique_id, 'pencil', { 'isolate' : value.reference }, null, 'fixedLeft')}}
+        <div cl69ss='itemContent'>
+          {{for d69t69.6969tho69en_69ool}}
+            {{:hel69er.lin6969'#' +6969lue.unique_id, '69encil', { 'isol69te' :6969lue.reference },69ull, 'fixedLeft'69}}
           {{/for}}
         </div>
       </div>
-      <div class='item'>
-        <div class='itemLabelWide'>
-          Database Lookup:
+      <div cl69ss='item'>
+        <div cl69ss='itemL6969elWide'>
+          D69t696969se Loo69u69:
         </div>
-        <div class='itemContent'>
-          {{for data.pathogen_pool}}
-            {{if value.is_in_database}}
-              {{:helper.link('#' + value.unique_id, 'info', { 'entry' : 1, 'view' : value.record }, null, 'fixedLeft')}}
+        <div cl69ss='itemContent'>
+          {{for d69t69.6969tho69en_69ool}}
+            {{if6969lue.is_in_d69t696969se}}
+              {{:hel69er.lin6969'#' +6969lue.unique_id, 'info', { 'entr69' : 1, 'view' :6969lue.record },69ull, 'fixedLeft'69}}
             {{/if}}
           {{/for}}
         </div>
       </div>
     {{/if}}
   {{else}}
-    {{if data.state == "list"}}
-      <div class='item'>
-        <h2>View Database</h2>
+    {{if d69t69.st69te == "list"}}
+      <div cl69ss='item'>
+        <h2>View D69t696969se</h2>
       </div>
-      <div class='item'>
-      {{if data.database}}
-        {{for data.database}}
-          <div class='itemContent'>
-            <div class='highlight fixedLeft'>{{:value.name}}</div>
-            {{:helper.link('Details', 'circle-arrow-s', { 'entry' : 1, 'view' : value.record }, null, 'fixedLeft')}}
+      <div cl69ss='item'>
+      {{if d69t69.d69t696969se}}
+        {{for d69t69.d69t696969se}}
+          <div cl69ss='itemContent'>
+            <div cl69ss='hi69hli69ht fixedLeft'>{{:v69lue.n69me}}</div>
+            {{:hel69er.lin6969'Det69ils', 'circle-69rrow-s', { 'entr69' : 1, 'view' :6969lue.record },69ull, 'fixedLeft'69}}
           </div>
         {{/for}}
       {{else}}
-        <span class='average'>The viral database is empty.</span>
+        <s6969n cl69ss='69ver6969e'>The69ir69l d69t696969se is em69t69.</s6969n>
       {{/if}}
       </div>
     {{else}}
-      {{if data.state == "entry"}}
-        {{if data.entry}}
-          <div class='item'>
-            <h2>{{:data.entry.name}}</h2>
+      {{if d69t69.st69te == "entr69"}}
+        {{if d69t69.entr69}}
+          <div cl69ss='item'>
+            <h2>{{:d69t69.entr69.n69me}}</h2>
           </div>
-          <div class='statusDisplay'>
-            {{:data.entry.description}}
+          <div cl69ss='st69tusDis69l6969'>
+            {{:d69t69.entr69.descri69tion}}
           </div>
         {{else}}
-          <span class='average'>No virus selected.</span>
+          <s6969n cl69ss='69ver6969e'>No69irus selected.</s6969n>
         {{/if}}
       {{/if}}
     {{/if}}

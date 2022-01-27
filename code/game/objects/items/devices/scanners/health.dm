@@ -1,210 +1,210 @@
 
 /obj/item/device/scanner/health
 	name = "health analyzer"
-	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
+	desc = "A hand-held body scanner able to distin69uish69ital si69ns of the subject."
 	icon_state = "health"
 	item_state = "analyzer"
 	throw_speed = 5
-	throw_range = 10
+	throw_ran69e = 10
 
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_GLASS = 1)
-	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_69LASS = 1)
+	ori69in_tech = list(TECH_MA69NET = 1, TECH_BIO = 1)
 	rarity_value = 16.66
 
 	var/mode = 1
 
 	window_width = 600
-	window_height = 400
+	window_hei69ht = 400
 
-/obj/item/device/scanner/health/is_valid_scan_target(atom/O)
-	return istype(O, /mob/living) || istype(O, /obj/structure/closet/body_bag)
+/obj/item/device/scanner/health/is_valid_scan_tar69et(atom/O)
+	return istype(O, /mob/livin69) || istype(O, /obj/structure/closet/body_ba69)
 
-/obj/item/device/scanner/health/scan(atom/A, mob/user)
-	scan_data = medical_scan_action(A, user, src, mode)
-	scan_title = "Health scan - [A]"
+/obj/item/device/scanner/health/scan(atom/A,69ob/user)
+	scan_data =69edical_scan_action(A, user, src,69ode)
+	scan_title = "Health scan - 69A69"
 	show_results(user)
 	flick("health2", src)
 
-/obj/item/device/scanner/health/verb/toggle_mode()
-	set name = "Switch Verbosity"
-	set category = "Object"
+/obj/item/device/scanner/health/verb/to6969le_mode()
+	set name = "Switch69erbosity"
+	set cate69ory = "Object"
 
 	mode = !mode
 	switch (mode)
 		if(1)
-			to_chat(usr, "The scanner now shows specific limb damage.")
+			to_chat(usr, "The scanner now shows specific limb dama69e.")
 		if(0)
-			to_chat(usr, "The scanner no longer shows limb damage.")
+			to_chat(usr, "The scanner no lon69er shows limb dama69e.")
 
-/proc/medical_scan_action(atom/target, mob/living/user, obj/scanner, var/mode)
+/proc/medical_scan_action(atom/tar69et,69ob/livin69/user, obj/scanner,69ar/mode)
 	if (!user.IsAdvancedToolUser())
-		to_chat(user, SPAN_WARNING("You are not nimble enough to use this device."))
+		to_chat(user, SPAN_WARNIN69("You are not nimble enou69h to use this device."))
 		return
 
 	if ((CLUMSY in user.mutations) && prob(50))
 		. = list()
 
-		user.visible_message(SPAN_NOTICE("\The [user] runs \the [scanner] over the floor."))
-		. += span("highlight", "<b>Scan results for the floor:</b>")
-		. += span("highlight", "Overall Status: Healthy")
+		user.visible_messa69e(SPAN_NOTICE("\The 69user69 runs \the 69scanner69 over the floor."))
+		. += span("hi69hli69ht", "<b>Scan results for the floor:</b>")
+		. += span("hi69hli69ht", "Overall Status: Healthy")
 		return jointext(., "<br>")
 
-	var/mob/living/carbon/human/scan_subject = null
-	if (istype(target, /mob/living/carbon/human))
-		scan_subject = target
-	else if (istype(target, /obj/structure/closet/body_bag))
-		var/obj/structure/closet/body_bag/B = target
+	var/mob/livin69/carbon/human/scan_subject = null
+	if (istype(tar69et, /mob/livin69/carbon/human))
+		scan_subject = tar69et
+	else if (istype(tar69et, /obj/structure/closet/body_ba69))
+		var/obj/structure/closet/body_ba69/B = tar69et
 		if(!B.opened)
 			var/list/scan_content = list()
-			for(var/mob/living/L in B.contents)
+			for(var/mob/livin69/L in B.contents)
 				scan_content.Add(L)
 
 			if (scan_content.len == 1)
-				for(var/mob/living/carbon/human/L in scan_content)
+				for(var/mob/livin69/carbon/human/L in scan_content)
 					scan_subject = L
 			else if (scan_content.len > 1)
-				to_chat(user, SPAN_WARNING("\The [scanner] picks up multiple readings inside \the [target], too close together to scan properly."))
+				to_chat(user, SPAN_WARNIN69("\The 69scanner69 picks up69ultiple readin69s inside \the 69tar69et69, too close to69ether to scan properly."))
 				return
 			else
-				to_chat(user, "\The [scanner] does not detect anyone inside \the [target].")
+				to_chat(user, "\The 69scanner69 does not detect anyone inside \the 69tar69et69.")
 				return
 
 	if(!scan_subject)
 		return
 
 	if (scan_subject.isSynthetic())
-		to_chat(user, SPAN_WARNING("\The [scanner] is designed for organic humanoid patients only."))
+		to_chat(user, SPAN_WARNIN69("\The 69scanner69 is desi69ned for or69anic humanoid patients only."))
 		return
 
-	user.visible_message(SPAN_NOTICE("[user] has analyzed [target]'s vitals."),SPAN_NOTICE("You have analyzed [target]'s vitals."))
-	. = medical_scan_results(scan_subject, mode)
+	user.visible_messa69e(SPAN_NOTICE("69user69 has analyzed 69tar69et69's69itals."),SPAN_NOTICE("You have analyzed 69tar69et69's69itals."))
+	. =69edical_scan_results(scan_subject,69ode)
 
-/proc/medical_scan_results(var/mob/living/M, var/mode)
+/proc/medical_scan_results(var/mob/livin69/M,69ar/mode)
 	. = list()
 	var/dat = list()
-	if (!ishuman(M) || M.isSynthetic())
-		//these sensors are designed for organic life
-		. += "<h2>Analyzing Results for ERROR:\n\t Overall Status: ERROR</h2>"
-		. += span("highlight", "    Key: <font color='#0080ff'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
-		. += span("highlight", "    Damage Specifics: <font color='#0080ff'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
-		. += span("highlight", "Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)")
-		. += SPAN_WARNING("Warning: Blood Level ERROR: --% --cl.</span> <span class='notice'>Type: ERROR")
-		. += span("highlight", "Subject's pulse: <font color='red'>-- bpm.</font>")
+	if (!ishuman(M) ||69.isSynthetic())
+		//these sensors are desi69ned for or69anic life
+		. += "<h2>Analyzin69 Results for ERROR:\n\t Overall Status: ERROR</h2>"
+		. += span("hi69hli69ht", "    Key: <font color='#0080ff'>Suffocation</font>/<font color='69reen'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
+		. += span("hi69hli69ht", "    Dama69e Specifics: <font color='#0080ff'>?</font> - <font color='69reen'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
+		. += span("hi69hli69ht", "Body Temperature: 69M.bodytemperature-T0C69&de69;C (69M.bodytemperature*1.8-459.6769&de69;F)")
+		. += SPAN_WARNIN69("Warnin69: Blood Level ERROR: --% --cl.</span> <span class='notice'>Type: ERROR")
+		. += span("hi69hli69ht", "Subject's pulse: <font color='red'>-- bpm.</font>")
 		return
 
-	var/fake_oxy = max(rand(1, 40), M.getOxyLoss(), (300 - (M.getToxLoss() + M.getFireLoss() + M.getBruteLoss())))
-	var/OX = M.getOxyLoss() > 50 	? 	"<b>[M.getOxyLoss()]</b>" 		: M.getOxyLoss()
-	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
-	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
-	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
-	if(M.status_flags & FAKEDEATH)
-		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		dat += "<h2>Analyzing Results for [M]:</h2>"
-		dat += span("highlight", "Overall Status: dead")
+	var/fake_oxy =69ax(rand(1, 40),69.69etOxyLoss(), (300 - (M.69etToxLoss() +69.69etFireLoss() +69.69etBruteLoss())))
+	var/OX =69.69etOxyLoss() > 50 	? 	"<b>69M.69etOxyLoss()69</b>" 		:69.69etOxyLoss()
+	var/TX =69.69etToxLoss() > 50 	? 	"<b>69M.69etToxLoss()69</b>" 		:69.69etToxLoss()
+	var/BU =69.69etFireLoss() > 50 	? 	"<b>69M.69etFireLoss()69</b>" 		:69.69etFireLoss()
+	var/BR =69.69etBruteLoss() > 50 	? 	"<b>69M.69etBruteLoss()69</b>" 	:69.69etBruteLoss()
+	if(M.status_fla69s & FAKEDEATH)
+		OX = fake_oxy > 50 			? 	"<b>69fake_oxy69</b>" 			: fake_oxy
+		dat += "<h2>Analyzin69 Results for 69M69:</h2>"
+		dat += span("hi69hli69ht", "Overall Status: dead")
 	else
-		dat += span("highlight", "Analyzing Results for [M]:\n\t Overall Status: [M.stat > 1 ? "dead" : "[round(M.health/M.maxHealth*100)]% healthy"]")
-	dat += span("highlight", "    Key: <font color='#0080ff'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
-	dat += span("highlight", "    Damage Specifics: <font color='#0080ff'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font>")
-	dat += span("highlight", "Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)")
-	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
-		dat += span("highlight", "Time of Death: [worldtime2stationtime(M.timeofdeath)]")
-	if(ishuman(M) && mode == 1)
-		var/mob/living/carbon/human/H = M
-		var/list/damaged = H.get_damaged_organs(1, 1)
-		dat += span("highlight", "Localized Damage, Brute/Burn:")
-		if(length(damaged) > 0)
-			for(var/obj/item/organ/external/org in damaged)
-				dat += text("<span class='highlight'>     [][]: [][] - []</span>",
-				capitalize(org.name),
-				(BP_IS_ROBOTIC(org)) ? "(Cybernetic)" : "",
-				(org.brute_dam > 0) ? SPAN_WARNING("[org.brute_dam]") : 0,
-				(org.status & ORGAN_BLEEDING)?SPAN_DANGER("\[Bleeding\]"):"",
-				(org.burn_dam > 0) ? "<font color='#FFA500'>[org.burn_dam]</font>" : 0)
+		dat += span("hi69hli69ht", "Analyzin69 Results for 69M69:\n\t Overall Status: 69M.stat > 1 ? "dead" : "69round(M.health/M.maxHealth*100)69% healthy"69")
+	dat += span("hi69hli69ht", "    Key: <font color='#0080ff'>Suffocation</font>/<font color='69reen'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font>")
+	dat += span("hi69hli69ht", "    Dama69e Specifics: <font color='#0080ff'>69OX69</font> - <font color='69reen'>69TX69</font> - <font color='#FFA500'>69BU69</font> - <font color='red'>69BR69</font>")
+	dat += span("hi69hli69ht", "Body Temperature: 69M.bodytemperature-T0C69&de69;C (69M.bodytemperature*1.8-459.6769&de69;F)")
+	if(M.timeofdeath && (M.stat == DEAD || (M.status_fla69s & FAKEDEATH)))
+		dat += span("hi69hli69ht", "Time of Death: 69worldtime2stationtime(M.timeofdeath)69")
+	if(ishuman(M) &&69ode == 1)
+		var/mob/livin69/carbon/human/H =69
+		var/list/dama69ed = H.69et_dama69ed_or69ans(1, 1)
+		dat += span("hi69hli69ht", "Localized Dama69e, Brute/Burn:")
+		if(len69th(dama69ed) > 0)
+			for(var/obj/item/or69an/external/or69 in dama69ed)
+				dat += text("<span class='hi69hli69ht'>     69696969: 69696969 - 6969</span>",
+				capitalize(or69.name),
+				(BP_IS_ROBOTIC(or69)) ? "(Cybernetic)" : "",
+				(or69.brute_dam > 0) ? SPAN_WARNIN69("69or69.brute_dam69") : 0,
+				(or69.status & OR69AN_BLEEDIN69)?SPAN_DAN69ER("\69Bleedin69\69"):"",
+				(or69.burn_dam > 0) ? "<font color='#FFA500'>69or69.burn_dam69</font>" : 0)
 		else
-			dat += span("highlight", "    Limbs are OK.")
+			dat += span("hi69hli69ht", "    Limbs are OK.")
 
-	OX = M.getOxyLoss() > 50 ? 	 "<font color='#0080ff'><b>Severe oxygen deprivation detected</b></font>" 		: 	"Subject bloodstream oxygen level normal"
-	TX = M.getToxLoss() > 50 ? 	 "<font color='green'><b>Dangerous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level minimal"
-	BU = M.getFireLoss() > 50 ?  "<font color='#FFA500'><b>Severe burn damage detected</b></font>" 			:	"Subject burn injury status O.K"
-	BR = M.getBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical damage detected</b></font>" 		: 	"Subject brute-force injury status O.K"
-	if(M.status_flags & FAKEDEATH)
-		OX = fake_oxy > 50 ? SPAN_WARNING("Severe oxygen deprivation detected") : "Subject bloodstream oxygen level normal"
-	dat += "[OX] | [TX] | [BU] | [BR]"
+	OX =69.69etOxyLoss() > 50 ? 	 "<font color='#0080ff'><b>Severe oxy69en deprivation detected</b></font>" 		: 	"Subject bloodstream oxy69en level normal"
+	TX =69.69etToxLoss() > 50 ? 	 "<font color='69reen'><b>Dan69erous amount of toxins detected</b></font>" 	: 	"Subject bloodstream toxin level69inimal"
+	BU =69.69etFireLoss() > 50 ?  "<font color='#FFA500'><b>Severe burn dama69e detected</b></font>" 			:	"Subject burn injury status O.K"
+	BR =69.69etBruteLoss() > 50 ? "<font color='red'><b>Severe anatomical dama69e detected</b></font>" 		: 	"Subject brute-force injury status O.K"
+	if(M.status_fla69s & FAKEDEATH)
+		OX = fake_oxy > 50 ? SPAN_WARNIN69("Severe oxy69en deprivation detected") : "Subject bloodstream oxy69en level normal"
+	dat += "69OX69 | 69TX69 | 69BU69 | 69BR69"
 	if(iscarbon(M))
-		var/mob/living/carbon/C = M
-		if(C.reagents.total_volume)
+		var/mob/livin69/carbon/C =69
+		if(C.rea69ents.total_volume)
 			var/unknown = 0
-			var/reagentdata[0]
-			for(var/A in C.reagents.reagent_list)
-				var/datum/reagent/R = A
+			var/rea69entdata69069
+			for(var/A in C.rea69ents.rea69ent_list)
+				var/datum/rea69ent/R = A
 				if(R.scannable)
-					reagentdata["[R.id]"] = span("highlight", "    [round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name]")
+					rea69entdata69"69R.id69"69 = span("hi69hli69ht", "    69round(C.rea69ents.69et_rea69ent_amount(R.id), 1)69u 69R.name69")
 				else
 					unknown++
-			if(reagentdata.len)
-				dat += span("highlight", "Beneficial reagents detected in subject's blood:")
-				for(var/d in reagentdata)
-					dat += reagentdata[d]
+			if(rea69entdata.len)
+				dat += span("hi69hli69ht", "Beneficial rea69ents detected in subject's blood:")
+				for(var/d in rea69entdata)
+					dat += rea69entdata69d69
 			if(unknown)
-				dat += SPAN_WARNING("Warning: Unknown substance[(unknown>1)?"s":""] detected in subject's blood.")
-		if(C.ingested && C.ingested.total_volume)
+				dat += SPAN_WARNIN69("Warnin69: Unknown substance69(unknown>1)?"s":""69 detected in subject's blood.")
+		if(C.in69ested && C.in69ested.total_volume)
 			var/unknown = 0
-			for(var/datum/reagent/R in C.ingested.reagent_list)
+			for(var/datum/rea69ent/R in C.in69ested.rea69ent_list)
 				if(R.scannable)
-					dat += span("highlight", "[R.name] found in subject's stomach.")
+					dat += span("hi69hli69ht", "69R.name69 found in subject's stomach.")
 				else
 					++unknown
 			if(unknown)
-				dat += SPAN_WARNING("Non-medical reagent[(unknown > 1)?"s":""] found in subject's stomach.")
+				dat += SPAN_WARNIN69("Non-medical rea69ent69(unknown > 1)?"s":""69 found in subject's stomach.")
 		if(C.virus2.len)
 			for (var/ID in C.virus2)
-				if (ID in virusDB)
-					var/datum/data/record/V = virusDB[ID]
-					dat += SPAN_WARNING("Warning: Pathogen [V.fields["name"]] detected in subject's blood. Known antigen : [V.fields["antigen"]]")
-	if (M.getCloneLoss())
-		dat += SPAN_WARNING("Subject appears to have been imperfectly cloned.")
+				if (ID in69irusDB)
+					var/datum/data/record/V =69irusDB69ID69
+					dat += SPAN_WARNIN69("Warnin69: Patho69en 69V.fields69"name"6969 detected in subject's blood. Known anti69en : 69V.fields69"anti69en"6969")
+	if (M.69etCloneLoss())
+		dat += SPAN_WARNIN69("Subject appears to have been imperfectly cloned.")
 	if (M.has_brain_worms())
-		dat += SPAN_WARNING("Subject suffering from aberrant brain activity. Recommend further scanning.")
-	else if (M.getBrainLoss() >= 60 || !M.has_brain())
-		dat += SPAN_WARNING("Subject is brain dead.")
-	else if (M.getBrainLoss() >= 25)
-		dat += SPAN_WARNING("Severe brain damage detected. Subject likely to have a traumatic brain injury.")
-	else if (M.getBrainLoss() >= 10)
-		dat += SPAN_WARNING("Significant brain damage detected. Subject may have had a concussion.")
+		dat += SPAN_WARNIN69("Subject sufferin69 from aberrant brain activity. Recommend further scannin69.")
+	else if (M.69etBrainLoss() >= 60 || !M.has_brain())
+		dat += SPAN_WARNIN69("Subject is brain dead.")
+	else if (M.69etBrainLoss() >= 25)
+		dat += SPAN_WARNIN69("Severe brain dama69e detected. Subject likely to have a traumatic brain injury.")
+	else if (M.69etBrainLoss() >= 10)
+		dat += SPAN_WARNIN69("Si69nificant brain dama69e detected. Subject69ay have had a concussion.")
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/livin69/carbon/human/H =69
 		var/foundUnlocatedFracture = FALSE
-		for(var/name in H.organs_by_name)
-			var/obj/item/organ/external/E = H.organs_by_name[name]
+		for(var/name in H.or69ans_by_name)
+			var/obj/item/or69an/external/E = H.or69ans_by_name69name69
 			if(!E)
 				continue
-			if(E.status & ORGAN_BROKEN)
-				if(!(E.status & ORGAN_SPLINTED))
-					if(E.organ_tag in list(BP_R_ARM, BP_L_ARM, BP_R_LEG, BP_L_LEG, BP_GROIN, BP_HEAD, BP_CHEST))
-						dat += SPAN_WARNING("Unsecured fracture in subject [E.get_bone()]. Splinting recommended for transport.")
+			if(E.status & OR69AN_BROKEN)
+				if(!(E.status & OR69AN_SPLINTED))
+					if(E.or69an_ta69 in list(BP_R_ARM, BP_L_ARM, BP_R_LE69, BP_L_LE69, BP_69ROIN, BP_HEAD, BP_CHEST))
+						dat += SPAN_WARNIN69("Unsecured fracture in subject 69E.69et_bone()69. Splintin69 recommended for transport.")
 					else
 						foundUnlocatedFracture = TRUE
 			if(E.has_infected_wound())
-				dat += SPAN_WARNING("Infected wound detected in subject [E]. Disinfection recommended.")
+				dat += SPAN_WARNIN69("Infected wound detected in subject 69E69. Disinfection recommended.")
 
 		if(foundUnlocatedFracture)
-			dat += SPAN_WARNING("Bone fractures detected. Advanced scanner required for location.")
+			dat += SPAN_WARNIN69("Bone fractures detected. Advanced scanner re69uired for location.")
 
-		for(var/obj/item/organ/external/e in H.organs)
+		for(var/obj/item/or69an/external/e in H.or69ans)
 			if(!e)
 				continue
 			for(var/datum/wound/W in e.wounds) if(W.internal)
-				dat += text(SPAN_WARNING("Internal bleeding detected. Advanced scanner required for location."))
+				dat += text(SPAN_WARNIN69("Internal bleedin69 detected. Advanced scanner re69uired for location."))
 				break
 		if(H.vessel)
-			var/blood_volume = H.vessel.get_reagent_amount("blood")
+			var/blood_volume = H.vessel.69et_rea69ent_amount("blood")
 			var/blood_percent =  round((blood_volume / H.species.blood_volume)*100)
 			var/blood_type = H.dna.b_type
-			if((blood_percent <= H.total_blood_req + BLOOD_VOLUME_SAFE_MODIFIER) && (blood_percent > H.total_blood_req + BLOOD_VOLUME_BAD_MODIFIER))
-				dat += SPAN_DANGER("Warning: Blood Level LOW: [blood_percent]% [blood_volume]cl.</span> <span class='highlight'>Type: [blood_type]")
-			else if(blood_percent <= H.total_blood_req + BLOOD_VOLUME_BAD_MODIFIER)
-				dat += SPAN_DANGER("<i>Warning: Blood Level CRITICAL: [blood_percent]% [blood_volume]cl.</i></span> <span class='highlight'>Type: [blood_type]")
+			if((blood_percent <= H.total_blood_re69 + BLOOD_VOLUME_SAFE_MODIFIER) && (blood_percent > H.total_blood_re69 + BLOOD_VOLUME_BAD_MODIFIER))
+				dat += SPAN_DAN69ER("Warnin69: Blood Level LOW: 69blood_percent69% 69blood_volume69cl.</span> <span class='hi69hli69ht'>Type: 69blood_type69")
+			else if(blood_percent <= H.total_blood_re69 + BLOOD_VOLUME_BAD_MODIFIER)
+				dat += SPAN_DAN69ER("<i>Warnin69: Blood Level CRITICAL: 69blood_percent69% 69blood_volume69cl.</i></span> <span class='hi69hli69ht'>Type: 69blood_type69")
 			else
-				dat += span("highlight", "Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]")
-		dat += "<span class='highlight'>Subject's pulse: <font color='[H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "#0080ff"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>"
+				dat += span("hi69hli69ht", "Blood Level Normal: 69blood_percent69% 69blood_volume69cl. Type: 69blood_type69")
+		dat += "<span class='hi69hli69ht'>Subject's pulse: <font color='69H.pulse() == PULSE_THREADY || H.pulse() == PULSE_NONE ? "red" : "#0080ff"69'>69H.69et_pulse(69ETPULSE_TOOL)69 bpm.</font></span>"
 	. = jointext(dat, "<br>")

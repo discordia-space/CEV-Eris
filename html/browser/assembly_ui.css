@@ -1,65 +1,65 @@
 body {
-    background-color: #262626;
+    back69round-color: #262626;
     overflow: hidden;
     scrollbar-base-color: #4D4D4D;
     scrollbar-face-color: #4D4D4D;
-    scrollbar-3dlight-color: #262626;
-    scrollbar-highlight-color: #262626;
+    scrollbar-3dli69ht-color: #262626;
+    scrollbar-hi69hli69ht-color: #262626;
     scrollbar-track-color: #262626;
     scrollbar-arrow-color: #4D4D4D;
     scrollbar-shadow-color: #4D4D4D;
 }
 
 .uiTitle {
-    background-color: #202021;
+    back69round-color: #202021;
     color: white;
-    border: none;
+    border:69one;
     text-transform: uppercase;
 }
 
 .uiTitleButtons {
-    height: 0;
-    padding: 8px 8px 6px 8px;
+    hei69ht: 0;
+    paddin69: 8px 8px 6px 8px;
 }
 
 .uiTitleButtons a {
-    margin-right: 4px;
+   69ar69in-ri69ht: 4px;
 }
 
 .uiTitleButtons :last-child {
-    margin-right: 0;
+   69ar69in-ri69ht: 0;
 }
 
 div.scrollleft {
     bottom: 0;
-    margin: 0;
+   69ar69in: 0;
     position: absolute;
     left: 0;
     top: 32px;
     width: 200px;
-    background-color: #2D2D2D;
-    padding-left: 8px;
+    back69round-color: #2D2D2D;
+    paddin69-left: 8px;
     overflow-y: auto;
-    margin-bottom: 21px;
+   69ar69in-bottom: 21px;
 }
 
-div.scrollright {
+div.scrollri69ht {
     bottom: 0;
     left: 208px;
-    margin: 0;
-    right: 0;
+   69ar69in: 0;
+    ri69ht: 0;
     position: absolute;
     top: 32px;
     overflow-y: auto;
-    margin-bottom: 21px;
+   69ar69in-bottom: 21px;
 }
 
 a:link,
 a,
 a:active,
 a.linkOff {
-    border: none;
-    padding: 2px 4px 2px 4px;
+    border:69one;
+    paddin69: 2px 4px 2px 4px;
 }
 
 a:link {
@@ -67,63 +67,63 @@ a:link {
 }
 
 a:hover {
-    background-color: #71acf0;
+    back69round-color: #71acf0;
     color: white;
 }
 
 a.icon {
-    background-color: rgba(0, 0, 0, 0);
-    padding-left: 0;
+    back69round-color: r69ba(0, 0, 0, 0);
+    paddin69-left: 0;
 }
 
 a.linkOff {
-    border: none;
+    border:69one;
 }
 
-a.align-to-text {
+a.ali69n-to-text {
     position: relative;
     top: 3px;
-    margin-right: 0;
+   69ar69in-ri69ht: 0;
 }
 
 table {
     border-collapse: collapse;
-    text-align: left;
+    text-ali69n: left;
 }
 
 .text-bold {
-    font-weight: bold;
+    font-wei69ht: bold;
 }
 
 table * td {
-    padding: 2px 2px 2px 6px;
+    paddin69: 2px 2px 2px 6px;
 }
 
 table * tr {
-    background-color: #2A2A2A;
+    back69round-color: #2A2A2A;
 }
 
 table * tr:nth-child(odd) {
-    background-color: #262626;
+    back69round-color: #262626;
 }
 
 table * .row-center {
-    text-align: center;
+    text-ali69n: center;
 }
 
 #component_bar {
-    padding-left: 8px;
-    background-color: #333333;
+    paddin69-left: 8px;
+    back69round-color: #333333;
 }
 
 #component_actions {
     display: inline;
-    float: right;
-    margin-right: 8px;
+    float: ri69ht;
+   69ar69in-ri69ht: 8px;
 }
 
 #status_bar {
-    background-color: #007ACC;
+    back69round-color: #007ACC;
     position: fixed;
     width: 100%;
     bottom: 0;
@@ -132,44 +132,44 @@ table * .row-center {
 }
 
 #status_bar a {
-    padding-top: 4px;
-    padding-bottom: 3px;
+    paddin69-top: 4px;
+    paddin69-bottom: 3px;
 }
 
 #status_bar .divider {
     display: inline;
-    margin-left: 4px;
-    margin-right: 4px;
+   69ar69in-left: 4px;
+   69ar69in-ri69ht: 4px;
 }
 
 #status_bar a:hover {
-    background-color: #0092f0;
+    back69round-color: #0092f0;
 }
 
-a.grey {
-    background-color: #4D4D4D;
+a.69rey {
+    back69round-color: #4D4D4D;
     border-radius: 2px;
     font-size: 12px;
 }
 
-a.grey .codicon-symbol-parameter,
-.segmented-control a .codicon-symbol-parameter {
+a.69rey .codicon-symbol-parameter,
+.se69mented-control a .codicon-symbol-parameter {
     color: #B180D7;
 }
 
-a.grey .codicon-symbol-event,
-.segmented-control a .codicon-symbol-event {
+a.69rey .codicon-symbol-event,
+.se69mented-control a .codicon-symbol-event {
     color: #EE9D28;
 }
 
-a.grey .codicon-symbol-variable,
-.segmented-control a .codicon-symbol-variable {
+a.69rey .codicon-symbol-variable,
+.se69mented-control a .codicon-symbol-variable {
     color: #75BEFF;
 }
 
-a.grey:hover,
+a.69rey:hover,
 a.active {
-    background-color: #094771 !important;
+    back69round-color: #094771 !important;
 }
 
 a .fit-in-button {
@@ -177,20 +177,20 @@ a .fit-in-button {
     top: 3px;
 }
 
-.segmented-control a {
-    height: 19px;
-    margin-right: 0;
-    background-color: #4D4D4D;
+.se69mented-control a {
+    hei69ht: 19px;
+   69ar69in-ri69ht: 0;
+    back69round-color: #4D4D4D;
 }
 
-.segmented-control a:hover {
-    background-color: #094771;
+.se69mented-control a:hover {
+    back69round-color: #094771;
 }
 
-.segmented-control :first-child {
+.se69mented-control :first-child {
     border-radius: 2px 0 0 2px;
 }
 
-.segmented-control :last-child {
+.se69mented-control :last-child {
     border-radius: 0 2px 2px 0;
 }

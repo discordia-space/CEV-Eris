@@ -1,5 +1,5 @@
-//a controller for a docking port with multiple independent airlocks
-//this is the master controller, that things will try to dock with.
+//a controller for a docking port with69ultiple independent airlocks
+//this is the69aster controller, that things will try to dock with.
 /obj/machinery/embedded_controller/radio/docking_port_multi
 	name = "docking port controller"
 
@@ -21,16 +21,16 @@
 
 	if (names.len == tags.len)
 		for (var/i = 1; i <= tags.len; i++)
-			child_names[tags[i]] = names[i]
+			child_names69tags69i6969 = names69i69
 
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/docking_port_multi/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
-	var/list/airlocks[child_names.len]
+	var/list/airlocks69child_names.len69
 	var/i = 1
 	for (var/child_tag in child_names)
-		airlocks[i++] = list("name"=child_names[child_tag], "override_enabled"=(docking_program.children_override[child_tag] == "enabled"))
+		airlocks69i++69 = list("name"=child_names69child_tag69, "override_enabled"=(docking_program.children_override69child_tag69 == "enabled"))
 
 	data = list(
 		"docking_status" = docking_program.get_docking_status(),
@@ -53,7 +53,7 @@
 //a docking port based on an airlock
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi
 	name = "docking port controller"
-	var/master_tag	//for mapping
+	var/master_tag	//for69apping
 	var/datum/computer/file/embedded_program/airlock/multi_docking/airlock_program
 	tag_secure = 1
 
@@ -62,14 +62,14 @@
 	airlock_program = new/datum/computer/file/embedded_program/airlock/multi_docking(src)
 	program = airlock_program
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
 	data = list(
-		"chamber_pressure" = round(airlock_program.memory["chamber_sensor_pressure"]),
-		"exterior_status" = airlock_program.memory["exterior_status"],
-		"interior_status" = airlock_program.memory["interior_status"],
-		"processing" = airlock_program.memory["processing"],
+		"chamber_pressure" = round(airlock_program.memory69"chamber_sensor_pressure"69),
+		"exterior_status" = airlock_program.memory69"exterior_status"69,
+		"interior_status" = airlock_program.memory69"interior_status"69,
+		"processing" = airlock_program.memory69"processing"69,
 		"docking_status" = airlock_program.master_status,
 		"airlock_disabled" = (airlock_program.docking_enabled && !airlock_program.override_enabled),
 		"override_enabled" = airlock_program.override_enabled,
@@ -91,55 +91,55 @@
 	src.add_fingerprint(usr)
 
 	var/clean = FALSE
-	switch(href_list["command"])
+	switch(href_list69"command"69)
 		if("cycle_ext", "cycle_int", "force_ext", "force_int", "abort", "toggle_override")
 			clean = TRUE
 
 	if(clean)
-		program.receive_user_command(href_list["command"])
+		program.receive_user_command(href_list69"command"69)
 
 	return 1
 
 
 
-/*** DEBUG VERBS ***
+/*** DEBUG69ERBS ***
 
 /datum/computer/file/embedded_program/docking/multi/proc/print_state()
-	to_chat(world, "id_tag: [id_tag]")
-	to_chat(world, "dock_state: [dock_state]")
-	to_chat(world, "control_mode: [control_mode]")
-	to_chat(world, "tag_target: [tag_target]")
-	to_chat(world, "response_sent: [response_sent]")
+	to_chat(world, "id_tag: 69id_tag69")
+	to_chat(world, "dock_state: 69dock_state69")
+	to_chat(world, "control_mode: 69control_mode69")
+	to_chat(world, "tag_target: 69tag_target69")
+	to_chat(world, "response_sent: 69response_sent69")
 
 /datum/computer/file/embedded_program/docking/multi/post_signal(datum/signal/signal, comm_line)
-	to_chat(world, "Program [id_tag] sent a message!")
+	to_chat(world, "Program 69id_tag69 sent a69essage!")
 	print_state()
-	to_chat(world, "[id_tag] sent command \"[signal.data["command"]]\" to \"[signal.data["recipient"]]\"")
+	to_chat(world, "69id_tag69 sent command \"69signal.data69"command"6969\" to \"69signal.data69"recipient"6969\"")
 	..(signal)
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/verb/view_state()
 	set category = "Debug"
-	set src in view(1)
+	set src in69iew(1)
 	src.program:print_state()
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/verb/spoof_signal(var/command as text, var/sender as text)
+/obj/machinery/embedded_controller/radio/docking_port_multi/verb/spoof_signal(var/command as text,69ar/sender as text)
 	set category = "Debug"
-	set src in view(1)
+	set src in69iew(1)
 	var/datum/signal/signal = new
-	signal.data["tag"] = sender
-	signal.data["command"] = command
-	signal.data["recipient"] = id_tag
+	signal.data69"tag"69 = sender
+	signal.data69"command"69 = command
+	signal.data69"recipient"69 = id_tag
 
 	src.program:receive_signal(signal)
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/verb/debug_init_dock(var/target as text)
 	set category = "Debug"
-	set src in view(1)
+	set src in69iew(1)
 	src.program:initiate_docking(target)
 
 /obj/machinery/embedded_controller/radio/docking_port_multi/verb/debug_init_undock()
 	set category = "Debug"
-	set src in view(1)
+	set src in69iew(1)
 	src.program:initiate_undocking()
 
 */

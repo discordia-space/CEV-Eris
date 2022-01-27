@@ -21,7 +21,7 @@
 	)
 
 /obj/item/clothing/suit/artist
-	name = "Complicated Vest"
+	name = "Complicated69est"
 	desc = "The tubes don't even do anything."
 	icon_state = "artist"
 	item_state = "artist_armor"
@@ -57,8 +57,8 @@
 
 //Quartermaster
 /obj/item/clothing/suit/storage/qm_coat
-	name = "guild merchant coat"
-	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is made from resistant and expensive materials."
+	name = "guild69erchant coat"
+	desc = "An ideal choice for a smuggler. This coat seems have good impact resistance, and is69ade from resistant and expensive69aterials."
 	icon_state = "qm_coat"
 	item_state = "qm_coat"
 	blood_overlay_type = "coat"
@@ -91,7 +91,7 @@
 //Civillian
 /obj/item/clothing/suit/storage/toggle/club
 	name = "Manager's jacket"
-	desc = "A well tailored and rich jacket of the club manager"
+	desc = "A well tailored and rich jacket of the club69anager"
 	icon_state = "cm_coat"
 	item_state = "cm_coat"
 	icon_open = "cm_coat_open"
@@ -106,7 +106,7 @@
 //Captain
 /obj/item/clothing/suit/storage/captain
 	name = "captain's coat"
-	desc = "A very stylish black coat with fancy shoulder straps. Shows who the boss here."
+	desc = "A69ery stylish black coat with fancy shoulder straps. Shows who the boss here."
 	icon_state = "captain"
 	item_state = "captain"
 	blood_overlay_type = "coat"
@@ -151,7 +151,7 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	style_coverage = COVERS_TORSO|COVERS_UPPER_ARMS|COVERS_UPPER_LEGS
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_GOLD = 5)
+	matter = list(MATERIAL_BIOMATTER = 20,69ATERIAL_GOLD = 5)
 	armor = list(
 		melee = 30,
 		bullet = 20,
@@ -242,8 +242,8 @@
 
 //Engineering
 /obj/item/clothing/suit/storage/hazardvest
-	name = "hazard vest"
-	desc = "A high-visibility vest used in work zones."
+	name = "hazard69est"
+	desc = "A high-visibility69est used in work zones."
 	icon_state = "hazard"
 	item_state = "hazard"
 	blood_overlay_type = "armor"
@@ -282,7 +282,7 @@
 //Roboticist
 /obj/item/clothing/suit/storage/robotech_jacket
 	name = "robotech jacket"
-	desc = "Jacket for those who like to get dirty in a machine oil."
+	desc = "Jacket for those who like to get dirty in a69achine oil."
 	icon_state = "robotech_jacket"
 	item_state = "robotech_jacket"
 	blood_overlay_type = "coat"

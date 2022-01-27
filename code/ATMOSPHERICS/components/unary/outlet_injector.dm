@@ -1,5 +1,5 @@
-//Basically a one way passive valve. If the pressure inside is greater than the environment then gas will flow passively,
-//but it does not permit gas to flow back from the environment into the injector. Can be turned off to prevent any gas flow.
+//Basically a one way passive69alve. If the pressure inside is greater than the environment then gas will flow passively,
+//but it does69ot permit gas to flow back from the environment into the injector. Can be turned off to prevent any gas flow.
 //When it receives the "inject" signal, it will try to pump it's entire contents into the environment regardless of pressure, using power.
 
 /obj/machinery/atmospherics/unary/outlet_injector
@@ -7,9 +7,9 @@
 	icon_state = "map_injector"
 
 	name = "air injector"
-	desc = "Passively injects air into its surroundings. Has a valve attached to it that can control flow rate."
+	desc = "Passively injects air into its surroundings. Has a69alve attached to it that can control flow rate."
 
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 	idle_power_usage = 150		//internal circuitry, friction losses and stuff
 	power_rating = 15000	//15000 W ~ 20 HP
 
@@ -26,13 +26,13 @@
 
 /obj/machinery/atmospherics/unary/outlet_injector/New()
 	..()
-	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
+	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than69ent pumps, to differentiate injectors a bit69ore.
 
 /obj/machinery/atmospherics/unary/outlet_injector/update_icon()
 	if(!powered())
 		icon_state = "off"
 	else
-		icon_state = "[use_power ? "on" : "off"]"
+		icon_state = "69use_power ? "on" : "off"69"
 
 /obj/machinery/atmospherics/unary/outlet_injector/update_underlays()
 	if(..())
@@ -40,7 +40,7 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		add_underlay(T, node1, dir)
+		add_underlay(T,69ode1, dir)
 
 /obj/machinery/atmospherics/unary/outlet_injector/power_change()
 	var/old_stat = stat
@@ -74,7 +74,7 @@
 	return 1
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/inject()
-	if(injecting || (stat & NOPOWER))
+	if(injecting || (stat &69OPOWER))
 		return 0
 
 	var/datum/gas_mixture/environment = loc.return_air()
@@ -94,7 +94,7 @@
 
 /obj/machinery/atmospherics/unary/outlet_injector/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
+	frequency =69ew_frequency
 	if(frequency)
 		radio_connection = SSradio.add_object(src, frequency)
 
@@ -102,7 +102,7 @@
 	if(!radio_connection)
 		return 0
 
-	var/datum/signal/signal = new
+	var/datum/signal/signal =69ew
 	signal.transmission_method = 1 //radio signal
 	signal.source = src
 
@@ -110,7 +110,7 @@
 		"tag" = id,
 		"device" = "AO",
 		"power" = use_power,
-		"volume_rate" = volume_rate,
+		"volume_rate" =69olume_rate,
 		"sigtype" = "status"
 	 )
 
@@ -124,27 +124,27 @@
 	set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))
+	if(!signal.data69"tag"69 || (signal.data69"tag"69 != id) || (signal.data69"sigtype"69!="command"))
 		return 0
 
-	if(signal.data["power"])
-		use_power = text2num(signal.data["power"])
+	if(signal.data69"power"69)
+		use_power = text2num(signal.data69"power"69)
 
-	if(signal.data["power_toggle"])
+	if(signal.data69"power_toggle"69)
 		use_power = !use_power
 
-	if(signal.data["inject"])
+	if(signal.data69"inject"69)
 		spawn inject()
 		return
 
-	if(signal.data["set_volume_rate"])
-		var/number = text2num(signal.data["set_volume_rate"])
-		volume_rate = between(0, number, air_contents.volume)
+	if(signal.data69"set_volume_rate"69)
+		var/number = text2num(signal.data69"set_volume_rate"69)
+		volume_rate = between(0,69umber, air_contents.volume)
 
-	if(signal.data["status"])
+	if(signal.data69"status"69)
 		spawn(2)
 			broadcast_status()
-		return //do not update_icon
+		return //do69ot update_icon
 
 	spawn(2)
 		broadcast_status()

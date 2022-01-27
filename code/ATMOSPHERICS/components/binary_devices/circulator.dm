@@ -1,5 +1,5 @@
-//node1, air1, network1 correspond to input
-//node2, air2, network2 correspond to output
+//node1, air1,69etwork1 correspond to input
+//node2, air2,69etwork2 correspond to output
 
 /obj/machinery/atmospherics/binary/circulator
 	name = "circulator"
@@ -25,27 +25,27 @@
 
 /obj/machinery/atmospherics/binary/circulator/New()
 	..()
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + " Its outlet port is to the 69dir2text(dir)69."
 	air1.volume = 400
 
 /obj/machinery/atmospherics/binary/circulator/proc/return_transfer_air()
 	var/datum/gas_mixture/removed
 	recent_moles_transferred = 0
 
-	if(anchored && !(stat&BROKEN) && network1)
+	if(anchored && !(stat&BROKEN) &&69etwork1)
 		var/input_starting_pressure = air1.return_pressure()
 		var/output_starting_pressure = air2.return_pressure()
-		last_pressure_delta = max(input_starting_pressure - output_starting_pressure - 5, 0)
+		last_pressure_delta =69ax(input_starting_pressure - output_starting_pressure - 5, 0)
 
 		//only circulate air if there is a pressure difference (plus 5kPa kinetic, 10kPa static friction)
 		if(air1.temperature > 0 && last_pressure_delta > 5)
 
-			//Calculate necessary moles to transfer using PV = nRT
-			recent_moles_transferred = (last_pressure_delta*network1.volume/(air1.temperature * R_IDEAL_GAS_EQUATION))/3 //uses the volume of the whole network, not just itself
-			volume_capacity_used = min( (last_pressure_delta*network1.volume/3)/(input_starting_pressure*air1.volume) , 1) //how much of the gas in the input air volume is consumed
+			//Calculate69ecessary69oles to transfer using PV =69RT
+			recent_moles_transferred = (last_pressure_delta*network1.volume/(air1.temperature * R_IDEAL_GAS_EQUATION))/3 //uses the69olume of the whole69etwork,69ot just itself
+			volume_capacity_used =69in( (last_pressure_delta*network1.volume/3)/(input_starting_pressure*air1.volume) , 1) //how69uch of the gas in the input air69olume is consumed
 
 			//Calculate energy generated from kinetic turbine
-			stored_energy += 1/ADIABATIC_EXPONENT * min(last_pressure_delta * network1.volume , input_starting_pressure*air1.volume) * (1 - volume_ratio**ADIABATIC_EXPONENT) * kinetic_efficiency
+			stored_energy += 1/ADIABATIC_EXPONENT *69in(last_pressure_delta *69etwork1.volume , input_starting_pressure*air1.volume) * (1 -69olume_ratio**ADIABATIC_EXPONENT) * kinetic_efficiency
 
 			//Actually transfer the gas
 			removed = air1.remove(recent_moles_transferred)
@@ -53,7 +53,7 @@
 				last_heat_capacity = removed.heat_capacity()
 				last_temperature = removed.temperature
 
-				//Update the gas networks.
+				//Update the gas69etworks.
 				network1.update = 1
 
 				last_worldtime_transfer = world.time
@@ -88,18 +88,18 @@
 	else
 		overlays += "circ-off"
 
-/obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I, mob/user)
+/obj/machinery/atmospherics/binary/circulator/attackby(obj/item/I,69ob/user)
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 			anchored = !anchored
-			user.visible_message("[user.name] [anchored ? "secures" : "unsecures"] the bolts holding [src.name] to the floor.", \
-						"You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.", \
+			user.visible_message("69user.name69 69anchored ? "secures" : "unsecures"69 the bolts holding 69src.name69 to the floor.", \
+						"You 69anchored ? "secure" : "unsecure"69 the bolts holding 69src69 to the floor.", \
 						"You hear a ratchet")
 
 		if(anchored)
-			temperature_overlay = null
+			temperature_overlay =69ull
 			if(dir & (NORTH|SOUTH))
-				initialize_directions = NORTH|SOUTH
+				initialize_directions =69ORTH|SOUTH
 			else if(dir & (EAST|WEST))
 				initialize_directions = EAST|WEST
 
@@ -119,8 +119,8 @@
 				node2.disconnect(src)
 				qdel(network2)
 
-			node1 = null
-			node2 = null
+			node1 =69ull
+			node2 =69ull
 		update_icon()
 
 	else
@@ -128,26 +128,26 @@
 
 /obj/machinery/atmospherics/binary/circulator/verb/rotate_clockwise()
 	set category = "Object"
-	set name = "Rotate Circulator (Clockwise)"
-	set src in view(1)
+	set69ame = "Rotate Circulator (Clockwise)"
+	set src in69iew(1)
 
 	if (usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, 90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + " Its outlet port is to the 69dir2text(dir)69."
 
 
 /obj/machinery/atmospherics/binary/circulator/verb/rotate_anticlockwise()
 	set category = "Object"
-	set name = "Rotate Circulator (Counterclockwise)"
-	set src in view(1)
+	set69ame = "Rotate Circulator (Counterclockwise)"
+	set src in69iew(1)
 
 	if (usr.stat || usr.restrained() || anchored)
 		return
 
 	src.set_dir(turn(src.dir, -90))
-	desc = initial(desc) + " Its outlet port is to the [dir2text(dir)]."
+	desc = initial(desc) + " Its outlet port is to the 69dir2text(dir)69."
 
 /obj/machinery/atmospherics/binary/circulator/anchored
 	icon_state = "circ-assembled"

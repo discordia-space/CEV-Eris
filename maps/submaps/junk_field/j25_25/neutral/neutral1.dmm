@@ -1,404 +1,404 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"aa" = 69
+/o6969/structure/lattice,
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"ab" = (
-/obj/structure/lattice,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/lattice,
 /turf/template_noop,
-/area/template_noop)
-"ac" = (
+/area/template_noop69
+"ac" = 69
 /turf/template_noop,
-/area/template_noop)
-"ad" = (
+/area/template_noop69
+"ad" = 69
 /turf/simulated/wall/r_wall,
-/area/template_noop)
-"ae" = (
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"af" = (
-/turf/simulated/floor/plating/airless,
-/area/template_noop)
-"ag" = (
-/obj/structure/girder,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"ah" = (
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"ai" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/area/template_noop69
+"ae" = 69
+/o6969/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"af" = 69
+/turf/simulated/floor/platin69/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/69irder,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"ah" = 69
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"ai" = 69
+/o6969/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"aj" = (
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"a69" = 69
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"ak" = (
-/obj/machinery/light/small,
-/obj/spawner/traps/low_chance,
+/area/template_noop69
+"a69" = 69
+/o6969/machinery/li69ht/small,
+/o6969/spawner/traps/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"al" = (
-/obj/machinery/light/small,
+/area/template_noop69
+"al" = 69
+/o6969/machinery/li69ht/small,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"am" = (
-/obj/spawner/scrap/sparse,
+/area/template_noop69
+"am" = 69
+/o6969/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"an" = (
-/obj/structure/closet/emcloset,
+/area/template_noop69
+"an" = 69
+/o6969/structure/closet/emcloset,
 /turf/simulated/floor/tiled/techmaint_perforated/airless,
-/area/template_noop)
-"ao" = (
-/obj/spawner/pack/machine,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"ap" = (
-/obj/machinery/door/airlock/maintenance_interior{
-	name = "Reserve Storage";
-	req_access = list(12)
+/area/template_noop69
+"ao" = 69
+/o6969/spawner/pac69/machine,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"ap" = 69
+/o6969/machinery/door/airloc69/maintenance_interior{
+	name = "Reserve Stora69e";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/techmaint_cargo/airless,
-/area/template_noop)
-"ar" = (
-/obj/spawner/junk/low_chance,
+/turf/simulated/floor/tiled/techmaint_car69o/airless,
+/area/template_noop69
+"ar" = 69
+/o6969/spawner/69un69/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"as" = (
-/obj/machinery/light{
+/area/template_noop69
+"as" = 69
+/o6969/machinery/li69ht{
 	dir = 4
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"au" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"au" = 69
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"av" = (
-/obj/machinery/light/small{
+/area/template_noop69
+"av" = 69
+/o6969/machinery/li69ht/small{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aw" = (
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
-"ax" = (
-/obj/spawner/scrap/sparse/low_chance,
+/area/template_noop69
+"aw" = 69
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
+"ax" = 69
+/o6969/spawner/scrap/sparse/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"ay" = (
-/obj/structure/table/rack,
-/obj/spawner/ammo/lowcost/low_chance,
-/obj/spawner/ammo/lowcost/low_chance,
-/obj/spawner/ammo,
+/area/template_noop69
+"ay" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/ammo/lowcost/low_chance,
+/o6969/spawner/ammo/lowcost/low_chance,
+/o6969/spawner/ammo,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"az" = (
+/area/template_noop69
+"az" = 69
 /turf/simulated/wall,
-/area/template_noop)
-"aA" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
+/area/template_noop69
+"aA" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aB" = (
-/obj/spawner/traps/low_chance,
+/area/template_noop69
+"a69" = 69
+/o6969/spawner/traps/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aC" = (
-/obj/structure/table/rack,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom/low_chance,
+/area/template_noop69
+"aC" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/low69eyrandom/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aD" = (
-/obj/structure/table/rack,
-/obj/spawner/boxes,
-/obj/spawner/boxes,
-/obj/spawner/boxes/low_chance,
+/area/template_noop69
+"aD" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/69oxes,
+/o6969/spawner/69oxes,
+/o6969/spawner/69oxes/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aE" = (
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/boxes/low_chance,
-/obj/spawner/boxes/low_chance,
-/obj/spawner/boxes/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated/airless,
-/area/template_noop)
-"aF" = (
-/obj/structure/catwalk,
+/area/template_noop69
+"aE" = 69
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/69oxes/low_chance,
+/o6969/spawner/69oxes/low_chance,
+/o6969/spawner/69oxes/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_perforated/airless,
+/area/template_noop69
+"aF" = 69
+/o6969/structure/catwal69,
 /turf/template_noop,
-/area/template_noop)
-"aG" = (
-/obj/spawner/pack/tech_loot,
-/obj/spawner/junkfood/rotten/low_chance,
+/area/template_noop69
+"a69" = 69
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/69un69food/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aH" = (
-/obj/spawner/closet/tech/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aK" = (
-/obj/machinery/light/small{
+/area/template_noop69
+"aH" = 69
+/o6969/spawner/closet/tech/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/machinery/li69ht/small{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"aL" = (
-/obj/machinery/door/airlock/maintenance_common{
-	name = "Service Maintenance";
-	req_access = list(12)
+/area/template_noop69
+"aL" = 69
+/o6969/machinery/door/airloc69/maintenance_common{
+	name = "Service69aintenance";
+	re69_access = list691269
 	},
-/turf/simulated/floor/tiled/steel/techfloor_grid/airless,
-/area/template_noop)
-"aM" = (
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aN" = (
-/obj/structure/railing{
+/turf/simulated/floor/tiled/steel/techfloor_69rid/airless,
+/area/template_noop69
+"aM" = 69
+/o6969/spawner/traps/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aN" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aQ" = (
-/obj/structure/railing{
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"a69" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/obj/structure/railing{
+/o6969/structure/railin69{
 	dir = 4;
-	tag = "icon-railing0 (EAST)"
+	ta69 = "icon-railin690 69EAST69"
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aS" = (
-/obj/spawner/traps/wire_splicing/low_chance,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aT" = (
-/obj/spawner/junk/low_chance,
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aW" = (
-/obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aX" = (
-/obj/structure/railing{
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aS" = 69
+/o6969/spawner/traps/wire_splicin69/low_chance,
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aT" = 69
+/o6969/spawner/69un69/low_chance,
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aW" = 69
+/o6969/spawner/traps/wire_splicin69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aX" = 69
+/o6969/structure/railin69{
 	dir = 4;
-	tag = "icon-railing0 (EAST)"
+	ta69 = "icon-railin690 69EAST69"
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"aY" = (
-/obj/structure/sign/securearea{
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"aY" = 69
+/o6969/structure/si69n/securearea{
 	name = "EXPLOSION HAZARD";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techmaint_panels/airless,
-/area/template_noop)
-"aZ" = (
-/obj/spawner/scrap/dense,
+/area/template_noop69
+"aZ" = 69
+/o6969/spawner/scrap/dense,
 /turf/simulated/floor/tiled/techmaint_panels/airless,
-/area/template_noop)
-"ba" = (
-/obj/spawner/scrap/dense/low_chance,
+/area/template_noop69
+"69a" = 69
+/o6969/spawner/scrap/dense/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels/airless,
-/area/template_noop)
-"bb" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/obj/structure/sign/securearea{
+/area/template_noop69
+"6969" = 69
+/o6969/structure/rea69ent_dispensers/fueltan69/hu69e,
+/o6969/structure/si69n/securearea{
 	name = "EXPLOSION HAZARD";
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techmaint_panels/airless,
-/area/template_noop)
-"bc" = (
-/obj/spawner/junk/low_chance,
+/area/template_noop69
+"69c" = 69
+/o6969/spawner/69un69/low_chance,
 /turf/template_noop,
-/area/template_noop)
-"bd" = (
-/obj/spawner/junkfood/rotten/low_chance,
+/area/template_noop69
+"69d" = 69
+/o6969/spawner/69un69food/rotten/low_chance,
 /turf/simulated/floor/tiled/techmaint_panels/airless,
-/area/template_noop)
-"be" = (
-/obj/structure/catwalk,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bf" = (
-/obj/structure/railing{
+/area/template_noop69
+"69e" = 69
+/o6969/structure/catwal69,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69f" = 69
+/o6969/structure/railin69{
 	dir = 8;
-	tag = "icon-railing0 (WEST)"
+	ta69 = "icon-railin690 69WEST69"
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bg" = (
-/obj/structure/table/rack,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform/airless,
-/area/template_noop)
-"bh" = (
-/obj/spawner/scrap/sparse,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform/airless,
+/area/template_noop69
+"69h" = 69
+/o6969/spawner/scrap/sparse,
 /turf/simulated/floor/tiled/steel/airless,
-/area/template_noop)
-"bi" = (
-/mob/living/simple_animal/hostile/carp,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bj" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
+/area/template_noop69
+"69i" = 69
+/mo69/livin69/simple_animal/hostile/carp,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/machinery/door/firedoor,
+/o6969/machinery/door/airloc69{
 	name = "Unisex Restrooms"
 	},
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
-"bl" = (
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bm" = (
-/obj/structure/catwalk,
-/obj/spawner/traps/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bn" = (
-/obj/structure/table/rack,
-/obj/spawner/material/building,
-/obj/spawner/material/building,
-/obj/spawner/material/building/low_chance,
-/obj/spawner/material/building/low_chance,
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
+"69l" = 69
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69m" = 69
+/o6969/structure/catwal69,
+/o6969/spawner/traps/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69n" = 69
+/o6969/structure/ta69le/rac69,
+/o6969/spawner/material/69uildin69,
+/o6969/spawner/material/69uildin69,
+/o6969/spawner/material/69uildin69/low_chance,
+/o6969/spawner/material/69uildin69/low_chance,
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bo" = (
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69o" = 69
 /turf/simulated/floor/tiled/steel/airless,
-/area/template_noop)
-"bq" = (
-/obj/machinery/light/small{
+/area/template_noop69
+"6969" = 69
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bs" = (
-/obj/structure/catwalk,
-/obj/machinery/light/small{
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69s" = 69
+/o6969/structure/catwal69,
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bt" = (
-/obj/structure/railing{
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69t" = 69
+/o6969/structure/railin69{
 	dir = 8;
-	tag = "icon-railing0 (WEST)"
+	ta69 = "icon-railin690 69WEST69"
 	},
-/obj/spawner/traps/wire_splicing/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bu" = (
-/obj/structure/closet/oldstyle,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/obj/spawner/pack/tech_loot/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bv" = (
-/obj/structure/toilet{
+/o6969/spawner/traps/wire_splicin69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69u" = 69
+/o6969/structure/closet/oldstyle,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/o6969/spawner/pac69/tech_loot/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69v" = 69
+/o6969/structure/toilet{
 	dir = 4
 	},
-/obj/machinery/light{
+/o6969/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/junk/low_chance,
+/o6969/spawner/69un69/low_chance,
 /turf/simulated/floor/tiled/steel/airless,
-/area/template_noop)
-"bC" = (
-/obj/structure/railing{
+/area/template_noop69
+"69C" = 69
+/o6969/structure/railin69{
 	dir = 8;
-	tag = "icon-railing0 (WEST)"
+	ta69 = "icon-railin690 69WEST69"
 	},
-/obj/spawner/junkfood/rotten/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bD" = (
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bE" = (
-/mob/living/simple_animal/hostile/carp,
+/o6969/spawner/69un69food/rotten/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69D" = 69
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/low69eyrandom,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69E" = 69
+/mo69/livin69/simple_animal/hostile/carp,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"bG" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bI" = (
-/obj/machinery/camera/network/second_section{
+/area/template_noop69
+"6969" = 69
+/o6969/effect/decal/cleana69le/69lood/oil,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69I" = 69
+/o6969/machinery/camera/networ69/second_section{
 	dir = 1
 	},
-/obj/spawner/junk/low_chance,
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bJ" = (
-/obj/structure/railing{
+/o6969/spawner/69un69/low_chance,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"6969" = 69
+/o6969/structure/railin69{
 	dir = 1;
-	tag = "icon-railing0 (NORTH)"
+	ta69 = "icon-railin690 69NORTH69"
 	},
-/turf/simulated/floor/plating/under/airless,
-/area/template_noop)
-"bL" = (
-/mob/living/simple_animal/hostile/bear,
+/turf/simulated/floor/platin69/under/airless,
+/area/template_noop69
+"69L" = 69
+/mo69/livin69/simple_animal/hostile/69ear,
 /turf/simulated/floor/tiled/techmaint/airless,
-/area/template_noop)
-"bN" = (
-/obj/machinery/light{
+/area/template_noop69
+"69N" = 69
+/o6969/machinery/li69ht{
 	dir = 1
 	},
-/obj/spawner/scrap/dense,
-/mob/living/simple_animal/hostile/bear,
+/o6969/spawner/scrap/dense,
+/mo69/livin69/simple_animal/hostile/69ear,
 /turf/simulated/floor/tiled/steel/airless,
-/area/template_noop)
-"mW" = (
-/obj/spawner/scrap/dense,
-/turf/simulated/floor/tiled/steel/cargo/airless,
-/area/template_noop)
+/area/template_noop69
+"mW" = 69
+/o6969/spawner/scrap/dense,
+/turf/simulated/floor/tiled/steel/car69o/airless,
+/area/template_noop69
 
-(1,1,1) = {"
-ag
+691,1,169 = {"
+a69
 ah
-ag
+a69
 ac
 ac
 ac
@@ -411,21 +411,21 @@ ac
 ac
 ac
 ac
-ab
-ab
+a69
+a69
 aF
 aF
 aF
 aF
-ab
+a69
 ac
 ac
 ac
 "}
-(2,1,1) = {"
-ag
+692,1,169 = {"
+a69
 mW
-ab
+a69
 ac
 ac
 ac
@@ -438,21 +438,21 @@ ac
 ac
 ac
 ac
-ab
-ag
-ag
-ab
-ag
+a69
+a69
+a69
+a69
+a69
 ad
 ad
 ad
 ad
-ab
+a69
 "}
-(3,1,1) = {"
+693,1,169 = {"
 ah
-aj
-ag
+a69
+a69
 ac
 ac
 ac
@@ -469,17 +469,17 @@ aF
 ad
 aY
 ah
-bl
-bq
+69l
+6969
 ar
-bG
-ag
+6969
+a69
 ac
 "}
-(4,1,1) = {"
-ab
+694,1,169 = {"
+a69
 ah
-ab
+a69
 ac
 ac
 ac
@@ -496,14 +496,14 @@ aF
 ad
 aZ
 ah
-ab
-bE
-aj
+a69
+69E
+a69
 ah
-ab
+a69
 ac
 "}
-(5,1,1) = {"
+695,1,169 = {"
 ac
 ac
 ac
@@ -515,59 +515,59 @@ ac
 ac
 ac
 ac
-ab
-ab
+a69
+a69
 ac
 aF
 aF
 ad
-ba
+69a
 ah
-ab
-aj
-aj
-bl
+a69
+a69
+a69
+69l
 ad
-ag
+a69
 "}
-(6,1,1) = {"
+696,1,169 = {"
 ac
 ac
 ac
 ac
 ac
-ab
-ab
-ab
+a69
+a69
+a69
 ac
 ac
-ab
-ab
+a69
+a69
 ad
-ab
+a69
 ac
 ac
 ad
-bb
-bd
+6969
+69d
 az
-aj
+a69
 ah
 ah
 ad
 ac
 "}
-(7,1,1) = {"
+697,1,169 = {"
 ac
 ac
 ac
 ac
-ab
-ab
+a69
+a69
 ac
-ab
-ab
-ab
+a69
+a69
+a69
 ah
 ah
 ad
@@ -576,48 +576,48 @@ ad
 ad
 ad
 ad
-ag
+a69
 ac
 ao
 ah
-bI
+69I
 ad
 ac
 "}
-(8,1,1) = {"
+698,1,169 = {"
 ac
 ac
 ac
 ac
-ab
-ab
+a69
+a69
 ac
 ac
-ab
+a69
 ah
 ah
 ah
 az
 am
-aj
-bL
+a69
+69L
 ad
 ac
 ac
 ac
-ag
+a69
 ap
 ad
 ad
-ab
+a69
 "}
-(9,1,1) = {"
+699,1,169 = {"
 ac
 ac
 ac
-ab
-ab
-ab
+a69
+a69
+a69
 ac
 ac
 ad
@@ -626,127 +626,127 @@ ah
 aw
 ad
 az
-aG
-aB
+a69
+a69
 ad
 ac
 ac
 ac
 ae
-bm
+69m
 ae
-ab
+a69
 ac
 "}
-(10,1,1) = {"
-ag
-ag
-ag
+6910,1,169 = {"
+a69
+a69
+a69
 ad
 ad
 ad
-ab
-ab
+a69
+a69
 ad
 an
-aj
-aj
+a69
+a69
 aA
 az
 az
 aL
 ad
-bc
+69c
 ac
 ac
 ad
-be
+69e
 ad
-ag
-ag
+a69
+a69
 "}
-(11,1,1) = {"
-ab
+6911,1,169 = {"
+a69
 ah
 ah
 ah
-bi
+69i
 ad
 ac
 ac
 ad
 ao
-aj
-bE
+a69
+69E
 aA
 az
 aH
 aM
-ag
-ag
-ab
+a69
+a69
+a69
 ad
 ad
-be
+69e
 ah
-ab
+a69
 ac
 "}
-(12,1,1) = {"
-ab
-ag
-ag
+6912,1,169 = {"
+a69
+a69
+a69
 ad
 ai
 ad
 ac
 ac
-ag
+a69
 ao
 ah
-aj
+a69
 ax
 az
-ab
-ab
-ab
-ab
-be
-bm
-bs
-be
-bJ
-ab
+a69
+a69
+a69
+a69
+69e
+69m
+69s
+69e
+6969
+a69
 ac
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 ac
-ab
-ab
+a69
+a69
 ad
 am
 ad
-ab
-ab
-ab
+a69
+a69
+a69
 ao
 as
-aj
+a69
 am
-ag
-ab
+a69
+a69
 ac
 ac
-ab
-bf
-bf
-bt
-bC
+a69
+69f
+69f
+69t
+69C
 ah
-ab
+a69
 ac
 "}
-(14,1,1) = {"
+6914,1,169 = {"
 ac
 aa
 ac
@@ -755,114 +755,114 @@ ah
 ae
 ac
 ac
-ag
-ag
+a69
+a69
 ad
 ai
-ag
-ag
-ab
+a69
+a69
+a69
 ac
 ac
-ag
-ag
+a69
+a69
 ad
 ad
 ad
-ag
-ab
+a69
+a69
 ac
 "}
-(15,1,1) = {"
+6915,1,169 = {"
 ac
-ab
-ab
+a69
+a69
 ae
 ah
-ab
+a69
 ac
 ac
 ac
 ac
 ad
-aj
-aB
+a69
+a69
 ai
-ab
-ab
-ab
-ag
+a69
+a69
+a69
+a69
 az
-bh
-bo
+69h
+69o
 aE
-bD
+69D
 ac
 ac
 "}
-(16,1,1) = {"
+6916,1,169 = {"
 ac
 ac
-ab
+a69
 af
 ah
 ae
 ac
 ac
-ag
+a69
 ad
 ad
 ar
 az
-ag
+a69
 ah
 aN
-bl
+69l
 ad
 ad
 ad
 ah
 ah
-ab
+a69
 ac
 ac
 "}
-(17,1,1) = {"
+6917,1,169 = {"
 ac
 ac
-ab
+a69
 ad
-ak
+a69
 ad
-ab
-ab
-ag
-ab
+a69
+a69
+a69
+a69
 ah
 ah
 aC
 az
-bE
+69E
 aN
 aS
 ad
-bg
-bn
-ab
-ab
-ab
+6969
+69n
+a69
+a69
+a69
 ac
 ac
 "}
-(18,1,1) = {"
+6918,1,169 = {"
 ac
 ac
 ac
 ae
-aj
+a69
 ae
 ac
-ab
+a69
 ad
 ap
 az
@@ -873,96 +873,96 @@ ar
 aN
 aT
 ad
-bg
+6969
 ah
 ah
-ab
+a69
 ac
 ac
 ac
 "}
-(19,1,1) = {"
+6919,1,169 = {"
 ac
 ac
 ac
 ae
-bE
+69E
 ae
 ac
 ad
 ad
-aj
+a69
 au
 ax
 ax
 az
-aj
+a69
 aN
-bl
+69l
 ad
-bg
-bo
+6969
+69o
 ah
-ab
+a69
 ac
 ac
 ac
 "}
-(20,1,1) = {"
+6920,1,169 = {"
 ac
 ac
 ac
 ae
-aj
+a69
 ae
 ac
 ad
 am
-aj
+a69
 ar
 ay
 aD
 az
-be
-bJ
-bl
+69e
+6969
+69l
 ad
-bh
-bh
-bu
-bu
-ab
-ab
+69h
+69h
+69u
+69u
+a69
+a69
 ac
 "}
-(21,1,1) = {"
+6921,1,169 = {"
 ac
 ac
-ab
+a69
 ad
 al
 ad
-ab
+a69
 ad
-aj
-bE
-aj
+a69
+69E
+a69
 ah
 ah
 az
-aK
-bJ
+a69
+6969
 ah
 ad
 ad
 ad
 ad
-ag
-ag
-ab
+a69
+a69
+a69
 ac
 "}
-(22,1,1) = {"
+6922,1,169 = {"
 ac
 ac
 ac
@@ -972,28 +972,28 @@ ae
 ac
 ad
 am
-aj
-aj
+a69
+a69
 ah
-ab
-ag
-aj
-bJ
+a69
+a69
+a69
+6969
 aW
 az
-bN
+69N
 az
-bv
-ag
+69v
+a69
 ah
-ab
+a69
 ac
 "}
-(23,1,1) = {"
-ag
+6923,1,169 = {"
+a69
 ac
 ac
-ab
+a69
 ah
 ae
 ac
@@ -1002,71 +1002,71 @@ ad
 ar
 av
 ah
-ab
-ag
-aj
-bJ
-bl
+a69
+a69
+a69
+6969
+69l
 az
-bj
+6969
 az
-bj
+6969
 az
-bj
+6969
 ac
 ac
 "}
-(24,1,1) = {"
+6924,1,169 = {"
 ah
 ah
-ab
-ab
-ab
-ag
+a69
+a69
+a69
+a69
 ac
 ac
 ad
 ap
 az
 az
-ab
-ab
+a69
+a69
 aa
-aQ
+a69
 aX
 az
 ah
 ah
 ah
 ah
-ab
+a69
 ac
 ac
 "}
-(25,1,1) = {"
-ag
+6925,1,169 = {"
+a69
 ad
 ae
 ac
-ab
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 ac
 ac
-ab
-ab
-ab
-ag
-ab
-ab
-ab
-ab
-ab
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
+a69
 ac
 ac
 "}

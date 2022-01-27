@@ -1,11 +1,11 @@
-// Various tools and handheld engineering devices.
+//69arious tools and handheld engineering devices.
 
 /datum/export/toolbox
 	cost = 4
 	unit_name = "toolbox"
 	export_types = list(/obj/item/storage/toolbox)
 
-// mechanical toolbox:	22cr
+//69echanical toolbox:	22cr
 // emergency toolbox:	17-20cr
 // electrical toolbox:	36cr
 // robust: priceless

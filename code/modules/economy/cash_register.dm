@@ -1,6 +1,6 @@
 /obj/machinery/cash_register
 	name = "cash register"
-	desc = "Swipe your ID card to make purchases electronically."
+	desc = "Swipe your ID card to69ake purchases electronically."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "register_idle"
 	flags = NOBLUDGEON
@@ -11,9 +11,9 @@
 	var/cash_locked = 1
 	var/cash_open = 0
 	var/machine_id = ""
-	var/transaction_amount = 0 // cumulatd amount of money to pay in a single purchase
+	var/transaction_amount = 0 // cumulatd amount of69oney to pay in a single purchase
 	var/transaction_purpose = null // text that gets used in ATM transaction logs
-	var/list/transaction_logs = list() // list of strings using html code to visualise data
+	var/list/transaction_logs = list() // list of strings using html code to69isualise data
 	var/list/item_list = list()  // entities and according
 	var/list/price_list = list() // prices for each purchase
 	var/manipulating = 0
@@ -25,10 +25,10 @@
 	var/account_to_connect = null
 
 
-// Claim machine ID
+// Claim69achine ID
 /obj/machinery/cash_register/New()
 	. = ..()
-	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
+	machine_id = "69station_name()69 RETAIL #69num_financial_terminals++69"
 	cash_stored = rand(10, 70)*10
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
 
@@ -37,14 +37,14 @@
 	..(user)
 	if(cash_open)
 		if(cash_stored)
-			to_chat(user, "It holds [cash_stored] Credit\s of money.")
+			to_chat(user, "It holds 69cash_stored69 Credit\s of69oney.")
 		else
 			to_chat(user, "It's completely empty.")
 
 
-/obj/machinery/cash_register/attack_hand(mob/user as mob)
-	// Don't be accessible from the wrong side of the machine
-	if(get_dir(src, user) & reverse_dir[src.dir]) return
+/obj/machinery/cash_register/attack_hand(mob/user as69ob)
+	// Don't be accessible from the wrong side of the69achine
+	if(get_dir(src, user) & reverse_dir69src.dir69) return
 
 	if(cash_open)
 		if(cash_stored)
@@ -62,41 +62,41 @@
 		open_cash_box()
 
 
-/obj/machinery/cash_register/interact(mob/user as mob)
+/obj/machinery/cash_register/interact(mob/user as69ob)
 	var/dat = "<h2>Cash Register<hr></h2>"
 	if (locked)
-		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Unlock</a><br>"
-		dat += "Linked account: <b>[linked_account ? linked_account.owner_name : "None"]</b><br>"
-		dat += "<b>[cash_locked? "Unlock" : "Lock"] Cash Box</b> | "
+		dat += "<a href='?src=\ref69src69;choice=toggle_lock'>Unlock</a><br>"
+		dat += "Linked account: <b>69linked_account ? linked_account.owner_name : "None"69</b><br>"
+		dat += "<b>69cash_locked? "Unlock" : "Lock"69 Cash Box</b> | "
 	else
-		dat += "<a href='?src=\ref[src];choice=toggle_lock'>Lock</a><br>"
-		dat += "Linked account: <a href='?src=\ref[src];choice=link_account'>[linked_account ? linked_account.owner_name : "None"]</a><br>"
-		dat += "<a href='?src=\ref[src];choice=toggle_cash_lock'>[cash_locked? "Unlock" : "Lock"] Cash Box</a> | "
-	dat += "<a href='?src=\ref[src];choice=custom_order'>Custom Order</a><hr>"
+		dat += "<a href='?src=\ref69src69;choice=toggle_lock'>Lock</a><br>"
+		dat += "Linked account: <a href='?src=\ref69src69;choice=link_account'>69linked_account ? linked_account.owner_name : "None"69</a><br>"
+		dat += "<a href='?src=\ref69src69;choice=toggle_cash_lock'>69cash_locked? "Unlock" : "Lock"69 Cash Box</a> | "
+	dat += "<a href='?src=\ref69src69;choice=custom_order'>Custom Order</a><hr>"
 
 	if(item_list.len)
 		dat += get_current_transaction()
 		dat += "<br>"
 
 	for(var/i=transaction_logs.len, i>=1, i--)
-		dat += "[transaction_logs[i]]<br>"
+		dat += "69transaction_logs69i6969<br>"
 
 	if(transaction_logs.len)
-		dat += locked ? "<br>" : "<a href='?src=\ref[src];choice=reset_log'>Reset Log</a><br>"
+		dat += locked ? "<br>" : "<a href='?src=\ref69src69;choice=reset_log'>Reset Log</a><br>"
 		dat += "<br>"
-	dat += "<i>Device ID:</i> [machine_id]"
+	dat += "<i>Device ID:</i> 69machine_id69"
 	user << browse(dat, "window=cash_register;size=350x500")
 	onclose(user, "cash_register")
 
 
-/obj/machinery/cash_register/Topic(var/href, var/href_list)
+/obj/machinery/cash_register/Topic(var/href,69ar/href_list)
 	if(..())
 		return
 
 	usr.set_machine(src)
 
-	if(href_list["choice"])
-		switch(href_list["choice"])
+	if(href_list69"choice"69)
+		switch(href_list69"choice"69)
 			if("toggle_lock")
 				if(pin_code == null)
 					pin_code = input("Please set a lock code") as num
@@ -106,7 +106,7 @@
 						if(try_pin == pin_code)
 							locked = !locked
 						else
-							to_chat(usr, "\icon[src]<span class='warning'>Insufficient access.</span>")
+							to_chat(usr, "\icon69src69<span class='warning'>Insufficient access.</span>")
 				else
 					locked = !locked
 					to_chat(usr, "You lock cash register.")
@@ -119,9 +119,9 @@
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						src.visible_message("\icon[src]<span class='warning'>Account has been suspended.</span>")
+						src.visible_message("\icon69src69<span class='warning'>Account has been suspended.</span>")
 				else
-					to_chat(usr, "\icon[src]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "\icon69src69<span class='warning'>Account not found.</span>")
 			if("custom_order")
 				var/t_purpose = sanitize(input("Enter purpose", "New purpose") as text)
 				if (!t_purpose || !Adjacent(usr)) return
@@ -132,35 +132,35 @@
 				transaction_amount += t_amount
 				price_list += t_amount
 				playsound(src, 'sound/machines/twobeep.ogg', 25)
-				src.visible_message("\icon[src][transaction_purpose]: [t_amount] Credit\s.")
+				src.visible_message("\icon69src6969transaction_purpose69: 69t_amount69 Credit\s.")
 			if("set_amount")
-				var/item_name = locate(href_list["item"])
+				var/item_name = locate(href_list69"item"69)
 				var/n_amount = round(input("Enter amount", "New amount") as num)
 				n_amount = CLAMP(n_amount, 0, 20)
-				if (!item_list[item_name] || !Adjacent(usr)) return
-				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
+				if (!item_list69item_name69 || !Adjacent(usr)) return
+				transaction_amount += (n_amount - item_list69item_name69) * price_list69item_name69
 				if(!n_amount)
 					item_list -= item_name
 					price_list -= item_name
 				else
-					item_list[item_name] = n_amount
+					item_list69item_name69 = n_amount
 			if("subtract")
-				var/item_name = locate(href_list["item"])
+				var/item_name = locate(href_list69"item"69)
 				if(item_name)
-					transaction_amount -= price_list[item_name]
-					item_list[item_name]--
-					if(item_list[item_name] <= 0)
+					transaction_amount -= price_list69item_name69
+					item_list69item_name69--
+					if(item_list69item_name69 <= 0)
 						item_list -= item_name
 						price_list -= item_name
 			if("add")
-				var/item_name = locate(href_list["item"])
-				if(item_list[item_name] >= 20) return
-				transaction_amount += price_list[item_name]
-				item_list[item_name]++
+				var/item_name = locate(href_list69"item"69)
+				if(item_list69item_name69 >= 20) return
+				transaction_amount += price_list69item_name69
+				item_list69item_name69++
 			if("clear")
-				var/item_name = locate(href_list["item"])
+				var/item_name = locate(href_list69"item"69)
 				if(item_name)
-					transaction_amount -= price_list[item_name] * item_list[item_name]
+					transaction_amount -= price_list69item_name69 * item_list69item_name69
 					item_list -= item_name
 					price_list -= item_name
 				else
@@ -169,13 +169,13 @@
 					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
-				to_chat(usr, "\icon[src]<span class='notice'>Transaction log reset.</span>")
+				to_chat(usr, "\icon69src69<span class='notice'>Transaction log reset.</span>")
 	updateDialog()
 
 
 
-/obj/machinery/cash_register/attackby(obj/O as obj, user as mob)
-	// Check for a method of paying (ID, PDA, e-wallet, cash, ect.)
+/obj/machinery/cash_register/attackby(obj/O as obj, user as69ob)
+	// Check for a69ethod of paying (ID, PDA, e-wallet, cash, ect.)
 	var/obj/item/card/id/I = O.GetIdCard()
 	if(I)
 		scan_card(I, O)
@@ -204,7 +204,7 @@
 		scan_item_price(O)
 
 
-/obj/machinery/cash_register/MouseDrop_T(atom/dropping, mob/user)
+/obj/machinery/cash_register/MouseDrop_T(atom/dropping,69ob/user)
 	if(Adjacent(dropping) && Adjacent(user) && !user.stat)
 		attackby(dropping, user)
 
@@ -214,7 +214,7 @@
 		return 1
 	else
 		confirm_item = I
-		src.visible_message("\icon[src]<b>Total price:</b> [transaction_amount] Credit\s. Swipe again to confirm.")
+		src.visible_message("\icon69src69<b>Total price:</b> 69transaction_amount69 Credit\s. Swipe again to confirm.")
 		playsound(src, 'sound/machines/twobeep.ogg', 25)
 		return 0
 
@@ -225,14 +225,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon69src69<span class='warning'>The cash box is open.</span>")
 		return
 
-	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(I))
+	if((item_list.len > 1 || item_list69item_list6916969 > 1) && !confirm(I))
 		return
 
 	if (!linked_account)
-		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("\icon69src69<span class='warning'>Unable to connect to linked account.</span>")
 		return
 
 	// Access account for transaction
@@ -245,24 +245,24 @@
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+			src.visible_message("\icon69src69<span class='warning'>Unable to access account. Check security settings and try again.</span>")
 		else
 			if(D.suspended)
-				src.visible_message("\icon[src]<span class='warning'>Your account has been suspended.</span>")
+				src.visible_message("\icon69src69<span class='warning'>Your account has been suspended.</span>")
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("\icon[src]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("\icon69src69<span class='warning'>Not enough funds.</span>")
 				else
-					// Transfer the money
+					// Transfer the69oney
 					D.money -= transaction_amount
 					linked_account.money += transaction_amount
 
 					// Create log entry in client's account
 					var/datum/transaction/T = new()
-					T.target_name = "[linked_account.owner_name]"
+					T.target_name = "69linked_account.owner_name69"
 					T.purpose = transaction_purpose
-					T.amount = "([transaction_amount])"
-					T.source_terminal = machine_id
+					T.amount = "(69transaction_amount69)"
+					T.source_terminal =69achine_id
 					T.date = current_date_string
 					T.time = stationtime2text()
 					D.transaction_log.Add(T)
@@ -271,8 +271,8 @@
 					T = new()
 					T.target_name = D.owner_name
 					T.purpose = transaction_purpose
-					T.amount = "[transaction_amount]"
-					T.source_terminal = machine_id
+					T.amount = "69transaction_amount69"
+					T.source_terminal =69achine_id
 					T.date = current_date_string
 					T.time = stationtime2text()
 					linked_account.transaction_log.Add(T)
@@ -290,18 +290,18 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon69src69<span class='warning'>The cash box is open.</span>")
 		return
 
-	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(E))
+	if((item_list.len > 1 || item_list69item_list6916969 > 1) && !confirm(E))
 		return
 
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("\icon[src]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("\icon69src69<span class='warning'>Not enough funds.</span>")
 		else
-			// Transfer the money
+			// Transfer the69oney
 			E.worth -= transaction_amount
 			linked_account.money += transaction_amount
 
@@ -309,8 +309,8 @@
 			var/datum/transaction/T = new()
 			T.target_name = E.owner_name
 			T.purpose = transaction_purpose
-			T.amount = "[transaction_amount]"
-			T.source_terminal = machine_id
+			T.amount = "69transaction_amount69"
+			T.source_terminal =69achine_id
 			T.date = current_date_string
 			T.time = stationtime2text()
 			linked_account.transaction_log.Add(T)
@@ -328,16 +328,16 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon69src69<span class='warning'>The cash box is open.</span>")
 		return
 
-	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(SC))
+	if((item_list.len > 1 || item_list69item_list6916969 > 1) && !confirm(SC))
 		return
 
 	if(transaction_amount > SC.worth)
-		src.visible_message("\icon[src]<span class='warning'>Not enough money.</span>")
+		src.visible_message("\icon69src69<span class='warning'>Not enough69oney.</span>")
 	else
-		// Insert cash into magical slot
+		// Insert cash into69agical slot
 		SC.worth -= transaction_amount
 		SC.update_icon()
 		if(!SC.worth)
@@ -357,31 +357,31 @@
 /obj/machinery/cash_register/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
-		src.visible_message("\icon[src]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		src.visible_message("\icon69src69<span class='warning'>Only up to ten different items allowed per purchase.</span>")
 		return
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "\icon[src]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon69src69<span class='warning'>The cash box is open.</span>")
 		return
 
-	// First check if item has a valid price
+	// First check if item has a69alid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("\icon[src]<span class='warning'>Unable to find item in database.</span>")
+		src.visible_message("\icon69src69<span class='warning'>Unable to find item in database.</span>")
 		return
 	// Call out item cost
-	src.visible_message("\icon[src]\A [O]: [price ? "[price] Credit\s" : "free of charge"].")
+	src.visible_message("\icon69src69\A 69O69: 69price ? "69price69 Credit\s" : "free of charge"69.")
 	// Note the transaction purpose for later use
 	if(transaction_purpose)
 		transaction_purpose += "<br>"
-	transaction_purpose += "[O]: [price] Credit\s"
+	transaction_purpose += "69O69: 69price69 Credit\s"
 	transaction_amount += price
 	for(var/previously_scanned in item_list)
-		if(price == price_list[previously_scanned] && O.name == previously_scanned)
-			. = item_list[previously_scanned]++
+		if(price == price_list69previously_scanned69 && O.name == previously_scanned)
+			. = item_list69previously_scanned69++
 	if(!.)
-		item_list[O.name] = 1
-		price_list[O.name] = price
+		item_list69O.name69 = 1
+		price_list69O.name69 = price
 		. = 1
 	// Animation and sound
 	playsound(src, 'sound/machines/twobeep.ogg', 25)
@@ -402,15 +402,15 @@
 	<tr></tr>"}
 	var/item_name
 	for(var/i=1, i<=item_list.len, i++)
-		item_name = item_list[i]
-		dat += "<tr><td class=\"tx-name-r\">[item_list[item_name] ? "<a href='?src=\ref[src];choice=subtract;item=\ref[item_name]'>-</a> <a href='?src=\ref[src];choice=set_amount;item=\ref[item_name]'>Set</a> <a href='?src=\ref[src];choice=add;item=\ref[item_name]'>+</a> [item_list[item_name]] x " : ""][item_name] <a href='?src=\ref[src];choice=clear;item=\ref[item_name]'>Remove</a></td><td class=\"tx-data-r\" width=50>[price_list[item_name] * item_list[item_name]] &thorn</td></tr>"
+		item_name = item_list69i69
+		dat += "<tr><td class=\"tx-name-r\">69item_list69item_name69 ? "<a href='?src=\ref69src69;choice=subtract;item=\ref69item_name69'>-</a> <a href='?src=\ref69src69;choice=set_amount;item=\ref69item_name69'>Set</a> <a href='?src=\ref69src69;choice=add;item=\ref69item_name69'>+</a> 69item_list69item_name6969 x " : ""6969item_name69 <a href='?src=\ref69src69;choice=clear;item=\ref69item_name69'>Remove</a></td><td class=\"tx-data-r\" width=50>69price_list69item_name69 * item_list69item_name6969 &thorn</td></tr>"
 	dat += "</table><table width=300>"
-	dat += "<tr><td class=\"tx-name-r\"><a href='?src=\ref[src];choice=clear'>Clear Entry</a></td><td class=\"tx-name-r\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
+	dat += "<tr><td class=\"tx-name-r\"><a href='?src=\ref69src69;choice=clear'>Clear Entry</a></td><td class=\"tx-name-r\" style='text-align: right'><b>Total Amount: 69transaction_amount69 &thorn</b></td></tr>"
 	dat += "</table></html>"
 	return dat
 
 
-/obj/machinery/cash_register/proc/add_transaction_log(var/c_name, var/p_method, var/t_amount)
+/obj/machinery/cash_register/proc/add_transaction_log(var/c_name,69ar/p_method,69ar/t_amount)
 	var/dat = {"
 	<head><style>
 		.tx-title {text-align: center; background-color:#ddddff; font-weight: bold}
@@ -418,19 +418,19 @@
 		.tx-data {text-align: right; background-color: #ccccff;}
 	</head></style>
 	<table width=300>
-	<tr><td colspan="2" class="tx-title">Transaction #[transaction_logs.len+1]</td></tr>
+	<tr><td colspan="2" class="tx-title">Transaction #69transaction_logs.len+169</td></tr>
 	<tr></tr>
-	<tr><td class="tx-name">Customer</td><td class="tx-data">[c_name]</td></tr>
-	<tr><td class="tx-name">Pay Method</td><td class="tx-data">[p_method]</td></tr>
-	<tr><td class="tx-name">Station Time</td><td class="tx-data">[stationtime2text()]</td></tr>
+	<tr><td class="tx-name">Customer</td><td class="tx-data">69c_name69</td></tr>
+	<tr><td class="tx-name">Pay69ethod</td><td class="tx-data">69p_method69</td></tr>
+	<tr><td class="tx-name">Station Time</td><td class="tx-data">69stationtime2text()69</td></tr>
 	</table>
 	<table width=300>
 	"}
 	var/item_name
 	for(var/i=1, i<=item_list.len, i++)
-		item_name = item_list[i]
-		dat += "<tr><td class=\"tx-name\">[item_list[item_name] ? "[item_list[item_name]] x " : ""][item_name]</td><td class=\"tx-data\" width=50>[price_list[item_name] * item_list[item_name]] &thorn</td></tr>"
-	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: [transaction_amount] &thorn</b></td></tr>"
+		item_name = item_list69i69
+		dat += "<tr><td class=\"tx-name\">69item_list69item_name69 ? "69item_list69item_name6969 x " : ""6969item_name69</td><td class=\"tx-data\" width=50>69price_list69item_name69 * item_list69item_name6969 &thorn</td></tr>"
+	dat += "<tr></tr><tr><td colspan=\"2\" class=\"tx-name\" style='text-align: right'><b>Total Amount: 69transaction_amount69 &thorn</b></td></tr>"
 	dat += "</table></html>"
 
 	transaction_logs += dat
@@ -438,19 +438,19 @@
 
 /obj/machinery/cash_register/proc/check_account()
 	if (!linked_account)
-		usr.visible_message("\icon[src]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("\icon69src69<span class='warning'>Unable to connect to linked account.</span>")
 		return 0
 
 	if(linked_account.suspended)
-		src.visible_message("\icon[src]<span class='warning'>Connected account has been suspended.</span>")
+		src.visible_message("\icon69src69<span class='warning'>Connected account has been suspended.</span>")
 		return 0
 	return 1
 
 
 /obj/machinery/cash_register/proc/transaction_complete()
-	/// Visible confirmation
+	///69isible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
-	src.visible_message("\icon[src]<span class='notice'>Transaction complete.</span>")
+	src.visible_message("\icon69src69<span class='notice'>Transaction complete.</span>")
 	flick("register_approve", src)
 	reset_memory()
 	updateDialog()
@@ -468,7 +468,7 @@
 	set category = "Object"
 	set name = "Open Cash Box"
 	set desc = "Open/closes the register's cash box."
-	set src in view(1)
+	set src in69iew(1)
 
 	if(usr.stat) return
 
@@ -487,34 +487,34 @@
 		to_chat(usr, SPAN_WARNING("The cash box is locked."))
 
 
-/obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W, mob/user)
+/obj/machinery/cash_register/proc/toggle_anchors(obj/item/tool/wrench/W,69ob/user)
 	if(manipulating) return
 	manipulating = 1
 	if(!anchored)
-		user.visible_message("\The [user] begins securing \the [src] to the floor.",
-	                         "You begin securing \the [src] to the floor.")
+		user.visible_message("\The 69user69 begins securing \the 69src69 to the floor.",
+	                         "You begin securing \the 69src69 to the floor.")
 	else
-		user.visible_message(SPAN_WARNING("\The [user] begins unsecuring \the [src] from the floor."),
-	                         "You begin unsecuring \the [src] from the floor.")
+		user.visible_message(SPAN_WARNING("\The 69user69 begins unsecuring \the 69src69 from the floor."),
+	                         "You begin unsecuring \the 69src69 from the floor.")
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
 	if(!do_after(user, 20))
 		manipulating = 0
 		return
 	if(!anchored)
-		user.visible_message(SPAN_NOTICE("\The [user] has secured \the [src] to the floor."),
-	                         SPAN_NOTICE("You have secured \the [src] to the floor."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 has secured \the 69src69 to the floor."),
+	                         SPAN_NOTICE("You have secured \the 69src69 to the floor."))
 	else
-		user.visible_message(SPAN_WARNING("\The [user] has unsecured \the [src] from the floor."),
-	                         SPAN_NOTICE("You have unsecured \the [src] from the floor."))
+		user.visible_message(SPAN_WARNING("\The 69user69 has unsecured \the 69src69 from the floor."),
+	                         SPAN_NOTICE("You have unsecured \the 69src69 from the floor."))
 	anchored = !anchored
 	manipulating = 0
 	return
 
 
 
-/obj/machinery/cash_register/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/cash_register/emag_act(var/remaining_charges,69ar/mob/user)
 	if(!emagged)
-		src.visible_message(SPAN_DANGER("The [src]'s cash box springs open as [user] swipes the card through the scanner!"))
+		src.visible_message(SPAN_DANGER("The 69src69's cash box springs open as 69user69 swipes the card through the scanner!"))
 		playsound(src, "sparks", 50, 1)
 		req_access = list()
 		emagged = 1

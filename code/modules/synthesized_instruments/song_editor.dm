@@ -6,7 +6,7 @@
 	var/page = 1
 
 
-/datum/nano_module/song_editor/New(var/host, var/topic_manager, datum/synthesized_song/song)
+/datum/nano_module/song_editor/New(var/host,69ar/topic_manager, datum/synthesized_song/song)
 	..()
 	src.host = host
 	src.song = song
@@ -26,24 +26,24 @@
 		min(GLOB.musical_config.song_editor_lines_per_page * page_num, src.song.lines.len))
 
 
-/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/datum/nano_module/song_editor/ui_interact(mob/user, ui_key = "song_editor",69ar/datum/nanoui/ui =69ull,69ar/force_open =69ANOUI_FOCUS)
 	var/list/data = list()
 
 	var/current_page = src.current_page()
 	var/list/line_bounds = src.page_bounds(src.current_page())
 
-	data["lines"] = src.song.lines.Copy(line_bounds[1], line_bounds[2]+1)
-	data["active_line"] = src.song.current_line
-	data["max_lines"] = GLOB.musical_config.max_lines
-	data["max_line_length"] = GLOB.musical_config.max_line_length
-	data["tick_lag"] = world.tick_lag
-	data["show_help"] = src.show_help
-	data["page_num"] = current_page
-	data["page_offset"] = GLOB.musical_config.song_editor_lines_per_page * (current_page-1)
+	data69"lines"69 = src.song.lines.Copy(line_bounds69169, line_bounds69269+1)
+	data69"active_line"69 = src.song.current_line
+	data69"max_lines"69 = GLOB.musical_config.max_lines
+	data69"max_line_length"69 = GLOB.musical_config.max_line_length
+	data69"tick_lag"69 = world.tick_lag
+	data69"show_help"69 = src.show_help
+	data69"page_num"69 = current_page
+	data69"page_offset"69 = GLOB.musical_config.song_editor_lines_per_page * (current_page-1)
 
 	ui =  SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new (user, src, ui_key, "song_editor.tmpl", "Song Editor", 550, 600)
+		ui =69ew (user, src, ui_key, "song_editor.tmpl", "Song Editor", 550, 600)
 		ui.set_initial_data(data)
 		ui.open()
 
@@ -52,10 +52,10 @@
 	if (..())
 		return 1
 
-	var/target = href_list["target"]
-	var/value = text2num(href_list["value"])
-	if (href_list["value"] && !isnum(value))
-		to_chat(usr, "Non-numeric value was supplied")
+	var/target = href_list69"target"69
+	var/value = text2num(href_list69"value"69)
+	if (href_list69"value"69 && !isnum(value))
+		to_chat(usr, "Non-numeric69alue was supplied")
 		return 0
 
 	switch (target)
@@ -71,33 +71,33 @@
 
 		if("deleteline")
 			// This could kill the server if the synthesizer was playing, props to BeTePb
-			// Impossible to do now. Dumbing down this section.
+			// Impossible to do69ow. Dumbing down this section.
 			var/num = round(value)
-			if(num > src.song.lines.len || num < 1)
+			if(num > src.song.lines.len ||69um < 1)
 				return
-			src.song.lines.Cut(num, num+1)
+			src.song.lines.Cut(num,69um+1)
 
 		if("modifyline")
 			var/num = round(value)
-			if(num > src.song.lines.len || num < 1)
+			if(num > src.song.lines.len ||69um < 1)
 				return
-			var/content = html_encode(input(usr, "Enter your line: ", "Edit line", src.song.lines[num]) as text|null)
-			if(num > src.song.lines.len || num < 1)
+			var/content = html_encode(input(usr, "Enter your line: ", "Edit line", src.song.lines69num69) as text|null)
+			if(num > src.song.lines.len ||69um < 1)
 				return
 			if(!content)
 				return
 			if(length(content) > GLOB.musical_config.max_line_length)
 				content = copytext(content, 1, GLOB.musical_config.max_line_length)
-			src.song.lines[num] = content
+			src.song.lines69num69 = content
 
 		if ("help")
-			src.show_help = value
+			src.show_help =69alue
 
 		if ("next_page")
-			src.page = max(min(src.page + 1, src.pages()), 1)
+			src.page =69ax(min(src.page + 1, src.pages()), 1)
 
 		if ("prev_page")
-			src.page = max(min(src.page - 1, src.pages()), 1)
+			src.page =69ax(min(src.page - 1, src.pages()), 1)
 
 		if ("last_page")
 			src.page = src.pages()

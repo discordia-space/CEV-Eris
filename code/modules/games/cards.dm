@@ -33,15 +33,15 @@
 
 		for(var/number in list("ace","two","three","four","five","six","seven","eight","nine","ten"))
 			P = new()
-			P.name = "[number] of [suit]"
-			P.card_icon = "[colour]num"
+			P.name = "69number69 of 69suit69"
+			P.card_icon = "69colour69num"
 			P.back_icon = "card_back"
 			cards += P
 
 		for(var/number in list("jack","queen","king"))
 			P = new()
-			P.name = "[number] of [suit]"
-			P.card_icon = "[colour]col"
+			P.name = "69number69 of 69suit69"
+			P.card_icon = "69colour69col"
 			P.back_icon = "card_back"
 			cards += P
 
@@ -52,13 +52,13 @@
 		P.card_icon = "joker"
 		cards += P
 
-/obj/item/deck/attackby(obj/O as obj, mob/user as mob)
+/obj/item/deck/attackby(obj/O as obj,69ob/user as69ob)
 	if(istype(O,/obj/item/hand))
 		var/obj/item/hand/H = O
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		qdel(O)
-		to_chat(user, "You place your cards on the bottom of \the [src].")
+		to_chat(user, "You place your cards on the bottom of \the 69src69.")
 		return
 	..()
 
@@ -67,7 +67,7 @@
 	set category = "Object"
 	set name = "Draw"
 	set desc = "Draw a card from a deck."
-	set src in view(1)
+	set src in69iew(1)
 
 	if(usr.stat || !Adjacent(usr)) return
 
@@ -91,19 +91,19 @@
 
 	if(!H || !user) return
 
-	var/datum/playingcard/P = cards[1]
+	var/datum/playingcard/P = cards69169
 	H.cards += P
 	cards -= P
 	H.update_icon()
-	user.visible_message("\The [user] draws a card.")
-	to_chat(user, "It's the [P].")
+	user.visible_message("\The 69user69 draws a card.")
+	to_chat(user, "It's the 69P69.")
 
 /obj/item/deck/verb/deal_card()
 
 	set category = "Object"
 	set name = "Deal"
 	set desc = "Deal a card from a deck."
-	set src in view(1)
+	set src in69iew(1)
 
 	if(usr.stat || !Adjacent(usr)) return
 
@@ -112,7 +112,7 @@
 		return
 
 	var/list/players = list()
-	for(var/mob/living/player in viewers(3))
+	for(var/mob/living/player in69iewers(3))
 		if(!player.stat)
 			players += player
 	//players -= usr
@@ -120,22 +120,22 @@
 	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
 	if(!usr || !src || !M) return
 
-	deal_at(usr, M)
+	deal_at(usr,69)
 
-/obj/item/deck/proc/deal_at(mob/user, mob/target)
+/obj/item/deck/proc/deal_at(mob/user,69ob/target)
 	var/obj/item/hand/H = new(get_step(user, user.dir))
 
-	H.cards += cards[1]
-	cards -= cards[1]
+	H.cards += cards69169
+	cards -= cards69169
 	H.concealed = 1
 	H.update_icon()
 	if(user==target)
-		user.visible_message("\The [user] deals a card to \himself.")
+		user.visible_message("\The 69user69 deals a card to \himself.")
 	else
-		user.visible_message("\The [user] deals a card to \the [target].")
+		user.visible_message("\The 69user69 deals a card to \the 69target69.")
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
-/obj/item/hand/attackby(obj/O as obj, mob/user as mob)
+/obj/item/hand/attackby(obj/O as obj,69ob/user as69ob)
 	if(istype(O,/obj/item/hand))
 		var/obj/item/hand/H = O
 		for(var/datum/playingcard/P in cards)
@@ -147,7 +147,7 @@
 		return
 	..()
 
-/obj/item/deck/attack_self(var/mob/user as mob)
+/obj/item/deck/attack_self(var/mob/user as69ob)
 
 	var/list/newcards = list()
 	while(cards.len)
@@ -155,13 +155,13 @@
 		newcards += P
 		cards -= P
 	cards = newcards
-	user.visible_message("\The [user] shuffles [src].")
+	user.visible_message("\The 69user69 shuffles 69src69.")
 
 /obj/item/deck/MouseDrop(atom/over)
 	if(!usr || !over) return
 	if(!Adjacent(usr) || !over.Adjacent(usr)) return // should stop you from dragging through windows
 
-	if(!ishuman(over) || !(over in viewers(3))) return
+	if(!ishuman(over) || !(over in69iewers(3))) return
 
 	if(!cards.len)
 		to_chat(usr, "There are no cards in the deck.")
@@ -179,8 +179,8 @@
 	var/list/cards = list()
 
 
-/obj/item/pack/attack_self(var/mob/user as mob)
-	user.visible_message("[user] rips open \the [src]!")
+/obj/item/pack/attack_self(var/mob/user as69ob)
+	user.visible_message("69user69 rips open \the 69src69!")
 	var/obj/item/hand/H = new()
 
 	H.cards += cards
@@ -209,12 +209,12 @@
 
 	var/list/to_discard = list()
 	for(var/datum/playingcard/P in cards)
-		to_discard[P.name] = P
+		to_discard69P.name69 = P
 	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
 
-	if(!discarding || !to_discard[discarding] || !usr || !src) return
+	if(!discarding || !to_discard69discarding69 || !usr || !src) return
 
-	var/datum/playingcard/card = to_discard[discarding]
+	var/datum/playingcard/card = to_discard69discarding69
 
 	var/obj/item/hand/H = new(src.loc)
 	H.cards += card
@@ -222,23 +222,23 @@
 	H.concealed = 0
 	H.update_icon()
 	src.update_icon()
-	usr.visible_message("\The [usr] plays \the [discarding].")
+	usr.visible_message("\The 69usr69 plays \the 69discarding69.")
 	H.loc = get_step(usr,usr.dir)
 
 	if(!cards.len)
 		qdel(src)
 
-/obj/item/hand/attack_self(var/mob/user as mob)
+/obj/item/hand/attack_self(var/mob/user as69ob)
 	concealed = !concealed
 	update_icon()
-	user.visible_message("\The [user] [concealed ? "conceals" : "reveals"] their hand.")
+	user.visible_message("\The 69user69 69concealed ? "conceals" : "reveals"69 their hand.")
 
 /obj/item/hand/examine(mob/user)
 	..(user)
 	if((!concealed || src.loc == user) && cards.len)
 		to_chat(user, "It contains: ")
 		for(var/datum/playingcard/P in cards)
-			to_chat(user, "The [P.name].")
+			to_chat(user, "The 69P.name69.")
 
 /obj/item/hand/update_icon(var/direction = 0)
 
@@ -249,16 +249,16 @@
 		name = "hand of cards"
 		desc = "Some playing cards."
 	else
-		var/datum/playingcard/P = cards[1]
-		name = "[P.name]"
-		desc = "[P.desc]"
+		var/datum/playingcard/P = cards69169
+		name = "69P.name69"
+		desc = "69P.desc69"
 
 	cut_overlays()
 
 
 	if(cards.len == 1)
-		var/datum/playingcard/P = cards[1]
-		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
+		var/datum/playingcard/P = cards69169
+		var/image/I = new(src.icon, (concealed ? "69P.back_icon69" : "69P.card_icon69") )
 		I.pixel_x += (-5+rand(10))
 		I.pixel_y += (-5+rand(10))
 		overlays += I
@@ -266,7 +266,7 @@
 
 	var/offset = FLOOR(20/cards.len, 1)
 
-	var/matrix/M = matrix()
+	var/matrix/M =69atrix()
 	if(direction)
 		switch(direction)
 			if(NORTH)
@@ -281,7 +281,7 @@
 				M.Translate(-2,  0)
 	var/i = 0
 	for(var/datum/playingcard/P in cards)
-		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
+		var/image/I = new(src.icon, (concealed ? "69P.back_icon69" : "69P.card_icon69") )
 		//I.pixel_x = origin+(offset*i)
 		switch(direction)
 			if(SOUTH)
@@ -292,16 +292,16 @@
 				I.pixel_y = 8-(offset*i)
 			else
 				I.pixel_x = -7+(offset*i)
-		I.transform = M
+		I.transform =69
 		overlays += I
 		i++
 
-/obj/item/hand/dropped(mob/user as mob)
+/obj/item/hand/dropped(mob/user as69ob)
 	if(locate(/obj/structure/table, loc))
 		src.update_icon(user.dir)
 	else
 		update_icon()
 
-/obj/item/hand/pre_pickup(mob/user as mob)
+/obj/item/hand/pre_pickup(mob/user as69ob)
 	src.update_icon()
 	return ..()

@@ -1,9 +1,9 @@
 
 
 //Power biomatter generator
-//This machine use biomatter reagent and some of O2 to produce power (it also produce CO2)
-//It has a few components that can be weared out, so operator should check this machine from time o time and tinker it
-//In this case, our multistructure datum not just holder, but core of our machine and process by its own
+//This69achine use biomatter reagent and some of O2 to produce power (it also produce CO2)
+//It has a few components that can be weared out, so operator should check this69achine from time o time and tinker it
+//In this case, our69ultistructure datum not just holder, but core of our69achine and process by its own
 
 #define WEAROUT_CHANCE 10
 
@@ -52,7 +52,7 @@
 
 	if(!generator.chamber.network1 || !generator.chamber.network2 || !generator.chamber.air1 || !generator.chamber.air2)
 		return FALSE
-	if(generator.chamber.air1.gas["oxygen"] < 1)
+	if(generator.chamber.air1.gas69"oxygen"69 < 1)
 		return FALSE
 
 	if(port.pipes_dirtiness == 5 || !port.tank || !port.tank.reagents.has_reagent("biomatter", 1))
@@ -66,7 +66,7 @@
 		deactivate()
 	if(working)
 		//amount of removed biomatter depends on how our pipes clean
-		//amount of produced power is also depends on how many biomatter we got
+		//amount of produced power is also depends on how69any biomatter we got
 		var/biomatter_amount = 1/max(1, port.pipes_dirtiness)
 		port.tank.reagents.remove_reagent("biomatter", biomatter_amount)
 		generator.chamber.consume_and_produce()
@@ -122,7 +122,7 @@
 	MS_type = /datum/multistructure/biogenerator
 
 
-//Our console. Displays metrics
+//Our console. Displays69etrics
 /obj/machinery/multistructure/biogenerator_part/console
 	name = "biogenerator screen"
 	icon_state = "screen-working"
@@ -142,45 +142,45 @@
 
 
 /obj/machinery/multistructure/biogenerator_part/console/proc/metrics_update(datum/multistructure/biogenerator/master)
-	metrics["operational"] = master.is_operational()
-	metrics["output_power"] = master.last_output_power
-	if(master.generator && master.generator.chamber && master.generator.chamber.air1 && master.generator.chamber.air1.gas["oxygen"] >= 1)
-		metrics["O2_input"] = TRUE
+	metrics69"operational"69 =69aster.is_operational()
+	metrics69"output_power"69 =69aster.last_output_power
+	if(master.generator &&69aster.generator.chamber &&69aster.generator.chamber.air1 &&69aster.generator.chamber.air1.gas69"oxygen"69 >= 1)
+		metrics69"O2_input"69 = TRUE
 	else
-		metrics["O2_input"] = FALSE
-	if(master.generator && master.generator.chamber && master.generator.chamber.air2 && master.generator.chamber.network2)
-		metrics["CO2_output"] = TRUE
+		metrics69"O2_input"69 = FALSE
+	if(master.generator &&69aster.generator.chamber &&69aster.generator.chamber.air2 &&69aster.generator.chamber.network2)
+		metrics69"CO2_output"69 = TRUE
 	else
-		metrics["CO2_output"] = FALSE
+		metrics69"CO2_output"69 = FALSE
 	if(master.port)
 		if(master.port.tank)
-			metrics["tank"] = TRUE
-			metrics["tank_bio_amount"] = master.port.tank.reagents.get_reagent_amount("biomatter")
+			metrics69"tank"69 = TRUE
+			metrics69"tank_bio_amount"69 =69aster.port.tank.reagents.get_reagent_amount("biomatter")
 		else
-			metrics["tank"] = FALSE
-		metrics["pipes_condition"] = master.port.pipes_dirtiness
-	if(master.generator && master.generator.core)
-		metrics["coil_condition"] = master.generator.core.coil_condition
+			metrics69"tank"69 = FALSE
+		metrics69"pipes_condition"69 =69aster.port.pipes_dirtiness
+	if(master.generator &&69aster.generator.core)
+		metrics69"coil_condition"69 =69aster.generator.core.coil_condition
 		if(master.generator.core.powernet)
-			metrics["powernet_detected"] = TRUE
+			metrics69"powernet_detected"69 = TRUE
 		else
-			metrics["powernet_detected"] = FALSE
-	if(master.generator && master.generator.chamber)
+			metrics69"powernet_detected"69 = FALSE
+	if(master.generator &&69aster.generator.chamber)
 		if(master.generator.chamber.wires)
-			metrics["wires"] = TRUE
-			metrics["wires_integrity"] = master.generator.chamber.wires_integrity
+			metrics69"wires"69 = TRUE
+			metrics69"wires_integrity"69 =69aster.generator.chamber.wires_integrity
 		else
-			metrics["wires"] = FALSE
+			metrics69"wires"69 = FALSE
 
 
-/obj/machinery/multistructure/biogenerator_part/console/attack_hand(mob/user as mob)
+/obj/machinery/multistructure/biogenerator_part/console/attack_hand(mob/user as69ob)
 	if(MS)
 		return ui_interact(user)
 
 //UI
 
 /obj/machinery/multistructure/biogenerator_part/console/ui_data()
-	return metrics
+	return69etrics
 
 
 /obj/machinery/multistructure/biogenerator_part/console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = NANOUI_FOCUS, datum/topic_state/state = GLOB.default_state)
@@ -228,7 +228,7 @@
 			to_chat(user, SPAN_NOTICE("You didn't see any signs of biomass here. Pipes are clear."))
 
 
-/obj/machinery/multistructure/biogenerator_part/port/attackby(obj/item/I, mob/user)
+/obj/machinery/multistructure/biogenerator_part/port/attackby(obj/item/I,69ob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_PRYING), src)
 	switch(tool_type)
 		if(QUALITY_BOLT_TURNING)
@@ -244,7 +244,7 @@
 						tank.pixel_x = initial(tank.pixel_x)
 						tank = null
 						playsound(src, 'sound/machines/airlock_ext_open.ogg', 60, 1)
-						to_chat(user, SPAN_NOTICE("You detached [tank] from [src]."))
+						to_chat(user, SPAN_NOTICE("You detached 69tank69 from 69src69."))
 				else
 					tank = locate(/obj/structure/reagent_dispensers) in get_turf(src)
 					if(tank)
@@ -253,17 +253,17 @@
 							tank.can_anchor = FALSE
 							tank.pixel_x = 8
 							playsound(src, 'sound/machines/airlock_ext_close.ogg', 60, 1)
-							to_chat(user, SPAN_NOTICE("You attached [tank] to [src]."))
+							to_chat(user, SPAN_NOTICE("You attached 69tank69 to 69src69."))
 				if(!set_canister)
 					to_chat(user, SPAN_WARNING("Ugh. You done something wrong!"))
 					tank = null
 		if(QUALITY_SCREW_DRIVING)
 			if(tank)
-				to_chat(user, SPAN_WARNING("You need to detach [tank] first."))
+				to_chat(user, SPAN_WARNING("You need to detach 69tank69 first."))
 				return
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the panel."))
+				to_chat(user, SPAN_NOTICE("You 69panel_open ? "open" : "close"69 the panel."))
 
 	if(panel_open && (istype(I, /obj/item/soap) || istype(I, /obj/item/reagent_containers/glass/rag)))
 		if(pipes_dirtiness)
@@ -282,8 +282,8 @@
 
 
 
-//Generator. Just a dummy, cause all magic do it's chamber and core
-//We use two various machines. Chamber from atmospherics (because it's has all gas manipulation dark magic)
+//Generator. Just a dummy, cause all69agic do it's chamber and core
+//We use two69arious69achines. Chamber from atmospherics (because it's has all gas69anipulation dark69agic)
 //And core from power. (Same for power)
 /obj/machinery/multistructure/biogenerator_part/generator
 	name = "biogenerator"
@@ -352,7 +352,7 @@
 			else if(wires_integrity < 30)
 				to_chat(user, SPAN_WARNING("Wiring is completly burnt. But somehow it's still functional."))
 			else if(wires_integrity < 50)
-				to_chat(user, SPAN_WARNING("Wiring is damaged, most of cables are burnt."))
+				to_chat(user, SPAN_WARNING("Wiring is damaged,69ost of cables are burnt."))
 			else if(wires_integrity < 80)
 				to_chat(user, SPAN_NOTICE("Wiring is slightly damaged and some of them are burnt."))
 			else
@@ -361,13 +361,13 @@
 			to_chat(user, SPAN_WARNING("There are no wires here."))
 
 
-/obj/machinery/atmospherics/binary/biogen_chamber/attackby(obj/item/I, mob/user)
+/obj/machinery/atmospherics/binary/biogen_chamber/attackby(obj/item/I,69ob/user)
 	var/tool_type = I.get_tool_type(user, list(QUALITY_SCREW_DRIVING, QUALITY_WIRE_CUTTING), src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the cover."))
+				to_chat(user, SPAN_NOTICE("You 69panel_open ? "open" : "close"69 the cover."))
 
 		if(QUALITY_WIRE_CUTTING)
 			if(panel_open)
@@ -405,8 +405,8 @@
 /obj/machinery/atmospherics/binary/biogen_chamber/proc/consume_and_produce()
 	var/gas_output_temperature = 0
 	if(air1 && air2)
-		if(air1.gas["oxygen"])
-			air1.gas["oxygen"] -= 1
+		if(air1.gas69"oxygen"69)
+			air1.gas69"oxygen"69 -= 1
 			gas_output_temperature = air1.temperature + rand(20, 30)
 			air1.update_values()
 			air2.adjust_gas_temp("carbon_dioxide", 1, gas_output_temperature)
@@ -459,12 +459,12 @@
 		else if(coil_condition < 50)
 			to_chat(user, SPAN_WARNING("Half of coil's sectors are damaged."))
 		else if(coil_condition < 80)
-			to_chat(user, SPAN_NOTICE("You can see damaged sectors at [src]'s coil."))
+			to_chat(user, SPAN_NOTICE("You can see damaged sectors at 69src69's coil."))
 		else
 			to_chat(user, SPAN_NOTICE("Coil looks like new."))
 
 
-/obj/machinery/power/biogenerator_core/attackby(obj/item/I, mob/user)
+/obj/machinery/power/biogenerator_core/attackby(obj/item/I,69ob/user)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
 	if(biogenerator.working && !coil_frame)
 		shock(user, 100)
@@ -476,25 +476,25 @@
 			if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_SCREW_DRIVING))
 				if(coil_frame)
 					coil_frame = FALSE
-					to_chat(user, SPAN_NOTICE("You carefully open frame of [src]."))
+					to_chat(user, SPAN_NOTICE("You carefully open frame of 69src69."))
 				else
 					coil_frame = TRUE
-					to_chat(user, SPAN_NOTICE("You closed frame of [src] back."))
+					to_chat(user, SPAN_NOTICE("You closed frame of 69src69 back."))
 
 		if(QUALITY_WELDING)
 			if(coil_frame)
 				to_chat(user, SPAN_WARNING("You need to remove coil frame first!"))
 				return
 			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_NORMAL,  required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You fixed damaged sectors of [src]'s coil."))
+				to_chat(user, SPAN_NOTICE("You fixed damaged sectors of 69src69's coil."))
 				coil_condition = 100
 				working_cycles = 0
 
 		if(QUALITY_PRYING)
 			if(generator.chamber.panel_open && !coil_frame)
-				to_chat(user, SPAN_NOTICE("You begin deconstructing [generator]..."))
+				to_chat(user, SPAN_NOTICE("You begin deconstructing 69generator69..."))
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY,  required_stat = STAT_MEC, forced_sound = WORKSOUND_REMOVING))
-					to_chat(user, SPAN_NOTICE("You deconstructed [generator]."))
+					to_chat(user, SPAN_NOTICE("You deconstructed 69generator69."))
 					generator.dismantle()
 			else
 				to_chat(user, SPAN_WARNING("You need to open chamber panel and remove core's coil frame first!"))
@@ -502,7 +502,7 @@
 	update_icon()
 
 
-/obj/machinery/power/biogenerator_core/attack_hand(mob/user as mob)
+/obj/machinery/power/biogenerator_core/attack_hand(mob/user as69ob)
 	var/datum/multistructure/biogenerator/biogenerator = generator.MS
 	if(biogenerator && biogenerator.working && !coil_frame)
 		shock(user, 100)

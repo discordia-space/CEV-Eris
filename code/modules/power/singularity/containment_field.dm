@@ -2,18 +2,18 @@
 
 /obj/machinery/containment_field
 	name = "Containment Field"
-	desc = "A crackling, humming field of electromagnetic energy. Its kinetic force is more than enough to halt the course of a gravitational singularity, so it's probably not safe for you to touch."
+	desc = "A crackling, humming field of electromagnetic energy. Its kinetic force is69ore than enough to halt the course of a gravitational singularity, so it's probably69ot safe for you to touch."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "Contain_F"
 	anchored = TRUE
 	density = FALSE
 	unacidable = 1
-	use_power = NO_POWER_USE
+	use_power =69O_POWER_USE
 	light_range = 4
 	layer = ABOVE_OBJ_LAYER
 	flags = PROXMOVE
-	var/obj/machinery/field_generator/FG1 = null
-	var/obj/machinery/field_generator/FG2 = null
+	var/obj/machinery/field_generator/FG1 =69ull
+	var/obj/machinery/field_generator/FG2 =69ull
 	var/hasShocked = 0 //Used to add a delay between shocks. In some cases this used to crash servers by spawning hundreds of sparks every second.
 
 /obj/machinery/containment_field/Destroy()
@@ -23,7 +23,7 @@
 		FG2.cleanup()
 	. = ..()
 
-/obj/machinery/containment_field/attack_hand(mob/user as mob)
+/obj/machinery/containment_field/attack_hand(mob/user as69ob)
 	if(get_dist(src, user) > 1)
 		return 0
 	else
@@ -34,7 +34,7 @@
 /obj/machinery/containment_field/ex_act(severity)
 	return 0
 
-/obj/machinery/containment_field/HasProximity(atom/movable/AM as mob|obj)
+/obj/machinery/containment_field/HasProximity(atom/movable/AM as69ob|obj)
 	if(issilicon(AM) && prob(40))
 		shock(AM)
 		return 1
@@ -45,7 +45,7 @@
 
 
 
-/obj/machinery/containment_field/shock(mob/living/user as mob)
+/obj/machinery/containment_field/shock(mob/living/user as69ob)
 	if(hasShocked)
 		return 0
 	if(!FG1 || !FG2)
@@ -53,7 +53,7 @@
 		return 0
 	if(isliving(user))
 		hasShocked = 1
-		var/shock_damage = min(rand(30,40),rand(30,40))
+		var/shock_damage =69in(rand(30,40),rand(30,40))
 		user.electrocute_act(shock_damage, src)
 
 		var/atom/target = get_edge_target_turf(user, get_dir(src, get_step_away(user, src)))
@@ -67,6 +67,6 @@
 /obj/machinery/containment_field/proc/set_master(var/master1,var/master2)
 	if(!master1 || !master2)
 		return 0
-	FG1 = master1
-	FG2 = master2
+	FG1 =69aster1
+	FG2 =69aster2
 	return 1

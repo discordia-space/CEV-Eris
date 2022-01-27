@@ -1,35 +1,35 @@
-{{if data.scanner_name}}
-	<h2>Attached scanner hardware: {{:data.scanner_name}}</h2>
-	<div class="item">
-		<div class="itemLabel">
-			Scanner installation status:
+{{if d69t69.sc69nner_n69me}}
+	<h2>69tt69ched sc69nner h69rdw69re: {{:d69t69.sc69nner_n69me}}</h2>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Sc69nner inst69ll69tion st69tus:
 		</div>
-		<div class="itemContent">
-			{{:helper.link('Installed', null, {'connect_scanner' : 1}, data.using_scanner ? 'selected' : null)}}
-			{{:helper.link('Uninstalled', null, {'connect_scanner' : 0}, !data.using_scanner ? 'selected' : null)}}
+		<div cl69ss="itemContent">
+			{{:hel69er.lin6969'Inst69lled',69ull, {'connect_sc69nner' : 1}, d69t69.usin69_sc69nner ? 'selected' :69ull69}}
+			{{:hel69er.lin6969'Uninst69lled',69ull, {'connect_sc69nner' : 0}, !d69t69.usin69_sc69nner ? 'selected' :69ull69}}
 		</div>
-		<div class="itemLabel">
-			Scanner is:
+		<div cl69ss="itemL6969el">
+			Sc69nner is:
 		</div>
-		<div class="itemContent">
-			{{:helper.link('Enabled', null, {'PC_enable_component' : 1, 'component' : data.scanner_name}, data.scanner_enabled ? 'selected' : null)}}
-			{{:helper.link('Disabled', null, {'PC_disable_component' : 1, 'component' : data.scanner_name}, !data.scanner_enabled ? 'selected' : null)}}
+		<div cl69ss="itemContent">
+			{{:hel69er.lin6969'En6969led',69ull, {'69C_en6969le_com69onent' : 1, 'com69onent' : d69t69.sc69nner_n69me}, d69t69.sc69nner_en6969led ? 'selected' :69ull69}}
+			{{:hel69er.lin6969'Dis6969led',69ull, {'69C_dis6969le_com69onent' : 1, 'com69onent' : d69t69.sc69nner_n69me}, !d69t69.sc69nner_en6969led ? 'selected' :69ull69}}
 		</div>
-		<div class="itemLabel">
-			Scanner Actions:
+		<div cl69ss="itemL6969el">
+			Sc69nner 69ctions:
 		</div>
-		<div class="itemContent">
-			{{:helper.link('Perform Scan', null, {'scan' : 1}, data.check_scanning ? null : 'disabled')}}
-			{{:helper.link('Save Scan', null, {'save' : 1}, data.can_save_scan ? null : 'disabled')}}
-			{{:helper.link('Clear', null, {'clear' : 1}, data.data_buffer ? null : 'disabled')}}
+		<div cl69ss="itemContent">
+			{{:hel69er.lin6969'69erform Sc69n',69ull, {'sc69n' : 1}, d69t69.chec69_sc69nnin69 ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'S69ve Sc69n',69ull, {'s69ve' : 1}, d69t69.c69n_s69ve_sc69n ?69ull : 'dis6969led'69}}
+			{{:hel69er.lin6969'Cle69r',69ull, {'cle69r' : 1}, d69t69.d69t69_69uffer ?69ull : 'dis6969led'69}}
 		</div>
 	</div>
-	{{if data.can_view_scan}}
-		<h3>Scan Preview:</h3><br>
-		<div class = "block">
-			{{:data.data_buffer}}
+	{{if d69t69.c69n_view_sc69n}}
+		<h3>Sc69n 69review:</h3><69r>
+		<div cl69ss = "69loc69">
+			{{:d69t69.d69t69_69uffer}}
 		</div>
 	{{/if}}
 {{else}}
-	<h2>There is no scanner attached.</h2>
+	<h2>There is69o sc69nner 69tt69ched.</h2>
 {{/if}}

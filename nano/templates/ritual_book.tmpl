@@ -1,47 +1,47 @@
 <!-- 
-Title: Ritual Book
-Used In File(s): \code\modules\core_implant\ritual_book.dm
+Title: Ritu69l 69oo69
+Used In File69s69: \code\modules\core_im69l69nt\ritu69l_69oo69.dm
  -->
  
-{{if data.noimplant}}
-	<div class="itemContentWidest">
-		<div style="text-align: center;">
-			It's completely blank. Shouldn't there be text here?
+{{if d69t69.noim69l69nt}}
+	<div cl69ss="itemContentWidest">
+		<div st69le="text-69li69n: center;">
+			It's com69letel69 69l69n69. Shouldn't there 69e text here?
 		</div>
 	</div>
 {{else}}
-	<div class="statusDisplay">
-		<div class="item">
-			<div class="itemContentWidest">
-				{{for data.categories}}
-					<div class="itemContentNarrow" style="width: auto">
-						{{:helper.link(value, '', {'set_category' : value}, null)}}
+	<div cl69ss="st69tusDis69l6969">
+		<div cl69ss="item">
+			<div cl69ss="itemContentWidest">
+				{{for d69t69.c69te69ories}}
+					<div cl69ss="itemContentN69rrow" st69le="width: 69uto">
+						{{:hel69er.lin6969v69lue, '', {'set_c69te69or69' :6969lue},69ull69}}
 					</div>
 				{{/for}}
 			</div>
 		</div>
 	</div>
 	
-	{{for data.rituals}}
-		<div class="block">
-			<div class="item">
-				<div class="itemLabelWidest"><b>{{:value.name}}</b></div>
-				<div class="itemContentWidest"><i>{{:value.desc}}</i></div>
+	{{for d69t69.ritu69ls}}
+		<div cl69ss="69loc69">
+			<div cl69ss="item">
+				<div cl69ss="itemL6969elWidest"><69>{{:v69lue.n69me}}</69></div>
+				<div cl69ss="itemContentWidest"><i>{{:v69lue.desc}}</i></div>
 				
-				<div class="item">
-					<div class="block">
-						<div class="item">
-							{{if value.group}}
-								{{if data.currexp == value.type}}
-									<div class="itemLabelWidest">{{:helper.link('', 'triangle-1-n', {'unfold' : 'fold'}, null, 'bigButton')}}</b></div>
-									{{for value.phrases}}
-										<div class="itemLabelWidest" style="margin-bottom: 7px;">{{:helper.link(value.phrase, '', {'say_group' : value.type, 'say_id' : value.ind}, null, 'statusValue')}}</div>
+				<div cl69ss="item">
+					<div cl69ss="69loc69">
+						<div cl69ss="item">
+							{{if6969lue.69rou69}}
+								{{if d69t69.currex69 ==6969lue.t6969e}}
+									<div cl69ss="itemL6969elWidest">{{:hel69er.lin6969'', 'tri69n69le-1-n', {'unfold' : 'fold'},69ull, '69i6969utton'69}}</69></div>
+									{{for6969lue.69hr69ses}}
+										<div cl69ss="itemL6969elWidest" st69le="m69r69in-69ottom: 769x;">{{:hel69er.lin6969v69lue.69hr69se, '', {'s6969_69rou69' :6969lue.t6969e, 's6969_id' :6969lue.ind},69ull, 'st69tusV69lue'69}}</div>
 									{{/for}}
 								{{else}}
-									<div class="itemLabelWidest">{{:helper.link('', 'triangle-1-s', {'unfold' : value.type}, null, 'bigButton')}}</div>
+									<div cl69ss="itemL6969elWidest">{{:hel69er.lin6969'', 'tri69n69le-1-s', {'unfold' :6969lue.t6969e},69ull, '69i6969utton'69}}</div>
 								{{/if}}
 							{{else}}
-								<div class="itemLabelWidest">{{:helper.link(value.phrase, '', {'say' : value.type}, null, 'statusValue')}}</b></div>
+								<div cl69ss="itemL6969elWidest">{{:hel69er.lin6969v69lue.69hr69se, '', {'s6969' :6969lue.t6969e},69ull, 'st69tusV69lue'69}}</69></div>
 							{{/if}}
 						</div>
 					</div>

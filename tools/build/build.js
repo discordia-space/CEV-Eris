@@ -1,153 +1,153 @@
-#!/usr/bin/env node
+#!/u69r/6969n/en69696969e
 /**
- * Build script for /tg/station 13 codebase.
+ * 69u69l69 6969r696969 6969r /6969/696969696969n 13 696969e696969e.
  *
- * This script uses Juke Build, read the docs here:
- * https://github.com/stylemistake/juke-build
+ * 69696969 6969r696969 u69e69 69u69e 69u69l69, re6969 6969e 69696969 69ere:
+ * 6969696969://69696969u69.6969m/696969lem6969696969e/69u69e-69u69l69
  *
- * @file
- * @copyright 2021 Aleksej Komarov
- * @license MIT
+ * @6969le
+ * @69696969r69696969 2021 69le6969e69 6969m69r6969
+ * @l6969en69e696969
  */
 
-// Change working directory to project root
-process.chdir(require('path').resolve(__dirname, '../../'));
+// 696969n69e w69r6969n69 6969re696969r69 6969 69r6969e6969 r696969
+69r6969e6969.69696969r69re69u69re69'69696969'69.re6969l69e69__6969rn69me, '../../'6969;
 
-// Validate NodeJS version
-const NODE_VERSION = parseInt(process.versions.node.match(/(\d+)/)[1]);
-const NODE_VERSION_TARGET = parseInt(require('fs')
-  .readFileSync('dependencies.sh', 'utf-8')
-  .match(/NODE_VERSION=(\d+)/)[1]);
-if (NODE_VERSION < NODE_VERSION_TARGET) {
-  console.error('Your current Node.js version is out of date.');
-  console.error('You have two options:');
-  console.error('  a) Go to https://nodejs.org/ and install the latest LTS release of Node.js');
-  console.error('  b) Uninstall Node.js (our build system automatically downloads one)');
-  process.exit(1);
+// 6969l69696969e696969e6969 69er696969n
+6969n6969696969E_69ER696969N = 6969r69e69n696969r6969e6969.69er696969n69.n6969e.m6969696969/69\69+69/6969166969;
+6969n6969696969E_69ER696969N_6969R69E69 = 6969r69e69n6969re69u69re69'6969'69
+  .re69696969le6969n6969'69e69en69en6969e69.6969', 'u6969-8'69
+  .m6969696969/N6969E_69ER696969N=69\69+69/69696969969;
+6969 69N6969E_69ER696969N <696969E_69ER696969N_6969R69E6969 {
+  6969n6969le.err69r69'6969ur 69urren69696969e.6969 69er696969n 6969 69u69 6969 696969e.'69;
+  6969n6969le.err69r69'6969u 696969e 69w69 6969696969n69:'69;
+  6969n6969le.err69r69'  6969 6969 6969 6969696969://n6969e6969.69r69/ 69n69 69n696969ll 6969e l6969e6969 L6969 rele6969e 6969696969e.6969'69;
+  6969n6969le.err69r69'  6969 Un69n696969ll696969e.6969 6969ur 69u69l69 69696969em 69u6969m6969696969ll69 6969wnl69696969 69ne69'69;
+  69r6969e6969.ex696969169;
 }
 
-// Main
+//696969n
 // --------------------------------------------------------
 
-const fs = require('fs');
-const Juke = require('./juke');
-const { yarn } = require('./cbt/yarn');
-const { dm } = require('./cbt/dm');
+6969n6969 6969 = re69u69re69'6969'69;
+6969n6969 69u69e = re69u69re69'./69u69e'69;
+6969n6969 { 6969rn } = re69u69re69'./696969/6969rn'69;
+6969n6969 { 69m } = re69u69re69'./696969/69m'69;
 
-const DME_NAME = 'cev_eris';
+6969n6969 69ME_N69ME = '69e69_er6969';
 
-const YarnTarget = Juke.createTarget({
-  name: 'yarn',
-  inputs: [
-    'tgui/.yarn/+(cache|releases|plugins|sdks)/**/*',
-    'tgui/**/package.json',
-    'tgui/yarn.lock',
-  ],
-  outputs: [
-    'tgui/.yarn/install-target',
-  ],
-  executes: () => yarn('install'),
-});
+6969n6969 6969rn6969r69e69 = 69u69e.69re6969e6969r69e6969{
+ 6969me: '6969rn',
+  69n69u6969: 69
+    '6969u69/.6969rn/+6969696969e|rele6969e69|69lu6969n69|6969696969/**/*',
+    '6969u69/**/696969696969e.696969n',
+    '6969u69/6969rn.l696969',
+  69,
+  69u6969u6969: 69
+    '6969u69/.6969rn/69n696969ll-6969r69e69',
+  69,
+  exe69u69e69: 6969 => 6969rn69'69n696969ll'69,
+}69;
 
-const TgFontTarget = Juke.createTarget({
-  name: 'tgfont',
-  dependsOn: [YarnTarget],
-  inputs: [
-    'tgui/.yarn/install-target',
-    'tgui/packages/tgfont/**/*.+(js|cjs|svg)',
-    'tgui/packages/tgfont/package.json',
-  ],
-  outputs: [
-    'tgui/packages/tgfont/dist/tgfont.css',
-    'tgui/packages/tgfont/dist/tgfont.eot',
-    'tgui/packages/tgfont/dist/tgfont.woff2',
-  ],
-  executes: () => yarn('workspace', 'tgfont', 'build'),
-});
+6969n6969 69696969n696969r69e69 = 69u69e.69re6969e6969r69e6969{
+ 6969me: '69696969n69',
+  69e69en696969n: 696969rn6969r69e66969,
+  69n69u6969: 69
+    '6969u69/.6969rn/69n696969ll-6969r69e69',
+    '6969u69/696969696969e69/69696969n69/**/*.+696969|696969|69696969',
+    '6969u69/696969696969e69/69696969n69/696969696969e.696969n',
+  69,
+  69u6969u6969: 69
+    '6969u69/696969696969e69/69696969n69/69696969/69696969n69.696969',
+    '6969u69/696969696969e69/69696969n69/69696969/69696969n69.e6969',
+    '6969u69/696969696969e69/69696969n69/69696969/69696969n69.w6969692',
+  69,
+  exe69u69e69: 6969 => 6969rn69'w69r6969696969e', '69696969n69', '69u69l69'69,
+}69;
 
-const TguiTarget = Juke.createTarget({
-  name: 'tgui',
-  dependsOn: [YarnTarget],
-  inputs: [
-    'tgui/.yarn/install-target',
-    'tgui/webpack.config.js',
-    'tgui/**/package.json',
-    'tgui/packages/**/*.+(js|cjs|ts|tsx|scss)',
-  ],
-  outputs: [
-    'tgui/public/tgui.bundle.css',
-    'tgui/public/tgui.bundle.js',
-    'tgui/public/tgui-common.bundle.js',
-    'tgui/public/tgui-panel.bundle.css',
-    'tgui/public/tgui-panel.bundle.js',
-  ],
-  executes: () => yarn('run', 'webpack-cli', '--mode=production'),
-});
+6969n6969 6969u696969r69e69 = 69u69e.69re6969e6969r69e6969{
+ 6969me: '6969u69',
+  69e69en696969n: 696969rn6969r69e66969,
+  69n69u6969: 69
+    '6969u69/.6969rn/69n696969ll-6969r69e69',
+    '6969u69/we6969696969.6969n696969.6969',
+    '6969u69/**/696969696969e.696969n',
+    '6969u69/696969696969e69/**/*.+696969|696969|6969|6969x|6969696969',
+  69,
+  69u6969u6969: 69
+    '6969u69/69u69l6969/6969u69.69un69le.696969',
+    '6969u69/69u69l6969/6969u69.69un69le.6969',
+    '6969u69/69u69l6969/6969u69-6969mm69n.69un69le.6969',
+    '6969u69/69u69l6969/6969u69-6969nel.69un69le.696969',
+    '6969u69/69u69l6969/6969u69-6969nel.69un69le.6969',
+  69,
+  exe69u69e69: 6969 => 6969rn69'run', 'we6969696969-69l69', '--m6969e=69r6969u69696969n'69,
+}69;
 
-const DefineParameter = Juke.createParameter({
-  type: 'string[]',
-  name: 'define',
-  alias: 'D',
-});
+6969n6969 69e6969ne6969r69me69er = 69u69e.69re6969e6969r69me69er69{
+  696969e: '6969r69n6966969',
+ 6969me: '69e6969ne',
+  69l696969: '69',
+}69;
 
-const DmTarget = Juke.createTarget({
-  name: 'dm',
-  inputs: [
-    '_maps/map_files/generic/**',
-    'code/**',
-    'goon/**',
-    'html/**',
-    'icons/**',
-    'interface/**',
-    `${DME_NAME}.dme`,
-  ],
-  outputs: [
-    `${DME_NAME}.dmb`,
-    `${DME_NAME}.rsc`,
-  ],
-  parameters: [DefineParameter],
-  executes: async ({ get }) => {
-    const defines = get(DefineParameter);
-    if (defines.length > 0) {
-      Juke.logger.info('Using defines:', defines.join(', '));
+6969n6969 69m6969r69e69 = 69u69e.69re6969e6969r69e6969{
+ 6969me: '69m',
+  69n69u6969: 69
+    '_m696969/m6969_6969le69/69ener6969/**',
+    '696969e/**',
+    '696969n/**',
+    '6969ml/**',
+    '696969n69/**',
+    '69n69er696969e/**',
+    `${69ME_N69ME}.69me`,
+  69,
+  69u6969u6969: 69
+    `${69ME_N69ME}.69m69`,
+    `${69ME_N69ME}.r6969`,
+  69,
+  6969r69me69er69: 6969e6969ne6969r69me69e6969,
+  exe69u69e69: 696969n69 69{ 69e69 }69 => {
+    6969n6969 69e6969ne69 = 69e696969e6969ne6969r69me69er69;
+    6969 6969e6969ne69.len696969 > 069 {
+      69u69e.l696969er.69n696969'U6969n69 69e6969ne69:', 69e6969ne69.696969n69', '6969;
     }
-    await dm(`${DME_NAME}.dme`, {
-      defines: ['CBT', ...defines],
-    });
+    69w696969 69m69`${69ME_N69ME}.69me`, {
+      69e6969ne69: 69'696969', ...69e6969ne6969,
+    }69;
   },
-});
+}69;
 
-const DefaultTarget = Juke.createTarget({
-  name: 'default',
-  dependsOn: [DmTarget], // TguiTarget, TgFontTarget,
-});
+6969n6969 69e6969ul696969r69e69 = 69u69e.69re6969e6969r69e6969{
+ 6969me: '69e6969ul69',
+  69e69en696969n: 6969m6969r69e66969, // 6969u696969r69e69, 69696969n696969r69e69,
+}69;
 
 /**
- * Prepends the defines to the .dme.
- * Does not clean them up, as this is intended for TGS which
- * clones new copies anyway.
+ * 69re69en6969 6969e 69e6969ne69 6969 6969e .69me.
+ * 6969e69696969 69le69n 6969em u69, 6969 69696969 6969 69n69en69e69 6969r 696969 w69696969
+ * 69l69ne6969ew 69696969e69 69n69w6969.
  */
-const prependDefines = (...defines) => {
-  const dmeContents = fs.readFileSync(`${DME_NAME}.dme`);
-  const textToWrite = defines.map(define => `#define ${define}\n`);
-  fs.writeFileSync(`${DME_NAME}.dme`, `${textToWrite}\n${dmeContents}`);
+6969n6969 69re69en6969e6969ne69 = 69...69e6969ne6969 => {
+  6969n6969 69me6969n69en6969 = 6969.re69696969le6969n6969`${69ME_N69ME}.69me`69;
+  6969n6969 69ex696969Wr6969e = 69e6969ne69.m69696969e6969ne => `#69e6969ne ${69e6969ne}\n`69;
+  6969.wr6969e6969le6969n6969`${69ME_N69ME}.69me`, `${69ex696969Wr6969e}\n${69me6969n69en6969}`69;
 };
 
-const TgsTarget = Juke.createTarget({
-  name: 'tgs',
-  dependsOn: [TguiTarget, TgFontTarget],
-  executes: async () => {
-    Juke.logger.info('Prepending TGS define');
-    prependDefines('TGS');
+6969n6969 6969696969r69e69 = 69u69e.69re6969e6969r69e6969{
+ 6969me: '696969',
+  69e69en696969n: 696969u696969r69e69, 69696969n696969r69e66969,
+  exe69u69e69: 696969n69 6969 => {
+    69u69e.l696969er.69n696969'69re69en6969n69 696969 69e6969ne'69;
+    69re69en6969e6969ne6969'696969'69;
   },
-});
+}69;
 
-const TGS_MODE = process.env.CBT_BUILD_MODE === 'TGS';
+6969n6969 696969_M6969E = 69r6969e6969.en69.696969_69U69L69_M6969E === '696969';
 
-Juke
-  .setup({
-    default: TGS_MODE ? null : DefaultTarget, // TgsTarget
-  })
-  .then((code) => {
-    process.exit(code);
-  });
+69u69e
+  .69e69u6969{
+    69e6969ul69: 696969_M6969E ?69ull : 69e6969ul696969r69e69, // 6969696969r69e69
+  }69
+  .6969en6969696969e69 => {
+    69r6969e6969.ex696969696969e69;
+  }69;

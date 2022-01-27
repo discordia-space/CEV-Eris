@@ -17,11 +17,11 @@
 	var/list/l = list("/obj/item/fossil/bone"=9,"/obj/item/fossil/skull"=3,
 	"/obj/item/fossil/skull/horned"=2)
 	var/t = pickweight(l)
-	var/obj/item/W = new t(src.loc)
+	var/obj/item/W =69ew t(src.loc)
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/mineral))
 		T:last_find = W
-	return INITIALIZE_HINT_QDEL
+	return INITIALIZE_HINT_69DEL
 
 /obj/item/fossil/bone
 	name = "Fossilised bone"
@@ -37,15 +37,15 @@
 	icon_state = "hskull"
 	desc = "A fossilised, horned skull."
 
-/obj/item/fossil/skull/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/fossil/skull/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/fossil/bone))
-		var/obj/o = new /obj/skeleton(get_turf(src))
-		var/a = new /obj/item/fossil/bone
-		var/b = new src.type
+		var/obj/o =69ew /obj/skeleton(get_turf(src))
+		var/a =69ew /obj/item/fossil/bone
+		var/b =69ew src.type
 		o.contents.Add(a)
 		o.contents.Add(b)
-		qdel(W)
-		qdel(src)
+		69del(W)
+		69del(src)
 
 /obj/skeleton
 	name = "Incomplete skeleton"
@@ -53,47 +53,47 @@
 	icon_state = "uskel"
 	desc = "Incomplete skeleton."
 	var/bnum = 1
-	var/breq
+	var/bre69
 	var/bstate = 0
-	var/plaque_contents = "Unnamed alien creature"
+	var/pla69ue_contents = "Unnamed alien creature"
 
 /obj/skeleton/New()
-	src.breq = rand(6)+3
-	src.desc = "An incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
+	src.bre69 = rand(6)+3
+	src.desc = "An incomplete skeleton, looks like it could use 69src.bre69-src.bnum6969ore bones."
 	..()
 
-/obj/skeleton/attackby(obj/item/W as obj, mob/user as mob)
+/obj/skeleton/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W,/obj/item/fossil/bone))
 		if(!bstate)
 			bnum++
 			src.contents.Add(new/obj/item/fossil/bone)
-			qdel(W)
-			if(bnum==breq)
+			69del(W)
+			if(bnum==bre69)
 				usr = user
 				icon_state = "skel"
 				src.bstate = 1
 				src.density = TRUE
 				src.name = "alien skeleton display"
 				if(src.contents.Find(/obj/item/fossil/skull/horned))
-					src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
+					src.desc = "A creature69ade of 69src.contents.len-169 assorted bones and a horned skull. The pla69ue reads \'69pla69ue_contents69\'."
 				else
-					src.desc = "A creature made of [src.contents.len-1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
+					src.desc = "A creature69ade of 69src.contents.len-169 assorted bones and a skull. The pla69ue reads \'69pla69ue_contents69\'."
 			else
-				src.desc = "Incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
-				to_chat(user, "Looks like it could use [src.breq-src.bnum] more bones.")
+				src.desc = "Incomplete skeleton, looks like it could use 69src.bre69-src.bnum6969ore bones."
+				to_chat(user, "Looks like it could use 69src.bre69-src.bnum6969ore bones.")
 		else
 			..()
 	else if(istype(W,/obj/item/pen))
-		plaque_contents = sanitize(input("What would you like to write on the plaque:","Skeleton plaque",""))
-		user.visible_message("[user] writes something on the base of [src].","You relabel the plaque on the base of \icon[src] [src].")
+		pla69ue_contents = sanitize(input("What would you like to write on the pla69ue:","Skeleton pla69ue",""))
+		user.visible_message("69user69 writes something on the base of 69src69.","You relabel the pla69ue on the base of \icon69src69 69src69.")
 		if(src.contents.Find(/obj/item/fossil/skull/horned))
-			src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
+			src.desc = "A creature69ade of 69src.contents.len-169 assorted bones and a horned skull. The pla69ue reads \'69pla69ue_contents69\'."
 		else
-			src.desc = "A creature made of [src.contents.len-1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
+			src.desc = "A creature69ade of 69src.contents.len-169 assorted bones and a skull. The pla69ue reads \'69pla69ue_contents69\'."
 	else
 		..()
 
-//shells and plants do not make skeletons
+//shells and plants do69ot69ake skeletons
 /obj/item/fossil/shell
 	name = "Fossilised shell"
 	icon_state = "shell"
@@ -107,5 +107,5 @@
 
 /obj/item/fossil/plant/New()
 	..()
-	icon_state = "plant[rand(1,4)]"
+	icon_state = "plant69rand(1,4)69"
 	update_icon()

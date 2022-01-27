@@ -16,7 +16,7 @@
 			if (src.getFireLoss() < 30)
 				msg += "It looks slightly charred.\n"
 			else
-				msg += "<B>Its casing is melted and heat-warped!</B>\n"
+				msg += "<B>Its casing is69elted and heat-warped!</B>\n"
 		if (src.getOxyLoss() && (aiRestorePowerRoutine != 0 && !APU_power))
 			if (src.getOxyLoss() > 175)
 				msg += "<B>It seems to be running on backup power. Its display is blinking a \"BACKUP POWER CRITICAL\" warning.</B>\n"
@@ -26,13 +26,13 @@
 				msg += "It seems to be running on backup power.\n"
 
 		if (src.stat == UNCONSCIOUS)
-			msg += "It is non-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".\n"
+			msg += "It is69on-responsive and displaying the text: \"RUNTIME: Sensory Overload, stack 26/3\".\n"
 		msg += "</span>"
 	msg += "*---------*"
 	if(hardware && (hardware.owner == src))
 		msg += "<br>"
 		msg += hardware.get_examine_desc()
-	to_chat(user, msg)
+	to_chat(user,69sg)
 	user.showLaws(src)
 	return
 

@@ -1,7 +1,7 @@
-// Station voidsuits
+// Station69oidsuits
 //Engineering rig
 /obj/item/clothing/head/space/void/engineering
-	name = "Technomancer voidsuit helmet"
+	name = "Technomancer69oidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low-pressure environment. Has radiation shielding."
 	icon_state = "technohelmet_void_old"
 	item_state = "technohelmet_void_old"
@@ -21,7 +21,7 @@
 	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/suit/space/void/engineering
-	name = "Technomancer voidsuit"
+	name = "Technomancer69oidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has radiation shielding and extra plating."
 	icon_state = "technosuit_old"
 	item_state = "technosuit_old"
@@ -51,8 +51,8 @@
 
 //Old engineering rig
 /obj/item/clothing/head/space/void/engineeringold
-	name = "outdated Technomancer voidsuit helmet"
-	desc = "This visor has a few more options in its shape than its more newer version."
+	name = "outdated Technomancer69oidsuit helmet"
+	desc = "This69isor has a few69ore options in its shape than its69ore newer69ersion."
 	icon_state = "technohelmet_void"
 	item_state = "technohelmet_void"
 	light_overlay = "technohelmet_light"
@@ -80,23 +80,23 @@
 
 	var/mob/M = usr
 	var/list/options = list()
-	options["generic"] = "technohelmet_void"
-	options["visor"] = "technohelmet_void_visor"
-	options["goggles"] = "technohelmet_void_goggles"
+	options69"generic"69 = "technohelmet_void"
+	options69"visor"69 = "technohelmet_void_visor"
+	options69"goggles"69 = "technohelmet_void_goggles"
 
-	var/choice = input(M,"What kind of eyeglass do you want to look through?","Adjust visor") as null|anything in options
+	var/choice = input(M,"What kind of eyeglass do you want to look through?","Adjust69isor") as null|anything in options
 
 	if(src && choice && !M.incapacitated() && Adjacent(M))
-		icon_state = options[choice]
-		to_chat(M, "You change your helmet's eyeglass mode to [choice].")
+		icon_state = options69choice69
+		to_chat(M, "You change your helmet's eyeglass69ode to 69choice69.")
 		update_icon()
 		update_wear_icon()
 		usr.update_action_buttons()
 		return 1
 
 /obj/item/clothing/suit/space/void/engineeringold
-	name = "outdated Technomancer voidsuit"
-	desc = "An outdated Technomancer voidsuit that is nearly identical in all properties to its newer version. Nevertheless this design was rejected in favour of more streamlined counterpart. Rumors claim there was a different reason to it, but we all stick to this one."
+	name = "outdated Technomancer69oidsuit"
+	desc = "An outdated Technomancer69oidsuit that is nearly identical in all properties to its newer69ersion. Nevertheless this design was rejected in favour of69ore streamlined counterpart. Rumors claim there was a different reason to it, but we all stick to this one."
 	icon_state = "technosuit"
 	item_state = "technosuit"
 	armor = list(
@@ -125,7 +125,7 @@
 
 //Mining rig
 /obj/item/clothing/head/space/void/mining
-	name = "mining voidsuit helmet"
+	name = "mining69oidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating."
 	icon_state = "mining_helmet"
 	item_state = "mining_helmet"
@@ -144,7 +144,7 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/suit/space/void/mining
-	name = "mining voidsuit"
+	name = "mining69oidsuit"
 	desc = "A special suit that protects against hazardous, low pressure environments. Has reinforced plating."
 	item_state = "miner_suit"
 	icon_state = "miner_suit"
@@ -161,8 +161,8 @@
 
 //Medical
 /obj/item/clothing/head/space/void/medical
-	name = "medical voidsuit helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has minor radiation shielding."
+	name = "medical69oidsuit helmet"
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. Has69inor radiation shielding."
 	icon_state = "rig-medical"
 	item_state = "rig-medical"
 	item_state_slots = list(
@@ -179,8 +179,8 @@
 	)
 
 /obj/item/clothing/suit/space/void/medical
-	name = "medical voidsuit"
-	desc = "A special suit that protects against hazardous, low pressure environments. Has minor radiation shielding."
+	name = "medical69oidsuit"
+	desc = "A special suit that protects against hazardous, low pressure environments. Has69inor radiation shielding."
 	icon_state = "rig-medical"
 	item_state = "rig-medical"
 	extra_allowed = list(
@@ -207,7 +207,7 @@
 
 	//Security
 /obj/item/clothing/head/space/void/security
-	name = "ironhammer voidsuit helmet"
+	name = "ironhammer69oidsuit helmet"
 	desc = "A special helmet designed for work in a hazardous, low pressure environment. Sacrifices sight for protection."
 	icon_state = "ihsvoidhelm"
 	item_state = "ihsvoidhelm"
@@ -226,12 +226,12 @@
 	)
 	siemens_coefficient = 0.7
 	light_overlay = "helmet_light_ihs"
-	obscuration = MEDIUM_OBSCURATION
+	obscuration =69EDIUM_OBSCURATION
 
 /obj/item/clothing/suit/space/void/security
-	name = "ironhammer voidsuit"
+	name = "ironhammer69oidsuit"
 	icon_state = "ihvoidsuit"
-	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices mobility for protection."
+	desc = "A bulky suit that protects against hazardous, low pressure environments. Sacrifices69obility for protection."
 	item_state = "ihvoidsuit"
 	armor = list(
 		melee = 35,
@@ -253,8 +253,8 @@
 
 //Atmospherics Rig (BS12)
 /obj/item/clothing/head/space/void/atmos
-	desc = "A special helmet designed for work in a hazardous, low pressure environments. Has improved thermal protection and minor radiation shielding."
-	name = "atmospherics voidsuit helmet"
+	desc = "A special helmet designed for work in a hazardous, low pressure environments. Has improved thermal protection and69inor radiation shielding."
+	name = "atmospherics69oidsuit helmet"
 	icon_state = "rig0-atmos"
 	item_state = "atmos_helm"
 	item_state_slots = list(
@@ -273,9 +273,9 @@
 	light_overlay = "helmet_light_dual"
 
 /obj/item/clothing/suit/space/void/atmos
-	desc = "A special suit that protects against hazardous, low pressure environments. Has improved thermal protection and minor radiation shielding."
+	desc = "A special suit that protects against hazardous, low pressure environments. Has improved thermal protection and69inor radiation shielding."
 	icon_state = "rig-atmos"
-	name = "atmos voidsuit"
+	name = "atmos69oidsuit"
 	item_state = "atmos_voidsuit"
 	armor = list(
 		melee = 30,
@@ -291,7 +291,7 @@
 //Science
 /obj/item/clothing/head/space/void/science
 	name = "Moebius combat helmet"
-	desc = "A special helmet designed for work in a hazardous, low pressure environment. The high-tech sensor systems built into the visor allow a good amount of protection without impairing aim."
+	desc = "A special helmet designed for work in a hazardous, low pressure environment. The high-tech sensor systems built into the69isor allow a good amount of protection without impairing aim."
 	icon_state = "moebiushelmb"
 	item_state = "moebiushelmb"
 	item_state_slots = list(
@@ -331,24 +331,24 @@
 	set src in usr
 
 	var/color = input(usr, "Available colors", "Visor configuration") in icon_states
-	icon_state = icon_states[color]
+	icon_state = icon_states69color69
 	update_wear_icon()
 	usr.update_action_buttons()
 
 /obj/item/clothing/head/space/void/science/New()
 	..()
 	var/color = pick(icon_states)
-	icon_state = icon_states[color]
+	icon_state = icon_states69color69
 
-/obj/item/clothing/head/space/void/science/emag_act(remaining_charges, mob/user, emag_source)
+/obj/item/clothing/head/space/void/science/emag_act(remaining_charges,69ob/user, emag_source)
 	icon_state = "moebiushelmcaramel"
 	update_wear_icon()
 	usr.update_action_buttons()
 
 /obj/item/clothing/suit/space/void/science
-	name = "Moebius combat voidsuit"
+	name = "Moebius combat69oidsuit"
 	icon_state = "moebiussuit"
-	desc = "A heavy space suit designed by Moebius personnel for work in hazardous environment without impairing mobility. Features several advanced layers of armor."
+	desc = "A heavy space suit designed by69oebius personnel for work in hazardous environment without impairing69obility. Features several advanced layers of armor."
 	item_state = "moebiussuit"
 	matter = list(
 	MATERIAL_PLASTEEL = 15,
@@ -369,9 +369,9 @@
 	siemens_coefficient = 0.4
 	helmet = /obj/item/clothing/head/space/void/science
 	spawn_blacklisted = TRUE
-	stiffness = MEDIUM_STIFFNESS
+	stiffness =69EDIUM_STIFFNESS
 
-/obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null, mob/attacker = null, def_zone = null, attack_text = "the attack")
+/obj/item/clothing/suit/space/void/science/handle_shield(mob/user, damage, atom/damage_source = null,69ob/attacker = null, def_zone = null, attack_text = "the attack")
 	if(istype(damage_source, /obj/item/projectile/energy) || istype(damage_source, /obj/item/projectile/beam))
 		var/obj/item/projectile/P = damage_source
 
@@ -379,7 +379,7 @@
 		if(!(def_zone in list(BP_CHEST, BP_GROIN)))
 			reflectchance /= 1.5
 		if(P.starting && prob(reflectchance))
-			visible_message(SPAN_DANGER("\The [user]\'s [name] reflects [attack_text]!"))
+			visible_message(SPAN_DANGER("\The 69user69\'s 69name69 reflects 69attack_text69!"))
 
 			// Find a turf near or on the original location to bounce to
 			var/new_x = P.starting.x + pick(0, 0, 0, 0, 0, -1, 1, -2, 2)
@@ -393,7 +393,7 @@
 
 /obj/item/clothing/head/space/void/riggedvoidsuit
 	name = "makeshift armored Helmet"
-	desc = "A makeshift armored helmet you can see the glue holding it, just close enough to be airtight."
+	desc = "A69akeshift armored helmet you can see the glue holding it, just close enough to be airtight."
 	icon_state = "makeshift_void"
 	item_state = "makeshift_void"
 	slowdown = 2
@@ -410,8 +410,8 @@
 	siemens_coefficient = 0.8
 
 /obj/item/clothing/suit/space/void/riggedvoidsuit
-	name = "makeshift armored voidsuit"
-	desc = "A makeshift armored voidsuit you can see the glue holding it, just close enough to be airtight."
+	name = "makeshift armored69oidsuit"
+	desc = "A69akeshift armored69oidsuit you can see the glue holding it, just close enough to be airtight."
 	icon_state = "makeshift_void"
 	item_state = "makeshift_void"
 	siemens_coefficient = 0.4
@@ -430,8 +430,8 @@
 //NT
 
 /obj/item/clothing/head/space/void/NTvoid
-	name = "neotheology voidsuit helmet"
-	desc = "A voidsuit helmet designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
+	name = "neotheology69oidsuit helmet"
+	desc = "A69oidsuit helmet designed by NeoTheology with a69ost holy69ix of biomatter and inorganic69atter."
 	icon_state = "ntvoidhelmet"
 	item_state = "ntvoidhelmet"
 	action_button_name = "Toggle Helmet Light"
@@ -449,15 +449,15 @@
 	light_overlay = "helmet_light"
 
 /obj/item/clothing/suit/space/void/NTvoid
-	name = "neotheology voidsuit"
-	desc = "A voidsuit designed by NeoTheology with a most holy mix of biomatter and inorganic matter."
+	name = "neotheology69oidsuit"
+	desc = "A69oidsuit designed by NeoTheology with a69ost holy69ix of biomatter and inorganic69atter."
 	icon_state = "ntvoid"
 	item_state = "ntvoid"
-	matter = list(MATERIAL_PLASTEEL = 8, MATERIAL_STEEL = 10, MATERIAL_BIOMATTER = 35)
+	matter = list(MATERIAL_PLASTEEL = 8,69ATERIAL_STEEL = 10,69ATERIAL_BIOMATTER = 35)
 	slowdown = 0.3
 	flags_inv = HIDEGLOVES|HIDEJUMPSUIT|HIDETAIL
 	armor = list(
-	    melee = 40,
+	   69elee = 40,
 		bullet = 30,
 		energy = 30,
 		bomb = 30,

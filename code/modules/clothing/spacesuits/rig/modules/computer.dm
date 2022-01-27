@@ -7,7 +7,7 @@
  */
 
 /obj/item/ai_verbs
-	name = "AI verb holder"
+	name = "AI69erb holder"
 	spawn_tags = null
 
 /obj/item/ai_verbs/verb/hardsuit_interface()
@@ -21,14 +21,14 @@
 
 	var/obj/item/rig_module/module = usr.loc.loc
 	if(!module.holder)
-		to_chat(usr, "Your module is not installed in a hardsuit.")
+		to_chat(usr, "Your69odule is not installed in a hardsuit.")
 		return
 
 	module.holder.ui_interact(usr, nano_state = GLOB.contained_state)
 
 /obj/item/rig_module/ai_container
-	name = "IIS module"
-	desc = "An integrated intelligence system module suitable for most hardsuits."
+	name = "IIS69odule"
+	desc = "An integrated intelligence system69odule suitable for69ost hardsuits."
 	icon_state = "iis"
 	toggleable = 1
 	usable = 1
@@ -44,8 +44,8 @@
 	interface_name = "integrated intelligence system"
 	interface_desc = "A socket that supports a range of artificial intelligence systems."
 
-	var/mob/integrated_ai // Direct reference to the actual mob held in the suit.
-	var/obj/item/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
+	var/mob/integrated_ai // Direct reference to the actual69ob held in the suit.
+	var/obj/item/ai_card  // Reference to the69MI, posibrain, intellicard or pAI card previously holding the AI.
 	var/obj/item/ai_verbs/verb_holder
 
 /mob
@@ -74,7 +74,7 @@
 	else
 		verb_holder.forceMove(src)
 
-/obj/item/rig_module/ai_container/accepts_item(var/obj/item/input_device, var/mob/living/user)
+/obj/item/rig_module/ai_container/accepts_item(var/obj/item/input_device,69ar/mob/living/user)
 
 	// Check if there's actually an AI to deal with.
 	var/mob/living/silicon/ai/target_ai
@@ -88,7 +88,7 @@
 	// Downloading from/loading to a terminal.
 	if(istype(input_device,/obj/machinery/computer/aifixer) || isAI(input_device) || istype(input_device,/obj/structure/AIcore/deactivated))
 
-		// If we're stealing an AI, make sure we have a card for it.
+		// If we're stealing an AI,69ake sure we have a card for it.
 		if(!card)
 			card = new /obj/item/device/aicard(src)
 
@@ -112,7 +112,7 @@
 		// We are carding the AI in our suit.
 		if(integrated_ai)
 			integrated_ai.attackby(input_device,user)
-			// If the transfer was successful, we can clear out our vars.
+			// If the transfer was successful, we can clear out our69ars.
 			if(integrated_ai.loc != src)
 				integrated_ai = null
 				eject_ai()
@@ -127,7 +127,7 @@
 	if(input_device.type in list(/obj/item/device/paicard, /obj/item/device/mmi, /obj/item/device/mmi/digital/posibrain))
 		if(integrated_ai)
 			integrated_ai.attackby(input_device,user)
-			// If the transfer was successful, we can clear out our vars.
+			// If the transfer was successful, we can clear out our69ars.
 			if(integrated_ai.loc != src)
 				integrated_ai = null
 				eject_ai()
@@ -168,7 +168,7 @@
 		if(istype(ai_card, /obj/item/device/aicard))
 			if(integrated_ai && !integrated_ai.stat)
 				if(user)
-					to_chat(user, SPAN_DANGER("You cannot eject your currently stored AI. Purge it manually."))
+					to_chat(user, SPAN_DANGER("You cannot eject your currently stored AI. Purge it69anually."))
 				return 0
 			to_chat(user, SPAN_DANGER("You purge the remaining scraps of data from your previous AI, freeing it for use."))
 			if(integrated_ai)
@@ -189,7 +189,7 @@
 /obj/item/rig_module/ai_container/proc/integrate_ai(var/obj/item/ai,var/mob/user)
 	if(!ai) return
 
-	// The ONLY THING all the different AI systems have in common is that they all store the mob inside an item.
+	// The ONLY THING all the different AI systems have in common is that they all store the69ob inside an item.
 	var/mob/living/ai_mob = locate(/mob/living) in ai.contents
 	if(ai_mob)
 
@@ -213,8 +213,8 @@
 				user.drop_from_inventory(ai)
 				ai.forceMove(src)
 				ai_card = ai
-				to_chat(ai_mob, "<font color='blue'>You have been transferred to \the [holder]'s [src].</font>")
-				to_chat(user, "<font color='blue'>You load [ai_mob] into \the [holder]'s [src].</font>")
+				to_chat(ai_mob, "<font color='blue'>You have been transferred to \the 69holder69's 69src69.</font>")
+				to_chat(user, "<font color='blue'>You load 69ai_mob69 into \the 69holder69's 69src69.</font>")
 
 			integrated_ai = ai_mob
 
@@ -222,15 +222,15 @@
 				integrated_ai = null
 				eject_ai()
 		else
-			to_chat(user, SPAN_WARNING("There is no active AI within \the [ai]."))
+			to_chat(user, SPAN_WARNING("There is no active AI within \the 69ai69."))
 	else
-		to_chat(user, SPAN_WARNING("There is no active AI within \the [ai]."))
+		to_chat(user, SPAN_WARNING("There is no active AI within \the 69ai69."))
 	update_verb_holder()
 	return
 
 /obj/item/rig_module/datajack
-	name = "datajack module"
-	desc = "A simple induction datalink module."
+	name = "datajack69odule"
+	desc = "A simple induction datalink69odule."
 	icon_state = "datajack"
 	passive_power_cost = 0
 	toggleable = 1
@@ -260,10 +260,10 @@
 			return 0
 	return 1
 
-/obj/item/rig_module/datajack/accepts_item(obj/item/input_device, mob/living/user)
+/obj/item/rig_module/datajack/accepts_item(obj/item/input_device,69ob/living/user)
 
 	if(istype(input_device, /obj/item/computer_hardware/hard_drive))
-		to_chat(user, "You connect the disk to [src].")
+		to_chat(user, "You connect the disk to 69src69.")
 		var/obj/item/computer_hardware/hard_drive/disk = input_device
 		if(disk.used_capacity)
 			if(load_data(disk))
@@ -291,7 +291,7 @@
 		if(!incoming_files || !incoming_files.researched_nodes.len)
 			to_chat(user, SPAN_WARNING("Memory failure. There is nothing accessible stored on this terminal."))
 		else
-			// Maybe consider a way to drop all your data into a target repo in the future.
+			//69aybe consider a way to drop all your data into a target repo in the future.
 			if(load_data(incoming_files))
 				to_chat(user, "<font color='blue'>Download successful; local and remote repositories synchronized.</font>")
 			else
@@ -302,7 +302,7 @@
 	return files.download_from(incoming_files)
 
 /obj/item/rig_module/electrowarfare_suite
-	name = "electrowarfare module"
+	name = "electrowarfare69odule"
 	desc = "A bewilderingly complex bundle of fiber optics and chips."
 	icon_state = "ewar"
 	toggleable = 1
@@ -322,7 +322,7 @@
 	if(!..())
 		return
 
-	// This is not the best way to handle this, but I don't want it to mess with ling camo
+	// This is not the best way to handle this, but I don't want it to69ess with ling camo
 	var/mob/living/M = holder.wearer
 	M.digitalcamo++
 
@@ -332,7 +332,7 @@
 		return
 
 	var/mob/living/M = holder.wearer
-	M.digitalcamo = max(0,(M.digitalcamo-1))
+	M.digitalcamo =69ax(0,(M.digitalcamo-1))
 
 /obj/item/rig_module/power_sink
 	name = "hardsuit power sink"
@@ -347,7 +347,7 @@
 	deactivate_string = "Disable Power Sink"
 
 	interface_name = "niling d-sink"
-	interface_desc = "Colloquially known as a power siphon, this module drains power through the suit hands into the suit battery."
+	interface_desc = "Colloquially known as a power siphon, this69odule drains power through the suit hands into the suit battery."
 	rarity_value = 3.5
 	spawn_tags = SPAWN_TAG_RIG_MODULE_COMMON
 	var/atom/interfaced_with // Currently draining power from this device.
@@ -358,7 +358,7 @@
 
 	if(interfaced_with)
 		if(holder && holder.wearer)
-			to_chat(holder.wearer, "<span class = 'warning'>Your power sink retracts as the module deactivates.</span>")
+			to_chat(holder.wearer, "<span class = 'warning'>Your power sink retracts as the69odule deactivates.</span>")
 		drain_complete()
 	interfaced_with = null
 	total_power_drained = 0
@@ -386,11 +386,11 @@
 	if(!target.Adjacent(H))
 		return 0
 
-	// Is it a valid power source?
+	// Is it a69alid power source?
 	if(target.drain_power(1) <= 0)
 		return 0
 
-	to_chat(H, "<span class = 'danger'>You begin draining power from [target]!</span>")
+	to_chat(H, "<span class = 'danger'>You begin draining power from 69target69!</span>")
 	interfaced_with = target
 	drain_loc = interfaced_with.loc
 
@@ -399,7 +399,7 @@
 
 	return 1
 
-/obj/item/rig_module/power_sink/accepts_item(var/obj/item/input_device, var/mob/living/user)
+/obj/item/rig_module/power_sink/accepts_item(var/obj/item/input_device,69ar/mob/living/user)
 	var/can_drain = input_device.drain_power(1)
 	if(can_drain > 0)
 		engage(input_device)
@@ -436,11 +436,11 @@
 		drain_complete(H)
 		return
 
-	// Attempts to drain up to 40kW, determines this value from remaining cell capacity to ensure we don't drain too much..
-	var/to_drain = min(40000, ((holder.cell.maxcharge - holder.cell.charge) / CELLRATE))
+	// Attempts to drain up to 40kW, determines this69alue from remaining cell capacity to ensure we don't drain too69uch..
+	var/to_drain =69in(40000, ((holder.cell.maxcharge - holder.cell.charge) / CELLRATE))
 	var/target_drained = interfaced_with.drain_power(0,0,to_drain)
 	if(target_drained <= 0)
-		to_chat(H, "<span class = 'danger'>Your power sink flashes a red light; there is no power left in [interfaced_with].</span>")
+		to_chat(H, "<span class = 'danger'>Your power sink flashes a red light; there is no power left in 69interfaced_with69.</span>")
 		drain_complete(H)
 		return
 
@@ -452,19 +452,19 @@
 /obj/item/rig_module/power_sink/proc/drain_complete(var/mob/living/M)
 
 	if(!interfaced_with)
-		if(M) to_chat(M, "<font color='blue'><b>Total power drained:</b> [round(total_power_drained/1000)]kJ.</font>")
+		if(M) to_chat(M, "<font color='blue'><b>Total power drained:</b> 69round(total_power_drained/1000)69kJ.</font>")
 	else
-		if(M) to_chat(M, "<font color='blue'><b>Total power drained from [interfaced_with]:</b> [round(total_power_drained/1000)]kJ.</font>")
-		interfaced_with.drain_power(0,1,0) // Damage the victim.
+		if(M) to_chat(M, "<font color='blue'><b>Total power drained from 69interfaced_with69:</b> 69round(total_power_drained/1000)69kJ.</font>")
+		interfaced_with.drain_power(0,1,0) // Damage the69ictim.
 
 	drain_loc = null
 	interfaced_with = null
 	total_power_drained = 0
 
 /*
-//Maybe make this use power when active or something
+//Maybe69ake this use power when active or something
 /obj/item/rig_module/emp_shielding
-	name = "\improper EMP dissipation module"
+	name = "\improper EMP dissipation69odule"
 	desc = "A bewilderingly complex bundle of fiber optics and chips."
 	toggleable = 1
 	usable = 0
@@ -486,5 +486,5 @@
 	if(!..())
 		return
 
-	holder.emp_protection = max(0,(holder.emp_protection - protection_amount))
+	holder.emp_protection =69ax(0,(holder.emp_protection - protection_amount))
 */

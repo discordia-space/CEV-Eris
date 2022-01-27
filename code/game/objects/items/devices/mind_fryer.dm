@@ -2,10 +2,10 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 
 /obj/item/device/mind_fryer
 	name = "mind fryer"
-	desc = "A device that attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns."
+	desc = "A device that attacks the69inds of people nearby, causing sanity loss and inducing69ental breakdowns."
 	icon_state = "mind_fryer"
 	origin_tech = list(TECH_BIO = 5, TECH_COMBAT = 3, TECH_COVERT = 3)
-	matter = list(MATERIAL_STEEL = 6, MATERIAL_URANIUM = 4)
+	matter = list(MATERIAL_STEEL = 6,69ATERIAL_URANIUM = 4)
 	var/datum/antag_contract/derail/contract
 	var/datum/mind/owner
 	var/list/victims = list()
@@ -14,12 +14,12 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 	if(owner == user.mind)
 		return
 	owner = user.mind
-	to_chat(user, "You claim \the [src].")
+	to_chat(user, "You claim \the 69src69.")
 
 /obj/item/device/mind_fryer/verb/activate()
 	set name = "Activate"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 	if(usr.incapacitated() || !Adjacent(usr))
 		return
 
@@ -35,8 +35,8 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 	return ..()
 
 /obj/item/device/mind_fryer/Process()
-	for(var/mob/living/carbon/human/H in view(src))
-		if(H.get_species() != SPECIES_HUMAN || (H in victims) || (owner && H.mind == owner))
+	for(var/mob/living/carbon/human/H in69iew(src))
+		if(H.get_species() != SPECIES_HUMAN || (H in69ictims) || (owner && H.mind == owner))
 			continue
 		icon_state = "mind_fryer_running"
 		H.sanity.onPsyDamage(2)
@@ -63,9 +63,9 @@ GLOBAL_LIST_EMPTY(active_mind_fryers)
 
 		// If in owner's inventory, give a signal that the break was registred and counted towards contract
 		if(src in owner.current.GetAllContents(includeSelf = FALSE))
-			to_chat(owner.current, SPAN_DANGER("[src] clicks."))
+			to_chat(owner.current, SPAN_DANGER("69src69 clicks."))
 
-	victims |= victim
-	if(contract && victims.len >= contract.count)
+	victims |=69ictim
+	if(contract &&69ictims.len >= contract.count)
 		contract.report(src)
 		contract = null

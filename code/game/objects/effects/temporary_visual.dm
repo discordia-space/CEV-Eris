@@ -1,9 +1,9 @@
-//temporary visual effects
+//temporary69isual effects
 /obj/effect/temp_visual
 	icon_state = "nothing"
 	anchored = TRUE
 	layer = ABOVE_MOB_LAYER
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	mouse_opacity =69OUSE_OPACITY_TRANSPARENT
 	unacidable = 1
 	var/duration = 10 //in deciseconds
 	var/randomdir = TRUE
@@ -13,7 +13,7 @@
 	if(randomdir)
 		dir = (pick(cardinal))
 
-	QDEL_IN(src, duration)
+	69DEL_IN(src, duration)
 
 /obj/effect/temp_visual/Destroy()
 	. = ..()

@@ -1,11 +1,11 @@
-//Hivemind various machines
+//Hivemind69arious69achines
 
 #define REGENERATION_SPEED 		4
 
 
 
 /obj/machinery/hivemind_machine
-	name = "strange machine"
+	name = "strange69achine"
 	icon = 'icons/obj/hivemind_machines.dmi'
 	icon_state = "infected_machine"
 	density = TRUE
@@ -18,14 +18,14 @@
 	var/can_regenerate =		TRUE
 	var/regen_cooldown_time = 	30 SECONDS	//min time to regeneration activation since last damage taken
 	var/resistance = RESISTANCE_FRAGILE		//reduction on incoming damage
-	var/cooldown_time = 10 SECONDS			//each machine have their ability, this is cooldown of them
+	var/cooldown_time = 10 SECONDS			//each69achine have their ability, this is cooldown of them
 	var/global_cooldown = FALSE				//if true, ability will be used only once in whole world, before cooldown reset
 	var/datum/hivemind_sdp/SDP				//Self-Defense Protocol holder
-	var/list/spawned_creatures = list()		//which mobs machine can spawns, insert paths
-	var/spawn_weight = 10					//weight of this machine, how frequently they will spawn
-	var/evo_level_required = 	0 			//how much EP hivemind must have to spawn this, used in price list to comparison
+	var/list/spawned_creatures = list()		//which69obs69achine can spawns, insert paths
+	var/spawn_weight = 10					//weight of this69achine, how frequently they will spawn
+	var/evo_level_required = 	0 			//how69uch EP hivemind69ust have to spawn this, used in price list to comparison
 	//internal
-	var/cooldown = 0						//cooldown in world.time value
+	var/cooldown = 0						//cooldown in world.time69alue
 	var/time_until_regen = 0
 	var/obj/assimilated_machinery
 	var/obj/item/electronics/circuitboard/saved_circuit
@@ -33,29 +33,29 @@
 /obj/machinery/hivemind_machine/Initialize()
 	. = ..()
 	name_pick()
-	health = max_health
+	health =69ax_health
 	set_light(2, 3, illumination_color)
 
 
 /obj/machinery/hivemind_machine/update_icon()
 	overlays.Cut()
 	if(stat & EMPED)
-		icon_state = "[icon_state]-disabled"
+		icon_state = "69icon_state69-disabled"
 	else
 		icon_state = initial(icon_state)
 
 
 /obj/machinery/hivemind_machine/examine(mob/user)
 	..()
-	if (health < max_health * 0.1)
+	if (health <69ax_health * 0.1)
 		to_chat(user, SPAN_DANGER("It's almost nothing but scrap!"))
-	else if (health < max_health * 0.25)
+	else if (health <69ax_health * 0.25)
 		to_chat(user, SPAN_DANGER("It's seriously fucked up!"))
-	else if (health < max_health * 0.50)
-		to_chat(user, SPAN_DANGER("It's very damaged; you can almost see the components inside!"))
-	else if (health < max_health * 0.75)
+	else if (health <69ax_health * 0.50)
+		to_chat(user, SPAN_DANGER("It's69ery damaged; you can almost see the components inside!"))
+	else if (health <69ax_health * 0.75)
 		to_chat(user, SPAN_WARNING("It has numerous dents and deep scratches."))
-	else if (health < max_health)
+	else if (health <69ax_health)
 		to_chat(user, SPAN_WARNING("It's a bit scratched and dented."))
 
 
@@ -68,10 +68,10 @@
 
 	if(hive_mind_ai && !(stat & EMPED) && !is_on_cooldown())
 		//slow health regeneration
-		if(can_regenerate && (health != max_health) && (world.time > time_until_regen))
+		if(can_regenerate && (health !=69ax_health) && (world.time > time_until_regen))
 			health += REGENERATION_SPEED
-			if(health > max_health)
-				health = max_health
+			if(health >69ax_health)
+				health =69ax_health
 
 		return TRUE
 
@@ -84,15 +84,15 @@
 
 //Machinery consumption
 //Deleting things is a bad idea and cause lot of problems
-//So, now we just hide our assimilated machine and make it broken (temporary)
-//When our machine dies, assimilated machinery just unhide back
+//So, now we just hide our assimilated69achine and69ake it broken (temporary)
+//When our69achine dies, assimilated69achinery just unhide back
 /obj/machinery/hivemind_machine/proc/consume(var/obj/victim)
-	assimilated_machinery = victim
+	assimilated_machinery =69ictim
 	victim.alpha = 0
 	victim.anchored = TRUE
-	victim.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	victim.mouse_opacity =69OUSE_OPACITY_TRANSPARENT
 	if(istype(victim, /obj/machinery))
-		var/obj/machinery/target = victim
+		var/obj/machinery/target =69ictim
 		target.stat |= BROKEN
 		if(istype(victim, /obj/machinery/power/apc)) //APCs would be deleted
 			assimilated_machinery = null
@@ -111,19 +111,19 @@
 
 
 //Sets ability cooldown
-//Must be set manually
+//Must be set69anually
 /obj/machinery/hivemind_machine/proc/set_cooldown()
 	if(global_cooldown)
-		hive_mind_ai.global_abilities_cooldown[type] = world.time + cooldown_time
+		hive_mind_ai.global_abilities_cooldown69type69 = world.time + cooldown_time
 	else
 		cooldown = world.time + cooldown_time
 
 
 /obj/machinery/hivemind_machine/proc/is_on_cooldown()
 	if(global_cooldown)
-		if(hive_mind_ai && hive_mind_ai.global_abilities_cooldown[type])
-			if(world.time >= hive_mind_ai.global_abilities_cooldown[type])
-				hive_mind_ai.global_abilities_cooldown[type] = null
+		if(hive_mind_ai && hive_mind_ai.global_abilities_cooldown69type69)
+			if(world.time >= hive_mind_ai.global_abilities_cooldown69type69)
+				hive_mind_ai.global_abilities_cooldown69type69 = null
 				return FALSE
 		else
 			return FALSE
@@ -144,12 +144,12 @@
 /obj/machinery/hivemind_machine/proc/name_pick()
 	if(hive_mind_ai)
 		if(prob(50))
-			name = "[hive_mind_ai.name] [name] - [rand(999)]"
+			name = "69hive_mind_ai.name69 69name69 - 69rand(999)69"
 		else
-			name = "[name] [hive_mind_ai.surname] - [rand(999)]"
+			name = "69name69 69hive_mind_ai.surname69 - 69rand(999)69"
 
 
-/obj/machinery/hivemind_machine/proc/start_rebuild(var/new_machine_path, var/time_in_seconds = 5)
+/obj/machinery/hivemind_machine/proc/start_rebuild(var/new_machine_path,69ar/time_in_seconds = 5)
 	stun()
 	var/obj/effect/overlay/rebuild_anim = new /obj/effect/overlay(loc)
 	rebuild_anim.icon = 'icons/obj/hivemind_machines.dmi'
@@ -162,7 +162,7 @@
 
 /obj/machinery/hivemind_machine/proc/finish_rebuild(var/new_machine_path)
 	var/obj/machinery/hivemind_machine/new_machine = new new_machine_path(get_turf(loc))
-	if(assimilated_machinery["path"])
+	if(assimilated_machinery69"path"69)
 		new_machine.assimilated_machinery = assimilated_machinery
 	if(saved_circuit)
 		saved_circuit.loc = new_machine
@@ -171,8 +171,8 @@
 
 
 
-//Returns list of mobs in range or hearers (include in vehicles)
-/obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view, var/in_hear_range = FALSE)
+//Returns list of69obs in range or hearers (include in69ehicles)
+/obj/machinery/hivemind_machine/proc/targets_in_range(var/range = world.view,69ar/in_hear_range = FALSE)
 	var/list/range_list = list()
 	var/list/target_list = list()
 	if(in_hear_range)
@@ -180,7 +180,7 @@
 	else
 		range_list = range(range, src)
 	for(var/atom/movable/M in range_list)
-		var/mob/target = M.get_mob()
+		var/mob/target =69.get_mob()
 		if(target)
 			target_list += target
 	return target_list
@@ -192,18 +192,18 @@
 	return FALSE
 
 
-/////////////////////////]             [//////////////////////////
+/////////////////////////69             69//////////////////////////
 /////////////////////////>RESPONSE CODE<//////////////////////////
 //////////////////////////_____________///////////////////////////
 
 
-//When machine takes damage it can react somehow
+//When69achine takes damage it can react somehow
 /obj/machinery/hivemind_machine/proc/damage_reaction()
 	if(prob(30))
 		if(prob(80))
 			var/pain_msg = pick("User complaint recorded.", "Cease resistance.", "You are wasting resources.",
-								"Yield to minimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.")
-			state("says: \"<b>[pain_msg]</b>\"")
+								"Yield to69inimize your pain.", "Response team summoned.", "Surrender.", "You cannot stop progress.", "Your flesh weakens.")
+			state("says: \"<b>69pain_msg69</b>\"")
 		else
 			var/pain_emote = pick("twitches uncannily.", "contorts sickeningly.", "oozes silvery pus.", "congeals grey ichor in the wound.", "bleeds black fuming liquid")
 			state(pain_emote)
@@ -215,7 +215,7 @@
 		sparks.start()
 
 
-/obj/machinery/hivemind_machine/proc/take_damage(var/amount, var/on_damage_react = TRUE)
+/obj/machinery/hivemind_machine/proc/take_damage(var/amount,69ar/on_damage_react = TRUE)
 	health -= amount
 	time_until_regen = world.time + regen_cooldown_time
 	if(on_damage_react)
@@ -234,8 +234,8 @@
 	qdel(src)
 
 
-//Stunned machines can't do anything
-//Amount must be a number in seconds
+//Stunned69achines can't do anything
+//Amount69ust be a number in seconds
 /obj/machinery/hivemind_machine/proc/stun(var/amount)
 	set_light(0)
 	stat |= EMPED
@@ -259,7 +259,7 @@
 	. = ..()
 
 
-/obj/machinery/hivemind_machine/attackby(obj/item/I, mob/user)
+/obj/machinery/hivemind_machine/attackby(obj/item/I,69ob/user)
 	if(!(I.flags & NOBLUDGEON) && I.force)
 		user.do_attack_animation(src)
 		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
@@ -269,7 +269,7 @@
 			. = ..()
 			take_damage(clear_damage)
 		else
-			to_chat(user, SPAN_WARNING("You trying to hit the [src] with [I], but it seems useless."))
+			to_chat(user, SPAN_WARNING("You trying to hit the 69src69 with 69I69, but it seems useless."))
 			playsound(src, 'sound/weapons/Genhit.ogg', 30, 1)
 		return
 
@@ -315,10 +315,10 @@
 	name = "Processing Core"
 	desc = "Its cold eye seeks to dominate what it surveys."
 	icon_state = "core"
-//	desc = "This Pickle, aside from being attached to several wires, is releasing grey ooze from its many wounds."
+//	desc = "This Pickle, aside from being attached to several wires, is releasing grey ooze from its69any wounds."
 //	icon = 'icons/obj/food.dmi'
 //	icon_state = "pickle"
-//	When Hope Is Gone Undo This Lock And Send Me Forth On A Moonlit Walk. inotherwordsimgonnadoitagain
+//	When Hope Is Gone Undo This Lock And Send69e Forth On A69oonlit Walk. inotherwordsimgonnadoitagain
 	max_health = 420
 	resistance = RESISTANCE_TOUGH
 	can_regenerate = FALSE
@@ -381,7 +381,7 @@
 	check_for_other()
 	if(hive_mind_ai == null)
 		core()
-	for(var/obj/effect/plant/hivemind/wire in my_wireweeds)
+	for(var/obj/effect/plant/hivemind/wire in69y_wireweeds)
 		remove_wireweed(wire)
 	return ..()
 
@@ -389,7 +389,7 @@
 	if(!..())
 		return
 
-	var/mob/living/carbon/human/target = locate() in mobs_in_view(world.view, src)
+	var/mob/living/carbon/human/target = locate() in69obs_in_view(world.view, src)
 	if(target)
 		if(get_dist(src, target) <= 1)
 			icon_state = "core-fear"
@@ -399,7 +399,7 @@
 	else
 		icon_state = initial(icon_state)
 	use_ability()
-	//if we haven't any wireweeds at our location, let's make new one
+	//if we haven't any wireweeds at our location, let's69ake new one
 	if(!(locate(/obj/effect/plant/hivemind) in loc))
 		var/obj/effect/plant/hivemind/wireweed = new(loc, new /datum/seed/wires)
 		add_wireweed(wireweed)
@@ -420,7 +420,7 @@
 
 
 /obj/machinery/hivemind_machine/node/name_pick()
-	name = "[hive_mind_ai.name] [hive_mind_ai.surname]" + " [rand(999)]"
+	name = "69hive_mind_ai.name69 69hive_mind_ai.surname69" + " 69rand(999)69"
 
 
 //There we binding or un-binding hive with wire
@@ -449,7 +449,7 @@
 //shooting the target with toxic goo
 /obj/machinery/hivemind_machine/turret
 	name = "Projector"
-	desc = "This mass of machinery is topped with some sort of nozzle."
+	desc = "This69ass of69achinery is topped with some sort of nozzle."
 	max_health = 220
 	resistance = RESISTANCE_IMPROVED
 	icon_state = "turret"
@@ -462,7 +462,7 @@
 	if(!..())
 		return
 
-	var/mob/living/target = locate() in mobs_in_view(world.view, src)
+	var/mob/living/target = locate() in69obs_in_view(world.view, src)
 	if(target && is_attackable(target) && target.faction != HIVE_FACTION)
 		use_ability(target)
 		set_cooldown()
@@ -476,16 +476,16 @@
 
 
 //MOB PRODUCER
-//spawns mobs from list
+//spawns69obs from list
 /obj/machinery/hivemind_machine/mob_spawner
 	name = "Assembler"
-	desc = "This cylindrical machine has lights around a small portal. The sound of tools comes from inside."
+	desc = "This cylindrical69achine has lights around a small portal. The sound of tools comes from inside."
 	max_health = 260
 	resistance = RESISTANCE_IMPROVED
 	icon_state = "spawner"
 	cooldown_time = 25 SECONDS
 	spawn_weight  =	60
-	density = FALSE //So mobs can walk over it
+	density = FALSE //So69obs can walk over it
 	var/mob_to_spawn
 	var/mob_amount = 4
 
@@ -495,18 +495,18 @@
 
 /obj/machinery/hivemind_machine/mob_spawner/Initialize()
 	..()
-	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a mob according to their rarity_value
+	mob_to_spawn = /obj/spawner/mob/assembled //randomly chooses a69ob according to their rarity_value
 
 /obj/machinery/hivemind_machine/mob_spawner/Process()
 	if(!..())
 		return
 
-	if(!mob_to_spawn || spawned_creatures.len >= mob_amount)
+	if(!mob_to_spawn || spawned_creatures.len >=69ob_amount)
 		return
 	if(locate(/mob/living) in loc)
 		return
 
-	//here we upgrading our spawner and rise controled mob amount, based on EP
+	//here we upgrading our spawner and rise controled69ob amount, based on EP
 	if(hive_mind_ai.evo_level > 6)
 		mob_amount = 6
 	else if(hive_mind_ai.evo_level > 3)
@@ -524,7 +524,7 @@
 	spawned_mob.loc = loc
 	spawned_creatures.Add(spawned_mob)
 	spawned_mob.master = src
-	flick("[icon_state]-anim", src)
+	flick("69icon_state69-anim", src)
 	qdel(CATCH)
 
 
@@ -533,7 +533,7 @@
 //creepy radio talk, it's okay if they have no sense sometimes
 /obj/machinery/hivemind_machine/babbler
 	name = "Jammer"
-	desc = "A column-like structure with lights. You can see streams of energy moving inside."
+	desc = "A column-like structure with lights. You can see streams of energy69oving inside."
 	max_health = 100
 	evo_level_required = 3 //it's better to wait a bit
 	cooldown_time = 90 SECONDS
@@ -556,10 +556,10 @@
 
 //this one is slow, careful with it
 /obj/machinery/hivemind_machine/babbler/use_ability()
-	flick("[icon_state]-anim", src)
+	flick("69icon_state69-anim", src)
 	var/msg_cycles = rand(1, 2)
 	var/msg = ""
-	for(var/i = 1 to msg_cycles)
+	for(var/i = 1 to69sg_cycles)
 		var/list/msg_words = list()
 		msg_words += pick(appeal)
 		msg_words += pick(act)
@@ -567,7 +567,7 @@
 		msg_words += pick(pattern)
 
 		var/word_num = 0
-		for(var/word in msg_words) //corruption
+		for(var/word in69sg_words) //corruption
 			word_num++
 			if(prob(50))
 				var/corruption_type = pick("uppercase", "noise", "jam", "replace")
@@ -576,7 +576,7 @@
 						word = uppertext(word)
 					if("noise")
 						word = pick("z-z-bz-z", "hz-z-z", "zu-zu-we-e", "e-e-ew-e", "bz-ze-ew")
-					if("jam") //word jamming, small Max Headroom's cameo
+					if("jam") //word jamming, small69ax Headroom's cameo
 						if(length(word) > 3)
 							var/entry = rand(2, length(word)-2)
 							var/jammed = ""
@@ -588,20 +588,20 @@
 							word = pick("CORRUPTED", "DESTROYED", "SIMULATED", "SYMBIOSIS", "UTILIZED", "REMOVED", "ACQUIRED", "UPGRADED")
 						else
 							word = pick("CRAVEN", "FLESH", "PROGRESS", "ABOMINATION", "ENSNARED", "ERROR", "FAULT")
-			if(word_num != msg_words.len)
+			if(word_num !=69sg_words.len)
 				word += " "
 			msg += word
 		msg += pick(".", "!")
-		if(i != msg_cycles)
+		if(i !=69sg_cycles)
 			msg += " "
 	global_announcer.autosay(msg, "unknown")
 
 
 //SHRIEKER
-//this machine just stuns enemies
+//this69achine just stuns enemies
 /obj/machinery/hivemind_machine/screamer
 	name = "Tormentor"
-	desc = "A head impaled on a metal tendril. Still twitching, still living, still screaming."
+	desc = "A head impaled on a69etal tendril. Still twitching, still living, still screaming."
 	icon_state = "head"
 	max_health = 100
 	evo_level_required = 3
@@ -625,7 +625,7 @@
 					continue
 			use_ability(target)
 	if(can_scream)
-		flick("[icon_state]-anim", src)
+		flick("69icon_state69-anim", src)
 		playsound(src, 'sound/hallucinations/veryfar_noise.ogg', 85, 1)
 		set_cooldown()
 
@@ -636,12 +636,12 @@
 	if(istype(H))
 		if(prob(90 - H.stats.getStat(STAT_VIG)))
 			H.Weaken(6)
-			to_chat(H, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+			to_chat(H, SPAN_WARNING("A terrible howl tears through your69ind, the69oice senseless, soulless."))
 		else
-			to_chat(H, SPAN_NOTICE("A terrible howl tears through your mind, but you refuse to listen to it!"))
+			to_chat(H, SPAN_NOTICE("A terrible howl tears through your69ind, but you refuse to listen to it!"))
 	else
 		target.Weaken(6)
-		to_chat(target, SPAN_WARNING("A terrible howl tears through your mind, the voice senseless, soulless."))
+		to_chat(target, SPAN_WARNING("A terrible howl tears through your69ind, the69oice senseless, soulless."))
 
 
 
@@ -653,17 +653,17 @@
 	max_health = 80
 	icon_state = "orb"
 	evo_level_required = 2
-	cooldown_time = 1 MINUTES
+	cooldown_time = 169INUTES
 	global_cooldown = TRUE
 	spawn_weight  =	20
 	var/list/join_quotes = list(
 					"You seek survival. We offer immortality.",
-					"Look at you. A pathetic creature of meat and bone.",
+					"Look at you. A pathetic creature of69eat and bone.",
 					"Augmentation is the future of humanity. Surrender your flesh for the future.",
-					"Your body enslaves you. Your mind in metal is free of all want.",
+					"Your body enslaves you. Your69ind in69etal is free of all want.",
 					"Do you fear death? Lay down among the nanites. Your pattern will continue.",
 					"Carve your flesh from your bones. See your weakness. Feel that weakness flowing away.",
-					"Your mortal flesh knows unending pain. Abandon it; join in our digital dream of paradise."
+					"Your69ortal flesh knows unending pain. Abandon it; join in our digital dream of paradise."
 								)
 
 
@@ -681,14 +681,14 @@
 
 
 /obj/machinery/hivemind_machine/supplicant/use_ability(mob/living/target)
-	to_chat(target, SPAN_NOTICE("<b>[pick(join_quotes)]</b>"))
+	to_chat(target, SPAN_NOTICE("<b>69pick(join_quotes)69</b>"))
 
 
 //PSI-MODULATOR
 //sends hallucinations to target
 /obj/machinery/hivemind_machine/distractor
 	name = "Psi-Modulator"
-	desc = "A strange machine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
+	desc = "A strange69achine shaped like a pyramid. Somehow the pulsating lights shine brighter through closed eyelids."
 	max_health = 110
 	icon_state = "psy"
 	evo_level_required = 3
@@ -702,7 +702,7 @@
 
 	var/success = FALSE
 	for(var/mob/living/carbon/human/victim in targets_in_range(12))
-		if(victim.stat == CONSCIOUS && victim.hallucination_duration < 300)
+		if(victim.stat == CONSCIOUS &&69ictim.hallucination_duration < 300)
 			use_ability(victim)
 			success = TRUE
 
@@ -716,10 +716,10 @@
 		if(prob(100 - H.stats.getStat(STAT_VIG)))
 			H.adjust_hallucination(20, 20)
 		else
-			to_chat(H, SPAN_NOTICE("Reality flick_lights for a second, but you manage to focus!"))
+			to_chat(H, SPAN_NOTICE("Reality flick_lights for a second, but you69anage to focus!"))
 	else if (istype(target))
 		target.adjust_hallucination(20, 20)
-	flick("[icon_state]-anim", src)
+	flick("69icon_state69-anim", src)
 
 
 

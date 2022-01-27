@@ -1,89 +1,89 @@
-<i>Welcome to the software download utility. Please select which software you wish to download.</i><hr>
-{{if data.error}}
-	<h2>Download Error</h2>
-	<div class="itemLabel">
-		Information: 
-	</div>
-	<div class="itemContent">
-		{{:data.error}}
-	</div>
-	<div class="itemLabel">
-		Reset Program: 
-	</div>
-	<div class="itemContent">
-		{{:helper.link("RESET", null, {'PRG_reseterror' : 1})}}
-	</div>	
+<i>Welcome to the softw69re downlo69d utilit69. 69le69se select which softw69re 69ou wish to downlo69d.</i><hr>
+{{if d69t69.error}}
+	<h2>Downlo69d Error</h2>
+	<di69 cl69ss="itemL6969el">
+		Inform69tion: 
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:d69t69.error}}
+	</di69>
+	<di69 cl69ss="itemL6969el">
+		Reset 69ro69r69m: 
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:hel69er.lin6969"RESET",69ull, {'69R69_reseterror' : 1}69}}
+	</di69>	
 	<hr>
 {{/if}}
 
 
-{{if data.downloadname}}
-	<h2>Download in progress</h2>
-	<i>Please wait...</i>
-	<div class="item">
-		<div class="itemLabel">File name:</div>
-		<div class="itemContent">{{:data.downloadname}}</div>
-		<div class="itemLabel">File description:</div>
-		<div class="itemContent">{{:data.downloaddesc}}</div>
-		<div class="itemLabel">Transfer Rate:</div>
-		<div class="itemContent">{{:data.downloadspeed}} GQ/s</div>
-		<div class="itemLabel">Download progress:</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.downloadcompletion, 0, data.downloadsize, 'good', data.downloadcompletion + 'GQ / ' + data.downloadsize + 'GQ')}}
-			{{:helper.link('', (data.download_paused ? 'play' : 'pause'), {'download_pause' : 1})}}	
-			{{:helper.link('', 'stop', {'download_stop' : 1})}}	
-		</div>
-	</div>
+{{if d69t69.downlo69dn69me}}
+	<h2>Downlo69d in 69ro69ress</h2>
+	<i>69le69se w69it...</i>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">File6969me:</di69>
+		<di69 cl69ss="itemContent">{{:d69t69.downlo69dn69me}}</di69>
+		<di69 cl69ss="itemL6969el">File descri69tion:</di69>
+		<di69 cl69ss="itemContent">{{:d69t69.downlo69ddesc}}</di69>
+		<di69 cl69ss="itemL6969el">Tr69nsfer R69te:</di69>
+		<di69 cl69ss="itemContent">{{:d69t69.downlo69ds69eed}} 6969/s</di69>
+		<di69 cl69ss="itemL6969el">Downlo69d 69ro69ress:</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.downlo69dcom69letion, 0, d69t69.downlo69dsize, '69ood', d69t69.downlo69dcom69letion + '6969 / ' + d69t69.downlo69dsize + '6969'69}}
+			{{:hel69er.lin6969'', 69d69t69.downlo69d_6969used ? '69l6969' : '6969use'69, {'downlo69d_6969use' : 1}69}}	
+			{{:hel69er.lin6969'', 'sto69', {'downlo69d_sto69' : 1}69}}	
+		</di69>
+	</di69>
 
-	<br><hr>
+	<69r><hr>
 {{/if}}
 
-{{if data.downloads_queue && data.downloads_queue.length}}
-	<h2>Downloads Queue</h2>
-	<div class="item">
-	{{for data.downloads_queue}}
-		<div class="itemLabel">
+{{if d69t69.downlo69ds_69ueue && d69t69.downlo69ds_69ueue.len69th}}
+	<h2>Downlo69ds 69ueue</h2>
+	<di69 cl69ss="item">
+	{{for d69t69.downlo69ds_69ueue}}
+		<di69 cl69ss="itemL6969el">
 			{{:index + 1}}:
-		</div>
-		<div class="itemContent">
-			{{:value}}
-			{{:helper.link('', 'close', {'PRG_removequeued' : value})}}
-		</div>
-	{{empty}}
-		<i>The queue is currently empty.</i>
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:6969lue}}
+			{{:hel69er.lin6969'', 'close', {'69R69_remo69e69ueued' : 6969lue}69}}
+		</di69>
+	{{em69t69}}
+		<i>The 69ueue is currentl69 em69t69.</i>
 	{{/for}}
-	</div>
+	</di69>
 
-	<br><hr>
+	<69r><hr>
 {{/if}}
 
-	<h2>Primary software repository</h2>
-	<div class="itemLabel">
-		Hard drive: 
-	</div>
-	<div class="itemContent">
-		{{:helper.displayBar(data.disk_used, 0, data.disk_size, 'good', data.disk_used + "GQ / " + data.disk_size + "GQ")}}
-	</div>
-	<table>
-	{{for data.downloadable_programs}}
-		<tr><td>{{:helper.link('', value.icon, {'PRG_downloadfile' : value.filename}, ((value.in_queue || value.filename == data.downloadname) ? 'disabled' : null))}}	
-			<td><span class='white'>{{:value.filedesc}}</span>
-			<td>{{:value.fileinfo}}
-			<td><div style="white-space: nowrap;">{{:value.size}} GQ
-		</div>
+	<h2>69rim69r69 softw69re re69ositor69</h2>
+	<di69 cl69ss="itemL6969el">
+		H69rd dri69e: 
+	</di69>
+	<di69 cl69ss="itemContent">
+		{{:hel69er.dis69l69696969r69d69t69.dis69_used, 0, d69t69.dis69_size, '69ood', d69t69.dis69_used + "6969 / " + d69t69.dis69_size + "6969"69}}
+	</di69>
+	<t6969le>
+	{{for d69t69.downlo69d6969le_69ro69r69ms}}
+		<tr><td>{{:hel69er.lin6969'', 6969lue.icon, {'69R69_downlo69dfile' : 6969lue.filen69me}, 69696969lue.in_69ueue || 6969lue.filen69me == d69t69.downlo69dn69me69 ? 'dis6969led' :69ull6969}}	
+			<td><s6969n cl69ss='white'>{{:6969lue.filedesc}}</s6969n>
+			<td>{{:6969lue.fileinfo}}
+			<td><di69 st69le="white-s6969ce:69owr6969;">{{:6969lue.size}} 6969
+		</di69>
 	{{/for}}
-	</table>
-	{{if data.hackedavailable}}
-		<h2>*UNKNOWN* software repository</h2>
-		<table>
-		{{for data.hacked_programs}}
-		<tr><td>{{:helper.link('', value.icon, {'PRG_downloadfile' : value.filename}, ((value.in_queue || value.filename == data.downloadname) ? 'disabled' : null))}}	
-			<td><span class='white'>{{:value.filedesc}}</span>
-			<td>{{:value.fileinfo}}
-			<td>{{:value.size}} GQ
-		</div>
+	</t6969le>
+	{{if d69t69.h69c69ed696969il6969le}}
+		<h2>*UN69NOWN* softw69re re69ositor69</h2>
+		<t6969le>
+		{{for d69t69.h69c69ed_69ro69r69ms}}
+		<tr><td>{{:hel69er.lin6969'', 6969lue.icon, {'69R69_downlo69dfile' : 6969lue.filen69me}, 69696969lue.in_69ueue || 6969lue.filen69me == d69t69.downlo69dn69me69 ? 'dis6969led' :69ull6969}}	
+			<td><s6969n cl69ss='white'>{{:6969lue.filedesc}}</s6969n>
+			<td>{{:6969lue.fileinfo}}
+			<td>{{:6969lue.size}} 6969
+		</di69>
 		{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 
-<br><br><hr><i>NTOS v2.0.4b Copyright NanoTrasen 2557 - 2559</i>
+<69r><69r><hr><i>NTOS 692.0.469 Co6969ri69ht6969noTr69sen 2557 - 2559</i>

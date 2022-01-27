@@ -3,12 +3,12 @@
 
 /*
 field_generator power level display
-   The icon used for the field_generator need to have 'num_power_levels' number of icon states
-   named 'Field_Gen +p[num]' where 'num' ranges from 1 to 'num_power_levels'
+   The icon used for the field_generator69eed to have 'num_power_levels'69umber of icon states
+  69amed 'Field_Gen +p69num69' where 'num' ranges from 1 to 'num_power_levels'
 
    The power level is displayed using overlays. The current displayed power level is stored in 'powerlevel'.
-   The overlay in use and the powerlevel variable must be kept in sync.  A powerlevel equal to 0 means that
-   no power level overlay is currently in the overlays list.
+   The overlay in use and the powerlevel69ariable69ust be kept in sync.  A powerlevel equal to 069eans that
+  69o power level overlay is currently in the overlays list.
    -Aygar
 */
 
@@ -20,8 +20,8 @@ field_generator power level display
 	icon_state = "Field_Gen"
 	anchored = FALSE
 	density = TRUE
-	use_power = NO_POWER_USE
-	var/const/num_power_levels = 6	// Total number of power level icon has
+	use_power =69O_POWER_USE
+	var/const/num_power_levels = 6	// Total69umber of power level icon has
 	var/Varedit_start = 0
 	var/Varpower = 0
 	var/active = 0
@@ -33,24 +33,24 @@ field_generator power level display
 	var/clean_up = 0
 
 	//If keeping field generators powered is hard then increase the emitter active power usage.
-	var/gen_power_draw = 5500	//power needed per generator
-	var/field_power_draw = 2000	//power needed per field object
+	var/gen_power_draw = 5500	//power69eeded per generator
+	var/field_power_draw = 2000	//power69eeded per field object
 
 
 /obj/machinery/field_generator/update_icon()
 	overlays.Cut()
 	if(!active)
 		if(warming_up)
-			overlays += "+a[warming_up]"
+			overlays += "+a69warming_up69"
 	if(fields.len)
 		overlays += "+on"
 	// Power level indicator
-	// Scale % power to % num_power_levels and truncate value
+	// Scale % power to %69um_power_levels and truncate69alue
 	var/level = round(num_power_levels * power / field_generator_max_power)
-	// Clamp between 0 and num_power_levels for out of range power values
-	level = between(0, level, num_power_levels)
+	// Clamp between 0 and69um_power_levels for out of range power69alues
+	level = between(0, level,69um_power_levels)
 	if(level)
-		overlays += "+p[level]"
+		overlays += "+p69level69"
 
 	return
 
@@ -79,28 +79,28 @@ field_generator power level display
 	return
 
 
-/obj/machinery/field_generator/attack_hand(mob/user as mob)
+/obj/machinery/field_generator/attack_hand(mob/user as69ob)
 	if(state == 2)
 		if(get_dist(src, user) <= 1)//Need to actually touch the thing to turn it on
 			if(src.active >= 1)
-				to_chat(user, "You are unable to turn off the [src.name] once it is online.")
+				to_chat(user, "You are unable to turn off the 69src.name69 once it is online.")
 				return 1
 			else
-				user.visible_message("[user.name] turns on the [src.name]", \
-					"You turn on the [src.name].", \
+				user.visible_message("69user.name69 turns on the 69src.name69", \
+					"You turn on the 69src.name69.", \
 					"You hear heavy droning")
 				turn_on()
-				investigate_log("<font color='green'>activated</font> by [user.key].","singulo")
+				investigate_log("<font color='green'>activated</font> by 69user.key69.","singulo")
 
 				src.add_fingerprint(user)
 	else
-		to_chat(user, "The [src] needs to be firmly secured to the floor first.")
+		to_chat(user, "The 69src6969eeds to be firmly secured to the floor first.")
 		return
 
 
-/obj/machinery/field_generator/attackby(obj/item/I, mob/user)
+/obj/machinery/field_generator/attackby(obj/item/I,69ob/user)
 	if(active)
-		to_chat(user, "The [src] needs to be off.")
+		to_chat(user, "The 69src6969eeds to be off.")
 		return
 
 	var/list/usable_qualities = list()
@@ -115,7 +115,7 @@ field_generator power level display
 		if(QUALITY_BOLT_TURNING)
 			if(state == 0)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user.visible_message("[user.name] secures [src.name] to the floor.", \
+					user.visible_message("69user.name69 secures 69src.name69 to the floor.", \
 						"You secure the external reinforcing bolts to the floor.", \
 						"You hear ratchet")
 					anchored = TRUE
@@ -123,7 +123,7 @@ field_generator power level display
 					return
 			if(state == 1)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					user.visible_message("[user.name] unsecures [src.name] reinforcing bolts from the floor.", \
+					user.visible_message("69user.name69 unsecures 69src.name69 reinforcing bolts from the floor.", \
 						"You undo the external reinforcing bolts.", \
 						"You hear ratchet")
 					anchored = FALSE
@@ -139,7 +139,7 @@ field_generator power level display
 					return
 			if(state == 2)
 				if(I.use_tool(user, src, WORKTIME_FAST, tool_type, FAILCHANCE_EASY, required_stat = STAT_MEC))
-					to_chat(user, SPAN_NOTICE("You cut the [src] free from the floor."))
+					to_chat(user, SPAN_NOTICE("You cut the 69src69 free from the floor."))
 					state = 1
 					return
 			return
@@ -156,7 +156,7 @@ field_generator power level display
 
 /obj/machinery/field_generator/bullet_act(var/obj/item/projectile/Proj)
 	if(istype(Proj, /obj/item/projectile/beam))
-		power += Proj.damage_types[BURN] * EMITTER_DAMAGE_POWER_TRANSFER
+		power += Proj.damage_types69BURN69 * EMITTER_DAMAGE_POWER_TRANSFER
 		update_icon()
 	return 0
 
@@ -201,26 +201,26 @@ field_generator power level display
 	for (var/obj/machinery/containment_field/F in fields)
 		if (!isnull(F))
 			power_draw += field_power_draw
-	power_draw /= 2	//because this will be mirrored for both generators
+	power_draw /= 2	//because this will be69irrored for both generators
 	if(draw_power(round(power_draw)) >= power_draw)
 		return 1
 	else
-		for(var/mob/M in viewers(src))
-			M.show_message("\red \The [src] shuts down!")
+		for(var/mob/M in69iewers(src))
+			M.show_message("\red \The 69src69 shuts down!")
 		turn_off()
 		investigate_log("ran out of power and <font color='red'>deactivated</font>","singulo")
 		src.power = 0
 		return 0
 
-//Tries to draw the needed power from our own power reserve, or connected generators if we can. Returns the amount of power we were able to get.
-/obj/machinery/field_generator/proc/draw_power(var/draw = 0, var/list/flood_list = list())
+//Tries to draw the69eeded power from our own power reserve, or connected generators if we can. Returns the amount of power we were able to get.
+/obj/machinery/field_generator/proc/draw_power(var/draw = 0,69ar/list/flood_list = list())
 	flood_list += src
 
 	if(src.power >= draw)//We have enough power
 		src.power -= draw
 		return draw
 
-	//Need more power
+	//Need69ore power
 	var/actual_draw = src.power	//already checked that power < draw
 	src.power = 0
 
@@ -255,7 +255,7 @@ field_generator power level display
 	if(!NSEW)//Make sure its ran right
 		return
 	for(var/dist = 0, dist <= 9, dist += 1) // checks out to 8 tiles away for another generator
-		T = get_step(T, NSEW)
+		T = get_step(T,69SEW)
 		if(T.density)//We cant shoot a field though this
 			return 0
 		for(var/atom/A in T.contents)
@@ -275,10 +275,10 @@ field_generator power level display
 		return
 	T = src.loc
 	for(var/dist = 0, dist < steps, dist += 1) // creates each field tile
-		var/field_dir = get_dir(T,get_step(G.loc, NSEW))
-		T = get_step(T, NSEW)
+		var/field_dir = get_dir(T,get_step(G.loc,69SEW))
+		T = get_step(T,69SEW)
 		if(!locate(/obj/machinery/containment_field) in T)
-			var/obj/machinery/containment_field/CF = new/obj/machinery/containment_field()
+			var/obj/machinery/containment_field/CF =69ew/obj/machinery/containment_field()
 			CF.set_master(src,G)
 			fields += CF
 			G.fields += CF
@@ -322,14 +322,14 @@ field_generator power level display
 	clean_up = 0
 	update_icon()
 
-	//This is here to help fight the "hurr durr, release singulo cos nobody will notice before the
-	//singulo eats the evidence". It's not fool-proof but better than nothing.
-	//I want to avoid using global variables.
+	//This is here to help fight the "hurr durr, release singulo cos69obody will69otice before the
+	//singulo eats the evidence". It's69ot fool-proof but better than69othing.
+	//I want to avoid using global69ariables.
 	spawn(1)
 		var/temp = 1 //stops spam
 		for(var/obj/singularity/O in GLOB.machines)
 			if(O.last_warning && temp)
-				if((world.time - O.last_warning) > 50) //to stop message-spam
+				if((world.time - O.last_warning) > 50) //to stop69essage-spam
 					temp = 0
 					message_admins("A singulo exists and a containment field has failed.",1)
 					investigate_log("has <font color='red'>failed</font> whilst a singulo exists.","singulo")

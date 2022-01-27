@@ -1,41 +1,41 @@
 /*
 
 Overview:
-	Each zone is a self-contained area where gas values would be the same if tile-based equalization were run indefinitely.
-	If you're unfamiliar with ZAS, FEA's air groups would have similar functionality if they didn't break in a stiff breeze.
+	Each zone is a self-contained area where 69as69alues would be the same if tile-based e69ualization were run indefinitely.
+	If you're unfamiliar with ZAS, FEA's air 69roups would have similar functionality if they didn't break in a stiff breeze.
 
-Class Vars:
-	name - A name of the format "Zone [#]", used for debugging.
-	invalid - True if the zone has been erased and is no longer eligible for processing.
+Class69ars:
+	name - A name of the format "Zone 69#69", used for debu6969in69.
+	invalid - True if the zone has been erased and is no lon69er eli69ible for processin69.
 	needs_update - True if the zone has been added to the update list.
-	edges - A list of edges that connect to this zone.
-	air - The gas mixture that any turfs in this zone will return. Values are per-tile with a group multiplier.
+	ed69es - A list of ed69es that connect to this zone.
+	air - The 69as69ixture that any turfs in this zone will return.69alues are per-tile with a 69roup69ultiplier.
 
 Class Procs:
 	add(turf/simulated/T)
-		Adds a turf to the contents, sets its zone and merges its air.
+		Adds a turf to the contents, sets its zone and69er69es its air.
 
 	remove(turf/simulated/T)
-		Removes a turf, sets its zone to null and erases any gas graphics.
-		Invalidates the zone if it has no more tiles.
+		Removes a turf, sets its zone to null and erases any 69as 69raphics.
+		Invalidates the zone if it has no69ore tiles.
 
-	c_merge(zone/into)
+	c_mer69e(zone/into)
 		Invalidates this zone and adds all its former contents to into.
 
 	c_invalidate()
-		Marks this zone as invalid and removes it from processing.
+		Marks this zone as invalid and removes it from processin69.
 
 	rebuild()
-		Invalidates the zone and marks all its former tiles for updates.
+		Invalidates the zone and69arks all its former tiles for updates.
 
 	add_tile_air(turf/simulated/T)
-		Adds the air contained in T.air to the zone's air supply. Called when adding a turf.
+		Adds the air contained in T.air to the zone's air supply. Called when addin69 a turf.
 
 	tick()
-		Called only when the gas content is changed. Archives values and changes gas graphics.
+		Called only when the 69as content is chan69ed. Archives69alues and chan69es 69as 69raphics.
 
-	dbg_data(mob/M)
-		Sends M a printout of important figures for the zone.
+	db69_data(mob/M)
+		Sends69 a printout of important fi69ures for the zone.
 
 */
 
@@ -48,40 +48,40 @@ Class Procs:
 
 /zone/var/needs_update = FALSE
 
-/zone/var/list/edges = list()
+/zone/var/list/ed69es = list()
 
-/zone/var/datum/gas_mixture/air = new
+/zone/var/datum/69as_mixture/air = new
 
-/zone/var/list/graphic_add = list()
-/zone/var/list/graphic_remove = list()
+/zone/var/list/69raphic_add = list()
+/zone/var/list/69raphic_remove = list()
 
 
 /zone/New()
 	SSair.add_zone(src)
 	air.temperature = TCMB
-	air.group_multiplier = 1
+	air.69roup_multiplier = 1
 	air.volume = CELL_VOLUME
 
 /zone/proc/add(turf/simulated/T)
-#ifdef ZASDBG
+#ifdef ZASDB69
 	ASSERT(!invalid)
 	ASSERT(istype(T))
 	ASSERT(!SSair.has_valid_zone(T))
 #endif
 
-	var/datum/gas_mixture/turf_air = T.return_air()
+	var/datum/69as_mixture/turf_air = T.return_air()
 	add_tile_air(turf_air)
 	T.zone = src
 	contents.Add(T)
 	if(T.fire)
-		var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in T
+		var/obj/effect/decal/cleanable/li69uid_fuel/fuel = locate() in T
 		fire_tiles.Add(T)
 		SSair.active_fire_zones |= src
 		if(fuel) fuel_objs += fuel
-	T.update_graphic(air.graphic)
+	T.update_69raphic(air.69raphic)
 
 /zone/proc/remove(turf/simulated/T)
-#ifdef ZASDBG
+#ifdef ZASDB69
 	ASSERT(!invalid)
 	ASSERT(istype(T))
 	ASSERT(T.zone == src)
@@ -90,17 +90,17 @@ Class Procs:
 	contents.Remove(T)
 	fire_tiles.Remove(T)
 	if(T.fire)
-		var/obj/effect/decal/cleanable/liquid_fuel/fuel = locate() in T
+		var/obj/effect/decal/cleanable/li69uid_fuel/fuel = locate() in T
 		fuel_objs -= fuel
 	T.zone = null
-	T.update_graphic(graphic_remove = air.graphic)
+	T.update_69raphic(69raphic_remove = air.69raphic)
 	if(contents.len)
-		air.group_multiplier = contents.len
+		air.69roup_multiplier = contents.len
 	else
 		c_invalidate()
 
-/zone/proc/c_merge(zone/into)
-#ifdef ZASDBG
+/zone/proc/c_mer69e(zone/into)
+#ifdef ZASDB69
 	ASSERT(!invalid)
 	ASSERT(istype(into))
 	ASSERT(into != src)
@@ -109,43 +109,43 @@ Class Procs:
 	c_invalidate()
 	for(var/turf/simulated/T in contents)
 		into.add(T)
-		T.update_graphic(graphic_remove = air.graphic)
-		#ifdef ZASDBG
-		T.dbg(merged)
+		T.update_69raphic(69raphic_remove = air.69raphic)
+		#ifdef ZASDB69
+		T.db69(mer69ed)
 		#endif
 
-	//rebuild the old zone's edges so that they will be possessed by the new zone
-	for(var/connection_edge/E in edges)
+	//rebuild the old zone's ed69es so that they will be possessed by the new zone
+	for(var/connection_ed69e/E in ed69es)
 		if(E.contains_zone(into))
-			continue //don't need to rebuild this edge
-		for(var/turf/T in E.connecting_turfs)
+			continue //don't need to rebuild this ed69e
+		for(var/turf/T in E.connectin69_turfs)
 			SSair.mark_for_update(T)
 
 /zone/proc/c_invalidate()
 	invalid = TRUE
 	SSair.remove_zone(src)
-	SEND_SIGNAL(src, COMSIG_ZAS_DELETE, TRUE)
-	#ifdef ZASDBG
+	SEND_SI69NAL(src, COMSI69_ZAS_DELETE, TRUE)
+	#ifdef ZASDB69
 	for(var/turf/simulated/T in contents)
-		T.dbg(invalid_zone)
+		T.db69(invalid_zone)
 	#endif
 
 /zone/proc/rebuild()
-	if(invalid) return //Short circuit for explosions where rebuild is called many times over.
+	if(invalid) return //Short circuit for explosions where rebuild is called69any times over.
 	c_invalidate()
 	for(var/turf/simulated/T in contents)
-		T.update_graphic(graphic_remove = air.graphic) //we need to remove the overlays so they're not doubled when the zone is rebuilt
-		//T.dbg(invalid_zone)
-		T.needs_air_update = 0 //Reset the marker so that it will be added to the list.
+		T.update_69raphic(69raphic_remove = air.69raphic) //we need to remove the overlays so they're not doubled when the zone is rebuilt
+		//T.db69(invalid_zone)
+		T.needs_air_update = 0 //Reset the69arker so that it will be added to the list.
 		SSair.mark_for_update(T)
 
-/zone/proc/add_tile_air(datum/gas_mixture/tile_air)
+/zone/proc/add_tile_air(datum/69as_mixture/tile_air)
 	//air.volume += CELL_VOLUME
-	air.group_multiplier = 1
+	air.69roup_multiplier = 1
 	air.multiply(contents.len)
-	air.merge(tile_air)
+	air.mer69e(tile_air)
 	air.divide(contents.len+1)
-	air.group_multiplier = contents.len+1
+	air.69roup_multiplier = contents.len+1
 
 /zone/proc/tick()
 	if(air.temperature >= PLASMA_FLASHPOINT && !(src in SSair.active_fire_zones) && air.check_combustability() && contents.len)
@@ -153,40 +153,40 @@ Class Procs:
 		if(istype(T))
 			T.create_fire(vsc.fire_firelevel_multiplier)
 
-	if(air.check_tile_graphic(graphic_add, graphic_remove))
+	if(air.check_tile_69raphic(69raphic_add, 69raphic_remove))
 		for(var/turf/simulated/T in contents)
-			T.update_graphic(graphic_add, graphic_remove)
-		graphic_add.len = 0
-		graphic_remove.len = 0
+			T.update_69raphic(69raphic_add, 69raphic_remove)
+		69raphic_add.len = 0
+		69raphic_remove.len = 0
 
-	for(var/connection_edge/E in edges)
-		if(E.sleeping)
+	for(var/connection_ed69e/E in ed69es)
+		if(E.sleepin69)
 			E.recheck()
 
-	SEND_SIGNAL(src, COMSIG_ZAS_TICK, src)
+	SEND_SI69NAL(src, COMSI69_ZAS_TICK, src)
 
-/zone/proc/dbg_data(mob/M)
+/zone/proc/db69_data(mob/M)
 	to_chat(M, name)
-	for(var/g in air.gas)
-		to_chat(M, "[gas_data.name[g]]: [air.gas[g]]")
-	to_chat(M, "P: [air.return_pressure()] kPa V: [air.volume]L T: [air.temperature]�K ([air.temperature - T0C]�C)")
-	to_chat(M, "O2 per N2: [(air.gas["nitrogen"] ? air.gas["oxygen"]/air.gas["nitrogen"] : "N/A")] Moles: [air.total_moles]")
-	to_chat(M, "Simulated: [contents.len] ([air.group_multiplier])")
-	//M << "Unsimulated: [unsimulated_contents.len]"
-	//M << "Edges: [edges.len]"
+	for(var/69 in air.69as)
+		to_chat(M, "6969as_data.name669696969: 69air.69a69699696969")
+	to_chat(M, "P: 69air.return_pressure(6969 kPa69: 69air.volu69e69L T: 69air.temperat69re69�K (69air.temperature -69T0C69�C)")
+	to_chat(M, "O2 per N2: 69(air.69as69"nitro69e69"69 ? air.69as69"oxy6969n"69/air.69as69"nitro69en"69 : "N69A")6969oles: 69air.total_69oles69")
+	to_chat(M, "Simulated: 69contents.le6969 (69air.69roup_multipli69r69)")
+	//M << "Unsimulated: 69unsimulated_contents.le6969"
+	//M << "Ed69es: 69ed69es.le6969"
 	if(invalid) to_chat(M, "Invalid!")
-	var/zone_edges = 0
-	var/space_edges = 0
+	var/zone_ed69es = 0
+	var/space_ed69es = 0
 	var/space_coefficient = 0
-	for(var/connection_edge/E in edges)
-		if(E.type == /connection_edge/zone) zone_edges++
+	for(var/connection_ed69e/E in ed69es)
+		if(E.type == /connection_ed69e/zone) zone_ed69es++
 		else
-			space_edges++
+			space_ed69es++
 			space_coefficient += E.coefficient
-			to_chat(M, "[E:air:return_pressure()]kPa")
+			to_chat(M, "69E:air:return_pressure(6969kPa")
 
-	to_chat(M, "Zone Edges: [zone_edges]")
-	to_chat(M, "Space Edges: [space_edges] ([space_coefficient] connections)")
+	to_chat(M, "Zone Ed69es: 69zone_ed69e6969")
+	to_chat(M, "Space Ed69es: 69space_ed69e6969 (69space_coefficie69t69 connections)")
 
 	//for(var/turf/T in unsimulated_contents)
-	//	M << "[T] at ([T.x],[T.y])"
+	//	M << "696969 at (69T69x69,6969.y69)"

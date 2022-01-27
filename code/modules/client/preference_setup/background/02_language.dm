@@ -1,4 +1,4 @@
-#define MAX_LANGUAGES 2
+#define69AX_LANGUAGES 2
 
 /datum/preferences
 	var/list/alternate_languages
@@ -10,10 +10,10 @@
 	var/list/free_languages
 
 /datum/category_item/player_setup_item/background/languages/load_character(var/savefile/S)
-	from_file(S["language"], pref.alternate_languages)
+	from_file(S69"language"69, pref.alternate_languages)
 
 /datum/category_item/player_setup_item/background/languages/save_character(var/savefile/S)
-	to_file(S["language"],   pref.alternate_languages)
+	to_file(S69"language"69,   pref.alternate_languages)
 
 /datum/category_item/player_setup_item/background/languages/sanitize_character()
 	if(!islist(pref.alternate_languages))
@@ -31,17 +31,17 @@
 		. += "Your current species, faction or home system selection does not allow you to choose additional languages.<br>"
 	. = jointext(.,null)
 
-/datum/category_item/player_setup_item/background/languages/OnTopic(var/href,var/list/href_list, var/mob/user)
+/datum/category_item/player_setup_item/background/languages/OnTopic(var/href,var/list/href_list,69ar/mob/user)
 
-	if(href_list["remove_language"])
-		var/index = text2num(href_list["remove_language"])
+	if(href_list69"remove_language"69)
+		var/index = text2num(href_list69"remove_language"69)
 		pref.alternate_languages.Cut(index, index+1)
 		return TOPIC_REFRESH
 
-	else if(href_list["add_language"])
+	else if(href_list69"add_language"69)
 
-		if(pref.alternate_languages.len >= MAX_LANGUAGES)
-			alert(user, "You have already selected the maximum number of languages!")
+		if(pref.alternate_languages.len >=69AX_LANGUAGES)
+			alert(user, "You have already selected the69aximum number of languages!")
 			return
 
 		sanitize_alt_languages()
@@ -64,32 +64,32 @@
 		return
 
 	//A quick hack. Todo: Draw this from species or culture or something
-	free_languages[LANGUAGE_COMMON] = TRUE
+	free_languages69LANGUAGE_COMMON69 = TRUE
 
 	/*
 	for(var/thing in pref.cultural_info)
-		var/decl/cultural_info/culture = SSculture.get_culture(pref.cultural_info[thing])
+		var/decl/cultural_info/culture = SSculture.get_culture(pref.cultural_info69thing69)
 		if(istype(culture))
 			var/list/langs = culture.get_spoken_languages()
 			if(LAZYLEN(langs))
 				for(var/checklang in langs)
-					free_languages[checklang] =    TRUE
-					allowed_languages[checklang] = TRUE
+					free_languages69checklang69 =    TRUE
+					allowed_languages69checklang69 = TRUE
 			if(LAZYLEN(culture.secondary_langs))
 				for(var/checklang in culture.secondary_langs)
-					allowed_languages[checklang] = TRUE
+					allowed_languages69checklang69 = TRUE
 	*/
 	for(var/thing in all_languages)
-		var/datum/language/lang = all_languages[thing]
+		var/datum/language/lang = all_languages69thing69
 		if(!(lang.flags & RESTRICTED))
-			allowed_languages[thing] = TRUE
+			allowed_languages69thing69 = TRUE
 
-/datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(var/mob/user, var/datum/language/lang)
+/datum/category_item/player_setup_item/background/languages/proc/is_allowed_language(var/mob/user,69ar/datum/language/lang)
 	if(isnull(allowed_languages) || isnull(free_languages))
 		rebuild_language_cache(user)
 	if(!user || ((lang.flags & RESTRICTED) && is_alien_whitelisted(user, lang)))
 		return TRUE
-	return allowed_languages[lang.name]
+	return allowed_languages69lang.name69
 
 /datum/category_item/player_setup_item/background/languages/proc/sanitize_alt_languages()
 	if(!istype(pref.alternate_languages))
@@ -97,7 +97,7 @@
 	var/preference_mob = preference_mob()
 	rebuild_language_cache(preference_mob)
 	for(var/L in pref.alternate_languages)
-		var/datum/language/lang = all_languages[L]
+		var/datum/language/lang = all_languages69L69
 		if(!lang || !is_allowed_language(preference_mob, lang))
 			pref.alternate_languages -= L
 	if(LAZYLEN(free_languages))
@@ -106,20 +106,20 @@
 			pref.alternate_languages.Insert(1, lang)
 
 	pref.alternate_languages = uniquelist(pref.alternate_languages)
-	if(pref.alternate_languages.len > MAX_LANGUAGES)
+	if(pref.alternate_languages.len >69AX_LANGUAGES)
 		pref.alternate_languages.Cut(MAX_LANGUAGES + 1)
 
 /datum/category_item/player_setup_item/background/languages/proc/get_language_text()
 	sanitize_alt_languages()
 	if(LAZYLEN(pref.alternate_languages))
 		for(var/i = 1 to pref.alternate_languages.len)
-			var/lang = pref.alternate_languages[i]
-			if(free_languages[lang])
-				LAZYADD(., "- [lang] (required).<br>")
+			var/lang = pref.alternate_languages69i69
+			if(free_languages69lang69)
+				LAZYADD(., "- 69lang69 (required).<br>")
 			else
-				LAZYADD(., "- [lang] <a href='?src=\ref[src];remove_language=[i]'>Remove.</a><br>")
-	if(pref.alternate_languages.len < MAX_LANGUAGES)
-		var/remaining_langs = MAX_LANGUAGES - pref.alternate_languages.len
-		LAZYADD(., "- <a href='?src=\ref[src];add_language=1'>add</a> ([remaining_langs] remaining)<br>")
+				LAZYADD(., "- 69lang69 <a href='?src=\ref69src69;remove_language=69i69'>Remove.</a><br>")
+	if(pref.alternate_languages.len <69AX_LANGUAGES)
+		var/remaining_langs =69AX_LANGUAGES - pref.alternate_languages.len
+		LAZYADD(., "- <a href='?src=\ref69src69;add_language=1'>add</a> (69remaining_langs69 remaining)<br>")
 
-#undef MAX_LANGUAGES
+#undef69AX_LANGUAGES

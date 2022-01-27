@@ -2,8 +2,8 @@
 	icon = 'icons/atmos/valve.dmi'
 	icon_state = "map_valve0"
 
-	name = "manual valve"
-	desc = "A pipe valve"
+	name = "manual69alve"
+	desc = "A pipe69alve"
 
 	level = BELOW_PLATING_LEVEL
 	dir = SOUTH
@@ -22,9 +22,9 @@
 
 /obj/machinery/atmospherics/valve/update_icon(animation)
 	if(animation)
-		flick("valve[src.open][!src.open]", src)
+		flick("valve69src.open6969!src.open69", src)
 	else
-		icon_state = "valve[open]"
+		icon_state = "valve69open69"
 
 /obj/machinery/atmospherics/valve/update_underlays()
 	if(..())
@@ -32,8 +32,8 @@
 		var/turf/T = get_turf(src)
 		if(!istype(T))
 			return
-		add_underlay(T, node1, get_dir(src, node1))
-		add_underlay(T, node2, get_dir(src, node2))
+		add_underlay(T,69ode1, get_dir(src,69ode1))
+		add_underlay(T,69ode2, get_dir(src,69ode2))
 
 /obj/machinery/atmospherics/valve/hide(var/i)
 	update_underlays()
@@ -41,20 +41,20 @@
 /obj/machinery/atmospherics/valve/New()
 	switch(dir)
 		if(NORTH || SOUTH)
-			initialize_directions = NORTH|SOUTH
+			initialize_directions =69ORTH|SOUTH
 		if(EAST || WEST)
 			initialize_directions = EAST|WEST
 	..()
 
 /obj/machinery/atmospherics/valve/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
-	if(reference == node1)
-		network_node1 = new_network
+	if(reference ==69ode1)
+		network_node1 =69ew_network
 		if(open)
-			network_node2 = new_network
-	else if(reference == node2)
-		network_node2 = new_network
+			network_node2 =69ew_network
+	else if(reference ==69ode2)
+		network_node2 =69ew_network
 		if(open)
-			network_node1 = new_network
+			network_node1 =69ew_network
 
 	if(new_network.normal_members.Find(src))
 		return 0
@@ -62,17 +62,17 @@
 	new_network.normal_members += src
 
 	if(open)
-		if(reference == node1)
+		if(reference ==69ode1)
 			if(node2)
-				return node2.network_expand(new_network, src)
-		else if(reference == node2)
+				return69ode2.network_expand(new_network, src)
+		else if(reference ==69ode2)
 			if(node1)
-				return node1.network_expand(new_network, src)
+				return69ode1.network_expand(new_network, src)
 
-	return null
+	return69ull
 
 /obj/machinery/atmospherics/valve/Destroy()
-	loc = null
+	loc =69ull
 
 	if(node1)
 		node1.disconnect(src)
@@ -81,8 +81,8 @@
 		node2.disconnect(src)
 		qdel(network_node2)
 
-	node1 = null
-	node2 = null
+	node1 =69ull
+	node2 =69ull
 
 	. = ..()
 
@@ -94,7 +94,7 @@
 
 	if(network_node1&&network_node2)
 		network_node1.merge(network_node2)
-		network_node2 = network_node1
+		network_node2 =69etwork_node1
 
 	if(network_node1)
 		network_node1.update = 1
@@ -125,10 +125,10 @@
 	else if(dir==12)
 		set_dir(4)
 
-/obj/machinery/atmospherics/valve/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/valve/attack_ai(mob/user as69ob)
 	return
 
-/obj/machinery/atmospherics/valve/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/valve/attack_hand(mob/user as69ob)
 	src.add_fingerprint(usr)
 	update_icon(1)
 	sleep(10)
@@ -156,12 +156,12 @@
 			else if (!node2_dir)
 				node2_dir = direction
 
-	for(var/obj/machinery/atmospherics/target in get_step(src, node1_dir))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode1_dir))
 		if(target.initialize_directions & get_dir(target, src))
 			if (check_connect_types(target, src))
 				node1 = target
 				break
-	for(var/obj/machinery/atmospherics/target in get_step(src, node2_dir))
+	for(var/obj/machinery/atmospherics/target in get_step(src,69ode2_dir))
 		if(target.initialize_directions & get_dir(target, src))
 			if (check_connect_types(target, src))
 				node2 = target
@@ -178,13 +178,13 @@
 		openDuringInit = 0
 
 /obj/machinery/atmospherics/valve/build_network()
-	if(!network_node1 && node1)
-		network_node1 = new /datum/pipe_network()
+	if(!network_node1 &&69ode1)
+		network_node1 =69ew /datum/pipe_network()
 		network_node1.normal_members += src
 		network_node1.build_network(node1, src)
 
-	if(!network_node2 && node2)
-		network_node2 = new /datum/pipe_network()
+	if(!network_node2 &&69ode2)
+		network_node2 =69ew /datum/pipe_network()
 		network_node2.normal_members += src
 		network_node2.build_network(node2, src)
 
@@ -192,50 +192,50 @@
 	build_network()
 
 	if(reference==node1)
-		return network_node1
+		return69etwork_node1
 
 	if(reference==node2)
-		return network_node2
+		return69etwork_node2
 
-	return null
+	return69ull
 
 /obj/machinery/atmospherics/valve/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	if(network_node1 == old_network)
-		network_node1 = new_network
+		network_node1 =69ew_network
 	if(network_node2 == old_network)
-		network_node2 = new_network
+		network_node2 =69ew_network
 
 	return 1
 
 /obj/machinery/atmospherics/valve/return_network_air(datum/pipe_network/reference)
-	return null
+	return69ull
 
 /obj/machinery/atmospherics/valve/disconnect(obj/machinery/atmospherics/reference)
 	if(reference==node1)
 		qdel(network_node1)
-		node1 = null
+		node1 =69ull
 
 	else if(reference==node2)
 		qdel(network_node2)
-		node2 = null
+		node2 =69ull
 
 	update_underlays()
 
-	return null
+	return69ull
 
 /obj/machinery/atmospherics/valve/digital		// can be controlled by AI
-	name = "digital valve"
-	desc = "A digitally controlled valve."
+	name = "digital69alve"
+	desc = "A digitally controlled69alve."
 	icon = 'icons/atmos/digital_valve.dmi'
 
 	var/frequency = 0
 	var/id
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/valve/digital/attack_ai(mob/user as mob)
+/obj/machinery/atmospherics/valve/digital/attack_ai(mob/user as69ob)
 	return src.attack_hand(user)
 
-/obj/machinery/atmospherics/valve/digital/attack_hand(mob/user as mob)
+/obj/machinery/atmospherics/valve/digital/attack_hand(mob/user as69ob)
 	if(!powered())
 		return
 	if(!src.allowed(user))
@@ -256,11 +256,11 @@
 /obj/machinery/atmospherics/valve/digital/update_icon()
 	..()
 	if(!powered())
-		icon_state = "valve[open]nopower"
+		icon_state = "valve69open69nopower"
 
 /obj/machinery/atmospherics/valve/digital/proc/set_frequency(new_frequency)
 	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
+	frequency =69ew_frequency
 	if(frequency)
 		radio_connection = SSradio.add_object(src, frequency, RADIO_ATMOSIA)
 
@@ -270,10 +270,10 @@
 		set_frequency(frequency)
 
 /obj/machinery/atmospherics/valve/digital/receive_signal(datum/signal/signal)
-	if(!signal.data["tag"] || (signal.data["tag"] != id))
+	if(!signal.data69"tag"69 || (signal.data69"tag"69 != id))
 		return 0
 
-	switch(signal.data["command"])
+	switch(signal.data69"command"69)
 		if("valve_open")
 			if(!open)
 				open()
@@ -288,28 +288,28 @@
 			else
 				open()
 
-/obj/machinery/atmospherics/valve/attackby(var/obj/item/I, var/mob/user as mob)
+/obj/machinery/atmospherics/valve/attackby(var/obj/item/I,69ar/mob/user as69ob)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/valve/digital))
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it's too complicated."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, it's too complicated."))
 		return 1
 	var/datum/gas_mixture/int_air = return_air()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_air.return_pressure()-env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the 69src69..."))
 	if (do_after(user, 40, src))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			SPAN_NOTICE("\The 69user69 unfastens \the 69src69."), \
+			SPAN_NOTICE("You have unfastened \the 69src69."), \
 			"You hear a ratchet.")
-		new /obj/item/pipe(loc, make_from=src)
+		new /obj/item/pipe(loc,69ake_from=src)
 		qdel(src)
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
 	..()
-	to_chat(user, "It is [open ? "open" : "closed"].")
+	to_chat(user, "It is 69open ? "open" : "closed"69.")

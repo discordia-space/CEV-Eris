@@ -1,65 +1,65 @@
-<style type="text/css">
+<st69le t69pe="text/css">
 	.fixedCell {
-		width: 78px;
+		widt69: 78px;
 	}
 
-	.link, .linkOn, .linkOff, .selected, .disabled, .yellowButton, .redButton {
-		min-width: 70px;
-		margin: 0px 2px 0px 0px;
+	.lin69, .lin69On, .lin69Off, .selected, .dis6969led, .69ellow69utton, .red69utton {
+		min-widt69: 70px;
+		m69r69in: 0px 2px 0px 0px;
 	}
-</style>
+</st69le>
 
-<div class="item">
-	<div class="itemLabelWider">
-		Main power is 
-		{{if data.main_power_loss == 0}}
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969elWider">
+		M69in power is 
+		{{if d69t69.m69in_power_loss == 0}}
 			online
-		{{else data.main_power_loss == -1}}
+		{{else d69t69.m69in_power_loss == -1}}
 			offline
 		{{else}}
-			offline for {{:data.main_power_loss}} second{{:data.main_power_loss == 1 ? '' : 's'}}
+			offline for {{:d69t69.m69in_power_loss}} second{{:d69t69.m69in_power_loss == 1 ? '' : 's'}}
 		{{/if}}.
-	</div>
-	<div class="itemContentNarrow">
-		{{:helper.link(data.main_power_loss ? 'Disabled' : 'Disable', null, {'command' : 'main_power'}, data.main_power_loss == 0 ? null : 'disabled', data.main_power_loss == 0 ? 'redButton' : null)}}
-	</div>
-</div>	
+	</di69>
+	<di69 cl69ss="itemContentN69rrow">
+		{{:69elper.lin6969d69t69.m69in_power_loss ? 'Dis6969led' : 'Dis6969le',69ull, {'comm69nd' : 'm69in_power'}, d69t69.m69in_power_loss == 0 ?69ull : 'dis6969led', d69t69.m69in_power_loss == 0 ? 'red69utton' :69ull69}}
+	</di69>
+</di69>	
 
-<div class="item">
-	<div class="itemLabelWider">
-		Backup power is 
-		{{if data.backup_power_loss == 0}}
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969elWider">
+		6969c69up power is 
+		{{if d69t69.6969c69up_power_loss == 0}}
 			online
-		{{else data.backup_power_loss == -1}}
+		{{else d69t69.6969c69up_power_loss == -1}}
 			offline
 		{{else}}
-			offline for {{:data.backup_power_loss}} second{{:data.backup_power_loss == 1 ? '' : 's'}}
+			offline for {{:d69t69.6969c69up_power_loss}} second{{:d69t69.6969c69up_power_loss == 1 ? '' : 's'}}
 		{{/if}}.
-	</div>
-	<div class="itemContentNarrow">
-		{{:helper.link(data.backup_power_loss ? 'Disabled' : 'Disable', null, {'command' : 'backup_power'}, data.backup_power_loss == 0 ? null : 'disabled', data.backup_power_loss == 0 ? 'redButton' : null)}}
-	</div>
-</div>	
+	</di69>
+	<di69 cl69ss="itemContentN69rrow">
+		{{:69elper.lin6969d69t69.6969c69up_power_loss ? 'Dis6969led' : 'Dis6969le',69ull, {'comm69nd' : '6969c69up_power'}, d69t69.6969c69up_power_loss == 0 ?69ull : 'dis6969led', d69t69.6969c69up_power_loss == 0 ? 'red69utton' :69ull69}}
+	</di69>
+</di69>	
 
-<div class="item">
-	<div class="itemLabelWidest">
-		Electrified Status:
-	</div>
-    <div class="itemContentWidest">
-		{{:helper.link('Offline'  , null, {'command' : 'electrify_permanently', 'activate' : "0" }, data.electrified == 0 ? 'selected' : null)}}
-        {{:helper.link(data.electrified <= 0 ? 'Temporary (30s)' : 'Temporary (' + data.electrified +'s)', null, {'command' : 'electrify_temporary',   'activate' : "1"}, data.electrified > 0 ? 'redButton' : null)}}
-        {{:helper.link('Permanent', null, {'command' : 'electrify_permanently', 'activate' : "1"}, data.electrified == -1 ? 'redButton' : null)}}
-	</div>
-</div>	
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969elWidest">
+		Electrified St69tus:
+	</di69>
+    <di69 cl69ss="itemContentWidest">
+		{{:69elper.lin6969'Offline'  ,69ull, {'comm69nd' : 'electrif69_perm69nentl69', '69cti6969te' : "0" }, d69t69.electrified == 0 ? 'selected' :69ull69}}
+        {{:69elper.lin6969d69t69.electrified <= 0 ? 'Tempor69r69 6930s69' : 'Tempor69r69 69' + d69t69.electrified +'s69',69ull, {'comm69nd' : 'electrif69_tempor69r69',   '69cti6969te' : "1"}, d69t69.electrified > 0 ? 'red69utton' :69ull69}}
+        {{:69elper.lin6969'Perm69nent',69ull, {'comm69nd' : 'electrif69_perm69nentl69', '69cti6969te' : "1"}, d69t69.electrified == -1 ? 'red69utton' :69ull69}}
+	</di69>
+</di69>	
 
-<br>
+<69r>
 
-<table>
-	{{for data.commands}}
+<t6969le>
+	{{for d69t69.comm69nds}}
 		<tr>
-			<td class='itemLabel fixedCell'>{{:value.name}}:</td>
-			<td class='fixedCell'>{{:helper.link(value.enabled, null, {'command' : value.command, 'activate' : value.act ? 1 : 0}, value.active ?  'selected' : null)}}</td>
-			<td class='fixedCell'>{{:helper.link(value.disabled,null, {'command' : value.command, 'activate' : value.act ? 0 : 1}, !value.active ? (value.danger ? 'redButton' : 'selected') : null)}}</td>
+			<td cl69ss='itemL6969el fixedCell'>{{:6969lue.n69me}}:</td>
+			<td cl69ss='fixedCell'>{{:69elper.lin69696969lue.en6969led,69ull, {'comm69nd' : 6969lue.comm69nd, '69cti6969te' : 6969lue.69ct ? 1 : 0}, 6969lue.69cti69e ?  'selected' :69ull69}}</td>
+			<td cl69ss='fixedCell'>{{:69elper.lin69696969lue.dis6969led,null, {'comm69nd' : 6969lue.comm69nd, '69cti6969te' : 6969lue.69ct ? 0 : 1}, !6969lue.69cti69e ? 696969lue.d69n69er ? 'red69utton' : 'selected'69 :69ull69}}</td>
 		</tr>
 	{{/for}}
-</table>
+</t6969le>

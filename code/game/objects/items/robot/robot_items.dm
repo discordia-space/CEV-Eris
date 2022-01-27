@@ -3,7 +3,7 @@
 /**********************************************************************
 						Cyborg Spec Items
 ***********************************************************************/
-//Might want to move this into several files later but for now it works here
+//Might want to69ove this into several files later but for now it works here
 // Consider changing this to a child of the stun baton class. ~Z
 /obj/item/borg
 	bad_type = /obj/item/borg
@@ -14,13 +14,13 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-/obj/item/borg/stun/apply_hit_effect(mob/living/M, mob/living/silicon/robot/user, var/hit_zone)
+/obj/item/borg/stun/apply_hit_effect(mob/living/M,69ob/living/silicon/robot/user,69ar/hit_zone)
 	if(!istype(user))
 		return
 
-	user.visible_message(SPAN_DANGER("\The [user] has prodded \the [M] with \a [src]!"))
+	user.visible_message(SPAN_DANGER("\The 69user69 has prodded \the 69M69 with \a 69src69!"))
 
-	if(!user.cell || !user.cell.checked_use(1250)) //Slightly more than a baton.
+	if(!user.cell || !user.cell.checked_use(1250)) //Slightly69ore than a baton.
 		return
 
 	playsound(loc, 'sound/weapons/Egloves.ogg', 50, 1, -1)
@@ -29,7 +29,7 @@
 	M.stun_effect_act(0, 70, check_zone(hit_zone), src)
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H =69
 		H.forcesay(hit_appends)
 
 /obj/item/borg/overdrive
@@ -47,13 +47,13 @@
 	var/obj/screen/overlay
 
 /obj/item/borg/sight/xray
-	name = "\proper x-ray vision"
+	name = "\proper x-ray69ision"
 	sight_mode = BORGXRAY
 
 
 
 /obj/item/borg/sight/thermal
-	name = "\proper thermal vision"
+	name = "\proper thermal69ision"
 	sight_mode = BORGTHERM
 	icon_state = "thermal"
 	icon = 'icons/inventory/eyes/icon.dmi'
@@ -65,7 +65,7 @@
 
 
 /obj/item/borg/sight/meson
-	name = "\proper meson vision"
+	name = "\proper69eson69ision"
 	sight_mode = BORGMESON
 	icon_state = "meson"
 	icon = 'icons/inventory/eyes/icon.dmi'
@@ -76,7 +76,7 @@
 
 
 /obj/item/borg/sight/material
-	name = "\proper material scanner vision"
+	name = "\proper69aterial scanner69ision"
 	sight_mode = BORGMATERIAL
 
 /obj/item/borg/sight/hud

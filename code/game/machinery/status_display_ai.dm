@@ -2,7 +2,7 @@
 	var/overlay
 	var/ckey
 
-/datum/ai_emotion/New(var/over, var/key)
+/datum/ai_emotion/New(var/over,69ar/key)
 	overlay = over
 	ckey = key
 
@@ -25,30 +25,30 @@ var/list/ai_status_emotions = list(
 	"Facepalm" 					= new /datum/ai_emotion("ai_facepalm"),
 	"Friend Computer" 			= new /datum/ai_emotion("ai_friend"),
 	"Tribunal" 					= new /datum/ai_emotion("ai_tribunal", "serithi"),
-	"Tribunal Malfunctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
+	"Tribunal69alfunctioning"	= new /datum/ai_emotion("ai_tribunal_malf", "serithi")
 	)
 
 /proc/get_ai_emotions(var/ckey)
 	var/list/emotions = new
 	for(var/emotion_name in ai_status_emotions)
-		var/datum/ai_emotion/emotion = ai_status_emotions[emotion_name]
+		var/datum/ai_emotion/emotion = ai_status_emotions69emotion_name69
 		if(!emotion.ckey || emotion.ckey == ckey)
 			emotions += emotion_name
 
 	return emotions
 
-/proc/set_ai_status_displays(mob/user as mob)
+/proc/set_ai_status_displays(mob/user as69ob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	for (var/obj/machinery/M in GLOB.ai_status_display_list) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
-			var/obj/machinery/ai_status_display/AISD = M
+			var/obj/machinery/ai_status_display/AISD =69
 			AISD.emotion = emote
 			AISD.update()
 		//if Friend Computer, change ALL displays
 		else if(istype(M, /obj/machinery/status_display))
 
-			var/obj/machinery/status_display/SD = M
+			var/obj/machinery/status_display/SD =69
 			if(emote=="Friend Computer")
 				SD.friendc = 1
 			else
@@ -69,7 +69,7 @@ var/list/ai_status_emotions = list(
 
 	var/emotion = "Neutral"
 
-/obj/machinery/ai_status_display/attack_ai/(mob/user as mob)
+/obj/machinery/ai_status_display/attack_ai/(mob/user as69ob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
 	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
 	src.emotion = emote
@@ -93,7 +93,7 @@ var/list/ai_status_emotions = list(
 		return
 
 	if(mode==1)	// AI emoticon
-		var/datum/ai_emotion/ai_emotion = ai_status_emotions[emotion]
+		var/datum/ai_emotion/ai_emotion = ai_status_emotions69emotion69
 		set_picture(ai_emotion.overlay)
 		return
 

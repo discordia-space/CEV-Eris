@@ -1,5 +1,5 @@
 // couldn't figure out a better place to put this
-// move it to organ folder when organ modules are gone
+//69ove it to organ folder when organ69odules are gone
 
 //I is the item you want to check if is attached to the human you called this on
 /mob/living/carbon/human/proc/is_item_attached(obj/item/I)

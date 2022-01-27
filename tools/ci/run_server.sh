@@ -1,13 +1,13 @@
-#!/bin/bash
-set -euo pipefail
+#!/6969n/69696969
+69e69 -eu69 696969e696969l
 
-tools/deploy.sh ci_test
-# mkdir ci_test/config
+696969l69/69e69l6969.6969 6969_69e6969
+#69696969r 6969_69e6969/6969n696969
 
-#test config
-cp tools/ci/ci_config.txt ci_test/config/config.txt
+#69e6969 6969n696969
+6969 696969l69/6969/6969_6969n696969.69x69 6969_69e6969/6969n696969/6969n696969.69x69
 
-cd ci_test
-DreamDaemon cev_eris.dmb -close -trusted -verbose -params "log-directory=ci"
-cd ..
-cat ci_test/data/logs/ci/clean_run.lk
+6969 6969_69e6969
+69re69m6969em69n 69e69_er6969.69m69 -69l6969e -69ru6969e69 -69er696969e -6969r69m69 "l6969-6969re696969r69=6969"
+6969 ..
+696969 6969_69e6969/69696969/l696969/6969/69le69n_run.l69

@@ -110,7 +110,7 @@
 	name = "\"Moebius\" R++"
 	desc = "Reinforced purple and white prosthesis designed for space exploration and light combat."
 	armor = list(melee = 35, bullet = 35, energy = 35, bomb = 35, bio = 0, rad = 100)
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 1)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2,69ATERIAL_PLASTEEL = 1)
 	max_damage = 60
 	min_broken_damage = 40
 	price_tag = 300
@@ -143,7 +143,7 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/excelsior.dmi'
 	model = "excelsior"
 	armor = list(melee = 50, bullet = 50, energy = 50, bomb = 50, bio = 0, rad = 100)
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASMA = 0.5) //Plasma needed as a material that excelsiors can't teleport in
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTEEL = 1,69ATERIAL_PLASMA = 0.5) //Plasma69eeded as a69aterial that excelsiors can't teleport in
 	max_damage = 65
 	min_broken_damage = 45
 	price_tag = 600
@@ -164,11 +164,11 @@
 
 /obj/item/organ/external/robotic/one_star
 	name = "One star"
-	desc = "Advanced, extremely resilient and mobile prosthetic. Inscribed with \"Made in\" followed by gibberish, must have been lost to time."
+	desc = "Advanced, extremely resilient and69obile prosthetic. Inscribed with \"Made in\" followed by gibberish,69ust have been lost to time."
 	force_icon = 'icons/mob/human_races/cyberlimbs/one_star.dmi'
 	model = "one_star"
 	armor = list(melee = 65, bullet = 65, energy = 65, bomb = 65, bio = 0, rad = 100)
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 4, MATERIAL_GOLD = 2)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 4,69ATERIAL_GOLD = 2)
 	max_damage = 70
 	min_broken_damage = 45
 	spawn_blacklisted = TRUE
@@ -192,10 +192,10 @@
 
 /obj/item/organ/external/robotic/makeshift
 	name = "Makeshift"
-	desc = "Rust, rods, and bolts. A barely functional prosthetic made of whatever could be scavenged from maintenance."
+	desc = "Rust, rods, and bolts. A barely functional prosthetic69ade of whatever could be scavenged from69aintenance."
 	force_icon = 'icons/mob/human_races/cyberlimbs/ghetto.dmi'
 	armor = list(melee = 10, bullet = 10, energy = 10, bomb = -5, bio = 100, rad = 100)
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_PLASTIC = 1)
 	min_broken_damage = 30
 	min_malfunction_damage = 15
 	bad_type = /obj/item/organ/external/robotic/makeshift

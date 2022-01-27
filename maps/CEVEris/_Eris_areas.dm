@@ -1,6 +1,6 @@
 
 ////////////
-//CEV ERIS//
+//CE69 ERIS//
 ////////////
 
 
@@ -12,11 +12,11 @@
 
 /area/eris/maintenance
 	is_maintenance = TRUE
-	flags = AREA_FLAG_RAD_SHIELDED
-	sound_env = TUNNEL_ENCLOSED
-	turf_initializer = new /datum/turf_initializer/maintenance()
-	forced_ambience = list('sound/ambience/maintambience1.ogg','sound/ambience/maintambience2.ogg','sound/ambience/maintambience3.ogg','sound/ambience/maintambience4.ogg','sound/ambience/maintambience5.ogg','sound/ambience/maintambience6.ogg')
-	area_light_color = COLOR_LIGHTING_MAINT_DARK
+	fla69s = AREA_FLA69_RAD_SHIELDED
+	sound_en69 = TUNNEL_ENCLOSED
+	turf_initializer =69ew /datum/turf_initializer/maintenance(69
+	forced_ambience = list('sound/ambience/maintambience1.o6969','sound/ambience/maintambience2.o6969','sound/ambience/maintambience3.o6969','sound/ambience/maintambience4.o6969','sound/ambience/maintambience5.o6969','sound/ambience/maintambience6.o6969'69
+	area_li69ht_color = COLOR_LI69HTIN69_MAINT_DARK
 
 /area/eris/maintenance/junk
 	name = "Junk Beacon"
@@ -27,166 +27,166 @@
 	icon_state = "disposal"
 
 /area/eris/maintenance/oldtele
-	name = "Reserve Teleporter"
+	name = "Reser69e Teleporter"
 	icon_state = "erisblue"
 
-/area/eris/maintenance/oldbridge
-	name = "Old Bridge"
+/area/eris/maintenance/oldbrid69e
+	name = "Old Brid69e"
 	icon_state = "erisblue"
 
-/area/eris/maintenance/fueltankstorage
-	name = "Fueltank Storage"
+/area/eris/maintenance/fueltankstora69e
+	name = "Fueltank Stora69e"
 	icon_state = "erisblue"
 
 /area/eris/maintenance/section1deck1central
-	name = "First Section Deck 1 Fore Maintenance"
+	name = "First Section Deck 1 Fore69aintenance"
 	icon_state = "section1deck1central"
 
 /area/eris/maintenance/section1deck2central
-	name = "First Section Deck 2 Fore Maintenance"
+	name = "First Section Deck 2 Fore69aintenance"
 	icon_state = "section1deck2central"
 
 /area/eris/maintenance/section1deck3central
-	name = "First Section Deck 3 Fore Maintenance"
+	name = "First Section Deck 3 Fore69aintenance"
 	icon_state = "section1deck3central"
 
 /area/eris/maintenance/section1deck4central
-	name = "First Section Deck 4 Fore Maintenance"
+	name = "First Section Deck 4 Fore69aintenance"
 	icon_state = "section1deck4central"
 
 /area/eris/maintenance/section1deck5central
-	name = "First Section Deck 5 Fore Maintenance"
+	name = "First Section Deck 5 Fore69aintenance"
 	icon_state = "section1deck5central"
 
 /area/eris/maintenance/section2deck1port
-	name = "Second Section Deck 1 Port Maintenance"
+	name = "Second Section Deck 1 Port69aintenance"
 	icon_state = "section2deck1port"
 
 /area/eris/maintenance/section2deck1starboard
-	name = "Second Section Deck 1 Starboard Maintenance"
+	name = "Second Section Deck 1 Starboard69aintenance"
 	icon_state = "section2deck1starboard"
 
 /area/eris/maintenance/section2deck2port
-	name = "Second Section Deck 2 Port Maintenance"
+	name = "Second Section Deck 2 Port69aintenance"
 	icon_state = "section2deck2port"
 
 /area/eris/maintenance/section2deck2starboard
-	name = "Second Section Deck 2 Starboard Maintenance"
+	name = "Second Section Deck 2 Starboard69aintenance"
 	icon_state = "section2deck2starboard"
 
 /area/eris/maintenance/section2deck3port
-	name = "Second Section Deck 3 Port Maintenance"
+	name = "Second Section Deck 3 Port69aintenance"
 	icon_state = "section2deck3port"
 
 /area/eris/maintenance/section2deck3starboard
-	name = "Second Section Deck 3 Starboard Maintenance"
+	name = "Second Section Deck 3 Starboard69aintenance"
 	icon_state = "section2deck3starboard"
 
 /area/eris/maintenance/section2deck4port
-	name = "Second Section Deck 4 Port Maintenance"
+	name = "Second Section Deck 4 Port69aintenance"
 	icon_state = "section2deck4port"
 
 /area/eris/maintenance/section2deck4starboard
-	name = "Second Section Deck 4 Starboard Maintenance"
+	name = "Second Section Deck 4 Starboard69aintenance"
 	icon_state = "section2deck4starboard"
 
 /area/eris/maintenance/section2deck4central
-	name = "Second Section Deck 4 Central Maintenance"
+	name = "Second Section Deck 4 Central69aintenance"
 	icon_state = "section2deck4central"
 
 /area/eris/maintenance/section2deck5port
-	name = "Second Section Deck 5 Port Maintenance"
+	name = "Second Section Deck 5 Port69aintenance"
 	icon_state = "section2deck5port"
 
 /area/eris/maintenance/section2deck5starboard
-	name = "Second Section Deck 5 Starboard Maintenance"
+	name = "Second Section Deck 5 Starboard69aintenance"
 	icon_state = "section2deck5starboard"
 
 /area/eris/maintenance/section3deck1central
-	name = "Third Section Deck 1 Central Maintenance"
+	name = "Third Section Deck 1 Central69aintenance"
 	icon_state = "section3deck1central"
 
 /area/eris/maintenance/section3deck2port
-	name = "Third Section Deck 2 Port Maintenance"
+	name = "Third Section Deck 2 Port69aintenance"
 	icon_state = "section3deck2port"
 
 /area/eris/maintenance/section3deck2starboard
-	name = "Third Section Deck 2 Starboard Maintenance"
+	name = "Third Section Deck 2 Starboard69aintenance"
 	icon_state = "section3deck2starboard"
 
 /area/eris/maintenance/section3deck3port
-	name = "Third Section Deck 3 Port Maintenance"
+	name = "Third Section Deck 3 Port69aintenance"
 	icon_state = "section3deck3port"
 
 /area/eris/maintenance/section3deck3starboard
-	name = "Third Section Deck 3 Starboard Maintenance"
+	name = "Third Section Deck 3 Starboard69aintenance"
 	icon_state = "section3deck3starboard"
 
 /area/eris/maintenance/section3deck4port
-	name = "Third Section Deck 4 Port Maintenance"
+	name = "Third Section Deck 4 Port69aintenance"
 	icon_state = "section3deck4port"
 
 /area/eris/maintenance/section3deck4starboard
-	name = "Third Section Deck 4 Starboard Maintenance"
+	name = "Third Section Deck 4 Starboard69aintenance"
 	icon_state = "section3deck4starboard"
 
 /area/eris/maintenance/section3deck4central
-	name = "Third Section Deck 4 Central Maintenance"
+	name = "Third Section Deck 4 Central69aintenance"
 	icon_state = "section3deck4central"
 
 /area/eris/maintenance/section3deck5port
-	name = "Third Section Deck 5 Port Maintenance"
+	name = "Third Section Deck 5 Port69aintenance"
 	icon_state = "section3deck5port"
 
 /area/eris/maintenance/section3deck5starboard
-	name = "Third Section Deck 5 Starboard Maintenance"
+	name = "Third Section Deck 5 Starboard69aintenance"
 	icon_state = "section3deck5starboard"
 
 /area/eris/maintenance/section4deck1central
-	name = "Fourth Section Deck 1 Central Maintenance"
+	name = "Fourth Section Deck 1 Central69aintenance"
 	icon_state = "section4deck1central"
 
 /area/eris/maintenance/section4deck2port
-	name = "Fourth Section Deck 4 Port Maintenance"
+	name = "Fourth Section Deck 4 Port69aintenance"
 	icon_state = "section4deck2port"
 
 /area/eris/maintenance/section4deck2starboard
-	name = "Fourth Section Deck 4 Starboard Maintenance"
+	name = "Fourth Section Deck 4 Starboard69aintenance"
 	icon_state = "section4deck2starboard"
 
 /area/eris/maintenance/section4deck3port
-	name = "Fourth Section Deck 3 Port Maintenance"
+	name = "Fourth Section Deck 3 Port69aintenance"
 	icon_state = "section4deck3port"
 
 /area/eris/maintenance/section4deck4port
-	name = "Fourth Section Deck 2 Port Maintenance"
+	name = "Fourth Section Deck 2 Port69aintenance"
 	icon_state = "section4deck4port"
 
 /area/eris/maintenance/section4deck4central
-	name = "Fourth Section Deck 2 Central Maintenance"
+	name = "Fourth Section Deck 2 Central69aintenance"
 	icon_state = "section4deck4central"
 
 /area/eris/maintenance/section4deck5port
-	name = "Fourth Section Deck 1 Port Maintenance"
+	name = "Fourth Section Deck 1 Port69aintenance"
 	icon_state = "section4deck5port"
 
 /area/eris/maintenance/section4deck5starboard
-	name = "Fourth Section Deck 1 Starboard Maintenance"
+	name = "Fourth Section Deck 1 Starboard69aintenance"
 	icon_state = "section4deck5starboard"
 
 
-// SUBSTATIONS (Subtype of maint, that should let them serve as shielded area during radstorm)
+// SUBSTATIONS (Subtype of69aint, that should let them ser69e as shielded area durin69 radstorm69
 
 /area/eris/maintenance/substation
 	name = "Substation"
 	icon_state = "substation"
-	sound_env = SMALL_ENCLOSED
-	forced_ambience = list('sound/ambience/maintambience.ogg')
+	sound_en69 = SMALL_ENCLOSED
+	forced_ambience = list('sound/ambience/maintambience.o6969'69
 
 
-/area/eris/maintenance/substation/engineering
-	name = "Engineering Substation"
-	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+/area/eris/maintenance/substation/en69ineerin69
+	name = "En69ineerin69 Substation"
+	holomap_color = HOLOMAP_AREACOLOR_EN69INEERIN69
 
 /area/eris/maintenance/substation/section1
 	name = "First Section Substation"
@@ -200,8 +200,8 @@
 /area/eris/maintenance/substation/section4
 	name = "Fourth Section Substation"
 
-/area/eris/maintenance/substation/bridge
-	name = "Bridge Substation"
+/area/eris/maintenance/substation/brid69e
+	name = "Brid69e Substation"
 
 
 
@@ -209,8 +209,8 @@
 //Hallway
 
 /area/eris/hallway
-	sound_env = LARGE_ENCLOSED
-	icon_state = "erisgreen"
+	sound_en69 = LAR69E_ENCLOSED
+	icon_state = "eris69reen"
 	holomap_color = HOLOMAP_AREACOLOR_HALLWAYS
 
 /area/eris/hallway/main/section1
@@ -241,8 +241,8 @@
 	name = "Hydroponics Hallway"
 	icon_state = "erisyellow"
 
-/area/eris/hallway/side/morguehallway
-	name = "Morgue Hallway"
+/area/eris/hallway/side/mor69uehallway
+	name = "Mor69ue Hallway"
 
 /area/eris/hallway/side/atmosphericshallway
 	name = "Atmospherics Hallway"
@@ -250,17 +250,17 @@
 /area/eris/hallway/side/cryo
 	name = "Cryo Hallway"
 
-/area/eris/hallway/side/bridgehallway
-	name = "Bridge Hallway"
+/area/eris/hallway/side/brid69ehallway
+	name = "Brid69e Hallway"
 	icon_state = "erisblue"
 
-/area/eris/hallway/side/eschangara
-	name = "Escape Hangar A"
+/area/eris/hallway/side/eschan69ara
+	name = "Escape Han69ar A"
 	icon_state = "erisred"
 	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
-/area/eris/hallway/side/eschangarb
-	name = "Escape Hangar B"
+/area/eris/hallway/side/eschan69arb
+	name = "Escape Han69ar B"
 	icon_state = "erisred"
 	holomap_color = HOLOMAP_AREACOLOR_ESCAPE
 
@@ -270,89 +270,89 @@
 //Command
 /area/eris/command
 	name = "\improper Command"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 
-/area/eris/command/bridge
-	name = "\improper Bridge"
-	icon_state = "bridge"
+/area/eris/command/brid69e
+	name = "\improper Brid69e"
+	icon_state = "brid69e"
 
-/area/eris/command/meeting_room
-	name = "\improper Heads of Staff Meeting Room"
-	icon_state = "bridge"
-	ambience = list()
-	sound_env = MEDIUM_SOFTFLOOR
+/area/eris/command/meetin69_room
+	name = "\improper Heads of Staff69eetin69 Room"
+	icon_state = "brid69e"
+	ambience = list(69
+	sound_en69 =69EDIUM_SOFTFLOOR
 
-/area/eris/command/bridgebar
-	name = "V.I.P. Bar"
+/area/eris/command/brid69ebar
+	name = "69.I.P. Bar"
 	icon_state = "erisblue"
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/command/captain
 	name = "\improper Command - Captain's Office"
 	icon_state = "captain"
-	sound_env = SMALL_SOFTFLOOR
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	sound_en69 = SMALL_SOFTFLOOR
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/command/fo
 	name = "\improper Command - First Officer's Office"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
 
-/area/eris/command/fo/quarters
-	name = "\improper Command - First Officer's Quarters"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+/area/eris/command/fo/69uarters
+	name = "\improper Command - First Officer's 69uarters"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/command/meo
-	name = "\improper Research - MEO's Office"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
+	name = "\improper Research -69EO's Office"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
-/area/eris/command/meo/quarters
-	name = "\improper Research - MEO's Quarters"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+/area/eris/command/meo/69uarters
+	name = "\improper Research -69EO's 69uarters"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/command/exultant
-	name = "\improper Engineering - Exultant Office"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
-	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+	name = "\improper En69ineerin69 - Exultant Office"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_EN69INEERIN69
 
-/area/eris/command/exultant/quarters
-	name = "\improper Engineering - Exultant Quarters"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+/area/eris/command/exultant/69uarters
+	name = "\improper En69ineerin69 - Exultant 69uarters"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/command/mbo
-	name = "\improper Medbay - MBO's Office"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
+	name = "\improper69edbay -69BO's Office"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
-/area/eris/command/mbo/quarters
-	name = "\improper Medbay - MBO's Quarters"
-	icon_state = "head_quarters"
-	sound_env = SMALL_SOFTFLOOR
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+/area/eris/command/mbo/69uarters
+	name = "\improper69edbay -69BO's 69uarters"
+	icon_state = "head_69uarters"
+	sound_en69 = SMALL_SOFTFLOOR
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/command/commander
 	name = "Ironhammer Commander's Office"
 	icon_state = "hammerred"
-	sound_env = SMALL_SOFTFLOOR
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	sound_en69 = SMALL_SOFTFLOOR
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/eris/command/merchant
-	name = "\improper Cargo - Merchant Office"
-	icon_state = "quart"
-	sound_env = SMALL_SOFTFLOOR
-	holomap_color = HOLOMAP_AREACOLOR_CARGO
+	name = "\improper Car69o -69erchant Office"
+	icon_state = "69uart"
+	sound_en69 = SMALL_SOFTFLOOR
+	holomap_color = HOLOMAP_AREACOLOR_CAR69O
 
 /area/eris/command/teleporter
 	name = "\improper Teleporter"
@@ -360,8 +360,8 @@
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 
 /area/eris/command/tcommsat
-	ambience = list('sound/ambience/ambisin2.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/signal.ogg', 'sound/ambience/ambigen10.ogg')
-	flags = AREA_FLAG_CRITICAL
+	ambience = list('sound/ambience/ambisin2.o6969', 'sound/ambience/si69nal.o6969', 'sound/ambience/si69nal.o6969', 'sound/ambience/ambi69en10.o6969'69
+	fla69s = AREA_FLA69_CRITICAL
 
 /area/eris/command/tcommsat/chamber
 	name = "\improper Telecoms Central Compartment"
@@ -376,407 +376,407 @@
 	icon_state = "courtroom"
 
 
-//Crew Quarters
-/area/eris/crew_quarters
+//Crew 69uarters
+/area/eris/crew_69uarters
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
 
-/area/eris/crew_quarters/toilet
+/area/eris/crew_69uarters/toilet
 	name = "\improper Dormitory Toilets"
 	icon_state = "toilet"
-	sound_env = SMALL_ENCLOSED
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/crew_quarters/toilet/public
+/area/eris/crew_69uarters/toilet/public
 	name = "Public Toilet"
 	icon_state = "erisyellow"
 
-/area/eris/crew_quarters/toilet/medbay
+/area/eris/crew_69uarters/toilet/medbay
 	name = "Medbay Toilet"
 	icon_state = "erisyellow"
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
-/area/eris/crew_quarters/sleep
+/area/eris/crew_69uarters/sleep
 	name = "\improper Dormitories"
 	icon_state = "Sleep"
 
-/area/eris/crew_quarters/sleep/engi_wash
-	name = "\improper Engineering Washroom"
+/area/eris/crew_69uarters/sleep/en69i_wash
+	name = "\improper En69ineerin69 Washroom"
 	icon_state = "toilet"
-	sound_env = SMALL_ENCLOSED
-	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
+	sound_en69 = SMALL_ENCLOSED
+	holomap_color = HOLOMAP_AREACOLOR_EN69INEERIN69
 
-/area/eris/crew_quarters/sleep/bedrooms
+/area/eris/crew_69uarters/sleep/bedrooms
 	name = "\improper Dormitory Bedroom One"
 	icon_state = "Sleep"
-	sound_env = SMALL_SOFTFLOOR
+	sound_en69 = SMALL_SOFTFLOOR
 
-/area/eris/crew_quarters/sleep/cryo
-	name = "\improper Cryogenic Storage"
+/area/eris/crew_69uarters/sleep/cryo
+	name = "\improper Cryo69enic Stora69e"
 	icon_state = "Sleep"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
-	flags = AREA_FLAG_CRITICAL | AREA_FLAG_RAD_SHIELDED
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
+	fla69s = AREA_FLA69_CRITICAL | AREA_FLA69_RAD_SHIELDED
 
-/area/eris/crew_quarters/sleep_male
-	name = "\improper Male Dorm"
+/area/eris/crew_69uarters/sleep_male
+	name = "\improper69ale Dorm"
 	icon_state = "Sleep"
 
-/area/eris/crew_quarters/sleep_male/toilet_male
-	name = "\improper Male Toilets"
+/area/eris/crew_69uarters/sleep_male/toilet_male
+	name = "\improper69ale Toilets"
 	icon_state = "toilet"
-	sound_env = SMALL_ENCLOSED
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/crew_quarters/sleep_female
+/area/eris/crew_69uarters/sleep_female
 	name = "\improper Female Dorm"
 	icon_state = "Sleep"
 
-/area/eris/crew_quarters/sleep_female/toilet_female
+/area/eris/crew_69uarters/sleep_female/toilet_female
 	name = "\improper Female Toilets"
 	icon_state = "toilet"
-	sound_env = SMALL_ENCLOSED
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/crew_quarters/locker
+/area/eris/crew_69uarters/locker
 	name = "\improper Locker Room"
 	icon_state = "locker"
 
-/area/eris/crew_quarters/locker/locker_toilet
+/area/eris/crew_69uarters/locker/locker_toilet
 	name = "\improper Locker Toilets"
 	icon_state = "toilet"
-	sound_env = SMALL_ENCLOSED
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/crew_quarters/fitness
+/area/eris/crew_69uarters/fitness
 	name = "\improper Fitness Room"
 	icon_state = "fitness"
 
-/area/eris/crew_quarters/cafeteria
+/area/eris/crew_69uarters/cafeteria
 	name = "\improper Cafeteria"
 	icon_state = "cafeteria"
 
-/area/eris/crew_quarters/kitchen
+/area/eris/crew_69uarters/kitchen
 	name = "\improper Kitchen"
 	icon_state = "kitchen"
 
-/area/eris/crew_quarters/kitchen_storage
-	name = "\improper Kitchen Storage"
+/area/eris/crew_69uarters/kitchen_stora69e
+	name = "\improper Kitchen Stora69e"
 	icon_state = "kitchen"
 
-/area/eris/crew_quarters/bar
+/area/eris/crew_69uarters/bar
 	name = "\improper Bar"
 	icon_state = "bar"
-	sound_env = LARGE_SOFTFLOOR
+	sound_en69 = LAR69E_SOFTFLOOR
 
-/area/eris/crew_quarters/barbackroom
+/area/eris/crew_69uarters/barbackroom
 	name = "Bar Backroom"
-	icon_state = "erisgreen"
+	icon_state = "eris69reen"
 
-/area/eris/crew_quarters/barquarters
-	name = "Bar Quarters"
+/area/eris/crew_69uarters/bar69uarters
+	name = "Bar 69uarters"
 	icon_state = "erisblue"
 
-/area/eris/crew_quarters/theatre
+/area/eris/crew_69uarters/theatre
 	name = "\improper Theatre"
 	icon_state = "Theatre"
-	sound_env = LARGE_SOFTFLOOR
+	sound_en69 = LAR69E_SOFTFLOOR
 
-/area/eris/crew_quarters/clownoffice
+/area/eris/crew_69uarters/clownoffice
 	name = "Clown Office"
 	icon_state = "erisblue"
 
-/area/eris/crew_quarters/library
+/area/eris/crew_69uarters/library
  	name = "\improper Library"
  	icon_state = "library"
- 	sound_env = LARGE_SOFTFLOOR
+ 	sound_en69 = LAR69E_SOFTFLOOR
 
-/area/eris/crew_quarters/librarybackroom
+/area/eris/crew_69uarters/librarybackroom
 	name = "Library Backroom"
-	icon_state = "erisgreen"
+	icon_state = "eris69reen"
 
-/area/eris/crew_quarters/janitor/
+/area/eris/crew_69uarters/janitor/
 	name = "\improper Custodial Closet"
 	icon_state = "janitor"
 
-/area/eris/crew_quarters/hydroponics
+/area/eris/crew_69uarters/hydroponics
 	name = "\improper Hydroponics"
 	icon_state = "hydro"
 
-/area/eris/crew_quarters/hydroponics/garden
-	name = "\improper Garden"
-	icon_state = "garden"
+/area/eris/crew_69uarters/hydroponics/69arden
+	name = "\improper 69arden"
+	icon_state = "69arden"
 
-/area/eris/crew_quarters/clothingstorage
-	name = "Clothing Storage"
+/area/eris/crew_69uarters/clothin69stora69e
+	name = "Clothin69 Stora69e"
 	icon_state = "erisyellow"
 
-/area/eris/crew_quarters/pubeva
-	name = "Public E.V.A. Storage"
+/area/eris/crew_69uarters/pube69a
+	name = "Public E.69.A. Stora69e"
 	icon_state = "erisblue"
 
-/area/eris/crew_quarters/publichydro
+/area/eris/crew_69uarters/publichydro
 	name = "Public Hydroponics"
 	icon_state = "erisblue"
 
-// NeoTheology
+//69eoTheolo69y
 
-/area/eris/neotheology
-	icon_state = "erisgreen"
-	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
-	holomap_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
+/area/eris/neotheolo69y
+	icon_state = "eris69reen"
+	area_li69ht_color = COLOR_LI69HTIN69_NEOTHEOLO69Y_BRI69HT
+	holomap_color = COLOR_LI69HTIN69_NEOTHEOLO69Y_DARK
 
-/area/eris/neotheology/chapel
+/area/eris/neotheolo69y/chapel
 	name = "\improper Chapel"
 	icon_state = "chapel"
-	ambience = list('sound/ambience/ambicha1.ogg','sound/ambience/ambicha2.ogg','sound/ambience/ambicha3.ogg','sound/ambience/ambicha4.ogg')
-	sound_env = LARGE_ENCLOSED
+	ambience = list('sound/ambience/ambicha1.o6969','sound/ambience/ambicha2.o6969','sound/ambience/ambicha3.o6969','sound/ambience/ambicha4.o6969'69
+	sound_en69 = LAR69E_ENCLOSED
 
-/area/eris/neotheology/storage
-	name = "\improper Church Storage"
+/area/eris/neotheolo69y/stora69e
+	name = "\improper Church Stora69e"
 	icon_state = "erisyellow"
-	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+	area_li69ht_color = COLOR_LI69HTIN69_NEOTHEOLO69Y_BRI69HT
 
-/area/eris/neotheology/bioreactor
+/area/eris/neotheolo69y/bioreactor
 	name = "\improper Church Bioreactor Room"
 	icon_state = "erisblue"
-	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+	area_li69ht_color = COLOR_LI69HTIN69_NEOTHEOLO69Y_BRI69HT
 
-/area/eris/neotheology/office
+/area/eris/neotheolo69y/office
 	name = "\improper Chapel Office"
 	icon_state = "chapeloffice"
-	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_NEOTHEOLO69Y_DARK
 
-/area/eris/neotheology/chapelritualroom
+/area/eris/neotheolo69y/chapelritualroom
 	name = "Chapel Rituals Room"
-	icon_state = "erisgreen"
+	icon_state = "eris69reen"
 
-/area/eris/neotheology/biogenerator
-	name = "\improper Church Biogenerator Room"
+/area/eris/neotheolo69y/bio69enerator
+	name = "\improper Church Bio69enerator Room"
 	icon_state = "erisred"
-	area_light_color = COLOR_LIGHTING_NEOTHEOLOGY_BRIGHT
+	area_li69ht_color = COLOR_LI69HTIN69_NEOTHEOLO69Y_BRI69HT
 
-/area/eris/neotheology/churchbarracks
+/area/eris/neotheolo69y/churchbarracks
 	name = "Church Barracks"
 	icon_state = "erisblue"
 
-/area/eris/neotheology/churchcorridor
+/area/eris/neotheolo69y/churchcorridor
 	name = "Church Hallway"
 	icon_state = "erisyellow"
 
-/area/eris/neotheology/churchbooth
-	name = "Chapel Vending Booth"
+/area/eris/neotheolo69y/churchbooth
+	name = "Chapel 69endin69 Booth"
 	icon_state = "erisyellow"
 
-//Engineering
+//En69ineerin69
 
-/area/eris/engineering
-	name = "\improper Engineering"
-	icon_state = "engineering"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
-	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
-	ambience = list('sound/ambience/technoambient1.ogg','sound/ambience/technoambient2.ogg','sound/ambience/technoambient3.ogg','sound/ambience/technoambient4.ogg','sound/ambience/technoambient5.ogg','sound/ambience/technoambient6.ogg')
+/area/eris/en69ineerin69
+	name = "\improper En69ineerin69"
+	icon_state = "en69ineerin69"
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
+	holomap_color = HOLOMAP_AREACOLOR_EN69INEERIN69
+	ambience = list('sound/ambience/technoambient1.o6969','sound/ambience/technoambient2.o6969','sound/ambience/technoambient3.o6969','sound/ambience/technoambient4.o6969','sound/ambience/technoambient5.o6969','sound/ambience/technoambient6.o6969'69
 
-/area/eris/engineering/gravity_generator
-	name = "Gravity Generator Room"
+/area/eris/en69ineerin69/69ra69ity_69enerator
+	name = "69ra69ity 69enerator Room"
 	icon_state = "blue"
-	flags = AREA_FLAG_CRITICAL
+	fla69s = AREA_FLA69_CRITICAL
 
-/area/eris/engineering/shield_generator
-	name = "Shield Generator Room"
+/area/eris/en69ineerin69/shield_69enerator
+	name = "Shield 69enerator Room"
 	icon_state = "blueold"
 
-/area/eris/engineering/long_range_scanner
-	name = "Long Range Scanner Room"
+/area/eris/en69ineerin69/lon69_ran69e_scanner
+	name = "Lon69 Ran69e Scanner Room"
 	icon_state = "blueold"
 
-/area/eris/engineering/atmos
+/area/eris/en69ineerin69/atmos
  	name = "\improper Atmospherics"
  	icon_state = "atmos"
- 	sound_env = LARGE_ENCLOSED
+ 	sound_en69 = LAR69E_ENCLOSED
 
-/area/eris/engineering/atmos/monitoring
-	name = "\improper Atmospherics Monitoring Room"
-	icon_state = "atmos_monitoring"
-	sound_env = STANDARD_STATION
+/area/eris/en69ineerin69/atmos/monitorin69
+	name = "\improper Atmospherics69onitorin69 Room"
+	icon_state = "atmos_monitorin69"
+	sound_en69 = STANDARD_STATION
 
-/area/eris/engineering/atmos/storage
-	name = "\improper Atmospherics Storage"
-	icon_state = "atmos_storage"
-	sound_env = SMALL_ENCLOSED
+/area/eris/en69ineerin69/atmos/stora69e
+	name = "\improper Atmospherics Stora69e"
+	icon_state = "atmos_stora69e"
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/engineering/drone_fabrication
-	name = "\improper Engineering Drone Fabrication"
+/area/eris/en69ineerin69/drone_fabrication
+	name = "\improper En69ineerin69 Drone Fabrication"
 	icon_state = "drone_fab"
-	sound_env = SMALL_ENCLOSED
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/engineering/engine_smes
-	name = "\improper Engineering SMES"
-	icon_state = "engine_smes"
-	sound_env = SMALL_ENCLOSED
+/area/eris/en69ineerin69/en69ine_smes
+	name = "\improper En69ineerin69 SMES"
+	icon_state = "en69ine_smes"
+	sound_en69 = SMALL_ENCLOSED
 
-/area/eris/engineering/engine_room
-	name = "\improper Engine Room"
-	icon_state = "engine"
-	sound_env = LARGE_ENCLOSED
-	flags = AREA_FLAG_CRITICAL
-	ambience = list('sound/ambience/technoengineambient.ogg')
+/area/eris/en69ineerin69/en69ine_room
+	name = "\improper En69ine Room"
+	icon_state = "en69ine"
+	sound_en69 = LAR69E_ENCLOSED
+	fla69s = AREA_FLA69_CRITICAL
+	ambience = list('sound/ambience/technoen69ineambient.o6969'69
 
-/area/eris/engineering/engine_airlock
-	name = "\improper Engine Room Airlock"
-	icon_state = "engine"
+/area/eris/en69ineerin69/en69ine_airlock
+	name = "\improper En69ine Room Airlock"
+	icon_state = "en69ine"
 
-/area/eris/engineering/engine_monitoring
-	name = "\improper Engine Monitoring Room"
-	icon_state = "engine_monitoring"
-	flags = AREA_FLAG_CRITICAL
+/area/eris/en69ineerin69/en69ine_monitorin69
+	name = "\improper En69ine69onitorin69 Room"
+	icon_state = "en69ine_monitorin69"
+	fla69s = AREA_FLA69_CRITICAL
 
-/area/eris/engineering/engine_waste
-	name = "\improper Engine Waste Handling"
-	icon_state = "engine_waste"
-	flags = AREA_FLAG_CRITICAL
+/area/eris/en69ineerin69/en69ine_waste
+	name = "\improper En69ine Waste Handlin69"
+	icon_state = "en69ine_waste"
+	fla69s = AREA_FLA69_CRITICAL
 
-/area/eris/engineering/engineering_monitoring
-	name = "\improper Engineering Monitoring Room"
-	icon_state = "engine_monitoring"
+/area/eris/en69ineerin69/en69ineerin69_monitorin69
+	name = "\improper En69ineerin6969onitorin69 Room"
+	icon_state = "en69ine_monitorin69"
 
-/area/eris/engineering/foyer
-	name = "\improper Engineering Foyer"
-	icon_state = "engineering_foyer"
+/area/eris/en69ineerin69/foyer
+	name = "\improper En69ineerin69 Foyer"
+	icon_state = "en69ineerin69_foyer"
 
-/area/eris/engineering/storage
-	name = "\improper Engineering Storage"
-	icon_state = "engineering_storage"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+/area/eris/en69ineerin69/stora69e
+	name = "\improper En69ineerin69 Stora69e"
+	icon_state = "en69ineerin69_stora69e"
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/engineering/break_room
-	name = "\improper Engineering Break Room"
-	icon_state = "engineering_break"
-	sound_env = MEDIUM_SOFTFLOOR
+/area/eris/en69ineerin69/break_room
+	name = "\improper En69ineerin69 Break Room"
+	icon_state = "en69ineerin69_break"
+	sound_en69 =69EDIUM_SOFTFLOOR
 
-/area/eris/engineering/engine_eva
-	name = "\improper Engine EVA"
-	icon_state = "engine_eva"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+/area/eris/en69ineerin69/en69ine_e69a
+	name = "\improper En69ine E69A"
+	icon_state = "en69ine_e69a"
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/engineering/locker_room
-	name = "\improper Engineering Locker Room"
-	icon_state = "engineering_locker"
+/area/eris/en69ineerin69/locker_room
+	name = "\improper En69ineerin69 Locker Room"
+	icon_state = "en69ineerin69_locker"
 
-/area/eris/engineering/workshop
-	name = "\improper Engineering Workshop"
-	icon_state = "engineering_workshop"
+/area/eris/en69ineerin69/workshop
+	name = "\improper En69ineerin69 Workshop"
+	icon_state = "en69ineerin69_workshop"
 
-/area/eris/engineering/starboardhallway
-	name = "Engineering Starboard Hallway"
-	icon_state = "erisgreen"
+/area/eris/en69ineerin69/starboardhallway
+	name = "En69ineerin69 Starboard Hallway"
+	icon_state = "eris69reen"
 
-/area/eris/engineering/wastingroom
-	name = "Wasting Room"
+/area/eris/en69ineerin69/wastin69room
+	name = "Wastin69 Room"
 	icon_state = "erisred"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/engineering/post
-	name = "Engineering Post"
+/area/eris/en69ineerin69/post
+	name = "En69ineerin69 Post"
 	icon_state = "erisred"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/engineering/wastingroom
-	name = "Wasting Room"
-	icon_state = "erisred"
-
-/area/eris/engineering/techstorage
-	name = "Tools Storage"
+/area/eris/en69ineerin69/wastin69room
+	name = "Wastin69 Room"
 	icon_state = "erisred"
 
-/area/eris/engineering/telecommonitor
-	name = "Telecommunications Monitor Room"
+/area/eris/en69ineerin69/techstora69e
+	name = "Tools Stora69e"
 	icon_state = "erisred"
 
-/area/eris/engineering/breakroom
-	name = "Engineering Break Room"
+/area/eris/en69ineerin69/telecommonitor
+	name = "Telecommunications69onitor Room"
 	icon_state = "erisred"
 
-/area/eris/engineering/freezercontrol
+/area/eris/en69ineerin69/breakroom
+	name = "En69ineerin69 Break Room"
+	icon_state = "erisred"
+
+/area/eris/en69ineerin69/freezercontrol
 	name = "Freezer Control"
 	icon_state = "erisred"
 
-/area/eris/engineering/atmoscontrol
+/area/eris/en69ineerin69/atmoscontrol
 	name = "Atmospherics Control"
 	icon_state = "erisred"
 
-/area/eris/engineering/engeva
-	name = "Engineering E.V.A. Storage"
+/area/eris/en69ineerin69/en69e69a
+	name = "En69ineerin69 E.69.A. Stora69e"
 	icon_state = "erisblue"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/engineering/construction
-	name = "\improper Engineering Construction Area"
+/area/eris/en69ineerin69/construction
+	name = "\improper En69ineerin69 Construction Area"
 	is_maintenance = TRUE
 	icon_state = "yellow"
 
-/area/eris/engineering/propulsion
-	name = "Propulsion Hangar"
+/area/eris/en69ineerin69/propulsion
+	name = "Propulsion Han69ar"
 	icon_state = "propulsion"
 
-/area/eris/engineering/propulsion/left
-	name = "Left Propulsion Hangar"
+/area/eris/en69ineerin69/propulsion/left
+	name = "Left Propulsion Han69ar"
 
-/area/eris/engineering/propulsion/right
-	name = "Right Propulsion Hangar"
+/area/eris/en69ineerin69/propulsion/ri69ht
+	name = "Ri69ht Propulsion Han69ar"
 
 //MedBay
 /area/eris/medical/medbay
-	name = "\improper Medical"
-	icon_state = "erisgreen"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	name = "\improper69edical"
+	icon_state = "eris69reen"
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 
 /area/eris/medical/medbay
-	name = "\improper Medbay"
+	name = "\improper69edbay"
 	icon_state = "medbay"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
-//Medbay is a large area, these additional areas help level out APC load.
+//Medbay is a lar69e area, these additional areas help le69el out APC load.
 /area/eris/medical/medbay2
-	name = "\improper Medbay Hallway - Starboard"
+	name = "\improper69edbay Hallway - Starboard"
 	icon_state = "medbay2"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
 /area/eris/medical/medbay3
-	name = "\improper Medbay Hallway - Fore"
+	name = "\improper69edbay Hallway - Fore"
 	icon_state = "medbay3"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
 /area/eris/medical/medbay4
-	name = "\improper Medbay Hallway - Aft"
+	name = "\improper69edbay Hallway - Aft"
 	icon_state = "medbay4"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
-/area/eris/medical/biostorage
-	name = "\improper Secondary Storage"
+/area/eris/medical/biostora69e
+	name = "\improper Secondary Stora69e"
 	icon_state = "medbay2"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
 /area/eris/medical/reception
-	name = "\improper Medbay Reception"
+	name = "\improper69edbay Reception"
 	icon_state = "medbay"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
 /area/eris/medical/psych
 	name = "\improper Psych Room"
 	icon_state = "medbay3"
-	ambience = list('sound/ambience/signal.ogg')
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	ambience = list('sound/ambience/si69nal.o6969'69
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/medical/medbreak
 	name = "\improper Break Room"
 	icon_state = "medbay3"
-	ambience = list('sound/ambience/signal.ogg')
+	ambience = list('sound/ambience/si69nal.o6969'69
 
 /area/eris/medical/patients_rooms
 	name = "\improper Patient's Rooms"
 	icon_state = "patients"
 
 /area/eris/medical/ward
-	name = "\improper Recovery Ward"
+	name = "\improper Reco69ery Ward"
 	icon_state = "patients"
 
 /area/eris/medical/patient_a
@@ -791,89 +791,89 @@
 	name = "\improper Isolation C"
 	icon_state = "patients"
 
-/area/eris/medical/patient_wing
-	name = "\improper Patient Wing"
+/area/eris/medical/patient_win69
+	name = "\improper Patient Win69"
 	icon_state = "patients"
 
 /area/eris/medical/cmostore
-	name = "\improper Secure Storage"
+	name = "\improper Secure Stora69e"
 	icon_state = "CMO"
 
-/area/eris/medical/virology
-	name = "\improper Virology"
-	icon_state = "virology"
+/area/eris/medical/69irolo69y
+	name = "\improper 69irolo69y"
+	icon_state = "69irolo69y"
 
-/area/eris/medical/virologyaccess
-	name = "\improper Virology Access"
-	icon_state = "virology"
+/area/eris/medical/69irolo69yaccess
+	name = "\improper 69irolo69y Access"
+	icon_state = "69irolo69y"
 
-/area/eris/medical/morgue
-	name = "\improper Morgue"
-	icon_state = "morgue"
-	ambience = list('sound/ambience/ambimo1.ogg','sound/ambience/ambimo2.ogg')
+/area/eris/medical/mor69ue
+	name = "\improper69or69ue"
+	icon_state = "mor69ue"
+	ambience = list('sound/ambience/ambimo1.o6969','sound/ambience/ambimo2.o6969'69
 
 /area/eris/medical/chemistry
 	name = "\improper Chemistry"
 	icon_state = "chem"
 
-/area/eris/medical/surgery
-	name = "\improper Operating Theatre 1"
-	icon_state = "surgery"
+/area/eris/medical/sur69ery
+	name = "\improper Operatin69 Theatre 1"
+	icon_state = "sur69ery"
 
-/area/eris/medical/surgery2
-	name = "\improper Operating Theatre 2"
-	icon_state = "surgery"
+/area/eris/medical/sur69ery2
+	name = "\improper Operatin69 Theatre 2"
+	icon_state = "sur69ery"
 
-/area/eris/medical/surgeryobs
-	name = "\improper Operation Observation Room"
-	icon_state = "surgery"
+/area/eris/medical/sur69eryobs
+	name = "\improper Operation Obser69ation Room"
+	icon_state = "sur69ery"
 
-/area/eris/medical/surgeryprep
+/area/eris/medical/sur69eryprep
 	name = "\improper Pre-Op Prep Room"
-	icon_state = "surgery"
+	icon_state = "sur69ery"
 
 /area/eris/medical/cryo
-	name = "\improper Cryogenics"
+	name = "\improper Cryo69enics"
 	icon_state = "cryo"
 
 /area/eris/medical/exam_room
 	name = "\improper Exam Room"
 	icon_state = "exam_room"
 
-/area/eris/medical/genetics
-	name = "\improper Genetics Lab"
-	icon_state = "genetics"
+/area/eris/medical/69enetics
+	name = "\improper 69enetics Lab"
+	icon_state = "69enetics"
 
-/area/eris/medical/genetics_cloning
-	name = "\improper Cloning Lab"
-	icon_state = "cloning"
+/area/eris/medical/69enetics_clonin69
+	name = "\improper Clonin69 Lab"
+	icon_state = "clonin69"
 
 /area/eris/medical/sleeper
-	name = "\improper Emergency Treatment Centre"
+	name = "\improper Emer69ency Treatment Centre"
 	icon_state = "exam_room"
 
 /area/eris/medical/chemstor
-	name = "Chemical Storage"
+	name = "Chemical Stora69e"
 	icon_state = "erisblue"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/medical/medeva
-	name = "Medical E.V.A. Storage"
+/area/eris/medical/mede69a
+	name = "Medical E.69.A. Stora69e"
 	icon_state = "erisblue"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
 /area/eris/medical/paramedic
 	name = "\improper Paramedic Closet"
 	icon_state = "erisyellow"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
 /area/eris/medical/medbay/iso
-	name = "Isolation Wing"
-	icon_state = "erisgreen"
+	name = "Isolation Win69"
+	icon_state = "eris69reen"
 
 /area/eris/medical/medbay/uppercor
 	name = "Medbay Upper Coridor"
-	icon_state = "erisgreen"
+	icon_state = "eris69reen"
 
 
 
@@ -883,7 +883,7 @@
 /area/eris/security
 	name = "Security"
 	icon_state = "security"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 
 /area/eris/security/main
@@ -894,93 +894,93 @@
 	name = "\improper Security Lobby"
 	icon_state = "security"
 
-/area/eris/security/brig
-	name = "\improper Security - Brig"
-	icon_state = "brig"
+/area/eris/security/bri69
+	name = "\improper Security - Bri69"
+	icon_state = "bri69"
 
-/area/eris/security/brig/prison_break()
-	for(var/obj/structure/closet/secure_closet/brig/temp_closet in src)
-		temp_closet.set_locked(FALSE)
-	for(var/obj/machinery/door_timer/temp_timer in src)
+/area/eris/security/bri69/prison_break(69
+	for(69ar/obj/structure/closet/secure_closet/bri69/temp_closet in src69
+		temp_closet.set_locked(FALSE69
+	for(69ar/obj/machinery/door_timer/temp_timer in src69
 		temp_timer.releasetime = 1
-	..()
+	..(69
 
 /area/eris/security/prison
-	name = "\improper Security - Prison Wing"
+	name = "\improper Security - Prison Win69"
 	icon_state = "sec_prison"
 
-/area/eris/security/prison/prison_break()
-	for(var/obj/structure/closet/secure_closet/brig/temp_closet in src)
-		temp_closet.set_locked(FALSE)
-	for(var/obj/machinery/door_timer/temp_timer in src)
+/area/eris/security/prison/prison_break(69
+	for(69ar/obj/structure/closet/secure_closet/bri69/temp_closet in src69
+		temp_closet.set_locked(FALSE69
+	for(69ar/obj/machinery/door_timer/temp_timer in src69
 		temp_timer.releasetime = 1
-	..()
+	..(69
 
 /area/eris/security/warden
-	name = "\improper Security - Gunnery Sergeant's Office"
+	name = "\improper Security - 69unnery Ser69eant's Office"
 	icon_state = "Warden"
 
 /area/eris/security/armoury
 	name = "\improper Security - Armory"
 	icon_state = "Warden"
 
-/area/eris/security/detectives_office
+/area/eris/security/detecti69es_office
 	name = "\improper Security - Forensic Office"
-	icon_state = "detective"
-	sound_env = MEDIUM_SOFTFLOOR
+	icon_state = "detecti69e"
+	sound_en69 =69EDIUM_SOFTFLOOR
 
-/area/eris/security/range
-	name = "\improper Security - Firing Range"
-	icon_state = "firingrange"
+/area/eris/security/ran69e
+	name = "\improper Security - Firin69 Ran69e"
+	icon_state = "firin69ran69e"
 
 /area/eris/security/tactical
-	name = "\improper Security - Tactical Equipment"
+	name = "\improper Security - Tactical E69uipment"
 	icon_state = "Tactical"
 
-/area/eris/security/nuke_storage
-	name = "\improper Vault"
-	icon_state = "nuke_storage"
+/area/eris/security/nuke_stora69e
+	name = "\improper 69ault"
+	icon_state = "nuke_stora69e"
 
 /area/eris/security/checkpoint
 	name = "\improper Security Checkpoint"
 	icon_state = "checkpoint1"
 
 /area/eris/security/checkpoint2
-	name = "\improper Security - Arrival Checkpoint"
+	name = "\improper Security - Arri69al Checkpoint"
 	icon_state = "security"
 
 /area/eris/security/checkpoint/supply
-	name = "Security Post - Cargo Bay"
+	name = "Security Post - Car69o Bay"
 	icon_state = "checkpoint1"
 
-/area/eris/security/checkpoint/engineering
-	name = "Security Post - Engineering"
+/area/eris/security/checkpoint/en69ineerin69
+	name = "Security Post - En69ineerin69"
 	icon_state = "checkpoint1"
 
 /area/eris/security/checkpoint/medical
-	name = "Security Post - Medbay"
+	name = "Security Post -69edbay"
 	icon_state = "checkpoint1"
 
 /area/eris/security/checkpoint/science
 	name = "Security Post - Science"
 	icon_state = "checkpoint1"
 
-/area/eris/security/vacantoffice
-	name = "\improper Vacant Office"
+/area/eris/security/69acantoffice
+	name = "\improper 69acant Office"
 	icon_state = "security"
 
-/area/eris/security/vacantoffice2
-	name = "\improper Vacant Office"
+/area/eris/security/69acantoffice2
+	name = "\improper 69acant Office"
 	icon_state = "security"
 
 /area/eris/security/inspectors_office
 	name = "Inspectors Office"
 	icon_state = "hammerblue"
-	area_light_color = COLOR_LIGHTING_CREW_SOFT
+	area_li69ht_color = COLOR_LI69HTIN69_CREW_SOFT
 
 /area/eris/security/disposal
 	name = "Security Disposal"
-	flags = AREA_FLAG_RAD_SHIELDED
+	fla69s = AREA_FLA69_RAD_SHIELDED
 	icon_state = "hammerblue"
 	is_maintenance = TRUE
 
@@ -992,77 +992,77 @@
 	name = "Prison Cells"
 	icon_state = "hammerblue"
 
-/area/eris/security/evidencestorage
-	name = "Evidence Storage"
+/area/eris/security/e69idencestora69e
+	name = "E69idence Stora69e"
 	icon_state = "hammerred"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
 /area/eris/security/armory
 	name = "Armory"
 	icon_state = "hammerred"
 
 /area/eris/security/exerooms
-	name = "Executive Rooms"
+	name = "Executi69e Rooms"
 	icon_state = "hammerred"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
 /area/eris/security/maintpost
 	name = "Maintenance Post"
-	flags = AREA_FLAG_RAD_SHIELDED
+	fla69s = AREA_FLA69_RAD_SHIELDED
 	icon_state = "hammerred"
 	is_maintenance = TRUE
 
 
-/area/eris/quartermaster
-	name = "\improper Merchants"
-	icon_state = "quart"
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
-	holomap_color = HOLOMAP_AREACOLOR_CARGO
+/area/eris/69uartermaster
+	name = "\improper69erchants"
+	icon_state = "69uart"
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
+	holomap_color = HOLOMAP_AREACOLOR_CAR69O
 
-/area/eris/quartermaster/office
-	name = "\improper Cargo Office"
-	icon_state = "quartoffice"
+/area/eris/69uartermaster/office
+	name = "\improper Car69o Office"
+	icon_state = "69uartoffice"
 
-/area/eris/quartermaster/artistoffice
-	name = "\improper Guild Artist Office"
+/area/eris/69uartermaster/artistoffice
+	name = "\improper 69uild Artist Office"
 	icon_state = "erisyellow"
 
-/area/eris/quartermaster/storage
-	name = "\improper Cargo Bay"
-	icon_state = "quartstorage"
-	sound_env = LARGE_ENCLOSED
+/area/eris/69uartermaster/stora69e
+	name = "\improper Car69o Bay"
+	icon_state = "69uartstora69e"
+	sound_en69 = LAR69E_ENCLOSED
 
-/area/eris/quartermaster/miningdock
-	name = "\improper Cargo Mining Dock"
-	icon_state = "mining"
+/area/eris/69uartermaster/minin69dock
+	name = "\improper Car69o69inin69 Dock"
+	icon_state = "minin69"
 
-/area/eris/quartermaster/disposaldrop
-	name = "Disposal and Delivery"
+/area/eris/69uartermaster/disposaldrop
+	name = "Disposal and Deli69ery"
 	icon_state = "erisred"
 
-/area/eris/quartermaster/hangarsupply
-	name = "Supply Shuttle Hangar"
+/area/eris/69uartermaster/han69arsupply
+	name = "Supply Shuttle Han69ar"
 	icon_state = "erisblue"
 
-/area/eris/quartermaster/misc
-	name = "\improper Cargo Barracks"
+/area/eris/69uartermaster/misc
+	name = "\improper Car69o Barracks"
 	icon_state = "erisyellow"
 
-//Research and Development
+//Research and De69elopment
 /area/eris/rnd
-	area_light_color = COLOR_LIGHTING_SCI_BRIGHT
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_BRI69HT
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
-	ambience = list('sound/ambience/researchambient1.ogg','sound/ambience/researchambient2.ogg','sound/ambience/researchambient3.ogg','sound/ambience/researchambient4.ogg','sound/ambience/researchambient5.ogg','sound/ambience/researchambient6.ogg','sound/ambience/researchambient7.ogg','sound/ambience/researchambient8.ogg','sound/ambience/researchambient9.ogg')
+	ambience = list('sound/ambience/researchambient1.o6969','sound/ambience/researchambient2.o6969','sound/ambience/researchambient3.o6969','sound/ambience/researchambient4.o6969','sound/ambience/researchambient5.o6969','sound/ambience/researchambient6.o6969','sound/ambience/researchambient7.o6969','sound/ambience/researchambient8.o6969','sound/ambience/researchambient9.o6969'69
 
 /area/eris/rnd/research
-	name = "\improper Research and Development"
+	name = "\improper Research and De69elopment"
 	icon_state = "research"
 
 /area/eris/rnd/scient
 	name = "Science Department Entrance"
 	icon_state = "erisblue"
 
-/area/eris/rnd/docking
+/area/eris/rnd/dockin69
 	name = "\improper Research Dock"
 	icon_state = "research_dock"
 
@@ -1070,8 +1070,8 @@
 	name = "\improper Research Lab"
 	icon_state = "toxlab"
 
-/area/eris/rnd/chargebay
-	name = "\improper Mech Bay"
+/area/eris/rnd/char69ebay
+	name = "\improper69ech Bay"
 	icon_state = "mechbay"
 
 /area/eris/rnd/robotics
@@ -1079,42 +1079,42 @@
 	icon_state = "robotics"
 
 /area/eris/rnd/rdoffice
-	name = "\improper Moebius Expedition Overseer's Office"
-	icon_state = "head_quarters"
+	name = "\improper69oebius Expedition O69erseer's Office"
+	icon_state = "head_69uarters"
 
 /area/eris/rnd/supermatter
 	name = "\improper Supermatter Lab"
 	icon_state = "toxlab"
 
-/area/eris/rnd/xenobiology
-	name = "\improper Xenobiology Lab"
+/area/eris/rnd/xenobiolo69y
+	name = "\improper Xenobiolo69y Lab"
 	icon_state = "xeno_lab"
 
-/area/eris/rnd/xenobiology/xenoflora_storage
-	name = "\improper Xenoflora Storage"
+/area/eris/rnd/xenobiolo69y/xenoflora_stora69e
+	name = "\improper Xenoflora Stora69e"
 	icon_state = "xeno_f_store"
 
-/area/eris/rnd/xenobiology/xenoflora
+/area/eris/rnd/xenobiolo69y/xenoflora
 	name = "\improper Xenoflora Lab"
 	icon_state = "xeno_f_lab"
 
-/area/eris/rnd/storage
-	name = "\improper Toxins Storage"
-	icon_state = "toxstorage"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+/area/eris/rnd/stora69e
+	name = "\improper Toxins Stora69e"
+	icon_state = "toxstora69e"
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/rnd/mixing
-	name = "\improper Toxins Mixing Room"
+/area/eris/rnd/mixin69
+	name = "\improper Toxins69ixin69 Room"
 	icon_state = "toxmix"
 
 /area/eris/rnd/misc_lab
-	name = "\improper Miscellaneous Research"
+	name = "\improper69iscellaneous Research"
 	icon_state = "toxmisc"
-	area_light_color = COLOR_LIGHTING_SCI_DARK
+	area_li69ht_color = COLOR_LI69HTIN69_SCI_DARK
 
-/area/eris/rnd/server
-	name = "\improper Server Room"
-	icon_state = "server"
+/area/eris/rnd/ser69er
+	name = "\improper Ser69er Room"
+	icon_state = "ser69er"
 
 /area/eris/rnd/podbay
 	name = "Pod Bay"
@@ -1126,29 +1126,29 @@
 
 /area/eris/rnd/anomalisolone
 	name = "Anomalous Research Isolation One"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "erisgreen"
+	fla69s = AREA_FLA69_RAD_SHIELDED
+	icon_state = "eris69reen"
 
 /area/eris/rnd/anomalisoltwo
 	name = "Anomalous Research Isolation Two"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "erisgreen"
+	fla69s = AREA_FLA69_RAD_SHIELDED
+	icon_state = "eris69reen"
 
 /area/eris/rnd/anomalisolthree
 	name = "Anomalous Research Isolation Three"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "erisgreen"
+	fla69s = AREA_FLA69_RAD_SHIELDED
+	icon_state = "eris69reen"
 
-/area/eris/rnd/server
-	name = "\improper Research Server Room"
-	flags = AREA_FLAG_RAD_SHIELDED
-	icon_state = "server"
+/area/eris/rnd/ser69er
+	name = "\improper Research Ser69er Room"
+	fla69s = AREA_FLA69_RAD_SHIELDED
+	icon_state = "ser69er"
 
-//Storage
-/area/eris/storage/primary
-	name = "Primary Tool Storage"
-	icon_state = "primarystorage"
+//Stora69e
+/area/eris/stora69e/primary
+	name = "Primary Tool Stora69e"
+	icon_state = "primarystora69e"
 
-/area/eris/storage/tech
-	name = "Technical Storage"
-	icon_state = "auxstorage"
+/area/eris/stora69e/tech
+	name = "Technical Stora69e"
+	icon_state = "auxstora69e"

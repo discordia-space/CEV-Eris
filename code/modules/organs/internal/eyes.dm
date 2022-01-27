@@ -12,17 +12,17 @@
 	var/eyes_color = "#000000"
 	var/robo_color = "#000000"
 	var/cache_key = BP_EYES
-	var/list/colourmatrix = null
-	var/list/colourblind_matrix = MATRIX_GREYSCALE //Special colourblindness parameters. By default, it's black-and-white.
+	var/list/colourmatrix =69ull
+	var/list/colourblind_matrix =69ATRIX_GREYSCALE //Special colourblindness parameters. By default, it's black-and-white.
 
 /obj/item/organ/internal/eyes/proc/get_icon()
-	var/icon/eyes_icon = new/icon('icons/mob/human_face.dmi', "eye_l")
+	var/icon/eyes_icon =69ew/icon('icons/mob/human_face.dmi', "eye_l")
 	eyes_icon.Blend(icon('icons/mob/human_face.dmi', "eye_r"), ICON_OVERLAY)
 	eyes_icon.Blend(BP_IS_ROBOTIC(src) ? robo_color : eyes_color, ICON_ADD)
 	return eyes_icon
 
 /obj/item/organ/internal/eyes/proc/get_cache_key()
-	return "[cache_key][BP_IS_ROBOTIC(src) ? robo_color : eyes_color]"
+	return "69cache_key6969BP_IS_ROBOTIC(src) ? robo_color : eyes_color69"
 
 /obj/item/organ/internal/eyes/replaced_mob(mob/living/carbon/human/target)
 	..()
@@ -43,7 +43,7 @@
 	if(is_broken() && !oldbroken && owner && !owner.stat)
 		to_chat(owner, SPAN_DANGER("You go blind!"))
 
-/obj/item/organ/internal/eyes/proc/get_colourmatrix() //Returns a special colour matrix if the mob is colourblind, otherwise it uses the current one.
+/obj/item/organ/internal/eyes/proc/get_colourmatrix() //Returns a special colour69atrix if the69ob is colourblind, otherwise it uses the current one.
 	if(owner.stats.getPerk(PERK_OBORIN_SYNDROME) && !owner.is_dead())
 		return colourblind_matrix
 	else
@@ -56,7 +56,7 @@
 
 /obj/item/organ/internal/eyes/oneeye/get_icon()
 	var/icon/eyes_icon
-	eyes_icon = icon('icons/mob/human_face.dmi', "[icon_state]")
+	eyes_icon = icon('icons/mob/human_face.dmi', "69icon_state69")
 	eyes_icon.Blend(BP_IS_ROBOTIC(src) ? robo_color : eyes_color, ICON_ADD)
 	return eyes_icon
 
@@ -69,7 +69,7 @@
 	cache_key = "heterohromia"
 
 /obj/item/organ/internal/eyes/heterohromia/get_cache_key()
-	return "[cache_key][BP_IS_ROBOTIC(src) ? robo_color : eyes_color]&[second_color]"
+	return "69cache_key6969BP_IS_ROBOTIC(src) ? robo_color : eyes_color69&69second_color69"
 
 /obj/item/organ/internal/eyes/heterohromia/get_icon()
 	var/icon/eyes_icon = icon('icons/mob/human_face.dmi', "eye_l")

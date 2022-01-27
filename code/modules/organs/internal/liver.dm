@@ -2,7 +2,7 @@
 	name = "liver"
 	icon_state = "liver"
 	organ_efficiency = list(OP_LIVER = 100)
-	desc = "A vital organ that detoxifies metabolites. Among other things."
+	desc = "A69ital organ that detoxifies69etabolites. Among other things."
 	parent_organ_base = BP_GROIN
 	price_tag = 900
 	blood_req = 5
@@ -15,8 +15,8 @@
 	icon_state = "liver_big"
 	organ_efficiency = list(OP_LIVER = 150)
 	specific_organ_size = 1.2
-	desc = "You will need twice the amount of booze for this one to fail."
+	desc = "You will69eed twice the amount of booze for this one to fail."
 
-//We got it covered in Process with more detailed thing
+//We got it covered in Process with69ore detailed thing
 /obj/item/organ/internal/liver/handle_regeneration()
 	return

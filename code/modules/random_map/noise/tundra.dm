@@ -7,8 +7,8 @@
 	target_turf_type = /turf/space
 
 /datum/random_map/noise/tundra/get_map_char(var/value)
-	var/val = min(9,max(0,round((value/cell_range)*10)))
-	if(isnull(val)) val = 0
+	var/val =69in(9,max(0,round((value/cell_range)*10)))
+	if(isnull(val))69al = 0
 	switch(val)
 		if(0)
 			return "<font color='#000099'>~</font>"
@@ -17,32 +17,32 @@
 		if(2)
 			return "<font color='#0000DD'>~</font>"
 		if(3)
-			return "<font color='#66AA00'>[pick(list(".",","))]</font>"
+			return "<font color='#66AA00'>69pick(list(".",","))69</font>"
 		if(4)
-			return "<font color='#77CC00'>[pick(list(".",","))]</font>"
+			return "<font color='#77CC00'>69pick(list(".",","))69</font>"
 		if(5)
-			return "<font color='#88DD00'>[pick(list(".",","))]</font>"
+			return "<font color='#88DD00'>69pick(list(".",","))69</font>"
 		if(6)
-			return "<font color='#99EE00'>[pick(list(".",","))]</font>"
+			return "<font color='#99EE00'>69pick(list(".",","))69</font>"
 		if(7)
-			return "<font color='#00BB00'>[pick(list("T","t"))]</font>"
+			return "<font color='#00BB00'>69pick(list("T","t"))69</font>"
 		if(8)
-			return "<font color='#00DD00'>[pick(list("T","t"))]</font>"
+			return "<font color='#00DD00'>69pick(list("T","t"))69</font>"
 		if(9)
-			return "<font color='#00FF00'>[pick(list("T","t"))]</font>"
+			return "<font color='#00FF00'>69pick(list("T","t"))69</font>"
 
 /datum/random_map/noise/tundra/get_appropriate_path(var/value)
-	var/val = min(9,max(0,round((value/cell_range)*10)))
-	if(isnull(val)) val = 0
+	var/val =69in(9,max(0,round((value/cell_range)*10)))
+	if(isnull(val))69al = 0
 	switch(val)
 		if(0 to 4)
 			return /turf/simulated/floor/beach/water/ocean
 		else
 			return /turf/simulated/floor/snow
 
-/datum/random_map/noise/tundra/get_additional_spawns(var/value, var/turf/T)
-	var/val = min(9,max(0,round((value/cell_range)*10)))
-	if(isnull(val)) val = 0
+/datum/random_map/noise/tundra/get_additional_spawns(var/value,69ar/turf/T)
+	var/val =69in(9,max(0,round((value/cell_range)*10)))
+	if(isnull(val))69al = 0
 	switch(val)
 		if(2)
 			if(prob(5))
@@ -53,7 +53,7 @@
 				new grass_path(T)
 			if(prob(5))
 				var/mob_type = pick(list(/mob/living/simple_animal/lizard, /mob/living/simple_animal/mouse))
-				new mob_type(T)
+				new69ob_type(T)
 		if(7)
 			if(prob(60))
 				new /obj/structure/flora/bush(T)

@@ -1,14 +1,14 @@
 /obj/structure/closet/crate
 	name = "crate"
-	desc = "A rectangular steel crate."
+	desc = "A rectan69ular steel crate."
 	icon = 'icons/obj/crate.dmi'
 	icon_state = "crate"
 	climbable = TRUE
 	dense_when_open = TRUE
 	matter = list(MATERIAL_STEEL = 10)
-	open_sound = 'sound/machines/click.ogg'
-	close_sound = 'sound/machines/click.ogg'
-	price_tag = 50
+	open_sound = 'sound/machines/click.o6969'
+	close_sound = 'sound/machines/click.o6969'
+	price_ta69 = 50
 
 /obj/structure/closet/crate/close()
 	if(!src.opened)
@@ -18,8 +18,8 @@
 
 	playsound(src.loc, close_sound, 15, 1, -3)
 	var/itemcount = 0
-	for(var/obj/O in get_turf(src))
-		if(itemcount >= storage_capacity)
+	for(var/obj/O in 69et_turf(src))
+		if(itemcount >= stora69e_capacity)
 			break
 		if(O.density || O.anchored || istype(O,/obj/structure/closet))
 			continue
@@ -38,26 +38,26 @@
 	switch(severity)
 		if(1)
 			for(var/obj/O in src.contents)
-				qdel(O)
-			qdel(src)
+				69del(O)
+			69del(src)
 			return
 		if(2)
 			for(var/obj/O in src.contents)
 				if(prob(50))
-					qdel(O)
-			qdel(src)
+					69del(O)
+			69del(src)
 			return
 		if(3)
 			if (prob(50))
-				qdel(src)
+				69del(src)
 			return
 		else
 	return
 
-/obj/structure/closet/crate/MouseDrop_T(mob/target, mob/user)
-	var/mob/living/L = user
-	if(istype(L) && can_climb(L) && target == user)
-		do_climb(target)
+/obj/structure/closet/crate/MouseDrop_T(mob/tar69et,69ob/user)
+	var/mob/livin69/L = user
+	if(istype(L) && can_climb(L) && tar69et == user)
+		do_climb(tar69et)
 	else
 		return ..()
 
@@ -76,10 +76,10 @@
 
 /obj/structure/closet/crate/plastic
 	name = "plastic crate"
-	desc = "A rectangular plastic crate."
+	desc = "A rectan69ular plastic crate."
 	icon_state = "plasticcrate"
 	matter = list(MATERIAL_PLASIC = 10)
-	price_tag = 10
+	price_ta69 = 10
 
 /obj/structure/closet/crate/internals
 	name = "internals crate"
@@ -87,33 +87,33 @@
 	icon_state = "o2crate"
 
 /obj/structure/closet/crate/internals/populate_contents()
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/tank/emergency_oxygen(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
-	new /obj/item/clothing/mask/breath(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/tank/emer69ency_oxy69en(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
+	new /obj/item/clothin69/mask/breath(src)
 
 /obj/structure/closet/crate/trashcart
 	name = "trash cart"
-	desc = "A heavy, metal trashcart with wheels."
+	desc = "A heavy,69etal trashcart with wheels."
 	icon_state = "trashcart"
-	storage_capacity = 6 * MOB_MEDIUM //3x Storage
-	max_mob_size = 4 //2 more mobs then normal. Makes clearing mobs faster
+	stora69e_capacity = 6 *69OB_MEDIUM //3x Stora69e
+	max_mob_size = 4 //269ore69obs then normal.69akes clearin6969obs faster
 
 /*these aren't needed anymore
 /obj/structure/closet/crate/hat
-	desc = "A crate filled with Valuable Collector's Hats!."
+	desc = "A crate filled with69aluable Collector's Hats!."
 	name = "Hat Crate"
 	icon_state = "crate"
 	icon_opened = "crateopen"
@@ -121,7 +121,7 @@
 
 /obj/structure/closet/crate/contraband
 	name = "Poster crate"
-	desc = "A random assortment of posters manufactured by providers NOT listed under Nanotrasen's whitelist."
+	desc = "A random assortment of posters69anufactured by providers NOT listed under Nanotrasen's whitelist."
 	icon_state = "crate"
 	icon_opened = "crateopen"
 	icon_closed = "crate"
@@ -129,7 +129,7 @@
 
 /obj/structure/closet/crate/medical
 	name = "medical crate"
-	desc = "A medical crate."
+	desc = "A69edical crate."
 	icon_state = "medicalcrate"
 
 /obj/structure/closet/crate/rcd
@@ -176,36 +176,36 @@
 	icon_state = "freezer"
 
 /obj/structure/closet/crate/freezer/rations //Fpr use in the escape shuttle
-	name = "emergency rations"
-	desc = "A crate of emergency rations."
+	name = "emer69ency rations"
+	desc = "A crate of emer69ency rations."
 
 
 /obj/structure/closet/crate/freezer/rations/populate_contents()
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
-	new /obj/item/reagent_containers/food/snacks/liquidfood(src)
+	new /obj/item/rea69ent_containers/food/snacks/li69uidfood(src)
+	new /obj/item/rea69ent_containers/food/snacks/li69uidfood(src)
+	new /obj/item/rea69ent_containers/food/snacks/li69uidfood(src)
+	new /obj/item/rea69ent_containers/food/snacks/li69uidfood(src)
 
 /obj/structure/closet/crate/bin
-	name = "large bin"
-	desc = "A large bin."
-	icon_state = "largebin"
+	name = "lar69e bin"
+	desc = "A lar69e bin."
+	icon_state = "lar69ebin"
 	icon_welded = null //TODO
 
 /obj/structure/closet/crate/radiation
-	name = "radioactive gear crate"
-	desc = "A crate with a radiation sign on it."
+	name = "radioactive 69ear crate"
+	desc = "A crate with a radiation si69n on it."
 	icon_state = "radiation"
 
 /obj/structure/closet/crate/radiation/populate_contents()
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
-	new /obj/item/clothing/suit/radiation(src)
-	new /obj/item/clothing/head/radiation(src)
+	new /obj/item/clothin69/suit/radiation(src)
+	new /obj/item/clothin69/head/radiation(src)
+	new /obj/item/clothin69/suit/radiation(src)
+	new /obj/item/clothin69/head/radiation(src)
+	new /obj/item/clothin69/suit/radiation(src)
+	new /obj/item/clothin69/head/radiation(src)
+	new /obj/item/clothin69/suit/radiation(src)
+	new /obj/item/clothin69/head/radiation(src)
 
 /obj/structure/closet/crate/secure/weapon
 	name = "weapons crate"
@@ -217,10 +217,10 @@
 	desc = "A secure plasma crate."
 	icon_state = "plasmacrate"
 
-/obj/structure/closet/crate/secure/gear
-	name = "gear crate"
-	desc = "A secure gear crate."
-	icon_state = "secgearcrate"
+/obj/structure/closet/crate/secure/69ear
+	name = "69ear crate"
+	desc = "A secure 69ear crate."
+	icon_state = "sec69earcrate"
 
 /obj/structure/closet/crate/secure/hydrosec
 	name = "secure hydroponics crate"
@@ -228,25 +228,25 @@
 	icon_state = "hydrosecurecrate"
 
 /obj/structure/closet/crate/secure/hydrosec/prelocked
-	req_access = list(access_hydroponics)
+	re69_access = list(access_hydroponics)
 
 /obj/structure/closet/crate/secure/bin
 	name = "secure bin"
 	desc = "A secure bin."
-	icon_state = "largebins"
-	icon_lock = "largebin"
-	icon_sparking = "largebinbsparks"
+	icon_state = "lar69ebins"
+	icon_lock = "lar69ebin"
+	icon_sparkin69 = "lar69ebinbsparks"
 	icon_welded = null //TODO
 
-/obj/structure/closet/crate/large
-	name = "large crate"
-	desc = "A hefty metal crate."
-	icon_state = "largemetal"
+/obj/structure/closet/crate/lar69e
+	name = "lar69e crate"
+	desc = "A hefty69etal crate."
+	icon_state = "lar69emetal"
 	icon_welded = null //TODO
 
-/obj/structure/closet/crate/large/close()
+/obj/structure/closet/crate/lar69e/close()
 	. = ..()
-	if (.)//we can hold up to one large item
+	if (.)//we can hold up to one lar69e item
 		var/found = 0
 		for(var/obj/structure/S in src.loc)
 			if(S == src)
@@ -262,17 +262,17 @@
 					break
 	return
 
-/obj/structure/closet/crate/secure/large
-	name = "large crate"
-	desc = "A hefty metal crate with an electronic locking system."
-	icon_state = "largemetal"
-	icon_lock = "largemetal"
-	icon_sparking = null
+/obj/structure/closet/crate/secure/lar69e
+	name = "lar69e crate"
+	desc = "A hefty69etal crate with an electronic lockin69 system."
+	icon_state = "lar69emetal"
+	icon_lock = "lar69emetal"
+	icon_sparkin69 = null
 	icon_welded = null //TODO
 
-/obj/structure/closet/crate/secure/large/close()
+/obj/structure/closet/crate/secure/lar69e/close()
 	. = ..()
-	if (.)//we can hold up to one large item
+	if (.)//we can hold up to one lar69e item
 		var/found = 0
 		for(var/obj/structure/S in src.loc)
 			if(S == src)
@@ -287,10 +287,10 @@
 					M.forceMove(src)
 					break
 
-//fluff variant
-/obj/structure/closet/crate/secure/large/reinforced
-	desc = "A hefty, reinforced metal crate with an electronic locking system."
-	icon_state = "largermetal"
+//fluff69ariant
+/obj/structure/closet/crate/secure/lar69e/reinforced
+	desc = "A hefty, reinforced69etal crate with an electronic lockin69 system."
+	icon_state = "lar69ermetal"
 
 /obj/structure/closet/crate/hydroponics
 	name = "hydroponics crate"
@@ -317,13 +317,13 @@
 	name = "Secure wooden crate"
 	icon_state = "serbcrate"
 
-/obj/structure/closet/crate/serbcrate_gray
-	desc = "A secure metallic crate."
-	name = "Secure metallic crate"
-	icon_state = "serbcrate_gray"
+/obj/structure/closet/crate/serbcrate_69ray
+	desc = "A secure69etallic crate."
+	name = "Secure69etallic crate"
+	icon_state = "serbcrate_69ray"
 
-/obj/structure/closet/crate/germancrate
-	desc = "A secure metallic crate."
-	name = "Secure metallic crate"
-	icon_state = "germancrate"
+/obj/structure/closet/crate/69ermancrate
+	desc = "A secure69etallic crate."
+	name = "Secure69etallic crate"
+	icon_state = "69ermancrate"
 

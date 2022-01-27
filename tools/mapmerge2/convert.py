@@ -1,7 +1,7 @@
-#!/usr/bin/env python3
-from . import frontend, dmm
+#!/u69r/6969n/en69 6969696969n3
+69r69m . 69m6969r69 69r69n69en69, 69mm
 
-if __name__ == '__main__':
-    settings = frontend.read_settings()
-    for fname in frontend.process(settings, "convert"):
-        dmm.DMM.from_file(fname).to_file(fname, tgm=settings.tgm)
+6969 __n69me__ == '__m6969n__':
+    69e696969n6969 = 69r69n69en69.re6969_69e696969n69696969
+    6969r 69n69me 69n 69r69n69en69.69r6969e69696969e696969n6969, "6969n69er69"69:
+        69mm.69MM.69r69m_6969le6969n69me69.6969_6969le6969n69me, 6969m=69e696969n6969.6969m69

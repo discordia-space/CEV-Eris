@@ -18,7 +18,7 @@
 	sort_string = "TAAAB"
 
 /datum/design/research/item/weapon/lasercannon
-	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
+	desc = "The lasing69edium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high69eutron flux in a69uclear reactor core."
 	build_path = /obj/item/gun/energy/lasercannon
 	sort_string = "TAAAC"
 
@@ -71,10 +71,10 @@
 	sort_string = "TBAAB"
 
 /datum/design/research/item/weapon/hatton
-	name = "Moebius BT \"Q-del\""
+	name = "Moebius BT \"69-del\""
 	desc = "This breaching tool was reverse engineered from the \"Hatton\" design.\
-			Despite the Excelsior \"Hatton\" being traded on the free market through Technomancer League channels,\
-			this device suffers from a wide number of reliability issues stemming from it being lathe printed."
+			Despite the Excelsior \"Hatton\" being traded on the free69arket through Technomancer League channels,\
+			this device suffers from a wide69umber of reliability issues stemming from it being lathe printed."
 	build_path = /obj/item/hatton/moebius
 	sort_string = "TBAAD"
 
@@ -93,13 +93,13 @@
 	category = CAT_WEAPON
 
 /datum/design/research/item/ammo/hatton
-	name = "Moebius BT \"Q-del\" gas tube"
+	name = "Moebius BT \"69-del\" gas tube"
 	build_path = /obj/item/hatton_magazine/moebius
 	sort_string = "TAACC"
 
 /datum/design/research/item/ammo/c20r_ammo
-	name = "C20R 35 Auto Magazine"
-	desc = "35 Auto SMG magazine for the C-20r"
+	name = "C20R 35 Auto69agazine"
+	desc = "35 Auto SMG69agazine for the C-20r"
 	build_path = /obj/item/ammo_magazine/smg
 	sort_string = "TAACD"
 

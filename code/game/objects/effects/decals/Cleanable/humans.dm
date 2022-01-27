@@ -1,4 +1,4 @@
-#define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
+#define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount69ar)
 
 var/global/list/image/splatter_cache=list()
 
@@ -54,7 +54,7 @@ var/global/list/image/splatter_cache=list()
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
-					qdel(B)
+					69del(B)
 	drytime = world.time + DRYING_TIME * (amount+1)
 	START_PROCESSING(SSobj, src)
 
@@ -81,7 +81,7 @@ var/global/list/image/splatter_cache=list()
 		var/obj/item/clothing/shoes/S = perp.shoes
 		if(istype(S))
 			S.blood_color = basecolor
-			S.track_blood = max(amount,S.track_blood)
+			S.track_blood =69ax(amount,S.track_blood)
 			if(!S.blood_overlay)
 				S.generate_blood_overlay()
 			if(!S.blood_DNA)
@@ -96,7 +96,7 @@ var/global/list/image/splatter_cache=list()
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
-		perp.track_blood = max(amount,perp.track_blood)
+		perp.track_blood =69ax(amount,perp.track_blood)
 		if(!perp.feet_blood_DNA)
 			perp.feet_blood_DNA = list()
 		perp.feet_blood_DNA |= blood_DNA.Copy()
@@ -122,7 +122,7 @@ var/global/list/image/splatter_cache=list()
 			return FALSE
 		var/taken = rand(1,amount)
 		amount -= taken
-		to_chat(user, SPAN_NOTICE("You get some of \the [src] on your hands."))
+		to_chat(user, SPAN_NOTICE("You get some of \the 69src69 on your hands."))
 		if (!user.blood_DNA)
 			user.blood_DNA = list()
 		user.blood_DNA |= blood_DNA.Copy()
@@ -168,7 +168,7 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/writing/examine(mob/user)
 	..(user)
-	to_chat(user, "It reads: <font color='[basecolor]'>\"[message]\"</font>")
+	to_chat(user, "It reads: <font color='69basecolor69'>\"69message69\"</font>")
 
 /obj/effect/decal/cleanable/blood/gibs
 	name = "gibs"
@@ -184,12 +184,12 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/blood/gibs/update_icon()
 
-	var/image/giblets = new(base_icon, "[icon_state]_flesh", dir)
+	var/image/giblets = new(base_icon, "69icon_state69_flesh", dir)
 	if(!fleshcolor || fleshcolor == "rainbow")
 		fleshcolor = get_random_colour(1)
 	giblets.color = fleshcolor
 
-	var/icon/blood = new(base_icon,"[icon_state]",dir)
+	var/icon/blood = new(base_icon,"69icon_state69",dir)
 	if(basecolor == "rainbow") basecolor = get_random_colour(1)
 	blood.Blend(basecolor,ICON_MULTIPLY)
 
@@ -229,7 +229,7 @@ var/global/list/image/splatter_cache=list()
 
 /obj/effect/decal/cleanable/mucus
 	name = "mucus"
-	desc = "Disgusting mucus."
+	desc = "Disgusting69ucus."
 	gender = PLURAL
 	density = FALSE
 	anchored = TRUE

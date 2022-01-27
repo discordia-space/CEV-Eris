@@ -1,40 +1,40 @@
-/******************** Requests Console ********************/
-/** Originally written by errorage, updated by: Carn, needs more work though. I just added some security fixes */
+/******************** Re69uests Console ********************/
+/** Ori69inally written by errora69e, updated by: Carn, needs69ore work thou69h. I just added some security fixes */
 
-//Request Console Department Types
-#define RC_ASSIST 1		//Request Assistance
-#define RC_SUPPLY 2		//Request Supplies
+//Re69uest Console Department Types
+#define RC_ASSIST 1		//Re69uest Assistance
+#define RC_SUPPLY 2		//Re69uest Supplies
 #define RC_INFO   4		//Relay Info
 
-//Request Console Screens
-#define RCS_MAINMENU 0	// Main menu
-#define RCS_RQASSIST 1	// Request supplies
-#define RCS_RQSUPPLY 2	// Request assistance
+//Re69uest Console Screens
+#define RCS_MAINMENU 0	//69ain69enu
+#define RCS_R69ASSIST 1	// Re69uest supplies
+#define RCS_R69SUPPLY 2	// Re69uest assistance
 #define RCS_SENDINFO 3	// Relay information
-#define RCS_SENTPASS 4	// Message sent successfully
-#define RCS_SENTFAIL 5	// Message sent unsuccessfully
-#define RCS_VIEWMSGS 6	// View messages
-#define RCS_MESSAUTH 7	// Authentication before sending
+#define RCS_SENTPASS 4	//69essa69e sent successfully
+#define RCS_SENTFAIL 5	//69essa69e sent unsuccessfully
+#define RCS_VIEWMS69S 6	//69iew69essa69es
+#define RCS_MESSAUTH 7	// Authentication before sendin69
 #define RCS_ANNOUNCE 8	// Send announcement
 
-var/req_console_assistance = list()
-var/req_console_supplies = list()
-var/req_console_information = list()
-var/list/obj/machinery/requests_console/allConsoles = list()
+var/re69_console_assistance = list()
+var/re69_console_supplies = list()
+var/re69_console_information = list()
+var/list/obj/machinery/re69uests_console/allConsoles = list()
 
-/obj/machinery/requests_console
-	name = "Requests Console"
-	desc = "A console intended to send requests to different departments on the station."
+/obj/machinery/re69uests_console
+	name = "Re69uests Console"
+	desc = "A console intended to send re69uests to different departments on the station."
 	anchored = TRUE
 	icon = 'icons/obj/terminals.dmi'
-	icon_state = "req_comp0"
-	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
-	var/list/message_log = list() //List of all messages
-	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
-	var/newmessagepriority = 0
-		// 0 = no new message
+	icon_state = "re69_comp0"
+	var/department = "Unknown" //The list of all departments on the station (Determined from this69ariable on each unit) Set this to the same thin69 if you want several consoles in one department
+	var/list/messa69e_lo69 = list() //List of all69essa69es
+	var/departmentType = 0 		//Bitfla69. Zero is reply-only.69ap currently uses raw numbers instead of defines.
+	var/newmessa69epriority = 0
+		// 0 = no new69essa69e
 		// 1 = normal priority
-		// 2 = high priority
+		// 2 = hi69h priority
 	var/screen = RCS_MAINMENU
 	var/silent = 0 // set to 1 for it not to beep all the time
 //	var/hackState = 0
@@ -45,191 +45,191 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		// 1 = This console can send department announcementsf
 	var/open = 0 // 1 if open
 	var/announceAuth = 0 //Will be set to 1 when you authenticate yourself for announcements
-	var/msgVerified = "" //Will contain the name of the person who varified it
-	var/msgStamped = "" //If a message is stamped, this will contain the stamp name
-	var/message = "";
-	var/recipient = ""; //the department which will be receiving the message
-	var/priority = -1 ; //Priority of the message being sent
-	light_range = 0
+	var/ms69Verified = "" //Will contain the name of the person who69arified it
+	var/ms69Stamped = "" //If a69essa69e is stamped, this will contain the stamp name
+	var/messa69e = "";
+	var/recipient = ""; //the department which will be receivin69 the69essa69e
+	var/priority = -1 ; //Priority of the69essa69e bein69 sent
+	li69ht_ran69e = 0
 	var/datum/announcement/announcement = new
 
-/obj/machinery/requests_console/power_change()
+/obj/machinery/re69uests_console/power_chan69e()
 	..()
 	update_icon()
 
-/obj/machinery/requests_console/update_icon()
+/obj/machinery/re69uests_console/update_icon()
 	if(stat & NOPOWER)
-		if(icon_state != "req_comp_off")
-			icon_state = "req_comp_off"
+		if(icon_state != "re69_comp_off")
+			icon_state = "re69_comp_off"
 	else
-		if(icon_state == "req_comp_off")
-			icon_state = "req_comp[newmessagepriority]"
+		if(icon_state == "re69_comp_off")
+			icon_state = "re69_comp69newmessa69epriority69"
 
-/obj/machinery/requests_console/New()
+/obj/machinery/re69uests_console/New()
 	..()
 
-	announcement.title = "[department] announcement"
+	announcement.title = "69department69 announcement"
 	announcement.newscast = 1
 
-	name = "[department] Requests Console"
+	name = "69department69 Re69uests Console"
 	allConsoles += src
 	if (departmentType & RC_ASSIST)
-		req_console_assistance |= department
+		re69_console_assistance |= department
 	if (departmentType & RC_SUPPLY)
-		req_console_supplies |= department
+		re69_console_supplies |= department
 	if (departmentType & RC_INFO)
-		req_console_information |= department
+		re69_console_information |= department
 
-	set_light(1)
+	set_li69ht(1)
 
-/obj/machinery/requests_console/Destroy()
+/obj/machinery/re69uests_console/Destroy()
 	allConsoles -= src
 	var/lastDeptRC = 1
-	for (var/obj/machinery/requests_console/Console in allConsoles)
+	for (var/obj/machinery/re69uests_console/Console in allConsoles)
 		if (Console.department == department)
 			lastDeptRC = 0
 			break
 	if(lastDeptRC)
 		if (departmentType & RC_ASSIST)
-			req_console_assistance -= department
+			re69_console_assistance -= department
 		if (departmentType & RC_SUPPLY)
-			req_console_supplies -= department
+			re69_console_supplies -= department
 		if (departmentType & RC_INFO)
-			req_console_information -= department
+			re69_console_information -= department
 	. = ..()
 
-/obj/machinery/requests_console/attack_hand(user as mob)
+/obj/machinery/re69uests_console/attack_hand(user as69ob)
 	if(..(user))
 		return
 	ui_interact(user)
 
-/obj/machinery/requests_console/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
+/obj/machinery/re69uests_console/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
 
-	data["department"] = department
-	data["screen"] = screen
-	data["message_log"] = message_log
-	data["newmessagepriority"] = newmessagepriority
-	data["silent"] = silent
-	data["announcementConsole"] = announcementConsole
+	data69"department"69 = department
+	data69"screen"69 = screen
+	data69"messa69e_lo69"69 =69essa69e_lo69
+	data69"newmessa69epriority"69 = newmessa69epriority
+	data69"silent"69 = silent
+	data69"announcementConsole"69 = announcementConsole
 
-	data["assist_dept"] = req_console_assistance
-	data["supply_dept"] = req_console_supplies
-	data["info_dept"]   = req_console_information
+	data69"assist_dept"69 = re69_console_assistance
+	data69"supply_dept"69 = re69_console_supplies
+	data69"info_dept"69   = re69_console_information
 
-	data["message"] = message
-	data["recipient"] = recipient
-	data["priortiy"] = priority
-	data["msgStamped"] = msgStamped
-	data["msgVerified"] = msgVerified
-	data["announceAuth"] = announceAuth
+	data69"messa69e"69 =69essa69e
+	data69"recipient"69 = recipient
+	data69"priortiy"69 = priority
+	data69"ms69Stamped"69 =69s69Stamped
+	data69"ms69Verified"69 =69s69Verified
+	data69"announceAuth"69 = announceAuth
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
-		ui = new(user, src, ui_key, "request_console.tmpl", "[department] Request Console", 520, 410)
+		ui = new(user, src, ui_key, "re69uest_console.tmpl", "69department69 Re69uest Console", 520, 410)
 		ui.set_initial_data(data)
 		ui.open()
 
-/obj/machinery/requests_console/Topic(href, href_list)
+/obj/machinery/re69uests_console/Topic(href, href_list)
 	if(..())	return
 	usr.set_machine(src)
-	add_fingerprint(usr)
+	add_fin69erprint(usr)
 
-	if(reject_bad_text(href_list["write"]))
-		recipient = href_list["write"] //write contains the string of the receiving department's name
+	if(reject_bad_text(href_list69"write"69))
+		recipient = href_list69"write"69 //write contains the strin69 of the receivin69 department's name
 
-		var/new_message = sanitize(input("Write your message:", "Awaiting Input", ""))
-		if(new_message)
-			message = new_message
+		var/new_messa69e = sanitize(input("Write your69essa69e:", "Awaitin69 Input", ""))
+		if(new_messa69e)
+			messa69e = new_messa69e
 			screen = RCS_MESSAUTH
-			switch(href_list["priority"])
+			switch(href_list69"priority"69)
 				if("1") priority = 1
 				if("2")	priority = 2
 				else	priority = 0
 		else
-			reset_message(1)
+			reset_messa69e(1)
 
-	if(href_list["writeAnnouncement"])
-		var/new_message = sanitize(input("Write your message:", "Awaiting Input", ""))
-		if(new_message)
-			message = new_message
+	if(href_list69"writeAnnouncement"69)
+		var/new_messa69e = sanitize(input("Write your69essa69e:", "Awaitin69 Input", ""))
+		if(new_messa69e)
+			messa69e = new_messa69e
 		else
-			reset_message(1)
+			reset_messa69e(1)
 
-	if(href_list["sendAnnouncement"])
+	if(href_list69"sendAnnouncement"69)
 		if(!announcementConsole)	return
-		announcement.Announce(message, msg_sanitized = 1)
-		reset_message(1)
+		announcement.Announce(messa69e,69s69_sanitized = 1)
+		reset_messa69e(1)
 
-	if( href_list["department"] && message )
-		var/log_msg = message
+	if( href_list69"department"69 &&69essa69e )
+		var/lo69_ms69 =69essa69e
 		var/pass = 0
 		screen = RCS_SENTFAIL
-		for (var/obj/machinery/message_server/MS in world)
+		for (var/obj/machinery/messa69e_server/MS in world)
 			if(!MS.active) continue
-			MS.send_rc_message(ckey(href_list["department"]),department,log_msg,msgStamped,msgVerified,priority)
+			MS.send_rc_messa69e(ckey(href_list69"department"69),department,lo69_ms69,ms69Stamped,ms69Verified,priority)
 			pass = 1
 		if(pass)
 			screen = RCS_SENTPASS
-			message_log += "<B>Message sent to [recipient]</B><BR>[message]"
+			messa69e_lo69 += "<B>Messa69e sent to 69recipient69</B><BR>69messa69e69"
 		else
-			audible_message(text("\icon[src] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+			audible_messa69e(text("\icon69src69 *The Re69uests Console beeps: 'NOTICE: No server detected!'"),,4)
 
-	//Handle screen switching
-	if(href_list["setScreen"])
-		var/tempScreen = text2num(href_list["setScreen"])
+	//Handle screen switchin69
+	if(href_list69"setScreen"69)
+		var/tempScreen = text2num(href_list69"setScreen"69)
 		if(tempScreen == RCS_ANNOUNCE && !announcementConsole)
 			return
-		if(tempScreen == RCS_VIEWMSGS)
-			for (var/obj/machinery/requests_console/Console in allConsoles)
+		if(tempScreen == RCS_VIEWMS69S)
+			for (var/obj/machinery/re69uests_console/Console in allConsoles)
 				if (Console.department == department)
-					Console.newmessagepriority = 0
-					Console.icon_state = "req_comp0"
-					Console.set_light(1)
+					Console.newmessa69epriority = 0
+					Console.icon_state = "re69_comp0"
+					Console.set_li69ht(1)
 		if(tempScreen == RCS_MAINMENU)
-			reset_message()
+			reset_messa69e()
 		screen = tempScreen
 
-	//Handle silencing the console
-	if(href_list["toggleSilent"])
+	//Handle silencin69 the console
+	if(href_list69"to6969leSilent"69)
 		silent = !silent
 
-	updateUsrDialog()
-	playsound(loc, 'sound/machines/button.ogg', 100, 1)
+	updateUsrDialo69()
+	playsound(loc, 'sound/machines/button.o6969', 100, 1)
 	return
 
-					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messanging on that console (EXTREME priority...), but the code for that was removed.
-/obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
+					//err... hackin69 code, which has no reason for existin69... but anyway... it was once supposed to unlock priority 369essan69in69 on that console (EXTREME priority...), but the code for that was removed.
+/obj/machinery/re69uests_console/attackby(var/obj/item/O as obj,69ar/mob/user as69ob)
 
 	if (istype(O, /obj/item/card/id))
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
 			var/obj/item/card/id/T = O
-			msgVerified = text("<font color='green'><b>Verified by [T.registered_name] ([T.assignment])</b></font>")
-			updateUsrDialog()
+			ms69Verified = text("<font color='69reen'><b>Verified by 69T.re69istered_name69 (69T.assi69nment69)</b></font>")
+			updateUsrDialo69()
 		if(screen == RCS_ANNOUNCE)
 			var/obj/item/card/id/ID = O
-			if (access_RC_announce in ID.GetAccess())
+			if (access_RC_announce in ID.69etAccess())
 				announceAuth = 1
-				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
+				announcement.announcer = ID.assi69nment ? "69ID.assi69nment69 69ID.re69istered_name69" : ID.re69istered_name
 			else
-				reset_message()
-				to_chat(user, SPAN_WARNING("You are not authorized to send announcements."))
-			updateUsrDialog()
+				reset_messa69e()
+				to_chat(user, SPAN_WARNIN69("You are not authorized to send announcements."))
+			updateUsrDialo69()
 	if (istype(O, /obj/item/stamp))
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
 			var/obj/item/stamp/T = O
-			msgStamped = text("<font color='blue'><b>Stamped with the [T.name]</b></font>")
-			updateUsrDialog()
+			ms69Stamped = text("<font color='blue'><b>Stamped with the 69T.name69</b></font>")
+			updateUsrDialo69()
 	return
 
-/obj/machinery/requests_console/proc/reset_message(var/mainmenu = 0)
-	message = ""
+/obj/machinery/re69uests_console/proc/reset_messa69e(var/mainmenu = 0)
+	messa69e = ""
 	recipient = ""
 	priority = 0
-	msgVerified = ""
-	msgStamped = ""
+	ms69Verified = ""
+	ms69Stamped = ""
 	announceAuth = 0
 	announcement.announcer = ""
 	if(mainmenu)

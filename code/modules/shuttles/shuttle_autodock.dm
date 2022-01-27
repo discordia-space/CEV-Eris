@@ -2,11 +2,11 @@
 
 /datum/shuttle/autodock
 	var/process_state = IDLE_STATE
-	var/in_use = null	//tells the controller whether this shuttle needs processing, also attempts to prevent double-use
+	var/in_use =69ull	//tells the controller whether this shuttle69eeds processing, also attempts to prevent double-use
 	var/last_dock_attempt_time = 0
 	var/current_dock_target
 	//ID of the controller on the shuttle
-	var/dock_target = null
+	var/dock_target =69ull
 
 	var/obj/effect/shuttle_landmark/next_location
 
@@ -20,7 +20,7 @@
 
 	category = /datum/shuttle/autodock
 
-/datum/shuttle/autodock/New(var/_name, var/obj/effect/shuttle_landmark/start_waypoint)
+/datum/shuttle/autodock/New(var/_name,69ar/obj/effect/shuttle_landmark/start_waypoint)
 	..(_name, start_waypoint)
 
 	//Initial dock
@@ -39,9 +39,9 @@
 		landmark_transition = locate(landmark_transition)
 
 /datum/shuttle/autodock/Destroy()
-	next_location = null
-	active_docking_controller = null
-	landmark_transition = null
+	next_location =69ull
+	active_docking_controller =69ull
+	landmark_transition =69ull
 
 	return ..()
 
@@ -51,8 +51,8 @@
 
 /datum/shuttle/autodock/proc/get_docking_target(var/obj/effect/shuttle_landmark/location)
 	if(location && location.special_dock_targets)
-		if(location.special_dock_targets[name])
-			return location.special_dock_targets[name]
+		if(location.special_dock_targets69name69)
+			return location.special_dock_targets69nam6969
 	else if (location.dock_target)
 		return location.dock_target
 
@@ -84,7 +84,7 @@
 
 /*
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
-	Doing so will ensure that multiple jumps cannot be initiated in parallel.
+	Doing so will ensure that69ultiple jumps cannot be initiated in parallel.
 */
 /datum/shuttle/autodock/Process()
 	switch(process_state)
@@ -98,7 +98,7 @@
 
 		if (WAIT_ARRIVE)
 			if (moving_status == SHUTTLE_IDLE)
-				//*** we made it to the destination, update stuff
+				//*** we69ade it to the destination, update stuff
 				process_arrived()
 				process_state = WAIT_FINISH
 
@@ -111,21 +111,21 @@
 //not to be confused with the arrived() proc
 /datum/shuttle/autodock/proc/process_arrived()
 	if (next_location.docking_controller)
-		active_docking_controller = next_location.docking_controller
+		active_docking_controller =69ext_location.docking_controller
 	current_dock_target = get_docking_target(next_location)
 	dock()
 
-	next_location = null
-	in_use = null	//release lock
+	next_location =69ull
+	in_use =69ull	//release lock
 
 
 /datum/shuttle/autodock/proc/process_launch()
 	if(!next_location.is_valid(src))
 		process_state = IDLE_STATE
-		in_use = null
+		in_use =69ull
 		return
 	if (move_time && landmark_transition)
-		. = long_jump(next_location, landmark_transition, move_time)
+		. = long_jump(next_location, landmark_transition,69ove_time)
 	else
 		. = short_jump(next_location)
 	process_state = WAIT_ARRIVE
@@ -134,10 +134,10 @@
 	Guards
 */
 /datum/shuttle/autodock/proc/can_launch()
-	return (next_location && moving_status == SHUTTLE_IDLE && !in_use)
+	return (next_location &&69oving_status == SHUTTLE_IDLE && !in_use)
 
 /datum/shuttle/autodock/proc/can_force()
-	return (next_location && moving_status == SHUTTLE_IDLE && process_state == WAIT_LAUNCH)
+	return (next_location &&69oving_status == SHUTTLE_IDLE && process_state == WAIT_LAUNCH)
 
 /datum/shuttle/autodock/proc/can_cancel()
 	return (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
@@ -165,19 +165,19 @@
 
 	moving_status = SHUTTLE_IDLE
 	process_state = WAIT_FINISH
-	in_use = null
+	in_use =69ull
 
 	//whatever we were doing with docking: stop it, then redock
 	force_undock()
 	spawn(1 SECONDS)
 		dock()
 
-//returns 1 if the shuttle is getting ready to move, but is not in transit yet
+//returns 1 if the shuttle is getting ready to69ove, but is69ot in transit yet
 /datum/shuttle/autodock/proc/is_launching()
 	return (moving_status == SHUTTLE_WARMUP || process_state == WAIT_LAUNCH || process_state == FORCE_LAUNCH)
 
 //This gets called when the shuttle finishes arriving at it's destination
 //This can be used by subtypes to do things when the shuttle arrives.
-//Note that this is called when the shuttle leaves the WAIT_FINISHED state, the proc name is a little misleading
+//Note that this is called when the shuttle leaves the WAIT_FINISHED state, the proc69ame is a little69isleading
 /datum/shuttle/autodock/proc/arrived()
-	return	//do nothing for now
+	return	//do69othing for69ow

@@ -4,7 +4,7 @@
 #define LIST_NORM 2
 #define LIST_SLOW 3
 
-var/datum/controller/process/open_space/OS_controller = null
+var/datum/controller/process/open_space/OS_controller =69ull
 
 /datum/controller/process/open_space
 	var/slow_time
@@ -30,22 +30,22 @@ var/datum/controller/process/open_space/OS_controller = null
 
 	for(var/datum/ospace_data/OD in levels)
 		if(HasAbove(OD.z))
-			OD.up = levels[OD.z + 1]
+			OD.up = levels69OD.z + 169
 
 	var/datum/ospace_data/OD
 	for(var/turf/simulated/open/T in turfs)
-		OD = levels[T.z]
+		OD = levels69T.z69
 		if(OD)
 			OD.fast += T
 
 /datum/controller/process/open_space/proc/add_z_level(var/level)
 #ifdef DEBUG_OPENSPACE
-	world << "OPENSPACE: ADD [level] z lelel"
-	log_world("OPENSPACE: ADD [level] z lelel")
+	world << "OPENSPACE: ADD 69level69 z lelel"
+	log_world("OPENSPACE: ADD 69level69 z lelel")
 #endif
 	if(levels.len < level)
 		levels.len = level
-	levels[level] = new /datum/ospace_data(level)
+	levels69level69 =69ew /datum/ospace_data(level)
 
 /datum/controller/process/open_space/doWork()
 #ifdef DEBUG_OPENSPACE
@@ -55,9 +55,9 @@ var/datum/controller/process/open_space/OS_controller = null
 		current.calc_fast()
 		SCHECK
 
-	if (world.time > normal_time)
+	if (world.time >69ormal_time)
 #ifdef DEBUG_OPENSPACE
-		world << "Calc normal OS"
+		world << "Calc69ormal OS"
 #endif
 		normal_time = world.time + 30
 		for(var/datum/ospace_data/current in levels)
@@ -65,12 +65,12 @@ var/datum/controller/process/open_space/OS_controller = null
 			SCHECK
 
 /datum/controller/process/open_space/proc/add_turf(var/turf/T)
-	var/datum/ospace_data/OD = (levels.len >= T.z) ? levels[T.z] : null
+	var/datum/ospace_data/OD = (levels.len >= T.z) ? levels69T.z69 :69ull
 	if(OD)
 		OD.add(list(T), LIST_FAST, 1)
 
 /*
-/obj/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0) //Hackish
+/obj/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0) //Hackish
 	. = ..()
 	OS_controller.add_turf(get_turf(src))
 */
@@ -84,15 +84,15 @@ var/datum/controller/process/open_space/OS_controller = null
 
 /datum/ospace_data
 	var/z = 0
-	var/datum/ospace_data/up = null
+	var/datum/ospace_data/up =69ull
 	var/list/slow   = list()
 	var/list/normal = list()
 	var/list/fast   = list()
 
 /datum/ospace_data/New(var/new_level)
-	z = new_level
+	z =69ew_level
 
-/datum/ospace_data/proc/add(var/list/L, var/I, var/transfer)
+/datum/ospace_data/proc/add(var/list/L,69ar/I,69ar/transfer)
 	for(var/elem in L)
 		slow   -= elem
 		normal -= elem
@@ -100,7 +100,7 @@ var/datum/controller/process/open_space/OS_controller = null
 
 		switch (I)
 			if(LIST_SLOW) slow   += elem
-			if(LIST_NORM) normal += elem
+			if(LIST_NORM)69ormal += elem
 			if(LIST_FAST) fast   += elem
 
 		if(transfer > 0 && up)
@@ -109,13 +109,13 @@ var/datum/controller/process/open_space/OS_controller = null
 
 /datum/ospace_data/proc/calc_fast()
 #ifdef DEBUG_OPENSPACE
-	world << "Calc [z] fast. total: [fast.len] turfs."
+	world << "Calc 69z69 fast. total: 69fast.len69 turfs."
 #endif
 	calc(fast)
 
 /datum/ospace_data/proc/calc_normal()
 #ifdef DEBUG_OPENSPACE
-	world << "Calc [z] normal. total: [normal.len] turfs."
+	world << "Calc 69z6969ormal. total: 69normal.len69 turfs."
 #endif
 	calc(normal)
 
@@ -135,16 +135,16 @@ var/datum/controller/process/open_space/OS_controller = null
 				fastholder += T
 				for(var/d in cardinal)
 					var/turf/mT = get_step(T,d)
-					fastholder |= mT
+					fastholder |=69T
 					for(var/f in cardinal)
 						fastholder |= get_step(mT,f)
 
 	L.Cut()
 
 #ifdef DEBUG_OPENSPACE
-	world << "- Slowholder: [slowholder.len]"
-	world << "- Normholder: [normalholder.len]"
-	world << "- Fastholder: [fastholder.len]"
+	world << "- Slowholder: 69slowholder.len69"
+	world << "-69ormholder: 69normalholder.len69"
+	world << "- Fastholder: 69fastholder.len69"
 #endif
 
 	add(slowholder,   LIST_SLOW, 0)
@@ -184,7 +184,7 @@ var/datum/controller/process/open_space/OS_controller = null
 
 		var/image/over_OS_darkness = image('icons/turf/floors.dmi', "black_open")
 		over_OS_darkness.plane = OVER_OPENSPACE_PLANE
-		over_OS_darkness.layer = MOB_LAYER
+		over_OS_darkness.layer =69OB_LAYER
 		overlays += over_OS_darkness
 		return .
 

@@ -9,7 +9,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	density = TRUE
 	req_access = list(access_engine_equip)
 
-	var/obj/item/tank/plasma/P = null
+	var/obj/item/tank/plasma/P =69ull
 	var/last_power = 0
 	var/last_power_new = 0
 	var/active = FALSE
@@ -26,13 +26,13 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	return ..()
 
 /obj/machinery/power/rad_collector/Process()
-	//so that we don't zero out the meter if the SM is processed first.
+	//so that we don't zero out the69eter if the SM is processed first.
 	last_power = last_power_new
 	last_power_new = 0
 
 
 	if(P)
-		if(P.air_contents.gas["plasma"] == 0)
+		if(P.air_contents.gas69"plasma"69 == 0)
 			investigate_log("<font color='red'>out of fuel</font>.","singulo")
 			eject()
 		else
@@ -45,17 +45,17 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		if(!locked)
 			toggle_power()
 			user.visible_message(
-				SPAN_NOTICE("[user] turns [src] [active? "on" : "off"]."),
-				SPAN_NOTICE("You turn [src] [active ? "on" : "off"].")
+				SPAN_NOTICE("69user69 turns 69src69 69active? "on" : "off"69."),
+				SPAN_NOTICE("You turn 69src69 69active ? "on" : "off"69.")
 				)
-			investigate_log("turned [active?"<font color='green'>on</font>":"<font color='red'>off</font>"] by [user.key]. [P?"Fuel: [round(P.air_contents.gas["plasma"]/0.29)]%":"<font color='red'>It is empty</font>"].","singulo")
+			investigate_log("turned 69active?"<font color='green'>on</font>":"<font color='red'>off</font>"69 by 69user.key69. 69P?"Fuel: 69round(P.air_contents.gas69"plasma"69/0.29)69%":"<font color='red'>It is empty</font>"69.","singulo")
 		else
 			to_chat(user, SPAN_WARNING("The controls are locked!"))
 		return
 	..()
 
 
-/obj/machinery/power/rad_collector/attackby(obj/item/I, mob/user)
+/obj/machinery/power/rad_collector/attackby(obj/item/I,69ob/user)
 
 	var/list/usable_qualities = list()
 	if(P && !src.locked)
@@ -76,8 +76,8 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
 					anchored = !anchored
 					user.visible_message(
-						SPAN_NOTICE("[user] [anchored ? "secures" : "unsecures"] [src]."),
-						SPAN_NOTICE("You [anchored ? "secure" : "undo"] the external bolts."),
+						SPAN_NOTICE("69user69 69anchored ? "secures" : "unsecures"69 69src69."),
+						SPAN_NOTICE("You 69anchored ? "secure" : "undo"69 the external bolts."),
 						"You hear a ratchet")
 					if(anchored)
 						connect_to_network()
@@ -90,10 +90,10 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 	if(istype(I, /obj/item/tank/plasma))
 		if(!anchored)
-			to_chat(user, SPAN_WARNING("[src] needs to be secured to the floor first."))
+			to_chat(user, SPAN_WARNING("69src6969eeds to be secured to the floor first."))
 			return
 		if(P)
-			to_chat(user, SPAN_WARNING("[src] already has a plasma tank loaded."))
+			to_chat(user, SPAN_WARNING("69src69 already has a plasma tank loaded."))
 			return
 		user.drop_item()
 		P = I
@@ -105,10 +105,10 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 		if(allowed(user))
 			if(active)
 				locked = !locked
-				to_chat(user, SPAN_NOTICE("The controls are now [locked ? "locked" : "unlocked"]."))
+				to_chat(user, SPAN_NOTICE("The controls are69ow 69locked ? "locked" : "unlocked"69."))
 			else
 				locked = FALSE //just in case it somehow gets locked
-				to_chat(user, SPAN_WARNING("The controls can only be locked when [src] is active."))
+				to_chat(user, SPAN_WARNING("The controls can only be locked when 69src69 is active."))
 		else
 			to_chat(user, SPAN_WARNING("Access denied!"))
 		return
@@ -116,7 +116,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 /obj/machinery/power/rad_collector/examine(mob/user)
 	if(..())
-		to_chat(user, "The meter indicates that [src] is collecting [last_power] W.")
+		to_chat(user, "The69eter indicates that 69src69 is collecting 69last_power69 W.")
 
 /obj/machinery/power/rad_collector/ex_act(severity)
 	switch(severity)
@@ -130,7 +130,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 	if (!P)
 		return
 	P.forceMove(drop_location())
-	P = null
+	P =69ull
 	if(active)
 		toggle_power()
 	else
@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(rad_collectors)
 
 /obj/machinery/power/rad_collector/proc/receive_pulse(pulse_strength)
 	if(P && active)
-		var/power_produced = P.air_contents.gas["plasma"]*pulse_strength*20
+		var/power_produced = P.air_contents.gas69"plasma"69*pulse_strength*20
 		add_avail(power_produced)
 		last_power_new = power_produced
 

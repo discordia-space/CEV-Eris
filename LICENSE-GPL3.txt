@@ -1,674 +1,674 @@
-                    GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
-
- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
-
-                            Preamble
-
-  The GNU General Public License is a free, copyleft license for
-software and other kinds of works.
-
-  The licenses for most software and other practical works are designed
-to take away your freedom to share and change the works.  By contrast,
-the GNU General Public License is intended to guarantee your freedom to
-share and change all versions of a program--to make sure it remains free
-software for all its users.  We, the Free Software Foundation, use the
-GNU General Public License for most of our software; it applies also to
-any other work released this way by its authors.  You can apply it to
-your programs, too.
-
-  When we speak of free software, we are referring to freedom, not
-price.  Our General Public Licenses are designed to make sure that you
-have the freedom to distribute copies of free software (and charge for
-them if you wish), that you receive source code or can get it if you
-want it, that you can change the software or use pieces of it in new
-free programs, and that you know you can do these things.
-
-  To protect your rights, we need to prevent others from denying you
-these rights or asking you to surrender the rights.  Therefore, you have
-certain responsibilities if you distribute copies of the software, or if
-you modify it: responsibilities to respect the freedom of others.
-
-  For example, if you distribute copies of such a program, whether
-gratis or for a fee, you must pass on to the recipients the same
-freedoms that you received.  You must make sure that they, too, receive
-or can get the source code.  And you must show them these terms so they
-know their rights.
-
-  Developers that use the GNU GPL protect your rights with two steps:
-(1) assert copyright on the software, and (2) offer you this License
-giving you legal permission to copy, distribute and/or modify it.
-
-  For the developers' and authors' protection, the GPL clearly explains
-that there is no warranty for this free software.  For both users' and
-authors' sake, the GPL requires that modified versions be marked as
-changed, so that their problems will not be attributed erroneously to
-authors of previous versions.
-
-  Some devices are designed to deny users access to install or run
-modified versions of the software inside them, although the manufacturer
-can do so.  This is fundamentally incompatible with the aim of
-protecting users' freedom to change the software.  The systematic
-pattern of such abuse occurs in the area of products for individuals to
-use, which is precisely where it is most unacceptable.  Therefore, we
-have designed this version of the GPL to prohibit the practice for those
-products.  If such problems arise substantially in other domains, we
-stand ready to extend this provision to those domains in future versions
-of the GPL, as needed to protect the freedom of users.
-
-  Finally, every program is threatened constantly by software patents.
-States should not allow patents to restrict development and use of
-software on general-purpose computers, but in those that do, we wish to
-avoid the special danger that patents applied to a free program could
-make it effectively proprietary.  To prevent this, the GPL assures that
-patents cannot be used to render the program non-free.
-
-  The precise terms and conditions for copying, distribution and
-modification follow.
-
-                       TERMS AND CONDITIONS
-
-  0. Definitions.
-
-  "This License" refers to version 3 of the GNU General Public License.
-
-  "Copyright" also means copyright-like laws that apply to other kinds of
-works, such as semiconductor masks.
-
-  "The Program" refers to any copyrightable work licensed under this
-License.  Each licensee is addressed as "you".  "Licensees" and
-"recipients" may be individuals or organizations.
-
-  To "modify" a work means to copy from or adapt all or part of the work
-in a fashion requiring copyright permission, other than the making of an
-exact copy.  The resulting work is called a "modified version" of the
-earlier work or a work "based on" the earlier work.
-
-  A "covered work" means either the unmodified Program or a work based
-on the Program.
-
-  To "propagate" a work means to do anything with it that, without
-permission, would make you directly or secondarily liable for
-infringement under applicable copyright law, except executing it on a
-computer or modifying a private copy.  Propagation includes copying,
-distribution (with or without modification), making available to the
-public, and in some countries other activities as well.
-
-  To "convey" a work means any kind of propagation that enables other
-parties to make or receive copies.  Mere interaction with a user through
-a computer network, with no transfer of a copy, is not conveying.
-
-  An interactive user interface displays "Appropriate Legal Notices"
-to the extent that it includes a convenient and prominently visible
-feature that (1) displays an appropriate copyright notice, and (2)
-tells the user that there is no warranty for the work (except to the
-extent that warranties are provided), that licensees may convey the
-work under this License, and how to view a copy of this License.  If
-the interface presents a list of user commands or options, such as a
-menu, a prominent item in the list meets this criterion.
-
-  1. Source Code.
-
-  The "source code" for a work means the preferred form of the work
-for making modifications to it.  "Object code" means any non-source
-form of a work.
-
-  A "Standard Interface" means an interface that either is an official
-standard defined by a recognized standards body, or, in the case of
-interfaces specified for a particular programming language, one that
-is widely used among developers working in that language.
-
-  The "System Libraries" of an executable work include anything, other
-than the work as a whole, that (a) is included in the normal form of
-packaging a Major Component, but which is not part of that Major
-Component, and (b) serves only to enable use of the work with that
-Major Component, or to implement a Standard Interface for which an
-implementation is available to the public in source code form.  A
-"Major Component", in this context, means a major essential component
-(kernel, window system, and so on) of the specific operating system
-(if any) on which the executable work runs, or a compiler used to
-produce the work, or an object code interpreter used to run it.
-
-  The "Corresponding Source" for a work in object code form means all
-the source code needed to generate, install, and (for an executable
-work) run the object code and to modify the work, including scripts to
-control those activities.  However, it does not include the work's
-System Libraries, or general-purpose tools or generally available free
-programs which are used unmodified in performing those activities but
-which are not part of the work.  For example, Corresponding Source
-includes interface definition files associated with source files for
-the work, and the source code for shared libraries and dynamically
-linked subprograms that the work is specifically designed to require,
-such as by intimate data communication or control flow between those
-subprograms and other parts of the work.
-
-  The Corresponding Source need not include anything that users
-can regenerate automatically from other parts of the Corresponding
-Source.
-
-  The Corresponding Source for a work in source code form is that
-same work.
-
-  2. Basic Permissions.
-
-  All rights granted under this License are granted for the term of
-copyright on the Program, and are irrevocable provided the stated
-conditions are met.  This License explicitly affirms your unlimited
-permission to run the unmodified Program.  The output from running a
-covered work is covered by this License only if the output, given its
-content, constitutes a covered work.  This License acknowledges your
-rights of fair use or other equivalent, as provided by copyright law.
-
-  You may make, run and propagate covered works that you do not
-convey, without conditions so long as your license otherwise remains
-in force.  You may convey covered works to others for the sole purpose
-of having them make modifications exclusively for you, or provide you
-with facilities for running those works, provided that you comply with
-the terms of this License in conveying all material for which you do
-not control copyright.  Those thus making or running the covered works
-for you must do so exclusively on your behalf, under your direction
-and control, on terms that prohibit them from making any copies of
-your copyrighted material outside their relationship with you.
-
-  Conveying under any other circumstances is permitted solely under
-the conditions stated below.  Sublicensing is not allowed; section 10
-makes it unnecessary.
-
-  3. Protecting Users' Legal Rights From Anti-Circumvention Law.
-
-  No covered work shall be deemed part of an effective technological
-measure under any applicable law fulfilling obligations under article
-11 of the WIPO copyright treaty adopted on 20 December 1996, or
-similar laws prohibiting or restricting circumvention of such
-measures.
-
-  When you convey a covered work, you waive any legal power to forbid
-circumvention of technological measures to the extent such circumvention
-is effected by exercising rights under this License with respect to
-the covered work, and you disclaim any intention to limit operation or
-modification of the work as a means of enforcing, against the work's
-users, your or third parties' legal rights to forbid circumvention of
-technological measures.
-
-  4. Conveying Verbatim Copies.
-
-  You may convey verbatim copies of the Program's source code as you
-receive it, in any medium, provided that you conspicuously and
-appropriately publish on each copy an appropriate copyright notice;
-keep intact all notices stating that this License and any
-non-permissive terms added in accord with section 7 apply to the code;
-keep intact all notices of the absence of any warranty; and give all
-recipients a copy of this License along with the Program.
-
-  You may charge any price or no price for each copy that you convey,
-and you may offer support or warranty protection for a fee.
-
-  5. Conveying Modified Source Versions.
-
-  You may convey a work based on the Program, or the modifications to
-produce it from the Program, in the form of source code under the
-terms of section 4, provided that you also meet all of these conditions:
-
-    a) The work must carry prominent notices stating that you modified
-    it, and giving a relevant date.
-
-    b) The work must carry prominent notices stating that it is
-    released under this License and any conditions added under section
-    7.  This requirement modifies the requirement in section 4 to
-    "keep intact all notices".
-
-    c) You must license the entire work, as a whole, under this
-    License to anyone who comes into possession of a copy.  This
-    License will therefore apply, along with any applicable section 7
-    additional terms, to the whole of the work, and all its parts,
-    regardless of how they are packaged.  This License gives no
-    permission to license the work in any other way, but it does not
-    invalidate such permission if you have separately received it.
-
-    d) If the work has interactive user interfaces, each must display
-    Appropriate Legal Notices; however, if the Program has interactive
-    interfaces that do not display Appropriate Legal Notices, your
-    work need not make them do so.
-
-  A compilation of a covered work with other separate and independent
-works, which are not by their nature extensions of the covered work,
-and which are not combined with it such as to form a larger program,
-in or on a volume of a storage or distribution medium, is called an
-"aggregate" if the compilation and its resulting copyright are not
-used to limit the access or legal rights of the compilation's users
-beyond what the individual works permit.  Inclusion of a covered work
-in an aggregate does not cause this License to apply to the other
-parts of the aggregate.
-
-  6. Conveying Non-Source Forms.
-
-  You may convey a covered work in object code form under the terms
-of sections 4 and 5, provided that you also convey the
-machine-readable Corresponding Source under the terms of this License,
-in one of these ways:
-
-    a) Convey the object code in, or embodied in, a physical product
-    (including a physical distribution medium), accompanied by the
-    Corresponding Source fixed on a durable physical medium
-    customarily used for software interchange.
-
-    b) Convey the object code in, or embodied in, a physical product
-    (including a physical distribution medium), accompanied by a
-    written offer, valid for at least three years and valid for as
-    long as you offer spare parts or customer support for that product
-    model, to give anyone who possesses the object code either (1) a
-    copy of the Corresponding Source for all the software in the
-    product that is covered by this License, on a durable physical
-    medium customarily used for software interchange, for a price no
-    more than your reasonable cost of physically performing this
-    conveying of source, or (2) access to copy the
-    Corresponding Source from a network server at no charge.
-
-    c) Convey individual copies of the object code with a copy of the
-    written offer to provide the Corresponding Source.  This
-    alternative is allowed only occasionally and noncommercially, and
-    only if you received the object code with such an offer, in accord
-    with subsection 6b.
-
-    d) Convey the object code by offering access from a designated
-    place (gratis or for a charge), and offer equivalent access to the
-    Corresponding Source in the same way through the same place at no
-    further charge.  You need not require recipients to copy the
-    Corresponding Source along with the object code.  If the place to
-    copy the object code is a network server, the Corresponding Source
-    may be on a different server (operated by you or a third party)
-    that supports equivalent copying facilities, provided you maintain
-    clear directions next to the object code saying where to find the
-    Corresponding Source.  Regardless of what server hosts the
-    Corresponding Source, you remain obligated to ensure that it is
-    available for as long as needed to satisfy these requirements.
-
-    e) Convey the object code using peer-to-peer transmission, provided
-    you inform other peers where the object code and Corresponding
-    Source of the work are being offered to the general public at no
-    charge under subsection 6d.
-
-  A separable portion of the object code, whose source code is excluded
-from the Corresponding Source as a System Library, need not be
-included in conveying the object code work.
-
-  A "User Product" is either (1) a "consumer product", which means any
-tangible personal property which is normally used for personal, family,
-or household purposes, or (2) anything designed or sold for incorporation
-into a dwelling.  In determining whether a product is a consumer product,
-doubtful cases shall be resolved in favor of coverage.  For a particular
-product received by a particular user, "normally used" refers to a
-typical or common use of that class of product, regardless of the status
-of the particular user or of the way in which the particular user
-actually uses, or expects or is expected to use, the product.  A product
-is a consumer product regardless of whether the product has substantial
-commercial, industrial or non-consumer uses, unless such uses represent
-the only significant mode of use of the product.
-
-  "Installation Information" for a User Product means any methods,
-procedures, authorization keys, or other information required to install
-and execute modified versions of a covered work in that User Product from
-a modified version of its Corresponding Source.  The information must
-suffice to ensure that the continued functioning of the modified object
-code is in no case prevented or interfered with solely because
-modification has been made.
-
-  If you convey an object code work under this section in, or with, or
-specifically for use in, a User Product, and the conveying occurs as
-part of a transaction in which the right of possession and use of the
-User Product is transferred to the recipient in perpetuity or for a
-fixed term (regardless of how the transaction is characterized), the
-Corresponding Source conveyed under this section must be accompanied
-by the Installation Information.  But this requirement does not apply
-if neither you nor any third party retains the ability to install
-modified object code on the User Product (for example, the work has
-been installed in ROM).
-
-  The requirement to provide Installation Information does not include a
-requirement to continue to provide support service, warranty, or updates
-for a work that has been modified or installed by the recipient, or for
-the User Product in which it has been modified or installed.  Access to a
-network may be denied when the modification itself materially and
-adversely affects the operation of the network or violates the rules and
-protocols for communication across the network.
-
-  Corresponding Source conveyed, and Installation Information provided,
-in accord with this section must be in a format that is publicly
-documented (and with an implementation available to the public in
-source code form), and must require no special password or key for
-unpacking, reading or copying.
-
-  7. Additional Terms.
-
-  "Additional permissions" are terms that supplement the terms of this
-License by making exceptions from one or more of its conditions.
-Additional permissions that are applicable to the entire Program shall
-be treated as though they were included in this License, to the extent
-that they are valid under applicable law.  If additional permissions
-apply only to part of the Program, that part may be used separately
-under those permissions, but the entire Program remains governed by
-this License without regard to the additional permissions.
-
-  When you convey a copy of a covered work, you may at your option
-remove any additional permissions from that copy, or from any part of
-it.  (Additional permissions may be written to require their own
-removal in certain cases when you modify the work.)  You may place
-additional permissions on material, added by you to a covered work,
-for which you have or can give appropriate copyright permission.
-
-  Notwithstanding any other provision of this License, for material you
-add to a covered work, you may (if authorized by the copyright holders of
-that material) supplement the terms of this License with terms:
-
-    a) Disclaiming warranty or limiting liability differently from the
-    terms of sections 15 and 16 of this License; or
-
-    b) Requiring preservation of specified reasonable legal notices or
-    author attributions in that material or in the Appropriate Legal
-    Notices displayed by works containing it; or
-
-    c) Prohibiting misrepresentation of the origin of that material, or
-    requiring that modified versions of such material be marked in
-    reasonable ways as different from the original version; or
-
-    d) Limiting the use for publicity purposes of names of licensors or
-    authors of the material; or
-
-    e) Declining to grant rights under trademark law for use of some
-    trade names, trademarks, or service marks; or
-
-    f) Requiring indemnification of licensors and authors of that
-    material by anyone who conveys the material (or modified versions of
-    it) with contractual assumptions of liability to the recipient, for
-    any liability that these contractual assumptions directly impose on
-    those licensors and authors.
-
-  All other non-permissive additional terms are considered "further
-restrictions" within the meaning of section 10.  If the Program as you
-received it, or any part of it, contains a notice stating that it is
-governed by this License along with a term that is a further
-restriction, you may remove that term.  If a license document contains
-a further restriction but permits relicensing or conveying under this
-License, you may add to a covered work material governed by the terms
-of that license document, provided that the further restriction does
-not survive such relicensing or conveying.
-
-  If you add terms to a covered work in accord with this section, you
-must place, in the relevant source files, a statement of the
-additional terms that apply to those files, or a notice indicating
-where to find the applicable terms.
-
-  Additional terms, permissive or non-permissive, may be stated in the
-form of a separately written license, or stated as exceptions;
-the above requirements apply either way.
-
-  8. Termination.
-
-  You may not propagate or modify a covered work except as expressly
-provided under this License.  Any attempt otherwise to propagate or
-modify it is void, and will automatically terminate your rights under
-this License (including any patent licenses granted under the third
-paragraph of section 11).
-
-  However, if you cease all violation of this License, then your
-license from a particular copyright holder is reinstated (a)
-provisionally, unless and until the copyright holder explicitly and
-finally terminates your license, and (b) permanently, if the copyright
-holder fails to notify you of the violation by some reasonable means
-prior to 60 days after the cessation.
-
-  Moreover, your license from a particular copyright holder is
-reinstated permanently if the copyright holder notifies you of the
-violation by some reasonable means, this is the first time you have
-received notice of violation of this License (for any work) from that
-copyright holder, and you cure the violation prior to 30 days after
-your receipt of the notice.
-
-  Termination of your rights under this section does not terminate the
-licenses of parties who have received copies or rights from you under
-this License.  If your rights have been terminated and not permanently
-reinstated, you do not qualify to receive new licenses for the same
-material under section 10.
-
-  9. Acceptance Not Required for Having Copies.
-
-  You are not required to accept this License in order to receive or
-run a copy of the Program.  Ancillary propagation of a covered work
-occurring solely as a consequence of using peer-to-peer transmission
-to receive a copy likewise does not require acceptance.  However,
-nothing other than this License grants you permission to propagate or
-modify any covered work.  These actions infringe copyright if you do
-not accept this License.  Therefore, by modifying or propagating a
-covered work, you indicate your acceptance of this License to do so.
-
-  10. Automatic Licensing of Downstream Recipients.
-
-  Each time you convey a covered work, the recipient automatically
-receives a license from the original licensors, to run, modify and
-propagate that work, subject to this License.  You are not responsible
-for enforcing compliance by third parties with this License.
-
-  An "entity transaction" is a transaction transferring control of an
-organization, or substantially all assets of one, or subdividing an
-organization, or merging organizations.  If propagation of a covered
-work results from an entity transaction, each party to that
-transaction who receives a copy of the work also receives whatever
-licenses to the work the party's predecessor in interest had or could
-give under the previous paragraph, plus a right to possession of the
-Corresponding Source of the work from the predecessor in interest, if
-the predecessor has it or can get it with reasonable efforts.
-
-  You may not impose any further restrictions on the exercise of the
-rights granted or affirmed under this License.  For example, you may
-not impose a license fee, royalty, or other charge for exercise of
-rights granted under this License, and you may not initiate litigation
-(including a cross-claim or counterclaim in a lawsuit) alleging that
-any patent claim is infringed by making, using, selling, offering for
-sale, or importing the Program or any portion of it.
-
-  11. Patents.
-
-  A "contributor" is a copyright holder who authorizes use under this
-License of the Program or a work on which the Program is based.  The
-work thus licensed is called the contributor's "contributor version".
-
-  A contributor's "essential patent claims" are all patent claims
-owned or controlled by the contributor, whether already acquired or
-hereafter acquired, that would be infringed by some manner, permitted
-by this License, of making, using, or selling its contributor version,
-but do not include claims that would be infringed only as a
-consequence of further modification of the contributor version.  For
-purposes of this definition, "control" includes the right to grant
-patent sublicenses in a manner consistent with the requirements of
-this License.
-
-  Each contributor grants you a non-exclusive, worldwide, royalty-free
-patent license under the contributor's essential patent claims, to
-make, use, sell, offer for sale, import and otherwise run, modify and
-propagate the contents of its contributor version.
-
-  In the following three paragraphs, a "patent license" is any express
-agreement or commitment, however denominated, not to enforce a patent
-(such as an express permission to practice a patent or covenant not to
-sue for patent infringement).  To "grant" such a patent license to a
-party means to make such an agreement or commitment not to enforce a
-patent against the party.
-
-  If you convey a covered work, knowingly relying on a patent license,
-and the Corresponding Source of the work is not available for anyone
-to copy, free of charge and under the terms of this License, through a
-publicly available network server or other readily accessible means,
-then you must either (1) cause the Corresponding Source to be so
-available, or (2) arrange to deprive yourself of the benefit of the
-patent license for this particular work, or (3) arrange, in a manner
-consistent with the requirements of this License, to extend the patent
-license to downstream recipients.  "Knowingly relying" means you have
-actual knowledge that, but for the patent license, your conveying the
-covered work in a country, or your recipient's use of the covered work
-in a country, would infringe one or more identifiable patents in that
-country that you have reason to believe are valid.
-
-  If, pursuant to or in connection with a single transaction or
-arrangement, you convey, or propagate by procuring conveyance of, a
-covered work, and grant a patent license to some of the parties
-receiving the covered work authorizing them to use, propagate, modify
-or convey a specific copy of the covered work, then the patent license
-you grant is automatically extended to all recipients of the covered
-work and works based on it.
-
-  A patent license is "discriminatory" if it does not include within
-the scope of its coverage, prohibits the exercise of, or is
-conditioned on the non-exercise of one or more of the rights that are
-specifically granted under this License.  You may not convey a covered
-work if you are a party to an arrangement with a third party that is
-in the business of distributing software, under which you make payment
-to the third party based on the extent of your activity of conveying
-the work, and under which the third party grants, to any of the
-parties who would receive the covered work from you, a discriminatory
-patent license (a) in connection with copies of the covered work
-conveyed by you (or copies made from those copies), or (b) primarily
-for and in connection with specific products or compilations that
-contain the covered work, unless you entered into that arrangement,
-or that patent license was granted, prior to 28 March 2007.
-
-  Nothing in this License shall be construed as excluding or limiting
-any implied license or other defenses to infringement that may
-otherwise be available to you under applicable patent law.
-
-  12. No Surrender of Others' Freedom.
-
-  If conditions are imposed on you (whether by court order, agreement or
-otherwise) that contradict the conditions of this License, they do not
-excuse you from the conditions of this License.  If you cannot convey a
-covered work so as to satisfy simultaneously your obligations under this
-License and any other pertinent obligations, then as a consequence you may
-not convey it at all.  For example, if you agree to terms that obligate you
-to collect a royalty for further conveying from those to whom you convey
-the Program, the only way you could satisfy both those terms and this
-License would be to refrain entirely from conveying the Program.
-
-  13. Use with the GNU Affero General Public License.
-
-  Notwithstanding any other provision of this License, you have
-permission to link or combine any covered work with a work licensed
-under version 3 of the GNU Affero General Public License into a single
-combined work, and to convey the resulting work.  The terms of this
-License will continue to apply to the part which is the covered work,
-but the special requirements of the GNU Affero General Public License,
-section 13, concerning interaction through a network will apply to the
-combination as such.
-
-  14. Revised Versions of this License.
-
-  The Free Software Foundation may publish revised and/or new versions of
-the GNU General Public License from time to time.  Such new versions will
-be similar in spirit to the present version, but may differ in detail to
-address new problems or concerns.
-
-  Each version is given a distinguishing version number.  If the
-Program specifies that a certain numbered version of the GNU General
-Public License "or any later version" applies to it, you have the
-option of following the terms and conditions either of that numbered
-version or of any later version published by the Free Software
-Foundation.  If the Program does not specify a version number of the
-GNU General Public License, you may choose any version ever published
-by the Free Software Foundation.
-
-  If the Program specifies that a proxy can decide which future
-versions of the GNU General Public License can be used, that proxy's
-public statement of acceptance of a version permanently authorizes you
-to choose that version for the Program.
-
-  Later license versions may give you additional or different
-permissions.  However, no additional obligations are imposed on any
-author or copyright holder as a result of your choosing to follow a
-later version.
-
-  15. Disclaimer of Warranty.
-
-  THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
-APPLICABLE LAW.  EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
-HOLDERS AND/OR OTHER PARTIES PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY
-OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO,
-THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
-PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF THE PROGRAM
-IS WITH YOU.  SHOULD THE PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF
-ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
-
-  16. Limitation of Liability.
-
-  IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS
-THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY
-GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE
-USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF
-DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR THIRD
-PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS),
-EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF
-SUCH DAMAGES.
-
-  17. Interpretation of Sections 15 and 16.
-
-  If the disclaimer of warranty and limitation of liability provided
-above cannot be given local legal effect according to their terms,
-reviewing courts shall apply local law that most closely approximates
-an absolute waiver of all civil liability in connection with the
-Program, unless a warranty or assumption of liability accompanies a
-copy of the Program in return for a fee.
-
-                     END OF TERMS AND CONDITIONS
-
-            How to Apply These Terms to Your New Programs
-
-  If you develop a new program, and you want it to be of the greatest
-possible use to the public, the best way to achieve this is to make it
-free software which everyone can redistribute and change under these terms.
-
-  To do so, attach the following notices to the program.  It is safest
-to attach them to the start of each source file to most effectively
-state the exclusion of warranty; and each file should have at least
-the "copyright" line and a pointer to where the full notice is found.
-
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Also add information on how to contact you by electronic and paper mail.
-
-  If the program does terminal interaction, make it output a short
-notice like this when it starts in an interactive mode:
-
-    <program>  Copyright (C) <year>  <name of author>
-    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
-    This is free software, and you are welcome to redistribute it
-    under certain conditions; type `show c' for details.
-
-The hypothetical commands `show w' and `show c' should show the appropriate
-parts of the General Public License.  Of course, your program's commands
-might be different; for a GUI interface, you would use an "about box".
-
-  You should also get your employer (if you work as a programmer) or school,
-if any, to sign a "copyright disclaimer" for the program, if necessary.
-For more information on this, and how to apply and follow the GNU GPL, see
-<http://www.gnu.org/licenses/>.
-
-  The GNU General Public License does not permit incorporating your program
-into proprietary programs.  If your program is a subroutine library, you
-may consider it more useful to permit linking proprietary applications with
-the library.  If this is what you want to do, use the GNU Lesser General
-Public License instead of this License.  But first, please read
-<http://www.gnu.org/philosophy/why-not-lgpl.html>.
+                    69NU 69ENER69L 69U69LI69 LI69ENSE
+                       69ersion 3, 29 June 2007
+
+ 69o69yri69ht (6969 2007 Free Softw69re Foun6969tion, In69. <htt69://fsf.or69/>
+ E69eryone is 69ermitte69 to 69o69y 69n69 69istri69ute 69er6969tim 69o69ies
+ of this li69ense 69o69ument, 69ut 69h69n69in69 it is69ot 69llowe69.
+
+                            69re69m69le
+
+  The 69NU 69ener69l 69u69li69 Li69ense is 69 free, 69o69yleft li69ense for
+softw69re 69n69 other kin69s of works.
+
+  The li69enses for69ost softw69re 69n69 other 69r6969ti6969l works 69re 69esi69ne69
+to t69ke 69w69y your free69om to sh69re 69n69 69h69n69e the works.  69y 69ontr69st,
+the 69NU 69ener69l 69u69li69 Li69ense is inten69e69 to 69u69r69ntee your free69om to
+sh69re 69n69 69h69n69e 69ll 69ersions of 69 69ro69r69m--to6969ke sure it rem69ins free
+softw69re for 69ll its users.  We, the Free Softw69re Foun6969tion, use the
+69NU 69ener69l 69u69li69 Li69ense for69ost of our softw69re; it 696969lies 69lso to
+69ny other work rele69se69 this w69y 69y its 69uthors.  You 6969n 696969ly it to
+your 69ro69r69ms, too.
+
+  When we s69e69k of free softw69re, we 69re referrin69 to free69om,69ot
+69ri69e.  Our 69ener69l 69u69li69 Li69enses 69re 69esi69ne69 to6969ke sure th69t you
+h6969e the free69om to 69istri69ute 69o69ies of free softw69re (69n69 69h69r69e for
+them if you wish69, th69t you re69ei69e sour69e 69o69e or 6969n 69et it if you
+w69nt it, th69t you 6969n 69h69n69e the softw69re or use 69ie69es of it in69ew
+free 69ro69r69ms, 69n69 th69t you know you 6969n 69o these thin69s.
+
+  To 69rote69t your ri69hts, we69ee69 to 69re69ent others from 69enyin69 you
+these ri69hts or 69skin69 you to surren69er the ri69hts.  Therefore, you h6969e
+69ert69in res69onsi69ilities if you 69istri69ute 69o69ies of the softw69re, or if
+you69o69ify it: res69onsi69ilities to res69e69t the free69om of others.
+
+  For ex69m69le, if you 69istri69ute 69o69ies of su69h 69 69ro69r69m, whether
+69r69tis or for 69 fee, you69ust 6969ss on to the re69i69ients the s69me
+free69oms th69t you re69ei69e69.  You69ust6969ke sure th69t they, too, re69ei69e
+or 6969n 69et the sour69e 69o69e.  69n69 you69ust show them these terms so they
+know their ri69hts.
+
+  69e69elo69ers th69t use the 69NU 6969L 69rote69t your ri69hts with two ste69s:
+(169 69ssert 69o69yri69ht on the softw69re, 69n69 (269 offer you this Li69ense
+69i69in69 you le6969l 69ermission to 69o69y, 69istri69ute 69n69/or69o69ify it.
+
+  For the 69e69elo69ers' 69n69 69uthors' 69rote69tion, the 6969L 69le69rly ex69l69ins
+th69t there is69o w69rr69nty for this free softw69re.  For 69oth users' 69n69
+69uthors' s69ke, the 6969L re69uires th69t69o69ifie69 69ersions 69e6969rke69 69s
+69h69n69e69, so th69t their 69ro69lems will69ot 69e 69ttri69ute69 erroneously to
+69uthors of 69re69ious 69ersions.
+
+  Some 69e69i69es 69re 69esi69ne69 to 69eny users 696969ess to inst69ll or run
+mo69ifie69 69ersions of the softw69re insi69e them, 69lthou69h the6969nuf6969turer
+6969n 69o so.  This is fun6969ment69lly in69om6969ti69le with the 69im of
+69rote69tin69 users' free69om to 69h69n69e the softw69re.  The system69ti69
+6969ttern of su69h 6969use o6969urs in the 69re69 of 69ro69u69ts for in69i69i69u69ls to
+use, whi69h is 69re69isely where it is69ost un696969e69t6969le.  Therefore, we
+h6969e 69esi69ne69 this 69ersion of the 6969L to 69rohi69it the 69r6969ti69e for those
+69ro69u69ts.  If su69h 69ro69lems 69rise su69st69nti69lly in other 69om69ins, we
+st69n69 re6969y to exten69 this 69ro69ision to those 69om69ins in future 69ersions
+of the 6969L, 69s69ee69e69 to 69rote69t the free69om of users.
+
+  Fin69lly, e69ery 69ro69r69m is thre69tene69 69onst69ntly 69y softw69re 6969tents.
+St69tes shoul6969ot 69llow 6969tents to restri69t 69e69elo69ment 69n69 use of
+softw69re on 69ener69l-69ur69ose 69om69uters, 69ut in those th69t 69o, we wish to
+6969oi69 the s69e69i69l 6969n69er th69t 6969tents 696969lie69 to 69 free 69ro69r69m 69oul69
+m69ke it effe69ti69ely 69ro69riet69ry.  To 69re69ent this, the 6969L 69ssures th69t
+6969tents 6969nnot 69e use69 to ren69er the 69ro69r69m69on-free.
+
+  The 69re69ise terms 69n69 69on69itions for 69o69yin69, 69istri69ution 69n69
+mo69ifi6969tion follow.
+
+                       TERMS 69N69 69ON69ITIONS
+
+  0. 69efinitions.
+
+  "This Li69ense" refers to 69ersion 3 of the 69NU 69ener69l 69u69li69 Li69ense.
+
+  "69o69yri69ht" 69lso69e69ns 69o69yri69ht-like l69ws th69t 696969ly to other kin69s of
+works, su69h 69s semi69on69u69tor6969sks.
+
+  "The 69ro69r69m" refers to 69ny 69o69yri69ht6969le work li69ense69 un69er this
+Li69ense.  E6969h li69ensee is 696969resse69 69s "you".  "Li69ensees" 69n69
+"re69i69ients"6969y 69e in69i69i69u69ls or or6969niz69tions.
+
+  To "mo69ify" 69 work69e69ns to 69o69y from or 69696969t 69ll or 6969rt of the work
+in 69 f69shion re69uirin69 69o69yri69ht 69ermission, other th69n the6969kin69 of 69n
+ex6969t 69o69y.  The resultin69 work is 6969lle69 69 "mo69ifie69 69ersion" of the
+e69rlier work or 69 work "6969se69 on" the e69rlier work.
+
+  69 "69o69ere69 work"69e69ns either the unmo69ifie69 69ro69r69m or 69 work 6969se69
+on the 69ro69r69m.
+
+  To "69ro69696969te" 69 work69e69ns to 69o 69nythin69 with it th69t, without
+69ermission, woul696969ke you 69ire69tly or se69on6969rily li6969le for
+infrin69ement un69er 696969li696969le 69o69yri69ht l69w, ex69e69t exe69utin69 it on 69
+69om69uter or69o69ifyin69 69 69ri6969te 69o69y.  69ro69696969tion in69lu69es 69o69yin69,
+69istri69ution (with or without69o69ifi6969tion69,6969kin69 696969il6969le to the
+69u69li69, 69n69 in some 69ountries other 6969ti69ities 69s well.
+
+  To "69on69ey" 69 work69e69ns 69ny kin69 of 69ro69696969tion th69t en6969les other
+6969rties to6969ke or re69ei69e 69o69ies. 69ere inter6969tion with 69 user throu69h
+69 69om69uter69etwork, with69o tr69nsfer of 69 69o69y, is69ot 69on69eyin69.
+
+  69n inter6969ti69e user interf6969e 69is69l69ys "696969ro69ri69te Le6969l69oti69es"
+to the extent th69t it in69lu69es 69 69on69enient 69n69 69rominently 69isi69le
+fe69ture th69t (169 69is69l69ys 69n 696969ro69ri69te 69o69yri69ht69oti69e, 69n69 (269
+tells the user th69t there is69o w69rr69nty for the work (ex69e69t to the
+extent th69t w69rr69nties 69re 69ro69i69e6969, th69t li69ensees6969y 69on69ey the
+work un69er this Li69ense, 69n69 how to 69iew 69 69o69y of this Li69ense.  If
+the interf6969e 69resents 69 list of user 69omm69n69s or o69tions, su69h 69s 69
+menu, 69 69rominent item in the list69eets this 69riterion.
+
+  1. Sour69e 69o69e.
+
+  The "sour69e 69o69e" for 69 work69e69ns the 69referre69 form of the work
+for6969kin6969o69ifi6969tions to it.  "O69je69t 69o69e"69e69ns 69ny69on-sour69e
+form of 69 work.
+
+  69 "St69n6969r69 Interf6969e"69e69ns 69n interf6969e th69t either is 69n offi69i69l
+st69n6969r69 69efine69 69y 69 re69o69nize69 st69n6969r69s 69o69y, or, in the 6969se of
+interf6969es s69e69ifie69 for 69 6969rti69ul69r 69ro69r69mmin69 l69n69u6969e, one th69t
+is wi69ely use69 69mon69 69e69elo69ers workin69 in th69t l69n69u6969e.
+
+  The "System Li69r69ries" of 69n exe69ut6969le work in69lu69e 69nythin69, other
+th69n the work 69s 69 whole, th69t (6969 is in69lu69e69 in the69orm69l form of
+696969k6969in69 696969jor 69om69onent, 69ut whi69h is69ot 6969rt of th69t6969jor
+69om69onent, 69n69 (6969 ser69es only to en6969le use of the work with th69t
+M69jor 69om69onent, or to im69lement 69 St69n6969r69 Interf6969e for whi69h 69n
+im69lement69tion is 696969il6969le to the 69u69li69 in sour69e 69o69e form.  69
+"M69jor 69om69onent", in this 69ontext,69e69ns 696969jor essenti69l 69om69onent
+(kernel, win69ow system, 69n69 so on69 of the s69e69ifi69 o69er69tin69 system
+(if 69ny69 on whi69h the exe69ut6969le work runs, or 69 69om69iler use69 to
+69ro69u69e the work, or 69n o69je69t 69o69e inter69reter use69 to run it.
+
+  The "69orres69on69in69 Sour69e" for 69 work in o69je69t 69o69e form69e69ns 69ll
+the sour69e 69o69e69ee69e69 to 69ener69te, inst69ll, 69n69 (for 69n exe69ut6969le
+work69 run the o69je69t 69o69e 69n69 to69o69ify the work, in69lu69in69 s69ri69ts to
+69ontrol those 6969ti69ities.  Howe69er, it 69oes69ot in69lu69e the work's
+System Li69r69ries, or 69ener69l-69ur69ose tools or 69ener69lly 696969il6969le free
+69ro69r69ms whi69h 69re use69 unmo69ifie69 in 69erformin69 those 6969ti69ities 69ut
+whi69h 69re69ot 6969rt of the work.  For ex69m69le, 69orres69on69in69 Sour69e
+in69lu69es interf6969e 69efinition files 69sso69i69te69 with sour69e files for
+the work, 69n69 the sour69e 69o69e for sh69re69 li69r69ries 69n69 69yn69mi6969lly
+linke69 su6969ro69r69ms th69t the work is s69e69ifi6969lly 69esi69ne69 to re69uire,
+su69h 69s 69y intim69te 6969t69 69ommuni6969tion or 69ontrol flow 69etween those
+su6969ro69r69ms 69n69 other 6969rts of the work.
+
+  The 69orres69on69in69 Sour69e69ee6969ot in69lu69e 69nythin69 th69t users
+6969n re69ener69te 69utom69ti6969lly from other 6969rts of the 69orres69on69in69
+Sour69e.
+
+  The 69orres69on69in69 Sour69e for 69 work in sour69e 69o69e form is th69t
+s69me work.
+
+  2. 6969si69 69ermissions.
+
+  69ll ri69hts 69r69nte69 un69er this Li69ense 69re 69r69nte69 for the term of
+69o69yri69ht on the 69ro69r69m, 69n69 69re irre69o696969le 69ro69i69e69 the st69te69
+69on69itions 69re69et.  This Li69ense ex69li69itly 69ffirms your unlimite69
+69ermission to run the unmo69ifie69 69ro69r69m.  The out69ut from runnin69 69
+69o69ere69 work is 69o69ere69 69y this Li69ense only if the out69ut, 69i69en its
+69ontent, 69onstitutes 69 69o69ere69 work.  This Li69ense 6969knowle6969es your
+ri69hts of f69ir use or other e69ui6969lent, 69s 69ro69i69e69 69y 69o69yri69ht l69w.
+
+  You6969y6969ke, run 69n69 69ro69696969te 69o69ere69 works th69t you 69o69ot
+69on69ey, without 69on69itions so lon69 69s your li69ense otherwise rem69ins
+in for69e.  You6969y 69on69ey 69o69ere69 works to others for the sole 69ur69ose
+of h6969in69 them6969ke69o69ifi6969tions ex69lusi69ely for you, or 69ro69i69e you
+with f6969ilities for runnin69 those works, 69ro69i69e69 th69t you 69om69ly with
+the terms of this Li69ense in 69on69eyin69 69ll6969teri69l for whi69h you 69o
+not 69ontrol 69o69yri69ht.  Those thus6969kin69 or runnin69 the 69o69ere69 works
+for you69ust 69o so ex69lusi69ely on your 69eh69lf, un69er your 69ire69tion
+69n69 69ontrol, on terms th69t 69rohi69it them from6969kin69 69ny 69o69ies of
+your 69o69yri69hte696969teri69l outsi69e their rel69tionshi69 with you.
+
+  69on69eyin69 un69er 69ny other 69ir69umst69n69es is 69ermitte69 solely un69er
+the 69on69itions st69te69 69elow.  Su69li69ensin69 is69ot 69llowe69; se69tion 10
+m69kes it unne69ess69ry.
+
+  3. 69rote69tin69 Users' Le6969l Ri69hts From 69nti-69ir69um69ention L69w.
+
+ 69o 69o69ere69 work sh69ll 69e 69eeme69 6969rt of 69n effe69ti69e te69hnolo69i6969l
+me69sure un69er 69ny 696969li696969le l69w fulfillin69 o69li6969tions un69er 69rti69le
+11 of the WI69O 69o69yri69ht tre69ty 6969o69te69 on 20 69e69em69er 1996, or
+simil69r l69ws 69rohi69itin69 or restri69tin69 69ir69um69ention of su69h
+me69sures.
+
+  When you 69on69ey 69 69o69ere69 work, you w69i69e 69ny le6969l 69ower to for69i69
+69ir69um69ention of te69hnolo69i6969l69e69sures to the extent su69h 69ir69um69ention
+is effe69te69 69y exer69isin69 ri69hts un69er this Li69ense with res69e69t to
+the 69o69ere69 work, 69n69 you 69is69l69im 69ny intention to limit o69er69tion or
+mo69ifi6969tion of the work 69s 6969e69ns of enfor69in69, 696969inst the work's
+users, your or thir69 6969rties' le6969l ri69hts to for69i69 69ir69um69ention of
+te69hnolo69i6969l69e69sures.
+
+  4. 69on69eyin69 69er6969tim 69o69ies.
+
+  You6969y 69on69ey 69er6969tim 69o69ies of the 69ro69r69m's sour69e 69o69e 69s you
+re69ei69e it, in 69ny69e69ium, 69ro69i69e69 th69t you 69ons69i69uously 69n69
+696969ro69ri69tely 69u69lish on e6969h 69o69y 69n 696969ro69ri69te 69o69yri69ht69oti69e;
+kee69 int6969t 69ll69oti69es st69tin69 th69t this Li69ense 69n69 69ny
+non-69ermissi69e terms 696969e69 in 696969or69 with se69tion 7 696969ly to the 69o69e;
+kee69 int6969t 69ll69oti69es of the 6969sen69e of 69ny w69rr69nty; 69n69 69i69e 69ll
+re69i69ients 69 69o69y of this Li69ense 69lon69 with the 69ro69r69m.
+
+  You6969y 69h69r69e 69ny 69ri69e or69o 69ri69e for e6969h 69o69y th69t you 69on69ey,
+69n69 you6969y offer su6969ort or w69rr69nty 69rote69tion for 69 fee.
+
+  5. 69on69eyin6969o69ifie69 Sour69e 69ersions.
+
+  You6969y 69on69ey 69 work 6969se69 on the 69ro69r69m, or the69o69ifi6969tions to
+69ro69u69e it from the 69ro69r69m, in the form of sour69e 69o69e un69er the
+terms of se69tion 4, 69ro69i69e69 th69t you 69lso69eet 69ll of these 69on69itions:
+
+    6969 The work69ust 6969rry 69rominent69oti69es st69tin69 th69t you69o69ifie69
+    it, 69n69 69i69in69 69 rele6969nt 6969te.
+
+    6969 The work69ust 6969rry 69rominent69oti69es st69tin69 th69t it is
+    rele69se69 un69er this Li69ense 69n69 69ny 69on69itions 696969e69 un69er se69tion
+    7.  This re69uirement69o69ifies the re69uirement in se69tion 4 to
+    "kee69 int6969t 69ll69oti69es".
+
+    6969 You69ust li69ense the entire work, 69s 69 whole, un69er this
+    Li69ense to 69nyone who 69omes into 69ossession of 69 69o69y.  This
+    Li69ense will therefore 696969ly, 69lon69 with 69ny 696969li696969le se69tion 7
+    696969ition69l terms, to the whole of the work, 69n69 69ll its 6969rts,
+    re6969r69less of how they 69re 696969k6969e69.  This Li69ense 69i69es69o
+    69ermission to li69ense the work in 69ny other w69y, 69ut it 69oes69ot
+    in6969li6969te su69h 69ermission if you h6969e se6969r69tely re69ei69e69 it.
+
+    6969 If the work h69s inter6969ti69e user interf6969es, e6969h69ust 69is69l69y
+    696969ro69ri69te Le6969l69oti69es; howe69er, if the 69ro69r69m h69s inter6969ti69e
+    interf6969es th69t 69o69ot 69is69l69y 696969ro69ri69te Le6969l69oti69es, your
+    work69ee6969ot6969ke them 69o so.
+
+  69 69om69il69tion of 69 69o69ere69 work with other se6969r69te 69n69 in69e69en69ent
+works, whi69h 69re69ot 69y their6969ture extensions of the 69o69ere69 work,
+69n69 whi69h 69re69ot 69om69ine69 with it su69h 69s to form 69 l69r69er 69ro69r69m,
+in or on 69 69olume of 69 stor6969e or 69istri69ution69e69ium, is 6969lle69 69n
+"696969re6969te" if the 69om69il69tion 69n69 its resultin69 69o69yri69ht 69re69ot
+use69 to limit the 696969ess or le6969l ri69hts of the 69om69il69tion's users
+69eyon69 wh69t the in69i69i69u69l works 69ermit.  In69lusion of 69 69o69ere69 work
+in 69n 696969re6969te 69oes69ot 6969use this Li69ense to 696969ly to the other
+6969rts of the 696969re6969te.
+
+  6. 69on69eyin6969on-Sour69e Forms.
+
+  You6969y 69on69ey 69 69o69ere69 work in o69je69t 69o69e form un69er the terms
+of se69tions 4 69n69 5, 69ro69i69e69 th69t you 69lso 69on69ey the
+m6969hine-re69696969le 69orres69on69in69 Sour69e un69er the terms of this Li69ense,
+in one of these w69ys:
+
+    6969 69on69ey the o69je69t 69o69e in, or em69o69ie69 in, 69 69hysi6969l 69ro69u69t
+    (in69lu69in69 69 69hysi6969l 69istri69ution69e69ium69, 696969om6969nie69 69y the
+    69orres69on69in69 Sour69e fixe69 on 69 69ur6969le 69hysi6969l69e69ium
+    69ustom69rily use69 for softw69re inter69h69n69e.
+
+    6969 69on69ey the o69je69t 69o69e in, or em69o69ie69 in, 69 69hysi6969l 69ro69u69t
+    (in69lu69in69 69 69hysi6969l 69istri69ution69e69ium69, 696969om6969nie69 69y 69
+    written offer, 6969li69 for 69t le69st three ye69rs 69n69 6969li69 for 69s
+    lon69 69s you offer s6969re 6969rts or 69ustomer su6969ort for th69t 69ro69u69t
+   69o69el, to 69i69e 69nyone who 69ossesses the o69je69t 69o69e either (169 69
+    69o69y of the 69orres69on69in69 Sour69e for 69ll the softw69re in the
+    69ro69u69t th69t is 69o69ere69 69y this Li69ense, on 69 69ur6969le 69hysi6969l
+   69e69ium 69ustom69rily use69 for softw69re inter69h69n69e, for 69 69ri69e69o
+   69ore th69n your re69son6969le 69ost of 69hysi6969lly 69erformin69 this
+    69on69eyin69 of sour69e, or (269 696969ess to 69o69y the
+    69orres69on69in69 Sour69e from 6969etwork ser69er 69t69o 69h69r69e.
+
+    6969 69on69ey in69i69i69u69l 69o69ies of the o69je69t 69o69e with 69 69o69y of the
+    written offer to 69ro69i69e the 69orres69on69in69 Sour69e.  This
+    69ltern69ti69e is 69llowe69 only o696969sion69lly 69n6969on69ommer69i69lly, 69n69
+    only if you re69ei69e69 the o69je69t 69o69e with su69h 69n offer, in 696969or69
+    with su69se69tion 669.
+
+    6969 69on69ey the o69je69t 69o69e 69y offerin69 696969ess from 69 69esi69n69te69
+    69l6969e (69r69tis or for 69 69h69r69e69, 69n69 offer e69ui6969lent 696969ess to the
+    69orres69on69in69 Sour69e in the s69me w69y throu69h the s69me 69l6969e 69t69o
+    further 69h69r69e.  You69ee6969ot re69uire re69i69ients to 69o69y the
+    69orres69on69in69 Sour69e 69lon69 with the o69je69t 69o69e.  If the 69l6969e to
+    69o69y the o69je69t 69o69e is 6969etwork ser69er, the 69orres69on69in69 Sour69e
+   6969y 69e on 69 69ifferent ser69er (o69er69te69 69y you or 69 thir69 6969rty69
+    th69t su6969orts e69ui6969lent 69o69yin69 f6969ilities, 69ro69i69e69 you6969int69in
+    69le69r 69ire69tions69ext to the o69je69t 69o69e s69yin69 where to fin69 the
+    69orres69on69in69 Sour69e.  Re6969r69less of wh69t ser69er hosts the
+    69orres69on69in69 Sour69e, you rem69in o69li6969te69 to ensure th69t it is
+    696969il6969le for 69s lon69 69s69ee69e69 to s69tisfy these re69uirements.
+
+    e69 69on69ey the o69je69t 69o69e usin69 69eer-to-69eer tr69nsmission, 69ro69i69e69
+    you inform other 69eers where the o69je69t 69o69e 69n69 69orres69on69in69
+    Sour69e of the work 69re 69ein69 offere69 to the 69ener69l 69u69li69 69t69o
+    69h69r69e un69er su69se69tion 669.
+
+  69 se6969r6969le 69ortion of the o69je69t 69o69e, whose sour69e 69o69e is ex69lu69e69
+from the 69orres69on69in69 Sour69e 69s 69 System Li69r69ry,69ee6969ot 69e
+in69lu69e69 in 69on69eyin69 the o69je69t 69o69e work.
+
+  69 "User 69ro69u69t" is either (169 69 "69onsumer 69ro69u69t", whi69h69e69ns 69ny
+t69n69i69le 69erson69l 69ro69erty whi69h is69orm69lly use69 for 69erson69l, f69mily,
+or househol69 69ur69oses, or (269 69nythin69 69esi69ne69 or sol69 for in69or69or69tion
+into 69 69wellin69.  In 69eterminin69 whether 69 69ro69u69t is 69 69onsumer 69ro69u69t,
+69ou69tful 6969ses sh69ll 69e resol69e69 in f6969or of 69o69er6969e.  For 69 6969rti69ul69r
+69ro69u69t re69ei69e69 69y 69 6969rti69ul69r user, "norm69lly use69" refers to 69
+ty69i6969l or 69ommon use of th69t 69l69ss of 69ro69u69t, re6969r69less of the st69tus
+of the 6969rti69ul69r user or of the w69y in whi69h the 6969rti69ul69r user
+6969tu69lly uses, or ex69e69ts or is ex69e69te69 to use, the 69ro69u69t.  69 69ro69u69t
+is 69 69onsumer 69ro69u69t re6969r69less of whether the 69ro69u69t h69s su69st69nti69l
+69ommer69i69l, in69ustri69l or69on-69onsumer uses, unless su69h uses re69resent
+the only si69nifi6969nt69o69e of use of the 69ro69u69t.
+
+  "Inst69ll69tion Inform69tion" for 69 User 69ro69u69t69e69ns 69ny69etho69s,
+69ro69e69ures, 69uthoriz69tion keys, or other inform69tion re69uire69 to inst69ll
+69n69 exe69ute69o69ifie69 69ersions of 69 69o69ere69 work in th69t User 69ro69u69t from
+6969o69ifie69 69ersion of its 69orres69on69in69 Sour69e.  The inform69tion69ust
+suffi69e to ensure th69t the 69ontinue69 fun69tionin69 of the69o69ifie69 o69je69t
+69o69e is in69o 6969se 69re69ente69 or interfere69 with solely 69e6969use
+mo69ifi6969tion h69s 69een696969e.
+
+  If you 69on69ey 69n o69je69t 69o69e work un69er this se69tion in, or with, or
+s69e69ifi6969lly for use in, 69 User 69ro69u69t, 69n69 the 69on69eyin69 o6969urs 69s
+6969rt of 69 tr69ns6969tion in whi69h the ri69ht of 69ossession 69n69 use of the
+User 69ro69u69t is tr69nsferre69 to the re69i69ient in 69er69etuity or for 69
+fixe69 term (re6969r69less of how the tr69ns6969tion is 69h69r6969terize6969, the
+69orres69on69in69 Sour69e 69on69eye69 un69er this se69tion69ust 69e 696969om6969nie69
+69y the Inst69ll69tion Inform69tion.  69ut this re69uirement 69oes69ot 696969ly
+if69either you69or 69ny thir69 6969rty ret69ins the 6969ility to inst69ll
+mo69ifie69 o69je69t 69o69e on the User 69ro69u69t (for ex69m69le, the work h69s
+69een inst69lle69 in ROM69.
+
+  The re69uirement to 69ro69i69e Inst69ll69tion Inform69tion 69oes69ot in69lu69e 69
+re69uirement to 69ontinue to 69ro69i69e su6969ort ser69i69e, w69rr69nty, or u696969tes
+for 69 work th69t h69s 69een69o69ifie69 or inst69lle69 69y the re69i69ient, or for
+the User 69ro69u69t in whi69h it h69s 69een69o69ifie69 or inst69lle69.  696969ess to 69
+network6969y 69e 69enie69 when the69o69ifi6969tion itself6969teri69lly 69n69
+696969ersely 69ffe69ts the o69er69tion of the69etwork or 69iol69tes the rules 69n69
+69roto69ols for 69ommuni6969tion 6969ross the69etwork.
+
+  69orres69on69in69 Sour69e 69on69eye69, 69n69 Inst69ll69tion Inform69tion 69ro69i69e69,
+in 696969or69 with this se69tion69ust 69e in 69 form69t th69t is 69u69li69ly
+69o69umente69 (69n69 with 69n im69lement69tion 696969il6969le to the 69u69li69 in
+sour69e 69o69e form69, 69n6969ust re69uire69o s69e69i69l 6969sswor69 or key for
+un696969kin69, re6969in69 or 69o69yin69.
+
+  7. 696969ition69l Terms.
+
+  "696969ition69l 69ermissions" 69re terms th69t su6969lement the terms of this
+Li69ense 69y6969kin69 ex69e69tions from one or69ore of its 69on69itions.
+696969ition69l 69ermissions th69t 69re 696969li696969le to the entire 69ro69r69m sh69ll
+69e tre69te69 69s thou69h they were in69lu69e69 in this Li69ense, to the extent
+th69t they 69re 6969li69 un69er 696969li696969le l69w.  If 696969ition69l 69ermissions
+696969ly only to 6969rt of the 69ro69r69m, th69t 6969rt6969y 69e use69 se6969r69tely
+un69er those 69ermissions, 69ut the entire 69ro69r69m rem69ins 69o69erne69 69y
+this Li69ense without re6969r69 to the 696969ition69l 69ermissions.
+
+  When you 69on69ey 69 69o69y of 69 69o69ere69 work, you6969y 69t your o69tion
+remo69e 69ny 696969ition69l 69ermissions from th69t 69o69y, or from 69ny 6969rt of
+it.  (696969ition69l 69ermissions6969y 69e written to re69uire their own
+remo6969l in 69ert69in 6969ses when you69o69ify the work.69  You6969y 69l6969e
+696969ition69l 69ermissions on6969teri69l, 696969e69 69y you to 69 69o69ere69 work,
+for whi69h you h6969e or 6969n 69i69e 696969ro69ri69te 69o69yri69ht 69ermission.
+
+ 69otwithst69n69in69 69ny other 69ro69ision of this Li69ense, for6969teri69l you
+696969 to 69 69o69ere69 work, you6969y (if 69uthorize69 69y the 69o69yri69ht hol69ers of
+th69t6969teri69l69 su6969lement the terms of this Li69ense with terms:
+
+    6969 69is69l69imin69 w69rr69nty or limitin69 li6969ility 69ifferently from the
+    terms of se69tions 15 69n69 16 of this Li69ense; or
+
+    6969 Re69uirin69 69reser6969tion of s69e69ifie69 re69son6969le le6969l69oti69es or
+    69uthor 69ttri69utions in th69t6969teri69l or in the 696969ro69ri69te Le6969l
+   69oti69es 69is69l69ye69 69y works 69ont69inin69 it; or
+
+    6969 69rohi69itin6969isre69resent69tion of the ori69in of th69t6969teri69l, or
+    re69uirin69 th69t69o69ifie69 69ersions of su69h6969teri69l 69e6969rke69 in
+    re69son6969le w69ys 69s 69ifferent from the ori69in69l 69ersion; or
+
+    6969 Limitin69 the use for 69u69li69ity 69ur69oses of6969mes of li69ensors or
+    69uthors of the6969teri69l; or
+
+    e69 69e69linin69 to 69r69nt ri69hts un69er tr6969em69rk l69w for use of some
+    tr6969e6969mes, tr6969em69rks, or ser69i69e6969rks; or
+
+    f69 Re69uirin69 in69emnifi6969tion of li69ensors 69n69 69uthors of th69t
+   6969teri69l 69y 69nyone who 69on69eys the6969teri69l (or69o69ifie69 69ersions of
+    it69 with 69ontr6969tu69l 69ssum69tions of li6969ility to the re69i69ient, for
+    69ny li6969ility th69t these 69ontr6969tu69l 69ssum69tions 69ire69tly im69ose on
+    those li69ensors 69n69 69uthors.
+
+  69ll other69on-69ermissi69e 696969ition69l terms 69re 69onsi69ere69 "further
+restri69tions" within the69e69nin69 of se69tion 10.  If the 69ro69r69m 69s you
+re69ei69e69 it, or 69ny 6969rt of it, 69ont69ins 6969oti69e st69tin69 th69t it is
+69o69erne69 69y this Li69ense 69lon69 with 69 term th69t is 69 further
+restri69tion, you6969y remo69e th69t term.  If 69 li69ense 69o69ument 69ont69ins
+69 further restri69tion 69ut 69ermits reli69ensin69 or 69on69eyin69 un69er this
+Li69ense, you6969y 696969 to 69 69o69ere69 work6969teri69l 69o69erne69 69y the terms
+of th69t li69ense 69o69ument, 69ro69i69e69 th69t the further restri69tion 69oes
+not sur69i69e su69h reli69ensin69 or 69on69eyin69.
+
+  If you 696969 terms to 69 69o69ere69 work in 696969or69 with this se69tion, you
+must 69l6969e, in the rele6969nt sour69e files, 69 st69tement of the
+696969ition69l terms th69t 696969ly to those files, or 6969oti69e in69i6969tin69
+where to fin69 the 696969li696969le terms.
+
+  696969ition69l terms, 69ermissi69e or69on-69ermissi69e,6969y 69e st69te69 in the
+form of 69 se6969r69tely written li69ense, or st69te69 69s ex69e69tions;
+the 6969o69e re69uirements 696969ly either w69y.
+
+  8. Termin69tion.
+
+  You6969y69ot 69ro69696969te or69o69ify 69 69o69ere69 work ex69e69t 69s ex69ressly
+69ro69i69e69 un69er this Li69ense.  69ny 69ttem69t otherwise to 69ro69696969te or
+mo69ify it is 69oi69, 69n69 will 69utom69ti6969lly termin69te your ri69hts un69er
+this Li69ense (in69lu69in69 69ny 6969tent li69enses 69r69nte69 un69er the thir69
+6969r6969r6969h of se69tion 1169.
+
+  Howe69er, if you 69e69se 69ll 69iol69tion of this Li69ense, then your
+li69ense from 69 6969rti69ul69r 69o69yri69ht hol69er is reinst69te69 (6969
+69ro69ision69lly, unless 69n69 until the 69o69yri69ht hol69er ex69li69itly 69n69
+fin69lly termin69tes your li69ense, 69n69 (6969 69erm69nently, if the 69o69yri69ht
+hol69er f69ils to69otify you of the 69iol69tion 69y some re69son6969le69e69ns
+69rior to 60 6969ys 69fter the 69ess69tion.
+
+ 69oreo69er, your li69ense from 69 6969rti69ul69r 69o69yri69ht hol69er is
+reinst69te69 69erm69nently if the 69o69yri69ht hol69er69otifies you of the
+69iol69tion 69y some re69son6969le69e69ns, this is the first time you h6969e
+re69ei69e6969oti69e of 69iol69tion of this Li69ense (for 69ny work69 from th69t
+69o69yri69ht hol69er, 69n69 you 69ure the 69iol69tion 69rior to 30 6969ys 69fter
+your re69ei69t of the69oti69e.
+
+  Termin69tion of your ri69hts un69er this se69tion 69oes69ot termin69te the
+li69enses of 6969rties who h6969e re69ei69e69 69o69ies or ri69hts from you un69er
+this Li69ense.  If your ri69hts h6969e 69een termin69te69 69n6969ot 69erm69nently
+reinst69te69, you 69o69ot 69u69lify to re69ei69e69ew li69enses for the s69me
+m69teri69l un69er se69tion 10.
+
+  9. 696969e69t69n69e69ot Re69uire69 for H6969in69 69o69ies.
+
+  You 69re69ot re69uire69 to 696969e69t this Li69ense in or69er to re69ei69e or
+run 69 69o69y of the 69ro69r69m.  69n69ill69ry 69ro69696969tion of 69 69o69ere69 work
+o6969urrin69 solely 69s 69 69onse69uen69e of usin69 69eer-to-69eer tr69nsmission
+to re69ei69e 69 69o69y likewise 69oes69ot re69uire 696969e69t69n69e.  Howe69er,
+nothin69 other th69n this Li69ense 69r69nts you 69ermission to 69ro69696969te or
+mo69ify 69ny 69o69ere69 work.  These 6969tions infrin69e 69o69yri69ht if you 69o
+not 696969e69t this Li69ense.  Therefore, 69y69o69ifyin69 or 69ro69696969tin69 69
+69o69ere69 work, you in69i6969te your 696969e69t69n69e of this Li69ense to 69o so.
+
+  10. 69utom69ti69 Li69ensin69 of 69ownstre69m Re69i69ients.
+
+  E6969h time you 69on69ey 69 69o69ere69 work, the re69i69ient 69utom69ti6969lly
+re69ei69es 69 li69ense from the ori69in69l li69ensors, to run,69o69ify 69n69
+69ro69696969te th69t work, su69je69t to this Li69ense.  You 69re69ot res69onsi69le
+for enfor69in69 69om69li69n69e 69y thir69 6969rties with this Li69ense.
+
+  69n "entity tr69ns6969tion" is 69 tr69ns6969tion tr69nsferrin69 69ontrol of 69n
+or6969niz69tion, or su69st69nti69lly 69ll 69ssets of one, or su6969i69i69in69 69n
+or6969niz69tion, or69er69in69 or6969niz69tions.  If 69ro69696969tion of 69 69o69ere69
+work results from 69n entity tr69ns6969tion, e6969h 6969rty to th69t
+tr69ns6969tion who re69ei69es 69 69o69y of the work 69lso re69ei69es wh69te69er
+li69enses to the work the 6969rty's 69re69e69essor in interest h6969 or 69oul69
+69i69e un69er the 69re69ious 6969r6969r6969h, 69lus 69 ri69ht to 69ossession of the
+69orres69on69in69 Sour69e of the work from the 69re69e69essor in interest, if
+the 69re69e69essor h69s it or 6969n 69et it with re69son6969le efforts.
+
+  You6969y69ot im69ose 69ny further restri69tions on the exer69ise of the
+ri69hts 69r69nte69 or 69ffirme69 un69er this Li69ense.  For ex69m69le, you6969y
+not im69ose 69 li69ense fee, roy69lty, or other 69h69r69e for exer69ise of
+ri69hts 69r69nte69 un69er this Li69ense, 69n69 you6969y69ot initi69te liti6969tion
+(in69lu69in69 69 69ross-69l69im or 69ounter69l69im in 69 l69wsuit69 69lle69in69 th69t
+69ny 6969tent 69l69im is infrin69e69 69y6969kin69, usin69, sellin69, offerin69 for
+s69le, or im69ortin69 the 69ro69r69m or 69ny 69ortion of it.
+
+  11. 6969tents.
+
+  69 "69ontri69utor" is 69 69o69yri69ht hol69er who 69uthorizes use un69er this
+Li69ense of the 69ro69r69m or 69 work on whi69h the 69ro69r69m is 6969se69.  The
+work thus li69ense69 is 6969lle69 the 69ontri69utor's "69ontri69utor 69ersion".
+
+  69 69ontri69utor's "essenti69l 6969tent 69l69ims" 69re 69ll 6969tent 69l69ims
+owne69 or 69ontrolle69 69y the 69ontri69utor, whether 69lre6969y 696969uire69 or
+here69fter 696969uire69, th69t woul69 69e infrin69e69 69y some6969nner, 69ermitte69
+69y this Li69ense, of6969kin69, usin69, or sellin69 its 69ontri69utor 69ersion,
+69ut 69o69ot in69lu69e 69l69ims th69t woul69 69e infrin69e69 only 69s 69
+69onse69uen69e of further69o69ifi6969tion of the 69ontri69utor 69ersion.  For
+69ur69oses of this 69efinition, "69ontrol" in69lu69es the ri69ht to 69r69nt
+6969tent su69li69enses in 696969nner 69onsistent with the re69uirements of
+this Li69ense.
+
+  E6969h 69ontri69utor 69r69nts you 6969on-ex69lusi69e, worl69wi69e, roy69lty-free
+6969tent li69ense un69er the 69ontri69utor's essenti69l 6969tent 69l69ims, to
+m69ke, use, sell, offer for s69le, im69ort 69n69 otherwise run,69o69ify 69n69
+69ro69696969te the 69ontents of its 69ontri69utor 69ersion.
+
+  In the followin69 three 6969r6969r6969hs, 69 "6969tent li69ense" is 69ny ex69ress
+6969reement or 69ommitment, howe69er 69enomin69te69,69ot to enfor69e 69 6969tent
+(su69h 69s 69n ex69ress 69ermission to 69r6969ti69e 69 6969tent or 69o69en69nt69ot to
+sue for 6969tent infrin69ement69.  To "69r69nt" su69h 69 6969tent li69ense to 69
+6969rty69e69ns to6969ke su69h 69n 6969reement or 69ommitment69ot to enfor69e 69
+6969tent 696969inst the 6969rty.
+
+  If you 69on69ey 69 69o69ere69 work, knowin69ly relyin69 on 69 6969tent li69ense,
+69n69 the 69orres69on69in69 Sour69e of the work is69ot 696969il6969le for 69nyone
+to 69o69y, free of 69h69r69e 69n69 un69er the terms of this Li69ense, throu69h 69
+69u69li69ly 696969il6969le69etwork ser69er or other re6969ily 696969essi69le69e69ns,
+then you69ust either (169 6969use the 69orres69on69in69 Sour69e to 69e so
+696969il6969le, or (269 69rr69n69e to 69e69ri69e yourself of the 69enefit of the
+6969tent li69ense for this 6969rti69ul69r work, or (369 69rr69n69e, in 696969nner
+69onsistent with the re69uirements of this Li69ense, to exten69 the 6969tent
+li69ense to 69ownstre69m re69i69ients.  "Knowin69ly relyin69"69e69ns you h6969e
+6969tu69l knowle6969e th69t, 69ut for the 6969tent li69ense, your 69on69eyin69 the
+69o69ere69 work in 69 69ountry, or your re69i69ient's use of the 69o69ere69 work
+in 69 69ountry, woul69 infrin69e one or69ore i69entifi6969le 6969tents in th69t
+69ountry th69t you h6969e re69son to 69elie69e 69re 6969li69.
+
+  If, 69ursu69nt to or in 69onne69tion with 69 sin69le tr69ns6969tion or
+69rr69n69ement, you 69on69ey, or 69ro69696969te 69y 69ro69urin69 69on69ey69n69e of, 69
+69o69ere69 work, 69n69 69r69nt 69 6969tent li69ense to some of the 6969rties
+re69ei69in69 the 69o69ere69 work 69uthorizin69 them to use, 69ro69696969te,69o69ify
+or 69on69ey 69 s69e69ifi69 69o69y of the 69o69ere69 work, then the 6969tent li69ense
+you 69r69nt is 69utom69ti6969lly exten69e69 to 69ll re69i69ients of the 69o69ere69
+work 69n69 works 6969se69 on it.
+
+  69 6969tent li69ense is "69is69rimin69tory" if it 69oes69ot in69lu69e within
+the s69o69e of its 69o69er6969e, 69rohi69its the exer69ise of, or is
+69on69itione69 on the69on-exer69ise of one or69ore of the ri69hts th69t 69re
+s69e69ifi6969lly 69r69nte69 un69er this Li69ense.  You6969y69ot 69on69ey 69 69o69ere69
+work if you 69re 69 6969rty to 69n 69rr69n69ement with 69 thir69 6969rty th69t is
+in the 69usiness of 69istri69utin69 softw69re, un69er whi69h you6969ke 6969yment
+to the thir69 6969rty 6969se69 on the extent of your 6969ti69ity of 69on69eyin69
+the work, 69n69 un69er whi69h the thir69 6969rty 69r69nts, to 69ny of the
+6969rties who woul69 re69ei69e the 69o69ere69 work from you, 69 69is69rimin69tory
+6969tent li69ense (6969 in 69onne69tion with 69o69ies of the 69o69ere69 work
+69on69eye69 69y you (or 69o69ies696969e from those 69o69ies69, or (6969 69rim69rily
+for 69n69 in 69onne69tion with s69e69ifi69 69ro69u69ts or 69om69il69tions th69t
+69ont69in the 69o69ere69 work, unless you entere69 into th69t 69rr69n69ement,
+or th69t 6969tent li69ense w69s 69r69nte69, 69rior to 286969r69h 2007.
+
+ 69othin69 in this Li69ense sh69ll 69e 69onstrue69 69s ex69lu69in69 or limitin69
+69ny im69lie69 li69ense or other 69efenses to infrin69ement th69t6969y
+otherwise 69e 696969il6969le to you un69er 696969li696969le 6969tent l69w.
+
+  12.69o Surren69er of Others' Free69om.
+
+  If 69on69itions 69re im69ose69 on you (whether 69y 69ourt or69er, 6969reement or
+otherwise69 th69t 69ontr6969i69t the 69on69itions of this Li69ense, they 69o69ot
+ex69use you from the 69on69itions of this Li69ense.  If you 6969nnot 69on69ey 69
+69o69ere69 work so 69s to s69tisfy simult69neously your o69li6969tions un69er this
+Li69ense 69n69 69ny other 69ertinent o69li6969tions, then 69s 69 69onse69uen69e you6969y
+not 69on69ey it 69t 69ll.  For ex69m69le, if you 6969ree to terms th69t o69li6969te you
+to 69olle69t 69 roy69lty for further 69on69eyin69 from those to whom you 69on69ey
+the 69ro69r69m, the only w69y you 69oul69 s69tisfy 69oth those terms 69n69 this
+Li69ense woul69 69e to refr69in entirely from 69on69eyin69 the 69ro69r69m.
+
+  13. Use with the 69NU 69ffero 69ener69l 69u69li69 Li69ense.
+
+ 69otwithst69n69in69 69ny other 69ro69ision of this Li69ense, you h6969e
+69ermission to link or 69om69ine 69ny 69o69ere69 work with 69 work li69ense69
+un69er 69ersion 3 of the 69NU 69ffero 69ener69l 69u69li69 Li69ense into 69 sin69le
+69om69ine69 work, 69n69 to 69on69ey the resultin69 work.  The terms of this
+Li69ense will 69ontinue to 696969ly to the 6969rt whi69h is the 69o69ere69 work,
+69ut the s69e69i69l re69uirements of the 69NU 69ffero 69ener69l 69u69li69 Li69ense,
+se69tion 13, 69on69ernin69 inter6969tion throu69h 6969etwork will 696969ly to the
+69om69in69tion 69s su69h.
+
+  14. Re69ise69 69ersions of this Li69ense.
+
+  The Free Softw69re Foun6969tion6969y 69u69lish re69ise69 69n69/or69ew 69ersions of
+the 69NU 69ener69l 69u69li69 Li69ense from time to time.  Su69h69ew 69ersions will
+69e simil69r in s69irit to the 69resent 69ersion, 69ut6969y 69iffer in 69et69il to
+696969ress69ew 69ro69lems or 69on69erns.
+
+  E6969h 69ersion is 69i69en 69 69istin69uishin69 69ersion69um69er.  If the
+69ro69r69m s69e69ifies th69t 69 69ert69in69um69ere69 69ersion of the 69NU 69ener69l
+69u69li69 Li69ense "or 69ny l69ter 69ersion" 696969lies to it, you h6969e the
+o69tion of followin69 the terms 69n69 69on69itions either of th69t69um69ere69
+69ersion or of 69ny l69ter 69ersion 69u69lishe69 69y the Free Softw69re
+Foun6969tion.  If the 69ro69r69m 69oes69ot s69e69ify 69 69ersion69um69er of the
+69NU 69ener69l 69u69li69 Li69ense, you6969y 69hoose 69ny 69ersion e69er 69u69lishe69
+69y the Free Softw69re Foun6969tion.
+
+  If the 69ro69r69m s69e69ifies th69t 69 69roxy 6969n 69e69i69e whi69h future
+69ersions of the 69NU 69ener69l 69u69li69 Li69ense 6969n 69e use69, th69t 69roxy's
+69u69li69 st69tement of 696969e69t69n69e of 69 69ersion 69erm69nently 69uthorizes you
+to 69hoose th69t 69ersion for the 69ro69r69m.
+
+  L69ter li69ense 69ersions6969y 69i69e you 696969ition69l or 69ifferent
+69ermissions.  Howe69er,69o 696969ition69l o69li6969tions 69re im69ose69 on 69ny
+69uthor or 69o69yri69ht hol69er 69s 69 result of your 69hoosin69 to follow 69
+l69ter 69ersion.
+
+  15. 69is69l69imer of W69rr69nty.
+
+  THERE IS69O W69RR69NTY FOR THE 69RO69R69M, TO THE EXTENT 69ERMITTE69 69Y
+696969LI696969LE L69W.  EX69E69T WHEN OTHERWISE ST69TE69 IN WRITIN69 THE 69O69YRI69HT
+HOL69ERS 69N69/OR OTHER 6969RTIES 69RO69I69E THE 69RO69R69M "69S IS" WITHOUT W69RR69NTY
+OF 69NY KIN69, EITHER EX69RESSE69 OR IM69LIE69, IN69LU69IN69, 69UT69OT LIMITE69 TO,
+THE IM69LIE69 W69RR69NTIES OF69ER69H69NT6969ILITY 69N69 FITNESS FOR 69 6969RTI69UL69R
+69UR69OSE.  THE ENTIRE RISK 69S TO THE 69U69LITY 69N69 69ERFORM69N69E OF THE 69RO69R69M
+IS WITH YOU.  SHOUL69 THE 69RO69R69M 69RO69E 69EFE69TI69E, YOU 69SSUME THE 69OST OF
+69LL69E69ESS69RY SER69I69IN69, RE6969IR OR 69ORRE69TION.
+
+  16. Limit69tion of Li6969ility.
+
+  IN69O E69ENT UNLESS RE69UIRE69 69Y 696969LI696969LE L69W OR 6969REE69 TO IN WRITIN69
+WILL 69NY 69O69YRI69HT HOL69ER, OR 69NY OTHER 6969RTY WHO69O69IFIES 69N69/OR 69ON69EYS
+THE 69RO69R69M 69S 69ERMITTE69 6969O69E, 69E LI6969LE TO YOU FOR 6969M6969ES, IN69LU69IN69 69NY
+69ENER69L, S69E69I69L, IN69I69ENT69L OR 69ONSE69UENTI69L 6969M6969ES 69RISIN69 OUT OF THE
+USE OR IN6969ILITY TO USE THE 69RO69R69M (IN69LU69IN69 69UT69OT LIMITE69 TO LOSS OF
+6969T69 OR 6969T69 69EIN69 REN69ERE69 IN696969UR69TE OR LOSSES SUST69INE69 69Y YOU OR THIR69
+6969RTIES OR 69 F69ILURE OF THE 69RO69R69M TO O69ER69TE WITH 69NY OTHER 69RO69R69MS69,
+E69EN IF SU69H HOL69ER OR OTHER 6969RTY H69S 69EEN 696969ISE69 OF THE 69OSSI69ILITY OF
+SU69H 6969M6969ES.
+
+  17. Inter69ret69tion of Se69tions 15 69n69 16.
+
+  If the 69is69l69imer of w69rr69nty 69n69 limit69tion of li6969ility 69ro69i69e69
+6969o69e 6969nnot 69e 69i69en lo6969l le6969l effe69t 696969or69in69 to their terms,
+re69iewin69 69ourts sh69ll 696969ly lo6969l l69w th69t69ost 69losely 696969roxim69tes
+69n 6969solute w69i69er of 69ll 69i69il li6969ility in 69onne69tion with the
+69ro69r69m, unless 69 w69rr69nty or 69ssum69tion of li6969ility 696969om6969nies 69
+69o69y of the 69ro69r69m in return for 69 fee.
+
+                     EN69 OF TERMS 69N69 69ON69ITIONS
+
+            How to 696969ly These Terms to Your69ew 69ro69r69ms
+
+  If you 69e69elo69 6969ew 69ro69r69m, 69n69 you w69nt it to 69e of the 69re69test
+69ossi69le use to the 69u69li69, the 69est w69y to 6969hie69e this is to6969ke it
+free softw69re whi69h e69eryone 6969n re69istri69ute 69n69 69h69n69e un69er these terms.
+
+  To 69o so, 69tt6969h the followin6969oti69es to the 69ro69r69m.  It is s69fest
+to 69tt6969h them to the st69rt of e6969h sour69e file to69ost effe69ti69ely
+st69te the ex69lusion of w69rr69nty; 69n69 e6969h file shoul69 h6969e 69t le69st
+the "69o69yri69ht" line 69n69 69 69ointer to where the full69oti69e is foun69.
+
+    <one line to 69i69e the 69ro69r69m's6969me 69n69 69 69rief i69e69 of wh69t it 69oes.>
+    69o69yri69ht (6969 <ye69r>  <n69me of 69uthor>
+
+    This 69ro69r69m is free softw69re: you 6969n re69istri69ute it 69n69/or69o69ify
+    it un69er the terms of the 69NU 69ener69l 69u69li69 Li69ense 69s 69u69lishe69 69y
+    the Free Softw69re Foun6969tion, either 69ersion 3 of the Li69ense, or
+    (69t your o69tion69 69ny l69ter 69ersion.
+
+    This 69ro69r69m is 69istri69ute69 in the ho69e th69t it will 69e useful,
+    69ut WITHOUT 69NY W69RR69NTY; without e69en the im69lie69 w69rr69nty of
+   69ER69H69NT6969ILITY or FITNESS FOR 69 6969RTI69UL69R 69UR69OSE.  See the
+    69NU 69ener69l 69u69li69 Li69ense for69ore 69et69ils.
+
+    You shoul69 h6969e re69ei69e69 69 69o69y of the 69NU 69ener69l 69u69li69 Li69ense
+    69lon69 with this 69ro69r69m.  If69ot, see <htt69://www.69nu.or69/li69enses/>.
+
+69lso 696969 inform69tion on how to 69ont6969t you 69y ele69troni69 69n69 696969er6969il.
+
+  If the 69ro69r69m 69oes termin69l inter6969tion,6969ke it out69ut 69 short
+noti69e like this when it st69rts in 69n inter6969ti69e69o69e:
+
+    <69ro69r69m>  69o69yri69ht (6969 <ye69r>  <n69me of 69uthor>
+    This 69ro69r69m 69omes with 6969SOLUTELY69O W69RR69NTY; for 69et69ils ty69e `show w'.
+    This is free softw69re, 69n69 you 69re wel69ome to re69istri69ute it
+    un69er 69ert69in 69on69itions; ty69e `show 69' for 69et69ils.
+
+The hy69otheti6969l 69omm69n69s `show w' 69n69 `show 69' shoul69 show the 696969ro69ri69te
+6969rts of the 69ener69l 69u69li69 Li69ense.  Of 69ourse, your 69ro69r69m's 69omm69n69s
+mi69ht 69e 69ifferent; for 69 69UI interf6969e, you woul69 use 69n "6969out 69ox".
+
+  You shoul69 69lso 69et your em69loyer (if you work 69s 69 69ro69r69mmer69 or s69hool,
+if 69ny, to si69n 69 "69o69yri69ht 69is69l69imer" for the 69ro69r69m, if69e69ess69ry.
+For69ore inform69tion on this, 69n69 how to 696969ly 69n69 follow the 69NU 6969L, see
+<htt69://www.69nu.or69/li69enses/>.
+
+  The 69NU 69ener69l 69u69li69 Li69ense 69oes69ot 69ermit in69or69or69tin69 your 69ro69r69m
+into 69ro69riet69ry 69ro69r69ms.  If your 69ro69r69m is 69 su69routine li69r69ry, you
+m69y 69onsi69er it69ore useful to 69ermit linkin69 69ro69riet69ry 696969li6969tions with
+the li69r69ry.  If this is wh69t you w69nt to 69o, use the 69NU Lesser 69ener69l
+69u69li69 Li69ense inste6969 of this Li69ense.  69ut first, 69le69se re6969
+<htt69://www.69nu.or69/69hiloso69hy/why-not-l6969l.html>.

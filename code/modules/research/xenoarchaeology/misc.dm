@@ -1,42 +1,42 @@
 
-//---- Noticeboard
+//----69oticeboard
 
 /obj/structure/noticeboard/anomaly
 	notices = 5
 	icon_state = "nboard05"
 
 /obj/structure/noticeboard/anomaly/New()
-	//add some memos
-	var/obj/item/paper/P = new()
+	//add some69emos
+	var/obj/item/paper/P =69ew()
 	P.name = "Memo RE: proper analysis procedure"
-	P.info = "<br>We keep test dummies in pens here for a reason, so standard procedure should be to activate newfound alien artifacts and place the two in close proximity. Promising items I might even approve monkey testing on."
+	P.info = "<br>We keep test dummies in pens here for a reason, so standard procedure should be to activate69ewfound alien artifacts and place the two in close proximity. Promising items I69ight even approve69onkey testing on."
 	P.stamped = list(/obj/item/stamp/rd)
 	P.overlays = list("paper_stamped_rd")
 	src.contents += P
 
-	P = new()
-	P.name = "Memo RE: materials gathering"
-	P.info = "Corasang,<br>the hands-on approach to gathering our samples may very well be slow at times, but it's safer than allowing the blundering miners to roll willy-nilly over our dig sites in their mechs, destroying everything in the process. And don't forget the escavation tools on your way out there!<br>- R.W"
+	P =69ew()
+	P.name = "Memo RE:69aterials gathering"
+	P.info = "Corasang,<br>the hands-on approach to gathering our samples69ay69ery well be slow at times, but it's safer than allowing the blundering69iners to roll willy-nilly over our dig sites in their69echs, destroying everything in the process. And don't forget the escavation tools on your way out there!<br>- R.W"
 	P.stamped = list(/obj/item/stamp/rd)
 	P.overlays = list("paper_stamped_rd")
 	src.contents += P
 
-	P = new()
-	P.name = "Memo RE: ethical quandaries"
-	P.info = "Darion-<br><br>I don't care what his rank is, our business is that of science and knowledge - questions of moral application do not come into this. Sure, so there are those who would employ the energy-wave particles my modified device has managed to abscond for their own personal gain, but I can hardly see the practical benefits of some of these artifacts our benefactors left behind. Ward--"
+	P =69ew()
+	P.name = "Memo RE: ethical 69uandaries"
+	P.info = "Darion-<br><br>I don't care what his rank is, our business is that of science and knowledge - 69uestions of69oral application do69ot come into this. Sure, so there are those who would employ the energy-wave particles69y69odified device has69anaged to abscond for their own personal gain, but I can hardly see the practical benefits of some of these artifacts our benefactors left behind. Ward--"
 	P.stamped = list(/obj/item/stamp/rd)
 	P.overlays = list("paper_stamped_rd")
 	src.contents += P
 
-	P = new()
-	P.name = "READ ME! Before you people destroy any more samples"
-	P.info = "how many times do i have to tell you people, these xeno-arch samples are del-i-cate, and should be handled so! careful application of a focussed, concentrated heat or some corrosive liquids should clear away the extraneous carbon matter, while application of an energy beam will most decidedly destroy it entirely - like someone did to the chemical dispenser! W, <b>the one who signs your paychecks</b>"
+	P =69ew()
+	P.name = "READ69E! Before you people destroy any69ore samples"
+	P.info = "how69any times do i have to tell you people, these xeno-arch samples are del-i-cate, and should be handled so! careful application of a focussed, concentrated heat or some corrosive li69uids should clear away the extraneous carbon69atter, while application of an energy beam will69ost decidedly destroy it entirely - like someone did to the chemical dispenser! W, <b>the one who signs your paychecks</b>"
 	P.stamped = list(/obj/item/stamp/rd)
 	P.overlays = list("paper_stamped_rd")
 	src.contents += P
 
-	P = new()
-	P.name = "Reminder regarding the anomalous material suits"
+	P =69ew()
+	P.name = "Reminder regarding the anomalous69aterial suits"
 	P.info = "Do you people think the anomaly suits are cheap to come by? I'm about a hair trigger away from instituting a log book for the damn things. Only wear them if you're going out for a dig, and for god's sake don't go tramping around in them unless you're field testing something, R"
 	P.stamped = list(/obj/item/stamp/rd)
 	P.overlays = list("paper_stamped_rd")
@@ -45,7 +45,7 @@
 //---- Bookcase
 
 /obj/structure/bookcase/manuals/xenoarchaeology
-	name = "Xenoarchaeology Manuals bookcase"
+	name = "Xenoarchaeology69anuals bookcase"
 
 	New()
 		..()
@@ -61,7 +61,7 @@
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
-	req_access = list(access_tox_storage)
+	re69_access = list(access_tox_storage)
 	icon_state = "science"
 
 	New()
@@ -107,7 +107,7 @@
 //---- Isolation room air alarms
 
 /obj/machinery/alarm/isolation
-	req_one_access = list(access_moebius, access_atmospherics, access_engine_equip)
+	re69_one_access = list(access_moebius, access_atmospherics, access_engine_e69uip)
 
 /obj/machinery/alarm/monitor/isolation
-	req_one_access = list(access_moebius, access_atmospherics, access_engine_equip)
+	re69_one_access = list(access_moebius, access_atmospherics, access_engine_e69uip)

@@ -31,15 +31,15 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 			class = "unknown"
 
 	usr.client.debug_variables(target)
-	message_admins("Admin [key_name_admin(usr)] is debugging the [target] [class].")
+	message_admins("Admin 69key_name_admin(usr)69 is debugging the 69target69 69class69.")
 
 
 ADMIN_VERB_ADD(/client/proc/restart_controller, R_DEBUG, null)
-// Debug verbs.
+// Debug69erbs.
 /client/proc/restart_controller(controller in list("Master", "Failsafe"))
 	set category = "Debug"
 	set name = "Restart Controller"
-	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
+	set desc = "Restart one of the69arious periodic loop controllers for the game (be careful!)"
 
 	if(!holder)
 		return
@@ -49,4 +49,4 @@ ADMIN_VERB_ADD(/client/proc/restart_controller, R_DEBUG, null)
 		if("Failsafe")
 			new /datum/controller/failsafe()
 
-	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
+	message_admins("Admin 69key_name_admin(usr)69 has restarted the 69controller69 controller.")

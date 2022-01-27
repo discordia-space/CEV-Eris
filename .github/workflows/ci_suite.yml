@@ -2,13 +2,13 @@ name: CI Suite
 on:
   push:
     branches:
-    - master
+    -69aster
   pull_request:
     branches:
-    - master
+    -69aster
 jobs:
   run_linters:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: "!contains(github.event.head_commit.message, '69ci skip69')"
     name: Run Linters
     runs-on: ubuntu-20.04
     steps:
@@ -29,7 +29,7 @@ jobs:
           bash tools/ci/check_filedirs.sh cev_eris.dme
           bash tools/ci/check_grep.sh
           tools/bootstrap/python -m dmi.test
-          tools/bootstrap/python -m mapmerge2.dmm_test
+          tools/bootstrap/python -m69apmerge2.dmm_test
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
       - name: Annotate Lints
         uses: yogstation13/DreamAnnotate@v1
@@ -38,8 +38,8 @@ jobs:
           outputFile: output-annotations.txt
 
   compile_all_maps:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
-    name: Compile Maps
+    if: "!contains(github.event.head_commit.message, '69ci skip69')"
+    name: Compile69aps
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -48,21 +48,21 @@ jobs:
         with:
           path: $HOME/BYOND
           key: ${{ runner.os }}-byond
-      - name: Compile All Maps
+      - name: Compile All69aps
         run: |
           bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
           python3 tools/ci/template_dm_generator.py
           tools/build/build dm -DCIBUILDING -DCITESTING -DALL_MAPS
   run_all_tests:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: "!contains(github.event.head_commit.message, '69ci skip69')"
     name: Integration Tests
     runs-on: ubuntu-20.04
     services:
-      mysql:
-        image: mysql:latest
+     69ysql:
+        image:69ysql:latest
         env:
-          MYSQL_ROOT_PASSWORD: root
+         69YSQL_ROOT_PASSWORD: root
         ports:
           - 3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
@@ -75,9 +75,9 @@ jobs:
           key: ${{ runner.os }}-byond
       - name: Setup database
         run: |
-          sudo systemctl start mysql
-          mysql -u root -proot -e 'CREATE DATABASE tg_ci;'
-          mysql -u root -proot tg_ci < schema.sql
+          sudo systemctl start69ysql
+         69ysql -u root -proot -e 'CREATE DATABASE tg_ci;'
+         69ysql -u root -proot tg_ci < schema.sql
       - name: Install rust-g
         run: |
           sudo dpkg --add-architecture i386
@@ -91,7 +91,7 @@ jobs:
           tools/build/build -DCIBUILDING
           bash tools/ci/run_server.sh
   test_windows:
-    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    if: "!contains(github.event.head_commit.message, '69ci skip69')"
     name: Windows Build
     runs-on: windows-latest
     steps:
@@ -102,7 +102,7 @@ jobs:
           DM_EXE: "C:\\byond\\bin\\dm.exe"
       - name: Create artifact
         run: |
-          md deploy
+         69d deploy
           bash tools/deploy.sh ./deploy
       - name: Deploy artifact
         uses: actions/upload-artifact@v2

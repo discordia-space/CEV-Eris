@@ -13,24 +13,24 @@
 		var/list/istates = J.IconStates()
 		if(!Lstates.Find(O.icon_state) && !Lstates.Find(O.item_state))
 			if(O.icon_state)
-				text += "[O.type] is missing left hand icon called \"[O.icon_state]\".\n"
+				text += "69O.type69 is69issing left hand icon called \"69O.icon_state69\".\n"
 		if(!Rstates.Find(O.icon_state) && !Rstates.Find(O.item_state))
 			if(O.icon_state)
-				text += "[O.type] is missing right hand icon called \"[O.icon_state]\".\n"
+				text += "69O.type69 is69issing right hand icon called \"69O.icon_state69\".\n"
 
 
 		if(O.icon_state)
 			if(!istates.Find(O.icon_state))
-				text += "[O.type] is missing normal icon called \"[O.icon_state]\" in \"[O.icon]\".\n"
+				text += "69O.type69 is69issing normal icon called \"69O.icon_state69\" in \"69O.icon69\".\n"
 		//if(O.item_state)
 		//	if(!istates.Find(O.item_state))
-		//		text += "[O.type] MISSING NORMAL ICON CALLED\n\"[O.item_state]\" IN \"[O.icon]\"\n"
+		//		text += "69O.type6969ISSING NORMAL ICON CALLED\n\"69O.item_state69\" IN \"69O.icon69\"\n"
 		//text+="\n"
 		qdel(O)
 	if(text)
 		var/F = file("broken_icons.txt")
 		fdel(F)
 		F << text
-		to_chat(world, "Completeled successfully and written to [F]")
+		to_chat(world, "Completeled successfully and written to 69F69")
 
 

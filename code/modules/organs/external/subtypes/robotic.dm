@@ -3,33 +3,33 @@
 	force_icon = 'icons/mob/human_races/cyberlimbs/generic.dmi'
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
 	dislocated = -1
-	nature = MODIFICATION_SILICON
+	nature =69ODIFICATION_SILICON
 	armor = list(melee = 20, bullet = 20, energy = 20, bomb = 20, bio = 100, rad = 100)
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 2) // Multiplied by w_class
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 2) //69ultiplied by w_class
 	spawn_tags = SPAWN_TAG_PROSTHETIC
 	bad_type = /obj/item/organ/external/robotic
-	var/min_malfunction_damage = 20 // Any more damage than that and you start getting nasty random malfunctions
+	var/min_malfunction_damage = 20 // Any69ore damage than that and you start getting69asty random69alfunctions
 
 /obj/item/organ/external/robotic/get_cache_key()
-	return "Robotic[model]"
+	return "Robotic69model69"
 
 /obj/item/organ/external/robotic/update_icon()
 	var/gender = "m"
 	if(owner)
 		gender = owner.gender == FEMALE ? "f" : "m"
-	icon_state = "[organ_tag]_[gender]"
+	icon_state = "69organ_tag69_69gender69"
 	mob_icon = icon(force_icon, icon_state)
-	icon = mob_icon
-	return mob_icon
+	icon =69ob_icon
+	return69ob_icon
 
 /obj/item/organ/external/robotic/is_malfunctioning()
-	return prob(brute_dam + burn_dam - min_malfunction_damage)
+	return prob(brute_dam + burn_dam -69in_malfunction_damage)
 
 /obj/item/organ/external/robotic/set_description(datum/organ_description/desc)
 	..()
-	src.name = "[initial(name)] [desc.name]"
-	for(var/mat_name in matter)
-		matter[mat_name] *= w_class
+	src.name = "69initial(name)69 69desc.name69"
+	for(var/mat_name in69atter)
+		matter69mat_name69 *= w_class
 
 /obj/item/organ/external/robotic/Destroy()
 	deactivate(emergency=TRUE)

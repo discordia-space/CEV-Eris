@@ -1,6 +1,6 @@
 /mob/living/carbon/superior_animal/roach/roachling
 	name = "Roachling"
-	desc = "A tiny cockroach. It never stays still for long."
+	desc = "A tiny cockroach. It69ever stays still for long."
 	icon_state = "roachling"
 
 	turns_per_move = 3
@@ -36,6 +36,6 @@
 			if (ispath(spawn_type, /obj/spawner))
 				new spawn_type(src.loc, src, list("friends" = src.friends.Copy()))
 			else if(ispath(spawn_type, /mob))
-				var/mob/living/carbon/superior_animal/roach/roach = new spawn_type(src.loc, src)
+				var/mob/living/carbon/superior_animal/roach/roach =69ew spawn_type(src.loc, src)
 				roach.friends += src.friends
 			qdel(src)

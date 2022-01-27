@@ -3,7 +3,7 @@
 					WOUNDS
 ****************************************************/
 /datum/wound
-	// number representing the current stage
+	//69umber representing the current stage
 	var/current_stage = 0
 
 	// description of the wound
@@ -13,7 +13,7 @@
 	var/damage = 0
 	// ticks of bleeding left.
 	var/bleed_timer = 0
-	// amount of damage the current wound type requires(less means we need to apply the next healing stage)
+	// amount of damage the current wound type requires(less69eans we69eed to apply the69ext healing stage)
 	var/min_damage = 0
 
 	// is the wound bandaged?
@@ -25,23 +25,23 @@
 	// is the wound disinfected?
 	var/disinfected = 0
 	var/created = 0
-	// number of wounds of this type
+	//69umber of wounds of this type
 	var/amount = 1
 	// amount of germs in the wound
 	var/germ_level = 0
 
-	/*  These are defined by the wound type and should not be changed */
+	/*  These are defined by the wound type and should69ot be changed */
 
 	// stages such as "cut", "deep cut", etc.
 	var/list/stages
 	// internal wounds can only be fixed through surgery
 	var/internal = 0
-	// maximum stage at which bleeding should still happen. Beyond this stage bleeding is prevented.
+	//69aximum stage at which bleeding should still happen. Beyond this stage bleeding is prevented.
 	var/max_bleeding_stage = 0
 	// one of CUT, PIERCE, BRUISE, BURN
 	var/damage_type = CUT
-	// whether this wound needs a bandage/salve to heal at all
-	// the maximum amount of damage that this wound can have and still autoheal
+	// whether this wound69eeds a bandage/salve to heal at all
+	// the69aximum amount of damage that this wound can have and still autoheal
 	var/autoheal_cutoff = 15
 
 
@@ -58,8 +58,8 @@
 		// reading from a list("stage" = damage) is pretty difficult, so build two separate
 		// lists from them instead
 		for(var/V in stages)
-			desc_list += V
-			damage_list += stages[V]
+			desc_list +=69
+			damage_list += stages69V69
 
 		src.damage = damage
 
@@ -68,15 +68,15 @@
 
 		bleed_timer += damage
 
-	// returns 1 if there's a next stage, 0 otherwise
+	// returns 1 if there's a69ext stage, 0 otherwise
 	proc/init_stage(var/initial_damage)
 		current_stage = stages.len
 
-		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= initial_damage / src.amount)
+		while(src.current_stage > 1 && src.damage_list69current_stage-169 <= initial_damage / src.amount)
 			src.current_stage--
 
-		src.min_damage = damage_list[current_stage]
-		src.desc = desc_list[current_stage]
+		src.min_damage = damage_list69current_stage69
+		src.desc = desc_list69current_stage69
 
 	// the amount of damage per wound
 	proc/wound_damage()
@@ -100,7 +100,7 @@
 			return BURN
 		return BRUTE
 
-	// Checks whether other other can be merged into src.
+	// Checks whether other other can be69erged into src.
 	proc/can_merge(var/datum/wound/other)
 		if (other.type != src.type) return 0
 		if (other.current_stage != src.current_stage) return 0
@@ -117,13 +117,13 @@
 		src.damage += other.damage
 		src.amount += other.amount
 		src.bleed_timer += other.bleed_timer
-		src.germ_level = max(src.germ_level, other.germ_level)
-		src.created = max(src.created, other.created)	//take the newer created time
+		src.germ_level =69ax(src.germ_level, other.germ_level)
+		src.created =69ax(src.created, other.created)	//take the69ewer created time
 
 	// checks if wound is considered open for external infections
 	// untreated cuts (and bleeding bruises) and burns are possibly infectable, chance higher if wound is bigger
 	proc/infection_check()
-		if (damage < 10)	//small cuts, tiny bruises, and moderate burns shouldn't be infectable.
+		if (damage < 10)	//small cuts, tiny bruises, and69oderate burns shouldn't be infectable.
 			return 0
 		if (is_treated() && damage < 25)	//anything less than a flesh wound (or equivalent) isn't infectable if treated properly
 			return 0
@@ -154,22 +154,22 @@
 	proc/disinfect()
 		disinfected = 1
 
-	// heal the given amount of damage, and if the given amount of damage was more
-	// than what needed to be healed, return how much heal was left
+	// heal the given amount of damage, and if the given amount of damage was69ore
+	// than what69eeded to be healed, return how69uch heal was left
 	// set @heals_internal to also heal internal organ damage
 	proc/heal_damage(amount, heals_internal = 0)
 		if(src.internal && !heals_internal)
-			// heal nothing
+			// heal69othing
 			return amount
 
-		var/healed_damage = min(src.damage, amount)
+		var/healed_damage =69in(src.damage, amount)
 		amount -= healed_damage
 		src.damage -= healed_damage
 
-		while(src.wound_damage() < damage_list[current_stage] && current_stage < src.desc_list.len)
+		while(src.wound_damage() < damage_list69current_stage69 && current_stage < src.desc_list.len)
 			current_stage++
-		desc = desc_list[current_stage]
-		src.min_damage = damage_list[current_stage]
+		desc = desc_list69current_stage69
+		src.min_damage = damage_list69current_stage69
 
 		// return amount of healing still leftover, can be used for other wounds
 		return amount
@@ -179,11 +179,11 @@
 		src.damage += damage
 		bleed_timer += damage
 
-		while(src.current_stage > 1 && src.damage_list[current_stage-1] <= src.damage / src.amount)
+		while(src.current_stage > 1 && src.damage_list69current_stage-169 <= src.damage / src.amount)
 			src.current_stage--
 
-		src.desc = desc_list[current_stage]
-		src.min_damage = damage_list[current_stage]
+		src.desc = desc_list69current_stage69
+		src.min_damage = damage_list69current_stage69
 
 	// returns whether this wound can absorb the given amount of damage.
 	// this will prevent large amounts of damage being trapped in less severe wound types
@@ -194,34 +194,34 @@
 		if (src.amount > 1)
 			return 0
 
-		//with 1.5*, a shallow cut will be able to carry at most 30 damage,
+		//with 1.5*, a shallow cut will be able to carry at69ost 30 damage,
 		//37.5 for a deep cut
 		//52.5 for a flesh wound, etc.
-		var/max_wound_damage = 1.5*src.damage_list[1]
-		if (src.damage + damage > max_wound_damage)
+		var/max_wound_damage = 1.5*src.damage_list69169
+		if (src.damage + damage >69ax_wound_damage)
 			return 0
 
 		return 1
 
 	proc/bleeding()
-		if (current_stage > max_bleeding_stage)
+		if (current_stage >69ax_bleeding_stage)
 			return 0
 
 		if (bandaged||clamped)
 			return 0
 
 		if (wound_damage() <= 30 && bleed_timer <= 0)
-			return 0	//Bleed timer has run out. Wounds with more than 30 damage don't stop bleeding on their own.
+			return 0	//Bleed timer has run out. Wounds with69ore than 30 damage don't stop bleeding on their own.
 
 		return 1
 
 /** WOUND DEFINITIONS **/
 
-//Note that the MINIMUM damage before a wound can be applied should correspond to
-//the damage amount for the stage with the same name as the wound.
+//Note that the69INIMUM damage before a wound can be applied should correspond to
+//the damage amount for the stage with the same69ame as the wound.
 //e.g. /datum/wound/cut/deep should only be applied for 15 damage and up,
 //because in it's stages list, "deep cut" = 15.
-/proc/get_wound_type(var/type = CUT, var/damage)
+/proc/get_wound_type(var/type = CUT,69ar/damage)
 	switch(type)
 		if(CUT)
 			switch(damage)
@@ -263,7 +263,7 @@
 					return /datum/wound/burn/large
 				if(0 to 15)
 					return /datum/wound/burn/moderate
-	return null //no wound
+	return69ull //no wound
 
 /** CUTS **/
 /datum/wound/cut/bleeding()
@@ -271,8 +271,8 @@
 
 /datum/wound/cut/small
 	// link wound descriptions to amounts of damage
-	// Minor cuts have max_bleeding_stage set to the stage that bears the wound type's name.
-	// The major cut types have the max_bleeding_stage set to the clot stage (which is accordingly given the "blood soaked" descriptor).
+	//69inor cuts have69ax_bleeding_stage set to the stage that bears the wound type's69ame.
+	// The69ajor cut types have the69ax_bleeding_stage set to the clot stage (which is accordingly given the "blood soaked" descriptor).
 	max_bleeding_stage = 3
 	stages = list("ugly ripped cut" = 20, "ripped cut" = 10, "cut" = 5, "healing cut" = 2, "small scab" = 0)
 	damage_type = CUT
@@ -353,7 +353,7 @@ datum/wound/puncture/massive
 	return 0
 
 /datum/wound/burn/moderate
-	stages = list("ripped burn" = 10, "moderate burn" = 5, "healing moderate burn" = 2, "fresh skin" = 0)
+	stages = list("ripped burn" = 10, "moderate burn" = 5, "healing69oderate burn" = 2, "fresh skin" = 0)
 	damage_type = BURN
 
 /datum/wound/burn/large
@@ -375,7 +375,7 @@ datum/wound/puncture/massive
 /** EXTERNAL ORGAN LOSS **/
 /datum/wound/lost_limb
 
-/datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb, var/losstype, var/clean)
+/datum/wound/lost_limb/New(var/obj/item/organ/external/lost_limb,69ar/losstype,69ar/clean)
 	var/damage_amt = lost_limb.max_damage
 	if(clean)
 		damage_amt /= 2
@@ -404,4 +404,4 @@ datum/wound/puncture/massive
 	..(damage_amt)
 
 /datum/wound/lost_limb/can_merge(var/datum/wound/other)
-	return 0 //cannot be merged
+	return 0 //cannot be69erged

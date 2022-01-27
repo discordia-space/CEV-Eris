@@ -2,7 +2,7 @@
 //// .35 ////
 /obj/item/ammo_kit
 	name = "scrap ammo kit"
-	desc = "A somewhat jank looking crafting kit. It has a can of single-use tools, cheap pliers and a box of bullet making materials."
+	desc = "A somewhat jank looking crafting kit. It has a can of single-use tools, cheap pliers and a box of bullet69aking69aterials."
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "ammo_kit-1"
 	flags = CONDUCT
@@ -13,11 +13,11 @@
 
 /obj/item/ammo_kit/Initialize()
 	. = ..()
-	icon_state = "ammo_kit-[rand(1,5)]"
+	icon_state = "ammo_kit-69rand(1,5)69"
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/ammo_kit/attack_self(mob/living/user as mob)
+/obj/item/ammo_kit/attack_self(mob/living/user as69ob)
 
 	var/cog_stat = user.stats.getStat(STAT_COG)
 
@@ -25,21 +25,21 @@
 		return
 
 	var/list/options = list()
-	options[".20 Rifle"] = "srifle"
-	options[".25 Caseless Rifle"] = "clrifle"
-	options[".30 Rifle"] = "lrifle"
-	options[".35 Auto"] = "pistol"
-	options[".40 Magnum"] = "magnum"
-	options[".50 Shotgun Buckshot"] = "shot"
-	options[".50 Shotgun Beanbag"] = "bean"
-	options[".50 Shotgun Slug"] = "slug"
-	options[".60 Anti-Material"] = "antim"
+	options69".20 Rifle"69 = "srifle"
+	options69".25 Caseless Rifle"69 = "clrifle"
+	options69".30 Rifle"69 = "lrifle"
+	options69".35 Auto"69 = "pistol"
+	options69".4069agnum"69 = "magnum"
+	options69".50 Shotgun Buckshot"69 = "shot"
+	options69".50 Shotgun Beanbag"69 = "bean"
+	options69".50 Shotgun Slug"69 = "slug"
+	options69".60 Anti-Material"69 = "antim"
 
-	var/choice = input(user,"What ammo do you want to make?") as null|anything in options
+	var/choice = input(user,"What ammo do you want to69ake?") as69ull|anything in options
 
-	var/ammo_type = options[choice]
+	var/ammo_type = options69choice69
 
-	var/dice_roll = (rand(0,20)*(1+cog_stat/20))	//0 cog means you get between 0 and 20, negative means you only over get minimum
+	var/dice_roll = (rand(0,20)*(1+cog_stat/20))	//0 cog69eans you get between 0 and 20,69egative69eans you only over get69inimum
 	if(user.stats.getPerk(/datum/perk/oddity/gunsmith))
 		dice_roll = dice_roll * 2
 	switch(ammo_type)
@@ -48,7 +48,7 @@
 		if("magnum")
 			spawn_magnum(dice_roll,user)
 		if("srifle")
-			spawn_rifle(dice_roll,user,1)	//same table, different spawns for all normal rifles
+			spawn_rifle(dice_roll,user,1)	//same table, different spawns for all69ormal rifles
 		if("clrifle")
 			spawn_rifle(dice_roll,user,2)
 		if("lrifle")
@@ -62,14 +62,14 @@
 		if("slug")
 			spawn_shotgun(dice_roll,user,3)
 	if(choice)
-		user.visible_message("[user] makes some [choice] rounds out of [src], using up all the materials in it.")
-		qdel(src)	//All used up
+		user.visible_message("69user6969akes some 69choice69 rounds out of 69src69, using up all the69aterials in it.")
+		69del(src)	//All used up
 	else
 		to_chat(user, "You reconsider the path of gunsmith.")
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/ammo_kit/proc/spawn_pistol(dice = 0, mob/user)	//Shazbot- I know there is probably a better way to do this, but this is easier to code
+/obj/item/ammo_kit/proc/spawn_pistol(dice = 0,69ob/user)	//Shazbot- I know there is probably a better way to do this, but this is easier to code
 
 	var/boxxes = 0
 	var/piles = 0
@@ -100,7 +100,7 @@
 		for(var/j = 1 to boxxes)
 			new /obj/item/ammo_magazine/ammobox/pistol/scrap(user.loc)
 	if(mags)
-		for(var/j = 1 to mags)
+		for(var/j = 1 to69ags)
 			if(prob(50))
 				new /obj/item/ammo_magazine/pistol/scrap(user.loc)
 			else
@@ -108,7 +108,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/ammo_kit/proc/spawn_magnum(dice = 0, mob/user)
+/obj/item/ammo_kit/proc/spawn_magnum(dice = 0,69ob/user)
 
 	var/boxxes = 0
 	var/piles = 0
@@ -142,7 +142,7 @@
 		for(var/j = 1 to boxxes)
 			new /obj/item/ammo_magazine/ammobox/magnum/scrap(user.loc)
 	if(mags)
-		for(var/j = 1 to mags)
+		for(var/j = 1 to69ags)
 			if(prob(50))
 				new /obj/item/ammo_magazine/magnum/scrap(user.loc)
 			else
@@ -150,7 +150,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/ammo_kit/proc/spawn_rifle(dice = 0, mob/user,rifle=1)	//All rifles use same spawning stats
+/obj/item/ammo_kit/proc/spawn_rifle(dice = 0,69ob/user,rifle=1)	//All rifles use same spawning stats
 
 	var/boxxes = 0
 	var/piles = 0
@@ -187,7 +187,7 @@
 			for(var/j = 1 to boxxes)
 				new /obj/item/ammo_magazine/ammobox/srifle_small/scrap(user.loc)
 		if(mags)
-			for(var/j = 1 to mags)
+			for(var/j = 1 to69ags)
 				new /obj/item/ammo_magazine/srifle/scrap(user.loc)
 
 	if(rifle==2) //clrifle
@@ -198,7 +198,7 @@
 			for(var/j = 1 to boxxes)
 				new /obj/item/ammo_magazine/ammobox/clrifle_small/scrap(user.loc)
 		if(mags)
-			for(var/j = 1 to mags)
+			for(var/j = 1 to69ags)
 				new /obj/item/ammo_magazine/ihclrifle/scrap(user.loc)
 
 	if(rifle==3) //lrifle
@@ -209,11 +209,11 @@
 			for(var/j = 1 to boxxes)
 				new /obj/item/ammo_magazine/ammobox/lrifle_small/scrap(user.loc)
 		if(mags)
-			for(var/j = 1 to mags)
+			for(var/j = 1 to69ags)
 				new /obj/item/ammo_magazine/lrifle/scrap(user.loc)
 //////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/ammo_kit/proc/spawn_antim(dice = 0, mob/user)	//Shazbot- I know there is probably a better way to do this, but this is easier to code
+/obj/item/ammo_kit/proc/spawn_antim(dice = 0,69ob/user)	//Shazbot- I know there is probably a better way to do this, but this is easier to code
 
 	var/boxxes = 0
 	var/piles = 0
@@ -242,7 +242,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////////
 
-/obj/item/ammo_kit/proc/spawn_shotgun(dice = 0, mob/user,shotgun=1)	//All rifles use same spawning stats
+/obj/item/ammo_kit/proc/spawn_shotgun(dice = 0,69ob/user,shotgun=1)	//All rifles use same spawning stats
 
 	var/piles = 0
 
@@ -250,7 +250,7 @@
 		if(-99 to 0)	//if someone gets less than -99, they deserve the ammo
 			piles = 1
 		else
-			piles = 1 + round(dice/7-1,1)	//We can use math here because it's just piles
+			piles = 1 + round(dice/7-1,1)	//We can use69ath here because it's just piles
 
 	if(shotgun==1) //shot
 		if(piles)

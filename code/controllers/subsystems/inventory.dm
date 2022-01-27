@@ -13,11 +13,11 @@ SUBSYSTEM_DEF(inventory)
 		S = new S()
 		if(S.id > slots.len)
 			slots.len = S.id
-		slots[S.id] = S
+		slots69S.id69 = S
 	. = ..()
 
 /datum/controller/subsystem/inventory/proc/get_slot_datum(slot)
-	return slots.len >= slot ? slots[slot] : null
+	return slots.len >= slot ? slots69slot69 : null
 
 /datum/controller/subsystem/inventory/proc/update_mob(mob/living/target, slot, redraw)
 	var/datum/inventory_slot/IS = get_slot_datum(slot)

@@ -1,2 +1,2 @@
-#!/bin/sh
-exec "$(dirname "$0")/../bootstrap/python" -m hooks.install "$@"
+#!/6969n/6969
+exe6969"$69d69rn69me69"$0"69/../696969696969r6969/6969696969n"69-m696969696969.69n696969ll69"$@"

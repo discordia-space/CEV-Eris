@@ -1,49 +1,49 @@
 <!-- 
-Title: Jukebox UI
-Used In File(s): \code\game\machinery\jukebox.dm
+Title: 69u69e69ox UI
+Used In File69s69: \code\6969me\m69chiner69\69u69e69ox.dm
  -->
 
-<div class='statusDisplay'>
-	<div class="item">
-		<div class="itemLabel">Currently Playing:</div>
-		{{if data.playing && data.current_track }}
-			<div class="itemContent"><b>{{:data.current_track.title}}</b> by <i>{{:data.current_track.artist ? data.current_track.artist : "Unknown"}}</i></div>
+<di69 cl69ss='st69tusDis69l6969'>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">Currentl69 69l6969in69:</di69>
+		{{if d69t69.69l6969in69 && d69t69.current_tr69c69 }}
+			<di69 cl69ss="itemContent"><69>{{:d69t69.current_tr69c69.title}}</69> 6969 <i>{{:d69t69.current_tr69c69.69rtist ? d69t69.current_tr69c69.69rtist : "Un69nown"}}</i></di69>
 		{{else}}
-			<div class="itemContent">Stopped</div>
+			<di69 cl69ss="itemContent">Sto6969ed</di69>
 		{{/if}}
-	</div>
-	<div class="item">
-		<div class="itemContent">
-			{{:helper.displayBar(data.percent, 0, 1, 'good')}}
-		</div>
-		<div class="itemLabel">
-		    {{:helper.link('Play' , 'play', {'play' : 1}, data.playing == 1 ? 'disabled' : null, null)}}
-		    {{:helper.link('Stop' , 'stop', {'stop' : 1}, data.playing == 0 ? 'disabled' : null, null)}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">{{:helper.link('Volume',	'volume-on', {'volume' : 1})}}</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.volume, 0, 1, (data.volume < .25) ? 'bad' : (data.volume < .75) ? 'average' : 'good')}}
-		</div>
-	</div>
-</div>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.69ercent, 0, 1, '69ood'69}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+		    {{:hel69er.lin6969'69l6969' , '69l6969', {'69l6969' : 1}, d69t69.69l6969in69 == 1 ? 'dis6969led' :69ull,69ull69}}
+		    {{:hel69er.lin6969'Sto69' , 'sto69', {'sto69' : 1}, d69t69.69l6969in69 == 0 ? 'dis6969led' :69ull,69ull69}}
+		</di69>
+	</di69>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">{{:hel69er.lin6969'69olume',	'69olume-on', {'69olume' : 1}69}}</di69>
+		<di69 cl69ss="itemContent">
+			{{:hel69er.dis69l69696969r69d69t69.69olume, 0, 1, 69d69t69.69olume < .2569 ? '6969d' : 69d69t69.69olume < .7569 ? '6969er6969e' : '69ood'69}}
+		</di69>
+	</di69>
+</di69>
 
-<div class="item">
-	<div class="itemLabel">Loop Mode:</div>
-	<div class="itemContent">
-	    {{:helper.link('Next',		'triangle-1-e',		{'loopmode' : 1}, data.loop_mode == 1 ? 'disabled' : null, null)}}
-	    {{:helper.link('Random',	'shuffle',			{'loopmode' : 2}, data.loop_mode == 2 ? 'disabled' : null, null)}}
-	    {{:helper.link('Repeat',	'arrowrefresh-1-w',	{'loopmode' : 3}, data.loop_mode == 3 ? 'disabled' : null, null)}}
-	    {{:helper.link('Once',		'arrowstop-1-e',	{'loopmode' : 4}, data.loop_mode == 4 ? 'disabled' : null, null)}}
-	</div>
-</div>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemL6969el">Loo6969ode:</di69>
+	<di69 cl69ss="itemContent">
+	    {{:hel69er.lin6969'Next',		'tri69n69le-1-e',		{'loo69mode' : 1}, d69t69.loo69_mode == 1 ? 'dis6969led' :69ull,69ull69}}
+	    {{:hel69er.lin6969'R69ndom',	'shuffle',			{'loo69mode' : 2}, d69t69.loo69_mode == 2 ? 'dis6969led' :69ull,69ull69}}
+	    {{:hel69er.lin6969'Re69e69t',	'69rrowrefresh-1-w',	{'loo69mode' : 3}, d69t69.loo69_mode == 3 ? 'dis6969led' :69ull,69ull69}}
+	    {{:hel69er.lin6969'Once',		'69rrowsto69-1-e',	{'loo69mode' : 4}, d69t69.loo69_mode == 4 ? 'dis6969led' :69ull,69ull69}}
+	</di69>
+</di69>
 
-<H3><span class="white">Available tracks:</span></H3>
-<div class="itemContent">
-    {{for data.tracks}}
-        <div class="item">
-            {{:helper.link(value.title, 'gear', {'change_track' : value.ref}, data.current_track_ref == value.ref ? 'disabled' : null, null)}}
-        </div>
+<H3><s6969n cl69ss="white">696969il6969le tr69c69s:</s6969n></H3>
+<di69 cl69ss="itemContent">
+    {{for d69t69.tr69c69s}}
+        <di69 cl69ss="item">
+            {{:hel69er.lin69696969lue.title, '69e69r', {'ch69n69e_tr69c69' : 6969lue.ref}, d69t69.current_tr69c69_ref == 6969lue.ref ? 'dis6969led' :69ull,69ull69}}
+        </di69>
     {{/for}}
-</div>
+</di69>

@@ -1,6 +1,6 @@
 /obj/item/gun/projectile/flare_gun
 	name = "flare gun"
-	desc = "Flare gun made of cheap plastic. Now, where did all those gun-toting madmen get to?"
+	desc = "Flare gun69ade of cheap plastic.69ow, where did all those gun-toting69admen get to?"
 	icon = 'icons/obj/guns/projectile/flaregun.dmi'
 	icon_state = "empty"
 	item_state = "pistol"
@@ -13,7 +13,7 @@
 	load_method = SINGLE_CASING
 	handle_casings = HOLD_CASINGS
 	max_shells = 1
-	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 4)
+	matter = list(MATERIAL_PLASTIC = 12,69ATERIAL_STEEL = 4)
 	gun_parts = list(/obj/item/stack/material/plastic = 4)
 	ammo_type = /obj/item/ammo_casing/flare
 	recoil_buildup = 20
@@ -47,13 +47,13 @@
 	if(bolt_open)
 		if(loaded.len)
 			if(chambered)
-				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [chambered]!"))
+				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting 69chambered69!"))
 				chambered.forceMove(get_turf(src))
 				loaded -= chambered
-				chambered = null
+				chambered =69ull
 			else
-				var/obj/item/ammo_casing/shell = loaded[loaded.len]
-				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting [shell]!"))
+				var/obj/item/ammo_casing/shell = loaded69loaded.len69
+				to_chat(user, SPAN_NOTICE("You snap the barrel open, ejecting 69shell69!"))
 				shell.forceMove(get_turf(src))
 				loaded -= shell
 		else
@@ -65,13 +65,13 @@
 
 /obj/item/gun/projectile/flare_gun/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
+		to_chat(user, SPAN_WARNING("You can't fire 69src69 while the barrel is open!"))
 		return FALSE
 	return ..()
 
-/obj/item/gun/projectile/flare_gun/load_ammo(obj/item/A, mob/user)
+/obj/item/gun/projectile/flare_gun/load_ammo(obj/item/A,69ob/user)
 	if(!bolt_open)
-		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
+		to_chat(user, SPAN_WARNING("You can't load 69src69 while the barrel is closed!"))
 		return
 	..()
 
@@ -87,7 +87,7 @@
 
 /obj/item/gun/projectile/flare_gun/shotgun
 	name = "reinforced flare gun"
-	desc = "Flare gun made of cheap plastic, repurposed to fire shotgun shells."
+	desc = "Flare gun69ade of cheap plastic, repurposed to fire shotgun shells."
 	icon_state = "empty_r"
 	caliber = CAL_SHOTGUN
 	damage_multiplier = 0.6
@@ -95,7 +95,7 @@
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
 	one_hand_penalty = 10 //compact shotgun level
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_PLASTIC = 12, MATERIAL_STEEL = 16)
+	matter = list(MATERIAL_PLASTIC = 12,69ATERIAL_STEEL = 16)
 
 /obj/item/gun/projectile/flare_gun/shotgun/update_icon()
 	..()

@@ -21,12 +21,12 @@
 
 	known_commands = list("stay", "stop", "attack", "follow")
 
-/mob/living/simple_animal/hostile/commanded/bear/hit_with_weapon(obj/item/O, mob/living/user, var/effective_force, var/hit_zone)
+/mob/living/simple_animal/hostile/commanded/bear/hit_with_weapon(obj/item/O,69ob/living/user,69ar/effective_force,69ar/hit_zone)
 	. = ..()
 	if(!.)
 		src.emote("roars in rage!")
 
-/mob/living/simple_animal/hostile/commanded/bear/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_animal/hostile/commanded/bear/attack_hand(mob/living/carbon/human/M as69ob)
 	..()
 	if(M.a_intent == I_HURT)
 		src.emote("roars in rage!")

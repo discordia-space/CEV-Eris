@@ -1,4 +1,4 @@
-/datum/map_template/junk/j25_25/spacewrecks/spacewrecks1
-	name = "spacewrecks 1"
-	id = "spacewrecks1"
-	suffix = "spacewrecks/spacewrecks1.dmm"
+/datum/map_template/69un69/6925_25/spacewrec69s/spacewrec69s1
+	name = "spacewrec69s 1"
+	id = "spacewrec69s1"
+	suffix = "spacewrec69s/spacewrec69s1.dmm"

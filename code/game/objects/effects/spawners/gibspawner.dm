@@ -13,7 +13,7 @@
 
 		New()
 			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), alldirs, alldirs, list())
-			gibamounts[6] = pick(0,1,2)
+			gibamounts69669 = pick(0,1,2)
 			..()
 
 	robot
@@ -23,5 +23,5 @@
 
 		New()
 			gibdirections = list(list(NORTH, NORTHEAST, NORTHWEST),list(SOUTH, SOUTHEAST, SOUTHWEST),list(WEST, NORTHWEST, SOUTHWEST),list(EAST, NORTHEAST, SOUTHEAST), alldirs, alldirs)
-			gibamounts[6] = pick(0,1,2)
+			gibamounts69669 = pick(0,1,2)
 			..()

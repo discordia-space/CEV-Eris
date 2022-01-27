@@ -1,5 +1,5 @@
 /obj/item/clothing/proc/can_attach_accessory(obj/item/clothing/accessory/A)
-	if(valid_accessory_slots && istype(A) && (A.slot in valid_accessory_slots))
+	if(valid_accessory_slots && istype(A) && (A.slot in69alid_accessory_slots))
 		.=1
 	else
 		return 0
@@ -8,11 +8,11 @@
 			if (AC.slot == A.slot)
 				return 0
 
-/obj/item/clothing/attackby(var/obj/item/I, var/mob/user)
+/obj/item/clothing/attackby(var/obj/item/I,69ar/mob/user)
 	if(istype(I, /obj/item/clothing/accessory))
 
 		if(!valid_accessory_slots || !valid_accessory_slots.len)
-			to_chat(usr, SPAN_WARNING("You cannot attach accessories of any kind to \the [src]."))
+			to_chat(usr, SPAN_WARNING("You cannot attach accessories of any kind to \the 69src69."))
 			return
 
 		var/obj/item/clothing/accessory/A = I
@@ -22,7 +22,7 @@
 			src.verbs |= /obj/item/clothing/proc/removetie_verb
 			src.update_wear_icon()
 		else
-			to_chat(user, SPAN_WARNING("You cannot attach more accessories of this type to [src]."))
+			to_chat(user, SPAN_WARNING("You cannot attach69ore accessories of this type to 69src69."))
 		return
 
 	if(accessories.len)
@@ -56,7 +56,7 @@
 	. = ..(user)
 	if(accessories.len)
 		for(var/obj/item/clothing/accessory/A in accessories)
-			to_chat(user, "\A [A] is attached to it.")
+			to_chat(user, "\A 69A69 is attached to it.")
 
 /obj/item/clothing/proc/remove_accessory(mob/user, obj/item/clothing/accessory/A)
 	if(!(A in accessories))
@@ -82,9 +82,9 @@
 		return
 	var/obj/item/clothing/accessory/A
 	if(accessories.len > 1)
-		A = input("Select an accessory to remove from [src]") as null|anything in accessories
+		A = input("Select an accessory to remove from 69src69") as null|anything in accessories
 	else
-		A = accessories[1]
+		A = accessories69169
 	src.remove_accessory(usr,A)
 	if(!accessories.len)
 		src.verbs -= /obj/item/clothing/proc/removetie_verb

@@ -1,20 +1,20 @@
-GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
+GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default,69ew)
 
 /datum/topic_state/default/href_list(var/mob/user)
 	return list()
 
-/datum/topic_state/default/can_use_topic(var/src_object, var/mob/user)
+/datum/topic_state/default/can_use_topic(var/src_object,69ar/mob/user)
 	return user.default_can_use_topic(src_object)
 
 /mob/proc/default_can_use_topic(var/src_object)
-	return STATUS_CLOSE // By default no mob can do anything with NanoUI
+	return STATUS_CLOSE // By default69o69ob can do anything with69anoUI
 
 /mob/observer/ghost/default_can_use_topic(var/src_object)
 	if(can_admin_interact())
-		return STATUS_INTERACTIVE							// Admins are more equal
-	if(!client || get_dist(src_object, src)	> client.view)	// Preventing ghosts from having a million windows open by limiting to objects in range
+		return STATUS_INTERACTIVE							// Admins are69ore equal
+	if(!client || get_dist(src_object, src)	> client.view)	// Preventing ghosts from having a69illion windows open by limiting to objects in range
 		return STATUS_CLOSE
-	return STATUS_UPDATE									// Ghosts can view updates
+	return STATUS_UPDATE									// Ghosts can69iew updates
 
 /mob/living/silicon/pai/default_can_use_topic(var/src_object)
 	if((src_object == src || src_object == silicon_radio) && !stat)
@@ -27,61 +27,61 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	if(. <= STATUS_DISABLED)
 		return
 
-	// robots can interact with things they can see within their view range
-	if((src_object in view(src)) && get_dist(src_object, src) <= src.client.view)
-		return STATUS_INTERACTIVE	// interactive (green visibility)
-	return STATUS_DISABLED			// no updates, completely disabled (red visibility)
+	// robots can interact with things they can see within their69iew range
+	if((src_object in69iew(src)) && get_dist(src_object, src) <= src.client.view)
+		return STATUS_INTERACTIVE	// interactive (green69isibility)
+	return STATUS_DISABLED			//69o updates, completely disabled (red69isibility)
 
 /mob/living/silicon/ai/default_can_use_topic(var/src_object)
 	. = shared_nano_interaction()
 	if(. != STATUS_INTERACTIVE)
 		return
 
-	// Prevents the AI from using Topic on admin levels (by for example viewing through the court/thunderdome cameras)
+	// Prevents the AI from using Topic on admin levels (by for example69iewing through the court/thunderdome cameras)
 	// unless it's on the same level as the object it's interacting with.
 	var/turf/T = get_turf(src_object)
 	if(!T || !(z == T.z || isPlayerLevel(T.z)))
 		return STATUS_CLOSE
 
-	// If an object is in view then we can interact with it
-	if(src_object in view(client.view, src))
+	// If an object is in69iew then we can interact with it
+	if(src_object in69iew(client.view, src))
 		return STATUS_INTERACTIVE
 
-	// If we're installed in a chassi, rather than transfered to an inteliCard or other container, then check if we have camera view
+	// If we're installed in a chassi, rather than transfered to an inteliCard or other container, then check if we have camera69iew
 	if(is_in_chassis())
-		//stop AIs from leaving windows open and using then after they lose vision
+		//stop AIs from leaving windows open and using then after they lose69ision
 		if(cameranet && !cameranet.is_turf_visible(get_turf(src_object)))
 			return STATUS_CLOSE
 		return STATUS_INTERACTIVE
-	else if(get_dist(src_object, src) <= client.view)	// View does not return what one would expect while installed in an inteliCard
+	else if(get_dist(src_object, src) <= client.view)	//69iew does69ot return what one would expect while installed in an inteliCard
 		return STATUS_INTERACTIVE
 
 	return STATUS_CLOSE
 
-//Some atoms such as vehicles might have special rules for how mobs inside them interact with NanoUI.
-/atom/proc/contents_nano_distance(var/src_object, var/mob/living/user)
+//Some atoms such as69ehicles69ight have special rules for how69obs inside them interact with69anoUI.
+/atom/proc/contents_nano_distance(var/src_object,69ar/mob/living/user)
 	return user.shared_living_nano_distance(src_object)
 
 /mob/living/proc/shared_living_nano_distance(var/atom/movable/src_object)
-	if (!(src_object in view(4, src))) 	// If the src object is not visable, disable updates
+	if (!(src_object in69iew(4, src))) 	// If the src object is69ot69isable, disable updates
 		return STATUS_CLOSE
 
 	var/dist = get_dist(src_object, src)
-	if (dist <= 1) // interactive (green visibility)
+	if (dist <= 1) // interactive (green69isibility)
 		// Checking adjacency even when distance is 0 because get_dist() doesn't include Z-level differences and
-		// the client might have its eye shifted up/down thus putting src_object in view.
+		// the client69ight have its eye shifted up/down thus putting src_object in69iew.
 		return Adjacent(src_object) ? STATUS_INTERACTIVE : STATUS_UPDATE
 	else if (dist <= 2)
-		return STATUS_UPDATE 		// update only (orange visibility)
+		return STATUS_UPDATE 		// update only (orange69isibility)
 	else if (dist <= 4)
-		return STATUS_DISABLED 		// no updates, completely disabled (red visibility)
+		return STATUS_DISABLED 		//69o updates, completely disabled (red69isibility)
 	return STATUS_CLOSE
 
 /mob/living/default_can_use_topic(var/src_object)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)
-			. = min(., loc.contents_nano_distance(src_object, src))
+			. =69in(., loc.contents_nano_distance(src_object, src))
 	if(. == STATUS_INTERACTIVE)
 		return STATUS_UPDATE
 
@@ -89,8 +89,8 @@ GLOBAL_DATUM_INIT(default_state, /datum/topic_state/default, new)
 	. = shared_nano_interaction(src_object)
 	if(. != STATUS_CLOSE)
 		if(loc)
-			. = min(., loc.contents_nano_distance(src_object, src))
+			. =69in(., loc.contents_nano_distance(src_object, src))
 		else
-			. = min(., shared_living_nano_distance(src_object))
-		if(. == STATUS_UPDATE && (TK in mutations))	// If we have telekinesis and remain close enough, allow interaction.
+			. =69in(., shared_living_nano_distance(src_object))
+		if(. == STATUS_UPDATE && (TK in69utations))	// If we have telekinesis and remain close enough, allow interaction.
 			return STATUS_INTERACTIVE

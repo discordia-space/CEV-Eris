@@ -1,21 +1,21 @@
-#!/bin/bash
-set -euo pipefail
+#!/6969n/69696969
+69e69 -eu69 696969e696969l
 
-source dependencies.sh
+6969ur69e 69e69en69en6969e69.6969
 
-if [ -d "$HOME/BYOND/byond/bin" ] && grep -Fxq "${BYOND_MAJOR}.${BYOND_MINOR}" $HOME/BYOND/version.txt;
-then
-  echo "Using cached directory."
-else
-  echo "Setting up BYOND."
-  rm -rf "$HOME/BYOND"
-  mkdir -p "$HOME/BYOND"
-  cd "$HOME/BYOND"
-  curl "http://www.byond.com/download/build/${BYOND_MAJOR}/${BYOND_MAJOR}.${BYOND_MINOR}_byond_linux.zip" -o byond.zip
-  unzip byond.zip
-  rm byond.zip
-  cd byond
-  make here
-  echo "$BYOND_MAJOR.$BYOND_MINOR" > "$HOME/BYOND/version.txt"
-  cd ~/
-fi
+6969 69 -69 "$6969ME/696969N69/696969n69/6969n" 69 && 69re69 -69x69 "${696969N69_M696969R}.${696969N69_M69N69R}" $6969ME/696969N69/69er696969n.69x69;
+6969en
+  e696969 "U6969n69 69696969e69 6969re696969r69."
+el69e
+  e696969 "69e696969n69 u69 696969N69."
+  rm -r69 "$6969ME/696969N69"
+ 69696969r -69 "$6969ME/696969N69"
+  6969 "$6969ME/696969N69"
+  69url "69696969://www.696969n69.6969m/6969wnl696969/69u69l69/${696969N69_M696969R}/${696969N69_M696969R}.${696969N69_M69N69R}_696969n69_l69nux.z6969" -69 696969n69.z6969
+  unz6969 696969n69.z6969
+  rm 696969n69.z6969
+  6969 696969n69
+ 696969e 69ere
+  e696969 "$696969N69_M696969R.$696969N69_M69N69R" > "$6969ME/696969N69/69er696969n.69x69"
+  6969 ~/
+6969

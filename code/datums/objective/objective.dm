@@ -3,10 +3,10 @@ var/global/list/all_objectives_types = null
 
 /hook/startup/proc/init_objectives()
 	all_objectives_types = list()
-	var/indent = length("[/datum/objective]/")
+	var/indent = length("69/datum/objective69/")
 	for(var/path in subtypesof(/datum/objective))
-		var/id = copytext("[path]", indent+1)
-		all_objectives_types[id] = path
+		var/id = copytext("69path69", indent+1)
+		all_objectives_types69id69 = path
 	return TRUE
 
 /datum/objective
@@ -52,7 +52,7 @@ var/global/list/all_objectives_types = null
 	all_objectives.Remove(src)
 	. = ..()
 
-/datum/objective/proc/update_completion()	//This is for objectives requiring mid-round check, like harm or baptize
+/datum/objective/proc/update_completion()	//This is for objectives requiring69id-round check, like harm or baptize
 	return
 
 /datum/objective/proc/check_completion()
@@ -67,10 +67,10 @@ var/global/list/all_objectives_types = null
 			possible_targets |= possible_target
 	return possible_targets
 
-//Checks if a given mind is a valid target to perform objectives on
+//Checks if a given69ind is a69alid target to perform objectives on
 /datum/objective/proc/is_valid_target(datum/mind/M)
 	if (!M.current)
-		return FALSE //No mob
+		return FALSE //No69ob
 
 	if (M == owner) //No targeting ourselves
 		return FALSE
@@ -84,7 +84,7 @@ var/global/list/all_objectives_types = null
 
 	//Special handling for targeting other antags
 	if (M.antagonist.len)
-		for (var/datum/antagonist/A in M.antagonist)
+		for (var/datum/antagonist/A in69.antagonist)
 			//Make sure we don't target our own faction
 			if (owner_faction && (owner_faction == A.faction))
 				return FALSE
@@ -114,7 +114,7 @@ var/global/list/all_objectives_types = null
 		return
 	var/datum/mind/M = input(user, "New target") as null|anything in possible_targets
 	if(M)
-		target = M
+		target =69
 		update_explanation()
 
 /datum/objective/proc/update_explanation()
@@ -129,7 +129,7 @@ var/global/list/all_objectives_types = null
 	if(!check_rights(R_DEBUG))
 		return TRUE
 
-	if(href_list["switch_target"])
+	if(href_list69"switch_target"69)
 		select_human_target(usr)
 		antag.antagonist_panel()
 
@@ -147,7 +147,7 @@ var/global/list/all_objectives_types = null
 	return contents
 
 //Returns whatever this objective is targeting.
-//Could be a datum, a mind, a typepath, a name, a role, or even a list of the above.
+//Could be a datum, a69ind, a typepath, a name, a role, or even a list of the above.
 /datum/objective/proc/get_target()
 	return target
 
@@ -162,9 +162,9 @@ var/global/list/all_objectives_types = null
 		return list()
 
 /datum/objective/proc/time2minutes(unit)
-	var/time = unit/(1 MINUTES)
+	var/time = unit/(169INUTES)
 	return time
 
 /datum/objective/proc/time2hours(unit)
-	var/time = unit/(60 MINUTES)
+	var/time = unit/(6069INUTES)
 	return time

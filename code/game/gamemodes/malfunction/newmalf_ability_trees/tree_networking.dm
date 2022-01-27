@@ -1,8 +1,8 @@
 // NETWORKING TREE
 //
-// Abilities in this tree are oriented around giving the AI more control of normally uncontrollable systems.
+// Abilities in this tree are oriented around giving the AI69ore control of normally uncontrollable systems.
 // T1 - Basic Encryption Hack - Allows hacking of APCs. Hacked APCs can be controlled even when AI Control is cut and give exclusive control to the AI and linked cyborgs.
-// T2 - Advanced Encryption Hack - Allows the AI to send fake CentCom message. Has high chance of failing.
+// T2 - Advanced Encryption Hack - Allows the AI to send fake CentCom69essage. Has high chance of failing.
 // T3 - Elite Encryption Hack - Allows the AI to change alert levels. Has high chance of failing.
 // T4 - System Override - Allows the AI to rapidly hack remaining APCs. When completed, grants access to the self destruct nuclear warhead.
 
@@ -36,7 +36,7 @@
 	name = "System Override"
 
 // END RESEARCH DATUMS
-// BEGIN ABILITY VERBS
+// BEGIN ABILITY69ERBS
 
 /datum/game_mode/malfunction/verb/basic_encryption_hack(obj/machinery/power/apc/A as obj in get_unhacked_apcs(src))
 	set category = "Software"
@@ -57,7 +57,7 @@
 			to_chat(user, "You already control this APC!")
 			return
 		else if(A.aidisabled)
-			to_chat(user, SPAN_NOTICE("Unable to connect to APC. Please verify wire connection and try again."))
+			to_chat(user, SPAN_NOTICE("Unable to connect to APC. Please69erify wire connection and try again."))
 			return
 	else
 		return
@@ -68,7 +68,7 @@
 	user.hacking = 1
 	to_chat(user, "Beginning APC system override...")
 	sleep(300)
-	to_chat(user, "APC hack completed. Uploading modified operation software..")
+	to_chat(user, "APC hack completed. Uploading69odified operation software..")
 	sleep(200)
 	to_chat(user, "Restarting APC to apply changes..")
 	sleep(100)
@@ -77,24 +77,24 @@
 		if(A.hacker == user)
 			to_chat(user, "Hack successful. You now have full control over the APC.")
 		else
-			to_chat(user, SPAN_NOTICE("Hack failed. Connection to APC has been lost. Please verify wire connection and try again."))
+			to_chat(user, SPAN_NOTICE("Hack failed. Connection to APC has been lost. Please69erify wire connection and try again."))
 	else
-		to_chat(user, SPAN_NOTICE("Hack failed. Unable to locate APC. Please verify the APC still exists."))
+		to_chat(user, SPAN_NOTICE("Hack failed. Unable to locate APC. Please69erify the APC still exists."))
 	user.hacking = 0
 
 
 /datum/game_mode/malfunction/verb/advanced_encryption_hack()
 	set category = "Software"
 	set name = "Advanced Encryption Hack"
-	set desc = "75 CPU - Attempts to bypass encryption on the Command Quantum Relay, giving you ability to fake legitimate messages. Has chance of failing."
+	set desc = "75 CPU - Attempts to bypass encryption on the Command 69uantum Relay, giving you ability to fake legitimate69essages. Has chance of failing."
 	var/price = 75
 	var/mob/living/silicon/ai/user = usr
 
 	if(!ability_prechecks(user, price))
 		return
 
-	var/title = input("Select message title: ")
-	var/text = input("Select message text: ")
+	var/title = input("Select69essage title: ")
+	var/text = input("Select69essage text: ")
 	if(!title || !text || !ability_pay(user, price))
 		to_chat(user, "Hack Aborted")
 		return
@@ -103,7 +103,7 @@
 		to_chat(user, "Hack Failed.")
 		if(prob(10))
 			user.hack_fails ++
-			announce_hack_failure(user, "quantum message relay")
+			announce_hack_failure(user, "69uantum69essage relay")
 		return
 
 	command_announcement.Announce(text, title)
@@ -135,14 +135,14 @@
 /datum/game_mode/malfunction/verb/system_override()
 	set category = "Software"
 	set name = "System Override"
-	set desc = "500 CPU - Begins hacking into the ship's primary firewall, quickly overtaking remaining APC systems. When completed grants access to the ship's self-destruct mechanism. Network administrators will probably notice this."
+	set desc = "500 CPU - Begins hacking into the ship's primary firewall, 69uickly overtaking remaining APC systems. When completed grants access to the ship's self-destruct69echanism. Network administrators will probably notice this."
 	var/price = 500
 	var/mob/living/silicon/ai/user = usr
 	if (alert(user, "Begin system override? This cannot be stopped once started. The network administrators will probably notice this.", "System Override:", "Yes", "No") != "Yes")
 		return
 	if (!ability_prechecks(user, price) || !ability_pay(user, price) || user.system_override)
 		if(user.system_override)
-			to_chat(user, "You already started the system override sequence.")
+			to_chat(user, "You already started the system override se69uence.")
 		return
 	var/list/remaining_apcs = list()
 	for(var/obj/machinery/power/apc/A in GLOB.apc_list)
@@ -153,28 +153,28 @@
 		remaining_apcs += A
 
 	var/duration = (remaining_apcs.len * 100)	// Calculates duration for announcing system
-	if(duration > 3000)							// Two types of announcements. Short hacks trigger immediate warnings. Long hacks are more "progressive".
+	if(duration > 3000)							// Two types of announcements. Short hacks trigger immediate warnings. Long hacks are69ore "progressive".
 		spawn(0)
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("Caution, [station_name]. We have detected abnormal behaviour in your network. It seems someone is trying to hack your electronic systems. We will update you when we have more information.", "Network Monitoring")
+			command_announcement.Announce("Caution, 69station_name69. We have detected abnormal behaviour in your network. It seems someone is trying to hack your electronic systems. We will update you when we have69ore information.", "Network69onitoring")
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("We started tracing the intruder. Whoever is doing this, they seem to be on the ship itself. We suggest checking all network control terminals. We will keep you updated on the situation.", "Network Monitoring")
+			command_announcement.Announce("We started tracing the intruder. Whoever is doing this, they seem to be on the ship itself. We suggest checking all network control terminals. We will keep you updated on the situation.", "Network69onitoring")
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("This is highly abnormal and somewhat concerning. The intruder is too fast, he is evading our traces. No man could be this fast...", "Network Monitoring")
+			command_announcement.Announce("This is highly abnormal and somewhat concerning. The intruder is too fast, he is evading our traces. No69an could be this fast...", "Network69onitoring")
 			sleep(duration/5)
 			if(!user || user.stat == DEAD)
 				return
-			command_announcement.Announce("We have traced the intrude#, it seem& t( e yo3r AI s7stem, it &# *#ck@ng th$ sel$ destru$t mechani&m, stop i# bef*@!)$#&&@@  <CONNECTION LOST>", "Network Monitoring")
+			command_announcement.Announce("We have traced the intrude#, it seem& t( e yo3r AI s7stem, it &# *#ck@ng th$ sel$ destru$t69echani&m, stop i# bef*@!)$#&&@@  <CONNECTION LOST>", "Network69onitoring")
 	else
-		command_announcement.Announce("We have detected a strong brute-force attack on your firewall which seems to be originating from your AI system. It already controls almost the whole network, and the only thing that's preventing it from accessing the self-destruct is this firewall. You don't have much time before it succeeds.", "Network Monitoring")
+		command_announcement.Announce("We have detected a strong brute-force attack on your firewall which seems to be originating from your AI system. It already controls almost the whole network, and the only thing that's preventing it from accessing the self-destruct is this firewall. You don't have69uch time before it succeeds.", "Network69onitoring")
 	to_chat(user, "## BEGINNING SYSTEM OVERRIDE.")
-	to_chat(user, "## ESTIMATED DURATION: [round((duration+300)/600)] MINUTES")
+	to_chat(user, "## ESTIMATED DURATION: 69round((duration+300)/600)6969INUTES")
 	user.hacking = 1
 	user.system_override = 1
 	// Now actually begin the hack. Each APC takes 10 seconds.
@@ -186,11 +186,11 @@
 			continue
 		A.ai_hack(user)
 		if(A.hacker == user)
-			to_chat(user, "## OVERRIDDEN: [A.name]")
+			to_chat(user, "## OVERRIDDEN: 69A.name69")
 
 	to_chat(user, "## REACHABLE APC SYSTEMS OVERTAKEN. BYPASSING PRIMARY FIREWALL.")
 	sleep(300)
-	// Hack all APCs, including those built during hack sequence.
+	// Hack all APCs, including those built during hack se69uence.
 	for(var/obj/machinery/power/apc/A in GLOB.apc_list)
 		if((!A.hacker || A.hacker != src) && !A.aidisabled && isStationLevel(A.z))
 			A.ai_hack(src)
@@ -204,4 +204,4 @@
 	user.verbs += new/datum/game_mode/malfunction/verb/ai_destroy_station()
 
 
-// END ABILITY VERBS
+// END ABILITY69ERBS

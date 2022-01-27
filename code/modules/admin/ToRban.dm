@@ -14,7 +14,7 @@
 	var/savefile/F = new(TORFILE)
 	if(F)
 		var/last_update
-		F["last_update"] >> last_update
+		F69"last_update"69 >> last_update
 		if((last_update + TOR_UPDATE_INTERVAL) < world.realtime)	//we haven't updated for a while
 			ToRban_update()
 	return
@@ -24,7 +24,7 @@
 	log_misc("Downloading updated ToR data...")
 	var/list/http = world.Export("https://check.torproject.org/exit-addresses")
 
-	var/list/rawlist = file2list(http["CONTENT"])
+	var/list/rawlist = file2list(http69"CONTENT"69)
 	if(rawlist.len)
 		fdel(TORFILE)
 		var/savefile/F = new(TORFILE)
@@ -35,8 +35,8 @@
 				var/cleaned = copytext(line,13,length(line)-19)
 				if(!cleaned)
 					continue
-				F[cleaned] << 1
-		F["last_update"] << world.realtime
+				F69cleaned69 << 1
+		F69"last_update"69 << world.realtime
 		log_misc("ToR data updated!")
 		if(usr)
 			to_chat(usr, "ToRban updated.")
@@ -64,9 +64,9 @@ ADMIN_VERB_ADD(/client/proc/ToRban, R_SERVER, FALSE)
 			var/savefile/F = new(TORFILE)
 			var/dat
 			if( length(F.dir) )
-				for( var/i=1, i<=length(F.dir), i++ )
-					dat += "<tr><td>#[i]</td><td> [F.dir[i]]</td></tr>"
-				dat = "<table width='100%'>[dat]</table>"
+				for(69ar/i=1, i<=length(F.dir), i++ )
+					dat += "<tr><td>#69i69</td><td> 69F.dir69i6969</td></tr>"
+				dat = "<table width='100%'>69dat69</table>"
 			else
 				dat = "No addresses in list."
 			src << browse(dat,"window=ToRban_show")
@@ -77,7 +77,7 @@ ADMIN_VERB_ADD(/client/proc/ToRban, R_SERVER, FALSE)
 				F.dir.Remove(choice)
 				to_chat(src, "<b>Address removed</b>")
 		if("remove all")
-			to_chat(src, "<b>[TORFILE] was [fdel(TORFILE)?"":"not "]removed.</b>")
+			to_chat(src, "<b>69TORFILE69 was 69fdel(TORFILE)?"":"not "69removed.</b>")
 		if("find")
 			var/input = input(src,"Please input an IP address to search for:","Find ToR ban",null) as null|text
 			if(input)

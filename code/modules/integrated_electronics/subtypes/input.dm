@@ -8,7 +8,7 @@
 
 /obj/item/integrated_circuit/input/button
 	name = "button"
-	desc = "This tiny button must do something, right?"
+	desc = "This tiny button69ust do something, right?"
 	icon_state = "button"
 	complexity = 1
 	can_be_asked_input = TRUE
@@ -18,16 +18,16 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	radial_menu_icon = "button"
 
-/obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit misleading name for this specific use.
-	to_chat(user, SPAN("notice", "You press the button labeled '[displayed_name]'."))
+/obj/item/integrated_circuit/input/button/ask_for_input(mob/user) //Bit69isleading name for this specific use.
+	to_chat(user, SPAN("notice", "You press the button labeled '69displayed_name69'."))
 	activate_pin(1)
 
 /obj/item/integrated_circuit/input/button/get_topic_data(mob/user)
 	return list("Press" = "press=1")
 
 /obj/item/integrated_circuit/input/button/OnICTopic(href_list, user)
-	if(href_list["press"])
-		to_chat(user, SPAN("notice", "You press the button labeled '[src.displayed_name]'."))
+	if(href_list69"press"69)
+		to_chat(user, SPAN("notice", "You press the button labeled '69src.displayed_name69'."))
 		activate_pin(1)
 		return IC_TOPIC_REFRESH
 
@@ -45,21 +45,21 @@
 
 /obj/item/integrated_circuit/input/toggle_button/ask_for_input(mob/user) // Ditto.
 	var/state = !get_pin_data(IC_OUTPUT, 1)
-	radial_menu_icon = "toggle_button_[state ? "on" : "off"]"
+	radial_menu_icon = "toggle_button_69state ? "on" : "off"69"
 	set_pin_data(IC_OUTPUT, 1, state)
 	push_data()
 	activate_pin(1)
-	to_chat(user, SPAN("notice", "You toggle the button labeled \"[displayed_name]\" [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"]."))
+	to_chat(user, SPAN("notice", "You toggle the button labeled \"69displayed_name69\" 69get_pin_data(IC_OUTPUT, 1) ? "on" : "off"69."))
 
 /obj/item/integrated_circuit/input/toggle_button/get_topic_data(mob/user)
-	return list("Toggle [get_pin_data(IC_OUTPUT, 1) ? "Off" : "On"]" = "toggle=1")
+	return list("Toggle 69get_pin_data(IC_OUTPUT, 1) ? "Off" : "On"69" = "toggle=1")
 
 /obj/item/integrated_circuit/input/toggle_button/OnICTopic(href_list, user)
-	if(href_list["toggle"])
+	if(href_list69"toggle"69)
 		set_pin_data(IC_OUTPUT, 1, !get_pin_data(IC_OUTPUT, 1))
 		push_data()
 		activate_pin(1)
-		to_chat(user, SPAN("notice", "You toggle the button labeled \"[displayed_name]\" [get_pin_data(IC_OUTPUT, 1) ? "on" : "off"]."))
+		to_chat(user, SPAN("notice", "You toggle the button labeled \"69displayed_name69\" 69get_pin_data(IC_OUTPUT, 1) ? "on" : "off"69."))
 		return IC_TOPIC_REFRESH
 
 /obj/item/integrated_circuit/input/numberpad
@@ -85,8 +85,8 @@
 /obj/item/integrated_circuit/input/numberpad/get_topic_data(mob/user)
 	return list("Enter Number" = "enter_number=1")
 
-/obj/item/integrated_circuit/input/numberpad/OnICTopic(href_list, mob/user)
-	if(href_list["enter_number"])
+/obj/item/integrated_circuit/input/numberpad/OnICTopic(href_list,69ob/user)
+	if(href_list69"enter_number"69)
 		var/new_input = input(user, "Enter a number, please.", displayed_name) as num|null
 		if(isnum_safe(new_input) && user.IsAdvancedToolUser())
 			set_pin_data(IC_OUTPUT, 1, new_input)
@@ -117,8 +117,8 @@
 /obj/item/integrated_circuit/input/textpad/get_topic_data(mob/user)
 	return list("Enter Words" = "enter_words=1")
 
-/obj/item/integrated_circuit/input/textpad/OnICTopic(href_list, mob/user)
-	if(href_list["enter_words"])
+/obj/item/integrated_circuit/input/textpad/OnICTopic(href_list,69ob/user)
+	if(href_list69"enter_words"69)
 		var/new_input = input(user, "Enter some words, please.", displayed_name)
 		new_input = sanitize(new_input)
 		if(istext(new_input) && user.IsAdvancedToolUser())
@@ -150,8 +150,8 @@
 /obj/item/integrated_circuit/input/colorpad/get_topic_data(mob/user)
 	return list("Enter Color" = "enter_color=1")
 
-/obj/item/integrated_circuit/input/colorpad/OnICTopic(href_list, mob/user)
-	if(href_list["enter_color"])
+/obj/item/integrated_circuit/input/colorpad/OnICTopic(href_list,69ob/user)
+	if(href_list69"enter_color"69)
 		var/new_color = input(user, "Enter a color, please.", "Color", "#ffffff") as color|null
 		if(new_color && user.IsAdvancedToolUser())
 			set_pin_data(IC_OUTPUT, 1, new_color)
@@ -161,7 +161,7 @@
 
 /obj/item/integrated_circuit/input/slime_scanner
 	name = "slime scanner"
-	desc = "A very small version of the xenobio analyser. This allows the machine to know every needed properties of slime. Output mutation list is non-associative."
+	desc = "A69ery small69ersion of the xenobio analyser. This allows the69achine to know every needed properties of slime. Output69utation list is non-associative."
 	icon_state = "medscan_adv"
 	complexity = 12
 	inputs = list("target" = IC_PINTYPE_REF)
@@ -171,7 +171,7 @@
 		"nutrition"				= IC_PINTYPE_NUMBER,
 		"charge"				= IC_PINTYPE_NUMBER,
 		"health"				= IC_PINTYPE_NUMBER,
-		"possible mutation"		= IC_PINTYPE_LIST,
+		"possible69utation"		= IC_PINTYPE_LIST,
 		"genetic destability"	= IC_PINTYPE_NUMBER,
 		"slime core amount"		= IC_PINTYPE_NUMBER,
 		"growth progress"		= IC_PINTYPE_NUMBER,
@@ -184,7 +184,7 @@
 	var/mob/living/carbon/slime/T = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/slime)
 	if(!isslime(T)) //Invalid input
 		return
-	if(T in view(get_turf(src))) // Like medbot's analyzer it can be used in range..
+	if(T in69iew(get_turf(src))) // Like69edbot's analyzer it can be used in range..
 
 		set_pin_data(IC_OUTPUT, 1, T.colour)
 		set_pin_data(IC_OUTPUT, 2, T.is_adult)
@@ -202,7 +202,7 @@
 
 /obj/item/integrated_circuit/input/plant_scanner
 	name = "integrated plant analyzer"
-	desc = "A very small version of the plant analyser. This allows the machine to know all valuable parameters of plants in trays. \
+	desc = "A69ery small69ersion of the plant analyser. This allows the69achine to know all69aluable parameters of plants in trays. \
 			It can only scan plants, not seeds or fruits."
 	icon_state = "medscan_adv"
 	complexity = 12
@@ -235,7 +235,7 @@
 		return
 	for(var/i=1, i<=outputs.len, i++)
 		set_pin_data(IC_OUTPUT, i, null)
-	if(H in view(get_turf(src))) // Like medbot's analyzer it can be used in range..
+	if(H in69iew(get_turf(src))) // Like69edbot's analyzer it can be used in range..
 		if(H.seed)
 			set_pin_data(IC_OUTPUT, 1, H.seed.seed_name)
 			set_pin_data(IC_OUTPUT, 2, H.age)
@@ -258,7 +258,7 @@
 
 /obj/item/integrated_circuit/input/view_filter
 	name = "view filter"
-	desc = "This circuit will filter every object in assembly view."
+	desc = "This circuit will filter every object in assembly69iew."
 	extended_desc = "The first pin is ref to filter, to see avaliable filters go to Filter category. The output will contents everything with filtering type"
 	inputs = list(
 		"filter" = IC_PINTYPE_REF
@@ -274,7 +274,7 @@
 	var/list/objects = list()
 	var/obj/item/integrated_circuit/filter/ref/filter = get_pin_data(IC_INPUT, 1)
 	if(istype(filter) && assembly && (filter in assembly.assembly_components))
-		for(var/atom/A in view(get_turf(assembly)))
+		for(var/atom/A in69iew(get_turf(assembly)))
 			if(istype(A, filter.filter_type))
 				objects.Add(weakref(A))
 		set_pin_data(IC_OUTPUT, 1, objects)
@@ -284,7 +284,7 @@
 /obj/item/integrated_circuit/input/gene_scanner
 	name = "gene scanner"
 	desc = "This circuit will scan the target plant for traits and reagent genes. Output is non-associative."
-	extended_desc = "This allows the machine to scan plants in trays for reagent and trait genes. \
+	extended_desc = "This allows the69achine to scan plants in trays for reagent and trait genes. \
 			It can only scan plants, not seeds or fruits."
 	inputs = list(
 		"target" = IC_PINTYPE_REF
@@ -303,7 +303,7 @@
 		return
 	for(var/i=1, i<=outputs.len, i++)
 		set_pin_data(IC_OUTPUT, i, null)
-	if(H in view(get_turf(src))) // Like medbot's analyzer it can be used in range..
+	if(H in69iew(get_turf(src))) // Like69edbot's analyzer it can be used in range..
 		if(H.seed)
 			for(var/chem_path in H.seed.chems)
 				var/datum/reagent/R = chem_path
@@ -316,8 +316,8 @@
 
 /obj/item/integrated_circuit/input/examiner
 	name = "examiner"
-	desc = "A little machine vision system. It can return the name, description, distance, \
-	relative coordinates, total amount of reagents, maximum amount of reagents, density, and opacity of the referenced object."
+	desc = "A little69achine69ision system. It can return the name, description, distance, \
+	relative coordinates, total amount of reagents,69aximum amount of reagents, density, and opacity of the referenced object."
 	icon_state = "video_camera"
 	complexity = 6
 	inputs = list(
@@ -348,7 +348,7 @@
 	var/atom/H = get_pin_data_as_type(IC_INPUT, 1, /atom)
 	var/turf/T = get_turf(src)
 
-	if(!istype(H) || (!(H in view(T) || (H in assembly.loc)))) // if assembly located in same loc with object, we can scan it.
+	if(!istype(H) || (!(H in69iew(T) || (H in assembly.loc)))) // if assembly located in same loc with object, we can scan it.
 		activate_pin(3)
 	else
 		set_pin_data(IC_OUTPUT, 1, H.name)
@@ -356,9 +356,9 @@
 
 		if(istype(H, /mob/living/carbon/human))
 			var/mob/living/carbon/human/M = H
-			var/msg = M.examine(src)
+			var/msg =69.examine(src)
 			if(msg)
-				set_pin_data(IC_OUTPUT, 2, msg)
+				set_pin_data(IC_OUTPUT, 2,69sg)
 
 		set_pin_data(IC_OUTPUT, 3, H.x-T.x)
 		set_pin_data(IC_OUTPUT, 4, H.y-T.y)
@@ -368,7 +368,7 @@
 		if(H.reagents)
 			mr = H.reagents.maximum_volume
 			tr = H.reagents.total_volume
-		set_pin_data(IC_OUTPUT, 6, mr)
+		set_pin_data(IC_OUTPUT, 6,69r)
 		set_pin_data(IC_OUTPUT, 7, tr)
 		set_pin_data(IC_OUTPUT, 8, H.CanPass(assembly ? assembly : src, get_turf(H)))
 		set_pin_data(IC_OUTPUT, 9, H.opacity)
@@ -379,7 +379,7 @@
 /obj/item/integrated_circuit/input/turfpoint
 	name = "Tile pointer"
 	desc = "This circuit will get a tile ref with the provided absolute coordinates."
-	extended_desc = "If the machine	cannot see the target, it will not be able to calculate the correct direction.\
+	extended_desc = "If the69achine	cannot see the target, it will not be able to calculate the correct direction.\
 	This circuit only works while inside an assembly."
 	icon_state = "numberpad"
 	complexity = 5
@@ -398,7 +398,7 @@
 	var/target_y = clamp(get_pin_data(IC_INPUT, 2), 0, world.maxy)
 	var/turf/A = locate(target_x, target_y, T.z)
 	set_pin_data(IC_OUTPUT, 1, null)
-	if(!A || !(A in view(T)))
+	if(!A || !(A in69iew(T)))
 		activate_pin(3)
 		return
 	else
@@ -435,7 +435,7 @@
 		activate_pin(3)
 		return
 	var/area_name = scanned_turf.loc.name
-	if(scanned_turf in view(circuit_turf)) // This is a camera. It can't examine things that it can't see.
+	if(scanned_turf in69iew(circuit_turf)) // This is a camera. It can't examine things that it can't see.
 		var/list/turf_contents = new()
 		for(var/obj/U in scanned_turf)
 			turf_contents += weakref(U)
@@ -454,7 +454,7 @@
 /obj/item/integrated_circuit/input/turfpoint
 	name = "tile pointer"
 	desc = "This circuit will get tile ref with given absolute coorinates."
-	extended_desc = "If the machine	cannot see the target, it will not be able to scan it.\
+	extended_desc = "If the69achine	cannot see the target, it will not be able to scan it.\
 	This circuit will only work in an assembly."
 	icon_state = "numberpad"
 	complexity = 5
@@ -473,7 +473,7 @@
 	var/target_y = clamp(get_pin_data(IC_INPUT, 2), 0, world.maxy)
 	var/turf/A = locate(target_x, target_y, T.z)
 	set_pin_data(IC_OUTPUT, 1, null)
-	if(!A || !(A in view(T)))
+	if(!A || !(A in69iew(T)))
 		activate_pin(3)
 		return
 	else
@@ -484,7 +484,7 @@
 /obj/item/integrated_circuit/input/local_locator
 	name = "local locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type only locates something \
-	that is holding the machine containing it."
+	that is holding the69achine containing it."
 	inputs = list()
 	outputs = list("located ref"		= IC_PINTYPE_REF,
 					"is ground"			= IC_PINTYPE_BOOLEAN,
@@ -496,7 +496,7 @@
 	power_draw_per_use = 20
 
 /obj/item/integrated_circuit/input/local_locator/do_work()
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	O.data = null
 	if(assembly)
 		O.data = weakref(assembly.loc)
@@ -508,9 +508,9 @@
 /obj/item/integrated_circuit/input/adjacent_locator
 	name = "adjacent locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type only locates something \
-	that is standing up to a meter away from the machine."
-	extended_desc = "The first pin requires a ref to the kind of object that you want the locator to acquire. This means that it will \
-	give refs to nearby objects that are similar. If more than one valid object is found nearby, it will choose one of them at \
+	that is standing up to a69eter away from the69achine."
+	extended_desc = "The first pin requires a ref to the kind of object that you want the locator to acquire. This69eans that it will \
+	give refs to nearby objects that are similar. If69ore than one69alid object is found nearby, it will choose one of them at \
 	random."
 	inputs = list("desired type ref" = IC_PINTYPE_REF)
 	outputs = list("located ref" = IC_PINTYPE_REF)
@@ -520,8 +520,8 @@
 	power_draw_per_use = 30
 
 /obj/item/integrated_circuit/input/adjacent_locator/do_work()
-	var/datum/integrated_io/I = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/I = inputs69169
+	var/datum/integrated_io/O = outputs69169
 	O.data = null
 
 	if(!isweakref(I.data))
@@ -548,7 +548,7 @@
 	complexity = 6
 	name = "list advanced locator"
 	desc = "This is needed for certain devices that demand list of names for a target to act upon. This type locates something \
-	that is standing in given radius of up to 8 meters. Output is non-associative. Input will only consider keys if associative."
+	that is standing in given radius of up to 869eters. Output is non-associative. Input will only consider keys if associative."
 	extended_desc = "The first pin requires a list of the kinds of objects that you want the locator to acquire. It will locate nearby objects by name and description, \
 	and will then provide a list of all found objects which are similar. \
 	The second pin is a radius."
@@ -568,14 +568,14 @@
 		radius = rad
 
 /obj/item/integrated_circuit/input/advanced_locator_list/do_work()
-	var/datum/integrated_io/I = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/I = inputs69169
+	var/datum/integrated_io/O = outputs69169
 	O.data = null
 	var/list/input_list = list()
 	input_list = I.data
 	if(length(input_list))	//if there is no input don't do anything.
 		var/turf/T = get_turf(src)
-		var/list/nearby_things = view(radius,T)
+		var/list/nearby_things =69iew(radius,T)
 		var/list/valid_things = list()
 		for(var/item in input_list)
 			if(!isnull(item) && !isnum_safe(item))
@@ -597,7 +597,7 @@
 							continue
 						valid_things.Add(weakref(thing))
 		if(valid_things.len)
-			O.data = valid_things
+			O.data =69alid_things
 			O.push_data()
 			activate_pin(2)
 		else
@@ -611,10 +611,10 @@
 	complexity = 6
 	name = "advanced locator"
 	desc = "This is needed for certain devices that demand a reference for a target to act upon. This type locates something \
-	that is standing in given radius of up to 8 meters"
-	extended_desc = "The first pin requires a ref to the kind of object that you want the locator to acquire. This means that it will \
+	that is standing in given radius of up to 869eters"
+	extended_desc = "The first pin requires a ref to the kind of object that you want the locator to acquire. This69eans that it will \
 	give refs to nearby objects which are similar. If this pin is a string, the locator will search for an \
-	item matching the desired text in its name and description. If more than one valid object is found nearby, it will choose one of them at \
+	item69atching the desired text in its name and description. If69ore than one69alid object is found nearby, it will choose one of them at \
 	random. The second pin is a radius."
 	inputs = list("desired type" = IC_PINTYPE_ANY, "radius" = IC_PINTYPE_NUMBER)
 	outputs = list("located ref" = IC_PINTYPE_REF)
@@ -630,11 +630,11 @@
 		radius = rad
 
 /obj/item/integrated_circuit/input/advanced_locator/do_work()
-	var/datum/integrated_io/I = inputs[1]
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/I = inputs69169
+	var/datum/integrated_io/O = outputs69169
 	O.data = null
 	var/turf/T = get_turf(src)
-	var/list/nearby_things =  view(radius,T)
+	var/list/nearby_things = 69iew(radius,T)
 	var/list/valid_things = list()
 	if(isweakref(I.data))
 		var/atom/A = I.data.resolve()
@@ -722,7 +722,7 @@
 	signal.source = src
 	if(isnum(code))
 		signal.encryption = code
-	signal.data["message"] = "ACTIVATE"
+	signal.data69"message"69 = "ACTIVATE"
 	return signal
 
 /obj/item/integrated_circuit/input/signaler/proc/set_frequency(new_frequency)
@@ -762,7 +762,7 @@
 	desc = "Signals from a signaler can be received with this, allowing for remote control.  Additionally, it can send signals as well."
 	extended_desc = "When a signal is received from another signaler with the right id tag, the 'on signal received' activator pin will be pulsed and the command output is updated.  \
 	The two input pins are to configure the integrated signaler's settings.  Note that the frequency should not have a decimal in it.  \
-	Meaning the default frequency is expressed as 1457, not 145.7.  To send a signal, pulse the 'send signal' activator pin. Set the command output to set the message received."
+	Meaning the default frequency is expressed as 1457, not 145.7.  To send a signal, pulse the 'send signal' activator pin. Set the command output to set the69essage received."
 	complexity = 8
 	inputs = list("frequency" = IC_PINTYPE_NUMBER, "id tag" = IC_PINTYPE_STRING, "command" = IC_PINTYPE_STRING)
 	outputs = list("received command" = IC_PINTYPE_STRING)
@@ -775,21 +775,21 @@
 	command = get_pin_data(IC_INPUT, 3)
 
 /obj/item/integrated_circuit/input/signaler/advanced/signal_good(datum/signal/signal)
-	if(!..() || signal.data["tag"] != code)
+	if(!..() || signal.data69"tag"69 != code)
 		return FALSE
 	return TRUE
 
 /obj/item/integrated_circuit/input/signaler/advanced/create_signal()
 	var/datum/signal/signal = new()
 	signal.transmission_method = 1
-	signal.data["tag"] = code
-	signal.data["command"] = command
+	signal.data69"tag"69 = code
+	signal.data69"command"69 = command
 	signal.encryption = 0
 	return signal
 
 /obj/item/integrated_circuit/input/signaler/advanced/receive_signal(datum/signal/signal)
 	if(signal_good(signal))
-		set_pin_data(IC_OUTPUT,1, signal.data["command"])
+		set_pin_data(IC_OUTPUT,1, signal.data69"command"69)
 		push_data()
 		..()
 
@@ -817,57 +817,57 @@
 		var/obj/machinery/computer/teleporter/com = R.mconsole
 		if(istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use && com.operable())
 			teleporters_id.Add(com.id)
-			teleporters[com.id] = com
+			teleporters69com.id69 = com
 
 	var/obj/machinery/computer/teleporter/selected_console
 	var/selected_id = input("Please select a teleporter to lock in. Do not select anything for random", "Teleport Selector") as null|anything in teleporters_id
 	if(isnull(selected_id))
 		selected_console = null
 	else
-		selected_console = teleporters[selected_id]
+		selected_console = teleporters69selected_id69
 	set_pin_data(IC_OUTPUT, 1, selected_console && weakref(selected_console))
 	push_data()
 	activate_pin(1)
 
 /obj/item/integrated_circuit/input/teleporter_locator/any_examine(mob/user)
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	var/obj/machinery/computer/teleporter/current_console = O.data_as_type(/obj/machinery/computer/teleporter)
 
-	var/output = "Current selection: [(current_console && current_console.id) || "None"]"
+	var/output = "Current selection: 69(current_console && current_console.id) || "None"69"
 	output += "\nList of avaliable teleporters:"
 	for(var/obj/machinery/teleport/hub/R in SSmachines.processing)
 		var/obj/machinery/computer/teleporter/com = R.mconsole
 		if(istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use && com.operable())
-			output += "\n[com.id] ([R.icon_state == "tele1" ? "Active" : "Inactive"])"
+			output += "\n69com.id69 (69R.icon_state == "tele1" ? "Active" : "Inactive"69)"
 	to_chat(user, output)
 
 /obj/item/integrated_circuit/input/teleporter_locator/get_topic_data(mob/user)
-	var/datum/integrated_io/O = outputs[1]
+	var/datum/integrated_io/O = outputs69169
 	var/obj/machinery/computer/teleporter/current_console = O.data_as_type(/obj/machinery/computer/teleporter)
 
 	. = list()
-	. += "Current selection: [(current_console && current_console.id) || "None"]"
+	. += "Current selection: 69(current_console && current_console.id) || "None"69"
 	. += "Please select a teleporter to lock in on:"
 	for(var/obj/machinery/teleport/hub/R in world)
 		var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(R.x - 2, R.y, R.z))
 		if (istype(com, /obj/machinery/computer/teleporter) && com.locked && !com.one_time_use)
-			.["[com.id] ([R.icon_state == "tele1" ? "Active" : "Inactive"])"] = "tport=[any2ref(com)]"
-	.["None (Dangerous)"] = "tport=random"
+			.69"69com.id69 (69R.icon_state == "tele1" ? "Active" : "Inactive"69)"69 = "tport=69any2ref(com)69"
+	.69"None (Dangerous)"69 = "tport=random"
 
-/obj/item/integrated_circuit/input/teleporter_locator/OnICTopic(href_list, mob/user)
-	if(href_list["tport"] && user.IsAdvancedToolUser())
-		var/output = href_list["tport"] == "random" ? null : locate(href_list["tport"])
+/obj/item/integrated_circuit/input/teleporter_locator/OnICTopic(href_list,69ob/user)
+	if(href_list69"tport"69 && user.IsAdvancedToolUser())
+		var/output = href_list69"tport"69 == "random" ? null : locate(href_list69"tport"69)
 		set_pin_data(IC_OUTPUT, 1, output && weakref(output))
 		push_data()
 		activate_pin(1)
 		return IC_TOPIC_REFRESH
 
-// TODO: refactor ntnet circuit to OnyxBay code and add items using this stuff (ex. modular_computer, airlock)
+// TODO: refactor ntnet circuit to OnyxBay code and add items using this stuff (ex.69odular_computer, airlock)
 
-//This circuit gives information on where the machine is.
+//This circuit gives information on where the69achine is.
 /obj/item/integrated_circuit/input/gps
 	name = "global positioning system"
-	desc = "This allows you to easily know the position of a machine containing this device."
+	desc = "This allows you to easily know the position of a69achine containing this device."
 	extended_desc = "The coordinates that the GPS outputs are absolute, not relative. The full coords output has the coords separated by commas and is in string format."
 	icon_state = "gps"
 	complexity = 4
@@ -890,17 +890,17 @@
 	set_pin_data(IC_OUTPUT, 1, T.x)
 	set_pin_data(IC_OUTPUT, 2, T.y)
 	set_pin_data(IC_OUTPUT, 3, T.z)
-	set_pin_data(IC_OUTPUT, 4, "[T.x],[T.y],[T.z]")
+	set_pin_data(IC_OUTPUT, 4, "69T.x69,69T.y69,69T.z69")
 	push_data()
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/microphone
 	name = "microphone"
-	desc = "Useful for spying on people, or for voice-activated machines."
-	extended_desc = "This will automatically translate most languages it hears to Zurich Accord Common. \
+	desc = "Useful for spying on people, or for69oice-activated69achines."
+	extended_desc = "This will automatically translate69ost languages it hears to Zurich Accord Common. \
 	The first activation pin is always pulsed when the circuit hears someone talk, while the second one \
 	is only triggered if it hears someone speaking a language other than Zurich Accord Common."
-	//icon_state = "recorder" TODO: make sprite for this icon_state.
+	//icon_state = "recorder" TODO:69ake sprite for this icon_state.
 	complexity = 8
 	inputs = list()
 	flags = CONDUCT
@@ -908,7 +908,7 @@
 	"speaker" = IC_PINTYPE_STRING,
 	"message" = IC_PINTYPE_STRING
 	)
-	activators = list("on message received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
+	activators = list("on69essage received" = IC_PINTYPE_PULSE_OUT, "on translation" = IC_PINTYPE_PULSE_OUT)
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 5
 
@@ -920,16 +920,16 @@
 	remove_hearing()
 	. = ..()
 
-/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M, msg, var/verb="says", datum/language/speaking=null, speech_volume)
+/obj/item/integrated_circuit/input/microphone/hear_talk(mob/living/M,69sg,69ar/verb="says", datum/language/speaking=null, speech_volume)
 	var/translated = FALSE
-	if(M && msg)
+	if(M &&69sg)
 		if(speaking)
 			if(!speaking.machine_understands)
 				msg = speaking.scramble(msg)
 			if(!istype(speaking, /datum/language/common))
 				translated = TRUE
-		set_pin_data(IC_OUTPUT, 1, M.GetVoice())
-		set_pin_data(IC_OUTPUT, 2, msg)
+		set_pin_data(IC_OUTPUT, 1,69.GetVoice())
+		set_pin_data(IC_OUTPUT, 2,69sg)
 
 	push_data()
 	activate_pin(1)
@@ -938,8 +938,8 @@
 
 /obj/item/integrated_circuit/input/sensor
 	name = "sensor"
-	desc = "Scans and obtains a reference for any objects or persons near you. All you need to do is shove the machine in their face."
-	extended_desc = "If the 'ignore storage' pin is set to true, the sensor will disregard scanning various storage containers such as backpacks."
+	desc = "Scans and obtains a reference for any objects or persons near you. All you need to do is shove the69achine in their face."
+	extended_desc = "If the 'ignore storage' pin is set to true, the sensor will disregard scanning69arious storage containers such as backpacks."
 	//icon_state = "recorder"
 	complexity = 12
 	inputs = list("ignore storage" = IC_PINTYPE_BOOLEAN)
@@ -948,7 +948,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
-/obj/item/integrated_circuit/input/sensor/sense(atom/A, mob/user, prox)
+/obj/item/integrated_circuit/input/sensor/sense(atom/A,69ob/user, prox)
 	if(!prox || !A || (ismob(A) && !isliving(A)))
 		return FALSE
 	if(!check_then_do_work())
@@ -958,14 +958,14 @@
 		return FALSE
 	set_pin_data(IC_OUTPUT, 1, weakref(A))
 	push_data()
-	to_chat(user, SPAN("notice", "You scan [A] with [assembly]."))
+	to_chat(user, SPAN("notice", "You scan 69A69 with 69assembly69."))
 	activate_pin(1)
 	return TRUE
 
 /obj/item/integrated_circuit/input/sensor/ranged
 	name = "ranged sensor"
-	desc = "Scans and obtains a reference for any objects or persons in range. All you need to do is point the machine towards the target."
-	extended_desc = "If the 'ignore storage' pin is set to true, the sensor will disregard scanning various storage containers such as backpacks."
+	desc = "Scans and obtains a reference for any objects or persons in range. All you need to do is point the69achine towards the target."
+	extended_desc = "If the 'ignore storage' pin is set to true, the sensor will disregard scanning69arious storage containers such as backpacks."
 	//icon_state = "recorder"
 	complexity = 36
 	inputs = list("ignore storage" = IC_PINTYPE_BOOLEAN)
@@ -974,14 +974,14 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 120
 
-/obj/item/integrated_circuit/input/sensor/ranged/sense(atom/A, mob/user)
+/obj/item/integrated_circuit/input/sensor/ranged/sense(atom/A,69ob/user)
 	if(!user || !A || (ismob(A) && !isliving(A)))
 		return FALSE
 	if(user.client && A != user)
-		if(!(A in view(user.client)))
+		if(!(A in69iew(user.client)))
 			return FALSE
 	else
-		if(!(A in view(user)))
+		if(!(A in69iew(user)))
 			return FALSE
 	if(!check_then_do_work())
 		return FALSE
@@ -990,7 +990,7 @@
 		return FALSE
 	set_pin_data(IC_OUTPUT, 1, weakref(A))
 	push_data()
-	to_chat(user, SPAN("notice", "You scan [A] with [assembly]."))
+	to_chat(user, SPAN("notice", "You scan 69A69 with 69assembly69."))
 	activate_pin(1)
 	return TRUE
 
@@ -1007,7 +1007,7 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 20
 
-/obj/item/integrated_circuit/input/obj_scanner/attackby_react(atom/A, mob/user, intent)
+/obj/item/integrated_circuit/input/obj_scanner/attackby_react(atom/A,69ob/user, intent)
 	if(intent != I_HELP)
 		return FALSE
 	if(!check_then_do_work())
@@ -1019,15 +1019,15 @@
 		user.drop_item(A)
 	set_pin_data(IC_OUTPUT, 1, weakref(A))
 	push_data()
-	to_chat(user, SPAN("notice", "You let [assembly] scan [A]."))
+	to_chat(user, SPAN("notice", "You let 69assembly69 scan 69A69."))
 	activate_pin(1)
 	return TRUE
 
 /obj/item/integrated_circuit/input/internalbm
-	name = "internal battery monitor"
-	desc = "This monitors the charge level of an internal battery."
+	name = "internal battery69onitor"
+	desc = "This69onitors the charge level of an internal battery."
 	icon_state = "internalbm"
-	extended_desc = "This circuit will give you the values of charge, max charge, and the current percentage of the internal battery on demand."
+	extended_desc = "This circuit will give you the69alues of charge,69ax charge, and the current percentage of the internal battery on demand."
 	w_class = ITEM_SIZE_TINY
 	complexity = 1
 	inputs = list()
@@ -1059,10 +1059,10 @@
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/externalbm
-	name = "external battery monitor"
-	desc = "This can read the battery state of any device in view."
+	name = "external battery69onitor"
+	desc = "This can read the battery state of any device in69iew."
 	icon_state = "externalbm"
-	extended_desc = "This circuit will give you the charge, max charge, and the current percentage values of any device or battery in view."
+	extended_desc = "This circuit will give you the charge,69ax charge, and the current percentage69alues of any device or battery in69iew."
 	w_class = ITEM_SIZE_TINY
 	complexity = 2
 	inputs = list("target" = IC_PINTYPE_REF)
@@ -1083,10 +1083,10 @@
 	set_pin_data(IC_OUTPUT, 3, null)
 	if(AM)
 		var/list/power_cell_list = get_power_cell(AM)
-		var/obj/item/cell/small/C = power_cell_list[1]
+		var/obj/item/cell/small/C = power_cell_list69169
 		if(istype(C))
 			var/turf/A = get_turf(src)
-			if(get_turf(AM) in view(A))
+			if(get_turf(AM) in69iew(A))
 				set_pin_data(IC_OUTPUT, 1, C.charge)
 				set_pin_data(IC_OUTPUT, 2, C.maxcharge)
 				set_pin_data(IC_OUTPUT, 3, C.percent())
@@ -1097,7 +1097,7 @@
 // TODO: port ntnetsc from TG
 /obj/item/integrated_circuit/input/matscan
 	name = "material scanner"
-	desc = "This special module is designed to get information about material containers of different machinery, \
+	desc = "This special69odule is designed to get information about69aterial containers of different69achinery, \
 			like ORM, lathes, etc."
 	icon_state = "video_camera"
 	complexity = 6
@@ -1124,16 +1124,16 @@
 		)
 	spawn_flags = IC_SPAWN_RESEARCH
 	power_draw_per_use = 40
-	var/list/mtypes = list(MATERIAL_STEEL, MATERIAL_GLASS, MATERIAL_SILVER, MATERIAL_GOLD, MATERIAL_DIAMOND, MATERIAL_PLASMA, MATERIAL_URANIUM, MATERIAL_PLASTEEL, MATERIAL_TITANIUM, MATERIAL_GLASS, MATERIAL_PLASTIC)
+	var/list/mtypes = list(MATERIAL_STEEL,69ATERIAL_GLASS,69ATERIAL_SILVER,69ATERIAL_GOLD,69ATERIAL_DIAMOND,69ATERIAL_PLASMA,69ATERIAL_URANIUM,69ATERIAL_PLASTEEL,69ATERIAL_TITANIUM,69ATERIAL_GLASS,69ATERIAL_PLASTIC)
 
 /obj/item/integrated_circuit/input/matscan/do_work()
 	var/obj/O = get_pin_data_as_type(IC_INPUT, 1, /obj)
 	if(!O || !O.matter) //Invalid input
 		return
 	var/turf/T = get_turf(src)
-	if(O in view(T)) // This is a camera. It can't examine thngs,that it can't see.
-		for(var/I in 1 to mtypes.len)
-			var/amount = O.matter[mtypes[I]]
+	if(O in69iew(T)) // This is a camera. It can't examine thngs,that it can't see.
+		for(var/I in 1 to69types.len)
+			var/amount = O.matter69mtypes69I6969
 			if(amount)
 				set_pin_data(IC_OUTPUT, I, amount)
 			else
@@ -1146,7 +1146,7 @@
 /obj/item/integrated_circuit/input/data_card_reader
 	name = "data card reader"
 	desc = "A circuit that can read from and write to data cards."
-	extended_desc = "Setting the \"write mode\" boolean to true will cause any data cards that are used on the assembly to replace\
+	extended_desc = "Setting the \"write69ode\" boolean to true will cause any data cards that are used on the assembly to replace\
  their existing function and data strings with the given strings, if it is set to false then using a data card on the assembly will cause\
  the function and data strings stored on the card to be written to the output pins."
 	icon_state = "card_reader"
@@ -1155,7 +1155,7 @@
 	inputs = list(
 		"function" = IC_PINTYPE_STRING,
 		"data to store" = IC_PINTYPE_STRING,
-		"write mode" = IC_PINTYPE_BOOLEAN
+		"write69ode" = IC_PINTYPE_BOOLEAN
 	)
 	outputs = list(
 		"function" = IC_PINTYPE_STRING,
@@ -1166,7 +1166,7 @@
 		"on read" = IC_PINTYPE_PULSE_OUT
 	)
 
-/obj/item/integrated_circuit/input/data_card_reader/attackby_react(obj/item/I, mob/living/user, intent)
+/obj/item/integrated_circuit/input/data_card_reader/attackby_react(obj/item/I,69ob/living/user, intent)
 	var/obj/item/card/data/card = I
 	var/write_mode = get_pin_data(IC_INPUT, 3)
 	if(istype(card))
@@ -1189,7 +1189,7 @@
 /obj/item/integrated_circuit/input/selection
 	name = "selection circuit"
 	desc = "This circuit lets you choose between different strings from a selection."
-	extended_desc = "This circuit lets you choose between up to 4 different values from selection of up to 8 strings that you can set. Null values are ignored and the chosen value is put out in selected."
+	extended_desc = "This circuit lets you choose between up to 4 different69alues from selection of up to 8 strings that you can set. Null69alues are ignored and the chosen69alue is put out in selected."
 	icon_state = "addition"
 	can_be_asked_input = TRUE
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -1230,16 +1230,16 @@
 
 /obj/item/integrated_circuit/input/selection/get_topic_data(mob/user)
 	. = list()
-	. += "Last Selected: [selected_value]"
+	. += "Last Selected: 69selected_value69"
 	. += "Please select string:"
 	for(var/k in 1 to inputs.len)
 		var/I = get_pin_data(IC_INPUT, k)
 		if(istext(I))
-			.["[I]"] = "select=[I]"
+			.69"69I69"69 = "select=69I69"
 
-/obj/item/integrated_circuit/input/selection/OnICTopic(href_list, mob/user)
-	if(href_list["select"] && user.IsAdvancedToolUser())
-		var/selected = sanitize(href_list["select"])
+/obj/item/integrated_circuit/input/selection/OnICTopic(href_list,69ob/user)
+	if(href_list69"select"69 && user.IsAdvancedToolUser())
+		var/selected = sanitize(href_list69"select"69)
 		if(selected)
 			selected_value = selected
 			set_pin_data(IC_OUTPUT, 1, selected)
@@ -1251,7 +1251,7 @@
 /obj/item/integrated_circuit/input/storage_examiner
 	name = "storage examiner circuit"
 	desc = "This circuit lets you scan a storage's content. (backpacks, toolboxes etc.)"
-	extended_desc = "The items are put out as reference, which makes it possible to interact with them. Additionally also gives the amount of items."
+	extended_desc = "The items are put out as reference, which69akes it possible to interact with them. Additionally also gives the amount of items."
 	icon_state = "grabber"
 	can_be_asked_input = TRUE
 	complexity = 6
@@ -1287,8 +1287,8 @@
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/med_scanner
-	name = "integrated medical analyser"
-	desc = "A very small version of the common medical analyser. This allows the machine to track some vital signs."
+	name = "integrated69edical analyser"
+	desc = "A69ery small69ersion of the common69edical analyser. This allows the69achine to track some69ital signs."
 	icon_state = "medscan"
 	complexity = 4
 	inputs = list("target" = IC_PINTYPE_REF)
@@ -1315,9 +1315,9 @@
 	activate_pin(2)
 
 /obj/item/integrated_circuit/input/adv_med_scanner
-	name = "integrated adv. medical analyser"
-	desc = "A very small version of the medbot's medical analyser. This allows the machine to know how healthy someone is. \
-	This type is much more precise, allowing the machine to know much more about the target than a normal analyzer."
+	name = "integrated adv.69edical analyser"
+	desc = "A69ery small69ersion of the69edbot's69edical analyser. This allows the69achine to know how healthy someone is. \
+	This type is69uch69ore precise, allowing the69achine to know69uch69ore about the target than a normal analyzer."
 	icon_state = "medscan_adv"
 	complexity = 12
 	inputs = list("target" = IC_PINTYPE_REF)
@@ -1355,7 +1355,7 @@
 	var/mob/living/carbon/human/H = get_pin_data_as_type(IC_INPUT, 1, /mob/living/carbon/human)
 	if(!istype(H)) //Invalid input
 		return
-	if(H in view(get_turf(src))) // Like medbot's analyzer it can be used in range..
+	if(H in69iew(get_turf(src))) // Like69edbot's analyzer it can be used in range..
 		var/obj/item/organ/internal/brain/brain = H.random_organ_by_process(BP_BRAIN)
 		set_pin_data(IC_OUTPUT, 1, (brain && H.stat != DEAD))
 		set_pin_data(IC_OUTPUT, 2, (H.stat == 0))
@@ -1374,8 +1374,8 @@
 
 /obj/item/integrated_circuit/input/atmospheric_analyzer
 	name = "atmospheric analyzer"
-	desc = "A miniaturized analyzer which can scan anything that contains gases. Leave target as NULL to scan the air around the assembly."
-	extended_desc = "The nth element of gas amounts is the number of moles of the \
+	desc = "A69iniaturized analyzer which can scan anything that contains gases. Leave target as NULL to scan the air around the assembly."
+	extended_desc = "The nth element of gas amounts is the number of69oles of the \
 					nth gas in gas list. \
 					Pressure is in kPa, temperature is in Kelvin. \
 					Due to programming limitations, scanning an object that does \
@@ -1387,7 +1387,7 @@
 	outputs = list(
 			"gas list" = IC_PINTYPE_LIST,
 			"gas amounts" = IC_PINTYPE_LIST,
-			"total moles" = IC_PINTYPE_NUMBER,
+			"total69oles" = IC_PINTYPE_NUMBER,
 			"pressure" = IC_PINTYPE_NUMBER,
 			"temperature" = IC_PINTYPE_NUMBER,
 			"volume" = IC_PINTYPE_NUMBER
@@ -1418,8 +1418,8 @@
 	var/list/gas_names = list()
 	var/list/gas_amounts = list()
 	for(var/id in gases)
-		var/name = gas_data.name[id]
-		var/amt = round(gases[id], 0.001)
+		var/name = gas_data.name69id69
+		var/amt = round(gases69id69, 0.001)
 		gas_names.Add(name)
 		gas_amounts.Add(amt)
 

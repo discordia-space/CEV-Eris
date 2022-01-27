@@ -1,15 +1,15 @@
 /**
- *  Datum used to hold information about a product in a vending machine
+ *  Datum used to hold information about a product in a69ending69achine
  */
 /datum/data/vending_product
 	var/product_name = "generic" // Display name for the product
 	var/product_desc
 	var/product_path
-	var/amount = 0            // The original amount held in the vending machine
+	var/amount = 0            // The original amount held in the69ending69achine
 	var/price = 0              // Price to buy one
-	var/display_color   // Display color for vending machine listing
+	var/display_color   // Display color for69ending69achine listing
 	var/category = CAT_NORMAL  // CAT_HIDDEN for contraband, CAT_COIN for premium
-	var/obj/machinery/vending/vending_machine   // The vending machine we belong to
+	var/obj/machinery/vending/vending_machine   // The69ending69achine we belong to
 	var/list/instances = list()		   // Stores inserted items. Instances are only used for things added during the round, and not for things spawned at initialize
 
 
@@ -26,10 +26,10 @@
 	var/obj/tmp = path
 
 	if(istype(tmp, /obj/item/ammo_magazine))
-		// On New() magazine gets a proper name assigned
+		// On New()69agazine gets a proper name assigned
 		var/obj/item/ammo_magazine/AM = new tmp
 		product_name = AM.name
-		qdel(AM) // Don't need it anymore
+		69del(AM) // Don't need it anymore
 
 	if(!product_name)
 		product_name = initial(tmp.name)
@@ -40,7 +40,7 @@
 
 	product_desc = initial(tmp.desc)
 
-	src.vending_machine = vending_machine
+	src.vending_machine =69ending_machine
 
 	if(src.price <= 0 && src.vending_machine.auto_price)
 		src.price = initial(tmp.price_tag)
@@ -66,12 +66,12 @@
 		return
 	var/atom/movable/product
 	if(instances && instances.len)
-		product = instances[instances.len]
+		product = instances69instances.len69
 		instances.Remove(product)
 	else
 		product = new product_path
 	amount -= 1
-	GET_COMPONENT_FROM(oldified, /datum/component/oldficator, vending_machine)
+	GET_COMPONENT_FROM(oldified, /datum/component/oldficator,69ending_machine)
 	if(oldified && isobj(product) && prob(30))
 		var/obj/O = product
 		O.make_old()
@@ -81,34 +81,34 @@
 
 
 /**
- *  A vending machine
+ *  A69ending69achine
  */
 /obj/machinery/vending
 	name = "Vendomat"
-	desc = "A generic vending machine."
+	desc = "A generic69ending69achine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
 	layer = BELOW_OBJ_LAYER
 	anchored = TRUE
 	density = TRUE
 
-	var/icon_vend //Icon_state when vending
+	var/icon_vend //Icon_state when69ending
 	var/icon_deny //Icon_state when denying access
-	var/icon_type //For overlays after remodeling a custom vending machine
+	var/icon_type //For overlays after remodeling a custom69ending69achine
 
 	// Power
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 10
 	var/vend_power_usage = 150 //actuators and stuff
 
-	// Vending-related
+	//69ending-related
 	var/active = 1 //No sales pitches if off!
-	var/vend_ready = 1 //Are we ready to vend?? Is it time??
-	var/vend_delay = 10 //How long does it take to vend?
+	var/vend_ready = 1 //Are we ready to69end?? Is it time??
+	var/vend_delay = 10 //How long does it take to69end?
 	var/categories = CAT_NORMAL // Bitmask of cats we're currently showing
-	var/datum/data/vending_product/currently_vending = null // What we're requesting payment for right now
-	var/managing = 0 //Are we in the vendor management screen?
-	var/status_message = "" // Status screen messages like "insufficient funds", displayed in NanoUI
+	var/datum/data/vending_product/currently_vending = null // What we're re69uesting payment for right now
+	var/managing = 0 //Are we in the69endor69anagement screen?
+	var/status_message = "" // Status screen69essages like "insufficient funds", displayed in NanoUI
 	var/status_error = 0 // Set to 1 if status_message is an error
 
 	/*
@@ -121,17 +121,17 @@
 	var/list/premium 	= list() // No specified amount = only one in stock
 	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
 
-	// List of vending_product items available.
+	// List of69ending_product items available.
 	var/list/product_records = list()
 
 
-	// Variables used to initialize advertising
+	//69ariables used to initialize advertising
 	var/product_slogans = "" //String of slogans spoken out loud, separated by semicolons
-	var/product_ads = "" //String of small ad messages in the vending screen
+	var/product_ads = "" //String of small ad69essages in the69ending screen
 
 	var/list/ads_list = list()
 
-	// Stuff relating vocalizations
+	// Stuff relating69ocalizations
 	var/list/slogan_list = list()
 	var/shut_up = 0 //Let spouting those godawful pitches!
 	var/vend_reply //Thank you for shopping!
@@ -140,24 +140,24 @@
 	var/slogan_delay = 6000 //How long until we can pitch again?
 
 	// Things that can go wrong
-	emagged = 0 //Ignores if somebody doesn't have card access to that machine.
+	emagged = 0 //Ignores if somebody doesn't have card access to that69achine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
 
 	var/custom_vendor = FALSE //If it's custom, it can be loaded with stuff as long as it's unlocked.
 	var/locked = TRUE
-	var/datum/money_account/machine_vendor_account //Owner of this vendomat. Used for access.
+	var/datum/money_account/machine_vendor_account //Owner of this69endomat. Used for access.
 	var/datum/money_account/earnings_account //Money flows in and out of this account.
-	var/vendor_department = null //If set, members can manage this vendomat. earnings_account is set to the department's account automatically.
-	var/buying_percentage = 0 //If set, the vendomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
+	var/vendor_department = null //If set,69embers can69anage this69endomat. earnings_account is set to the department's account automatically.
+	var/buying_percentage = 0 //If set, the69endomat will accept people selling items to it, and in return will give (percentage * listed item price) in cash
 	var/scan_id = 1
-	var/auto_price = TRUE //The vendomat will automatically set prices on products if their price is not specified.
+	var/auto_price = TRUE //The69endomat will automatically set prices on products if their price is not specified.
 	var/obj/item/coin/coin
 	var/datum/wires/vending/wires = null
-	var/always_open	=	FALSE  // If true, this machine allows products to be inserted without requirinf the maintenance hatch to be screwed open first
-	var/list/can_stock = list()	//A whitelist of objects which can be stocked into this vendor
-	//Note that a vendor can always accept restocks of things it has had in the past. This is in addition to that
-	var/no_criminals = FALSE //If true, the machine asks if you're wanted by security when you try to order.
+	var/always_open	=	FALSE  // If true, this69achine allows products to be inserted without re69uirinf the69aintenance hatch to be screwed open first
+	var/list/can_stock = list()	//A whitelist of objects which can be stocked into this69endor
+	//Note that a69endor can always accept restocks of things it has had in the past. This is in addition to that
+	var/no_criminals = FALSE //If true, the69achine asks if you're wanted by security when you try to order.
 
 /obj/machinery/vending/New()
 	..()
@@ -175,9 +175,9 @@
 	if(product_slogans)
 		slogan_list += splittext(product_slogans, ";")
 
-		// So not all machines speak at the exact same time.
-		// The first time this machine says something will be at slogantime + this random value,
-		// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
+		// So not all69achines speak at the exact same time.
+		// The first time this69achine says something will be at slogantime + this random69alue,
+		// so if slogantime is 1069inutes, it will say it at somewhere between 10 and 2069inutes after the69achine is crated.
 		last_slogan = world.time + rand(0, slogan_delay)
 
 	if(product_ads)
@@ -188,18 +188,18 @@
 
 
 /**
- * Add item to the machine
+ * Add item to the69achine
  *
- * Checks if item is vendable in this machine should be performed before
- * calling. W is the item being inserted, R is the associated vending_product entry.
+ * Checks if item is69endable in this69achine should be performed before
+ * calling. W is the item being inserted, R is the associated69ending_product entry.
  	R can be null, in which case the user is inserting something that wasnt previously here.
  	In that case we create a new inventory record for the item
  */
-/obj/machinery/vending/proc/stock(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
-	if(!user.unEquip(W))
+/obj/machinery/vending/proc/stock(obj/item/W,69ar/datum/data/vending_product/R,69ar/mob/user)
+	if(!user.unE69uip(W))
 		return
 
-	to_chat(user, SPAN_NOTICE("You insert \the [W] in the product receptor."))
+	to_chat(user, SPAN_NOTICE("You insert \the 69W69 in the product receptor."))
 	if(R)
 		R.add_product(W)
 	else
@@ -207,32 +207,32 @@
 
 	SSnano.update_uis(src)
 
-/obj/machinery/vending/proc/try_to_buy(obj/item/W, var/datum/data/vending_product/R, var/mob/user)
+/obj/machinery/vending/proc/try_to_buy(obj/item/W,69ar/datum/data/vending_product/R,69ar/mob/user)
 	if(!earnings_account)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not registered to an account."))
+		to_chat(user, SPAN_WARNING("69src69 flashes a69essage:69endomat not registered to an account."))
 		return
 	if(vendor_department)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not authorized to accept sales. Please contact a member of [GLOB.all_departments[vendor_department]]."))
+		to_chat(user, SPAN_WARNING("69src69 flashes a69essage:69endomat not authorized to accept sales. Please contact a69ember of 69GLOB.all_departments69vendor_department6969."))
 		return
 	if(buying_percentage <= 0)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Vendomat not accepting sales."))
+		to_chat(user, SPAN_WARNING("69src69 flashes a69essage:69endomat not accepting sales."))
 		return
 
-	if(!user.unEquip(W))
+	if(!user.unE69uip(W))
 		return
 
 	var/buying_price = round(R.price * buying_percentage/100,5)
 	if(earnings_account.money < buying_price)
-		to_chat(user, SPAN_WARNING("[src] flashes a message: Account is unable to make this purchase."))
+		to_chat(user, SPAN_WARNING("69src69 flashes a69essage: Account is unable to69ake this purchase."))
 		return
-	var/datum/transaction/T = new(-buying_price, "[user.name]", "Sale of [R.product_name]", src)
+	var/datum/transaction/T = new(-buying_price, "69user.name69", "Sale of 69R.product_name69", src)
 	T.apply_to(earnings_account)
 
 	R.add_product(W)
 
 	spawn_money(buying_price,loc,usr)
 
-	to_chat(user, SPAN_NOTICE("[src] accepts the sale of [W] and dispenses [buying_price] credits."))
+	to_chat(user, SPAN_NOTICE("69src69 accepts the sale of 69W69 and dispenses 69buying_price69 credits."))
 
 
 	SSnano.update_uis(src)
@@ -242,7 +242,7 @@
  *  Build src.produdct_records from the products lists
  *
  *  src.products, src.contraband, src.premium, and src.prices allow specifying
- *  products that the vending machine is to carry without manually populating
+ *  products that the69ending69achine is to carry without69anually populating
  *  src.product_records.
  */
 /obj/machinery/vending/proc/build_inventory()
@@ -252,13 +252,13 @@
 		list(premium, CAT_COIN))
 
 	for(var/current_list in all_products)
-		var/category = current_list[2]
+		var/category = current_list69269
 
-		for(var/entry in current_list[1])
+		for(var/entry in current_list69169)
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry)
 
-			product.price = (entry in prices) ? prices[entry] : product.price
-			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
+			product.price = (entry in prices) ? prices69entry69 : product.price
+			product.amount = (current_list6916969entry69) ? current_list6916969entry69 : 1
 			product.category = category
 
 			product_records.Add(product)
@@ -277,23 +277,23 @@
 
 
 /obj/machinery/vending/Destroy()
-	qdel(wires)
+	69del(wires)
 	wires = null
-	qdel(coin)
+	69del(coin)
 	coin = null
 	for(var/datum/data/vending_product/R in product_records)
-		qdel(R)
+		69del(R)
 	product_records.Cut()
 	return ..()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
 		if(1)
-			qdel(src)
+			69del(src)
 			return
 		if(2)
 			if(prob(50))
-				qdel(src)
+				69del(src)
 				return
 		if(3)
 			if(prob(25))
@@ -304,53 +304,53 @@
 		else
 	return
 
-/obj/machinery/vending/emag_act(var/remaining_charges, var/mob/user)
-	if(machine_vendor_account || vendor_department || earnings_account)
-		to_chat(user, "You override the ownership protocols on \the [src] and unlock it. You can now register it in your name.")
+/obj/machinery/vending/emag_act(var/remaining_charges,69ar/mob/user)
+	if(machine_vendor_account ||69endor_department || earnings_account)
+		to_chat(user, "You override the ownership protocols on \the 69src69 and unlock it. You can now register it in your name.")
 		machine_vendor_account = null
 		vendor_department = null
 		earnings_account = null
 		return 1
 	if(!emagged)
 		emagged = 1
-		to_chat(user, "You short out the product lock on \the [src]")
+		to_chat(user, "You short out the product lock on \the 69src69")
 		return 1
 
-/obj/machinery/vending/attackby(obj/item/I, mob/user)
+/obj/machinery/vending/attackby(obj/item/I,69ob/user)
 
-	var/tool_type = I.get_tool_type(user, list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING, QUALITY_WELDING), src)
+	var/tool_type = I.get_tool_type(user, list(69UALITY_BOLT_TURNING, 69UALITY_SCREW_DRIVING, 69UALITY_WELDING), src)
 	switch(tool_type)
 
-		if(QUALITY_BOLT_TURNING)
-			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-				to_chat(user, SPAN_NOTICE("You [anchored? "un" : ""]secured \the [src]!"))
+		if(69UALITY_BOLT_TURNING)
+			if(I.use_tool(user, src, WORKTIME_NORMAL, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC))
+				to_chat(user, SPAN_NOTICE("You 69anchored? "un" : ""69secured \the 69src69!"))
 				anchored = !anchored
 			return
 
-		if(QUALITY_SCREW_DRIVING)
+		if(69UALITY_SCREW_DRIVING)
 			var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
-			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
+			if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, re69uired_stat = STAT_MEC, instant_finish_tier = 30, forced_sound = used_sound))
 				panel_open = !panel_open
-				to_chat(user, SPAN_NOTICE("You [panel_open ? "open" : "close"] the maintenance panel."))
+				to_chat(user, SPAN_NOTICE("You 69panel_open ? "open" : "close"69 the69aintenance panel."))
 				overlays.Cut()
 				if(panel_open)
-					overlays += image(icon, "[icon_type]-panel")
+					overlays += image(icon, "69icon_type69-panel")
 				SSnano.update_uis(src)
 			return
 
-		if(QUALITY_WELDING)
+		if(69UALITY_WELDING)
 			if(custom_vendor)
 				if(!panel_open)
-					to_chat(usr, SPAN_WARNING("The maintenance panel on \the [src] needs to be open before deconstructing it."))
+					to_chat(usr, SPAN_WARNING("The69aintenance panel on \the 69src69 needs to be open before deconstructing it."))
 					return
-				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-					visible_message(SPAN_WARNING("\The [src] has been dismantled by [user]!"),"You hear welding.")
+				if(I.use_tool(user, src, WORKTIME_EXTREMELY_LONG, tool_type, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
+					visible_message(SPAN_WARNING("\The 69src69 has been dismantled by 69user69!"),"You hear welding.")
 					new /obj/item/stack/material/steel(loc, 8)
 					for(var/datum/data/vending_product/R in product_records)
 						for(var/obj/O in R.instances)
 							O.forceMove(loc)
 					new /obj/item/electronics/circuitboard/vending(loc)
-					qdel(src)
+					69del(src)
 
 		if(ABORT_CHECK)
 			return
@@ -380,7 +380,7 @@
 			return
 		else if(handled)
 			SSnano.update_uis(src)
-			return // don't smack that machine with your 2 credits
+			return // don't smack that69achine with your 2 credits
 
 	if(custom_vendor && ID)
 		var/datum/money_account/user_account = get_account(ID.associated_account_number)
@@ -398,20 +398,20 @@
 			return 0
 
 
-		if(machine_vendor_account == user_account || !machine_vendor_account || vendor_department)
+		if(machine_vendor_account == user_account || !machine_vendor_account ||69endor_department)
 			if(vendor_department)
 				var/datum/computer_file/report/crew_record/CR = get_crewmember_record(user_account.owner_name)
 				var/datum/job/userjob = SSjob.GetJob(CR.get_job())
-				if(userjob.department == vendor_department)
+				if(userjob.department ==69endor_department)
 					locked = !locked
 					status_error = 0
-					status_message = "Affiliation confirmed. Vendor has been [locked ? "" : "un"]locked."
+					status_message = "Affiliation confirmed.69endor has been 69locked ? "" : "un"69locked."
 				else
 					status_error = 1
-					status_message = "Error: You are not authorized to manage this Vendomat."
+					status_message = "Error: You are not authorized to69anage this69endomat."
 				SSnano.update_uis(src)
 				return
-			// Enter PIN, so you can't loot a vending machine with only the owner's ID card (as long as they increased the sec level)
+			// Enter PIN, so you can't loot a69ending69achine with only the owner's ID card (as long as they increased the sec level)
 			if(user_account.security_level != 0)
 				var/attempt_pin = input("Enter pin code", "Vendor transaction") as num | null
 				user_account = attempt_account_access(ID.associated_account_number, attempt_pin, 2)
@@ -427,9 +427,9 @@
 
 			locked = !locked
 			status_error = 0
-			status_message = "Owner confirmed. Vendor has been [locked ? "" : "un"]locked."
+			status_message = "Owner confirmed.69endor has been 69locked ? "" : "un"69locked."
 			playsound(usr.loc, 'sound/machines/id_swipe.ogg', 60, 1)
-			visible_message("<span class='info'>\The [usr] swipes \the [ID] through \the [src], [locked ? "" : "un"]locking it.</span>")
+			visible_message("<span class='info'>\The 69usr69 swipes \the 69ID69 through \the 69src69, 69locked ? "" : "un"69locking it.</span>")
 			SSnano.update_uis(src)
 			return
 
@@ -437,7 +437,7 @@
 		attack_hand(user)
 		return
 
-	else if((QUALITY_CUTTING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || (QUALITY_PULSING in I.tool_qualities))
+	else if((69UALITY_CUTTING in I.tool_69ualities) || (69UALITY_WIRE_CUTTING in I.tool_69ualities) || (69UALITY_PULSING in I.tool_69ualities))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -446,7 +446,7 @@
 		I.loc = src
 		coin = I
 		categories |= CAT_COIN
-		to_chat(user, SPAN_NOTICE("You insert \the [I] into \the [src]."))
+		to_chat(user, SPAN_NOTICE("You insert \the 69I69 into \the 69src69."))
 		SSnano.update_uis(src)
 		return
 
@@ -475,21 +475,21 @@
  */
 /obj/machinery/vending/proc/pay_with_cash(var/obj/item/spacecash/bundle/cashmoney)
 	if(currently_vending.price > cashmoney.worth)
-		// This is not a status display message, since it's something the character
-		// themselves is meant to see BEFORE putting the money in
-		to_chat(usr, "\icon[cashmoney] <span class='warning'>That is not enough money.</span>")
+		// This is not a status display69essage, since it's something the character
+		// themselves is69eant to see BEFORE putting the69oney in
+		to_chat(usr, "\icon69cashmoney69 <span class='warning'>That is not enough69oney.</span>")
 		return 0
 
-	visible_message("<span class='info'>\The [usr] inserts some cash into \the [src].</span>")
+	visible_message("<span class='info'>\The 69usr69 inserts some cash into \the 69src69.</span>")
 	cashmoney.worth -= currently_vending.price
 
 	if(cashmoney.worth <= 0)
 		usr.drop_from_inventory(cashmoney)
-		qdel(cashmoney)
+		69del(cashmoney)
 	else
 		cashmoney.update_icon()
 
-	// Vending machines have no idea who paid with cash
+	//69ending69achines have no idea who paid with cash
 	credit_purchase("(cash)")
 	return 1
 
@@ -500,14 +500,14 @@
  * successful, 0 if failed.
  */
 /obj/machinery/vending/proc/pay_with_ewallet(var/obj/item/spacecash/ewallet/wallet)
-	visible_message("<span class='info'>\The [usr] swipes \the [wallet] through \the [src].</span>")
+	visible_message("<span class='info'>\The 69usr69 swipes \the 69wallet69 through \the 69src69.</span>")
 	if(currently_vending.price > wallet.worth)
 		status_message = "Insufficient funds on chargecard."
 		status_error = 1
 		return 0
 	else
 		wallet.worth -= currently_vending.price
-		credit_purchase("[wallet.owner_name] (chargecard)")
+		credit_purchase("69wallet.owner_name69 (chargecard)")
 		return 1
 
 /**
@@ -516,11 +516,11 @@
  * Takes payment for whatever is the currently_vending item. Returns 1 if
  * successful, 0 if failed
  */
-/obj/machinery/vending/proc/pay_with_card(var/obj/item/card/id/I, var/obj/item/ID_container)
+/obj/machinery/vending/proc/pay_with_card(var/obj/item/card/id/I,69ar/obj/item/ID_container)
 	if(I==ID_container || ID_container == null)
-		visible_message("<span class='info'>\The [usr] swipes \the [I] through \the [src].</span>")
+		visible_message("<span class='info'>\The 69usr69 swipes \the 69I69 through \the 69src69.</span>")
 	else
-		visible_message("<span class='info'>\The [usr] swipes \the [ID_container] through \the [src].</span>")
+		visible_message("<span class='info'>\The 69usr69 swipes \the 69ID_container69 through \the 69src69.</span>")
 	var/datum/money_account/customer_account = get_account(I.associated_account_number)
 	if(!customer_account)
 		status_message = "Error: Unable to access account. Please contact technical support if problem persists."
@@ -532,9 +532,9 @@
 		status_error = 1
 		return 0
 
-	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
+	// Have the customer punch in the PIN before checking if there's enough69oney. Prevents people from figuring out acct is
 	// empty at high security levels
-	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
+	if(customer_account.security_level != 0) //If card re69uires pin authentication (ie seclevel 1 or 2)
 		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
@@ -548,31 +548,31 @@
 		status_error = 1
 		return 0
 	else
-		// Okay to move the money at this point
+		// Okay to69ove the69oney at this point
 
 		// create entry in the purchaser's account log
-		var/datum/transaction/T = new(-currently_vending.price, earnings_account.get_name(), "Purchase of [currently_vending.product_name]", src)
+		var/datum/transaction/T = new(-currently_vending.price, earnings_account.get_name(), "Purchase of 69currently_vending.product_name69", src)
 		T.apply_to(customer_account)
 
-		// Give the vendor the money. We use the account owner name, which means
-		// that purchases made with stolen/borrowed card will look like the card
-		// owner made them
+		// Give the69endor the69oney. We use the account owner name, which69eans
+		// that purchases69ade with stolen/borrowed card will look like the card
+		// owner69ade them
 		credit_purchase(customer_account.owner_name)
 		return 1
 
 /**
- *  Add money for current purchase to the vendor account.
+ *  Add69oney for current purchase to the69endor account.
  *
- *  Called after the money has already been taken from the customer.
+ *  Called after the69oney has already been taken from the customer.
  */
 /obj/machinery/vending/proc/credit_purchase(target)
-	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of [currently_vending.product_name]", src)
+	var/datum/transaction/T = new(currently_vending.price, target, "Purchase of 69currently_vending.product_name69", src)
 	T.apply_to(earnings_account)
 
-/obj/machinery/vending/attack_ai(mob/user as mob)
+/obj/machinery/vending/attack_ai(mob/user as69ob)
 	return attack_hand(user)
 
-/obj/machinery/vending/attack_hand(mob/user as mob)
+/obj/machinery/vending/attack_hand(mob/user as69ob)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -584,40 +584,40 @@
 	ui_interact(user)
 
 /**
- *  Display the NanoUI window for the vending machine.
+ *  Display the NanoUI window for the69ending69achine.
  *
  *  See NanoUI documentation for details.
  */
-/obj/machinery/vending/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
+/obj/machinery/vending/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
 	user.set_machine(src)
 
 	var/list/data = list()
 
-	data["unlocked"] = !locked
-	data["custom"] = custom_vendor
-	if(custom_vendor && machine_vendor_account && machine_vendor_account.owner_name)
-		data["owner_name"] = machine_vendor_account.get_name()
+	data69"unlocked"69 = !locked
+	data69"custom"69 = custom_vendor
+	if(custom_vendor &&69achine_vendor_account &&69achine_vendor_account.owner_name)
+		data69"owner_name"69 =69achine_vendor_account.get_name()
 
 	if(managing)
-		data["mode"] = 2
-		data["message"] = status_message
-		data["message_err"] = status_error
+		data69"mode"69 = 2
+		data69"message"69 = status_message
+		data69"message_err"69 = status_error
 	else if(currently_vending)
-		data["mode"] = 1
-		data["product"] = currently_vending.product_name
-		data["description"] = currently_vending.product_desc
-		data["price"] = currently_vending.price
-		data["message_err"] = 0
-		data["message"] = status_message
-		data["message_err"] = status_error
+		data69"mode"69 = 1
+		data69"product"69 = currently_vending.product_name
+		data69"description"69 = currently_vending.product_desc
+		data69"price"69 = currently_vending.price
+		data69"message_err"69 = 0
+		data69"message"69 = status_message
+		data69"message_err"69 = status_error
 	else
-		data["advertisement"] = ads_list.len ? pick(ads_list) : null
-		data["markup"] = buying_percentage
-		data["mode"] = 0
+		data69"advertisement"69 = ads_list.len ? pick(ads_list) : null
+		data69"markup"69 = buying_percentage
+		data69"mode"69 = 0
 		var/list/listed_products = list()
 
 		for(var/key = 1 to product_records.len)
-			var/datum/data/vending_product/I = product_records[key]
+			var/datum/data/vending_product/I = product_records69key69
 
 			if(!(I.category & categories))
 				continue
@@ -629,16 +629,16 @@
 				"color" = I.display_color,
 				"amount" = I.get_amount())))
 
-		data["products"] = listed_products
+		data69"products"69 = listed_products
 
 	if(coin)
-		data["coin"] = coin.name
+		data69"coin"69 = coin.name
 
 	if(panel_open)
-		data["panel"] = 1
-		data["speaker"] = shut_up ? 0 : 1
+		data69"panel"69 = 1
+		data69"speaker"69 = shut_up ? 0 : 1
 	else
-		data["panel"] = 0
+		data69"panel"69 = 0
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -652,29 +652,29 @@
 	if(usr.stat || usr.restrained())
 		return
 
-	if(href_list["remove_coin"] && !issilicon(usr))
+	if(href_list69"remove_coin"69 && !issilicon(usr))
 		if(!coin)
-			to_chat(usr, "There is no coin in this machine.")
+			to_chat(usr, "There is no coin in this69achine.")
 			return
 
 		coin.loc = loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		to_chat(usr, SPAN_NOTICE("You remove the [coin] from the [src]"))
+		to_chat(usr, SPAN_NOTICE("You remove the 69coin69 from the 69src69"))
 		coin = null
 		categories &= ~CAT_COIN
 
 	if((usr.contents.Find(src) || (in_range(src, usr) && istype(loc, /turf))))
-		if((href_list["vend"]) && (vend_ready) && (!currently_vending))
-			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+		if((href_list69"vend"69) && (vend_ready) && (!currently_vending))
+			if((!allowed(usr)) && !emagged && scan_id)	//For SECURE69ENDING69ACHINES YEAH
 				to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
 				flick(icon_deny,src)
 				return
 
-			var/key = text2num(href_list["vend"])
-			var/datum/data/vending_product/R = product_records[key]
+			var/key = text2num(href_list69"vend"69)
+			var/datum/data/vending_product/R = product_records69key69
 
-			// This should not happen unless the request from NanoUI was bad
+			// This should not happen unless the re69uest from NanoUI was bad
 			if(!(R.category & categories))
 				return
 
@@ -686,76 +686,76 @@
 			else
 				currently_vending = R
 				if(!earnings_account || earnings_account.suspended)
-					status_message = "This machine is currently unable to process payments due to problems with the associated account."
+					status_message = "This69achine is currently unable to process payments due to problems with the associated account."
 					status_error = 1
 				else
 					status_message = "Please swipe a card or insert cash to pay for the item."
 					if(no_criminals)
-						status_message += " We are legally required to ask if you are currently wanted by any law enforcement organizations. If so, please cancel the purchase, announce your location to local law enforcement and wait for them to collect you."
+						status_message += " We are legally re69uired to ask if you are currently wanted by any law enforcement organizations. If so, please cancel the purchase, announce your location to local law enforcement and wait for them to collect you."
 					status_error = 0
 
-		else if(href_list["setprice"] && !locked)
-			var/key = text2num(href_list["setprice"])
-			var/datum/data/vending_product/R = product_records[key]
+		else if(href_list69"setprice"69 && !locked)
+			var/key = text2num(href_list69"setprice"69)
+			var/datum/data/vending_product/R = product_records69key69
 
 			R.price = input("Enter item price.", "Item price") as num | null
 
-		else if(href_list["remove"] && !locked)
-			var/key = text2num(href_list["remove"])
-			var/datum/data/vending_product/R = product_records[key]
+		else if(href_list69"remove"69 && !locked)
+			var/key = text2num(href_list69"remove"69)
+			var/datum/data/vending_product/R = product_records69key69
 
-			qdel(R)
+			69del(R)
 
-		else if(href_list["return"])
+		else if(href_list69"return"69)
 			managing = FALSE
 
-		else if(href_list["management"])
+		else if(href_list69"management"69)
 			managing = TRUE
-			status_message = "Welcome to the management screen."
+			status_message = "Welcome to the69anagement screen."
 			status_error = 0
 
-		else if(href_list["setaccount"])
-			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this Vendomat.", "Vendomat Account", null) as num | null)
+		else if(href_list69"setaccount"69)
+			var/datum/money_account/newaccount = get_account(input("Please enter the number of the account that will handle transactions for this69endomat.", "Vendomat Account", null) as num | null)
 			if(!newaccount)
-				status_message = "No account specified. No change to earnings account has been made."
+				status_message = "No account specified. No change to earnings account has been69ade."
 			else
 				var/input_pin = input("Please enter the PIN for this account.", "Account PIN", null) as num | null
 				if(input_pin == newaccount.remote_access_pin)
-					status_message = "This Vendomat will now use the specified account, owned by [newaccount.get_name()]."
+					status_message = "This69endomat will now use the specified account, owned by 69newaccount.get_name()69."
 					status_error = 0
 					earnings_account = newaccount
 				else
-					status_message = "Error: PIN incorrect. No change to earnings account has been made."
+					status_message = "Error: PIN incorrect. No change to earnings account has been69ade."
 					status_error = 1
 
-		else if(href_list["markup"])
+		else if(href_list69"markup"69)
 			if(vendor_department)
-				status_message = "Error: Department Vendomats are not authorized to buy items for fraud concerns."
+				status_message = "Error: Department69endomats are not authorized to buy items for fraud concerns."
 				status_error = 1
 			else
-				var/newpercent = input("Please enter the percentage of the sale value the Vendomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num | null
+				var/newpercent = input("Please enter the percentage of the sale69alue the69endomat should offer when purchasing items. Set to 0 to deny sales.", "Markup", null) as num | null
 				if(newpercent)
-					buying_percentage = max(0, min(newpercent,100))
+					buying_percentage =69ax(0,69in(newpercent,100))
 
-		else if(href_list["setdepartment"])
+		else if(href_list69"setdepartment"69)
 			set_department()
 
-		else if(href_list["unregister"])
+		else if(href_list69"unregister"69)
 			machine_vendor_account = null
 			earnings_account = null
 
-		else if(href_list["cancelpurchase"])
+		else if(href_list69"cancelpurchase"69)
 			currently_vending = null
 
-		else if((href_list["togglevoice"]) && (panel_open))
+		else if((href_list69"togglevoice"69) && (panel_open))
 			shut_up = !shut_up
 
 		add_fingerprint(usr)
 		playsound(usr.loc, 'sound/machines/button.ogg', 100, 1)
 		SSnano.update_uis(src)
 
-/obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
-	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE VENDING MACHINES YEAH
+/obj/machinery/vending/proc/vend(datum/data/vending_product/R,69ob/user)
+	if((!allowed(usr)) && !emagged && scan_id)	//For SECURE69ENDING69ACHINES YEAH
 		to_chat(usr, SPAN_WARNING("Access denied."))	//Unless emagged of course
 		flick(icon_deny,src)
 		return
@@ -770,22 +770,22 @@
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, SPAN_NOTICE("You successfully pull the coin out before \the [src] could swallow it."))
+				to_chat(user, SPAN_NOTICE("You successfully pull the coin out before \the 69src69 could swallow it."))
 			else
-				to_chat(user, SPAN_NOTICE("You weren't able to pull the coin out fast enough, the machine ate it, string and all."))
-				qdel(coin)
+				to_chat(user, SPAN_NOTICE("You weren't able to pull the coin out fast enough, the69achine ate it, string and all."))
+				69del(coin)
 				categories &= ~CAT_COIN
 		else
-			qdel(coin)
+			69del(coin)
 			categories &= ~CAT_COIN
 
-	if(((last_reply + (vend_delay + 200)) <= world.time) && vend_reply)
+	if(((last_reply + (vend_delay + 200)) <= world.time) &&69end_reply)
 		spawn(0)
 			speak(vend_reply)
 			last_reply = world.time
 
 	use_power(vend_power_usage)	//actuators and stuff
-	if(icon_vend) //Show the vending animation if needed
+	if(icon_vend) //Show the69ending animation if needed
 		flick(icon_vend,src)
 	spawn(vend_delay)
 		if(R.get_product(get_turf(src)))
@@ -813,7 +813,7 @@
 		if(custom_vendor && product_records.len)
 			var/datum/data/vending_product/advertised = pick(product_records)
 			if(advertised)
-				var/advertisement = "[pick("Come get","Come buy","Buy","Sale on","We have")] \an [advertised.product_name], [pick("for only","only","priced at")] [advertised.price] credits![pick(" What a deal!"," Can you believe it?","")]"
+				var/advertisement = "69pick("Come get","Come buy","Buy","Sale on","We have")69 \an 69advertised.product_name69, 69pick("for only","only","priced at")69 69advertised.price69 credits!69pick(" What a deal!"," Can you believe it?","")69"
 				speak(advertisement)
 				last_slogan = world.time
 		else
@@ -835,21 +835,21 @@
 		return
 
 	for(var/mob/O in hearers(src, null))
-		O.show_message("<span class='game say'><span class='name'>\The [src]</span> beeps, \"[message]\"</span>",2)
+		O.show_message("<span class='game say'><span class='name'>\The 69src69</span> beeps, \"69message69\"</span>",2)
 	return
 
 /obj/machinery/vending/power_change()
 	..()
 	if(stat & BROKEN)
-		icon_state = "[icon_type]-broken"
+		icon_state = "69icon_type69-broken"
 	else
 		if( !(stat & NOPOWER) )
 			icon_state = icon_type
 		else
 			spawn(rand(0, 15))
-				icon_state = "[icon_type]-off"
+				icon_state = "69icon_type69-off"
 
-//Oh no we're malfunctioning!  Dump out some product and break.
+//Oh no we're69alfunctioning!  Dump out some product and break.
 /obj/machinery/vending/proc/malfunction()
 	for(var/datum/data/vending_product/R in product_records)
 		while(R.get_amount()>0)
@@ -857,12 +857,12 @@
 		break
 
 	stat |= BROKEN
-	icon_state = "[icon_type]-broken"
+	icon_state = "69icon_type69-broken"
 	return
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
-	var/mob/living/target = locate() in view(7,src)
+	var/mob/living/target = locate() in69iew(7,src)
 	if(!target)
 		return 0
 	var/obj/item/projectile/P = new /obj/item/projectile/coin(get_turf(src))
@@ -873,36 +873,36 @@
 		'sound/weapons/guns/fire/ltrifle_fire.ogg','sound/weapons/guns/fire/batrifle_fire.ogg'),\
 		60, 1)
 	P.launch(target)
-	visible_message(SPAN_WARNING("\The [src] launches \a [P] at \the [target]!"))
+	visible_message(SPAN_WARNING("\The 69src69 launches \a 69P69 at \the 69target69!"))
 	return 1
 
 /obj/machinery/vending/proc/set_department()
 	var/list/possible_departments = list("Privately Owned" = null)
 	for(var/d in GLOB.all_departments)
-		possible_departments[GLOB.all_departments[d]] = department_accounts[d]
-	var/newdepartment = input("Which organization should be considered the owner of this Vendomat? This will also allow members to manage it.", "Vendomat Department", null) in possible_departments
+		possible_departments69GLOB.all_departments69d6969 = department_accounts69d69
+	var/newdepartment = input("Which organization should be considered the owner of this69endomat? This will also allow69embers to69anage it.", "Vendomat Department", null) in possible_departments
 	if(!newdepartment)
 		return
 	if(newdepartment == "Privately Owned")
-		status_message = "This Vendomat now belongs only to you."
-		desc = "A custom Vendomat."
+		status_message = "This69endomat now belongs only to you."
+		desc = "A custom69endomat."
 		vendor_department = null
 		earnings_account = null
 	else
-		status_message = "This Vendomat is now property of \"[newdepartment]\"."
-		desc = "A custom Vendomat. It bears the logo of [newdepartment]."
+		status_message = "This69endomat is now property of \"69newdepartment69\"."
+		desc = "A custom69endomat. It bears the logo of 69newdepartment69."
 		vendor_department = newdepartment:id
-		earnings_account = department_accounts[vendor_department]
+		earnings_account = department_accounts69vendor_department69
 		buying_percentage = 0
 	status_error = 0
 
 /*
- * Vending machine types
+ *69ending69achine types
  */
 
 /*
 
-/obj/machinery/vending/[vendors name here]   // --vending machine template   :)
+/obj/machinery/vending/69vendors name here69   // --vending69achine template   :)
 	name = ""
 	desc = ""
 	icon = ''
@@ -915,9 +915,9 @@
 */
 
 /*
-/obj/machinery/vending/atmospherics //Commenting this out until someone ponies up some actual working, broken, and unpowered sprites - Quarxink
-	name = "Tank Vendor"
-	desc = "A vendor with a wide variety of masks and gas tanks."
+/obj/machinery/vending/atmospherics //Commenting this out until someone ponies up some actual working, broken, and unpowered sprites - 69uarxink
+	name = "Tank69endor"
+	desc = "A69endor with a wide69ariety of69asks and gas tanks."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
 	product_paths = "/obj/item/tank/oxygen;/obj/item/tank/plasma;/obj/item/tank/emergency_oxygen;/obj/item/tank/emergency_oxygen/engi;/obj/item/clothing/mask/breath"
@@ -927,11 +927,11 @@
 
 /obj/machinery/vending/boozeomat
 	name = "Booze-O-Mat"
-	desc = "A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one."
+	desc = "A technological69arvel, supposedly able to69ix just the69ixture you'd like to drink the69oment you ask for one."
 	icon_state = "boozeomat"        //////////////18 drink entities below, plus the glasses, in case someone wants to edit the number of bottles
 	icon_deny = "boozeomat-deny"
 	products = list(/obj/item/reagent_containers/food/drinks/bottle/gin = 5,/obj/item/reagent_containers/food/drinks/bottle/whiskey = 5,
-					/obj/item/reagent_containers/food/drinks/bottle/tequilla = 5,/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
+					/obj/item/reagent_containers/food/drinks/bottle/te69uilla = 5,/obj/item/reagent_containers/food/drinks/bottle/vodka = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/vermouth = 5,/obj/item/reagent_containers/food/drinks/bottle/rum = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/wine = 5,/obj/item/reagent_containers/food/drinks/bottle/cognac = 5,
 					/obj/item/reagent_containers/food/drinks/bottle/kahlua = 5,/obj/item/reagent_containers/food/drinks/bottle/small/beer = 6,
@@ -942,13 +942,13 @@
 					/obj/item/reagent_containers/food/drinks/bottle/space_mountain_wind = 5, /obj/item/reagent_containers/food/drinks/cans/sodawater = 15,
 					/obj/item/reagent_containers/food/drinks/flask/barflask = 2, /obj/item/reagent_containers/food/drinks/flask/vacuumflask = 2,
 					/obj/item/reagent_containers/food/drinks/drinkingglass = 30,/obj/item/reagent_containers/food/drinks/ice = 9,
-					/obj/item/reagent_containers/food/drinks/bottle/melonliquor = 2,/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = 2,
+					/obj/item/reagent_containers/food/drinks/bottle/melonli69uor = 2,/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = 2,
 					/obj/item/reagent_containers/food/drinks/bottle/absinthe = 2,/obj/item/reagent_containers/food/drinks/bottle/grenadine = 5)
 	contraband = list(/obj/item/reagent_containers/food/drinks/tea/green = 10, /obj/item/reagent_containers/food/drinks/tea/black = 10)
 	vend_delay = 15
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	product_slogans = "I hope nobody asks me for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;Quite delighted to serve you!;Is nobody thirsty on this ship?"
-	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;Quite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best quality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated69ending69achine according to NRCan.
+	product_slogans = "I hope nobody asks69e for a bloody cup o' tea...;Alcohol is humanity's friend. Would you abandon a friend?;69uite delighted to serve you!;Is nobody thirsty on this ship?"
+	product_ads = "Drink up!;Booze is good for you!;Alcohol is humanity's best friend.;69uite delighted to serve you!;Care for a nice, cold beer?;Nothing cures you like booze!;Have a sip!;Have a drink!;Have a beer!;Beer is good for you!;Only the finest alcohol!;Best 69uality booze since 2053!;Award-winning wine!;Maximum alcohol!;Man loves beer.;A toast for progress!"
 	auto_price = FALSE
 
 /obj/machinery/vending/assist
@@ -957,18 +957,18 @@
 		/obj/item/device/assembly/signaler = 6,/obj/item/tool/wirecutters = 1, /obj/item/tool/wirecutters/pliers = 1
 	)
 	contraband = list(/obj/item/device/lighting/toggleable/flashlight = 5,/obj/item/device/assembly/timer = 2)
-	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
+	product_ads = "Only the finest!;Have some tools.;The69ost robust e69uipment.;The finest gear in space!"
 	auto_price = FALSE
 
 /obj/machinery/vending/coffee
-	name = "Hot Drinks machine"
-	desc = "A vending machine which dispenses hot drinks."
+	name = "Hot Drinks69achine"
+	desc = "A69ending69achine which dispenses hot drinks."
 	product_ads = "Have a drink!;Drink up!;It's good for you!;Would you like a hot joe?;I'd kill for some coffee!;The best beans in the galaxy.;Only the finest brew for you.;Mmmm. Nothing like a coffee.;I like coffee, don't you?;Coffee helps you work!;Try some tea.;We hope you like the best!;Try our new chocolate!"
 	icon_state = "coffee"
 	icon_vend = "coffee-vend"
 	vend_delay = 34
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
-	vend_power_usage = 85000 //85 kJ to heat a 250 mL cup of coffee
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated69ending69achine according to NRCan.
+	vend_power_usage = 85000 //85 kJ to heat a 25069L cup of coffee
 	products = list(/obj/item/reagent_containers/food/drinks/coffee = 25,/obj/item/reagent_containers/food/drinks/tea/black = 25,
 					/obj/item/reagent_containers/food/drinks/tea/green = 25,/obj/item/reagent_containers/food/drinks/h_chocolate = 25)
 	contraband = list(/obj/item/reagent_containers/food/drinks/ice = 10)
@@ -980,9 +980,9 @@
 
 /obj/machinery/vending/snack
 	name = "Getmore Chocolate Corp"
-	desc = "A snack machine courtesy of the Getmore Chocolate Corporation."
+	desc = "A snack69achine courtesy of the Getmore Chocolate Corporation."
 	product_slogans = "Try our new nougat bar!;Twice the calories for half the price!"
-	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh my god it's so juicy!;Have a snack.;Snacks are good for you!;Have some more Getmore!;Best quality snacks straight from mars.;We love chocolate!;Try our new jerky!"
+	product_ads = "The healthiest!;Award-winning chocolate bars!;Mmm! So good!;Oh69y god it's so juicy!;Have a snack.;Snacks are good for you!;Have some69ore Getmore!;Best 69uality snacks straight from69ars.;We love chocolate!;Try our new jerky!"
 	icon_state = "snack"
 	products = list(/obj/item/reagent_containers/food/snacks/shokoloud = 6,/obj/item/reagent_containers/food/drinks/dry_ramen = 6,/obj/item/reagent_containers/food/snacks/chips =6,
 					/obj/item/reagent_containers/food/snacks/sosjerky = 6,/obj/item/reagent_containers/food/snacks/no_raisin = 6,/obj/item/reagent_containers/food/snacks/spacetwinkie = 6,
@@ -994,8 +994,8 @@
 
 /obj/machinery/vending/weapon_machine
 	name = "Frozen Star Guns&Ammo"
-	desc = "A self-defense equipment vending machine. When you need to take care of that clown."
-	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
+	desc = "A self-defense e69uipment69ending69achine. When you need to take care of that clown."
+	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created69an - Frozen Star69ade them E69UAL!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
 	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
 	icon_state = "weapon"
 	no_criminals = TRUE
@@ -1066,28 +1066,28 @@
 
 /obj/machinery/vending/cola
 	name = "Robust Softdrinks"
-	desc = "A softdrink vendor provided by Robust Industries, LLC."
+	desc = "A softdrink69endor provided by Robust Industries, LLC."
 	icon_state = "Cola_Machine"
-	product_slogans = "Robust Softdrinks: More robust than a toolbox to the head!"
-	product_ads = "Refreshing!;Hope you're thirsty!;Over 1 million drinks sold!;Thirsty? Why not have some cola?;Please, have a drink!;Drink up!;The best drinks in space."
+	product_slogans = "Robust Softdrinks:69ore robust than a toolbox to the head!"
+	product_ads = "Refreshing!;Hope you're thirsty!;Over 169illion drinks sold!;Thirsty? Why not have some cola?;Please, have a drink!;Drink up!;The best drinks in space."
 	products = list(/obj/item/reagent_containers/food/drinks/cans/cola = 10,/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 10,
 					/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 10,/obj/item/reagent_containers/food/drinks/cans/starkist = 10,
 					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 10,/obj/item/reagent_containers/food/drinks/cans/space_up = 10,
 					/obj/item/reagent_containers/food/drinks/cans/iced_tea = 10, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 10)
-	contraband = list(/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 5, /obj/item/reagent_containers/food/snacks/liquidfood = 6)
+	contraband = list(/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 5, /obj/item/reagent_containers/food/snacks/li69uidfood = 6)
 	prices = list(/obj/item/reagent_containers/food/drinks/cans/cola = 30,/obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 30,
 					/obj/item/reagent_containers/food/drinks/cans/dr_gibb = 1000,/obj/item/reagent_containers/food/drinks/cans/starkist = 30,
 					/obj/item/reagent_containers/food/drinks/cans/waterbottle = 32,/obj/item/reagent_containers/food/drinks/cans/space_up = 30,
 					/obj/item/reagent_containers/food/drinks/cans/iced_tea = 30,/obj/item/reagent_containers/food/drinks/cans/grape_juice = 30,
-					/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 50, /obj/item/reagent_containers/food/snacks/liquidfood = 60)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+					/obj/item/reagent_containers/food/drinks/cans/thirteenloko = 50, /obj/item/reagent_containers/food/snacks/li69uidfood = 60)
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated69ending69achine according to NRCan.
 	vendor_department = DEPARTMENT_CIVILIAN
 
 /obj/machinery/vending/cigarette
-	name = "Cigarette machine" //OCD had to be uppercase to look nice with the new formating
-	desc = "If you want to get cancer, might as well do it in style!"
+	name = "Cigarette69achine" //OCD had to be uppercase to look nice with the new formating
+	desc = "If you want to get cancer,69ight as well do it in style!"
 	product_slogans = "Space cigs taste good like a cigarette should.;I'd rather toolbox than switch.;Smoke!;Don't believe the reports - smoke today!"
-	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't quit, buy more!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
+	product_ads = "Probably not bad for you!;Don't believe the scientists!;It's good for you!;Don't 69uit, buy69ore!;Smoke!;Nicotine heaven.;Best cigarettes since 2150.;Award-winning cigs."
 	vend_delay = 34
 	icon_state = "cigs"
 	products = list(/obj/item/storage/fancy/cigarettes = 10,
@@ -1136,22 +1136,22 @@
 	desc = "Medical drug dispenser."
 	icon_state = "med"
 	icon_deny = "med-deny"
-	req_access = list(access_medical_equip)
-	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
+	re69_access = list(access_medical_e69uip)
+	product_ads = "Go save some lives!;The best stuff for your69edbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	products = list(/obj/item/reagent_containers/glass/bottle/antitoxin = 8,/obj/item/reagent_containers/glass/bottle/inaprovaline = 8,
 					/obj/item/reagent_containers/glass/bottle/stoxin = 4,/obj/item/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/reagent_containers/syringe/spaceacillin = 8,/obj/item/reagent_containers/syringe = 12,
 					/obj/item/device/scanner/health = 5,/obj/item/reagent_containers/glass/beaker = 4, /obj/item/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 3, /obj/item/stack/medical/advanced/ointment = 3, /obj/item/stack/medical/splint = 6, /obj/item/bodybag/cryobag = 2)
 	contraband = list(/obj/item/reagent_containers/pill/tox = 3,/obj/item/reagent_containers/pill/stox = 4,/obj/item/reagent_containers/pill/antitox = 6)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated69ending69achine according to NRCan.
 	auto_price = FALSE
 
 
 //This one's from bay12
 /obj/machinery/vending/plasmaresearch
 	name = "Toximate 3000"
-	desc = "All the fine parts you need in one vending machine!"
+	desc = "All the fine parts you need in one69ending69achine!"
 	products = list(/obj/item/clothing/under/rank/scientist = 6,/obj/item/clothing/suit/bio_suit = 6,/obj/item/clothing/head/bio_hood = 6,
 					/obj/item/device/transfer_valve = 6,/obj/item/device/assembly/timer = 6,/obj/item/device/assembly/signaler = 6,
 					/obj/item/device/assembly/prox_sensor = 6,/obj/item/device/assembly/igniter = 6)
@@ -1159,12 +1159,12 @@
 
 /obj/machinery/vending/wallmed
 	name = "MicroMed"
-	desc = "Wall-mounted medical dispenser."
+	desc = "Wall-mounted69edical dispenser."
 	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	icon_state = "wallmed"
 	light_color = COLOR_LIGHTING_GREEN_BRIGHT
 	icon_deny = "wallmed-deny"
-	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your veins!"
+	product_ads = "Self-medication can be healthy!;Natural chemicals!;This stuff saves lives.;Don't you want some?;Hook it up to your69eins!"
 
 /obj/machinery/vending/wallmed/minor
 	products = list(
@@ -1237,11 +1237,11 @@
 
 /obj/machinery/vending/security
 	name = "SecTech"
-	desc = "A security equipment vendor."
-	product_ads = "Crack some skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase me bro!;Tase them, bro.;Why not have a donut?"
+	desc = "A security e69uipment69endor."
+	product_ads = "Crack some skulls!;Beat some heads in!;Don't forget - harm is good!;Your weapons are right here.;Handcuffs!;Freeze, scumbag!;Don't tase69e bro!;Tase them, bro.;Why not have a donut?"
 	icon_state = "sec"
 	icon_deny = "sec-deny"
-	req_access = list(access_security)
+	re69_access = list(access_security)
 	products = list(/obj/item/handcuffs = 8,
 					/obj/item/handcuffs/zipties = 8,
 					/obj/item/grenade/flashbang = 8,
@@ -1271,20 +1271,20 @@
 
 /obj/machinery/vending/hydronutrients
 	name = "NutriMax"
-	desc = "A plant nutrients vendor."
+	desc = "A plant nutrients69endor."
 	product_slogans = "Aren't you glad you don't have to fertilize the natural way?;Now with 50% less stink!;Plants are people too!"
 	product_ads = "We like plants!;Don't you want some?;The greenest thumbs ever.;We like big plants.;Soft soil..."
 	icon_state = "nutri"
 	products = list(/obj/item/reagent_containers/glass/fertilizer/ez = 6,/obj/item/reagent_containers/glass/fertilizer/l4z = 4,/obj/item/reagent_containers/glass/fertilizer/rh = 4,/obj/item/plantspray/pests = 20,
 					/obj/item/reagent_containers/syringe = 5,/obj/item/storage/bag/produce = 5)
 	premium = list(/obj/item/reagent_containers/glass/bottle/ammonia = 10,/obj/item/reagent_containers/glass/bottle/diethylamine = 5)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated69ending69achine according to NRCan.
 	auto_price = FALSE
 
 /obj/machinery/vending/hydroseeds
 	name = "MegaSeed Servitor"
 	desc = "When you need seeds fast!"
-	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the ship!;Also certain mushroom varieties available, more for experts! Get certified today!"
+	product_slogans = "THIS'S WHERE TH' SEEDS LIVE! GIT YOU SOME!;Hands down the best seed selection on the ship!;Also certain69ushroom69arieties available,69ore for experts! Get certified today!"
 	product_ads = "We like plants!;Grow some crops!;Grow, baby, growww!;Aw h'yeah son!"
 	icon_state = "seeds"
 	always_open = TRUE
@@ -1305,7 +1305,7 @@
  *  Populate hydroseeds product_records
  *
  *  This needs to be customized to fetch the actual names of the seeds, otherwise
- *  the machine would simply list "packet of seeds" times 20
+ *  the69achine would simply list "packet of seeds" times 20
  */
 /obj/machinery/vending/hydroseeds/build_inventory()
 	var/list/all_products = list(
@@ -1314,24 +1314,24 @@
 		list(premium, CAT_COIN))
 
 	for(var/current_list in all_products)
-		var/category = current_list[2]
+		var/category = current_list69269
 
-		for(var/entry in current_list[1])
+		for(var/entry in current_list69169)
 			var/obj/item/seeds/S = new entry(src)
 			var/name = S.name
 			var/datum/data/vending_product/product = new/datum/data/vending_product(src, entry, name)
 
-			product.price = (entry in prices) ? prices[entry] : product.price
-			product.amount = (current_list[1][entry]) ? current_list[1][entry] : 1
+			product.price = (entry in prices) ? prices69entry69 : product.price
+			product.amount = (current_list6916969entry69) ? current_list6916969entry69 : 1
 			product.category = category
 
 			product_records.Add(product)
-			qdel(S)
+			69del(S)
 
 
 /obj/machinery/vending/dinnerware
 	name = "Dinnerware"
-	desc = "A kitchen and restaurant equipment vendor."
+	desc = "A kitchen and restaurant e69uipment69endor."
 	product_ads = "Mm, food stuffs!;Food and food accessories.;Get your plates!;You like forks?;I like forks.;Woo, utensils.;You don't really need these..."
 	icon_state = "dinnerware"
 	products = list(
@@ -1359,12 +1359,12 @@
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
-	desc = "An old sweet water vending machine,how did this end up here?"
+	desc = "An old sweet water69ending69achine,how did this end up here?"
 	icon_state = "sovietsoda"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition 69uota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30)
 	contraband = list(/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20)
-	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated69ending69achine according to NRCan.
 	auto_price = FALSE
 
 /obj/machinery/vending/tool
@@ -1381,7 +1381,7 @@
 
 /obj/machinery/vending/engivend
 	name = "Engi-Vend"
-	desc = "Spare tool vending. What? Did you expect some witty description?"
+	desc = "Spare tool69ending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	icon_deny = "engivend-deny"
 	products = list(/obj/item/clothing/glasses/powered/meson = 2,/obj/item/tool/multitool = 4,/obj/item/electronics/airlock = 10,/obj/item/electronics/circuitboard/apc = 10,/obj/item/electronics/airalarm = 10,/obj/item/cell/large/high = 10,/obj/item/rpd = 3)
@@ -1391,7 +1391,7 @@
 
 //This one's from bay12
 /obj/machinery/vending/engineering
-	name = "Robco Tool Maker"
+	name = "Robco Tool69aker"
 	desc = "Everything you need for do-it-yourself ship repair."
 	icon_state = "engi"
 	icon_deny = "engi-deny"
@@ -1420,7 +1420,7 @@
 					/obj/item/tool/screwdriver = 5,/obj/item/tool/crowbar = 5)
 	auto_price = FALSE
 
-//FOR ACTORS GUILD - mainly props that cannot be spawned otherwise
+//FOR ACTORS GUILD -69ainly props that cannot be spawned otherwise
 /obj/machinery/vending/props
 	name = "prop dispenser"
 	desc = "All the props an actor could need. Probably."
@@ -1514,7 +1514,7 @@
 	name = "From Serbia with love"
 	desc = "How did this end up here?"
 	icon_state = "serbomat"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!."
+	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition 69uota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem.;Our ERPs are definitely free of food additives and totally not laced to the brim with harmful chems. Try it out!."
 	products = list(
 					/obj/item/reagent_containers/food/drinks/bottle/vodka = 60, // ghetto antihacking, have fun
 					/obj/item/storage/deferred/crate/uniform_green = 4,
@@ -1556,9 +1556,9 @@
 
 /obj/machinery/vending/billomat
 	name = "Bill Trustworthy's Discount Guns and Enterprising Detritus"
-	desc = "Some relic of an arms dealer's business, its owner most likely long dead."
+	desc = "Some relic of an arms dealer's business, its owner69ost likely long dead."
 	product_slogans = "Discount guns for discount prices!;Also see our used ship line!;From the home of Challenge Pissing!"
-	product_ads = "Brought to you by the man behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;Lifetime warranty! (it won't last that long.);Coolness sold seperately.;Also see Rent-A-Nuke!"
+	product_ads = "Brought to you by the69an behind Bill Trustworthy's Used Ships!;Don't wait! Don't delay! Don't fuck with us!;Lifetime warranty! (it won't last that long.);Coolness sold seperately.;Also see Rent-A-Nuke!"
 	icon_state = "trashvend"
 	products = list(
 					/obj/item/ammo_magazine/lrifle = 12,
@@ -1618,7 +1618,7 @@
 
 /obj/machinery/vending/style
 	name = "Asters Guild Style-o-matic"
-	desc = "Asters Guild vendor selling, possibly stolen, most likely overpriced, stylish clothing."
+	desc = "Asters Guild69endor selling, possibly stolen,69ost likely overpriced, stylish clothing."
 	product_slogans = "Highly stylish clothing for sale!;Latest fashion trends right here!"
 	product_ads = "Stylish!;Cheap!;Legal within this sector!"
 	icon_state = "style"
@@ -1681,36 +1681,36 @@
 
 
 /obj/machinery/vending/custom
-	name = "Custom Vendomat"
-	desc = "A custom vending machine."
+	name = "Custom69endomat"
+	desc = "A custom69ending69achine."
 	custom_vendor = TRUE
 	locked = TRUE
 	can_stock = list(/obj/item)
 
 /obj/machinery/vending/custom/verb/remodel()
-	set name = "Remodel Vendomat"
+	set name = "Remodel69endomat"
 	set category = "Object"
 	set src in oview(1)
 
 	if(locked)
-		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to remodel it."))
+		to_chat(usr, SPAN_WARNING("69src69 needs to be unlocked to remodel it."))
 		return
-	var/choice = input(usr, "How do you want your Vendomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in CUSTOM_VENDOMAT_MODELS
+	var/choice = input(usr, "How do you want your69endomat to look? You can remodel it again later.", "Vendomat Remodeling", null) in CUSTOM_VENDOMAT_MODELS
 	if(!choice)
 		return
-	icon_type = CUSTOM_VENDOMAT_MODELS[choice]
+	icon_type = CUSTOM_VENDOMAT_MODELS69choice69
 	power_change()
 
 /obj/machinery/vending/custom/verb/rename()
-	set name = "Rename Vendomat"
+	set name = "Rename69endomat"
 	set category = "Object"
 	set src in oview(1)
 
 	if(locked)
-		to_chat(usr, SPAN_WARNING("[src] needs to be unlocked to rename it."))
+		to_chat(usr, SPAN_WARNING("69src69 needs to be unlocked to rename it."))
 		return
 
-	var/choice = sanitize(input("What do you want to name your Vendomat? You can rename it again later.", "Vendomat Renaming", name) as text|null, MAX_NAME_LEN)
+	var/choice = sanitize(input("What do you want to name your69endomat? You can rename it again later.", "Vendomat Renaming", name) as text|null,69AX_NAME_LEN)
 	if(choice)
 		SetName(choice)
 

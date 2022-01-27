@@ -1,5 +1,5 @@
 #define NEIGHBOR_REFRESH_TIME 100
-#define MIN_LIGHT_LIMIT 0.5
+#define69IN_LIGHT_LIMIT 0.5
 
 /obj/effect/plant/proc/get_cardinal_neighbors()
 	var/list/cardinal_neighbors = list()
@@ -10,7 +10,7 @@
 	return cardinal_neighbors
 
 /obj/effect/plant/proc/update_neighbors()
-	// Update our list of valid neighboring turfs.
+	// Update our list of69alid neighboring turfs.
 	neighbors = list()
 	var/list/tocheck = get_cardinal_neighbors()
 	for(var/turf/simulated/floor in tocheck)
@@ -26,15 +26,15 @@
 			if(neighbor_plant.seed.get_trait(TRAIT_INVASIVE))//If it's also invasive, don't invade (for better performance and plants not eating at itself)
 				continue
 
-		//We dont want to melt external walls and cause breaches
+		//We dont want to69elt external walls and cause breaches
 		if(!near_external && floor.density)
-			if(!isnull(seed.chems["pacid"]))
+			if(!isnull(seed.chems69"pacid"69))
 				spawn(rand(5,25)) floor.ex_act(3)
 			continue
 		if(!Adjacent(floor))
 			continue
 
-		//Space vines can grow through airlocks by forcing their way into tiny gaps
+		//Space69ines can grow through airlocks by forcing their way into tiny gaps
 		//There also can be special conditions handling
 		if (!floor.Enter(src))
 
@@ -42,7 +42,7 @@
 				neighbors |= floor
 				continue
 
-			//Maintshooms cannot, spread trait must be 3 or more
+			//Maintshooms cannot, spread trait69ust be 3 or69ore
 			if(seed.get_trait(TRAIT_SPREAD) < 3)
 				continue
 
@@ -72,7 +72,7 @@
 
 
 /obj/effect/plant/proc/door_interaction(obj/machinery/door/door, turf/simulated/floor)
-	//We have to make sure that nothing ELSE aside from the door is blocking us
+	//We have to69ake sure that nothing ELSE aside from the door is blocking us
 	var/blocked = FALSE
 	for (var/obj/O in floor)
 		if (O == door)
@@ -86,20 +86,20 @@
 		return FALSE
 	return TRUE
 
-//This silly special case override is needed to make vines work with portals.
-//Code is copied from /atoms_movable.dm, but a spawn call is removed, making it completely synchronous
+//This silly special case override is needed to69ake69ines work with portals.
+//Code is copied from /atoms_movable.dm, but a spawn call is removed,69aking it completely synchronous
 /obj/effect/plant/Bump(var/atom/A, yes)
 	if (A && yes)
 		A.last_bumped = world.time
 		A.Bumped(src)
 
 /obj/effect/plant/Process()
-	// Something is very wrong, kill ourselves.
+	// Something is69ery wrong, kill ourselves.
 	if(!seed || !loc)
 		die_off()
 		return PROCESS_KILL
 
-	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
+	for(var/obj/effect/effect/smoke/chem/smoke in69iew(1, src))
 		if(smoke.reagents.has_reagent("plantbgone"))
 			die_off()
 			return
@@ -117,8 +117,8 @@
 		update_neighbors()
 
 	if(sampled)
-		//Should be between 2-7 for given the default range of values for TRAIT_PRODUCTION
-		var/chance = max(1, round(30/seed.get_trait(TRAIT_PRODUCTION)))
+		//Should be between 2-7 for given the default range of69alues for TRAIT_PRODUCTION
+		var/chance =69ax(1, round(30/seed.get_trait(TRAIT_PRODUCTION)))
 		if(prob(chance))
 			sampled = 0
 
@@ -128,7 +128,7 @@
 
 	// We shouldn't have spawned if the controller doesn't exist.
 	check_health(FALSE)//Dont want to update the icon every process
-	if(neighbors.len || health != max_health)
+	if(neighbors.len || health !=69ax_health)
 		plant_controller.add_plant(src)
 
 	if (seed.get_trait(TRAIT_CHEM_SPRAYER) && !spray_cooldown)
@@ -136,7 +136,7 @@
 		for(var/mob/living/A in range(1,mainloc))
 			if(A.move_speed < 12)
 				HasProximity(A)
-				A.visible_message(SPAN_WARNING("[src] sprays something on [A.name]!"), SPAN_WARNING("[src] sprays something on you!"))
+				A.visible_message(SPAN_WARNING("69src69 sprays something on 69A.name69!"), SPAN_WARNING("69src69 sprays something on you!"))
 				spray_cooldown = TRUE
 				spawn(10)
 					spray_cooldown = FALSE
@@ -154,21 +154,21 @@
 	if(istype(T))
 		health -= seed.handle_environment(T,T.return_air(),null,1)
 
-	// Maintshrooms will not grow in the light
-	if(seed.type == /datum/seed/mushroom/maintshroom && T.get_lumcount() > MIN_LIGHT_LIMIT)
+	//69aintshrooms will not grow in the light
+	if(seed.type == /datum/seed/mushroom/maintshroom && T.get_lumcount() >69IN_LIGHT_LIMIT)
 		return
 
-	if(health < max_health)
-		//Plants can grow through closed airlocks, but more slowly, since they have to force metal to make space
+	if(health <69ax_health)
+		//Plants can grow through closed airlocks, but69ore slowly, since they have to force69etal to69ake space
 		var/obj/machinery/door/D = (locate(/obj/machinery/door) in loc)
 		if (D)
 			health += RAND_DECIMAL(0,0.5)
 		else
 			health += RAND_DECIMAL(1,2.5)
 		refresh_icon()
-		if(health > max_health)
-			health = max_health
-	else if(health == max_health && !plant && (seed.type != /datum/seed/mushroom/maintshroom))
+		if(health >69ax_health)
+			health =69ax_health
+	else if(health ==69ax_health && !plant && (seed.type != /datum/seed/mushroom/maintshroom))
 		plant = new(T,seed)
 		plant.dir = src.dir
 		plant.transform = src.transform
@@ -183,8 +183,8 @@
 /obj/effect/plant/proc/spread()
 	//spread to 1-3 adjacent turfs depending on yield trait.
 	var/max_spread = between(1, round(seed.get_trait(TRAIT_YIELD)*3/14), 3)
-	max_spread = rand(1, max_spread)
-	for(var/i in 1 to max_spread)
+	max_spread = rand(1,69ax_spread)
+	for(var/i in 1 to69ax_spread)
 		sleep(rand(3,5))
 		if(!neighbors.len)
 			break
@@ -194,7 +194,7 @@
 		if(!neighbor_plant)
 			neighbor_plant = (locate(/obj/effect/dead_plant) in target_turf.contents)
 		if(neighbor_plant)//Not else, because if there's no dead plant either, it shouldn't run the check at all
-			visible_message("[src] takes over [neighbor_plant]!")
+			visible_message("69src69 takes over 69neighbor_plant69!")
 			qdel(neighbor_plant)
 		var/obj/effect/plant/child = new type(get_turf(src),seed,src)
 		after_spread(child, target_turf)
@@ -211,26 +211,26 @@
 		child.update_icon()
 
 
-//Once created, the new vine moves to destination turf
-/obj/effect/plant/proc/handle_move(var/turf/origin, var/turf/destination)
+//Once created, the new69ine69oves to destination turf
+/obj/effect/plant/proc/handle_move(var/turf/origin,69ar/turf/destination)
 	//First of all lets ensure we still exist.
-	//We may have been deleted by another vine doing postmove cleanup
+	//We69ay have been deleted by another69ine doing postmove cleanup
 	if (QDELETED(src))
 		return
 
-	//And lets make sure we haven't already moved
+	//And lets69ake sure we haven't already69oved
 	if (loc != origin)
 		return
 
 	//We un-anchor ourselves, so that we're exposed to effects like gravity and teleporting
 	anchored = FALSE
 
-	//Now we will attempt a normal movement, obeying all the normal rules
+	//Now we will attempt a normal69ovement, obeying all the normal rules
 	//This allows us to bump into portals and get teleported
 	Move(destination)
 
-	/*Now we check if we went anywhere. We don't care about the return value of move, we do our own check
-	In the case of a portal, or falling through an openspace, or moving along stairs, Move may return false
+	/*Now we check if we went anywhere. We don't care about the return69alue of69ove, we do our own check
+	In the case of a portal, or falling through an openspace, or69oving along stairs,69ove69ay return false
 	but we've still gone somewhere. We will only consider it a failure if we're still where we started
 	*/
 	if (loc == origin)
@@ -242,7 +242,7 @@
 	//Ok now we should definitely be somewhere
 	if (loc == origin)
 		//Welp, we give up.
-		//This shouldn't be possible, but if it somehow happens then this vine is toast
+		//This shouldn't be possible, but if it somehow happens then this69ine is toast
 		qdel(src)
 		return
 
@@ -257,7 +257,7 @@
 /obj/effect/plant/proc/handle_postmove()
 	for (var/obj/effect/plant/Bl in loc)
 		if (Bl != src)
-			qdel(Bl) //Lets make sure we don't get doubleblobs
+			qdel(Bl) //Lets69ake sure we don't get doubleblobs
 
 
 /obj/effect/plant/proc/die_off()
@@ -283,5 +283,5 @@
 	spawn(1)
 		qdel(src)
 
-#undef MIN_LIGHT_LIMIT
+#undef69IN_LIGHT_LIMIT
 #undef NEIGHBOR_REFRESH_TIME

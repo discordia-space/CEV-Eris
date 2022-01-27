@@ -12,4 +12,4 @@
 #define CRAFT_VARIATION 1
 
 #define IS_READY 1
-#define IN_PROGRESS 2
+#define IN_PRO69RESS 2

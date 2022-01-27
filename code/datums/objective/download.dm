@@ -28,15 +28,15 @@
 	return (current_amount < target_amount) ? FALSE : TRUE
 
 /datum/objective/download/update_explanation()
-	explanation_text = "Download [target_amount] research levels."
+	explanation_text = "Download 69target_amount69 research levels."
 
 /datum/objective/download/get_panel_entry()
-	return "Download <a href='?src=\ref[src];set_target=1'>[target_amount]</a> research levels."
+	return "Download <a href='?src=\ref69src69;set_target=1'>69target_amount69</a> research levels."
 
 /datum/objective/download/Topic(href, href_list)
 	if(..())
 		return TRUE
-	if(href_list["set_target"])
+	if(href_list69"set_target"69)
 		var/new_target = input("Input target number:", "Research levels", target_amount) as num|null
 		if(new_target < 1)
 			return

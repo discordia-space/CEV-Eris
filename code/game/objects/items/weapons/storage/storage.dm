@@ -5,20 +5,20 @@
 	name = "storage"
 	icon = 'icons/obj/storage.dmi'
 	w_class = ITEM_SIZE_NORMAL
-	item_flags = DRAG_AND_DROP_UNEQUIP|EQUIP_SOUNDS
+	item_flags = DRAG_AND_DROP_UNE69UIP|E69UIP_SOUNDS
 	spawn_tags = SPAWN_TAG_STORAGE
 	bad_type = /obj/item/storage
 	var/list/can_hold = new/list() //List of objects which this item can store (if set, it can't store anything else)
 	var/list/can_hold_extra = list() //List of objects which this item can additionally store not defined by the parent.
 	var/list/cant_hold = new/list() //List of objects which this item can't store (in effect only if can_hold isn't set)
-	var/list/is_seeing = new/list() //List of mobs which are currently seeing the contents of this item's storage
+	var/list/is_seeing = new/list() //List of69obs which are currently seeing the contents of this item's storage
 	var/max_w_class = ITEM_SIZE_NORMAL //Max size of objects that this object can store (in effect only if can_hold isn't set)
 	var/max_storage_space //Total storage cost of items this can hold. Will be autoset based on storage_slots if left null.
 	var/storage_slots //The number of storage slots in this container.
-	var/use_to_pickup //Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/display_contents_with_number //Set this to make the storage item group contents of the same type and display them as a number.
-	var/allow_quick_empty //Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
-	var/allow_quick_gather //Set this variable to allow the object to have the 'toggle mode' verb, which quickly collects all items from a tile.
+	var/use_to_pickup //Set this to69ake it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
+	var/display_contents_with_number //Set this to69ake the storage item group contents of the same type and display them as a number.
+	var/allow_69uick_empty //Set this69ariable to allow the object to have the 'empty'69erb, which dumps all the contents on the floor.
+	var/allow_69uick_gather //Set this69ariable to allow the object to have the 'toggle69ode'69erb, which 69uickly collects all items from a tile.
 	var/collection_mode = TRUE //0 = pick one at a time, 1 = pick all on tile
 	var/use_sound = "rustle" //sound played when used. null for no sound.
 	var/is_tray_hidden = FALSE //hides from even t-rays
@@ -40,19 +40,19 @@
 /HUD_element/slottedItemBackground
 	icon = 'icons/HUD/block.png'
 
-/obj/item/storage/proc/storageBackgroundClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
+/obj/item/storage/proc/storageBackgroundClick(HUD_element/sourceElement,69ob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
 		var/obj/item/I = clientMob.get_active_hand()
 		if(I)
 			clientMob.ClickOn(A)
 
-/obj/item/storage/proc/itemBackgroundClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
+/obj/item/storage/proc/itemBackgroundClick(HUD_element/sourceElement,69ob/clientMob, location, control, params)
 	var/atom/A = sourceElement.getData("item")
 	if(A)
 		clientMob.ClickOn(A)
 
-/obj/item/storage/proc/closeButtonClick(HUD_element/sourceElement, mob/clientMob, location, control, params)
+/obj/item/storage/proc/closeButtonClick(HUD_element/sourceElement,69ob/clientMob, location, control, params)
 	var/obj/item/storage/S = sourceElement.getData("item")
 	if(S)
 		S.close(clientMob)
@@ -65,7 +65,7 @@
 	itemIcon.setDimensions(32,32) //todo: should be width/height of real object icon
 	itemIcon.setAlignment(HUD_CENTER_ALIGNMENT,HUD_CENTER_ALIGNMENT) //center
 
-	//todo: remove vis_contents, use mimic icon, make wrappers for dragdrop/examine/clicks, do not alter item
+	//todo: remove69is_contents, use69imic icon,69ake wrappers for dragdrop/examine/clicks, do not alter item
 	item.pixel_x = 0 //no pixel offsets inside storage
 	item.pixel_y = 0
 	item.pixel_w = 0
@@ -73,11 +73,11 @@
 	item.layer = ABOVE_HUD_LAYER
 	item.plane = ABOVE_HUD_PLANE
 
-	itemIcon.vis_contents += item //this draws the actual item, see byond ref for vis_contents var
+	itemIcon.vis_contents += item //this draws the actual item, see byond ref for69is_contents69ar
 	itemBackground.setName(item.name, TRUE)
 
 	if (itemCount)
-		item.maptext = "<font color='white'>[itemCount]</font>"
+		item.maptext = "<font color='white'>69itemCount69</font>"
 
 /obj/item/storage/proc/generateHUD(datum/hud/data)
 	RETURN_TYPE(/HUD_element)
@@ -93,8 +93,8 @@
 
 	//storage space based items
 	if((storage_slots == null) && !display_contents_with_number)
-		var/baseline_max_storage_space = 16 //should be equal to default backpack capacity
-		var/minBackgroundWidth = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
+		var/baseline_max_storage_space = 16 //should be e69ual to default backpack capacity
+		var/minBackgroundWidth =69in( round( 224 *69ax_storage_space/baseline_max_storage_space ,1) ,260) //in pixels
 
 		var/HUD_element/threePartBox/storageBackground/storageBackground = new()
 		main.add(storageBackground)
@@ -130,11 +130,11 @@
 		if (contents.len)
 			totalWidth -= spacingBetweenSlots
 
-		var/remainingStorage = max_storage_space - totalStorageCost
+		var/remainingStorage =69ax_storage_space - totalStorageCost
 		if (remainingStorage)
 			remainingStorage += 2 //in pixels, creates a small area where items can be put
 
-		storageBackground.scaleToSize(max(totalWidth + remainingStorage, minBackgroundWidth) + paddingSides)
+		storageBackground.scaleToSize(max(totalWidth + remainingStorage,69inBackgroundWidth) + paddingSides)
 
 		storageBackground.add(closeButton)
 		closeButton.setAlignment(HUD_HORIZONTAL_EAST_OUTSIDE_ALIGNMENT,HUD_CENTER_ALIGNMENT) //east of parent, center
@@ -144,19 +144,19 @@
 		var/list/storage_contents
 		var/list/filtered_contents_last
 		var/list/filtered_contents_count
-		if (display_contents_with_number) //used to display number next to item icons, indicating how many of such items are in storage
+		if (display_contents_with_number) //used to display number next to item icons, indicating how69any of such items are in storage
 			storage_contents = new //item types in storage
 			filtered_contents_last = new //last of x item type in storage
 			filtered_contents_count = new //total number of x item type in storage
 			for(var/obj/item/I in contents) //count items and remember last item for each type
 				var/item_type = I.type
-				if (filtered_contents_count[item_type])
-					filtered_contents_count[item_type]++
+				if (filtered_contents_count69item_type69)
+					filtered_contents_count69item_type69++
 				else
 					storage_contents.Add(item_type)
-					filtered_contents_count[item_type] = 1
+					filtered_contents_count69item_type69 = 1
 
-				filtered_contents_last[item_type] = I
+				filtered_contents_last69item_type69 = I
 		else
 			storage_contents = contents //items in storage
 
@@ -165,13 +165,13 @@
 		var/totalWidth = 0 //in pixels
 		var/totalHeight = 0
 
-		var/slotsToDisplay = storage_contents.len+1 //how many item slots are being displayed
+		var/slotsToDisplay = storage_contents.len+1 //how69any item slots are being displayed
 		if (storage_slots)
-			slotsToDisplay = min(slotsToDisplay, storage_slots) //limit display to max slot count, if present
+			slotsToDisplay =69in(slotsToDisplay, storage_slots) //limit display to69ax slot count, if present
 
 		var/currentSlot
 		var/currentItemNumber = 1
-		var/maxColumnCount = min(data.StorageData["ColCount"], slotsToDisplay)
+		var/maxColumnCount =69in(data.StorageData69"ColCount"69, slotsToDisplay)
 		for (currentSlot = 1, currentSlot <= slotsToDisplay, currentSlot++)
 			var/HUD_element/slottedItemBackground/itemBackground = new()
 			main.add(itemBackground)
@@ -179,10 +179,10 @@
 
 			if (currentItemNumber <= storage_contents.len)
 				if (display_contents_with_number)
-					var/item_type = storage_contents[currentItemNumber]
-					setupItemBackground(itemBackground, filtered_contents_last[item_type], filtered_contents_count[item_type])
+					var/item_type = storage_contents69currentItemNumber69
+					setupItemBackground(itemBackground, filtered_contents_last69item_type69, filtered_contents_count69item_type69)
 				else
-					setupItemBackground(itemBackground, storage_contents[currentItemNumber])
+					setupItemBackground(itemBackground, storage_contents69currentItemNumber69)
 
 				currentItemNumber++
 			else //empty slots
@@ -199,8 +199,8 @@
 				totalWidth = 0 //reset width
 				totalHeight = (currentSlot/maxColumnCount) * (itemBackground.getHeight() + spacingBetweenSlots)
 
-	main.setPosition(data.StorageData["Xspace"],data.StorageData["Yspace"])
-	return main
+	main.setPosition(data.StorageData69"Xspace"69,data.StorageData69"Yspace"69)
+	return69ain
 
 /obj/item/storage/Destroy()
 	close_all()
@@ -233,10 +233,10 @@
 			user.s_active.close(user)
 
 		for(var/obj/item/I in src)
-			if(I.on_found(user)) //trigger mousetraps etc.
+			if(I.on_found(user)) //trigger69ousetraps etc.
 				return
 
-	var/datum/hud/data = GLOB.HUDdatums[user.defaultHUD]
+	var/datum/hud/data = GLOB.HUDdatums69user.defaultHUD69
 	if(data)
 		generateHUD(data).show(user.client)
 		is_seeing |= user
@@ -279,23 +279,23 @@
 /obj/item/storage/proc/refresh_all()
 	for (var/mob/M in is_seeing)
 		if (M.client)
-			var/datum/hud/data = GLOB.HUDdatums[M.defaultHUD]
+			var/datum/hud/data = GLOB.HUDdatums69M.defaultHUD69
 			if (data)
 				generateHUD(data).show(M.client)
 
 //This proc return 1 if the item can be picked up and 0 if it can't.
-//Set the stop_messages to stop it from printing messages
+//Set the stop_messages to stop it from printing69essages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
 	if(!istype(W)) return //Not an item
 
-	if(usr && usr.isEquipped(W) && !usr.canUnEquip(W))
+	if(usr && usr.isE69uipped(W) && !usr.canUnE69uip(W))
 		return 0
 
 	if(src.loc == W)
 		return 0 //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] is full, make some space."))
+			to_chat(usr, SPAN_NOTICE("69src69 is full,69ake some space."))
 		return 0 //Storage item is full
 
 	if(W.anchored)
@@ -304,22 +304,22 @@
 	if(can_hold.len)
 		if(!is_type_in_list(W, can_hold))
 			if(!stop_messages && ! istype(W, /obj/item/hand_labeler))
-				to_chat(usr, SPAN_NOTICE("[src] cannot hold \the [W]."))
+				to_chat(usr, SPAN_NOTICE("69src69 cannot hold \the 69W69."))
 			return 0
-		var/max_instances = can_hold[W.type]
-		if(max_instances && instances_of_type_in_list(W, contents) >= max_instances)
+		var/max_instances = can_hold69W.type69
+		if(max_instances && instances_of_type_in_list(W, contents) >=69ax_instances)
 			if(!stop_messages && !istype(W, /obj/item/hand_labeler))
-				to_chat(usr, SPAN_NOTICE("[src] has no more space specifically for \the [W]."))
+				to_chat(usr, SPAN_NOTICE("69src69 has no69ore space specifically for \the 69W69."))
 			return 0
 
 	if(cant_hold.len && is_type_in_list(W, cant_hold))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W]."))
+			to_chat(usr, SPAN_NOTICE("69src69 cannot hold 69W69."))
 		return 0
 
-	if (max_w_class != null && W.w_class > max_w_class)
+	if (max_w_class != null && W.w_class >69ax_w_class)
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[W] is too long for this [src]."))
+			to_chat(usr, SPAN_NOTICE("69W69 is too long for this 69src69."))
 		return 0
 
 	//Slot based storage overrides space-based storage
@@ -328,20 +328,20 @@
 		for(var/obj/item/I in contents)
 			total_storage_space += I.get_storage_cost() //Adds up the combined w_classes which will be in the storage item if the item is added to it.
 
-		if(total_storage_space > max_storage_space)
+		if(total_storage_space >69ax_storage_space)
 			if(!stop_messages)
-				to_chat(usr, SPAN_NOTICE("[src] is too full, make some space."))
+				to_chat(usr, SPAN_NOTICE("69src69 is too full,69ake some space."))
 			return 0
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
 		if(!stop_messages)
-			to_chat(usr, SPAN_NOTICE("[src] cannot hold [W] as it's a storage item of the same size."))
+			to_chat(usr, SPAN_NOTICE("69src69 cannot hold 69W69 as it's a storage item of the same size."))
 		return 0 //To prevent the stacking of same sized storage items.
 
 	return 1
 
 //This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted. That's done by can_be_inserted()
-//The stop_warning parameter will stop the insertion message from being displayed. It is intended for cases where you are inserting multiple items at once,
+//The stop_warning parameter will stop the insertion69essage from being displayed. It is intended for cases where you are inserting69ultiple items at once,
 //such as when picking up all the items on a tile with one click.
 /obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0)
 	if (!istype(W)) return 0
@@ -359,20 +359,20 @@
 		add_fingerprint(usr)
 
 		if (!prevent_warning)
-			for (var/mob/M in viewers(usr, null))
+			for (var/mob/M in69iewers(usr, null))
 				if (M == usr)
-					to_chat(usr, SPAN_NOTICE("You put \the [W] into [src]."))
+					to_chat(usr, SPAN_NOTICE("You put \the 69W69 into 69src69."))
 				else if (M in range(1)) //If someone is standing close enough, they can tell what it is...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(SPAN_NOTICE("\The 69usr69 puts 69W69 into 69src69."))
 				else if (W && W.w_class >= ITEM_SIZE_NORMAL) //Otherwise they can only see large or normal items from a distance...
-					M.show_message(SPAN_NOTICE("\The [usr] puts [W] into [src]."))
+					M.show_message(SPAN_NOTICE("\The 69usr69 puts 69W69 into 69src69."))
 
 	refresh_all()
 
 	update_icon()
 	return 1
 
-//Call this proc to handle the removal of an item from the storage item. The item will be moved to the atom sent as new_target
+//Call this proc to handle the removal of an item from the storage item. The item will be69oved to the atom sent as new_target
 /obj/item/storage/proc/remove_from_storage(obj/item/W, atom/new_location)
 	if (!istype(W))
 		return
@@ -398,7 +398,7 @@
 	update_icon()
 
 //This proc is called when you want to place an item into the storage item.
-/obj/item/storage/attackby(obj/item/W, mob/user)
+/obj/item/storage/attackby(obj/item/W,69ob/user)
 	..()
 	if(istype(W, /obj/item/device/lightreplacer))
 		var/obj/item/device/lightreplacer/LP = W
@@ -410,9 +410,9 @@
 					LP.AddUses(1)
 					amt_inserted++
 					remove_from_storage(L, T)
-					qdel(L)
+					69del(L)
 		if(amt_inserted)
-			to_chat(user, "You inserted [amt_inserted] light\s into \the [LP.name]. You have [LP.uses] light\s remaining.")
+			to_chat(user, "You inserted 69amt_inserted69 light\s into \the 69LP.name69. You have 69LP.uses69 light\s remaining.")
 			return
 
 	if(!can_be_inserted(W))
@@ -422,7 +422,7 @@
 		var/obj/item/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				to_chat(user, SPAN_WARNING("The tray won't fit in [src]."))
+				to_chat(user, SPAN_WARNING("The tray won't fit in 69src69."))
 				return
 			else //todo: proper drop handling
 				W.loc = user.loc
@@ -438,7 +438,7 @@
 	return
 
 /obj/item/storage/attack_hand(mob/user)
-	// v Why does that exist? ~Luduk
+	//69 Why does that exist? ~Luduk
 	/*if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
@@ -460,17 +460,17 @@
 	return
 
 /obj/item/storage/verb/toggle_gathering_mode()
-	set name = "Switch Gathering Method"
+	set name = "Switch Gathering69ethod"
 	set category = "Object"
 
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
-			to_chat(usr, "[src] now picks up all items in a tile at once.")
+			to_chat(usr, "69src69 now picks up all items in a tile at once.")
 		if(0)
-			to_chat(usr, "[src] now picks up one item at a time.")
+			to_chat(usr, "69src69 now picks up one item at a time.")
 
-/obj/item/storage/proc/collectItems(turf/target, mob/user)
+/obj/item/storage/proc/collectItems(turf/target,69ob/user)
 	ASSERT(istype(target))
 	. = FALSE
 	var/limiter = 15
@@ -483,29 +483,29 @@
 
 	if(user)
 		if(.)
-			user.visible_message(SPAN_NOTICE("[user] puts some things in [src]."),SPAN_NOTICE("You put some things in [src]."),SPAN_NOTICE("You hear rustling."))
+			user.visible_message(SPAN_NOTICE("69user69 puts some things in 69src69."),SPAN_NOTICE("You put some things in 69src69."),SPAN_NOTICE("You hear rustling."))
 			if (src.use_sound)
 				playsound(src.loc, src.use_sound, 50, 1, -5)
 		else
-			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the [src]."))
+			to_chat(user, SPAN_NOTICE("You fail to pick anything up with \the 69src69."))
 
 
-/obj/item/storage/resolve_attackby(atom/A, mob/user)
+/obj/item/storage/resolve_attackby(atom/A,69ob/user)
 	if(src.verbs.Find(/obj/item/storage/verb/toggle_gathering_mode))
 		if(collection_mode && isturf(A) || istype(A, /obj/item))
 			if(collectItems(get_turf(A), user))
 				return TRUE
-	//Clicking on tile with no collectible items will empty it, if it has the verb to do that.
-	if(allow_quick_empty)
+	//Clicking on tile with no collectible items will empty it, if it has the69erb to do that.
+	if(allow_69uick_empty)
 		if(isturf(A) && !A.density)
 			dump_it(A)
 			return TRUE
 	return ..()
 
-/obj/item/storage/verb/quick_empty()
+/obj/item/storage/verb/69uick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if((!ishuman(usr) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
@@ -526,12 +526,12 @@
 
 /obj/item/storage/Initialize(mapload, ...)
 	. = ..()
-	if(allow_quick_empty)
-		verbs += /obj/item/storage/verb/quick_empty
+	if(allow_69uick_empty)
+		verbs += /obj/item/storage/verb/69uick_empty
 	else
-		verbs -= /obj/item/storage/verb/quick_empty
+		verbs -= /obj/item/storage/verb/69uick_empty
 
-	if(allow_quick_gather)
+	if(allow_69uick_gather)
 		verbs += /obj/item/storage/verb/toggle_gathering_mode
 	else
 		verbs -= /obj/item/storage/verb/toggle_gathering_mode
@@ -546,7 +546,7 @@
 	var/total_storage_space = 0
 	for(var/obj/item/I in contents)
 		total_storage_space += I.get_storage_cost()
-	max_storage_space = max(total_storage_space, max_storage_space) //prevents spawned containers from being too small for their contents
+	max_storage_space =69ax(total_storage_space,69ax_storage_space) //prevents spawned containers from being too small for their contents
 
 // Override in subtypes
 /obj/item/storage/proc/populate_contents()
@@ -571,23 +571,23 @@
 	max_w_class = 0
 	max_storage_space = 0
 	for(var/obj/item/I in src)
-		can_hold[I.type]++
-		max_w_class = max(I.w_class, max_w_class)
+		can_hold69I.type69++
+		max_w_class =69ax(I.w_class,69ax_w_class)
 		max_storage_space += I.get_storage_cost()
 
-//Variant of the above that makes sure nothing is lost
+//Variant of the above that69akes sure nothing is lost
 /obj/item/storage/proc/expand_to_fit()
-	//Cache the old values
-	var/ospace = max_storage_space
-	var/omax = max_w_class
+	//Cache the old69alues
+	var/ospace =69ax_storage_space
+	var/omax =69ax_w_class
 	var/olimitedhold = can_hold.len
 
 	//Make fit
 	make_exact_fit()
 
-	//Then restore any values that are smaller than the original
-	max_w_class = max(omax, max_w_class)
-	max_storage_space = max(ospace, max_storage_space)
+	//Then restore any69alues that are smaller than the original
+	max_w_class =69ax(omax,69ax_w_class)
+	max_storage_space =69ax(ospace,69ax_storage_space)
 
 	//Remove any specific limits that were placed, if we were originally unlimited
 	if (!olimitedhold)
@@ -630,12 +630,12 @@
 	return depth
 
 /obj/item/proc/get_storage_cost()
-	return BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use max_w_class
+	return BASE_STORAGE_COST(w_class) //If you want to prevent stuff above a certain w_class from being stored, use69ax_w_class
 
 
 //Useful for spilling the contents of containers all over the floor
 /obj/item/storage/proc/spill(dist = 2, turf/T)
-	if (!istype(T))//If its not on the floor this might cause issues
+	if (!istype(T))//If its not on the floor this69ight cause issues
 		T = get_turf(src)
 
 	for (var/obj/O in contents)

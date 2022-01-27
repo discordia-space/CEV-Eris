@@ -7,7 +7,7 @@
 /datum/category_item/setup_option/background/example/example
 	name = "Example"
 	desc = "Example background"
-	restricted_depts = MEDICAL | SCIENCE
+	restricted_depts =69EDICAL | SCIENCE
 	restricted_jobs = list(/datum/job/captain)
 	stat_modifiers = list(
 		STAT_ROB = 1,

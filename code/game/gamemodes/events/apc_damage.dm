@@ -1,7 +1,7 @@
-//APC Damage is a mundane event that bluscreens some APCs in a radius
-//It mainly exists for two purposes:
+//APC Damage is a69undane event that bluscreens some APCs in a radius
+//It69ainly exists for two purposes:
 //1. To create some work for engineers
-//2. To provide plausible deniability for a malfunctioning AI, so they can claim its not their doing when apcs break
+//2. To provide plausible deniability for a69alfunctioning AI, so they can claim its not their doing when apcs break
 /datum/storyevent/apc_damage
 	id = "apc_dmg"
 	name = "APC damage"
@@ -16,22 +16,22 @@
 	var/apcSelectionRange	= 25
 
 /datum/event/apc_damage/start()
-	var/obj/machinery/power/apc/A = acquire_random_apc()
+	var/obj/machinery/power/apc/A = ac69uire_random_apc()
 
 	var/severity_range = 15
-	log_and_message_admins("APC damage triggered at [jumplink(A)],")
+	log_and_message_admins("APC damage triggered at 69jumplink(A)69,")
 	for(var/obj/machinery/power/apc/apc in range(severity_range,A))
 		if(is_valid_apc(apc))
 			apc.emagged = 1
 			apc.update_icon()
 
-/datum/event/apc_damage/proc/acquire_random_apc()
+/datum/event/apc_damage/proc/ac69uire_random_apc()
 	var/list/apcs = list()
 
 
 	for(var/obj/machinery/power/apc/apc in GLOB.apc_list)
 		if(is_valid_apc(apc))
-			// Greatly reduce the chance for APCs in maintenance areas to be selected
+			// Greatly reduce the chance for APCs in69aintenance areas to be selected
 			var/area/A = get_area(apc)
 			if(!istype(A,/area/eris/maintenance) || prob(25))
 				apcs += apc

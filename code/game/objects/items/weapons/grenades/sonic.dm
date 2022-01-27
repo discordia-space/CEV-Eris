@@ -6,8 +6,8 @@
 /obj/item/grenade/sonic/prime()
 	playsound(loc, 'sound/voice/shriek1.ogg', 100, 1, 8, 8)
 
-	visible_message(SPAN_DANGER("\The [src] emits a horrifying wail!"))
+	visible_message(SPAN_DANGER("\The 69src69 emits a horrifying wail!"))
 
 	for (var/obj/structure/burrow/B in find_nearby_burrows(src))
-		B.visible_message(SPAN_DANGER("\The [B] springs to life with interior motion!"))
+		B.visible_message(SPAN_DANGER("\The 69B69 springs to life with interior69otion!"))
 		B.distress(TRUE)

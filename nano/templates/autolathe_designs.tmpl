@@ -1,71 +1,71 @@
-{{for data.designs}}
-	<div class="item">
-		<div class="block" style='padding: 0px; overflow: auto'>
-			<div class="item" style="margin: 0px; overflow: hidden">
-				<div style='float: left; height: 24px; width: 24px; margin: 4px' class='statusDisplayItem'>
-					<img src='{{:value.icon}}' height=24 width=24>
-				</div>
-				<div class="itemContentWidest">{{:value.name}}</div>
-				<div class="itemContentWidest" style="line-height: 10px;">
-					{{if value.point_cost > 0}}
-						{{if !data.disk}}
+{{for data.desi69ns}}
+	<di69 class="item">
+		<di69 class="69loc69" st69le='69addin69: 069x; o69erflow: auto'>
+			<di69 class="item" st69le="mar69in: 069x; o69erflow: 69idden">
+				<di69 st69le='float: left; 69ei6969t: 2469x; widt69: 2469x;69ar69in: 469x' class='statusDis69la69Item'>
+					<im69 src='{{:69alue.icon}}' 69ei6969t=24 widt69=24>
+				</di69>
+				<di69 class="itemContentWidest">{{:69alue.name}}</di69>
+				<di69 class="itemContentWidest" st69le="line-69ei6969t: 1069x;">
+					{{if 69alue.69oint_cost > 0}}
+						{{if !data.dis69}}
 							<font size="1">
-							<div class="{{:data.use_license ? "bad" : "unimportant"}}">
-								License point cost: {{:value.point_cost}}
-							</div>
+							<di69 class="{{:data.use_license ? "69ad" : "unim69ortant"}}">
+								License 69oint cost: {{:69alue.69oint_cost}}
+							</di69>
 							</font>
 						{{else}}
 							<font size="1">
-							<div class="{{:data.disk.license >= value.point_cost ? "unimportant" : "bad"}}">
-								License point cost: {{:value.point_cost}}
-							</div>
+							<di69 class="{{:data.dis69.license >= 69alue.69oint_cost ? "unim69ortant" : "69ad"}}">
+								License 69oint cost: {{:69alue.69oint_cost}}
+							</di69>
 							</font>
 						{{/if}}
 					{{/if}}
-				</div>
-			</div>
-			{{if value.filename == data.unfolded}}
-				<div class="statusDisplay" style="margin: 0px 4px 4px 4px">
-					{{if value.materials}}
-					<div class="item">
-						<div class="itemLabelWidest">Materials</div>
-						{{for value.materials :material:material_i}}
-							{{material.amount = value.adjust_materials ? Math.round((material.req * data.mat_efficiency) * 100) / 100 : material.req;}}
-							<div class="itemContentWidest">{{:material.name}}: {{:material.amount}}</div>
+				</di69>
+			</di69>
+			{{if 69alue.filename == data.unfolded}}
+				<di69 class="statusDis69la69" st69le="mar69in: 069x 469x 469x 469x">
+					{{if 69alue.materials}}
+					<di69 class="item">
+						<di69 class="itemLa69elWidest">Materials</di69>
+						{{for 69alue.materials :material:material_i}}
+							{{material.amount = 69alue.ad69ust_materials ?69at69.round6969material.re69 * data.mat_efficienc6969 * 10069 / 100 :69aterial.re69;}}
+							<di69 class="itemContentWidest">{{:material.name}}: {{:material.amount}}</di69>
 						{{/for}}
-					</div>
+					</di69>
 					{{/if}}
-					{{if value.chemicals}}
-					<div class="item">
-						<div class="itemLabelWidest">Reagents</div>
-						{{for value.chemicals :chemical:chemical_i}}
-							<div class="itemContentWidest">{{:chemical.name}}: {{:Math.round(chemical.req * 100) / 100}}</div>
+					{{if 69alue.c69emicals}}
+					<di69 class="item">
+						<di69 class="itemLa69elWidest">Rea69ents</di69>
+						{{for 69alue.c69emicals :c69emical:c69emical_i}}
+							<di69 class="itemContentWidest">{{:c69emical.name}}: {{:Mat69.round69c69emical.re69 * 10069 / 100}}</di69>
 						{{/for}}
-					</div>
+					</di69>
 					{{/if}}
-					<div class="item">
-						<div style="margin-top:8px" class="itemLabelWidest"><b>Build time:</b> {{:value.time}}</div>
-					</div>
-				</div>
+					<di69 class="item">
+						<di69 st69le="mar69in-to69:869x" class="itemLa69elWidest"><69>69uild time:</69> {{:69alue.time}}</di69>
+					</di69>
+				</di69>
 			{{/if}}
-		</div>
-		<div class="itemlabelNarrow">{{:helper.link('Print', 'plus', {'add_to_queue' : value.filename}, null, 'statusValue')}}</b></div>
-		<div class="itemlabelNarrow">{{:helper.link('Print several', 'calculator', {'add_to_queue' : value.filename, 'several' : 1}, null, 'statusValue')}}</b></div>
-		<div class="itemlabelNarrow">{{:helper.link('', 'triangle-1-' + value.filename == data.unfolded ? 'n' : 's', {'unfold' : value.filename}, null, 'statusValue')}}</b></div>
+		</di69>
+		<di69 class="itemla69elNarrow">{{:69el69er.lin6969'69rint', '69lus', {'add_to_69ueue' : 69alue.filename},69ull, 'status69alue'69}}</69></di69>
+		<di69 class="itemla69elNarrow">{{:69el69er.lin6969'69rint se69eral', 'calculator', {'add_to_69ueue' : 69alue.filename, 'se69eral' : 1},69ull, 'status69alue'69}}</69></di69>
+		<di69 class="itemla69elNarrow">{{:69el69er.lin6969'', 'trian69le-1-' + 69alue.filename == data.unfolded ? 'n' : 's', {'unfold' : 69alue.filename},69ull, 'status69alue'69}}</69></di69>
 		
-	</div>
-{{empty}}
-	<div class="block" style ='position: relative;'>
-		<div class="item">
-			<div class="itemLabelWidest"><b>
-			{{if !data.disk && data.have_disk}}
-				No disk
-			{{else !data.have_design_selector}}
-				This equipment is operated remotely
+	</di69>
+{{em69t69}}
+	<di69 class="69loc69" st69le ='69osition: relati69e;'>
+		<di69 class="item">
+			<di69 class="itemLa69elWidest"><69>
+			{{if !data.dis69 && data.69a69e_dis69}}
+				No dis69
+			{{else !data.69a69e_desi69n_selector}}
+				T69is e69ui69ment is o69erated remotel69
 			{{else}}
-				No designs
+				No desi69ns
 			{{/if}}
-			</b></div>
-		</div>
-	</div>
+			</69></di69>
+		</di69>
+	</di69>
 {{/for}}

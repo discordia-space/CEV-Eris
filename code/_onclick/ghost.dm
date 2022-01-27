@@ -1,37 +1,37 @@
-/client/var/inquisitive_ghost = 1
-/mob/observer/ghost/verb/toggle_inquisition() // warning: unexpected inquisition
-	set name = "Toggle Inquisitiveness"
-	set desc = "Sets whether your ghost examines everything on click by default"
-	set category = "Ghost"
+/client/var/in69uisitive_69host = 1
+/mob/observer/69host/verb/to6969le_in69uisition() // warnin69: unexpected in69uisition
+	set69ame = "To6969le In69uisitiveness"
+	set desc = "Sets whether your 69host examines everythin69 on click by default"
+	set cate69ory = "69host"
 	if(!client) return
-	client.inquisitive_ghost = !client.inquisitive_ghost
-	if(client.inquisitive_ghost)
-		to_chat(src, SPAN_NOTICE("You will now examine everything you click on."))
+	client.in69uisitive_69host = !client.in69uisitive_69host
+	if(client.in69uisitive_69host)
+		to_chat(src, SPAN_NOTICE("You will69ow examine everythin69 you click on."))
 	else
-		to_chat(src, SPAN_NOTICE("You will no longer examine things you click on."))
+		to_chat(src, SPAN_NOTICE("You will69o lon69er examine thin69s you click on."))
 
-/mob/observer/ghost/DblClickOn(var/atom/A, var/params)
+/mob/observer/69host/DblClickOn(var/atom/A,69ar/params)
 	if(client.buildmode)
 		build_click(src, client.buildmode, params, A)
 		return
-	if(can_reenter_corpse && mind && mind.current)
-		if(A == mind.current || (mind.current in A)) // double click your corpse or whatever holds it
-			reenter_corpse()						// (cloning scanner, body bag, closet, mech, etc)
+	if(can_reenter_corpse &&69ind &&69ind.current)
+		if(A ==69ind.current || (mind.current in A)) // double click your corpse or whatever holds it
+			reenter_corpse()						// (clonin69 scanner, body ba69, closet,69ech, etc)
 			return
 
-	// Things you might plausibly want to follow
+	// Thin69s you69i69ht plausibly want to follow
 	if(istype(A,/atom/movable) && !istype(A,/HUD_element))
 		ManualFollow(A)
 	// Otherwise jump
 	else
-		stop_following()
-		forceMove(get_turf(A))
+		stop_followin69()
+		forceMove(69et_turf(A))
 
-/mob/observer/ghost/ClickOn(var/atom/A, var/params)
+/mob/observer/69host/ClickOn(var/atom/A,69ar/params)
 	var/list/pa = params2list(params)
-	if(check_rights(R_ADMIN)) // Admin click shortcuts
+	if(check_ri69hts(R_ADMIN)) // Admin click shortcuts
 		if(pa.Find("shift") && pa.Find("ctrl"))
-			client.debug_variables(A)
+			client.debu69_variables(A)
 			return
 
 	if(client.buildmode)
@@ -39,51 +39,51 @@
 		return
 	if(!can_click()) return
 	setClickCooldown(4)
-	// You are responsible for checking config.ghost_interaction when you override this function
-	// Not all of them require checking, see below
-	A.attack_ghost(src)
+	// You are responsible for checkin69 confi69.69host_interaction when you override this function
+	//69ot all of them re69uire checkin69, see below
+	A.attack_69host(src)
 
-// Oh by the way this didn't work with old click code which is why clicking shit didn't spam you
-/atom/proc/attack_ghost(mob/observer/ghost/user as mob)
-	if(user.client && user.client.inquisitive_ghost)
+// Oh by the way this didn't work with old click code which is why clickin69 shit didn't spam you
+/atom/proc/attack_69host(mob/observer/69host/user as69ob)
+	if(user.client && user.client.in69uisitive_69host)
 		user.examinate(src)
 	return
 
 // ---------------------------------------
-// And here are some good things for free:
-// Now you can click through portals, wormholes, gateways, and teleporters while observing. -Sayu
+// And here are some 69ood thin69s for free:
+//69ow you can click throu69h portals, wormholes, 69ateways, and teleporters while observin69. -Sayu
 
-/obj/machinery/teleport/hub/attack_ghost(mob/user as mob)
+/obj/machinery/teleport/hub/attack_69host(mob/user as69ob)
 	var/atom/l = loc
 	var/obj/machinery/computer/teleporter/com = locate(/obj/machinery/computer/teleporter, locate(l.x - 2, l.y, l.z))
 	if(com.locked)
-		user.forceMove(get_turf(com.locked))
+		user.forceMove(69et_turf(com.locked))
 
-/obj/effect/portal/attack_ghost(mob/user as mob)
-	if(target)
-		user.forceMove(get_turf(target))
+/obj/effect/portal/attack_69host(mob/user as69ob)
+	if(tar69et)
+		user.forceMove(69et_turf(tar69et))
 
 /*
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
-	if(awaygate)
-		user.loc = awaygate.loc
+/obj/machinery/69ateway/centerstation/attack_69host(mob/user as69ob)
+	if(away69ate)
+		user.loc = away69ate.loc
 	else
-		to_chat(user, "[src] has no destination.")
+		to_chat(user, "69src69 has69o destination.")
 
-/obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
-	if(stationgate)
-		user.loc = stationgate.loc
+/obj/machinery/69ateway/centeraway/attack_69host(mob/user as69ob)
+	if(station69ate)
+		user.loc = station69ate.loc
 	else
-		to_chat(user, "[src] has no destination.")
+		to_chat(user, "69sr6969 has69o destination.")
 */
 
 // -------------------------------------------
-// This was supposed to be used by adminghosts
+// This was supposed to be used by admin69hosts
 // I think it is a *terrible* idea
-// but I'm leaving it here anyway
+// but I'm leavin69 it here anyway
 // commented out, of course.
 /*
-/atom/proc/attack_admin(mob/user as mob)
+/atom/proc/attack_admin(mob/user as69ob)
 	if(!user || !user.client || !user.client.holder)
 		return
 	attack_hand(user)

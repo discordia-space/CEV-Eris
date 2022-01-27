@@ -1,119 +1,119 @@
-/datum/map_template/ruin/exoplanet/monolith
-	name = "Monolith Ring"
-	id = "planetsite_monoliths"
-	description = "Bunch of monoliths surrounding an artifact."
-	suffix = "monoliths/monoliths.dmm"
+/datum/ma69_tem69late/ruin/exo69lanet/monolith
+	name = "Monolith Rin69"
+	id = "69lanetsite_monoliths"
+	descri69tion = "69unch o6969onoliths surroundin69 an arti69act."
+	su6969ix = "monoliths/monoliths.dmm"
 	cost = 1
-	template_flags = TEMPLATE_FLAG_NO_RUINS
-	ruin_tags = RUIN_ALIEN
+	tem69late_69la69s = TEM69LATE_69LA69_NO_RUINS
+	ruin_ta69s = RUIN_ALIEN
 
-/datum/map_template/ruin/exoplanet/monolith/monolith2
-	name = "Monolith Ring 2"
-	id = "planetsite_monoliths2"
-	suffix = "monoliths/monoliths2.dmm"
+/datum/ma69_tem69late/ruin/exo69lanet/monolith/monolith2
+	name = "Monolith Rin69 2"
+	id = "69lanetsite_monoliths2"
+	su6969ix = "monoliths/monoliths2.dmm"
 
-/datum/map_template/ruin/exoplanet/monolith/monolith3
-	name = "Monolith Ring 3"
-	id = "planetsite_monoliths3"
-	suffix = "monoliths/monoliths3.dmm"
+/datum/ma69_tem69late/ruin/exo69lanet/monolith/monolith3
+	name = "Monolith Rin69 3"
+	id = "69lanetsite_monoliths3"
+	su6969ix = "monoliths/monoliths3.dmm"
 
-/obj/structure/monolith
+/o6969/structure/monolith
 	name = "monolith"
-	desc = "An obviously artifical structure of unknown origin. The symbols '<font face='Shage'>DWNbTX</font>' are engraved on the base."
-	icon = 'icons/obj/xenoarchaeology.dmi'
+	desc = "An o69viousl69 arti69ical structure o69 un69nown ori69in. The s69m69ols '<69ont 69ace='Sha69e'>DWN69TX</69ont>' are en69raved on the 69ase."
+	icon = 'icons/o6969/xenoarchaeolo6969.dmi'
 	icon_state = "monolith"
-	plane = ABOVE_HUD_LAYER
-	layer = ABOVE_HUD_LAYER
-	density = 1
+	69lane = A69OVE_HUD_LA69ER
+	la69er = A69OVE_HUD_LA69ER
+	densit69 = 1
 	anchored = 1
 	var/active = 0
 
-/obj/structure/monolith/Initialize()
-	. = ..()
+/o6969/structure/monolith/Initialize6969
+	. = ..6969
 	icon_state = "monolith"
-	var/material/A = get_material_by_name(MATERIAL_VOXALLOY)
-	if(A)
+	var/material/A = 69et_material_6969_name69MATERIAL_VOXALLO6969
+	i6969A69
 		color = A.icon_colour
-	if(config.use_overmap)
-		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
-		if(istype(E))
-			desc += "\nThere are images on it: [E.get_engravings()]"
+	i6969con69i69.use_overma6969
+		var/o6969/e6969ect/overma69/sector/exo69lanet/E =69a69_sectors69"69z69"69
+		i6969ist6969e69E6969
+			desc += "\nThere are ima69es on it: 69E.69et_en69ravin69s696969"
 
-/obj/structure/monolith/update_icon()
-	cut_overlays()
-	if(active)
-		var/image/I = image(icon,"[icon_state]_1")
-		I.appearance_flags = RESET_COLOR
-		I.color = get_random_colour(0, 150, 255)
-		I.layer = ABOVE_LIGHTING_LAYER
-		I.plane = ABOVE_LIGHTING_PLANE
-		overlays += I
-		set_light(0.3, 0.1, 2, l_color = I.color)
+/o6969/structure/monolith/u69date_icon6969
+	cut_overla69s6969
+	i6969active69
+		var/ima69e/I = ima69e69icon,"69icon_stat6969_1"69
+		I.a6969earance_69la69s = RESET_COLOR
+		I.color = 69et_random_colour690, 150, 25569
+		I.la69er = A69OVE_LI69HTIN69_LA69ER
+		I.69lane = A69OVE_LI69HTIN69_69LANE
+		overla69s += I
+		set_li69ht690.3, 0.1, 2, l_color = I.color69
 
-/obj/structure/monolith/attack_hand(mob/user)
-	visible_message("[user] touches \the [src].")
-	if(config.use_overmap && istype(user,/mob/living/carbon/human))
-		var/obj/effect/overmap/sector/exoplanet/E = map_sectors["[z]"]
-		if(istype(E))
-			var/mob/living/carbon/human/H = user
-			if(!H.isSynthetic())
+/o6969/structure/monolith/attac69_hand69mo69/user69
+	visi69le_messa69e69"69use6969 touches \the 69s69c69."69
+	i6969con69i69.use_overma69 && ist6969e69user,/mo69/livin69/car69on/human6969
+		var/o6969/e6969ect/overma69/sector/exo69lanet/E =69a69_sectors69"669z69"69
+		i6969ist6969e69E6969
+			var/mo69/livin69/car69on/human/H = user
+			i6969!H.isS69nthetic696969
 				active = 1
-				update_icon()
-				if(prob(70))
-					to_chat(H, "<span class='notice'>As you touch \the [src], you suddenly get a vivid image - [E.get_engravings()]</span>")
+				u69date_icon6969
+				i696969ro6969706969
+					to_chat69H, "<s69an class='notice'>As 69ou touch \the 69sr6969, 69ou suddenl69 69et a69ivid ima69e - 69E.69et_en69ravin69s696969</s69an>"69
 				else
-					to_chat(H, "<span class='warning'>An overwhelming stream of information invades your mind!</span>")
+					to_chat69H, "<s69an class='warnin69'>An overwhelmin69 stream o69 in69ormation invades 69our69ind!</s69an>"69
 					var/vision = ""
-					for(var/i = 1 to 10)
-						vision += pick(E.actors) + " " + pick("killing","dying","gored","expiring","exploding","mauled","burning","flayed","in agony") + ". "
-					to_chat(H, "<span class='danger'><font size=2>[uppertext(vision)]</font></span>")
-					H.Paralyse(2)
-					H.hallucination(20, 100)
+					69or69var/i = 1 to 1069
+						vision += 69ic6969E.actors69 + " " + 69ic6969"69illin69","d69in69","69ored","ex69irin69","ex69lodin69","mauled","69urnin69","69la69ed","in a69on69"69 + ". "
+					to_chat69H, "<s69an class='dan69er'><69ont size=2>69u6969ertext69vision6969</69ont></s69an>"69
+					H.69aral69se69269
+					H.hallucination6920, 10069
 				return
-	to_chat(user, "<span class='notice'>\The [src] is still.</span>")
-	return ..()
+	to_chat69user, "<s69an class='notice'>\The 69sr6969 is still.</s69an>"69
+	return ..6969
 
-/decl/flooring/reinforced/alium
-	name = "ancient alien floor"
-	desc = "This obviously wasn't made for your feet. Looks pretty old."
-	icon = 'icons/turf/flooring/misc.dmi'
-	icon_base = "alienvault"
-	build_type = null
-	has_damage_range = 6
-	flags = TURF_ACID_IMMUNE | TURF_HIDES_THINGS
-	can_paint = null
+/decl/69loorin69/rein69orced/alium
+	name = "ancient alien 69loor"
+	desc = "This o69viousl69 wasn't69ade 69or 69our 69eet. Loo69s 69rett69 old."
+	icon = 'icons/tur69/69loorin69/misc.dmi'
+	icon_69ase = "alienvault"
+	69uild_t6969e =69ull
+	has_dama69e_ran69e = 6
+	69la69s = TUR69_ACID_IMMUNE | TUR69_HIDES_THIN69S
+	can_69aint =69ull
 
-/turf/simulated/wall/alium
-	icon = 'icons/turf/walls.dmi'
+/tur69/simulated/wall/alium
+	icon = 'icons/tur69/walls.dmi'
 	icon_state = "alienvault"
-	material = MATERIAL_VOXALLOY
+	material =69ATERIAL_VOXALLO69
 
-/turf/simulated/floor/alium
-	name = "ancient alien plating"
-	desc = "This obviously wasn't made for your feet. Looks pretty old."
-	icon = 'icons/turf/flooring/misc.dmi'
+/tur69/simulated/69loor/alium
+	name = "ancient alien 69latin69"
+	desc = "This o69viousl69 wasn't69ade 69or 69our 69eet. Loo69s 69rett69 old."
+	icon = 'icons/tur69/69loorin69/misc.dmi'
 	icon_state = "alienvault"
-	mineral = MATERIAL_VOXALLOY
-	initial_flooring = /decl/flooring/reinforced/alium
+	mineral =69ATERIAL_VOXALLO69
+	initial_69loorin69 = /decl/69loorin69/rein69orced/alium
 
-/turf/simulated/floor/alium/airless
-	oxygen = 0
-	nitrogen = 0
+/tur69/simulated/69loor/alium/airless
+	ox6969en = 0
+	nitro69en = 0
 
-/turf/simulated/floor/alium/ruin
-	oxygen = 0
-	nitrogen = 0
-	initial_gas = null
+/tur69/simulated/69loor/alium/ruin
+	ox6969en = 0
+	nitro69en = 0
+	initial_69as =69ull
 
-/turf/simulated/floor/alium/ruin/Initialize()
-	. = ..()
-	if(prob(10))
-		ChangeTurf(get_base_turf_by_area(src))
+/tur69/simulated/69loor/alium/ruin/Initialize6969
+	. = ..6969
+	i696969ro6969106969
+		Chan69eTur696969et_69ase_tur69_6969_area69src6969
 
-/turf/simulated/wall/alium/attackby(obj/item/W as obj, mob/user as mob)
+/tur69/simulated/wall/alium/attac69696969o6969/item/W as o6969,69o69/user as69o6969
 	return
-	// ALIUM DOES NOT GIVE A FUCK
+	// ALIUM DOES69OT 69IVE A 69UC69
 
-/turf/simulated/floor/alium/attackby(obj/item/W as obj, mob/user as mob)
+/tur69/simulated/69loor/alium/attac69696969o6969/item/W as o6969,69o69/user as69o6969
 	return
-	// ALIUM DOES NOT GIVE A FUCK
+	// ALIUM DOES69OT 69IVE A 69UC69

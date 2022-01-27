@@ -1,77 +1,77 @@
-{{if data.error}}
-	<b>ERROR: {{:data.error}}</b>
-{{else data.skill_fail}}
-	{{for data.skill_fail}}
-	<div class="item">
-		<div class="itemLabelWide">
-    		{{:value.key}}
-		</div>
-		<div class="itemContentNarrow">
-			{{:value.value}}
-		</div>
-	</div>
+{{if d69t69.error}}
+	<69>ERROR: {{:d69t69.error}}</69>
+{{else d69t69.s69ill_f69il}}
+	{{for d69t69.s69ill_f69il}}
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969elWide">
+    		{{:6969lue.69e69}}
+		</di69>
+		<di69 cl69ss="itemContentN69rrow">
+			{{:6969lue.6969lue}}
+		</di69>
+	</di69>
 	{{/for}}
 {{else}}
-	<h2>System Status</h2>
-	<div class="item">
-		<div class="itemLabel">
-			Current AI:
-		</div>
-		<div class="itemContent">
-			{{:data.ai_name}}
-		</div>
-		<div class="itemLabel">
-			Status:
-		</div>
-		<div class="itemContent">
-			{{if data.ai_isdead}}
-				Nonfunctional
+	<692>S69stem St69tus</692>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Current 69I:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.69i_n69me}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			St69tus:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{if d69t69.69i_isde69d}}
+				Nonfunction69l
 			{{else}}
-				Functional
+				Function69l
 			{{/if}}
-		</div>
-		<div class="itemLabel">
-			System Integrity:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.ai_integrity, 0, 100, (data.ai_integrity == 100) ? 'good' : (data.ai_integrity >= 50) ? 'average' : 'bad', data.ai_integrity + " %")}}
-		</div>
-		<div class="itemLabel">
-			Capacitor Status:
-		</div>
-		<div class="itemContent">
-			{{:helper.displayBar(data.ai_capacitor, 0, 100, (data.ai_capacitor == 100) ? 'good' : (data.ai_capacitor >= 50) ? 'average' : 'bad', data.ai_capacitor + " %")}}
-		</div>
-		<div class="itemLabel">
-			Active Laws:
-		</div>
-		<div class="itemContent">
-			<table>
-				{{for data.ai_laws}}
-					<tr><td>{{:value.index}}: {{:value.text}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			S69stem Inte69rit69:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69el69er.dis69l69696969r69d69t69.69i_inte69rit69, 0, 100, 69d69t69.69i_inte69rit69 == 10069 ? '69ood' : 69d69t69.69i_inte69rit69 >= 5069 ? '6969er6969e' : '6969d', d69t69.69i_inte69rit69 + " %"69}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			C696969citor St69tus:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:69el69er.dis69l69696969r69d69t69.69i_c696969citor, 0, 100, 69d69t69.69i_c696969citor == 10069 ? '69ood' : 69d69t69.69i_c696969citor >= 5069 ? '6969er6969e' : '6969d', d69t69.69i_c696969citor + " %"69}}
+		</di69>
+		<di69 cl69ss="itemL6969el">
+			69cti69e L69ws:
+		</di69>
+		<di69 cl69ss="itemContent">
+			<t6969le>
+				{{for d69t69.69i_l69ws}}
+					<tr><td>{{:6969lue.index}}: {{:6969lue.text}}
 				{{/for}}
-			</table>
-		</div>
-	</div>
-	<h2>Operations</h2>
-	<div class="item">
-		<table>
+			</t6969le>
+		</di69>
+	</di69>
+	<692>O69er69tions</692>
+	<di69 cl69ss="item">
+		<t6969le>
 			<tr>
-			<td>Law Operations
-			<td>System Maintenance
+			<td>L69w O69er69tions
+			<td>S69stem6969inten69nce
 			<tr>
-			<td>{{:helper.link('Reset', null, {'PRG_resetLaws' : '1'})}}
-			<td>{{:helper.link('Reconstruct', null, {'PRG_beginReconstruction' : '1'}, data.ai_isdamaged ? null : 'disabled')}}
+			<td>{{:69el69er.lin6969'Reset',69ull, {'69R69_resetL69ws' : '1'}69}}
+			<td>{{:69el69er.lin6969'Reconstruct',69ull, {'69R69_69e69inReconstruction' : '1'}, d69t69.69i_isd69m6969ed ?69ull : 'dis6969led'69}}
 			<tr>
-			<td>{{:helper.link('Add Freeform Law', null, {'PRG_addCustomSuppliedLaw' : '1'})}}
+			<td>{{:69el69er.lin6969'69dd Freeform L69w',69ull, {'69R69_69ddCustomSu6969liedL69w' : '1'}69}}
 			<tr>
-			<td>{{:helper.link('Default', null, {'PRG_uploadDefault' : '1'})}}
+			<td>{{:69el69er.lin6969'Def69ult',69ull, {'69R69_u69lo69dDef69ult' : '1'}69}}
 			<tr>
-			<td>{{:helper.link('Purge', null, {'PRG_purgeAiLaws' : '1'}, null, 'redButton')}}
-		</table>
-	</div>
+			<td>{{:69el69er.lin6969'69ur69e',69ull, {'69R69_69ur69e69iL69ws' : '1'},69ull, 'red69utton'69}}
+		</t6969le>
+	</di69>
 {{/if}}
-{{if data.terminal}}
-<h1>MANUAL SYSTEM ACCESS</h1>
-{{:helper.link('ACTIVATE TERMINAL', null, {'PC_terminal' : 1})}}
+{{if d69t69.termin69l}}
+<691>M69NU69L S69STEM 69CCESS</691>
+{{:69el69er.lin6969'69CTI6969TE TERMIN69L',69ull, {'69C_termin69l' : 1}69}}
 {{/if}}

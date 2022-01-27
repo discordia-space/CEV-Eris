@@ -17,7 +17,7 @@
 	var/back_animation = "silc_teleport_back"
 	var/onhub_animation = "silc_get_hub"
 
-/obj/machinery/bssilk_hub/attackby(obj/item/I, mob/user)
+/obj/machinery/bssilk_hub/attackby(obj/item/I,69ob/user)
 	sync_with_parts()
 	if(QUALITY_PULSING in I.tool_qualities)
 		switch(alert("What you want to configure console ID or snare ID?", "BS Snare Hub ID system", "Snare", "Console"))
@@ -52,24 +52,24 @@
 	sync_with_parts()
 	var/list/mobs = list()
 	for(var/mob/living/carbon/human/M in world)
-		var/obj/item/clothing/U = M.w_uniform
+		var/obj/item/clothing/U =69.w_uniform
 		if(U && length(U.accessories))
 			for(var/obj/item/clothing/accessory/bs_silk/silk in U.accessories)
 				if(M && silk.silk_id && silk.silk_id == silk_id)
 					teleport_back(M)
-					mobs += M
+					mobs +=69
 	if(length(mobs) == 0)
 		playsound(src.loc, 'sound/machines/buzz-sigh.ogg')
 		playsound(src.loc, 'sound/voice/bfreeze.ogg', 50, 1)
-		audible_message(SPAN_WARNING("The [src.name] buzzes and state \'SNARE EITHER DISABLED OR NOT AVAILABLE, TRY TO PROBE IT AGAIN, IF YOU ARE SURE THAT THE SNARE IN A GOOD CONDITION OR CONNECTED TO USER.\'"),
-						SPAN_WARNING("The [src.name] buzzes and state something."),
+		audible_message(SPAN_WARNING("The 69src.name69 buzzes and state \'SNARE EITHER DISABLED OR NOT AVAILABLE, TRY TO PROBE IT AGAIN, IF YOU ARE SURE THAT THE SNARE IN A GOOD CONDITION OR CONNECTED TO USER.\'"),
+						SPAN_WARNING("The 69src.name69 buzzes and state something."),
 						hearing_distance = 5
 						)
-	return mobs
+	return69obs
 
 /obj/machinery/bssilk_hub/proc/teleport_back(mob/target)
 	to_chat(target, SPAN_WARNING("You feel like something pull you in bluespace."))
-	//Creat animation and move  mob into it and mob will not walking. Camera will follow animation.
+	//Creat animation and69ove 69ob into it and69ob will not walking. Camera will follow animation.
 	var/obj/effect/temporary/A = new(get_turf(target), 24.5, animation_icon, back_animation)
 	target.dir = 2
 	target.forceMove(A)
@@ -109,14 +109,14 @@
 	if(connected_hub) connected_hub.sync_with_parts()
 	ui_interact(user)
 
-/obj/machinery/computer/bssilk_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/bssilk_control/ui_interact(mob/user, ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = 1)
 	var/list/data = ui_data()
 
 	if(!connected_hub)
-		data["fail_connect"] = TRUE
+		data69"fail_connect"69 = TRUE
 	else
-		data["hub_id"] = hub_id
-		data["snare_id"] = connected_hub.silk_id
+		data69"hub_id"69 = hub_id
+		data69"snare_id"69 = connected_hub.silk_id
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if (!ui)
@@ -136,13 +136,13 @@
 /obj/machinery/computer/bssilk_control/OnTopic(mob/user, list/href_list, state)
 	. = ..()
 
-	if(href_list["resync"])
+	if(href_list69"resync"69)
 		connected_hub.sync_with_parts()
 
-	if(href_list["get_snaring"])
+	if(href_list69"get_snaring"69)
 		connected_hub.get_linked_mob()
 
-	if(href_list["set_id"])
+	if(href_list69"set_id"69)
 		var/new_id = input("Enter HUB id.", "HUB ID", hub_id)
 		hub_id = new_id
 		if(connected_hub) connected_hub.sync_with_parts()

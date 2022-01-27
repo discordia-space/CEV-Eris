@@ -5,17 +5,17 @@ SUBSYSTEM_DEF(vote)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
 	var/list/votes = list()
-	var/list/voters = list()	//List of clients with opened vote window
+	var/list/voters = list()	//List of clients with opened69ote window
 	var/datum/poll/active_vote
 	var/vote_start_time = 0
 
 /datum/controller/subsystem/vote/PreInit()
 	for(var/T in subtypesof(/datum/poll))
 		var/datum/poll/P = new T
-		votes[T] = P
+		votes69T69 = P
 
 /datum/controller/subsystem/vote/proc/update_voters()
-	for(var/client/C in voters)
+	for(var/client/C in69oters)
 		interface_client(C)
 
 /datum/controller/subsystem/vote/proc/interface_client(client/C)
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(vote)
 	if(active_vote)
 		active_vote.Process()
 
-		if(active_vote)//Need to check again because the active vote can be nulled during its process. For example if an admin forces start
+		if(active_vote)//Need to check again because the active69ote can be nulled during its process. For example if an admin forces start
 			if(get_vote_time() >= active_vote.time)
 				active_vote.check_winners()
 				stop_vote()
@@ -43,8 +43,8 @@ SUBSYSTEM_DEF(vote)
 
 	var/datum/poll/poll
 
-	if(ispath(newvote) && (newvote in votes))
-		poll = votes[newvote]
+	if(ispath(newvote) && (newvote in69otes))
+		poll =69otes69newvote69
 
 	//can_start check is done before calling this so that admins can skip it
 	if(!poll)
@@ -55,10 +55,10 @@ SUBSYSTEM_DEF(vote)
 
 	vote_start_time = world.time
 
-	var/text = "[poll.name] vote started by [poll.initiator]."
+	var/text = "69poll.name6969ote started by 69poll.initiator69."
 	log_vote(text)
-	to_chat(world, {"<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes. <br>You have [poll.time] seconds to vote.</font>"})
-	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = GLOB.vote_sound_channel))
+	to_chat(world, {"<font color='purple'><b>69text69</b>\nType <b>vote</b> or click <a href='?src=\ref69src69'>here</a> to place your69otes. <br>You have 69poll.time69 seconds to69ote.</font>"})
+	sound_to(world, sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0,69olume = 50, channel = GLOB.vote_sound_channel))
 
 	return TRUE
 
@@ -72,8 +72,8 @@ SUBSYSTEM_DEF(vote)
 	active_vote = null
 	return TRUE
 
-/datum/controller/subsystem/vote/proc/get_vote_time()	//How many seconds vote lasts
-	return round((world.time - vote_start_time)/10)
+/datum/controller/subsystem/vote/proc/get_vote_time()	//How69any seconds69ote lasts
+	return round((world.time -69ote_start_time)/10)
 
 /datum/controller/subsystem/vote/proc/interface(client/C)
 	if(!C)
@@ -85,25 +85,25 @@ SUBSYSTEM_DEF(vote)
 	voters |= C
 
 	if(active_vote)
-		data += "<h2>Vote: '[active_vote.question]'</h2>"
-		data += "Time Left: [active_vote.time - get_vote_time()] s<br>"
-		data += "Started by: <b>[active_vote.initiator]</b><hr>"
+		data += "<h2>Vote: '69active_vote.question69'</h2>"
+		data += "Time Left: 69active_vote.time - get_vote_time()69 s<br>"
+		data += "Started by: <b>69active_vote.initiator69</b><hr>"
 
 		if(active_vote.multiple_votes)
-			data += "You can vote multiple choices.<br>"
+			data += "You can69ote69ultiple choices.<br>"
 		else
-			data += "You can vote one choice.<br>"
+			data += "You can69ote one choice.<br>"
 
 		if(active_vote.can_revote)
 			if(active_vote.can_unvote)
-				data += "You can either change vote or remove it."
+				data += "You can either change69ote or remove it."
 			else
-				data += "You can change your vote."
+				data += "You can change your69ote."
 		else
-			data += "You can't change your vote."
+			data += "You can't change your69ote."
 
 		if (active_vote.description)
-			data += "<br>[active_vote.description]<br>"
+			data += "<br>69active_vote.description69<br>"
 
 		data += "<hr>"
 		data += "<table width = '100%'><tr><td align = 'center'><b>Choices</b></td><td align = 'center'><b>Votes</b></td>"
@@ -112,69 +112,69 @@ SUBSYSTEM_DEF(vote)
 			var/c_votes = (active_vote.see_votes || admin) ? choice.total_votes() : "*"
 			data += "<tr><td>"
 			if(C.key in choice.voters)
-				data += "<b><a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a></b>"
+				data += "<b><a href='?src=\ref69src69;vote=\ref69choice69'>69choice.text69</a></b>"
 			else
-				data += "<a href='?src=\ref[src];vote=\ref[choice]'>[choice.text]</a>"
+				data += "<a href='?src=\ref69src69;vote=\ref69choice69'>69choice.text69</a>"
 			if(choice.desc)
-				data += "<br>\t<i>[choice.desc]</i>"
-			data += "</td><td align = 'center'>[c_votes]</td></tr>"
+				data += "<br>\t<i>69choice.desc69</i>"
+			data += "</td><td align = 'center'>69c_votes69</td></tr>"
 
 		data += "</table><hr>"
 		if(admin)
-			data += "(<a href='?src=\ref[src];cancel=1'>Cancel Vote</a>) "
+			data += "(<a href='?src=\ref69src69;cancel=1'>Cancel69ote</a>) "
 	else
 		var/any_votes = FALSE
-		data += "<h2>Start a vote:</h2><hr><ul>"
+		data += "<h2>Start a69ote:</h2><hr><ul>"
 
-		for(var/P in votes)
-			var/datum/poll/poll = votes[P]
+		for(var/P in69otes)
+			var/datum/poll/poll =69otes69P69
 			data += "<li>"
 			any_votes = TRUE
 
 			if(poll.can_start() && (!poll.only_admin || admin))
-				data += "<a href='?src=\ref[src];start_vote=\ref[poll]'>[poll.name]</a>"
+				data += "<a href='?src=\ref69src69;start_vote=\ref69poll69'>69poll.name69</a>"
 			else
-				data += "<s>[poll.name]</s>"
+				data += "<s>69poll.name69</s>"
 				if (admin)
-					data += " <a href='?src=\ref[src];start_vote=\ref[poll]'>force</a> "
+					data += " <a href='?src=\ref69src69;start_vote=\ref69poll69'>force</a> "
 
 			if(admin)
-				data += "\t(<a href='?src=\ref[src];toggle_admin=\ref[poll]'>[poll.only_admin?"Only admin":"Allowed"]</a>)"
+				data += "\t(<a href='?src=\ref69src69;toggle_admin=\ref69poll69'>69poll.only_admin?"Only admin":"Allowed"69</a>)"
 			data += "</li>"
 
 		if(!any_votes)
-			data += "<li><i>There is no available votes here now.</i></li>"
+			data += "<li><i>There is no available69otes here now.</i></li>"
 
 		data += "</ul><hr>"
-	data += "<a href='?src=\ref[src];close=1' style='position:absolute;right:50px'>Close</a></body></html>"
+	data += "<a href='?src=\ref69src69;close=1' style='position:absolute;right:50px'>Close</a></body></html>"
 	return data
 
 
-/datum/controller/subsystem/vote/Topic(href,href_list[],hsrc)
-	if(href_list["vote"])
+/datum/controller/subsystem/vote/Topic(href,href_list6969,hsrc)
+	if(href_list69"vote"69)
 		if(active_vote)
-			var/datum/vote_choice/choice = locate(href_list["vote"]) in active_vote.choices
+			var/datum/vote_choice/choice = locate(href_list69"vote"69) in active_vote.choices
 			if(istype(choice) && usr && usr.client)
 				active_vote.vote(choice, usr.client)
 
-	if(href_list["toggle_admin"])
-		var/datum/poll/poll = locate(href_list["toggle_admin"])
+	if(href_list69"toggle_admin"69)
+		var/datum/poll/poll = locate(href_list69"toggle_admin"69)
 		if(istype(poll) && check_rights(R_ADMIN))
 			poll.only_admin = !poll.only_admin
 
-	if(href_list["start_vote"])
-		var/datum/poll/poll = locate(href_list["start_vote"])
+	if(href_list69"start_vote"69)
+		var/datum/poll/poll = locate(href_list69"start_vote"69)
 		if(istype(poll) && (check_rights(R_ADMIN) || (!poll.only_admin && poll.can_start())))
 			start_vote(poll.type)
 
-	if(href_list["cancel"])
+	if(href_list69"cancel"69)
 		if(active_vote && check_rights())
 			stop_vote()
 
-	if(href_list["debug"])
+	if(href_list69"debug"69)
 		usr.client.debug_variables(src)
 
-	if(href_list["close"])
+	if(href_list69"close"69)
 		if(usr && usr.client)
 			voters.Remove(usr.client)
 			usr.client << browse(null,"window=Vote")

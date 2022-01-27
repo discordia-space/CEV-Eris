@@ -1,243 +1,243 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"b" = (
-/obj/crawler/crawler_wallbreaker,
+/area/crawler69
+"69" = 69
+/o69j/crawler/crawler_wall69rea69er,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"c" = (
-/obj/machinery/conveyor/northeast{
+/area/crawler69
+"c" = 69
+/o69j/machinery/conveyor/northeast{
 	id = 3
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"d" = (
-/obj/machinery/conveyor/east{
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"d" = 69
+/o69j/machinery/conveyor/east{
 	id = 3
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"e" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
+/area/crawler69
+"e" = 69
+/o69j/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"f" = (
-/obj/crawler/crawler_wallbreaker/vertical,
+/area/crawler69
+"f" = 69
+/o69j/crawler/crawler_wall69rea69er/vertical,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"g" = (
-/obj/structure/closet/onestar/tier3,
+/area/crawler69
+"69" = 69
+/o69j/structure/closet/onestar/tier3,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"h" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/liquid_fuel,
-/obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"i" = (
-/obj/structure/table/onestar,
+/area/crawler69
+"h" = 69
+/o69j/effect/floor_decal/rust,
+/o69j/effect/decal/cleana69le/liquid_fuel,
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"i" = 69
+/o69j/structure/ta69le/onestar,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"j" = (
-/obj/structure/table/onestar,
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"k" = (
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"l" = (
-/obj/machinery/conveyor/north{
+/area/crawler69
+"j" = 69
+/o69j/structure/ta69le/onestar,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"69" = 69
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"l" = 69
+/o69j/machinery/conveyor/north{
 	id = 3
 	},
-/obj/machinery/light/floor,
+/o69j/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"m" = (
-/obj/structure/low_wall,
-/obj/effect/window_lwall_spawn,
+/area/crawler69
+"m" = 69
+/o69j/structure/low_wall,
+/o69j/effect/window_lwall_spawn,
 /turf/simulated/floor/tiled/techmaint,
-/area/crawler)
-"n" = (
-/obj/structure/table/onestar,
-/obj/machinery/light/floor,
+/area/crawler69
+"n" = 69
+/o69j/structure/ta69le/onestar,
+/o69j/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"o" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"o" = 69
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/obj/structure/railing/grey{
+/o69j/structure/railin69/69rey{
 	dir = 1
 	},
-/obj/item/storage/toolbox/mechanical,
-/obj/structure/table/rack,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"p" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/liquid_fuel,
-/obj/structure/closet/onestar/tier3,
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"q" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"r" = (
-/obj/machinery/mech_recharger,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"s" = (
-/obj/structure/reagent_dispensers/fueltank/huge,
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"t" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"u" = (
-/obj/machinery/conveyor/north{
+/o69j/item/stora69e/tool69ox/mechanical,
+/o69j/structure/ta69le/rac69,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"p" = 69
+/o69j/effect/floor_decal/rust,
+/o69j/effect/decal/cleana69le/liquid_fuel,
+/o69j/structure/closet/onestar/tier3,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"q" = 69
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"r" = 69
+/o69j/machinery/mech_rechar69er,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"s" = 69
+/o69j/structure/rea69ent_dispensers/fueltan69/hu69e,
+/o69j/effect/floor_decal/industrial/outline/yellow,
+/o69j/effect/floor_decal/rust,
+/o69j/effect/decal/cleana69le/liquid_fuel,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"t" = 69
+/o69j/effect/floor_decal/rust,
+/o69j/effect/decal/cleana69le/liquid_fuel,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"u" = 69
+/o69j/machinery/conveyor/north{
 	id = 3
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"v" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"v" = 69
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/obj/machinery/conveyor_switch/oneway{
+/o69j/machinery/conveyor_switch/oneway{
 	id = 3
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"w" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"x" = (
-/obj/effect/floor_decal/industrial/warning{
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"w" = 69
+/o69j/effect/floor_decal/industrial/outline/yellow,
+/o69j/effect/floor_decal/rust,
+/o69j/effect/decal/cleana69le/liquid_fuel,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"x" = 69
+/o69j/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
-/obj/machinery/light/floor,
+/o69j/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"y" = (
-/obj/machinery/light/floor,
+/area/crawler69
+"y" = 69
+/o69j/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"z" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"A" = (
-/obj/effect/floor_decal/industrial/loading,
-/turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"B" = (
-/obj/structure/largecrate,
-/obj/effect/floor_decal/industrial/loading{
+/area/crawler69
+"z" = 69
+/o69j/effect/floor_decal/industrial/warnin69{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"C" = (
+/area/crawler69
+"A" = 69
+/o69j/effect/floor_decal/industrial/loadin69,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"D" = (
-/obj/machinery/conveyor/north{
+/area/crawler69
+"69" = 69
+/o69j/structure/lar69ecrate,
+/o69j/effect/floor_decal/industrial/loadin69{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/derelict,
+/area/crawler69
+"C" = 69
+/turf/simulated/floor/tiled/derelict,
+/area/crawler69
+"D" = 69
+/o69j/machinery/conveyor/north{
 	id = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"E" = (
-/obj/machinery/door/airlock/centcom,
+/area/crawler69
+"E" = 69
+/o69j/machinery/door/airloc69/centcom,
 /turf/simulated/floor/tiled/techmaint,
-/area/crawler)
-"F" = (
-/obj/structure/railing/grey{
+/area/crawler69
+"F" = 69
+/o69j/structure/railin69/69rey{
 	dir = 8
 	},
-/obj/machinery/conveyor_switch/oneway{
+/o69j/machinery/conveyor_switch/oneway{
 	id = 4
 	},
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"G" = (
-/obj/effect/floor_decal/industrial/warning,
-/obj/machinery/light/floor,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"69" = 69
+/o69j/effect/floor_decal/industrial/warnin69,
+/o69j/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"H" = (
-/obj/machinery/conveyor/north{
+/area/crawler69
+"H" = 69
+/o69j/machinery/conveyor/north{
 	id = 4
 	},
-/obj/machinery/light/floor,
+/o69j/machinery/li69ht/floor,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"I" = (
-/obj/effect/floor_decal/industrial/loading{
+/area/crawler69
+"I" = 69
+/o69j/effect/floor_decal/industrial/loadin69{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"J" = (
-/obj/effect/floor_decal/industrial/warning,
+/area/crawler69
+"J" = 69
+/o69j/effect/floor_decal/industrial/warnin69,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"K" = (
-/obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"L" = (
-/obj/machinery/autolathe/mechfab,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"M" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"N" = (
-/obj/machinery/conveyor/northwest{
+/area/crawler69
+"69" = 69
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"L" = 69
+/o69j/machinery/autolathe/mechfa69,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"M" = 69
+/o69j/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"N" = 69
+/o69j/machinery/conveyor/northwest{
 	id = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"O" = (
-/obj/machinery/conveyor/west{
+/area/crawler69
+"O" = 69
+/o69j/machinery/conveyor/west{
 	id = 4
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"P" = (
-/obj/effect/floor_decal/industrial/loading{
+/area/crawler69
+"P" = 69
+/o69j/effect/floor_decal/industrial/loadin69{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"Q" = (
-/obj/spawner/mob/roomba,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"R" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/item/storage/toolbox/electrical,
-/turf/simulated/floor/tiled/dark/panels,
-/area/crawler)
-"S" = (
-/obj/spawner/mob/roomba,
+/area/crawler69
+"Q" = 69
+/o69j/spawner/mo69/room69a,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"R" = 69
+/o69j/effect/floor_decal/industrial/hatch/yellow,
+/o69j/item/stora69e/tool69ox/electrical,
+/turf/simulated/floor/tiled/dar69/panels,
+/area/crawler69
+"S" = 69
+/o69j/spawner/mo69/room69a,
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
+/area/crawler69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -248,18 +248,18 @@ a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
 l
 u
-B
+69
 D
 H
 N
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 d
 o
@@ -270,7 +270,7 @@ L
 O
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 e
 Q
@@ -281,19 +281,19 @@ Q
 P
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
-g
+69
 q
 q
 C
 q
 q
 i
-b
+69
 "}
-(6,1,1) = {"
-b
+696,1,169 = {"
+69
 i
 i
 n
@@ -301,10 +301,10 @@ C
 y
 i
 i
-b
+69
 "}
-(7,1,1) = {"
-b
+697,1,169 = {"
+69
 m
 m
 a
@@ -312,31 +312,31 @@ E
 a
 m
 m
-b
+69
 "}
-(8,1,1) = {"
-b
+698,1,169 = {"
+69
 j
 j
 x
 C
-G
+69
 M
 M
-b
+69
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
-k
+69
 q
 z
 S
 I
 r
-k
-b
+69
+69
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 h
 r
@@ -344,10 +344,10 @@ A
 C
 J
 q
-K
+69
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 p
 t
@@ -355,10 +355,10 @@ z
 S
 I
 r
-k
+69
 a
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 a
 s
 w
@@ -369,7 +369,7 @@ M
 R
 a
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 a
 a
 f

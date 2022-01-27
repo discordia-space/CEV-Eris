@@ -8,9 +8,9 @@
 	bad_type = /obj/item/gun/energy
 	spawn_tags = SPAWN_TAG_GUN_ENERGY
 
-	recoil_buildup = 0.5 //energy weapons have little to no recoil
+	recoil_buildup = 0.5 //energy weapons have little to69o recoil
 
-	var/charge_cost = 100 //How much energy is needed to fire.
+	var/charge_cost = 100 //How69uch energy is69eeded to fire.
 	var/obj/item/cell/cell
 	var/suitable_cell = /obj/item/cell/medium
 	var/cell_type = /obj/item/cell/medium/high
@@ -26,7 +26,7 @@
 	//self-recharging
 	var/self_recharge = FALSE		//if set, the weapon will recharge itself
 	var/disposable = FALSE
-	var/use_external_power = FALSE	//if set, the weapon will look for an external power source to draw from, otherwise it recharges magically
+	var/use_external_power = FALSE	//if set, the weapon will look for an external power source to draw from, otherwise it recharges69agically
 	var/recharge_time = 4
 	var/charge_tick = 0
 	var/overcharge_timer //Holds ref to the timer used for overcharging
@@ -49,26 +49,26 @@
 /obj/item/gun/energy/Initialize()
 	. = ..()
 	if(self_recharge)
-		cell = new cell_type(src)
+		cell =69ew cell_type(src)
 		START_PROCESSING(SSobj, src)
 	update_icon()
 	if(disposable)
-		cell = new cell_type(src)
+		cell =69ew cell_type(src)
 		START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/gun/energy/Destroy()
-	QDEL_NULL(cell)
+	69DEL_NULL(cell)
 	return ..()
 
 /obj/item/gun/energy/Process()
-	if(self_recharge) //Every [recharge_time] ticks, recharge a shot for the cyborg
+	if(self_recharge) //Every 69recharge_time69 ticks, recharge a shot for the cyborg
 		charge_tick++
 		if(charge_tick < recharge_time) return 0
 		charge_tick = 0
 
 		if(!cell || cell.charge >= cell.maxcharge)
-			return 0 // check if we actually need to recharge
+			return 0 // check if we actually69eed to recharge
 
 		if(use_external_power)
 			var/obj/item/cell/large/external = get_external_cell()
@@ -85,14 +85,14 @@
 /obj/item/gun/energy/handle_atom_del(atom/A)
 	..()
 	if(A == cell)
-		cell = null
+		cell =69ull
 		update_icon()
 
 /obj/item/gun/energy/consume_next_projectile()
-	if(!cell) return null
-	if(!ispath(projectile_type)) return null
-	if(!cell.checked_use(charge_cost)) return null
-	return new projectile_type(src)
+	if(!cell) return69ull
+	if(!ispath(projectile_type)) return69ull
+	if(!cell.checked_use(charge_cost)) return69ull
+	return69ew projectile_type(src)
 
 /obj/item/gun/energy/proc/get_external_cell()
 	return loc.get_cell()
@@ -100,67 +100,67 @@
 /obj/item/gun/energy/examine(mob/user)
 	..(user)
 	if(!cell)
-		to_chat(user, SPAN_NOTICE("Has no battery cell inserted."))
+		to_chat(user, SPAN_NOTICE("Has69o battery cell inserted."))
 		return
 	var/shots_remaining = round(cell.charge / charge_cost)
-	to_chat(user, "Has [shots_remaining] shot\s remaining.")
+	to_chat(user, "Has 69shots_remaining69 shot\s remaining.")
 	return
 
 /obj/item/gun/energy/update_icon(var/ignore_inhands)
 	if(charge_meter)
 		var/ratio = 0
 
-		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		//make sure that rounding down will69ot give us the empty state even if we have charge for a shot left.
 		if(cell && cell.charge >= charge_cost)
 			ratio = cell.charge / cell.maxcharge
-			ratio = min(max(round(ratio, 0.25) * 100, 25), 100)
+			ratio =69in(max(round(ratio, 0.25) * 100, 25), 100)
 
 		if(modifystate)
-			icon_state = "[modifystate][ratio]"
+			icon_state = "69modifystate6969ratio69"
 		else
-			icon_state = "[initial(icon_state)][ratio]"
+			icon_state = "69initial(icon_state)6969ratio69"
 
 		if(item_charge_meter)
-			set_item_state("-[item_modifystate][ratio]")
+			set_item_state("-69item_modifystate6969ratio69")
 	if(!item_charge_meter && item_modifystate)
-		set_item_state("-[item_modifystate]")
+		set_item_state("-69item_modifystate69")
 	if(!ignore_inhands)
 		update_wear_icon()
 
 /obj/item/gun/energy/MouseDrop(over_object)
 	if(disposable)
-		to_chat(usr, SPAN_WARNING("[src] is a disposable, its batteries cannot be removed!."))
+		to_chat(usr, SPAN_WARNING("69src69 is a disposable, its batteries cannot be removed!."))
 	else if(self_recharge)
-		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, its batteries cannot be removed!."))
+		to_chat(usr, SPAN_WARNING("69src69 is a self-charging gun, its batteries cannot be removed!."))
 	else if((src.loc == usr) && istype(over_object, /obj/screen/inventory/hand) && eject_item(cell, usr))
-		cell = null
+		cell =69ull
 		update_icon()
 
-/obj/item/gun/energy/attackby(obj/item/C, mob/living/user)
-	if(QUALITY_SAWING in C.tool_qualities)
-		to_chat(user, SPAN_NOTICE("You begin to saw down \the [src]."))
+/obj/item/gun/energy/attackby(obj/item/C,69ob/living/user)
+	if(69UALITY_SAWING in C.tool_69ualities)
+		to_chat(user, SPAN_NOTICE("You begin to saw down \the 69src69."))
 		if(saw_off == FALSE)
-			to_chat(user, SPAN_NOTICE("Sawing down \the [src] will achieve nothing or may impede operation."))
+			to_chat(user, SPAN_NOTICE("Sawing down \the 69src69 will achieve69othing or69ay impede operation."))
 			return
 		if (src.item_upgrades.len)
 			if(src.dna_compare_samples) //or else you can override dna lock
-				to_chat(user, SPAN_NOTICE("Sawing down \the [src] will not allow use of the firearm."))
+				to_chat(user, SPAN_NOTICE("Sawing down \the 69src69 will69ot allow use of the firearm."))
 				return
 			if("No" == input(user, "There are attachments present. Would you like to destroy them?") in list("Yes", "No"))
 				return
-		if(saw_off && C.use_tool(user, src, WORKTIME_LONG, QUALITY_SAWING, FAILCHANCE_NORMAL, required_stat = STAT_MEC))
-			qdel(src)
+		if(saw_off && C.use_tool(user, src, WORKTIME_LONG, 69UALITY_SAWING, FAILCHANCE_NORMAL, re69uired_stat = STAT_MEC))
+			69del(src)
 			new sawn(usr.loc)
-			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else nice from \the [src], ruining a perfectly good weapon."))
+			to_chat(user, SPAN_WARNING("You cut down the stock, barrel, and anything else69ice from \the 69src69, ruining a perfectly good weapon."))
 	if(self_recharge)
-		to_chat(usr, SPAN_WARNING("[src] is a self-charging gun, it doesn't need more batteries."))
+		to_chat(usr, SPAN_WARNING("69src69 is a self-charging gun, it doesn't69eed69ore batteries."))
 		return
 	if(disposable)
-		to_chat(usr, SPAN_WARNING("[src] is a disposable gun, it doesn't need more batteries."))
+		to_chat(usr, SPAN_WARNING("69src69 is a disposable gun, it doesn't69eed69ore batteries."))
 		return
 
 	if(cell)
-		to_chat(usr, SPAN_WARNING("[src] is already loaded."))
+		to_chat(usr, SPAN_WARNING("69src69 is already loaded."))
 		return
 
 	if(istype(C, suitable_cell) && insert_item(C, user))
@@ -171,19 +171,19 @@
 
 /obj/item/gun/energy/ui_data(mob/user)
 	var/list/data = ..()
-	data["charge_cost"] = charge_cost
+	data69"charge_cost"69 = charge_cost
 	var/obj/item/cell/C = get_cell()
 	if(C)
-		data["cell_charge"] = C.percent()
-		data["shots_remaining"] = round(C.charge/charge_cost)
-		data["max_shots"] = round(C.maxcharge/charge_cost)
+		data69"cell_charge"69 = C.percent()
+		data69"shots_remaining"69 = round(C.charge/charge_cost)
+		data69"max_shots"69 = round(C.maxcharge/charge_cost)
 	return data
 
 /obj/item/gun/energy/get_dud_projectile()
-	return new projectile_type
+	return69ew projectile_type
 
 /obj/item/gun/energy/refresh_upgrades()
-	//refresh our unique variables before applying upgrades too
+	//refresh our uni69ue69ariables before applying upgrades too
 	charge_cost = initial(charge_cost)
 	overcharge_max = initial(overcharge_max)
 	overcharge_rate = initial(overcharge_rate)

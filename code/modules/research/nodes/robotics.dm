@@ -7,8 +7,8 @@
 	y = 0.4
 	icon = "cyborganalyzer"
 
-	required_technologies = list()
-	required_tech_levels = list()
+	re69uired_technologies = list()
+	re69uired_tech_levels = list()
 	cost = 0
 
 	unlocks_designs = list(
@@ -29,8 +29,8 @@
 	y = 0.5
 	icon = "ripley"
 
-	required_technologies = list(/datum/technology/basic_robotics)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_robotics)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(
@@ -45,15 +45,15 @@
 
 /datum/technology/light_exo_components
 	name = "Light Exosuit Components"
-	desc = "Light exosuit components using reinforced plastics for a lighter, but less durable exosuit. Includes NV sensors."
+	desc = "Light exosuit components using reinforced plastics for a lighter, but less durable exosuit. Includes69V sensors."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.4
 	y = 0.4
 	icon = "odyssey"
 
-	required_technologies = list(/datum/technology/cheap_exo_components)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/cheap_exo_components)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(
@@ -73,8 +73,8 @@
 	y = 0.6
 	icon = "gygax"
 
-	required_technologies = list(/datum/technology/cheap_exo_components)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/cheap_exo_components)
+	re69uired_tech_levels = list()
 	cost = 1000
 
 	unlocks_designs = list(
@@ -93,8 +93,8 @@
 	y = 0.6
 	icon = "mecharmor"
 
-	required_technologies = list(/datum/technology/mech_weaponry_modules)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/mech_weaponry_modules)
+	re69uired_tech_levels = list()
 	cost = 3000
 
 	unlocks_designs = list(
@@ -111,8 +111,8 @@
 	y = 0.9
 	icon = "gygaxultra"
 
-	required_technologies = list(/datum/technology/mech_gygax)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/mech_gygax)
+	re69uired_tech_levels = list()
 	cost = 4000
 
 	unlocks_designs = list("ultra_main", "ultra_peri", "ultra_targ")
@@ -127,8 +127,8 @@
 	y = 0.4
 	icon = "durand"
 
-	required_technologies = list(/datum/technology/cheap_exo_components)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/cheap_exo_components)
+	re69uired_tech_levels = list()
 	cost = 3000
 
 	unlocks_designs = list(
@@ -140,19 +140,19 @@
 
 /datum/technology/mech_propulsion_alt
 	name = "Alternative Exosuit Propulsion Systems"
-	desc = "Two new alternative, specialized designs for exosuit propulsion: Quad-legs specialized for turning, and tracks specialized for speed and durability at the expense of turning."
+	desc = "Two69ew alternative, specialized designs for exosuit propulsion: 69uad-legs specialized for turning, and tracks specialized for speed and durability at the expense of turning."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.4
 	y = 0.6
 	icon = "spiderlegs"
 
-	required_technologies = list(/datum/technology/cheap_exo_components)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/cheap_exo_components)
+	re69uired_tech_levels = list()
 	cost = 3000
 
 	unlocks_designs = list(
-		/datum/design/research/item/mechfab/exosuit/propulsion/quad,
+		/datum/design/research/item/mechfab/exosuit/propulsion/69uad,
 		/datum/design/research/item/mechfab/exosuit/propulsion/tracks
 	)
 
@@ -166,8 +166,8 @@
 	y = 0.8
 	icon = "vindicator" // TODO change icon
 
-	required_technologies = list(/datum/technology/mech_durand)
-	required_tech_levels = list() // Add some bluespace requirement?
+	re69uired_technologies = list(/datum/technology/mech_durand)
+	re69uired_tech_levels = list() // Add some bluespace re69uirement?
 	cost = 4000
 
 	unlocks_designs = list(
@@ -184,10 +184,10 @@
 		)
 */
 
-//Mech Modules
+//Mech69odules
 /datum/technology/mech_medical_modules
-	name = "Medical Modules"
-	desc = "Exosuit medical systems"
+	name = "Medical69odules"
+	desc = "Exosuit69edical systems"
 
 	tech_type = RESEARCH_ROBOTICS
 
@@ -195,9 +195,9 @@
 	y = 0.5
 	icon = "sleeper"
 
-	required_technologies = list(/datum/technology/cheap_exo_components)
+	re69uired_technologies = list(/datum/technology/cheap_exo_components)
 
-	required_tech_levels = list()
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(
@@ -206,7 +206,7 @@
 	)
 
 /datum/technology/mech_utility_modules
-	name = "Utility Modules"
+	name = "Utility69odules"
 	desc = "Exosuit's utility systems"
 	tech_type = RESEARCH_ROBOTICS
 
@@ -214,9 +214,9 @@
 	y = 0.6
 	icon = "cyborganalyzer"
 
-	required_technologies = list(/datum/technology/cheap_exo_components)
+	re69uired_technologies = list(/datum/technology/cheap_exo_components)
 
-	required_tech_levels = list()
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -229,15 +229,15 @@
 
 /datum/technology/mech_teleporter_modules
 	name = "Gravity Catapult"
-	desc = "Exosuit gravity catapult module"
+	desc = "Exosuit gravity catapult69odule"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.2
 	y = 0.6
 	icon = "mechteleporter"
 
-	required_technologies = list(/datum/technology/mech_utility_modules)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/mech_utility_modules)
+	re69uired_tech_levels = list()
 	cost = 5000
 
 	unlocks_designs = list(/datum/design/research/item/exosuit/gravity_catapult)
@@ -251,11 +251,11 @@
 	y = 0.7
 	icon = "mecharmor"
 
-	required_technologies = list(
+	re69uired_technologies = list(
 		/datum/technology/cheap_exo_components,
 		/datum/technology/mech_utility_modules
 	)
-	required_tech_levels = list()
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -272,11 +272,11 @@
 	y = 0.6
 	icon = "mechgrenadelauncher"
 
-	required_technologies = list(
+	re69uired_technologies = list(
 		/datum/technology/cheap_exo_components,
 		/datum/technology/combat_exo_components
 		)
-	required_tech_levels = list()
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -294,8 +294,8 @@
 	y = 0.7
 	icon = "mechlaser"
 
-	required_technologies = list(/datum/technology/mech_weaponry_modules)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/mech_weaponry_modules)
+	re69uired_tech_levels = list()
 	cost = 5000
 
 	unlocks_designs = list(
@@ -307,15 +307,15 @@
 
 /datum/technology/cyborg_robo
 	name = "AI Robotics"
-	desc = "Positron links. Man-Machine Interface. Cyborg control systems. Artificial Intelegence mobile storages."
+	desc = "Positron links.69an-Machine Interface. Cyborg control systems. Artificial Intelegence69obile storages."
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
 	y = 0.3
 	icon = "posbrain"
 
-	required_technologies = list(/datum/technology/basic_robotics)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_robotics)
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list(
@@ -335,8 +335,8 @@
 	y = 0.3
 	icon = "aicard"
 
-	required_technologies = list(/datum/technology/cyborg_robo)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/cyborg_robo)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -353,8 +353,8 @@
 	y = 0.2
 	icon = "module"
 
-	required_technologies = list(/datum/technology/artificial_intelligence)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/artificial_intelligence)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -363,7 +363,7 @@
 							/datum/design/research/aimodule/onehuman,
 							/datum/design/research/aimodule/protectstation,
 							/datum/design/research/aimodule/notele,
-							/datum/design/research/aimodule/quarantine,
+							/datum/design/research/aimodule/69uarantine,
 							/datum/design/research/aimodule/oxygen,
 							/datum/design/research/aimodule/freeform,
 							/datum/design/research/aimodule/reset,
@@ -385,8 +385,8 @@
 	y = 0.3
 	icon = "rigscanner"
 
-	required_technologies = list(/datum/technology/cyborg_robo)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/cyborg_robo)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list(
@@ -399,46 +399,46 @@
 
 /*
 /datum/technology/basic_hardsuit_modules
-	name = "Basic Hardsuit Modules"
-	desc = "Basic Hardsuit Modules"
+	name = "Basic Hardsuit69odules"
+	desc = "Basic Hardsuit69odules"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.35
 	y = 0.1
 	icon = "rigscanner"
 
-	required_technologies = list()
-	required_tech_levels = list()
+	re69uired_technologies = list()
+	re69uired_tech_levels = list()
 	cost = 500
 
 	unlocks_designs = list("rigsimpleai", "rigflash", "righealthscanner", "riganomalyscanner", "rigorescanner", "rigextinguisher", "rigmetalfoamspray", "rigcoolingunit")
 
 /datum/technology/advanced_hardsuit_modules
-	name = "Advanced Hardsuit Modules"
-	desc = "Basic Hardsuit Modules"
+	name = "Advanced Hardsuit69odules"
+	desc = "Basic Hardsuit69odules"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.5
 	y = 0.1
 	icon = "rigtaser"
 
-	required_technologies = list(/datum/technology/basic_hardsuit_modules)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/basic_hardsuit_modules)
+	re69uired_tech_levels = list()
 	cost = 2000
 
 	unlocks_designs = list("rigadvancedai", "riggrenadelauncherflashbang", "rigdrill", "rigselfrepair", "rigmountedtaser", "rigcombatinjector", "rigmedicalinjector")
 
 /datum/technology/toptier_hardsuit_modules
-	name = "Top-Tier Hardsuit Modules"
-	desc = "Top-Tier Hardsuit Modules"
+	name = "Top-Tier Hardsuit69odules"
+	desc = "Top-Tier Hardsuit69odules"
 	tech_type = RESEARCH_ROBOTICS
 
 	x = 0.65
 	y = 0.1
 	icon = "rignuclearreactor"
 
-	required_technologies = list(/datum/technology/advanced_hardsuit_modules)
-	required_tech_levels = list()
+	re69uired_technologies = list(/datum/technology/advanced_hardsuit_modules)
+	re69uired_tech_levels = list()
 	cost = 5000
 
 	unlocks_designs = list("rigmountedlaserrifle", "rigrcd", "rigmedteleport", "rignuclearreactor")

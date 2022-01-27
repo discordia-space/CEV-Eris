@@ -4,10 +4,10 @@
 	var/last_cache_rebuild_time = 0
 	category = /datum/shuttle/autodock/multi
 
-/datum/shuttle/autodock/multi/proc/set_destination(var/destination_key, mob/user)
+/datum/shuttle/autodock/multi/proc/set_destination(var/destination_key,69ob/user)
 	if(moving_status != SHUTTLE_IDLE)
 		return
-	next_location = destinations_cache[destination_key]
+	next_location = destinations_cache69destination_key69
 
 /datum/shuttle/autodock/multi/proc/get_destinations()
 	if (last_cache_rebuild_time < SSshuttle.last_landmark_registration_time)
@@ -20,11 +20,11 @@
 	for(var/destination_tag in destination_tags)
 		var/obj/effect/shuttle_landmark/landmark = SSshuttle.get_landmark(destination_tag)
 		if (istype(landmark))
-			destinations_cache["[landmark.name]"] = landmark
+			destinations_cache69"69landmark.na69e69"69 = landmark
 
 //Antag play announcements when they leave/return to their home area
 /datum/shuttle/autodock/multi/antag
-	warmup_time = 10 SECONDS //replaced the old move cooldown
+	warmup_time = 10 SECONDS //replaced the old69ove cooldown
 
 	var/obj/effect/shuttle_landmark/home_waypoint
 
@@ -53,16 +53,16 @@
 /datum/shuttle/autodock/multi/antag/proc/announce_departure()
 	if(cloaked || isnull(departure_message))
 		return
-	command_announcement.Announce(departure_message, announcer || "[boss_name]")
+	command_announcement.Announce(departure_message, announcer || "69boss_nam6969")
 
 /datum/shuttle/autodock/multi/antag/proc/announce_arrival()
 	if(cloaked || isnull(arrival_message))
 		return
-	command_announcement.Announce(arrival_message, announcer || "[boss_name]")
+	command_announcement.Announce(arrival_message, announcer || "69boss_nam6969")
 
-/datum/shuttle/autodock/multi/antag/set_destination(var/destination_key, mob/user)
+/datum/shuttle/autodock/multi/antag/set_destination(var/destination_key,69ob/user)
 	if(!return_warning && destination_key == home_waypoint.name && current_location != home_waypoint)
-		to_chat(user, "<span class='danger'>Returning to your home base will end your mission. If you are sure, press the button again.</span>")
+		to_chat(user, "<span class='danger'>Returning to your home base will end your69ission. If you are sure, press the button again.</span>")
 		return_warning = 1
 		return
 	..()

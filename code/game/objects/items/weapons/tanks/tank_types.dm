@@ -21,8 +21,8 @@
 	slot_flags = SLOT_BACK
 
 /obj/item/tank/oxygen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 10)
-		to_chat(user, text(SPAN_WARNING("The meter on \the [src] indicates you are almost out of oxygen!")))
+	if(..(user, 0) && air_contents.gas69"oxygen"69 < 10)
+		to_chat(user, text(SPAN_WARNING("The69eter on \the 69src69 indicates you are almost out of oxygen!")))
 
 
 /obj/item/tank/oxygen/red
@@ -39,15 +39,15 @@
  */
 /obj/item/tank/anesthetic
 	name = "anesthetic tank"
-	desc = "A tank with an N2O/O2 gas mix."
+	desc = "A tank with an N2O/O2 gas69ix."
 	icon_state = "anesthetic"
 	default_pressure = 3*ONE_ATMOSPHERE
 	rarity_value = 30
 
 /obj/item/tank/anesthetic/spawn_gas()
 	air_contents.adjust_multi(
-		"oxygen", default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD,
-		"sleeping_agent", default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
+		"oxygen", default_pressure*volume/(R_IDEAL_GAS_E69UATION*T20C) * O2STANDARD,
+		"sleeping_agent", default_pressure*volume/(R_IDEAL_GAS_E69UATION*T20C) * N2STANDARD
 	)
 
 
@@ -63,14 +63,14 @@
 	slot_flags = SLOT_BACK
 
 /obj/item/tank/air/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 1 && loc==user)
-		to_chat(user, SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!"))
+	if(..(user, 0) && air_contents.gas69"oxygen"69 < 1 && loc==user)
+		to_chat(user, SPAN_DANGER("The69eter on the 69src.name69 indicates you are almost out of air!"))
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/tank/air/spawn_gas()
 	air_contents.adjust_multi(
-		"oxygen", default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C) * O2STANDARD,
-		"nitrogen", default_pressure*volume/(R_IDEAL_GAS_EQUATION*T20C) * N2STANDARD
+		"oxygen", default_pressure*volume/(R_IDEAL_GAS_E69UATION*T20C) * O2STANDARD,
+		"nitrogen", default_pressure*volume/(R_IDEAL_GAS_E69UATION*T20C) * N2STANDARD
 	)
 
 
@@ -96,7 +96,7 @@
  */
 /obj/item/tank/emergency_oxygen
 	name = "emergency oxygen tank"
-	desc = "Used for emergencies. Contains very little oxygen, so try to conserve it until you actually need it."
+	desc = "Used for emergencies. Contains69ery little oxygen, so try to conserve it until you actually need it."
 	icon_state = "emergency"
 	gauge_icon = "indicator-tank-small"
 	gauge_cap = 4
@@ -107,12 +107,12 @@
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
 	default_pressure = 3*ONE_ATMOSPHERE
 	default_gas = "oxygen"
-	volume = 2 //Tiny. Real life equivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
+	volume = 2 //Tiny. Real life e69uivalents only have 21 breaths of oxygen in them. They're EMERGENCY tanks anyway -errorage (dangercon 2011)
 	rarity_value = 10
 
 /obj/item/tank/emergency_oxygen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["oxygen"] < 0.2 && loc==user)
-		to_chat(user, text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of air!")))
+	if(..(user, 0) && air_contents.gas69"oxygen"69 < 0.2 && loc==user)
+		to_chat(user, text(SPAN_DANGER("The69eter on the 69src.name69 indicates you are almost out of air!")))
 		user << sound('sound/effects/alert.ogg')
 
 /obj/item/tank/emergency_oxygen/engi
@@ -137,8 +137,8 @@
 	rarity_value = 15
 
 /obj/item/tank/emergency_oxygen/nitrogen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["nitrogen"] < 0.2 && loc==user)
-		to_chat(user, text(SPAN_DANGER("The meter on the [src.name] indicates you are almost out of nitrogen!")))
+	if(..(user, 0) && air_contents.gas69"nitrogen"69 < 0.2 && loc==user)
+		to_chat(user, text(SPAN_DANGER("The69eter on the 69src.name69 indicates you are almost out of nitrogen!")))
 		user << sound('sound/effects/alert.ogg')
 
 /*
@@ -146,7 +146,7 @@
  */
 /obj/item/tank/nitrogen
 	name = "nitrogen tank"
-	desc = "Many a death for mistaking it for a fire extinguisher."
+	desc = "Many a death for69istaking it for a fire extinguisher."
 	force = WEAPON_FORCE_PAINFUL
 	icon_state = "nitrogen"
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
@@ -155,6 +155,6 @@
 	rarity_value = 30
 
 /obj/item/tank/nitrogen/examine(mob/user)
-	if(..(user, 0) && air_contents.gas["nitrogen"] < 10)
-		to_chat(user, text(SPAN_DANGER("The meter on \the [src] indicates you are almost out of nitrogen!")))
+	if(..(user, 0) && air_contents.gas69"nitrogen"69 < 10)
+		to_chat(user, text(SPAN_DANGER("The69eter on \the 69src69 indicates you are almost out of nitrogen!")))
 		//playsound(user, 'sound/effects/alert.ogg', 50, 1)

@@ -3,11 +3,11 @@
 	health = 20
 	maxHealth = 20
 	icon = 'icons/obj/aibots.dmi'
-	layer = MOB_LAYER
+	layer =69OB_LAYER
 	universal_speak = 1
 	density = FALSE
 	bad_type = /mob/living/bot
-	var/obj/item/card/id/botcard = null
+	var/obj/item/card/id/botcard =69ull
 	var/list/botcard_access = list()
 	var/on = TRUE
 	var/open = 0
@@ -15,7 +15,7 @@
 	var/emagged = 0
 	var/light_strength = 3
 
-	var/obj/access_scanner = null
+	var/obj/access_scanner =69ull
 	var/list/req_access = list()
 	var/list/req_one_access = list()
 	mob_classification = CLASSIFICATION_SYNTHETIC
@@ -24,10 +24,10 @@
 	..()
 	update_icons()
 
-	botcard = new /obj/item/card/id(src)
+	botcard =69ew /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
-	access_scanner = new /obj(src)
+	access_scanner =69ew /obj(src)
 	access_scanner.req_access = req_access.Copy()
 	access_scanner.req_one_access = req_one_access.Copy()
 
@@ -42,10 +42,10 @@
 
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
-		health = maxHealth
+		health =69axHealth
 		stat = CONSCIOUS
 	else
-		health = maxHealth - getFireLoss() - getBruteLoss()
+		health =69axHealth - getFireLoss() - getBruteLoss()
 	oxyloss = 0
 	toxloss = 0
 	cloneloss = 0
@@ -54,11 +54,11 @@
 /mob/living/bot/death()
 	explode()
 
-/mob/living/bot/attackby(var/obj/item/O, var/mob/user)
+/mob/living/bot/attackby(var/obj/item/O,69ar/mob/user)
 	if(O.GetIdCard())
 		if(access_scanner.allowed(user) && !open && !emagged)
 			locked = !locked
-			to_chat(user, "<span class='notice'>Controls are now [locked ? "locked." : "unlocked."]</span>")
+			to_chat(user, "<span class='notice'>Controls are69ow 69locked ? "locked." : "unlocked."69</span>")
 			attack_hand(user)
 		else
 			if(emagged)
@@ -71,19 +71,19 @@
 	else if(istype(O, /obj/item/tool/screwdriver))
 		if(!locked)
 			open = !open
-			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
+			to_chat(user, "<span class='notice'>Maintenance panel is69ow 69open ? "opened" : "closed"69.</span>")
 		else
-			to_chat(user, SPAN_NOTICE("You need to unlock the controls first."))
+			to_chat(user, SPAN_NOTICE("You69eed to unlock the controls first."))
 		return
 	else if(istype(O, /obj/item/tool/weldingtool))
-		if(health < maxHealth)
+		if(health <69axHealth)
 			if(open)
 				adjustBruteLoss(-10)
-				user.visible_message(SPAN_NOTICE("[user] repairs [src]."),SPAN_NOTICE("You repair [src]."))
+				user.visible_message(SPAN_NOTICE("69user69 repairs 69src69."),SPAN_NOTICE("You repair 69src69."))
 			else
-				to_chat(user, SPAN_NOTICE("Unable to repair with the maintenance panel closed."))
+				to_chat(user, SPAN_NOTICE("Unable to repair with the69aintenance panel closed."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] does not need a repair."))
+			to_chat(user, SPAN_NOTICE("69src69 does69ot69eed a repair."))
 		return
 	else
 		..()
@@ -96,7 +96,7 @@
 
 	message = sanitize(message)
 
-	..(message, null, verb)
+	..(message,69ull,69erb)
 
 /mob/living/bot/Bump(var/atom/A)
 	if(on && botcard && istype(A, /obj/machinery/door))
@@ -106,7 +106,7 @@
 	else
 		..()
 
-/mob/living/bot/emag_act(var/remaining_charges, var/mob/user)
+/mob/living/bot/emag_act(var/remaining_charges,69ar/mob/user)
 	return 0
 
 /mob/living/bot/proc/turn_on()

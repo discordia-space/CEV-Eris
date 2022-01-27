@@ -5,7 +5,7 @@
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	//SPEEDLOADER because rapid unloading.
-	//In principle someone could make a speedloader for it, so it makes sense.
+	//In principle someone could69ake a speedloader for it, so it69akes sense.
 	load_method = SINGLE_CASING|SPEEDLOADER
 	handle_casings = CYCLE_CASINGS
 	max_shells = 2
@@ -19,15 +19,15 @@
 	ammo_type = /obj/item/ammo_casing/shotgun/beanbag
 	bulletinsert_sound = 'sound/weapons/guns/interact/shotgun_insert.ogg'
 	fire_sound = 'sound/weapons/guns/fire/shotgunp_fire.ogg'
-	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	matter = list(MATERIAL_PLASTEEL = 20,69ATERIAL_WOOD = 10)
 	price_tag = 1200
 	one_hand_penalty = 15 //full sized shotgun level
 	var/bolt_open = 0
 	burst_delay = 0
 	no_internal_mag = TRUE
 	init_firemodes = list(
-		list(mode_name="Single-fire", mode_desc="Send Vagabonds flying back several paces", burst=1, icon="semi"),
-		list(mode_name="Both Barrels", mode_desc="Give them the side-by-side", burst=2, icon="burst"),
+		list(mode_name="Single-fire",69ode_desc="Send69agabonds flying back several paces", burst=1, icon="semi"),
+		list(mode_name="Both Barrels",69ode_desc="Give them the side-by-side", burst=2, icon="burst"),
 		)
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
@@ -67,13 +67,13 @@
 
 /obj/item/gun/projectile/shotgun/doublebarrel/special_check(mob/user)
 	if(bolt_open)
-		to_chat(user, SPAN_WARNING("You can't fire [src] while the barrel is open!"))
+		to_chat(user, SPAN_WARNING("You can't fire 69src69 while the barrel is open!"))
 		return 0
 	return ..()
 
-/obj/item/gun/projectile/shotgun/doublebarrel/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/shotgun/doublebarrel/load_ammo(var/obj/item/A,69ob/user)
 	if(!bolt_open)
-		to_chat(user, SPAN_WARNING("You can't load [src] while the barrel is closed!"))
+		to_chat(user, SPAN_WARNING("You can't load 69src69 while the barrel is closed!"))
 		return
 	. = ..()
 	if (. && ishuman(user)) // if it actually loaded and the user is human
@@ -81,7 +81,7 @@
 		stylish.regen_slickness()
 
 
-/obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(mob/user,69ar/allow_dump=1)
 	if(!bolt_open)
 		return
 	..()

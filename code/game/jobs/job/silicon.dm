@@ -3,16 +3,16 @@
 	flag = AI
 	department_flag = COMMAND
 	faction = "CEV Eris"
-	total_positions = 1 // Not used for AI, see is_position_available below and modules/mob/living/silicon/ai/latejoin.dm
-	spawn_positions = 1 // |-> above message is partly true, it is used by /AssignRole so we still need to set it to 1
+	total_positions = 1 // Not used for AI, see is_position_available below and69odules/mob/living/silicon/ai/latejoin.dm
+	spawn_positions = 1 // |-> above69essage is partly true, it is used by /AssignRole so we still need to set it to 1
 	selection_color = "#b5b7cb"
 	supervisors = "your laws"
-	req_admin_notify = 1
+	re69_admin_notify = 1
 	account_allowed = 0
 	wage = WAGE_NONE
 	outfit_type = /decl/hierarchy/outfit/job/silicon/ai
 
-/datum/job/ai/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/ai/e69uip(var/mob/living/carbon/human/H,69ar/alt_title)
 	return FALSE
 
 /datum/job/ai/is_position_available()
@@ -32,7 +32,7 @@
 /datum/job/cyborg
 	title = "Robot"
 	flag = CYBORG
-	department_flag = MISC
+	department_flag =69ISC
 	faction = "CEV Eris"
 	total_positions = 2
 	spawn_positions = 2
@@ -44,7 +44,7 @@
 
 	outfit_type = /decl/hierarchy/outfit/job/silicon/cyborg
 
-/datum/job/cyborg/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/cyborg/e69uip(var/mob/living/carbon/human/H,69ar/alt_title)
 	return FALSE
 
 /obj/landmark/join/start/cyborg

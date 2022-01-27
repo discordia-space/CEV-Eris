@@ -3,10 +3,10 @@
 
 /obj/item/integrated_circuit/power/transmitter
 	name = "power transmission circuit"
-	desc = "This can wirelessly transmit electricity from an assembly's battery towards a nearby machine."
+	desc = "This can wirelessly transmit electricity from an assembly's battery towards a nearby69achine."
 	icon_state = "power_transmitter"
-	extended_desc = "This circuit transmits 5 kJ of electricity every time the activator pin is pulsed. The input pin must be \
-	a reference to a machine to send electricity to. This can be a battery, or anything containing a battery. The machine can exist \
+	extended_desc = "This circuit transmits 5 kJ of electricity every time the activator pin is pulsed. The input pin69ust be \
+	a reference to a69achine to send electricity to. This can be a battery, or anything containing a battery. The69achine can exist \
 	inside the assembly, or adjacent to it. The power is sourced from the assembly's power cell. If the target is outside of the assembly, \
 	some power is lost due to ineffiency."
 	w_class = ITEM_SIZE_SMALL
@@ -14,7 +14,7 @@
 	inputs = list("target" = IC_PINTYPE_REF)
 	outputs = list(
 		"target cell charge" = IC_PINTYPE_NUMBER,
-		"target cell max charge" = IC_PINTYPE_NUMBER,
+		"target cell69ax charge" = IC_PINTYPE_NUMBER,
 		"target cell percentage" = IC_PINTYPE_NUMBER
 		)
 	activators = list("transmit" = IC_PINTYPE_PULSE_IN, "on transmit" = IC_PINTYPE_PULSE_OUT)
@@ -25,11 +25,11 @@
 
 /obj/item/integrated_circuit/power/transmitter/large
 	name = "large power transmission circuit"
-	desc = "This can wirelessly transmit a lot of electricity from an assembly's battery towards a nearby machine. <b>Warning:</b> Do not operate in flammable environments."
-	extended_desc = "This circuit transmits 20 kJ of electricity every time the activator pin is pulsed. The input pin must be \
-	a reference to a machine to send electricity to. This can be a battery, or anything containing a battery. The machine can exist \
+	desc = "This can wirelessly transmit a lot of electricity from an assembly's battery towards a nearby69achine. <b>Warning:</b> Do not operate in flammable environments."
+	extended_desc = "This circuit transmits 20 kJ of electricity every time the activator pin is pulsed. The input pin69ust be \
+	a reference to a69achine to send electricity to. This can be a battery, or anything containing a battery. The69achine can exist \
 	inside the assembly, or adjacent to it. The power is sourced from the assembly's power cell. If the target is outside of the assembly, \
-	some power is lost due to ineffiency. Warning! Don't stack more than 1 power transmitter, as it becomes less efficient for every other \
+	some power is lost due to ineffiency. Warning! Don't stack69ore than 1 power transmitter, as it becomes less efficient for every other \
 	transmission circuit in its own assembly and other nearby ones."
 	w_class = ITEM_SIZE_NORMAL
 	complexity = 32
@@ -45,7 +45,7 @@
 	if(!assembly && !assembly.battery)
 		return FALSE // Pointless to do everything else if there's no battery to draw from.
 	var/list/power_cell_list = get_power_cell(AM)
-	var/obj/item/cell/small/cell = power_cell_list[1]
+	var/obj/item/cell/small/cell = power_cell_list69169
 	if(istype(cell))
 		var/transfer_amount = amount_to_move
 		var/turf/A = get_turf(src)
@@ -53,7 +53,7 @@
 		if(A.Adjacent(B))
 			if(AM.loc != assembly)
 				transfer_amount *= 0.8 // Losses due to distance.
-			transfer_amount *= power_cell_list[2] // Losses due to transmission efficient
+			transfer_amount *= power_cell_list69269 // Losses due to transmission efficient
 			var/list/U = list(A.contents)
 			transfer_amount *= 1 / U.len
 			if(cell.charge == cell.maxcharge)
@@ -84,7 +84,7 @@
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(12, 1, src.loc)
 			spark_system.start()
-			acting_object.visible_message(SPAN_WARNING("\The [acting_object] makes some sparks!"))
+			acting_object.visible_message(SPAN_WARNING("\The 69acting_object6969akes some sparks!"))
 		return TRUE
 
 
@@ -94,7 +94,7 @@
 	desc = "Connects to a wire and allows to read the power, charge it or charge itself from the wire's power."
 	extended_desc = "This circuit will automatically attempt to locate and connect to wires on the floor beneath it when pulsed. \
 						You <b>must</b> set a target before connecting. It can also transfer energy up to 2kJ from the assembly  \
-						to a wire and backwards if negative values are set for energy transfer."
+						to a wire and backwards if negative69alues are set for energy transfer."
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	inputs = list(
 			"charge" = IC_PINTYPE_NUMBER
@@ -133,7 +133,7 @@
 	update_cable()
 	push_data()
 
-//If the assembly containing this is moved from the tile the wire is in, the connection breaks
+//If the assembly containing this is69oved from the tile the wire is in, the connection breaks
 /obj/item/integrated_circuit/power/transmitter/wire_connector/ext_moved()
 	if(connected_cable)
 		if(get_dist(get_object(), connected_cable) > 0)

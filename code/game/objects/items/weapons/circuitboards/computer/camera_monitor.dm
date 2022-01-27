@@ -1,11 +1,11 @@
 #ifndef T_BOARD
-#error T_BOARD macro is not defined but we need it!
+#error T_BOARD69acro is not defined but we need it!
 #endif
 
 /obj/item/electronics/circuitboard/security
-	name = T_BOARD("security camera monitor")
+	name = T_BOARD("security camera69onitor")
 	build_path = /obj/machinery/computer/security
-	req_access = list(access_security)
+	re69_access = list(access_security)
 	var/list/network
 	var/locked = 1
 	var/emagged = 0
@@ -15,19 +15,19 @@
 	network = station_networks
 
 /obj/item/electronics/circuitboard/security/engineering
-	name = T_BOARD("engineering camera monitor")
+	name = T_BOARD("engineering camera69onitor")
 	build_path = /obj/machinery/computer/security/engineering
-	req_access = list()
+	re69_access = list()
 
 /obj/item/electronics/circuitboard/security/engineering/New()
 	..()
 	network = engineering_networks
 
 /obj/item/electronics/circuitboard/security/mining
-	name = T_BOARD("mining camera monitor")
+	name = T_BOARD("mining camera69onitor")
 	build_path = /obj/machinery/computer/security/mining
 	network = list("MINE")
-	req_access = list()
+	re69_access = list()
 
 /obj/item/electronics/circuitboard/security/construct(var/obj/machinery/computer/security/C)
 	if (..(C))
@@ -37,7 +37,7 @@
 	if (..(C))
 		network = C.network.Copy()
 
-/obj/item/electronics/circuitboard/security/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/electronics/circuitboard/security/emag_act(var/remaining_charges,69ar/mob/user)
 	if(emagged)
 		user << "Circuit lock is already removed."
 		return
@@ -46,14 +46,14 @@
 	locked = 0
 	return 1
 
-/obj/item/electronics/circuitboard/security/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/electronics/circuitboard/security/attackby(obj/item/I as obj,69ob/user as69ob)
 	if(istype(I,/obj/item/card/id))
 		if(emagged)
 			user << SPAN_WARNING("Circuit lock does not respond.")
 			return
 		if(check_access(I))
 			locked = !locked
-			user << "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>"
+			user << "<span class='notice'>You 69locked ? "" : "un"69lock the circuit controls.</span>"
 		else
 			user << SPAN_WARNING("Access denied.")
 	else if(istype(I,/obj/item/tool/multitool))

@@ -19,12 +19,12 @@
 /obj/item/clothing/head/soft/attack_self(mob/user)
 	src.flipped = !src.flipped
 	if(src.flipped)
-		icon_state = "[icon_state]_flipped"
+		icon_state = "69icon_state69_flipped"
 		to_chat(user, "You flip the hat backwards.")
 	else
 		src.icon_state = initial(icon_state)
 		to_chat(user, "You flip the hat back in normal position.")
-	update_wear_icon()	//so our mob-overlays update
+	update_wear_icon()	//so our69ob-overlays update
 
 /obj/item/clothing/head/soft/red
 	name = "red cap"
@@ -95,13 +95,13 @@
 // S E R B I A //
 
 /obj/item/clothing/head/soft/green2soft
-	name = "green military cap"
+	name = "green69ilitary cap"
 	initial_name = "green cap"
 	desc = "A field cap in tasteful green color."
 	icon_state = "green2soft"
 
 /obj/item/clothing/head/soft/tan2soft
-	name = "tan military cap"
+	name = "tan69ilitary cap"
 	initial_name = "tan cap"
 	desc = "A field cap in tasteful tan color."
 	icon_state = "tansoft"
@@ -120,10 +120,10 @@
 	desc = "A field cap for officers."
 	icon_state = "sargesoft"
 
-// M O E B I U S //m
+//69 O E B I U S //m
 
 /obj/item/clothing/head/soft/medical
 	name = "medical cap"
-	desc = "Cap worn by moebius medical personnel, usually outside spacecraft."
+	desc = "Cap worn by69oebius69edical personnel, usually outside spacecraft."
 	icon_state = "medcap"
 	item_state = "medcap"

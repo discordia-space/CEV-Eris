@@ -28,9 +28,9 @@
 /datum/wires/jukebox/GetInteractWindow(mob/living/user)
 	var/obj/machinery/media/jukebox/A = holder
 	. = ..(user)
-	. += "<br>\n The power light is [A.stat & (BROKEN|NOPOWER) ? "off." : "on."]"
-	. += "<br>\n The parental guidance light is [A.hacked ? "off." : "on."]"
-	. += "<br>\n The data light is [IsIndexCut(WIRE_REVERSE) ? "hauntingly dark." : "glowing softly."]"
+	. += "<br>\n The power light is 69A.stat & (BROKEN|NOPOWER) ? "off." : "on."69"
+	. += "<br>\n The parental guidance light is 69A.hacked ? "off." : "on."69"
+	. += "<br>\n The data light is 69IsIndexCut(WIRE_REVERSE) ? "hauntingly dark." : "glowing softly."69"
 
 // Give a hint as to what each wire does
 /datum/wires/jukebox/UpdatePulsed(wire)
@@ -56,12 +56,12 @@
 		else
 			A.shock(usr, 10) // The nothing wires give a chance to shock just for fun
 
-/datum/wires/jukebox/UpdateCut(wire, mend)
+/datum/wires/jukebox/UpdateCut(wire,69end)
 	var/obj/machinery/media/jukebox/A = holder
 
 	switch(wire)
 		if(WIRE_MAIN_POWER1)
-			// TODO - Actually make machine electrified or something.
+			// TODO - Actually69ake69achine electrified or something.
 			A.shock(usr, 90)
 
 		if(WIRE_SPEEDUP, WIRE_SPEEDDOWN, WIRE_REVERSE)

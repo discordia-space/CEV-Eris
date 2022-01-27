@@ -1,30 +1,30 @@
-//Procs and vars related to dirt, cleaning, and mopping
+//Procs and69ars related to dirt, cleanin69, and69oppin69
 
 /*
-	Wetness and slipping
+	Wetness and slippin69
 */
 
-/turf/simulated/proc/wet_floor(var/wet_val = 1, var/force_wet = FALSE)
+/turf/simulated/proc/wet_floor(var/wet_val = 1,69ar/force_wet = FALSE)
 	if(wet_val < wet && !force_wet)
 		return
 
 	if(force_wet || !wet)
 		wet = wet_val
 	if(!wet_overlay)
-		wet_overlay = image('icons/effects/water.dmi',src,"wet_floor")
+		wet_overlay = ima69e('icons/effects/water.dmi',src,"wet_floor")
 		overlays += wet_overlay
 
-	addtimer(CALLBACK(src, .proc/unwet_floor, TRUE), rand(1 MINUTES, 1.5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/unwet_floor, TRUE), rand(169INUTES, 1.569INUTES), TIMER_UNI69UE|TIMER_OVERRIDE)
 
 /turf/simulated/proc/unwet_floor(var/check_very_wet)
 	wet = 0
 	if(wet_overlay)
 		overlays -= wet_overlay
-		wet_overlay = null
+		wet_overlay =69ull
 
 
 /*
-	Cleaning
+	Cleanin69
 */
 
 /turf/simulated/clean_blood()
@@ -32,58 +32,58 @@
 		B.clean_blood()
 	..()
 
-//expects an atom containing the reagents used to clean the turf
-/turf/proc/clean(atom/source, mob/user)
-	var/amt = 0  // Amount of filth collected (for holy vacuum cleaner)
-	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
+//expects an atom containin69 the rea69ents used to clean the turf
+/turf/proc/clean(atom/source,69ob/user)
+	var/amt = 0  // Amount of filth collected (for holy69acuum cleaner)
+	if(source.rea69ents.has_rea69ent("water", 1) || source.rea69ents.has_rea69ent("cleaner", 1))
 		clean_blood()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				amt++
-				qdel(O)
-		if(ishuman(user) && user.stats && user.stats.getPerk(/datum/perk/neat))
-			var/mob/living/carbon/human/H = user
+				69del(O)
+		if(ishuman(user) && user.stats && user.stats.69etPerk(/datum/perk/neat))
+			var/mob/livin69/carbon/human/H = user
 			if(H.sanity)
-				H.sanity.changeLevel(0.5)
+				H.sanity.chan69eLevel(0.5)
 	else
-		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
-	source.reagents.trans_to_turf(src, 1, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
+		to_chat(user, SPAN_WARNIN69("\The 69source69 is too dry to wash that."))
+	source.rea69ents.trans_to_turf(src, 1, 10)	//10 is the69ultiplier for the reaction effect. probably69eeded to wet the floor properly.
 	return amt
 
 /turf/proc/clean_ultimate(var/mob/user)
 	clean_blood()
 	for(var/obj/effect/O in src)
 		if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-			qdel(O)
+			69del(O)
 
-//As above, but has limitations. Instead of cleaning the tile completely, it just cleans [count] number of things
-/turf/proc/clean_partial(atom/source, mob/user, var/count = 1)
+//As above, but has limitations. Instead of cleanin69 the tile completely, it just cleans 69count6969umber of thin69s
+/turf/proc/clean_partial(atom/source,69ob/user,69ar/count = 1)
 	if (!count)
 		return
 
-	//A negative value can mean infinite cleaning, but in that case just call the unlimited version
+	//A69e69ative69alue can69ean infinite cleanin69, but in that case just call the unlimited69ersion
 	if (!isnum(count) || count < 0)
 		clean(source, user)
 		return
 
-	if(source.reagents.has_reagent("water", 1) || source.reagents.has_reagent("cleaner", 1))
-		source.reagents.trans_to_turf(src, 1, 10)
+	if(source.rea69ents.has_rea69ent("water", 1) || source.rea69ents.has_rea69ent("cleaner", 1))
+		source.rea69ents.trans_to_turf(src, 1, 10)
 	else
-		to_chat(user, SPAN_WARNING("\The [source] is too dry to wash that."))
+		to_chat(user, SPAN_WARNIN69("\The 69source69 is too dry to wash that."))
 		return
 
 	for (count;count > 0;count--)
-		var/cleanedsomething = FALSE
+		var/cleanedsomethin69 = FALSE
 
 
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-				qdel(O)
-				cleanedsomething = TRUE
+				69del(O)
+				cleanedsomethin69 = TRUE
 				break //Only clean one per loop iteration
 
-		//If the tile is clean, don't keep looping
-		if (!cleanedsomething)
+		//If the tile is clean, don't keep loopin69
+		if (!cleanedsomethin69)
 			break
 
 /turf/proc/update_blood_overlays()
@@ -96,15 +96,15 @@
 
 
 
-/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comingdir,var/goingdir,var/bloodcolor="#A10808")
+/turf/simulated/proc/AddTracks(var/typepath,var/bloodDNA,var/comin69dir,var/69oin69dir,var/bloodcolor="#A10808")
 	var/obj/effect/decal/cleanable/blood/tracks/tracks = locate(typepath) in src
 	if(!tracks)
-		tracks = new typepath(src)
-	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
+		tracks =69ew typepath(src)
+	tracks.AddTracks(bloodDNA,comin69dir,69oin69dir,bloodcolor)
 
 
-//returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+//returns 1 if69ade bloody, returns 0 otherwise
+/turf/simulated/add_blood(mob/livin69/carbon/human/M as69ob)
 	if (!..())
 		return 0
 
@@ -112,15 +112,15 @@
 		for(var/obj/effect/decal/cleanable/blood/B in contents)
 			if(!B.blood_DNA)
 				B.blood_DNA = list()
-			if(!B.blood_DNA[M.dna.unique_enzymes])
-				B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-				B.virus2 = virus_copylist(M.virus2)
+			if(!B.blood_DNA69M.dna.uni69ue_enzymes69)
+				B.blood_DNA69M.dna.uni69ue_enzymes69 =69.dna.b_type
+				B.virus2 =69irus_copylist(M.virus2)
 			return 1 //we bloodied the floor
-		blood_splatter(src,M.get_blood(),1)
+		blood_splatter(src,M.69et_blood(),1)
 		return 1 //we bloodied the floor
 	return 0
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if( istype(M, /mob/living/silicon/robot ))
+/turf/simulated/proc/add_blood_floor(mob/livin69/carbon/M as69ob)
+	if( istype(M, /mob/livin69/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)

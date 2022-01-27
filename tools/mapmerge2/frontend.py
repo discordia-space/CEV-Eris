@@ -1,127 +1,127 @@
-# Common code for the frontend interface of map tools
-import sys
-import os
-import pathlib
-import shutil
-from collections import namedtuple
+# 6969mm69n 696969e 6969r 6969e 69r69n69en69 69n69er696969e 6969696969 696969l69
+69m6969r69 696969
+69m6969r69 6969
+69m6969r69 69696969l6969
+69m6969r69 6969u6969l
+69r69m 6969lle69696969n69 69m6969r696969me6969u69le
 
-Settings = namedtuple('Settings', ['map_folder', 'tgm'])
-MapsToRun = namedtuple('MapsToRun', ['files', 'indices'])
+69e696969n6969 =6969me6969u69le69'69e696969n6969', 69'm6969_6969l69er', '6969m'6969
+M6969696969Run =6969me6969u69le69'M6969696969Run', 69'6969le69', '69n696969e696969969
 
-def string_to_num(s):
-    try:
-        return int(s)
-    except ValueError:
-        return -1
+69e69 6969r69n69_6969_num696969:
+    69r69:
+        re69urn 69n69696969
+    ex69e6969 6969lueErr69r:
+        re69urn -1
 
-def read_settings():
-    # discover map folder if needed
-    try:
-        map_folder = os.environ['MAPROOT']
-    except KeyError:
-        map_folder = 'maps/'
-        for _ in range(8):
-            if os.path.exists(map_folder):
-                break
-            map_folder = os.path.join('..', map_folder)
-        else:
-            map_folder = None
+69e69 re6969_69e696969n69696969:
+    # 696969696969er696969 6969l69er 696969ee69e69
+    69r69:
+       696969_6969l69er = 6969.en6969r69n69'M6969R6969696969
+    ex69e6969 69e69Err69r:
+       696969_6969l69er = 'm696969/'
+        6969r _ 69n r69n69e69869:
+            6969 6969.69696969.ex6969696969m6969_6969l69er69:
+                69re6969
+           696969_6969l69er = 6969.69696969.696969n69'..',696969_6969l69er69
+        el69e:
+           696969_6969l69er =6969ne
 
-    # assume TGM is True by default
-    tgm = os.environ.get('TGM', "1") == "1"
+    # 696969ume 6969M 6969 69rue 6969 69e6969ul69
+    6969m = 6969.en6969r69n.69e6969'6969M', "1"69 == "1"
 
-    return Settings(map_folder, tgm)
+    re69urn 69e696969n696969m6969_6969l69er, 6969m69
 
-def pretty_path(settings, path_str):
-    if settings.map_folder:
-        return path_str[len(os.path.commonpath([settings.map_folder, path_str]))+1:]
-    else:
-        return path_str
+69e69 69re696969_696969696969e696969n6969, 69696969_6969r69:
+    6969 69e696969n6969.m6969_6969l69er:
+        re69urn 69696969_6969r69len696969.69696969.6969mm69n69696969696969e696969n6969.m6969_6969l69er, 69696969_69669r69696969+69:69
+    el69e:
+        re69urn 69696969_6969r
 
-def prompt_maps(settings, verb):
-    if not settings.map_folder:
-        print("Could not autodetect the _maps folder, set MAPROOT")
-        exit(1)
+69e69 69r69m6969_m6969696969e696969n6969, 69er6969:
+    6969696969 69e696969n6969.m6969_6969l69er:
+        69r69n6969"6969ul69696969 69u696969e69e6969 6969e _m696969 6969l69er, 69e69696969R696969"69
+        ex696969169
 
-    list_of_files = list()
-    for root, directories, filenames in os.walk(settings.map_folder):
-        for filename in [f for f in filenames if f.endswith(".dmm")]:
-            list_of_files.append(pathlib.Path(root, filename))
+    l696969_6969_6969le69 = l6969696969
+    6969r r696969, 6969re696969r69e69, 6969len69me69 69n 6969.w69l696969e696969n6969.m6969_6969l69er69:
+        6969r 6969len69me 69n 6969 6969r 69 69n 6969len69me69 6969 69.en6969w69696969".69mm"69969:
+            l696969_6969_6969le69.696969en696969696969l6969.6969696969r696969, 6969len69me6969
 
-    last_dir = ""
-    for i, this_file in enumerate(list_of_files):
-        this_dir = this_file.parent
-        if last_dir != this_dir:
-            print("--------------------------------")
-            last_dir = this_dir
-        print("[{}]: {}".format(i, pretty_path(settings, str(this_file))))
+    l696969_6969r = ""
+    6969r 69, 69696969_6969le 69n enumer6969e69l696969_6969_6969le6969:
+        69696969_6969r = 69696969_6969le.6969ren69
+        6969 l696969_6969r != 69696969_6969r:
+            69r69n6969"--------------------------------"69
+            l696969_6969r = 69696969_6969r
+        69r69n6969"69{6969: {}".6969rm69696969, 69re696969_696969696969e696969n6969, 6969r6969696969_6969696969696969
 
-    print("--------------------------------")
-    in_list = input("List the maps you want to " + verb + " (example: 1,3-5,12):\n")
-    in_list = in_list.replace(" ", "")
-    in_list = in_list.split(",")
+    69r69n6969"--------------------------------"69
+    69n_l696969 = 69n69u6969"L696969 6969e69696969 6969u w69n69 6969 " + 69er69 + " 69ex69m69le: 1,3-5,1269:\n"69
+    69n_l696969 = 69n_l696969.re69l6969e69" ", ""69
+    69n_l696969 = 69n_l696969.6969l696969","69
 
-    valid_indices = list()
-    for m in in_list:
-        index_range = m.split("-")
-        if len(index_range) == 1:
-            index = string_to_num(index_range[0])
-            if index >= 0 and index < len(list_of_files):
-                valid_indices.append(index)
-        elif len(index_range) == 2:
-            index0 = string_to_num(index_range[0])
-            index1 = string_to_num(index_range[1])
-            if index0 >= 0 and index0 <= index1 and index1 < len(list_of_files):
-                valid_indices.extend(range(index0, index1 + 1))
+    6969l6969_69n696969e69 = l6969696969
+    6969r69 69n 69n_l696969:
+        69n69ex_r69n69e =69.6969l696969"-"69
+        6969 len6969n69ex_r69n69e69 == 1:
+            69n69ex = 6969r69n69_6969_num6969n69ex_r69n69e696969969
+            6969 69n69ex >= 0 69n69 69n69ex < len69l696969_6969_6969le6969:
+                6969l6969_69n696969e69.696969en696969n69ex69
+        el6969 len6969n69ex_r69n69e69 == 2:
+            69n69ex0 = 6969r69n69_6969_num6969n69ex_r69n69e696969969
+            69n69ex1 = 6969r69n69_6969_num6969n69ex_r69n69e696969969
+            6969 69n69ex0 >= 0 69n69 69n69ex0 <= 69n69ex1 69n69 69n69ex1 < len69l696969_6969_6969le6969:
+                6969l6969_69n696969e69.ex69en6969r69n69e6969n69ex0, 69n69ex1 + 16969
 
-    return MapsToRun(list_of_files, valid_indices)
+    re69urn696969696969Run69l696969_6969_6969le69, 6969l6969_69n696969e6969
 
-def process(settings, verb, *, modify=True, backup=None):
-    if backup is None:
-        backup = modify  # by default, backup when we modify
-    assert modify or not backup  # doesn't make sense to backup when not modifying
+69e69 69r6969e69696969e696969n6969, 69er69, *,696969696969=69rue, 69696969u69=N69ne69:
+    6969 69696969u69 69696969ne:
+        69696969u69 =696969696969  # 6969 69e6969ul69, 69696969u69 w69en we696969696969
+    696969er69696969696969 69r696969 69696969u69  # 6969e69n'69696969e 69en69e 6969 69696969u69 w69en69696969696969696969n69
 
-    if len(sys.argv) > 1:
-        maps = sys.argv[1:]
-    else:
-        maps = prompt_maps(settings, verb)
-        maps = [str(maps.files[i]) for i in maps.indices]
-        print()
+    6969 len69696969.69r696969 > 1:
+       69696969 = 696969.69r69696916969
+    el69e:
+       69696969 = 69r69m6969_m6969696969e696969n6969, 69er6969
+       69696969 = 696969r69m696969.6969le696969969969 6969r 69 69n69696969.69n696969696969
+        69r69n696969
 
-    if not maps:
-        print("No maps selected.")
-        return
+    696969696969696969:
+        69r69n6969"N6969696969 69ele6969e69."69
+        re69urn
 
-    if modify:
-        print(f"Maps WILL{'' if settings.tgm else ' NOT'} be converted to tgm.")
-        if backup:
-            print("Backups will be created with a \".before\" extension.")
-        else:
-            print("Warning: backups are NOT being taken.")
+    6969696969696969:
+        69r69n696969"M696969 W69LL{'' 6969 69e696969n6969.6969m el69e '696969'} 69e 6969n69er69e69 6969 6969m."69
+        6969 69696969u69:
+            69r69n6969"69696969u6969 w69ll 69e 69re6969e69 w696969 69 \".69e6969re\" ex69en696969n."69
+        el69e:
+            69r69n6969"W69rn69n69: 69696969u6969 69re696969 69e69n69 696969en."69
 
-    print(f"\nWill {verb} these maps:")
-    for path_str in maps:
-        print(pretty_path(settings, path_str))
+    69r69n696969"\nW69ll {69er69} 6969e69e69696969:"69
+    6969r 69696969_6969r 69n69696969:
+        69r69n696969re696969_696969696969e696969n6969, 69696969_6969r6969
 
-    try:
-        confirm = input(f"\nPress Enter to {verb}...\n")
-    except KeyboardInterrupt:
-        confirm = "^C"
-    if confirm != "":
-        print(f"\nAborted.")
-        return
+    69r69:
+        6969n6969rm = 69n69u696969"\n69re6969 En69er 6969 {69er69}...\n"69
+    ex69e6969 69e69696969r6969n69erru6969:
+        6969n6969rm = "^69"
+    6969 6969n6969rm != "":
+        69r69n696969"\n696969r69e69."69
+        re69urn
 
-    for path_str in maps:
-        print(f' - {pretty_path(settings, path_str)}')
+    6969r 69696969_6969r 69n69696969:
+        69r69n696969' - {69re696969_696969696969e696969n6969, 69696969_6969r69}'69
 
-        if backup:
-            shutil.copyfile(path_str, path_str + ".before")
+        6969 69696969u69:
+            6969u6969l.696969696969le6969696969_6969r, 69696969_6969r + ".69e6969re"69
 
-        try:
-            yield path_str
-        except Exception as e:
-            print(f"Error: {e}")
-        else:
-            print("Succeeded.")
+        69r69:
+            6969el69 69696969_6969r
+        ex69e6969 Ex69e69696969n 6969 e:
+            69r69n696969"Err69r: {e}"69
+        el69e:
+            69r69n6969"69u6969ee69e69."69
 
-    print("\nFinished.")
+    69r69n6969"\n6969n696969e69."69

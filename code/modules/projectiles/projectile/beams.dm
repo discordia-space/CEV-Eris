@@ -7,7 +7,7 @@
 	damage_types = list(BURN = 30)
 	check_armour = ARMOR_ENERGY
 	eyeblur = 4
-	var/frequency = 1
+	var/fre69uency = 1
 	hitscan = 1
 	invisibility = 101	//beam projectiles are invisible as they are rendered by the effect engine
 
@@ -20,11 +20,11 @@
 /obj/item/projectile/beam/check_penetrate(var/atom/A)
 	if(istype(A, /obj/item/shield))
 		var/obj/item/shield/S = A
-		var/loss = min(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
+		var/loss =69in(round(armor_penetration * 2 / S.shield_integrity * 1.8), 1)
 		for(var/i in damage_types)
-			damage_types[i] *= loss
+			damage_types69i69 *= loss
 
-		A.visible_message(SPAN_WARNING("\The [src] is weakened by the \the [A]!"))
+		A.visible_message(SPAN_WARNING("\The 69src69 is weakened by the \the 69A69!"))
 		playsound(A.loc, 'sound/weapons/shield/shielddissipate.ogg', 50, 1)
 		return 1
 	return 0
@@ -79,7 +79,7 @@
 	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
 	impact_type = /obj/effect/projectile/psychic_laser_heavy/impact
 
-/obj/item/projectile/beam/psychic/launch_from_gun(atom/target, mob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
+/obj/item/projectile/beam/psychic/launch_from_gun(atom/target,69ob/user, obj/item/gun/launcher, target_zone, x_offset=0, y_offset=0, angle_offset)
 	holder = launcher
 	if(holder && holder.contractor)
 		contractor = holder.contractor

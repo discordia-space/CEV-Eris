@@ -1,5 +1,5 @@
 /*
-A powerful 64x64 roach can spawn in any burrow in maints.
+A powerful 64x64 roach can spawn in any burrow in69aints.
 While emerging from it, it will bring a rich trash piles with him (gun and science loot),
 that will populate floors around burrow itself.
 It will also bring a hoard of roaches with it.
@@ -66,7 +66,7 @@ It will also bring a hoard of roaches with it.
 		var/obj/structure/scrap_spawner/scrap = pick(reward)
 		var/turf/simulated/floor/floor = pick(floors)
 		new scrap(floor)
-		floors.Remove(floor) // To avoid multiple scrap piles on one tile
+		floors.Remove(floor) // To avoid69ultiple scrap piles on one tile
 
 	enter_burrow.migrate_to(exit_burrow, 1, 0)
-	log_and_message_admins("Sending Kaiser to [jumplink(exit_burrow)]")
+	log_and_message_admins("Sending Kaiser to 69jumplink(exit_burrow)69")

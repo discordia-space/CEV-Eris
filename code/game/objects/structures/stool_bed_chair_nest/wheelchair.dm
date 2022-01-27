@@ -23,8 +23,8 @@
 	if(buckled_mob)
 		buckled_mob.set_dir(dir)
 
-/obj/structure/bed/chair/wheelchair/attackby(obj/item/I, mob/living/user)
-	if((QUALITY_BOLT_TURNING in I.tool_qualities) || (QUALITY_WIRE_CUTTING in I.tool_qualities) || istype(I, /obj/item/stack))
+/obj/structure/bed/chair/wheelchair/attackby(obj/item/I,69ob/living/user)
+	if((69UALITY_BOLT_TURNING in I.tool_69ualities) || (69UALITY_WIRE_CUTTING in I.tool_69ualities) || istype(I, /obj/item/stack))
 		return
 	..()
 
@@ -73,11 +73,11 @@
 			step(pulling, get_dir(pulling.loc, src.loc))
 	//--3--Move wheelchair--3--//
 	step(src, direction)
-	if(buckled_mob) // Make sure it stays beneath the occupant
+	if(buckled_mob) //69ake sure it stays beneath the occupant
 		Move(buckled_mob.loc)
 	set_dir(direction)
 	if(pulling) // Driver
-		if(pulling.loc == src.loc) // We moved onto the wheelchair? Revert!
+		if(pulling.loc == src.loc) // We69oved onto the wheelchair? Revert!
 			pulling.forceMove(T)
 		else
 			spawn(0)
@@ -107,9 +107,9 @@
 				pulling = null
 		else
 			if (occupant && (src.loc != occupant.loc))
-				src.forceMove(occupant.loc) // Failsafe to make sure the wheelchair stays beneath the occupant after driving
+				src.forceMove(occupant.loc) // Failsafe to69ake sure the wheelchair stays beneath the occupant after driving
 
-/obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as mob)
+/obj/structure/bed/chair/wheelchair/attack_hand(mob/living/user as69ob)
 	if (pulling)
 		MouseDrop(usr)
 	else
@@ -128,9 +128,9 @@
 			if(user.pulling)
 				user.stop_pulling()
 			user.set_dir(get_dir(user, src))
-			to_chat(user, "You grip \the [name]'s handles.")
+			to_chat(user, "You grip \the 69name69's handles.")
 		else
-			to_chat(usr, "You let go of \the [name]'s handles.")
+			to_chat(usr, "You let go of \the 69name69's handles.")
 			pulling.pulledby = null
 			pulling = null
 		return
@@ -162,16 +162,16 @@
 			var/mob/living/victim = A
 			def_zone = ran_zone()
 
-			victim.apply_effect(6, STUN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, WEAKEN, victim.getarmor(def_zone, ARMOR_MELEE))
-			victim.apply_effect(6, STUTTER, victim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUN,69ictim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, WEAKEN,69ictim.getarmor(def_zone, ARMOR_MELEE))
+			victim.apply_effect(6, STUTTER,69ictim.getarmor(def_zone, ARMOR_MELEE))
 			victim.damage_through_armor(6, BRUTE, def_zone, ARMOR_MELEE)
 
 		if(pulling)
-			occupant.visible_message(SPAN_DANGER("[pulling] has thrusted \the [name] into \the [A], throwing \the [occupant] out of it!"))
-			admin_attack_log(pulling, occupant, "Crashed their victim into \an [A].", "Was crashed into \an [A].", "smashed into \the [A] using")
+			occupant.visible_message(SPAN_DANGER("69pulling69 has thrusted \the 69name69 into \the 69A69, throwing \the 69occupant69 out of it!"))
+			admin_attack_log(pulling, occupant, "Crashed their69ictim into \an 69A69.", "Was crashed into \an 69A69.", "smashed into \the 69A69 using")
 		else
-			occupant.visible_message(SPAN_DANGER("[occupant] crashed into \the [A]!"))
+			occupant.visible_message(SPAN_DANGER("69occupant69 crashed into \the 69A69!"))
 
 /obj/structure/bed/chair/wheelchair/proc/create_track()
 	var/obj/effect/decal/cleanable/blood/tracks/B = new(loc)
@@ -187,13 +187,13 @@
 		B.set_dir(newdir)
 	bloodiness--
 
-/obj/structure/bed/chair/wheelchair/buckle_mob(mob/M as mob, mob/user as mob)
+/obj/structure/bed/chair/wheelchair/buckle_mob(mob/M as69ob,69ob/user as69ob)
 	if(M == pulling)
 		pulling = null
 		usr.pulledby = null
 	..()
 
-/proc/equip_wheelchair(mob/living/carbon/human/H) //Proc for spawning in a wheelchair if a new character has no legs. Used in new_player.dm
+/proc/e69uip_wheelchair(mob/living/carbon/human/H) //Proc for spawning in a wheelchair if a new character has no legs. Used in new_player.dm
 	var/obj/structure/bed/chair/wheelchair/W = new(H.loc)
 	W.buckle_mob(H)
 
@@ -210,7 +210,7 @@
 		unfolded.forceMove(get_turf(src))
 	else
 		new/obj/structure/bed/chair/wheelchair(get_turf(src))
-	qdel(src)
+	69del(src)
 
 /obj/structure/bed/chair/wheelchair/MouseDrop(over_object, src_location, over_location)
 	..()
@@ -221,7 +221,7 @@
 			return 0
 		if(pulling)
 			return 0 // You can't fold a wheelchair when somebody holding the handles.
-		visible_message("[usr] collapses \the [src.name].")
+		visible_message("69usr69 collapses \the 69src.name69.")
 		var/obj/item/wheelchair/R = new/obj/item/wheelchair(get_turf(src))
 		R.name = src.name
 		R.color = src.color

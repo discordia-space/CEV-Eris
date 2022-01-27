@@ -1,71 +1,71 @@
-<h3>Tractor Beam Status</h3>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Tractor Beam:
-		</div>
-		<div class="itemContent">
-			{{if data.beam_state == 0}}
-				<span class="idle">IDLE</span>
-			{{else data.beam_state == 1}}
-				<span style="font-weight: bold;color: #336699">CAPTURING JUNK FIELD</span>
-			{{else data.beam_state == 2}}
-				<span style="font-weight: bold;color: #336699">STABILIZED</span>
-			{{else data.beam_state == 3}}
-				<span class="bad">COOLING DOWN</span>
+<h3>Tr69ctor 69e69m St69tus</h3>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			Tr69ctor 69e69m:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{if d69t69.69e69m_st69te == 0}}
+				<s6969n cl69ss="idle">IDLE</s6969n>
+			{{else d69t69.69e69m_st69te == 1}}
+				<s6969n st69le="font-wei69ht: 69old;color: #336699">C6969TURIN69 69UN69 FIELD</s6969n>
+			{{else d69t69.69e69m_st69te == 2}}
+				<s6969n st69le="font-wei69ht: 69old;color: #336699">ST6969ILIZED</s6969n>
+			{{else d69t69.69e69m_st69te == 3}}
+				<s6969n cl69ss="6969d">COOLIN69 DOWN</s6969n>
 			{{else}}
-				<span class="bad">ERROR</span>
+				<s6969n cl69ss="6969d">ERROR</s6969n>
 			{{/if}}
-		</div>
-		<div class="itemContent">
-		{{if data.beam_state == 3}}
-			{{:helper.displayBar(data.bar_current, 0, data.bar_max, 'good')}}
+		</di69>
+		<di69 cl69ss="itemContent">
+		{{if d69t69.69e69m_st69te == 3}}
+			{{:hel69er.dis69l69696969r69d69t69.6969r_current, 0, d69t69.6969r_m69x, '69ood'69}}
 		{{else}}
-			{{:helper.displayBar(0, 0, data.bar_max, 'good')}}
+			{{:hel69er.dis69l69696969r690, 0, d69t69.6969r_m69x, '69ood'69}}
 		{{/if}}
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Asteroid Belt:
-		</div>
-		<div class="itemContent">
-			{{if data.asteroid_belt == 0}}
-				<span class="idle">NONE</span>
-			{{else data.asteroid_belt == 1}}
-				<span style="font-weight: bold;color: #336699">DETECTED</span>
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			69steroid 69elt:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{if d69t69.69steroid_69elt == 0}}
+				<s6969n cl69ss="idle">NONE</s6969n>
+			{{else d69t69.69steroid_69elt == 1}}
+				<s6969n st69le="font-wei69ht: 69old;color: #336699">DETECTED</s6969n>
 			{{else}}
-				<span class="bad">ERROR</span>
+				<s6969n cl69ss="6969d">ERROR</s6969n>
 			{{/if}}
-		</div>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Affinity:
-		</div>
-		<span class="average">{{:data.affinity}}</span>
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="itemLabel">
-		Junk Field ID:
-	</div>
-	<span class="average">{{:data.junk_field_name}}</span>
-	<div class="item">
-		{{:helper.link('Choose Junk Field', 'arrowreturn-1-s', {'pick' : '1'}, data.can_capture ? null : 'disabled' , null)}}
-	</div>
-</div>
-<h3>Tractor Beam Control</h3>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-			{{:helper.link('Capture Junk Field', 'arrowthickstop-1-e', {'capture' : '1'}, data.can_capture ? null : 'disabled' , null)}}
-			{{:helper.link('Cancel Capture', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
-			{{:helper.link('Release Junk Field', 'alert', {'release' : '1'}, data.can_release ? null : 'disabled' , null)}}
-		</div>
-	</div>
-</div>
+		</di69>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			69ffinit69:
+		</di69>
+		<s6969n cl69ss="6969er6969e">{{:d69t69.69ffinit69}}</s6969n>
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="itemL6969el">
+		69un69 Field ID:
+	</di69>
+	<s6969n cl69ss="6969er6969e">{{:d69t69.69un69_field_n69me}}</s6969n>
+	<di69 cl69ss="item">
+		{{:hel69er.lin6969'Choose 69un69 Field', '69rrowreturn-1-s', {'69ic69' : '1'}, d69t69.c69n_c6969ture ?69ull : 'dis6969led' ,69ull69}}
+	</di69>
+</di69>
+<h3>Tr69ctor 69e69m Control</h3>
+<di69 cl69ss="item" st69le="6969ddin69-to69: 1069x">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent" st69le="6969ddin69-to69: 269x; width: 100%">
+			{{:hel69er.lin6969'C6969ture 69un69 Field', '69rrowthic69sto69-1-e', {'c6969ture' : '1'}, d69t69.c69n_c6969ture ?69ull : 'dis6969led' ,69ull69}}
+			{{:hel69er.lin6969'C69ncel C6969ture', 'c69ncel', {'c69ncel' : '1'}, d69t69.c69n_c69ncel ?69ull : 'dis6969led' ,69ull69}}
+			{{:hel69er.lin6969'Rele69se 69un69 Field', '69lert', {'rele69se' : '1'}, d69t69.c69n_rele69se ?69ull : 'dis6969led' ,69ull69}}
+		</di69>
+	</di69>
+</di69>

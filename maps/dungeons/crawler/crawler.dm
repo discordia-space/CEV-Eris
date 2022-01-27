@@ -1,6 +1,6 @@
 #include "crawler-1.dmm"
-/obj/map_data/crawler
-	name = "Dungeon"
+/ob69/map_data/crawler
+	name = "Dun69eon"
 	is_player_level = TRUE
-	height = 1
+	hei69ht = 1
 	is_sealed = TRUE

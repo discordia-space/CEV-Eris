@@ -4,11 +4,11 @@
 	origin_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 1)
 	spawn_tags = SPAWN_TAG_DESIGN_EXCELSIOR
 	icon_state = "excelsior"
-	spawn_frequency = 8
+	spawn_fre69uency = 8
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/core
-	disk_name = "Excelsior Means of Production"// TODO: Make this only usable by excelsior autolathes, and give excelsior autolathes a check for a complant to use.
-	desc = {"The back has a machine etching: \"This struggle must be organised, according to \"all the rules of the art\", \
+	disk_name = "Excelsior69eans of Production"// TODO:69ake this only usable by excelsior autolathes, and give excelsior autolathes a check for a complant to use.
+	desc = {"The back has a69achine etching: \"This struggle69ust be organised, according to \"all the rules of the art\", \
 	by people who are professionally engaged in revolutionary activity.\""}
 	spawn_blacklisted = TRUE
 	license = -1
@@ -42,8 +42,8 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/weapons
-	disk_name = "Excelsior Means of Revolution"
-	desc = "The back has a machine etching: \"We stand for organized terror - this should be frankly admitted. Terror is an absolute necessity during times of revolution.\""
+	disk_name = "Excelsior69eans of Revolution"
+	desc = "The back has a69achine etching: \"We stand for organized terror - this should be frankly admitted. Terror is an absolute necessity during times of revolution.\""
 	spawn_blacklisted = TRUE
 	license = -1
 	designs = list(
@@ -83,7 +83,7 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/drozd
 	disk_name = "Excelsior - .40 Drozd SMG"
-	desc = {"The back has a machine etching:\n \
+	desc = {"The back has a69achine etching:\n \
 	\"Nobody is to be blamed for being born a slave; \
 	but a slave who not only eschews a striving for freedom but justifies and eulogies his slavery - \
 	such a slave is a lickspittle and a boor, who arouses a legitimate feeling of indignation, contempt, and loathing.\""}
@@ -92,13 +92,13 @@
 	license = -1
 	designs = list(
 		/datum/design/autolathe/gun/drozd,
-		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like means of production
+		/datum/design/autolathe/ammo/msmg, //comes with both lethal and rubber like69eans of production
 		/datum/design/autolathe/ammo/msmg/rubber
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/ak47
 	disk_name = "Excelsior - .30 AK47 Rifle"
-	desc = {"The back has a machine etching:\n \
+	desc = {"The back has a69achine etching:\n \
 	\"Fear not the tyrant of the old world; \
 	The tools we have wrought shall be used to strike them down - \
 	and bring to pass the great and collective future.\""}
@@ -113,11 +113,11 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/vintorez
-	disk_name = "Excelsior - .20 Vintorez Rifle"
-	desc = {"The back has a machine etching:\n \
+	disk_name = "Excelsior - .2069intorez Rifle"
+	desc = {"The back has a69achine etching:\n \
 	\"Remember the failures of those before; \
 	for all failures serve as lessons and warnings - \
-	heed not the blind who cannot see the progress made from the past.\""}
+	heed not the blind who cannot see the progress69ade from the past.\""}
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 50
@@ -130,10 +130,10 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/boltgun
 	disk_name = "Excelsior - .30 Kardashev-Mosin Rifle"
-	desc = {"The back has a machine etching:\n \
+	desc = {"The back has a69achine etching:\n \
 	\"Remember the Haven; \
 	it is their wisdom which has brought the great work to bear - \
-	with tools such as these, their great vision was brought to light.\""}
+	with tools such as these, their great69ision was brought to light.\""}
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON_EXCELSIOR
 	rarity_value = 45
@@ -146,10 +146,10 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/makarov
-	disk_name = "Excelsior - .35 Makarov HG"
-	desc = {"The back has a machine etching:\n \
+	disk_name = "Excelsior - .3569akarov HG"
+	desc = {"The back has a69achine etching:\n \
 	\"Suffer not the slouch, the layabout, nor the shirk; \
-	for these are the weakness in the great chains of the common liberating mind - \
+	for these are the weakness in the great chains of the common liberating69ind - \
 	if the faults are not expunged, the collective shall fall because of it.\""}
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_COMMON_EXCELSIOR
@@ -162,9 +162,9 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/excelsior/maxim
-	disk_name = "Excelsior - .30 Maxim HMG"
-	desc = {"The back has a machine etching:\n \
-	\"Whatever happens, we have got the Maxim gun, and they have not.\""}
+	disk_name = "Excelsior - .3069axim HMG"
+	desc = {"The back has a69achine etching:\n \
+	\"Whatever happens, we have got the69axim gun, and they have not.\""}
 	icon_state = "excelsior"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_EXCELSIOR
 	rarity_value = 90

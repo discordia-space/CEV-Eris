@@ -12,19 +12,19 @@
 	)
 
 /datum/job_flavor/assistant/veterinarian
-	title = "Cattle Export Vehicle \"Eris\" Veterinarian"
+	title = "Cattle Export69ehicle \"Eris\"69eterinarian"
 
 /datum/job_flavor/assistant/shepherd
-	title = "Cattle Export Vehicle \"Eris\" Shepherd"
+	title = "Cattle Export69ehicle \"Eris\" Shepherd"
 
 /datum/job_flavor/assistant/colonist
-	title = "Colony Expansion Vehicle \"Eris\" Colonist"
+	title = "Colony Expansion69ehicle \"Eris\" Colonist"
 
 /datum/job_flavor/assistant/geoengineer
-	title = "Colony Expansion Vehicle \"Eris\" Geoengineer"
+	title = "Colony Expansion69ehicle \"Eris\" Geoengineer"
 
 /datum/job_flavor/assistant/ecologist
-	title = "Colony Expansion Vehicle \"Eris\" Ecologist"
+	title = "Colony Expansion69ehicle \"Eris\" Ecologist"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -35,7 +35,7 @@
 	)
 
 /datum/job_flavor/assistant/ensign
-	title = "Command Evacuation Vehicle \"Eris\" Ensign"
+	title = "Command Evacuation69ehicle \"Eris\" Ensign"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 16,
@@ -46,7 +46,7 @@
 	)
 
 /datum/job_flavor/assistant/pilot
-	title = "Command Evacuation Vehicle \"Eris\" Pilot"
+	title = "Command Evacuation69ehicle \"Eris\" Pilot"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -57,10 +57,10 @@
 	)
 
 /datum/job_flavor/assistant/cmcp_janitor
-	title = "Command Evacuation Vehicle \"Eris\" Command Master Chief Petty Janitor"
+	title = "Command Evacuation69ehicle \"Eris\" Command69aster Chief Petty Janitor"
 
 /datum/job_flavor/assistant/dc_tech
-	title = "Combat Engineer Vehicle \"Eris\" Damage Control Technician"
+	title = "Combat Engineer69ehicle \"Eris\" Damage Control Technician"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -71,7 +71,7 @@
 	)
 
 /datum/job_flavor/assistant/field_eng
-	title = "Combat Engineer Vehicle \"Eris\" Field Engineer"
+	title = "Combat Engineer69ehicle \"Eris\" Field Engineer"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -82,13 +82,13 @@
 	)
 
 /datum/job_flavor/assistant/politruk
-	title = "Cosmicheskiy Edinstveniy Velikohod \"Eris\" Politruk"
+	title = "Cosmicheskiy Edinstveniy69elikohod \"Eris\" Politruk"
 
 /datum/job_flavor/assistant/krasnoarmeets
-	title = "Cosmicheskiy Edinstveniy Velikohod \"Eris\" Krasnoarmeets"
+	title = "Cosmicheskiy Edinstveniy69elikohod \"Eris\" Krasnoarmeets"
 
 /datum/job_flavor/assistant/kosmonavt
-	title = "Cosmicheskiy Edinstveniy Velikohod \"Eris\" Kosmonavt"
+	title = "Cosmicheskiy Edinstveniy69elikohod \"Eris\" Kosmonavt"
 	stat_modifiers = list(
 		STAT_ROB = 16,
 		STAT_TGH = 16,
@@ -99,16 +99,16 @@
 	)
 
 /datum/job_flavor/assistant/reg_officer
-	title = "Czech Emigration Vessel \"Eris\" Registration Officer"
+	title = "Czech Emigration69essel \"Eris\" Registration Officer"
 
 /datum/job_flavor/assistant/refugee
-	title = "Czech Emigration Vessel \"Eris\" Refugee"
+	title = "Czech Emigration69essel \"Eris\" Refugee"
 
 /datum/job_flavor/assistant/mig_officer
-	title = "Czech Emigration Vessel \"Eris\" Emigration Officer"
+	title = "Czech Emigration69essel \"Eris\" Emigration Officer"
 
 /datum/job_flavor/assistant/protein_farmer
-	title = "Cockroach Exile Vessel \"Eris\" Protein Farmer"
+	title = "Cockroach Exile69essel \"Eris\" Protein Farmer"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -119,7 +119,7 @@
 	)
 
 /datum/job_flavor/assistant/biotechnician
-	title = "Cockroach Exile Vessel \"Eris\" Biotechnician"
+	title = "Cockroach Exile69essel \"Eris\" Biotechnician"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -130,7 +130,7 @@
 	)
 
 /datum/job_flavor/assistant/bioterror_spec
-	title = "Cockroach Exile Vessel \"Eris\" Bioterror Specialist"
+	title = "Cockroach Exile69essel \"Eris\" Bioterror Specialist"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -141,7 +141,7 @@
 	)
 
 /datum/job_flavor/assistant/bomber
-	title = "Capital Extermination Vessel \"Eris\" Bomber"
+	title = "Capital Extermination69essel \"Eris\" Bomber"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -152,7 +152,7 @@
 	)
 
 /datum/job_flavor/assistant/m_arms
-	title = "Capital Extermination Vessel \"Eris\" Master at Arms"
+	title = "Capital Extermination69essel \"Eris\"69aster at Arms"
 	stat_modifiers = list(
 		STAT_ROB = 16,
 		STAT_TGH = 16,
@@ -163,7 +163,7 @@
 	)
 
 /datum/job_flavor/assistant/loader
-	title = "Capital Extermination Vessel \"Eris\" Loader"
+	title = "Capital Extermination69essel \"Eris\" Loader"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 16,
@@ -173,16 +173,16 @@
 	)
 
 /datum/job_flavor/assistant/cat_psy
-	title = "Cat Exhibition Vessel \"Eris\" Cat Psychologist"
+	title = "Cat Exhibition69essel \"Eris\" Cat Psychologist"
 
 /datum/job_flavor/assistant/feline_herder
-	title = "Cat Exhibition Vessel \"Eris\" Feline Herder"
+	title = "Cat Exhibition69essel \"Eris\" Feline Herder"
 
 /datum/job_flavor/assistant/breeder
-	title = "Cat Exhibition Vessel \"Eris\" Breeder"
+	title = "Cat Exhibition69essel \"Eris\" Breeder"
 
 /datum/job_flavor/assistant/mixologist
-	title = "Corporate Entertain Vehicle \"Eris\" Mixologist"
+	title = "Corporate Entertain69ehicle \"Eris\"69ixologist"
 	stat_modifiers = list(
 		STAT_ROB = 8,
 		STAT_TGH = 8,
@@ -192,25 +192,25 @@
 	)
 
 /datum/job_flavor/assistant/stripper
-	title = "Corporate Entertain Vehicle \"Eris\" Stripper"
+	title = "Corporate Entertain69ehicle \"Eris\" Stripper"
 
 /datum/job_flavor/assistant/officiant
-	title = "Corporate Entertain Vehicle \"Eris\" Officiant"
+	title = "Corporate Entertain69ehicle \"Eris\" Officiant"
 
-/datum/job_flavor/assistant/quartermaster
-	title = "Class \"Emigrator\" Vessel \"Eris\" Quartermaster"
+/datum/job_flavor/assistant/69uartermaster
+	title = "Class \"Emigrator\"69essel \"Eris\" 69uartermaster"
 
 /datum/job_flavor/assistant/deck_chief
-	title = "Class \"Emigrator\" Vessel \"Eris\" Deck Chief"
+	title = "Class \"Emigrator\"69essel \"Eris\" Deck Chief"
 
 /datum/job_flavor/assistant/deck_tech
-	title = "Class \"Emigrator\" Vessel \"Eris\" Deck Technician"
+	title = "Class \"Emigrator\"69essel \"Eris\" Deck Technician"
 
 /datum/job_flavor/assistant/patriarch
-	title = "Christian Era Vector \"Eris\" Patriarch"
+	title = "Christian Era69ector \"Eris\" Patriarch"
 
 /datum/job_flavor/assistant/protodeacon
-	title = "Christian Era Vector \"Eris\" Protodeacon"
+	title = "Christian Era69ector \"Eris\" Protodeacon"
 
 /datum/job_flavor/assistant/archimandrite
-	title = "Christian Era Vector \"Eris\" Archimandrite"
+	title = "Christian Era69ector \"Eris\" Archimandrite"

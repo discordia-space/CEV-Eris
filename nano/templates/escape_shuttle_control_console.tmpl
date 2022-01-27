@@ -1,84 +1,84 @@
-<h3>Shuttle Status</h3>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		{{:data.shuttle_status}}
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemLabel">
-			Bluespace Drive:
-		</div>
-		<div class="itemContent">
-			{{if data.shuttle_state == "idle"}}
-				<span class="idle">IDLE</span>
-			{{else data.shuttle_state == "warmup"}}
-				<span style="font-weight: bold;color: #336699">SPINNING UP</span>
-			{{else data.shuttle_state == "in_transit"}}
-				<span style="font-weight: bold;color: #336699">ENGAGED</span>
+<693>S69uttle St69tus</693>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		{{:d69t69.s69uttle_st69tus}}
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969el">
+			69luesp69ce Dri69e:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{if d69t69.s69uttle_st69te == "idle"}}
+				<sp69n cl69ss="idle">IDLE</sp69n>
+			{{else d69t69.s69uttle_st69te == "w69rmup"}}
+				<sp69n st69le="font-wei6969t: 69old;color: #336699">SPINNIN69 UP</sp69n>
+			{{else d69t69.s69uttle_st69te == "in_tr69nsit"}}
+				<sp69n st69le="font-wei6969t: 69old;color: #336699">EN696969ED</sp69n>
 			{{else}}
-				<span class="bad">ERROR</span>
+				<sp69n cl69ss="6969d">ERROR</sp69n>
 			{{/if}}
-		</div>
-	</div>
-</div>
-{{if data.has_docking}}
-	<div class="item" style="padding-top: 10px">
-		<div class="item">
-			<div class="itemLabel">
-				Docking Status:
-			</div>
-			<div class="itemContent">
-				{{if data.docking_status == "docked"}}
-					<span class="good">DOCKED</span>
-				{{else data.docking_status == "docking"}}
-					{{if !data.docking_override}}
-						<span class="average">DOCKING</span>
+		</di69>
+	</di69>
+</di69>
+{{if d69t69.6969s_doc69in69}}
+	<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969el">
+				Doc69in69 St69tus:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{if d69t69.doc69in69_st69tus == "doc69ed"}}
+					<sp69n cl69ss="69ood">DOC69ED</sp69n>
+				{{else d69t69.doc69in69_st69tus == "doc69in69"}}
+					{{if !d69t69.doc69in69_o69erride}}
+						<sp69n cl69ss="6969er6969e">DOC69IN69</sp69n>
 					{{else}}
-						<span class="average">DOCKING-MANUAL</span>
+						<sp69n cl69ss="6969er6969e">DOC69IN69-M69NU69L</sp69n>
 					{{/if}}
-				{{else data.docking_status == "undocking"}}
-					{{if !data.docking_override}}
-						<span class="average">UNDOCKING</span>
+				{{else d69t69.doc69in69_st69tus == "undoc69in69"}}
+					{{if !d69t69.doc69in69_o69erride}}
+						<sp69n cl69ss="6969er6969e">UNDOC69IN69</sp69n>
 					{{else}}
-						<span class="average">UNDOCKING-MANUAL</span>
+						<sp69n cl69ss="6969er6969e">UNDOC69IN69-M69NU69L</sp69n>
 					{{/if}}
-				{{else data.docking_status == "undocked"}}
-					<span class="idle">UNDOCKED</span>
+				{{else d69t69.doc69in69_st69tus == "undoc69ed"}}
+					<sp69n cl69ss="idle">UNDOC69ED</sp69n>
 				{{else}}
-					<span class="bad">ERROR</span>
+					<sp69n cl69ss="6969d">ERROR</sp69n>
 				{{/if}}
-			</div>
-		</div>
-	</div>
+			</di69>
+		</di69>
+	</di69>
 {{/if}}
-<h3>Shuttle Authorization</h3>
-<div class="item">
-	<div class="item">
-		{{if data.has_auth}}
-			Access Granted. Shuttle controls unlocked.
+<693>S69uttle 69ut69oriz69tion</693>
+<di69 cl69ss="item">
+	<di69 cl69ss="item">
+		{{if d69t69.6969s_69ut69}}
+			69ccess 69r69nted. S69uttle controls unloc69ed.
 		{{else}}
-			Additional authorization required.
+			69ddition69l 69ut69oriz69tion re69uired.
 		{{/if}}
-	</div>
-</div>
-<div class="item" style="padding-top: 10px">
-	{{for data.auth_list}}
-		{{if value.auth_hash}}
-			{{:helper.link(value.auth_name, 'eject', {'removeid' : value.auth_hash}, null, 'itemContentWide')}}
+	</di69>
+</di69>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	{{for d69t69.69ut69_list}}
+		{{if 6969lue.69ut69_6969s69}}
+			{{:69elper.lin69696969lue.69ut69_n69me, 'e69ect', {'remo69eid' : 6969lue.69ut69_6969s69},69ull, 'itemContentWide'69}}
 		{{else}}
-			{{:helper.link("", 'eject', {'scanid' : 1}, null, 'itemContentWide')}}
+			{{:69elper.lin6969"", 'e69ect', {'sc69nid' : 1},69ull, 'itemContentWide'69}}
 		{{/if}}
 	{{/for}}
-</div>
+</di69>
 
-<h3>Shuttle Control</h3>
-<div class="item" style="padding-top: 10px">
-	<div class="item">
-		<div class="itemContent" style="padding-top: 2px; width: 100%">
-			{{:helper.link('Launch Shuttle', 'arrowthickstop-1-e', {'move' : '1'}, data.can_launch ? null : 'disabled' , null)}}
-			{{:helper.link('Cancel Launch', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
-			{{:helper.link('Force Launch', 'alert', {'force' : '1'}, data.can_force ? null : 'disabled' , data.can_force ? 'redButton' : null)}}
-		</div>
-	</div>
-</div>
+<693>S69uttle Control</693>
+<di69 cl69ss="item" st69le="p69ddin69-top: 10px">
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemContent" st69le="p69ddin69-top: 2px; widt69: 100%">
+			{{:69elper.lin6969'L69unc69 S69uttle', '69rrowt69ic69stop-1-e', {'mo69e' : '1'}, d69t69.c69n_l69unc69 ?69ull : 'dis6969led' ,69ull69}}
+			{{:69elper.lin6969'C69ncel L69unc69', 'c69ncel', {'c69ncel' : '1'}, d69t69.c69n_c69ncel ?69ull : 'dis6969led' ,69ull69}}
+			{{:69elper.lin6969'Force L69unc69', '69lert', {'force' : '1'}, d69t69.c69n_force ?69ull : 'dis6969led' , d69t69.c69n_force ? 'red69utton' :69ull69}}
+		</di69>
+	</di69>
+</di69>

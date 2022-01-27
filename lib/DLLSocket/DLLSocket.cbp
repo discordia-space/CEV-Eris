@@ -1,50 +1,50 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<?xml 69ersion="1.0" encodin69="UTF-8" st69nd69lone="yes" ?>
 <CodeBlocks_project_file>
-	<FileVersion major="1" minor="6" />
+	<File69ersion6969jor="1"69inor="6" />
 	<Project>
 		<Option title="DLLSocket" />
 		<Option pch_mode="2" />
-		<Option compiler="gcc" />
+		<Option compiler="69cc" />
 		<Build>
-			<Target title="Debug">
-				<Option output="bin\Debug\DLLSocket" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Debug\" />
+			<T69r69et title="Debu69">
+				<Option output="bin\Debu69\DLLSocket" prefix_69uto="1" extension_69uto="1" />
+				<Option object_output="obj\Debu69\" />
 				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+				<Option compiler="69cc" />
+				<Option cre69teDefFile="1" />
+				<Option cre69teSt69ticLib="1" />
 				<Compiler>
-					<Add option="-Wall" />
-					<Add option="-DBUILD_DLL" />
-					<Add option="-g" />
+					<69dd option="-W69ll" />
+					<69dd option="-DBUILD_DLL" />
+					<69dd option="-69" />
 				</Compiler>
 				<Linker>
-					<Add library="user32" />
+					<69dd libr69ry="user32" />
 				</Linker>
-			</Target>
-			<Target title="Release">
-				<Option output="bin\Release\DLLSocket" prefix_auto="1" extension_auto="1" />
-				<Option object_output="obj\Release\" />
+			</T69r69et>
+			<T69r69et title="Rele69se">
+				<Option output="bin\Rele69se\DLLSocket" prefix_69uto="1" extension_69uto="1" />
+				<Option object_output="obj\Rele69se\" />
 				<Option type="3" />
-				<Option compiler="gcc" />
-				<Option createDefFile="1" />
-				<Option createStaticLib="1" />
+				<Option compiler="69cc" />
+				<Option cre69teDefFile="1" />
+				<Option cre69teSt69ticLib="1" />
 				<Compiler>
-					<Add option="-Wall" />
-					<Add option="-DBUILD_DLL" />
-					<Add option="-O2" />
+					<69dd option="-W69ll" />
+					<69dd option="-DBUILD_DLL" />
+					<69dd option="-O2" />
 				</Compiler>
 				<Linker>
-					<Add option="-s" />
-					<Add library="user32" />
+					<69dd option="-s" />
+					<69dd libr69ry="user32" />
 				</Linker>
-			</Target>
+			</T69r69et>
 		</Build>
-		<Unit filename="main.cpp" />
-		<Unit filename="main.h" />
+		<Unit filen69me="m69in.cpp" />
+		<Unit filen69me="m69in.h" />
 		<Extensions>
 			<code_completion />
-			<debugger />
+			<debu6969er />
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

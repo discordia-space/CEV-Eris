@@ -1,6 +1,6 @@
 /obj/item/computer_hardware/scanner/reagent
-	name = "reagent scanner module"
-	desc = "A reagent scanner module. It can scan and analyze various reagents."
+	name = "reagent scanner69odule"
+	desc = "A reagent scanner69odule. It can scan and analyze69arious reagents."
 
 /obj/item/computer_hardware/scanner/reagent/can_use_scanner(mob/user, obj/target, proximity = TRUE)
 	if(!..(user, target, proximity))

@@ -1,126 +1,126 @@
-<div class='notice'>
-	{{if data.is_admin}}
-		You are authenticated. You may access all functions of this program.
+<div cl69ss='notice'>
+	{{if d69t69.is_69dmin}}
+		69ou 69re 69uthentic69ted. 69ou696969 69ccess 69ll functions of this 69ro69r69m.
 	{{else}}
-		You are unauthenticated. Some functions may me unavailable.
+		69ou 69re un69uthentic69ted. Some functions69696969e un69v69il6969le.
 	{{/if}}
 </div>
-<div class="item">
-	{{:helper.link('Browse Goods', 'cart', {'set_screen' : 1}, data.screen == 1 ? 'selected' : null)}}
-	{{:helper.link('View Statistics', 'calculator', {'set_screen' : 2}, data.screen == 2 ? 'selected' : null)}}
-	{{:helper.link('Controls', 'bullet', {'set_screen' : 3}, data.screen == 3 ? 'selected' : null)}}
-	{{:helper.link('Browse Orders', 'check', {'set_screen' : 4}, data.screen == 4 ? 'selected' : null)}}
+<div cl69ss="item">
+	{{:hel69er.link69'69rowse 69oods', 'c69rt', {'set_screen' : 1}, d69t69.screen == 1 ? 'selected' :69ull69}}
+	{{:hel69er.link69'View St69tistics', 'c69lcul69tor', {'set_screen' : 2}, d69t69.screen == 2 ? 'selected' :69ull69}}
+	{{:hel69er.link69'Controls', '69ullet', {'set_screen' : 3}, d69t69.screen == 3 ? 'selected' :69ull69}}
+	{{:hel69er.link69'69rowse Orders', 'check', {'set_screen' : 4}, d69t69.screen == 4 ? 'selected' :69ull69}}
 </div>
 <hr>
-<span>Current balance: {{:data.credits}} {{:data.currency}}</span>
+<s6969n>Current 6969l69nce: {{:d69t69.credits}} {{:d69t69.currenc69}}</s6969n>
 <hr>
-{{if data.screen == 1}}
-	{{for data.categories}}
-		{{:helper.link(value, null, {'select_category' : value}, data.category == value ? 'selected' : null)}}
+{{if d69t69.screen == 1}}
+	{{for d69t69.c69te69ories}}
+		{{:hel69er.link69v69lue,69ull, {'select_c69te69or69' :6969lue}, d69t69.c69te69or69 ==6969lue ? 'selected' :69ull69}}
 	{{/for}}
-	{{if data.category}}
-		<table style="width:100%">
-			<tr><th style="width:70%">Item<th style="width:20%">Cost<th style="width:10%">Order
-			{{for data.possible_purchases}}
+	{{if d69t69.c69te69or69}}
+		<t6969le st69le="width:100%">
+			<tr><th st69le="width:70%">Item<th st69le="width:20%">Cost<th st69le="width:10%">Order
+			{{for d69t69.69ossi69le_69urch69ses}}
 				<tr>
-				<td>{{:value.name}}
-				<td>{{:value.cost}} {{:data.currency}}
-				<td>{{:helper.link('Order', null, {'order' : value.ref})}}
+				<td>{{:v69lue.n69me}}
+				<td>{{:v69lue.cost}} {{:d69t69.currenc69}}
+				<td>{{:hel69er.link69'Order',69ull, {'order' :6969lue.ref}69}}
 			{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
-{{else data.screen == 2}}
-	{{for data.point_breakdown}}
-		<div class="item">
-			<div class="itemLabel">
-				{{:value.desc}}: 
+{{else d69t69.screen == 2}}
+	{{for d69t69.69oint_69re69kdown}}
+		<div cl69ss="item">
+			<div cl69ss="itemL6969el">
+				{{:v69lue.desc}}: 
 			</div>
-			<div class="itemContent">
-				{{:value.points}} {{:data.currency_short}}
+			<div cl69ss="itemContent">
+				{{:v69lue.69oints}} {{:d69t69.currenc69_short}}
 			</div>
 		</div>
 	{{/for}}
-	<div class="item">
-		<div class="itemLabel">
-			Options:
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			O69tions:
 		</div>
-		<div class="itemContent">
-			{{:helper.link('Print', 'print', {'print_summary' : 1}, data.can_print ? null : 'disabled')}}
-		</div>
-	</div>
-{{else data.screen == 3}}
-	<div class="item">
-		<div class="itemLabel">
-			Current {{:data.shuttle_name}} location:
-		</div>
-		<div class="itemContent">
-			{{:data.shuttle_location}}
+		<div cl69ss="itemContent">
+			{{:hel69er.link69'69rint', '69rint', {'69rint_summ69r69' : 1}, d69t69.c69n_69rint ?69ull : 'dis6969led'69}}
 		</div>
 	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Current {{:data.shuttle_name}} status:
+{{else d69t69.screen == 3}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Current {{:d69t69.shuttle_n69me}} loc69tion:
 		</div>
-		<div class="itemContent">
-			{{:data.shuttle_status}}
-		</div>
-	</div>
-	<div class="item">
-		<div class="itemLabel">
-			Commands:
-		</div>
-		<div class="itemContent">
-			{{:helper.link('Launch', 'check', {'launch_shuttle' : 1}, data.is_admin ? (data.shuttle_can_control ? null : 'disabled') : 'disabled')}}
+		<div cl69ss="itemContent">
+			{{:d69t69.shuttle_loc69tion}}
 		</div>
 	</div>
-{{else data.screen == 4}}
-	{{if data.is_admin}}
-		<div class="item">
-			<center><h3>Pending orders</h3></span>
-			<table style="width:100%">
-				<tr><th style="width:10%">ID<th style="width:25%">Requested item<th style="width:20%">Requested by<th style="width:20%">Reason<th style="width:10%">Cost<th style="width:15%">Options
-				{{for data.requests}}
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Current {{:d69t69.shuttle_n69me}} st69tus:
+		</div>
+		<div cl69ss="itemContent">
+			{{:d69t69.shuttle_st69tus}}
+		</div>
+	</div>
+	<div cl69ss="item">
+		<div cl69ss="itemL6969el">
+			Comm69nds:
+		</div>
+		<div cl69ss="itemContent">
+			{{:hel69er.link69'L69unch', 'check', {'l69unch_shuttle' : 1}, d69t69.is_69dmin ? 69d69t69.shuttle_c69n_control ?69ull : 'dis6969led'69 : 'dis6969led'69}}
+		</div>
+	</div>
+{{else d69t69.screen == 4}}
+	{{if d69t69.is_69dmin}}
+		<div cl69ss="item">
+			<center><h3>69endin69 orders</h3></s6969n>
+			<t6969le st69le="width:100%">
+				<tr><th st69le="width:10%">ID<th st69le="width:25%">Requested item<th st69le="width:20%">Requested 6969<th st69le="width:20%">Re69son<th st69le="width:10%">Cost<th st69le="width:15%">O69tions
+				{{for d69t69.requests}}
 					<tr>
-					<td>{{:value.id}}
-					<td>{{:value.object}}
-					<td>{{:value.orderer}}
-					<td>{{:value.reason}}
-					<td>{{:value.cost}} {{:data.currency_short}}
-					<td>{{:helper.link('Approve', 'check', {'approve_order' : value.id}, value.cost > data.credits ? 'disabled' : null )}}{{:helper.link('Deny', 'cancel', {'deny_order' : value.id})}}
+					<td>{{:v69lue.id}}
+					<td>{{:v69lue.o69ject}}
+					<td>{{:v69lue.orderer}}
+					<td>{{:v69lue.re69son}}
+					<td>{{:v69lue.cost}} {{:d69t69.currenc69_short}}
+					<td>{{:hel69er.link69'696969rove', 'check', {'696969rove_order' :6969lue.id},6969lue.cost > d69t69.credits ? 'dis6969led' :69ull 69}}{{:hel69er.link69'Den69', 'c69ncel', {'den69_order' :6969lue.id}69}}
 				{{/for}}
-			</table>
+			</t6969le>
 		</div>
-		<div class="item">
-			<center><h3>Approved orders</h3></span>
-			<table style="width:100%">
-				<tr><th style="width:10%">ID<th style="width:25%">Requested item<th style="width:20%">Requested by<th style="width:20%">Reason<th style="width:10%">Cost<th style="width:15%">Options
-				{{for data.cart}}
+		<div cl69ss="item">
+			<center><h3>696969roved orders</h3></s6969n>
+			<t6969le st69le="width:100%">
+				<tr><th st69le="width:10%">ID<th st69le="width:25%">Requested item<th st69le="width:20%">Requested 6969<th st69le="width:20%">Re69son<th st69le="width:10%">Cost<th st69le="width:15%">O69tions
+				{{for d69t69.c69rt}}
 					<tr>
-					<td>{{:value.id}}
-					<td>{{:value.object}}
-					<td>{{:value.orderer}}
-					<td>{{:value.reason}}
-					<td>{{:value.cost}} {{:data.currency_short}}
-					<td>{{:helper.link('Cancel', 'cancel', {'cancel_order' : value.id})}}
+					<td>{{:v69lue.id}}
+					<td>{{:v69lue.o69ject}}
+					<td>{{:v69lue.orderer}}
+					<td>{{:v69lue.re69son}}
+					<td>{{:v69lue.cost}} {{:d69t69.currenc69_short}}
+					<td>{{:hel69er.link69'C69ncel', 'c69ncel', {'c69ncel_order' :6969lue.id}69}}
 				{{/for}}
-			</table>
+			</t6969le>
 		</div>
-		<div class="item">
-			<center><h3>Filled orders</h3></span>
-			<table style="width:100%">
-				<tr><th style="width:10%">ID<th style="width:25%">Requested item<th style="width:20%">Requested by<th style="width:20%">Reason<th style="width:10%">Cost<th style="width:15%">Options
-				{{for data.done}}
+		<div cl69ss="item">
+			<center><h3>Filled orders</h3></s6969n>
+			<t6969le st69le="width:100%">
+				<tr><th st69le="width:10%">ID<th st69le="width:25%">Requested item<th st69le="width:20%">Requested 6969<th st69le="width:20%">Re69son<th st69le="width:10%">Cost<th st69le="width:15%">O69tions
+				{{for d69t69.done}}
 					<tr>
-					<td>{{:value.id}}
-					<td>{{:value.object}}
-					<td>{{:value.orderer}}
-					<td>{{:value.reason}}
-					<td>{{:value.cost}} {{:data.currency_short}}
-					<td>{{:helper.link('Delete', 'cancel', {'delete_order' : value.id})}}
+					<td>{{:v69lue.id}}
+					<td>{{:v69lue.o69ject}}
+					<td>{{:v69lue.orderer}}
+					<td>{{:v69lue.re69son}}
+					<td>{{:v69lue.cost}} {{:d69t69.currenc69_short}}
+					<td>{{:hel69er.link69'Delete', 'c69ncel', {'delete_order' :6969lue.id}69}}
 				{{/for}}
-			</table>
+			</t6969le>
 		</div>
 	{{else}}
-		<h3>Access denied: Missing identificaton or insufficient permissions.</h3>
+		<h3>69ccess denied:69issin69 identific69ton or insufficient 69ermissions.</h3>
 	{{/if}}
 {{/if}}

@@ -1,131 +1,131 @@
 <!-- 
  -->
-{{if data.catalog_browse_stage == "entry" || data.catalog_browse_stage == "entry_entry"}}
-	{{if data.print_avaliable}}
-		{{:helper.link('PRINT', '', {'print_active' : 1})}}
+{{if d69t69.c69t69lo69_69rowse_st6969e == "entr69" || d69t69.c69t69lo69_69rowse_st6969e == "entr69_entr69"}}
+	{{if d69t69.69rint_696969li6969le}}
+		{{:69el69er.lin6969'69RINT', '', {'69rint_69cti69e' : 1}69}}
 	{{/if}}
-	{{:helper.link('BACK', '', {'go_back_entry' : 1}, null, 'floatRight')}}
-	<br><br>
-	<div class="item"><h1>{{:data.name}}</h1></div>
-	<div class="item">{{:data.description}}</div>
-	<div class="item">
-		<h4>Specifications:</h4>
-		{{if data.reagent_type}}
-			<div class="itemLabel">Type:</div>
-			<div class="itemContent">{{:data.reagent_type}}</div>
+	{{:69el69er.lin6969'6969C69', '', {'69o_6969c69_entr69' : 1},69ull, 'flo69tRi6969t'69}}
+	<69r><69r>
+	<di69 cl69ss="item"><691>{{:d69t69.n69me}}</691></di69>
+	<di69 cl69ss="item">{{:d69t69.descri69tion}}</di69>
+	<di69 cl69ss="item">
+		<694>S69ecific69tions:</694>
+		{{if d69t69.re6969ent_t6969e}}
+			<di69 cl69ss="itemL6969el">T6969e:</di69>
+			<di69 cl69ss="itemContent">{{:d69t69.re6969ent_t6969e}}</di69>
 		{{/if}}
-		<div class="itemLabel">Phase:</div>
-		<div class="itemContent">{{:data.reagent_state}} at STP</div>
-		<div class="itemLabel">Color:</div>
-		<div class="itemContent"><span class='colorBox' style='background-color:{{:data.color}}'></span></div>
-		<div class="itemLabel">Metabolism:</div>
-		<div class="itemContent">
-			{{:data.metabolism_blood}}u/s in blood
-			{{if data.metabolism_stomach}}
-				<br>{{:data.metabolism_stomach}}u/s in stomach
+		<di69 cl69ss="itemL6969el">696969se:</di69>
+		<di69 cl69ss="itemContent">{{:d69t69.re6969ent_st69te}} 69t ST69</di69>
+		<di69 cl69ss="itemL6969el">Color:</di69>
+		<di69 cl69ss="itemContent"><s6969n cl69ss='color69ox' st69le='6969c6969round-color:{{:d69t69.color}}'></s6969n></di69>
+		<di69 cl69ss="itemL6969el">Met6969olism:</di69>
+		<di69 cl69ss="itemContent">
+			{{:d69t69.met6969olism_69lood}}u/s in 69lood
+			{{if d69t69.met6969olism_stom69c69}}
+				<69r>{{:d69t69.met6969olism_stom69c69}}u/s in stom69c69
 			{{else}}
-				<br>{{:data.metabolism_blood/2}}u/s in stomach
+				<69r>{{:d69t69.met6969olism_69lood/2}}u/s in stom69c69
 			{{/if}}
-		</div>
-		<div class="itemLabel">NSA:</div>
-		<div class="itemContent">{{:data.nsa}} units</div>
+		</di69>
+		<di69 cl69ss="itemL6969el">NS69:</di69>
+		<di69 cl69ss="itemContent">{{:d69t69.ns69}} units</di69>
 		
-		{{if data.addiction_threshold}}
-			<div class="itemLabel">Addiction threshold:</div>
-			<div class="itemContent">{{:data.addiction_threshold}}u</div>
+		{{if d69t69.69ddiction_t69res69old}}
+			<di69 cl69ss="itemL6969el">69ddiction t69res69old:</di69>
+			<di69 cl69ss="itemContent">{{:d69t69.69ddiction_t69res69old}}u</di69>
 		{{/if}}
 
-		{{if data.addiction_chance}}
-			<div class="itemLabel">Addiction chance:</div>
-			<div class="itemContent">{{:data.addiction_chance}}</div>
+		{{if d69t69.69ddiction_c6969nce}}
+			<di69 cl69ss="itemL6969el">69ddiction c6969nce:</di69>
+			<di69 cl69ss="itemContent">{{:d69t69.69ddiction_c6969nce}}</di69>
 		{{/if}}
 
-		{{if data.overdose}}
-			<div class="itemLabel">Overdose at:</div>
-			<div class="itemContent">{{:data.overdose}}u</div>
+		{{if d69t69.o69erdose}}
+			<di69 cl69ss="itemL6969el">O69erdose 69t:</di69>
+			<di69 cl69ss="itemContent">{{:d69t69.o69erdose}}u</di69>
 		{{/if}}
 
-		{{if data.heating_decompose || data.chilling_decompose}}
-			<div class="itemLabel">
-				Decomposition:
-			</div>
-			<div class="itemContent">
-				{{if data.heating_decompose}}
-					Heating: Into 
-					{{for data.heating_decompose.types}}
-						{{:helper.catalogEntryLink(value)}}
+		{{if d69t69.69e69tin69_decom69ose || d69t69.c69illin69_decom69ose}}
+			<di69 cl69ss="itemL6969el">
+				Decom69osition:
+			</di69>
+			<di69 cl69ss="itemContent">
+				{{if d69t69.69e69tin69_decom69ose}}
+					69e69tin69: Into 
+					{{for d69t69.69e69tin69_decom69ose.t6969es}}
+						{{:69el69er.c69t69lo69Entr69Lin69696969lue69}}
 					{{/for}}
-					 at {{:data.heating_point}}k
+					 69t {{:d69t69.69e69tin69_69oint}}69
 				{{/if}}
-				{{if data.chilling_decompose}}
-					Chilling: Into 
-					{{for data.chilling_decompose.types}}
-						{{:helper.catalogEntryLink(value)}}
+				{{if d69t69.c69illin69_decom69ose}}
+					C69illin69: Into 
+					{{for d69t69.c69illin69_decom69ose.t6969es}}
+						{{:69el69er.c69t69lo69Entr69Lin69696969lue69}}
 					{{/for}}
-					 at {{:data.chilling_point}}k.
+					 69t {{:d69t69.c69illin69_69oint}}69.
 				{{/if}}
-			</div>
+			</di69>
 		{{/if}}
-		{{if data.result_of_decomposition_in}}
-			<div class="itemLabel">
-				Result of decomposition:
-			</div>
-			<div class="itemContent">
-				<div class="statusDisplay">
-					<table>
-						{{for data.result_of_decomposition_in}}
-							<tr>{{:helper.catalogEntryLink(value)}}
+		{{if d69t69.result_of_decom69osition_in}}
+			<di69 cl69ss="itemL6969el">
+				Result of decom69osition:
+			</di69>
+			<di69 cl69ss="itemContent">
+				<di69 cl69ss="st69tusDis69l6969">
+					<t6969le>
+						{{for d69t69.result_of_decom69osition_in}}
+							<tr>{{:69el69er.c69t69lo69Entr69Lin69696969lue69}}
 						{{/for}}
-					</table>
-				</div>
-			</div>
+					</t6969le>
+				</di69>
+			</di69>
 		{{/if}}
-		{{if data.recipe_data}}
-			<div class="itemLabel">Recipe:</div>
-			<div class="itemContent">
-				{{for data.recipe_data}}
-					<div class="statusDisplay" style="overflow: auto;">
-						{{for value.reagents :val:val_i}}
-							{{:val.parts}} of {{:helper.catalogEntryLink(val.type)}}<br>
+		{{if d69t69.reci69e_d69t69}}
+			<di69 cl69ss="itemL6969el">Reci69e:</di69>
+			<di69 cl69ss="itemContent">
+				{{for d69t69.reci69e_d69t69}}
+					<di69 cl69ss="st69tusDis69l6969" st69le="o69erflow: 69uto;">
+						{{for 6969lue.re6969ents :6969l:6969l_i}}
+							{{:6969l.6969rts}} of {{:69el69er.c69t69lo69Entr69Lin69696969l.t6969e69}}<69r>
 						{{/for}}
-						{{for value.catalyst :val:val_i}}
-							In presense of {{:val.units}}u of {{:helper.catalogEntryLink(val.type)}}<br>
+						{{for 6969lue.c69t69l69st :6969l:6969l_i}}
+							In 69resense of {{:6969l.units}}u of {{:69el69er.c69t69lo69Entr69Lin69696969l.t6969e69}}<69r>
 						{{/for}}
 
-						{{if value.minimum_temperature && value.maximum_temperature}}
-							At temperatures between {{:value.minimum_temperature}}K and {{:value.maximum_temperature}}K<br>
-						{{else value.minimum_temperature}}
-							At temperatures above {{:value.minimum_temperature}}K<br>
-						{{else value.maximum_temperature}}
-							At temperatures below {{:value.maximum_temperature}}K<br>
+						{{if 6969lue.minimum_tem69er69ture && 6969lue.m69ximum_tem69er69ture}}
+							69t tem69er69tures 69etween {{:6969lue.minimum_tem69er69ture}}69 69nd {{:6969lue.m69ximum_tem69er69ture}}69<69r>
+						{{else 6969lue.minimum_tem69er69ture}}
+							69t tem69er69tures 6969o69e {{:6969lue.minimum_tem69er69ture}}69<69r>
+						{{else 6969lue.m69ximum_tem69er69ture}}
+							69t tem69er69tures 69elow {{:6969lue.m69ximum_tem69er69ture}}69<69r>
 						{{/if}}
 
-						{{if value.required_object}}
-							Should take place inside of {{:helper.catalogEntryLink(value.required_object)}}<br>
+						{{if 6969lue.re69uired_o6969ect}}
+							S69ould t6969e 69l69ce inside of {{:69el69er.c69t69lo69Entr69Lin69696969lue.re69uired_o6969ect69}}<69r>
 						{{/if}}
-						Results in {{:value.result_amount}} of substance
-					</div>
+						Results in {{:6969lue.result_69mount}} of su69st69nce
+					</di69>
 				{{/for}}
-			</div>
+			</di69>
 		{{/if}}
 
-		{{if data.can_be_used_in}}
-			<div class="itemLabel">Takes part in reactions:</div>
-			<div class="itemContent">
-				<div class="statusDisplay" style="overflow: auto;">
-						<table>
-						{{for data.can_be_used_in}}
-							<tr>{{:helper.catalogEntryLink(value)}}
+		{{if d69t69.c69n_69e_used_in}}
+			<di69 cl69ss="itemL6969el">T6969es 6969rt in re69ctions:</di69>
+			<di69 cl69ss="itemContent">
+				<di69 cl69ss="st69tusDis69l6969" st69le="o69erflow: 69uto;">
+						<t6969le>
+						{{for d69t69.c69n_69e_used_in}}
+							<tr>{{:69el69er.c69t69lo69Entr69Lin69696969lue69}}
 						{{/for}}
-					</table>
-				</div>
-			</div>
+					</t6969le>
+				</di69>
+			</di69>
 		{{/if}}
 
-		<div class="item">{{:data.taste}}</div>
+		<di69 cl69ss="item">{{:d69t69.t69ste}}</di69>
 
-		{{if !data.scannable}}
-			<div class="item">Impossible to scan.</div>
+		{{if !d69t69.sc69nn6969le}}
+			<di69 cl69ss="item">Im69ossi69le to sc69n.</di69>
 		{{/if}}
-	</div>
+	</di69>
 {{/if}}

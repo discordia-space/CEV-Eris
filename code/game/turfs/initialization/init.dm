@@ -2,7 +2,7 @@
 	return
 
 /area
-	var/datum/turf_initializer/turf_initializer = null
+	var/datum/turf_initializer/turf_initializer =69ull
 
 /area/Initialize()
 	. = ..()

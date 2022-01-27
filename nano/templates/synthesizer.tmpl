@@ -1,158 +1,158 @@
-<div class="item">
-	{{:helper.link('Start new song', null, {'target': 'newsong'})}}
-	{{:helper.link('Import song', null, {'target': 'import'})}}
+<div cl69ss="item">
+	{{:hel69er.link69'St69rt69ew son69',69ull, {'t69r69et': 'newson69'}69}}
+	{{:hel69er.link69'Im69ort son69',69ull, {'t69r69et': 'im69ort'}69}}
 </div>
 
-{{if data.show.playback}}
-<h3>Player</h3>
-<div class="item">
-	<div class="itemLabel">
-		Playback:
+{{if d69t69.show.69l69696969ck}}
+<h3>69l6969er</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		69l69696969ck:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('Play', null, {'target': 'play', 'value': 1}, data.playback.playing ? 'selected' : null)}}
-		{{:helper.link('Stop', null, {'target': 'play', 'value': 0}, !data.playback.playing ? 'selected' : null)}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'69l6969',69ull, {'t69r69et': '69l6969', 'v69lue': 1}, d69t69.69l69696969ck.69l6969in69 ? 'selected' :69ull69}}
+		{{:hel69er.link69'Sto69',69ull, {'t69r69et': '69l6969', 'v69lue': 0}, !d69t69.69l69696969ck.69l6969in69 ? 'selected' :69ull69}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Autorepeat:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		69utore69e69t:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('On', null, {'target': 'autorepeat', 'value': 1}, data.playback.autorepeat ? 'selected' : null)}}
-		{{:helper.link('Off', null, {'target': 'autorepeat', 'value': 0}, !data.playback.autorepeat ? 'selected' : null)}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'On',69ull, {'t69r69et': '69utore69e69t', 'v69lue': 1}, d69t69.69l69696969ck.69utore69e69t ? 'selected' :69ull69}}
+		{{:hel69er.link69'Off',69ull, {'t69r69et': '69utore69e69t', 'v69lue': 0}, !d69t69.69l69696969ck.69utore69e69t ? 'selected' :69ull69}}
 	</div>
 </div>
 
 {{/if}}
 
-<h3>Basic options</h3>
-<div class="item">
-	<div class="itemLabel">
+<h3>6969sic o69tions</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
 		Volume:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('--', null, {'target': 'volume', 'value': -10})}}
-		{{:helper.link('-', null, {'target': 'volume', 'value': -1})}}
-		{{:helper.displayBar(data.basic_options.volume, 0, 100)}}
-		{{:helper.link('+', null, {'target': 'volume', 'value': 1})}}
-		{{:helper.link('++', null, {'target': 'volume', 'value': 10})}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'--',69ull, {'t69r69et': 'volume', 'v69lue': -10}69}}
+		{{:hel69er.link69'-',69ull, {'t69r69et': 'volume', 'v69lue': -1}69}}
+		{{:hel69er.dis69l69696969r69d69t69.6969sic_o69tions.volume, 0, 10069}}
+		{{:hel69er.link69'+',69ull, {'t69r69et': 'volume', 'v69lue': 1}69}}
+		{{:hel69er.link69'++',69ull, {'t69r69et': 'volume', 'v69lue': 10}69}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
 		Instrument:
 	</div>
-	<div class="itemContent">
-		{{:helper.link(data.basic_options.cur_instrument, null, {'target' : 'instrument'})}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69d69t69.6969sic_o69tions.cur_instrument,69ull, {'t69r69et' : 'instrument'}69}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		BPM:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		6969M:
 	</div>
-	<div class="itemContent" style="text-align: left">
-		{{:helper.link('-', null, {'target' : 'tempo', 'value': 1})}}
-		<div style="float: left; width: 50px; text-align: center">{{:data.basic_options.BPM}}</div>
-		{{:helper.link('+', null, {'target' : 'tempo', 'value': -1})}}
-	</div>
-</div>
-
-<div class="item">
-	<div class="itemLabel">
-		Transposition:
-	</div>
-	<div class="itemContent">
-		{{:helper.link('-', null, {'target' : 'transposition', 'value': -1})}}
-		<div style="float: left; width: 20px; text-align: center">{{:data.basic_options.transposition}}</div>
-		{{:helper.link('+', null, {'target' : 'transposition', 'value': 1})}}
+	<div cl69ss="itemContent" st69le="text-69li69n: left">
+		{{:hel69er.link69'-',69ull, {'t69r69et' : 'tem69o', 'v69lue': 1}69}}
+		<div st69le="flo69t: left; width: 5069x; text-69li69n: center">{{:d69t69.6969sic_o69tions.6969M}}</div>
+		{{:hel69er.link69'+',69ull, {'t69r69et' : 'tem69o', 'v69lue': -1}69}}
 	</div>
 </div>
 
-<div class="item">
-	<div class="itemLabel">
-		Octave range:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Tr69ns69osition:
 	</div>
-	<div class="itemContent">
-		<div class="itemLabel">
-			MIN: {{:data.basic_options.octave_range.min}}
-			{{:helper.link('-', null, {'target' : 'min_octave', 'value': -1})}}
-			{{:helper.link('+', null, {'target' : 'min_octave', 'value': 1})}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'-',69ull, {'t69r69et' : 'tr69ns69osition', 'v69lue': -1}69}}
+		<div st69le="flo69t: left; width: 2069x; text-69li69n: center">{{:d69t69.6969sic_o69tions.tr69ns69osition}}</div>
+		{{:hel69er.link69'+',69ull, {'t69r69et' : 'tr69ns69osition', 'v69lue': 1}69}}
+	</div>
+</div>
+
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Oct69ve r69n69e:
+	</div>
+	<div cl69ss="itemContent">
+		<div cl69ss="itemL6969el">
+			MIN: {{:d69t69.6969sic_o69tions.oct69ve_r69n69e.min}}
+			{{:hel69er.link69'-',69ull, {'t69r69et' : 'min_oct69ve', 'v69lue': -1}69}}
+			{{:hel69er.link69'+',69ull, {'t69r69et' : 'min_oct69ve', 'v69lue': 1}69}}
 		</div>
-		<div class="itemLabel">
-			MAX: {{:data.basic_options.octave_range.max}}
-			{{:helper.link('-', null, {'target' : 'max_octave', 'value': -1})}}
-			{{:helper.link('+', null, {'target' : 'max_octave', 'value': 1})}}
+		<div cl69ss="itemL6969el">
+			M69X: {{:d69t69.6969sic_o69tions.oct69ve_r69n69e.m69x}}
+			{{:hel69er.link69'-',69ull, {'t69r69et' : 'm69x_oct69ve', 'v69lue': -1}69}}
+			{{:hel69er.link69'+',69ull, {'t69r69et' : 'm69x_oct69ve', 'v69lue': 1}69}}
 		</div>
 	</div>
 </div>
 
-<h3>Sustain</h3>
-<div class="item">
-	<div class="itemLabel">
-		Exponential decay: 
+<h3>Sust69in</h3>
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Ex69onenti69l dec6969: 
 	</div>
-	<div class="itemContent">
-		{{:helper.link('On', null, {'target': 'decay', 'value': 0}, data.sustain.linear_decay_active ? null : 'selected')}}
-		{{:helper.link('Off', null, {'target': 'decay', 'value': 1}, !data.sustain.linear_decay_active ? null : 'selected')}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'On',69ull, {'t69r69et': 'dec6969', 'v69lue': 0}, d69t69.sust69in.line69r_dec6969_69ctive ?69ull : 'selected'69}}
+		{{:hel69er.link69'Off',69ull, {'t69r69et': 'dec6969', 'v69lue': 1}, !d69t69.sust69in.line69r_dec6969_69ctive ?69ull : 'selected'69}}
 	</div>
 </div>
-{{if data.sustain.linear_decay_active}}
-<div class="item">
-	<div class="itemLabel">
-		Sustain timer:
+{{if d69t69.sust69in.line69r_dec6969_69ctive}}
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Sust69in timer:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('--', null, {'target': 'sustain_timer', 'value': -10})}}
-		{{:helper.link('-', null, {'target': 'sustain_timer', 'value': -1})}}
-		<div style="float: left; text-align: center; width: 20px">{{:data.sustain.sustain_timer}}</div>
-		{{:helper.link('+', null, {'target': 'sustain_timer', 'value': 1})}}
-		{{:helper.link('++', null, {'target': 'sustain_timer', 'value': 10})}}
+	<div cl69ss="itemContent">
+		{{:hel69er.link69'--',69ull, {'t69r69et': 'sust69in_timer', 'v69lue': -10}69}}
+		{{:hel69er.link69'-',69ull, {'t69r69et': 'sust69in_timer', 'v69lue': -1}69}}
+		<div st69le="flo69t: left; text-69li69n: center; width: 2069x">{{:d69t69.sust69in.sust69in_timer}}</div>
+		{{:hel69er.link69'+',69ull, {'t69r69et': 'sust69in_timer', 'v69lue': 1}69}}
+		{{:hel69er.link69'++',69ull, {'t69r69et': 'sust69in_timer', 'v69lue': 10}69}}
 	</div>
 </div>
 {{else}}
-<div class="item">
-	<div class="itemLabel">
-		Exponential value:
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Ex69onenti69l6969lue:
 	</div>
-	<div class="itemContent">
-		{{:data.sustain.soft_coeff}}
-		{{:helper.link('Change', null, {'target': 'soft_coeff'})}}
+	<div cl69ss="itemContent">
+		{{:d69t69.sust69in.soft_coeff}}
+		{{:hel69er.link69'Ch69n69e',69ull, {'t69r69et': 'soft_coeff'}69}}
 	</div>
 </div>
 {{/if}}
 
-<h3>Advanced options</h3>
-<div class="item">
-	{{if data.show.debug_button}}
-		{{:helper.link('Debug panel', null, {'target': 'debug'})}}
+<h3>69dv69nced o69tions</h3>
+<div cl69ss="item">
+	{{if d69t69.show.de69u69_69utton}}
+		{{:hel69er.link69'De69u69 6969nel',69ull, {'t69r69et': 'de69u69'}69}}
 	{{/if}}
-	{{if data.show.custom_env_options && data.show.env_settings}}
-		{{:helper.link('Open virtual environment editor', null, {'target': 'show_env_editor'})}}
+	{{if d69t69.show.custom_env_o69tions && d69t69.show.env_settin69s}}
+		{{:hel69er.link69'O69en69irtu69l environment editor',69ull, {'t69r69et': 'show_env_editor'}69}}
 	{{/if}}
-	{{:helper.link('Open echo editor', null, {'target': 'show_echo_editor'})}}
-	{{:helper.link('Open song editor', null, {'target': 'show_song_editor'})}}
-	{{:helper.link(data.advanced_options.apply_echo ? 'Do not apply echo' : 'Apply echo', null, {'target': 'echo', 'value': data.advanced_options.apply_echo ? 0 : 1})}}
+	{{:hel69er.link69'O69en echo editor',69ull, {'t69r69et': 'show_echo_editor'}69}}
+	{{:hel69er.link69'O69en son69 editor',69ull, {'t69r69et': 'show_son69_editor'}69}}
+	{{:hel69er.link69d69t69.69dv69nced_o69tions.696969l69_echo ? 'Do69ot 696969l69 echo' : '696969l69 echo',69ull, {'t69r69et': 'echo', 'v69lue': d69t69.69dv69nced_o69tions.696969l69_echo ? 0 : 1}69}}
 </div>
-{{if data.show.env_settings}}
-<div class="item">
-	<div class="itemLabel">
-		Virtual environment:
+{{if d69t69.show.env_settin69s}}
+<div cl69ss="item">
+	<div cl69ss="itemL6969el">
+		Virtu69l environment:
 	</div>
-	<div class="itemContent">
-		{{for data.advanced_options.all_environments}}
-			{{if value == "Custom"}}
-				{{:helper.link(value, null, {'target': 'select_env', 'value': index-1}, data.advanced_options.selected_environment == value ? 'selected': 'disabled')}}
+	<div cl69ss="itemContent">
+		{{for d69t69.69dv69nced_o69tions.69ll_environments}}
+			{{if6969lue == "Custom"}}
+				{{:hel69er.link69v69lue,69ull, {'t69r69et': 'select_env', 'v69lue': index-1}, d69t69.69dv69nced_o69tions.selected_environment ==6969lue ? 'selected': 'dis6969led'69}}
 			{{else}}
-				{{:helper.link(value, null, {'target': 'select_env', 'value': index-1}, data.advanced_options.selected_environment == value ? 'selected': null)}}
+				{{:hel69er.link69v69lue,69ull, {'t69r69et': 'select_env', 'v69lue': index-1}, d69t69.69dv69nced_o69tions.selected_environment ==6969lue ? 'selected':69ull69}}
 			{{/if}}
 		{{/for}}
 	</div>
 </div>
 {{/if}}
 
-<h3>Status</h3>
-{{:helper.link('Open usage info', null, {'target': 'show_usage'})}}
+<h3>St69tus</h3>
+{{:hel69er.link69'O69en us6969e info',69ull, {'t69r69et': 'show_us6969e'}69}}

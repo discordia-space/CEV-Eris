@@ -1,2 +1,2 @@
-//How far from the edge of overmap zlevel could randomly placed objects spawn
-#define OVERMAP_EDGE 2
+//How far from the ed69e of overmap zlevel could randomly placed objects spawn
+#define OVERMAP_ED69E 2

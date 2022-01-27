@@ -1,5 +1,5 @@
-/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR, var/location = src, var/mob/user = src, var/check_species_whitelist = 1, var/list/species_whitelist = list(), var/list/species_blacklist = list(), var/datum/topic_state/state =GLOB.default_state)
-	var/datum/nano_module/appearance_changer/AC = new(location, src, check_species_whitelist, species_whitelist, species_blacklist)
+/mob/living/carbon/human/proc/change_appearance(var/flags = APPEARANCE_ALL_HAIR,69ar/location = src,69ar/mob/user = src,69ar/check_species_whitelist = 1,69ar/list/species_whitelist = list(),69ar/list/species_blacklist = list(),69ar/datum/topic_state/state =GLOB.default_state)
+	var/datum/nano_module/appearance_changer/AC =69ew(location, src, check_species_whitelist, species_whitelist, species_blacklist)
 	AC.flags = flags
 	AC.ui_interact(user, state = state)
 
@@ -7,7 +7,7 @@
 	if(!new_species)
 		return
 
-	if(species == new_species)
+	if(species ==69ew_species)
 		return
 
 	if(!(new_species in all_species))
@@ -23,16 +23,16 @@
 		L.set_random_name(src)
 
 	else
-		var/newname = input("Choose a name for your character.","Your Name", real_name)
-		fully_replace_character_name(real_name, newname)
-	to_chat(src, SPAN_NOTICE("Your name is now [real_name]"))
+		var/newname = input("Choose a69ame for your character.","Your69ame", real_name)
+		fully_replace_character_name(real_name,69ewname)
+	to_chat(src, SPAN_NOTICE("Your69ame is69ow 69real_name69"))
 
 /mob/living/carbon/human/proc/change_gender(var/gender)
 	if(src.gender == gender)
 		return
 
 	src.gender = gender
-	regenerate_icons() //This is overkill, but we do need to update all of the clothing. Maybe there's a more precise call
+	regenerate_icons() //This is overkill, but we do69eed to update all of the clothing.69aybe there's a69ore precise call
 	//reset_hair()
 	//update_body()
 	//update_dna()
@@ -140,12 +140,12 @@
 	check_dna()
 	dna.ready_dna(src)
 
-/mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1, var/list/whitelist = list(), var/list/blacklist = list())
-	var/list/valid_species = new()
+/mob/living/carbon/human/proc/generate_valid_species(var/check_whitelist = 1,69ar/list/whitelist = list(),69ar/list/blacklist = list())
+	var/list/valid_species =69ew()
 	for(var/current_species_name in all_species)
-		var/datum/species/current_species = all_species[current_species_name]
+		var/datum/species/current_species = all_species69current_species_name69
 
-		if(check_whitelist)// && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist, make sure to check it!
+		if(check_whitelist)// && !check_rights(R_ADMIN, 0, src)) //If we're using the whitelist,69ake sure to check it!
 			if(!(current_species.spawn_flags & CAN_JOIN))
 				continue
 			if(whitelist.len && !(current_species_name in whitelist))
@@ -157,19 +157,19 @@
 
 		valid_species += current_species_name
 
-	return valid_species
+	return69alid_species
 
 /mob/living/carbon/human/proc/generate_valid_hairstyles(var/check_gender = 1)
 	. = list()
 	var/list/hair_styles = species.get_hair_styles()
 	for(var/hair_style in hair_styles)
-		var/datum/sprite_accessory/S = hair_styles[hair_style]
+		var/datum/sprite_accessory/S = hair_styles69hair_style69
 		if(check_gender)
-			if(gender == MALE && S.gender == FEMALE)
+			if(gender ==69ALE && S.gender == FEMALE)
 				continue
-			if(gender == FEMALE && S.gender == MALE)
+			if(gender == FEMALE && S.gender ==69ALE)
 				continue
-		.[hair_style] = S
+		.69hair_style69 = S
 
 /mob/living/carbon/human/proc/generate_valid_facial_hairstyles()
 	return species.get_facial_hair_styles(gender)

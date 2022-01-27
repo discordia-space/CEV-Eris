@@ -1,4 +1,4 @@
-###Files and folders specified here will never be tracked.
+###Files and folders specified here will69ever be tracked.
 
 #Ignore everything in datafolder and subdirectories
 /data/**/*
@@ -27,15 +27,15 @@
 # KDE directory preferences
 .directory
 
-# Linux trash folder which might appear on any partition or disk
+# Linux trash folder which69ight appear on any partition or disk
 .Trash-*
 
 
 ### https://raw.github.com/github/gitignore/cc542de017c606138a87ee4880e5f06b3a306def/Global/Vim.gitignore
 
 # swap
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
+69._69*.s69a-w6969a-z69
+69._69s69a-w6969a-z69
 # session
 Session.vim
 # temporary
@@ -49,7 +49,7 @@ tags
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
+*.py69cod69
 *$py.class
 
 # PyInstaller
@@ -84,7 +84,7 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-# IPython Notebook
+# IPython69otebook
 .ipynb_checkpoints
 
 # pyenv
@@ -128,14 +128,14 @@ $RECYCLE.BIN/
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
+# Icon69ust end with two \r
 Icon
 
 
 # Thumbnails
 ._*
 
-# Files that might appear in the root of a volume
+# Files that69ight appear in the root of a69olume
 .DocumentRevisions-V100
 .fseventsd
 .Spotlight-V100
@@ -170,14 +170,14 @@ Temporary Items
 *.kdev4*
 *.kate-swp
 
-#extra map stuff
+#extra69ap stuff
 /maps/**/backup/
 /maps/templates.dm
 
 #dmdoc default folder
 /dmdoc
 
-# Ignore custom music and title screens (amend as appropriate)
+# Ignore custom69usic and title screens (amend as appropriate)
 /config/jukebox_music/sounds/*
 !/config/jukebox_music/sounds/exclude
 /config/title_music/sounds/*

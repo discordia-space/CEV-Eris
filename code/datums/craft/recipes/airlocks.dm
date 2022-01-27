@@ -3,7 +3,7 @@
 	flags = CRAFT_ON_FLOOR|CRAFT_ONE_PER_TURF
 	time = 150
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 10,69ATERIAL_STEEL),
 	)
 	related_stats = list(STAT_MEC)
 
@@ -73,7 +73,7 @@
 	name = "high security airlock assembly"
 	result = /obj/structure/door_assembly/door_assembly_highsecurity
 	steps = list(
-		list(CRAFT_MATERIAL, 10, MATERIAL_PLASTEEL)
+		list(CRAFT_MATERIAL, 10,69ATERIAL_PLASTEEL)
 	)
 
 
@@ -85,6 +85,6 @@
 	name = "multi-tile airlock assembly"
 	result = /obj/structure/door_assembly/multi_tile
 	steps = list(
-		list(CRAFT_MATERIAL, 20, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 20,69ATERIAL_STEEL),
 	)
 

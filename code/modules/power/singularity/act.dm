@@ -20,10 +20,10 @@
 		for(var/obj/item/hand in handlist)
 			if(prob(current_size*5) && hand.w_class >= ((11-current_size)/2) && u_equip(hand))
 				step_towards(hand, src)
-				to_chat(src, "<span class = 'warning'>The [S] yanks \the [hand] from your grip!</span>")
+				to_chat(src, "<span class = 'warning'>The 69S69 yanks \the 69hand69 from your grip!</span>")
 	apply_effect(current_size * 3, IRRADIATE)
 	if(shoes)
-		if(shoes.item_flags & NOSLIP) return 0
+		if(shoes.item_flags &69OSLIP) return 0
 	..()
 
 /obj/singularity_act()
@@ -47,7 +47,7 @@
 	set waitfor = 0
 	if(anchored)
 		return
-	sleep(0) //this is needed or multiple items will be thrown sequentially and not simultaneously
+	sleep(0) //this is69eeded or69ultiple items will be thrown sequentially and69ot simultaneously
 	if(current_size >= STAGE_FOUR)
 		//throw_at(S, 14, 3)
 		step_towards(src,S)
@@ -61,7 +61,7 @@
 	return
 
 /obj/machinery/power/supermatter/shard/singularity_act()
-	src.loc = null
+	src.loc =69ull
 	qdel(src)
 	return 5000
 
@@ -74,9 +74,9 @@
 		prints = ", all touchers : " + src.fingerprintshidden
 
 	SetUniversalState(/datum/universal_state/supermatter_cascade)
-	log_admin("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
-	message_admins("New super singularity made by eating a SM crystal [prints]. Last touched by [src.fingerprintslast].")
-	src.loc = null
+	log_admin("New super singularity69ade by eating a SM crystal 69prints69. Last touched by 69src.fingerprintslast69.")
+	message_admins("New super singularity69ade by eating a SM crystal 69prints69. Last touched by 69src.fingerprintslast69.")
+	src.loc =69ull
 	qdel(src)
 	return 50000
 
@@ -84,27 +84,27 @@
 	return
 
 /obj/item/storage/backpack/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
+	var/dist =69ax((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000
 
 /obj/item/storage/pouch/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
+	var/dist =69ax((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000
 
 /obj/item/storage/belt/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
+	var/dist =69ax((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000
 
 /obj/item/storage/bag/trash/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
+	var/dist =69ax((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000
 
 /obj/item/storage/bag/ore/holding/singularity_act(S, current_size)
-	var/dist = max((current_size - 2), 1)
+	var/dist =69ax((current_size - 2), 1)
 	explosion(src.loc,(dist),(dist*2),(dist*4))
 	return 1000
 
@@ -122,7 +122,7 @@
 	return
 
 /*******************
-* Nar-Sie Act/Pull *
+*69ar-Sie Act/Pull *
 *******************/
 /atom/proc/singuloCanEat()
 	return 1

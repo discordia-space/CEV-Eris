@@ -1,139 +1,139 @@
 /obj/structure/janitorialcart
 	name = "janitorial cart"
-	desc = "The ultimate in janitorial carts! Has space for water, mops, signs, trash bags, and more!"
+	desc = "The ultimate in janitorial carts! Has space for water,69ops, si69ns, trash ba69s, and69ore!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
 	w_class = ITEM_SIZE_BULKY
 	anchored = FALSE
 	density = TRUE
-	reagent_flags = OPENCONTAINER
+	rea69ent_fla69s = OPENCONTAINER
 	climbable = TRUE
 	//copypaste sorry
-	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
+	var/amount_per_transfer_from_this = 5 //shit I dunno, addin69 this so syrin69es stop runtime errorin69. --NeoFite
+	var/obj/item/stora69e/ba69/trash/myba69	= null
 	var/obj/item/mop/mymop = null
-	var/obj/item/reagent_containers/spray/myspray = null
-	var/obj/item/device/lightreplacer/myreplacer = null
+	var/obj/item/rea69ent_containers/spray/myspray = null
+	var/obj/item/device/li69htreplacer/myreplacer = null
 	var/obj/structure/mopbucket/mybucket = null
 	var/has_items = FALSE
 	var/dismantled = TRUE
-	var/signs = 0	//maximum capacity hardcoded below
+	var/si69ns = 0	//maximum capacity hardcoded below
 
 
 
 /obj/structure/janitorialcart/Destroy()
-	QDEL_NULL(mybag)
-	QDEL_NULL(mymop)
-	QDEL_NULL(myspray)
-	QDEL_NULL(myreplacer)
-	QDEL_NULL(mybucket)
+	69DEL_NULL(myba69)
+	69DEL_NULL(mymop)
+	69DEL_NULL(myspray)
+	69DEL_NULL(myreplacer)
+	69DEL_NULL(mybucket)
 	return ..()
 
 /obj/structure/janitorialcart/examine(mob/user)
 	if(..(user, 1))
 		if (mybucket)
-			var/contains = mybucket.reagents.total_volume
-			to_chat(user, "\icon[src] The bucket contains [contains] unit\s of liquid!")
+			var/contains =69ybucket.rea69ents.total_volume
+			to_chat(user, "\icon69src69 The bucket contains 69contains69 unit\s of li69uid!")
 		else
-			to_chat(user, "\icon[src] There is no bucket mounted on it!")
+			to_chat(user, "\icon69src69 There is no bucket69ounted on it!")
 
-/obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as mob|obj, mob/living/user as mob)
+/obj/structure/janitorialcart/MouseDrop_T(atom/movable/O as69ob|obj,69ob/livin69/user as69ob)
 	if (istype(O, /obj/structure/mopbucket) && !mybucket)
 		O.forceMove(src)
 		mybucket = O
-		to_chat(user, "You mount the [O] on the janicart.")
+		to_chat(user, "You69ount the 69O69 on the janicart.")
 		update_icon()
 	else
 		..()
 
-/obj/structure/janitorialcart/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/mop) || istype(I, /obj/item/reagent_containers/glass/rag) || istype(I, /obj/item/soap))
+/obj/structure/janitorialcart/attackby(obj/item/I,69ob/user)
+	if(istype(I, /obj/item/mop) || istype(I, /obj/item/rea69ent_containers/69lass/ra69) || istype(I, /obj/item/soap))
 		if (mybucket)
-			if(I.reagents.total_volume < I.reagents.maximum_volume)
-				if(mybucket.reagents.total_volume < 1)
-					to_chat(user, "<span class='notice'>[mybucket] is empty!</span>")
+			if(I.rea69ents.total_volume < I.rea69ents.maximum_volume)
+				if(mybucket.rea69ents.total_volume < 1)
+					to_chat(user, "<span class='notice'>69mybucket69 is empty!</span>")
 				else
-					mybucket.reagents.trans_to_obj(I, 5)	//
-					to_chat(user, "<span class='notice'>You wet [I] in [mybucket].</span>")
-					playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
+					mybucket.rea69ents.trans_to_obj(I, 5)	//
+					to_chat(user, "<span class='notice'>You wet 69I69 in 69mybucket69.</span>")
+					playsound(loc, 'sound/effects/slosh.o6969', 25, 1)
 			else
-				to_chat(user, "<span class='notice'>[I] can't absorb anymore liquid!</span>")
+				to_chat(user, "<span class='notice'>69I69 can't absorb anymore li69uid!</span>")
 		else
-			to_chat(user, "<span class='notice'>There is no bucket mounted here to dip [I] into!</span>")
+			to_chat(user, "<span class='notice'>There is no bucket69ounted here to dip 69I69 into!</span>")
 		return 1
 
-	else if (istype(I, /obj/item/reagent_containers/glass/bucket) && mybucket)
+	else if (istype(I, /obj/item/rea69ent_containers/69lass/bucket) &&69ybucket)
 		I.afterattack(mybucket, usr, 1)
 		update_icon()
 		return 1
 
-	else if(istype(I, /obj/item/reagent_containers/spray) && !myspray)
-		user.unEquip(I, src)
+	else if(istype(I, /obj/item/rea69ent_containers/spray) && !myspray)
+		user.unE69uip(I, src)
 		myspray = I
 		update_icon()
-		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		updateUsrDialo69()
+		to_chat(user, "<span class='notice'>You put 69I69 into 69src69.</span>")
 		return 1
 
-	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
-		user.unEquip(I, src)
+	else if(istype(I, /obj/item/device/li69htreplacer) && !myreplacer)
+		user.unE69uip(I, src)
 		myreplacer = I
 		update_icon()
-		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		updateUsrDialo69()
+		to_chat(user, "<span class='notice'>You put 69I69 into 69src69.</span>")
 		return 1
 
-	else if(istype(I, /obj/item/storage/bag/trash) && !mybag)
-		user.unEquip(I, src)
-		mybag = I
+	else if(istype(I, /obj/item/stora69e/ba69/trash) && !myba69)
+		user.unE69uip(I, src)
+		myba69 = I
 		update_icon()
-		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		updateUsrDialo69()
+		to_chat(user, "<span class='notice'>You put 69I69 into 69src69.</span>")
 		return 1
 
 	else if(istype(I, /obj/item/caution))
-		if(signs < 4)
-			user.unEquip(I, src)
-			signs++
+		if(si69ns < 4)
+			user.unE69uip(I, src)
+			si69ns++
 			update_icon()
-			updateUsrDialog()
-			to_chat(user, SPAN_NOTICE("You put [I] into [src]."))
+			updateUsrDialo69()
+			to_chat(user, SPAN_NOTICE("You put 69I69 into 69src69."))
 		else
-			to_chat(user, SPAN_NOTICE("[src] can't hold any more signs."))
+			to_chat(user, SPAN_NOTICE("69src69 can't hold any69ore si69ns."))
 		return 1
 
-	else if(mybag)
-		return mybag.attackby(I, user)
-		//This return will prevent afterattack from executing if the object goes into the trashbag,
-		//This prevents dumb stuff like splashing the cart with the contents of a container, after putting said container into trash
+	else if(myba69)
+		return69yba69.attackby(I, user)
+		//This return will prevent afterattack from executin69 if the object 69oes into the trashba69,
+		//This prevents dumb stuff like splashin69 the cart with the contents of a container, after puttin69 said container into trash
 
 	else if (!has_items)
-		if (I.has_quality(QUALITY_BOLT_TURNING))
-			if (I.use_tool(user, src, WORKTIME_SLOW, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, STAT_MEC))
+		if (I.has_69uality(69UALITY_BOLT_TURNIN69))
+			if (I.use_tool(user, src, WORKTIME_SLOW, 69UALITY_BOLT_TURNIN69, FAILCHANCE_EASY, STAT_MEC))
 				dismantle(user)
 			return
 	..()
 
 
 //New Altclick functionality!
-//Altclick the cart with a mop to stow the mop away
-//Altclick the cart with a reagent container to pour things into the bucket without putting the bottle in trash
-/obj/structure/janitorialcart/AltClick(mob/living/user)
+//Altclick the cart with a69op to stow the69op away
+//Altclick the cart with a rea69ent container to pour thin69s into the bucket without puttin69 the bottle in trash
+/obj/structure/janitorialcart/AltClick(mob/livin69/user)
 	if(user.incapacitated() || !Adjacent(user))	return
-	var/obj/I = usr.get_active_hand()
+	var/obj/I = usr.69et_active_hand()
 	if(istype(I, /obj/item/mop))
 		if(!mymop)
 			usr.drop_from_inventory(I,src)
 			mymop = I
 			update_icon()
-			updateUsrDialog()
-			to_chat(usr, "<span class='notice'>You put [I] into [src].</span>")
+			updateUsrDialo69()
+			to_chat(usr, "<span class='notice'>You put 69I69 into 69src69.</span>")
 			update_icon()
 		else
-			to_chat(usr, "<span class='notice'>The cart already has a mop attached</span>")
+			to_chat(usr, "<span class='notice'>The cart already has a69op attached</span>")
 		return
-	else if(istype(I, /obj/item/reagent_containers) && mybucket)
-		var/obj/item/reagent_containers/C = I
+	else if(istype(I, /obj/item/rea69ent_containers) &&69ybucket)
+		var/obj/item/rea69ent_containers/C = I
 		C.afterattack(mybucket, usr, 1)
 		update_icon()
 
@@ -142,15 +142,15 @@
 	ui_interact(user)
 	return
 
-/obj/structure/janitorialcart/ui_interact(var/mob/user, var/ui_key = "main", var/datum/nanoui/ui = null, var/force_open = NANOUI_FOCUS)
-	var/data[0]
-	data["name"] = capitalize(name)
-	data["bag"] = mybag ? capitalize(mybag.name) : null
-	data["bucket"] = mybucket ? capitalize(mybucket.name) : null
-	data["mop"] = mymop ? capitalize(mymop.name) : null
-	data["spray"] = myspray ? capitalize(myspray.name) : null
-	data["replacer"] = myreplacer ? capitalize(myreplacer.name) : null
-	data["signs"] = signs ? "[signs] sign\s" : null
+/obj/structure/janitorialcart/ui_interact(var/mob/user,69ar/ui_key = "main",69ar/datum/nanoui/ui = null,69ar/force_open = NANOUI_FOCUS)
+	var/data69069
+	data69"name"69 = capitalize(name)
+	data69"ba69"69 =69yba69 ? capitalize(myba69.name) : null
+	data69"bucket"69 =69ybucket ? capitalize(mybucket.name) : null
+	data69"mop"69 =69ymop ? capitalize(mymop.name) : null
+	data69"spray"69 =69yspray ? capitalize(myspray.name) : null
+	data69"replacer"69 =69yreplacer ? capitalize(myreplacer.name) : null
+	data69"si69ns"69 = si69ns ? "69si69ns69 si69n\s" : null
 
 	ui = SSnano.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
@@ -160,52 +160,52 @@
 
 
 /obj/structure/janitorialcart/Topic(href, href_list)
-	if(!in_range(src, usr))
+	if(!in_ran69e(src, usr))
 		return
-	if(!isliving(usr))
+	if(!islivin69(usr))
 		return
-	var/mob/living/user = usr
+	var/mob/livin69/user = usr
 
-	if(href_list["take"])
-		switch(href_list["take"])
-			if("garbage")
-				if(mybag)
-					user.put_in_hands(mybag)
-					to_chat(user, SPAN_NOTICE("You take [mybag] from [src]."))
-					mybag = null
+	if(href_list69"take"69)
+		switch(href_list69"take"69)
+			if("69arba69e")
+				if(myba69)
+					user.put_in_hands(myba69)
+					to_chat(user, SPAN_NOTICE("You take 69myba6969 from 69src69."))
+					myba69 = null
 			if("mop")
 				if(mymop)
 					user.put_in_hands(mymop)
-					to_chat(user, SPAN_NOTICE("You take [mymop] from [src]."))
+					to_chat(user, SPAN_NOTICE("You take 69mymop69 from 69src69."))
 					mymop = null
 			if("spray")
 				if(myspray)
 					user.put_in_hands(myspray)
-					to_chat(user, SPAN_NOTICE("You take [myspray] from [src]."))
+					to_chat(user, SPAN_NOTICE("You take 69myspray69 from 69src69."))
 					myspray = null
 			if("replacer")
 				if(myreplacer)
 					user.put_in_hands(myreplacer)
-					to_chat(user, SPAN_NOTICE("You take [myreplacer] from [src]."))
+					to_chat(user, SPAN_NOTICE("You take 69myreplacer69 from 69src69."))
 					myreplacer = null
-			if("sign")
-				if(signs)
-					var/obj/item/caution/Sign = locate() in src
-					if(Sign)
-						user.put_in_hands(Sign)
-						to_chat(user, SPAN_NOTICE("You take \a [Sign] from [src]."))
-						signs--
+			if("si69n")
+				if(si69ns)
+					var/obj/item/caution/Si69n = locate() in src
+					if(Si69n)
+						user.put_in_hands(Si69n)
+						to_chat(user, SPAN_NOTICE("You take \a 69Si69n69 from 69src69."))
+						si69ns--
 					else
-						warning("[src] signs ([signs]) didn't match contents")
-						signs = 0
+						warnin69("69src69 si69ns (69si69ns69) didn't69atch contents")
+						si69ns = 0
 			if("bucket")
 				if(mybucket)
-					mybucket.forceMove(get_turf(user))
-					to_chat(user, "<span class='notice'>You unmount [mybucket] from [src].</span>")
+					mybucket.forceMove(69et_turf(user))
+					to_chat(user, "<span class='notice'>You unmount 69mybucket69 from 69src69.</span>")
 					mybucket = null
 
 	update_icon()
-	updateUsrDialog()
+	updateUsrDialo69()
 
 
 
@@ -214,27 +214,27 @@
 
 	if(mybucket)
 		overlays += "cart_bucket"
-		if(mybucket.reagents.total_volume >= 1)
+		if(mybucket.rea69ents.total_volume >= 1)
 			overlays += "water_cart"
-	if(mybag)
-		overlays += "cart_garbage"
+	if(myba69)
+		overlays += "cart_69arba69e"
 	if(mymop)
 		overlays += "cart_mop"
 	if(myspray)
 		overlays += "cart_spray"
 	if(myreplacer)
 		overlays += "cart_replacer"
-	if(signs)
-		overlays += "cart_sign[signs]"
+	if(si69ns)
+		overlays += "cart_si69n69si69ns69"
 
 
 
 
 
 
-//This is called if the cart is caught in an explosion, or destroyed by weapon fire
+//This is called if the cart is cau69ht in an explosion, or destroyed by weapon fire
 /obj/structure/janitorialcart/proc/spill(var/chance = 100)
-	var/turf/dropspot = get_turf(src)
+	var/turf/dropspot = 69et_turf(src)
 	if (mymop && prob(chance))
 		mymop.forceMove(dropspot)
 		mymop.tumble(2)
@@ -255,22 +255,22 @@
 		mybucket.tumble(1)
 		mybucket = null
 
-	if (signs)
-		for (var/obj/item/caution/Sign in src)
+	if (si69ns)
+		for (var/obj/item/caution/Si69n in src)
 			if (prob(min((chance*2),100)))
-				signs--
-				Sign.forceMove(dropspot)
-				Sign.tumble(3)
-				if (signs < 0)//safety for something that shouldn't happen
-					signs = 0
+				si69ns--
+				Si69n.forceMove(dropspot)
+				Si69n.tumble(3)
+				if (si69ns < 0)//safety for somethin69 that shouldn't happen
+					si69ns = 0
 					update_icon()
 					return
 
-	if (mybag && prob(min((chance*2),100)))//Bag is flimsy
-		mybag.forceMove(dropspot)
-		mybag.tumble(1)
-		mybag.spill()//trashbag spills its contents too
-		mybag = null
+	if (myba69 && prob(min((chance*2),100)))//Ba69 is flimsy
+		myba69.forceMove(dropspot)
+		myba69.tumble(1)
+		myba69.spill()//trashba69 spills its contents too
+		myba69 = null
 
 	update_icon()
 
@@ -285,7 +285,7 @@
 		new /obj/item/stack/material/plastic(src.loc, 10)
 		new /obj/item/stack/rods(src.loc, 20)
 		dismantled = 1
-		qdel(src)
+		69del(src)
 
 
 /obj/structure/janitorialcart/ex_act(severity)
@@ -299,45 +299,45 @@
 /obj/structure/bed/chair/janicart
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
-	icon_state = "pussywagon"
+	icon_state = "pussywa69on"
 	anchored = TRUE
 	density = FALSE
-	reagent_flags = OPENCONTAINER
+	rea69ent_fla69s = OPENCONTAINER
 	//copypaste sorry
-	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
-	var/obj/item/storage/bag/trash/mybag	= null
+	var/amount_per_transfer_from_this = 5 //shit I dunno, addin69 this so syrin69es stop runtime errorin69. --NeoFite
+	var/obj/item/stora69e/ba69/trash/myba69	= null
 	var/callme = "pimpin' ride"	//how do people refer to it?
 	applies_material_colour = 0
 
 
 /obj/structure/bed/chair/janicart/New()
 	..()
-	create_reagents(100)
+	create_rea69ents(100)
 
 
 /obj/structure/bed/chair/janicart/examine(mob/user)
 	if(!..(user, 1))
 		return
 
-	if(mybag)
-		to_chat(user, "\A [mybag] is hanging on the [callme].")
+	if(myba69)
+		to_chat(user, "\A 69myba6969 is han69in69 on the 69callme69.")
 
 
-/obj/structure/bed/chair/janicart/attackby(obj/item/I, mob/user)
+/obj/structure/bed/chair/janicart/attackby(obj/item/I,69ob/user)
 	if(istype(I, /obj/item/key))
-		to_chat(user, "Hold [I] in one of your hands while you drive this [callme].")
-	else if(istype(I, /obj/item/storage/bag/trash))
-		to_chat(user, SPAN_NOTICE("You hook the trashbag onto the [callme]."))
+		to_chat(user, "Hold 69I69 in one of your hands while you drive this 69callme69.")
+	else if(istype(I, /obj/item/stora69e/ba69/trash))
+		to_chat(user, SPAN_NOTICE("You hook the trashba69 onto the 69callme69."))
 		user.drop_item()
 		I.loc = src
-		mybag = I
+		myba69 = I
 
 
 /obj/structure/bed/chair/janicart/attack_hand(mob/user)
-	if(mybag)
-		mybag.loc = get_turf(user)
-		user.put_in_hands(mybag)
-		mybag = null
+	if(myba69)
+		myba69.loc = 69et_turf(user)
+		user.put_in_hands(myba69)
+		myba69 = null
 	else
 		..()
 
@@ -349,35 +349,35 @@
 		step(src, direction)
 		update_mob()
 	else
-		to_chat(user, SPAN_NOTICE("You'll need the keys in one of your hands to drive this [callme]."))
+		to_chat(user, SPAN_NOTICE("You'll need the keys in one of your hands to drive this 69callme69."))
 
 
-/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/structure/bed/chair/janicart/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/69lide_size_override = 0)
 	. = ..()
 	if(buckled_mob)
 		if(buckled_mob.buckled == src)
-			buckled_mob.forceMove(glide_size_override=glide_size_override)
+			buckled_mob.forceMove(69lide_size_override=69lide_size_override)
 
 
-/obj/structure/bed/chair/janicart/post_buckle_mob(mob/living/M)
+/obj/structure/bed/chair/janicart/post_buckle_mob(mob/livin69/M)
 	update_mob()
 	return ..()
 
 
 /obj/structure/bed/chair/janicart/unbuckle_mob()
-	var/mob/living/M = ..()
+	var/mob/livin69/M = ..()
 	if(M)
 		M.pixel_x = 0
 		M.pixel_y = 0
-	return M
+	return69
 
 
 /obj/structure/bed/chair/janicart/set_dir()
 	..()
 	if(buckled_mob)
 		if(buckled_mob.loc != loc)
-			buckled_mob.buckled = null //Temporary, so Move() succeeds.
-			buckled_mob.buckled = src //Restoring
+			buckled_mob.buckled = null //Temporary, so69ove() succeeds.
+			buckled_mob.buckled = src //Restorin69
 
 	update_mob()
 
@@ -404,12 +404,12 @@
 	if(buckled_mob)
 		if(prob(85))
 			return buckled_mob.bullet_act(Proj)
-	visible_message(SPAN_WARNING("[Proj] ricochets off the [callme]!"))
+	visible_messa69e(SPAN_WARNIN69("69Proj69 ricochets off the 69callme69!"))
 
 
 /obj/item/key
 	name = "key"
-	desc = "A keyring with a small steel key, and a pink fob reading \"Pussy Wagon\"."
+	desc = "A keyrin69 with a small steel key, and a pink fob readin69 \"Pussy Wa69on\"."
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "keys"
 	w_class = ITEM_SIZE_TINY

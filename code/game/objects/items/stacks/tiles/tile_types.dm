@@ -1,6 +1,6 @@
 /* Diffrent types of tiles
  * Contains:
- *		Grass
+ *		69rass
  *		Wood
  *		Carpet
  *		Steel
@@ -10,14 +10,14 @@
 
 /obj/item/stack/tile
 	name = "broken tile"
-	singular_name = "broken tile"
+	sin69ular_name = "broken tile"
 	icon = 'icons/obj/stack/tile.dmi'
 	desc = "This should not exist."
 	w_class = ITEM_SIZE_NORMAL
 	force = WEAPON_FORCE_HARMLESS
 	throwforce = WEAPON_FORCE_WEAK
 	throw_speed = 3
-	throw_range = 7
+	throw_ran69e = 7
 	max_amount = 60
 
 /obj/item/stack/tile/New()
@@ -26,46 +26,46 @@
 	pixel_y = rand(-7, 7)
 
 /*
- * Grass
+ * 69rass
  */
-/obj/item/stack/tile/grass
-	name = "grass tile"
-	singular_name = "grass floor tile"
-	desc = "A patch of grass like they often use on golf courses."
-	icon_state = "tile_grass"
-	flags = 0
-	origin_tech = list(TECH_BIO = 1)
+/obj/item/stack/tile/69rass
+	name = "69rass tile"
+	sin69ular_name = "69rass floor tile"
+	desc = "A patch of 69rass like they often use on 69olf courses."
+	icon_state = "tile_69rass"
+	fla69s = 0
+	ori69in_tech = list(TECH_BIO = 1)
 
 /*
  * Wood
  */
 /obj/item/stack/tile/wood
 	name = "wood floor tile"
-	singular_name = "wood floor tile"
+	sin69ular_name = "wood floor tile"
 	desc = "An easy to fit wooden floor tile."
 	icon_state = "tile_wood"
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_NORMAL
-	flags = 0
+	fla69s = 0
 
-/obj/item/stack/tile/wood/cyborg
+/obj/item/stack/tile/wood/cybor69
 	name = "wood floor tile synthesizer"
-	desc = "A device that makes wood floor tiles."
-	uses_charge = 1
-	charge_costs = list(250)
+	desc = "A device that69akes wood floor tiles."
+	uses_char69e = 1
+	char69e_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
 	build_type = /obj/item/stack/tile/wood
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 
 /*
  * Carpets
  */
 /obj/item/stack/tile/carpet
 	name = "red carpet"
-	singular_name = "red carpet"
+	sin69ular_name = "red carpet"
 	desc = "A piece of carpet. It is the same size as a normal floor tile!"
 	icon_state = "tile_carpet"
-	flags = 0
+	fla69s = 0
 
 /obj/item/stack/tile/carpet/bcarpet
 	name = "black carpet"
@@ -76,92 +76,92 @@
 	icon_state = "tile_blucarpet"
 
 /obj/item/stack/tile/carpet/turcarpet
-	name = "turquoise carpet"
+	name = "tur69uoise carpet"
 	icon_state = "tile_turcarpet"
 
 /obj/item/stack/tile/carpet/sblucarpet
 	name = "silver blue carpet"
 	icon_state = "tile_sblucarpet"
 
-/obj/item/stack/tile/carpet/gaycarpet
+/obj/item/stack/tile/carpet/69aycarpet
 	name = "clown carpet"
-	icon_state = "tile_gaycarpet"
+	icon_state = "tile_69aycarpet"
 
 /obj/item/stack/tile/carpet/purcarpet
 	name = "purple carpet"
 	icon_state = "tile_purcarpet"
 
 /obj/item/stack/tile/carpet/oracarpet
-	name = "orange carpet"
+	name = "oran69e carpet"
 	icon_state = "tile_oracarpet"
 
 /*
- * Flooring parent
+ * Floorin69 parent
  */
 /obj/item/stack/tile/floor
 	name = "floor tile"
-	singular_name = "floor tile"
-	desc = "Could work as a pretty decent throwing weapon."
+	sin69ular_name = "floor tile"
+	desc = "Could work as a pretty decent throwin69 weapon."
 	icon_state = "tile"
 	force = WEAPON_FORCE_NORMAL
 	throwforce = WEAPON_FORCE_PAINFUL
 	matter = list(MATERIAL_STEEL = 1)
-	flags = CONDUCT
+	fla69s = CONDUCT
 
-/obj/item/stack/tile/floor/cyborg
+/obj/item/stack/tile/floor/cybor69
 	name = "floor tile synthesizer"
-	desc = "A device that makes floor tiles."
-	gender = NEUTER
+	desc = "A device that69akes floor tiles."
+	69ender = NEUTER
 	matter = null
-	uses_charge = 1
-	charge_costs = list(250)
+	uses_char69e = 1
+	char69e_costs = list(250)
 	stacktype = /obj/item/stack/tile/floor
 	build_type = /obj/item/stack/tile/floor
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 
-	var/list/cyborg_floor = list(
+	var/list/cybor69_floor = list(
 		"steel techfloor" = /obj/item/stack/tile/floor/steel/techfloor,
-		"gray platform" =  /obj/item/stack/tile/floor/steel/gray_platform,
+		"69ray platform" =  /obj/item/stack/tile/floor/steel/69ray_platform,
 		"cafe floor tile" = /obj/item/stack/tile/floor/cafe,
 		"maint floor tile" = /obj/item/stack/tile/floor/techmaint,
-		"perforated maint floor tile" = /obj/item/stack/tile/floor/techmaint/perforated,
-		"panel maint floor tile" = /obj/item/stack/tile/floor/techmaint/panels,
-		"cargo maint floor tile" = /obj/item/stack/tile/floor/techmaint/cargo,
-		"steel techfloor tile with vents" = /obj/item/stack/tile/floor/steel/techfloor_grid,
+		"perforated69aint floor tile" = /obj/item/stack/tile/floor/techmaint/perforated,
+		"panel69aint floor tile" = /obj/item/stack/tile/floor/techmaint/panels,
+		"car69o69aint floor tile" = /obj/item/stack/tile/floor/techmaint/car69o,
+		"steel techfloor tile with69ents" = /obj/item/stack/tile/floor/steel/techfloor_69rid,
 		"steel brown perforated tile" = /obj/item/stack/tile/floor/steel/brown_perforated,
-		"steel gray perforated tile" = /obj/item/stack/tile/floor/steel/gray_perforated,
-		"steel cargo tile" = /obj/item/stack/tile/floor/steel/cargo,
+		"steel 69ray perforated tile" = /obj/item/stack/tile/floor/steel/69ray_perforated,
+		"steel car69o tile" = /obj/item/stack/tile/floor/steel/car69o,
 		"steel bar flat tile" = /obj/item/stack/tile/floor/steel/bar_flat,
 		"steel bar dance tile" = /obj/item/stack/tile/floor/steel/bar_dance,
-		"steel bar light tile" = /obj/item/stack/tile/floor/steel/bar_light,
+		"steel bar li69ht tile" = /obj/item/stack/tile/floor/steel/bar_li69ht,
 		"white floor tile" = /obj/item/stack/tile/floor/white,
-		"white cargo tile" = /obj/item/stack/tile/floor/white/cargo,
+		"white car69o tile" = /obj/item/stack/tile/floor/white/car69o,
 		"red carpet" = /obj/item/stack/tile/carpet,
 		"black carpet" = /obj/item/stack/tile/carpet/bcarpet,
 		"blue carpet" = /obj/item/stack/tile/carpet/blucarpet,
-		"turquoise carpet" = /obj/item/stack/tile/carpet/turcarpet,
+		"tur69uoise carpet" = /obj/item/stack/tile/carpet/turcarpet,
 		"silver blue carpet" = /obj/item/stack/tile/carpet/sblucarpet,
 		"purple carpet" = /obj/item/stack/tile/carpet/purcarpet,
-		"orange carpet" = /obj/item/stack/tile/carpet/oracarpet
+		"oran69e carpet" = /obj/item/stack/tile/carpet/oracarpet
 	)
 
-/obj/item/stack/tile/floor/cyborg/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/stack/tile/floor/cybor69/afterattack(var/atom/A,69ar/mob/user, proximity, params)
 	if(!proximity)
 		return
 
-/obj/item/stack/tile/floor/cyborg/attack_self(var/mob/user)
+/obj/item/stack/tile/floor/cybor69/attack_self(var/mob/user)
 
-	var/new_cyborg_floor = input("Choose type of floor", "Tile synthesizer")as null|anything in cyborg_floor
-	if(new_cyborg_floor && !isnull(cyborg_floor[new_cyborg_floor]))
-		stacktype = cyborg_floor[new_cyborg_floor]
-		build_type = cyborg_floor[new_cyborg_floor]
-		to_chat(usr, SPAN_NOTICE("You set \the [src] floor" /*to '[decal]'.*/))
+	var/new_cybor69_floor = input("Choose type of floor", "Tile synthesizer")as null|anythin69 in cybor69_floor
+	if(new_cybor69_floor && !isnull(cybor69_floor69new_cybor69_floor69))
+		stacktype = cybor69_floor69new_cybor69_floor69
+		build_type = cybor69_floor69new_cybor69_floor69
+		to_chat(usr, SPAN_NOTICE("You set \the 69src69 floor" /*to '69decal69'.*/))
 
 // Cafe
 /obj/item/stack/tile/floor/cafe
 	name = "cafe floor tile"
-	singular_name = "cafe floor tile"
-	desc = "A chekered pattern, an ancient style for a familiar feeling."
+	sin69ular_name = "cafe floor tile"
+	desc = "A chekered pattern, an ancient style for a familiar feelin69."
 	icon_state = "tile_cafe"
 	throwforce = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 1)
@@ -169,220 +169,220 @@
 // Techmaint
 /obj/item/stack/tile/floor/techmaint
 	name = "maint floor tile"
-	singular_name = "maint floor tile"
+	sin69ular_name = "maint floor tile"
 	icon_state = "tile_techmaint"
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/stack/tile/floor/techmaint/perforated
-	name = "perforated maint floor tile"
-	singular_name = "perforated maint floor tile"
+	name = "perforated69aint floor tile"
+	sin69ular_name = "perforated69aint floor tile"
 	icon_state = "tile_techmaint_perforated"
 
 /obj/item/stack/tile/floor/techmaint/panels
-	name = "panel maint floor tile"
-	singular_name = "panel maint floor tile"
+	name = "panel69aint floor tile"
+	sin69ular_name = "panel69aint floor tile"
 	icon_state = "tile_techmaint_panels"
 
-/obj/item/stack/tile/floor/techmaint/cargo
-	name = "cargo maint floor tile"
-	singular_name = "cargo maint floor tile"
-	icon_state = "tile_techmaint_cargo"
+/obj/item/stack/tile/floor/techmaint/car69o
+	name = "car69o69aint floor tile"
+	sin69ular_name = "car69o69aint floor tile"
+	icon_state = "tile_techmaint_car69o"
 
 /*
  * Steel
  */
 
- // Cyborg tile stack can copy steel tiles by clicking on them (for easy reconstruction)
-/obj/item/stack/tile/floor/steel/AltClick(var/mob/living/user)
-	var/obj/item/I = user.get_active_hand()
-	if(istype(I, /obj/item/stack/tile/floor/cyborg))
-		var/obj/item/stack/tile/floor/cyborg/C = I
+ // Cybor69 tile stack can copy steel tiles by clickin69 on them (for easy reconstruction)
+/obj/item/stack/tile/floor/steel/AltClick(var/mob/livin69/user)
+	var/obj/item/I = user.69et_active_hand()
+	if(istype(I, /obj/item/stack/tile/floor/cybor69))
+		var/obj/item/stack/tile/floor/cybor69/C = I
 		C.stacktype = src.type
 		C.build_type = src.type
-		to_chat(usr, SPAN_NOTICE("You will now build [C.name]"))
+		to_chat(usr, SPAN_NOTICE("You will now build 69C.name69"))
 	else
 		..()
 
 /obj/item/stack/tile/floor/steel
 	name = "steel floor tile"
-	singular_name = "steel floor tile"
+	sin69ular_name = "steel floor tile"
 	icon_state = "tile_steel"
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/stack/tile/floor/steel/panels
 	name = "steel panel tile"
-	singular_name = "steel panel tile"
+	sin69ular_name = "steel panel tile"
 	icon_state = "tile_steel_panels"
 
 /obj/item/stack/tile/floor/steel/techfloor
 	name = "steel techfloor tile"
-	singular_name = "steel techfloor tile"
+	sin69ular_name = "steel techfloor tile"
 	icon_state = "tile_steel_techfloor"
 
-/obj/item/stack/tile/floor/steel/techfloor_grid
-	name = "steel techfloor tile with vents"
-	singular_name = "steel techfloor tile with vents"
-	icon_state = "tile_steel_techfloor_grid"
+/obj/item/stack/tile/floor/steel/techfloor_69rid
+	name = "steel techfloor tile with69ents"
+	sin69ular_name = "steel techfloor tile with69ents"
+	icon_state = "tile_steel_techfloor_69rid"
 
 /obj/item/stack/tile/floor/steel/brown_perforated
 	name = "steel brown perforated tile"
-	singular_name = "steel brown perforated tile"
+	sin69ular_name = "steel brown perforated tile"
 	icon_state = "tile_steel_brownperforated"
 
-/obj/item/stack/tile/floor/steel/gray_perforated
-	name = "steel gray perforated tile"
-	singular_name = "steel gray perforated tile"
-	icon_state = "tile_steel_grayperforated"
+/obj/item/stack/tile/floor/steel/69ray_perforated
+	name = "steel 69ray perforated tile"
+	sin69ular_name = "steel 69ray perforated tile"
+	icon_state = "tile_steel_69rayperforated"
 
-/obj/item/stack/tile/floor/steel/cargo
-	name = "steel cargo tile"
-	singular_name = "steel cargo tile"
-	icon_state = "tile_steel_cargo"
+/obj/item/stack/tile/floor/steel/car69o
+	name = "steel car69o tile"
+	sin69ular_name = "steel car69o tile"
+	icon_state = "tile_steel_car69o"
 
 /obj/item/stack/tile/floor/steel/brown_platform
 	name = "steel brown platform tile"
-	singular_name = "steel brown platform tile"
+	sin69ular_name = "steel brown platform tile"
 	icon_state = "tile_steel_brownplatform"
 
-/obj/item/stack/tile/floor/steel/gray_platform
-	name = "steel gray platform tile"
-	singular_name = "steel gray platform tile"
-	icon_state = "tile_steel_grayplatform"
+/obj/item/stack/tile/floor/steel/69ray_platform
+	name = "steel 69ray platform tile"
+	sin69ular_name = "steel 69ray platform tile"
+	icon_state = "tile_steel_69rayplatform"
 
-/obj/item/stack/tile/floor/steel/danger
-	name = "steel danger tile"
-	singular_name = "steel danger tile"
-	icon_state = "tile_steel_danger"
+/obj/item/stack/tile/floor/steel/dan69er
+	name = "steel dan69er tile"
+	sin69ular_name = "steel dan69er tile"
+	icon_state = "tile_steel_dan69er"
 
-/obj/item/stack/tile/floor/steel/golden
-	name = "steel golden tile"
-	singular_name = "steel golden tile"
-	icon_state = "tile_steel_golden"
+/obj/item/stack/tile/floor/steel/69olden
+	name = "steel 69olden tile"
+	sin69ular_name = "steel 69olden tile"
+	icon_state = "tile_steel_69olden"
 
 /obj/item/stack/tile/floor/steel/bluecorner
 	name = "steel blue corner tile"
-	singular_name = "steel blue corner tile"
+	sin69ular_name = "steel blue corner tile"
 	icon_state = "tile_steel_bluecorner"
 
-/obj/item/stack/tile/floor/steel/orangecorner
-	name = "steel orange corner tile"
-	singular_name = "steel orange corner tilee"
-	icon_state = "tile_steel_orangecorner"
+/obj/item/stack/tile/floor/steel/oran69ecorner
+	name = "steel oran69e corner tile"
+	sin69ular_name = "steel oran69e corner tilee"
+	icon_state = "tile_steel_oran69ecorner"
 
 /obj/item/stack/tile/floor/steel/cyancorner
 	name = "steel cyan corner tile"
-	singular_name = "steel cyan corner tile"
+	sin69ular_name = "steel cyan corner tile"
 	icon_state = "tile_steel_cyancorner"
 
 /obj/item/stack/tile/floor/steel/violetcorener
-	name = "steel violet corener tile"
-	singular_name = "steel violet corener tile"
+	name = "steel69iolet corener tile"
+	sin69ular_name = "steel69iolet corener tile"
 	icon_state = "tile_steel_violetcorener"
 
 /obj/item/stack/tile/floor/steel/monofloor
-	name = "steel monofloor tile"
-	singular_name = "steel monofloor tile"
+	name = "steel69onofloor tile"
+	sin69ular_name = "steel69onofloor tile"
 	icon_state = "tile_steel_monofloor"
 
 /obj/item/stack/tile/floor/steel/bar_flat
 	name = "steel bar flat tile"
-	singular_name = "steel bar flat tile"
+	sin69ular_name = "steel bar flat tile"
 	icon_state = "tile_steel_bar_flat"
 
 /obj/item/stack/tile/floor/steel/bar_dance
 	name = "steel bar dance tile"
-	singular_name = "steel bar dance tile"
+	sin69ular_name = "steel bar dance tile"
 	icon_state = "tile_steel_bar_dance"
 
-/obj/item/stack/tile/floor/steel/bar_light
-	name = "steel bar light tile"
-	singular_name = "steel bar light tile"
-	icon_state = "tile_steel_bar_light"
+/obj/item/stack/tile/floor/steel/bar_li69ht
+	name = "steel bar li69ht tile"
+	sin69ular_name = "steel bar li69ht tile"
+	icon_state = "tile_steel_bar_li69ht"
 
 /*
  * Plastic
  */
 /obj/item/stack/tile/floor/white
 	name = "white floor tile"
-	singular_name = "white floor tile"
-	desc = "Appears to be made out of a lighter material."
+	sin69ular_name = "white floor tile"
+	desc = "Appears to be69ade out of a li69hter69aterial."
 	icon_state = "tile_white"
 	throwforce = WEAPON_FORCE_NORMAL
 	matter = list(MATERIAL_PLASTIC = 1)
 
 /obj/item/stack/tile/floor/white/panels
 	name = "white panel tile"
-	singular_name = "white panel tile"
+	sin69ular_name = "white panel tile"
 	icon_state = "tile_white_panels"
 
 /obj/item/stack/tile/floor/white/techfloor
 	name = "white techfloor tile"
-	singular_name = "white techfloor tile"
+	sin69ular_name = "white techfloor tile"
 	icon_state = "tile_white_techfloor"
 
-/obj/item/stack/tile/floor/white/techfloor_grid
-	name = "white techfloor tile with vents"
-	singular_name = "white techfloor tile with vents"
-	icon_state = "tile_white_techfloor_grid"
+/obj/item/stack/tile/floor/white/techfloor_69rid
+	name = "white techfloor tile with69ents"
+	sin69ular_name = "white techfloor tile with69ents"
+	icon_state = "tile_white_techfloor_69rid"
 
 /obj/item/stack/tile/floor/white/brown_perforated
 	name = "white brown perforated tile"
-	singular_name = "white brown perforated tile"
+	sin69ular_name = "white brown perforated tile"
 	icon_state = "tile_white_brownperforated"
 
-/obj/item/stack/tile/floor/white/gray_perforated
-	name = "white gray perforated tile"
-	singular_name = "white gray perforated tile"
-	icon_state = "tile_white_grayperforated"
+/obj/item/stack/tile/floor/white/69ray_perforated
+	name = "white 69ray perforated tile"
+	sin69ular_name = "white 69ray perforated tile"
+	icon_state = "tile_white_69rayperforated"
 
-/obj/item/stack/tile/floor/white/cargo
-	name = "white cargo tile"
-	singular_name = "white cargo tile"
-	icon_state = "tile_white_cargo"
+/obj/item/stack/tile/floor/white/car69o
+	name = "white car69o tile"
+	sin69ular_name = "white car69o tile"
+	icon_state = "tile_white_car69o"
 
 /obj/item/stack/tile/floor/white/brown_platform
 	name = "white brown platform tile"
-	singular_name = "white brown platform tile"
+	sin69ular_name = "white brown platform tile"
 	icon_state = "tile_white_brownplatform"
 
-/obj/item/stack/tile/floor/white/gray_platform
-	name = "white gray platform tile"
-	singular_name = "white gray platform tile"
-	icon_state = "tile_white_grayplatform"
+/obj/item/stack/tile/floor/white/69ray_platform
+	name = "white 69ray platform tile"
+	sin69ular_name = "white 69ray platform tile"
+	icon_state = "tile_white_69rayplatform"
 
-/obj/item/stack/tile/floor/white/danger
-	name = "white danger tile"
-	singular_name = "white danger tile"
-	icon_state = "tile_white_danger"
+/obj/item/stack/tile/floor/white/dan69er
+	name = "white dan69er tile"
+	sin69ular_name = "white dan69er tile"
+	icon_state = "tile_white_dan69er"
 
-/obj/item/stack/tile/floor/white/golden
-	name = "white golden tile"
-	singular_name = "white golden tile"
-	icon_state = "tile_white_golden"
+/obj/item/stack/tile/floor/white/69olden
+	name = "white 69olden tile"
+	sin69ular_name = "white 69olden tile"
+	icon_state = "tile_white_69olden"
 
 /obj/item/stack/tile/floor/white/bluecorner
 	name = "white blue corner tile"
-	singular_name = "white blue corner tile"
+	sin69ular_name = "white blue corner tile"
 	icon_state = "tile_white_bluecorner"
 
-/obj/item/stack/tile/floor/white/orangecorner
-	name = "white orange corner tile"
-	singular_name = "white orange corner tilee"
-	icon_state = "tile_white_orangecorner"
+/obj/item/stack/tile/floor/white/oran69ecorner
+	name = "white oran69e corner tile"
+	sin69ular_name = "white oran69e corner tilee"
+	icon_state = "tile_white_oran69ecorner"
 
 /obj/item/stack/tile/floor/white/cyancorner
 	name = "white cyan corner tile"
-	singular_name = "white cyan corner tile"
+	sin69ular_name = "white cyan corner tile"
 	icon_state = "tile_white_cyancorner"
 
 /obj/item/stack/tile/floor/white/violetcorener
-	name = "white violet corener tile"
-	singular_name = "white violet corener tile"
+	name = "white69iolet corener tile"
+	sin69ular_name = "white69iolet corener tile"
 	icon_state = "tile_white_violetcorener"
 
 /obj/item/stack/tile/floor/white/monofloor
-	name = "white monofloor tile"
-	singular_name = "white monofloor tile"
+	name = "white69onofloor tile"
+	sin69ular_name = "white69onofloor tile"
 	icon_state = "tile_white_monofloor"
 
 /*
@@ -390,102 +390,102 @@
  */
 /obj/item/stack/tile/floor/dark
 	name = "dark floor tile"
-	singular_name = "dark floor tile"
+	sin69ular_name = "dark floor tile"
 	icon_state = "tile_dark"
 	matter = list(MATERIAL_STEEL = 1)
 
 /obj/item/stack/tile/floor/dark/panels
 	name = "dark panel tile"
-	singular_name = "dark panel tile"
+	sin69ular_name = "dark panel tile"
 	icon_state = "tile_dark_panels"
 
 /obj/item/stack/tile/floor/dark/techfloor
 	name = "dark techfloor tile"
-	singular_name = "dark techfloor tile"
+	sin69ular_name = "dark techfloor tile"
 	icon_state = "tile_dark_techfloor"
 
-/obj/item/stack/tile/floor/dark/techfloor_grid
-	name = "dark techfloor tile with vents"
-	singular_name = "dark techfloor tile with vents"
-	icon_state = "tile_dark_techfloor_grid"
+/obj/item/stack/tile/floor/dark/techfloor_69rid
+	name = "dark techfloor tile with69ents"
+	sin69ular_name = "dark techfloor tile with69ents"
+	icon_state = "tile_dark_techfloor_69rid"
 
 /obj/item/stack/tile/floor/dark/brown_perforated
 	name = "dark brown perforated tile"
-	singular_name = "dark brown perforated tile"
+	sin69ular_name = "dark brown perforated tile"
 	icon_state = "tile_dark_brownperforated"
 
-/obj/item/stack/tile/floor/dark/gray_perforated
-	name = "dark gray perforated tile"
-	singular_name = "dark gray perforated tile"
-	icon_state = "tile_dark_grayperforated"
+/obj/item/stack/tile/floor/dark/69ray_perforated
+	name = "dark 69ray perforated tile"
+	sin69ular_name = "dark 69ray perforated tile"
+	icon_state = "tile_dark_69rayperforated"
 
-/obj/item/stack/tile/floor/dark/cargo
-	name = "dark cargo tile"
-	singular_name = "dark cargo tile"
-	icon_state = "tile_dark_cargo"
+/obj/item/stack/tile/floor/dark/car69o
+	name = "dark car69o tile"
+	sin69ular_name = "dark car69o tile"
+	icon_state = "tile_dark_car69o"
 
 /obj/item/stack/tile/floor/dark/brown_platform
 	name = "dark brown platform tile"
-	singular_name = "dark brown platform tile"
+	sin69ular_name = "dark brown platform tile"
 	icon_state = "tile_dark_brownplatform"
 
-/obj/item/stack/tile/floor/dark/gray_platform
-	name = "dark gray platform tile"
-	singular_name = "dark gray platform tile"
-	icon_state = "tile_dark_grayplatform"
+/obj/item/stack/tile/floor/dark/69ray_platform
+	name = "dark 69ray platform tile"
+	sin69ular_name = "dark 69ray platform tile"
+	icon_state = "tile_dark_69rayplatform"
 
-/obj/item/stack/tile/floor/dark/danger
-	name = "dark danger tile"
-	singular_name = "dark danger tile"
-	icon_state = "tile_dark_danger"
+/obj/item/stack/tile/floor/dark/dan69er
+	name = "dark dan69er tile"
+	sin69ular_name = "dark dan69er tile"
+	icon_state = "tile_dark_dan69er"
 
-/obj/item/stack/tile/floor/dark/golden
-	name = "dark golden tile"
-	singular_name = "dark golden tile"
-	icon_state = "tile_dark_golden"
+/obj/item/stack/tile/floor/dark/69olden
+	name = "dark 69olden tile"
+	sin69ular_name = "dark 69olden tile"
+	icon_state = "tile_dark_69olden"
 
 /obj/item/stack/tile/floor/dark/bluecorner
 	name = "dark blue corner tile"
-	singular_name = "dark blue corner tile"
+	sin69ular_name = "dark blue corner tile"
 	icon_state = "tile_dark_bluecorner"
 
-/obj/item/stack/tile/floor/dark/orangecorner
-	name = "dark orange corner tile"
-	singular_name = "dark orange corner tilee"
-	icon_state = "tile_dark_orangecorner"
+/obj/item/stack/tile/floor/dark/oran69ecorner
+	name = "dark oran69e corner tile"
+	sin69ular_name = "dark oran69e corner tilee"
+	icon_state = "tile_dark_oran69ecorner"
 
 /obj/item/stack/tile/floor/dark/cyancorner
 	name = "dark cyan corner tile"
-	singular_name = "dark cyan corner tile"
+	sin69ular_name = "dark cyan corner tile"
 	icon_state = "tile_dark_cyancorner"
 
 /obj/item/stack/tile/floor/dark/violetcorener
-	name = "dark violet corener tile"
-	singular_name = "dark violet corener tile"
+	name = "dark69iolet corener tile"
+	sin69ular_name = "dark69iolet corener tile"
 	icon_state = "tile_dark_violetcorener"
 
 /obj/item/stack/tile/floor/dark/monofloor
-	name = "dark monofloor tile"
-	singular_name = "dark monofloor tile"
+	name = "dark69onofloor tile"
+	sin69ular_name = "dark69onofloor tile"
 	icon_state = "tile_dark_monofloor"
 
 
-/obj/item/stack/tile/derelict/white_red_edges
+/obj/item/stack/tile/derelict/white_red_ed69es
 	name = "one star floor tile"
-	singular_name = "one star floor tile"
+	sin69ular_name = "one star floor tile"
 	icon_state = "tile_derelict1"
 
-/obj/item/stack/tile/derelict/white_small_edges
+/obj/item/stack/tile/derelict/white_small_ed69es
 	name = "one star floor tile"
-	singular_name = "one star floor tile"
+	sin69ular_name = "one star floor tile"
 	icon_state = "tile_derelict2"
 
-/obj/item/stack/tile/derelict/red_white_edges
+/obj/item/stack/tile/derelict/red_white_ed69es
 	name = "one star floor tile"
-	singular_name = "one star floor tile"
+	sin69ular_name = "one star floor tile"
 	icon_state = "tile_derelict3"
 
-/obj/item/stack/tile/derelict/white_big_edges
+/obj/item/stack/tile/derelict/white_bi69_ed69es
 	name = "one star floor tile"
-	singular_name = "one star floor tile"
+	sin69ular_name = "one star floor tile"
 	icon_state = "tile_derelict4"

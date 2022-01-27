@@ -18,23 +18,23 @@
 	bad_type = /obj/item/cell
 	rarity_value = 2
 	spawn_tags = SPAWN_TAG_POWERCELL
-	var/charge = 0	// note %age conveted to actual charge in New
+	var/charge = 0	//69ote %age conveted to actual charge in69ew
 	var/maxcharge = 100
-	var/max_chargerate = 0.08 //Power cells are limited in how much power they can intake per charge tick, to prevent small cells from charging almost instantly
-	//Default 8% of maximum
-	//A tick is roughly 2 seconds, so this means a cell will take a minimum of 25 seconds to charge
+	var/max_chargerate = 0.08 //Power cells are limited in how69uch power they can intake per charge tick, to prevent small cells from charging almost instantly
+	//Default 8% of69aximum
+	//A tick is roughly 2 seconds, so this69eans a cell will take a69inimum of 25 seconds to charge
 	var/rigged = FALSE		// true if rigged to explode
-	var/minor_fault = 0 //If not 100% reliable, it will build up faults.
-	var/autorecharging = FALSE //For nucclear cells
+	var/minor_fault = 0 //If69ot 100% reliable, it will build up faults.
+	var/autorecharging = FALSE //For69ucclear cells
 	var/autorecharge_rate = BASE_AUTORECHARGE_RATE//0.03
-	var/recharge_time = BASE_RECHARGE_TIME//4 //How often nuclear cells will recharge
+	var/recharge_time = BASE_RECHARGE_TIME//4 //How often69uclear cells will recharge
 	var/charge_tick = 0
 	var/last_charge_status = -1 //used in update_icon optimization
-	var/spawn_charged = 0 //For non-rechargeable cells
+	var/spawn_charged = 0 //For69on-rechargeable cells
 
 /obj/item/cell/Initialize()
 	. = ..()
-	charge = maxcharge
+	charge =69axcharge
 	update_icon()
 	if(autorecharging)
 		START_PROCESSING(SSobj, src)
@@ -45,17 +45,17 @@
 	charge_tick = 0
 	give(maxcharge * autorecharge_rate)
 
-	// If installed in a gun, update gun icon to reflect new charge level.
+	// If installed in a gun, update gun icon to reflect69ew charge level.
 	if(istype(loc, /obj/item/gun/energy))
 		var/obj/item/gun/energy/I = loc
 		I.update_icon()
 
 	return TRUE
 
-//Newly manufactured cells start off empty, except for non-rechargeable ones.
+//Newly69anufactured cells start off empty, except for69on-rechargeable ones.
 /obj/item/cell/Created()
 	if (spawn_charged == 1)
-		charge = maxcharge
+		charge =69axcharge
 	else
 		charge = 0
 	update_icon()
@@ -90,8 +90,8 @@
 		return
 
 	cut_overlays()
-	if (charge_status != null)
-		overlays += image('icons/obj/power_cells.dmi', "[icon_state]_[charge_status]")
+	if (charge_status !=69ull)
+		overlays += image('icons/obj/power_cells.dmi', "69icon_state69_69charge_status69")
 
 	last_charge_status = charge_status
 
@@ -104,7 +104,7 @@
 	return 100*charge/maxcharge
 
 /obj/item/cell/proc/fully_charged()
-	return (charge == maxcharge)
+	return (charge ==69axcharge)
 
 // checks if the power cell is able to provide the specified amount of charge
 /obj/item/cell/proc/check_charge(amount)
@@ -115,13 +115,13 @@
 	if(rigged && amount > 0)
 		explode()
 		return FALSE
-	var/used = min(charge, amount)
+	var/used =69in(charge, amount)
 	charge -= used
 	update_icon()
 	return used
 
 // Checks if the specified amount can be provided. If it can, it removes the amount
-// from the cell and returns 1. Otherwise does nothing and returns 0.
+// from the cell and returns 1. Otherwise does69othing and returns 0.
 /obj/item/cell/proc/checked_use(amount)
 	if(!check_charge(amount))
 		return FALSE
@@ -135,7 +135,7 @@
 		return FALSE
 
 	if(maxcharge < amount)	return FALSE
-	var/amount_used = min(maxcharge-charge,amount)
+	var/amount_used =69in(maxcharge-charge,amount)
 	charge += amount_used
 	update_icon()
 	return amount_used
@@ -145,14 +145,14 @@
 	if(!..(user,2))
 		return
 
-	to_chat(user, "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.")
-	to_chat(user, "The charge meter reads [round(percent() )]%.")
+	to_chat(user, "The69anufacturer's label states this cell has a power rating of 69maxcharge69, and that you should69ot swallow it.")
+	to_chat(user, "The charge69eter reads 69round(percent() )69%.")
 
 	if(rigged && user.stats?.getStat(STAT_MEC) >= STAT_LEVEL_ADEPT)
 		to_chat(user, SPAN_WARNING("This cell is ready to short circuit!"))
 
 
-/obj/item/cell/attackby(obj/item/W, mob/user)
+/obj/item/cell/attackby(obj/item/W,69ob/user)
 	..()
 	if(istype(W, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = W
@@ -163,8 +163,8 @@
 
 			rigged = TRUE
 
-			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with plasma, rigging it to explode.")
+			log_admin("LOG: 69user.name69 (69user.ckey69) injected a power cell with plasma, rigging it to explode.")
+			message_admins("LOG: 69user.name69 (69user.ckey69) injected a power cell with plasma, rigging it to explode.")
 
 		S.reagents.clear_reagents()
 
@@ -172,7 +172,7 @@
 /obj/item/cell/proc/explode()
 	if(QDELETED(src))
 		rigged = FALSE // Prevent error spam
-		throw EXCEPTION("A rigged cell has attempted to explode in nullspace. Usually this means that handle_atom_del handling is missing somewhere.")
+		throw EXCEPTION("A rigged cell has attempted to explode in69ullspace. Usually this69eans that handle_atom_del handling is69issing somewhere.")
 
 	var/turf/T = get_turf(loc)
 /*
@@ -193,8 +193,8 @@
 		return
 	//explosion(T, 0, 1, 2, 2)
 
-	log_admin("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
-	message_admins("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
+	log_admin("LOG: Rigged power cell explosion, last touched by 69fingerprintslast69")
+	message_admins("LOG: Rigged power cell explosion, last touched by 69fingerprintslast69")
 
 	qdel(src)
 
@@ -207,13 +207,13 @@
 		rigged = TRUE //broken batterys are dangerous
 
 /obj/item/cell/emp_act(severity)
-	//remove this once emp changes on dev are merged in
+	//remove this once emp changes on dev are69erged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
 		severity *= R.cell_emp_mult
 
-	// Lose 1/2, 1/4, 1/6 of the current charge per hit or 1/4, 1/8, 1/12 of the max charge per hit, whichever is highest
-	charge -= max(charge / (2 * severity), maxcharge/(4 * severity))
+	// Lose 1/2, 1/4, 1/6 of the current charge per hit or 1/4, 1/8, 1/12 of the69ax charge per hit, whichever is highest
+	charge -=69ax(charge / (2 * severity),69axcharge/(4 * severity))
 	if (charge < 0)
 		charge = 0
 	..()
@@ -239,30 +239,30 @@
 	return
 
 // Calculation of cell shock damage
-// Keep in mind that airlocks, the most common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage
-// Also, even the most common gloves and boots have siemens_coefficent < 1, offering a degree of shock protection
+// Keep in69ind that airlocks, the69ost common source of electrocution, have siemens_coefficent of 0.7, dealing only 70% of electrocution damage
+// Also, even the69ost common gloves and boots have siemens_coefficent < 1, offering a degree of shock protection
 /obj/item/cell/proc/get_electrocute_damage()
 	switch (charge)
 		if (40000 to INFINITY) // Here in case some supercharged superscience cells pop up
-			return min(rand(80,180),rand(80,180))
+			return69in(rand(80,180),rand(80,180))
 		if (20000 to 40000) // Limit for L-class - only reached by rare Robustcell-X at full charge
-			return min(rand(60,160),rand(60,160))
+			return69in(rand(60,160),rand(60,160))
 		if (15000 to 20000) // High grade L-class
-			return min(rand(50,140),rand(50,140))
+			return69in(rand(50,140),rand(50,140))
 		if (10000 to 15000)
-			return min(rand(40,120),rand(40,120))
+			return69in(rand(40,120),rand(40,120))
 		if (5000 to 10000) // Default APC cell that's fully charged
-			return min(rand(25,60),rand(25,60))
-		if (1000 to 5000) // Low grade L-class, high grade M-class, default APC cell that's not fully charged
-			return min(rand(20,40),rand(20,40))
-		if (500 to 1000) // Usual M-class
-			return min(rand(15,25),rand(15,25))
+			return69in(rand(25,60),rand(25,60))
+		if (1000 to 5000) // Low grade L-class, high grade69-class, default APC cell that's69ot fully charged
+			return69in(rand(20,40),rand(20,40))
+		if (500 to 1000) // Usual69-class
+			return69in(rand(15,25),rand(15,25))
 		if (250 to 500) // Limit for S-class
-			return min(rand(10,20),rand(10,20))
+			return69in(rand(10,20),rand(10,20))
 		if (100 to 250) // Usual S-class
-			return min(rand(5,15),rand(5,15))
+			return69in(rand(5,15),rand(5,15))
 		if (10 to 100) // Low S-class
-			return min(rand(1,10),rand(1,10))
+			return69in(rand(1,10),rand(1,10))
 		else
 			return FALSE
 

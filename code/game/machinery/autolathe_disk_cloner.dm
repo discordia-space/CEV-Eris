@@ -31,7 +31,7 @@
 	for(var/obj/item/stock_parts/scanning_module/SM in component_parts)
 		scanner_rating += SM.rating
 	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
-		laser_rating += ML.rating
+		laser_rating +=69L.rating
 
 	if(scanner_rating+laser_rating >= 9)
 		copying_delay = 30
@@ -45,7 +45,7 @@
 	if(laser_rating >= 4 && scanner_rating >= 2)
 		hacked = TRUE
 
-/obj/machinery/autolathe_disk_cloner/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/autolathe_disk_cloner/attackby(var/obj/item/I,69ar/mob/user)
 	if(default_deconstruction(I, user))
 		return
 
@@ -58,12 +58,12 @@
 	if(istype(I, /obj/item/computer_hardware/hard_drive/portable))
 		if(!original)
 			original = put_disk(I, user)
-			to_chat(user, SPAN_NOTICE("You put \the [I] into the first slot of [src]."))
+			to_chat(user, SPAN_NOTICE("You put \the 69I69 into the first slot of 69src69."))
 		else if(!copy)
 			copy = put_disk(I, user)
-			to_chat(user, SPAN_NOTICE("You put \the [I] into the second slot of [src]."))
+			to_chat(user, SPAN_NOTICE("You put \the 69I69 into the second slot of 69src69."))
 		else
-			to_chat(user, SPAN_NOTICE("[src]'s slots is full."))
+			to_chat(user, SPAN_NOTICE("69src69's slots is full."))
 
 	user.set_machine(src)
 	ui_interact(user)
@@ -82,14 +82,14 @@
 /obj/machinery/autolathe_disk_cloner/Process()
 	update_icon()
 
-/obj/machinery/autolathe_disk_cloner/proc/put_disk(obj/item/computer_hardware/hard_drive/portable/AD, var/mob/user)
+/obj/machinery/autolathe_disk_cloner/proc/put_disk(obj/item/computer_hardware/hard_drive/portable/AD,69ar/mob/user)
 	ASSERT(istype(AD))
 
-	user.unEquip(AD,src)
+	user.unE69uip(AD,src)
 	return AD
 
 
-/obj/machinery/autolathe_disk_cloner/attack_hand(mob/user as mob)
+/obj/machinery/autolathe_disk_cloner/attack_hand(mob/user as69ob)
 	if(..())
 		return TRUE
 
@@ -105,12 +105,12 @@
 	)
 
 	if(original)
-		data["disk1"] = original.ui_data()
-		data["copyingtotal"] = original.stored_files.len
+		data69"disk1"69 = original.ui_data()
+		data69"copyingtotal"69 = original.stored_files.len
 
 	if(copy)
-		data["disk2"] = copy.ui_data()
-		data["copyingnow"] = copy.stored_files.len
+		data69"disk2"69 = copy.ui_data()
+		data69"copyingnow"69 = copy.stored_files.len
 
 	return data
 
@@ -134,21 +134,21 @@
 
 	usr.set_machine(src)
 
-	if(href_list["start"])
+	if(href_list69"start"69)
 		if(copying)
 			copying = FALSE
 		else
 			copy()
 		return
 
-	if(href_list["eject"])
+	if(href_list69"eject"69)
 		var/mob/living/H = null
 		var/obj/item/computer_hardware/hard_drive/portable/D = null
 		if(ishuman(usr))
 			H = usr
 			D = H.get_active_hand()
 
-		if(href_list["eject"] == "f")
+		if(href_list69"eject"69 == "f")
 			if(original)
 				original.forceMove(src.loc)
 				if(H)
@@ -183,7 +183,7 @@
 		copy.name = original.name
 
 		if(!hacked)
-			copy.name += " \[copy\]"
+			copy.name += " \69copy\69"
 
 		for(var/f in original.stored_files)
 			if(!(original && copy) || !copying || !f)
@@ -192,7 +192,7 @@
 			var/datum/computer_file/original_file = f
 			var/datum/computer_file/copying_file
 
-			// Design files with copy protection require special treatment
+			// Design files with copy protection re69uire special treatment
 			if(istype(original_file, /datum/computer_file/binary/design))
 				var/datum/computer_file/binary/design/design_file = original_file
 				if(design_file.copy_protected)
@@ -200,7 +200,7 @@
 						var/datum/computer_file/binary/design/design_copy
 
 						if(prob(hack_fail_chance))
-							// Make a corrupted design with same filename as the original
+							//69ake a corrupted design with same filename as the original
 							design_copy = new
 							design_copy.set_design_type(/datum/design/autolathe/corrupted)
 							design_copy.filetype = "CCD"

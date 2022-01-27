@@ -4,9 +4,9 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	var/uplink_item				// The uplink item
 	var/keep_probability		// The probability we'll decide to keep this item if selected
 	var/reselect_probability	// Probability that we'll decide to keep this item if previously selected.
-								// Is done together with the keep_probability check. Being selected more than once does not affect this probability.
+								// Is done together with the keep_probability check. Being selected69ore than once does not affect this probability.
 
-/datum/uplink_random_item/New(var/uplink_item, var/keep_probability = 100, var/reselect_propbability = 33)
+/datum/uplink_random_item/New(var/uplink_item,69ar/keep_probability = 100,69ar/reselect_propbability = 33)
 	..()
 	src.uplink_item = uplink_item
 	src.keep_probability = keep_probability
@@ -19,14 +19,14 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	..()
 	items = list()
 
-/datum/uplink_random_selection/proc/get_random_item(var/telecrystals, obj/item/device/uplink/U, var/list/bought_items)
+/datum/uplink_random_selection/proc/get_random_item(var/telecrystals, obj/item/device/uplink/U,69ar/list/bought_items)
 	var/const/attempts = 50
 
 	for(var/i = 0; i < attempts; i++)
 		var/datum/uplink_random_item/RI = pick(items)
 		if(!prob(RI.keep_probability))
 			continue
-		var/datum/uplink_item/I = uplink.items_assoc[RI.uplink_item]
+		var/datum/uplink_item/I = uplink.items_assoc69RI.uplink_item69
 		if(I.cost(telecrystals) > telecrystals)
 			continue
 		if(bought_items && (I in bought_items) && !prob(RI.reselect_probability))
@@ -58,7 +58,7 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/stealth_items/voice)
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/toolbox, reselect_propbability = 10)
-	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/plastique)
+	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/plasti69ue)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/encryptionkey_radio)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/encryptionkey_binary)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/tools/emag, 100, 50)
@@ -90,5 +90,5 @@ var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_ra
 #ifdef DEBUG
 /proc/debug_uplink_item_assoc_list()
 	for(var/key in uplink.items_assoc)
-		to_chat(world, "[key] - [uplink.items_assoc[key]]")
+		to_chat(world, "69key69 - 69uplink.items_assoc69key6969")
 #endif

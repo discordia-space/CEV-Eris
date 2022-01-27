@@ -8,12 +8,12 @@
 
 /obj/item/device/mmi/digital/robot/New()
 	..()
-	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[rand(1000, 9999)]"
+	src.brainmob.name = "69pick(list("ADA","DOS","GNU","MAC","WIN"))69-69rand(1000, 9999)69"
 	src.brainmob.real_name = src.brainmob.name
 
 /obj/item/device/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = "Robotic Intelligence"
-	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
+	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's69ormal when you're little69ore than a complex circuit.</span>")
 	return

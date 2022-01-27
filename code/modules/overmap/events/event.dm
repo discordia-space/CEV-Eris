@@ -1,4 +1,4 @@
-/var/decl/overmap_event_handler/overmap_event_handler = new()
+/var/decl/overmap_event_handler/overmap_event_handler =69ew()
 
 /decl/overmap_event_handler
 	var/list/event_turfs_by_z_level
@@ -9,8 +9,8 @@
 	..()
 	event_turfs_by_z_level = list()
 
-/decl/overmap_event_handler/proc/create_events(var/z_level, var/overmap_size, var/number_of_events)
-	// Acquire the list of not-yet utilized overmap turfs on this Z-level
+/decl/overmap_event_handler/proc/create_events(var/z_level,69ar/overmap_size,69ar/number_of_events)
+	// Acquire the list of69ot-yet utilized overmap turfs on this Z-level
 	var/list/events_by_turf = get_event_turfs_by_z_level(z_level)
 	var/list/candidate_turfs = block(locate(OVERMAP_EDGE, OVERMAP_EDGE, z_level),locate(overmap_size - OVERMAP_EDGE, overmap_size - OVERMAP_EDGE,z_level))
 //	if(!candidate_turfs.len)
@@ -22,7 +22,7 @@
 //	if(!candidate_turfs.len)
 //		world << "candidate_tufs list gets empty after where()"
 
-	for(var/i = 1 to number_of_events)
+	for(var/i = 1 to69umber_of_events)
 		if(!candidate_turfs.len)
 //			world << "No candidate_tufs"
 			break
@@ -30,19 +30,19 @@
 		if(!ispath(overmap_event_type, /datum/overmap_event/meteor/comet_tail) && \
 		!ispath(overmap_event_type, /datum/overmap_event/meteor/comet_tail_medium) && \
 		!ispath(overmap_event_type, /datum/overmap_event/meteor/comet_tail_core))
-			var/datum/overmap_event/overmap_event = new overmap_event_type
+			var/datum/overmap_event/overmap_event =69ew overmap_event_type
 
 			var/list/event_turfs = acquire_event_turfs(overmap_event.count, overmap_event.radius, candidate_turfs, overmap_event.continuous)
 			candidate_turfs -= event_turfs
 
 			for(var/event_turf in event_turfs)
-				events_by_turf[event_turf] = overmap_event
+				events_by_turf69event_turf69 = overmap_event
 				GLOB.entered_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_entered)
 				GLOB.exited_event.register(event_turf, src, /decl/overmap_event_handler/proc/on_turf_exited)
 
-				var/obj/effect/overmap_event/event = new(event_turf)
-	//			world << "Created new event in [event.loc.x], [event.loc.y]"
-				event.name = overmap_event.event_name_stages[3]
+				var/obj/effect/overmap_event/event =69ew(event_turf)
+	//			world << "Created69ew event in 69event.loc.x69, 69event.loc.y69"
+				event.name = overmap_event.event_name_stages69369
 				event.icon_state = "poi"
 				event.icon_stages = list(pick(overmap_event.event_icon_stage0), pick(overmap_event.event_icon_stage1), "poi")
 				event.name_stages = overmap_event.event_name_stages
@@ -60,22 +60,22 @@
 		new path(poi_turf)
 
 /decl/overmap_event_handler/proc/get_event_turfs_by_z_level(var/z_level)
-	var/z_level_text = num2text(z_level)
-	. = event_turfs_by_z_level[z_level_text]
+	var/z_level_text =69um2text(z_level)
+	. = event_turfs_by_z_level69z_level_text69
 	if(!.)
 		. = list()
-		event_turfs_by_z_level[z_level_text] = .
+		event_turfs_by_z_level69z_level_text69 = .
 
-/decl/overmap_event_handler/proc/acquire_event_turfs(var/number_of_turfs, var/distance_from_origin, var/list/candidate_turfs, var/continuous = TRUE)
-	number_of_turfs = min(number_of_turfs, candidate_turfs.len)
-	candidate_turfs = candidate_turfs.Copy() // Not this proc's responsibility to adjust the given lists
+/decl/overmap_event_handler/proc/acquire_event_turfs(var/number_of_turfs,69ar/distance_from_origin,69ar/list/candidate_turfs,69ar/continuous = TRUE)
+	number_of_turfs =69in(number_of_turfs, candidate_turfs.len)
+	candidate_turfs = candidate_turfs.Copy() //69ot this proc's responsibility to adjust the given lists
 
 	var/origin_turf = pick(candidate_turfs)
 	var/list/selected_turfs = list(origin_turf)
 	var/list/selection_turfs = list(origin_turf)
 	candidate_turfs -= origin_turf
 
-	while(selection_turfs.len && selected_turfs.len < number_of_turfs)
+	while(selection_turfs.len && selected_turfs.len <69umber_of_turfs)
 		var/selection_turf = pick(selection_turfs)
 		var/random_neighbour = get_random_neighbour(selection_turf, candidate_turfs, continuous, distance_from_origin)
 
@@ -89,7 +89,7 @@
 
 	return selected_turfs
 
-/decl/overmap_event_handler/proc/get_random_neighbour(var/turf/origin_turf, var/list/candidate_turfs, var/continuous = TRUE, var/range)
+/decl/overmap_event_handler/proc/get_random_neighbour(var/turf/origin_turf,69ar/list/candidate_turfs,69ar/continuous = TRUE,69ar/range)
 	var/fitting_turfs
 	if(continuous)
 		fitting_turfs = origin_turf.CardinalTurfs(FALSE)
@@ -100,48 +100,48 @@
 		if(T in candidate_turfs)
 			return T
 
-/decl/overmap_event_handler/proc/on_turf_exited(var/turf/old_loc, var/obj/effect/overmap/ship/entering_ship, var/new_loc)
+/decl/overmap_event_handler/proc/on_turf_exited(var/turf/old_loc,69ar/obj/effect/overmap/ship/entering_ship,69ar/new_loc)
 	if(!istype(entering_ship))
 		return
 	if(new_loc == old_loc)
 		return
 
 	var/list/events_by_turf = get_event_turfs_by_z_level(old_loc.z)
-	var/datum/overmap_event/old_event = events_by_turf[old_loc]
-	var/datum/overmap_event/new_event = events_by_turf[new_loc]
+	var/datum/overmap_event/old_event = events_by_turf69old_loc69
+	var/datum/overmap_event/new_event = events_by_turf69new_loc69
 
-	if(old_event == new_event)
+	if(old_event ==69ew_event)
 		return
 	if(old_event)
-		if(new_event && old_event.difficulty == new_event.difficulty && old_event.event == new_event.event)
+		if(new_event && old_event.difficulty ==69ew_event.difficulty && old_event.event ==69ew_event.event)
 			return
 		old_event.leave(entering_ship)
 
-/decl/overmap_event_handler/proc/on_turf_entered(var/turf/new_loc, var/obj/effect/overmap/ship/entering_ship, var/old_loc)
+/decl/overmap_event_handler/proc/on_turf_entered(var/turf/new_loc,69ar/obj/effect/overmap/ship/entering_ship,69ar/old_loc)
 	if(!istype(entering_ship))
 		return
 	if(new_loc == old_loc)
 		return
 
 	var/list/events_by_turf = get_event_turfs_by_z_level(new_loc.z)
-	var/datum/overmap_event/old_event = events_by_turf[old_loc]
-	var/datum/overmap_event/new_event = events_by_turf[new_loc]
+	var/datum/overmap_event/old_event = events_by_turf69old_loc69
+	var/datum/overmap_event/new_event = events_by_turf69new_loc69
 
-	if(old_event == new_event)
+	if(old_event ==69ew_event)
 		return
 	if(new_event)
-		if(old_event && old_event.difficulty == new_event.difficulty && initial(old_event.event) == initial(new_event.event))
+		if(old_event && old_event.difficulty ==69ew_event.difficulty && initial(old_event.event) == initial(new_event.event))
 			return
 		new_event.enter(entering_ship)
 
-/decl/overmap_event_handler/proc/scan_loc(var/obj/effect/overmap/ship/S, var/turf/new_loc, var/can_scan, var/stage_2_width = 1)
+/decl/overmap_event_handler/proc/scan_loc(var/obj/effect/overmap/ship/S,69ar/turf/new_loc,69ar/can_scan,69ar/stage_2_width = 1)
 
-	if(!can_scan) // No active scanner
+	if(!can_scan) //69o active scanner
 		// Everything is stage 2 (too far for sensors)
-		for(var/turf/T in range(S.scan_range+1, new_loc))
+		for(var/turf/T in range(S.scan_range+1,69ew_loc))
 			for(var/obj/effect/overmap_event/E in T)
-				E.name = E.name_stages[3]
-				E.icon_state = E.icon_stages[3]
+				E.name = E.name_stages69369
+				E.icon_state = E.icon_stages69369
 	else
 		var/passive_scan = (world.time - last_tick) > PASSIVE_SCAN_PERIOD
 		if(passive_scan)
@@ -152,47 +152,47 @@
 			playsound(new_loc, 'sound/effects/fastbeep.ogg', 100, 1)
 			if(S.nav_control)
 				var/obj/machinery/computer/helm/H = S.nav_control
-				if(H.manual_control)  // if someone is manually controling the ship with the helm console
+				if(H.manual_control)  // if someone is69anually controling the ship with the helm console
 					playsound(H.loc, 'sound/effects/fastbeep.ogg', 50, 1)
 
 		// Stage 0 (close range)
 		for(var/turf/T in circlerange(new_loc, S.scan_range-1))
 			for(var/obj/effect/overmap_event/E in T)
-				E.name = E.name_stages[1]
+				E.name = E.name_stages69169
 				if(!passive_scan)
-					E.icon_state = E.icon_stages[1]  // No outline
+					E.icon_state = E.icon_stages69169  //69o outline
 				else
-					E.icon_state = E.icon_stages[1] + "_g"  // Green outline
+					E.icon_state = E.icon_stages69169 + "_g"  // Green outline
 			for(var/obj/effect/overmap/E in T)
-				E.name = E.name_stages[1]
+				E.name = E.name_stages69169
 				if((!passive_scan) || istype(E, /obj/effect/overmap/sector/exoplanet))
-					E.icon_state = E.icon_stages[1]  // No outline
+					E.icon_state = E.icon_stages69169  //69o outline
 				else
-					E.icon_state = E.icon_stages[1] + "_g"  // Green outline
+					E.icon_state = E.icon_stages69169 + "_g"  // Green outline
 
 		// Stage 1 (limit range)
 		for(var/turf/T in getcircle(new_loc, S.scan_range))
 			for(var/obj/effect/overmap_event/E in T)
-				E.name = E.name_stages[2]
-				E.icon_state = E.icon_stages[2]
+				E.name = E.name_stages69269
+				E.icon_state = E.icon_stages69269
 			for(var/obj/effect/overmap/E in T)
-				E.name = E.name_stages[2]
-				E.icon_state = E.icon_stages[2]
+				E.name = E.name_stages69269
+				E.icon_state = E.icon_stages69269
 
 		// Stage 2 (too far for sensors)
 		for(var/i in 1 to stage_2_width)
 			for(var/turf/T in getcircle(new_loc, S.scan_range + i))
 				for(var/obj/effect/overmap_event/E in T)
-					E.name = E.name_stages[3]
-					E.icon_state = E.icon_stages[3]
+					E.name = E.name_stages69369
+					E.icon_state = E.icon_stages69369
 				for(var/obj/effect/overmap/E in T)
-					E.name = E.name_stages[3]
-					E.icon_state = E.icon_stages[3]
+					E.name = E.name_stages69369
+					E.icon_state = E.icon_stages69369
 
 	return
 
 // Reveal a point of interest if the ship is standing on it on the overmap
-/decl/overmap_event_handler/proc/scan_poi(var/obj/effect/overmap/ship/S, var/turf/my_loc)
+/decl/overmap_event_handler/proc/scan_poi(var/obj/effect/overmap/ship/S,69ar/turf/my_loc)
 	for(var/obj/effect/overmap_event/poi/E in get_turf(my_loc))
 		E.reveal()
 	return
@@ -206,8 +206,8 @@
 	opacity = 1
 
 	// Stage 0: close, well scanned by sensors
-	// Stage 1: medium, barely scanned by sensors
-	// Stage 2: far, not scanned by sensors
+	// Stage 1:69edium, barely scanned by sensors
+	// Stage 2: far,69ot scanned by sensors
 	var/list/name_stages = list("stage0", "stage1", "stage2")
 	var/list/icon_stages = list("generic", "object", "poi")
 
@@ -215,7 +215,7 @@
 	var/name = "map event"
 	var/radius = 2
 	var/count = 6
-	var/event = null
+	var/event =69ull
 	var/list/event_icon_states = list("event")
 	var/opacity = 1
 	var/difficulty = EVENT_LEVEL_MODERATE
@@ -227,30 +227,30 @@
 	var/list/event_name_stages = list("name_stage0", "name_stage1", "name_stage2")
 
 /datum/overmap_event/proc/enter(var/obj/effect/overmap/ship/victim)
-//	world << "Ship [victim] encountered [name]"
+//	world << "Ship 69victim69 encountered 69name69"
 	if(!SSevent)
-		admin_notice("<span class='danger'>Event manager not setup.</span>")
+		admin_notice("<span class='danger'>Event69anager69ot setup.</span>")
 		return
-	if(victim in victims)
+	if(victim in69ictims)
 		if(!istype(src, /datum/overmap_event/meteor/comet_tail_core) && \
 		!istype(src, /datum/overmap_event/meteor/comet_tail_medium)  && \
 		!istype(src, /datum/overmap_event/meteor/comet_tail))
-			admin_notice("<span class='danger'>Multiple attempts to trigger the same event by [victim] detected.</span>")
+			admin_notice("<span class='danger'>Multiple attempts to trigger the same event by 69victim69 detected.</span>")
 			return
-	LAZYADD(victims, victim)
-	//var/datum/event_meta/EM = new(difficulty, "Overmap event - [name]", event, add_to_queue = FALSE, is_one_shot = TRUE)
-	var/datum/event/E = new event(null, difficulty)
-	E.name = "Overmap event - [E.name]"
+	LAZYADD(victims,69ictim)
+	//var/datum/event_meta/EM =69ew(difficulty, "Overmap event - 69name69", event, add_to_queue = FALSE, is_one_shot = TRUE)
+	var/datum/event/E =69ew event(null, difficulty)
+	E.name = "Overmap event - 69E.name69"
 	E.startWhen = 0
 	E.endWhen = INFINITY
-	victims[victim] = E
+	victims69victim69 = E
 	E.Initialize()
 
 /datum/overmap_event/proc/leave(victim)
-	if(victims && victims[victim])
-		var/datum/event/E = victims[victim]
+	if(victims &&69ictims69victim69)
+		var/datum/event/E =69ictims69victim69
 		E.kill()
-		LAZYREMOVE(victims, victim)
+		LAZYREMOVE(victims,69ictim)
 
 /datum/overmap_event/meteor
 	name = "asteroid field"
@@ -295,9 +295,9 @@
 
 /datum/overmap_event/meteor/enter(var/obj/effect/overmap/ship/victim)
 	..()
-	if(victims[victim])
-		var/datum/event/meteor_wave/overmap/E = victims[victim]
-		E.victim = victim
+	if(victims69victim69)
+		var/datum/event/meteor_wave/overmap/E =69ictims69victim69
+		E.victim =69ictim
 
 /datum/overmap_event/electric
 	name = "electrical storm"
@@ -387,19 +387,19 @@
 		revealed = TRUE
 
 	log_game("Trading station point of interest has been scanned and revealed.")
-	SStrade.AddStation(loc)  // Add a new random station at this location
-	qdel(src)  // Clear the POI effect since there is a trading station at that location now
+	SStrade.AddStation(loc)  // Add a69ew random station at this location
+	qdel(src)  // Clear the POI effect since there is a trading station at that location69ow
 	return
 
 /obj/effect/overmap_event/poi/blacksite
 	var/obj/effect/overmap/sector/blacksite/linked  // Linked blacksite sector
 
-/obj/effect/overmap_event/poi/blacksite/New(loc, var/obj/effect/overmap/sector/linked_sector)
+/obj/effect/overmap_event/poi/blacksite/New(loc,69ar/obj/effect/overmap/sector/linked_sector)
 	..(loc)
 	linked = linked_sector
 
 /obj/effect/overmap_event/poi/blacksite/Destroy()
-	linked = null
+	linked =69ull
 	. = ..()
 
 /obj/effect/overmap_event/poi/blacksite/reveal()
@@ -408,14 +408,14 @@
 	else
 		revealed = TRUE
 
-	// Blacksite sector is now known and no longer hidden
+	// Blacksite sector is69ow known and69o longer hidden
 	if(linked)
 		linked.known = 1
 		linked.invisibility = 0
 		linked.update_known()
 		log_game("Blacksite point of interest has been scanned and revealed.")
 	else
-		log_world("## ERROR: Blacksite point of interest was not linked to a sector.")
+		log_world("## ERROR: Blacksite point of interest was69ot linked to a sector.")
 
-	qdel(src)  // Clear the POI effect since there is a blacksite revealed at that location now
+	qdel(src)  // Clear the POI effect since there is a blacksite revealed at that location69ow
 	return

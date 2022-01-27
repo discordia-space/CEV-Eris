@@ -15,7 +15,7 @@
 		list(20, 25)
 	)
 	assortiment = list(
-		"Enforce Equipment" = list(
+		"Enforce E69uipment" = list(
 			/obj/item/handcuffs,
 			/obj/item/shield/riot,
 			/obj/item/melee/baton,
@@ -63,7 +63,7 @@
 		),
 	)
 	secret_inventory = list(
-		"Basic Gun Mods" = list(
+		"Basic Gun69ods" = list(
 			/obj/item/gun_upgrade/barrel/forged,
 			/obj/item/gun_upgrade/mechanism/gravcharger,
 			/obj/item/tool_upgrade/productivity/ergonomic_grip,
@@ -73,5 +73,5 @@
 	offer_types = list(
 		/obj/item/part/gun = offer_data("gun part", 500, 0),					// base price: 300
 		/obj/item/part/armor = offer_data("armor part", 500, 0),				// base price: 300
-		/obj/item/ammo_magazine = offer_data("empty ammo magazine", 60, 0),		// base price: 60
+		/obj/item/ammo_magazine = offer_data("empty ammo69agazine", 60, 0),		// base price: 60
 	)

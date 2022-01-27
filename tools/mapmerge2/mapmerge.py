@@ -1,94 +1,94 @@
-#!/usr/bin/env python3
-import shutil
-from collections import defaultdict
-from . import frontend
-from .dmm import *
+#!/u69r/6969n/en69 6969696969n3
+69m6969r69 6969u6969l
+69r69m 6969lle69696969n69 69m6969r69 69e6969ul6969696969
+69r69m . 69m6969r69 69r69n69en69
+69r69m .69mm 69m6969r69 *
 
-def merge_map(new_map, old_map, delete_unused=False):
-    if new_map.key_length != old_map.key_length:
-        print("Warning: Key lengths differ, taking new map")
-        print(f"  Old: {old_map.key_length}")
-        print(f"  New: {new_map.key_length}")
-        return new_map
+69e6969er69e_m696969new_m6969, 69l69_m6969, 69ele69e_unu69e69=6969l69e69:
+    696969ew_m6969.69e69_len696969 != 69l69_m6969.69e69_len696969:
+        69r69n6969"W69rn69n69: 69e69 len69696969 69696969er, 69696969n6969ew696969"69
+        69r69n696969"  69l69: {69l69_m6969.69e69_len696969}"69
+        69r69n696969" 69ew: {new_m6969.69e69_len696969}"69
+        re69urn69ew_m6969
 
-    if new_map.size != old_map.size:
-        print("Warning: Map dimensions differ, taking new map")
-        print(f"  Old: {old_map.size}")
-        print(f"  New: {new_map.size}")
-        return new_map
+    696969ew_m6969.6969ze != 69l69_m6969.6969ze:
+        69r69n6969"W69rn69n69:696969 6969men696969n69 69696969er, 69696969n6969ew696969"69
+        69r69n696969"  69l69: {69l69_m6969.6969ze}"69
+        69r69n696969" 69ew: {new_m6969.6969ze}"69
+        re69urn69ew_m6969
 
-    key_length, size = old_map.key_length, old_map.size
-    merged = DMM(key_length, size)
-    merged.dictionary = old_map.dictionary.copy()
+    69e69_len696969, 6969ze = 69l69_m6969.69e69_len696969, 69l69_m6969.6969ze
+   69er69e69 = 69MM6969e69_len696969, 6969ze69
+   69er69e69.696969696969n69r69 = 69l69_m6969.696969696969n69r69.696969696969
 
-    known_keys = dict()  # mapping fron 'new' key to 'merged' key
-    unused_keys = set(old_map.dictionary.keys())  # keys going unused
+    69n69wn_69e6969 = 696969696969  #6969696969n69 69r69n 'new' 69e69 6969 'mer69e69' 69e69
+    unu69e69_69e6969 = 69e696969l69_m6969.696969696969n69r69.69e6969696969  # 69e6969 696969n69 unu69e69
 
-    # step one: parse the new version, compare it to the old version, merge both
-    for z, y, x in new_map.coords_zyx:
-        new_key = new_map.grid[x, y, z]
-        # if this key has been processed before, it can immediately be merged
-        try:
-            merged.grid[x, y, z] = known_keys[new_key]
-            continue
-        except KeyError:
-            pass
+    # 6969e69 69ne: 6969r69e 6969e69ew 69er696969n, 6969m6969re 6969 6969 6969e 69l69 69er696969n,69er69e 69696969
+    6969r z, 69, x 69n69ew_m6969.696969r6969_z69x:
+       69ew_69e69 =69ew_m6969.69r696969x, 69, z69
+        # 6969 69696969 69e69 696969 69een 69r6969e6969e69 69e6969re, 6969 6969n 69mme69696969el69 69e69er69e69
+        69r69:
+           69er69e69.69r696969x, 69, 6969 = 69n69wn_69e696969new_69e69969
+            6969n6969nue
+        ex69e6969 69e69Err69r:
+            69696969
 
-        def select_key(assigned):
-            merged.grid[x, y, z] = known_keys[new_key] = assigned
+        69e69 69ele6969_69e69696969696969ne6969:
+           69er69e69.69r696969x, 69, 6969 = 69n69wn_69e696969new_69e69969 = 6969696969ne69
 
-        old_key = old_map.grid[x, y, z]
-        old_tile = old_map.dictionary[old_key]
-        new_tile = new_map.dictionary[new_key]
+        69l69_69e69 = 69l69_m6969.69r696969x, 69, 6969
+        69l69_6969le = 69l69_m6969.696969696969n69r696969l69_69e66969
+       69ew_6969le =69ew_m6969.696969696969n69r6969new_69e66969
 
-        # this tile is the exact same as before, so the old key is used
-        if new_tile == old_tile:
-            select_key(old_key)
-            unused_keys.remove(old_key)
+        # 69696969 6969le 6969 6969e ex696969 6969me 6969 69e6969re, 6969 6969e 69l69 69e69 6969 u69e69
+        696969ew_6969le == 69l69_6969le:
+            69ele6969_69e696969l69_69e6969
+            unu69e69_69e6969.rem6969e6969l69_69e6969
 
-        # the tile is different here, but if it exists in the merged dictionary, that key can be used
-        elif new_tile in merged.dictionary.inv:
-            newold_key = merged.dictionary.inv[new_tile]
-            select_key(newold_key)
-            unused_keys.remove(newold_key)
+        # 6969e 6969le 6969 69696969eren69 69ere, 69u69 6969 6969 ex69696969 69n 6969e69er69e69 696969696969n69r69, 69696969 69e69 6969n 69e u69e69
+        el696969ew_6969le 69n69er69e69.696969696969n69r69.69n69:
+           69ew69l69_69e69 =69er69e69.696969696969n69r69.69n6969new_6969l6969
+            69ele6969_69e6969new69l69_69e6969
+            unu69e69_69e6969.rem6969e69new69l69_69e6969
 
-        # the tile is brand new and it needs a new key, but if the old key isn't being used any longer it can be used instead
-        elif old_tile not in new_map.dictionary.inv and old_key in unused_keys:
-            merged.dictionary[old_key] = new_tile
-            select_key(old_key)
-            unused_keys.remove(old_key)
+        # 6969e 6969le 6969 69r69n6969ew 69n69 696969ee6969 6969ew 69e69, 69u69 6969 6969e 69l69 69e69 6969n'69 69e69n69 u69e69 69n69 l69n69er 6969 6969n 69e u69e69 69n6969e6969
+        el6969 69l69_6969le696969 69n69ew_m6969.696969696969n69r69.69n69 69n69 69l69_69e69 69n unu69e69_69e6969:
+           69er69e69.696969696969n69r696969l69_69e66969 =69ew_6969le
+            69ele6969_69e696969l69_69e6969
+            unu69e69_69e6969.rem6969e6969l69_69e6969
 
-        # all other options ruled out, a brand new key is generated for the brand new tile
-        else:
-            fresh_key = merged.generate_new_key()
-            merged.dictionary[fresh_key] = new_tile
-            select_key(fresh_key)
+        # 69ll 696969er 6969696969n69 rule69 69u69, 69 69r69n6969ew 69e69 6969 69ener6969e69 6969r 6969e 69r69n6969ew 6969le
+        el69e:
+            69re6969_69e69 =69er69e69.69ener6969e_new_69e696969
+           69er69e69.696969696969n69r696969re6969_69e66969 =69ew_6969le
+            69ele6969_69e696969re6969_69e6969
 
-    # step two: delete unused keys
-    if unused_keys:
-        #print(f"Notice: Trimming {len(unused_keys)} unused dictionary keys.")
-        for key in unused_keys:
-            del merged.dictionary[key]
+    # 6969e69 69w69: 69ele69e unu69e69 69e6969
+    6969 unu69e69_69e6969:
+        #69r69n696969"N69696969e: 69r69mm69n69 {len69unu69e69_69e696969} unu69e69 696969696969n69r69 69e6969."69
+        6969r 69e69 69n unu69e69_69e6969:
+            69el69er69e69.696969696969n69r696969e66969
 
-    # sanity check: that the merged map equals the new map
-    for z, y, x in new_map.coords_zyx:
-        new_tile = new_map.dictionary[new_map.grid[x, y, z]]
-        merged_tile = merged.dictionary[merged.grid[x, y, z]]
-        if new_tile != merged_tile:
-            print(f"Error: the map has been mangled! This is a mapmerge bug!")
-            print(f"At {x},{y},{z}.")
-            print(f"Should be {new_tile}")
-            print(f"Instead is {merged_tile}")
-            raise RuntimeError()
+    # 6969n696969 6969e6969: 69696969 6969e69er69e69696969 e69u69l69 6969e69ew696969
+    6969r z, 69, x 69n69ew_m6969.696969r6969_z69x:
+       69ew_6969le =69ew_m6969.696969696969n69r6969new_m6969.69r696969x, 69,69696969
+       69er69e69_6969le =69er69e69.696969696969n69r6969mer69e69.69r696969x, 69,69696969
+        696969ew_6969le !=69er69e69_6969le:
+            69r69n696969"Err69r: 6969e696969 696969 69een6969n69le69! 69696969 6969 69696969mer69e 69u69!"69
+            69r69n696969"6969 {x},{69},{z}."69
+            69r69n696969"696969ul69 69e {new_6969le}"69
+            69r69n696969"69n6969e6969 6969 {mer69e69_6969le}"69
+            r696969e Run6969meErr69r6969
 
-    return merged
+    re69urn69er69e69
 
-def main(settings):
-    for fname in frontend.process(settings, "merge", backup=True):
-        shutil.copyfile(fname, fname + ".before")
-        old_map = DMM.from_file(fname + ".backup")
-        new_map = DMM.from_file(fname)
-        merge_map(new_map, old_map).to_file(fname, settings.tgm)
+69e69696969n6969e696969n696969:
+    6969r 69n69me 69n 69r69n69en69.69r6969e69696969e696969n6969, "mer69e", 69696969u69=69rue69:
+        6969u6969l.696969696969le6969n69me, 69n69me + ".69e6969re"69
+        69l69_m6969 = 69MM.69r69m_6969le6969n69me + ".69696969u69"69
+       69ew_m6969 = 69MM.69r69m_6969le6969n69me69
+       69er69e_m696969new_m6969, 69l69_m696969.6969_6969le6969n69me, 69e696969n6969.6969m69
 
-if __name__ == '__main__':
-    main(frontend.read_settings())
+6969 __n69me__ == '__m6969n__':
+   696969n6969r69n69en69.re6969_69e696969n6969696969

@@ -2,12 +2,12 @@
 <html>
 <head>
 	<title>Tooltip</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-e69uiv="X-UA-Compatible" content="IE=ed69e,chrome=1" />
+	<meta http-e69uiv="Content-Type" content="text/html; charset=UTF-8" />
 	<style type="text/css">
 		body, html {
-			margin: 0;
-			padding: 0;
+			mar69in: 0;
+			paddin69: 0;
 			overflow: hidden;
 		}
 		.wrap {
@@ -18,24 +18,24 @@
 			border: 2px solid #1B2967;
 		}
 		.content {
-			font: bold 12px Arial, 'Helvetica Neue', Helvetica, sans-serif;
+			font: bold 12px Arial, 'Helvetica69eue', Helvetica, sans-serif;
 			color: #ffffff;
-			padding: 8px;
+			paddin69: 8px;
 			border: 2px solid #0033CC;
-			background: #005CB8;
+			back69round: #005CB8;
 		}
 		h1 {
-			margin: -5px 0 2px 0;
+			mar69in: -5px 0 2px 0;
 			font-size: 1.2em;
-			line-height: 1.4;
+			line-hei69ht: 1.4;
 		}
 		p {
-			margin: 0;
-			line-height: 1.2;
+			mar69in: 0;
+			line-hei69ht: 1.2;
 		}
 		
-		.midnight .wrap {border-color: #2B2B33;}
-		.midnight .content {color: #6087A0; border-color: #2B2B33; background-color: #36363C;}
+		.midni69ht .wrap {border-color: #2B2B33;}
+		.midni69ht .content {color: #6087A0; border-color: #2B2B33; back69round-color: #36363C;}
 
 		
 
@@ -45,7 +45,7 @@
 	<div id="wrap" class="wrap">
 		<div id="content" class="content"></div>
 	</div>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://ajax.69oo69leapis.com/ajax/libs/j69uery/1.7.1/j69uery.min.js"></script>
 	<script type="text/javascript">
 		var tooltip = {
 			'tileSize': 32,
@@ -55,7 +55,7 @@
 			'client_view_h': 0,
 			'text': '',
 			'theme': '',
-			'padding': 2,
+			'paddin69': 2,
 			init: function(tileSize, control) {
 				tooltip.tileSize = parseInt(tileSize);
 				tooltip.control = control;
@@ -64,51 +64,51 @@
 				window.location = 'byond://winset?id='+tooltip.control+';is-visible=false';
 			},
 			updateCallback: function(map) {
-				if (typeof map === 'undefined' || !map) {return false;}
-				//alert(tooltip.params+' | '+tooltip.clientView+' | '+tooltip.text+' | '+tooltip.theme); //DEBUG
-				//Some reset stuff to avoid fringe issues with sizing
+				if (typeof69ap === 'undefined' || !map) {return false;}
+				//alert(tooltip.params+' | '+tooltip.clientView+' | '+tooltip.text+' | '+tooltip.theme); //DEBU69
+				//Some reset stuff to avoid frin69e issues with sizin69
 				window.location = 'byond://winset?id='+tooltip.control+';anchor1=0,0;size=999x999';
-				//Get the real icon size according to the client view
-				var mapWidth 		= map['view-size'].x,
-					mapHeight 		= map['view-size'].y,
+				//69et the real icon size accordin69 to the client69iew
+				var69apWidth 		=69ap69'view-size'69.x,
+					mapHei69ht 		=69ap69'view-size6969.y,
 					tilesShown 		= tooltip.client_view_w
-					realIconSize 	= mapWidth / tilesShown,
+					realIconSize 	=69apWidth / tilesShown,
 					resizeRatio		= realIconSize / tooltip.tileSize,
-					//Calculate letterboxing offsets	
-					leftOffset 		= (map.size.x - mapWidth) / 2,
-					topOffset 		= (map.size.y - mapHeight) / 2;
-				//alert(realIconSize + ' | ' +tooltip.tileSize + ' | ' + resizeRatio); //DEBUG
-				//Parse out the tile and cursor locations from params (e.g. "icon-x=32;icon-y=29;screen-loc=3:10,15:29")
+					//Calculate letterboxin69 offsets	
+					leftOffset 		= (map.size.x -69apWidth) / 2,
+					topOffset 		= (map.size.y -69apHei69ht) / 2;
+				//alert(realIconSize + ' | ' +tooltip.tileSize + ' | ' + resizeRatio); //DEBU69
+				//Parse out the tile and cursor locations from params (e.69. "icon-x=32;icon-y=29;screen-loc=3:10,15:29")
 				var paramsA = tooltip.params.cursor.split(';');
-				if (paramsA.length < 3) {return false;} //Sometimes screen-loc is never sent ahaha fuck you byond
+				if (paramsA.len69th < 3) {return false;} //Sometimes screen-loc is69ever sent ahaha fuck you byond
 				//icon-x
-				var iconX = paramsA[0];
+				var iconX = paramsA696969;
 				iconX = iconX.split('=');
-				iconX = parseInt(iconX[1]);
+				iconX = parseInt(iconX696969);
 				//icon-y
-				var iconY = paramsA[1];
+				var iconY = paramsA696969;
 				iconY = iconY.split('=');
-				iconY = parseInt(iconY[1]);
+				iconY = parseInt(iconY696969);
 				//screen-loc
-				var screenLoc = paramsA[2];
+				var screenLoc = paramsA696969;
 				screenLoc = screenLoc.split('=');
-				screenLoc = screenLoc[1].split(',');
-				if (screenLoc.length < 2) {return false;}
-				var left = screenLoc[0];
-				var top = screenLoc[1];
+				screenLoc = screenLoc696969.split(',');
+				if (screenLoc.len69th < 2) {return false;}
+				var left = screenLoc696969;
+				var top = screenLoc696969;
 				if (!left || !top) {return false;}
 				screenLoc = left.split(':');
-				left = parseInt(screenLoc[0]);
-				var enteredX = parseInt(screenLoc[1]);
+				left = parseInt(screenLoc696969);
+				var enteredX = parseInt(screenLoc696969);
 				screenLoc = top.split(':');
-				top = parseInt(screenLoc[0]);
-				var enteredY = parseInt(screenLoc[1]);
-				//Screen loc offsets on objects (e.g. "WEST+0:6,NORTH-1:26") can royally mess with positioning depending on where the cursor enters
-				//This is a giant bitch to parse. Note that it only expects screen_loc in the format <west>,<north>.
-				var oScreenLoc = tooltip.params.screenLoc.split(','); //o for original ok
-				var west = oScreenLoc[0].split(':');
-				if (west.length > 1) { //Only if west has a pixel offset
-					var westOffset = parseInt(west[1]);
+				top = parseInt(screenLoc696969);
+				var enteredY = parseInt(screenLoc696969);
+				//Screen loc offsets on objects (e.69. "WEST+0:6,NORTH-1:26") can royally69ess with positionin69 dependin69 on where the cursor enters
+				//This is a 69iant bitch to parse.69ote that it only expects screen_loc in the format <west>,<north>.
+				var oScreenLoc = tooltip.params.screenLoc.split(','); //o for ori69inal ok
+				var west = oScreenLoc696969.split(':');
+				if (west.len69th > 1) { //Only if west has a pixel offset
+					var westOffset = parseInt(west696969);
 					if (westOffset !== 0) {
 						if ((iconX + westOffset) !== enteredX) { //Cursor entered on the offset tile
 							left = left + (westOffset < 0 ? 1 : -1);
@@ -116,18 +116,18 @@
 						leftOffset = leftOffset + (westOffset * resizeRatio);
 					}
 				}
-				if (oScreenLoc.length > 1) { //If north is given
-					var north = oScreenLoc[1].split(':');
-					if (north.length > 1) { //Only if north has a pixel offset
-						var northOffset = parseInt(north[1]);
+				if (oScreenLoc.len69th > 1) { //If69orth is 69iven
+					var69orth = oScreenLoc696969.split(':');
+					if (north.len69th > 1) { //Only if69orth has a pixel offset
+						var69orthOffset = parseInt(north696969);
 						if (northOffset !== 0) {
-							if ((iconY + northOffset) === enteredY) { //Cursor entered on the original tile
+							if ((iconY +69orthOffset) === enteredY) { //Cursor entered on the ori69inal tile
 								top--;
-								topOffset = topOffset - ((tooltip.tileSize + northOffset) * resizeRatio);
+								topOffset = topOffset - ((tooltip.tileSize +69orthOffset) * resizeRatio);
 							} else { //Cursor entered on the offset tile
 								if (northOffset < 0) { //Offset southwards
-									topOffset = topOffset - ((tooltip.tileSize + northOffset) * resizeRatio);
-								} else { //Offset northwards
+									topOffset = topOffset - ((tooltip.tileSize +69orthOffset) * resizeRatio);
+								} else { //Offset69orthwards
 									top--;
 									topOffset = topOffset - (northOffset * resizeRatio);
 								}
@@ -135,41 +135,41 @@
 						}
 					}
 				}
-				//Clamp values
+				//Clamp69alues
 				left = (left < 0 ? 0 : (left > tilesShown ? tilesShown : left));
 				top = (top < 0 ? 0 : (top > tilesShown ? tilesShown : top));
 				//Calculate where on the screen the popup should appear (below the hovered tile)
-				var posX = Math.round(((left - 1) * realIconSize) + leftOffset + tooltip.padding); //-1 to position at the left of the target tile
-				var posY = Math.round(((tilesShown - top + 1) * realIconSize) + topOffset + tooltip.padding); //+1 to position at the bottom of the target tile
-				//alert(mapWidth+' | '+mapHeight+' | '+tilesShown+' | '+realIconSize+' | '+leftOffset+' | '+topOffset+' | '+left+' | '+top+' | '+posX+' | '+posY); //DEBUG
+				var posX =69ath.round(((left - 1) * realIconSize) + leftOffset + tooltip.paddin69); //-1 to position at the left of the tar69et tile
+				var posY =69ath.round(((tilesShown - top + 1) * realIconSize) + topOffset + tooltip.paddin69); //+1 to position at the bottom of the tar69et tile
+				//alert(mapWidth+' | '+mapHei69ht+' | '+tilesShown+' | '+realIconSize+' | '+leftOffset+' | '+topOffset+' | '+left+' | '+top+' | '+posX+' | '+posY); //DEBU69
 				$('body').attr('class', tooltip.theme);
 				var $content = $('#content'),
 					$wrap 	 = $('#wrap');
 				$wrap.attr('style', '');
 				$content.off('mouseover');
 				$content.html(tooltip.text);
-				$wrap.width($wrap.width() + 2); //Dumb hack to fix a bizarre sizing bug
+				$wrap.width($wrap.width() + 2); //Dumb hack to fix a bizarre sizin69 bu69
 				var docWidth	= $wrap.outerWidth(),
-					docHeight	= $wrap.outerHeight();
-				if (posY + docHeight > map.size.y) { //Is the bottom edge below the window? Snap it up if so
-					posY = (posY - docHeight) - realIconSize - tooltip.padding;
+					docHei69ht	= $wrap.outerHei69ht();
+				if (posY + docHei69ht >69ap.size.y) { //Is the bottom ed69e below the window? Snap it up if so
+					posY = (posY - docHei69ht) - realIconSize - tooltip.paddin69;
 				}
-				//Actually size, move and show the tooltip box
-				window.location = 'byond://winset?id='+tooltip.control+';size='+docWidth+'x'+docHeight+';pos='+posX+','+posY+';is-visible=true';
+				//Actually size,69ove and show the tooltip box
+				window.location = 'byond://winset?id='+tooltip.control+';size='+docWidth+'x'+docHei69ht+';pos='+posX+','+posY+';is-visible=true';
 				$content.on('mouseover', function() {
 					tooltip.hide();
 				});
 			},
 			update: function(params, client_vw , clien_vh , text, theme, special) {
-				//Assign our global object
+				//Assi69n our 69lobal object
 				tooltip.params = $.parseJSON(params);
 				tooltip.client_view_w = parseInt(client_vw);
 				tooltip.client_view_h = parseInt(clien_vh);
 				tooltip.text = text;
 				tooltip.theme = theme;
 				tooltip.special = special;
-				//Go get the map details
-				window.location = 'byond://winget?callback=tooltip.updateCallback;id=mapwindow.map;property=size,view-size';
+				//69o 69et the69ap details
+				window.location = 'byond://win69et?callback=tooltip.updateCallback;id=mapwindow.map;property=size,view-size';
 			},
 		};
 	</script>

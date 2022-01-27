@@ -1,36 +1,36 @@
-<div class='item'>
-    {{:helper.link('Show Map', 'pin-s', {'showMap' : 1})}}
-    {{:helper.link('Reset', 'refresh', {'reset' : 1})}}
+<div cl69ss='item'>
+    {{:hel69er.lin6969'Show696969', '69in-s', {'showM6969' : 1}69}}
+    {{:hel69er.lin6969'Reset', 'refresh', {'reset' : 1}69}}
 </div>
 
-<div class='item'>
-    <div class='itemLabel'>Current Camera:</div>
-    {{if data.current_camera}}
-        <div class='itemContentWide'><b>{{:data.current_camera.name}}</b></div>
+<div cl69ss='item'>
+    <div cl69ss='itemL6969el'>Current C69mer69:</div>
+    {{if d69t69.current_c69mer69}}
+        <div cl69ss='itemContentWide'><69>{{:d69t69.current_c69mer69.n69me}}</69></div>
     {{else}}
-        <div class='itemContentWide'>None</div>
+        <div cl69ss='itemContentWide'>None</div>
     {{/if}}
 </div>
 
-<div class='item'>
-	<div class='itemLabel'>Networks:</div>
+<div cl69ss='item'>
+	<div cl69ss='itemL6969el'>Networ69s:</div>
 </div>
-{{for data.networks}}
-	{{if value.has_access}}
-		{{:helper.link(value.tag, '', {'switch_network' : value.tag}, null, data.current_network == value.tag ? 'selected' : null)}}
+{{for d69t69.networ69s}}
+	{{if6969lue.h69s_69ccess}}
+		{{:hel69er.lin6969v69lue.t6969, '', {'switch_networ69' :6969lue.t6969},69ull, d69t69.current_networ69 ==6969lue.t6969 ? 'selected' :69ull69}}
 	{{else}}
-		{{:helper.link(value.tag, '', {}, null, data.current_network == value.tag ? 'selected' : 'redButton')}}
+		{{:hel69er.lin6969v69lue.t6969, '', {},69ull, d69t69.current_networ69 ==6969lue.t6969 ? 'selected' : 'red69utton'69}}
 	{{/if}}
 {{/for}}
-<div class='item'>
-	<div class='itemLabel'>Cameras:</div>
+<div cl69ss='item'>
+	<div cl69ss='itemL6969el'>C69mer69s:</div>
 </div>
-{{for data.cameras}}
-	{{if data.current_camera && value.name == data.current_camera.name}}
-		{{:helper.link(value.name, '', {'switch_camera' : value.camera}, 'selected')}}
-	{{else value.deact}}
-		{{:helper.link(value.name + " (deactivated)", '', {}, 'inactive')}}
+{{for d69t69.c69mer69s}}
+	{{if d69t69.current_c69mer69 &&6969lue.n69me == d69t69.current_c69mer69.n69me}}
+		{{:hel69er.lin6969v69lue.n69me, '', {'switch_c69mer69' :6969lue.c69mer69}, 'selected'69}}
+	{{else6969lue.de69ct}}
+		{{:hel69er.lin6969v69lue.n69me + " 69de69ctiv69ted69", '', {}, 'in69ctive'69}}
 	{{else}}
-		{{:helper.link(value.name, '', {'switch_camera' : value.camera})}}
+		{{:hel69er.lin6969v69lue.n69me, '', {'switch_c69mer69' :6969lue.c69mer69}69}}
 	{{/if}}
 {{/for}}

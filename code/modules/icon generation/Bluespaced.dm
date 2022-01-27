@@ -1,21 +1,21 @@
 /proc/bsi_cast_ray(icon/I, list/start, list/end)
 
-	if(abs(start[1] - end[1]) > abs(start[2] - end[2]))
-		var/dist = abs(start[1] - end[1]) * 2
+	if(abs(start69169 - end69169) > abs(start69269 - end69269))
+		var/dist = abs(start69169 - end69169) * 2
 
 		for(var/i = 1, i <= dist, i++)
-			var/x = round((start[1] * i / dist) + (end[1] * (1 - i / dist)))
-			var/y = round((start[2] * i / dist) + (end[2] * (1 - i / dist)))
+			var/x = round((start69169 * i / dist) + (end69169 * (1 - i / dist)))
+			var/y = round((start69269 * i / dist) + (end69269 * (1 - i / dist)))
 
 			if(I.GetPixel(x, y) != null)
 				return list(x, y)
 
 	else
-		var/dist = abs(start[2] - end[2]) * 2
+		var/dist = abs(start69269 - end69269) * 2
 
 		for(var/i = 1, i <= dist, i++)
-			var/x = round((start[1] * i / dist) + (end[1] * (1 - i / dist)))
-			var/y = round((start[2] * i / dist) + (end[2] * (1 - i / dist)))
+			var/x = round((start69169 * i / dist) + (end69169 * (1 - i / dist)))
+			var/y = round((start69269 * i / dist) + (end69269 * (1 - i / dist)))
 
 			if(I.GetPixel(x, y) != null)
 				return list(x, y)
@@ -27,25 +27,25 @@
 		return list(0, 0, 0, 0)
 
 	var/list/colors = list(0, 0, 0, 0)
-	colors[1] = hex2num(copytext(color, 2, 4))
-	colors[2] = hex2num(copytext(color, 4, 6))
-	colors[3] = hex2num(copytext(color, 6, 8))
-	colors[4] = (length(color) > 7)? hex2num(copytext(color, 8, 10)) : 255
+	colors69169 = hex2num(copytext(color, 2, 4))
+	colors69269 = hex2num(copytext(color, 4, 6))
+	colors69369 = hex2num(copytext(color, 6, 8))
+	colors69469 = (length(color) > 7)? hex2num(copytext(color, 8, 10)) : 255
 
 	return colors
 
 /proc/bsi_spread(icon/I, list/start_point)
 	var/list/queue = list()
-	queue[++queue.len] = start_point
+	queue69++queue.len69 = start_point
 
 	var/i = 0
 
 	while(i++ < length(queue))
-		var/x = queue[i][1]
-		var/y = queue[i][2]
+		var/x = queue69i6969169
+		var/y = queue69i6969269
 
 		var/list/pixel = bsi_split_colors(I.GetPixel(x, y))
-		if(pixel[4] == 0)
+		if(pixel69469 == 0)
 			continue
 
 		var/list/n = (y < I.Height())? bsi_split_colors(I.GetPixel(x, y + 1)) : list(0, 0, 0, 0)
@@ -53,35 +53,35 @@
 		var/list/e = (x < I.Width())? bsi_split_colors(I.GetPixel(x + 1, y)) : list(0, 0, 0, 0)
 		var/list/w = (x > 1)? bsi_split_colors(I.GetPixel(x - 1, y)) : list(0, 0, 0, 0)
 
-		var/value = (i == 1)? 16 : max(n[1] - 1, e[1] - 1, s[1] - 1, w[1] - 1)
+		var/value = (i == 1)? 16 :69ax(n69169 - 1, e69169 - 1, s69169 - 1, w69169 - 1)
 
 		if(prob(50))
-			value = max(0, value - 1)
+			value =69ax(0,69alue - 1)
 
 		if(prob(50))
-			value = max(0, value - 1)
+			value =69ax(0,69alue - 1)
 
 		if(prob(50))
-			value = max(0, value - 1)
+			value =69ax(0,69alue - 1)
 
-		if(value <= pixel[1])
+		if(value <= pixel69169)
 			continue
 
-		var/v2 = 256 - ((16 - value) * (16 - value))
+		var/v2 = 256 - ((16 -69alue) * (16 -69alue))
 
-		I.DrawBox(rgb(value, v2, pixel[4] - v2, pixel[4]), x, y)
+		I.DrawBox(rgb(value,692, pixel69469 -692, pixel69469), x, y)
 
-		if(n[4] != 0 && n[1] < value - 1)
-			queue[++queue.len] = list(x, y + 1)
+		if(n69469 != 0 && n69169 <69alue - 1)
+			queue69++queue.len69 = list(x, y + 1)
 
-		if(s[4] != 0 && s[1] < value - 1)
-			queue[++queue.len] = list(x, y - 1)
+		if(s69469 != 0 && s69169 <69alue - 1)
+			queue69++queue.len69 = list(x, y - 1)
 
-		if(e[4] != 0 && e[1] < value - 1)
-			queue[++queue.len] = list(x + 1, y)
+		if(e69469 != 0 && e69169 <69alue - 1)
+			queue69++queue.len69 = list(x + 1, y)
 
-		if(w[4] != 0 && w[1] < value - 1)
-			queue[++queue.len] = list(x - 1, y)
+		if(w69469 != 0 && w69169 <69alue - 1)
+			queue69++queue.len69 = list(x - 1, y)
 
 
 
@@ -105,21 +105,21 @@
 
 		if(prob(50))
 			if(prob(50))
-				point1 = list(rand(1, mask.Width()), mask.Height())
-				point2 = list(rand(1, mask.Width()), 1)
+				point1 = list(rand(1,69ask.Width()),69ask.Height())
+				point2 = list(rand(1,69ask.Width()), 1)
 
 			else
-				point2 = list(rand(1, mask.Width()), mask.Height())
-				point1 = list(rand(1, mask.Width()), 1)
+				point2 = list(rand(1,69ask.Width()),69ask.Height())
+				point1 = list(rand(1,69ask.Width()), 1)
 
 		else
 			if(prob(50))
-				point1 = list(mask.Width(), rand(1, mask.Height()))
-				point2 = list(1,            rand(1, mask.Height()))
+				point1 = list(mask.Width(), rand(1,69ask.Height()))
+				point2 = list(1,            rand(1,69ask.Height()))
 
 			else
-				point2 = list(mask.Width(), rand(1, mask.Height()))
-				point1 = list(1,            rand(1, mask.Height()))
+				point2 = list(mask.Width(), rand(1,69ask.Height()))
+				point1 = list(1,            rand(1,69ask.Height()))
 
 		var/hit = bsi_cast_ray(mask, point1, point2)
 
@@ -137,7 +137,7 @@
 		return null
 
 	else
-		return mask
+		return69ask
 
 /proc/generate_bluespace_icon(icon/source, state)
 
@@ -154,7 +154,7 @@
 			0, 0, 0, 0,
 			255, 255, 255, 0)
 
-	var/icon/temp = icon(source, state) //Mask already contains the original alpha values, avoid squaring them
+	var/icon/temp = icon(source, state) //Mask already contains the original alpha69alues, avoid squaring them
 	temp.MapColors(
 			1, 0, 0, 0,
 			0, 1, 0, 0,
@@ -219,11 +219,11 @@
 	for(var/i = 1, i <= rand(1, 5), i++)
 		var/f = rand(1, length(frames))
 
-		if(frames[f][2] > 1)
-			frames[f][2]--
+		if(frames69f6969269 > 1)
+			frames69f6969269--
 			frames.Insert(f, 0)
 
-		frames[f] = list(0.8, 1)
+		frames69f69 = list(0.8, 1)
 
 	var/icon/result = generate_color_animation(bluespaced, colors, frames)
 	result.Blend(unaffected, ICON_UNDERLAY)
@@ -233,7 +233,7 @@
 
 
 /atom/verb/test()
-	set src in view()
+	set src in69iew()
 	src.icon = generate_bluespace_icon(src.icon, src.icon_state)
 
 /mob/verb/bluespam()

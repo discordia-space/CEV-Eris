@@ -1,19 +1,19 @@
-/obj/item/device/slimelight
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A glowing ball of what appears to be amber."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
+/obj/item/device/slimeli69ht
+	69ender = PLURAL
+	name = "69lowin69 slime extract"
+	desc = "A 69lowin69 ball of what appears to be amber."
+	icon = 'icons/obj/li69htin69.dmi'
+	icon_state = "floor1" //not a slime extract sprite but... somethin69 close enou69h!
 	item_state = "slime"
 	w_class = ITEM_SIZE_TINY
 	spawn_blacklisted = TRUE
 
-/obj/item/device/slimelight/New()
+/obj/item/device/slimeli69ht/New()
 	..()
-	set_light(6)
+	set_li69ht(6)
 
-/obj/item/device/slimelight/update_icon()
+/obj/item/device/slimeli69ht/update_icon()
 	return
 
-/obj/item/device/slimelight/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.
+/obj/item/device/slimeli69ht/attack_self(mob/user)
+	return //Bio-luminescence does not to6969le.

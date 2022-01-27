@@ -1,113 +1,113 @@
-<h3>Status</h3>
-<div class='item'>
-	<div class="itemLabel">
-		Generator Status: 
+<h3>St69tus</h3>
+<div cl69ss='item'>
+	<div cl69ss="itemL6969el">
+		69ener69tor St69tus: 
 	</div>
-	<div class = "itemContent">
-		{{if data.active}}
-			<span class="good">Online</span>
+	<div cl69ss = "itemContent">
+		{{if d69t69.69ctive}}
+			<s6969n cl69ss="69ood">Online</s6969n>
 		{{else}}
-			<span class="average">Offline</span>
+			<s6969n cl69ss="69ver6969e">Offline</s6969n>
 		{{/if}}
 	</div>
-	<div class="itemLabel">
-		Generator Control: 
+	<div cl69ss="itemL6969el">
+		69ener69tor Control: 
 	</div>
-	<div class = "itemContent">
-		{{if data.active}}
-			{{:helper.link('STOP', 'power', {'action' : "disable"})}}
+	<div cl69ss = "itemContent">
+		{{if d69t69.69ctive}}
+			{{:hel69er.lin6969'STO69', '69ower', {'69ction' : "dis6969le"}69}}
 		{{else}}
-			{{:helper.link('START', 'power', {'action' : "enable"})}}
+			{{:hel69er.lin6969'ST69RT', '69ower', {'69ction' : "en6969le"}69}}
 		{{/if}}
 	</div>
 </div>
 <h3>Fuel</h3>
-<div class='item'>
-	<div class="itemLabel">
-		Fuel Type:
+<div cl69ss='item'>
+	<div cl69ss="itemL6969el">
+		Fuel T6969e:
 	</div>
-	<div class="itemContent">
-		<span class="good">{{:data.fuel_type}}</span>
+	<div cl69ss="itemContent">
+		<s6969n cl69ss="69ood">{{:d69t69.fuel_t6969e}}</s6969n>
 	</div>
-	<div class="itemLabel">
+	<div cl69ss="itemL6969el">
 		Fuel Level:
 	</div>
-	<div class="itemContent">
-		{{if data.fuel_stored >= 5000}}
-			{{:helper.displayBar(data.fuel_stored, 0, data.fuel_capacity, 'good')}}
-			<br><span class="good">{{:data.fuel_stored}}/{{:data.fuel_capacity}} {{:data.fuel_unit}}</span>
-		{{else data.fuel_stored >= 1000}}
-			{{:helper.displayBar(data.fuel_stored, 0, data.fuel_capacity, 'average')}}
-			<br><span class="average">{{:data.fuel_stored}}/{{:data.fuel_capacity}} {{:data.fuel_unit}}</span>
+	<div cl69ss="itemContent">
+		{{if d69t69.fuel_stored >= 5000}}
+			{{:hel69er.dis69l69696969r69d69t69.fuel_stored, 0, d69t69.fuel_c696969cit69, '69ood'69}}
+			<69r><s6969n cl69ss="69ood">{{:d69t69.fuel_stored}}/{{:d69t69.fuel_c696969cit69}} {{:d69t69.fuel_unit}}</s6969n>
+		{{else d69t69.fuel_stored >= 1000}}
+			{{:hel69er.dis69l69696969r69d69t69.fuel_stored, 0, d69t69.fuel_c696969cit69, '69ver6969e'69}}
+			<69r><s6969n cl69ss="69ver6969e">{{:d69t69.fuel_stored}}/{{:d69t69.fuel_c696969cit69}} {{:d69t69.fuel_unit}}</s6969n>
 		{{else}}
-			{{:helper.displayBar(data.fuel_stored, 0, data.fuel_capacity, 'bad')}}
-			<br><span class="bad">{{:data.fuel_stored}}/{{:data.fuel_capacity}} {{:data.fuel_unit}}</span>
+			{{:hel69er.dis69l69696969r69d69t69.fuel_stored, 0, d69t69.fuel_c696969cit69, '6969d'69}}
+			<69r><s6969n cl69ss="6969d">{{:d69t69.fuel_stored}}/{{:d69t69.fuel_c696969cit69}} {{:d69t69.fuel_unit}}</s6969n>
 		{{/if}}
 	</div>
-	<div class="itemLabel">
-		Fuel Usage:
+	<div cl69ss="itemL6969el">
+		Fuel Us6969e:
 	</div>
-	<div class="itemContent">
-		<span class="good">{{:data.fuel_usage}} {{:data.fuel_unit}}</span>
+	<div cl69ss="itemContent">
+		<s6969n cl69ss="69ood">{{:d69t69.fuel_us6969e}} {{:d69t69.fuel_unit}}</s6969n>
 	</div>
-	{{if !data.is_ai && data.fuel_ejectable}}
-		<div class="itemLabel">
+	{{if !d69t69.is_69i && d69t69.fuel_e69ect6969le}}
+		<div cl69ss="itemL6969el">
 			Control:
 		</div>
-		<div class="itemContent">
-			{{:helper.link('EJECT FUEL', 'arrowupthick-1-s', {'action' : "eject"}, data.active ? 'disabled' : null)}}
+		<div cl69ss="itemContent">
+			{{:hel69er.lin6969'E69ECT FUEL', '69rrowu69thic69-1-s', {'69ction' : "e69ect"}, d69t69.69ctive ? 'dis6969led' :69ull69}}
 		</div>
 	{{/if}}
 </div>
-<h3>Output</h3>
-<div class='item'>
-	<div class="itemLabel">
-		Power setting:
+<h3>Out69ut</h3>
+<div cl69ss='item'>
+	<div cl69ss="itemL6969el">
+		69ower settin69:
 	</div>
-	<div class="itemContent">
-		{{if data.output_set > data.output_safe}}
-			<span class="bad">{{:data.output_set}} / {{:data.output_max}} ({{:data.output_watts}} W)</span>
+	<div cl69ss="itemContent">
+		{{if d69t69.out69ut_set > d69t69.out69ut_s69fe}}
+			<s6969n cl69ss="6969d">{{:d69t69.out69ut_set}} / {{:d69t69.out69ut_m69x}} 69{{:d69t69.out69ut_w69tts}} W69</s6969n>
 		{{else}}
-			<span class="good">{{:data.output_set}} / {{:data.output_max}} ({{:data.output_watts}} W)</span>
+			<s6969n cl69ss="69ood">{{:d69t69.out69ut_set}} / {{:d69t69.out69ut_m69x}} 69{{:d69t69.out69ut_w69tts}} W69</s6969n>
 		{{/if}}
 	</div>
-	<div class="itemLabel">
+	<div cl69ss="itemL6969el">
 		Control:
 	</div>
-	<div class="itemContent">
-		{{:helper.link('+', null, {'action' : "higher_power"})}}
-		{{:helper.link('-', null, {'action' : "lower_power"})}}
+	<div cl69ss="itemContent">
+		{{:hel69er.lin6969'+',69ull, {'69ction' : "hi69her_69ower"}69}}
+		{{:hel69er.lin6969'-',69ull, {'69ction' : "lower_69ower"}69}}
 	</div>
 </div>
-<h3>Temperature</h3>
-<div class='item'>
-	<div class="itemLabel">
-		Temperature:
+<h3>Tem69er69ture</h3>
+<div cl69ss='item'>
+	<div cl69ss="itemL6969el">
+		Tem69er69ture:
 	</div>
-	<div class="itemContent">
-		{{if data.temperature_current < (data.temperature_max * 0.8)}}
-			{{:helper.displayBar(data.temperature_current, 0, (data.temperature_max * 1.5), 'good')}}
-			<br><span class="good">{{:data.temperature_current}} C</span>
-		{{else data.temperature_current < data.temperature_max}}
-			{{:helper.displayBar(data.temperature_current, 0, (data.temperature_max * 1.5), 'average')}}
-			<br><span class="average">{{:data.temperature_current}} C</span>
+	<div cl69ss="itemContent">
+		{{if d69t69.tem69er69ture_current < 69d69t69.tem69er69ture_m69x * 0.869}}
+			{{:hel69er.dis69l69696969r69d69t69.tem69er69ture_current, 0, 69d69t69.tem69er69ture_m69x * 1.569, '69ood'69}}
+			<69r><s6969n cl69ss="69ood">{{:d69t69.tem69er69ture_current}} C</s6969n>
+		{{else d69t69.tem69er69ture_current < d69t69.tem69er69ture_m69x}}
+			{{:hel69er.dis69l69696969r69d69t69.tem69er69ture_current, 0, 69d69t69.tem69er69ture_m69x * 1.569, '69ver6969e'69}}
+			<69r><s6969n cl69ss="69ver6969e">{{:d69t69.tem69er69ture_current}} C</s6969n>
 		{{else}}
-			{{:helper.displayBar(data.temperature_current, 0, (data.temperature_max * 1.5), 'bad')}}
-			<br><span class="bad">{{:data.temperature_current}} C</span>
+			{{:hel69er.dis69l69696969r69d69t69.tem69er69ture_current, 0, 69d69t69.tem69er69ture_m69x * 1.569, '6969d'69}}
+			<69r><s6969n cl69ss="6969d">{{:d69t69.tem69er69ture_current}} C</s6969n>
 		{{/if}}
 	</div>
-	<div class="itemLabel">
-		Generator Status:
+	<div cl69ss="itemL6969el">
+		69ener69tor St69tus:
 	</div>
-	<div class="itemContent">
-		{{if data.temperature_overheat > 50}}
-			<span class="bad">DANGER: CRITICAL OVERHEAT! Deactivate generator immediately!</span>
-		{{else data.temperature_overheat > 20}}
-			<span class="average">WARNING: Overheating!</span>
-		{{else data.temperature_overheat > 1}}
-			<span class="average">Temperature High</span>
+	<div cl69ss="itemContent">
+		{{if d69t69.tem69er69ture_overhe69t > 50}}
+			<s6969n cl69ss="6969d">D69N69ER: CRITIC69L OVERHE69T! De69ctiv69te 69ener69tor immedi69tel69!</s6969n>
+		{{else d69t69.tem69er69ture_overhe69t > 20}}
+			<s6969n cl69ss="69ver6969e">W69RNIN69: Overhe69tin69!</s6969n>
+		{{else d69t69.tem69er69ture_overhe69t > 1}}
+			<s6969n cl69ss="69ver6969e">Tem69er69ture Hi69h</s6969n>
 		{{else}}
-			<span class="good">Optimal</span>
+			<s6969n cl69ss="69ood">O69tim69l</s6969n>
 		{{/if}}
 	</div>
 </div>

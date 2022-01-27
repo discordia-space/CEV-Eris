@@ -22,10 +22,10 @@
 
 /obj/item/integrated_circuit/reagent/smoke
 	name = "smoke generator"
-	desc = "Unlike most electronics, creating smoke is completely intentional."
+	desc = "Unlike69ost electronics, creating smoke is completely intentional."
 	icon_state = "smoke"
 	extended_desc = "This smoke generator creates clouds of smoke on command. It can also hold liquids inside, which will go \
-	into the smoke clouds when activated. The reagents are consumed when the smoke is made."
+	into the smoke clouds when activated. The reagents are consumed when the smoke is69ade."
 	ext_cooldown = 1
 	reagent_flags = OPENCONTAINER
 	volume = 100
@@ -61,7 +61,7 @@
 		for(var/datum/reagent/R in reagents?.reagent_list)
 			reagent_names_list.Add(R.name)
 		var/atom/AM = get_object()
-		AM.investigate_log("smokes these reagents: [jointext(reagent_names_list, ", ")] with [src].", INVESTIGATE_CIRCUIT)
+		AM.investigate_log("smokes these reagents: 69jointext(reagent_names_list, ", ")69 with 69src69.", INVESTIGATE_CIRCUIT)
 		S.set_up(reagents, smoke_radius, 0, location)
 		if(!notified)
 			notified = TRUE
@@ -73,8 +73,8 @@
 	name = "integrated hypo-injector"
 	desc = "This scary looking thing is able to pump liquids into, or suck liquids out of, whatever it's pointed at."
 	icon_state = "injector"
-	extended_desc = "This autoinjector can push up to 30 units of reagents into another container or someone else outside of the machine. The target \
-	must be adjacent to the machine, and if it is a person, they cannot be wearing thick clothing. Negative given amounts makes the injector suck out reagents instead."
+	extended_desc = "This autoinjector can push up to 30 units of reagents into another container or someone else outside of the69achine. The target \
+	must be adjacent to the69achine, and if it is a person, they cannot be wearing thick clothing. Negative given amounts69akes the injector suck out reagents instead."
 
 	reagent_flags = OPENCONTAINER
 	volume = 30
@@ -114,7 +114,7 @@
 	else
 		direction_mode = IC_REAGENTS_INJECT
 	if(isnum_safe(new_amount))
-		new_amount = clamp(new_amount, 0, volume)
+		new_amount = clamp(new_amount, 0,69olume)
 		transfer_amount = new_amount
 
 
@@ -148,9 +148,9 @@
 	if(!inject_check(L))
 		return
 	var/atom/movable/acting_object = get_object()
-	log_admin("[key_name(L)] was successfully injected with " + reagents.get_reagents() + " by \the [acting_object]")
-	L.visible_message("<span class='warning'>\The [acting_object] injects [L] with its needle!</span>", \
-					"<span class='warning'>\The [acting_object] injects you with its needle!</span>")
+	log_admin("69key_name(L)69 was successfully injected with " + reagents.get_reagents() + " by \the 69acting_object69")
+	L.visible_message("<span class='warning'>\The 69acting_object69 injects 69L69 with its needle!</span>", \
+					"<span class='warning'>\The 69acting_object69 injects you with its needle!</span>")
 	reagents.trans_to_mob(L, transfer_amount, CHEM_BLOOD)
 	activate_pin(2)
 
@@ -162,8 +162,8 @@
 		return
 	var/atom/movable/acting_object = get_object()
 
-	C.visible_message("<span class='warning'>\The [acting_object] draws blood from \the [C]</span>",
-					"<span class='warning'>\The [acting_object] draws blood from you.</span>"
+	C.visible_message("<span class='warning'>\The 69acting_object69 draws blood from \the 69C69</span>",
+					"<span class='warning'>\The 69acting_object69 draws blood from you.</span>"
 					)
 	C.take_blood(src, amount)
 	activate_pin(2)
@@ -197,9 +197,9 @@
 				return
 			var/injection_status = L.can_inject(null, BP_CHEST)
 			// admin logging stuff
-			log_admin("[key_name(L)] is getting injected with " + reagents.get_reagents() + " by \the [acting_object]")
-			L.visible_message(SPAN("danger", "[acting_object] is trying to inject [L]!"), \
-								SPAN("danger", "[acting_object] is trying to inject you!"))
+			log_admin("69key_name(L)69 is getting injected with " + reagents.get_reagents() + " by \the 69acting_object69")
+			L.visible_message(SPAN("danger", "69acting_object69 is trying to inject 69L69!"), \
+								SPAN("danger", "69acting_object69 is trying to inject you!"))
 			busy = TRUE
 			addtimer(CALLBACK(src, .proc/inject_after, weakref(L)), injection_status * 3 SECONDS)
 			return
@@ -213,7 +213,7 @@
 
 	if(direction_mode == IC_REAGENTS_DRAW)
 		if(reagents.total_volume >= reagents.maximum_volume)
-			acting_object.visible_message("[acting_object] tries to draw from [AM], but the injector is full.")
+			acting_object.visible_message("69acting_object69 tries to draw from 69AM69, but the injector is full.")
 			activate_pin(3)
 			return
 
@@ -225,35 +225,35 @@
 			if(istype(C, /mob/living/carbon/slime) || !C.dna || !injection_status)
 				activate_pin(3)
 				return
-			C.visible_message(SPAN("danger", "[acting_object] takes a blood sample from [C]!"), \
-			SPAN("danger", "[acting_object] takes a blood sample from you!"))
+			C.visible_message(SPAN("danger", "69acting_object69 takes a blood sample from 69C69!"), \
+			SPAN("danger", "69acting_object69 takes a blood sample from you!"))
 			busy = TRUE
 			addtimer(CALLBACK(src, .proc/draw_after, weakref(C), tramount), injection_status * 3 SECONDS)
 			return
 
 		else
 			if(!AM.reagents.total_volume)
-				acting_object.visible_message(SPAN("notice", "[acting_object] tries to draw from [AM], but it is empty!"))
+				acting_object.visible_message(SPAN("notice", "69acting_object69 tries to draw from 69AM69, but it is empty!"))
 				activate_pin(3)
 				return
 
 			if(!AM.is_open_container())
 				activate_pin(3)
 				return
-			tramount = min(tramount, AM.reagents.total_volume)
+			tramount =69in(tramount, AM.reagents.total_volume)
 			AM.reagents.trans_to(src, tramount)
-	acting_object.investigate_log("injected reagents: [jointext(reagent_names_list, ", ")] with [src].", INVESTIGATE_CIRCUIT)
+	acting_object.investigate_log("injected reagents: 69jointext(reagent_names_list, ", ")69 with 69src69.", INVESTIGATE_CIRCUIT)
 	activate_pin(2)
 
 
 
 /obj/item/integrated_circuit/reagent/pump
 	name = "reagent pump"
-	desc = "Moves liquids safely inside a machine, or even nearby it."
+	desc = "Moves liquids safely inside a69achine, or even nearby it."
 	icon_state = "reagent_pump"
-	extended_desc = "This is a pump which will move liquids from the source ref to the target ref. The third pin determines \
-	how much liquid is moved per pulse, between 0 and 50. The pump can move reagents to any open container inside the machine, or \
-	outside the machine if it is adjacent to the machine."
+	extended_desc = "This is a pump which will69ove liquids from the source ref to the target ref. The third pin determines \
+	how69uch liquid is69oved per pulse, between 0 and 50. The pump can69ove reagents to any open container inside the69achine, or \
+	outside the69achine if it is adjacent to the69achine."
 
 	complexity = 8
 	inputs = list("source" = IC_PINTYPE_REF, "target" = IC_PINTYPE_REF, "injection amount" = IC_PINTYPE_NUMBER)
@@ -303,7 +303,7 @@
 	for(var/datum/reagent/R in source?.reagents?.reagent_list)
 		reagent_names_list.Add(R.name)
 	var/atom/AM = get_object()
-	AM.investigate_log("transfer reagents: [jointext(reagent_names_list, ", ")] from [source] to [target] with [src].", INVESTIGATE_CIRCUIT)
+	AM.investigate_log("transfer reagents: 69jointext(reagent_names_list, ", ")69 from 69source69 to 69target69 with 69src69.", INVESTIGATE_CIRCUIT)
 
 	source.reagents.trans_to(target, transfer_amount)
 	activate_pin(2)
@@ -392,7 +392,7 @@
 		for(var/datum/reagent/R in reagents?.reagent_list)
 			reagent_names_list.Add(R.name)
 		var/atom/AM = get_object()
-		AM.investigate_log("grinded reagents: [jointext(reagent_names_list, ", ")] with [src].", INVESTIGATE_CIRCUIT)
+		AM.investigate_log("grinded reagents: 69jointext(reagent_names_list, ", ")69 with 69src69.", INVESTIGATE_CIRCUIT)
 		I.reagents.trans_to(src,I.reagents.total_volume)
 		qdel(I)
 		activate_pin(2)
@@ -425,7 +425,7 @@
 	for(var/datum/reagent/RE in reagents?.reagent_list)
 		cont += RE.name
 	var/atom/AM = get_object()
-	AM.investigate_log("scanned reagents: [jointext(cont, ", ")] with [src].", INVESTIGATE_CIRCUIT)
+	AM.investigate_log("scanned reagents: 69jointext(cont, ", ")69 with 69src69.", INVESTIGATE_CIRCUIT)
 	set_pin_data(IC_OUTPUT, 3, cont)
 	push_data()
 	activate_pin(2)
@@ -434,10 +434,10 @@
 	name = "reagent filter"
 	desc = "Filters liquids by list of desired or unwanted reagents."
 	icon_state = "reagent_filter"
-	extended_desc = "This is a filter which will move liquids from the source to its target. \
-	If the amount in the fourth pin is positive, it will move all reagents except those in the unwanted list. \
-	If the amount in the fourth pin is negative, it will only move the reagents in the wanted list. \
-	The third pin determines how many reagents are moved per pulse, between 0 and 50. Amount is given for each separate reagent."
+	extended_desc = "This is a filter which will69ove liquids from the source to its target. \
+	If the amount in the fourth pin is positive, it will69ove all reagents except those in the unwanted list. \
+	If the amount in the fourth pin is negative, it will only69ove the reagents in the wanted list. \
+	The third pin determines how69any reagents are69oved per pulse, between 0 and 50. Amount is given for each separate reagent."
 
 	complexity = 8
 	inputs = list(
@@ -482,7 +482,7 @@
 	if(!source.reagents || !target.reagents)
 		return
 
-	// FALSE in those procs makes mobs invalid targets.
+	// FALSE in those procs69akes69obs invalid targets.
 	if(!source.is_open_container(FALSE) || istype(source, /mob))
 		return
 
@@ -493,11 +493,11 @@
 	for(var/datum/reagent/G in source.reagents?.reagent_list)
 		if(!direction_mode)
 			if(G.name in demand)
-				AM.investigate_log("transfered [G.id] to [target], amount [transfer_amount] with [src]", INVESTIGATE_CIRCUIT)
+				AM.investigate_log("transfered 69G.id69 to 69target69, amount 69transfer_amount69 with 69src69", INVESTIGATE_CIRCUIT)
 				source.reagents.trans_id_to(target, G.id, transfer_amount)
 		else
 			if(!(G.name in demand))
-				AM.investigate_log("transfered [G.id] to [target], amount [transfer_amount] with [src]", INVESTIGATE_CIRCUIT)
+				AM.investigate_log("transfered 69G.id69 to 69target69, amount 69transfer_amount69 with 69src69", INVESTIGATE_CIRCUIT)
 				source.reagents.trans_id_to(target, G.id, transfer_amount)
 	activate_pin(2)
 	push_data()
@@ -521,14 +521,14 @@
 	complexity = 4
 	power_draw_per_use = 5
 
-/obj/item/integrated_circuit/input/funnel/attackby_react(obj/item/I, mob/living/user, intent)
+/obj/item/integrated_circuit/input/funnel/attackby_react(obj/item/I,69ob/living/user, intent)
 	var/atom/movable/target = get_pin_data_as_type(IC_INPUT, 1, /atom/movable)
 	var/obj/item/reagent_containers/container = I
 
 	if(!check_target(target) || !istype(container))
 		return FALSE
 
-	// Messages are provided by standard_pour_into
+	//69essages are provided by standard_pour_into
 	if(container.standard_pour_into(user, target))
 		activate_pin(1)
 		return TRUE
@@ -566,7 +566,7 @@
 	push_vol()
 
 /obj/item/integrated_circuit/reagent/extinguisher/do_work(ord)
-	//Check if enough volume
+	//Check if enough69olume
 	set_pin_data(IC_OUTPUT, 1, reagents.total_volume)
 	if(!reagents || reagents.total_volume < 5)
 		push_data()
@@ -587,7 +587,7 @@
 		push_data()
 		activate_pin(3)
 		return
-	assembly.visible_message(SPAN("notice", "\The [assembly] sprays their contents to \the [T]."))
+	assembly.visible_message(SPAN("notice", "\The 69assembly69 sprays their contents to \the 69T69."))
 	for(var/a = 1 to IC_SPLASH_MAX)
 		spawn(0)
 
@@ -597,7 +597,7 @@
 				activate_pin(2)
 				return
 
-			var/per_particle = min(reagents.total_volume, 15)/IC_SPLASH_MAX
+			var/per_particle =69in(reagents.total_volume, 15)/IC_SPLASH_MAX
 
 			if(!isnum_safe(per_particle))
 				push_data()
@@ -614,7 +614,7 @@
 	for(var/datum/reagent/R in reagents?.reagent_list)
 		reagent_names_list.Add(R.name)
 	var/atom/AM = get_object()
-	AM.investigate_log("extinguished reagents: [jointext(reagent_names_list, ", ")] with [src].", INVESTIGATE_CIRCUIT)
+	AM.investigate_log("extinguished reagents: 69jointext(reagent_names_list, ", ")69 with 69src69.", INVESTIGATE_CIRCUIT)
 
 	push_data()
 	activate_pin(2)
@@ -648,10 +648,10 @@
 	var/obj/item/reagent_containers/glass/beaker/current_beaker
 
 
-/obj/item/integrated_circuit/input/beaker_connector/attackby(obj/item/reagent_containers/glass/beaker/I, mob/living/user)
+/obj/item/integrated_circuit/input/beaker_connector/attackby(obj/item/reagent_containers/glass/beaker/I,69ob/living/user)
 	//Check if it truly is a reagent container
 	if(!istype(I,/obj/item/reagent_containers/glass/beaker))
-		to_chat(user, SPAN("warning", "The [I] doesn't seem to fit in here."))
+		to_chat(user, SPAN("warning", "The 69I69 doesn't seem to fit in here."))
 		return
 
 	//Check if there is no other beaker already inside
@@ -664,7 +664,7 @@
 	user.drop_item(I)
 	I.forceMove(src)
 
-	to_chat(user, SPAN("warning", "You put the [I] inside the beaker connector."))
+	to_chat(user, SPAN("warning", "You put the 69I69 inside the beaker connector."))
 
 	//Set the pin to a weak reference of the current beaker
 	push_vol()
@@ -685,7 +685,7 @@
 		return
 
 	//Remove beaker and put in user's hands/location
-	to_chat(user, SPAN("notice", "You take [current_beaker] out of the beaker connector."))
+	to_chat(user, SPAN("notice", "You take 69current_beaker69 out of the beaker connector."))
 	user.put_in_hands(current_beaker)
 	current_beaker = null
 	//Remove beaker reference

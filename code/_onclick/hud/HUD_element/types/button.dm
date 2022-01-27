@@ -3,7 +3,7 @@
 */
 
 /HUD_element/button
-	debugColor = COLOR_GREEN
+	debu69Color = COLOR_69REEN
 /HUD_element/button/New()
 	. = ..()
 

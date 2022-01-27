@@ -3,7 +3,7 @@
 
 /obj/item/assembly/shock_kit
 	name = "electrohelmet assembly"
-	desc = "This appears to be made from both an electropack and a helmet."
+	desc = "This appears to be69ade from both an electropack and a helmet."
 	icon_state = "shock_kit"
 	w_class = ITEM_SIZE_HUGE
 	flags = CONDUCT
@@ -16,14 +16,14 @@
 	qdel(part2)
 	. = ..()
 
-/obj/item/assembly/shock_kit/attackby(obj/item/tool/tool, mob/user)
+/obj/item/assembly/shock_kit/attackby(obj/item/tool/tool,69ob/user)
 	var/list/usable_qualities = list(QUALITY_BOLT_TURNING, QUALITY_SCREW_DRIVING)
 	var/tool_type = tool.get_tool_type(user, usable_qualities, src)
 	switch(tool_type)
 		if(QUALITY_SCREW_DRIVING)
 			if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_SCREW_DRIVING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
 				status = !status
-				to_chat(user, SPAN_NOTICE("[src] is now [status ? "secured" : "unsecured"]!"))
+				to_chat(user, SPAN_NOTICE("69src69 is now 69status ? "secured" : "unsecured"69!"))
 		if(QUALITY_BOLT_TURNING)
 			if(!status)
 				if(tool.use_tool(user, src, WORKTIME_NORMAL, QUALITY_BOLT_TURNING, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
@@ -39,7 +39,7 @@
 					qdel(src)
 	add_fingerprint(user)
 
-/obj/item/assembly/shock_kit/attack_self(mob/user as mob)
+/obj/item/assembly/shock_kit/attack_self(mob/user as69ob)
 	part1.attack_self(user, status)
 	part2.attack_self(user, status)
 	add_fingerprint(user)

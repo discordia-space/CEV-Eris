@@ -15,9 +15,9 @@
 	icon_state = "ash"
 	anchored = TRUE
 
-/obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
-	to_chat(user, SPAN_NOTICE("[src] sifts through your fingers."))
-	qdel(src)
+/obj/effect/decal/cleanable/ash/attack_hand(mob/user as69ob)
+	to_chat(user, SPAN_NOTICE("69src69 sifts through your fingers."))
+	69del(src)
 
 
 /obj/effect/decal/cleanable/dirt
@@ -54,17 +54,17 @@
 		color = reagents.get_color()
 
 /obj/effect/decal/cleanable/reagents/splashed
-	name = "splashed liquid"
+	name = "splashed li69uid"
 	icon_state = "splashed"
 
 /obj/effect/decal/cleanable/reagents/splashed/New(var/datum/reagents/reagents_to_add = null)
 	. = ..()
 	if(reagents)
-		alpha = min(reagents.total_volume * 30, 255)
+		alpha =69in(reagents.total_volume * 30, 255)
 		START_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/reagents/splashed/add_reagents(var/datum/reagents/reagents_to_add)
-	alpha = min(alpha + reagents_to_add.total_volume * 30, 255)
+	alpha =69in(alpha + reagents_to_add.total_volume * 30, 255)
 	color = BlendRGB(color, reagents_to_add.get_color(), 0.6)
 	..()
 
@@ -100,13 +100,13 @@
 	light_range = 2
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 
 /obj/effect/decal/cleanable/greenglow/Initialize(mapload, ...)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	set_light(1.5 ,1, "#00FF7F")
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/qdel, src), 120 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/69del, src), 120 SECONDS)
 
 /obj/effect/decal/cleanable/greenglow/Process()
 	. = ..()
@@ -129,8 +129,8 @@
 	icon_state = "cobweb1"
 
 /obj/effect/decal/cleanable/molten_item
-	name = "gooey grey mass"
-	desc = "It looks like a melted... something."
+	name = "gooey grey69ass"
+	desc = "It looks like a69elted... something."
 	density = FALSE
 	anchored = TRUE
 	layer = OBJ_LAYER

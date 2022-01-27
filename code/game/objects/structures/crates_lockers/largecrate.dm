@@ -1,81 +1,81 @@
-/obj/structure/largecrate //TODO: Refactor this into a crate subtype.
-	name = "large crate"
+/obj/structure/lar69ecrate //TODO: Refactor this into a crate subtype.
+	name = "lar69e crate"
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/crate.dmi'
 	icon_state = "densecrate"
 	matter = list(MATERIAL_WOOD = 10)
 	density = TRUE
 
-/obj/structure/largecrate/attack_hand(mob/user)
+/obj/structure/lar69ecrate/attack_hand(mob/user)
 	to_chat(user, SPAN_NOTICE("You need a crowbar to pry this open!"))
 	return
 
-/obj/structure/largecrate/attackby(obj/item/I, mob/user)
-	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NORMAL, QUALITY_PRYING, FAILCHANCE_EASY, required_stat = STAT_ROB))
+/obj/structure/lar69ecrate/attackby(obj/item/I,69ob/user)
+	if(69UALITY_PRYIN69 in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_NORMAL, 69UALITY_PRYIN69, FAILCHANCE_EASY, re69uired_stat = STAT_ROB))
 			drop_materials(drop_location())
-			var/turf/T = get_turf(src)
+			var/turf/T = 69et_turf(src)
 			for(var/atom/movable/AM in contents)
 				if(AM.simulated) AM.forceMove(T)
-			user.visible_message(SPAN_NOTICE("[user] pries \the [src] open."), \
-								 SPAN_NOTICE("You pry open \the [src]."), \
-								 SPAN_NOTICE("You hear splitting wood."))
-			qdel(src)
+			user.visible_messa69e(SPAN_NOTICE("69user69 pries \the 69src69 open."), \
+								 SPAN_NOTICE("You pry open \the 69src69."), \
+								 SPAN_NOTICE("You hear splittin69 wood."))
+			69del(src)
 	else
 		return attack_hand(user)
 
-/obj/structure/largecrate/mule
+/obj/structure/lar69ecrate/mule
 	name = "MULE crate"
 
 /*
-/obj/structure/largecrate/hoverpod
+/obj/structure/lar69ecrate/hoverpod
 	name = "\improper Hoverpod assembly crate"
-	desc = "It comes in a box for the fabricator's sake. Where does the wood come from? ... And why is it lighter?"
+	desc = "It comes in a box for the fabricator's sake. Where does the wood come from? ... And why is it li69hter?"
 	icon_state = "mulecrate"
 
-/obj/structure/largecrate/hoverpod/attackby(obj/item/I, mob/user)
-	if(QUALITY_PRYING in I.tool_qualities)
-		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_MEC))
-			var/obj/item/mech_equipment/ME
-			var/mob/living/exosuit/working/hoverpod/H = new (loc)
+/obj/structure/lar69ecrate/hoverpod/attackby(obj/item/I,69ob/user)
+	if(69UALITY_PRYIN69 in I.tool_69ualities)
+		if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, 69UALITY_WELDIN69, FAILCHANCE_EASY, re69uired_stat = STAT_MEC))
+			var/obj/item/mech_e69uipment/ME
+			var/mob/livin69/exosuit/workin69/hoverpod/H = new (loc)
 
-			ME = new /obj/item/mech_equipment/clamp
+			ME = new /obj/item/mech_e69uipment/clamp
 			ME.attach(H)
-			ME = new /obj/item/mech_equipment/tool/passenger
+			ME = new /obj/item/mech_e69uipment/tool/passen69er
 			ME.attach(H)
 		..()
 */
 
-/obj/structure/largecrate/animal
+/obj/structure/lar69ecrate/animal
 	icon_state = "mulecrate"
 	var/held_count = 1
 	var/held_type
 
-/obj/structure/largecrate/animal/New()
+/obj/structure/lar69ecrate/animal/New()
 	..()
 	for(var/i = 1;i<=held_count;i++)
 		new held_type(src)
 
-/obj/structure/largecrate/animal/corgi
-	name = "corgi carrier"
-	held_type = /mob/living/simple_animal/corgi
+/obj/structure/lar69ecrate/animal/cor69i
+	name = "cor69i carrier"
+	held_type = /mob/livin69/simple_animal/cor69i
 
-/obj/structure/largecrate/animal/cow
+/obj/structure/lar69ecrate/animal/cow
 	name = "cow crate"
-	held_type = /mob/living/simple_animal/cow
+	held_type = /mob/livin69/simple_animal/cow
 
-/obj/structure/largecrate/animal/goat
-	name = "goat crate"
-	held_type = /mob/living/simple_animal/hostile/retaliate/goat
+/obj/structure/lar69ecrate/animal/69oat
+	name = "69oat crate"
+	held_type = /mob/livin69/simple_animal/hostile/retaliate/69oat
 
-/obj/structure/largecrate/animal/cat
+/obj/structure/lar69ecrate/animal/cat
 	name = "cat carrier"
-	held_type = /mob/living/simple_animal/cat
+	held_type = /mob/livin69/simple_animal/cat
 
-/obj/structure/largecrate/animal/cat/bones
-	held_type = /mob/living/simple_animal/cat/fluff/bones
+/obj/structure/lar69ecrate/animal/cat/bones
+	held_type = /mob/livin69/simple_animal/cat/fluff/bones
 
-/obj/structure/largecrate/animal/chick
+/obj/structure/lar69ecrate/animal/chick
 	name = "chicken crate"
 	held_count = 5
-	held_type = /mob/living/simple_animal/chick
+	held_type = /mob/livin69/simple_animal/chick

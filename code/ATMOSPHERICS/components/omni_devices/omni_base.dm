@@ -10,17 +10,17 @@
 	level = BELOW_PLATING_LEVEL
 
 	var/configuring = 0
-	//var/target_pressure = ONE_ATMOSPHERE	//a base type as abstract as this should NOT be making these kinds of assumptions
+	//var/target_pressure = ONE_ATMOSPHERE	//a base type as abstract as this should NOT be69aking these kinds of assumptions
 
 	var/tag_north = ATM_NONE
 	var/tag_south = ATM_NONE
 	var/tag_east = ATM_NONE
 	var/tag_west = ATM_NONE
 
-	var/overlays_on[5]
-	var/overlays_off[5]
-	var/overlays_error[2]
-	var/underlays_current[4]
+	var/overlays_on69569
+	var/overlays_off69569
+	var/overlays_error69269
+	var/underlays_current69469
 
 	var/list/ports = new()
 
@@ -78,7 +78,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/omni/attackby(var/obj/item/I, var/mob/user)
+/obj/machinery/atmospherics/omni/attackby(var/obj/item/I,69ar/mob/user)
 	if(!(QUALITY_BOLT_TURNING in I.tool_qualities))
 		return ..()
 
@@ -87,20 +87,20 @@
 		int_pressure += P.air.return_pressure()
 	var/datum/gas_mixture/env_air = loc.return_air()
 	if ((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		to_chat(user, SPAN_WARNING("You cannot unwrench \the [src], it is too exerted due to internal pressure."))
+		to_chat(user, SPAN_WARNING("You cannot unwrench \the 69src69, it is too exerted due to internal pressure."))
 		add_fingerprint(user)
 		return 1
-	to_chat(user, SPAN_NOTICE("You begin to unfasten \the [src]..."))
+	to_chat(user, SPAN_NOTICE("You begin to unfasten \the 69src69..."))
 	if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_BOLT_TURNING, FAILCHANCE_EASY, required_stat = STAT_MEC))
 		user.visible_message( \
-			SPAN_NOTICE("\The [user] unfastens \the [src]."), \
-			SPAN_NOTICE("You have unfastened \the [src]."), \
+			SPAN_NOTICE("\The 69user69 unfastens \the 69src69."), \
+			SPAN_NOTICE("You have unfastened \the 69src69."), \
 			"You hear a ratchet.")
-		investigate_log("was unfastened by [key_name(user)]", "atmos")
-		new /obj/item/pipe(loc, make_from=src)
+		investigate_log("was unfastened by 69key_name(user)69", "atmos")
+		new /obj/item/pipe(loc,69ake_from=src)
 		qdel(src)
 
-/obj/machinery/atmospherics/omni/attack_hand(user as mob)
+/obj/machinery/atmospherics/omni/attack_hand(user as69ob)
 	if(..())
 		return
 
@@ -122,11 +122,11 @@
 
 	//directional icons are layers 1-4, with the core icon on layer 5
 	if(core_icon)
-		overlays_off[5] = icon_manager.get_atmos_icon("omni", , , core_icon)
-		overlays_on[5] = icon_manager.get_atmos_icon("omni", , , core_icon + "_glow")
+		overlays_off69569 = icon_manager.get_atmos_icon("omni", , , core_icon)
+		overlays_on69569 = icon_manager.get_atmos_icon("omni", , , core_icon + "_glow")
 
-		overlays_error[1] = icon_manager.get_atmos_icon("omni", , , core_icon)
-		overlays_error[2] = icon_manager.get_atmos_icon("omni", , , "error")
+		overlays_error69169 = icon_manager.get_atmos_icon("omni", , , core_icon)
+		overlays_error69269 = icon_manager.get_atmos_icon("omni", , , "error")
 
 /obj/machinery/atmospherics/omni/proc/update_port_icons()
 	if(!check_icon_cache())
@@ -151,15 +151,15 @@
 			var/list/port_icons = select_port_icons(P)
 			if(port_icons)
 				if(P.node)
-					underlays_current[ref_layer] = port_icons["pipe_icon"]
+					underlays_current69ref_layer69 = port_icons69"pipe_icon"69
 				else
-					underlays_current[ref_layer] = null
-				overlays_off[ref_layer] = port_icons["off_icon"]
-				overlays_on[ref_layer] = port_icons["on_icon"]
+					underlays_current69ref_layer69 = null
+				overlays_off69ref_layer69 = port_icons69"off_icon"69
+				overlays_on69ref_layer69 = port_icons69"on_icon"69
 			else
-				underlays_current[ref_layer] = null
-				overlays_off[ref_layer] = null
-				overlays_on[ref_layer] = null
+				underlays_current69ref_layer69 = null
+				overlays_off69ref_layer69 = null
+				overlays_on69ref_layer69 = null
 
 	update_icon()
 

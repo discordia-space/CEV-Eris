@@ -19,7 +19,7 @@
 	item_state = "ba_skirt"
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
-	desc = "A red jumpsuit with some gold markings denoting the rank of \"Captain\"."
+	desc = "A red jumpsuit with some gold69arkings denoting the rank of \"Captain\"."
 	name = "captain's jumpsuit"
 	icon_state = "captain"
 	item_state = "b_suit"
@@ -33,30 +33,30 @@
 
 /obj/item/clothing/under/rank/preacher
 	desc = "Ceremonial garb of NeoTheologian preachers."
-	name = "preacher vestments"
+	name = "preacher69estments"
 	icon_state = "preacher"
 	item_state = "w_suit"
 
 /obj/item/clothing/under/rank/acolyte
 	desc = "Ceremonial garb of NeoTheologian disciples."
-	name = "acolyte vestments"
+	name = "acolyte69estments"
 	icon_state = "acolyte"
 	item_state = "acolyte"
 
 /obj/item/clothing/under/rank/church
 	desc = "Smells like incense."
-	name = "church vestments"
+	name = "church69estments"
 	icon_state = "church"
 	item_state = "church"
 
 /obj/item/clothing/under/rank/church/sport
 	desc = "Smells like lilac."
-	name = "church sports vestment"
+	name = "church sports69estment"
 	icon_state = "nt_sports"
 	item_state = "nt_sports"
 
 /obj/item/clothing/under/rank/chef
-	desc = "An apron which is given only to the most <b>hardcore</b> chefs in space."
+	desc = "An apron which is given only to the69ost <b>hardcore</b> chefs in space."
 	name = "chef's uniform"
 	icon_state = "chef"
 	item_state = "w_suit"
@@ -82,7 +82,7 @@
 	item_state = "b_suit"
 
 /obj/item/clothing/under/rank/hydroponics
-	desc = "A jumpsuit designed to protect against minor plant-related hazards."
+	desc = "A jumpsuit designed to protect against69inor plant-related hazards."
 	name = "botanist's jumpsuit"
 	icon_state = "hydroponics"
 	item_state = "g_suit"
@@ -105,20 +105,20 @@
 
 /obj/item/clothing/under/librarian
 	name = "sensible suit"
-	desc = "It's very... sensible."
+	desc = "It's69ery... sensible."
 	icon_state = "red_suit"
 	item_state = "lawyer_red"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/mime
 	name = "mime's outfit"
-	desc = "It's not very colourful."
+	desc = "It's not69ery colourful."
 	icon_state = "mime"
 	item_state = "ba_suit"
 	style = STYLE_LOW
 
 /obj/item/clothing/under/rank/miner
-	desc = "A snappy jumpsuit with a sturdy set of overalls. It is very dirty."
-	name = "guild miner's jumpsuit"
+	desc = "A snappy jumpsuit with a sturdy set of overalls. It is69ery dirty."
+	name = "guild69iner's jumpsuit"
 	icon_state = "miner"
 	item_state = "lb_suit"

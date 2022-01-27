@@ -17,7 +17,7 @@
 	explode()
 
 /obj/structure/reagent_dispensers/coolanttank/explode()
-	var/datum/effect/effect/system/smoke_spread/S = new /datum/effect/effect/system/smoke_spread
+	var/datum/effect/effect/system/smoke_spread/S =69ew /datum/effect/effect/system/smoke_spread
 	//S.attach(src)
 	S.set_up(5, 0, src.loc)
 
@@ -31,4 +31,4 @@
 
 	sleep(10)
 	if(src)
-		qdel(src)
+		69del(src)

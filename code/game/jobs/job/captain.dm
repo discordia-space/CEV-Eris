@@ -12,9 +12,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	spawn_positions = 1
 	supervisors = "your heart and wisdom"
 	selection_color = "#ccccff"
-	req_admin_notify = 1
+	re69_admin_notify = 1
 	wage = WAGE_NONE //The captain doesn't get paid, he's the one who does the paying
-	//The ship account is his, and he's free to draw as much salary as he likes
+	//The ship account is his, and he's free to draw as69uch salary as he likes
 
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 20)
 
@@ -24,14 +24,14 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	outfit_type = /decl/hierarchy/outfit/job/captain
 
 	description = "You are a privateeer. <br>\
-The owner of the vast rusting hulk that is the CEV Eris. At least, as long as you keep up repayments.<br>\
+The owner of the69ast rusting hulk that is the CEV Eris. At least, as long as you keep up repayments.<br>\
 This ship is your life's work, crewed by an alliance of corporations and factions that you've brokered uneasy treaties with.<br>\
 
 You are the supreme leader of this world, and your word is law. But only as long as you can enforce that law.<br>\
-The heads of the factions which make up your command staff, each have their own agendas. Their interests must be served too. If you make them unhappy, the loyalty of their faction goes with them, and you may have a mutiny on your hands.<br>\
-Treat your command officers with respect, and listen to their council. Try not to micromanage their departments or interfere in their affairs, and they should serve you well<br>\
+The heads of the factions which69ake up your command staff, each have their own agendas. Their interests69ust be served too. If you69ake them unhappy, the loyalty of their faction goes with them, and you69ay have a69utiny on your hands.<br>\
+Treat your command officers with respect, and listen to their council. Try not to69icromanage their departments or interfere in their affairs, and they should serve you well<br>\
 
-You are a free agent, able to go where you will, and loyal to no particular government or nation. You are however, in quite a lot of debt. So wherever you go, you should be sure a profitable venture awaits."
+You are a free agent, able to go where you will, and loyal to no particular government or nation. You are however, in 69uite a lot of debt. So wherever you go, you should be sure a profitable69enture awaits."
 
 	loyalties = "Your first loyalty is to Eris, your ship. It is the purpose of your life, and you are nothing without it. If it were to be destroyed, you and your descendants would be ruined for centuries. <br>\
 
@@ -52,7 +52,7 @@ Your second loyalty is to your command officers. The heads of each faction. List
 							 /datum/computer_file/program/reports)
 
 
-	equip(var/mob/living/carbon/human/H)
+	e69uip(var/mob/living/carbon/human/H)
 		if(!..())	return 0
 		if(H.age>49)
 			var/obj/item/clothing/under/U = H.w_uniform
@@ -81,14 +81,14 @@ Your second loyalty is to your command officers. The heads of each faction. List
 	spawn_positions = 1
 	supervisors = "the captain"
 	selection_color = "#ddddff"
-	req_admin_notify = 1
+	re69_admin_notify = 1
 	wage = WAGE_COMMAND
 	also_known_languages = list(LANGUAGE_CYRILLIC = 20, LANGUAGE_SERBIAN = 15)
 	perks = list(/datum/perk/sommelier)
 	ideal_character_age = 50
 
-	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You make sure his will is done, his orders obeyed, and his laws enforced.<br>\
-If he makes mistakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.<br>\
+	description = "You are the captain's right hand. His second in command. Where he goes, you follow. Where he leads, you drag everyone else along. You69ake sure his will is done, his orders obeyed, and his laws enforced.<br>\
+If he69akes69istakes, discreetly inform him. Help to cover up his indiscretions and smooth relations with the crew, especially other command staff. Keep the captain safe, by endangering yourself in his stead if necessary.<br>\
 <br>\
 Do not embarass him or harm relations with faction leaders.<br>\
 <br>\
@@ -102,10 +102,10 @@ Perhaps you're a foreign diplomat, your position a ceremonial one to ensure a tr
 Whatever your origin, you are fiercely loyal to the captain"
 
 	duties = "Oversee everyone else, especially the other command staff, to ensure the captain's orders are being carried out.<br>\
-Handle job reassignments and promotion requests, if an appropriate faction leader isn't available<br>\
-Act as the captain's surrogate in risky situations where a command presence is required<br>\
+Handle job reassignments and promotion re69uests, if an appropriate faction leader isn't available<br>\
+Act as the captain's surrogate in risky situations where a command presence is re69uired<br>\
 Replace the captain if they become incapacitated, need to take a break, or suffer a premature death<br>\
-Act as the captain's sidekick, bodyguard, and last line of defense in a crisis or mutiny situation"
+Act as the captain's sidekick, bodyguard, and last line of defense in a crisis or69utiny situation"
 
 	loyalties = "Your first and only loyalty is to the captain. Unless you're an antagonist and have a good reason for betrayal, you should remain loyal to the death. You are the only one he can trust"
 

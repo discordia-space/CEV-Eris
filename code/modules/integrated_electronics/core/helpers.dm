@@ -2,17 +2,17 @@
 	var/list/io_list_copy = io_list.Copy()
 	io_list.Cut()
 	for(var/i in 1 to io_list_copy.len)
-		var/io_entry = io_list_copy[i]
+		var/io_entry = io_list_copy69i69
 		var/default_data = null
 		var/io_type_override = null
 
 		// Override the default data.
 		if(length(io_default_list)) // List containing special pin types that need to be added.
-			default_data = io_default_list["[i]"] // This is deliberately text because the index is a number in text form.
+			default_data = io_default_list69"69i69"69 // This is deliberately text because the index is a number in text form.
 
 		// Override the pin type.
-		if(io_list_copy[io_entry])
-			io_type_override = io_list_copy[io_entry]
+		if(io_list_copy69io_entry69)
+			io_type_override = io_list_copy69io_entry69
 
 		if(io_type_override)
 			io_list.Add(new io_type_override(src, io_entry, default_data, pin_type,i))
@@ -24,7 +24,7 @@
 	if(islist(new_data))
 		for(var/i in 1 to length(new_data))
 			if (istype(new_data) && !isweakref(new_data))
-				new_data[i] = weakref(new_data[i])
+				new_data69i69 = weakref(new_data69i69)
 	if (istype(new_data) && !isweakref(new_data))
 		new_data = weakref(new_data)
 	var/datum/integrated_io/pin = get_pin_ref(pin_type, pin_number)
@@ -39,7 +39,7 @@
 	return pin.data_as_type(as_type)
 
 /obj/item/integrated_circuit/proc/activate_pin(pin_number)
-	var/datum/integrated_io/activate/A = activators[pin_number]
+	var/datum/integrated_io/activate/A = activators69pin_number69
 	A.push_data()
 
 /obj/item/integrated_circuit/proc/get_pin_ref(pin_type, pin_number)
@@ -47,22 +47,22 @@
 		if(IC_INPUT)
 			if(pin_number > inputs.len)
 				return
-			return inputs[pin_number]
+			return inputs69pin_number69
 		if(IC_OUTPUT)
 			if(pin_number > outputs.len)
 				return
-			return outputs[pin_number]
+			return outputs69pin_number69
 		if(IC_ACTIVATOR)
 			if(pin_number > activators.len)
 				return
-			return activators[pin_number]
+			return activators69pin_number69
 	return
 
 /datum/integrated_io/proc/get_data()
 	if(islist(data))
 		for(var/i in 1 to length(data))
-			if(isweakref(data[i]))
-				data[i] = data[i].resolve()
+			if(isweakref(data69i69))
+				data69i69 = data69i69.resolve()
 	if(isweakref(data))
 		return data.resolve()
 	return data
@@ -106,7 +106,7 @@
 	if(component_number > components.len)
 		return
 
-	var/obj/item/integrated_circuit/component = components[component_number]
+	var/obj/item/integrated_circuit/component = components69component_number69
 	return component.get_pin_ref(pin_type, pin_number)
 
 
@@ -120,18 +120,18 @@
 		return
 
 	// Those are supposed to be list indexes, check them for sanity
-	if(!isnum_safe(parameters[1]) || parameters[1] % 1 || parameters[1] < 1)
+	if(!isnum_safe(parameters69169) || parameters69169 % 1 || parameters69169 < 1)
 		return
 
-	if(!isnum_safe(parameters[3]) || parameters[3] % 1 || parameters[3] < 1)
+	if(!isnum_safe(parameters69369) || parameters69369 % 1 || parameters69369 < 1)
 		return
 
-	return get_pin_ref(parameters[1], parameters[2], parameters[3], components)
+	return get_pin_ref(parameters69169, parameters69269, parameters69369, components)
 
 #define string2charlist(string) (splittext(string, regex("(.)")) - splittext(string, ""))
 
 // Used to obfuscate object refs imported/exported as strings.
-// Not very secure, but if someone still finds a way to abuse refs, they deserve it.
+// Not69ery secure, but if someone still finds a way to abuse refs, they deserve it.
 /proc/XorEncrypt(string, key)
 	if(!string || !key ||!istext(string)||!istext(key))
 		return
@@ -165,15 +165,15 @@
 			return null
 		r += ascii2text(c)
 	return r
-// this is for data validation of stuff like ref encodes and more importantly ID access lists
+// this is for data69alidation of stuff like ref encodes and69ore importantly ID access lists
 
 // for old int code, don't use them:
 /proc/compute_signature(data)
-	return md5(SScircuit.cipherkey + data)
+	return69d5(SScircuit.cipherkey + data)
 
 /proc/add_data_signature(data)
 	var/signature = compute_signature(data)
-	return "[signature]:[data]"
+	return "69signature69:69data69"
 
 /proc/check_data_signature(signature, data)
 	return (compute_signature(data) == signature)

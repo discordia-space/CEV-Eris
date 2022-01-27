@@ -1,52 +1,52 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"b" = (
-/obj/crawler/crawler_wallbreaker,
+/area/crawler69
+"69" = 69
+/o69j/crawler/crawler_wall69rea69er,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"c" = (
-/turf/simulated/mineral/random/high_chance,
-/area/crawler)
-"d" = (
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"e" = (
-/obj/machinery/light/floor,
-/turf/simulated/floor/tiled/derelict/white_small_edges,
-/area/crawler)
-"f" = (
-/obj/crawler/crawler_wallbreaker/vertical,
+/area/crawler69
+"c" = 69
+/turf/simulated/mineral/random/hi69h_chance,
+/area/crawler69
+"d" = 69
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"e" = 69
+/o69j/machinery/li69ht/floor,
+/turf/simulated/floor/tiled/derelict/white_small_ed69es,
+/area/crawler69
+"f" = 69
+/o69j/crawler/crawler_wall69rea69er/vertical,
 /turf/simulated/wall/untinted/onestar_reinforced,
-/area/crawler)
-"g" = (
-/turf/simulated/floor/bluegrid,
-/area/crawler)
-"h" = (
+/area/crawler69
+"69" = 69
+/turf/simulated/floor/69lue69rid,
+/area/crawler69
+"h" = 69
 /turf/simulated/floor/tiled/derelict,
-/area/crawler)
-"i" = (
-/obj/crawler/crawler_wallbreaker/vertical,
-/turf/simulated/floor/bluegrid,
-/area/crawler)
-"k" = (
-/obj/crawler/crawler_wallbreaker,
-/turf/simulated/floor/bluegrid,
-/area/crawler)
+/area/crawler69
+"i" = 69
+/o69j/crawler/crawler_wall69rea69er/vertical,
+/turf/simulated/floor/69lue69rid,
+/area/crawler69
+"69" = 69
+/o69j/crawler/crawler_wall69rea69er,
+/turf/simulated/floor/69lue69rid,
+/area/crawler69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
-g
-g
+69
+69
 i
 a
 a
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 a
 c
 e
@@ -57,7 +57,7 @@ e
 d
 a
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 c
 c
@@ -68,7 +68,7 @@ d
 c
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 c
 c
@@ -79,7 +79,7 @@ c
 c
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 c
 d
@@ -88,10 +88,10 @@ h
 c
 c
 c
-b
+69
 "}
-(6,1,1) = {"
-b
+696,1,169 = {"
+69
 d
 d
 c
@@ -99,10 +99,10 @@ c
 c
 c
 c
-k
+69
 "}
-(7,1,1) = {"
-b
+697,1,169 = {"
+69
 c
 c
 c
@@ -110,10 +110,10 @@ c
 c
 c
 c
-k
+69
 "}
-(8,1,1) = {"
-b
+698,1,169 = {"
+69
 c
 c
 c
@@ -121,9 +121,9 @@ c
 c
 c
 c
-k
+69
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 c
 c
@@ -132,9 +132,9 @@ c
 c
 c
 c
-b
+69
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 c
 c
@@ -145,7 +145,7 @@ c
 d
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 c
 c
@@ -156,7 +156,7 @@ d
 d
 a
 "}
-(12,1,1) = {"
+6912,1,169 = {"
 a
 c
 c
@@ -167,7 +167,7 @@ e
 d
 a
 "}
-(13,1,1) = {"
+6913,1,169 = {"
 a
 a
 f

@@ -1,22 +1,22 @@
 
 /obj/item/computer_hardware/hard_drive/portable/design/nonlethal_ammo
-	disk_name = "Frozen Star Nonlethal Magazines Pack"
+	disk_name = "Frozen Star Nonlethal69agazines Pack"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	rarity_value = 20
 	license = 20
 	designs = list(
-		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
-		//pistol mags
+		//please,69aintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
+		//pistol69ags
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 		/datum/design/autolathe/ammo/mg_magnum/rubber,
 		/datum/design/autolathe/ammo/cspistol/rubber,
 		//speed loaders
 		/datum/design/autolathe/ammo/sl_pistol/rubber,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
-		//smg mags
+		//smg69ags
 		/datum/design/autolathe/ammo/smg/rubber,
-		//magnum smg mags
+		//magnum smg69ags
 		/datum/design/autolathe/ammo/msmg/rubber,
 		//rifle speedloaders
 		/datum/design/autolathe/ammo/sl_srifle/rubber,
@@ -31,22 +31,22 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/lethal_ammo
-	disk_name = "Frozen Star Lethal Magazines Pack"
+	disk_name = "Frozen Star Lethal69agazines Pack"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED_COMMON
 	license = 20
 	designs = list(
-		//please, maintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
-		//pistol mags
+		//please,69aintain general order (pistol>speedloaders>smg>other>shells)+(smaller/less damaging caliber>bigger/more damaging caliber)
+		//pistol69ags
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/mg_magnum,
 		/datum/design/autolathe/ammo/cspistol,
 		//speed loaders
 		/datum/design/autolathe/ammo/sl_pistol,
 		/datum/design/autolathe/ammo/sl_magnum,
-		//smg mags
+		//smg69ags
 		/datum/design/autolathe/ammo/smg,
-		//magnum smg mags
+		//magnum smg69ags
 		/datum/design/autolathe/ammo/msmg,
 		//rifle speedloaders
 		/datum/design/autolathe/ammo/sl_srifle,
@@ -119,14 +119,14 @@
 	rarity_value = 9
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/colt = 3, //"FS HG .35 Auto \"Colt M1911\""
+		/datum/design/autolathe/gun/colt = 3, //"FS HG .35 Auto \"Colt691911\""
 		/datum/design/autolathe/ammo/magazine_pistol,
 		/datum/design/autolathe/ammo/magazine_pistol/practice = 0,
 		/datum/design/autolathe/ammo/magazine_pistol/rubber,
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_silenced
-	disk_name = "Frozen Star - .25 Mandella"
+	disk_name = "Frozen Star - .2569andella"
 	icon_state = "frozenstar"
 	rarity_value = 13
 	license = 12
@@ -140,7 +140,7 @@
 // .40 REVOLVERS
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_revolver_miller
-	disk_name = "Frozen Star - .40 Miller Revolver"
+	disk_name = "Frozen Star - .4069iller Revolver"
 	icon_state = "frozenstar"
 	rarity_value = 13
 	license = 12
@@ -176,13 +176,13 @@
 		)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_revolver_mateba
-	disk_name = "Frozen Star - .40 Mateba Revolver"
+	disk_name = "Frozen Star - .4069ateba Revolver"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	rarity_value = 90
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/revolver_mateba = 3, // "FS REV .40 Magnum \"Mateba\""
+		/datum/design/autolathe/gun/revolver_mateba = 3, // "FS REV .4069agnum \"Mateba\""
 		/datum/design/autolathe/ammo/sl_magnum,
 		/datum/design/autolathe/ammo/sl_magnum/practice = 0,
 		/datum/design/autolathe/ammo/sl_magnum/rubber,
@@ -301,12 +301,12 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_molly
-	disk_name = "Frozen Star - .35 Molly SMG"
+	disk_name = "Frozen Star - .3569olly SMG"
 	icon_state = "frozenstar"
 	spawn_tags = SPAWN_TAG_DESIGN_ADVANCED
 	license = 12
 	designs = list(
-		/datum/design/autolathe/gun/molly = 3, // "FS MP .35 \"Molly\""
+		/datum/design/autolathe/gun/molly = 3, // "FS69P .35 \"Molly\""
 		/datum/design/autolathe/ammo/smg,
 		/datum/design/autolathe/ammo/smg/practice = 0,
 		/datum/design/autolathe/ammo/smg/rubber,
@@ -421,7 +421,7 @@
 	)
 
 /obj/item/computer_hardware/hard_drive/portable/design/guns/fs_martin
-	disk_name = "Frozen Star - Martin PDW E"
+	disk_name = "Frozen Star -69artin PDW E"
 	icon_state = "frozenstar"
 	rarity_value = 9
 	license = 12

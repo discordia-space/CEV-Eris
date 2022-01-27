@@ -1,9 +1,9 @@
 //
-// Wall mounted holomap of the station
+// Wall69ounted holomap of the station
 //
 /obj/machinery/holomap
 	name = "holomap"
-	desc = "A virtual map of the CEV \"Eris\"."
+	desc = "A69irtual69ap of the CEV \"Eris\"."
 	icon = 'icons/obj/machines/stationmap.dmi'
 	icon_state = "station_map"
 	anchored = TRUE
@@ -21,8 +21,8 @@
 	var/image/small_station_map
 	var/image/panel
 
-	var/original_zLevel = 1	// zLevel on which the station map was initialized.
-	var/bogus = TRUE		// set to 0 when you initialize the station map on a zLevel that has its own icon formatted for use by station holomaps.
+	var/original_zLevel = 1	// zLevel on which the station69ap was initialized.
+	var/bogus = TRUE		// set to 0 when you initialize the station69ap on a zLevel that has its own icon formatted for use by station holomaps.
 	var/datum/station_holomap/holomap_datum
 	var/buildstage = 2
 	var/wiresexposed = FALSE
@@ -63,7 +63,7 @@
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
-	if(!("[HOLOMAP_EXTRA_STATIONMAP]_[original_zLevel]" in SSholomaps.extraMiniMaps))
+	if(!("69HOLOMAP_EXTRA_STATIONMAP69_69original_zLevel69" in SSholomaps.extraMiniMaps))
 		bogus = TRUE
 		holomap_datum.initialize_holomap_bogus()
 		update_icon()
@@ -71,7 +71,7 @@
 
 	holomap_datum.initialize_holomap(T, reinit = TRUE)
 
-	small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = dir)
+	small_station_map = image(SSholomaps.extraMiniMaps69"69HOLOMAP_EXTRA_STATIONMAPSMALL69_69original_zLevel69"69, dir = dir)
 
 	spawn(1) //When built from frames, need to allow time for it to set pixel_x and pixel_y
 		update_icon()
@@ -81,7 +81,7 @@
 		to_chat(user, SPAN_WARNING("Someone else is currently watching the holomap."))
 		return
 	if(user.loc != loc)
-		to_chat(user, SPAN_WARNING("You need to stand in front of \the [src]."))
+		to_chat(user, SPAN_WARNING("You need to stand in front of \the 69src69."))
 		return
 	startWatching(user)
 
@@ -90,12 +90,12 @@
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
-// In order to actually get Bumped() we need to block movement.  We're (visually) on a wall, so people
+// In order to actually get Bumped() we need to block69ovement.  We're (visually) on a wall, so people
 // couldn't really walk into us anyway.  But in reality we are on the turf in front of the wall, so bumping
 // against where we seem is actually trying to *exit* our real loc
-/obj/machinery/holomap/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	// log_debug("[src] (dir=[dir]) CheckExit([mover], [target])  get_dir() = [get_dir(target, loc)]")
-	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are visually in the next turf over
+/obj/machinery/holomap/CheckExit(atom/movable/mover as69ob|obj, turf/target as turf)
+	// log_debug("69src69 (dir=69dir69) CheckExit(69mover69, 69target69)  get_dir() = 69get_dir(target, loc)69")
+	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are69isually in the next turf over
 		return FALSE
 	else
 		return TRUE
@@ -103,13 +103,13 @@
 /obj/machinery/holomap/proc/startWatching(mob/user)
 	// Okay, does this belong on a screen thing or what?
 	// One argument is that this is an "in game" object becuase its in the world.
-	// But I think it actually isn't.  The map isn't holo projected into the whole room, (maybe strat one is!)
+	// But I think it actually isn't.  The69ap isn't holo projected into the whole room, (maybe strat one is!)
 	// But for this, the on screen object just represents you leaning in and looking at it closely.
 	// So it SHOULD be a screen object.
 	// But it is not QUITE a hud either.  So I think it shouldn't go in /datum/hud
-	// Okay? Yeah.  Lets use screen objects but manage them manually here in the item.
-	// That might be a mistake... I'd rather they be managed by some central hud management system.
-	// But the /vg code, while the screen obj is managed, its still adding and removing image, so this is
+	// Okay? Yeah.  Lets use screen objects but69anage them69anually here in the item.
+	// That69ight be a69istake... I'd rather they be69anaged by some central hud69anagement system.
+	// But the /vg code, while the screen obj is69anaged, its still adding and removing image, so this is
 	// just as good.
 
 	// EH JUST HACK IT FOR NOW SO WE CAN SEE HOW IT LOOKS! STOP OBSESSING, ITS BEEN AN HOUR NOW!
@@ -121,7 +121,7 @@
 			holomap_datum.station_map.alpha = 0 // Set to transparent so we can fade in
 			animate(holomap_datum.station_map, alpha = 255, time = 5, easing = LINEAR_EASING)
 			flick("station_map_activate", src)
-			// Wait, if wea re not modifying the holomap_obj... can't it be part of the global hud?
+			// Wait, if wea re not69odifying the holomap_obj... can't it be part of the global hud?
 			user.client.screen |= global_hud.holomap // TODO - HACK! This should be there permenently really.
 			user.client.images |= holomap_datum.station_map
 			watching_mob = user
@@ -130,7 +130,7 @@
 			GLOB.destroyed_event.register(watching_mob, src, /obj/machinery/holomap/proc/stopWatching)
 			update_use_power(ACTIVE_POWER_USE)
 			if(bogus)
-				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be mapped."))
+				to_chat(user, SPAN_WARNING("The holomap has failed to initialize. This area of space cannot be69apped."))
 			else
 				to_chat(user, SPAN_NOTICE("A hologram of CEV \"Eris\" appears before your eyes."))
 
@@ -162,7 +162,7 @@
 /obj/machinery/holomap/power_change()
 	. = ..()
 	update_icon()
-	// TODO - Port use_auto_lights from /vg - For now implement it manually here
+	// TODO - Port use_auto_lights from /vg - For now implement it69anually here
 	if(stat & NOPOWER)
 		set_light(0)
 	else
@@ -186,11 +186,11 @@
 	if(wiresexposed)
 		switch(buildstage)
 			if(2)
-				icon_state = "station_map_frame_[buildstage]"
+				icon_state = "station_map_frame_69buildstage69"
 			if(1)
-				icon_state = "station_map_frame_[buildstage]"
+				icon_state = "station_map_frame_69buildstage69"
 			if(0)
-				icon_state = "station_map_frame_[buildstage]"
+				icon_state = "station_map_frame_69buildstage69"
 		set_light(0)
 		return
 
@@ -204,11 +204,11 @@
 		if(bogus)
 			holomap_datum.initialize_holomap_bogus()
 		else
-			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
+			small_station_map.icon = SSholomaps.extraMiniMaps69"69HOLOMAP_EXTRA_STATIONMAPSMALL69_69original_zLevel69"69
 			overlays |= small_station_map
 			holomap_datum.initialize_holomap(get_turf(src))
 
-/obj/machinery/holomap/attackby(obj/item/I, mob/user)
+/obj/machinery/holomap/attackby(obj/item/I,69ob/user)
 	src.add_fingerprint(user)
 
 	var/list/usable_qualities = list()
@@ -230,7 +230,7 @@
 				var/used_sound = panel_open ? 'sound/machines/Custom_screwdriveropen.ogg' :  'sound/machines/Custom_screwdriverclose.ogg'
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, instant_finish_tier = 30, forced_sound = used_sound))
 					wiresexposed = !wiresexposed
-					to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
+					to_chat(user, "The wires have been 69wiresexposed ? "exposed" : "unexposed"69")
 					update_icon()
 					return
 			return
@@ -238,7 +238,7 @@
 		if(QUALITY_WIRE_CUTTING)
 			if(wiresexposed && buildstage == 2)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					user.visible_message(SPAN_WARNING("[user] removed the wires from \the [src]!"), "You have removed the wires from \the [src].")
+					user.visible_message(SPAN_WARNING("69user69 removed the wires from \the 69src69!"), "You have removed the wires from \the 69src69.")
 					new/obj/item/stack/cable_coil(get_turf(user), 5)
 					buildstage = 1
 					stopWatching()
@@ -259,7 +259,7 @@
 		if(QUALITY_BOLT_TURNING)
 			if(buildstage == 0)
 				if(I.use_tool(user, src, WORKTIME_NEAR_INSTANT, tool_type, FAILCHANCE_VERY_EASY, required_stat = STAT_MEC))
-					to_chat(user, "You remove the [src] assembly from the wall!")
+					to_chat(user, "You remove the 69src69 assembly from the wall!")
 					new /obj/item/frame/holomap(get_turf(user))
 					qdel(src)
 			return
@@ -272,13 +272,13 @@
 			if(istype(I, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = I
 				if(C.use(5))
-					to_chat(user, SPAN_NOTICE("You wire \the [src]."))
+					to_chat(user, SPAN_NOTICE("You wire \the 69src69."))
 					buildstage = 2
 					update_icon()
 					setup_holomap()
 					return
 				else
-					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the [src]."))
+					to_chat(user, SPAN_WARNING("You need 5 pieces of cable to do wire \the 69src69."))
 					return
 
 		if(0)

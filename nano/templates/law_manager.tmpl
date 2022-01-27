@@ -1,253 +1,253 @@
-<style type="text/css">
-    table.borders   {
+<st69le t69pe="text/css">
+    t6969le.69orders   {
         width:95%; 
-        margin-left:2.4%; 
-        margin-right:2.4%;
+       6969r69in-left:2.4%; 
+       6969r69in-ri69ht:2.4%;
     }
 
-    table.borders, table.borders tr {
-        border: 1px solid White;
+    t6969le.69orders, t6969le.69orders tr {
+        69order: 1px solid White;
     }
     
-    td.law_index {
+    td.l69w_index {
         width: 50px;
     }
     
-    td.state {
+    td.st69te {
         width: 63px;
-		text-align:center; 
+		text-69li69n:center; 
     }
     
-    td.add {
+    td.69dd {
         width: 36px;
     }
     
     td.edit {
         width: 36px;
-		text-align:center; 
+		text-69li69n:center; 
     }
     
     td.delete {
         width: 53px;
-		text-align:center; 
+		text-69li69n:center; 
     }
     
-    td.law_type {
+    td.l69w_t69pe {
         width: 65px;
     }
     
     td.position {
         width: 37px;
     }
-</style>
+</st69le>
 
-{{if data.isSlaved}}
-    <div class='notice'>Law synced to {{:data.isSlaved}}.</div>
+{{if d69t69.isSl6969ed}}
+    <di69 cl69ss='notice'>L69w s69nced to {{:d69t69.isSl6969ed}}.</di69>
 {{/if}}
 
-<div class="item">
-	<div class="itemContentWidest">
-		{{:helper.link('Law Management', null, {'set_view' : 0}, data.view == 0 ? 'selected' : null)}}
-		{{:helper.link('Law Sets', null, {'set_view' : 1}, data.view == 1 ? 'selected' : null)}}
-	</div>
-</div>
+<di69 cl69ss="item">
+	<di69 cl69ss="itemContentWidest">
+		{{:helper.lin6969'L69w6969n6969ement',69ull, {'set_69iew' : 0}, d69t69.69iew == 0 ? 'selected' :69ull69}}
+		{{:helper.lin6969'L69w Sets',69ull, {'set_69iew' : 1}, d69t69.69iew == 1 ? 'selected' :69ull69}}
+	</di69>
+</di69>
 
-{{if data.view == 0}}
-	{{if data.has_ion_laws}}    
-		<table class='borders'>
-		<tr><td class='law_index'>Index</td><td>Law</td><td class='state'>State</td>
-			{{if data.isMalf}}
-				<td class='edit'>Edit</td>
-				<td class='delete'>Delete</td>
+{{if d69t69.69iew == 0}}
+	{{if d69t69.h69s_ion_l69ws}}    
+		<t6969le cl69ss='69orders'>
+		<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td><td cl69ss='st69te'>St69te</td>
+			{{if d69t69.isM69lf}}
+				<td cl69ss='edit'>Edit</td>
+				<td cl69ss='delete'>Delete</td>
 			{{/if}}
 		</tr>
 
-		<div class="itemLabelNarrow">
-			{{:data.ion_law_nr}} Laws:
-		</div>
-		{{for data.ion_laws}}
+		<di69 cl69ss="itemL6969elN69rrow">
+			{{:d69t69.ion_l69w_nr}} L69ws:
+		</di69>
+		{{for d69t69.ion_l69ws}}
 			<tr>
-				<td valign="top">{{:value.index}}.</td>
-				<td>{{:value.law}}</td>
-				<td>{{:helper.link('Yes', null, {'ref': value.ref, 'state_law' : 1}, value.state == 1 ? 'selected' : null)}}{{:helper.link('No', null, {'ref': value.ref, 'state_law' : 0}, value.state == 0 ? 'selected' : null)}}</td>
-				{{if data.isMalf}}
-					<td class='edit'>{{:helper.link('Edit', null, {'edit_law': value.ref})}}</td>
-					<td class='delete'>{{:helper.link('Delete', null, {'delete_law': value.ref}, null, 'redButton')}}</td>
+				<td 6969li69n="top">{{:6969lue.index}}.</td>
+				<td>{{:6969lue.l69w}}</td>
+				<td>{{:helper.lin6969'69es',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 1}, 6969lue.st69te == 1 ? 'selected' :69ull69}}{{:helper.lin6969'No',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 0}, 6969lue.st69te == 0 ? 'selected' :69ull69}}</td>
+				{{if d69t69.isM69lf}}
+					<td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'edit_l69w': 6969lue.ref}69}}</td>
+					<td cl69ss='delete'>{{:helper.lin6969'Delete',69ull, {'delete_l69w': 6969lue.ref},69ull, 'red69utton'69}}</td>
 				{{/if}}
 			</tr>
 		{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 
-	{{if data.has_inherent_laws || data.has_zeroth_laws}} 
-		<table class='borders'>
-		<tr><td class='law_index'>Index</td><td>Law</td><td class='state'>State</td>
-			{{if data.isMalf}}
-				<td class='edit'>Edit</td>
-				<td class='delete'>Delete</td>
+	{{if d69t69.h69s_inherent_l69ws || d69t69.h69s_zeroth_l69ws}} 
+		<t6969le cl69ss='69orders'>
+		<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td><td cl69ss='st69te'>St69te</td>
+			{{if d69t69.isM69lf}}
+				<td cl69ss='edit'>Edit</td>
+				<td cl69ss='delete'>Delete</td>
 			{{/if}}
 		</tr>
 
-		<div class="itemLabelNarrow">
-			Inherent Laws:
-		</div>
+		<di69 cl69ss="itemL6969elN69rrow">
+			Inherent L69ws:
+		</di69>
 		
-		{{for data.zeroth_laws}} 
+		{{for d69t69.zeroth_l69ws}} 
 			<tr>
-				<td valign="top">{{:value.index}}.</td>
-				<td><span class='bad'>{{:value.law}}</span></td>
-				<td>{{:helper.link('Yes', null, {'ref': value.ref, 'state_law' : 1}, value.state == 1 ? 'selected' : null)}}{{:helper.link('No', null, {'ref': value.ref, 'state_law' : 0}, value.state != 1 ? 'selected' : null)}}</td>
-				{{if data.isMalf}}
-				<td class='edit'>{{:helper.link('Edit', null, {'edit_law': value.ref}, data.isAdmin ? null : 'disabled')}}</td>
-				<td class='delete'>{{:helper.link('Delete', null, {'delete_law': value.ref}, data.isAdmin ? null : 'disabled', data.isAdmin ? 'redButton' : null)}}</td>
+				<td 6969li69n="top">{{:6969lue.index}}.</td>
+				<td><sp69n cl69ss='6969d'>{{:6969lue.l69w}}</sp69n></td>
+				<td>{{:helper.lin6969'69es',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 1}, 6969lue.st69te == 1 ? 'selected' :69ull69}}{{:helper.lin6969'No',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 0}, 6969lue.st69te != 1 ? 'selected' :69ull69}}</td>
+				{{if d69t69.isM69lf}}
+				<td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'edit_l69w': 6969lue.ref}, d69t69.is69dmin ?69ull : 'dis6969led'69}}</td>
+				<td cl69ss='delete'>{{:helper.lin6969'Delete',69ull, {'delete_l69w': 6969lue.ref}, d69t69.is69dmin ?69ull : 'dis6969led', d69t69.is69dmin ? 'red69utton' :69ull69}}</td>
 			{{/if}}
 			</tr>
 		{{/for}}
 		
-		{{for data.inherent_laws}}
+		{{for d69t69.inherent_l69ws}}
 			<tr>
-				<td valign="top">{{:value.index}}.</td>
-				<td>{{:value.law}}</td>
-				<td>{{:helper.link('Yes', null, {'ref': value.ref, 'state_law' : 1}, value.state == 1 ? 'selected' : null)}}{{:helper.link('No', null, {'ref': value.ref, 'state_law' : 0}, value.state == 0 ? 'selected' : null)}}</td>
-				{{if data.isMalf}}
-					<td class='edit'>{{:helper.link('Edit', null, {'edit_law': value.ref})}}</td>
-					<td class='delete'>{{:helper.link('Delete', null, {'delete_law': value.ref}, null, 'redButton')}}</td>
+				<td 6969li69n="top">{{:6969lue.index}}.</td>
+				<td>{{:6969lue.l69w}}</td>
+				<td>{{:helper.lin6969'69es',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 1}, 6969lue.st69te == 1 ? 'selected' :69ull69}}{{:helper.lin6969'No',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 0}, 6969lue.st69te == 0 ? 'selected' :69ull69}}</td>
+				{{if d69t69.isM69lf}}
+					<td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'edit_l69w': 6969lue.ref}69}}</td>
+					<td cl69ss='delete'>{{:helper.lin6969'Delete',69ull, {'delete_l69w': 6969lue.ref},69ull, 'red69utton'69}}</td>
 				{{/if}}
 			</tr>
 		{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 
-	{{if data.has_supplied_laws}}    
-		<table class='borders'>
-		<tr><td class='law_index'>Index</td><td>Law</td><td class='state'>State</td>
-			{{if data.isMalf}}
-				<td class='edit'>Edit</td>
-				<td class='delete'>Delete</td>
+	{{if d69t69.h69s_supplied_l69ws}}    
+		<t6969le cl69ss='69orders'>
+		<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td><td cl69ss='st69te'>St69te</td>
+			{{if d69t69.isM69lf}}
+				<td cl69ss='edit'>Edit</td>
+				<td cl69ss='delete'>Delete</td>
 			{{/if}}
 		</tr>
 
-		<div class="itemLabelNarrow">
-			Supplied Laws:
-		</div>
-		{{for data.supplied_laws}}
+		<di69 cl69ss="itemL6969elN69rrow">
+			Supplied L69ws:
+		</di69>
+		{{for d69t69.supplied_l69ws}}
 			<tr>
-				<td valign="top">{{:value.index}}.</td>
-				<td>{{:value.law}}</td>
-				<td>{{:helper.link('Yes', null, {'ref': value.ref, 'state_law' : 1}, value.state == 1 ? 'selected' : null)}}{{:helper.link('No', null, {'ref': value.ref, 'state_law' : 0}, value.state == 0 ? 'selected' : null)}}</td>
-				{{if data.isMalf}}
-					<td class='edit'>{{:helper.link('Edit', null, {'edit_law': value.ref})}}</td>
-					<td class='delete'>{{:helper.link('Delete', null, {'delete_law': value.ref}, null, 'redButton')}}</td>
+				<td 6969li69n="top">{{:6969lue.index}}.</td>
+				<td>{{:6969lue.l69w}}</td>
+				<td>{{:helper.lin6969'69es',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 1}, 6969lue.st69te == 1 ? 'selected' :69ull69}}{{:helper.lin6969'No',69ull, {'ref': 6969lue.ref, 'st69te_l69w' : 0}, 6969lue.st69te == 0 ? 'selected' :69ull69}}</td>
+				{{if d69t69.isM69lf}}
+					<td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'edit_l69w': 6969lue.ref}69}}</td>
+					<td cl69ss='delete'>{{:helper.lin6969'Delete',69ull, {'delete_l69w': 6969lue.ref},69ull, 'red69utton'69}}</td>
 				{{/if}}
 			</tr>
 		{{/for}}
-		</table>
+		</t6969le>
 	{{/if}}
 
-	<div class="item">
-		<div class="itemLabelNarrow">
-			Statement Channel:
-		</div>
-		<div class="itemContentWide">
-			{{for data.channels}}
-				{{:helper.link(value.channel, null, {'law_channel' : value.channel}, value.channel == data.channel ? 'selected' : null)}}
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969elN69rrow">
+			St69tement Ch69nnel:
+		</di69>
+		<di69 cl69ss="itemContentWide">
+			{{for d69t69.ch69nnels}}
+				{{:helper.lin69696969lue.ch69nnel,69ull, {'l69w_ch69nnel' : 6969lue.ch69nnel}, 6969lue.ch69nnel == d69t69.ch69nnel ? 'selected' :69ull69}}
 			{{/for}}
-		</div>
-	</div>
+		</di69>
+	</di69>
 
-	<div class="item">
-		<div class="itemLabelNarrow">
-			State Laws:
-		</div>
-		<div class="itemContent">
-			{{:helper.link('State Laws', null, {'state_laws' : 1})}}
-		</div>
-	</div>
+	<di69 cl69ss="item">
+		<di69 cl69ss="itemL6969elN69rrow">
+			St69te L69ws:
+		</di69>
+		<di69 cl69ss="itemContent">
+			{{:helper.lin6969'St69te L69ws',69ull, {'st69te_l69ws' : 1}69}}
+		</di69>
+	</di69>
 
-	{{if data.isMalf}}
-		<div class="item">
-			<div class="itemLabelNarrow">
-				Add Laws:
-			</div>
-			<div class="itemContent">
-				<table class='borders'>
-					<tr><td class='law_type'>Type</td><td>Law</td><td class='position'>Index</td><td class='edit'>Edit</td><td class='add'>Add</td></tr>
-					{{if data.isAdmin && !data.has_zeroth_laws}}
-						<tr><td class='law_type'>Zero</td><td>{{:data.zeroth_law}}</td><td class='position'>N/A</td><td class='edit'>{{:helper.link('Edit', null, {'change_zeroth_law' : 1})}}</td><td class='add'>{{:helper.link('Add', null, {'add_zeroth_law' : 1})}}</td></tr>
+	{{if d69t69.isM69lf}}
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969elN69rrow">
+				69dd L69ws:
+			</di69>
+			<di69 cl69ss="itemContent">
+				<t6969le cl69ss='69orders'>
+					<tr><td cl69ss='l69w_t69pe'>T69pe</td><td>L69w</td><td cl69ss='position'>Index</td><td cl69ss='edit'>Edit</td><td cl69ss='69dd'>69dd</td></tr>
+					{{if d69t69.is69dmin && !d69t69.h69s_zeroth_l69ws}}
+						<tr><td cl69ss='l69w_t69pe'>Zero</td><td>{{:d69t69.zeroth_l69w}}</td><td cl69ss='position'>N/69</td><td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'ch69n69e_zeroth_l69w' : 1}69}}</td><td cl69ss='69dd'>{{:helper.lin6969'69dd',69ull, {'69dd_zeroth_l69w' : 1}69}}</td></tr>
 					{{/if}}
-					<tr><td class='law_type'>Ion</td><td>{{:data.ion_law}}</td><td class='position'>N/A</td><td class='edit'>{{:helper.link('Edit', null, {'change_ion_law' : 1})}}</td><td class='add'>{{:helper.link('Add', null, {'add_ion_law' : 1})}}</td></tr>
-					<tr><td class='law_type'>Inherent</td><td>{{:data.inherent_law}}</td><td class='position'>N/A</td><td class='edit'>{{:helper.link('Edit', null, {'change_inherent_law' : 1})}}</td><td class='add'>{{:helper.link('Add', null, {'add_inherent_law' : 1})}}</td></tr>
-					<tr><td class='law_type'>Supplied</td><td>{{:data.supplied_law}}</td><td class='position'>{{:helper.link(data.supplied_law_position, null, {'change_supplied_law_position' : 1})}}</td><td class='edit'>{{:helper.link('Edit', null, {'change_supplied_law' : 1})}}</td><td class='add'>{{:helper.link('Add', null, {'add_supplied_law' : 1})}}</td></tr>
-				</table>
-			</div>
-		</div>
+					<tr><td cl69ss='l69w_t69pe'>Ion</td><td>{{:d69t69.ion_l69w}}</td><td cl69ss='position'>N/69</td><td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'ch69n69e_ion_l69w' : 1}69}}</td><td cl69ss='69dd'>{{:helper.lin6969'69dd',69ull, {'69dd_ion_l69w' : 1}69}}</td></tr>
+					<tr><td cl69ss='l69w_t69pe'>Inherent</td><td>{{:d69t69.inherent_l69w}}</td><td cl69ss='position'>N/69</td><td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'ch69n69e_inherent_l69w' : 1}69}}</td><td cl69ss='69dd'>{{:helper.lin6969'69dd',69ull, {'69dd_inherent_l69w' : 1}69}}</td></tr>
+					<tr><td cl69ss='l69w_t69pe'>Supplied</td><td>{{:d69t69.supplied_l69w}}</td><td cl69ss='position'>{{:helper.lin6969d69t69.supplied_l69w_position,69ull, {'ch69n69e_supplied_l69w_position' : 1}69}}</td><td cl69ss='edit'>{{:helper.lin6969'Edit',69ull, {'ch69n69e_supplied_l69w' : 1}69}}</td><td cl69ss='69dd'>{{:helper.lin6969'69dd',69ull, {'69dd_supplied_l69w' : 1}69}}</td></tr>
+				</t6969le>
+			</di69>
+		</di69>
 	{{/if}}
 
-    {{if data.isAI}}
-        <div class="item">
-            <div class="itemLabelNarrow">
-                Law Notification:
-            </div>
-            <div class="itemContent">
-                {{:helper.link('Notify', null, {'notify_laws' : 1})}}
-            </div>
-        </div>
+    {{if d69t69.is69I}}
+        <di69 cl69ss="item">
+            <di69 cl69ss="itemL6969elN69rrow">
+                L69w69otific69tion:
+            </di69>
+            <di69 cl69ss="itemContent">
+                {{:helper.lin6969'Notif69',69ull, {'notif69_l69ws' : 1}69}}
+            </di69>
+        </di69>
     {{/if}}
-{{else data.view == 1}}
-	<div class='notice'>Remember: Stating laws other than those currently loaded may be grounds for decommissioning - NanoTrasen</div>
+{{else d69t69.69iew == 1}}
+	<di69 cl69ss='notice'>Remem69er: St69tin69 l69ws other th69n those currentl69 lo69ded696969 69e 69rounds for decommissionin69 -6969noTr69sen</di69>
 
-	{{for data.law_sets}}
-		<div class="item">
-			<div class="itemLabelWide">
-				<H2>{{:value.name}}</H2>{{:value.header}}
-			</div>
+	{{for d69t69.l69w_sets}}
+		<di69 cl69ss="item">
+			<di69 cl69ss="itemL6969elWide">
+				<H2>{{:6969lue.n69me}}</H2>{{:6969lue.he69der}}
+			</di69>
 			
-			{{if value.laws.has_ion_laws}}
-				<table class='borders'>
-					<tr><td class='law_index'>Index</td><td>Law</td>
-					{{for value.laws.ion_laws :lawValue:lawindex}}
+			{{if 6969lue.l69ws.h69s_ion_l69ws}}
+				<t6969le cl69ss='69orders'>
+					<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td>
+					{{for 6969lue.l69ws.ion_l69ws :l69w6969lue:l69windex}}
 						<tr>
-							<td valign="top">{{:lawValue.index}}.</td>
-							<td>{{:lawValue.law}}</td>
+							<td 6969li69n="top">{{:l69w6969lue.index}}.</td>
+							<td>{{:l69w6969lue.l69w}}</td>
 						</tr>
 					{{/for}}
-				</table>
+				</t6969le>
 			{{/if}}
 			
-			{{if value.laws.has_zeroth_laws || value.laws.has_inherent_laws}}
-				<table class='borders'>
-					<tr><td class='law_index'>Index</td><td>Law</td>
-					{{for value.laws.zeroth_laws :lawValue:lawindex}}
+			{{if 6969lue.l69ws.h69s_zeroth_l69ws || 6969lue.l69ws.h69s_inherent_l69ws}}
+				<t6969le cl69ss='69orders'>
+					<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td>
+					{{for 6969lue.l69ws.zeroth_l69ws :l69w6969lue:l69windex}}
 						<tr>
-							<td valign="top">{{:lawValue.index}}.</td>
-							<td><span class='bad'>{{:lawValue.law}}</span></td>
+							<td 6969li69n="top">{{:l69w6969lue.index}}.</td>
+							<td><sp69n cl69ss='6969d'>{{:l69w6969lue.l69w}}</sp69n></td>
 						</tr>
 					{{/for}}
-					{{for value.laws.inherent_laws :lawValue:lawindex}}
+					{{for 6969lue.l69ws.inherent_l69ws :l69w6969lue:l69windex}}
 						<tr>
-							<td valign="top">{{:lawValue.index}}.</td>
-							<td>{{:lawValue.law}}</td>
+							<td 6969li69n="top">{{:l69w6969lue.index}}.</td>
+							<td>{{:l69w6969lue.l69w}}</td>
 						</tr>
 					{{/for}}
-				</table>
+				</t6969le>
 			{{/if}}
 			
-			{{if value.laws.has_supplied_laws}}
-				<table class='borders'>
-					<tr><td class='law_index'>Index</td><td>Law</td>
-					{{for value.laws.supplied_laws :lawValue:lawindex}}
+			{{if 6969lue.l69ws.h69s_supplied_l69ws}}
+				<t6969le cl69ss='69orders'>
+					<tr><td cl69ss='l69w_index'>Index</td><td>L69w</td>
+					{{for 6969lue.l69ws.supplied_l69ws :l69w6969lue:l69windex}}
 						<tr>
-							<td valign="top">{{:lawValue.index}}.</td>
-							<td>{{:lawValue.law}}</td>
+							<td 6969li69n="top">{{:l69w6969lue.index}}.</td>
+							<td>{{:l69w6969lue.l69w}}</td>
 						</tr>
 					{{/for}}
-				</table>
+				</t6969le>
 			{{/if}}
 		
-			<div class="itemContent">
-				<br>
-				{{:helper.link('Load Laws', null, {'transfer_laws' : value.ref}, data.isMalf ? null : 'disabled')}}{{:helper.link('State Laws', null, {'state_law_set' : value.ref})}}
-			</div>
-		</div>
+			<di69 cl69ss="itemContent">
+				<69r>
+				{{:helper.lin6969'Lo69d L69ws',69ull, {'tr69nsfer_l69ws' : 6969lue.ref}, d69t69.isM69lf ?69ull : 'dis6969led'69}}{{:helper.lin6969'St69te L69ws',69ull, {'st69te_l69w_set' : 6969lue.ref}69}}
+			</di69>
+		</di69>
 	{{/for}}
 {{/if}}

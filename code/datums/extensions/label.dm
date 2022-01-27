@@ -11,7 +11,7 @@
 	atom_holder = null
 	return ..()
 
-/datum/extension/labels/proc/AttachLabel(var/mob/user, var/label)
+/datum/extension/labels/proc/AttachLabel(var/mob/user,69ar/label)
 	if(!CanAttachLabel(user, label))
 		return
 
@@ -19,14 +19,14 @@
 		atom_holder.verbs += /atom/proc/RemoveLabel
 	LAZYADD(labels, label)
 
-	user.visible_message("<span class='notice'>\The [user] attaches a label to \the [atom_holder].</span>", \
-						 "<span class='notice'>You attach a label, '[label]', to \the [atom_holder].</span>")
+	user.visible_message("<span class='notice'>\The 69user69 attaches a label to \the 69atom_holder69.</span>", \
+						 "<span class='notice'>You attach a label, '69label69', to \the 69atom_holder69.</span>")
 
 	var/old_name = atom_holder.name
-	atom_holder.name = "[atom_holder.name] ([label])"
+	atom_holder.name = "69atom_holder.name69 (69label69)"
 	GLOB.name_set_event.raise_event(src, old_name, atom_holder.name)
 
-/datum/extension/labels/proc/RemoveLabel(var/mob/user, var/label)
+/datum/extension/labels/proc/RemoveLabel(var/mob/user,69ar/label)
 	if(!(label in labels))
 		return
 
@@ -34,20 +34,20 @@
 	if(!LAZYLEN(labels))
 		atom_holder.verbs -= /atom/proc/RemoveLabel
 
-	var/full_label = " ([label])"
+	var/full_label = " (69label69)"
 	var/index = findtextEx(atom_holder.name, full_label)
-	if(!index) // Playing it safe, something might not have set the name properly
+	if(!index) // Playing it safe, something69ight not have set the name properly
 		return
 
-	user.visible_message("<span class='notice'>\The [user] removes a label from \the [atom_holder].</span>", \
-						 "<span class='notice'>You remove a label, '[label]', from \the [atom_holder].</span>")
+	user.visible_message("<span class='notice'>\The 69user69 removes a label from \the 69atom_holder69.</span>", \
+						 "<span class='notice'>You remove a label, '69label69', from \the 69atom_holder69.</span>")
 
 	var/old_name = atom_holder.name
 	// We find and replace the first instance, since that's the one we removed from the list
 	atom_holder.name = replacetext(atom_holder.name, full_label, "", index, index + length(full_label))
 	GLOB.name_set_event.raise_event(src, old_name, atom_holder.name)
 
-// We may have to do something more complex here
+// We69ay have to do something69ore complex here
 // in case something appends strings to something that's labelled rather than replace the name outright
 // Non-printable characters should be of help if this comes up
 /datum/extension/labels/proc/AppendLabelsToName(var/name)
@@ -55,17 +55,17 @@
 		return name
 	. = list(name)
 	for(var/entry in labels)
-		. += " ([entry])"
+		. += " (69entry69)"
 	. = jointext(., null)
 
-/datum/extension/labels/proc/CanAttachLabel(var/user, var/label)
+/datum/extension/labels/proc/CanAttachLabel(var/user,69ar/label)
 	if(!length(label))
 		return FALSE
 	if(ExcessLabelLength(label, user))
 		return FALSE
 	return TRUE
 
-/datum/extension/labels/proc/ExcessLabelLength(var/label, var/user)
+/datum/extension/labels/proc/ExcessLabelLength(var/label,69ar/user)
 	. = length(label) + 3 // Each label also adds a space and two brackets when applied to a name
 	if(LAZYLEN(labels))
 		for(var/entry in labels)
@@ -85,7 +85,7 @@
 	set name = "Remove Label"
 	set desc = "Used to remove labels"
 	set category = "Object"
-	set src in view(1)
+	set src in69iew(1)
 
 	if(CanPhysicallyInteract(usr))
 		if(has_extension(src, /datum/extension/labels))

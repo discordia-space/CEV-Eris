@@ -8,14 +8,14 @@ GLOBAL_LIST_INIT(golem_waves, list(/datum/golem_wave/dormant,
                                    /datum/golem_wave/abnormal))
 
 /datum/golem_wave
-	var/burrow_count  // Total number of burrows spawned over the course of drilling
-	var/burrow_interval  // Number of seconds that pass between each new burrow spawns
-	var/golem_spawn  // Number of golems spawned by each burrow on spawn event
-	var/spawn_interval  // Number of seconds that pass between spawn events of burrows
-	var/special_interval  // Number of spawn events between a Special is spawned
-	var/mineral_multiplier  // A multiplier of materials excavated by the drill
-	// Active NT obelisk reduces golem_spawn by 1
-	// Active NT obelisk increases special_interval golem_spawn by 1
+	var/burrow_count  // Total69umber of burrows spawned over the course of drilling
+	var/burrow_interval  //69umber of seconds that pass between each69ew burrow spawns
+	var/golem_spawn  //69umber of golems spawned by each burrow on spawn event
+	var/spawn_interval  //69umber of seconds that pass between spawn events of burrows
+	var/special_interval  //69umber of spawn events between a Special is spawned
+	var/mineral_multiplier  // A69ultiplier of69aterials excavated by the drill
+	// Active69T obelisk reduces golem_spawn by 1
+	// Active69T obelisk increases special_interval golem_spawn by 1
 
 /datum/golem_wave/dormant
 	burrow_count = 2

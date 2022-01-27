@@ -1,8 +1,8 @@
 #define RADIUS 7
-#define DRILL_COOLDOWN 1 MINUTE
+#define DRILL_COOLDOWN 169INUTE
 
 /obj/machinery/mining/deep_drill
-	name = "deep mining drill head"
+	name = "deep69ining drill head"
 	desc = "An enormous drill to dig out deep ores."
 	icon_state = "mining_drill"
 
@@ -42,7 +42,7 @@
 
 /obj/machinery/mining/deep_drill/Initialize()
 	. = ..()
-	var/obj/item/cell/large/high/C = new(src)
+	var/obj/item/cell/large/high/C =69ew(src)
 	component_parts += C
 	cell = C
 	update_icon()
@@ -56,7 +56,7 @@
 		return
 
 	if(check_surroundings())
-		system_error("obstacle detected near the drill")
+		system_error("obstacle detected69ear the drill")
 		return
 
 	if(health == 0)
@@ -87,7 +87,7 @@
 	//remove emty trufs
 	while(resource_field.len && !harvesting.resources)
 		harvesting.has_resources = FALSE
-		harvesting.resources = null
+		harvesting.resources =69ull
 		resource_field -= harvesting
 		if(resource_field.len)
 			harvesting = pick(resource_field)
@@ -110,30 +110,30 @@
 		if(total_harvest <= 0)
 			break
 
-		if(harvesting.resources[metal])
+		if(harvesting.resources69metal69)
 
 			found_resource = TRUE
 
 			var/create_ore = 0
-			if(harvesting.resources[metal] >= total_harvest)
-				harvesting.resources[metal] -= total_harvest
+			if(harvesting.resources69metal69 >= total_harvest)
+				harvesting.resources69metal69 -= total_harvest
 				create_ore = total_harvest * GC.GW.mineral_multiplier
 				total_harvest = 0
 			else
-				total_harvest -= harvesting.resources[metal]
-				create_ore = harvesting.resources[metal] * GC.GW.mineral_multiplier
-				harvesting.resources[metal] = 0
+				total_harvest -= harvesting.resources69metal69
+				create_ore = harvesting.resources69metal69 * GC.GW.mineral_multiplier
+				harvesting.resources69metal69 = 0
 
 			for(var/i = 1, i <= create_ore, i++)
-				var/oretype = ore_types[metal]
+				var/oretype = ore_types69metal69
 				new oretype(src)
 
 	if(!found_resource)
 		harvesting.has_resources = FALSE
-		harvesting.resources = null
+		harvesting.resources =69ull
 		resource_field -= harvesting
 
-/obj/machinery/mining/deep_drill/attackby(obj/item/I, mob/user as mob)
+/obj/machinery/mining/deep_drill/attackby(obj/item/I,69ob/user as69ob)
 
 	if(!active)
 		if(default_deconstruction(I, user))
@@ -144,43 +144,43 @@
 
 	// Attack the drill
 	if (user.a_intent == I_HURT && user.Adjacent(src))
-		if(!(I.flags & NOBLUDGEON))
+		if(!(I.flags &69OBLUDGEON))
 			user.do_attack_animation(src)
 			var/damage = I.force * I.structure_damage_factor
-			var/volume =  min(damage * 3.5, 15)
+			var/volume = 69in(damage * 3.5, 15)
 			if (I.hitsound)
-				playsound(src, I.hitsound, volume, 1, -1)
-			visible_message(SPAN_DANGER("[src] has been hit by [user] with [I]."))
+				playsound(src, I.hitsound,69olume, 1, -1)
+			visible_message(SPAN_DANGER("69src69 has been hit by 69user69 with 69I69."))
 			take_damage(damage)
 			user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
 	// Wrench / Unwrench the drill
 	if(QUALITY_BOLT_TURNING in I.tool_qualities)
 		if(active)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+			to_chat(user, SPAN_WARNING("Turn \the 69src69 off first!"))
 			return
 		else if (check_surroundings())
-			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+			to_chat(user, SPAN_WARNING("The space around \the 69src69 has to be clear of obstacles!"))
 			return
 		else if(!(istype(loc, /turf/simulated/floor/asteroid) || istype(loc, /turf/simulated/floor/exoplanet)))
-			to_chat(user, SPAN_WARNING("\The [src] cannot dig that kind of ground!"))
+			to_chat(user, SPAN_WARNING("\The 69src69 cannot dig that kind of ground!"))
 			return
 
 		anchored = !anchored
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
+		to_chat(user, "<span class='notice'>You 69anchored ? "wrench" : "unwrench"69 \the 69src69.</span>")
 		return
 
 	// Repair the drill if it is damaged
-	var/damage = max_health - health
+	var/damage =69ax_health - health
 	if(damage && (QUALITY_WELDING in I.tool_qualities))
 		if(active)
-			to_chat(user, SPAN_WARNING("Turn \the [src] off first!"))
+			to_chat(user, SPAN_WARNING("Turn \the 69src69 off first!"))
 			return
-		to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
+		to_chat(user, "<span class='notice'>You start repairing the damage to 69src69.</span>")
 		if(I.use_tool(user, src, WORKTIME_LONG, QUALITY_WELDING, FAILCHANCE_EASY, required_stat = STAT_ROB))
 			playsound(src, 'sound/items/Welder.ogg', 100, 1)
-			to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
+			to_chat(user, "<span class='notice'>You finish repairing the damage to 69src69.</span>")
 			take_damage(-damage)
 		return
 
@@ -195,21 +195,21 @@
 			I.loc = src
 			cell = I
 			component_parts += I
-			to_chat(user, "You install \the [I].")
+			to_chat(user, "You install \the 69I69.")
 		return
 
 	..()
 
-/obj/machinery/mining/deep_drill/attack_hand(mob/user as mob)
+/obj/machinery/mining/deep_drill/attack_hand(mob/user as69ob)
 
 	if (panel_open && cell)
-		to_chat(user, "You take out \the [cell].")
+		to_chat(user, "You take out \the 69cell69.")
 		cell.loc = get_turf(user)
 		component_parts -= cell
-		cell = null
+		cell =69ull
 		return
 	else if(need_player_check)
-		to_chat(user, "You hit the manual override and reset the drill's error checking.")
+		to_chat(user, "You hit the69anual override and reset the drill's error checking.")
 		need_player_check = FALSE
 		if(anchored)
 			get_resource_field()
@@ -219,27 +219,27 @@
 		if(health == 0)
 			to_chat(user, SPAN_NOTICE("The drill is too damaged to be turned on."))
 		else if(!anchored)
-			to_chat(user, SPAN_NOTICE("The drill needs to be anchored to be turned on."))
+			to_chat(user, SPAN_NOTICE("The drill69eeds to be anchored to be turned on."))
 		else if(!active && check_surroundings())
-			to_chat(user, SPAN_WARNING("The space around \the [src] has to be clear of obstacles!"))
+			to_chat(user, SPAN_WARNING("The space around \the 69src69 has to be clear of obstacles!"))
 		else if(world.time - last_use < DRILL_COOLDOWN)
-			to_chat(user, SPAN_WARNING("\The [src] needs some time to cool down! [round((last_use + DRILL_COOLDOWN - world.time) / 10)] seconds remaining."))
+			to_chat(user, SPAN_WARNING("\The 69src6969eeds some time to cool down! 69round((last_use + DRILL_COOLDOWN - world.time) / 10)69 seconds remaining."))
 		else if(use_cell_power())
 			active = !active
 			if(active)
 				var/turf/simulated/T = get_turf(loc)
-				GC = new /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
-				visible_message(SPAN_NOTICE("\The [src] lurches downwards, grinding noisily."))
+				GC =69ew /datum/golem_controller(location=T, seismic=T.seismic_activity, drill=src)
+				visible_message(SPAN_NOTICE("\The 69src69 lurches downwards, grinding69oisily."))
 				last_use = world.time
 				need_update_field = TRUE
 			else
 				GC.stop()
-				GC = null
-				visible_message(SPAN_NOTICE("\The [src] shudders to a grinding halt."))
+				GC =69ull
+				visible_message(SPAN_NOTICE("\The 69src69 shudders to a grinding halt."))
 		else
 			to_chat(user, SPAN_NOTICE("The drill is unpowered."))
 	else
-		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial machinery with wires exposed is a bad idea."))
+		to_chat(user, SPAN_NOTICE("Turning on a piece of industrial69achinery with wires exposed is a bad idea."))
 
 	update_icon()
 
@@ -267,7 +267,7 @@
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/stock_parts/capacitor))
 			charge_use -= 8 * (P.rating - harvest_speed)
-			charge_use = max(charge_use, 0)
+			charge_use =69ax(charge_use, 0)
 		if(istype(P, /obj/item/stock_parts/scanning_module))
 			radius = RADIUS + P.rating
 	cell = locate(/obj/item/cell/large) in component_parts
@@ -275,12 +275,12 @@
 /obj/machinery/mining/deep_drill/proc/system_error(error)
 
 	if(error)
-		visible_message(SPAN_NOTICE("\The [src] flashes a '[error]' warning."))
+		visible_message(SPAN_NOTICE("\The 69src69 flashes a '69error69' warning."))
 	need_player_check = TRUE
 	active = FALSE
 	if(GC)
 		GC.stop()
-		GC = null
+		GC =69ull
 	update_icon()
 
 /obj/machinery/mining/deep_drill/proc/get_resource_field()
@@ -293,7 +293,7 @@
 
 	for(var/turf/simulated/mine_trufs in range(T, radius))
 		if(mine_trufs.has_resources)
-			resource_field += mine_trufs
+			resource_field +=69ine_trufs
 
 	if(!resource_field.len)
 		system_error("resources depleted")
@@ -306,7 +306,7 @@
 	return FALSE
 
 /obj/machinery/mining/deep_drill/proc/check_surroundings()
-	// Check if there is no dense obstacles around the drill to avoid blocking access to it
+	// Check if there is69o dense obstacles around the drill to avoid blocking access to it
 	for(var/turf/F in block(locate(x - 1, y - 1, z), locate(x + 1, y + 1, z)))
 		if(F != loc)
 			if(F.density)
@@ -318,7 +318,7 @@
 
 /obj/machinery/mining/deep_drill/attack_generic(mob/user, damage)
 	user.do_attack_animation(src)
-	visible_message(SPAN_DANGER("\The [user] smashes into \the [src]!"))
+	visible_message(SPAN_DANGER("\The 69user69 smashes into \the 69src69!"))
 	take_damage(damage)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN * 1.5)
 
@@ -328,7 +328,7 @@
 	take_damage(damage)
 
 /obj/machinery/mining/deep_drill/proc/take_damage(value)
-	health = min(max(health - value, 0), max_health)
+	health =69in(max(health -69alue, 0),69ax_health)
 	if(health == 0)
 		system_error("critical damage")
 		if(prob(10)) // Some chance that the drill completely blows up
@@ -340,21 +340,21 @@
 /obj/machinery/mining/deep_drill/examine(mob/user)
 	. = ..()
 	if(health <= 0)
-		to_chat(user, "\The [src] is wrecked.")
-	else if(health < max_health * 0.25)
-		to_chat(user, "<span class='danger'>\The [src] looks like it's about to break!</span>")
-	else if(health < max_health * 0.5)
-		to_chat(user, "<span class='danger'>\The [src] looks seriously damaged!</span>")
-	else if(health < max_health * 0.75)
-		to_chat(user, "\The [src] shows signs of damage!")
+		to_chat(user, "\The 69src69 is wrecked.")
+	else if(health <69ax_health * 0.25)
+		to_chat(user, "<span class='danger'>\The 69src69 looks like it's about to break!</span>")
+	else if(health <69ax_health * 0.5)
+		to_chat(user, "<span class='danger'>\The 69src69 looks seriously damaged!</span>")
+	else if(health <69ax_health * 0.75)
+		to_chat(user, "\The 69src69 shows signs of damage!")
 
 /obj/machinery/mining/deep_drill/verb/unload()
-	set name = "Unload Drill"
+	set69ame = "Unload Drill"
 	set category = "Object"
 	set src in oview(1)
 
 	var/mob/M = usr
-	if(ismob(M) && M.incapacitated())
+	if(ismob(M) &&69.incapacitated())
 		return
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
@@ -363,7 +363,7 @@
 			O.loc = B
 		to_chat(usr, SPAN_NOTICE("You unload the drill's storage cache into the ore box."))
 	else
-		to_chat(usr, SPAN_NOTICE("You must move an ore box up to the drill before you can unload it."))
+		to_chat(usr, SPAN_NOTICE("You69ust69ove an ore box up to the drill before you can unload it."))
 
 #undef RADIUS
 #undef DRILL_COOLDOWN

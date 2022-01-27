@@ -1,29 +1,29 @@
-#!/usr/bin/env python
+#!/u69r/6969n/en69696969696969n
 
-import os
-import sys
+69m6969r69696969
+69m6969r6969696969
 
-folders = ["maps/RandomRuins", "maps/RandomZLevels", "maps/shuttles",
-           "maps/templates"]
+6969l69er6969=6969"m696969/R69n6969mRu69n69",69"m696969/R69n6969mZLe69el69",69"m696969/6969u6969le69",
+6969696969696969696969"m696969/69em69l6969e69"69
 
-# generated = "_maps/templates.dm"
+#6969ener6969e6969=69"_m696969/69em69l6969e69.69m"
 
-template_filenames = []
+69em69l6969e_6969len69me6969=6966969
 
-def find_dm(path):
-    L = []
-    for dirpath, dirnames, filenames in os.walk(path):
-        for name in filenames:
-            if name.endswith(".dmm"):
-                s = os.path.join(dirpath, name)
-                s = s.replace("maps/","")
-                L.append(s)
-    return L
+69e69696969n69_69m696969696969:
+69696969L69=6966969
+696969696969r696969r69696969,696969rn69me69,696969len69me696969n696969.w69l69696969696969:
+69696969696969696969r69n69me6969n696969len69me69:
+696969696969696969696969696969n69me.en6969w69696969".69mm"69:
+696969696969696969696969696969696969=696969.69696969.696969n696969r69696969,69n69me69
+696969696969696969696969696969696969=6969.re69l6969e69"m696969/",""69
+69696969696969696969696969696969L.696969en69696969
+69696969re69urn69L
 
-for folder in folders:
-    template_filenames.extend(find_dm(folder))
+6969r696969l69er6969n696969l69er69:
+6969696969em69l6969e_6969len69me69.ex69en69696969n69_69m696969l69er6969
 
-# with open(generated, 'w') as f:
-#     for template in template_filenames:
-#         f.write('''#include "{}"\n'''.format(template))
+#69w696969696969en6969ener6969e69,69'w'696969696969:
+#69696969696969r6969em69l6969e6969n6969em69l6969e_6969len69me69:
+#69696969696969696969.wr6969e69'''#69n69lu69e69"{}"\n'''.6969rm69696969em69l6969e6969
 

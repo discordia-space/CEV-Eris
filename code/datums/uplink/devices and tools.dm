@@ -9,7 +9,7 @@
 	item_cost = 5
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/storage/toolbox/syndicate
-	desc = "Danger. Very robust. Filled with advanced tools."
+	desc = "Danger.69ery robust. Filled with advanced tools."
 
 /datum/uplink_item/item/tools/gentleman_kit
 	name = "Gentleman's Kit"
@@ -30,7 +30,7 @@
 	desc = "A briefcase with 10,000 untraceable credits for funding your sneaky activities."
 
 /datum/uplink_item/item/tools/pocketchange
-	name = "Spending Money"
+	name = "Spending69oney"
 	item_cost = 1
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/spacecash/bundle/c500
@@ -43,12 +43,12 @@
 	path = /obj/item/plastique
 
 /datum/uplink_item/item/tools/heavy_vest
-	name = "Heavy Armor Vest"
+	name = "Heavy Armor69est"
 	item_cost = 6
 	path = /obj/item/clothing/suit/storage/vest/merc
 
 /datum/uplink_item/item/tools/full_heavy_vest
-	name = "Fullbody Heavy Armor Vest"
+	name = "Fullbody Heavy Armor69est"
 	item_cost = 12
 	path = /obj/item/clothing/suit/storage/vest/merc/full
 
@@ -79,12 +79,12 @@
 	item_cost = 6
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/tool/multitool/hacktool
-	desc = "Appears and functions as a standard multitool until the mode is toggled by applying a screwdriver appropriately. \
-			When in hacking mode this device will grant full access to any standard airlock within 20 to 40 seconds. \
+	desc = "Appears and functions as a standard69ultitool until the69ode is toggled by applying a screwdriver appropriately. \
+			When in hacking69ode this device will grant full access to any standard airlock within 20 to 40 seconds. \
 			This device will also be able to immediately access the last 6 to 8 hacked airlocks."
 
 /datum/uplink_item/item/tools/space_suit
-	name = "Mercenary Voidsuit"
+	name = "Mercenary69oidsuit"
 	item_cost = 6
 	path = /obj/item/storage/box/syndie_kit/space
 
@@ -114,7 +114,7 @@
 	antag_roles = list(ROLE_MERCENARY)
 
 /datum/uplink_item/item/tools/ai_module
-	name = "Hacked AI Upload Module"
+	name = "Hacked AI Upload69odule"
 	item_cost = 7
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/electronics/ai_module/syndicate
@@ -133,7 +133,7 @@
 
 /datum/uplink_item/item/tools/mind_fryer
 	name = "Mind Fryer"
-	desc = "When activated, attacks the minds of people nearby, causing sanity loss and inducing mental breakdowns. \
+	desc = "When activated, attacks the69inds of people nearby, causing sanity loss and inducing69ental breakdowns. \
 			The device owner is immune to this effect."
 	item_cost = 2
 	path = /obj/item/device/mind_fryer
@@ -148,7 +148,7 @@
 /datum/uplink_item/item/tools/spy_sensor
 	name = "Spying Sensor (4x)"
 	desc = "A set of sensor packages designed to collect some information for your client. \
-			Place the sensors in target area, make sure to activate each one and do not move or otherwise disturb them."
+			Place the sensors in target area,69ake sure to activate each one and do not69ove or otherwise disturb them."
 	item_cost = 1
 	path = /obj/item/storage/box/syndie_kit/spy_sensor
 	antag_roles = list(ROLE_CONTRACTOR, ROLE_BLITZ)
@@ -161,7 +161,7 @@
 			S.owner = U.uplink_owner
 
 /datum/uplink_item/item/tools/bsdm
-	name = "Blue Space Direct Mail Unit"
+	name = "Blue Space Direct69ail Unit"
 	item_cost = 1
 	path = /obj/item/storage/bsdm
 	antag_roles = ROLES_CONTRACT
@@ -176,7 +176,7 @@
 		B.owner = U.uplink_owner
 
 /datum/uplink_item/item/tools/bsdm_free
-	name = "Blue Space Direct Mail Unit"
+	name = "Blue Space Direct69ail Unit"
 	item_cost = 0
 	path = /obj/item/storage/bsdm
 	antag_roles = ROLES_CONTRACT
@@ -189,7 +189,7 @@
 	if(.)
 		var/obj/item/storage/bsdm/B = .
 		B.owner = U.uplink_owner
-		U.bsdm_time = world.time + 10 MINUTES
+		U.bsdm_time = world.time + 1069INUTES
 
 /datum/uplink_item/item/tools/syringes
 	name = "Box of syringes"
@@ -208,12 +208,12 @@
 
 /datum/uplink_item/item/tools/blitz_hp_upgrade
 	name = "Blitzshell Armour Augmentation"
-	desc = "Augment your chassis to take more blows before destruction."
+	desc = "Augment your chassis to take69ore blows before destruction."
 	item_cost = 15
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_hp_upgrade/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		BS.adjustMaxHealth(30)
@@ -229,24 +229,24 @@
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_cell_upgrade/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/cell/C = BS.get_cell()
 		if(C)
 			C.maxcharge *= 1.5
-			to_chat(BS, SPAN_NOTICE("Your cell's maximum charge has been augmented."))
+			to_chat(BS, SPAN_NOTICE("Your cell's69aximum charge has been augmented."))
 		return 1
 	return 0
 
 /datum/uplink_item/item/tools/blitz_speed_upgrade
 	name = "Blitzshell Speed Upgrade"
-	desc = "Remove limiting factors on your motors, allowing you to move faster."
+	desc = "Remove limiting factors on your69otors, allowing you to69ove faster."
 	item_cost = 20
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_speed_upgrade/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		BS.speed_factor += 0.2
@@ -260,7 +260,7 @@
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_laserweapon/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/gun/energy/laser/mounted/blitz) in BS.module.modules)
@@ -276,7 +276,7 @@
 	item_cost = 30
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_shotgun/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_shotgun/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/gun/energy/shrapnel/mounted) in BS.module.modules)
@@ -293,13 +293,13 @@
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_nanorepair/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/device/nanite_container/NC = locate() in BS.module.modules
 		if(NC)
 			NC.charges += 1
-			to_chat(BS, SPAN_NOTICE("You now have [NC.charges] charges in your [NC]"))
+			to_chat(BS, SPAN_NOTICE("You now have 69NC.charges69 charges in your 69NC69"))
 			return 1
 	return 0
 
@@ -310,7 +310,7 @@
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_smokescreen/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/device/smokescreen) in BS.module.modules)
@@ -327,13 +327,13 @@
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_smokescharge/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_smokescharge/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		var/obj/item/device/smokescreen/SS = locate() in BS.module.modules
 		if(SS)
 			SS.charges += 1
-			to_chat(BS, SPAN_NOTICE("You now have [SS.charges] charges in your [SS]"))
+			to_chat(BS, SPAN_NOTICE("You now have 69SS.charges69 charges in your 69SS69"))
 			return 1
 		else
 			to_chat(BS, SPAN_NOTICE("You do not have smoke deployment system unlocked"))
@@ -346,7 +346,7 @@
 	antag_roles = list(ROLE_BLITZ)
 
 
-/datum/uplink_item/item/tools/blitz_reinforcements/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_reinforcements/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	to_chat(user, SPAN_NOTICE("Additional Blitzshell inbound to your position."))
 	spawn(5)
 		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
@@ -362,7 +362,7 @@
 	item_cost = 12
 	antag_roles = list(ROLE_BLITZ)
 
-/datum/uplink_item/item/tools/blitz_harpoon/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/living/user)
+/datum/uplink_item/item/tools/blitz_harpoon/get_goods(var/obj/item/device/uplink/U,69ar/loc,69ar/mob/living/user)
 	if(user && istype(user, /mob/living/silicon/robot/drone/blitzshell))
 		var/mob/living/silicon/robot/drone/blitzshell/BS = user
 		if(locate(/obj/item/bluespace_harpoon/mounted/blitz) in BS.module.modules)
@@ -373,7 +373,7 @@
 
 /datum/uplink_item/item/tools/mindreader
 	name = "Mindreader"
-	desc = "Place on your victim's head to extract memories from their brain after a mental breakdown."
+	desc = "Place on your69ictim's head to extract69emories from their brain after a69ental breakdown."
 	item_cost = 20
 	antag_roles = list(ROLE_CONTRACTOR,ROLE_MARSHAL,ROLE_INQUISITOR,ROLE_MERCENARY,ROLE_CARRION)
 	path = /obj/item/clothing/head/mindreader

@@ -1,7 +1,7 @@
 //microscope code itself
 /obj/machinery/microscope
-	name = "high powered electron microscope"
-	desc = "A highly advanced microscope capable of zooming up to 3000x."
+	name = "high powered electron69icroscope"
+	desc = "A highly advanced69icroscope capable of zooming up to 3000x."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "microscope"
 	anchored = TRUE
@@ -10,14 +10,14 @@
 	var/obj/item/sample = null
 	var/report_num = 0
 
-/obj/machinery/microscope/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/microscope/attackby(obj/item/W as obj,69ob/user as69ob)
 
 	if(sample)
-		to_chat(user, SPAN_WARNING("There is already a slide in the microscope."))
+		to_chat(user, SPAN_WARNING("There is already a slide in the69icroscope."))
 		return
 
 	if(istype(W, /obj/item/forensics/swab)|| istype(W, /obj/item/sample/fibers) || istype(W, /obj/item/sample/print))
-		to_chat(user, SPAN_NOTICE("You insert \the [W] into the microscope."))
+		to_chat(user, SPAN_NOTICE("You insert \the 69W69 into the69icroscope."))
 		user.unEquip(W)
 		W.forceMove(src)
 		sample = W
@@ -27,13 +27,13 @@
 /obj/machinery/microscope/attack_hand(mob/user)
 
 	if(!sample)
-		to_chat(user, SPAN_WARNING("The microscope has no sample to examine."))
+		to_chat(user, SPAN_WARNING("The69icroscope has no sample to examine."))
 		return
 
-	to_chat(user, SPAN_NOTICE("The microscope whirrs as you examine \the [sample]."))
+	to_chat(user, SPAN_NOTICE("The69icroscope whirrs as you examine \the 69sample69."))
 
 	if(!do_after(user, 25, src) || !sample)
-		to_chat(user, SPAN_NOTICE("You stop examining \the [sample]."))
+		to_chat(user, SPAN_NOTICE("You stop examining \the 69sample69."))
 		return
 
 	to_chat(user, SPAN_NOTICE("Printing findings now..."))
@@ -45,27 +45,27 @@
 	if(istype(sample, /obj/item/forensics/swab))
 		var/obj/item/forensics/swab/swab = sample
 
-		report.name = "GSR report #[++report_num]: [swab.name]"
-		report.info = "<b>Scanned item:</b><br>[swab.name]<br><br>"
+		report.name = "GSR report #69++report_num69: 69swab.name69"
+		report.info = "<b>Scanned item:</b><br>69swab.name69<br><br>"
 
 		if(swab.gsr)
-			report.info += "Residue from a [swab.gsr] bullet detected."
+			report.info += "Residue from a 69swab.gsr69 bullet detected."
 		else
 			report.info += "No gunpowder residue found."
 
 	else if(istype(sample, /obj/item/sample/fibers))
 		var/obj/item/sample/fibers/fibers = sample
-		report.name = "Fiber report #[++report_num]: [fibers.name]"
-		report.info = "<b>Scanned item:</b><br>[fibers.name]<br><br>"
+		report.name = "Fiber report #69++report_num69: 69fibers.name69"
+		report.info = "<b>Scanned item:</b><br>69fibers.name69<br><br>"
 		if(fibers.evidence)
 			report.info = "Molecular analysis on provided sample has determined the presence of unique fiber strings.<br><br>"
 			for(var/fiber in fibers.evidence)
-				report.info += "<span class='notice'>Most likely match for fibers: [fiber]</span><br><br>"
+				report.info += "<span class='notice'>Most likely69atch for fibers: 69fiber69</span><br><br>"
 		else
 			report.info += "No fibers found."
 	else if(istype(sample, /obj/item/sample/print))
-		report.name = "Fingerprint report #[report_num]: [sample.name]"
-		report.info = "<b>Fingerprint analysis report #[report_num]</b>: [sample.name]<br>"
+		report.name = "Fingerprint report #69report_num69: 69sample.name69"
+		report.info = "<b>Fingerprint analysis report #69report_num69</b>: 69sample.name69<br>"
 		var/obj/item/sample/print/card = sample
 		if(card.evidence && card.evidence.len)
 			report.info += "Surface analysis has determined unique fingerprint strings:<br><br>"
@@ -74,7 +74,7 @@
 				if(!is_complete_print(prints))
 					report.info += "INCOMPLETE PRINT"
 				else
-					report.info += "[prints]"
+					report.info += "69prints69"
 				report.info += "<br>"
 		else
 			report.info += "No information available."
@@ -89,9 +89,9 @@
 	if(!istype(remover) || remover.incapacitated() || !Adjacent(remover))
 		return
 	if(!sample)
-		to_chat(remover, SPAN_WARNING("\The [src] does not have a sample in it."))
+		to_chat(remover, SPAN_WARNING("\The 69src69 does not have a sample in it."))
 		return
-	to_chat(remover, SPAN_NOTICE("You remove \the [sample] from \the [src]."))
+	to_chat(remover, SPAN_NOTICE("You remove \the 69sample69 from \the 69src69."))
 	sample.forceMove(get_turf(src))
 	remover.put_in_hands(sample)
 	sample = null

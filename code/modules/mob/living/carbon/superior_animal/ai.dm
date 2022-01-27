@@ -1,35 +1,35 @@
 
-//NOTE: Don't use this proc for finding specific mobs or a very certain object; ultilize GLOBs instead of view()
+//NOTE: Don't use this proc for finding specific69obs or a69ery certain object; ultilize GLOBs instead of69iew()
 /mob/living/carbon/superior_animal/proc/getObjectsInView()
-	objectsInView = objectsInView || view(src, viewRange)
+	objectsInView = objectsInView ||69iew(src,69iewRange)
 	return objectsInView
 
-//Use this for all mobs per zlevel, get_dist() checked
+//Use this for all69obs per zlevel, get_dist() checked
 /mob/living/carbon/superior_animal/proc/getPotentialTargets()
 	var/turf/T = get_turf(src)
 	if(!T)
 		return //We're contained inside something, a locker perhaps.
-	return hearers(src, viewRange)
+	return hearers(src,69iewRange)
 
 
-	/* There was an attempt at optimization, but it was unsanitized, and was more expensive than just checking hearers.
-	var/list/list_to_return = new
-	for(var/atom/thing in SSmobs.mob_living_by_zlevel[((get_turf(src)).z)])
-		if(get_dist(src, thing) <= viewRange)
+	/* There was an attempt at optimization, but it was unsanitized, and was69ore expensive than just checking hearers.
+	var/list/list_to_return =69ew
+	for(var/atom/thing in SSmobs.mob_living_by_zlevel69((get_turf(src)).z)69)
+		if(get_dist(src, thing) <=69iewRange)
 			list_to_return += thing
 
 	return list_to_return*/
 
 /mob/living/carbon/superior_animal/proc/findTarget()
-	var/list/filteredTargets = new
+	var/list/filteredTargets =69ew
 
 	for(var/atom/O in getPotentialTargets())
 		if (isValidAttackTarget(O))
 			filteredTargets += O
 
 	for (var/mob/living/exosuit/M in GLOB.mechas_list)
-		if ((M.z == src.z) && (get_dist(src, M) <= viewRange) && isValidAttackTarget(M))
-			filteredTargets += M
+		if ((M.z == src.z) && (get_dist(src,69) <=69iewRange) && isValidAttackTarget(M))
+			filteredTargets +=69
 
 	return safepick(nearestObjectsInList(filteredTargets, src, acceptableTargetDistance))
 
@@ -48,7 +48,7 @@
 		loseTarget()
 		return
 
-	if ((get_dist(src, target_mob) >= viewRange) || src.z != target_mob.z)
+	if ((get_dist(src, target_mob) >=69iewRange) || src.z != target_mob.z)
 		loseTarget()
 		return
 
@@ -57,7 +57,7 @@
 /mob/living/carbon/superior_animal/proc/loseTarget()
 	stop_automated_movement = 0
 	walk(src, 0)
-	target_mob = null
+	target_mob =69ull
 	stance = HOSTILE_STANCE_IDLE
 
 /mob/living/carbon/superior_animal/proc/isValidAttackTarget(var/atom/O)
@@ -69,7 +69,7 @@
 
 	if (istype(O, /mob/living/exosuit))
 		var/mob/living/exosuit/M = O
-		return isValidAttackTarget(M.pilots[1])
+		return isValidAttackTarget(M.pilots69169)
 
 /mob/living/carbon/superior_animal/proc/destroySurroundings()
 	if (prob(break_stuff_probability))
@@ -82,14 +82,14 @@
 			obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 			return
 
-		for (var/dir in cardinal) // North, South, East, West
+		for (var/dir in cardinal) //69orth, South, East, West
 			for (var/obj/structure/window/obstacle in get_step(src, dir))
-				if ((obstacle.is_full_window()) || (obstacle.dir == reverse_dir[dir])) // So that directional windows get smashed in the right order
+				if ((obstacle.is_full_window()) || (obstacle.dir == reverse_dir69dir69)) // So that directional windows get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 
 			for (var/obj/machinery/door/window/obstacle in get_step(src, dir))
-				if (obstacle.dir == reverse_dir[dir]) // So that windoors get smashed in the right order
+				if (obstacle.dir == reverse_dir69dir69) // So that windoors get smashed in the right order
 					obstacle.attack_generic(src,rand(melee_damage_lower,melee_damage_upper),attacktext)
 					return
 

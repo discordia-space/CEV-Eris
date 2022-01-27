@@ -1,5 +1,5 @@
-//Warning! If you change icon_state or item_state, make sure you change path for sneath as well. icons/obj/sneath.dmi
-/obj/item/tool/sword/nt // not supposed to be in the game, had to make the shortsword its own type to prevent fucking up the scourge. sorry.
+//Warning! If you change icon_state or item_state,69ake sure you change path for sneath as well. icons/obj/sneath.dmi
+/obj/item/tool/sword/nt // not supposed to be in the game, had to69ake the shortsword its own type to prevent fucking up the scourge. sorry.
 	name = "NT Sword"
 	desc = "A saintly-looking sword forged to do God's work."
 	icon = 'icons/obj/nt_melee.dmi'
@@ -11,10 +11,10 @@
 	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
-	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_BIOMATTER = 25,69ATERIAL_STEEL = 5)
 	bad_type = /obj/item/tool/sword/nt
 
-/obj/item/tool/sword/nt/equipped(mob/living/M)
+/obj/item/tool/sword/nt/e69uipped(mob/living/M)
 	..()
 	if(is_held() && is_neotheology_disciple(M))
 		embed_mult = 0.1
@@ -34,7 +34,7 @@
 	spawn_blacklisted = TRUE
 	aspects = list(SANCTIFIED)
 	price_tag = 300
-	matter = list(MATERIAL_BIOMATTER = 25, MATERIAL_STEEL = 5)
+	matter = list(MATERIAL_BIOMATTER = 25,69ATERIAL_STEEL = 5)
 
 
 
@@ -47,12 +47,12 @@
 	armor_penetration = ARMOR_PEN_EXTREME
 	w_class = ITEM_SIZE_HUGE
 	price_tag = 1200
-	matter = list(MATERIAL_BIOMATTER = 75, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 1)
+	matter = list(MATERIAL_BIOMATTER = 75,69ATERIAL_STEEL = 10,69ATERIAL_PLASTEEL = 5,69ATERIAL_DIAMOND = 1)
 
 
 /obj/item/tool/knife/dagger/nt
 	name = "NT Pugio"
-	desc = "A saintly-looking dagger. May God have mercy."
+	desc = "A saintly-looking dagger.69ay God have69ercy."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_dagger"
 	item_state = "nt_dagger"
@@ -60,10 +60,10 @@
 	armor_penetration = ARMOR_PEN_MASSIVE
 	aspects = list(SANCTIFIED)
 	price_tag = 120
-	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 1)
+	matter = list(MATERIAL_BIOMATTER = 10,69ATERIAL_STEEL = 1)
 
 
-/obj/item/tool/knife/dagger/nt/equipped(mob/living/H)
+/obj/item/tool/knife/dagger/nt/e69uipped(mob/living/H)
 	..()
 	if(is_held() && is_neotheology_disciple(H))
 		embed_mult = 0.1
@@ -84,11 +84,11 @@
 	w_class = ITEM_SIZE_HUGE
 	slot_flags = SLOT_BACK
 	price_tag = 600
-	matter = list(MATERIAL_BIOMATTER = 80, MATERIAL_STEEL = 8, MATERIAL_WOOD = 10, MATERIAL_PLASTEEL = 2)
+	matter = list(MATERIAL_BIOMATTER = 80,69ATERIAL_STEEL = 8,69ATERIAL_WOOD = 10,69ATERIAL_PLASTEEL = 2)
 
 /obj/item/tool/sword/nt/scourge
 	name = "NT Scourge"
-	desc = "A saintly-looking whip that can be extended for more pain."
+	desc = "A saintly-looking whip that can be extended for69ore pain."
 	icon_state = "nt_scourge"
 	item_state = "nt_scourge"
 	force = WEAPON_FORCE_ROBUST
@@ -101,11 +101,11 @@
 	var/stun = 0
 	w_class = ITEM_SIZE_BULKY
 	price_tag = 1000
-	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
+	matter = list(MATERIAL_BIOMATTER = 50,69ATERIAL_STEEL = 5,69ATERIAL_PLASTEEL = 2)
 
 /obj/item/tool/sword/nt/scourge/attack_self(mob/user)
 	if(isBroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken."))
 		return
 	if(extended)
 		unextend()
@@ -137,7 +137,7 @@
 		icon_state = initial(icon_state)
 	..()
 
-/obj/item/tool/sword/nt/scourge/apply_hit_effect(mob/living/carbon/human/target, mob/living/user, hit_zone)
+/obj/item/tool/sword/nt/scourge/apply_hit_effect(mob/living/carbon/human/target,69ob/living/user, hit_zone)
 	..()
 	if(ishuman(target))
 		var/mob/living/carbon/human/O = target
@@ -162,9 +162,9 @@
 	throw_speed = 3
 	price_tag = 150
 	allow_spin = FALSE
-	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_STEEL = 5) // easy to mass-produce and arm the faithful
+	matter = list(MATERIAL_BIOMATTER = 10,69ATERIAL_STEEL = 5) // easy to69ass-produce and arm the faithful
 
-/obj/item/tool/sword/nt/spear/equipped(mob/living/W)
+/obj/item/tool/sword/nt/spear/e69uipped(mob/living/W)
 	..()
 	if(is_held() && is_neotheology_disciple(W))
 		embed_mult = 0.1
@@ -181,18 +181,18 @@
 		tipbroken = TRUE
 		force = force_broken
 		throwforce = throwforce_broken
-		visible_message(SPAN_DANGER("The spear-tip of the [src] bends into a useless shape!"))
+		visible_message(SPAN_DANGER("The spear-tip of the 69src69 bends into a useless shape!"))
 
 
 /obj/item/tool/sword/nt/spear/examine(mob/user)
 	..()
 	if (tipbroken)
-		to_chat(user, SPAN_WARNING("\The [src] is broken. It looks like it could be repaired with a hammer."))
+		to_chat(user, SPAN_WARNING("\The 69src69 is broken. It looks like it could be repaired with a hammer."))
 
-/obj/item/tool/sword/nt/spear/attackby(obj/item/I, var/mob/user)
+/obj/item/tool/sword/nt/spear/attackby(obj/item/I,69ar/mob/user)
 	..()
-	if (I.has_quality(QUALITY_HAMMERING))
-		if(I.use_tool(user, src, WORKTIME_FAST, QUALITY_HAMMERING, FAILCHANCE_EASY, STAT_MEC))
+	if (I.has_69uality(69UALITY_HAMMERING))
+		if(I.use_tool(user, src, WORKTIME_FAST, 69UALITY_HAMMERING, FAILCHANCE_EASY, STAT_MEC))
 			to_chat(user, SPAN_NOTICE("You repair the damaged spear-tip."))
 			tipbroken = FALSE
 			force = initial(force)
@@ -201,17 +201,17 @@
 
 /obj/item/shield/riot/nt
 	name = "NT Scutum"
-	desc = "A saintly-looking shield. May God protect you. The leather straps on the back can hold melee weapons."
+	desc = "A saintly-looking shield.69ay God protect you. The leather straps on the back can hold69elee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_shield"
 	item_state = "nt_shield"
-	matter = list(MATERIAL_BIOMATTER = 50, MATERIAL_STEEL = 10, MATERIAL_PLASTEEL = 5, MATERIAL_GOLD = 3)
+	matter = list(MATERIAL_BIOMATTER = 50,69ATERIAL_STEEL = 10,69ATERIAL_PLASTEEL = 5,69ATERIAL_GOLD = 3)
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE
 	price_tag = 1000
 	base_block_chance = 45
 	shield_difficulty = 40
-	item_flags = DRAG_AND_DROP_UNEQUIP
+	item_flags = DRAG_AND_DROP_UNE69UIP
 	shield_integrity = 130
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
@@ -228,14 +228,14 @@
 	container = new /obj/item/storage/internal(src)
 	container.storage_slots = storage_slots
 	container.can_hold = can_hold
-	container.max_w_class = max_w_class
+	container.max_w_class =69ax_w_class
 	container.master_item = src
 	..()
 
-/obj/item/shield/riot/nt/proc/handle_attack_hand(mob/user as mob)
+/obj/item/shield/riot/nt/proc/handle_attack_hand(mob/user as69ob)
 	return container.handle_attack_hand(user)
 
-/obj/item/shield/riot/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/shield/riot/nt/proc/handle_mousedrop(var/mob/user,69ar/atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 /obj/item/shield/riot/nt/MouseDrop(obj/over_object)
@@ -243,7 +243,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/shield/riot/nt/attack_hand(mob/user as mob)
+/obj/item/shield/riot/nt/attack_hand(mob/user as69ob)
 	if (loc == user)
 		container.open(user)
 	else
@@ -253,7 +253,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/riot/nt/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/nt/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/melee/baton) || istype(W, /obj/item/tool/sword/nt))
 		on_bash(W, user)
 	else
@@ -261,17 +261,17 @@
 
 /obj/item/shield/buckler/nt
 	name = "NT Parma"
-	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold melee weapons."
+	desc = "A round shield adorned with a golden trim. The leather straps on the back can hold69elee weapons."
 	icon = 'icons/obj/nt_melee.dmi'
 	icon_state = "nt_buckler"
 	item_state = "nt_buckler"
-	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_STEEL = 5, MATERIAL_PLASTEEL = 2)
+	matter = list(MATERIAL_BIOMATTER = 15,69ATERIAL_STEEL = 5,69ATERIAL_PLASTEEL = 2)
 	aspects = list(SANCTIFIED)
 	spawn_blacklisted = TRUE
 	price_tag = 300
 	base_block_chance = 35
 	shield_difficulty = 70
-	item_flags = DRAG_AND_DROP_UNEQUIP
+	item_flags = DRAG_AND_DROP_UNE69UIP
 	shield_integrity = 110
 	var/obj/item/storage/internal/container
 	var/storage_slots = 3
@@ -288,14 +288,14 @@
 	container = new /obj/item/storage/internal(src)
 	container.storage_slots = storage_slots
 	container.can_hold = can_hold
-	container.max_w_class = max_w_class
+	container.max_w_class =69ax_w_class
 	container.master_item = src
 	..()
 
-/obj/item/shield/buckler/nt/proc/handle_attack_hand(mob/user as mob)
+/obj/item/shield/buckler/nt/proc/handle_attack_hand(mob/user as69ob)
 	return container.handle_attack_hand(user)
 
-/obj/item/shield/buckler/nt/proc/handle_mousedrop(var/mob/user, var/atom/over_object)
+/obj/item/shield/buckler/nt/proc/handle_mousedrop(var/mob/user,69ar/atom/over_object)
 	return container.handle_mousedrop(user, over_object)
 
 /obj/item/shield/buckler/nt/MouseDrop(obj/over_object)
@@ -303,7 +303,7 @@
 		return TRUE
 	return ..()
 
-/obj/item/shield/buckler/nt/attack_hand(mob/user as mob)
+/obj/item/shield/buckler/nt/attack_hand(mob/user as69ob)
 	if (loc == user)
 		container.open(user)
 	else
@@ -313,7 +313,7 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/shield/riot/nt/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/shield/riot/nt/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/melee/baton) || istype(W, /obj/item/tool/sword/nt))
 		on_bash(W, user)
 	else

@@ -3,8 +3,8 @@
 
 /hook/startup/proc/populate_gender_datum_list()
 	for(var/type in typesof(/datum/gender))
-		var/datum/gender/G = new type
-		gender_datums[G.key] = G
+		var/datum/gender/G =69ew type
+		gender_datums69G.key69 = G
 	return 1
 
 /datum/gender

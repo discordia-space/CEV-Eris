@@ -30,11 +30,11 @@
 
 /obj/item/storage/secure/examine(mob/user)
 	if(..(user, 1))
-		to_chat(user, text("The service panel is [src.open ? "open" : "closed"]."))
+		to_chat(user, text("The service panel is 69src.open ? "open" : "closed"69."))
 
-/obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/storage/secure/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(locked)
-		if (istype(W, /obj/item/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
+		if (istype(W, /obj/item/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the 69src69"))
 			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
@@ -45,21 +45,21 @@
 		if (istype(W, /obj/item/tool/screwdriver))
 			if (do_after(user, 20, src))
 				src.open =! src.open
-				user.show_message(SPAN_NOTICE("You [src.open ? "open" : "close"] the service panel."))
+				user.show_message(SPAN_NOTICE("You 69src.open ? "open" : "close"69 the service panel."))
 			return
 		if ((istype(W, /obj/item/tool/multitool)) && (src.open == 1)&& (!src.l_hacking))
-			user.show_message(SPAN_NOTICE("Now attempting to reset internal memory, please hold."), 1)
+			user.show_message(SPAN_NOTICE("Now attempting to reset internal69emory, please hold."), 1)
 			src.l_hacking = 1
 			if (do_after(usr, 100, src))
 				if (prob(40))
 					src.l_setshort = 1
 					src.l_set = 0
-					user.show_message(SPAN_NOTICE("Internal memory reset. Please give it a few seconds to reinitialize."), 1)
+					user.show_message(SPAN_NOTICE("Internal69emory reset. Please give it a few seconds to reinitialize."), 1)
 					sleep(80)
 					src.l_setshort = 0
 					src.l_hacking = 0
 				else
-					user.show_message(SPAN_WARNING("Unable to reset internal memory."), 1)
+					user.show_message(SPAN_WARNING("Unable to reset internal69emory."), 1)
 					src.l_hacking = 0
 			else	src.l_hacking = 0
 			return
@@ -78,28 +78,28 @@
 	..()
 
 
-/obj/item/storage/secure/attack_self(mob/user as mob)
+/obj/item/storage/secure/attack_self(mob/user as69ob)
 	user.set_machine(src)
-	var/dat = text("<TT><B>[]</B><BR>\n\nLock Status: []",src, (src.locked ? "LOCKED" : "UNLOCKED"))
+	var/dat = text("<TT><B>6969</B><BR>\n\nLock Status: 6969",src, (src.locked ? "LOCKED" : "UNLOCKED"))
 	var/message = "Code"
 	if ((src.l_set == 0) && (!src.emagged) && (!src.l_setshort))
 		dat += text("<p>\n<b>5-DIGIT PASSCODE NOT SET.<br>ENTER NEW PASSCODE.</b>")
 	if (src.emagged)
 		dat += text("<p>\n<font color=red><b>LOCKING SYSTEM ERROR - 1701</b></font>")
 	if (src.l_setshort)
-		dat += text("<p>\n<font color=red><b>ALERT: MEMORY SYSTEM ERROR - 6040 201</b></font>")
-	message = text("[]", src.code)
+		dat += text("<p>\n<font color=red><b>ALERT:69EMORY SYSTEM ERROR - 6040 201</b></font>")
+	message = text("6969", src.code)
 	if (!src.locked)
 		message = "*****"
-	dat += text("<HR>\n>[]<BR>\n<A href='?src=\ref[];type=1'>1</A>-<A href='?src=\ref[];type=2'>2</A>-<A href='?src=\ref[];type=3'>3</A><BR>\n<A href='?src=\ref[];type=4'>4</A>-<A href='?src=\ref[];type=5'>5</A>-<A href='?src=\ref[];type=6'>6</A><BR>\n<A href='?src=\ref[];type=7'>7</A>-<A href='?src=\ref[];type=8'>8</A>-<A href='?src=\ref[];type=9'>9</A><BR>\n<A href='?src=\ref[];type=R'>R</A>-<A href='?src=\ref[];type=0'>0</A>-<A href='?src=\ref[];type=E'>E</A><BR>\n</TT>", message, src, src, src, src, src, src, src, src, src, src, src, src)
+	dat += text("<HR>\n>6969<BR>\n<A href='?src=\ref6969;type=1'>1</A>-<A href='?src=\ref6969;type=2'>2</A>-<A href='?src=\ref6969;type=3'>3</A><BR>\n<A href='?src=\ref6969;type=4'>4</A>-<A href='?src=\ref6969;type=5'>5</A>-<A href='?src=\ref6969;type=6'>6</A><BR>\n<A href='?src=\ref6969;type=7'>7</A>-<A href='?src=\ref6969;type=8'>8</A>-<A href='?src=\ref6969;type=9'>9</A><BR>\n<A href='?src=\ref6969;type=R'>R</A>-<A href='?src=\ref6969;type=0'>0</A>-<A href='?src=\ref6969;type=E'>E</A><BR>\n</TT>",69essage, src, src, src, src, src, src, src, src, src, src, src, src)
 	user << browse(dat, "window=caselock;size=300x280")
 
 /obj/item/storage/secure/Topic(href, href_list)
 	..()
 	if ((usr.stat || usr.restrained()) || (get_dist(src, usr) > 1))
 		return
-	if (href_list["type"])
-		if (href_list["type"] == "E")
+	if (href_list69"type"69)
+		if (href_list69"type"69 == "E")
 			if ((src.l_set == 0) && (length(src.code) == 5) && (!src.l_setshort) && (src.code != "ERROR"))
 				src.l_code = src.code
 				src.l_set = 1
@@ -111,23 +111,23 @@
 			else
 				src.code = "ERROR"
 		else
-			if ((href_list["type"] == "R") && (src.emagged == 0) && (!src.l_setshort))
+			if ((href_list69"type"69 == "R") && (src.emagged == 0) && (!src.l_setshort))
 				src.locked = 1
 				src.overlays = null
 				src.code = null
 				src.close(usr)
 			else
-				src.code += text("[]", href_list["type"])
+				src.code += text("6969", href_list69"type"69)
 				if (length(src.code) > 5)
 					src.code = "ERROR"
 		src.add_fingerprint(usr)
-		for(var/mob/M in viewers(1, src.loc))
-			if ((M.client && M.machine == src))
+		for(var/mob/M in69iewers(1, src.loc))
+			if ((M.client &&69.machine == src))
 				src.attack_self(M)
 			return
 	return
 
-/obj/item/storage/secure/emag_act(var/remaining_charges, var/mob/user, var/feedback)
+/obj/item/storage/secure/emag_act(var/remaining_charges,69ar/mob/user,69ar/feedback)
 	if(!emagged)
 		emagged = 1
 		src.overlays += image('icons/obj/storage.dmi', icon_sparking)
@@ -135,7 +135,7 @@
 		src.overlays = null
 		overlays += image('icons/obj/storage.dmi', icon_locking)
 		locked = 0
-		to_chat(user, (feedback ? feedback : "You short out the lock of \the [src]."))
+		to_chat(user, (feedback ? feedback : "You short out the lock of \the 69src69."))
 		return 1
 
 // -----------------------------
@@ -152,9 +152,9 @@
 	throw_range = 4
 	w_class = ITEM_SIZE_BULKY
 
-/obj/item/storage/secure/briefcase/attack_hand(mob/user as mob)
+/obj/item/storage/secure/briefcase/attack_hand(mob/user as69ob)
 	if ((src.loc == user) && (src.locked == 1))
-		to_chat(usr, SPAN_WARNING("[src] is locked and cannot be opened!"))
+		to_chat(usr, SPAN_WARNING("69src69 is locked and cannot be opened!"))
 	else if ((src.loc == user) && (!src.locked))
 		src.open(usr)
 	else

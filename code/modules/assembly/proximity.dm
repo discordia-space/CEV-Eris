@@ -38,9 +38,9 @@
 	return secured
 
 
-/obj/item/device/assembly/prox_sensor/HasProximity(atom/movable/AM as mob|obj)
+/obj/item/device/assembly/prox_sensor/HasProximity(atom/movable/AM as69ob|obj)
 	if(!istype(AM))
-		log_debug("DEBUG: HasProximity called with [AM] on [src] ([usr]).")
+		log_debug("DEBUG: HasProximity called with 69AM69 on 69src69 (69usr69).")
 		return
 	if(istype(AM, /obj/effect/beam))
 		return
@@ -55,7 +55,7 @@
 		return
 	pulse(0)
 	if(!holder)
-		mainloc.visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+		mainloc.visible_message("\icon69src69 *beep* *beep*", "*beep* *beep*")
 	cooldown = 2
 	spawn(10)
 		process_cooldown()
@@ -103,28 +103,28 @@
 		grenade.primed(scanning)
 
 
-/obj/item/device/assembly/prox_sensor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0, var/glide_size_override = 0)
+/obj/item/device/assembly/prox_sensor/Move(NewLoc, Dir = 0, step_x = 0, step_y = 0,69ar/glide_size_override = 0)
 	. = ..()
 	sense()
 
 
-/obj/item/device/assembly/prox_sensor/interact(mob/user as mob)//TODO: Change this to the wires thingy
+/obj/item/device/assembly/prox_sensor/interact(mob/user as69ob)//TODO: Change this to the wires thingy
 	if(!secured)
-		to_chat(user, SPAN_WARNING("The [name] is unsecured!"))
+		to_chat(user, SPAN_WARNING("The 69name69 is unsecured!"))
 		return
 	var/second = time % 60
 	var/minute = (time - second) / 60
 	var/dat = {"
-	<tt><b>Proximity Sensor</b><br>[minute]:[second]<br>
-	<a href='?src=\ref[src];tp=-30'>-</a>
-	<a href='?src=\ref[src];tp=-1'>-</a>
-	<a href='?src=\ref[src];tp=1'>+</a>
-	<a href='?src=\ref[src];tp=30'>+</a><br>
-	</tt><a href='?src=\ref[src];time=[!timing]'>[timing ? "Arming" : "Not Arming"]</a>
-	<br>Range: <a href='?src=\ref[src];range=-1'>-</a> [range] <a href='?src=\ref[src];range=1'>+</a>
-	<br><a href='?src=\ref[src];scanning=1'>[scanning ? "Armed" : "Unarmed"]</a> (Movement sensor active when armed!)
-	<br><br><a href='?src=\ref[src];refresh=1'>Refresh</a>
-	<br><br><a href='?src=\ref[src];close=1'>Close</a>
+	<tt><b>Proximity Sensor</b><br>69minute69:69second69<br>
+	<a href='?src=\ref69src69;tp=-30'>-</a>
+	<a href='?src=\ref69src69;tp=-1'>-</a>
+	<a href='?src=\ref69src69;tp=1'>+</a>
+	<a href='?src=\ref69src69;tp=30'>+</a><br>
+	</tt><a href='?src=\ref69src69;time=69!timing69'>69timing ? "Arming" : "Not Arming"69</a>
+	<br>Range: <a href='?src=\ref69src69;range=-1'>-</a> 69range69 <a href='?src=\ref69src69;range=1'>+</a>
+	<br><a href='?src=\ref69src69;scanning=1'>69scanning ? "Armed" : "Unarmed"69</a> (Movement sensor active when armed!)
+	<br><br><a href='?src=\ref69src69;refresh=1'>Refresh</a>
+	<br><br><a href='?src=\ref69src69;close=1'>Close</a>
 	"}
 	user << browse(dat, "window=prox")
 	onclose(user, "prox")
@@ -138,24 +138,24 @@
 		onclose(usr, "prox")
 		return
 
-	if(href_list["scanning"])
+	if(href_list69"scanning"69)
 		toggle_scan()
 
-	if(href_list["time"])
-		timing = text2num(href_list["time"])
+	if(href_list69"time"69)
+		timing = text2num(href_list69"time"69)
 		update_icon()
 
-	if(href_list["tp"])
-		var/tp = text2num(href_list["tp"])
+	if(href_list69"tp"69)
+		var/tp = text2num(href_list69"tp"69)
 		time += tp
-		time = min(max(round(time), 0), 600)
+		time =69in(max(round(time), 0), 600)
 
-	if(href_list["range"])
-		var/r = text2num(href_list["range"])
+	if(href_list69"range"69)
+		var/r = text2num(href_list69"range"69)
 		range += r
-		range = min(max(range, 1), 5)
+		range =69in(max(range, 1), 5)
 
-	if(href_list["close"])
+	if(href_list69"close"69)
 		usr << browse(null, "window=prox")
 		return
 

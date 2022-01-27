@@ -1,8 +1,8 @@
 /mob/living/silicon/robot/drone/say(var/message)
 	if(local_transmit)
 		if (src.client)
-			if(client.prefs.muted & MUTE_IC)
-				to_chat(src, "You cannot send IC messages (muted).")
+			if(client.prefs.muted &69UTE_IC)
+				to_chat(src, "You cannot send IC69essages (muted).")
 				return 0
 			if (src.client.handle_spam_prevention(message,MUTE_IC))
 				return 0
@@ -16,7 +16,7 @@
 			return emote(copytext(message,2))
 
 		if(copytext(message,1,2) == ";")
-			var/datum/language/L = all_languages[communication_channel]
+			var/datum/language/L = all_languages69communication_channel69
 			if(istype(L))
 				return L.broadcast(src,trim(copytext(message,2)))
 
@@ -29,12 +29,12 @@
 
 		for(var/mob/living/silicon/D in listeners)
 			if(D.client && D.local_transmit)
-				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
+				to_chat(D, "<b>69src69</b> transmits, \"69message69\"")
 
 		for (var/mob/M in GLOB.player_list)
 			if (isnewplayer(M))
 				continue
-			else if(M.stat == DEAD && M.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
-				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
+			else if(M.stat == DEAD &&69.get_preference_value(/datum/client_preference/ghost_ears) == GLOB.PREF_ALL_SPEECH)
+				if(M.client)69 << "<b>69src69</b> transmits, \"69message69\""
 		return 1
 	return ..(message, 0)

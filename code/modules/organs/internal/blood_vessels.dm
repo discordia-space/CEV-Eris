@@ -1,5 +1,5 @@
 /obj/item/organ/internal/blood_vessel
-	name = "blood vessel"
+	name = "blood69essel"
 	icon_state = "blood_vessel"
 	organ_efficiency = list(OP_BLOOD_VESSEL= 100)
 	desc = "Transports blood throughout the human body."
@@ -11,7 +11,7 @@
 	nutriment_req = 1
 
 /obj/item/organ/internal/blood_vessel/extensive
-	name = "extensive blood vessels"
+	name = "extensive blood69essels"
 	icon_state = "blood_vessel_extensive"
 	desc = "Now you bleed out twice as fast!"
 	organ_efficiency = list(OP_BLOOD_VESSEL = 150)

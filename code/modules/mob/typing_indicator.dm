@@ -10,7 +10,7 @@
 
 /mob/proc/set_typing_indicator(var/state)
 	if(!typing_indicator)
-		typing_indicator = new
+		typing_indicator =69ew
 		typing_indicator.icon = 'icons/mob/talk.dmi'
 		typing_indicator.icon_state = "typing"
 		typing_indicator.layer = ABOVE_MOB_LAYER

@@ -8,7 +8,7 @@
 
 // Use to show shuttle ETA/ETD times
 // Alert status
-// And arbitrary messages set by comms computer
+// And arbitrary69essa69es set by comms computer
 /obj/machinery/status_display
 	icon = 'icons/obj/status_display.dmi'
 	icon_state = "frame"
@@ -16,46 +16,46 @@
 	anchored = TRUE
 	density = FALSE
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
+	idle_power_usa69e = 10
 	var/mode = 1	// 0 = Blank
 					// 1 = Shuttle timer
-					// 2 = Arbitrary message(s)
+					// 2 = Arbitrary69essa69e(s)
 					// 3 = alert picture
 					// 4 = Supply shuttle timer
 
 	var/picture_state	// icon_state of alert picture
-	var/message1 = ""	// message line 1
-	var/message2 = ""	// message line 2
-	var/index1			// display index for scrolling messages or 0 if non-scrolling
+	var/messa69e1 = ""	//69essa69e line 1
+	var/messa69e2 = ""	//69essa69e line 2
+	var/index1			// display index for scrollin6969essa69es or 0 if non-scrollin69
 	var/index2
 	var/picture = null
 
-	var/frequency = 1435		// radio frequency
+	var/fre69uency = 1435		// radio fre69uency
 
-	var/friendc = 0      // track if Friend Computer mode
-	var/ignore_friendc = 0
+	var/friendc = 0      // track if Friend Computer69ode
+	var/i69nore_friendc = 0
 
-	maptext_height = 26
+	maptext_hei69ht = 26
 	maptext_width = 32
 
 	var/const/CHARS_PER_LINE = 5
 	var/const/STATUS_DISPLAY_BLANK = 0
 	var/const/STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME = 1
-	var/const/STATUS_DISPLAY_MESSAGE = 2
+	var/const/STATUS_DISPLAY_MESSA69E = 2
 	var/const/STATUS_DISPLAY_ALERT = 3
 	var/const/STATUS_DISPLAY_TIME = 4
 	var/const/STATUS_DISPLAY_CUSTOM = 99
 
 /obj/machinery/status_display/Destroy()
-	SSradio.remove_object(src,frequency)
-	GLOB.ai_status_display_list -= src
+	SSradio.remove_object(src,fre69uency)
+	69LOB.ai_status_display_list -= src
 	return ..()
 
-// register for radio system
+// re69ister for radio system
 /obj/machinery/status_display/Initialize()
 	. = ..()
-	SSradio.add_object(src, frequency)
-	GLOB.ai_status_display_list += src
+	SSradio.add_object(src, fre69uency)
+	69LOB.ai_status_display_list += src
 
 // timed process
 /obj/machinery/status_display/Process()
@@ -74,102 +74,102 @@
 // set what is displayed
 /obj/machinery/status_display/proc/update()
 	remove_display()
-	if(friendc && !ignore_friendc)
+	if(friendc && !i69nore_friendc)
 		set_picture("ai_friend")
 		return 1
 
 	switch(mode)
 		if(STATUS_DISPLAY_BLANK)	//blank
 			return 1
-		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emergency shuttle timer
+		if(STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME)				//emer69ency shuttle timer
 			if(evacuation_controller.is_prepared())
-				message1 = "-ETD-"
-				if (evacuation_controller.waiting_to_leave())
-					message2 = "Launch"
+				messa69e1 = "-ETD-"
+				if (evacuation_controller.waitin69_to_leave())
+					messa69e2 = "Launch"
 				else
-					message2 = get_shuttle_timer()
-					if(length(message2) > CHARS_PER_LINE)
-						message2 = "Error"
-				update_display(message1, message2)
+					messa69e2 = 69et_shuttle_timer()
+					if(len69th(messa69e2) > CHARS_PER_LINE)
+						messa69e2 = "Error"
+				update_display(messa69e1,69essa69e2)
 			else if(evacuation_controller.has_eta())
-				message1 = "-ETA-"
-				message2 = get_shuttle_timer()
-				if(length(message2) > CHARS_PER_LINE)
-					message2 = "Error"
-				update_display(message1, message2)
+				messa69e1 = "-ETA-"
+				messa69e2 = 69et_shuttle_timer()
+				if(len69th(messa69e2) > CHARS_PER_LINE)
+					messa69e2 = "Error"
+				update_display(messa69e1,69essa69e2)
 			return 1
-		if(STATUS_DISPLAY_MESSAGE)	//custom messages
+		if(STATUS_DISPLAY_MESSA69E)	//custom69essa69es
 			var/line1
 			var/line2
 
 			if(!index1)
-				line1 = message1
+				line1 =69essa69e1
 			else
-				line1 = copytext_char("[message1]|[message1]", index1, index1 + CHARS_PER_LINE)
-				var/message1_len = length_char(message1)
+				line1 = copytext_char("69messa69e169|69messa69e169", index1, index1 + CHARS_PER_LINE)
+				var/messa69e1_len = len69th_char(messa69e1)
 				index1 += SCROLL_SPEED
-				if(index1 > message1_len + 1)
-					index1 -= (message1_len + 1)
+				if(index1 >69essa69e1_len + 1)
+					index1 -= (messa69e1_len + 1)
 
 			if(!index2)
-				line2 = message2
+				line2 =69essa69e2
 			else
-				line2 = copytext_char("[message2]|[message2]", index2, index2 + CHARS_PER_LINE)
-				var/message2_len = length_char(message2)
+				line2 = copytext_char("69messa69e269|69messa69e269", index2, index2 + CHARS_PER_LINE)
+				var/messa69e2_len = len69th_char(messa69e2)
 				index2 += SCROLL_SPEED
-				if(index2 > message2_len + 1)
-					index2 -= (message2_len + 1)
+				if(index2 >69essa69e2_len + 1)
+					index2 -= (messa69e2_len + 1)
 			update_display(line1, line2)
 			return 1
 		if(STATUS_DISPLAY_ALERT)
 			set_picture(picture_state)
 			return 1
 		if(STATUS_DISPLAY_TIME)
-			message1 = "TIME"
-			message2 = stationtime2text()
-			update_display(message1, message2)
+			messa69e1 = "TIME"
+			messa69e2 = stationtime2text()
+			update_display(messa69e1,69essa69e2)
 			return 1
 	return 0
 
 /obj/machinery/status_display/examine(mob/user)
 	. = ..(user)
-	if(mode != STATUS_DISPLAY_BLANK && mode != STATUS_DISPLAY_ALERT)
-		to_chat(user, "The display says:<br>\t[sanitize(message1)]<br>\t[sanitize(message2)]")
+	if(mode != STATUS_DISPLAY_BLANK &&69ode != STATUS_DISPLAY_ALERT)
+		to_chat(user, "The display says:<br>\t69sanitize(messa69e1)69<br>\t69sanitize(messa69e2)69")
 
-/obj/machinery/status_display/proc/set_message(m1, m2)
+/obj/machinery/status_display/proc/set_messa69e(m1,692)
 	if(m1)
-		index1 = (length_char(m1) > CHARS_PER_LINE)
-		message1 = m1
+		index1 = (len69th_char(m1) > CHARS_PER_LINE)
+		messa69e1 =691
 	else
-		message1 = ""
+		messa69e1 = ""
 		index1 = 0
 
 	if(m2)
-		index2 = (length_char(m2) > CHARS_PER_LINE)
-		message2 = m2
+		index2 = (len69th_char(m2) > CHARS_PER_LINE)
+		messa69e2 =692
 	else
-		message2 = ""
+		messa69e2 = ""
 		index2 = 0
 
 /obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
 	if(!picture || picture_state != state)
 		picture_state = state
-		picture = image('icons/obj/status_display.dmi', icon_state=picture_state)
+		picture = ima69e('icons/obj/status_display.dmi', icon_state=picture_state)
 	overlays |= picture
 
 /obj/machinery/status_display/proc/update_display(line1, line2)
-	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
+	var/new_text = {"<div style="font-size:69FONT_SIZE69;color:69FONT_COLOR69;font:'69FONT_STYLE69';text-ali69n:center;"69ali69n="top">69line169<br>69line269</div>"}
 	if(maptext != new_text)
 		maptext = new_text
 
-/obj/machinery/status_display/proc/get_shuttle_timer()
-	var/timeleft = evacuation_controller.get_eta()
+/obj/machinery/status_display/proc/69et_shuttle_timer()
+	var/timeleft = evacuation_controller.69et_eta()
 	if(timeleft < 0)
 		return ""
-	return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
+	return "69add_zero(num2text((timeleft / 60) % 60),2)69:69add_zero(num2text(timeleft % 60), 2)69"
 
-/obj/machinery/status_display/proc/get_supply_shuttle_timer()
+/obj/machinery/status_display/proc/69et_supply_shuttle_timer()
 	var/datum/shuttle/autodock/ferry/supply/shuttle = SSsupply.shuttle
 	if (!shuttle)
 		return "Error"
@@ -178,7 +178,7 @@
 		var/timeleft = round((shuttle.arrive_time - world.time) / 10,1)
 		if(timeleft < 0)
 			return "Late"
-		return "[add_zero(num2text((timeleft / 60) % 60),2)]:[add_zero(num2text(timeleft % 60), 2)]"
+		return "69add_zero(num2text((timeleft / 60) % 60),2)69:69add_zero(num2text(timeleft % 60), 2)69"
 	return ""
 
 /obj/machinery/status_display/proc/remove_display()
@@ -187,21 +187,21 @@
 	if(maptext)
 		maptext = ""
 
-/obj/machinery/status_display/receive_signal(datum/signal/signal)
-	switch(signal.data["command"])
+/obj/machinery/status_display/receive_si69nal(datum/si69nal/si69nal)
+	switch(si69nal.data69"command"69)
 		if("blank")
 			mode = STATUS_DISPLAY_BLANK
 
 		if("shuttle")
 			mode = STATUS_DISPLAY_TRANSFER_SHUTTLE_TIME
 
-		if("message")
-			mode = STATUS_DISPLAY_MESSAGE
-			set_message(signal.data["msg1"], signal.data["msg2"])
+		if("messa69e")
+			mode = STATUS_DISPLAY_MESSA69E
+			set_messa69e(si69nal.data69"ms691"69, si69nal.data69"ms692"69)
 
 		if("alert")
 			mode = STATUS_DISPLAY_ALERT
-			set_picture(signal.data["picture_state"])
+			set_picture(si69nal.data69"picture_state"69)
 
 		if("time")
 			mode = STATUS_DISPLAY_TIME

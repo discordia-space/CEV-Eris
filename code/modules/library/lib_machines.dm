@@ -1,4 +1,4 @@
-/* Library Machines
+/* Library69achines
  *
  * Contains:
  *		Borrowbook datum
@@ -32,22 +32,22 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	var/author
 	var/SQLquery
 
-/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as mob)
+/obj/machinery/librarypubliccomp/attack_hand(var/mob/user as69ob)
 	usr.set_machine(src)
-	var/dat = "<HEAD><TITLE>Library Visitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+	var/dat = "<HEAD><TITLE>Library69isitor</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
 			dat += {"<h2>Search Settings</h2><br>
-			<A href='?src=\ref[src];settitle=1'>Filter by Title: [title]</A><BR>
-			<A href='?src=\ref[src];setcategory=1'>Filter by Category: [category]</A><BR>
-			<A href='?src=\ref[src];setauthor=1'>Filter by Author: [author]</A><BR>
-			<A href='?src=\ref[src];search=1'>\[Start Search\]</A><BR>"}
+			<A href='?src=\ref69src69;settitle=1'>Filter by Title: 69title69</A><BR>
+			<A href='?src=\ref69src69;setcategory=1'>Filter by Category: 69category69</A><BR>
+			<A href='?src=\ref69src69;setauthor=1'>Filter by Author: 69author69</A><BR>
+			<A href='?src=\ref69src69;search=1'>\69Start Search\69</A><BR>"}
 		if(1)
 			establish_db_connection()
 			if(!dbcon.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font><BR>"
 			else if(!SQLquery)
-				dat += "<font color=red><b>ERROR</b>: Malformed search request. Please contact your system administrator for assistance.</font><BR>"
+				dat += "<font color=red><b>ERROR</b>:69alformed search request. Please contact your system administrator for assistance.</font><BR>"
 			else
 				dat += {"<table>
 				<tr><td>AUTHOR</td><td>TITLE</td><td>CATEGORY</td><td>SS<sup>13</sup>BN</td></tr>"}
@@ -56,13 +56,13 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				query.Execute()
 
 				while(query.NextRow())
-					var/author = query.item[1]
-					var/title = query.item[2]
-					var/category = query.item[3]
-					var/id = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td>[id]</td></tr>"
+					var/author = query.item69169
+					var/title = query.item69269
+					var/category = query.item69369
+					var/id = query.item69469
+					dat += "<tr><td>69author69</td><td>69title69</td><td>69category69</td><td>69id69</td></tr>"
 				dat += "</table><BR>"
-			dat += "<A href='?src=\ref[src];back=1'>\[Go Back\]</A><BR>"
+			dat += "<A href='?src=\ref69src69;back=1'>\69Go Back\69</A><BR>"
 	user << browse(dat, "window=publiclibrary")
 	onclose(user, "publiclibrary")
 
@@ -72,36 +72,36 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		onclose(usr, "publiclibrary")
 		return
 
-	if(href_list["settitle"])
+	if(href_list69"settitle"69)
 		var/newtitle = input("Enter a title to search for:") as text|null
 		if(newtitle)
 			title = sanitize(newtitle)
 		else
-			title = null
+			title =69ull
 		title = sanitizeSQL(title)
-	if(href_list["setcategory"])
+	if(href_list69"setcategory"69)
 		var/newcategory = input("Choose a category to search for:") in list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 		if(newcategory)
 			category = sanitize(newcategory)
 		else
 			category = "Any"
 		category = sanitizeSQL(category)
-	if(href_list["setauthor"])
+	if(href_list69"setauthor"69)
 		var/newauthor = input("Enter an author to search for:") as text|null
 		if(newauthor)
 			author = sanitize(newauthor)
 		else
-			author = null
+			author =69ull
 		author = sanitizeSQL(author)
-	if(href_list["search"])
+	if(href_list69"search"69)
 		SQLquery = "SELECT author, title, category, id FROM library WHERE "
 		if(category == "Any")
-			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%'"
+			SQLquery += "author LIKE '%69author69%' AND title LIKE '%69title69%'"
 		else
-			SQLquery += "author LIKE '%[author]%' AND title LIKE '%[title]%' AND category='[category]'"
+			SQLquery += "author LIKE '%69author69%' AND title LIKE '%69title69%' AND category='69category69'"
 		screenstate = 1
 
-	if(href_list["back"])
+	if(href_list69"back"69)
 		screenstate = 0
 
 	src.updateUsrDialog()
@@ -112,45 +112,45 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 /*
  * Library Computer
  */
-// TODO: Make this an actual /obj/machinery/computer that can be crafted from circuit boards and such
-// It is August 22nd, 2012... This TODO has already been here for months.. I wonder how long it'll last before someone does something about it.
+// TODO:69ake this an actual /obj/machinery/computer that can be crafted from circuit boards and such
+// It is August 22nd, 2012... This TODO has already been here for69onths.. I wonder how long it'll last before someone does something about it.
 /obj/machinery/librarycomp
 	name = "Check-In/Out Computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
 	anchored = TRUE
 	density = TRUE
-	var/screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
+	var/screenstate = 0 // 0 -69ain69enu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	var/sortby = "author"
 	var/buffer_book
 	var/buffer_mob
 	var/upload_category = "Fiction"
 	var/list/checkouts = list()
 	var/list/inventory = list()
-	var/checkoutperiod = 5 // In minutes
+	var/checkoutperiod = 5 // In69inutes
 	var/obj/machinery/libraryscanner/scanner // Book scanner that will be used when uploading books to the Archive
 
-	var/bibledelay = 0 // LOL NO SPAM (1 minute delay) -- Doohl
+	var/bibledelay = 0 // LOL69O SPAM (169inute delay) -- Doohl
 
-/obj/machinery/librarycomp/attack_hand(var/mob/user as mob)
+/obj/machinery/librarycomp/attack_hand(var/mob/user as69ob)
 	usr.set_machine(src)
-	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
+	var/dat = "<HEAD><TITLE>Book Inventory69anagement</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
-			// Main Menu
-			dat += {"<A href='?src=\ref[src];switchscreen=1'>1. View General Inventory</A><BR>
-			<A href='?src=\ref[src];switchscreen=2'>2. View Checked Out Inventory</A><BR>
-			<A href='?src=\ref[src];switchscreen=3'>3. Check out a Book</A><BR>
-			<A href='?src=\ref[src];switchscreen=4'>4. Connect to External Archive</A><BR>
-			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>"}
+			//69ain69enu
+			dat += {"<A href='?src=\ref69src69;switchscreen=1'>1.69iew General Inventory</A><BR>
+			<A href='?src=\ref69src69;switchscreen=2'>2.69iew Checked Out Inventory</A><BR>
+			<A href='?src=\ref69src69;switchscreen=3'>3. Check out a Book</A><BR>
+			<A href='?src=\ref69src69;switchscreen=4'>4. Connect to External Archive</A><BR>
+			<A href='?src=\ref69src69;switchscreen=5'>5. Upload69ew Title to Archive</A><BR>"}
 			if(src.emagged)
-				dat += "<A href='?src=\ref[src];switchscreen=6'>6. Access the Forbidden Lore Vault</A><BR>"
+				dat += "<A href='?src=\ref69src69;switchscreen=6'>6. Access the Forbidden Lore69ault</A><BR>"
 		if(1)
 			// Inventory
 			dat += "<H3>Inventory</H3><BR>"
 			for(var/obj/item/book/b in inventory)
-				dat += "[b.name] <A href='?src=\ref[src];delbook=\ref[b]'>(Delete)</A><BR>"
-			dat += "<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
+				dat += "69b.name69 <A href='?src=\ref69src69;delbook=\ref69b69'>(Delete)</A><BR>"
+			dat += "<A href='?src=\ref69src69;switchscreen=0'>(Return to69ain69enu)</A><BR>"
 		if(2)
 			// Checked Out
 			dat += "<h3>Checked Out Books</h3><BR>"
@@ -163,85 +163,85 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				//timedue *= 10
 				timedue /= 600
 				if(timedue <= 0)
-					timedue = "<font color=red><b>(OVERDUE)</b> [timedue]</font>"
+					timedue = "<font color=red><b>(OVERDUE)</b> 69timedue69</font>"
 				else
 					timedue = round(timedue)
-				dat += {"\"[b.bookname]\", Checked out to: [b.mobname]<BR>--- Taken: [timetaken] minutes ago, Due: in [timedue] minutes<BR>
-				<A href='?src=\ref[src];checkin=\ref[b]'>(Check In)</A><BR><BR>"}
-			dat += "<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
+				dat += {"\"69b.bookname69\", Checked out to: 69b.mobname69<BR>--- Taken: 69timetaken6969inutes ago, Due: in 69timedue6969inutes<BR>
+				<A href='?src=\ref69src69;checkin=\ref69b69'>(Check In)</A><BR><BR>"}
+			dat += "<A href='?src=\ref69src69;switchscreen=0'>(Return to69ain69enu)</A><BR>"
 		if(3)
 			// Check Out a Book
 			dat += {"<h3>Check Out a Book</h3><BR>
-			Book: [src.buffer_book]
-			<A href='?src=\ref[src];editbook=1'>\[Edit\]</A><BR>
-			Recipient: [src.buffer_mob]
-			<A href='?src=\ref[src];editmob=1'>\[Edit\]</A><BR>
-			Checkout Date : [world.time/600]<BR>
-			Due Date: [(world.time + checkoutperiod)/600]<BR>
-			(Checkout Period: [checkoutperiod] minutes) (<A href='?src=\ref[src];increasetime=1'>+</A>/<A href='?src=\ref[src];decreasetime=1'>-</A>)
-			<A href='?src=\ref[src];checkout=1'>(Commit Entry)</A><BR>
-			<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"}
+			Book: 69src.buffer_book69
+			<A href='?src=\ref69src69;editbook=1'>\69Edit\69</A><BR>
+			Recipient: 69src.buffer_mob69
+			<A href='?src=\ref69src69;editmob=1'>\69Edit\69</A><BR>
+			Checkout Date : 69world.time/60069<BR>
+			Due Date: 69(world.time + checkoutperiod)/60069<BR>
+			(Checkout Period: 69checkoutperiod6969inutes) (<A href='?src=\ref69src69;increasetime=1'>+</A>/<A href='?src=\ref69src69;decreasetime=1'>-</A>)
+			<A href='?src=\ref69src69;checkout=1'>(Commit Entry)</A><BR>
+			<A href='?src=\ref69src69;switchscreen=0'>(Return to69ain69enu)</A><BR>"}
 		if(4)
 			dat += "<h3>External Archive</h3>"
 			establish_db_connection()
 			if(!dbcon.IsConnected())
 				dat += "<font color=red><b>ERROR</b>: Unable to contact External Archive. Please contact your system administrator for assistance.</font>"
 			else
-				dat += {"<A href='?src=\ref[src];orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
+				dat += {"<A href='?src=\ref69src69;orderbyid=1'>(Order book by SS<sup>13</sup>BN)</A><BR><BR>
 				<table>
-				<tr><td><A href='?src=\ref[src];sort=author>AUTHOR</A></td><td><A href='?src=\ref[src];sort=title>TITLE</A></td><td><A href='?src=\ref[src];sort=category>CATEGORY</A></td><td></td></tr>"}
-				var/DBQuery/query = dbcon.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
+				<tr><td><A href='?src=\ref69src69;sort=author>AUTHOR</A></td><td><A href='?src=\ref69src69;sort=title>TITLE</A></td><td><A href='?src=\ref69src69;sort=category>CATEGORY</A></td><td></td></tr>"}
+				var/DBQuery/query = dbcon.NewQuery("SELECT id, author, title, category FROM library ORDER BY 69sortby69")
 				query.Execute()
 
 				while(query.NextRow())
-					var/id = query.item[1]
-					var/author = query.item[2]
-					var/title = query.item[3]
-					var/category = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A></td></tr>"
+					var/id = query.item69169
+					var/author = query.item69269
+					var/title = query.item69369
+					var/category = query.item69469
+					dat += "<tr><td>69author69</td><td>69title69</td><td>69category69</td><td><A href='?src=\ref69src69;targetid=69id69'>\69Order\69</A></td></tr>"
 				dat += "</table>"
-			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
+			dat += "<BR><A href='?src=\ref69src69;switchscreen=0'>(Return to69ain69enu)</A><BR>"
 		if(5)
-			dat += "<H3>Upload a New Title</H3>"
+			dat += "<H3>Upload a69ew Title</H3>"
 			if(!scanner)
 				for(var/obj/machinery/libraryscanner/S in range(9))
 					scanner = S
 					break
 			if(!scanner)
-				dat += "<FONT color=red>No scanner found within wireless network range.</FONT><BR>"
+				dat += "<FONT color=red>No scanner found within wireless69etwork range.</FONT><BR>"
 			else if(!scanner.cache)
-				dat += "<FONT color=red>No data found in scanner memory.</FONT><BR>"
+				dat += "<FONT color=red>No data found in scanner69emory.</FONT><BR>"
 			else
-				dat += {"<TT>Data marked for upload...</TT><BR>
-				<TT>Title: </TT>[scanner.cache.name]<BR>"}
+				dat += {"<TT>Data69arked for upload...</TT><BR>
+				<TT>Title: </TT>69scanner.cache.name69<BR>"}
 				if(!scanner.cache.author)
 					scanner.cache.author = "Anonymous"
-				dat += {"<TT>Author: </TT><A href='?src=\ref[src];setauthor=1'>[scanner.cache.author]</A><BR>
-				<TT>Category: </TT><A href='?src=\ref[src];setcategory=1'>[upload_category]</A><BR>
-				<A href='?src=\ref[src];upload=1'>\[Upload\]</A><BR>"}
-			dat += "<A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
+				dat += {"<TT>Author: </TT><A href='?src=\ref69src69;setauthor=1'>69scanner.cache.author69</A><BR>
+				<TT>Category: </TT><A href='?src=\ref69src69;setcategory=1'>69upload_category69</A><BR>
+				<A href='?src=\ref69src69;upload=1'>\69Upload\69</A><BR>"}
+			dat += "<A href='?src=\ref69src69;switchscreen=0'>(Return to69ain69enu)</A><BR>"
 		if(6)
-			dat += {"<h3>Accessing Forbidden Lore Vault v 1.3</h3>
-			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes no responsibilities for loss of sanity resulting from this action.<p>
-			<A href='?src=\ref[src];arccheckout=1'>Yes.</A><BR>
-			<A href='?src=\ref[src];switchscreen=0'>No.</A><BR>"}
+			dat += {"<h3>Accessing Forbidden Lore69ault69 1.3</h3>
+			Are you absolutely sure you want to proceed? EldritchTomes Inc. takes69o responsibilities for loss of sanity resulting from this action.<p>
+			<A href='?src=\ref69src69;arccheckout=1'>Yes.</A><BR>
+			<A href='?src=\ref69src69;switchscreen=0'>No.</A><BR>"}
 
-	//dat += "<A HREF='?src=\ref[user];mach_close=library'>Close</A><br><br>"
+	//dat += "<A HREF='?src=\ref69user69;mach_close=library'>Close</A><br><br>"
 	user << browse(dat, "window=library")
 	onclose(user, "library")
 
-/obj/machinery/librarycomp/emag_act(var/remaining_charges, var/mob/user)
+/obj/machinery/librarycomp/emag_act(var/remaining_charges,69ar/mob/user)
 	if (src.density && !src.emagged)
 		src.emagged = 1
 		return 1
 
-/obj/machinery/librarycomp/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/librarycomp/attackby(obj/item/W as obj,69ob/user as69ob)
 	if(istype(W, /obj/item/barcodescanner))
 		var/obj/item/barcodescanner/scanner = W
 		scanner.computer = src
-		to_chat(user, "[scanner]'s associated machine has been set to [src].")
+		to_chat(user, "69scanner69's associated69achine has been set to 69src69.")
 		for (var/mob/V in hearers(src))
-			V.show_message("[src] lets out a low, short blip.", 2)
+			V.show_message("69src69 lets out a low, short blip.", 2)
 	else
 		..()
 
@@ -251,8 +251,8 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		onclose(usr, "library")
 		return
 
-	if(href_list["switchscreen"])
-		switch(href_list["switchscreen"])
+	if(href_list69"switchscreen"69)
+		switch(href_list69"switchscreen"69)
 			if("0")
 				screenstate = 0
 			if("1")
@@ -268,7 +268,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 			if("6")
 				if(!bibledelay)
 
-					var/obj/item/book/ritual/cruciform/B = new /obj/item/book/ritual/cruciform()
+					var/obj/item/book/ritual/cruciform/B =69ew /obj/item/book/ritual/cruciform()
 					B.loc=src.loc
 					bibledelay = 1
 					spawn(60)
@@ -276,42 +276,42 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 
 				else
 					for (var/mob/V in hearers(src))
-						V.show_message("<b>[src]</b>'s monitor flashes, \"Bible printer currently unavailable, please wait a moment.\"")
+						V.show_message("<b>69src69</b>'s69onitor flashes, \"Bible printer currently unavailable, please wait a69oment.\"")
 
 			if("7")
 				screenstate = 7
-	if(href_list["increasetime"])
+	if(href_list69"increasetime"69)
 		checkoutperiod += 1
-	if(href_list["decreasetime"])
+	if(href_list69"decreasetime"69)
 		checkoutperiod -= 1
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
-	if(href_list["editbook"])
+	if(href_list69"editbook"69)
 		buffer_book = sanitizeSafe(input("Enter the book's title:") as text|null)
-	if(href_list["editmob"])
-		buffer_mob = sanitize(input("Enter the recipient's name:") as text|null, MAX_NAME_LEN)
-	if(href_list["checkout"])
-		var/datum/borrowbook/b = new /datum/borrowbook
+	if(href_list69"editmob"69)
+		buffer_mob = sanitize(input("Enter the recipient's69ame:") as text|null,69AX_NAME_LEN)
+	if(href_list69"checkout"69)
+		var/datum/borrowbook/b =69ew /datum/borrowbook
 		b.bookname = sanitizeSafe(buffer_book)
 		b.mobname = sanitize(buffer_mob)
 		b.getdate = world.time
 		b.duedate = world.time + (checkoutperiod * 600)
 		checkouts.Add(b)
-	if(href_list["checkin"])
-		var/datum/borrowbook/b = locate(href_list["checkin"])
+	if(href_list69"checkin"69)
+		var/datum/borrowbook/b = locate(href_list69"checkin"69)
 		checkouts.Remove(b)
-	if(href_list["delbook"])
-		var/obj/item/book/b = locate(href_list["delbook"])
+	if(href_list69"delbook"69)
+		var/obj/item/book/b = locate(href_list69"delbook"69)
 		inventory.Remove(b)
-	if(href_list["setauthor"])
-		var/newauthor = sanitize(input("Enter the author's name: ") as text|null)
+	if(href_list69"setauthor"69)
+		var/newauthor = sanitize(input("Enter the author's69ame: ") as text|null)
 		if(newauthor)
-			scanner.cache.author = newauthor
-	if(href_list["setcategory"])
+			scanner.cache.author =69ewauthor
+	if(href_list69"setcategory"69)
 		var/newcategory = input("Choose a category: ") in list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
 		if(newcategory)
-			upload_category = newcategory
-	if(href_list["upload"])
+			upload_category =69ewcategory
+	if(href_list69"upload"69)
 		if(scanner)
 			if(scanner.cache)
 				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
@@ -334,55 +334,55 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 							var/sqlcontent = sanitizeSQL(scanner.cache.dat)
 							var/sqlcategory = sanitizeSQL(upload_category)
 
-							var/author_id = null
-							var/DBQuery/get_author_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='[usr.ckey]'")
+							var/author_id =69ull
+							var/DBQuery/get_author_id = dbcon.NewQuery("SELECT id FROM players WHERE ckey='69usr.ckey69'")
 							get_author_id.Execute()
 							if(get_author_id.NextRow())
-								author_id = get_author_id.item[1]
+								author_id = get_author_id.item69169
 
-							var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category, author_id) VALUES ('[sqlauthor]', '[sqltitle]', '[sqlcontent]', '[sqlcategory]', [author_id])")
+							var/DBQuery/query = dbcon.NewQuery("INSERT INTO library (author, title, content, category, author_id)69ALUES ('69sqlauthor69', '69sqltitle69', '69sqlcontent69', '69sqlcategory69', 69author_id69)")
 							if(!query.Execute())
 								to_chat(usr, query.ErrorMsg())
 							else
-								log_and_message_admins("has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
-								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
+								log_and_message_admins("has uploaded the book titled 69scanner.cache.name69, 69length(scanner.cache.dat)69 signs")
+								log_game("69usr.name69/69usr.key69 has uploaded the book titled 69scanner.cache.name69, 69length(scanner.cache.dat)69 signs")
 								alert("Upload Complete.")
 
-	if(href_list["targetid"])
-		var/sqlid = sanitizeSQL(href_list["targetid"])
+	if(href_list69"targetid"69)
+		var/sqlid = sanitizeSQL(href_list69"targetid"69)
 		establish_db_connection()
 		if(!dbcon.IsConnected())
 			alert("Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
-				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
+				V.show_message("<b>69src69</b>'s69onitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
 		else
 			bibledelay = 1
 			spawn(60)
 				bibledelay = 0
-			var/DBQuery/query = dbcon.NewQuery("SELECT * FROM library WHERE id=[sqlid]")
+			var/DBQuery/query = dbcon.NewQuery("SELECT * FROM library WHERE id=69sqlid69")
 			query.Execute()
 
 			while(query.NextRow())
-				var/author = query.item[2]
-				var/title = query.item[3]
-				var/content = query.item[4]
-				var/obj/item/book/B = new(src.loc)
-				B.name = "Book: [title]"
+				var/author = query.item69269
+				var/title = query.item69369
+				var/content = query.item69469
+				var/obj/item/book/B =69ew(src.loc)
+				B.name = "Book: 69title69"
 				B.title = title
 				B.author = author
 				B.dat = content
-				B.icon_state = "book[rand(1,7)]"
-				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
+				B.icon_state = "book69rand(1,7)69"
+				src.visible_message("69src69's printer hums as it produces a completely bound book. How did it do that?")
 				break
-	if(href_list["orderbyid"])
-		var/orderid = input("Enter your order:") as num|null
+	if(href_list69"orderbyid"69)
+		var/orderid = input("Enter your order:") as69um|null
 		if(orderid)
 			if(isnum(orderid))
-				var/nhref = "src=\ref[src];targetid=[orderid]"
+				var/nhref = "src=\ref69src69;targetid=69orderid69"
 				spawn() src.Topic(nhref, params2list(nhref), src)
-	if(href_list["sort"] in list("author", "title", "category"))
-		sortby = href_list["sort"]
+	if(href_list69"sort"69 in list("author", "title", "category"))
+		sortby = href_list69"sort"69
 	src.updateUsrDialog()
 	return
 
@@ -397,21 +397,21 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	density = TRUE
 	var/obj/item/book/cache		// Last scanned book
 
-/obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/libraryscanner/attackby(var/obj/O as obj,69ar/mob/user as69ob)
 	if(istype(O, /obj/item/book))
 		user.drop_item()
 		O.loc = src
 
-/obj/machinery/libraryscanner/attack_hand(var/mob/user as mob)
+/obj/machinery/libraryscanner/attack_hand(var/mob/user as69ob)
 	usr.set_machine(src)
 	var/dat = "<HEAD><TITLE>Scanner Control Interface</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	if(cache)
-		dat += "<FONT color=#005500>Data stored in memory.</FONT><BR>"
+		dat += "<FONT color=#005500>Data stored in69emory.</FONT><BR>"
 	else
-		dat += "No data stored in memory.<BR>"
-	dat += "<A href='?src=\ref[src];scan=1'>\[Scan\]</A>"
+		dat += "No data stored in69emory.<BR>"
+	dat += "<A href='?src=\ref69src69;scan=1'>\69Scan\69</A>"
 	if(cache)
-		dat += "       <A href='?src=\ref[src];clear=1'>\[Clear Memory\]</A><BR><BR><A href='?src=\ref[src];eject=1'>\[Remove Book\]</A>"
+		dat += "       <A href='?src=\ref69src69;clear=1'>\69Clear69emory\69</A><BR><BR><A href='?src=\ref69src69;eject=1'>\69Remove Book\69</A>"
 	else
 		dat += "<BR>"
 	user << browse(dat, "window=scanner")
@@ -423,13 +423,13 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 		onclose(usr, "scanner")
 		return
 
-	if(href_list["scan"])
+	if(href_list69"scan"69)
 		for(var/obj/item/book/B in contents)
 			cache = B
 			break
-	if(href_list["clear"])
-		cache = null
-	if(href_list["eject"])
+	if(href_list69"clear"69)
+		cache =69ull
+	if(href_list69"eject"69)
 		for(var/obj/item/book/B in contents)
 			B.loc = src.loc
 	src.updateUsrDialog()
@@ -446,18 +446,18 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	anchored = TRUE
 	density = TRUE
 
-/obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
+/obj/machinery/bookbinder/attackby(var/obj/O as obj,69ar/mob/user as69ob)
 	if(istype(O, /obj/item/paper))
 		user.drop_item()
 		O.loc = src
-		user.visible_message("[user] loads some paper into [src].", "You load some paper into [src].")
-		src.visible_message("[src] begins to hum as it warms up its printing drums.")
+		user.visible_message("69user69 loads some paper into 69src69.", "You load some paper into 69src69.")
+		src.visible_message("69src69 begins to hum as it warms up its printing drums.")
 		sleep(rand(200,400))
-		src.visible_message("[src] whirs as it prints and binds a new book.")
-		var/obj/item/book/b = new(src.loc)
+		src.visible_message("69src69 whirs as it prints and binds a69ew book.")
+		var/obj/item/book/b =69ew(src.loc)
 		b.dat = O:info
-		b.name = "Print Job #" + "[rand(100, 999)]"
-		b.icon_state = "book[rand(1,7)]"
+		b.name = "Print Job #" + "69rand(100, 999)69"
+		b.icon_state = "book69rand(1,7)69"
 		qdel(O)
 	else
 		..()

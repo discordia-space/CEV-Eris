@@ -12,7 +12,7 @@
 		list(/obj/effect/spider/stickyweb, 1, "time" = 30)
 	)
 
-//A shard of glass wrapped in tape makes a crude sort of knife
+//A shard of glass wrapped in tape69akes a crude sort of knife
 /datum/craft_recipe/tool/shiv
 	name = "Shiv"
 	result = /obj/item/tool/knife/shiv
@@ -21,7 +21,7 @@
 		list(QUALITY_ADHESIVE, 15, 70)
 	)
 
-//A rod wrapped in tape makes a crude screwthing
+//A rod wrapped in tape69akes a crude screwthing
 /datum/craft_recipe/tool/screwpusher
 	name = "Screwpusher"
 	result = /obj/item/tool/screwdriver/improvised
@@ -52,12 +52,12 @@
 	)
 
 
-//A metal sheet with some holes cut in it
+//A69etal sheet with some holes cut in it
 /datum/craft_recipe/tool/sheetspanner
 	name = "Sheet spanner"
 	result = /obj/item/tool/wrench/improvised
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL),
 		list(QUALITY_SAWING, 10, 70)
 	)
 
@@ -67,7 +67,7 @@
 	name = "Junk shovel"
 	result = /obj/item/tool/shovel/improvised
 	steps = list(
-		list(CRAFT_MATERIAL, 1, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 1,69ATERIAL_STEEL),
 		list(/obj/item/stack/rods, 1, 30),
 		list(QUALITY_ADHESIVE, 15, 150)
 	)
@@ -113,64 +113,64 @@
 	)
 
 /*************************
-	TOOL MODS
+	TOOL69ODS
 *************************/
 //Metal rods reinforced with fiber tape
 /datum/craft_recipe/tool/brace
-	name = "Tool mod: Brace bar"
+	name = "Tool69od: Brace bar"
 	result = /obj/item/tool_upgrade/reinforcement/stick
 	steps = list(
 		list(/obj/item/stack/rods, 3, 30),
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_PLASTEEL),
 		list(QUALITY_ADHESIVE, 50, 150)
 	)
 
 
 
-//A metal plate with bolts drilled and wrenched into it
+//A69etal plate with bolts drilled and wrenched into it
 /datum/craft_recipe/tool/plate
-	name = "Tool mod: reinforcement plate"
+	name = "Tool69od: reinforcement plate"
 	result = /obj/item/tool_upgrade/reinforcement/plating
 	steps = list(
-		list(CRAFT_MATERIAL, 5, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 5,69ATERIAL_PLASTEEL),
 		list(QUALITY_DRILLING, 10, 150),
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_BOLT_TURNING, 10, 150),
 	)
 
 
-//An array of sharpened bits of metal to turn a tool into more of a weapon
+//An array of sharpened bits of69etal to turn a tool into69ore of a weapon
 /datum/craft_recipe/tool/spikes
-	name = "Tool mod: Spikes"
+	name = "Tool69od: Spikes"
 	result = /obj/item/tool_upgrade/augment/spikes
 	steps = list(
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 150),
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 3,69ATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 150),
 	)
 
 
 //just a clamp with a flat surface to hammer something
 /datum/craft_recipe/tool/hammer_addon
-	name = "Tool mod: Flat surface"
+	name = "Tool69od: Flat surface"
 	result = /obj/item/tool_upgrade/augment/hammer_addon
 	steps = list(
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WELDING, 10, 150),
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 3,69ATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 150),
 	)
 
 //An improvised adapter to fit a larger power cell. This is pretty fancy as crafted items go
 //Requires an APC frame, a fuckton of wires, a large cell, and several tools
 /datum/craft_recipe/tool/cell_mount
-	name = "Tool mod: Heavy cell mount"
+	name = "Tool69od: Heavy cell69ount"
 	result = /obj/item/tool_upgrade/augment/cell_mount
 	steps = list(
 		list(/obj/item/frame/apc, 2, "time" = 30),			//hull
 		list(QUALITY_SCREW_DRIVING, 10, "time" = 40),		//prepare hull
-		list(CRAFT_MATERIAL, 3, MATERIAL_PLASTEEL),			//additional frame to support wires
+		list(CRAFT_MATERIAL, 3,69ATERIAL_PLASTEEL),			//additional frame to support wires
 		list(QUALITY_WELDING, 10, "time" = 70),				//secure frame
 		list(/obj/item/stack/cable_coil, 30, "time" = 10),	//add wiring
 		list(QUALITY_WIRE_CUTTING, 10, "time" = 60),		//adjust wiring
@@ -181,11 +181,11 @@
 
 //Welding backpack disassembled into a smaller tank
 /datum/craft_recipe/tool/fuel_tank
-	name = "Tool mod: Expanded fuel tank"
+	name = "Tool69od: Expanded fuel tank"
 	result = /obj/item/tool_upgrade/augment/fuel_tank
 
 	steps = list(
-		list(CRAFT_MATERIAL, 8, MATERIAL_PLASTEEL),
+		list(CRAFT_MATERIAL, 8,69ATERIAL_PLASTEEL),
 		list(QUALITY_WELDING, 10, 50),
 		list(QUALITY_HAMMERING, 10, 100),
 		list(/obj/item/stack/rods, 2, 30),
@@ -199,7 +199,7 @@
 	result = /obj/item/device/makeshift_centrifuge
 
 	steps = list(
-		list(CRAFT_MATERIAL, 4, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 4,69ATERIAL_STEEL),
 		list(QUALITY_SAWING, 10, "time" = 80),
 		list(/obj/item/stack/rods, 2, 30),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
@@ -211,7 +211,7 @@
 	result = /obj/item/storage/makeshift_grinder
 
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2,69ATERIAL_STEEL),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(QUALITY_PRYING, 10, 80),
 		list(/obj/item/stack/rods, 1, 30)
@@ -222,7 +222,7 @@
 	result = /obj/item/device/makeshift_electrolyser
 
 	steps = list(
-		list(CRAFT_MATERIAL, 2, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 2,69ATERIAL_STEEL),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
 		list(/obj/item/stack/cable_coil, 30, "time" = 10),
 		list(QUALITY_WIRE_CUTTING, 10, 20),
@@ -233,7 +233,7 @@
 	name = "Scrap Engi Hardcase"
 	result = /obj/item/storage/hcases/engi/scrap
 	steps = list(
-		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 25,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20)
 	)
 
@@ -241,14 +241,14 @@
 	name = "Scrap Parts Hardcase"
 	result = /obj/item/storage/hcases/parts/scrap
 	steps = list(
-		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 25,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20)
 	)
 
 /datum/craft_recipe/tool/medi_hardcase
-	name = "Scrap Medi Hardcase"
+	name = "Scrap69edi Hardcase"
 	result = /obj/item/storage/hcases/med/scrap
 	steps = list(
-		list(CRAFT_MATERIAL, 25, MATERIAL_STEEL),
+		list(CRAFT_MATERIAL, 25,69ATERIAL_STEEL),
 		list(QUALITY_WELDING, 10, 20)
 	)

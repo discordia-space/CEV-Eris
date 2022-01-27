@@ -3,22 +3,22 @@
 		return 0
 	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
 		if(effect > 0 && effecttype == IRRADIATE)
-			effect = max((1 - (getarmor(null, ARMOR_RAD) / 100)) * effect / (armor_value + 1),0)
+			effect =69ax((1 - (getarmor(null, ARMOR_RAD) / 100)) * effect / (armor_value + 1),0)
 		var/mob/living/pilot = pick(pilots)
 		return pilot.apply_effect(effect, effecttype, armor_value)
 	if(!(effecttype in list(STUTTER, EYE_BLUR, DROWSY, STUN, WEAKEN)))
 		. = ..()
 
-/mob/living/exosuit/resolve_item_attack(obj/item/I, mob/living/user, def_zone)
+/mob/living/exosuit/resolve_item_attack(obj/item/I,69ob/living/user, def_zone)
 	if(!I.force)
-		user.visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly with \the [I]."))
+		user.visible_message(SPAN_NOTICE("\The 69user69 bonks \the 69src69 harmlessly with \the 69I69."))
 		return
 
 	if(LAZYLEN(pilots) && !prob(body.pilot_coverage))
 		var/mob/living/pilot = pick(pilots)
 		return pilot.resolve_item_attack(I, user, def_zone)
 
-	return def_zone //Careful with effects, mechs shouldn't be stunned
+	return def_zone //Careful with effects,69echs shouldn't be stunned
 
 /mob/living/exosuit/getarmor(def_zone, type)
 	. = ..()
@@ -27,8 +27,8 @@
 		if(body_armor) . += body_armor
 
 /mob/living/exosuit/updatehealth()
-	if(body) maxHealth = body.mech_health
-	health = maxHealth - (getFireLoss() + getBruteLoss())
+	if(body)69axHealth = body.mech_health
+	health =69axHealth - (getFireLoss() + getBruteLoss())
 
 /mob/living/exosuit/adjustFireLoss(amount, obj/item/mech_component/MC = pick(list(arms, legs, body, head)))
 	if(MC)
@@ -48,20 +48,20 @@
 		else return body
 
 
-/mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, sharp = FALSE, edge = FALSE, obj/used_weapon = null)
+/mob/living/exosuit/apply_damage(damage = 0, damagetype = BRUTE, def_zone =69ull, sharp = FALSE, edge = FALSE, obj/used_weapon =69ull)
 	. = ..()
 	updatehealth()
 
 /mob/living/exosuit/getFireLoss()
 	var/total = 0
 	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
-		total += MC.burn_damage
+		total +=69C.burn_damage
 	return total
 
 /mob/living/exosuit/getBruteLoss()
 	var/total = 0
 	for(var/obj/item/mech_component/MC in list(arms, legs, body, head))
-		total += MC.brute_damage
+		total +=69C.brute_damage
 	return total
 
 /mob/living/exosuit/emp_act(severity)

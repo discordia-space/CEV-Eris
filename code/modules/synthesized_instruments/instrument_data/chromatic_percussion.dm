@@ -4,7 +4,7 @@
 
 
 /datum/instrument/chromatic/vibraphone1
-	name = "Crisis Vibraphone"
+	name = "Crisis69ibraphone"
 	id = "crvibr"
 	samples = list("36"='sound/synthesized_instruments/chromatic/vibraphone1/c2.ogg',
 				   "48"='sound/synthesized_instruments/chromatic/vibraphone1/c3.ogg',
@@ -13,7 +13,7 @@
 
 
 /datum/instrument/chromatic/musicbox1
-	name = "SGM Music Box"
+	name = "SGM69usic Box"
 	id = "sgmmbox"
 	samples = list("36"='sound/synthesized_instruments/chromatic/sgmbox/c2.ogg',
 				   "48"='sound/synthesized_instruments/chromatic/sgmbox/c3.ogg',

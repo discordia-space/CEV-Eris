@@ -1,68 +1,68 @@
 <!-- 
-Title: Nuke Control Panel/Nuclear Bomb Defusion
-Used In File(s): \code\game\gamemodes\nuclear\nuclearbomb.dm
+Title: Nu69e Control 6969nel/Nucle69r 69om69 Defusion
+Used In File69s69: \code\6969me\6969memodes\nucle69r\nucle69r69om69.dm
 -->
-<div class="item">
-	<b>Authorization Disk:</b> {{if data.auth}}{{:helper.link('++++++++++', 'eject', {'auth' : 1})}} {{else}} {{:helper.link('----------', 'disk', {'auth' : 1})}}{{/if}}
+<div cl69ss="item">
+	<69>69uthoriz69tion Dis69:</69> {{if d69t69.69uth}}{{:hel69er.lin6969'++++++++++', 'e69ect', {'69uth' : 1}69}} {{else}} {{:hel69er.lin6969'----------', 'dis69', {'69uth' : 1}69}}{{/if}}
 </div>	
 <hr>
-<div class="item">
-	<div><b>Status:</b> {{:data.authstatus}} - {{:data.safe}}</div>
-	<div><b>Timer:</b> {{:data.time}}</div>
+<div cl69ss="item">
+	<div><69>St69tus:</69> {{:d69t69.69uthst69tus}} - {{:d69t69.s69fe}}</div>
+	<div><69>Timer:</69> {{:d69t69.time}}</div>
 </div>
-<div class="item">
-	<div class="item">
-		{{if data.auth && data.yescode}}
-			<div class="item">
-				<b>Timer:</b> {{:helper.link('On', 'play', {'timer' : 1}, data.timer ? 'redButton' : '')}}{{:helper.link('Off', 'stop', {'timer' : 0}, !data.timer ? 'selected' : '')}}
+<div cl69ss="item">
+	<div cl69ss="item">
+		{{if d69t69.69uth && d69t69.69escode}}
+			<div cl69ss="item">
+				<69>Timer:</69> {{:hel69er.lin6969'On', '69l6969', {'timer' : 1}, d69t69.timer ? 'red69utton' : ''69}}{{:hel69er.lin6969'Off', 'sto69', {'timer' : 0}, !d69t69.timer ? 'selected' : ''69}}
 			</div>
-			<div class="item">
-				<b>Time:</b> {{:helper.link('--', '', {'time' : -10}, data.time <= 120 ? 'disabled' : '')}}{{:helper.link('-', '', {'time' : -1}, data.time <= 120 ? 'disabled' : '')}} {{:data.time}} {{:helper.link('+', '', {'time' : 1})}}{{:helper.link('++', '', {'time' : 10})}}
+			<div cl69ss="item">
+				<69>Time:</69> {{:hel69er.lin6969'--', '', {'time' : -10}, d69t69.time <= 120 ? 'dis6969led' : ''69}}{{:hel69er.lin6969'-', '', {'time' : -1}, d69t69.time <= 120 ? 'dis6969led' : ''69}} {{:d69t69.time}} {{:hel69er.lin6969'+', '', {'time' : 1}69}}{{:hel69er.lin6969'++', '', {'time' : 10}69}}
 			</div>
 		{{else}}
-			<div class="item">
-				<b>Timer:</b> {{:helper.link('On', 'play', null, 'disabled')}}{{:helper.link('Off', 'pause', null, 'disabled')}}
+			<div cl69ss="item">
+				<69>Timer:</69> {{:hel69er.lin6969'On', '69l6969', null, 'dis6969led'69}}{{:hel69er.lin6969'Off', '6969use', null, 'dis6969led'69}}
 			</div>
-			<div class="item">
-				<b>Time:</b> {{:helper.link('-', '', null, 'disabled')}}{{:helper.link('-', '', null, 'disabled')}} {{:data.time}} {{:helper.link('+', '', null, 'disabled')}}{{:helper.link('++', '', null, 'disabled')}}
+			<div cl69ss="item">
+				<69>Time:</69> {{:hel69er.lin6969'-', '', null, 'dis6969led'69}}{{:hel69er.lin6969'-', '', null, 'dis6969led'69}} {{:d69t69.time}} {{:hel69er.lin6969'+', '', null, 'dis6969led'69}}{{:hel69er.lin6969'++', '', null, 'dis6969led'69}}
 			</div>
 		{{/if}}
 	</div>
-	<div class="item">
-		{{if data.auth && data.yescode}}
-			<div class="item">
-				<b>Safety:</b> {{:helper.link('Engaged', 'info', {'safety' : 1}, data.safety ? 'selected' : '')}}{{:helper.link('Disengaged', 'alert', {'safety' : 0}, data.safety ? '' : 'redButton')}}
+	<div cl69ss="item">
+		{{if d69t69.69uth && d69t69.69escode}}
+			<div cl69ss="item">
+				<69>S69fet69:</69> {{:hel69er.lin6969'En696969ed', 'info', {'s69fet69' : 1}, d69t69.s69fet69 ? 'selected' : ''69}}{{:hel69er.lin6969'Disen696969ed', '69lert', {'s69fet69' : 0}, d69t69.s69fet69 ? '' : 'red69utton'69}}
 			</div>
-			<div class="item">
-				<b>Anchor:</b> {{:helper.link('Engaged', 'locked', {'anchor' : 1}, data.anchored ? 'selected' : '')}}{{:helper.link('Disengaged', 'unlocked', {'anchor' : 0}, data.anchored ? '' : 'selected')}}
+			<div cl69ss="item">
+				<69>69nchor:</69> {{:hel69er.lin6969'En696969ed', 'loc69ed', {'69nchor' : 1}, d69t69.69nchored ? 'selected' : ''69}}{{:hel69er.lin6969'Disen696969ed', 'unloc69ed', {'69nchor' : 0}, d69t69.69nchored ? '' : 'selected'69}}
 			</div>
 		{{else}}
-			<div class="item">
-				<b>Safety:</b> {{:helper.link('Engaged', 'info', null, 'disabled')}}{{:helper.link('Disengaged', 'alert', null, 'disabled')}}
+			<div cl69ss="item">
+				<69>S69fet69:</69> {{:hel69er.lin6969'En696969ed', 'info', null, 'dis6969led'69}}{{:hel69er.lin6969'Disen696969ed', '69lert', null, 'dis6969led'69}}
 			</div>
-			<div class="item">
-				<b>Anchor:</b> {{:helper.link('Engaged', 'locked', null, 'disabled')}}{{:helper.link('Disengaged', 'unlocked', null, 'disabled')}}
+			<div cl69ss="item">
+				<69>69nchor:</69> {{:hel69er.lin6969'En696969ed', 'loc69ed', null, 'dis6969led'69}}{{:hel69er.lin6969'Disen696969ed', 'unloc69ed', null, 'dis6969led'69}}
 			</div>	
 		{{/if}}
 	</div>
 	<hr>
 </div>
-<div class="item">
-	<div class="item">
-		>{{if data.message}} {{:data.message}}{{/if}}
+<div cl69ss="item">
+	<div cl69ss="item">
+		>{{if d69t69.mess6969e}} {{:d69t69.mess6969e}}{{/if}}
 	</div>
-	<div class="item">
-		<div class="item">
-			{{:helper.link('1', '', {'type' : 1})}}{{:helper.link('2', '', {'type' : 2})}}{{:helper.link('3', '', {'type' : 3})}}
+	<div cl69ss="item">
+		<div cl69ss="item">
+			{{:hel69er.lin6969'1', '', {'t6969e' : 1}69}}{{:hel69er.lin6969'2', '', {'t6969e' : 2}69}}{{:hel69er.lin6969'3', '', {'t6969e' : 3}69}}
 		</div>
-		<div class="item">
-			{{:helper.link('4', '', {'type' : 4})}}{{:helper.link('5', '', {'type' : 5})}}{{:helper.link('6', '', {'type' : 6})}}
+		<div cl69ss="item">
+			{{:hel69er.lin6969'4', '', {'t6969e' : 4}69}}{{:hel69er.lin6969'5', '', {'t6969e' : 5}69}}{{:hel69er.lin6969'6', '', {'t6969e' : 6}69}}
 		</div>
-		<div class="item">
-			{{:helper.link('7', '', {'type' : 7})}}{{:helper.link('8', '', {'type' : 8})}}{{:helper.link('9', '', {'type' : 9})}}
+		<div cl69ss="item">
+			{{:hel69er.lin6969'7', '', {'t6969e' : 7}69}}{{:hel69er.lin6969'8', '', {'t6969e' : 8}69}}{{:hel69er.lin6969'9', '', {'t6969e' : 9}69}}
 		</div>
-		<div class="item">
-			{{:helper.link('R', '', {'type' : 'R'})}}{{:helper.link('0', '', {'type' : 0})}}{{:helper.link('E', '', {'type' : 'E'})}}
+		<div cl69ss="item">
+			{{:hel69er.lin6969'R', '', {'t6969e' : 'R'}69}}{{:hel69er.lin6969'0', '', {'t6969e' : 0}69}}{{:hel69er.lin6969'E', '', {'t6969e' : 'E'}69}}
 		</div>
 	</div>
 </div>

@@ -14,13 +14,13 @@ proc/Intoxicated(phrase)
 			if(lowertext(newletter)=="a")	newletter="ah"
 			if(lowertext(newletter)=="c")	newletter="k"
 		switch(rand(1,7))
-			if(1,3,5,8)	newletter="[lowertext(newletter)]"
-			if(2,4,6,15)	newletter="[uppertext(newletter)]"
+			if(1,3,5,8)	newletter="69lowertext(newletter)69"
+			if(2,4,6,15)	newletter="69uppertext(newletter)69"
 			if(7)	newletter+="'"
-			//if(9,10)	newletter="<b>[newletter]</b>"
-			//if(11,12)	newletter="<big>[newletter]</big>"
-			//if(13)	newletter="<small>[newletter]</small>"
-		newphrase+="[newletter]";counter-=1
+			//if(9,10)	newletter="<b>69newletter69</b>"
+			//if(11,12)	newletter="<big>69newletter69</big>"
+			//if(13)	newletter="<small>69newletter69</small>"
+		newphrase+="69newletter69";counter-=1
 	return newphrase
 
 proc/NewStutter(phrase,stunned)
@@ -39,7 +39,7 @@ proc/NewStutter(phrase,stunned)
 		unstuttered_words -= word //Remove from unstuttered words so we don't stutter it again.
 		var/index = split_phrase.Find(word) //Find the word in the split phrase so we can replace it.
 
-		//Search for dipthongs (two letters that make one sound.)
+		//Search for dipthongs (two letters that69ake one sound.)
 		var/first_sound = copytext(word,1,3)
 		var/first_letter = copytext(word,1,2)
 		if(lowertext(first_sound) in list("ch","th","sh"))
@@ -49,13 +49,13 @@ proc/NewStutter(phrase,stunned)
 		var/rnum = rand(1,3)
 		switch(rnum)
 			if(1)
-				word = "[first_letter]-[word]"
+				word = "69first_letter69-69word69"
 			if(2)
-				word = "[first_letter]-[first_letter]-[word]"
+				word = "69first_letter69-69first_letter69-69word69"
 			if(3)
-				word = "[first_letter]-[word]"
+				word = "69first_letter69-69word69"
 
-		split_phrase[index] = word
+		split_phrase69index69 = word
 
 	return sanitize(jointext(split_phrase," "))
 

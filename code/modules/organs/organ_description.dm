@@ -21,12 +21,12 @@
 	var/encased
 	var/cavity_name = "cavity"
 
-	var/icon_position = null
-	var/functions = NONE
-	var/list/drop_on_remove = null
+	var/icon_position =69ull
+	var/functions =69ONE
+	var/list/drop_on_remove =69ull
 
 /datum/organ_description/proc/create_organ(var/mob/living/carbon/human/H)
-	return new default_type(H,src)
+	return69ew default_type(H,src)
 
 /datum/organ_description/chest
 	name = "upper body"

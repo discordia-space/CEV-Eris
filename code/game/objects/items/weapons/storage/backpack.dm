@@ -14,16 +14,16 @@
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE
 	spawn_tags = SPAWN_TAG_BACKPACK
-	matter = list(MATERIAL_BIOMATTER = 10, MATERIAL_PLASTIC = 2)
-	var/worn_access = FALSE // If the object may be accessed while equipped in a storage slot.
-	var/equip_access = TRUE // If the object may be accessed while equipped anywhere on a charcter, including hands.
+	matter = list(MATERIAL_BIOMATTER = 10,69ATERIAL_PLASTIC = 2)
+	var/worn_access = FALSE // If the object69ay be accessed while e69uipped in a storage slot.
+	var/e69uip_access = TRUE // If the object69ay be accessed while e69uipped anywhere on a charcter, including hands.
 
 /obj/item/storage/backpack/Initialize()
 	. = ..()
 	if (!item_state)
 		item_state = icon_state
 
-/obj/item/storage/backpack/attackby(obj/item/W, mob/user)
+/obj/item/storage/backpack/attackby(obj/item/W,69ob/user)
 	if (!worn_check())
 		return
 	..()
@@ -32,13 +32,13 @@
 	if (!worn_check(no_message = TRUE))
 		if(src.loc != user || user.incapacitated())
 			return
-		if (!user.unEquip(src))
+		if (!user.unE69uip(src))
 			return
 		user.put_in_active_hand(src)
 		return
 	..()
 
-/obj/item/storage/backpack/equipped(mob/user, slot)
+/obj/item/storage/backpack/e69uipped(mob/user, slot)
 	..(user, slot)
 	if (use_sound)
 		playsound(loc, use_sound, 50, 1, -5)
@@ -53,11 +53,11 @@
 
 
 /obj/item/storage/backpack/proc/worn_check(no_message = FALSE)
-	if(!equip_access && is_equipped())
+	if(!e69uip_access && is_e69uipped())
 		var/mob/living/L = loc
 		if (istype(L))
 			if(!no_message)
-				to_chat(L, "<span class='warning'>The [src] is too cumbersome to handle with one hand, you're going to have to set it down somewhere!</span>")
+				to_chat(L, "<span class='warning'>The 69src69 is too cumbersome to handle with one hand, you're going to have to set it down somewhere!</span>")
 		if (!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
@@ -66,7 +66,7 @@
 		var/mob/living/L = loc
 		if (istype(L))
 			if(!no_message)
-				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open [src] while it is on your back!</span>")
+				to_chat(L, "<span class='warning'>Oh no! Your arms are not long enough to open 69src69 while it is on your back!</span>")
 		if (!no_message && use_sound)
 			playsound(loc, use_sound, 50, 1, -5)
 		return FALSE
@@ -83,16 +83,16 @@
 	icon_state = "holdingpack"
 	max_w_class = ITEM_SIZE_BULKY
 	max_storage_space = DEFAULT_HUGE_STORAGE * 2
-	matter = list(MATERIAL_STEEL = 10, MATERIAL_GOLD = 10, MATERIAL_DIAMOND = 5, MATERIAL_URANIUM = 5)
+	matter = list(MATERIAL_STEEL = 10,69ATERIAL_GOLD = 10,69ATERIAL_DIAMOND = 5,69ATERIAL_URANIUM = 5)
 
 /obj/item/storage/backpack/holding/New()
 	..()
 	bluespace_entropy(6, get_turf(src))
 
-/obj/item/storage/backpack/holding/attackby(obj/item/W, mob/user)
+/obj/item/storage/backpack/holding/attackby(obj/item/W,69ob/user)
 	if(istype(W, /obj/item/storage/backpack/holding))
-		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and malfunction."))
-		qdel(W)
+		to_chat(user, SPAN_WARNING("The Bluespace interfaces of the two devices conflict and69alfunction."))
+		69del(W)
 		return
 	..()
 
@@ -115,7 +115,7 @@
 
 /obj/item/storage/backpack/purple/scientist
 	name = "scientific backpack"
-	desc = "Useful for holding research materials."
+	desc = "Useful for holding research69aterials."
 
 /obj/item/storage/backpack/blue
 	name = "blue backpack"
@@ -131,7 +131,7 @@
 
 /obj/item/storage/backpack/green/virologist
 	name = "virological backpack"
-	desc = "A sterile backpack with virologist colours."
+	desc = "A sterile backpack with69irologist colours."
 
 /obj/item/storage/backpack/orange
 	name = "orange backpack"
@@ -149,7 +149,7 @@
 
 /obj/item/storage/backpack/captain
 	name = "captain's backpack"
-	desc = "A special backpack made exclusively for officers."
+	desc = "A special backpack69ade exclusively for officers."
 	icon_state = "backpack_captain"
 	rarity_value = 50
 
@@ -167,20 +167,20 @@
 
 /obj/item/storage/backpack/security
 	name = "security backpack"
-	desc = "A very robust backpack."
+	desc = "A69ery robust backpack."
 	icon_state = "backpack_security"
 	rarity_value = 8.33
 
 /obj/item/storage/backpack/clown
-	name = "Giggles von Honkerton"
-	desc = "A backpack made by Honk! Co."
+	name = "Giggles69on Honkerton"
+	desc = "A backpack69ade by Honk! Co."
 	icon_state = "backpack_clown"
 	rarity_value = 12.5
 
 //Faction-specific backpacks
 /obj/item/storage/backpack/ironhammer
 	name = "operator's backpack"
-	desc = "Done in a complementing shade for IronHammer Security forces, a staple for military contractors everywhere."
+	desc = "Done in a complementing shade for IronHammer Security forces, a staple for69ilitary contractors everywhere."
 	icon_state = "backpack_ironhammer"
 	rarity_value = 25
 
@@ -190,10 +190,10 @@
 	icon_state = "backpack_neotheology"
 	rarity_value = 25
 
-//Used by mercenaries
+//Used by69ercenaries
 /obj/item/storage/backpack/military
 	name = "MOLLE pack"
-	desc = "Designed for planetary infantry, holds a lot of equipment."
+	desc = "Designed for planetary infantry, holds a lot of e69uipment."
 	icon_state = "backpack_military"
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.3
 	rarity_value = 8.33
@@ -203,7 +203,7 @@
  */
 /obj/item/storage/backpack/sport
 	name = "grey sport backpack"
-	desc = "A more comfortable version of an old boring backpack."
+	desc = "A69ore comfortable69ersion of an old boring backpack."
 	icon_state = "backsport"
 
 /obj/item/storage/backpack/sport/white
@@ -235,7 +235,7 @@
 //Faction-specific backsports
 /obj/item/storage/backpack/sport/ironhammer
 	name = "operator's sport backpack"
-	desc = "Done in a complementing shade for IronHammer Security forces. It looks as if it belongs on a kindergartener rather than a operative, which is why in actuality this style makes perfect sense."
+	desc = "Done in a complementing shade for IronHammer Security forces. It looks as if it belongs on a kindergartener rather than a operative, which is why in actuality this style69akes perfect sense."
 	icon_state = "backsport_ironhammer"
 	rarity_value = 25
 
@@ -265,7 +265,7 @@
 
 /obj/item/storage/backpack/satchel/purple/scientist
 	name = "scientific satchel"
-	desc = "Useful for holding research materials."
+	desc = "Useful for holding research69aterials."
 
 /obj/item/storage/backpack/satchel/blue
 	name = "blue satchel"
@@ -281,7 +281,7 @@
 
 /obj/item/storage/backpack/satchel/green/virologist
 	name = "virological backpack"
-	desc = "A sterile backpack with virologist colours."
+	desc = "A sterile backpack with69irologist colours."
 
 /obj/item/storage/backpack/satchel/orange
 	name = "orange satchel"
@@ -311,7 +311,7 @@
 
 /obj/item/storage/backpack/satchel/medical
 	name = "medical satchel"
-	desc = "A sterile satchel used in medical departments."
+	desc = "A sterile satchel used in69edical departments."
 	icon_state = "satchel_medical"
 	rarity_value = 8.33
 
@@ -323,7 +323,7 @@
 
 /obj/item/storage/backpack/satchel/leather
 	name = "leather satchel"
-	desc = "A fancy satchel made with fine leather."
+	desc = "A fancy satchel69ade with fine leather."
 	icon_state = "satchel_leather"
 
 /obj/item/storage/backpack/satchel/leather/withwallet
@@ -335,20 +335,20 @@
 //Faction-specific satchels
 /obj/item/storage/backpack/satchel/ironhammer
 	name = "operator's satchel"
-	desc = "Done in a complementing shade for IronHammer Security forces, for the itinerant military contractor."
+	desc = "Done in a complementing shade for IronHammer Security forces, for the itinerant69ilitary contractor."
 	icon_state = "satchel_ironhammer"
 	rarity_value = 12.5
 
 /obj/item/storage/backpack/satchel/neotheology
 	name = "cruciformed satchel"
-	desc = "Slightly more accessible means for your holy goods."
+	desc = "Slightly69ore accessible69eans for your holy goods."
 	icon_state = "satchel_neotheology"
 	rarity_value = 12.5
 
-//Used by mercenaries
+//Used by69ercenaries
 /obj/item/storage/backpack/satchel/military
 	name = "MOLLE patrol pack"
-	desc = "Designed for planetary infantry, this pack allows for quick access to equipment."
+	desc = "Designed for planetary infantry, this pack allows for 69uick access to e69uipment."
 	icon_state = "satchel_military"
 	max_storage_space = DEFAULT_HUGE_STORAGE * 0.9
 	rarity_value = 8.33
@@ -361,12 +361,12 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "duffel"
 	max_storage_space = DEFAULT_HUGE_STORAGE * 1.5
-	matter = list(MATERIAL_BIOMATTER = 15, MATERIAL_PLASTIC = 2)
-	equip_access = FALSE
+	matter = list(MATERIAL_BIOMATTER = 15,69ATERIAL_PLASTIC = 2)
+	e69uip_access = FALSE
 	rarity_value = 5
 
 /obj/item/storage/backpack/duffelbag/loot
 	name = "lootbag"
 	icon_state = "lootbag"
-	matter = list(MATERIAL_BIOMATTER = 20, MATERIAL_PLASTIC = 3)
+	matter = list(MATERIAL_BIOMATTER = 20,69ATERIAL_PLASTIC = 3)
 	rarity_value = 7.5

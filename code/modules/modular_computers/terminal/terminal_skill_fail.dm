@@ -8,7 +8,7 @@ GLOBAL_LIST_INIT(terminal_fails, init_subtypes(/datum/terminal_skill_fail))
 	return 1
 
 /datum/terminal_skill_fail/proc/execute()
-	return message
+	return69essage
 
 /datum/terminal_skill_fail/no_fail
 	weight = 10
@@ -50,16 +50,16 @@ GLOBAL_LIST_INIT(terminal_fails, init_subtypes(/datum/terminal_skill_fail))
 
 /datum/terminal_skill_fail/random_ban/email_logs
 	weight = 2
-	message = "System log backup successful. Chosen method: email attachment. Recipients: all."
+	message = "System log backup successful. Chosen69ethod: email attachment. Recipients: all."
 
 /datum/terminal_skill_fail/random_ban/email_logs/execute()
-	var/datum/computer_file/data/email_account/server = ntnet_global.find_email_by_login(EMAIL_DOCUMENTS)
-	for(var/datum/computer_file/data/email_account/email in ntnet_global.email_accounts)
+	var/datum/computer_file/data/email_account/server =69tnet_global.find_email_by_login(EMAIL_DOCUMENTS)
+	for(var/datum/computer_file/data/email_account/email in69tnet_global.email_accounts)
 		if(!email.can_login || email.suspended)
 			continue
-		var/datum/computer_file/data/email_message/message = new()
-		message.title = "IMPORTANT NETWORK ALERT!"
+		var/datum/computer_file/data/email_message/message =69ew()
+		message.title = "IMPORTANT69ETWORK ALERT!"
 		message.stored_data = jointext(ntnet_global.logs, "<br>")
 		message.source = server.login
-		server.send_mail(email.login, message)
+		server.send_mail(email.login,69essage)
 	return ..()

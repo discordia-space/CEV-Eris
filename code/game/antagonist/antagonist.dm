@@ -1,25 +1,25 @@
 /datum/antagonist
 
-	// Base vars
+	// Base69ars
 	var/list/objectives = list()
 
-	var/objective_quantity = 1 //How many random objectives will we create.
+	var/objective_69uantity = 1 //How69any random objectives will we create.
 	var/list/possible_objectives = list()
 	var/survive_objective = /datum/objective/escape
 
 	var/datum/mind/owner = null
 
-	var/flags = 0                           // Various runtime options.
+	var/flags = 0                           //69arious runtime options.
 
 	var/list/restricted_jobs =	list()	// Jobs that technically cannot be this antagonist (like AI-carrion)
 	var/list/protected_jobs =	list()	// As above, but this jobs are rewstricted ideologically (like Security Officer-contractor)
-	var/list/story_ineligible =	list()	// Denies the job from getting the antag status by story teller itself but allows become antag via different means.
+	var/list/story_ineligible =	list()	// Denies the job from getting the antag status by story teller itself but allows become antag69ia different69eans.
 
 	// Strings.
 	var/welcome_text = "Cry havoc and let slip the dogs of war!"
 
 	// Role data.
-	var/id = null                      		// Unique type identifier.
+	var/id = null                      		// Uni69ue type identifier.
 	var/role_text = "Contractor"               // special_role text.
 	var/role_text_plural = "Contractors"       // As above but plural.
 	var/selectable = TRUE
@@ -42,7 +42,7 @@
 	)
 
 	var/list/perks = list()
-	// Misc.
+	//69isc.
 	var/bantype               // Ban to check when spawning this antag.
 	var/antaghud_indicator	  // Icon used for the antaghud
 	var/list/uplinks = list()
@@ -60,4 +60,4 @@
 		if(!hud_icon_reference)
 			hud_icon_reference = list()
 		if(role_text)
-			hud_icon_reference[role_text] = antaghud_indicator
+			hud_icon_reference69role_text69 = antaghud_indicator

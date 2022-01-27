@@ -361,7 +361,7 @@
 	rarity_value = 50
 
 /obj/item/clothing/suit/armor/vest/full
-	rarity_value = 40  // little bit rarer than just vests
+	rarity_value = 40  // little bit rarer than just69ests
 
 /obj/item/clothing/suit/armor/vest/handmade/full
 	rarity_value = 30

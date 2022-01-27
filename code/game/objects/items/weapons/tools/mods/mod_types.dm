@@ -5,19 +5,19 @@
 //------------------------------------------------
 
 //This can be attached to basically any long tool
-//This includes most mechanical ones
+//This includes69ost69echanical ones
 /obj/item/tool_upgrade/reinforcement
 	bad_type = /obj/item/tool_upgrade/reinforcement
 
 /obj/item/tool_upgrade/reinforcement/stick
 	name = "brace bar"
-	desc = "A sturdy pole made of fiber tape and plasteel rods. Can be used to reinforce the shaft of many tools."
+	desc = "A sturdy pole69ade of fiber tape and plasteel rods. Can be used to reinforce the shaft of69any tools."
 	icon_state = "brace_bar"
 
 	price_tag = 120
-	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTEEL = 5,69ATERIAL_PLASTIC = 1)
 
-//list/tool_upgrades, list/required_qualities, list/negative_qualities, prefix, req_fuel, req_cell
+//list/tool_upgrades, list/re69uired_69ualities, list/negative_69ualities, prefix, re69_fuel, re69_cell
 
 /obj/item/tool_upgrade/reinforcement/stick/New()
 	..()
@@ -27,7 +27,7 @@
 		UPGRADE_FORCE_MOD = 1,
 		)
 
-	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_PRYING, QUALITY_SAWING,QUALITY_SHOVELING,QUALITY_DIGGING,QUALITY_EXCAVATION)
+	I.re69uired_69ualities = list(69UALITY_BOLT_TURNING,69UALITY_PRYING, 69UALITY_SAWING,69UALITY_SHOVELING,69UALITY_DIGGING,69UALITY_EXCAVATION)
 	I.prefix = "braced"
 
 //Heatsink can be attached to any tool that uses fuel or power
@@ -35,7 +35,7 @@
 	name = "heatsink"
 	desc = "An array of plasteel fins which dissipates heat, reducing damage and extending the lifespan of power tools."
 	icon_state = "heatsink"
-	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTEEL = 5,69ATERIAL_PLASTIC = 1)
 
 /obj/item/tool_upgrade/reinforcement/heatsink/New()
 	..()
@@ -45,13 +45,13 @@
 		UPGRADE_HEALTH_THRESHOLD = 10
 		)
 	I.prefix = "heatsunk"
-	I.req_fuel_cell = REQ_FUEL_OR_CELL
+	I.re69_fuel_cell = RE69_FUEL_OR_CELL
 
 /obj/item/tool_upgrade/reinforcement/plating
 	name = "reinforced plating"
 	desc = "A sturdy bit of plasteel that can be bolted onto any tool to protect it. Tough, but bulky."
 	icon_state = "plate"
-	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_STEEL = 2) //steel to compensate for metal rods used in crafting
+	matter = list(MATERIAL_PLASTEEL = 5,69ATERIAL_STEEL = 2) //steel to compensate for69etal rods used in crafting
 
 /obj/item/tool_upgrade/reinforcement/plating/New()
 	..()
@@ -66,7 +66,7 @@
 
 /obj/item/tool_upgrade/reinforcement/guard
 	name = "metal guard"
-	desc = "A bent piece of metal that wraps around sensitive parts of a tool, protecting it from impacts, debris, and stray fingers."
+	desc = "A bent piece of69etal that wraps around sensitive parts of a tool, protecting it from impacts, debris, and stray fingers."
 	icon_state = "guard"
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
@@ -80,15 +80,15 @@
 	UPGRADE_PRECISION = 5,
 	UPGRADE_HEALTH_THRESHOLD = 10
 	)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING, QUALITY_HAMMERING)
+	I.re69uired_69ualities = list(69UALITY_CUTTING,69UALITY_DRILLING, 69UALITY_SAWING, 69UALITY_DIGGING, 69UALITY_EXCAVATION, 69UALITY_WELDING, 69UALITY_HAMMERING)
 	I.prefix = "shielded"
 
 // Plasmablock can be attached to any tool that uses fuel or power
 /obj/item/tool_upgrade/reinforcement/plasmablock
 	name = "plasmablock"
-	desc = "A plasmablock is way more efficient to dissipate heat than classic heatsinks or waterblocks thanks to the tremendous heat-transfer capacity of liquid plasma. The fluid that is actively pumped through a radiator and cooled by fans. It greatly extends the lifespan of power tools."
+	desc = "A plasmablock is way69ore efficient to dissipate heat than classic heatsinks or waterblocks thanks to the tremendous heat-transfer capacity of li69uid plasma. The fluid that is actively pumped through a radiator and cooled by fans. It greatly extends the lifespan of power tools."
 	icon_state = "plasmablock"
-	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 1)
+	matter = list(MATERIAL_PLASTEEL = 5,69ATERIAL_PLASTIC = 2,69ATERIAL_PLASMA = 1)
 
 /obj/item/tool_upgrade/reinforcement/plasmablock/New()
 	..()
@@ -100,11 +100,11 @@
 		UPGRADE_FUELCOST_MULT = 1.05
 		)
 	I.prefix = "plasma-cooled"
-	I.req_fuel_cell = REQ_FUEL_OR_CELL
+	I.re69_fuel_cell = RE69_FUEL_OR_CELL
 
 /obj/item/tool_upgrade/reinforcement/rubbermesh
-	name = "rubber mesh"
-	desc = "A rubber mesh that can wrapped around sensitive parts of a tool, protecting them from impacts and debris."
+	name = "rubber69esh"
+	desc = "A rubber69esh that can wrapped around sensitive parts of a tool, protecting them from impacts and debris."
 	icon_state = "rubbermesh"
 	matter = list(MATERIAL_PLASTIC = 3)
 
@@ -115,7 +115,7 @@
 	UPGRADE_DEGRADATION_MULT = 0.7,
 	UPGRADE_HEALTH_THRESHOLD = 5
 	)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_WELDING, QUALITY_HAMMERING)
+	I.re69uired_69ualities = list(69UALITY_CUTTING,69UALITY_DRILLING, 69UALITY_SAWING, 69UALITY_DIGGING, 69UALITY_EXCAVATION, 69UALITY_WELDING, 69UALITY_HAMMERING)
 	I.prefix = "rubber-wrapped"
 
 // 	 PRODUCTIVITY: INCREASES WORKSPEED
@@ -125,9 +125,9 @@
 
 /obj/item/tool_upgrade/productivity/ergonomic_grip
 	name = "ergonomic grip"
-	desc = "A replacement grip for a tool which allows it to be more precisely controlled with one hand."
+	desc = "A replacement grip for a tool which allows it to be69ore precisely controlled with one hand."
 	icon_state = "ergonomic"
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTIC = 5)
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTIC = 5)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
 /obj/item/tool_upgrade/productivity/ergonomic_grip/New()
@@ -140,15 +140,15 @@
 		GUN_UPGRADE_RECOIL = 0.9,
 	)
 	I.gun_loc_tag = GUN_GRIP
-	I.req_gun_tags = list(GUN_GRIP)
+	I.re69_gun_tags = list(GUN_GRIP)
 
 	I.prefix = "ergonomic"
 
 /obj/item/tool_upgrade/productivity/ratchet
-	name = "ratcheting mechanism"
-	desc = "A mechanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction."
+	name = "ratcheting69echanism"
+	desc = "A69echanical upgrade for wrenches and screwdrivers which allows the tool to only turn in one direction."
 	icon_state = "ratchet"
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_PLASTEEL = 4,69ATERIAL_PLASTIC = 1)
 
 /obj/item/tool_upgrade/productivity/ratchet/New()
 	..()
@@ -156,7 +156,7 @@
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = 0.25
 	)
-	I.required_qualities = list(QUALITY_BOLT_TURNING,QUALITY_SCREW_DRIVING)
+	I.re69uired_69ualities = list(69UALITY_BOLT_TURNING,69UALITY_SCREW_DRIVING)
 	I.prefix = "ratcheting"
 
 /obj/item/tool_upgrade/productivity/red_paint
@@ -165,7 +165,7 @@
 	icon_state = "paint_red"
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_PLASTIC = 1)
 
 /obj/item/tool_upgrade/productivity/red_paint/New()
 	..()
@@ -182,7 +182,7 @@
 	desc = "A rough single-use block to sharpen a blade. The honed edge cuts smoothly."
 	icon_state = "whetstone"
 	rarity_value = 30
-	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_DIAMOND = 3)
+	matter = list(MATERIAL_PLASTEEL = 5,69ATERIAL_DIAMOND = 3)
 
 /obj/item/tool_upgrade/productivity/whetstone/New()
 	..()
@@ -192,17 +192,17 @@
 	UPGRADE_PRECISION = 5,
 	UPGRADE_FORCE_MULT = 1.15
 	)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_SAWING, QUALITY_SHOVELING, QUALITY_WIRE_CUTTING)
-	I.negative_qualities = list(QUALITY_WELDING, QUALITY_LASER_CUTTING)
+	I.re69uired_69ualities = list(69UALITY_CUTTING,69UALITY_SAWING, 69UALITY_SHOVELING, 69UALITY_WIRE_CUTTING)
+	I.negative_69ualities = list(69UALITY_WELDING, 69UALITY_LASER_CUTTING)
 	I.prefix = "sharpened"
 
 /obj/item/tool_upgrade/productivity/diamond_blade
 	name = "Asters \"Gleaming Edge\": Diamond blade"
-	desc = "An adaptable industrial grade cutting disc, with diamond dust worked into the metal. Exceptionally durable."
+	desc = "An adaptable industrial grade cutting disc, with diamond dust worked into the69etal. Exceptionally durable."
 	icon_state = "diamond_blade"
 	price_tag = 300
 	rarity_value = 60
-	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_DIAMOND = 4)
+	matter = list(MATERIAL_PLASTEEL = 3,69ATERIAL_DIAMOND = 4)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
 /obj/item/tool_upgrade/productivity/diamond_blade/New()
@@ -213,16 +213,16 @@
 	UPGRADE_DEGRADATION_MULT = 0.85,
 	UPGRADE_FORCE_MULT = 1.10,
 	)
-	I.required_qualities = list(QUALITY_CUTTING, QUALITY_SHOVELING, QUALITY_SAWING, QUALITY_WIRE_CUTTING, QUALITY_PRYING)
-	I.negative_qualities = list(QUALITY_WELDING, QUALITY_LASER_CUTTING)
+	I.re69uired_69ualities = list(69UALITY_CUTTING, 69UALITY_SHOVELING, 69UALITY_SAWING, 69UALITY_WIRE_CUTTING, 69UALITY_PRYING)
+	I.negative_69ualities = list(69UALITY_WELDING, 69UALITY_LASER_CUTTING)
 	I.prefix = "diamond-edged"
 
 /obj/item/tool_upgrade/productivity/oxyjet
 	name = "oxyjet canister"
-	desc = "A canister of pure, compressed oxygen with adapters for mounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures."
+	desc = "A canister of pure, compressed oxygen with adapters for69ounting onto a welding tool. Used alongside fuel, it allows for higher burn temperatures."
 	icon_state = "oxyjet"
 	rarity_value = 20
-	matter = list(MATERIAL_PLASTEEL = 5, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTEEL = 5,69ATERIAL_PLASTIC = 1)
 
 /obj/item/tool_upgrade/productivity/oxyjet/New()
 	..()
@@ -233,17 +233,17 @@
 	UPGRADE_DEGRADATION_MULT = 1.15,
 	UPGRADE_HEALTH_THRESHOLD = -10
 	)
-	I.required_qualities = list(QUALITY_WELDING)
+	I.re69uired_69ualities = list(69UALITY_WELDING)
 	I.prefix = "oxyjet"
 
-//Enhances power tools majorly, but also increases costs
+//Enhances power tools69ajorly, but also increases costs
 /obj/item/tool_upgrade/productivity/motor
-	name = "high power motor"
-	desc = "A motor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but more expensive to run and harder to control."
+	name = "high power69otor"
+	desc = "A69otor for power tools with a higher horsepower than usually expected. Significantly enhances productivity and lifespan, but69ore expensive to run and harder to control."
 	icon_state = "motor"
 	rarity_value = 20
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 4)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_PLASTEEL = 4)
 
 /obj/item/tool_upgrade/productivity/motor/New()
 	..()
@@ -257,15 +257,15 @@
 	UPGRADE_PRECISION = -10,
 	UPGRADE_HEALTH_THRESHOLD = -10
 	)
-	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_DRILLING, QUALITY_SAWING, QUALITY_DIGGING, QUALITY_EXCAVATION, QUALITY_HAMMERING)
+	I.re69uired_69ualities = list(69UALITY_SCREW_DRIVING, 69UALITY_DRILLING, 69UALITY_SAWING, 69UALITY_DIGGING, 69UALITY_EXCAVATION, 69UALITY_HAMMERING)
 	I.prefix = "high-power"
-	I.req_fuel_cell = REQ_FUEL_OR_CELL
+	I.re69_fuel_cell = RE69_FUEL_OR_CELL
 
 /obj/item/tool_upgrade/productivity/antistaining
 	name = "anti-staining paint"
 	desc = "Applying a thin coat of this paint on a tool prevents stains, dirt or dust to adhere to its surface. Everyone works better and faster with clean tools."
 	icon_state = "antistaining"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_PLASTIC = 2)
 
 /obj/item/tool_upgrade/productivity/antistaining/New()
 	..()
@@ -279,9 +279,9 @@
 
 /obj/item/tool_upgrade/productivity/booster
 	name = "booster"
-	desc = "When you do not care about energy comsumption and just want to get shit done quickly. This device shunts the power safeties of your tool whether it uses fuel or electricity."
+	desc = "When you do not care about energy comsumption and just want to get shit done 69uickly. This device shunts the power safeties of your tool whether it uses fuel or electricity."
 	icon_state = "booster"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_PLASTIC = 2,69ATERIAL_GOLD = 1)
 
 /obj/item/tool_upgrade/productivity/booster/New()
 	..()
@@ -293,13 +293,13 @@
 	UPGRADE_FUELCOST_MULT = 1.25
 	)
 	I.prefix = "boosted"
-	I.req_fuel_cell = REQ_FUEL_OR_CELL
+	I.re69_fuel_cell = RE69_FUEL_OR_CELL
 
 /obj/item/tool_upgrade/productivity/injector
 	name = "plasma injector"
-	desc = "If the words \"safety regulations\" do not mean anything to you, you may consider installing this fine piece of technology on your tool. It injects small amounts of plasma in the fuel mix before combustion to greatly increase its power output, making all kinds of tasks easier to perform."
+	desc = "If the words \"safety regulations\" do not69ean anything to you, you69ay consider installing this fine piece of technology on your tool. It injects small amounts of plasma in the fuel69ix before combustion to greatly increase its power output,69aking all kinds of tasks easier to perform."
 	icon_state = "injector"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTIC = 2, MATERIAL_PLASMA = 2)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_PLASTIC = 2,69ATERIAL_PLASMA = 2)
 
 /obj/item/tool_upgrade/productivity/injector/New()
 	..()
@@ -312,7 +312,7 @@
 	UPGRADE_HEALTH_THRESHOLD = -10
 	)
 	I.prefix = "plasma-fueled"
-	I.req_fuel_cell = REQ_FUEL
+	I.re69_fuel_cell = RE69_FUEL
 
 // 	 REFINEMENT: INCREASES PRECISION
 //------------------------------------------------
@@ -321,10 +321,10 @@
 
 /obj/item/tool_upgrade/refinement/laserguide
 	name = "Asters \"Guiding Light\" laser guide"
-	desc = "A small visible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
+	desc = "A small69isible laser which can be strapped onto any tool, giving an accurate representation of its target. Helps improve precision."
 	icon_state = "laser_guide"
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_URANIUM = 1)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_URANIUM = 1)
 
 /obj/item/tool_upgrade/refinement/laserguide/New()
 	..()
@@ -335,11 +335,11 @@
 	GUN_UPGRADE_RECOIL = 0.9)
 	I.prefix = "laser-guided"
 
-//Fits onto generally small tools that require precision, especially surgical tools
+//Fits onto generally small tools that re69uire precision, especially surgical tools
 //Doesn't work onlarger things like crowbars and drills
 /obj/item/tool_upgrade/refinement/stabilized_grip
 	name = "gyrostabilized grip"
-	desc = "A fancy mechanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand, or shooting more precisely with one hand if the gun isn't intended for one-handed use."
+	desc = "A fancy69echanical grip that partially floats around a tool, absorbing tremors and shocks. Allows precise work with a shaky hand, or shooting69ore precisely with one hand if the gun isn't intended for one-handed use."
 	icon_state = "stabilizing"
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 	matter = list(MATERIAL_PLASTIC = 3)
@@ -352,7 +352,7 @@
 		GUN_UPGRADE_ONEHANDPENALTY = 0.3
 		)
 	I.gun_loc_tag = GUN_GRIP
-	I.req_gun_tags = list(GUN_PROJECTILE, GUN_GRIP)
+	I.re69_gun_tags = list(GUN_PROJECTILE, GUN_GRIP)
 
 /obj/item/tool_upgrade/refinement/stabilized_grip/New()
 	..()
@@ -360,7 +360,7 @@
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10,
 	UPGRADE_HEALTH_THRESHOLD = 10)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
+	I.re69uired_69ualities = list(69UALITY_CUTTING,69UALITY_WIRE_CUTTING, 69UALITY_SCREW_DRIVING, 69UALITY_WELDING,69UALITY_PULSING, 69UALITY_CLAMPING, 69UALITY_CAUTERIZING, 69UALITY_BONE_SETTING, 69UALITY_LASER_CUTTING)
 	I.prefix = "stabilized"
 
 /obj/item/tool_upgrade/refinement/magbit
@@ -368,7 +368,7 @@
 	desc = "Magnetises tools used for handling small objects, reducing instances of dropping screws and bolts."
 	icon_state = "magnetic"
 	rarity_value = 20
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTEEL = 2)
 
 /obj/item/tool_upgrade/refinement/magbit/New()
 	..()
@@ -376,15 +376,15 @@
 	I.tool_upgrades = list(
 	UPGRADE_PRECISION = 10
 	)
-	I.required_qualities = list(QUALITY_SCREW_DRIVING, QUALITY_BOLT_TURNING, QUALITY_CLAMPING, QUALITY_BONE_SETTING)
+	I.re69uired_69ualities = list(69UALITY_SCREW_DRIVING, 69UALITY_BOLT_TURNING, 69UALITY_CLAMPING, 69UALITY_BONE_SETTING)
 	I.prefix = "magnetic"
 
 /obj/item/tool_upgrade/refinement/ported_barrel
 	name = "ported barrel"
-	desc = "A barrel extension for a welding tool which helps manage gas pressure and keep the torch steady."
+	desc = "A barrel extension for a welding tool which helps69anage gas pressure and keep the torch steady."
 	icon_state = "ported_barrel"
 	rarity_value = 30
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 2)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTEEL = 2)
 
 /obj/item/tool_upgrade/refinement/ported_barrel/New()
 	..()
@@ -395,14 +395,14 @@
 	UPGRADE_BULK = 1,
 	UPGRADE_HEALTH_THRESHOLD = 10
 	)
-	I.required_qualities = list(QUALITY_WELDING)
+	I.re69uired_69ualities = list(69UALITY_WELDING)
 	I.prefix = "ported"
 
 /obj/item/tool_upgrade/refinement/compensatedbarrel
 	name = "gravity compensated barrel"
-	desc = "A barrel extension for welding tools that integrates a miniaturized gravity generator that help keep the torch steady by compensating the weight of the tool."
+	desc = "A barrel extension for welding tools that integrates a69iniaturized gravity generator that help keep the torch steady by compensating the weight of the tool."
 	icon_state = "compensatedbarrel"
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTEEL = 1, MATERIAL_PLASTIC = 1, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTEEL = 1,69ATERIAL_PLASTIC = 1,69ATERIAL_GOLD = 1)
 
 /obj/item/tool_upgrade/refinement/compensatedbarrel/New()
 	..()
@@ -414,15 +414,15 @@
 	UPGRADE_FUELCOST_MULT = 1.05,
 	UPGRADE_BULK = 1
 	)
-	I.required_qualities = list(QUALITY_WELDING)
+	I.re69uired_69ualities = list(69UALITY_WELDING)
 	I.prefix = "gravity-compensated"
-	I.req_fuel_cell = REQ_FUEL_OR_CELL
+	I.re69_fuel_cell = RE69_FUEL_OR_CELL
 
 /obj/item/tool_upgrade/refinement/vibcompensator
 	name = "vibration compensator"
-	desc = "A ground-breaking innovation that dampens the vibration of a tool by emitting sound waves in a specific pattern. It does not make any sense but neither do you by installing that on your tool."
+	desc = "A ground-breaking innovation that dampens the69ibration of a tool by emitting sound waves in a specific pattern. It does not69ake any sense but neither do you by installing that on your tool."
 	icon_state = "vibcompensator"
-	matter = list(MATERIAL_STEEL = 2, MATERIAL_PLASTIC = 1, MATERIAL_GOLD = 1)
+	matter = list(MATERIAL_STEEL = 2,69ATERIAL_PLASTIC = 1,69ATERIAL_GOLD = 1)
 
 /obj/item/tool_upgrade/refinement/vibcompensator/New()
 	..()
@@ -432,21 +432,21 @@
 	UPGRADE_HEALTH_THRESHOLD = 5,
 	UPGRADE_ITEMFLAGPLUS = HONKING
 	)
-	I.required_qualities = list(QUALITY_CUTTING,QUALITY_WIRE_CUTTING, QUALITY_SCREW_DRIVING, QUALITY_WELDING,QUALITY_PULSING, QUALITY_CLAMPING, QUALITY_CAUTERIZING, QUALITY_BONE_SETTING, QUALITY_LASER_CUTTING)
+	I.re69uired_69ualities = list(69UALITY_CUTTING,69UALITY_WIRE_CUTTING, 69UALITY_SCREW_DRIVING, 69UALITY_WELDING,69UALITY_PULSING, 69UALITY_CLAMPING, 69UALITY_CAUTERIZING, 69UALITY_BONE_SETTING, 69UALITY_LASER_CUTTING)
 	I.prefix = "vibration-compensated"
 
-// 		AUGMENTS: MISCELLANEOUS AND UTILITY
+// 		AUGMENTS:69ISCELLANEOUS AND UTILITY
 //------------------------------------------------
 
-//Allows the tool to use a cell one size category larger than it currently uses. Small to medium, medium to large, etc
+//Allows the tool to use a cell one size category larger than it currently uses. Small to69edium,69edium to large, etc
 /obj/item/tool_upgrade/augment
 	bad_type = /obj/item/tool_upgrade/augment
 
 /obj/item/tool_upgrade/augment/cell_mount
-	name = "heavy cell mount"
+	name = "heavy cell69ount"
 	icon_state = "cell_mount"
 	desc = "A bulky adapter which allows oversized power cells to be installed into small tools."
-	matter = list(MATERIAL_STEEL = 4, MATERIAL_PLASTEEL = 2, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_STEEL = 4,69ATERIAL_PLASTEEL = 2,69ATERIAL_PLASTIC = 1)
 	rarity_value = 20
 
 /obj/item/tool_upgrade/augment/cell_mount/New()
@@ -459,14 +459,14 @@
 	UPGRADE_CELLPLUS = 1
 	)
 	I.prefix = "medium-cell"
-	I.req_fuel_cell = REQ_CELL
+	I.re69_fuel_cell = RE69_CELL
 
-//Stores moar fuel!
+//Stores69oar fuel!
 /obj/item/tool_upgrade/augment/fuel_tank
 	name = "Expanded fuel tank"
 	desc = "An auxiliary tank which stores 100 extra units of fuel at the cost of degradation."
 	icon_state = "canister"
-	matter = list(MATERIAL_PLASTEEL = 4, MATERIAL_PLASTIC = 1)
+	matter = list(MATERIAL_PLASTEEL = 4,69ATERIAL_PLASTIC = 1)
 
 /obj/item/tool_upgrade/augment/fuel_tank/New()
 	..()
@@ -477,14 +477,14 @@
 	UPGRADE_HEALTH_THRESHOLD = -10,
 	UPGRADE_MAXFUEL = 100)
 	I.prefix = "expanded"
-	I.req_fuel_cell = REQ_FUEL
+	I.re69_fuel_cell = RE69_FUEL
 
-//OneStar fuel mod
+//OneStar fuel69od
 /obj/item/tool_upgrade/augment/holding_tank
 	name = "Expanded fuel tank of holding"
 	desc = "Rare relic of OneStar uses the bluetech space to store additional 600 units of fuel at the cost of degradation."
 	icon_state = "canister_holding"
-	matter = list(MATERIAL_PLASTIC = 2, MATERIAL_PLASTEEL = 4, MATERIAL_PLATINUM = 4)
+	matter = list(MATERIAL_PLASTIC = 2,69ATERIAL_PLASTEEL = 4,69ATERIAL_PLATINUM = 4)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 	spawn_blacklisted = TRUE
 
@@ -498,15 +498,15 @@
 	UPGRADE_MAXFUEL = 600
 	)
 	I.prefix = "holding"
-	I.req_fuel_cell = REQ_FUEL
+	I.re69_fuel_cell = RE69_FUEL
 	bluespace_entropy(5, get_turf(src))
 
-//Penalises the tool, but unlocks several more augment slots.
+//Penalises the tool, but unlocks several69ore augment slots.
 /obj/item/tool_upgrade/augment/expansion
 	name = "expansion port"
 	icon_state = "expand"
-	desc = "A bulky adapter which allows more modifications to be attached to the tool. A bit fragile but you can compensate."
-	matter = list(MATERIAL_STEEL = 1, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 1)
+	desc = "A bulky adapter which allows69ore69odifications to be attached to the tool. A bit fragile but you can compensate."
+	matter = list(MATERIAL_STEEL = 1,69ATERIAL_PLASTEEL = 3,69ATERIAL_PLASTIC = 1)
 	rarity_value = 60
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
@@ -525,8 +525,8 @@
 /obj/item/tool_upgrade/augment/spikes
 	name = "spikes"
 	icon_state = "spike"
-	desc = "An array of sharp bits of plasteel, seemingly adapted for easy affixing to a tool. Would make it into a better weapon, but won't do much for productivity."
-	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 2)
+	desc = "An array of sharp bits of plasteel, seemingly adapted for easy affixing to a tool. Would69ake it into a better weapon, but won't do69uch for productivity."
+	matter = list(MATERIAL_PLASTEEL = 3,69ATERIAL_STEEL = 2)
 
 /obj/item/tool_upgrade/augment/spikes/New()
 	..()
@@ -544,9 +544,9 @@
 /obj/item/tool_upgrade/augment/sanctifier
 	name = "NT 'Sanctifier' tool blessing"
 	icon_state = "sanctifier"
-	desc = "This odd piece of equipment can be applied to any tool or melee weapon, causing the object to deal extra burn damage to mutants and carrions."
+	desc = "This odd piece of e69uipment can be applied to any tool or69elee weapon, causing the object to deal extra burn damage to69utants and carrions."
 	spawn_blacklisted = TRUE
-	matter = list(MATERIAL_BIOMATTER = 3, MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_BIOMATTER = 3,69ATERIAL_STEEL = 2)
 
 /obj/item/tool_upgrade/augment/sanctifier/New()
 	..()
@@ -560,7 +560,7 @@
 	name = "Flat surface"
 	icon_state = "hammer_addon"
 	desc = "An attachment that fits on almost everything, that gives a simple flat surface to employ the tool for hammering."
-	matter = list(MATERIAL_PLASTEEL = 3, MATERIAL_STEEL = 2)
+	matter = list(MATERIAL_PLASTEEL = 3,69ATERIAL_STEEL = 2)
 	rarity_value = 20
 
 /obj/item/tool_upgrade/augment/hammer_addon/New()
@@ -569,16 +569,16 @@
 	I.tool_upgrades = list(
 	UPGRADE_WORKSPEED = -0.1,
 	UPGRADE_HEALTH_THRESHOLD = 5,
-	tool_qualities = list(QUALITY_HAMMERING = 10)
+	tool_69ualities = list(69UALITY_HAMMERING = 10)
 	)
 	I.prefix = "flattened"
 
 //Vastly reduces tool sounds, for stealthy hacking
 /obj/item/tool_upgrade/augment/dampener
 	name = "aural dampener"
-	desc = "This aural dampener is a cutting edge tool attachment which mostly nullifies sound waves within a tiny radius. It minimises the noise created during use, perfect for stealth operations."
+	desc = "This aural dampener is a cutting edge tool attachment which69ostly nullifies sound waves within a tiny radius. It69inimises the noise created during use, perfect for stealth operations."
 	icon_state = "dampener"
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTIC = 1,69ATERIAL_PLASTEEL = 1,69ATERIAL_PLATINUM = 1)
 	rarity_value = 30
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
@@ -594,10 +594,10 @@
 
 /obj/item/tool_upgrade/augment/ai_tool
 	name = "Nanointegrated AI"
-	desc = "A forgotten One Star tech. Due to its unique installation method of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
+	desc = "A forgotten One Star tech. Due to its uni69ue installation69ethod of \"slapping it hard enough onto anything should do the trick\", it is highly sought after. \
 			A powerful AI will integrate itself into this tool with the aid of nanotechnology, and improve it in every way possible."
 	icon_state = "ai_tool"
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTIC = 1,69ATERIAL_PLASTEEL = 1,69ATERIAL_PLATINUM = 1)
 	spawn_blacklisted = TRUE
 	rarity_value = 50
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
@@ -612,7 +612,7 @@
 	UPGRADE_HEALTH_THRESHOLD = -10,
 	)
 	I.prefix = "intelligent"
-	I.req_fuel_cell = REQ_CELL
+	I.re69_fuel_cell = RE69_CELL
 	I.weapon_upgrades = list(
 	GUN_UPGRADE_RECOIL = 0.8,
 	GUN_UPGRADE_DAMAGE_MULT = 1.2,
@@ -626,9 +626,9 @@
 
 /obj/item/tool_upgrade/augment/repair_nano
 	name = "repair nano"
-	desc = "Very rare tool mod from OneStar powered by their nanomachines. It repairs the tool while in use and makes it near unbreakable."
+	desc = "Very rare tool69od from OneStar powered by their nanomachines. It repairs the tool while in use and69akes it near unbreakable."
 	icon_state = "repair_nano"
-	matter = list(MATERIAL_PLASTIC = 1, MATERIAL_PLASTEEL = 1, MATERIAL_PLATINUM = 1)
+	matter = list(MATERIAL_PLASTIC = 1,69ATERIAL_PLASTEEL = 1,69ATERIAL_PLATINUM = 1)
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE_OS
 	spawn_blacklisted = TRUE
 
@@ -645,7 +645,7 @@
 	name = "hydraulic circuits"
 	desc = "A complex set of hydraulic circuits that can be installed on a tool to greatly improve its functions. It's loud as hell though so do not plan on being stealthy."
 	icon_state = "hydraulic"
-	matter = list(MATERIAL_STEEL = 3, MATERIAL_PLASTEEL = 3, MATERIAL_PLASTIC = 3)
+	matter = list(MATERIAL_STEEL = 3,69ATERIAL_PLASTEEL = 3,69ATERIAL_PLASTIC = 3)
 	spawn_blacklisted = TRUE
 
 /obj/item/tool_upgrade/augment/hydraulic/New()
@@ -661,9 +661,9 @@
 // Randomizes a bunch of weapon stats on application - stats are set on creation of the item to prevent people from re-rolling until they get what they want
 /obj/item/tool_upgrade/augment/randomizer
 	name = "BSL \"Randomizer\" tool polish"
-	desc = "This unidentified tar-like liquid warps and bends reality around it. Applying it to a tool may have unexpected results."
+	desc = "This unidentified tar-like li69uid warps and bends reality around it. Applying it to a tool69ay have unexpected results."
 	icon_state = "randomizer"
-	matter = list(MATERIAL_PLASMA = 4, MATERIAL_URANIUM = 4)
+	matter = list(MATERIAL_PLASMA = 4,69ATERIAL_URANIUM = 4)
 	rarity_value = 80
 	spawn_tags = SPAWN_TAG_TOOL_UPGRADE_RARE
 
@@ -683,28 +683,28 @@
 
 /obj/item/tool_upgrade/artwork_tool_mod
 	name = "Weird Revolver"
-	desc = "This is an artistically-made tool mod."
+	desc = "This is an artistically-made tool69od."
 	icon_state = "artmod_1"
-	spawn_frequency = 0
+	spawn_fre69uency = 0
 	price_tag = 200
 
 /obj/item/tool_upgrade/artwork_tool_mod/Initialize(mapload, prob_rare = 33)
 	. = ..()
 	name = get_weapon_name(capitalize = TRUE)
-	icon_state = "artmod_[rand(1,16)]"
+	icon_state = "artmod_69rand(1,16)69"
 	var/sanity_value = 0.2 + pick(0,0.1,0.2)
 	AddComponent(/datum/component/atom_sanity, sanity_value, "")
 	var/obj/randomcatcher/CATCH = new(src)
-	var/obj/item/tool_upgrade/spawn_type = pickweight(list(/obj/spawner/tool_upgrade = max(100-prob_rare,0), /obj/spawner/tool_upgrade/rare = prob_rare), 0)
+	var/obj/item/tool_upgrade/spawn_type = pickweight(list(/obj/spawner/tool_upgrade =69ax(100-prob_rare,0), /obj/spawner/tool_upgrade/rare = prob_rare), 0)
 	spawn_type = CATCH.get_item(spawn_type)
 	spawn_type.TransferComponents(src)
 	GET_COMPONENT(tool_comp, /datum/component/item_upgrade)
 	for(var/upgrade in (tool_comp.tool_upgrades - GLOB.tool_aspects_blacklist))
-		if(isnum(tool_comp.tool_upgrades[upgrade]))
-			tool_comp.tool_upgrades[upgrade] = tool_comp.tool_upgrades[upgrade] * rand(5,15)/10
-	tool_comp.tool_upgrades[UPGRADE_BULK] = rand(-1,2)
-	QDEL_NULL(spawn_type)
-	QDEL_NULL(CATCH)
+		if(isnum(tool_comp.tool_upgrades69upgrade69))
+			tool_comp.tool_upgrades69upgrade69 = tool_comp.tool_upgrades69upgrade69 * rand(5,15)/10
+	tool_comp.tool_upgrades69UPGRADE_BULK69 = rand(-1,2)
+	69DEL_NULL(spawn_type)
+	69DEL_NULL(CATCH)
 	price_tag += rand(0, 1000)
 
 /obj/item/tool_upgrade/artwork_tool_mod/get_item_cost(export)
@@ -729,8 +729,8 @@
 	I.prefix = "assisted"
 
 /obj/item/tool_upgrade/flow_mechanism
-	name = "Flowing metal system"
-	desc = "This tool makes use of liquid metal within its architecture."
+	name = "Flowing69etal system"
+	desc = "This tool69akes use of li69uid69etal within its architecture."
 	spawn_blacklisted = TRUE
 	price_tag = 300
 
@@ -746,8 +746,8 @@
 	I.prefix = "flowing"
 
 /obj/item/tool_upgrade/magni_grip
-	name = "Waved magnetic grip"
-	desc = "A wavy metallic sheet that attaches to most gloves automatically."
+	name = "Waved69agnetic grip"
+	desc = "A wavy69etallic sheet that attaches to69ost gloves automatically."
 	spawn_blacklisted = TRUE
 	price_tag = 200
 
@@ -763,7 +763,7 @@
 
 /obj/item/tool_upgrade/resonator
 	name = "Resonator sink"
-	desc = "A special module which prevents the tool from resonating."
+	desc = "A special69odule which prevents the tool from resonating."
 	spawn_blacklisted = TRUE
 	price_tag = 400
 
@@ -779,7 +779,7 @@
 
 /obj/item/tool_upgrade/plasma_coating
 	name = "Plasma coating"
-	desc = "This tool is coated with plasma, granting it more durability."
+	desc = "This tool is coated with plasma, granting it69ore durability."
 	spawn_blacklisted = TRUE
 	price_tag = 600
 

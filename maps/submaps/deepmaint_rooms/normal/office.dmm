@@ -1,95 +1,95 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"b" = (
-/obj/spawner/traps,
-/turf/simulated/floor/tiled/steel/brown_platform,
-/area/deepmaint)
-"c" = (
+//MAP CONVERTED 69Y dmm2t69m.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"69" = 69
+/o6969/spawner/traps,
+/turf/simulated/floor/tiled/steel/69rown_platform,
+/area/deepmaint69
+"c" = 69
 /turf/simulated/wall,
-/area/deepmaint)
-"d" = (
-/obj/machinery/door/firedoor,
-/obj/effect/window_lwall_spawn/smartspawn,
-/turf/simulated/floor/plating,
-/area/deepmaint)
-"f" = (
-/obj/structure/table/standard,
-/obj/item/device/lighting/toggleable/lamp,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"g" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"h" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/rare/low_chance,
-/obj/spawner/lowkeyrandom,
-/obj/spawner/lowkeyrandom,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"i" = (
-/obj/structure/bed/chair/office/dark{
+/area/deepmaint69
+"d" = 69
+/o6969/machinery/door/firedoor,
+/o6969/effect/window_lwall_spawn/smartspawn,
+/turf/simulated/floor/platin69,
+/area/deepmaint69
+"f" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/device/li69htin69/to6969lea69le/lamp,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/rea69ent_dispensers/water_cooler,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"h" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pac69/rare/low_chance,
+/o6969/spawner/low69eyrandom,
+/o6969/spawner/low69eyrandom,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"i" = 69
+/o6969/structure/69ed/chair/office/dar69{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"j" = (
-/obj/structure/bed/chair/office/dark{
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/69ed/chair/office/dar69{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"k" = (
-/obj/structure/table/standard,
-/obj/spawner/pack/gun_loot/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"l" = (
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"m" = (
-/obj/structure/table/standard,
-/obj/spawner/powercell/low_chance,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"n" = (
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"o" = (
-/obj/spawner/traps,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"p" = (
-/obj/structure/bed/chair/office/dark,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"q" = (
-/obj/spawner/mob/roaches/cluster/low_chance,
-/turf/simulated/floor/tiled/steel/gray_platform,
-/area/deepmaint)
-"r" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"69" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/pac69/69un_loot/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"l" = 69
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"m" = 69
+/o6969/structure/ta69le/standard,
+/o6969/spawner/powercell/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"n" = 69
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"o" = 69
+/o6969/spawner/traps,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"p" = 69
+/o6969/structure/69ed/chair/office/dar69,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"69" = 69
+/o6969/spawner/mo69/roaches/cluster/low_chance,
+/turf/simulated/floor/tiled/steel/69ray_platform,
+/area/deepmaint69
+"r" = 69
+/o6969/machinery/li69ht/small{
 	dir = 4;
 	pixel_y = 0
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"s" = (
-/obj/machinery/light/small{
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"s" = 69
+/o6969/machinery/li69ht/small{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
-"N" = (
-/obj/structure/table/standard,
-/obj/item/paper_bin,
-/turf/simulated/floor/tiled/steel/gray_perforated,
-/area/deepmaint)
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
+"N" = 69
+/o6969/structure/ta69le/standard,
+/o6969/item/paper_69in,
+/turf/simulated/floor/tiled/steel/69ray_perforated,
+/area/deepmaint69
 
-(1,1,1) = {"
+691,1,169 = {"
 a
 a
 a
@@ -97,13 +97,13 @@ a
 a
 a
 a
-b
+69
 a
 a
 a
 "}
-(2,1,1) = {"
-b
+692,1,169 = {"
+69
 c
 c
 c
@@ -113,9 +113,9 @@ c
 c
 c
 c
-b
+69
 "}
-(3,1,1) = {"
+693,1,169 = {"
 a
 d
 N
@@ -128,20 +128,20 @@ N
 d
 a
 "}
-(4,1,1) = {"
+694,1,169 = {"
 a
 d
 f
 i
 l
-q
+69
 r
 p
 f
 d
 a
 "}
-(5,1,1) = {"
+695,1,169 = {"
 a
 c
 c
@@ -154,7 +154,7 @@ c
 c
 a
 "}
-(6,1,1) = {"
+696,1,169 = {"
 a
 d
 N
@@ -167,7 +167,7 @@ N
 d
 a
 "}
-(7,1,1) = {"
+697,1,169 = {"
 a
 d
 f
@@ -180,7 +180,7 @@ f
 d
 a
 "}
-(8,1,1) = {"
+698,1,169 = {"
 a
 c
 c
@@ -193,33 +193,33 @@ c
 c
 a
 "}
-(9,1,1) = {"
+699,1,169 = {"
 a
 c
-g
-j
+69
+69
 l
 n
 s
-j
-g
+69
+69
 c
 a
 "}
-(10,1,1) = {"
+6910,1,169 = {"
 a
 c
 f
-k
+69
 m
 o
 m
-k
+69
 f
 c
 a
 "}
-(11,1,1) = {"
+6911,1,169 = {"
 a
 a
 a

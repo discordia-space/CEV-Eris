@@ -10,7 +10,7 @@
 
 /obj/item/weldpack/canister
 	name = "canister"
-	desc = "You may need it for draging around additional fuel."
+	desc = "You69ay need it for draging around additional fuel."
 	slot_flags = null
 	icon_state = "canister"
 	w_class = ITEM_SIZE_NORMAL
@@ -20,24 +20,24 @@
 
 /obj/item/weldpack/Initialize(mapload)
 	create_reagents(max_fuel)
-	reagents.add_reagent("fuel", max_fuel)
+	reagents.add_reagent("fuel",69ax_fuel)
 	. = ..()
 
-/obj/item/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
+/obj/item/weldpack/afterattack(obj/O as obj,69ob/user as69ob, proximity)
 	if(!proximity) // this replaces and improves the get_dist(src,O) <= 1 checks used previously
 		return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
-		O.reagents.trans_to_obj(src, max_fuel)
+	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume <69ax_fuel)
+		O.reagents.trans_to_obj(src,69ax_fuel)
 		to_chat(user, SPAN_NOTICE("You crack the cap off the top of the pack and fill it back up again from the tank."))
 		playsound(src.loc, 'sound/effects/refill.ogg', 50, 1, -6)
 		return
-	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
+	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume ==69ax_fuel)
 		to_chat(user, SPAN_WARNING("The pack is already full!"))
 		return
 
 /obj/item/weldpack/examine(mob/user)
 	..(user)
-	to_chat(user, text("\icon[] [] units of fuel left!", src, src.reagents.total_volume))
+	to_chat(user, text("\icon6969 6969 units of fuel left!", src, src.reagents.total_volume))
 	return
 
 /obj/item/weldpack/proc/explode()
@@ -48,4 +48,4 @@
 	else if (reagents.total_volume > 0)
 		explosion(src.loc,-1,1,2)
 	if(src)
-		qdel(src)
+		69del(src)

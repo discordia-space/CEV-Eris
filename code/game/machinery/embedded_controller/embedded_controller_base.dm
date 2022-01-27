@@ -1,31 +1,31 @@
 /obj/machinery/embedded_controller
-	var/datum/computer/file/embedded_program/program	//the currently executing program
+	var/datum/computer/file/embedded_pro69ram/pro69ram	//the currently executin69 pro69ram
 
 	name = "Embedded Controller"
 	anchored = TRUE
 
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
+	idle_power_usa69e = 10
 
 	var/on = TRUE
 
 obj/machinery/embedded_controller/radio/Destroy()
-	SSradio.remove_object(src,frequency)
+	SSradio.remove_object(src,fre69uency)
 	. = ..()
 
-/obj/machinery/embedded_controller/proc/post_signal(datum/signal/signal, comm_line)
+/obj/machinery/embedded_controller/proc/post_si69nal(datum/si69nal/si69nal, comm_line)
 	return 0
 
-/obj/machinery/embedded_controller/receive_signal(datum/signal/signal, receive_method, receive_param)
-	if(!signal || signal.encryption) return
+/obj/machinery/embedded_controller/receive_si69nal(datum/si69nal/si69nal, receive_method, receive_param)
+	if(!si69nal || si69nal.encryption) return
 
-	if(program)
-		program.receive_signal(signal, receive_method, receive_param)
-			//spawn(5) program.Process() //no, program.process sends some signals and machines respond and we here again and we lag -rastaf0
+	if(pro69ram)
+		pro69ram.receive_si69nal(si69nal, receive_method, receive_param)
+			//spawn(5) pro69ram.Process() //no, pro69ram.process sends some si69nals and69achines respond and we here a69ain and we la69 -rastaf0
 
 /obj/machinery/embedded_controller/Process()
-	if(program)
-		program.Process()
+	if(pro69ram)
+		pro69ram.Process()
 
 	update_icon()
 
@@ -45,36 +45,36 @@ obj/machinery/embedded_controller/radio/Destroy()
 	power_channel = STATIC_ENVIRON
 	density = FALSE
 
-	var/id_tag
-	//var/radio_power_use = 50 //power used to xmit signals
+	var/id_ta69
+	//var/radio_power_use = 50 //power used to xmit si69nals
 
-	var/frequency = 1379
+	var/fre69uency = 1379
 	var/radio_filter = null
-	var/datum/radio_frequency/radio_connection
+	var/datum/radio_fre69uency/radio_connection
 	unacidable = 1
 
 /obj/machinery/embedded_controller/radio/Initialize()
 	. = ..()
-	set_frequency(frequency)
+	set_fre69uency(fre69uency)
 
 /obj/machinery/embedded_controller/radio/update_icon()
-	if(on && program)
-		if(program.memory["processing"])
+	if(on && pro69ram)
+		if(pro69ram.memory69"processin69"69)
 			icon_state = "airlock_control_process"
 		else
 			icon_state = "airlock_control_standby"
 	else
 		icon_state = "airlock_control_off"
 
-/obj/machinery/embedded_controller/radio/post_signal(datum/signal/signal, var/filter = null)
-	signal.transmission_method = TRANSMISSION_RADIO
+/obj/machinery/embedded_controller/radio/post_si69nal(datum/si69nal/si69nal,69ar/filter = null)
+	si69nal.transmission_method = TRANSMISSION_RADIO
 	if(radio_connection)
-		//use_power(radio_power_use)	//neat idea, but causes way too much lag.
-		return radio_connection.post_signal(src, signal, filter)
+		//use_power(radio_power_use)	//neat idea, but causes way too69uch la69.
+		return radio_connection.post_si69nal(src, si69nal, filter)
 	else
-		qdel(signal)
+		69del(si69nal)
 
-/obj/machinery/embedded_controller/radio/proc/set_frequency(new_frequency)
-	SSradio.remove_object(src, frequency)
-	frequency = new_frequency
-	radio_connection = SSradio.add_object(src, frequency, radio_filter)
+/obj/machinery/embedded_controller/radio/proc/set_fre69uency(new_fre69uency)
+	SSradio.remove_object(src, fre69uency)
+	fre69uency = new_fre69uency
+	radio_connection = SSradio.add_object(src, fre69uency, radio_filter)

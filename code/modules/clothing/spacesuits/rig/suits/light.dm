@@ -1,6 +1,6 @@
 // Light rigs are not space-capable, but don't suffer excessive slowdown or sight issues when depowered.
 /obj/item/rig/light
-	name = "light suit control module"
+	name = "light suit control69odule"
 	desc = "A lighter, less armoured rig suit."
 	icon_state = "ninja_rig"
 	suit_type = "light suit"
@@ -40,15 +40,15 @@
 	name = "hood"
 
 /obj/item/rig/light/hacker
-	name = "cybersuit control module"
+	name = "cybersuit control69odule"
 	suit_type = "cyber"
-	desc = "An advanced powered armour suit with many cyberwarfare enhancements. Comes with built-in insulated gloves for safely tampering with electronics."
+	desc = "An advanced powered armour suit with69any cyberwarfare enhancements. Comes with built-in insulated gloves for safely tampering with electronics."
 	icon_state = "hacker_rig"
 
 	req_access = list(access_syndicate)
 
 	airtight = 0
-	seal_delay = 5 //not being vaccum-proof has an upside I guess
+	seal_delay = 5 //not being69accum-proof has an upside I guess
 
 	helm_type = /obj/item/clothing/head/lightrig/hacker
 	chest_type = /obj/item/clothing/suit/lightrig/hacker
@@ -64,7 +64,7 @@
 		/obj/item/rig_module/vision,
 		)
 
-//The cybersuit is not space-proof. It does however, have good siemens_coefficient values
+//The cybersuit is not space-proof. It does however, have good siemens_coefficient69alues
 /obj/item/clothing/head/lightrig/hacker
 	name = "HUD"
 	siemens_coefficient = 0.4
@@ -75,15 +75,15 @@
 
 /obj/item/clothing/shoes/lightrig/hacker
 	siemens_coefficient = 0.4
-	flags = NOSLIP //All the other rigs have magboots anyways, hopefully gives the hacker suit something more going for it.
+	flags = NOSLIP //All the other rigs have69agboots anyways, hopefully gives the hacker suit something69ore going for it.
 
 /obj/item/clothing/gloves/lightrig/hacker
 	siemens_coefficient = 0
 
 /obj/item/rig/light/ninja
-	name = "ominous suit control module"
+	name = "ominous suit control69odule"
 	suit_type = "ominous"
-	desc = "A unique, vaccum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
+	desc = "A unique,69accum-proof suit of nano-enhanced armor designed specifically for Spider Clan assassins."
 	icon_state = "ninja_rig"
 	armor = list(
 		melee = 40,
@@ -124,7 +124,7 @@
 	breach_threshold = 38 //comparable to regular hardsuits
 
 /obj/item/rig/light/stealth
-	name = "stealth suit control module"
+	name = "stealth suit control69odule"
 	suit_type = "stealth"
 	desc = "A highly advanced and expensive suit designed for covert operations."
 	icon_state = "stealth_rig"

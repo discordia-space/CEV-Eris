@@ -1,19 +1,19 @@
 /datum/antagonist/proc/update_antag_mob(var/transfer_mind = TRUE)
-	// Get the mob.
+	// Get the69ob.
 	if(owner.current && ispath(mob_path))
 		var/mob/holder = owner.current
 
 		if(transfer_mind)
-			owner.current = new mob_path(get_turf(owner.current))
+			owner.current = new69ob_path(get_turf(owner.current))
 			owner.transfer_to(owner.current)
 			owner.original = owner.current
 		else
-			var/mob/M = new mob_path(get_turf(owner.current))
+			var/mob/M = new69ob_path(get_turf(owner.current))
 			M.key = owner.current.key
-			owner = M.mind
+			owner =69.mind
 
 		if(holder)
-			qdel(holder)
+			69del(holder)
 
 		return owner.current
 

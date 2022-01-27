@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(lighting)
 	var/resuming_stage = 0
 
 /datum/controller/subsystem/lighting/stat_entry()
-	..("L:[lighting_update_lights.len]|C:[lighting_update_corners.len]|O:[lighting_update_overlays.len]")
+	..("L:69lighting_update_lights.len69|C:69lighting_update_corners.len69|O:69lighting_update_overlays.len69")
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
 	create_all_lighting_overlays()
@@ -35,7 +35,7 @@ SUBSYSTEM_DEF(lighting)
 	var/list/currentrun_lights = src.currentrun_lights
 
 	while (currentrun_lights.len)
-		var/datum/light_source/L = currentrun_lights[currentrun_lights.len]
+		var/datum/light_source/L = currentrun_lights69currentrun_lights.len69
 		currentrun_lights.len--
 
 		if (L.check() || L.destroyed || L.force_update)
@@ -66,7 +66,7 @@ SUBSYSTEM_DEF(lighting)
 	var/list/currentrun_corners = src.currentrun_corners
 
 	while (currentrun_corners.len)
-		var/datum/lighting_corner/C = currentrun_corners[currentrun_corners.len]
+		var/datum/lighting_corner/C = currentrun_corners69currentrun_corners.len69
 		currentrun_corners.len--
 
 		C.update_overlays()
@@ -83,7 +83,7 @@ SUBSYSTEM_DEF(lighting)
 	var/list/currentrun_overlays = src.currentrun_overlays
 
 	while (currentrun_overlays.len)
-		var/atom/movable/lighting_overlay/O = currentrun_overlays[currentrun_overlays.len]
+		var/atom/movable/lighting_overlay/O = currentrun_overlays69currentrun_overlays.len69
 		currentrun_overlays.len--
 
 		O.update_overlay()

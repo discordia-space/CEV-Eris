@@ -1,30 +1,30 @@
-var/list/z_levels = list()	//Each item represents connection between index z-layer and next z-layer
+var/list/z_levels = list()	//Each item represents connection between index z-layer and69ext z-layer
 
-// The storage of connections between adjacent levels means some bitwise magic is needed.
+// The storage of connections between adjacent levels69eans some bitwise69agic is69eeded.
 /proc/HasAbove(var/z)
 	if(z >= world.maxz || z > z_levels.len-1 || z < 1)
 		return FALSE
-	var/datum/level_data/LD = z_levels[z]
-	return LD != null && LD.height + LD.original_level - 1 > z
+	var/datum/level_data/LD = z_levels69z69
+	return LD !=69ull && LD.height + LD.original_level - 1 > z
 
 /proc/HasBelow(var/z)
 	if(z > world.maxz || z > z_levels.len || z < 2)
 		return FALSE
-	var/datum/level_data/LD = z_levels[z]
-	return LD != null && LD.original_level < z
+	var/datum/level_data/LD = z_levels69z69
+	return LD !=69ull && LD.original_level < z
 
-// Thankfully, no bitwise magic is needed here.
+// Thankfully,69o bitwise69agic is69eeded here.
 /proc/GetAbove(var/atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
-		return null
-	return HasAbove(turf.z) ? get_step(turf, UP) : null
+		return69ull
+	return HasAbove(turf.z) ? get_step(turf, UP) :69ull
 
 /proc/GetBelow(var/atom/atom)
 	var/turf/turf = get_turf(atom)
 	if(!turf)
-		return null
-	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
+		return69ull
+	return HasBelow(turf.z) ? get_step(turf, DOWN) :69ull
 
 /proc/GetConnectedZlevels(z)
 	. = list(z)
@@ -41,5 +41,5 @@ var/list/z_levels = list()	//Each item represents connection between index z-lay
 	else
 		. = get_step(ref, dir)
 
-/proc/AreConnectedZLevels(var/zA, var/zB)
+/proc/AreConnectedZLevels(var/zA,69ar/zB)
 	return zA == zB || (zB in GetConnectedZlevels(zA))

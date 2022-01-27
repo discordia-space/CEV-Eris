@@ -11,7 +11,7 @@
 			else
 				if(check_surrounding_area(7))
 					activate_ai()
-					life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the next tick
+					life_cycles_before_scan = 29 //So it doesn't fall asleep just to wake up the69ext tick
 				else
 					life_cycles_before_scan = 240
 			if(life_cycles_before_sleep)
@@ -75,7 +75,7 @@
 		G.Process()
 
 	blinded = FALSE // Placing this here just show how out of place it is.
-	// human/handle_regular_status_updates() needs a cleanup, as blindness should be handled in handle_disabilities()
+	// human/handle_regular_status_updates()69eeds a cleanup, as blindness should be handled in handle_disabilities()
 	if(handle_regular_status_updates()) // Status & health update, are we dead or alive etc.
 		handle_disabilities() // eye, ear, brain damages
 		handle_status_effects() //all special effects, stunned, weakened, jitteryness, hallucination, sleeping, etc
@@ -124,7 +124,7 @@
 		if(incapacitated())
 			stop_pulling()
 
-//This updates the health and status of the mob (conscious, unconscious, dead)
+//This updates the health and status of the69ob (conscious, unconscious, dead)
 /mob/living/proc/handle_regular_status_updates()
 	updatehealth()
 	if(stat != DEAD)
@@ -139,29 +139,29 @@
 //this updates all special effects: stunned, sleeping, weakened, druggy, stuttering, etc..
 /mob/living/proc/handle_status_effects()
 	if(paralysis)
-		paralysis = max(paralysis-1,0)
+		paralysis =69ax(paralysis-1,0)
 	if(stunned)
-		stunned = max(stunned-1,0)
+		stunned =69ax(stunned-1,0)
 		if(!stunned)
 			update_icons()
 
 	if(weakened)
-		weakened = max(weakened-1,0)
+		weakened =69ax(weakened-1,0)
 		if(!weakened)
 			update_icons()
 
 /mob/living/proc/handle_disabilities()
 	//Eyes
 	if(sdisabilities & BLIND || stat)	//blindness from disability or unconsciousness doesn't get better on its own
-		eye_blind = max(eye_blind, 1)
+		eye_blind =69ax(eye_blind, 1)
 	else if(eye_blind)			//blindness, heals slowly over time
-		eye_blind = max(eye_blind-1,0)
+		eye_blind =69ax(eye_blind-1,0)
 	else if(eye_blurry)			//blurry eyes heal slowly
-		eye_blurry = max(eye_blurry-1, 0)
+		eye_blurry =69ax(eye_blurry-1, 0)
 
 	//Ears
 	if(sdisabilities & DEAF)		//disabled-deaf, doesn't get better on its own
-		setEarDamage(-1, max(ear_deaf, 1))
+		setEarDamage(-1,69ax(ear_deaf, 1))
 	else
 		// deafness heals slowly over time, unless ear_damage is over 100
 		if(ear_damage < 100)
@@ -187,18 +187,18 @@
 		blind.alpha = 255
 	else
 		blind.alpha = 0
-		if (disabilities & NEARSIGHTED)
+		if (disabilities &69EARSIGHTED)
 			client.screen += global_hud.vimpaired
 		if (eye_blurry)
 			client.screen += global_hud.blurry
 		if (druggy)
 			client.screen += global_hud.druggy*/
 	if(machine)
-		var/viewflags = machine.check_eye(src)
+		var/viewflags =69achine.check_eye(src)
 		if(viewflags < 0)
 			reset_view(null, 0)
 		else if(viewflags)
-			sight |= viewflags
+			sight |=69iewflags
 	else if(eyeobj)
 		if(eyeobj.owner != src)
 			reset_view(null)
@@ -218,8 +218,8 @@
 			see_in_dark = initial(see_in_dark)
 			see_invisible = initial(see_invisible)
 	var/list/vision = get_accumulated_vision_handlers()
-	set_sight(sight | vision[1])
-	set_see_invisible(max(vision[2], see_invisible))
+	set_sight(sight |69ision69169)
+	set_see_invisible(max(vision69269, see_invisible))
 
 /mob/living/proc/update_dead_sight()
 	sight |= SEE_TURFS
@@ -235,27 +235,27 @@
 	if (!usr.client)
 		return
 	usr.client.screen.Cut()
-	if(ishuman(usr) && (usr.client.prefs.UI_style != null))
+	if(ishuman(usr) && (usr.client.prefs.UI_style !=69ull))
 		if (!GLOB.HUDdatums.Find(usr.client.prefs.UI_style))
-			log_debug("[usr] try update a HUD, but HUDdatums not have [usr.client.prefs.UI_style]!")
+			log_debug("69usr69 try update a HUD, but HUDdatums69ot have 69usr.client.prefs.UI_style69!")
 		else
 			var/mob/living/carbon/human/H = usr
-			var/datum/hud/human/HUDdatum = GLOB.HUDdatums[usr.client.prefs.UI_style]
+			var/datum/hud/human/HUDdatum = GLOB.HUDdatums69usr.client.prefs.UI_style69
 			if (!H.HUDneed.len)
 				if (H.HUDprocess.len)
-					log_debug("[usr] have object in HUDprocess list, but HUDneed is empty.")
+					log_debug("69usr69 have object in HUDprocess list, but HUDneed is empty.")
 					for(var/obj/screen/health/HUDobj in H.HUDprocess)
 						H.HUDprocess -= HUDobj
 						qdel(HUDobj)
 				for(var/HUDname in HUDdatum.HUDneed)
 					if(!H.species.hud.ProcessHUD.Find(HUDname))
 						continue
-					var/HUDtype = HUDdatum.HUDneed[HUDname]
-					var/obj/screen/HUD = new HUDtype()
-					to_chat(world, "[HUD] added")
+					var/HUDtype = HUDdatum.HUDneed69HUDname69
+					var/obj/screen/HUD =69ew HUDtype()
+					to_chat(world, "69HUD69 added")
 					H.HUDneed += HUD
 					if (HUD.type in HUDdatum.HUDprocess)
-						to_chat(world, "[HUD] added in process")
+						to_chat(world, "69HUD69 added in process")
 						H.HUDprocess += HUD
-					to_chat(world, "[HUD] added in screen")
+					to_chat(world, "69HUD69 added in screen")
 */

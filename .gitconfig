@@ -1,8 +1,8 @@
-[merge "merge-dmm"]
-    name = mapmerge driver
+69merge "merge-dmm"69
+    name =69apmerge driver
     driver = ./tools/mapmerger/mapmerge.sh %O %A %B
     recursive = text
 
-[merge "merge-dmi"]
-	name = iconfile merge driver
+69merge "merge-dmi"69
+	name = iconfile69erge driver
 	driver = ./tools/dmitool/dmimerge.sh %O %A %B

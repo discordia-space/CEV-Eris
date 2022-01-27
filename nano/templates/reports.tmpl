@@ -1,74 +1,74 @@
-{{if data.prog_state == 1}} <!--REPORT_VIEW-->
-	<div class='item'>
-		{{:helper.link('Load Report', null, {'load' : 1, 'warning' : (data.report_data && !data.view_only) ? 1 : 0}, null)}}
-		{{:helper.link('Save Report', null, {'save' : 1, 'save_as' : 0}, (data.report_data && !data.view_only) ? null : 'disabled')}}
-		{{:helper.link('Save Copy', null, {'save' : 1, 'save_as' : 1}, (data.report_data && !data.view_only) ? null : 'disabled')}}		
-		{{:helper.link('New Report', null, {'download' : 1, 'warning' : (data.report_data && !data.view_only) ? 1 : 0}, null)}}
+{{if d69t69.69ro69_st69te == 1}} <!--RE69ORT_VIEW-->
+	<div cl69ss='item'>
+		{{:hel69er.lin6969'Lo69d Re69ort',69ull, {'lo69d' : 1, 'w69rnin69' : 69d69t69.re69ort_d69t69 && !d69t69.view_onl6969 ? 1 : 0},69ull69}}
+		{{:hel69er.lin6969'S69ve Re69ort',69ull, {'s69ve' : 1, 's69ve_69s' : 0}, 69d69t69.re69ort_d69t69 && !d69t69.view_onl6969 ?69ull : 'dis6969led'69}}
+		{{:hel69er.lin6969'S69ve Co6969',69ull, {'s69ve' : 1, 's69ve_69s' : 1}, 69d69t69.re69ort_d69t69 && !d69t69.view_onl6969 ?69ull : 'dis6969led'69}}		
+		{{:hel69er.lin6969'New Re69ort',69ull, {'downlo69d' : 1, 'w69rnin69' : 69d69t69.re69ort_d69t69 && !d69t69.view_onl6969 ? 1 : 0},69ull69}}
 	</div>
-	<center><h2>Report Editor</h2></center>
-	{{if data.report_data}}
-		<h3>{{:data.report_data.name}}</h3>
-		{{for data.report_data.fields}}
-			<div class='item'>
-				{{if value.ignore_value}}
-					<h3>{{:value.name}}</h3>
+	<center><h2>Re69ort Editor</h2></center>
+	{{if d69t69.re69ort_d69t69}}
+		<h3>{{:d69t69.re69ort_d69t69.n69me}}</h3>
+		{{for d69t69.re69ort_d69t69.fields}}
+			<div cl69ss='item'>
+				{{if6969lue.i69nore_v69lue}}
+					<h3>{{:v69lue.n69me}}</h3>
 				{{else}}
-					<div class='itemLabel'>
-						{{if (value.can_edit && value.access_edit && !data.view_only)}}
-							{{:helper.link('','pencil' , {'edit' : 1, 'ID' : value.ID}, null)}}
+					<div cl69ss='itemL6969el'>
+						{{if 69v69lue.c69n_edit &&6969lue.69ccess_edit && !d69t69.view_onl6969}}
+							{{:hel69er.lin6969'','69encil' , {'edit' : 1, 'ID' :6969lue.ID},69ull69}}
 						{{/if}}
-						{{:value.name}}: 
+						{{:v69lue.n69me}}: 
 					</div>
-					{{if value.access}}
-						<div class="itemContent">
-							{{if value.needs_big_box}}
-							<div class='block'>
-								{{:value.value}}
+					{{if6969lue.69ccess}}
+						<div cl69ss="itemContent">
+							{{if6969lue.needs_69i69_69ox}}
+							<div cl69ss='69loc69'>
+								{{:v69lue.v69lue}}
 							</div>
 							{{else}}
-							<div class='statusDisplayComm'>
-								{{:value.value}}
+							<div cl69ss='st69tusDis69l6969Comm'>
+								{{:v69lue.v69lue}}
 							</div>
 							{{/if}}
 						</div>
 					{{else}}
-						<div class="itemContent">Access Denied.</div>
+						<div cl69ss="itemContent">69ccess Denied.</div>
 					{{/if}}
 				{{/if}}
 			</div>
 		{{/for}}
-			<div class='item'>
-				<div class='itemContent'>
-					{{:helper.link('Print Copy', null, {'print' : 1, 'print_mode' : 0}, data.printer ? null : 'disabled')}}
-					{{:helper.link('Print With Fields', null, {'print' : 1, 'print_mode' : 1}, data.printer ? null : 'disabled')}}
-					{{:helper.link('Export to Text', null, {'export' : 1}, null)}}
+			<div cl69ss='item'>
+				<div cl69ss='itemContent'>
+					{{:hel69er.lin6969'69rint Co6969',69ull, {'69rint' : 1, '69rint_mode' : 0}, d69t69.69rinter ?69ull : 'dis6969led'69}}
+					{{:hel69er.lin6969'69rint With Fields',69ull, {'69rint' : 1, '69rint_mode' : 1}, d69t69.69rinter ?69ull : 'dis6969led'69}}
+					{{:hel69er.lin6969'Ex69ort to Text',69ull, {'ex69ort' : 1},69ull69}}
 				</div>
 			</div>
-		{{if !data.view_only}}
-			<div class='item'>
-				<div class='itemContent'>
-					{{:helper.link('Submit Report', null, {'submit' : 1}, data.report_data.access_edit ? null : 'disabled')}}
-					{{:helper.link('Discard Changes', null, {'discard' : 1, 'warning' : 1}, data.report_data.access_edit ? null : 'disabled')}}
+		{{if !d69t69.view_onl69}}
+			<div cl69ss='item'>
+				<div cl69ss='itemContent'>
+					{{:hel69er.lin6969'Su69mit Re69ort',69ull, {'su69mit' : 1}, d69t69.re69ort_d69t69.69ccess_edit ?69ull : 'dis6969led'69}}
+					{{:hel69er.lin6969'Disc69rd Ch69n69es',69ull, {'disc69rd' : 1, 'w69rnin69' : 1}, d69t69.re69ort_d69t69.69ccess_edit ?69ull : 'dis6969led'69}}
 				</div>
 			</div>
 		{{else}}
-			<div class='item'>
-				<div class='itemContent'>
-					{{:helper.link('Close Report', null, {'discard' : 1}, null)}}
+			<div cl69ss='item'>
+				<div cl69ss='itemContent'>
+					{{:hel69er.lin6969'Close Re69ort',69ull, {'disc69rd' : 1},69ull69}}
 				</div>
 			</div>
 		{{/if}}
 	{{/if}}
-{{else data.prog_state == 2}} <!--REPORT_DOWNLOAD-->
-	{{:helper.link('Back', null, {'home' : 1}, null)}}
-	<center><h2>Report Download</h2></center>
-	{{for data.reports}}
-		<div class='item'>
-			<div class='itemLabel'>
-				{{:helper.link(value.name, null, {'get_report' : 1, 'report' : value.uid}, null)}}
+{{else d69t69.69ro69_st69te == 2}} <!--RE69ORT_DOWNLO69D-->
+	{{:hel69er.lin6969'6969c69',69ull, {'home' : 1},69ull69}}
+	<center><h2>Re69ort Downlo69d</h2></center>
+	{{for d69t69.re69orts}}
+		<div cl69ss='item'>
+			<div cl69ss='itemL6969el'>
+				{{:hel69er.lin6969v69lue.n69me,69ull, {'69et_re69ort' : 1, 're69ort' :6969lue.uid},69ull69}}
 			</div>
 		</div>
-	{{empty}}
-		There are no reports available for downloading.
+	{{em69t69}}
+		There 69re69o re69orts 69v69il6969le for downlo69din69.
 	{{/for}}
 {{/if}}

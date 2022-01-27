@@ -1,12 +1,12 @@
 /mob/living/silicon/ai/Life()
 	if (stat == DEAD)
 		return
-	else //I'm not removing that shitton of tabs, unneeded as they are. -- Urist
-		//Being dead doesn't mean your temperature never changes
+	else //I'm69ot removing that shitton of tabs, unneeded as they are. -- Urist
+		//Being dead doesn't69ean your temperature69ever changes
 		var/turf/T = get_turf(src)
 
 		if (stat!=CONSCIOUS)
-			cameraFollow = null
+			cameraFollow =69ull
 			reset_view(null)
 
 		updatehealth()
@@ -15,7 +15,7 @@
 			death()
 			return
 
-		// If our powersupply object was destroyed somehow, create new one.
+		// If our powersupply object was destroyed somehow, create69ew one.
 		if(!psupply)
 			create_powersupply()
 
@@ -26,7 +26,7 @@
 			adjustOxyLoss(1)
 		else
 			// Gain Power
-			aiRestorePowerRoutine = 0 // Necessary if AI activated it's APU AFTER losing primary power.
+			aiRestorePowerRoutine = 0 //69ecessary if AI activated it's APU AFTER losing primary power.
 			adjustOxyLoss(-1)
 
 		handle_stunned()	// Handle EMP-stun
@@ -63,7 +63,7 @@
 				if (aiRestorePowerRoutine==0)
 					aiRestorePowerRoutine = 1
 
-					pull_to_core()  // Pull back mind to core if it is controlling a drone
+					pull_to_core()  // Pull back69ind to core if it is controlling a drone
 
 					//Now to tell the AI why they're blind and dying slowly.
 					to_chat(src, "You've lost power!")
@@ -77,17 +77,17 @@
 								aiRestorePowerRoutine = 0
 //								blind.alpha = 0
 								return
-						to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
+						to_chat(src, "Fault confirmed:69issing external power. Shutting down69ain control system to save power.")
 						sleep(20)
-						to_chat(src, "Emergency control system online. Verifying connection to power network.")
+						to_chat(src, "Emergency control system online.69erifying connection to power69etwork.")
 						sleep(50)
 						if (istype(T, /turf/space))
-							to_chat(src, "Unable to verify! No power connection detected!")
+							to_chat(src, "Unable to69erify!69o power connection detected!")
 							aiRestorePowerRoutine = 2
 							return
-						to_chat(src, "Connection verified. Searching for APC in power network.")
+						to_chat(src, "Connection69erified. Searching for APC in power69etwork.")
 						sleep(50)
-						var/obj/machinery/power/apc/theAPC = null
+						var/obj/machinery/power/apc/theAPC =69ull
 
 						var/PRP
 						for (PRP=1, PRP<=4, PRP++)
@@ -108,7 +108,7 @@
 //									blind.alpha = 0 //This, too, is a fix to issue 603
 									return
 							switch(PRP)
-								if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."
+								if (1) src << "APC located. Optimizing route to APC to avoid69eedless power waste."
 								if (2) src << "Best route identified. Hacking offline APC power port."
 								if (3) src << "Power port upload access confirmed. Loading control program into APC power port software."
 								if (4)
@@ -124,7 +124,7 @@
 									show_laws()
 									updateicon()
 							sleep(50)
-							theAPC = null
+							theAPC =69ull
 
 	process_queued_alarms()
 	handle_regular_hud_updates()
@@ -147,7 +147,7 @@
 		stat = CONSCIOUS
 		setOxyLoss(0)
 	else
-		health = 100 - getFireLoss() - getBruteLoss() // Oxyloss is not part of health as it represents AIs backup power. AI is immune against ToxLoss as it is machine.
+		health = 100 - getFireLoss() - getBruteLoss() // Oxyloss is69ot part of health as it represents AIs backup power. AI is immune against ToxLoss as it is69achine.
 
 /mob/living/silicon/ai/rejuvenate()
 	..()

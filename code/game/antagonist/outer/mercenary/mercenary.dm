@@ -2,7 +2,7 @@
 	id = ROLE_MERCENARY
 	bantype = ROLE_MERCENARY
 	faction_id = FACTION_SERBS
-	role_text = "Serbian Mercenary"
+	role_text = "Serbian69ercenary"
 	welcome_text = WELCOME_SERBS
 	antaghud_indicator = "hudoperative"
 	landmark_id = "mercenary-spawn"
@@ -10,7 +10,7 @@
 
 	default_access = list(access_mercenary,//This access governs their ship and base
 	access_external_airlocks,
-	access_maint_tunnels) //Mercs get maintenance access on eris, because being an antag without it is hell
+	access_maint_tunnels) //Mercs get69aintenance access on eris, because being an antag without it is hell
 	//They got forged assistant IDs or somesuch
 	id_type = /obj/item/card/id/merc
 
@@ -31,26 +31,26 @@
 
 	perks = list(PERK_SURVIVOR)
 
-/datum/antagonist/mercenary/equip()
+/datum/antagonist/mercenary/e69uip()
 	var/mob/living/L = owner.current
 
-	//Put on the fatigues. Armor not included, they equip that manually from the merc base
+	//Put on the fatigues. Armor not included, they e69uip that69anually from the69erc base
 	var/decl/hierarchy/outfit/O = outfit_by_type(/decl/hierarchy/outfit/antagonist/mercenary/casual)
-	O.equip(L)
+	O.e69uip(L)
 
 	//Set their language, This also adds it to their list
 	L.set_default_language(LANGUAGE_SERBIAN)
 
-	//Normal mercs can't speak common
+	//Normal69ercs can't speak common
 	L.remove_language(LANGUAGE_COMMON)
 
 	//And we'll give them a random serbian name to start off with
-	var/datum/language/lang = all_languages[LANGUAGE_SERBIAN]
+	var/datum/language/lang = all_languages69LANGUAGE_SERBIAN69
 	lang.set_random_name(L)
 
-	//the missingg parrt was antag's stats!
+	//the69issingg parrt was antag's stats!
 	for(var/name in stat_modifiers)
-		L.stats.changeStat(name, stat_modifiers[name])
+		L.stats.changeStat(name, stat_modifiers69name69)
 
 	for(var/perk in perks)
 		L.stats.addPerk(perk)

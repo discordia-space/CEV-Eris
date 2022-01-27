@@ -12,7 +12,7 @@
 	id = "machine binding ritual"
 	description = "A ethanol based stimulator. Used as ritual drink during technomancers initiation into tribe."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#5f95e2"
 	overdose = REAGENTS_OVERDOSE
 	addiction_chance = 20
@@ -32,8 +32,8 @@
 	if(prob(5))
 		M.vomit()
 	M.add_chemical_effect(CE_TOXIN, 1)
-	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
-		var/mob/living/carbon/human/H = M
+	if(ishuman(M) && prob(80 - (30 *69.stats.getMult(STAT_TGH))))
+		var/mob/living/carbon/human/H =69
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
 			L.take_damage(3, 0)
@@ -41,9 +41,9 @@
 /datum/reagent/stim/cherrydrops
 	name = "Cherry Drops"
 	id = "cherry drops"
-	description = "Stimulator designed to enchant cognitive capabilities. Quite common in scientific circles."
+	description = "Stimulator designed to enchant cognitive capabilities. 69uite common in scientific circles."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#9bd70f"
 	overdose = REAGENTS_OVERDOSE + 5
 	nerve_system_accumulations = 20
@@ -66,9 +66,9 @@
 /datum/reagent/stim/pro_surgeon
 	name = "ProSurgeon"
 	id = "prosurgeon"
-	description = "A stimulating drug, used to reduce tremor to minimum. Common in medical facilities."
+	description = "A stimulating drug, used to reduce tremor to69inimum. Common in69edical facilities."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#2d867a"
 	overdose = REAGENTS_OVERDOSE
 	nerve_system_accumulations = 20
@@ -86,19 +86,19 @@
 	sanity_gain = -1.5
 
 /datum/reagent/stim/pro_surgeon/overdose(mob/living/carbon/M, alien)
-	if(prob(5 - (5 * M.stats.getMult(STAT_TGH))))
-		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_hand()].") // there is only two genders, male and others
+	if(prob(5 - (5 *69.stats.getMult(STAT_TGH))))
+		M.custom_emote(1,"twitches and drops 69M.gender ==69ALE ? "his" : "her"69 69M.get_active_hand()69.") // there is only two genders,69ale and others
 		M.drop_item()
 	M.add_chemical_effect(CE_TOXIN, 1)
-	if(prob(80 - (20 * M.stats.getMult(STAT_TGH))))
+	if(prob(80 - (20 *69.stats.getMult(STAT_TGH))))
 		M.adjustToxLoss(5)
 
 /datum/reagent/stim/violence
 	name = "Violence"
 	id = "violence"
-	description = "Stimulator famous for it's ability to increase peak muscle strength. Popular among criminal elements."
+	description = "Stimulator famous for it's ability to increase peak69uscle strength. Popular among criminal elements."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#75aea5"
 	overdose = REAGENTS_OVERDOSE - 10
 	nerve_system_accumulations = 30
@@ -119,14 +119,14 @@
 /datum/reagent/stim/violence/overdose(mob/living/carbon/M, alien)
 	M.adjustCloneLoss(5)
 	M.make_jittery(5)
-	M.confused = max(M.confused, 20)
+	M.confused =69ax(M.confused, 20)
 
 /datum/reagent/stim/bouncer
 	name = "Bouncer"
 	id = "bouncer"
-	description = "Stimulator that boost regenerative capabilities. Quite often issued to crew operating in hazard enviroments."
+	description = "Stimulator that boost regenerative capabilities. 69uite often issued to crew operating in hazard enviroments."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#682f93"
 	overdose = REAGENTS_OVERDOSE
 	nerve_system_accumulations = 10
@@ -143,16 +143,16 @@
 	sanity_gain = -1.5
 
 /datum/reagent/stim/bouncer/overdose(mob/living/carbon/M, alien)
-	if(prob(5 - (3 * M.stats.getMult(STAT_TGH))))
+	if(prob(5 - (3 *69.stats.getMult(STAT_TGH))))
 		M.Stun(rand(1,5))
 	M.bodytemperature += TEMPERATURE_DAMAGE_COEFFICIENT
 
 /datum/reagent/stim/steady
 	name = "Steady"
 	id = "steady"
-	description = "Stimulator with ability to enchant reaction time. Usual find in mercenary groups."
+	description = "Stimulator with ability to enchant reaction time. Usual find in69ercenary groups."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#334183"
 	overdose = REAGENTS_OVERDOSE - 10
 	nerve_system_accumulations = 20
@@ -166,13 +166,13 @@
 /datum/reagent/stim/steady/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "steady_w")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "steady_w")
-	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
+	if(prob(25 - (10 *69.stats.getMult(STAT_TGH))))
 		M.shake_animation(5)
 	sanity_gain = -1.5
 
 /datum/reagent/stim/steady/overdose(mob/living/carbon/M, alien)
-	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
-		var/mob/living/carbon/human/H = M
+	if(ishuman(M) && prob(80 - (30 *69.stats.getMult(STAT_TGH))))
+		var/mob/living/carbon/human/H =69
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
 			L.take_damage(5, 0)
@@ -183,7 +183,7 @@
 	id = "machine spirit"
 	description = "Potent ethanol based stimulator. Used to initiate technomancer into inner cirle."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#9eb236"
 	overdose = REAGENTS_OVERDOSE - 12
 	nerve_system_accumulations = 30
@@ -205,8 +205,8 @@
 	if(prob(5))
 		M.vomit()
 	M.add_chemical_effect(CE_TOXIN, 1)
-	if(ishuman(M) && prob(80 - (30 * M.stats.getMult(STAT_TGH))))
-		var/mob/living/carbon/human/H = M
+	if(ishuman(M) && prob(80 - (30 *69.stats.getMult(STAT_TGH))))
+		var/mob/living/carbon/human/H =69
 		var/obj/item/organ/internal/liver/L = H.random_organ_by_process(OP_LIVER)
 		if(istype(L))
 			L.take_damage(5, 0)
@@ -216,7 +216,7 @@
 	id = "grape drops"
 	description = "Powerful stimulator which boosts creativity. Often used by scientists."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#eb5783"
 	overdose = REAGENTS_OVERDOSE - 5
 	nerve_system_accumulations = 30
@@ -236,15 +236,15 @@
 	sanity_gain = -1.75
 
 /datum/reagent/stim/grape_drops/overdose(mob/living/carbon/M, alien)
-	M.slurring = max(M.slurring, 30)
+	M.slurring =69ax(M.slurring, 30)
 	M.adjustBrainLoss(1)
 
 /datum/reagent/stim/ultra_surgeon
 	name = "UltraSurgeon"
 	id = "ultrasurgeon"
-	description = "Strong stimulating drug, which stabilizes muscle motility. Used as last resort during complex surgeries."
+	description = "Strong stimulating drug, which stabilizes69uscle69otility. Used as last resort during complex surgeries."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#0c07c4"
 	overdose = REAGENTS_OVERDOSE - 13
 	nerve_system_accumulations = 30
@@ -260,23 +260,23 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "ultraSurgeon_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "ultraSurgeon_w")
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "ultraSurgeon_w")
-	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
+	if(prob(25 - (10 *69.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	sanity_gain = -1.75
 
 /datum/reagent/stim/ultra_surgeon/overdose(mob/living/carbon/M, alien)
-	if(prob(80 - (20 * M.stats.getMult(STAT_TGH))))
+	if(prob(80 - (20 *69.stats.getMult(STAT_TGH))))
 		M.adjustToxLoss(10)
-	if(prob(10 - (5 * M.stats.getMult(STAT_TGH))))
-		M.custom_emote(1,"twitches and drops [M.gender == MALE ? "his" : "her"] [M.get_active_hand()].") // there is only two genders, male and others
+	if(prob(10 - (5 *69.stats.getMult(STAT_TGH))))
+		M.custom_emote(1,"twitches and drops 69M.gender ==69ALE ? "his" : "her"69 69M.get_active_hand()69.") // there is only two genders,69ale and others
 		M.drop_item()
 
 /datum/reagent/stim/violence_ultra
 	name = "Violence Ultra"
 	id = "violence ultra"
-	description = "Effective electrolyte based muscle stimulant. Often used by most violent gangs"
+	description = "Effective electrolyte based69uscle stimulant. Often used by69ost69iolent gangs"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#3d3362"
 	overdose = REAGENTS_OVERDOSE - 19
 	nerve_system_accumulations = 60
@@ -292,7 +292,7 @@
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_BASIC, STIM_TIME, "violenceUltra_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "violenceUltra_w")
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_BASIC, STIM_TIME, "violenceUltra_w")
-	if(prob(25 - (10 * M.stats.getMult(STAT_TGH))))
+	if(prob(25 - (10 *69.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	M.adjustNutrition(-5)
 	sanity_gain = -1.75
@@ -300,14 +300,14 @@
 /datum/reagent/stim/violence_ultra/overdose(mob/living/carbon/M, alien)
 	M.adjustCloneLoss(5)
 	M.make_jittery(5)
-	M.confused = max(M.confused, 20)
+	M.confused =69ax(M.confused, 20)
 
 /datum/reagent/stim/boxer
 	name = "Boxer"
 	id = "boxer"
 	description = "Stimulator which boosts robustness of human body. Known for its use by boxers"
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#0ed750"
 	overdose = REAGENTS_OVERDOSE/2
 	nerve_system_accumulations = 50
@@ -325,16 +325,16 @@
 	sanity_gain = -1.75
 
 /datum/reagent/stim/boxer/overdose(mob/living/carbon/M, alien)
-	if(prob(8 - (3 * M.stats.getMult(STAT_TGH))))
+	if(prob(8 - (3 *69.stats.getMult(STAT_TGH))))
 		M.Stun(rand(2,5))
 	M.bodytemperature += TEMPERATURE_DAMAGE_COEFFICIENT * 1.5
 
 /datum/reagent/stim/turbo
 	name = "TURBO"
 	id = "turbo"
-	description = "Potent mix of cardiovascular and neuro stimulators. Used by sharpshooters to increase accuracy."
+	description = "Potent69ix of cardiovascular and69euro stimulators. Used by sharpshooters to increase accuracy."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#f22168"
 	overdose = REAGENTS_OVERDOSE-18
 	nerve_system_accumulations = 60
@@ -349,26 +349,26 @@
 /datum/reagent/stim/turbo/withdrawal_act(mob/living/carbon/M)
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "turbo_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_BASIC, STIM_TIME, "turbo_w")
-	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
+	if(prob(25 - (5 *69.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	sanity_gain = -1.75
 
 /datum/reagent/stim/turbo/overdose(mob/living/carbon/M, alien)
-	if(ishuman(M) && (prob(80 - (30 * M.stats.getMult(STAT_TGH)))))
-		var/mob/living/carbon/human/H = M
+	if(ishuman(M) && (prob(80 - (30 *69.stats.getMult(STAT_TGH)))))
+		var/mob/living/carbon/human/H =69
 		var/obj/item/organ/internal/heart/L = H.random_organ_by_process(OP_HEART)
 		if(istype(L))
 			L.take_damage(7, 0)
 	M.add_chemical_effect(CE_SPEEDBOOST, -1)
-	if(prob(5 - (2 * M.stats.getMult(STAT_TGH))))
-		M.paralysis = max(M.paralysis, 20)
+	if(prob(5 - (2 *69.stats.getMult(STAT_TGH))))
+		M.paralysis =69ax(M.paralysis, 20)
 
 /datum/reagent/stim/party_drops
 	name = "Party Drops"
 	id = "party drops"
-	description = "Stimulating substance which pumps intelectual capabilities to theoretical maximum. Used as delicacy by some high ranking scientists."
+	description = "Stimulating substance which pumps intelectual capabilities to theoretical69aximum. Used as delicacy by some high ranking scientists."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#ffb3b7"
 	overdose = REAGENTS_OVERDOSE - 18
 	nerve_system_accumulations = 70
@@ -387,22 +387,22 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_BASIC, STIM_TIME, "partyDrops_w")
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_BASIC, STIM_TIME, "partyDrops_w")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_BASIC, STIM_TIME, "partyDrops_w")
-	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
+	if(prob(25 - (5 *69.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	sanity_gain = -2
 
 /datum/reagent/stim/party_drops/overdose(mob/living/carbon/M, alien)
 	M.adjustBrainLoss(2)
-	M.slurring = max(M.slurring, 30)
+	M.slurring =69ax(M.slurring, 30)
 	if(prob(5))
 		M.vomit()
 
 /datum/reagent/stim/menace
 	name = "MENACE"
 	id = "menace"
-	description = "Awfully potent stimulant. Notorious for its usage by suicide troops."
+	description = "Awfully potent stimulant.69otorious for its usage by suicide troops."
 	taste_description = "bitterness"
-	reagent_state = LIQUID
+	reagent_state = LI69UID
 	color = "#ffb3b7"
 	overdose = REAGENTS_OVERDOSE - 21
 	nerve_system_accumulations = 90
@@ -415,7 +415,7 @@
 	M.stats.addTempStat(STAT_MEC, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
 	M.stats.addTempStat(STAT_BIO, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
 	M.stats.addTempStat(STAT_COG, -STAT_LEVEL_ADEPT * effect_multiplier, STIM_TIME, "menace")
-	M.slurring = max(M.slurring, 30)
+	M.slurring =69ax(M.slurring, 30)
 	M.add_chemical_effect(CE_SPEECH_VOLUME, 4)
 	sanity_gain = 1
 
@@ -423,13 +423,13 @@
 	M.stats.addTempStat(STAT_VIG, -STAT_LEVEL_ADEPT, STIM_TIME, "menace_w")
 	M.stats.addTempStat(STAT_TGH, -STAT_LEVEL_ADEPT, STIM_TIME, "menace_w")
 	M.stats.addTempStat(STAT_ROB, -STAT_LEVEL_ADEPT, STIM_TIME, "menace_w")
-	if(prob(25 - (5 * M.stats.getMult(STAT_TGH))))
+	if(prob(25 - (5 *69.stats.getMult(STAT_TGH))))
 		M.shake_animation(8)
 	M.adjustNutrition(-7)
 	sanity_gain = -2
 
 /datum/reagent/stim/menace/overdose(mob/living/carbon/M, alien)
-	M.slurring = max(M.slurring, 50)
+	M.slurring =69ax(M.slurring, 50)
 	M.apply_effect(3, STUTTER)
 	if(prob(6))
-		M.paralysis = max(M.paralysis, 20)
+		M.paralysis =69ax(M.paralysis, 20)

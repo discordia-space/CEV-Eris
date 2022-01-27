@@ -1,54 +1,54 @@
-//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"a" = (
-/obj/structure/table/steel,
-/obj/item/reagent_containers/glass/beaker/vial/random_podchem,
-/obj/item/reagent_containers/glass/beaker/vial/random_podchem,
-/obj/structure/window/basic/full,
-/turf/template_noop,
-/area/template_noop)
-"b" = (
-/turf/template_noop,
-/area/template_noop)
-"c" = (
-/obj/structure/foamedmetal,
-/turf/template_noop,
-/area/template_noop)
-"d" = (
-/obj/machinery/constructable_frame/machine_frame,
-/turf/template_noop,
-/area/template_noop)
-"e" = (
-/obj/item/modular_computer/console/preset/library{
+//MAP CONVERTED 6969 dmm2t69m.p69 THIS HEADER COMMENT PREVENTS RECONVERSION, DO69OT REMOVE
+"a" = 69
+/o6969/structure/ta69le/steel,
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random_podchem,
+/o6969/item/rea69ent_containers/69lass/69ea69er/vial/random_podchem,
+/o6969/structure/window/69asic/69ull,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/tur69/template_noop,
+/area/template_noop69
+"c" = 69
+/o6969/structure/69oamedmetal,
+/tur69/template_noop,
+/area/template_noop69
+"d" = 69
+/o6969/machiner69/constructa69le_69rame/machine_69rame,
+/tur69/template_noop,
+/area/template_noop69
+"e" = 69
+/o6969/item/modular_computer/console/preset/li69rar69{
 	icon_state = "console";
 	dir = 8
 	},
-/turf/template_noop,
-/area/template_noop)
-"f" = (
-/obj/structure/table,
-/turf/template_noop,
-/area/template_noop)
-"g" = (
-/obj/item/stack/material/steel,
-/obj/structure/foamedmetal,
-/turf/template_noop,
-/area/template_noop)
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/structure/ta69le,
+/tur69/template_noop,
+/area/template_noop69
+"69" = 69
+/o6969/item/stac69/material/steel,
+/o6969/structure/69oamedmetal,
+/tur69/template_noop,
+/area/template_noop69
 
-(1,1,1) = {"
+691,1,169 = {"
 c
 d
-f
+69
 a
 "}
-(2,1,1) = {"
+692,1,169 = {"
 c
-b
-b
+69
+69
 c
 "}
-(3,1,1) = {"
+693,1,169 = {"
 c
 e
 c
-g
+69
 "}

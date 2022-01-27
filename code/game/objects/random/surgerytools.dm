@@ -1,9 +1,9 @@
-/obj/spawner/surgery_tool
-	name = "random surgery tool"
+/obj/spawner/sur69ery_tool
+	name = "random sur69ery tool"
 	icon_state = "meds-blue"
-	tags_to_spawn = list(SPAWN_SURGERY_TOOL)
+	ta69s_to_spawn = list(SPAWN_SUR69ERY_TOOL)
 
-/obj/spawner/surgery_tool/low_chance
-	name = "low chance random surgery tool"
+/obj/spawner/sur69ery_tool/low_chance
+	name = "low chance random sur69ery tool"
 	icon_state = "meds-blue-low"
-	spawn_nothing_percentage = 60
+	spawn_nothin69_percenta69e = 60

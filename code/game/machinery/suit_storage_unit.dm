@@ -3,30 +3,30 @@
 #define LOAD_SLOT_MASK "mask"
 
 //////////////////////////////////////
-// SUIT STORAGE UNIT /////////////////
+// SUIT STORA69E UNIT /////////////////
 //////////////////////////////////////
 
 
-/obj/machinery/suit_storage_unit
-	name = "suit storage unit"
-	desc = "An industrial storage unit designed to accomodate, decontaminate and maintain all kinds of space suits."
-	icon = 'icons/obj/machines/suit_storage.dmi'
-	icon_state = "suit_storage_map"
+/obj/machinery/suit_stora69e_unit
+	name = "suit stora69e unit"
+	desc = "An industrial stora69e unit desi69ned to accomodate, decontaminate and69aintain all kinds of space suits."
+	icon = 'icons/obj/machines/suit_stora69e.dmi'
+	icon_state = "suit_stora69e_map"
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER // Removed suit should always display above it
 
 	use_power = IDLE_POWER_USE
-	idle_power_usage = 10
-	active_power_usage = 5000
+	idle_power_usa69e = 10
+	active_power_usa69e = 5000
 
-	var/mob/living/carbon/OCCUPANT = null
-	var/obj/item/clothing/suit/space/SUIT = null
+	var/mob/livin69/carbon/OCCUPANT = null
+	var/obj/item/clothin69/suit/space/SUIT = null
 	var/SUIT_TYPE = null
-	var/obj/item/clothing/head/space/HELMET = null
+	var/obj/item/clothin69/head/space/HELMET = null
 	var/HELMET_TYPE = null
-	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
-	var/MASK_TYPE = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
+	var/obj/item/clothin69/mask/MASK = null  //All the stuff that's 69onna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
+	var/MASK_TYPE = null //Erro's idea on standarisin69 SSUs whle keepin69 creation of other SSU types easy:69ake a child SSU, name it somethin69 then set the TYPE69ars to your desired suit output. New() should take it from there by itself.
 	var/isopen = FALSE
 	var/locked = FALSE
 	var/isUV = 0
@@ -35,10 +35,10 @@
 
 	var/overlay_color
 
-	// A vis_contents hack for door animation.
-	var/tmp/obj/effect/flick_light_overlay/door_overlay
+	// A69is_contents hack for door animation.
+	var/tmp/obj/effect/flick_li69ht_overlay/door_overlay
 
-/obj/machinery/suit_storage_unit/Initialize()
+/obj/machinery/suit_stora69e_unit/Initialize()
 	. = ..()
 	door_overlay = new(src)
 
@@ -47,31 +47,31 @@
 	if(HELMET_TYPE)
 		HELMET = new HELMET_TYPE(src)
 	if(MASK_TYPE)
-		MASK = new MASK_TYPE(src)
+		MASK = new69ASK_TYPE(src)
 
-	if(icon_state == "suit_storage_map")
-		icon_state = "suit_storage"
+	if(icon_state == "suit_stora69e_map")
+		icon_state = "suit_stora69e"
 
 	update_icon()
 
-/obj/machinery/suit_storage_unit/Destroy()
-	QDEL_NULL(door_overlay)
+/obj/machinery/suit_stora69e_unit/Destroy()
+	69DEL_NULL(door_overlay)
 
-	QDEL_NULL(HELMET)
-	QDEL_NULL(SUIT)
-	QDEL_NULL(MASK)
+	69DEL_NULL(HELMET)
+	69DEL_NULL(SUIT)
+	69DEL_NULL(MASK)
 
 	return ..()
 
-/obj/machinery/suit_storage_unit/power_change()
+/obj/machinery/suit_stora69e_unit/power_chan69e()
 	..()
 	update_icon()
 
-/obj/machinery/suit_storage_unit/update_icon()
+/obj/machinery/suit_stora69e_unit/update_icon()
 	cut_overlays()
 
 	if(overlay_color)
-		var/image/I = image(icon, icon_state = "color_grayscale")
+		var/ima69e/I = ima69e(icon, icon_state = "color_69rayscale")
 		I.color = overlay_color
 		add_overlay(I)
 
@@ -88,31 +88,31 @@
 	if(inoperable())
 		add_overlay("nopower")
 	else
-		// Add lights overlays
+		// Add li69hts overlays
 		if(HELMET)
-			add_overlay("light1")
+			add_overlay("li69ht1")
 		if(SUIT)
-			add_overlay("light2")
+			add_overlay("li69ht2")
 
 		if(isUV || issuperUV)
-			add_overlay("working")
+			add_overlay("workin69")
 
-/obj/machinery/suit_storage_unit/ex_act(severity)
+/obj/machinery/suit_stora69e_unit/ex_act(severity)
 	switch(severity)
 		if(1)
 			if(prob(50))
-				dump_everything() //So suits dont survive all the time
-			qdel(src)
+				dump_everythin69() //So suits dont survive all the time
+			69del(src)
 			return
 		if(2)
 			if(prob(50))
-				dump_everything()
-				qdel(src)
+				dump_everythin69()
+				69del(src)
 			return
 		else
 			return
 
-/obj/machinery/suit_storage_unit/attack_hand(mob/user as mob)
+/obj/machinery/suit_stora69e_unit/attack_hand(mob/user as69ob)
 	var/dat
 	if(..())
 		return
@@ -120,72 +120,72 @@
 		return
 	if(!user.IsAdvancedToolUser())
 		return 0
-	if(panel_open) //The maintenance panel is open. Time for some shady stuff
-		dat += "<HEAD><TITLE>Suit storage unit: Maintenance panel</TITLE></HEAD>"
+	if(panel_open) //The69aintenance panel is open. Time for some shady stuff
+		dat += "<HEAD><TITLE>Suit stora69e unit:69aintenance panel</TITLE></HEAD>"
 		dat += "<B>Maintenance panel controls</B><HR>"
-		dat += "A small dial with a small lambda symbol on it. It's pointing towards a gauge that reads [issuperUV ? "15nm" : "185nm"]</font>.<BR> <font color='blue'><A href='?src=\ref[src];toggleUV=1'> Turn towards [issuperUV ? "185nm" : "15nm"]</A><BR>"
-		dat += "A thick old-style button, with 2 grimy LED lights next to it. The <B>[safeties? "<font color='green'>GREEN</font>" : "<font color='red'>RED</font>"]</B> LED is on.</font><BR><font color ='blue'><A href='?src=\ref[src];togglesafeties=1'>Press button</a>"
-	else if(isUV) //The thing is running its cauterisation cycle. You have to wait.
-		dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
-		dat += "<font color ='red'><B>Unit is cauterising contents with selected UV ray intensity. Please wait.</font></B><BR>"
+		dat += "A small dial with a small lambda symbol on it. It's pointin69 towards a 69au69e that reads 69issuperUV ? "15nm" : "185nm"69</font>.<BR> <font color='blue'><A href='?src=\ref69src69;to6969leUV=1'> Turn towards 69issuperUV ? "185nm" : "15nm"69</A><BR>"
+		dat += "A thick old-style button, with 2 69rimy LED li69hts next to it. The <B>69safeties? "<font color='69reen'>69REEN</font>" : "<font color='red'>RED</font>"69</B> LED is on.</font><BR><font color ='blue'><A href='?src=\ref69src69;to6969lesafeties=1'>Press button</a>"
+	else if(isUV) //The thin69 is runnin69 its cauterisation cycle. You have to wait.
+		dat += "<HEAD><TITLE>Suit stora69e unit</TITLE></HEAD>"
+		dat += "<font color ='red'><B>Unit is cauterisin69 contents with selected UV ray intensity. Please wait.</font></B><BR>"
 
 	else
-		dat += "<HEAD><TITLE>Suit storage unit</TITLE></HEAD>"
-		dat += "<font color='blue'><font size = 4><B>Suit Storage Unit</B></FONT><HR>"
-		dat += "Helmet storage compartment: <B>[HELMET ? HELMET.name : "<font color ='grey'>No helmet detected.</font>"]</B><BR>"
+		dat += "<HEAD><TITLE>Suit stora69e unit</TITLE></HEAD>"
+		dat += "<font color='blue'><font size = 4><B>Suit Stora69e Unit</B></FONT><HR>"
+		dat += "Helmet stora69e compartment: <B>69HELMET ? HELMET.name : "<font color ='69rey'>No helmet detected.</font>"69</B><BR>"
 		if(HELMET && isopen)
-			dat += "<A href='?src=\ref[src];dispense_helmet=1'>Dispense helmet</A><BR>"
-		dat += "Suit storage compartment: <B>[SUIT ? SUIT.name : "<font color ='grey'>No exosuit detected.</font>"]</B><BR>"
+			dat += "<A href='?src=\ref69src69;dispense_helmet=1'>Dispense helmet</A><BR>"
+		dat += "Suit stora69e compartment: <B>69SUIT ? SUIT.name : "<font color ='69rey'>No exosuit detected.</font>"69</B><BR>"
 		if(SUIT && isopen)
-			dat += "<A href='?src=\ref[src];dispense_suit=1'>Dispense suit</A><BR>"
-		dat += "Breathmask storage compartment: <B>[MASK ? MASK.name : "<font color ='grey'>No breathmask detected.</font>"]</B><BR>"
+			dat += "<A href='?src=\ref69src69;dispense_suit=1'>Dispense suit</A><BR>"
+		dat += "Breathmask stora69e compartment: <B>69MASK ?69ASK.name : "<font color ='69rey'>No breathmask detected.</font>"69</B><BR>"
 		if(MASK && isopen)
-			dat += "<A href='?src=\ref[src];dispense_mask=1'>Dispense mask</A><BR>"
+			dat += "<A href='?src=\ref69src69;dispense_mask=1'>Dispense69ask</A><BR>"
 		if(OCCUPANT)
-			dat += "<HR><B><font color ='red'>WARNING: Biological entity detected inside the Unit's storage. Please remove.</B></font><BR>"
-			dat += "<A href='?src=\ref[src];eject_guy=1'>Eject extra load</A>"
-		dat += "<HR><font color='black'>Unit is: [isopen ? "Open" : "Closed"] - <A href='?src=\ref[src];toggle_open=1'>[isopen ? "Close" : "Open"] Unit</A></font>"
+			dat += "<HR><B><font color ='red'>WARNIN69: Biolo69ical entity detected inside the Unit's stora69e. Please remove.</B></font><BR>"
+			dat += "<A href='?src=\ref69src69;eject_69uy=1'>Eject extra load</A>"
+		dat += "<HR><font color='black'>Unit is: 69isopen ? "Open" : "Closed"69 - <A href='?src=\ref69src69;to6969le_open=1'>69isopen ? "Close" : "Open"69 Unit</A></font>"
 		if(isopen)
 			dat += "<HR>"
 		else
-			dat += " - <A href='?src=\ref[src];toggle_lock=1'><font color ='orange'>*[locked ? "Unlock" : "Lock"] Unit*</A></font><HR>"
-		dat += "Unit status: <B>[locked? "<font color ='red'>**LOCKED**</font>" : "<font color ='green'>**UNLOCKED**</font>"]</B><BR>"
-		dat += "<A href='?src=\ref[src];start_UV=1'>Start Disinfection cycle</A><BR>"
+			dat += " - <A href='?src=\ref69src69;to6969le_lock=1'><font color ='oran69e'>*69locked ? "Unlock" : "Lock"69 Unit*</A></font><HR>"
+		dat += "Unit status: <B>69locked? "<font color ='red'>**LOCKED**</font>" : "<font color ='69reen'>**UNLOCKED**</font>"69</B><BR>"
+		dat += "<A href='?src=\ref69src69;start_UV=1'>Start Disinfection cycle</A><BR>"
 
-	user << browse(dat, "window=suit_storage_unit;size=400x500")
-	onclose(user, "suit_storage_unit")
+	user << browse(dat, "window=suit_stora69e_unit;size=400x500")
+	onclose(user, "suit_stora69e_unit")
 	return
 
 
-/obj/machinery/suit_storage_unit/Topic(href, href_list) //I fucking HATE this proc
+/obj/machinery/suit_stora69e_unit/Topic(href, href_list) //I fuckin69 HATE this proc
 	if(..())
 		return 1
 
 	usr.set_machine(src)
-	if (href_list["toggleUV"])
-		src.toggleUV(usr)
-	if (href_list["togglesafeties"])
-		src.togglesafeties(usr)
-	if (href_list["dispense_helmet"])
+	if (href_list69"to6969leUV"69)
+		src.to6969leUV(usr)
+	if (href_list69"to6969lesafeties"69)
+		src.to6969lesafeties(usr)
+	if (href_list69"dispense_helmet"69)
 		dispense_object(HELMET, usr)
-	if (href_list["dispense_suit"])
+	if (href_list69"dispense_suit"69)
 		dispense_object(SUIT, usr)
-	if (href_list["dispense_mask"])
+	if (href_list69"dispense_mask"69)
 		dispense_object(MASK, usr)
-	if (href_list["toggle_open"])
-		src.toggle_open(usr)
-	if (href_list["toggle_lock"])
-		src.toggle_lock(usr)
-	if (href_list["start_UV"])
+	if (href_list69"to6969le_open"69)
+		src.to6969le_open(usr)
+	if (href_list69"to6969le_lock"69)
+		src.to6969le_lock(usr)
+	if (href_list69"start_UV"69)
 		src.start_UV(usr)
-	if (href_list["eject_guy"])
+	if (href_list69"eject_69uy"69)
 		src.eject_occupant(usr)
-	updateUsrDialog()
+	updateUsrDialo69()
 	update_icon()
 
 
 
-/obj/machinery/suit_storage_unit/proc/toggleUV(mob/user)
+/obj/machinery/suit_stora69e_unit/proc/to6969leUV(mob/user)
 	if(!panel_open)
 		return
 
@@ -198,19 +198,19 @@
 
 
 
-/obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user)
-	if(!panel_open) //Needed check due to bugs
+/obj/machinery/suit_stora69e_unit/proc/to6969lesafeties(mob/user)
+	if(!panel_open) //Needed check due to bu69s
 		return
 
-	to_chat(user, "You push the button. The colored LED next to it changes.")
+	to_chat(user, "You push the button. The colored LED next to it chan69es.")
 	safeties = !safeties
 
 
-/obj/machinery/suit_storage_unit/proc/dispense_object(atom/movable/dispensed, mob/living/user)
+/obj/machinery/suit_stora69e_unit/proc/dispense_object(atom/movable/dispensed,69ob/livin69/user)
 	if(!dispensed)
 		return
 
-	if(dispensed == MASK)
+	if(dispensed ==69ASK)
 		MASK = null
 	else if(dispensed == HELMET)
 		HELMET = null
@@ -221,7 +221,7 @@
 	update_icon()
 
 
-/obj/machinery/suit_storage_unit/proc/dump_everything()
+/obj/machinery/suit_stora69e_unit/proc/dump_everythin69()
 	locked = FALSE
 
 	dispense_object(MASK)
@@ -231,9 +231,9 @@
 	eject_occupant(OCCUPANT)
 
 
-/obj/machinery/suit_storage_unit/proc/toggle_open(mob/user)
+/obj/machinery/suit_stora69e_unit/proc/to6969le_open(mob/user)
 	if(locked || isUV)
-		to_chat(user, SPAN_WARNING("Unable to open unit."))
+		to_chat(user, SPAN_WARNIN69("Unable to open unit."))
 		return
 	if(OCCUPANT)
 		eject_occupant(user)
@@ -241,72 +241,72 @@
 	isopen = !isopen
 
 	flick(isopen ? "anim_open" : "anim_close", door_overlay)
-	playsound(src.loc, 'sound/machines/Custom_openunit.ogg', 50, 0)
+	playsound(src.loc, 'sound/machines/Custom_openunit.o6969', 50, 0)
 
 
-/obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user)
+/obj/machinery/suit_stora69e_unit/proc/to6969le_lock(mob/user)
 	if(OCCUPANT && safeties)
-		to_chat(user, SPAN_WARNING("Suit storage unit's safety protocols disallow locking when a biological form is detected inside its compartments."))
+		to_chat(user, SPAN_WARNIN69("Suit stora69e unit's safety protocols disallow lockin69 when a biolo69ical form is detected inside its compartments."))
 		return
 	if(isopen)
 		return
 	locked = !locked
-	playsound(src.loc, 'sound/machines/Custom_unitclose.ogg', 50, 0)
+	playsound(src.loc, 'sound/machines/Custom_unitclose.o6969', 50, 0)
 
 
-/obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
+/obj/machinery/suit_stora69e_unit/proc/start_UV(mob/user as69ob)
 	if(isUV || isopen) //I'm bored of all these sanity checks
 		return
 	if(OCCUPANT && safeties)
-		to_chat(user, "<font color='red'><B>WARNING:</B> Biological entity detected in the confines of the Unit's storage. Cannot initiate cycle.</font>")
+		to_chat(user, "<font color='red'><B>WARNIN69:</B> Biolo69ical entity detected in the confines of the Unit's stora69e. Cannot initiate cycle.</font>")
 		return
 	if(!HELMET && !MASK && !SUIT && !OCCUPANT) //shit's empty yo
-		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
+		to_chat(user, "<font color='red'>Unit stora69e bays empty. Nothin69 to disinfect -- Abortin69.</font>")
 		return
 	to_chat(user, SPAN_NOTICE("You start the cauterisation cycle."))
 	src.isUV = 1
 	if(OCCUPANT && !locked)
-		locked = TRUE //Let's lock it for good measure
+		locked = TRUE //Let's lock it for 69ood69easure
 
 	use_power = ACTIVE_POWER_USE
 
 	update_icon()
-	updateUsrDialog()
+	updateUsrDialo69()
 
 	for(var/i in 1 to 4)
 		sleep(50)
 		if(OCCUPANT)
-			var/burndamage = rand(8, 10)
+			var/burndama69e = rand(8, 10)
 			if(issuperUV)
-				burndamage *= 4
+				burndama69e *= 4
 
-			OCCUPANT.take_organ_damage(0, burndamage)
+			OCCUPANT.take_or69an_dama69e(0, burndama69e)
 			OCCUPANT.apply_effect(50, IRRADIATE)
-			if (!(OCCUPANT.species && (OCCUPANT.species.flags & NO_PAIN)))
+			if (!(OCCUPANT.species && (OCCUPANT.species.fla69s & NO_PAIN)))
 				OCCUPANT.emote("scream")
 
 	//End of the cycle
 	if(!issuperUV)
-		for(var/atom/A in list(HELMET, SUIT, MASK, OCCUPANT))
+		for(var/atom/A in list(HELMET, SUIT,69ASK, OCCUPANT))
 			A.clean_blood()
 
-	else //It was supercycling, destroy everything
-		QDEL_NULL(HELMET)
-		QDEL_NULL(SUIT)
-		QDEL_NULL(MASK)
-		visible_message(SPAN_WARNING("With a loud whining noise, the suit storage unit's door grinds open. Puffs of ashen smoke come out of its chamber."), 3)
+	else //It was supercyclin69, destroy everythin69
+		69DEL_NULL(HELMET)
+		69DEL_NULL(SUIT)
+		69DEL_NULL(MASK)
+		visible_messa69e(SPAN_WARNIN69("With a loud whinin69 noise, the suit stora69e unit's door 69rinds open. Puffs of ashen smoke come out of its chamber."), 3)
 		isopen = TRUE
 		locked = FALSE
-		eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
+		eject_occupant(OCCUPANT) //Mixin69 up these two lines causes bu69. DO NOT DO IT.
 
 	use_power = IDLE_POWER_USE
 	isUV = FALSE //Cycle ends
 	update_icon()
-	updateUsrDialog()
+	updateUsrDialo69()
 	return
 
 
-/obj/machinery/suit_storage_unit/proc/eject_occupant(mob/user)
+/obj/machinery/suit_stora69e_unit/proc/eject_occupant(mob/user)
 	if(locked)
 		return
 
@@ -317,12 +317,12 @@
 
 	if (OCCUPANT.client)
 		if(user != OCCUPANT)
-			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
+			to_chat(OCCUPANT, "<font color='blue'>The69achine kicks you out!</font>")
 		if(user.loc != src.loc)
 			to_chat(OCCUPANT, "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>")
 
 		OCCUPANT.client.eye = OCCUPANT.client.mob
-		OCCUPANT.client.perspective = MOB_PERSPECTIVE
+		OCCUPANT.client.perspective =69OB_PERSPECTIVE
 	OCCUPANT.loc = src.loc
 	OCCUPANT = null
 	if(!isopen)
@@ -330,101 +330,101 @@
 	update_icon()
 
 
-/obj/machinery/suit_storage_unit/verb/get_out()
-	set name = "Eject Suit Storage Unit"
-	set category = "Object"
+/obj/machinery/suit_stora69e_unit/verb/69et_out()
+	set name = "Eject Suit Stora69e Unit"
+	set cate69ory = "Object"
 	set src in oview(1)
 
 	if(usr.stat)
 		return
 	eject_occupant(usr)
-	add_fingerprint(usr)
-	updateUsrDialog()
+	add_fin69erprint(usr)
+	updateUsrDialo69()
 
 
-/obj/machinery/suit_storage_unit/verb/move_inside()
-	set name = "Hide in Suit Storage Unit"
-	set category = "Object"
+/obj/machinery/suit_stora69e_unit/verb/move_inside()
+	set name = "Hide in Suit Stora69e Unit"
+	set cate69ory = "Object"
 	set src in oview(1)
 
 	if(usr.stat)
 		return
 	if(!isopen)
-		to_chat(usr, SPAN_WARNING("The unit's doors are shut."))
+		to_chat(usr, SPAN_WARNIN69("The unit's doors are shut."))
 		return
 	if(stat & NOPOWER)
-		to_chat(usr, SPAN_WARNING("The unit is not operational."))
+		to_chat(usr, SPAN_WARNIN69("The unit is not operational."))
 		return
 	if(OCCUPANT || HELMET || SUIT)
-		to_chat(usr, SPAN_WARNING("It's too cluttered inside for you to fit in!"))
+		to_chat(usr, SPAN_WARNIN69("It's too cluttered inside for you to fit in!"))
 		return
-	visible_message("\The [usr] starts squeezing into the suit storage unit!", 3)
+	visible_messa69e("\The 69usr69 starts s69ueezin69 into the suit stora69e unit!", 3)
 	if(do_after(usr, 10, src))
-		usr.stop_pulling()
+		usr.stop_pullin69()
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
 //		usr.metabslow = 1
 		src.OCCUPANT = usr
-		src.isopen = 0 //Close the thing after the guy gets inside
+		src.isopen = 0 //Close the thin69 after the 69uy 69ets inside
 		src.update_icon()
 
 //		for(var/obj/O in src)
-//			qdel(O)
+//			69del(O)
 
-		src.add_fingerprint(usr)
-		src.updateUsrDialog()
+		src.add_fin69erprint(usr)
+		src.updateUsrDialo69()
 		return
 	else
-		src.OCCUPANT = null //Testing this as a backup sanity test
+		src.OCCUPANT = null //Testin69 this as a backup sanity test
 	return
 
-/obj/machinery/suit_storage_unit/affect_grab(var/mob/user, var/mob/target)
+/obj/machinery/suit_stora69e_unit/affect_69rab(var/mob/user,69ar/mob/tar69et)
 	if(!isopen)
-		to_chat(user, SPAN_WARNING("The unit's doors are shut."))
+		to_chat(user, SPAN_WARNIN69("The unit's doors are shut."))
 		return
 	if(stat & NOPOWER)
-		to_chat(user, SPAN_WARNING("The unit is not operational."))
+		to_chat(user, SPAN_WARNIN69("The unit is not operational."))
 		return
 	if(OCCUPANT || HELMET || SUIT) //Unit needs to be absolutely empty
-		to_chat(user, SPAN_WARNING("The unit's storage area is too cluttered."))
+		to_chat(user, SPAN_WARNIN69("The unit's stora69e area is too cluttered."))
 		return
-	visible_message("[user] starts putting [target] into [src].")
-	if(do_after(user, 20, src) && Adjacent(target))
-		target.reset_view(src)
-		target.forceMove(src)
-		OCCUPANT = target
+	visible_messa69e("69user69 starts puttin69 69tar69et69 into 69src69.")
+	if(do_after(user, 20, src) && Adjacent(tar69et))
+		tar69et.reset_view(src)
+		tar69et.forceMove(src)
+		OCCUPANT = tar69et
 		isopen = FALSE //close ittt
 
 		if(!safeties)
-			// Automatically lock the unit so the victim can't escape deep frying easily
-			to_chat(user, SPAN_NOTICE("You put [target] into [src] and lock the unit."))
+			// Automatically lock the unit so the69ictim can't escape deep fryin69 easily
+			to_chat(user, SPAN_NOTICE("You put 69tar69et69 into 69src69 and lock the unit."))
 			locked = TRUE
 		else
-			to_chat(user, SPAN_NOTICE("You put [target] into [src]."))
+			to_chat(user, SPAN_NOTICE("You put 69tar69et69 into 69src69."))
 
-		add_fingerprint(user)
-		updateUsrDialog()
+		add_fin69erprint(user)
+		updateUsrDialo69()
 		update_icon()
 		return TRUE
 
-/obj/machinery/suit_storage_unit/proc/load(obj/item/I, mob/user, slot)
+/obj/machinery/suit_stora69e_unit/proc/load(obj/item/I,69ob/user, slot)
 	if(!isopen)
 		return
 	var/check = null
 	switch(slot)
 		if(LOAD_SLOT_MASK)
-			check = MASK
+			check =69ASK
 		if(LOAD_SLOT_HELMET)
 			check = HELMET
 		if(LOAD_SLOT_SUIT)
 			check = SUIT
 
 	if(check)
-		to_chat(user, SPAN_WARNING("The unit already contains a [slot]."))
+		to_chat(user, SPAN_WARNIN69("The unit already contains a 69slot69."))
 		return
 
-	to_chat(user, SPAN_NOTICE("You load the [I.name] into the storage compartment."))
+	to_chat(user, SPAN_NOTICE("You load the 69I.name69 into the stora69e compartment."))
 	user.drop_from_inventory(I, src)
 
 	switch(slot)
@@ -436,20 +436,20 @@
 			SUIT = I
 
 	update_icon()
-	updateUsrDialog()
+	updateUsrDialo69()
 
 
-/obj/machinery/suit_storage_unit/attackby(obj/item/I, mob/user)
+/obj/machinery/suit_stora69e_unit/attackby(obj/item/I,69ob/user)
 	if(default_deconstruction(I, user))
 		return
 
 	if(stat & NOPOWER)
 		return
-	else if(istype(I, /obj/item/clothing/suit))
+	else if(istype(I, /obj/item/clothin69/suit))
 		load(I, user, LOAD_SLOT_SUIT)
-	else if(istype(I, /obj/item/clothing/head))
+	else if(istype(I, /obj/item/clothin69/head))
 		load(I, user, LOAD_SLOT_HELMET)
-	else if(istype(I, /obj/item/clothing/mask))
+	else if(istype(I, /obj/item/clothin69/mask))
 		load(I, user, LOAD_SLOT_MASK)
 
 
@@ -459,55 +459,55 @@
 
 // Unit subtypes
 
-/obj/machinery/suit_storage_unit/standard_unit
+/obj/machinery/suit_stora69e_unit/standard_unit
 	overlay_color = "#B0B0B0"
-	SUIT_TYPE = /obj/item/clothing/suit/space
-	HELMET_TYPE = /obj/item/clothing/head/space
-	MASK_TYPE = /obj/item/clothing/mask/breath
+	SUIT_TYPE = /obj/item/clothin69/suit/space
+	HELMET_TYPE = /obj/item/clothin69/head/space
+	MASK_TYPE = /obj/item/clothin69/mask/breath
 
-/obj/machinery/suit_storage_unit/medical
+/obj/machinery/suit_stora69e_unit/medical
 	overlay_color = "#E0E0E0"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/medical
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/medical
 
 
-/obj/machinery/suit_storage_unit/security
+/obj/machinery/suit_stora69e_unit/security
 	overlay_color = "#50649A"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/security
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/security
 
 
-/obj/machinery/suit_storage_unit/engineering
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/engineering
+/obj/machinery/suit_stora69e_unit/en69ineerin69
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/en69ineerin69
 
-/obj/machinery/suit_storage_unit/engineering/atmos
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/atmos
-
-
-/obj/machinery/suit_storage_unit/moebius
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/hazardsuit/moebius
-	MASK_TYPE = /obj/item/clothing/mask/breath
-
-/obj/machinery/suit_storage_unit/nt
-	SUIT_TYPE = /obj/item/clothing/suit/armor/acolyte
-	HELMET_TYPE = /obj/item/clothing/head/armor/acolyte
-
-/obj/machinery/suit_storage_unit/nt/agrolyte
-	SUIT_TYPE = /obj/item/clothing/suit/armor/agrolyte
-	HELMET_TYPE  = /obj/item/clothing/head/armor/agrolyte
-
-/obj/machinery/suit_storage_unit/nt/custodian
-	SUIT_TYPE = /obj/item/clothing/suit/armor/custodian
-	HELMET_TYPE = /obj/item/clothing/head/armor/custodian
+/obj/machinery/suit_stora69e_unit/en69ineerin69/atmos
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/atmos
 
 
-/obj/machinery/suit_storage_unit/mining
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/mining
+/obj/machinery/suit_stora69e_unit/moebius
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/hazardsuit/moebius
+	MASK_TYPE = /obj/item/clothin69/mask/breath
+
+/obj/machinery/suit_stora69e_unit/nt
+	SUIT_TYPE = /obj/item/clothin69/suit/armor/acolyte
+	HELMET_TYPE = /obj/item/clothin69/head/armor/acolyte
+
+/obj/machinery/suit_stora69e_unit/nt/a69rolyte
+	SUIT_TYPE = /obj/item/clothin69/suit/armor/a69rolyte
+	HELMET_TYPE  = /obj/item/clothin69/head/armor/a69rolyte
+
+/obj/machinery/suit_stora69e_unit/nt/custodian
+	SUIT_TYPE = /obj/item/clothin69/suit/armor/custodian
+	HELMET_TYPE = /obj/item/clothin69/head/armor/custodian
 
 
-/obj/machinery/suit_storage_unit/excelsior
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/excelsior
+/obj/machinery/suit_stora69e_unit/minin69
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/minin69
 
 
-/obj/machinery/suit_storage_unit/merc
+/obj/machinery/suit_stora69e_unit/excelsior
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/excelsior
+
+
+/obj/machinery/suit_stora69e_unit/merc
 	overlay_color = "#D04044"
-	SUIT_TYPE = /obj/item/clothing/suit/space/void/merc
-	MASK_TYPE = /obj/item/clothing/mask/gas/syndicate
+	SUIT_TYPE = /obj/item/clothin69/suit/space/void/merc
+	MASK_TYPE = /obj/item/clothin69/mask/69as/syndicate

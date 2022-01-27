@@ -1,9 +1,9 @@
-/proc/draft_ghost(role_text, ban_check, pref_check)
+/proc/draft_69host(role_text, ban_check, pref_check)
 	var/list/candidates = list()
-	var/agree_time_out = FALSE
+	var/a69ree_time_out = FALSE
 	var/any_candidates = FALSE
 
-	for(var/mob/observer/ghost/O in GLOB.player_list)
+	for(var/mob/observer/69host/O in 69LOB.player_list)
 		if(!O.client)
 			continue
 		if(ban_check && jobban_isbanned(O, ban_check))
@@ -15,19 +15,19 @@
 
 		if(role_text)
 			spawn()
-				O << 'sound/effects/magic/blind.ogg' //Play this sound to a player whenever when he's chosen to decide.
-				if(alert(O,"Do you want to become the [role_text]? Hurry up, you have 60 seconds to make choice!","Antag lottery","OH YES","No, I'm autist") == "OH YES")
-					if(!agree_time_out)
+				O << 'sound/effects/ma69ic/blind.o6969' //Play this sound to a player whenever when he's chosen to decide.
+				if(alert(O,"Do you want to become the 69role_text69? Hurry up, you have 60 seconds to69ake choice!","Anta69 lottery","OH YES","No, I'm autist") == "OH YES")
+					if(!a69ree_time_out)
 						candidates.Add(O)
 		else
 			candidates.Add(O)
 
-	if(any_candidates) //we don't need to wait if there's no candidates
+	if(any_candidates) //we don't69eed to wait if there's69o candidates
 		sleep(60 SECONDS)
-		agree_time_out = TRUE
+		a69ree_time_out = TRUE
 
 	while(candidates.len)
-		var/mob/observer/ghost/O = pick(candidates)
+		var/mob/observer/69host/O = pick(candidates)
 		if(!O.client)
 			continue
 		return O
