@@ -17,6 +17,9 @@
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
 	var/turf/cover
+	if(isliving(src))
+		var/mob/living/L = src
+		L.livmomentum = 0
 	if(flipped==1)
 		cover = get_turf(src)
 	else if(flipped==0)
