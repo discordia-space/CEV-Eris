@@ -638,15 +638,10 @@ default behaviour is:
 			src.allow_spin = TRUE
 			sleep(3)
 			while(livmomentum > 0)
-				visible_message("slide procced!")
 				src.Move(get_step(src.loc, dir),dir)
 				src.client.move_loop()
 				livmomentum = (livmomentum - speed)
 				sleep(world.tick_lag + 1)
-				//ADD COOLDOWN!!
-			//add stage 2
-			//get devstaff
-			//also buff suplex and perks, preferably better than a number change
 		else
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 			update_lying_buckled_and_verb_status()
