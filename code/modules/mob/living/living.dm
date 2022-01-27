@@ -637,11 +637,12 @@ default behaviour is:
 			pass_flags -= PASSTABLE //jumpn't over them anymore!
 			src.allow_spin = TRUE
 			sleep(3)
-			while(livmomentum > 0)
+            src.client.mloop = 1
+			while(livmomentum > 0 && src.client.true_dir)
 				src.Move(get_step(src.loc, dir),dir)
-				src.client.move_loop()
 				livmomentum = (livmomentum - speed)
 				sleep(world.tick_lag + 1)
+			src.client.mloop = 0
 		else
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 			update_lying_buckled_and_verb_status()
