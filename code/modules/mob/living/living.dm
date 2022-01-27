@@ -623,26 +623,31 @@ default behaviour is:
 			unstack = TRUE
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 			update_lying_buckled_and_verb_status()
+		else
+			unstack = TRUE
 	else if (!resting)
+		var/client/C = src.client
 		var/speed = movement_delay()
 		resting = TRUE
-		var/dir = src.client.true_dir
-		if(ishuman(src) && (dir))//if true_dir = 0(src isn't moving), doesn't proc
-			livmomentum = 5 //set momentum value as soon as possible for stopSliding to work better
-			to_chat(src, SPAN_NOTICE("You dive onwards!"))
-			pass_flags += PASSTABLE //jump over them!
-			src.allow_spin = FALSE
-			src.throw_at(get_edge_target_turf(src, dir), 2, 1)//"Diving"; if you dive over a table, your momentum is set to 0
+		var/dir = C.true_dir
+		if(ishuman(src) && (dir))// If true_dir = 0(src isn't moving), doesn't proc
+			var/mob/living/carbon/human/H = src
+			livmomentum = 5 // Set momentum value as soon as possible for stopSliding to work better
+			to_chat(H, SPAN_NOTICE("You dive onwards!"))
+			pass_flags += PASSTABLE // Jump over them!
+			H.allow_spin = FALSE
+			H.throw_at(get_edge_target_turf(H, dir), 1, 1)// "Diving"; if you dive over a table, your momentum is set to 0
 			update_lying_buckled_and_verb_status()
-			pass_flags -= PASSTABLE //jumpn't over them anymore!
-			src.allow_spin = TRUE
-			sleep(3)
-			src.client.mloop = 1
-			while(livmomentum > 0 && src.client.true_dir)
-				src.Move(get_step(src.loc, dir),dir)
+			pass_flags -= PASSTABLE // Jumpn't over them anymore!
+			H.allow_spin = TRUE
+			sleep(2)
+			C.mloop = 1
+			while(livmomentum > 0 && C.true_dir)
+				H.Move(get_step(H.loc, dir),dir)
 				livmomentum = (livmomentum - speed)
+				H.regen_slickness(0.75) // The longer you slide, the more stylish it is
 				sleep(world.tick_lag + 1)
-			src.client.mloop = 0
+			C.mloop = 0
 		else
 			to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"].</span>")
 			update_lying_buckled_and_verb_status()
