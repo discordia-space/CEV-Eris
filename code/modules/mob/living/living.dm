@@ -645,7 +645,7 @@ default behaviour is:
 			while(livmomentum > 0 && C.true_dir)
 				H.Move(get_step(H.loc, dir),dir)
 				livmomentum = (livmomentum - speed)
-				H.regen_slickness(0.75) // The longer you slide, the more stylish it is
+				H.regen_slickness(0.25) // The longer you slide, the more stylish it is
 				sleep(world.tick_lag + 1)
 			C.mloop = 0
 		else
