@@ -1,4 +1,4 @@
-/datum/trade_station/nt_cruisers
+/datum/trade_station/nt_uncommon
 	name_pool = list(
 		"NTV 'Hope'" = "They are sending message, \"Reliable, blessed and sanctified goods for the correct price.\""
 	)
@@ -13,16 +13,22 @@
 			/obj/item/storage/pouch/small_generic,
 			/obj/item/storage/pouch/medium_generic,
 		),
-		"Energy Weapons" = list(
-			/obj/item/gun/energy/ionrifle = custom_good_amount_range(list(1, 4)),
-			/obj/item/gun/energy/plasma = custom_good_amount_range(list(-3, 2)),
-		),
 		"Animals" = list(
 			
+		),
+		"Seeds" = list(
+
 		)
 	)
     secret_inventory = list(
         "Cloth II" = list(
             /obj/item/storage/pouch/large_generic,
         )
+		"Energy Weapons" = list(
+			/obj/item/gun/energy/ionrifle = custom_good_amount_range(list(1, 4)),
+			/obj/item/gun/energy/plasma = custom_good_amount_range(list(-3, 2)),
+		),
     )
+	offer_types = list(
+
+	)
