@@ -21,6 +21,8 @@
 	damage_multiplier = 1.15
 	one_hand_penalty = 8 //because otherwise you can shoot it one-handed in bursts and still be very accurate. One-handed recoil is now as much as it was back in the day when wielded.
 	gun_parts = list(/obj/item/part/gun = 2 ,/obj/item/stack/material/plasteel = 6)
+	gun_tags = list(GUN_FA_MODDABLE)
+
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
 		BURST_3_ROUND
@@ -43,7 +45,3 @@
 	set_item_state(ammo_magazine ? "-full" : "", back = TRUE)
 	cut_overlays()
 	update_charge()
-
-/obj/item/gun/projectile/automatic/sol/generate_guntags()
-	..()
-	gun_tags |= GUN_SOL

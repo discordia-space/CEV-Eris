@@ -17,7 +17,7 @@
 
 	init_firemodes = list(
 		WEAPON_NORMAL,
-		BURST_2_ROUND
+		BURST_2_BEAM
 		)
 
 	var/lightfail = 0

@@ -23,7 +23,7 @@
 	silenced = TRUE
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
-		FULL_AUTO_400
+		BURST_2_ROUND
 		)
 
 /obj/item/gun/projectile/automatic/vintorez/update_icon()
