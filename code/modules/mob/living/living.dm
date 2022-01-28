@@ -636,7 +636,10 @@ default behaviour is:
 			to_chat(H, SPAN_NOTICE("You dive onwards!"))
 			pass_flags += PASSTABLE // Jump over them!
 			H.allow_spin = FALSE
-			H.throw_at(get_edge_target_turf(H, dir), 1, 1)// "Diving"; if you dive over a table, your momentum is set to 0
+			var/is_jump = FALSE
+			if(istype(get_step(H, dir), /turf/simulated/open))
+				is_jump = TRUE
+			H.throw_at(get_edge_target_turf(H, dir), 2 + is_jump, 1)// "Diving"; if you dive over a table, your momentum is set to 0. If you dive over space, you are thrown a tile further.
 			update_lying_buckled_and_verb_status()
 			pass_flags -= PASSTABLE // Jumpn't over them anymore!
 			H.allow_spin = TRUE
