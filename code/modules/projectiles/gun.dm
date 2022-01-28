@@ -457,7 +457,8 @@
 					to_chat(user, "<span class='warning'>You have trouble keeping \the [src] on target with just one hand.</span>")
 				if(4 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
-
+	if(brace_penalty && !braced)
+		to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target while carrying it!</span>")
 	user.handle_recoil(src)
 	update_icon()
 
@@ -552,9 +553,9 @@
 		user.set_dir(dir)
 		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
 		braced = TRUE
-		while(user.loc = original_loc)
+		while(user.loc == original_loc)
 			sleep(2)
-			if(user.get_dir(user, target) = dir)
+			if(get_dir(user, target) != dir)
 				braced = FALSE
 				to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
 				break

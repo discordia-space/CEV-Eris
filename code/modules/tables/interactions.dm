@@ -168,7 +168,7 @@
 		break_to_parts()
 		return
 
-	if(istype(user.a_intent = I_HELP && istype(W, /obj/item/gun)))
+	if(user.a_intent == I_HELP && istype(W, /obj/item/gun))
 		var/obj/item/gun/G = W
 		G.gun_brace(user, src) //.../modules/projectiles/gun.dm
 		return

@@ -25,7 +25,8 @@
 	..()
 	var/datum/component/item_upgrade/I = AddComponent(/datum/component/item_upgrade)
 	I.weapon_upgrades = list(
-		GUN_UPGRADE_FOREGRIP = TRUE
+		GUN_UPGRADE_FOREGRIP = TRUE,
+		GUN_UPGRADE_RECOIL = 0.8
 		)
 	I.gun_loc_tag = GUN_UNDERBARREL
 

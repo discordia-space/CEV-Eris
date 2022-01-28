@@ -428,7 +428,7 @@
 			set_pixel_click_offset(I, params)
 			return
 	//Gun bracing
-	if(!(locate(/obj/structure/window) in loc) && user.a_intent = I_HELP && istype(I, /obj/item/gun))
+	if(!(locate(/obj/structure/window) in loc) && user.a_intent == I_HELP && istype(I, /obj/item/gun))
 		var/obj/item/gun/G = I
 		G.gun_brace(user, src) //.../modules/projectiles/gun.dm
 		return

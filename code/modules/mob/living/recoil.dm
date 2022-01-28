@@ -2,12 +2,16 @@
 	deltimer(recoil_reduction_timer)
 	if(G.one_hand_penalty) // If the gun has a two handed penalty and is not wielded.
 		if(!G.wielded)
-			recoil += G.one_hand_penalty // Then the one hand penalty wil lbe added to the recoil.
+			recoil += G.one_hand_penalty // Then the one hand penalty will be added to the recoil.
+
 	if(G.braced)
 		if(G.braceable == 2)
 			recoil -= 6
 		else 
 			recoil -= 3
+
+	if(brace_penalty && !braced)
+		recoil = recoil += 30
 
 	var/debug_recoil = min(0.3, G.fire_delay)
 	if(G.fire_delay == 0)

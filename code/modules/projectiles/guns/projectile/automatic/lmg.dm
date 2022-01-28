@@ -26,6 +26,8 @@
 	one_hand_penalty = 30 //you're not Stallone. LMG level.
 	spawn_blacklisted = TRUE
 	rarity_value = 80
+	slowdown_hold = 4
+	brace_penalty = TRUE
 	gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/plasteel = 4)
 	wield_delay = 1 SECOND
 	wield_delay_factor = 0.9 // 90 vig for instant wield
