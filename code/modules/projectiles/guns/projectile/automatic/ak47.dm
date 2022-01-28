@@ -160,6 +160,7 @@
 
 	origin_tech = list(TECH_COMBAT = 5, TECH_MATERIAL = 2)
 	matter = list(MATERIAL_PLASTEEL = 20, MATERIAL_WOOD = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY,
@@ -241,6 +242,7 @@
 
 	origin_tech = list(TECH_COMBAT = 2)	//bad copies don't give good science
 	matter = list(MATERIAL_STEEL = 20, MATERIAL_WOOD = 10)
+	gun_tags = list(GUN_FA_MODDABLE)
 
 	init_firemodes = list(
 		SEMI_AUTO_NODELAY	//too poorly made for burst or automatic

@@ -1,0 +1,8 @@
+author: Sparrowbird611
+delete-after: true
+changes:
+  - tweak: The Weintraub FA Receiver can be applied to most rifles now, enabling automatic
+      fire.
+  - balance: Removed FA from the Vintorez. It now has a two round burst.
+  - balance: Slighty buffed several SMGs, they will do a little more damage now.
+  - balance: Bojevic had its recoil decreased a little bit.

@@ -1,4 +1,4 @@
 author: SirRichardFrancis
 delete-after: true
 changes:
-  - imageadd: bomb suit by INFRARED_BARON
+  - bugfix: ammo names in vendor, this time for real
