@@ -16,13 +16,13 @@
 	generate_fields()
 
 /datum/computer_file/report/Destroy()
-	QDEL_NULL_LIST(fields)
+	QDEL_LIST(fields)
 	. = ..()
 
 /*
 Access stuff. The report's access/access_edit should control whether it can be opened/submitted.
 For field editing or viewing, use the field's access/access_edit permission instead.
-The access system is based on "access patterns", lists of access values. 
+The access system is based on "access patterns", lists of access values.
 A user needs all access values in a pattern to be granted access.
 A user needs to only match one of the potentially several stored access patterns to be granted access.
 You must have access to have edit access.

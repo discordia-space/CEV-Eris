@@ -1,5 +1,5 @@
 
-#define isweakref(A) istype(A, /weakref)
+#define isweakref(D) (istype(D, /datum/weakref))
 
 #define islist(A) istype(A, /list)
 

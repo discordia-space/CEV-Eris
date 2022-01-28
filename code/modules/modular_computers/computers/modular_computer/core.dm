@@ -75,7 +75,7 @@
 
 /obj/item/modular_computer/Destroy()
 	kill_program(forced=TRUE)
-	QDEL_NULL_LIST(terminals)
+	QDEL_LIST(terminals)
 	STOP_PROCESSING(SSobj, src)
 
 	if(stored_pen && !ispath(stored_pen))
@@ -200,7 +200,7 @@
 	return ntnet_global.add_log(text, network_card)
 
 /obj/item/modular_computer/proc/shutdown_computer(loud = TRUE)
-	QDEL_NULL_LIST(terminals)
+	QDEL_LIST(terminals)
 
 	kill_program(forced=TRUE)
 	for(var/p in all_threads)

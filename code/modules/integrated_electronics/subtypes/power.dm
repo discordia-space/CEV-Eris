@@ -207,6 +207,6 @@
 		return
 
 	var/datum/powernet/analyzed_net = connected_cable.powernet
-	set_pin_data(IC_OUTPUT, 1, weakref(connected_cable))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(connected_cable))
 	set_pin_data(IC_OUTPUT, 2, analyzed_net.avail)
 	set_pin_data(IC_OUTPUT, 3, analyzed_net.viewload)

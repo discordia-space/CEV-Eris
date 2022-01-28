@@ -17,7 +17,7 @@
 	var/list/program			// Currently loaded save, in form of list
 	var/materials = list(MATERIAL_STEEL = 0)
 	var/metal_max = 25 * SHEET_MATERIAL_AMOUNT
-	var/weakref/idlock = null
+	var/datum/weakref/idlock = null
 
 /obj/item/device/integrated_circuit_printer/proc/check_interactivity(mob/user)
 	return CanUseTopic(user) && (get_dist(src, user) < 2)

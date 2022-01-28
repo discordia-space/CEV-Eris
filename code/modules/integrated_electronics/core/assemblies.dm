@@ -31,7 +31,7 @@
 	var/creator // circuit creator if any
 	var/static/next_assembly_id = 0
 	var/sealed = FALSE
-	var/weakref/idlock = null
+	var/datum/weakref/idlock = null
 	var/use_ui_window = TRUE
 	var/force_sealed = FALSE // it's like sealed, but from component and can't be unsealed.
 

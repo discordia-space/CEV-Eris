@@ -12,7 +12,7 @@
 /datum/integrated_io/selfref/write_data_to_pin(new_data) // You can't write anything else but itself onto it
 	if(data)
 		return
-	data = weakref(holder)
+	data = WEAKREF(holder)
 	holder.on_data_written()
 
 /datum/integrated_io/selfref/display_pin_type()

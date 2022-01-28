@@ -118,7 +118,7 @@ if(LAZYLEN(movement_handlers) && ispath(movement_handlers[1])) { \
 // Base
 /atom/movable/Destroy()
 	if(LAZYLEN(movement_handlers) && !ispath(movement_handlers[1]))
-		QDEL_NULL_LIST(movement_handlers)
+		QDEL_LIST(movement_handlers)
 	. = ..()
 
 /datum/movement_handler

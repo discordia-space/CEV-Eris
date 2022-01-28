@@ -1,41 +1,82 @@
 
-//Timing subsystem
-//Don't run if there is an identical unique timer active
-#define TIMER_UNIQUE		0x1
-//For unique timers: Replace the old timer rather then not start this one
-#define TIMER_OVERRIDE		0x2
-//Timing should be based on how timing progresses on clients, not the sever.
-//	tracking this is more expensive,
-//	should only be used in conjuction with things that have to progress client side, such as animate() or sound()
-#define TIMER_CLIENT_TIME	0x4
-//Timer can be stopped using deltimer()
-#define TIMER_STOPPABLE		0x8
-//To be used with TIMER_UNIQUE
-//prevents distinguishing identical timers with the wait variable
-#define TIMER_NO_HASH_WAIT  0x10
-//number of byond ticks that are allowed to pass before the timer subsystem thinks it hung on something
-#define TIMER_NO_INVOKE_WARNING 600
+//! ## Timing subsystem
+/**
+ * Don't run if there is an identical unique timer active
+ *
+ * if the arguments to addtimer are the same as an existing timer, it doesn't create a new timer,
+ * and returns the id of the existing timer
+ */
+#define TIMER_UNIQUE (1<<0)
 
+///For unique timers: Replace the old timer rather then not start this one
+#define TIMER_OVERRIDE (1<<1)
+
+/**
+ * Timing should be based on how timing progresses on clients, not the server.
+ *
+ * Tracking this is more expensive,
+ * should only be used in conjuction with things that have to progress client side, such as
+ * animate() or sound()
+ */
+#define TIMER_CLIENT_TIME (1<<2)
+
+///Timer can be stopped using deltimer()
+#define TIMER_STOPPABLE (1<<3)
+
+///prevents distinguishing identical timers with the wait variable
+///
+///To be used with TIMER_UNIQUE
+#define TIMER_NO_HASH_WAIT (1<<4)
+
+///Loops the timer repeatedly until qdeleted
+///
+///In most cases you want a subsystem instead, so don't use this unless you have a good reason
+#define TIMER_LOOP (1<<5)
+
+///Delete the timer on parent datum Destroy() and when deltimer'd
+#define TIMER_DELETE_ME (1<<6)
+
+///Empty ID define
 #define TIMER_ID_NULL -1
 
 //For servers that can't do with any additional lag, set this to none in flightpacks.dm in subsystem/processing.
 #define FLIGHTSUIT_PROCESSING_NONE 0
 #define FLIGHTSUIT_PROCESSING_FULL 1
 
-#define INITIALIZATION_INSSATOMS 0	//New should not call Initialize
-#define INITIALIZATION_INNEW_MAPLOAD 1	//New should call Initialize(TRUE)
-#define INITIALIZATION_INNEW_REGULAR 2	//New should call Initialize(FALSE)
+//! ## Initialization subsystem
 
-#define INITIALIZE_HINT_NORMAL   0  //Nothing happens
-#define INITIALIZE_HINT_LATELOAD 1  //Call LateInitialize
-#define INITIALIZE_HINT_QDEL     2  //Call qdel on the atom
+///New should not call Initialize
+#define INITIALIZATION_INSSATOMS 0
+///New should call Initialize(TRUE)
+#define INITIALIZATION_INNEW_MAPLOAD 2
+///New should call Initialize(FALSE)
+#define INITIALIZATION_INNEW_REGULAR 1
 
-//type and all subtypes should always call Initialize in New()
+//! ### Initialization hints
+
+///Nothing happens
+#define INITIALIZE_HINT_NORMAL 0
+/**
+ * call LateInitialize at the end of all atom Initalization
+ *
+ * The item will be added to the late_loaders list, this is iterated over after
+ * initalization of subsystems is complete and calls LateInitalize on the atom
+ * see [this file for the LateIntialize proc](atom.html#proc/LateInitialize)
+ */
+#define INITIALIZE_HINT_LATELOAD 1
+
+///Call qdel on the atom after intialization
+#define INITIALIZE_HINT_QDEL 2
+
+///Call qdel with a force of TRUE after initialization
+#define INITIALIZE_HINT_QDEL_FORCE 3
+
+///type and all subtypes should always immediately call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
 	if(!initialized) {\
 		args[1] = TRUE;\
-		SSatoms.InitAtom(src, args);\
+		SSatoms.InitAtom(src, FALSE, args);\
 	}\
 }
 

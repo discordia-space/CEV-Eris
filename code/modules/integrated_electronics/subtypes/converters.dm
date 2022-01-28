@@ -98,7 +98,7 @@
 /obj/item/integrated_circuit/converter/refdecode/do_work()
 	pull_data()
 	dec = XorEncrypt(hextostr(get_pin_data(IC_INPUT, 1), TRUE), SScircuit.cipherkey)
-	set_pin_data(IC_OUTPUT, 1, weakref(locate(dec)))
+	set_pin_data(IC_OUTPUT, 1, WEAKREF(locate(dec)))
 	push_data()
 	activate_pin(2)
 
