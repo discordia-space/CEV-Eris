@@ -49,7 +49,7 @@ TODO: LATER
 	calculate offsets based on saved in prefs
 	scaling UI
 	colorize proc for UI element
-		
+
 */
 
 /datum/interface
@@ -57,9 +57,9 @@ TODO: LATER
 	var/styleName = "ErisStyle"
 
 	var/list/HUD_element/_elements = list()		//	list of all ui elements
-	var/client/_observer	
+	var/client/_observer
 
-	var/list/storageData = list()					
+	var/list/storageData = list()
 
 /datum/interface/New(var/client/observer)
 	if(!observer || !istype(observer))
@@ -70,12 +70,12 @@ TODO: LATER
 
 	buildUI()
 	validate()
-	
+
 	. = ..()
 
 /datum/interface/Destroy()
 	hide()
-	QDEL_NULL_LIST(_elements)
+	QDEL_LIST(_elements)
 	. = ..()
 
 /datum/interface/proc/buildUI()
@@ -91,10 +91,10 @@ TODO: LATER
 		iconData["color"] = _observer.prefs.UI_style_color
 		iconData["alpha"] = 80
 		iconData["is_plain"] = TRUE
-		
+
 		E.setHoveredInteraction(TRUE, iconData)
 		E.setClickedInteraction(TRUE, iconData, 2)
-		
+
 
 /datum/interface/proc/getElementByID(var/id)
 	RETURN_TYPE(/HUD_element)
@@ -190,7 +190,7 @@ TODO: LATER
 			element.setIcon(iconData)
 		else
 			error("UI element has incorrect IconData.")
-		
+
 	element.setPosition(x,y)
 
 	if(icon_overlays)

@@ -6,8 +6,8 @@
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/roachmeat/kraftwerk
 	meat_amount = 3
 	turns_per_move = 1
-	maxHealth = 35
-	health = 35
+	maxHealth = 30
+	health = 30
 
 	melee_damage_lower = 2
 	melee_damage_upper = 4 //He's a ranged roach
@@ -25,6 +25,16 @@
 
 	var/list/nanite_swarms = list()
 	var/max_swarms = 5
+
+	// Armor related variables
+	armor = list(
+		melee = 20,
+		bullet = 20,
+		energy = 40,
+		bomb = 10,
+		bio = 25,
+		rad = 100
+	)
 
 /mob/living/carbon/superior_animal/roach/nanite/UnarmedAttack(atom/A, var/proximity)
 	. = ..()

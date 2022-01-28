@@ -1,0 +1,7 @@
+author: Kegdo
+delete-after: true
+changes:
+  - rscadd: diving, sliding, rest while moving, hold rest to move
+  - rscadd: resting hotkey - C
+  - tweak: parkour perk reduces the time it takes to stand up
+  - tweak: can't stack resting action anymore
