@@ -31,6 +31,7 @@
 		)
 	saw_off = TRUE
 	sawn = /obj/item/gun/projectile/shotgun/doublebarrel/sawn
+	gun_parts = list(/obj/item/part/gun/frame/doublebarrel = 1, /obj/item/part/gun/grip/wood = 1, /obj/item/part/gun/mechanism/shotgun = 1, /obj/item/part/gun/barrel/shotgun = 1)
 
 /obj/item/gun/projectile/shotgun/doublebarrel/pellet
 	ammo_type = /obj/item/ammo_casing/shotgun/pellet
@@ -85,3 +86,12 @@
 	if(!bolt_open)
 		return
 	..()
+
+/obj/item/part/gun/frame/doublebarrel
+	name = "double-barreled shotgun frame"
+	desc = "A double-barreled shotgun frame. An immortal classic of cowboys and bartenders alike."
+	icon_state = "frame_dshotgun"
+	result = /obj/item/gun/projectile/shotgun/doublebarrel
+	grip = /obj/item/part/gun/grip/wood
+	mechanism = /obj/item/part/gun/mechanism/shotgun
+	barrel = /obj/item/part/gun/barrel/shotgun

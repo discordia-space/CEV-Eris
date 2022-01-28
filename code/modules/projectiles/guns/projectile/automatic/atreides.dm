@@ -21,6 +21,7 @@
 	recoil_buildup = 1.2
 	one_hand_penalty = 5 //smg level
 	gun_tags = list(GUN_SILENCABLE, GUN_GILDABLE)
+	gun_parts = list(/obj/item/part/gun/frame/atreides = 1, /obj/item/part/gun/grip/rubber = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/pistol = 1)
 
 	init_firemodes = list(
 		FULL_AUTO_400,
@@ -53,3 +54,12 @@
 /obj/item/gun/projectile/automatic/atreides/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/atreides
+	name = "Atreides frame"
+	desc = "An Atreides SMG frame. The king of street warfare."
+	icon_state = "frame_atreides"
+	result = /obj/item/gun/projectile/automatic/atreides
+	grip = /obj/item/part/gun/grip/rubber
+	mechanism = /obj/item/part/gun/mechanism/smg
+	barrel = /obj/item/part/gun/barrel/pistol
