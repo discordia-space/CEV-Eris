@@ -150,11 +150,7 @@
 			A.wage_manual = FALSE
 			if(A.department_id) // If it was linked and unlinked to account mid-round some values could break, resetting
 				var/datum/department/D = GLOB.all_departments[A.department_id]
-				D.funding_type = initial(D.funding_type)
 				D.funding_source = initial(D.funding_source)
-				if(D.funding_source == FUNDING_EXTERNAL) // If it was funded from external - restore that link
-					A.employer = initial(A.employer)
-					A.wage = D.get_total_budget()
 		return TOPIC_REFRESH
 
 	if(href_list["link"])
@@ -171,7 +167,6 @@
 				P.set_icon("uplink")
 			else if(A.department_id)
 				var/datum/department/D = GLOB.all_departments[A.department_id]
-				D.funding_type = FUNDING_INTERNAL
 				D.funding_source = account.department_id
 				A.employer = account.department_id
 				A.wage_manual = FALSE
@@ -225,6 +220,7 @@
 			D.id = account_name
 			D.account_number = M.account_number
 			D.account_pin = M.remote_access_pin
+			D.budget_base = 0
 			GLOB.all_departments[D.id] = D
 
 			M.account_name = account_name

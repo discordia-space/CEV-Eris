@@ -11,6 +11,7 @@
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
 	var/armor_penetration = 0
+	var/style_damage = 20 // used for dealing damage to slickness
 	var/corporation
 	var/heat = 0
 
@@ -256,6 +257,9 @@
 //Same for AP
 /obj/proc/multiply_projectile_penetration(newmult)
 	armor_penetration = initial(armor_penetration) * newmult
+
+/obj/proc/multiply_projectile_style_damage(newmult)
+	style_damage = initial(style_damage) * newmult
 
 /obj/proc/multiply_pierce_penetration(newmult)
 

@@ -140,7 +140,8 @@
 			var/datum/trade_station/S = LAZYACCESS(SStrade.discovered_stations, text2num(href_list["PRG_offer_fulfill"]))
 			if(!S)
 				return
-			SStrade.fulfill_offer(sending, account, station)
+			var/atom/movable/path = text2path(href_list["PRG_offer_fulfill_path"])
+			SStrade.fulfill_offer(sending, account, station, path)
 			return 1
 
 		var/t2n = text2num(href_list["PRG_sell"])
@@ -229,6 +230,7 @@
 					if(islist(good_packet))
 						pathname = good_packet["name"] ? good_packet["name"] : pathname
 					var/price = SStrade.get_import_cost(path, PRG.station)
+					var/sell_price = SStrade.get_sell_price(path, PRG.station)
 
 					var/count = max(0, get_2d_matrix_cell(PRG.shoppinglist, PRG.choosed_category, path))
 
@@ -237,22 +239,33 @@
 						"price" = price,
 						"count" = count ? count : 0,
 						"amount_available" = amount,
+						"sell_price" = sell_price,
 						"amount_available_around" = amount2sell,
 						"index" = index
 					))
 		if(!recursiveLen(.["goods"]))
 			.["goods"] = null
 
-	.["offers"] = list()
-	for(var/datum/trade_station/S in SStrade.discovered_stations)
-		var/atom/movable/offer_type = S.offer_type
-		var/list/offer = list("station" = S.name, "name" = initial(offer_type.name), "amount" = S.offer_amount, "price" = S.offer_price, "index" = SStrade.discovered_stations.Find(S))
-		if(PRG.sending)
-			offer["available"] = length(SStrade.assess_offer(PRG.sending, S))
-		.["offers"] += list(offer)
-	if(!recursiveLen(.["offers"]))
-		.["offers"] = null
+		.["offers"] = list()
+		for(var/offer_path in PRG.station.special_offers)
+			var/atom/movable/path = offer_path
+			var/list/offer_content = PRG.station.special_offers[offer_path]
+			var/list/offer = list(
+				"station" = PRG.station.name,
+				"name" = offer_content["name"],
+				"amount" = offer_content["amount"],
+				"price" = offer_content["price"],
+				"index" = SStrade.discovered_stations.Find(PRG.station),
+				"path" = path,
+			)
+			if(PRG.sending)
+				offer["available"] = length(SStrade.assess_offer(PRG.sending, PRG.station, offer_path))
+			.["offers"] += list(offer)
 
+		if(!recursiveLen(.["offers"]))
+			.["offers"] = null
+
+		.["time"] = time2text( (PRG.station.update_time - (world.time - PRG.station.update_timer_start)) , "mm:ss")
 
 #undef GOODS_SCREEN
 #undef OFFER_SCREEN

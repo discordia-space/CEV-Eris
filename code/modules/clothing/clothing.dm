@@ -1,9 +1,3 @@
-#define STYLE_NEG_HIGH -2
-#define STYLE_NEG_LOW -1
-#define STYLE_NONE 0
-#define STYLE_LOW 1
-#define STYLE_HIGH 2
-
 /obj/item/clothing
 	name = "clothing"
 	siemens_coefficient = 0.9
@@ -26,12 +20,16 @@
 	//Used for hardsuits. If false, this piece cannot be retracted while the core module is engaged
 	var/retract_while_active = TRUE
 
-	var/style = STYLE_NONE
+	style = STYLE_NONE
+	var/style_coverage = NONE
 
 	var/light_overlay = "helmet_light"
 	var/light_applied
 	var/brightness_on
 	var/on = FALSE
+
+	stiffness = 0 // Recoil caused by moving, defined in obj/item
+	obscuration = 0 // Similar to tint, but decreases firearm accuracy instead via giving minimum extra offset, defined in obj/item
 
 /obj/item/clothing/attack_self(mob/user)
 	if(brightness_on)
@@ -99,7 +97,7 @@
 	accessories = null
 	return ..()
 
-/obj/item/clothing/proc/get_style()
+/obj/item/clothing/get_style()
 	var/real_style = style
 	if(blood_DNA)
 		real_style -= 1
@@ -312,6 +310,7 @@ BLIND     // can't see anything
 	body_parts_covered = EYES
 	slot_flags = SLOT_EYES
 	bad_type = /obj/item/clothing/glasses
+	style = STYLE_LOW
 	var/vision_flags = 0
 	var/darkness_view = 0//Base human is 2
 	var/see_invisible = -1
@@ -332,6 +331,7 @@ BLIND     // can't see anything
 	armor = list(melee = 10, bullet = 0, energy = 15, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
+	style = STYLE_LOW
 	var/wired = 0
 	var/clipped = 0
 
@@ -432,6 +432,7 @@ BLIND     // can't see anything
 	armor = list(melee = 10, bullet = 0, energy = 10, bomb = 0, bio = 0, rad = 0)
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
+	style = STYLE_LOW
 	force = 2
 
 	var/can_hold_knife = 0
@@ -457,6 +458,9 @@ BLIND     // can't see anything
 	if(usr.put_in_hands(holding))
 		usr.visible_message(SPAN_DANGER("\The [usr] pulls a knife out of their boot!"))
 		holding = null
+		if (ishuman(usr))
+			var/mob/living/carbon/human/stylish = usr
+			stylish.regen_slickness()
 	else
 		to_chat(usr, SPAN_WARNING("You need an empty, unbroken hand to do that."))
 		holding.forceMove(src)
@@ -510,6 +514,9 @@ BLIND     // can't see anything
 			user.visible_message(SPAN_NOTICE("\The [user] shoves \the [I] into \the [src]."))
 			verbs |= /obj/item/clothing/shoes/proc/draw_knife
 			update_icon()
+			if (ishuman(user))
+				var/mob/living/carbon/human/depleted = user
+				depleted.regen_slickness(-1)
 	else
 		return ..()
 
@@ -542,6 +549,7 @@ BLIND     // can't see anything
 	icon = 'icons/inventory/suit/icon.dmi'
 	name = "suit"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	style_coverage = COVERS_TORSO
 	allowed = list(
 		/obj/item/clipboard,
 		/obj/item/storage/pouch/,
@@ -567,11 +575,11 @@ BLIND     // can't see anything
 	var/blood_overlay_type = "suit"
 	siemens_coefficient = 0.9
 	w_class = ITEM_SIZE_NORMAL
-	equip_delay = 1 SECONDS
+	equip_delay = 2 SECONDS
 	bad_type = /obj/item/clothing/suit
 	var/fire_resist = T0C+100
 	var/list/extra_allowed = list()
-	style = STYLE_HIGH
+	style = STYLE_LOW
 	valid_accessory_slots = list("armor","armband","decor")
 	restricted_accessory_slots = list("armor","armband")
 

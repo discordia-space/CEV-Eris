@@ -39,6 +39,7 @@
 	var/list/matter_count_need_ammo = list()
 	var/list/matter_count_need_gunpart = list()
 	var/list/matter_count_need_armorpart = list()
+	var/list/matter_count_need_rocket = list()
 
 	for(var/_material in needed_material_ammo)
 		matter_count_need_ammo += "[needed_material_ammo[_material]] [_material]"
@@ -49,11 +50,14 @@
 	for(var/_material in needed_material_armorpart)
 		matter_count_need_armorpart += "[needed_material_ammo[_material]] [_material]"
 
+	for(var/_material in needed_material_rocket)
+		matter_count_need_rocket += "[needed_material_rocket[_material]] [_material]"
+
 	var/list/matter_count = list()
 	for(var/_material in stored_material)
 		matter_count += " [stored_material[_material]] [_material]"
 
-	to_chat(user, SPAN_NOTICE("Materials required to craft ammunition: [english_list(matter_count_need_ammo)].\nMaterials required to craft gun parts: 5 [english_list(matter_count_need_gunpart)] \nMaterials required to craft armor parts: [english_list(matter_count_need_armorpart)] \nIt contains: [english_list(matter_count)]."))
+	to_chat(user, SPAN_NOTICE("Materials required to craft ammunition: [english_list(matter_count_need_ammo)].\nMaterials required to craft gun parts: 5 [english_list(matter_count_need_gunpart)] \nMaterials required to craft armor parts: [english_list(matter_count_need_armorpart)] \n Materials required to craft RPG shell: [english_list(matter_count_need_rocket)].\nIt contains: [english_list(matter_count)]."))
 
 
 /obj/machinery/craftingstation/attackby(obj/item/I, mob/user)
