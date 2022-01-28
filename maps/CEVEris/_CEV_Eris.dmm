@@ -87222,19 +87222,6 @@
 "eaT" = (
 /turf/simulated/wall/r_wall,
 /area/eris/medical/genetics)
-"eaU" = (
-/turf/simulated/open,
-/area/eris/medical/genetics)
-"eaV" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/medical/genetics)
-"eaW" = (
-/obj/structure/catwalk,
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "eaX" = (
 /obj/structure/table/standard,
 /obj/item/device/lighting/toggleable/lamp,
@@ -87390,13 +87377,6 @@
 	dir = 4
 	},
 /area/eris/hallway/main/section4)
-"ebs" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/obj/structure/railing,
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "ebt" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -87883,17 +87863,6 @@
 	opacity = 0
 	},
 /area/shuttle/research/station)
-"ecK" = (
-/obj/structure/railing,
-/turf/simulated/open,
-/area/eris/medical/genetics)
-"ecL" = (
-/obj/structure/railing,
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "ecM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -101036,11 +101005,6 @@
 	},
 /turf/simulated/floor/plating/under,
 /area/eris/maintenance/section3deck2starboard)
-"eOl" = (
-/obj/structure/catwalk,
-/obj/spawner/junk/low_chance,
-/turf/simulated/open,
-/area/eris/medical/genetics)
 "ePg" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -284282,8 +284246,8 @@ dNZ
 dPK
 amQ
 anQ
-dNZ
-dNZ
+dQr
+dQr
 anQ
 dER
 amc
@@ -284484,8 +284448,8 @@ dNZ
 dPK
 amc
 amk
-dNZ
-dNZ
+dQr
+dQr
 anQ
 dUW
 dUW
@@ -284686,9 +284650,9 @@ dNZ
 dPK
 dQw
 amk
-dNZ
-dNZ
-dNZ
+dQr
+dQr
+dQr
 dUW
 dTT
 alG
@@ -284888,8 +284852,8 @@ dNZ
 dPK
 amc
 anQ
-dNZ
-dNZ
+dQr
+dQr
 anQ
 dUW
 dUW
@@ -286502,12 +286466,12 @@ dNn
 dNL
 eEB
 alC
-eaU
-eaU
-eaU
-eaU
-ecK
-eaW
+bjR
+bjR
+bjR
+bjR
+bjR
+bjR
 bjQ
 dUW
 alG
@@ -286704,12 +286668,12 @@ dNn
 dNP
 eEC
 alC
-eaU
-eaU
-eaU
-eaU
-ecK
-eaW
+bjR
+bjR
+bjR
+bjR
+bjR
+bjR
 bjR
 ath
 alG
@@ -286906,12 +286870,12 @@ dNn
 dNU
 dOC
 alC
-eaU
-eaU
-eaV
-eaV
-ecL
-eaW
+bjR
+bjR
+bjR
+bjR
+bjR
+bjR
 bjR
 efd
 efd
@@ -287108,12 +287072,12 @@ dNn
 dNV
 dNL
 ala
-eaV
-ebs
-eaW
-eOl
-eaW
-eaW
+bjR
+bjR
+bjR
+bjQ
+bjR
+bjR
 dMX
 efd
 efY
@@ -287310,9 +287274,9 @@ dNn
 dNL
 dOK
 ath
-eaW
-eaW
-eOl
+bjR
+bjR
+bjQ
 ect
 ect
 ect
