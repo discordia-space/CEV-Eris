@@ -15,7 +15,10 @@
 	base_income = 1600				// Stations can replenish some stock without player interaction. Adds to value so stations will unlock hidden inventory after some time.
 	wealth = 5000					// The abstract value of the goods sold to the station via offers + base income. Represents the station's ability to produce or purchase goods.
 	total_value_received = 0		// For keeping track of how much wealth a station has handled. Triggers events when certain thresholds are reached. Should always start at 0.
-	secret_inv_threshold = 32000	// Total value required to unlock secret inventory
+	secret_inv_threshold = 2000	// Total value required to unlock secret inventory
+	recommendation_threshold = 4000
+	stations_recommended = list("station_uid")
+	recommendations_needed = 1
 
 	// Types of items sold by the station
 	// Notes: Duplicate items in the same category will cause runtimes

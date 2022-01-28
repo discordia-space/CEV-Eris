@@ -48,6 +48,8 @@
 <hr>
 {{if data.tradescreen}}
 	{{if data.station_name}}
+		<h4>{{:data.station_desc}}</h4>
+		<h5>Favor: {{:data.station_favor}}/{{:data.station_favor_needed}}        Offer Time Remaining: {{:data.offer_time}}</h5>
 		<div class='nanoMap' style='padding: 25px 50px;'>
 			{{for data.categories}}
 				{{:helper.link(value.name, (data.current_category == value.index ? 'folder-open' : 'folder-collapsed'), {'PRG_goods_category': value.index}, (data.current_category == value.index ? 'selected' : null))}}
@@ -104,7 +106,7 @@
 {{else}}
 	<div class='notice' id='SpecialOffer'>
 		{{if data.offers}}
-			<h3>Special offers{{if data.time}} (time left: {{:data.time}}){{/if}}</h3>
+			<h3>Special offers{{if data.offer_time}} (time left: {{:data.offer_time}}){{/if}}</h3>
 			<table class='item'>
 				<tr>
 					<th>Station

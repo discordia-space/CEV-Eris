@@ -90,12 +90,6 @@
 	icon_state = "box_serbian"
 	initial_contents = list(/obj/item/device/synthesized_instrument/trumpet = 1) //TODO: Add an accordian to this, sprites already made.
 
-/obj/item/storage/deferred/disks //for the beacon, cause we want it priced right and actually functional
-	name = "autolathe disk box"
-	desc = "A small collection of autolathe disks"
-	initial_contents = list(/obj/spawner/lathe_disk = 7)
-	price_tag = 2800
-
 //Medical
 /obj/item/storage/deferred/surgery
 	name = "combat surgery kit"
@@ -371,3 +365,28 @@
 	/obj/item/clothing/shoes/reinforced = 1,
 	/obj/item/clothing/gloves/latex/nitrile = 1,
 	/obj/item/clothing/suit/armor/vest = 1)
+
+// Trade beacon stuff
+/obj/item/storage/deferred/disks
+	name = "autolathe disk box"
+	desc = "A small collection of autolathe disks"
+	initial_contents = list(/obj/spawner/lathe_disk = 7)
+	price_tag = 300		// High markup, low base price to prevent export abuse
+
+/obj/item/storage/deferred/gun_parts
+	name = "gun part box"
+	desc = "Uppers, lowers, and everything in between"
+	initial_contents = list(/obj/spawner/gun_parts = 7)
+	price_tag = 300
+
+/obj/item/storage/deferred/powercells
+	name = "powercell box"
+	desc = "A small collection of powercells"
+	initial_contents = list(/obj/spawner/powercell = 7)
+	price_tag = 200
+
+/obj/item/storage/deferred/electronics
+	name = "powercell box"
+	desc = "A small collection of circuit boards"
+	initial_contents = list(/obj/spawner/electronics = 7)
+	price_tag = 500
