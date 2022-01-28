@@ -78,15 +78,15 @@
 /obj/item/projectile/energy/bolt
 	name = "bolt"
 	icon_state = "cbbolt"
-	damage_types = list(TOX = 25)
+	damage_types = list(TOX = 20)
 	nodamage = 0
-	agony = 40
+	agony = 30
 	stutter = 10
 
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
-	damage_types = list(BURN = 30)
+	damage_types = list(BURN = 25)
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neuro"
