@@ -307,7 +307,7 @@ There are important things regarding this file:
 	icon_state = "birdshot-[rand(1,4)]"
 
 /obj/item/projectile/bullet/pellet/shotgun/scrap
-	damage_types = list(BRUTE = 9)
+	damage_types = list(BRUTE = 7)
 
 //Miscellaneous
 /obj/item/projectile/bullet/blank
