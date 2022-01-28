@@ -76,7 +76,7 @@
 	var/contractor = FALSE //Check if it's a contractor psychic beam
 	damage_types = list(PSY = 30)
 	armor_penetration = 100
-	style_damage = 110 //I don't honestly think this should be dodgeable since it's not really lethal.
+	style_damage = 60 //It's magic brain beams, deal with it.
 
 	muzzle_type = /obj/effect/projectile/psychic_laser_heavy/muzzle
 	tracer_type = /obj/effect/projectile/psychic_laser_heavy/tracer
