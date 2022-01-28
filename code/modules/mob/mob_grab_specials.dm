@@ -120,7 +120,7 @@
 	attacker.next_move = world.time + 20 //2 seconds, also should prevent user from triggering this repeatedly
 	if(do_after(attacker, 20, progress=0) && target)
 		visible_message(SPAN_DANGER("...And falls backwards, slamming the opponent back onto the floor!"))
-		var/damage = (attacker.stats.getStat(STAT_ROB) + 15)
+		var/damage = min(65, attacker.stats.getStat(STAT_ROB) + 15)
 		target.damage_through_armor(damage, BRUTE, BP_CHEST, ARMOR_MELEE) //crunch
 		attacker.Weaken(2)
 		target.Stun(6)
