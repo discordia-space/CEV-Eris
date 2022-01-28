@@ -158,7 +158,6 @@
 	if(!istype(W))
 		return
 
-
 	if(istype(W, /obj/item/melee/energy/blade))
 		var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 		spark_system.set_up(5, 0, src.loc)
@@ -167,6 +166,11 @@
 		playsound(src.loc, "sparks", 50, 1)
 		user.visible_message(SPAN_DANGER("\The [src] was sliced apart by [user]!"))
 		break_to_parts()
+		return
+
+	if(istype(user.a_intent = I_HELP && istype(W, /obj/item/gun)))
+		var/obj/item/gun/G = W
+		G.gun_brace(user, src) //.../modules/projectiles/gun.dm
 		return
 
 	if(can_plate && !material)

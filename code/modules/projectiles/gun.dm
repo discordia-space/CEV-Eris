@@ -39,6 +39,8 @@
 	var/move_delay = 1
 	var/fire_sound = 'sound/weapons/Gunshot.ogg'
 	var/rigged = FALSE
+	var/braced = FALSE //for gun_brace proc.
+	var/braceable = 1 //can the gun be used for gun_brace proc, modifies recoil. If the gun has foregrip mod installed, it's not braceable. Bipod mod increases value by 1.
 	var/fire_sound_text = "gunshot"
 	var/recoil_buildup = 2 //How quickly recoil builds up
 	var/list/gun_parts = list(/obj/item/part/gun = 1 ,/obj/item/stack/material/steel = 4)
@@ -540,6 +542,25 @@
 	else
 		handle_click_empty(user)
 		mouthshoot = FALSE
+		return
+
+/obj/item/gun/proc/gun_brace(mob/living/user, atom/target)
+	if(braceable)
+		var/atom/original_loc = user.loc
+		var/dir = get_dir(user, target)
+		user.facing_dir = 0
+		user.set_dir(dir)
+		to_chat(user, SPAN_NOTICE("You brace your weapon on \the [target]."))
+		braced = TRUE
+		while(user.loc = original_loc)
+			sleep(2)
+			if(user.get_dir(user, target) = dir)
+				braced = FALSE
+				to_chat(user, SPAN_NOTICE("You stop bracing your weapon."))
+				break
+		braced = FALSE //a failsafe.
+	else
+		to_chat(user, SPAN_WARNING("You can\'t properly place your weapon on \the [target] because of the foregrip!"))
 		return
 
 /obj/item/gun/proc/toggle_scope(mob/living/user)
