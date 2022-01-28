@@ -1,0 +1,6 @@
+author: zombiemimic
+delete-after: true
+changes:
+  - rscadd: 'Added new gun parts: Frames, Grips, Mechanisms, and Barrels'
+  - rscadd: Added new system of building guns from spare parts
+  - tweak: tweaked results of breaking down guns for parts
