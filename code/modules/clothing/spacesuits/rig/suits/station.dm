@@ -38,9 +38,8 @@
 		bio = 100,
 		rad = 90
 	)
-	slowdown = 1
 	drain = 3
-	offline_slowdown = 5
+	offline_slowdown = HEAVY_SLOWDOWN * 5
 	offline_vision_restriction = 2
 	emp_protection = -20
 
@@ -83,7 +82,7 @@
 		rad = 100
 	)
 	slowdown = 0
-	offline_slowdown = 1
+	offline_slowdown = HEAVY_SLOWDOWN
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/eva
@@ -124,7 +123,6 @@ Advanced Voidsuit: Technomancer Exultant
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 0
 	drain = 2
 	offline_slowdown = 0
 	offline_vision_restriction = 0
@@ -145,6 +143,9 @@ Advanced Voidsuit: Technomancer Exultant
 	req_access = list(access_ce)
 	req_one_access = list()
 	spawn_blacklisted = TRUE//antag_item_targets
+	slowdown = LIGHT_SLOWDOWN
+	stiffness = 0
+	obscuration = 0
 
 /obj/item/rig/ce/equipped
 	rarity_value = 40
@@ -183,9 +184,7 @@ Technomancer RIG
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 1
 	drain = 3
-	offline_slowdown = 3
 	offline_vision_restriction = 0
 
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -239,7 +238,6 @@ Technomancer RIG
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 0.7
 	drain = 3
 	offline_vision_restriction = 1
 
@@ -261,6 +259,7 @@ Technomancer RIG
 
 	req_access = list()
 	req_one_access = list()
+	slowdown = HEAVY_SLOWDOWN * 0.7
 
 /obj/item/rig/hazmat/equipped
 	req_access = list(access_rd)
@@ -290,7 +289,6 @@ Technomancer RIG
 		bio = 100,
 		rad = 100
 	)
-	slowdown = 0.5
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/space/rig/medical
@@ -301,6 +299,8 @@ Technomancer RIG
 		/obj/item/stack/medical,
 		/obj/item/roller
 	)
+	slowdown = HEAVY_SLOWDOWN * 0.5
+	stiffness = MEDIUM_STIFFNESS
 
 /obj/item/rig/medical/equipped
 	req_access = list()
@@ -312,3 +312,4 @@ Technomancer RIG
 		/obj/item/rig_module/device/healthscanner,
 		/obj/item/rig_module/vision/medhud
 		)
+ 

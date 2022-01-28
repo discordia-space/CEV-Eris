@@ -286,4 +286,4 @@
 	init_firemodes = list(
 		WEAPON_NORMAL
 	)
-	spawn_blacklisted = TRUE
+	spawn_tags = SPAWN_TAG_GUN_HANDMADE

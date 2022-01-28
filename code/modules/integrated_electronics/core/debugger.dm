@@ -11,7 +11,7 @@
 	matter = list(MATERIAL_STEEL = 1000, MATERIAL_GLASS = 500, MATERIAL_PLASTIC = 500)
 	var/copy_values = FALSE
 	var/copy_id = FALSE
-	var/weakref/idlock = null
+	var/datum/weakref/idlock = null
 
 /obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
 	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref","copy","null","id lock")
@@ -62,7 +62,7 @@
 /obj/item/device/integrated_electronics/debugger/afterattack(atom/target, mob/living/user, proximity)
 	. = ..()
 	if(accepting_refs && proximity)
-		data_to_write = weakref(target)
+		data_to_write = WEAKREF(target)
 		visible_message(SPAN_NOTICE("[user] slides \a [src]'s over \the [target]."))
 		to_chat(user, SPAN_NOTICE("You set \the [src]'s memory to a reference to [target.name] \[Ref\].  The ref scanner is \
 		now off."))
@@ -70,7 +70,7 @@
 
 	else if(copy_id && proximity)
 		if(istype(target,/obj/item/card/id))
-			src.idlock = weakref(target)
+			src.idlock = WEAKREF(target)
 			to_chat(user, SPAN_NOTICE("You set \the [src]'s card memory to [target.name].  The id card scanner is \
 			now off."))
 
@@ -95,7 +95,7 @@
 		var/data_to_show = data_to_write
 		//This is only to convert a weakref into a name for better output
 		if(isweakref(data_to_write))
-			var/weakref/W = data_to_write
+			var/datum/weakref/W = data_to_write
 			var/atom/A = W.resolve()
 			data_to_show = A.name
 		to_chat(user, SPAN_NOTICE("You write '[data_to_write ? data_to_show : "NULL"]' to the '[io]' pin of \the [io.holder]."))

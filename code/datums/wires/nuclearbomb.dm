@@ -2,9 +2,9 @@
 	holder_type = /obj/machinery/nuclearbomb
 	wire_count = 7
 	descriptions = list(
-		new /datum/wire_description(NUCLEARBOMB_WIRE_LIGHT, "This wire seems to connect to the small light on the device."),
-		new /datum/wire_description(NUCLEARBOMB_WIRE_TIMING, "This wire connects to the time display."),
-		new /datum/wire_description(NUCLEARBOMB_WIRE_SAFETY, "This wire connects to a safety override.")
+		new /datum/wire_description(NUCLEARBOMB_WIRE_LIGHT, "Light"),
+		new /datum/wire_description(NUCLEARBOMB_WIRE_TIMING, "Timer"),
+		new /datum/wire_description(NUCLEARBOMB_WIRE_SAFETY, "Safety")
 	)
 
 var/const/NUCLEARBOMB_WIRE_LIGHT		= 1
@@ -15,9 +15,9 @@ var/const/NUCLEARBOMB_WIRE_SAFETY		= 4
 	var/obj/machinery/nuclearbomb/N = holder
 	return N.panel_open
 
-/datum/wires/nuclearbomb/GetInteractWindow()
+/datum/wires/nuclearbomb/GetInteractWindow(mob/living/user)
 	var/obj/machinery/nuclearbomb/N = holder
-	. += ..()
+	. += ..(user)
 	. += "<BR>The device is [N.timing ? "shaking!" : "still."]<BR>"
 	. += "The device is is [N.safety ? "quiet" : "whirring"].<BR>"
 	. += "The lights are [N.lighthack ? "static" : "functional"].<BR>"

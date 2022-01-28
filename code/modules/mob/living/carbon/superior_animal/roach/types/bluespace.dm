@@ -7,11 +7,23 @@
 	meat_type = /obj/item/bluespace_crystal
 	melee_damage_lower = 4
 	melee_damage_upper = 11
+	armor_penetration = 100 // Hits through armor, only GDR helps
+
 	sanity_damage = 1
 	spawn_blacklisted = TRUE
 	var/change_tele_to_mob = 25
 	var/chance_tele_to_eat = 25
 	var/chance_tele_to_random = 10
+
+	// Armor related variables
+	armor = list(
+		melee = 0,
+		bullet = 0,
+		energy = 60,
+		bomb = 0,
+		bio = 25,
+		rad = 50
+	)
 
 /mob/living/carbon/superior_animal/roach/bluespace/Initialize(mapload)
 	. = ..()

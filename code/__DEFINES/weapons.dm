@@ -47,14 +47,15 @@
 #define STRUCTURE_DAMAGE_BORING 		3
 
 //Quick defines for fire modes
-#define FULL_AUTO_300		list(mode_name = "full auto",  mode_desc = "300 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 2  , icon="auto", damage_mult_add = -0.1)
-#define FULL_AUTO_400		list(mode_name = "full auto",  mode_desc = "400 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1.5, icon="auto", damage_mult_add = -0.1)
-#define FULL_AUTO_600		list(mode_name = "full auto",  mode_desc = "600 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1  , icon="auto", damage_mult_add = -0.1)
-#define FULL_AUTO_800		list(mode_name = "fuller auto",  mode_desc = "800 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 0.8, icon="auto", damage_mult_add = -0.1)
+#define FULL_AUTO_300		list(mode_name = "full auto",  mode_desc = "300 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 2  , icon="auto", damage_mult_add = -0.1, style_damage_mult = 0.5)
+#define FULL_AUTO_400		list(mode_name = "full auto",  mode_desc = "400 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1.5, icon="auto", damage_mult_add = -0.1, style_damage_mult = 0.5)
+#define FULL_AUTO_600		list(mode_name = "full auto",  mode_desc = "600 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 1  , icon="auto", damage_mult_add = -0.1, style_damage_mult = 0.5)
+#define FULL_AUTO_800		list(mode_name = "fuller auto",  mode_desc = "800 rounds per minute",   mode_type = /datum/firemode/automatic, fire_delay = 0.8, icon="auto", damage_mult_add = -0.1, style_damage_mult = 0.5)
 
 #define SEMI_AUTO_NODELAY	list(mode_name = "semiauto",  mode_desc = "Fire as fast as you can pull the trigger", burst=1, fire_delay=0, move_delay=null, icon="semi")
 
 //Cog firemode
+Full-Auto
 #define BURST_2_BEAM		list(mode_name="2-beam bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst", damage_mult_add = -0.1)
 
 #define BURST_2_ROUND		list(mode_name="2-round bursts", mode_desc = "Short, controlled bursts", burst=2, fire_delay=null, move_delay=2, icon="burst", damage_mult_add = -0.1)
