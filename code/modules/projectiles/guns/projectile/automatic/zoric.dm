@@ -26,6 +26,8 @@
 		FULL_AUTO_300,
 		SEMI_AUTO_NODELAY,
 		)
+	gun_tags = list(GUN_SILENCABLE)
+	gun_parts = list(/obj/item/part/gun/frame/zoric = 1, /obj/item/part/gun/grip/serb = 1, /obj/item/part/gun/mechanism/smg = 1, /obj/item/part/gun/barrel/magnum = 1)
 
 /obj/item/gun/projectile/automatic/zoric/update_icon()
 	..()
@@ -41,3 +43,12 @@
 /obj/item/gun/projectile/automatic/zoric/Initialize()
 	. = ..()
 	update_icon()
+
+/obj/item/part/gun/frame/zoric
+	name = "Zoric frame"
+	desc = "A Zoric SMG frame. Workhorse of the Excelsior force."
+	icon_state = "frame_zorik"
+	result = /obj/item/gun/projectile/automatic/zoric
+	grip = /obj/item/part/gun/grip/serb
+	mechanism = /obj/item/part/gun/mechanism/smg
+	barrel = /obj/item/part/gun/barrel/magnum
