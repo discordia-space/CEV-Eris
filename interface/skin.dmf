@@ -672,6 +672,12 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+Y"
 		command = "Activate-Held-Object"
+	elem
+		name = "C"
+		command = "rest"
+	elem
+		name = "C+UP"
+		command = "stopSliding"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"
